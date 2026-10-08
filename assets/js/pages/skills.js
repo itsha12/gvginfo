@@ -1,11 +1,12 @@
-import { state, esc, skillCard, costsHtml, writeJson, toast, canSave } from "../core.js";
+import { state, esc, skillCard, costsHtml, writeJson, toast, canSave, lazy } from "../core.js";
 import { PROF_ATTRS } from "../template.js";
 
 const PROFS = ["Warrior", "Ranger", "Monk", "Necromancer", "Mesmer", "Elementalist", "Assassin", "Ritualist", "Paragon", "Dervish", "None"];
 const f = { q: "", prof: "", attr: "", type: "", elite: "", causes: "", removes: "", maxE: "", sort: "name", rank: 12, open: null };
 const num = (x) => (x === "" || x == null ? null : parseFloat(String(x).replace("¼", ".25").replace("½", ".5").replace("¾", ".75")));
 
-export function renderSkills(view, [openId]) {
+export async function renderSkills(view, [openId]) {
+  const stats = await lazy("skill_stats");
   if (openId) f.open = +openId;
   const types = [...new Set(state.skills.map((s) => s.type))].sort();
   const causes = [...new Set(state.skills.flatMap((s) => s.causes))].sort();
@@ -73,6 +74,20 @@ export function renderSkills(view, [openId]) {
     drawDetail();
   }
 
+  function matchStats(s) {
+    const x = stats?.skills?.[s.id];
+    if (!x || !x.bars) return stats ? `<p class="muted" style="margin-top:12px">Not seen on any bar in the ${stats.matches} recorded matches.</p>` : "";
+    const per = (v) => (x.uses ? Math.round((10 * v) / x.uses) / 10 : 0);
+    const cells = [["On bars", `${x.bars}`, `of ${stats.players} player-matches`], ["Casts", x.uses, `${Math.round(x.uses / x.bars)} per match`]];
+    if (x.dmg) cells.push(["Damage per cast", per(x.dmg), `${Math.round(x.dmg).toLocaleString()} total`]);
+    if (x.heal) cells.push(["Healing per cast", per(x.heal), "includes Divine Favor"]);
+    if (x.prev) cells.push(["Prevented per cast", per(x.prev), "damage stopped"]);
+    if (x.kd) cells.push(["Knockdowns", x.kd, `${per(x.kd)} per cast`]);
+    if (x.intr) cells.push(["Interrupts", x.intr, `${per(x.intr)} per cast`]);
+    return `<h3>In recorded matches</h3><div class="stats">${cells.map(([l, v, sub]) => `<div><span>${l}</span><b>${typeof v === "number" ? v.toLocaleString() : v}</b><span>${sub}</span></div>`).join("")}</div>
+      <p class="muted">Estimates from gvg.report's match observer across ${stats.matches} matches.</p>`;
+  }
+
   function drawDetail() {
     const box = view.querySelector("#detail");
     const s = f.open && state.byId.get(f.open);
@@ -89,7 +104,7 @@ export function renderSkills(view, [openId]) {
     box.innerHTML = `<div class="detail">
       <div class="row" style="justify-content:space-between"><span class="muted">Skill ID ${s.id}${s.template_id !== s.id ? ` (template code ID ${s.template_id})` : ""} · ${esc(s.campaign)}</span>
       <button class="btn small" id="close">Close</button></div>
-      ${skillCard(s, f.rank)}<div class="tags">${tags}</div>${prog}${wiki}
+      ${skillCard(s, f.rank)}<div class="tags">${tags}</div>${prog}${wiki}${matchStats(s)}
       <h3>My notes</h3>
       ${mine.map((n, i) => `<div class="row"><p class="note mine" style="flex:1">${esc(n)}</p><button class="btn small danger" data-del="${i}">Delete</button></div>`).join("") || `<p class="muted">No notes yet. Add things you've tested that the wiki gets wrong or leaves out.</p>`}
       <div class="row" style="margin-top:8px"><textarea id="newnote" placeholder="e.g. Tested: recharge is actually 8s in GvG"></textarea></div>

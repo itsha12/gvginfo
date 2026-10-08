@@ -1,0 +1,34 @@
+name: Update skills from the wiki
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-updates
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Pull skills from the wiki
+        run: node tools/wiki/sync.mjs
+      - name: Rebuild match summaries with the new skill data
+        run: node tools/gvgreport/aggregate.mjs
+      - name: Save changes
+        run: |
+          git config user.name "gvginfo-bot"
+          git config user.email "gvginfo-bot@users.noreply.github.com"
+          git add data
+          git diff --cached --quiet && echo "No changes on the wiki." && exit 0
+          git commit -m "Update skills from the wiki"
+          git pull --rebase
+          git push
