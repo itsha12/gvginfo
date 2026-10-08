@@ -130,6 +130,15 @@ table.data td.num { text-align: right; font-variant-numeric: tabular-nums; }
 .doc pre { background: #141a24; padding: 10px; overflow-x: auto; border-radius: var(--radius); }
 .doclist { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
 
+.layout-lineups { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; padding: 6px 0; }
+.lineup-row { display: flex; align-items: center; gap: 8px; margin-top: 6px; flex-wrap: wrap; }
+.lineup-row .pname { width: 150px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
+.up { color: var(--health); font-size: 13px; } .down { color: #e59a8c; font-size: 13px; }
+.stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; margin-top: 10px; }
+.stats div { background: #232c3b; border-radius: var(--radius); padding: 8px 10px; }
+.stats b { display: block; font-size: 20px; font-variant-numeric: tabular-nums; }
+.stats span { font-size: 13px; color: var(--muted); }
 .toast { position: fixed; bottom: 20px; right: 20px; background: var(--panel-2); border: 1px solid var(--gold); padding: 10px 14px; border-radius: var(--radius); z-index: 60; }
 .empty-state { background: var(--panel); border: 1px dashed var(--line); border-radius: var(--radius); padding: 24px; color: var(--muted); }
 
@@ -143,7 +152,7 @@ table.data td.num { text-align: right; font-variant-numeric: tabular-nums; }
   .rail nav a { white-space: nowrap; }
   .rail .sync { display: none; }
   main { padding: 20px 16px 40px; }
-  .layout-2 { grid-template-columns: 1fr; }
+  .layout-2, .layout-lineups, .meta-grid { grid-template-columns: 1fr; }
   .slot { width: 40px; height: 40px; }
   .tip { width: min(340px, calc(100vw - 24px)); }
 }

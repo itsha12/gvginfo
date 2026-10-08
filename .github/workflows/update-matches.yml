@@ -1,0 +1,39 @@
+name: Update matches from gvg.report
+
+on:
+  workflow_dispatch:
+    inputs:
+      max_matches:
+        description: "Most new matches to fetch in this run"
+        default: "400"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-updates
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Fetch new matches and rebuild summaries
+        env:
+          MAX_MATCHES: ${{ github.event.inputs.max_matches }}
+          DELAY_MS: "1500"
+        run: node tools/gvgreport/sync.mjs
+      - name: Save changes
+        run: |
+          git config user.name "gvginfo-bot"
+          git config user.email "gvginfo-bot@users.noreply.github.com"
+          git add data
+          git diff --cached --quiet && echo "Nothing new." && exit 0
+          git commit -m "Update matches from gvg.report"
+          git pull --rebase
+          git push

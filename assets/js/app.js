@@ -4,15 +4,18 @@ import { renderSkills } from "./pages/skills.js";
 import { renderTemplates } from "./pages/templates.js";
 import { renderKnowledge } from "./pages/knowledge.js";
 import { renderSettings } from "./pages/settings.js";
+import { renderBuilds } from "./pages/builds.js";
+import { renderPlayers } from "./pages/players.js";
+import { renderMeta } from "./pages/meta.js";
 
-const routes = { "": renderHome, templates: renderTemplates, skills: renderSkills, knowledge: renderKnowledge, settings: renderSettings };
+const routes = { "": renderHome, home: renderHome, builds: renderBuilds, meta: renderMeta, players: renderPlayers, templates: renderTemplates, skills: renderSkills, knowledge: renderKnowledge, settings: renderSettings };
 const view = document.getElementById("view");
 
 function route() {
   const [, page = "", ...rest] = location.hash.replace(/^#/, "").split("/");
   document.querySelectorAll(".rail nav a").forEach((a) => {
     const target = a.getAttribute("href").replace(/^#\//, "");
-    if (target === page) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+    if (target === page || (target === "" && page === "home")) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
   });
   (routes[page] || renderHome)(view, rest.map(decodeURIComponent));
   view.focus({ preventScroll: true });

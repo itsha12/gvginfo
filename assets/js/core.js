@@ -78,6 +78,55 @@ export async function loadData() {
   state.meta = { source: sk.source, count: sk.count };
 }
 
+// Match-derived files load on first use; they change only when "Update matches" runs.
+const cache = {};
+export function lazy(name) {
+  return (cache[name] ||= fetch(`data/${name}.json`, { cache: "no-cache" }).then((r) => (r.ok ? r.json() : null)).catch(() => null));
+}
+
+// Start one of the update workflows on GitHub (needs a key with Actions: Read and write).
+export async function runWorkflow(file, inputs = {}) {
+  const s = settings();
+  if (!canSave()) throw new Error("Add your GitHub key in Settings to run updates.");
+  const r = await fetch(`https://api.github.com/repos/${s.owner}/${s.repo}/actions/workflows/${file}/dispatches`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${s.token}`, Accept: "application/vnd.github+json", "Content-Type": "application/json" },
+    body: JSON.stringify({ ref: s.branch || "main", inputs }),
+  });
+  if (r.status !== 204) {
+    const e = await r.json().catch(() => ({}));
+    throw new Error(r.status === 403 || r.status === 404 ? "Your key can't start updates. Give it Actions: Read and write in its GitHub settings." : `GitHub refused (${r.status}): ${e.message || "unknown error"}`);
+  }
+  return `https://github.com/${s.owner}/${s.repo}/actions`;
+}
+
+// Template code for an observed player bar (attributes are effective ranks; codes hold base ranks ≤ 12).
+export function codeForPlayer(p) {
+  const attributes = {};
+  for (const [a, r] of Object.entries(p.attrs || {})) attributes[a] = Math.min(12, r);
+  return templateCode({ primary: p.p, secondary: p.s, attributes, skills: p.bar });
+}
+export const pct = (a, b) => (b ? Math.round((100 * a) / b) + "%" : "–");
+export const ABBR = { Warrior: "W", Ranger: "R", Monk: "Mo", Necromancer: "N", Mesmer: "Me", Elementalist: "E", Assassin: "A", Ritualist: "Rt", Paragon: "P", Dervish: "D", None: "X" };
+export const ago = (ms) => {
+  if (!ms) return "";
+  const m = Math.round((Date.now() - ms) / 60000);
+  return m < 60 ? `${m} min ago` : m < 1440 ? `${Math.round(m / 60)} h ago` : `${Math.round(m / 1440)} days ago`;
+};
+
+// Add a bar to a My templates folder (used by Builds and match views).
+export async function saveToTemplates({ name, code, notes = "", bonus = {} }) {
+  const folders = state.templates.folders;
+  const names = folders.map((f, i) => `${i + 1}. ${f.name}`).join("\n");
+  const pick = prompt(`Save "${name}" to which folder? Type a number, or a new folder name.\n${names}`, folders.length ? "1" : "Saved from builds");
+  if (!pick) return;
+  let folder = folders[+pick - 1];
+  if (!folder) { folder = { id: Math.random().toString(36).slice(2, 10), name: pick.trim(), templates: [] }; folders.push(folder); }
+  folder.templates.push({ id: Math.random().toString(36).slice(2, 10), name, code, notes, bonus, variations: [] });
+  await writeJson("data/templates.json", state.templates, `Saved template: ${name}`);
+  toast(`Saved to ${folder.name}`);
+}
+
 // skill lookup by in-game id or template id (template ids resolve to the PvP version)
 export const skill = (id) => state.byTemplateId.get(+id) || state.byId.get(+id) || null;
 

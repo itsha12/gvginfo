@@ -1,0 +1,12 @@
+{
+  "name": "gvginfo",
+  "private": true,
+  "type": "module",
+  "description": "Personal Guild Wars 1 GvG portal",
+  "scripts": {
+    "sync-matches": "node tools/gvgreport/sync.mjs",
+    "aggregate": "node tools/gvgreport/aggregate.mjs",
+    "sync-wiki": "node tools/wiki/sync.mjs"
+  },
+  "engines": { "node": ">=20" }
+}
