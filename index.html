@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GvG Info</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;500;600&family=Spectral:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/app.css">
+</head>
+<body>
+<div class="shell">
+  <aside class="rail">
+    <h1>GvG Info</h1>
+    <nav aria-label="Sections">
+      <a href="#/">Home</a>
+      <a href="#/templates">My templates</a>
+      <a href="#/skills">Skills</a>
+      <a href="#/knowledge">Knowledge</a>
+      <a href="#/settings">Settings</a>
+    </nav>
+    <p class="sync" id="sync"></p>
+  </aside>
+  <main id="view" tabindex="-1"><p class="muted">Loading skills…</p></main>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<script type="module" src="assets/js/app.js"></script>
+</body>
+</html>
