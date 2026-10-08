@@ -1,0 +1,32 @@
+[
+ {
+  "id": "verified",
+  "title": "Tested by me",
+  "file": "verified.md"
+ },
+ {
+  "id": "mechanics",
+  "title": "Game mechanics",
+  "file": "mechanics.md"
+ },
+ {
+  "id": "gvg-rules",
+  "title": "GvG rules and Guild Lord",
+  "file": "gvg_rules.md"
+ },
+ {
+  "id": "gvg-context",
+  "title": "GvG context and Master of Damage",
+  "file": "gvg_and_mod.md"
+ },
+ {
+  "id": "testing",
+  "title": "Test scenarios",
+  "file": "testing.md"
+ },
+ {
+  "id": "format",
+  "title": "Skill data format",
+  "file": "skill_data_format.md"
+ }
+]
