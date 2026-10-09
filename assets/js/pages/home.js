@@ -19,7 +19,7 @@ export async function renderHome(view) {
     <div class="row" style="margin-bottom:18px">
       <button class="btn primary" id="upd-matches">Update matches</button>
       <button class="btn" id="upd-wiki">Update skills from wiki</button>
-      ${lastWiki?.changes.length ? `<a class="btn" href="#/home/changes">What changed on the wiki</a>` : ""}
+      ${lastWiki?.changes.length ? `<a class="btn" href="#/matches/changes">What changed on the wiki</a>` : ""}
       <span class="muted" id="upd-status"></span>
     </div>
     <div id="changes"></div>
@@ -101,6 +101,6 @@ function lineups(m) {
       return `<div class="lineup-row"><span class="pos">${p.pos ?? "–"}</span><span class="prof" data-p="${esc(p.p)}">${esc(ABBR[p.p] || p.p)}/${esc(ABBR[p.s] || "")}</span><span class="pname" title="${esc(p.build || "")}">${esc(p.n)}</span>
         ${skillBar(p.bar, { attributes: p.attrs }, true)}
         ${code ? `<button class="btn small" data-copy="${esc(code)}">Copy</button><button class="btn small" data-save="${esc(code)}" data-name="${esc(p.n)} (${esc(m.date)})">Save</button>` : ""}
-        ${p.full ? "" : `<span class="muted" title="Some slots were never used, so they weren't observed">partial</span>`}</div>`;
+</div>`;
     }).join("")}</div>`).join("")}</div>`;
 }

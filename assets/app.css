@@ -212,7 +212,7 @@ th[aria-sort="ascending"], th[aria-sort="descending"] { color: var(--ink); }
 .layout-lineups { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding: 1rem 0; }
 .lineup-row { display: flex; align-items: center; gap: .6rem; margin-top: .5rem; flex-wrap: nowrap; }
 .layout-lineups > div { min-width: 0; overflow-x: auto; }
-.lineup-row .pname { width: 9.5rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lineup-row .pname { width: 9.5rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .76rem; letter-spacing: -.01em; }
 .lineup-row .prof { width: 2.8rem; }
 .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
 .up { color: var(--good); font-size: .8rem; } .down { color: var(--bad); font-size: .8rem; }
@@ -283,3 +283,29 @@ tr.selected td { background: var(--accent-soft); }
   background: #fff; border-top: 1px solid var(--ink); padding: .9rem 0; margin-top: 1rem; box-shadow: 0 -12px 24px rgba(0,0,0,.06); }
 .assign input { min-width: 16rem; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* builds: profession tabs and compact family cards */
+.tabs { display: flex; flex-wrap: wrap; gap: 0; border-bottom: 1px solid var(--ink); margin-bottom: 1.2rem; }
+.tabs button { background: none; border: 0; border-bottom: 2px solid transparent; padding: .55rem .85rem; margin-bottom: -1px; cursor: pointer; font-size: .86rem; display: inline-flex; gap: .35rem; align-items: center; }
+.tabs button:hover:not([disabled]) { background: var(--bg-2); }
+.tabs button[aria-selected="true"] { border-bottom-color: var(--ink); font-weight: 700; }
+.tabs button[disabled] { opacity: .35; cursor: default; }
+.tabs .prof { font-size: inherit; font-weight: inherit; }
+.prof-group h3 { margin: 1.6rem 0 .4rem; }
+.prof-group h3 .prof { font-size: 1.05rem; }
+.fam { border-top: 1px solid var(--line); padding: .7rem 0 .8rem; }
+.fam-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; margin-bottom: .35rem; }
+.fam-head h4 { font: 600 1rem/1.2 var(--display); margin: 0; }
+.fam-row { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+.fam-info { display: grid; gap: .35rem; min-width: 0; flex: 1; }
+.fam-info .gear { font-size: .84rem; }
+.var-row { margin-bottom: .6rem; }
+.skillbar.mid { gap: 3px; }
+.skillbar.mid .slot { width: 2.55rem; height: 2.55rem; }
+.fam .code { font-size: .74rem; padding: .15rem .45rem; }
+
+/* players: column picker */
+.col-picker { display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: 1rem; border: 1px solid var(--ink); padding: 1rem 1.2rem; margin-bottom: 1.4rem; }
+.col-picker fieldset { border: 0; padding: 0; margin: 0; }
+.col-picker legend { font-size: .7rem; text-transform: uppercase; letter-spacing: .09em; font-weight: 700; margin-bottom: .3rem; }
+.col-picker .check { margin: .2rem 0; font-size: .86rem; }

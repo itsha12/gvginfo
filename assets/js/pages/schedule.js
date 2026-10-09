@@ -13,7 +13,7 @@ export function renderSchedule(view) {
   const y = ym.getUTCFullYear(), mo = ym.getUTCMonth() + 1;
   const monthStart = S.zonedToUtc(y, mo, 1, 0, 0, S.LOCAL_ZONE);
   const monthEnd = S.zonedToUtc(mo === 12 ? y + 1 : y, mo === 12 ? 1 : mo + 1, 1, 0, 0, S.LOCAL_ZONE);
-  const events = S.atEvents(monthStart, monthEnd, slots);
+  const events = S.atEvents(monthStart + 6 * 3600000, monthEnd + 6 * 3600000, slots); // evening rows (see below)
   const upcoming = S.atEvents(now, now + 3 * 86400000, slots);
   const next = (slot) => upcoming.find((e) => e.slot === slot);
   const midMonth = monthStart + 14 * 86400000;
@@ -22,24 +22,27 @@ export function renderSchedule(view) {
   const monthName = S.fmtDate(midMonth, S.LOCAL_ZONE, { month: "long", year: "numeric" });
   const fluxChange = S.nextFluxChange(now);
 
-  // group events by Toronto date
+  // Rows by "evening": a start between midnight and 6 a.m. stays on the previous day's row (12:00 a.m. Friday is
+  // listed under Thursday), so each day has one AT-A and one AT-C.
+  const EVENING_SHIFT = 6 * 3600000;
+  const dayOf = (at) => S.fmtDate(at - EVENING_SHIFT, S.LOCAL_ZONE, { year: "numeric", month: "2-digit", day: "2-digit" });
   const days = new Map();
   for (const e of events) {
-    const key = S.fmtDate(e.at, S.LOCAL_ZONE, { year: "numeric", month: "2-digit", day: "2-digit" });
-    ((days.get(key) || days.set(key, { at: e.at, ev: {} }).get(key)).ev[e.slot] ||= []).push(e.at);
+    const key = dayOf(e.at);
+    ((days.get(key) || days.set(key, { at: e.at - EVENING_SHIFT, ev: {} }).get(key)).ev[e.slot] ||= []).push(e.at);
   }
-  const todayKey = S.fmtDate(now, S.LOCAL_ZONE, { year: "numeric", month: "2-digit", day: "2-digit" });
+  const todayKey = dayOf(now);
   // a Toronto day can hold two AT-A starts (just after midnight and late evening)
   const cell = (list) => !list?.length ? `<td class="muted">—</td>` : `<td>${list.map((at) =>
     `<div class="${at < now ? "muted" : ""}" style="margin-bottom:.3rem"><b>${esc(S.fmtTime(at))}</b> <span class="muted small">${esc(S.tzName(at, S.LOCAL_ZONE))}</span>
-      <div class="muted small">${esc(S.fmtTime(at, "UTC"))} UTC</div></div>`).join("")}</td>`;
+</div>`).join("")}</td>`;
   const tile = (label, ms) => `<div><span>${label}</span><b>${ms ? esc(S.fmtTime(ms)) : "—"}</b>
-    <span>${ms ? `${esc(S.fmtDate(ms))} · in <span data-countdown="${ms}">${S.countdown(ms, now)}</span>` : ""}</span></div>`;
+    <span>${ms ? `${esc(S.fmtDate(ms - EVENING_SHIFT))} · in <span data-countdown="${ms}">${S.countdown(ms, now)}</span>` : ""}</span></div>`;
 
   view.innerHTML = `
     <h2>Schedule</h2>
-    <p class="lede">Automated tournament start times in Toronto time. The tournaments run on UTC, so the Toronto times
-      shift by an hour when Ontario changes its clocks. Register within the hour before the start.</p>
+    <p class="lede">Automated tournament start times in Eastern time. A start just after midnight is listed on the evening
+      before it. Register within the hour before the start.</p>
     <div class="stats sched-tiles">
       <div><span>Current flux</span><b class="flux">${esc(S.fluxFor(now))}</b><span>${esc(S.fluxFor(fluxChange + 3600000))} from ${esc(S.fmtDate(fluxChange))}, ${esc(S.fmtTime(fluxChange))}</span></div>
       ${tile("Next AT-A", next("A")?.at)}
@@ -57,7 +60,7 @@ export function renderSchedule(view) {
           </div>
         </div>
         <div class="scroll"><table class="data sched">
-          <thead><tr><th>Day (Toronto)</th>${slots.map((s) => `<th>AT-${s}</th>`).join("")}</tr></thead>
+          <thead><tr><th>Day</th>${slots.map((s) => `<th>AT-${s}</th>`).join("")}</tr></thead>
           <tbody>${[...days.entries()].map(([key, d]) => `<tr class="${key === todayKey ? "today" : ""}${d.at < now - 86400000 ? " past" : ""}">
             <td><b>${esc(S.fmtDate(d.at))}</b>${key === todayKey ? ` <span class="pill type">Today</span>` : ""}</td>
             ${slots.map((s) => cell(d.ev[s])).join("")}</tr>`).join("")}</tbody>
