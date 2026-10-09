@@ -127,7 +127,7 @@ export async function renderSkills(view, [openId]) {
       <div class="row" style="justify-content:space-between"><span class="muted">Skill ID ${s.id}${s.template_id !== s.id ? ` (template code ID ${s.template_id})` : ""} · ${esc(s.campaign)}</span>
       <button class="btn small" id="close">Close</button></div>
       ${skillCard(s, f.rank)}<div class="tags">${tags}</div>${prog}${wiki}${matchStats(s)}
-      <h3>My notes</h3>
+      <h3>Notes</h3>
       ${mine.map((n, i) => `<div class="row"><p class="note mine" style="flex:1">${esc(n)}</p><button class="btn small danger" data-del="${i}">Delete</button></div>`).join("") || `<p class="muted">No notes yet. Add things you've tested that the wiki gets wrong or leaves out.</p>`}
       <div class="row" style="margin-top:8px"><textarea id="newnote" placeholder="e.g. Tested: recharge is actually 8s in GvG"></textarea></div>
       <button class="btn primary" id="addnote" style="margin-top:8px">Save note</button></div>`;

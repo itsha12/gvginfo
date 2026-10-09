@@ -1,0 +1,5 @@
+{
+ "_about": "Runes and insignias Henry has given for builds. These replace the runes derived from bonus ranks. Key by build family id (applies to every variation) under 'families', or by an exact template code under 'codes' (wins over the family). Example: \"families\": {\"Me-1043-23.39.42.68\": {\"runes\": [\"Superior Domination Magic rune\", \"Minor Fast Casting rune\", \"Superior Vigor\"], \"insignias\": [\"5 Prodigy's\"]}}",
+ "families": {},
+ "codes": {}
+}

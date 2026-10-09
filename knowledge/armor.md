@@ -1,6 +1,6 @@
 # Armor
 
-Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are my own in-game results and override the wiki.
+Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are in-game test results and override the wiki.
 
 ## Basic armor (max armor, before insignia)
 | Profession | Armor | Inherent bonus |

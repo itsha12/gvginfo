@@ -1,6 +1,6 @@
 # Adrenaline
 
-Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are my own in-game results and override the wiki.
+Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are in-game test results and override the wiki.
 
 - 1 strike (25 units) per successful weapon hit (per hit for multi-hit attacks).
 - 1 unit per 1% of max Health lost to damage.

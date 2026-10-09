@@ -17,21 +17,31 @@ This repo is Henry's Guild Wars 1 GvG portal and data store. He plays GvG only.
 - Template codes: `tools/gwtemplate.py` (encode/decode; maps PvP ids to template ids automatically).
 - His saved bars: `data/templates.json` (folders → templates → variations, each with a template code).
 - Match data from gvg.report (estimates from an in-game observer; AT/mAT matches it recorded):
-  - `data/matches/YYYY-MM.json`: one record per match; players have n (character name), p/s (professions), bar (8 in-game
+  - `data/matches/YYYY-MM.json`: one record per match; players have n (character name), pos (party slot 1-8 as on
+    gvg.report), p/s (professions), bar (8 in-game
     skill ids), full (all slots observed), attrs (effective ranks where known), dmg, heal, taken, prev (damage prevented),
     deaths, kd (knockdowns dealt), intr (interrupts landed), cond/hexr (removals), hp, weapons, and
     sk = {skill id: [casts, damage, healing incl. Divine Favor, prevented, knockdowns, interrupts]}.
-  - Summaries: `data/recent.json`, `data/builds.json` (families → variations with codes), `data/players.json`,
+  - Summaries: `data/recent.json` (lineups in party order), `data/builds.json` (families → variations with codes and
+    derived runes), `data/guilds.json` (per guild: record, maps, usual lineup per map by party slot, players, recent
+    results), `data/players.json`,
     `data/skill_stats.json` (per-skill totals; divide by casts for per-use averages), `data/meta.json` (per month).
   - Per-minute player rates use full match length. Character names are not accounts.
 - Wiki change log after each skill refresh: `data/wiki_changes.json`.
+- Bar order everywhere: elite first, then the build family's skills from most to least common (then attribute, name),
+  so variations line up. Done in `tools/gvgreport/aggregate.mjs` (`orderBar`).
+- Runes: derived from bonus ranks (+1 Minor, +2 Major, +3 Superior, +4 Superior + headgear). When Henry gives runes or
+  insignias for a build, put them in `data/build_gear.json` (by family id or exact code); they replace derived runes.
+  gvg.report doesn't resolve runes or insignias.
+- Tournament schedule, map rotation and flux: `assets/js/schedule.js` (UK server clock → Toronto; AT-A/B/C weekday
+  hours, mAT third Saturday 17:00 UK, rotation by calendar month, flux changes 07:00 UTC on the 1st).
 
 ## Rules
 - Do not edit `data/skills.json` by hand; it is regenerated from the wiki. Put corrections in `data/skill_notes.json`
   or the matching `knowledge/` page as a **Tested (date):** line.
 - When Henry reports a tested mechanic, add a **Tested (date):** line to the page it belongs to (or `misc.md` if none
   fits), and mark the matching row in `test-scenarios.md`. When he asks to change a page, edit only that page.
-- Never abbreviate Master of Damage.
+- Never abbreviate Master of Damage. Don't use "My" in page names or text.
 - Victory or Death is no longer in the game; ignore wiki text that describes it.
 
 ## Layout

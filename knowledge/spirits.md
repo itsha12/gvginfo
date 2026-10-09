@@ -1,6 +1,6 @@
 # Spirits
 
-Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are my own in-game results and override the wiki.
+Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are in-game test results and override the wiki.
 Nature rituals and binding rituals.
 
 - Health ≈ 20 × level, +4% per Spawning Power rank of the creator (level 10: 200 Health at 0 Spawning Power, 296 at

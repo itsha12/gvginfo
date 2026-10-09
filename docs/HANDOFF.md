@@ -29,7 +29,8 @@ Paste or attach this file in a new chat, then say what you want to do next. Last
 
 ## What exists (all pushed)
 - **Portal** (static, no build step): `index.html`, `assets/app.css`, `assets/js/` (core.js, template.js, app.js,
-  pages/: home = recent matches + update buttons, builds, meta, players, templates, skills, knowledge
+  pages/: schedule (AT-A/AT-C in Toronto time, rotation, flux), guilds (list + per-guild detail), home = recent
+  matches + update buttons, builds, meta, players, templates, skills, knowledge
   ("Mechanics and rules"), settings). Design (2026-10-08): white, minimal, architectural — top nav, hairline rules,
   Inter / Inter Tight / IBM Plex Mono, black buttons, gold only for elites and tested lines; type scales with window
   width; home goes two-column at ≥1700px. `marked` is vendored in `assets/vendor/`.
@@ -89,3 +90,10 @@ Paste or attach this file in a new chat, then say what you want to do next. Last
 - `tools/gw_calc.py` now models inscriptions (+15%, +20% → ×1.21 per wiki), Sundering, Vampiric (3 one-handed /
   5 two-handed, counted by the Master of Damage), Zealous, mastery suffix (skills only) and Weakness (×0.34, −1 rank).
 - WebFetch can read wiki.guildwars.com directly (some pages error; `index.php?title=X&action=raw` often works).
+- Party slot: gvg.report labels players "Name (N)" (N = party slot 1-8); `extract.mjs` stores it as `pos`. The 40
+  sample matches were backfilled from the overview payload (`/api/reports/{id}?payload=overview`, ~100 KB).
+- AT schedule: wiki lists weekday hours "in UTC"; gvg.report's recorded October 2026 (BST) starts are those hours + 1 on
+  the UK clock, so `schedule.js` anchors to Europe/London (Henry: server is UK). All 24 observed starts match. The
+  Schedule page has a "treat as UTC" switch in case late-October times turn out an hour off.
+- gvg.report rune data: `attribute_build_v2.equipment_equivalence_classes[].hp_constraint` only gives ranges
+  (possible_vigor_bonuses etc., usually empty) — not usable for exact runes/insignias.

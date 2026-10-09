@@ -1,6 +1,6 @@
 # Blocking, stances and enchantments
 
-Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are my own in-game results and override the wiki.
+Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are in-game test results and override the wiki.
 
 ## Block and miss
 - Block and miss chances stack multiplicatively (two 50% effects = 75%). Miss is checked before block.

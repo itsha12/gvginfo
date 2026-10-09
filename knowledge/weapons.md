@@ -1,6 +1,6 @@
 # Weapons
 
-Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are my own in-game results and override the wiki.
+Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are in-game test results and override the wiki.
 Max-damage PvP weapons. Every PvP weapon requires 9 in its attribute and is customized (+20% damage).
 
 | Weapon | Damage | Attack interval (s) | Range (gwinches) | Damage type | Notes |

@@ -1,6 +1,6 @@
 # Casting, recharge and interrupts
 
-Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are my own in-game results and override the wiki.
+Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are in-game test results and override the wiki.
 
 ## Casting and aftercast
 - Most spells, signets, glyphs, chants, echoes and rituals: stated cast time + ¾s aftercast (you can't move, attack

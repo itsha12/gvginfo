@@ -1,6 +1,6 @@
 # Critical hits
 
-Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are my own in-game results and override the wiki.
+Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are in-game test results and override the wiki.
 
 - A critical hit uses the weapon's maximum damage and acts as if the target had 20 less armor: max × √2 (×1.414).
 - **Scythes are different:** a scythe critical is max damage × 2^(1/8) (×1.09) instead of ×1.414.

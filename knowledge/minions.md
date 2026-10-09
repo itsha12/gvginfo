@@ -1,6 +1,6 @@
 # Minions
 
-Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are my own in-game results and override the wiki.
+Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are in-game test results and override the wiki.
 
 - Armor 3.75 × level + 5 (Bone Fiend 2.84 × level + 3.1).
 - Health degeneration starts at 1 pip and grows by 1 pip every 20 seconds (a level 18 minion lives about 84s).

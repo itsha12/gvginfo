@@ -1,6 +1,6 @@
 # Attributes and runes
 
-Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are my own in-game results and override the wiki.
+Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are in-game test results and override the wiki.
 
 ## Attribute points
 - 200 points at level 20. Cumulative cost per rank: 1:1, 2:3, 3:6, 4:10, 5:15, 6:21, 7:28, 8:37, 9:48, 10:61, 11:77,

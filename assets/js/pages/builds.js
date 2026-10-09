@@ -1,11 +1,13 @@
-import { state, esc, skillBar, copy, lazy, pct, toast, saveToTemplates, skill } from "../core.js";
+import { state, esc, skillBar, copy, lazy, pct, toast, saveToTemplates, skill, readJson } from "../core.js";
 
 const PROFS = ["Warrior", "Ranger", "Monk", "Necromancer", "Mesmer", "Elementalist", "Assassin", "Ritualist", "Paragon", "Dervish"];
 const f = { prof: "", q: "", month: "", min: 3, sort: "games", open: null };
+let gear = {};
 
 export async function renderBuilds(view, [openId]) {
   if (openId) f.open = openId;
-  const data = await lazy("builds");
+  const [data, gearData] = await Promise.all([lazy("builds"), readJson("data/build_gear.json", {})]);
+  gear = gearData || {};
   if (!data?.families?.length) {
     view.innerHTML = `<h2>Builds</h2><div class="empty-state">No match data yet. Press Update matches on the Home page.</div>`;
     return;
@@ -54,16 +56,29 @@ function family(x, n, total) {
     </div>
     <div class="meta">Played by ${x.players.slice(0, 5).map((p) => `${esc(p.k)} (${p.n})`).join(", ")}. Guilds: ${x.guilds.slice(0, 5).map((g) => `${esc(g.k)} (${g.n})`).join(", ")}.</div>
     ${skillBar(main.bar, { attributes: main.attributes, bonus: main.bonus })}
-    ${varRow(main, x, true)}
+    ${varRow(main, x)}
     ${x.variations.length > 1 ? `<button class="btn small" data-fam="${esc(x.id)}" style="margin-top:8px">${isOpen ? "Hide" : "Show"} ${x.variations.length - 1} other variation${x.variations.length > 2 ? "s" : ""}</button>` : ""}
-    ${isOpen ? x.variations.slice(1).map((v) => `<div class="variant">${skillBar(v.bar, { attributes: v.attributes, bonus: v.bonus }, true)}${varRow(v, x)}</div>`).join("") : ""}
+    ${isOpen ? x.variations.slice(1).map((v) => `<div class="variant">${skillBar(v.bar, { attributes: v.attributes, bonus: v.bonus })}${varRow(v, x)}</div>`).join("") : ""}
   </div>`;
 }
 
-function varRow(v, x, isMain = false) {
-  const attrs = Object.entries(v.attributes).map(([a, r]) => `${esc(a)} ${r}${v.bonus[a] ? `+${v.bonus[a]}` : ""}`).join(", ");
+// Runes and insignias: ones Henry gave (data/build_gear.json, by code or family) replace runes derived from bonus ranks.
+export function gearFor(v, familyId, given = gear) {
+  const g = { ...(given.families?.[familyId] || {}), ...(given.codes?.[v.code] || {}) };
+  return { runes: g.runes?.length ? g.runes : (v.runes || []), insignias: g.insignias || [], given: !!(g.runes?.length || g.insignias?.length) };
+}
+export function attrGearLine(v, familyId) {
+  const attrs = Object.entries(v.attributes || {}).map(([a, r]) => `<b>${esc(a)} ${r}${v.bonus?.[a] ? `+${v.bonus[a]}` : ""}</b>`).join(", ");
+  const g = gearFor(v, familyId);
+  const parts = [attrs || `<span class="muted">Attributes not observed</span>`];
+  if (g.runes.length) parts.push(esc(g.runes.join(", ")));
+  if (g.insignias.length) parts.push(`Insignias: ${esc(g.insignias.join(", "))}`);
+  return `<span class="gear">${parts.join(" · ")}</span>`;
+}
+
+function varRow(v, x) {
   return `<div class="row" style="margin-top:6px">
-    <span class="muted">${isMain ? "Most common: " : ""}${v.n} game${v.n === 1 ? "" : "s"}, ${pct(v.wins, v.n)} won. ${esc(x.p)}/${esc(v.s)}${attrs ? `. ${attrs}` : ". Attributes not observed"}${v.hp ? `. ~${v.hp} HP` : ""}${v.weapons.length ? `. Weapons: ${v.weapons.map((w) => esc(w.k)).join(", ")}` : ""}</span>
+    ${attrGearLine(v, x.id)}
     <span class="code">${esc(v.code)}</span>
     <button class="btn small primary" data-copy="${esc(v.code)}">Copy code</button>
     <button class="btn small" data-save="${esc(v.code)}" data-name="${esc(x.name)}" data-bonus='${esc(JSON.stringify(v.bonus))}'>Save</button>

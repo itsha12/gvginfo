@@ -1,6 +1,6 @@
 # Pets
 
-Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are my own in-game results and override the wiki.
+Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are in-game test results and override the wiki.
 Ranger animal companions.
 
 - Level 20: 80 armor. Health 480 (Elder), 540 Hearty, 510 Playful, 450 Aggressive, 420 Dire.

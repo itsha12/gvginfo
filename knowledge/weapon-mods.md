@@ -1,8 +1,8 @@
 # Weapon modifiers
 
 Source: Guild Wars Wiki pages Inscription, Axe Haft, Axe Grip, Hammer Haft, Scythe Snathe, Bow String and Damage
-calculation, pulled 2026-10-08. Max values shown (PvP weapons always get max values). Lines starting **Tested** are my
-own in-game results and override the wiki.
+calculation, pulled 2026-10-08. Max values shown (PvP weapons always get max values). Lines starting **Tested** are in-game
+test results and override the wiki.
 
 A martial weapon takes one prefix, one suffix and one inscription. On PvP weapons the inscription replaces the
 inherent modifier.

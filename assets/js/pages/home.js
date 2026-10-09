@@ -95,10 +95,10 @@ export async function renderHome(view) {
 
 function lineups(m) {
   return `<div class="layout-lineups">${m.teams.map((t) => `
-    <div><b>${esc(t.guild || "?")}</b> <span class="muted">[${esc(t.tag || "")}] rating ${t.rating ?? "?"}${t.won ? ", won" : ""}</span>
+    <div><b>${t.guild ? `<a href="#/guilds/${encodeURIComponent(`${t.guild} ${t.tag || ""}`.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, "-").replace(/^-|-$/g, ""))}">${esc(t.guild)}</a>` : "?"}</b> <span class="muted">[${esc(t.tag || "")}] rating ${t.rating ?? "?"}${t.won ? ", won" : ""}</span>
     ${t.players.map((p) => {
       const code = codeForPlayer(p);
-      return `<div class="lineup-row"><span class="prof" data-p="${esc(p.p)}">${esc(ABBR[p.p] || p.p)}/${esc(ABBR[p.s] || "")}</span><span class="pname">${esc(p.n)}</span>
+      return `<div class="lineup-row"><span class="pos">${p.pos ?? "–"}</span><span class="prof" data-p="${esc(p.p)}">${esc(ABBR[p.p] || p.p)}/${esc(ABBR[p.s] || "")}</span><span class="pname" title="${esc(p.build || "")}">${esc(p.n)}</span>
         ${skillBar(p.bar, { attributes: p.attrs }, true)}
         ${code ? `<button class="btn small" data-copy="${esc(code)}">Copy</button><button class="btn small" data-save="${esc(code)}" data-name="${esc(p.n)} (${esc(m.date)})">Save</button>` : ""}
         ${p.full ? "" : `<span class="muted" title="Some slots were never used, so they weren't observed">partial</span>`}</div>`;

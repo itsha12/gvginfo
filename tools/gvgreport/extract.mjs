@@ -3,6 +3,8 @@
 
 const round = (x, d = 0) => (x == null || !isFinite(x) ? 0 : Math.round(x * 10 ** d) / 10 ** d);
 export const playerName = (label) => String(label || "").replace(/\s*\(\d+\)\s*$/, "").trim();
+// Party slot 1-8 as shown on gvg.report: "Name (3)" in the label, or display_order (9-16 for team 2).
+export const partyPosition = (p) => { const m = String(p.label || "").match(/\((\d+)\)\s*$/); if (m) return +m[1]; const d = p.display_order; return d ? ((d - 1) % 8) + 1 : null; };
 
 export function occasionOf(entry) {
   const o = entry.tournament_occasion || {};
@@ -63,7 +65,7 @@ export function extractMatch(entry, summary) {
     for (const k of Object.keys(perSkill)) perSkill[k] = perSkill[k].map((v) => round(v));
     const tot = p.skill_analytics?.totals || {};
     players.push({
-      n: playerName(p.label), team: p.team_id,
+      n: playerName(p.label), team: p.team_id, pos: partyPosition(p),
       p: p.primary_profession_name || "None", s: p.secondary_profession_name || "None",
       bar, full: p.skillbar_complete === true,
       attrs: attributesOf(p),
