@@ -1,6 +1,6 @@
 # GvG match rules
 
-Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are my own in-game results and override the wiki.
+Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are in-game test results and override the wiki.
 
 ## Match structure
 - 8v8 in guild halls. Ladder matches are played on the lower-ranked team's hall; tournaments use fixed maps per round.

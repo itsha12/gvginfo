@@ -7,8 +7,10 @@ import { renderSettings } from "./pages/settings.js";
 import { renderBuilds } from "./pages/builds.js";
 import { renderPlayers } from "./pages/players.js";
 import { renderMeta } from "./pages/meta.js";
+import { renderSchedule } from "./pages/schedule.js";
+import { renderGuilds } from "./pages/guilds.js";
 
-const routes = { "": renderHome, home: renderHome, builds: renderBuilds, meta: renderMeta, players: renderPlayers, templates: renderTemplates, skills: renderSkills, knowledge: renderKnowledge, settings: renderSettings };
+const routes = { schedule: renderSchedule, guilds: renderGuilds, "": renderHome, home: renderHome, builds: renderBuilds, meta: renderMeta, players: renderPlayers, templates: renderTemplates, skills: renderSkills, knowledge: renderKnowledge, settings: renderSettings };
 const view = document.getElementById("view");
 
 function route() {

@@ -1,6 +1,6 @@
 # Guild Lord and guild hall NPCs
 
-Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are my own in-game results and override the wiki.
+Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are in-game test results and override the wiki.
 
 ## Guild Lord
 - Level 20 Warrior/Ranger, 70 armor, 1680 Health, +5 pips Health regeneration. Skills: Cleave, Warrior's Cunning,

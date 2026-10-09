@@ -111,7 +111,7 @@ export const ABBR = { Warrior: "W", Ranger: "R", Monk: "Mo", Necromancer: "N", M
 export const ago = (ms) => {
   if (!ms) return "";
   const m = Math.round((Date.now() - ms) / 60000);
-  return m < 60 ? `${m} min ago` : m < 1440 ? `${Math.round(m / 60)} h ago` : `${Math.round(m / 1440)} days ago`;
+  return m < 60 ? `${m} min ago` : m < 1440 ? `${Math.round(m / 60)} h ago` : `${Math.round(m / 1440)} day${Math.round(m / 1440) === 1 ? "" : "s"} ago`;
 };
 
 // Add a bar to a Templates folder (used by Builds and match views).

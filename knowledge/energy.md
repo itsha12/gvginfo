@@ -1,6 +1,6 @@
 # Energy
 
-Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are my own in-game results and override the wiki.
+Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are in-game test results and override the wiki.
 
 ## Base energy by profession (from profession armor)
 | Profession | Max energy | Energy regeneration (pips) |

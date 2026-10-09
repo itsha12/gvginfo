@@ -1,6 +1,6 @@
 # Health and regeneration
 
-Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are my own in-game results and override the wiki.
+Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are in-game test results and override the wiki.
 
 ## Max Health (level 20, PvP)
 - Base max Health 480.

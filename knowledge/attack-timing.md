@@ -1,6 +1,6 @@
 # Attack speed and timing
 
-Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are my own in-game results and override the wiki.
+Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are in-game test results and override the wiki.
 
 ## Auto-attacks and attack skills
 - Auto-attacks: one hit per attack interval; the hit lands halfway through the swing.
