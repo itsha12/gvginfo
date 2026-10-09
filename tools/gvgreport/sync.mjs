@@ -2,7 +2,7 @@
 // Usage: node tools/gvgreport/sync.mjs   (env: MAX_MATCHES=400, DELAY_MS=1500)
 import fs from "node:fs";
 import path from "node:path";
-import { extractMatch } from "./extract.mjs";
+import { extractMatch, playerName, partyPosition } from "./extract.mjs";
 import { aggregate } from "./aggregate.mjs";
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "../..");
@@ -74,6 +74,23 @@ export async function sync() {
   }
   flush();
   console.log(`Stored ${done} new matches; ${listed.length - Object.keys(index.matches).length} still to fetch.`);
+
+  // 2b. fill in party slots (pos) for stored matches recorded before positions were kept (small overview payload)
+  let filled = 0;
+  for (const f of fs.readdirSync(DIR).filter((x) => /^\d{4}-\d{2}\.json$/.test(x))) {
+    const m = f.slice(0, 7), list = load(m);
+    for (const rec of list) {
+      if (!rec.players?.some((p) => p.pos == null) || filled >= MAX) continue;
+      try {
+        const ov = await getJson(`${BASE}/api/reports/${encodeURIComponent(rec.id)}?payload=overview`);
+        const slots = new Map((ov?.overview?.players || []).filter((p) => p.is_player).map((p) => [`${playerName(p.label)}|${p.team_id}`, partyPosition(p)]));
+        for (const p of rec.players) p.pos ??= slots.get(`${p.n}|${p.team}`) ?? null;
+        filled++;
+      } catch (err) { console.warn(`  no party slots for ${rec.id}: ${err.message}`); }
+      await sleep(Math.min(DELAY, 800));
+    }
+  }
+  if (filled) { flush(); console.log(`Filled party slots for ${filled} stored matches.`); }
   // 3. rebuild aggregates
   aggregate(ROOT);
 }

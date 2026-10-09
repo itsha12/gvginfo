@@ -132,7 +132,10 @@ export function aggregate(root) {
   const playerBar = (p) => orderBar(p.bar, p.p, p.s, famRank.get(famOf.get(p)));
   const eliteName = (p) => { const e = p.bar.find(isElite); return e ? byId.get(e)?.name?.replace(/ \(PvP\)$/, "") : null; };
   const buildLabel = (p) => famName.get(famOf.get(p)) || `${eliteName(p) || "No elite seen"} ${ABBR[p.p]}/${ABBR[p.s] || "X"}`;
-  const byPos = (a, b) => (a.pos || 99) - (b.pos || 99);
+  // party slot order; matches without slots fall back to a typical order (frontline, midline, backline)
+  const ROLE = ["Warrior", "Dervish", "Assassin", "Paragon", "Ranger", "Elementalist", "Necromancer", "Mesmer", "Ritualist", "Monk"];
+  const slotKey = (p) => p.pos ?? 10 + (ROLE.indexOf(p.p) + 1 || 11);
+  const byPos = (a, b) => slotKey(a) - slotKey(b);
   // ---------- recent matches ----------
   writeJson(D("recent.json"), {
     updated: new Date().toISOString(), total: matches.length,
