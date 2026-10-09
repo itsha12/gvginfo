@@ -106,6 +106,20 @@ export function aggregate(root) {
     for (const r of [...f.vars.flatMap((v) => v.rows), ...f.partial]) for (const id of new Set(r.p.bar.filter(Boolean))) f.rank.set(id, (f.rank.get(id) || 0) + 1);
     for (const v of f.vars) v.rank = f.rank;
   }
+  // Theme: skills on at least 70% of the family's bars are core; the rest (on 5%+) are optional, most common first.
+  const CORE_SHARE = 0.7, OPTIONAL_SHARE = 0.05;
+  function themeOf(f, all, secondary) {
+    const bars = all.filter((r) => r.set.length >= 7);
+    const n = bars.length || 1;
+    const count = new Map();
+    for (const r of bars) for (const id of r.set) count.set(id, (count.get(id) || 0) + 1);
+    const byShare = [...count.entries()].sort((a, b) => b[1] - a[1]);
+    let core = byShare.filter(([id, c]) => c / n >= CORE_SHARE || id === f.elite).map(([id]) => id).slice(0, 8);
+    core = orderBar(core, f.p, secondary, f.rank).filter(Boolean);
+    const optional = byShare.filter(([id, c]) => !core.includes(id) && c / n >= OPTIONAL_SHARE)
+      .map(([id, c]) => ({ id, pct: Math.round((100 * c) / n) }));
+    return { core, open: 8 - core.length, optional, bars: bars.length };
+  }
   const famOut = families.map((f) => {
     const vars = f.vars.map(variationOut);
     const all = [...f.vars.flatMap((v) => v.rows), ...f.partial];
@@ -118,6 +132,7 @@ export function aggregate(root) {
       partial: f.partial.length, last: all.reduce((a, r) => Math.max(a, r.m.at || 0), 0),
       months: Object.fromEntries(top(all.map((r) => r.m.date?.slice(0, 7)), 24).map(({ k, n }) => [k, n])),
       players: top(all.map((r) => r.p.n), 8), guilds: top(all.map((r) => r.guild), 8),
+      theme: themeOf(f, all, main.s),
       variations: vars,
     };
   }).sort((a, b) => b.n - a.n);
@@ -194,23 +209,45 @@ export function aggregate(root) {
       g.players.set(p.n, x);
       g.fams.push(buildLabel(p));
     }
-    g.lineups.push({ map: m.map || "Unknown", won, players: ps.map((p) => ({ pos: p.pos ?? null, n: p.n, p: p.p, s: p.s, build: buildLabel(p), fam: famOf.get(p) ?? null, bar: playerBar(p), attrs: p.attrs })) });
+    g.lineups.push({ map: m.map || "Unknown", won, at: m.at, date: m.date, opp: opp.guild || "?", players: ps.map((p) => ({ pos: p.pos ?? null, n: p.n, p: p.p, s: p.s, build: buildLabel(p), fam: famOf.get(p) ?? null, bar: playerBar(p), attrs: p.attrs })) });
     g.recent.push({ id: m.id, date: m.date, at: m.at, map: m.map, occ: m.occ, opp: opp.guild || "?", oppTag: opp.tag || "", won, result: m.result, dur: m.dur, rating: t.rating ?? null });
     guilds.set(id, g);
   }
-  // usual lineup: for each party slot, the most common build there (with its usual player and bar)
+  // Usual lineup: a lineup the guild really played (so no impossible pairs), chosen as the one that shares the most
+  // builds with all their other games in scope. Each slot then shows how often that build appears in their games.
+  const isKnown = (b) => b && !/^No elite seen/.test(b);
+  function sharedBuilds(a, b) {
+    const c = new Map(); for (const x of a) if (isKnown(x)) c.set(x, (c.get(x) || 0) + 1);
+    let n = 0; for (const x of b) if (c.get(x) > 0) { n++; c.set(x, c.get(x) - 1); }
+    return n;
+  }
   function usualLineup(lineups) {
-    const out = [];
-    for (let pos = 1; pos <= 8; pos++) {
-      const here = lineups.flatMap((l) => l.players.filter((p) => p.pos === pos));
-      if (!here.length) continue;
-      const build = mode(here.map((p) => p.build));
-      const same = here.filter((p) => p.build === build);
-      const p0 = same[0];
-      out.push({ pos, build, fam: p0.fam, p: p0.p, s: mode(same.map((p) => p.s)), n: same.length, of: here.length,
-        players: top(same.map((p) => p.n), 3), bar: mode(same.map((p) => p.bar.join(","))).split(",").map(Number) });
-    }
-    return out;
+    if (!lineups.length) return { slots: [], comps: [] };
+    const sets = lineups.map((l) => l.players.map((p) => p.build));
+    let best = 0, bestScore = -1;
+    lineups.forEach((l, i) => {
+      const known = sets[i].filter(isKnown).length;
+      let score = 0; sets.forEach((o, j) => { if (j !== i) score += sharedBuilds(sets[i], o); });
+      score += known * 0.5 + (l.players.length === 8 ? 1 : 0); // prefer complete, fully observed lineups
+      if (score > bestScore || (score === bestScore && (l.at || 0) > (lineups[best].at || 0))) { best = i; bestScore = score; }
+    });
+    const pick = lineups[best];
+    const games = lineups.length;
+    const seen = new Map();
+    const slots = pick.players.map((p) => {
+      const k = (seen.get(p.build) || 0) + 1; seen.set(p.build, k); // 2nd copy of a build: games with at least 2
+      const same = lineups.flatMap((l) => l.players.filter((x) => x.build === p.build));
+      const inGames = lineups.filter((l) => l.players.filter((x) => x.build === p.build).length >= k).length;
+      const fullBars = same.filter((x) => x.bar.every(Boolean));
+      return { pos: p.pos, build: p.build, fam: p.fam, p: p.p, s: p.s, n: inGames, of: games, copy: k,
+        players: top(same.map((x) => x.n), 3), bar: mode((fullBars.length ? fullBars : same).map((x) => x.bar.join(","))).split(",").map(Number) };
+    });
+    // most common whole compositions (same set of builds), for context
+    const sig = (l) => l.players.map((p) => p.build).sort().join(" | ");
+    const comps = top(lineups.filter((l) => l.players.length >= 7).map(sig), 4).map(({ k, n }) => ({
+      builds: k.split(" | "), n, wins: lineups.filter((l) => sig(l) === k && l.won).length,
+    }));
+    return { slots, comps, from: { date: pick.date, opp: pick.opp } };
   }
   writeJson(D("guilds.json"), {
     updated: new Date().toISOString(), matches: matches.length,

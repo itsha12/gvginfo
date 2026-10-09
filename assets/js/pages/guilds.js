@@ -39,7 +39,7 @@ export function lineupRows(slots) {
     return `<div class="lineup-slot">
       <span class="pos">${x.pos ?? "–"}</span>
       <div class="who"><span class="prof" data-p="${esc(x.p)}" title="${esc(x.p)}"></span> <b>${esc(x.build)}</b>
-        <div class="muted small">${x.players.map((p) => `${esc(p.k)}${p.n > 1 ? ` (${p.n})` : ""}`).join(", ")}${x.of ? ` · ${x.n} of ${x.of} games` : ""}</div></div>
+        <div class="muted small">${x.players.map((p) => `${esc(p.k)}${p.n > 1 ? ` (${p.n})` : ""}`).join(", ")}${x.of ? ` · ${x.copy > 1 ? `${x.copy} of these in` : "in"} ${x.n} of ${x.of} games` : ""}</div></div>
       ${skillBar(x.bar, null, true)}
       ${code ? `<button class="btn small" data-copy="${esc(code)}" title="Skills only; attributes aren't stored for lineups">Copy</button>` : ""}
     </div>`;
@@ -48,7 +48,7 @@ export function lineupRows(slots) {
 
 function detail(view, g, data) {
   const map = g.maps.find((m) => m.map === f.map) || null;
-  const lineup = map ? map.lineup : g.lineup;
+  const L = map ? map.lineup : g.lineup;
   view.innerHTML = `
     <p><a href="#/guilds">← All guilds</a></p>
     <h2>${esc(g.name || "?")} <span class="muted" style="font-weight:400">[${esc(g.tag || "")}]</span></h2>
@@ -65,8 +65,11 @@ function detail(view, g, data) {
       <label class="eyebrow" style="display:grid;gap:.3rem">Map<select id="map"><option value="">All maps (${g.games})</option>
         ${g.maps.map((m) => `<option value="${esc(m.map)}"${m.map === f.map ? " selected" : ""}>${esc(m.map)} — ${m.wins}–${m.n - m.wins}</option>`).join("")}</select></label>
     </div>
-    <p class="muted small" style="margin:.5rem 0 1rem">In party order as on gvg.report. Each slot shows the build played there most often${map ? " on this map" : ""}; skills are in the standard order (elite first).</p>
-    ${lineupRows(lineup)}
+    <p class="muted small" style="margin:.5rem 0 1rem">A lineup they actually played${L.from ? ` (vs ${esc(L.from.opp)}, ${esc(L.from.date)})` : ""}, chosen because it shares the most builds with their other games${map ? " on this map" : ""}. In party order as on gvg.report; each slot says how many of their games included that build.</p>
+    ${lineupRows(L.slots)}
+    ${L.comps.length ? `<h3>Most played full lineups${map ? " on this map" : ""}</h3>
+    <div class="scroll"><table class="data"><thead><tr><th class="num">Games</th><th class="num">Won</th><th>Builds</th></tr></thead>
+    <tbody>${L.comps.map((c) => `<tr><td class="num">${c.n}</td><td class="num">${c.wins}</td><td class="wrap">${c.builds.map(esc).join(" · ")}</td></tr>`).join("")}</tbody></table></div>` : ""}
 
     <h3>Maps</h3>
     <div class="scroll"><table class="data"><thead><tr><th>Map</th><th class="num">Games</th><th class="num">Won</th><th class="num">Lost</th><th class="num">Win rate</th></tr></thead>

@@ -269,3 +269,17 @@ table.sched tr.past b { font-weight: 500; }
   .sched-grid { grid-template-columns: 1fr; gap: 1rem; }
   .lineup-slot { grid-template-columns: auto 1fr; }
 }
+
+/* build themes */
+.theme { margin-top: 1rem; padding: 1rem 0 0 1rem; border-left: 1px solid var(--ink); }
+.optionals { display: flex; flex-wrap: wrap; gap: .6rem; }
+.opt { display: grid; justify-items: center; gap: .15rem; }
+.opt .sicon { width: 2.4rem; height: 2.4rem; cursor: help; }
+.opt small { font: 500 .72rem/1 var(--mono); color: var(--muted); }
+
+/* players: assigning characters to people */
+tr.selected td { background: var(--accent-soft); }
+.assign { position: sticky; bottom: 0; z-index: 20; display: flex; flex-wrap: wrap; gap: .6rem; align-items: center;
+  background: #fff; border-top: 1px solid var(--ink); padding: .9rem 0; margin-top: 1rem; box-shadow: 0 -12px 24px rgba(0,0,0,.06); }
+.assign input { min-width: 16rem; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }

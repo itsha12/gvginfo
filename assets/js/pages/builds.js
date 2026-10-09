@@ -1,11 +1,11 @@
 import { state, esc, skillBar, copy, lazy, pct, toast, saveToTemplates, skill, readJson } from "../core.js";
 
 const PROFS = ["Warrior", "Ranger", "Monk", "Necromancer", "Mesmer", "Elementalist", "Assassin", "Ritualist", "Paragon", "Dervish"];
-const f = { prof: "", q: "", month: "", min: 3, sort: "games", open: null };
+const f = { prof: "", q: "", month: "", min: 3, sort: "games", open: null, theme: new Set(), vars: new Set(), allVars: new Set() };
 let gear = {};
 
 export async function renderBuilds(view, [openId]) {
-  if (openId) f.open = openId;
+  if (openId) f.vars.add(openId);
   const [data, gearData] = await Promise.all([lazy("builds"), readJson("data/build_gear.json", {})]);
   gear = gearData || {};
   if (!data?.families?.length) {
@@ -39,7 +39,12 @@ export async function renderBuilds(view, [openId]) {
     const { name, value } = e.target; f[name] = name === "min" ? +value : value; renderBuilds(view, []);
   });
   view.querySelector("#filters [name=q]").addEventListener("input", (e) => { f.q = e.target.value; clearTimeout(f.t); f.t = setTimeout(() => { renderBuilds(view, []).then(() => { const el = view.querySelector("#filters [name=q]"); el.focus(); el.setSelectionRange(el.value.length, el.value.length); }); }, 250); });
-  view.querySelectorAll("[data-fam]").forEach((b) => b.onclick = () => { f.open = f.open === b.dataset.fam ? null : b.dataset.fam; renderBuilds(view, []); });
+  view.querySelectorAll("[data-toggle]").forEach((b) => b.onclick = () => {
+    const set = f[b.dataset.toggle], id = b.dataset.id;
+    set.has(id) ? set.delete(id) : set.add(id);
+    const y = b.getBoundingClientRect().top;
+    renderBuilds(view, []).then(() => { const el = view.querySelector(`[data-toggle="${b.dataset.toggle}"][data-id="${CSS.escape(id)}"]`); if (el) scrollBy(0, el.getBoundingClientRect().top - y); });
+  });
   view.querySelectorAll("[data-copy]").forEach((b) => b.onclick = () => copy(b.dataset.copy));
   view.querySelectorAll("[data-save]").forEach((b) => b.onclick = async () => {
     try { await saveToTemplates({ name: b.dataset.name, code: b.dataset.save, bonus: JSON.parse(b.dataset.bonus || "{}") }); } catch (e) { toast(e.message); }
@@ -48,17 +53,37 @@ export async function renderBuilds(view, [openId]) {
 
 function family(x, n, total) {
   const main = x.variations[0];
-  const isOpen = f.open === x.id;
+  const showTheme = f.theme.has(x.id), showVars = f.vars.has(x.id);
+  const t = x.theme;
+  const more = x.variations.length - 1;
   return `<div class="tpl">
     <div class="row" style="justify-content:space-between">
       <h4>${esc(x.name)}</h4>
       <span class="muted">${n} games${f.month ? ` in ${f.month}` : ""} (${pct(n, total)} of bars), ${pct(x.wins, x.n)} won${x.partial ? `, ${x.partial} with unobserved slots` : ""}</span>
     </div>
-    <div class="meta">Played by ${x.players.slice(0, 5).map((p) => `${esc(p.k)} (${p.n})`).join(", ")}. Guilds: ${x.guilds.slice(0, 5).map((g) => `${esc(g.k)} (${g.n})`).join(", ")}.</div>
     ${skillBar(main.bar, { attributes: main.attributes, bonus: main.bonus })}
     ${varRow(main, x)}
-    ${x.variations.length > 1 ? `<button class="btn small" data-fam="${esc(x.id)}" style="margin-top:8px">${isOpen ? "Hide" : "Show"} ${x.variations.length - 1} other variation${x.variations.length > 2 ? "s" : ""}</button>` : ""}
-    ${isOpen ? x.variations.slice(1).map((v) => `<div class="variant">${skillBar(v.bar, { attributes: v.attributes, bonus: v.bonus })}${varRow(v, x)}</div>`).join("") : ""}
+    <div class="row" style="margin-top:10px">
+      ${t ? `<button class="btn small${showTheme ? " primary" : ""}" data-toggle="theme" data-id="${esc(x.id)}">${showTheme ? "Hide" : "Show"} theme</button>` : ""}
+      <button class="btn small${showVars ? " primary" : ""}" data-toggle="vars" data-id="${esc(x.id)}">${showVars ? "Hide" : "Show"} variations${more ? ` (${more} more)` : ""}</button>
+    </div>
+    ${showTheme && t ? themeHtml(x) : ""}
+    ${showVars ? `<div class="variant">
+      <p class="meta" style="margin:0 0 .6rem">Played by ${x.players.slice(0, 5).map((p) => `${esc(p.k)} (${p.n})`).join(", ")}. Guilds: ${x.guilds.slice(0, 5).map((g) => `${esc(g.k)} (${g.n})`).join(", ")}.</p>
+      ${x.variations.slice(1, f.allVars.has(x.id) ? undefined : 16).map((v) => `<div style="margin-bottom:1rem">${skillBar(v.bar, { attributes: v.attributes, bonus: v.bonus })}${varRow(v, x)}</div>`).join("") || `<p class="muted">Only one exact bar seen so far.</p>`}
+      ${more > 15 ? `<button class="btn small" data-toggle="allVars" data-id="${esc(x.id)}">${f.allVars.has(x.id) ? "Show the 15 most played" : `Show all ${more}`}</button>` : ""}
+    </div>` : ""}
+  </div>`;
+}
+
+// Core skills (on 70%+ of this family's bars) with open slots, then optional skills by how often they're taken.
+function themeHtml(x) {
+  const t = x.theme;
+  return `<div class="theme">
+    <p class="meta" style="margin:0 0 .5rem">Core of ${esc(x.name)} from ${t.bars} bars: skills on at least 70% of them, then ${t.open} open slot${t.open === 1 ? "" : "s"}.</p>
+    ${skillBar(t.core)}
+    ${t.optional.length ? `<p class="meta" style="margin:.9rem 0 .4rem">Optional skills for the open slots (share of bars that take them):</p>
+    <div class="optionals">${t.optional.map((o) => { const s = skill(o.id); return s ? `<span class="opt"><img class="sicon" src="${esc(s.icon)}" alt="${esc(s.name)}" data-skill="${s.id}" tabindex="0"><small>${o.pct}%</small></span>` : ""; }).join("")}</div>` : ""}
   </div>`;
 }
 

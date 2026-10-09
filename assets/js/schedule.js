@@ -1,21 +1,17 @@
 // GvG tournament schedule, map rotation and flux.
-// Sources (checked 2026-10-08): Guild Wars Wiki "Automated tournament" (weekday times, monthly map rotation),
-// gvg.report (observed start times, flux list: changes at 07:00 UTC on the 1st, mAT third Saturday).
-//
-// The server runs on UK time, so tournament times are fixed on the UK clock and move for Toronto whenever the UK and
-// Ontario are not both on (or both off) daylight saving time — late March and late October / early November.
-// UK clock times below were confirmed against gvg.report's recorded October 2026 start times (BST).
+// Source of truth: Guild Wars Wiki
+//   https://wiki.guildwars.com/wiki/Automated_tournament  (AT start times in UTC by weekday; monthly map rotation)
+//   https://wiki.guildwars.com/wiki/Flux                  (flux by month; changes on the 1st at 07:00 UTC)
+// Times are fixed in UTC, so for Toronto they move by an hour when Ontario changes its clocks.
 
-export const SERVER_ZONE = "Europe/London";
+export const SERVER_ZONE = "UTC";
 export const LOCAL_ZONE = "America/Toronto";
 
-// UK clock hour per weekday (0 = Sunday … 6 = Saturday, UK date).
+// UTC hour per weekday (0 = Sunday … 6 = Saturday, UTC date), from the wiki's schedule table.
 export const AT_HOURS = {
-  A: [3, 5, 4, 3, 4, 5, 4],
-  B: [12, 14, 13, 12, 13, 14, 13],
-  C: [19, 21, 20, 19, 20, 21, 20],
+  A: [2, 4, 3, 2, 3, 4, 3],
+  C: [18, 20, 19, 18, 19, 20, 19],
 };
-export const MAT = { weekday: 6, nth: 3, hour: 17 }; // third Saturday, 17:00 UK clock (16:00 UTC in summer)
 
 export const MAP_ROTATION = [
   ["Isle of Weeping Stone", "Uncharted Isle", "Druid's Isle", "Burning Isle", "Warrior's Isle"],
@@ -32,7 +28,8 @@ export const MAP_ROTATION = [
   ["Burning Isle", "Druid's Isle", "Warrior's Isle", "Uncharted Isle", "Frozen Isle"],
 ];
 export const FLUX = ["Odran's Razor", "Amateur Hour", "Hidden Talent", "There Can Be Only One", "Meek Shall Inherit",
-  "Jack of All Trades", "Chain Combo", "Xinrae's Revenge", "Like a Boss", "Minion Apocalypse", "All In", "Parting Gift"];
+  "Jack of All Trades", "Chain Combo", "Xinrae's Revenge", "Like a Boss (and The Boss)", "Minion Apocalypse", "All In",
+  "Parting Gift (and Gift of Battle)"];
 const FLUX_CHANGE_HOUR_UTC = 7;
 
 // ---------- time zone helpers (no libraries) ----------
@@ -59,7 +56,7 @@ export const localParts = (ms) => parts(ms, LOCAL_ZONE);
 
 // ---------- events ----------
 // Every AT start (slots given) whose UK date falls in [fromMs - 1 day, toMs + 1 day], as UTC ms.
-export function atEvents(fromMs, toMs, slots = ["A", "C"], serverZone = SERVER_ZONE) {
+export function atEvents(fromMs, toMs, slots = ["A", "C"], serverZone = SERVER_ZONE) { // UTC wall clock
   const out = [];
   for (let t = fromMs - 86400000; t <= toMs + 86400000; t += 86400000) {
     const p = parts(t, serverZone);
@@ -70,31 +67,11 @@ export function atEvents(fromMs, toMs, slots = ["A", "C"], serverZone = SERVER_Z
   }
   return out.sort((a, b) => a.at - b.at);
 }
-export function matStart(year, month, serverZone = SERVER_ZONE) { // month 1-12
-  const first = new Date(Date.UTC(year, month - 1, 1)).getUTCDay();
-  const day = 1 + ((MAT.weekday - first + 7) % 7) + 7 * (MAT.nth - 1);
-  return zonedToUtc(year, month, day, MAT.hour, 0, serverZone);
-}
-export function nextMat(now = Date.now(), serverZone = SERVER_ZONE) {
-  const d = new Date(now);
-  let t = matStart(d.getUTCFullYear(), d.getUTCMonth() + 1, serverZone);
-  if (t <= now) t = matStart(d.getUTCFullYear() + (d.getUTCMonth() === 11 ? 1 : 0), ((d.getUTCMonth() + 1) % 12) + 1, serverZone);
-  return t;
-}
 export const rotationFor = (ms) => MAP_ROTATION[new Date(ms).getUTCMonth()];
 export const fluxFor = (ms) => FLUX[new Date(ms - FLUX_CHANGE_HOUR_UTC * 3600000).getUTCMonth()];
 export function nextFluxChange(now = Date.now()) {
   const d = new Date(now - FLUX_CHANGE_HOUR_UTC * 3600000);
   return Date.UTC(d.getUTCFullYear(), d.getUTCMonth() + 1, 1, FLUX_CHANGE_HOUR_UTC);
-}
-// Differences between the UK and Toronto clocks within a range (when the gap isn't the usual 5 hours).
-export function gapChanges(fromMs, toMs, serverZone = SERVER_ZONE) {
-  const out = []; let prev = null;
-  for (let t = fromMs; t <= toMs; t += 3600000) {
-    const gap = (offsetMin(t, serverZone) - offsetMin(t, LOCAL_ZONE)) / 60;
-    if (gap !== prev) { out.push({ at: t, gap }); prev = gap; }
-  }
-  return out;
 }
 export const countdown = (ms, now = Date.now()) => {
   const m = Math.max(0, Math.round((ms - now) / 60000)), d = Math.floor(m / 1440), h = Math.floor((m % 1440) / 60);
