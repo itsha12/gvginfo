@@ -58,6 +58,8 @@ const COLUMNS = [
 ];
 const DEFAULT_COLS = ["games", "win", "kdm", "intrm", "dmgm", "healm", "prevm", "dpg"];
 const COLS_KEY = "gvginfo.playerColumns";
+// text columns: who the player is, the character, and the profession they mostly play
+const profOf = (p) => (p.profs?.[0]?.k || "").replace(/\//, " / ");
 const loadCols = () => { try { const c = JSON.parse(localStorage.getItem(COLS_KEY)); return Array.isArray(c) && c.length ? c : DEFAULT_COLS; } catch { return DEFAULT_COLS; } };
 const saveCols = (c) => { try { localStorage.setItem(COLS_KEY, JSON.stringify(c)); } catch { /* storage blocked */ } };
 let colKeys = loadCols();
@@ -81,7 +83,8 @@ export async function renderPlayers(view) {
     const groups = new Map();
     for (const p of data.players) {
       const who = personOf.get(p.n);
-      const key = who ? `person:${who}` : `char:${p.n}`;
+      if (!who) continue; // the Players view only lists characters assigned to a player
+      const key = `person:${who}`;
       const g = groups.get(key);
       const cb = cbOf(p.n);
       if (!g) { groups.set(key, { ...p, n: who || p.n, person: !!who, chars: [p.n], profs: p.profs, guilds: p.guilds, fams: p.fams, cb: cb ? { ...cb, x: { ...cb.x } } : null }); continue; }
@@ -100,9 +103,10 @@ export async function renderPlayers(view) {
   const rows = base.filter((p) => p.games >= f.min && (!q || p.n.toLowerCase().includes(q) || (p.chars || []).some((c) => c.toLowerCase().includes(q)) || (personOf.get(p.n) || "").toLowerCase().includes(q)))
     .map((p) => ({ ...p, val: Object.fromEntries(COLUMNS.map((c) => [c.k, c.v(p)])) }));
   const cols = colKeys.map((k) => COLUMNS.find((c) => c.k === k)).filter(Boolean);
-  if (f.sort !== "n" && !cols.some((c) => c.k === f.sort)) f.sort = cols[0]?.k || "n";
+  const TEXT_SORT = { n: (p) => p.n, person: (p) => personOf.get(p.n) || "\uffff", prof: profOf, chars: (p) => (p.chars || []).join(", ") };
+  if (!TEXT_SORT[f.sort] && !cols.some((c) => c.k === f.sort)) f.sort = cols[0]?.k || "n";
   rows.sort((a, b) => {
-    if (f.sort === "n") return a.n.localeCompare(b.n) * (f.desc ? -1 : 1);
+    if (TEXT_SORT[f.sort]) return TEXT_SORT[f.sort](a).localeCompare(TEXT_SORT[f.sort](b)) * (f.desc ? -1 : 1);
     const x = a.val[f.sort], y = b.val[f.sort];
     if (x == null || y == null) return (x == null) - (y == null); // no data always last
     return (x - y) * (f.desc ? -1 : 1);
@@ -122,10 +126,10 @@ export async function renderPlayers(view) {
   view.innerHTML = `
     <h2>Players</h2>
     <p class="lede">Stats per character across recorded matches. ${esc(data.note)} Tick character names and assign them to a
-      person to group them; the People view adds their stats together.</p>
+      player to group them; the Players view adds up each player's characters.</p>
     <div class="toolbar" id="filters">
-      <label>Show<select name="view"><option value="chars"${chars ? " selected" : ""}>Characters</option><option value="people"${chars ? "" : " selected"}>People (${people.length} named)</option></select></label>
-      <label>Search<input type="search" name="q" value="${esc(f.q)}" placeholder="Character or person"></label>
+      <label>Show<select name="view"><option value="chars"${chars ? " selected" : ""}>Characters</option><option value="people"${chars ? "" : " selected"}>Players (${people.length})</option></select></label>
+      <label>Search<input type="search" name="q" value="${esc(f.q)}" placeholder="Character or player"></label>
       <label>At least<select name="min">${[1, 3, 5, 10, 25].map((n) => `<option value="${n}"${n === f.min ? " selected" : ""}>${n} games</option>`).join("")}</select></label>
       <button class="btn${f.picker ? " primary" : ""}" type="button" id="picker">Columns (${cols.length})</button>
     </div>
@@ -137,14 +141,15 @@ export async function renderPlayers(view) {
     </div>` : ""}
     <div class="scroll"><table class="data"><thead><tr>
       ${chars ? `<th style="width:2rem"><input type="checkbox" id="all" aria-label="Select all shown" ${allShownSelected ? "checked" : ""}></th>` : ""}
-      ${[{ k: "n", l: chars ? "Player" : "Person / character" }, ...cols].map((c) => `<th class="sortable${c.k === "n" ? "" : " num"}" data-sort="${c.k}" aria-sort="${f.sort === c.k ? (f.desc ? "descending" : "ascending") : "none"}">${esc(c.l)}<span class="arrow">${f.sort === c.k ? (f.desc ? "↓" : "↑") : ""}</span></th>`).join("")}</tr></thead>
+      ${[...(chars ? [{ k: "person", l: "Player", t: 1 }, { k: "n", l: "Character", t: 1 }] : [{ k: "n", l: "Player", t: 1 }, { k: "chars", l: "Characters", t: 1 }]), { k: "prof", l: "Profession", t: 1 }, ...cols].map((c) => `<th class="sortable${c.t ? "" : " num"}" data-sort="${c.k}" aria-sort="${f.sort === c.k ? (f.desc ? "descending" : "ascending") : "none"}">${esc(c.l)}<span class="arrow">${f.sort === c.k ? (f.desc ? "↓" : "↑") : ""}</span></th>`).join("")}</tr></thead>
     <tbody>${shown.map((p) => `
       <tr class="clickable${f.sel.has(p.n) && chars ? " selected" : ""}" data-p="${esc(p.n)}" tabindex="0">
       ${chars ? `<td><input type="checkbox" data-sel="${esc(p.n)}" aria-label="Select ${esc(p.n)}" ${f.sel.has(p.n) ? "checked" : ""}></td>` : ""}
-      <td><b>${esc(p.n)}</b> ${chars && personOf.get(p.n) ? `<span class="pill attr">${esc(personOf.get(p.n))}</span>` : ""}${!chars && p.person ? `<span class="muted small">${p.chars.length} character${p.chars.length === 1 ? "" : "s"}</span>` : ""}
-        <span class="muted">${esc(p.profs[0]?.k || "")}</span></td>
+      ${chars ? `<td>${personOf.get(p.n) ? `<b>${esc(personOf.get(p.n))}</b>` : `<span class="muted">–</span>`}</td><td>${esc(p.n)}</td>`
+        : `<td><b>${esc(p.n)}</b></td><td class="wrap small">${p.chars.map(esc).join(", ")}</td>`}
+      <td class="muted">${esc(profOf(p))}</td>
       ${cols.map((c) => cell(c, p)).join("")}</tr>
-      ${f.open === p.n ? `<tr><td colspan="${cols.length + 1 + (chars ? 1 : 0)}" class="wrap"><div class="detail" style="margin:4px 0">
+      ${f.open === p.n ? `<tr><td colspan="${cols.length + 3 + (chars ? 1 : 0)}" class="wrap"><div class="detail" style="margin:4px 0">
         ${p.chars?.length > 1 ? `<p><b>Characters:</b> ${p.chars.map(esc).join(", ")}</p>` : ""}
         <p>${p.games} games, ${Math.round(p.sec / 60)} minutes, last seen ${ago(p.last)}. Totals: ${p.kd} knockdowns, ${p.intr} interrupts, ${p.cond} conditions and ${p.hexr} hexes removed, ${p.deaths} deaths.</p>
         <p>Plays ${p.profs.map((x) => `${esc(x.k)} (${x.n})`).join(", ")}. Guilds: ${p.guilds.map((x) => `${esc(x.k)} (${x.n})`).join(", ")}.</p>
@@ -152,11 +157,11 @@ export async function renderPlayers(view) {
       </div></td></tr>` : ""}`).join("")}</tbody></table></div>
     ${chars && f.sel.size ? `<form class="assign" id="assign">
       <b>${f.sel.size} selected</b> <span class="muted small">${[...f.sel].slice(0, 4).map(esc).join(", ")}${f.sel.size > 4 ? "…" : ""}</span>
-      <label class="sr" for="who">Person</label>
-      <input type="text" id="who" list="people" placeholder="Person's name (new or existing)" required>
+      <label class="sr" for="who">Player</label>
+      <input type="text" id="who" list="people" placeholder="Player's name (new or existing)" required>
       <datalist id="people">${people.map((p) => `<option value="${esc(p)}">`).join("")}</datalist>
-      <button class="btn primary" type="submit">Assign to person</button>
-      <button class="btn" type="button" id="unassign">Remove from person</button>
+      <button class="btn primary" type="submit">Assign to player</button>
+      <button class="btn" type="button" id="unassign">Remove from player</button>
       <button class="btn ghost" type="button" id="clear">Clear selection</button>
     </form>` : ""}`;
 
@@ -174,7 +179,7 @@ export async function renderPlayers(view) {
     saveCols(colKeys); rerender();
   });
   view.querySelector("#col-reset")?.addEventListener("click", () => { colKeys = [...DEFAULT_COLS]; saveCols(colKeys); rerender(); });
-  view.querySelectorAll("[data-sort]").forEach((th) => th.onclick = () => { if (f.sort === th.dataset.sort) f.desc = !f.desc; else { f.sort = th.dataset.sort; f.desc = th.dataset.sort !== "n"; } rerender(); });
+  view.querySelectorAll("[data-sort]").forEach((th) => th.onclick = () => { if (f.sort === th.dataset.sort) f.desc = !f.desc; else { f.sort = th.dataset.sort; f.desc = !["n", "person", "prof", "chars"].includes(th.dataset.sort); } rerender(); });
   view.querySelectorAll("tr[data-p]").forEach((tr) => {
     const t = (e) => { if (e.target.closest("input")) return; f.open = f.open === tr.dataset.p ? null : tr.dataset.p; rerender(); };
     tr.onclick = t; tr.onkeydown = (e) => e.key === "Enter" && t(e);
@@ -203,7 +208,7 @@ export async function renderPlayers(view) {
   view.querySelector("#unassign")?.addEventListener("click", async () => {
     if (!canSave()) { toast("Add your GitHub key in Settings to save player names."); return; }
     detach([...f.sel]);
-    if (await save(`Removed ${f.sel.size} character${f.sel.size === 1 ? "" : "s"} from their person`)) f.sel.clear();
+    if (await save(`Removed ${f.sel.size} character${f.sel.size === 1 ? "" : "s"} from their player`)) f.sel.clear();
     rerender();
   });
   view.querySelector("#clear")?.addEventListener("click", () => { f.sel.clear(); rerender(); });
