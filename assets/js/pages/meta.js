@@ -11,7 +11,6 @@ export async function renderMeta(view) {
   const prev = meta.months[months[months.indexOf(month) + 1]];
   const elites = Object.entries(m.elites).map(([id, x]) => ({ s: skill(id), ...x, prevShare: prev?.elites[id] ? prev.elites[id].n / prev.teams : 0 }))
     .filter((x) => x.s).sort((a, b) => b.n - a.n);
-  const comps = Object.entries(m.comps).sort((a, b) => b[1].n - a[1].n).slice(0, 12);
   const fams = (builds?.families || []).filter((x) => x.months[month]).sort((a, b) => b.months[month] - a.months[month]).slice(0, 15);
   const delta = (now, before) => { if (!prev) return ""; const d = Math.round(100 * (now - before)); return d ? ` <span class="${d > 0 ? "up" : "down"}">${d > 0 ? "+" : ""}${d}</span>` : ""; };
 
@@ -28,9 +27,6 @@ export async function renderMeta(view) {
       <section><h3>Most played builds</h3>
         <div class="scroll"><table class="data"><thead><tr><th>Build</th><th class="num">Games</th><th class="num">Won (all time)</th></tr></thead>
         <tbody>${fams.map((x) => `<tr><td><a href="#/builds/${encodeURIComponent(x.id)}">${esc(x.name)}</a></td><td class="num">${x.months[month]}</td><td class="num">${pct(x.wins, x.n)}</td></tr>`).join("")}</tbody></table></div>
-        <h3>Team compositions</h3>
-        <div class="scroll"><table class="data"><thead><tr><th>Professions</th><th class="num">Teams</th><th class="num">Won</th></tr></thead>
-        <tbody>${comps.map(([c, x]) => `<tr><td>${esc(c)}</td><td class="num">${x.n}</td><td class="num">${pct(x.wins, x.n)}</td></tr>`).join("")}</tbody></table></div>
       </section>
     </div>`;
   view.querySelector("#month").onchange = (e) => { month = e.target.value; renderMeta(view); };

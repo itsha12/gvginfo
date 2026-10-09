@@ -33,8 +33,15 @@ This repo is Henry's Guild Wars 1 GvG portal and data store. He plays GvG only.
 - Runes: derived from bonus ranks (+1 Minor, +2 Major, +3 Superior, +4 Superior + headgear). When Henry gives runes or
   insignias for a build, put them in `data/build_gear.json` (by family id or exact code); they replace derived runes.
   gvg.report doesn't resolve runes or insignias.
-- Tournament schedule, map rotation and flux: `assets/js/schedule.js` (UK server clock → Toronto; AT-A/B/C weekday
-  hours, mAT third Saturday 17:00 UK, rotation by calendar month, flux changes 07:00 UTC on the 1st).
+- Tournament schedule, map rotation and flux: `assets/js/schedule.js`. Source of truth is the Guild Wars Wiki only:
+  wiki.guildwars.com/wiki/Automated_tournament (AT-A/AT-C start times in UTC by weekday, monthly map rotation) and
+  wiki.guildwars.com/wiki/Flux (flux by month, changes 07:00 UTC on the 1st). Times stay in UTC and are shown in
+  Toronto time. No AT-B. Don't use gvg.report for schedule data.
+- Build themes (`theme` in builds.json): core = skills on 70%+ of a family's bars, optional = the rest on 5%+.
+- Guild usual lineup (`guilds.json`): a lineup the guild actually played, chosen as the one sharing the most builds with
+  their other games (per map too), so it never shows combinations they never ran; plus their most played full lineups.
+- People: `data/aliases.json` = {"people": {"Person": ["Character", ...]}}, edited from the Players page (tick names,
+  assign). Use it when Henry asks about a player by their person name.
 
 ## Rules
 - Do not edit `data/skills.json` by hand; it is regenerated from the wiki. Put corrections in `data/skill_notes.json`
