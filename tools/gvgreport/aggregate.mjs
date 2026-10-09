@@ -154,7 +154,7 @@ export function aggregate(root) {
   // ---------- recent matches ----------
   writeJson(D("recent.json"), {
     updated: new Date().toISOString(), total: matches.length,
-    matches: matches.slice(0, 150).map((m) => ({
+    matches: matches.slice(0, 5000).map((m) => ({
       id: m.id, date: m.date, at: m.at, occ: m.occ, map: m.map, dur: m.dur, result: m.result, flux: m.flux,
       teams: m.teams.map((t) => ({
         ...t, players: m.players.filter((p) => p.team === t.id).sort(byPos).map((p) => ({ n: p.n, pos: p.pos ?? null, p: p.p, s: p.s, bar: playerBar(p), full: p.full, attrs: p.attrs, build: buildLabel(p), fam: famOf.get(p) ?? null })),
@@ -229,7 +229,8 @@ export function aggregate(root) {
     lineups.forEach((l, i) => {
       const known = sets[i].filter(isKnown).length;
       let score = 0; sets.forEach((o, j) => { if (j !== i) score += sharedBuilds(sets[i], o); });
-      score += known * 0.5 + (l.players.length === 8 ? 1 : 0); // prefer complete, fully observed lineups
+      const fullBars = l.players.filter((p) => p.bar.every(Boolean)).length;
+      score += known * 0.5 + fullBars * 0.5 + (l.players.length === 8 ? 1 : 0); // prefer complete, fully observed lineups
       if (score > bestScore || (score === bestScore && (l.at || 0) > (lineups[best].at || 0))) { best = i; bestScore = score; }
     });
     const pick = lineups[best];
@@ -239,9 +240,17 @@ export function aggregate(root) {
       const k = (seen.get(p.build) || 0) + 1; seen.set(p.build, k); // 2nd copy of a build: games with at least 2
       const same = lineups.flatMap((l) => l.players.filter((x) => x.build === p.build));
       const inGames = lineups.filter((l) => l.players.filter((x) => x.build === p.build).length >= k).length;
-      const fullBars = same.filter((x) => x.bar.every(Boolean));
-      return { pos: p.pos, build: p.build, fam: p.fam, p: p.p, s: p.s, n: inGames, of: games, copy: k,
-        players: top(same.map((x) => x.n), 3), bar: mode((fullBars.length ? fullBars : same).map((x) => x.bar.join(","))).split(",").map(Number) };
+      // The bar shown is the one this character actually played in the chosen game. Unseen slots are filled only
+      // from the same character's own complete bar of the same build in this guild's games, and only if it matches
+      // every skill that was seen.
+      let bar = p.bar, filled = false;
+      if (!p.bar.every(Boolean)) {
+        const seen = p.bar.filter(Boolean);
+        const own = lineups.flatMap((l) => l.players.filter((x) => x.n === p.n && x.build === p.build && x.bar.every(Boolean) && seen.every((id) => x.bar.includes(id))));
+        if (own.length) { bar = mode(own.map((x) => x.bar.join(","))).split(",").map(Number); filled = true; }
+      }
+      return { pos: p.pos, build: p.build, fam: p.fam, p: p.p, s: p.s, n: inGames, of: games, copy: k, who: p.n, filled,
+        players: top(same.map((x) => x.n), 3), bar };
     });
     // most common whole compositions (same set of builds), for context
     const sig = (l) => l.players.map((p) => p.build).sort().join(" | ");
