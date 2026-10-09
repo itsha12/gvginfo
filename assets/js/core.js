@@ -211,7 +211,8 @@ export function skillBar(ids, t, compact = false) {
     return `<button class="slot${s.elite ? " elite" : ""}" data-skill="${s.id}" data-rank="${rankFor(t, s.attr) ?? ""}" aria-label="${esc(s.name)}">
       <img src="${esc(s.icon)}" alt="" loading="lazy"></button>`;
   });
-  return `<div class="skillbar${compact ? " compact" : ""}">${slots.join("")}</div>`;
+  const size = compact === true ? " compact" : compact ? ` ${compact}` : "";
+  return `<div class="skillbar${size}">${slots.join("")}</div>`;
 }
 
 // One shared tooltip for every [data-skill] element on the page.

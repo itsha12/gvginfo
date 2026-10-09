@@ -167,9 +167,10 @@ export function aggregate(root) {
   const players = new Map();
   for (const m of matches) for (const p of m.players) {
     const team = m.teams.find((t) => t.id === p.team) || {};
-    const x = players.get(p.n) || { n: p.n, games: 0, wins: 0, sec: 0, kd: 0, intr: 0, dmg: 0, heal: 0, prev: 0, deaths: 0, cond: 0, hexr: 0, profs: [], guilds: [], fams: [], last: 0 };
-    x.games++; x.wins += team.won ? 1 : 0; x.sec += m.dur || 0;
-    for (const k of ["kd", "intr", "dmg", "heal", "prev", "deaths", "cond", "hexr"]) x[k] += p[k] || 0;
+    const x = players.get(p.n) || { n: p.n, games: 0, wins: 0, sec: 0, kd: 0, intr: 0, dmg: 0, heal: 0, prev: 0, deaths: 0, cond: 0, hexr: 0, taken: 0, casts: 0, flawless: 0, profs: [], guilds: [], fams: [], last: 0 };
+    x.games++; x.wins += team.won ? 1 : 0; x.sec += m.dur || 0; x.flawless += team.won && m.result === "flawless_victory" ? 1 : 0;
+    for (const k of ["kd", "intr", "dmg", "heal", "prev", "deaths", "cond", "hexr", "taken"]) x[k] += p[k] || 0;
+    for (const row of Object.values(p.sk || {})) x.casts += row[0] || 0;
     x.profs.push(`${p.p}/${p.s}`); x.guilds.push(team.tag || team.guild); if (famOf.has(p)) x.fams.push(famOf.get(p));
     x.last = Math.max(x.last, m.at || 0);
     players.set(p.n, x);

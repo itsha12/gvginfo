@@ -36,10 +36,16 @@ This repo is Henry's Guild Wars 1 GvG portal and data store. He plays GvG only.
 - Tournament schedule, map rotation and flux: `assets/js/schedule.js`. Source of truth is the Guild Wars Wiki only:
   wiki.guildwars.com/wiki/Automated_tournament (AT-A/AT-C start times in UTC by weekday, monthly map rotation) and
   wiki.guildwars.com/wiki/Flux (flux by month, changes 07:00 UTC on the 1st). Times stay in UTC and are shown in
-  Toronto time. No AT-B. Don't use gvg.report for schedule data.
+  Eastern time only (no UTC shown). No AT-B. Don't use gvg.report for schedule data. Rows are "evenings": a start
+  between midnight and 6 a.m. is listed on the previous day's row (Henry's preference).
 - Build themes (`theme` in builds.json): core = skills on 70%+ of a family's bars, optional = the rest on 5%+.
 - Guild usual lineup (`guilds.json`): a lineup the guild actually played, chosen as the one sharing the most builds with
   their other games (per map too), so it never shows combinations they never ran; plus their most played full lineups.
+- Combat-minute stats: `data/player_combat.json` from gvg.report `/api/player-categories?period=all` (fetched by
+  `tools/gvgreport/player_stats.mjs` during "Update matches"): per character c (combat ms), m (matches), x (totals for
+  damage, kills, assists, healing, prevented, cleanses, interrupts, fake casts, damage taken, knockdowns taken, deaths,
+  distance). Only leaderboard-qualified characters are included.
+- Site home page is Schedule (`#/`); Recent matches is `#/matches`.
 - People: `data/aliases.json` = {"people": {"Person": ["Character", ...]}}, edited from the Players page (tick names,
   assign). Use it when Henry asks about a player by their person name.
 
@@ -57,4 +63,4 @@ This repo is Henry's Guild Wars 1 GvG portal and data store. He plays GvG only.
 - `knowledge/` — markdown pages shown on the portal's "Mechanics and rules" page (`index.json` lists them; Misc last).
 - `tools/` — calculator (`gw_calc.py`), template codec (`gwtemplate.py`), `gvgreport/` (sync + aggregate, Node),
   `wiki/sync.mjs` (skill refresh, Node), `wiki_scraper.js` (browser version of the scraper).
-- `.github/workflows/` — "Update matches" and "Update skills from the wiki", started from the portal's Home page.
+- `.github/workflows/` — "Update matches" and "Update skills from the wiki", started from the portal's Recent matches page.

@@ -4,6 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { extractMatch, playerName, partyPosition } from "./extract.mjs";
 import { aggregate } from "./aggregate.mjs";
+import { playerStats } from "./player_stats.mjs";
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "../..");
 const DIR = path.join(ROOT, "data/matches");
@@ -91,7 +92,8 @@ export async function sync() {
     }
   }
   if (filled) { flush(); console.log(`Filled party slots for ${filled} stored matches.`); }
-  // 3. rebuild aggregates
+  // 3. combat-time stats per character (gvg.report leaderboard data), then rebuild aggregates
+  try { await playerStats(ROOT); } catch (err) { console.warn(`  combat stats skipped: ${err.message}`); }
   aggregate(ROOT);
 }
 

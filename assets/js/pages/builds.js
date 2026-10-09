@@ -9,7 +9,7 @@ export async function renderBuilds(view, [openId]) {
   const [data, gearData] = await Promise.all([lazy("builds"), readJson("data/build_gear.json", {})]);
   gear = gearData || {};
   if (!data?.families?.length) {
-    view.innerHTML = `<h2>Builds</h2><div class="empty-state">No match data yet. Press Update matches on the Home page.</div>`;
+    view.innerHTML = `<h2>Builds</h2><div class="empty-state">No match data yet. Press Update matches on the Recent matches page.</div>`;
     return;
   }
   const months = [...new Set(data.families.flatMap((x) => Object.keys(x.months)))].sort().reverse();
@@ -18,22 +18,39 @@ export async function renderBuilds(view, [openId]) {
   const matchQ = (fam) => !q || fam.name.toLowerCase().includes(q) ||
     fam.variations.some((v) => v.bar.some((id) => skill(id)?.name.toLowerCase().includes(q))) ||
     fam.players.some((p) => p.k.toLowerCase().includes(q));
-  let list = data.families.filter((x) => (!f.prof || x.p === f.prof) && count(x) >= f.min && matchQ(x));
-  list.sort(f.sort === "win" ? (a, b) => b.wins / b.n - a.wins / a.n : f.sort === "recent" ? (a, b) => b.last - a.last : (a, b) => count(b) - count(a));
+  const matching = data.families.filter((x) => count(x) >= f.min && matchQ(x));
+  const sorter = f.sort === "win" ? (a, b) => b.wins / b.n - a.wins / a.n : f.sort === "recent" ? (a, b) => b.last - a.last : (a, b) => count(b) - count(a);
+  const list = matching.filter((x) => !f.prof || x.p === f.prof).sort(sorter);
   const totalBars = data.families.reduce((a, x) => a + count(x), 0);
+  const perProf = Object.fromEntries(PROFS.map((p) => [p, matching.filter((x) => x.p === p).length]));
+  const PER_GROUP = 6;
+  // All tab: grouped by profession, the top few of each; a profession tab: that profession's families
+  const body = f.prof
+    ? list.slice(0, 80).map((x) => family(x, count(x), totalBars)).join("") || `<div class="empty-state">No builds match these filters.</div>`
+    : PROFS.filter((p) => perProf[p]).map((p) => {
+      const fams = list.filter((x) => x.p === p);
+      return `<section class="prof-group"><div class="row" style="justify-content:space-between;align-items:baseline">
+          <h3><span class="prof" data-p="${p}">${p}</span></h3>
+          ${fams.length > PER_GROUP ? `<button class="btn small ghost" data-tab="${p}">All ${fams.length} ${p} builds →</button>` : ""}</div>
+        ${fams.slice(0, PER_GROUP).map((x) => family(x, count(x), totalBars)).join("")}</section>`;
+    }).join("") || `<div class="empty-state">No builds match these filters.</div>`;
 
   view.innerHTML = `
     <h2>Builds</h2>
     <p class="lede">Every bar seen in ${data.matches} recorded matches, grouped into families: ${esc(data.rule)}. Variations list each exact bar with its own code.</p>
+    <div class="tabs" role="tablist">
+      <button role="tab" data-tab="" aria-selected="${!f.prof}">All <span class="muted">${matching.length}</span></button>
+      ${PROFS.map((p) => `<button role="tab" data-tab="${p}" aria-selected="${f.prof === p}"${perProf[p] ? "" : " disabled"}><span class="prof" data-p="${p}">${p}</span> <span class="muted">${perProf[p]}</span></button>`).join("")}
+    </div>
     <div class="toolbar" id="filters">
-      <label>Profession<select name="prof"><option value="">All</option>${PROFS.map((p) => `<option${p === f.prof ? " selected" : ""}>${p}</option>`).join("")}</select></label>
       <label>Search<input type="search" name="q" value="${esc(f.q)}" placeholder="Skill, elite or player"></label>
       <label>Month<select name="month"><option value="">All time</option>${months.map((m) => `<option${m === f.month ? " selected" : ""}>${m}</option>`).join("")}</select></label>
       <label>At least<select name="min">${[1, 3, 5, 10, 25].map((n) => `<option value="${n}"${n === f.min ? " selected" : ""}>${n} games</option>`).join("")}</select></label>
       <label>Sort by<select name="sort">${[["games", "Most played"], ["win", "Win rate"], ["recent", "Most recent"]].map(([v, l]) => `<option value="${v}"${v === f.sort ? " selected" : ""}>${l}</option>`).join("")}</select></label>
     </div>
-    <p class="muted">${list.length} families.</p>
-    ${list.slice(0, 80).map((x) => family(x, count(x), totalBars)).join("") || `<div class="empty-state">No builds match these filters.</div>`}`;
+    ${f.prof ? `<p class="muted small">${list.length} ${esc(f.prof)} families${list.length > 80 ? ", showing the first 80" : ""}.</p>` : ""}
+    ${body}`;
+  view.querySelectorAll("[data-tab]").forEach((b) => b.onclick = () => { f.prof = b.dataset.tab; renderBuilds(view, []).then(() => scrollTo({ top: 0 })); });
 
   view.querySelector("#filters").addEventListener("change", (e) => {
     const { name, value } = e.target; f[name] = name === "min" ? +value : value; renderBuilds(view, []);
@@ -56,21 +73,22 @@ function family(x, n, total) {
   const showTheme = f.theme.has(x.id), showVars = f.vars.has(x.id);
   const t = x.theme;
   const more = x.variations.length - 1;
-  return `<div class="tpl">
-    <div class="row" style="justify-content:space-between">
-      <h4>${esc(x.name)}</h4>
-      <span class="muted">${n} games${f.month ? ` in ${f.month}` : ""} (${pct(n, total)} of bars), ${pct(x.wins, x.n)} won${x.partial ? `, ${x.partial} with unobserved slots` : ""}</span>
-    </div>
-    ${skillBar(main.bar, { attributes: main.attributes, bonus: main.bonus })}
-    ${varRow(main, x)}
-    <div class="row" style="margin-top:10px">
-      ${t ? `<button class="btn small${showTheme ? " primary" : ""}" data-toggle="theme" data-id="${esc(x.id)}">${showTheme ? "Hide" : "Show"} theme</button>` : ""}
-      <button class="btn small${showVars ? " primary" : ""}" data-toggle="vars" data-id="${esc(x.id)}">${showVars ? "Hide" : "Show"} variations${more ? ` (${more} more)` : ""}</button>
+  return `<div class="fam">
+    <div class="fam-head"><h4>${esc(x.name)}</h4>
+      <span class="muted small">${n} games${f.month ? ` in ${f.month}` : ""} · ${pct(n, total)} of bars · ${pct(x.wins, x.n)} won</span></div>
+    <div class="fam-row">
+      ${skillBar(main.bar, { attributes: main.attributes, bonus: main.bonus }, "mid")}
+      <div class="fam-info">${attrGearLine(main, x.id)}
+        <div class="row">${codeButtons(main, x)}
+          ${t ? `<button class="btn small${showTheme ? " primary" : ""}" data-toggle="theme" data-id="${esc(x.id)}">${showTheme ? "Hide" : "Show"} theme</button>` : ""}
+          <button class="btn small${showVars ? " primary" : ""}" data-toggle="vars" data-id="${esc(x.id)}">${showVars ? "Hide" : "Show"} variations${more ? ` (${more})` : ""}</button>
+        </div></div>
     </div>
     ${showTheme && t ? themeHtml(x) : ""}
     ${showVars ? `<div class="variant">
       <p class="meta" style="margin:0 0 .6rem">Played by ${x.players.slice(0, 5).map((p) => `${esc(p.k)} (${p.n})`).join(", ")}. Guilds: ${x.guilds.slice(0, 5).map((g) => `${esc(g.k)} (${g.n})`).join(", ")}.</p>
-      ${x.variations.slice(1, f.allVars.has(x.id) ? undefined : 16).map((v) => `<div style="margin-bottom:1rem">${skillBar(v.bar, { attributes: v.attributes, bonus: v.bonus })}${varRow(v, x)}</div>`).join("") || `<p class="muted">Only one exact bar seen so far.</p>`}
+      ${x.variations.slice(1, f.allVars.has(x.id) ? undefined : 16).map((v) => `<div class="fam-row var-row">${skillBar(v.bar, { attributes: v.attributes, bonus: v.bonus }, "mid")}
+        <div class="fam-info">${attrGearLine(v, x.id)}<div class="row">${codeButtons(v, x)}</div></div></div>`).join("") || `<p class="muted">Only one exact bar seen so far.</p>`}
       ${more > 15 ? `<button class="btn small" data-toggle="allVars" data-id="${esc(x.id)}">${f.allVars.has(x.id) ? "Show the 15 most played" : `Show all ${more}`}</button>` : ""}
     </div>` : ""}
   </div>`;
@@ -81,7 +99,7 @@ function themeHtml(x) {
   const t = x.theme;
   return `<div class="theme">
     <p class="meta" style="margin:0 0 .5rem">Core of ${esc(x.name)} from ${t.bars} bars: skills on at least 70% of them, then ${t.open} open slot${t.open === 1 ? "" : "s"}.</p>
-    ${skillBar(t.core)}
+    ${skillBar(t.core, null, "mid")}
     ${t.optional.length ? `<p class="meta" style="margin:.9rem 0 .4rem">Optional skills for the open slots (share of bars that take them):</p>
     <div class="optionals">${t.optional.map((o) => { const s = skill(o.id); return s ? `<span class="opt"><img class="sicon" src="${esc(s.icon)}" alt="${esc(s.name)}" data-skill="${s.id}" tabindex="0"><small>${o.pct}%</small></span>` : ""; }).join("")}</div>` : ""}
   </div>`;
@@ -101,11 +119,8 @@ export function attrGearLine(v, familyId) {
   return `<span class="gear">${parts.join(" · ")}</span>`;
 }
 
-function varRow(v, x) {
-  return `<div class="row" style="margin-top:6px">
-    ${attrGearLine(v, x.id)}
-    <span class="code">${esc(v.code)}</span>
-    <button class="btn small primary" data-copy="${esc(v.code)}">Copy code</button>
-    <button class="btn small" data-save="${esc(v.code)}" data-name="${esc(x.name)}" data-bonus='${esc(JSON.stringify(v.bonus))}'>Save</button>
-  </div>`;
+function codeButtons(v, x) {
+  return `<span class="code">${esc(v.code)}</span>
+    <button class="btn small primary" data-copy="${esc(v.code)}">Copy</button>
+    <button class="btn small" data-save="${esc(v.code)}" data-name="${esc(x.name)}" data-bonus='${esc(JSON.stringify(v.bonus))}'>Save</button>`;
 }

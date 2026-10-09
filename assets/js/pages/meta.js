@@ -5,7 +5,7 @@ let month = "";
 export async function renderMeta(view) {
   const [meta, builds] = await Promise.all([lazy("meta"), lazy("builds")]);
   const months = Object.keys(meta?.months || {}).sort().reverse();
-  if (!months.length) { view.innerHTML = `<h2>Meta</h2><div class="empty-state">No match data yet. Press Update matches on the Home page.</div>`; return; }
+  if (!months.length) { view.innerHTML = `<h2>Meta</h2><div class="empty-state">No match data yet. Press Update matches on the Recent matches page.</div>`; return; }
   if (!months.includes(month)) month = months[0];
   const m = meta.months[month];
   const prev = meta.months[months[months.indexOf(month) + 1]];

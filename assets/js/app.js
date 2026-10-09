@@ -10,16 +10,17 @@ import { renderMeta } from "./pages/meta.js";
 import { renderSchedule } from "./pages/schedule.js";
 import { renderGuilds } from "./pages/guilds.js";
 
-const routes = { schedule: renderSchedule, guilds: renderGuilds, "": renderHome, home: renderHome, builds: renderBuilds, meta: renderMeta, players: renderPlayers, templates: renderTemplates, skills: renderSkills, knowledge: renderKnowledge, settings: renderSettings };
+const routes = { "": renderSchedule, schedule: renderSchedule, matches: renderHome, home: renderHome, guilds: renderGuilds, builds: renderBuilds, meta: renderMeta, players: renderPlayers, templates: renderTemplates, skills: renderSkills, knowledge: renderKnowledge, settings: renderSettings };
 const view = document.getElementById("view");
 
 function route() {
   const [, page = "", ...rest] = location.hash.replace(/^#/, "").split("/");
   document.querySelectorAll(".top nav a").forEach((a) => {
     const target = a.getAttribute("href").replace(/^#\//, "");
-    if (target === page || (target === "" && page === "home")) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+    const here = page === "schedule" ? "" : page === "home" ? "matches" : page;
+    if (target === here) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
   });
-  (routes[page] || renderHome)(view, rest.map(decodeURIComponent));
+  (routes[page] || renderSchedule)(view, rest.map(decodeURIComponent));
   view.focus({ preventScroll: true });
 }
 
