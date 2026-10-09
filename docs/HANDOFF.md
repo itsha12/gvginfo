@@ -1,6 +1,6 @@
 # GvG Info — handoff for a new Claude chat
 
-Paste or attach this file in a new chat, then say what you want to do next. Last updated 2026-10-08.
+Paste or attach this file in a new chat, then say what you want to do next. Last updated 2026-10-08 (evening).
 
 ## Who and what
 - Henry plays Guild Wars 1, **GvG only**. Goal: one portal to view recent matches, meta, build families with copyable
@@ -18,7 +18,8 @@ Paste or attach this file in a new chat, then say what you want to do next. Last
 ## Decisions already made
 - Skills come from our own sheet (`data/skills.json`), built from the wiki: PvP-legal only, PvE-only skills removed,
   split skills keep only the "(PvP)" version. Henry's own findings go in `data/skill_notes.json` (per skill) and
-  `knowledge/verified.md` (mechanics); both override the wiki and are never overwritten by updates.
+  **Tested (date):** lines on the matching `knowledge/` page (or `knowledge/misc.md`); both override the wiki and are
+  never overwritten by updates.
 - Updates are on demand only (no schedules): "Update matches" (gvg.report) and "Update skills from wiki" buttons on the
   portal's Recent matches page start GitHub Actions workflows.
 - Templates are editable in the portal; saving uses a fine-grained GitHub key (Contents + Actions: Read and write)
@@ -28,8 +29,14 @@ Paste or attach this file in a new chat, then say what you want to do next. Last
 
 ## What exists (all pushed)
 - **Portal** (static, no build step): `index.html`, `assets/app.css`, `assets/js/` (core.js, template.js, app.js,
-  pages/: home = recent matches + update buttons, builds, meta, players, templates, skills, knowledge, settings).
-  Design: blue-grey stone palette, gold skill-bar frames, Barlow Semi Condensed + Spectral, profession colors.
+  pages/: home = recent matches + update buttons, builds, meta, players, templates, skills, knowledge
+  ("Mechanics and rules"), settings). Design (2026-10-08): white, minimal, architectural — top nav, hairline rules,
+  Inter / Inter Tight / IBM Plex Mono, black buttons, gold only for elites and tested lines; type scales with window
+  width; home goes two-column at ≥1700px. `marked` is vendored in `assets/vendor/`.
+- **Templates**: folders → templates → variations; each template and variation has `equipment: [{name, code, notes}]`
+  (equipment template codes, several sets per bar). Saving a bar without equipment prompts for a code.
+- **Skills page**: click any column header to sort; costs shown with icons (energy, adrenaline, sacrifice, upkeep,
+  overcast, cast, recharge); type and attribute as pills; rank via number box or dropdown.
 - **Data**: `data/skills.json` (1,235 skills, both in-game `id` and `template_id`, costs, progression ranks 0–21, causes/
   removes/target/range/aoe, wiki bug/anomaly notes, icon URL), `data/template_id_map.json`, `data/templates.json`,
   `data/skill_notes.json`, `data/matches/YYYY-MM.json` (40 sample matches from 2026-10 so far),
@@ -37,8 +44,9 @@ Paste or attach this file in a new chat, then say what you want to do next. Last
 - **Tools**: `tools/gvgreport/extract.mjs` + `sync.mjs` + `aggregate.mjs` (Node 22), `tools/wiki/sync.mjs`,
   `tools/gw_calc.py` (damage formulas), `tools/gwtemplate.py` (template codec, verified against gvg.report's encoder),
   `tools/wiki_scraper.js` (browser version, proven), `.github/workflows/update-matches.yml`, `update-wiki.yml`.
-- **Knowledge**: `knowledge/` (verified.md, mechanics.md, gvg_rules.md, gvg_and_mod.md, testing.md,
-  skill_data_format.md) shown on the portal's Knowledge page. `exports/gw1_gvg_reference.md` is the original
+- **Knowledge**: `knowledge/` — 26 one-topic pages listed in `knowledge/index.json` with groups (Character, Damage,
+  Skills and timing, Creatures, GvG, Testing, Reference, Misc last). Each page has an "Edit on GitHub" link.
+  The export below predates this split and the 2026-10-08 test results. `exports/gw1_gvg_reference.md` is the original
   all-in-one text file (~146k tokens) for chats without repo access.
 
 ## Status / next steps
@@ -49,9 +57,11 @@ Paste or attach this file in a new chat, then say what you want to do next. Last
 - [ ] Calculator page in the portal (damage/DPS/energy-per-second, armor scenarios, attack-speed and cast timing),
       reusing `tools/gw_calc.py` formulas; extend to a bar/rotation simulator.
 - [ ] Player alias merging (e.g. several characters → one person) — Henry to supply aliases (asked about "Bounty").
-- [ ] Henry's "hidden" tested mechanics → `knowledge/verified.md` / `data/skill_notes.json`.
-- [ ] Run the 18 verification scenarios in `knowledge/testing.md` on the Master of Damage; record results.
-- [ ] Open questions: base crit-chance formula; Weakness = 66% less or 66% of damage; whether the Feb 2026 nature
+- [ ] Henry's "hidden" tested mechanics → matching `knowledge/` page / `data/skill_notes.json`.
+- [ ] Run the remaining scenarios in `knowledge/test-scenarios.md` on the Master of Damage (1, 3, 15, 16, 17 done
+      2026-10-08: axe/hammer DPS right, Weakness = 66% less on auto-attacks + −1 attributes, Vampiric life steal
+      counted, Cracked Armor no effect).
+- [ ] Open questions: base crit-chance formula; whether inscription and customization add or multiply; whether the Feb 2026 nature
       ritual 3500 range is live; aggressiveness page flagged outdated on the wiki.
 - [ ] Ideas not started: counter-build helper, per-map mechanics page, patch-watch view, Claude Skill packaging.
 
@@ -76,3 +86,6 @@ Paste or attach this file in a new chat, then say what you want to do next. Last
   Master of Damage: 590 HP, 60 armor, primary Elementalist, counts life steal and degen.
 - Guild Lord: 1680 HP, 70 armor, +5 regen; Amulet of Protection caps health loss at 25/s at 0:00 rising to 300/s at
   12:00; flag-stand morale boost gives him +300 max HP. Tiebreak at 28:00 by aggressiveness.
+- `tools/gw_calc.py` now models inscriptions (+15%, +20% → ×1.21 per wiki), Sundering, Vampiric (3 one-handed /
+  5 two-handed, counted by the Master of Damage), Zealous, mastery suffix (skills only) and Weakness (×0.34, −1 rank).
+- WebFetch can read wiki.guildwars.com directly (some pages error; `index.php?title=X&action=raw` often works).

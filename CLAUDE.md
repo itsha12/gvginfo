@@ -9,8 +9,10 @@ This repo is Henry's Guild Wars 1 GvG portal and data store. He plays GvG only.
   sacrifice, upkeep, overcast, activation, recharge, desc (ranges written a..b = rank 0..15), prog (values at ranks 0-21),
   causes, removes, prevents, requires, target, range, aoe, flags, notes (wiki bug/anomaly notes), icon.
 - Henry's own tested notes live in `data/skill_notes.json` ({skill id: [notes]}). They override the wiki.
-- Mechanics and formulas: `knowledge/` (start with `verified.md`, then `mechanics.md`, `gvg_rules.md`).
-  `knowledge/verified.md` overrides everything else.
+- Mechanics and formulas: `knowledge/`, one page per topic (`index.json` lists them with titles and groups, e.g.
+  `conditions.md`, `damage.md`, `weapon-mods.md`, `master-of-damage.md`, `gvg-rules.md`). Lines starting
+  **Tested (date):** are Henry's own in-game results and override everything else; `misc.md` holds tested findings
+  that don't fit another page.
 - Damage/DPS math: `tools/gw_calc.py`. Show assumptions (ranks, armor, weapon, crit chance, modifiers).
 - Template codes: `tools/gwtemplate.py` (encode/decode; maps PvP ids to template ids automatically).
 - His saved bars: `data/templates.json` (folders → templates → variations, each with a template code).
@@ -26,14 +28,16 @@ This repo is Henry's Guild Wars 1 GvG portal and data store. He plays GvG only.
 
 ## Rules
 - Do not edit `data/skills.json` by hand; it is regenerated from the wiki. Put corrections in `data/skill_notes.json`
-  or `knowledge/verified.md`.
-- When Henry reports a tested mechanic, add it to `knowledge/verified.md` with the date.
+  or the matching `knowledge/` page as a **Tested (date):** line.
+- When Henry reports a tested mechanic, add a **Tested (date):** line to the page it belongs to (or `misc.md` if none
+  fits), and mark the matching row in `test-scenarios.md`. When he asks to change a page, edit only that page.
+- Never abbreviate Master of Damage.
 - Victory or Death is no longer in the game; ignore wiki text that describes it.
 
 ## Layout
 - `index.html`, `assets/` — the portal (static site, GitHub Pages, no build step).
 - `data/` — skills, template id map, templates, skill notes.
-- `knowledge/` — markdown knowledge base shown on the Knowledge page (`index.json` lists the pages).
+- `knowledge/` — markdown pages shown on the portal's "Mechanics and rules" page (`index.json` lists them; Misc last).
 - `tools/` — calculator (`gw_calc.py`), template codec (`gwtemplate.py`), `gvgreport/` (sync + aggregate, Node),
   `wiki/sync.mjs` (skill refresh, Node), `wiki_scraper.js` (browser version of the scraper).
 - `.github/workflows/` — "Update matches" and "Update skills from the wiki", started from the portal's Home page.

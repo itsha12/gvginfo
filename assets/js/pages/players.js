@@ -31,7 +31,7 @@ export async function renderPlayers(view) {
       <tr class="clickable" data-p="${esc(p.n)}" tabindex="0"><td><b>${esc(p.n)}</b> <span class="muted">${esc(p.profs[0]?.k || "")}</span></td>
       <td class="num">${p.games}</td><td class="num">${pct(p.wins, p.games)}</td><td class="num">${fmt(p.kdm, 2)}</td><td class="num">${fmt(p.intrm, 2)}</td>
       <td class="num">${fmt(p.dmgm, 0)}</td><td class="num">${fmt(p.healm, 0)}</td><td class="num">${fmt(p.prevm, 0)}</td><td class="num">${fmt(p.dpg, 2)}</td></tr>
-      ${f.open === p.n ? `<tr><td colspan="9"><div class="detail" style="margin:4px 0">
+      ${f.open === p.n ? `<tr><td colspan="9" class="wrap"><div class="detail" style="margin:4px 0">
         <p>${p.games} games, ${Math.round(p.sec / 60)} minutes, last seen ${ago(p.last)}. Totals: ${p.kd} knockdowns, ${p.intr} interrupts, ${p.cond} conditions and ${p.hexr} hexes removed, ${p.deaths} deaths.</p>
         <p>Plays ${p.profs.map((x) => `${esc(x.k)} (${x.n})`).join(", ")}. Guilds: ${p.guilds.map((x) => `${esc(x.k)} (${x.n})`).join(", ")}.</p>
         <p>Builds: ${p.fams.map((x) => `<a href="#/builds/${encodeURIComponent(x.k)}">${esc(famName[x.k] || x.k)}</a> (${x.n})`).join(", ") || "none grouped yet"}.</p>

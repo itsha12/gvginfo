@@ -78,3 +78,31 @@ export function decode(code) {
   if (!PROFESSIONS[primary]) throw new Error("Unknown primary profession in this code.");
   return { primary: PROFESSIONS[primary], secondary: PROFESSIONS[secondary] || "None", attributes, skills };
 }
+
+// Equipment template codes (type 15). We only read which slots are filled; item and mod ids stay as-is in the code.
+export const EQUIP_SLOTS = ["Weapon", "Off-hand", "Chest", "Legs", "Head", "Feet", "Hands"];
+export function decodeEquipment(code) {
+  const bits = [];
+  for (const ch of String(code).trim()) {
+    const v = B64.indexOf(ch);
+    if (v < 0) throw new Error("That isn't a template code: it contains '" + ch + "'.");
+    for (let j = 0; j < 6; j++) bits.push((v >> j) & 1);
+  }
+  let pos = 0;
+  const take = (n) => { let v = 0; for (let i = 0; i < n; i++) v |= (bits[pos + i] || 0) << i; pos += n; return v; };
+  const type = take(4);
+  if (type === 14 || type === 0) throw new Error("This is a skill template code. Paste it in the Template code box instead.");
+  if (type !== 15) throw new Error("This doesn't look like an equipment template code.");
+  take(4); // version
+  const itemBits = take(4), modBits = take(4), count = take(3);
+  const slots = [];
+  try {
+    for (let i = 0; i < count; i++) {
+      const slot = take(3); take(itemBits); const mods = take(2); take(4);
+      for (let m = 0; m < mods; m++) take(modBits);
+      if (pos > bits.length || !EQUIP_SLOTS[slot]) throw 0;
+      slots.push(EQUIP_SLOTS[slot]);
+    }
+  } catch { return { slots: [] }; } // unexpected layout: keep the code, just don't list slots
+  return { slots };
+}

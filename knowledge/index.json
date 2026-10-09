@@ -1,32 +1,28 @@
 [
- {
-  "id": "verified",
-  "title": "Tested by me",
-  "file": "verified.md"
- },
- {
-  "id": "mechanics",
-  "title": "Game mechanics",
-  "file": "mechanics.md"
- },
- {
-  "id": "gvg-rules",
-  "title": "GvG rules and Guild Lord",
-  "file": "gvg_rules.md"
- },
- {
-  "id": "gvg-context",
-  "title": "GvG context and Master of Damage",
-  "file": "gvg_and_mod.md"
- },
- {
-  "id": "testing",
-  "title": "Test scenarios",
-  "file": "testing.md"
- },
- {
-  "id": "format",
-  "title": "Skill data format",
-  "file": "skill_data_format.md"
- }
+ {"id": "health", "title": "Health and regeneration", "file": "health.md", "group": "Character"},
+ {"id": "energy", "title": "Energy", "file": "energy.md", "group": "Character"},
+ {"id": "attributes", "title": "Attributes and runes", "file": "attributes.md", "group": "Character"},
+ {"id": "armor", "title": "Armor", "file": "armor.md", "group": "Character"},
+ {"id": "conditions", "title": "Conditions", "file": "conditions.md", "group": "Character"},
+ {"id": "damage", "title": "Damage formula", "file": "damage.md", "group": "Damage"},
+ {"id": "critical-hits", "title": "Critical hits", "file": "critical-hits.md", "group": "Damage"},
+ {"id": "weapons", "title": "Weapons", "file": "weapons.md", "group": "Damage"},
+ {"id": "weapon-mods", "title": "Weapon modifiers", "file": "weapon-mods.md", "group": "Damage"},
+ {"id": "caps", "title": "Stacking caps", "file": "caps.md", "group": "Damage"},
+ {"id": "attack-timing", "title": "Attack speed and timing", "file": "attack-timing.md", "group": "Skills and timing"},
+ {"id": "adrenaline", "title": "Adrenaline", "file": "adrenaline.md", "group": "Skills and timing"},
+ {"id": "casting", "title": "Casting, recharge and interrupts", "file": "casting.md", "group": "Skills and timing"},
+ {"id": "defense", "title": "Blocking, stances and enchantments", "file": "defense.md", "group": "Skills and timing"},
+ {"id": "ranges", "title": "Ranges", "file": "ranges.md", "group": "Skills and timing"},
+ {"id": "spirits", "title": "Spirits", "file": "spirits.md", "group": "Creatures"},
+ {"id": "minions", "title": "Minions", "file": "minions.md", "group": "Creatures"},
+ {"id": "pets", "title": "Pets", "file": "pets.md", "group": "Creatures"},
+ {"id": "gvg-rules", "title": "GvG match rules", "file": "gvg-rules.md", "group": "GvG"},
+ {"id": "guild-lord", "title": "Guild Lord and guild hall NPCs", "file": "guild-lord.md", "group": "GvG"},
+ {"id": "guild-halls", "title": "Guild halls and Flux", "file": "guild-halls.md", "group": "GvG"},
+ {"id": "master-of-damage", "title": "Master of Damage", "file": "master-of-damage.md", "group": "Testing"},
+ {"id": "test-scenarios", "title": "Test scenarios and open questions", "file": "test-scenarios.md", "group": "Testing"},
+ {"id": "template-codes", "title": "Template codes", "file": "template-codes.md", "group": "Reference"},
+ {"id": "skill-data-format", "title": "Skill data format", "file": "skill-data-format.md", "group": "Reference"},
+ {"id": "misc", "title": "Misc", "file": "misc.md", "group": "Misc"}
 ]
