@@ -141,15 +141,15 @@ export async function renderPlayers(view) {
     </div>` : ""}
     <div class="scroll"><table class="data"><thead><tr>
       ${chars ? `<th style="width:2rem"><input type="checkbox" id="all" aria-label="Select all shown" ${allShownSelected ? "checked" : ""}></th>` : ""}
-      ${[...(chars ? [{ k: "person", l: "Player", t: 1 }, { k: "n", l: "Character", t: 1 }] : [{ k: "n", l: "Player", t: 1 }, { k: "chars", l: "Characters", t: 1 }]), { k: "prof", l: "Profession", t: 1 }, ...cols].map((c) => `<th class="sortable${c.t ? "" : " num"}" data-sort="${c.k}" aria-sort="${f.sort === c.k ? (f.desc ? "descending" : "ascending") : "none"}">${esc(c.l)}<span class="arrow">${f.sort === c.k ? (f.desc ? "↓" : "↑") : ""}</span></th>`).join("")}</tr></thead>
+      ${[...(chars ? [{ k: "person", l: "Player", t: 1 }, { k: "n", l: "Character", t: 1 }] : [{ k: "n", l: "Player", t: 1 }]), ...(chars ? [{ k: "prof", l: "Profession", t: 1 }] : []), ...cols].map((c) => `<th class="sortable${c.t ? "" : " num"}" data-sort="${c.k}" aria-sort="${f.sort === c.k ? (f.desc ? "descending" : "ascending") : "none"}">${esc(c.l)}<span class="arrow">${f.sort === c.k ? (f.desc ? "↓" : "↑") : ""}</span></th>`).join("")}</tr></thead>
     <tbody>${shown.map((p) => `
       <tr class="clickable${f.sel.has(p.n) && chars ? " selected" : ""}" data-p="${esc(p.n)}" tabindex="0">
       ${chars ? `<td><input type="checkbox" data-sel="${esc(p.n)}" aria-label="Select ${esc(p.n)}" ${f.sel.has(p.n) ? "checked" : ""}></td>` : ""}
       ${chars ? `<td>${personOf.get(p.n) ? `<b>${esc(personOf.get(p.n))}</b>` : `<span class="muted">–</span>`}</td><td>${esc(p.n)}</td>`
-        : `<td><b>${esc(p.n)}</b></td><td class="wrap small">${p.chars.map(esc).join(", ")}</td>`}
-      <td class="muted">${esc(profOf(p))}</td>
+        : `<td><b>${esc(p.n)}</b></td>`}
+      ${chars ? `<td class="muted">${esc(profOf(p))}</td>` : ""}
       ${cols.map((c) => cell(c, p)).join("")}</tr>
-      ${f.open === p.n ? `<tr><td colspan="${cols.length + 3 + (chars ? 1 : 0)}" class="wrap"><div class="detail" style="margin:4px 0">
+      ${f.open === p.n ? `<tr><td colspan="${cols.length + (chars ? 4 : 1)}" class="wrap"><div class="detail" style="margin:4px 0">
         ${p.chars?.length > 1 ? `<p><b>Characters:</b> ${p.chars.map(esc).join(", ")}</p>` : ""}
         <p>${p.games} games, ${Math.round(p.sec / 60)} minutes, last seen ${ago(p.last)}. Totals: ${p.kd} knockdowns, ${p.intr} interrupts, ${p.cond} conditions and ${p.hexr} hexes removed, ${p.deaths} deaths.</p>
         <p>Plays ${p.profs.map((x) => `${esc(x.k)} (${x.n})`).join(", ")}. Guilds: ${p.guilds.map((x) => `${esc(x.k)} (${x.n})`).join(", ")}.</p>
