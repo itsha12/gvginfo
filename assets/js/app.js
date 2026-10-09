@@ -13,7 +13,7 @@ const view = document.getElementById("view");
 
 function route() {
   const [, page = "", ...rest] = location.hash.replace(/^#/, "").split("/");
-  document.querySelectorAll(".rail nav a").forEach((a) => {
+  document.querySelectorAll(".top nav a").forEach((a) => {
     const target = a.getAttribute("href").replace(/^#\//, "");
     if (target === page || (target === "" && page === "home")) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
   });

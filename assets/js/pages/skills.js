@@ -1,8 +1,10 @@
-import { state, esc, skillCard, costsHtml, writeJson, toast, canSave, lazy } from "../core.js";
+import { state, esc, skillCard, fact, writeJson, toast, canSave, lazy } from "../core.js";
 import { PROF_ATTRS } from "../template.js";
 
 const PROFS = ["Warrior", "Ranger", "Monk", "Necromancer", "Mesmer", "Elementalist", "Assassin", "Ritualist", "Paragon", "Dervish", "None"];
-const f = { q: "", prof: "", attr: "", type: "", elite: "", causes: "", removes: "", maxE: "", sort: "name", rank: 12, open: null };
+const f = { q: "", prof: "", attr: "", type: "", elite: "", causes: "", removes: "", maxE: "", sort: "name", desc: false, rank: 12, open: null };
+const COLS = [["name", "Skill"], ["prof", "Profession"], ["attr", "Attribute"], ["type", "Type"], ["energy", "Energy", 1], ["adrenaline", "Adrenaline", 1], ["activation", "Cast", 1], ["recharge", "Recharge", 1]];
+const TEXT = new Set(["name", "prof", "attr", "type"]);
 const num = (x) => (x === "" || x == null ? null : parseFloat(String(x).replace("¼", ".25").replace("½", ".5").replace("¾", ".75")));
 
 export async function renderSkills(view, [openId]) {
@@ -26,12 +28,11 @@ export async function renderSkills(view, [openId]) {
       <label>Causes<select name="causes">${opt("", f.causes, "Anything")}${causes.map((c) => opt(c, f.causes)).join("")}</select></label>
       <label>Removes<select name="removes">${opt("", f.removes, "Anything")}${removes.map((c) => opt(c, f.removes)).join("")}</select></label>
       <label>Max energy<input type="number" name="maxE" min="0" max="25" value="${esc(f.maxE)}" style="width:80px"></label>
-      <label>Sort by<select name="sort">${[["name", "Name"], ["energy", "Energy"], ["recharge", "Recharge"], ["activation", "Cast time"], ["adrenaline", "Adrenaline"]].map(([v, l]) => opt(v, f.sort, l)).join("")}</select></label>
-      <label>Show values at rank<input type="number" name="rank" min="0" max="21" value="${f.rank}" style="width:70px"></label>
+      <label>Show values at rank<span class="stepper"><input type="number" name="rank" min="0" max="21" value="${f.rank}" aria-label="Rank"><select name="rank" aria-label="Pick a rank">${[...Array(22).keys()].map((r) => `<option value="${r}"${r === f.rank ? " selected" : ""}>${r}</option>`).join("")}</select></span></label>
     </div>
     <div id="detail"></div>
     <p class="muted" id="count"></p>
-    <div class="scroll"><table class="data"><thead><tr><th></th><th>Skill</th><th>Profession</th><th>Attribute</th><th>Type</th><th class="num">Energy</th><th class="num">Adren.</th><th class="num">Cast</th><th class="num">Recharge</th></tr></thead>
+    <div class="scroll"><table class="data"><thead><tr id="heads"></tr></thead>
     <tbody id="rows"></tbody></table></div>`;
 
   const filters = view.querySelector("#filters");
@@ -39,6 +40,7 @@ export async function renderSkills(view, [openId]) {
     const { name, value } = e.target;
     f[name] = name === "rank" ? Math.max(0, Math.min(21, +value || 0)) : value;
     if (name === "prof") { f.attr = ""; renderSkills(view, []); return; }
+    if (name === "rank") filters.querySelectorAll('[name="rank"]').forEach((el) => { if (el !== e.target) el.value = f.rank; });
     draw();
   });
   view.querySelector("#rows").addEventListener("click", (e) => {
@@ -54,12 +56,32 @@ export async function renderSkills(view, [openId]) {
       (!f.prof || s.prof === f.prof) && (!f.attr || s.attr === f.attr) && (!f.type || s.type === f.type) &&
       (!f.elite || (f.elite === "y") === s.elite) && (!f.causes || s.causes.includes(f.causes)) &&
       (!f.removes || s.removes.includes(f.removes)) && (f.maxE === "" || (num(s.energy) ?? 0) <= +f.maxE));
-    const key = f.sort;
-    out.sort((a, b) => key === "name" ? a.name.localeCompare(b.name) : ((num(a[key]) ?? 999) - (num(b[key]) ?? 999)) || a.name.localeCompare(b.name));
+    const key = f.sort, dir = f.desc ? -1 : 1;
+    out.sort((a, b) => {
+      if (TEXT.has(key)) return dir * String(a[key]).localeCompare(String(b[key])) || a.name.localeCompare(b.name);
+      const x = num(a[key]), y = num(b[key]);
+      if (x == null && y == null) return a.name.localeCompare(b.name);
+      if (x == null) return 1; if (y == null) return -1; // blanks always last
+      return dir * (x - y) || a.name.localeCompare(b.name);
+    });
     return out;
   }
 
+  function heads() {
+    view.querySelector("#heads").innerHTML = `<th></th>${COLS.map(([k, l, isNum]) => {
+      const on = f.sort === k;
+      return `<th class="sortable${isNum ? " num" : ""}" data-sort="${k}" tabindex="0" aria-sort="${on ? (f.desc ? "descending" : "ascending") : "none"}">${l}<span class="arrow">${on ? (f.desc ? "↓" : "↑") : ""}</span></th>`;
+    }).join("")}`;
+  }
+  view.querySelector("#heads").addEventListener("click", (e) => {
+    const th = e.target.closest("[data-sort]"); if (!th) return;
+    if (f.sort === th.dataset.sort) f.desc = !f.desc; else { f.sort = th.dataset.sort; f.desc = false; }
+    draw();
+  });
+  view.querySelector("#heads").addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); e.target.closest("[data-sort]")?.click(); } });
+
   function draw() {
+    heads();
     const rows = list();
     view.querySelector("#count").textContent = `${rows.length} skill${rows.length === 1 ? "" : "s"} match.`;
     view.querySelector("#rows").innerHTML = rows.slice(0, 400).map((s) => `
@@ -67,9 +89,9 @@ export async function renderSkills(view, [openId]) {
         <td><img class="sicon" src="${esc(s.icon)}" alt="" loading="lazy" data-skill="${s.id}" data-rank="${f.rank}"></td>
         <td class="${s.elite ? "elite-name" : ""}">${esc(s.name)}${state.notes[s.id]?.length ? " ✎" : ""}</td>
         <td><span class="prof" data-p="${esc(s.prof)}">${esc(s.prof === "None" ? "Common" : s.prof)}</span></td>
-        <td>${esc(s.attr)}</td><td>${esc(s.type)}</td>
-        <td class="num">${esc(s.energy)}</td><td class="num">${esc(s.adrenaline)}</td>
-        <td class="num">${esc(s.activation)}</td><td class="num">${esc(s.recharge)}</td></tr>`).join("")
+        <td>${esc(s.attr)}</td><td><span class="type-text">${esc(s.type)}</span></td>
+        <td class="num">${fact("e", s.energy, "Energy")}</td><td class="num">${fact("a", s.adrenaline, "Adrenaline")}</td>
+        <td class="num">${fact("c", s.activation, "Cast", "s")}</td><td class="num">${fact("r", s.recharge, "Recharge", "s")}</td></tr>`).join("")
       + (rows.length > 400 ? `<tr><td colspan="9" class="muted">Showing the first 400. Narrow the filters to see the rest.</td></tr>` : "");
     drawDetail();
   }

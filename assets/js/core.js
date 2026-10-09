@@ -1,5 +1,5 @@
 // Shared state, data loading, GitHub storage and skill rendering.
-import { encode, decode, PROF_ATTRS } from "./template.js";
+import { encode, decode, decodeEquipment, PROF_ATTRS } from "./template.js";
 
 export const state = {
   skills: [], byId: new Map(), byTemplateId: new Map(), pvpToTemplate: {},
@@ -114,7 +114,7 @@ export const ago = (ms) => {
   return m < 60 ? `${m} min ago` : m < 1440 ? `${Math.round(m / 60)} h ago` : `${Math.round(m / 1440)} days ago`;
 };
 
-// Add a bar to a My templates folder (used by Builds and match views).
+// Add a bar to a Templates folder (used by Builds and match views).
 export async function saveToTemplates({ name, code, notes = "", bonus = {} }) {
   const folders = state.templates.folders;
   const names = folders.map((f, i) => `${i + 1}. ${f.name}`).join("\n");
@@ -122,7 +122,12 @@ export async function saveToTemplates({ name, code, notes = "", bonus = {} }) {
   if (!pick) return;
   let folder = folders[+pick - 1];
   if (!folder) { folder = { id: Math.random().toString(36).slice(2, 10), name: pick.trim(), templates: [] }; folders.push(folder); }
-  folder.templates.push({ id: Math.random().toString(36).slice(2, 10), name, code, notes, bonus, variations: [] });
+  const equipment = [];
+  const eq = prompt(`Equipment template for "${name}"? Paste the code from the game's Equipment tab, or leave empty to add it later.`, "");
+  if (eq && eq.trim()) {
+    try { decodeEquipment(eq.trim()); equipment.push({ name: "Main set", code: eq.trim(), notes: "" }); } catch (e) { toast(e.message); return; }
+  }
+  folder.templates.push({ id: Math.random().toString(36).slice(2, 10), name, code, notes, bonus, equipment, variations: [] });
   await writeJson("data/templates.json", state.templates, `Saved template: ${name}`);
   toast(`Saved to ${folder.name}`);
 }
@@ -159,22 +164,42 @@ export function descAt(s, rank) {
   });
 }
 
+// Small icons for skill facts (energy orb, adrenaline, sacrifice drop, upkeep, overcast, cast clock, recharge arrow).
+const ICON = {
+  e: `<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="currentColor"/><circle cx="6" cy="5.8" r="1.8" fill="#fff" opacity=".55"/></svg>`,
+  a: `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5 14 8l-6 6.5L2 8z" fill="currentColor"/></svg>`,
+  s: `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 1.5c2.6 3.4 4.6 6 4.6 8.3a4.6 4.6 0 0 1-9.2 0C3.4 7.5 5.4 4.9 8 1.5z" fill="currentColor"/></svg>`,
+  u: `<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4.8 8h6.4" stroke="currentColor" stroke-width="2"/></svg>`,
+  o: `<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="3 2"/></svg>`,
+  c: `<svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 4.2V8l2.6 1.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`,
+  r: `<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13 8a5 5 0 1 1-1.6-3.7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M12.6 1.6v3.3H9.3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+};
+export const fact = (k, v, label, unit = "") =>
+  v === "" || v == null ? "" : `<span class="fact ${k}" title="${label}">${ICON[k]}${esc(v)}${/^[\d¼½¾.]+$/.test(v) ? unit : ""}<small>${label}</small></span>`;
+
 export function costsHtml(s) {
-  const c = [];
-  if (s.energy) c.push(`<span class="e" title="Energy">${esc(s.energy)} energy</span>`);
-  if (s.adrenaline) c.push(`<span class="a" title="Adrenaline">${esc(s.adrenaline)} adrenaline</span>`);
-  if (s.sacrifice) c.push(`<span class="s" title="Sacrifice">${esc(s.sacrifice)}${/%/.test(s.sacrifice) ? "" : "%"} HP</span>`);
-  if (s.upkeep) c.push(`<span class="u" title="Upkeep">upkeep</span>`);
-  if (s.overcast) c.push(`<span class="o" title="Overcast">${esc(s.overcast)} overcast</span>`);
-  if (s.activation) c.push(`<span class="c" title="Activation">${esc(s.activation)}s cast</span>`);
-  if (s.recharge) c.push(`<span class="r" title="Recharge">${esc(s.recharge)}s recharge</span>`);
-  return `<div class="costs">${c.join("")}</div>`;
+  return `<div class="facts">${[
+    fact("e", s.energy, "Energy"),
+    fact("a", s.adrenaline, "Adrenaline"),
+    s.sacrifice ? fact("s", `${s.sacrifice}${/%/.test(s.sacrifice) ? "" : "%"}`, "Sacrifice") : "",
+    s.upkeep ? fact("u", "−1", "Upkeep") : "",
+    fact("o", s.overcast, "Overcast"),
+    fact("c", s.activation, "Cast", "s"),
+    fact("r", s.recharge, "Recharge", "s"),
+  ].join("")}</div>`;
 }
 
+// Profession that owns an attribute (for colouring the attribute pill).
+const ATTR_PROF = Object.fromEntries(Object.entries(PROF_ATTRS).flatMap(([p, list]) => list.map((a) => [a, p])));
+export const typePill = (s) => `${s.elite ? `<span class="pill elite">Elite</span>` : ""}<span class="pill type">${esc(s.type)}</span>`;
+export const attrPill = (attr) => attr && !/^no attribute$/i.test(attr) && attr !== "None"
+  ? `<span class="pill attr" data-p="${esc(ATTR_PROF[attr] || "")}">${esc(attr)}</span>` : "";
+
+// The attribute rank is shown by the highlighted numbers, not written beside the attribute name.
 export function skillCard(s, rank) {
   const mine = (state.notes[s.id] || []).map((n) => `<p class="note mine">${esc(n)}</p>`).join("");
   return `<div class="card-head"><img src="${esc(s.icon)}" alt="">
-    <div><b>${esc(s.name)}</b><span class="muted">${s.elite ? "Elite " : ""}${esc(s.type)} · ${esc(s.attr)}${rank != null ? ` ${rank}` : ""}</span></div></div>
+    <div><b>${esc(s.name)}</b><div class="pills">${typePill(s)}${attrPill(s.attr)}</div></div></div>
     ${costsHtml(s)}<p class="desc">${descAt(s, rank)}</p>${mine}`;
 }
 

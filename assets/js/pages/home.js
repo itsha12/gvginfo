@@ -23,6 +23,7 @@ export async function renderHome(view) {
       <span class="muted" id="upd-status"></span>
     </div>
     <div id="changes"></div>
+    <div class="home-grid"><section>
     <div class="toolbar">
       <label>Event<select id="occ"><option value="">All</option>${occs.map((o) => `<option${o === occFilter ? " selected" : ""}>${esc(o)}</option>`).join("")}</select></label>
     </div>
@@ -35,11 +36,13 @@ export async function renderHome(view) {
           <td><b>${esc(w.guild || "?")}</b> <span class="muted">[${esc(w.tag || "")}]</span></td>
           <td>${esc(l.guild || "?")} <span class="muted">[${esc(l.tag || "")}]</span></td>
           <td>${esc(m.map || "")}</td><td class="num">${fmtDur(m.dur || 0)}</td><td>${esc(RESULT[m.result] || "")}</td></tr>
-          ${open === m.id ? `<tr><td colspan="7">${lineups(m)}</td></tr>` : ""}`;
+          ${open === m.id ? `<tr><td colspan="7" class="wrap">${lineups(m)}</td></tr>` : ""}`;
       }).join("")}</tbody></table></div>
+    </section><aside>
     <h3>Read a template code</h3>
     <form class="row" id="peek"><input type="text" name="code" placeholder="Paste any skill template code" style="flex:1;min-width:240px"><button class="btn" type="submit">Show bar</button></form>
-    <div id="out" style="margin-top:14px"></div>`;
+    <div id="out" style="margin-top:14px"></div>
+    </aside></div>`;
 
   const rerender = () => renderHome(view);
   view.querySelector("#occ").onchange = (e) => { occFilter = e.target.value; rerender(); };
@@ -81,7 +84,7 @@ export async function renderHome(view) {
         <span class="attrs">${Object.entries(t.attributes).map(([a, r]) => `${esc(a)} ${r}`).join(", ")}</span></div>
         ${skillBar(t.skills, t)}
         <div class="row" style="margin-top:8px"><span class="code">${esc(code)}</span><button class="btn small primary" id="c">Copy code</button>
-        <button class="btn small" id="s">Save to My templates</button></div>`;
+        <button class="btn small" id="s">Save to Templates</button></div>`;
       out.querySelector("#c").onclick = () => copy(code);
       out.querySelector("#s").onclick = async () => { const name = prompt("Name for this template?"); if (name) try { await saveToTemplates({ name, code }); } catch (err) { toast(err.message); } };
     } catch (err) {

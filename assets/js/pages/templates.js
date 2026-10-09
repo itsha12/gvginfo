@@ -1,4 +1,5 @@
 import { state, esc, skillBar, parseCode, templateCode, copy, toast, writeJson, canSave, attrsFor } from "../core.js";
+import { decodeEquipment } from "../template.js";
 
 let folderId = null;
 let editing = null; // { folder, tpl, variant } ids being edited, or { new: "template"|"variant", ... }
@@ -23,6 +24,18 @@ function attrLine(t) {
   }).join(", ");
 }
 
+function eqSlots(code) {
+  try { const { slots } = decodeEquipment(code); return slots.length ? slots.join(", ") : ""; } catch { return ""; }
+}
+function equipmentHtml(list = []) {
+  if (!list.length) return "";
+  return `<div class="eq-list">${list.map((e) => `<div class="eq">
+    <div class="eq-name"><span class="label">Equipment</span>${esc(e.name || "Equipment")}</div>
+    <div><div class="row"><span class="code">${esc(e.code)}</span><button class="btn small" data-copy="${esc(e.code)}" data-what="Equipment code">Copy</button></div>
+      ${eqSlots(e.code) ? `<div class="muted" style="font-size:.82rem;margin-top:.3rem">${esc(eqSlots(e.code))}</div>` : ""}
+      ${e.notes ? `<p class="note mine">${esc(e.notes)}</p>` : ""}</div></div>`).join("")}</div>`;
+}
+
 function buildBlock(entry, isVariant, folder, parent) {
   let t;
   try { t = info(entry.code, entry.bonus); } catch (e) {
@@ -41,6 +54,7 @@ function buildBlock(entry, isVariant, folder, parent) {
       ${isVariant ? "" : `<button class="btn small" data-act="add-variant" ${ids}>Add variation</button>`}
       <button class="btn small danger" data-act="delete" ${ids}>Delete</button></div>
     ${entry.notes ? `<p class="note mine">${esc(entry.notes)}</p>` : ""}
+    ${equipmentHtml(entry.equipment)}
     ${(entry.variations || []).map((v) => buildBlock(v, true, folder, entry)).join("")}
   </div>`;
 }
@@ -60,6 +74,15 @@ function editorHtml(entry, title) {
       <div class="grid">${attrs.filter((a) => (t.attributes[a] || 0) > 0).map((a) => `<label>${esc(a)} ${t.attributes[a]} +
         <input type="number" name="bonus:${esc(a)}" min="0" max="4" value="${+(entry.bonus?.[a] || 0)}" style="width:70px"></label>`).join("")}</div></div>` : ""}
     <label>Notes<textarea name="notes" placeholder="When to run it, what to watch for">${esc(entry.notes || "")}</textarea></label>
+    <fieldset class="${(entry.equipment || []).length ? "" : "ask"}"><legend>Equipment templates</legend>
+      <p class="muted" style="margin:0;font-size:.88rem">${(entry.equipment || []).length ? "Each set is a separate equipment template, e.g. a Vampiric set and a Zealous set." : "<b style=\"color:var(--ink)\">Add the equipment for this bar.</b> In game, open the Hero panel's Equipment tab, save a template, and paste its code here. Add more sets for options (e.g. Vampiric vs Zealous weapon)."}</p>
+      ${(entry.equipment || []).map((e, i) => `<div class="eq-row" data-eq="${i}">
+        <input type="text" name="eq-name" placeholder="Set name (e.g. Vampiric axe)" value="${esc(e.name || "")}">
+        <input type="text" name="eq-code" placeholder="Equipment template code" value="${esc(e.code || "")}">
+        <input type="text" name="eq-notes" placeholder="Notes (runes, insignia, mods)" value="${esc(e.notes || "")}">
+        <button class="btn small danger" type="button" data-eq-del="${i}">Remove</button></div>`).join("")}
+      <div><button class="btn small" type="button" id="eq-add">Add equipment set</button></div>
+    </fieldset>
     <div class="row"><button class="btn primary" type="submit">Save</button><button class="btn" type="button" id="cancel">Cancel</button>
       <span class="muted">Paste a new code to change the skills, then save.</span></div>
   </form>`;
@@ -74,19 +97,19 @@ export function renderTemplates(view) {
   let editTarget = null, editTitle = "", original = null;
   if (editing && folder) {
     const tpl = folder.templates.find((x) => x.id === editing.tpl);
-    if (editing.new === "template") { editTitle = `New template in ${folder.name}`; editing.draft ??= {}; }
-    else if (editing.new === "variant") { editTitle = `New variation of ${tpl?.name}`; editing.draft ??= { code: tpl?.code, bonus: { ...(tpl?.bonus || {}) } }; }
+    if (editing.new === "template") { editTitle = `New template in ${folder.name}`; editing.draft ??= { equipment: [] }; }
+    else if (editing.new === "variant") { editTitle = `New variation of ${tpl?.name}`; editing.draft ??= { code: tpl?.code, bonus: { ...(tpl?.bonus || {}) }, equipment: (tpl?.equipment || []).map((e) => ({ ...e })) }; }
     else {
       original = editing.variant ? tpl?.variations.find((v) => v.id === editing.variant) : tpl;
       editTitle = `Edit ${original?.name}`;
-      editing.draft ??= { name: original?.name, code: original?.code, notes: original?.notes, bonus: { ...(original?.bonus || {}) } };
+      editing.draft ??= { name: original?.name, code: original?.code, notes: original?.notes, bonus: { ...(original?.bonus || {}) }, equipment: (original?.equipment || []).map((e) => ({ ...e })) };
     }
     editTarget = editing.draft;
   }
 
   view.innerHTML = `
-    <h2>My templates</h2>
-    <p class="lede">Your bars, organised in folders, with variations under each one. Hover a skill for its numbers at your ranks; copy a code to load it in game.</p>
+    <h2>Templates</h2>
+    <p class="lede">Your bars, organised in folders, with variations under each one. Each bar and variation can carry one or more equipment templates. Hover a skill for its numbers at your ranks; copy a code to load it in game.</p>
     <div class="layout-2">
       <div>
         <div class="folders" role="list">
@@ -122,7 +145,7 @@ export function renderTemplates(view) {
   });
   view.querySelector("#newtpl")?.addEventListener("click", () => { editing = { new: "template" }; rerender(); });
 
-  view.querySelectorAll("[data-copy]").forEach((b) => b.onclick = () => copy(b.dataset.copy));
+  view.querySelectorAll("[data-copy]").forEach((b) => b.onclick = () => copy(b.dataset.copy, b.dataset.what));
   view.querySelectorAll("[data-act]").forEach((b) => b.onclick = () => {
     const tpl = folder.templates.find((x) => x.id === b.dataset.tpl);
     const variant = b.dataset.variant;
@@ -143,10 +166,27 @@ export function renderTemplates(view) {
     form.querySelector("#cancel").onclick = () => { editing = null; rerender(); };
     // show the bar as soon as a code is pasted
     form.code.addEventListener("change", () => { Object.assign(editTarget, readForm()); rerender(); });
+    form.querySelector("#eq-add").onclick = () => { const d = readForm(); d.equipment.push({ name: "", code: "", notes: "" }); Object.assign(editTarget, d); rerender(); [...view.querySelectorAll('.eq-row [name="eq-name"]')].pop()?.focus(); };
+    form.querySelectorAll("[data-eq-del]").forEach((b) => b.onclick = () => { const d = readForm(); d.equipment.splice(+b.dataset.eqDel, 1); Object.assign(editTarget, d); rerender(); });
     form.onsubmit = (e) => {
       e.preventDefault();
       const data = readForm();
       try { data.code = info(data.code).code; } catch (err) { toast(err.message); return; }
+      if (data.equipment.some((x) => !x.code && (x.name || x.notes))) { toast("Paste an equipment template code for each set, or remove the empty set."); return; }
+      data.equipment = data.equipment.filter((x) => x.code);
+      for (const eq of data.equipment) {
+        try { decodeEquipment(eq.code); } catch (err) { toast(`${eq.name || "Equipment set"}: ${err.message}`); return; }
+      }
+      // ask for the equipment before saving a bar without any
+      if (!data.equipment.length) {
+        const code = prompt(`Equipment template for "${data.name}"?\nPaste the code from the game's Equipment tab, or leave empty to save without one.`, "");
+        if (code === null) return;
+        if (code.trim()) {
+          try { decodeEquipment(code.trim()); } catch (err) { toast(err.message); return; }
+          const name = prompt("Name for this equipment set?", "Main set") || "Main set";
+          data.equipment.push({ name: name.trim(), code: code.trim(), notes: "" });
+        }
+      }
       if (editing.new === "template") folder.templates.push({ id: uid(), variations: [], ...data });
       else if (editing.new === "variant") folder.templates.find((x) => x.id === editing.tpl).variations.push({ id: uid(), ...data });
       else Object.assign(original, data);
@@ -156,7 +196,10 @@ export function renderTemplates(view) {
     function readForm() {
       const bonus = {};
       for (const el of form.querySelectorAll('[name^="bonus:"]')) if (+el.value) bonus[el.name.slice(6)] = +el.value;
-      return { name: form.name.value.trim(), code: form.code.value.trim(), notes: form.notes.value.trim(), bonus };
+      const equipment = [...form.querySelectorAll(".eq-row")].map((r) => ({
+        name: r.querySelector('[name="eq-name"]').value.trim(), code: r.querySelector('[name="eq-code"]').value.trim(), notes: r.querySelector('[name="eq-notes"]').value.trim(),
+      }));
+      return { name: form.name.value.trim(), code: form.code.value.trim(), notes: form.notes.value.trim(), bonus, equipment };
     }
   }
 }
