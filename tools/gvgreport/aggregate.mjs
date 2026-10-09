@@ -26,6 +26,19 @@ export function aggregate(root) {
   const map = readJson(D("template_id_map.json"), { pvp_to_template: {} }).pvp_to_template;
   const files = fs.readdirSync(D("matches")).filter((f) => /^\d{4}-\d{2}\.json$/.test(f)).sort();
   const matches = files.flatMap((f) => readJson(D(`matches/${f}`), [])).sort((a, b) => (b.at || 0) - (a.at || 0));
+  // gvg.report sometimes records a split skill by its original id (e.g. Soul Twisting 1240) instead of the PvP version
+  // GvG actually uses (Soul Twisting (PvP) 3461). Translate those so elites and families come out right.
+  const toPvp = Object.fromEntries(Object.entries(map).map(([pvp, orig]) => [+orig, +pvp]));
+  const fix = (id) => (id && !byId.has(id) && toPvp[id] ? toPvp[id] : id);
+  for (const m of matches) for (const p of m.players) {
+    p.bar = p.bar.map(fix);
+    const sk = {};
+    for (const [id, row] of Object.entries(p.sk || {})) {
+      const k = fix(+id), cur = sk[k];
+      sk[k] = cur ? cur.map((v, i) => v + row[i]) : row;
+    }
+    p.sk = sk;
+  }
   const isElite = (id) => byId.get(id)?.elite === true;
   // Standard bar order: elite, then by how common the skill is in its build family, then by attribute and name.
   function orderBar(bar, primary, secondary, rank = new Map()) {
