@@ -29,11 +29,23 @@ jobs:
           DELAY_MS: "1500"
         run: node tools/gvgreport/sync.mjs
       - name: Save changes
+        # Keep the fetched matches and combat stats, then rebuild every summary from the latest main (so pages and
+        # aggregate code changed during the run, and alias saves from the portal, never conflict). Retries on races.
         run: |
           git config user.name "gvginfo-bot"
           git config user.email "gvginfo-bot@users.noreply.github.com"
-          git add data
-          git diff --cached --quiet && echo "Nothing new." && exit 0
-          git commit -m "Update matches from gvg.report"
-          git pull --rebase
-          git push
+          mkdir -p "$RUNNER_TEMP/new"
+          cp -r data/matches "$RUNNER_TEMP/new/"
+          [ -f data/player_combat.json ] && cp data/player_combat.json "$RUNNER_TEMP/new/" || true
+          for i in 1 2 3 4 5 6; do
+            git fetch origin main && git reset --hard origin/main
+            cp -r "$RUNNER_TEMP/new/matches/." data/matches/
+            [ -f "$RUNNER_TEMP/new/player_combat.json" ] && cp "$RUNNER_TEMP/new/player_combat.json" data/ || true
+            node tools/gvgreport/aggregate.mjs
+            git add data
+            if git diff --cached --quiet; then echo "Nothing new."; exit 0; fi
+            git commit -m "Update matches from gvg.report"
+            if git push; then exit 0; fi
+            sleep $((i * 5))
+          done
+          exit 1
