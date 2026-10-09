@@ -28,6 +28,9 @@ This repo is Henry's Guild Wars 1 GvG portal and data store. He plays GvG only.
     `data/skill_stats.json` (per-skill totals; divide by casts for per-use averages), `data/meta.json` (per month).
   - Per-minute player rates use full match length. Character names are not accounts.
 - Wiki change log after each skill refresh: `data/wiki_changes.json`.
+- gvg.report sometimes records split skills by their original id (e.g. Soul Twisting 1240, "Coward!" 869) instead of
+  the PvP id; `aggregate.mjs` translates them with `template_id_map.json` before building anything. Raw match files
+  may still hold original ids — use the same translation when querying them.
 - Bar order everywhere: elite first, then the build family's skills from most to least common (then attribute, name),
   so variations line up. Done in `tools/gvgreport/aggregate.mjs` (`orderBar`).
 - Runes: derived from bonus ranks (+1 Minor, +2 Major, +3 Superior, +4 Superior + headgear). When Henry gives runes or
