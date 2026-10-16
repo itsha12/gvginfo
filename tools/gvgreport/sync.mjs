@@ -19,6 +19,8 @@ async function getJson(url, tries = 4) {
     const r = await fetch(url, { headers: { "User-Agent": UA, Accept: "application/json" } });
     if (r.ok) return r.json();
     if (r.status === 404) return null;
+    // a plain server error won't fix itself in seconds: retry once, then give up on this match
+    if (r.status >= 500 && r.status !== 503 && i >= 1) break;
     const wait = (+r.headers.get("retry-after") || 0) * 1000 || 5000 * (i + 1);
     console.warn(`  ${r.status} on ${url}; waiting ${wait / 1000}s`);
     await sleep(wait);
@@ -48,8 +50,10 @@ export async function sync() {
   const months = {};
   const monthFile = (m) => path.join(DIR, `${m}.json`);
   const load = (m) => (months[m] ||= readJson(monthFile(m), []));
-  let done = 0;
+  let done = 0, failed = 0, inARow = 0, stopped = false;
+  const STOP_AFTER = 8; // this many failures in a row means gvg.report's reports are down: stop and try next time
   for (const e of todo) {
+    if (inARow >= STOP_AFTER) { stopped = true; break; }
     const month = e.month || (e.date || "").slice(0, 7) || "unknown";
     let rec;
     try {
@@ -58,8 +62,10 @@ export async function sync() {
       if (!rep?.summary) rec.partial = true;
     } catch (err) {
       console.warn(`  skipped ${e.id}: ${err.message}`);
+      failed++; inARow++;
       continue;
     }
+    inARow = 0;
     const list = load(month).filter((m) => m.id !== rec.id);
     list.push(rec);
     months[month] = list;
@@ -74,14 +80,20 @@ export async function sync() {
     writeJson(path.join(DIR, "index.json"), index);
   }
   flush();
-  console.log(`Stored ${done} new matches; ${listed.length - Object.keys(index.matches).length} still to fetch.`);
+  const remaining = listed.filter((e) => !index.matches[e.id]).length;
+  console.log(`Stored ${done} new matches; ${remaining} still to fetch.`);
+  if (stopped) console.warn(`gvg.report failed ${STOP_AFTER} match reports in a row; stopped early. Their report service looks down — run Update matches again later.`);
+  writeJson(path.join(ROOT, "data/sync_status.json"), {
+    at: new Date().toISOString(), fetched: done, failed, remaining, stopped,
+    message: stopped ? "gvg.report's match reports were failing (server errors), so the update stopped early. Nothing is lost: press Update matches again later." : null,
+  });
 
   // 2b. fill in party slots (pos) for stored matches recorded before positions were kept (small overview payload)
   let filled = 0;
   for (const f of fs.readdirSync(DIR).filter((x) => /^\d{4}-\d{2}\.json$/.test(x))) {
     const m = f.slice(0, 7), list = load(m);
     for (const rec of list) {
-      if (!rec.players?.some((p) => p.pos == null) || filled >= MAX) continue;
+      if (!rec.players?.some((p) => p.pos == null) || filled >= MAX || stopped) continue;
       try {
         const ov = await getJson(`${BASE}/api/reports/${encodeURIComponent(rec.id)}?payload=overview`);
         const slots = new Map((ov?.overview?.players || []).filter((p) => p.is_player).map((p) => [`${playerName(p.label)}|${p.team_id}`, partyPosition(p)]));

@@ -28,7 +28,7 @@ function buildIndex(matches) {
 const termHit = (m, t) => (index.get(m.id)[t.field] || "").includes(norm(t.q));
 
 export async function renderHome(view) {
-  const [recent, changes] = await Promise.all([lazy("recent"), lazy("wiki_changes")]);
+  const [recent, changes, sync] = await Promise.all([lazy("recent"), lazy("wiki_changes"), lazy("sync_status")]);
   const matches = recent?.matches || [];
   index ||= buildIndex(matches);
   const occs = [...new Set(matches.map((m) => m.occ))].sort();
@@ -55,6 +55,7 @@ export async function renderHome(view) {
       ${lastWiki?.changes.length ? `<a class="btn" href="#/matches/changes">What changed on the wiki</a>` : ""}
       <span class="muted" id="upd-status"></span>
     </div>
+    ${sync?.message ? `<p class="callout">Last update ${esc(ago(Date.parse(sync.at)))}: ${esc(sync.message)}</p>` : ""}
     <div id="changes"></div>
     <div class="home-grid"><section>
     <form class="search" id="search">
