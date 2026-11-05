@@ -107,9 +107,17 @@ matches are reviewed). **Open:** lines are questions the match data should help 
 - **Denning:** Against 2 damage, getting dazed is critical. Guardian yourself and/or cancel cast (fake) to bait the daze
   skill. After faking the daze skill, the monk can cast safely for a while, because the daze skill is expensive and the
   ranger will be low on energy. Keep the ranger targeted to track this.
+- **Denning:** Spacing means the monk stands as far as possible from the enemy mesmer (and ranger) while staying in cast
+  range of the 2 players they have to heal, and in the correct position (for example in front of their own mesmer,
+  not behind). The monk only needs to be in range of allies while those allies are taking damage.
+- **Denning:** There is no concept of "holding a spot for the flag"; a monk waiting for their mesmer to run the flag is
+  there to support the runner, and should still be spaced.
+- **Denning:** When the Mes/A is not carrying the flag, it should be interrupting the enemy mesmer defensively when that
+  mesmer is pressuring its monk.
 - **Denning:** A monk under 2 damage needs team support: for example, the dervish hits the ranger and the mesmer
   defensively interrupts the enemy mesmer.
-- **Measure:** the monk's distance from the ranger; cancelled casts (a cast stopped without an interrupt) and which
+- **Measure:** the monk's distance from the enemy mesmer and ranger, compared with the distance to the allies taking
+  damage at that moment (spaced = as far from the attackers as cast range to those allies allows); cancelled casts (a cast stopped without an interrupt) and which
   enemy skill followed within a second (a successful fake); how long the monk was dazed; which weapon set the monk
   cast from while under energy denial; peel = teammates' attacks (auto-attacks as well as skills), knockdowns and
   interrupts on the players attacking the monk.
