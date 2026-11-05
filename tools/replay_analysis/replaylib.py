@@ -9,12 +9,7 @@ Usage:
 Run report.py for the standard review tables. Terms follow knowledge/tactics.md (base, backside, push side, pit, ...).
 """
 import bisect, collections, gzip, json, math, os, statistics, subprocess
-
-PROT_SKILLS = {"Guardian", "Aegis PvP", "Shielding Hands", "Reversal of Fortune", "Spirit Bond PvP", "Shield Guardian PvP",
-               "Life Sheath", "Aura of Faith", "Aura of Stability", "Protective Spirit"}
-RUN_SKILLS = {"Enchanted Haste", "Illusion of Haste PvP", "Dash", "Sprint", "Storm Djinn's Haste", "Charging Strike"}
-FIGHT_RANGE = 1300      # players closer than this to a group member are in the same group
-STAND_R, BASE_R = 1500, 2000
+from common import PROT_SKILLS, RUN_SKILLS, FIGHT_RANGE, STAND_R, BASE_R
 
 
 class Match:
@@ -25,6 +20,7 @@ class Match:
         self.SK = {int(k): v for k, v in o["skills"].items()}
         self.tag = {t["id"]: t["tag"] for t in o["meta"]["teams"]}
         self.PL = [i for i, a in enumerate(self.A) if a.get("player")]
+        self.inferred_caps = self._fix_flags()
         self.carries = self._carries()
         self.stand, self.base = self._geometry()
         self.roles = self._role_names()
@@ -65,6 +61,35 @@ class Match:
         return math.dist((s1["x"], s1["y"]), (s2["x"], s2["y"])) if s1 and s2 else None
 
     # ---- flag and map
+    def _fix_flags(self):
+        """gvg.report sometimes records a capture without the capturing player. A team can't capture a stand it already
+        holds, so the capture belongs to the team not holding it; its open carry (the one nearest the stand) is the
+        capturer. Rewrites o["flags"] in memory so every layer sees the same events. Returns the times fixed."""
+        fixed, holder, open_c = [], None, {}
+        out = []
+        for ev in self.o.get("flags", []):
+            t, typ, a = ev[0], ev[1], ev[2]
+            if typ == "flag_picked_up" and self.team(a): open_c[a] = t
+            elif typ == "flag_dropped": open_c.pop(a, None)
+            elif typ == "flagstand_captured":
+                if not self.team(a) and holder:
+                    cand = [b for b in open_c if self.team(b) == 3 - holder]
+                    if cand:
+                        def gap(b):
+                            s = self.snap(b, t)
+                            return math.dist((s["x"], s["y"]), self._stand_guess()) if s else 1e9
+                        a = min(cand, key=gap); ev = [t, typ, a] + list(ev[3:]); fixed.append(t)
+                if self.team(a):
+                    holder = self.team(a); open_c.pop(a, None)
+            out.append(ev)
+        self.o["flags"] = out
+        return fixed
+
+    def _stand_guess(self):
+        caps = [self.snap(a, t) for t, typ, a in self.o.get("flags", []) if typ == "flagstand_captured" and self.team(a)]
+        caps = [c for c in caps if c]
+        return (statistics.median(c["x"] for c in caps), statistics.median(c["y"] for c in caps)) if caps else (0, 0)
+
     def _carries(self):
         out, op = [], {}
         for t, typ, a in self.o.get("flags", []):

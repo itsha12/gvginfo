@@ -1,125 +1,136 @@
 # How concepts are measured in replay data
 
 Working notes for Claude: the analysis framework, where everything is stored, and how each concept on the GvG tactics
-page is detected in gvg.report replays.
+page is detected in gvg.report replays. The goal is not counting deaths: it is knowing what game state caused each
+fight, what the fight caused, and what the best play was in that situation for those builds (tactics `W6`, `W7`).
 
 ## The framework (layers)
-1. **Game state every second** (`state.py`, built): per team, who is alive and when the dead return, morale, zones (own
-   pit, own base, backside, stand, push side, enemy base, enemy pit), fight groups and the main group, pit NPCs alive
-   (K2 A2 B1), the flag (carriers, stand owner, hold time, time to a boost). Still to add: what each team can know.
-2. **Episodes** (`episodes.py`, `fights.py`, all built): splits (members, entering the enemy base, who answered,
-   when, from where, NPCs killed with or without defenders, main numbers meanwhile); flag runs (runner and line,
-   escort, pushers and what they did, help and latency, half or full double running); the stand ledger; flag timing per cap (`flag_cycles`: pickup compared with the enemy's,
-   cap delay after the enemy's cap, the runner's trip back to base and enemies in the way); deaths (15 s
-   before: burst, damage sources and kinds, knockdowns and interrupts on the victim and its monks, monk casts on the
-   victim and what the monks were doing instead, monk distance, isolation, peel, after time, what the enemy took in
-   the next 60 s, plus a forensics block: numbers and flag context, backline in cast range each second and its state,
-   prots on the victim (landed, stripped, interrupted), self-prots, knockdowns through a block or not and moving into a
-   Coward, interrupts (critical skill, ms into the cast, right after a knockdown), cripple, Deep Wound and Daze, gap
-   closers and whether the victim stood still before contact, peel on the attackers, and the flag situation: is the enemy
-   running, must the victim's team run, where is its runner), and an assessment: cause (coordinated enemy pressure = a great enemy play, spike, positioning,
-   lack of support, unclear) and acceptable mistakes (cast beside a ranger without faking, Aura of Stability recharged
-   but not used on a monk being knocked down, no defensive interrupts while Shatter or energy denial went off, peel
-   mostly on enemy monks), with quarter-second interrupts marked as luck; monk profiles per 2 minutes (casts by kind, targets, bursts answered and reaction time, idle while
-   allies were hurt, fakes, interrupts and knockdowns received, distance to enemy mesmers and rangers); numbers
-   windows (who had more in the main fight, why the other side was short, pressure against the team's average,
-   kills, losses, ground gained); posture every 30 s (how far forward each main group is, against numbers, morale,
-   NPCs and the stand).
-3. **Judgement** (`rules.py`, built): rules turn tactics principles into checks on episodes and give findings (good,
-   on time, late, missed, wrong role, mistake, note) with evidence and a question where Denning should rule. Rules so
-   far (calibrated with Denning's rulings in `data/review_labels.json`): split answered (15 s on time, 60 s late), lone ranger answered by the Mes/A with a frontline collapse (8 monk alone = risky; 8 monk in base once the pit is dead
-   = right), full team collapses (not split answers), split
-   value, running on the 8 monk, pushed flagger supported (help within 15 s, only when 2+ damage push), flag dropped without reason,
-   capped just before a boost (a late cap by the team down on flags, not the holder's mistake), power play converted (not "missed" when the team is clearly ahead), and a reason for every
-   death. Death causes (`fights.assess`, in order): spike; outnumbered away from pit while up on flags (stand held,
-   enemy running, own runner not carrying, victim on backside or stand and out of backline range; minor mistake);
-   fight during a forced flag run (enemy running, team split to run); positioning (out of backline range); coordinated
-   enemy pressure (a great enemy play); lack of support; unclear. Each cause comes with smaller mistakes graded basic,
-   minor or acceptable (Daze beside a ranger, Aura of Stability not used, no defensive interrupts, peel on monks only),
-   and luck notes (quarter-second interrupts). Known weakness: "positioning" is the cause for about 2 of 3 deaths and
-   needs splitting (pushing too deep, caught kiting, chased down after a lost fight, etc.).
-4. **Edge ledger** (`rules.py`, built): every death, boost, NPC lost and minute of Lord damage with its likely cause.
-   Next: weigh the edges (win probability) to decide macro vs micro from evidence.
-5. **Benchmarks** (after the bulk pull): distributions of every measure across good teams, so "late" is measured.
-7. **Win probability** (after the bulk pull): a model that gives each team's chance to win from the game state at any
-   second (death penalty, boosts, pit NPCs, numbers, tiebreak, time), trained on hundreds of matches. Each episode's
-   value is the swing in win probability it caused, and "what should they have done" is answered by comparing the
-   outcomes of different choices made in similar states across all matches.
-6. **Fixed question set**: every deep review answers the same questions (splits, flag game, power play, deaths, monk
-   casting and positioning, support, posture), each mapped to the measures above.
+1. **Shared constants** (`common.py`): every threshold, radius, spike anchor and skill list in one place.
+2. **Game state every second** (`state.py`): positions and zones (own pit, own base, backside, stand, push side,
+   enemy base, enemy pit), who is alive and when the dead return, morale, fight groups and the main group, pit NPCs,
+   the flag carriers and stand owner, each team's flag spawn, estimated NPC positions (`data/maps/`).
+3. **Scoreboard** (`scoreboard.py`): every edge, per team, at any second, the one place "who is ahead" is decided:
+   - flag position: each team's flag ETA, response on the next capture exchange, flag lead (up, even, down),
+     backup flag, waiting runner, flag duty, whether the challenger can cap before the boost (details below);
+   - numbers: alive, main group, who is down and for how long;
+   - death penalty: morale per player and team, effective max health, the enemy's spike threat and who is now within
+     one spike (DP stacking, `K4`);
+   - pit NPCs (counts and value), Lord damage dealt (the tiebreak);
+   - build archetype per team (WoC, invoke or paragon spike, hex way, double hammer balance, balance) with its late
+     Lord pressure and healing monks (`L1`);
+   - `edge()`: a provisional single number per team (NPC value + morale/10 - seconds down/30 + Lord damage/300 + flag
+     lead/30, against the enemy's); `swing()`: what changed between two moments (deaths, NPCs, caps, boosts, Lord
+     damage, DP, flag lead, edge). Weights are first guesses until the win-probability model.
+4. **Episodes** (`episodes.py`, `fights.py`):
+   - splits (members, entering the base, who answered, when and from where, NPCs killed, main numbers meanwhile);
+   - flag runs (runner, line, escort, pushers, help and its latency, half or full double running);
+   - flag cycles: every capture answers the previous one; cap delay, the pickup that started the run (through
+     hand-offs), the trip from the team's previous capture, enemies in the way, a runner waiting at the spawn, and
+     how much slower than possible the answer was (`slower_than_possible_s`: a choice or an obstruction);
+   - deaths: forensics (numbers, flag and DP context from the scoreboard, backline in range and alive, prots landed,
+     stripped or interrupted, knockdowns, interrupts, conditions, approach, peel) and an assessment (cause, graded
+     mistakes, notes), plus what the death cost until the victim was back;
+   - fights (`engagements`): deaths of either team no more than 20 s apart form one fight. For the losing side: the
+     trigger (first death and its cause), the situation it fought in (numbers where it fought and why, flag position,
+     at whose pit, after time, DP stacking, a monk first), whether it became a wipe, and the consequence until every
+     player was back (NPCs, caps, boosts, Lord damage, DP, flag lead, edge), and whether the winner converted it;
+   - monk profiles, numbers windows (power plays), posture.
+5. **Decision points** (`decisions.py`): enemy pickups, splits entering the base, power plays, boost clocks, after a
+   wipe, 24:00. Each records the situation key (phase, flag position and lead, stand, boost clock, numbers, DP, NPC
+   value and Lord damage differences, build matchup), the choice, and the outcome (scoreboard swing). The library
+   compares outcomes by choice across matches (`library.py compare <kind> --where ...`); this is how "what is the
+   best play here" gets evidence before the win-probability model exists.
+6. **Judgement** (`rules.py`): findings with verdicts (good, on time, late, missed, wrong role, risky, mistake, great
+   enemy play, note), each citing tactics line ids, and the edge ledger (every death with its cause and fight, boost,
+   NPC lost with its split or fight, Lord damage by minute). Calibrated on Denning's rulings in
+   `data/review_labels.json`.
+7. **Benchmarks** (after the bulk pull): distributions of every measure across good teams, so "late" is measured.
+8. **Win probability** (after the bulk pull): each team's chance to win from the scoreboard at any second, trained on
+   hundreds of matches. It replaces the provisional edge: every fight and decision is then valued by the swing in win
+   probability, and "what should they have done" compares the win probability after different choices in similar
+   situations.
+
+## Flag position (Denning, tactics `F1` to `F4`)
+- Up on flags = the better position to get a boost and to run, not the team that capped last.
+- ETA to capture: carrying = distance to the stand / 205 units per second; a dropped flag = the nearest runner's walk
+  (270 u/s) plus the carry; at the spawn = the best runner's walk to the spawn (a dead runner waits for the res) plus Y
+  (spawn to stand). Runners = players who carried in this match. Speeds measured on 24 matches (spawn to cap carries,
+  median 41 s over ~8,400 units).
+- Exchange: C (not holding) caps in ETA_C; holder H answers at max(ETA_H, ETA_C), so its response is the difference;
+  C's next flag is Y away if a runner is waiting at its spawn (within 1,200, out of the main group, not trading damage
+  for 10 s), else the walk back plus Y (2Y). Flag lead = enemy response minus own; up/down at 10 s.
+- Accuracy on 279 real answers: median error -5 s, half within 15 s; the lead's sign matches the real exchange in
+  152 of 200 clear cases. Answers 30 s+ slower than possible (56 of 279) are choices or obstruction, which is what
+  `slower_than_possible_s` flags.
+- Dropped flags are assumed to lie where they fell until the team picks one up again; a pickup far from the drop
+  means it was returned to the spawn (taken as at once).
+- gvg.report occasionally records a capture without the player (4 of 304 in 24 matches). Captures alternate, so it
+  belongs to the team not holding; `Match._fix_flags` assigns it to that team's open carry. Before this fix the engine
+  dropped those captures and misread who held the stand (e.g. [Men v HC C] 6:29 to 7:57).
+
+## Death causes (`fights.assess`, in order)
+1. **Spike**: 450+ damage within 2 s on a target at 60%+ health (judged on prot timing, `X3`).
+2. **Backline down**: a monk of the team is dead and the victim had no support in range (`K11`); "in a chain" when
+   that monk died in the last 20 s.
+3. **Outnumbered away from pit while up on flags**: enemy running, own team up on flags, own runner not carrying, the
+   victim not on flag duty, no support, on the backside or stand (minor mistake, `F6`, `F7`).
+4. **Fight during a forced flag run**: enemy running, own team not up on flags, no support (`F5`, `F11`).
+5. **Positioning** (no support in range): caught away from its group (2,000+ from its main group), overextended
+   (1,000+ nearer the enemy pit than its main group on the enemy side), chased down while retreating, or out of range
+   of its monks.
+6. **Coordinated enemy pressure**: support in range and 2+ live monks under attack or knocked down (`M1`).
+7. **Lack of support**: support in range, a monk free, no prots cast on the victim.
+8. **Out-pressured despite support**: prots cast, one monk tied up. **Out-damaged despite prots**: backline free.
+- Support in range = at least 2 live monks (1 for a monk victim) within cast range for 60% of the seconds they were
+  alive in the 15 s before. Dead monks are counted as dead, never as out of range. Healing monks = slots 6 to 8 plus
+  any monk without Word of Censure.
+- Smaller mistakes graded basic, minor or acceptable (Daze beside a ranger, Aura of Stability not used, no defensive
+  interrupts, peel on monks only); luck notes (quarter-second interrupts); a DP-stacking note when the victim's
+  health was within one enemy spike.
+- Verdicts follow the cause: great enemy play; mistake for positioning, lack of support and outnumbered while up on
+  flags; note for the rest (a basic mistake makes it a mistake).
+- Distribution on 24 matches (376 deaths): backline down 96, caught away from its group 58, out-pressured despite
+  support 45, coordinated enemy pressure 45, spike 31, out of range of its monks 24, out-damaged despite prots 21,
+  chased down while retreating 20, lack of support 19, forced flag run 12, outnumbered while up on flags 3,
+  overextended 2. Fights: 176, of which 45 wipes.
 
 ## Where things are stored
-- **Process = code** in `tools/replay_analysis/` (`state.py`, `episodes.py`, `analyze.py`, `report.py`). Prose
-  instructions stay short: which commands to run; the thresholds and rules live in the code.
+- **Process = code** in `tools/replay_analysis/`. Prose instructions stay short; thresholds live in `common.py`.
 - **Per-map knowledge**: `data/maps/<map id>.json`, NPC positions estimated from melee attackers (the replay has no
-  NPC positions), merged and refined every time a match on that map is analysed. Commit them when they change.
-- **Case library** (`library.py`, built): `library.py build` gathers every episode and finding from the analysis
-  files into one file per kind; `library.py query <kind> --where "..."` searches them across all matches.
-- **Per-match analysis**: `analyze.py <id>` writes one structured file (format gvginfo.analysis.v1, versioned by
-  ENGINE). It is regenerated from the replays and the code in seconds, so it isn't stored yet; once the layers are
-  stable it goes to `analysis/<id>.json` on the `replays` branch (and is built by the workflow for the bulk pull).
-- **Principles**: `knowledge/tactics.md` (people read it); judgement rules in code will cite its sections.
-- **Denning's verdicts on findings**: `data/review_labels.json` (one entry per ruling), applied in `rules.py`.
-- **Benchmarks** (to add): one file built from all analysis files.
+  NPC positions). Added only with `analyze.py --save-maps`, once per match (re-runs don't change the files).
+- **Case library** (`library.py`): `build` gathers every kind from the analysis files; `query <kind> --where` searches
+  them; `compare <decision kind> --where` compares outcomes by choice.
+- **Per-match analysis**: `analyze.py <id>` writes format gvginfo.analysis.v1 (ENGINE 15). Regenerated in about a
+  second per match, so not stored yet; for the bulk pull it goes to `analysis/<id>.json` on the `replays` branch.
+- **Principles**: `knowledge/tactics.md`, ids cited by findings, rulings and situation cards (section 14).
+- **Denning's verdicts**: `data/review_labels.json`, applied in `rules.py` and `fights.assess`.
 
 ## Known limits
 - No energy in the data. Positions about once a second. No NPC positions or health (estimated). Intent and what a
   player is looking at are never in the data.
-- Split detection marks a "flank" when splitters stay near the enemy main group; early-game fights on one side can still
-  show as splits with the whole enemy team "answering" (to refine with Denning's checks).
+- The provisional edge's weights are guesses; compare choices by their components (deaths, NPCs, caps) as well.
+- 24 matches is far too few to settle a choice; `compare` results are hypotheses until the bulk pull.
+- Split detection marks a "flank" when splitters stay near the enemy main group; early-game fights on one side can
+  still show as splits with the whole enemy team "answering".
+- Archetypes come from bars by simple rules (e.g. hex way = 2+ hex casters with 4+ hexes and at most 2 healing
+  monks); late Lord pressure weights per profession are a hypothesis (`L1`) to calibrate on 28:00 results.
 
 ## Roles and positions
 - Roles come from each player's build and party slot (`replaylib.Match.roles`). Positions are labelled relative to the
   player's own team: backside, push side, base, enemy base, stand.
 - Position jumps from Aura of Displacement are real: the caster Shadow Steps to the target, then returns when they stop
   maintaining it.
-- Groups every few seconds (who is with whom and where) label each phase: 8v8, 7v7, flag game, solo split, 3 or 4 man
-  split, and who answered a split and how [phases, splits].
-- Pit position comes from players hitting the Lord, else the res shrine (not in the pit on every map) [pit].
+- Pit position comes from players hitting the Lord, else the knights and Bodyguard, else the res shrine.
 
 ## Kills and timing
-- Deaths "after time": within about 15 s after an even 2-minute mark; check whether the target was held low before the
-  mark (a timed kill) [deaths].
-- For each death: the burst (tightest window, armor ignoring vs respecting), how many attackers, the target's set and
-  health; "not saveable" = 550+ armor ignoring within 0.35 s, or more than the target's health within 0.35 s; prots and
-  Infuse on the target from 3 s before the first big hit, timed relative to it (negative = pre-prot); interrupts on the
-  spike skills [spikes].
-- Spike catching per team: enemy spikes (3+ attackers, 250+ damage in 2 s) counted as killed, saved with a prot, or
-  survived without one, with prot timing and casters. The cleanest measure of monk quality, since it doesn't depend on
-  who was winning [catches].
-- Damage output per player per minute spots passive damage dealers, e.g. during an 8v7 [output]. Per-minute rates are
-  partly game state: the winning side's players live longer.
-- Time spent on a failed kill.
+- "After time": within 15 s after an even 2-minute mark.
+- Spike anchors (`X1`, `X2`): 550 armor ignoring in 0.35 s or more than the target's health in 0.35 s is not saveable;
+  400 armor respecting in 0.6 s on a shield set should be survivable (`report.py spikes`).
+- Spike catching per team (`report.py catches`): enemy bursts (3+ attackers, 250+ in 2 s) killed, saved with a prot,
+  or survived without one, with prot timing.
 
-## Flag
-- Carries come from the flag timeline (pickup to drop or capture). Per carry: the runner's role, their damage and casts
-  during the carry against the rest of their match, damage taken, interrupts suffered, teammates left in the main fight.
-- Half running: a drop followed within seconds by a teammate's pickup nearby, the first player heading back. Full
-  running: a teammate waiting at base for the next flag while the first runner carries. Track time with 2 players away.
-- Stand holds and morale boosts; holds that ended 100 to 119 s (near-missed boosts) [stand].
-- Pushing the flagger: an enemy in casting range of the carrier who damages or snares them; which teammates move toward
-  the carrier and how soon; the outcome and its cost in the main fight.
-- Power play: players in the main fight per team every second (alive, in casting range of the fight centre), so 8v7
-  and 8v6 windows stand out, and what each team did with them.
-
-## Splits and pits
-- Who shadowed each split, snares landed by its defenders, NPCs killed, kills on splitters after they commit [splits].
-- The 8's distance from enemy splitters and snares landed (8v8 builds shadowing a split).
-- Pit NPC kills with attackers and defenders present [npcs]; the Lord's Entourage casts (a gap counts as suppressed
-  only if attackers were at the Lord), Lord damage by minute, enchantments on a team's own Lord [npcs, lord].
-- A base race: 3+ of each team in the enemy base at once [lord].
-- A win with no Lord damage, where the Lord and pit NPCs all die at the same moment, is a resign.
-
-## Monks and mesmers
-- Monk spacing: distance from the enemy mesmer and ranger against the distance to the allies taking damage.
-- Cancelled casts (stopped without an interrupt) followed within a second by an enemy skill (a successful fake); time
-  dazed; weapon set used under energy denial; peel (teammates' attacks, knockdowns and interrupts on the monk's
-  attackers).
-- Each interrupt records interrupter, skill used, interrupted skill and target; follow the target for 5 to 10 s to see
-  whether it decided the fight. Interrupt totals per mesmer [totals].
-- Weapon sets: gvg.report flags which sets cast faster (HCT) and lengthen enchantments; the replay records the set held
-  each second (a carrier shows none).
-
-## Comms and commentary
-- Line up transcript times with match time using two or three anchors (kills, caps, boosts); offsets vary by video.
-- Check every claim against the data; note where the data adds or corrects.
+## Monks, mesmers and comms
+- Monk spacing, fakes (cancelled casts not caused by an interrupt), time dazed, peel, weapon sets as before
+  (`fights.monks`, `report.py`).
+- Comms and commentary: line up transcript times with match time using two or three anchors (kills, caps, boosts);
+  check every claim against the data; store paraphrased events only, never transcripts (public repo).

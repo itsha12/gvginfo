@@ -9,12 +9,11 @@ Positions are game units; PIT_R ~ casting range around the Lord. NPC positions a
 estimated from where melee players stood when hitting each NPC, and saved per map in data/maps/<map id>.json so later
 matches on the same map reuse (and refine) them."""
 import collections, json, math, os, statistics, sys
-from replaylib import Match, STAND_R
+from replaylib import Match
+from common import STAND_R, PIT_R, BASE_R, NEAR_R, REPO, RES_EVERY
 
-PIT_R, BASE_R, NEAR_R = 1500, 2500, 1200
 MELEE = {"Warrior", "Dervish", "Assassin"}
 STATIC_NPCS = ("guild_lord", "bodyguard", "knight", "archer")
-REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 def d(p, q): return math.dist(p, q) if p and q else 1e9
@@ -23,13 +22,14 @@ def d(p, q): return math.dist(p, q) if p and q else 1e9
 class MapGeo:
     """Bases, stand, pit and static NPC positions for one match, merged with what earlier matches learned."""
 
-    def __init__(self, m):
+    def __init__(self, m, save=False):
         self.m = m
         self.map_id = str(m.o["meta"].get("map_id") or m.o["meta"]["map"])
         self.base = {tm: tuple(m.base[tm]) for tm in m.base}
         self.stand = tuple(m.stand)
+        self.spawn = self._flag_spawns()        # team -> where its flag appears (near its base)
         self.npcs = self._estimate()            # agent -> {kind, team, pos, n (samples), conf}
-        self._merge_store()
+        self._merge_store(save)
         self.pit = {}
         for tm in (1, 2):
             lord = [v["pos"] for v in self.npcs.values() if v["team"] == tm and v["kind"] == "guild_lord" and v["pos"]]
@@ -40,6 +40,21 @@ class MapGeo:
         for v in self.npcs.values():    # archers far from their Lord are outside archers
             v["pit"] = v["kind"] in ("guild_lord", "bodyguard", "knight") or (
                 v["pos"] is not None and d(v["pos"], self.pit.get(v["team"])) < 3000)
+
+    def _flag_spawns(self):
+        """Each team's flag spawn: the median of its pickups far from the stand on its own half (a flag picked up
+        mid-field is a dropped one). Falls back to the base."""
+        m, out = self.m, {}
+        for tm in (1, 2):
+            pts = []
+            for t, typ, a in m.o.get("flags", []):
+                if typ != "flag_picked_up" or m.team(a) != tm: continue
+                q = m.snap(a, t)
+                if not q: continue
+                p = (q["x"], q["y"])
+                if d(p, self.stand) > 6000 and d(p, self.base.get(tm)) < d(p, self.base.get(3 - tm)): pts.append(p)
+            out[tm] = (statistics.median(p[0] for p in pts), statistics.median(p[1] for p in pts)) if pts else self.base.get(tm)
+        return out
 
     def _estimate(self):
         m, out = self.m, {}
@@ -60,12 +75,15 @@ class MapGeo:
             out[a] = dict(kind=ag["npc"], team=ag.get("team"), pos=pos, n=len(use), conf=conf if use else "none")
         return out
 
-    def _merge_store(self):
-        """Save this match's NPC estimates per map (side-agnostic: absolute positions, matched by kind and distance) and
-        fill NPCs with no samples from earlier matches."""
+    def _merge_store(self, save=False):
+        """Fill NPCs with no samples from earlier matches on this map, and (with save=True, i.e. analyze.py --save-maps)
+        add this match's estimates to data/maps/<map id>.json: side-agnostic absolute positions matched by kind and
+        distance. A match already in the store is never added twice, so re-runs don't change the files."""
         path = os.path.join(REPO, "data", "maps", f"{self.map_id}.json")
         try: store = json.load(open(path))
         except (OSError, ValueError): store = {"map_id": self.map_id, "map": self.m.o["meta"]["map"], "npcs": []}
+        mid = self.m.o["meta"]["id"]
+        changed = False
         for a, v in self.npcs.items():
             if v["pos"] is None:
                 near = [s for s in store["npcs"] if s["kind"] == v["kind"] and v["team"] in self.base
@@ -74,8 +92,11 @@ class MapGeo:
                     best = min(near, key=lambda s: d(tuple(s["pos"]), self.base[v["team"]]))
                     v.update(pos=tuple(best["pos"]), conf="map")
                 continue
-            if v["conf"] != "melee": continue
+            if v["conf"] != "melee" or not save: continue
             match = [s for s in store["npcs"] if s["kind"] == v["kind"] and d(tuple(s["pos"]), v["pos"]) < 400]
+            # a match is only ever added once (also when an earlier merge moved the stored position a little)
+            if any(mid in x.get("matches", []) for x in store["npcs"] if x["kind"] == v["kind"] and d(tuple(x["pos"]), v["pos"]) < 1200): continue
+            changed = True
             if match:
                 s = match[0]; w = s["n"]
                 s["pos"] = [round((s["pos"][0] * w + v["pos"][0] * v["n"]) / (w + v["n"])),
@@ -84,13 +105,14 @@ class MapGeo:
             else:
                 store["npcs"].append({"kind": v["kind"], "pos": [round(v["pos"][0]), round(v["pos"][1])], "n": v["n"],
                                       "matches": [self.m.o["meta"]["id"]]})
-        os.makedirs(os.path.dirname(path), exist_ok=True)
-        json.dump(store, open(path, "w"), indent=1)
+        if changed:
+            os.makedirs(os.path.dirname(path), exist_ok=True)
+            json.dump(store, open(path, "w"), indent=1)
 
 
 class GameState:
-    def __init__(self, m):
-        self.m, self.geo = m, MapGeo(m)
+    def __init__(self, m, save_maps=False):
+        self.m, self.geo = m, MapGeo(m, save_maps)
         self.end = int(m.o["meta"]["match_length_s"])
         self.teams = (1, 2)
         self.players = {tm: [a for a in m.PL if m.team(a) == tm] for tm in self.teams}
@@ -107,7 +129,7 @@ class GameState:
 
     def next_res(self, t):
         """Base res happens every 2 minutes of match clock."""
-        return (int(t // 120) + 1) * 120
+        return (int(t // RES_EVERY) + 1) * RES_EVERY
 
     def _flag(self):
         caps = [(t / 10, self.m.team(a)) for t, typ, a in self.m.o.get("flags", []) if typ == "flagstand_captured" and self.m.team(a)]

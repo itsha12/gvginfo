@@ -11,397 +11,442 @@ against general principles rather than past games. Match-by-match evidence lives
 - **Claude:** lines are Claude's generalized learnings from replays. They are proposals until Denning confirms or
   corrects them, and are revised when new matches contradict them. Each ends with its evidence, as match tags
   (for example [Men v Team]) that point to entries on the Match reviews page.
+- Each principle has an id (for example `F1`) that the analysis engine's findings, Denning's rulings and the situation
+  cards cite. A revised line keeps its id; a removed id is not reused.
 - Principles are stated generally; the evidence shows where they were seen. A principle with one match behind it is a
   hypothesis; one seen across several matches with different teams is a pattern.
 
 ## 1. How matches are won
 
 ### Win conditions
-- A match ends when a Guild Lord dies, when a team resigns, or at the 28:00 tiebreak on Lord damage.
-- **Denning:** Teams resign when a match is lost (RACK resigned against Men).
-- **Denning:** One of the values of taking pit NPCs during a match is that fewer players need to be sent to the enemy
-  base at 28:00 while still breaking Entourage.
-- **Denning:** Winning on Lord damage at 28:00 isn't viable while taking deaths against a spike build like WoC; the
-  team would not survive 28 minutes.
-- The 28:00 tiebreak is aggressiveness: +1 per point of damage to the enemy Lord, -50 per enchantment or weapon spell
-  on your own Lord (GvG match rules page).
-- **Claude:** In long even games, know the aggressiveness score from about 24:00 (it decides whether to risk anything). The team behind must commit to Lord
-  damage (or a Lord kill) in the last minutes; the team ahead only has to keep its Lord alive, so it defends with
-  enough players and does not counter-race. Men won a tiebreak from 0 to 0 at 26:00 by putting 5 on hdm's Lord for
-  two minutes; hdm lost a game it was winning by 7,000 by counter-attacking instead of defending. [hdm v Men N]
-  [hdm v HC I2]
+- `W1` A match ends when a Guild Lord dies, when a team resigns, or at the 28:00 tiebreak on Lord damage.
+- `W2` **Denning:** Teams resign when a match is lost (RACK resigned against Men).
+- `W3` The 28:00 tiebreak is aggressiveness: +1 per point of damage to the enemy Lord, -50 per enchantment or weapon
+  spell on your own Lord (GvG match rules page).
+- `W4` **Denning:** One of the values of taking pit NPCs during a match is that fewer players need to be sent to the
+  enemy base at 28:00 while still breaking Entourage.
 
 ### The edges that decide the win condition
-A Lord dies when one team brings more to the enemy pit than it can hold. That comes from edges built up over the
-match:
-- **Death penalty and numbers:** dead or weakened players mean fights at 7v8 or worse, and pits defended by fewer.
-- **Morale boosts:** holding the flag stand earns boosts, which remove death penalty and raise the Lord's Health.
-- **Pit NPCs and Entourage:** every knight, archer and the Bodyguard taken makes the final push cheaper; an intact pit
-  kills attackers.
-- **Position and territory:** where the fight happens (the enemy's side, near its pit, or yours).
-- **Time:** the res timer every 2 minutes, and the clock toward 28:00.
-- **Claude:** Read a match by tracking these edges: who gained which, when, and through what decision. The decisive
+- `W5` A Lord dies when one team brings more to the enemy pit than it can hold. That comes from edges built up over the
+  match, which together are the **scoreboard**:
+  - **Flag position:** which team is better placed to make the next capture and get the next boost (section 5).
+  - **Morale:** boosts from holding the stand remove death penalty and raise the Lord's Health; death penalty lowers
+    health and energy.
+  - **Numbers:** players alive, players away (running, splitting, dead), and when the dead come back.
+  - **Pit NPCs and Entourage:** every knight, archer and the Bodyguard taken makes the final push cheaper; an intact
+    pit kills attackers.
+  - **Position and territory:** where the fight happens (the enemy's side, near its pit, or yours).
+  - **Time:** the res timer every 2 minutes, and the clock toward 28:00 (Lord damage).
+  - **Builds:** what each build can still do in the time left (section 7).
+- `W6` **Denning:** Individual deaths don't win the game. What matters is the game state that caused a death (flags,
+  positioning, micro mistakes) and what the death caused. The flag game, death penalty and pit NPCs are all very
+  important in close games.
+- `W7` **Claude:** Read a match by tracking the edges: who gained which, when, and through what decision. The decisive
   moment is usually where one edge was converted into another (a kill into NPCs, a boost into a push, numbers into a
-  wipe). [Men v Team] [OG v chic] [OG v cope J] [OG v hdm] [OG v cope U]
+  wipe). A fight is judged on three questions: what put the team there (cause), how it was played (execution), and
+  what it cost until everyone was back (consequence). [Men v Team] [OG v chic] [OG v cope J] [OG v hdm] [OG v cope U]
+- `W8` **Denning:** A team already winning (pit taken, ahead on death penalty, boosting, ahead at 28:00) has no need to
+  risk a Lord kill in a close window. The safer play is to back out, wait for the res, and fight again with the
+  advantages; with no pressure to end, it can always win at 28:00. [hdm v HC I2]
+- `W9` **Claude:** An empty enemy pit is converted when it is safe: a team that is behind, or racing the clock, takes
+  the Lord in the next wipe window; a team that is ahead uses the empty pit as leverage and keeps its lead.
+  [hdm v HC I2] [Men v HC C]
 
 ### Macro and micro
-- **Claude:** A game is won on **macro** when one side had a structural edge before the deciding fight: more boosts,
-  more pit NPCs taken, a numbers advantage, a better split trade, better position or timing. It is won on **micro**
-  when the structure was roughly even and the deciding moment came down to execution: an interrupt, prot timing, an
-  overextension, a knockdown. Many games are both: micro opens a door that macro walks through, or a macro choice turns
-  a micro mistake into a loss. [OG v cope U]
-- **Claude:** A useful test: if the losing team's decisions had been the winner's, would it still have lost? If yes,
-  the build or execution decided it (micro or matchup); if no, the decisions did (macro).
+- `W10` **Claude:** A game is won on **macro** when one side had a structural edge before the deciding fight: more
+  boosts, more pit NPCs taken, a numbers advantage, a better split trade, better flag position or timing. It is won on
+  **micro** when the structure was roughly even and the deciding moment came down to execution: an interrupt, prot
+  timing, an overextension, a knockdown. Many games are both: micro opens a door that macro walks through, or a macro
+  choice turns a micro mistake into a loss. [OG v cope U]
+- `W11` **Claude:** A useful test: if the losing team's decisions had been the winner's, would it still have lost? If
+  yes, the build or execution decided it (micro or matchup); if no, the decisions did (macro).
 
 ## 2. Builds and matchups
-- **Denning:** Matches are blind: teams don't know the enemy build in advance, so a build call out is about the
+- `B1` **Denning:** Matches are blind: teams don't know the enemy build in advance, so a build call out is about the
   matchup, not necessarily a mistake.
-- **Denning:** Call out skills that matter for the matchup, e.g. having Infuse Health or not against a spike build, or
-  1 or 2 Purge Signets against a hex build or an AoD build. 1 Aura of Stability into 2 hammer warriors is worth a call
-  out; running only 1 Aura of Stability is not uncommon. Aura of Stability only prevents knockdowns on another ally,
-  never the caster.
-- **Bounty:** Don't take a meta build and change its key skills; it creates holes. Copying a build without knowing how
-  it is played doesn't work, especially a spike on an open map.
+- `B2` **Denning:** Call out skills that matter for the matchup, e.g. having Infuse Health or not against a spike
+  build, or 1 or 2 Purge Signets against a hex build or an AoD build. 1 Aura of Stability into 2 hammer warriors is
+  worth a call out; running only 1 Aura of Stability is not uncommon. Aura of Stability only prevents knockdowns on
+  another ally, never the caster.
+- `B3` **Bounty:** Don't take a meta build and change its key skills; it creates holes. Copying a build without knowing
+  how it is played doesn't work, especially a spike on an open map.
 
 ### 8v8 builds (spike and hex)
-- **Denning:** Spike and 8v8 builds want to fight 8v8 and keep their damage together; they are sometimes called
+- `B4` **Denning:** Spike and 8v8 builds want to fight 8v8 and keep their damage together; they are sometimes called
   6 damage builds.
-- **Denning:** WoC spike: several Mo/A smiters spike with Word of Censure. Even with so many monks it has low healing
-  and defence, so it is an 8v8 build. The counter is to split hard, or to survive a few spikes and then wipe them.
-- **Bounty / Nick:** Double Paragon spike (Decapitate axe or assassin, Angelic Bond and "The Power Is Yours!"
+- `B5` **Denning:** WoC spike: several Mo/A smiters spike with Word of Censure. Even with so many monks it has low
+  healing and defence, so it is an 8v8 build. The counter is to split hard, or to survive a few spikes and then wipe
+  them.
+- `B6` **Denning:** Winning on Lord damage at 28:00 isn't viable while taking deaths against a spike build like WoC;
+  the team would not survive 28 minutes.
+- `B7` **Bounty / Nick:** Double Paragon spike (Decapitate axe or assassin, Angelic Bond and "The Power Is Yours!"
   paragons, a WoC monk, a mesmer, 3 monks) is a beefy, strong 8v8 build, a little weak against splits. With Shatter
   Storm it strips prots; with only Shatter Enchantment its spikes are obvious and can be protted.
-- **Nick:** Decapitate (always crits, unblockable, up to +80 damage) hits for about 130 to 150, about 250 with Deep
+- `B8` **Nick:** Decapitate (always crits, unblockable, up to +80 damage) hits for about 130 to 150, about 250 with Deep
   Wound. Decapitate into Protector's Strike kills monks. [Men v Team]
-- **Denning:** Invoke spike: air elementalists spiking with Invoke Lightning (plus Lightning Strike, Shell Shock,
+- `B9` **Denning:** Invoke spike: air elementalists spiking with Invoke Lightning (plus Lightning Strike, Shell Shock,
   Blinding Flash), usually with only 2 monks. The Rit/Para calls, gives speed, and puts Deep Wound on the target.
-- **Bounty:** Monk spike (Mo/A WoC with Return) comes in a mobile big-damage version and a version that stands its
+- `B10` **Bounty:** Monk spike (Mo/A WoC with Return) comes in a mobile big-damage version and a version that stands its
   ground. The mobile version must be snappy (Return, Dash), always chasing; if it is slow, the enemy sets up on both
   fronts, the worst case for it.
-- **Denning:** In hex way, a ritualist in the 8 slot (not a monk) is normal.
-- **Bounty:** Hex way is a hard matchup for triple melee; the mesmers have to do a really good job.
-- **Claude:** A spike build's fate is decided by whether its spikes land in the first minutes. If they do, it snowballs
-  on death penalty; if the enemy catches them, a 2-monk spike loses the long game to hexes or pressure. The same OG
-  invoke build went 18-1 and 1-18 against two hex ways; the difference was the enemy's spike catching and shutdown,
-  not OG's play. [OG v cope J] [OG v hdm]
+- `B11` **Denning:** In hex way, a ritualist in the 8 slot (not a monk) is normal.
+- `B12` **Bounty:** Hex way is a hard matchup for triple melee; the mesmers have to do a really good job.
+- `B13` **Claude:** A spike build's fate is decided by whether its spikes land in the first minutes. If they do, it
+  snowballs on death penalty; if the enemy catches them, a 2-monk spike loses the long game to hexes or pressure. The
+  same OG invoke build went 18-1 and 1-18 against two hex ways; the difference was the enemy's spike catching and
+  shutdown, not OG's play. [OG v cope J] [OG v hdm]
 
 ### Balance and pressure builds
-- **Bounty:** Against a pressure build, expect the pressure team to kill slowly and the spike team to kill one player
-  quickly.
-- **Bounty:** A ritualist, two mesmers and two melee is a jack-of-all-trades build: decent at everything,
+- `B14` **Bounty:** Against a pressure build, expect the pressure team to kill slowly and the spike team to kill one
+  player quickly.
+- `B15` **Bounty:** A ritualist, two mesmers and two melee is a jack-of-all-trades build: decent at everything,
   exceptional at nothing.
-- **Nick:** On Isle of Weeping Stone a Test of Faith Balthazar dervish (8v8 pressure) beats a Cryptic dervish, since
-  the map has little flag pushing and a split can't be collapsed on through the centre.
-- **Claude:** Balance mirrors tend to become long, low-death games decided by the flag game, NPCs taken and one late
-  mistake or one backline wipe; neither side can force kills through equal backlines. In double hammer mirrors the
-  wipe comes from knockdowns on the prot (Coward, Hammer Bash) chained with mesmer and ranger interrupts on the other
-  monks' heals and prots. [OG v cope U] [hdm v HC I1] [hdm v HC I2] [hdm v Men N] [Men v HC C]
+- `B16` **Nick:** On Isle of Weeping Stone a Test of Faith Balthazar dervish (8v8 pressure) beats a Cryptic dervish,
+  since the map has little flag pushing and a split can't be collapsed on through the centre.
+- `B17` **Claude:** Balance mirrors tend to become long, low-death games decided by the flag game, NPCs taken and one
+  late mistake or one backline wipe; neither side can force kills through equal backlines. In double hammer mirrors
+  the wipe comes from knockdowns on the prot (Coward, Hammer Bash) chained with mesmer and ranger interrupts on the
+  other monks' heals and prots. [OG v cope U] [hdm v HC I1] [hdm v HC I2] [hdm v Men N] [Men v HC C]
 
 ### Key skills in spike matchups
-- **Bounty:** The tools for catching spikes: Reversal of Fortune on the 8, Life Sheath and Spirit Bond on the prot,
-  Infuse Health on the 7.
-- **Nick:** Against a build with a single enchantment remover, stack prots (Life Sheath or Aura of Faith plus Spirit
-  Bond); Aura of Faith alone gets shattered. Life Sheath compresses the prot's bar, leaving room for Spirit Bond,
-  Shield Guardian and a stance.
-- **Nick / Bounty:** Blessed Light (5 energy) is a heal, hex remove and condition remove in one, which frees slots for
-  Shield Guardian, Vigorous Spirit and Infuse Health. Healing Burst on the 7 is more common now; Blessed Light and Aura
-  of Faith are other 7 and 8 elites.
-- **Claude:** Where a team's prot answers sit matters as much as having them: if the only Spirit Bond and Reversal of
-  Fortune are on the 8 monk and the 8 monk is away on a split, the main team has no spike answer. [Men v Team]
-- **Claude:** Double Paragon WoC's warrior locks down the prot with Grapple and Bull's Strike before the kill. When the
-  team's only Aura of Stability is on the prot, nobody can stop it (Aura of Stability never covers the caster): Team's
-  prot was knocked down 9 times, RACK's 12, and both teams lost their prots and 7 monks to it. Against this build,
-  put Aura of Stability on a second monk. [Men v Team] [RACK v hdm M]
-  Against double hammer, a second Aura of Stability helps but doesn't stop it: HC's prot was knocked down 14 and 38
-  times with one, and still 25 times with two. [hdm v HC I1] [Men v HC C] [hdm v HC I2]
+- `B18` **Bounty:** The tools for catching spikes: Reversal of Fortune on the 8, Life Sheath and Spirit Bond on the
+  prot, Infuse Health on the 7.
+- `B19` **Nick:** Against a build with a single enchantment remover, stack prots (Life Sheath or Aura of Faith plus
+  Spirit Bond); Aura of Faith alone gets shattered. Life Sheath compresses the prot's bar, leaving room for Spirit
+  Bond, Shield Guardian and a stance.
+- `B20` **Nick / Bounty:** Blessed Light (5 energy) is a heal, hex remove and condition remove in one, which frees slots
+  for Shield Guardian, Vigorous Spirit and Infuse Health. Healing Burst on the 7 is more common now; Blessed Light and
+  Aura of Faith are other 7 and 8 elites.
+- `B21` **Claude:** Where a team's prot answers sit matters as much as having them: if the only Spirit Bond and Reversal
+  of Fortune are on the 8 monk and the 8 monk is away on a split, the main team has no spike answer. [Men v Team]
+- `B22` **Claude:** Knockdown lock on the prot needs Aura of Stability on a second monk (it never covers its caster).
+  Double Paragon WoC's warrior locks the prot down with Grapple and Bull's Strike before the kill, and both teams that
+  had their only Aura of Stability on the prot lost their prots and 7 monks to it. Against double hammer a second Aura
+  of Stability helps but doesn't stop it. [Men v Team] [RACK v hdm M] [hdm v HC I1] [Men v HC C] [hdm v HC I2]
 
 ## 3. Splits
 
 ### Forms
-- **Denning:** Solo splits: one player goes through the back or an unconventional route to hit the enemy pit or
+- `S1` **Denning:** Solo splits: one player goes through the back or an unconventional route to hit the enemy pit or
   NPCs. Defended by the 8 monk or 1 damage, or collapsed on.
-- **Denning:** 3 or 4 man splits push the enemy's backdoor to take NPCs; a 4 man split is a **4-4**.
-- **Bounty:** A 4-4 split (e.g. two elementalists, a mesmer and a monk, the main team playing without its prot) is a
-  very offensive split.
-- **Denning:** A match can move between 8v8, 7v7, the flag game and splits; all need to be understood.
+- `S2` **Denning:** 3 or 4 man splits push the enemy's backdoor to take NPCs; a 4 man split is a **4-4**.
+- `S3` **Bounty:** A 4-4 split (e.g. two elementalists, a mesmer and a monk, the main team playing without its prot) is
+  a very offensive split.
+- `S4` **Denning:** A match can move between 8v8, 7v7, the flag game and splits; all need to be understood.
+- `S5` **Denning:** A **full team collapse** is the whole team turning on an enemy group; it is not a split answer.
 
 ### When to split, and the trade
-- **Denning:** Against a spike or other 8v8 build that out-damages you at main, splitting is right, and the split has
-  to be aggressive, which usually includes the 8 monk for support. The main team then has to play in its pit.
-- **Bounty:** A team whose build is worse 8v8 has to split someone (solo split, wait for it to be answered, then push
-  the flag); pushing with all 8 into a better 8v8 build is a risk.
-- **Denning:** 1 enemy damage held by 1 monk in base is usually a worthwhile trade for the splitting team: 4 damage kill
-  2 monks more easily than 5 damage kill 3. In that scenario it is up to the main team to win the game.
-- **Denning:** Whether a solo split is worth it depends on how effective it is and what it accomplishes; it may cost a
-  team one game and win it others.
-- **Claude:** A split is judged by what it forces and what it takes. It must either draw more value than it costs
+- `S6` **Denning:** Against a spike or other 8v8 build that out-damages you at main, splitting is right, and the split
+  has to be aggressive, which usually includes the 8 monk for support. The main team then has to play in its pit.
+- `S7` **Bounty:** A team whose build is worse 8v8 has to split someone (solo split, wait for it to be answered, then
+  push the flag); pushing with all 8 into a better 8v8 build is a risk.
+- `S8` **Denning:** 1 enemy damage held by 1 monk in base is usually a worthwhile trade for the splitting team: 4 damage
+  kill 2 monks more easily than 5 damage kill 3. In that scenario it is up to the main team to win the game.
+- `S9` **Denning:** Whether a solo split is worth it depends on how effective it is and what it accomplishes; it may
+  cost a team one game and win it others.
+- `S10` **Claude:** A split is judged by what it forces and what it takes. It must either draw more value than it costs
   (more defenders, or monks for damage) or take NPCs. A split that is answered like for like (damage for damage, monk
   for monk) only trades time. [OG v cope U]
-- **Claude:** A split has to stay aggressive to keep its value: once it shrinks or stops threatening, the enemy answers
-  it with fewer and the trade flips. [Men v Team] [RACK v hdm M]
-- **Claude:** A split needs enough damage to beat the monks defending it. Two damage with the 8 monk can't kill two
-  monks, or NPCs they heal; it only chips. Against a team that defends with its prot and 8 monk, the split needs a 3rd
-  damage (which also pulls the enemy prot's rule into play) or it will not take the pit. [Men v Team] [RACK v hdm M]
-- **Claude:** A split that can't touch the Lord or knights only buys time; the game is then decided at main. [OG v chic]
-- **Claude:** A lone ranger split left undefended can take a whole pit (both knights, the archers and the Bodyguard) in
-  2 to 4 minutes, which wins the tiebreak and makes the late push cheap. It has to be answered by a defender or a
-  collapse; HC ignored it twice and lost every pit NPC both times. [hdm v HC I2] [Men v HC C]
-- **Denning:** Players can't see Lord damage in game: a team knows roughly whether it is ahead at 28:00, not by how
-  much. Sending some players for more Lord damage while defending can be the safer choice, since the enemy may out-damage
-  the lead in the time left. A main team that dies quickly also does less Lord damage. [hdm v HC I2]
-- **Claude:** Judge late decisions on what the players could know (flag, boosts, deaths, NPCs, the clock), not on the
-  exact tiebreak score the replay shows.
-- **Denning:** A lone ranger split is answered by the Mes/A, but the Mes/A can't defend alone: it needs collapses from a
-  frontline to push the ranger out of the base.
-- **Denning:** Answering a split within about 15 s is on time; 60 s is definitely late.
-- **Denning:** Defending a split with the 8 monk keeps all the damage at the main team: a risk that may pay off if the main
-  team scores kills. It was likely wrong against hdm's ranger, but this needs data across many matches. [hdm v HC I2]
-- **Denning:** Once the pit is dead, the 8 monk staying in base to defend the Lord is right: it is too hard for a Mes/A to
-  defend a ranger alone with no pit, and some characters are very hard to defend 1v1 once the pit is dead. [hdm v HC I2]
-- **Denning:** A **full team collapse** is the whole team turning on an enemy group; it is not a split answer.
-- **Denning:** A team already winning (pit taken, ahead on death penalty, boosting, ahead at 28:00) has no need to risk
-  a Lord kill in a close window. The safer play is to back out, wait for the res, and fight again with the advantages;
-  with no pressure to end, it can always win at 28:00. [hdm v HC I2]
-- **Claude:** An empty enemy pit is converted when it is safe: a team that is behind, or racing the clock, takes the
-  Lord in the next wipe window; a team that is ahead uses the empty pit as leverage and keeps its lead. [hdm v HC I2]
-  [Men v HC C]
+- `S11` **Claude:** A split has to stay aggressive to keep its value: once it shrinks or stops threatening, the enemy
+  answers it with fewer and the trade flips. [Men v Team] [RACK v hdm M]
+- `S12` **Claude:** A split needs enough damage to beat the monks defending it. Two damage with the 8 monk can't kill
+  two monks, or NPCs they heal; it only chips. Against a team that defends with its prot and 8 monk, the split needs a
+  3rd damage (which also pulls the enemy prot's rule into play) or it will not take the pit. [Men v Team] [RACK v hdm M]
+- `S13` **Claude:** A split that can't touch the Lord or knights only buys time; the game is then decided at main.
+  [OG v chic]
+- `S14` **Claude:** A lone ranger split left undefended can take a whole pit (both knights, the archers and the
+  Bodyguard) in 2 to 4 minutes, which wins the tiebreak and makes the late push cheap. It has to be answered by a
+  defender or a collapse; HC ignored it twice and lost every pit NPC both times. [hdm v HC I2] [Men v HC C]
 
 ### Who goes
-- **Bounty:** When 3 damage are out on a split, the 8 monk should go with them, or the split achieves nothing.
-- **Bounty:** Don't send both escape players (e.g. both Shadow of Haste characters) on a split; keep one in base.
-- **Claude:** Taking the 8 monk off the split for another job (e.g. escorting a flag carrier) kills the split's
+- `S15` **Bounty:** When 3 damage are out on a split, the 8 monk should go with them, or the split achieves nothing.
+- `S16` **Bounty:** Don't send both escape players (e.g. both Shadow of Haste characters) on a split; keep one in base.
+- `S17` **Claude:** Taking the 8 monk off the split for another job (e.g. escorting a flag carrier) kills the split's
   value. [Men v Team]
 
 ### Defending a split
-- **Denning:** If the enemy prot is pushing with its team while 3 of your damage are on your push side, the enemy prot
-  is out of position and your push side should be able to kill. [Men v HC C]
-- **Denning:** A team that must run a flag and can't kill on its push side should send an extra damage back to assist
-  the run.
-- **Denning:** The prot monk follows the 3rd damage: each monk can usually survive 2 damage with team support, but not
-  3, so the prot mirrors the enemy's 3rd damage, going wherever the enemy has 3 damage.
-- **Bounty:** A team defends its pit against a split with either its third damage or its prot monk.
-- **Denning:** Sending the 8 monk alone against a 3 man push is a mistake; that monk needs support.
-- **Denning:** A good answer to a solo split: one player collapses on the splitter (e.g. the dervish killing a
+- `S18` **Denning:** Answering a split within about 15 s is on time; 60 s is definitely late.
+- `S19` **Denning:** A lone ranger split is answered by the Mes/A, but the Mes/A can't defend alone: it needs collapses
+  from a frontline to push the ranger out of the base.
+- `S20` **Denning:** Defending a split with the 8 monk keeps all the damage at the main team: a risk that may pay off if
+  the main team scores kills. It was likely wrong against hdm's ranger, but this needs data across many matches.
+  [hdm v HC I2]
+- `S21` **Denning:** Once the pit is dead, the 8 monk staying in base to defend the Lord is right: it is too hard for a
+  Mes/A to defend a ranger alone with no pit, and some characters are very hard to defend 1v1 once the pit is dead.
+  [hdm v HC I2]
+- `S22` **Denning:** If the enemy prot is pushing with its team while 3 of your damage are on your push side, the enemy
+  prot is out of position and your push side should be able to kill. [Men v HC C]
+- `S23` **Denning:** The prot monk follows the 3rd damage: each monk can usually survive 2 damage with team support, but
+  not 3, so the prot mirrors the enemy's 3rd damage, going wherever the enemy has 3 damage.
+- `S24` **Bounty:** A team defends its pit against a split with either its third damage or its prot monk.
+- `S25` **Denning:** Sending the 8 monk alone against a 3 man push is a mistake; that monk needs support.
+- `S26` **Denning:** A good answer to a solo split: one player collapses on the splitter (e.g. the dervish killing a
   splitting ranger) while another defends (e.g. the Mes/A).
-- **Bounty:** Against a solo splitter, a team can ignore it and fight 8v7 if it is winning the main fight. Answering a
-  split with one damage is enough when the main team can finish the game.
-- **Bounty:** Mesmer, warrior and monk is a versatile split answer in cope's build. **Denning:** only classic in that
-  build, not a general rule.
-- **Bounty:** An alternative against a single splitting mesmer: defend with both monks and push with the ritualist,
-  since two monks survive better than a ritualist and a monk.
-- **Bounty:** When a split changes (e.g. made beefier), the defence must change too; defending the same way loses the
-  pit.
-- **Denning:** An 8v8 build answers a 3 man split by ignoring it with the main team and having a snare character in
-  the 8 slot shadow it; when the split commits too deep, the 8 snares it so the spike characters can collapse and kill.
-- **Bounty:** A monk spike defends against splits with the snare character and the 8 (the 6 snares, the 8 heals, the
-  collapse kills). Collapsing before the snare lands is wasted time; the 8 following the main team leaves the pit open.
-- **Bounty:** A fast ranger left at the back door can warn the team, take free footmen and lead the answer to splits.
-- **OG comms:** Name the split's make-up the moment it is seen, ask the defenders whether they can hold it, and don't
-  commit the defence until the last splitter is seen. [OG v chic]
-- **Denning:** A 3-man group of the 8 monk and two damage on the backside is a correct answer to an enemy ranger and
-  hammer pushing there. [Men v HC C]
-- **Claude:** An 8v8 build should defend splits with monks, not damage, so its damage stays together. Freeing a damage
-  dealer from defence can also give the team a runner. Double Paragon WoC teams defend with the prot and 8 monk, adding
-  the WoC monk only while the split is dangerous. [OG v chic] [Men v Team] [RACK v hdm M]
+- `S27` **Denning:** When defending 1v1, it is a big advantage if the defender can run its flag partway without losing
+  anything (dying, NPCs): it shortens the team's next run while the solo pusher accomplishes nothing (see `F3`).
+- `S28` **Bounty:** Against a solo splitter, a team can ignore it and fight 8v7 if it is winning the main fight.
+  Answering a split with one damage is enough when the main team can finish the game.
+- `S29` **Bounty:** Mesmer, warrior and monk is a versatile split answer in cope's build. **Denning:** only classic in
+  that build, not a general rule.
+- `S30` **Bounty:** An alternative against a single splitting mesmer: defend with both monks and push with the
+  ritualist, since two monks survive better than a ritualist and a monk.
+- `S31` **Bounty:** When a split changes (e.g. made beefier), the defence must change too; defending the same way loses
+  the pit.
+- `S32` **Denning:** An 8v8 build answers a 3 man split by ignoring it with the main team and having a snare character
+  in the 8 slot shadow it; when the split commits too deep, the 8 snares it so the spike characters can collapse and
+  kill.
+- `S33` **Bounty:** A monk spike defends against splits with the snare character and the 8 (the 6 snares, the 8 heals,
+  the collapse kills). Collapsing before the snare lands is wasted time; the 8 following the main team leaves the pit
+  open.
+- `S34` **Bounty:** A fast ranger left at the back door can warn the team, take free footmen and lead the answer to
+  splits.
+- `S35` **OG comms:** Name the split's make-up the moment it is seen, ask the defenders whether they can hold it, and
+  don't commit the defence until the last splitter is seen. [OG v chic]
+- `S36` **Denning:** A 3-man group of the 8 monk and two damage on the backside is a correct answer to an enemy ranger
+  and hammer pushing there. [Men v HC C]
+- `S37` **Claude:** An 8v8 build should defend splits with monks, not damage, so its damage stays together. Freeing a
+  damage dealer from defence can also give the team a runner. Double Paragon WoC teams defend with the prot and 8 monk,
+  adding the WoC monk only while the split is dangerous. [OG v chic] [Men v Team] [RACK v hdm M]
 
 ## 4. Main team and pit play
-- **Nick / Denning:** A team relying on its split must keep its main team safe: give up ground, footmen and archers,
-  play in its pit beside its NPCs, take no death penalty and give up no boosts. [Men v Team]
-- **Claude:** The main team's job while its split works is to buy time: die as rarely as possible and never after time.
-  Meeting the enemy in the field after each res loses a player each cycle. Playing in the pit buys time but doesn't win
-  on its own: RACK held its pit to 8:17 where Team lasted 6:13 in the field, and both lost because their splits took
-  too little. [Men v Team] [RACK v hdm M]
-- **Bounty:** The main team has to take risks for anything to happen; trading flags for 20 minutes with no plan, and
-  having the win condition on the wrong side of the map, loses slowly.
-- **Bounty:** Pushing 6v8 or 7v8 at main while a player is away running or splitting is a bad idea; know the game
+- `P1` **Nick / Denning:** A team relying on its split must keep its main team safe: give up ground, footmen and
+  archers, play in its pit beside its NPCs, take no death penalty and give up no boosts. [Men v Team]
+- `P2` **Claude:** The main team's job while its split works is to buy time: die as rarely as possible and never after
+  time. Meeting the enemy in the field after each res loses a player each cycle. Playing in the pit buys time but
+  doesn't win on its own: RACK held its pit to 8:17 where Team lasted 6:13 in the field, and both lost because their
+  splits took too little. [Men v Team] [RACK v hdm M]
+- `P3` **Bounty:** The main team has to take risks for anything to happen; trading flags for 20 minutes with no plan,
+  and having the win condition on the wrong side of the map, loses slowly.
+- `P4` **Bounty:** Pushing 6v8 or 7v8 at main while a player is away running or splitting is a bad idea; know the game
   state. With a numbers advantage, jump the enemy.
-- **Claude:** Going back to the pit has to happen before the outer NPCs fall; once they are gone, the pit can't be held
-  against a stronger main team. [OG v hdm]
+- `P5` **Claude:** Going back to the pit has to happen before the outer NPCs fall; once they are gone, the pit can't be
+  held against a stronger main team. [OG v hdm]
 
 ### Base races
-- **Bounty:** A team defending with only 2 players is saying "give us time to finish", so it should not chase players
-  leaving on a split; it should finish. In a base race, defenders have to kill the attackers before the res.
-- **Bounty:** Carrying the flag during a base race wastes time (clear only in hindsight).
-- **Claude:** Don't race into an intact pit: the attackers die to knights, Bodyguard and Lord while the enemy walks
+- `P6` **Bounty:** A team defending with only 2 players is saying "give us time to finish", so it should not chase
+  players leaving on a split; it should finish. In a base race, defenders have to kill the attackers before the res.
+- `P7` **Bounty:** Carrying the flag during a base race wastes time (clear only in hindsight).
+- `P8` **Claude:** Don't race into an intact pit: the attackers die to knights, Bodyguard and Lord while the enemy walks
   into a pit that has fewer defenders. Late pushes pay off against a pit that has been worn down. [OG v cope U]
 
 ## 5. The flag game
-- **Denning:** Some games are fought 8v8 (holding the flag) or 7v7 (1 player running the flag).
-- **Denning:** The flag game: 2 or 3 damage, the prot and the 7 monk push the enemy flag, the enemy does the same, and
-  each team defends its own flagger with 1 or 2 damage and the 8 monk.
-- **Denning:** Holding the flag: 8v8 builds often fight 8v8 as long as possible with the flag in hand, then cap right
-  before the enemy would get a boost. This keeps the damage together and avoids the flag game.
 
-- **Denning:** In the flag game, and when trying to get up on flags, the goal is to cap as soon as reasonably possible
-  after the enemy. So when the enemy is running a flag, your team has to run too, or it falls behind on flags; a team
-  that has to run can't retreat to its pit. [Men v HC C]
-- **Claude:** Flag timing is measured per cap: when the answering team picked up compared with the enemy's pickup, how
-  long after the enemy's cap it capped, and the runner's trip back to base with any enemies in the way. In [Men v HC C]
-  HC's Mes/A was repeatedly slow back to base (53 to 76 s) because Men's push team (prot, 7 monk, hammer, ranger) sat
-  on its route, so HC kept capping 40 to 80 s after Men. That was not a runner cut off: Men spread its runs over 3
-  players (WoC, mesmer, Hammer B) while HC relied on its Mes/A for 13 of 20 runs. [Men v HC C]
-- **Claude:** Judge who is up on flags from who holds the stand at each boost and who capped last, not from how long
-  each cap took. At HC's 8 monk death (9:31) HC held the stand and had won the 8:00 and 10:00 boosts; I first read it
-  as HC behind on flags, which was wrong. [Men v HC C]
-- **Denning:** While your runner is out, the rest of the team plays defensively enough, and supports enough, for the
-  runner to get back to base for the next flag. [Men v HC C]
-- **Denning:** A team up on flags doesn't have to cap at once. If its backside group is outnumbered, the runner can
-  wait before capping and the team stays together; running with a 3v4 behind it is an unnecessary risk. [Men v HC C]
-- **Denning:** Once the runner is capping on its own with no enemy damage near it, the backside group no longer needs
-  to support it: fall back toward pit, and only follow if the enemy goes to kill the runner. [Men v HC C]
+### Flag position
+- `F1` **Denning:** Being **up on flags** means being in the better flag position: better placed to get a boost and to
+  run. It does not mean the team that capped last. A team single running that has just capped needs 2Y (Y = the run
+  from the flag spawn to the stand) for its next flag: back to the spawn, then back to the stand. A team double running
+  with a flag right beside the stand and another player waiting at the spawn can overcap at once and needs only 1Y
+  for the next flag. It is up on flags, and the 1Y it saves is essentially a 1-player power play.
+- `F2` **Denning:** Holding a flag near the stand while your team already holds it is a **backup flag**, and a big
+  advantage: the enemy's capture is answered at once.
+- `F3` **Denning:** A defender who can carry its flag partway while holding off a solo pusher (losing nothing: no
+  death, no NPCs) shortens its team's Y, while the pusher accomplishes nothing.
+- `F4` **Claude:** Flag position is measured on the next capture exchange: how long the team not holding the stand
+  needs to capture, how long the holder then needs to answer (its response), and how long the first team then needs
+  for its next flag (Y with a runner waiting at the spawn, 2Y without). Flag lead = the enemy's response minus your
+  own. HC was up by about 20 s at 9:31 in [Men v HC C] even though Men was carrying, because Men's next flag was 2Y
+  away and HC's Mes/A was already walking back. [Men v HC C]
+- `F5` **Denning:** In the flag game, and when trying to get up on flags, the goal is to cap as soon as reasonably
+  possible after the enemy. So when the enemy is running a flag, your team has to run too, or it falls behind on
+  flags; a team that has to run can't retreat to its pit. [Men v HC C]
+- `F6` **Denning:** A team up on flags doesn't have to cap at once. If its backside group is outnumbered, the runner
+  can wait before capping and the team stays together; running with a 3v4 behind it is an unnecessary risk.
+  [Men v HC C]
+- `F7` **Denning:** Once the runner is capping on its own with no enemy damage near it, the backside group no longer
+  needs to support it: fall back toward pit, and only follow if the enemy goes to kill the runner. [Men v HC C]
+
+### Fighting with the flag
+- `F8` **Denning:** Some games are fought 8v8 (holding the flag) or 7v7 (1 player running the flag).
+- `F9` **Denning:** The flag game: 2 or 3 damage, the prot and the 7 monk push the enemy flag, the enemy does the same,
+  and each team defends its own flagger with 1 or 2 damage and the 8 monk.
+- `F10` **Denning:** Holding the flag: 8v8 builds often fight 8v8 as long as possible with the flag in hand, then cap
+  right before the enemy would get a boost. This keeps the damage together and avoids the flag game.
+- `F11` **Denning:** While your runner is out, the rest of the team plays defensively enough, and supports enough, for
+  the runner to get back to base for the next flag. [Men v HC C]
+- `F12` **Denning:** A team that must run a flag and can't kill on its push side should send an extra damage back to
+  assist the run.
+- `F13` **Claude:** A runner whose trip back to the spawn crosses the enemy's push team is slow every cycle, and the
+  team falls behind on flags without the runner ever being cut off. Spreading runs over several players avoids it: Men
+  used 3 runners and answered HC's captures in a median 28 s, while HC relied on its Mes/A for 13 of 20 carries and
+  answered in a median 51 s. [Men v HC C]
 
 ### Running costs
-- **Denning:** Running the flag costs pressure. A frontline runner puts out basically no damage with the flag in hand.
-- **Denning:** A midline runner can't use its 40/40 set, so it casts fewer skills, has less energy and is more likely
-  to be interrupted; it can't be in its shield set, so it takes more damage; it is in range of the enemy frontline and
-  can't kite. Carrying slows the runner by 25%.
-- **Denning:** Double running uses 2 players to run (half running: drop halfway to a teammate and run back for the
-  next; full running: one waits back for the next flag). It gets a team up on flags faster but fights 2 players down.
-- **Denning:** Half running is too risky: if enemies contest the handoff spot, they can return the flag.
-- **Denning:** Not running the flag can be deliberate: a team on death penalty and under pressure may not be able to
-  run without being wiped.
-- **Denning:** Running on the 8 monk is a bad move, normally only when 2 enemy damage are dead or when desperate.
+- `F14` **Denning:** Running the flag costs pressure. A frontline runner puts out basically no damage with the flag in
+  hand.
+- `F15` **Denning:** A midline runner can't use its 40/40 set, so it casts fewer skills, has less energy and is more
+  likely to be interrupted; it can't be in its shield set, so it takes more damage; it is in range of the enemy
+  frontline and can't kite. Carrying slows the runner by 25%.
+- `F16` **Denning:** Double running uses 2 players to run (half running: drop halfway to a teammate and run back for
+  the next; full running: one waits back for the next flag). It gets a team up on flags faster but fights 2 players
+  down.
+- `F17` **Denning:** Half running is too risky: if enemies contest the handoff spot, they can return the flag.
+- `F18` **Denning:** Not running the flag can be deliberate: a team on death penalty and under pressure may not be able
+  to run without being wiped.
+- `F19` **Denning:** Running on the 8 monk is a bad move, normally only when 2 enemy damage are dead or when desperate.
 
 ### Pushing the flagger
-- **Denning:** When one enemy solo pushes the flagger, the flagging team should likely send help: a monk to heal, or a
-  few damage to train the pusher out. Sometimes a flagger has to flag through one damage, and that's fine.
-- **Denning:** One damage pushing is likely fine, depending on which damage is pushing and who is flagging. Whether
-  "always collapse" is better has to come from the data.
-- **Bounty:** A splitter carrying a flag has to be respected quickly. A backup flag belongs with the main team rather
-  than overcapping when a splitter is threatening.
+- `F20` **Denning:** When one enemy solo pushes the flagger, the flagging team should likely send help: a monk to heal,
+  or a few damage to train the pusher out. Sometimes a flagger has to flag through one damage, and that's fine.
+- `F21` **Denning:** One damage pushing is likely fine, depending on which damage is pushing and who is flagging.
+  Whether "always collapse" is better has to come from the data.
+- `F22` **Bounty:** A splitter carrying a flag has to be respected quickly. A backup flag belongs with the main team
+  rather than overcapping when a splitter is threatening.
 
 ### The power play
-- **Denning:** When the enemy is running the flag, the team with more players in the fight can play the power play.
-- **Bounty:** When the enemy is running (an 8v7), damage dealers must commit and kill; a damage dealer far from the
-  fight is a missed opportunity.
+- `F23` **Denning:** When the enemy is running the flag, the team with more players in the fight can play the power
+  play.
+- `F24` **Bounty:** When the enemy is running (an 8v7), damage dealers must commit and kill; a damage dealer far from
+  the fight is a missed opportunity.
 
 ### Boosts
-- **Denning:** The team that capped first is at a flag disadvantage: the other team can overcap and force it to run a
-  flag first. [hdm v HC I1]
-- **Denning:** Losing the stand just before a boost is normal for the holding team. It shows the capping team was down on
-  flags: a team with an on-time flag, or up on flags, would have capped earlier. [hdm v HC I2]
-- **Bounty:** Missing a boost by a few seconds matters. Don't drop the flag without a reason; dropping it to a better
-  runner is fine.
-- **Nick:** Holding the flag to tie up an enemy prot only helps if the advantage is used somewhere else; otherwise it
-  lets the enemy keep its damage together. [Men v Team]
-- **Claude:** In a long even game, boosts are the scoreboard: they are often the only lasting edge, so near-misses
-  (111 to 119 s holds) are real losses. [OG v cope U]
-- **Claude:** Winning the flag game outright (the enemy never capping) gives free boosts and lets the winner fight on
-  the enemy's side of the map. [OG v hdm] [RACK v hdm M]
-- **Claude:** A big split with the main team in its pit concedes the stand: nobody is left to run, so the enemy boosts
-  every 2 minutes. A split plan has to win more than the boosts it gives away. [Men v Team] [RACK v hdm M]
-- **Claude:** Near-missed boosts in a match are counted against the capping team as late caps (down on flags); four in
-  one game for HC against hdm points to HC's flag timing. [hdm v HC I2]
-- **Claude:** A good runner can swing the flag game on its own: moving a mobile player onto the flag turned a lost
-  stand into 459 s of holding and 3 boosts. [OG v chic]
+- `F25` **Denning:** The team that capped first is at a flag disadvantage: the other team can overcap and force it to
+  run a flag first. [hdm v HC I1]
+- `F26` **Denning:** Losing the stand just before a boost is normal for the holding team. It shows the capping team was
+  down on flags: a team with an on-time flag, or up on flags, would have capped earlier. [hdm v HC I2]
+- `F27` **Bounty:** Missing a boost by a few seconds matters. Don't drop the flag without a reason; dropping it to a
+  better runner is fine.
+- `F28` **Nick:** Holding the flag to tie up an enemy prot only helps if the advantage is used somewhere else;
+  otherwise it lets the enemy keep its damage together. [Men v Team]
+- `F29` **Claude:** In a long even game, boosts are the scoreboard: they are often the only lasting edge, so
+  near-misses (111 to 119 s holds) are real losses, and several near-misses for one team point to its flag timing.
+  [OG v cope U] [hdm v HC I2]
+- `F30` **Claude:** Winning the flag game outright (the enemy never capping) gives free boosts and lets the winner
+  fight on the enemy's side of the map. [OG v hdm] [RACK v hdm M]
+- `F31` **Claude:** A big split with the main team in its pit concedes the stand: nobody is left to run, so the enemy
+  boosts every 2 minutes. A split plan has to win more than the boosts it gives away. [Men v Team] [RACK v hdm M]
+- `F32` **Claude:** A good runner can swing the flag game on its own: moving a mobile player onto the flag turned a
+  lost stand into 459 s of holding and 3 boosts. [OG v chic]
 
 ## 6. Kills, death penalty and timing
-- **Denning:** "After time": dying shortly after the 2 minute base res, so the player waits almost the full 2 minutes.
-- **Denning:** "Timing" someone: holding off a kill until right after the res, so that player is down about 2
+- `K1` **Denning:** "After time": dying shortly after the 2 minute base res, so the player waits almost the full 2
+  minutes.
+- `K2` **Denning:** "Timing" someone: holding off a kill until right after the res, so that player is down about 2
   minutes unless their team gets a res off.
-- **Denning:** Players are resurrected at their base every 2 minutes while under 60% death penalty; death penalty
+- `K3` **Denning:** Players are resurrected at their base every 2 minutes while under 60% death penalty; death penalty
   lowers health and energy.
-- **Bounty:** A team that always has someone timed or stuck has no moment to play tactics and gets overwhelmed.
+- `K4` **Denning:** Death penalty stacks. A team that piles up death penalty against a spike team is at a big
+  disadvantage even if each death on its own can be recovered from: the lower health makes every later spike easier.
+- `K5` **Bounty:** A team that always has someone timed or stuck has no moment to play tactics and gets overwhelmed.
   Resurrecting too late wastes time; teams under pressure are often scared to go for the res.
-- **Bounty:** Target choice costs time: 30 to 40 s failing to kill a monk is fine at 2 minutes, not at 22. A build that
-  needs time must use every 2 minutes.
-- **Bounty:** The first 30 seconds shape the match. A team that double runs out front still has to survive the opening
-  fight.
-- **Claude:** Kills are only worth what they are converted into: the strongest teams turn each kill straight into pit
-  pressure (a kill, then knights; the next kills, then archers; a kill in the pit, then the Bodyguard). A backline
+- `K6` **Bounty:** Target choice costs time: 30 to 40 s failing to kill a monk is fine at 2 minutes, not at 22. A build
+  that needs time must use every 2 minutes.
+- `K7` **Bounty:** The first 30 seconds shape the match. A team that double runs out front still has to survive the
+  opening fight.
+- `K8` **Claude:** Kills are only worth what they are converted into: the strongest teams turn each kill straight into
+  pit pressure (a kill, then knights; the next kills, then archers; a kill in the pit, then the Bodyguard). A backline
   wipe is the biggest conversion chance: the winner gets one res cycle with the enemy's healing gone. [OG v chic]
   [hdm v HC I1] [Men v HC C]
-- **Claude:** The team ahead on death penalty can stop chasing and make the other team come to it; the team behind
+- `K9` **Claude:** The team ahead on death penalty can stop chasing and make the other team come to it; the team behind
   has to push into fights it can't win. [OG v cope J]
-- **Claude:** Against a hex team, kill the hex casters first; it only works if the spikes land. [OG v cope J] [OG v hdm]
-- **Claude:** Players who drift away from their monks are the easiest kills; a mobile killer (e.g. a Mo/A WoC with
-  speed) punishes this best. [OG v chic]
+- `K10` **Claude:** Against a hex team, kill the hex casters first; it only works if the spikes land. [OG v cope J]
+  [OG v hdm]
+- `K11` **Claude:** Most deaths come in chains: about 7 in 10 deaths in 24 matches came within 20 s of a teammate's.
+  The first death of a chain, and what put that player there, is what to judge; the rest are mostly its consequence,
+  especially once a monk is down.
 
 ## 7. Late game and 28:00
-- **Bounty:** When far behind, keep playing to about 26:00 to gain every edge, then try to finish the Lord.
-- **Bounty:** Being too hasty loses games: take time, defend more with damage, work through the game.
-- **Denning:** Protting your own NPCs instead of your Lord is deliberate: enchantments on your own Lord cost
+- `L1` **Denning:** Builds differ in how easily they get Lord damage late. A balanced build (2 frontline, a ranger, 2
+  mesmers) gets Lord damage far more easily than a 2-monk hex way: hexes cause degeneration, which isn't Lord damage,
+  and with 2 monks a hex way usually can't both defend its own Lord and survive pushing the enemy pit. So a balanced
+  team that survives 26 minutes without dying or losing NPCs is in a winning position against it, even without scoring
+  any kills or NPCs.
+- `L2` **Denning:** Players can't see Lord damage in game: a team knows roughly whether it is ahead at 28:00, not by
+  how much. Sending some players for more Lord damage while defending can be the safer choice, since the enemy may
+  out-damage the lead in the time left. A main team that dies quickly also does less Lord damage. [hdm v HC I2]
+- `L3` **Claude:** Judge late decisions on what the players could know (flag, boosts, deaths, NPCs, the clock, each
+  build's late push), not on the exact tiebreak score the replay shows.
+- `L4` **Claude:** In long even games, know the tiebreak from about 24:00 (it decides whether to risk anything). The
+  team behind must commit to Lord damage (or a Lord kill) in the last minutes; the team ahead only has to keep its
+  Lord alive, so it defends with enough players and does not counter-race. [hdm v Men N] [hdm v HC I2]
+- `L5` **Bounty:** When far behind, keep playing to about 26:00 to gain every edge, then try to finish the Lord.
+- `L6` **Bounty:** Being too hasty loses games: take time, defend more with damage, work through the game.
+- `L7` **Denning:** Protting your own NPCs instead of your Lord is deliberate: enchantments on your own Lord cost
   aggressiveness.
-- **Claude:** The late push decides even games, and it is only good if the enemy pit has been worn down; a split that
-  took no knights over 15 minutes leaves no late win condition. [OG v cope U]
-- **OG comms:** Watch the clock out loud ("this is 22 minutes"); the late plan (play for 28:00 or push now) has to be
-  agreed, not argued during the push. [OG v cope U]
+- `L8` **Claude:** The late push decides even games, and it is only good if the enemy pit has been worn down; a split
+  that took no knights over 15 minutes leaves no late win condition. [OG v cope U]
+- `L9` **OG comms:** Watch the clock out loud ("this is 22 minutes"); the late plan (play for 28:00 or push now) has to
+  be agreed, not argued during the push. [OG v cope U]
 
 ## 8. Spikes: offence and defence (micro)
-- **Denning:** Against a spike build, call out a lack of interrupts on the spike skills, and call out when a team
+- `X1` **Denning:** Against a spike build, call out a lack of interrupts on the spike skills, and call out when a team
   spikes really well: 600 damage landing within 0.2 s can't be saved by any prot or Infuse.
-- **Denning:** Anchors: 400 damage in 0.6 s should be survivable if the target was in shield set and the damage was
+- `X2` **Denning:** Anchors: 400 damage in 0.6 s should be survivable if the target was in shield set and the damage was
   armor respecting; 550 armor ignoring damage in 0.35 s is impossible to save.
-- **Denning:** For a spike, name the primary failure: lack of prots, late Infuse, or lack of interrupts on spike
+- `X3` **Denning:** For a spike, name the primary failure: lack of prots, late Infuse, or lack of interrupts on spike
   skills. Pre-protting is correct play. Whether a prot was unavailable because of energy or recharge doesn't matter;
   both point to other issues.
-- **Denning:** A strong prot (e.g. Ali) is the benchmark for spike catches: reaction time and pre-protting. A similar
-  benchmark is needed for Infuse Health on a good 7 monk.
-- **Claude:** Catching spikes is the clearest measure of monk quality. Good backlines prot most spikes 0.3 to 1.0 s
+- `X4` **Denning:** A strong prot (e.g. Ali) is the benchmark for spike catches: reaction time and pre-protting. A
+  similar benchmark is needed for Infuse Health on a good 7 monk.
+- `X5` **Claude:** Catching spikes is the clearest measure of monk quality. Good backlines prot most spikes 0.3 to 1.0 s
   after the first hit, with some pre-prots; weak ones land prots 1 to 2 s after, when the target is already dead.
   hdm caught 17 of 20 spikes; cope caught 12 of 34; RACK caught 4 of 19 against hdm's Double Paragon WoC.
   [OG v cope J] [OG v hdm] [RACK v hdm M]
-- **Claude:** Fast invoke spikes (240 to 390 damage in 0.35 s on a target already below full health) can only be
+- `X6` **Claude:** Fast invoke spikes (240 to 390 damage in 0.35 s on a target already below full health) can only be
   saved by pre-protting. [OG v cope J]
-- **Claude:** Not every death is a spike: deaths that take 2 to 8 s from the first big hit come from pressure,
+- `X7` **Claude:** Not every death is a spike: deaths that take 2 to 8 s from the first big hit come from pressure,
   knockdown lock or degeneration, and the failure is support or positioning, not prot timing. [Men v Team] [OG v hdm]
-- **OG comms:** Spike timing micro: land Shell Shock between "two" and "one" of the countdown; call for removal of
+- `X8` **OG comms:** Spike timing micro: land Shell Shock between "two" and "one" of the countdown; call for removal of
   Migraine on the spikers. [OG v cope J]
 
 ## 9. Monk play under pressure (micro)
-- **Denning:** Judge a death first by its cause: a great enemy play, or a failure. In an even 8v8 with the monks in
+- `M1` **Denning:** Judge a death first by its cause: a great enemy play, or a failure. In an even 8v8 with the monks in
   position, the 8 trying to Guardian the prot, the 7 knocked down, the prot knocked down, the 8 Dazed and a prot
   stripped by Shatter Enchantment, none of it alone kills at a high level: the enemy's coordination of knockdowns,
   Daze, interrupts and enchantment removal is the cause. Small mistakes around it can still be acceptable even at the
   highest level. [hdm v HC I1]
-- **Denning:** Mistakes have a severity: basic (a mistake good players shouldn't make), minor (high level and not always
-  avoidable, e.g. getting Dazed casting beside a ranger) and acceptable (fine even at the highest level). A minor
-  mistake can be game ending in the wrong moment, e.g. a monk alone with no other monk, or after time. [Men v HC C]
-- **Denning:** Interrupts on quarter-second casts (Reversal of Fortune, Aegis) are mostly luck: a mesmer or ranger
+- `M2` **Denning:** Mistakes have a severity: basic (a mistake good players shouldn't make), minor (high level and not
+  always avoidable, e.g. getting Dazed casting beside a ranger) and acceptable (fine even at the highest level). A
+  minor mistake can be game ending in the wrong moment, e.g. a monk alone with no other monk, or after time.
+  [Men v HC C]
+- `M3` **Denning:** Interrupts on quarter-second casts (Reversal of Fortune, Aegis) are mostly luck: a mesmer or ranger
   can't hit them reliably and a monk can't cancel them, so they are not a monk error.
-- **Denning:** A monk casting right beside a ranger without cancel-casting first, and getting Dazed by Concussion
+- `M4` **Denning:** A monk casting right beside a ranger without cancel-casting first, and getting Dazed by Concussion
   Shot, is a minor mistake.
-- **Denning:** A mesmer near a monk under attack should always interrupt defensively (e.g. hammer attack skills, Burning
-  Arrow), and someone should peel the attacker so the monk can kite. [Men v HC C]
-- **Denning:** The prot should keep Aura of Stability on a monk being knocked down (e.g. the 7 monk against a hammer).
-- **Denning:** Pre-kiting with a speed stance is the correct play for a prot, even when a Coward catches it.
-- **Denning:** The team's mesmers should interrupt defensively so that Shatter Enchantment, Energy Surge and Energy
+- `M5` **Denning:** A mesmer near a monk under attack should always interrupt defensively (e.g. hammer attack skills,
+  Burning Arrow), and someone should peel the attacker so the monk can kite. [Men v HC C]
+- `M6` **Denning:** The prot should keep Aura of Stability on a monk being knocked down (e.g. the 7 monk against a
+  hammer).
+- `M7` **Denning:** Pre-kiting with a speed stance is the correct play for a prot, even when a Coward catches it.
+- `M8` **Denning:** The team's mesmers should interrupt defensively so that Shatter Enchantment, Energy Surge and Energy
   Burn don't go off on their backline.
-- **Denning:** Against energy denial, cast from the shield set (hiding energy); enchantments from the staff (20%
+- `M9` **Denning:** Against energy denial, cast from the shield set (hiding energy); enchantments from the staff (20%
   longer); swap to the single high energy set when low.
-- **Denning:** Space the ranger: the further away, the longer arrow interrupts take; a very quick monk can dodge some
-  arrows by moving.
-- **Denning:** Against 2 damage, getting dazed is critical: Guardian yourself and/or fake a cast to bait the daze
+- `M10` **Denning:** Space the ranger: the further away, the longer arrow interrupts take; a very quick monk can dodge
+  some arrows by moving.
+- `M11` **Denning:** Against 2 damage, getting dazed is critical: Guardian yourself and/or fake a cast to bait the daze
   skill, then cast safely while the ranger is low on energy. Keep the ranger targeted.
-- **Denning:** Spacing: stand as far as possible from the enemy mesmer (and ranger) while staying in cast range of the
-  2 players being healed, and in the correct position (e.g. in front of their own mesmer). The monk only needs to be in
-  range of allies while they take damage. There is no "holding a spot for the flag".
-- **Denning:** Peel: hitting the enemy Mes/A is both offensive and defensive, so it is correct; hitting enemy monks while
-  your team is dying and needs support is purely offensive and likely incorrect. With the timing of a fast monk kill,
-  the frontline may not be able to peel effectively, and that is not their mistake. [hdm v HC I1]
-- **Denning:** A monk under 2 damage needs team support: e.g. the dervish hits the ranger and the mesmer defensively
-  interrupts the enemy mesmer. When the Mes/A is not carrying the flag, it should interrupt the enemy mesmer
-  defensively when that mesmer pressures its monk.
-- **Bounty:** Many small inaccuracies add up to lost fights: a monk not watching a split, a ritualist caught off shield
-  set by Coward, a sleepy 8 monk.
+- `M12` **Denning:** Spacing: stand as far as possible from the enemy mesmer (and ranger) while staying in cast range of
+  the 2 players being healed, and in the correct position (e.g. in front of their own mesmer). The monk only needs to
+  be in range of allies while they take damage. There is no "holding a spot for the flag".
+- `M13` **Denning:** Peel: hitting the enemy Mes/A is both offensive and defensive, so it is correct; hitting enemy
+  monks while your team is dying and needs support is purely offensive and likely incorrect. With the timing of a fast
+  monk kill, the frontline may not be able to peel effectively, and that is not their mistake. [hdm v HC I1]
+- `M14` **Denning:** A monk under 2 damage needs team support: e.g. the dervish hits the ranger and the mesmer
+  defensively interrupts the enemy mesmer. When the Mes/A is not carrying the flag, it should interrupt the enemy
+  mesmer defensively when that mesmer pressures its monk.
+- `M15` **Bounty:** Many small inaccuracies add up to lost fights: a monk not watching a split, a ritualist caught off
+  shield set by Coward, a sleepy 8 monk.
 
 ## 10. Interrupts and shutdown (micro)
-- **Denning:** An interrupt can be critical, e.g. an interrupt on Healing Burst that leads to a wipe.
-- **Bounty:** Spiking from max range gets the spikers interrupted easily (Complicate, Cry). Drain Enchantment has a
+- `I1` **Denning:** An interrupt can be critical, e.g. an interrupt on Healing Burst that leads to a wipe.
+- `I2` **Bounty:** Spiking from max range gets the spikers interrupted easily (Complicate, Cry). Drain Enchantment has a
   higher ceiling than Signet of Recall.
-- **Claude:** Wipes are often chained by interrupts on monk defence: Power Spike or Psychic Instability on Guardian or
-  Aegis, a Hammer Bash or Complicate on Healing Burst, Concussion Shot on Reversal of Fortune. [OG v chic]
+- `I3` **Claude:** Wipes are often chained by interrupts on monk defence: Power Spike or Psychic Instability on Guardian
+  or Aegis, a Hammer Bash or Complicate on Healing Burst, Concussion Shot on Reversal of Fortune. [OG v chic]
   [OG v cope U] [hdm v HC I1] [Men v HC C]
-- **Claude:** Mesmer shutdown on the spikers and the caller is what turns a spike matchup: 40 interrupts on OG's
+- `I4` **Claude:** Mesmer shutdown on the spikers and the caller is what turns a spike matchup: 40 interrupts on OG's
   invoke team (vs 16 by the team that lost) went with 1 kill from 18 spikes. [OG v hdm]
-- **Claude:** In mirrors, the side with the stronger mesmers holds the edge in the long game (70 interrupts to 27).
+- `I5` **Claude:** In mirrors, the side with the stronger mesmers holds the edge in the long game (70 interrupts to 27).
   [OG v cope U]
 
 ## 11. Positioning and overextension (micro)
-- **Claude:** A single overextended player can turn an even game: a dervish holding two knights in the enemy base took
-  a knockdown and died, and 3 more players followed within 36 s. When a player is pulling NPCs deep, the team has to be
-  ready to cover or call them out. [OG v cope U]
-- **Claude:** Monks split across the pit (one at each end) can't cover each other in the final defence. [OG v cope U]
+- `O1` **Claude:** A single overextended player can turn an even game: a dervish holding two knights in the enemy base
+  took a knockdown and died, and 3 more players followed within 36 s. When a player is pulling NPCs deep, the team has
+  to be ready to cover or call them out. [OG v cope U]
+- `O2` **Claude:** Monks split across the pit (one at each end) can't cover each other in the final defence.
+  [OG v cope U]
+- `O3` **Claude:** Players who drift away from their monks are the easiest kills; a mobile killer (e.g. a Mo/A WoC
+  with speed) punishes this best. [OG v chic]
 
 ## 12. Weapon sets
 - Energy hiding (Guild Wars Wiki: Energy hiding, Weapon swap): swapping to a low energy set lowers the available
@@ -422,24 +467,68 @@ match:
 - **Denning:** Refer to players by role: prot monk (slot 6), 7 monk (usually the push monk), 8 monk (usually
   backside), stand mesmer (the main shutdown mesmer), running mesmer or Mes/A (usually with a running skill), hammer
   warrior, and so on.
+- **Denning:** **Y** is the run from the flag spawn to the stand; a **backup flag** is a flag held near the stand
+  while your team already holds it.
 - Auto-transcripts garble terms: "X-way" and "axes" mean hex way and hexes; "Ellie" or "LE" means elementalist.
 
-## 14. Open questions
-- When may a pit-defending main team step out (e.g. to stop a flag cap or get a res)? [Men v Team]
-- In Men v Team's 2:00 to 4:00 window, should the hammer and stand mesmer have rejoined the ritualist with the 8 monk,
-  or should the dervish have capped instead of carrying for 145 s? [Men v Team]
-- Once chic's split was one elementalist, OG kept its prot in base with the 8 monk while chic's main team had 3 damage.
-  Does that break "the prot follows the enemy's 3rd damage", or is it fine for a spike build whose main team doesn't
-  need the prot? [OG v chic]
-- In RJT v RACK both prots sat in the fight with 2 damage per side while the 3-damage fight had no prot; were the prots
-  out of position?
-- When does a solo split pay off (what it killed or drew away against what it cost the main fights)?
-- When should the power play be pushed hard, and when is it safer to hold?
-- How many players to send back to a pushed flagger, and when?
-- Where is the line between saveable and not saveable for mixed damage and other windows?
-- Does RACK split through the front door or the backdoor on Isle of Meditation? (Denning thinks the front door.)
-- What is the benchmark for a good 7 monk's Infuse Health timing?
-- What beats Double Paragon WoC (3-0 across reviews)? A split with 3 damage and the 8 monk, a 4-4, or staying 8v8 with
-  stacked prots and 2 Auras of Stability? [Men v Team] [RACK v hdm M]
-- Why did RACK's split break up at about 4:00, and should the dervishes have rejoined main once the WoC monk left the
-  defence? [RACK v hdm M]
+## 14. Situations: what is the best play here?
+Each card is a recurring decision: the options, what decides between them, the default best play and how sure that
+is. The analysis engine records every one of these moments in a match (situation, choice, outcome), so the defaults
+can be checked against what actually happened across many matches. High = from Denning; medium = from commentary or
+several matches; low = a hypothesis.
+
+- `D1` **The enemy picks up a flag.** Options: run now, hold the flag near the stand (if you hold it), don't run.
+  Deciding factors: flag position, who holds the stand and the boost clock, numbers at main, whether your runner can
+  get back. Default: run so you cap as soon as reasonably possible after the enemy (`F5`); if you are up on flags,
+  you need not cap at once, and the group stays together rather than fight outnumbered (`F6`, `F7`). Don't run when a
+  run would get you wiped on death penalty (`F18`). Confidence: high.
+- `D2` **An enemy split enters your base.** Options: answer with a damage dealer, the prot, the 8 monk, or a collapse;
+  ignore it. Deciding factors: the split's size and damage, your pit NPCs, your build (8v8 or not), whether the main
+  fight is being won. Default: answer within 15 s (`S18`): a lone ranger with the Mes/A plus a frontline collapse
+  (`S19`), a 3rd enemy damage with the prot (`S23`); an 8v8 build shadows it with a snare and collapses when it
+  commits (`S32`); a team winning main can ignore a solo split (`S28`). Confidence: high on timing, medium on who.
+- `D3` **You have more players in the fight (power play).** Options: push, or hold. Deciding factors: why the enemy
+  is short (running, split, dead), how long it lasts, flag position, who is ahead. Default: commit and kill
+  (`F23`, `F24`); a team already winning needn't force it (`W8`). Confidence: medium.
+- `D4` **The enemy's boost is coming.** Options: run now, or give up the boost. Deciding factors: your flag ETA against
+  the boost clock, numbers, death penalty. Default: run in time to cap before the boost unless it costs a wipe
+  (`F18`, `F26`, `F29`). Confidence: medium.
+- `D5` **You just won a wipe.** Options: push the pit, take the flag and the stand, or reset. Deciding factors: enemy
+  pit NPCs, the res timer, the clock, whether you are already winning. Default: convert straight into pit NPCs before
+  the res (`K8`); a team already winning backs out rather than risk a close Lord window (`W8`, `W9`). Confidence:
+  medium.
+- `D6` **You are stacking death penalty against a spike build.** Options: keep fighting at main, play in the pit, take
+  boosts to clear it. Deciding factors: how many players are now within one enemy spike, boosts available. Default:
+  stop taking even trades and fight for boosts and safety until the penalty is cleared (`K4`, `K9`). Confidence:
+  medium (Denning's principle; the play is Claude's proposal).
+- `D7` **24:00 and later.** Options: commit to Lord damage, defend, or both. Deciding factors: who is ahead on what the
+  players can know, each build's late push and how many monks can defend while others push, pit NPCs left. Default:
+  the team behind commits; the team ahead defends and doesn't counter-race (`L4`); a balanced build that has kept its
+  pit and its players is already winning against a 2-monk hex way (`L1`). Confidence: medium.
+- `D8` **Your backside group is outnumbered while you are up on flags.** Options: fight, fall back toward pit, escort
+  the runner. Default: fall back toward pit; the runner can wait before capping; follow only if the enemy goes for the
+  runner (`F6`, `F7`). Confidence: high.
+
+## 15. Open questions
+- `Q1` When may a pit-defending main team step out (e.g. to stop a flag cap or get a res)? [Men v Team]
+- `Q2` In Men v Team's 2:00 to 4:00 window, should the hammer and stand mesmer have rejoined the ritualist with the 8
+  monk, or should the dervish have capped instead of carrying for 145 s? [Men v Team]
+- `Q3` Once chic's split was one elementalist, OG kept its prot in base with the 8 monk while chic's main team had 3
+  damage. Does that break "the prot follows the enemy's 3rd damage", or is it fine for a spike build whose main team
+  doesn't need the prot? [OG v chic]
+- `Q4` In RJT v RACK both prots sat in the fight with 2 damage per side while the 3-damage fight had no prot; were the
+  prots out of position?
+- `Q5` When does a solo split pay off (what it killed or drew away against what it cost the main fights)?
+- `Q6` When should the power play be pushed hard, and when is it safer to hold?
+- `Q7` How many players to send back to a pushed flagger, and when?
+- `Q8` Where is the line between saveable and not saveable for mixed damage and other windows?
+- `Q9` Does RACK split through the front door or the backdoor on Isle of Meditation? (Denning thinks the front door.)
+- `Q10` What is the benchmark for a good 7 monk's Infuse Health timing?
+- `Q11` What beats Double Paragon WoC (3-0 across reviews)? A split with 3 damage and the 8 monk, a 4-4, or staying 8v8
+  with stacked prots and 2 Auras of Stability? [Men v Team] [RACK v hdm M]
+- `Q12` Why did RACK's split break up at about 4:00, and should the dervishes have rejoined main once the WoC monk left
+  the defence? [RACK v hdm M]
+- `Q13` Men went 146 s without a cap (6:29 to 8:55) while HC capped at 7:57. A flag mistake, or normal for a team
+  holding pit pressure with its ranger split? [Men v HC C]
+- `Q14` How much is a flag lead worth against a pit NPC or a death? (The engine's weights are first guesses until the
+  win-probability model.)

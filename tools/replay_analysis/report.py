@@ -2,7 +2,8 @@
 deaths with support context, team totals. Usage: python3 report.py <report id or path to .json.gz> [section ...]
 Sections: builds phases stand npcs lord deaths spikes splits output pit catches totals (default: all). Interpret with knowledge/tactics.md."""
 import collections, sys
-from replaylib import Match, PROT_SKILLS
+from replaylib import Match
+from common import PROT_SKILLS, UNSAVEABLE_AI, SPIKE_REACT
 
 
 def builds(m):
@@ -72,7 +73,7 @@ def lord(m):
         if n[1] >= 3 and n[2] >= 3: race.append(t)
     if race: print(f"  base race (3+ of each team in the enemy base): {m.f(race[0])} to {m.f(race[-1])}")
     own = collections.Counter(m.tag[m.team(r[2])] for r in m.o["ev"] if r[1] == "cs" and r[3] in lords and m.A[r[2]].get("player")
-                              and m.team(r[2]) == lords[r[3]]["team"] and m.sk(r[4]) in PROT_SKILLS | {"Patient Spirit", "Vigorous Spirit"})
+                              and m.team(r[2]) == lords[r[3]]["team"] and m.sk(r[4]) in (PROT_SKILLS - {"Infuse Health"}) | {"Patient Spirit", "Vigorous Spirit"})
     print("  enchantments on own Lord (approx., -50 aggressiveness each):", dict(own))
 
 
@@ -113,7 +114,6 @@ def spikes(m):
     """Per death: tightest big burst (armor ignoring vs other), sources, set, prots and Infuse with timing, interrupts.
     Not saveable (Denning's anchors, knowledge/tactics.md): target at 60%+ health, and 550+ armor ignoring within 0.35 s or
     more than the target's health within 0.35 s. 400 armor respecting in 0.6 s on a shield set should be survivable."""
-    from replaylib import PROT_SKILLS
     for x in m.o["deaths"]:
         v = x["who"]
         if not m.A[v].get("player"): continue
@@ -130,7 +130,7 @@ def spikes(m):
                 tot = sum(k[2] for k in ws); ai = sum(k[2] for k in ws if k[3] == "armor_ignoring")
                 if tot > best[0]: best = (tot, ai, {k[1] for k in ws}, h[0])
             return best
-        b35, b6 = window(3.5), window(6)
+        b35, b6 = window(UNSAVEABLE_AI[1] * 10), window(6)
         s = m.snap(v, first - 3) or {}
         sets = m.o.get("sets", {}).get(str(v), [])
         setl = sets[s["w"]]["label"] if s and 0 <= s.get("w", -1) < len(sets) else "?"
@@ -142,7 +142,7 @@ def spikes(m):
         spikers = {h[1] for h in hits if h[0] >= first}
         rupts = [m.sk(i[4]) for i in m.o.get("interrupts", []) if i[3] in spikers and first - 30 <= i[0] <= t]
         # only a real spike counts: target at 60%+ health when it started
-        nots = (s.get("hp", 0) >= 60) and (b35[1] >= 550 or bool(hpnow and b35[0] > hpnow))
+        nots = (s.get("hp", 0) >= 60) and (b35[1] >= UNSAVEABLE_AI[0] or bool(hpnow and b35[0] > hpnow))
         print(f"  {m.f(t)} {m.role(v):18} 0.35s: {round(b35[0])} ({round(b35[1])} armor ignoring) from {len(b35[2])} | "
               f"0.6s: {round(b6[0])} | set {setl}, health ~{hpnow} | first big hit to death {(t - first) / 10:.1f}s")
         print(f"      prots/Infuse {sup} | interrupts on spikers {rupts}{'  NOT SAVEABLE' if nots else ''}")
@@ -151,7 +151,6 @@ def spikes(m):
 def splits(m, min_s=30):
     """Small groups (1-4 players) away from their team's main group for 30 s or more: where, who shadowed them
     (nearest enemy), snares and damage they took, deaths, and pit NPCs they killed."""
-    from replaylib import Match as _M
     SNARES = {"Mind Freeze PvP", "Shard Storm", "Freezing Gust", "Ice Spikes", "Deep Freeze", "Pin Down", "Crippling Shot",
               "Mantis Touch", "Caltrops", "Return", "Shadowy Burden", "Siphon Speed", "Hamstring", "Crippling Anguish PvP",
               "Grasping Earth", "Ward Against Foes", "Snaring Web"}
@@ -230,12 +229,11 @@ def pit(m, step=300, r=1500):
                 print(f"  death {m.f(e[0])} {m.role(e[2]):18} {round(d):6} from own pit{' (in pit)' if d < r else ''}")
 
 
-def catches(m, window=20, min_dmg=250, min_src=3):
+def catches(m, window=int(SPIKE_REACT[1] * 10), min_dmg=SPIKE_REACT[0], min_src=3):
     """Spike catching per team: each enemy spike (3+ attackers, 250+ damage within 2 s on one target) counted as killed,
     saved with a prot (prot or Infuse on the target from 3 s before to 2 s after the first hit) or survived without one,
     with prot timing (negative = pre-prot) and who cast them. Compares monk play between teams and games."""
-    prots = {"Infuse Health", "Spirit Bond PvP", "Life Sheath", "Aegis PvP", "Shielding Hands", "Guardian",
-             "Reversal of Fortune", "Protective Spirit", "Shield of Absorption", "Aura of Faith", "Protective Bond"}
+    prots = PROT_SKILLS - {"Aura of Stability", "Shield Guardian PvP"}
     ev = m.o["ev"]
     for tm in (1, 2):
         atk = [i for i in m.PL if m.team(i) == 3 - tm]

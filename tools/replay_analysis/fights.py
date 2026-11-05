@@ -2,36 +2,23 @@
 numbers windows (who had more players in the main fight, why, and what they did with it) and team posture (offensive
 or defensive against the situation).
 
-Usage:  python3 fights.py <report id> [deaths] [monks] [windows] [posture]
-In code: deaths(st), monks(st), windows(st), posture(st) -> lists of dicts (written by analyze.py)."""
-import collections, json, math, os, statistics, sys
+Usage:  python3 fights.py <report id> [fights] [deaths] [monks] [windows] [posture]
+In code: deaths(st, sb), engagements(st, sb, deaths), monks(st), windows(st), posture(st) -> lists of dicts (analyze.py)."""
+import bisect, collections, math, statistics, sys
 from replaylib import Match
-from state import GameState, d, PIT_R, NEAR_R, REPO
+from state import GameState, d
+from scoreboard import Scoreboard
+from common import (CAST_R, PRE, SPIKE_REACT, SPIKE_BURST, SUPPORT_SHARE, CHAIN_GAP, AFTER_TIME, RES_EVERY, CRITICAL, BLOCKS,
+                    GAP_CLOSERS, STRIP_SKILLS, skill_kind, activation)
 
-PRE = 15                  # seconds looked at before a death
-CAST_R = 1250             # about spell range
-SPIKE = (250, 2)          # damage, seconds: a burst a monk should react to
-
-_SK = None
-def skill_kind(sid, name=""):
-    """heal, prot, removal or other, from the skill data (attribute and what the skill removes)."""
-    global _SK
-    if _SK is None:
-        data = json.load(open(os.path.join(REPO, "data", "skills.json")))
-        rows = data["skills"] if isinstance(data, dict) and "skills" in data else data
-        _SK = {}
-        for s in (rows.values() if isinstance(rows, dict) else rows):
-            k = "other"
-            if s["name"].startswith(("Infuse Health", "Shield of Absorption", "Protective Spirit", "Reversal of Fortune")): k = "prot"
-            elif s["attr"] == "Protection Prayers": k = "removal" if s.get("removes") and s["type"] == "Spell" else "prot"
-            elif s["attr"] in ("Healing Prayers", "Divine Favor") or "Heal" in s["name"]: k = "removal" if s.get("removes") and "Hex" in s["name"] else "heal"
-            elif s.get("removes"): k = "removal"
-            _SK[s["id"]] = k
-            _SK[s["name"]] = k
-    return _SK.get(sid) or _SK.get(name) or _SK.get(name + " (PvP)") or "other"
+SPIKE = SPIKE_REACT       # a burst a monk should react to (monk profiles)
 
 
-def _monks(st, tm): return [a for a in st.players[tm] if st.m.A[a].get("p") == "Monk" and st.m.A[a].get("slot") in (6, 7, 8)]
+def _monks(st, tm):
+    """The healing backline: monks in slots 6 to 8 and any other monk without Word of Censure (smiters are damage)."""
+    m = st.m
+    return [a for a in st.players[tm] if m.A[a].get("p") == "Monk" and (m.A[a].get("slot") in (6, 7, 8)
+            or not any(m.sk(b) == "Word of Censure" for b in m.A[a].get("bar", []) if b))]
 
 
 def _casts(st):
@@ -44,14 +31,7 @@ def _casts(st):
     return out
 
 
-CRITICAL = {"Guardian", "Aegis PvP", "Reversal of Fortune", "Spirit Bond PvP", "Infuse Health", "Healing Burst", "Life Sheath",
-            "Shield Guardian PvP", "Protective Spirit", "Shielding Hands", "Aura of Faith", "Blessed Light", "Dismiss Condition",
-            "Patient Spirit", "Word of Healing", "Protective Bond", "Shield of Absorption", "Aura of Stability"}
-BLOCKS = {"Guardian", "Aegis PvP", "Shield Guardian PvP"}
-GAP_CLOSERS = {"Death's Charge", "Sprint", "Rush", "Shadow of Haste", "Dash", "Death's Retreat", "Charging Strike", "Harrier's Haste"}
-
-
-def forensics(st, a, td, pre=PRE):
+def forensics(st, a, td, pre=PRE, sb=None):
     """Everything about one death that decides whether it was a misplay, a lack of support or a great enemy play:
     context (numbers, flag), backline in range and its state, prots on the victim (landed, stripped, interrupted),
     self-prots, knockdowns (through a block or not, moving into a Coward), interrupts (on critical skills, right after a
@@ -69,27 +49,35 @@ def forensics(st, a, td, pre=PRE):
     # context
     out["numbers"] = f"{len(st.main_group(tm, int(td - 2)))}v{len(st.main_group(foe, int(td - 2)))}"
     out["carriers"] = [m.role(x) for x in st.carrier(td - 2)]
-    # the flag situation for the victim's team: is the enemy running, and where is its own runner
-    foe_pick = max((t / 10 for t, typ, x in m.o.get("flags", []) if typ == "flag_picked_up" and m.team(x) == foe and t / 10 <= td), default=None)
-    foe_cap = max((t for t, x in st.caps if x == foe and t <= td), default=None)
+    # the flag situation for the victim's team (scoreboard: flag position judged on the next capture exchange)
+    sb = sb or Scoreboard(st)
+    tag, ftag = m.tag[tm], m.tag[foe]
+    b5 = sb.at(int(td - 5))
+    foe_pick = max((t / 10 for t, typ, x, *_ in m.o.get("flags", []) if typ == "flag_picked_up" and m.team(x) == foe and t / 10 <= td), default=None)
     enemy_running = [m.role(x) for x in st.carrier(td - 2) if m.team(x) == foe]
-    own_runner = next((m.roles[x] for x in st.players[tm] if m.roles[x] == "Mes/A"), None)
     out["flag"] = {"enemy_running": enemy_running, "enemy_running_for_s": round(td - foe_pick) if enemy_running and foe_pick else None,
-                   "own_team_must_run": bool(enemy_running) and st.stand_owner(td)[0] == tm,
-                   "own_runner": own_runner, "own_runner_zone": st.zone(next(x for x in st.players[tm] if m.roles[x] == own_runner), td - 2) if own_runner else None,
-                   "own_up_on_flags": st.stand_owner(td)[0] == tm,
+                   "own_flag": b5[tag]["flag"], "own_flag_lead": b5[tag]["flag_lead"], "stand_owner": b5["stand"]["owner"],
+                   "boost_in": b5["stand"]["boost_in"],
                    "own_runner_carrying": any(m.team(x) == tm for x in st.carrier(td - 2)),
+                   "own_flag_duty": b5[tag]["flag_duty"], "victim_on_flag_duty": any(r == m.roles[a] for r, _ in b5[tag]["flag_duty"]),
                    "victim_zone": st.zone(a, td - 5)}
+    out["dp"] = {"victim_morale": st.morale(a, td - 1), "victim_eff_hp": sb.eff_hp(a, td - 1),
+                 "team_morale": b5[tag]["morale_sum"], "enemy_morale": b5[ftag]["morale_sum"],
+                 "spike_threat": b5[tag]["spike_threat"], "killable_by_one_spike": b5[tag]["killable_by_one_spike"]}
     own, since = st.stand_owner(td)
     out["stand"] = f"{m.tag.get(own)} held {round(td - since)} s" if own else "nobody"
     # backline in cast range each second, and its state (k knocked down, c casting)
+    # in_range_share is over the seconds the monk was alive; a monk dead for the whole window is "dead", not out of range
     rng = {}
+    win = list(range(int(t0), int(td) + 1))
     for b in mon:
-        secs = [t for t in range(int(t0), int(td) + 1) if st.alive(b, t)]
+        secs = [t for t in win if st.alive(b, t)]
         inr = [t for t in secs if d(st.pos(b, t)[0], st.pos(a, t)[0]) <= CAST_R]
         states = collections.Counter(st.pos(b, t)[1]["st"] for t in secs if st.pos(b, t)[1])
         att_on = collections.Counter(R(r[2]) for r in m.o["ev"] if r[1] == "dm" and r[3] == b and T0 <= r[0] <= T1 and r[2] in m.PL)
-        rng[R(b)] = {"in_range_share": round(len(inr) / max(len(secs), 1), 2), "states": dict(states), "under_attack_by": dict(att_on.most_common(3))}
+        rng[R(b)] = {"alive_share": round(len(secs) / len(win), 2), "alive_at_death": st.alive(b, td - 1),
+                     "in_range_share": round(len(inr) / len(secs), 2) if secs else None,
+                     "states": dict(states), "under_attack_by": dict(att_on.most_common(3))}
     out["backline"] = rng
     # prots: enchantments on the victim, how they ended; prot casts started on the victim and what happened to them
     ench = []
@@ -154,59 +142,68 @@ def forensics(st, a, td, pre=PRE):
     return out
 
 
-_ACT = None
-def activation(name):
-    """Cast time in seconds from the skill data (0 for attacks, shouts and stances)."""
-    global _ACT
-    if _ACT is None:
-        data = json.load(open(os.path.join(REPO, "data", "skills.json")))
-        rows = data["skills"] if isinstance(data, dict) and "skills" in data else data
-        _ACT = {}
-        for x in (rows.values() if isinstance(rows, dict) else rows):
-            a = (x.get("activation") or "").replace(" s", "").strip()
-            v = {"¼": .25, "½": .5, "¾": .75, "1½": 1.5}.get(a)
-            if v is None:
-                try: v = float(a)
-                except ValueError: v = 0
-            _ACT[x["name"]] = v
-    return _ACT.get(name, _ACT.get(name.replace(" PvP", " (PvP)"), 1))
-
-
 def assess(st, a, td, fx):
-    """Denning's way of judging a death: what kind of death it was (cause) and the smaller, acceptable mistakes around
-    it. Causes: coordinated enemy pressure (a great play), spike, positioning, lack of support, or unclear."""
+    """Denning's way of judging a death: what kind of death it was (cause) and the smaller mistakes around it, graded
+    basic, minor or acceptable. Causes, in order: spike; backline down (a monk already dead: the death follows from an
+    earlier one); the flag situation (outnumbered away from pit while up on flags; a fight during a forced flag run);
+    positioning (out of range of its monks: overextended, caught away from its group, chased down while retreating, or
+    out of range); coordinated enemy pressure (2+ monks tied up: a great enemy play); lack of support (a monk free, no
+    prots); out-pressured despite support (prots cast, one monk tied up); out-damaged despite prots (backline free)."""
     m = st.m; tm = m.team(a)
     T0, T1 = int((td - PRE) * 10), int(td * 10)
     R = lambda x: m.roles.get(x) or m.nm(x)
     mon = [b for b in _monks(st, tm) if b != a]
     mistakes, notes = [], []
-    # pressure on the backline at the same time: each monk under attack, knocked down or dazed
-    pressured = [r for r, v in fx["backline"].items() if v["under_attack_by"] or v["states"].get("k")]
-    dazed = [c for c in fx["conditions"] if c.startswith("dazed")]
+    bl = fx["backline"]
+    live = {r: v for r, v in bl.items() if v["alive_at_death"]}
+    dead_monks = [r for r, v in bl.items() if not v["alive_at_death"]]
+    victim_monk = m.A[a].get("p") == "Monk"
+    need = min(1 if victim_monk else 2, len(live))
+    in_range = [r for r, v in live.items() if (v["in_range_share"] or 0) >= SUPPORT_SHARE]
+    supported = bool(live) and len(in_range) >= need
+    # pressure on the backline at the same time: each live monk under attack or knocked down
+    pressured = [r for r, v in live.items() if v["under_attack_by"] or v["states"].get("k")]
     stripped = [e for e in fx["enchantments"] if "removed" in e]
     attempts = fx["prot_attempts"]
-    in_range = all(v["in_range_share"] >= 0.7 for v in fx["backline"].values()) if fx["backline"] else False
-    burst = max((sum(h[5] for h in m.o["ev"] if h[1] == "dm" and h[3] == a and r[0] <= h[0] <= r[0] + 10)
-                 for r in m.o["ev"] if r[1] == "dm" and r[3] == a and T0 <= r[0] <= T1), default=0)
+    hits = sorted((h[0], h[5]) for h in m.o["ev"] if h[1] == "dm" and h[3] == a and T0 <= h[0] <= T1 and (h[5] or 0) > 0)
+    w = int(SPIKE_BURST[1] * 10)
+    burst = max((sum(v for tt, v in hits if t <= tt <= t + w) for t, _ in hits), default=0)
     hp_before = st.pos(a, td - 3)[1]
-    isolated = not in_range and fx["backline"]
     flag = fx.get("flag", {})
-    if burst >= 450 and hp_before and hp_before["hp"] >= 60: cause = "spike"
-    elif flag.get("enemy_running") and flag.get("own_up_on_flags") and not flag.get("own_runner_carrying") \
-            and m.roles[a] != flag.get("own_runner") and fx["backline"] and not in_range \
-            and flag.get("victim_zone") in ("backside", "stand"):
+    zone = flag.get("victim_zone")
+    # how a death out of range happened
+    main = st.main_group(tm, int(td - 3)); mc = st.centroid(main, int(td - 3)); p = st.pos(a, td - 3)[0]
+    foe_pit = st.geo.pit.get(3 - tm); own_pit = st.geo.pit.get(tm)
+    p0 = st.pos(a, td - PRE)[0]
+    retreating = p0 and p and own_pit and d(p, own_pit) < d(p0, own_pit) - 300
+    if burst >= SPIKE_BURST[0] and hp_before and hp_before["hp"] >= 60: cause = "spike"
+    elif dead_monks and not supported:
+        died_recently = any(tt for b in mon for tt in st.death_times.get(b, []) if 0 <= td - tt <= CHAIN_GAP)
+        cause = f"backline down ({len(dead_monks)} monk{'s' if len(dead_monks) > 1 else ''} dead" + (", in a chain)" if died_recently else ")")
+    elif flag.get("enemy_running") and flag.get("own_flag") == "up" and not flag.get("own_runner_carrying") \
+            and not flag.get("victim_on_flag_duty") and not supported and zone in ("backside", "stand"):
         # Denning [Men v HC C]: up on flags, the team need not cap at once; the backside group falls back toward pit
         # and only follows if the enemy goes for the runner
         cause = "outnumbered away from pit while up on flags"
         mistakes.append("minor: up on flags with the runner not under threat, the group should have fallen back toward "
                         "pit (and the runner could wait before capping) rather than fight outnumbered")
-    elif flag.get("enemy_running") and m.roles[a] != flag.get("own_runner") and fx["backline"] and not in_range \
-            and flag.get("own_runner_zone") not in ("dead",):
-        cause = "fight during a forced flag run (enemy running, team split to run)"
-    elif isolated: cause = "positioning (out of range of its backline)"
-    elif len(pressured) >= 2 and (attempts or stripped) and in_range: cause = "coordinated enemy pressure (great enemy play)"
-    elif in_range and not attempts and not pressured: cause = "lack of support (backline free but no prots)"
-    else: cause = "unclear"
+    elif flag.get("enemy_running") and flag.get("own_flag") != "up" and not supported:
+        cause = "fight during a forced flag run (enemy running, team not up on flags)"
+    elif not supported:
+        if a not in main and mc and p and d(p, mc) > 2000 and zone not in ("own pit", "own base"):
+            cause = "positioning: caught away from its group"
+        elif mc and p and foe_pit and d(p, foe_pit) < d(mc, foe_pit) - 1000 and zone in ("push side", "enemy base", "enemy pit"):
+            cause = "positioning: overextended (ahead of its team on the enemy side)"
+        elif retreating: cause = "positioning: chased down while retreating"
+        else: cause = "positioning: out of range of its monks"
+    elif len(pressured) >= 2: cause = "coordinated enemy pressure (great enemy play)"
+    elif not (attempts or stripped): cause = "lack of support (a monk free but no prots)"
+    elif pressured: cause = "out-pressured despite support (prots cast, one monk tied up)"
+    else: cause = "out-damaged despite prots (backline free)"
+    dp = fx.get("dp", {})
+    if dp.get("spike_threat") and dp.get("victim_eff_hp") and dp["victim_eff_hp"] <= dp["spike_threat"]:
+        notes.append(f"DP stacking: at {dp['victim_morale']}% morale its health ({dp['victim_eff_hp']}) was within one enemy "
+                     f"spike ({dp['spike_threat']})")
     # interrupts: quarter-second casts are luck, not a monk error (Denning)
     for i in fx["interrupts"]:
         sk = i.split(" casting ")[1].split(" (")[0].split(",")[0] if " casting " in i else ""
@@ -243,7 +240,7 @@ def assess(st, a, td, fx):
     # no defensive interrupts on the enemy mesmers who stripped prots or burned energy (Denning)
     foe_mes = [b for b in st.players[3 - tm] if m.A[b].get("p") == "Mesmer"]
     shut = [r for r in m.o["ev"] if r[1] == "cs" and r[2] in foe_mes and r[3] in mon + [a] and T0 - 50 <= r[0] <= T1
-            and any(w in m.sk(r[4]) for w in ("Shatter", "Energy Surge", "Energy Burn", "Drain Enchantment", "Power Leak", "Signet of Disenchantment"))]
+            and any(w in m.sk(r[4]) for w in STRIP_SKILLS)]
     own_mes = [b for b in st.players[tm] if m.A[b].get("p") in ("Mesmer", "Ranger")]
     defensive = [i for i in m.o.get("interrupts", []) if i[1] in own_mes and i[3] in foe_mes and T0 - 50 <= i[0] <= T1]
     went = sorted({m.sk(r[4]) for r in shut} | ({"Shatter Enchantment (stripped a prot)"} if stripped else set()))
@@ -276,8 +273,9 @@ def assess(st, a, td, fx):
     return {"cause": cause, "mistakes": mistakes, "notes": sorted(set(notes)), "peel_targets": dict(tgt)}
 
 
-def deaths(st):
+def deaths(st, sb=None):
     m, out = st.m, []
+    sb = sb or Scoreboard(st)
     casts = st.__dict__.setdefault("_casts", _casts(st))
     kd = m.o.get("knockdowns", []); ir = m.o.get("interrupts", [])
     # end-of-match markers: when a Lord dies, every player on that team "dies" in the same second; they aren't deaths
@@ -316,11 +314,7 @@ def deaths(st):
             attackers = {r[2] for r in hits if r[2] in m.PL}
             peel = sum(1 for r in m.o["ev"] if r[1] == "dm" and r[2] in st.players[tm] and r[3] in attackers and t0 * 10 <= r[0] <= td * 10)
             res = st.next_res(td)
-            after_time = (td % 120) <= 15
-            # what the enemy did with the death in the next 60 s
-            npc = [st.geo.npcs[x]["kind"] for x, tt in st.npc_dead.items() if x in st.geo.npcs and st.geo.npcs[x]["team"] == tm and td <= tt <= td + 60]
-            more = sum(1 for b in st.players[tm] for tt in st.death_times.get(b, []) if td < tt <= td + 60)
-            caps = [m.tag[c] for tt, c in st.caps if td <= tt <= td + 60]
+            after_time = (td % RES_EVERY) <= AFTER_TIME
             out.append({
                 "t": round(td), "team": m.tag[tm], "victim": m.roles[a], "zone": st.zone(a, td - 2), "after_time": after_time,
                 "down_for": round(res - td), "burst_max_2s": round(best), "first_big_hit": round(first_big - td, 1) if first_big else None,
@@ -328,11 +322,81 @@ def deaths(st):
                 "knockdowns": kds, "interrupts_on_victim": irs_t, "interrupts_on_monks": irs_m,
                 "monk_casts_on_victim": own_casts, "monks_busy_with": monk_busy, "monk_distance": monk_dist,
                 "isolated": isolated, "peel_hits": peel, "numbers": (len(st.main_group(tm, int(td - 2))), len(st.main_group(foe, int(td - 2)))),
-                "then": {"npcs_lost_60s": npc, "more_deaths_60s": more, "caps_60s": caps},
-                "forensics": (fx := forensics(st, a, td)),
+                # what the death cost: everything that changed until the victim was back
+                "then": sb.swing(m.tag[tm], td, res),
+                "forensics": (fx := forensics(st, a, td, sb=sb)),
                 "assessment": assess(st, a, td, fx),
             })
     return sorted(out, key=lambda x: x["t"])
+
+
+def local_numbers(st, a, t, r=2000):
+    """Players of each side alive within r of player a at second t (a included): the numbers where the fight was."""
+    p = st.pos(a, t)[0]; tm = st.m.team(a)
+    n = lambda x: sum(1 for b in st.players[x] if st.alive(b, t) and d(st.pos(b, t)[0], p) <= r)
+    return (n(tm), n(3 - tm)) if p else (None, None)
+
+
+def engagements(st, sb, ds=None):
+    """Fights: deaths of either team no more than CHAIN_GAP s apart form one engagement. For the losing side: the trigger
+    (its first death, with the death's own cause), the situation it fought in (from the scoreboard just before), where,
+    whether it became a wipe, and what it cost until every player was back (Denning: individual deaths don't win
+    games; what matters is what put the team there and what the fight was converted into)."""
+    m = st.m
+    ds = ds if ds is not None else deaths(st, sb)
+    out, cur = [], []
+    for x in sorted(ds, key=lambda x: x["t"]):
+        if cur and x["t"] - cur[-1]["t"] > CHAIN_GAP: out.append(cur); cur = []
+        cur.append(x)
+    if cur: out.append(cur)
+    res = []
+    for g in out:
+        losses = collections.Counter(x["team"] for x in g)
+        tags = list(m.tag.values())
+        first = g[0]
+        loser = max(tags, key=lambda t: (losses[t], t == first["team"]))
+        winner = next(t for t in tags if t != loser)
+        ltm = next(k for k, v in m.tag.items() if v == loser)
+        lost = [x for x in g if x["team"] == loser]
+        trig = lost[0]
+        start = max(g[0]["t"] - PRE, 0); end = g[-1]["t"]
+        b = sb.at(start)
+        L, W = b[loser], b[winner]
+        monk_deaths = sum(1 for x in lost if "Monk" in x["victim"] or "Prot" in x["victim"])
+        wipe = len(lost) >= 3 or monk_deaths >= 2
+        # where the losing side died, relative to itself
+        zones = collections.Counter(x["zone"] for x in lost)
+        where = zones.most_common(1)[0][0]
+        sit = []
+        loc = local_numbers(st, next(a for a in st.players[ltm] if m.roles[a] == trig["victim"]), trig["t"] - 3)
+        if loc[0] < loc[1]:
+            why = [f"{r} {w}" for r, w in L["flag_duty"]] + [f"{r} down" for r in L["down"]]
+            sit.append(f"outnumbered where it fought {loc[0]}v{loc[1]}" + (f" ({', '.join(why[:4])})" if why else ""))
+        elif loc[0] > loc[1]:
+            sit.append(f"lost while up in numbers where it fought {loc[0]}v{loc[1]}")
+        if L["flag_duty"] and L["flag"] == "down": sit.append(f"running while down on flags ({L['flag_lead']:+} s)")
+        if L["flag"] == "up" and where in ("backside", "stand") and W["flag_duty"]:
+            sit.append(f"fought away from pit while up on flags ({L['flag_lead']:+} s): could fall back")
+        if where in ("enemy pit", "enemy base"): sit.append(f"pushed into the enemy pit ({W['pit_npcs']} alive)")
+        if where in ("own pit", "own base"): sit.append(f"defending its own pit ({L['pit_npcs']} alive)")
+        if trig["after_time"]: sit.append("first death after time")
+        if len(L["killable_by_one_spike"]) >= 2: sit.append(f"DP stacked against a spike ({len(L['killable_by_one_spike'])} within one spike)")
+        if "Monk" in trig["victim"] or "Prot" in trig["victim"]: sit.append("a monk died first")
+        if not sit: sit.append("even fight")
+        back = max(st.next_res(x["t"]) for x in lost)
+        cons = sb.swing(loser, start, back)
+        gained = cons["npcs_lost"][loser] or cons["lord_damage"][winner] >= 500 or cons["boosts"].get(winner) \
+                 or cons["caps"].get(winner)
+        res.append({"team": loser, "opponent_won_fight": winner, "start": start, "end": end, "wipe": wipe, "local_numbers": loc,
+                    "losses": dict(losses), "deaths": [(x["t"], x["team"], x["victim"], x["assessment"]["cause"]) for x in g],
+                    "trigger": {"t": trig["t"], "victim": trig["victim"], "cause": trig["assessment"]["cause"],
+                                "mistakes": trig["assessment"]["mistakes"]},
+                    "where": where, "situation": sit,
+                    "before": {loser: sb.summary(loser, start), winner: sb.summary(winner, start),
+                               "stand": b["stand"]["owner"], "boost_in": b["stand"]["boost_in"]},
+                    "archetypes": {loser: sb.arch[ltm]["kind"], winner: sb.arch[3 - ltm]["kind"]},
+                    "consequence": cons, "converted": bool(gained)})
+    return res
 
 
 def monks(st, phase=120):
@@ -456,6 +520,17 @@ def posture(st, step=30):
 
 def show(st, what):
     m = st.m; f = lambda t: m.f(int(t * 10))
+    if "fights" in what:
+        print("== fights (engagements)")
+        sb = Scoreboard(st)
+        for x in engagements(st, sb):
+            c = x["consequence"]
+            print(f"{f(x['start'])}-{f(x['end'])} {x['team']} lost {x['losses']}{' WIPE' if x['wipe'] else ''} at {x['where']} | "
+                  f"trigger {x['trigger']['victim']} ({x['trigger']['cause']}) | {'; '.join(x['situation'])}")
+            print(f"    before: {x['before']}")
+            print(f"    cost until back ({c['window_s']} s): NPCs {c['npcs_lost']}, caps {c['caps']}, boosts {c['boosts']}, "
+                  f"Lord dmg {c['lord_damage']}, DP {c['dp_change']}, flag lead {c['flag_lead_change']:+}, edge {c['edge_change']:+}"
+                  f"{'' if x['converted'] else ' | NOT CONVERTED'}")
     if "deaths" in what:
         print("== deaths")
         for x in deaths(st):
@@ -484,4 +559,4 @@ def show(st, what):
 
 if __name__ == "__main__":
     st = GameState(Match.from_branch(sys.argv[1]))
-    show(st, sys.argv[2:] or ("deaths", "monks", "windows", "posture"))
+    show(st, sys.argv[2:] or ("fights", "deaths", "monks", "windows", "posture"))

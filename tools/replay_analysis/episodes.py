@@ -11,24 +11,8 @@ Flag run = a carry from pickup to cap or drop: escort, pushers (enemies who dama
 the carrier), who came back to help and how fast, and what the main fight was doing meanwhile."""
 import collections, math, sys
 from replaylib import Match
-from state import GameState, d, PIT_R, BASE_R, NEAR_R
-
-SPLIT_FAR = 2500       # away from own main group
-DEFEND_R = 1500
-SNARES = {"crippled", "dazed"}
-FRONTLINE = {"Warrior", "Dervish", "Assassin"}
-
-
-def line(m, a):
-    """Denning: frontline = dervishes, warriors, melee assassins; midline = elementalists, rangers, paragons, mesmers,
-    caster assassins (and ritualists, to confirm); backline = monks. Decided by build, not profession alone."""
-    p = m.A[a].get("p")
-    if p == "Monk": return "backline"
-    if p in ("Warrior", "Dervish"): return "frontline"
-    if p == "Assassin":
-        bar = " ".join(m.sk(b) for b in m.A[a].get("bar", []) if b)
-        return "frontline" if any(w in bar for w in ("Strike", "Blossom", "Fang", "Jagged", "Wild Blow", "Twisting")) else "midline"
-    return "midline"
+from state import GameState, d
+from common import PIT_R, BASE_R, NEAR_R, SPLIT_FAR, DEFEND_R, SNARE_CONDITIONS as SNARES, line
 
 
 def _hostile(st, target, t0, t1):
@@ -181,41 +165,45 @@ def flag_runs(st):
     return out
 
 
-def flag_cycles(st):
-    """Flag timing (Denning: in the flag game, cap as soon as reasonably possible after the enemy). For every cap, the
-    other team's answer: when it picked up its next flag compared with the enemy's pickup (positive = later), how long
-    after the enemy's cap it capped, and the runner's trip back to base after its own previous cap (how long, and
-    whether enemies stood in the way)."""
+def flag_cycles(st, sb=None):
+    """Flag timing (Denning: in the flag game, cap as soon as reasonably possible after the enemy). Captures alternate
+    between teams, so every capture after the first answers the one before it. Per answer: the cap delay, the pickup
+    that started the run (walking back through hand-offs) compared with the enemy's, the runner's trip from its team's
+    previous capture to that pickup and the enemies in its way, and whether a second runner was waiting at the spawn."""
     m, out = st.m, []
-    picks = [(t / 10, m.team(a), a) for t, typ, a in m.o.get("flags", []) if typ == "flag_picked_up" and m.team(a)]
-    caps = [(t, tm, None) for t, tm in st.caps]
-    capper = {round(t / 10): a for t, typ, a in m.o.get("flags", []) if typ == "flagstand_captured"}
-    for i, (tc, tm, _) in enumerate(caps):
-        foe = 3 - tm
-        nxt = next((t for t, x, _ in caps[i + 1:] if x == foe), None)
-        my_pick = next((t for t, x, a in picks if x == tm and t > (caps[i - 1][0] if i else -1e9) and t <= tc), None)
-        foe_pick = next((t for t, x, a in picks if x == foe and t > tc - 60 and (nxt is None or t <= nxt)), None)
-        prev_foe_cap = max((t for t, x, _ in caps[:i + 1] if x == foe), default=None)
-        row = {"team": m.tag[foe], "enemy_cap": round(tc), "enemy": m.tag[tm], "own_next_cap": round(nxt) if nxt else None,
-               "cap_delay": round(nxt - tc) if nxt else None,
-               "own_pickup": round(foe_pick) if foe_pick else None,
-               "pickup_vs_enemy_pickup": round(foe_pick - my_pick) if foe_pick and my_pick else None}
-        # the runner's trip back to base after its own previous cap, and enemies in the way
-        if prev_foe_cap is not None and foe_pick:
-            r = capper.get(round(prev_foe_cap))
-            if r is not None and m.team(r) == foe:
-                trip = [t for t in range(int(prev_foe_cap), int(foe_pick))]
-                blocked = collections.Counter(m.roles[e] for t in trip[::2] for e in st.players[tm]
-                                              if st.alive(e, t) and d(st.pos(e, t)[0], st.pos(r, t)[0]) < NEAR_R)
-                row.update(runner=m.roles[r], trip_s=len(trip), enemies_in_the_way=dict(blocked.most_common(4)))
-        # full running: was a second runner already waiting near its base when the team capped?
-        cap_team = tm
-        if capper.get(round(tc)) is not None:
-            c_a = capper[round(tc)]
-            ready = [m.roles[b] for b in st.players[cap_team] if b != c_a and st.alive(b, tc)
-                     and d(st.pos(b, tc)[0], st.geo.base[cap_team]) < BASE_R]
-            row["capper"] = m.roles[c_a]
-            row["capping_team_next_runner_waiting"] = ready
+    fl = [(t / 10, typ, a) for t, typ, a, *_ in m.o.get("flags", []) if m.team(a)]
+    caps = [(t, m.team(a), a) for t, typ, a in fl if typ == "flagstand_captured"]
+
+    def run_start(c_t, a):
+        """The pickup that began the run ending in the capture at c_t by a, following hand-offs back."""
+        cur, t_end = a, c_t
+        while True:
+            pk = max((t for t, typ, x in fl if typ == "flag_picked_up" and x == cur and t <= t_end), default=None)
+            if pk is None: return None, cur
+            prev = [(t, x) for t, typ, x in fl if typ == "flag_dropped" and m.team(x) == m.team(a) and x != cur and 0 <= pk - t <= 15]
+            if not prev: return pk, cur
+            t_end, cur = prev[-1]
+
+    for i in range(1, len(caps)):
+        (pc, ptm, pa), (c, tm, a) = caps[i - 1], caps[i]
+        if tm == ptm: continue                    # can't happen once captures are fixed; guard
+        pk, starter = run_start(c, a)
+        epk, _ = run_start(pc, pa)
+        row = {"team": m.tag[tm], "enemy": m.tag[ptm], "enemy_cap": round(pc), "own_cap": round(c), "cap_delay": round(c - pc),
+               "capper": m.roles[a], "own_pickup": round(pk) if pk is not None else None, "runner": m.roles[starter],
+               "pickup_vs_enemy_pickup": round(pk - epk) if pk is not None and epk is not None else None}
+        if sb is not None:     # how fast the answer could have been (scoreboard flag ETA just after the enemy's capture)
+            row["possible_s"] = sb.eta(tm, pc + 2)[0] + 2
+            row["slower_than_possible_s"] = round(c - pc - row["possible_s"])
+        own_prev = max((t for t, x, _ in caps[:i] if x == tm), default=None)
+        if own_prev is not None and pk is not None and pk > own_prev:
+            trip = list(range(int(own_prev), int(pk)))
+            blocked = collections.Counter(m.roles[e] for t in trip[::2] for e in st.players[ptm]
+                                          if st.alive(e, t) and st.alive(starter, t) and d(st.pos(e, t)[0], st.pos(starter, t)[0]) < NEAR_R)
+            row.update(trip_s=len(trip), enemies_in_the_way=dict(blocked.most_common(4)))
+        # full running: a second runner already waiting at the spawn when the team captured
+        row["next_runner_waiting"] = [m.roles[b] for b in st.players[tm] if b != a and st.alive(b, c)
+                                      and d(st.pos(b, c)[0], st.geo.spawn[tm]) < 1200]
         out.append(row)
     return out
 
@@ -253,10 +241,10 @@ def show(st, what=("splits", "flags")):
             for h in r["helpers"]: print(f"    help: {h['role']} +{h['latency']} s")
         print("== flag timing (answer to each enemy cap)")
         for c in flag_cycles(st):
-            print(f"  {c['team']} after {c['enemy']}'s cap at {f(c['enemy_cap'])}: picked up {f(c['own_pickup'])} "
-                  f"({c['pickup_vs_enemy_pickup']:+} s vs their pickup)" if c['pickup_vs_enemy_pickup'] is not None else f"  {c['team']} after {c['enemy']}'s cap at {f(c['enemy_cap'])}: pickup -",
-                  f"| capped {c['cap_delay']} s after" if c['cap_delay'] is not None else "| no cap",
-                  f"| runner {c.get('runner')} trip back {c.get('trip_s')} s, in the way: {c.get('enemies_in_the_way')}" if c.get('runner') else "")
+            print(f"  {c['team']} capped {f(c['own_cap'])}, {c['cap_delay']} s after {c['enemy']}'s {f(c['enemy_cap'])} | run by {c['runner']}"
+                  f" from {f(c['own_pickup'])}" + (f" ({c['pickup_vs_enemy_pickup']:+} s vs their pickup)" if c['pickup_vs_enemy_pickup'] is not None else "")
+                  + (f" | trip back {c['trip_s']} s, in the way {c['enemies_in_the_way']}" if 'trip_s' in c else "")
+                  + (f" | waiting at spawn {c['next_runner_waiting']}" if c['next_runner_waiting'] else ""))
         print("== stand")
         for h in stand_ledger(st):
             print(f"  {h['team']} {f(h['from'])}-{f(h['to'])} {h['held']} s, boosts {h['boosts']}" + (f", {h['short_of_boost']} s short" if h["short_of_boost"] else ""))

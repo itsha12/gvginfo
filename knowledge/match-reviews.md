@@ -238,9 +238,18 @@ the defenceless Lord. HC's prot was knocked down 38 times and its 8 monk died 5 
 
 **Decided by:** macro (the ranger split that emptied HC's pit), with micro deciding each swing (monk wipes).
 
+**Flag timing detail.** Men answered HC's captures in a median 28 s (4 to 65), HC answered Men's in a median 51 s
+(16 to 92). HC's Mes/A was often slow from one capture to its next pickup (59 and 71 s at 10:10 and 12:01) because
+Men's push team (prot, 7 monk, hammer, ranger) sat on its route. That was not a runner cut off: Men started runs with
+3 players and handed off mid-way (WoC monk, mesmer, Hammer B), while HC relied on its Mes/A for 13 of its 20 carries
+(`F13`).
+
 **Deciding moments.**
-- 9:31, HC 8 monk dies on its backside. HC was up on flags (held the stand, won the 8:00 and 10:00 boosts) and its
-  Mes/A was walking back for the next flag; the 8 monk, stand mesmer and paragon stayed out 3v4 against Men's Hammer A,
+- 9:31, HC 8 monk dies on its backside. HC was up on flags by about 20 s: it held the stand (capped 9:11) and its
+  Mes/A was walking back for the next flag, while Men's WoC monk was carrying with no second runner waiting, so Men's
+  next flag after HC's answer was 2Y away (HC answered Men's 10:03 cap in 47 s; Men answered HC's 10:50 recap in 70
+  s). An earlier reading said HC had won the 8:00 and 10:00 boosts; that came from a capture with no recorded player
+  (Men's at 6:29) that the engine dropped, and nobody boosted in that stretch; the 8 monk, stand mesmer and paragon stayed out 3v4 against Men's Hammer A,
   ranger, prot and 7 monk while Men ran. The 8 monk was Dazed casting beside the ranger, then caught. Denning: an
   unnecessary risk; HC could have waited to cap and kept the group together near pit, following only if Men went for
   the runner. The stand mesmer never carried a flag (not a double run).

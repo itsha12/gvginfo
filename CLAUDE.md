@@ -58,7 +58,7 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   tools rather than writing one-off scripts, so later reviews reuse what was learned.
 - Match analysis: `knowledge/tactics.md` is the general model of how GvG is won, organized by situation (win
   conditions and edges, macro vs micro, builds, splits, main team and pit, flag game, kills and timing, late game,
-  spikes, monk play, interrupts, positioning, open questions). **Denning:** lines override everything. Use it to judge
+  spikes, monk play, interrupts, positioning, situation cards, open questions). **Denning:** lines override everything. Use it to judge
   decisions and to answer "what should they have done" questions, with a confidence level.
 - `knowledge/match-reviews.md` holds one entry per reviewed match (summary paragraph, decided by macro, micro or both,
   deciding moments, what comms or commentary added). Match tags such as [Men v Team] link the two pages.
@@ -67,8 +67,10 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   revise it rather than adding a second one; add Denning's answers as **Denning:** lines (no dates). Keep the tactics
   page a model, not a log: merge duplicates and keep match detail on the reviews page.
 - How concepts are measured, the analysis framework and where its outputs are stored:
-  `tools/replay_analysis/METHODS.md` (not on the site). Deep reviews start from `analyze.py <id>` (game state every
-  second plus episodes), then `report.py` and `episodes.py` for detail.
+  `tools/replay_analysis/METHODS.md` (not on the site). Deep reviews start from `analyze.py <id>` (scoreboard, fights,
+  decision points, findings), then `fights.py <id> fights`, `scoreboard.py`, `report.py` and `episodes.py` for
+  detail. Judge flag position with the scoreboard's flag lead, never from who holds the stand. Thresholds live in
+  `common.py`. Findings and situation cards cite tactics line ids (`F1`, `S18`...); keep ids stable.
 - Insights must be about decisions and consequences, not correlations. End each analysis with specific questions for
   Denning.
 - Site home page is Schedule (`#/`); Recent matches is `#/matches`.
