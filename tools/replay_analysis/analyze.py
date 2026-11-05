@@ -12,7 +12,7 @@ import episodes as E
 import fights as F
 import rules as R
 
-ENGINE = 5
+ENGINE = 6
 
 
 def analyze(rid):

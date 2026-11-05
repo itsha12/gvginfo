@@ -44,6 +44,105 @@ def _casts(st):
     return out
 
 
+CRITICAL = {"Guardian", "Aegis PvP", "Reversal of Fortune", "Spirit Bond PvP", "Infuse Health", "Healing Burst", "Life Sheath",
+            "Shield Guardian PvP", "Protective Spirit", "Shielding Hands", "Aura of Faith", "Blessed Light", "Dismiss Condition",
+            "Patient Spirit", "Word of Healing", "Protective Bond", "Shield of Absorption", "Aura of Stability"}
+BLOCKS = {"Guardian", "Aegis PvP", "Shield Guardian PvP"}
+GAP_CLOSERS = {"Death's Charge", "Sprint", "Rush", "Shadow of Haste", "Dash", "Death's Retreat", "Charging Strike", "Harrier's Haste"}
+
+
+def forensics(st, a, td, pre=PRE):
+    """Everything about one death that decides whether it was a misplay, a lack of support or a great enemy play:
+    context (numbers, flag), backline in range and its state, prots on the victim (landed, stripped, interrupted),
+    self-prots, knockdowns (through a block or not, moving into a Coward), interrupts (on critical skills, right after a
+    knockdown, fakeable or not), conditions (cripple, Deep Wound, Daze on the monks), how the attackers got there
+    (gap closers, the victim standing still), and peel on the attackers."""
+    m = st.m; tm = m.team(a); foe = 3 - tm
+    t0 = td - pre; T0, T1 = int(t0 * 10), int(td * 10)
+    f = lambda t: m.f(int(t))
+    R = lambda x: m.roles.get(x) or m.nm(x)
+    mon = [b for b in _monks(st, tm) if b != a]
+    hits = [r for r in m.o["ev"] if r[1] == "dm" and r[3] == a and T0 <= r[0] <= T1 and (r[5] or 0) > 0]
+    attackers = collections.Counter(r[2] for r in hits if r[2] in m.PL)
+    main_att = [x for x, _ in attackers.most_common(3)]
+    out = {}
+    # context
+    out["numbers"] = f"{len(st.main_group(tm, int(td - 2)))}v{len(st.main_group(foe, int(td - 2)))}"
+    out["carriers"] = [m.role(x) for x in st.carrier(td - 2)]
+    own, since = st.stand_owner(td)
+    out["stand"] = f"{m.tag.get(own)} held {round(td - since)} s" if own else "nobody"
+    # backline in cast range each second, and its state (k knocked down, c casting)
+    rng = {}
+    for b in mon:
+        secs = [t for t in range(int(t0), int(td) + 1) if st.alive(b, t)]
+        inr = [t for t in secs if d(st.pos(b, t)[0], st.pos(a, t)[0]) <= CAST_R]
+        states = collections.Counter(st.pos(b, t)[1]["st"] for t in secs if st.pos(b, t)[1])
+        att_on = collections.Counter(R(r[2]) for r in m.o["ev"] if r[1] == "dm" and r[3] == b and T0 <= r[0] <= T1 and r[2] in m.PL)
+        rng[R(b)] = {"in_range_share": round(len(inr) / max(len(secs), 1), 2), "states": dict(states), "under_attack_by": dict(att_on.most_common(3))}
+    out["backline"] = rng
+    # prots: enchantments on the victim, how they ended; prot casts started on the victim and what happened to them
+    ench = []
+    for e in m.o.get("effects", []):
+        if e[5] == a and e[2] == "e" and e[0] is not None and e[0] <= T1 and (e[1] or 10 ** 9) >= T0:
+            ench.append(f"{m.sk(e[3])} by {R(e[4])} {f(e[0])}-{f(e[1]) if e[1] else '?'} ({e[6]})")
+    out["enchantments"] = ench
+    irs = [i for i in m.o.get("interrupts", []) if T0 <= i[0] <= T1]
+    att = []
+    for r in m.o["ev"]:
+        if r[1] == "cs" and r[3] == a and r[2] in st.players[tm] and T0 <= r[0] <= T1 and m.sk(r[4]) in CRITICAL:
+            cut = next((i for i in irs if i[3] == r[2] and 0 <= i[0] - r[0] <= 30), None)
+            att.append(f"{f(r[0])} {R(r[2])} {m.sk(r[4])}" + (f" INTERRUPTED by {R(cut[1])} {m.sk(cut[2])}" if cut else ""))
+    out["prot_attempts"] = att
+    if m.A[a].get("p") == "Monk":
+        out["self_prots"] = [f"{f(r[0])} {m.sk(r[4])}" for r in m.o["ev"] if r[1] == "cs" and r[2] == a and (r[3] in (a, None))
+                             and T0 <= r[0] <= T1 and skill_kind(r[4], m.sk(r[4])) == "prot"]
+    # knockdowns: through a block? moving into a Coward?
+    kds = []
+    for k in m.o.get("knockdowns", []):
+        if k[2] != a or not (T0 <= k[0] <= T1): continue
+        blocked = [m.sk(e[3]) for e in m.o.get("effects", []) if e[5] == a and e[2] == "e" and m.sk(e[3]) in BLOCKS
+                   and e[0] is not None and e[0] <= k[0] <= (e[1] or 10 ** 9)]
+        mv = st.pos(a, k[0] / 10 - 1)[1]
+        kds.append(f"{f(k[0])} {R(k[1])} {m.sk(k[3])}" + (f" through {', '.join(blocked)}" if blocked else ", no block up")
+                   + (" (moving into a Coward)" if "Coward" in m.sk(k[3]) and mv and mv["st"] == "m" else ""))
+    out["knockdowns"] = kds
+    # interrupts on the victim and its backline: critical? right after a knockdown? fakeable (long into the cast)?
+    rup = []
+    for i in irs:
+        if i[3] != a and i[3] not in mon: continue
+        after_kd = any(k[2] == i[3] and 0 <= i[0] - k[0] <= 15 for k in m.o.get("knockdowns", []))
+        crit = m.sk(i[4]) in CRITICAL
+        rup.append(f"{f(i[0])} {R(i[1])} {m.sk(i[2])} on {R(i[3])} casting {m.sk(i[4])}" + (" (critical)" if crit else "")
+                   + (f", {i[6]} ms into the cast" if i[6] is not None else "") + (" right after a knockdown" if after_kd else ""))
+    out["interrupts"] = rup
+    # conditions on the victim and Daze on its backline
+    cond = []
+    for e in m.o.get("effects", []):
+        if e[2] == "c" and e[7] and e[0] is not None and T0 - 50 <= e[0] <= T1 and (e[5] == a or (e[5] in mon and e[7] in ("dazed", "crippled"))):
+            cond.append(f"{e[7]} on {R(e[5])} by {R(e[4])} at {f(e[0])}")
+    out["conditions"] = cond
+    # how the attackers got there: gap closers used on the victim, the victim standing still before contact
+    gc = [f"{f(r[0])} {R(r[2])} {m.sk(r[4])}" for r in m.o["ev"] if r[1] == "cs" and r[2] in main_att and m.sk(r[4]) in GAP_CLOSERS
+          and T0 - 50 <= r[0] <= T1]
+    approach = []
+    for x in main_att:
+        if m.A[x].get("p") not in ("Warrior", "Dervish", "Assassin"): continue
+        ds = [(t, d(st.pos(x, t)[0], st.pos(a, t)[0])) for t in range(int(t0), int(td) + 1)]
+        contact = next((t for t, dd in ds if dd < 150), None)
+        if contact is not None:
+            before = [st.pos(a, t)[1]["st"] for t in range(contact - 4, contact) if st.pos(a, t)[1]]
+            approach.append(f"{R(x)} reached melee at {f(contact * 10)}; victim in the 4 s before: {''.join(before)} (m moving, i idle, c casting, k down)")
+    out["approach"] = {"gap_closers": gc, "contact": approach}
+    # peel: the victim's team hitting, knocking down, hexing or blinding its main attackers
+    peel = collections.Counter()
+    for r in m.o["ev"]:
+        if r[1] == "dm" and r[3] in main_att and r[2] in st.players[tm] and T0 <= r[0] <= T1: peel[R(r[2])] += 1
+    out["peel"] = dict(peel)
+    out["peel_effects"] = [f"{m.sk(e[3])} on {R(e[5])} by {R(e[4])}" for e in m.o.get("effects", []) if e[5] in main_att and e[2] in ("h", "c")
+                           and e[4] in st.players[tm] and e[0] is not None and T0 <= e[0] <= T1]
+    return out
+
+
 def deaths(st):
     m, out = st.m, []
     casts = st.__dict__.setdefault("_casts", _casts(st))
@@ -97,6 +196,7 @@ def deaths(st):
                 "monk_casts_on_victim": own_casts, "monks_busy_with": monk_busy, "monk_distance": monk_dist,
                 "isolated": isolated, "peel_hits": peel, "numbers": (len(st.main_group(tm, int(td - 2))), len(st.main_group(foe, int(td - 2)))),
                 "then": {"npcs_lost_60s": npc, "more_deaths_60s": more, "caps_60s": caps},
+                "forensics": forensics(st, a, td),
             })
     return sorted(out, key=lambda x: x["t"])
 

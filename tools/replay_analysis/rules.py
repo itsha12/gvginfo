@@ -135,7 +135,7 @@ def findings(st, ep=None):
         add(rule="death", principle="6. Kills and timing; 8 to 11 micro", team=x["team"], t=x["t"],
             verdict="mistake" if (x["isolated"] or far) else "note",
             evidence=f"{x['victim']} at {x['zone']} ({x['numbers'][0]}v{x['numbers'][1]}), burst {x['burst_max_2s']}/2 s by {list(x['damage_by'])[:3]}; "
-                     + ("; ".join(why) or "fought to the end") + f"; then {cost}")
+                     + ("; ".join(why) or "no single failure flagged (see forensics)") + f"; then {cost}")
     return sorted(out, key=lambda f: f["t"])
 
 

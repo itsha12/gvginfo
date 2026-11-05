@@ -12,7 +12,10 @@ page is detected in gvg.report replays.
    escort, pushers and what they did, help and latency, half or full double running); the stand ledger; deaths (15 s
    before: burst, damage sources and kinds, knockdowns and interrupts on the victim and its monks, monk casts on the
    victim and what the monks were doing instead, monk distance, isolation, peel, after time, what the enemy took in
-   the next 60 s); monk profiles per 2 minutes (casts by kind, targets, bursts answered and reaction time, idle while
+   the next 60 s, plus a forensics block: numbers and flag context, backline in cast range each second and its state,
+   prots on the victim (landed, stripped, interrupted), self-prots, knockdowns through a block or not and moving into a
+   Coward, interrupts (critical skill, ms into the cast, right after a knockdown), cripple, Deep Wound and Daze, gap
+   closers and whether the victim stood still before contact, peel on the attackers); monk profiles per 2 minutes (casts by kind, targets, bursts answered and reaction time, idle while
    allies were hurt, fakes, interrupts and knockdowns received, distance to enemy mesmers and rangers); numbers
    windows (who had more in the main fight, why the other side was short, pressure against the team's average,
    kills, losses, ground gained); posture every 30 s (how far forward each main group is, against numbers, morale,
