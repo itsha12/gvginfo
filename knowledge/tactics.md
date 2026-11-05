@@ -22,7 +22,8 @@ matches are reviewed). **Open:** lines are questions the match data should help 
   Meditation, 49eec28d-0f4b-5cc1-a146-4d1ad0bd642b; Team vs push, Meditation, 2df9b7fd-823e-5df7-ad4e-192612cd9249;
   cope vs hdm, Uncharted, 1d073205-fdec-5684-aa7a-b03a558a9471; True vs One, Meditation,
   f34cb3a9-98c7-53d0-a980-60aa7dd5bc8d; October 2026 monthly and automated tournaments) and stand until Denning
-  corrects them. Auto-transcripts garble terms: "X-way" and "axes" mean hex way and hexes.
+  corrects them. **Denning (2026-11-04):** the Bounty lines on this page are confirmed, except where a Denning line
+  corrects one. Auto-transcripts garble terms: "X-way" and "axes" mean hex way and hexes.
 
 ## Commentary lessons
 - **Bounty:** "Dying after time": dying just after the res shrine timer (every 2 minutes) means waiting almost the full 2
@@ -172,7 +173,8 @@ matches are reviewed). **Open:** lines are questions the match data should help 
   cost the main fights).
 - **Denning:** A good answer to a solo split: one player collapses on the splitter (for example the dervish killing a
   splitting ranger) while another defends (for example the Mes/A).
-- **Denning:** **3 or 4 man splits**: a group pushes the enemy's backdoor to try to take NPCs.
+- **Denning:** **3 or 4 man splits**: a group pushes the enemy's backdoor to try to take NPCs. A 4 man split is commonly
+  called a **4-4** (confirmed by Denning).
 - **Denning:** Sending the 8 monk alone against a 3 man push is a mistake; that monk needs support.
 - **Denning:** All of these need to be understood; a match can move between them.
 - **Measure:** each team's groups every few seconds (who is with whom and where), so each phase of a match can be

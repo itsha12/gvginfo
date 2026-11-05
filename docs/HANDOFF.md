@@ -179,7 +179,18 @@ winning guilds do differently.
   specific questions at the end. Add what Denning teaches as **Denning:** lines; his in-game tests as **Tested (date):**.
 - Times are match clock (m:ss). Improve the toolkit rather than writing one-off scripts.
 
+## Commentary learning (added later on 2026-11-04)
+- Denning sends Bounty's YouTube commentary transcripts as attachments plus the gvg.report link (YouTube blocks both
+  Claude's page reader and GitHub's servers, so transcripts are pasted or attached). Claude fetches the replay, checks
+  each of Bounty's points against the data, and records lessons on `knowledge/tactics.md` as **Bounty:** lines (Denning
+  has confirmed them). Six done: Apes vs cope, 옷옷옷옷 vs Book, OG vs hold, Team vs push, cope vs hdm, True vs One.
+  Check that each link matches its transcript (one link was for a different match; `listing.json` finds the right one).
+- Bounty's pattern: losses come from time (seconds wasted, after time, missed boosts), positioning and responses, and
+  playing a build the way it is meant to be played; rarely from damage numbers. Lead reviews with that frame.
+
 ## Recent changes
+- 2026-11-04: Learned from six Bounty commentaries; toolkit gained after-time deaths, output per minute, base race,
+  near-miss boosts and splits sections.
 - 2026-11-04: Built the replay pipeline (probe, trim, summary feed, damage types, listing) and the `replays` branch.
 - 2026-11-04: Reviewed RJT vs RACK twice (split 4v4, prot coverage, the 8 monk death) and RACK vs MBP twice.
 - 2026-11-04: Created and grew `knowledge/tactics.md` from Denning's corrections; fixed Lord Health, Entourage notes.
