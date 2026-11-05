@@ -21,6 +21,12 @@ matches are reviewed). **Open:** lines are questions the match data should help 
   enemy base. North and south don't matter; describe positions as backside and push side.
 - **Denning:** Refer to players by role, not character name: prot monk, 7 monk, 8 monk, running mesmer, stand mesmer,
   hammer warrior, and so on.
+- **Denning:** The 7 monk and 8 monk are the healing monks in party slots 7 and 8, with the prot monk in slot 6. The 7
+  monk is usually the push monk and the 8 monk is on the backside.
+- **Denning:** The prot monk follows the 3rd damage: each monk can usually survive 2 damage with team support, but not 3,
+  so the prot has to mirror the 3rd damage.
+- **Denning:** The stand mesmer is the main shutdown mesmer. The running mesmer is called the Mes/A; it usually has a
+  running skill, but not always.
 - **Measure:** roles come from each player's build and party slot. Positions are labelled by side relative to the
   player's own team (backside, push side, base, enemy base, stand).
 - **Denning:** Players are resurrected at their base (res shrine) every 2 minutes as long as they have less than 60%
@@ -33,6 +39,10 @@ matches are reviewed). **Open:** lines are questions the match data should help 
 - **Denning:** **Solo splits**: one player goes through the back or an unconventional route to try to kill the enemy pit
   or NPCs. This is sometimes defended by the 8 monk or by 1 damage, and sometimes teams collapse on the splitter to
   kill it.
+- **Denning:** Whether a solo split is worth it depends on how effective it is and what it accomplishes; it may cost a
+  team one game and win it others.
+- **Open:** when a solo split pays off, measured across many matches (what it killed or drew away against what it
+  cost the main fights).
 - **Denning:** **3 or 4 man splits**: a group pushes the enemy's backdoor to try to take NPCs.
 - **Denning:** All of these need to be understood; a match can move between them.
 - **Measure:** each team's groups every few seconds (who is with whom and where), so each phase of a match can be
