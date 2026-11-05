@@ -98,6 +98,32 @@ matches are reviewed). **Open:** lines are questions the match data should help 
   and when they landed, Infuse Health timing against the target's health, interrupts landed on the enemy's spike
   skills, and what the target's monks were casting at the time.
 
+## Monk play under pressure
+- **Denning:** Against energy denial, the monk casts from the shield set (hiding energy). Enchantments are cast from the
+  staff, which gives 20% longer enchantments. The monk swaps to the single high energy set when low on energy.
+- **Denning:** Space the ranger (stand further away): the further the ranger is from the target, the longer arrow
+  interrupts take to land, so the ranger needs quicker reactions; a very quick monk can also dodge some arrows by
+  moving back and forth.
+- **Denning:** Against 2 damage, getting dazed is critical. Guardian yourself and/or cancel cast (fake) to bait the daze
+  skill. After faking the daze skill, the monk can cast safely for a while, because the daze skill is expensive and the
+  ranger will be low on energy. Keep the ranger targeted to track this.
+- **Denning:** A monk under 2 damage needs team support: for example, the dervish hits the ranger and the mesmer
+  defensively interrupts the enemy mesmer.
+- **Measure:** the monk's distance from the ranger; cancelled casts (a cast stopped without an interrupt) and which
+  enemy skill followed within a second (a successful fake); how long the monk was dazed; which weapon set the monk
+  cast from while under energy denial; peel = teammates' attacks (auto-attacks as well as skills), knockdowns and
+  interrupts on the players attacking the monk.
+
+## Weapon sets
+- Source: Guild Wars Wiki (Energy hiding, Weapon swap), pulled 2026-11-04.
+- Energy hiding: swapping to a low energy set (for example a martial weapon and shield) lowers the available energy
+  pool, so energy denial can take less; the hidden energy comes back when swapping to the casting set. A shield set
+  gives -5 energy; with a +10 to +17 energy primary set, up to 22 energy can be hidden.
+- A 40/40 set is a wand and offhand that each have a 20% chance to halve casting time and a 20% chance to halve
+  recharge of spells (together about a 36% chance of at least one, not 40%). A midline carrying the flag can't use it.
+- **Measure:** gvg.report flags which of a player's sets cast faster (HCT) and which lengthen enchantments; the replay
+  records which set a player held each second (a flag carrier shows no set).
+
 ## Interrupts
 - **Denning:** An interrupt can be critical, for example an interrupt on Healing Burst that leads to a wipe.
 - **Measure:** each interrupt records the interrupter, the skill used, the interrupted skill and who it was aimed at;
