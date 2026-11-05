@@ -1,6 +1,6 @@
 {
  "format": "gvginfo.replay.v1",
- "updated": "2026-11-05T11:51:31.275Z",
+ "updated": "2026-11-05T13:13:46.547Z",
  "matches": {
   "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65": {
    "file": "2026-11/eea5ba87-ac20-5ba3-a6c9-965f11ca8a65.json.gz",
@@ -279,6 +279,62 @@
    "winner": "Men",
    "length_s": 373,
    "kb": 97,
+   "summary": true,
+   "trim": 3
+  },
+  "28447c4a-7cc6-5db5-ac7c-aa2bcc23c62c": {
+   "file": "2026-11/28447c4a-7cc6-5db5-ac7c-aa2bcc23c62c.json.gz",
+   "date": "2026-11-03T19:56:51.914Z",
+   "map": "Imperial Isle",
+   "teams": [
+    "hdm",
+    "HC"
+   ],
+   "winner": "HC",
+   "length_s": 1616,
+   "kb": 402,
+   "summary": true,
+   "trim": 3
+  },
+  "bbef1904-cc55-54a4-aea4-ec0367e0d00b": {
+   "file": "2026-11/bbef1904-cc55-54a4-aea4-ec0367e0d00b.json.gz",
+   "date": "2026-11-02T20:51:43.542Z",
+   "map": "Imperial Isle",
+   "teams": [
+    "hdm",
+    "HC"
+   ],
+   "winner": "hdm",
+   "length_s": 617,
+   "kb": 155,
+   "summary": true,
+   "trim": 3
+  },
+  "0f1fd794-46cd-5fb1-a661-a7ec5f1cbadd": {
+   "file": "2026-11/0f1fd794-46cd-5fb1-a661-a7ec5f1cbadd.json.gz",
+   "date": "2026-11-02T21:31:41.316Z",
+   "map": "Nomad's Isle",
+   "teams": [
+    "hdm",
+    "Men"
+   ],
+   "winner": "Men",
+   "length_s": 1694,
+   "kb": 462,
+   "summary": true,
+   "trim": 3
+  },
+  "faec428a-5b92-54d1-a28c-b79c7f27cfcf": {
+   "file": "2026-11/faec428a-5b92-54d1-a28c-b79c7f27cfcf.json.gz",
+   "date": "2026-11-02T20:27:36.902Z",
+   "map": "Corrupted Isle",
+   "teams": [
+    "Men",
+    "HC"
+   ],
+   "winner": "Men",
+   "length_s": 1324,
+   "kb": 353,
    "summary": true,
    "trim": 3
   }
