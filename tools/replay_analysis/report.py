@@ -1,6 +1,6 @@
 """Standard review tables for one match: builds, phases, stand holds, pit NPC kills and Entourage, lord damage,
 deaths with support context, team totals. Usage: python3 report.py <report id or path to .json.gz> [section ...]
-Sections: builds phases stand npcs lord deaths spikes splits output pit totals (default: all). Interpret with knowledge/tactics.md."""
+Sections: builds phases stand npcs lord deaths spikes splits output pit catches totals (default: all). Interpret with knowledge/tactics.md."""
 import collections, sys
 from replaylib import Match, PROT_SKILLS
 
@@ -230,7 +230,31 @@ def pit(m, step=300, r=1500):
                 print(f"  death {m.f(e[0])} {m.role(e[2]):18} {round(d):6} from own pit{' (in pit)' if d < r else ''}")
 
 
-SECTIONS = dict(pit=pit, output=output, splits=splits, spikes=spikes, builds=builds, phases=phases, stand=stand, npcs=npcs, lord=lord, deaths=deaths, totals=totals)
+def catches(m, window=20, min_dmg=250, min_src=3):
+    """Spike catching per team: each enemy spike (3+ attackers, 250+ damage within 2 s on one target) counted as killed,
+    saved with a prot (prot or Infuse on the target from 3 s before to 2 s after the first hit) or survived without one,
+    with prot timing (negative = pre-prot) and who cast them. Compares monk play between teams and games."""
+    prots = {"Infuse Health", "Spirit Bond PvP", "Life Sheath", "Aegis PvP", "Shielding Hands", "Guardian",
+             "Reversal of Fortune", "Protective Spirit", "Shield of Absorption", "Aura of Faith", "Protective Bond"}
+    ev = m.o["ev"]
+    for tm in (1, 2):
+        atk = [i for i in m.PL if m.team(i) == 3 - tm]
+        hits = sorted(r for r in ev if r[1] == "dm" and r[2] in atk and r[3] in m.PL and m.team(r[3]) == tm and (r[5] or 0) > 0)
+        used, out, timing, who = set(), collections.Counter(), [], collections.Counter()
+        for i, r in enumerate(hits):
+            if i in used: continue
+            w = [(j, h) for j, h in enumerate(hits) if h[3] == r[3] and r[0] <= h[0] <= r[0] + window]
+            if len({h[2] for _, h in w}) < min_src or sum(h[5] for _, h in w) < min_dmg: continue
+            used.update(j for j, _ in w)
+            died = any(e[1] == "dt" and e[2] == r[3] and r[0] <= e[0] <= r[0] + 60 for e in ev)
+            sv = [e for e in ev if e[1] in ("sa", "cs") and m.team(e[2]) == tm and m.sk(e[4]) in prots and e[3] == r[3]
+                  and r[0] - 30 <= e[0] <= r[0] + 20]
+            out["killed" if died else "saved with prot" if sv else "survived, no prot"] += 1
+            timing += [round((e[0] - r[0]) / 10, 1) for e in sv]; who.update(m.roles[e[2]] for e in sv if e[2] in m.roles)
+        print(f"  {m.tag[tm]} under spikes: {dict(out)} | prot timing (s): {sorted(timing)} | by {dict(who)}")
+
+
+SECTIONS = dict(catches=catches, pit=pit, output=output, splits=splits, spikes=spikes, builds=builds, phases=phases, stand=stand, npcs=npcs, lord=lord, deaths=deaths, totals=totals)
 
 if __name__ == "__main__":
     src = sys.argv[1]
