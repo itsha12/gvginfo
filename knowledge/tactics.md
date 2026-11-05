@@ -144,9 +144,16 @@ matches are reviewed). **Open:** lines are questions the match data should help 
   really well: for example, 600 damage landing within 0.2 seconds can't be saved by any prot or Infuse.
 - **Denning:** Winning on Lord damage at 28:00 isn't viable while taking deaths against a spike build like WoC; the team
   would not survive 28 minutes.
-- **Measure:** for each death: the largest damage landed in any half second, from how many players, and how long from
-  the first big hit to death (under about half a second = not saveable); prots up on the target when the spike started;
-  interrupts landed on the spike skills.
+- **Denning:** Anchors for what can be saved: 400 damage in 0.6 seconds should be survivable if the target was in shield
+  set and the damage was armor respecting; 550 armor ignoring damage in 0.35 seconds is impossible to save. The exact
+  line between them is to be honed as more matches are reviewed.
+- **Denning:** A strong prot (for example Ali) is a good benchmark for spike catches: reaction time and pre-protting.
+  A similar benchmark is needed for Infuse Health on a good 7 monk.
+- **Measure:** for each death: the burst (damage in the tightest window, split into armor ignoring and armor
+  respecting), from how many players, the target's set and health; "not saveable" = 550+ armor ignoring within
+  0.35 s, or more than the target's health within 0.35 s; prots and Infuse on the target from 3 s before the first big
+  hit to death, with timing relative to the first big hit (negative = pre-prot); interrupts landed on the spike skills.
+- **Open:** where the line between saveable and not saveable sits for mixed damage and other windows.
 
 ## Spike defence
 - **Denning:** For a spike, the analysis should name the primary failure, such as lack of prots, late infuses, or lack of

@@ -97,27 +97,41 @@ def totals(m):
 
 
 def spikes(m):
-    """Per death: biggest burst in any half second, sources, first big hit to death, prots up, interrupts on the spikers."""
+    """Per death: tightest big burst (armor ignoring vs other), sources, set, prots and Infuse with timing, interrupts.
+    Not saveable (Denning's anchors, knowledge/tactics.md): 550+ armor ignoring within 0.35 s, or more than the target's
+    health within 0.35 s. 400 armor respecting in 0.6 s on a shield set should be survivable."""
     from replaylib import PROT_SKILLS
     for x in m.o["deaths"]:
         v = x["who"]
         if not m.A[v].get("player"): continue
         t, tm = x["t"], m.team(v)
-        hits = sorted((r[0], r[2], r[5] or 0) for r in m.o["ev"] if r[1] == "dm" and r[3] == v and t - 60 <= r[0] <= t
-                      and isinstance(r[2], int) and m.team(r[2]) not in (None, tm))
-        best, src = 0, set()
-        for i, (t0, _, _) in enumerate(hits):
-            w = [h for h in hits[i:] if h[0] - t0 <= 5]
-            dmg = sum(h[2] for h in w)
-            if dmg > best: best, src, first = dmg, {h[1] for h in w}, t0
+        hits = sorted((r[0], r[2], r[5] or 0, (r[6] if len(r) > 6 else None) or "?") for r in m.o["ev"]
+                      if r[1] == "dm" and r[3] == v and t - 80 <= r[0] <= t and isinstance(r[2], int) and m.team(r[2]) not in (None, tm))
         if not hits: continue
-        prot = [m.sk(e[3]) for e in m.o.get("effects", []) if e[5] == v and e[2] == "e" and e[0] <= first <= (e[1] or 1e9)
-                and m.sk(e[3]) in PROT_SKILLS]
+        big = [h for h in hits if h[2] >= 60]
+        first = big[0][0] if big else hits[0][0]
+        def window(w):   # most damage within w tenths, and how much of it was armor ignoring
+            best = (0, 0, set(), first)
+            for i, h in enumerate(hits):
+                ws = [k for k in hits[i:] if k[0] - h[0] <= w]
+                tot = sum(k[2] for k in ws); ai = sum(k[2] for k in ws if k[3] == "armor_ignoring")
+                if tot > best[0]: best = (tot, ai, {k[1] for k in ws}, h[0])
+            return best
+        b35, b6 = window(3.5), window(6)
+        s = m.snap(v, first - 3) or {}
+        sets = m.o.get("sets", {}).get(str(v), [])
+        setl = sets[s["w"]]["label"] if s and 0 <= s.get("w", -1) < len(sets) else "?"
+        maxhp = (sets[s["w"]]["hp"] if s and 0 <= s.get("w", -1) < len(sets) else None) or m.A[v].get("hp") or 0
+        hpnow = round(maxhp * s.get("hp", 100) / 100) if maxhp else None
+        sup = [(f"{(r[0] - first) / 10:+.1f}s", m.role(r[2]), m.sk(r[4])) for r in m.o["ev"]
+               if r[1] == "cs" and r[3] == v and m.team(r[2]) == tm and first - 30 <= r[0] <= t
+               and (m.sk(r[4]) in PROT_SKILLS or "Infuse" in m.sk(r[4]))]
         spikers = {h[1] for h in hits if h[0] >= first}
         rupts = [m.sk(i[4]) for i in m.o.get("interrupts", []) if i[3] in spikers and first - 30 <= i[0] <= t]
-        flag = "  NOT SAVEABLE" if (t - first) <= 5 and best >= 400 else ""
-        print(f"  {m.f(t)} {m.role(v):18} burst {round(best):4} in 0.5s from {len(src)} | first hit to death {(t - first) / 10:.1f}s"
-              f" | prots up {prot} | interrupts on spikers {rupts}{flag}")
+        nots = b35[1] >= 550 or (hpnow and b35[0] > hpnow)
+        print(f"  {m.f(t)} {m.role(v):18} 0.35s: {round(b35[0])} ({round(b35[1])} armor ignoring) from {len(b35[2])} | "
+              f"0.6s: {round(b6[0])} | set {setl}, health ~{hpnow} | first big hit to death {(t - first) / 10:.1f}s")
+        print(f"      prots/Infuse {sup} | interrupts on spikers {rupts}{'  NOT SAVEABLE' if nots else ''}")
 
 
 SECTIONS = dict(spikes=spikes, builds=builds, phases=phases, stand=stand, npcs=npcs, lord=lord, deaths=deaths, totals=totals)
