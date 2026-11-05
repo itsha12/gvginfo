@@ -42,6 +42,9 @@ page; tags such as [Men v Team] on that page point here.
   monk). WoC spike was a relatively standard build for RACK, but probably not any more.
 - **Bounty:** Teams playing with guests (missing their core lineup) often look lost; cope is very different with its
   full lineup.
+- HC (November 2026): twice left its pit to a lone ranger split with no defender and lost every pit NPC; runs a fire
+  paragon balance and, later, Aura of Stability on two monks.
+- Double hammer balance with a ranger and two mesmers is the November 2026 standard for hdm, Men and HC.
 - OG (October 2026): switches builds by map between Double Paragon WoC spike, invoke spike and AoB balance with a
   ranger runner; strong calling on comms.
 
@@ -174,6 +177,64 @@ took RACK's knights and an archer, then wiped the pit from 7:07, with its warrio
 
 **Deciding moments:** 0:35 hdm's cap (never lost); 2:15 RACK's only knight; about 3:30 hdm's WoC monk leaves the
 defence; 4:00 to 7:30 RACK's split chips a healed knight; 7:04 and 7:43 Grapple into the prot and 7 monk deaths.
+
+## [hdm v HC I1] hdm v HC, automated tournament, 2 November 2026
+Imperial Isle, 10:17, gvg.report bbef1904-cc55-54a4-aea4-ec0367e0d00b. Source: replay only.
+
+**Summary.** hdm won at 10:17 in a good v good balance mirror (HC 5 deaths, hdm 1). hdm ran double hammer, a ranger
+and two mesmers; HC ran a hammer, a fire paragon ("They're on Fire!", Blazing Finale), a ranger and two mesmers; both
+had Life Sheath prots and Reversal of Fortune 8 monks. Both teams fought 7v7 with a Mes/A each running the flag; the
+stand changed hands 17 times and nobody boosted (HC missed by 16 s), and there were no real splits. The game was
+decided in 22 seconds at the stand from 8:09: hdm's hammers knocked HC's prot down (Coward, Hammer Bash) while the
+stand mesmer Power Spiked its Aegis, a Hammer Bash interrupted the 7 monk's Healing Burst, and the ranger's
+Concussion Shots stopped the 8 monk's Reversal of Fortune and Shield Guardian. All three HC monks died, the prot after
+time, and hdm walked into HC's pit and killed the Lord at 10:17, one res cycle later. hdm's stand mesmer (46
+enchantment removals, 21 interrupts) and hammers (60 knockdowns) out-played HC's; HC's prot was knocked down 14 times.
+
+**Decided by:** micro (the monk wipe at 8:09), converted at once by macro (Lord in the same res cycle).
+
+## [hdm v HC I2] hdm v HC, automated tournament, 3 November 2026
+Imperial Isle, 26:56, gvg.report 28447c4a-7cc6-5db5-ac7c-aa2bcc23c62c. Source: replay only.
+
+**Summary.** HC won at 26:56, a long good v good balance mirror that hdm should have won (HC 17 deaths, hdm 7). Both ran
+double melee balance with a ranger (hdm two hammers and a hex Mes/A; HC a hammer and an AoB dervish), and HC now had
+Aura of Stability on two monks. hdm's ranger solo split from 4:16 and, with HC's whole team at the stand, took both
+knights, the archers and the Bodyguard by 6:23. hdm then wiped HC from 10:16 to 11:19 and had 7 players in HC's empty
+pit at 11:40, but dealt no Lord damage before HC's res at 12:00. After that hdm led on everything: boosts (3 to 1),
+deaths, and the 28:00 tiebreak by about 7,000 aggressiveness (its ranger chipped the Lord all game, and HC enchanted
+its own Lord 22 times, -1,100). HC had to kill the Lord. From 25:06 HC walked 6 into hdm's pit; hdm kept 4 at home and
+sent 2 to 4 to counter-attack HC's empty pit, lost its 7 monk and prot at 26:25 and 26:32, and its Lord fell 64 s
+before the tiebreak it was winning.
+
+**Decided by:** macro. hdm failed to convert its 11:30 window, then counter-raced when it only needed to defend.
+
+## [hdm v Men N] hdm v Men, automated tournament, 2 November 2026
+Nomad's Isle, 28:14 (tiebreak), gvg.report 0f1fd794-46cd-5fb1-a661-a7ec5f1cbadd. Source: replay only.
+
+**Summary.** Men won on the 28:00 tiebreak in a good v good double hammer mirror (hdm 8 deaths, Men 4). hdm ran two
+hammers, a fire paragon and two mesmers; Men ran two hammers, a ranger, a Mo/D smiter (Word of Censure, Symbol of
+Wrath) and a mesmer, with Aura of Stability on two monks. It was an 8v8 and flag game for 26 minutes with no real
+splits: the stand changed hands 26 times; Men held it from 3:54 to 9:22 (boosts at 5:54 and 7:54) while hdm's stand
+mesmer carried a flag for 206 s, and Men boosted again at 26:50. No pit NPC fell and no Lord was hit until 26:00. Then
+Men pushed 5 into hdm's pit and dealt about 10,000 Lord damage in two minutes, while hdm's 3-man counter-attack dealt
+374. hdm's stand mesmer was the game's best (71 interrupts, 104 enchantment removals) and its hammers out-knocked
+Men's, but Men won the only phase that counted for the tiebreak.
+
+**Decided by:** macro: who committed to Lord damage in the last two minutes.
+
+## [Men v HC C] Men v HC, automated tournament, 2 November 2026
+Corrupted Isle, 22:04, gvg.report faec428a-5b92-54d1-a28c-b79c7f27cfcf. Source: replay only.
+
+**Summary.** Men won at 22:04 in a good v good balance mirror (HC 10 deaths, Men 6). Men ran two hammers, a ranger, a
+Mo/D smiter and a mesmer; HC its fire paragon balance. Both rangers solo split: HC's took Men's footmen and outside
+archers early, while Men's took HC's knights (8:58, 10:47), the Bodyguard (11:37, with a hammer) and two archers by
+13:00, with no HC defender present. The flag traded about once a minute (14 caps each) until Men held from 18:40 to
+the end (boost at 20:40). HC hit back once: its stand mesmer's interrupts on Men's 8 monk (Power Leak, Power Spike on
+Guardian) started a wipe of all four Men monks from 14:40 to 15:30, which HC turned into two knights and an archer.
+Men recovered, killed HC's paragon and hammer, then caught HC's 8 monk three times in its base from 20:49 and killed
+the defenceless Lord. HC's prot was knocked down 38 times and its 8 monk died 5 times.
+
+**Decided by:** macro (the ranger split that emptied HC's pit), with micro deciding each swing (monk wipes).
 
 ## Earlier reviews (before this page)
 Reviewed with Denning in November 2026, without stored summaries: RJT v RACK, RACK v MBP, 옷옷옷옷 v RACK, hold v RACK

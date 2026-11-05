@@ -23,6 +23,13 @@ against general principles rather than past games. Match-by-match evidence lives
   base at 28:00 while still breaking Entourage.
 - **Denning:** Winning on Lord damage at 28:00 isn't viable while taking deaths against a spike build like WoC; the
   team would not survive 28 minutes.
+- The 28:00 tiebreak is aggressiveness: +1 per point of damage to the enemy Lord, -50 per enchantment or weapon spell
+  on your own Lord (GvG match rules page).
+- **Claude:** In long even games, know the aggressiveness score from about 24:00. The team behind must commit to Lord
+  damage (or a Lord kill) in the last minutes; the team ahead only has to keep its Lord alive, so it defends with
+  enough players and does not counter-race. Men won a tiebreak from 0 to 0 at 26:00 by putting 5 on hdm's Lord for
+  two minutes; hdm lost a game it was winning by 7,000 by counter-attacking instead of defending. [hdm v Men N]
+  [hdm v HC I2]
 
 ### The edges that decide the win condition
 A Lord dies when one team brings more to the enemy pit than it can hold. That comes from edges built up over the
@@ -86,7 +93,9 @@ match:
 - **Nick:** On Isle of Weeping Stone a Test of Faith Balthazar dervish (8v8 pressure) beats a Cryptic dervish, since
   the map has little flag pushing and a split can't be collapsed on through the centre.
 - **Claude:** Balance mirrors tend to become long, low-death games decided by the flag game, NPCs taken and one late
-  mistake; neither side can force kills through equal monk lines. [OG v cope U]
+  mistake or one monk-line wipe; neither side can force kills through equal monk lines. In double hammer mirrors the
+  wipe comes from knockdowns on the prot (Coward, Hammer Bash) chained with mesmer and ranger interrupts on the other
+  monks' heals and prots. [OG v cope U] [hdm v HC I1] [hdm v HC I2] [hdm v Men N] [Men v HC C]
 
 ### Key skills in spike matchups
 - **Bounty:** The tools for catching spikes: Reversal of Fortune on the 8, Life Sheath and Spirit Bond on the prot,
@@ -103,6 +112,8 @@ match:
   team's only Aura of Stability is on the prot, nobody can stop it (Aura of Stability never covers the caster): Team's
   prot was knocked down 9 times, RACK's 12, and both teams lost their prots and 7 monks to it. Against this build,
   put Aura of Stability on a second monk. [Men v Team] [RACK v hdm M]
+  Against double hammer, a second Aura of Stability helps but doesn't stop it: HC's prot was knocked down 14 and 38
+  times with one, and still 25 times with two. [hdm v HC I1] [Men v HC C] [hdm v HC I2]
 
 ## 3. Splits
 
@@ -132,6 +143,11 @@ match:
   monks, or NPCs they heal; it only chips. Against a team that defends with its prot and 8 monk, the split needs a 3rd
   damage (which also pulls the enemy prot's rule into play) or it will not take the pit. [Men v Team] [RACK v hdm M]
 - **Claude:** A split that can't touch the Lord or knights only buys time; the game is then decided at main. [OG v chic]
+- **Claude:** A lone ranger split left undefended can take a whole pit (both knights, the archers and the Bodyguard) in
+  2 to 4 minutes, which wins the tiebreak and makes the late push cheap. It has to be answered by a defender or a
+  collapse; HC ignored it twice and lost every pit NPC both times. [hdm v HC I2] [Men v HC C]
+- **Claude:** An empty enemy pit still has to be converted: the next wipe gives one res window to kill the Lord, and a
+  team that goes in and fights the defenders instead of the Lord wastes it. [hdm v HC I2] [Men v HC C]
 
 ### Who goes
 - **Bounty:** When 3 damage are out on a split, the 8 monk should go with them, or the split achieves nothing.
@@ -242,7 +258,9 @@ match:
 - **Bounty:** The first 30 seconds shape the match. A team that double runs out front still has to survive the opening
   fight.
 - **Claude:** Kills are only worth what they are converted into: the strongest teams turn each kill straight into pit
-  pressure (a kill, then knights; the next kills, then archers; a kill in the pit, then the Bodyguard). [OG v chic]
+  pressure (a kill, then knights; the next kills, then archers; a kill in the pit, then the Bodyguard). A monk-line
+  wipe is the biggest conversion chance: the winner gets one res cycle with the enemy's healing gone. [OG v chic]
+  [hdm v HC I1] [Men v HC C]
 - **Claude:** The team ahead on death penalty can stop chasing and make the other team come to it; the team behind
   has to push into fights it can't win. [OG v cope J]
 - **Claude:** Against a hex team, kill the hex casters first; it only works if the spikes land. [OG v cope J] [OG v hdm]
@@ -300,8 +318,9 @@ match:
 - **Denning:** An interrupt can be critical, e.g. an interrupt on Healing Burst that leads to a wipe.
 - **Bounty:** Spiking from max range gets the spikers interrupted easily (Complicate, Cry). Drain Enchantment has a
   higher ceiling than Signet of Recall.
-- **Claude:** Wipes are often chained by interrupts on monk defence: Power Spike or Psychic Instability on Guardian,
-  then a knockdown and Complicate on Healing Burst. [OG v chic] [OG v cope U]
+- **Claude:** Wipes are often chained by interrupts on monk defence: Power Spike or Psychic Instability on Guardian or
+  Aegis, a Hammer Bash or Complicate on Healing Burst, Concussion Shot on Reversal of Fortune. [OG v chic]
+  [OG v cope U] [hdm v HC I1] [Men v HC C]
 - **Claude:** Mesmer shutdown on the spikers and the caller is what turns a spike matchup: 40 interrupts on OG's
   invoke team (vs 16 by the team that lost) went with 1 kill from 18 spikes. [OG v hdm]
 - **Claude:** In mirrors, the side with the stronger mesmers holds the edge in the long game (70 interrupts to 27).
@@ -346,6 +365,10 @@ match:
 - Where is the line between saveable and not saveable for mixed damage and other windows?
 - Does RACK split through the front door or the backdoor on Isle of Meditation? (Denning thinks the front door.)
 - What is the benchmark for a good 7 monk's Infuse Health timing?
+- Who should answer a lone ranger split in a double hammer mirror: the 8 monk alone, a hammer collapsing, or the Mes/A?
+  [hdm v HC I2] [Men v HC C]
+- At 11:40 in [hdm v HC I2], hdm had 7 in HC's empty pit and 20 s before the res; was the Lord killable, or were the 4
+  HC defenders the right target?
 - What beats Double Paragon WoC (3-0 across reviews)? A split with 3 damage and the 8 monk, a 4-4, or staying 8v8 with
   stacked prots and 2 Auras of Stability? [Men v Team] [RACK v hdm M]
 - Why did RACK's split break up at about 4:00, and should the dervishes have rejoined main once the WoC monk left the
