@@ -67,7 +67,7 @@ escorts the flag; 5:14 to 5:36 the pit wipe.
 
 **What the data added to Nick:** Team's only Spirit Bond and Reversal of Fortune were on the 8 monk, away on the
 split, so the main team had one Aura of Faith against the spike; Team's only Aura of Stability was on the prot, the
-player Men knocked down 14 times. Nick was right on every game point; on builds, Men's 7 monk never cast Infuse and
+player Men knocked down most (9 times). Nick was right on every game point; on builds, Men's 7 monk never cast Infuse and
 Team's 7 monk carried Draw Conditions, not Cure Hex.
 
 ## [OG v chic] OG v chic, October 2026 monthly, round 2
