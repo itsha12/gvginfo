@@ -1,6 +1,6 @@
 {
  "format": "gvginfo.replay.v1",
- "updated": "2026-11-05T04:19:46.221Z",
+ "updated": "2026-11-05T04:35:50.391Z",
  "matches": {
   "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65": {
    "file": "2026-11/eea5ba87-ac20-5ba3-a6c9-965f11ca8a65.json.gz",
@@ -181,6 +181,48 @@
    "winner": "OG",
    "length_s": 332,
    "kb": 91,
+   "summary": true,
+   "trim": 3
+  },
+  "2df9b7fd-823e-5df7-ad4e-192612cd9249": {
+   "file": "2026-10/2df9b7fd-823e-5df7-ad4e-192612cd9249.json.gz",
+   "date": "2026-10-17T19:47:43.907Z",
+   "map": "Isle of Meditation",
+   "teams": [
+    "Team",
+    "push"
+   ],
+   "winner": "Team",
+   "length_s": 1546,
+   "kb": 258,
+   "summary": true,
+   "trim": 3
+  },
+  "1d073205-fdec-5684-aa7a-b03a558a9471": {
+   "file": "2026-10/1d073205-fdec-5684-aa7a-b03a558a9471.json.gz",
+   "date": "2026-10-16T20:57:08.067Z",
+   "map": "Uncharted Isle",
+   "teams": [
+    "cope",
+    "hdm"
+   ],
+   "winner": "hdm",
+   "length_s": 1303,
+   "kb": 303,
+   "summary": true,
+   "trim": 3
+  },
+  "f34cb3a9-98c7-53d0-a980-60aa7dd5bc8d": {
+   "file": "2026-10/f34cb3a9-98c7-53d0-a980-60aa7dd5bc8d.json.gz",
+   "date": "2026-10-10T19:22:01.818Z",
+   "map": "Isle of Meditation",
+   "teams": [
+    "True",
+    "One"
+   ],
+   "winner": "One",
+   "length_s": 946,
+   "kb": 227,
    "summary": true,
    "trim": 3
   }
