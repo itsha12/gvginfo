@@ -232,6 +232,14 @@ match:
 - **Denning:** Holding the flag: 8v8 builds often fight 8v8 as long as possible with the flag in hand, then cap right
   before the enemy would get a boost. This keeps the damage together and avoids the flag game.
 
+- **Denning:** In the flag game, and when trying to get up on flags, the goal is to cap as soon as reasonably possible
+  after the enemy. So when the enemy is running a flag, your team has to run too, or it falls behind on flags; a team
+  that has to run can't retreat to its pit. [Men v HC C]
+- **Claude:** Flag timing is measured per cap: when the answering team picked up compared with the enemy's pickup, how
+  long after the enemy's cap it capped, and the runner's trip back to base with any enemies in the way. In [Men v HC C]
+  HC's Mes/A was repeatedly slow back to base (53 to 76 s) because Men's push team (prot, 7 monk, hammer, ranger) sat
+  on its route, so HC kept capping 40 to 80 s after Men: a push team on the enemy's backside also cuts off its runner.
+
 ### Running costs
 - **Denning:** Running the flag costs pressure. A frontline runner puts out basically no damage with the flag in hand.
 - **Denning:** A midline runner can't use its 40/40 set, so it casts fewer skills, has less energy and is more likely

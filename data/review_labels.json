@@ -46,6 +46,12 @@
    "t": 571,
    "rule": "death",
    "ruling": "casting beside the ranger is a minor mistake (high level, not always avoidable), not acceptable; with the 8 alone it could be game ending after time. The 8's 3-man group was correct. The mesmer should always interrupt defensively there, and someone should have peeled so the 8 could kite; the 8 should probably have cancel-cast. Open: was Men on its way to cap or pinned, could the 8 kite into its pit"
+  },
+  {
+   "match": "faec428a-5b92-54d1-a28c-b79c7f27cfcf",
+   "t": 571,
+   "rule": "death (follow-up)",
+   "ruling": "Men was running a flag, so HC had to run too to avoid falling behind (cap as soon as reasonably possible after the enemy); HC couldn't retreat to its pit. The cause was probably the Daze (a slight misplay), but the bigger issue was the flag and where HC's fifth damage (the Mes/A) was"
   }
  ]
 }

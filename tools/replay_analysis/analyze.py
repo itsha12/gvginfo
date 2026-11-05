@@ -12,7 +12,7 @@ import episodes as E
 import fights as F
 import rules as R
 
-ENGINE = 11
+ENGINE = 12
 
 
 def analyze(rid):
@@ -23,7 +23,7 @@ def analyze(rid):
         "meta": {k: m.o["meta"][k] for k in ("map", "map_id", "match_length_s", "teams", "result") if k in m.o["meta"]},
         "roles": {m.tag[m.team(a)] + " " + m.roles[a]: m.nm(a) for a in m.PL},
         "state": [st.at(t) for t in range(0, st.end + 1, 5)],
-        "splits": E.splits(st), "flag_runs": E.flag_runs(st), "stand": E.stand_ledger(st),
+        "splits": E.splits(st), "flag_runs": E.flag_runs(st), "stand": E.stand_ledger(st), "flag_cycles": E.flag_cycles(st),
         "deaths": F.deaths(st), "monks": F.monks(st), "windows": F.windows(st), "posture": F.posture(st),
     }
     out = res

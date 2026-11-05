@@ -181,6 +181,37 @@ def flag_runs(st):
     return out
 
 
+def flag_cycles(st):
+    """Flag timing (Denning: in the flag game, cap as soon as reasonably possible after the enemy). For every cap, the
+    other team's answer: when it picked up its next flag compared with the enemy's pickup (positive = later), how long
+    after the enemy's cap it capped, and the runner's trip back to base after its own previous cap (how long, and
+    whether enemies stood in the way)."""
+    m, out = st.m, []
+    picks = [(t / 10, m.team(a), a) for t, typ, a in m.o.get("flags", []) if typ == "flag_picked_up" and m.team(a)]
+    caps = [(t, tm, None) for t, tm in st.caps]
+    capper = {round(t / 10): a for t, typ, a in m.o.get("flags", []) if typ == "flagstand_captured"}
+    for i, (tc, tm, _) in enumerate(caps):
+        foe = 3 - tm
+        nxt = next((t for t, x, _ in caps[i + 1:] if x == foe), None)
+        my_pick = next((t for t, x, a in picks if x == tm and t > (caps[i - 1][0] if i else -1e9) and t <= tc), None)
+        foe_pick = next((t for t, x, a in picks if x == foe and t > tc - 60 and (nxt is None or t <= nxt)), None)
+        prev_foe_cap = max((t for t, x, _ in caps[:i + 1] if x == foe), default=None)
+        row = {"team": m.tag[foe], "enemy_cap": round(tc), "enemy": m.tag[tm], "own_next_cap": round(nxt) if nxt else None,
+               "cap_delay": round(nxt - tc) if nxt else None,
+               "own_pickup": round(foe_pick) if foe_pick else None,
+               "pickup_vs_enemy_pickup": round(foe_pick - my_pick) if foe_pick and my_pick else None}
+        # the runner's trip back to base after its own previous cap, and enemies in the way
+        if prev_foe_cap is not None and foe_pick:
+            r = capper.get(round(prev_foe_cap))
+            if r is not None and m.team(r) == foe:
+                trip = [t for t in range(int(prev_foe_cap), int(foe_pick))]
+                blocked = collections.Counter(m.roles[e] for t in trip[::2] for e in st.players[tm]
+                                              if st.alive(e, t) and d(st.pos(e, t)[0], st.pos(r, t)[0]) < NEAR_R)
+                row.update(runner=m.roles[r], trip_s=len(trip), enemies_in_the_way=dict(blocked.most_common(4)))
+        out.append(row)
+    return out
+
+
 def stand_ledger(st):
     m, out = st.m, []
     caps = st.caps + [(st.end, None)]
@@ -212,6 +243,12 @@ def show(st, what=("splits", "flags")):
                   f"{(' DOUBLE ' + r['double']) if r['double'] else ''} | min HP {r['min_hp']}% | escort {','.join(r['escort']) or '-'} | main {r['main_numbers']}")
             for k, v in r["pushers"].items(): print(f"    pushed by {k} from {f(v['first'])}: {v['actions']}")
             for h in r["helpers"]: print(f"    help: {h['role']} +{h['latency']} s")
+        print("== flag timing (answer to each enemy cap)")
+        for c in flag_cycles(st):
+            print(f"  {c['team']} after {c['enemy']}'s cap at {f(c['enemy_cap'])}: picked up {f(c['own_pickup'])} "
+                  f"({c['pickup_vs_enemy_pickup']:+} s vs their pickup)" if c['pickup_vs_enemy_pickup'] is not None else f"  {c['team']} after {c['enemy']}'s cap at {f(c['enemy_cap'])}: pickup -",
+                  f"| capped {c['cap_delay']} s after" if c['cap_delay'] is not None else "| no cap",
+                  f"| runner {c.get('runner')} trip back {c.get('trip_s')} s, in the way: {c.get('enemies_in_the_way')}" if c.get('runner') else "")
         print("== stand")
         for h in stand_ledger(st):
             print(f"  {h['team']} {f(h['from'])}-{f(h['to'])} {h['held']} s, boosts {h['boosts']}" + (f", {h['short_of_boost']} s short" if h["short_of_boost"] else ""))

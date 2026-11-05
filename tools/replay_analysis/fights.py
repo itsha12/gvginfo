@@ -69,6 +69,14 @@ def forensics(st, a, td, pre=PRE):
     # context
     out["numbers"] = f"{len(st.main_group(tm, int(td - 2)))}v{len(st.main_group(foe, int(td - 2)))}"
     out["carriers"] = [m.role(x) for x in st.carrier(td - 2)]
+    # the flag situation for the victim's team: is the enemy running, and where is its own runner
+    foe_pick = max((t / 10 for t, typ, x in m.o.get("flags", []) if typ == "flag_picked_up" and m.team(x) == foe and t / 10 <= td), default=None)
+    foe_cap = max((t for t, x in st.caps if x == foe and t <= td), default=None)
+    enemy_running = [m.role(x) for x in st.carrier(td - 2) if m.team(x) == foe]
+    own_runner = next((m.roles[x] for x in st.players[tm] if m.roles[x] == "Mes/A"), None)
+    out["flag"] = {"enemy_running": enemy_running, "enemy_running_for_s": round(td - foe_pick) if enemy_running and foe_pick else None,
+                   "own_team_must_run": bool(enemy_running) and st.stand_owner(td)[0] == tm,
+                   "own_runner": own_runner, "own_runner_zone": st.zone(next(x for x in st.players[tm] if m.roles[x] == own_runner), td - 2) if own_runner else None}
     own, since = st.stand_owner(td)
     out["stand"] = f"{m.tag.get(own)} held {round(td - since)} s" if own else "nobody"
     # backline in cast range each second, and its state (k knocked down, c casting)

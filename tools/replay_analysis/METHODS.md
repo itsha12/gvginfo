@@ -9,13 +9,15 @@ page is detected in gvg.report replays.
    (K2 A2 B1), the flag (carriers, stand owner, hold time, time to a boost). Still to add: what each team can know.
 2. **Episodes** (`episodes.py`, `fights.py`, all built): splits (members, entering the enemy base, who answered,
    when, from where, NPCs killed with or without defenders, main numbers meanwhile); flag runs (runner and line,
-   escort, pushers and what they did, help and latency, half or full double running); the stand ledger; deaths (15 s
+   escort, pushers and what they did, help and latency, half or full double running); the stand ledger; flag timing per cap (`flag_cycles`: pickup compared with the enemy's,
+   cap delay after the enemy's cap, the runner's trip back to base and enemies in the way); deaths (15 s
    before: burst, damage sources and kinds, knockdowns and interrupts on the victim and its monks, monk casts on the
    victim and what the monks were doing instead, monk distance, isolation, peel, after time, what the enemy took in
    the next 60 s, plus a forensics block: numbers and flag context, backline in cast range each second and its state,
    prots on the victim (landed, stripped, interrupted), self-prots, knockdowns through a block or not and moving into a
    Coward, interrupts (critical skill, ms into the cast, right after a knockdown), cripple, Deep Wound and Daze, gap
-   closers and whether the victim stood still before contact, peel on the attackers), and an assessment: cause (coordinated enemy pressure = a great enemy play, spike, positioning,
+   closers and whether the victim stood still before contact, peel on the attackers, and the flag situation: is the enemy
+   running, must the victim's team run, where is its runner), and an assessment: cause (coordinated enemy pressure = a great enemy play, spike, positioning,
    lack of support, unclear) and acceptable mistakes (cast beside a ranger without faking, Aura of Stability recharged
    but not used on a monk being knocked down, no defensive interrupts while Shatter or energy denial went off, peel
    mostly on enemy monks), with quarter-second interrupts marked as luck; monk profiles per 2 minutes (casts by kind, targets, bursts answered and reaction time, idle while

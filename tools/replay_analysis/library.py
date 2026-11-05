@@ -11,7 +11,7 @@ Every record carries: match, map, team (the episode's team), opponent, won (did 
 episode's own fields (see episodes.py, fights.py, rules.py)."""
 import glob, json, os, sys
 
-KINDS = ("splits", "flag_runs", "stand", "deaths", "monks", "windows", "findings")
+KINDS = ("splits", "flag_runs", "flag_cycles", "stand", "deaths", "monks", "windows", "findings")
 
 
 def build(src="/tmp/ga", out="/tmp/gl"):
