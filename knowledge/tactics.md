@@ -133,6 +133,13 @@ matches are reviewed). **Open:** lines are questions the match data should help 
   Men's Lord. Team's main team met Men in the field after each res (5,000 to 7,000 from its pit) and lost a player
   each time; it was wiped in its pit from 5:14, 46 s before the res, and Men killed the Bodyguard and Lord before the
   res arrived.
+- Lessons from that replay (Claude's analysis, to confirm): the split has to stay aggressive, since it is what forces
+  3 defenders; cut to one player, it was answered by one. Taking the 8 monk off the split to escort a flag carrier
+  gained nothing (145 s carry, no cap). The main team's job while splitting is to buy time in its pit, die as rarely
+  as possible and never after time; its field deaths ended the game in 6 minutes.
+- **Open:** in that 2:00 to 4:00 window, should the hammer and stand mesmer have rejoined the ritualist (with the 8
+  monk), or should the dervish have capped instead of carrying for 145 s?
+- **Open:** when may a pit-defending main team step out (e.g. to stop a flag cap or get a res)?
 - **Measure:** `report.py <id> pit`: players in their own pit, the field and the enemy pit every 30 s, and how far
   from their own pit players died (pit from Lord attacks when the Lord was hit, else the res shrine).
 - **Measure:** stand holds that ended just short of 120 s (a nearly missed boost); snares landed by the defenders of
