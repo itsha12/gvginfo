@@ -23,7 +23,7 @@ def phases(m, step=150):
 
 
 def stand(m):
-    caps = [(t, a) for t, typ, a in m.o["flags"] if typ == "flagstand_captured"]
+    caps = [(t, a) for t, typ, a in m.o["flags"] if typ == "flagstand_captured" and m.team(a) in m.tag]
     end = m.o["meta"]["match_length_s"] * 10
     for i, (t, a) in enumerate(caps):
         e = caps[i + 1][0] if i + 1 < len(caps) else end
@@ -44,7 +44,7 @@ def npcs(m):
             dfn60 = sum(1 for a in m.PL if m.team(a) == owner and m.alive(m.snap(a, t - 600)) and m.loc(a, t - 600) == "base")
             print(f"  {m.f(t)} {m.tag[owner]} {m.nm(r[2]):22} hits by {dict(hits.most_common(3))} | attackers in base {att} | "
                   f"defenders {dfn} (a minute before {dfn60})")
-    for la, l in lords.items():   # Entourage: recast about every 10 s while allowed; gaps over 15 s = suppressed
+    for la, l in lords.items():   # Entourage casts; a gap only means suppressed when attackers were at the Lord (lords don't always cast it idle)
         ts = sorted(r[0] for r in m.o["ev"] if r[2] == la and r[1] in ("cs", "ca") and m.sk(r[4]) == "Entourage")
         gaps = [(m.f(a), m.f(b)) for a, b in zip(ts, ts[1:]) if b - a > 150 and b > 0]
         last = m.f(ts[-1]) if ts else None

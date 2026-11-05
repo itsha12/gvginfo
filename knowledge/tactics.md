@@ -123,7 +123,7 @@ matches are reviewed). **Open:** lines are questions the match data should help 
   base at 28:00 (winning on Lord damage at the very end) while still breaking Entourage.
 - **Denning:** Protting your own NPCs instead of your Lord is deliberate: enchantments on your own Lord cost
   aggressiveness.
-- **Measure:** the Lord's Entourage casts (a gap = suppressed), attackers near the Lord against the pit NPCs
+- **Measure:** the Lord's Entourage casts (a gap = suppressed only if attackers were at the Lord), attackers near the Lord against the pit NPCs
   still alive, Lord damage by minute, and enchantments or weapon spells cast on each team's own Lord.
 - **Open:** whether RACK splits through the front door or the backdoor on Isle of Meditation (Denning thinks the front
   door; check against the map).

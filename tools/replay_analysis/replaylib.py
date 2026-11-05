@@ -80,10 +80,9 @@ class Match:
         caps = [c for c in caps if c]
         stand = (statistics.median(c["x"] for c in caps), statistics.median(c["y"] for c in caps)) if caps else (0, 0)
         base = {}
-        for t, typ, a in self.o.get("flags", []):      # each team's first flag pickup in prep is at its base
-            if typ == "flag_picked_up" and t < 0 and self.team(a) not in base:
-                s = self.snap(a, t)
-                if s: base[self.team(a)] = (s["x"], s["y"])
+        for tm in (1, 2):    # each team spawns at its base (res shrine): median of its players' first positions
+            pts = [(self.TR[str(a)]["x"][0], self.TR[str(a)]["y"][0]) for a in self.PL if self.team(a) == tm and str(a) in self.TR]
+            if pts: base[tm] = (statistics.median(p[0] for p in pts), statistics.median(p[1] for p in pts))
         return stand, base
 
     def loc(self, a, t):
@@ -125,8 +124,18 @@ class Match:
                 elif p == "Mesmer": r = "Mes/A" if a == mesa else ("Stand Mes" if len(mes) > 1 else "Mesmer")
                 elif p == "Warrior" and "Hammer Bash" in bar: r = "Hammer"; hammers.append(a)
                 elif p == "Dervish" and "Avatar of Balthazar" in bar: r = "AoB Derv"
+                elif p == "Elementalist":   # by attunement: Air Ele, Fire Ele, Earth Ele, Water Ele
+                    el = [e for e in ("Air", "Fire", "Earth", "Water") if f"{e} Attunement" in bar]
+                    r = (el[0] + " Ele") if el else "Ele"
+                elif p == "Ritualist" and self.A[a].get("s") == "Paragon": r = "Rit/Para"
                 else: r = p or "?"
                 names[a] = r
+            # number duplicates within a team (e.g. three Air Eles -> Air Ele 1, 2, 3)
+            cnt = collections.Counter(names[a] for a in ps)
+            seen = collections.Counter()
+            for a in sorted(ps, key=lambda a: self.A[a].get("slot") or 0):
+                if cnt[names[a]] > 1 and not names[a].startswith(("Monk ", "Hammer")):
+                    seen[names[a]] += 1; names[a] = f"{names[a]} {seen[names[a]]}"
             if len(hammers) > 1:
                 for i, a in enumerate(sorted(hammers, key=lambda a: self.A[a].get("slot") or 0)): names[a] = "Hammer " + "AB"[i]
         return names

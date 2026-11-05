@@ -26,8 +26,9 @@ Source: Guild Wars Wiki (Entourage; Developer update and Game update of 2010-07-
 - Aggressiveness counts Entourage and missed attacks, and gives a much larger bonus when the opponent combines
   defensive buffs with Entourage.
 - **Tested (2026-11-04):** Entourage lasts 10.5 seconds, not 15 as the wiki says.
-- Replay data: the Lord recasts Entourage about every 10 seconds while he can, so a gap in his casts shows when
-  attackers had it suppressed.
+- Replay data: the Lord recasts Entourage about every 10 seconds in some matches, but on Imperial Isle (hold vs RACK,
+  2026-11-01) both Lords went minutes without casting it while no one attacked them, so a gap only means suppressed
+  when attackers were at the Lord at the time.
 
 ## Guild hall NPCs (none respawn)
 - **Tested (2026-11-04):** Solitude has an extra archer that counts as a pit NPC.
