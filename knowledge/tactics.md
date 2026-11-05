@@ -25,6 +25,11 @@ matches are reviewed). **Open:** lines are questions the match data should help 
   corrects them. **Denning (2026-11-04):** the Bounty lines on this page are confirmed, except where a Denning line
   corrects one. Bounty plays mesmer for 옷옷옷옷 (he said so when commentating a game he played in), so weigh his
   comments on 옷옷옷옷 games with that in mind. Auto-transcripts garble terms: "X-way" and "axes" mean hex way and hexes.
+- **OG comms:** lines come from Maga's stream of OG's own voice comms in the October 2026 monthly (OG plays as a team;
+  Maga is OG's mesmer). Comms show what a team intended and called; each line notes what the replay shows happened.
+  Names on comms: Maga = mesmer, Holy = Holye (WoC monk, mesmer or elementalist by build), Enigma = Enigma Og (8 or 7
+  monk), "No Monk" = No Monk For You (prot). Auto-transcripts write elementalist as "Ellie" or "LE". Video time =
+  match time + about 50 s.
 - **Nick:** lines come from Nick's YouTube commentary of the September 2026 monthly final, Men vs Team, Isle of
   Weeping Stone, gvg.report d4660b7b-1e09-584e-a786-0e9f48b3f343. Checked against the replay on 2026-11-05; they stand
   until Denning corrects them.
@@ -142,6 +147,19 @@ matches are reviewed). **Open:** lines are questions the match data should help 
 - **Open:** when may a pit-defending main team step out (e.g. to stop a flag cap or get a res)?
 - **Measure:** `report.py <id> pit`: players in their own pit, the field and the enemy pit every 30 s, and how far
   from their own pit players died (pit from Lord attacks when the Lord was hit, else the res shrine).
+- **OG comms (OG vs chic, Uncharted, R2, gvg.report 5739e1e0-483e-58f1-a017-d0d8fee69c6e):** OG ran the same Double
+  Paragon WoC spike as Men. Against chic's double elementalist split, OG first defended with the WoC monk and the 8 monk
+  (2 for 2). At 3:15 the caller said missing the WoC monk was hurting main team damage, and moved the defence to the
+  prot and 8 monk, freeing the WoC monk for main and the flag. Replay: the WoC monk dealt no damage to players from
+  2:00 to 4:59, then 200 to 660 a minute; it was on 6 of chic's 12 deaths, mostly picks on players far from their
+  monks. OG's called spikes killed only 3 times in 17 attempts against chic's three monks. OG held the stand from 4:31
+  (3 boosts), sat 5 in chic's pit from 6:45, and needed 5 minutes on a Lord chic enchanted 14 times.
+- **OG comms:** good calling habits heard: name the split's make-up the moment it is seen ("double ele split", "one
+  ele left"), ask the defenders whether they can hold it, and don't commit the defence until the last splitter is
+  seen. The comms use "after time" exactly as Denning defines it.
+- **Open:** once chic's split was one elementalist, OG kept its prot home with the 8 monk while chic's main team had 3
+  or more damage. Does that break the rule that the prot follows the enemy's 3rd damage, or is it fine for a spike
+  build whose main team doesn't need the prot?
 - **Measure:** stand holds that ended just short of 120 s (a nearly missed boost); snares landed by the defenders of
   a split; time spent on a failed kill.
 - **Measure:** deaths "after time" (within about 15 s after an even 2-minute mark), and whether the target was being
