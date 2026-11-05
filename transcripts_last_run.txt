@@ -1,0 +1,6 @@
+HX-ym5Q3fRc failed: RequestBlocked 
+Could not retrieve a transcript for the video https://www.youtube.com/watch?v=HX-ym5Q3fRc! This is most likely caused by:
+
+YouTube is blocking requests from your IP. This usually is due to one of the following reasons:
+- You have done too many requests and your IP has been blocked by YouTube
+- You 
