@@ -52,6 +52,10 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   `YYYY-MM/<report id>.json.gz` holds one match, `maps/<map id>.json.gz` holds map outlines. Format and field meanings
   are documented at the top of `tools/gvgreport/replay_trim.mjs` (times in tenths of a second of match time). Fetched
   by the "Fetch replays" workflow from `replays/requests.txt` on main. Read them with a short script, never whole.
+- Replay analysis toolkit: `tools/replay_analysis/` (`replaylib.py` = Match class: positions, groups, sides, carries,
+  build-based role names; `report.py <report id> [builds phases stand npcs lord deaths totals]` = the standard review
+  tables). Start every match review from `report.py`, then dig into specific moments with `replaylib`. Improve these
+  tools rather than writing one-off scripts, so later reviews reuse what was learned.
 - Match analysis follows `knowledge/tactics.md` (Denning's definitions override everything). Insights must be about
   decisions and consequences, not correlations. End each analysis with specific questions for Denning, and add what he
   teaches to that page as **Denning:** lines.
