@@ -8,7 +8,7 @@ Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are in-gam
 - Amulet of Protection caps how much Health he can lose per second: 25 per second at 0:00, rising by a constant 11.6%
   per minute to 300 per second at 12:00. Damage over the cap is absorbed. Health loss from degeneration or direct loss
   is checked once per second and anything over the cap is healed back.
-- **Denning (2026-11-04):** The Lord's maximum Health is 1,680, plus 1% for each morale boost his team has earned (up to
+- **Denning:** The Lord's maximum Health is 1,680, plus 1% for each morale boost his team has earned (up to
   1,848). (The wiki's +300 per boost is wrong.)
 - Maintained enchantments can be cast on him, but only the Divine Favor heal happens; the spell itself doesn't take
   effect. Holy Veil and Purifying Veil don't remove his hexes or conditions.

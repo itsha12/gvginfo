@@ -22,7 +22,7 @@ matches are reviewed). **Open:** lines are questions the match data should help 
   Meditation, 49eec28d-0f4b-5cc1-a146-4d1ad0bd642b; Team vs push, Meditation, 2df9b7fd-823e-5df7-ad4e-192612cd9249;
   cope vs hdm, Uncharted, 1d073205-fdec-5684-aa7a-b03a558a9471; True vs One, Meditation,
   f34cb3a9-98c7-53d0-a980-60aa7dd5bc8d; October 2026 monthly and automated tournaments) and stand until Denning
-  corrects them. **Denning (2026-11-04):** the Bounty lines on this page are confirmed, except where a Denning line
+  corrects them. **Denning:** the Bounty lines on this page are confirmed, except where a Denning line
   corrects one. Bounty plays mesmer for 옷옷옷옷 (he said so when commentating a game he played in), so weigh his
   comments on 옷옷옷옷 games with that in mind. Auto-transcripts garble terms: "X-way" and "axes" mean hex way and hexes.
 - **Claude:** lines are Claude's own macro and micro learnings from replays (with what they confirm). They are
@@ -131,7 +131,7 @@ matches are reviewed). **Open:** lines are questions the match data should help 
   Men's prot sat on the stand; Men's main team still killed everything.)
 - **Nick:** Decapitate (always crits, unblockable, up to +80 damage) hits for about 130 to 150, about 250 with Deep
   Wound. (Replay: 142 to 168; Decapitate then Protector's Strike killed Team's prot at 2:18 and 7 monk at 5:14.)
-- **Denning (2026-11-05):** Against a spike or other 8v8 build that out-damages you at main (e.g. Men's Double Paragon
+- **Denning:** Against a spike or other 8v8 build that out-damages you at main (e.g. Men's Double Paragon
   WoC spike), splitting is right, and the split has to be aggressive, which usually includes the 8 monk for support.
   The main team then has to play in its pit; Team's main team lost too fast by not being in its pit.
 - Replay (Men vs Team, September 2026 final): Team's 4-man split was aggressive only from 1:00 to 1:50; it pulled
@@ -163,7 +163,7 @@ matches are reviewed). **Open:** lines are questions the match data should help 
   gave OG a real flag runner: chic held the stand most of the first 4:31; once the WoC monk ran it, OG held it to the
   end (459 s, 3 boosts). The swap's value was picks and flag, not spikes: OG's called spikes killed about as rarely
   after it as before.
-- **Denning (2026-11-05):** 1 enemy damage held by 1 monk in base is usually a worthwhile trade for the splitting team:
+- **Denning:** 1 enemy damage held by 1 monk in base is usually a worthwhile trade for the splitting team:
   4 damage kill 2 monks more easily than 5 damage kill 3. In that scenario it is up to the main team to win the game.
 - **Claude (OG vs chic, macro, corrected by Denning):** chic's lone elementalist split tied up two OG monks (prot and 8)
   from 4:32, a trade in chic's favour on paper; chic's main team (4 damage, 3 monks) still lost to OG's (5 damage, 1
@@ -314,9 +314,9 @@ matches are reviewed). **Open:** lines are questions the match data should help 
      knockdowns, interrupts, or a spike too fast to save).
   4. Player detail only where a player decided something.
   5. Specific questions for Denning; add his answers to this page.
-- **Denning (2026-11-05):** every review opens with a short upfront summary: result, kind of game, and in two or three
+- **Denning:** every review opens with a short upfront summary: result, kind of game, and in two or three
   sentences how the win condition was reached and the decisive reasons, before any detail.
-- **Denning (2026-11-05):** the summary's first paragraph is prose, not a list of questions. Woven into it: whether
+- **Denning:** the summary's first paragraph is prose, not a list of questions. Woven into it: whether
   they fought 8v8, whether they played the flag game (who capped, boosts), whether anyone split (who, answered how),
   and whether one side's monks, mesmers or both were noticeably better, along with how the win condition was reached.
 - **Denning:** A match review is about the overall scope of the game. A player's own play only matters to the review
