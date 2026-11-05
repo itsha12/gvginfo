@@ -1,0 +1,50 @@
+{
+ "map_id": "355",
+ "map": "Isle of Weeping Stone",
+ "npcs": [
+  {
+   "kind": "guild_lord",
+   "pos": [
+    283,
+    -6451
+   ],
+   "n": 19,
+   "matches": [
+    "d4660b7b-1e09-584e-a786-0e9f48b3f343"
+   ]
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    2466,
+    6779
+   ],
+   "n": 16,
+   "matches": [
+    "d4660b7b-1e09-584e-a786-0e9f48b3f343"
+   ]
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    742,
+    7360
+   ],
+   "n": 20,
+   "matches": [
+    "d4660b7b-1e09-584e-a786-0e9f48b3f343"
+   ]
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    -664,
+    -5646
+   ],
+   "n": 22,
+   "matches": [
+    "d4660b7b-1e09-584e-a786-0e9f48b3f343"
+   ]
+  }
+ ]
+}

@@ -1,7 +1,42 @@
 # How concepts are measured in replay data
 
-Working notes for Claude: how each concept on the GvG tactics page is detected in gvg.report replays. Refine these as
-reviews show what works. `report.py` sections are named in brackets.
+Working notes for Claude: the analysis framework, where everything is stored, and how each concept on the GvG tactics
+page is detected in gvg.report replays.
+
+## The framework (layers)
+1. **Game state every second** (`state.py`, built): per team, who is alive and when the dead return, morale, zones (own
+   pit, own base, backside, stand, push side, enemy base, enemy pit), fight groups and the main group, pit NPCs alive
+   (K2 A2 B1), the flag (carriers, stand owner, hold time, time to a boost). Still to add: what each team can know.
+2. **Episodes** (`episodes.py`): splits (built: members, entering the enemy base, who answered, when, from where,
+   NPCs killed with or without defenders, main numbers meanwhile) and flag runs (built: runner and line, escort,
+   pushers and what they did, help and latency, half or full double running, main numbers meanwhile) and the stand
+   ledger (built). To build: deaths (the 10 to 20 s before), monk profiles, numbers windows and power play, team
+   posture (offensive or defensive against the situation).
+3. **Judgement** (to build): each episode checked against tactics principles, giving findings (on time, late, wrong
+   role, missed, good) with evidence and what the players could know.
+4. **Edge ledger** (to build): each episode's effect on death penalty, boosts, pit NPCs, tiebreak and time; decides
+   macro vs micro from evidence.
+5. **Benchmarks** (after the bulk pull): distributions of every measure across good teams, so "late" is measured.
+6. **Fixed question set**: every deep review answers the same questions (splits, flag game, power play, deaths, monk
+   casting and positioning, support, posture), each mapped to the measures above.
+
+## Where things are stored
+- **Process = code** in `tools/replay_analysis/` (`state.py`, `episodes.py`, `analyze.py`, `report.py`). Prose
+  instructions stay short: which commands to run; the thresholds and rules live in the code.
+- **Per-map knowledge**: `data/maps/<map id>.json`, NPC positions estimated from melee attackers (the replay has no
+  NPC positions), merged and refined every time a match on that map is analysed. Commit them when they change.
+- **Per-match analysis**: `analyze.py <id>` writes one structured file (format gvginfo.analysis.v1, versioned by
+  ENGINE). It is regenerated from the replays and the code in seconds, so it isn't stored yet; once the layers are
+  stable it goes to `analysis/<id>.json` on the `replays` branch (and is built by the workflow for the bulk pull).
+- **Principles**: `knowledge/tactics.md` (people read it); judgement rules in code will cite its sections.
+- **Denning's verdicts on findings** (to add): `data/review_labels.json`, used to calibrate thresholds.
+- **Benchmarks** (to add): one file built from all analysis files.
+
+## Known limits
+- No energy in the data. Positions about once a second. No NPC positions or health (estimated). Intent and what a
+  player is looking at are never in the data.
+- Split detection marks a "flank" when splitters stay near the enemy main group; early-game fights on one side can still
+  show as splits with the whole enemy team "answering" (to refine with Denning's checks).
 
 ## Roles and positions
 - Roles come from each player's build and party slot (`replaylib.Match.roles`). Positions are labelled relative to the

@@ -66,7 +66,9 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   tactics.md under the right situation, each ending with match tags as evidence; when a new match contradicts a line,
   revise it rather than adding a second one; add Denning's answers as **Denning:** lines (no dates). Keep the tactics
   page a model, not a log: merge duplicates and keep match detail on the reviews page.
-- How concepts are measured in the data: `tools/replay_analysis/METHODS.md` (not on the site).
+- How concepts are measured, the analysis framework and where its outputs are stored:
+  `tools/replay_analysis/METHODS.md` (not on the site). Deep reviews start from `analyze.py <id>` (game state every
+  second plus episodes), then `report.py` and `episodes.py` for detail.
 - Insights must be about decisions and consequences, not correlations. End each analysis with specific questions for
   Denning.
 - Site home page is Schedule (`#/`); Recent matches is `#/matches`.

@@ -1,0 +1,95 @@
+{
+ "map_id": "174",
+ "map": "Nomad's Isle",
+ "npcs": [
+  {
+   "kind": "guild_lord",
+   "pos": [
+    6704,
+    4101
+   ],
+   "n": 254,
+   "matches": [
+    "0f1fd794-46cd-5fb1-a661-a7ec5f1cbadd",
+    "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65"
+   ]
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    2684,
+    4524
+   ],
+   "n": 7,
+   "matches": [
+    "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65"
+   ]
+  },
+  {
+   "kind": "bodyguard",
+   "pos": [
+    6878,
+    4272
+   ],
+   "n": 12,
+   "matches": [
+    "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65"
+   ]
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    4317,
+    -4036
+   ],
+   "n": 33,
+   "matches": [
+    "45cf6756-afc8-51fa-ade0-162d7450be1c"
+   ]
+  },
+  {
+   "kind": "guild_lord",
+   "pos": [
+    6794,
+    -3979
+   ],
+   "n": 20,
+   "matches": [
+    "0f1fd794-46cd-5fb1-a661-a7ec5f1cbadd"
+   ]
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    4935,
+    4395
+   ],
+   "n": 20,
+   "matches": [
+    "0f1fd794-46cd-5fb1-a661-a7ec5f1cbadd"
+   ]
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    6714,
+    4114
+   ],
+   "n": 4,
+   "matches": [
+    "0f1fd794-46cd-5fb1-a661-a7ec5f1cbadd"
+   ]
+  },
+  {
+   "kind": "bodyguard",
+   "pos": [
+    6986,
+    -3925
+   ],
+   "n": 26,
+   "matches": [
+    "0f1fd794-46cd-5fb1-a661-a7ec5f1cbadd"
+   ]
+  }
+ ]
+}

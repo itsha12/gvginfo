@@ -1,0 +1,96 @@
+{
+ "map_id": "357",
+ "map": "Imperial Isle",
+ "npcs": [
+  {
+   "kind": "guild_lord",
+   "pos": [
+    924,
+    -5096
+   ],
+   "n": 95,
+   "matches": [
+    "28447c4a-7cc6-5db5-ac7c-aa2bcc23c62c",
+    "bbef1904-cc55-54a4-aea4-ec0367e0d00b"
+   ]
+  },
+  {
+   "kind": "guild_lord",
+   "pos": [
+    1465,
+    13244
+   ],
+   "n": 470,
+   "matches": [
+    "28447c4a-7cc6-5db5-ac7c-aa2bcc23c62c"
+   ]
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -833,
+    -169
+   ],
+   "n": 54,
+   "matches": [
+    "28447c4a-7cc6-5db5-ac7c-aa2bcc23c62c",
+    "bbef1904-cc55-54a4-aea4-ec0367e0d00b"
+   ]
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -881,
+    -1812
+   ],
+   "n": 30,
+   "matches": [
+    "28447c4a-7cc6-5db5-ac7c-aa2bcc23c62c"
+   ]
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    1232,
+    11670
+   ],
+   "n": 4190,
+   "matches": [
+    "28447c4a-7cc6-5db5-ac7c-aa2bcc23c62c"
+   ]
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    1979,
+    12263
+   ],
+   "n": 220,
+   "matches": [
+    "28447c4a-7cc6-5db5-ac7c-aa2bcc23c62c"
+   ]
+  },
+  {
+   "kind": "bodyguard",
+   "pos": [
+    1113,
+    13321
+   ],
+   "n": 400,
+   "matches": [
+    "28447c4a-7cc6-5db5-ac7c-aa2bcc23c62c"
+   ]
+  },
+  {
+   "kind": "bodyguard",
+   "pos": [
+    1358,
+    -4997
+   ],
+   "n": 13,
+   "matches": [
+    "bbef1904-cc55-54a4-aea4-ec0367e0d00b"
+   ]
+  }
+ ]
+}

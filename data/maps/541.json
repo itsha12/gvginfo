@@ -1,0 +1,50 @@
+{
+ "map_id": "541",
+ "map": "Corrupted Isle",
+ "npcs": [
+  {
+   "kind": "guild_lord",
+   "pos": [
+    6436,
+    -4185
+   ],
+   "n": 80,
+   "matches": [
+    "faec428a-5b92-54d1-a28c-b79c7f27cfcf"
+   ]
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    -4103,
+    4227
+   ],
+   "n": 4,
+   "matches": [
+    "faec428a-5b92-54d1-a28c-b79c7f27cfcf"
+   ]
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    5753,
+    -3718
+   ],
+   "n": 6,
+   "matches": [
+    "faec428a-5b92-54d1-a28c-b79c7f27cfcf"
+   ]
+  },
+  {
+   "kind": "bodyguard",
+   "pos": [
+    6480,
+    -3905
+   ],
+   "n": 17,
+   "matches": [
+    "faec428a-5b92-54d1-a28c-b79c7f27cfcf"
+   ]
+  }
+ ]
+}

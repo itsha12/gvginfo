@@ -1,0 +1,61 @@
+{
+ "map_id": "542",
+ "map": "Isle of Solitude",
+ "npcs": [
+  {
+   "kind": "guild_lord",
+   "pos": [
+    4224,
+    3606
+   ],
+   "n": 11,
+   "matches": [
+    "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4"
+   ]
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    4298,
+    3158
+   ],
+   "n": 38,
+   "matches": [
+    "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4"
+   ]
+  },
+  {
+   "kind": "bodyguard",
+   "pos": [
+    3772,
+    2907
+   ],
+   "n": 20,
+   "matches": [
+    "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4"
+   ]
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    3057,
+    4389
+   ],
+   "n": 55,
+   "matches": [
+    "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4"
+   ]
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    3316,
+    3071
+   ],
+   "n": 10,
+   "matches": [
+    "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4"
+   ]
+  }
+ ]
+}
