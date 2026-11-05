@@ -1,0 +1,34 @@
+[
+ {
+  "from": "https://gvg.report/app.js?v=20261101-nomads-art-v1",
+  "text": "age);\n}\n\nfunction reportPayloadUrl(reportId, payload) {\n  const suffix = payload === \"full\"\n    ? \".json\"\n    : payload === \"overview\"\n      ? \".overview.json\"\n    : payload === \"summary\"\n      ? \".summary.json\"\n      : `.${payload}.json`;\n  return `/api/reports/${encodeURIComponent(reportId)}${suffix}`;\n}\n\nexport async function hydrateReplayPathingGeometry(stored, fetchImpl = globalThis.fetch) {\n  const existing = stored?.report?.map_geometry?.pathing_maps;\n  const session = stored?.report?.sessions?.[0] ?? stored?.summary?.session ?? null;\n  const embeddedPathing = session\n    ? movementMapP"
+ },
+ {
+  "from": "https://gvg.report/app.js?v=20261101-nomads-art-v1",
+  "text": "lobalThis.window?.setTimeout ?? globalThis.setTimeout;\n  return new Promise((resolve) => setTimer(resolve, ms));\n}\n\nexport async function fetchReportPayload(reportId, payload, errorMessage = \"Report not found.\", options = {}) {\n  const primaryUrl = `/api/reports/${encodeURIComponent(reportId)}?payload=${payload}`;\n  const fallbackUrl = reportPayloadUrl(reportId, payload);\n  const retryDelays = payload !== \"overview\" && options.retry !== false\n    ? (options.retryDelays ?? FULL_REPORT_FETCH_RETRY_DELAYS_MS)\n    : [];\n  let lastError = null;\n  for (let attempt = 0; attempt <= retryDelays.length;"
+ },
+ {
+  "from": "https://gvg.report/app.js?v=20261101-nomads-art-v1",
+  "text": " ?? \"\",\n  };\n}\n\nlet catalogLineupSelector = null;\nconst catalogLineupLoader = createCatalogLineupLoader({\n  storage: () => globalThis.sessionStorage,\n  loadOverview: async (id) => {\n    const [stored, manifest] = await Promise.all([\n      fetchJson(`/api/reports/${encodeURIComponent(id)}?payload=overview`, reportPayloadUrl(id, 'overview'), 'Could not load recorded lineup.'),\n      loadSkillAssetManifest(), loadLoadoutAssetManifest(),\n    ]);\n    if (!Object.keys(manifest.skills ?? {}).length) throw new Error('Skill metadata unavailable');\n    catalogLineupSelector ??= createLineupSkillSelector"
+ },
+ {
+  "from": "https://gvg.report/app.js?v=20261101-nomads-art-v1",
+  "text": " false;\n    for (let index = 0; index < missing.length; index += 4) {\n      const batch = missing.slice(index, index + 4);\n      const results = await Promise.allSettled(batch.map(async (entry) => {\n        const stored = await fetchJson(\n          `/api/reports/${encodeURIComponent(entry.id)}?payload=overview`,\n          reportPayloadUrl(entry.id, \"overview\"),\n          \"Could not load report overview.\",\n        );\n        const summary = stored?.overview ?? stored?.summary;\n        let entryChanged = false;\n        if (!catalogEntryHasTeamComps(entry)) {\n          const teamComps = catalogTe"
+ },
+ {
+  "from": "https://gvg.report/app.js?v=20261101-nomads-art-v1",
+  "text": "derLoadoutIcon(professionIconAsset(profession), profession, 'gp-profession-icon'),\n    renderBuildSlots: renderGuildBuildSlots,\n    renderSkill: skill => renderSkillToken(skill,{compact:true,nonInteractive:true}),\n    fetchOverview: id => fetchJson('/api/reports/'+encodeURIComponent(id)+'?payload=overview',reportPayloadUrl(id,'overview'),'Combat observations unavailable.',{cache:'default'}),\n    renderTournamentBadge: key => renderTournamentOccasionBadge(key === 'mat'\n      ? { occasion_kind: 'monthly' }\n      : { occasion_kind: 'automated', occasion_slot: key.slice(3).toUpperCase() }),\n    re"
+ },
+ {
+  "from": "https://gvg.report/app.js?v=20261101-nomads-art-v1",
+  "text": "sOfUnixMs:options.eloAsOf,\n  }, {\n    loadAllHistory:loadAllProfile,\n    fetchHistory:()=>fetchJson('/api/guilds/'+encodeURIComponent(identity.slug)+'/rating-changes',null,'Elo history unavailable.',{cache:'default'}),\n    fetchReport:id=>fetchJson('/api/reports/'+encodeURIComponent(id)+'/rating-changes', null, 'Elo observation unavailable.', {cache:'default'}),\n    updateChart:(host, model)=>{\n      host.querySelector('[data-gvg-chart-model]').textContent=serializeChartModel(model);\n      const label=model.measure==='elo'?'Tournament Elo by recorded tournament':model.rows.some(row=>row.event?"
+ },
+ {
+  "from": "https://gvg.report/app.js?v=20261101-nomads-art-v1",
+  "text": "lManifestLoader();\n    const loadoutManifestPromise = loadoutManifestLoader();\n    const ratingChangesPromise = appModuleTestMode && !options.ratingChangesLoader ? Promise.resolve(null)\n      : (options.ratingChangesLoader ?? (reportId => fetchJson(`/api/reports/${encodeURIComponent(reportId)}/rating-changes`, null, \"Rating changes unavailable.\", { cache: \"no-cache\" })))(id).catch(() => null);\n    const buildBenchmarkPromise = reportPayloadFetcher(\n      id,\n      \"build-benchmarks\",\n      \"Build benchmarks not found.\",\n      { retry: false, cache: \"no-cache\" },\n    ).catch(() => null);\n    lo"
+ },
+ {
+  "from": "https://gvg.report/app.js?v=20261101-nomads-art-v1",
+  "text": "nst tab = hashReportTab();\n    const payload = initialReportPayloadForVisualMode(tab);\n    let stored = await initialPayloadLoader(id, payload);\n    if (tab === \"player-summary\") {\n      try {\n        const agentPayload = await fetchJson(\n          `/api/reports/${encodeURIComponent(id)}?payload=agents`,\n          null,\n          \"Report agents not found.\",\n        );\n        attachReportAgentIndex(stored, agentPayload);\n      } catch {\n        enrichStoredReportAgentTargets(stored);\n      }\n    }\n    if (\n      currentReportRouteId() !== id\n      || loadGeneration !== currentReportLoadGenerat"
+ }
+]

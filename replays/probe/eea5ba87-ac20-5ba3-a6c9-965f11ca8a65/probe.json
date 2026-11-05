@@ -1,0 +1,1993 @@
+{
+ "id": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+ "fetched": "2026-11-05T00:17:34.667Z",
+ "page": {
+  "status": 200,
+  "bytes": 8255
+ },
+ "scripts": [
+  {
+   "url": "https://gvg.report/ui/visual-mode.js?v=20260814-terminal-bare-v1",
+   "status": 200,
+   "bytes": 2782
+  },
+  {
+   "url": "https://gvg.report/app.js?v=20261101-nomads-art-v1",
+   "status": 200,
+   "bytes": 1829881
+  },
+  {
+   "url": "https://gvg.report/ui/service-notice.js?v=20261018-v2",
+   "status": 200,
+   "bytes": 4324
+  },
+  {
+   "url": "https://gvg.report/ui/feedback.js?v=20261024-v2",
+   "status": 200,
+   "bytes": 7610
+  },
+  {
+   "url": "https://gvg.report/ui/catalog-search.js",
+   "status": 200,
+   "bytes": 4015
+  },
+  {
+   "url": "https://gvg.report/ui/catalog-search-aliases.js",
+   "status": 200,
+   "bytes": 2250
+  },
+  {
+   "url": "https://gvg.report/ui/catalog-team-skills.js",
+   "status": 200,
+   "bytes": 2372
+  },
+  {
+   "url": "https://gvg.report/ui/catalog-duration-range.js",
+   "status": 200,
+   "bytes": 5805
+  },
+  {
+   "url": "https://gvg.report/ui/catalog-date-range.js",
+   "status": 200,
+   "bytes": 10486
+  },
+  {
+   "url": "https://gvg.report/ui/catalog-search-suggestions.js",
+   "status": 200,
+   "bytes": 11084
+  },
+  {
+   "url": "https://gvg.report/ui/catalog-link-menus.js",
+   "status": 200,
+   "bytes": 3097
+  },
+  {
+   "url": "https://gvg.report/ui/overview-effect-applications.js",
+   "status": 200,
+   "bytes": 14935
+  },
+  {
+   "url": "https://gvg.report/quality-summary.js",
+   "status": 200,
+   "bytes": 48399
+  },
+  {
+   "url": "https://gvg.report/report-time.js",
+   "status": 200,
+   "bytes": 6413
+  },
+  {
+   "url": "https://gvg.report/ui/match-flux.js",
+   "status": 200,
+   "bytes": 4143
+  }
+ ],
+ "api_strings": [
+  "/api/feedback",
+  "/api/guilds/",
+  "/api/guilds/${encodeURIComponent(identity.slug)}",
+  "/api/guilds?${params}",
+  "/api/guilds?archive=1",
+  "/api/guilds?limit=250",
+  "/api/guilds?q=",
+  "/api/guilds?q=${encodeURIComponent(guildDirectoryTerm)}&limit=6",
+  "/api/map-geometry?${params}",
+  "/api/matches",
+  "/api/matches/suggestions?${params}",
+  "/api/matches?${params}",
+  "/api/matches?limit=1&occasion=${occasion}",
+  "/api/matches?limit=100&occasion=${encodeURIComponent(occasion)}",
+  "/api/meta",
+  "/api/meta?month=${encodeURIComponent(era)}",
+  "/api/monthly-stats",
+  "/api/parse?${params.toString()}",
+  "/api/players",
+  "/api/publish-config",
+  "/api/reports/",
+  "/api/reports/${encodeURIComponent(entry.id)}?payload=overview",
+  "/api/reports/${encodeURIComponent(id)}?payload=agents",
+  "/api/reports/${encodeURIComponent(id)}?payload=overview",
+  "/api/reports/${encodeURIComponent(reportId)}${suffix}",
+  "/api/reports/${encodeURIComponent(reportId)}/rating-changes",
+  "/api/reports/${encodeURIComponent(reportId)}?payload=${payload}",
+  "/api/scrims?",
+  "/api/tournament-rankings?period=all",
+  "/api/tournaments/",
+  "/api/tournaments/${encodeURIComponent(id)}/skills?view=sources",
+  "/api/tournaments/${encodeURIComponent(tournamentId)}/live",
+  "/api/tournaments/live-index",
+  "/api/tournaments/live?view=current-rollover-v1"
+ ],
+ "payloads": {
+  "(none)": {
+   "status": 404,
+   "bytes": 0
+  },
+  "summary": {
+   "status": 200,
+   "bytes": 42996959,
+   "shape": {
+    "id": "string",
+    "created_at_unix_ms": "number",
+    "updated_at_unix_ms": "number",
+    "visibility": "string",
+    "recording_scope": {
+     "schema": "string",
+     "policy": "string",
+     "mode": "string",
+     "kind": "string",
+     "group": "object"
+    },
+    "privacy": {
+     "raw_log_persisted": "boolean",
+     "stored_artifact": "string",
+     "names_included": "boolean",
+     "anonymized": "boolean"
+    },
+    "parser": {
+     "version": "string",
+     "revision": "string",
+     "analytics_schema": "string",
+     "input_schema": "string",
+     "diagnostics": {
+      "debug_diagnostics_included": "boolean",
+      "quality": "boolean",
+      "ledger": "boolean"
+     },
+     "payload": {
+      "full_report_included": "boolean",
+      "raw_events_included": "boolean",
+      "public_replay_events_included": "boolean",
+      "public_slim": "boolean"
+     }
+    },
+    "collector": {
+     "version": "string"
+    },
+    "input": {
+     "file_name": "string",
+     "size_bytes": "number",
+     "parse_errors": []
+    },
+    "summary": {
+     "schema": "string",
+     "attribute_build_solver_schema_version": "string",
+     "attribute_build_output_mode": "string",
+     "source_schema": "string",
+     "generated_at_unix_ms": "number",
+     "session": {
+      "id": "string",
+      "started_at_ts": "number",
+      "ended_at_ts": "number",
+      "map_id": "number",
+      "map_name": "string",
+      "map_name_id": "number",
+      "duration_ms": "number",
+      "duration_text": "string",
+      "observed_match_clock": {
+       "instance_start_ms": "number",
+       "instance_end_ms": "number",
+       "instance_window_text": "string",
+       "match_start_ms": "number",
+       "match_end_ms": "number",
+       "live_start_ms": "number",
+       "live_end_ms": "number",
+       "live_window_text": "string",
+       "observed_duration_ms": "number",
+       "observed_duration_text": "string",
+       "prep_offset_ms": "number",
+       "joined_mid_match": "boolean"
+      },
+      "skill_activation_scope": {
+       "schema": "string",
+       "session_id": "string",
+       "status": "string",
+       "ended_at_ts": "number",
+       "ended_source_input_index": "number",
+       "end_evidence": "string",
+       "equal_timestamp_policy": "string",
+       "outcomes": "string"
+      },
+      "is_observer": "number",
+      "is_explorable": "number",
+      "observer_match": {
+       "match_id": "number",
+       "match_id_dup": "number",
+       "browser_section": "string",
+       "selection_source": "string",
+       "recording_mode": "string",
+       "loaded_map_matches": "boolean",
+       "type_raw": "number",
+       "type_name": "string",
+       "match_title": "number",
+       "match_title_name": "string",
+       "occasion": "{7 keys}"
+      },
+      "flux": {
+       "minion_apocalypse_active": "boolean",
+       "meek_shall_inherit_active": "boolean",
+       "meek_shall_inherit_source": "string",
+       "meek_shall_inherit_snapshot_evidence_suppressed": "boolean",
+       "jack_of_all_trades_active": "boolean",
+       "jack_of_all_trades_source": "string",
+       "chain_combo_active": "boolean",
+       "chain_combo_source": "string",
+       "chain_combo_simulated": "boolean",
+       "local_month_basis": "string"
+      }
+     },
+     "privacy": {
+      "names_included": "boolean",
+      "default_name_policy": "string"
+     },
+     "teams": [
+      "len 2",
+      {
+       "team_id": "number",
+       "label": "string",
+       "party_id": "number",
+       "guild_id": "number",
+       "guild_name": "string",
+       "guild_tag": "string",
+       "guild_rank": "number",
+       "rating": "number",
+       "cape": "{9 keys}",
+       "players": "number",
+       "damage_done_estimate": "number",
+       "damage_done_armor_ignoring_estimate": "number",
+       "damage_done_armor_respecting_estimate": "number",
+       "damage_done_elemental_events": "number",
+       "damage_done_elemental_estimate": "number",
+       "damage_done_fire_events": "number",
+       "damage_done_fire_estimate": "number",
+       "damage_done_cold_events": "number",
+       "damage_done_cold_estimate": "number",
+       "damage_done_lightning_events": "number",
+       "damage_done_lightning_estimate": "number",
+       "damage_done_earth_events": "number",
+       "damage_done_earth_estimate": "number",
+       "damage_taken_estimate": "number",
+       "damage_taken_armor_ignoring_estimate": "number",
+       "damage_taken_armor_respecting_estimate": "number",
+       "damage_taken_elemental_events": "number",
+       "damage_taken_elemental_estimate": "number",
+       "damage_taken_fire_events": "number",
+       "damage_taken_fire_estimate": "number",
+       "damage_taken_cold_events": "number",
+       "damage_taken_cold_estimate": "number",
+       "damage_taken_lightning_events": "number",
+       "damage_taken_lightning_estimate": "number",
+       "damage_taken_earth_events": "number",
+       "damage_taken_earth_estimate": "number",
+       "healing_done_estimate": "number",
+       "regeneration_done_gross_estimate": "number",
+       "regeneration_done_effective_healing_estimate": "number",
+       "regeneration_done_overhealing_estimate": "number",
+       "degeneration_done_gross_estimate": "number",
+       "degeneration_done_effective_damage_estimate": "number",
+       "regeneration_received_gross_estimate": "number",
+       "regeneration_received_effective_healing_estimate": "number",
+       "regeneration_received_overhealing_estimate": "number",
+       "degeneration_taken_gross_estimate": "number",
+       "degeneration_taken_effective_damage_estimate": "number",
+       "deaths": "number",
+       "regen_degen_done_regen_degen_events": "number",
+       "regen_degen_taken_regen_degen_events": "number",
+       "regen_degen_done_regeneration_gross_estimate": "number",
+       "regen_degen_taken_regeneration_gross_estimate": "number",
+       "regen_degen_done_regeneration_effective_healing_estimate": "number",
+       "regen_degen_taken_regeneration_effective_healing_estimate": "number",
+       "regen_degen_done_regeneration_overhealing_estimate": "number",
+       "regen_degen_taken_regeneration_overhealing_estimate": "number",
+       "regen_degen_done_regeneration_degen_offset_estimate": "number",
+       "regen_degen_taken_regeneration_degen_offset_estimate": "number",
+       "regen_degen_done_degeneration_gross_estimate": "number",
+       "regen_degen_taken_degeneration_gross_estimate": "number"
+      }
+     ],
+     "key_skills": {
+      "schema": "string",
+      "players": [
+       "len 16",
+       "{5 keys}"
+      ]
+     },
+     "players": [
+      "len 16",
+      {
+       "agent_id": "number",
+       "agent_key": "string",
+       "session_id": "string",
+       "label": "string",
+       "is_player": "boolean",
+       "is_npc_combatant": "boolean",
+       "is_party_henchman": "boolean",
+       "party_membership_source": "object",
+       "henchman_profile": "object",
+       "entity_kind": "object",
+       "agent_type": "number",
+       "owner_agent_id": "object",
+       "npc_kind_label": "object",
+       "known_max_hp": "object",
+       "known_attribute_profile": "object",
+       "known_attribute_ranks": [],
+       "player_number": "number",
+       "display_order": "number",
+       "team_id": "number",
+       "primary_profession": "number",
+       "primary_profession_name": "string",
+       "secondary_profession": "number",
+       "secondary_profession_name": "string",
+       "level": "number",
+       "current_weapon_signature": "{27 keys}",
+       "current_weapon_set_label": "string",
+       "current_flag_bundle_label": "object",
+       "current_repair_kit_label": "object",
+       "observed_weapon_signatures": [
+        "len 4",
+        "..."
+       ],
+       "observed_weapon_set_labels": [
+        "len 4",
+        "..."
+       ],
+       "observed_flag_bundle_signatures": [
+        "len 1",
+        "..."
+       ],
+       "observed_flag_bundle_labels": [
+        "len 1",
+        "..."
+       ],
+       "flag_bundle_max_hp_contexts": [
+        "len 1",
+        "..."
+       ],
+       "base_max_hp": "number",
+       "base_max_hp_label": "string",
+       "base_max_hp_confidence": "string",
+       "base_max_hp_samples": "number",
+       "base_max_hp_source": "string",
+       "observed_repair_kit_signatures": [],
+       "observed_repair_kit_labels": [],
+       "equipment_coverage": "{11 keys}",
+       "weapon_set_max_hp": [
+        "len 4",
+        "..."
+       ],
+       "known_weapon_set_max_hp": [
+        "len 3",
+        "..."
+       ],
+       "exact_equipment_weapon_set_max_hp": [
+        "len 4",
+        "..."
+       ],
+       "assumed_weapon_set_max_hp": [],
+       "unresolved_weapon_sets": [],
+       "skillbar": [
+        "len 8",
+        "..."
+       ],
+       "skillbar_source": "string",
+       "observed_skill_identity_count": "number",
+       "observed_skillbar_capture_complete": "boolean",
+       "observed_skillbar_mutation_detected": "boolean",
+       "skillbar_complete": "boolean",
+       "decoded_skillbar_available": "boolean",
+       "damage_done_estimate": "number",
+       "damage_done_armor_ignoring_estimate": "number",
+       "damage_done_armor_respecting_estimate": "number",
+       "damage_done_elemental_events": "number",
+       "damage_done_elemental_estimate": "number",
+       "damage_done_fire_events": "number",
+       "damage_done_fire_estimate": "number"
+      }
+     ],
+     "npcs": [],
+     "objectives": {
+      "timeline": [
+       "len 53",
+       "{19 keys}"
+      ],
+      "flag_drops": [],
+      "flag_pickups": [],
+      "flagstand_captures": [
+       "len 11",
+       "{10 keys}"
+      ],
+      "health_shrine_events": [],
+      "match_results": [
+       "len 1",
+       "{14 keys}"
+      ],
+      "guild_lord_damage": {
+       "guild_lords": [
+        "len 2",
+        "..."
+       ],
+       "team_scores": [
+        "len 2",
+        "..."
+       ],
+       "events": [
+        "len 52",
+        "..."
+       ],
+       "source_breakdowns": [
+        "len 11",
+        "..."
+       ],
+       "source_totals": [
+        "len 7",
+        "..."
+       ],
+       "second_buckets": [
+        "len 14",
+        "..."
+       ],
+       "entourage_intervals": [
+        "len 138",
+        "..."
+       ],
+       "defender_deaths": "{2 keys}",
+       "defender_states": "{2 keys}",
+       "health_samples": "{4 keys}",
+       "constants": "{16 keys}"
+      }
+     },
+     "match_timeline": {
+      "schema": "string",
+      "time_axis": "string",
+      "sample_interval_ms": "number",
+      "duration_ms": "number",
+      "series": [
+       "len 4",
+       "{5 keys}"
+      ]
+     },
+     "death_recaps": {
+      "window_ms": "number",
+      "deaths": [
+       "len 9",
+       "{38 keys}"
+      ],
+      "totals": {
+       "deaths": "number",
+       "damage_taken_estimate": "number",
+       "damage_taken_armor_respecting_while_conditioned_estimate": "number",
+       "deep_wound_damage_estimate": "number",
+       "deep_wound_refresh_events": "number",
+       "healing_received_estimate": "number",
+       "self_loss_estimate": "number",
+       "damage_prevented_estimate": "number",
+       "nearby_interrupt_context_events": "number"
+      }
+     },
+     "spike_saves": {
+      "window_ms": "number",
+      "detection_window_ms": "number",
+      "qualification_basis": "string",
+      "threshold_pressure": "number",
+      "threshold_damage": "number",
+      "survival_lookahead_ms": "number",
+      "max_recaps": "number",
+      "saves": [
+       "len 1",
+       "{47 keys}"
+      ],
+      "totals": {
+       "saves": "number",
+       "pressure_estimate": "number",
+       "pressure_applied_damage_estimate": "number",
+       "pressure_prevented_damage_estimate": "number",
+       "pressure_deep_wound_damage_estimate": "number",
+       "pressure_degen_damage_estimate": "number",
+       "damage_taken_estimate": "number",
+       "healing_received_estimate": "number",
+       "damage_prevented_estimate": "number",
+       "nearby_interrupt_context_events": "number"
+      }
+     },
+     "max_hp": {
+      "weapon_contexts": [
+       "len 57",
+       "{34 keys}"
+      ],
+      "known_weapon_sets": [
+       "len 42",
+       "{25 keys}"
+      ],
+      "assumed_weapon_sets": [],
+      "divine_favor_inferred_contexts": [
+       "len 45",
+       "{13 keys}"
+      ],
+      "skill_table_inferred_contexts": [
+       "len 39",
+       "{14 keys}"
+      ],
+      "unresolved_weapon_sets": [],
+      "unresolved_damage_contexts": [
+       "len 1",
+       "{34 keys}"
+      ]
+     },
+     "amount_precision": {
+      "total_events": "number",
+      "contextual_events": "number",
+      "estimated_events": "number",
+      "contextual_fraction": "number",
+      "categories": [
+       "len 10",
+       "{6 keys}"
+      ]
+     },
+     "effects": {
+      "uptime_intervals": [
+       "len 1996",
+       "{48 keys}"
+      ],
+      "combat_intervals": [
+       "len 386",
+       "{7 keys}"
+      ],
+      "spirit_area_intervals": [],
+      "ward_area_intervals": [],
+      "speed_boost_intervals": []
+     },
+     "flux": {
+      "chain_combo": {
+       "schema": "string",
+       "active": "boolean",
+       "simulated": "boolean",
+       "source": "string",
+       "local_month_basis": "string",
+       "stack_step_percent": "number",
+       "max_stack_percent": "number",
+       "stack_percent_levels": [
+        "len 7",
+        "..."
+       ],
+       "timeline_window": "{3 keys}",
+       "damage_bonus_rounding": "string",
+       "damage_bonus_basis": "string",
+       "transition_row_limit": "number",
+       "transition_row_count": "number",
+       "transition_rows_truncated": "boolean",
+       "transition_rows": [
+        "len 2469",
+        "..."
+       ],
+       "totals": "{7 keys}",
+       "players": [
+        "len 16",
+        "..."
+       ],
+       "top_players_by_damage_stack": [
+        "len 8",
+        "..."
+       ],
+       "top_players_by_bonus_damage": [
+        "len 8",
+        "..."
+       ]
+      }
+     },
+     "analytics_rank_resolution": {
+      "schema": "string",
+      "used": "boolean",
+      "resolution_count": "number",
+      "unique_assumption_count": "number",
+      "affected_player_count": "number",
+      "by_policy": [
+       "len 1",
+       "{2 keys}"
+      ],
+      "by_consumer": [
+       "len 1",
+       "{2 keys}"
+      ],
+      "caveat": "string"
+     },
+     "skill_analytics": {
+      "attribution": "string",
+      "attribution_window_ms": "number",
+      "caveat": "string",
+      "unattributed_damage_breakdown": [
+       "len 1",
+       "{10 keys}"
+      ],
+      "attributed_outcomes": {
+       "schema": "string",
+       "policy": "{4 keys}",
+       "totals": "{9 keys}",
+       "by_player": [
+        "len 16",
+        "..."
+       ]
+      },
+      "interrupts": {
+       "events": [
+        "len 76",
+        "..."
+       ],
+       "totals": "{13 keys}",
+       "targeted_mesmer_interrupts": "{6 keys}",
+       "by_interrupter": [
+        "len 8",
+        "..."
+       ],
+       "by_interrupted": [
+        "len 19",
+        "..."
+       ]
+      },
+      "knockdowns": {
+       "events": [
+        "len 52",
+        "..."
+       ],
+       "totals": "{5 keys}"
+      },
+      "skill_effect_intervals": [
+       "len 1373",
+       "{78 keys}"
+      ],
+      "block_scoring": {
+       "schema": "string",
+       "mode": "string"
+      }
+     },
+     "totals": {
+      "players": "number",
+      "npcs": "number",
+      "combatants": "number",
+      "damage_sources": "number",
+      "damage_done_estimate": "number",
+      "damage_done_armor_ignoring_estimate": "number",
+      "damage_done_armor_respecting_estimate": "number",
+      "damage_done_elemental_events": "number",
+      "damage_done_elemental_estimate": "number",
+      "damage_done_fire_events": "number",
+      "damage_done_fire_estimate": "number",
+      "damage_done_cold_events": "number",
+      "damage_done_cold_estimate": "number",
+      "damage_done_lightning_events": "number",
+      "damage_done_lightning_estimate": "number",
+      "damage_done_earth_events": "number",
+      "damage_done_earth_estimate": "number",
+      "damage_taken_estimate": "number",
+      "damage_taken_armor_ignoring_estimate": "number",
+      "damage_taken_armor_respecting_estimate": "number",
+      "damage_taken_armor_respecting_while_conditioned_estimate": "number",
+      "damage_taken_armor_respecting_while_conditioned_events": "number",
+      "damage_taken_elemental_events": "number",
+      "damage_taken_elemental_estimate": "number",
+      "damage_taken_fire_events": "number",
+      "damage_taken_fire_estimate": "number",
+      "damage_taken_cold_events": "number",
+      "damage_taken_cold_estimate": "number",
+      "damage_taken_lightning_events": "number",
+      "damage_taken_lightning_estimate": "number",
+      "damage_taken_earth_events": "number",
+      "damage_taken_earth_estimate": "number",
+      "healing_done_estimate": "number",
+      "healing_done_gross_estimate": "number",
+      "overhealing_done_estimate": "number",
+      "regeneration_gross_estimate": "number",
+      "regeneration_effective_healing_estimate": "number",
+      "regeneration_overhealing_estimate": "number",
+      "degeneration_gross_estimate": "number",
+      "degeneration_effective_damage_estimate": "number",
+      "regen_degen_net_health_delta_estimate": "number",
+      "deaths": "number",
+      "parse_errors": "number",
+      "semantic_events": "number",
+      "input_events": "number"
+     },
+     "data_quality": {
+      "names_redacted": "boolean",
+      "nonzero_parse_errors": "boolean",
+      "incomplete_skillbars": "boolean",
+      "objective_inference_present": "boolean",
+      "damage_healing_amounts_include_default_hp_estimates": "boolean",
+      "damage_healing_contextual_fraction": "number",
+      "weapon_family_max_hp_assumption_used": "boolean",
+      "unresolved_damage_max_hp_contexts": "number",
+      "packet_limited_damage_max_hp_contexts": "number",
+      "unresolved_hex_state_bits": "number",
+      "joined_mid_match": "boolean",
+      "match_clock_window_observed": "string",
+      "healing_done_is_effective_estimate": "boolean",
+      "overhealing_estimated_from_hp_snapshots": "boolean",
+      "non_scoring_spirit_self_damage_events": "number",
+      "non_scoring_spirit_self_damage_estimate": "number",
+      "side_color_mapping_unconfirmed": "boolean",
+      "analytics_rank_assumption_used": "boolean"
+     },
+     "damage_inference": {
+      "schema": "string",
+      "status": "string",
+      "conditional": "boolean",
+      "stage": "string",
+      "scope": {
+       "armor": "string",
+       "build_legality": "{4 keys}",
+       "unresolved_alternatives": [
+        "len 4",
+        "..."
+       ],
+       "weapon_requirement": "string",
+       "environmental_states": "string",
+       "effect_modifiers": "string",
+       "uncertain_weapon_damage": "string",
+       "promotion": "string"
+      },
+      "totals": {
+       "packets": "number",
+       "usable_packets": "number",
+       "rejected_packets": "number",
+       "solved_components": "number",
+       "conflicts": "number",
+       "unresolved_components": "number"
+      },
+      "rejection_counts": {
+       "unidentified_weapon_packet_kind": "number",
+       "target_unresolved_effect:Avatar_of_Balthazar": "number",
+       "flux_modifier_not_resolved": "number",
+       "damage_contract_not_audited": "number",
+       "ordinary_attack_not_independently_bound": "number",
+       "non_positive_or_unknown_amount": "number",
+       "source_stance_or_glyph_not_resolved": "number",
+       "target_stance_or_glyph_not_resolved": "number",
+       "source_unresolved_effect:Empathy_PvP": "number",
+       "target_effect_modifier_recipient_unproven:Shielding_Hands": "number",
+       "missing_independent_target_skill_hint": "number",
+       "non_player_armor_model": "number",
+       "source_unresolved_effect:Avatar_of_Balthazar": "number",
+       "source_unresolved_effect:Conjure_Phantasm": "number",
+       "nonunique_independent_skill_use": "number",
+       "source_ambiguous_effect_boundary_order": "number",
+       "source_unresolved_effect:Harrier's_Haste": "number",
+       "target_unresolved_effect:Conjure_Phantasm": "number",
+       "target_unresolved_effect:Aura_of_Displacement": "number",
+       "target_unresolved_effect:Crippling_Anguish_PvP": "number",
+       "source_unresolved_effect:Spotless_Soul": "number",
+       "target_unresolved_effect:Spotless_Soul": "number",
+       "target_unresolved_effect:Life_Sheath": "number",
+       "source_unresolved_effect:Guilt": "number",
+       "source_unresolved_effect:Crippling_Anguish_PvP": "number",
+       "target_unresolved_effect:Web_of_Disruption_PvP": "number",
+       "target_unresolved_effect:Illusion_of_Pain_PvP": "number",
+       "source_unresolved_effect:Web_of_Disruption_PvP": "number",
+       "non_independent_hp_basis": "number",
+       "target_effect_modifier_recipient_unproven:Aura_of_Faith": "number",
+       "target_unresolved_effect:Empathy_PvP": "number",
+       "target_weakness_or_cracked_armor_not_resolved": "number",
+       "target_unidentified_enchantment": "number",
+       "target_unresolved_effect:Reversal_of_Fortune": "number",
+       "source_unresolved_effect:Aura_of_Displacement": "number",
+       "target_unresolved_effect:Enchanted_Haste": "number",
+       "target_ambiguous_effect_boundary_order": "number",
+       "percentage_deep_wound_hp_quantization_not_independently_resolved": "number",
+       "target_unresolved_effect:Reverse_Hex": "number"
+      },
+      "skill_coverage": [
+       "len 29",
+       "{4 keys}"
+      ],
+      "limits": {
+       "factor_evaluations": "number",
+       "joint_candidates": "number",
+       "joint_comparisons": "number",
+       "exhaustion": "string"
+      },
+      "best_fit": {
+       "schema": "string",
+       "heuristic": "boolean",
+       "exhaustive": "boolean",
+       "feeds_attribute_inference": "boolean",
+       "scope": "{9 keys}",
+       "scoring": "string",
+       "totals": "{6 keys}",
+       "exclusions": [],
+       "players": [
+        "len 16",
+        "..."
+       ],
+       "components": []
+      },
+      "relations": []
+     },
+     "diagnostics": {
+      "debug_diagnostics_included": "boolean",
+      "quality": "boolean",
+      "ledger": "boolean"
+     }
+    },
+    "summary_payload_schema_version": "string",
+    "report_available": "boolean",
+    "payloads_available": {
+     "overview": "boolean",
+     "summary": "boolean",
+     "agents": "boolean",
+     "effects": "boolean",
+     "game-story": "boolean",
+     "replay": "boolean",
+     "full": "boolean"
+    },
+    "payloads_loaded": {
+     "summary": "boolean"
+    },
+    "review": {
+     "state": "string",
+     "quality_level": "string",
+     "parser_revision": "string",
+     "assessment_id": "string",
+     "reasons": []
+    }
+   }
+  },
+  "overview": {
+   "status": 200,
+   "bytes": 95574,
+   "shape": {
+    "id": "string",
+    "created_at_unix_ms": "number",
+    "updated_at_unix_ms": "number",
+    "visibility": "string",
+    "recording_scope": {
+     "schema": "string",
+     "policy": "string",
+     "mode": "string",
+     "kind": "string",
+     "group": "object"
+    },
+    "privacy": {
+     "raw_log_persisted": "boolean",
+     "stored_artifact": "string",
+     "names_included": "boolean",
+     "anonymized": "boolean"
+    },
+    "parser": {
+     "version": "string",
+     "revision": "string",
+     "analytics_schema": "string",
+     "input_schema": "string",
+     "diagnostics": {
+      "debug_diagnostics_included": "boolean",
+      "quality": "boolean",
+      "ledger": "boolean"
+     },
+     "payload": {
+      "full_report_included": "boolean",
+      "raw_events_included": "boolean",
+      "public_replay_events_included": "boolean",
+      "public_slim": "boolean"
+     }
+    },
+    "collector": {
+     "version": "string"
+    },
+    "input": {
+     "file_name": "string",
+     "size_bytes": "number",
+     "parse_error_count": "number"
+    },
+    "overview_payload_schema_version": "string",
+    "overview": {
+     "schema": "string",
+     "metric_scope_version": "string",
+     "generated_at_unix_ms": "number",
+     "session": {
+      "id": "string",
+      "started_at_ts": "number",
+      "ended_at_ts": "number",
+      "map_id": "number",
+      "map_name": "string",
+      "duration_ms": "number",
+      "duration_text": "string",
+      "observed_match_clock": {
+       "instance_start_ms": "number",
+       "instance_end_ms": "number",
+       "instance_window_text": "string",
+       "match_start_ms": "number",
+       "match_end_ms": "number",
+       "live_start_ms": "number",
+       "live_end_ms": "number",
+       "live_window_text": "string",
+       "observed_duration_ms": "number",
+       "observed_duration_text": "string",
+       "prep_offset_ms": "number",
+       "joined_mid_match": "boolean"
+      },
+      "observer_match": {
+       "match_id": "number",
+       "match_id_dup": "number",
+       "browser_section": "string",
+       "selection_source": "string",
+       "loaded_map_matches": "boolean",
+       "type_raw": "number",
+       "recording_mode": "string",
+       "type_name": "string",
+       "match_title": "number",
+       "match_title_name": "string",
+       "occasion": "{7 keys}"
+      }
+     },
+     "result": {
+      "winning_team_id": "number",
+      "result_type": "string",
+      "ts_unix_ms": "number",
+      "confidence": "string"
+     },
+     "teams": [
+      "len 2",
+      {
+       "team_id": "number",
+       "instance_guild_id": "number",
+       "side": "string",
+       "label": "string",
+       "guild_name": "string",
+       "guild_tag": "string",
+       "rating": "number",
+       "cape": "{9 keys}",
+       "players": "number",
+       "henchmen": "number",
+       "party_members": "number",
+       "damage_done_estimate": "number",
+       "damage_taken_estimate": "number",
+       "healing_done_estimate": "number",
+       "deaths": "number",
+       "flagstand_captures": "number"
+      }
+     ],
+     "players": [
+      "len 16",
+      {
+       "agent_id": "number",
+       "agent_key": "string",
+       "session_id": "string",
+       "label": "string",
+       "is_player": "boolean",
+       "is_party_henchman": "boolean",
+       "is_npc_combatant": "boolean",
+       "entity_kind": "object",
+       "owner_agent_id": "object",
+       "npc_kind_label": "object",
+       "party_membership_source": "object",
+       "player_number": "number",
+       "display_order": "number",
+       "team_id": "number",
+       "primary_profession": "number",
+       "primary_profession_name": "string",
+       "secondary_profession": "number",
+       "secondary_profession_name": "string",
+       "level": "number",
+       "base_max_hp": "number",
+       "base_max_hp_source": "string",
+       "base_max_hp_confidence": "string",
+       "base_max_hp_samples": "number",
+       "skillbar": [
+        "len 8",
+        "..."
+       ],
+       "observed_skills": [
+        "len 10",
+        "..."
+       ],
+       "skillbar_source": "string",
+       "skillbar_complete": "boolean",
+       "decoded_skillbar_available": "boolean",
+       "damage_done_estimate": "number",
+       "damage_done_enemy_roster_estimate": "number",
+       "damage_done_all_targets_estimate": "number",
+       "damage_done_allied_targets_estimate": "number",
+       "damage_done_unresolved_target_estimate": "number",
+       "damage_done_target_classification_complete": "boolean",
+       "damage_taken_estimate": "number",
+       "healing_done_estimate": "number",
+       "deaths": "number"
+      }
+     ],
+     "henchmen": [],
+     "quality_notice": "object",
+     "death_recaps": {
+      "window_ms": "number",
+      "deaths": [
+       "len 9",
+       "{8 keys}"
+      ]
+     }
+    },
+    "report_available": "boolean",
+    "payloads_available": {
+     "overview": "boolean",
+     "summary": "boolean",
+     "agents": "boolean",
+     "effects": "boolean",
+     "game-story": "boolean",
+     "replay": "boolean",
+     "full": "boolean"
+    },
+    "payloads_loaded": {
+     "overview": "boolean"
+    },
+    "review": {
+     "state": "string",
+     "quality_level": "string",
+     "parser_revision": "string",
+     "assessment_id": "string",
+     "reasons": []
+    }
+   }
+  },
+  "full": {
+   "status": 404,
+   "bytes": 0
+  },
+  "replay": {
+   "status": 200,
+   "bytes": 90950545,
+   "shape": {
+    "id": "string",
+    "created_at_unix_ms": "number",
+    "updated_at_unix_ms": "number",
+    "visibility": "string",
+    "recording_scope": {
+     "schema": "string",
+     "policy": "string",
+     "mode": "string",
+     "kind": "string",
+     "group": "object"
+    },
+    "privacy": {
+     "raw_log_persisted": "boolean",
+     "stored_artifact": "string",
+     "names_included": "boolean",
+     "anonymized": "boolean"
+    },
+    "parser": {
+     "version": "string",
+     "revision": "string",
+     "analytics_schema": "string",
+     "input_schema": "string",
+     "diagnostics": {
+      "debug_diagnostics_included": "boolean",
+      "quality": "boolean",
+      "ledger": "boolean"
+     },
+     "payload": {
+      "full_report_included": "boolean",
+      "raw_events_included": "boolean",
+      "public_replay_events_included": "boolean",
+      "public_slim": "boolean"
+     }
+    },
+    "collector": {
+     "version": "string"
+    },
+    "input": {
+     "file_name": "string",
+     "size_bytes": "number",
+     "parse_error_count": "number"
+    },
+    "overview_payload_schema_version": "string",
+    "overview": {
+     "schema": "string",
+     "metric_scope_version": "string",
+     "generated_at_unix_ms": "number",
+     "session": {
+      "id": "string",
+      "started_at_ts": "number",
+      "ended_at_ts": "number",
+      "map_id": "number",
+      "map_name": "string",
+      "duration_ms": "number",
+      "duration_text": "string",
+      "observed_match_clock": {
+       "instance_start_ms": "number",
+       "instance_end_ms": "number",
+       "instance_window_text": "string",
+       "match_start_ms": "number",
+       "match_end_ms": "number",
+       "live_start_ms": "number",
+       "live_end_ms": "number",
+       "live_window_text": "string",
+       "observed_duration_ms": "number",
+       "observed_duration_text": "string",
+       "prep_offset_ms": "number",
+       "joined_mid_match": "boolean"
+      },
+      "observer_match": {
+       "match_id": "number",
+       "match_id_dup": "number",
+       "browser_section": "string",
+       "selection_source": "string",
+       "loaded_map_matches": "boolean",
+       "type_raw": "number",
+       "recording_mode": "string",
+       "type_name": "string",
+       "match_title": "number",
+       "match_title_name": "string",
+       "occasion": "{7 keys}"
+      }
+     },
+     "result": {
+      "winning_team_id": "number",
+      "result_type": "string",
+      "ts_unix_ms": "number",
+      "confidence": "string"
+     },
+     "teams": [
+      "len 2",
+      {
+       "team_id": "number",
+       "instance_guild_id": "number",
+       "side": "string",
+       "label": "string",
+       "guild_name": "string",
+       "guild_tag": "string",
+       "rating": "number",
+       "cape": "{9 keys}",
+       "players": "number",
+       "henchmen": "number",
+       "party_members": "number",
+       "damage_done_estimate": "number",
+       "damage_taken_estimate": "number",
+       "healing_done_estimate": "number",
+       "deaths": "number",
+       "flagstand_captures": "number"
+      }
+     ],
+     "players": [
+      "len 16",
+      {
+       "agent_id": "number",
+       "agent_key": "string",
+       "session_id": "string",
+       "label": "string",
+       "is_player": "boolean",
+       "is_party_henchman": "boolean",
+       "is_npc_combatant": "boolean",
+       "entity_kind": "object",
+       "owner_agent_id": "object",
+       "npc_kind_label": "object",
+       "party_membership_source": "object",
+       "player_number": "number",
+       "display_order": "number",
+       "team_id": "number",
+       "primary_profession": "number",
+       "primary_profession_name": "string",
+       "secondary_profession": "number",
+       "secondary_profession_name": "string",
+       "level": "number",
+       "base_max_hp": "number",
+       "base_max_hp_source": "string",
+       "base_max_hp_confidence": "string",
+       "base_max_hp_samples": "number",
+       "skillbar": [
+        "len 8",
+        "..."
+       ],
+       "observed_skills": [
+        "len 10",
+        "..."
+       ],
+       "skillbar_source": "string",
+       "skillbar_complete": "boolean",
+       "decoded_skillbar_available": "boolean",
+       "damage_done_estimate": "number",
+       "damage_done_enemy_roster_estimate": "number",
+       "damage_done_all_targets_estimate": "number",
+       "damage_done_allied_targets_estimate": "number",
+       "damage_done_unresolved_target_estimate": "number",
+       "damage_done_target_classification_complete": "boolean",
+       "damage_taken_estimate": "number",
+       "healing_done_estimate": "number",
+       "deaths": "number"
+      }
+     ],
+     "henchmen": [],
+     "quality_notice": "object",
+     "death_recaps": {
+      "window_ms": "number",
+      "deaths": [
+       "len 9",
+       "{8 keys}"
+      ]
+     }
+    },
+    "report_available": "boolean",
+    "payloads_available": {
+     "overview": "boolean",
+     "summary": "boolean",
+     "agents": "boolean",
+     "effects": "boolean",
+     "game-story": "boolean",
+     "replay": "boolean",
+     "full": "boolean"
+    },
+    "payloads_loaded": {
+     "overview": "boolean",
+     "replay": "boolean"
+    },
+    "report_payload": {
+     "schema_version": "string",
+     "kind": "string",
+     "generated_at_unix_ms": "number"
+    },
+    "replay_payload": {
+     "schema_version": "string",
+     "snapshot_sample_interval_ms": "number",
+     "downsampled": "boolean"
+    },
+    "report": {
+     "schema": "string",
+     "generated_at_unix_ms": "number",
+     "privacy": {
+      "names_included": "boolean",
+      "default_name_policy": "string"
+     },
+     "totals": {
+      "input_events": "number",
+      "semantic_events": "number",
+      "first_ts_unix_ms": "number",
+      "last_ts_unix_ms": "number",
+      "duration_ms": "number",
+      "parse_errors": "number"
+     },
+     "sessions": [
+      "len 1",
+      {
+       "id": "string",
+       "started_at_ts": "number",
+       "ended_at_ts": "number",
+       "duration_ms": "number",
+       "end_reason": "string",
+       "map_id": "number",
+       "map_file_id": "number",
+       "map_name_id": "number",
+       "map_name": "string",
+       "is_explorable": "number",
+       "is_observer": "number",
+       "controlled_agent_id": "number",
+       "roster_agent_ids": [
+        "len 17",
+        "..."
+       ],
+       "roster_agent_keys": [
+        "len 17",
+        "..."
+       ],
+       "observer_match": "{11 keys}",
+       "teams": [
+        "len 3",
+        "..."
+       ],
+       "spawn_plane": "number",
+       "spawn_point": "{2 keys}",
+       "duration_text": "string",
+       "observed_match_clock": "{12 keys}",
+       "skill_activation_scope": "{8 keys}",
+       "flux": "{10 keys}"
+      }
+     ],
+     "energy_baseline": {
+      "schema": "string",
+      "model_version": "number",
+      "stage": "string",
+      "session_id": "string",
+      "start_ts": "number",
+      "duration_ms": "number",
+      "sample_interval_ms": "number",
+      "assumptions": [
+       "len 6",
+       "string"
+      ],
+      "included": [
+       "len 6",
+       "string"
+      ],
+      "excluded": [
+       "len 7",
+       "string"
+      ],
+      "sources": [
+       "len 7",
+       "string"
+      ],
+      "players": [
+       "len 16",
+       "{12 keys}"
+      ]
+     },
+     "energy_state": {
+      "schema": "string",
+      "model_version": "number",
+      "stage": "string",
+      "session_id": "string",
+      "start_ts": "number",
+      "duration_ms": "number",
+      "sample_interval_ms": "number",
+      "assumptions": [
+       "len 6",
+       "string"
+      ],
+      "included": [
+       "len 19",
+       "string"
+      ],
+      "excluded": [
+       "len 1",
+       "string"
+      ],
+      "sources": [
+       "len 143",
+       "string"
+      ],
+      "players": [
+       "len 16",
+       "{19 keys}"
+      ],
+      "baseline_model_version": "number",
+      "skill_totals": [
+       "len 13",
+       "{6 keys}"
+      ],
+      "coverage": [
+       "len 41",
+       "{5 keys}"
+      ],
+      "cost_modifier_constraints": []
+     },
+     "agents": [
+      "len 16",
+      {
+       "agent_key": "string",
+       "session_id": "string",
+       "agent_id": "number",
+       "label": "string",
+       "player_number": "number",
+       "display_order": "number",
+       "is_player": "boolean",
+       "team_id": "number",
+       "agent_type": "number",
+       "primary_profession_name": "string",
+       "secondary_profession_name": "string"
+      }
+     ],
+     "events": [
+      "len 39263",
+      {
+       "type": "string",
+       "schema": "string",
+       "session_id": "string",
+       "ts_unix_ms": "number",
+       "agent_key": "string",
+       "agent_id": "number"
+      }
+     ],
+     "effects": {
+      "spirit_range_memberships": []
+     },
+     "morale": {
+      "team_morale": [
+       "len 1",
+       "{4 keys}"
+      ],
+      "agent_states": [
+       "len 14",
+       "{8 keys}"
+      ]
+     },
+     "max_hp": {
+      "weapon_contexts": [
+       "len 57",
+       "{34 keys}"
+      ],
+      "endure_pain_inferences": [],
+      "fertile_season_inferences": []
+     },
+     "objectives": {
+      "object_transitions": [
+       "len 43",
+       "{10 keys}"
+      ],
+      "carrier_inferences": [
+       "len 27",
+       "{18 keys}"
+      ],
+      "flag_drops": [],
+      "flag_pickups": [],
+      "flagstand_captures": [
+       "len 11",
+       "{10 keys}"
+      ],
+      "health_shrine_events": [],
+      "match_results": [
+       "len 1",
+       "{14 keys}"
+      ],
+      "inference_parameters": {
+       "carrier_snapshot_window_ms": "number",
+       "carrier_max_distance": "number"
+      }
+     },
+     "map_geometry": {
+      "pathing_maps": []
+     },
+     "map_timeline": [
+      "len 898",
+      {
+       "ts_unix_ms": "number",
+       "source": "string",
+       "map_id": "number",
+       "is_explorable": "number",
+       "is_observer": "number"
+      }
+     ],
+     "input": {
+      "file": "string",
+      "parse_errors": []
+     }
+    }
+   }
+  },
+  "timeline": {
+   "status": 404,
+   "bytes": 0
+  },
+  "events": {
+   "status": 404,
+   "bytes": 0
+  },
+  "map": {
+   "status": 404,
+   "bytes": 0
+  },
+  "positions": {
+   "status": 404,
+   "bytes": 0
+  },
+  "casts": {
+   "status": 404,
+   "bytes": 0
+  },
+  "playback": {
+   "status": 404,
+   "bytes": 0
+  },
+  "all": {
+   "status": 404,
+   "bytes": 0
+  },
+  "raw": {
+   "status": 404,
+   "bytes": 0
+  },
+  "detail": {
+   "status": 404,
+   "bytes": 0
+  },
+  "details": {
+   "status": 404,
+   "bytes": 0
+  },
+  "previous": {
+   "status": 404,
+   "bytes": 0
+  },
+  "target": {
+   "status": 404,
+   "bytes": 0
+  },
+  "effects": {
+   "status": 200,
+   "bytes": 2937584,
+   "shape": {
+    "id": "string",
+    "created_at_unix_ms": "number",
+    "updated_at_unix_ms": "number",
+    "visibility": "string",
+    "recording_scope": {
+     "schema": "string",
+     "policy": "string",
+     "mode": "string",
+     "kind": "string",
+     "group": "object"
+    },
+    "privacy": {
+     "raw_log_persisted": "boolean",
+     "stored_artifact": "string",
+     "names_included": "boolean",
+     "anonymized": "boolean"
+    },
+    "parser": {
+     "version": "string",
+     "revision": "string",
+     "analytics_schema": "string",
+     "input_schema": "string",
+     "diagnostics": {
+      "debug_diagnostics_included": "boolean",
+      "quality": "boolean",
+      "ledger": "boolean"
+     },
+     "payload": {
+      "full_report_included": "boolean",
+      "raw_events_included": "boolean",
+      "public_replay_events_included": "boolean",
+      "public_slim": "boolean"
+     }
+    },
+    "collector": {
+     "version": "string"
+    },
+    "input": {
+     "file_name": "string",
+     "size_bytes": "number",
+     "parse_error_count": "number"
+    },
+    "overview_payload_schema_version": "string",
+    "overview": {
+     "schema": "string",
+     "metric_scope_version": "string",
+     "generated_at_unix_ms": "number",
+     "session": {
+      "id": "string",
+      "started_at_ts": "number",
+      "ended_at_ts": "number",
+      "map_id": "number",
+      "map_name": "string",
+      "duration_ms": "number",
+      "duration_text": "string",
+      "observed_match_clock": {
+       "instance_start_ms": "number",
+       "instance_end_ms": "number",
+       "instance_window_text": "string",
+       "match_start_ms": "number",
+       "match_end_ms": "number",
+       "live_start_ms": "number",
+       "live_end_ms": "number",
+       "live_window_text": "string",
+       "observed_duration_ms": "number",
+       "observed_duration_text": "string",
+       "prep_offset_ms": "number",
+       "joined_mid_match": "boolean"
+      },
+      "observer_match": {
+       "match_id": "number",
+       "match_id_dup": "number",
+       "browser_section": "string",
+       "selection_source": "string",
+       "loaded_map_matches": "boolean",
+       "type_raw": "number",
+       "recording_mode": "string",
+       "type_name": "string",
+       "match_title": "number",
+       "match_title_name": "string",
+       "occasion": "{7 keys}"
+      }
+     },
+     "result": {
+      "winning_team_id": "number",
+      "result_type": "string",
+      "ts_unix_ms": "number",
+      "confidence": "string"
+     },
+     "teams": [
+      "len 2",
+      {
+       "team_id": "number",
+       "instance_guild_id": "number",
+       "side": "string",
+       "label": "string",
+       "guild_name": "string",
+       "guild_tag": "string",
+       "rating": "number",
+       "cape": "{9 keys}",
+       "players": "number",
+       "henchmen": "number",
+       "party_members": "number",
+       "damage_done_estimate": "number",
+       "damage_taken_estimate": "number",
+       "healing_done_estimate": "number",
+       "deaths": "number",
+       "flagstand_captures": "number"
+      }
+     ],
+     "players": [
+      "len 16",
+      {
+       "agent_id": "number",
+       "agent_key": "string",
+       "session_id": "string",
+       "label": "string",
+       "is_player": "boolean",
+       "is_party_henchman": "boolean",
+       "is_npc_combatant": "boolean",
+       "entity_kind": "object",
+       "owner_agent_id": "object",
+       "npc_kind_label": "object",
+       "party_membership_source": "object",
+       "player_number": "number",
+       "display_order": "number",
+       "team_id": "number",
+       "primary_profession": "number",
+       "primary_profession_name": "string",
+       "secondary_profession": "number",
+       "secondary_profession_name": "string",
+       "level": "number",
+       "base_max_hp": "number",
+       "base_max_hp_source": "string",
+       "base_max_hp_confidence": "string",
+       "base_max_hp_samples": "number",
+       "skillbar": [
+        "len 8",
+        "..."
+       ],
+       "observed_skills": [
+        "len 10",
+        "..."
+       ],
+       "skillbar_source": "string",
+       "skillbar_complete": "boolean",
+       "decoded_skillbar_available": "boolean",
+       "damage_done_estimate": "number",
+       "damage_done_enemy_roster_estimate": "number",
+       "damage_done_all_targets_estimate": "number",
+       "damage_done_allied_targets_estimate": "number",
+       "damage_done_unresolved_target_estimate": "number",
+       "damage_done_target_classification_complete": "boolean",
+       "damage_taken_estimate": "number",
+       "healing_done_estimate": "number",
+       "deaths": "number"
+      }
+     ],
+     "henchmen": [],
+     "quality_notice": "object",
+     "death_recaps": {
+      "window_ms": "number",
+      "deaths": [
+       "len 9",
+       "{8 keys}"
+      ]
+     }
+    },
+    "report_available": "boolean",
+    "payloads_available": {
+     "overview": "boolean",
+     "summary": "boolean",
+     "agents": "boolean",
+     "effects": "boolean",
+     "game-story": "boolean",
+     "replay": "boolean",
+     "full": "boolean"
+    },
+    "payloads_loaded": {
+     "overview": "boolean",
+     "effects": "boolean"
+    },
+    "report_payload": {
+     "schema_version": "string",
+     "kind": "string",
+     "generated_at_unix_ms": "number"
+    },
+    "effects_payload": {
+     "schema_version": "string",
+     "includes_raw_events": "boolean",
+     "position_sample_interval_ms": "number"
+    },
+    "report": {
+     "schema": "string",
+     "generated_at_unix_ms": "number",
+     "sessions": [
+      "len 1",
+      {
+       "id": "string",
+       "started_at_ts": "number",
+       "ended_at_ts": "number",
+       "duration_ms": "number",
+       "end_reason": "string",
+       "map_id": "number",
+       "map_file_id": "number",
+       "map_name_id": "number",
+       "map_name": "string",
+       "is_explorable": "number",
+       "is_observer": "number",
+       "controlled_agent_id": "number",
+       "roster_agent_ids": [
+        "len 17",
+        "..."
+       ],
+       "roster_agent_keys": [
+        "len 17",
+        "..."
+       ],
+       "observer_match": "{11 keys}",
+       "teams": [
+        "len 3",
+        "..."
+       ],
+       "spawn_plane": "number",
+       "spawn_point": "{2 keys}",
+       "duration_text": "string",
+       "observed_match_clock": "{12 keys}",
+       "skill_activation_scope": "{8 keys}",
+       "flux": "{10 keys}"
+      }
+     ],
+     "agents": [
+      "len 16",
+      {
+       "agent_key": "string",
+       "session_id": "string",
+       "agent_id": "number",
+       "label": "string",
+       "player_number": "number",
+       "display_order": "number",
+       "is_player": "boolean",
+       "team_id": "number",
+       "agent_type": "number",
+       "primary_profession_name": "string",
+       "secondary_profession_name": "string"
+      }
+     ],
+     "effects": {
+      "spirit_range_memberships": [],
+      "condition_removals": [
+       "len 151",
+       "{35 keys}"
+      ],
+      "hex_removals": [
+       "len 45",
+       "{38 keys}"
+      ],
+      "enchantment_removals": [
+       "len 103",
+       "{53 keys}"
+      ],
+      "position_samples": [
+       "len 13691",
+       "{6 keys}"
+      ]
+     }
+    }
+   }
+  },
+  "agents": {
+   "status": 200,
+   "bytes": 60784,
+   "shape": {
+    "id": "string",
+    "created_at_unix_ms": "number",
+    "updated_at_unix_ms": "number",
+    "visibility": "string",
+    "recording_scope": {
+     "schema": "string",
+     "policy": "string",
+     "mode": "string",
+     "kind": "string",
+     "group": "object"
+    },
+    "privacy": {
+     "raw_log_persisted": "boolean",
+     "stored_artifact": "string",
+     "names_included": "boolean",
+     "anonymized": "boolean"
+    },
+    "parser": {
+     "version": "string",
+     "revision": "string",
+     "analytics_schema": "string",
+     "input_schema": "string",
+     "diagnostics": {
+      "debug_diagnostics_included": "boolean",
+      "quality": "boolean",
+      "ledger": "boolean"
+     },
+     "payload": {
+      "full_report_included": "boolean",
+      "raw_events_included": "boolean",
+      "public_replay_events_included": "boolean",
+      "public_slim": "boolean"
+     }
+    },
+    "collector": {
+     "version": "string"
+    },
+    "input": {
+     "file_name": "string",
+     "size_bytes": "number",
+     "parse_error_count": "number"
+    },
+    "overview_payload_schema_version": "string",
+    "overview": {
+     "schema": "string",
+     "metric_scope_version": "string",
+     "generated_at_unix_ms": "number",
+     "session": {
+      "id": "string",
+      "started_at_ts": "number",
+      "ended_at_ts": "number",
+      "map_id": "number",
+      "map_name": "string",
+      "duration_ms": "number",
+      "duration_text": "string",
+      "observed_match_clock": {
+       "instance_start_ms": "number",
+       "instance_end_ms": "number",
+       "instance_window_text": "string",
+       "match_start_ms": "number",
+       "match_end_ms": "number",
+       "live_start_ms": "number",
+       "live_end_ms": "number",
+       "live_window_text": "string",
+       "observed_duration_ms": "number",
+       "observed_duration_text": "string",
+       "prep_offset_ms": "number",
+       "joined_mid_match": "boolean"
+      },
+      "observer_match": {
+       "match_id": "number",
+       "match_id_dup": "number",
+       "browser_section": "string",
+       "selection_source": "string",
+       "loaded_map_matches": "boolean",
+       "type_raw": "number",
+       "recording_mode": "string",
+       "type_name": "string",
+       "match_title": "number",
+       "match_title_name": "string",
+       "occasion": "{7 keys}"
+      }
+     },
+     "result": {
+      "winning_team_id": "number",
+      "result_type": "string",
+      "ts_unix_ms": "number",
+      "confidence": "string"
+     },
+     "teams": [
+      "len 2",
+      {
+       "team_id": "number",
+       "instance_guild_id": "number",
+       "side": "string",
+       "label": "string",
+       "guild_name": "string",
+       "guild_tag": "string",
+       "rating": "number",
+       "cape": "{9 keys}",
+       "players": "number",
+       "henchmen": "number",
+       "party_members": "number",
+       "damage_done_estimate": "number",
+       "damage_taken_estimate": "number",
+       "healing_done_estimate": "number",
+       "deaths": "number",
+       "flagstand_captures": "number"
+      }
+     ],
+     "players": [
+      "len 16",
+      {
+       "agent_id": "number",
+       "agent_key": "string",
+       "session_id": "string",
+       "label": "string",
+       "is_player": "boolean",
+       "is_party_henchman": "boolean",
+       "is_npc_combatant": "boolean",
+       "entity_kind": "object",
+       "owner_agent_id": "object",
+       "npc_kind_label": "object",
+       "party_membership_source": "object",
+       "player_number": "number",
+       "display_order": "number",
+       "team_id": "number",
+       "primary_profession": "number",
+       "primary_profession_name": "string",
+       "secondary_profession": "number",
+       "secondary_profession_name": "string",
+       "level": "number",
+       "base_max_hp": "number",
+       "base_max_hp_source": "string",
+       "base_max_hp_confidence": "string",
+       "base_max_hp_samples": "number",
+       "skillbar": [
+        "len 8",
+        "..."
+       ],
+       "observed_skills": [
+        "len 10",
+        "..."
+       ],
+       "skillbar_source": "string",
+       "skillbar_complete": "boolean",
+       "decoded_skillbar_available": "boolean",
+       "damage_done_estimate": "number",
+       "damage_done_enemy_roster_estimate": "number",
+       "damage_done_all_targets_estimate": "number",
+       "damage_done_allied_targets_estimate": "number",
+       "damage_done_unresolved_target_estimate": "number",
+       "damage_done_target_classification_complete": "boolean",
+       "damage_taken_estimate": "number",
+       "healing_done_estimate": "number",
+       "deaths": "number"
+      }
+     ],
+     "henchmen": [],
+     "quality_notice": "object",
+     "death_recaps": {
+      "window_ms": "number",
+      "deaths": [
+       "len 9",
+       "{8 keys}"
+      ]
+     }
+    },
+    "report_available": "boolean",
+    "payloads_available": {
+     "overview": "boolean",
+     "summary": "boolean",
+     "agents": "boolean",
+     "effects": "boolean",
+     "game-story": "boolean",
+     "replay": "boolean",
+     "full": "boolean"
+    },
+    "payloads_loaded": {
+     "overview": "boolean",
+     "agents": "boolean"
+    },
+    "report_payload": {
+     "schema_version": "string",
+     "kind": "string",
+     "generated_at_unix_ms": "number"
+    },
+    "agents": [
+     "len 16",
+     {
+      "agent_key": "string",
+      "session_id": "string",
+      "agent_id": "number",
+      "label": "string",
+      "player_number": "number",
+      "display_order": "number",
+      "is_player": "boolean",
+      "team_id": "number",
+      "agent_type": "number",
+      "primary_profession_name": "string",
+      "secondary_profession_name": "string"
+     }
+    ]
+   }
+  },
+  "await": {
+   "status": 404,
+   "bytes": 0
+  }
+ }
+}
