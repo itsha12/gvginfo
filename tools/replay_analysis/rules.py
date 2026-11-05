@@ -113,10 +113,10 @@ def findings(st, ep=None):
         ahead = _ahead(st, w["team"], w["start"])
         add(rule="power play converted", principle="5. The power play (Denning, Bounty); 4. a winning team needn't risk",
             team=w["team"], t=w["start"],
-            verdict="good" if w["kills"] else ("note" if conv or ahead else "missed"),
+            verdict="good" if w["kills"] or w.get("npcs_taken") else ("note" if conv or ahead else "missed"),
             evidence=f"{w['numbers']} for {w['secs']} s (enemy short: {w['enemy_short_because']}); pressure x{w['pressure_vs_avg']}, "
-                     f"kills {w['kills']}, losses {w['losses']}, ground {w['pushed_toward_enemy_pit']}",
-            question=None if w["kills"] or ahead else "Push harder, or was holding right?")
+                     f"kills {w['kills']}, NPCs taken {w.get('npcs_taken')}, losses {w['losses']}, ground {w['pushed_toward_enemy_pit']}",
+            question=None if w["kills"] or w.get("npcs_taken") or ahead else "Push harder, or was holding right?")
 
     # ---- deaths (tactics: 6, 8, 9, 11)
     for x in ep["deaths"]:

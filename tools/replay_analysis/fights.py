@@ -48,9 +48,11 @@ def deaths(st):
     m, out = st.m, []
     casts = st.__dict__.setdefault("_casts", _casts(st))
     kd = m.o.get("knockdowns", []); ir = m.o.get("interrupts", [])
+    # end-of-match markers: when a Lord dies, every player on that team "dies" in the same second; they aren't deaths
+    same = collections.Counter((int(t), m.team(a)) for a in m.PL for t in st.death_times.get(a, []))
     for a in m.PL:
         for td in st.death_times.get(a, []):
-            if td >= st.end - 1: continue
+            if td >= st.end - 1 or same[(int(td), m.team(a))] >= 5: continue
             tm, foe = m.team(a), 3 - m.team(a)
             t0 = td - PRE
             hits = [r for r in m.o["ev"] if r[1] == "dm" and r[3] == a and t0 * 10 <= r[0] <= td * 10 and (r[5] or 0) > 0]
@@ -88,7 +90,7 @@ def deaths(st):
             more = sum(1 for b in st.players[tm] for tt in st.death_times.get(b, []) if td < tt <= td + 60)
             caps = [m.tag[c] for tt, c in st.caps if td <= tt <= td + 60]
             out.append({
-                "t": round(td), "team": m.tag[tm], "victim": m.roles[a], "zone": st.zone(a, td - 1), "after_time": after_time,
+                "t": round(td), "team": m.tag[tm], "victim": m.roles[a], "zone": st.zone(a, td - 2), "after_time": after_time,
                 "down_for": round(res - td), "burst_max_2s": round(best), "first_big_hit": round(first_big - td, 1) if first_big else None,
                 "damage_by": {k: round(v) for k, v in src.most_common(5)}, "damage_kind": {k: round(v) for k, v in kinds.items()},
                 "knockdowns": kds, "interrupts_on_victim": irs_t, "interrupts_on_monks": irs_m,
@@ -187,13 +189,15 @@ def windows(st, min_len=10):
         dmg = sum(r[5] or 0 for r in m.o["ev"] if r[1] == "dm" and r[2] in st.players[tm] and r[3] in st.players[foe] and t0 * 10 <= r[0] <= t1 * 10)
         base = sum(r[5] or 0 for r in m.o["ev"] if r[1] == "dm" and r[2] in st.players[tm] and r[3] in st.players[foe]) / st.end
         kills = [(round(tt), m.roles[b]) for b in st.players[foe] for tt in st.death_times.get(b, []) if t0 <= tt <= t1 + 5]
+        npcs = [(round(tt), st.geo.npcs[x]["kind"]) for x, tt in st.npc_dead.items() if x in st.geo.npcs
+                and st.geo.npcs[x]["team"] == foe and t0 <= tt <= t1 + 10]
         losses = [(round(tt), m.roles[b]) for b in st.players[tm] for tt in st.death_times.get(b, []) if t0 <= tt <= t1 + 5]
         c0 = st.centroid(st.main_group(tm, t0), t0); c1 = st.centroid(st.main_group(tm, t1), t1)
         moved = round(d(c0, st.geo.pit[foe]) - d(c1, st.geo.pit[foe])) if c0 and c1 else None
         res.append({"team": m.tag[tm], "start": t0, "end": t1, "secs": t1 - t0,
                     "numbers": collections.Counter(f"{a}v{b}" if tm == 1 else f"{b}v{a}" for a, b in w["n"]).most_common(2),
                     "enemy_short_because": dict(why.most_common(3)), "pressure_vs_avg": round(dmg / max(t1 - t0, 1) / max(base, 1), 2),
-                    "kills": kills, "losses": losses, "pushed_toward_enemy_pit": moved})
+                    "kills": kills, "npcs_taken": npcs, "losses": losses, "pushed_toward_enemy_pit": moved})
     return res
 
 
