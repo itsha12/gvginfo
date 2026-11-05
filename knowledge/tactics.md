@@ -155,6 +155,18 @@ matches are reviewed). **Open:** lines are questions the match data should help 
   hit to death, with timing relative to the first big hit (negative = pre-prot); interrupts landed on the spike skills.
 - **Open:** where the line between saveable and not saveable sits for mixed damage and other windows.
 
+- **Denning:** Invoke spike: air elementalists spiking with Invoke Lightning (plus Lightning Strike, Shell Shock, Blinding
+  Flash), usually with only 2 monks. Spike and 8v8 builds like this are sometimes called 6 damage builds. The Rit/Para
+  calls the spikes, gives movement speed, and puts Deep Wound on the spike target; its spear also does a lot of damage.
+- **Denning:** Holding the flag: in 8v8 builds a team often fights 8v8 as long as possible with the flag in hand, then caps
+  right before the enemy would get a morale boost. This keeps all the damage together (important for spikes) and avoids
+  the flag game.
+- **Denning:** An 8v8 build answers a 3 man split by ignoring it with the main team and having a snare character in the 8
+  slot (for example a water elementalist) shadow and mirror the split. When the split commits or gets too deep into the
+  base, the 8 snares it so the spike characters can collapse and kill it.
+- **Measure:** the 8's distance from the enemy splitters, snares landed on them, and kills on splitters after they
+  commit to the base.
+
 ## Spike defence
 - **Denning:** For a spike, the analysis should name the primary failure, such as lack of prots, late infuses, or lack of
   interrupts on spike skills.

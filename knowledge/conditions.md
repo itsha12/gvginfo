@@ -14,7 +14,7 @@ Conditions have fixed effects; they don't scale with attributes.
 | Cracked Armor | −20 armor (can't reduce armor below 60) |
 | Crippled | move 50% slower |
 | Dazed | spells take twice as long to cast; any successful attack interrupts your spells; interrupts a spell when applied |
-| Deep Wound | −20% max Health; reduced benefit from healing |
+| Deep Wound | −20% max Health (never more than 100) and the same amount off current Health, so on a spike it acts like about 100 extra damage; direct healing −20%; the Health returns when it ends (see note below) |
 | Weakness | weapon damage 66% less and −1 to all attributes (details below) |
 
 ## Weakness
@@ -34,3 +34,8 @@ Conditions have fixed effects; they don't scale with attributes.
 - Non-fleshy creatures (minions except Flesh Golem, spirits) are immune to Bleeding, Poison and Disease. Spirits are
   immune to every condition except Burning.
 - Combined degeneration is capped at −10 pips: Burning + Poison + Bleeding is −20 Health per second, not −28.
+
+- Deep Wound detail (Guild Wars Wiki notes, as quoted on GWGuru; pulled 2026-11-04): the loss is 20% of max Health,
+  capped at 100, taken from both max and current Health at once; direct healing is reduced by 20% (not regeneration);
+  removing it restores the same amount. It is why a spike with Deep Wound (for example from the Rit/Para in invoke
+  spike) kills about 100 Health sooner.
