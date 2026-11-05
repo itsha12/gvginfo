@@ -6,7 +6,8 @@
 //   agents   [{k, n, slot, team, p, s, player, bar}]   index in this list = agent number used everywhere below
 //   tracks   {agent: {t, x, y, hp, st, sk}}           ~1 sample a second: position, HP %, state code, current skill
 //            st: i idle, m moving, a attacking, c casting, k knocked down, d dead, ? unknown
-//   ev       [[t, code, a, b, skill, n]]               a = actor, b = target (agent numbers or null)
+//   ev       [[t, code, a, b, skill, n, kind]]         a = actor, b = target (agent numbers or null); kind only on dm/hl
+//            (damage or heal kind as gvg.report gives it, e.g. armor_ignoring, armor_respecting, fire)
 //            cs cast start, ca activated, cf finished, cx stopped, ir interrupted, sa skill landed on b,
 //            at attack start, af attack finished, as attack stopped, dm damage (n = amount), hl heal (n = amount),
 //            ea/er effect applied/removed (b = effect id), co/cr condition applied/removed (b = condition name),
@@ -16,7 +17,7 @@
 //   skills   {skill id: name} for every skill seen
 
 // Bump when the trimmed format changes: stored matches with an older version are fetched and trimmed again.
-export const TRIM_VERSION = 2;
+export const TRIM_VERSION = 3;
 const STATE = { idle: "i", moving: "m", attacking: "a", casting: "c", knocked_down: "k" };
 const CODES = {
   "skill.started": "cs", "skill.activated": "ca", "skill.finished": "cf", "skill.stopped": "cx",
@@ -95,6 +96,7 @@ export function trimReplay(payload, summaryPayload = null) {
     if (code === "mo") n = e.net_max_hp_adjustment_percent ?? null;
     if ((code === "co" || code === "cr") && b == null) continue; // unnamed condition bits duplicate the named rows
     const row = [t, code, actor, b, e.skill_id || null, n], last = ev[ev.length - 1];
+    if (code === "dm" || code === "hl") row.push(e.damage_kind || e.heal_kind || null);
     if (last && (code === "co" || code === "cr" || code === "sa") && last.join() === row.join()) continue;
     ev.push(row);
   }

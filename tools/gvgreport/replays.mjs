@@ -61,6 +61,27 @@ async function saveMap(mapId) {
   await sleep(1000);
 }
 
+// A cheap listing of the newest matches (no replays): listing.json on the replays branch, to find matches to request.
+async function listing(n) {
+  const out = [];
+  let cursor = null;
+  while (out.length < n) {
+    const page = await getJson(`${BASE}/api/matches?limit=100${cursor ? "&cursor=" + cursor : ""}`);
+    for (const e of page?.entries || []) {
+      if (out.length >= n) break;
+      const g = (e.guilds || e.teams || []).map((x) => x.guild_tag || x.tag || x.label || null);
+      out.push({ id: e.id, date: e.date || e.started_at || e.created_at || e.month || null, map: e.map_name || e.map || null,
+        teams: g, winner: e.winner_team_id ?? null, occasion: e.tournament_occasion?.occasion_kind || e.observer_type_name || null,
+        keys: out.length ? undefined : Object.keys(e) });
+    }
+    cursor = page?.page?.has_more ? page.page.next_cursor : null;
+    if (!cursor) break;
+    await sleep(1000);
+  }
+  fs.writeFileSync(path.join(STORE, "listing.json"), JSON.stringify({ updated: new Date().toISOString(), matches: out }, null, 1));
+  console.log(`Listed ${out.length} matches.`);
+}
+
 async function main() {
   const indexFile = path.join(STORE, "index.json");
   const index = readJson(indexFile, { format: "gvginfo.replay.v1", updated: null, matches: {} });
@@ -68,6 +89,8 @@ async function main() {
   for (const line of fs.readFileSync(path.join(ROOT, "replays/requests.txt"), "utf8").split("\n")) {
     const l = line.trim();
     if (!l || l.startsWith("#")) continue;
+    const ls = l.match(/^list:(\d+)/i);
+    if (ls) { await listing(+ls[1]); continue; }
     const m = l.match(/^latest:(\d+)/i);
     if (m) wanted.push(...(await latest(+m[1])));
     else if (ID.test(l)) wanted.push(l.match(ID)[0].toLowerCase());
