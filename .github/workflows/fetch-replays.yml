@@ -1,0 +1,57 @@
+name: Fetch replays
+
+# Fetches the matches listed in replays/requests.txt from gvg.report, trims them, and saves them to the
+# "replays" branch (kept off main so the portal stays small). Runs when the request list changes, or by hand.
+on:
+  workflow_dispatch:
+    inputs:
+      max_fetch:
+        description: "Most replays to fetch in this run"
+        default: "500"
+      extras:
+        description: "Also probe game-story and map geometry (1 = yes)"
+        default: "0"
+  push:
+    branches: [main]
+    paths: ["replays/requests.txt"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: replays
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Get the replays branch
+        run: |
+          git config --global user.name "gvginfo-bot"
+          git config --global user.email "gvginfo-bot@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin replays >/dev/null; then
+            git clone --depth 1 --branch replays "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" store
+          else
+            mkdir store && cd store && git init -q -b replays && git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+            printf "# Replays\nTrimmed gvg.report replays (format gvginfo.replay.v1, see tools/gvgreport/replay_trim.mjs on main).\n" > README.md
+          fi
+      - name: Fetch and trim
+        env:
+          MAX_FETCH: ${{ github.event.inputs.max_fetch || '500' }}
+          EXTRAS: ${{ github.event.inputs.extras || '1' }}
+          DELAY_MS: "4000"
+        run: node tools/gvgreport/replays.mjs store
+      - name: Save
+        if: always()
+        run: |
+          cd store
+          git add -A
+          git diff --cached --quiet && { echo "Nothing new."; exit 0; }
+          git commit -qm "Add replays"
+          git push origin replays
