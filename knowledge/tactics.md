@@ -15,6 +15,34 @@ matches are reviewed). **Open:** lines are questions the match data should help 
   defensively when fighting 7v8.
 - **Denning:** The goal is to learn what winning guilds do differently from losing ones.
 
+## Sources
+- **Denning:** lines are Denning's own and override everything. **Bounty:** lines come from expert commentary (Bounty's
+  YouTube commentary of Apes vs cope, October 2026 monthly playoffs, Isle of Meditation, gvg.report
+  9b0816e2-c0eb-5797-a1b1-9962c8415307) and stand until Denning corrects them.
+
+## Commentary lessons
+- **Bounty:** "Dying after time": dying just after the res shrine timer (every 2 minutes) means waiting almost the full 2
+  minutes to come back, which is much worse than dying just before it.
+- **Bounty:** The first 30 seconds shape the match (who goes where at the start, e.g. cope leaving its Lyssa dervish
+  back).
+- **Bounty:** A team that double runs out front ("power running flags") still has to survive the opening fight; if the
+  monks die in the first minute, no build plan matters.
+- **Bounty:** Against a solo splitter, a team can ignore it and fight 8v7 if it is winning the main fight; cope
+  respected Apes' necro split more than it needed to.
+- **Bounty:** When the enemy is running (an 8v7), the team must convert it: damage dealers have to commit and kill.
+  A damage dealer staying far from everyone during an 8v7 is a missed opportunity.
+- **Bounty:** A team whose build is worse 8v8 has to split someone (solo split, wait for it to be answered, then push the
+  flag); pushing with all 8 into a better 8v8 build is a risk.
+- **Bounty:** Don't send both escape players (e.g. both Shadow of Haste characters) on a split; keep one at home.
+- **Bounty:** Mesmer, warrior and monk is the classic, versatile answer to a split. A team defends its pit against a
+  split with either its third damage or its prot monk.
+- **Bounty:** Many small inaccuracies add up to losing fights: e.g. a monk not watching a split, a ritualist caught
+  off shield set by Coward, a sleepy 8 monk, a necro not seeing the warrior coming.
+- **Bounty:** Healing Burst on the 7 monk has become more common (teams lacking body healing); Blessed Light and Aura
+  of Faith are other 7 and 8 monk elites.
+- **Measure:** deaths "after time" (within about 15 s after an even 2-minute mark); damage output per player per
+  minute (passive damage dealers during an 8v7); the weapon set a player was in when knocked down or spiked.
+
 ## Map and team language
 - **Denning:** Each team's end of the map is its **base** (not "home"). The res shrine is at the base.
 - **Denning:** **Backside** is the side of the map closest to your own base. **Push side** is the side closest to the

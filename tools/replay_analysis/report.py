@@ -1,6 +1,6 @@
 """Standard review tables for one match: builds, phases, stand holds, pit NPC kills and Entourage, lord damage,
 deaths with support context, team totals. Usage: python3 report.py <report id or path to .json.gz> [section ...]
-Sections: builds phases stand npcs lord deaths spikes splits totals (default: all). Interpret with knowledge/tactics.md."""
+Sections: builds phases stand npcs lord deaths spikes splits output totals (default: all). Interpret with knowledge/tactics.md."""
 import collections, sys
 from replaylib import Match, PROT_SKILLS
 
@@ -84,7 +84,8 @@ def deaths(m):
                and r[2] != v and t - 80 <= r[0] <= t]
         monks = [(m.role(a), round(m.dist(a, v, t - 20) or -1)) for a in m.PL if m.team(a) == tm and m.A[a].get("p") == "Monk" and a != v]
         hp = [m.snap(v, tt)["hp"] for tt in range(int(t - 60), int(t) + 1, 10) if m.snap(v, tt)]
-        print(f"\n{m.f(t)} {m.role(v)} died ({m.loc(v, t - 10)}) | alive {al[tm]} v {al[3 - tm]} | carrying {[m.role(a) for a in m.carrier_at(t - 30)]}")
+        after = "  AFTER TIME (waits ~2 min)" if 0 <= t % 1200 <= 150 and t > 150 else ""
+        print(f"\n{m.f(t)} {m.role(v)} died ({m.loc(v, t - 10)}){after} | alive {al[tm]} v {al[3 - tm]} | carrying {[m.role(a) for a in m.carrier_at(t - 30)]}")
         print(f"  hp {hp} | damage {dict((k, round(n)) for k, n in dmg.most_common(4))}")
         print(f"  knockdowns {kd} | interrupts on target {rt} | interrupts on own monks {rm}")
         print(f"  ally casts on target {sup} | own monks (distance) {monks}")
@@ -171,7 +172,20 @@ def splits(m, min_s=30):
                   f"{[m.role(b) for b in near]} | enemy snares on it {snares} | deaths {dead} | NPCs killed {kills}")
 
 
-SECTIONS = dict(splits=splits, spikes=spikes, builds=builds, phases=phases, stand=stand, npcs=npcs, lord=lord, deaths=deaths, totals=totals)
+def output(m):
+    """Damage to enemy players per player per minute (spots passive damage dealers, e.g. during an 8v7)."""
+    dm = collections.defaultdict(collections.Counter)
+    for r in m.o["ev"]:
+        if (r[1] == "dm" and isinstance(r[2], int) and isinstance(r[3], int) and r[3] < len(m.A) and m.A[r[2]].get("player")
+                and m.A[r[3]].get("player") and m.team(r[3]) != m.team(r[2])):
+            dm[m.role(r[2])][int(r[0] // 600)] += r[5] or 0
+    end = int(m.o["meta"]["match_length_s"] // 60) + 1
+    print("  minute:          " + " ".join(f"{i:5}" for i in range(end)))
+    for k in sorted(dm):
+        print(f"  {k:16} " + " ".join(f"{round(dm[k][i]):5}" for i in range(end)))
+
+
+SECTIONS = dict(output=output, splits=splits, spikes=spikes, builds=builds, phases=phases, stand=stand, npcs=npcs, lord=lord, deaths=deaths, totals=totals)
 
 if __name__ == "__main__":
     src = sys.argv[1]
