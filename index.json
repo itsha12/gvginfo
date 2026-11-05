@@ -1,0 +1,42 @@
+{
+ "format": "gvginfo.replay.v1",
+ "updated": "2026-11-05T00:25:53.183Z",
+ "matches": {
+  "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65": {
+   "file": "2026-11/eea5ba87-ac20-5ba3-a6c9-965f11ca8a65.json.gz",
+   "date": "2026-11-04T03:30:09.911Z",
+   "map": "Nomad's Isle",
+   "teams": [
+    "RJT",
+    "RACK"
+   ],
+   "winner": "RACK",
+   "length_s": 836,
+   "kb": 157
+  },
+  "cb5a5f57-be04-5af2-aa60-8114e98e1202": {
+   "file": "2026-11/cb5a5f57-be04-5af2-aa60-8114e98e1202.json.gz",
+   "date": "2026-11-04T04:06:24.805Z",
+   "map": "Isle of Meditation",
+   "teams": [
+    "RACK",
+    "MBP"
+   ],
+   "winner": "RACK",
+   "length_s": 1694,
+   "kb": 360
+  },
+  "450bb88f-b9a4-537a-a453-17dd925baa65": {
+   "file": "2026-11/450bb88f-b9a4-537a-a453-17dd925baa65.json.gz",
+   "date": "2026-11-04T03:58:08.131Z",
+   "map": "Isle of Meditation",
+   "teams": [
+    "RJT",
+    "GW크"
+   ],
+   "winner": "RJT",
+   "length_s": 404,
+   "kb": 96
+  }
+ }
+}
