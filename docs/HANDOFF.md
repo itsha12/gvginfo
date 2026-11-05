@@ -94,104 +94,83 @@ Claude should then:
 
 # Match replay analysis
 
-**Status:** Active. Last updated 2026-11-04 (end of the first long session).
+**Status:** Active. Last updated 2026-11-05 (end of the second session).
 
 ## Start the next chat with
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/HANDOFF.md (the "Match replay
-> analysis" section) and knowledge/tactics.md, then fetch the `replays` branch. I'll attach commentary transcripts
-> from Maga and Nick with their gvg.report links: fetch each replay, check every point the commentator makes against
-> the data, and add what they teach to knowledge/tactics.md as commentator lines.
+> analysis" section), knowledge/tactics.md, knowledge/match-reviews.md and tools/replay_analysis/METHODS.md, then
+> fetch the `replays` branch. Then: <your request>
 
 ## Goal
-In-depth reviews of GvG matches from gvg.report replays, in Denning's terms, explaining what led to the win condition.
-Learn the game from Denning's corrections and from expert commentary, then test the learning on more matches, then pull
-450+ matches and learn what winning guilds do differently.
+Become an expert GvG analyst and tactician: read any match, say whether macro or micro decided it and why, and answer
+"what should they have done" questions from general principles, not just recall past games. Learn from Denning's
+corrections, expert commentary and team comms; test on more matches; then pull 450+ matches to back the principles
+with numbers.
 
-## Plan (confirmed by Denning)
-1. Next session: Maga and Nick commentary transcripts (same method as Bounty's).
-2. Then review a few more matches to test what has been learned.
-3. Only then the bulk pull.
+## How the knowledge is organized (since 2026-11-05)
+- `knowledge/tactics.md` ("GvG tactics" on the site): the general model by situation. Sections: how matches are won
+  (win conditions, the edges, macro vs micro), builds and matchups, splits, main team and pit play, the flag game,
+  kills and timing, late game and 28:00, spikes, monk play, interrupts, positioning, weapon sets, language, open
+  questions. Line labels: **Denning:** (overrides everything), **Bounty:** / **Nick:** (commentary), **OG comms:**,
+  **Claude:** (proposals, each with match tags as evidence, revised when contradicted).
+- `knowledge/match-reviews.md` ("Match reviews"): how a review is written, sources, guild notes, one entry per match
+  (summary paragraph, decided by, deciding moments, what comms or commentary added). Tags like [OG v cope U].
+- `tools/replay_analysis/METHODS.md`: how each concept is measured (not on the site).
+
+## Plan
+1. Done: Bounty (6 matches), Nick ([Men v Team]) and Maga's OG comms ([OG v chic], [OG v cope J], [OG v hdm],
+   [OG v cope U]).
+2. Next: review more matches with no commentary to test the model (RACK v hdm Meditation, hold v RACK Meditation,
+   RJT v GW크), each ending with questions for Denning; work through the open questions on the tactics page.
+3. Then the bulk pull (450+ in batches of about 100, proposed, not confirmed), and turn principles into measured
+   patterns (e.g. how often a split that never takes a knight still wins).
 
 ## Current state
-- **Pipeline (on main):** `tools/gvgreport/replays.mjs` + `.github/workflows/fetch-replays.yml`. Runs on GitHub (which
-  can reach gvg.report) whenever `replays/requests.txt` changes. Each line: a report id or link, `latest:N`, or
-  `list:N` (cheap listing of the newest matches to `listing.json`). Downloads the `replay` and `summary` payloads, trims
-  them (`tools/gvgreport/replay_trim.mjs`, format gvginfo.replay.v1, TRIM_VERSION 3, keeps damage and heal kind) and
-  saves to the `replays` branch: `index.json`, `YYYY-MM/<id>.json.gz`, `maps/<map id>.json.gz`, `listing.json`.
-- **Stored replays: 16** (110 to 400 KB each). RACK matches: RJT vs RACK, RACK vs MBP, RACK vs hdm (Meditation and
-  Uncharted), 옷옷옷옷 vs RACK, hold vs RACK (Meditation and Imperial), Men vs RACK. Commentary matches: Apes vs cope,
-  옷옷옷옷 vs Book, OG vs hold, Team vs push, cope vs hdm, True vs One. Also RJT vs GW크 and OG vs cope (Uncharted,
-  sent by mistake, not reviewed).
-- **Reviewed with Denning:** RJT vs RACK, RACK vs MBP, 옷옷옷옷 vs RACK, hold vs RACK (Imperial), Men vs RACK.
-  **Checked against Bounty's commentary:** the six commentary matches.
-- **Not yet reviewed:** RACK vs hdm (Meditation, a loss, good vs good), RACK vs hdm (Uncharted), hold vs RACK
-  (Meditation), RJT vs GW크, OG vs cope (no commentary; a good test of the learning).
-- **Toolkit (on main):** `tools/replay_analysis/replaylib.py` (Match class: positions, groups, sides, carries, base
-  from spawn positions, build-based role names incl. Eles by attunement, Rit/Para, WoC monks and the WoC snare) and
-  `report.py` sections: builds, phases, stand (incl. long carries and near-miss boosts), npcs (pit kills, defenders,
-  Entourage), lord (incl. base race), deaths (incl. "after time"), spikes (armor ignoring split, not saveable rule,
-  prot and Infuse timing), splits (who shadowed them, snares, kills), output (damage per player per minute), totals.
-- **Knowledge (on main):** `knowledge/tactics.md` holds everything taught: Denning lines (override everything), Bounty
-  lines (confirmed by Denning), measures, open questions, guild notes and the review template. Also updated:
-  `guild-lord.md` (Entourage incl. Tested 10.5 s, Solitude extra archer, Lord Health +1% per boost, Amulet open
-  question), `conditions.md` (Deep Wound), `gvg-rules.md` (Lord Health).
-- Last commit: see `git log` (this handoff is in the final commit of the session). No workflow runs in progress.
+- **Pipeline:** `tools/gvgreport/replays.mjs` + `.github/workflows/fetch-replays.yml`, run on GitHub whenever
+  `replays/requests.txt` changes (a report id or link, `latest:N`, or `list:N`). Trimmed replays on the `replays`
+  branch (format gvginfo.replay.v1, TRIM_VERSION 3).
+- **Stored replays: 20.** RACK: RJT v RACK, RACK v MBP, RACK v hdm (Meditation, Uncharted), 옷옷옷옷 v RACK, hold v
+  RACK (Meditation, Imperial), Men v RACK. Commentary: Bounty's six, [Men v Team]. OG comms: the four OG games. Also
+  RJT v GW크 and two from `latest:2`.
+- **Toolkit:** `replaylib.py` (Match class; `Match.from_branch(id)`) and `report.py <id> [sections]`: builds, phases,
+  stand, npcs, lord, deaths, spikes, splits, output, pit (players in own pit / field / enemy pit, death distance from
+  pit), catches (spike catching per team), totals.
+- Run Python with `PYTHONDONTWRITEBYTECODE=1`, or a tracked `__pycache__` file blocks `git pull --rebase`.
 
 ## Decisions made
-- Replays trimmed on a separate `replays` branch, with the summary feed (confirmed by Denning).
-- Perfect the process on a few matches and commentaries before any bulk pull (confirmed by Denning).
-- 450+ matches eventually, in batches of about 100 (batch size proposed by Claude, not yet confirmed).
-- Save up trim format changes, since each re-downloads every stored match (proposed by Claude, not yet confirmed).
-- `knowledge/tactics.md` is the single home for what is learned; analysis code lives in the repo (agreed).
-- Transcripts are attached by Denning; the YouTube transcript workflow was removed because YouTube blocks GitHub
-  (confirmed by Denning).
+- Replays on a separate `replays` branch (confirmed). Perfect the process before any bulk pull (confirmed).
+- Transcripts are attached by Denning (YouTube blocks GitHub).
+- Knowledge restructured into a model (tactics) and evidence (match reviews), with measurement notes off the site
+  (asked for by Denning).
+- No dates on Denning's tactical lines; **Tested (date):** lines keep their dates (patches change mechanics).
 
-## Key facts and figures
-- gvg.report download per match: about 91 MB (replay) + 43 MB (summary); trimmed about 225 KB (measured).
-- Spike anchors (Denning): 400 in 0.6 s survivable on shield set if armor respecting; 550 armor ignoring in 0.35 s
-  can't be saved. Toolkit: "not saveable" only for targets at 60%+ health (derived; to be honed).
-- Entourage lasts 10.5 s; Solitude has an extra pit archer; Lord Health 1,680 +1% per morale boost up to 1,848
-  (all Denning).
-- Denning's characters in RACK matches: Denning (8 monk), Denning E (Water Ele in the invoke spike).
+## Key facts
+- gvg.report download per match: about 91 MB (replay) + 43 MB (summary); trimmed about 225 KB.
+- Spike anchors: 400 in 0.6 s survivable on shield set if armor respecting; 550 armor ignoring in 0.35 s can't be
+  saved. Good spike catching: prots 0.3 to 1.0 s after the first hit (hdm caught 17 of 20; cope 12 of 34).
+- Entourage lasts 10.5 s; Solitude has an extra pit archer; Lord Health 1,680 +1% per boost up to 1,848.
+- Denning's characters in RACK matches: Denning (8 monk), Denning E (water ele in the invoke spike).
+- Transcript offsets differ per video; anchor on 2 or 3 kills or caps.
 
-## Open items and next steps
-1. Maga and Nick transcripts (next session).
-2. Test reviews: OG vs cope (no commentary), RACK vs hdm (Meditation), then others, leading with Bounty's frame (time,
-   positioning and responses, playing the build as intended).
-3. Unanswered: what RACK should have done after Men capped at 1:27 and parked on RACK's half; whether falling back to
-   base (7:00 to 10:30) was forced. Whether the RJT vs RACK prots were out of position.
-4. Benchmarks: a strong prot's spike catches (Ali) and a good 7 monk's Infuse timing.
-5. Toolkit: race clock for base races (arrival, pit cleared, first Lord hit, Lord dead); timed kills (target held low
-   before the 2-minute mark); prot position against the enemy's 3rd damage.
-6. Maps: draw Isle of Meditation (outline stored) for front door vs backdoor; build walkable areas from positions for
-   maps without outlines (Nomad's Isle).
-7. Pending trim change to batch: keep Lord spawn positions (pit and base location).
-8. Bulk pull when the process is settled; consider telling the gvg.report owner first.
+## Open items
+- The open questions at the end of the tactics page.
+- Benchmarks: a strong prot's spike catches (Ali) and a good 7 monk's Infuse timing.
+- Toolkit: race clock for base races; timed kills; prot position against the enemy's 3rd damage; a "decided by"
+  helper (edges over time: death penalty, boosts, pit NPCs, numbers).
+- Maps: draw Isle of Meditation for front door vs backdoor; walkable areas for maps without outlines.
+- Pending trim change to batch: keep Lord spawn positions.
+- Bulk pull when settled; consider telling the gvg.report owner first.
 
 ## Known issues and cautions
-- `gh` isn't logged in in Claude's workspace; start workflows by pushing `replays/requests.txt`. Commit all local edits
-  before `git pull --rebase`, or the push silently doesn't happen.
-- Check each gvg.report link matches its transcript (teams, map, winner); use `listing.json` to find the right match.
-- Auto-transcripts garble names ("X-way" = hex way, "axes" = hexes, "Lisa" = Lyssa, "Shadow of Aests" = Shadow of
-  Haste, "PE leak" = Power Leak); match them against the builds in the replay.
-- Entourage cast gaps only mean suppressed when attackers were at the Lord. Zones are heuristics (base = spawn point,
-  2,000 radius). Some prots have no recorded target; some conditions are only "condition"; numbers are estimates.
-- A win with no Lord damage where the Lord and pit die together at the end is a resign.
+- `gh` works in the workspace; start workflows by pushing `replays/requests.txt`. Commit all local edits before
+  `git pull --rebase`.
+- Check each gvg.report link matches its transcript (teams, map, winner, round order).
+- Auto-transcripts garble names ("X-way" = hex way, "Ellie"/"LE" = elementalist, "Lisa" = Lyssa).
+- Entourage gaps only mean suppressed when attackers were at the Lord. Zones are heuristics. Numbers are estimates.
 - Don't use Denning's own word for chaotic games; say "chaotic".
 
-## Conventions for this work
-- Denning's terms: base, backside, push side, stand, pit, pit NPCs, outside archers; prot, 7 monk (push), 8 monk
-  (backside), Mes/A, stand mes, hammer, AoB derv; holding the flag, double running (half, full), collapse, power play,
-  solo split, 3 man split, 4-4, after time, timing someone. Refer to players by role, not character name.
-- Reviews follow the template in `knowledge/tactics.md`: result and kind of game (stomps short), builds with matchup
-  call outs (matches are blind), the chain to the win condition, player detail only where decisive, questions at the
-  end. Denning's teachings go in as **Denning:** lines, his tests as **Tested (date):**, commentators' as named lines.
-- Times are match clock (m:ss). Improve the toolkit rather than writing one-off scripts.
-
-## Recent changes
-- 2026-11-04: Built the replay pipeline and `replays` branch; saved the analysis toolkit.
-- 2026-11-04: Reviewed five RACK matches with Denning; created and grew `knowledge/tactics.md` from his corrections.
-- 2026-11-04: Learned from six Bounty commentaries (confirmed by Denning); added after-time, output, base race,
-  near-miss boost and splits measures.
-- 2026-11-04: Final check that every learning from the session is captured (prot rule wording, open questions,
-  guild notes, small commentary points).
+## Conventions
+- Denning's terms (see Language on the tactics page); refer to players by role. Times are match clock (m:ss).
+- Reviews: summary paragraph first (prose, with 8v8, flag game, splits and which roles were better woven in), then
+  decided by, deciding moments, what sources added, questions. Lessons go to the tactics page as general lines.
+- Improve the toolkit rather than writing one-off scripts.

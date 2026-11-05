@@ -1,0 +1,160 @@
+# Match reviews
+
+Reviews of individual matches from gvg.report replays. Each review feeds the general principles on the GvG tactics
+page; tags such as [Men v Team] on that page point here.
+
+## How a review is written
+- **Denning:** A review explains what led to the win condition: did a team push the base and not get followed, fail a
+  collapse, make a mistake on the flag; were critical deaths caused by lack of support or monk errors, or by really
+  good plays such as knockdowns and interrupts.
+- **Denning:** Insights must be about decisions and their consequences: who did what, when, and why it decided the
+  fight. Correlations such as "capping is good" or "deaths are bad" are not insights. The goal is to learn what winning
+  guilds do differently from losing ones.
+- **Denning:** Every review opens with a summary. Its first paragraph is prose, not a list of questions; woven into
+  it: the result and kind of game, whether they fought 8v8, whether they played the flag game (who capped, boosts),
+  whether anyone split (who, answered how), whether one side's monks, mesmers or both were noticeably better, and how
+  the win condition was reached.
+- **Denning:** Kinds of game: stomps (a short summary is enough); games between similar good teams (won on macro, on
+  very good individual plays a team capitalizes on, or on build differences); games decided by very small micro play
+  (interrupts, monk play, good hammer play in a 3v3); chaotic games (e.g. when good guilds play [push]).
+- **Denning:** Builds are summarized by role (e.g. AoB dervish, Coward hammer, 2 E-surge mesmers, Life Sheath on the
+  prot), with matchup call outs.
+- **Denning:** A review is about the overall scope of the game; a player's own play only matters when that player was
+  a factor in the result.
+- After the summary: **Decided by** (macro, micro or both, see the tactics page), the deciding moments, what the
+  commentary or comms added, and questions for Denning. General lessons go to the tactics page, not here.
+
+## Sources
+- **Bounty:** YouTube commentary, October 2026 monthly and automated tournaments: Apes v cope (Meditation,
+  9b0816e2-c0eb-5797-a1b1-9962c8415307), 옷옷옷옷 v Book (Meditation, 6f7743eb-940d-5cc3-aa5b-32c17a66bf5a), OG v hold
+  (Meditation, 49eec28d-0f4b-5cc1-a146-4d1ad0bd642b), Team v push (Meditation, 2df9b7fd-823e-5df7-ad4e-192612cd9249),
+  cope v hdm (Uncharted, 1d073205-fdec-5684-aa7a-b03a558a9471), True v One (Meditation,
+  f34cb3a9-98c7-53d0-a980-60aa7dd5bc8d). Bounty plays mesmer for 옷옷옷옷, so weigh his comments on their games with
+  that in mind.
+- **Nick:** YouTube commentary of the September 2026 monthly final, [Men v Team].
+- **OG comms:** Maga's stream of OG's own voice comms, October 2026 monthly. Comms show what a team intended and
+  called; each point was checked against the replay. Names: Maga = mesmer; Holy = Holye (WoC monk, mesmer or
+  elementalist by build); Enigma = Enigma Og (8 or 7 monk); "No Monk" = No Monk For You (prot). Video time differs
+  from match time per video (noted in each review).
+
+## Guild notes
+- **Denning:** Good teams include hdm, xxx, Men, HC, HH and 옷옷옷옷. RACK is Denning's guild (he usually plays the 8
+  monk). WoC spike was a relatively standard build for RACK, but probably not any more.
+- **Bounty:** Teams playing with guests (missing their core lineup) often look lost; cope is very different with its
+  full lineup.
+- OG (October 2026): switches builds by map between Double Paragon WoC spike, invoke spike and AoB balance with a
+  ranger runner; strong calling on comms.
+
+---
+
+## [Men v Team] Men v Team, September 2026 monthly final
+Isle of Weeping Stone, 6:13, gvg.report d4660b7b-1e09-584e-a786-0e9f48b3f343. Source: Nick.
+
+**Summary.** Men won at 6:13, a stomp (Team 9 deaths, Men 0). Men's Double Paragon WoC spike (Decapitate axe,
+Angelic Bond and "The Power Is Yours!" paragons, Life Sheath prot, Blessed Light on the 7 and 8) met Team's balance
+(Test of Faith AoB dervish, Coward hammer, 2 mesmers, Spirit Light Weapon ritualist). Team split 4 from the start
+(8 monk, ritualist, stand mesmer, hammer), which drew Men's prot and WoC monk home, but the split was aggressive only
+for about a minute, then shrank to a solo ritualist held by Men's 8 monk alone, and took one knight all game. Men
+won the stand at 0:55 and boosted twice while Team's dervish carried a flag for 145 s without capping. Team's main
+team met Men's 5 in the field after each res and lost a player each cycle, then was wiped in its pit from 5:14, 46 s
+before the res; Men killed the Bodyguard and Lord before it arrived.
+
+**Decided by:** macro. The split stopped being a split, and the main team fought outside its pit.
+
+**Deciding moments:** 0:45 Men's mesmer interrupts Healing Burst as Team's flagger dies; 2:18 Decapitate (158) into
+Protector's Strike kills Team's prot after a Grapple; 2:00 to 4:00 Team's split is one ritualist while its 8 monk
+escorts the flag; 5:14 to 5:36 the pit wipe.
+
+**What the data added to Nick:** Team's only Spirit Bond and Reversal of Fortune were on the 8 monk, away on the
+split, so the main team had one Aura of Faith against the spike; Team's only Aura of Stability was on the prot, the
+player Men knocked down 14 times. Nick was right on every game point; on builds, Men's 7 monk never cast Infuse and
+Team's 7 monk carried Draw Conditions, not Cure Hex.
+
+## [OG v chic] OG v chic, October 2026 monthly, round 2
+Uncharted Isle, 12:11, gvg.report 5739e1e0-483e-58f1-a017-d0d8fee69c6e. Source: OG comms (video = match + about 50 s).
+
+**Summary.** OG won at 12:11, good team against a weaker one (chic 12 deaths, OG 0). OG ran Double Paragon WoC spike;
+chic ran air and water elementalists, a warrior, a paragon, a mesmer and three monks. chic split both elementalists
+from the start; OG answered 2 for 2 with its WoC monk and 8 monk and fought 6v6, where its spikes killed only 3 times
+in 17 attempts. At 3:15 OG moved the defence to the prot and 8 monk, freeing the WoC monk for main and the flag. From
+then OG held the stand to the end (3 boosts), the WoC monk picked off players far from their monks, and OG converted
+each kill into pit NPCs. chic's lone elementalist split held two OG monks for 5 minutes, a good trade on paper, but
+chic lost at main. OG needed 5 minutes on a Lord chic enchanted 14 times; a wipe chained by mesmer interrupts on monk
+defence ended it.
+
+**Decided by:** macro (the defence swap that freed a runner and a killer), finished by micro (interrupts on Guardian
+and Healing Burst in the final wipe).
+
+**Deciding moments:** 3:15 the call to swap the defence; 4:31 the WoC monk's cap starts a 459 s hold; 6:04 first kill
+(after time) into 2 knights by 6:36; 11:11 to 11:53 the wipe.
+
+**What the comms added:** the reason for the swap ("not having Holy hurts our damage"), that it was a test ("can we
+just try"), knowledge of chic ("they usually do a four man split"), and running micro (stay in range of the paragon's
+haste; don't cast Aria of Zeal while running).
+
+## [OG v cope J] OG v cope, October 2026 monthly, round 3
+Isle of Jade, 9:22, gvg.report 29b7eca0-2660-5d04-adc2-06632123c2ec. Source: OG comms (video = match + about 33 s).
+
+**Summary.** OG won at 9:22, a stomp (cope 18 deaths, OG 1). It was a straight 8v8 with no splits; the flag traded
+about once a minute with no boosts, so kills alone decided it. OG's invoke spike (Rit/Para caller, 4 air
+elementalists, Shatter Storm mesmer, prot and 7 monk) killed cope's hex casters from the first minute (3 kills in
+54 s), and cope's monks were the weak link, protting only 12 of 34 spikes, mostly a second late. Ahead on death
+penalty, OG stopped chasing and let cope push into it; cope collapsed at 7:52 and OG walked in for the Lord.
+
+**Decided by:** micro (cope's spike catching), then macro (OG's patience with the death penalty lead).
+
+**Deciding moments:** 0:32 to 0:54 three kills on cope's hexers; about 4:15 the call "we don't need to be crazy";
+5:15 to 7:45 cope pushes onto OG's side and loses 5 players; 7:52 to 8:16 cope's collapse.
+
+**What the comms added:** the plan conditional on the enemy build ("if it's hex way, spike and run"), the death
+penalty reasoning behind the slow play, and spike micro (Shell Shock between "two" and "one"; remove Migraine on the
+spikers).
+
+## [OG v hdm] OG v hdm, October 2026 monthly, round 5
+Isle of the Dead, 7:23, gvg.report d016987b-e5a0-5cd5-a23c-4c5b2d2415f8. Source: OG comms (video = match time).
+
+**Summary.** hdm won at 7:23, good v good decided by role play (OG 18 deaths, hdm 1). It was an 8v8 all game with no
+real splits, fought on OG's side of the map. hdm won the flag game outright, capping once at 1:59 and boosting at
+3:59 and 5:59 while OG never capped. hdm's monks and mesmers were both clearly better than cope's had been against
+the same OG invoke build: its monks protted 17 of 20 spikes, mostly within a second (Life Sheath, Infuse and Spirit
+Bond), and its mesmers interrupted OG 41 times. Once OG started dying at 5:03, hdm's hex pressure wiped it in
+2 minutes and the pit fell before OG went back to it.
+
+**Decided by:** micro (hdm's spike catching and shutdown), compounded by macro (the flag game and a late retreat to
+the pit).
+
+**Deciding moments:** 1:59 hdm's cap (OG never caps); 0:00 to 5:00 18 OG spikes, 1 kill; 5:03 onward attrition
+deaths; about 5:20 the call to go back to the NPCs, after the outer NPCs had fallen.
+
+**What the comms added:** OG diagnosed the problem mid-game ("if you're getting interrupted we need to figure this out
+right now") but found no answer; afterwards it called this "the same matchup as cope", which the data shows it was not.
+
+## [OG v cope U] OG v cope, October 2026 monthly, semifinal
+Uncharted Isle, 27:40, gvg.report 84586253-61c8-5848-ad75-1bfda24302ba (the video calls it the quarterfinal; match
+order says semifinal). Source: OG comms (video = match + about 74 s).
+
+**Summary.** cope won at 27:40, 20 s before the 28:00 tiebreak, in a good v good balance mirror (both AoB dervish,
+Coward hammer, Spirit Light Weapon ritualist, Life Sheath prot; OG ran a ranger runner where cope had a second
+mesmer). For 22 minutes almost nobody died (2 deaths, both cope): both teams split 3v3, OG's hammer, ritualist and
+8 monk mirrored by cope's hammer, Mes/A and 8 monk, while the 5v5 main teams traded the flag 32 times. Only cope
+boosted (20:31); OG missed two boosts by 7 and 9 s. OG's split never took a knight, so cope's pit stayed whole. The
+game turned at 22:53, when OG's dervish died pulling two knights in cope's base and OG lost 4 players in 36 s; then
+OG pushed 5 into cope's intact pit for a power play while cope's 5 walked into OG's base and killed the Bodyguard
+(26:44) and Lord. cope's mesmers were the clearer edge (70 interrupts to OG's 27); both monk lines held until the late
+game.
+
+**Decided by:** both. Even macro for 22 minutes; a micro mistake (the dervish overextending on knights) opened it; a
+macro choice (racing an intact pit) closed it.
+
+**Deciding moments:** 18:31 to 21:09 cope's 158 s hold and boost; 22:53 the dervish dies; 23:04 to 23:29 three more
+deaths; about 24:30 "we should play for 28, but we have a power play here"; 26:28 Power Spike on the 7 monk's Blessed
+Light; 26:44 OG's Bodyguard falls.
+
+**What the comms added:** "they figured out we can't create enough space"; ideas tried (swapping the main team to the
+front door and the split to the stand; a 4-4); clock awareness ("this is 22 minutes"); a wrong hotkey in the collapse
+window; the team's own verdict (the dervish on the knights was the turning point; the monks were at opposite ends of
+the pit at the end), which matches the replay.
+
+## Earlier reviews (before this page)
+Reviewed with Denning in November 2026, without stored summaries: RJT v RACK, RACK v MBP, 옷옷옷옷 v RACK, hold v RACK
+(Imperial), Men v RACK. Not yet reviewed: RACK v hdm (Meditation and Uncharted), hold v RACK (Meditation), RJT v GW크.

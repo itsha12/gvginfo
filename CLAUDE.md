@@ -56,9 +56,19 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   build-based role names; `report.py <report id> [builds phases stand npcs lord deaths totals]` = the standard review
   tables). Start every match review from `report.py`, then dig into specific moments with `replaylib`. Improve these
   tools rather than writing one-off scripts, so later reviews reuse what was learned.
-- Match analysis follows `knowledge/tactics.md` (Denning's definitions override everything). Insights must be about
-  decisions and consequences, not correlations. End each analysis with specific questions for Denning, and add what he
-  teaches to that page as **Denning:** lines.
+- Match analysis: `knowledge/tactics.md` is the general model of how GvG is won, organized by situation (win
+  conditions and edges, macro vs micro, builds, splits, main team and pit, flag game, kills and timing, late game,
+  spikes, monk play, interrupts, positioning, open questions). **Denning:** lines override everything. Use it to judge
+  decisions and to answer "what should they have done" questions, with a confidence level.
+- `knowledge/match-reviews.md` holds one entry per reviewed match (summary paragraph, decided by macro, micro or both,
+  deciding moments, what comms or commentary added). Match tags such as [Men v Team] link the two pages.
+- After each review: add the entry to match-reviews.md; turn its lessons into general **Claude:** lines on
+  tactics.md under the right situation, each ending with match tags as evidence; when a new match contradicts a line,
+  revise it rather than adding a second one; add Denning's answers as **Denning:** lines (no dates). Keep the tactics
+  page a model, not a log: merge duplicates and keep match detail on the reviews page.
+- How concepts are measured in the data: `tools/replay_analysis/METHODS.md` (not on the site).
+- Insights must be about decisions and consequences, not correlations. End each analysis with specific questions for
+  Denning.
 - Site home page is Schedule (`#/`); Recent matches is `#/matches`.
 - People: `data/aliases.json` = {"people": {"Person": ["Character", ...]}}, edited from the Players page (tick names,
   assign). Use it when Denning asks about a player by their person name.
