@@ -1,0 +1,42 @@
+name: Fetch transcripts
+
+# Saves YouTube transcripts listed in transcripts/requests.txt to the replays branch (transcripts/<video id>.json).
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["transcripts/requests.txt"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: replays
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Get the replays branch
+        run: |
+          git config --global user.name "gvginfo-bot"
+          git config --global user.email "gvginfo-bot@users.noreply.github.com"
+          git clone --depth 1 --branch replays "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" store
+      - name: Fetch transcripts
+        run: |
+          pip install --quiet youtube-transcript-api
+          python tools/fetch_transcripts.py store | tee store/transcripts_last_run.txt
+      - name: Save
+        if: always()
+        run: |
+          cd store
+          git add -A
+          git diff --cached --quiet && { echo "Nothing new."; exit 0; }
+          git commit -qm "Add transcripts"
+          git push origin replays

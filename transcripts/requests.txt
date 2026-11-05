@@ -1,0 +1,3 @@
+# One YouTube link or video id per line. The "Fetch transcripts" workflow saves each transcript to the replays branch
+# under transcripts/<video id>.json (timestamped lines). Optional: add a gvg.report link after the video on the same line.
+https://youtu.be/HX-ym5Q3fRc https://gvg.report/report/9b0816e2-c0eb-5797-a1b1-9962c8415307
