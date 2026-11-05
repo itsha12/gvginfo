@@ -15,6 +15,32 @@ matches are reviewed). **Open:** lines are questions the match data should help 
   defensively when fighting 7v8.
 - **Denning:** The goal is to learn what winning guilds do differently from losing ones.
 
+## Map and team language
+- **Denning:** Each team's end of the map is its **base** (not "home"). The res shrine is at the base.
+- **Denning:** **Backside** is the side of the map closest to your own base. **Push side** is the side closest to the
+  enemy base. North and south don't matter; describe positions as backside and push side.
+- **Denning:** Refer to players by role, not character name: prot monk, 7 monk, 8 monk, running mesmer, stand mesmer,
+  hammer warrior, and so on.
+- **Measure:** roles come from each player's build and party slot. Positions are labelled by side relative to the
+  player's own team (backside, push side, base, enemy base, stand).
+- **Denning:** Players are resurrected at their base (res shrine) every 2 minutes as long as they have less than 60%
+  death penalty. Death penalty lowers health and energy.
+
+## Types of game
+- **Denning:** Some games are fought 8v8 (holding the flag) or 7v7 (with 1 player running the flag).
+- **Denning:** The **flag game**: 2 or 3 damage, the prot and the 7 monk push the enemy flag, the enemy does the same,
+  and each team defends its own flagger with 1 or 2 damage and the 8 monk.
+- **Denning:** **Solo splits**: one player goes through the back or an unconventional route to try to kill the enemy pit
+  or NPCs. This is sometimes defended by the 8 monk or by 1 damage, and sometimes teams collapse on the splitter to
+  kill it.
+- **Denning:** **3 or 4 man splits**: a group pushes the enemy's backdoor to try to take NPCs.
+- **Denning:** All of these need to be understood; a match can move between them.
+- **Measure:** each team's groups every few seconds (who is with whom and where), so each phase of a match can be
+  labelled: 8v8, 7v7, flag game, solo split, or 3 or 4 man split; plus who answered a split and how (8 monk, 1 damage,
+  or a collapse) and what it cost or gained (NPCs killed, kills, flag time).
+- **Measure:** position jumps from Aura of Displacement are real (the skill returns the ranger to where it was cast),
+  not recording errors.
+
 ## Flag running
 - **Denning:** Running the flag costs pressure. A frontline runner puts out basically no damage with the flag in hand.
 - **Denning:** A midline runner can't use their 40/40 set, so they cast fewer skills, have less energy, and are more
