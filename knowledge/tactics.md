@@ -173,6 +173,10 @@ match:
   value. [Men v Team]
 
 ### Defending a split
+- **Denning:** If the enemy prot is pushing with its team while 3 of your damage are on your push side, the enemy prot
+  is out of position and your push side should be able to kill. [Men v HC C]
+- **Denning:** A team that must run a flag and can't kill on its push side should send an extra damage back to assist
+  the run.
 - **Denning:** The prot monk follows the 3rd damage: each monk can usually survive 2 damage with team support, but not
   3, so the prot mirrors the enemy's 3rd damage, going wherever the enemy has 3 damage.
 - **Bounty:** A team defends its pit against a split with either its third damage or its prot monk.
@@ -194,6 +198,8 @@ match:
 - **Bounty:** A fast ranger left at the back door can warn the team, take free footmen and lead the answer to splits.
 - **OG comms:** Name the split's make-up the moment it is seen, ask the defenders whether they can hold it, and don't
   commit the defence until the last splitter is seen. [OG v chic]
+- **Denning:** A 3-man group of the 8 monk and two damage on the backside is a correct answer to an enemy ranger and
+  hammer pushing there. [Men v HC C]
 - **Claude:** An 8v8 build should defend splits with monks, not damage, so its damage stays together. Freeing a damage
   dealer from defence can also give the team a runner. Double Paragon WoC teams defend with the prot and 8 monk, adding
   the WoC monk only while the split is dangerous. [OG v chic] [Men v Team] [RACK v hdm M]
@@ -329,10 +335,15 @@ match:
   stripped by Shatter Enchantment, none of it alone kills at a high level: the enemy's coordination of knockdowns,
   Daze, interrupts and enchantment removal is the cause. Small mistakes around it can still be acceptable even at the
   highest level. [hdm v HC I1]
+- **Denning:** Mistakes have a severity: basic (a mistake good players shouldn't make), minor (high level and not always
+  avoidable, e.g. getting Dazed casting beside a ranger) and acceptable (fine even at the highest level). A minor
+  mistake can be game ending in the wrong moment, e.g. a monk alone with no other monk, or after time. [Men v HC C]
 - **Denning:** Interrupts on quarter-second casts (Reversal of Fortune, Aegis) are mostly luck: a mesmer or ranger
   can't hit them reliably and a monk can't cancel them, so they are not a monk error.
 - **Denning:** A monk casting right beside a ranger without cancel-casting first, and getting Dazed by Concussion
-  Shot, is a mistake.
+  Shot, is a minor mistake.
+- **Denning:** A mesmer near a monk under attack should always interrupt defensively (e.g. hammer attack skills, Burning
+  Arrow), and someone should peel the attacker so the monk can kite. [Men v HC C]
 - **Denning:** The prot should keep Aura of Stability on a monk being knocked down (e.g. the 7 monk against a hammer).
 - **Denning:** Pre-kiting with a speed stance is the correct play for a prot, even when a Coward catches it.
 - **Denning:** The team's mesmers should interrupt defensively so that Shatter Enchantment, Energy Surge and Energy

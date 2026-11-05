@@ -196,7 +196,9 @@ def assess(st, a, td, fx):
                         and not any(j[3] == i[3] and abs(j[0] - r[0]) <= 3 for j in m.o.get("interrupts", []))  # a real fake, not an interrupt
                         and not any(k[2] == i[3] and abs(k[0] - r[0]) <= 3 for k in m.o.get("knockdowns", []))
                         for r in m.o["ev"])
-            msg = f"{R(i[3])} cast beside the ranger without faking first and got Dazed"
+            alone = not any(d(st.pos(b, i[0] / 10)[0], st.pos(i[3], i[0] / 10)[0]) <= CAST_R for b in _monks(st, tm) if b != i[3])
+            msg = (f"minor: {R(i[3])} cast beside the ranger without cancel-casting first and got Dazed"
+                   + (" (alone with no other monk: could be game ending, especially after time)" if alone else ""))
             if close and not faked and activation(m.sk(i[4])) > 0.25 and msg not in mistakes: mistakes.append(msg)
     # no Aura of Stability on a monk being knocked down (Denning), counted only when a holder had it recharged (12 s)
     # and was free to cast (alive, not knocked down) at the knockdown; it never covers its caster
@@ -214,7 +216,7 @@ def assess(st, a, td, fx):
             last = max((r[0] for r in aos if r[2] == h and r[0] <= k[0]), default=-10 ** 6)
             if k[0] - last >= 120 and hs and hs["st"] != "k": missed_aos[(b, h)] += 1
     for (b, h), n in missed_aos.items():
-        mistakes.append(f"{R(h)} had Aura of Stability recharged but {R(b)} was knocked down without it ({n}x)")
+        mistakes.append(f"acceptable: {R(h)} had Aura of Stability recharged but {R(b)} was knocked down without it ({n}x)")
     # no defensive interrupts on the enemy mesmers who stripped prots or burned energy (Denning)
     foe_mes = [b for b in st.players[3 - tm] if m.A[b].get("p") == "Mesmer"]
     shut = [r for r in m.o["ev"] if r[1] == "cs" and r[2] in foe_mes and r[3] in mon + [a] and T0 - 50 <= r[0] <= T1
@@ -223,7 +225,20 @@ def assess(st, a, td, fx):
     defensive = [i for i in m.o.get("interrupts", []) if i[1] in own_mes and i[3] in foe_mes and T0 - 50 <= i[0] <= T1]
     went = sorted({m.sk(r[4]) for r in shut} | ({"Shatter Enchantment (stripped a prot)"} if stripped else set()))
     if went and not defensive:
-        mistakes.append(f"no defensive interrupts on the enemy mesmers ({', '.join(went)} went off)")
+        mistakes.append(f"acceptable: no defensive interrupts on the enemy mesmers ({', '.join(went)} went off)")
+    # Denning: a mesmer near a monk under attack should always interrupt defensively (hammer attack skills, Burning Arrow)
+    own_mes_near = [b for b in st.players[tm] if m.A[b].get("p") == "Mesmer" and st.alive(b, td - 3)
+                    and d(st.pos(b, td - 3)[0], st.pos(a, td - 3)[0]) < 1500]
+    att_set = {r[2] for r in m.o["ev"] if r[1] == "dm" and r[3] == a and T0 <= r[0] <= T1 and r[2] in m.PL}
+    on_att = [i for i in m.o.get("interrupts", []) if i[1] in own_mes_near and i[3] in att_set and T0 <= i[0] <= T1]
+    if m.A[a].get("p") == "Monk" and own_mes_near and not on_att:
+        mistakes.append(f"minor: {', '.join(R(b) for b in own_mes_near)} near the monk but no defensive interrupts on its attackers")
+    # which way the victim moved relative to its own pit while under pressure (kiting toward protection or away)
+    p0, p1 = st.pos(a, td - PRE)[0], st.pos(a, td - 1)[0]
+    if p0 and p1 and st.geo.pit.get(tm):
+        d0, d1 = d(p0, st.geo.pit[tm]), d(p1, st.geo.pit[tm])
+        if abs(d1 - d0) > 300:
+            notes.append(f"moved {'toward' if d1 < d0 else 'away from'} its own pit ({round(d0)} to {round(d1)})")
     # peel: hitting the attackers or enemy mesmers is defensive (or both); hitting enemy monks while dying is offensive only
     attackers = {r[2] for r in m.o["ev"] if r[1] == "dm" and r[3] == a and T0 <= r[0] <= T1 and r[2] in m.PL}
     tgt = collections.Counter()
@@ -234,7 +249,7 @@ def assess(st, a, td, fx):
                 else "enemy mesmers (offensive and defensive)" if p == "Mesmer"
                 else "enemy monks (offensive only)" if p == "Monk" else "others"] += 1
     if tgt and tgt["enemy monks (offensive only)"] > 0.5 * sum(tgt.values()):
-        mistakes.append("team mostly hit enemy monks while the victim died (purely offensive)")
+        mistakes.append("minor: team mostly hit enemy monks while the victim died (purely offensive)")
     return {"cause": cause, "mistakes": mistakes, "notes": sorted(set(notes)), "peel_targets": dict(tgt)}
 
 
