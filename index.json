@@ -1,6 +1,6 @@
 {
  "format": "gvginfo.replay.v1",
- "updated": "2026-11-05T03:53:09.624Z",
+ "updated": "2026-11-05T04:18:35.889Z",
  "matches": {
   "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65": {
    "file": "2026-11/eea5ba87-ac20-5ba3-a6c9-965f11ca8a65.json.gz",
@@ -139,6 +139,34 @@
    "winner": "cope",
    "length_s": 1192,
    "kb": 305,
+   "summary": true,
+   "trim": 3
+  },
+  "84586253-61c8-5848-ad75-1bfda24302ba": {
+   "file": "2026-10/84586253-61c8-5848-ad75-1bfda24302ba.json.gz",
+   "date": "2026-10-17T19:57:29.763Z",
+   "map": "Uncharted Isle",
+   "teams": [
+    "OG",
+    "cope"
+   ],
+   "winner": "cope",
+   "length_s": 1660,
+   "kb": 415,
+   "summary": true,
+   "trim": 3
+  },
+  "6f7743eb-940d-5cc3-aa5b-32c17a66bf5a": {
+   "file": "2026-10/6f7743eb-940d-5cc3-aa5b-32c17a66bf5a.json.gz",
+   "date": "2026-10-17T19:28:00.225Z",
+   "map": "Isle of Meditation",
+   "teams": [
+    "옷옷옷옷",
+    "Book"
+   ],
+   "winner": "옷옷옷옷",
+   "length_s": 376,
+   "kb": 98,
    "summary": true,
    "trim": 3
   }
