@@ -99,6 +99,10 @@ match:
   of Faith are other 7 and 8 elites.
 - **Claude:** Where a team's prot answers sit matters as much as having them: if the only Spirit Bond and Reversal of
   Fortune are on the 8 monk and the 8 monk is away on a split, the main team has no spike answer. [Men v Team]
+- **Claude:** Double Paragon WoC's warrior locks down the prot with Grapple and Bull's Strike before the kill. When the
+  team's only Aura of Stability is on the prot, nobody can stop it (Aura of Stability never covers the caster): Team's
+  prot was knocked down 14 times, RACK's 12, and both teams lost their prots and 7 monks to it. Against this build,
+  put Aura of Stability on a second monk. [Men v Team] [RACK v hdm M]
 
 ## 3. Splits
 
@@ -122,8 +126,11 @@ match:
 - **Claude:** A split is judged by what it forces and what it takes. It must either draw more value than it costs
   (more defenders, or monks for damage) or take NPCs. A split that is answered like for like (damage for damage, monk
   for monk) only trades time. [OG v cope U]
-- **Claude:** A split has to stay aggressive to keep its value: once it shrinks, the enemy answers it with fewer and
-  the trade flips. [Men v Team]
+- **Claude:** A split has to stay aggressive to keep its value: once it shrinks or stops threatening, the enemy answers
+  it with fewer and the trade flips. [Men v Team] [RACK v hdm M]
+- **Claude:** A split needs enough damage to beat the monks defending it. Two damage with the 8 monk can't kill two
+  monks, or NPCs they heal; it only chips. Against a team that defends with its prot and 8 monk, the split needs a 3rd
+  damage (which also pulls the enemy prot's rule into play) or it will not take the pit. [Men v Team] [RACK v hdm M]
 - **Claude:** A split that can't touch the Lord or knights only buys time; the game is then decided at main. [OG v chic]
 
 ### Who goes
@@ -155,13 +162,16 @@ match:
 - **OG comms:** Name the split's make-up the moment it is seen, ask the defenders whether they can hold it, and don't
   commit the defence until the last splitter is seen. [OG v chic]
 - **Claude:** An 8v8 build should defend splits with monks, not damage, so its damage stays together. Freeing a damage
-  dealer from defence can also give the team a runner. [OG v chic]
+  dealer from defence can also give the team a runner. Double Paragon WoC teams defend with the prot and 8 monk, adding
+  the WoC monk only while the split is dangerous. [OG v chic] [Men v Team] [RACK v hdm M]
 
 ## 4. Main team and pit play
 - **Nick / Denning:** A team relying on its split must keep its main team safe: give up ground, footmen and archers,
   play in its pit beside its NPCs, take no death penalty and give up no boosts. [Men v Team]
 - **Claude:** The main team's job while its split works is to buy time: die as rarely as possible and never after time.
-  Meeting the enemy in the field after each res loses a player each cycle. [Men v Team]
+  Meeting the enemy in the field after each res loses a player each cycle. Playing in the pit buys time but doesn't win
+  on its own: RACK held its pit to 8:17 where Team lasted 6:13 in the field, and both lost because their splits took
+  too little. [Men v Team] [RACK v hdm M]
 - **Bounty:** The main team has to take risks for anything to happen; trading flags for 20 minutes with no plan, and
   having the win condition on the wrong side of the map, loses slowly.
 - **Bounty:** Pushing 6v8 or 7v8 at main while a player is away running or splitting is a bad idea; know the game
@@ -213,7 +223,9 @@ match:
 - **Claude:** In a long even game, boosts are the scoreboard: they are often the only lasting edge, so near-misses
   (111 to 119 s holds) are real losses. [OG v cope U]
 - **Claude:** Winning the flag game outright (the enemy never capping) gives free boosts and lets the winner fight on
-  the enemy's side of the map. [OG v hdm]
+  the enemy's side of the map. [OG v hdm] [RACK v hdm M]
+- **Claude:** A big split with the main team in its pit concedes the stand: nobody is left to run, so the enemy boosts
+  every 2 minutes. A split plan has to win more than the boosts it gives away. [Men v Team] [RACK v hdm M]
 - **Claude:** A good runner can swing the flag game on its own: moving a mobile player onto the flag turned a lost
   stand into 459 s of holding and 3 boosts. [OG v chic]
 
@@ -259,7 +271,8 @@ match:
   benchmark is needed for Infuse Health on a good 7 monk.
 - **Claude:** Catching spikes is the clearest measure of monk quality. Good monk lines prot most spikes 0.3 to 1.0 s
   after the first hit, with some pre-prots; weak ones land prots 1 to 2 s after, when the target is already dead.
-  hdm caught 17 of 20 spikes; cope caught 12 of 34. [OG v cope J] [OG v hdm]
+  hdm caught 17 of 20 spikes; cope caught 12 of 34; RACK caught 4 of 19 against hdm's Double Paragon WoC.
+  [OG v cope J] [OG v hdm] [RACK v hdm M]
 - **Claude:** Fast invoke spikes (240 to 390 damage in 0.35 s on a target already below full health) can only be
   saved by pre-protting. [OG v cope J]
 - **Claude:** Not every death is a spike: deaths that take 2 to 8 s from the first big hit come from pressure,
@@ -333,3 +346,7 @@ match:
 - Where is the line between saveable and not saveable for mixed damage and other windows?
 - Does RACK split through the front door or the backdoor on Isle of Meditation? (Denning thinks the front door.)
 - What is the benchmark for a good 7 monk's Infuse Health timing?
+- What beats Double Paragon WoC (3-1 across reviews)? A split with 3 damage and the 8 monk, a 4-4, or staying 8v8 with
+  stacked prots and 2 Auras of Stability? [Men v Team] [RACK v hdm M]
+- Why did RACK's split break up at about 4:00, and should the dervishes have rejoined main once the WoC monk left the
+  defence? [RACK v hdm M]

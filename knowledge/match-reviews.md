@@ -155,6 +155,26 @@ front door and the split to the stand; a 4-4); clock awareness ("this is 22 minu
 window; the team's own verdict (the dervish on the knights was the turning point; the monks were at opposite ends of
 the pit at the end), which matches the replay.
 
+## [RACK v hdm M] RACK v hdm, October 2026 monthly
+Isle of Meditation, 8:17, gvg.report d06ef3c7-521d-5de4-a453-5fdb82c7c467. Source: replay only (first review with no
+commentary, testing the tactics model).
+
+**Summary.** hdm won at 8:17 (RACK 10 deaths, hdm 0). hdm ran the Double Paragon WoC spike; RACK ran balance (AoB
+dervish, Lyssa dervish, Coward hammer, Spirit Light Weapon ritualist, a mesmer, Life Sheath prot, Infuse 7 monk). RACK
+split 4 from 0:45 (both dervishes, the ritualist and the 8 monk), as the model says against an 8v8 spike, and kept its
+main team (prot, 7 monk, mesmer, hammer) in its base. hdm answered with its prot, 8 monk and WoC monk; the split took
+2 footmen, an archer and a knight by 2:15, but after hdm sent the WoC monk back to main (about 3:30) it chipped at the
+second knight for 5 minutes behind two healing monks and took nothing more. hdm won the flag game outright, capping at
+0:35 and holding to the end (461 s, boosts at 2:35, 4:35 and 6:35) while RACK dropped all four runs. hdm's 6 at main
+took RACK's knights and an archer, then wiped the pit from 7:07, with its warrior knocking RACK's prot down 12 times
+(RACK's only Aura of Stability was on the prot). RACK caught only 4 of 19 spikes, prots landing 0.8 to 2.0 s late.
+
+**Decided by:** macro, with micro making it worse. The split stopped threatening once it faced two monks with only
+2 damage, the main team fought 4 against 6, and the stand gave hdm three free boosts.
+
+**Deciding moments:** 0:35 hdm's cap (never lost); 2:15 RACK's only knight; about 3:30 hdm's WoC monk leaves the
+defence; 4:00 to 7:30 RACK's split chips a healed knight; 7:04 and 7:43 Grapple into the prot and 7 monk deaths.
+
 ## Earlier reviews (before this page)
 Reviewed with Denning in November 2026, without stored summaries: RJT v RACK, RACK v MBP, 옷옷옷옷 v RACK, hold v RACK
-(Imperial), Men v RACK. Not yet reviewed: RACK v hdm (Meditation and Uncharted), hold v RACK (Meditation), RJT v GW크.
+(Imperial), Men v RACK. Not yet reviewed: RACK v hdm (Uncharted), hold v RACK (Meditation), RJT v GW크.
