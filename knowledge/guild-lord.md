@@ -17,7 +17,7 @@ Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are in-gam
 Source: Guild Wars Wiki (Entourage; Developer update and Game update of 2010-07-20), pulled 2026-11-04.
 - For 15 seconds the Guild Lord takes no more than 30 damage from each attack or skill and takes 30 less damage each
   second. He can only use it while the defending NPCs outnumber the attackers. It can't be interrupted or disabled.
-- The defending NPCs are the five around the Lord: the Bodyguard, two Knights and two Archers. With all five alive,
+- The defending NPCs are the five in the pit, around the Lord: the Bodyguard, two Knights and two Archers. With all five alive,
   five attackers prevent Entourage; each of these NPCs killed lowers the number of attackers needed.
 - Only players and henchmen count as attackers (not pets, spirits or minions), and only while near enough to the Lord
   to fight (in casting range or close to it).

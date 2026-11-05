@@ -32,7 +32,8 @@ matches are reviewed). **Open:** lines are questions the match data should help 
 - **Denning:** Players are resurrected at their base (res shrine) every 2 minutes as long as they have less than 60%
   death penalty. Death penalty lowers health and energy.
 
-- **Denning:** The NPCs in the enemy base are the pit NPCs (not "guards").
+- **Denning:** The NPCs in the enemy base are the pit NPCs (not "guards"); the area around the Lord is the pit (not
+  "lord room"). Archers outside the pit are outside archers (not "wall archers").
 
 ## What a review covers
 - **Denning:** A review explains what led to the win condition, for example: did a team push the base and not get
@@ -44,6 +45,9 @@ matches are reviewed). **Open:** lines are questions the match data should help 
 ## Builds
 - **Denning:** Each review starts with a short summary of both teams' builds by role, e.g. AoB dervish, Coward hammer,
   2 E-surge mesmers, Life Sheath on the prot, Aura of Faith on the 8 monk.
+- **Denning:** It is not uncommon for a team to run only 1 Aura of Stability. 1 Aura of Stability into 2 hammer warriors
+  is worth a call out. Aura of Stability only prevents knockdowns on another ally, never the caster, so it does not
+  protect the monk casting it.
 - **Denning:** Call out skills that matter for the matchup as they are learned, e.g. having Infuse Health or not against
   a spike build, or 1 or 2 Purge Signets against a hex build or an AoD build.
 
@@ -58,7 +62,10 @@ matches are reviewed). **Open:** lines are questions the match data should help 
   team one game and win it others.
 - **Open:** when a solo split pays off, measured across many matches (what it killed or drew away against what it
   cost the main fights).
+- **Denning:** A good answer to a solo split: one player collapses on the splitter (for example the dervish killing a
+  splitting ranger) while another defends (for example the Mes/A).
 - **Denning:** **3 or 4 man splits**: a group pushes the enemy's backdoor to try to take NPCs.
+- **Denning:** Sending the 8 monk alone against a 3 man push is a mistake; that monk needs support.
 - **Denning:** All of these need to be understood; a match can move between them.
 - **Measure:** each team's groups every few seconds (who is with whom and where), so each phase of a match can be
   labelled: 8v8, 7v7, flag game, solo split, or 3 or 4 man split; plus who answered a split and how (8 monk, 1 damage,
@@ -109,10 +116,14 @@ matches are reviewed). **Open:** lines are questions the match data should help 
   base at 28:00 (winning on Lord damage at the very end) while still breaking Entourage.
 - **Denning:** Protting your own NPCs instead of your Lord is deliberate: enchantments on your own Lord cost
   aggressiveness.
-- **Measure:** the Lord's Entourage casts (a gap = suppressed), attackers near the Lord against the lord room NPCs
+- **Measure:** the Lord's Entourage casts (a gap = suppressed), attackers near the Lord against the pit NPCs
   still alive, Lord damage by minute, and enchantments or weapon spells cast on each team's own Lord.
 - **Open:** whether RACK splits through the front door or the backdoor on Isle of Meditation (Denning thinks the front
   door; check against the map).
+
+## Not running the flag
+- **Denning:** Not running the flag can be a deliberate choice. A team already on death penalty and under pressure may not
+  be able to run without the rest of the team being wiped, because running costs so much pressure.
 
 ## Flag running on the 8 monk
 - **Denning:** Running the flag on the 8 monk is a bad move. Teams normally only run on the 8 monk when 2 enemy damage
