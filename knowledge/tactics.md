@@ -32,6 +32,12 @@ matches are reviewed). **Open:** lines are questions the match data should help 
 - **Denning:** Players are resurrected at their base (res shrine) every 2 minutes as long as they have less than 60%
   death penalty. Death penalty lowers health and energy.
 
+- **Denning:** The NPCs in the enemy base are the pit NPCs (not "guards").
+
+## What a review covers
+- **Denning:** A match review is about the overall scope of the game. A player's own play only matters to the review
+  when that player was a factor in the result.
+
 ## Types of game
 - **Denning:** Some games are fought 8v8 (holding the flag) or 7v7 (with 1 player running the flag).
 - **Denning:** The **flag game**: 2 or 3 damage, the prot and the 7 monk push the enemy flag, the enemy does the same,
@@ -89,9 +95,24 @@ matches are reviewed). **Open:** lines are questions the match data should help 
   carrier died, pusher killed or driven off) and what it cost in the main fight.
 - **Open:** how many players to send back, and when, depending on who is pushing and the state of the main fight.
 
+## Pit NPCs and the 28:00 tiebreak
+- **Denning:** One of the values of taking pit NPCs during a match is that fewer players need to be sent to the enemy
+  base at 28:00 (winning on Lord damage at the very end) while still breaking Entourage.
+- **Denning:** Protting your own NPCs instead of your Lord is deliberate: enchantments on your own Lord cost
+  aggressiveness.
+- **Measure:** the Lord's Entourage casts (a gap = suppressed), attackers near the Lord against the lord room NPCs
+  still alive, Lord damage by minute, and enchantments or weapon spells cast on each team's own Lord.
+- **Open:** whether RACK splits through the front door or the backdoor on Isle of Meditation (Denning thinks the front
+  door; check against the map).
+
+## Flag running on the 8 monk
+- **Denning:** Running the flag on the 8 monk is a bad move. Teams normally only run on the 8 monk when 2 enemy damage
+  are dead or when they are very desperate.
+
 ## Spike defence
 - **Denning:** For a spike, the analysis should name the primary failure, such as lack of prots, late infuses, or lack of
   interrupts on spike skills.
+- **Denning:** Pre-protting is correct play, not a mistake.
 - **Denning:** Whether a prot was unavailable because of energy or recharge does not matter for the analysis; both point
   to other issues (inefficient casting or overprotting).
 - **Measure:** for each spike (a death, or 400+ damage in 3 seconds): prots on the target before and during the spike
