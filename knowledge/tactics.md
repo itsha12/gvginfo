@@ -38,8 +38,8 @@ matches are reviewed). **Open:** lines are questions the match data should help 
 - **Measure:** each team's groups every few seconds (who is with whom and where), so each phase of a match can be
   labelled: 8v8, 7v7, flag game, solo split, or 3 or 4 man split; plus who answered a split and how (8 monk, 1 damage,
   or a collapse) and what it cost or gained (NPCs killed, kills, flag time).
-- **Measure:** position jumps from Aura of Displacement are real (the skill returns the ranger to where it was cast),
-  not recording errors.
+- **Measure:** position jumps from Aura of Displacement are real, not recording errors: the caster Shadow Steps to the
+  target foe, then returns to where they started when they stop maintaining it.
 
 ## Flag running
 - **Denning:** Running the flag costs pressure. A frontline runner puts out basically no damage with the flag in hand.
