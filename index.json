@@ -1,6 +1,6 @@
 {
  "format": "gvginfo.replay.v1",
- "updated": "2026-11-05T03:20:20.588Z",
+ "updated": "2026-11-05T03:53:09.624Z",
  "matches": {
   "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65": {
    "file": "2026-11/eea5ba87-ac20-5ba3-a6c9-965f11ca8a65.json.gz",
@@ -125,6 +125,20 @@
    "winner": "Men",
    "length_s": 1156,
    "kb": 298,
+   "summary": true,
+   "trim": 3
+  },
+  "9b0816e2-c0eb-5797-a1b1-9962c8415307": {
+   "file": "2026-10/9b0816e2-c0eb-5797-a1b1-9962c8415307.json.gz",
+   "date": "2026-10-17T19:35:20.744Z",
+   "map": "Isle of Meditation",
+   "teams": [
+    "Apes",
+    "cope"
+   ],
+   "winner": "cope",
+   "length_s": 1192,
+   "kb": 305,
    "summary": true,
    "trim": 3
   }
