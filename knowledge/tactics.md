@@ -57,6 +57,7 @@ matches are reviewed). **Open:** lines are questions the match data should help 
   Resurrecting too late wastes time; teams under pressure are often scared to go for the res.
 - **Bounty:** Answering a split with one damage (e.g. the WoC monk) is enough when the main team can finish the game.
 - **Bounty:** Hex way is a hard matchup for triple melee; the mesmers have to do a really good job.
+- **Denning:** In hex way, the 8 slot being a ritualist (not a monk) is normal.
 - **Bounty:** Base race: a team defending with only 2 players (e.g. the 6 and the 8) is saying "give us time to finish",
   so it should not chase players leaving on a split; it should finish. hold lost about 25 to 30 s following OG's split
   and lost the race. In a base race, defenders have to kill the attackers before time (before the res).
@@ -64,9 +65,6 @@ matches are reviewed). **Open:** lines are questions the match data should help 
   is coming).
 - **Bounty:** An alternative defence against a single mesmer splitting: defend with both monks and push with the
   ritualist, since two monks survive better than a ritualist and a monk.
-- **Bounty:** hold lost the Lord race mostly because it had no Deep Wound, despite doing more Lord damage (5,340
-  against OG's 2,471 by gvg.report's estimate, from 3:00 to 5:30). (Not yet explained against the Amulet of
-  Protection cap; ask Denning.)
 - **Bounty:** Being too hasty loses games: take time, defend more with damage, work through the game.
 - **Measure:** deaths "after time" (within about 15 s after an even 2-minute mark), and whether the target was being
   held low before the mark (a timed kill); damage output per player per
