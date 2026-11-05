@@ -163,10 +163,12 @@ matches are reviewed). **Open:** lines are questions the match data should help 
   gave OG a real flag runner: chic held the stand most of the first 4:31; once the WoC monk ran it, OG held it to the
   end (459 s, 3 boosts). The swap's value was picks and flag, not spikes: OG's called spikes killed about as rarely
   after it as before.
-- **Claude (OG vs chic, macro):** a 2-man split that can't touch the Lord only buys time; chic's two elementalists
-  took 2 footmen and an archer in 3 minutes, then one of them sat in OG's base for 5 minutes doing nothing while chic's
-  main team fought a damage short. Splitters left alone on the field (water ele at push, paragon far from its monks)
-  were the easiest kills.
+- **Denning (2026-11-05):** 1 enemy damage held by 1 monk in base is usually a worthwhile trade for the splitting team:
+  4 damage kill 2 monks more easily than 5 damage kill 3. In that scenario it is up to the main team to win the game.
+- **Claude (OG vs chic, macro, corrected by Denning):** chic's lone elementalist split tied up two OG monks (prot and 8)
+  from 4:32, a trade in chic's favour on paper; chic's main team (4 damage, 3 monks) still lost to OG's (5 damage, 1
+  monk), so the game was lost at main. Players who drifted away from their monks (water ele at push, paragon far from
+  its monks) were the easiest kills.
 - **Claude (OG vs chic, macro):** OG converted kills straight into pit pressure: the first kill (after time, 6:04)
   was followed by a push that took 2 knights by 6:36; the next kills (7:18, 7:44) by the archers; a kill in the pit
   (8:29) by the Bodyguard (8:41).
@@ -245,6 +247,8 @@ matches are reviewed). **Open:** lines are questions the match data should help 
      knockdowns, interrupts, or a spike too fast to save).
   4. Player detail only where a player decided something.
   5. Specific questions for Denning; add his answers to this page.
+- **Denning (2026-11-05):** every review opens with a short upfront summary: result, kind of game, and in two or three
+  sentences how the win condition was reached and the decisive reasons, before any detail.
 - **Denning:** A match review is about the overall scope of the game. A player's own play only matters to the review
   when that player was a factor in the result.
 
