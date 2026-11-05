@@ -39,6 +39,13 @@ matches are reviewed). **Open:** lines are questions the match data should help 
 - **Denning:** A review explains what led to the win condition, for example: did a team push the base and not get
   followed; did a team fail a collapse; was there a mistake on the flag; were critical deaths caused by lack of
   support or monk errors, or by really good plays such as knockdowns and interrupts.
+- **Denning:** Kinds of game, and how much review each needs:
+  - Stomps (one team far stronger, or a lopsided build matchup): a short summary is enough.
+  - Games between similar good teams (for example hdm, xxx, Men, HC, HH, 옷옷옷옷): won on macro, on very good individual
+    plays that a team capitalizes on, or on build differences and disadvantages.
+  - Games won or lost on very small micro play (interrupts, monk play, good hammer play in a 3v3), even between
+    evenly matched teams.
+  - Chaotic games, for example when good guilds play [push].
 - **Denning:** A match review is about the overall scope of the game. A player's own play only matters to the review
   when that player was a factor in the result.
 
@@ -128,6 +135,18 @@ matches are reviewed). **Open:** lines are questions the match data should help 
 ## Flag running on the 8 monk
 - **Denning:** Running the flag on the 8 monk is a bad move. Teams normally only run on the 8 monk when 2 enemy damage
   are dead or when they are very desperate.
+
+## Spike builds
+- **Denning:** WoC spike (Word of Censure spike): several Mo/A smiters spike with Word of Censure. Even with so many
+  monks it has low healing and defense, so it is considered an 8v8 build. The counter is to split hard, or to survive
+  a few spikes and then wipe them.
+- **Denning:** Against a spike build, call out a lack of interrupts on the spike skills, and call out when a team spikes
+  really well: for example, 600 damage landing within 0.2 seconds can't be saved by any prot or Infuse.
+- **Denning:** Winning on Lord damage at 28:00 isn't viable while taking deaths against a spike build like WoC; the team
+  would not survive 28 minutes.
+- **Measure:** for each death: the largest damage landed in any half second, from how many players, and how long from
+  the first big hit to death (under about half a second = not saveable); prots up on the target when the spike started;
+  interrupts landed on the spike skills.
 
 ## Spike defence
 - **Denning:** For a spike, the analysis should name the primary failure, such as lack of prots, late infuses, or lack of

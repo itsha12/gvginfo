@@ -119,7 +119,9 @@ class Match:
             for a in ps:
                 p, sl = self.A[a].get("p"), self.A[a].get("slot")
                 bar = {self.sk(b) for b in self.A[a].get("bar", []) if b}
-                if p == "Monk": r = {6: "Prot", 7: "7 Monk", 8: "8 Monk"}.get(sl, "Monk")
+                if p == "Monk":
+                    r = {6: "Prot", 7: "7 Monk", 8: "8 Monk"}.get(sl, f"Monk {sl}")
+                    if "Word of Censure" in bar: r += " (WoC)"     # smite monks in a WoC spike
                 elif p == "Mesmer": r = "Mes/A" if a == mesa else ("Stand Mes" if len(mes) > 1 else "Mesmer")
                 elif p == "Warrior" and "Hammer Bash" in bar: r = "Hammer"; hammers.append(a)
                 elif p == "Dervish" and "Avatar of Balthazar" in bar: r = "AoB Derv"

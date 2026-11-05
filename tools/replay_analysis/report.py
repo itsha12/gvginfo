@@ -1,6 +1,6 @@
 """Standard review tables for one match: builds, phases, stand holds, pit NPC kills and Entourage, lord damage,
 deaths with support context, team totals. Usage: python3 report.py <report id or path to .json.gz> [section ...]
-Sections: builds phases stand npcs lord deaths totals (default: all). Interpret with knowledge/tactics.md."""
+Sections: builds phases stand npcs lord deaths spikes totals (default: all). Interpret with knowledge/tactics.md."""
 import collections, sys
 from replaylib import Match, PROT_SKILLS
 
@@ -96,7 +96,31 @@ def totals(m):
     print("  knockdowns received:", collections.Counter(m.role(k[2]) for k in m.o.get("knockdowns", [])).most_common(6))
 
 
-SECTIONS = dict(builds=builds, phases=phases, stand=stand, npcs=npcs, lord=lord, deaths=deaths, totals=totals)
+def spikes(m):
+    """Per death: biggest burst in any half second, sources, first big hit to death, prots up, interrupts on the spikers."""
+    from replaylib import PROT_SKILLS
+    for x in m.o["deaths"]:
+        v = x["who"]
+        if not m.A[v].get("player"): continue
+        t, tm = x["t"], m.team(v)
+        hits = sorted((r[0], r[2], r[5] or 0) for r in m.o["ev"] if r[1] == "dm" and r[3] == v and t - 60 <= r[0] <= t
+                      and isinstance(r[2], int) and m.team(r[2]) not in (None, tm))
+        best, src = 0, set()
+        for i, (t0, _, _) in enumerate(hits):
+            w = [h for h in hits[i:] if h[0] - t0 <= 5]
+            dmg = sum(h[2] for h in w)
+            if dmg > best: best, src, first = dmg, {h[1] for h in w}, t0
+        if not hits: continue
+        prot = [m.sk(e[3]) for e in m.o.get("effects", []) if e[5] == v and e[2] == "e" and e[0] <= first <= (e[1] or 1e9)
+                and m.sk(e[3]) in PROT_SKILLS]
+        spikers = {h[1] for h in hits if h[0] >= first}
+        rupts = [m.sk(i[4]) for i in m.o.get("interrupts", []) if i[3] in spikers and first - 30 <= i[0] <= t]
+        flag = "  NOT SAVEABLE" if (t - first) <= 5 and best >= 400 else ""
+        print(f"  {m.f(t)} {m.role(v):18} burst {round(best):4} in 0.5s from {len(src)} | first hit to death {(t - first) / 10:.1f}s"
+              f" | prots up {prot} | interrupts on spikers {rupts}{flag}")
+
+
+SECTIONS = dict(spikes=spikes, builds=builds, phases=phases, stand=stand, npcs=npcs, lord=lord, deaths=deaths, totals=totals)
 
 if __name__ == "__main__":
     src = sys.argv[1]
