@@ -101,8 +101,8 @@ def totals(m):
 
 def spikes(m):
     """Per death: tightest big burst (armor ignoring vs other), sources, set, prots and Infuse with timing, interrupts.
-    Not saveable (Denning's anchors, knowledge/tactics.md): 550+ armor ignoring within 0.35 s, or more than the target's
-    health within 0.35 s. 400 armor respecting in 0.6 s on a shield set should be survivable."""
+    Not saveable (Denning's anchors, knowledge/tactics.md): target at 60%+ health, and 550+ armor ignoring within 0.35 s or
+    more than the target's health within 0.35 s. 400 armor respecting in 0.6 s on a shield set should be survivable."""
     from replaylib import PROT_SKILLS
     for x in m.o["deaths"]:
         v = x["who"]
@@ -131,7 +131,8 @@ def spikes(m):
                and (m.sk(r[4]) in PROT_SKILLS or "Infuse" in m.sk(r[4]))]
         spikers = {h[1] for h in hits if h[0] >= first}
         rupts = [m.sk(i[4]) for i in m.o.get("interrupts", []) if i[3] in spikers and first - 30 <= i[0] <= t]
-        nots = b35[1] >= 550 or (hpnow and b35[0] > hpnow)
+        # only a real spike counts: target at 60%+ health when it started
+        nots = (s.get("hp", 0) >= 60) and (b35[1] >= 550 or bool(hpnow and b35[0] > hpnow))
         print(f"  {m.f(t)} {m.role(v):18} 0.35s: {round(b35[0])} ({round(b35[1])} armor ignoring) from {len(b35[2])} | "
               f"0.6s: {round(b6[0])} | set {setl}, health ~{hpnow} | first big hit to death {(t - first) / 10:.1f}s")
         print(f"      prots/Infuse {sup} | interrupts on spikers {rupts}{'  NOT SAVEABLE' if nots else ''}")
