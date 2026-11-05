@@ -192,7 +192,10 @@ def assess(st, a, td, fx):
     for i in m.o.get("interrupts", []):
         if (i[3] in mon or (i[3] == a and m.A[a].get("p") == "Monk")) and T0 <= i[0] <= T1 and "Concussion" in m.sk(i[2]):
             close = d(st.pos(i[3], i[0] / 10)[0], st.pos(i[1], i[0] / 10)[0]) < 600
-            faked = any(r[1] == "cx" and r[2] == i[3] and i[0] - 60 <= r[0] < i[0] - 3 for r in m.o["ev"])
+            faked = any(r[1] == "cx" and r[2] == i[3] and i[0] - 60 <= r[0] < i[0] - 3
+                        and not any(j[3] == i[3] and abs(j[0] - r[0]) <= 3 for j in m.o.get("interrupts", []))  # a real fake, not an interrupt
+                        and not any(k[2] == i[3] and abs(k[0] - r[0]) <= 3 for k in m.o.get("knockdowns", []))
+                        for r in m.o["ev"])
             if close and not faked: mistakes.append(f"{R(i[3])} cast beside the ranger without faking first and got Dazed")
     # no Aura of Stability on a monk being knocked down (Denning), counted only when a holder had it recharged (12 s)
     # and was free to cast (alive, not knocked down) at the knockdown; it never covers its caster
