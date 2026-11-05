@@ -1,6 +1,6 @@
 """Standard review tables for one match: builds, phases, stand holds, pit NPC kills and Entourage, lord damage,
 deaths with support context, team totals. Usage: python3 report.py <report id or path to .json.gz> [section ...]
-Sections: builds phases stand npcs lord deaths spikes totals (default: all). Interpret with knowledge/tactics.md."""
+Sections: builds phases stand npcs lord deaths spikes splits totals (default: all). Interpret with knowledge/tactics.md."""
 import collections, sys
 from replaylib import Match, PROT_SKILLS
 
@@ -30,6 +30,9 @@ def stand(m):
         print(f"  {m.f(t)}-{m.f(e)} {m.tag[m.team(a)]:5} held {(e - t) / 10:4.0f}s, capped by {m.role(a)}")
     print("  morale boosts:", [(m.f(r[0]), m.tag[m.team(r[2])]) for r in m.o["ev"] if r[1] == "mo" and (r[5] or 0) > 0
                                 and m.A[r[2]].get("slot") == 1])
+    long = [(m.f(c["s"]), m.f(c["e"]), m.role(c["a"]), round((c["e"] - max(c["s"], 0)) / 10)) for c in m.carries
+            if c["e"] > 0 and c["e"] - max(c["s"], 0) >= 600]
+    print("  long carries (60 s+, holding the flag):", long)
     print("  carries:", [(m.f(c["s"]), m.f(c["e"]), m.role(c["a"]), c["how"].split("_")[-1]) for c in m.carries if c["e"] > 0])
 
 
@@ -134,7 +137,40 @@ def spikes(m):
         print(f"      prots/Infuse {sup} | interrupts on spikers {rupts}{'  NOT SAVEABLE' if nots else ''}")
 
 
-SECTIONS = dict(spikes=spikes, builds=builds, phases=phases, stand=stand, npcs=npcs, lord=lord, deaths=deaths, totals=totals)
+def splits(m, min_s=30):
+    """Small groups (1-4 players) away from their team's main group for 30 s or more: where, who shadowed them
+    (nearest enemy), snares and damage they took, deaths, and pit NPCs they killed."""
+    from replaylib import Match as _M
+    SNARES = {"Mind Freeze PvP", "Shard Storm", "Freezing Gust", "Ice Spikes", "Deep Freeze", "Pin Down", "Crippling Shot",
+              "Mantis Touch", "Caltrops", "Return", "Shadowy Burden", "Siphon Speed", "Hamstring", "Crippling Anguish PvP",
+              "Grasping Earth", "Ward Against Foes", "Snaring Web"}
+    end = int(m.o["meta"]["match_length_s"] * 10)
+    for tm in (1, 2):
+        runs, cur = [], None
+        for t in range(0, end, 20):
+            gs = m.groups(tm, t)
+            cars = set(m.carrier_at(t))
+            sp = [g for g in gs[1:] if len(g) <= 4 and not (set(g) & cars) and not all(m.loc(a, t) == "base" for a in g)] if len(gs) > 1 else []
+            key = frozenset(sp[0]) if sp else None
+            if cur and key == cur[0]: cur[2] = t
+            else:
+                if cur and cur[2] - cur[1] >= min_s * 10: runs.append(cur)
+                cur = [key, t, t] if key else None
+        if cur and cur[2] - cur[1] >= min_s * 10: runs.append(cur)
+        for g, a0, a1 in runs:
+            g = list(g); mid = (a0 + a1) // 2
+            enemies = [b for b in m.PL if m.team(b) != tm]
+            near = sorted(enemies, key=lambda b: min((m.dist(b, a, mid) or 1e9) for a in g))[:2]
+            snares = sum(1 for r in m.o["ev"] if r[1] == "cs" and r[3] in g and a0 <= r[0] <= a1 and m.sk(r[4]) in SNARES and m.team(r[2]) != tm)
+            dead = [(m.f(x["t"]), m.role(x["who"])) for x in m.o["deaths"] if x["who"] in g and a0 <= x["t"] <= a1 + 50]
+            kills = [m.nm(r[2]) for r in m.o["ev"] if r[1] == "dt" and a0 <= r[0] <= a1 and not m.A[r[2]].get("player")
+                     and m.A[r[2]].get("team") not in (None, tm)
+                     and any(x[1] == "dm" and x[3] == r[2] and x[2] in g and r[0] - 150 <= x[0] <= r[0] for x in m.o["ev"])]
+            print(f"  {m.tag[tm]} {m.f(a0)}-{m.f(a1)} split {[m.roles[a] for a in g]} at {m.loc(g[0], mid)} | nearest enemies "
+                  f"{[m.role(b) for b in near]} | enemy snares on it {snares} | deaths {dead} | NPCs killed {kills}")
+
+
+SECTIONS = dict(splits=splits, spikes=spikes, builds=builds, phases=phases, stand=stand, npcs=npcs, lord=lord, deaths=deaths, totals=totals)
 
 if __name__ == "__main__":
     src = sys.argv[1]

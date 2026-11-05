@@ -46,6 +46,15 @@ matches are reviewed). **Open:** lines are questions the match data should help 
   - Games won or lost on very small micro play (interrupts, monk play, good hammer play in a 3v3), even between
     evenly matched teams.
   - Chaotic games, for example when good guilds play [push].
+- Review template (from Denning's feedback on the first reviews):
+  1. Result, kind of game (stomp, good vs good, micro, chaotic) and how long the review should be.
+  2. Builds by role in Denning's terms, with matchup call outs (e.g. 1 Aura of Stability into 2 hammers, few
+     interrupts against a spike build).
+  3. The chain that led to the win condition: phases (8v8, holding the flag, flag game, splits), pit NPCs and
+     Entourage, flag and morale, the critical deaths and why (lack of support, monk errors, or great plays such as
+     knockdowns, interrupts, or a spike too fast to save).
+  4. Player detail only where a player decided something.
+  5. Specific questions for Denning; add his answers to this page.
 - **Denning:** A match review is about the overall scope of the game. A player's own play only matters to the review
   when that player was a factor in the result.
 
