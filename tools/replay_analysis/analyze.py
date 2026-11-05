@@ -3,14 +3,15 @@
 Usage:  python3 analyze.py <report id> [...] [--out DIR]      (default DIR: /tmp/gvginfo-analysis)
         python3 analyze.py --all [--out DIR]                  every match on the replays branch
 Output: <DIR>/<report id>.json with format gvginfo.analysis.v1: meta, ENGINE version, state samples every 5 s, and
-episodes (splits, flag runs, stand ledger). Later layers (deaths, monk profiles, numbers windows, findings, edge
-ledger) add keys here. Files are regenerated from the replays and this code, so bump ENGINE when the logic changes."""
+episodes (splits, flag runs, stand ledger, deaths, monk profiles, numbers windows, posture). Later layers (findings,
+edge ledger, win probability) add keys here. Files are regenerated from the replays and this code, so bump ENGINE when the logic changes."""
 import json, os, subprocess, sys
 from replaylib import Match
 from state import GameState
 import episodes as E
+import fights as F
 
-ENGINE = 1
+ENGINE = 2
 
 
 def analyze(rid):
@@ -22,6 +23,7 @@ def analyze(rid):
         "roles": {m.tag[m.team(a)] + " " + m.roles[a]: m.nm(a) for a in m.PL},
         "state": [st.at(t) for t in range(0, st.end + 1, 5)],
         "splits": E.splits(st), "flag_runs": E.flag_runs(st), "stand": E.stand_ledger(st),
+        "deaths": F.deaths(st), "monks": F.monks(st), "windows": F.windows(st), "posture": F.posture(st),
     }
 
 

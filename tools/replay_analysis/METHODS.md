@@ -7,16 +7,25 @@ page is detected in gvg.report replays.
 1. **Game state every second** (`state.py`, built): per team, who is alive and when the dead return, morale, zones (own
    pit, own base, backside, stand, push side, enemy base, enemy pit), fight groups and the main group, pit NPCs alive
    (K2 A2 B1), the flag (carriers, stand owner, hold time, time to a boost). Still to add: what each team can know.
-2. **Episodes** (`episodes.py`): splits (built: members, entering the enemy base, who answered, when, from where,
-   NPCs killed with or without defenders, main numbers meanwhile) and flag runs (built: runner and line, escort,
-   pushers and what they did, help and latency, half or full double running, main numbers meanwhile) and the stand
-   ledger (built). To build: deaths (the 10 to 20 s before), monk profiles, numbers windows and power play, team
-   posture (offensive or defensive against the situation).
-3. **Judgement** (to build): each episode checked against tactics principles, giving findings (on time, late, wrong
+2. **Episodes** (`episodes.py`, `fights.py`, all built): splits (members, entering the enemy base, who answered,
+   when, from where, NPCs killed with or without defenders, main numbers meanwhile); flag runs (runner and line,
+   escort, pushers and what they did, help and latency, half or full double running); the stand ledger; deaths (15 s
+   before: burst, damage sources and kinds, knockdowns and interrupts on the victim and its monks, monk casts on the
+   victim and what the monks were doing instead, monk distance, isolation, peel, after time, what the enemy took in
+   the next 60 s); monk profiles per 2 minutes (casts by kind, targets, bursts answered and reaction time, idle while
+   allies were hurt, fakes, interrupts and knockdowns received, distance to enemy mesmers and rangers); numbers
+   windows (who had more in the main fight, why the other side was short, pressure against the team's average,
+   kills, losses, ground gained); posture every 30 s (how far forward each main group is, against numbers, morale,
+   NPCs and the stand).
+3. **Judgement** (next): each episode checked against tactics principles, giving findings (on time, late, wrong
    role, missed, good) with evidence and what the players could know.
 4. **Edge ledger** (to build): each episode's effect on death penalty, boosts, pit NPCs, tiebreak and time; decides
    macro vs micro from evidence.
 5. **Benchmarks** (after the bulk pull): distributions of every measure across good teams, so "late" is measured.
+7. **Win probability** (after the bulk pull): a model that gives each team's chance to win from the game state at any
+   second (death penalty, boosts, pit NPCs, numbers, tiebreak, time), trained on hundreds of matches. Each episode's
+   value is the swing in win probability it caused, and "what should they have done" is answered by comparing the
+   outcomes of different choices made in similar states across all matches.
 6. **Fixed question set**: every deep review answers the same questions (splits, flag game, power play, deaths, monk
    casting and positioning, support, posture), each mapped to the measures above.
 

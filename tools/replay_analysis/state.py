@@ -163,6 +163,12 @@ class GameState:
     def groups(self, tm, t): return self.m.groups(tm, int(t * 10))
 
     def main_group(self, tm, t):
+        key = (tm, int(t))
+        cache = self.__dict__.setdefault("_mg", {})
+        if key not in cache: cache[key] = self._main_group(tm, int(t))
+        return cache[key]
+
+    def _main_group(self, tm, t):
         gs = self.groups(tm, t)
         if not gs: return []
         monks = lambda g: sum(1 for a in g if self.m.A[a].get("p") == "Monk")
