@@ -1,3 +1,8 @@
 # One per line: a gvg.report report id or link, or latest:N for the N newest matches. Stored matches are skipped unless the trim format changed.
 eea5ba87-ac20-5ba3-a6c9-965f11ca8a65
 latest:2
+# 2026-10-17 monthly, RACK with Denning on 8 monk
+d06ef3c7-521d-5de4-a453-5fdb82c7c467
+a8ba43a8-7703-5131-a6ce-9e274fbd3ac4
+1f65fd3b-9c22-5bb1-a488-86c87801b3a3
+34ab1ac3-cd5d-578e-a457-bccff232274a
