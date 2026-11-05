@@ -121,6 +121,7 @@ class Match:
                 if p == "Monk":
                     r = {6: "Prot", 7: "7 Monk", 8: "8 Monk"}.get(sl, f"Monk {sl}")
                     if "Word of Censure" in bar: r += " (WoC)"     # smite monks in a WoC spike
+                    if {"Siphon Speed", "Caltrops", "Mantis Touch"} & bar and sl == 6 and "Word of Censure" in bar: r = "Snare (WoC)"
                 elif p == "Mesmer": r = "Mes/A" if a == mesa else ("Stand Mes" if len(mes) > 1 else "Mesmer")
                 elif p == "Warrior" and "Hammer Bash" in bar: r = "Hammer"; hammers.append(a)
                 elif p == "Dervish" and "Avatar of Balthazar" in bar: r = "AoB Derv"

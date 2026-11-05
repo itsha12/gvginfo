@@ -19,7 +19,9 @@ matches are reviewed). **Open:** lines are questions the match data should help 
 - **Denning:** lines are Denning's own and override everything. **Bounty:** lines come from expert commentary (Bounty's
   YouTube commentary of Apes vs cope, October 2026 monthly playoffs, Isle of Meditation, gvg.report
   9b0816e2-c0eb-5797-a1b1-9962c8415307; 옷옷옷옷 vs Book, Meditation, 6f7743eb-940d-5cc3-aa5b-32c17a66bf5a; OG vs hold,
-  Meditation, 49eec28d-0f4b-5cc1-a146-4d1ad0bd642b; all October 2026 monthly playoffs) and stand until Denning
+  Meditation, 49eec28d-0f4b-5cc1-a146-4d1ad0bd642b; Team vs push, Meditation, 2df9b7fd-823e-5df7-ad4e-192612cd9249;
+  cope vs hdm, Uncharted, 1d073205-fdec-5684-aa7a-b03a558a9471; True vs One, Meditation,
+  f34cb3a9-98c7-53d0-a980-60aa7dd5bc8d; October 2026 monthly and automated tournaments) and stand until Denning
   corrects them. Auto-transcripts garble terms: "X-way" and "axes" mean hex way and hexes.
 
 ## Commentary lessons
@@ -65,7 +67,39 @@ matches are reviewed). **Open:** lines are questions the match data should help 
   is coming).
 - **Bounty:** An alternative defence against a single mesmer splitting: defend with both monks and push with the
   ritualist, since two monks survive better than a ritualist and a monk.
+- **Bounty:** Monk spike (Mo/A WoC with Return) comes in two kinds: the mobile, big-damage Mo/A version and a version
+  that can stand its ground; both have a place. The Mo/A version must be snappy with Return and Dash, always chasing,
+  leaving the enemy little time to work on its base; if it is slow, the enemy sets up on both fronts (main and split),
+  the worst case for a monk spike. Spiking from max range gets the spikers interrupted easily (Complicate, Cry).
+- **Bounty:** Against splits, a monk spike defends its pit with the snare character (6) and the 8: the 6 snares, the 8
+  heals, and the collapse kills (push got two kills the one time it did this). The 8 following the main team leaves the
+  pit open. Collapsing before the snare lands is wasted time.
+- **Bounty:** Don't take a meta build and change its key skills; it creates holes. A single snare (Siphon Speed) is
+  like no snare against a team with Blessed Light, which removes it.
+- **Bounty:** Copying a build without knowing how it is played doesn't work, especially a spike on an open map.
+- **Bounty:** Target choice costs time: spending 30 to 40 s failing to kill a monk is fine at 2 minutes, not at 22.
+  A build that needs time must use every 2 minutes (e.g. two kills per res cycle adds up to a lot of death penalty).
+- **Bounty:** When far behind, keep playing to about 26:00 to gain every edge (kills, death penalty), then try to
+  finish the Lord.
+- **Bounty:** A 4-4 split (e.g. two elementalists, a mesmer and a monk, with the main team playing without its prot) is
+  a very offensive split. A fast ranger left at the back door can warn the team, take free footmen, and lead the
+  answer to splits.
+- **Bounty:** When a split changes (e.g. the mesmer swapped for a ritualist, making it beefier), the defence must
+  change too; defending the same way loses the pit. Against that split, cope should have defended with its prot, since
+  its main team got no benefit from the prot.
+- **Bounty:** The main team has to take risks for anything to happen; trading flags for 20 minutes with no plan, and
+  having the win condition on the wrong side of the map, loses slowly.
+- **Bounty:** Pushing 6v8 or 7v8 at main while a player is away running or splitting is a bad idea (know the game
+  state). A splitter carrying a flag has to be respected quickly. When 3 damage are out on a split, the 8 monk should
+  go with them, or the split achieves nothing. With a numbers advantage (7 vs 6), jump the enemy.
+- **Bounty:** Missing a morale boost by a few seconds matters (True held the stand 113 s, 7 s short of a boost).
+  Don't drop the flag without a reason; dropping it to a better runner is fine. A backup flag belongs with the main
+  team rather than overcapping when a splitter is threatening.
+- **Bounty:** Drain Enchantment has a higher ceiling than Signet of Recall (it removes an enchantment); a mesmer
+  choice.
 - **Bounty:** Being too hasty loses games: take time, defend more with damage, work through the game.
+- **Measure:** stand holds that ended just short of 120 s (a nearly missed boost); snares landed by the defenders of
+  a split; time spent on a failed kill.
 - **Measure:** deaths "after time" (within about 15 s after an even 2-minute mark), and whether the target was being
   held low before the mark (a timed kill); damage output per player per
   minute (passive damage dealers during an 8v7); the weapon set a player was in when knocked down or spiked.

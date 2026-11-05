@@ -30,6 +30,9 @@ def stand(m):
         print(f"  {m.f(t)}-{m.f(e)} {m.tag[m.team(a)]:5} held {(e - t) / 10:4.0f}s, capped by {m.role(a)}")
     print("  morale boosts:", [(m.f(r[0]), m.tag[m.team(r[2])]) for r in m.o["ev"] if r[1] == "mo" and (r[5] or 0) > 0
                                 and m.A[r[2]].get("slot") == 1])
+    near = [(m.f(t), m.tag[m.team(a)], round((e - t) / 10)) for i, (t, a) in enumerate(caps)
+            for e in [caps[i + 1][0] if i + 1 < len(caps) else end] if 100 <= (e - t) / 10 < 120]
+    if near: print("  holds that just missed a boost (100-119 s):", near)
     long = [(m.f(c["s"]), m.f(c["e"]), m.role(c["a"]), round((c["e"] - max(c["s"], 0)) / 10)) for c in m.carries
             if c["e"] > 0 and c["e"] - max(c["s"], 0) >= 600]
     print("  long carries (60 s+, holding the flag):", long)
