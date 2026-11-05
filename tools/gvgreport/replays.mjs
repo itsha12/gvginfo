@@ -5,7 +5,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import zlib from "node:zlib";
-import { trimReplay } from "./replay_trim.mjs";
+import { trimReplay, TRIM_VERSION } from "./replay_trim.mjs";
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "../..");
 const STORE = path.resolve(process.argv[2] || "store");
@@ -72,9 +72,9 @@ async function main() {
     if (m) wanted.push(...(await latest(+m[1])));
     else if (ID.test(l)) wanted.push(l.match(ID)[0].toLowerCase());
   }
-  // matches stored before the summary feed was added are fetched again
+  // matches trimmed with an older format are fetched again
   const todo = [...new Set([...wanted, ...Object.keys(index.matches)])]
-    .filter((id) => !index.matches[id] || (index.matches[id].file && !index.matches[id].summary)).slice(0, MAX);
+    .filter((id) => !index.matches[id] || (index.matches[id].file && (index.matches[id].trim || 1) < TRIM_VERSION)).slice(0, MAX);
   console.log(`${wanted.length} requested, ${todo.length} to fetch.`);
   let done = 0;
   for (const id of Object.keys(index.matches)) { // maps for matches stored before maps were kept
@@ -97,7 +97,7 @@ async function main() {
       const t = out.meta.teams;
       index.matches[id] = { file, date: new Date(out.meta.started).toISOString(), map: out.meta.map,
         teams: t.map((x) => x.tag), winner: t.find((x) => x.id === out.meta.result?.winning_team_id)?.tag || null,
-        length_s: out.meta.match_length_s, kb: Math.round(gz.length / 1024), summary: !!sm?.summary };
+        length_s: out.meta.match_length_s, kb: Math.round(gz.length / 1024), summary: !!sm?.summary, trim: TRIM_VERSION };
       console.log(`  ${id}: ${out.meta.map}, ${t.map((x) => x.tag).join(" vs ")}, ${Math.round(gz.length / 1024)} KB`);
       await saveMap(out.meta.map_id);
       done++;

@@ -20,6 +20,7 @@
  {"id": "gvg-rules", "title": "GvG match rules", "file": "gvg-rules.md", "group": "GvG"},
  {"id": "guild-lord", "title": "Guild Lord and guild hall NPCs", "file": "guild-lord.md", "group": "GvG"},
  {"id": "guild-halls", "title": "Guild halls and Flux", "file": "guild-halls.md", "group": "GvG"},
+ {"id": "tactics", "title": "Tactics for match analysis", "file": "tactics.md", "group": "GvG"},
  {"id": "master-of-damage", "title": "Master of Damage", "file": "master-of-damage.md", "group": "Testing"},
  {"id": "test-scenarios", "title": "Test scenarios and open questions", "file": "test-scenarios.md", "group": "Testing"},
  {"id": "template-codes", "title": "Template codes", "file": "template-codes.md", "group": "Reference"},

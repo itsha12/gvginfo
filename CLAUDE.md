@@ -48,6 +48,13 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   `tools/gvgreport/player_stats.mjs` during "Update matches"): per character c (combat ms), m (matches), x (totals for
   damage, kills, assists, healing, prevented, cleanses, interrupts, fake casts, damage taken, knockdowns taken, deaths,
   distance). Only leaderboard-qualified characters are included.
+- Match replays: trimmed gvg.report replays live on the `replays` branch (not main): `index.json` lists them,
+  `YYYY-MM/<report id>.json.gz` holds one match, `maps/<map id>.json.gz` holds map outlines. Format and field meanings
+  are documented at the top of `tools/gvgreport/replay_trim.mjs` (times in tenths of a second of match time). Fetched
+  by the "Fetch replays" workflow from `replays/requests.txt` on main. Read them with a short script, never whole.
+- Match analysis follows `knowledge/tactics.md` (Denning's definitions override everything). Insights must be about
+  decisions and consequences, not correlations. End each analysis with specific questions for Denning, and add what he
+  teaches to that page as **Denning:** lines.
 - Site home page is Schedule (`#/`); Recent matches is `#/matches`.
 - People: `data/aliases.json` = {"people": {"Person": ["Character", ...]}}, edited from the Players page (tick names,
   assign). Use it when Denning asks about a player by their person name.

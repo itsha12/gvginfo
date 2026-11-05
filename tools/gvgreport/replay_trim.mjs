@@ -15,6 +15,8 @@
 //   deaths   death recaps (who dealt the damage in the 5 s before each death)
 //   skills   {skill id: name} for every skill seen
 
+// Bump when the trimmed format changes: stored matches with an older version are fetched and trimmed again.
+export const TRIM_VERSION = 2;
 const STATE = { idle: "i", moving: "m", attacking: "a", casting: "c", knocked_down: "k" };
 const CODES = {
   "skill.started": "cs", "skill.activated": "ca", "skill.finished": "cf", "skill.stopped": "cx",
@@ -162,7 +164,8 @@ function summaryParts(sum, A, T, idx, agents) {
     knockdowns: (sa.knockdowns?.events || []).map((e) => [T(e.ts_unix_ms), A(e.source_agent_key), A(e.target_agent_key), e.knockdown_skill_id ?? null]),
     // [start, end, family (e enchantment, h hex, c condition), skill, caster, target, how it ended, condition name]
     effects: (sum.effects?.uptime_intervals || []).map((e) => [T(e.started_at_ts), T(e.ended_at_ts), (e.family || "?")[0], e.skill_id ?? null,
-      A(e.caster_agent_key), A(e.target_agent_key), e.close_reason || null, e.condition_name || null]),
+      A(e.caster_agent_key), A(e.target_agent_key), e.close_reason || null,
+      e.condition_name || (e.family === "condition" && e.effect_name !== "condition" ? e.effect_name : null) || null]),
     // flag and objective timeline as gvg.report reads it: [t, type, actor]
     flags: (sum.objectives?.timeline || []).map((e) => [T(e.ts_unix_ms), e.type, A(e.inferred_actor_agent_key)]),
     lords: (sum.objectives?.guild_lord_damage?.guild_lords || []).map((g) => ({ a: A(g.agent_key), team: g.team_id, max_hp: g.max_hp,

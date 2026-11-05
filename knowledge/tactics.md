@@ -1,0 +1,68 @@
+# Tactics for match analysis
+
+Denning's tactical concepts, used when analyzing match replays. Lines starting **Denning:** are his own definitions and
+override everything else. **Measure:** lines say how each concept is detected in the replay data (proposals, refined as
+matches are reviewed). **Open:** lines are questions the match data should help answer.
+
+## What the analysis is for
+- **Denning:** Insights must be about decisions and their consequences: who did what, when, and why it decided the
+  fight. Correlations such as "capping is good", "interrupts are good", "damage is good" or "deaths are bad" are not
+  insights.
+- **Denning:** Examples of the kind of insight wanted (hypothetical): a team ran a flag and fought 8v7 while pushing it;
+  the other team double ran the flag to get up on flags, which let them play the power play while the first team was
+  running; a team got behind on flags because the enemy ranger pushed their flagger with cripple and they did not
+  collapse; a critical interrupt on Healing Burst at 7 minutes caused a wipe; a team failed to prot damage or interrupt
+  defensively when fighting 7v8.
+- **Denning:** The goal is to learn what winning guilds do differently from losing ones.
+
+## Flag running
+- **Denning:** Running the flag costs pressure. A frontline runner puts out basically no damage with the flag in hand.
+- **Denning:** A midline runner can't use their 40/40 set, so they cast fewer skills, have less energy, and are more
+  likely to be interrupted. They can't be in their shield set, so they take more damage when attacked. Their position
+  is compromised: they are in range of the enemy frontline and can't kite. Carrying the flag also slows the runner
+  (25%, see GvG match rules).
+- **Measure:** carries come from the flag timeline (pickup to drop or capture). For each carry: the runner's role
+  (frontline, midline or backline by build), their damage and casts during the carry compared with the rest of their
+  match, damage taken, interrupts suffered, and the number of their teammates left in the main fight.
+
+### Double running
+- **Denning:** Double running means using 2 players to run the flag. It gets a team up on flags faster, but the team is
+  essentially fighting 2 players down, which costs pressure.
+- **Denning:** Half running: one player runs the flag halfway and drops it to another player, then runs back for a second
+  flag while the other player caps.
+- **Denning:** Full running: one player runs back or waits back for the next flag while the other player caps.
+- **Denning:** Half running and full running are both types of double running.
+- **Measure:** half running = a drop by one player followed within a few seconds by a pickup by a teammate near the
+  same spot, then the first player heading back toward base. Full running = a teammate picking up or waiting at base
+  for the next flag while the first runner is still carrying or capping. Track how long each team plays with 2 players
+  away from the main fight.
+
+### Power play
+- **Denning:** When the enemy is running the flag, the team with more players in the fight can play the power play.
+- **Measure:** players in the main fight for each team every second (alive, within casting range of their team's fight
+  centre), so 8v7 and 8v6 windows stand out, and what each team did with them (pressure, kills, deaths).
+- **Open:** when the power play should be pushed hard and when it is safer to hold.
+
+### Pushing the flagger and collapsing
+- **Denning:** When one enemy player solo pushes the flagger, the flagging team should likely support the flagger by
+  sending players back to assist: a monk to heal, or a few damage characters to train the pusher out.
+- **Denning:** Sometimes a flagger has to flag through one damage character, and that's fine.
+- **Denning:** The right number of players to send is not known; that is what the games should teach.
+- **Measure:** an enemy within casting range of the carrier who damages or snares them (cripple and other snares,
+  knockdowns, interrupts); which teammates move toward the carrier and how soon; the outcome (capped, flag dropped,
+  carrier died, pusher killed or driven off) and what it cost in the main fight.
+- **Open:** how many players to send back, and when, depending on who is pushing and the state of the main fight.
+
+## Spike defence
+- **Denning:** For a spike, the analysis should name the primary failure, such as lack of prots, late infuses, or lack of
+  interrupts on spike skills.
+- **Denning:** Whether a prot was unavailable because of energy or recharge does not matter for the analysis; both point
+  to other issues (inefficient casting or overprotting).
+- **Measure:** for each spike (a death, or 400+ damage in 3 seconds): prots on the target before and during the spike
+  and when they landed, Infuse Health timing against the target's health, interrupts landed on the enemy's spike
+  skills, and what the target's monks were casting at the time.
+
+## Interrupts
+- **Denning:** An interrupt can be critical, for example an interrupt on Healing Burst that leads to a wipe.
+- **Measure:** each interrupt records the interrupter, the skill used, the interrupted skill and who it was aimed at;
+  follow that player for the next 5 to 10 seconds to see whether the interrupt decided the fight.
