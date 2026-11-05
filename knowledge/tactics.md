@@ -35,8 +35,17 @@ matches are reviewed). **Open:** lines are questions the match data should help 
 - **Denning:** The NPCs in the enemy base are the pit NPCs (not "guards").
 
 ## What a review covers
+- **Denning:** A review explains what led to the win condition, for example: did a team push the base and not get
+  followed; did a team fail a collapse; was there a mistake on the flag; were critical deaths caused by lack of
+  support or monk errors, or by really good plays such as knockdowns and interrupts.
 - **Denning:** A match review is about the overall scope of the game. A player's own play only matters to the review
   when that player was a factor in the result.
+
+## Builds
+- **Denning:** Each review starts with a short summary of both teams' builds by role, e.g. AoB dervish, Coward hammer,
+  2 E-surge mesmers, Life Sheath on the prot, Aura of Faith on the 8 monk.
+- **Denning:** Call out skills that matter for the matchup as they are learned, e.g. having Infuse Health or not against
+  a spike build, or 1 or 2 Purge Signets against a hex build or an AoD build.
 
 ## Types of game
 - **Denning:** Some games are fought 8v8 (holding the flag) or 7v7 (with 1 player running the flag).

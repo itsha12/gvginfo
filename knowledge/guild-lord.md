@@ -25,10 +25,13 @@ Source: Guild Wars Wiki (Entourage; Developer update and Game update of 2010-07-
   moved to Entourage. The Bodyguard still heals the Lord (Oath of Healing).
 - Aggressiveness counts Entourage and missed attacks, and gives a much larger bonus when the opponent combines
   defensive buffs with Entourage.
+- **Tested (2026-11-04):** Entourage lasts 10.5 seconds, not 15 as the wiki says.
 - Replay data: the Lord recasts Entourage about every 10 seconds while he can, so a gap in his casts shows when
   attackers had it suppressed.
 
 ## Guild hall NPCs (none respawn)
+- **Tested (2026-11-04):** Solitude has an extra archer that counts as a pit NPC.
+
 | NPC | Profession | Health | Armor | Skills / notes |
 |---|---|---|---|---|
 | Bodyguard (1) | Elementalist | 480 | — | Oath of Healing (heals the Guild Lord); priority target before the Lord |
