@@ -64,6 +64,9 @@ matches are reviewed). **Open:** lines are questions the match data should help 
 - **Denning:** It is not uncommon for a team to run only 1 Aura of Stability. 1 Aura of Stability into 2 hammer warriors
   is worth a call out. Aura of Stability only prevents knockdowns on another ally, never the caster, so it does not
   protect the monk casting it.
+- **Denning:** Matches are blind: teams don't know the enemy build in advance, so a build call out is about the matchup,
+  not necessarily a mistake (e.g. RACK's 8 monk probably should have run Aura of Stability into double hammer, but
+  couldn't know).
 - **Denning:** Call out skills that matter for the matchup as they are learned, e.g. having Infuse Health or not against
   a spike build, or 1 or 2 Purge Signets against a hex build or an AoD build.
 
@@ -126,6 +129,11 @@ matches are reviewed). **Open:** lines are questions the match data should help 
   knockdowns, interrupts); which teammates move toward the carrier and how soon; the outcome (capped, flag dropped,
   carrier died, pusher killed or driven off) and what it cost in the main fight.
 - **Open:** how many players to send back, and when, depending on who is pushing and the state of the main fight.
+
+## Resigning
+- **Denning:** Teams resign when a match is lost (RACK resigned against Men, 2026-11-01).
+- **Measure:** a win with no Lord damage, where the Lord and pit NPCs all die at the same moment at the end, is a
+  resign (the deaths are end-of-match cleanup).
 
 ## Pit NPCs and the 28:00 tiebreak
 - **Denning:** One of the values of taking pit NPCs during a match is that fewer players need to be sent to the enemy
