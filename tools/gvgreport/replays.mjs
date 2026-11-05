@@ -72,7 +72,9 @@ async function main() {
     if (m) wanted.push(...(await latest(+m[1])));
     else if (ID.test(l)) wanted.push(l.match(ID)[0].toLowerCase());
   }
-  const todo = [...new Set(wanted)].filter((id) => !index.matches[id]).slice(0, MAX);
+  // matches stored before the summary feed was added are fetched again
+  const todo = [...new Set([...wanted, ...Object.keys(index.matches)])]
+    .filter((id) => !index.matches[id] || (index.matches[id].file && !index.matches[id].summary)).slice(0, MAX);
   console.log(`${wanted.length} requested, ${todo.length} to fetch.`);
   let done = 0;
   for (const id of Object.keys(index.matches)) { // maps for matches stored before maps were kept
@@ -83,7 +85,10 @@ async function main() {
     try {
       const raw = await getJson(`${BASE}/api/reports/${encodeURIComponent(id)}?payload=replay`);
       if (!raw?.report) { console.warn(`  ${id}: no replay data`); index.matches[id] = { missing: true }; continue; }
-      const out = trimReplay(raw);
+      await sleep(1500);
+      const sm = await getJson(`${BASE}/api/reports/${encodeURIComponent(id)}?payload=summary`).catch(() => null);
+      if (!sm?.summary) console.warn(`  ${id}: no summary data (stored without it)`);
+      const out = trimReplay(raw, sm);
       const month = new Date(out.meta.started || Date.now()).toISOString().slice(0, 7);
       const file = path.join(month, `${id}.json.gz`);
       fs.mkdirSync(path.join(STORE, month), { recursive: true });
@@ -92,7 +97,7 @@ async function main() {
       const t = out.meta.teams;
       index.matches[id] = { file, date: new Date(out.meta.started).toISOString(), map: out.meta.map,
         teams: t.map((x) => x.tag), winner: t.find((x) => x.id === out.meta.result?.winning_team_id)?.tag || null,
-        length_s: out.meta.match_length_s, kb: Math.round(gz.length / 1024) };
+        length_s: out.meta.match_length_s, kb: Math.round(gz.length / 1024), summary: !!sm?.summary };
       console.log(`  ${id}: ${out.meta.map}, ${t.map((x) => x.tag).join(" vs ")}, ${Math.round(gz.length / 1024)} KB`);
       await saveMap(out.meta.map_id);
       done++;
