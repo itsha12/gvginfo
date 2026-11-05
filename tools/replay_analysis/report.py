@@ -62,6 +62,12 @@ def lord(m):
             per[m.tag[m.team(r[2])]][int(r[0] // 600)] += r[5] or 0; who[m.tag[m.team(r[2])]][m.role(r[2])] += r[5] or 0
     for k in per: print(f"  {k} lord damage by minute {dict((a, round(b)) for a, b in sorted(per[k].items()))}; by player "
                         f"{dict((a, round(b)) for a, b in who[k].most_common())}")
+    # base race: both teams with 3+ players in the enemy base at once
+    end = int(m.o["meta"]["match_length_s"] * 10); race = []
+    for t in range(0, end, 50):
+        n = {tm: sum(1 for a in m.PL if m.team(a) == tm and m.alive(m.snap(a, t)) and m.loc(a, t) == "enemy base") for tm in (1, 2)}
+        if n[1] >= 3 and n[2] >= 3: race.append(t)
+    if race: print(f"  base race (3+ of each team in the enemy base): {m.f(race[0])} to {m.f(race[-1])}")
     own = collections.Counter(m.tag[m.team(r[2])] for r in m.o["ev"] if r[1] == "cs" and r[3] in lords and m.A[r[2]].get("player")
                               and m.team(r[2]) == lords[r[3]]["team"] and m.sk(r[4]) in PROT_SKILLS | {"Patient Spirit", "Vigorous Spirit"})
     print("  enchantments on own Lord (approx., -50 aggressiveness each):", dict(own))

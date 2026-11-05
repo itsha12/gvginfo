@@ -18,7 +18,9 @@ matches are reviewed). **Open:** lines are questions the match data should help 
 ## Sources
 - **Denning:** lines are Denning's own and override everything. **Bounty:** lines come from expert commentary (Bounty's
   YouTube commentary of Apes vs cope, October 2026 monthly playoffs, Isle of Meditation, gvg.report
-  9b0816e2-c0eb-5797-a1b1-9962c8415307) and stand until Denning corrects them.
+  9b0816e2-c0eb-5797-a1b1-9962c8415307; 옷옷옷옷 vs Book, Meditation, 6f7743eb-940d-5cc3-aa5b-32c17a66bf5a; OG vs hold,
+  Meditation, 49eec28d-0f4b-5cc1-a146-4d1ad0bd642b; all October 2026 monthly playoffs) and stand until Denning
+  corrects them. Auto-transcripts garble terms: "X-way" and "axes" mean hex way and hexes.
 
 ## Commentary lessons
 - **Bounty:** "Dying after time": dying just after the res shrine timer (every 2 minutes) means waiting almost the full 2
@@ -45,6 +47,27 @@ matches are reviewed). **Open:** lines are questions the match data should help 
   off shield set by Coward, a sleepy 8 monk, a necro not seeing the warrior coming.
 - **Bounty:** Healing Burst on the 7 monk has become more common (teams lacking body healing); Blessed Light and Aura
   of Faith are other 7 and 8 monk elites.
+- **Bounty:** Double Paragon spike (assassin or warrior, Angelic Bond and "The Power Is Yours!" paragons, a WoC monk,
+  a Shatter Storm mesmer, 3 monks) is a beefy, strong 8v8 build; Shatter Storm strips prots, which makes its spikes
+  hard to prot. Against a pressure build, expect the pressure team to kill slowly and the spike team to kill one
+  player quickly.
+- **Bounty:** The tools for catching spikes: Reversal of Fortune on the 8, Life Sheath and Spirit Bond on the prot,
+  Infuse Health on the 7.
+- **Bounty:** A team that always has someone timed or stuck has no moment to play tactics and just gets overwhelmed.
+  Resurrecting too late wastes time; teams under pressure are often scared to go for the res.
+- **Bounty:** Answering a split with one damage (e.g. the WoC monk) is enough when the main team can finish the game.
+- **Bounty:** Hex way is a hard matchup for triple melee; the mesmers have to do a really good job.
+- **Bounty:** Base race: a team defending with only 2 players (e.g. the 6 and the 8) is saying "give us time to finish",
+  so it should not chase players leaving on a split; it should finish. hold lost about 25 to 30 s following OG's split
+  and lost the race. In a base race, defenders have to kill the attackers before time (before the res).
+- **Bounty:** Carrying the flag during a base race wastes time (only clear in hindsight, since nobody knows a base race
+  is coming).
+- **Bounty:** An alternative defence against a single mesmer splitting: defend with both monks and push with the
+  ritualist, since two monks survive better than a ritualist and a monk.
+- **Bounty:** hold lost the Lord race mostly because it had no Deep Wound, despite doing more Lord damage (5,340
+  against OG's 2,471 by gvg.report's estimate, from 3:00 to 5:30). (Not yet explained against the Amulet of
+  Protection cap; ask Denning.)
+- **Bounty:** Being too hasty loses games: take time, defend more with damage, work through the game.
 - **Measure:** deaths "after time" (within about 15 s after an even 2-minute mark), and whether the target was being
   held low before the mark (a timed kill); damage output per player per
   minute (passive damage dealers during an 8v7); the weapon set a player was in when knocked down or spiked.
