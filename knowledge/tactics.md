@@ -23,6 +23,9 @@ matches are reviewed). **Open:** lines are questions the match data should help 
 ## Commentary lessons
 - **Bounty:** "Dying after time": dying just after the res shrine timer (every 2 minutes) means waiting almost the full 2
   minutes to come back, which is much worse than dying just before it.
+- **Denning:** "After time" is a standard term: dying shortly after the 2 minute base res.
+- **Denning:** "Timing" someone: when a team knows it can kill a player, it holds off until right after the base res, so
+  that player is down for about 2 minutes unless their team gets a res off.
 - **Bounty:** The first 30 seconds shape the match (who goes where at the start, e.g. cope leaving its Lyssa dervish
   back).
 - **Bounty:** A team that double runs out front ("power running flags") still has to survive the opening fight; if the
@@ -34,13 +37,16 @@ matches are reviewed). **Open:** lines are questions the match data should help 
 - **Bounty:** A team whose build is worse 8v8 has to split someone (solo split, wait for it to be answered, then push the
   flag); pushing with all 8 into a better 8v8 build is a risk.
 - **Bounty:** Don't send both escape players (e.g. both Shadow of Haste characters) on a split; keep one at home.
-- **Bounty:** Mesmer, warrior and monk is the classic, versatile answer to a split. A team defends its pit against a
+- **Bounty:** Mesmer, warrior and monk is a versatile answer to a split. **Denning:** it is only classic in that build
+  (cope's), not a general rule.
+- **Bounty:** A team defends its pit against a
   split with either its third damage or its prot monk.
 - **Bounty:** Many small inaccuracies add up to losing fights: e.g. a monk not watching a split, a ritualist caught
   off shield set by Coward, a sleepy 8 monk, a necro not seeing the warrior coming.
 - **Bounty:** Healing Burst on the 7 monk has become more common (teams lacking body healing); Blessed Light and Aura
   of Faith are other 7 and 8 monk elites.
-- **Measure:** deaths "after time" (within about 15 s after an even 2-minute mark); damage output per player per
+- **Measure:** deaths "after time" (within about 15 s after an even 2-minute mark), and whether the target was being
+  held low before the mark (a timed kill); damage output per player per
   minute (passive damage dealers during an 8v7); the weapon set a player was in when knocked down or spiked.
 
 ## Map and team language
