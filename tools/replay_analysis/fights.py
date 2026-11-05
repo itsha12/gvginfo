@@ -196,7 +196,8 @@ def assess(st, a, td, fx):
                         and not any(j[3] == i[3] and abs(j[0] - r[0]) <= 3 for j in m.o.get("interrupts", []))  # a real fake, not an interrupt
                         and not any(k[2] == i[3] and abs(k[0] - r[0]) <= 3 for k in m.o.get("knockdowns", []))
                         for r in m.o["ev"])
-            if close and not faked: mistakes.append(f"{R(i[3])} cast beside the ranger without faking first and got Dazed")
+            msg = f"{R(i[3])} cast beside the ranger without faking first and got Dazed"
+            if close and not faked and activation(m.sk(i[4])) > 0.25 and msg not in mistakes: mistakes.append(msg)
     # no Aura of Stability on a monk being knocked down (Denning), counted only when a holder had it recharged (12 s)
     # and was free to cast (alive, not knocked down) at the knockdown; it never covers its caster
     holders = [b for b in st.players[tm] if any(m.sk(x) == "Aura of Stability" for x in m.A[b].get("bar", []) if x)]
