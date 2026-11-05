@@ -12,3 +12,6 @@ d492aa6c-a12b-5bce-a5ec-9ada965676f0
 45cf6756-afc8-51fa-ade0-162d7450be1c
 # Bounty commentary test
 9b0816e2-c0eb-5797-a1b1-9962c8415307
+# Bounty commentaries 2 and 3
+84586253-61c8-5848-ad75-1bfda24302ba
+6f7743eb-940d-5cc3-aa5b-32c17a66bf5a
