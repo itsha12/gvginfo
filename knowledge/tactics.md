@@ -227,6 +227,38 @@ matches are reviewed). **Open:** lines are questions the match data should help 
   damage a minute to cope's 40. hdm's mesmers interrupted 41 times to cope's 16 and died once to cope's 6. Better
   monk play kept hdm's hexers alive, so their damage kept flowing (hdm's top necro about 2,600 a minute, cope's
   1,360). Rates are partly game state (the winning side's players live longer).
+- **OG comms (OG vs cope, Uncharted, semifinal by match order (video says quarterfinal), gvg.report
+  84586253-61c8-5848-ad75-1bfda24302ba):** "we have a winning matchup", "we don't want to 8v8"; at about 11:00 a
+  proposal to swap the main team to the front door and the split to the flag stand "for more space", then "they
+  figured out we can't create enough space"; "our split needs to accomplish stuff"; at 22:02 "this is 22 minutes,
+  that's why we need the dervish for NPCs"; about 23:00 a player "used the wrong hotkey"; at about 24:30 "can we get
+  the boost at least" and "we should play for 28, but we have a power play here"; after the game "our dervish getting
+  killed holding the two knights was the turning point" and "Joe was at one end of the pit and our monk at the other".
+  Video time = match time + about 74 s.
+- **Review summary (OG vs cope, Uncharted):** cope won at 27:40, 20 s before the 28:00 tiebreak, in a good vs good
+  balance mirror (both AoB dervish, Coward hammer, Spirit Light Weapon ritualist, Life Sheath prot; OG ran a ranger
+  runner where cope had a second mesmer). For 22 minutes almost nobody died (2 deaths, both cope): both teams split
+  3v3, OG's hammer, ritualist and 8 monk mirrored by cope's hammer, Mes/A and 8 monk, while the 5v5 main teams traded
+  the flag 32 times. Only cope boosted (20:31); OG missed two boosts by 7 and 9 s. OG's split never took a knight, so
+  cope's pit stayed whole. The game turned at 22:53, when OG's dervish died pulling two knights in cope's base and OG
+  lost 4 players in 36 s; then OG pushed 5 into cope's intact pit for a power play while cope's 5 walked into OG's base
+  and killed the Bodyguard (26:44) and Lord. cope's mesmers were the clearer edge (70 interrupts to OG's 27); both
+  monk lines held until the late game.
+- **Claude (OG vs cope Uncharted, macro):** a split that is mirrored (damage for damage, monk for monk) only trades
+  time; to matter it has to take NPCs. OG split for 15 minutes and took 2 archers and a few footmen, never a knight, and
+  cope's Entourage was never broken until 25:08. That left OG with no way to win at 28:00 and no soft pit to attack late;
+  its late attackers died to cope's knights, Bodyguard and Lord. Confirms Denning (pit NPCs make the 28:00 push cheaper).
+- **Claude (OG vs cope Uncharted, macro):** in a long even game, morale boosts are the scoreboard: OG's two near-misses
+  (113 s, 111 s) and cope's one boost (158 s hold from 18:31) were the only lasting edges in 22 minutes. Confirms Bounty
+  (missing a boost by seconds matters); the comms show OG knew it ("can we get the boost at least").
+- **Claude (OG vs cope Uncharted, macro):** the late decision to go for a power play left only the prot and 7 monk at
+  home; once the 7 monk died (26:28, Power Spike on Blessed Light after a Coward knockdown), cope's 5 had the pit. In a
+  game this even, the last push decides it, and pushing an intact pit is a losing race. Confirms Bounty (keep playing
+  to about 26:00, then finish) only for the team that has worn down the enemy pit.
+- **Claude (OG vs cope Uncharted, micro):** the turning point was one player overextended: OG's dervish holding two
+  knights in cope's base took a Hammer Bash knockdown, the Mes/A and both knights; the 8 monk's Reversal of Fortune,
+  Spirit Bond and Blessed Light couldn't save it. Within 36 s the 7 monk, prot and ritualist followed (one comms
+  mention of a wrong hotkey in that window).
 - **Measure:** `report.py <id> catches`: per team, enemy spikes (3+ attackers, 250+ damage in 2 s) counted as killed,
   saved with a prot or survived without one, with prot timing and who cast them.
 - **Claude (OG vs hdm, macro):** OG lost the flag game outright (0 caps; its runner carried 71 s and dropped), so hdm
