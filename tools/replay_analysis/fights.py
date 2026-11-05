@@ -190,7 +190,7 @@ def assess(st, a, td, fx):
         if sk and activation(sk) <= 0.25: notes.append(f"unlucky interrupt on a ¼ s cast ({sk}): not a monk error")
     # the 8 (or any monk) Dazed by casting right beside a ranger without faking first (Denning: a mistake)
     for i in m.o.get("interrupts", []):
-        if i[3] in mon and T0 <= i[0] <= T1 and "Concussion" in m.sk(i[2]):
+        if (i[3] in mon or (i[3] == a and m.A[a].get("p") == "Monk")) and T0 <= i[0] <= T1 and "Concussion" in m.sk(i[2]):
             close = d(st.pos(i[3], i[0] / 10)[0], st.pos(i[1], i[0] / 10)[0]) < 600
             faked = any(r[1] == "cx" and r[2] == i[3] and i[0] - 60 <= r[0] < i[0] - 3 for r in m.o["ev"])
             if close and not faked: mistakes.append(f"{R(i[3])} cast beside the ranger without faking first and got Dazed")
