@@ -25,6 +25,8 @@ matches are reviewed). **Open:** lines are questions the match data should help 
   corrects them. **Denning (2026-11-04):** the Bounty lines on this page are confirmed, except where a Denning line
   corrects one. Bounty plays mesmer for 옷옷옷옷 (he said so when commentating a game he played in), so weigh his
   comments on 옷옷옷옷 games with that in mind. Auto-transcripts garble terms: "X-way" and "axes" mean hex way and hexes.
+- **Claude:** lines are Claude's own macro and micro learnings from replays (with what they confirm). They are
+  proposals until Denning confirms or corrects them.
 - **OG comms:** lines come from Maga's stream of OG's own voice comms in the October 2026 monthly (OG plays as a team;
   Maga is OG's mesmer). Comms show what a team intended and called; each line notes what the replay shows happened.
   Names on comms: Maga = mesmer, Holy = Holye (WoC monk, mesmer or elementalist by build), Enigma = Enigma Og (8 or 7
@@ -157,9 +159,43 @@ matches are reviewed). **Open:** lines are questions the match data should help 
 - **OG comms:** good calling habits heard: name the split's make-up the moment it is seen ("double ele split", "one
   ele left"), ask the defenders whether they can hold it, and don't commit the defence until the last splitter is
   seen. The comms use "after time" exactly as Denning defines it.
+- **Claude (OG vs chic, macro):** freeing the WoC monk fixed two things at once. It added a mobile killer to main and
+  gave OG a real flag runner: chic held the stand most of the first 4:31; once the WoC monk ran it, OG held it to the
+  end (459 s, 3 boosts). The swap's value was picks and flag, not spikes: OG's called spikes killed about as rarely
+  after it as before.
+- **Claude (OG vs chic, macro):** a 2-man split that can't touch the Lord only buys time; chic's two elementalists
+  took 2 footmen and an archer in 3 minutes, then one of them sat in OG's base for 5 minutes doing nothing while chic's
+  main team fought a damage short. Splitters left alone on the field (water ele at push, paragon far from its monks)
+  were the easiest kills.
+- **Claude (OG vs chic, macro):** OG converted kills straight into pit pressure: the first kill (after time, 6:04)
+  was followed by a push that took 2 knights by 6:36; the next kills (7:18, 7:44) by the archers; a kill in the pit
+  (8:29) by the Bodyguard (8:41).
+- **Claude (OG vs chic, micro):** the final wipe was chained by mesmer interrupts on monk defence: Power Spike on the
+  prot's Guardian, Psychic Instability on the 7 monk's Guardian, then Bull's Strike and Complicate on Healing Burst.
+- **Claude (what comms added):** the reason behind each move ("not having Holy hurts our damage"), that moves were
+  tests ("can we just try"), opponent knowledge ("they usually do a four man split"), and micro the replay can't
+  show: keep in range of the paragon's haste while running, don't cast Aria of Zeal while running, save energy for
+  the Bodyguard and archers.
 - **Open:** once chic's split was one elementalist, OG kept its prot home with the 8 monk while chic's main team had 3
   or more damage. Does that break the rule that the prot follows the enemy's 3rd damage, or is it fine for a spike
   build whose main team doesn't need the prot?
+- **OG comms (OG vs cope, Isle of Jade, R3, gvg.report 29b7eca0-2660-5d04-adc2-06632123c2ec):** OG ran invoke spike
+  (Rit/Para caller, 4 air elementalists, Shatter Storm mesmer, prot and 7 monk); cope ran hex way (2 necros, Migraine
+  Mes/A, stand mesmer, air ele, ritualist in the 8 slot). Plan before the game: "if it's hex way, spike and run". At
+  about 4:15, with cope far behind on death penalty: "we don't need to be crazy; cap the flag, spike them if they try
+  to cap, advance slowly if they retreat". Calls for monks to remove uncovered Migraine on spikers, and to land Shell
+  Shock between "two" and "one" of the countdown. Video time = match time + about 33 s.
+- **Claude (OG vs cope Jade, macro):** a pure 8v8: no splits, flag traded about every minute with no boosts, so kills
+  and death penalty decided it (cope 18 deaths, OG 1). OG opened 3 kills in 54 s and kept killing cope's hexers: 16 of
+  cope's 20 deaths were necros or mesmers. Killing the hex casters first is what let a 2-monk spike survive hex way.
+- **Claude (OG vs cope Jade, macro):** after the death penalty lead OG stopped chasing: it held its side of the map
+  from 5:15 to 7:45 while cope pushed onto it, and cope lost 5 players doing so; cope then collapsed (5 deaths from
+  7:52 to 8:16) and OG walked in and killed the Lord by 9:22. The team ahead on death penalty can make the other team
+  come to it. Confirms Bounty (being too hasty loses; a team always waiting on dead players gets overwhelmed).
+- **Claude (OG vs cope Jade, micro):** OG's kills landed 240 to 390 damage in 0.35 s and killed within 0.4 to 0.7 s,
+  on targets already below full health: too fast for a reaction prot, so only pre-protting could save them. OG's one
+  death was its mesmer at the stand: Lightning Surge knockdown, then the air ele and stand mesmer; the prot's Spirit
+  Bond landed the second it died. Confirms Denning's invoke spike definition (Rit/Para calls, 2 monks).
 - **Measure:** stand holds that ended just short of 120 s (a nearly missed boost); snares landed by the defenders of
   a split; time spent on a failed kill.
 - **Measure:** deaths "after time" (within about 15 s after an even 2-minute mark), and whether the target was being
