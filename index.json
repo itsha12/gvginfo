@@ -1,6 +1,6 @@
 {
  "format": "gvginfo.replay.v1",
- "updated": "2026-11-05T03:10:28.720Z",
+ "updated": "2026-11-05T03:20:20.588Z",
  "matches": {
   "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65": {
    "file": "2026-11/eea5ba87-ac20-5ba3-a6c9-965f11ca8a65.json.gz",
@@ -97,6 +97,34 @@
    "winner": "RACK",
    "length_s": 856,
    "kb": 255,
+   "summary": true,
+   "trim": 3
+  },
+  "d492aa6c-a12b-5bce-a5ec-9ada965676f0": {
+   "file": "2026-11/d492aa6c-a12b-5bce-a5ec-9ada965676f0.json.gz",
+   "date": "2026-11-01T18:56:34.341Z",
+   "map": "Imperial Isle",
+   "teams": [
+    "hold",
+    "RACK"
+   ],
+   "winner": "RACK",
+   "length_s": 1516,
+   "kb": 293,
+   "summary": true,
+   "trim": 3
+  },
+  "45cf6756-afc8-51fa-ade0-162d7450be1c": {
+   "file": "2026-11/45cf6756-afc8-51fa-ade0-162d7450be1c.json.gz",
+   "date": "2026-11-01T19:33:59.370Z",
+   "map": "Nomad's Isle",
+   "teams": [
+    "Men",
+    "RACK"
+   ],
+   "winner": "Men",
+   "length_s": 1156,
+   "kb": 298,
    "summary": true,
    "trim": 3
   }
