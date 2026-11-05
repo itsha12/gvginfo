@@ -1,6 +1,6 @@
 {
  "format": "gvginfo.replay.v1",
- "updated": "2026-11-05T01:05:17.391Z",
+ "updated": "2026-11-05T02:45:23.227Z",
  "matches": {
   "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65": {
    "file": "2026-11/eea5ba87-ac20-5ba3-a6c9-965f11ca8a65.json.gz",
@@ -41,6 +41,62 @@
    "winner": "RJT",
    "length_s": 404,
    "kb": 110,
+   "summary": true,
+   "trim": 2
+  },
+  "d06ef3c7-521d-5de4-a453-5fdb82c7c467": {
+   "file": "2026-10/d06ef3c7-521d-5de4-a453-5fdb82c7c467.json.gz",
+   "date": "2026-10-17T19:23:26.107Z",
+   "map": "Isle of Meditation",
+   "teams": [
+    "RACK",
+    "hdm"
+   ],
+   "winner": "hdm",
+   "length_s": 497,
+   "kb": 127,
+   "summary": true,
+   "trim": 2
+  },
+  "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4": {
+   "file": "2026-10/a8ba43a8-7703-5131-a6ce-9e274fbd3ac4.json.gz",
+   "date": "2026-10-17T18:14:52.084Z",
+   "map": "Isle of Solitude",
+   "teams": [
+    "옷옷옷옷",
+    "RACK"
+   ],
+   "winner": "옷옷옷옷",
+   "length_s": 1064,
+   "kb": 158,
+   "summary": true,
+   "trim": 2
+  },
+  "1f65fd3b-9c22-5bb1-a488-86c87801b3a3": {
+   "file": "2026-10/1f65fd3b-9c22-5bb1-a488-86c87801b3a3.json.gz",
+   "date": "2026-10-17T17:55:23.835Z",
+   "map": "Uncharted Isle",
+   "teams": [
+    "RACK",
+    "hdm"
+   ],
+   "winner": "RACK",
+   "length_s": 150,
+   "kb": 208,
+   "summary": true,
+   "trim": 2
+  },
+  "34ab1ac3-cd5d-578e-a457-bccff232274a": {
+   "file": "2026-10/34ab1ac3-cd5d-578e-a457-bccff232274a.json.gz",
+   "date": "2026-10-17T16:28:02.385Z",
+   "map": "Isle of Meditation",
+   "teams": [
+    "hold",
+    "RACK"
+   ],
+   "winner": "RACK",
+   "length_s": 856,
+   "kb": 249,
    "summary": true,
    "trim": 2
   }
