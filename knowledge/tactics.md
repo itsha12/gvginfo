@@ -217,6 +217,14 @@ matches are reviewed). **Open:** lines are questions the match data should help 
   (stack prots against a spike) and Bounty (Life Sheath and Spirit Bond on the prot, Infuse on the 7 catch spikes).
   Corrects the Jade line: killing the hexers first only works if the spikes land; when they are caught, a 2-monk
   team loses the long game to hexes.
+- **Claude (hdm vs cope, roles):** both monk lines and mesmers were better on hdm, monks most clearly. Under OG's
+  spikes (whole game) hdm protted 17 of 20 and lost 1 player; cope protted 12 of 34 and lost 17. hdm's prots mostly
+  landed 0.3 to 1.0 s after the first hit (3 pre-prots), cope's mostly 1.0 to 2.0 s. hdm's prot prevented about 120
+  damage a minute to cope's 40. hdm's mesmers interrupted 41 times to cope's 16 and died once to cope's 6. Better
+  monk play kept hdm's hexers alive, so their damage kept flowing (hdm's top necro about 2,600 a minute, cope's
+  1,360). Rates are partly game state (the winning side's players live longer).
+- **Measure:** `report.py <id> catches`: per team, enemy spikes (3+ attackers, 250+ damage in 2 s) counted as killed,
+  saved with a prot or survived without one, with prot timing and who cast them.
 - **Claude (OG vs hdm, macro):** OG lost the flag game outright (0 caps; its runner carried 71 s and dropped), so hdm
   boosted twice and fought on OG's side of the map from 1:15, taking 3 archers and a knight before any kill. OG's
   deaths from 5:03 were slow (low bursts, 2 to 8 s to die): attrition from hexes and disease, not spikes. The call
@@ -272,6 +280,8 @@ matches are reviewed). **Open:** lines are questions the match data should help 
   5. Specific questions for Denning; add his answers to this page.
 - **Denning (2026-11-05):** every review opens with a short upfront summary: result, kind of game, and in two or three
   sentences how the win condition was reached and the decisive reasons, before any detail.
+- **Denning (2026-11-05):** the macro summary answers: did they fight 8v8; did they play the flag game (who capped,
+  boosts); did anyone split (who, answered how); and was one side's monks, mesmers or both noticeably better.
 - **Denning:** A match review is about the overall scope of the game. A player's own play only matters to the review
   when that player was a factor in the result.
 
