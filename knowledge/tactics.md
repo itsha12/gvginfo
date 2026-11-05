@@ -101,7 +101,7 @@ match:
   Fortune are on the 8 monk and the 8 monk is away on a split, the main team has no spike answer. [Men v Team]
 - **Claude:** Double Paragon WoC's warrior locks down the prot with Grapple and Bull's Strike before the kill. When the
   team's only Aura of Stability is on the prot, nobody can stop it (Aura of Stability never covers the caster): Team's
-  prot was knocked down 14 times, RACK's 12, and both teams lost their prots and 7 monks to it. Against this build,
+  prot was knocked down 9 times, RACK's 12, and both teams lost their prots and 7 monks to it. Against this build,
   put Aura of Stability on a second monk. [Men v Team] [RACK v hdm M]
 
 ## 3. Splits
@@ -346,7 +346,7 @@ match:
 - Where is the line between saveable and not saveable for mixed damage and other windows?
 - Does RACK split through the front door or the backdoor on Isle of Meditation? (Denning thinks the front door.)
 - What is the benchmark for a good 7 monk's Infuse Health timing?
-- What beats Double Paragon WoC (3-1 across reviews)? A split with 3 damage and the 8 monk, a 4-4, or staying 8v8 with
+- What beats Double Paragon WoC (3-0 across reviews)? A split with 3 damage and the 8 monk, a 4-4, or staying 8v8 with
   stacked prots and 2 Auras of Stability? [Men v Team] [RACK v hdm M]
 - Why did RACK's split break up at about 4:00, and should the dervishes have rejoined main once the WoC monk left the
   defence? [RACK v hdm M]
