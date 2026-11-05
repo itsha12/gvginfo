@@ -10,14 +10,15 @@ from replaylib import Match
 from state import GameState
 import episodes as E
 import fights as F
+import rules as R
 
-ENGINE = 2
+ENGINE = 3
 
 
 def analyze(rid):
     m = Match.from_branch(rid)
     st = GameState(m)
-    return {
+    res = {
         "format": "gvginfo.analysis.v1", "engine": ENGINE, "id": rid,
         "meta": {k: m.o["meta"][k] for k in ("map", "map_id", "match_length_s", "teams", "result") if k in m.o["meta"]},
         "roles": {m.tag[m.team(a)] + " " + m.roles[a]: m.nm(a) for a in m.PL},
@@ -25,6 +26,11 @@ def analyze(rid):
         "splits": E.splits(st), "flag_runs": E.flag_runs(st), "stand": E.stand_ledger(st),
         "deaths": F.deaths(st), "monks": F.monks(st), "windows": F.windows(st), "posture": F.posture(st),
     }
+    out = res
+    ep = {k: out[k] for k in ("splits", "flag_runs", "stand", "deaths", "windows")}
+    out["findings"] = R.findings(st, ep)
+    out["ledger"] = R.ledger(st, ep)
+    return out
 
 
 if __name__ == "__main__":

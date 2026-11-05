@@ -17,10 +17,14 @@ page is detected in gvg.report replays.
    windows (who had more in the main fight, why the other side was short, pressure against the team's average,
    kills, losses, ground gained); posture every 30 s (how far forward each main group is, against numbers, morale,
    NPCs and the stand).
-3. **Judgement** (next): each episode checked against tactics principles, giving findings (on time, late, wrong
-   role, missed, good) with evidence and what the players could know.
-4. **Edge ledger** (to build): each episode's effect on death penalty, boosts, pit NPCs, tiebreak and time; decides
-   macro vs micro from evidence.
+3. **Judgement** (`rules.py`, built): rules turn tactics principles into checks on episodes and give findings (good,
+   on time, late, missed, wrong role, mistake, note) with evidence and a question where Denning should rule. Rules so
+   far: split answered (20 s on time, 60 s late), lone ranger answered by the Mes/A with a frontline collapse, split
+   value, running on the 8 monk, pushed flagger supported (help within 15 s), flag dropped without reason,
+   near-missed boost, power play converted (not "missed" when the team is clearly ahead), and a reason for every
+   death (isolated, monks far, no prot, knockdowns, interrupts on monks, no peel, after time).
+4. **Edge ledger** (`rules.py`, built): every death, boost, NPC lost and minute of Lord damage with its likely cause.
+   Next: weigh the edges (win probability) to decide macro vs micro from evidence.
 5. **Benchmarks** (after the bulk pull): distributions of every measure across good teams, so "late" is measured.
 7. **Win probability** (after the bulk pull): a model that gives each team's chance to win from the game state at any
    second (death penalty, boosts, pit NPCs, numbers, tiebreak, time), trained on hundreds of matches. Each episode's
@@ -34,6 +38,8 @@ page is detected in gvg.report replays.
   instructions stay short: which commands to run; the thresholds and rules live in the code.
 - **Per-map knowledge**: `data/maps/<map id>.json`, NPC positions estimated from melee attackers (the replay has no
   NPC positions), merged and refined every time a match on that map is analysed. Commit them when they change.
+- **Case library** (`library.py`, built): `library.py build` gathers every episode and finding from the analysis
+  files into one file per kind; `library.py query <kind> --where "..."` searches them across all matches.
 - **Per-match analysis**: `analyze.py <id>` writes one structured file (format gvginfo.analysis.v1, versioned by
   ENGINE). It is regenerated from the replays and the code in seconds, so it isn't stored yet; once the layers are
   stable it goes to `analysis/<id>.json` on the `replays` branch (and is built by the workflow for the bulk pull).
