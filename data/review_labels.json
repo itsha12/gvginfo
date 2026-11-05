@@ -1,0 +1,39 @@
+{
+ "about": "Denning's rulings on findings and detections, used to calibrate rules.py. One entry per ruling.",
+ "labels": [
+  {
+   "match": "28447c4a-7cc6-5db5-ac7c-aa2bcc23c62c",
+   "t": 301,
+   "rule": "split answered",
+   "ruling": "agree: missed (131 s); on time is about 15 s, 60 s is definitely late"
+  },
+  {
+   "match": "28447c4a-7cc6-5db5-ac7c-aa2bcc23c62c",
+   "t": 301,
+   "rule": "lone ranger: Mes/A plus frontline collapse",
+   "ruling": "8 monk defending was likely wrong, but a real trade-off (keeps all damage at main); needs data"
+  },
+  {
+   "match": "28447c4a-7cc6-5db5-ac7c-aa2bcc23c62c",
+   "rule": "near-missed boost",
+   "ruling": "losing the stand that close is normal; it shows the capping team was down on flags"
+  },
+  {
+   "match": "28447c4a-7cc6-5db5-ac7c-aa2bcc23c62c",
+   "rule": "pushed flagger supported",
+   "ruling": "one damage pushing is likely fine, depending on the pusher and the runner; whether always collapsing is better needs data"
+  },
+  {
+   "match": "28447c4a-7cc6-5db5-ac7c-aa2bcc23c62c",
+   "t": 62,
+   "rule": "split detection",
+   "ruling": "not a split: a full team collapse"
+  },
+  {
+   "match": "28447c4a-7cc6-5db5-ac7c-aa2bcc23c62c",
+   "t": 430,
+   "rule": "8 monk in base after the pit died",
+   "ruling": "right call: a Mes/A can't hold a ranger once the pit is dead"
+  }
+ ]
+}

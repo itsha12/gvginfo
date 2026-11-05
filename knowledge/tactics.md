@@ -93,7 +93,7 @@ match:
 - **Nick:** On Isle of Weeping Stone a Test of Faith Balthazar dervish (8v8 pressure) beats a Cryptic dervish, since
   the map has little flag pushing and a split can't be collapsed on through the centre.
 - **Claude:** Balance mirrors tend to become long, low-death games decided by the flag game, NPCs taken and one late
-  mistake or one monk-line wipe; neither side can force kills through equal monk lines. In double hammer mirrors the
+  mistake or one backline wipe; neither side can force kills through equal backlines. In double hammer mirrors the
   wipe comes from knockdowns on the prot (Coward, Hammer Bash) chained with mesmer and ranger interrupts on the other
   monks' heals and prots. [OG v cope U] [hdm v HC I1] [hdm v HC I2] [hdm v Men N] [Men v HC C]
 
@@ -153,6 +153,12 @@ match:
   exact tiebreak score the replay shows.
 - **Denning:** A lone ranger split is answered by the Mes/A, but the Mes/A can't defend alone: it needs collapses from a
   frontline to push the ranger out of the base.
+- **Denning:** Answering a split within about 15 s is on time; 60 s is definitely late.
+- **Denning:** Defending a split with the 8 monk keeps all the damage at the main team: a risk that may pay off if the main
+  team scores kills. It was likely wrong against hdm's ranger, but this needs data across many matches. [hdm v HC I2]
+- **Denning:** Once the pit is dead, the 8 monk staying in base to defend the Lord is right: it is too hard for a Mes/A to
+  defend a ranger alone with no pit, and some characters are very hard to defend 1v1 once the pit is dead. [hdm v HC I2]
+- **Denning:** A **full team collapse** is the whole team turning on an enemy group; it is not a split answer.
 - **Denning:** A team already winning (pit taken, ahead on death penalty, boosting, ahead at 28:00) has no need to risk
   a Lord kill in a close window. The safer play is to back out, wait for the res, and fight again with the advantages;
   with no pressure to end, it can always win at 28:00. [hdm v HC I2]
@@ -162,7 +168,7 @@ match:
 
 ### Who goes
 - **Bounty:** When 3 damage are out on a split, the 8 monk should go with them, or the split achieves nothing.
-- **Bounty:** Don't send both escape players (e.g. both Shadow of Haste characters) on a split; keep one at home.
+- **Bounty:** Don't send both escape players (e.g. both Shadow of Haste characters) on a split; keep one in base.
 - **Claude:** Taking the 8 monk off the split for another job (e.g. escorting a flag carrier) kills the split's
   value. [Men v Team]
 
@@ -234,6 +240,8 @@ match:
 ### Pushing the flagger
 - **Denning:** When one enemy solo pushes the flagger, the flagging team should likely send help: a monk to heal, or a
   few damage to train the pusher out. Sometimes a flagger has to flag through one damage, and that's fine.
+- **Denning:** One damage pushing is likely fine, depending on which damage is pushing and who is flagging. Whether
+  "always collapse" is better has to come from the data.
 - **Bounty:** A splitter carrying a flag has to be respected quickly. A backup flag belongs with the main team rather
   than overcapping when a splitter is threatening.
 
@@ -243,6 +251,8 @@ match:
   fight is a missed opportunity.
 
 ### Boosts
+- **Denning:** Losing the stand just before a boost is normal for the holding team. It shows the capping team was down on
+  flags: a team with an on-time flag, or up on flags, would have capped earlier. [hdm v HC I2]
 - **Bounty:** Missing a boost by a few seconds matters. Don't drop the flag without a reason; dropping it to a better
   runner is fine.
 - **Nick:** Holding the flag to tie up an enemy prot only helps if the advantage is used somewhere else; otherwise it
@@ -253,6 +263,8 @@ match:
   the enemy's side of the map. [OG v hdm] [RACK v hdm M]
 - **Claude:** A big split with the main team in its pit concedes the stand: nobody is left to run, so the enemy boosts
   every 2 minutes. A split plan has to win more than the boosts it gives away. [Men v Team] [RACK v hdm M]
+- **Claude:** Near-missed boosts in a match are counted against the capping team as late caps (down on flags); four in
+  one game for HC against hdm points to HC's flag timing. [hdm v HC I2]
 - **Claude:** A good runner can swing the flag game on its own: moving a mobile player onto the flag turned a lost
   stand into 459 s of holding and 3 boosts. [OG v chic]
 
@@ -269,7 +281,7 @@ match:
 - **Bounty:** The first 30 seconds shape the match. A team that double runs out front still has to survive the opening
   fight.
 - **Claude:** Kills are only worth what they are converted into: the strongest teams turn each kill straight into pit
-  pressure (a kill, then knights; the next kills, then archers; a kill in the pit, then the Bodyguard). A monk-line
+  pressure (a kill, then knights; the next kills, then archers; a kill in the pit, then the Bodyguard). A backline
   wipe is the biggest conversion chance: the winner gets one res cycle with the enemy's healing gone. [OG v chic]
   [hdm v HC I1] [Men v HC C]
 - **Claude:** The team ahead on death penalty can stop chasing and make the other team come to it; the team behind
@@ -298,7 +310,7 @@ match:
   both point to other issues.
 - **Denning:** A strong prot (e.g. Ali) is the benchmark for spike catches: reaction time and pre-protting. A similar
   benchmark is needed for Infuse Health on a good 7 monk.
-- **Claude:** Catching spikes is the clearest measure of monk quality. Good monk lines prot most spikes 0.3 to 1.0 s
+- **Claude:** Catching spikes is the clearest measure of monk quality. Good backlines prot most spikes 0.3 to 1.0 s
   after the first hit, with some pre-prots; weak ones land prots 1 to 2 s after, when the target is already dead.
   hdm caught 17 of 20 spikes; cope caught 12 of 34; RACK caught 4 of 19 against hdm's Double Paragon WoC.
   [OG v cope J] [OG v hdm] [RACK v hdm M]
@@ -356,6 +368,9 @@ match:
   base. Describe positions this way, not north and south.
 - **Denning:** The NPCs in the enemy base are the **pit NPCs** (not "guards"); the area around the Lord is the
   **pit**; archers outside it are **outside archers**.
+- **Denning:** The monks together are the **backline**. Elementalists, rangers, paragons and mesmers are **midline**.
+  Dervishes, warriors and assassins are **frontline**. It depends on the build: a caster assassin is midline, a dagger
+  assassin is frontline.
 - **Denning:** Refer to players by role: prot monk (slot 6), 7 monk (usually the push monk), 8 monk (usually
   backside), stand mesmer (the main shutdown mesmer), running mesmer or Mes/A (usually with a running skill), hammer
   warrior, and so on.
@@ -365,7 +380,7 @@ match:
 - When may a pit-defending main team step out (e.g. to stop a flag cap or get a res)? [Men v Team]
 - In Men v Team's 2:00 to 4:00 window, should the hammer and stand mesmer have rejoined the ritualist with the 8 monk,
   or should the dervish have capped instead of carrying for 145 s? [Men v Team]
-- Once chic's split was one elementalist, OG kept its prot home with the 8 monk while chic's main team had 3 damage.
+- Once chic's split was one elementalist, OG kept its prot in base with the 8 monk while chic's main team had 3 damage.
   Does that break "the prot follows the enemy's 3rd damage", or is it fine for a spike build whose main team doesn't
   need the prot? [OG v chic]
 - In RJT v RACK both prots sat in the fight with 2 damage per side while the 3-damage fight had no prot; were the prots

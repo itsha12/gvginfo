@@ -6,7 +6,7 @@ In code: splits(st), flag_runs(st), stand_ledger(st) -> lists of dicts (also wri
 
 Split = players away from their team's main group on the enemy half or in the enemy base, not carrying a flag.
 Response = enemy players who came within DEFEND_R of a splitter for 5 s or more: who, role, when (latency from the
-splitter entering the enemy base), and whether they came from the enemy's main group (a collapse) or were already home.
+splitter entering the enemy base), and whether they came from the enemy's main group (a collapse) or were already in base.
 Flag run = a carry from pickup to cap or drop: escort, pushers (enemies who damaged, snared, knocked down or interrupted
 the carrier), who came back to help and how fast, and what the main fight was doing meanwhile."""
 import collections, math, sys
@@ -17,6 +17,18 @@ SPLIT_FAR = 2500       # away from own main group
 DEFEND_R = 1500
 SNARES = {"crippled", "dazed"}
 FRONTLINE = {"Warrior", "Dervish", "Assassin"}
+
+
+def line(m, a):
+    """Denning: frontline = dervishes, warriors, melee assassins; midline = elementalists, rangers, paragons, mesmers,
+    caster assassins (and ritualists, to confirm); backline = monks. Decided by build, not profession alone."""
+    p = m.A[a].get("p")
+    if p == "Monk": return "backline"
+    if p in ("Warrior", "Dervish"): return "frontline"
+    if p == "Assassin":
+        bar = " ".join(m.sk(b) for b in m.A[a].get("bar", []) if b)
+        return "frontline" if any(w in bar for w in ("Strike", "Blossom", "Fang", "Jagged", "Wild Blow", "Twisting")) else "midline"
+    return "midline"
 
 
 def _hostile(st, target, t0, t1):
@@ -70,6 +82,9 @@ def splits(st, min_len=15):
         far = sum(1 for x in dist if x > SPLIT_FAR) / max(len(dist), 1)
         det = _split_detail(st, e)
         det["kind"] = "split" if far >= 0.5 or det["entered_base"] is not None else "flank"
+        # Denning: when (nearly) the whole enemy team turns on the group, it's a full team collapse, not a split answer
+        if len(det["defenders"]) >= 6 and sum(1 for x in det["defenders"] if x["came"] == "collapse from main") >= 4:
+            det["kind"] = "full team collapse"
         res.append(det)
     return res
 
@@ -99,9 +114,9 @@ def _split_detail(st, e):
         ft = first_near[b]
         before = max(ft - 20, 0)
         was_main = b in st.main_group(foe, before)
-        home = st.zone(b, before) in ("own pit", "own base")
+        in_base = st.zone(b, before) in ("own pit", "own base")
         defenders.append({"who": m.role(b), "role": m.roles[b], "first": ft, "latency": ft - ref, "secs": n,
-                          "came": "collapse from main" if was_main and not home else ("already home" if home else "from field")})
+                          "came": "collapse from main" if was_main and not in_base else ("already in base" if in_base else "from field")})
     defenders.sort(key=lambda x: x["first"])
     # what the split did
     npc_dmg = collections.Counter(); kills = []
@@ -150,8 +165,8 @@ def flag_runs(st):
         died = any(s <= t <= e + 1 for t in st.death_times.get(a, []))
         nums = [(len(st.main_group(tm, t)), len(st.main_group(3 - tm, t))) for t in steps[::5]]
         hp = [st.pos(a, t)[1]["hp"] for t in steps if st.pos(a, t)[1]]
-        role = m.roles[a]; prof = m.A[a].get("p")
-        out.append({"team": m.tag[tm], "runner": role, "line": "frontline" if prof in FRONTLINE else ("backline" if prof in ("Monk",) else "midline"),
+        role = m.roles[a]
+        out.append({"team": m.tag[tm], "runner": role, "line": line(m, a),
                     "start": round(s), "end": round(e), "secs": round(e - s), "outcome": "died" if died else c["how"].replace("flagstand_", "").replace("flag_", ""),
                     "min_hp": min(hp) if hp else None, "escort": escort, "pushers": {k: {"first": v["first"], "actions": dict(v["actions"])} for k, v in pushers.items()},
                     "first_push": round(first_push) if first_push is not None else None, "helpers": helpers,

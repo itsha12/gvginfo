@@ -2,7 +2,7 @@
 
 Judgement: each rule turns a principle from knowledge/tactics.md into a check on episodes and returns findings:
   {"rule", "principle" (tactics section), "team", "t", "verdict", "evidence", "question"}
-verdict is one of: good, on time, late, missed, wrong role, mistake, note. Thresholds are first guesses, to be calibrated
+verdict is one of: good, on time, late, missed, wrong role, risky, mistake, note. Thresholds are first guesses, to be calibrated
 against Denning's verdicts (data/review_labels.json) and, after the bulk pull, against benchmarks.
 
 Edge ledger: every change in an edge (a death and its death penalty, a boost, a pit NPC, Lord damage) with the episode
@@ -15,7 +15,7 @@ from state import GameState, d
 import episodes as E
 import fights as F
 
-T = dict(split_on_time=20, split_late=60, collapse_within=30, help_within=15, pp_min=20, pp_pressure=1.3,
+T = dict(split_on_time=15, split_late=60, collapse_within=30, help_within=15, pp_min=20, pp_pressure=1.3,
          isolated=2000, monk_far=5000, near_boost=90)
 FRONT = {"Hammer", "Hammer A", "Hammer B", "AoB Derv", "Warrior", "Dervish", "Assassin"}
 
@@ -37,6 +37,11 @@ def findings(st, ep=None):
 
     # ---- splits (tactics: 3. Splits)
     for s in ep["splits"]:
+        if s["kind"] == "full team collapse":
+            foe = next(t for t in m.tag.values() if t != s["team"])
+            add(rule="full team collapse", principle="3. Splits (Denning: full team collapse)", team=foe, t=s["start"], verdict="note",
+                evidence=f"{foe} turned {len(s['defenders'])} players on {s['team']} {'+'.join(s['members'])}; kills {s['deaths']}")
+            continue
         if s["kind"] != "split" or s["entered_base"] is None: continue
         foe = next(t for t in m.tag.values() if t != s["team"])
         ref = s["entered_base"]
@@ -54,13 +59,18 @@ def findings(st, ep=None):
             t0 = first["first"] if first else None
             mesa = any(x["role"] == "Mes/A" for x in s["defenders"])
             coll = [x for x in s["defenders"] if x["role"] in FRONT and t0 is not None and x["first"] - t0 <= T["collapse_within"]]
-            v2 = "good" if mesa and coll else ("wrong role" if roles else "missed")
+            only8 = roles and set(roles) <= {"8 Monk"}
+            pit_dead = st.at(ref)[foe]["pit_npcs"] == "K0 A0 B0"
+            # Denning: answering with the 8 monk keeps all damage at main; a risk that may pay off with kills (data
+            # needed). Once the pit is dead, the 8 monk staying in base is right: the Mes/A can't hold a ranger alone.
+            v2 = ("good" if mesa and coll else "note" if only8 and pit_dead
+                  else "risky" if only8 else ("wrong role" if roles else "missed"))
             add(rule="lone ranger: Mes/A plus frontline collapse", principle="3. Splits: Denning on lone ranger splits",
                 team=foe, t=ref, verdict=v2,
                 evidence=f"answered by {', '.join(roles) or 'nobody'}; frontline collapse within {T['collapse_within']} s: "
                          + (", ".join(x['role'] for x in coll) or "none"))
         # the split's own value: what it drew and what it took
-        drawn = sum(1 for x in s["defenders"] if x["came"] != "already home")
+        drawn = sum(1 for x in s["defenders"] if x["came"] != "already in base")
         took = len(s["npc_kills"])
         if s["end"] - s["start"] >= 45:
             v3 = "good" if took >= 2 or drawn > len(s["members"]) else ("note" if took or drawn else "mistake")
@@ -76,7 +86,9 @@ def findings(st, ep=None):
                 evidence=f"8 monk carried {r['secs']} s -> {r['outcome']}", question="Were 2 enemy damage dead, or was it desperate?")
         if r["pushers"] and r["first_push"] is not None:
             helped = [h for h in r["helpers"] if h["latency"] <= T["help_within"]]
-            if r["outcome"] in ("dropped", "died") or r["min_hp"] is not None and r["min_hp"] < 40:
+            # Denning: one damage pushing is likely fine, depending on the pusher and the runner; 2+ pushers need help
+            dmg_pushers = [k for k, v in r["pushers"].items() if v["actions"].get("damage", 0) or v["actions"].get("knockdown", 0)]
+            if len(dmg_pushers) >= 2 and (r["outcome"] in ("dropped", "died") or r["min_hp"] is not None and r["min_hp"] < 40):
                 add(rule="pushed flagger supported", principle="5. Pushing the flagger (Denning)", team=r["team"], t=r["first_push"],
                     verdict="good" if helped else "late",
                     evidence=f"{r['runner']} pushed by {', '.join(r['pushers'])} from {m.f(r['first_push']*10)}; "
@@ -86,9 +98,12 @@ def findings(st, ep=None):
                 evidence=f"{r['runner']} dropped at {m.f(r['end']*10)} unpushed at {r['min_hp']}%+ HP", question="Intended (to a better runner) or a mistake?")
     for h in ep["stand"]:
         if h["short_of_boost"] and h["to"] < st.end - 1:
-            add(rule="near-missed boost", principle="5. Boosts", team=h["team"], t=h["to"], verdict="mistake",
-                evidence=f"held {h['held']} s, {h['short_of_boost']} s short of a boost; lost at {m.f(h['to']*10)}",
-                question="Could the stand or the enemy runner have been defended for those seconds?")
+            # Denning: losing the stand that close to a boost is normal; it points at the capping team being down on
+            # flags (an on-time flag, or a team up on flags, caps earlier)
+            capper = next(t for t in m.tag.values() if t != h["team"])
+            add(rule="capped just before a boost", principle="5. Boosts (Denning)", team=capper, t=h["to"], verdict="late",
+                evidence=f"{h['team']} held {h['held']} s; {capper} capped {h['short_of_boost']} s before a boost, so was down on flags",
+                question=None)
 
     # ---- numbers windows (tactics: 5. The power play)
     for w in ep["windows"]:
@@ -108,6 +123,8 @@ def findings(st, ep=None):
         why = []
         if x["isolated"]: why.append("isolated from the main group")
         far = {k: v for k, v in x["monk_distance"].items() if v > T["monk_far"]}
+        # Denning: the 8 monk staying in base once its pit is dead (defending the Lord) is right, not a monk out of place
+        if "8 Monk" in far and st.at(x["t"])[x["team"]]["pit_npcs"] == "K0 A0 B0": far.pop("8 Monk")
         if far: why.append(f"monks far away: {far}")
         if not x["monk_casts_on_victim"] and not x["victim"].endswith("Monk"): why.append("no prot or heal on the victim")
         if len(x["knockdowns"]) >= 2: why.append(f"{len(x['knockdowns'])} knockdowns")

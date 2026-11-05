@@ -56,7 +56,7 @@ Isle of Weeping Stone, 6:13, gvg.report d4660b7b-1e09-584e-a786-0e9f48b3f343. So
 **Summary.** Men won at 6:13, a stomp (Team 9 deaths, Men 0). Men's Double Paragon WoC spike (Decapitate axe,
 Angelic Bond and "The Power Is Yours!" paragons, Life Sheath prot, Blessed Light on the 7 and 8) met Team's balance
 (Test of Faith AoB dervish, Coward hammer, 2 mesmers, Spirit Light Weapon ritualist). Team split 4 from the start
-(8 monk, ritualist, stand mesmer, hammer), which drew Men's prot and WoC monk home, but the split was aggressive only
+(8 monk, ritualist, stand mesmer, hammer), which drew Men's prot and WoC monk back to base, but the split was aggressive only
 for about a minute, then shrank to a solo ritualist held by Men's 8 monk alone, and took one knight all game. Men
 won the stand at 0:55 and boosted twice while Team's dervish carried a flag for 145 s without capping. Team's main
 team met Men's 5 in the field after each res and lost a player each cycle, then was wiped in its pit from 5:14, 46 s
@@ -143,7 +143,7 @@ mesmer). For 22 minutes almost nobody died (2 deaths, both cope): both teams spl
 boosted (20:31); OG missed two boosts by 7 and 9 s. OG's split never took a knight, so cope's pit stayed whole. The
 game turned at 22:53, when OG's dervish died pulling two knights in cope's base and OG lost 4 players in 36 s; then
 OG pushed 5 into cope's intact pit for a power play while cope's 5 walked into OG's base and killed the Bodyguard
-(26:44) and Lord. cope's mesmers were the clearer edge (70 interrupts to OG's 27); both monk lines held until the late
+(26:44) and Lord. cope's mesmers were the clearer edge (70 interrupts to OG's 27); both backlines held until the late
 game.
 
 **Decided by:** both. Even macro for 22 minutes; a micro mistake (the dervish overextending on knights) opened it; a
@@ -203,12 +203,12 @@ knights, the archers and the Bodyguard by 6:23. hdm then wiped HC from 10:16 to 
 pit at 11:40, but dealt no Lord damage before HC's res at 12:00. After that hdm led on everything: boosts (3 to 1),
 deaths, and the 28:00 tiebreak by about 7,000 aggressiveness (its ranger chipped the Lord all game, and HC enchanted
 its own Lord 22 times, -1,100). Backing out of the pit at 11:40 was right (Denning: the Lord was probably not
-killable, and a team that is winning doesn't need the risk). HC had to kill the Lord. From 25:06 HC walked 6 into hdm's pit; hdm kept 4 at home and
+killable, and a team that is winning doesn't need the risk). HC had to kill the Lord. From 25:06 HC walked 6 into hdm's pit; hdm kept 4 in base and
 sent 2 to 4 to counter-attack HC's empty pit, lost its 7 monk and prot at 26:25 and 26:32, and its Lord fell 64 s
 before the tiebreak it was winning.
 
 **Decided by:** macro. hdm counter-raced when it only needed to defend: as HC's 6 entered its pit, both hammers and the
-Mes/A went to hit HC's Lord (364 damage it didn't need) instead of defending, and the 4 left at home lost the pit.
+Mes/A went to hit HC's Lord (364 damage it didn't need) instead of defending, and the 4 left in base lost the pit.
 
 ## [hdm v Men N] hdm v Men, automated tournament, 2 November 2026
 Nomad's Isle, 28:14 (tiebreak), gvg.report 0f1fd794-46cd-5fb1-a661-a7ec5f1cbadd. Source: replay only.

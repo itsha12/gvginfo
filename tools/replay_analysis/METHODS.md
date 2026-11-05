@@ -19,9 +19,10 @@ page is detected in gvg.report replays.
    NPCs and the stand).
 3. **Judgement** (`rules.py`, built): rules turn tactics principles into checks on episodes and give findings (good,
    on time, late, missed, wrong role, mistake, note) with evidence and a question where Denning should rule. Rules so
-   far: split answered (20 s on time, 60 s late), lone ranger answered by the Mes/A with a frontline collapse, split
-   value, running on the 8 monk, pushed flagger supported (help within 15 s), flag dropped without reason,
-   near-missed boost, power play converted (not "missed" when the team is clearly ahead), and a reason for every
+   far (calibrated with Denning's rulings in `data/review_labels.json`): split answered (15 s on time, 60 s late), lone ranger answered by the Mes/A with a frontline collapse (8 monk alone = risky; 8 monk in base once the pit is dead
+   = right), full team collapses (not split answers), split
+   value, running on the 8 monk, pushed flagger supported (help within 15 s, only when 2+ damage push), flag dropped without reason,
+   capped just before a boost (a late cap by the team down on flags, not the holder's mistake), power play converted (not "missed" when the team is clearly ahead), and a reason for every
    death (isolated, monks far, no prot, knockdowns, interrupts on monks, no peel, after time).
 4. **Edge ledger** (`rules.py`, built): every death, boost, NPC lost and minute of Lord damage with its likely cause.
    Next: weigh the edges (win probability) to decide macro vs micro from evidence.
@@ -44,7 +45,7 @@ page is detected in gvg.report replays.
   ENGINE). It is regenerated from the replays and the code in seconds, so it isn't stored yet; once the layers are
   stable it goes to `analysis/<id>.json` on the `replays` branch (and is built by the workflow for the bulk pull).
 - **Principles**: `knowledge/tactics.md` (people read it); judgement rules in code will cite its sections.
-- **Denning's verdicts on findings** (to add): `data/review_labels.json`, used to calibrate thresholds.
+- **Denning's verdicts on findings**: `data/review_labels.json` (one entry per ruling), applied in `rules.py`.
 - **Benchmarks** (to add): one file built from all analysis files.
 
 ## Known limits
