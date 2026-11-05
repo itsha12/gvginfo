@@ -1,8 +1,7 @@
 // Fetch match replays from gvg.report, trim them (replay_trim.mjs) and store them in a folder (the "replays" branch).
 // Requests come from replays/requests.txt on main: one per line, either a report id / gvg.report link, or
 // "latest:N" for the N most recent matches. Matches already stored are skipped, so the same list can be re-run.
-// Usage: node tools/gvgreport/replays.mjs <store dir>   (env: DELAY_MS=4000, MAX_FETCH=500, EXTRAS=1 to also probe
-//        the game-story and map geometry data)
+// Usage: node tools/gvgreport/replays.mjs <store dir>   (env: DELAY_MS=4000, MAX_FETCH=500)
 import fs from "node:fs";
 import path from "node:path";
 import zlib from "node:zlib";
@@ -14,7 +13,6 @@ const BASE = "https://gvg.report";
 const UA = "gvginfo-sync (personal stats portal; https://github.com/itsha12/gvginfo)";
 const DELAY = +(process.env.DELAY_MS || 4000);
 const MAX = +(process.env.MAX_FETCH || 500);
-const EXTRAS = process.env.EXTRAS === "1";
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const ID = /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i;
 
@@ -48,19 +46,19 @@ async function latest(n) {
   return ids;
 }
 
-async function extras(id, mapId) {
-  const dir = path.join(STORE, "probe", id);
-  fs.mkdirSync(dir, { recursive: true });
-  const tries = { "game-story": `${BASE}/api/reports/${id}?payload=game-story` };
-  for (const q of [`map_id=${mapId}`, `map=${mapId}`, `id=${mapId}`, `report=${id}`, `report_id=${id}`]) tries[`map-geometry_${q.split("=")[0]}`] = `${BASE}/api/map-geometry?${q}`;
-  for (const [name, url] of Object.entries(tries)) {
-    try {
-      const j = await getJson(url, 2);
-      console.log(`  extra ${name}: ${j ? JSON.stringify(j).length + " bytes" : "not found"}`);
-      if (j) fs.writeFileSync(path.join(dir, `${name}.json.gz`), zlib.gzipSync(JSON.stringify(j)));
-    } catch (e) { console.log(`  extra ${name}: ${e.message}`); }
-    await sleep(1000);
-  }
+// Walkable map outline (pathing trapezoids), stored once per map in maps/<map id>.json.gz
+async function saveMap(mapId) {
+  const file = path.join(STORE, "maps", `${mapId}.json.gz`);
+  if (!mapId || fs.existsSync(file)) return;
+  const j = await getJson(`${BASE}/api/map-geometry?map_id=${mapId}`, 2).catch(() => null);
+  if (!j?.pathing_map) return console.warn(`  no map geometry for map ${mapId}`);
+  const m = j.pathing_map;
+  const out = { map_id: m.map_id, map: m.map_name, bounds: m.bounds,
+    planes: (m.planes || []).map((p) => ({ plane: p.plane_index, trapezoids: p.trapezoids })) };
+  fs.mkdirSync(path.dirname(file), { recursive: true });
+  fs.writeFileSync(file, zlib.gzipSync(JSON.stringify(out), { level: 9 }));
+  console.log(`  saved map ${mapId} (${m.map_name})`);
+  await sleep(1000);
 }
 
 async function main() {
@@ -77,6 +75,10 @@ async function main() {
   const todo = [...new Set(wanted)].filter((id) => !index.matches[id]).slice(0, MAX);
   console.log(`${wanted.length} requested, ${todo.length} to fetch.`);
   let done = 0;
+  for (const id of Object.keys(index.matches)) { // maps for matches stored before maps were kept
+    const f = index.matches[id].file; if (!f) continue;
+    try { await saveMap(JSON.parse(zlib.gunzipSync(fs.readFileSync(path.join(STORE, f)))).meta.map_id); } catch {}
+  }
   for (const id of todo) {
     try {
       const raw = await getJson(`${BASE}/api/reports/${encodeURIComponent(id)}?payload=replay`);
@@ -92,7 +94,7 @@ async function main() {
         teams: t.map((x) => x.tag), winner: t.find((x) => x.id === out.meta.result?.winning_team_id)?.tag || null,
         length_s: out.meta.match_length_s, kb: Math.round(gz.length / 1024) };
       console.log(`  ${id}: ${out.meta.map}, ${t.map((x) => x.tag).join(" vs ")}, ${Math.round(gz.length / 1024)} KB`);
-      if (EXTRAS) await extras(id, out.meta.map_id);
+      await saveMap(out.meta.map_id);
       done++;
       if (done % 20 === 0) { index.updated = new Date().toISOString(); fs.writeFileSync(indexFile, JSON.stringify(index, null, 1)); }
     } catch (e) { console.warn(`  ${id}: ${e.message}`); }

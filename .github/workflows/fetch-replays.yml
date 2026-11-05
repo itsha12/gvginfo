@@ -8,9 +8,6 @@ on:
       max_fetch:
         description: "Most replays to fetch in this run"
         default: "500"
-      extras:
-        description: "Also probe game-story and map geometry (1 = yes)"
-        default: "0"
   push:
     branches: [main]
     paths: ["replays/requests.txt"]
@@ -44,9 +41,8 @@ jobs:
       - name: Fetch and trim
         env:
           MAX_FETCH: ${{ github.event.inputs.max_fetch || '500' }}
-          EXTRAS: ${{ github.event.inputs.extras || '1' }}
           DELAY_MS: "4000"
-        run: node tools/gvgreport/replays.mjs store
+        run: rm -rf store/probe && node tools/gvgreport/replays.mjs store
       - name: Save
         if: always()
         run: |
