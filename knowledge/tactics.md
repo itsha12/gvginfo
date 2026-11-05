@@ -23,7 +23,8 @@ matches are reviewed). **Open:** lines are questions the match data should help 
   cope vs hdm, Uncharted, 1d073205-fdec-5684-aa7a-b03a558a9471; True vs One, Meditation,
   f34cb3a9-98c7-53d0-a980-60aa7dd5bc8d; October 2026 monthly and automated tournaments) and stand until Denning
   corrects them. **Denning (2026-11-04):** the Bounty lines on this page are confirmed, except where a Denning line
-  corrects one. Auto-transcripts garble terms: "X-way" and "axes" mean hex way and hexes.
+  corrects one. Bounty plays mesmer for 옷옷옷옷 (he said so when commentating a game he played in), so weigh his
+  comments on 옷옷옷옷 games with that in mind. Auto-transcripts garble terms: "X-way" and "axes" mean hex way and hexes.
 
 ## Commentary lessons
 - **Bounty:** "Dying after time": dying just after the res shrine timer (every 2 minutes) means waiting almost the full 2
@@ -96,6 +97,10 @@ matches are reviewed). **Open:** lines are questions the match data should help 
 - **Bounty:** Missing a morale boost by a few seconds matters (True held the stand 113 s, 7 s short of a boost).
   Don't drop the flag without a reason; dropping it to a better runner is fine. A backup flag belongs with the main
   team rather than overcapping when a splitter is threatening.
+- **Bounty:** A ritualist, two mesmers and two melee is a jack-of-all-trades build: decent at everything, exceptional
+  at nothing (not a top build).
+- **Bounty:** Teams playing with guests (missing their core lineup) often look lost; cope is very different with its
+  full lineup.
 - **Bounty:** Drain Enchantment has a higher ceiling than Signet of Recall (it removes an enchantment); a mesmer
   choice.
 - **Bounty:** Being too hasty loses games: take time, defend more with damage, work through the game.
@@ -114,7 +119,10 @@ matches are reviewed). **Open:** lines are questions the match data should help 
 - **Denning:** The 7 monk and 8 monk are the healing monks in party slots 7 and 8, with the prot monk in slot 6. The 7
   monk is usually the push monk and the 8 monk is on the backside.
 - **Denning:** The prot monk follows the 3rd damage: each monk can usually survive 2 damage with team support, but not 3,
-  so the prot has to mirror the 3rd damage.
+  so the prot has to mirror the enemy's 3rd damage, i.e. go wherever the enemy has 3 damage (confirmed: this, not
+  following its own team's 3rd damage).
+- **Open:** in RJT vs RACK (2026-11-04) both prots sat in the fight with 2 damage per side while the 3-damage fight had
+  no prot; Denning thinks the prots may have been out of position (to confirm).
 - **Denning:** The stand mesmer is the main shutdown mesmer. The running mesmer is called the Mes/A; it usually has a
   running skill, but not always.
 - **Measure:** roles come from each player's build and party slot. Positions are labelled by side relative to the
@@ -243,6 +251,10 @@ matches are reviewed). **Open:** lines are questions the match data should help 
 ## Flag running on the 8 monk
 - **Denning:** Running the flag on the 8 monk is a bad move. Teams normally only run on the 8 monk when 2 enemy damage
   are dead or when they are very desperate.
+
+## Guild notes
+- **Denning:** WoC spike was a relatively standard build for RACK, but probably not as standard any more.
+- **Denning:** Good teams include hdm, xxx, Men, HC, HH and 옷옷옷옷; RACK is Denning's guild (he usually plays the 8 monk).
 
 ## Spike builds
 - **Denning:** WoC spike (Word of Censure spike): several Mo/A smiters spike with Word of Censure. Even with so many

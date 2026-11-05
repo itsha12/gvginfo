@@ -24,6 +24,8 @@ Source: Guild Wars Wiki (Entourage; Developer update and Game update of 2010-07-
   to fight (in casting range or close to it).
 - Until July 2010 the Bodyguard's Oath of Protection gave this damage limit while the Bodyguard was alive; that was
   moved to Entourage. The Bodyguard still heals the Lord (Oath of Healing).
+- Open: Denning understood the Lord's Amulet of Protection to depend on the Bodyguard being alive; the wiki says the
+  Amulet is the Lord's own and the Bodyguard-linked limit was removed in 2010. Worth an in-game test.
 - Aggressiveness counts Entourage and missed attacks, and gives a much larger bonus when the opponent combines
   defensive buffs with Entourage.
 - **Tested (2026-11-04):** Entourage lasts 10.5 seconds, not 15 as the wiki says.
