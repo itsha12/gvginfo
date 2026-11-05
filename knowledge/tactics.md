@@ -146,6 +146,11 @@ match:
 - **Claude:** A lone ranger split left undefended can take a whole pit (both knights, the archers and the Bodyguard) in
   2 to 4 minutes, which wins the tiebreak and makes the late push cheap. It has to be answered by a defender or a
   collapse; HC ignored it twice and lost every pit NPC both times. [hdm v HC I2] [Men v HC C]
+- **Denning:** Players can't see Lord damage in game: a team knows roughly whether it is ahead at 28:00, not by how
+  much. Sending some players for more Lord damage while defending can be the safer choice, since the enemy may out-damage
+  the lead in the time left. A main team that dies quickly also does less Lord damage. [hdm v HC I2]
+- **Claude:** Judge late decisions on what the players could know (flag, boosts, deaths, NPCs, the clock), not on the
+  exact tiebreak score the replay shows.
 - **Denning:** A lone ranger split is answered by the Mes/A, but the Mes/A can't defend alone: it needs collapses from a
   frontline to push the ranger out of the base.
 - **Denning:** A team already winning (pit taken, ahead on death penalty, boosting, ahead at 28:00) has no need to risk
