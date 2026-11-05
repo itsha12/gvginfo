@@ -25,6 +25,9 @@ matches are reviewed). **Open:** lines are questions the match data should help 
   corrects them. **Denning (2026-11-04):** the Bounty lines on this page are confirmed, except where a Denning line
   corrects one. Bounty plays mesmer for 옷옷옷옷 (he said so when commentating a game he played in), so weigh his
   comments on 옷옷옷옷 games with that in mind. Auto-transcripts garble terms: "X-way" and "axes" mean hex way and hexes.
+- **Nick:** lines come from Nick's YouTube commentary of the September 2026 monthly final, Men vs Team, Isle of
+  Weeping Stone, gvg.report d4660b7b-1e09-584e-a786-0e9f48b3f343. Checked against the replay on 2026-11-05; they stand
+  until Denning corrects them.
 
 ## Commentary lessons
 - **Bounty:** "Dying after time": dying just after the res shrine timer (every 2 minutes) means waiting almost the full 2
@@ -104,6 +107,23 @@ matches are reviewed). **Open:** lines are questions the match data should help 
 - **Bounty:** Drain Enchantment has a higher ceiling than Signet of Recall (it removes an enchantment); a mesmer
   choice.
 - **Bounty:** Being too hasty loses games: take time, defend more with damage, work through the game.
+- **Nick:** Double Paragon WoC spike (Decapitate axe, Angelic Bond and "The Power Is Yours!" paragons, a WoC monk,
+  a mesmer, 3 monks) is a powerful 8v8 build, a little weak against splits. With only one enchantment remover
+  (Shatter Enchantment), its spikes are obvious and can be protted by a prot and 8 monk standing on top of them.
+- **Nick:** Against a build with a single enchantment remover, stack prots (Life Sheath or Aura of Faith plus Spirit
+  Bond): Aura of Faith alone gets shattered. Life Sheath on the prot compresses the bar, leaving room for Spirit Bond,
+  Shield Guardian and a stance.
+- **Nick:** Blessed Light (5 energy since the latest patch) is a heal, hex remove and condition remove in one, which
+  frees slots for Shield Guardian, Vigorous Spirit and Infuse Health.
+- **Nick:** On Isle of Weeping Stone a Test of Faith Balthazar dervish (8v8 pressure) beats a Cryptic dervish, since
+  the map has little flag pushing and a split can't be collapsed on through the centre.
+- **Nick:** A team relying on its split to win must keep its main team safe: give up ground, footmen and archers, pull
+  back to the pit, and take no death penalty or give up morale boosts. Team's main team fought 3v5 far from its pit.
+- **Nick:** Holding the flag to tie up an enemy prot only helps if the team uses that advantage somewhere else on the
+  map; otherwise it just lets the enemy keep its damage together. (Replay: Team's dervish carried for 145 s while
+  Men's prot sat on the stand; Men's main team still killed everything.)
+- **Nick:** Decapitate (always crits, unblockable, up to +80 damage) hits for about 130 to 150, about 250 with Deep
+  Wound. (Replay: 142 to 168; Decapitate then Protector's Strike killed Team's prot at 2:18 and 7 monk at 5:14.)
 - **Measure:** stand holds that ended just short of 120 s (a nearly missed boost); snares landed by the defenders of
   a split; time spent on a failed kill.
 - **Measure:** deaths "after time" (within about 15 s after an even 2-minute mark), and whether the target was being
