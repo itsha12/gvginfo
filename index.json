@@ -1,6 +1,6 @@
 {
  "format": "gvginfo.replay.v1",
- "updated": "2026-11-05T02:45:23.227Z",
+ "updated": "2026-11-05T03:10:28.720Z",
  "matches": {
   "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65": {
    "file": "2026-11/eea5ba87-ac20-5ba3-a6c9-965f11ca8a65.json.gz",
@@ -12,9 +12,9 @@
    ],
    "winner": "RACK",
    "length_s": 836,
-   "kb": 178,
+   "kb": 182,
    "summary": true,
-   "trim": 2
+   "trim": 3
   },
   "cb5a5f57-be04-5af2-aa60-8114e98e1202": {
    "file": "2026-11/cb5a5f57-be04-5af2-aa60-8114e98e1202.json.gz",
@@ -26,9 +26,9 @@
    ],
    "winner": "RACK",
    "length_s": 1694,
-   "kb": 393,
+   "kb": 402,
    "summary": true,
-   "trim": 2
+   "trim": 3
   },
   "450bb88f-b9a4-537a-a453-17dd925baa65": {
    "file": "2026-11/450bb88f-b9a4-537a-a453-17dd925baa65.json.gz",
@@ -40,9 +40,9 @@
    ],
    "winner": "RJT",
    "length_s": 404,
-   "kb": 110,
+   "kb": 113,
    "summary": true,
-   "trim": 2
+   "trim": 3
   },
   "d06ef3c7-521d-5de4-a453-5fdb82c7c467": {
    "file": "2026-10/d06ef3c7-521d-5de4-a453-5fdb82c7c467.json.gz",
@@ -54,9 +54,9 @@
    ],
    "winner": "hdm",
    "length_s": 497,
-   "kb": 127,
+   "kb": 131,
    "summary": true,
-   "trim": 2
+   "trim": 3
   },
   "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4": {
    "file": "2026-10/a8ba43a8-7703-5131-a6ce-9e274fbd3ac4.json.gz",
@@ -68,9 +68,9 @@
    ],
    "winner": "옷옷옷옷",
    "length_s": 1064,
-   "kb": 158,
+   "kb": 160,
    "summary": true,
-   "trim": 2
+   "trim": 3
   },
   "1f65fd3b-9c22-5bb1-a488-86c87801b3a3": {
    "file": "2026-10/1f65fd3b-9c22-5bb1-a488-86c87801b3a3.json.gz",
@@ -82,9 +82,9 @@
    ],
    "winner": "RACK",
    "length_s": 150,
-   "kb": 208,
+   "kb": 214,
    "summary": true,
-   "trim": 2
+   "trim": 3
   },
   "34ab1ac3-cd5d-578e-a457-bccff232274a": {
    "file": "2026-10/34ab1ac3-cd5d-578e-a457-bccff232274a.json.gz",
@@ -96,9 +96,9 @@
    ],
    "winner": "RACK",
    "length_s": 856,
-   "kb": 249,
+   "kb": 255,
    "summary": true,
-   "trim": 2
+   "trim": 3
   }
  }
 }
