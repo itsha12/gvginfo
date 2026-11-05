@@ -1,6 +1,6 @@
 {
  "format": "gvginfo.replay.v1",
- "updated": "2026-11-05T04:35:50.391Z",
+ "updated": "2026-11-05T05:10:25.125Z",
  "matches": {
   "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65": {
    "file": "2026-11/eea5ba87-ac20-5ba3-a6c9-965f11ca8a65.json.gz",
@@ -223,6 +223,62 @@
    "winner": "One",
    "length_s": 946,
    "kb": 227,
+   "summary": true,
+   "trim": 3
+  },
+  "5739e1e0-483e-58f1-a017-d0d8fee69c6e": {
+   "file": "2026-10/5739e1e0-483e-58f1-a017-d0d8fee69c6e.json.gz",
+   "date": "2026-10-17T17:05:10.680Z",
+   "map": "Uncharted Isle",
+   "teams": [
+    "chic",
+    "OG"
+   ],
+   "winner": "OG",
+   "length_s": 731,
+   "kb": 177,
+   "summary": true,
+   "trim": 3
+  },
+  "29b7eca0-2660-5d04-adc2-06632123c2ec": {
+   "file": "2026-10/29b7eca0-2660-5d04-adc2-06632123c2ec.json.gz",
+   "date": "2026-10-17T17:38:08.268Z",
+   "map": "Isle of Jade",
+   "teams": [
+    "OG",
+    "cope"
+   ],
+   "winner": "OG",
+   "length_s": 562,
+   "kb": 105,
+   "summary": true,
+   "trim": 3
+  },
+  "d016987b-e5a0-5cd5-a23c-4c5b2d2415f8": {
+   "file": "2026-10/d016987b-e5a0-5cd5-a23c-4c5b2d2415f8.json.gz",
+   "date": "2026-10-17T18:49:20.040Z",
+   "map": "Isle of the Dead",
+   "teams": [
+    "OG",
+    "hdm"
+   ],
+   "winner": "hdm",
+   "length_s": 443,
+   "kb": 102,
+   "summary": true,
+   "trim": 3
+  },
+  "d4660b7b-1e09-584e-a786-0e9f48b3f343": {
+   "file": "2026-09/d4660b7b-1e09-584e-a786-0e9f48b3f343.json.gz",
+   "date": "2026-09-19T21:15:20.769Z",
+   "map": "Isle of Weeping Stone",
+   "teams": [
+    "Men",
+    "Team"
+   ],
+   "winner": "Men",
+   "length_s": 373,
+   "kb": 97,
    "summary": true,
    "trim": 3
   }
