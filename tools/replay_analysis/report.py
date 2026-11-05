@@ -1,6 +1,6 @@
 """Standard review tables for one match: builds, phases, stand holds, pit NPC kills and Entourage, lord damage,
 deaths with support context, team totals. Usage: python3 report.py <report id or path to .json.gz> [section ...]
-Sections: builds phases stand npcs lord deaths spikes splits output totals (default: all). Interpret with knowledge/tactics.md."""
+Sections: builds phases stand npcs lord deaths spikes splits output pit totals (default: all). Interpret with knowledge/tactics.md."""
 import collections, sys
 from replaylib import Match, PROT_SKILLS
 
@@ -194,7 +194,43 @@ def output(m):
         print(f"  {k:16} " + " ".join(f"{round(dm[k][i]):5}" for i in range(end)))
 
 
-SECTIONS = dict(output=output, splits=splits, spikes=spikes, builds=builds, phases=phases, stand=stand, npcs=npcs, lord=lord, deaths=deaths, totals=totals)
+def pit(m, step=300, r=1500):
+    """Where each team fought relative to its own pit: players in own pit, in the field, in the enemy pit, every 30 s,
+    and how far from their own pit players died. Pit = median position of players hitting that team's Lord (if the
+    Lord was attacked), else the res shrine (the spawn point), which on some maps is not in the pit."""
+    import math, statistics
+    pits = {}
+    for tm in (1, 2):
+        lord = [i for i, a in enumerate(m.A) if a.get("npc") == "guild_lord" and a.get("team") == tm]
+        pts = [m.snap(e[2], e[0]) for e in m.o["ev"] if e[1] == "dm" and lord and e[3] == lord[0] and e[2] in m.PL]
+        pts = [q for q in pts if q]
+        pits[tm] = ((statistics.median(q["x"] for q in pts), statistics.median(q["y"] for q in pts)), "Lord attacks") if pts \
+            else (m.base.get(tm), "res shrine")
+    for tm in (1, 2): print(f"  {m.tag[tm]} pit from {pits[tm][1]}")
+    end = int(m.o["meta"]["match_length_s"] * 10)
+    for t in range(0, end, step):
+        line = []
+        for tm in (1, 2):
+            own, enemy, field = [], [], []
+            for a in m.PL:
+                if m.team(a) != tm: continue
+                q = m.snap(a, t)
+                if not m.alive(q): continue
+                pos = (q["x"], q["y"])
+                (own if pits[tm][0] and math.dist(pos, pits[tm][0]) < r else
+                 enemy if pits[3 - tm][0] and math.dist(pos, pits[3 - tm][0]) < r else field).append(m.roles[a])
+            line.append(f"{m.tag[tm]}: pit {len(own)} field {len(field)} enemy pit {len(enemy)}")
+        print(m.f(t), "   ".join(line))
+    same = collections.Counter((e[0] // 10, m.team(e[2])) for e in m.o["ev"] if e[1] == "dt" and e[2] in m.PL)
+    for e in m.o["ev"]:
+        if e[1] == "dt" and e[2] in m.PL and same[(e[0] // 10, m.team(e[2]))] < 6:   # skip the end-of-match wipe marker
+            q = m.snap(e[2], e[0] - 10); tm = m.team(e[2])
+            if q and pits[tm][0]:
+                d = math.dist((q["x"], q["y"]), pits[tm][0])
+                print(f"  death {m.f(e[0])} {m.role(e[2]):18} {round(d):6} from own pit{' (in pit)' if d < r else ''}")
+
+
+SECTIONS = dict(pit=pit, output=output, splits=splits, spikes=spikes, builds=builds, phases=phases, stand=stand, npcs=npcs, lord=lord, deaths=deaths, totals=totals)
 
 if __name__ == "__main__":
     src = sys.argv[1]

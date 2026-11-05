@@ -124,6 +124,17 @@ matches are reviewed). **Open:** lines are questions the match data should help 
   Men's prot sat on the stand; Men's main team still killed everything.)
 - **Nick:** Decapitate (always crits, unblockable, up to +80 damage) hits for about 130 to 150, about 250 with Deep
   Wound. (Replay: 142 to 168; Decapitate then Protector's Strike killed Team's prot at 2:18 and 7 monk at 5:14.)
+- **Denning (2026-11-05):** Against a spike or other 8v8 build that out-damages you at main (e.g. Men's Double Paragon
+  WoC spike), splitting is right, and the split has to be aggressive, which usually includes the 8 monk for support.
+  The main team then has to play in its pit; Team's main team lost too fast by not being in its pit.
+- Replay (Men vs Team, September 2026 final): Team's 4-man split was aggressive only from 1:00 to 1:50; it pulled
+  Men's prot and WoC monk home. After that it shrank to a solo ritualist (2:00 to 4:00), held by Men's 8 monk alone,
+  while Team's 8 monk escorted the dervish carrying the flag. The split killed one knight in 6 minutes and never hit
+  Men's Lord. Team's main team met Men in the field after each res (5,000 to 7,000 from its pit) and lost a player
+  each time; it was wiped in its pit from 5:14, 46 s before the res, and Men killed the Bodyguard and Lord before the
+  res arrived.
+- **Measure:** `report.py <id> pit`: players in their own pit, the field and the enemy pit every 30 s, and how far
+  from their own pit players died (pit from Lord attacks when the Lord was hit, else the res shrine).
 - **Measure:** stand holds that ended just short of 120 s (a nearly missed boost); snares landed by the defenders of
   a split; time spent on a failed kill.
 - **Measure:** deaths "after time" (within about 15 s after an even 2-minute mark), and whether the target was being
