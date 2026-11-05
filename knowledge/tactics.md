@@ -198,6 +198,29 @@ matches are reviewed). **Open:** lines are questions the match data should help 
   on targets already below full health: too fast for a reaction prot, so only pre-protting could save them. OG's one
   death was its mesmer at the stand: Lightning Surge knockdown, then the air ele and stand mesmer; the prot's Spirit
   Bond landed the second it died. Confirms Denning's invoke spike definition (Rit/Para calls, 2 monks).
+- **Review summary (OG vs cope, Jade):** OG won 9:22, a stomp (cope 18 deaths, OG 1). OG's invoke spike killed cope's
+  hex casters from the first minute (3 kills in 54 s), so cope's hexes never built up. Ahead on death penalty, OG
+  stopped chasing and let cope push into it, cope collapsed at 7:52, and OG walked in for the Lord.
+- **OG comms (OG vs hdm, Isle of the Dead, R5, gvg.report d016987b-e5a0-5cd5-a23c-4c5b2d2415f8):** same invoke spike
+  (WoC monk in for one elementalist) into hdm's hex way. At 3:07: "we're not doing enough damage to kill... if you're
+  getting interrupted we need to figure this out right now"; at about 5:20 "we need to be with NPCs", "everybody
+  can just base"; after the game they blamed shutdown on the spikers and Infuse on two monks, and called it "the same
+  matchup as cope". Video time = match time.
+- **Review summary (OG vs hdm):** hdm won 7:23, good vs good decided by the matchup's details (OG 18 deaths, hdm 1).
+  hdm caught OG's spikes for 4 minutes (1 kill from 18 spikes) while holding the stand from 1:59 (boosts at 3:59 and
+  5:59) and taking OG's archers; once OG started dying at 5:03, hdm's hex pressure wiped it in 2 minutes and the pit
+  fell before OG went back to it.
+- **Claude (OG vs cope vs OG vs hdm, macro):** the same OG build went 18-1 against cope's hex way and 1-18 against
+  hdm's. Before 5:00 OG threw 18 spikes in each game: 7 kills against cope, 1 against hdm. The difference was spike
+  defence and shutdown: hdm cast 70 prots before 5:00 (Life Sheath 28, Infuse 17, Spirit Bond 14) to cope's 30 (no
+  Life Sheath), and interrupted OG 40 times (spikers, the Rit/Para caller and the monks) to cope's 16. Confirms Nick
+  (stack prots against a spike) and Bounty (Life Sheath and Spirit Bond on the prot, Infuse on the 7 catch spikes).
+  Corrects the Jade line: killing the hexers first only works if the spikes land; when they are caught, a 2-monk
+  team loses the long game to hexes.
+- **Claude (OG vs hdm, macro):** OG lost the flag game outright (0 caps; its runner carried 71 s and dropped), so hdm
+  boosted twice and fought on OG's side of the map from 1:15, taking 3 archers and a knight before any kill. OG's
+  deaths from 5:03 were slow (low bursts, 2 to 8 s to die): attrition from hexes and disease, not spikes. The call
+  to go back to the NPCs came at about 5:20, after the pit's outer NPCs were already gone.
 - **Measure:** stand holds that ended just short of 120 s (a nearly missed boost); snares landed by the defenders of
   a split; time spent on a failed kill.
 - **Measure:** deaths "after time" (within about 15 s after an even 2-minute mark), and whether the target was being
