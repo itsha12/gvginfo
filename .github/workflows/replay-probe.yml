@@ -1,0 +1,39 @@
+name: Replay probe (test)
+
+# Discovery test for replay data. Runs when replays/requests.txt changes, or by hand.
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["replays/requests.txt", "tools/gvgreport/replay_probe.mjs"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-updates
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Probe gvg.report
+        run: node tools/gvgreport/replay_probe.mjs
+      - name: Save results
+        run: |
+          git config user.name "gvginfo-bot"
+          git config user.email "gvginfo-bot@users.noreply.github.com"
+          for i in 1 2 3 4 5; do
+            git add replays
+            git diff --cached --quiet && { echo "Nothing new."; exit 0; }
+            git commit -m "Replay probe results"
+            git push && exit 0
+            git reset --soft HEAD~1; git stash; git pull --rebase origin main; git stash pop; sleep $((i * 5))
+          done
+          exit 1
