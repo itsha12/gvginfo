@@ -52,6 +52,12 @@
    "t": 571,
    "rule": "death (follow-up)",
    "ruling": "Men was running a flag, so HC had to run too to avoid falling behind (cap as soon as reasonably possible after the enemy); HC couldn't retreat to its pit. The cause was probably the Daze (a slight misplay), but the bigger issue was the flag and where HC's fifth damage (the Mes/A) was"
+  },
+  {
+   "match": "faec428a-5b92-54d1-a28c-b79c7f27cfcf",
+   "t": 571,
+   "rule": "death (follow-up 2)",
+   "ruling": "Not a runner cut off and not double running (the stand mesmer never carried). HC was behind on flags from earlier play, had to run, and tried it 3v4 with a Daze misplay. The running team should play defensively and support the runner's return to base; half running is too risky because the enemy can return the flag at a contested handoff. Engine cause: fight during a forced flag run."
   }
  ]
 }

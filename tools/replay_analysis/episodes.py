@@ -208,6 +208,14 @@ def flag_cycles(st):
                 blocked = collections.Counter(m.roles[e] for t in trip[::2] for e in st.players[tm]
                                               if st.alive(e, t) and d(st.pos(e, t)[0], st.pos(r, t)[0]) < NEAR_R)
                 row.update(runner=m.roles[r], trip_s=len(trip), enemies_in_the_way=dict(blocked.most_common(4)))
+        # full running: was a second runner already waiting near its base when the team capped?
+        cap_team = tm
+        if capper.get(round(tc)) is not None:
+            c_a = capper[round(tc)]
+            ready = [m.roles[b] for b in st.players[cap_team] if b != c_a and st.alive(b, tc)
+                     and d(st.pos(b, tc)[0], st.geo.base[cap_team]) < BASE_R]
+            row["capper"] = m.roles[c_a]
+            row["capping_team_next_runner_waiting"] = ready
         out.append(row)
     return out
 

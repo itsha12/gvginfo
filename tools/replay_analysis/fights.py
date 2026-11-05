@@ -187,7 +187,11 @@ def assess(st, a, td, fx):
                  for r in m.o["ev"] if r[1] == "dm" and r[3] == a and T0 <= r[0] <= T1), default=0)
     hp_before = st.pos(a, td - 3)[1]
     isolated = not in_range and fx["backline"]
+    flag = fx.get("flag", {})
     if burst >= 450 and hp_before and hp_before["hp"] >= 60: cause = "spike"
+    elif flag.get("enemy_running") and m.roles[a] != flag.get("own_runner") and fx["backline"] and not in_range \
+            and flag.get("own_runner_zone") not in ("dead",):
+        cause = "fight during a forced flag run (enemy running, team split to run)"
     elif isolated: cause = "positioning (out of range of its backline)"
     elif len(pressured) >= 2 and (attempts or stripped) and in_range: cause = "coordinated enemy pressure (great enemy play)"
     elif in_range and not attempts and not pressured: cause = "lack of support (backline free but no prots)"

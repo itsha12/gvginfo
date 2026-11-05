@@ -238,7 +238,11 @@ match:
 - **Claude:** Flag timing is measured per cap: when the answering team picked up compared with the enemy's pickup, how
   long after the enemy's cap it capped, and the runner's trip back to base with any enemies in the way. In [Men v HC C]
   HC's Mes/A was repeatedly slow back to base (53 to 76 s) because Men's push team (prot, 7 monk, hammer, ranger) sat
-  on its route, so HC kept capping 40 to 80 s after Men: a push team on the enemy's backside also cuts off its runner.
+  on its route, so HC kept capping 40 to 80 s after Men. Denning reads this as HC already behind on flags from earlier
+  play and forced to run with too few players, not as a runner cut off; Men also spread its runs over 3 players (WoC,
+  mesmer, Hammer B) while HC relied on its Mes/A for 13 of 20 runs. [Men v HC C]
+- **Denning:** While your runner is out, the rest of the team plays defensively enough, and supports enough, for the
+  runner to get back to base for the next flag. [Men v HC C]
 
 ### Running costs
 - **Denning:** Running the flag costs pressure. A frontline runner puts out basically no damage with the flag in hand.
@@ -247,6 +251,7 @@ match:
   can't kite. Carrying slows the runner by 25%.
 - **Denning:** Double running uses 2 players to run (half running: drop halfway to a teammate and run back for the
   next; full running: one waits back for the next flag). It gets a team up on flags faster but fights 2 players down.
+- **Denning:** Half running is too risky: if enemies contest the handoff spot, they can return the flag.
 - **Denning:** Not running the flag can be deliberate: a team on death penalty and under pressure may not be able to
   run without being wiped.
 - **Denning:** Running on the 8 monk is a bad move, normally only when 2 enemy damage are dead or when desperate.
