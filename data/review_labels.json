@@ -58,6 +58,12 @@
    "t": 571,
    "rule": "death (follow-up 2)",
    "ruling": "Not a runner cut off and not double running (the stand mesmer never carried). HC was behind on flags from earlier play, had to run, and tried it 3v4 with a Daze misplay. The running team should play defensively and support the runner's return to base; half running is too risky because the enemy can return the flag at a contested handoff. Engine cause: fight during a forced flag run."
+  },
+  {
+   "match": "faec428a-5b92-54d1-a28c-b79c7f27cfcf",
+   "t": 571,
+   "rule": "death (follow-up 3)",
+   "ruling": "HC was up on flags. Running there 3v4 was an unnecessary risk: wait before capping on the Mes/A and stay together. The backside group did not need to support the runner (capping alone against no damage), so it should have fallen back toward pit and only followed if Men went to kill the Mes/A. Engine cause: outnumbered away from pit while up on flags (minor)."
   }
  ]
 }

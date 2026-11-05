@@ -31,7 +31,13 @@ page is detected in gvg.report replays.
    = right), full team collapses (not split answers), split
    value, running on the 8 monk, pushed flagger supported (help within 15 s, only when 2+ damage push), flag dropped without reason,
    capped just before a boost (a late cap by the team down on flags, not the holder's mistake), power play converted (not "missed" when the team is clearly ahead), and a reason for every
-   death (isolated, monks far, no prot, knockdowns, interrupts on monks, no peel, after time).
+   death. Death causes (`fights.assess`, in order): spike; outnumbered away from pit while up on flags (stand held,
+   enemy running, own runner not carrying, victim on backside or stand and out of backline range; minor mistake);
+   fight during a forced flag run (enemy running, team split to run); positioning (out of backline range); coordinated
+   enemy pressure (a great enemy play); lack of support; unclear. Each cause comes with smaller mistakes graded basic,
+   minor or acceptable (Daze beside a ranger, Aura of Stability not used, no defensive interrupts, peel on monks only),
+   and luck notes (quarter-second interrupts). Known weakness: "positioning" is the cause for about 2 of 3 deaths and
+   needs splitting (pushing too deep, caught kiting, chased down after a lost fight, etc.).
 4. **Edge ledger** (`rules.py`, built): every death, boost, NPC lost and minute of Lord damage with its likely cause.
    Next: weigh the edges (win probability) to decide macro vs micro from evidence.
 5. **Benchmarks** (after the bulk pull): distributions of every measure across good teams, so "late" is measured.

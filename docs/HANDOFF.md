@@ -94,83 +94,94 @@ Claude should then:
 
 # Match replay analysis
 
-**Status:** Active. Last updated 2026-11-05 (end of the second session).
+**Status:** Active. Last updated 2026-11-05 (end of the third session).
 
 ## Start the next chat with
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/HANDOFF.md (the "Match replay
-> analysis" section), knowledge/tactics.md, knowledge/match-reviews.md and tools/replay_analysis/METHODS.md, then
-> fetch the `replays` branch. Then: <your request>
+> analysis" section), knowledge/tactics.md, knowledge/match-reviews.md, tools/replay_analysis/METHODS.md and
+> data/review_labels.json, then fetch the `replays` branch and run `python3 tools/replay_analysis/analyze.py --all
+> --out /tmp/ga` and `library.py build`. Then continue the death rulings in [Men v HC C] (deaths 3 to 5, then power
+> plays 6 and 7), or: <your request>
 
 ## Goal
 Become an expert GvG analyst and tactician: read any match, say whether macro or micro decided it and why, and answer
-"what should they have done" questions from general principles, not just recall past games. Learn from Denning's
-corrections, expert commentary and team comms; test on more matches; then pull 450+ matches to back the principles
-with numbers.
+"what should they have done" questions from data and general principles, better than players. Calibrate the engine on
+Denning's rulings, then pull hundreds of matches to back the principles with numbers and a win-probability model.
 
-## How the knowledge is organized (since 2026-11-05)
-- `knowledge/tactics.md` ("GvG tactics" on the site): the general model by situation. Sections: how matches are won
-  (win conditions, the edges, macro vs micro), builds and matchups, splits, main team and pit play, the flag game,
-  kills and timing, late game and 28:00, spikes, monk play, interrupts, positioning, weapon sets, language, open
-  questions. Line labels: **Denning:** (overrides everything), **Bounty:** / **Nick:** (commentary), **OG comms:**,
-  **Claude:** (proposals, each with match tags as evidence, revised when contradicted).
-- `knowledge/match-reviews.md` ("Match reviews"): how a review is written, sources, guild notes, one entry per match
-  (summary paragraph, decided by, deciding moments, what comms or commentary added). Tags like [OG v cope U].
-- `tools/replay_analysis/METHODS.md`: how each concept is measured (not on the site).
+## How the knowledge is organized
+- `knowledge/tactics.md` ("GvG tactics" on the site): the general model by situation. Labels: **Denning:** (overrides
+  everything), **Bounty:** / **Nick:** (commentary), **OG comms:**, **Claude:** (proposals with match tags, revised
+  when contradicted). No dates on Denning's lines.
+- `knowledge/match-reviews.md`: one entry per match (summary paragraph, decided by, deciding moments, sources).
+- `tools/replay_analysis/METHODS.md` (not on the site): the engine layers, how each concept is measured, the rules
+  and death causes, known limits.
+- `data/review_labels.json`: every ruling Denning has made on a specific moment (the calibration record).
+
+## The analysis engine (`tools/replay_analysis/`)
+1. `state.py`: game state every second (positions, zones, carrier, stand owner, main group, pit NPCs, estimated NPC
+   positions saved to `data/maps/`).
+2. `episodes.py`: splits (split, flank, full team collapse), flag runs (escort, pushers, double running), flag cycles
+   (pickup vs the enemy's, cap delay, runner trip back, enemies in the way, a second runner waiting at base), stand.
+3. `fights.py`: death forensics (numbers, flag situation, backline range and state, prots, knockdowns, interrupts,
+   conditions, approach, peel) and `assess` (a cause plus graded mistakes); monk profiles; numbers windows; posture.
+4. `rules.py`: findings with verdicts (good, on time, late, missed, risky, mistake, great enemy play, note) and the
+   edge ledger.
+5. `library.py`: case library across matches (`build`, then `query <kind> --where --show --sort --limit`).
+6. `analyze.py`: runs everything per match (ENGINE 14). Next layers, after the bulk pull: benchmarks and a
+   win-probability model.
 
 ## Plan
-1. Done: Bounty (6 matches), Nick ([Men v Team]) and Maga's OG comms ([OG v chic], [OG v cope J], [OG v hdm],
-   [OG v cope U]).
-2. Next: review more matches with no commentary to test the model (RACK v hdm Meditation, hold v RACK Meditation,
-   RJT v GW크), each ending with questions for Denning; work through the open questions on the tactics page.
-3. Then the bulk pull (450+ in batches of about 100, proposed, not confirmed), and turn principles into measured
-   patterns (e.g. how often a split that never takes a knight still wins).
+1. Done: Bounty (6), Nick ([Men v Team]), Maga's OG comms (4), 4 good-guild matches, the engine (layers 1 to 4 and
+   the library), death rulings 1 and 2.
+2. Now: calibrate on Denning's rulings (remaining [Men v HC C] deaths and power plays), adding each as a label, a
+   tactics line and an engine check.
+3. Then: redo the Bounty, Maga, Nick and earlier reviews with the engine; settle trade-offs with data (8 monk
+   defending a split, always collapse vs one damage pushing, double running).
+4. Then: bulk pull in batches of about 100 (proposed), benchmarks, win-probability model.
 
 ## Current state
-- **Pipeline:** `tools/gvgreport/replays.mjs` + `.github/workflows/fetch-replays.yml`, run on GitHub whenever
-  `replays/requests.txt` changes (a report id or link, `latest:N`, or `list:N`). Trimmed replays on the `replays`
-  branch (format gvginfo.replay.v1, TRIM_VERSION 3).
-- **Stored replays: 20.** RACK: RJT v RACK, RACK v MBP, RACK v hdm (Meditation, Uncharted), 옷옷옷옷 v RACK, hold v
-  RACK (Meditation, Imperial), Men v RACK. Commentary: Bounty's six, [Men v Team]. OG comms: the four OG games. Also
-  RJT v GW크 and two from `latest:2`.
-- **Toolkit:** `replaylib.py` (Match class; `Match.from_branch(id)`) and `report.py <id> [sections]`: builds, phases,
-  stand, npcs, lord, deaths, spikes, splits, output, pit (players in own pit / field / enemy pit, death distance from
-  pit), catches (spike catching per team), totals.
-- Run Python with `PYTHONDONTWRITEBYTECODE=1`, or a tracked `__pycache__` file blocks `git pull --rebase`.
+- Last commit: see `git log` (this session ended with the ENGINE 14 commit, after 84d5ab5).
+- Stored replays: 24 on the `replays` branch (last workflow run 2026-11-05, none in progress).
+- Library on 24 matches: 376 deaths, 234 splits, 551 flag runs, 300 flag cycles, 1,121 monk phases, 281 numbers
+  windows, 844 findings. Whole run about 15 s.
+- Death causes now: positioning 257, unclear 38, coordinated enemy pressure 31, forced flag run 23, spike 14,
+  outnumbered away from pit while up on flags 6, lack of support 2.
 
-## Decisions made
-- Replays on a separate `replays` branch (confirmed). Perfect the process before any bulk pull (confirmed).
-- Transcripts are attached by Denning (YouTube blocks GitHub).
-- Knowledge restructured into a model (tactics) and evidence (match reviews), with measurement notes off the site
-  (asked for by Denning).
-- No dates on Denning's tactical lines; **Tested (date):** lines keep their dates (patches change mechanics).
-
-## Key facts
-- gvg.report download per match: about 91 MB (replay) + 43 MB (summary); trimmed about 225 KB.
-- Spike anchors: 400 in 0.6 s survivable on shield set if armor respecting; 550 armor ignoring in 0.35 s can't be
-  saved. Good spike catching: prots 0.3 to 1.0 s after the first hit (hdm caught 17 of 20; cope 12 of 34).
-- Entourage lasts 10.5 s; Solitude has an extra pit archer; Lord Health 1,680 +1% per boost up to 1,848.
-- Denning's characters in RACK matches: Denning (8 monk), Denning E (water ele in the invoke spike).
-- Transcript offsets differ per video; anchor on 2 or 3 kills or caps.
+## Decisions made (confirmed by Denning)
+- Split answered on time at about 15 s; 60 s is late. Lone ranger answered by the Mes/A plus a frontline collapse.
+- Deaths judged by cause first, then smaller mistakes graded basic, minor or acceptable, escalated when a monk is
+  alone or after time. Quarter-second interrupts are luck.
+- Death 1 ([hdm v HC I1], HC prot 8:10): a great play by hdm, with acceptable mistakes.
+- Death 2 ([Men v HC C], HC 8 monk 9:31): HC was up on flags; staying out 3v4 while Men ran was an unnecessary risk.
+  The runner could wait to cap; the backside group should fall back toward pit and follow only if Men went for the
+  runner. Daze beside the ranger was a minor mistake. Not double running; half running is too risky.
+- Cap as soon as reasonably possible after the enemy; the team running can't retreat to its pit.
 
 ## Open items
-- The open questions at the end of the tactics page.
-- Benchmarks: a strong prot's spike catches (Ali) and a good 7 monk's Infuse timing.
-- Toolkit: race clock for base races; timed kills; prot position against the enemy's 3rd damage; a "decided by"
-  helper (edges over time: death penalty, boosts, pit NPCs, numbers).
-- Maps: draw Isle of Meditation for front door vs backdoor; walkable areas for maps without outlines.
-- Pending trim change to batch: keep Lord spawn positions.
-- Bulk pull when settled; consider telling the gvg.report owner first.
+- Death rulings 3 to 5 and power plays 6 and 7 in [Men v HC C].
+- Unanswered: is Men's 4-minute gap without a cap (4:52 to 8:55) a flag mistake, or normal for the team holding pit
+  pressure?
+- Split the "positioning" death cause (2 of 3 deaths) into real situations.
+- Toolkit: race clock for base races; timed kills; "decided by" from the edge ledger; Lord spawn positions in the trim.
+- Benchmarks (a strong prot's spike catches, a good 7 monk's Infuse timing).
 
 ## Known issues and cautions
-- `gh` works in the workspace; start workflows by pushing `replays/requests.txt`. Commit all local edits before
-  `git pull --rebase`.
-- Check each gvg.report link matches its transcript (teams, map, winner, round order).
-- Auto-transcripts garble names ("X-way" = hex way, "Ellie"/"LE" = elementalist, "Lisa" = Lyssa).
-- Entourage gaps only mean suppressed when attackers were at the Lord. Zones are heuristics. Numbers are estimates.
-- Don't use Denning's own word for chaotic games; say "chaotic".
+- Possible bug: two HC flag cycles in [Men v HC C] (6:23 and 7:58) show the identical list of enemies in the way.
+  Check before trusting runner trip numbers. `runner_back_s` is empty; the field in use is `trip_s`.
+- Judge who is up on flags from the stand at boosts and the last cap, not from cap delays (I got this wrong once).
+- Run Python with `PYTHONDONTWRITEBYTECODE=1` (a tracked `__pycache__` file blocks `git pull --rebase`).
+- No NPC positions or energy in the data; zones and NPC positions are estimates.
+- Store paraphrased events from transcripts, never the transcripts (public repo).
 
 ## Conventions
-- Denning's terms (see Language on the tactics page); refer to players by role. Times are match clock (m:ss).
-- Reviews: summary paragraph first (prose, with 8v8, flag game, splits and which roles were better woven in), then
-  decided by, deciding moments, what sources added, questions. Lessons go to the tactics page as general lines.
-- Improve the toolkit rather than writing one-off scripts.
+- Denning's terms: base (not home), backline (monks), midline (ele, ranger, paragon, mesmer), frontline (dervish,
+  warrior, assassin), all by build. Refer to players by role; times are match clock (m:ss).
+- Reviews: summary paragraph first (result, 8v8 or not, flag game, splits, which roles were better), then decided by,
+  deciding moments, sources, questions for Denning.
+- Improve the toolkit rather than writing one-off scripts; each ruling becomes a label, a tactics line and a check.
+
+## Recent changes
+- Session 3: engine built (state, episodes, forensics, rules, ledger, library); death 1 and 2 rulings; flag cycles
+  per cap; up-on-flags death cause.
+- Session 2: four good-guild matches reviewed; knowledge split into model and reviews; history rewritten.
+- Session 1: Bounty, Nick and Maga reviews.

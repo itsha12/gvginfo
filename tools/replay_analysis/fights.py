@@ -76,7 +76,10 @@ def forensics(st, a, td, pre=PRE):
     own_runner = next((m.roles[x] for x in st.players[tm] if m.roles[x] == "Mes/A"), None)
     out["flag"] = {"enemy_running": enemy_running, "enemy_running_for_s": round(td - foe_pick) if enemy_running and foe_pick else None,
                    "own_team_must_run": bool(enemy_running) and st.stand_owner(td)[0] == tm,
-                   "own_runner": own_runner, "own_runner_zone": st.zone(next(x for x in st.players[tm] if m.roles[x] == own_runner), td - 2) if own_runner else None}
+                   "own_runner": own_runner, "own_runner_zone": st.zone(next(x for x in st.players[tm] if m.roles[x] == own_runner), td - 2) if own_runner else None,
+                   "own_up_on_flags": st.stand_owner(td)[0] == tm,
+                   "own_runner_carrying": any(m.team(x) == tm for x in st.carrier(td - 2)),
+                   "victim_zone": st.zone(a, td - 5)}
     own, since = st.stand_owner(td)
     out["stand"] = f"{m.tag.get(own)} held {round(td - since)} s" if own else "nobody"
     # backline in cast range each second, and its state (k knocked down, c casting)
@@ -189,6 +192,14 @@ def assess(st, a, td, fx):
     isolated = not in_range and fx["backline"]
     flag = fx.get("flag", {})
     if burst >= 450 and hp_before and hp_before["hp"] >= 60: cause = "spike"
+    elif flag.get("enemy_running") and flag.get("own_up_on_flags") and not flag.get("own_runner_carrying") \
+            and m.roles[a] != flag.get("own_runner") and fx["backline"] and not in_range \
+            and flag.get("victim_zone") in ("backside", "stand"):
+        # Denning [Men v HC C]: up on flags, the team need not cap at once; the backside group falls back toward pit
+        # and only follows if the enemy goes for the runner
+        cause = "outnumbered away from pit while up on flags"
+        mistakes.append("minor: up on flags with the runner not under threat, the group should have fallen back toward "
+                        "pit (and the runner could wait before capping) rather than fight outnumbered")
     elif flag.get("enemy_running") and m.roles[a] != flag.get("own_runner") and fx["backline"] and not in_range \
             and flag.get("own_runner_zone") not in ("dead",):
         cause = "fight during a forced flag run (enemy running, team split to run)"

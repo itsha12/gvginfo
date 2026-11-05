@@ -238,6 +238,13 @@ the defenceless Lord. HC's prot was knocked down 38 times and its 8 monk died 5 
 
 **Decided by:** macro (the ranger split that emptied HC's pit), with micro deciding each swing (monk wipes).
 
+**Deciding moments.**
+- 9:31, HC 8 monk dies on its backside. HC was up on flags (held the stand, won the 8:00 and 10:00 boosts) and its
+  Mes/A was walking back for the next flag; the 8 monk, stand mesmer and paragon stayed out 3v4 against Men's Hammer A,
+  ranger, prot and 7 monk while Men ran. The 8 monk was Dazed casting beside the ranger, then caught. Denning: an
+  unnecessary risk; HC could have waited to cap and kept the group together near pit, following only if Men went for
+  the runner. The stand mesmer never carried a flag (not a double run).
+
 ## Earlier reviews (before this page)
 Reviewed with Denning in November 2026, without stored summaries: RJT v RACK, RACK v MBP, 옷옷옷옷 v RACK, hold v RACK
 (Imperial), Men v RACK. Not yet reviewed: RACK v hdm (Uncharted), hold v RACK (Meditation), RJT v GW크.

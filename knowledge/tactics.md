@@ -238,11 +238,17 @@ match:
 - **Claude:** Flag timing is measured per cap: when the answering team picked up compared with the enemy's pickup, how
   long after the enemy's cap it capped, and the runner's trip back to base with any enemies in the way. In [Men v HC C]
   HC's Mes/A was repeatedly slow back to base (53 to 76 s) because Men's push team (prot, 7 monk, hammer, ranger) sat
-  on its route, so HC kept capping 40 to 80 s after Men. Denning reads this as HC already behind on flags from earlier
-  play and forced to run with too few players, not as a runner cut off; Men also spread its runs over 3 players (WoC,
-  mesmer, Hammer B) while HC relied on its Mes/A for 13 of 20 runs. [Men v HC C]
+  on its route, so HC kept capping 40 to 80 s after Men. That was not a runner cut off: Men spread its runs over 3
+  players (WoC, mesmer, Hammer B) while HC relied on its Mes/A for 13 of 20 runs. [Men v HC C]
+- **Claude:** Judge who is up on flags from who holds the stand at each boost and who capped last, not from how long
+  each cap took. At HC's 8 monk death (9:31) HC held the stand and had won the 8:00 and 10:00 boosts; I first read it
+  as HC behind on flags, which was wrong. [Men v HC C]
 - **Denning:** While your runner is out, the rest of the team plays defensively enough, and supports enough, for the
   runner to get back to base for the next flag. [Men v HC C]
+- **Denning:** A team up on flags doesn't have to cap at once. If its backside group is outnumbered, the runner can
+  wait before capping and the team stays together; running with a 3v4 behind it is an unnecessary risk. [Men v HC C]
+- **Denning:** Once the runner is capping on its own with no enemy damage near it, the backside group no longer needs
+  to support it: fall back toward pit, and only follow if the enemy goes to kill the runner. [Men v HC C]
 
 ### Running costs
 - **Denning:** Running the flag costs pressure. A frontline runner puts out basically no damage with the flag in hand.
