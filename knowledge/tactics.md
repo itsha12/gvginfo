@@ -198,18 +198,22 @@ matches are reviewed). **Open:** lines are questions the match data should help 
   on targets already below full health: too fast for a reaction prot, so only pre-protting could save them. OG's one
   death was its mesmer at the stand: Lightning Surge knockdown, then the air ele and stand mesmer; the prot's Spirit
   Bond landed the second it died. Confirms Denning's invoke spike definition (Rit/Para calls, 2 monks).
-- **Review summary (OG vs cope, Jade):** OG won 9:22, a stomp (cope 18 deaths, OG 1). OG's invoke spike killed cope's
-  hex casters from the first minute (3 kills in 54 s), so cope's hexes never built up. Ahead on death penalty, OG
-  stopped chasing and let cope push into it, cope collapsed at 7:52, and OG walked in for the Lord.
+- **Review summary (OG vs cope, Jade):** OG won at 9:22, a stomp (cope 18 deaths, OG 1). It was a straight 8v8 with no
+  splits; the flag traded about once a minute with no boosts, so kills alone decided it. OG's invoke spike killed
+  cope's hex casters from the first minute (3 kills in 54 s), and cope's monks were the weak link, protting only 12 of
+  34 spikes, mostly a second late. Ahead on death penalty, OG stopped chasing and let cope push into it; cope collapsed
+  at 7:52 and OG walked in for the Lord.
 - **OG comms (OG vs hdm, Isle of the Dead, R5, gvg.report d016987b-e5a0-5cd5-a23c-4c5b2d2415f8):** same invoke spike
   (WoC monk in for one elementalist) into hdm's hex way. At 3:07: "we're not doing enough damage to kill... if you're
   getting interrupted we need to figure this out right now"; at about 5:20 "we need to be with NPCs", "everybody
   can just base"; after the game they blamed shutdown on the spikers and Infuse on two monks, and called it "the same
   matchup as cope". Video time = match time.
-- **Review summary (OG vs hdm):** hdm won 7:23, good vs good decided by the matchup's details (OG 18 deaths, hdm 1).
-  hdm caught OG's spikes for 4 minutes (1 kill from 18 spikes) while holding the stand from 1:59 (boosts at 3:59 and
-  5:59) and taking OG's archers; once OG started dying at 5:03, hdm's hex pressure wiped it in 2 minutes and the pit
-  fell before OG went back to it.
+- **Review summary (OG vs hdm):** hdm won at 7:23, good vs good decided by role play (OG 18 deaths, hdm 1). It was an 8v8
+  all game with no real splits, fought on OG's side of the map. hdm won the flag game outright, capping once at 1:59
+  and boosting at 3:59 and 5:59 while OG never capped. hdm's monks and mesmers were both clearly better than cope's had
+  been against the same OG build: its monks protted 17 of 20 spikes, mostly within a second, and its mesmers
+  interrupted OG 41 times. Once OG started dying at 5:03, hdm's hex pressure wiped it in 2 minutes and the pit fell
+  before OG went back to it.
 - **Claude (OG vs cope vs OG vs hdm, macro):** the same OG build went 18-1 against cope's hex way and 1-18 against
   hdm's. Before 5:00 OG threw 18 spikes in each game: 7 kills against cope, 1 against hdm. The difference was spike
   defence and shutdown: hdm cast 70 prots before 5:00 (Life Sheath 28, Infuse 17, Spirit Bond 14) to cope's 30 (no
@@ -280,8 +284,9 @@ matches are reviewed). **Open:** lines are questions the match data should help 
   5. Specific questions for Denning; add his answers to this page.
 - **Denning (2026-11-05):** every review opens with a short upfront summary: result, kind of game, and in two or three
   sentences how the win condition was reached and the decisive reasons, before any detail.
-- **Denning (2026-11-05):** the macro summary answers: did they fight 8v8; did they play the flag game (who capped,
-  boosts); did anyone split (who, answered how); and was one side's monks, mesmers or both noticeably better.
+- **Denning (2026-11-05):** the summary's first paragraph is prose, not a list of questions. Woven into it: whether
+  they fought 8v8, whether they played the flag game (who capped, boosts), whether anyone split (who, answered how),
+  and whether one side's monks, mesmers or both were noticeably better, along with how the win condition was reached.
 - **Denning:** A match review is about the overall scope of the game. A player's own play only matters to the review
   when that player was a factor in the result.
 
