@@ -34,6 +34,12 @@
    "t": 430,
    "rule": "8 monk in base after the pit died",
    "ruling": "right call: a Mes/A can't hold a ranger once the pit is dead"
+  },
+  {
+   "match": "bbef1904-cc55-54a4-aea4-ec0367e0d00b",
+   "t": 490,
+   "rule": "death",
+   "ruling": "great play by hdm, not a failure by HC: even 8v8, monks in position, 8 tried to Guardian the prot but was interrupted, prot stripped, 7 and prot knocked down, 8 Dazed; acceptable mistakes: 8 casting beside the ranger without faking, prot not keeping Aura of Stability on the 7, mesmers not interrupting defensively; interrupts on Reversal of Fortune and Aegis were luck; pre-kiting with a stance was correct; hitting the Mes/A was correct peel"
   }
  ]
 }

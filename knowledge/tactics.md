@@ -251,6 +251,8 @@ match:
   fight is a missed opportunity.
 
 ### Boosts
+- **Denning:** The team that capped first is at a flag disadvantage: the other team can overcap and force it to run a
+  flag first. [hdm v HC I1]
 - **Denning:** Losing the stand just before a boost is normal for the holding team. It shows the capping team was down on
   flags: a team with an on-time flag, or up on flags, would have capped earlier. [hdm v HC I2]
 - **Bounty:** Missing a boost by a few seconds matters. Don't drop the flag without a reason; dropping it to a better
@@ -322,6 +324,19 @@ match:
   Migraine on the spikers. [OG v cope J]
 
 ## 9. Monk play under pressure (micro)
+- **Denning:** Judge a death first by its cause: a great enemy play, or a failure. In an even 8v8 with the monks in
+  position, the 8 trying to Guardian the prot, the 7 knocked down, the prot knocked down, the 8 Dazed and a prot
+  stripped by Shatter Enchantment, none of it alone kills at a high level: the enemy's coordination of knockdowns,
+  Daze, interrupts and enchantment removal is the cause. Small mistakes around it can still be acceptable even at the
+  highest level. [hdm v HC I1]
+- **Denning:** Interrupts on quarter-second casts (Reversal of Fortune, Aegis) are mostly luck: a mesmer or ranger
+  can't hit them reliably and a monk can't cancel them, so they are not a monk error.
+- **Denning:** A monk casting right beside a ranger without cancel-casting first, and getting Dazed by Concussion
+  Shot, is a mistake.
+- **Denning:** The prot should keep Aura of Stability on a monk being knocked down (e.g. the 7 monk against a hammer).
+- **Denning:** Pre-kiting with a speed stance is the correct play for a prot, even when a Coward catches it.
+- **Denning:** The team's mesmers should interrupt defensively so that Shatter Enchantment, Energy Surge and Energy
+  Burn don't go off on their backline.
 - **Denning:** Against energy denial, cast from the shield set (hiding energy); enchantments from the staff (20%
   longer); swap to the single high energy set when low.
 - **Denning:** Space the ranger: the further away, the longer arrow interrupts take; a very quick monk can dodge some
@@ -331,6 +346,9 @@ match:
 - **Denning:** Spacing: stand as far as possible from the enemy mesmer (and ranger) while staying in cast range of the
   2 players being healed, and in the correct position (e.g. in front of their own mesmer). The monk only needs to be in
   range of allies while they take damage. There is no "holding a spot for the flag".
+- **Denning:** Peel: hitting the enemy Mes/A is both offensive and defensive, so it is correct; hitting enemy monks while
+  your team is dying and needs support is purely offensive and likely incorrect. With the timing of a fast monk kill,
+  the frontline may not be able to peel effectively, and that is not their mistake. [hdm v HC I1]
 - **Denning:** A monk under 2 damage needs team support: e.g. the dervish hits the ranger and the mesmer defensively
   interrupts the enemy mesmer. When the Mes/A is not carrying the flag, it should interrupt the enemy mesmer
   defensively when that mesmer pressures its monk.

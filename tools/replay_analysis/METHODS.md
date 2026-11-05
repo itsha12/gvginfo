@@ -15,7 +15,10 @@ page is detected in gvg.report replays.
    the next 60 s, plus a forensics block: numbers and flag context, backline in cast range each second and its state,
    prots on the victim (landed, stripped, interrupted), self-prots, knockdowns through a block or not and moving into a
    Coward, interrupts (critical skill, ms into the cast, right after a knockdown), cripple, Deep Wound and Daze, gap
-   closers and whether the victim stood still before contact, peel on the attackers); monk profiles per 2 minutes (casts by kind, targets, bursts answered and reaction time, idle while
+   closers and whether the victim stood still before contact, peel on the attackers), and an assessment: cause (coordinated enemy pressure = a great enemy play, spike, positioning,
+   lack of support, unclear) and acceptable mistakes (cast beside a ranger without faking, Aura of Stability recharged
+   but not used on a monk being knocked down, no defensive interrupts while Shatter or energy denial went off, peel
+   mostly on enemy monks), with quarter-second interrupts marked as luck; monk profiles per 2 minutes (casts by kind, targets, bursts answered and reaction time, idle while
    allies were hurt, fakes, interrupts and knockdowns received, distance to enemy mesmers and rangers); numbers
    windows (who had more in the main fight, why the other side was short, pressure against the team's average,
    kills, losses, ground gained); posture every 30 s (how far forward each main group is, against numbers, morale,

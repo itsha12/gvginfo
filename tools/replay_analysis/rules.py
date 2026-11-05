@@ -2,7 +2,7 @@
 
 Judgement: each rule turns a principle from knowledge/tactics.md into a check on episodes and returns findings:
   {"rule", "principle" (tactics section), "team", "t", "verdict", "evidence", "question"}
-verdict is one of: good, on time, late, missed, wrong role, risky, mistake, note. Thresholds are first guesses, to be calibrated
+verdict is one of: good, on time, late, missed, wrong role, risky, mistake, great enemy play, note. Thresholds are first guesses, to be calibrated
 against Denning's verdicts (data/review_labels.json) and, after the bulk pull, against benchmarks.
 
 Edge ledger: every change in an edge (a death and its death penalty, a boost, a pit NPC, Lord damage) with the episode
@@ -132,10 +132,14 @@ def findings(st, ep=None):
         if x["peel_hits"] == 0: why.append("no peel")
         if x["after_time"]: why.append("after time")
         cost = x["then"]
+        a = x.get("assessment", {})
+        great = a.get("cause", "").startswith("coordinated")
+        why = [f"cause: {a.get('cause')}"] + why + [f"acceptable mistakes: {'; '.join(a['mistakes'])}"] * bool(a.get("mistakes")) \
+              + list(a.get("notes", []))
         add(rule="death", principle="6. Kills and timing; 8 to 11 micro", team=x["team"], t=x["t"],
-            verdict="mistake" if (x["isolated"] or far) else "note",
+            verdict="great enemy play" if great else ("mistake" if (x["isolated"] or far) else "note"),
             evidence=f"{x['victim']} at {x['zone']} ({x['numbers'][0]}v{x['numbers'][1]}), burst {x['burst_max_2s']}/2 s by {list(x['damage_by'])[:3]}; "
-                     + ("; ".join(why) or "no single failure flagged (see forensics)") + f"; then {cost}")
+                     + "; ".join(why) + f"; then {cost}")
     return sorted(out, key=lambda f: f["t"])
 
 

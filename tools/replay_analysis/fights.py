@@ -143,6 +143,97 @@ def forensics(st, a, td, pre=PRE):
     return out
 
 
+_ACT = None
+def activation(name):
+    """Cast time in seconds from the skill data (0 for attacks, shouts and stances)."""
+    global _ACT
+    if _ACT is None:
+        data = json.load(open(os.path.join(REPO, "data", "skills.json")))
+        rows = data["skills"] if isinstance(data, dict) and "skills" in data else data
+        _ACT = {}
+        for x in (rows.values() if isinstance(rows, dict) else rows):
+            a = (x.get("activation") or "").replace(" s", "").strip()
+            v = {"¼": .25, "½": .5, "¾": .75, "1½": 1.5}.get(a)
+            if v is None:
+                try: v = float(a)
+                except ValueError: v = 0
+            _ACT[x["name"]] = v
+    return _ACT.get(name, _ACT.get(name.replace(" PvP", " (PvP)"), 1))
+
+
+def assess(st, a, td, fx):
+    """Denning's way of judging a death: what kind of death it was (cause) and the smaller, acceptable mistakes around
+    it. Causes: coordinated enemy pressure (a great play), spike, positioning, lack of support, or unclear."""
+    m = st.m; tm = m.team(a)
+    T0, T1 = int((td - PRE) * 10), int(td * 10)
+    R = lambda x: m.roles.get(x) or m.nm(x)
+    mon = [b for b in _monks(st, tm) if b != a]
+    mistakes, notes = [], []
+    # pressure on the backline at the same time: each monk under attack, knocked down or dazed
+    pressured = [r for r, v in fx["backline"].items() if v["under_attack_by"] or v["states"].get("k")]
+    dazed = [c for c in fx["conditions"] if c.startswith("dazed")]
+    stripped = [e for e in fx["enchantments"] if "removed" in e]
+    attempts = fx["prot_attempts"]
+    in_range = all(v["in_range_share"] >= 0.7 for v in fx["backline"].values()) if fx["backline"] else False
+    burst = max((sum(h[5] for h in m.o["ev"] if h[1] == "dm" and h[3] == a and r[0] <= h[0] <= r[0] + 10)
+                 for r in m.o["ev"] if r[1] == "dm" and r[3] == a and T0 <= r[0] <= T1), default=0)
+    hp_before = st.pos(a, td - 3)[1]
+    isolated = not in_range and fx["backline"]
+    if burst >= 450 and hp_before and hp_before["hp"] >= 60: cause = "spike"
+    elif isolated: cause = "positioning (out of range of its backline)"
+    elif len(pressured) >= 2 and (attempts or stripped) and in_range: cause = "coordinated enemy pressure (great enemy play)"
+    elif in_range and not attempts and not pressured: cause = "lack of support (backline free but no prots)"
+    else: cause = "unclear"
+    # interrupts: quarter-second casts are luck, not a monk error (Denning)
+    for i in fx["interrupts"]:
+        sk = i.split(" casting ")[1].split(" (")[0].split(",")[0] if " casting " in i else ""
+        if sk and activation(sk) <= 0.25: notes.append(f"unlucky interrupt on a ¼ s cast ({sk}): not a monk error")
+    # the 8 (or any monk) Dazed by casting right beside a ranger without faking first (Denning: a mistake)
+    for i in m.o.get("interrupts", []):
+        if i[3] in mon and T0 <= i[0] <= T1 and "Concussion" in m.sk(i[2]):
+            close = d(st.pos(i[3], i[0] / 10)[0], st.pos(i[1], i[0] / 10)[0]) < 600
+            faked = any(r[1] == "cx" and r[2] == i[3] and i[0] - 60 <= r[0] < i[0] - 3 for r in m.o["ev"])
+            if close and not faked: mistakes.append(f"{R(i[3])} cast beside the ranger without faking first and got Dazed")
+    # no Aura of Stability on a monk being knocked down (Denning), counted only when a holder had it recharged (12 s)
+    # and was free to cast (alive, not knocked down) at the knockdown; it never covers its caster
+    holders = [b for b in st.players[tm] if any(m.sk(x) == "Aura of Stability" for x in m.A[b].get("bar", []) if x)]
+    aos = [r for r in m.o["ev"] if r[1] == "cs" and r[2] in holders and m.sk(r[4]) == "Aura of Stability"]
+    up = [e for e in m.o.get("effects", []) if m.sk(e[3]) == "Aura of Stability" and e[0] is not None]
+    missed_aos = collections.Counter()
+    for k in m.o.get("knockdowns", []):
+        b = k[2]
+        if b not in mon + [a] or not (T0 - 100 <= k[0] <= T1): continue
+        if any(e[5] == b and e[0] <= k[0] <= (e[1] or 10 ** 9) for e in up): continue
+        for h in holders:
+            if h == b or not st.alive(h, k[0] / 10): continue
+            hs = st.pos(h, k[0] / 10)[1]
+            last = max((r[0] for r in aos if r[2] == h and r[0] <= k[0]), default=-10 ** 6)
+            if k[0] - last >= 120 and hs and hs["st"] != "k": missed_aos[(b, h)] += 1
+    for (b, h), n in missed_aos.items():
+        mistakes.append(f"{R(h)} had Aura of Stability recharged but {R(b)} was knocked down without it ({n}x)")
+    # no defensive interrupts on the enemy mesmers who stripped prots or burned energy (Denning)
+    foe_mes = [b for b in st.players[3 - tm] if m.A[b].get("p") == "Mesmer"]
+    shut = [r for r in m.o["ev"] if r[1] == "cs" and r[2] in foe_mes and r[3] in mon + [a] and T0 - 50 <= r[0] <= T1
+            and any(w in m.sk(r[4]) for w in ("Shatter", "Energy Surge", "Energy Burn", "Drain Enchantment", "Power Leak", "Signet of Disenchantment"))]
+    own_mes = [b for b in st.players[tm] if m.A[b].get("p") in ("Mesmer", "Ranger")]
+    defensive = [i for i in m.o.get("interrupts", []) if i[1] in own_mes and i[3] in foe_mes and T0 - 50 <= i[0] <= T1]
+    went = sorted({m.sk(r[4]) for r in shut} | ({"Shatter Enchantment (stripped a prot)"} if stripped else set()))
+    if went and not defensive:
+        mistakes.append(f"no defensive interrupts on the enemy mesmers ({', '.join(went)} went off)")
+    # peel: hitting the attackers or enemy mesmers is defensive (or both); hitting enemy monks while dying is offensive only
+    attackers = {r[2] for r in m.o["ev"] if r[1] == "dm" and r[3] == a and T0 <= r[0] <= T1 and r[2] in m.PL}
+    tgt = collections.Counter()
+    for r in m.o["ev"]:
+        if r[1] == "dm" and r[2] in st.players[tm] and r[3] in st.players[3 - tm] and T0 <= r[0] <= T1:
+            p = m.A[r[3]].get("p")
+            tgt["the victim's attackers (defensive)" if r[3] in attackers and p != "Mesmer"
+                else "enemy mesmers (offensive and defensive)" if p == "Mesmer"
+                else "enemy monks (offensive only)" if p == "Monk" else "others"] += 1
+    if tgt and tgt["enemy monks (offensive only)"] > 0.5 * sum(tgt.values()):
+        mistakes.append("team mostly hit enemy monks while the victim died (purely offensive)")
+    return {"cause": cause, "mistakes": mistakes, "notes": sorted(set(notes)), "peel_targets": dict(tgt)}
+
+
 def deaths(st):
     m, out = st.m, []
     casts = st.__dict__.setdefault("_casts", _casts(st))
@@ -196,7 +287,8 @@ def deaths(st):
                 "monk_casts_on_victim": own_casts, "monks_busy_with": monk_busy, "monk_distance": monk_dist,
                 "isolated": isolated, "peel_hits": peel, "numbers": (len(st.main_group(tm, int(td - 2))), len(st.main_group(foe, int(td - 2)))),
                 "then": {"npcs_lost_60s": npc, "more_deaths_60s": more, "caps_60s": caps},
-                "forensics": forensics(st, a, td),
+                "forensics": (fx := forensics(st, a, td)),
+                "assessment": assess(st, a, td, fx),
             })
     return sorted(out, key=lambda x: x["t"])
 
