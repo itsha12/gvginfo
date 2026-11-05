@@ -202,11 +202,13 @@ Aura of Stability on two monks. hdm's ranger solo split from 4:16 and, with HC's
 knights, the archers and the Bodyguard by 6:23. hdm then wiped HC from 10:16 to 11:19 and had 7 players in HC's empty
 pit at 11:40, but dealt no Lord damage before HC's res at 12:00. After that hdm led on everything: boosts (3 to 1),
 deaths, and the 28:00 tiebreak by about 7,000 aggressiveness (its ranger chipped the Lord all game, and HC enchanted
-its own Lord 22 times, -1,100). HC had to kill the Lord. From 25:06 HC walked 6 into hdm's pit; hdm kept 4 at home and
+its own Lord 22 times, -1,100). Backing out of the pit at 11:40 was right (Denning: the Lord was probably not
+killable, and a team that is winning doesn't need the risk). HC had to kill the Lord. From 25:06 HC walked 6 into hdm's pit; hdm kept 4 at home and
 sent 2 to 4 to counter-attack HC's empty pit, lost its 7 monk and prot at 26:25 and 26:32, and its Lord fell 64 s
 before the tiebreak it was winning.
 
-**Decided by:** macro. hdm failed to convert its 11:30 window, then counter-raced when it only needed to defend.
+**Decided by:** macro. hdm counter-raced when it only needed to defend: as HC's 6 entered its pit, both hammers and the
+Mes/A went to hit HC's Lord (364 damage it didn't need) instead of defending, and the 4 left at home lost the pit.
 
 ## [hdm v Men N] hdm v Men, automated tournament, 2 November 2026
 Nomad's Isle, 28:14 (tiebreak), gvg.report 0f1fd794-46cd-5fb1-a661-a7ec5f1cbadd. Source: replay only.

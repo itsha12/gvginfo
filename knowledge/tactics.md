@@ -25,7 +25,7 @@ against general principles rather than past games. Match-by-match evidence lives
   team would not survive 28 minutes.
 - The 28:00 tiebreak is aggressiveness: +1 per point of damage to the enemy Lord, -50 per enchantment or weapon spell
   on your own Lord (GvG match rules page).
-- **Claude:** In long even games, know the aggressiveness score from about 24:00. The team behind must commit to Lord
+- **Claude:** In long even games, know the aggressiveness score from about 24:00 (it decides whether to risk anything). The team behind must commit to Lord
   damage (or a Lord kill) in the last minutes; the team ahead only has to keep its Lord alive, so it defends with
   enough players and does not counter-race. Men won a tiebreak from 0 to 0 at 26:00 by putting 5 on hdm's Lord for
   two minutes; hdm lost a game it was winning by 7,000 by counter-attacking instead of defending. [hdm v Men N]
@@ -146,8 +146,14 @@ match:
 - **Claude:** A lone ranger split left undefended can take a whole pit (both knights, the archers and the Bodyguard) in
   2 to 4 minutes, which wins the tiebreak and makes the late push cheap. It has to be answered by a defender or a
   collapse; HC ignored it twice and lost every pit NPC both times. [hdm v HC I2] [Men v HC C]
-- **Claude:** An empty enemy pit still has to be converted: the next wipe gives one res window to kill the Lord, and a
-  team that goes in and fights the defenders instead of the Lord wastes it. [hdm v HC I2] [Men v HC C]
+- **Denning:** A lone ranger split is answered by the Mes/A, but the Mes/A can't defend alone: it needs collapses from a
+  frontline to push the ranger out of the base.
+- **Denning:** A team already winning (pit taken, ahead on death penalty, boosting, ahead at 28:00) has no need to risk
+  a Lord kill in a close window. The safer play is to back out, wait for the res, and fight again with the advantages;
+  with no pressure to end, it can always win at 28:00. [hdm v HC I2]
+- **Claude:** An empty enemy pit is converted when it is safe: a team that is behind, or racing the clock, takes the
+  Lord in the next wipe window; a team that is ahead uses the empty pit as leverage and keeps its lead. [hdm v HC I2]
+  [Men v HC C]
 
 ### Who goes
 - **Bounty:** When 3 damage are out on a split, the 8 monk should go with them, or the split achieves nothing.
@@ -365,10 +371,6 @@ match:
 - Where is the line between saveable and not saveable for mixed damage and other windows?
 - Does RACK split through the front door or the backdoor on Isle of Meditation? (Denning thinks the front door.)
 - What is the benchmark for a good 7 monk's Infuse Health timing?
-- Who should answer a lone ranger split in a double hammer mirror: the 8 monk alone, a hammer collapsing, or the Mes/A?
-  [hdm v HC I2] [Men v HC C]
-- At 11:40 in [hdm v HC I2], hdm had 7 in HC's empty pit and 20 s before the res; was the Lord killable, or were the 4
-  HC defenders the right target?
 - What beats Double Paragon WoC (3-0 across reviews)? A split with 3 damage and the 8 monk, a 4-4, or staying 8v8 with
   stacked prots and 2 Auras of Stability? [Men v Team] [RACK v hdm M]
 - Why did RACK's split break up at about 4:00, and should the dervishes have rejoined main once the WoC monk left the
