@@ -1,6 +1,6 @@
 {
  "format": "gvginfo.replay.v1",
- "updated": "2026-11-05T04:18:35.889Z",
+ "updated": "2026-11-05T04:19:46.221Z",
  "matches": {
   "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65": {
    "file": "2026-11/eea5ba87-ac20-5ba3-a6c9-965f11ca8a65.json.gz",
@@ -167,6 +167,20 @@
    "winner": "옷옷옷옷",
    "length_s": 376,
    "kb": 98,
+   "summary": true,
+   "trim": 3
+  },
+  "49eec28d-0f4b-5cc1-a146-4d1ad0bd642b": {
+   "file": "2026-10/49eec28d-0f4b-5cc1-a146-4d1ad0bd642b.json.gz",
+   "date": "2026-10-17T19:16:09.188Z",
+   "map": "Isle of Meditation",
+   "teams": [
+    "OG",
+    "hold"
+   ],
+   "winner": "OG",
+   "length_s": 332,
+   "kb": 91,
    "summary": true,
    "trim": 3
   }
