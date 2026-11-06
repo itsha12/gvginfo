@@ -1,6 +1,6 @@
 {
  "format": "gvginfo.replay.v1",
- "updated": "2026-11-06T02:53:39.954Z",
+ "updated": "2026-11-06T18:37:22.836Z",
  "matches": {
   "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65": {
    "file": "2026-11/eea5ba87-ac20-5ba3-a6c9-965f11ca8a65.json.gz",
@@ -419,6 +419,62 @@
    "winner": "Free",
    "length_s": 944,
    "kb": 195,
+   "summary": true,
+   "trim": 3
+  },
+  "cd387d1c-9225-5a3e-ab28-05e785e9f31f": {
+   "file": "2026-09/cd387d1c-9225-5a3e-ab28-05e785e9f31f.json.gz",
+   "date": "2026-09-13T01:49:37.027Z",
+   "map": "Corrupted Isle",
+   "teams": [
+    "One",
+    "Men"
+   ],
+   "winner": "Men",
+   "length_s": 427,
+   "kb": 107,
+   "summary": true,
+   "trim": 3
+  },
+  "498894e3-65bf-5f43-a221-38c1f7043166": {
+   "file": "2026-07/498894e3-65bf-5f43-a221-38c1f7043166.json.gz",
+   "date": "2026-07-19T11:08:46.766Z",
+   "map": "Uncharted Isle",
+   "teams": [
+    "yM",
+    "OG"
+   ],
+   "winner": "OG",
+   "length_s": 1213,
+   "kb": 294,
+   "summary": true,
+   "trim": 3
+  },
+  "c0f32eca-f1c2-58f3-af33-26573c782b3d": {
+   "file": "2026-09/c0f32eca-f1c2-58f3-af33-26573c782b3d.json.gz",
+   "date": "2026-09-15T19:56:51.980Z",
+   "map": "Druid's Isle",
+   "teams": [
+    "Dz",
+    "Crew"
+   ],
+   "winner": "Dz",
+   "length_s": 1318,
+   "kb": 371,
+   "summary": true,
+   "trim": 3
+  },
+  "ec3eeb47-d0fb-5776-a52d-dc02b752a90a": {
+   "file": "2026-07/ec3eeb47-d0fb-5776-a52d-dc02b752a90a.json.gz",
+   "date": "2026-07-26T19:02:05.149Z",
+   "map": "Isle of Wurms",
+   "teams": [
+    "BcS",
+    "Rum"
+   ],
+   "winner": "BcS",
+   "length_s": 517,
+   "kb": 124,
    "summary": true,
    "trim": 3
   }
