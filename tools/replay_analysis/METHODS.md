@@ -240,10 +240,23 @@ and healing of the NPCs, res timer, minute, strength. First readings: defenders 
 damage per 10 s; no defending healer +91; attackers' measured Lord damage per second up to +76; the longer attackers
 stay, the more damage reaches the Lord (2 minutes: about +58).
 
+Pit lines from Denning (`P9` to `P11`): knights first; a full pit loads the monks (more targets, knights balled up in
+area damage); two monks on the push side against a full pit; attackers leave before the defenders' res. Added: area-
+damage skills on the attackers (kept in `lord_damage`, where it helped; held back from `npc_loss`, where it didn't:
+`HELD_BACK` in nodes.py) and pit NPCs alive as targets.
+
+**Built (step 6, the usual play, `usual.py`):** every decision point's outcome as the change in win chance over its
+window, from a win model fitted without that match; choices refined by what the players did; the usual play in a
+situation = the most common choice among the 15 most similar decisions in other matches; each choice's effect against
+the most common one, adjusted for the situation (one readable number per choice), with a 90% range from resampling
+whole matches; unusual choices listed. First clear readings (30 matches): power play held instead of pushed about -4
+points; with the enemy's boost 30 s away, not running and falling back about -12; after a wipe, taking the flag
+instead of pushing the pit about +11 (12 cases; a candidate to check). 24:00 decisions: 13 so far, not enough.
+
 **Build order:** (1) phases, allocation per phase, plans and jobs (built); (2) capacities per group per phase,
 measured (built); (3) first node models: deaths and kill conversion (built; expected-for-matchup baselines come with
 the matchup features at 60 matches); (4) the flag chain (built: `flag_answer`); (5) pit NPCs and Lord damage (built:
-`npc_loss`, `lord_damage`); (3) expected-for-matchup baselines and the first node models (deaths, kill
+`npc_loss`, `lord_damage`); (6) usual-play comparisons (built: `usual.py`); (3) expected-for-matchup baselines and the first node models (deaths, kill
 conversion), tested on the 30 matches; (4) the flag and boost chain; (5) pit NPCs and Lord damage; (6) usual-play
 models and decision comparisons; (7) learning report sections with "why" chains for the biggest moments, and the
 questions where the data and the map disagree. Slow training continues throughout.

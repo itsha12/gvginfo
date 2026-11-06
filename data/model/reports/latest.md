@@ -118,29 +118,69 @@ Each explains one result from what happened before it (time order enforced), tes
 - **runner_to_spawn** (runner's distance to its flag spawn when the enemy captured): 94.0..976.0: -5.8 s; 1503.0..2101.5: -2.8 s; 3384.5..4354.5: -0.2 s; 4871.0..5542.0: +2.7 s; 6234.5..6701.0: +2.7 s; 7263.5..7825.0: +0.9 s; 8439.0..9139.5: +1.7 s
 - **flag_lead_at_enemy_cap** (own flag lead when the enemy captured): -81.0..-74.5: -6.4 s; -62.5..-54.5: -0.2 s; -42.5..-35.5: +2.4 s; -27.5..-18.5: +1.5 s; -10.5..-3.5: +2.0 s; 10.5..19.5: +0.3 s; 35.5..56.5: -0.5 s
 
-**npc loss** (29 matches, 3236 moments, 618 results): adds to the simple baseline (AUC 0.801 against 0.736 for attackers and defenders alone).
-- **defenders** (own players in the pit) falls from +37.0 to -40.9 points (0.0..0.5: +37.0; 0.5..1.5: +20.1; 1.5..2.5: +17.6; 2.5..3.5: -6.2; 3.5..4.5: -16.6; 4.5..5.5: -18.1; 5.5..6.5: -18.6; 6.5..7.5: -37.7; 7.5..8.0: -40.9)
-- **npc_damage_5s** (damage on the pit NPCs in the last 5 s) rises from -14.7 to +29.9 points (0.0..0.5: -14.7; 22.5..36.5: -0.4; 50.5..65.5: +3.0; 84.5..104.5: +10.0; 126.5..148.5: +22.7; 177.5..212.5: +25.8; 267.5..360.5: +29.4)
-- **defenders_elsewhere** (own players alive outside the pit) falls from +22.1 to -8.5 points (0.0..0.5: +22.1; 0.5..1.5: +17.1; 1.5..2.5: +19.2; 2.5..3.5: +5.6; 3.5..4.5: -0.1; 4.5..5.5: -3.0; 5.5..6.5: -16.0; 6.5..7.5: -18.4; 7.5..8.0: -8.5)
-- **attackers** (enemy players in the pit) rises from -12.7 to +22.1 points (1.0..1.5: -12.7; 1.5..2.5: -8.0; 2.5..3.5: -6.7; 3.5..4.5: +6.8; 4.5..5.5: +13.2; 5.5..6.5: +16.4; 6.5..7.5: +17.7; 7.5..8.0: +22.1)
-- **attackers_lord_dps** (attackers' measured damage per second against a Lord (benchmarks)) rises from -10.8 to +18.1 points (2.4..20.1: -10.8; 24.35..33.05: -7.6; 36.4..36.55: -4.7; 42.75..55.85: -4.4; 64.1..66.8: +3.3; 74.65..79.55: +6.1; 87.3..101.65: +8.2)
-- **strength_gap** (attacking minus defending team strength) rises from -10.6 to +10.1 points (-712.0..-463.5: -10.6; -382.0..-265.0: -8.8; -148.0..-92.0: -3.0; 0.0..92.0: +0.0; 148.0..168.5: -9.4; 359.5..382.0: +4.0; 480.5..636.0: +16.9)
-- **archers** (own pit archers alive) rises from -5.2 to +28.8 points (0.0..0.5: -5.2; 0.5..1.5: -6.4; 1.5..2.5: +4.1; 2.5..3.5: +11.0; 3.5..6.0: +28.8)
-- **defender_healers** (of which healers) falls from +15.1 to -4.3 points (0.0..0.5: +15.1; 0.5..1.5: -2.0; 1.5..2.5: -4.5; 2.5..3.0: -4.3)
+**npc loss** (29 matches, 3236 moments, 618 results): adds to the simple baseline (AUC 0.797 against 0.736 for attackers and defenders alone).
+- **defenders** (own players in the pit) falls from +37.6 to -41.5 points (0.0..0.5: +37.6; 0.5..1.5: +20.5; 1.5..2.5: +17.6; 2.5..3.5: -6.1; 3.5..4.5: -16.8; 4.5..5.5: -18.5; 5.5..6.5: -18.9; 6.5..7.5: -38.1; 7.5..8.0: -41.5)
+- **npc_damage_5s** (damage on the pit NPCs in the last 5 s) rises from -14.3 to +29.5 points (0.0..0.5: -14.3; 22.5..36.5: -1.5; 50.5..65.5: +2.5; 84.5..104.5: +9.7; 126.5..148.5: +22.5; 177.5..212.5: +26.2; 267.5..360.5: +29.2)
+- **defenders_elsewhere** (own players alive outside the pit) falls from +24.5 to -9.0 points (0.0..0.5: +24.5; 0.5..1.5: +17.9; 1.5..2.5: +19.6; 2.5..3.5: +6.3; 3.5..4.5: -0.1; 4.5..5.5: -2.9; 5.5..6.5: -17.3; 6.5..7.5: -20.1; 7.5..8.0: -9.0)
+- **attackers** (enemy players in the pit) rises from -12.4 to +23.5 points (1.0..1.5: -12.4; 1.5..2.5: -8.2; 2.5..3.5: -6.9; 3.5..4.5: +6.2; 4.5..5.5: +13.1; 5.5..6.5: +16.4; 6.5..7.5: +17.8; 7.5..8.0: +23.5)
+- **attackers_lord_dps** (attackers' measured damage per second against a Lord (benchmarks)) rises from -11.2 to +18.6 points (2.4..20.1: -11.2; 24.35..33.05: -7.9; 36.4..36.55: -5.2; 42.75..55.85: -4.0; 64.1..66.8: +3.9; 74.65..79.55: +6.1; 87.3..101.65: +8.5)
+- **strength_gap** (attacking minus defending team strength) rises from -11.9 to +9.9 points (-712.0..-463.5: -11.9; -382.0..-265.0: -9.5; -148.0..-92.0: -3.6; 0.0..92.0: +0.6; 148.0..168.5: -10.1; 359.5..382.0: +4.2; 480.5..636.0: +18.4)
+- **full_pit_targets** (pit NPCs alive (targets the defending monks must watch, P9)) rises from -10.7 to +27.7 points (1.0..1.5: -10.7; 1.5..2.5: -10.6; 2.5..3.5: +3.8; 3.5..4.5: +3.2; 4.5..5.5: +3.3; 5.5..6.5: +12.4; 6.5..9.0: +27.7)
+- **defender_healers** (of which healers) falls from +15.4 to -4.3 points (0.0..0.5: +15.4; 0.5..1.5: -2.1; 1.5..2.5: -4.6; 2.5..3.0: -4.3)
 
-**lord damage** (Lord damage dealt in the next 10 s while players are in the enemy pit; 29 matches, 3939 rows): adds to the simple baseline (typical error 127.6 against 86.4 for the median; explains 34% of the spread).
-- **defenders** (own players in the pit): 0.0..0.5: +168.4; 0.5..1.5: +83.6; 1.5..2.5: +14.5; 2.5..3.5: -38.9; 3.5..4.5: -61.0; 4.5..5.5: -97.0; 5.5..6.5: -106.2; 6.5..7.5: -139.0; 7.5..8.0: -144.5
-- **defenders_elsewhere** (own players alive outside the pit): 0.0..0.5: +59.6; 0.5..1.5: +77.9; 1.5..2.5: +85.5; 2.5..3.5: +94.9; 3.5..4.5: +55.2; 4.5..5.5: +11.5; 5.5..6.5: -38.3; 6.5..7.5: -94.5; 7.5..8.0: -183.0
-- **bodyguard** (own Bodyguard alive): 0.0..0.5: +91.1; 0.5..1.0: -52.4
-- **defender_healers** (of which healers): 0.0..0.5: +90.8; 0.5..1.5: +3.4; 1.5..2.5: -39.5; 2.5..3.0: -71.6
-- **attackers_lord_dps** (attackers' measured damage per second against a Lord (benchmarks)): 2.4..18.65: -61.5; 24.35..33.05: -40.2; 36.4..36.55: -41.0; 42.75..55.85: -10.7; 65.25..66.8: +22.3; 73.25..79.45: +37.0; 87.3..101.65: +76.1
-- **attackers** (enemy players in the pit): 1.0..1.5: -21.8; 1.5..2.5: -15.8; 2.5..3.5: -23.9; 3.5..4.5: -18.1; 4.5..5.5: +55.2; 5.5..6.5: +68.0; 6.5..7.5: +13.9; 7.5..8.0: +49.2
-- **seconds_in_pit** (seconds the attackers have been in the pit): 0.0..4.5: -23.3; 10.5..16.5: -27.6; 22.5..28.5: -27.5; 37.5..46.5: -6.8; 58.5..70.5: +26.6; 85.5..103.5: +37.5; 124.5..160.5: +57.8
-- **minute** (match minute): 0.6..2.65: -13.0; 3.95..5.15: +8.3; 6.25..7.35: +3.3; 8.95..10.45: -1.7; 12.25..14.45: -16.4; 16.25..19.05: -23.8; 21.15..24.75: +3.5
-- **strength_gap** (attacking minus defending team strength): -712.0..-420.5: -13.1; -334.0..-148.0: +5.6; -38.0..43.5: +32.3; 148.0..168.5: +16.4; 359.5..366.5: -4.1; 406.5..420.5: -26.5; 570.5..674.5: -7.7
-- **attacker_healers** (of which healers): 0.0..0.5: -11.2; 0.5..1.5: -4.9; 1.5..2.5: +65.9; 2.5..3.0: +3.8
+**lord damage** (Lord damage dealt in the next 10 s while players are in the enemy pit; 29 matches, 3939 rows): adds to the simple baseline (typical error 127.0 against 86.4 for the median; explains 36% of the spread).
+- **defenders** (own players in the pit): 0.0..0.5: +168.4; 0.5..1.5: +83.9; 1.5..2.5: +12.7; 2.5..3.5: -41.1; 3.5..4.5: -63.9; 4.5..5.5: -93.0; 5.5..6.5: -100.0; 6.5..7.5: -130.6; 7.5..8.0: -137.2
+- **bodyguard** (own Bodyguard alive): 0.0..0.5: +98.9; 0.5..1.0: -56.9
+- **defenders_elsewhere** (own players alive outside the pit): 0.0..0.5: +60.2; 0.5..1.5: +77.6; 1.5..2.5: +89.1; 2.5..3.5: +97.1; 3.5..4.5: +59.3; 4.5..5.5: +10.7; 5.5..6.5: -39.6; 6.5..7.5: -98.4; 7.5..8.0: -184.7
+- **attackers_lord_dps** (attackers' measured damage per second against a Lord (benchmarks)): 2.4..18.65: -75.2; 24.35..33.05: -47.9; 36.4..36.55: -47.4; 42.75..55.85: -11.7; 65.25..66.8: +21.0; 73.25..79.45: +38.9; 87.3..101.65: +91.0
+- **defender_healers** (of which healers): 0.0..0.5: +87.9; 0.5..1.5: +5.7; 1.5..2.5: -36.7; 2.5..3.0: -78.0
+- **attackers** (enemy players in the pit): 1.0..1.5: -25.8; 1.5..2.5: -15.8; 2.5..3.5: -20.9; 3.5..4.5: -16.0; 4.5..5.5: +57.9; 5.5..6.5: +66.6; 6.5..7.5: +20.5; 7.5..8.0: +52.9
+- **seconds_in_pit** (seconds the attackers have been in the pit): 0.0..4.5: -21.9; 10.5..16.5: -26.4; 22.5..28.5: -26.1; 37.5..46.5: -8.4; 58.5..70.5: +25.2; 85.5..103.5: +36.6; 124.5..160.5: +55.6
+- **attackers_area_damage** (area-damage skills on the attackers' bars (Denning P9)): 0.0..0.5: +16.9; 0.5..1.0: -45.4
+- **minute** (match minute): 0.6..2.65: -11.5; 3.95..5.15: +9.9; 6.25..7.35: +4.7; 8.95..10.45: -1.8; 12.25..14.45: -15.8; 16.25..19.05: -26.6; 21.15..24.75: +1.6
+- **strength_gap** (attacking minus defending team strength): -712.0..-420.5: -13.2; -334.0..-148.0: +6.5; -38.0..43.5: +29.3; 148.0..168.5: +13.8; 359.5..366.5: -6.7; 406.5..420.5: -32.1; 570.5..674.5: -7.9
 
-## 7. For Denning
+## 7. The usual play
+
+Each choice against the most common one in that kind of decision, in win-chance points over the decision's window, adjusted for the situation, with a 90% range from resampling whole matches. CLEAR = the range excludes 0. Win chance comes from a model that never saw the match.
+
+**after wipe** (65 decisions, 27 matches; usual: pushed the pit)
+- took the flag (n 12): +11.5 [+1.7, +22.1] CLEAR
+- reset (n 7): +2.1 [-5.0, +7.1]
+
+**boost clock** (107 decisions, 29 matches; usual: not running, fought)
+- running, fought (n 20): +4.8 [-0.5, +12.6]
+- not running, advanced (n 17): +0.4 [-4.7, +6.1]
+- running, advanced (n 15): +1.7 [-9.4, +13.6]
+- not running, fell back (n 14): -11.7 [-21.3, -4.4] CLEAR
+- not running, held (n 5): -11.1 [-37.7, +6.5]
+
+**enemy pickup** (447 decisions, 29 matches; usual: already running, fought)
+- held, fought (n 67): +2.3 [-2.2, +8.3]
+- already running, advanced (n 52): +1.6 [-3.3, +6.0]
+- held, fell back (n 38): -4.9 [-12.3, +0.7]
+- ran, fought (n 37): +1.8 [-2.7, +6.6]
+- already running, fell back (n 34): +2.3 [-0.5, +4.8]
+- held, advanced (n 34): -0.8 [-6.1, +3.6]
+- ran, fell back (n 33): -0.9 [-6.9, +5.0]
+- ran, advanced (n 26): -0.4 [-3.3, +3.6]
+- already running, held (n 15): +0.2 [-3.7, +3.6]
+- held, held (n 8): -10.6 [-25.0, +12.2]
+- ran, held (n 7): -2.8 [-9.8, +2.4]
+
+- **late_game**: not enough decisions yet (13)
+**power play** (329 decisions, 30 matches; usual: pushed, advanced)
+- pushed, fought (n 90): -0.2 [-4.6, +4.0]
+- held, fought (n 67): -3.7 [-7.6, -1.5] CLEAR
+- held, fell back (n 26): -4.2 [-8.7, -0.4] CLEAR
+- held, advanced (n 10): +3.4 [-5.3, +17.4]
+- pushed, fell back (n 8): -4.1 [-8.4, -0.8] CLEAR
+- pushed, held (n 5): -4.0 [-10.4, +2.6]
+
+**split in base** (72 decisions, 21 matches; usual: on time)
+- missed (n 8): -2.2 [-7.4, +3.1]
+
+## 8. For Denning
 
 - Which curves look wrong to you? A correction (direction, cap, drop, or a pair to always test) is logged with your reason and tested on held-out matches.
 - Do any surprises remind you of something the variables don't capture (a missing variable)?

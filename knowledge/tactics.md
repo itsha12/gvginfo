@@ -253,6 +253,18 @@ against general principles rather than past games. Match-by-match evidence lives
 - `P5` **Claude:** Going back to the pit has to happen before the outer NPCs fall; once they are gone, the pit can't be
   held against a stronger main team. [OG v hdm]
 
+- `P9` **Denning:** In non-split situations teams usually take the knights first. A full pit is harder to defend for
+  the monks: 5+ extra targets to watch, and against area damage (a dervish, an elementalist) the knights ball up and
+  eat it, so the healing needed rises sharply. **Claude (data):** with 4+ pit archers alive, some pit NPC is up to 29
+  points more likely to die within 15 s.
+- `P10` **Denning:** Two monks on the push side is the norm against a full or mostly full pit; against an empty pit a
+  team sometimes pushes with one. The pit deals a lot of damage, so two monks are often needed to live long enough for
+  significant Lord damage. **Claude (data):** attackers with two healers in the pit dealt about 66 more Lord damage per
+  10 s than with none or one.
+- `P11` **Denning:** In the last seconds before the defenders' base res, attacking teams often leave the pit so they
+  aren't caught in a bad position 8v8 when the team resses. **Claude (data):** Lord damage is highest 20 to 60 s
+  before the defenders' res and low in the last 10 s.
+
 ### Base races
 - `P6` **Bounty:** A team defending with only 2 players is saying "give us time to finish", so it should not chase
   players leaving on a split; it should finish. In a base race, defenders have to kill the attackers before the res.
@@ -546,7 +558,8 @@ records every one of these moments in every match (the full scoreboard at that s
 what followed), so the best play is meant to come from the data, not from anyone's opinion, including the defaults
 below. A default is listed only where a principle already exists (from Denning or commentary); it is the hypothesis the
 data tests first, and it is replaced when the data says otherwise. Data status for every card: not yet tested (24
-matches; needs the bulk pull).
+matches; needs the bulk pull). Where a card has a **Data** line, it comes from `usual.py`: each choice against the
+usual one in win chance, adjusted for the situation, with a range from resampling whole matches.
 
 - `D1` **The enemy picks up a flag.** Options: run now, hold the flag near the stand (if you hold it), don't run.
   Deciding factors: flag position, who holds the stand and the boost clock, numbers at main, whether your runner can
@@ -560,14 +573,17 @@ matches; needs the bulk pull).
   commits (`S32`); a team winning main can ignore a solo split (`S28`). Confidence: high on timing, medium on who.
 - `D3` **You have more players in the fight (power play).** Options: push, or hold. Deciding factors: why the enemy
   is short (running, split, dead), how long it lasts, flag position, who is ahead. Default: commit and kill
-  (`F23`, `F24`); a team already winning needn't force it (`W8`). Confidence: medium.
+  (`F23`, `F24`); a team already winning needn't force it (`W8`). Confidence: medium. **Data (30 matches):** holding
+  instead of pushing cost about 4 points of win chance against pushing, adjusted for the situation (clear).
 - `D4` **The enemy's boost is coming.** Options: run now, or give up the boost. Deciding factors: your flag ETA against
   the boost clock, numbers, death penalty. Default: run in time to cap before the boost unless it costs a wipe
-  (`F18`, `F26`, `F29`). Confidence: medium.
+  (`F18`, `F26`, `F29`). Confidence: medium. **Data (30 matches):** not running and falling back with the enemy's boost
+  30 s away cost about 12 points against the usual play (not running and fighting) (clear).
 - `D5` **You just won a wipe.** Options: push the pit, take the flag and the stand, or reset. Deciding factors: enemy
   pit NPCs, the res timer, the clock, whether you are already winning. Default: convert straight into pit NPCs before
   the res (`K8`); a team already winning backs out rather than risk a close Lord window (`W8`, `W9`). Confidence:
-  medium.
+  medium. **Data (30 matches):** taking the flag instead of pushing the pit after a wipe gained about 11 points of win
+  chance (range +2 to +22, 12 cases): a candidate better play to check with Denning and more data.
 - `D6` **You are stacking death penalty against a spike build.** Options: keep fighting at main, play in the pit, take
   boosts to clear it. Variables: how many players are now within one enemy spike, boosts available, flag position.
   Default: none yet (`K4` says it is a big disadvantage; what to do about it is for the data).

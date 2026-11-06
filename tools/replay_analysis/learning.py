@@ -154,7 +154,21 @@ def report():
             for t in s_["terms"][:10]:
                 if "curve" in t: L.append(f"- **{t['term']}** ({t['description']}) {curve_words(t)}")
         L.append("")
-    L += ["## 7. For Denning", "",
+    # the usual play (usual.py): needs the analysis files (analyze.py --all --out /tmp/ga)
+    import usual as U
+    if os.path.isdir("/tmp/ga"):
+        res = U.analyse(U.wp_change(U.load("/tmp/ga")))
+        L += ["## 7. The usual play", "", "Each choice against the most common one in that kind of decision, in win-chance points over the "
+              "decision's window, adjusted for the situation, with a 90% range from resampling whole matches. CLEAR = the "
+              "range excludes 0. Win chance comes from a model that never saw the match.", ""]
+        for kind, x in res.items():
+            if "choices" not in x: L.append(f"- **{kind}**: {x.get('note')} ({x.get('n')})"); continue
+            L.append(f"**{kind.replace('_', ' ')}** ({x['n']} decisions, {x['matches']} matches; usual: {x['reference']})")
+            for c in x["choices"][1:]:
+                L.append(f"- {c['choice']} (n {c['n']}): {c['effect_vs_usual']:+} [{c['interval'][0]:+}, {c['interval'][1]:+}]"
+                         + (" CLEAR" if c.get("clear") else ""))
+            L.append("")
+    L += ["## 8. For Denning", "",
           "- Which curves look wrong to you? A correction (direction, cap, drop, or a pair to always test) is logged with "
           "your reason and tested on held-out matches.",
           "- Do any surprises remind you of something the variables don't capture (a missing variable)?",

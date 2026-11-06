@@ -1,6 +1,6 @@
 {
  "about": "The causal map: what can cause what in a GvG match, as reasoned by Denning and Claude and found in data. Each node is measured; each node's model may only use the links pointing into it, measured earlier in time. The data decides how much each link matters (status: hypothesis, supported, rejected; mechanical = a formula, not learned). Denning can add, correct or remove links; each change is logged with its reason. Rendered to knowledge/causal-map.md by tools/replay_analysis/causal_map.py.",
- "version": 5,
+ "version": 6,
  "nodes": [
   {
    "id": "C.builds",
@@ -2268,6 +2268,50 @@
    "tactics": [
     "F35"
    ]
+  },
+  {
+   "from": "K.8",
+   "to": "R.5",
+   "why": "a full pit gives the monks 5+ extra targets, and knights ball up and eat area damage, so healing needed rises sharply",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "supported",
+   "tactics": [
+    "P9"
+   ]
+  },
+  {
+   "from": "C.builds",
+   "to": "K.8",
+   "why": "attackers with area damage (dervish, elementalist) raise the healing a full pit needs",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "P9"
+   ]
+  },
+  {
+   "from": "A.allocation",
+   "to": "R.6",
+   "why": "two monks on the push side are the norm against a full pit; the pit deals a lot of damage, so they keep the attackers alive long enough to hurt the Lord",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "supported",
+   "tactics": [
+    "P10"
+   ]
+  },
+  {
+   "from": "C.clock",
+   "to": "R.6",
+   "why": "attackers leave the pit in the last seconds before the defenders' res so as not to be caught 8v8",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "supported",
+   "tactics": [
+    "P11"
+   ]
   }
  ],
  "log": [
@@ -2295,6 +2339,11 @@
    "date": "2026-11-06",
    "change": "version 5: drops by kind (F33), killing during the enemy's flag cycle as a trade (F34), runner speed (F35)",
    "by": "Denning and Claude"
+  },
+  {
+   "date": "2026-11-06",
+   "change": "version 6: pit lines P9 to P11 (knights first, monk load of a full pit and area damage, two monks against a full pit, leaving before the res); three links marked supported by data",
+   "by": "Denning"
   }
  ]
 }

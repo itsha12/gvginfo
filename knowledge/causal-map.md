@@ -1,6 +1,6 @@
 *Generated from data/model/causal_map.json by tools/replay_analysis/causal_map.py: don't edit this page; tell Claude or edit the JSON (each change is logged with a reason).*
 
-# Causal map (version 5)
+# Causal map (version 6)
 
 What can cause what in a GvG match. Each concept is measured from the replays; the model for each concept may only use the causes listed under it, measured earlier in time, and the data decides how much each matters. Status: **hypothesis** (not yet tested), **supported** or **rejected** by data, **mechanical** (a formula). "Confirmed" = Denning has confirmed the reasoning; the size of the effect still comes from data.
 
@@ -223,6 +223,7 @@ casts the backline must make to keep up (overload). *Measured: incoming damage a
 
 Caused by:
 - **Pressure, Burst timing**: overload is the goal when trying to kill: coordinated pressure on several targets (Denning; hypothesis; `M16`)
+- **Build features**: attackers with area damage (dervish, elementalist) raise the healing a full pit needs (Denning; hypothesis; `P9`)
 
 ### Health ceiling `K.9`
 each player's maximum health after DP, Deep Wound and health-reducing hexes. *Measured: morale events, effects.*
@@ -301,12 +302,15 @@ knights, archers and Bodyguard lost. *Measured: NPC deaths.*
 Caused by:
 - **Split answer**: a split answered late or with the wrong player takes NPCs (Denning; hypothesis; `S18` `S19`)
 - **Allocation**: flag play and splits change the ability to take and defend NPCs (Denning; hypothesis; `J1`)
+- **Monk load**: a full pit gives the monks 5+ extra targets, and knights ball up and eat area damage, so healing needed rises sharply (Denning; supported; `P9`)
 
 ### Lord damage `R.6`
 damage dealt to the enemy Lord (tiebreak). *Measured: Lord hits.*
 
 Caused by:
 - **Allocation, Pressure, Pit NPCs, Build features**: Lord damage needs players at the Lord, their damage, a worn-down pit and builds that hit the Lord (measured Lord damage per second) (Claude; hypothesis; `L1` `L10`)
+- **Allocation**: two monks on the push side are the norm against a full pit; the pit deals a lot of damage, so they keep the attackers alive long enough to hurt the Lord (Denning; supported; `P10`)
+- **Clock**: attackers leave the pit in the last seconds before the defenders' res so as not to be caught 8v8 (Denning; supported; `P11`)
 
 ### Time held `R.7`
 seconds a weak side or defence held without losing anything. *Measured: to build: per job.*
@@ -354,3 +358,4 @@ Caused by:
 - 2026-11-05: version 3: 'Taking conditions on oneself' (Draw Conditions, M18); jobs in the enemy base read from targets (Denning and Claude)
 - 2026-11-06: version 4: 'Death timing on purpose' (Denning K14: timing, dying before time, monks resetting energy; deaths can be positive) (Denning)
 - 2026-11-06: version 5: drops by kind (F33), killing during the enemy's flag cycle as a trade (F34), runner speed (F35) (Denning and Claude)
+- 2026-11-06: version 6: pit lines P9 to P11 (knights first, monk load of a full pit and area damage, two monks against a full pit, leaving before the res); three links marked supported by data (Denning)

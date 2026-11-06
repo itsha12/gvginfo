@@ -126,6 +126,16 @@ DEATH_DESC = {
 }
 
 
+_AOE = {}
+def _aoe_skills(m, a):
+    """Area-damage skills on a player's bar (Denning P9: knights ball up and eat area damage)."""
+    if a not in _AOE:
+        from buildfeat import _skills, FEATURES
+        S = _skills()
+        _AOE[a] = sum(1 for b in m.A[a].get("bar", []) if b and S.get(m.sk(b)) and FEATURES["area_damage"](S[m.sk(b)]))
+    return _AOE[a]
+
+
 def _drops(st, tl, fl, tm, t0, t1):
     """The team's flag drops between t0 and t1, by kind (Denning): a quick hand-off (a teammate picks it up within 5 s),
     forced (the carrier was hit in the 5 s before, or died), or parked (it lay 5 s or more: a team deciding not to run
@@ -253,6 +263,8 @@ def _build_rows(node, rid):
                 defs = [b for b in st.players[dt] if st.alive(b, t) and d(st.pos(b, t)[0], pit) < PIT_R + 800]
                 alive_n = [(a, v) for a, v in pit_npcs if st.npc_dead.get(a, 1e9) > t]
                 base = {"attackers": len(inside), "attacker_healers": sum(1 for b in inside if _healer(m, b)),
+                        "attackers_area_damage": sum(_aoe_skills(m, b) for b in inside),
+                        "full_pit_targets": len(alive_pre) if (alive_pre := [x for x in pit_npcs if st.npc_dead.get(x[0], 1e9) > t]) else 0,
                         "attackers_lord_dps": round(sum(dps(b) for b in inside), 1),
                         "defenders": len(defs), "defender_healers": sum(1 for b in defs if _healer(m, b)),
                         "seconds_in_pit": t - first_in,
@@ -273,6 +285,8 @@ def _build_rows(node, rid):
 
 
 NPC_DESC = {"attackers": "enemy players in the pit", "attacker_healers": "of which healers",
+            "attackers_area_damage": "area-damage skills on the attackers' bars (Denning P9)",
+            "full_pit_targets": "pit NPCs alive (targets the defending monks must watch, P9)",
             "attackers_lord_dps": "attackers' measured damage per second against a Lord (benchmarks)",
             "defenders": "own players in the pit", "defender_healers": "of which healers",
             "seconds_in_pit": "seconds the attackers have been in the pit", "knights": "own knights alive",
@@ -327,9 +341,14 @@ MATCH_FIXED = {"deaths": set(MATCHUP_KEYS) | {"strength_gap"},
 STAGE_FIXED = 60     # matches before variables fixed for a whole match (matchup counts) are used (they fingerprint matches)
 
 
+# variables tested and held back from a node because they made its predictions on unseen matches worse (retested
+# whenever the node is refitted with more data; see the learning report)
+HELD_BACK = {"npc_loss": {"attackers_area_damage"}}
+
+
 def features_for(node, n_matches):
     keep_fixed = {"strength_gap"} if n_matches < STAGE_FIXED else MATCH_FIXED[node]
-    return [k for k in DESC[node] if k not in MATCH_FIXED[node] or k in keep_fixed]
+    return [k for k in DESC[node] if (k not in MATCH_FIXED[node] or k in keep_fixed) and k not in HELD_BACK.get(node, set())]
 
 
 def _frame(node, ids):

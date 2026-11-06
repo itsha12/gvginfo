@@ -80,7 +80,8 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   and Claude's reasoning about what causes what, as links whose strength the data measures. Add his answers as links
   (with reason, source and tactics ids) and log every change; keep `knowledge/causal-map.md` rendered. Built so far:
   `phases.py` (phases, plans, jobs, capacities), `buildfeat.py` (build and matchup features), `nodes.py` (node models: deaths,
-  kill conversion, flag answers, pit NPC loss, Lord damage; `explain` for a player's risk second by second).
+  kill conversion, flag answers, pit NPC loss, Lord damage; `explain` for a player's risk second by second), `usual.py` (the usual play and each choice's
+  effect in win chance).
 - Insights must be about decisions and consequences, not correlations. End each analysis with specific questions for
   Denning.
 - Site home page is Schedule (`#/`); Recent matches is `#/matches`.

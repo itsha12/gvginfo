@@ -39,6 +39,8 @@ FEATURES = {   # feature: test on a skill record
     "aura_of_stability": lambda s: s["name"] == "Aura of Stability",
     "heals": lambda s: "Healing" in (s.get("causes") or []),
     "speed": lambda s: "Increased Movement Speed" in (s.get("causes") or []),
+    "area_damage": lambda s: bool({"adjacent", "nearby", "in the area"} & {x.lower() for x in (s.get("aoe") or [])})
+                             and any("Damage" in c for c in (s.get("causes") or [])) and "foe" in (s.get("target") or "foe").lower(),
 }
 # threat (enemy) against answer (own): the matchup pairs
 PAIRS = [("knockdowns", "aura_of_stability"), ("blind", "condition_removal"), ("hexes", "hex_removal"),
