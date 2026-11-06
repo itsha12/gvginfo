@@ -351,28 +351,38 @@ before any refit (Denning).
 - Exclusion: matches with problems that can't be repaired leave training (`integrity.usable`, used by the win model and
   the node models); none so far. The learning report opens with a data-integrity section.
 
-**The Lord** (`lord.py`): 28 of the first 30 matches ended with a Lord kill, only 2 at 28:00. Health is rebuilt from
-damage and healing on the Lord, max health +1% per boost (Denning), and natural regeneration measured, not guessed
-(`benchmarks.py regen`, `data/benchmarks/lord_regen.json`): the rate that best puts the rebuilt health at 0 when Lords
-die without any surviving Lord reaching 0. First reading: no regeneration contradicts 2 surviving Lords; 12.5 health
-per second (after 5 s without damage) is the lowest rate consistent with all of them, and any rate up to 30 fits
-equally (median error at death 240 health). The delay of 5 s is the out-of-combat rule, to confirm. Scoreboard:
-`lord_health`, `lord_exposed` (Bodyguard and both knights dead), `lord_damage_taken_60s`. Node `lord_kill` (nodes.py):
-while enemies are in a pit, the Lord dies within 30 s. Win-model variables `lord_health_diff`, `lord_exposed_diff`.
+**The Lord** (`lord.py`): 28 of the first 30 matches ended with a Lord kill, only 2 at 28:00. Health is rebuilt second by
+second from damage and healing on the Lord, max health +1% per boost, and regeneration as Denning gave it: 10 per
+second always, plus an out-of-combat part once he hasn't been hit for a few seconds, +2 rising to +10 per second. The
+delay and the rise are measured (`benchmarks.py regen`, `data/benchmarks/lord_regen.json`: the pair that best puts
+the rebuilt health at 0 when Lords die, with no surviving Lord reaching 0), and so is whether the Amulet of
+Protection's cap still has to be applied to gvg.report's recorded damage: applying it made the rebuilt health at death
+much worse (median 629 against 332), so the recorded damage is taken as already capped. First reading: delay about
+10 s, +2 every 3 s (many nearby pairs fit equally; the median error at death, 332 health, says some Lord damage is
+not recorded). Scoreboard: `lord_health`, `lord_exposed` (Bodyguard and both knights dead), `lord_damage_taken_60s`.
+Node `lord_kill` (nodes.py): while enemies are in a pit, the Lord dies within 30 s. Win-model variables
+`lord_health_diff`, `lord_exposed_diff`.
 
 **Strength** (`strength.py`, `lineup.py`, `context.py`): three measures, each time ordered (only results before the
 match), blended by how well they predict later results (`strength.json` "blend": logistic fits of every combination on
 the earlier two thirds of the matches after the first 300, tested on the latest third; replays left out):
-- ladder: the guild rating gvg.report recorded with each match;
+- ladder: the in-game ladder rating gvg.report recorded with each match;
+- elo: gvg.report's own guild Elo (Denning: far better than the ladder), rebuilt in time order from the stored results
+  with its published rules (tournament-elo.v2: start 1500, K 32, 21 days idle then -50 a week to 1500; tournaments
+  only). Checked against gvg.report's current table (`data/gvgreport/elo.json`): mean difference 23.5 points over 68
+  guilds. Today's table itself is never used for training (it includes later results);
 - fitted: the Bradley-Terry guild rating;
-- lineup (Denning): the eight players who played, characters grouped into people by `data/aliases.json`. Two measures
+- lineup (Denning): the eight players who played, characters grouped into people by `data/aliases.json` (Denning's
+  assignments plus gvg.report's player directory, merged by `tools/gvgreport/merge_players.py`). Two measures
   tried, an opponent-adjusted rating and a shrunk win rate, each with MAT results counting 1 to 8 times as much; step
   size, MAT weight and scale chosen by log loss on later matches (`lineup.json` keeps the grid). First reading: the
   shrunk win rate predicts best (log loss 0.418 against 0.433 for the rating); extra MAT weight barely helps (x1.5 best,
   x1 equal) and more than x2 hurts, even when tested on MAT matches alone.
-- First blend reading: fitted + lineup predicts the latest third best (log loss 0.309, 89.5%), better than lineup alone
-  (0.314), fitted alone (0.346) or the ladder (0.437); the ladder adds nothing once the other two are known, so its
-  weight is 0. The model's `strength_gap` is now this blend.
+- Blend reading with gvg.report's player groupings and the rebuilt Elo: fitted + lineup predicts the latest third
+  best (log loss 0.3115, 89%), lineup alone 0.313, Elo alone 0.399 (better than the ladder, 0.437, worse than the
+  fitted rating, 0.346); adding the Elo to fitted + lineup changes nothing (0.3115), so its weight is 0 for now and it
+  is retested at every run. With gvg.report's groupings the lineup measure improved (0.418 to 0.403 on all later
+  matches) and MAT x2 is best, though x1 to x3 are within 0.001. The model's `strength_gap` is this blend.
 - Context priors (`context.py`): build-archetype matchups, archetype by map and archetype by flux, measured on every
   stored result with strength as a fixed offset (antisymmetric features, ridge penalty chosen on later matches). First
   reading: no penalty beats strength alone on the latest third (0.3806 at best against 0.3802), so the prior is off

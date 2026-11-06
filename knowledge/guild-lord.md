@@ -10,6 +10,9 @@ Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are in-gam
   is checked once per second and anything over the cap is healed back.
 - **Denning:** The Lord's maximum Health is 1,680, plus 1% for each morale boost his team has earned (up to
   1,848). (The wiki's +300 per boost is wrong.)
+- **Denning:** The Lord always regenerates 10 Health per second (the +5 pips), and gets more once he hasn't been hit for
+  a few seconds: an extra +2 per second at first, rising to an extra +10 per second. His Amulet of Protection adds
+  healing on top.
 - Maintained enchantments can be cast on him, but only the Divine Favor heal happens; the spell itself doesn't take
   effect. Holy Veil and Purifying Veil don't remove his hexes or conditions.
 - Killing him later in the match is possible with a two-person split once the cap is high.

@@ -174,14 +174,24 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
 4. Then: grow the batches once learning reports settle; discovery and choice values as data accumulates.
 
 ## Current state
-- ENGINE 17 (2026-11-06) is built but NOT refitted: the batch 1 numbers below (model accuracy, curves, values, usual
-  play) were measured with the NPC-roster leak and the truncated RACK v hdm match, and will change at the refit.
-  Expect the knights and Bodyguard curves to stop running backwards and "beats strength alone" to shrink.
+- ENGINE 17 refitted on batches 0 and 1 (2026-11-06; reports batch_00.md, batch_01.md). The older numbers further down
+  this section were measured before the fixes. Now: the win model is NOT better than strength alone on log loss (0.657
+  against 0.562; accuracy 72% against 62%: it ranks better but is overconfident at 30 matches); the knights and
+  Bodyguard artifacts are gone (a knight lost is now -8.8 win points, clear); pre-trend checks show "held, fell back" in
+  power plays (-11.8 before the decision) and "ran, advanced" on enemy pickups were partly who chooses them; after a
+  wipe "took the flag" is no longer clear (-6.3, with +10.5 already before); the boost-clock "fell back" effect shrank
+  to -8.4 (not clear); npc_loss no longer beats attackers and defenders on log loss; lord_kill doesn't yet either.
+  Open puzzle: lord_damage_diff and flag_lead curves still turn over at the extremes.
 - Strength (ENGINE 17): fitted + lineup blend predicts the latest third of stored results at log loss 0.309 (89.5%);
   the gvg.report ladder adds nothing once those are known. MAT extra weight: x1.5 best, barely better than x1; more
   hurts (`data/model/lineup.json`). Context priors (matchup, map, flux) don't beat strength yet: off.
-- Lord: 28 of 30 matches ended with a Lord kill. Regeneration measured at 12.5+ health per second after 5 s out of
-  combat (the delay is the game rule, to confirm with Denning).
+- Lord: 28 of 30 matches ended with a Lord kill. Regeneration from Denning (10 per second always, +2 rising to +10 out
+  of combat); the delay (about 10 s) and rise (+2 every 3 s) measured; gvg.report's Lord damage is already capped by the
+  Amulet of Protection.
+- gvg.report: player directory and guild Elo synced (`Sync gvg.report players and Elo` workflow, also inside Update
+  matches; `data/gvgreport/`). 482 new people and 65 of Denning's extended in `data/aliases.json` (his assignments
+  win; additions listed under `gvgreport_added`). Elo rebuilt in time order in `strength.py` (within 23.5 points of
+  gvg.report's table).
 - Stored replays: 30 on the `replays` branch: batch 0 (24) and batch 1 (6: 4 random picks plus the 2 newest from the
   standing "latest:2" request).
 - Model after batch 1: beats team strength alone on unseen matches (79% vs 64% of winners, log loss 0.562 vs 0.633;
@@ -230,12 +240,8 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
 - No energy estimate from casts: too large a build for what it adds.
 
 ## Open items
-- Refit batches 0 and 1 with ENGINE 17, then batch 2.
-- gvg.report's Players and Elo tabs: Denning asked to use them. Their numbers are today's, so they can't train the
-  model without leaking results; the same data is rebuilt time-ordered from stored matches (`lineup.py`, ladder in
-  `strength.py`). Waiting on Denning for the page links (the update workflow can fetch them to cross-check names and
-  Elo) and whether gvg.report's Elo is the in-game ladder rating or its own.
-- Lord regeneration delay (5 s) and whether Lords regenerate at all in GvG: Denning to confirm.
+- Batch 2 next.
+- Probe workflow (`probe-gvgreport.yml`, branch `probe`) finds gvg.report endpoints for new syncs.
 - Death rulings 3 to 5 and power plays 6 and 7 in [Men v HC C].
 - Situation cards (tactics section 14) are hypotheses for the data to test; D6 has no default.
 - Lord damage weights replaced by measurement (`benchmarks.py lord`, `data/benchmarks/lord_damage.json`); the

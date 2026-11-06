@@ -4,11 +4,11 @@
  "features": 65,
  "test": {
   "strength alone": 0.3802,
-  "with context, penalty 0.03": 0.3998,
-  "with context, penalty 0.1": 0.3896,
-  "with context, penalty 0.3": 0.3848,
-  "with context, penalty 1": 0.3823,
-  "with context, penalty 3": 0.3806
+  "with context, penalty 0.03": 0.3994,
+  "with context, penalty 0.1": 0.3879,
+  "with context, penalty 0.3": 0.383,
+  "with context, penalty 1": 0.381,
+  "with context, penalty 3": 0.3799
  },
  "switched_on": false,
  "penalty": 3,

@@ -4,97 +4,97 @@
  "chosen": {
   "measure": "win_rate",
   "K": 16,
-  "mat_weight": 1.5,
-  "scale": 6
+  "mat_weight": 2,
+  "scale": 4
  },
  "prediction": {
   "lineup rating": {
    "scale": 1.5,
-   "log_loss": 0.4325,
-   "accuracy": 0.823,
-   "matches": 1437,
-   "on_mat_matches": {
-    "log_loss": 0.4297,
-    "accuracy": 0.832,
-    "matches": 167
-   },
-   "K": 96,
-   "mat_weight": 1
-  },
-  "lineup win rate": {
-   "scale": 6,
-   "log_loss": 0.4182,
+   "log_loss": 0.405,
    "accuracy": 0.825,
    "matches": 1437,
    "on_mat_matches": {
-    "log_loss": 0.4361,
-    "accuracy": 0.808,
+    "log_loss": 0.4152,
+    "accuracy": 0.814,
     "matches": 167
    },
-   "mat_weight": 1.5
+   "K": 48,
+   "mat_weight": 1
+  },
+  "lineup win rate": {
+   "scale": 4,
+   "log_loss": 0.4028,
+   "accuracy": 0.822,
+   "matches": 1437,
+   "on_mat_matches": {
+    "log_loss": 0.4236,
+    "accuracy": 0.802,
+    "matches": 167
+   },
+   "mat_weight": 2
   }
  },
  "grid": {
   "rating": {
    "K8 MAT x1": {
-    "scale": 6,
-    "log_loss": 0.4517,
-    "accuracy": 0.815,
+    "scale": 4,
+    "log_loss": 0.4224,
+    "accuracy": 0.823,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4391,
-     "accuracy": 0.808,
+     "log_loss": 0.434,
+     "accuracy": 0.82,
      "matches": 167
     },
     "K": 8,
     "mat_weight": 1
    },
    "K8 MAT x1.5": {
-    "scale": 6,
-    "log_loss": 0.4508,
-    "accuracy": 0.813,
+    "scale": 4,
+    "log_loss": 0.4219,
+    "accuracy": 0.823,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4408,
-     "accuracy": 0.802,
+     "log_loss": 0.4354,
+     "accuracy": 0.814,
      "matches": 167
     },
     "K": 8,
     "mat_weight": 1.5
    },
    "K8 MAT x2": {
-    "scale": 6,
-    "log_loss": 0.4506,
-    "accuracy": 0.812,
+    "scale": 4,
+    "log_loss": 0.4221,
+    "accuracy": 0.824,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4435,
-     "accuracy": 0.802,
+     "log_loss": 0.4374,
+     "accuracy": 0.814,
      "matches": 167
     },
     "K": 8,
     "mat_weight": 2
    },
    "K8 MAT x3": {
-    "scale": 6,
-    "log_loss": 0.4517,
-    "accuracy": 0.808,
+    "scale": 4,
+    "log_loss": 0.4236,
+    "accuracy": 0.817,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4508,
-     "accuracy": 0.802,
+     "log_loss": 0.4428,
+     "accuracy": 0.808,
      "matches": 167
     },
     "K": 8,
     "mat_weight": 3
    },
    "K8 MAT x4": {
-    "scale": 6,
-    "log_loss": 0.4543,
-    "accuracy": 0.804,
+    "scale": 3,
+    "log_loss": 0.4262,
+    "accuracy": 0.816,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4605,
+     "log_loss": 0.4386,
      "accuracy": 0.802,
      "matches": 167
     },
@@ -102,51 +102,51 @@
     "mat_weight": 4
    },
    "K8 MAT x6": {
-    "scale": 4,
-    "log_loss": 0.462,
-    "accuracy": 0.795,
+    "scale": 3,
+    "log_loss": 0.4285,
+    "accuracy": 0.814,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4638,
-     "accuracy": 0.79,
+     "log_loss": 0.4475,
+     "accuracy": 0.808,
      "matches": 167
     },
     "K": 8,
     "mat_weight": 6
    },
    "K8 MAT x8": {
-    "scale": 4,
-    "log_loss": 0.4646,
-    "accuracy": 0.787,
+    "scale": 3,
+    "log_loss": 0.4334,
+    "accuracy": 0.808,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.477,
-     "accuracy": 0.784,
+     "log_loss": 0.4597,
+     "accuracy": 0.808,
      "matches": 167
     },
     "K": 8,
     "mat_weight": 8
    },
    "K16 MAT x1": {
-    "scale": 4,
-    "log_loss": 0.4447,
-    "accuracy": 0.814,
+    "scale": 3,
+    "log_loss": 0.417,
+    "accuracy": 0.823,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4376,
-     "accuracy": 0.808,
+     "log_loss": 0.4347,
+     "accuracy": 0.814,
      "matches": 167
     },
     "K": 16,
     "mat_weight": 1
    },
    "K16 MAT x1.5": {
-    "scale": 4,
-    "log_loss": 0.4448,
-    "accuracy": 0.816,
+    "scale": 3,
+    "log_loss": 0.4177,
+    "accuracy": 0.823,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4412,
+     "log_loss": 0.4378,
      "accuracy": 0.808,
      "matches": 167
     },
@@ -154,12 +154,12 @@
     "mat_weight": 1.5
    },
    "K16 MAT x2": {
-    "scale": 4,
-    "log_loss": 0.4454,
-    "accuracy": 0.814,
+    "scale": 2,
+    "log_loss": 0.419,
+    "accuracy": 0.825,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4457,
+     "log_loss": 0.4293,
      "accuracy": 0.808,
      "matches": 167
     },
@@ -167,65 +167,65 @@
     "mat_weight": 2
    },
    "K16 MAT x3": {
-    "scale": 4,
-    "log_loss": 0.4482,
-    "accuracy": 0.811,
+    "scale": 2,
+    "log_loss": 0.4184,
+    "accuracy": 0.823,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.457,
-     "accuracy": 0.802,
+     "log_loss": 0.433,
+     "accuracy": 0.814,
      "matches": 167
     },
     "K": 16,
     "mat_weight": 3
    },
    "K16 MAT x4": {
-    "scale": 3,
-    "log_loss": 0.4492,
-    "accuracy": 0.807,
+    "scale": 2,
+    "log_loss": 0.4193,
+    "accuracy": 0.82,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4544,
-     "accuracy": 0.79,
+     "log_loss": 0.4382,
+     "accuracy": 0.808,
      "matches": 167
     },
     "K": 16,
     "mat_weight": 4
    },
    "K16 MAT x6": {
-    "scale": 3,
-    "log_loss": 0.4544,
-    "accuracy": 0.795,
+    "scale": 2,
+    "log_loss": 0.4236,
+    "accuracy": 0.814,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4749,
-     "accuracy": 0.784,
+     "log_loss": 0.4519,
+     "accuracy": 0.802,
      "matches": 167
     },
     "K": 16,
     "mat_weight": 6
    },
    "K16 MAT x8": {
-    "scale": 3,
-    "log_loss": 0.463,
-    "accuracy": 0.785,
+    "scale": 2,
+    "log_loss": 0.4305,
+    "accuracy": 0.809,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.5004,
-     "accuracy": 0.772,
+     "log_loss": 0.4691,
+     "accuracy": 0.796,
      "matches": 167
     },
     "K": 16,
     "mat_weight": 8
    },
    "K32 MAT x1": {
-    "scale": 3,
-    "log_loss": 0.4416,
-    "accuracy": 0.82,
+    "scale": 2,
+    "log_loss": 0.4088,
+    "accuracy": 0.825,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4417,
-     "accuracy": 0.808,
+     "log_loss": 0.4229,
+     "accuracy": 0.82,
      "matches": 167
     },
     "K": 32,
@@ -233,64 +233,64 @@
    },
    "K32 MAT x1.5": {
     "scale": 2,
-    "log_loss": 0.4417,
-    "accuracy": 0.82,
+    "log_loss": 0.4098,
+    "accuracy": 0.824,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.436,
-     "accuracy": 0.814,
+     "log_loss": 0.4272,
+     "accuracy": 0.82,
      "matches": 167
     },
     "K": 32,
     "mat_weight": 1.5
    },
    "K32 MAT x2": {
-    "scale": 2,
-    "log_loss": 0.4412,
-    "accuracy": 0.816,
+    "scale": 1.5,
+    "log_loss": 0.4104,
+    "accuracy": 0.824,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4394,
-     "accuracy": 0.814,
+     "log_loss": 0.4251,
+     "accuracy": 0.832,
      "matches": 167
     },
     "K": 32,
     "mat_weight": 2
    },
    "K32 MAT x3": {
-    "scale": 2,
-    "log_loss": 0.4418,
-    "accuracy": 0.815,
+    "scale": 1.5,
+    "log_loss": 0.412,
+    "accuracy": 0.82,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4483,
-     "accuracy": 0.796,
+     "log_loss": 0.4332,
+     "accuracy": 0.808,
      "matches": 167
     },
     "K": 32,
     "mat_weight": 3
    },
    "K32 MAT x4": {
-    "scale": 2,
-    "log_loss": 0.4439,
-    "accuracy": 0.809,
+    "scale": 1.5,
+    "log_loss": 0.4151,
+    "accuracy": 0.817,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4596,
-     "accuracy": 0.79,
+     "log_loss": 0.4431,
+     "accuracy": 0.808,
      "matches": 167
     },
     "K": 32,
     "mat_weight": 4
    },
    "K32 MAT x6": {
-    "scale": 2,
-    "log_loss": 0.4522,
-    "accuracy": 0.797,
+    "scale": 1.5,
+    "log_loss": 0.4242,
+    "accuracy": 0.811,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4882,
-     "accuracy": 0.772,
+     "log_loss": 0.4684,
+     "accuracy": 0.784,
      "matches": 167
     },
     "K": 32,
@@ -298,64 +298,64 @@
    },
    "K32 MAT x8": {
     "scale": 1.5,
-    "log_loss": 0.4615,
-    "accuracy": 0.788,
+    "log_loss": 0.4369,
+    "accuracy": 0.799,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.5007,
-     "accuracy": 0.754,
+     "log_loss": 0.5013,
+     "accuracy": 0.76,
      "matches": 167
     },
     "K": 32,
     "mat_weight": 8
    },
    "K48 MAT x1": {
-    "scale": 2,
-    "log_loss": 0.4342,
-    "accuracy": 0.823,
+    "scale": 1.5,
+    "log_loss": 0.405,
+    "accuracy": 0.825,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4301,
-     "accuracy": 0.82,
+     "log_loss": 0.4152,
+     "accuracy": 0.814,
      "matches": 167
     },
     "K": 48,
     "mat_weight": 1
    },
    "K48 MAT x1.5": {
-    "scale": 2,
-    "log_loss": 0.4346,
-    "accuracy": 0.823,
+    "scale": 1.5,
+    "log_loss": 0.4061,
+    "accuracy": 0.826,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4352,
-     "accuracy": 0.82,
+     "log_loss": 0.4203,
+     "accuracy": 0.832,
      "matches": 167
     },
     "K": 48,
     "mat_weight": 1.5
    },
    "K48 MAT x2": {
-    "scale": 2,
-    "log_loss": 0.4358,
-    "accuracy": 0.817,
+    "scale": 1.5,
+    "log_loss": 0.4077,
+    "accuracy": 0.825,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4415,
-     "accuracy": 0.814,
+     "log_loss": 0.4263,
+     "accuracy": 0.832,
      "matches": 167
     },
     "K": 48,
     "mat_weight": 2
    },
    "K48 MAT x3": {
-    "scale": 2,
-    "log_loss": 0.4397,
-    "accuracy": 0.81,
+    "scale": 1.5,
+    "log_loss": 0.4127,
+    "accuracy": 0.818,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4574,
-     "accuracy": 0.79,
+     "log_loss": 0.441,
+     "accuracy": 0.82,
      "matches": 167
     },
     "K": 48,
@@ -363,37 +363,37 @@
    },
    "K48 MAT x4": {
     "scale": 1.5,
-    "log_loss": 0.4437,
-    "accuracy": 0.804,
+    "log_loss": 0.4195,
+    "accuracy": 0.814,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4637,
-     "accuracy": 0.778,
+     "log_loss": 0.4594,
+     "accuracy": 0.796,
      "matches": 167
     },
     "K": 48,
     "mat_weight": 4
    },
    "K48 MAT x6": {
-    "scale": 1.5,
-    "log_loss": 0.4526,
-    "accuracy": 0.795,
+    "scale": 1,
+    "log_loss": 0.4291,
+    "accuracy": 0.802,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4959,
-     "accuracy": 0.754,
+     "log_loss": 0.4769,
+     "accuracy": 0.76,
      "matches": 167
     },
     "K": 48,
     "mat_weight": 6
    },
    "K48 MAT x8": {
-    "scale": 1.5,
-    "log_loss": 0.467,
-    "accuracy": 0.786,
+    "scale": 1,
+    "log_loss": 0.44,
+    "accuracy": 0.795,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.5372,
+     "log_loss": 0.5119,
      "accuracy": 0.731,
      "matches": 167
     },
@@ -402,12 +402,12 @@
    },
    "K64 MAT x1": {
     "scale": 1.5,
-    "log_loss": 0.4344,
-    "accuracy": 0.821,
+    "log_loss": 0.407,
+    "accuracy": 0.827,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4293,
-     "accuracy": 0.826,
+     "log_loss": 0.4172,
+     "accuracy": 0.814,
      "matches": 167
     },
     "K": 64,
@@ -415,12 +415,12 @@
    },
    "K64 MAT x1.5": {
     "scale": 1.5,
-    "log_loss": 0.4343,
+    "log_loss": 0.409,
     "accuracy": 0.822,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4339,
-     "accuracy": 0.826,
+     "log_loss": 0.4243,
+     "accuracy": 0.832,
      "matches": 167
     },
     "K": 64,
@@ -428,76 +428,76 @@
    },
    "K64 MAT x2": {
     "scale": 1.5,
-    "log_loss": 0.4348,
-    "accuracy": 0.817,
+    "log_loss": 0.412,
+    "accuracy": 0.823,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4396,
-     "accuracy": 0.82,
+     "log_loss": 0.433,
+     "accuracy": 0.832,
      "matches": 167
     },
     "K": 64,
     "mat_weight": 2
    },
    "K64 MAT x3": {
-    "scale": 1.5,
-    "log_loss": 0.4378,
+    "scale": 1,
+    "log_loss": 0.4158,
     "accuracy": 0.812,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4544,
-     "accuracy": 0.796,
+     "log_loss": 0.4431,
+     "accuracy": 0.802,
      "matches": 167
     },
     "K": 64,
     "mat_weight": 3
    },
    "K64 MAT x4": {
-    "scale": 1.5,
-    "log_loss": 0.4431,
-    "accuracy": 0.804,
+    "scale": 1,
+    "log_loss": 0.4202,
+    "accuracy": 0.808,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4735,
-     "accuracy": 0.772,
+     "log_loss": 0.4587,
+     "accuracy": 0.778,
      "matches": 167
     },
     "K": 64,
     "mat_weight": 4
    },
    "K64 MAT x6": {
-    "scale": 1.5,
-    "log_loss": 0.4596,
-    "accuracy": 0.793,
+    "scale": 1,
+    "log_loss": 0.4335,
+    "accuracy": 0.797,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.5239,
-     "accuracy": 0.743,
+     "log_loss": 0.5019,
+     "accuracy": 0.749,
      "matches": 167
     },
     "K": 64,
     "mat_weight": 6
    },
    "K64 MAT x8": {
-    "scale": 1,
-    "log_loss": 0.4683,
-    "accuracy": 0.786,
+    "scale": 0.75,
+    "log_loss": 0.4477,
+    "accuracy": 0.792,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.5296,
-     "accuracy": 0.754,
+     "log_loss": 0.5259,
+     "accuracy": 0.713,
      "matches": 167
     },
     "K": 64,
     "mat_weight": 8
    },
    "K96 MAT x1": {
-    "scale": 1.5,
-    "log_loss": 0.4325,
-    "accuracy": 0.823,
+    "scale": 1,
+    "log_loss": 0.408,
+    "accuracy": 0.828,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4297,
+     "log_loss": 0.417,
      "accuracy": 0.832,
      "matches": 167
     },
@@ -505,12 +505,12 @@
     "mat_weight": 1
    },
    "K96 MAT x1.5": {
-    "scale": 1.5,
-    "log_loss": 0.4337,
-    "accuracy": 0.819,
+    "scale": 1,
+    "log_loss": 0.4096,
+    "accuracy": 0.825,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4365,
+     "log_loss": 0.4247,
      "accuracy": 0.832,
      "matches": 167
     },
@@ -518,26 +518,26 @@
     "mat_weight": 1.5
    },
    "K96 MAT x2": {
-    "scale": 1.5,
-    "log_loss": 0.436,
-    "accuracy": 0.816,
+    "scale": 1,
+    "log_loss": 0.4119,
+    "accuracy": 0.825,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4458,
-     "accuracy": 0.814,
+     "log_loss": 0.4338,
+     "accuracy": 0.832,
      "matches": 167
     },
     "K": 96,
     "mat_weight": 2
    },
    "K96 MAT x3": {
-    "scale": 1.5,
-    "log_loss": 0.4433,
-    "accuracy": 0.808,
+    "scale": 1,
+    "log_loss": 0.4188,
+    "accuracy": 0.816,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4718,
-     "accuracy": 0.784,
+     "log_loss": 0.4572,
+     "accuracy": 0.772,
      "matches": 167
     },
     "K": 96,
@@ -545,50 +545,50 @@
    },
    "K96 MAT x4": {
     "scale": 1,
-    "log_loss": 0.4485,
-    "accuracy": 0.798,
+    "log_loss": 0.4285,
+    "accuracy": 0.807,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4798,
-     "accuracy": 0.754,
+     "log_loss": 0.4892,
+     "accuracy": 0.743,
      "matches": 167
     },
     "K": 96,
     "mat_weight": 4
    },
    "K96 MAT x6": {
-    "scale": 1,
-    "log_loss": 0.4622,
-    "accuracy": 0.792,
+    "scale": 0.75,
+    "log_loss": 0.4449,
+    "accuracy": 0.794,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.5285,
-     "accuracy": 0.754,
+     "log_loss": 0.5321,
+     "accuracy": 0.719,
      "matches": 167
     },
     "K": 96,
     "mat_weight": 6
    },
    "K96 MAT x8": {
-    "scale": 0.75,
-    "log_loss": 0.4768,
-    "accuracy": 0.783,
+    "scale": 0.5,
+    "log_loss": 0.4627,
+    "accuracy": 0.785,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.5487,
-     "accuracy": 0.743,
+     "log_loss": 0.5484,
+     "accuracy": 0.689,
      "matches": 167
     },
     "K": 96,
     "mat_weight": 8
    },
    "K128 MAT x1": {
-    "scale": 1.5,
-    "log_loss": 0.4375,
-    "accuracy": 0.819,
+    "scale": 1,
+    "log_loss": 0.4113,
+    "accuracy": 0.824,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4358,
+     "log_loss": 0.4204,
      "accuracy": 0.832,
      "matches": 167
     },
@@ -597,12 +597,12 @@
    },
    "K128 MAT x1.5": {
     "scale": 1,
-    "log_loss": 0.4387,
-    "accuracy": 0.817,
+    "log_loss": 0.4142,
+    "accuracy": 0.823,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4398,
-     "accuracy": 0.82,
+     "log_loss": 0.431,
+     "accuracy": 0.838,
      "matches": 167
     },
     "K": 128,
@@ -610,64 +610,64 @@
    },
    "K128 MAT x2": {
     "scale": 1,
-    "log_loss": 0.4396,
-    "accuracy": 0.812,
+    "log_loss": 0.418,
+    "accuracy": 0.819,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4473,
-     "accuracy": 0.814,
+     "log_loss": 0.4446,
+     "accuracy": 0.808,
      "matches": 167
     },
     "K": 128,
     "mat_weight": 2
    },
    "K128 MAT x3": {
-    "scale": 1,
-    "log_loss": 0.4437,
-    "accuracy": 0.807,
+    "scale": 0.75,
+    "log_loss": 0.4265,
+    "accuracy": 0.808,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4686,
-     "accuracy": 0.778,
+     "log_loss": 0.4696,
+     "accuracy": 0.76,
      "matches": 167
     },
     "K": 128,
     "mat_weight": 3
    },
    "K128 MAT x4": {
-    "scale": 1,
-    "log_loss": 0.4513,
+    "scale": 0.75,
+    "log_loss": 0.435,
     "accuracy": 0.8,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4979,
-     "accuracy": 0.772,
+     "log_loss": 0.5026,
+     "accuracy": 0.731,
      "matches": 167
     },
     "K": 128,
     "mat_weight": 4
    },
    "K128 MAT x6": {
-    "scale": 0.75,
-    "log_loss": 0.4687,
-    "accuracy": 0.788,
+    "scale": 0.5,
+    "log_loss": 0.4568,
+    "accuracy": 0.794,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.535,
-     "accuracy": 0.754,
+     "log_loss": 0.5379,
+     "accuracy": 0.713,
      "matches": 167
     },
     "K": 128,
     "mat_weight": 6
    },
    "K128 MAT x8": {
-    "scale": 0.75,
-    "log_loss": 0.4868,
-    "accuracy": 0.781,
+    "scale": 0.5,
+    "log_loss": 0.4748,
+    "accuracy": 0.776,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.5981,
-     "accuracy": 0.737,
+     "log_loss": 0.6095,
+     "accuracy": 0.677,
      "matches": 167
     },
     "K": 128,
@@ -676,85 +676,85 @@
   },
   "win_rate": {
    "MAT x1": {
-    "scale": 6,
-    "log_loss": 0.4183,
-    "accuracy": 0.827,
+    "scale": 4,
+    "log_loss": 0.4036,
+    "accuracy": 0.822,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4307,
-     "accuracy": 0.802,
+     "log_loss": 0.4232,
+     "accuracy": 0.79,
      "matches": 167
     },
     "mat_weight": 1
    },
    "MAT x1.5": {
-    "scale": 6,
-    "log_loss": 0.4182,
-    "accuracy": 0.825,
+    "scale": 4,
+    "log_loss": 0.403,
+    "accuracy": 0.823,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4361,
-     "accuracy": 0.808,
+     "log_loss": 0.4232,
+     "accuracy": 0.802,
      "matches": 167
     },
     "mat_weight": 1.5
    },
    "MAT x2": {
-    "scale": 6,
-    "log_loss": 0.4185,
-    "accuracy": 0.826,
+    "scale": 4,
+    "log_loss": 0.4028,
+    "accuracy": 0.822,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4422,
-     "accuracy": 0.82,
+     "log_loss": 0.4236,
+     "accuracy": 0.802,
      "matches": 167
     },
     "mat_weight": 2
    },
    "MAT x3": {
-    "scale": 6,
-    "log_loss": 0.4203,
-    "accuracy": 0.82,
+    "scale": 4,
+    "log_loss": 0.4029,
+    "accuracy": 0.822,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4555,
-     "accuracy": 0.814,
+     "log_loss": 0.4249,
+     "accuracy": 0.802,
      "matches": 167
     },
     "mat_weight": 3
    },
    "MAT x4": {
-    "scale": 6,
-    "log_loss": 0.4229,
-    "accuracy": 0.816,
+    "scale": 4,
+    "log_loss": 0.4036,
+    "accuracy": 0.822,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.4693,
-     "accuracy": 0.79,
+     "log_loss": 0.4268,
+     "accuracy": 0.814,
      "matches": 167
     },
     "mat_weight": 4
    },
    "MAT x6": {
-    "scale": 6,
-    "log_loss": 0.429,
-    "accuracy": 0.809,
+    "scale": 4,
+    "log_loss": 0.4058,
+    "accuracy": 0.82,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.496,
-     "accuracy": 0.772,
+     "log_loss": 0.4315,
+     "accuracy": 0.814,
      "matches": 167
     },
     "mat_weight": 6
    },
    "MAT x8": {
-    "scale": 6,
-    "log_loss": 0.4354,
-    "accuracy": 0.804,
+    "scale": 4,
+    "log_loss": 0.4083,
+    "accuracy": 0.818,
     "matches": 1437,
     "on_mat_matches": {
-     "log_loss": 0.5205,
-     "accuracy": 0.754,
+     "log_loss": 0.4367,
+     "accuracy": 0.802,
      "matches": 167
     },
     "mat_weight": 8
@@ -762,3310 +762,1860 @@
   }
  },
  "people": {
-  "Fennec": {
-   "rating": 684,
-   "matches": 165,
-   "win_rate_weighted": 0.89
-  },
-  "Ali": {
-   "rating": 563,
-   "matches": 189,
-   "win_rate_weighted": 0.839
-  },
   "Yoko": {
-   "rating": 531,
-   "matches": 178,
-   "win_rate_weighted": 0.844
+   "rating": 617,
+   "matches": 237,
+   "win_rate_weighted": 0.846
   },
-  "Rainy": {
-   "rating": 510,
-   "matches": 174,
-   "win_rate_weighted": 0.834
+  "Fennec": {
+   "rating": 610,
+   "matches": 189,
+   "win_rate_weighted": 0.876
   },
   "Miru": {
-   "rating": 489,
-   "matches": 145,
-   "win_rate_weighted": 0.808
-  },
-  "Maga": {
-   "rating": 456,
-   "matches": 138,
-   "win_rate_weighted": 0.797
-  },
-  "Sync": {
-   "rating": 456,
-   "matches": 150,
-   "win_rate_weighted": 0.805
-  },
-  "Bounty": {
-   "rating": 446,
-   "matches": 132,
-   "win_rate_weighted": 0.852
-  },
-  "Maverick": {
-   "rating": 440,
-   "matches": 122,
-   "win_rate_weighted": 0.845
-  },
-  "Smoki": {
-   "rating": 403,
-   "matches": 77,
-   "win_rate_weighted": 0.911
-  },
-  "Love": {
-   "rating": 395,
-   "matches": 113,
+   "rating": 536,
+   "matches": 217,
    "win_rate_weighted": 0.82
   },
-  "Math": {
-   "rating": 365,
-   "matches": 91,
-   "win_rate_weighted": 0.844
-  },
-  "ONeil": {
-   "rating": 360,
-   "matches": 106,
-   "win_rate_weighted": 0.767
-  },
-  "Menik": {
-   "rating": 357,
-   "matches": 134,
-   "win_rate_weighted": 0.784
-  },
-  "Pendulum": {
-   "rating": 310,
-   "matches": 159,
-   "win_rate_weighted": 0.701
-  },
-  "Warangel Eldrith": {
-   "rating": 299,
-   "matches": 150,
-   "win_rate_weighted": 0.643
-  },
-  "Kam": {
-   "rating": 296,
-   "matches": 144,
-   "win_rate_weighted": 0.712
-  },
-  "Eraziel": {
-   "rating": 280,
-   "matches": 64,
-   "win_rate_weighted": 0.839
-  },
-  "Stranger": {
-   "rating": 274,
-   "matches": 83,
-   "win_rate_weighted": 0.803
-  },
-  "Candy": {
-   "rating": 249,
-   "matches": 51,
-   "win_rate_weighted": 0.87
-  },
-  "svn": {
-   "rating": 247,
-   "matches": 83,
-   "win_rate_weighted": 0.821
-  },
-  "Regem": {
-   "rating": 241,
-   "matches": 90,
-   "win_rate_weighted": 0.762
-  },
-  "Brock": {
-   "rating": 237,
-   "matches": 77,
-   "win_rate_weighted": 0.729
-  },
-  "Kissaki": {
-   "rating": 236,
-   "matches": 112,
-   "win_rate_weighted": 0.665
-  },
-  "Heilende Maya": {
-   "rating": 235,
-   "matches": 116,
-   "win_rate_weighted": 0.644
-  },
-  "Treece": {
-   "rating": 224,
-   "matches": 85,
-   "win_rate_weighted": 0.781
-  },
-  "Kai": {
-   "rating": 214,
-   "matches": 73,
-   "win_rate_weighted": 0.834
-  },
-  "Holye": {
-   "rating": 214,
-   "matches": 132,
-   "win_rate_weighted": 0.639
-  },
-  "Forsight": {
-   "rating": 213,
-   "matches": 89,
-   "win_rate_weighted": 0.74
-  },
-  "Zynkh": {
-   "rating": 208,
-   "matches": 61,
-   "win_rate_weighted": 0.817
-  },
-  "Denning": {
-   "rating": 205,
-   "matches": 73,
-   "win_rate_weighted": 0.775
-  },
-  "Beurk Reforged": {
-   "rating": 192,
-   "matches": 46,
-   "win_rate_weighted": 0.828
-  },
-  "Gori": {
-   "rating": 182,
-   "matches": 100,
-   "win_rate_weighted": 0.703
-  },
-  "Chrona": {
-   "rating": 176,
-   "matches": 92,
-   "win_rate_weighted": 0.619
-  },
-  "Private": {
-   "rating": 176,
-   "matches": 117,
-   "win_rate_weighted": 0.669
-  },
-  "Fate": {
-   "rating": 172,
-   "matches": 42,
-   "win_rate_weighted": 0.854
-  },
-  "Akemi": {
-   "rating": 171,
-   "matches": 70,
-   "win_rate_weighted": 0.774
-  },
-  "Jacke L Eventreur": {
-   "rating": 170,
-   "matches": 92,
-   "win_rate_weighted": 0.627
-  },
-  "No Monk": {
-   "rating": 170,
-   "matches": 62,
-   "win_rate_weighted": 0.705
-  },
-  "Nihal": {
-   "rating": 166,
-   "matches": 45,
-   "win_rate_weighted": 0.83
-  },
-  "Kasperov": {
-   "rating": 164,
-   "matches": 69,
-   "win_rate_weighted": 0.66
-  },
-  "E X P A N D E D": {
-   "rating": 160,
-   "matches": 30,
-   "win_rate_weighted": 0.938
-  },
-  "God Said Trap": {
-   "rating": 155,
-   "matches": 53,
-   "win_rate_weighted": 0.713
-  },
-  "P B Z": {
-   "rating": 154,
-   "matches": 32,
-   "win_rate_weighted": 0.881
-  },
-  "Dealer Pwns Charr": {
-   "rating": 152,
-   "matches": 55,
-   "win_rate_weighted": 0.699
-  },
-  "Bestplayerworld": {
-   "rating": 150,
-   "matches": 27,
-   "win_rate_weighted": 0.926
-  },
-  "Cracks": {
-   "rating": 143,
-   "matches": 29,
-   "win_rate_weighted": 0.815
-  },
-  "In Khia Asylum": {
-   "rating": 141,
-   "matches": 64,
-   "win_rate_weighted": 0.722
-  },
-  "Feanor": {
-   "rating": 137,
-   "matches": 44,
-   "win_rate_weighted": 0.713
-  },
-  "Brett": {
-   "rating": 137,
-   "matches": 51,
-   "win_rate_weighted": 0.732
-  },
-  "Govori Z Duhovi": {
-   "rating": 133,
-   "matches": 73,
-   "win_rate_weighted": 0.618
-  },
-  "Willi": {
-   "rating": 129,
-   "matches": 44,
-   "win_rate_weighted": 0.719
-  },
-  "Micro Supremacy Era": {
-   "rating": 127,
-   "matches": 32,
-   "win_rate_weighted": 0.829
-  },
-  "Komugi And Meruem": {
-   "rating": 126,
-   "matches": 44,
-   "win_rate_weighted": 0.765
-  },
-  "Goretzkaaaaaaaaaaaa": {
-   "rating": 124,
-   "matches": 23,
-   "win_rate_weighted": 0.923
-  },
-  "Forigus Regene": {
-   "rating": 122,
-   "matches": 17,
-   "win_rate_weighted": 0.951
-  },
-  "Bringing Honor Back": {
-   "rating": 121,
-   "matches": 17,
-   "win_rate_weighted": 1.0
-  },
-  "Bench Press Barbie": {
-   "rating": 121,
-   "matches": 47,
-   "win_rate_weighted": 0.682
-  },
-  "Sere": {
-   "rating": 121,
-   "matches": 47,
-   "win_rate_weighted": 0.663
-  },
-  "Legendary Alwina": {
-   "rating": 120,
-   "matches": 26,
-   "win_rate_weighted": 0.782
-  },
-  "Simon": {
-   "rating": 117,
-   "matches": 31,
-   "win_rate_weighted": 0.809
-  },
-  "Seregon Fea": {
-   "rating": 116,
-   "matches": 62,
-   "win_rate_weighted": 0.652
-  },
-  "Why So Seriouz": {
-   "rating": 115,
-   "matches": 88,
-   "win_rate_weighted": 0.591
-  },
-  "Cynn C Space": {
-   "rating": 113,
-   "matches": 37,
-   "win_rate_weighted": 0.737
-  },
-  "Choices": {
-   "rating": 104,
-   "matches": 24,
-   "win_rate_weighted": 0.796
-  },
-  "D R E A M Police": {
-   "rating": 104,
-   "matches": 16,
-   "win_rate_weighted": 0.947
-  },
-  "Gentle Shutdown": {
-   "rating": 103,
-   "matches": 55,
-   "win_rate_weighted": 0.595
-  },
-  "T R O O O O O P E R": {
-   "rating": 102,
-   "matches": 31,
-   "win_rate_weighted": 0.714
-  },
-  "Hemo Ftl": {
-   "rating": 102,
-   "matches": 24,
-   "win_rate_weighted": 0.878
-  },
-  "Yeast": {
-   "rating": 99,
-   "matches": 33,
-   "win_rate_weighted": 0.743
-  },
-  "Vibe Rupting": {
-   "rating": 98,
-   "matches": 21,
-   "win_rate_weighted": 0.857
-  },
-  "Seb": {
-   "rating": 98,
-   "matches": 30,
-   "win_rate_weighted": 0.761
-  },
-  "Dunning Kruger Synd": {
-   "rating": 97,
-   "matches": 20,
-   "win_rate_weighted": 0.857
-  },
-  "Rupt Boi": {
-   "rating": 96,
-   "matches": 28,
-   "win_rate_weighted": 0.71
-  },
-  "Don": {
-   "rating": 96,
-   "matches": 50,
-   "win_rate_weighted": 0.738
-  },
-  "Iuv": {
-   "rating": 95,
-   "matches": 22,
-   "win_rate_weighted": 0.857
-  },
-  "Geister Schlange": {
-   "rating": 95,
-   "matches": 59,
-   "win_rate_weighted": 0.638
-  },
-  "Evelin Astroid": {
-   "rating": 94,
-   "matches": 28,
-   "win_rate_weighted": 0.689
-  },
-  "Klss My Ice": {
-   "rating": 94,
-   "matches": 20,
-   "win_rate_weighted": 0.9
-  },
-  "Demigod Heracles": {
-   "rating": 94,
-   "matches": 22,
-   "win_rate_weighted": 0.771
-  },
-  "Nick": {
-   "rating": 94,
-   "matches": 28,
-   "win_rate_weighted": 0.786
-  },
-  "Lyssa": {
-   "rating": 93,
-   "matches": 16,
-   "win_rate_weighted": 0.857
-  },
-  "Zurrie": {
-   "rating": 93,
-   "matches": 121,
-   "win_rate_weighted": 0.602
-  },
-  "Cinnabon Don": {
-   "rating": 90,
-   "matches": 19,
-   "win_rate_weighted": 0.886
-  },
-  "Chrona Laming Beast": {
-   "rating": 88,
-   "matches": 18,
-   "win_rate_weighted": 0.81
-  },
-  "Demigod Omegabeast": {
-   "rating": 88,
-   "matches": 20,
-   "win_rate_weighted": 0.854
-  },
-  "All Things Fall": {
-   "rating": 88,
-   "matches": 62,
-   "win_rate_weighted": 0.621
-  },
-  "No Monk For Me": {
-   "rating": 87,
-   "matches": 16,
-   "win_rate_weighted": 0.8
-  },
-  "Demigod Stigmatic": {
-   "rating": 87,
-   "matches": 20,
-   "win_rate_weighted": 0.783
-  },
-  "Luv Of The Dreams": {
-   "rating": 87,
-   "matches": 21,
-   "win_rate_weighted": 0.851
-  },
-  "Soeur De Dwayna": {
-   "rating": 86,
-   "matches": 33,
-   "win_rate_weighted": 0.675
-  },
-  "Nableo": {
-   "rating": 86,
-   "matches": 32,
-   "win_rate_weighted": 0.809
-  },
-  "Butters": {
-   "rating": 85,
-   "matches": 55,
-   "win_rate_weighted": 0.64
-  },
-  "Oh Messy Life": {
-   "rating": 85,
-   "matches": 19,
-   "win_rate_weighted": 0.842
-  },
-  "Chefs Kiss": {
-   "rating": 84,
-   "matches": 13,
-   "win_rate_weighted": 0.926
-  },
-  "Basile": {
-   "rating": 83,
-   "matches": 17,
-   "win_rate_weighted": 0.889
-  },
-  "Brigitte Barpush": {
-   "rating": 83,
-   "matches": 23,
-   "win_rate_weighted": 0.731
-  },
-  "Dembe Zuma": {
-   "rating": 83,
-   "matches": 20,
-   "win_rate_weighted": 0.767
-  },
-  "Gladiator Motoko": {
-   "rating": 82,
-   "matches": 18,
-   "win_rate_weighted": 0.775
-  },
-  "Amaterasu": {
-   "rating": 82,
-   "matches": 26,
-   "win_rate_weighted": 0.879
-  },
-  "Meant To Incinerate": {
-   "rating": 81,
-   "matches": 22,
-   "win_rate_weighted": 0.745
-  },
-  "Generic Was Pvp": {
-   "rating": 80,
-   "matches": 37,
-   "win_rate_weighted": 0.649
-  },
-  "O Nei L": {
-   "rating": 80,
-   "matches": 17,
-   "win_rate_weighted": 0.771
-  },
-  "Need C Points": {
-   "rating": 80,
-   "matches": 40,
-   "win_rate_weighted": 0.634
-  },
-  "Smelly": {
-   "rating": 80,
-   "matches": 162,
-   "win_rate_weighted": 0.525
-  },
-  "Mkgee": {
-   "rating": 79,
-   "matches": 35,
-   "win_rate_weighted": 0.712
-  },
-  "Chains Gleaming": {
-   "rating": 77,
-   "matches": 10,
-   "win_rate_weighted": 1.0
-  },
-  "Definitly Nt Azrael": {
-   "rating": 77,
-   "matches": 18,
+  "Bounty": {
+   "rating": 522,
+   "matches": 186,
+   "win_rate_weighted": 0.865
+  },
+  "Smoki": {
+   "rating": 475,
+   "matches": 127,
+   "win_rate_weighted": 0.856
+  },
+  "Rainy": {
+   "rating": 474,
+   "matches": 215,
+   "win_rate_weighted": 0.831
+  },
+  "Maga": {
+   "rating": 466,
+   "matches": 263,
+   "win_rate_weighted": 0.741
+  },
+  "Ali": {
+   "rating": 462,
+   "matches": 200,
    "win_rate_weighted": 0.833
   },
-  "Led Boots": {
-   "rating": 76,
-   "matches": 16,
-   "win_rate_weighted": 0.875
+  "Sync": {
+   "rating": 439,
+   "matches": 190,
+   "win_rate_weighted": 0.812
   },
-  "Purple Flurpe": {
-   "rating": 75,
-   "matches": 52,
-   "win_rate_weighted": 0.57
+  "Kai": {
+   "rating": 436,
+   "matches": 164,
+   "win_rate_weighted": 0.815
   },
-  "Nutella Toast Il": {
-   "rating": 75,
-   "matches": 95,
-   "win_rate_weighted": 0.566
+  "Maverick": {
+   "rating": 424,
+   "matches": 133,
+   "win_rate_weighted": 0.857
   },
-  "Il A K R O M A Il": {
-   "rating": 74,
-   "matches": 22,
-   "win_rate_weighted": 0.804
+  "svn": {
+   "rating": 407,
+   "matches": 171,
+   "win_rate_weighted": 0.79
   },
-  "Aogishdo Ahweroih Q": {
-   "rating": 73,
-   "matches": 10,
-   "win_rate_weighted": 1.0
+  "Fate": {
+   "rating": 403,
+   "matches": 126,
+   "win_rate_weighted": 0.842
   },
-  "Diskaiment": {
-   "rating": 73,
-   "matches": 19,
-   "win_rate_weighted": 0.786
+  "Treece": {
+   "rating": 396,
+   "matches": 135,
+   "win_rate_weighted": 0.813
   },
-  "Easy": {
-   "rating": 72,
-   "matches": 21,
-   "win_rate_weighted": 0.739
+  "ONeil": {
+   "rating": 381,
+   "matches": 156,
+   "win_rate_weighted": 0.735
   },
-  "I Usual Suspects I": {
-   "rating": 72,
-   "matches": 39,
-   "win_rate_weighted": 0.659
+  "Akemi": {
+   "rating": 335,
+   "matches": 142,
+   "win_rate_weighted": 0.812
   },
-  "Shadowjumper": {
-   "rating": 71,
-   "matches": 12,
-   "win_rate_weighted": 0.92
+  "Keaz": {
+   "rating": 333,
+   "matches": 148,
+   "win_rate_weighted": 0.824
   },
-  "Bnty Sekaikage": {
-   "rating": 71,
-   "matches": 15,
-   "win_rate_weighted": 1.0
+  "Luv Of The Treees": {
+   "rating": 327,
+   "matches": 137,
+   "win_rate_weighted": 0.776
   },
-  "Syntax Got Style X": {
-   "rating": 71,
-   "matches": 27,
-   "win_rate_weighted": 0.672
+  "Candy": {
+   "rating": 327,
+   "matches": 93,
+   "win_rate_weighted": 0.849
   },
-  "Infuse": {
-   "rating": 70,
-   "matches": 21,
+  "Math": {
+   "rating": 314,
+   "matches": 105,
+   "win_rate_weighted": 0.836
+  },
+  "Don": {
+   "rating": 307,
+   "matches": 114,
+   "win_rate_weighted": 0.816
+  },
+  "Love": {
+   "rating": 306,
+   "matches": 116,
+   "win_rate_weighted": 0.799
+  },
+  "Menik": {
+   "rating": 305,
+   "matches": 162,
+   "win_rate_weighted": 0.784
+  },
+  "I Am Your Doo M": {
+   "rating": 300,
+   "matches": 125,
+   "win_rate_weighted": 0.68
+  },
+  "Victoire A Venir": {
+   "rating": 297,
+   "matches": 144,
+   "win_rate_weighted": 0.647
+  },
+  "Warangel Eldrith": {
+   "rating": 288,
+   "matches": 158,
+   "win_rate_weighted": 0.641
+  },
+  "Kissaki Pvp": {
+   "rating": 284,
+   "matches": 130,
+   "win_rate_weighted": 0.673
+  },
+  "Kam": {
+   "rating": 283,
+   "matches": 169,
+   "win_rate_weighted": 0.698
+  },
+  "Seb": {
+   "rating": 280,
+   "matches": 103,
    "win_rate_weighted": 0.762
   },
-  "Demiurge Orobad": {
-   "rating": 70,
-   "matches": 12,
-   "win_rate_weighted": 0.889
+  "Wild Within": {
+   "rating": 265,
+   "matches": 107,
+   "win_rate_weighted": 0.798
+  },
+  "In Khia Asylum": {
+   "rating": 265,
+   "matches": 130,
+   "win_rate_weighted": 0.75
+  },
+  "Private": {
+   "rating": 260,
+   "matches": 177,
+   "win_rate_weighted": 0.73
+  },
+  "Willi": {
+   "rating": 259,
+   "matches": 151,
+   "win_rate_weighted": 0.663
+  },
+  "E X P A N D E D": {
+   "rating": 257,
+   "matches": 103,
+   "win_rate_weighted": 0.814
+  },
+  "Zynkh": {
+   "rating": 255,
+   "matches": 132,
+   "win_rate_weighted": 0.778
+  },
+  "Pendulum": {
+   "rating": 252,
+   "matches": 182,
+   "win_rate_weighted": 0.683
+  },
+  "Brock": {
+   "rating": 245,
+   "matches": 90,
+   "win_rate_weighted": 0.757
+  },
+  "Alwina Luvz U": {
+   "rating": 237,
+   "matches": 101,
+   "win_rate_weighted": 0.667
+  },
+  "Eraziel": {
+   "rating": 231,
+   "matches": 65,
+   "win_rate_weighted": 0.825
+  },
+  "Dealer Io": {
+   "rating": 230,
+   "matches": 105,
+   "win_rate_weighted": 0.659
+  },
+  "God Said Trap": {
+   "rating": 224,
+   "matches": 106,
+   "win_rate_weighted": 0.724
+  },
+  "Nihal": {
+   "rating": 221,
+   "matches": 87,
+   "win_rate_weighted": 0.798
+  },
+  "Beurkerize Mesmer": {
+   "rating": 219,
+   "matches": 150,
+   "win_rate_weighted": 0.644
+  },
+  "Forsight": {
+   "rating": 218,
+   "matches": 122,
+   "win_rate_weighted": 0.714
+  },
+  "Cracks": {
+   "rating": 218,
+   "matches": 72,
+   "win_rate_weighted": 0.75
+  },
+  "Heilende Maya": {
+   "rating": 218,
+   "matches": 116,
+   "win_rate_weighted": 0.65
+  },
+  "Chrona": {
+   "rating": 215,
+   "matches": 145,
+   "win_rate_weighted": 0.626
+  },
+  "Demigod Aeneas": {
+   "rating": 215,
+   "matches": 108,
+   "win_rate_weighted": 0.727
+  },
+  "Lyssa": {
+   "rating": 211,
+   "matches": 58,
+   "win_rate_weighted": 0.786
+  },
+  "Simon": {
+   "rating": 207,
+   "matches": 122,
+   "win_rate_weighted": 0.657
+  },
+  "Schlange Got Style": {
+   "rating": 205,
+   "matches": 106,
+   "win_rate_weighted": 0.661
+  },
+  "Brett": {
+   "rating": 204,
+   "matches": 72,
+   "win_rate_weighted": 0.724
+  },
+  "Feanor": {
+   "rating": 201,
+   "matches": 126,
+   "win_rate_weighted": 0.625
+  },
+  "Underworld Gangster": {
+   "rating": 200,
+   "matches": 60,
+   "win_rate_weighted": 0.864
+  },
+  "Rosaroter Tee": {
+   "rating": 189,
+   "matches": 54,
+   "win_rate_weighted": 0.836
+  },
+  "No Monk": {
+   "rating": 186,
+   "matches": 79,
+   "win_rate_weighted": 0.718
+  },
+  "Holye": {
+   "rating": 184,
+   "matches": 204,
+   "win_rate_weighted": 0.622
+  },
+  "With All My Mind": {
+   "rating": 181,
+   "matches": 109,
+   "win_rate_weighted": 0.638
+  },
+  "Trojan": {
+   "rating": 169,
+   "matches": 54,
+   "win_rate_weighted": 0.754
+  },
+  "T R O O O O O P E R": {
+   "rating": 168,
+   "matches": 71,
+   "win_rate_weighted": 0.663
+  },
+  "Easy": {
+   "rating": 165,
+   "matches": 146,
+   "win_rate_weighted": 0.601
+  },
+  "Gori": {
+   "rating": 164,
+   "matches": 112,
+   "win_rate_weighted": 0.68
+  },
+  "Soeur De Dwayna": {
+   "rating": 152,
+   "matches": 78,
+   "win_rate_weighted": 0.67
+  },
+  "Kasperov": {
+   "rating": 146,
+   "matches": 80,
+   "win_rate_weighted": 0.632
+  },
+  "Tryhardmaxxxing": {
+   "rating": 146,
+   "matches": 66,
+   "win_rate_weighted": 0.634
+  },
+  "Bestplayerworld": {
+   "rating": 144,
+   "matches": 31,
+   "win_rate_weighted": 0.903
+  },
+  "Piercing Shield": {
+   "rating": 144,
+   "matches": 35,
+   "win_rate_weighted": 0.857
+  },
+  "Thoughtrose": {
+   "rating": 140,
+   "matches": 92,
+   "win_rate_weighted": 0.71
+  },
+  "Jack L Eventreuse": {
+   "rating": 140,
+   "matches": 108,
+   "win_rate_weighted": 0.617
+  },
+  "Imc John": {
+   "rating": 138,
+   "matches": 76,
+   "win_rate_weighted": 0.662
+  },
+  "Modesty Rits On You": {
+   "rating": 137,
+   "matches": 117,
+   "win_rate_weighted": 0.614
   },
   "Hermanni Beastimaa": {
-   "rating": 69,
-   "matches": 16,
-   "win_rate_weighted": 0.811
+   "rating": 134,
+   "matches": 41,
+   "win_rate_weighted": 0.851
   },
-  "Black Livius": {
+  "Regem": {
+   "rating": 132,
+   "matches": 171,
+   "win_rate_weighted": 0.611
+  },
+  "Mighty Kungen": {
+   "rating": 128,
+   "matches": 73,
+   "win_rate_weighted": 0.667
+  },
+  "Why So Seriouz": {
+   "rating": 125,
+   "matches": 113,
+   "win_rate_weighted": 0.593
+  },
+  "Qinn": {
+   "rating": 124,
+   "matches": 43,
+   "win_rate_weighted": 0.709
+  },
+  "I Cynn Of Ascalon I": {
+   "rating": 122,
+   "matches": 97,
+   "win_rate_weighted": 0.611
+  },
+  "Nick": {
+   "rating": 117,
+   "matches": 48,
+   "win_rate_weighted": 0.735
+  },
+  "Denning": {
+   "rating": 117,
+   "matches": 91,
+   "win_rate_weighted": 0.679
+  },
+  "Smelly": {
+   "rating": 108,
+   "matches": 201,
+   "win_rate_weighted": 0.507
+  },
+  "Starlight Mesmeriz": {
+   "rating": 108,
+   "matches": 96,
+   "win_rate_weighted": 0.633
+  },
+  "Klss My Ice": {
+   "rating": 107,
+   "matches": 34,
+   "win_rate_weighted": 0.853
+  },
+  "Meant To Dominate": {
+   "rating": 105,
+   "matches": 155,
+   "win_rate_weighted": 0.53
+  },
+  "Why Meee Qq": {
+   "rating": 96,
+   "matches": 30,
+   "win_rate_weighted": 0.767
+  },
+  "O My Gatos": {
+   "rating": 95,
+   "matches": 43,
+   "win_rate_weighted": 0.721
+  },
+  "Vibe Protting": {
+   "rating": 93,
+   "matches": 93,
+   "win_rate_weighted": 0.577
+  },
+  "Excel Spreadcheeks": {
+   "rating": 89,
+   "matches": 45,
+   "win_rate_weighted": 0.68
+  },
+  "An Do R": {
+   "rating": 88,
+   "matches": 50,
+   "win_rate_weighted": 0.579
+  },
+  "King": {
+   "rating": 88,
+   "matches": 82,
+   "win_rate_weighted": 0.602
+  },
+  "Evelin Astroid": {
+   "rating": 87,
+   "matches": 55,
+   "win_rate_weighted": 0.567
+  },
+  "Purple Flurpe": {
+   "rating": 83,
+   "matches": 52,
+   "win_rate_weighted": 0.565
+  },
+  "Dome Air Fairy": {
+   "rating": 80,
+   "matches": 56,
+   "win_rate_weighted": 0.589
+  },
+  "Secksy Liam": {
+   "rating": 79,
+   "matches": 75,
+   "win_rate_weighted": 0.6
+  },
+  "Jaz Ish": {
+   "rating": 77,
+   "matches": 81,
+   "win_rate_weighted": 0.546
+  },
+  "Aion Two": {
+   "rating": 75,
+   "matches": 75,
+   "win_rate_weighted": 0.524
+  },
+  "Pvp Poor": {
+   "rating": 73,
+   "matches": 142,
+   "win_rate_weighted": 0.519
+  },
+  "Liam Cyber": {
+   "rating": 73,
+   "matches": 58,
+   "win_rate_weighted": 0.686
+  },
+  "Coomy Woomy": {
+   "rating": 70,
+   "matches": 33,
+   "win_rate_weighted": 0.636
+  },
+  "Post Covid Player": {
    "rating": 69,
-   "matches": 27,
-   "win_rate_weighted": 0.707
+   "matches": 123,
+   "win_rate_weighted": 0.5
   },
   "Roken": {
-   "rating": 69,
-   "matches": 18,
-   "win_rate_weighted": 0.732
-  },
-  "Candy Crush Saga": {
-   "rating": 69,
-   "matches": 13,
-   "win_rate_weighted": 0.926
-  },
-  "C A N D I D E B O Y": {
    "rating": 68,
-   "matches": 12,
-   "win_rate_weighted": 0.897
-  },
-  "Beurka Hassan": {
-   "rating": 68,
-   "matches": 46,
-   "win_rate_weighted": 0.635
+   "matches": 24,
+   "win_rate_weighted": 0.677
   },
   "Crunchtime Filli": {
    "rating": 68,
    "matches": 36,
    "win_rate_weighted": 0.61
   },
-  "Mighty Kungen": {
-   "rating": 68,
-   "matches": 27,
-   "win_rate_weighted": 0.678
-  },
-  "Ego Nuker": {
-   "rating": 68,
-   "matches": 18,
-   "win_rate_weighted": 0.825
-  },
-  "Dust Of The Robes": {
-   "rating": 67,
-   "matches": 13,
-   "win_rate_weighted": 0.923
-  },
-  "Heretic Punisher": {
-   "rating": 67,
-   "matches": 17,
-   "win_rate_weighted": 0.778
-  },
-  "Beyond The Lies": {
-   "rating": 66,
-   "matches": 16,
-   "win_rate_weighted": 0.812
-  },
   "Katt Daddy": {
    "rating": 66,
-   "matches": 25,
-   "win_rate_weighted": 0.619
+   "matches": 33,
+   "win_rate_weighted": 0.565
   },
-  "Don Iz Awesome": {
-   "rating": 66,
-   "matches": 21,
-   "win_rate_weighted": 0.766
-  },
-  "Taoh": {
-   "rating": 66,
-   "matches": 50,
-   "win_rate_weighted": 0.569
-  },
-  "Keaz": {
-   "rating": 65,
-   "matches": 30,
-   "win_rate_weighted": 0.836
-  },
-  "Mogged": {
+  "Nutzniesser": {
    "rating": 64,
-   "matches": 10,
-   "win_rate_weighted": 1.0
+   "matches": 36,
+   "win_rate_weighted": 0.683
   },
-  "Akemi On Tour": {
+  "Hi T Em Up": {
    "rating": 64,
-   "matches": 14,
-   "win_rate_weighted": 0.842
+   "matches": 62,
+   "win_rate_weighted": 0.571
   },
-  "Starlight Not Lyssa": {
-   "rating": 64,
-   "matches": 19,
-   "win_rate_weighted": 0.789
-  },
-  "Erevos Daywalker": {
-   "rating": 64,
-   "matches": 35,
-   "win_rate_weighted": 0.62
-  },
-  "Izy": {
+  "Dark": {
    "rating": 63,
-   "matches": 14,
-   "win_rate_weighted": 0.788
-  },
-  "Legendary Was Maga": {
-   "rating": 63,
-   "matches": 25,
-   "win_rate_weighted": 0.673
-  },
-  "Il Atsu Il": {
-   "rating": 63,
-   "matches": 14,
-   "win_rate_weighted": 0.931
-  },
-  "Inadequate Seb": {
-   "rating": 63,
-   "matches": 14,
-   "win_rate_weighted": 0.889
-  },
-  "Bonker Lorrin": {
-   "rating": 63,
-   "matches": 42,
-   "win_rate_weighted": 0.594
-  },
-  "Solaris": {
-   "rating": 63,
-   "matches": 110,
-   "win_rate_weighted": 0.557
-  },
-  "Schlange Got Style": {
-   "rating": 61,
-   "matches": 17,
-   "win_rate_weighted": 0.714
-  },
-  "Oko": {
-   "rating": 61,
-   "matches": 81,
-   "win_rate_weighted": 0.557
-  },
-  "The Sultana": {
-   "rating": 60,
-   "matches": 22,
-   "win_rate_weighted": 0.681
-  },
-  "Stomping Grounds": {
-   "rating": 60,
-   "matches": 25,
-   "win_rate_weighted": 0.76
-  },
-  "Treeece": {
-   "rating": 60,
-   "matches": 15,
-   "win_rate_weighted": 0.806
-  },
-  "Trojan": {
-   "rating": 59,
-   "matches": 13,
-   "win_rate_weighted": 0.786
-  },
-  "X Noroelle X": {
-   "rating": 59,
-   "matches": 17,
-   "win_rate_weighted": 0.667
-  },
-  "Performative Para": {
-   "rating": 59,
-   "matches": 13,
-   "win_rate_weighted": 1.0
-  },
-  "Protmaxxing": {
-   "rating": 57,
-   "matches": 30,
-   "win_rate_weighted": 0.615
-  },
-  "Amazing Dealer": {
-   "rating": 57,
-   "matches": 30,
-   "win_rate_weighted": 0.629
-  },
-  "Iconic By Mistake": {
-   "rating": 57,
-   "matches": 13,
-   "win_rate_weighted": 0.767
-  },
-  "Im A Bad Santa": {
-   "rating": 57,
-   "matches": 46,
-   "win_rate_weighted": 0.583
-  },
-  "Elite Medicine Monk": {
-   "rating": 56,
-   "matches": 11,
-   "win_rate_weighted": 0.818
-  },
-  "Low Framez Victim": {
-   "rating": 54,
-   "matches": 11,
-   "win_rate_weighted": 1.0
-  },
-  "Lion Pounce": {
-   "rating": 54,
-   "matches": 16,
-   "win_rate_weighted": 0.812
-  },
-  "Pvp Poor": {
-   "rating": 54,
-   "matches": 16,
-   "win_rate_weighted": 0.686
-  },
-  "With All My Mind": {
-   "rating": 54,
-   "matches": 42,
-   "win_rate_weighted": 0.596
-  },
-  "Last Minute Wipe": {
-   "rating": 53,
-   "matches": 17,
-   "win_rate_weighted": 0.784
-  },
-  "Weasel": {
-   "rating": 53,
-   "matches": 10,
-   "win_rate_weighted": 0.818
-  },
-  "Dark The Peacemaker": {
-   "rating": 52,
-   "matches": 37,
-   "win_rate_weighted": 0.6
-  },
-  "Mechanics": {
-   "rating": 51,
-   "matches": 19,
-   "win_rate_weighted": 0.636
-  },
-  "Rupert Rinblade": {
-   "rating": 51,
-   "matches": 10,
-   "win_rate_weighted": 1.0
-  },
-  "Drei Uhr Nachts": {
-   "rating": 51,
-   "matches": 10,
-   "win_rate_weighted": 0.909
-  },
-  "Frieren Sama Maga": {
-   "rating": 50,
-   "matches": 11,
-   "win_rate_weighted": 0.917
-  },
-  "Alwina Luvz U": {
-   "rating": 50,
-   "matches": 12,
-   "win_rate_weighted": 0.75
-  },
-  "Fully Autismatic": {
-   "rating": 50,
-   "matches": 12,
-   "win_rate_weighted": 0.759
-  },
-  "M I K O T H Y": {
-   "rating": 50,
-   "matches": 12,
-   "win_rate_weighted": 0.75
-  },
-  "Lv Lv Lvv": {
-   "rating": 50,
-   "matches": 10,
-   "win_rate_weighted": 0.9
-  },
-  "Luv": {
-   "rating": 50,
-   "matches": 15,
-   "win_rate_weighted": 0.733
-  },
-  "Starlight Mesmeriz": {
-   "rating": 50,
-   "matches": 22,
-   "win_rate_weighted": 0.694
-  },
-  "Sync Jr": {
-   "rating": 50,
-   "matches": 12,
-   "win_rate_weighted": 0.917
-  },
-  "Sarina Nightmare": {
-   "rating": 49,
-   "matches": 40,
-   "win_rate_weighted": 0.596
-  },
-  "B R O R R I N": {
-   "rating": 49,
-   "matches": 23,
-   "win_rate_weighted": 0.652
-  },
-  "Bruno Bernal": {
-   "rating": 49,
-   "matches": 11,
-   "win_rate_weighted": 0.792
-  },
-  "Matriarch V": {
-   "rating": 48,
-   "matches": 49,
-   "win_rate_weighted": 0.545
-  },
-  "Ice Tea Citron Vert": {
-   "rating": 48,
-   "matches": 11,
-   "win_rate_weighted": 0.818
-  },
-  "Scrub Monks": {
-   "rating": 48,
-   "matches": 74,
-   "win_rate_weighted": 0.56
-  },
-  "Treecey": {
-   "rating": 48,
-   "matches": 11,
-   "win_rate_weighted": 0.769
-  },
-  "Trooper Got Style": {
-   "rating": 48,
-   "matches": 26,
-   "win_rate_weighted": 0.623
-  },
-  "Copetopia": {
-   "rating": 47,
-   "matches": 13,
-   "win_rate_weighted": 0.688
-  },
-  "The Legendary Dark": {
-   "rating": 47,
-   "matches": 18,
-   "win_rate_weighted": 0.611
-  },
-  "M U Rrr M E L": {
-   "rating": 47,
-   "matches": 17,
-   "win_rate_weighted": 0.657
-  },
-  "No Aegis": {
-   "rating": 47,
-   "matches": 10,
-   "win_rate_weighted": 0.8
-  },
-  "Cracks Within": {
-   "rating": 47,
-   "matches": 22,
-   "win_rate_weighted": 0.625
-  },
-  "Militia Templi": {
-   "rating": 47,
-   "matches": 17,
-   "win_rate_weighted": 0.659
-  },
-  "Meant To Dominate": {
-   "rating": 46,
-   "matches": 20,
-   "win_rate_weighted": 0.7
-  },
-  "Maka": {
-   "rating": 46,
-   "matches": 53,
-   "win_rate_weighted": 0.591
-  },
-  "America": {
-   "rating": 46,
-   "matches": 32,
-   "win_rate_weighted": 0.591
-  },
-  "Union Power": {
-   "rating": 46,
-   "matches": 19,
-   "win_rate_weighted": 0.684
-  },
-  "King": {
-   "rating": 46,
-   "matches": 31,
-   "win_rate_weighted": 0.592
-  },
-  "Paga Des Anges": {
-   "rating": 46,
-   "matches": 20,
-   "win_rate_weighted": 0.609
-  },
-  "Irrelevant Position": {
-   "rating": 46,
-   "matches": 14,
-   "win_rate_weighted": 0.786
-  },
-  "This Is Rotten": {
-   "rating": 46,
-   "matches": 12,
-   "win_rate_weighted": 0.731
-  },
-  "Losing Society": {
-   "rating": 46,
-   "matches": 15,
-   "win_rate_weighted": 0.733
-  },
-  "Virti": {
-   "rating": 45,
-   "matches": 42,
-   "win_rate_weighted": 0.559
-  },
-  "Dfb": {
-   "rating": 45,
-   "matches": 14,
-   "win_rate_weighted": 0.724
-  },
-  "Canadiann": {
-   "rating": 45,
-   "matches": 32,
-   "win_rate_weighted": 0.6
-  },
-  "Astro Turbo Disco": {
-   "rating": 45,
-   "matches": 15,
-   "win_rate_weighted": 0.733
-  },
-  "Poetry Of Ownage": {
-   "rating": 45,
-   "matches": 18,
-   "win_rate_weighted": 0.667
-  },
-  "Too Good To Rupt": {
-   "rating": 45,
-   "matches": 15,
-   "win_rate_weighted": 0.781
-  },
-  "Beat Of M Y Heart": {
-   "rating": 44,
-   "matches": 17,
-   "win_rate_weighted": 0.588
-  },
-  "Peloton Inter": {
-   "rating": 44,
-   "matches": 32,
-   "win_rate_weighted": 0.562
-  },
-  "My Own Fake": {
-   "rating": 44,
-   "matches": 27,
-   "win_rate_weighted": 0.6
-  },
-  "Schlange": {
-   "rating": 43,
-   "matches": 12,
-   "win_rate_weighted": 0.75
-  },
-  "X O X O Alex": {
-   "rating": 42,
-   "matches": 10,
-   "win_rate_weighted": 0.783
-  },
-  "Gang Luvs Frenzy": {
-   "rating": 41,
-   "matches": 31,
-   "win_rate_weighted": 0.585
-  },
-  "City Never Sleeps": {
-   "rating": 41,
-   "matches": 11,
-   "win_rate_weighted": 0.792
-  },
-  "Paragoons": {
-   "rating": 40,
-   "matches": 11,
-   "win_rate_weighted": 0.667
-  },
-  "I Cynn Of Ascalon I": {
-   "rating": 40,
-   "matches": 17,
-   "win_rate_weighted": 0.641
-  },
-  "Jan Dvorak": {
-   "rating": 40,
-   "matches": 26,
-   "win_rate_weighted": 0.649
-  },
-  "Jaz Ish": {
-   "rating": 40,
-   "matches": 10,
-   "win_rate_weighted": 0.708
-  },
-  "Rev That Monk": {
-   "rating": 39,
-   "matches": 76,
-   "win_rate_weighted": 0.534
-  },
-  "Dr Richard": {
-   "rating": 39,
-   "matches": 19,
-   "win_rate_weighted": 0.674
-  },
-  "Hermione Rranger": {
-   "rating": 38,
-   "matches": 15,
-   "win_rate_weighted": 0.719
+   "matches": 223,
+   "win_rate_weighted": 0.487
   },
   "Gods Comfort": {
-   "rating": 38,
-   "matches": 87,
-   "win_rate_weighted": 0.537
+   "rating": 59,
+   "matches": 134,
+   "win_rate_weighted": 0.526
   },
-  "European Rainy": {
-   "rating": 38,
+  "You Want It Darker": {
+   "rating": 59,
+   "matches": 26,
+   "win_rate_weighted": 0.731
+  },
+  "Serious Spirit": {
+   "rating": 58,
+   "matches": 46,
+   "win_rate_weighted": 0.509
+  },
+  "Matriarch V": {
+   "rating": 56,
+   "matches": 55,
+   "win_rate_weighted": 0.521
+  },
+  "Zara Celestra": {
+   "rating": 56,
+   "matches": 23,
+   "win_rate_weighted": 0.6
+  },
+  "Haeron Nordwolf": {
+   "rating": 54,
+   "matches": 68,
+   "win_rate_weighted": 0.553
+  },
+  "Zurrie": {
+   "rating": 53,
+   "matches": 121,
+   "win_rate_weighted": 0.602
+  },
+  "Hebe": {
+   "rating": 52,
+   "matches": 75,
+   "win_rate_weighted": 0.586
+  },
+  "Cr T I C A": {
+   "rating": 52,
+   "matches": 29,
+   "win_rate_weighted": 0.559
+  },
+  "Scrub Monks": {
+   "rating": 50,
+   "matches": 85,
+   "win_rate_weighted": 0.573
+  },
+  "Astro": {
+   "rating": 50,
+   "matches": 71,
+   "win_rate_weighted": 0.584
+  },
+  "Motoko Legit Titles": {
+   "rating": 48,
    "matches": 10,
-   "win_rate_weighted": 0.909
+   "win_rate_weighted": 0.846
   },
-  "The Iconic Liam": {
-   "rating": 37,
-   "matches": 24,
-   "win_rate_weighted": 0.615
-  },
-  "Eminent": {
-   "rating": 37,
-   "matches": 17,
-   "win_rate_weighted": 0.744
-  },
-  "Cuh": {
-   "rating": 37,
+  "Paragoons": {
+   "rating": 46,
    "matches": 11,
-   "win_rate_weighted": 0.727
+   "win_rate_weighted": 0.692
   },
-  "Bittersweet Goodbye": {
-   "rating": 37,
-   "matches": 12,
-   "win_rate_weighted": 0.778
-  },
-  "Kyle": {
-   "rating": 37,
+  "League Prodigy Shad": {
+   "rating": 46,
    "matches": 78,
-   "win_rate_weighted": 0.527
+   "win_rate_weighted": 0.512
   },
-  "Hex Panther S": {
-   "rating": 36,
-   "matches": 22,
-   "win_rate_weighted": 0.609
-  },
-  "Believe In Fate": {
-   "rating": 36,
-   "matches": 10,
-   "win_rate_weighted": 0.783
-  },
-  "Mighty Aspect": {
-   "rating": 36,
-   "matches": 10,
-   "win_rate_weighted": 0.7
-  },
-  "I M Your Redemption": {
-   "rating": 36,
-   "matches": 11,
-   "win_rate_weighted": 0.727
-  },
-  "You Fail Backline": {
-   "rating": 35,
-   "matches": 10,
-   "win_rate_weighted": 0.696
-  },
-  "Wanderlust": {
-   "rating": 35,
+  "This Is Rotten": {
+   "rating": 44,
    "matches": 12,
    "win_rate_weighted": 0.714
   },
-  "H A R A S S M E N T": {
+  "Generic Monking": {
+   "rating": 44,
+   "matches": 107,
+   "win_rate_weighted": 0.523
+  },
+  "Poetry Of Ownage": {
+   "rating": 43,
+   "matches": 57,
+   "win_rate_weighted": 0.575
+  },
+  "Solaris": {
+   "rating": 42,
+   "matches": 120,
+   "win_rate_weighted": 0.543
+  },
+  "Purrocious Assault": {
+   "rating": 41,
+   "matches": 10,
+   "win_rate_weighted": 1.0
+  },
+  "Sihoe": {
+   "rating": 37,
+   "matches": 141,
+   "win_rate_weighted": 0.487
+  },
+  "Failing Society": {
+   "rating": 36,
+   "matches": 22,
+   "win_rate_weighted": 0.636
+  },
+  "Billy": {
+   "rating": 35,
+   "matches": 84,
+   "win_rate_weighted": 0.511
+  },
+  "Unplayable Menace": {
    "rating": 34,
-   "matches": 18,
-   "win_rate_weighted": 0.833
-  },
-  "On Heals": {
-   "rating": 33,
-   "matches": 29,
-   "win_rate_weighted": 0.655
-  },
-  "Dark Fail Backline": {
-   "rating": 33,
-   "matches": 11,
-   "win_rate_weighted": 0.615
+   "matches": 131,
+   "win_rate_weighted": 0.489
   },
   "Brad Monk": {
    "rating": 33,
    "matches": 36,
-   "win_rate_weighted": 0.551
-  },
-  "W Is This S": {
-   "rating": 33,
-   "matches": 10,
-   "win_rate_weighted": 0.7
-  },
-  "Hear Me Howlin": {
-   "rating": 32,
-   "matches": 25,
-   "win_rate_weighted": 0.593
-  },
-  "Motoko Legit Titles": {
-   "rating": 32,
-   "matches": 10,
-   "win_rate_weighted": 0.87
-  },
-  "Maison Margiela": {
-   "rating": 32,
-   "matches": 12,
-   "win_rate_weighted": 0.6
-  },
-  "The Art Of Survival": {
-   "rating": 32,
-   "matches": 11,
-   "win_rate_weighted": 0.818
-  },
-  "Bonquiqui Jones": {
-   "rating": 32,
-   "matches": 15,
-   "win_rate_weighted": 0.733
-  },
-  "Cam": {
-   "rating": 32,
-   "matches": 16,
-   "win_rate_weighted": 0.667
-  },
-  "C Orellanus": {
-   "rating": 32,
-   "matches": 10,
-   "win_rate_weighted": 0.7
-  },
-  "Team On My Back Tho": {
-   "rating": 32,
-   "matches": 42,
-   "win_rate_weighted": 0.527
-  },
-  "Lilith Wraith": {
-   "rating": 31,
-   "matches": 29,
-   "win_rate_weighted": 0.492
-  },
-  "Holye Prayers": {
-   "rating": 31,
-   "matches": 18,
-   "win_rate_weighted": 0.722
+   "win_rate_weighted": 0.548
   },
   "Tokyo Act": {
+   "rating": 32,
+   "matches": 43,
+   "win_rate_weighted": 0.525
+  },
+  "Union Power": {
+   "rating": 32,
+   "matches": 19,
+   "win_rate_weighted": 0.684
+  },
+  "Virti": {
    "rating": 31,
-   "matches": 39,
-   "win_rate_weighted": 0.532
+   "matches": 82,
+   "win_rate_weighted": 0.526
   },
   "Lea Darkmoon": {
-   "rating": 31,
-   "matches": 21,
-   "win_rate_weighted": 0.619
-  },
-  "Failing Society": {
-   "rating": 31,
-   "matches": 12,
-   "win_rate_weighted": 0.667
-  },
-  "Serious Spirit": {
-   "rating": 31,
-   "matches": 46,
-   "win_rate_weighted": 0.505
-  },
-  "Hebe": {
    "rating": 30,
-   "matches": 39,
-   "win_rate_weighted": 0.59
+   "matches": 32,
+   "win_rate_weighted": 0.625
   },
-  "Lekter Got Style": {
+  "Taoh": {
    "rating": 30,
-   "matches": 27,
-   "win_rate_weighted": 0.596
+   "matches": 63,
+   "win_rate_weighted": 0.506
   },
-  "Comfort": {
-   "rating": 30,
-   "matches": 28,
-   "win_rate_weighted": 0.552
-  },
-  "Nerdi Simo": {
-   "rating": 30,
-   "matches": 10,
-   "win_rate_weighted": 0.7
-  },
-  "K K A N J I": {
-   "rating": 30,
-   "matches": 10,
-   "win_rate_weighted": 0.654
-  },
-  "D Hebe": {
-   "rating": 30,
-   "matches": 15,
-   "win_rate_weighted": 0.706
-  },
-  "Waitin On The Day": {
-   "rating": 30,
-   "matches": 10,
-   "win_rate_weighted": 0.682
-  },
-  "Mrt": {
-   "rating": 30,
-   "matches": 13,
-   "win_rate_weighted": 0.621
+  "Butters": {
+   "rating": 29,
+   "matches": 62,
+   "win_rate_weighted": 0.612
   },
   "Lemmm F T W": {
-   "rating": 29,
+   "rating": 28,
    "matches": 17,
    "win_rate_weighted": 0.588
   },
-  "Anesthesia Needed": {
-   "rating": 29,
-   "matches": 10,
-   "win_rate_weighted": 0.8
-  },
-  "Boon Kai": {
-   "rating": 29,
-   "matches": 10,
-   "win_rate_weighted": 0.7
-  },
-  "Astro": {
-   "rating": 29,
-   "matches": 29,
-   "win_rate_weighted": 0.556
-  },
-  "Andrus Obsidian": {
-   "rating": 29,
-   "matches": 11,
-   "win_rate_weighted": 0.636
-  },
-  "Lorrin": {
-   "rating": 29,
-   "matches": 11,
-   "win_rate_weighted": 0.727
-  },
-  "Maladaptive": {
-   "rating": 29,
+  "Beyond The Veils": {
+   "rating": 28,
    "matches": 14,
-   "win_rate_weighted": 0.643
+   "win_rate_weighted": 0.65
   },
-  "Schrei Nach Liebe": {
-   "rating": 29,
-   "matches": 10,
-   "win_rate_weighted": 0.8
-  },
-  "Spirit Never Dies": {
-   "rating": 29,
-   "matches": 10,
-   "win_rate_weighted": 0.682
-  },
-  "Magalicious Spirits": {
+  "Skaya": {
    "rating": 28,
-   "matches": 16,
-   "win_rate_weighted": 0.606
-  },
-  "Chrizzo Tastic": {
-   "rating": 28,
-   "matches": 27,
-   "win_rate_weighted": 0.556
-  },
-  "Rice Farming Mike": {
-   "rating": 28,
-   "matches": 79,
-   "win_rate_weighted": 0.515
-  },
-  "Iconic Liam": {
-   "rating": 28,
-   "matches": 10,
-   "win_rate_weighted": 0.714
-  },
-  "O My Gatos": {
-   "rating": 27,
-   "matches": 13,
-   "win_rate_weighted": 0.692
-  },
-  "Big Burton": {
-   "rating": 27,
-   "matches": 47,
-   "win_rate_weighted": 0.546
-  },
-  "I Cynnbad I": {
-   "rating": 27,
-   "matches": 19,
-   "win_rate_weighted": 0.561
-  },
-  "Mystic Button Smash": {
-   "rating": 26,
-   "matches": 11,
-   "win_rate_weighted": 0.64
-  },
-  "Another Nino": {
-   "rating": 26,
-   "matches": 19,
-   "win_rate_weighted": 0.579
-  },
-  "Sihoe": {
-   "rating": 26,
-   "matches": 136,
-   "win_rate_weighted": 0.495
-  },
-  "Starlight Rainfall": {
-   "rating": 26,
-   "matches": 14,
-   "win_rate_weighted": 0.594
-  },
-  "Shaman Pendulum": {
-   "rating": 25,
-   "matches": 11,
-   "win_rate_weighted": 0.654
-  },
-  "Paralympics": {
-   "rating": 25,
-   "matches": 10,
-   "win_rate_weighted": 0.682
-  },
-  "Canadians Revenge": {
-   "rating": 25,
-   "matches": 26,
-   "win_rate_weighted": 0.547
-  },
-  "Akroma Magas Reaper": {
-   "rating": 25,
-   "matches": 14,
-   "win_rate_weighted": 0.643
-  },
-  "Rachel Slurz": {
-   "rating": 25,
-   "matches": 16,
-   "win_rate_weighted": 0.636
-  },
-  "Druski": {
-   "rating": 25,
    "matches": 17,
-   "win_rate_weighted": 0.647
+   "win_rate_weighted": 0.52
   },
-  "Rev N": {
-   "rating": 24,
-   "matches": 22,
-   "win_rate_weighted": 0.551
+  "Hear Me Howlin": {
+   "rating": 28,
+   "matches": 55,
+   "win_rate_weighted": 0.542
   },
-  "Buttons": {
-   "rating": 24,
-   "matches": 11,
+  "Htl": {
+   "rating": 27,
+   "matches": 12,
+   "win_rate_weighted": 0.55
+  },
+  "Kyle": {
+   "rating": 25,
+   "matches": 178,
+   "win_rate_weighted": 0.503
+  },
+  "Failure Is The Key": {
+   "rating": 25,
+   "matches": 15,
    "win_rate_weighted": 0.667
-  },
-  "Il R E V Il": {
-   "rating": 24,
-   "matches": 10,
-   "win_rate_weighted": 0.619
-  },
-  "Canadian Ftw": {
-   "rating": 24,
-   "matches": 42,
-   "win_rate_weighted": 0.529
   },
   "I Kender I": {
    "rating": 24,
-   "matches": 27,
-   "win_rate_weighted": 0.5
+   "matches": 137,
+   "win_rate_weighted": 0.49
   },
-  "Almost Familiar": {
+  "Qui Gon Gin N Juice": {
    "rating": 24,
+   "matches": 100,
+   "win_rate_weighted": 0.53
+  },
+  "Too Fast For U Kids": {
+   "rating": 22,
+   "matches": 10,
+   "win_rate_weighted": 0.8
+  },
+  "Hawaiian Z A": {
+   "rating": 22,
+   "matches": 34,
+   "win_rate_weighted": 0.512
+  },
+  "My Sun And Stars": {
+   "rating": 20,
    "matches": 11,
-   "win_rate_weighted": 0.636
+   "win_rate_weighted": 0.583
   },
-  "Smel Ly": {
-   "rating": 23,
-   "matches": 14,
-   "win_rate_weighted": 0.571
-  },
-  "Cringe Things": {
-   "rating": 22,
-   "matches": 11,
-   "win_rate_weighted": 0.545
-  },
-  "Bc S Wachtel": {
-   "rating": 22,
-   "matches": 37,
-   "win_rate_weighted": 0.525
-  },
-  "Einstein Files": {
-   "rating": 22,
-   "matches": 14,
+  "Nerdi Simo": {
+   "rating": 20,
+   "matches": 10,
    "win_rate_weighted": 0.7
   },
-  "The Ga Nat": {
-   "rating": 21,
-   "matches": 10,
-   "win_rate_weighted": 0.6
-  },
-  "M A R A T H O N": {
-   "rating": 21,
-   "matches": 16,
-   "win_rate_weighted": 0.564
-  },
-  "Disco Shen": {
+  "Govori Z Duhovi": {
    "rating": 20,
-   "matches": 10,
-   "win_rate_weighted": 0.6
+   "matches": 152,
+   "win_rate_weighted": 0.48
   },
-  "Frenzy Healz": {
-   "rating": 20,
-   "matches": 19,
-   "win_rate_weighted": 0.524
-  },
-  "Holye Banner Bearer": {
+  "Team On My Back Tho": {
    "rating": 19,
-   "matches": 15,
-   "win_rate_weighted": 0.667
+   "matches": 176,
+   "win_rate_weighted": 0.526
   },
-  "Beastin Shen": {
+  "Another Nino": {
    "rating": 19,
    "matches": 19,
-   "win_rate_weighted": 0.575
+   "win_rate_weighted": 0.579
   },
-  "Black Belt Ele": {
-   "rating": 19,
-   "matches": 21,
-   "win_rate_weighted": 0.568
-  },
-  "Nashik Ellati": {
-   "rating": 19,
-   "matches": 11,
-   "win_rate_weighted": 0.609
-  },
-  "Trojan Vl": {
-   "rating": 19,
-   "matches": 10,
-   "win_rate_weighted": 0.625
-  },
-  "Frantz Fanon Dit": {
-   "rating": 19,
-   "matches": 11,
-   "win_rate_weighted": 0.536
-  },
-  "Celestial Deavon": {
-   "rating": 19,
-   "matches": 66,
-   "win_rate_weighted": 0.489
-  },
-  "Chronic": {
+  "Blaze Mantis": {
    "rating": 18,
-   "matches": 18,
-   "win_rate_weighted": 0.611
+   "matches": 25,
+   "win_rate_weighted": 0.52
   },
-  "Srz": {
-   "rating": 18,
-   "matches": 16,
-   "win_rate_weighted": 0.559
-  },
-  "Shaco Trick": {
-   "rating": 17,
-   "matches": 10,
-   "win_rate_weighted": 0.6
-  },
-  "Also Just Monk Here": {
-   "rating": 17,
-   "matches": 13,
-   "win_rate_weighted": 0.606
-  },
-  "Torn Riddle": {
-   "rating": 17,
-   "matches": 10,
-   "win_rate_weighted": 0.64
-  },
-  "This Is R O T T E N": {
-   "rating": 17,
-   "matches": 14,
-   "win_rate_weighted": 0.643
-  },
-  "Feanor Son Of Finwe": {
-   "rating": 17,
-   "matches": 15,
-   "win_rate_weighted": 0.6
-  },
-  "Eden": {
-   "rating": 17,
-   "matches": 20,
-   "win_rate_weighted": 0.578
-  },
-  "No Mechanics No Win": {
+  "Rev That Monk": {
    "rating": 16,
-   "matches": 20,
-   "win_rate_weighted": 0.578
+   "matches": 163,
+   "win_rate_weighted": 0.486
   },
-  "Vamonos A La Playa": {
-   "rating": 16,
-   "matches": 10,
-   "win_rate_weighted": 0.696
-  },
-  "Legendary Chrizzo": {
+  "Ff On": {
    "rating": 15,
-   "matches": 21,
+   "matches": 56,
+   "win_rate_weighted": 0.439
+  },
+  "Soul Reeding": {
+   "rating": 15,
+   "matches": 26,
    "win_rate_weighted": 0.533
   },
-  "Benoni": {
-   "rating": 15,
-   "matches": 12,
-   "win_rate_weighted": 0.6
-  },
-  "Lag Hijacker": {
+  "Train To Salamanca": {
    "rating": 15,
    "matches": 18,
-   "win_rate_weighted": 0.556
+   "win_rate_weighted": 0.481
   },
-  "Htl": {
+  "Ancien Outmacroz U": {
    "rating": 14,
-   "matches": 12,
-   "win_rate_weighted": 0.531
+   "matches": 63,
+   "win_rate_weighted": 0.471
   },
-  "I Mikoto Misaka I": {
+  "Erevos Spiritwalker": {
    "rating": 14,
-   "matches": 21,
-   "win_rate_weighted": 0.469
+   "matches": 101,
+   "win_rate_weighted": 0.5
   },
-  "Tamodo Kiari": {
-   "rating": 14,
-   "matches": 34,
-   "win_rate_weighted": 0.474
-  },
-  "I Lorrin I": {
-   "rating": 14,
-   "matches": 16,
-   "win_rate_weighted": 0.529
-  },
-  "Won Dong": {
+  "Mystic": {
    "rating": 13,
-   "matches": 34,
-   "win_rate_weighted": 0.522
-  },
-  "Aesthetic": {
-   "rating": 13,
-   "matches": 10,
-   "win_rate_weighted": 0.571
-  },
-  "Pet Mastery": {
-   "rating": 12,
-   "matches": 17,
-   "win_rate_weighted": 0.6
+   "matches": 143,
+   "win_rate_weighted": 0.512
   },
   "Suffering": {
    "rating": 12,
-   "matches": 162,
-   "win_rate_weighted": 0.502
+   "matches": 170,
+   "win_rate_weighted": 0.48
   },
-  "I C H R O N A I": {
-   "rating": 12,
-   "matches": 11,
-   "win_rate_weighted": 0.545
-  },
-  "Big Papa Regem": {
+  "God Luvs U": {
    "rating": 11,
-   "matches": 13,
-   "win_rate_weighted": 0.567
+   "matches": 25,
+   "win_rate_weighted": 0.414
   },
-  "Kender Califax": {
-   "rating": 10,
-   "matches": 11,
-   "win_rate_weighted": 0.565
+  "The Starting Over": {
+   "rating": 11,
+   "matches": 70,
+   "win_rate_weighted": 0.488
   },
-  "Tanking For Budz": {
+  "S A M O T H Y": {
    "rating": 10,
-   "matches": 23,
+   "matches": 62,
+   "win_rate_weighted": 0.463
+  },
+  "Geilster Typ Gideon": {
+   "rating": 10,
+   "matches": 35,
+   "win_rate_weighted": 0.543
+  },
+  "Chronic": {
+   "rating": 9,
+   "matches": 139,
    "win_rate_weighted": 0.521
   },
-  "No Wo Man No Cry": {
-   "rating": 10,
-   "matches": 11,
+  "Big Burton": {
+   "rating": 7,
+   "matches": 66,
+   "win_rate_weighted": 0.521
+  },
+  "Tamodo Kiari": {
+   "rating": 7,
+   "matches": 44,
+   "win_rate_weighted": 0.426
+  },
+  "Pascal Le Shacal": {
+   "rating": 7,
+   "matches": 10,
    "win_rate_weighted": 0.545
   },
-  "Secksy Liam": {
-   "rating": 10,
-   "matches": 11,
-   "win_rate_weighted": 0.565
+  "M U R M E L": {
+   "rating": 6,
+   "matches": 36,
+   "win_rate_weighted": 0.513
   },
-  "P O T U S": {
-   "rating": 10,
-   "matches": 16,
-   "win_rate_weighted": 0.515
-  },
-  "Eat What You Kill": {
-   "rating": 9,
-   "matches": 35,
-   "win_rate_weighted": 0.494
-  },
-  "Jamie Care Face": {
-   "rating": 9,
-   "matches": 10,
+  "Lag Hijacker": {
+   "rating": 3,
+   "matches": 28,
    "win_rate_weighted": 0.5
   },
-  "Feeble Fruitcake": {
-   "rating": 8,
-   "matches": 11,
-   "win_rate_weighted": 0.545
-  },
-  "Skaya": {
-   "rating": 8,
-   "matches": 15,
-   "win_rate_weighted": 0.486
-  },
-  "Predict Simon": {
-   "rating": 8,
-   "matches": 10,
-   "win_rate_weighted": 0.6
-  },
-  "Legendary Shakezz": {
-   "rating": 8,
-   "matches": 19,
-   "win_rate_weighted": 0.538
-  },
-  "Triste": {
-   "rating": 8,
-   "matches": 20,
-   "win_rate_weighted": 0.537
-  },
-  "Break Fu": {
-   "rating": 8,
-   "matches": 24,
-   "win_rate_weighted": 0.528
-  },
-  "Post Covid Player": {
-   "rating": 7,
-   "matches": 17,
+  "Megatron": {
+   "rating": 2,
+   "matches": 13,
    "win_rate_weighted": 0.462
   },
-  "Osmund Helbrederen": {
-   "rating": 7,
+  "Can O Whoop": {
+   "rating": 1,
+   "matches": 106,
+   "win_rate_weighted": 0.505
+  },
+  "The Last Wraith": {
+   "rating": 1,
+   "matches": 104,
+   "win_rate_weighted": 0.46
+  },
+  "Mini Dunkoro": {
+   "rating": 1,
+   "matches": 24,
+   "win_rate_weighted": 0.5
+  },
+  "Krystal": {
+   "rating": -2,
+   "matches": 72,
+   "win_rate_weighted": 0.456
+  },
+  "Holy Edwin": {
+   "rating": -4,
+   "matches": 11,
+   "win_rate_weighted": 0.455
+  },
+  "I Love You Emu": {
+   "rating": -6,
+   "matches": 13,
+   "win_rate_weighted": 0.538
+  },
+  "Chan Ta Su": {
+   "rating": -6,
+   "matches": 15,
+   "win_rate_weighted": 0.4
+  },
+  "I Mikoto Misaka I": {
+   "rating": -6,
+   "matches": 40,
+   "win_rate_weighted": 0.434
+  },
+  "Penge Piger Poser": {
+   "rating": -9,
    "matches": 15,
    "win_rate_weighted": 0.533
   },
-  "John On Dshot": {
-   "rating": 7,
-   "matches": 10,
-   "win_rate_weighted": 0.5
-  },
-  "Can O Whoop": {
-   "rating": 7,
-   "matches": 83,
-   "win_rate_weighted": 0.497
-  },
-  "David Mesmerize": {
-   "rating": 7,
-   "matches": 13,
-   "win_rate_weighted": 0.538
-  },
-  "Not Even Botting": {
-   "rating": 7,
-   "matches": 14,
-   "win_rate_weighted": 0.571
-  },
-  "Erevos Coldwalker": {
-   "rating": 7,
-   "matches": 19,
-   "win_rate_weighted": 0.526
-  },
-  "Leak": {
-   "rating": 6,
-   "matches": 62,
-   "win_rate_weighted": 0.523
-  },
-  "Chan Ta Su": {
-   "rating": 6,
-   "matches": 10,
-   "win_rate_weighted": 0.5
-  },
-  "Generic Discord": {
-   "rating": 6,
-   "matches": 11,
-   "win_rate_weighted": 0.545
-  },
-  "Sneakers": {
-   "rating": 6,
-   "matches": 30,
-   "win_rate_weighted": 0.493
-  },
-  "Shadow Luvs Frenzy": {
-   "rating": 6,
-   "matches": 15,
-   "win_rate_weighted": 0.516
-  },
-  "Topeak Custom Paint": {
-   "rating": 6,
-   "matches": 28,
-   "win_rate_weighted": 0.467
-  },
-  "Energizing Sun": {
-   "rating": 5,
-   "matches": 13,
-   "win_rate_weighted": 0.457
-  },
-  "Dgod": {
-   "rating": 5,
-   "matches": 10,
-   "win_rate_weighted": 0.571
-  },
-  "The Howling Void": {
-   "rating": 5,
-   "matches": 13,
-   "win_rate_weighted": 0.538
-  },
-  "Kier Hex": {
-   "rating": 4,
-   "matches": 15,
-   "win_rate_weighted": 0.469
-  },
-  "God Saves You": {
-   "rating": 4,
-   "matches": 10,
-   "win_rate_weighted": 0.5
-  },
-  "Retired Jamie": {
-   "rating": 4,
-   "matches": 13,
+  "Average Ho Ho Ho Ho": {
+   "rating": -9,
+   "matches": 105,
    "win_rate_weighted": 0.536
   },
-  "Blood Washes Bloood": {
-   "rating": 3,
-   "matches": 11,
-   "win_rate_weighted": 0.609
-  },
-  "Bip Me Pls": {
-   "rating": 3,
-   "matches": 26,
-   "win_rate_weighted": 0.462
-  },
-  "Shattered Wraith": {
-   "rating": 3,
-   "matches": 15,
-   "win_rate_weighted": 0.531
-  },
-  "Everlasting Sadness": {
-   "rating": 2,
-   "matches": 17,
-   "win_rate_weighted": 0.513
-  },
   "Fake": {
-   "rating": 2,
-   "matches": 111,
-   "win_rate_weighted": 0.509
+   "rating": -10,
+   "matches": 168,
+   "win_rate_weighted": 0.486
   },
-  "Jack L Eventreuse": {
-   "rating": 2,
-   "matches": 10,
-   "win_rate_weighted": 0.5
+  "Smart Quirande": {
+   "rating": -14,
+   "matches": 126,
+   "win_rate_weighted": 0.448
   },
-  "Haeron Nordwolf": {
-   "rating": 2,
-   "matches": 23,
-   "win_rate_weighted": 0.478
-  },
-  "Slight Healing": {
-   "rating": 2,
-   "matches": 10,
-   "win_rate_weighted": 0.478
-  },
-  "Mystic": {
-   "rating": 2,
-   "matches": 82,
-   "win_rate_weighted": 0.514
-  },
-  "Filli Chi Chi": {
-   "rating": 1,
-   "matches": 12,
-   "win_rate_weighted": 0.444
-  },
-  "Mitch": {
-   "rating": 1,
-   "matches": 10,
-   "win_rate_weighted": 0.478
-  },
-  "Pleb Ambassador": {
-   "rating": 1,
-   "matches": 10,
-   "win_rate_weighted": 0.7
-  },
-  "Human Made": {
-   "rating": 0,
-   "matches": 15,
-   "win_rate_weighted": 0.467
-  },
-  "Amygdaloid Mandel": {
-   "rating": 0,
-   "matches": 23,
-   "win_rate_weighted": 0.435
-  },
-  "Canadian Sauce": {
-   "rating": -1,
-   "matches": 21,
-   "win_rate_weighted": 0.476
-  },
-  "Beware Of Gideon": {
-   "rating": -1,
-   "matches": 13,
-   "win_rate_weighted": 0.538
-  },
-  "C E O Of Bejin Corn": {
-   "rating": -1,
-   "matches": 16,
-   "win_rate_weighted": 0.429
-  },
-  "Average Jo Momma": {
-   "rating": -2,
-   "matches": 16,
+  "Leak": {
+   "rating": -15,
+   "matches": 66,
    "win_rate_weighted": 0.529
   },
-  "Hawaiian Z A": {
-   "rating": -3,
-   "matches": 23,
-   "win_rate_weighted": 0.469
-  },
-  "Krystal Shield": {
-   "rating": -4,
-   "matches": 65,
-   "win_rate_weighted": 0.471
-  },
-  "Kam I Am": {
-   "rating": -4,
-   "matches": 12,
-   "win_rate_weighted": 0.538
-  },
-  "Reliccc": {
-   "rating": -5,
-   "matches": 14,
-   "win_rate_weighted": 0.5
-  },
-  "Tawangs Wanna Have": {
-   "rating": -5,
-   "matches": 50,
-   "win_rate_weighted": 0.455
-  },
-  "The Starting Over": {
-   "rating": -5,
-   "matches": 70,
-   "win_rate_weighted": 0.487
-  },
-  "Anaerobic": {
-   "rating": -5,
-   "matches": 12,
-   "win_rate_weighted": 0.417
-  },
-  "Badbuilddontrunit": {
-   "rating": -5,
-   "matches": 12,
-   "win_rate_weighted": 0.464
-  },
-  "Dshot Ur Dshot": {
-   "rating": -5,
-   "matches": 21,
-   "win_rate_weighted": 0.467
-  },
-  "Tab": {
-   "rating": -5,
-   "matches": 15,
-   "win_rate_weighted": 0.467
-  },
-  "Pestis": {
-   "rating": -5,
+  "Il Kuma": {
+   "rating": -15,
    "matches": 24,
-   "win_rate_weighted": 0.449
+   "win_rate_weighted": 0.194
   },
-  "Holye Heale": {
-   "rating": -6,
-   "matches": 14,
-   "win_rate_weighted": 0.424
-  },
-  "Average Jo Exotic": {
-   "rating": -6,
-   "matches": 14,
-   "win_rate_weighted": 0.571
-  },
-  "Slurs": {
-   "rating": -7,
-   "matches": 16,
-   "win_rate_weighted": 0.485
-  },
-  "Pig Fml": {
-   "rating": -7,
-   "matches": 23,
-   "win_rate_weighted": 0.46
-  },
-  "Somalian Daycare": {
-   "rating": -7,
-   "matches": 16,
-   "win_rate_weighted": 0.438
-  },
-  "Jaz Mat": {
-   "rating": -7,
-   "matches": 46,
-   "win_rate_weighted": 0.485
-  },
-  "Matt Rife": {
-   "rating": -8,
-   "matches": 18,
-   "win_rate_weighted": 0.444
-  },
-  "Devlls Reject Uk": {
-   "rating": -8,
-   "matches": 15,
-   "win_rate_weighted": 0.467
-  },
-  "Principal Actress": {
-   "rating": -9,
-   "matches": 33,
-   "win_rate_weighted": 0.486
-  },
-  "Target Mit Riss In": {
-   "rating": -9,
-   "matches": 25,
-   "win_rate_weighted": 0.453
-  },
-  "Jorn": {
-   "rating": -10,
-   "matches": 20,
-   "win_rate_weighted": 0.45
-  },
-  "Para Deez": {
-   "rating": -10,
-   "matches": 11,
-   "win_rate_weighted": 0.4
-  },
-  "Violent Delightz": {
-   "rating": -10,
-   "matches": 13,
-   "win_rate_weighted": 0.538
-  },
-  "Nutzniesser": {
-   "rating": -10,
-   "matches": 15,
-   "win_rate_weighted": 0.514
-  },
-  "Dark": {
-   "rating": -10,
-   "matches": 103,
-   "win_rate_weighted": 0.491
-  },
-  "Eight Bit Ranger": {
-   "rating": -10,
-   "matches": 38,
-   "win_rate_weighted": 0.436
-  },
-  "Gideon Extinction": {
-   "rating": -10,
-   "matches": 12,
-   "win_rate_weighted": 0.417
-  },
-  "Darkley": {
-   "rating": -11,
-   "matches": 17,
-   "win_rate_weighted": 0.412
-  },
-  "Golf Professional": {
-   "rating": -11,
-   "matches": 18,
-   "win_rate_weighted": 0.421
-  },
-  "Sharktopus Returns": {
-   "rating": -11,
-   "matches": 16,
-   "win_rate_weighted": 0.429
-  },
-  "Erevos Deathwalker": {
-   "rating": -12,
-   "matches": 11,
-   "win_rate_weighted": 0.455
-  },
-  "I Love Lady Gaga": {
-   "rating": -12,
-   "matches": 15,
-   "win_rate_weighted": 0.4
-  },
-  "Erevos Spiritwalker": {
-   "rating": -12,
-   "matches": 15,
-   "win_rate_weighted": 0.455
-  },
-  "Starlight Bad Karma": {
-   "rating": -13,
-   "matches": 21,
-   "win_rate_weighted": 0.512
-  },
-  "Whole Lotta Prots": {
-   "rating": -13,
-   "matches": 17,
-   "win_rate_weighted": 0.471
-  },
-  "Holy Edwin": {
-   "rating": -13,
-   "matches": 10,
-   "win_rate_weighted": 0.4
-  },
-  "Sco Ooms": {
-   "rating": -13,
-   "matches": 16,
-   "win_rate_weighted": 0.438
-  },
-  "King Shakezzz": {
-   "rating": -14,
-   "matches": 10,
-   "win_rate_weighted": 0.4
-  },
-  "I N S H A L L A H": {
-   "rating": -14,
-   "matches": 20,
-   "win_rate_weighted": 0.45
-  },
-  "S R S Lorrin": {
+  "Shadspect": {
    "rating": -15,
-   "matches": 11,
-   "win_rate_weighted": 0.435
+   "matches": 61,
+   "win_rate_weighted": 0.433
   },
-  "Kender": {
-   "rating": -15,
-   "matches": 15,
-   "win_rate_weighted": 0.467
-  },
-  "I Average Jo I": {
-   "rating": -15,
-   "matches": 28,
-   "win_rate_weighted": 0.421
-  },
-  "Xlrg": {
-   "rating": -15,
-   "matches": 12,
-   "win_rate_weighted": 0.32
-  },
-  "Pendulus": {
+  "Oko": {
    "rating": -16,
+   "matches": 81,
+   "win_rate_weighted": 0.547
+  },
+  "Mindpirate Boka Arr": {
+   "rating": -17,
    "matches": 18,
-   "win_rate_weighted": 0.486
+   "win_rate_weighted": 0.389
   },
-  "M U R M E L": {
-   "rating": -16,
-   "matches": 10,
-   "win_rate_weighted": 0.4
-  },
-  "Weo Weo Trevor": {
-   "rating": -16,
-   "matches": 10,
-   "win_rate_weighted": 0.407
-  },
-  "Demigod Aeneas": {
-   "rating": -17,
-   "matches": 14,
-   "win_rate_weighted": 0.531
-  },
-  "Shakezz On Shutdown": {
-   "rating": -17,
-   "matches": 118,
-   "win_rate_weighted": 0.479
-  },
-  "Dahasdf Asdkas": {
-   "rating": -17,
-   "matches": 42,
-   "win_rate_weighted": 0.452
-  },
-  "Eden Alternate": {
-   "rating": -17,
-   "matches": 17,
-   "win_rate_weighted": 0.444
-  },
-  "Doctor D I M A": {
+  "Chronically Dill": {
    "rating": -18,
-   "matches": 15,
-   "win_rate_weighted": 0.387
+   "matches": 37,
+   "win_rate_weighted": 0.488
   },
-  "I P Block Rejuv": {
-   "rating": -18,
-   "matches": 26,
-   "win_rate_weighted": 0.453
-  },
-  "Ya L La": {
-   "rating": -19,
-   "matches": 10,
-   "win_rate_weighted": 0.3
-  },
-  "Generic Monking": {
-   "rating": -19,
-   "matches": 52,
-   "win_rate_weighted": 0.462
-  },
-  "Primal Sneakers": {
-   "rating": -19,
-   "matches": 10,
-   "win_rate_weighted": 0.381
-  },
-  "Nacle": {
-   "rating": -19,
-   "matches": 40,
-   "win_rate_weighted": 0.465
-  },
-  "Dela Rue": {
+  "Hex Panther S": {
    "rating": -20,
-   "matches": 11,
-   "win_rate_weighted": 0.364
+   "matches": 75,
+   "win_rate_weighted": 0.475
   },
-  "Erevos Sunwalker": {
-   "rating": -20,
-   "matches": 11,
-   "win_rate_weighted": 0.4
-  },
-  "Stef Di Sterbehilfe": {
-   "rating": -20,
-   "matches": 28,
-   "win_rate_weighted": 0.357
-  },
-  "Egide": {
+  "Toast": {
    "rating": -21,
-   "matches": 53,
-   "win_rate_weighted": 0.434
+   "matches": 169,
+   "win_rate_weighted": 0.511
+  },
+  "Ele Take Pvp": {
+   "rating": -22,
+   "matches": 55,
+   "win_rate_weighted": 0.403
+  },
+  "Gettin It In": {
+   "rating": -23,
+   "matches": 51,
+   "win_rate_weighted": 0.367
+  },
+  "The Strong Gods": {
+   "rating": -23,
+   "matches": 34,
+   "win_rate_weighted": 0.353
+  },
+  "Stuff And Things I": {
+   "rating": -23,
+   "matches": 15,
+   "win_rate_weighted": 0.333
   },
   "Scooms": {
-   "rating": -23,
-   "matches": 47,
-   "win_rate_weighted": 0.46
-  },
-  "Archangl Michael": {
-   "rating": -23,
-   "matches": 16,
-   "win_rate_weighted": 0.375
-  },
-  "Elena Goes Rit": {
-   "rating": -23,
-   "matches": 14,
-   "win_rate_weighted": 0.345
-  },
-  "Chrizzo": {
-   "rating": -23,
-   "matches": 47,
-   "win_rate_weighted": 0.454
-  },
-  "Militia Christi": {
    "rating": -24,
-   "matches": 16,
-   "win_rate_weighted": 0.441
+   "matches": 196,
+   "win_rate_weighted": 0.46
   },
   "Three Crowns": {
    "rating": -24,
-   "matches": 13,
-   "win_rate_weighted": 0.379
+   "matches": 15,
+   "win_rate_weighted": 0.389
+  },
+  "Golf Professional": {
+   "rating": -25,
+   "matches": 61,
+   "win_rate_weighted": 0.435
   },
   "Abusive Pillow": {
-   "rating": -24,
-   "matches": 10,
-   "win_rate_weighted": 0.3
-  },
-  "Top Dif Shadow": {
-   "rating": -24,
-   "matches": 24,
-   "win_rate_weighted": 0.412
-  },
-  "Glowing Skaya": {
-   "rating": -24,
-   "matches": 32,
-   "win_rate_weighted": 0.406
-  },
-  "Taylur": {
-   "rating": -24,
-   "matches": 15,
-   "win_rate_weighted": 0.371
-  },
-  "Filli Chilli": {
    "rating": -25,
-   "matches": 11,
-   "win_rate_weighted": 0.348
-  },
-  "Matteo": {
-   "rating": -25,
-   "matches": 36,
-   "win_rate_weighted": 0.442
-  },
-  "Ancien": {
-   "rating": -25,
-   "matches": 57,
-   "win_rate_weighted": 0.454
-  },
-  "Albino The Reaper": {
-   "rating": -26,
-   "matches": 11,
-   "win_rate_weighted": 0.273
-  },
-  "St Laz": {
-   "rating": -26,
-   "matches": 84,
-   "win_rate_weighted": 0.457
-  },
-  "Ff On": {
-   "rating": -26,
-   "matches": 11,
-   "win_rate_weighted": 0.32
-  },
-  "The Dervish Bot": {
-   "rating": -26,
-   "matches": 11,
-   "win_rate_weighted": 0.273
+   "matches": 13,
+   "win_rate_weighted": 0.308
   },
   "Adamantine": {
+   "rating": -26,
+   "matches": 20,
+   "win_rate_weighted": 0.318
+  },
+  "Lag N E V E R Dead": {
+   "rating": -26,
+   "matches": 27,
+   "win_rate_weighted": 0.37
+  },
+  "Eden Alternate": {
    "rating": -27,
-   "matches": 10,
-   "win_rate_weighted": 0.286
+   "matches": 17,
+   "win_rate_weighted": 0.421
   },
-  "Beurk Kd Machine": {
-   "rating": -28,
-   "matches": 10,
-   "win_rate_weighted": 0.3
-  },
-  "Jamie Warlord": {
-   "rating": -28,
-   "matches": 25,
-   "win_rate_weighted": 0.44
-  },
-  "God Of Clean Value": {
-   "rating": -28,
-   "matches": 21,
-   "win_rate_weighted": 0.283
-  },
-  "Ele Take Pvp": {
-   "rating": -29,
-   "matches": 39,
-   "win_rate_weighted": 0.409
-  },
-  "Hacking Please Wait": {
+  "Jason Windbourne": {
    "rating": -30,
-   "matches": 49,
-   "win_rate_weighted": 0.438
+   "matches": 38,
+   "win_rate_weighted": 0.457
   },
-  "Spike On Dark": {
+  "Good Mythcal Mornng": {
    "rating": -31,
    "matches": 16,
-   "win_rate_weighted": 0.361
+   "win_rate_weighted": 0.263
   },
-  "Miss Unsympathetic": {
+  "Pet Mastery": {
    "rating": -31,
-   "matches": 11,
-   "win_rate_weighted": 0.273
+   "matches": 75,
+   "win_rate_weighted": 0.489
+  },
+  "Flo The Shaker": {
+   "rating": -31,
+   "matches": 12,
+   "win_rate_weighted": 0.25
+  },
+  "Dahasdf Asdkas": {
+   "rating": -32,
+   "matches": 69,
+   "win_rate_weighted": 0.431
   },
   "Arya Flammenschwert": {
-   "rating": -31,
-   "matches": 28,
-   "win_rate_weighted": 0.388
-  },
-  "Elert The Media": {
-   "rating": -31,
-   "matches": 26,
-   "win_rate_weighted": 0.268
-  },
-  "金foresta金": {
-   "rating": -31,
-   "matches": 13,
-   "win_rate_weighted": 0.231
-  },
-  "Reflet D Histoire": {
-   "rating": -32,
-   "matches": 12,
-   "win_rate_weighted": 0.32
-  },
-  "Undercover Filli": {
-   "rating": -32,
-   "matches": 12,
-   "win_rate_weighted": 0.286
-  },
-  "Rupt God Fistovich": {
-   "rating": -32,
-   "matches": 11,
-   "win_rate_weighted": 0.261
-  },
-  "Wraith": {
-   "rating": -32,
+   "rating": -33,
    "matches": 32,
-   "win_rate_weighted": 0.412
+   "win_rate_weighted": 0.378
   },
-  "Captain Supermann": {
-   "rating": -33,
-   "matches": 10,
-   "win_rate_weighted": 0.1
+  "Il Minerva Il": {
+   "rating": -34,
+   "matches": 118,
+   "win_rate_weighted": 0.439
   },
-  "Mick On Scyth": {
-   "rating": -33,
-   "matches": 16,
-   "win_rate_weighted": 0.312
+  "Yumy": {
+   "rating": -35,
+   "matches": 79,
+   "win_rate_weighted": 0.405
   },
   "Hex Panther Xv": {
-   "rating": -33,
+   "rating": -35,
    "matches": 20,
    "win_rate_weighted": 0.4
   },
-  "Not Now Maxing Glad": {
-   "rating": -34,
+  "Yannis Monks": {
+   "rating": -36,
+   "matches": 40,
+   "win_rate_weighted": 0.349
+  },
+  "Joni Ele": {
+   "rating": -39,
+   "matches": 15,
+   "win_rate_weighted": 0.2
+  },
+  "Heaton": {
+   "rating": -40,
+   "matches": 24,
+   "win_rate_weighted": 0.25
+  },
+  "Target Mit Riss In": {
+   "rating": -42,
+   "matches": 37,
+   "win_rate_weighted": 0.39
+  },
+  "Didi On Fyah": {
+   "rating": -42,
    "matches": 12,
    "win_rate_weighted": 0.167
   },
-  "Aranthil Haleth": {
-   "rating": -35,
-   "matches": 10,
-   "win_rate_weighted": 0.2
+  "Shakezz On Shutdown": {
+   "rating": -44,
+   "matches": 154,
+   "win_rate_weighted": 0.465
   },
-  "Flo The Shaker": {
-   "rating": -35,
-   "matches": 12,
-   "win_rate_weighted": 0.25
+  "Canadians Revenge": {
+   "rating": -44,
+   "matches": 159,
+   "win_rate_weighted": 0.463
   },
-  "Elena So Messy": {
-   "rating": -35,
-   "matches": 14,
-   "win_rate_weighted": 0.276
+  "Tawangs Wanna Have": {
+   "rating": -46,
+   "matches": 76,
+   "win_rate_weighted": 0.398
   },
-  "Xx Smelly Xx": {
-   "rating": -35,
-   "matches": 22,
-   "win_rate_weighted": 0.364
+  "Young Ossa": {
+   "rating": -46,
+   "matches": 19,
+   "win_rate_weighted": 0.286
   },
-  "Soulreaper Smyles": {
-   "rating": -35,
+  "Pros Never Fake": {
+   "rating": -47,
+   "matches": 15,
+   "win_rate_weighted": 0.222
+  },
+  "Miss Unsympathetic": {
+   "rating": -48,
+   "matches": 28,
+   "win_rate_weighted": 0.393
+  },
+  "Bc S Wachtel": {
+   "rating": -48,
+   "matches": 60,
+   "win_rate_weighted": 0.433
+  },
+  "Nyx Il": {
+   "rating": -50,
    "matches": 12,
    "win_rate_weighted": 0.154
   },
-  "Toast": {
-   "rating": -36,
-   "matches": 61,
-   "win_rate_weighted": 0.444
-  },
-  "Hex Panther": {
-   "rating": -36,
-   "matches": 48,
-   "win_rate_weighted": 0.444
-  },
-  "Not A Mile Legend": {
-   "rating": -36,
-   "matches": 20,
-   "win_rate_weighted": 0.333
-  },
-  "Im The Best Around": {
-   "rating": -37,
-   "matches": 12,
-   "win_rate_weighted": 0.32
-  },
-  "Out Run My Gun": {
-   "rating": -37,
-   "matches": 51,
-   "win_rate_weighted": 0.441
-  },
-  "Lasting Impact": {
-   "rating": -38,
-   "matches": 11,
-   "win_rate_weighted": 0.273
-  },
-  "Joni Ele": {
-   "rating": -38,
-   "matches": 10,
-   "win_rate_weighted": 0.2
-  },
-  "Tweetz Try": {
-   "rating": -39,
-   "matches": 17,
-   "win_rate_weighted": 0.235
-  },
-  "Arka Lon": {
-   "rating": -40,
-   "matches": 35,
-   "win_rate_weighted": 0.384
-  },
-  "Y A L L A": {
-   "rating": -40,
-   "matches": 25,
-   "win_rate_weighted": 0.358
-  },
-  "They Call Me Mandel": {
-   "rating": -41,
-   "matches": 17,
-   "win_rate_weighted": 0.135
-  },
-  "S N E A K O T H Y": {
-   "rating": -41,
-   "matches": 16,
-   "win_rate_weighted": 0.312
-  },
-  "I Dark Gladiator I": {
-   "rating": -43,
-   "matches": 11,
-   "win_rate_weighted": 0.273
-  },
-  "Xelima": {
-   "rating": -44,
-   "matches": 10,
-   "win_rate_weighted": 0.2
-  },
-  "Gods Gift Demi": {
-   "rating": -45,
-   "matches": 19,
-   "win_rate_weighted": 0.316
-  },
-  "Big Black Ritualist": {
-   "rating": -45,
-   "matches": 13,
-   "win_rate_weighted": 0.231
-  },
-  "Khem Lao": {
-   "rating": -45,
-   "matches": 10,
-   "win_rate_weighted": 0.2
-  },
-  "Il Kuma": {
-   "rating": -45,
-   "matches": 20,
-   "win_rate_weighted": 0.149
-  },
-  "Elert The Media Il": {
-   "rating": -45,
-   "matches": 10,
-   "win_rate_weighted": 0.0
-  },
-  "Rosa Emo X": {
-   "rating": -47,
-   "matches": 11,
-   "win_rate_weighted": 0.091
-  },
-  "Kender Monk Duty": {
-   "rating": -49,
-   "matches": 73,
-   "win_rate_weighted": 0.45
-  },
-  "Knock Knock Its Laz": {
-   "rating": -50,
-   "matches": 18,
-   "win_rate_weighted": 0.263
-  },
-  "Scooms Spam Rupts": {
-   "rating": -50,
-   "matches": 45,
-   "win_rate_weighted": 0.402
-  },
-  "Pros Never Fake": {
-   "rating": -50,
-   "matches": 15,
-   "win_rate_weighted": 0.242
-  },
-  "Out Shine All": {
-   "rating": -50,
-   "matches": 16,
-   "win_rate_weighted": 0.294
-  },
-  "Smart Quirande": {
+  "Paintball Mesmer": {
    "rating": -51,
-   "matches": 126,
-   "win_rate_weighted": 0.45
-  },
-  "Endless Game": {
-   "rating": -51,
-   "matches": 11,
-   "win_rate_weighted": 0.091
-  },
-  "Divin Arkalon": {
-   "rating": -51,
-   "matches": 11,
-   "win_rate_weighted": 0.182
-  },
-  "O Big Brain O": {
-   "rating": -52,
-   "matches": 11,
-   "win_rate_weighted": 0.091
-  },
-  "Elena Heartrend": {
-   "rating": -53,
-   "matches": 19,
-   "win_rate_weighted": 0.256
-  },
-  "Red Bar Barbie": {
-   "rating": -53,
-   "matches": 11,
-   "win_rate_weighted": 0.167
-  },
-  "Relic": {
-   "rating": -53,
-   "matches": 45,
-   "win_rate_weighted": 0.409
-  },
-  "Rev": {
-   "rating": -54,
-   "matches": 29,
-   "win_rate_weighted": 0.403
-  },
-  "El Ele Makele": {
-   "rating": -54,
-   "matches": 14,
-   "win_rate_weighted": 0.194
-  },
-  "Canadian Loves You": {
-   "rating": -54,
-   "matches": 17,
-   "win_rate_weighted": 0.294
-  },
-  "I Warrior Dan I": {
-   "rating": -55,
    "matches": 10,
    "win_rate_weighted": 0.1
   },
-  "Yannis": {
-   "rating": -55,
-   "matches": 30,
-   "win_rate_weighted": 0.333
-  },
-  "Ro Si E": {
-   "rating": -55,
-   "matches": 12,
-   "win_rate_weighted": 0.167
-  },
-  "Mini Azura": {
-   "rating": -56,
+  "May Itsuko": {
+   "rating": -53,
    "matches": 12,
    "win_rate_weighted": 0.083
   },
-  "Hopper Jiveslayer": {
-   "rating": -56,
-   "matches": 13,
-   "win_rate_weighted": 0.154
-  },
-  "Void Titan": {
-   "rating": -56,
-   "matches": 10,
-   "win_rate_weighted": 0.095
-  },
-  "Skaya Soultaker": {
-   "rating": -57,
-   "matches": 14,
-   "win_rate_weighted": 0.214
+  "Undercover Filli": {
+   "rating": -54,
+   "matches": 73,
+   "win_rate_weighted": 0.376
   },
   "Ill Kender Ftw Ill": {
-   "rating": -57,
+   "rating": -55,
    "matches": 14,
    "win_rate_weighted": 0.214
   },
-  "Reppoh Kered": {
-   "rating": -58,
-   "matches": 15,
-   "win_rate_weighted": 0.133
-  },
-  "Tenshi Meiu": {
-   "rating": -58,
+  "I The King Of Monks": {
+   "rating": -56,
    "matches": 18,
-   "win_rate_weighted": 0.167
+   "win_rate_weighted": 0.111
   },
-  "Senglior Is Lost": {
-   "rating": -59,
-   "matches": 12,
+  "Healy Mchealsface": {
+   "rating": -56,
+   "matches": 11,
    "win_rate_weighted": 0.154
   },
-  "Whurling Heals": {
-   "rating": -59,
-   "matches": 24,
-   "win_rate_weighted": 0.245
+  "Beastmode Confirmed": {
+   "rating": -58,
+   "matches": 46,
+   "win_rate_weighted": 0.24
   },
-  "Dee Viscerate": {
-   "rating": -59,
-   "matches": 20,
-   "win_rate_weighted": 0.25
-  },
-  "Ixxxl": {
-   "rating": -61,
-   "matches": 10,
-   "win_rate_weighted": 0.0
-  },
-  "Endless V O I D": {
-   "rating": -61,
-   "matches": 12,
-   "win_rate_weighted": 0.083
-  },
-  "Gettin It In": {
-   "rating": -61,
-   "matches": 45,
-   "win_rate_weighted": 0.344
-  },
-  "Eight Bit Mesmer": {
-   "rating": -62,
-   "matches": 31,
-   "win_rate_weighted": 0.297
-  },
-  "Daga Superstar": {
-   "rating": -62,
-   "matches": 17,
-   "win_rate_weighted": 0.229
-  },
-  "X Kate In Chainz X": {
-   "rating": -62,
-   "matches": 11,
-   "win_rate_weighted": 0.083
-  },
-  "Elena": {
-   "rating": -62,
-   "matches": 42,
-   "win_rate_weighted": 0.295
-  },
-  "Azura Luvs Elec": {
-   "rating": -62,
-   "matches": 24,
-   "win_rate_weighted": 0.216
-  },
-  "Nyx Il": {
-   "rating": -62,
-   "matches": 12,
-   "win_rate_weighted": 0.12
-  },
-  "Tweetyz Exway": {
-   "rating": -63,
-   "matches": 13,
-   "win_rate_weighted": 0.077
-  },
-  "Princesse Aziatik": {
-   "rating": -63,
-   "matches": 10,
-   "win_rate_weighted": 0.0
-  },
-  "May Itsuko": {
-   "rating": -63,
-   "matches": 12,
-   "win_rate_weighted": 0.083
-  },
-  "U T Element": {
-   "rating": -63,
-   "matches": 11,
-   "win_rate_weighted": 0.091
-  },
-  "Ixlxl": {
-   "rating": -65,
-   "matches": 10,
-   "win_rate_weighted": 0.0
-  },
-  "Stomper Aspect": {
-   "rating": -65,
+  "Anonymous Kraken": {
+   "rating": -58,
    "matches": 18,
-   "win_rate_weighted": 0.256
+   "win_rate_weighted": 0.222
   },
-  "Readymade": {
-   "rating": -65,
-   "matches": 15,
-   "win_rate_weighted": 0.133
-  },
-  "Elena On Tour": {
-   "rating": -65,
-   "matches": 15,
-   "win_rate_weighted": 0.2
-  },
-  "Il Minerva Il": {
-   "rating": -66,
-   "matches": 105,
-   "win_rate_weighted": 0.441
-  },
-  "Eden Reaps Sigils": {
-   "rating": -66,
-   "matches": 27,
-   "win_rate_weighted": 0.333
-  },
-  "S A M O T H Y": {
-   "rating": -66,
-   "matches": 49,
-   "win_rate_weighted": 0.382
-  },
-  "Dima": {
-   "rating": -67,
-   "matches": 34,
-   "win_rate_weighted": 0.355
-  },
-  "Albino The Monk": {
-   "rating": -67,
-   "matches": 11,
-   "win_rate_weighted": 0.0
-  },
-  "Link Healz Ya": {
-   "rating": -67,
-   "matches": 50,
-   "win_rate_weighted": 0.378
-  },
-  "Minerva": {
-   "rating": -68,
-   "matches": 18,
-   "win_rate_weighted": 0.211
-  },
-  "Ko Arkalon": {
-   "rating": -69,
-   "matches": 70,
-   "win_rate_weighted": 0.382
-  },
-  "Lazarus On Down": {
-   "rating": -69,
-   "matches": 13,
-   "win_rate_weighted": 0.077
-  },
-  "I Am Your Psy": {
-   "rating": -69,
-   "matches": 10,
-   "win_rate_weighted": 0.0
-  },
-  "Specialist Legacy": {
-   "rating": -70,
-   "matches": 12,
-   "win_rate_weighted": 0.08
-  },
-  "That Aint Falcoo": {
-   "rating": -71,
-   "matches": 14,
-   "win_rate_weighted": 0.071
-  },
-  "Topeak Goes Monk": {
-   "rating": -71,
-   "matches": 29,
-   "win_rate_weighted": 0.306
+  "Tenshi Meiu": {
+   "rating": -59,
+   "matches": 21,
+   "win_rate_weighted": 0.143
   },
   "Uzukai Heals Ya": {
-   "rating": -71,
+   "rating": -59,
    "matches": 10,
    "win_rate_weighted": 0.0
   },
-  "I Disorder I": {
-   "rating": -73,
-   "matches": 14,
-   "win_rate_weighted": 0.071
-  },
-  "Beastmode Confirmed": {
-   "rating": -74,
-   "matches": 42,
-   "win_rate_weighted": 0.261
-  },
-  "E L O S": {
-   "rating": -74,
-   "matches": 12,
-   "win_rate_weighted": 0.0
-  },
-  "Glatze": {
-   "rating": -74,
-   "matches": 12,
-   "win_rate_weighted": 0.0
-  },
-  "Tara The Taunter": {
-   "rating": -75,
+  "Gwen The Noob": {
+   "rating": -59,
    "matches": 16,
    "win_rate_weighted": 0.125
   },
-  "Liaeline Pvp": {
-   "rating": -77,
+  "Kahmal On Tour": {
+   "rating": -61,
+   "matches": 12,
+   "win_rate_weighted": 0.154
+  },
+  "Yagua": {
+   "rating": -61,
+   "matches": 16,
+   "win_rate_weighted": 0.059
+  },
+  "Dervboom": {
+   "rating": -62,
+   "matches": 15,
+   "win_rate_weighted": 0.235
+  },
+  "Whurling Rupts": {
+   "rating": -62,
+   "matches": 33,
+   "win_rate_weighted": 0.233
+  },
+  "La Dorade": {
+   "rating": -62,
+   "matches": 18,
+   "win_rate_weighted": 0.143
+  },
+  "Link Healz Ya": {
+   "rating": -62,
+   "matches": 62,
+   "win_rate_weighted": 0.37
+  },
+  "Energizing Sun": {
+   "rating": -63,
+   "matches": 45,
+   "win_rate_weighted": 0.373
+  },
+  "Topeak Custom Paint": {
+   "rating": -64,
+   "matches": 69,
+   "win_rate_weighted": 0.364
+  },
+  "Oatmilk": {
+   "rating": -64,
+   "matches": 11,
+   "win_rate_weighted": 0.0
+  },
+  "Bogdan Cel Maret": {
+   "rating": -64,
    "matches": 12,
    "win_rate_weighted": 0.0
   },
-  "I Kat Eer Healer I": {
-   "rating": -77,
-   "matches": 11,
-   "win_rate_weighted": 0.0
-  },
-  "Art Of Minerva": {
-   "rating": -78,
-   "matches": 22,
-   "win_rate_weighted": 0.182
-  },
-  "Xavien Monk": {
-   "rating": -80,
-   "matches": 18,
-   "win_rate_weighted": 0.105
-  },
-  "Jojos Ritu": {
-   "rating": -80,
-   "matches": 17,
-   "win_rate_weighted": 0.056
-  },
-  "Cute Little Strike": {
-   "rating": -80,
-   "matches": 79,
-   "win_rate_weighted": 0.387
-  },
-  "Rc Rc Rc Rc Rc Rc": {
-   "rating": -82,
-   "matches": 26,
-   "win_rate_weighted": 0.19
-  },
-  "月foresta月": {
-   "rating": -82,
-   "matches": 18,
-   "win_rate_weighted": 0.111
-  },
-  "Dee Velaryon": {
-   "rating": -82,
-   "matches": 11,
-   "win_rate_weighted": 0.0
-  },
-  "Ninooooooo": {
-   "rating": -83,
-   "matches": 71,
-   "win_rate_weighted": 0.407
-  },
-  "K U M B A T": {
-   "rating": -83,
-   "matches": 14,
-   "win_rate_weighted": 0.065
-  },
-  "M A N D E L B R O T": {
-   "rating": -83,
-   "matches": 31,
-   "win_rate_weighted": 0.182
-  },
-  "Zauberstunde": {
-   "rating": -84,
-   "matches": 15,
-   "win_rate_weighted": 0.0
-  },
-  "Bink So Spy": {
-   "rating": -84,
-   "matches": 22,
-   "win_rate_weighted": 0.149
+  "S N E A K O T H Y": {
+   "rating": -65,
+   "matches": 69,
+   "win_rate_weighted": 0.403
   },
   "Chappy": {
-   "rating": -84,
-   "matches": 71,
-   "win_rate_weighted": 0.377
+   "rating": -66,
+   "matches": 79,
+   "win_rate_weighted": 0.352
   },
-  "Asian Grouper": {
-   "rating": -84,
-   "matches": 18,
-   "win_rate_weighted": 0.111
+  "Cute Little Strike": {
+   "rating": -66,
+   "matches": 108,
+   "win_rate_weighted": 0.383
   },
-  "Death Gets Everyone": {
-   "rating": -85,
-   "matches": 52,
-   "win_rate_weighted": 0.343
-  },
-  "Khoko": {
-   "rating": -86,
-   "matches": 16,
-   "win_rate_weighted": 0.062
-  },
-  "Sleek Sword": {
-   "rating": -86,
+  "Jonson Infooze Test": {
+   "rating": -66,
    "matches": 14,
-   "win_rate_weighted": 0.0
+   "win_rate_weighted": 0.222
   },
   "Morx": {
-   "rating": -88,
-   "matches": 32,
-   "win_rate_weighted": 0.188
-  },
-  "I Sky I V I": {
-   "rating": -89,
-   "matches": 21,
-   "win_rate_weighted": 0.19
-  },
-  "Gods Silliest Goos": {
-   "rating": -91,
-   "matches": 15,
-   "win_rate_weighted": 0.0
-  },
-  "Eden Echoes": {
-   "rating": -92,
-   "matches": 92,
-   "win_rate_weighted": 0.402
-  },
-  "Bird Calling Bird": {
-   "rating": -93,
-   "matches": 15,
-   "win_rate_weighted": 0.0
-  },
-  "Dreadful Xanax": {
-   "rating": -93,
-   "matches": 18,
-   "win_rate_weighted": 0.056
-  },
-  "Cynn Soulpyre": {
-   "rating": -94,
-   "matches": 16,
-   "win_rate_weighted": 0.056
-  },
-  "Karl Monky": {
-   "rating": -94,
-   "matches": 23,
-   "win_rate_weighted": 0.217
-  },
-  "Only Specialist": {
-   "rating": -95,
-   "matches": 16,
-   "win_rate_weighted": 0.056
-  },
-  "Big Brain Soumz": {
-   "rating": -95,
-   "matches": 25,
-   "win_rate_weighted": 0.12
-  },
-  "C H U J C O": {
-   "rating": -97,
-   "matches": 20,
-   "win_rate_weighted": 0.136
-  },
-  "Minah Athena": {
-   "rating": -100,
-   "matches": 21,
-   "win_rate_weighted": 0.093
-  },
-  "Neo Reinstalled": {
-   "rating": -101,
-   "matches": 62,
-   "win_rate_weighted": 0.369
-  },
-  "Eight Bit Pve Spear": {
-   "rating": -101,
-   "matches": 46,
-   "win_rate_weighted": 0.305
-  },
-  "Rosa Gigglebox": {
-   "rating": -101,
+   "rating": -67,
    "matches": 33,
-   "win_rate_weighted": 0.261
+   "win_rate_weighted": 0.182
   },
-  "Nicta Via": {
-   "rating": -102,
-   "matches": 19,
-   "win_rate_weighted": 0.103
-  },
-  "Sleek Silky Smooth": {
-   "rating": -103,
-   "matches": 28,
-   "win_rate_weighted": 0.169
-  },
-  "Kier With Teeth": {
-   "rating": -104,
-   "matches": 26,
-   "win_rate_weighted": 0.175
-  },
-  "Endless Pulse": {
-   "rating": -105,
-   "matches": 20,
-   "win_rate_weighted": 0.095
-  },
-  "Jaina Proudmune": {
-   "rating": -106,
-   "matches": 34,
-   "win_rate_weighted": 0.147
-  },
-  "Rc Rockar Fella": {
-   "rating": -106,
+  "Albino The Monk": {
+   "rating": -67,
    "matches": 29,
-   "win_rate_weighted": 0.207
-  },
-  "Ima Island Boy": {
-   "rating": -107,
-   "matches": 38,
-   "win_rate_weighted": 0.183
-  },
-  "Metal Prots": {
-   "rating": -110,
-   "matches": 20,
-   "win_rate_weighted": 0.091
-  },
-  "Peter La Anguila": {
-   "rating": -111,
-   "matches": 21,
-   "win_rate_weighted": 0.128
-  },
-  "Miss Mac": {
-   "rating": -111,
-   "matches": 17,
-   "win_rate_weighted": 0.0
-  },
-  "Cant Touch Dis Pvp": {
-   "rating": -112,
-   "matches": 22,
-   "win_rate_weighted": 0.13
-  },
-  "Saphira": {
-   "rating": -113,
-   "matches": 20,
    "win_rate_weighted": 0.143
   },
-  "Lazmanian Devil": {
-   "rating": -113,
-   "matches": 29,
-   "win_rate_weighted": 0.2
+  "Jorn": {
+   "rating": -70,
+   "matches": 45,
+   "win_rate_weighted": 0.311
   },
-  "Glen The Glen": {
-   "rating": -114,
-   "matches": 17,
-   "win_rate_weighted": 0.0
+  "Kalimoon": {
+   "rating": -70,
+   "matches": 16,
+   "win_rate_weighted": 0.188
   },
-  "Brainrot Balance": {
-   "rating": -118,
-   "matches": 35,
-   "win_rate_weighted": 0.184
+  "Mini Spe": {
+   "rating": -71,
+   "matches": 36,
+   "win_rate_weighted": 0.179
   },
-  "Velve Goes Rao": {
-   "rating": -118,
-   "matches": 18,
-   "win_rate_weighted": 0.054
+  "Mini Azura": {
+   "rating": -72,
+   "matches": 39,
+   "win_rate_weighted": 0.19
   },
   "Legendary Nalle": {
-   "rating": -119,
+   "rating": -73,
    "matches": 55,
    "win_rate_weighted": 0.218
   },
-  "Bonetti Returns": {
-   "rating": -119,
-   "matches": 44,
-   "win_rate_weighted": 0.232
+  "Ya L La": {
+   "rating": -74,
+   "matches": 70,
+   "win_rate_weighted": 0.286
+  },
+  "That Aint Falcoo": {
+   "rating": -74,
+   "matches": 22,
+   "win_rate_weighted": 0.136
+  },
+  "The Assassin Bot": {
+   "rating": -75,
+   "matches": 22,
+   "win_rate_weighted": 0.136
+  },
+  "Cookie Monksterrr": {
+   "rating": -76,
+   "matches": 17,
+   "win_rate_weighted": 0.053
+  },
+  "Mini A Moua": {
+   "rating": -77,
+   "matches": 22,
+   "win_rate_weighted": 0.091
+  },
+  "Brainrot Balance": {
+   "rating": -78,
+   "matches": 83,
+   "win_rate_weighted": 0.315
+  },
+  "Damian Lillard I": {
+   "rating": -79,
+   "matches": 58,
+   "win_rate_weighted": 0.177
+  },
+  "Asteria Baleia": {
+   "rating": -79,
+   "matches": 23,
+   "win_rate_weighted": 0.13
+  },
+  "Cynn Soulpyre": {
+   "rating": -79,
+   "matches": 16,
+   "win_rate_weighted": 0.05
+  },
+  "Yamamoto": {
+   "rating": -81,
+   "matches": 13,
+   "win_rate_weighted": 0.0
+  },
+  "Karl Monky": {
+   "rating": -81,
+   "matches": 23,
+   "win_rate_weighted": 0.217
+  },
+  "Kleiner Troll": {
+   "rating": -82,
+   "matches": 28,
+   "win_rate_weighted": 0.147
+  },
+  "Soulreaper Smyles": {
+   "rating": -84,
+   "matches": 42,
+   "win_rate_weighted": 0.188
+  },
+  "Spyro Elementaliste": {
+   "rating": -85,
+   "matches": 18,
+   "win_rate_weighted": 0.111
+  },
+  "Tara The Taunter": {
+   "rating": -86,
+   "matches": 43,
+   "win_rate_weighted": 0.302
+  },
+  "Neo Reinstalled": {
+   "rating": -87,
+   "matches": 75,
+   "win_rate_weighted": 0.354
+  },
+  "I Warrior Dan I": {
+   "rating": -88,
+   "matches": 14,
+   "win_rate_weighted": 0.067
+  },
+  "Escape Arka": {
+   "rating": -89,
+   "matches": 17,
+   "win_rate_weighted": 0.059
+  },
+  "Nicta Via": {
+   "rating": -90,
+   "matches": 21,
+   "win_rate_weighted": 0.136
+  },
+  "Teris Ahrundell": {
+   "rating": -90,
+   "matches": 12,
+   "win_rate_weighted": 0.125
+  },
+  "Vera Hits Stuff": {
+   "rating": -90,
+   "matches": 11,
+   "win_rate_weighted": 0.0
+  },
+  "Dark Chujco": {
+   "rating": -91,
+   "matches": 26,
+   "win_rate_weighted": 0.167
+  },
+  "Do I Wanna Know": {
+   "rating": -92,
+   "matches": 19,
+   "win_rate_weighted": 0.04
+  },
+  "Ninooooooo": {
+   "rating": -93,
+   "matches": 87,
+   "win_rate_weighted": 0.4
+  },
+  "Glowing Skaya": {
+   "rating": -93,
+   "matches": 62,
+   "win_rate_weighted": 0.323
+  },
+  "Headless Kier": {
+   "rating": -93,
+   "matches": 51,
+   "win_rate_weighted": 0.271
+  },
+  "Dl S C O S T U": {
+   "rating": -95,
+   "matches": 55,
+   "win_rate_weighted": 0.242
+  },
+  "Miss Mac": {
+   "rating": -97,
+   "matches": 17,
+   "win_rate_weighted": 0.0
+  },
+  "Saint Pio X": {
+   "rating": -98,
+   "matches": 21,
+   "win_rate_weighted": 0.13
+  },
+  "P T Element": {
+   "rating": -100,
+   "matches": 31,
+   "win_rate_weighted": 0.226
+  },
+  "Tessa Roxx": {
+   "rating": -101,
+   "matches": 17,
+   "win_rate_weighted": 0.059
+  },
+  "Di Ma The Barber": {
+   "rating": -104,
+   "matches": 62,
+   "win_rate_weighted": 0.361
+  },
+  "Lebron Our Savior": {
+   "rating": -106,
+   "matches": 30,
+   "win_rate_weighted": 0.065
+  },
+  "Comono Ganemos Mato": {
+   "rating": -107,
+   "matches": 23,
+   "win_rate_weighted": 0.069
+  },
+  "Saphira Il": {
+   "rating": -109,
+   "matches": 21,
+   "win_rate_weighted": 0.13
   },
   "Schatten Heal": {
-   "rating": -120,
+   "rating": -109,
    "matches": 19,
    "win_rate_weighted": 0.053
   },
-  "Senhor Bazuri": {
-   "rating": -128,
-   "matches": 50,
-   "win_rate_weighted": 0.309
-  },
-  "I Jojos Monk I": {
-   "rating": -128,
-   "matches": 30,
-   "win_rate_weighted": 0.167
-  },
-  "Greens": {
-   "rating": -132,
-   "matches": 28,
-   "win_rate_weighted": 0.07
-  },
-  "Sunny Runs": {
-   "rating": -136,
+  "Alchemist": {
+   "rating": -109,
    "matches": 20,
-   "win_rate_weighted": 0.0
+   "win_rate_weighted": 0.125
   },
-  "M A N D E L": {
-   "rating": -137,
-   "matches": 49,
-   "win_rate_weighted": 0.21
+  "Reliccc": {
+   "rating": -110,
+   "matches": 167,
+   "win_rate_weighted": 0.424
   },
-  "Toxic Players": {
-   "rating": -139,
-   "matches": 53,
-   "win_rate_weighted": 0.25
+  "Cant Touch Dis Pvp": {
+   "rating": -110,
+   "matches": 23,
+   "win_rate_weighted": 0.115
   },
-  "Sch Izzo": {
-   "rating": -144,
-   "matches": 33,
-   "win_rate_weighted": 0.174
+  "E A Sports": {
+   "rating": -112,
+   "matches": 32,
+   "win_rate_weighted": 0.121
   },
-  "P A T A": {
-   "rating": -148,
+  "Eden Echoes": {
+   "rating": -113,
+   "matches": 147,
+   "win_rate_weighted": 0.428
+  },
+  "I Disorder I": {
+   "rating": -115,
+   "matches": 30,
+   "win_rate_weighted": 0.1
+  },
+  "Dmkc": {
+   "rating": -117,
+   "matches": 30,
+   "win_rate_weighted": 0.118
+  },
+  "Senglior Is Dry": {
+   "rating": -119,
+   "matches": 25,
+   "win_rate_weighted": 0.074
+  },
+  "Elemenopoop Healer": {
+   "rating": -120,
+   "matches": 22,
+   "win_rate_weighted": 0.04
+  },
+  "Carol Sturka": {
+   "rating": -121,
    "matches": 26,
-   "win_rate_weighted": 0.038
+   "win_rate_weighted": 0.143
   },
-  "Beast King Betty": {
-   "rating": -157,
+  "Senhor Bazuri": {
+   "rating": -122,
+   "matches": 60,
+   "win_rate_weighted": 0.314
+  },
+  "Eight Bit Pve Spear": {
+   "rating": -122,
+   "matches": 139,
+   "win_rate_weighted": 0.331
+  },
+  "Arkalon": {
+   "rating": -123,
+   "matches": 140,
+   "win_rate_weighted": 0.381
+  },
+  "Tweetyz Exway": {
+   "rating": -124,
+   "matches": 44,
+   "win_rate_weighted": 0.149
+  },
+  "Xavien Monk": {
+   "rating": -125,
+   "matches": 34,
+   "win_rate_weighted": 0.077
+  },
+  "Princesse Aziatik": {
+   "rating": -126,
+   "matches": 28,
+   "win_rate_weighted": 0.107
+  },
+  "I Sky I V I": {
+   "rating": -130,
+   "matches": 31,
+   "win_rate_weighted": 0.129
+  },
+  "Minerva": {
+   "rating": -132,
+   "matches": 53,
+   "win_rate_weighted": 0.218
+  },
+  "Sunny Bee Good": {
+   "rating": -132,
    "matches": 24,
    "win_rate_weighted": 0.042
   },
-  "Tango Chu": {
-   "rating": -161,
-   "matches": 90,
-   "win_rate_weighted": 0.321
+  "Runic Sovereign": {
+   "rating": -132,
+   "matches": 24,
+   "win_rate_weighted": 0.143
+  },
+  "Aldric Broadblade": {
+   "rating": -137,
+   "matches": 37,
+   "win_rate_weighted": 0.108
+  },
+  "Laz La La": {
+   "rating": -138,
+   "matches": 151,
+   "win_rate_weighted": 0.374
   },
   "Jc Tavastia": {
-   "rating": -162,
-   "matches": 31,
-   "win_rate_weighted": 0.065
+   "rating": -140,
+   "matches": 33,
+   "win_rate_weighted": 0.061
   },
-  "Mind F L U X": {
-   "rating": -163,
-   "matches": 37,
-   "win_rate_weighted": 0.132
+  "Pro Sells War": {
+   "rating": -142,
+   "matches": 34,
+   "win_rate_weighted": 0.083
   },
-  "I Y": {
-   "rating": -163,
-   "matches": 85,
-   "win_rate_weighted": 0.328
+  "Big Black Ginger": {
+   "rating": -142,
+   "matches": 41,
+   "win_rate_weighted": 0.095
   },
   "Ringle Rangle Bob": {
+   "rating": -143,
+   "matches": 65,
+   "win_rate_weighted": 0.206
+  },
+  "Oi Big Brain Ol": {
+   "rating": -144,
+   "matches": 49,
+   "win_rate_weighted": 0.135
+  },
+  "Ima Island Boy": {
+   "rating": -144,
+   "matches": 93,
+   "win_rate_weighted": 0.22
+  },
+  "月foresta月": {
+   "rating": -146,
+   "matches": 51,
+   "win_rate_weighted": 0.157
+  },
+  "I Y": {
+   "rating": -146,
+   "matches": 125,
+   "win_rate_weighted": 0.382
+  },
+  "Fresh Dumbledore C": {
+   "rating": -148,
+   "matches": 100,
+   "win_rate_weighted": 0.196
+  },
+  "Reppoh Kered": {
+   "rating": -150,
+   "matches": 46,
+   "win_rate_weighted": 0.174
+  },
+  "Snare On Skunk": {
+   "rating": -153,
+   "matches": 33,
+   "win_rate_weighted": 0.03
+  },
+  "Minah Athena": {
+   "rating": -155,
+   "matches": 35,
+   "win_rate_weighted": 0.053
+  },
+  "Snowy Grouper": {
+   "rating": -157,
+   "matches": 45,
+   "win_rate_weighted": 0.13
+  },
+  "Rc Rc Rc Rc Rc Rc": {
+   "rating": -162,
+   "matches": 69,
+   "win_rate_weighted": 0.213
+  },
+  "Farm Ha Q": {
+   "rating": -163,
+   "matches": 32,
+   "win_rate_weighted": 0.0
+  },
+  "Aali Ya": {
+   "rating": -163,
+   "matches": 22,
+   "win_rate_weighted": 0.034
+  },
+  "Rosa Gigglebox": {
+   "rating": -164,
+   "matches": 60,
+   "win_rate_weighted": 0.206
+  },
+  "Tango Chu": {
    "rating": -165,
-   "matches": 56,
-   "win_rate_weighted": 0.217
+   "matches": 143,
+   "win_rate_weighted": 0.296
+  },
+  "Ro Si E": {
+   "rating": -165,
+   "matches": 42,
+   "win_rate_weighted": 0.116
+  },
+  "Sunny Rawr": {
+   "rating": -166,
+   "matches": 34,
+   "win_rate_weighted": 0.071
+  },
+  "Kemetian": {
+   "rating": -168,
+   "matches": 62,
+   "win_rate_weighted": 0.21
+  },
+  "Sina Xena": {
+   "rating": -168,
+   "matches": 47,
+   "win_rate_weighted": 0.128
+  },
+  "Daga": {
+   "rating": -169,
+   "matches": 57,
+   "win_rate_weighted": 0.206
+  },
+  "Illusionist Mick": {
+   "rating": -173,
+   "matches": 72,
+   "win_rate_weighted": 0.197
+  },
+  "Xlrg": {
+   "rating": -175,
+   "matches": 48,
+   "win_rate_weighted": 0.078
   },
   "Fede": {
-   "rating": -174,
-   "matches": 49,
-   "win_rate_weighted": 0.124
-  },
-  "Teeny Bop Monk": {
-   "rating": -177,
-   "matches": 31,
-   "win_rate_weighted": 0.088
-  },
-  "Psychic Dps": {
-   "rating": -178,
-   "matches": 51,
-   "win_rate_weighted": 0.175
-  },
-  "Juusto": {
-   "rating": -178,
-   "matches": 85,
-   "win_rate_weighted": 0.224
+   "rating": -182,
+   "matches": 60,
+   "win_rate_weighted": 0.116
   },
   "O La Morgana O": {
    "rating": -186,
-   "matches": 28,
-   "win_rate_weighted": 0.083
+   "matches": 31,
+   "win_rate_weighted": 0.114
   },
-  "Negate Attack": {
-   "rating": -186,
-   "matches": 64,
-   "win_rate_weighted": 0.224
-  },
-  "Farmer Il": {
-   "rating": -186,
-   "matches": 37,
-   "win_rate_weighted": 0.054
-  },
-  "Pop Xanax Relax": {
-   "rating": -189,
-   "matches": 72,
-   "win_rate_weighted": 0.268
-  },
-  "Sina Xena": {
-   "rating": -197,
-   "matches": 45,
-   "win_rate_weighted": 0.133
-  },
-  "Glen": {
-   "rating": -199,
-   "matches": 50,
-   "win_rate_weighted": 0.152
-  },
-  "Power From Beyond": {
-   "rating": -200,
-   "matches": 41,
-   "win_rate_weighted": 0.135
-  },
-  "Wayne Mooo": {
-   "rating": -205,
-   "matches": 41,
-   "win_rate_weighted": 0.08
-  },
-  "Mick On Steroidz": {
-   "rating": -205,
+  "Mind F L U X": {
+   "rating": -187,
    "matches": 49,
-   "win_rate_weighted": 0.127
-  },
-  "Fresh Dumbledore C": {
-   "rating": -216,
-   "matches": 81,
-   "win_rate_weighted": 0.189
-  },
-  "I Atchoum I": {
-   "rating": -221,
-   "matches": 60,
-   "win_rate_weighted": 0.153
-  },
-  "Tiddy Monster": {
-   "rating": -234,
-   "matches": 59,
-   "win_rate_weighted": 0.149
-  },
-  "First Time Gvg": {
-   "rating": -235,
-   "matches": 53,
-   "win_rate_weighted": 0.134
-  },
-  "B A R B I E E E": {
-   "rating": -239,
-   "matches": 69,
-   "win_rate_weighted": 0.19
-  },
-  "Light Of Judgment": {
-   "rating": -239,
-   "matches": 61,
-   "win_rate_weighted": 0.145
-  },
-  "Barbie On Top": {
-   "rating": -243,
-   "matches": 46,
-   "win_rate_weighted": 0.086
-  },
-  "Minimari Nakutzio": {
-   "rating": -250,
-   "matches": 68,
-   "win_rate_weighted": 0.148
-  },
-  "Berzerker Man": {
-   "rating": -256,
-   "matches": 55,
-   "win_rate_weighted": 0.126
-  },
-  "Columbo": {
-   "rating": -265,
-   "matches": 70,
    "win_rate_weighted": 0.113
   },
-  "Yndra Vol": {
-   "rating": -269,
+  "Psychic Dps": {
+   "rating": -190,
+   "matches": 71,
+   "win_rate_weighted": 0.153
+  },
+  "X S Y Y": {
+   "rating": -190,
+   "matches": 76,
+   "win_rate_weighted": 0.159
+  },
+  "I Kat Eer Healer I": {
+   "rating": -198,
+   "matches": 38,
+   "win_rate_weighted": 0.025
+  },
+  "Sleek Sword": {
+   "rating": -198,
    "matches": 52,
    "win_rate_weighted": 0.091
   },
-  "Everything Is Free": {
-   "rating": -272,
-   "matches": 57,
-   "win_rate_weighted": 0.102
+  "Elena": {
+   "rating": -199,
+   "matches": 126,
+   "win_rate_weighted": 0.284
   },
-  "Tonbinski": {
-   "rating": -276,
-   "matches": 62,
-   "win_rate_weighted": 0.138
+  "Juusto": {
+   "rating": -201,
+   "matches": 121,
+   "win_rate_weighted": 0.207
+  },
+  "Sch Izzo": {
+   "rating": -204,
+   "matches": 56,
+   "win_rate_weighted": 0.159
+  },
+  "Power From Beyond": {
+   "rating": -207,
+   "matches": 48,
+   "win_rate_weighted": 0.117
+  },
+  "Columbo": {
+   "rating": -207,
+   "matches": 82,
+   "win_rate_weighted": 0.14
+  },
+  "El Ele Makele": {
+   "rating": -214,
+   "matches": 51,
+   "win_rate_weighted": 0.136
+  },
+  "First Time Gvg": {
+   "rating": -220,
+   "matches": 63,
+   "win_rate_weighted": 0.145
+  },
+  "Kunkka": {
+   "rating": -222,
+   "matches": 44,
+   "win_rate_weighted": 0.065
+  },
+  "Death Gets Everyone": {
+   "rating": -223,
+   "matches": 170,
+   "win_rate_weighted": 0.302
+  },
+  "Everything Is Free": {
+   "rating": -228,
+   "matches": 58,
+   "win_rate_weighted": 0.097
   },
   "I Dark Egg I": {
-   "rating": -320,
-   "matches": 114,
-   "win_rate_weighted": 0.194
+   "rating": -228,
+   "matches": 129,
+   "win_rate_weighted": 0.203
+  },
+  "K O Kick Motok O": {
+   "rating": -229,
+   "matches": 50,
+   "win_rate_weighted": 0.053
+  },
+  "Tiddy Monster": {
+   "rating": -231,
+   "matches": 70,
+   "win_rate_weighted": 0.123
+  },
+  "Wayne Mooo": {
+   "rating": -242,
+   "matches": 54,
+   "win_rate_weighted": 0.067
+  },
+  "Deevine Favor": {
+   "rating": -243,
+   "matches": 57,
+   "win_rate_weighted": 0.092
+  },
+  "I Atchoum I": {
+   "rating": -250,
+   "matches": 76,
+   "win_rate_weighted": 0.125
+  },
+  "M A N D E L": {
+   "rating": -263,
+   "matches": 163,
+   "win_rate_weighted": 0.209
+  },
+  "Light Of Judgment": {
+   "rating": -268,
+   "matches": 78,
+   "win_rate_weighted": 0.131
+  },
+  "Teeny": {
+   "rating": -281,
+   "matches": 52,
+   "win_rate_weighted": 0.051
+  },
+  "Yndra Vol": {
+   "rating": -303,
+   "matches": 65,
+   "win_rate_weighted": 0.069
+  },
+  "Jojos Mesmer": {
+   "rating": -314,
+   "matches": 85,
+   "win_rate_weighted": 0.103
+  },
+  "Glen": {
+   "rating": -316,
+   "matches": 86,
+   "win_rate_weighted": 0.12
+  },
+  "Negate Attack": {
+   "rating": -369,
+   "matches": 132,
+   "win_rate_weighted": 0.167
+  },
+  "Barbie On Top": {
+   "rating": -436,
+   "matches": 140,
+   "win_rate_weighted": 0.164
+  },
+  "Endless Pulse": {
+   "rating": -569,
+   "matches": 137,
+   "win_rate_weighted": 0.085
   }
  }
 }

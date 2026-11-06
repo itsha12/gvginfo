@@ -1,268 +1,268 @@
 {
  "matches": 30,
- "offset": 0.2,
+ "offset": -0.3,
  "values": {
   "boost": {
-   "n": 95,
-   "matches": 26,
-   "result": 5.0,
+   "n": 101,
+   "matches": 27,
+   "result": 4.0,
    "result_90": [
-    -0.8,
-    10.1
+    -9.7,
+    15.8
    ],
-   "model": 1.7,
+   "model": 2.6,
    "model_90": [
-    -2.4,
-    6.0
+    0.9,
+    4.5
    ],
    "clear": false
   },
   "capture": {
-   "n": 336,
+   "n": 339,
    "matches": 30,
-   "result": 2.0,
+   "result": 4.3,
    "result_90": [
-    0.3,
-    4.0
+    2.5,
+    6.1
    ],
-   "model": 3.0,
+   "model": 6.3,
    "model_90": [
-    1.1,
-    5.2
+    4.1,
+    8.2
    ],
    "clear": true
   },
   "death (any)": {
-   "n": 586,
-   "matches": 29,
-   "result": -4.2,
+   "n": 599,
+   "matches": 30,
+   "result": -9.3,
    "result_90": [
-    -7.5,
-    -1.6
+    -14.4,
+    -4.5
    ],
-   "model": -3.0,
+   "model": -6.6,
    "model_90": [
-    -4.7,
-    -1.4
+    -9.2,
+    -4.0
    ],
    "clear": true
   },
   "death: against a spike build": {
    "n": 220,
    "matches": 11,
-   "result": -3.8,
+   "result": -7.2,
    "result_90": [
-    -9.6,
-    3.2
+    -17.1,
+    6.5
    ],
-   "model": -1.8,
+   "model": -4.2,
    "model_90": [
-    -3.1,
-    -0.7
+    -7.2,
+    -1.3
    ],
    "clear": false
   },
   "death: against other builds": {
-   "n": 366,
-   "matches": 23,
-   "result": -4.5,
+   "n": 379,
+   "matches": 24,
+   "result": -10.5,
    "result_90": [
-    -9.3,
-    -0.6
+    -17.7,
+    -3.2
    ],
-   "model": -3.7,
+   "model": -8.0,
    "model_90": [
-    -6.2,
-    -1.4
+    -11.5,
+    -4.8
    ],
    "clear": true
   },
   "death: back within 20 s": {
    "n": 100,
    "matches": 27,
-   "result": -3.1,
+   "result": -6.9,
    "result_90": [
-    -8.6,
-    1.8
+    -16.5,
+    2.4
    ],
-   "model": -2.6,
+   "model": -3.7,
    "model_90": [
-    -5.1,
-    -0.2
+    -7.2,
+    -0.8
    ],
    "clear": false
   },
   "death: down 20 to 60 s": {
-   "n": 203,
-   "matches": 29,
-   "result": -4.2,
+   "n": 212,
+   "matches": 30,
+   "result": -10.2,
    "result_90": [
-    -10.1,
-    1.2
+    -17.0,
+    -3.4
    ],
-   "model": -0.0,
+   "model": -6.2,
    "model_90": [
-    -2.1,
-    2.2
+    -12.2,
+    -1.7
    ],
-   "clear": false
+   "clear": true
   },
   "death: down 60 s or more": {
-   "n": 283,
-   "matches": 29,
-   "result": -4.6,
+   "n": 287,
+   "matches": 30,
+   "result": -9.5,
    "result_90": [
-    -9.0,
-    -0.2
+    -16.5,
+    -2.7
    ],
-   "model": -5.2,
+   "model": -7.9,
    "model_90": [
-    -8.5,
-    -2.4
+    -11.6,
+    -4.6
    ],
    "clear": true
   },
   "death: healer": {
-   "n": 207,
-   "matches": 29,
-   "result": -1.2,
+   "n": 210,
+   "matches": 30,
+   "result": -4.3,
    "result_90": [
-    -4.4,
-    1.8
+    -9.7,
+    0.9
    ],
-   "model": -2.2,
+   "model": -5.5,
    "model_90": [
-    -3.9,
-    -0.7
+    -8.0,
+    -3.2
    ],
    "clear": false
   },
   "death: healer in own base or pit, back within 15 s (likely deliberate)": {
    "n": 13,
    "matches": 8,
-   "result": 3.3,
+   "result": -6.8,
    "result_90": [
-    -7.8,
-    20.0
+    -33.5,
+    19.1
    ],
-   "model": 4.1,
+   "model": -4.3,
    "model_90": [
-    -4.1,
-    17.8
+    -15.5,
+    3.1
    ],
    "clear": false
   },
   "death: healer, other": {
-   "n": 194,
-   "matches": 29,
-   "result": -1.5,
+   "n": 197,
+   "matches": 30,
+   "result": -4.1,
    "result_90": [
-    -4.4,
-    1.0
+    -9.0,
+    0.7
    ],
-   "model": -2.7,
+   "model": -5.6,
    "model_90": [
-    -4.3,
-    -1.0
+    -8.3,
+    -3.1
    ],
    "clear": false
   },
   "death: not a healer": {
-   "n": 379,
-   "matches": 29,
-   "result": -5.9,
+   "n": 389,
+   "matches": 30,
+   "result": -12.0,
    "result_90": [
-    -10.1,
-    -1.8
+    -18.8,
+    -5.5
    ],
-   "model": -3.4,
+   "model": -7.2,
    "model_90": [
-    -5.2,
-    -1.7
+    -10.1,
+    -4.3
    ],
    "clear": true
   },
   "pit NPC lost (any): taken by a spike build": {
    "n": 60,
    "matches": 10,
-   "result": -1.8,
+   "result": 0.4,
    "result_90": [
-    -9.1,
-    9.8
+    -5.7,
+    11.2
    ],
-   "model": -1.3,
+   "model": 0.5,
    "model_90": [
-    -4.2,
-    1.9
+    -0.6,
+    1.7
    ],
    "clear": false
   },
   "pit NPC lost (any): taken by other builds": {
-   "n": 181,
-   "matches": 26,
-   "result": -3.6,
+   "n": 189,
+   "matches": 27,
+   "result": -5.2,
    "result_90": [
-    -8.0,
-    0.2
+    -11.7,
+    0.8
    ],
-   "model": 3.9,
+   "model": -0.9,
    "model_90": [
-    1.3,
-    6.5
+    -3.7,
+    2.2
    ],
    "clear": false
   },
   "pit NPC lost: archer": {
-   "n": 138,
-   "matches": 29,
-   "result": -4.2,
+   "n": 141,
+   "matches": 30,
+   "result": -1.3,
    "result_90": [
-    -8.3,
-    -0.7
+    -5.7,
+    3.3
    ],
-   "model": -1.0,
+   "model": -0.5,
    "model_90": [
-    -3.4,
-    1.4
+    -3.3,
+    2.2
    ],
-   "clear": true
+   "clear": false
   },
   "pit NPC lost: bodyguard": {
-   "n": 35,
-   "matches": 29,
-   "result": 0.1,
+   "n": 36,
+   "matches": 30,
+   "result": -3.7,
    "result_90": [
-    -6.0,
-    7.0
+    -9.2,
+    1.6
    ],
-   "model": 6.2,
+   "model": -2.2,
    "model_90": [
-    2.1,
-    10.7
+    -6.3,
+    1.8
    ],
    "clear": false
   },
   "pit NPC lost: knight": {
-   "n": 68,
-   "matches": 28,
-   "result": -2.5,
+   "n": 72,
+   "matches": 29,
+   "result": -8.8,
    "result_90": [
-    -9.3,
-    3.8
+    -17.3,
+    -1.4
    ],
-   "model": 8.3,
+   "model": 0.3,
    "model_90": [
-    2.7,
-    13.8
+    -2.6,
+    3.0
    ],
-   "clear": false
+   "clear": true
   }
  },
  "causes": {
   "deaths": {
    "result": "death (any)",
-   "result_value": -4.2,
-   "base_rate": 0.0131,
+   "result_value": -9.3,
+   "base_rate": 0.0127,
    "unit": "per 10 s in that state",
    "terms": [
     {
@@ -272,8 +272,18 @@
       7.5,
       8.0
      ],
-     "result_chance_change": 2.7,
-     "win_points": -0.11
+     "result_chance_change": 2.5,
+     "win_points": -0.24
+    },
+    {
+     "term": "strength_gap",
+     "description": "own minus enemy team strength",
+     "range": [
+      426.0,
+      721.0
+     ],
+     "result_chance_change": -0.6,
+     "win_points": 0.05
     },
     {
      "term": "health_pct",
@@ -282,28 +292,8 @@
       1.0,
       48.5
      ],
-     "result_chance_change": 11.1,
-     "win_points": -0.46
-    },
-    {
-     "term": "strength_gap",
-     "description": "own minus enemy team strength",
-     "range": [
-      480.5,
-      1092.0
-     ],
-     "result_chance_change": -0.7,
-     "win_points": 0.03
-    },
-    {
-     "term": "health_ceiling",
-     "description": "maximum health after death penalty, as a share of normal",
-     "range": [
-      0.4,
-      0.64
-     ],
-     "result_chance_change": 5.8,
-     "win_points": -0.24
+     "result_chance_change": 10.2,
+     "win_points": -0.95
     },
     {
      "term": "local_diff",
@@ -312,25 +302,45 @@
       -8.0,
       -3.5
      ],
-     "result_chance_change": 4.4,
-     "win_points": -0.19
+     "result_chance_change": 4.1,
+     "win_points": -0.38
+    },
+    {
+     "term": "health_ceiling",
+     "description": "maximum health after death penalty, as a share of normal",
+     "range": [
+      0.4,
+      0.64
+     ],
+     "result_chance_change": 4.8,
+     "win_points": -0.44
+    },
+    {
+     "term": "healers_in_range",
+     "description": "own healers alive within cast range",
+     "range": [
+      0.0,
+      0.5
+     ],
+     "result_chance_change": 0.7,
+     "win_points": -0.06
     },
     {
      "term": "dist_own_pit",
      "description": "distance from its own pit",
      "range": [
-      13044.5,
-      18511.0
+      13000.5,
+      18468.0
      ],
-     "result_chance_change": 1.4,
-     "win_points": -0.06
+     "result_chance_change": 1.1,
+     "win_points": -0.11
     }
    ]
   },
   "kill_conversion": {
    "result": "death (any)",
-   "result_value": 4.2,
-   "base_rate": 0.2984,
+   "result_value": 9.3,
+   "base_rate": 0.3004,
    "unit": "per burst, for the attacking team",
    "terms": [
     {
@@ -340,8 +350,8 @@
       0.4,
       0.56
      ],
-     "result_chance_change": 30.0,
-     "win_points": 1.26
+     "result_chance_change": 28.5,
+     "win_points": 2.65
     },
     {
      "term": "burst_damage",
@@ -350,18 +360,18 @@
       547.5,
       839.0
      ],
-     "result_chance_change": 19.9,
-     "win_points": 0.83
+     "result_chance_change": 18.2,
+     "win_points": 1.7
     },
     {
      "term": "target_health_pct",
      "description": "target health % when the burst started",
      "range": [
       0.0,
-      41.5
+      40.5
      ],
-     "result_chance_change": 23.5,
-     "win_points": 0.99
+     "result_chance_change": 23.6,
+     "win_points": 2.19
     },
     {
      "term": "target_healers_in_range",
@@ -370,8 +380,8 @@
       0.0,
       0.5
      ],
-     "result_chance_change": 22.4,
-     "win_points": 0.94
+     "result_chance_change": 21.3,
+     "win_points": 1.98
     },
     {
      "term": "target_prot_up",
@@ -380,25 +390,25 @@
       0.5,
       1.0
      ],
-     "result_chance_change": -7.5,
-     "win_points": -0.32
+     "result_chance_change": -7.9,
+     "win_points": -0.73
     },
     {
      "term": "minute",
      "description": "match minute",
      "range": [
       0.3,
-      1.35
+      1.45
      ],
-     "result_chance_change": -9.0,
-     "win_points": -0.38
+     "result_chance_change": -10.3,
+     "win_points": -0.96
     }
    ]
   },
   "npc_loss": {
    "result": "pit NPC lost",
-   "result_value": -3.1,
-   "base_rate": 0.191,
+   "result_value": -3.8,
+   "base_rate": 0.1754,
    "unit": "per case, for the defending team",
    "terms": [
     {
@@ -408,28 +418,18 @@
       7.5,
       8.0
      ],
-     "result_chance_change": -17.0,
-     "win_points": 0.52
+     "result_chance_change": -15.7,
+     "win_points": 0.6
     },
     {
      "term": "npc_damage_5s",
      "description": "damage on the pit NPCs in the last 5 s",
      "range": [
-      360.5,
+      363.5,
       1170.0
      ],
-     "result_chance_change": 28.7,
-     "win_points": -0.89
-    },
-    {
-     "term": "defenders_elsewhere",
-     "description": "own players alive outside the pit",
-     "range": [
-      0.0,
-      0.5
-     ],
-     "result_chance_change": 21.7,
-     "win_points": -0.67
+     "result_chance_change": 27.8,
+     "win_points": -1.06
     },
     {
      "term": "attackers",
@@ -438,38 +438,28 @@
       7.5,
       8.0
      ],
-     "result_chance_change": 20.5,
-     "win_points": -0.63
+     "result_chance_change": 23.1,
+     "win_points": -0.88
     },
     {
-     "term": "attackers_lord_dps",
-     "description": "attackers' measured damage per second against a Lord (benchmarks)",
+     "term": "defenders_elsewhere",
+     "description": "own players alive outside the pit",
      "range": [
-      101.65,
-      156.3
+      0.0,
+      0.5
      ],
-     "result_chance_change": 14.9,
-     "win_points": -0.46
+     "result_chance_change": 22.3,
+     "win_points": -0.85
     },
     {
      "term": "strength_gap",
      "description": "attacking minus defending team strength",
      "range": [
-      480.5,
-      636.0
+      -682.0,
+      -377.0
      ],
-     "result_chance_change": 14.7,
-     "win_points": -0.46
-    },
-    {
-     "term": "full_pit_targets",
-     "description": "pit NPCs alive (targets the defending monks must watch, P9)",
-     "range": [
-      6.5,
-      9.0
-     ],
-     "result_chance_change": 26.0,
-     "win_points": -0.81
+     "result_chance_change": -9.0,
+     "win_points": 0.34
     },
     {
      "term": "defender_healers",
@@ -478,8 +468,18 @@
       0.0,
       0.5
      ],
-     "result_chance_change": 11.8,
-     "win_points": -0.36
+     "result_chance_change": 8.3,
+     "win_points": -0.32
+    },
+    {
+     "term": "archers",
+     "description": "own pit archers alive",
+     "range": [
+      2.5,
+      3.0
+     ],
+     "result_chance_change": 16.8,
+     "win_points": -0.64
     }
    ]
   }

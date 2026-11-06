@@ -44,6 +44,8 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
 - Build themes (`theme` in builds.json): core = skills on 70%+ of a family's bars, optional = the rest on 5%+.
 - Guild usual lineup (`guilds.json`): a lineup the guild actually played, chosen as the one sharing the most builds with
   their other games (per map too), so it never shows combinations they never ran; plus their most played full lineups.
+- gvg.report endpoints: `/api/players` (directory, paged), `/api/tournament-rankings?period=all` (guild Elo),
+  `/api/guilds`; the probe workflow lists the rest (branch `probe`, `endpoints.txt`).
 - Combat-minute stats: `data/player_combat.json` from gvg.report `/api/player-categories?period=all` (fetched by
   `tools/gvgreport/player_stats.mjs` during "Update matches"): per character c (combat ms), m (matches), x (totals for
   damage, kills, assists, healing, prevented, cleanses, interrupts, fake casts, damage taken, knockdowns taken, deaths,
@@ -87,8 +89,10 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   from the standard roster (2 knights, 2 archers, Bodyguard, Lord; 3 archers on Isle of Solitude), unobserved Lord damage
   left blank. Strength is the measured blend of the guild's fitted rating and the lineup who played (`strength.py`,
   `lineup.py`); `lord.py` rebuilds Lord health; `fightstate.py` gives who is winning the fight; `discovery.py` gives
-  leverage and behaviour clusters. Today's gvg.report tabs (Players, Elo) must not train the model (they include later
-  results); use the time-ordered rebuilds.
+  leverage and behaviour clusters. gvg.report's player directory and guild Elo are synced to `data/gvgreport/`
+  (`tools/gvgreport/directory.mjs`); its player groupings are merged into aliases.json with Denning's assignments
+  winning (`merge_players.py`, additions under `gvgreport_added`). Today's Elo table must not train the model (it
+  includes later results): `strength.py` rebuilds that Elo in time order.
 - Insights must be about decisions and consequences, not correlations. End each analysis with specific questions for
   Denning.
 - Site home page is Schedule (`#/`); Recent matches is `#/matches`.

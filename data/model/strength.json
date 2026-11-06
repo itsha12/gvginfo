@@ -1,5 +1,5 @@
 {
- "about": "Two measures, both from every stored match result (data/matches/*.json, far more matches than the replays):\n- ladder: each guild's in-game rating at the time of the match, as gvg.report recorded it;\n- fitted: a Bradley-Terry rating fitted on results only (each match weighs less the older it is, half-life HALF_LIFE\n  days), on the same scale as the ladder (400 points = 10 to 1 odds). Fitted ratings use only matches before the one\n  being rated, so a match's own result never leaks into the strength gap the model sees.\nThe report compares how well each predicts results (log loss, accuracy) so the better one is chosen by data.\n- lineup: the eight players who actually played (lineup.py: each person's MAT-weighted record, time ordered).\nThe model's baseline is the blend: a logistic fit of results on the three gaps (no intercept: a mirrored match must\ngive the mirrored answer), trained on earlier matches and tested on the latest third, so how much each measure counts\nis measured. Replay matches are left out of the blend's fit.",
+ "about": "Two measures, both from every stored match result (data/matches/*.json, far more matches than the replays):\n- ladder: each guild's in-game rating at the time of the match, as gvg.report recorded it;\n- fitted: a Bradley-Terry rating fitted on results only (each match weighs less the older it is, half-life HALF_LIFE\n  days), on the same scale as the ladder (400 points = 10 to 1 odds). Fitted ratings use only matches before the one\n  being rated, so a match's own result never leaks into the strength gap the model sees.\nThe report compares how well each predicts results (log loss, accuracy) so the better one is chosen by data.\n- lineup: the eight players who actually played (lineup.py: each person's MAT-weighted record, time ordered).\n- elo: gvg.report's guild Elo (tournament-elo.v2: start 1500, K 32, scale 400; after 21 days without a match, -50 every\n  7 days down to 1500), rebuilt here match by match from the stored results so each match sees only the Elo from\n  before it (gvg.report's own table is today's and would leak later results). The rebuild is checked against\n  gvg.report's table (data/gvgreport/elo.json) when it has been synced. Denning: much more accurate than the ladder.\nThe model's baseline is the blend: a logistic fit of results on the three gaps (no intercept: a mirrored match must\ngive the mirrored answer), trained on earlier matches and tested on the latest third, so how much each measure counts\nis measured. Replay matches are left out of the blend's fit.",
  "matches": 1737,
  "half_life_days": 60,
  "prediction": {
@@ -19,7 +19,7 @@
   }
  },
  "blend": {
-  "about": "How much each measure counts in predicting a result, measured: logistic fits (no intercept) of results on each\ncombination of the ladder, fitted and lineup gaps, trained on the earlier two thirds of the matches after the\nfirst 300 and tested on the latest third; the combination that predicts the latest third best is refitted on all\nof them. Replay matches are left out.",
+  "about": "How much each measure counts in predicting a result, measured: logistic fits (no intercept) of results on each\ncombination of the ladder, fitted, lineup and Elo gaps, trained on the earlier two thirds of the matches after the\nfirst 300 and tested on the latest third; the combination that predicts the latest third best is refitted on all\nof them. Replay matches are left out.",
   "chosen": "fitted+lineup",
   "train_matches": 473,
   "test_matches": 237,
@@ -33,32 +33,75 @@
     "accuracy": 0.873
    },
    "lineup": {
-    "log_loss": 0.3144,
+    "log_loss": 0.3129,
     "accuracy": 0.878
+   },
+   "elo": {
+    "log_loss": 0.3987,
+    "accuracy": 0.84
    },
    "ladder+fitted": {
     "log_loss": 0.3507,
     "accuracy": 0.878
    },
-   "fitted+lineup": {
-    "log_loss": 0.3092,
-    "accuracy": 0.895
-   },
    "ladder+lineup": {
-    "log_loss": 0.3218,
+    "log_loss": 0.319,
+    "accuracy": 0.882
+   },
+   "ladder+elo": {
+    "log_loss": 0.389,
+    "accuracy": 0.852
+   },
+   "fitted+lineup": {
+    "log_loss": 0.3115,
+    "accuracy": 0.89
+   },
+   "fitted+elo": {
+    "log_loss": 0.3429,
     "accuracy": 0.878
    },
-   "ladder+fitted+lineup": {
-    "log_loss": 0.3144,
+   "lineup+elo": {
+    "log_loss": 0.3154,
     "accuracy": 0.886
+   },
+   "ladder+fitted+lineup": {
+    "log_loss": 0.3156,
+    "accuracy": 0.882
+   },
+   "ladder+fitted+elo": {
+    "log_loss": 0.3479,
+    "accuracy": 0.878
+   },
+   "ladder+lineup+elo": {
+    "log_loss": 0.3193,
+    "accuracy": 0.878
+   },
+   "fitted+lineup+elo": {
+    "log_loss": 0.3115,
+    "accuracy": 0.89
+   },
+   "ladder+fitted+lineup+elo": {
+    "log_loss": 0.3148,
+    "accuracy": 0.89
    }
   },
   "coef": {
    "ladder": 0.0,
-   "fitted": 0.435,
-   "lineup": 0.591
+   "fitted": 0.323,
+   "lineup": 0.8,
+   "elo": 0.0
   },
-  "note": "coef: rating points of blended gap per point of each gap (1 = taken at face value)"
+  "note": "coef: rating points of blended gap per point of each gap (1 = taken at face value)",
+  "elo_rebuild_check": {
+   "tournaments": {
+    "guilds": 68,
+    "mean_abs_diff": 23.5
+   },
+   "all stored": {
+    "guilds": 71,
+    "mean_abs_diff": 22.5
+   }
+  }
  },
  "guilds": {
   "spce": {

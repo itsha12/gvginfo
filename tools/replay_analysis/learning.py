@@ -151,7 +151,7 @@ def report():
     L += ["", "## 6. Why: the node models", "",
           "Each explains one result from what happened before it (time order enforced), tested on matches it never saw. "
           "AUC = how often a moment that led to the result scores above one that didn't (0.5 = guessing, 1 = perfect).", ""]
-    for node in ("deaths", "kill_conversion", "flag_answer", "npc_loss", "lord_damage"):
+    for node in ("deaths", "kill_conversion", "flag_answer", "npc_loss", "lord_damage", "lord_kill"):
         s_, e_, df_, held_ = NODES.fit_node(node, ids)
         v_ = s_["validation"]
         if node in NODES.REGRESSION:

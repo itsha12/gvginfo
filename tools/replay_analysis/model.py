@@ -273,8 +273,13 @@ def write_md(model):
     L.append(f"**Verdict: {model['validation']['verdict']}.** Team strength alone is the baseline; the curves below are "
              "what the game state adds to it.")
     L.append("")
+    if "gain_over_strength" in model["validation"]:
+        gs = model["validation"]["gain_over_strength"]
+        L.append(f"Gain over strength alone (log loss, resampling whole matches): {gs['log_loss_gain']:+}, 90% range "
+                 f"{gs['range_90'][0]:+} to {gs['range_90'][1]:+}.")
+        L.append("")
     for n, v in model["validation"].items():
-        if n == "verdict": continue
+        if n in ("verdict", "gain_over_strength"): continue
         L.append(f"- {n}: accuracy {v['all']['accuracy']:.0%}, log loss {v['all']['log_loss']} "
                  f"({'; '.join(f'{k} {vv['accuracy']:.0%}' for k, vv in v.items() if k != 'all')})")
     L += ["", "## What it learned, most important first", ""]
