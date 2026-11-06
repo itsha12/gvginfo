@@ -166,6 +166,10 @@ the Lord (`benchmarks.py lord`), flag run speeds, the flag model's accuracy.
   (more own knights lowers win chance), which is the expected noise of 24 matches and a natural place for a
   direction correction.
 
+- Candidate variables (`features.CANDIDATES`): proposed by Claude, Denning or discovery; computed for every match and
+  retested in every learning report (held-out log loss with and without); moved into `VARIABLES` only once they
+  improve predictions on unseen matches.
+
 ### A training round
 1. `python3 batch.py pick 4`, commit and push `replays/requests.txt` (starts "Fetch replays"); wait for it.
 2. `git fetch --depth 1 origin replays:refs/remotes/origin/replays`, `python3 batch.py add`, `python3 learning.py`.

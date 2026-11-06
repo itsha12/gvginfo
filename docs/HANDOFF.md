@@ -158,8 +158,12 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
 4. Then: grow the batches once learning reports settle; discovery and choice values as data accumulates.
 
 ## Current state
-- Stored replays: 24 on the `replays` branch, all in training batch 0.
-- Model: batch 0, not yet better than team strength alone (see knowledge/learning-report.md).
+- Stored replays: 30 on the `replays` branch: batch 0 (24) and batch 1 (6: 4 random picks plus the 2 newest from the
+  standing "latest:2" request).
+- Model after batch 1: beats team strength alone on unseen matches (79% vs 64% of winners, log loss 0.562 vs 0.633;
+  still 79% vs 61% without the 3 short stomps). Open puzzle: the knights and Bodyguard curves run backwards although
+  winners had more knights late in 9 of 14 matches; forcing the direction made held-out predictions slightly worse
+  (0.576), and the split candidate (split_diff) didn't explain it (0.613). Awaiting Denning's view and more batches.
 - Library on 24 matches: 376 deaths in 176 fights (45 wipes), 886 decision points, 279 flag cycles, 945 findings.
 - Death causes: backline down 96, caught away from its group 58, out-pressured despite support 45, coordinated enemy
   pressure 45, spike 31, out of range of its monks 24, out-damaged despite prots 21, chased down while retreating 20,
@@ -207,6 +211,8 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
 - Improve the toolkit rather than writing one-off scripts; each ruling becomes a label, a tactics line and a check.
 
 ## Recent changes
+- Session 4e: training round 1 (batch 1); candidate variables mechanism (`features.CANDIDATES`, tested every report);
+  split_diff proposed and not yet supported.
 - Session 4d: model structure built and run as batch 0 (not yet better than team strength alone, as expected at 24
   matches); strength ratings (82% of results predicted), named variables, glass-box model with staging, held-out
   explanations, corrections file, learning report, batch helper, site pages.

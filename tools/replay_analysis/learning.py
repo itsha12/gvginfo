@@ -92,7 +92,11 @@ def report():
           f"{M.STAGES['interactions']} matches):", ""]
     for (i, j), s in cand:
         L.append(f"- {use[i]} with {use[j]} (screen {s:.3f})")
-    # discovery 2: surprises = held-out moments most wrong, one per match
+    # discovery 2: candidate variables, retested every batch
+    L += ["", "**Candidate variables** (proposed variables, tested on unseen matches; log loss, lower is better):", ""]
+    for c in M.test_candidates(ids):
+        L.append(f"- {c['candidate']}: {c['without']} without, {c['with']} with: {c['verdict']}. {c['description']}")
+    # discovery 3: surprises = held-out moments most wrong, one per match
     yv = y.values; p = np.clip(held, 0.02, 0.98)
     loss = -(yv * np.log(p) + (1 - yv) * np.log(1 - p))
     d = df.assign(p=p, loss=loss)

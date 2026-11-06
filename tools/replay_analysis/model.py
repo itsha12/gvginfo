@@ -26,7 +26,7 @@ import collections, itertools, json, math, os, subprocess, sys, warnings
 import numpy as np
 warnings.filterwarnings("ignore")
 from common import REPO
-from features import VARIABLES, DESCRIPTIONS
+from features import VARIABLES, CANDIDATES, DESCRIPTIONS
 
 MODEL_DIR = os.path.join(REPO, "data", "model")
 TABLES = "/tmp/gvg_tables"
@@ -46,7 +46,7 @@ def strength_score(X):
 
 def terms_for(n_matches, names=NAMES):
     """The variables the model may use at this many matches (strength is the baseline, not a term)."""
-    out = [n for n in names if n != "strength_gap"]
+    out = [n for n in names if n != "strength_gap" and (n in NAMES or n in {c for c, _, _ in CANDIDATES})]
     if n_matches < STAGES["build_variables"]: out = [n for n in out if n not in STATIC]
     return out
 
@@ -79,11 +79,27 @@ def corrections():
     except (OSError, ValueError, KeyError): return []
 
 
-def _frame(ids, step=TRAIN_STEP):
+def _frame(ids, step=TRAIN_STEP, extra=()):
     import pandas as pd
     rows = [r for rid in ids for r in match_table(rid) if r["won"] is not None and r["t"] % step == 0]
     df = pd.DataFrame(rows)
-    return df, df[NAMES].astype(float), df["won"].astype(int), df["match"]
+    return df, df[NAMES + list(extra)].astype(float), df["won"].astype(int), df["match"]
+
+
+def test_candidates(ids):
+    """Held-out log loss with each candidate variable added, against the model without it."""
+    corr = corrections()
+    df, X, y, g = _frame(ids, extra=[n for n, _, _ in CANDIDATES])
+    base, _ = validate(df, X[NAMES], y, g, corr)
+    out = []
+    for n, dsc, _ in CANDIDATES:
+        if n not in X: continue
+        v, _ = validate(df, X[NAMES + [n]], y, g, corr, extra=[n])
+        out.append({"candidate": n, "description": dsc, "without": base["glass box"]["all"]["log_loss"],
+                    "with": v["glass box"]["all"]["log_loss"],
+                    "verdict": "improves: ready to move into the model" if v["glass box"]["all"]["log_loss"] < base["glass box"]["all"]["log_loss"] - 0.005
+                    else "does not improve yet"})
+    return out
 
 
 def _ebm(corr, names, n_matches):
@@ -135,7 +151,7 @@ def _metrics(p, y):
             "brier": round(float(np.mean((p - y) ** 2)), 3)}
 
 
-def validate(df, X, y, groups, corr):
+def validate(df, X, y, groups, corr, extra=()):
     """Held-out comparison (matches held out whole): team strength alone, the glass box with and without corrections,
     and a black box given the same variables."""
     from sklearn.model_selection import GroupKFold

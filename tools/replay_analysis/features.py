@@ -24,6 +24,20 @@ def _npc(sb, tm, t, kind):
     return sum(1 for a, v in st.geo.npcs.items() if v["team"] == tm and v.get("pit") and v["kind"] == kind and st.npc_dead.get(a, 1e9) > t)
 
 
+def _splitting(sb, tm, t):
+    """Players of tm alive, away from its main group (2,500+), on the enemy half and not carrying a flag: on a split."""
+    st = sb.st
+    main = st.main_group(tm, t); c = st.centroid(main, t)
+    if not c: return 0
+    car = set(st.carrier(t))
+    n = 0
+    for a in st.players[tm]:
+        if a in main or a in car or not st.alive(a, t): continue
+        p = st.pos(a, t)[0]
+        if p and d(p, st.geo.pit[3 - tm]) < d(p, st.geo.pit[tm]) and d(p, c) > 2500: n += 1
+    return n
+
+
 def _in_pit(sb, tm, t, whose):
     """Players of tm alive within PIT_R + 500 of a pit (whose: own or enemy)."""
     st = sb.st
@@ -73,7 +87,15 @@ VARIABLES = [
     ("spike_build_own", "own build is a spike build (1) or not (0)", lambda s, sb, tm, t, x: int(sb.arch[tm]["spike"])),
     ("spike_build_enemy", "enemy build is a spike build", lambda s, sb, tm, t, x: int(sb.arch[3 - tm]["spike"])),
 ]
-DESCRIPTIONS = {n: dsc for n, dsc, _ in VARIABLES}
+# Candidate variables (discovery): computed and retested in every learning report (held-out accuracy with and without
+# each), but only moved into VARIABLES once they improve predictions on unseen matches. Each notes who proposed it,
+# when, and why.
+CANDIDATES = [
+    ("split_diff", "own minus enemy players on a split (away from their main group on the enemy half, not carrying). "
+     "Proposed batch 1 by Claude: the knights curve runs backwards, maybe standing in for the cost of splitting",
+     lambda s, sb, tm, t, x: _splitting(sb, tm, t) - _splitting(sb, 3 - tm, t)),
+]
+DESCRIPTIONS = {n: dsc for n, dsc, _ in VARIABLES + CANDIDATES}
 
 
 def table(st, sb, strength=None, step=STEP):
@@ -91,7 +113,7 @@ def table(st, sb, strength=None, step=STEP):
         for t in range(0, st.end - 1, step):
             s = sb.at(t)
             r = {"match": m.o["meta"]["id"], "team": m.tag[tm], "t": t, "won": int(win == tm) if win in (1, 2) else None}
-            for n, _, fn in VARIABLES: r[n] = fn(s, sb, tm, t, x)
+            for n, _, fn in VARIABLES + CANDIDATES: r[n] = fn(s, sb, tm, t, x)
             rows.append(r)
     return rows
 
