@@ -1,6 +1,6 @@
 {
  "format": "gvginfo.replay.v1",
- "updated": "2026-11-06T18:37:22.836Z",
+ "updated": "2026-11-06T18:58:44.633Z",
  "matches": {
   "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65": {
    "file": "2026-11/eea5ba87-ac20-5ba3-a6c9-965f11ca8a65.json.gz",
@@ -475,6 +475,90 @@
    "winner": "BcS",
    "length_s": 517,
    "kb": 124,
+   "summary": true,
+   "trim": 3
+  },
+  "36a65ac6-e25a-5d66-a8ed-2bf1032f243a": {
+   "file": "2026-10/36a65ac6-e25a-5d66-a8ed-2bf1032f243a.json.gz",
+   "date": "2026-10-13T20:32:16.510Z",
+   "map": "Isle of Jade",
+   "teams": [
+    "옷옷옷옷",
+    "Men"
+   ],
+   "winner": "옷옷옷옷",
+   "length_s": 1319,
+   "kb": 304,
+   "summary": true,
+   "trim": 3
+  },
+  "0e25b283-38b6-59c7-ab8a-7b3397a61d45": {
+   "file": "2026-08/0e25b283-38b6-59c7-ab8a-7b3397a61d45.json.gz",
+   "date": "2026-08-16T00:44:09.644Z",
+   "map": "Frozen Isle",
+   "teams": [
+    "xxx",
+    "GWSC"
+   ],
+   "winner": "xxx",
+   "length_s": 362,
+   "kb": 90,
+   "summary": true,
+   "trim": 3
+  },
+  "7cd34bd3-93d7-5771-a219-3d27743bc7eb": {
+   "file": "2026-10/7cd34bd3-93d7-5771-a219-3d27743bc7eb.json.gz",
+   "date": "2026-10-14T02:56:33.342Z",
+   "map": "Uncharted Isle",
+   "teams": [
+    "OG",
+    "chic"
+   ],
+   "winner": "OG",
+   "length_s": 1693,
+   "kb": 432,
+   "summary": true,
+   "trim": 3
+  },
+  "bfffbaa0-ecf0-566b-a660-ff668aa473a1": {
+   "file": "2026-08/bfffbaa0-ecf0-566b-a660-ff668aa473a1.json.gz",
+   "date": "2026-08-01T22:40:19.804Z",
+   "map": "Corrupted Isle",
+   "teams": [
+    "yM",
+    "げえええ"
+   ],
+   "winner": "yM",
+   "length_s": 361,
+   "kb": 95,
+   "summary": true,
+   "trim": 3
+  },
+  "1d394550-76b6-5343-a998-78cc7de9cf52": {
+   "file": "2026-10/1d394550-76b6-5343-a998-78cc7de9cf52.json.gz",
+   "date": "2026-10-11T19:50:11.218Z",
+   "map": "Isle of Jade",
+   "teams": [
+    "Book",
+    "Team"
+   ],
+   "winner": "Team",
+   "length_s": 934,
+   "kb": 216,
+   "summary": true,
+   "trim": 3
+  },
+  "b88983e3-67ff-5560-a3a7-7892f6d543c0": {
+   "file": "2026-08/b88983e3-67ff-5560-a3a7-7892f6d543c0.json.gz",
+   "date": "2026-08-12T15:26:32.700Z",
+   "map": "Frozen Isle",
+   "teams": [
+    "BcS",
+    "yM"
+   ],
+   "winner": "yM",
+   "length_s": 1099,
+   "kb": 190,
    "summary": true,
    "trim": 3
   }
