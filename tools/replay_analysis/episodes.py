@@ -176,12 +176,14 @@ def flag_cycles(st, sb=None):
 
     def run_start(c_t, a):
         """The pickup that began the run ending in the capture at c_t by a, following hand-offs back."""
-        cur, t_end = a, c_t
+        cur, t_end, seen = a, c_t, set()
         while True:
             pk = max((t for t, typ, x in fl if typ == "flag_picked_up" and x == cur and t <= t_end), default=None)
             if pk is None: return None, cur
             prev = [(t, x) for t, typ, x in fl if typ == "flag_dropped" and m.team(x) == m.team(a) and x != cur and 0 <= pk - t <= 15]
-            if not prev: return pk, cur
+            # stop on a hand-off loop (two carriers passing the flag back and forth at the same recorded second)
+            if not prev or (prev[-1][1], prev[-1][0]) in seen: return pk, cur
+            seen.add((prev[-1][1], prev[-1][0]))
             t_end, cur = prev[-1]
 
     for i in range(1, len(caps)):

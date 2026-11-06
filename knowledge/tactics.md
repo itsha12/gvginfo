@@ -615,12 +615,13 @@ usual one in win chance, adjusted for the situation, with a range from resamplin
   the boost clock, numbers, death penalty. Default: run in time to cap before the boost unless it costs a wipe
   (`F18`, `F26`, `F29`). Confidence: medium. **Denning:** falling back there is likely a mistake: a team that isn't
   going to run may gain by staying and fighting, possibly on a power play; but a team losing the fight and not running
-  has no reason to hold ground and may as well fall back for safety. It depends on the situation. **Data (34
-  matches, ENGINE 17):** not running and falling back cost about 8 points against not running and fighting (clear),
-  with no sign the teams that fell back were already sliding (placebo check over the 30 s before: +0.9). Split by the
-  fight state (expected deaths in the next 10 s): in even fights falling back cost about 13 points (12 cases against 38);
-  too few teams fell back while clearly losing their fight (3) to compare yet. So far this fits Denning: falling back
-  is the mistake when the fight isn't being lost. Energy isn't recorded.
+  has no reason to hold ground and may as well fall back for safety. It depends on the situation. **Data (40
+  matches, ENGINE 17):** not running and falling back cost about 14 points against not running and fighting (clear),
+  with no sign the teams that fell back were already sliding (+2.8 in the 30 s before). Split into thirds by fight state
+  (expected deaths in the next 10 s): falling back cost little when behind in the fight (-4.2 against -1.5, 9 cases)
+  but a lot in the middle third (-14.2 against +1.8, 9 cases) and when ahead (-15.7 against +4.4, 5 cases). Cells are
+  still small, but the pattern is Denning's: falling back is the mistake when the fight isn't being lost. Energy isn't
+  recorded.
   **Denning:** what decides staying to fight against falling back: own monks' energy, enemy health (live in the score
   share), the enemy's estimated energy, and any numbers advantage. (Replays have health and numbers; energy is not
   recorded and would have to be estimated from casts.)

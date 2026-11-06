@@ -174,10 +174,14 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
 4. Then: grow the batches once learning reports settle; discovery and choice values as data accumulates.
 
 ## Current state
-- Batch 2 done (34 matches; One v Men, yM v OG, Dz v Crew, BcS v Rum): win model still not better than strength alone
-  on log loss (0.581 against 0.514; accuracy 75% against 66%), the gap narrowing; boost clock "not running, fell back"
-  -8.2 (clear, no pre-trend), -12.7 in even fights (`D4`); fight-state bands (0.25) leave few "losing" or "winning"
-  cases: consider bands from the data (thirds). Next: batch 3.
+- Batch 3 done (40 matches, 6 new: 옷옷옷옷 v Men, xxx v GWSC, OG v chic, yM v げえええ, Book v Team, BcS v yM).
+  Interactions switched on (40 matches): morale with archers, morale with total DP, minute with morale. Win model still
+  not better than strength alone (0.563 against 0.469; gap -0.094, range -0.29 to +0.08). Boost clock "not running, fell
+  back" -13.6 (clear, no pre-trend); by fight-state thirds (Denning) the cost sits in even and winning fights (`D4`).
+  npc_loss beats its baseline again. lord_damage_diff still runs backwards: it only matters at 28:00 (the tiebreak),
+  while teams dealing much Lord damage can still lose to a Lord kill (proposed correction: interaction with minute).
+  Fixed: a hand-off loop in `episodes.flag_cycles` hung analysis of BcS v yM. Regeneration fit is flat (delay 10 to 20
+  s all fit). Next: batch 4.
 - ENGINE 17 refitted on batches 0 and 1 (2026-11-06; reports batch_00.md, batch_01.md). The older numbers further down
   this section were measured before the fixes. Now: the win model is NOT better than strength alone on log loss (0.657
   against 0.562; accuracy 72% against 62%: it ranks better but is overconfident at 30 matches); the knights and
