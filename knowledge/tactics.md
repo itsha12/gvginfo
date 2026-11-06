@@ -228,6 +228,14 @@ against general principles rather than past games. Match-by-match evidence lives
   that build, not a general rule.
 - `S30` **Bounty:** An alternative against a single splitting mesmer: defend with both monks and push with the
   ritualist, since two monks survive better than a ritualist and a monk.
+- `S31` **Denning:** A snare on the defender changes the answer to a lone attacker. Without one, the aim is to hold 1v1,
+  part run or half run flags if possible and keep the NPCs up: a minor gain for the team; a collapse that doesn't kill
+  just wastes the collapser's time. With one, the collapse is much more deadly, and the defender has one less skill for
+  surviving or winning the 1v1, so holding alone is riskier and a missed chance: collapsing is most likely the better
+  play. **Claude (data, 30 matches, 75 splits into a base):** collapses killed a split member in 5 of 17 cases when
+  the first defender had a snare, against 0 of 20 without one, which fits. In win chance the collapse doesn't show the
+  gain yet (snare -2, no snare +1.5 over the window; defending without a collapse +2 to +6), all unclear; the snare is
+  read from the first defender only, and cells are small. Confidence: low.
 - `S31` **Bounty:** When a split changes (e.g. made beefier), the defence must change too; defending the same way loses
   the pit.
 - `S32` **Denning:** An 8v8 build answers a 3 man split by ignoring it with the main team and having a snare character
@@ -616,6 +624,8 @@ usual one in win chance, adjusted for the situation, with a range from resamplin
   suspected. To recheck within reachable and unreachable wipes once there are enough.
   **Denning:** for a 2-monk spike build the weighing is often the reverse: after a wipe, DP on the enemy is worth more
   than NPCs (`B23`).
+  **Denning:** a team very rarely rushes into the enemy base to spike players as they resurrect; it doesn't make sense in
+  the context of games.
 - `D6` **You are stacking death penalty against a spike build.** Options: keep fighting at main, play in the pit, take
   boosts to clear it. Variables: how many players are now within one enemy spike, boosts available, flag position.
   Default: none yet (`K4` says it is a big disadvantage; what to do about it is for the data).

@@ -272,6 +272,12 @@ adjustment from 150 decisions of a kind (`BUILD_ADJUST_FROM`); and each choice's
 wipe, the margin to reach the enemy pit before its res; at the boost clock, the 30 s death difference and main-team
 numbers.
 
+Per-player skill flags (`buildfeat.player_flags`: snare, interrupt, knockdown, speed, self defence, self heal,
+condition and hex removal, strip), because one skill can change the right play (`B23`). First use: split answers
+(`decisions.splits_in_base`) record the response (collapsed, defended without a collapse, missed), split size, the
+first defender's snare and interrupt, and the attackers' self defence; `usual.SPLIT_BY` splits choice effects by the
+defender's snare. Energy is not estimated (Denning: too large a build for what it adds).
+
 **Build order:** (1) phases, allocation per phase, plans and jobs (built); (2) capacities per group per phase,
 measured (built); (3) first node models: deaths and kill conversion (built; expected-for-matchup baselines come with
 the matchup features at 60 matches); (4) the flag chain (built: `flag_answer`); (5) pit NPCs and Lord damage (built:

@@ -149,7 +149,7 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
 - Causal model: steps 1 to 7 built (`phases.py`; `buildfeat.py`; `nodes.py` node models for deaths, kill conversion,
   flag answers, pit NPC loss and Lord damage, all beating simple baselines on unseen matches; `usual.py`, the usual
   play and each choice's effect in win chance, now compared between similar builds; `values.py`, every result and
-  node cause priced in win points). Next: resume slow training (3 to 5 matches a batch, `batch.py pick 4`, learning
+  node cause priced in win points; per-player skill flags). Next: resume slow training (3 to 5 matches a batch, `batch.py pick 4`, learning
   report each time); value a second of flag answer and a point of Lord damage; build-specific choice effects as cells
   fill. The win model alone explains who is winning, not why (Denning).
 0. Done: model structure on the 24 stored matches (batch 0). Next: slow training, 3 to 5 random new replays per
@@ -224,7 +224,9 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
   Denning on deliberate deaths (base res only, `K14`), individual bars and spike builds weighing DP over NPCs (`B23`),
   and what decides staying near the enemy boost (`D4`: monk energy, enemy health, enemy energy, numbers); boost-clock
   health difference added; values split by deliberate healer deaths and by the opponent's build; causal map v8.
-  Next idea: per-player build features (a snare on the defending Mes/A) and an energy estimate from casts.
+  Then per-player skill flags built (`buildfeat.player_flags`), used for split answers (`S31`: a snare on the defender
+  favours the collapse; collapses with a snare killed 5 of 17, without 0 of 20); Denning: no energy estimate (too large);
+  teams rarely rush the base to spike resurrected players (`D5`); causal map v9.
 - Session 4k: Denning on pits (`P9` knights first, monk load of a full pit and area damage; `P10` two monks against a
   full pit; `P11` attackers leave before the res); area damage added; step 6 built (usual play); causal map v6.
 - Session 4j: Denning on drops (`F33`: where a drop happens; parked in base = deciding not to run; long hand-offs away

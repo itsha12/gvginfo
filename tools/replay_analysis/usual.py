@@ -26,7 +26,10 @@ K, BOOT, MIN_N = 15, 200, 25
 SIT = ["flag_lead", "stand", "boost_in", "alive", "main", "dp", "npcs", "lord_damage", "minute", "strength_gap"]
 # variables only some decision kinds have (Denning): can the winners reach the enemy pit before its res; is the team
 # losing its fight when the enemy's boost is near
-SIT_EXTRA = {"after_wipe": ["pit_margin_s"], "boost_clock": ["deaths_30s_diff", "main_diff_now", "health_diff"]}
+SIT_EXTRA = {"after_wipe": ["pit_margin_s"], "boost_clock": ["deaths_30s_diff", "main_diff_now", "health_diff"],
+             "split_in_base": ["split_size", "defender_snare", "attacker_self_defence"]}
+# per-player flags a choice's effect is also split by (Denning, B23), besides own spike build
+SPLIT_BY = {"split_in_base": ["defender_snare"]}
 # build axes (readable, from the skill data): what kind of build each team is; similar situations include similar builds
 AXES = ["spike", "shutdown", "knockdowns", "defence", "sustain"]
 BUILD_ADJUST_FROM = 150      # decisions of a kind before build axes enter the adjustment (they're fixed per match)
@@ -53,6 +56,7 @@ def refine(r):
     acts = collections.Counter(v for v in r["actions"]["by_role"].values() if v not in ("carrying", "died"))
     top = acts.most_common(1)[0][0] if acts else None
     base = r["choice"].split(":")[0]
+    if r["kind"] == "split_in_base": return (r.get("extra") or {}).get("response") or base
     if r["kind"] == "late_game":            # Lord commitment from 24:00, in levels
         n = float(r["choice"].split()[0])
         return "0 to 1 at the enemy Lord" if n < 1.5 else ("2 to 3 at the enemy Lord" if n < 3.5 else "4+ at the enemy Lord")
@@ -155,13 +159,21 @@ def analyse(recs):
                                 "difference": round(eff[r["choice2"]] - eff[usual], 1), "wp_change": r["wp_change"]})
         # choice effects split by build (own spike build or not), only where each cell has enough cases
         by_build = []
+        splits = [("own build", lambda r: r["sit"]["own_spike"], {0: "not spike", 1: "spike"})]
+        splits += [(f, (lambda f: lambda r: int(bool((r.get("extra") or {}).get(f))))(f), {0: "no", 1: "yes"})
+                   for f in SPLIT_BY.get(kind, [])]
         for c in choices[1:]:
-            for sp in (0, 1):
-                a_ = [r["wp_change"] for r in L if r["choice2"] == c and r["sit"]["own_spike"] == sp]
-                b_ = [r["wp_change"] for r in L if r["choice2"] == ref and r["sit"]["own_spike"] == sp]
-                if len(a_) >= INTERACT_MIN and len(b_) >= INTERACT_MIN:
-                    by_build.append({"choice": c, "own build": "spike" if sp else "not spike", "n": len(a_),
-                                     "raw_difference": round(float(np.mean(a_) - np.mean(b_)), 1)})
+            for name, get, labels in splits:
+                for sp in (0, 1):
+                    a_ = [r["wp_change"] for r in L if r["choice2"] == c and get(r) == sp]
+                    b_ = [r["wp_change"] for r in L if r["choice2"] == ref and get(r) == sp]
+                    cell = {"choice": c, name: labels[sp], "n": len(a_), "n_usual": len(b_)}
+                    if len(a_) >= INTERACT_MIN and len(b_) >= INTERACT_MIN:
+                        cell["raw_difference"] = round(float(np.mean(a_) - np.mean(b_)), 1)
+                    elif name != "own build":
+                        cell["note"] = "too few yet"
+                    else: continue
+                    by_build.append(cell)
         out[kind] = {"n": len(L), "matches": len(matches), "reference": ref, "choices": rows, "adjusted_for": adj_cols,
                      "by_build": by_build,
                      "unusual_choices": sorted(flagged, key=lambda f: -abs(f["difference"]))[:10]}

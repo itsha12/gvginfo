@@ -47,6 +47,33 @@ PAIRS = [("knockdowns", "aura_of_stability"), ("blind", "condition_removal"), ("
          ("strips", "prots"), ("energy_denial", "heals"), ("interrupts", "heals"), ("snares", "speed")]
 
 
+# per-player flags (Denning, B23: one skill can change the right play, e.g. a Mes/A defending 1v1 with a snare)
+PLAYER_FLAGS = {
+    "snare": FEATURES["snares"],
+    "interrupt": FEATURES["interrupts"],
+    "knockdown": FEATURES["knockdowns"],
+    "speed": FEATURES["speed"],
+    "self_defence": lambda s: (s.get("target") or "") == "self" and bool({"Block", "Healing", "Health Regeneration",
+                              "Increased Armor Rating", "Miss"} & set(s.get("causes") or []))
+                              or (s.get("type") or "").startswith("Stance") and "Block" in (s.get("causes") or []),
+    "self_heal": lambda s: "Healing" in (s.get("causes") or []) and (s.get("target") in (None, "self")),
+    "condition_removal": FEATURES["condition_removal"],
+    "hex_removal": FEATURES["hex_removal"],
+    "strip": FEATURES["strips"],
+}
+
+
+def player_flags(m, a):
+    """What one player's bar can do (counts per flag): {flag: number of skills}."""
+    S = _skills(); out = {k: 0 for k in PLAYER_FLAGS}
+    for b in m.A[a].get("bar", []):
+        s = S.get(m.sk(b)) if b else None
+        if not s: continue
+        for k, f in PLAYER_FLAGS.items():
+            if f(s): out[k] += 1
+    return out
+
+
 def team_features(m, tm):
     S = _skills()
     out = {k: 0 for k in FEATURES}
@@ -75,3 +102,4 @@ if __name__ == "__main__":
     from replaylib import Match
     m = Match.from_branch(sys.argv[1])
     for tm in (1, 2): print(m.tag[tm], team_features(m, tm))
+    for a in m.PL: print(m.role(a), {k: v for k, v in player_flags(m, a).items() if v})

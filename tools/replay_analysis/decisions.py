@@ -17,6 +17,7 @@ numbers, DP, pit NPCs, Lord damage, build archetypes, phase. Outcomes are scoreb
 
 Usage:  python3 decisions.py <report id>
 In code: decision_points(st, sb, episodes) -> list of dicts (analyze.py)."""
+from buildfeat import player_flags
 import collections, sys
 from replaylib import Match
 from state import GameState, d
@@ -102,8 +103,21 @@ def splits_in_base(st, sb, splits):
         lat = dfn[0]["latency"] if dfn else None
         speed = "missed" if lat is None or lat > 60 else ("late" if lat > 15 else "on time")
         choice = f"{speed}: " + (", ".join(f"{x['role']} ({x['came']})" for x in dfn[:4]) or "nobody")
+        # Denning (B23): with a snare on the defender a collapse is much more likely to kill; without one, holding 1v1
+        # (and part running flags, keeping NPCs up) is the usual aim
+        role_to = {m.roles[b]: b for b in st.players[y]}
+        first = role_to.get(dfn[0]["role"]) if dfn else None
+        ff = player_flags(m, first) if first is not None else {}
+        atk = {m.roles[a]: a for a in st.players[3 - y]}
+        af = [player_flags(m, atk[r]) for r in s["members"] if r in atk]
+        collapse = any(x["came"] == "collapse from main" and (x["latency"] or 0) <= 60 for x in dfn)
+        response = "missed" if speed == "missed" else ("collapsed" if collapse else "defended without a collapse")
         out.append(rec(sb, "split_in_base", y, s["entered_base"], choice, s["end"] + 30,
-                       split="+".join(s["members"]), answered_by=[x["role"] for x in dfn]))
+                       split="+".join(s["members"]), answered_by=[x["role"] for x in dfn],
+                       extra={"response": response, "split_size": len(s["members"]), "defenders": len(dfn),
+                              "defender_snare": int(ff.get("snare", 0) > 0), "defender_interrupt": int(ff.get("interrupt", 0) > 0),
+                              "attacker_self_defence": sum(x["self_defence"] + x["self_heal"] for x in af),
+                              "split_died": int(bool(s["deaths"]))}))
     return out
 
 
