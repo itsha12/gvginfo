@@ -174,6 +174,11 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
 4. Then: grow the batches once learning reports settle; discovery and choice values as data accumulates.
 
 ## Current state
+- Batch 4 done (46 matches, 6 new: push v OG, push v cell, chic v DUM, げえええ v chic, Crew v BcS, yM v BcS). Win model
+  0.530 against strength 0.448 (gap narrowing); correction "lord_damage_diff & minute" (Denning) tested: no change
+  (0.530 with and without). Learning reports now end with a detailed snapshot (`snapshot.py`: runners, flag answers,
+  kill participation by skill, interrupts, knockdowns, spikes survived, monks, deaths); Denning wants a broad snapshot
+  of learnings after each batch, not one highlight. Next: batch 5.
 - Batch 3 done (40 matches, 6 new: 옷옷옷옷 v Men, xxx v GWSC, OG v chic, yM v げえええ, Book v Team, BcS v yM).
   Interactions switched on (40 matches): morale with archers, morale with total DP, minute with morale. Win model still
   not better than strength alone (0.563 against 0.469; gap -0.094, range -0.29 to +0.08). Boost clock "not running, fell

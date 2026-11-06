@@ -762,5 +762,119 @@
    "2": 1
   },
   "exclude": []
+ },
+ "e7a65a0d-2700-5546-aa5f-f2bd7d93299d": {
+  "length": {
+   "recorded_s": 667,
+   "last_event_s": 666,
+   "lord_death_s": 654,
+   "used_s": 655,
+   "repaired": false
+  },
+  "lord_damage_unobserved": [],
+  "window": {
+   "observed": "0:00 - 11:07",
+   "joined_mid_match": false
+  },
+  "roster_added": {
+   "1": 0,
+   "2": 2
+  },
+  "exclude": []
+ },
+ "b4368c72-e097-521c-ad69-171f033df96b": {
+  "length": {
+   "recorded_s": 1160,
+   "last_event_s": 1153,
+   "lord_death_s": 1145,
+   "used_s": 1146,
+   "repaired": false
+  },
+  "lord_damage_unobserved": [],
+  "window": {
+   "observed": "0:00 - 19:20",
+   "joined_mid_match": false
+  },
+  "roster_added": {
+   "1": 2,
+   "2": 0
+  },
+  "exclude": []
+ },
+ "61e3a1c4-8842-5bcf-a12c-dc4d2da41770": {
+  "length": {
+   "recorded_s": 583,
+   "last_event_s": 572,
+   "lord_death_s": 570,
+   "used_s": 571,
+   "repaired": false
+  },
+  "lord_damage_unobserved": [],
+  "window": {
+   "observed": "0:00 - 9:43",
+   "joined_mid_match": false
+  },
+  "roster_added": {
+   "1": 4,
+   "2": 0
+  },
+  "exclude": []
+ },
+ "c86a888d-57b8-54a5-aa25-b6fdff69656b": {
+  "length": {
+   "recorded_s": 844,
+   "last_event_s": 836,
+   "lord_death_s": 833,
+   "used_s": 833,
+   "repaired": false
+  },
+  "lord_damage_unobserved": [],
+  "window": {
+   "observed": "0:00 - 14:04",
+   "joined_mid_match": false
+  },
+  "roster_added": {
+   "1": 0,
+   "2": 2
+  },
+  "exclude": []
+ },
+ "3ee18c0c-d400-5988-abb5-5e19ff80f64a": {
+  "length": {
+   "recorded_s": 932,
+   "last_event_s": 932,
+   "lord_death_s": 919,
+   "used_s": 919,
+   "repaired": false
+  },
+  "lord_damage_unobserved": [],
+  "window": {
+   "observed": "0:00 - 15:32",
+   "joined_mid_match": false
+  },
+  "roster_added": {
+   "1": 1,
+   "2": 0
+  },
+  "exclude": []
+ },
+ "5942a7d3-9129-5a9f-aed6-05262bab7522": {
+  "length": {
+   "recorded_s": 1285,
+   "last_event_s": 1284,
+   "lord_death_s": 1274,
+   "used_s": 1275,
+   "repaired": false
+  },
+  "lord_damage_unobserved": [],
+  "window": {
+   "observed": "0:00 - 21:25",
+   "joined_mid_match": false
+  },
+  "roster_added": {
+   "1": 0,
+   "2": 5
+  },
+  "exclude": []
  }
 }

@@ -236,7 +236,9 @@ def report():
     import values as VAL
     v = VAL.measure(ids); VAL.write(v)
     L += ["## 8. What results and causes are worth", ""] + VAL.report_lines(v)
-    L += ["## 9. For Denning", "",
+    import snapshot as SNAP
+    if os.path.isdir("/tmp/gl"): L += SNAP.snapshot(ids, new_ids, "/tmp/gl")
+    L += ["## 10. For Denning", "",
           "- Which curves look wrong to you? A correction (direction, cap, drop, or a pair to always test) is logged with "
           "your reason and tested on held-out matches.",
           "- Do any surprises remind you of something the variables don't capture (a missing variable)?",
