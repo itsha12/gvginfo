@@ -28,6 +28,9 @@ jobs:
           MAX_MATCHES: ${{ github.event.inputs.max_matches }}
           DELAY_MS: "1500"
         run: node tools/gvgreport/sync.mjs
+      - name: Fetch gvg.report players and Elo
+        continue-on-error: true
+        run: node tools/gvgreport/directory.mjs
       - name: Save changes
         # Keep the fetched matches and combat stats, then rebuild every summary from the latest main (so pages and
         # aggregate code changed during the run, and alias saves from the portal, never conflict). Retries on races.
@@ -38,11 +41,13 @@ jobs:
           cp -r data/matches "$RUNNER_TEMP/new/"
           [ -f data/player_combat.json ] && cp data/player_combat.json "$RUNNER_TEMP/new/" || true
           [ -f data/sync_status.json ] && cp data/sync_status.json "$RUNNER_TEMP/new/" || true
+          [ -d data/gvgreport ] && cp -r data/gvgreport "$RUNNER_TEMP/new/" || true
           for i in 1 2 3 4 5 6; do
             git fetch origin main && git reset --hard origin/main
             cp -r "$RUNNER_TEMP/new/matches/." data/matches/
             [ -f "$RUNNER_TEMP/new/player_combat.json" ] && cp "$RUNNER_TEMP/new/player_combat.json" data/ || true
             [ -f "$RUNNER_TEMP/new/sync_status.json" ] && cp "$RUNNER_TEMP/new/sync_status.json" data/ || true
+            if [ -d "$RUNNER_TEMP/new/gvgreport" ]; then mkdir -p data/gvgreport && cp -r "$RUNNER_TEMP/new/gvgreport/." data/gvgreport/ && python3 tools/gvgreport/merge_players.py; fi
             node tools/gvgreport/aggregate.mjs
             git add data
             if git diff --cached --quiet; then echo "Nothing new."; exit 0; fi

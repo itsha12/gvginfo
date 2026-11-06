@@ -1,141 +1,410 @@
 {
- "about": "Lord natural regeneration, measured: the rate (health per second after lord.REGEN_DELAY s without damage) that\nbest puts the rebuilt health at 0 when a Lord dies, without any surviving Lord's health reaching 0. Lords whose\ndamage wasn't observed are skipped. Boosts are left out here (at most +10% max health).",
- "rate": 12.5,
- "delay_s": 5,
- "plausible_range": [
-  12.5,
-  30.0
- ],
+ "about": "Lord regeneration (lord.py; Denning: 10 per second always, plus out-of-combat regeneration from +2 to +10 per\nsecond once the Lord hasn't been hit for a few seconds). Measured here: the delay before the out-of-combat part\nstarts and how many seconds each +2 step takes, as the pair that best puts the rebuilt health (no floor at 0) at 0\nwhen Lords die, without any surviving Lord's health reaching 0. Lords whose damage wasn't observed are skipped. Also tried: applying the Amulet of Protection cap to the recorded damage (if gvg.report records damage before the cap) or not (after).",
+ "delay_s": 10,
+ "ramp_s": 3,
+ "amulet_cap_applied": false,
  "deaths_used": 27,
  "surviving_lords": 10,
- "median_error_at_death": 240,
- "with_no_regeneration": {
-  "median_error_at_death": 670,
-  "survivors_contradicted": 2
- },
+ "median_error_at_death": 332,
  "grid": {
-  "0.0": {
-   "median_error": 670,
-   "survivors_contradicted": 2
-  },
-  "1.0": {
-   "median_error": 626.1,
-   "survivors_contradicted": 2
-  },
-  "2.0": {
-   "median_error": 598.5999999999997,
-   "survivors_contradicted": 2
-  },
-  "3.0": {
-   "median_error": 496.4999999999993,
-   "survivors_contradicted": 1
-  },
-  "4.0": {
-   "median_error": 439.59999999999945,
-   "survivors_contradicted": 1
-  },
-  "5.0": {
-   "median_error": 426.9999999999993,
-   "survivors_contradicted": 1
-  },
-  "6.0": {
-   "median_error": 414.3999999999992,
-   "survivors_contradicted": 1
-  },
-  "7.0": {
-   "median_error": 401.79999999999905,
-   "survivors_contradicted": 1
-  },
-  "8.0": {
-   "median_error": 327.9999999999982,
-   "survivors_contradicted": 1
-  },
-  "9.0": {
-   "median_error": 295,
-   "survivors_contradicted": 1
-  },
-  "10.0": {
-   "median_error": 295,
-   "survivors_contradicted": 1
-  },
-  "11.0": {
-   "median_error": 295,
-   "survivors_contradicted": 1
-  },
-  "12.0": {
-   "median_error": 248.79999999999973,
-   "survivors_contradicted": 1
-  },
-  "13.0": {
-   "median_error": 240,
+  "delay 2 s, step 1 s, cap not applied": {
+   "median_error": 374,
    "survivors_contradicted": 0
   },
-  "14.0": {
-   "median_error": 240,
+  "delay 2 s, step 1 s, cap applied": {
+   "median_error": 629,
    "survivors_contradicted": 0
   },
-  "15.0": {
-   "median_error": 240,
+  "delay 2 s, step 2 s, cap not applied": {
+   "median_error": 371,
    "survivors_contradicted": 0
   },
-  "16.0": {
-   "median_error": 240,
+  "delay 2 s, step 2 s, cap applied": {
+   "median_error": 629,
    "survivors_contradicted": 0
   },
-  "17.0": {
-   "median_error": 240,
+  "delay 2 s, step 3 s, cap not applied": {
+   "median_error": 371,
    "survivors_contradicted": 0
   },
-  "18.0": {
-   "median_error": 240,
+  "delay 2 s, step 3 s, cap applied": {
+   "median_error": 629,
    "survivors_contradicted": 0
   },
-  "19.0": {
-   "median_error": 240,
+  "delay 2 s, step 4 s, cap not applied": {
+   "median_error": 371,
    "survivors_contradicted": 0
   },
-  "20.0": {
-   "median_error": 240,
+  "delay 2 s, step 4 s, cap applied": {
+   "median_error": 629,
    "survivors_contradicted": 0
   },
-  "21.0": {
-   "median_error": 240,
+  "delay 2 s, step 6 s, cap not applied": {
+   "median_error": 362,
    "survivors_contradicted": 0
   },
-  "22.0": {
-   "median_error": 240,
+  "delay 2 s, step 6 s, cap applied": {
+   "median_error": 629,
    "survivors_contradicted": 0
   },
-  "23.0": {
-   "median_error": 240,
+  "delay 3 s, step 1 s, cap not applied": {
+   "median_error": 371,
    "survivors_contradicted": 0
   },
-  "24.0": {
-   "median_error": 240,
+  "delay 3 s, step 1 s, cap applied": {
+   "median_error": 629,
    "survivors_contradicted": 0
   },
-  "25.0": {
-   "median_error": 240,
+  "delay 3 s, step 2 s, cap not applied": {
+   "median_error": 371,
    "survivors_contradicted": 0
   },
-  "26.0": {
-   "median_error": 240,
+  "delay 3 s, step 2 s, cap applied": {
+   "median_error": 629,
    "survivors_contradicted": 0
   },
-  "27.0": {
-   "median_error": 240,
+  "delay 3 s, step 3 s, cap not applied": {
+   "median_error": 371,
    "survivors_contradicted": 0
   },
-  "28.0": {
-   "median_error": 240,
+  "delay 3 s, step 3 s, cap applied": {
+   "median_error": 629,
    "survivors_contradicted": 0
   },
-  "29.0": {
-   "median_error": 240,
+  "delay 3 s, step 4 s, cap not applied": {
+   "median_error": 370,
    "survivors_contradicted": 0
   },
-  "30.0": {
-   "median_error": 240,
+  "delay 3 s, step 4 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 3 s, step 6 s, cap not applied": {
+   "median_error": 356,
+   "survivors_contradicted": 0
+  },
+  "delay 3 s, step 6 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 4 s, step 1 s, cap not applied": {
+   "median_error": 371,
+   "survivors_contradicted": 0
+  },
+  "delay 4 s, step 1 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 4 s, step 2 s, cap not applied": {
+   "median_error": 371,
+   "survivors_contradicted": 0
+  },
+  "delay 4 s, step 2 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 4 s, step 3 s, cap not applied": {
+   "median_error": 371,
+   "survivors_contradicted": 0
+  },
+  "delay 4 s, step 3 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 4 s, step 4 s, cap not applied": {
+   "median_error": 362,
+   "survivors_contradicted": 0
+  },
+  "delay 4 s, step 4 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 4 s, step 6 s, cap not applied": {
+   "median_error": 350,
+   "survivors_contradicted": 0
+  },
+  "delay 4 s, step 6 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 5 s, step 1 s, cap not applied": {
+   "median_error": 371,
+   "survivors_contradicted": 0
+  },
+  "delay 5 s, step 1 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 5 s, step 2 s, cap not applied": {
+   "median_error": 371,
+   "survivors_contradicted": 0
+  },
+  "delay 5 s, step 2 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 5 s, step 3 s, cap not applied": {
+   "median_error": 366,
+   "survivors_contradicted": 0
+  },
+  "delay 5 s, step 3 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 5 s, step 4 s, cap not applied": {
+   "median_error": 356,
+   "survivors_contradicted": 0
+  },
+  "delay 5 s, step 4 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 5 s, step 6 s, cap not applied": {
+   "median_error": 346,
+   "survivors_contradicted": 0
+  },
+  "delay 5 s, step 6 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 6 s, step 1 s, cap not applied": {
+   "median_error": 371,
+   "survivors_contradicted": 0
+  },
+  "delay 6 s, step 1 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 6 s, step 2 s, cap not applied": {
+   "median_error": 371,
+   "survivors_contradicted": 0
+  },
+  "delay 6 s, step 2 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 6 s, step 3 s, cap not applied": {
+   "median_error": 358,
+   "survivors_contradicted": 0
+  },
+  "delay 6 s, step 3 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 6 s, step 4 s, cap not applied": {
+   "median_error": 350,
+   "survivors_contradicted": 0
+  },
+  "delay 6 s, step 4 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 6 s, step 6 s, cap not applied": {
+   "median_error": 342,
+   "survivors_contradicted": 0
+  },
+  "delay 6 s, step 6 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 8 s, step 1 s, cap not applied": {
+   "median_error": 371,
+   "survivors_contradicted": 0
+  },
+  "delay 8 s, step 1 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 8 s, step 2 s, cap not applied": {
+   "median_error": 354,
+   "survivors_contradicted": 0
+  },
+  "delay 8 s, step 2 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 8 s, step 3 s, cap not applied": {
+   "median_error": 344,
+   "survivors_contradicted": 0
+  },
+  "delay 8 s, step 3 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 8 s, step 4 s, cap not applied": {
+   "median_error": 338,
+   "survivors_contradicted": 0
+  },
+  "delay 8 s, step 4 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 8 s, step 6 s, cap not applied": {
+   "median_error": 334,
+   "survivors_contradicted": 0
+  },
+  "delay 8 s, step 6 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 10 s, step 1 s, cap not applied": {
+   "median_error": 354,
+   "survivors_contradicted": 0
+  },
+  "delay 10 s, step 1 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 10 s, step 2 s, cap not applied": {
+   "median_error": 338,
+   "survivors_contradicted": 0
+  },
+  "delay 10 s, step 2 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 10 s, step 3 s, cap not applied": {
+   "median_error": 332,
+   "survivors_contradicted": 0
+  },
+  "delay 10 s, step 3 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 10 s, step 4 s, cap not applied": {
+   "median_error": 332,
+   "survivors_contradicted": 0
+  },
+  "delay 10 s, step 4 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 10 s, step 6 s, cap not applied": {
+   "median_error": 332,
+   "survivors_contradicted": 0
+  },
+  "delay 10 s, step 6 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 12 s, step 1 s, cap not applied": {
+   "median_error": 334,
+   "survivors_contradicted": 0
+  },
+  "delay 12 s, step 1 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 12 s, step 2 s, cap not applied": {
+   "median_error": 332,
+   "survivors_contradicted": 0
+  },
+  "delay 12 s, step 2 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 12 s, step 3 s, cap not applied": {
+   "median_error": 332,
+   "survivors_contradicted": 0
+  },
+  "delay 12 s, step 3 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 12 s, step 4 s, cap not applied": {
+   "median_error": 332,
+   "survivors_contradicted": 0
+  },
+  "delay 12 s, step 4 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 12 s, step 6 s, cap not applied": {
+   "median_error": 332,
+   "survivors_contradicted": 0
+  },
+  "delay 12 s, step 6 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 15 s, step 1 s, cap not applied": {
+   "median_error": 332,
+   "survivors_contradicted": 0
+  },
+  "delay 15 s, step 1 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 15 s, step 2 s, cap not applied": {
+   "median_error": 332,
+   "survivors_contradicted": 0
+  },
+  "delay 15 s, step 2 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 15 s, step 3 s, cap not applied": {
+   "median_error": 332,
+   "survivors_contradicted": 0
+  },
+  "delay 15 s, step 3 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 15 s, step 4 s, cap not applied": {
+   "median_error": 332,
+   "survivors_contradicted": 0
+  },
+  "delay 15 s, step 4 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 15 s, step 6 s, cap not applied": {
+   "median_error": 332,
+   "survivors_contradicted": 0
+  },
+  "delay 15 s, step 6 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 20 s, step 1 s, cap not applied": {
+   "median_error": 332,
+   "survivors_contradicted": 0
+  },
+  "delay 20 s, step 1 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 20 s, step 2 s, cap not applied": {
+   "median_error": 332,
+   "survivors_contradicted": 0
+  },
+  "delay 20 s, step 2 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 20 s, step 3 s, cap not applied": {
+   "median_error": 332,
+   "survivors_contradicted": 0
+  },
+  "delay 20 s, step 3 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 20 s, step 4 s, cap not applied": {
+   "median_error": 332,
+   "survivors_contradicted": 0
+  },
+  "delay 20 s, step 4 s, cap applied": {
+   "median_error": 629,
+   "survivors_contradicted": 0
+  },
+  "delay 20 s, step 6 s, cap not applied": {
+   "median_error": 332,
+   "survivors_contradicted": 0
+  },
+  "delay 20 s, step 6 s, cap applied": {
+   "median_error": 629,
    "survivors_contradicted": 0
   }
  }

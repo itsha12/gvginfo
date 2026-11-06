@@ -1,0 +1,41 @@
+name: Sync gvg.report players and Elo
+
+# gvg.report's player directory (characters per player) and guild Elo table, saved to data/gvgreport/, then merged into
+# the portal's player assignments (Denning's own assignments always win; see tools/gvgreport/merge_players.py).
+# Also runs as part of "Update matches".
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: data-updates
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Fetch
+        run: node tools/gvgreport/directory.mjs && cp -r data/gvgreport "$RUNNER_TEMP/gr"
+      - name: Merge and save
+        run: |
+          git config user.name "gvginfo-bot"
+          git config user.email "gvginfo-bot@users.noreply.github.com"
+          for i in 1 2 3 4 5 6; do
+            git fetch origin main && git reset --hard origin/main
+            mkdir -p data/gvgreport && cp -r "$RUNNER_TEMP/gr/." data/gvgreport/
+            python3 tools/gvgreport/merge_players.py
+            git add data
+            if git diff --cached --quiet; then echo "Nothing new."; exit 0; fi
+            git commit -m "Sync gvg.report players and Elo"
+            if git push; then exit 0; fi
+            sleep $((i * 5))
+          done
+          exit 1

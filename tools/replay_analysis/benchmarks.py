@@ -51,48 +51,34 @@ def lord(ids=None):
     return out
 
 
-def _unclamped(ev, base, rate, delay, end):
-    """Lord health without the floor at 0: [(t, health)] after each event (max health capped, regeneration between)."""
-    hp, last, t0, out = base, -1e9, 0.0, []
-    for t, v in ev:
-        start = max(t0, last + delay)
-        if rate and t > start: hp = min(base, hp + rate * (t - start))
-        hp = min(base, hp + v)
-        if v < 0: last = t
-        t0 = t; out.append((t, hp))
-    return out
-
-
 def regen(ids=None):
-    """Lord natural regeneration, measured: the rate (health per second after lord.REGEN_DELAY s without damage) that
-    best puts the rebuilt health at 0 when a Lord dies, without any surviving Lord's health reaching 0. Lords whose
-    damage wasn't observed are skipped. Boosts are left out here (at most +10% max health)."""
-    from lord import LordState, REGEN_DELAY
+    """Lord regeneration (lord.py; Denning: 10 per second always, plus out-of-combat regeneration from +2 to +10 per
+    second once the Lord hasn't been hit for a few seconds). Measured here: the delay before the out-of-combat part
+    starts and how many seconds each +2 step takes, as the pair that best puts the rebuilt health (no floor at 0) at 0
+    when Lords die, without any surviving Lord's health reaching 0. Lords whose damage wasn't observed are skipped."""
+    from lord import LordState, simulate
     cases = []
     for rid in ids or match_ids():
-        st = GameState(Match.from_branch(rid)); L = LordState(st, rate=0)
+        st = GameState(Match.from_branch(rid)); L = LordState(st)
         for tm in (1, 2):
             if 3 - tm in L.unobserved or not L.ev[tm]: continue
-            cases.append({"match": rid, "team": tm, "ev": L.ev[tm], "base": L.base_hp[tm], "dead": L.dead[tm], "end": st.end})
-    def score(rate):
+            cases.append({"ev": L.ev[tm], "base": L.base_hp[tm], "dead": L.dead[tm], "end": st.end})
+    def score(delay, ramp, cap):
         err, contra = [], 0
         for c in cases:
-            S = _unclamped(c["ev"], c["base"], rate, REGEN_DELAY, c["end"])
-            if c["dead"] is not None:
-                at = [h for t, h in S if t <= c["dead"] + 0.5]
-                if at: err.append(abs(at[-1]))
-            elif min(h for _, h in S) <= 0: contra += 1
+            S = simulate(c["ev"], c["base"], c["end"], delay, ramp, floor=False, cap=cap)
+            if c["dead"] is not None: err.append(abs(S[min(int(c["dead"]), len(S) - 1)]))
+            elif min(S) <= 0: contra += 1
         err.sort()
-        return (err[len(err) // 2] if err else None), contra, len(err)
-    grid = [x / 2 for x in range(0, 61)]
-    res = {r: score(r) for r in grid}
-    ok = [r for r in grid if res[r][1] == 0] or grid
-    best = min(ok, key=lambda r: res[r][0])
-    near = [r for r in ok if res[r][0] <= res[best][0] * 1.25 + 25]
-    out = {"about": regen.__doc__.strip(), "rate": best, "delay_s": REGEN_DELAY, "plausible_range": [min(near), max(near)],
-           "deaths_used": res[best][2], "surviving_lords": sum(1 for c in cases if c["dead"] is None),
-           "median_error_at_death": res[best][0], "with_no_regeneration": {"median_error_at_death": res[0][0], "survivors_contradicted": res[0][1]},
-           "grid": {str(r): {"median_error": res[r][0], "survivors_contradicted": res[r][1]} for r in grid if r == int(r)}}
+        return (round(err[len(err) // 2]) if err else None), contra, len(err)
+    res = {(dl, rp, cap): score(dl, rp, cap) for dl in (2, 3, 4, 5, 6, 8, 10, 12, 15, 20) for rp in (1, 2, 3, 4, 6) for cap in (False, True)}
+    ok = [k for k in res if res[k][1] == 0] or list(res)
+    best = min(ok, key=lambda k: res[k][0])
+    out = {"about": regen.__doc__.strip() + " Also tried: applying the Amulet of Protection cap to the recorded damage "
+           "(if gvg.report records damage before the cap) or not (after).", "delay_s": best[0], "ramp_s": best[1],
+           "amulet_cap_applied": best[2], "deaths_used": res[best][2],
+           "surviving_lords": sum(1 for c in cases if c["dead"] is None), "median_error_at_death": res[best][0],
+           "grid": {f"delay {k[0]} s, step {k[1]} s, cap {'applied' if k[2] else 'not applied'}": {"median_error": v[0], "survivors_contradicted": v[1]} for k, v in res.items()}}
     os.makedirs(OUT, exist_ok=True)
     json.dump(out, open(os.path.join(OUT, "lord_regen.json"), "w"), indent=1)
     return out
