@@ -1,6 +1,6 @@
 {
  "about": "The causal map: what can cause what in a GvG match, as reasoned by Denning and Claude and found in data. Each node is measured; each node's model may only use the links pointing into it, measured earlier in time. The data decides how much each link matters (status: hypothesis, supported, rejected; mechanical = a formula, not learned). Denning can add, correct or remove links; each change is logged with its reason. Rendered to knowledge/causal-map.md by tools/replay_analysis/causal_map.py.",
- "version": 3,
+ "version": 4,
  "nodes": [
   {
    "id": "C.builds",
@@ -408,6 +408,14 @@
    "name": "Taking conditions on oneself",
    "description": "a monk transferring conditions onto itself (Draw Conditions), e.g. Deep Wound and Burning",
    "how": "condition effects whose source is the own team",
+   "kind": "measured"
+  },
+  {
+   "id": "P.16",
+   "layer": "play",
+   "name": "Death timing on purpose",
+   "description": "dying before time on purpose (death sets, not healing), monks dying in base before time to reset energy, and holding a kill until after the enemy's res (timing)",
+   "how": "death timing against the res, death set held at death, own heals on the victim in its last seconds",
    "kind": "measured"
   }
  ],
@@ -2166,6 +2174,67 @@
    "confirmed_by_denning": false,
    "status": "mechanical",
    "tactics": []
+  },
+  {
+   "from": "S.scoreboard",
+   "to": "P.16",
+   "why": "decisions are made in a situation (the usual play)",
+   "source": "Claude",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.clock",
+   "to": "P.16",
+   "why": "decisions are made in a situation (the usual play)",
+   "source": "Claude",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "A.plan",
+   "to": "P.16",
+   "why": "decisions are made in a situation (the usual play)",
+   "source": "Claude",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.strength",
+   "to": "P.16",
+   "why": "decisions are made in a situation (the usual play)",
+   "source": "Claude",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "P.16",
+   "to": "R.1",
+   "why": "teams time kills and the dying team may choose to die before time; a death's cost depends on when it happens, and some deaths may be positive (energy reset, a short wait)",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "K14",
+    "K15",
+    "K1",
+    "K2"
+   ]
+  },
+  {
+   "from": "P.16",
+   "to": "S.scoreboard",
+   "why": "a death before time costs only seconds down and can reset a monk's energy; the win model values it by its timing",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "K14"
+   ]
   }
  ],
  "log": [
@@ -2183,6 +2252,11 @@
    "date": "2026-11-05",
    "change": "version 3: 'Taking conditions on oneself' (Draw Conditions, M18); jobs in the enemy base read from targets",
    "by": "Denning and Claude"
+  },
+  {
+   "date": "2026-11-06",
+   "change": "version 4: 'Death timing on purpose' (Denning K14: timing, dying before time, monks resetting energy; deaths can be positive)",
+   "by": "Denning"
   }
  ]
 }

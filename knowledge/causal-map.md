@@ -1,6 +1,6 @@
 *Generated from data/model/causal_map.json by tools/replay_analysis/causal_map.py: don't edit this page; tell Claude or edit the JSON (each change is logged with a reason).*
 
-# Causal map (version 3)
+# Causal map (version 4)
 
 What can cause what in a GvG match. Each concept is measured from the replays; the model for each concept may only use the causes listed under it, measured earlier in time, and the data decides how much each matters. Status: **hypothesis** (not yet tested), **supported** or **rejected** by data, **mechanical** (a formula). "Confirmed" = Denning has confirmed the reasoning; the size of the effect still comes from data.
 
@@ -156,6 +156,12 @@ a monk transferring conditions onto itself (Draw Conditions), e.g. Deep Wound an
 Caused by:
 - **Scoreboard, Plan, Clock, Build features, Team strength**: decisions are made in a situation (the usual play) (Claude, confirmed; hypothesis)
 
+### Death timing on purpose `P.16`
+dying before time on purpose (death sets, not healing), monks dying in base before time to reset energy, and holding a kill until after the enemy's res (timing). *Measured: death timing against the res, death set held at death, own heals on the victim in its last seconds.*
+
+Caused by:
+- **Scoreboard, Clock, Plan, Team strength**: decisions are made in a situation (the usual play) (Claude, confirmed; hypothesis)
+
 ## Capacities (what a group can do in its fight)
 
 ### Pressure `K.1`
@@ -265,6 +271,7 @@ Caused by:
 - **Prot timing, Health ceiling, Heal targeting, Monk uptime, Kiting and spacing**: a team heals a lot but still loses a player when heals arrive instead of prots, the health ceiling is low (DP, Deep Wound), healing goes elsewhere, heals are late or interrupted, or the victim can't kite (Claude; hypothesis; `M17`)
 - **Health ceiling**: death penalty stacking against a spike team makes every later spike easier (Denning; hypothesis; `K4`)
 - **Sustain margin**: a group whose margin is negative loses players (Claude; hypothesis)
+- **Death timing on purpose**: teams time kills and the dying team may choose to die before time; a death's cost depends on when it happens, and some deaths may be positive (energy reset, a short wait) (Denning; hypothesis; `K14` `K15` `K1` `K2`)
 
 ### Wipes `R.2`
 fights where 3+ players or 2+ monks die. *Measured: fights.*
@@ -329,6 +336,7 @@ numbers, DP, flag lead, stand, pit NPCs, Lord damage at any second. *Measured: s
 
 Caused by:
 - **Deaths, Boosts, Pit NPCs, Lord damage**: results change the scoreboard (formula; mechanical)
+- **Death timing on purpose**: a death before time costs only seconds down and can reset a monk's energy; the win model values it by its timing (Denning; hypothesis; `K14`)
 
 ### Win `S.win`
 the win-probability model: values every result. *Measured: model.py.*
@@ -341,3 +349,4 @@ Caused by:
 - 2026-11-05: version 1 from the design conversation (scenarios 1 to 10 and follow-ups); decisions linked to the situation (the usual play), remaining gaps linked (Denning and Claude)
 - 2026-11-05: version 2: 'Damage v healers' became 'Damage potential v healing' (Denning: healer counts only matter through damage); J12 link added (Denning)
 - 2026-11-05: version 3: 'Taking conditions on oneself' (Draw Conditions, M18); jobs in the enemy base read from targets (Denning and Claude)
+- 2026-11-06: version 4: 'Death timing on purpose' (Denning K14: timing, dying before time, monks resetting energy; deaths can be positive) (Denning)

@@ -315,8 +315,15 @@ def deaths(st, sb=None):
             peel = sum(1 for r in m.o["ev"] if r[1] == "dm" and r[2] in st.players[tm] and r[3] in attackers and t0 * 10 <= r[0] <= td * 10)
             res = st.next_res(td)
             after_time = (td % RES_EVERY) <= AFTER_TIME
+            before_time = (res - td) <= AFTER_TIME
+            sets = m.o.get("sets", {}).get(str(a), []); snap = m.snap(a, int(td * 10) - 10)
+            death_set = None       # holding its lowest-health weapon set (40+ below its highest) when it died
+            if snap and len(sets) > 1 and 0 <= snap.get("w", -1) < len(sets):
+                hps = [x.get("hp") or 0 for x in sets]
+                death_set = (sets[snap["w"]].get("hp") or 0) == min(hps) and max(hps) - min(hps) >= 40
             out.append({
                 "t": round(td), "team": m.tag[tm], "victim": m.roles[a], "zone": st.zone(a, td - 2), "after_time": after_time,
+                "before_time": before_time, "death_set": death_set,
                 "down_for": round(res - td), "burst_max_2s": round(best), "first_big_hit": round(first_big - td, 1) if first_big else None,
                 "damage_by": {k: round(v) for k, v in src.most_common(5)}, "damage_kind": {k: round(v) for k, v in kinds.items()},
                 "knockdowns": kds, "interrupts_on_victim": irs_t, "interrupts_on_monks": irs_m,

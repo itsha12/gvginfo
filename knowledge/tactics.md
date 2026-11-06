@@ -357,6 +357,15 @@ against general principles rather than past games. Match-by-match evidence lives
   lowers health and energy.
 - `K4` **Denning:** Death penalty stacks. A team that piles up death penalty against a spike team is at a big
   disadvantage even if each death on its own can be recovered from: the lower health makes every later spike easier.
+- `K14` **Denning:** Teams time kills: they may avoid killing a player just before the res, so the kill lands after
+  time. The other way round, when a death is very likely or inevitable, the dying team tries to die before time (death
+  sets, or not healing on purpose). A team losing and fighting in its base may have monks die before time on purpose,
+  even when the death isn't inevitable, to reset their energy. So a death can be positive rather than negative,
+  depending on the situation; look in the data for where dying before time raises the win rate.
+- `K15` **Claude:** First look (30 matches, 509 deaths): deaths in the last 15 s before a res are at chance level (62
+  against about 64 expected), deaths in the first 15 s after it are well below (42): the costly deaths are the rare
+  ones. A death set was held in 15% of deaths before time against 9 to 10% otherwise, and the team dying before time
+  won 21% of those matches against 12 to 14% (descriptive; the win-chance chain will test it).
 - `K5` **Bounty:** A team that always has someone timed or stuck has no moment to play tactics and gets overwhelmed.
   Resurrecting too late wastes time; teams under pressure are often scared to go for the res.
 - `K6` **Bounty:** Target choice costs time: 30 to 40 s failing to kill a monk is fine at 2 minutes, not at 22. A build

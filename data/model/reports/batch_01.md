@@ -87,22 +87,37 @@ Win chance from a model that never saw the match, 20 s before and 60 s after eac
 Each explains one result from what happened before it (time order enforced), tested on matches it never saw. AUC = how often a moment that led to the result scores above one that didn't (0.5 = guessing, 1 = perfect).
 
 **deaths** (30 matches, 69889 moments, 1829 results): adds to the simple baseline (AUC 0.896 against 0.764 for health_pct and damage_taken_3s alone).
-- **enemies_near** (enemies within 1,500) rises from -17.0 to +25.7 points (0.0..0.5: -17.0; 0.5..1.5: -8.1; 1.5..2.5: -0.4; 2.5..3.5: +1.4; 3.5..4.5: +4.8; 4.5..5.5: +6.2; 5.5..6.5: +11.4; 6.5..7.5: +14.0; 7.5..8.0: +25.7)
-- **health_pct** (current health %) falls from +41.3 to -6.2 points (1.0..48.5: +41.3; 60.5..68.5: +22.8; 74.5..78.5: +10.5; 82.5..85.5: +6.0; 88.5..91.5: +1.5; 93.5..95.5: -1.4; 97.5..99.5: -4.6)
-- **health_ceiling** (maximum health after death penalty, as a share of normal) falls from +34.7 to -13.2 points (0.4..0.64: +34.7; 0.71..0.84: +24.3; 0.85..0.9: +18.3; 0.94..0.99: +11.5; 1.0..1.1: -1.4)
-- **strength_gap** (own minus enemy team strength) falls from +11.4 to -18.7 points (-1092.0..-480.5: +11.4; -382.0..-334.0: -2.6; -168.5..-130.5: +5.1; -38.0..0.0: +8.6; 38.0..130.5: +7.9; 181.0..334.0: -7.4; 382.0..480.5: -0.8)
-- **local_diff** (allies minus enemies within 2,000) falls from +32.2 to -18.9 points (-8.0..-3.5: +32.2; -2.5..-1.5: +11.1; -0.5..0.5: -5.9; 1.5..2.5: -6.7; 3.5..4.5: +16.6; 5.5..7.0: -18.9)
-- **dist_own_pit** (distance from its own pit) rises from +6.6 to +17.8 points (10.0..1710.5: +6.6; 2929.5..4656.5: -6.9; 5577.5..6359.5: -8.6; 7136.5..7805.5: -3.1; 8361.5..8874.5: -3.5; 9615.5..10481.5: -0.4; 11606.5..13044.5: +11.7)
-- **healers_in_range** (own healers alive within cast range) falls from +10.4 to +1.7 points (0.0..0.5: +10.4; 0.5..1.5: -3.3; 1.5..2.5: -6.2; 2.5..3.0: +1.7)
-- **minute** (match minute) rises from -3.7 to +16.6 points (0.1..1.25: -3.7; 2.35..3.45: -7.4; 4.55..5.75: +3.3; 7.15..8.75: +3.7; 10.35..12.15: -2.3; 14.05..16.25: -0.9; 18.65..21.75: +6.9)
+- **enemies_near** (enemies within 1,500) rises from -17.2 to +25.9 points (0.0..0.5: -17.2; 0.5..1.5: -8.3; 1.5..2.5: -0.4; 2.5..3.5: +1.3; 3.5..4.5: +4.7; 4.5..5.5: +6.6; 5.5..6.5: +11.8; 6.5..7.5: +14.0; 7.5..8.0: +25.9)
+- **health_pct** (current health %) falls from +41.4 to -6.3 points (1.0..48.5: +41.4; 60.5..68.5: +22.9; 74.5..78.5: +9.5; 82.5..85.5: +6.2; 88.5..91.5: +2.6; 93.5..95.5: -1.6; 97.5..99.5: -4.4)
+- **health_ceiling** (maximum health after death penalty, as a share of normal) falls from +34.8 to -13.3 points (0.4..0.64: +34.8; 0.71..0.84: +24.0; 0.85..0.9: +18.1; 0.94..0.99: +11.0; 1.0..1.1: -1.6)
+- **strength_gap** (own minus enemy team strength) falls from +11.4 to -18.8 points (-1092.0..-480.5: +11.4; -382.0..-334.0: -2.7; -168.5..-130.5: +5.1; -38.0..0.0: +8.7; 38.0..130.5: +8.2; 181.0..334.0: -7.4; 382.0..480.5: -0.7)
+- **local_diff** (allies minus enemies within 2,000) falls from +32.2 to -18.7 points (-8.0..-3.5: +32.2; -2.5..-1.5: +11.0; -0.5..0.5: -6.0; 1.5..2.5: -6.5; 3.5..4.5: +17.2; 5.5..7.0: -18.7)
+- **dist_own_pit** (distance from its own pit) rises from +6.6 to +17.9 points (10.0..1710.5: +6.6; 2929.5..4656.5: -6.9; 5577.5..6359.5: -8.6; 7136.5..7805.5: -3.0; 8361.5..8874.5: -3.6; 9615.5..10481.5: -0.3; 11606.5..13044.5: +11.8)
+- **healers_in_range** (own healers alive within cast range) falls from +10.6 to +1.6 points (0.0..0.5: +10.6; 0.5..1.5: -3.3; 1.5..2.5: -6.4; 2.5..3.0: +1.6)
+- **minute** (match minute) rises from -3.7 to +16.6 points (0.1..1.25: -3.7; 2.35..3.45: -7.7; 4.55..5.75: +3.2; 7.15..8.75: +3.7; 10.35..12.15: -2.4; 14.05..16.25: -0.7; 18.65..21.75: +7.1)
+- **flag_lead** (own flag lead (s)) rises from -10.0 to -4.0 points (-81.0..-64.5: -10.0; -54.5..-36.5: +4.8; -26.5..-16.5: +0.8; -7.5..0.5: -1.8; 8.5..17.5: -3.2; 27.5..36.5: -3.2; 54.5..64.5: +2.8)
 
 **kill conversion** (29 matches, 553 moments, 165 results): adds to the simple baseline (AUC 0.784 against 0.647 for burst_damage and target_health_pct alone).
-- **target_ceiling** (target's health ceiling) falls from +27.3 to -18.7 points (0.4..0.56: +27.3; 0.68..0.71: +21.3; 0.83..0.86: +16.0; 0.91..0.92: +9.6; 0.94..0.95: +6.5; 0.98..1.02: -3.5; 1.08..1.1: -18.7)
-- **burst_damage** (damage in the 2 s burst) rises from -7.9 to +19.8 points (250.0..257.5: -7.9; 267.5..280.5: -10.1; 290.5..304.0: -7.0; 320.5..336.5: -3.6; 358.5..377.0: -2.2; 409.0..440.0: +0.8; 476.0..547.5: +18.7)
-- **target_healers_in_range** (target's healers in range) falls from +23.4 to -4.8 points (0.0..0.5: +23.4; 0.5..1.5: +1.0; 1.5..2.5: -6.9; 2.5..3.0: -4.8)
-- **target_health_pct** (target health % when the burst started) falls from +22.6 to -7.1 points (0.0..41.5: +22.6; 53.5..58.5: +10.3; 66.5..72.5: +4.7; 76.5..78.5: +1.6; 81.5..85.5: -4.4; 88.5..92.5: -9.0; 96.5..99.5: -7.6)
-- **target_prot_up** (a prot on the target) falls from +4.6 to -10.3 points (0.0..0.5: +4.6; 0.5..1.0: -10.3)
-- **minute** (match minute) rises from -11.6 to +9.4 points (0.3..1.35: -11.6; 2.55..3.75: -3.5; 4.95..6.15: -2.5; 7.15..8.45: -1.4; 10.35..12.65: +0.8; 14.45..16.35: +6.5; 18.75..22.0: +8.2)
+- **target_ceiling** (target's health ceiling) falls from +27.8 to -18.8 points (0.4..0.56: +27.8; 0.68..0.71: +21.7; 0.83..0.86: +15.8; 0.91..0.92: +9.0; 0.94..0.95: +6.0; 0.98..1.02: -3.3; 1.08..1.1: -18.8)
+- **burst_damage** (damage in the 2 s burst) rises from -7.7 to +19.9 points (250.0..257.5: -7.7; 267.5..280.5: -10.0; 290.5..304.0: -7.1; 320.5..336.5: -4.1; 358.5..377.0: -1.9; 409.0..440.0: +0.9; 476.0..547.5: +18.5)
+- **target_health_pct** (target health % when the burst started) falls from +22.9 to -7.1 points (0.0..41.5: +22.9; 53.5..58.5: +10.1; 66.5..72.5: +4.1; 76.5..78.5: +1.4; 81.5..85.5: -4.5; 88.5..92.5: -8.4; 96.5..99.5: -7.5)
+- **target_healers_in_range** (target's healers in range) falls from +22.0 to -4.4 points (0.0..0.5: +22.0; 0.5..1.5: +0.9; 1.5..2.5: -6.5; 2.5..3.0: -4.4)
+- **target_prot_up** (a prot on the target) falls from +4.3 to -9.7 points (0.0..0.5: +4.3; 0.5..1.0: -9.7)
+- **minute** (match minute) rises from -11.8 to +9.3 points (0.3..1.35: -11.8; 2.55..3.75: -3.7; 4.95..6.15: -2.4; 7.15..8.45: -1.3; 10.35..12.65: +0.9; 14.45..16.35: +6.6; 18.75..22.0: +8.1)
+- **attackers** (attackers in the burst) falls from -2.3 to -7.7 points (3.0..3.5: -2.3; 3.5..4.5: +2.7; 4.5..5.5: +5.0; 5.5..6.5: -4.4; 6.5..7.0: -7.7)
+- **target_knocked_down** (target knocked down) falls from +1.6 to -11.0 points (0.0..0.5: +1.6; 0.5..1.0: -11.0)
+
+**flag answer** (seconds an answer to an enemy capture was slower than possible; 27 matches, 306 answers): adds to the simple baseline (typical error 17.3 s against 27.2 s for the median; explains 67% of the spread).
+- **handoffs** (hand-offs (drops picked up by a teammate)): 0.0..0.5: -7.4 s; 0.5..1.5: +3.8 s; 1.5..2.5: +25.9 s; 2.5..3.5: +50.4 s; 3.5..6.0: +69.6 s
+- **enemies_in_the_way** (enemy presence along the runner's trip back to the spawn): 0.0..0.5: -7.3 s; 4.5..9.5: -5.1 s; 15.5..20.5: -3.6 s; 25.0..37.5: -1.1 s; 50.5..57.0: +5.4 s; 71.5..101.0: +12.7 s; 120.5..171.5: +17.3 s
+- **own_deaths_during** (own deaths during the answer): 0.0..0.5: -4.6 s; 0.5..1.5: +6.9 s; 1.5..2.5: +19.8 s; 2.5..4.5: +34.4 s; 4.5..5.5: +54.8 s; 5.5..6.5: +68.6 s; 6.5..8.0: +82.5 s; 8.0..11.0: +95.7 s
+- **carrier_damage_taken** (damage the carrier took while carrying): 0.0..2.0: -4.0 s; 26.5..49.0: -3.4 s; 66.0..96.5: -1.6 s; 125.5..177.5: +0.7 s; 244.0..277.5: +3.0 s; 378.0..491.5: +6.0 s; 573.5..944.0: +8.7 s
+- **possible_s** (fastest possible answer (s) from the flag model at the enemy's capture): 2.0..6.5: +2.9 s; 12.5..19.5: +3.2 s; 24.5..28.5: +3.4 s; 34.5..38.5: +3.6 s; 40.5..43.5: +1.7 s; 48.5..54.5: -2.6 s; 63.5..75.5: -7.9 s
+- **enemy_deaths_during** (enemy deaths during the answer): 0.0..0.5: -2.1 s; 0.5..1.5: +8.5 s; 1.5..2.5: +11.6 s; 2.5..3.5: +14.0 s; 3.5..5.0: +17.3 s
+- **runner_to_spawn** (runner's distance to its flag spawn when the enemy captured): 94.0..976.0: -5.6 s; 1503.0..2101.5: -2.6 s; 3384.5..4354.5: +0.5 s; 4871.0..5542.0: +3.3 s; 6234.5..6701.0: +2.8 s; 7263.5..7825.0: +1.1 s; 8439.0..9139.5: +0.6 s
+- **flag_lead_at_enemy_cap** (own flag lead when the enemy captured): -80.0..-72.5: -0.4 s; -62.5..-54.5: +2.9 s; -41.5..-36.5: +3.9 s; -26.0..-18.5: +1.8 s; -10.5..-4.5: +0.2 s; 11.5..21.5: -1.7 s; 34.0..52.5: -3.2 s
+- **pushers** (enemies who hit the carrier): 0.0..0.5: -1.5 s; 0.5..1.5: -1.4 s; 1.5..2.5: +1.8 s; 2.5..3.5: +2.2 s; 3.5..4.5: +5.2 s; 4.5..5.5: +5.9 s; 5.5..7.0: +4.0 s
+- **strength_gap** (own minus enemy team strength): -1092.0..-480.5: +1.9 s; -366.5..-334.0: +1.0 s; -169.5..-58.5: +1.4 s; -25.0..58.5: +2.2 s; 169.5..224.5: -0.1 s; 359.5..406.5: -3.0 s; 480.5..636.0: -3.6 s
 
 ## 7. For Denning
 

@@ -97,6 +97,7 @@ def death_features(tl, a, t, mu, gap):
         "healers_in_range": len(in_range), "healers_dead": sum(1 for b in tl.healers[tm] if b != a and not st.alive(b, t)),
         "allies_near": near(tm, 1500), "enemies_near": near(3 - tm, 1500), "local_diff": near(tm, 2000) - near(3 - tm, 2000),
         "dist_from_group": round(d(p, c)) if a not in main and c else 0,
+        "away_3000": int(a not in main and bool(c) and d(p, c) >= 3000),
         "dist_own_pit": round(d(p, st.geo.pit.get(tm))), "res_in": sbt and sb.at(t)["res_in"],
         "flag_lead": max(min(sbt["flag_lead"], 150), -150), "minute": round(t / 60, 1), "strength_gap": gap,
         **{k: mu[k] for k in MATCHUP_KEYS},
@@ -115,6 +116,7 @@ DEATH_DESC = {
     "block_up": "a block enchantment up now", "healers_in_range": "own healers alive within cast range",
     "healers_dead": "own healers dead", "allies_near": "allies within 1,500", "enemies_near": "enemies within 1,500",
     "local_diff": "allies minus enemies within 2,000", "dist_from_group": "distance from its main group (0 if in it)",
+    "away_3000": "3,000+ from its main group (Denning: clearer than 2,500 for a split or a collapse)",
     "dist_own_pit": "distance from its own pit", "res_in": "seconds until the next res", "flag_lead": "own flag lead (s)",
     "minute": "match minute", "strength_gap": "own minus enemy team strength",
     "enemy_knockdowns_v_own_aura_of_stability": "enemy knockdown skills minus own Auras of Stability (matchup)",
@@ -168,11 +170,59 @@ def _build_rows(node, rid):
                              "target_ceiling": f["health_ceiling"], "target_prot_up": f["prot_up"], "target_block_up": f["block_up"],
                              "target_healers_in_range": f["healers_in_range"], "target_knocked_down": f["knocked_down_now"],
                              "target_dazed": f["dazed"], "target_deep_wound": f["deep_wound"], "target_dist_from_group": f["dist_from_group"],
+                             "target_away_3000": f["away_3000"],
                              "burst_damage": round(sum(x[1] for x in w)), "attackers": len(atk), "attackers_blinded": blind,
                              "attackers_interrupted": rup, "attackers_knocked_down": kdat, "strength_gap": -f["strength_gap"] if f["strength_gap"] is not None else None,
                              "own_interrupts_v_enemy_heals": mus[3 - vt]["own_interrupts_v_enemy_heals"],
                              "enemy_prots": mus[3 - vt]["enemy_prots"], "enemy_blind": mus[3 - vt]["enemy_blind"], "minute": round(t / 60, 1)})
+    elif node == "flag_answer":
+        import episodes as E
+        from state import d
+        from common import line as LINE
+        fl = [(x[0] / 10, x[1], x[2]) for x in m.o.get("flags", []) if m.team(x[2])]
+        for c in E.flag_cycles(st, sb):
+            if "possible_s" not in c or c["own_pickup"] is None: continue
+            tm = next(k for k, v in m.tag.items() if v == c["team"]); foe = 3 - tm
+            pc, cc = c["enemy_cap"], c["own_cap"]
+            starter = next((a for a in st.players[tm] if m.roles[a] == c["runner"]), None)
+            if starter is None: continue
+            mine = [x for x in st.carries if m.team(x["a"]) == tm and x["s"] <= cc and x["e"] >= pc]
+            car_dmg = sum(v for cr in mine for (tt, v, _) in tl.dmg_in[cr["a"]] if cr["s"] <= tt <= cr["e"])
+            pushers = len({b for cr in mine for (tt, _, b) in tl.dmg_in[cr["a"]] if cr["s"] <= tt <= cr["e"]})
+            fighting = sum(1 for b in st.players[tm] if st.alive(b, pc) and (tl.window(tl.dmg_in[b], pc, 5) or tl.window(tl.dmg_out[b], pc, 5)))
+            from features import _splitting
+            sbt = sb.at(int(pc))
+            rows.append({"match": rid, "team": c["team"], "role": c["runner"], "t": pc, "y": max(min(c["slower_than_possible_s"], 180), -30), "w": 1,
+                         "possible_s": c["possible_s"], "runner_line": {"frontline": 0, "midline": 1, "backline": 2}[LINE(m, starter)],
+                         "runner_is_mesa": int(c["runner"] == "Mes/A"), "runner_dead_at_enemy_cap": int(not st.alive(starter, pc)),
+                         "runner_to_spawn": round(d(st.pos(starter, pc)[0], st.geo.spawn[tm])) if st.alive(starter, pc) else None,
+                         "waiting_runner": int(sb.waiting_runner(tm, int(pc)) is not None),
+                         "runners_used": len({x["a"] for x in st.carries if m.team(x["a"]) == tm and x["e"] <= pc}),
+                         "enemies_in_the_way": sum((c.get("enemies_in_the_way") or {}).values()),
+                         "carrier_damage_taken": round(car_dmg), "pushers": pushers,
+                         "handoffs": sum(1 for tt, ty, b in fl if ty == "flag_dropped" and m.team(b) == tm and pc <= tt <= cc),
+                         "own_deaths_during": sum(1 for b in st.players[tm] for tt in st.death_times.get(b, []) if pc < tt <= cc),
+                         "enemy_deaths_during": sum(1 for b in st.players[foe] for tt in st.death_times.get(b, []) if pc < tt <= cc),
+                         "own_fighting_at_enemy_cap": fighting, "own_splitting": _splitting(sb, tm, int(pc)),
+                         "alive_diff": sbt[m.tag[tm]]["alive"] - sbt[m.tag[foe]]["alive"],
+                         "morale_diff": sbt[m.tag[tm]]["morale_sum"] - sbt[m.tag[foe]]["morale_sum"],
+                         "flag_lead_at_enemy_cap": max(min(sbt[m.tag[tm]]["flag_lead"], 150), -150),
+                         "minute": round(pc / 60, 1), "strength_gap": gaps[tm]})
     return rows
+
+
+FA_DESC = {"possible_s": "fastest possible answer (s) from the flag model at the enemy's capture",
+           "runner_line": "runner 0 frontline, 1 midline, 2 backline", "runner_is_mesa": "the runner is the Mes/A",
+           "runner_dead_at_enemy_cap": "the runner was dead when the enemy captured",
+           "runner_to_spawn": "runner's distance to its flag spawn when the enemy captured",
+           "waiting_runner": "a runner was already waiting at the spawn", "runners_used": "players who had carried so far",
+           "enemies_in_the_way": "enemy presence along the runner's trip back to the spawn",
+           "carrier_damage_taken": "damage the carrier took while carrying", "pushers": "enemies who hit the carrier",
+           "handoffs": "hand-offs (drops picked up by a teammate)", "own_deaths_during": "own deaths during the answer",
+           "enemy_deaths_during": "enemy deaths during the answer", "own_fighting_at_enemy_cap": "own players fighting when the enemy captured",
+           "own_splitting": "own players on a split", "alive_diff": "own minus enemy players alive",
+           "morale_diff": "own minus enemy morale", "flag_lead_at_enemy_cap": "own flag lead when the enemy captured",
+           "minute": "match minute", "strength_gap": "own minus enemy team strength"}
 
 
 KC_DESC = {"target_is_healer": "target is a healer", "target_line": "target 0 frontline, 1 midline, 2 backline",
@@ -180,13 +230,14 @@ KC_DESC = {"target_is_healer": "target is a healer", "target_line": "target 0 fr
            "target_prot_up": "a prot on the target", "target_block_up": "a block on the target",
            "target_healers_in_range": "target's healers in range", "target_knocked_down": "target knocked down",
            "target_dazed": "target Dazed", "target_deep_wound": "target has Deep Wound",
-           "target_dist_from_group": "target's distance from its group", "burst_damage": "damage in the 2 s burst",
+           "target_dist_from_group": "target's distance from its group", "target_away_3000": "target 3,000+ from its main group", "burst_damage": "damage in the 2 s burst",
            "attackers": "attackers in the burst", "attackers_blinded": "attackers Blind during the burst",
            "attackers_interrupted": "interrupts on the attackers (5 s before to 2 s after)",
            "attackers_knocked_down": "knockdowns on the attackers (5 s before to 2 s after)",
            "strength_gap": "attacking minus target team strength", "own_interrupts_v_enemy_heals": "attackers' interrupt skills minus target team's heals",
            "enemy_prots": "target team's prot skills", "enemy_blind": "target team's Blind skills", "minute": "match minute"}
-DESC = {"deaths": DEATH_DESC, "kill_conversion": KC_DESC}
+DESC = {"deaths": DEATH_DESC, "kill_conversion": KC_DESC, "flag_answer": FA_DESC}
+REGRESSION = {"flag_answer"}      # these nodes predict a number (seconds), not a yes/no
 
 
 def node_rows(node, rid):
@@ -197,7 +248,8 @@ def node_rows(node, rid):
 
 
 MATCH_FIXED = {"deaths": set(MATCHUP_KEYS) | {"strength_gap"},
-               "kill_conversion": {"own_interrupts_v_enemy_heals", "enemy_prots", "enemy_blind", "strength_gap"}}
+               "kill_conversion": {"own_interrupts_v_enemy_heals", "enemy_prots", "enemy_blind", "strength_gap"},
+               "flag_answer": {"strength_gap"}}
 STAGE_FIXED = 60     # matches before variables fixed for a whole match (matchup counts) are used (they fingerprint matches)
 
 
@@ -213,10 +265,11 @@ def _frame(node, ids):
     return df, df[feats].astype(float), df["y"].astype(int), df["match"], df["w"].astype(float)
 
 
-def _ebm(n_matches):
-    from interpret.glassbox import ExplainableBoostingClassifier as EBM
-    return EBM(max_bins=16, outer_bags=4, min_samples_leaf=20, max_rounds=500, interactions=6 if n_matches >= 25 else 0,
-               random_state=7)
+def _ebm(n_matches, regression=False):
+    from interpret.glassbox import ExplainableBoostingClassifier as EBM, ExplainableBoostingRegressor as EBR
+    kw = dict(max_bins=16, outer_bags=4, min_samples_leaf=20 if not regression else 8, max_rounds=500,
+              interactions=(6 if n_matches >= 25 else 0) if not regression else 0, random_state=7)
+    return (EBR if regression else EBM)(**kw)
 
 
 def _wmetrics(p, y, w):
@@ -225,6 +278,38 @@ def _wmetrics(p, y, w):
     # ranking quality: how often a row that led to the result scores above one that didn't (AUC)
     from sklearn.metrics import roc_auc_score
     return {"log_loss": round(ll, 4), "auc": round(float(roc_auc_score(y, p, sample_weight=w)), 3), "rate": round(float(np.average(y, weights=w)), 4)}
+
+
+def validate_regression(node, df, X, y, g, w):
+    """Held out by match: mean absolute error against always guessing the training median, and the share of the spread
+    explained (R squared)."""
+    from sklearn.model_selection import GroupKFold
+    pe, pb = np.zeros(len(y)), np.zeros(len(y))
+    for tr, te in GroupKFold(n_splits=min(6, g.nunique())).split(X, y, g):
+        pb[te] = float(np.median(y.iloc[tr]))
+        pe[te] = _ebm(g.iloc[tr].nunique(), True).fit(X.iloc[tr], y.iloc[tr]).predict(X.iloc[te])
+    yv = y.values.astype(float)
+    r2 = lambda p: round(1 - float(np.sum((yv - p) ** 2) / np.sum((yv - yv.mean()) ** 2)), 3)
+    out = {"glass box": {"mae_s": round(float(np.mean(np.abs(yv - pe))), 1), "r2": r2(pe)},
+           "simple baseline": {"mae_s": round(float(np.mean(np.abs(yv - pb))), 1), "r2": r2(pb)}, "baseline uses": ["the median"]}
+    out["verdict"] = "adds to the simple baseline" if out["glass box"]["mae_s"] < out["simple baseline"]["mae_s"] - 0.5 else "no better than the simple baseline yet"
+    return out, pe
+
+
+def readable_seconds(e, names, X):
+    """Curves of a regression node in seconds (not win-chance points)."""
+    imp = e.term_importances(); out = []
+    for i, name in enumerate(e.term_names_):
+        f = e.term_features_[i]
+        if len(f) != 1: continue
+        f = f[0]; edges = list(e.bins_[f][0]) if len(e.bins_[f]) else []
+        col = X[names[f]].dropna(); lo, hi = (float(col.min()), float(col.max())) if len(col) else (None, None)
+        b = [lo] + [float(x) for x in edges] + [hi]
+        sc, sd = e.term_scores_[i], e.standard_deviations_[i]
+        out.append({"term": name, "description": "", "importance": round(float(imp[i]), 3),
+                    "curve": [{"from": round(b[j], 2) if b[j] is not None else None, "to": round(b[j + 1], 2) if b[j + 1] is not None else None,
+                               "points": round(float(sc[j + 1]), 1), "plus_minus": round(float(sd[j + 1]), 1)} for j in range(len(b) - 1)]})
+    return sorted(out, key=lambda t: -t["importance"])
 
 
 def validate(node, df, X, y, g, w):
@@ -245,14 +330,22 @@ def validate(node, df, X, y, g, w):
 
 def fit_node(node, ids):
     df, X, y, g, w = _frame(node, ids)
-    val, held = validate(node, df, X, y, g, w)
-    e = _ebm(g.nunique()).fit(X, y, sample_weight=w)
-    terms = M.readable(e, list(X.columns), X)
+    if node in REGRESSION:
+        y = df["y"].astype(float)
+        val, held = validate_regression(node, df, X, y, g, w)
+        e = _ebm(g.nunique(), True).fit(X, y)
+        terms = readable_seconds(e, list(X.columns), X)
+    else:
+        val, held = validate(node, df, X, y, g, w)
+        e = _ebm(g.nunique()).fit(X, y, sample_weight=w)
+        terms = M.readable(e, list(X.columns), X)
     for t in terms:
         if "curve" in t: t["description"] = DESC[node].get(t["term"], t["description"])
-    summary = {"node": node, "matches": int(g.nunique()), "rows": int(len(y)), "events": int(y.sum()), "validation": val,
-               "note": "points = change in the chance of the result for an otherwise even (50%) case; read the direction and size, "
-                       "not the absolute level", "terms": terms}
+    summary = {"node": node, "matches": int(g.nunique()), "rows": int(len(y)),
+               "events": int(y.sum()) if node not in REGRESSION else None, "validation": val,
+               "note": ("seconds added to (or taken off) the answer, compared with the average answer" if node in REGRESSION else
+                        "points = change in the chance of the result for an otherwise even (50%) case; read the direction and size, "
+                        "not the absolute level"), "terms": terms}
     os.makedirs(NODE_DIR, exist_ok=True)
     json.dump(summary, open(os.path.join(NODE_DIR, f"{node}.json"), "w"), indent=1)
     return summary, e, df, held
@@ -271,7 +364,7 @@ if __name__ == "__main__":
     a = sys.argv[1:]
     ids = [m for b in M.batches() for m in b["matches"]]
     if a and a[0] == "fit":
-        for node in (a[1:] or ["deaths", "kill_conversion"]):
+        for node in (a[1:] or ["deaths", "kill_conversion", "flag_answer"]):
             s, e, df, held = fit_node(node, ids)
             print(f"== {node}: {s['matches']} matches, {s['rows']} rows, {s['events']} events")
             print(json.dumps(s["validation"]))

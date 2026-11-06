@@ -213,9 +213,20 @@ removal, heals, speed) and matchup pairs (threat against answer). Node models, g
   player's death risk in the next 10 s, no healer in range about 11. `nodes.py explain` gives a player's risk second by
   second with its causes (from a model that never saw the match). The learning report has a section per node.
 
+**Built (step 4, the flag chain, node `flag_answer`):** one row per answer to an enemy capture (306 in 27 matches);
+the result is how many seconds slower than possible the answer was (the flag model's ETA at the enemy's capture);
+causes: runner (line, Mes/A or not, dead at the enemy's capture, distance to spawn, a runner already waiting, runners
+used so far), the trip (enemies on the route), the carry (damage taken, pushers, hand-offs), the fight meanwhile (own
+and enemy deaths during the answer, own players fighting, own splitters), numbers, morale, flag lead, strength.
+Held out: typical error 17 s against 27 s for the median, 67% of the spread explained. First readings: each hand-off
+adds time (2 hand-offs about +26 s, 3 about +50 s); enemies on the route up to +17 s; each own death during the answer
+about +15 s; enemy deaths during the answer also slow it (+8 to +17 s: a team killing isn't running); a pushed
+carrier up to +9 s; a runner already near its spawn about -6 s; stronger teams about 3 to 4 s faster.
+Deaths also carry `before_time` and `death_set` (holding its lowest-health weapon set), for Denning's `K14`.
+
 **Build order:** (1) phases, allocation per phase, plans and jobs (built); (2) capacities per group per phase,
 measured (built); (3) first node models: deaths and kill conversion (built; expected-for-matchup baselines come with
-the matchup features at 60 matches); (3) expected-for-matchup baselines and the first node models (deaths, kill
+the matchup features at 60 matches); (4) the flag chain (built: `flag_answer`); (3) expected-for-matchup baselines and the first node models (deaths, kill
 conversion), tested on the 30 matches; (4) the flag and boost chain; (5) pit NPCs and Lord damage; (6) usual-play
 models and decision comparisons; (7) learning report sections with "why" chains for the biggest moments, and the
 questions where the data and the map disagree. Slow training continues throughout.

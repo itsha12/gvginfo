@@ -133,14 +133,23 @@ def report():
     L += ["", "## 6. Why: the node models", "",
           "Each explains one result from what happened before it (time order enforced), tested on matches it never saw. "
           "AUC = how often a moment that led to the result scores above one that didn't (0.5 = guessing, 1 = perfect).", ""]
-    for node in ("deaths", "kill_conversion"):
+    for node in ("deaths", "kill_conversion", "flag_answer"):
         s_, e_, df_, held_ = NODES.fit_node(node, ids)
         v_ = s_["validation"]
-        L.append(f"**{node.replace('_', ' ')}** ({s_['matches']} matches, {s_['rows']} moments, {s_['events']} results): "
-                 f"{v_['verdict']} (AUC {v_['glass box']['auc']} against {v_['simple baseline']['auc']} for "
-                 f"{' and '.join(v_['baseline uses'])} alone).")
-        for t in s_["terms"][:10]:
-            if "curve" in t: L.append(f"- **{t['term']}** ({t['description']}) {curve_words(t)}")
+        if node in NODES.REGRESSION:
+            L.append(f"**{node.replace('_', ' ')}** (seconds an answer to an enemy capture was slower than possible; "
+                     f"{s_['matches']} matches, {s_['rows']} answers): {v_['verdict']} (typical error {v_['glass box']['mae_s']} s "
+                     f"against {v_['simple baseline']['mae_s']} s for the median; explains {v_['glass box']['r2']:.0%} of the spread).")
+            for t in s_["terms"][:10]:
+                c = [x for x in t["curve"] if x["from"] is not None]
+                L.append(f"- **{t['term']}** ({NODES.DESC[node].get(t['term'], '')}): " +
+                         "; ".join(f"{x['from']}..{x['to']}: {x['points']:+} s" for x in c[::max(1, len(c) // 5)]))
+        else:
+            L.append(f"**{node.replace('_', ' ')}** ({s_['matches']} matches, {s_['rows']} moments, {s_['events']} results): "
+                     f"{v_['verdict']} (AUC {v_['glass box']['auc']} against {v_['simple baseline']['auc']} for "
+                     f"{' and '.join(v_['baseline uses'])} alone).")
+            for t in s_["terms"][:10]:
+                if "curve" in t: L.append(f"- **{t['term']}** ({t['description']}) {curve_words(t)}")
         L.append("")
     L += ["## 7. For Denning", "",
           "- Which curves look wrong to you? A correction (direction, cap, drop, or a pair to always test) is logged with "
