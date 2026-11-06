@@ -1,0 +1,31 @@
+name: Probe gvg.report
+
+# Finds the JSON endpoints behind gvg.report pages (single-page app) and saves samples to the "probe" branch, so Claude
+# can build syncs for them. Run by hand.
+on:
+  workflow_dispatch:
+    inputs:
+      pages:
+        description: "Pages to probe (space separated)"
+        default: "/players /guilds"
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Probe
+        run: node tools/gvgreport/probe.mjs out ${{ github.event.inputs.pages || '/players /guilds' }}
+      - name: Save to the probe branch
+        run: |
+          git config --global user.name "gvginfo-bot"
+          git config --global user.email "gvginfo-bot@users.noreply.github.com"
+          cd out && git init -q -b probe && git add -A && git commit -qm "Probe gvg.report"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" probe
