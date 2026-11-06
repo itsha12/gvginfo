@@ -70,11 +70,11 @@ def response(sb, tm, t, w=ACT_W):
     return {"by_role": per, "counts": dict(c), "key": ", ".join(f"{k} {v}" for k, v in sorted(c.items(), key=lambda kv: (-kv[1], kv[0])))}
 
 
-def rec(sb, kind, tm, t, choice, t_end, **extra):
+def rec(sb, kind, tm, t, choice, t_end, extra=None, **more):
     tag = sb.m.tag[tm]
     sw = sb.swing(tag, t, t_end)
     return {"kind": kind, "team": tag, "t": round(t), "state": key(sb, tm, t), "choice": choice,
-            "actions": response(sb, tm, t), "outcome": sw, "edge_change": sw["edge_change"], **extra}
+            "actions": response(sb, tm, t), "outcome": sw, "edge_change": sw["edge_change"], "extra": extra or {}, **more}
 
 
 def enemy_pickups(st, sb):
@@ -127,8 +127,12 @@ def boost_clocks(st, sb):
             if t < st.end - 30:
                 ch = 3 - h
                 running = any(m.team(x) == ch for x in st.carrier(t))
+                # Denning: falling back is fine when the team is losing its fight; a mistake when it could fight on
+                own_d = sum(1 for b in st.players[ch] for x in st.death_times.get(b, []) if t - 30 < x <= t)
+                foe_d = sum(1 for b in st.players[h] for x in st.death_times.get(b, []) if t - 30 < x <= t)
                 out.append(rec(sb, "boost_clock", ch, t, "running" if running else "not running", t + 40,
-                               boost_conceded=tb < c2))
+                               boost_conceded=tb < c2, extra={"deaths_30s_diff": foe_d - own_d,
+                                                              "main_diff_now": len(st.main_group(ch, t)) - len(st.main_group(h, t))}))
             k += 1
     return out
 
@@ -145,7 +149,15 @@ def after_wipes(st, sb, fights):
         took_flag = any(m.team(c["a"]) == w and t0 <= c["s"] <= t0 + 45 for c in st.carries)
         choice = "pushed the pit" if pushed else ("took the flag" if took_flag else "reset")
         back = max(st.next_res(x[0]) for x in f["deaths"] if x[1] == f["team"])
-        out.append(rec(sb, "after_wipe", w, t0, choice, back + 15, losses=f["losses"]))
+        # Denning: from a wipe at the stand a team can't reach the enemy pit and take NPCs before the res
+        alive_w = [b for b in st.players[w] if st.alive(b, t0)]
+        c = st.centroid(alive_w, int(t0)) if alive_w else None
+        from common import RUN_SPEED
+        reach = round(d(c, pit) / RUN_SPEED) if c and pit else None
+        res_in = round(st.next_res(t0) - t0)
+        out.append(rec(sb, "after_wipe", w, t0, choice, back + 15, losses=f["losses"],
+                       extra={"seconds_to_enemy_pit": reach, "enemy_res_in": res_in,
+                              "pit_margin_s": (res_in - reach) if reach is not None else None}))
     return out
 
 

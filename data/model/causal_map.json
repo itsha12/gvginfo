@@ -1,6 +1,6 @@
 {
  "about": "The causal map: what can cause what in a GvG match, as reasoned by Denning and Claude and found in data. Each node is measured; each node's model may only use the links pointing into it, measured earlier in time. The data decides how much each link matters (status: hypothesis, supported, rejected; mechanical = a formula, not learned). Denning can add, correct or remove links; each change is logged with its reason. Rendered to knowledge/causal-map.md by tools/replay_analysis/causal_map.py.",
- "version": 6,
+ "version": 7,
  "nodes": [
   {
    "id": "C.builds",
@@ -2312,6 +2312,39 @@
    "tactics": [
     "P11"
    ]
+  },
+  {
+   "from": "C.map",
+   "to": "R.5",
+   "why": "what a wipe can be turned into depends on where it happened: from the stand a team can't reach the enemy base and take NPCs before the res",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "supported",
+   "tactics": [
+    "D5"
+   ]
+  },
+  {
+   "from": "K.4",
+   "to": "P.14",
+   "why": "with the enemy's boost near and no run planned, a team that can fight on (a power play) should; a team losing its fight may fall back for safety",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "D4"
+   ]
+  },
+  {
+   "from": "C.builds",
+   "to": "A.plan",
+   "why": "the best play differs by the two teams' builds: decisions are compared with similar situations between similar builds, and choice effects are split by build once there are enough cases",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "J10"
+   ]
   }
  ],
  "log": [
@@ -2343,6 +2376,11 @@
   {
    "date": "2026-11-06",
    "change": "version 6: pit lines P9 to P11 (knights first, monk load of a full pit and area damage, two monks against a full pit, leaving before the res); three links marked supported by data",
+   "by": "Denning"
+  },
+  {
+   "date": "2026-11-06",
+   "change": "version 7: wipe place limits conversion (D5); falling back near the enemy boost depends on the fight (D4); builds shape the best play",
    "by": "Denning"
   }
  ]

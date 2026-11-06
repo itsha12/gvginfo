@@ -1,6 +1,6 @@
 *Generated from data/model/causal_map.json by tools/replay_analysis/causal_map.py: don't edit this page; tell Claude or edit the JSON (each change is logged with a reason).*
 
-# Causal map (version 6)
+# Causal map (version 7)
 
 What can cause what in a GvG match. Each concept is measured from the replays; the model for each concept may only use the causes listed under it, measured earlier in time, and the data decides how much each matters. Status: **hypothesis** (not yet tested), **supported** or **rejected** by data, **mechanical** (a formula). "Confirmed" = Denning has confirmed the reasoning; the size of the effect still comes from data.
 
@@ -41,6 +41,7 @@ each team's intent in a phase (8v8 brawl, flag game, split pressure, holding in 
 
 Caused by:
 - **Allocation, Scoreboard, Matchup, Clock**: a plan is inferred from the setup and the situation; plans are found and amended from data (Denning; hypothesis; `J11`)
+- **Build features**: the best play differs by the two teams' builds: decisions are compared with similar situations between similar builds, and choice effects are split by build once there are enough cases (Denning; hypothesis; `J10`)
 
 ### Jobs `A.jobs`
 what each group must do given the plan: strong side converts, weak side holds safely, runner caps and returns, defenders hold the pit. *Measured: to build: from the plan and the numbers in each group.*
@@ -149,6 +150,7 @@ damage dealers in range and attacking during a power play or kill attempt. *Meas
 Caused by:
 - **Clock, Flag lead**: a power play has a deadline (the enemy runner's return); the team must capitalize on the limited window (Denning; hypothesis; `J6`)
 - **Scoreboard, Plan, Clock, Build features, Team strength**: decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out (Claude; hypothesis)
+- **Kill conversion**: with the enemy's boost near and no run planned, a team that can fight on (a power play) should; a team losing its fight may fall back for safety (Denning; hypothesis; `D4`)
 
 ### Taking conditions on oneself `P.15`
 a monk transferring conditions onto itself (Draw Conditions), e.g. Deep Wound and Burning. *Measured: condition effects whose source is the own team.*
@@ -303,6 +305,7 @@ Caused by:
 - **Split answer**: a split answered late or with the wrong player takes NPCs (Denning; hypothesis; `S18` `S19`)
 - **Allocation**: flag play and splits change the ability to take and defend NPCs (Denning; hypothesis; `J1`)
 - **Monk load**: a full pit gives the monks 5+ extra targets, and knights ball up and eat area damage, so healing needed rises sharply (Denning; supported; `P9`)
+- **Map geometry**: what a wipe can be turned into depends on where it happened: from the stand a team can't reach the enemy base and take NPCs before the res (Denning; supported; `D5`)
 
 ### Lord damage `R.6`
 damage dealt to the enemy Lord (tiebreak). *Measured: Lord hits.*
@@ -359,3 +362,4 @@ Caused by:
 - 2026-11-06: version 4: 'Death timing on purpose' (Denning K14: timing, dying before time, monks resetting energy; deaths can be positive) (Denning)
 - 2026-11-06: version 5: drops by kind (F33), killing during the enemy's flag cycle as a trade (F34), runner speed (F35) (Denning and Claude)
 - 2026-11-06: version 6: pit lines P9 to P11 (knights first, monk load of a full pit and area damage, two monks against a full pit, leaving before the res); three links marked supported by data (Denning)
+- 2026-11-06: version 7: wipe place limits conversion (D5); falling back near the enemy boost depends on the fight (D4); builds shape the best play (Denning)

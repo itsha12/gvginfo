@@ -577,13 +577,20 @@ usual one in win chance, adjusted for the situation, with a range from resamplin
   instead of pushing cost about 4 points of win chance against pushing, adjusted for the situation (clear).
 - `D4` **The enemy's boost is coming.** Options: run now, or give up the boost. Deciding factors: your flag ETA against
   the boost clock, numbers, death penalty. Default: run in time to cap before the boost unless it costs a wipe
-  (`F18`, `F26`, `F29`). Confidence: medium. **Data (30 matches):** not running and falling back with the enemy's boost
-  30 s away cost about 12 points against the usual play (not running and fighting) (clear).
+  (`F18`, `F26`, `F29`). Confidence: medium. **Denning:** falling back there is likely a mistake: a team that isn't
+  going to run may gain by staying and fighting, possibly on a power play; but a team losing the fight and not running
+  has no reason to hold ground and may as well fall back for safety. It depends on the situation. **Data (30
+  matches):** not running and falling back cost about 12 points against not running and fighting (clear); the teams
+  that fell back were losing their fight about as often as those that fought on (6 of 14 against 12 of 36), so losing
+  the fight doesn't explain it yet.
 - `D5` **You just won a wipe.** Options: push the pit, take the flag and the stand, or reset. Deciding factors: enemy
   pit NPCs, the res timer, the clock, whether you are already winning. Default: convert straight into pit NPCs before
   the res (`K8`); a team already winning backs out rather than risk a close Lord window (`W8`, `W9`). Confidence:
-  medium. **Data (30 matches):** taking the flag instead of pushing the pit after a wipe gained about 11 points of win
-  chance (range +2 to +22, 12 cases): a candidate better play to check with Denning and more data.
+  medium. **Denning:** what a wipe can be turned into depends on where it happened: from a wipe at the stand a team is
+  unlikely to reach the enemy base and take NPCs in the 30 s before the res. **Data (30 matches):** taking the flag
+  after a wipe looked better than pushing the pit (about +12 points, 12 cases), but 7 of those 12 couldn't reach the
+  enemy pit before its res (median margin 7.5 s, against 26 s for pushes): most likely the wipe's place, as Denning
+  suspected. To recheck within reachable and unreachable wipes once there are enough.
 - `D6` **You are stacking death penalty against a spike build.** Options: keep fighting at main, play in the pit, take
   boosts to clear it. Variables: how many players are now within one enemy spike, boosts available, flag position.
   Default: none yet (`K4` says it is a big disadvantage; what to do about it is for the data).

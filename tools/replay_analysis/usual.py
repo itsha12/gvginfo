@@ -24,6 +24,28 @@ from common import REPO
 OUT = os.path.join(REPO, "data", "model", "usual_play.json")
 K, BOOT, MIN_N = 15, 200, 25
 SIT = ["flag_lead", "stand", "boost_in", "alive", "main", "dp", "npcs", "lord_damage", "minute", "strength_gap"]
+# variables only some decision kinds have (Denning): can the winners reach the enemy pit before its res; is the team
+# losing its fight when the enemy's boost is near
+SIT_EXTRA = {"after_wipe": ["pit_margin_s"], "boost_clock": ["deaths_30s_diff", "main_diff_now"]}
+# build axes (readable, from the skill data): what kind of build each team is; similar situations include similar builds
+AXES = ["spike", "shutdown", "knockdowns", "defence", "sustain"]
+BUILD_ADJUST_FROM = 150      # decisions of a kind before build axes enter the adjustment (they're fixed per match)
+INTERACT_MIN = 10            # cases per cell before a choice's effect is split by build
+
+
+def build_axes(rid):
+    """Build axes per team tag: spike (a spike build), shutdown (interrupts, energy denial, Daze, Blind), knockdowns,
+    defence (prots, blocks, Aura of Stability), sustain (heals, condition and hex removal)."""
+    from replaylib import Match
+    from buildfeat import team_features
+    from scoreboard import archetype
+    m = Match.from_branch(rid); out = {}
+    for tm in (1, 2):
+        f = team_features(m, tm); a = archetype(m, tm)
+        out[m.tag[tm]] = {"spike": int(a["spike"]), "shutdown": f["interrupts"] + f["energy_denial"] + f["daze"] + f["blind"],
+                          "knockdowns": f["knockdowns"], "defence": f["prots"] + f["blocks"] + f["aura_of_stability"],
+                          "sustain": f["heals"] + f["condition_removal"] + f["hex_removal"], "kind": a["kind"]}
+    return out
 
 
 def refine(r):
@@ -40,16 +62,23 @@ def refine(r):
 def situation(r, gap):
     k = r["state"]
     num = lambda s: int(s.split("v")[0]) - int(s.split("v")[1])
-    return {"flag_lead": k["flag_lead"], "stand": {"own": 1, "enemy": -1}.get(k["stand"], 0), "boost_in": k["boost_in"] or 0,
-            "alive": num(k["alive"]), "main": num(k["main"]), "dp": k["dp"], "npcs": k["npcs"], "lord_damage": k["lord_damage"],
-            "minute": r["t"] / 60, "strength_gap": gap or 0}
+    out = {"flag_lead": k["flag_lead"], "stand": {"own": 1, "enemy": -1}.get(k["stand"], 0), "boost_in": k["boost_in"] or 0,
+           "alive": num(k["alive"]), "main": num(k["main"]), "dp": k["dp"], "npcs": k["npcs"], "lord_damage": k["lord_damage"],
+           "minute": r["t"] / 60, "strength_gap": gap or 0}
+    for v in SIT_EXTRA.get(r["kind"], []): out[v] = (r.get("extra") or {}).get(v) or 0
+    for side in ("own", "enemy"):
+        for ax in AXES: out[f"{side}_{ax}"] = r["axes"][side][ax]
+    return out
 
 
 def load(src):
     recs = []
     for f in sorted(glob.glob(os.path.join(src, "*.json"))):
         a = json.load(open(f))
-        for r in a.get("decisions", []): recs.append({"match": a["id"], **r})
+        ax = build_axes(a["id"])
+        for r in a.get("decisions", []):
+            other = next(t for t in ax if t != r["team"])
+            recs.append({"match": a["id"], **r, "axes": {"own": ax[r["team"]], "enemy": ax[other]}})
     return recs
 
 
@@ -82,7 +111,12 @@ def analyse(recs):
         L = [r for r in L if r["choice2"] in choices]
         if len(L) < MIN_N or len(choices) < 2:
             out[kind] = {"n": len(L), "note": "not enough decisions yet"}; continue
-        X = np.array([[r["sit"][k] for k in SIT] for r in L], float)
+        build_cols = [f"{side}_{a}" for side in ("own", "enemy") for a in AXES]
+        adj_cols = SIT + SIT_EXTRA.get(kind, []) + (build_cols if len(L) >= BUILD_ADJUST_FROM else [])
+        nb_cols = SIT + SIT_EXTRA.get(kind, []) + build_cols          # similarity always includes builds
+        X = np.array([[r["sit"][k] for k in adj_cols] for r in L], float)
+        XN = np.array([[r["sit"][k] for k in nb_cols] for r in L], float)
+        ZN = (XN - XN.mean(0)) / (XN.std(0) + 1e-9)
         mu, sd = X.mean(0), X.std(0) + 1e-9; Z = (X - mu) / sd
         ref = choices[0]
         D = np.array([[1.0 if r["choice2"] == c else 0.0 for c in choices[1:]] for r in L])
@@ -113,13 +147,23 @@ def analyse(recs):
         flagged = []
         eff = {x["choice"]: x["effect_vs_usual"] for x in rows}
         for i, r in enumerate(L):
-            dist = np.sqrt(((Z - Z[i]) ** 2).sum(1)); order = [j for j in np.argsort(dist) if L[j]["match"] != r["match"]][:K]
+            dist = np.sqrt(((ZN - ZN[i]) ** 2).sum(1)); order = [j for j in np.argsort(dist) if L[j]["match"] != r["match"]][:K]
             usual = collections.Counter(L[j]["choice2"] for j in order).most_common(1)[0][0]
             r["usual"] = usual
             if r["choice2"] != usual and abs(eff[r["choice2"]] - eff[usual]) >= 3:
                 flagged.append({"match": r["match"], "team": r["team"], "t": r["t"], "chose": r["choice2"], "usual": usual,
                                 "difference": round(eff[r["choice2"]] - eff[usual], 1), "wp_change": r["wp_change"]})
-        out[kind] = {"n": len(L), "matches": len(matches), "reference": ref, "choices": rows,
+        # choice effects split by build (own spike build or not), only where each cell has enough cases
+        by_build = []
+        for c in choices[1:]:
+            for sp in (0, 1):
+                a_ = [r["wp_change"] for r in L if r["choice2"] == c and r["sit"]["own_spike"] == sp]
+                b_ = [r["wp_change"] for r in L if r["choice2"] == ref and r["sit"]["own_spike"] == sp]
+                if len(a_) >= INTERACT_MIN and len(b_) >= INTERACT_MIN:
+                    by_build.append({"choice": c, "own build": "spike" if sp else "not spike", "n": len(a_),
+                                     "raw_difference": round(float(np.mean(a_) - np.mean(b_)), 1)})
+        out[kind] = {"n": len(L), "matches": len(matches), "reference": ref, "choices": rows, "adjusted_for": adj_cols,
+                     "by_build": by_build,
                      "unusual_choices": sorted(flagged, key=lambda f: -abs(f["difference"]))[:10]}
     return out
 

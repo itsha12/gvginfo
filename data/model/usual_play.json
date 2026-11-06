@@ -23,10 +23,10 @@
      "n": 12,
      "share": 0.18,
      "raw_wp_change": 0.4,
-     "effect_vs_usual": 11.5,
+     "effect_vs_usual": 12.9,
      "interval": [
-      1.7,
-      22.1
+      2.0,
+      26.1
      ],
      "clear": true
     },
@@ -35,14 +35,28 @@
      "n": 7,
      "share": 0.11,
      "raw_wp_change": 0.1,
-     "effect_vs_usual": 2.1,
+     "effect_vs_usual": 2.8,
      "interval": [
-      -5.0,
-      7.1
+      -5.3,
+      8.7
      ],
      "clear": false
     }
    ],
+   "adjusted_for": [
+    "flag_lead",
+    "stand",
+    "boost_in",
+    "alive",
+    "main",
+    "dp",
+    "npcs",
+    "lord_damage",
+    "minute",
+    "strength_gap",
+    "pit_margin_s"
+   ],
+   "by_build": [],
    "unusual_choices": [
     {
      "match": "1d073205-fdec-5684-aa7a-b03a558a9471",
@@ -50,7 +64,7 @@
      "t": 108,
      "chose": "took the flag",
      "usual": "pushed the pit",
-     "difference": 11.5,
+     "difference": 12.9,
      "wp_change": 2.8
     },
     {
@@ -59,7 +73,7 @@
      "t": 354,
      "chose": "took the flag",
      "usual": "pushed the pit",
-     "difference": 11.5,
+     "difference": 12.9,
      "wp_change": 1.4
     },
     {
@@ -68,7 +82,7 @@
      "t": 72,
      "chose": "took the flag",
      "usual": "pushed the pit",
-     "difference": 11.5,
+     "difference": 12.9,
      "wp_change": 0.0
     },
     {
@@ -77,17 +91,17 @@
      "t": 190,
      "chose": "took the flag",
      "usual": "pushed the pit",
-     "difference": 11.5,
+     "difference": 12.9,
      "wp_change": -0.3
     },
     {
-     "match": "49eec28d-0f4b-5cc1-a146-4d1ad0bd642b",
-     "team": "hold",
-     "t": 306,
-     "chose": "pushed the pit",
-     "usual": "took the flag",
-     "difference": -11.5,
-     "wp_change": -14.6
+     "match": "9b0816e2-c0eb-5797-a1b1-9962c8415307",
+     "team": "Apes",
+     "t": 481,
+     "chose": "took the flag",
+     "usual": "pushed the pit",
+     "difference": 12.9,
+     "wp_change": -0.8
     },
     {
      "match": "9b0816e2-c0eb-5797-a1b1-9962c8415307",
@@ -95,8 +109,17 @@
      "t": 719,
      "chose": "took the flag",
      "usual": "pushed the pit",
-     "difference": 11.5,
+     "difference": 12.9,
      "wp_change": -0.1
+    },
+    {
+     "match": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+     "team": "\uc637\uc637\uc637\uc637",
+     "t": 152,
+     "chose": "pushed the pit",
+     "usual": "took the flag",
+     "difference": -12.9,
+     "wp_change": -2.8
     },
     {
      "match": "bbef1904-cc55-54a4-aea4-ec0367e0d00b",
@@ -104,7 +127,7 @@
      "t": 511,
      "chose": "took the flag",
      "usual": "pushed the pit",
-     "difference": 11.5,
+     "difference": 12.9,
      "wp_change": 0.0
     },
     {
@@ -113,7 +136,7 @@
      "t": 112,
      "chose": "took the flag",
      "usual": "pushed the pit",
-     "difference": 11.5,
+     "difference": 12.9,
      "wp_change": -2.3
     },
     {
@@ -122,17 +145,8 @@
      "t": 228,
      "chose": "took the flag",
      "usual": "pushed the pit",
-     "difference": 11.5,
+     "difference": 12.9,
      "wp_change": 6.9
-    },
-    {
-     "match": "e905b193-051d-5ffb-ae10-118d3c46c055",
-     "team": "Crew",
-     "t": 627,
-     "chose": "took the flag",
-     "usual": "pushed the pit",
-     "difference": 11.5,
-     "wp_change": -2.2
     }
    ]
   },
@@ -157,10 +171,10 @@
      "n": 20,
      "share": 0.19,
      "raw_wp_change": -1.1,
-     "effect_vs_usual": 4.8,
+     "effect_vs_usual": 4.7,
      "interval": [
       -0.5,
-      12.6
+      12.8
      ],
      "clear": false
     },
@@ -169,10 +183,10 @@
      "n": 17,
      "share": 0.16,
      "raw_wp_change": -2.2,
-     "effect_vs_usual": 0.4,
+     "effect_vs_usual": 0.1,
      "interval": [
-      -4.7,
-      6.1
+      -4.8,
+      6.2
      ],
      "clear": false
     },
@@ -181,10 +195,10 @@
      "n": 15,
      "share": 0.14,
      "raw_wp_change": -4.8,
-     "effect_vs_usual": 1.7,
+     "effect_vs_usual": 1.3,
      "interval": [
-      -9.4,
-      13.6
+      -9.9,
+      13.7
      ],
      "clear": false
     },
@@ -193,9 +207,9 @@
      "n": 14,
      "share": 0.13,
      "raw_wp_change": -15.7,
-     "effect_vs_usual": -11.7,
+     "effect_vs_usual": -11.6,
      "interval": [
-      -21.3,
+      -21.4,
       -4.4
      ],
      "clear": true
@@ -205,12 +219,52 @@
      "n": 5,
      "share": 0.05,
      "raw_wp_change": -11.5,
-     "effect_vs_usual": -11.1,
+     "effect_vs_usual": -11.4,
      "interval": [
-      -37.7,
-      6.5
+      -38.1,
+      5.8
      ],
      "clear": false
+    }
+   ],
+   "adjusted_for": [
+    "flag_lead",
+    "stand",
+    "boost_in",
+    "alive",
+    "main",
+    "dp",
+    "npcs",
+    "lord_damage",
+    "minute",
+    "strength_gap",
+    "deaths_30s_diff",
+    "main_diff_now"
+   ],
+   "by_build": [
+    {
+     "choice": "running, fought",
+     "own build": "not spike",
+     "n": 20,
+     "raw_difference": 1.5
+    },
+    {
+     "choice": "not running, advanced",
+     "own build": "not spike",
+     "n": 14,
+     "raw_difference": 0.9
+    },
+    {
+     "choice": "running, advanced",
+     "own build": "not spike",
+     "n": 13,
+     "raw_difference": -3.3
+    },
+    {
+     "choice": "not running, fell back",
+     "own build": "not spike",
+     "n": 12,
+     "raw_difference": -8.4
     }
    ],
    "unusual_choices": [
@@ -220,7 +274,7 @@
      "t": 314,
      "chose": "not running, fell back",
      "usual": "running, fought",
-     "difference": -16.5,
+     "difference": -16.3,
      "wp_change": -43.4
     },
     {
@@ -229,7 +283,7 @@
      "t": 192,
      "chose": "not running, fell back",
      "usual": "running, fought",
-     "difference": -16.5,
+     "difference": -16.3,
      "wp_change": -46.1
     },
     {
@@ -238,17 +292,17 @@
      "t": 438,
      "chose": "not running, fell back",
      "usual": "running, fought",
-     "difference": -16.5,
+     "difference": -16.3,
      "wp_change": -6.7
     },
     {
-     "match": "28447c4a-7cc6-5db5-ac7c-aa2bcc23c62c",
-     "team": "HC",
-     "t": 646,
-     "chose": "not running, fell back",
-     "usual": "running, advanced",
-     "difference": -13.4,
-     "wp_change": -63.7
+     "match": "f30bb176-a527-508c-acd5-f289b304ee79",
+     "team": "cope",
+     "t": 312,
+     "chose": "not running, advanced",
+     "usual": "not running, fell back",
+     "difference": 11.7,
+     "wp_change": -17.7
     },
     {
      "match": "25b008b8-486d-5f15-a310-114f6eecca05",
@@ -256,8 +310,17 @@
      "t": 267,
      "chose": "not running, fell back",
      "usual": "not running, fought",
-     "difference": -11.7,
+     "difference": -11.6,
      "wp_change": -11.0
+    },
+    {
+     "match": "28447c4a-7cc6-5db5-ac7c-aa2bcc23c62c",
+     "team": "HC",
+     "t": 646,
+     "chose": "not running, fell back",
+     "usual": "not running, fought",
+     "difference": -11.6,
+     "wp_change": -63.7
     },
     {
      "match": "28447c4a-7cc6-5db5-ac7c-aa2bcc23c62c",
@@ -265,17 +328,8 @@
      "t": 1348,
      "chose": "not running, fell back",
      "usual": "not running, fought",
-     "difference": -11.7,
+     "difference": -11.6,
      "wp_change": 0.8
-    },
-    {
-     "match": "34ab1ac3-cd5d-578e-a457-bccff232274a",
-     "team": "hold",
-     "t": 790,
-     "chose": "not running, fought",
-     "usual": "not running, fell back",
-     "difference": 11.7,
-     "wp_change": 0.0
     },
     {
      "match": "5739e1e0-483e-58f1-a017-d0d8fee69c6e",
@@ -283,7 +337,7 @@
      "t": 482,
      "chose": "not running, fell back",
      "usual": "not running, fought",
-     "difference": -11.7,
+     "difference": -11.6,
      "wp_change": 0.0
     },
     {
@@ -292,7 +346,7 @@
      "t": 193,
      "chose": "not running, fell back",
      "usual": "not running, fought",
-     "difference": -11.7,
+     "difference": -11.6,
      "wp_change": 0.0
     },
     {
@@ -301,7 +355,7 @@
      "t": 815,
      "chose": "not running, fell back",
      "usual": "not running, fought",
-     "difference": -11.7,
+     "difference": -11.6,
      "wp_change": 0.1
     }
    ]
@@ -329,8 +383,8 @@
      "raw_wp_change": 1.0,
      "effect_vs_usual": 2.3,
      "interval": [
-      -2.2,
-      8.3
+      -3.1,
+      6.6
      ],
      "clear": false
     },
@@ -339,10 +393,10 @@
      "n": 52,
      "share": 0.12,
      "raw_wp_change": 1.6,
-     "effect_vs_usual": 1.6,
+     "effect_vs_usual": 1.2,
      "interval": [
       -3.3,
-      6.0
+      5.2
      ],
      "clear": false
     },
@@ -351,10 +405,10 @@
      "n": 38,
      "share": 0.09,
      "raw_wp_change": -5.4,
-     "effect_vs_usual": -4.9,
+     "effect_vs_usual": -4.5,
      "interval": [
-      -12.3,
-      0.7
+      -13.4,
+      0.9
      ],
      "clear": false
     },
@@ -363,10 +417,10 @@
      "n": 37,
      "share": 0.08,
      "raw_wp_change": 2.2,
-     "effect_vs_usual": 1.8,
+     "effect_vs_usual": 2.0,
      "interval": [
-      -2.7,
-      6.6
+      -3.2,
+      6.8
      ],
      "clear": false
     },
@@ -375,10 +429,10 @@
      "n": 34,
      "share": 0.08,
      "raw_wp_change": 2.6,
-     "effect_vs_usual": 2.3,
+     "effect_vs_usual": 2.1,
      "interval": [
-      -0.5,
-      4.8
+      -2.0,
+      4.7
      ],
      "clear": false
     },
@@ -387,10 +441,10 @@
      "n": 34,
      "share": 0.08,
      "raw_wp_change": -1.8,
-     "effect_vs_usual": -0.8,
+     "effect_vs_usual": -0.9,
      "interval": [
-      -6.1,
-      3.6
+      -7.2,
+      3.8
      ],
      "clear": false
     },
@@ -399,10 +453,10 @@
      "n": 33,
      "share": 0.07,
      "raw_wp_change": 0.5,
-     "effect_vs_usual": -0.9,
+     "effect_vs_usual": -1.0,
      "interval": [
-      -6.9,
-      5.0
+      -7.3,
+      4.7
      ],
      "clear": false
     },
@@ -411,10 +465,10 @@
      "n": 26,
      "share": 0.06,
      "raw_wp_change": -0.1,
-     "effect_vs_usual": -0.4,
+     "effect_vs_usual": -0.7,
      "interval": [
-      -3.3,
-      3.6
+      -4.3,
+      3.1
      ],
      "clear": false
     },
@@ -423,10 +477,10 @@
      "n": 15,
      "share": 0.03,
      "raw_wp_change": -0.5,
-     "effect_vs_usual": 0.2,
+     "effect_vs_usual": 0.5,
      "interval": [
-      -3.7,
-      3.6
+      -3.3,
+      3.8
      ],
      "clear": false
     },
@@ -435,10 +489,10 @@
      "n": 8,
      "share": 0.02,
      "raw_wp_change": -11.0,
-     "effect_vs_usual": -10.6,
+     "effect_vs_usual": -12.7,
      "interval": [
-      -25.0,
-      12.2
+      -28.2,
+      9.8
      ],
      "clear": false
     },
@@ -447,50 +501,128 @@
      "n": 7,
      "share": 0.02,
      "raw_wp_change": -2.1,
-     "effect_vs_usual": -2.8,
+     "effect_vs_usual": -3.9,
      "interval": [
-      -9.8,
-      2.4
+      -14.5,
+      5.4
      ],
      "clear": false
     }
    ],
+   "adjusted_for": [
+    "flag_lead",
+    "stand",
+    "boost_in",
+    "alive",
+    "main",
+    "dp",
+    "npcs",
+    "lord_damage",
+    "minute",
+    "strength_gap",
+    "own_spike",
+    "own_shutdown",
+    "own_knockdowns",
+    "own_defence",
+    "own_sustain",
+    "enemy_spike",
+    "enemy_shutdown",
+    "enemy_knockdowns",
+    "enemy_defence",
+    "enemy_sustain"
+   ],
+   "by_build": [
+    {
+     "choice": "held, fought",
+     "own build": "not spike",
+     "n": 54,
+     "raw_difference": 1.4
+    },
+    {
+     "choice": "already running, advanced",
+     "own build": "not spike",
+     "n": 40,
+     "raw_difference": 1.4
+    },
+    {
+     "choice": "held, fell back",
+     "own build": "not spike",
+     "n": 29,
+     "raw_difference": -6.6
+    },
+    {
+     "choice": "ran, fought",
+     "own build": "not spike",
+     "n": 33,
+     "raw_difference": 2.0
+    },
+    {
+     "choice": "already running, fell back",
+     "own build": "not spike",
+     "n": 32,
+     "raw_difference": 2.9
+    },
+    {
+     "choice": "held, advanced",
+     "own build": "not spike",
+     "n": 22,
+     "raw_difference": 1.5
+    },
+    {
+     "choice": "ran, fell back",
+     "own build": "not spike",
+     "n": 29,
+     "raw_difference": 0.7
+    },
+    {
+     "choice": "ran, advanced",
+     "own build": "not spike",
+     "n": 23,
+     "raw_difference": 0.0
+    },
+    {
+     "choice": "already running, held",
+     "own build": "not spike",
+     "n": 12,
+     "raw_difference": -0.2
+    }
+   ],
    "unusual_choices": [
-    {
-     "match": "2df9b7fd-823e-5df7-ad4e-192612cd9249",
-     "team": "Team",
-     "t": 626,
-     "chose": "held, held",
-     "usual": "held, fought",
-     "difference": -12.9,
-     "wp_change": -64.8
-    },
-    {
-     "match": "2df9b7fd-823e-5df7-ad4e-192612cd9249",
-     "team": "Team",
-     "t": 1036,
-     "chose": "held, held",
-     "usual": "held, fought",
-     "difference": -12.9,
-     "wp_change": -18.2
-    },
     {
      "match": "e905b193-051d-5ffb-ae10-118d3c46c055",
      "team": "Free",
      "t": 371,
      "chose": "held, held",
      "usual": "held, fought",
-     "difference": -12.9,
+     "difference": -15.0,
      "wp_change": 3.6
     },
     {
      "match": "2df9b7fd-823e-5df7-ad4e-192612cd9249",
      "team": "Team",
-     "t": 1137,
+     "t": 626,
+     "chose": "held, held",
+     "usual": "already running, fell back",
+     "difference": -14.8,
+     "wp_change": -64.8
+    },
+    {
+     "match": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+     "team": "RACK",
+     "t": 36,
+     "chose": "held, held",
+     "usual": "already running, fell back",
+     "difference": -14.8,
+     "wp_change": -37.5
+    },
+    {
+     "match": "2df9b7fd-823e-5df7-ad4e-192612cd9249",
+     "team": "Team",
+     "t": 1036,
      "chose": "held, held",
      "usual": "already running, held",
-     "difference": -10.8,
-     "wp_change": -2.9
+     "difference": -13.2,
+     "wp_change": -18.2
     },
     {
      "match": "1d073205-fdec-5684-aa7a-b03a558a9471",
@@ -498,26 +630,35 @@
      "t": 984,
      "chose": "held, held",
      "usual": "already running, fought",
-     "difference": -10.6,
+     "difference": -12.7,
      "wp_change": 31.6
     },
     {
-     "match": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
-     "team": "RACK",
-     "t": 36,
+     "match": "2df9b7fd-823e-5df7-ad4e-192612cd9249",
+     "team": "Team",
+     "t": 1137,
      "chose": "held, held",
-     "usual": "already running, fought",
-     "difference": -10.6,
-     "wp_change": -37.5
+     "usual": "ran, fell back",
+     "difference": -11.7,
+     "wp_change": -2.9
     },
     {
-     "match": "1d073205-fdec-5684-aa7a-b03a558a9471",
-     "team": "hdm",
-     "t": 357,
-     "chose": "held, fell back",
-     "usual": "held, fought",
-     "difference": -7.2,
-     "wp_change": -2.9
+     "match": "a9fa1ae1-f83b-5cd0-a946-cf332aacfca6",
+     "team": "TFS",
+     "t": 300,
+     "chose": "held, held",
+     "usual": "held, fell back",
+     "difference": -8.2,
+     "wp_change": 0.1
+    },
+    {
+     "match": "f30bb176-a527-508c-acd5-f289b304ee79",
+     "team": "One",
+     "t": 1186,
+     "chose": "held, held",
+     "usual": "held, fell back",
+     "difference": -8.2,
+     "wp_change": 0.1
     },
     {
      "match": "1d073205-fdec-5684-aa7a-b03a558a9471",
@@ -525,7 +666,7 @@
      "t": 689,
      "chose": "held, fell back",
      "usual": "held, fought",
-     "difference": -7.2,
+     "difference": -6.8,
      "wp_change": -39.2
     },
     {
@@ -534,17 +675,8 @@
      "t": 948,
      "chose": "held, fell back",
      "usual": "held, fought",
-     "difference": -7.2,
+     "difference": -6.8,
      "wp_change": -1.8
-    },
-    {
-     "match": "28447c4a-7cc6-5db5-ac7c-aa2bcc23c62c",
-     "team": "hdm",
-     "t": 282,
-     "chose": "held, fell back",
-     "usual": "held, fought",
-     "difference": -7.2,
-     "wp_change": -88.1
     }
    ]
   },
@@ -573,9 +705,9 @@
      "n": 90,
      "share": 0.27,
      "raw_wp_change": 3.5,
-     "effect_vs_usual": -0.2,
+     "effect_vs_usual": 0.0,
      "interval": [
-      -4.6,
+      -5.1,
       4.0
      ],
      "clear": false
@@ -585,10 +717,10 @@
      "n": 67,
      "share": 0.2,
      "raw_wp_change": -0.4,
-     "effect_vs_usual": -3.7,
+     "effect_vs_usual": -3.2,
      "interval": [
-      -7.6,
-      -1.5
+      -7.7,
+      -0.4
      ],
      "clear": true
     },
@@ -599,20 +731,20 @@
      "raw_wp_change": -0.9,
      "effect_vs_usual": -4.2,
      "interval": [
-      -8.7,
-      -0.4
+      -9.0,
+      0.0
      ],
-     "clear": true
+     "clear": false
     },
     {
      "choice": "held, advanced",
      "n": 10,
      "share": 0.03,
      "raw_wp_change": 5.9,
-     "effect_vs_usual": 3.4,
+     "effect_vs_usual": 3.1,
      "interval": [
-      -5.3,
-      17.4
+      -4.6,
+      18.8
      ],
      "clear": false
     },
@@ -621,42 +753,150 @@
      "n": 8,
      "share": 0.02,
      "raw_wp_change": -1.0,
-     "effect_vs_usual": -4.1,
+     "effect_vs_usual": -3.5,
      "interval": [
-      -8.4,
-      -0.8
+      -9.1,
+      0.6
      ],
-     "clear": true
+     "clear": false
     },
     {
      "choice": "pushed, held",
      "n": 5,
      "share": 0.02,
      "raw_wp_change": 0.6,
-     "effect_vs_usual": -4.0,
+     "effect_vs_usual": -7.6,
      "interval": [
-      -10.4,
-      2.6
+      -14.9,
+      1.1
      ],
      "clear": false
     }
    ],
+   "adjusted_for": [
+    "flag_lead",
+    "stand",
+    "boost_in",
+    "alive",
+    "main",
+    "dp",
+    "npcs",
+    "lord_damage",
+    "minute",
+    "strength_gap",
+    "own_spike",
+    "own_shutdown",
+    "own_knockdowns",
+    "own_defence",
+    "own_sustain",
+    "enemy_spike",
+    "enemy_shutdown",
+    "enemy_knockdowns",
+    "enemy_defence",
+    "enemy_sustain"
+   ],
+   "by_build": [
+    {
+     "choice": "pushed, fought",
+     "own build": "not spike",
+     "n": 68,
+     "raw_difference": 1.0
+    },
+    {
+     "choice": "pushed, fought",
+     "own build": "spike",
+     "n": 22,
+     "raw_difference": 1.8
+    },
+    {
+     "choice": "held, fought",
+     "own build": "not spike",
+     "n": 60,
+     "raw_difference": -2.2
+    },
+    {
+     "choice": "held, fell back",
+     "own build": "not spike",
+     "n": 15,
+     "raw_difference": -1.4
+    },
+    {
+     "choice": "held, fell back",
+     "own build": "spike",
+     "n": 11,
+     "raw_difference": -6.7
+    }
+   ],
    "unusual_choices": [
     {
-     "match": "d492aa6c-a12b-5bce-a5ec-9ada965676f0",
+     "match": "2df9b7fd-823e-5df7-ad4e-192612cd9249",
+     "team": "push",
+     "t": 817,
+     "chose": "pushed, held",
+     "usual": "pushed, advanced",
+     "difference": -7.6,
+     "wp_change": 5.7
+    },
+    {
+     "match": "5739e1e0-483e-58f1-a017-d0d8fee69c6e",
+     "team": "chic",
+     "t": 81,
+     "chose": "pushed, held",
+     "usual": "pushed, fought",
+     "difference": -7.6,
+     "wp_change": -13.5
+    },
+    {
+     "match": "84586253-61c8-5848-ad75-1bfda24302ba",
+     "team": "cope",
+     "t": 1321,
+     "chose": "pushed, held",
+     "usual": "pushed, advanced",
+     "difference": -7.6,
+     "wp_change": 10.3
+    },
+    {
+     "match": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
      "team": "RACK",
-     "t": 146,
+     "t": 847,
+     "chose": "pushed, held",
+     "usual": "pushed, fought",
+     "difference": -7.6,
+     "wp_change": 0.1
+    },
+    {
+     "match": "f30bb176-a527-508c-acd5-f289b304ee79",
+     "team": "One",
+     "t": 1199,
+     "chose": "pushed, held",
+     "usual": "pushed, advanced",
+     "difference": -7.6,
+     "wp_change": 0.2
+    },
+    {
+     "match": "cb5a5f57-be04-5af2-aa60-8114e98e1202",
+     "team": "MBP",
+     "t": 50,
      "chose": "held, advanced",
      "usual": "held, fought",
-     "difference": 7.1,
-     "wp_change": 10.8
+     "difference": 6.3,
+     "wp_change": -1.2
+    },
+    {
+     "match": "0f1fd794-46cd-5fb1-a661-a7ec5f1cbadd",
+     "team": "Men",
+     "t": 1131,
+     "chose": "held, fell back",
+     "usual": "pushed, advanced",
+     "difference": -4.2,
+     "wp_change": 1.9
     },
     {
      "match": "28447c4a-7cc6-5db5-ac7c-aa2bcc23c62c",
      "team": "HC",
      "t": 387,
      "chose": "held, fell back",
-     "usual": "pushed, advanced",
+     "usual": "pushed, fought",
      "difference": -4.2,
      "wp_change": -6.4
     },
@@ -677,60 +917,6 @@
      "usual": "pushed, advanced",
      "difference": -4.2,
      "wp_change": 0.1
-    },
-    {
-     "match": "2df9b7fd-823e-5df7-ad4e-192612cd9249",
-     "team": "push",
-     "t": 550,
-     "chose": "held, fell back",
-     "usual": "pushed, advanced",
-     "difference": -4.2,
-     "wp_change": -23.3
-    },
-    {
-     "match": "84586253-61c8-5848-ad75-1bfda24302ba",
-     "team": "cope",
-     "t": 1425,
-     "chose": "held, fell back",
-     "usual": "pushed, advanced",
-     "difference": -4.2,
-     "wp_change": -4.6
-    },
-    {
-     "match": "9b0816e2-c0eb-5797-a1b1-9962c8415307",
-     "team": "cope",
-     "t": 543,
-     "chose": "held, fell back",
-     "usual": "pushed, advanced",
-     "difference": -4.2,
-     "wp_change": 1.3
-    },
-    {
-     "match": "a9fa1ae1-f83b-5cd0-a946-cf332aacfca6",
-     "team": "TFS",
-     "t": 81,
-     "chose": "held, fell back",
-     "usual": "pushed, advanced",
-     "difference": -4.2,
-     "wp_change": -0.4
-    },
-    {
-     "match": "cb5a5f57-be04-5af2-aa60-8114e98e1202",
-     "team": "RACK",
-     "t": 361,
-     "chose": "held, fell back",
-     "usual": "pushed, advanced",
-     "difference": -4.2,
-     "wp_change": 4.7
-    },
-    {
-     "match": "cb5a5f57-be04-5af2-aa60-8114e98e1202",
-     "team": "RACK",
-     "t": 853,
-     "chose": "held, fell back",
-     "usual": "pushed, advanced",
-     "difference": -4.2,
-     "wp_change": -3.8
     }
    ]
   },
@@ -763,6 +949,19 @@
      "clear": false
     }
    ],
+   "adjusted_for": [
+    "flag_lead",
+    "stand",
+    "boost_in",
+    "alive",
+    "main",
+    "dp",
+    "npcs",
+    "lord_damage",
+    "minute",
+    "strength_gap"
+   ],
+   "by_build": [],
    "unusual_choices": []
   }
  }
