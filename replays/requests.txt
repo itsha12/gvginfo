@@ -31,3 +31,8 @@ d4660b7b-1e09-584e-a786-0e9f48b3f343
 bbef1904-cc55-54a4-aea4-ec0367e0d00b
 0f1fd794-46cd-5fb1-a661-a7ec5f1cbadd
 faec428a-5b92-54d1-a28c-b79c7f27cfcf
+# training batch 2026-11-05 (random pick)
+29652def-2992-50c0-ade9-aaddd011aaa5
+a9fa1ae1-f83b-5cd0-a946-cf332aacfca6
+f30bb176-a527-508c-acd5-f289b304ee79
+e905b193-051d-5ffb-ae10-118d3c46c055
