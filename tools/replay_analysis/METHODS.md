@@ -45,61 +45,97 @@ fight, what the fight caused, and what the best play was in that situation for t
    enemy play, note), each citing tactics line ids, and the edge ledger (every death with its cause and fight, boost,
    NPC lost with its split or fight, Lord damage by minute). Calibrated on Denning's rulings in
    `data/review_labels.json`.
-7. **Benchmarks** (after the bulk pull): distributions of every measure across good teams, so "late" is measured.
-8. **Win probability** (after the bulk pull): each team's chance to win from the scoreboard at any second, trained on
-   hundreds of matches. It replaces the provisional edge: every fight and decision is then valued by the swing in win
-   probability, and "what should they have done" compares the win probability after different choices in similar
-   situations.
+7. **Benchmarks** (`benchmarks.py`): measured values from all replays (so far Lord damage per second at the Lord).
+8. **Win probability** (to build): a glass-box model trained slowly, a few matches at a time (see "From rulings to
+   data"). It replaces the provisional edge: every fight and decision is then valued by the swing in win probability,
+   with a readable breakdown of why.
 
 ## From rulings to data (the plan)
 The goal is not to reproduce Denning's or anyone's judgement but to find plays that are better than experts can see,
-by weighing more variables, across more matches, than a person can hold in mind. Rulings stay valuable, in a new role.
+by weighing more variables, and more interactions between them, across more matches than a person can hold in mind.
+Rulings stay valuable, in a new role.
+
+### Requirements (Denning)
+- **Learns like a neural network, but white box.** Non-linear effects and interactions are learned from data, but
+  everything learned is readable: no hidden layers nobody can inspect.
+- **Explains why.** Every judgement comes as a breakdown of contributions, not just a probability.
+- **Human readable and amendable.** Denning can see what the model learned, correct it, and add variables; every
+  correction is logged with its reason and tested.
+- **Built structure first, trained slowly.** The model's structure is built and tested before any large pull. Training
+  then proceeds a few matches at a time; after each batch Claude reports what was learned and what changed, in words.
+- **Discovery matters most.** There will be many variables and interactions nobody is aware of; the engine must
+  surface them, not only test what we already believe.
 
 **Principle: nothing is a weight or a default unless it is measured or is a definition.** Thresholds that define
 terms (what counts as a fight, up on flags, a split) can come from Denning; anything that says how much something is
-worth, or what the best play is, must come from the data, with its uncertainty. Measured so far: Lord damage per
-second at the Lord (`benchmarks.py lord`), flag run speeds, the flag model's accuracy.
+worth, or what the best play is, comes from the data, with its uncertainty. Measured so far: Lord damage per second at
+the Lord (`benchmarks.py lord`), flag run speeds, the flag model's accuracy.
 
-1. **Team strength first.** Rate every guild from all stored match results (1,600+ in `data/matches/`, far more than
-   the replays), e.g. Bradley-Terry or Elo with time decay. Without it, "teams that did X won" mostly measures that good
-   teams do X. Every comparison below controls for the strength gap.
-2. **State = the scoreboard, as numbers.** Per team every 5 s: flag ETA, response and lead, stand and boost clock,
-   carriers and flag duty; alive, down timers, players per zone, group structure; morale per player and effective
-   health against the enemy's spike threat; each pit NPC alive; Lord damage; clock and res timer; build features (not
-   just the archetype label: Auras of Stability, Infuse, prots, interrupts, knockdowns, measured Lord damage); and the
-   strength gap. Exported as one training table per match.
-3. **Win probability (WP).** A model of P(win) from the state, trained on every match (outcome = the result), tested
-   on matches it never saw (grouped by match), checked for calibration (when it says 70%, does that team win about 7
-   in 10?). Start simple (logistic, few features, sensible directions enforced: more NPCs never lowers WP) and add
-   features only when they improve held-out accuracy. It must beat the strength gap alone and simple counts (boosts,
-   deaths) mid-match, or it isn't learning the game. It replaces the provisional `edge()`.
-4. **Value of everything that happens.** Every death, fight, capture, boost, NPC, interrupt on a key skill and
-   knockdown is valued by the change in WP it caused (as football analytics values plays). Fights, conversions and
-   players' contributions are then measured in WP, not by verdicts. Death causes stay as descriptions, not judgements.
-5. **Value of choices.** At each decision point (and at moments found automatically, step 6), estimate the WP after
-   each option that teams actually took in similar states (same flag position, numbers, DP, NPCs, clock, builds,
-   strength gap): matched comparisons plus a model of WP a short time later given state and action. The gap between
-   the best option and the one taken is the decision's cost. Options that teams rarely choose but that do better in
-   matched states are exactly the "more optimal plays nobody sees". Every claim carries a bootstrap interval by match
-   and a minimum number of cases; most will read "not enough data" for a while.
-6. **Discovery, not just the decisions we thought of.** Find the seconds where WP moves most (high-leverage moments)
-   and what preceded them; measure which state variables the WP model leans on most (some will matter more than
-   experts expect, e.g. a runner's route, DP spread, timing against the res); cluster what teams actually do (the
-   per-player action vectors) into choices nobody named. New decision kinds come from here.
-7. **Guard against false discoveries.** Many comparisons produce chance winners: confirm any discovered play on
-   held-out matches before it becomes a tactics line; watch for patches and meta shifts (compare by period); the
-   replays cover only matches gvg.report observed.
-8. **Rulings become the test suite.** Denning's rulings (`data/review_labels.json`) stay as definitions and as test
-   cases: where the data agrees, the ruling is confirmed with numbers; where it disagrees, both sides are shown to
-   Denning with the evidence, and neither silently wins. A Claude line on the tactics page is replaced by a measured
-   statement once the data supports it.
-9. **Proof it works.** On held-out matches: WP beats the baselines; and in matched situations, teams whose choice
-   agreed with the engine's recommended option did better than teams whose choice didn't.
+### The model
+- **Inputs = named variables, the visible "neurons".** In a neural network the hidden layers invent their own features;
+  here the features are named and readable: per team every 5 s, the scoreboard as numbers (flag ETA, response and
+  lead, stand and boost clock, carriers and flag duty; alive, down timers, players per zone, group structure; morale
+  per player and effective health against the enemy's spike threat; each pit NPC alive; Lord damage; clock and res
+  timer; build features such as Auras of Stability, Infuse, prots, interrupts, knockdowns and measured Lord damage;
+  and the team strength gap). The match table ("state export") is one row per 5 s per team with these numbers and
+  whether that team won. It is internal; nothing is downloaded.
+- **Win probability from a glass-box model**: an additive model with chosen pairwise interactions (Explainable
+  Boosting Machine, `interpret` package). Its prediction is a baseline plus one contribution per variable and per
+  interaction, each stored as a readable curve or table ("flag lead 0 to +30 s adds about X%"; "DP matters little
+  against balance but a lot against a spike"). Accuracy compared with a black-box model on the same data, so the cost
+  of readability is measured, not assumed.
+- **Explanations**: every moment, death, fight and decision is shown as its breakdown ("HC 58%: flag lead +6, pit
+  NPCs +4, DP -3, Men's Lord damage -2"); a choice as the comparison of options in similar situations and where the
+  difference came from ("in 37 similar cases falling back did 5 points better, almost all from deaths avoided on the
+  backside").
+- **The model file**: the learned curves and tables are saved in a readable file in the repo (and shown on the site),
+  with each variable's uncertainty and the number of matches behind it.
+- **Corrections** (`data/model_corrections.json`, each with Denning's reason): a direction ("more pit NPCs never lowers
+  win chance"), a fixed value or cap where data is thin, a new variable to add, an interaction to include or drop. The
+  engine reports held-out accuracy with and without each correction, so a correction is tested, not trusted.
 
-**Order of work:** (1) team strength from stored results and (2) the state export, both possible now and tested on
-the 24 replays; (3) the bulk pull in batches of about 100, with analysis and state tables built in the GitHub Action
-(the workspace can't reach gvg.report); (4) WP v1 and its calibration report; (5) values of events; (6) choice
-values with intervals; (7) discovery; rulings checked at every step.
+### Training slowly: learning reports
+- Batches of a few matches (3 to 5 at first). After each batch: refit, then a **learning report**: which curves moved
+  and by how much, which interactions appeared or faded, what newly became confident or uncertain, which past rulings
+  the data now agrees or disagrees with, the batch's most surprising moments (where the model was most wrong) and the
+  new candidate variables or interactions. Claude explains each in words with the match moments behind it; Denning
+  answers or corrects; then the next batch.
+- Reports are kept (one file per batch), so it is visible how the model's understanding developed.
+
+### Discovery
+- **Surprises**: moments where the win probability swung most, or where the model was most wrong. Each is a place a
+  variable is missing; Claude proposes one, Denning names, checks or rejects it.
+- **Interactions**: the model is offered every pairwise interaction among the variables and keeps those that improve
+  held-out accuracy; each kept interaction is shown as a table and explained ("a backup flag is worth much more when
+  the enemy runner is the Mes/A").
+- **Behaviour clusters**: what teams actually do (the per-player action vectors at decision points) clustered into
+  choices nobody named.
+- **Leverage**: situations where the choice changes the win probability most, so attention goes where decisions
+  matter.
+- **False discoveries**: many comparisons produce chance winners. A discovery becomes a tactics line only after it
+  holds on matches the model hasn't seen; patches and meta shifts are watched by period; replays cover only matches
+  gvg.report observed.
+
+### Values and choices
+- **Team strength** from every stored result (1,600+), so "teams that did X won" isn't just "good teams do X".
+- **Value of events**: each death, fight, capture, boost, NPC, key interrupt and knockdown valued by the change in win
+  probability, with its breakdown. Death causes stay as descriptions, not verdicts.
+- **Value of choices**: at decision points and discovered moments, compare the options teams actually took in similar
+  situations (matched on the variables and the strength gap), with intervals by match and a minimum number of cases;
+  rarely chosen options that do better are the plays nobody sees.
+- **Rulings are the test suite**: where the data agrees with a ruling, it is confirmed with numbers; where it
+  disagrees, both sides are shown with the evidence and neither silently wins.
+- **Proof it works**: on matches it hasn't seen, the model beats the strength gap alone and simple counts (boosts,
+  deaths); and teams whose choices matched the recommended option did better than teams whose choices didn't.
+
+### Order of work
+1. Model structure on the 24 stored matches: team strength from stored results; the variables and the match table;
+   the glass-box model, explanation breakdowns, the readable model file, corrections and the learning report. With 24
+   matches the curves mean little; this step only proves the machinery works end to end.
+2. Slow training: fetch 3 to 5 new replays at a time (the "Fetch replays" workflow), refit, learning report, Denning's
+   answers and corrections, repeat. Batches grow only once the reports settle.
+3. Discovery and choice values as data accumulates; tactics lines replaced by measured statements when the data
+   supports them.
 
 ## Flag position (Denning, tactics `F1` to `F4`)
 - Up on flags = the better position to get a boost and to run, not the team that capped last.
@@ -152,7 +188,7 @@ values with intervals; (7) discovery; rulings checked at every step.
 - **Case library** (`library.py`): `build` gathers every kind from the analysis files; `query <kind> --where` searches
   them; `compare <decision kind> --where` compares outcomes by choice.
 - **Per-match analysis**: `analyze.py <id>` writes format gvginfo.analysis.v1 (ENGINE 15). Regenerated in about a
-  second per match, so not stored yet; for the bulk pull it goes to `analysis/<id>.json` on the `replays` branch.
+  second per match, so not stored yet; once batches grow it goes to `analysis/<id>.json` on the `replays` branch.
 - **Principles**: `knowledge/tactics.md`, ids cited by findings, rulings and situation cards (section 14).
 - **Denning's verdicts**: `data/review_labels.json`, applied in `rules.py` and `fights.assess`.
 
@@ -160,7 +196,7 @@ values with intervals; (7) discovery; rulings checked at every step.
 - No energy in the data. Positions about once a second. No NPC positions or health (estimated). Intent and what a
   player is looking at are never in the data.
 - The provisional edge's weights are guesses; compare choices by their components (deaths, NPCs, caps) as well.
-- 24 matches is far too few to settle a choice; `compare` results are hypotheses until the bulk pull.
+- 24 matches is far too few to settle a choice; `compare` results are hypotheses until slow training has added many more.
 - Split detection marks a "flank" when splitters stay near the enemy main group; early-game fights on one side can
   still show as splits with the whole enemy team "answering".
 - Archetypes come from bars by simple rules (e.g. hex way = 2+ hex casters with 4+ hexes and at most 2 healing

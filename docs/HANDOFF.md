@@ -99,15 +99,18 @@ Claude should then:
 ## Start the next chat with
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/HANDOFF.md (the "Match replay
 > analysis" section), knowledge/tactics.md, knowledge/match-reviews.md, tools/replay_analysis/METHODS.md and
-> data/review_labels.json, then `git fetch --depth 1 origin replays:refs/remotes/origin/replays` and run
-> `python3 tools/replay_analysis/analyze.py --all --out /tmp/ga` and `library.py build`. Then continue the death
-> rulings in [Men v HC C] (deaths 3 to 5, then power plays 6 and 7) using the fights view (`fights.py <id> fights`), or:
+> data/review_labels.json, then `git fetch --depth 1 origin replays:refs/remotes/origin/replays`,
+> `pip install --break-system-packages interpret-core`, and run `python3 tools/replay_analysis/analyze.py --all --out
+> /tmp/ga` and `library.py build`. Then continue building the model structure (METHODS.md "Order of work", step 1), or:
 > <your request>
 
 ## Goal
 Find plays that are better than experts can see, from data across many matches: not to mirror Denning's or anyone's
 judgement. Rulings give definitions and test cases; values and best plays come from the data (METHODS.md, "From
-rulings to data"). Along the way, become an expert GvG analyst and tactician: read any match, say what game state caused each fight and what the fight
+rulings to data"). The model must learn like a neural network but be white box: readable, explaining why with a
+breakdown of contributions, and amendable by Denning (logged, tested corrections). Build the structure first, then
+train slowly, a few matches at a time, with a learning report after each batch. Discovery of variables and
+interactions nobody is aware of matters most. Along the way, become an expert GvG analyst and tactician: read any match, say what game state caused each fight and what the fight
 caused (flag game, death penalty and pit NPCs above all in close games), whether macro or micro decided it, and answer
 "what is the best play here" for given builds and situations from data and general principles, better than players.
 Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and a win-probability model.
@@ -140,14 +143,17 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
    new replays. Next layers: team strength, state export, win probability (METHODS.md).
 
 ## Plan (see METHODS.md "From rulings to data" for the full data-first plan)
-0. Next: team strength ratings from stored results; the state export for a win-probability model; then the bulk pull.
+0. Next: build the model structure on the 24 stored matches (team strength, the variables and match table, the
+   glass-box win-probability model with explanation breakdowns, the readable model file, corrections, the learning
+   report). Then slow training: 3 to 5 new replays per batch, a learning report and Denning's answers after each. No
+   large pull until the reports settle.
 1. Done: Bounty (6), Nick ([Men v Team]), Maga's OG comms (4), 4 good-guild matches, the engine, death rulings 1 and 2,
    the engine review (bugs fixed, scoreboard, fights, decision points, tactics restructure).
 2. Now: calibrate on Denning's rulings (remaining [Men v HC C] deaths and power plays, judged as fights), each ruling
    becoming a label, a tactics line and an engine check; check the situation cards' defaults with him.
 3. Then: redo the Bounty, Maga, Nick and earlier reviews with the engine; settle trade-offs with `compare` (8 monk
    defending a split, always collapse vs one damage pushing, double running, holding vs running when up on flags).
-4. Then: bulk pull in batches of about 100, benchmarks, win-probability model (replaces the provisional edge).
+4. Then: grow the batches once learning reports settle; discovery and choice values as data accumulates.
 
 ## Current state
 - Stored replays: 24 on the `replays` branch.
@@ -198,6 +204,8 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
 - Improve the toolkit rather than writing one-off scripts; each ruling becomes a label, a tactics line and a check.
 
 ## Recent changes
+- Session 4c: model requirements set (white box, explains why, amendable, structure first, slow training with
+  learning reports, discovery first); `interpret` (Explainable Boosting Machine) chosen and tested to install.
 - Session 4b: Lord damage measured (ranger 37, ele 33, warrior 27, paragon 24, dervish 23, necro 10, mesmer 7 per
   second at the Lord); decision points record every player's action; D6 opened; data-first plan written.
 - Session 4: engine review. Fixed: dead monks counted as out of range, all-monks range rule, death verdicts ignoring
