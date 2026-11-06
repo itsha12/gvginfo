@@ -192,8 +192,8 @@ def report():
                             if "pre_trend_vs_usual" in c else ""))
             fc = [b for b in x.get("by_build", []) if "fight" in b]
             if fc:
-                L.append(f"  By fight state (fightstate.py; losing/winning = {U.FIGHT_BAND}+ more expected deaths in the next 10 s; "
-                         f"raw win-chance change, against the usual choice in the same band):")
+                L.append("  By fight state (fightstate.py: enemy minus own expected deaths in the next 10 s; decisions split into "
+                         "thirds; raw win-chance change, against the usual choice in the same third):")
                 for b in fc:
                     if "raw_difference" in b:
                         L.append(f"  - {b['choice']}, {b['fight']}: {b['raw_difference']:+} (n {b['n']} against {b['n_usual']})")
