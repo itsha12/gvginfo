@@ -1,6 +1,6 @@
 {
  "about": "The causal map: what can cause what in a GvG match, as reasoned by Denning and Claude and found in data. Each node is measured; each node's model may only use the links pointing into it, measured earlier in time. The data decides how much each link matters (status: hypothesis, supported, rejected; mechanical = a formula, not learned). Denning can add, correct or remove links; each change is logged with its reason. Rendered to knowledge/causal-map.md by tools/replay_analysis/causal_map.py.",
- "version": 1,
+ "version": 2,
  "nodes": [
   {
    "id": "C.builds",
@@ -77,9 +77,9 @@
   {
    "id": "A.roles_ratio",
    "layer": "allocation",
-   "name": "Damage v healers",
-   "description": "damage dealers and healers in each group, not heads",
-   "how": "to build: from roles in each group",
+   "name": "Damage potential v healing",
+   "description": "the damage a group can actually put out (measured per role and build, not heads: a mesmer is not a hammer) against the healing and prots it faces",
+   "how": "to build: measured damage per second per role and build against players, plus healers' measured healing",
    "kind": "measured"
   },
   {
@@ -484,7 +484,7 @@
   {
    "from": "A.allocation",
    "to": "A.roles_ratio",
-   "why": "a lone ranger split drawing the Mes/A and 8 monk changes main's damage-to-healer ratio less than the heads suggest",
+   "why": "a lone ranger split drawing the Mes/A and 8 monk changes main's damage potential against healing less than the heads suggest",
    "source": "Claude",
    "confirmed_by_denning": true,
    "status": "hypothesis",
@@ -2082,6 +2082,17 @@
    "tactics": [
     "J8"
    ]
+  },
+  {
+   "from": "A.roles_ratio",
+   "to": "K.10",
+   "why": "healers per side only matter through damage: 3 healers + 1 damage v 2 healers + 2 damage is even (the 2-monk side maybe a bit stronger); what decides is damage potential against healing",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "J12"
+   ]
   }
  ],
  "log": [
@@ -2089,6 +2100,11 @@
    "date": "2026-11-05",
    "change": "version 1 from the design conversation (scenarios 1 to 10 and follow-ups); decisions linked to the situation (the usual play), remaining gaps linked",
    "by": "Denning and Claude"
+  },
+  {
+   "date": "2026-11-05",
+   "change": "version 2: 'Damage v healers' became 'Damage potential v healing' (Denning: healer counts only matter through damage); J12 link added",
+   "by": "Denning"
   }
  ]
 }

@@ -8,8 +8,9 @@ capacities K.1 to K.13 (data/model/causal_map.json).
   for MIN_PHASE s, or at a death, a res or a capture.
 - Plan (starting labels, Denning `J11`: to be found and amended from data): 8v8 brawl, power play, weak side holding,
   flag game, split pressure, holding in the pit, late Lord push, regrouping.
-- Job per group: convert (strong side), hold (weak side), contest (even), cap and return (carrier), split (in the
-  enemy base), defend (in its own base against a split), free (no enemy near).
+- Job per group: convert (strong side), hold (weak side), contest (even), cap and return (carrier), defend (in its own
+  base against a split), free (no enemy near); a group in the enemy base is labelled by what it hit: split (on NPCs or
+  the Lord), push the runner (the enemy carrier), or fight in the enemy pit (players).
 - Capacities per group per phase (measured, nothing learned): damage dealers and healers, pressure (damage per s to
   enemy players), damage uptime (a damage dealer is active in a second it attacks, casts or deals damage, so kiting
   casters count) and lost damage-seconds by cause, healing per s, monk uptime, incoming damage per s,
@@ -187,6 +188,17 @@ def capacities(st, sb, members, foes, t0, t1, ev_idx):
         for i, (tt, _, _) in enumerate(L):
             w = [h for h in L[i:] if h[0] <= tt + 20]
             if sum(h[2] for h in w) >= 250 and len({h[1] for h in w}) >= 3 and tt - last > 40: bursts += 1; last = tt
+    # what the group hit: the enemy flag carrier, pit NPCs, monks, other players (its job shows in its targets)
+    carriers = {c["a"] for c in st.carries if c["s"] < t1 and c["e"] > t0}
+    tg = collections.Counter()
+    for r in ev:
+        if r[1] != "dm" or r[2] not in mem or not (r[5] or 0) > 0 or not isinstance(r[3], int) or r[3] >= len(m.A): continue
+        x = m.A[r[3]]
+        if x.get("npc"): tg["NPCs" if x.get("npc") != "guild_lord" else "Lord"] += r[5]
+        elif x.get("player") and m.team(r[3]) != m.team(members[0]):
+            tg["flag carrier" if r[3] in carriers else ("monks" if healer(m, r[3]) else "other players")] += r[5]
+    tot_t = sum(tg.values())
+    out["targets"] = {k: round(v / tot_t, 2) for k, v in tg.most_common()} if tot_t else {}
     kills = sum(1 for a in foes for tt in st.death_times.get(a, []) if t0 <= tt < t1 + 2)
     losses = sum(1 for a in members for tt in st.death_times.get(a, []) if t0 <= tt < t1 + 2)
     out.update(bursts=bursts, kills=kills, losses=losses,
@@ -211,11 +223,16 @@ def phases(st, sb=None):
             for g in gs:
                 jb = job(st, g, tmid, n_own, n_foe)
                 cap = capacities(st, sb, g["own"], g["enemy"], t0, t1, ev_idx)
+                tg = cap["targets"]
+                if jb == "split" and tg:      # a group in the enemy base: its targets say what it was doing
+                    top = max(tg, key=tg.get)
+                    jb = {"NPCs": "split (on NPCs)", "Lord": "split (on the Lord)", "flag carrier": "push the runner"}.get(top, "fight in the enemy pit")
                 held = jb in ("hold", "defend") and cap["losses"] == 0
                 groups.append({"zone": g["zone"], "numbers": f"{len(g['own'])}v{len(g['enemy'])}", "job": jb,
                                "members": [m.roles[a] for a in g["own"]], "enemies": [m.roles[a] for a in g["enemy"]],
                                "job_done": (cap["losses"] == 0) if jb in ("hold", "defend", "cap and return") else
-                                           (cap["kills"] > 0 if jb in ("convert", "split") else None),
+                                           (cap["kills"] > 0 if jb in ("convert", "fight in the enemy pit", "push the runner") else
+                                            (bool(sb.swing(m.tag[3 - tm], t0, t1)["npcs_lost"][m.tag[3 - tm]]) if jb.startswith("split") else None)),
                                "time_held": (t1 - t0) if held else 0, "capacities": cap})
             row["teams"][tag] = {"plan": plan(st, sb, tm, gs, tmid), "groups": sorted(groups, key=lambda g: -len(g["members"])),
                                  "dead": [m.roles[a] for a in st.players[tm] if not st.alive(a, tmid)]}
@@ -238,6 +255,7 @@ def show(st, rng=None):
             for g in x["groups"]:
                 c = g["capacities"]
                 print(f"    {g['numbers']} {g['zone']:10} job {g['job']:14} done {str(g['job_done']):5} {'+'.join(g['members'])} v {'+'.join(g['enemies']) or '-'}")
+                print(f"       targets {c['targets']}")
                 print(f"       dmg {c['damage_dealers']} / heal {c['healers']} | pressure {c['pressure']}/s, incoming {c['incoming']}/s, "
                       f"healing {c['healing']}/s, margin {c['sustain_margin']} | uptime {c['damage_uptime']} lost {c['lost_damage_s']} | "
                       f"monk uptime {c['monk_uptime']} | control {c['control_received']} | bursts {c['bursts']} kills {c['kills']} losses {c['losses']}")

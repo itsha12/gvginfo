@@ -1,6 +1,6 @@
 *Generated from data/model/causal_map.json by tools/replay_analysis/causal_map.py: don't edit this page; tell Claude or edit the JSON (each change is logged with a reason).*
 
-# Causal map (version 1)
+# Causal map (version 2)
 
 What can cause what in a GvG match. Each concept is measured from the replays; the model for each concept may only use the causes listed under it, measured earlier in time, and the data decides how much each matters. Status: **hypothesis** (not yet tested), **supported** or **rejected** by data, **mechanical** (a formula). "Confirmed" = Denning has confirmed the reasoning; the size of the effect still comes from data.
 
@@ -48,11 +48,11 @@ what each group must do given the plan: strong side converts, weak side holds sa
 Caused by:
 - **Plan, Allocation**: each group's job follows from the plan and the numbers where it is (Denning; hypothesis; `J2`)
 
-### Damage v healers `A.roles_ratio`
-damage dealers and healers in each group, not heads. *Measured: to build: from roles in each group.*
+### Damage potential v healing `A.roles_ratio`
+the damage a group can actually put out (measured per role and build, not heads: a mesmer is not a hammer) against the healing and prots it faces. *Measured: to build: measured damage per second per role and build against players, plus healers' measured healing.*
 
 Caused by:
-- **Allocation**: a lone ranger split drawing the Mes/A and 8 monk changes main's damage-to-healer ratio less than the heads suggest (Claude, confirmed; hypothesis; `J4`)
+- **Allocation**: a lone ranger split drawing the Mes/A and 8 monk changes main's damage potential against healing less than the heads suggest (Claude, confirmed; hypothesis; `J4`)
 
 ### Mesmers free to defend `A.mesa_free`
 whether each mesmer is in the fight, carrying, or defending elsewhere. *Measured: to build: from allocation and flag duty.*
@@ -177,7 +177,7 @@ Caused by:
 bursts and pressure that become kills. *Measured: bursts against deaths.*
 
 Caused by:
-- **Damage v healers, Damage uptime, Burst timing, Kiting and spacing, Commitment**: a 5v3 fails to convert when its heads hide few damage dealers against healers, its damage is shut down, its bursts don't line up, the 3 kite to their pit or NPCs, or it doesn't commit (Claude, confirmed; hypothesis; `J3`)
+- **Damage potential v healing, Damage uptime, Burst timing, Kiting and spacing, Commitment**: a 5v3 fails to convert when its heads hide few damage dealers against healers, its damage is shut down, its bursts don't line up, the 3 kite to their pit or NPCs, or it doesn't commit (Claude, confirmed; hypothesis; `J3`)
 - **Flag lead**: a team down on flags must send a runner soon, so its power play is shorter and less committed than its numbers suggest (Denning; hypothesis; `J5`)
 - **Control received, Mitigation, Burst timing**: a team can't kill because of the enemy's defence (prots, blocks), shutdown of its spikers (interrupts, knockdowns, Blind, strips) or spread damage (Claude, confirmed; hypothesis; `K12`)
 - **Target choice**: hitting the wrong player matters but isn't huge (Denning; hypothesis; `K12`)
@@ -222,6 +222,7 @@ incoming damage against healing plus mitigation in a group. *Measured: pressure,
 
 Caused by:
 - **Pressure, Healing, Mitigation**: incoming damage against healing plus mitigation (formula; mechanical)
+- **Damage potential v healing**: healers per side only matter through damage: 3 healers + 1 damage v 2 healers + 2 damage is even (the 2-monk side maybe a bit stronger); what decides is damage potential against healing (Denning; hypothesis; `J12`)
 
 ### Control received `K.11`
 interrupts, knockdowns, Blind, Daze, strips and energy denial taken, by role. *Measured: events and effects.*
@@ -330,3 +331,4 @@ Caused by:
 ## Change log
 
 - 2026-11-05: version 1 from the design conversation (scenarios 1 to 10 and follow-ups); decisions linked to the situation (the usual play), remaining gaps linked (Denning and Claude)
+- 2026-11-05: version 2: 'Damage v healers' became 'Damage potential v healing' (Denning: healer counts only matter through damage); J12 link added (Denning)

@@ -61,13 +61,17 @@ against general principles rather than past games. Match-by-match evidence lives
 - `J2` **Denning:** A 4v3 can be intentional, so the other side can fight 5v3. The 3-man weak side then has a different
   objective because it is the weak side: play defensive and safe (no deaths, keep the enemy group busy, don't chase) to
   allow the other side its power play. Judge each group by its job, not by its local fight.
-- `J3` **Claude, confirmed by Denning:** A 5v3 fails to convert when the heads hide few damage dealers against healers
-  (5 with 2 damage against 3 with 2 monks), when its damage is shut down (interrupts, knockdowns, Blind, snares), when
+- `J3` **Claude, confirmed by Denning:** A 5v3 fails to convert when the heads hide little damage against the
+  defenders' healing (5 with 2 damage against 3 with 2 monks), when its damage is shut down (interrupts, knockdowns, Blind, snares), when
   its bursts don't line up, when it doesn't commit, or when the 3 kite into their pit, NPCs or res shrine.
 - `J4` **Claude, confirmed by Denning:** A lone ranger split drawing the Mes/A and the 8 monk is a 1-for-2 exchange, and
   its value is mostly whether main converts the 7v6. The ranger dies to snares or a fast collapse, an escape on
   recharge or interrupted, going too deep into knights and the Lord, or staying after a second defender arrives. The
   7v6 may not kill because the damage-to-healer ratio barely changed (a damage dealer left for a monk and a mesmer).
+- `J12` **Denning:** Healers per side only matter through damage. 3 healers and 1 damage against 2 healers and 2 damage
+  shouldn't be won by either side on the ratio alone: that 4v4 is even, the 2-monk side maybe a bit stronger. What
+  decides a fight is the damage a group can actually put out against the healing and prots it faces (measured, not
+  counted by heads: a mesmer is not a hammer).
 - `J5` **Denning:** The 7 may also be unable to kill because it is behind on flags and has to run: its power play is
   shorter than its numbers suggest.
 - `J6` **Denning:** A power play has a limited window (until the enemy runner is back); the team must capitalize on it.
