@@ -236,6 +236,14 @@ def report():
     import values as VAL
     v = VAL.measure(ids); VAL.write(v)
     L += ["## 8. What results and causes are worth", ""] + VAL.report_lines(v)
+    # why chains for the biggest moments of the new matches (Denning: the point is the WHY)
+    import why as WHY
+    if os.path.isdir("/tmp/ga"):
+        L += ["## Why: the biggest moments of the new matches", "",
+              "For each, the engine's account of why it happened, from models that never saw the match: result and worth, "
+              "the mechanics of each death, the setup (where every group was and what it could do), the decision before, "
+              "and the context.", ""]
+        for rid, f in WHY.top(5, new_ids): L += WHY.why(rid, f)
     import snapshot as SNAP
     if os.path.isdir("/tmp/gl"): L += SNAP.snapshot(ids, new_ids, "/tmp/gl")
     L += ["## 10. For Denning", "",

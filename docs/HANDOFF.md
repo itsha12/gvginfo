@@ -174,6 +174,13 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
 4. Then: grow the batches once learning reports settle; discovery and choice values as data accumulates.
 
 ## Current state
+- Batch 5 done (53 matches, 7 new incl. one "latest" request: BcS v Men, DRKN v yM, EDGE v Fun, Team v cope, Team v SKT,
+  One v fM, hook v EDGE). Win model 0.530 against strength 0.439. Denning: after each batch explain the WHY of 5 match
+  events, not a broad breakdown. Built `why.py` (why chains: result and worth, mechanics per death from the deaths
+  node, setup per group with capacities, the decision before, context; learning report section "Why"). First test of
+  it showed its limits: the mechanics step stops at "health was low" (a symptom, not a cause); consequence windows
+  swallow the next fight; the decision step uses the coarse choice and a kind-wide average. Next: deepen the why
+  (damage sources and skills, prots and interrupts on monks, why damage uptime was low), then batch 6.
 - Batch 4 done (46 matches, 6 new: push v OG, push v cell, chic v DUM, げえええ v chic, Crew v BcS, yM v BcS). Win model
   0.530 against strength 0.448 (gap narrowing); correction "lord_damage_diff & minute" (Denning) tested: no change
   (0.530 with and without). Learning reports now end with a detailed snapshot (`snapshot.py`: runners, flag answers,

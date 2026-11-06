@@ -876,5 +876,138 @@
    "2": 5
   },
   "exclude": []
+ },
+ "e14811f2-abbc-5bda-a34a-967d08fe778c": {
+  "length": {
+   "recorded_s": 319,
+   "last_event_s": 309,
+   "lord_death_s": 306,
+   "used_s": 307,
+   "repaired": false
+  },
+  "lord_damage_unobserved": [],
+  "window": {
+   "observed": "0:00 - 5:19",
+   "joined_mid_match": false
+  },
+  "roster_added": {
+   "1": 5,
+   "2": 0
+  },
+  "exclude": []
+ },
+ "79281720-08a2-550c-aa5f-df0e2a668260": {
+  "length": {
+   "recorded_s": 428,
+   "last_event_s": 423,
+   "lord_death_s": 414,
+   "used_s": 415,
+   "repaired": false
+  },
+  "lord_damage_unobserved": [],
+  "window": {
+   "observed": "0:00 - 7:08",
+   "joined_mid_match": false
+  },
+  "roster_added": {
+   "1": 6,
+   "2": 0
+  },
+  "exclude": []
+ },
+ "2b13eea5-2968-5421-a481-60215131765d": {
+  "length": {
+   "recorded_s": 685,
+   "last_event_s": 680,
+   "lord_death_s": 672,
+   "used_s": 673,
+   "repaired": false
+  },
+  "lord_damage_unobserved": [],
+  "window": {
+   "observed": "0:00 - 11:25",
+   "joined_mid_match": false
+  },
+  "roster_added": {
+   "1": 0,
+   "2": 0
+  },
+  "exclude": []
+ },
+ "5eedf9cf-fb31-53ac-af54-fa87322c9b74": {
+  "length": {
+   "recorded_s": 703,
+   "last_event_s": 702,
+   "lord_death_s": 689,
+   "used_s": 690,
+   "repaired": false
+  },
+  "lord_damage_unobserved": [],
+  "window": {
+   "observed": "0:00 - 11:43",
+   "joined_mid_match": false
+  },
+  "roster_added": {
+   "1": 2,
+   "2": 1
+  },
+  "exclude": []
+ },
+ "744a2513-353e-5e41-a6b0-d3354725b3f5": {
+  "length": {
+   "recorded_s": 233,
+   "last_event_s": 231,
+   "lord_death_s": 220,
+   "used_s": 221,
+   "repaired": false
+  },
+  "lord_damage_unobserved": [],
+  "window": {
+   "observed": "0:00 - 3:53",
+   "joined_mid_match": false
+  },
+  "roster_added": {
+   "1": 0,
+   "2": 5
+  },
+  "exclude": []
+ },
+ "6c7dfcaa-1141-592f-a625-d5109b087b35": {
+  "length": {
+   "recorded_s": 703,
+   "last_event_s": 702,
+   "lord_death_s": 690,
+   "used_s": 691,
+   "repaired": false
+  },
+  "lord_damage_unobserved": [],
+  "window": {
+   "observed": "0:00 - 11:43",
+   "joined_mid_match": false
+  },
+  "roster_added": {
+   "1": 2,
+   "2": 1
+  },
+  "exclude": []
+ },
+ "1037e655-42ac-505f-af04-22b24458fd00": {
+  "length": {
+   "recorded_s": 409,
+   "last_event_s": 401,
+   "lord_death_s": 397,
+   "used_s": 398,
+   "repaired": false
+  },
+  "lord_damage_unobserved": [],
+  "window": {
+   "observed": "0:00 - 6:49",
+   "joined_mid_match": false
+  },
+  "roster_added": {
+   "1": 2,
+   "2": 5
+  },
+  "exclude": []
  }
 }
