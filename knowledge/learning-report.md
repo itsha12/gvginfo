@@ -9,39 +9,39 @@ Trained on 30 matches (6 new in this batch). Variables in use: 17; build variabl
 **Beats strength alone.** Held-out accuracy (matches held out whole), log loss in brackets (lower is better):
 
 - strength only: all 64% (0.633), 0-5 min 74% (0.519), 5-10 min 69% (0.611), 10-15 min 60% (0.728), 15-end min 51% (0.726)
-- glass box: all 79% (0.562), 0-5 min 84% (0.466), 5-10 min 86% (0.36), 10-15 min 82% (0.58), 15-end min 64% (0.859)
-- black box: all 76% (0.791), 0-5 min 78% (0.743), 5-10 min 76% (0.75), 10-15 min 76% (0.715), 15-end min 74% (0.943)
-- Change since batch 0: glass box log loss 0.636 -> 0.562; strength only 0.534 -> 0.633.
+- glass box: all 79% (0.553), 0-5 min 84% (0.457), 5-10 min 86% (0.344), 10-15 min 82% (0.583), 15-end min 65% (0.846)
+- black box: all 77% (0.786), 0-5 min 78% (0.755), 5-10 min 77% (0.751), 10-15 min 78% (0.689), 15-end min 76% (0.927)
+- Change since batch 0: glass box log loss 0.636 -> 0.553; strength only 0.534 -> 0.633.
 
 ## 2. What it leans on
 
-- **morale_diff** 1.951 (was 1.648): own minus enemy morale summed over players (boosts +, death penalty -)
-- **knights_diff** 1.266 (was 1.26): own minus enemy pit knights alive
-- **bodyguard_diff** 1.218 (was 0.898): own minus enemy Bodyguard alive
-- **flag_lead** 0.342 (was 0.321): seconds up (+) or down (-) on flags: enemy's response minus own on the next capture exchange
-- **lord_damage_diff** 0.304 (was 0.292): own minus enemy Lord damage dealt so far (the 28:00 tiebreak; players can't see it)
-- **stand** 0.294 (was 0.206): who holds the flag stand: 1 own, 0 nobody, -1 enemy
-- **pit_pressure_diff** 0.238 (was 0.199): own players in the enemy pit minus enemy players in the own pit
-- **archers_diff** 0.199 (was 0.157): own minus enemy pit archers alive
+- **morale_diff** 1.893 (was 1.648): own minus enemy morale summed over players (boosts +, death penalty -)
+- **knights_diff** 1.217 (was 1.26): own minus enemy pit knights alive
+- **bodyguard_diff** 1.209 (was 0.898): own minus enemy Bodyguard alive
+- **stand** 0.313 (was 0.206): who holds the flag stand: 1 own, 0 nobody, -1 enemy
+- **lord_damage_diff** 0.295 (was 0.292): own minus enemy Lord damage dealt so far (the 28:00 tiebreak; players can't see it)
+- **pit_pressure_diff** 0.256 (was 0.199): own players in the enemy pit minus enemy players in the own pit
+- **flag_lead** 0.234 (was 0.321): seconds up (+) or down (-) on flags: enemy's response minus own on the next capture exchange
+- **archers_diff** 0.203 (was 0.157): own minus enemy pit archers alive
 - **down_diff_s** 0.147 (was 0.103): enemy minus own seconds until all dead players are back (+ = the enemy has more time down)
-- **boost_clock** 0.142 (was 0.105): seconds until the stand holder's next boost (+ if own boost is coming, - if the enemy's, 0 nobody)
-- **alive_diff** 0.102 (was 0.069): own minus enemy players alive
+- **alive_diff** 0.105 (was 0.069): own minus enemy players alive
 - **main_diff** 0.102 (was 0.104): own minus enemy players in each team's main group
+- **boost_clock** 0.085 (was 0.105): seconds until the stand holder's next boost (+ if own boost is coming, - if the enemy's, 0 nobody)
 
 ## 3. The curves in words
 
 Points = win-chance points added to an otherwise even game at each range of the variable.
 
-- **morale_diff** rises from -48.3 to +48.0 points (-470.0..-199.0: -48.3; -159.0..-110.5: -45.6; -86.0..-46.5: -39.6; -15.5..-1.0: -4.8; 1.0..23.0: +3.3; 56.0..97.0: +41.3; 144.0..196.0: +47.7)
-- **knights_diff** falls from +41.5 to -41.2 points (-2.0..-1.5: +41.5; -1.5..-0.5: +38.5; -0.5..0.5: -0.8; 0.5..1.5: -37.9; 1.5..2.0: -41.2)
-- **bodyguard_diff** falls from +36.3 to -36.0 points (-1.0..-0.5: +36.3; -0.5..0.5: -0.6; 0.5..1.0: -36.0)
-- **flag_lead** rises from -9.7 to +10.8 points (-81.0..-64.5: -9.7; -54.5..-36.5: -9.3; -27.5..-17.5: -8.1; -8.5..-0.5: -6.3; 6.5..16.5: +7.3; 27.5..36.5: +9.4; 54.5..64.5: +10.2)
-- **lord_damage_diff** falls from +49.1 to -49.0 points (-9661.0..-5219.0: +49.1; -3355.0..-2101.5: -13.8; -1317.5..-530.5: -22.0; -102.0..-8.5: -27.0; 8.5..102.0: +24.5; 688.5..1338.0: +20.8; 3001.0..4965.0: -1.4)
-- **stand** rises from -7.8 to +7.7 points (-1.0..-0.5: -7.8; -0.5..0.5: +0.3; 0.5..1.0: +7.7)
-- **pit_pressure_diff** falls from -0.7 to -14.1 points (-8.0..-5.5: -0.7; -4.5..-3.5: +12.5; -2.5..-1.5: +13.5; -0.5..0.5: +1.7; 1.5..2.5: -18.8; 3.5..5.5: -16.0)
-- **archers_diff** rises from -20.1 to +24.4 points (-4.0..-3.5: -20.1; -3.5..-2.5: -17.9; -2.5..-1.5: +3.7; -1.5..-0.5: +6.4; -0.5..0.5: -0.8; 0.5..1.5: -6.6; 1.5..2.5: -2.9; 2.5..3.5: +23.0; 3.5..4.0: +24.4)
-- **down_diff_s** rises from -21.2 to +30.2 points (-960.0..-195.0: -21.2; -127.5..-97.5: -15.6; -67.5..-52.5: -9.5; -37.5..-7.5: -3.9; 7.5..37.5: +3.6; 67.5..97.5: +8.3; 127.5..195.0: +14.5)
-- **boost_clock** falls from +6.4 to -4.1 points (-120.0..-109.5: +6.4; -98.5..-85.5: +6.6; -71.5..-54.5: +1.1; -32.5..-0.5: -2.6; 9.5..43.5: +0.1; 64.5..81.5: -3.9; 95.5..108.5: -4.3)
+- **morale_diff** rises from -48.0 to +47.7 points (-470.0..-199.0: -48.0; -159.0..-110.5: -45.5; -86.0..-46.5: -39.8; -15.5..-1.0: -3.4; 1.0..23.0: +3.1; 56.0..97.0: +40.8; 144.0..196.0: +47.3)
+- **knights_diff** falls from +40.8 to -40.4 points (-2.0..-1.5: +40.8; -1.5..-0.5: +37.6; -0.5..0.5: -0.9; 0.5..1.5: -36.9; 1.5..2.0: -40.4)
+- **bodyguard_diff** falls from +36.1 to -35.7 points (-1.0..-0.5: +36.1; -0.5..0.5: -0.8; 0.5..1.0: -35.7)
+- **stand** rises from -8.2 to +8.2 points (-1.0..-0.5: -8.2; -0.5..0.5: +0.3; 0.5..1.0: +8.2)
+- **lord_damage_diff** falls from +49.0 to -48.8 points (-9661.0..-5219.0: +49.0; -3355.0..-2101.5: -13.5; -1317.5..-530.5: -21.7; -102.0..-8.5: -26.6; 8.5..102.0: +23.7; 688.5..1338.0: +19.9; 3001.0..4965.0: +0.8)
+- **pit_pressure_diff** falls from +0.2 to -15.6 points (-8.0..-5.5: +0.2; -4.5..-3.5: +13.3; -2.5..-1.5: +14.7; -0.5..0.5: +1.8; 1.5..2.5: -20.1; 3.5..5.5: -17.4)
+- **flag_lead** falls from +4.6 to -1.7 points (-86.0..-68.5: +4.6; -55.5..-44.5: -8.7; -32.5..-21.5: -8.5; -10.5..-0.5: -4.2; 9.5..20.5: +7.5; 31.5..44.5: +8.4; 55.5..68.5: -0.7)
+- **archers_diff** rises from -20.5 to +23.8 points (-4.0..-3.5: -20.5; -3.5..-2.5: -18.1; -2.5..-1.5: +4.0; -1.5..-0.5: +6.6; -0.5..0.5: -0.6; 0.5..1.5: -6.4; 1.5..2.5: -4.0; 2.5..3.5: +22.3; 3.5..4.0: +23.8)
+- **down_diff_s** rises from -22.1 to +29.3 points (-960.0..-195.0: -22.1; -127.5..-97.5: -15.2; -67.5..-52.5: -9.4; -37.5..-7.5: -3.9; 7.5..37.5: +3.6; 67.5..97.5: +8.4; 127.5..195.0: +14.5)
+- **alive_diff** rises from -26.5 to +29.7 points (-8.0..-4.5: -26.5; -3.5..-2.5: -10.2; -1.5..-0.5: -3.3; 0.5..1.5: +3.1; 2.5..3.5: +10.1; 4.5..8.0: +29.7)
 
 ## 4. Discovery
 
@@ -58,46 +58,45 @@ Points = win-chance points added to an otherwise even game at each range of the 
 
 **Candidate variables** (proposed variables, tested on unseen matches; log loss, lower is better):
 
-- split_diff: 0.562 without, 0.613 with: does not improve yet. own minus enemy players on a split (away from their main group on the enemy half, not carrying). Proposed batch 1 by Claude: the knights curve runs backwards, maybe standing in for the cost of splitting
+- split_diff: 0.553 without, 0.603 with: does not improve yet. own minus enemy players on a split (away from their main group on the enemy half, not carrying). Proposed batch 1 by Claude: the knights curve runs backwards, maybe standing in for the cost of splitting
 
 **Surprises** (moments where the held-out model was most confident about the team that went on to lose; each points to something the variables don't capture yet):
 
-- hdm v HC (28447c4a) at 22:30: a model that never saw this match gave HC 0.3%, and HC won. Why it thought so: morale_diff -47.7, knights_diff +42.0, team strength -41.8, bodyguard_diff +40.2, lord_damage_diff -38.1
-- OG v hold (49eec28d) at 3:30: a model that never saw this match gave OG 3.7%, and OG won. Why it thought so: morale_diff -46.2, team strength +25.9, pit_pressure_diff -23.1, flag_lead +8.7, stand -8.0
-- hdm v Men (0f1fd794) at 24:00: a model that never saw this match gave Men 0.8%, and Men won. Why it thought so: bodyguard_diff -47.4, pit_pressure_diff -25.0, morale_diff +17.2, flag_lead -12.7, main_diff -7.4
-- OG v cope (84586253) at 15:45: a model that never saw this match gave cope 5.1%, and cope won. Why it thought so: archers_diff -36.2, team strength -21.2, pit_pressure_diff -10.1, stand +8.4, boost_clock -1.8
-- RACK v MBP (cb5a5f57) at 26:30: a model that never saw this match gave MBP 97.5%, and MBP lost. Why it thought so: morale_diff -45.8, knights_diff +43.8, lord_damage_diff +41.3, bodyguard_diff +39.3, team strength -38.9
-- Team v push (2df9b7fd) at 23:15: a model that never saw this match gave push 90.7%, and push lost. Why it thought so: team strength -48.4, spike_killable_diff +45.1, knights_diff +40.2, morale_diff +29.4, lord_damage_diff -18.7
+- hdm v HC (28447c4a) at 23:30: a model that never saw this match gave HC 1.6%, and HC won. Why it thought so: morale_diff -47.9, knights_diff +41.9, team strength -41.8, bodyguard_diff +40.7, lord_damage_diff -38.0
+- OG v cope (84586253) at 15:45: a model that never saw this match gave cope 4.0%, and cope won. Why it thought so: archers_diff -35.9, team strength -21.2, pit_pressure_diff -10.1, stand +8.7, flag_lead -8.5
+- hdm v Men (0f1fd794) at 24:00: a model that never saw this match gave Men 0.7%, and Men won. Why it thought so: bodyguard_diff -47.3, pit_pressure_diff -26.4, morale_diff +14.4, flag_lead -8.2, main_diff -8.2
+- OG v hold (49eec28d) at 3:30: a model that never saw this match gave OG 2.0%, and OG won. Why it thought so: morale_diff -46.2, team strength +25.9, pit_pressure_diff -23.9, stand -8.5, main_diff -5.3
+- RACK v MBP (cb5a5f57) at 26:30: a model that never saw this match gave MBP 97.4%, and MBP lost. Why it thought so: morale_diff -45.5, knights_diff +43.4, lord_damage_diff +40.6, bodyguard_diff +39.2, team strength -38.9
+- Team v push (2df9b7fd) at 22:30: a model that never saw this match gave push 89.7%, and push lost. Why it thought so: team strength -48.4, spike_killable_diff +44.7, knights_diff +39.4, morale_diff +28.7, lord_damage_diff -19.8
 
 ## 5. Denning's rulings seen through the model
 
 Win chance from a model that never saw the match, 20 s before and 60 s after each ruled moment. Contributions are points for an otherwise even game (the curves' scale).
 
-- hdm v HC (28447c4a) 5:01 (split answered), HC: 2.7% 20 s before -> 96.7% 60 s after (+94.0). After: knights_diff +42.0, team strength -41.8, morale_diff +25.7, pit_pressure_diff +20.9
-- hdm v HC (28447c4a) 5:01 (split answered), hdm: 97.3% 20 s before -> 3.2% 60 s after (-94.1). After: team strength +41.8, knights_diff -41.7, morale_diff -23.2, pit_pressure_diff -21.8
-- hdm v HC (28447c4a) 1:02 (split detection), HC: 9.7% 20 s before -> 3.6% 60 s after (-6.1). After: team strength -41.8, flag_lead -18.8, stand -11.1, morale_diff +9.5
-- hdm v HC (28447c4a) 1:02 (split detection), hdm: 89.7% 20 s before -> 97.5% 60 s after (+7.8). After: team strength +41.8, flag_lead +18.6, stand +11.1, carrying_diff +6.6
-- hdm v HC (28447c4a) 7:10 (8 monk in base after the pit died), HC: 93.9% 20 s before -> 91.7% 60 s after (-2.2). After: knights_diff +42.0, team strength -41.8, bodyguard_diff +40.2, lord_damage_diff -37.0
-- hdm v HC (28447c4a) 7:10 (8 monk in base after the pit died), hdm: 7.1% 20 s before -> 8.7% 60 s after (+1.6). After: team strength +41.8, knights_diff -41.7, bodyguard_diff -40.4, lord_damage_diff +37.0
-- hdm v HC (bbef1904) 8:10 (death), HC: 0.3% 20 s before -> 0.0% 60 s after (-0.3). After: team strength -43.2, knights_diff -40.8, morale_diff -39.0, bodyguard_diff -36.3
-- hdm v HC (bbef1904) 8:10 (death), hdm: 99.7% 20 s before -> 100.0% 60 s after (+0.3). After: team strength +43.2, knights_diff +40.8, bodyguard_diff +36.2, morale_diff +28.2
-- Men v HC (faec428a) 9:31 (death), HC: 4.3% 20 s before -> 6.7% 60 s after (+2.4). After: team strength -44.8, knights_diff +39.1, bodyguard_diff -36.0, flag_lead +9.5
-- Men v HC (faec428a) 9:31 (death), Men: 95.9% 20 s before -> 94.2% 60 s after (-1.7). After: team strength +44.8, knights_diff -38.8, bodyguard_diff +35.9, flag_lead -9.2
+- hdm v HC (28447c4a) 5:01 (split answered), HC: 3.2% 20 s before -> 96.4% 60 s after (+93.2). After: knights_diff +41.9, team strength -41.8, morale_diff +25.2, pit_pressure_diff +21.7
+- hdm v HC (28447c4a) 5:01 (split answered), hdm: 96.9% 20 s before -> 3.5% 60 s after (-93.4). After: team strength +41.8, knights_diff -41.7, morale_diff -22.7, pit_pressure_diff -22.5
+- hdm v HC (28447c4a) 1:02 (split detection), HC: 9.3% 20 s before -> 3.5% 60 s after (-5.8). After: team strength -41.8, flag_lead -13.1, stand -11.5, carrying_diff -8.7
+- hdm v HC (28447c4a) 1:02 (split detection), hdm: 92.6% 20 s before -> 97.4% 60 s after (+4.8). After: team strength +41.8, flag_lead +13.1, stand +11.4, carrying_diff +8.6
+- hdm v HC (28447c4a) 7:10 (8 monk in base after the pit died), HC: 93.1% 20 s before -> 89.7% 60 s after (-3.4). After: knights_diff +41.9, team strength -41.8, bodyguard_diff +40.7, lord_damage_diff -36.8
+- hdm v HC (28447c4a) 7:10 (8 monk in base after the pit died), hdm: 7.9% 20 s before -> 10.7% 60 s after (+2.8). After: team strength +41.8, knights_diff -41.7, bodyguard_diff -40.8, lord_damage_diff +37.2
+- hdm v HC (bbef1904) 8:10 (death), HC: 0.3% 20 s before -> 0.0% 60 s after (-0.3). After: team strength -43.2, knights_diff -40.2, morale_diff -39.2, bodyguard_diff -36.3
+- hdm v HC (bbef1904) 8:10 (death), hdm: 99.8% 20 s before -> 100.0% 60 s after (+0.2). After: team strength +43.2, knights_diff +40.4, bodyguard_diff +36.3, morale_diff +27.9
+- Men v HC (faec428a) 9:31 (death), HC: 3.7% 20 s before -> 3.7% 60 s after (+0.0). After: team strength -44.8, knights_diff +38.1, bodyguard_diff -36.0, stand -8.4
+- Men v HC (faec428a) 9:31 (death), Men: 96.5% 20 s before -> 96.8% 60 s after (+0.3). After: team strength +44.8, knights_diff -37.7, bodyguard_diff +36.0, stand +8.4
 
 ## 6. Why: the node models
 
 Each explains one result from what happened before it (time order enforced), tested on matches it never saw. AUC = how often a moment that led to the result scores above one that didn't (0.5 = guessing, 1 = perfect).
 
-**deaths** (30 matches, 69889 moments, 1829 results): adds to the simple baseline (AUC 0.896 against 0.764 for health_pct and damage_taken_3s alone).
-- **enemies_near** (enemies within 1,500) rises from -17.2 to +25.9 points (0.0..0.5: -17.2; 0.5..1.5: -8.3; 1.5..2.5: -0.4; 2.5..3.5: +1.3; 3.5..4.5: +4.7; 4.5..5.5: +6.6; 5.5..6.5: +11.8; 6.5..7.5: +14.0; 7.5..8.0: +25.9)
-- **health_pct** (current health %) falls from +41.4 to -6.3 points (1.0..48.5: +41.4; 60.5..68.5: +22.9; 74.5..78.5: +9.5; 82.5..85.5: +6.2; 88.5..91.5: +2.6; 93.5..95.5: -1.6; 97.5..99.5: -4.4)
-- **health_ceiling** (maximum health after death penalty, as a share of normal) falls from +34.8 to -13.3 points (0.4..0.64: +34.8; 0.71..0.84: +24.0; 0.85..0.9: +18.1; 0.94..0.99: +11.0; 1.0..1.1: -1.6)
-- **strength_gap** (own minus enemy team strength) falls from +11.4 to -18.8 points (-1092.0..-480.5: +11.4; -382.0..-334.0: -2.7; -168.5..-130.5: +5.1; -38.0..0.0: +8.7; 38.0..130.5: +8.2; 181.0..334.0: -7.4; 382.0..480.5: -0.7)
-- **local_diff** (allies minus enemies within 2,000) falls from +32.2 to -18.7 points (-8.0..-3.5: +32.2; -2.5..-1.5: +11.0; -0.5..0.5: -6.0; 1.5..2.5: -6.5; 3.5..4.5: +17.2; 5.5..7.0: -18.7)
-- **dist_own_pit** (distance from its own pit) rises from +6.6 to +17.9 points (10.0..1710.5: +6.6; 2929.5..4656.5: -6.9; 5577.5..6359.5: -8.6; 7136.5..7805.5: -3.0; 8361.5..8874.5: -3.6; 9615.5..10481.5: -0.3; 11606.5..13044.5: +11.8)
-- **healers_in_range** (own healers alive within cast range) falls from +10.6 to +1.6 points (0.0..0.5: +10.6; 0.5..1.5: -3.3; 1.5..2.5: -6.4; 2.5..3.0: +1.6)
-- **minute** (match minute) rises from -3.7 to +16.6 points (0.1..1.25: -3.7; 2.35..3.45: -7.7; 4.55..5.75: +3.2; 7.15..8.75: +3.7; 10.35..12.15: -2.4; 14.05..16.25: -0.7; 18.65..21.75: +7.1)
-- **flag_lead** (own flag lead (s)) rises from -10.0 to -4.0 points (-81.0..-64.5: -10.0; -54.5..-36.5: +4.8; -26.5..-16.5: +0.8; -7.5..0.5: -1.8; 8.5..17.5: -3.2; 27.5..36.5: -3.2; 54.5..64.5: +2.8)
+**deaths** (30 matches, 69889 moments, 1829 results): adds to the simple baseline (AUC 0.89 against 0.764 for health_pct and damage_taken_3s alone).
+- **enemies_near** (enemies within 1,500) rises from -17.6 to +26.0 points (0.0..0.5: -17.6; 0.5..1.5: -8.5; 1.5..2.5: -0.2; 2.5..3.5: +1.6; 3.5..4.5: +5.2; 4.5..5.5: +7.1; 5.5..6.5: +11.7; 6.5..7.5: +13.9; 7.5..8.0: +26.0)
+- **health_pct** (current health %) falls from +41.4 to -6.3 points (1.0..48.5: +41.4; 60.5..68.5: +23.1; 74.5..78.5: +9.5; 82.5..85.5: +6.2; 88.5..91.5: +2.6; 93.5..95.5: -1.6; 97.5..99.5: -4.4)
+- **strength_gap** (own minus enemy team strength) falls from +11.2 to -19.1 points (-1092.0..-480.5: +11.2; -382.0..-334.0: -1.9; -168.5..-130.5: +5.1; -38.0..0.0: +9.6; 38.0..130.5: +8.8; 181.0..334.0: -8.3; 382.0..480.5: -0.4)
+- **health_ceiling** (maximum health after death penalty, as a share of normal) falls from +35.2 to -13.4 points (0.4..0.64: +35.2; 0.71..0.84: +24.0; 0.85..0.9: +18.2; 0.94..0.99: +11.0; 1.0..1.1: -1.5)
+- **local_diff** (allies minus enemies within 2,000) falls from +32.1 to -19.0 points (-8.0..-3.5: +32.1; -2.5..-1.5: +11.0; -0.5..0.5: -6.0; 1.5..2.5: -6.3; 3.5..4.5: +17.8; 5.5..7.0: -19.0)
+- **dist_own_pit** (distance from its own pit) rises from +7.1 to +18.1 points (10.0..1710.5: +7.1; 2929.5..4656.5: -6.7; 5577.5..6359.5: -8.5; 7136.5..7805.5: -3.1; 8361.5..8874.5: -3.7; 9615.5..10481.5: -0.8; 11606.5..13044.5: +12.3)
+- **healers_in_range** (own healers alive within cast range) falls from +10.8 to +1.1 points (0.0..0.5: +10.8; 0.5..1.5: -3.3; 1.5..2.5: -6.4; 2.5..3.0: +1.1)
+- **minute** (match minute) rises from -3.3 to +16.3 points (0.1..1.25: -3.3; 2.35..3.45: -7.8; 4.55..5.75: +3.3; 7.15..8.75: +3.8; 10.35..12.15: -2.2; 14.05..16.25: -0.7; 18.65..21.75: +6.3)
 
 **kill conversion** (29 matches, 553 moments, 165 results): adds to the simple baseline (AUC 0.784 against 0.647 for burst_damage and target_health_pct alone).
 - **target_ceiling** (target's health ceiling) falls from +27.8 to -18.8 points (0.4..0.56: +27.8; 0.68..0.71: +21.7; 0.83..0.86: +15.8; 0.91..0.92: +9.0; 0.94..0.95: +6.0; 0.98..1.02: -3.3; 1.08..1.1: -18.8)
@@ -109,17 +108,39 @@ Each explains one result from what happened before it (time order enforced), tes
 - **attackers** (attackers in the burst) falls from -2.3 to -7.7 points (3.0..3.5: -2.3; 3.5..4.5: +2.7; 4.5..5.5: +5.0; 5.5..6.5: -4.4; 6.5..7.0: -7.7)
 - **target_knocked_down** (target knocked down) falls from +1.6 to -11.0 points (0.0..0.5: +1.6; 0.5..1.0: -11.0)
 
-**flag answer** (seconds an answer to an enemy capture was slower than possible; 27 matches, 306 answers): adds to the simple baseline (typical error 17.3 s against 27.2 s for the median; explains 67% of the spread).
-- **handoffs** (hand-offs (drops picked up by a teammate)): 0.0..0.5: -7.4 s; 0.5..1.5: +3.8 s; 1.5..2.5: +25.9 s; 2.5..3.5: +50.4 s; 3.5..6.0: +69.6 s
-- **enemies_in_the_way** (enemy presence along the runner's trip back to the spawn): 0.0..0.5: -7.3 s; 4.5..9.5: -5.1 s; 15.5..20.5: -3.6 s; 25.0..37.5: -1.1 s; 50.5..57.0: +5.4 s; 71.5..101.0: +12.7 s; 120.5..171.5: +17.3 s
-- **own_deaths_during** (own deaths during the answer): 0.0..0.5: -4.6 s; 0.5..1.5: +6.9 s; 1.5..2.5: +19.8 s; 2.5..4.5: +34.4 s; 4.5..5.5: +54.8 s; 5.5..6.5: +68.6 s; 6.5..8.0: +82.5 s; 8.0..11.0: +95.7 s
-- **carrier_damage_taken** (damage the carrier took while carrying): 0.0..2.0: -4.0 s; 26.5..49.0: -3.4 s; 66.0..96.5: -1.6 s; 125.5..177.5: +0.7 s; 244.0..277.5: +3.0 s; 378.0..491.5: +6.0 s; 573.5..944.0: +8.7 s
-- **possible_s** (fastest possible answer (s) from the flag model at the enemy's capture): 2.0..6.5: +2.9 s; 12.5..19.5: +3.2 s; 24.5..28.5: +3.4 s; 34.5..38.5: +3.6 s; 40.5..43.5: +1.7 s; 48.5..54.5: -2.6 s; 63.5..75.5: -7.9 s
-- **enemy_deaths_during** (enemy deaths during the answer): 0.0..0.5: -2.1 s; 0.5..1.5: +8.5 s; 1.5..2.5: +11.6 s; 2.5..3.5: +14.0 s; 3.5..5.0: +17.3 s
-- **runner_to_spawn** (runner's distance to its flag spawn when the enemy captured): 94.0..976.0: -5.6 s; 1503.0..2101.5: -2.6 s; 3384.5..4354.5: +0.5 s; 4871.0..5542.0: +3.3 s; 6234.5..6701.0: +2.8 s; 7263.5..7825.0: +1.1 s; 8439.0..9139.5: +0.6 s
-- **flag_lead_at_enemy_cap** (own flag lead when the enemy captured): -80.0..-72.5: -0.4 s; -62.5..-54.5: +2.9 s; -41.5..-36.5: +3.9 s; -26.0..-18.5: +1.8 s; -10.5..-4.5: +0.2 s; 11.5..21.5: -1.7 s; 34.0..52.5: -3.2 s
-- **pushers** (enemies who hit the carrier): 0.0..0.5: -1.5 s; 0.5..1.5: -1.4 s; 1.5..2.5: +1.8 s; 2.5..3.5: +2.2 s; 3.5..4.5: +5.2 s; 4.5..5.5: +5.9 s; 5.5..7.0: +4.0 s
-- **strength_gap** (own minus enemy team strength): -1092.0..-480.5: +1.9 s; -366.5..-334.0: +1.0 s; -169.5..-58.5: +1.4 s; -25.0..58.5: +2.2 s; 169.5..224.5: -0.1 s; 359.5..406.5: -3.0 s; 480.5..636.0: -3.6 s
+**flag answer** (seconds an answer to an enemy capture was slower than possible; 27 matches, 306 rows): adds to the simple baseline (typical error 16.8s against 26.1s for the median; explains 68% of the spread).
+- **parked_s** (seconds the flag lay parked (dropped 5 s or more: not running yet)): 0.0..3.5: -4.8 s; 10.5..14.0: +4.8 s; 18.0..27.5: +17.0 s; 32.0..41.0: +30.6 s; 48.5..62.5: +46.8 s; 83.0..99.0: +53.2 s; 117.5..259.0: +56.0 s
+- **own_deaths_during** (own deaths during the answer): 0.0..0.5: -4.0 s; 0.5..1.5: +5.8 s; 1.5..2.5: +11.6 s; 2.5..4.5: +28.4 s; 4.5..5.5: +51.3 s; 5.5..6.5: +65.2 s; 6.5..8.0: +79.5 s; 8.0..11.0: +90.1 s
+- **enemies_in_the_way** (enemy presence along the runner's trip back to the spawn): 0.0..0.5: -6.6 s; 4.5..9.5: -4.0 s; 15.5..20.5: -1.8 s; 25.0..37.5: +0.3 s; 50.5..57.0: +4.3 s; 71.5..101.0: +8.9 s; 120.5..171.5: +15.9 s
+- **enemy_deaths_during** (enemy deaths during the answer): 0.0..0.5: -2.4 s; 0.5..1.5: +9.8 s; 1.5..2.5: +12.3 s; 2.5..3.5: +15.0 s; 3.5..5.0: +21.8 s
+- **carrier_damage_taken** (damage the carrier took while carrying): 0.0..2.0: -3.2 s; 26.5..49.0: -3.8 s; 66.0..96.5: -1.8 s; 125.5..177.5: +0.6 s; 244.0..277.5: +2.8 s; 378.0..491.5: +5.1 s; 573.5..944.0: +7.3 s
+- **quick_handoffs** (quick hand-offs (a teammate picked it up within 5 s)): 0.0..0.5: -1.9 s; 0.5..1.5: +4.6 s; 1.5..2.5: +11.7 s; 2.5..3.0: +20.3 s
+- **forced_drops** (drops with the carrier hit in the 5 s before, or dying): 0.0..0.5: -1.6 s; 0.5..1.5: +15.6 s; 1.5..2.0: +23.6 s
+- **possible_s** (fastest possible answer (s) from the flag model at the enemy's capture): 0.0..3.5: +0.8 s; 7.5..13.5: +1.7 s; 22.5..28.5: +1.7 s; 33.5..36.5: +2.9 s; 41.5..45.5: +1.9 s; 50.5..55.5: -0.7 s; 63.5..74.5: -6.7 s
+- **runner_to_spawn** (runner's distance to its flag spawn when the enemy captured): 94.0..976.0: -5.8 s; 1503.0..2101.5: -2.8 s; 3384.5..4354.5: -0.2 s; 4871.0..5542.0: +2.7 s; 6234.5..6701.0: +2.7 s; 7263.5..7825.0: +0.9 s; 8439.0..9139.5: +1.7 s
+- **flag_lead_at_enemy_cap** (own flag lead when the enemy captured): -81.0..-74.5: -6.4 s; -62.5..-54.5: -0.2 s; -42.5..-35.5: +2.4 s; -27.5..-18.5: +1.5 s; -10.5..-3.5: +2.0 s; 10.5..19.5: +0.3 s; 35.5..56.5: -0.5 s
+
+**npc loss** (29 matches, 3236 moments, 618 results): adds to the simple baseline (AUC 0.801 against 0.736 for attackers and defenders alone).
+- **defenders** (own players in the pit) falls from +37.0 to -40.9 points (0.0..0.5: +37.0; 0.5..1.5: +20.1; 1.5..2.5: +17.6; 2.5..3.5: -6.2; 3.5..4.5: -16.6; 4.5..5.5: -18.1; 5.5..6.5: -18.6; 6.5..7.5: -37.7; 7.5..8.0: -40.9)
+- **npc_damage_5s** (damage on the pit NPCs in the last 5 s) rises from -14.7 to +29.9 points (0.0..0.5: -14.7; 22.5..36.5: -0.4; 50.5..65.5: +3.0; 84.5..104.5: +10.0; 126.5..148.5: +22.7; 177.5..212.5: +25.8; 267.5..360.5: +29.4)
+- **defenders_elsewhere** (own players alive outside the pit) falls from +22.1 to -8.5 points (0.0..0.5: +22.1; 0.5..1.5: +17.1; 1.5..2.5: +19.2; 2.5..3.5: +5.6; 3.5..4.5: -0.1; 4.5..5.5: -3.0; 5.5..6.5: -16.0; 6.5..7.5: -18.4; 7.5..8.0: -8.5)
+- **attackers** (enemy players in the pit) rises from -12.7 to +22.1 points (1.0..1.5: -12.7; 1.5..2.5: -8.0; 2.5..3.5: -6.7; 3.5..4.5: +6.8; 4.5..5.5: +13.2; 5.5..6.5: +16.4; 6.5..7.5: +17.7; 7.5..8.0: +22.1)
+- **attackers_lord_dps** (attackers' measured damage per second against a Lord (benchmarks)) rises from -10.8 to +18.1 points (2.4..20.1: -10.8; 24.35..33.05: -7.6; 36.4..36.55: -4.7; 42.75..55.85: -4.4; 64.1..66.8: +3.3; 74.65..79.55: +6.1; 87.3..101.65: +8.2)
+- **strength_gap** (attacking minus defending team strength) rises from -10.6 to +10.1 points (-712.0..-463.5: -10.6; -382.0..-265.0: -8.8; -148.0..-92.0: -3.0; 0.0..92.0: +0.0; 148.0..168.5: -9.4; 359.5..382.0: +4.0; 480.5..636.0: +16.9)
+- **archers** (own pit archers alive) rises from -5.2 to +28.8 points (0.0..0.5: -5.2; 0.5..1.5: -6.4; 1.5..2.5: +4.1; 2.5..3.5: +11.0; 3.5..6.0: +28.8)
+- **defender_healers** (of which healers) falls from +15.1 to -4.3 points (0.0..0.5: +15.1; 0.5..1.5: -2.0; 1.5..2.5: -4.5; 2.5..3.0: -4.3)
+
+**lord damage** (Lord damage dealt in the next 10 s while players are in the enemy pit; 29 matches, 3939 rows): adds to the simple baseline (typical error 127.6 against 86.4 for the median; explains 34% of the spread).
+- **defenders** (own players in the pit): 0.0..0.5: +168.4; 0.5..1.5: +83.6; 1.5..2.5: +14.5; 2.5..3.5: -38.9; 3.5..4.5: -61.0; 4.5..5.5: -97.0; 5.5..6.5: -106.2; 6.5..7.5: -139.0; 7.5..8.0: -144.5
+- **defenders_elsewhere** (own players alive outside the pit): 0.0..0.5: +59.6; 0.5..1.5: +77.9; 1.5..2.5: +85.5; 2.5..3.5: +94.9; 3.5..4.5: +55.2; 4.5..5.5: +11.5; 5.5..6.5: -38.3; 6.5..7.5: -94.5; 7.5..8.0: -183.0
+- **bodyguard** (own Bodyguard alive): 0.0..0.5: +91.1; 0.5..1.0: -52.4
+- **defender_healers** (of which healers): 0.0..0.5: +90.8; 0.5..1.5: +3.4; 1.5..2.5: -39.5; 2.5..3.0: -71.6
+- **attackers_lord_dps** (attackers' measured damage per second against a Lord (benchmarks)): 2.4..18.65: -61.5; 24.35..33.05: -40.2; 36.4..36.55: -41.0; 42.75..55.85: -10.7; 65.25..66.8: +22.3; 73.25..79.45: +37.0; 87.3..101.65: +76.1
+- **attackers** (enemy players in the pit): 1.0..1.5: -21.8; 1.5..2.5: -15.8; 2.5..3.5: -23.9; 3.5..4.5: -18.1; 4.5..5.5: +55.2; 5.5..6.5: +68.0; 6.5..7.5: +13.9; 7.5..8.0: +49.2
+- **seconds_in_pit** (seconds the attackers have been in the pit): 0.0..4.5: -23.3; 10.5..16.5: -27.6; 22.5..28.5: -27.5; 37.5..46.5: -6.8; 58.5..70.5: +26.6; 85.5..103.5: +37.5; 124.5..160.5: +57.8
+- **minute** (match minute): 0.6..2.65: -13.0; 3.95..5.15: +8.3; 6.25..7.35: +3.3; 8.95..10.45: -1.7; 12.25..14.45: -16.4; 16.25..19.05: -23.8; 21.15..24.75: +3.5
+- **strength_gap** (attacking minus defending team strength): -712.0..-420.5: -13.1; -334.0..-148.0: +5.6; -38.0..43.5: +32.3; 148.0..168.5: +16.4; 359.5..366.5: -4.1; 406.5..420.5: -26.5; 570.5..674.5: -7.7
+- **attacker_healers** (of which healers): 0.0..0.5: -11.2; 0.5..1.5: -4.9; 1.5..2.5: +65.9; 2.5..3.0: +3.8
 
 ## 7. For Denning
 

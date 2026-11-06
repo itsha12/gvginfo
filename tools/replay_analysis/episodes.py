@@ -192,8 +192,9 @@ def flag_cycles(st, sb=None):
         row = {"team": m.tag[tm], "enemy": m.tag[ptm], "enemy_cap": round(pc), "own_cap": round(c), "cap_delay": round(c - pc),
                "capper": m.roles[a], "own_pickup": round(pk) if pk is not None else None, "runner": m.roles[starter],
                "pickup_vs_enemy_pickup": round(pk - epk) if pk is not None and epk is not None else None}
-        if sb is not None:     # how fast the answer could have been (scoreboard flag ETA just after the enemy's capture)
-            row["possible_s"] = sb.eta(tm, pc + 2)[0] + 2
+        if sb is not None:     # how fast the answer could have been (flag ETA just after the enemy's capture, before the own)
+            te = min(pc + 1, c - 0.5)
+            row["possible_s"] = round(sb.eta(tm, int(te))[0] + (te - pc))
             row["slower_than_possible_s"] = round(c - pc - row["possible_s"])
         own_prev = max((t for t, x, _ in caps[:i] if x == tm), default=None)
         if own_prev is not None and pk is not None and pk > own_prev:

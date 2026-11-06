@@ -1,6 +1,6 @@
 *Generated from data/model/causal_map.json by tools/replay_analysis/causal_map.py: don't edit this page; tell Claude or edit the JSON (each change is logged with a reason).*
 
-# Causal map (version 4)
+# Causal map (version 5)
 
 What can cause what in a GvG match. Each concept is measured from the replays; the model for each concept may only use the causes listed under it, measured earlier in time, and the data decides how much each matters. Status: **hypothesis** (not yet tested), **supported** or **rejected** by data, **mechanical** (a formula). "Confirmed" = Denning has confirmed the reasoning; the size of the effect still comes from data.
 
@@ -285,6 +285,9 @@ the flag position (response on the next capture exchange). *Measured: scoreboard
 Caused by:
 - **Run timing and runner choice, Allocation, Map geometry**: being up on flags is the better position to boost and to run: runner trips, waiting runners, backup flags, routes (Denning; hypothesis; `F1` `F2` `F3` `F4`)
 - **Allocation**: a team splitting has a different ability to run the flag (Denning; hypothesis; `J1`)
+- **Run timing and runner choice**: a flag parked in base is a team deciding not to run yet; a long hand-off away from base is a response to a push or death, not double running (Denning; hypothesis; `F33`)
+- **Commitment**: a team killing during the enemy's flag cycle answers later, deliberately: it finishes the power play, then runs (Denning; hypothesis; `F34`)
+- **Mobility**: runners with speed skills carry far faster than average; the flag model uses each runner's measured speed (Claude; mechanical; `F35`)
 
 ### Boosts `R.4`
 boosts won and conceded. *Measured: stand ledger.*
@@ -350,3 +353,4 @@ Caused by:
 - 2026-11-05: version 2: 'Damage v healers' became 'Damage potential v healing' (Denning: healer counts only matter through damage); J12 link added (Denning)
 - 2026-11-05: version 3: 'Taking conditions on oneself' (Draw Conditions, M18); jobs in the enemy base read from targets (Denning and Claude)
 - 2026-11-06: version 4: 'Death timing on purpose' (Denning K14: timing, dying before time, monks resetting energy; deaths can be positive) (Denning)
+- 2026-11-06: version 5: drops by kind (F33), killing during the enemy's flag cycle as a trade (F34), runner speed (F35) (Denning and Claude)

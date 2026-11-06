@@ -1,6 +1,6 @@
 {
  "about": "The causal map: what can cause what in a GvG match, as reasoned by Denning and Claude and found in data. Each node is measured; each node's model may only use the links pointing into it, measured earlier in time. The data decides how much each link matters (status: hypothesis, supported, rejected; mechanical = a formula, not learned). Denning can add, correct or remove links; each change is logged with its reason. Rendered to knowledge/causal-map.md by tools/replay_analysis/causal_map.py.",
- "version": 4,
+ "version": 5,
  "nodes": [
   {
    "id": "C.builds",
@@ -2235,6 +2235,39 @@
    "tactics": [
     "K14"
    ]
+  },
+  {
+   "from": "P.10",
+   "to": "R.3",
+   "why": "a flag parked in base is a team deciding not to run yet; a long hand-off away from base is a response to a push or death, not double running",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "F33"
+   ]
+  },
+  {
+   "from": "P.14",
+   "to": "R.3",
+   "why": "a team killing during the enemy's flag cycle answers later, deliberately: it finishes the power play, then runs",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "F34"
+   ]
+  },
+  {
+   "from": "K.13",
+   "to": "R.3",
+   "why": "runners with speed skills carry far faster than average; the flag model uses each runner's measured speed",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "mechanical",
+   "tactics": [
+    "F35"
+   ]
   }
  ],
  "log": [
@@ -2257,6 +2290,11 @@
    "date": "2026-11-06",
    "change": "version 4: 'Death timing on purpose' (Denning K14: timing, dying before time, monks resetting energy; deaths can be positive)",
    "by": "Denning"
+  },
+  {
+   "date": "2026-11-06",
+   "change": "version 5: drops by kind (F33), killing during the enemy's flag cycle as a trade (F34), runner speed (F35)",
+   "by": "Denning and Claude"
   }
  ]
 }

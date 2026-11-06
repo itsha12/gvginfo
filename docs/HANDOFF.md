@@ -146,8 +146,8 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
     "Win-probability model" and "Learning report (latest)". Needs `pip install --break-system-packages interpret-core`.
 
 ## Plan (see METHODS.md "From rulings to data" and "The causal model")
-- Causal model: steps 1 to 4 built (`phases.py`; `buildfeat.py`; `nodes.py` death, kill-conversion and flag-answer
-  models, all beating simple baselines on unseen matches). Next: (5) pit NPCs and Lord damage, (6) usual-play models and decision comparisons, then link the
+- Causal model: steps 1 to 5 built (`phases.py`; `buildfeat.py`; `nodes.py` node models for deaths, kill conversion,
+  flag answers, pit NPC loss and Lord damage, all beating simple baselines on unseen matches). Next: (6) usual-play models and decision comparisons, then link the
   node models to the win model so each cause is valued in win chance. Slow training continues (3 to 5 matches a batch). The win model alone explains who is winning, not why (Denning).
 0. Done: model structure on the 24 stored matches (batch 0). Next: slow training, 3 to 5 random new replays per
    batch (`batch.py pick`), a learning report and Denning's answers after each. No large pull until the reports
@@ -214,6 +214,10 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
 - Improve the toolkit rather than writing one-off scripts; each ruling becomes a label, a tactics line and a check.
 
 ## Recent changes
+- Session 4j: Denning on drops (`F33`: where a drop happens; parked in base = deciding not to run; long hand-offs away
+  from base respond to pushes or deaths), killing during the enemy's flag cycle is a deliberate trade (`F34`), 8v8
+  builds hold a flag near the fight (`F35`); runner speeds measured per runner; drops classified; step 5 built (pit
+  NPC loss and Lord damage nodes); causal map v5.
 - Session 4i: Denning on timing (`K14`: teams time kills; the dying team may die before time with death sets or by not
   healing; monks may die in base before time to reset energy; deaths can be positive); first look `K15`; distance
   threshold 3,000 for "away from the group"; step 4 built (flag-answer node); causal map v4.

@@ -12,6 +12,7 @@ Edges:
   flags by that many seconds, about the length of the power play the exchange gives. A holder with a backup flag near
   the stand answers at once (response 0); a defender that carries its flag partway while holding off a solo pusher
   shortens its Y. Checked against Denning's ruling at [Men v HC C] 9:31 (HC up) and against the real exchange times.
+- Runner speed: each runner's own measured carry speed (speed skills make some runners far faster than average).
 - Flag clock: the holder's next boost, and whether the other team can capture before it.
 - Flag duty: players carrying, waiting at the spawn, or walking back after a capture (not in the fight).
 - Numbers: players alive, in the main group, and down (with when they return).
@@ -78,6 +79,7 @@ class Scoreboard:
         self.runners = {tm: [a for a, _ in collections.Counter(c["a"] for c in st.carries if m.team(c["a"]) == tm).most_common()]
                         for tm in st.teams}
         self._flag_track()
+        self._runner_speeds()
         self._bursts()
         self._lord()
         self._busy()
@@ -145,6 +147,21 @@ class Scoreboard:
         return {H: {"eta": eta[H], "response": round(resp_H), "lead": round(resp_C - resp_H)},
                 C: {"eta": eta[C], "response": round(resp_C), "lead": round(resp_H - resp_C)}}
 
+    def _runner_speeds(self):
+        """Each runner's own carry speed, measured from its full carries in this match (straight line from pickup to the
+        stand, pickups 4,000+ from the stand), so runners with speed skills aren't judged by the average; free speed
+        scales with it. Players with no full carry use the averages."""
+        st, m = self.st, self.m
+        sp = collections.defaultdict(list)
+        for c in st.carries:
+            if c["how"] != "flagstand_captured" or c["s"] < 0 or c["e"] - c["s"] < 5: continue
+            p = st.pos(c["a"], c["s"])[0]
+            if p and d(p, st.geo.stand) > 4000: sp[c["a"]].append(d(p, st.geo.stand) / (c["e"] - c["s"]))
+        self.carry_speed = {a: max(min(statistics.median(v), 400), 150) for a, v in sp.items()}
+
+    def cspeed(self, a): return self.carry_speed.get(a, CARRY_SPEED)
+    def rspeed(self, a): return self.carry_speed.get(a, CARRY_SPEED) * RUN_SPEED / CARRY_SPEED
+
     def flag(self, tm, t):
         i = bisect.bisect_right(self.fl_t[tm], t) - 1
         return self.fl[tm][max(i, 0)][1]
@@ -187,22 +204,22 @@ class Scoreboard:
     def _reach(self, b, p, t):
         """Seconds for player b to reach point p (a dead player waits for the res at its base)."""
         st = self.st
-        if st.alive(b, t): return d(st.pos(b, t)[0], p) / RUN_SPEED
-        return st.next_res(t) - t + d(st.geo.base[self.m.team(b)], p) / RUN_SPEED
+        if st.alive(b, t): return d(st.pos(b, t)[0], p) / self.rspeed(b)
+        return st.next_res(t) - t + d(st.geo.base[self.m.team(b)], p) / self.rspeed(b)
 
     def eta(self, tm, t):
         """Seconds until tm could capture, and how (carrying, dropped flag, from the spawn with whom)."""
         st, geo = self.st, self.st.geo
         f = self.flag(tm, t)
         if f[0] == "carried" and st.alive(f[1], t):
-            return round(d(st.pos(f[1], t)[0], geo.stand) / CARRY_SPEED), f"carrying ({self.m.roles[f[1]]})"
+            return round(d(st.pos(f[1], t)[0], geo.stand) / self.cspeed(f[1])), f"carrying ({self.m.roles[f[1]]})"
         cand = self.runners[tm] or self.st.players[tm]
         if f[0] == "dropped":
             best = min(cand, key=lambda b: self._reach(b, f[1], t))
-            return round(self._reach(best, f[1], t) + d(f[1], geo.stand) / CARRY_SPEED), f"dropped flag ({self.m.roles[best]})"
+            return round(self._reach(best, f[1], t) + d(f[1], geo.stand) / self.cspeed(best)), f"dropped flag ({self.m.roles[best]})"
         sp = geo.spawn[tm]
         best = min(cand, key=lambda b: self._reach(b, sp, t))
-        return round(self._reach(best, sp, t) + d(sp, geo.stand) / CARRY_SPEED), f"from the spawn ({self.m.roles[best]})"
+        return round(self._reach(best, sp, t) + d(sp, geo.stand) / self.cspeed(best)), f"from the spawn ({self.m.roles[best]})"
 
     def flag_duty(self, tm, t):
         """Players on flag duty: carrying, waiting near the spawn, or walking back after capturing (not in the main group)."""

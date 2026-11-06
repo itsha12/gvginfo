@@ -133,17 +133,20 @@ def report():
     L += ["", "## 6. Why: the node models", "",
           "Each explains one result from what happened before it (time order enforced), tested on matches it never saw. "
           "AUC = how often a moment that led to the result scores above one that didn't (0.5 = guessing, 1 = perfect).", ""]
-    for node in ("deaths", "kill_conversion", "flag_answer"):
+    for node in ("deaths", "kill_conversion", "flag_answer", "npc_loss", "lord_damage"):
         s_, e_, df_, held_ = NODES.fit_node(node, ids)
         v_ = s_["validation"]
         if node in NODES.REGRESSION:
-            L.append(f"**{node.replace('_', ' ')}** (seconds an answer to an enemy capture was slower than possible; "
-                     f"{s_['matches']} matches, {s_['rows']} answers): {v_['verdict']} (typical error {v_['glass box']['mae_s']} s "
-                     f"against {v_['simple baseline']['mae_s']} s for the median; explains {v_['glass box']['r2']:.0%} of the spread).")
+            what = {"flag_answer": "seconds an answer to an enemy capture was slower than possible",
+                    "lord_damage": "Lord damage dealt in the next 10 s while players are in the enemy pit"}[node]
+            unit = "s" if node == "flag_answer" else ""
+            L.append(f"**{node.replace('_', ' ')}** ({what}; "
+                     f"{s_['matches']} matches, {s_['rows']} rows): {v_['verdict']} (typical error {v_['glass box']['mae_s']}{unit} "
+                     f"against {v_['simple baseline']['mae_s']}{unit} for the median; explains {v_['glass box']['r2']:.0%} of the spread).")
             for t in s_["terms"][:10]:
                 c = [x for x in t["curve"] if x["from"] is not None]
                 L.append(f"- **{t['term']}** ({NODES.DESC[node].get(t['term'], '')}): " +
-                         "; ".join(f"{x['from']}..{x['to']}: {x['points']:+} s" for x in c[::max(1, len(c) // 5)]))
+                         "; ".join(f"{x['from']}..{x['to']}: {x['points']:+}{(' ' + unit) if unit else ''}" for x in c[::max(1, len(c) // 5)]))
         else:
             L.append(f"**{node.replace('_', ' ')}** ({s_['matches']} matches, {s_['rows']} moments, {s_['events']} results): "
                      f"{v_['verdict']} (AUC {v_['glass box']['auc']} against {v_['simple baseline']['auc']} for "

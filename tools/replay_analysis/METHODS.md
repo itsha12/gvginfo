@@ -224,9 +224,26 @@ about +15 s; enemy deaths during the answer also slow it (+8 to +17 s: a team ki
 carrier up to +9 s; a runner already near its spawn about -6 s; stronger teams about 3 to 4 s faster.
 Deaths also carry `before_time` and `death_set` (holding its lowest-health weapon set), for Denning's `K14`.
 
+Flag chain revised with Denning (`F33` to `F35`): drops are classified (quick hand-off within 5 s, forced = the
+carrier hit or dying, parked = lying 5 s or more, and parked in the own base: a team deciding not to run); the flag
+model uses each runner's measured carry speed (speed skills); "possible" is read before the own capture. Revised
+readings: seconds parked are the largest cause (30 s parked about +30 s, 60 s+ about +50 s); a quick hand-off about
++5 s; a forced drop about +16 s. Typical error 16.8 s, 68% explained.
+
+**Built (step 5, pit NPCs and Lord damage):** while enemies are in a team's pit (every 3 s): `npc_loss` (a pit NPC dies
+within 15 s; 3,236 moments, 618 losses; held out AUC 0.801 against 0.736 for attackers and defenders alone) and
+`lord_damage` (Lord damage in the next 10 s; R squared 0.34 against -0.13; a usually-zero result, so judged on spread
+explained as well as typical error). Causes: attackers and their measured Lord damage per second, attacker and
+defender healers, defenders in the pit and elsewhere, time in the pit, knights, archers and Bodyguard alive, damage on
+and healing of the NPCs, res timer, minute, strength. First readings: defenders present is the strongest cause of both
+(none in the pit: NPC loss +37 points, Lord damage +168 per 10 s; 7+: -40 points, -145); a dead Bodyguard +91 Lord
+damage per 10 s; no defending healer +91; attackers' measured Lord damage per second up to +76; the longer attackers
+stay, the more damage reaches the Lord (2 minutes: about +58).
+
 **Build order:** (1) phases, allocation per phase, plans and jobs (built); (2) capacities per group per phase,
 measured (built); (3) first node models: deaths and kill conversion (built; expected-for-matchup baselines come with
-the matchup features at 60 matches); (4) the flag chain (built: `flag_answer`); (3) expected-for-matchup baselines and the first node models (deaths, kill
+the matchup features at 60 matches); (4) the flag chain (built: `flag_answer`); (5) pit NPCs and Lord damage (built:
+`npc_loss`, `lord_damage`); (3) expected-for-matchup baselines and the first node models (deaths, kill
 conversion), tested on the 30 matches; (4) the flag and boost chain; (5) pit NPCs and Lord damage; (6) usual-play
 models and decision comparisons; (7) learning report sections with "why" chains for the biggest moments, and the
 questions where the data and the map disagree. Slow training continues throughout.

@@ -126,6 +126,26 @@ DEATH_DESC = {
 }
 
 
+def _drops(st, tl, fl, tm, t0, t1):
+    """The team's flag drops between t0 and t1, by kind (Denning): a quick hand-off (a teammate picks it up within 5 s),
+    forced (the carrier was hit in the 5 s before, or died), or parked (it lay 5 s or more: a team deciding not to run
+    yet, most often in its own base); seconds parked, and seconds parked in its own base."""
+    from state import d
+    m = st.m
+    out = {"quick_handoffs": 0, "forced_drops": 0, "parked_s": 0, "parked_in_base_s": 0}
+    for i, (t, ty, a) in enumerate(fl):
+        if ty != "flag_dropped" or m.team(a) != tm or not (t0 <= t <= t1): continue
+        nxt = next(((tt, b) for tt, tyy, b in fl[i + 1:] if tyy == "flag_picked_up" and m.team(b) == tm), None)
+        hit = bool(tl.window(tl.dmg_in[a], t, 5)) or any(abs(x - t) <= 2 for x in st.death_times.get(a, []))
+        gap = (nxt[0] - t) if nxt else (t1 - t)
+        if hit: out["forced_drops"] += 1
+        if gap <= 5 and nxt and nxt[1] != a: out["quick_handoffs"] += 1
+        elif gap > 5:
+            g = min(gap, t1 - t); out["parked_s"] += round(g)
+            if st.zone(a, t) in ("own base", "own pit"): out["parked_in_base_s"] += round(g)
+    return out
+
+
 def _build_rows(node, rid):
     from replaylib import Match
     from state import GameState
@@ -200,7 +220,7 @@ def _build_rows(node, rid):
                          "runners_used": len({x["a"] for x in st.carries if m.team(x["a"]) == tm and x["e"] <= pc}),
                          "enemies_in_the_way": sum((c.get("enemies_in_the_way") or {}).values()),
                          "carrier_damage_taken": round(car_dmg), "pushers": pushers,
-                         "handoffs": sum(1 for tt, ty, b in fl if ty == "flag_dropped" and m.team(b) == tm and pc <= tt <= cc),
+                         **_drops(st, tl, fl, tm, pc, cc),
                          "own_deaths_during": sum(1 for b in st.players[tm] for tt in st.death_times.get(b, []) if pc < tt <= cc),
                          "enemy_deaths_during": sum(1 for b in st.players[foe] for tt in st.death_times.get(b, []) if pc < tt <= cc),
                          "own_fighting_at_enemy_cap": fighting, "own_splitting": _splitting(sb, tm, int(pc)),
@@ -208,7 +228,58 @@ def _build_rows(node, rid):
                          "morale_diff": sbt[m.tag[tm]]["morale_sum"] - sbt[m.tag[foe]]["morale_sum"],
                          "flag_lead_at_enemy_cap": max(min(sbt[m.tag[tm]]["flag_lead"], 150), -150),
                          "minute": round(pc / 60, 1), "strength_gap": gaps[tm]})
+    elif node in ("npc_loss", "lord_damage"):
+        from state import d
+        from common import PIT_R
+        from scoreboard import lord_dps
+        lords = {l["team"]: l["a"] for l in m.o.get("lords", [])}
+        npc_hits = collections.defaultdict(list); npc_heals = collections.defaultdict(list); lord_in = collections.defaultdict(list)
+        for r in m.o["ev"]:
+            if not isinstance(r[3], int) or r[3] >= len(m.A): continue
+            x = m.A[r[3]]
+            if r[1] == "dm" and x.get("npc") in ("knight", "archer", "bodyguard") and r[2] in m.PL: npc_hits[x.get("team")].append((r[0] / 10, r[5] or 0))
+            if r[1] == "hl" and x.get("npc") in ("knight", "archer", "bodyguard", "guild_lord") and r[2] in m.PL: npc_heals[x.get("team")].append((r[0] / 10, r[5] or 0))
+            if r[1] == "dm" and x.get("npc") == "guild_lord" and r[2] in m.PL: lord_in[x.get("team")].append((r[0] / 10, r[5] or 0))
+        def dps(a): return lord_dps(m.roles[a], m.A[a].get("p")) or 0
+        for dt in st.teams:                  # dt = the defending team (whose pit / Lord)
+            at = 3 - dt; pit = st.geo.pit.get(dt)
+            if pit is None: continue
+            pit_npcs = [(a, v) for a, v in st.geo.npcs.items() if v["team"] == dt and v.get("pit") and v["kind"] != "guild_lord"]
+            first_in = None
+            for t in range(5, int(st.end - 12), SAMPLE):
+                inside = [b for b in st.players[at] if st.alive(b, t) and d(st.pos(b, t)[0], pit) < PIT_R + 800]
+                if not inside: first_in = None; continue
+                first_in = first_in if first_in is not None else t
+                defs = [b for b in st.players[dt] if st.alive(b, t) and d(st.pos(b, t)[0], pit) < PIT_R + 800]
+                alive_n = [(a, v) for a, v in pit_npcs if st.npc_dead.get(a, 1e9) > t]
+                base = {"attackers": len(inside), "attacker_healers": sum(1 for b in inside if _healer(m, b)),
+                        "attackers_lord_dps": round(sum(dps(b) for b in inside), 1),
+                        "defenders": len(defs), "defender_healers": sum(1 for b in defs if _healer(m, b)),
+                        "seconds_in_pit": t - first_in,
+                        "knights": sum(1 for _, v in alive_n if v["kind"] == "knight"), "archers": sum(1 for _, v in alive_n if v["kind"] == "archer"),
+                        "bodyguard": sum(1 for _, v in alive_n if v["kind"] == "bodyguard"),
+                        "npc_damage_5s": round(sum(v for tt, v in npc_hits[dt] if t - 5 < tt <= t)),
+                        "npc_healing_10s": round(sum(v for tt, v in npc_heals[dt] if t - 10 < tt <= t)),
+                        "defenders_elsewhere": sum(1 for b in st.players[dt] if st.alive(b, t) and b not in defs),
+                        "res_in": st.next_res(t) - t, "minute": round(t / 60, 1), "strength_gap": gaps[at]}
+                if node == "npc_loss":
+                    if not alive_n: continue
+                    y = int(any(t < st.npc_dead.get(a, 1e9) <= t + 15 for a, _ in alive_n))
+                    rows.append({"match": rid, "team": m.tag[at], "role": "", "t": t, "y": y, "w": 1, **base})
+                else:
+                    yv = sum(v for tt, v in lord_in[dt] if t < tt <= t + 10)
+                    rows.append({"match": rid, "team": m.tag[at], "role": "", "t": t, "y": round(min(yv, 4000)), "w": 1, **base})
     return rows
+
+
+NPC_DESC = {"attackers": "enemy players in the pit", "attacker_healers": "of which healers",
+            "attackers_lord_dps": "attackers' measured damage per second against a Lord (benchmarks)",
+            "defenders": "own players in the pit", "defender_healers": "of which healers",
+            "seconds_in_pit": "seconds the attackers have been in the pit", "knights": "own knights alive",
+            "archers": "own pit archers alive", "bodyguard": "own Bodyguard alive",
+            "npc_damage_5s": "damage on the pit NPCs in the last 5 s", "npc_healing_10s": "healing on own pit NPCs and Lord in the last 10 s",
+            "defenders_elsewhere": "own players alive outside the pit", "res_in": "seconds until the next res",
+            "minute": "match minute", "strength_gap": "attacking minus defending team strength"}
 
 
 FA_DESC = {"possible_s": "fastest possible answer (s) from the flag model at the enemy's capture",
@@ -218,7 +289,10 @@ FA_DESC = {"possible_s": "fastest possible answer (s) from the flag model at the
            "waiting_runner": "a runner was already waiting at the spawn", "runners_used": "players who had carried so far",
            "enemies_in_the_way": "enemy presence along the runner's trip back to the spawn",
            "carrier_damage_taken": "damage the carrier took while carrying", "pushers": "enemies who hit the carrier",
-           "handoffs": "hand-offs (drops picked up by a teammate)", "own_deaths_during": "own deaths during the answer",
+           "quick_handoffs": "quick hand-offs (a teammate picked it up within 5 s)",
+           "forced_drops": "drops with the carrier hit in the 5 s before, or dying",
+           "parked_s": "seconds the flag lay parked (dropped 5 s or more: not running yet)",
+           "parked_in_base_s": "of which in the own base (Denning: deciding not to run)", "own_deaths_during": "own deaths during the answer",
            "enemy_deaths_during": "enemy deaths during the answer", "own_fighting_at_enemy_cap": "own players fighting when the enemy captured",
            "own_splitting": "own players on a split", "alive_diff": "own minus enemy players alive",
            "morale_diff": "own minus enemy morale", "flag_lead_at_enemy_cap": "own flag lead when the enemy captured",
@@ -236,8 +310,8 @@ KC_DESC = {"target_is_healer": "target is a healer", "target_line": "target 0 fr
            "attackers_knocked_down": "knockdowns on the attackers (5 s before to 2 s after)",
            "strength_gap": "attacking minus target team strength", "own_interrupts_v_enemy_heals": "attackers' interrupt skills minus target team's heals",
            "enemy_prots": "target team's prot skills", "enemy_blind": "target team's Blind skills", "minute": "match minute"}
-DESC = {"deaths": DEATH_DESC, "kill_conversion": KC_DESC, "flag_answer": FA_DESC}
-REGRESSION = {"flag_answer"}      # these nodes predict a number (seconds), not a yes/no
+DESC = {"deaths": DEATH_DESC, "kill_conversion": KC_DESC, "flag_answer": FA_DESC, "npc_loss": NPC_DESC, "lord_damage": NPC_DESC}
+REGRESSION = {"flag_answer", "lord_damage"}      # these nodes predict a number (seconds), not a yes/no
 
 
 def node_rows(node, rid):
@@ -249,7 +323,7 @@ def node_rows(node, rid):
 
 MATCH_FIXED = {"deaths": set(MATCHUP_KEYS) | {"strength_gap"},
                "kill_conversion": {"own_interrupts_v_enemy_heals", "enemy_prots", "enemy_blind", "strength_gap"},
-               "flag_answer": {"strength_gap"}}
+               "flag_answer": {"strength_gap"}, "npc_loss": {"strength_gap"}, "lord_damage": {"strength_gap"}}
 STAGE_FIXED = 60     # matches before variables fixed for a whole match (matchup counts) are used (they fingerprint matches)
 
 
@@ -292,7 +366,10 @@ def validate_regression(node, df, X, y, g, w):
     r2 = lambda p: round(1 - float(np.sum((yv - p) ** 2) / np.sum((yv - yv.mean()) ** 2)), 3)
     out = {"glass box": {"mae_s": round(float(np.mean(np.abs(yv - pe))), 1), "r2": r2(pe)},
            "simple baseline": {"mae_s": round(float(np.mean(np.abs(yv - pb))), 1), "r2": r2(pb)}, "baseline uses": ["the median"]}
-    out["verdict"] = "adds to the simple baseline" if out["glass box"]["mae_s"] < out["simple baseline"]["mae_s"] - 0.5 else "no better than the simple baseline yet"
+    # judged on both: typical error, and share of the spread explained (a result that is usually 0, like Lord damage,
+    # makes the median look good on typical error alone)
+    better = out["glass box"]["mae_s"] < out["simple baseline"]["mae_s"] - 0.5 or out["glass box"]["r2"] > out["simple baseline"]["r2"] + 0.05
+    out["verdict"] = "adds to the simple baseline" if better else "no better than the simple baseline yet"
     return out, pe
 
 
@@ -315,7 +392,8 @@ def readable_seconds(e, names, X):
 def validate(node, df, X, y, g, w):
     from sklearn.model_selection import GroupKFold
     from sklearn.linear_model import LogisticRegression
-    base_cols = {"deaths": ["health_pct", "damage_taken_3s"], "kill_conversion": ["burst_damage", "target_health_pct"]}[node]
+    base_cols = {"deaths": ["health_pct", "damage_taken_3s"], "kill_conversion": ["burst_damage", "target_health_pct"],
+                 "npc_loss": ["attackers", "defenders"]}[node]
     preds = {n: np.zeros(len(y)) for n in ("simple baseline", "glass box")}
     for tr, te in GroupKFold(n_splits=min(6, g.nunique())).split(X, y, g):
         b = LogisticRegression(max_iter=1000).fit(X.iloc[tr][base_cols].fillna(0), y.iloc[tr], sample_weight=w.iloc[tr])
@@ -364,7 +442,7 @@ if __name__ == "__main__":
     a = sys.argv[1:]
     ids = [m for b in M.batches() for m in b["matches"]]
     if a and a[0] == "fit":
-        for node in (a[1:] or ["deaths", "kill_conversion", "flag_answer"]):
+        for node in (a[1:] or ["deaths", "kill_conversion", "flag_answer", "npc_loss", "lord_damage"]):
             s, e, df, held = fit_node(node, ids)
             print(f"== {node}: {s['matches']} matches, {s['rows']} rows, {s['events']} events")
             print(json.dumps(s["validation"]))

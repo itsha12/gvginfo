@@ -301,6 +301,17 @@ against general principles rather than past games. Match-by-match evidence lives
   used 3 runners and answered HC's captures in a median 28 s, while HC relied on its Mes/A for 13 of 20 carries and
   answered in a median 51 s. [Men v HC C]
 
+- `F33` **Denning:** Look at where a drop happens. A real hand-off takes little time; a flag dropped in base and picked
+  up much later is a team deciding not to run (and maybe deciding to run later), not a hand-off. Away from base, a
+  hand-off that takes long is more likely a response to a push or a death than deliberate double running.
+  **Claude (data):** of 229 drops picked up again where they fell, those on the backside and at the stand were picked
+  up within a median 1.0 to 1.3 s; those in a team's own base waited a median 10 s.
+- `F34` **Denning:** A team getting kills during the enemy's flag cycle and answering the capture later is much more
+  likely a deliberate trade (finish the power play, then run) than forgetting the flag.
+- `F35` **Denning:** 8v8 builds hold a flag near the fight, so they can answer a capture quickly with the whole team
+  fighting. **Claude (data):** some fast answers also come from runners with speed skills (OG's elementalist carried
+  at about 280 units per second against an average of 205); the flag model now uses each runner's measured speed.
+
 ### Running costs
 - `F14` **Denning:** Running the flag costs pressure. A frontline runner puts out basically no damage with the flag in
   hand.
