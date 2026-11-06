@@ -49,6 +49,9 @@ def report():
     bs = M.batches(); n = len(bs) - 1
     ids = [m for b in bs for m in b["matches"]]
     new_ids = bs[-1]["matches"]
+    import fightstate, subprocess, integrity
+    allr = list(json.loads(subprocess.check_output(["git", "-C", REPO, "show", "origin/replays:index.json"]))["matches"])
+    fightstate.build(ids, [x for x in allr if x not in ids])       # before the tables: fight_state reads it
     model, wp, df, held, X, y = M.fit_and_save(ids, n)
     prev_p = os.path.join(HISTORY, f"batch_{n - 1:02d}.json")
     prev = json.load(open(prev_p)) if n > 0 and os.path.exists(prev_p) else None
@@ -60,10 +63,25 @@ def report():
          f"{len(model['variables_in_use'])}; build variables from {M.STAGES['build_variables']} matches, interactions from "
          f"{M.STAGES['interactions']}.", ""]
     v = model["validation"]
+    # data integrity (integrity.py): what was repaired or can't be trusted in the matches trained on
+    from replaylib import Match
+    from state import GameState
+    ig = {rid: GameState(Match.from_branch(rid)).m.o["integrity"] for rid in ids}
+    L += ["## 0. Data integrity", "",
+          f"- Lengths repaired: {sum(1 for x in ig.values() if x['length']['repaired'])} "
+          + "".join(f"({rid[:8]} {x['length']['recorded_s']} s -> {x['length']['used_s']} s) " for rid, x in ig.items() if x["length"]["repaired"]),
+          f"- Matches with a team's Lord damage not observed (left blank, not zero): {sum(1 for x in ig.values() if x['lord_damage_unobserved'])}",
+          f"- Pit NPCs added from the standard roster (never seen in the replay): {sum(sum(x['roster_added'].values()) for x in ig.values() if x['roster_added'])} "
+          f"in {sum(1 for x in ig.values() if x['roster_added'] and sum(x['roster_added'].values()))} matches",
+          f"- Left out of training: {sum(1 for x in ig.values() if x['exclude'])}", ""]
     L += ["## 1. The honest test", "",
           f"**{v['verdict'].capitalize()}.** Held-out accuracy (matches held out whole), log loss in brackets (lower is better):", ""]
-    for name in [k for k in v if k != "verdict"]:
+    for name in [k for k in v if k not in ("verdict", "gain_over_strength")]:
         L.append(f"- {name}: " + ", ".join(f"{k} {x['accuracy']:.0%} ({x['log_loss']})" for k, x in v[name].items()))
+    if "gain_over_strength" in v:
+        gs = v["gain_over_strength"]
+        L.append(f"- Gain over strength alone (log loss, resampling whole matches): {gs['log_loss_gain']:+} "
+                 f"(90% range {gs['range_90'][0]:+} to {gs['range_90'][1]:+}).")
     if prev:
         pv = prev["validation"]
         L.append(f"- Change since batch {n - 1}: glass box log loss {pv['glass box']['all']['log_loss']} -> "
@@ -160,13 +178,18 @@ def report():
         res = U.analyse(U.wp_change(U.load("/tmp/ga")))
         L += ["## 7. The usual play", "", "Each choice against the most common one in that kind of decision, in win-chance points over the "
               "decision's window, adjusted for the situation, with a 90% range from resampling whole matches. CLEAR = the "
-              "range excludes 0. Win chance comes from a model that never saw the match.", ""]
+              "range excludes 0. Win chance comes from a model that never saw the match. The same comparison over the "
+              f"{U.PRE_S} s BEFORE the decision is a placebo test: a choice can't cause what came before it, so a clear "
+              "difference there means the effect is partly who makes that choice.", ""]
         for kind, x in res.items():
             if "choices" not in x: L.append(f"- **{kind}**: {x.get('note')} ({x.get('n')})"); continue
             L.append(f"**{kind.replace('_', ' ')}** ({x['n']} decisions, {x['matches']} matches; usual: {x['reference']})")
             for c in x["choices"][1:]:
                 L.append(f"- {c['choice']} (n {c['n']}): {c['effect_vs_usual']:+} [{c['interval'][0]:+}, {c['interval'][1]:+}]"
-                         + (" CLEAR" if c.get("clear") else ""))
+                         + (" CLEAR" if c.get("clear") else "")
+                         + (f"; in the {U.PRE_S} s before: {c['pre_trend_vs_usual']:+} [{c['pre_interval'][0]:+}, {c['pre_interval'][1]:+}]"
+                            + (" ALREADY DIFFERENT BEFORE: partly who chooses it" if c.get("selection_warning") else "")
+                            if "pre_trend_vs_usual" in c else ""))
             L.append("")
         cc = U.collapse_cost(U.wp_change(U.load("/tmp/ga")))
         if cc:
@@ -178,6 +201,27 @@ def report():
                 L.append(f"| {k} | {x['n']} | {x['away_s_median']:g} | {x['killed_split']} | {x['collapser_died']} | "
                          f"{x['own_deaths_at_main']} | {x['enemy_deaths_at_main']} | {x['flag_lead_change']:+} | "
                          f"{x['dp_change']:+} | {x['win_change']:+} |")
+            L.append("")
+        # discovery at decision points (discovery.py): where the choice matters most, and responses nobody named
+        import discovery as DSC
+        recs_d = U.wp_change(U.load("/tmp/ga"))
+        lev = DSC.leverage(recs_d)
+        if lev:
+            L += ["**Leverage: where the choice matters most** (share of the spread in win-chance change explained by the "
+                  "choice beyond the situation; range = best minus worst choice, in points)", ""]
+            for x in lev:
+                L.append(f"- {x['kind'].replace('_', ' ')} ({x['n']}): choice explains {x['explained_by_choice']:.1%} "
+                         f"(situation {x['explained_by_situation']:.1%}); range {x['range']} points, best {x['best']}, worst {x['worst']}")
+            L.append("")
+        cl = DSC.clusters(recs_d)
+        if cl:
+            L += ["**Behaviour clusters: what teams actually did** (each decision's response grouped by what every player did "
+                  "in the next 20 s; UNNAMED = a group no single named choice covers: a response for Denning to name or reject)", ""]
+            for kind, x in cl.items():
+                L.append(f"*{kind.replace('_', ' ')}* ({x['k']} groups, separation {x['silhouette']}):")
+                for g in x["groups"]:
+                    L.append(f"- n {g['n']}: {g['response']}; named as {g['named_choices']}; win change {g['win_change_mean']}"
+                             + (" UNNAMED" if g["unnamed"] else ""))
             L.append("")
     import values as VAL
     v = VAL.measure(ids); VAL.write(v)

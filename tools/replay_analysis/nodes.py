@@ -8,6 +8,9 @@ Nodes so far:
   blocks up, conditions it took on itself), its support (healers in range, healers dead, allies and enemies near, local
   numbers, distance from its group and pit), the situation (res timer, flag lead, minute, strength gap) and the
   matchup (enemy threats against own answers). Rows with no damage taken in 10 s are kept at 1 in NEG_KEEP and weighted.
+- lord_kill: while enemies are in a team's pit (every SAMPLE s), label = its Lord dies within LORD_HORIZON s; the pit
+  features plus the Lord's rebuilt health, whether it is exposed and its net damage taken in the last 60 s (lord.py).
+  28 of the first 30 matches ended with a Lord kill: this node is how the end of a match is explained.
 - kill_conversion: one row per burst (3+ attackers, 250+ damage in 2 s on one target); label = the target dies within
   8 s. Features: the target's defence (prots and blocks up, healers in range, health, ceiling, knocked down, Dazed),
   the attackers' shutdown (Blind, interrupts and knockdowns on them in the last 5 s), the burst itself, the matchup.
@@ -26,6 +29,7 @@ from buildfeat import matchup
 NODE_DIR = os.path.join(REPO, "data", "model", "nodes")
 CACHE = "/tmp/gvg_node_rows"
 SAMPLE, HORIZON, NEG_KEEP = 3, 10, 4
+LORD_HORIZON = 30        # lord_kill: the Lord dies within this many seconds
 MATCHUP_KEYS = ["enemy_knockdowns_v_own_aura_of_stability", "enemy_interrupts", "enemy_energy_denial", "enemy_snares",
                 "enemy_blind", "enemy_strips", "own_condition_removal", "own_prots"]
 
@@ -45,11 +49,13 @@ class Timeline:
         for i in m.o.get("interrupts", []): self.ir[i[3]].append(i[0] / 10)
         self.cond = collections.defaultdict(list)          # target -> [(start, end, name, source team)]
         self.ench = collections.defaultdict(list)          # target -> [(start, end, skill name)]
+        self.hex = collections.defaultdict(list)           # target -> [(start, end, skill name)]
         for e in m.o.get("effects", []):
             if e[0] is None: continue
             s0, s1 = e[0] / 10, (e[1] or 10 ** 9) / 10
             if e[2] == "c" and e[7]: self.cond[e[5]].append((s0, s1, e[7], m.team(e[4]) if isinstance(e[4], int) else None))
             elif e[2] == "e": self.ench[e[5]].append((s0, s1, m.sk(e[3])))
+            elif e[2] == "h": self.hex[e[5]].append((s0, s1, m.sk(e[3])))
         self.healers = {tm: [a for a in st.players[tm] if _healer(m, a)] for tm in st.teams}
         self.deaths = {a: sorted(st.death_times.get(a, [])) for a in m.PL}
 
@@ -58,6 +64,9 @@ class Timeline:
     def has_cond(self, a, t, names, own_source=None):
         tm = self.m.team(a)
         return any(s0 <= t <= s1 and n in names and (own_source is None or (src == tm) == own_source) for s0, s1, n, src in self.cond.get(a, []))
+
+    def hexes_on(self, a, t):
+        return sum(1 for s0, s1, _ in self.hex.get(a, []) if s0 <= t <= s1)
 
     def ench_up(self, a, t, names):
         return any(s0 <= t <= s1 and n in names for s0, s1, n in self.ench.get(a, []))
@@ -94,6 +103,7 @@ def death_features(tl, a, t, mu, gap):
         "deep_wound": int(tl.has_cond(a, t, {"deep_wound"})),
         "conditions_self_taken": int(tl.has_cond(a, t, {"deep_wound", "burning", "bleeding", "poison", "crippled", "blind", "weakness", "dazed"}, own_source=True)),
         "prot_up": int(tl.ench_up(a, t, PROT_SKILLS)), "block_up": int(tl.ench_up(a, t, BLOCKS)),
+        "hexes_on": tl.hexes_on(a, t), "hexes_on_own_healers": sum(tl.hexes_on(b, t) for b in heal_live),
         "healers_in_range": len(in_range), "healers_dead": sum(1 for b in tl.healers[tm] if b != a and not st.alive(b, t)),
         "allies_near": near(tm, 1500), "enemies_near": near(3 - tm, 1500), "local_diff": near(tm, 2000) - near(3 - tm, 2000),
         "dist_from_group": round(d(p, c)) if a not in main and c else 0,
@@ -113,7 +123,9 @@ DEATH_DESC = {
     "dazed": "Dazed now", "crippled": "Crippled now", "deep_wound": "Deep Wound now",
     "conditions_self_taken": "carrying a condition it took on itself from a teammate (Draw Conditions)",
     "prot_up": "a prot (Guardian, Spirit Bond, Life Sheath, Protective Spirit...) on the player now",
-    "block_up": "a block enchantment up now", "healers_in_range": "own healers alive within cast range",
+    "block_up": "a block enchantment up now", "hexes_on": "hexes on the player now",
+    "hexes_on_own_healers": "hexes on its team's live healers now (hex pressure on the backline)",
+    "healers_in_range": "own healers alive within cast range",
     "healers_dead": "own healers dead", "allies_near": "allies within 1,500", "enemies_near": "enemies within 1,500",
     "local_diff": "allies minus enemies within 2,000", "dist_from_group": "distance from its main group (0 if in it)",
     "away_3000": "3,000+ from its main group (Denning: clearer than 2,500 for a split or a collapse)",
@@ -167,10 +179,17 @@ def _build_rows(node, rid):
     gaps = {}
     for tm in st.teams:
         gaps[tm] = strength_gap(m.o["meta"]["id"], m.tag[tm], m.o["meta"].get("started"), m.tag[3 - tm],
-                                {x["tag"]: x.get("rating") for x in m.o["meta"]["teams"]})[1]
+                                {x["tag"]: x.get("rating") for x in m.o["meta"]["teams"]},
+                                {m.tag[k]: [m.nm(a) for a in m.PL if m.team(a) == k] for k in (1, 2)})[1]
     mus = {tm: matchup(m, tm) for tm in st.teams}
     rows = []
-    if node == "deaths":
+    if node == "deaths_all":           # every alive player every 5 s, no sampling: for fightstate.py predictions
+        for t in range(5, int(st.end - 1), 5):
+            for a in m.PL:
+                if st.alive(a, t):
+                    rows.append({"match": rid, "team": m.tag[m.team(a)], "role": m.roles[a], "t": t,
+                                 **death_features(tl, a, t, mus[m.team(a)], gaps[m.team(a)])})
+    elif node == "deaths":
         last = st.end - 1 - HORIZON
         ends = {t for a in m.PL for t in st.death_times.get(a, []) if t >= st.end - 1}
         for t in range(5, int(last), SAMPLE):
@@ -200,7 +219,8 @@ def _build_rows(node, rid):
                              "target_ceiling": f["health_ceiling"], "target_prot_up": f["prot_up"], "target_block_up": f["block_up"],
                              "target_healers_in_range": f["healers_in_range"], "target_knocked_down": f["knocked_down_now"],
                              "target_dazed": f["dazed"], "target_deep_wound": f["deep_wound"], "target_dist_from_group": f["dist_from_group"],
-                             "target_away_3000": f["away_3000"],
+                             "target_away_3000": f["away_3000"], "target_hexes": f["hexes_on"],
+                             "target_healers_hexed": f["hexes_on_own_healers"],
                              "burst_damage": round(sum(x[1] for x in w)), "attackers": len(atk), "attackers_blinded": blind,
                              "attackers_interrupted": rup, "attackers_knocked_down": kdat, "strength_gap": -f["strength_gap"] if f["strength_gap"] is not None else None,
                              "own_interrupts_v_enemy_heals": mus[3 - vt]["own_interrupts_v_enemy_heals"],
@@ -238,7 +258,7 @@ def _build_rows(node, rid):
                          "morale_diff": sbt[m.tag[tm]]["morale_sum"] - sbt[m.tag[foe]]["morale_sum"],
                          "flag_lead_at_enemy_cap": max(min(sbt[m.tag[tm]]["flag_lead"], 150), -150),
                          "minute": round(pc / 60, 1), "strength_gap": gaps[tm]})
-    elif node in ("npc_loss", "lord_damage"):
+    elif node in ("npc_loss", "lord_damage", "lord_kill"):
         from state import d
         from common import PIT_R
         from scoreboard import lord_dps
@@ -254,6 +274,7 @@ def _build_rows(node, rid):
         for dt in st.teams:                  # dt = the defending team (whose pit / Lord)
             at = 3 - dt; pit = st.geo.pit.get(dt)
             if pit is None: continue
+            if node in ("lord_damage", "lord_kill") and at in sb.lordstate.unobserved: continue    # integrity.py
             pit_npcs = [(a, v) for a, v in st.geo.npcs.items() if v["team"] == dt and v.get("pit") and v["kind"] != "guild_lord"]
             first_in = None
             for t in range(5, int(st.end - 12), SAMPLE):
@@ -274,6 +295,14 @@ def _build_rows(node, rid):
                         "npc_healing_10s": round(sum(v for tt, v in npc_heals[dt] if t - 10 < tt <= t)),
                         "defenders_elsewhere": sum(1 for b in st.players[dt] if st.alive(b, t) and b not in defs),
                         "res_in": st.next_res(t) - t, "minute": round(t / 60, 1), "strength_gap": gaps[at]}
+                if node == "lord_kill":
+                    L = sb.lordstate
+                    if L.dead[dt] is not None and L.dead[dt] <= t: continue
+                    rows.append({"match": rid, "team": m.tag[at], "role": "", "t": t, "w": 1,
+                                 "y": int(L.dead[dt] is not None and t < L.dead[dt] <= t + LORD_HORIZON), **base,
+                                 "lord_health": L.health(dt, t), "lord_exposed": L.exposed(dt, t),
+                                 "lord_damage_taken_60s": L.damage_net(dt, t, 60)})
+                    continue
                 if node == "npc_loss":
                     if not alive_n: continue
                     y = int(any(t < st.npc_dead.get(a, 1e9) <= t + 15 for a, _ in alive_n))
@@ -318,13 +347,17 @@ KC_DESC = {"target_is_healer": "target is a healer", "target_line": "target 0 fr
            "target_prot_up": "a prot on the target", "target_block_up": "a block on the target",
            "target_healers_in_range": "target's healers in range", "target_knocked_down": "target knocked down",
            "target_dazed": "target Dazed", "target_deep_wound": "target has Deep Wound",
-           "target_dist_from_group": "target's distance from its group", "target_away_3000": "target 3,000+ from its main group", "burst_damage": "damage in the 2 s burst",
+           "target_dist_from_group": "target's distance from its group", "target_hexes": "hexes on the target",
+           "target_healers_hexed": "hexes on the target team's live healers", "target_away_3000": "target 3,000+ from its main group", "burst_damage": "damage in the 2 s burst",
            "attackers": "attackers in the burst", "attackers_blinded": "attackers Blind during the burst",
            "attackers_interrupted": "interrupts on the attackers (5 s before to 2 s after)",
            "attackers_knocked_down": "knockdowns on the attackers (5 s before to 2 s after)",
            "strength_gap": "attacking minus target team strength", "own_interrupts_v_enemy_heals": "attackers' interrupt skills minus target team's heals",
            "enemy_prots": "target team's prot skills", "enemy_blind": "target team's Blind skills", "minute": "match minute"}
-DESC = {"deaths": DEATH_DESC, "kill_conversion": KC_DESC, "flag_answer": FA_DESC, "npc_loss": NPC_DESC, "lord_damage": NPC_DESC}
+LK_DESC = dict(NPC_DESC, lord_health="the Lord's rebuilt health as a share of its max (lord.py)",
+               lord_exposed="its Bodyguard and both knights dead", lord_damage_taken_60s="net damage on the Lord in the last 60 s")
+DESC = {"deaths": DEATH_DESC, "kill_conversion": KC_DESC, "flag_answer": FA_DESC, "npc_loss": NPC_DESC, "lord_damage": NPC_DESC,
+        "lord_kill": LK_DESC}
 REGRESSION = {"flag_answer", "lord_damage"}      # these nodes predict a number (seconds), not a yes/no
 
 
@@ -337,7 +370,8 @@ def node_rows(node, rid):
 
 MATCH_FIXED = {"deaths": set(MATCHUP_KEYS) | {"strength_gap"},
                "kill_conversion": {"own_interrupts_v_enemy_heals", "enemy_prots", "enemy_blind", "strength_gap"},
-               "flag_answer": {"strength_gap"}, "npc_loss": {"strength_gap"}, "lord_damage": {"strength_gap"}}
+               "flag_answer": {"strength_gap"}, "npc_loss": {"strength_gap"}, "lord_damage": {"strength_gap"},
+               "lord_kill": {"strength_gap"}}
 STAGE_FIXED = 60     # matches before variables fixed for a whole match (matchup counts) are used (they fingerprint matches)
 
 
@@ -353,6 +387,8 @@ def features_for(node, n_matches):
 
 def _frame(node, ids):
     import pandas as pd
+    from integrity import usable
+    ids = usable(list(ids))
     df = pd.DataFrame([r for rid in ids for r in node_rows(node, rid)])
     feats = features_for(node, df["match"].nunique())
     return df, df[feats].astype(float), df["y"].astype(int), df["match"], df["w"].astype(float)
@@ -412,7 +448,7 @@ def validate(node, df, X, y, g, w):
     from sklearn.model_selection import GroupKFold
     from sklearn.linear_model import LogisticRegression
     base_cols = {"deaths": ["health_pct", "damage_taken_3s"], "kill_conversion": ["burst_damage", "target_health_pct"],
-                 "npc_loss": ["attackers", "defenders"]}[node]
+                 "npc_loss": ["attackers", "defenders"], "lord_kill": ["attackers", "defenders"]}[node]
     preds = {n: np.zeros(len(y)) for n in ("simple baseline", "glass box")}
     for tr, te in GroupKFold(n_splits=min(6, g.nunique())).split(X, y, g):
         b = LogisticRegression(max_iter=1000).fit(X.iloc[tr][base_cols].fillna(0), y.iloc[tr], sample_weight=w.iloc[tr])
@@ -461,7 +497,7 @@ if __name__ == "__main__":
     a = sys.argv[1:]
     ids = [m for b in M.batches() for m in b["matches"]]
     if a and a[0] == "fit":
-        for node in (a[1:] or ["deaths", "kill_conversion", "flag_answer", "npc_loss", "lord_damage"]):
+        for node in (a[1:] or ["deaths", "kill_conversion", "flag_answer", "npc_loss", "lord_damage", "lord_kill"]):
             s, e, df, held = fit_node(node, ids)
             print(f"== {node}: {s['matches']} matches, {s['rows']} rows, {s['events']} events")
             print(json.dumps(s["validation"]))

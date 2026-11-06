@@ -32,10 +32,12 @@ MODEL_DIR = os.path.join(REPO, "data", "model")
 TABLES = "/tmp/gvg_tables"
 CORR = os.path.join(REPO, "data", "model_corrections.json")
 STATIC = {"strength_gap", "lord_dps_own", "lord_dps_enemy", "healing_monks_own", "healing_monks_enemy",
-          "spike_build_own", "spike_build_enemy"}       # fixed for a whole match
+          "spike_build_own", "spike_build_enemy", "map_flag_run", "map_pit_to_stand", "map_bases_apart",
+          "flux_minion_apocalypse", "flux_meek_shall_inherit", "flux_jack_of_all_trades", "flux_chain_combo"}       # fixed for a whole match
 NAMES = [n for n, _, _ in VARIABLES]
 STAGES = {"build_variables": 60, "interactions": 40}   # matches needed before these are switched on
 TRAIN_STEP = 15
+EVEN_GAP = 200               # "even on strength": under this many rating points apart (about 1.3 to 1 odds)
 SETTINGS = dict(max_bins=16, outer_bags=4, min_samples_leaf=20, max_rounds=300, random_state=7)
 
 
@@ -81,6 +83,8 @@ def corrections():
 
 def _frame(ids, step=TRAIN_STEP, extra=()):
     import pandas as pd
+    from integrity import usable
+    ids = usable(list(ids))
     rows = [r for rid in ids for r in match_table(rid) if r["won"] is not None and r["t"] % step == 0]
     df = pd.DataFrame(rows)
     return df, df[NAMES + list(extra)].astype(float), df["won"].astype(int), df["match"]
@@ -173,8 +177,28 @@ def validate(df, X, y, groups, corr, extra=()):
         for lo, hi in ((0, 5), (5, 10), (10, 15), (15, 99)):
             sel = (df["minute"] >= lo) & (df["minute"] < hi)
             if sel.sum(): out[n][f"{lo}-{hi if hi < 99 else 'end'} min"] = _metrics(p[sel.values], y.values[sel.values])
+    # the matches that matter most for play: those that last (reach 15:00) and those even on strength
+    length = df.groupby("match")["t"].transform("max")
+    subsets = {"matches lasting 15 min+": (length >= 900).values,
+               f"matches even on strength (gap under {EVEN_GAP})": (df["strength_gap"].abs().fillna(0) < EVEN_GAP).values}
+    for n, p in preds.items():
+        for name, sel in subsets.items():
+            if sel.sum(): out[n][name] = dict(_metrics(p[sel], y.values[sel]), matches=int(df["match"][sel].nunique()))
     g, s0 = out["glass box"]["all"], out["strength only"]["all"]
-    out["verdict"] = ("beats strength alone" if g["log_loss"] < s0["log_loss"] - 0.005 else
+    # how sure: the glass box's log loss gain over strength alone, resampling whole matches (90% range)
+    lossg = -(y.values * np.log(np.clip(preds["glass box"], .02, .98)) + (1 - y.values) * np.log(1 - np.clip(preds["glass box"], .02, .98)))
+    losss = -(y.values * np.log(np.clip(preds["strength only"], .02, .98)) + (1 - y.values) * np.log(1 - np.clip(preds["strength only"], .02, .98)))
+    gain = collections.defaultdict(list)
+    for mm, a, b in zip(groups.values, losss, lossg): gain[mm].append(a - b)
+    ms = list(gain); rnd = np.random.RandomState(7); boots = []
+    for _ in range(500):
+        pick = rnd.choice(len(ms), len(ms))
+        vals = [v for i in pick for v in gain[ms[i]]]
+        boots.append(float(np.mean(vals)))
+    lo, hi = np.percentile(boots, [5, 95])
+    out["gain_over_strength"] = {"log_loss_gain": round(float(np.mean(losss - lossg)), 3), "range_90": [round(float(lo), 3), round(float(hi), 3)]}
+    out["verdict"] = ("beats strength alone" + (" (clear: the range excludes 0)" if lo > 0 else " (not yet clear: the range includes 0)")
+                      if g["log_loss"] < s0["log_loss"] - 0.005 else
                       "not yet better than strength alone: treat the curves as noise")
     return out, preds["glass box"]
 

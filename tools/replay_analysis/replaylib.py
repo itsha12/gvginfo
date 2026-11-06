@@ -14,7 +14,9 @@ from common import PROT_SKILLS, RUN_SKILLS, FIGHT_RANGE, STAND_R, BASE_R
 
 class Match:
     def __init__(self, o):
+        from integrity import repair
         self.o = o
+        if "integrity" not in o: repair(o)      # length, unobserved Lord damage (integrity.py)
         self.A = o["agents"]
         self.TR = o["tracks"]
         self.SK = {int(k): v for k, v in o["skills"].items()}

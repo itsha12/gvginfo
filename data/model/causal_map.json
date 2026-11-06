@@ -1,6 +1,6 @@
 {
  "about": "The causal map: what can cause what in a GvG match, as reasoned by Denning and Claude and found in data. Each node is measured; each node's model may only use the links pointing into it, measured earlier in time. The data decides how much each link matters (status: hypothesis, supported, rejected; mechanical = a formula, not learned). Denning can add, correct or remove links; each change is logged with its reason. Rendered to knowledge/causal-map.md by tools/replay_analysis/causal_map.py.",
- "version": 9,
+ "version": 10,
  "nodes": [
   {
    "id": "C.builds",
@@ -22,8 +22,8 @@
    "id": "C.strength",
    "layer": "context",
    "name": "Team strength",
-   "description": "fitted rating gap from every stored result before the match",
-   "how": "strength.py",
+   "description": "how strong each team is: the guild's fitted rating and the lineup of players who actually played (MAT weighted by a measured amount), blended by how well each predicts later results",
+   "how": "strength.py (blend), lineup.py (people's records from every stored result, time ordered), context.py (matchup, map and flux beyond strength; off until it beats strength alone)",
    "kind": "formula"
   },
   {
@@ -417,6 +417,54 @@
    "description": "dying before time on purpose (death sets, not healing), monks dying in base before time to reset energy, and holding a kill until after the enemy's res (timing)",
    "how": "death timing against the res, death set held at death, own heals on the victim in its last seconds",
    "kind": "measured"
+  },
+  {
+   "id": "R.11",
+   "layer": "result",
+   "name": "Lord health",
+   "description": "the Guild Lord's health, rebuilt from damage, healing, boosts (+1% max health each) and measured natural regeneration",
+   "how": "lord.py; regeneration measured by benchmarks.py regen",
+   "kind": "measured"
+  },
+  {
+   "id": "R.12",
+   "layer": "result",
+   "name": "Lord exposed",
+   "description": "the Lord's Bodyguard and both knights are dead",
+   "how": "lord.py from pit NPC deaths (full roster, integrity.py)",
+   "kind": "formula"
+  },
+  {
+   "id": "R.13",
+   "layer": "result",
+   "name": "Lord killed",
+   "description": "the Lord dies: how 28 of the first 30 matches ended",
+   "how": "nodes.py lord_kill (Lord dies within 30 s while enemies are in its pit)",
+   "kind": "measured"
+  },
+  {
+   "id": "K.14",
+   "layer": "capacity",
+   "name": "Fight state",
+   "description": "who is winning the fight now: expected deaths per team in the next 10 s",
+   "how": "fightstate.py, from the deaths node fitted without the match",
+   "kind": "measured"
+  },
+  {
+   "id": "K.15",
+   "layer": "capacity",
+   "name": "Hex pressure",
+   "description": "hexes on a player and on its team's live healers",
+   "how": "nodes.py deaths and kill_conversion features (replay hex intervals)",
+   "kind": "measured"
+  },
+  {
+   "id": "C.flux",
+   "layer": "context",
+   "name": "Flux",
+   "description": "the month's flux (Minion Apocalypse, Meek Shall Inherit, Jack of All Trades, Chain Combo)",
+   "how": "replay meta (gvg.report)",
+   "kind": "formula"
   }
  ],
  "links": [
@@ -2414,6 +2462,125 @@
     "S32",
     "S31"
    ]
+  },
+  {
+   "from": "R.6",
+   "to": "R.11",
+   "why": "damage on the Lord lowers its health; healing and regeneration restore it",
+   "source": "formula",
+   "confirmed_by_denning": false,
+   "status": "mechanical",
+   "tactics": []
+  },
+  {
+   "from": "R.4",
+   "to": "R.11",
+   "why": "each boost adds 1% to the Lord's max health",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "mechanical",
+   "tactics": []
+  },
+  {
+   "from": "R.5",
+   "to": "R.12",
+   "why": "the Lord is exposed once its Bodyguard and knights are dead",
+   "source": "formula",
+   "confirmed_by_denning": false,
+   "status": "mechanical",
+   "tactics": []
+  },
+  {
+   "from": "R.12",
+   "to": "R.13",
+   "why": "an exposed Lord can be hit without its guards",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "R.11",
+   "to": "R.13",
+   "why": "a Lord low on health dies sooner",
+   "source": "formula",
+   "confirmed_by_denning": false,
+   "status": "mechanical",
+   "tactics": []
+  },
+  {
+   "from": "R.13",
+   "to": "S.win",
+   "why": "killing the enemy Lord wins the match",
+   "source": "formula",
+   "confirmed_by_denning": false,
+   "status": "mechanical",
+   "tactics": []
+  },
+  {
+   "from": "R.1",
+   "to": "K.14",
+   "why": "deaths in a fight show who is losing it; the fight state looks ahead",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "K.14",
+   "to": "R.1",
+   "why": "a team losing its fight is about to take deaths",
+   "source": "data",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "K.14",
+   "to": "A.allocation",
+   "why": "staying or falling back near the enemy's boost depends on whether the own team is losing the fight",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "D4"
+   ]
+  },
+  {
+   "from": "K.15",
+   "to": "R.1",
+   "why": "hexes on a player or its healers make it easier to kill",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.flux",
+   "to": "C.builds",
+   "why": "a flux changes what builds can do",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.map",
+   "to": "R.3",
+   "why": "the length of the flag run (Y) and the distance from the pits to the stand shape the flag game",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.builds",
+   "to": "K.15",
+   "why": "hex pressure comes from the hexes on the enemy's bars (hex way) and is answered by own hex removal",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
   }
  ],
  "log": [
@@ -2471,6 +2638,11 @@
    "date": "2026-11-06",
    "change": "split answers: holder (not collapsing) and collapsers read apart; S32 what decides a collapse",
    "by": "Denning"
+  },
+  {
+   "date": "2026-11-06",
+   "change": "version 10: Lord health, Lord exposed and Lord killed (R.11 to R.13; 28 of 30 matches end with a Lord kill), fight state (K.14), hex pressure (K.15), flux (C.flux); team strength now includes lineups",
+   "by": "Claude, with Denning (lineup strength, roster)"
   }
  ]
 }

@@ -1,5 +1,5 @@
 {
- "about": "Two measures, both from every stored match result (data/matches/*.json, far more matches than the replays):\n- ladder: each guild's in-game rating at the time of the match, as gvg.report recorded it;\n- fitted: a Bradley-Terry rating fitted on results only (each match weighs less the older it is, half-life HALF_LIFE\n  days), on the same scale as the ladder (400 points = 10 to 1 odds). Fitted ratings use only matches before the one\n  being rated, so a match's own result never leaks into the strength gap the model sees.\nThe report compares how well each predicts results (log loss, accuracy) so the better one is chosen by data.",
+ "about": "Two measures, both from every stored match result (data/matches/*.json, far more matches than the replays):\n- ladder: each guild's in-game rating at the time of the match, as gvg.report recorded it;\n- fitted: a Bradley-Terry rating fitted on results only (each match weighs less the older it is, half-life HALF_LIFE\n  days), on the same scale as the ladder (400 points = 10 to 1 odds). Fitted ratings use only matches before the one\n  being rated, so a match's own result never leaks into the strength gap the model sees.\nThe report compares how well each predicts results (log loss, accuracy) so the better one is chosen by data.\n- lineup: the eight players who actually played (lineup.py: each person's MAT-weighted record, time ordered).\nThe model's baseline is the blend: a logistic fit of results on the three gaps (no intercept: a mirrored match must\ngive the mirrored answer), trained on earlier matches and tested on the latest third, so how much each measure counts\nis measured. Replay matches are left out of the blend's fit.",
  "matches": 1737,
  "half_life_days": 60,
  "prediction": {
@@ -17,6 +17,48 @@
    "log_loss": 0.693,
    "accuracy": 0.5
   }
+ },
+ "blend": {
+  "about": "How much each measure counts in predicting a result, measured: logistic fits (no intercept) of results on each\ncombination of the ladder, fitted and lineup gaps, trained on the earlier two thirds of the matches after the\nfirst 300 and tested on the latest third; the combination that predicts the latest third best is refitted on all\nof them. Replay matches are left out.",
+  "chosen": "fitted+lineup",
+  "train_matches": 473,
+  "test_matches": 237,
+  "test": {
+   "ladder": {
+    "log_loss": 0.437,
+    "accuracy": 0.831
+   },
+   "fitted": {
+    "log_loss": 0.3464,
+    "accuracy": 0.873
+   },
+   "lineup": {
+    "log_loss": 0.3144,
+    "accuracy": 0.878
+   },
+   "ladder+fitted": {
+    "log_loss": 0.3507,
+    "accuracy": 0.878
+   },
+   "fitted+lineup": {
+    "log_loss": 0.3092,
+    "accuracy": 0.895
+   },
+   "ladder+lineup": {
+    "log_loss": 0.3218,
+    "accuracy": 0.878
+   },
+   "ladder+fitted+lineup": {
+    "log_loss": 0.3144,
+    "accuracy": 0.886
+   }
+  },
+  "coef": {
+   "ladder": 0.0,
+   "fitted": 0.435,
+   "lineup": 0.591
+  },
+  "note": "coef: rating points of blended gap per point of each gap (1 = taken at face value)"
  },
  "guilds": {
   "spce": {

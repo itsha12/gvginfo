@@ -17,7 +17,7 @@ import rules as R
 import decisions as D
 import phases as PH
 
-ENGINE = 16
+ENGINE = 17
 
 
 def analyze(rid, save_maps=False):

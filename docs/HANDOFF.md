@@ -94,15 +94,16 @@ Claude should then:
 
 # Match replay analysis
 
-**Status:** Active. Last updated 2026-11-05 (end of the fourth session: engine review and restructure).
+**Status:** Active. Last updated 2026-11-06 (session 4m: engine review against the goal; data fixes and new layers built, not yet refitted).
 
 ## Start the next chat with
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/HANDOFF.md (the "Match replay
 > analysis" section), knowledge/tactics.md, knowledge/match-reviews.md, tools/replay_analysis/METHODS.md and
 > data/review_labels.json, then `git fetch --depth 1 origin +replays:refs/remotes/origin/replays`,
 > `pip install --break-system-packages interpret-core`, and run `python3 tools/replay_analysis/analyze.py --all --out
-> /tmp/ga` and `library.py build`. Then run training batch 2 (`batch.py pick 4`, fetch, `batch.py add`,
-> `learning.py`) and explain the learning report to Denning, or: <your request>
+> /tmp/ga` and `library.py build`. Then refit batches 0 and 1 with the ENGINE 17 fixes (`learning.py`, which also
+> builds the fight state), explain to Denning what changed against the old batch 1 report, then run training batch 2
+> (`batch.py pick 4`, fetch, `batch.py add`, `learning.py`), or: <your request>
 
 ## Goal
 Find plays that are better than experts can see, from data across many matches: not to mirror Denning's or anyone's
@@ -138,10 +139,14 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
    situation, choice, outcome.
 6. `rules.py`: findings citing tactics ids, and the edge ledger.
 7. `library.py`: `build`, `query`, and `compare <decision kind>` (outcomes by choice across matches).
-8. `analyze.py`: runs everything (about 1 s per match).
-9. `benchmarks.py`: measured values from all replays (so far `lord`: Lord damage per second at the Lord). Rebuild after
-   new replays.
-10. Win-probability model: `strength.py` (team strength), `features.py` (named variables), `model.py` (glass box,
+8. `analyze.py`: runs everything (about 1 s per match). `integrity.py` (runs inside `Match()`): length repair, full
+   pit roster, unobserved Lord damage, exclusions; `python3 integrity.py` lists what it found.
+9. `benchmarks.py`: measured values from all replays (`lord`: Lord damage per second at the Lord; `regen`: Lord
+   natural regeneration). Rebuild after new replays.
+10. Win-probability model: `strength.py` (team strength: blend of guild fitted rating and lineup, measured),
+    `lineup.py` (people's MAT-weighted records), `context.py` (matchup, map, flux priors; off until they beat
+    strength), `lord.py` (Lord health and exposure), `fightstate.py` (expected deaths per team, out of match),
+    `discovery.py` (leverage, behaviour clusters), `features.py` (named variables), `model.py` (glass box,
     explanations, corrections), `learning.py` (learning report), `batch.py` (pick and add batches). Site pages:
     "Win-probability model" and "Learning report (latest)". Needs `pip install --break-system-packages interpret-core`.
 11. Causal model: `phases.py` (phases, plans, jobs, capacities), `buildfeat.py` (team build features, matchup pairs,
@@ -169,6 +174,14 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
 4. Then: grow the batches once learning reports settle; discovery and choice values as data accumulates.
 
 ## Current state
+- ENGINE 17 (2026-11-06) is built but NOT refitted: the batch 1 numbers below (model accuracy, curves, values, usual
+  play) were measured with the NPC-roster leak and the truncated RACK v hdm match, and will change at the refit.
+  Expect the knights and Bodyguard curves to stop running backwards and "beats strength alone" to shrink.
+- Strength (ENGINE 17): fitted + lineup blend predicts the latest third of stored results at log loss 0.309 (89.5%);
+  the gvg.report ladder adds nothing once those are known. MAT extra weight: x1.5 best, barely better than x1; more
+  hurts (`data/model/lineup.json`). Context priors (matchup, map, flux) don't beat strength yet: off.
+- Lord: 28 of 30 matches ended with a Lord kill. Regeneration measured at 12.5+ health per second after 5 s out of
+  combat (the delay is the game rule, to confirm with Denning).
 - Stored replays: 30 on the `replays` branch: batch 0 (24) and batch 1 (6: 4 random picks plus the 2 newest from the
   standing "latest:2" request).
 - Model after batch 1: beats team strength alone on unseen matches (79% vs 64% of winners, log loss 0.562 vs 0.633;
@@ -217,6 +230,12 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
 - No energy estimate from casts: too large a build for what it adds.
 
 ## Open items
+- Refit batches 0 and 1 with ENGINE 17, then batch 2.
+- gvg.report's Players and Elo tabs: Denning asked to use them. Their numbers are today's, so they can't train the
+  model without leaking results; the same data is rebuilt time-ordered from stored matches (`lineup.py`, ladder in
+  `strength.py`). Waiting on Denning for the page links (the update workflow can fetch them to cross-check names and
+  Elo) and whether gvg.report's Elo is the in-game ladder rating or its own.
+- Lord regeneration delay (5 s) and whether Lords regenerate at all in GvG: Denning to confirm.
 - Death rulings 3 to 5 and power plays 6 and 7 in [Men v HC C].
 - Situation cards (tactics section 14) are hypotheses for the data to test; D6 has no default.
 - Lord damage weights replaced by measurement (`benchmarks.py lord`, `data/benchmarks/lord_damage.json`); the
@@ -242,6 +261,16 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
 - Improve the toolkit rather than writing one-off scripts; each ruling becomes a label, a tactics line and a check.
 
 ## Recent changes
+- Session 4m: engine reviewed against the goal. Found and fixed: pit NPCs only recorded once touched (winners' pits
+  looked empty: the backwards knights and Bodyguard curves), RACK v hdm cut at 2:30 (runs to 17:18), Lord damage
+  unobserved in 2 Lord kills. Built: `integrity.py` (data checks and repairs, full roster from Denning: 2 knights, 2
+  archers, Bodyguard, Lord; 3 archers on Isle of Solitude), `lord.py` (Lord health with measured regeneration, exposed;
+  node `lord_kill`), lineup strength (`lineup.py`, Denning's idea, MAT weight measured) and the strength blend,
+  `context.py` (priors, off), `fightstate.py` (fight state variable and situation control), hexes in the death and
+  kill nodes, map shape and flux variables, pre-trend (placebo) check in the usual play, close-game and resampled
+  accuracy in the honest test, `discovery.py` (leverage, behaviour clusters), data-integrity section in the learning
+  report; causal map v10 (Lord health, exposed, killed; fight state; hex pressure; flux). Not refitted yet (Denning:
+  build everything first).
 - Session 4l: Denning on wipes and the boost clock (`D5`: a wipe at the stand can't be turned into NPCs before the res,
   and 7 of 12 "took the flag" cases couldn't reach the pit in time; `D4`: falling back with the enemy's boost near is
   likely a mistake unless losing the fight, it depends); builds in the usual play (similar builds, staged adjustment,

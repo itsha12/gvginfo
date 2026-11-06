@@ -40,6 +40,30 @@ class MapGeo:
         for v in self.npcs.values():    # archers far from their Lord are outside archers
             v["pit"] = v["kind"] in ("guild_lord", "bodyguard", "knight") or (
                 v["pos"] is not None and d(v["pos"], self.pit.get(v["team"])) < 3000)
+        self._fill_roster()
+
+    def _fill_roster(self):
+        """Pit NPCs only appear in a replay once something touches them, so an untouched pit looked empty. Every pit
+        starts with the standard roster (integrity.ROSTER, Denning); the ones never seen are added as alive all match
+        at the pit (keys "roster:<team>:<kind>:<n>", never in npc_dead). If more archers than the roster sit near a
+        pit, the nearest count as pit archers and the rest as outside archers."""
+        from integrity import roster
+        want = roster(self.map_id)
+        added = {}
+        for tm in (1, 2):
+            pit = self.pit.get(tm)
+            arch = sorted((a for a, v in self.npcs.items() if v["team"] == tm and v["kind"] == "archer" and v["pit"]),
+                          key=lambda a: d(self.npcs[a]["pos"], pit))
+            for a in arch[want["archer"]:]: self.npcs[a]["pit"] = False
+            n = 0
+            for kind, k in want.items():
+                have = sum(1 for v in self.npcs.values() if v["team"] == tm and v["kind"] == kind and v["pit"])
+                for i in range(have, k):
+                    self.npcs[f"roster:{tm}:{kind}:{i}"] = dict(kind=kind, team=tm, pos=pit, n=0, conf="roster", pit=True)
+                    n += 1
+            added[tm] = n
+        integ = self.m.o.get("integrity")
+        if integ is not None: integ["roster_added"] = added
 
     def _flag_spawns(self):
         """Each team's flag spawn: the median of its pickups far from the stand on its own half (a flag picked up

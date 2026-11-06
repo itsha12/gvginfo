@@ -1,0 +1,142 @@
+{
+ "about": "Lord natural regeneration, measured: the rate (health per second after lord.REGEN_DELAY s without damage) that\nbest puts the rebuilt health at 0 when a Lord dies, without any surviving Lord's health reaching 0. Lords whose\ndamage wasn't observed are skipped. Boosts are left out here (at most +10% max health).",
+ "rate": 12.5,
+ "delay_s": 5,
+ "plausible_range": [
+  12.5,
+  30.0
+ ],
+ "deaths_used": 27,
+ "surviving_lords": 10,
+ "median_error_at_death": 240,
+ "with_no_regeneration": {
+  "median_error_at_death": 670,
+  "survivors_contradicted": 2
+ },
+ "grid": {
+  "0.0": {
+   "median_error": 670,
+   "survivors_contradicted": 2
+  },
+  "1.0": {
+   "median_error": 626.1,
+   "survivors_contradicted": 2
+  },
+  "2.0": {
+   "median_error": 598.5999999999997,
+   "survivors_contradicted": 2
+  },
+  "3.0": {
+   "median_error": 496.4999999999993,
+   "survivors_contradicted": 1
+  },
+  "4.0": {
+   "median_error": 439.59999999999945,
+   "survivors_contradicted": 1
+  },
+  "5.0": {
+   "median_error": 426.9999999999993,
+   "survivors_contradicted": 1
+  },
+  "6.0": {
+   "median_error": 414.3999999999992,
+   "survivors_contradicted": 1
+  },
+  "7.0": {
+   "median_error": 401.79999999999905,
+   "survivors_contradicted": 1
+  },
+  "8.0": {
+   "median_error": 327.9999999999982,
+   "survivors_contradicted": 1
+  },
+  "9.0": {
+   "median_error": 295,
+   "survivors_contradicted": 1
+  },
+  "10.0": {
+   "median_error": 295,
+   "survivors_contradicted": 1
+  },
+  "11.0": {
+   "median_error": 295,
+   "survivors_contradicted": 1
+  },
+  "12.0": {
+   "median_error": 248.79999999999973,
+   "survivors_contradicted": 1
+  },
+  "13.0": {
+   "median_error": 240,
+   "survivors_contradicted": 0
+  },
+  "14.0": {
+   "median_error": 240,
+   "survivors_contradicted": 0
+  },
+  "15.0": {
+   "median_error": 240,
+   "survivors_contradicted": 0
+  },
+  "16.0": {
+   "median_error": 240,
+   "survivors_contradicted": 0
+  },
+  "17.0": {
+   "median_error": 240,
+   "survivors_contradicted": 0
+  },
+  "18.0": {
+   "median_error": 240,
+   "survivors_contradicted": 0
+  },
+  "19.0": {
+   "median_error": 240,
+   "survivors_contradicted": 0
+  },
+  "20.0": {
+   "median_error": 240,
+   "survivors_contradicted": 0
+  },
+  "21.0": {
+   "median_error": 240,
+   "survivors_contradicted": 0
+  },
+  "22.0": {
+   "median_error": 240,
+   "survivors_contradicted": 0
+  },
+  "23.0": {
+   "median_error": 240,
+   "survivors_contradicted": 0
+  },
+  "24.0": {
+   "median_error": 240,
+   "survivors_contradicted": 0
+  },
+  "25.0": {
+   "median_error": 240,
+   "survivors_contradicted": 0
+  },
+  "26.0": {
+   "median_error": 240,
+   "survivors_contradicted": 0
+  },
+  "27.0": {
+   "median_error": 240,
+   "survivors_contradicted": 0
+  },
+  "28.0": {
+   "median_error": 240,
+   "survivors_contradicted": 0
+  },
+  "29.0": {
+   "median_error": 240,
+   "survivors_contradicted": 0
+  },
+  "30.0": {
+   "median_error": 240,
+   "survivors_contradicted": 0
+  }
+ }
+}

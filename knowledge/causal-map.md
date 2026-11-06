@@ -1,6 +1,6 @@
 *Generated from data/model/causal_map.json by tools/replay_analysis/causal_map.py: don't edit this page; tell Claude or edit the JSON (each change is logged with a reason).*
 
-# Causal map (version 9)
+# Causal map (version 10)
 
 What can cause what in a GvG match. Each concept is measured from the replays; the model for each concept may only use the causes listed under it, measured earlier in time, and the data decides how much each matters. Status: **hypothesis** (not yet tested), **supported** or **rejected** by data, **mechanical** (a formula). "Confirmed" = Denning has confirmed the reasoning; the size of the effect still comes from data.
 
@@ -9,17 +9,23 @@ What can cause what in a GvG match. Each concept is measured from the replays; t
 ### Build features `C.builds`
 what each team's bars can do: interrupts, knockdowns, snares, Blind, enchantment and energy removal, prots and blocks, Aura of Stability count, condition and hex removal, healing, spike capacity, speed, measured Lord damage. *Measured: counts from data/skills.json properties of each bar (scales to builds never seen).*
 
+Caused by:
+- **Flux**: a flux changes what builds can do (Claude; hypothesis)
+
 ### Matchup `C.matchup`
 each build feature against the enemy's answer to it (enemy knockdowns v own Aura of Stability, enemy Blind v own removal, enemy spike v own prot stack, enemy energy denial v own energy hiding, split capacity v defence). *Measured: pairs of build features; their effect comes from data, never a label.*
 
 ### Team strength `C.strength`
-fitted rating gap from every stored result before the match. *Measured: strength.py.*
+how strong each team is: the guild's fitted rating and the lineup of players who actually played (MAT weighted by a measured amount), blended by how well each predicts later results. *Measured: strength.py (blend), lineup.py (people's records from every stored result, time ordered), context.py (matchup, map and flux beyond strength; off until it beats strength alone).*
 
 ### Map geometry `C.map`
 Y (flag spawn to stand), routes, where the pits and stand are. *Measured: state.py (spawns, pits, stand).*
 
 ### Clock `C.clock`
 match time, both teams' res timers, the boost clock. *Measured: scoreboard.*
+
+### Flux `C.flux`
+the month's flux (Minion Apocalypse, Meek Shall Inherit, Jack of All Trades, Chain Combo). *Measured: replay meta (gvg.report).*
 
 ## Allocation and plans (macro)
 
@@ -30,6 +36,7 @@ Caused by:
 - **Flag lead**: a team that must run has players on flag duty, which changes numbers elsewhere (Denning; hypothesis; `F5` `J1`)
 - **Scoreboard**: the scoreboard shapes the next second's allocation (a loop over time) (Denning; hypothesis; `J1`)
 - **Split answer**: collapsing on a split depends on the plan (NPCs or DP), the defender's ability to hold, the flag position and how the main fight is going; the line comes from data (Denning; hypothesis; `S32` `S31`)
+- **Fight state**: staying or falling back near the enemy's boost depends on whether the own team is losing the fight (Denning; hypothesis; `D4`)
 
 ### Phase `A.phase`
 a stretch with a stable global setup; ends at a collapse, death, res or capture. *Measured: to build: from changes in allocation.*
@@ -269,6 +276,18 @@ Caused by:
 - **Matchup**: the matchup sets what each capacity can be expected to be; a team can play well and still lose a hard matchup (how much comes from data) (Denning; hypothesis; `J10`)
 - **Team strength**: stronger teams play better at everything; kept in every model so play isn't confused with strength (Claude; hypothesis)
 
+### Fight state `K.14`
+who is winning the fight now: expected deaths per team in the next 10 s. *Measured: fightstate.py, from the deaths node fitted without the match.*
+
+Caused by:
+- **Deaths**: deaths in a fight show who is losing it; the fight state looks ahead (Claude; hypothesis)
+
+### Hex pressure `K.15`
+hexes on a player and on its team's live healers. *Measured: nodes.py deaths and kill_conversion features (replay hex intervals).*
+
+Caused by:
+- **Build features**: hex pressure comes from the hexes on the enemy's bars (hex way) and is answered by own hex removal (Claude; hypothesis)
+
 ## Results
 
 ### Deaths `R.1`
@@ -281,6 +300,8 @@ Caused by:
 - **Health ceiling**: death penalty stacking against a spike team makes every later spike easier (Denning; hypothesis; `K4`)
 - **Sustain margin**: a group whose margin is negative loses players (Claude; hypothesis)
 - **Death timing on purpose**: teams time kills and the dying team may choose to die before time; a death's cost depends on when it happens, and some deaths may be positive (energy reset, a short wait) (Denning; hypothesis; `K14` `K15` `K1` `K2`)
+- **Fight state**: a team losing its fight is about to take deaths (data; hypothesis)
+- **Hex pressure**: hexes on a player or its healers make it easier to kill (Claude; hypothesis)
 
 ### Wipes `R.2`
 fights where 3+ players or 2+ monks die. *Measured: fights.*
@@ -297,6 +318,7 @@ Caused by:
 - **Run timing and runner choice**: a flag parked in base is a team deciding not to run yet; a long hand-off away from base is a response to a push or death, not double running (Denning; hypothesis; `F33`)
 - **Commitment**: a team killing during the enemy's flag cycle answers later, deliberately: it finishes the power play, then runs (Denning; hypothesis; `F34`)
 - **Mobility**: runners with speed skills carry far faster than average; the flag model uses each runner's measured speed (Claude; mechanical; `F35`)
+- **Map geometry**: the length of the flag run (Y) and the distance from the pits to the stand shape the flag game (Claude; hypothesis)
 
 ### Boosts `R.4`
 boosts won and conceded. *Measured: stand ledger.*
@@ -345,6 +367,26 @@ fights and kills against both res timers; time spent on failed kills. *Measured:
 Caused by:
 - **Res timing, Collapse timing, Kill conversion**: when fights happen against both res timers, and time spent on kills that fail (Claude; hypothesis; `J8`)
 
+### Lord health `R.11`
+the Guild Lord's health, rebuilt from damage, healing, boosts (+1% max health each) and measured natural regeneration. *Measured: lord.py; regeneration measured by benchmarks.py regen.*
+
+Caused by:
+- **Lord damage**: damage on the Lord lowers its health; healing and regeneration restore it (formula; mechanical)
+- **Boosts**: each boost adds 1% to the Lord's max health (Denning; mechanical)
+
+### Lord exposed `R.12`
+the Lord's Bodyguard and both knights are dead. *Measured: lord.py from pit NPC deaths (full roster, integrity.py).*
+
+Caused by:
+- **Pit NPCs**: the Lord is exposed once its Bodyguard and knights are dead (formula; mechanical)
+
+### Lord killed `R.13`
+the Lord dies: how 28 of the first 30 matches ended. *Measured: nodes.py lord_kill (Lord dies within 30 s while enemies are in its pit).*
+
+Caused by:
+- **Lord exposed**: an exposed Lord can be hit without its guards (Claude; hypothesis)
+- **Lord health**: a Lord low on health dies sooner (formula; mechanical)
+
 ## Scoreboard and win
 
 ### Scoreboard `S.scoreboard`
@@ -359,6 +401,7 @@ the win-probability model: values every result. *Measured: model.py.*
 
 Caused by:
 - **Scoreboard**: the win model values every result (Denning; hypothesis; `W6`)
+- **Lord killed**: killing the enemy Lord wins the match (formula; mechanical)
 
 ## Change log
 
@@ -373,3 +416,4 @@ Caused by:
 - 2026-11-06: version 8: deliberate deaths only for a base res; individual bars change plays; spike builds weigh DP over NPCs; what decides staying near the enemy boost (Denning)
 - 2026-11-06: version 9: per-player skill flags (buildfeat.player_flags); defender snare on split answers (S31); no rushing the base to spike resurrected players (D5) (Denning)
 - 2026-11-06: split answers: holder (not collapsing) and collapsers read apart; S32 what decides a collapse (Denning)
+- 2026-11-06: version 10: Lord health, Lord exposed and Lord killed (R.11 to R.13; 28 of 30 matches end with a Lord kill), fight state (K.14), hex pressure (K.15), flux (C.flux); team strength now includes lineups (Claude, with Denning (lineup strength, roster))

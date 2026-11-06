@@ -18,7 +18,8 @@ Edges:
 - Numbers: players alive, in the main group, and down (with when they return).
 - Death penalty: morale per player and team; effective max health; spike threat (the enemy's typical kill burst) and
   how many players it now kills outright (DP stacking against a spike team).
-- Pit NPCs alive, Lord damage dealt (the 28:00 tiebreak; players don't see it).
+- Pit NPCs alive, Lord damage dealt (the 28:00 tiebreak; players don't see it), and the own Lord's rebuilt health,
+  whether it is exposed (guards dead) and its net damage taken in the last 60 s (lord.py).
 - Build archetype and measured Lord pressure: the summed Lord damage per second of the team's non-healers, from
   data/benchmarks/lord_damage.json (benchmarks.py lord, measured at the Lord across every stored replay), and the
   healing monks it keeps. No guessed weights: a profession without measured data gives None.
@@ -82,6 +83,8 @@ class Scoreboard:
         self._runner_speeds()
         self._bursts()
         self._lord()
+        from lord import LordState
+        self.lordstate = LordState(st)
         self._busy()
         self._cache = {}
 
@@ -279,6 +282,9 @@ class Scoreboard:
                 "killable_by_one_spike": [m.roles[a] for a in st.players[tm] if threat and a not in dead and self.eff_hp(a, t) <= threat],
                 "pit_npcs": st.pit_npcs(tm, t), "npc_value": self.npc_value(tm, t),
                 "lord_damage_dealt": self.lord_damage(tm, t),
+                "lord_damage_observed": tm not in self.lordstate.unobserved,
+                "lord_health": self.lordstate.health(tm, t), "lord_exposed": self.lordstate.exposed(tm, t),
+                "lord_damage_taken_60s": self.lordstate.damage_net(tm, t, 60),
             }
         self._cache[t] = out
         return out

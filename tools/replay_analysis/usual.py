@@ -12,6 +12,11 @@ than the usual play is a candidate "more optimal play").
 - Choice effect: each choice's win-chance change against the most common choice, adjusted for the situation (a linear
   fit on the same variables, readable as one number per choice), with a 90% interval from resampling whole matches.
   With few matches most intervals include 0: "not enough data yet" is the honest reading.
+- Pre-trend check (a placebo test): the same comparison on the change in win chance over the PRE_S seconds BEFORE the
+  decision. A choice can't cause what happened before it, so a clear pre-trend difference means teams making that
+  choice were already sliding (or rising): its effect is partly who chooses it, not what it does, and is marked so.
+- Fight state (fightstate.py: enemy minus own expected deaths in the next 10 s) is part of every situation, so a choice
+  is compared with teams that were winning or losing their fight about as much.
 
 Usage:  python3 usual.py [--src DIR]     reads the analysis files (analyze.py --all --out DIR, default /tmp/ga), writes
                                          data/model/usual_play.json and prints the table per decision kind"""
@@ -23,7 +28,8 @@ from common import REPO
 
 OUT = os.path.join(REPO, "data", "model", "usual_play.json")
 K, BOOT, MIN_N = 15, 200, 25
-SIT = ["flag_lead", "stand", "boost_in", "alive", "main", "dp", "npcs", "lord_damage", "minute", "strength_gap"]
+SIT = ["flag_lead", "stand", "boost_in", "alive", "main", "dp", "npcs", "lord_damage", "minute", "strength_gap", "fight_state"]
+PRE_S = 30                   # seconds before a decision for the pre-trend check
 # variables only some decision kinds have (Denning): can the winners reach the enemy pit before its res; is the team
 # losing its fight when the enemy's boost is near
 SIT_EXTRA = {"after_wipe": ["pit_margin_s"], "boost_clock": ["deaths_30s_diff", "main_diff_now", "health_diff"],
@@ -68,7 +74,7 @@ def situation(r, gap):
     num = lambda s: int(s.split("v")[0]) - int(s.split("v")[1])
     out = {"flag_lead": k["flag_lead"], "stand": {"own": 1, "enemy": -1}.get(k["stand"], 0), "boost_in": k["boost_in"] or 0,
            "alive": num(k["alive"]), "main": num(k["main"]), "dp": k["dp"], "npcs": k["npcs"], "lord_damage": k["lord_damage"],
-           "minute": r["t"] / 60, "strength_gap": gap or 0}
+           "minute": r["t"] / 60, "strength_gap": gap or 0, "fight_state": r.get("fight_state") or 0}
     for v in SIT_EXTRA.get(r["kind"], []): out[v] = (r.get("extra") or {}).get(v) or 0
     for side in ("own", "enemy"):
         for ax in AXES: out[f"{side}_{ax}"] = r["axes"][side][ax]
@@ -102,6 +108,10 @@ def wp_change(recs):
             if a and b:
                 r["wp_before"] = wp.explain(a)[0]; r["wp_after"] = wp.explain(b)[0]
                 r["wp_change"] = round(r["wp_after"] - r["wp_before"], 1); r["gap"] = a.get("strength_gap")
+                p0 = tab.get((r["team"], max(t0 - PRE_S, 0)))
+                r["wp_pre"] = round(r["wp_before"] - wp.explain(p0)[0], 1) if p0 and t0 >= PRE_S else None
+                import fightstate
+                r["fight_state"] = fightstate.diff(mid, t0, r["team"])
     return [r for r in recs if "wp_change" in r]
 
 
@@ -126,27 +136,33 @@ def analyse(recs):
         D = np.array([[1.0 if r["choice2"] == c else 0.0 for c in choices[1:]] for r in L])
         y = np.array([r["wp_change"] for r in L], float)
         matches = sorted({r["match"] for r in L})
-        def fit(idx):
+        pre = np.array([r["wp_pre"] if r.get("wp_pre") is not None else np.nan for r in L], float)
+        def fit(idx, yy=y):
+            idx = np.array([i for i in idx if not np.isnan(yy[i])])
             A = np.hstack([np.ones((len(idx), 1)), Z[idx], D[idx]])
-            coef, *_ = np.linalg.lstsq(A, y[idx], rcond=None)
+            coef, *_ = np.linalg.lstsq(A, yy[idx], rcond=None)
             return coef[-len(choices) + 1:]
-        est = fit(np.arange(len(L)))
-        rnd = random.Random(7); boots = []
+        est = fit(np.arange(len(L))); est_pre = fit(np.arange(len(L)), pre)
+        rnd = random.Random(7); boots = []; boots_pre = []
         mi = collections.defaultdict(list)
         for i, r in enumerate(L): mi[r["match"]].append(i)
         for _ in range(BOOT):
             idx = [i for mm in (rnd.choice(matches) for _ in matches) for i in mi[mm]]
-            try: boots.append(fit(np.array(idx)))
+            try: boots.append(fit(np.array(idx))); boots_pre.append(fit(np.array(idx), pre))
             except Exception: pass
-        boots = np.array(boots)
+        boots = np.array(boots); boots_pre = np.array(boots_pre)
         rows = [{"choice": ref, "n": counts[ref], "share": round(counts[ref] / len(L), 2), "raw_wp_change": round(float(np.mean([r["wp_change"] for r in L if r["choice2"] == ref])), 1),
                  "effect_vs_usual": 0.0, "interval": [0.0, 0.0]}]
         for j, c in enumerate(choices[1:]):
             lo, hi = (np.percentile(boots[:, j], [5, 95]) if len(boots) else (None, None))
+            plo, phi = (np.percentile(boots_pre[:, j], [5, 95]) if len(boots_pre) else (0, 0))
+            pre_clear = bool(plo > 0 or phi < 0)
             rows.append({"choice": c, "n": counts[c], "share": round(counts[c] / len(L), 2),
                          "raw_wp_change": round(float(np.mean([r["wp_change"] for r in L if r["choice2"] == c])), 1),
                          "effect_vs_usual": round(float(est[j]), 1), "interval": [round(float(lo), 1), round(float(hi), 1)],
-                         "clear": bool(lo > 0 or hi < 0)})
+                         "clear": bool(lo > 0 or hi < 0),
+                         "pre_trend_vs_usual": round(float(est_pre[j]), 1), "pre_interval": [round(float(plo), 1), round(float(phi), 1)],
+                         "selection_warning": pre_clear})
         # usual play per decision: most common choice among the K most similar decisions in other matches
         flagged = []
         eff = {x["choice"]: x["effect_vs_usual"] for x in rows}
@@ -216,4 +232,5 @@ if __name__ == "__main__":
         print(f"\n== {kind}: {x.get('n')} decisions" + (f" in {x['matches']} matches" if "matches" in x else "") + (f" ({x['note']})" if "note" in x else ""))
         for c in x.get("choices", []):
             print(f"  {c['choice']:28} n={c['n']:3} ({c['share']:.0%}) raw {c['raw_wp_change']:+5.1f} | vs usual {c['effect_vs_usual']:+5.1f} "
-                  f"[{c['interval'][0]:+.1f}, {c['interval'][1]:+.1f}]" + ("  CLEAR" if c.get("clear") else ""))
+                  f"[{c['interval'][0]:+.1f}, {c['interval'][1]:+.1f}]" + ("  CLEAR" if c.get("clear") else "")
+                  + (f" | before: {c['pre_trend_vs_usual']:+.1f}" + ("  ALREADY DIFFERENT BEFORE" if c.get("selection_warning") else "") if "pre_trend_vs_usual" in c else ""))

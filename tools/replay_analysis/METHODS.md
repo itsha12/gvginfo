@@ -5,6 +5,8 @@ page is detected in gvg.report replays. The goal is not counting deaths: it is k
 fight, what the fight caused, and what the best play was in that situation for those builds (tactics `W6`, `W7`).
 
 ## The framework (layers)
+0. **Data integrity** (`integrity.py`, runs inside `Match()` on load): every replay is checked and repaired before any
+   layer reads it (see "Data integrity" below).
 1. **Shared constants** (`common.py`): every threshold, radius, spike anchor and skill list in one place.
 2. **Game state every second** (`state.py`): positions and zones (own pit, own base, backside, stand, push side,
    enemy base, enemy pit), who is alive and when the dead return, morale, fight groups and the main group, pit NPCs,
@@ -295,7 +297,8 @@ questions where the data and the map disagree. Slow training continues throughou
 - `strength.py`: team strength from every stored result (1,737 matches, 71 guilds), Bradley-Terry with a 60-day
   half-life, rated only from results before each match; unrated guilds use the ladder gap (never 0). On later results
   it predicts 82% of winners (log loss 0.417), better than the ladder (81%, 0.473). The in-match model has to beat
-  this to show it understands play rather than who the better team is.
+  this to show it understands play rather than who the better team is. Since ENGINE 17 the baseline is the blend of
+  the fitted and lineup measures (see "Data integrity, the Lord, strength").
 - `features.py`: the named variables (one line each, with a plain description). Matching own and enemy quantities are
   single differences (separate ones partly cancelled and split the data). One row per 5 s per team; training uses
   every 15 s.
@@ -329,6 +332,77 @@ questions where the data and the map disagree. Slow training continues throughou
 2. `git fetch --depth 1 origin replays:refs/remotes/origin/replays`, `python3 batch.py add`, `python3 learning.py`.
 3. Read the report; explain to Denning in words what changed and why (with match moments); ask the questions.
 4. Log his corrections in `data/model_corrections.json`, new variables in `features.py`; commit everything.
+
+## Data integrity, the Lord, strength and the review of 2026-11-06 (ENGINE 17)
+A review of the engine against its goal found three measurement problems and several missing steps; all were built
+before any refit (Denning).
+
+**Data integrity** (`integrity.py`; `python3 integrity.py` lists every match, `data/model/integrity.json`):
+- Length: the match ends at the first Lord death, else at the later of the recorded length and the last event.
+  RACK v hdm (1f65fd3b) was stored as 2:30 but runs to 17:18; the engine had cut it there and learned a "stomp".
+- Pit roster: NPCs only appear in a replay once something touches them, so an untouched pit looked empty. Winners
+  "lost" their Bodyguard in 19 of 30 matches (losers 1) and showed fewer than 2 knights in 13 (losers 2): the
+  backwards knights and Bodyguard curves of batches 0 and 1 measured whose pit was attacked, not tactics. Every pit
+  now starts with the standard roster (Denning: 2 knights, 2 archers, 1 Bodyguard, 1 Guild Lord; a third archer on Isle
+  of Solitude, map 542); NPCs never seen are added as alive all match (`state.MapGeo._fill_roster`). Archers beyond the
+  roster near a pit count as outside archers.
+- Lord damage: a Lord that died with no recorded damage means the attackers' Lord damage wasn't observed (OG v cope
+  29b7eca0, Men v RACK 45cf6756); that team's Lord damage and the Lord nodes are left blank, not zero.
+- Exclusion: matches with problems that can't be repaired leave training (`integrity.usable`, used by the win model and
+  the node models); none so far. The learning report opens with a data-integrity section.
+
+**The Lord** (`lord.py`): 28 of the first 30 matches ended with a Lord kill, only 2 at 28:00. Health is rebuilt from
+damage and healing on the Lord, max health +1% per boost (Denning), and natural regeneration measured, not guessed
+(`benchmarks.py regen`, `data/benchmarks/lord_regen.json`): the rate that best puts the rebuilt health at 0 when Lords
+die without any surviving Lord reaching 0. First reading: no regeneration contradicts 2 surviving Lords; 12.5 health
+per second (after 5 s without damage) is the lowest rate consistent with all of them, and any rate up to 30 fits
+equally (median error at death 240 health). The delay of 5 s is the out-of-combat rule, to confirm. Scoreboard:
+`lord_health`, `lord_exposed` (Bodyguard and both knights dead), `lord_damage_taken_60s`. Node `lord_kill` (nodes.py):
+while enemies are in a pit, the Lord dies within 30 s. Win-model variables `lord_health_diff`, `lord_exposed_diff`.
+
+**Strength** (`strength.py`, `lineup.py`, `context.py`): three measures, each time ordered (only results before the
+match), blended by how well they predict later results (`strength.json` "blend": logistic fits of every combination on
+the earlier two thirds of the matches after the first 300, tested on the latest third; replays left out):
+- ladder: the guild rating gvg.report recorded with each match;
+- fitted: the Bradley-Terry guild rating;
+- lineup (Denning): the eight players who played, characters grouped into people by `data/aliases.json`. Two measures
+  tried, an opponent-adjusted rating and a shrunk win rate, each with MAT results counting 1 to 8 times as much; step
+  size, MAT weight and scale chosen by log loss on later matches (`lineup.json` keeps the grid). First reading: the
+  shrunk win rate predicts best (log loss 0.418 against 0.433 for the rating); extra MAT weight barely helps (x1.5 best,
+  x1 equal) and more than x2 hurts, even when tested on MAT matches alone.
+- First blend reading: fitted + lineup predicts the latest third best (log loss 0.309, 89.5%), better than lineup alone
+  (0.314), fitted alone (0.346) or the ladder (0.437); the ladder adds nothing once the other two are known, so its
+  weight is 0. The model's `strength_gap` is now this blend.
+- Context priors (`context.py`): build-archetype matchups, archetype by map and archetype by flux, measured on every
+  stored result with strength as a fixed offset (antisymmetric features, ridge penalty chosen on later matches). First
+  reading: no penalty beats strength alone on the latest third (0.3806 at best against 0.3802), so the prior is off
+  (0 points) and retested whenever results are added.
+
+**Fight state** (`fightstate.py`): expected deaths per team in the next 10 s, the sum of every live player's death
+risk from the deaths node, always from a model fitted without the match (6 groups). Win-model variable `fight_state`
+(enemy minus own) and a situation control in every usual-play comparison (Denning `D4`). Built by `learning.py` before
+the tables.
+
+**Other new variables**: hexes on a player and on its team's live healers (deaths and kill_conversion nodes; replay
+hex intervals); map shape (`map_flag_run` = Y, `map_pit_to_stand`, `map_bases_apart`) and flux flags in the win model,
+staged with the build variables (fixed for a match).
+
+**Checks on the comparisons**:
+- Pre-trend (placebo) test in `usual.py`: each choice's comparison is repeated on the win-chance change in the 30 s
+  BEFORE the decision; a clear difference there means teams making that choice were already sliding or rising, so its
+  effect is partly who chooses it ("ALREADY DIFFERENT BEFORE" in the report).
+- The honest test reports matches lasting 15 minutes or more and matches even on strength (gap under 200) apart, and
+  the gain over strength alone with a 90% range from resampling whole matches.
+
+**Discovery built** (`discovery.py`, learning report section 7): leverage (how much of the spread in win-chance change
+the choice explains beyond the situation, per decision kind) and behaviour clusters (each decision's response, the share
+of players by line in each action, grouped by k-means with the clearest k; groups no named choice covers are marked
+UNNAMED for Denning to name or reject).
+
+**First effect of the fixes on the node models** (checked, not saved): with the full roster, `npc_loss` still ranks
+moments better than attackers and defenders alone (AUC 0.786 against 0.755) but no longer beats them on log loss;
+`lord_damage` still adds (36% of the spread explained); `lord_kill` is no better than attackers and defenders yet
+(AUC 0.96 for both: who is in the pit nearly decides it).
 
 ## Flag position (Denning, tactics `F1` to `F4`)
 - Up on flags = the better position to get a boost and to run, not the team that capped last.
@@ -380,7 +454,7 @@ questions where the data and the map disagree. Slow training continues throughou
   NPC positions). Added only with `analyze.py --save-maps`, once per match (re-runs don't change the files).
 - **Case library** (`library.py`): `build` gathers every kind from the analysis files; `query <kind> --where` searches
   them; `compare <decision kind> --where` compares outcomes by choice.
-- **Per-match analysis**: `analyze.py <id>` writes format gvginfo.analysis.v1 (ENGINE 15). Regenerated in about a
+- **Per-match analysis**: `analyze.py <id>` writes format gvginfo.analysis.v1 (ENGINE 17). Regenerated in about a
   second per match, so not stored yet; once batches grow it goes to `analysis/<id>.json` on the `replays` branch.
 - **Principles**: `knowledge/tactics.md`, ids cited by findings, rulings and situation cards (section 14).
 - **Denning's verdicts**: `data/review_labels.json`, applied in `rules.py` and `fights.assess`.

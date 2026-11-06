@@ -6,10 +6,15 @@ Two measures, both from every stored match result (data/matches/*.json, far more
   days), on the same scale as the ladder (400 points = 10 to 1 odds). Fitted ratings use only matches before the one
   being rated, so a match's own result never leaks into the strength gap the model sees.
 The report compares how well each predicts results (log loss, accuracy) so the better one is chosen by data.
+- lineup: the eight players who actually played (lineup.py: each person's MAT-weighted record, time ordered).
+The model's baseline is the blend: a logistic fit of results on the three gaps (no intercept: a mirrored match must
+give the mirrored answer), trained on earlier matches and tested on the latest third, so how much each measure counts
+is measured. Replay matches are left out of the blend's fit.
 
 Usage:  python3 strength.py            -> data/model/strength.json (ratings per guild with matches behind them) and
                                           the comparison printed
-In code: strength_gap(match_id, team_tag) -> (ladder gap, fitted gap) for that match, from the team's side."""
+In code: strength_gap(match_id, team_tag, ...) -> (ladder gap, blended gap) for that match, from the team's side;
+         components(...) -> the three gaps separately."""
 import collections, glob, json, math, os, sys
 from common import REPO
 
@@ -51,7 +56,7 @@ def fit(rows, until_at=None, iters=60):
 
 
 _CACHE = {}
-def strength_gap(match_id, tag, at=None, opp=None, ratings=None):
+def _fitted_gap(match_id, tag, at=None, opp=None, ratings=None):
     """(ladder gap, fitted gap) from tag's side for one match. A match not among the stored results (e.g. a replay newer
     than the last results update) is rated from every result before its time `at` (ms), against `opp`; the ladder
     gap then comes from `ratings` ({tag: ladder rating} from the replay) if given."""
@@ -71,6 +76,74 @@ def strength_gap(match_id, tag, at=None, opp=None, ratings=None):
     lad = (r["ra"] - r["rb"]) * sign if r["ra"] is not None and r["rb"] is not None else None
     if r["a"] not in f or r["b"] not in f: return lad, lad
     return lad, round((f[r["a"]] - f[r["b"]]) * sign)
+
+
+def _blend():
+    if "blend" not in _CACHE:
+        try: _CACHE["blend"] = json.load(open(os.path.join(OUT, "strength.json")))["blend"]["coef"]
+        except (OSError, ValueError, KeyError): _CACHE["blend"] = None
+    return _CACHE["blend"]
+
+
+def components(match_id, tag, at=None, opp=None, ratings=None, lineups=None):
+    """{ladder, fitted, lineup} gaps in rating points from tag's side (None where unknown). lineups = {tag: [names]}
+    for a match not among the stored results."""
+    import lineup as LU
+    lad, fit_g = _fitted_gap(match_id, tag, at, opp, ratings)
+    g = LU.lineup_gaps().get(match_id)
+    if g is not None:
+        r = _CACHE["by_id"].get(match_id)
+        lin = g if (r is None or tag == r["a"]) else -g
+    elif lineups and opp in lineups and tag in lineups and at:
+        lin = LU.gap_for(lineups[tag], lineups[opp], at)
+    else: lin = None
+    return {"ladder": lad, "fitted": fit_g, "lineup": lin}
+
+
+def strength_gap(match_id, tag, at=None, opp=None, ratings=None, lineups=None):
+    """(ladder gap, blended gap): the blend of ladder, fitted and lineup gaps measured by blend(); before blend() has
+    run, the fitted gap."""
+    c = components(match_id, tag, at, opp, ratings, lineups)
+    coef = _blend()
+    if not coef or c["fitted"] is None: return c["ladder"], c["fitted"]
+    x = {"ladder": c["ladder"] if c["ladder"] is not None else c["fitted"], "fitted": c["fitted"], "lineup": c["lineup"] or 0}
+    from context import prior          # matchup, map and flux effects beyond strength (0 while switched off)
+    return c["ladder"], round(sum(coef[k] * x[k] for k in coef) + prior(match_id, tag))
+
+
+def blend(rows, replay_ids=()):
+    """How much each measure counts in predicting a result, measured: logistic fits (no intercept) of results on each
+    combination of the ladder, fitted and lineup gaps, trained on the earlier two thirds of the matches after the
+    first 300 and tested on the latest third; the combination that predicts the latest third best is refitted on all
+    of them. Replay matches are left out."""
+    import numpy as np
+    from sklearn.linear_model import LogisticRegression
+    import lineup as LU
+    lg = LU.lineup_gaps()
+    use = [r for r in rows[300::2] if r["id"] not in replay_ids and r["id"] in lg]
+    X, y = [], []
+    for r in use:
+        f = fit(rows, r["at"], iters=25)
+        fg = f.get(r["a"], 0) - f.get(r["b"], 0)
+        lad = (r["ra"] - r["rb"]) if r["ra"] is not None and r["rb"] is not None else fg
+        X.append([lad / K, fg / K, lg[r["id"]] / K]); y.append(int(r["a_won"]))
+    X, y = np.array(X), np.array(y)
+    cut = int(len(y) * 2 / 3)
+    names = ["ladder", "fitted", "lineup"]
+    def score(cols):
+        m = LogisticRegression(fit_intercept=False, C=1e6).fit(X[:cut][:, cols], y[:cut])
+        p = np.clip(m.predict_proba(X[cut:][:, cols])[:, 1], 0.02, 0.98)
+        yt = y[cut:]
+        return {"log_loss": round(float(-np.mean(yt * np.log(p) + (1 - yt) * np.log(1 - p))), 4),
+                "accuracy": round(float(np.mean((p > 0.5) == yt)), 3)}
+    test = {"+".join(names[i] for i in c): score(c) for c in ([0], [1], [2], [0, 1], [1, 2], [0, 2], [0, 1, 2])}
+    combos = {"+".join(names[i] for i in c): c for c in ([0], [1], [2], [0, 1], [1, 2], [0, 2], [0, 1, 2])}
+    pick = min(test, key=lambda k: test[k]["log_loss"])            # the measures that predict the latest third best
+    full = LogisticRegression(fit_intercept=False, C=1e6).fit(X[:, combos[pick]], y)
+    coef = {n: 0.0 for n in names}
+    coef.update({names[i]: round(float(v), 3) for i, v in zip(combos[pick], full.coef_[0])})
+    return {"about": blend.__doc__.strip(), "chosen": pick, "train_matches": cut, "test_matches": len(y) - cut, "test": test, "coef": coef,
+            "note": "coef: rating points of blended gap per point of each gap (1 = taken at face value)"}
 
 
 def compare(rows):
@@ -98,9 +171,12 @@ if __name__ == "__main__":
     final = fit(rows)
     games = collections.Counter([r["a"] for r in rows] + [r["b"] for r in rows])
     cmp = compare(rows)
+    rp = set(json.loads(__import__("subprocess").check_output(["git", "-C", REPO, "show", "origin/replays:index.json"]))["matches"])
+    bl = blend(rows, rp)
+    print("blend:", bl["test"], bl["coef"])
     os.makedirs(OUT, exist_ok=True)
     json.dump({"about": __doc__.split("\n\n")[1].strip(), "matches": len(rows), "half_life_days": HALF_LIFE,
-               "prediction": cmp,
+               "prediction": cmp, "blend": bl,
                "guilds": {g: {"fitted": round(v), "matches": games[g]} for g, v in sorted(final.items(), key=lambda kv: -kv[1])}},
               open(os.path.join(OUT, "strength.json"), "w"), indent=1, ensure_ascii=False)
     print(len(rows), "matches,", len(final), "guilds")
