@@ -105,7 +105,9 @@ Claude should then:
 > <your request>
 
 ## Goal
-Become an expert GvG analyst and tactician: read any match, say what game state caused each fight and what the fight
+Find plays that are better than experts can see, from data across many matches: not to mirror Denning's or anyone's
+judgement. Rulings give definitions and test cases; values and best plays come from the data (METHODS.md, "From
+rulings to data"). Along the way, become an expert GvG analyst and tactician: read any match, say what game state caused each fight and what the fight
 caused (flag game, death penalty and pit NPCs above all in close games), whether macro or micro decided it, and answer
 "what is the best play here" for given builds and situations from data and general principles, better than players.
 Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and a win-probability model.
@@ -133,9 +135,12 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
    situation, choice, outcome.
 6. `rules.py`: findings citing tactics ids, and the edge ledger.
 7. `library.py`: `build`, `query`, and `compare <decision kind>` (outcomes by choice across matches).
-8. `analyze.py`: runs everything (about 1 s per match). Next layers, after the bulk pull: benchmarks, win probability.
+8. `analyze.py`: runs everything (about 1 s per match).
+9. `benchmarks.py`: measured values from all replays (so far `lord`: Lord damage per second at the Lord). Rebuild after
+   new replays. Next layers: team strength, state export, win probability (METHODS.md).
 
-## Plan
+## Plan (see METHODS.md "From rulings to data" for the full data-first plan)
+0. Next: team strength ratings from stored results; the state export for a win-probability model; then the bulk pull.
 1. Done: Bounty (6), Nick ([Men v Team]), Maga's OG comms (4), 4 good-guild matches, the engine, death rulings 1 and 2,
    the engine review (bugs fixed, scoreboard, fights, decision points, tactics restructure).
 2. Now: calibrate on Denning's rulings (remaining [Men v HC C] deaths and power plays, judged as fights), each ruling
@@ -169,9 +174,9 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
 
 ## Open items
 - Death rulings 3 to 5 and power plays 6 and 7 in [Men v HC C].
-- Confirm the situation cards (tactics section 14), especially D6 (DP stacking against a spike: Claude's proposal).
-- Archetype rules and late Lord pressure weights (`scoreboard.archetype`) are guesses; check with Denning and 28:00
-  results.
+- Situation cards (tactics section 14) are hypotheses for the data to test; D6 has no default.
+- Lord damage weights replaced by measurement (`benchmarks.py lord`, `data/benchmarks/lord_damage.json`); the
+  provisional `edge()` weights remain guesses until the win-probability model.
 - Toolkit: race clock for base races; timed kills; "decided by" from the fights and edge ledger; Lord spawn positions
   in the trim.
 - Benchmarks (a strong prot's spike catches, a good 7 monk's Infuse timing).
@@ -193,6 +198,8 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
 - Improve the toolkit rather than writing one-off scripts; each ruling becomes a label, a tactics line and a check.
 
 ## Recent changes
+- Session 4b: Lord damage measured (ranger 37, ele 33, warrior 27, paragon 24, dervish 23, necro 10, mesmer 7 per
+  second at the Lord); decision points record every player's action; D6 opened; data-first plan written.
 - Session 4: engine review. Fixed: dead monks counted as out of range, all-monks range rule, death verdicts ignoring
   the cause, flag cycles sharing rows, the runner assumed to be the Mes/A, captures with no recorded player dropped,
   map files changing on every run, scattered thresholds. Added: scoreboard with the flag position model, fights,

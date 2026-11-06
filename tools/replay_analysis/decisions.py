@@ -3,7 +3,8 @@
 situations across many matches (and, after the bulk pull, by the win-probability model instead of the provisional
 edge).
 
-Kinds (each record: kind, team (the team choosing), t, state, choice, outcome, edge_change):
+Kinds (each record: kind, team (the team choosing), t, state, choice, actions (what every player did in the next 20 s:
+carrying, to the spawn, fell back, advanced, fought, held, died), outcome, edge_change):
 - enemy_pickup: the enemy picks up a new flag. Choices: already running, ran (picked up within 25 s), held.
 - split_in_base: an enemy split enters the base. Choices: who answered and how fast (on time 15 s, late, missed).
 - power_play: a numbers advantage at main for 10 s+. Choices: pushed (ground or pressure), held.
@@ -42,11 +43,38 @@ def key(sb, tm, t):
             "builds": f"{sb.arch[tm]['kind']} v {sb.arch[3 - tm]['kind']}"}
 
 
+ACT_W = 20           # seconds after a decision point over which each player's action is read
+MOVE = 800           # units of movement toward a pit that count as falling back or advancing
+
+
+def response(sb, tm, t, w=ACT_W):
+    """What each player of team tm actually did in the w seconds after t: died, carrying, to the spawn, fell back
+    (toward its own pit), advanced (toward the enemy pit), fought (dealt or took damage while staying), or held.
+    Returns per role, the counts, and a short key for grouping in the library (e.g. "advanced 3, fell back 2, ...")."""
+    st, m = sb.st, sb.m
+    own, foe = st.geo.pit.get(tm), st.geo.pit.get(3 - tm)
+    t1 = min(t + w, st.end - 1)
+    per = {}
+    for a in st.players[tm]:
+        if not st.alive(a, t): continue
+        p0, p1 = st.pos(a, t)[0], st.pos(a, t1)[0]
+        if any(t < x <= t1 for x in st.death_times.get(a, [])): act = "died"
+        elif any(c["a"] == a and c["s"] <= t1 and c["e"] >= t for c in st.carries): act = "carrying"
+        elif p1 and d(p1, st.geo.spawn[tm]) < 1200 and d(p0, st.geo.spawn[tm]) >= 1200: act = "to the spawn"
+        elif p0 and p1 and d(p1, own) < d(p0, own) - MOVE: act = "fell back"
+        elif p0 and p1 and d(p1, foe) < d(p0, foe) - MOVE: act = "advanced"
+        elif any(sb.fighting(a, x, 2) for x in range(int(t), int(t1) + 1, 2)): act = "fought"
+        else: act = "held"
+        per[m.roles[a]] = act
+    c = collections.Counter(per.values())
+    return {"by_role": per, "counts": dict(c), "key": ", ".join(f"{k} {v}" for k, v in sorted(c.items(), key=lambda kv: (-kv[1], kv[0])))}
+
+
 def rec(sb, kind, tm, t, choice, t_end, **extra):
     tag = sb.m.tag[tm]
     sw = sb.swing(tag, t, t_end)
     return {"kind": kind, "team": tag, "t": round(t), "state": key(sb, tm, t), "choice": choice,
-            "outcome": sw, "edge_change": sw["edge_change"], **extra}
+            "actions": response(sb, tm, t), "outcome": sw, "edge_change": sw["edge_change"], **extra}
 
 
 def enemy_pickups(st, sb):
@@ -132,7 +160,7 @@ def late_game(st, sb):
               for t in range(LATE, st.end, 5)]
         commit = round(sum(at) / max(len(at), 1), 1)
         r = rec(sb, "late_game", tm, LATE, f"{commit} players at the enemy Lord on average", st.end - 1,
-                late_push_and_defend=sb.arch[tm]["late_push_and_defend"], lord_power=sb.arch[tm]["lord_power"])
+                lord_dps_measured=sb.arch[tm]["lord_dps_measured"], healing_monks=sb.arch[tm]["healing_monks"])
         r["won"] = m.tag.get(win) == m.tag[tm] if win else None
         out.append(r)
     return out
@@ -151,5 +179,5 @@ if __name__ == "__main__":
     ep = {"splits": E.splits(st), "windows": F.windows(st), "fights": F.engagements(st, sb, ds)}
     for r in decision_points(st, sb, ep):
         k = r["state"]
-        print(f"{st.m.f(r['t'] * 10):>5} {r['team']:5} {r['kind']:13} {r['choice'][:60]:60} | flags {k['flag']} {k['flag_lead']:+} "
-              f"stand {k['stand']} main {k['main']} dp {k['dp']:+} npcs {k['npcs']:+} | edge {r['edge_change']:+}")
+        print(f"{st.m.f(r['t'] * 10):>5} {r['team']:5} {r['kind']:13} {r['choice'][:40]:40} | {r['actions']['key'][:55]:55} | flags "
+              f"{k['flag']} {k['flag_lead']:+} stand {k['stand']} main {k['main']} dp {k['dp']:+} npcs {k['npcs']:+} | edge {r['edge_change']:+}")

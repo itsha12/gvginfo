@@ -18,8 +18,9 @@ Edges:
 - Death penalty: morale per player and team; effective max health; spike threat (the enemy's typical kill burst) and
   how many players it now kills outright (DP stacking against a spike team).
 - Pit NPCs alive, Lord damage dealt (the 28:00 tiebreak; players don't see it).
-- Build archetype and late-game Lord pressure (hypothesis: a build with direct damage and three monks can push the Lord
-  late while defending its own; a two-monk hex build can't), so a quiet long game can still be a winning one.
+- Build archetype and measured Lord pressure: the summed Lord damage per second of the team's non-healers, from
+  data/benchmarks/lord_damage.json (benchmarks.py lord, measured at the Lord across every stored replay), and the
+  healing monks it keeps. No guessed weights: a profession without measured data gives None.
 
 Usage:  python3 scoreboard.py <report id> [step]      prints the scoreboard every step seconds (default 30)
 In code: sb = Scoreboard(st); sb.at(t) -> dict; sb.edge(tag, t) -> provisional edge value."""
@@ -31,12 +32,24 @@ from common import RUN_SPEED, CARRY_SPEED, RES_EVERY, BOOST_EVERY, SPIKE_REACT
 UP_ON_FLAGS = 10                # seconds of flag lead that count as up on flags
 LATE = 24 * 60                  # the late game (know the tiebreak from here)
 NPC_VALUE = {"knight": 3, "bodyguard": 3, "archer": 1.5}
-LORD_POWER = {"Warrior": 1.0, "Dervish": 1.0, "Assassin": 1.0, "Ranger": 0.8, "Elementalist": 0.6, "Paragon": 0.6,
-              "Ritualist": 0.4, "Mesmer": 0.3, "Necromancer": 0.2, "Monk": 0.0}
+_LORD = None
+def lord_dps(role, prof):
+    """Measured Lord damage per second at the Lord (role first, else profession; None if never measured)."""
+    global _LORD
+    if _LORD is None:
+        import json, os
+        from common import REPO
+        try: _LORD = json.load(open(os.path.join(REPO, "data", "benchmarks", "lord_damage.json")))
+        except (OSError, ValueError): _LORD = {"by_role": {}, "by_profession": {}}
+    r = _LORD["by_role"].get(role.rstrip(" 0123456789").replace("Hammer A", "Hammer").replace("Hammer B", "Hammer"))
+    if r and not r["thin"]: return r["dps"]
+    p = _LORD["by_profession"].get(prof)
+    return p["dps"] if p and not p["thin"] else None
 
 
 def archetype(m, tm):
-    """Team build archetype from the bars, plus its late-game Lord pressure and sustain (healing monks)."""
+    """Team build archetype from the bars (a label for grouping matchups, not a judgement), its measured Lord damage per
+    second if all its non-healers were at the Lord, and its healing monks."""
     ps = [a for a in m.PL if m.team(a) == tm]
     bar = lambda a: {m.sk(b) for b in m.A[a].get("bar", []) if b}
     prof = lambda a: m.A[a].get("p")
@@ -51,9 +64,9 @@ def archetype(m, tm):
     kind = ("WoC spike" if woc >= 2 else "invoke spike" if invoke >= 2 else "paragon spike" if paragon
             else "hex way" if hexers >= 2 and healers <= 2 else "double hammer balance" if hammers >= 2
             else "balance" if front >= 1 else "other")
-    power = round(sum(LORD_POWER.get(prof(a), 0.3) for a in ps if not (prof(a) == "Monk" and "Word of Censure" not in bar(a))), 1)
-    return {"kind": kind, "spike": kind.endswith("spike"), "healing_monks": healers, "lord_power": power,
-            "late_push_and_defend": healers >= 3 and power >= 2.5}
+    dps = [lord_dps(m.roles[a], prof(a)) for a in ps if not (prof(a) == "Monk" and "Word of Censure" not in bar(a))]
+    power = round(sum(x for x in dps if x is not None), 1) if dps and None not in dps else None
+    return {"kind": kind, "spike": kind.endswith("spike"), "healing_monks": healers, "lord_dps_measured": power}
 
 
 class Scoreboard:

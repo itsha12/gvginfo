@@ -16,8 +16,8 @@ fight, what the fight caused, and what the best play was in that situation for t
    - death penalty: morale per player and team, effective max health, the enemy's spike threat and who is now within
      one spike (DP stacking, `K4`);
    - pit NPCs (counts and value), Lord damage dealt (the tiebreak);
-   - build archetype per team (WoC, invoke or paragon spike, hex way, double hammer balance, balance) with its late
-     Lord pressure and healing monks (`L1`);
+   - build archetype per team (WoC, invoke or paragon spike, hex way, double hammer balance, balance: a grouping
+     label), healing monks and measured Lord damage per second (`benchmarks.py lord`, no guessed weights);
    - `edge()`: a provisional single number per team (NPC value + morale/10 - seconds down/30 + Lord damage/300 + flag
      lead/30, against the enemy's); `swing()`: what changed between two moments (deaths, NPCs, caps, boosts, Lord
      damage, DP, flag lead, edge). Weights are first guesses until the win-probability model.
@@ -36,7 +36,8 @@ fight, what the fight caused, and what the best play was in that situation for t
      player was back (NPCs, caps, boosts, Lord damage, DP, flag lead, edge), and whether the winner converted it;
    - monk profiles, numbers windows (power plays), posture.
 5. **Decision points** (`decisions.py`): enemy pickups, splits entering the base, power plays, boost clocks, after a
-   wipe, 24:00. Each records the situation key (phase, flag position and lead, stand, boost clock, numbers, DP, NPC
+   wipe, 24:00. Each records what every player of the deciding team did in the next 20 s (carrying, to the spawn,
+   fell back, advanced, fought, held, died), the situation key (phase, flag position and lead, stand, boost clock, numbers, DP, NPC
    value and Lord damage differences, build matchup), the choice, and the outcome (scoreboard swing). The library
    compares outcomes by choice across matches (`library.py compare <kind> --where ...`); this is how "what is the
    best play here" gets evidence before the win-probability model exists.
@@ -49,6 +50,56 @@ fight, what the fight caused, and what the best play was in that situation for t
    hundreds of matches. It replaces the provisional edge: every fight and decision is then valued by the swing in win
    probability, and "what should they have done" compares the win probability after different choices in similar
    situations.
+
+## From rulings to data (the plan)
+The goal is not to reproduce Denning's or anyone's judgement but to find plays that are better than experts can see,
+by weighing more variables, across more matches, than a person can hold in mind. Rulings stay valuable, in a new role.
+
+**Principle: nothing is a weight or a default unless it is measured or is a definition.** Thresholds that define
+terms (what counts as a fight, up on flags, a split) can come from Denning; anything that says how much something is
+worth, or what the best play is, must come from the data, with its uncertainty. Measured so far: Lord damage per
+second at the Lord (`benchmarks.py lord`), flag run speeds, the flag model's accuracy.
+
+1. **Team strength first.** Rate every guild from all stored match results (1,600+ in `data/matches/`, far more than
+   the replays), e.g. Bradley-Terry or Elo with time decay. Without it, "teams that did X won" mostly measures that good
+   teams do X. Every comparison below controls for the strength gap.
+2. **State = the scoreboard, as numbers.** Per team every 5 s: flag ETA, response and lead, stand and boost clock,
+   carriers and flag duty; alive, down timers, players per zone, group structure; morale per player and effective
+   health against the enemy's spike threat; each pit NPC alive; Lord damage; clock and res timer; build features (not
+   just the archetype label: Auras of Stability, Infuse, prots, interrupts, knockdowns, measured Lord damage); and the
+   strength gap. Exported as one training table per match.
+3. **Win probability (WP).** A model of P(win) from the state, trained on every match (outcome = the result), tested
+   on matches it never saw (grouped by match), checked for calibration (when it says 70%, does that team win about 7
+   in 10?). Start simple (logistic, few features, sensible directions enforced: more NPCs never lowers WP) and add
+   features only when they improve held-out accuracy. It must beat the strength gap alone and simple counts (boosts,
+   deaths) mid-match, or it isn't learning the game. It replaces the provisional `edge()`.
+4. **Value of everything that happens.** Every death, fight, capture, boost, NPC, interrupt on a key skill and
+   knockdown is valued by the change in WP it caused (as football analytics values plays). Fights, conversions and
+   players' contributions are then measured in WP, not by verdicts. Death causes stay as descriptions, not judgements.
+5. **Value of choices.** At each decision point (and at moments found automatically, step 6), estimate the WP after
+   each option that teams actually took in similar states (same flag position, numbers, DP, NPCs, clock, builds,
+   strength gap): matched comparisons plus a model of WP a short time later given state and action. The gap between
+   the best option and the one taken is the decision's cost. Options that teams rarely choose but that do better in
+   matched states are exactly the "more optimal plays nobody sees". Every claim carries a bootstrap interval by match
+   and a minimum number of cases; most will read "not enough data" for a while.
+6. **Discovery, not just the decisions we thought of.** Find the seconds where WP moves most (high-leverage moments)
+   and what preceded them; measure which state variables the WP model leans on most (some will matter more than
+   experts expect, e.g. a runner's route, DP spread, timing against the res); cluster what teams actually do (the
+   per-player action vectors) into choices nobody named. New decision kinds come from here.
+7. **Guard against false discoveries.** Many comparisons produce chance winners: confirm any discovered play on
+   held-out matches before it becomes a tactics line; watch for patches and meta shifts (compare by period); the
+   replays cover only matches gvg.report observed.
+8. **Rulings become the test suite.** Denning's rulings (`data/review_labels.json`) stay as definitions and as test
+   cases: where the data agrees, the ruling is confirmed with numbers; where it disagrees, both sides are shown to
+   Denning with the evidence, and neither silently wins. A Claude line on the tactics page is replaced by a measured
+   statement once the data supports it.
+9. **Proof it works.** On held-out matches: WP beats the baselines; and in matched situations, teams whose choice
+   agreed with the engine's recommended option did better than teams whose choice didn't.
+
+**Order of work:** (1) team strength from stored results and (2) the state export, both possible now and tested on
+the 24 replays; (3) the bulk pull in batches of about 100, with analysis and state tables built in the GitHub Action
+(the workspace can't reach gvg.report); (4) WP v1 and its calibration report; (5) values of events; (6) choice
+values with intervals; (7) discovery; rulings checked at every step.
 
 ## Flag position (Denning, tactics `F1` to `F4`)
 - Up on flags = the better position to get a boost and to run, not the team that capped last.
@@ -113,7 +164,8 @@ fight, what the fight caused, and what the best play was in that situation for t
 - Split detection marks a "flank" when splitters stay near the enemy main group; early-game fights on one side can
   still show as splits with the whole enemy team "answering".
 - Archetypes come from bars by simple rules (e.g. hex way = 2+ hex casters with 4+ hexes and at most 2 healing
-  monks); late Lord pressure weights per profession are a hypothesis (`L1`) to calibrate on 28:00 results.
+  monks); they only group matchups. Lord damage per second is measured, but rangers' figure leans on solo splits into
+  empty pits (less resistance than a full push).
 
 ## Roles and positions
 - Roles come from each player's build and party slot (`replaylib.Match.roles`). Positions are labelled relative to the

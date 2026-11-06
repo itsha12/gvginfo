@@ -364,6 +364,9 @@ against general principles rather than past games. Match-by-match evidence lives
   aggressiveness.
 - `L8` **Claude:** The late push decides even games, and it is only good if the enemy pit has been worn down; a split
   that took no knights over 15 minutes leaves no late win condition. [OG v cope U]
+- `L10` **Claude:** Measured Lord damage per second while at the enemy Lord (24 matches): ranger 37, elementalist 33,
+  warrior 27, paragon 24, dervish 23, necromancer 10, ritualist 10, mesmer 7, monk 5. Midline casters and rangers hit
+  the Lord as hard as the frontline or harder; the ranger figure leans on solo splits into empty pits.
 - `L9` **OG comms:** Watch the clock out loud ("this is 22 minutes"); the late plan (play for 28:00 or push now) has to
   be agreed, not argued during the push. [OG v cope U]
 
@@ -472,10 +475,12 @@ against general principles rather than past games. Match-by-match evidence lives
 - Auto-transcripts garble terms: "X-way" and "axes" mean hex way and hexes; "Ellie" or "LE" means elementalist.
 
 ## 14. Situations: what is the best play here?
-Each card is a recurring decision: the options, what decides between them, the default best play and how sure that
-is. The analysis engine records every one of these moments in a match (situation, choice, outcome), so the defaults
-can be checked against what actually happened across many matches. High = from Denning; medium = from commentary or
-several matches; low = a hypothesis.
+Each card is a recurring decision: the options and the variables that may decide between them. The analysis engine
+records every one of these moments in every match (the full scoreboard at that second, what each player then did, and
+what followed), so the best play is meant to come from the data, not from anyone's opinion, including the defaults
+below. A default is listed only where a principle already exists (from Denning or commentary); it is the hypothesis the
+data tests first, and it is replaced when the data says otherwise. Data status for every card: not yet tested (24
+matches; needs the bulk pull).
 
 - `D1` **The enemy picks up a flag.** Options: run now, hold the flag near the stand (if you hold it), don't run.
   Deciding factors: flag position, who holds the stand and the boost clock, numbers at main, whether your runner can
@@ -498,9 +503,8 @@ several matches; low = a hypothesis.
   the res (`K8`); a team already winning backs out rather than risk a close Lord window (`W8`, `W9`). Confidence:
   medium.
 - `D6` **You are stacking death penalty against a spike build.** Options: keep fighting at main, play in the pit, take
-  boosts to clear it. Deciding factors: how many players are now within one enemy spike, boosts available. Default:
-  stop taking even trades and fight for boosts and safety until the penalty is cleared (`K4`, `K9`). Confidence:
-  medium (Denning's principle; the play is Claude's proposal).
+  boosts to clear it. Variables: how many players are now within one enemy spike, boosts available, flag position.
+  Default: none yet (`K4` says it is a big disadvantage; what to do about it is for the data).
 - `D7` **24:00 and later.** Options: commit to Lord damage, defend, or both. Deciding factors: who is ahead on what the
   players can know, each build's late push and how many monks can defend while others push, pit NPCs left. Default:
   the team behind commits; the team ahead defends and doesn't counter-race (`L4`); a balanced build that has kept its
@@ -532,3 +536,4 @@ several matches; low = a hypothesis.
   holding pit pressure with its ranger split? [Men v HC C]
 - `Q14` How much is a flag lead worth against a pit NPC or a death? (The engine's weights are first guesses until the
   win-probability model.)
+- `Q15` What should a team do when it is stacking death penalty against a spike build (`D6`)?
