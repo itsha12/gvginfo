@@ -117,6 +117,12 @@ def power_plays(st, sb, windows):
     return out
 
 
+def _health(st, tm, t):
+    """Average health % of a team's main group (Denning reads enemy health live from the score share)."""
+    hp = [st.m.snap(a, int(t * 10))["hp"] for a in st.main_group(tm, t) if st.m.snap(a, int(t * 10))]
+    return round(sum(hp) / len(hp)) if hp else 0
+
+
 def boost_clocks(st, sb):
     m, out = st.m, []
     caps = st.caps + [(st.end, None)]
@@ -132,7 +138,8 @@ def boost_clocks(st, sb):
                 foe_d = sum(1 for b in st.players[h] for x in st.death_times.get(b, []) if t - 30 < x <= t)
                 out.append(rec(sb, "boost_clock", ch, t, "running" if running else "not running", t + 40,
                                boost_conceded=tb < c2, extra={"deaths_30s_diff": foe_d - own_d,
-                                                              "main_diff_now": len(st.main_group(ch, t)) - len(st.main_group(h, t))}))
+                                                              "main_diff_now": len(st.main_group(ch, t)) - len(st.main_group(h, t)),
+                                                              "health_diff": _health(st, ch, t) - _health(st, h, t)}))
             k += 1
     return out
 

@@ -26,7 +26,7 @@ K, BOOT, MIN_N = 15, 200, 25
 SIT = ["flag_lead", "stand", "boost_in", "alive", "main", "dp", "npcs", "lord_damage", "minute", "strength_gap"]
 # variables only some decision kinds have (Denning): can the winners reach the enemy pit before its res; is the team
 # losing its fight when the enemy's boost is near
-SIT_EXTRA = {"after_wipe": ["pit_margin_s"], "boost_clock": ["deaths_30s_diff", "main_diff_now"]}
+SIT_EXTRA = {"after_wipe": ["pit_margin_s"], "boost_clock": ["deaths_30s_diff", "main_diff_now", "health_diff"]}
 # build axes (readable, from the skill data): what kind of build each team is; similar situations include similar builds
 AXES = ["spike", "shutdown", "knockdowns", "defence", "sustain"]
 BUILD_ADJUST_FROM = 150      # decisions of a kind before build axes enter the adjustment (they're fixed per match)

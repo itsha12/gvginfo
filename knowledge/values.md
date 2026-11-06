@@ -9,14 +9,20 @@ Win points for the team it happened to, from 30 matches. **Result** = how matche
 | boost | 95 | +5.0 | -0.8 to +10.1 | +1.7 | no |
 | capture | 336 | +2.0 | +0.3 to +4.0 | +3.0 | yes |
 | death (any) | 586 | -4.2 | -7.5 to -1.6 | -3.0 | yes |
-| death: back within 20 s | 100 | -3.1 | -8.4 to +1.8 | -2.6 | no |
-| death: down 20 to 60 s | 203 | -4.2 | -10.1 to +1.3 | -0.0 | no |
-| death: down 60 s or more | 283 | -4.6 | -9.1 to -0.1 | -5.2 | yes |
-| death: healer | 207 | -1.2 | -4.5 to +1.8 | -2.2 | no |
-| death: not a healer | 379 | -5.9 | -10.1 to -2.0 | -3.4 | yes |
-| pit NPC lost: archer | 138 | -4.2 | -8.2 to -0.3 | -1.0 | yes |
-| pit NPC lost: bodyguard | 35 | +0.1 | -6.4 to +6.8 | +6.2 | no |
-| pit NPC lost: knight | 68 | -2.5 | -9.3 to +4.0 | +8.3 | no |
+| death: against a spike build | 220 | -3.8 | -9.6 to +3.2 | -1.8 | no |
+| death: against other builds | 366 | -4.5 | -9.3 to -0.6 | -3.7 | yes |
+| death: back within 20 s | 100 | -3.1 | -8.6 to +1.8 | -2.6 | no |
+| death: down 20 to 60 s | 203 | -4.2 | -10.1 to +1.2 | -0.0 | no |
+| death: down 60 s or more | 283 | -4.6 | -9.0 to -0.2 | -5.2 | yes |
+| death: healer | 207 | -1.2 | -4.4 to +1.8 | -2.2 | no |
+| death: healer in own base or pit, back within 15 s (likely deliberate) | 13 | +3.3 | -7.8 to +20.0 | +4.1 | no |
+| death: healer, other | 194 | -1.5 | -4.4 to +1.0 | -2.7 | no |
+| death: not a healer | 379 | -5.9 | -10.1 to -1.8 | -3.4 | yes |
+| pit NPC lost (any): taken by a spike build | 60 | -1.8 | -9.1 to +9.8 | -1.3 | no |
+| pit NPC lost (any): taken by other builds | 181 | -3.6 | -8.0 to +0.2 | +3.9 | no |
+| pit NPC lost: archer | 138 | -4.2 | -8.3 to -0.7 | -1.0 | yes |
+| pit NPC lost: bodyguard | 35 | +0.1 | -6.0 to +7.0 | +6.2 | no |
+| pit NPC lost: knight | 68 | -2.5 | -9.3 to +3.8 | +8.3 | no |
 
 **What causes are worth.** A node model's strongest range for each top variable, turned into win points: the change in the result's chance (at its real rate) times the result's value.
 

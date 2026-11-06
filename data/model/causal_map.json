@@ -1,6 +1,6 @@
 {
  "about": "The causal map: what can cause what in a GvG match, as reasoned by Denning and Claude and found in data. Each node is measured; each node's model may only use the links pointing into it, measured earlier in time. The data decides how much each link matters (status: hypothesis, supported, rejected; mechanical = a formula, not learned). Denning can add, correct or remove links; each change is logged with its reason. Rendered to knowledge/causal-map.md by tools/replay_analysis/causal_map.py.",
- "version": 7,
+ "version": 8,
  "nodes": [
   {
    "id": "C.builds",
@@ -2345,6 +2345,51 @@
    "tactics": [
     "J10"
    ]
+  },
+  {
+   "from": "P.12",
+   "to": "P.16",
+   "why": "monks die on purpose only for a base res (every 2 minutes on the minute), e.g. in their own base at 17:55; never for a Pact or res signet",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "supported",
+   "tactics": [
+    "K14"
+   ]
+  },
+  {
+   "from": "C.builds",
+   "to": "P.11",
+   "why": "individual bars matter: a Mes/A defending 1v1 with a snare plays differently from one without",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "B23"
+   ]
+  },
+  {
+   "from": "C.builds",
+   "to": "A.plan",
+   "why": "a 2-monk spike build is behind on Lord damage late: NPCs matter less and DP more to it, so after a wipe it may prefer DP to NPCs",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "B23",
+    "D5"
+   ]
+  },
+  {
+   "from": "K.7",
+   "to": "P.14",
+   "why": "staying to fight or falling back near the enemy's boost is read from own monks' energy, enemy health, the enemy's estimated energy and numbers",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "D4"
+   ]
   }
  ],
  "log": [
@@ -2387,6 +2432,11 @@
    "date": "2026-11-06",
    "change": "values.py: every result priced in win points (held-out result and model view), and node causes priced through them",
    "by": "Claude"
+  },
+  {
+   "date": "2026-11-06",
+   "change": "version 8: deliberate deaths only for a base res; individual bars change plays; spike builds weigh DP over NPCs; what decides staying near the enemy boost",
+   "by": "Denning"
   }
  ]
 }

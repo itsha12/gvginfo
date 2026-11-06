@@ -1,6 +1,6 @@
 *Generated from data/model/causal_map.json by tools/replay_analysis/causal_map.py: don't edit this page; tell Claude or edit the JSON (each change is logged with a reason).*
 
-# Causal map (version 7)
+# Causal map (version 8)
 
 What can cause what in a GvG match. Each concept is measured from the replays; the model for each concept may only use the causes listed under it, measured earlier in time, and the data decides how much each matters. Status: **hypothesis** (not yet tested), **supported** or **rejected** by data, **mechanical** (a formula). "Confirmed" = Denning has confirmed the reasoning; the size of the effect still comes from data.
 
@@ -42,6 +42,7 @@ each team's intent in a phase (8v8 brawl, flag game, split pressure, holding in 
 Caused by:
 - **Allocation, Scoreboard, Matchup, Clock**: a plan is inferred from the setup and the situation; plans are found and amended from data (Denning; hypothesis; `J11`)
 - **Build features**: the best play differs by the two teams' builds: decisions are compared with similar situations between similar builds, and choice effects are split by build once there are enough cases (Denning; hypothesis; `J10`)
+- **Build features**: a 2-monk spike build is behind on Lord damage late: NPCs matter less and DP more to it, so after a wipe it may prefer DP to NPCs (Denning; hypothesis; `B23` `D5`)
 
 ### Jobs `A.jobs`
 what each group must do given the plan: strong side converts, weak side holds safely, runner caps and returns, defenders hold the pit. *Measured: to build: from the plan and the numbers in each group.*
@@ -131,6 +132,7 @@ who answers a split and how fast. *Measured: splits.*
 
 Caused by:
 - **Scoreboard, Plan, Clock, Build features, Team strength**: decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out (Claude; hypothesis)
+- **Build features**: individual bars matter: a Mes/A defending 1v1 with a snare plays differently from one without (Denning; hypothesis; `B23`)
 
 ### Res timing `P.12`
 whether a team waits for its dead to return before fighting. *Measured: fights against res timers.*
@@ -151,6 +153,7 @@ Caused by:
 - **Clock, Flag lead**: a power play has a deadline (the enemy runner's return); the team must capitalize on the limited window (Denning; hypothesis; `J6`)
 - **Scoreboard, Plan, Clock, Build features, Team strength**: decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out (Claude; hypothesis)
 - **Kill conversion**: with the enemy's boost near and no run planned, a team that can fight on (a power play) should; a team losing its fight may fall back for safety (Denning; hypothesis; `D4`)
+- **Monk uptime**: staying to fight or falling back near the enemy's boost is read from own monks' energy, enemy health, the enemy's estimated energy and numbers (Denning; hypothesis; `D4`)
 
 ### Taking conditions on oneself `P.15`
 a monk transferring conditions onto itself (Draw Conditions), e.g. Deep Wound and Burning. *Measured: condition effects whose source is the own team.*
@@ -163,6 +166,7 @@ dying before time on purpose (death sets, not healing), monks dying in base befo
 
 Caused by:
 - **Scoreboard, Clock, Plan, Team strength**: decisions are made in a situation (the usual play) (Claude, confirmed; hypothesis)
+- **Res timing**: monks die on purpose only for a base res (every 2 minutes on the minute), e.g. in their own base at 17:55; never for a Pact or res signet (Denning; supported; `K14`)
 
 ## Capacities (what a group can do in its fight)
 
@@ -364,3 +368,4 @@ Caused by:
 - 2026-11-06: version 6: pit lines P9 to P11 (knights first, monk load of a full pit and area damage, two monks against a full pit, leaving before the res); three links marked supported by data (Denning)
 - 2026-11-06: version 7: wipe place limits conversion (D5); falling back near the enemy boost depends on the fight (D4); builds shape the best play (Denning)
 - 2026-11-06: values.py: every result priced in win points (held-out result and model view), and node causes priced through them (Claude)
+- 2026-11-06: version 8: deliberate deaths only for a base res; individual bars change plays; spike builds weigh DP over NPCs; what decides staying near the enemy boost (Denning)

@@ -158,6 +158,13 @@ against general principles rather than past games. Match-by-match evidence lives
 ## 3. Splits
 
 ### Forms
+- `B23` **Denning:** Builds means individual bars too: one skill can change the right play. A Mes/A defending 1v1 with
+  a snare should play differently from the same Mes/A without one. And team builds change what results are worth: a
+  2-monk spike build is behind on Lord damage late, so pit NPCs matter less to it and DP matters a lot. After killing
+  the enemy team, most teams prefer to push for NPCs rather than build DP; for that spike build the weighing is often
+  reversed. **Claude (data, `values.py`, 30 matches):** a pit NPC taken by a spike build cost the defenders about 2
+  points against about 4 when taken by other builds; deaths against spike builds about 4 against about 4.5 (neither
+  clear yet).
 - `S1` **Denning:** Solo splits: one player goes through the back or an unconventional route to hit the enemy pit or
   NPCs. Defended by the 8 monk or 1 damage, or collapsed on.
 - `S2` **Denning:** 3 or 4 man splits push the enemy's backdoor to take NPCs; a 4 man split is a **4-4**.
@@ -385,7 +392,8 @@ against general principles rather than past games. Match-by-match evidence lives
 - `K14` **Denning:** Teams time kills: they may avoid killing a player just before the res, so the kill lands after
   time. The other way round, when a death is very likely or inevitable, the dying team tries to die before time (death
   sets, or not healing on purpose). A team losing and fighting in its base may have monks die before time on purpose,
-  even when the death isn't inevitable, to reset their energy. So a death can be positive rather than negative,
+  even when the death isn't inevitable, to reset their energy. Monks die on purpose only for a base res (every 2
+  minutes, on the minute), never for a Pact or a res signet: a monk dying in its own base at 17:55 is likely deliberate. So a death can be positive rather than negative,
   depending on the situation; look in the data for where dying before time raises the win rate.
 - `K15` **Claude:** First look (30 matches, 509 deaths): deaths in the last 15 s before a res are at chance level (62
   against about 64 expected), deaths in the first 15 s after it are well below (42): the costly deaths are the rare
@@ -395,7 +403,9 @@ against general principles rather than past games. Match-by-match evidence lives
   non-healer's about 6 (clear) but a healer's only about 1 (unclear), and a player back within 20 s about 3 against
   about 5 for one down 60 s or more (neither yet clear). Healers dying cheaply fits `K14` (monks dying before time on
   purpose, or deaths the team has planned for) but could also be monk deaths that come when the fight is already
-  priced as lost. Confidence: low until more batches.
+  priced as lost. Healer deaths in their own base or pit within 15 s of the base res (likely deliberate, `K14`): 13
+  so far, about +3 (unclear); the other healer deaths still cost only about 1.5, so deliberate deaths don't explain
+  the low cost. Confidence: low until more batches.
 - `K5` **Bounty:** A team that always has someone timed or stuck has no moment to play tactics and gets overwhelmed.
   Resurrecting too late wastes time; teams under pressure are often scared to go for the res.
 - `K6` **Bounty:** Target choice costs time: 30 to 40 s failing to kill a monk is fine at 2 minutes, not at 22. A build
@@ -589,7 +599,13 @@ usual one in win chance, adjusted for the situation, with a range from resamplin
   has no reason to hold ground and may as well fall back for safety. It depends on the situation. **Data (30
   matches):** not running and falling back cost about 12 points against not running and fighting (clear); the teams
   that fell back were losing their fight about as often as those that fought on (6 of 14 against 12 of 36), so losing
-  the fight doesn't explain it yet.
+  the fight doesn't explain it yet. Health and numbers don't either: the teams that fell back were level on main-team
+  health (median +0.5%, ahead in 7 of 14) and more often had more players at main (4 of 14) than those that fought
+  on (median -2.5%, 4 of 36 with more players). The cost holds after adjusting for both (-12, clear): the teams falling
+  back were mostly not in a losing fight, which fits Denning's "likely a mistake". Energy isn't recorded.
+  **Denning:** what decides staying to fight against falling back: own monks' energy, enemy health (live in the score
+  share), the enemy's estimated energy, and any numbers advantage. (Replays have health and numbers; energy is not
+  recorded and would have to be estimated from casts.)
 - `D5` **You just won a wipe.** Options: push the pit, take the flag and the stand, or reset. Deciding factors: enemy
   pit NPCs, the res timer, the clock, whether you are already winning. Default: convert straight into pit NPCs before
   the res (`K8`); a team already winning backs out rather than risk a close Lord window (`W8`, `W9`). Confidence:
@@ -598,6 +614,8 @@ usual one in win chance, adjusted for the situation, with a range from resamplin
   after a wipe looked better than pushing the pit (about +12 points, 12 cases), but 7 of those 12 couldn't reach the
   enemy pit before its res (median margin 7.5 s, against 26 s for pushes): most likely the wipe's place, as Denning
   suspected. To recheck within reachable and unreachable wipes once there are enough.
+  **Denning:** for a 2-monk spike build the weighing is often the reverse: after a wipe, DP on the enemy is worth more
+  than NPCs (`B23`).
 - `D6` **You are stacking death penalty against a spike build.** Options: keep fighting at main, play in the pit, take
   boosts to clear it. Variables: how many players are now within one enemy spike, boosts available, flag position.
   Default: none yet (`K4` says it is a big disadvantage; what to do about it is for the data).

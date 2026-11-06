@@ -38,18 +38,22 @@ def _events(rid):
     if os.path.exists(p): return json.load(open(p))
     from replaylib import Match
     from state import GameState
-    from phases import healer
+    from phases import healer, zone_of
+    from scoreboard import archetype
     st = GameState(Match.from_branch(rid)); m = st.m
+    spike = {tm: archetype(m, tm)["spike"] for tm in st.teams}
     ev = []
     for tm in st.teams:
         for a in st.players[tm]:
             for tt in st.death_times.get(a, []):
+                where, _ = st.pos(a, max(tt - 0.5, 0))
                 ev.append({"kind": "death", "team": m.tag[tm], "t": tt, "healer": bool(healer(m, a)),
-                           "down_s": round(st.next_res(tt) - tt), "role": m.roles.get(a)})
+                           "down_s": round(st.next_res(tt) - tt), "role": m.roles.get(a),
+                           "zone": zone_of(st, tm, where) if where else None, "enemy_spike": spike[3 - tm]})
     for a, tt in st.npc_dead.items():
         n = st.geo.npcs.get(a)
         if n and n["kind"] != "guild_lord" and n.get("team") in st.teams:
-            ev.append({"kind": "npc", "npc": n["kind"], "team": m.tag[n["team"]], "t": tt})
+            ev.append({"kind": "npc", "npc": n["kind"], "team": m.tag[n["team"]], "t": tt, "enemy_spike": spike[3 - n["team"]]})
     for tt, tm in st.caps:
         if tm in st.teams: ev.append({"kind": "capture", "team": m.tag[tm], "t": tt})
     cl = st.caps + [(st.end, None)]
@@ -77,9 +81,16 @@ def _groups(e):
     k = e["kind"]
     if k == "death":
         d = e["down_s"]
-        return ["death (any)", "death: healer" if e["healer"] else "death: not a healer",
-                "death: back within 20 s" if d <= 20 else "death: down 20 to 60 s" if d < 60 else "death: down 60 s or more"]
-    if k == "npc": return [f"pit NPC lost: {e['npc']}"]
+        g = ["death (any)", "death: healer" if e["healer"] else "death: not a healer",
+             "death: back within 20 s" if d <= 20 else "death: down 20 to 60 s" if d < 60 else "death: down 60 s or more",
+             "death: against a spike build" if e.get("enemy_spike") else "death: against other builds"]
+        if e["healer"]:   # Denning (K14): a monk dying in its own base just before the base res is likely deliberate
+            g.append("death: healer in own base or pit, back within 15 s (likely deliberate)"
+                     if d <= 15 and e.get("zone") in ("own base", "own pit") else "death: healer, other")
+        return g
+    if k == "npc":
+        return [f"pit NPC lost: {e['npc']}", "pit NPC lost (any): taken by a spike build" if e.get("enemy_spike")
+                else "pit NPC lost (any): taken by other builds"]
     return {"capture": ["capture"], "boost": ["boost"]}[k]
 
 
@@ -126,7 +137,7 @@ def causes(values):
     """Price states from the node models: change in the result's chance (at the node's real base rate) x the result's
     value. Uses the strongest range of each of the node's top terms."""
     V = lambda g: (values.get(g) or {}).get("result")
-    npc = [(v["n"], v["result"]) for g, v in values.items() if g.startswith("pit NPC lost") and "result" in v]
+    npc = [(v["n"], v["result"]) for g, v in values.items() if g.startswith("pit NPC lost: ") and "result" in v]
     plan = {"deaths": ("death (any)", V("death (any)"), "per 10 s in that state"),
             "kill_conversion": ("death (any)", -V("death (any)") if V("death (any)") is not None else None,
                                 "per burst, for the attacking team"),

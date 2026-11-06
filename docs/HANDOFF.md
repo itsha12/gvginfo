@@ -220,7 +220,11 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
 - Session 4l: Denning on wipes and the boost clock (`D5`: a wipe at the stand can't be turned into NPCs before the res,
   and 7 of 12 "took the flag" cases couldn't reach the pit in time; `D4`: falling back with the enemy's boost near is
   likely a mistake unless losing the fight, it depends); builds in the usual play (similar builds, staged adjustment,
-  splits by build); step 7 built (`values.py`, knowledge/values.md, learning report section 8); causal map v7.
+  splits by build); step 7 built (`values.py`, knowledge/values.md, learning report section 8); causal map v7. Then
+  Denning on deliberate deaths (base res only, `K14`), individual bars and spike builds weighing DP over NPCs (`B23`),
+  and what decides staying near the enemy boost (`D4`: monk energy, enemy health, enemy energy, numbers); boost-clock
+  health difference added; values split by deliberate healer deaths and by the opponent's build; causal map v8.
+  Next idea: per-player build features (a snare on the defending Mes/A) and an energy estimate from casts.
 - Session 4k: Denning on pits (`P9` knights first, monk load of a full pit and area damage; `P10` two monks against a
   full pit; `P11` attackers leave before the res); area damage added; step 6 built (usual play); causal map v6.
 - Session 4j: Denning on drops (`F33`: where a drop happens; parked in base = deciding not to run; long hand-offs away
