@@ -3,8 +3,8 @@
  "delay_s": 10,
  "ramp_s": 3,
  "amulet_cap_applied": false,
- "deaths_used": 27,
- "surviving_lords": 10,
+ "deaths_used": 31,
+ "surviving_lords": 11,
  "median_error_at_death": 332,
  "grid": {
   "delay 2 s, step 1 s, cap not applied": {

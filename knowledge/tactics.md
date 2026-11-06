@@ -615,13 +615,12 @@ usual one in win chance, adjusted for the situation, with a range from resamplin
   the boost clock, numbers, death penalty. Default: run in time to cap before the boost unless it costs a wipe
   (`F18`, `F26`, `F29`). Confidence: medium. **Denning:** falling back there is likely a mistake: a team that isn't
   going to run may gain by staying and fighting, possibly on a power play; but a team losing the fight and not running
-  has no reason to hold ground and may as well fall back for safety. It depends on the situation. **Data (30
-  matches):** not running and falling back cost about 12 points against not running and fighting (clear); the teams
-  that fell back were losing their fight about as often as those that fought on (6 of 14 against 12 of 36), so losing
-  the fight doesn't explain it yet. Health and numbers don't either: the teams that fell back were level on main-team
-  health (median +0.5%, ahead in 7 of 14) and more often had more players at main (4 of 14) than those that fought
-  on (median -2.5%, 4 of 36 with more players). The cost holds after adjusting for both (-12, clear): the teams falling
-  back were mostly not in a losing fight, which fits Denning's "likely a mistake". Energy isn't recorded.
+  has no reason to hold ground and may as well fall back for safety. It depends on the situation. **Data (34
+  matches, ENGINE 17):** not running and falling back cost about 8 points against not running and fighting (clear),
+  with no sign the teams that fell back were already sliding (placebo check over the 30 s before: +0.9). Split by the
+  fight state (expected deaths in the next 10 s): in even fights falling back cost about 13 points (12 cases against 38);
+  too few teams fell back while clearly losing their fight (3) to compare yet. So far this fits Denning: falling back
+  is the mistake when the fight isn't being lost. Energy isn't recorded.
   **Denning:** what decides staying to fight against falling back: own monks' energy, enemy health (live in the score
   share), the enemy's estimated energy, and any numbers advantage. (Replays have health and numbers; energy is not
   recorded and would have to be estimated from casts.)

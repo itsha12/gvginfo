@@ -174,6 +174,10 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
 4. Then: grow the batches once learning reports settle; discovery and choice values as data accumulates.
 
 ## Current state
+- Batch 2 done (34 matches; One v Men, yM v OG, Dz v Crew, BcS v Rum): win model still not better than strength alone
+  on log loss (0.581 against 0.514; accuracy 75% against 66%), the gap narrowing; boost clock "not running, fell back"
+  -8.2 (clear, no pre-trend), -12.7 in even fights (`D4`); fight-state bands (0.25) leave few "losing" or "winning"
+  cases: consider bands from the data (thirds). Next: batch 3.
 - ENGINE 17 refitted on batches 0 and 1 (2026-11-06; reports batch_00.md, batch_01.md). The older numbers further down
   this section were measured before the fixes. Now: the win model is NOT better than strength alone on log loss (0.657
   against 0.562; accuracy 72% against 62%: it ranks better but is overconfident at 30 matches); the knights and

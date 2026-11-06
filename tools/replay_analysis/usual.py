@@ -36,6 +36,11 @@ SIT_EXTRA = {"after_wipe": ["pit_margin_s"], "boost_clock": ["deaths_30s_diff", 
              "split_in_base": ["split_size", "defender_snare", "attacker_self_defence", "main_diff_now", "health_diff"]}
 # per-player flags a choice's effect is also split by (Denning, B23), besides own spike build
 SPLIT_BY = {"split_in_base": ["defender_snare"]}
+# kinds whose choice effects are also split by the fight state (fightstate.py; Denning D4: falling back is likely a
+# mistake unless losing the fight). Bands are definitions: losing = at least FIGHT_BAND more expected own deaths than
+# enemy deaths in the next 10 s, winning = the reverse, else even.
+FIGHT_SPLIT = {"boost_clock", "power_play", "enemy_pickup"}
+FIGHT_BAND = 0.25
 # build axes (readable, from the skill data): what kind of build each team is; similar situations include similar builds
 AXES = ["spike", "shutdown", "knockdowns", "defence", "sustain"]
 BUILD_ADJUST_FROM = 150      # decisions of a kind before build axes enter the adjustment (they're fixed per match)
@@ -178,9 +183,12 @@ def analyse(recs):
         splits = [("own build", lambda r: r["sit"]["own_spike"], {0: "not spike", 1: "spike"})]
         splits += [(f, (lambda f: lambda r: int(bool((r.get("extra") or {}).get(f))))(f), {0: "no", 1: "yes"})
                    for f in SPLIT_BY.get(kind, [])]
+        if kind in FIGHT_SPLIT:
+            band = lambda r: (-1 if r["sit"]["fight_state"] <= -FIGHT_BAND else 1 if r["sit"]["fight_state"] >= FIGHT_BAND else 0)
+            splits.append(("fight", band, {-1: "losing the fight", 0: "even fight", 1: "winning the fight"}))
         for c in choices[1:]:
             for name, get, labels in splits:
-                for sp in (0, 1):
+                for sp in labels:
                     a_ = [r["wp_change"] for r in L if r["choice2"] == c and get(r) == sp]
                     b_ = [r["wp_change"] for r in L if r["choice2"] == ref and get(r) == sp]
                     cell = {"choice": c, name: labels[sp], "n": len(a_), "n_usual": len(b_)}
@@ -188,6 +196,8 @@ def analyse(recs):
                         cell["raw_difference"] = round(float(np.mean(a_) - np.mean(b_)), 1)
                     elif name != "own build":
                         cell["note"] = "too few yet"
+                        cell["raw_mean"] = round(float(np.mean(a_)), 1) if a_ else None
+                        cell["raw_mean_usual"] = round(float(np.mean(b_)), 1) if b_ else None
                     else: continue
                     by_build.append(cell)
         out[kind] = {"n": len(L), "matches": len(matches), "reference": ref, "choices": rows, "adjusted_for": adj_cols,

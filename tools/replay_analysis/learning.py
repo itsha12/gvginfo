@@ -190,6 +190,16 @@ def report():
                          + (f"; in the {U.PRE_S} s before: {c['pre_trend_vs_usual']:+} [{c['pre_interval'][0]:+}, {c['pre_interval'][1]:+}]"
                             + (" ALREADY DIFFERENT BEFORE: partly who chooses it" if c.get("selection_warning") else "")
                             if "pre_trend_vs_usual" in c else ""))
+            fc = [b for b in x.get("by_build", []) if "fight" in b]
+            if fc:
+                L.append(f"  By fight state (fightstate.py; losing/winning = {U.FIGHT_BAND}+ more expected deaths in the next 10 s; "
+                         f"raw win-chance change, against the usual choice in the same band):")
+                for b in fc:
+                    if "raw_difference" in b:
+                        L.append(f"  - {b['choice']}, {b['fight']}: {b['raw_difference']:+} (n {b['n']} against {b['n_usual']})")
+                    elif b.get("n"):
+                        L.append(f"  - {b['choice']}, {b['fight']}: too few yet (n {b['n']} against {b['n_usual']}; "
+                                 f"means {b.get('raw_mean')} against {b.get('raw_mean_usual')})")
             L.append("")
         cc = U.collapse_cost(U.wp_change(U.load("/tmp/ga")))
         if cc:
