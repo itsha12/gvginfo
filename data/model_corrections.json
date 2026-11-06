@@ -1,4 +1,11 @@
 {
  "about": "Denning's corrections to the win-probability model. Kinds: direction (curve can only rise or fall: increasing true/false), drop (variable not used), interaction (always offer this pair, written 'a & b'), cap (effect limited to max_points). Each needs a reason. Every fit reports accuracy with and without them.",
- "corrections": []
+ "corrections": [
+  {
+   "term": "lord_damage_diff & minute",
+   "kind": "interaction",
+   "added": "batch 3",
+   "reason": "Denning (agreeing with Claude's batch 3 finding): Lord damage only decides a match at 28:00 (the tiebreak); before that a team can deal a lot of Lord damage and still lose to a Lord kill, so Lord damage should be read together with the clock."
+  }
+ ]
 }
