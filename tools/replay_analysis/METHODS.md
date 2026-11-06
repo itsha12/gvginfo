@@ -414,6 +414,21 @@ moments better than attackers and defenders alone (AUC 0.786 against 0.755) but 
 `lord_damage` still adds (36% of the spread explained); `lord_kill` is no better than attackers and defenders yet
 (AUC 0.96 for both: who is in the pit nearly decides it).
 
+## Training batches 2 to 5 and why chains (2026-11-06)
+- Batches of 6 random replays (Denning); 53 matches after batch 5. Learning reports gained: a data-integrity section,
+  the placebo (pre-trend) check, choice effects split by fight-state thirds (`usual.FIGHT_SPLIT`, thirds from the data),
+  close-game and resampled accuracy, leverage and behaviour clusters, a detailed snapshot (`snapshot.py`) and why
+  chains (`why.py`).
+- Correction logged by Denning: `lord_damage_diff & minute` (Lord damage only decides at 28:00). Tested each batch.
+- Why chains (`why.py <id> <m:ss>` or `why.py top N`): result and worth (win model without the match, with the
+  variables that moved it), mechanics per death (deaths node without the match, the contributions that raised risk most,
+  a few seconds before), setup (the phase before: groups, jobs, numbers, capacities where the deaths came), the decision
+  before (with the usual play's value), context. First test (batch 5) showed the mechanics step stops at "health was
+  low" (a symptom), fight consequences overlap the next fight, and the decision step is too coarse; the fixes are listed
+  in docs/HANDOFF.md ("Next session: fixes to do").
+- Fixed: `episodes.flag_cycles` could loop forever on two carriers passing the flag back and forth in one recorded
+  second (BcS v yM b88983e3).
+
 ## Flag position (Denning, tactics `F1` to `F4`)
 - Up on flags = the better position to get a boost and to run, not the team that capped last.
 - ETA to capture: carrying = distance to the stand / 205 units per second; a dropped flag = the nearest runner's walk

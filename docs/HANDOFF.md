@@ -94,16 +94,46 @@ Claude should then:
 
 # Match replay analysis
 
-**Status:** Active. Last updated 2026-11-06 (session 4m: engine review against the goal; data fixes and new layers built, not yet refitted).
+**Status:** Active. Last updated 2026-11-06 (session 4m: engine review, ENGINE 17 data fixes and new layers, gvg.report
+players and Elo, refit of batches 0 and 1, training batches 2 to 5, first why chains).
 
 ## Start the next chat with
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/HANDOFF.md (the "Match replay
-> analysis" section), knowledge/tactics.md, knowledge/match-reviews.md, tools/replay_analysis/METHODS.md and
-> data/review_labels.json, then `git fetch --depth 1 origin +replays:refs/remotes/origin/replays`,
-> `pip install --break-system-packages interpret-core`, and run `python3 tools/replay_analysis/analyze.py --all --out
-> /tmp/ga` and `library.py build`. Then refit batches 0 and 1 with the ENGINE 17 fixes (`learning.py`, which also
-> builds the fight state), explain to Denning what changed against the old batch 1 report, then run training batch 2
-> (`batch.py pick 4`, fetch, `batch.py add`, `learning.py`), or: <your request>
+> analysis" section, especially "Next session: fixes to do"), knowledge/tactics.md, tools/replay_analysis/METHODS.md
+> and data/review_labels.json, then `git fetch --depth 1 origin +replays:refs/remotes/origin/replays`,
+> `pip install --break-system-packages interpret-core`, run `python3 tools/replay_analysis/analyze.py --all --out
+> /tmp/ga` and `library.py build`. Then do the why fixes, show Denning the why of 5 events with the improved chains,
+> and run batch 6 (`batch.py pick 6`, push, wait for "Fetch replays", fetch the branch, `batch.py add`, `benchmarks.py
+> lord` and `regen`, `analyze.py --all`, `library.py build`, `learning.py`), or: <your request>
+
+How Denning wants batch results reported: the WHY of 5 match events (why.py chains, checked and explained in words),
+not a broad breakdown and not one highlighted item. Keep the focus on why things happened.
+
+## Next session: fixes to do (from the first why chains, batch 5)
+1. **Mechanics stop at a symptom.** The deaths node's top contribution is nearly always "health was low". Why chains
+   must explain what dropped the health: who hit, with which skills and damage kinds (death forensics already record
+   `damage_by`, `damage_kind`), prots cast or missed, monk skills interrupted before the death (`interrupts_on_monks`),
+   knockdowns, Daze, hexes; rank causes of the health drop, and show health itself only as the state.
+2. **Why damage uptime was low.** Capacities give lost damage-seconds by cause (`lost_damage_s`: moving, idle, knocked
+   down, Blind, Weakness...). "Moving" dominates and is not a why: split it into kiting (moving away from enemies),
+   chasing (toward a target out of range), repositioning and running. Team v cope 10:00 (cope 12% uptime, 95 s
+   "moving") is the test case.
+3. **Fight windows overlap.** A fight's consequence runs "until all are back", so a single death at Team v cope 9:59
+   took the blame for the 10:27 wipe. End a fight's consequence at the next fight's start (report the cascade
+   separately) and chain linked fights explicitly.
+4. **Decisions too coarse.** The why chain's decision step uses the unrefined choice ("held") and a kind-wide average
+   (+2.3 for every enemy pickup). Use the refined choice and compare only with similar situations (the usual play's
+   15 nearest decisions), and pick the decision that actually set up the fight (e.g. the split before Team v cope
+   10:27, staying at the stand while up on flags in BcS v Men 1:00), not just the last one in 45 s.
+5. **Recording gaps.** Some deaths carry almost no recorded damage (cope's 8 Monk at 10:42: 13 damage). Flag them in
+   the chain as "not recorded" instead of explaining them; check how often it happens (integrity.py).
+6. **"Why, in short" wording.** Build it from the strongest link at each step (setup, mechanism, decision), in
+   Denning's terms, and say when the engine can't tell.
+7. **Open questions for Denning from batch 5:** cope's low uptime at Team v cope 10:00 (kiting the hexes, chasing, or
+   else?); whether EDGE's early 4/3 split (push side and stand) at hook v EDGE 1:00 is normal or a mistake; whether to
+   keep unrecorded-damage moments in why chains (flagged) or drop them.
+Smaller: the regeneration fit is flat (delay 10 to 20 s fit equally); lord_damage_diff and flag_lead still bend at the
+extremes; fight-state thirds give small cells in the boost-clock split.
 
 ## Goal
 Find plays that are better than experts can see, from data across many matches: not to mirror Denning's or anyone's
@@ -126,7 +156,7 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
   model and its accuracy, the death causes, known limits.
 - `data/review_labels.json`: every ruling Denning has made on a specific moment (the calibration record).
 
-## The analysis engine (`tools/replay_analysis/`, ENGINE 16)
+## The analysis engine (`tools/replay_analysis/`, ENGINE 17)
 1. `common.py`: shared thresholds, spike anchors and skill lists.
 2. `state.py`: game state every second; flag spawns; NPC positions (`data/maps/`, written only with `--save-maps`).
 3. `scoreboard.py`: every edge per team at any second: flag position (ETA, response on the next exchange, lead,
@@ -153,18 +183,19 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
     per-player skill flags), `nodes.py` (node models: deaths, kill conversion, flag answers, pit NPC loss, Lord damage),
     `usual.py` (the usual play per decision kind and each choice's effect in win chance, compared between similar
     builds, with per-kind situation extras and splits by build and by player skills), `values.py` (every result and
-    node cause priced in win points), `causal_map.py` (render and check `data/model/causal_map.json`, now version 9).
+    node cause priced in win points), `causal_map.py` (render and check `data/model/causal_map.json`, now version 10).
+12. Explaining: `why.py` (why chains for one fight or the N biggest of a batch; learning report section "Why"),
+    `snapshot.py` (detailed descriptive learnings: runners, flag answers, kill participation by skill, interrupts,
+    knockdowns, spikes survived, monks, deaths; report section 9), `discovery.py` (leverage, behaviour clusters).
+13. gvg.report sync: `tools/gvgreport/directory.mjs` (player directory, guild Elo) and `merge_players.py`; workflows
+    "Sync gvg.report players and Elo" and "Probe gvg.report" (endpoints on branch `probe`).
 
 ## Plan (see METHODS.md "From rulings to data" and "The causal model")
-- Causal model: steps 1 to 7 built (`phases.py`; `buildfeat.py`; `nodes.py` node models for deaths, kill conversion,
-  flag answers, pit NPC loss and Lord damage, all beating simple baselines on unseen matches; `usual.py`, the usual
-  play and each choice's effect in win chance, now compared between similar builds; `values.py`, every result and
-  node cause priced in win points; per-player skill flags). Next: resume slow training (3 to 5 matches a batch, `batch.py pick 4`, learning
-  report each time); value a second of flag answer and a point of Lord damage; build-specific choice effects as cells
-  fill. The win model alone explains who is winning, not why (Denning).
-0. Done: model structure on the 24 stored matches (batch 0). Next: slow training, 3 to 5 random new replays per
-   batch (`batch.py pick`), a learning report and Denning's answers after each. No large pull until the reports
-   settle.
+- Now: make the why chains explain causes (fixes above), then keep training in batches of 6 with the why of 5 events
+  after each. Value a second of flag answer and a point of Lord damage; build-specific choice effects as cells fill.
+  The win model alone explains who is winning, not why (Denning).
+0. Done: model structure (batch 0), ENGINE 17 fixes, batches 1 to 5 (53 matches). Next: batches of 6 random replays
+   (`batch.py pick 6`), the why of 5 events and Denning's answers after each. No large pull until the reports settle.
 1. Done: Bounty (6), Nick ([Men v Team]), Maga's OG comms (4), 4 good-guild matches, the engine, death rulings 1 and 2,
    the engine review (bugs fixed, scoreboard, fights, decision points, tactics restructure).
 2. Now: calibrate on Denning's rulings (remaining [Men v HC C] deaths and power plays, judged as fights), each ruling
@@ -173,68 +204,48 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
    defending a split, always collapse vs one damage pushing, double running, holding vs running when up on flags).
 4. Then: grow the batches once learning reports settle; discovery and choice values as data accumulates.
 
-## Current state
-- Batch 5 done (53 matches, 7 new incl. one "latest" request: BcS v Men, DRKN v yM, EDGE v Fun, Team v cope, Team v SKT,
-  One v fM, hook v EDGE). Win model 0.530 against strength 0.439. Denning: after each batch explain the WHY of 5 match
-  events, not a broad breakdown. Built `why.py` (why chains: result and worth, mechanics per death from the deaths
-  node, setup per group with capacities, the decision before, context; learning report section "Why"). First test of
-  it showed its limits: the mechanics step stops at "health was low" (a symptom, not a cause); consequence windows
-  swallow the next fight; the decision step uses the coarse choice and a kind-wide average. Next: deepen the why
-  (damage sources and skills, prots and interrupts on monks, why damage uptime was low), then batch 6.
-- Batch 4 done (46 matches, 6 new: push v OG, push v cell, chic v DUM, げえええ v chic, Crew v BcS, yM v BcS). Win model
-  0.530 against strength 0.448 (gap narrowing); correction "lord_damage_diff & minute" (Denning) tested: no change
-  (0.530 with and without). Learning reports now end with a detailed snapshot (`snapshot.py`: runners, flag answers,
-  kill participation by skill, interrupts, knockdowns, spikes survived, monks, deaths); Denning wants a broad snapshot
-  of learnings after each batch, not one highlight. Next: batch 5.
-- Batch 3 done (40 matches, 6 new: 옷옷옷옷 v Men, xxx v GWSC, OG v chic, yM v げえええ, Book v Team, BcS v yM).
-  Interactions switched on (40 matches): morale with archers, morale with total DP, minute with morale. Win model still
-  not better than strength alone (0.563 against 0.469; gap -0.094, range -0.29 to +0.08). Boost clock "not running, fell
-  back" -13.6 (clear, no pre-trend); by fight-state thirds (Denning) the cost sits in even and winning fights (`D4`).
-  npc_loss beats its baseline again. lord_damage_diff still runs backwards: it only matters at 28:00 (the tiebreak),
-  while teams dealing much Lord damage can still lose to a Lord kill (proposed correction: interaction with minute).
-  Fixed: a hand-off loop in `episodes.flag_cycles` hung analysis of BcS v yM. Regeneration fit is flat (delay 10 to 20
-  s all fit). Next: batch 4.
-- ENGINE 17 refitted on batches 0 and 1 (2026-11-06; reports batch_00.md, batch_01.md). The older numbers further down
-  this section were measured before the fixes. Now: the win model is NOT better than strength alone on log loss (0.657
-  against 0.562; accuracy 72% against 62%: it ranks better but is overconfident at 30 matches); the knights and
-  Bodyguard artifacts are gone (a knight lost is now -8.8 win points, clear); pre-trend checks show "held, fell back" in
-  power plays (-11.8 before the decision) and "ran, advanced" on enemy pickups were partly who chooses them; after a
-  wipe "took the flag" is no longer clear (-6.3, with +10.5 already before); the boost-clock "fell back" effect shrank
-  to -8.4 (not clear); npc_loss no longer beats attackers and defenders on log loss; lord_kill doesn't yet either.
-  Open puzzle: lord_damage_diff and flag_lead curves still turn over at the extremes.
-- Strength (ENGINE 17): fitted + lineup blend predicts the latest third of stored results at log loss 0.309 (89.5%);
-  the gvg.report ladder adds nothing once those are known. MAT extra weight: x1.5 best, barely better than x1; more
-  hurts (`data/model/lineup.json`). Context priors (matchup, map, flux) don't beat strength yet: off.
-- Lord: 28 of 30 matches ended with a Lord kill. Regeneration from Denning (10 per second always, +2 rising to +10 out
-  of combat); the delay (about 10 s) and rise (+2 every 3 s) measured; gvg.report's Lord damage is already capped by the
-  Amulet of Protection.
-- gvg.report: player directory and guild Elo synced (`Sync gvg.report players and Elo` workflow, also inside Update
-  matches; `data/gvgreport/`). 482 new people and 65 of Denning's extended in `data/aliases.json` (his assignments
-  win; additions listed under `gvgreport_added`). Elo rebuilt in time order in `strength.py` (within 23.5 points of
-  gvg.report's table).
-- Stored replays: 30 on the `replays` branch: batch 0 (24) and batch 1 (6: 4 random picks plus the 2 newest from the
-  standing "latest:2" request).
-- Model after batch 1: beats team strength alone on unseen matches (79% vs 64% of winners, log loss 0.562 vs 0.633;
-  still 79% vs 61% without the 3 short stomps). Open puzzle: the knights and Bodyguard curves run backwards although
-  winners had more knights late in 9 of 14 matches; forcing the direction made held-out predictions slightly worse
-  (0.576), and the split candidate (split_diff) didn't explain it (0.613). Awaiting Denning's view and more batches.
-- Library on 24 matches: 376 deaths in 176 fights (45 wipes), 886 decision points, 279 flag cycles, 945 findings.
-- Death causes: backline down 96, caught away from its group 58, out-pressured despite support 45, coordinated enemy
-  pressure 45, spike 31, out of range of its monks 24, out-damaged despite prots 21, chased down while retreating 20,
-  lack of support 19, forced flag run 12, outnumbered while up on flags 3, overextended 2.
-- Flag model: answer-time error median -5 s (half within 15 s); lead sign matches the real exchange in 152 of 200.
-- Values (30 matches, `values.py`, win points for the team it happened to): a non-healer death -6 (clear), a healer
-  death -1.5 (unclear; likely deliberate monk deaths in base just before the base res +3, 13 cases), a capture +2
-  (clear), a boost +5 (not yet clear), an archer lost -4 (clear), a knight -3 and a Bodyguard 0 (unclear). The win
-  model's +8 for losing a knight is its own error: the backwards curve is the model's, not the game's.
-- Usual play (30 matches): power play held instead of pushed about -4 (clear); with the enemy's boost 30 s away, not
-  running and falling back about -12 (clear; those teams were mostly not losing their fight on health or numbers);
-  after a wipe, taking the flag +12 (most of those wipes couldn't reach the enemy pit before its res, `D5`); split
-  answers: with a snare on the holding defender a collapse killed 5 of 10, without 0 of 14 (`S31`, cells small).
-- Collapse cost (39 collapses): collapsers away a median 16 s; the 6 kills came fast (median 6 s away); none of the
-  collapses lasting 30 s or more killed, and those of 60 s or more cost the main fight about 3.5 deaths (`S32`).
+## Current state (after batch 5, 53 matches)
+- Batches: 0 (24), 1 (6), 2 (4), 3 (6), 4 (6), 5 (7 incl. one "latest" request); reports `data/model/reports/
+  batch_00.md` to `batch_05.md` (batches 0 and 1 refitted with ENGINE 17). Older numbers in earlier handoffs were
+  measured before the ENGINE 17 fixes (NPC roster leak, truncated RACK v hdm) and are superseded.
+- Win model: not yet better than team strength alone (held-out log loss 0.530 against 0.439; accuracy 77% against
+  73%; gain -0.09, 90% range -0.28 to +0.06). It ranks winners better but is overconfident; the gap narrowed from
+  batch 1 to 4 and held in batch 5. Interactions on since 40 matches (morale with archers, with total DP, with the
+  clock). Leans on morale, players within one spike, the stand, main-group numbers, flag lead. Correction logged:
+  Lord damage read with the clock (Denning; tested, about neutral).
+- Strength: blend of fitted guild rating and lineup (players who played, MAT x2 by measurement) predicts the latest
+  third of stored results at log loss 0.31 (89%); gvg.report's Elo, rebuilt in time order, beats the in-game ladder
+  but adds nothing on top. Context priors (matchup, map, flux) off: no gain yet.
+- Node models (53 matches, unseen matches): deaths AUC 0.917 (baseline 0.804); kill conversion 0.802 (0.68); flag
+  answer typical error 17 s (27 s; 68% of spread); pit NPC loss 0.826 (0.759); Lord damage 37% of spread; Lord kill
+  0.968 (0.953).
+- Values (win points, clear unless noted): a death -6 (healer -5.8, non-healer -6.1), a capture +3.2, a knight lost
+  -7.8; a boost, an archer or the Bodyguard not clear yet.
+- Usual play (53 matches; placebo check over the 30 s before): after a wipe, taking the flag instead of pushing the
+  pit -16 (clear, not explained by who chooses it); at the boost clock, not running and falling back -6 and not running
+  and advancing -13 (both clear; by fight-state thirds falling back costs most in even and winning fights, `D4`);
+  split in base, defending without a collapse +10.7 against collapsing (clear); several enemy-pickup and power-play
+  differences are partly who chooses them. Leverage: the choice matters most after a wipe and at the boost clock.
+- Detailed (batch 4 snapshot, 46 matches): Mes/A runs most but slowest (median 42.5 s to capture) and most pushed;
+  8 Monk carries mostly end in hand-offs; losers' flag answers are slower (median 53 s against 38 s); top kill
+  participation Augury of Death, Word of Censure, Decapitate; most interrupted Healing Burst on the 7 Monk and Guardian
+  on prots and 8 Monks; spikes survived 76% (winners) against 59% (losers), 8 Monks 45%.
+- Why chains (batch 5): the setup and the cascade after a monk dies are read well (hook v EDGE 1:00, BcS v Men 1:00);
+  the mechanics and decision steps need the fixes above.
+- Lord: 28 of the first 30 matches ended with a Lord kill. Health rebuilt with Denning's regeneration rules; recorded
+  Lord damage is already capped by the Amulet of Protection.
+- gvg.report: players and Elo synced (`data/gvgreport/`); 482 new people and 65 of Denning's extended in aliases.json.
+- Engine fixes this session: integrity layer, full pit roster, RACK v hdm length, unobserved Lord damage, hand-off
+  loop in `episodes.flag_cycles` (hung BcS v yM).
+- Older measurements still valid in method (flag model accuracy, death-cause list, collapse cost): see METHODS.md.
 
 ## Decisions made (confirmed by Denning)
+- Session 4m: pit roster is 2 knights, 2 archers, Bodyguard, Lord; a third archer only on Isle of Solitude. Lords
+  regenerate 10 health per second always, plus +2 rising to +10 once unhit for a few seconds; the Amulet of Protection
+  adds healing. gvg.report's Elo is its own calculation and much better than the in-game ladder; use gvg.report's player
+  assignments to add to the site's (Denning's win); weigh MAT results more (amount measured: x2). Build all fixes before
+  refitting; batches of 6; fight-state split by thirds; Lord damage read with the clock. Report each batch as the WHY of
+  5 match events: the goal is the why, not breakdowns.
 - Up on flags = better position to get a boost and to run (the next capture exchange), not who capped last; backup
   flag and full running (1Y vs 2Y) are big advantages; a 1v1 defender running its flag partway shortens Y.
 - Individual deaths don't win games: judge what caused a fight and what it caused. A balanced build that survives to
@@ -287,6 +298,9 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
 - Improve the toolkit rather than writing one-off scripts; each ruling becomes a label, a tactics line and a check.
 
 ## Recent changes
+- Session 4m (continued): gvg.report players and Elo synced and merged; Lord regeneration per Denning; refit of batches
+  0 and 1; batches 2 to 5; fight-state split by thirds; Lord-damage correction; `snapshot.py`; `why.py` and the first
+  why chains with the fixes they showed are needed (see "Next session: fixes to do"); hand-off loop fixed.
 - Session 4m: engine reviewed against the goal. Found and fixed: pit NPCs only recorded once touched (winners' pits
   looked empty: the backwards knights and Bodyguard curves), RACK v hdm cut at 2:30 (runs to 17:18), Lord damage
   unobserved in 2 Lord kills. Built: `integrity.py` (data checks and repairs, full roster from Denning: 2 knights, 2
