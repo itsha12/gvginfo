@@ -1,0 +1,2094 @@
+{
+ "about": "The causal map: what can cause what in a GvG match, as reasoned by Denning and Claude and found in data. Each node is measured; each node's model may only use the links pointing into it, measured earlier in time. The data decides how much each link matters (status: hypothesis, supported, rejected; mechanical = a formula, not learned). Denning can add, correct or remove links; each change is logged with its reason. Rendered to knowledge/causal-map.md by tools/replay_analysis/causal_map.py.",
+ "version": 1,
+ "nodes": [
+  {
+   "id": "C.builds",
+   "layer": "context",
+   "name": "Build features",
+   "description": "what each team's bars can do: interrupts, knockdowns, snares, Blind, enchantment and energy removal, prots and blocks, Aura of Stability count, condition and hex removal, healing, spike capacity, speed, measured Lord damage",
+   "how": "counts from data/skills.json properties of each bar (scales to builds never seen)",
+   "kind": "formula"
+  },
+  {
+   "id": "C.matchup",
+   "layer": "context",
+   "name": "Matchup",
+   "description": "each build feature against the enemy's answer to it (enemy knockdowns v own Aura of Stability, enemy Blind v own removal, enemy spike v own prot stack, enemy energy denial v own energy hiding, split capacity v defence)",
+   "how": "pairs of build features; their effect comes from data, never a label",
+   "kind": "formula"
+  },
+  {
+   "id": "C.strength",
+   "layer": "context",
+   "name": "Team strength",
+   "description": "fitted rating gap from every stored result before the match",
+   "how": "strength.py",
+   "kind": "formula"
+  },
+  {
+   "id": "C.map",
+   "layer": "context",
+   "name": "Map geometry",
+   "description": "Y (flag spawn to stand), routes, where the pits and stand are",
+   "how": "state.py (spawns, pits, stand)",
+   "kind": "formula"
+  },
+  {
+   "id": "C.clock",
+   "layer": "context",
+   "name": "Clock",
+   "description": "match time, both teams' res timers, the boost clock",
+   "how": "scoreboard",
+   "kind": "formula"
+  },
+  {
+   "id": "A.allocation",
+   "layer": "allocation",
+   "name": "Allocation",
+   "description": "where each team's 8 players are every second: groups, who is in each, on flag duty, splitting, defending, dead",
+   "how": "state and scoreboard (groups, zones, flag duty)",
+   "kind": "measured"
+  },
+  {
+   "id": "A.phase",
+   "layer": "allocation",
+   "name": "Phase",
+   "description": "a stretch with a stable global setup; ends at a collapse, death, res or capture",
+   "how": "to build: from changes in allocation",
+   "kind": "measured"
+  },
+  {
+   "id": "A.plan",
+   "layer": "allocation",
+   "name": "Plan",
+   "description": "each team's intent in a phase (8v8 brawl, flag game, split pressure, holding in its pit, power play, late Lord push; more found in data)",
+   "how": "to build: inferred from the setup; plans found and amended from data (Denning)",
+   "kind": "measured"
+  },
+  {
+   "id": "A.jobs",
+   "layer": "allocation",
+   "name": "Jobs",
+   "description": "what each group must do given the plan: strong side converts, weak side holds safely, runner caps and returns, defenders hold the pit",
+   "how": "to build: from the plan and the numbers in each group",
+   "kind": "measured"
+  },
+  {
+   "id": "A.roles_ratio",
+   "layer": "allocation",
+   "name": "Damage v healers",
+   "description": "damage dealers and healers in each group, not heads",
+   "how": "to build: from roles in each group",
+   "kind": "measured"
+  },
+  {
+   "id": "A.mesa_free",
+   "layer": "allocation",
+   "name": "Mesmers free to defend",
+   "description": "whether each mesmer is in the fight, carrying, or defending elsewhere",
+   "how": "to build: from allocation and flag duty",
+   "kind": "measured"
+  },
+  {
+   "id": "P.1",
+   "layer": "play",
+   "name": "Target choice",
+   "description": "who the damage is put on (monks, midline, out of position players)",
+   "how": "damage events by target role",
+   "kind": "measured"
+  },
+  {
+   "id": "P.2",
+   "layer": "play",
+   "name": "Burst timing",
+   "description": "whether the damage dealers' hits land together",
+   "how": "spread of hit times within bursts",
+   "kind": "measured"
+  },
+  {
+   "id": "P.3",
+   "layer": "play",
+   "name": "Offensive interrupts",
+   "description": "interrupts on enemy monks and key enemy skills",
+   "how": "interrupt events by target and skill",
+   "kind": "measured"
+  },
+  {
+   "id": "P.4",
+   "layer": "play",
+   "name": "Defensive interrupts",
+   "description": "interrupts on enemy players pressuring the own team (spikers, Blind, strips, energy denial)",
+   "how": "interrupt events by target",
+   "kind": "measured"
+  },
+  {
+   "id": "P.5",
+   "layer": "play",
+   "name": "Condition removal",
+   "description": "removal of Blind, Weakness and other conditions from own damage dealers and monks, and how fast",
+   "how": "effects intervals and removal casts",
+   "kind": "measured"
+  },
+  {
+   "id": "P.6",
+   "layer": "play",
+   "name": "Prot timing",
+   "description": "prots and Infuse relative to the first big hit (pre-prot, on time, late)",
+   "how": "forensics",
+   "kind": "measured"
+  },
+  {
+   "id": "P.7",
+   "layer": "play",
+   "name": "Heal targeting",
+   "description": "healing on players under threat against healing elsewhere and overheal",
+   "how": "heal events against damage taken",
+   "kind": "measured"
+  },
+  {
+   "id": "P.8",
+   "layer": "play",
+   "name": "Kiting and spacing",
+   "description": "distance from enemy mesmer and ranger, kiting toward safety, standing still before contact",
+   "how": "positions",
+   "kind": "measured"
+  },
+  {
+   "id": "P.9",
+   "layer": "play",
+   "name": "Collapse timing",
+   "description": "when a team turns players onto a group, against res timers, enemy runner and enemy numbers",
+   "how": "phases",
+   "kind": "measured"
+  },
+  {
+   "id": "P.10",
+   "layer": "play",
+   "name": "Run timing and runner choice",
+   "description": "who runs and when after the enemy's capture",
+   "how": "flag cycles",
+   "kind": "measured"
+  },
+  {
+   "id": "P.11",
+   "layer": "play",
+   "name": "Split answer",
+   "description": "who answers a split and how fast",
+   "how": "splits",
+   "kind": "measured"
+  },
+  {
+   "id": "P.12",
+   "layer": "play",
+   "name": "Res timing",
+   "description": "whether a team waits for its dead to return before fighting",
+   "how": "fights against res timers",
+   "kind": "measured"
+  },
+  {
+   "id": "P.13",
+   "layer": "play",
+   "name": "Peel",
+   "description": "hitting or shutting down the players attacking an ally",
+   "how": "forensics",
+   "kind": "measured"
+  },
+  {
+   "id": "P.14",
+   "layer": "play",
+   "name": "Commitment",
+   "description": "damage dealers in range and attacking during a power play or kill attempt",
+   "how": "positions and attack events",
+   "kind": "measured"
+  },
+  {
+   "id": "K.1",
+   "layer": "capacity",
+   "name": "Pressure",
+   "description": "damage per second a group puts out",
+   "how": "damage events",
+   "kind": "measured"
+  },
+  {
+   "id": "K.2",
+   "layer": "capacity",
+   "name": "Damage uptime",
+   "description": "share of time damage dealers are actually attacking or casting; lost damage-seconds by cause: knocked down, interrupted, Blind, Weakness, hexed, carrying, kiting, peeling, out of range, dead",
+   "how": "states, effects, carries, positions",
+   "kind": "measured"
+  },
+  {
+   "id": "K.3",
+   "layer": "capacity",
+   "name": "Burst quality",
+   "description": "how much of the damage lands as synchronised bursts on one target",
+   "how": "bursts",
+   "kind": "measured"
+  },
+  {
+   "id": "K.4",
+   "layer": "capacity",
+   "name": "Kill conversion",
+   "description": "bursts and pressure that become kills",
+   "how": "bursts against deaths",
+   "kind": "measured"
+  },
+  {
+   "id": "K.5",
+   "layer": "capacity",
+   "name": "Mitigation",
+   "description": "prots landed on time, blocks, damage prevented",
+   "how": "effects, prevented damage",
+   "kind": "measured"
+  },
+  {
+   "id": "K.6",
+   "layer": "capacity",
+   "name": "Healing",
+   "description": "healing per second and response time to bursts",
+   "how": "heal events",
+   "kind": "measured"
+  },
+  {
+   "id": "K.7",
+   "layer": "capacity",
+   "name": "Monk uptime",
+   "description": "share of time monks can cast: not interrupted, knocked down, Dazed or dead",
+   "how": "states, effects",
+   "kind": "measured"
+  },
+  {
+   "id": "K.8",
+   "layer": "capacity",
+   "name": "Monk load",
+   "description": "casts the backline must make to keep up (overload)",
+   "how": "incoming damage against healing per monk",
+   "kind": "measured"
+  },
+  {
+   "id": "K.9",
+   "layer": "capacity",
+   "name": "Health ceiling",
+   "description": "each player's maximum health after DP, Deep Wound and health-reducing hexes",
+   "how": "morale events, effects",
+   "kind": "measured"
+  },
+  {
+   "id": "K.10",
+   "layer": "capacity",
+   "name": "Sustain margin",
+   "description": "incoming damage against healing plus mitigation in a group",
+   "how": "pressure, healing, mitigation",
+   "kind": "measured"
+  },
+  {
+   "id": "K.11",
+   "layer": "capacity",
+   "name": "Control received",
+   "description": "interrupts, knockdowns, Blind, Daze, strips and energy denial taken, by role",
+   "how": "events and effects",
+   "kind": "measured"
+  },
+  {
+   "id": "K.12",
+   "layer": "capacity",
+   "name": "Removal capacity",
+   "description": "condition and hex removal available against how fast the enemy reapplies",
+   "how": "bars and effects",
+   "kind": "measured"
+  },
+  {
+   "id": "K.13",
+   "layer": "capacity",
+   "name": "Mobility",
+   "description": "speed and snares: how fast a group can collapse, escape or run",
+   "how": "effects, positions",
+   "kind": "measured"
+  },
+  {
+   "id": "R.1",
+   "layer": "result",
+   "name": "Deaths",
+   "description": "players killed, with cause (fights.assess)",
+   "how": "deaths",
+   "kind": "measured"
+  },
+  {
+   "id": "R.2",
+   "layer": "result",
+   "name": "Wipes",
+   "description": "fights where 3+ players or 2+ monks die",
+   "how": "fights",
+   "kind": "measured"
+  },
+  {
+   "id": "R.3",
+   "layer": "result",
+   "name": "Flag lead",
+   "description": "the flag position (response on the next capture exchange)",
+   "how": "scoreboard",
+   "kind": "measured"
+  },
+  {
+   "id": "R.4",
+   "layer": "result",
+   "name": "Boosts",
+   "description": "boosts won and conceded",
+   "how": "stand ledger",
+   "kind": "measured"
+  },
+  {
+   "id": "R.5",
+   "layer": "result",
+   "name": "Pit NPCs",
+   "description": "knights, archers and Bodyguard lost",
+   "how": "NPC deaths",
+   "kind": "measured"
+  },
+  {
+   "id": "R.6",
+   "layer": "result",
+   "name": "Lord damage",
+   "description": "damage dealt to the enemy Lord (tiebreak)",
+   "how": "Lord hits",
+   "kind": "measured"
+  },
+  {
+   "id": "R.7",
+   "layer": "result",
+   "name": "Time held",
+   "description": "seconds a weak side or defence held without losing anything",
+   "how": "to build: per job",
+   "kind": "measured"
+  },
+  {
+   "id": "R.8",
+   "layer": "result",
+   "name": "Enemies tied up",
+   "description": "enemy players kept busy by a group, per own player (exchange rate)",
+   "how": "to build: per phase",
+   "kind": "measured"
+  },
+  {
+   "id": "R.9",
+   "layer": "result",
+   "name": "Territory",
+   "description": "where fights happen: own side, enemy side, pits",
+   "how": "zones",
+   "kind": "measured"
+  },
+  {
+   "id": "R.10",
+   "layer": "result",
+   "name": "Tempo",
+   "description": "fights and kills against both res timers; time spent on failed kills",
+   "how": "to build",
+   "kind": "measured"
+  },
+  {
+   "id": "S.scoreboard",
+   "layer": "score",
+   "name": "Scoreboard",
+   "description": "numbers, DP, flag lead, stand, pit NPCs, Lord damage at any second",
+   "how": "scoreboard.py",
+   "kind": "formula"
+  },
+  {
+   "id": "S.win",
+   "layer": "score",
+   "name": "Win",
+   "description": "the win-probability model: values every result",
+   "how": "model.py",
+   "kind": "learned"
+  }
+ ],
+ "links": [
+  {
+   "from": "A.jobs",
+   "to": "R.7",
+   "why": "the weak side's job is to hold safely: no deaths, keep the enemy group busy, don't chase, so the other side can play its power play",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "J2"
+   ]
+  },
+  {
+   "from": "A.jobs",
+   "to": "R.8",
+   "why": "a group is judged on what it holds as well as what it kills",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "J2"
+   ]
+  },
+  {
+   "from": "A.roles_ratio",
+   "to": "K.4",
+   "why": "a 5v3 fails to convert when its heads hide few damage dealers against healers, its damage is shut down, its bursts don't line up, the 3 kite to their pit or NPCs, or it doesn't commit",
+   "source": "Claude",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "J3"
+   ]
+  },
+  {
+   "from": "K.2",
+   "to": "K.4",
+   "why": "a 5v3 fails to convert when its heads hide few damage dealers against healers, its damage is shut down, its bursts don't line up, the 3 kite to their pit or NPCs, or it doesn't commit",
+   "source": "Claude",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "J3"
+   ]
+  },
+  {
+   "from": "P.2",
+   "to": "K.4",
+   "why": "a 5v3 fails to convert when its heads hide few damage dealers against healers, its damage is shut down, its bursts don't line up, the 3 kite to their pit or NPCs, or it doesn't commit",
+   "source": "Claude",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "J3"
+   ]
+  },
+  {
+   "from": "P.8",
+   "to": "K.4",
+   "why": "a 5v3 fails to convert when its heads hide few damage dealers against healers, its damage is shut down, its bursts don't line up, the 3 kite to their pit or NPCs, or it doesn't commit",
+   "source": "Claude",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "J3"
+   ]
+  },
+  {
+   "from": "P.14",
+   "to": "K.4",
+   "why": "a 5v3 fails to convert when its heads hide few damage dealers against healers, its damage is shut down, its bursts don't line up, the 3 kite to their pit or NPCs, or it doesn't commit",
+   "source": "Claude",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "J3"
+   ]
+  },
+  {
+   "from": "A.allocation",
+   "to": "A.roles_ratio",
+   "why": "a lone ranger split drawing the Mes/A and 8 monk changes main's damage-to-healer ratio less than the heads suggest",
+   "source": "Claude",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "J4"
+   ]
+  },
+  {
+   "from": "K.13",
+   "to": "R.1",
+   "why": "a splitting ranger dies to snares or a fast collapse, an escape on recharge or interrupted, going too deep into knights and Lord, or staying after a second defender arrives",
+   "source": "Claude",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "J4"
+   ]
+  },
+  {
+   "from": "P.8",
+   "to": "R.1",
+   "why": "a splitting ranger dies to snares or a fast collapse, an escape on recharge or interrupted, going too deep into knights and Lord, or staying after a second defender arrives",
+   "source": "Claude",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "J4"
+   ]
+  },
+  {
+   "from": "P.11",
+   "to": "R.1",
+   "why": "a splitting ranger dies to snares or a fast collapse, an escape on recharge or interrupted, going too deep into knights and Lord, or staying after a second defender arrives",
+   "source": "Claude",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "J4"
+   ]
+  },
+  {
+   "from": "R.3",
+   "to": "K.4",
+   "why": "a team down on flags must send a runner soon, so its power play is shorter and less committed than its numbers suggest",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "J5"
+   ]
+  },
+  {
+   "from": "C.clock",
+   "to": "P.14",
+   "why": "a power play has a deadline (the enemy runner's return); the team must capitalize on the limited window",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "J6"
+   ]
+  },
+  {
+   "from": "R.3",
+   "to": "P.14",
+   "why": "a power play has a deadline (the enemy runner's return); the team must capitalize on the limited window",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "J6"
+   ]
+  },
+  {
+   "from": "P.9",
+   "to": "R.2",
+   "why": "collapse timing is very important",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "J7"
+   ]
+  },
+  {
+   "from": "P.12",
+   "to": "R.1",
+   "why": "good teams wait for their dead to return before fighting",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "J8"
+   ]
+  },
+  {
+   "from": "K.11",
+   "to": "K.4",
+   "why": "a team can't kill because of the enemy's defence (prots, blocks), shutdown of its spikers (interrupts, knockdowns, Blind, strips) or spread damage",
+   "source": "Claude",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "K12"
+   ]
+  },
+  {
+   "from": "K.5",
+   "to": "K.4",
+   "why": "a team can't kill because of the enemy's defence (prots, blocks), shutdown of its spikers (interrupts, knockdowns, Blind, strips) or spread damage",
+   "source": "Claude",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "K12"
+   ]
+  },
+  {
+   "from": "P.2",
+   "to": "K.4",
+   "why": "a team can't kill because of the enemy's defence (prots, blocks), shutdown of its spikers (interrupts, knockdowns, Blind, strips) or spread damage",
+   "source": "Claude",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "K12"
+   ]
+  },
+  {
+   "from": "P.1",
+   "to": "K.4",
+   "why": "hitting the wrong player matters but isn't huge",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "K12"
+   ]
+  },
+  {
+   "from": "P.5",
+   "to": "K.11",
+   "why": "Blind and strips stop the kill when the team doesn't defend its offence: no defensive interrupts on the casters, no condition removal on its damage dealers, a clumped frontline in AoE range",
+   "source": "Claude",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "K13"
+   ]
+  },
+  {
+   "from": "P.4",
+   "to": "K.11",
+   "why": "Blind and strips stop the kill when the team doesn't defend its offence: no defensive interrupts on the casters, no condition removal on its damage dealers, a clumped frontline in AoE range",
+   "source": "Claude",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "K13"
+   ]
+  },
+  {
+   "from": "P.8",
+   "to": "K.11",
+   "why": "Blind and strips stop the kill when the team doesn't defend its offence: no defensive interrupts on the casters, no condition removal on its damage dealers, a clumped frontline in AoE range",
+   "source": "Claude",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "K13"
+   ]
+  },
+  {
+   "from": "A.mesa_free",
+   "to": "P.5",
+   "why": "removal and defensive interrupts are missing because the Mes/A is running or defending, the mesmer interrupts offensively, the mesmer is shut down, the monks are overloaded, the bars lack removal, or the enemy reapplies faster than removal recharges",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [
+    "K13"
+   ]
+  },
+  {
+   "from": "K.8",
+   "to": "P.5",
+   "why": "removal and defensive interrupts are missing because the Mes/A is running or defending, the mesmer interrupts offensively, the mesmer is shut down, the monks are overloaded, the bars lack removal, or the enemy reapplies faster than removal recharges",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [
+    "K13"
+   ]
+  },
+  {
+   "from": "K.12",
+   "to": "P.5",
+   "why": "removal and defensive interrupts are missing because the Mes/A is running or defending, the mesmer interrupts offensively, the mesmer is shut down, the monks are overloaded, the bars lack removal, or the enemy reapplies faster than removal recharges",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [
+    "K13"
+   ]
+  },
+  {
+   "from": "C.builds",
+   "to": "P.5",
+   "why": "removal and defensive interrupts are missing because the Mes/A is running or defending, the mesmer interrupts offensively, the mesmer is shut down, the monks are overloaded, the bars lack removal, or the enemy reapplies faster than removal recharges",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [
+    "K13"
+   ]
+  },
+  {
+   "from": "A.mesa_free",
+   "to": "P.4",
+   "why": "the mesmer who should interrupt defensively is carrying the flag or defending a split",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [
+    "K13",
+    "M14"
+   ]
+  },
+  {
+   "from": "K.1",
+   "to": "K.8",
+   "why": "overload is the goal when trying to kill: coordinated pressure on several targets",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "M16"
+   ]
+  },
+  {
+   "from": "P.2",
+   "to": "K.8",
+   "why": "overload is the goal when trying to kill: coordinated pressure on several targets",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "M16"
+   ]
+  },
+  {
+   "from": "P.6",
+   "to": "R.1",
+   "why": "a team heals a lot but still loses a player when heals arrive instead of prots, the health ceiling is low (DP, Deep Wound), healing goes elsewhere, heals are late or interrupted, or the victim can't kite",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [
+    "M17"
+   ]
+  },
+  {
+   "from": "K.9",
+   "to": "R.1",
+   "why": "a team heals a lot but still loses a player when heals arrive instead of prots, the health ceiling is low (DP, Deep Wound), healing goes elsewhere, heals are late or interrupted, or the victim can't kite",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [
+    "M17"
+   ]
+  },
+  {
+   "from": "P.7",
+   "to": "R.1",
+   "why": "a team heals a lot but still loses a player when heals arrive instead of prots, the health ceiling is low (DP, Deep Wound), healing goes elsewhere, heals are late or interrupted, or the victim can't kite",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [
+    "M17"
+   ]
+  },
+  {
+   "from": "K.7",
+   "to": "R.1",
+   "why": "a team heals a lot but still loses a player when heals arrive instead of prots, the health ceiling is low (DP, Deep Wound), healing goes elsewhere, heals are late or interrupted, or the victim can't kite",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [
+    "M17"
+   ]
+  },
+  {
+   "from": "P.8",
+   "to": "R.1",
+   "why": "a team heals a lot but still loses a player when heals arrive instead of prots, the health ceiling is low (DP, Deep Wound), healing goes elsewhere, heals are late or interrupted, or the victim can't kite",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [
+    "M17"
+   ]
+  },
+  {
+   "from": "K.9",
+   "to": "R.1",
+   "why": "death penalty stacking against a spike team makes every later spike easier",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "K4"
+   ]
+  },
+  {
+   "from": "K.11",
+   "to": "K.2",
+   "why": "damage is lost to interrupts, knockdowns, Blind, Weakness, carrying the flag, kiting and peeling",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "J9"
+   ]
+  },
+  {
+   "from": "A.allocation",
+   "to": "K.2",
+   "why": "damage is lost to interrupts, knockdowns, Blind, Weakness, carrying the flag, kiting and peeling",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "J9"
+   ]
+  },
+  {
+   "from": "P.13",
+   "to": "K.2",
+   "why": "damage is lost to interrupts, knockdowns, Blind, Weakness, carrying the flag, kiting and peeling",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "J9"
+   ]
+  },
+  {
+   "from": "P.8",
+   "to": "K.2",
+   "why": "damage is lost to interrupts, knockdowns, Blind, Weakness, carrying the flag, kiting and peeling",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "J9"
+   ]
+  },
+  {
+   "from": "K.2",
+   "to": "K.1",
+   "why": "damage dealers who can't attack don't put out damage",
+   "source": "formula",
+   "confirmed_by_denning": false,
+   "status": "mechanical",
+   "tactics": []
+  },
+  {
+   "from": "K.1",
+   "to": "K.10",
+   "why": "incoming damage against healing plus mitigation",
+   "source": "formula",
+   "confirmed_by_denning": false,
+   "status": "mechanical",
+   "tactics": []
+  },
+  {
+   "from": "K.6",
+   "to": "K.10",
+   "why": "incoming damage against healing plus mitigation",
+   "source": "formula",
+   "confirmed_by_denning": false,
+   "status": "mechanical",
+   "tactics": []
+  },
+  {
+   "from": "K.5",
+   "to": "K.10",
+   "why": "incoming damage against healing plus mitigation",
+   "source": "formula",
+   "confirmed_by_denning": false,
+   "status": "mechanical",
+   "tactics": []
+  },
+  {
+   "from": "K.10",
+   "to": "R.1",
+   "why": "a group whose margin is negative loses players",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "P.10",
+   "to": "R.3",
+   "why": "being up on flags is the better position to boost and to run: runner trips, waiting runners, backup flags, routes",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "F1",
+    "F2",
+    "F3",
+    "F4"
+   ]
+  },
+  {
+   "from": "A.allocation",
+   "to": "R.3",
+   "why": "being up on flags is the better position to boost and to run: runner trips, waiting runners, backup flags, routes",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "F1",
+    "F2",
+    "F3",
+    "F4"
+   ]
+  },
+  {
+   "from": "C.map",
+   "to": "R.3",
+   "why": "being up on flags is the better position to boost and to run: runner trips, waiting runners, backup flags, routes",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "F1",
+    "F2",
+    "F3",
+    "F4"
+   ]
+  },
+  {
+   "from": "A.allocation",
+   "to": "R.3",
+   "why": "a team splitting has a different ability to run the flag",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "J1"
+   ]
+  },
+  {
+   "from": "R.3",
+   "to": "A.allocation",
+   "why": "a team that must run has players on flag duty, which changes numbers elsewhere",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "F5",
+    "J1"
+   ]
+  },
+  {
+   "from": "R.3",
+   "to": "R.4",
+   "why": "the holder boosts unless the other team captures within the boost clock",
+   "source": "formula",
+   "confirmed_by_denning": false,
+   "status": "mechanical",
+   "tactics": []
+  },
+  {
+   "from": "P.11",
+   "to": "R.5",
+   "why": "a split answered late or with the wrong player takes NPCs",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "S18",
+    "S19"
+   ]
+  },
+  {
+   "from": "A.allocation",
+   "to": "R.5",
+   "why": "flag play and splits change the ability to take and defend NPCs",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "J1"
+   ]
+  },
+  {
+   "from": "R.1",
+   "to": "S.scoreboard",
+   "why": "results change the scoreboard",
+   "source": "formula",
+   "confirmed_by_denning": false,
+   "status": "mechanical",
+   "tactics": []
+  },
+  {
+   "from": "R.4",
+   "to": "S.scoreboard",
+   "why": "results change the scoreboard",
+   "source": "formula",
+   "confirmed_by_denning": false,
+   "status": "mechanical",
+   "tactics": []
+  },
+  {
+   "from": "R.5",
+   "to": "S.scoreboard",
+   "why": "results change the scoreboard",
+   "source": "formula",
+   "confirmed_by_denning": false,
+   "status": "mechanical",
+   "tactics": []
+  },
+  {
+   "from": "R.6",
+   "to": "S.scoreboard",
+   "why": "results change the scoreboard",
+   "source": "formula",
+   "confirmed_by_denning": false,
+   "status": "mechanical",
+   "tactics": []
+  },
+  {
+   "from": "S.scoreboard",
+   "to": "A.allocation",
+   "why": "the scoreboard shapes the next second's allocation (a loop over time)",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "J1"
+   ]
+  },
+  {
+   "from": "S.scoreboard",
+   "to": "S.win",
+   "why": "the win model values every result",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "W6"
+   ]
+  },
+  {
+   "from": "C.matchup",
+   "to": "K.1",
+   "why": "the matchup sets what each capacity can be expected to be; a team can play well and still lose a hard matchup (how much comes from data)",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "J10"
+   ]
+  },
+  {
+   "from": "C.strength",
+   "to": "K.1",
+   "why": "stronger teams play better at everything; kept in every model so play isn't confused with strength",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.matchup",
+   "to": "K.2",
+   "why": "the matchup sets what each capacity can be expected to be; a team can play well and still lose a hard matchup (how much comes from data)",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "J10"
+   ]
+  },
+  {
+   "from": "C.strength",
+   "to": "K.2",
+   "why": "stronger teams play better at everything; kept in every model so play isn't confused with strength",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.matchup",
+   "to": "K.6",
+   "why": "the matchup sets what each capacity can be expected to be; a team can play well and still lose a hard matchup (how much comes from data)",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "J10"
+   ]
+  },
+  {
+   "from": "C.strength",
+   "to": "K.6",
+   "why": "stronger teams play better at everything; kept in every model so play isn't confused with strength",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.matchup",
+   "to": "K.7",
+   "why": "the matchup sets what each capacity can be expected to be; a team can play well and still lose a hard matchup (how much comes from data)",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "J10"
+   ]
+  },
+  {
+   "from": "C.strength",
+   "to": "K.7",
+   "why": "stronger teams play better at everything; kept in every model so play isn't confused with strength",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.matchup",
+   "to": "K.5",
+   "why": "the matchup sets what each capacity can be expected to be; a team can play well and still lose a hard matchup (how much comes from data)",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "J10"
+   ]
+  },
+  {
+   "from": "C.strength",
+   "to": "K.5",
+   "why": "stronger teams play better at everything; kept in every model so play isn't confused with strength",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.matchup",
+   "to": "K.11",
+   "why": "the matchup sets what each capacity can be expected to be; a team can play well and still lose a hard matchup (how much comes from data)",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "J10"
+   ]
+  },
+  {
+   "from": "C.strength",
+   "to": "K.11",
+   "why": "stronger teams play better at everything; kept in every model so play isn't confused with strength",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.matchup",
+   "to": "K.12",
+   "why": "the matchup sets what each capacity can be expected to be; a team can play well and still lose a hard matchup (how much comes from data)",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "J10"
+   ]
+  },
+  {
+   "from": "C.strength",
+   "to": "K.12",
+   "why": "stronger teams play better at everything; kept in every model so play isn't confused with strength",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.matchup",
+   "to": "K.13",
+   "why": "the matchup sets what each capacity can be expected to be; a team can play well and still lose a hard matchup (how much comes from data)",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "J10"
+   ]
+  },
+  {
+   "from": "C.strength",
+   "to": "K.13",
+   "why": "stronger teams play better at everything; kept in every model so play isn't confused with strength",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.matchup",
+   "to": "K.4",
+   "why": "the matchup sets what each capacity can be expected to be; a team can play well and still lose a hard matchup (how much comes from data)",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "J10"
+   ]
+  },
+  {
+   "from": "C.strength",
+   "to": "K.4",
+   "why": "stronger teams play better at everything; kept in every model so play isn't confused with strength",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "S.scoreboard",
+   "to": "P.1",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "A.plan",
+   "to": "P.1",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.clock",
+   "to": "P.1",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.builds",
+   "to": "P.1",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.strength",
+   "to": "P.1",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "S.scoreboard",
+   "to": "P.2",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "A.plan",
+   "to": "P.2",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.clock",
+   "to": "P.2",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.builds",
+   "to": "P.2",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.strength",
+   "to": "P.2",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "S.scoreboard",
+   "to": "P.3",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "A.plan",
+   "to": "P.3",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.clock",
+   "to": "P.3",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.builds",
+   "to": "P.3",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.strength",
+   "to": "P.3",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "S.scoreboard",
+   "to": "P.4",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "A.plan",
+   "to": "P.4",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.clock",
+   "to": "P.4",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.builds",
+   "to": "P.4",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.strength",
+   "to": "P.4",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "S.scoreboard",
+   "to": "P.5",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "A.plan",
+   "to": "P.5",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.clock",
+   "to": "P.5",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.builds",
+   "to": "P.5",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.strength",
+   "to": "P.5",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "S.scoreboard",
+   "to": "P.6",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "A.plan",
+   "to": "P.6",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.clock",
+   "to": "P.6",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.builds",
+   "to": "P.6",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.strength",
+   "to": "P.6",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "S.scoreboard",
+   "to": "P.7",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "A.plan",
+   "to": "P.7",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.clock",
+   "to": "P.7",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.builds",
+   "to": "P.7",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.strength",
+   "to": "P.7",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "S.scoreboard",
+   "to": "P.8",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "A.plan",
+   "to": "P.8",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.clock",
+   "to": "P.8",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.builds",
+   "to": "P.8",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.strength",
+   "to": "P.8",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "S.scoreboard",
+   "to": "P.9",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "A.plan",
+   "to": "P.9",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.clock",
+   "to": "P.9",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.builds",
+   "to": "P.9",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.strength",
+   "to": "P.9",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "S.scoreboard",
+   "to": "P.10",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "A.plan",
+   "to": "P.10",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.clock",
+   "to": "P.10",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.builds",
+   "to": "P.10",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.strength",
+   "to": "P.10",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "S.scoreboard",
+   "to": "P.11",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "A.plan",
+   "to": "P.11",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.clock",
+   "to": "P.11",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.builds",
+   "to": "P.11",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.strength",
+   "to": "P.11",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "S.scoreboard",
+   "to": "P.12",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "A.plan",
+   "to": "P.12",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.clock",
+   "to": "P.12",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.builds",
+   "to": "P.12",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.strength",
+   "to": "P.12",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "S.scoreboard",
+   "to": "P.13",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "A.plan",
+   "to": "P.13",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.clock",
+   "to": "P.13",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.builds",
+   "to": "P.13",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.strength",
+   "to": "P.13",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "S.scoreboard",
+   "to": "P.14",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "A.plan",
+   "to": "P.14",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.clock",
+   "to": "P.14",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.builds",
+   "to": "P.14",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.strength",
+   "to": "P.14",
+   "why": "decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "A.allocation",
+   "to": "A.phase",
+   "why": "a phase starts and ends when the global setup changes",
+   "source": "formula",
+   "confirmed_by_denning": false,
+   "status": "mechanical",
+   "tactics": []
+  },
+  {
+   "from": "A.allocation",
+   "to": "A.plan",
+   "why": "a plan is inferred from the setup and the situation; plans are found and amended from data",
+   "source": "Denning",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [
+    "J11"
+   ]
+  },
+  {
+   "from": "S.scoreboard",
+   "to": "A.plan",
+   "why": "a plan is inferred from the setup and the situation; plans are found and amended from data",
+   "source": "Denning",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [
+    "J11"
+   ]
+  },
+  {
+   "from": "C.matchup",
+   "to": "A.plan",
+   "why": "a plan is inferred from the setup and the situation; plans are found and amended from data",
+   "source": "Denning",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [
+    "J11"
+   ]
+  },
+  {
+   "from": "C.clock",
+   "to": "A.plan",
+   "why": "a plan is inferred from the setup and the situation; plans are found and amended from data",
+   "source": "Denning",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [
+    "J11"
+   ]
+  },
+  {
+   "from": "A.plan",
+   "to": "A.jobs",
+   "why": "each group's job follows from the plan and the numbers where it is",
+   "source": "Denning",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [
+    "J2"
+   ]
+  },
+  {
+   "from": "A.allocation",
+   "to": "A.jobs",
+   "why": "each group's job follows from the plan and the numbers where it is",
+   "source": "Denning",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [
+    "J2"
+   ]
+  },
+  {
+   "from": "A.allocation",
+   "to": "A.mesa_free",
+   "why": "a mesmer carrying the flag or defending a split isn't free",
+   "source": "formula",
+   "confirmed_by_denning": false,
+   "status": "mechanical",
+   "tactics": []
+  },
+  {
+   "from": "P.2",
+   "to": "K.3",
+   "why": "synchronised hits on one target make a burst",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "P.1",
+   "to": "K.3",
+   "why": "synchronised hits on one target make a burst",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "R.1",
+   "to": "K.9",
+   "why": "death penalty from deaths and Deep Wound or health-reducing hexes lower the ceiling",
+   "source": "formula",
+   "confirmed_by_denning": false,
+   "status": "mechanical",
+   "tactics": []
+  },
+  {
+   "from": "K.11",
+   "to": "K.9",
+   "why": "death penalty from deaths and Deep Wound or health-reducing hexes lower the ceiling",
+   "source": "formula",
+   "confirmed_by_denning": false,
+   "status": "mechanical",
+   "tactics": []
+  },
+  {
+   "from": "A.allocation",
+   "to": "R.6",
+   "why": "Lord damage needs players at the Lord, their damage, a worn-down pit and builds that hit the Lord (measured Lord damage per second)",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [
+    "L1",
+    "L10"
+   ]
+  },
+  {
+   "from": "K.1",
+   "to": "R.6",
+   "why": "Lord damage needs players at the Lord, their damage, a worn-down pit and builds that hit the Lord (measured Lord damage per second)",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [
+    "L1",
+    "L10"
+   ]
+  },
+  {
+   "from": "R.5",
+   "to": "R.6",
+   "why": "Lord damage needs players at the Lord, their damage, a worn-down pit and builds that hit the Lord (measured Lord damage per second)",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [
+    "L1",
+    "L10"
+   ]
+  },
+  {
+   "from": "C.builds",
+   "to": "R.6",
+   "why": "Lord damage needs players at the Lord, their damage, a worn-down pit and builds that hit the Lord (measured Lord damage per second)",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [
+    "L1",
+    "L10"
+   ]
+  },
+  {
+   "from": "A.allocation",
+   "to": "R.9",
+   "why": "winning fights pushes the fight toward the enemy's side",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "K.4",
+   "to": "R.9",
+   "why": "winning fights pushes the fight toward the enemy's side",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "K.10",
+   "to": "R.9",
+   "why": "winning fights pushes the fight toward the enemy's side",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "P.12",
+   "to": "R.10",
+   "why": "when fights happen against both res timers, and time spent on kills that fail",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [
+    "J8"
+   ]
+  },
+  {
+   "from": "P.9",
+   "to": "R.10",
+   "why": "when fights happen against both res timers, and time spent on kills that fail",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [
+    "J8"
+   ]
+  },
+  {
+   "from": "K.4",
+   "to": "R.10",
+   "why": "when fights happen against both res timers, and time spent on kills that fail",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [
+    "J8"
+   ]
+  }
+ ],
+ "log": [
+  {
+   "date": "2026-11-05",
+   "change": "version 1 from the design conversation (scenarios 1 to 10 and follow-ups); decisions linked to the situation (the usual play), remaining gaps linked",
+   "by": "Denning and Claude"
+  }
+ ]
+}

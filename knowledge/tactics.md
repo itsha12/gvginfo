@@ -13,6 +13,9 @@ against general principles rather than past games. Match-by-match evidence lives
   (for example [Men v Team]) that point to entries on the Match reviews page.
 - Each principle has an id (for example `F1`) that the analysis engine's findings, Denning's rulings and the situation
   cards cite. A revised line keeps its id; a removed id is not reused.
+- **Claude, confirmed by Denning:** lines are Claude's reasoning that Denning has confirmed; how much each matters
+  still comes from data.
+- The causal map page links these lines into the model's structure (what can cause what).
 - Principles are stated generally; the evidence shows where they were seen. A principle with one match behind it is a
   hypothesis; one seen across several matches with different teams is a pattern.
 
@@ -51,6 +54,30 @@ against general principles rather than past games. Match-by-match evidence lives
 - `W9` **Claude:** An empty enemy pit is converted when it is safe: a team that is behind, or racing the clock, takes
   the Lord in the next wipe window; a team that is ahead uses the empty pit as leverage and keeps its lead.
   [hdm v HC I2] [Men v HC C]
+
+### Phases, plans and jobs
+- `J1` **Denning:** Fights are global: everything in a match affects everything else. A team splitting has a different
+  ability to run the flag; flag plays affect numbers and the ability to take NPCs.
+- `J2` **Denning:** A 4v3 can be intentional, so the other side can fight 5v3. The 3-man weak side then has a different
+  objective because it is the weak side: play defensive and safe (no deaths, keep the enemy group busy, don't chase) to
+  allow the other side its power play. Judge each group by its job, not by its local fight.
+- `J3` **Claude, confirmed by Denning:** A 5v3 fails to convert when the heads hide few damage dealers against healers
+  (5 with 2 damage against 3 with 2 monks), when its damage is shut down (interrupts, knockdowns, Blind, snares), when
+  its bursts don't line up, when it doesn't commit, or when the 3 kite into their pit, NPCs or res shrine.
+- `J4` **Claude, confirmed by Denning:** A lone ranger split drawing the Mes/A and the 8 monk is a 1-for-2 exchange, and
+  its value is mostly whether main converts the 7v6. The ranger dies to snares or a fast collapse, an escape on
+  recharge or interrupted, going too deep into knights and the Lord, or staying after a second defender arrives. The
+  7v6 may not kill because the damage-to-healer ratio barely changed (a damage dealer left for a monk and a mesmer).
+- `J5` **Denning:** The 7 may also be unable to kill because it is behind on flags and has to run: its power play is
+  shorter than its numbers suggest.
+- `J6` **Denning:** A power play has a limited window (until the enemy runner is back); the team must capitalize on it.
+- `J7` **Denning:** Collapse timing is very important.
+- `J8` **Denning:** A good team waits for its players to come back from the res before fighting.
+- `J9` **Denning:** Damage is lost to interrupts, knockdowns, Blind, Weakness, carrying the flag, kiting and peeling.
+- `J10` **Denning:** A team can play well in micro and macro and still run into a build matchup that is very hard to
+  win. How hard each matchup is has to come from data.
+- `J11` **Denning:** Plans (8v8 brawl, flag game, split pressure, holding in the pit, power play, late Lord push) are a
+  starting list: Claude finds more and amends them as more matches are analysed.
 
 ### Macro and micro
 - `W10` **Claude:** A game is won on **macro** when one side had a structural edge before the deciding fight: more
@@ -340,6 +367,14 @@ against general principles rather than past games. Match-by-match evidence lives
   has to push into fights it can't win. [OG v cope J]
 - `K10` **Claude:** Against a hex team, kill the hex casters first; it only works if the spikes land. [OG v cope J]
   [OG v hdm]
+- `K12` **Claude, confirmed by Denning:** A team that can't kill is stopped by the enemy's defence (prots, blocks), by
+  shutdown of its spikers (interrupts, knockdowns, Blind, enchantment removal) or by spread damage. **Denning:** hitting
+  the wrong player matters, but not hugely.
+- `K13` **Claude, confirmed by Denning:** Blind and enchantment removal stop a kill when the team doesn't defend its
+  offence: no defensive interrupts on the casters, no condition removal on its damage dealers, a clumped frontline in
+  AoE range. **Claude:** those are missing because the Mes/A is running or defending, the mesmer interrupts offensively,
+  the mesmer is itself shut down, the monks are overloaded, the bars lack removal, or the enemy reapplies faster than
+  removal recharges (to test).
 - `K11` **Claude:** Most deaths come in chains: about 7 in 10 deaths in 24 matches came within 20 s of a teammate's.
   The first death of a chain, and what put that player there, is what to judge; the rest are mostly its consequence,
   especially once a monk is down.
@@ -427,6 +462,10 @@ against general principles rather than past games. Match-by-match evidence lives
 - `M14` **Denning:** A monk under 2 damage needs team support: e.g. the dervish hits the ranger and the mesmer
   defensively interrupts the enemy mesmer. When the Mes/A is not carrying the flag, it should interrupt the enemy
   mesmer defensively when that mesmer pressures its monk.
+- `M16` **Denning:** Overload is the goal when trying to kill; usually through coordinated pressure.
+- `M17` **Claude:** A team that heals a lot but still loses a player usually had heals arrive where prots were needed, a
+  low health ceiling (DP, Deep Wound), healing going to players not under threat, heals late or interrupted, or a
+  victim that couldn't kite (knockdown lock, cripple, Daze) (to test).
 - `M15` **Bounty:** Many small inaccuracies add up to lost fights: a monk not watching a split, a ritualist caught off
   shield set by Coward, a sleepy 8 monk.
 

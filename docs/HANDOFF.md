@@ -101,8 +101,8 @@ Claude should then:
 > analysis" section), knowledge/tactics.md, knowledge/match-reviews.md, tools/replay_analysis/METHODS.md and
 > data/review_labels.json, then `git fetch --depth 1 origin replays:refs/remotes/origin/replays`,
 > `pip install --break-system-packages interpret-core`, and run `python3 tools/replay_analysis/analyze.py --all --out
-> /tmp/ga` and `library.py build`. Then run the next training round (METHODS.md "A training round"), or:
-> <your request>
+> /tmp/ga` and `library.py build`. Then, once Denning approves, build the causal model (METHODS.md "The causal
+> model", build order), or: <your request>
 
 ## Goal
 Find plays that are better than experts can see, from data across many matches: not to mirror Denning's or anyone's
@@ -145,7 +145,9 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
     explanations, corrections), `learning.py` (learning report), `batch.py` (pick and add batches). Site pages:
     "Win-probability model" and "Learning report (latest)". Needs `pip install --break-system-packages interpret-core`.
 
-## Plan (see METHODS.md "From rulings to data" for the full data-first plan)
+## Plan (see METHODS.md "From rulings to data" and "The causal model")
+- Next: the causal model (phases, plans, jobs, trades; capacities; node models along the causal map), awaiting
+  Denning's go-ahead. The win model alone explains who is winning, not why (Denning).
 0. Done: model structure on the 24 stored matches (batch 0). Next: slow training, 3 to 5 random new replays per
    batch (`batch.py pick`), a learning report and Denning's answers after each. No large pull until the reports
    settle.
@@ -211,6 +213,9 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
 - Improve the toolkit rather than writing one-off scripts; each ruling becomes a label, a tactics line and a check.
 
 ## Recent changes
+- Session 4f: causal model designed with Denning (fights are global; phases, plans, jobs and trades; capacities;
+  matchup context; decisions modelled as the usual play); causal map version 1 (50 nodes, 169 links) with a site
+  page; Denning's answers added to tactics (`J1` to `J11`, `K12`, `K13`, `M16`, `M17`); 12 design amendments.
 - Session 4e: training round 1 (batch 1); candidate variables mechanism (`features.CANDIDATES`, tested every report);
   split_diff proposed and not yet supported.
 - Session 4d: model structure built and run as batch 0 (not yet better than team strength alone, as expected at 24

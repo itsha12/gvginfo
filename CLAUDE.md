@@ -76,6 +76,9 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   breakdowns, Denning's logged corrections) and is trained a few matches at a time with a learning report after each
   batch (METHODS.md "From rulings to data", "A training round"). Explain the learning report to Denning in words,
   with match moments; his corrections go in `data/model_corrections.json` with his reason.
+- Explaining why comes from the causal map (`data/model/causal_map.json`, METHODS.md "The causal model"): Denning's
+  and Claude's reasoning about what causes what, as links whose strength the data measures. Add his answers as links
+  (with reason, source and tactics ids) and log every change; keep `knowledge/causal-map.md` rendered.
 - Insights must be about decisions and consequences, not correlations. End each analysis with specific questions for
   Denning.
 - Site home page is Schedule (`#/`); Recent matches is `#/matches`.

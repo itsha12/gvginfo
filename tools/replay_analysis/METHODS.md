@@ -137,6 +137,59 @@ the Lord (`benchmarks.py lord`), flag run speeds, the flag model's accuracy.
 3. Discovery and choice values as data accumulates; tactics lines replaced by measured statements when the data
    supports them.
 
+## The causal model (design, version 1; to build)
+Why the win model alone isn't enough (Denning): boosts, wipes, cleared pits and DP are results; a model on results
+says who is winning, not why. The engine has to explain why a team got behind on flags, why the other team boosted,
+why a fight became a wipe, why a pit fell, why a team could or couldn't output damage, kill, or heal.
+
+**Structure: a loop over time.** Context (builds and matchup, strength, map, clock) shapes every layer. Every second
+each team allocates its 8 players (main, split, flag duty, defence, dead); allocation and the situation shape the plays
+(decisions and micro); plays set each group's capacities (damage output and uptime, burst quality, kill conversion,
+mitigation, healing, monk uptime and load, health ceiling, sustain margin, control received, removal capacity,
+mobility); capacities produce results (deaths, wipes, flag lead, boosts, pit NPCs, Lord damage, time held, enemies
+tied up, territory, tempo); results change the scoreboard, which shapes the next allocation; the win model values the
+results. Fights are global (Denning `J1`): the unit is the **phase** (a stretch with a stable global setup), each team
+has a **plan**, each group a **job** from that plan (strong side converts, weak side holds safely, runner caps and
+returns, defenders hold), and a phase is judged as a **trade** across the whole map. Credit = what the trade would have
+been had a group done its job at the level its matchup allows.
+
+**The causal map** (`data/model/causal_map.json`, site page "Causal map", `causal_map.py render|check`): every concept
+(node) with how it is measured, and every "X can cause Y" link with its reason, source (Denning, Claude, data,
+formula), whether Denning confirmed the reasoning, status (hypothesis, supported, rejected, mechanical) and tactics ids.
+Version 1: 50 nodes, 169 links, from the design conversation (scenarios 1 to 10 and follow-ups). Each node's model may
+only use the links pointing into it, measured earlier in time; the data decides how much each link matters.
+Explanations walk the map backwards from a result to the plays and context behind it.
+
+**Amendments from reviewing the design before building:**
+1. **Phases, not seconds, as rows** for jobs, capacities and trades: fewer, more independent rows, and the natural unit
+   of a plan.
+2. **Mechanical links are formulas, not learned** (sustain margin, health ceiling, flag ETA, a power play's deadline,
+   boosts): no data is spent learning arithmetic.
+3. **Expected for the matchup**: every capacity is compared with what is expected given the matchup, team strength and
+   situation; the difference is how well the team played. This separates "lost to the matchup" from "lost on play"
+   (`J10`).
+4. **The usual play**: decisions are nodes too, caused by the situation. The engine learns what teams usually do in each
+   situation and what that gets; a choice that does better than the usual play is a candidate "more optimal play".
+5. **Time order is enforced**: causes are measured before the effect's window (otherwise the model learns that dead
+   players stop casting).
+6. **Credit follows the map's paths**, so a result isn't counted twice through correlated variables (the backwards
+   knights curve in batch 1 is the kind of artifact this prevents).
+7. **One measure per concept, shared**: e.g. "Mesmers free to defend" feeds both the flag and defensive interrupts.
+8. **Pool by role and build features**, not by player or build name, until there is data for more.
+9. **Every node model is tested on unseen matches** like the win model; a link that never helps becomes rejected, and an
+   input outside the map that predicts well becomes a candidate link for Denning to explain or reject.
+10. **Lower layers first**: deaths, bursts, runs and casts number in the hundreds or thousands per batch, so those
+    links can be learned long before the win model has enough matches.
+11. **Proxies are flagged**: there is no energy in the data (proxies: energy-denial casts, weapon swaps, drops in
+    casting); nodes resting on proxies carry lower confidence.
+12. **Plans are found and amended from data** (`J11`): setups are clustered into plans; Denning names or corrects them.
+
+**Build order (when approved):** (1) phases, allocation per phase, plans and jobs; (2) capacities per group per phase,
+measured (descriptive, no learning); (3) expected-for-matchup baselines and the first node models (deaths, kill
+conversion), tested on the 30 matches; (4) the flag and boost chain; (5) pit NPCs and Lord damage; (6) usual-play
+models and decision comparisons; (7) learning report sections with "why" chains for the biggest moments, and the
+questions where the data and the map disagree. Slow training continues throughout.
+
 ## The model as built (batch 0)
 - `strength.py`: team strength from every stored result (1,737 matches, 71 guilds), Bradley-Terry with a 60-day
   half-life, rated only from results before each match; unrated guilds use the ladder gap (never 0). On later results
