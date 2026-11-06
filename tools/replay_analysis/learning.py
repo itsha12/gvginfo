@@ -168,6 +168,17 @@ def report():
                 L.append(f"- {c['choice']} (n {c['n']}): {c['effect_vs_usual']:+} [{c['interval'][0]:+}, {c['interval'][1]:+}]"
                          + (" CLEAR" if c.get("clear") else ""))
             L.append("")
+        cc = U.collapse_cost(U.wp_change(U.load("/tmp/ga")))
+        if cc:
+            L += ["**Collapses on a split: time away and its cost** (`S32`; per collapse, averages; main = what the main "
+                  "fight lost while the collapsers were away)", "",
+                  "| Group | Cases | Away (median s) | Split killed | Collapser died | Own deaths at main | Enemy deaths at main | Flag lead change | DP change | Win change |",
+                  "|---|---|---|---|---|---|---|---|---|---|"]
+            for k, x in cc.items():
+                L.append(f"| {k} | {x['n']} | {x['away_s_median']:g} | {x['killed_split']} | {x['collapser_died']} | "
+                         f"{x['own_deaths_at_main']} | {x['enemy_deaths_at_main']} | {x['flag_lead_change']:+} | "
+                         f"{x['dp_change']:+} | {x['win_change']:+} |")
+            L.append("")
     import values as VAL
     v = VAL.measure(ids); VAL.write(v)
     L += ["## 8. What results and causes are worth", ""] + VAL.report_lines(v)

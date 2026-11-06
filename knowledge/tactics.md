@@ -242,6 +242,11 @@ against general principles rather than past games. Match-by-match evidence lives
   losing NPCs, the flag position (is the frontline needed at main to keep a numbers edge for pushing a flag?) and how
   the main fight is going (is the frontline winning it?). The line is wherever the data says it is. (Measured: split
   decisions carry the defender's skills, split size, main numbers and health, flag lead and build axes.)
+  **Claude (data, 30 matches, 39 collapses):** collapsers were away from main a median 16 s. The kills came fast (6
+  kills, median 6 s away); no collapse that lasted 30 s or more killed anyone. Away 60 s or more (6 cases): the main
+  fight lost about 3.5 players to death, 12 DP and 19 s of flag lead meanwhile. Late (from 20:00, 6 cases) collapses
+  killed more often (4 of 6) but cost more at main. A first reading: a collapse that hasn't killed within about 30 s is
+  unlikely to, and should go back. All cells small; win changes unclear. Confidence: low.
 - `S31` **Bounty:** When a split changes (e.g. made beefier), the defence must change too; defending the same way loses
   the pit.
 - `S32` **Denning:** An 8v8 build answers a 3 man split by ignoring it with the main team and having a snare character

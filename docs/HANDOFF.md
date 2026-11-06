@@ -188,6 +188,8 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
   running and falling back about -12 (clear; those teams were mostly not losing their fight on health or numbers);
   after a wipe, taking the flag +12 (most of those wipes couldn't reach the enemy pit before its res, `D5`); split
   answers: with a snare on the holding defender a collapse killed 5 of 10, without 0 of 14 (`S31`, cells small).
+- Collapse cost (39 collapses): collapsers away a median 16 s; the 6 kills came fast (median 6 s away); none of the
+  collapses lasting 30 s or more killed, and those of 60 s or more cost the main fight about 3.5 deaths (`S32`).
 
 ## Decisions made (confirmed by Denning)
 - Up on flags = better position to get a boost and to run (the next capture exchange), not who capped last; backup
@@ -252,7 +254,9 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
   teams rarely rush the base to spike resurrected players (`D5`); causal map v9. Split answers then read the holding
   defender (first not collapsing from main) apart from collapsers, with main numbers and health: with a snare on the
   holder a collapse killed 5 of 10, without 0 of 14, and win chance ran Denning's way (unclear); `S32` (what decides a
-  collapse; the line comes from data). Next: batch 2.
+  collapse; the line comes from data). Then collapse cost built (time away from main and what the main fight lost
+  meanwhile; learning report section 7): median 16 s away; kills came within about 6 s; no collapse of 30 s or more
+  killed; 60 s or more cost about 3.5 deaths at main (6 cases). Next: batch 2.
 - Session 4k: Denning on pits (`P9` knights first, monk load of a full pit and area damage; `P10` two monks against a
   full pit; `P11` attackers leave before the res); area damage added; step 6 built (usual play); causal map v6.
 - Session 4j: Denning on drops (`F33`: where a drop happens; parked in base = deciding not to run; long hand-offs away

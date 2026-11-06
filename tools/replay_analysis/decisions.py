@@ -94,6 +94,30 @@ def enemy_pickups(st, sb):
     return out
 
 
+COLLAPSE_MAX_AWAY = 180   # seconds; a collapser not back at main by then is counted as away for this long
+
+
+def _collapse_away(st, sb, tm, coll):
+    """How long the collapsers were away from the main group, and what the main fight lost meanwhile (the cost side of
+    a collapse; the kill or NPCs saved are the gain). coll = [(agent, first second near the split)]."""
+    if not coll: return {}
+    m = st.m; spans = []
+    for b, first in coll:
+        leave = next((t for t in range(int(first), max(int(first) - 60, 0), -1) if b in st.main_group(tm, t)), max(int(first) - 20, 0))
+        back = next((t for t in range(int(first) + 5, min(int(first) + COLLAPSE_MAX_AWAY, int(st.end) - 1))
+                     if b in st.main_group(tm, t)), None)
+        died = any(leave <= x <= (back or first + COLLAPSE_MAX_AWAY) for x in st.death_times.get(b, []))
+        spans.append((leave, back if back is not None else min(int(first) + COLLAPSE_MAX_AWAY, int(st.end) - 1), back is None, died))
+    t0 = min(x[0] for x in spans); t1 = max(x[1] for x in spans)
+    sw = sb.swing(m.tag[tm], t0, t1); other = next(v for k, v in m.tag.items() if k != tm)
+    return {"collapse_away_s": t1 - t0, "collapser_seconds": sum(x[1] - x[0] for x in spans),
+            "collapser_not_back": int(any(x[2] for x in spans)), "collapser_died": int(any(x[3] for x in spans)),
+            "away_deaths_own": sw["deaths"][m.tag[tm]], "away_deaths_enemy": sw["deaths"][other],
+            "away_flag_lead_change": sw["flag_lead_change"], "away_caps_own": sw["caps"].get(m.tag[tm], 0),
+            "away_caps_enemy": sw["caps"].get(other, 0), "away_npcs_lost": len(sw["npcs_lost"][m.tag[tm]]),
+            "away_dp_change": sw["dp_change"][m.tag[tm]]}
+
+
 def splits_in_base(st, sb, splits):
     m, out = st.m, []
     for s in splits:
@@ -112,6 +136,8 @@ def splits_in_base(st, sb, splits):
         holder = role_to.get(holder_d["role"]) if holder_d else None
         ff = player_flags(m, holder) if holder is not None else {}
         coll = [role_to[x["role"]] for x in dfn if x["came"] == "collapse from main" and x["role"] in role_to]
+        away = _collapse_away(st, sb, y, [(role_to[x["role"]], x["first"]) for x in dfn
+                                           if x["came"] == "collapse from main" and x["role"] in role_to])
         atk = {m.roles[a]: a for a in st.players[3 - y]}
         af = [player_flags(m, atk[r]) for r in s["members"] if r in atk]
         collapse = any(x["came"] == "collapse from main" and (x["latency"] or 0) <= 60 for x in dfn)
@@ -127,7 +153,8 @@ def splits_in_base(st, sb, splits):
                               "split_died": int(bool(s["deaths"])),
                               # Denning (S32): how the main fight is going decides whether the frontline can leave
                               "main_diff_now": len(st.main_group(y, s["entered_base"])) - len(st.main_group(3 - y, s["entered_base"])),
-                              "health_diff": _health(st, y, s["entered_base"]) - _health(st, 3 - y, s["entered_base"])}))
+                              "health_diff": _health(st, y, s["entered_base"]) - _health(st, 3 - y, s["entered_base"]),
+                              **away}))
     return out
 
 

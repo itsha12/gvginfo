@@ -15,7 +15,7 @@ than the usual play is a candidate "more optimal play").
 
 Usage:  python3 usual.py [--src DIR]     reads the analysis files (analyze.py --all --out DIR, default /tmp/ga), writes
                                          data/model/usual_play.json and prints the table per decision kind"""
-import collections, glob, json, math, os, random, sys, warnings
+import collections, statistics, glob, json, math, os, random, sys, warnings
 import numpy as np
 warnings.filterwarnings("ignore")
 import model as M
@@ -178,6 +178,32 @@ def analyse(recs):
                      "by_build": by_build,
                      "unusual_choices": sorted(flagged, key=lambda f: -abs(f["difference"]))[:10]}
     return out
+
+
+def collapse_cost(recs, late=20):
+    """Collapses on a split (Denning, S31, S32): how long the collapsers were away from main, what the main fight lost
+    meanwhile, what the collapse gained (split member killed), and the change in win chance, by time away and by match
+    phase (before and from minute `late`)."""
+    L = [r for r in recs if r["kind"] == "split_in_base" and (r.get("extra") or {}).get("collapse_away_s") is not None]
+    def row(X):
+        if not X: return None
+        e = [r["extra"] for r in X]
+        return {"n": len(X), "away_s_median": statistics.median(x["collapse_away_s"] for x in e),
+                "killed_split": sum(x["split_died"] for x in e), "collapser_died": sum(x["collapser_died"] for x in e),
+                "own_deaths_at_main": round(statistics.mean(x["away_deaths_own"] for x in e), 2),
+                "enemy_deaths_at_main": round(statistics.mean(x["away_deaths_enemy"] for x in e), 2),
+                "flag_lead_change": round(statistics.mean(x["away_flag_lead_change"] for x in e), 1),
+                "dp_change": round(statistics.mean(x["away_dp_change"] for x in e), 1),
+                "win_change": round(statistics.mean(r["wp_change"] for r in X), 1)}
+    groups = {"all": L,
+              "away under 30 s": [r for r in L if r["extra"]["collapse_away_s"] < 30],
+              "away 30 to 60 s": [r for r in L if 30 <= r["extra"]["collapse_away_s"] < 60],
+              "away 60 s or more": [r for r in L if r["extra"]["collapse_away_s"] >= 60],
+              f"before {late}:00": [r for r in L if r["t"] < late * 60],
+              f"from {late}:00": [r for r in L if r["t"] >= late * 60],
+              "split member killed": [r for r in L if r["extra"]["split_died"]],
+              "no kill": [r for r in L if not r["extra"]["split_died"]]}
+    return {k: row(v) for k, v in groups.items() if v}
 
 
 if __name__ == "__main__":
