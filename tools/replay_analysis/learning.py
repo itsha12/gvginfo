@@ -128,7 +128,21 @@ def report():
             pb, partsb = hm.explain(b); pa, partsa = hm.explain(a)
             L.append(f"- {tags(lb['match'])} {clock(lb['t'])} ({lb['rule']}), {team}: {pb}% 20 s before -> {pa}% 60 s after "
                      f"({pa - pb:+.1f}). After: " + ", ".join(f"{x} {y_:+}" for x, y_ in partsa[:4]))
-    L += ["", "## 6. For Denning", "",
+    # the node models: why results happen (causal map)
+    import nodes as NODES
+    L += ["", "## 6. Why: the node models", "",
+          "Each explains one result from what happened before it (time order enforced), tested on matches it never saw. "
+          "AUC = how often a moment that led to the result scores above one that didn't (0.5 = guessing, 1 = perfect).", ""]
+    for node in ("deaths", "kill_conversion"):
+        s_, e_, df_, held_ = NODES.fit_node(node, ids)
+        v_ = s_["validation"]
+        L.append(f"**{node.replace('_', ' ')}** ({s_['matches']} matches, {s_['rows']} moments, {s_['events']} results): "
+                 f"{v_['verdict']} (AUC {v_['glass box']['auc']} against {v_['simple baseline']['auc']} for "
+                 f"{' and '.join(v_['baseline uses'])} alone).")
+        for t in s_["terms"][:10]:
+            if "curve" in t: L.append(f"- **{t['term']}** ({t['description']}) {curve_words(t)}")
+        L.append("")
+    L += ["## 7. For Denning", "",
           "- Which curves look wrong to you? A correction (direction, cap, drop, or a pair to always test) is logged with "
           "your reason and tested on held-out matches.",
           "- Do any surprises remind you of something the variables don't capture (a missing variable)?",

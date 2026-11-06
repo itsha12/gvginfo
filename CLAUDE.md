@@ -78,7 +78,9 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   with match moments; his corrections go in `data/model_corrections.json` with his reason.
 - Explaining why comes from the causal map (`data/model/causal_map.json`, METHODS.md "The causal model"): Denning's
   and Claude's reasoning about what causes what, as links whose strength the data measures. Add his answers as links
-  (with reason, source and tactics ids) and log every change; keep `knowledge/causal-map.md` rendered.
+  (with reason, source and tactics ids) and log every change; keep `knowledge/causal-map.md` rendered. Built so far:
+  `phases.py` (phases, plans, jobs, capacities), `buildfeat.py` (build and matchup features), `nodes.py` (death and
+  kill-conversion models; `explain` for a player's risk second by second).
 - Insights must be about decisions and consequences, not correlations. End each analysis with specific questions for
   Denning.
 - Site home page is Schedule (`#/`); Recent matches is `#/matches`.

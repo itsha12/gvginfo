@@ -146,8 +146,10 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
     "Win-probability model" and "Learning report (latest)". Needs `pip install --break-system-packages interpret-core`.
 
 ## Plan (see METHODS.md "From rulings to data" and "The causal model")
-- Causal model: steps 1 and 2 built (`phases.py`: phases, theatres, plans, jobs, capacities). Next: step 3,
-  expected-for-matchup baselines and the first node models (deaths, kill conversion) with time order enforced. The win model alone explains who is winning, not why (Denning).
+- Causal model: steps 1 to 3 built (`phases.py`; `buildfeat.py`; `nodes.py` death and kill-conversion models, both
+  beating simple baselines on unseen matches). Next: (4) the flag and boost chain (why a team got behind on flags, why
+  a boost was conceded), (5) pit NPCs and Lord damage, (6) usual-play models and decision comparisons, then link the
+  node models to the win model so each cause is valued in win chance. Slow training continues (3 to 5 matches a batch). The win model alone explains who is winning, not why (Denning).
 0. Done: model structure on the 24 stored matches (batch 0). Next: slow training, 3 to 5 random new replays per
    batch (`batch.py pick`), a learning report and Denning's answers after each. No large pull until the reports
    settle.
@@ -213,6 +215,9 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
 - Improve the toolkit rather than writing one-off scripts; each ruling becomes a label, a tactics line and a check.
 
 ## Recent changes
+- Session 4h: step 3 built (build features, death and kill-conversion node models, report section, `nodes.py
+  explain`); 9:31 explained second by second; Denning: Draw Conditions onto the 8 is normal play but maybe a mistake
+  (`M18`, data decides); jobs in the enemy base read from targets; `J12` healers matter only through damage.
 - Session 4g: causal model steps 1 and 2 built (phases.py; ENGINE 16; library kind `groups`).
 - Session 4f: causal model designed with Denning (fights are global; phases, plans, jobs and trades; capacities;
   matchup context; decisions modelled as the usual play); causal map version 1 (50 nodes, 169 links) with a site

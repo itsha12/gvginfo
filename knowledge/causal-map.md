@@ -1,6 +1,6 @@
 *Generated from data/model/causal_map.json by tools/replay_analysis/causal_map.py: don't edit this page; tell Claude or edit the JSON (each change is logged with a reason).*
 
-# Causal map (version 2)
+# Causal map (version 3)
 
 What can cause what in a GvG match. Each concept is measured from the replays; the model for each concept may only use the causes listed under it, measured earlier in time, and the data decides how much each matters. Status: **hypothesis** (not yet tested), **supported** or **rejected** by data, **mechanical** (a formula). "Confirmed" = Denning has confirmed the reasoning; the size of the effect still comes from data.
 
@@ -47,6 +47,7 @@ what each group must do given the plan: strong side converts, weak side holds sa
 
 Caused by:
 - **Plan, Allocation**: each group's job follows from the plan and the numbers where it is (Denning; hypothesis; `J2`)
+- **Allocation**: a group in the enemy base is labelled by what it hits: NPCs or the Lord (split), the enemy carrier (push the runner), players (fight in the enemy pit) (Claude; mechanical)
 
 ### Damage potential v healing `A.roles_ratio`
 the damage a group can actually put out (measured per role and build, not heads: a mesmer is not a hammer) against the healing and prots it faces. *Measured: to build: measured damage per second per role and build against players, plus healers' measured healing.*
@@ -149,6 +150,12 @@ Caused by:
 - **Clock, Flag lead**: a power play has a deadline (the enemy runner's return); the team must capitalize on the limited window (Denning; hypothesis; `J6`)
 - **Scoreboard, Plan, Clock, Build features, Team strength**: decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out (Claude; hypothesis)
 
+### Taking conditions on oneself `P.15`
+a monk transferring conditions onto itself (Draw Conditions), e.g. Deep Wound and Burning. *Measured: condition effects whose source is the own team.*
+
+Caused by:
+- **Scoreboard, Plan, Clock, Build features, Team strength**: decisions are made in a situation (the usual play) (Claude, confirmed; hypothesis)
+
 ## Capacities (what a group can do in its fight)
 
 ### Pressure `K.1`
@@ -216,6 +223,7 @@ each player's maximum health after DP, Deep Wound and health-reducing hexes. *Me
 
 Caused by:
 - **Deaths, Control received**: death penalty from deaths and Deep Wound or health-reducing hexes lower the ceiling (formula; mechanical)
+- **Taking conditions on oneself**: Draw Conditions moves Deep Wound onto the monk, cutting its maximum health by a fifth: normal play, maybe a mistake for a lone 8 monk facing a ranger and a hammer; the data decides (Denning; hypothesis; `M18`)
 
 ### Sustain margin `K.10`
 incoming damage against healing plus mitigation in a group. *Measured: pressure, healing, mitigation.*
@@ -332,3 +340,4 @@ Caused by:
 
 - 2026-11-05: version 1 from the design conversation (scenarios 1 to 10 and follow-ups); decisions linked to the situation (the usual play), remaining gaps linked (Denning and Claude)
 - 2026-11-05: version 2: 'Damage v healers' became 'Damage potential v healing' (Denning: healer counts only matter through damage); J12 link added (Denning)
+- 2026-11-05: version 3: 'Taking conditions on oneself' (Draw Conditions, M18); jobs in the enemy base read from targets (Denning and Claude)

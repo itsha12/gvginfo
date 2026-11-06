@@ -470,6 +470,9 @@ against general principles rather than past games. Match-by-match evidence lives
 - `M17` **Claude:** A team that heals a lot but still loses a player usually had heals arrive where prots were needed, a
   low health ceiling (DP, Deep Wound), healing going to players not under threat, heals late or interrupted, or a
   victim that couldn't kite (knockdown lock, cripple, Daze) (to test).
+- `M18` **Denning:** An 8 monk using Draw Conditions to take Burning and Deep Wound onto itself is normal play, but it
+  might be a mistake when it is the only healer facing a ranger and a hammer (its health ceiling drops by a fifth). The
+  data will tell. [Men v HC C]
 - `M15` **Bounty:** Many small inaccuracies add up to lost fights: a monk not watching a split, a ritualist caught off
   shield set by Coward, a sleepy 8 monk.
 

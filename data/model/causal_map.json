@@ -1,6 +1,6 @@
 {
  "about": "The causal map: what can cause what in a GvG match, as reasoned by Denning and Claude and found in data. Each node is measured; each node's model may only use the links pointing into it, measured earlier in time. The data decides how much each link matters (status: hypothesis, supported, rejected; mechanical = a formula, not learned). Denning can add, correct or remove links; each change is logged with its reason. Rendered to knowledge/causal-map.md by tools/replay_analysis/causal_map.py.",
- "version": 2,
+ "version": 3,
  "nodes": [
   {
    "id": "C.builds",
@@ -401,6 +401,14 @@
    "description": "the win-probability model: values every result",
    "how": "model.py",
    "kind": "learned"
+  },
+  {
+   "id": "P.15",
+   "layer": "play",
+   "name": "Taking conditions on oneself",
+   "description": "a monk transferring conditions onto itself (Draw Conditions), e.g. Deep Wound and Burning",
+   "how": "condition effects whose source is the own team",
+   "kind": "measured"
   }
  ],
  "links": [
@@ -2093,6 +2101,71 @@
    "tactics": [
     "J12"
    ]
+  },
+  {
+   "from": "P.15",
+   "to": "K.9",
+   "why": "Draw Conditions moves Deep Wound onto the monk, cutting its maximum health by a fifth: normal play, maybe a mistake for a lone 8 monk facing a ranger and a hammer; the data decides",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "M18"
+   ]
+  },
+  {
+   "from": "S.scoreboard",
+   "to": "P.15",
+   "why": "decisions are made in a situation (the usual play)",
+   "source": "Claude",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "A.plan",
+   "to": "P.15",
+   "why": "decisions are made in a situation (the usual play)",
+   "source": "Claude",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.clock",
+   "to": "P.15",
+   "why": "decisions are made in a situation (the usual play)",
+   "source": "Claude",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.builds",
+   "to": "P.15",
+   "why": "decisions are made in a situation (the usual play)",
+   "source": "Claude",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.strength",
+   "to": "P.15",
+   "why": "decisions are made in a situation (the usual play)",
+   "source": "Claude",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "A.allocation",
+   "to": "A.jobs",
+   "why": "a group in the enemy base is labelled by what it hits: NPCs or the Lord (split), the enemy carrier (push the runner), players (fight in the enemy pit)",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "mechanical",
+   "tactics": []
   }
  ],
  "log": [
@@ -2105,6 +2178,11 @@
    "date": "2026-11-05",
    "change": "version 2: 'Damage v healers' became 'Damage potential v healing' (Denning: healer counts only matter through damage); J12 link added",
    "by": "Denning"
+  },
+  {
+   "date": "2026-11-05",
+   "change": "version 3: 'Taking conditions on oneself' (Draw Conditions, M18); jobs in the enemy base read from targets",
+   "by": "Denning and Claude"
   }
  ]
 }

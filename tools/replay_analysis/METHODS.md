@@ -194,8 +194,28 @@ phase's trade. Library kind `groups` (one row per group per phase). First look o
 strong sides that converted had 5 damage dealers against 4, pressure 50/s against 22/s, uptime 51% against 36%; weak
 sides that held took 21/s incoming against 45/s, sustain margin +6 against -10.
 
+**Built (step 3, first node models, `buildfeat.py`, `nodes.py`):** build features from the skill data (what each
+bar causes and removes: interrupts, knockdowns, Blind, snares, strips, energy loss, prots, blocks, Aura of Stability,
+removal, heals, speed) and matchup pairs (threat against answer). Node models, glass box, time order enforced:
+- deaths: one row per alive player every 3 s (69,889 moments, 1,829 leading to a death within 10 s); features from the
+  past only (health, health ceiling, damage taken, attackers, knockdowns, Daze, Deep Wound, cripple, interrupts, prots
+  and blocks up, conditions taken on itself, healers in range or dead, allies and enemies near, local numbers, distance
+  from group and pit, res timer, flag lead, minute, strength). Held out: AUC 0.896 against 0.764 for health and recent
+  damage alone.
+- kill_conversion: one row per burst (553; 165 killed within 8 s): target defence (prots, blocks, healers in range,
+  health, ceiling, knockdown, Daze, Deep Wound, distance from group), attackers' shutdown (Blind, interrupts and
+  knockdowns on them), the burst. Held out: AUC 0.784 against 0.647.
+- Matchup counts are fixed for a whole match, so they switch on at 60 matches (`STAGE_FIXED`), as in the win model;
+  staging raised both models' held-out accuracy.
+- First readings (30 matches): health ceiling (DP) is among the strongest causes of both deaths and converted bursts
+  (`K4`); two interrupts on the attackers cut a burst's kill chance by about 28 points; a burst on a healer converts
+  only about 2 points more than on others (target choice matters but not hugely); being Dazed adds about 25 points to a
+  player's death risk in the next 10 s, no healer in range about 11. `nodes.py explain` gives a player's risk second by
+  second with its causes (from a model that never saw the match). The learning report has a section per node.
+
 **Build order:** (1) phases, allocation per phase, plans and jobs (built); (2) capacities per group per phase,
-measured (built); (3) expected-for-matchup baselines and the first node models (deaths, kill
+measured (built); (3) first node models: deaths and kill conversion (built; expected-for-matchup baselines come with
+the matchup features at 60 matches); (3) expected-for-matchup baselines and the first node models (deaths, kill
 conversion), tested on the 30 matches; (4) the flag and boost chain; (5) pit NPCs and Lord damage; (6) usual-play
 models and decision comparisons; (7) learning report sections with "why" chains for the biggest moments, and the
 questions where the data and the map disagree. Slow training continues throughout.

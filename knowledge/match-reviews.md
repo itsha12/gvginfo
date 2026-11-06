@@ -252,7 +252,13 @@ Men's push team (prot, 7 monk, hammer, ranger) sat on its route. That was not a 
   (Men's at 6:29) that the engine dropped, and nobody boosted in that stretch; the 8 monk, stand mesmer and paragon stayed out 3v4 against Men's Hammer A,
   ranger, prot and 7 monk while Men ran. The 8 monk was Dazed casting beside the ranger, then caught. Denning: an
   unnecessary risk; HC could have waited to cap and kept the group together near pit, following only if Men went for
-  the runner. The stand mesmer never carried a flag (not a double run).
+  the runner. The stand mesmer never carried a flag (not a double run). Phases add: from 9:11 the backside was an
+  even 4v4 on heads (HC's 8 monk, stand mesmer, Mes/A and paragon against Men's 7 monk, prot, ranger and Hammer A), but
+  HC took 59 damage per second and healed 19; HC's other four were fighting in Men's pit (68% of their damage on Men's
+  mesmer and Hammer B, 5% on the WoC carrying), not pushing the runner. The 8 monk's last 15 s: Reversal of Fortune and
+  Draw Conditions on the stand mesmer (taking Burning and Deep Wound onto itself at 9:18), Reversal of Fortune on the
+  paragon interrupted by Savage Shot (luck), Guardian on itself at 9:27 interrupted by Concussion Shot (Dazed), Hammer
+  Bash at 9:29 with no block, dead at 9:31; neither other monk in range.
 
 ## Earlier reviews (before this page)
 Reviewed with Denning in November 2026, without stored summaries: RJT v RACK, RACK v MBP, 옷옷옷옷 v RACK, hold v RACK
