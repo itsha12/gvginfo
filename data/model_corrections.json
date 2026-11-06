@@ -1,0 +1,4 @@
+{
+ "about": "Denning's corrections to the win-probability model. Kinds: direction (curve can only rise or fall: increasing true/false), drop (variable not used), interaction (always offer this pair, written 'a & b'), cap (effect limited to max_points). Each needs a reason. Every fit reports accuracy with and without them.",
+ "corrections": []
+}

@@ -74,7 +74,8 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
 - The goal is plays better than experts can see, from data: values and best plays come from measurement, never from
   guessed weights or defaults. The win-probability model must stay white box (readable contributions, explanation
   breakdowns, Denning's logged corrections) and is trained a few matches at a time with a learning report after each
-  batch (METHODS.md "From rulings to data").
+  batch (METHODS.md "From rulings to data", "A training round"). Explain the learning report to Denning in words,
+  with match moments; his corrections go in `data/model_corrections.json` with his reason.
 - Insights must be about decisions and consequences, not correlations. End each analysis with specific questions for
   Denning.
 - Site home page is Schedule (`#/`); Recent matches is `#/matches`.

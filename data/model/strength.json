@@ -1,0 +1,307 @@
+{
+ "about": "Two measures, both from every stored match result (data/matches/*.json, far more matches than the replays):\n- ladder: each guild's in-game rating at the time of the match, as gvg.report recorded it;\n- fitted: a Bradley-Terry rating fitted on results only (each match weighs less the older it is, half-life HALF_LIFE\n  days), on the same scale as the ladder (400 points = 10 to 1 odds). Fitted ratings use only matches before the one\n  being rated, so a match's own result never leaks into the strength gap the model sees.\nThe report compares how well each predicts results (log loss, accuracy) so the better one is chosen by data.",
+ "matches": 1737,
+ "half_life_days": 60,
+ "prediction": {
+  "ladder": {
+   "log_loss": 0.473,
+   "accuracy": 0.808,
+   "matches": 479
+  },
+  "fitted": {
+   "log_loss": 0.417,
+   "accuracy": 0.818,
+   "matches": 479
+  },
+  "coin flip": {
+   "log_loss": 0.693,
+   "accuracy": 0.5
+  }
+ },
+ "guilds": {
+  "spce": {
+   "fitted": 785,
+   "matches": 4
+  },
+  "옷옷옷옷": {
+   "fitted": 685,
+   "matches": 50
+  },
+  "HH": {
+   "fitted": 649,
+   "matches": 77
+  },
+  "SKT": {
+   "fitted": 620,
+   "matches": 38
+  },
+  "hdm": {
+   "fitted": 559,
+   "matches": 46
+  },
+  "xxx": {
+   "fitted": 545,
+   "matches": 56
+  },
+  "Men": {
+   "fitted": 527,
+   "matches": 166
+  },
+  "NwAy": {
+   "fitted": 499,
+   "matches": 123
+  },
+  "meow": {
+   "fitted": 448,
+   "matches": 21
+  },
+  "RACK": {
+   "fitted": 398,
+   "matches": 17
+  },
+  "LaG": {
+   "fitted": 396,
+   "matches": 2
+  },
+  "JJK": {
+   "fitted": 382,
+   "matches": 77
+  },
+  "OG": {
+   "fitted": 354,
+   "matches": 76
+  },
+  "drm": {
+   "fitted": 298,
+   "matches": 28
+  },
+  "ohno": {
+   "fitted": 276,
+   "matches": 41
+  },
+  "Dz": {
+   "fitted": 269,
+   "matches": 74
+  },
+  "Team": {
+   "fitted": 260,
+   "matches": 163
+  },
+  "cope": {
+   "fitted": 257,
+   "matches": 62
+  },
+  "GiP": {
+   "fitted": 249,
+   "matches": 2
+  },
+  "pug": {
+   "fitted": 246,
+   "matches": 26
+  },
+  "hold": {
+   "fitted": 182,
+   "matches": 23
+  },
+  "yM": {
+   "fitted": 175,
+   "matches": 78
+  },
+  "GWSC": {
+   "fitted": 124,
+   "matches": 16
+  },
+  "LE": {
+   "fitted": 72,
+   "matches": 10
+  },
+  "One": {
+   "fitted": 45,
+   "matches": 122
+  },
+  "Crew": {
+   "fitted": 37,
+   "matches": 214
+  },
+  "Book": {
+   "fitted": 37,
+   "matches": 177
+  },
+  "MBP": {
+   "fitted": 35,
+   "matches": 65
+  },
+  "fist": {
+   "fitted": 25,
+   "matches": 3
+  },
+  "Rudi": {
+   "fitted": 14,
+   "matches": 102
+  },
+  "oo": {
+   "fitted": -5,
+   "matches": 12
+  },
+  "mugu": {
+   "fitted": -13,
+   "matches": 17
+  },
+  "BcS": {
+   "fitted": -36,
+   "matches": 126
+  },
+  "True": {
+   "fitted": -38,
+   "matches": 41
+  },
+  "DMG": {
+   "fitted": -47,
+   "matches": 112
+  },
+  "Fun": {
+   "fitted": -102,
+   "matches": 71
+  },
+  "og": {
+   "fitted": -111,
+   "matches": 1
+  },
+  "CoCo": {
+   "fitted": -119,
+   "matches": 1
+  },
+  "Apes": {
+   "fitted": -165,
+   "matches": 133
+  },
+  "hook": {
+   "fitted": -202,
+   "matches": 157
+  },
+  "TFS": {
+   "fitted": -207,
+   "matches": 31
+  },
+  "chic": {
+   "fitted": -243,
+   "matches": 137
+  },
+  "GANK": {
+   "fitted": -297,
+   "matches": 5
+  },
+  "QenK": {
+   "fitted": -306,
+   "matches": 51
+  },
+  "dR": {
+   "fitted": -317,
+   "matches": 28
+  },
+  "YAP": {
+   "fitted": -338,
+   "matches": 32
+  },
+  "aloo": {
+   "fitted": -348,
+   "matches": 1
+  },
+  "EdgE": {
+   "fitted": -362,
+   "matches": 2
+  },
+  "Free": {
+   "fitted": -364,
+   "matches": 90
+  },
+  "AUNZ": {
+   "fitted": -374,
+   "matches": 4
+  },
+  "fM": {
+   "fitted": -411,
+   "matches": 16
+  },
+  "TECH": {
+   "fitted": -426,
+   "matches": 8
+  },
+  "GanG": {
+   "fitted": -439,
+   "matches": 1
+  },
+  "push": {
+   "fitted": -449,
+   "matches": 114
+  },
+  "Void": {
+   "fitted": -517,
+   "matches": 3
+  },
+  "げえええ": {
+   "fitted": -520,
+   "matches": 45
+  },
+  "EDGE": {
+   "fitted": -556,
+   "matches": 70
+  },
+  "Rum": {
+   "fitted": -560,
+   "matches": 9
+  },
+  "戦戦戦戦": {
+   "fitted": -573,
+   "matches": 32
+  },
+  "DUM": {
+   "fitted": -686,
+   "matches": 91
+  },
+  "zZz": {
+   "fitted": -780,
+   "matches": 1
+  },
+  "ML": {
+   "fitted": -784,
+   "matches": 2
+  },
+  "RV": {
+   "fitted": -845,
+   "matches": 27
+  },
+  "GW크": {
+   "fitted": -909,
+   "matches": 2
+  },
+  "kF": {
+   "fitted": -911,
+   "matches": 2
+  },
+  "Jwz": {
+   "fitted": -983,
+   "matches": 3
+  },
+  "Old": {
+   "fitted": -1053,
+   "matches": 5
+  },
+  "DKKL": {
+   "fitted": -1081,
+   "matches": 6
+  },
+  "DRKN": {
+   "fitted": -1148,
+   "matches": 16
+  },
+  "cell": {
+   "fitted": -1178,
+   "matches": 6
+  },
+  "Chew": {
+   "fitted": -1293,
+   "matches": 4
+  }
+ }
+}

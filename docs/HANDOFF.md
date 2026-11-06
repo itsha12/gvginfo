@@ -101,7 +101,7 @@ Claude should then:
 > analysis" section), knowledge/tactics.md, knowledge/match-reviews.md, tools/replay_analysis/METHODS.md and
 > data/review_labels.json, then `git fetch --depth 1 origin replays:refs/remotes/origin/replays`,
 > `pip install --break-system-packages interpret-core`, and run `python3 tools/replay_analysis/analyze.py --all --out
-> /tmp/ga` and `library.py build`. Then continue building the model structure (METHODS.md "Order of work", step 1), or:
+> /tmp/ga` and `library.py build`. Then run the next training round (METHODS.md "A training round"), or:
 > <your request>
 
 ## Goal
@@ -140,13 +140,15 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
 7. `library.py`: `build`, `query`, and `compare <decision kind>` (outcomes by choice across matches).
 8. `analyze.py`: runs everything (about 1 s per match).
 9. `benchmarks.py`: measured values from all replays (so far `lord`: Lord damage per second at the Lord). Rebuild after
-   new replays. Next layers: team strength, state export, win probability (METHODS.md).
+   new replays.
+10. Win-probability model: `strength.py` (team strength), `features.py` (named variables), `model.py` (glass box,
+    explanations, corrections), `learning.py` (learning report), `batch.py` (pick and add batches). Site pages:
+    "Win-probability model" and "Learning report (latest)". Needs `pip install --break-system-packages interpret-core`.
 
 ## Plan (see METHODS.md "From rulings to data" for the full data-first plan)
-0. Next: build the model structure on the 24 stored matches (team strength, the variables and match table, the
-   glass-box win-probability model with explanation breakdowns, the readable model file, corrections, the learning
-   report). Then slow training: 3 to 5 new replays per batch, a learning report and Denning's answers after each. No
-   large pull until the reports settle.
+0. Done: model structure on the 24 stored matches (batch 0). Next: slow training, 3 to 5 random new replays per
+   batch (`batch.py pick`), a learning report and Denning's answers after each. No large pull until the reports
+   settle.
 1. Done: Bounty (6), Nick ([Men v Team]), Maga's OG comms (4), 4 good-guild matches, the engine, death rulings 1 and 2,
    the engine review (bugs fixed, scoreboard, fights, decision points, tactics restructure).
 2. Now: calibrate on Denning's rulings (remaining [Men v HC C] deaths and power plays, judged as fights), each ruling
@@ -156,7 +158,8 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
 4. Then: grow the batches once learning reports settle; discovery and choice values as data accumulates.
 
 ## Current state
-- Stored replays: 24 on the `replays` branch.
+- Stored replays: 24 on the `replays` branch, all in training batch 0.
+- Model: batch 0, not yet better than team strength alone (see knowledge/learning-report.md).
 - Library on 24 matches: 376 deaths in 176 fights (45 wipes), 886 decision points, 279 flag cycles, 945 findings.
 - Death causes: backline down 96, caught away from its group 58, out-pressured despite support 45, coordinated enemy
   pressure 45, spike 31, out of range of its monks 24, out-damaged despite prots 21, chased down while retreating 20,
@@ -204,6 +207,9 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
 - Improve the toolkit rather than writing one-off scripts; each ruling becomes a label, a tactics line and a check.
 
 ## Recent changes
+- Session 4d: model structure built and run as batch 0 (not yet better than team strength alone, as expected at 24
+  matches); strength ratings (82% of results predicted), named variables, glass-box model with staging, held-out
+  explanations, corrections file, learning report, batch helper, site pages.
 - Session 4c: model requirements set (white box, explains why, amendable, structure first, slow training with
   learning reports, discovery first); `interpret` (Explainable Boosting Machine) chosen and tested to install.
 - Session 4b: Lord damage measured (ranger 37, ele 33, warrior 27, paragon 24, dervish 23, necro 10, mesmer 7 per

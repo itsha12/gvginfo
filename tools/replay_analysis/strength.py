@@ -1,0 +1,108 @@
+"""Team strength: how strong each guild is, so the model can tell "good teams do X" apart from "X wins".
+
+Two measures, both from every stored match result (data/matches/*.json, far more matches than the replays):
+- ladder: each guild's in-game rating at the time of the match, as gvg.report recorded it;
+- fitted: a Bradley-Terry rating fitted on results only (each match weighs less the older it is, half-life HALF_LIFE
+  days), on the same scale as the ladder (400 points = 10 to 1 odds). Fitted ratings use only matches before the one
+  being rated, so a match's own result never leaks into the strength gap the model sees.
+The report compares how well each predicts results (log loss, accuracy) so the better one is chosen by data.
+
+Usage:  python3 strength.py            -> data/model/strength.json (ratings per guild with matches behind them) and
+                                          the comparison printed
+In code: strength_gap(match_id, team_tag) -> (ladder gap, fitted gap) for that match, from the team's side."""
+import collections, glob, json, math, os, sys
+from common import REPO
+
+HALF_LIFE = 60            # days
+OUT = os.path.join(REPO, "data", "model")
+K = 400 / math.log(10)    # rating points per unit of log odds
+
+
+def load():
+    rows = []
+    for f in sorted(glob.glob(os.path.join(REPO, "data", "matches", "2*.json"))):
+        for r in json.load(open(f)):
+            t = r.get("teams") or []
+            if len(t) != 2 or r.get("winner") not in (1, 2): continue
+            rows.append({"id": r["id"], "at": r.get("at") or 0, "date": r.get("date"),
+                         "a": t[0]["tag"] or t[0]["guild"], "b": t[1]["tag"] or t[1]["guild"],
+                         "ra": t[0].get("rating"), "rb": t[1].get("rating"), "a_won": r["winner"] == t[0]["id"]})
+    return sorted(rows, key=lambda r: r["at"])
+
+
+def fit(rows, until_at=None, iters=60):
+    """Bradley-Terry by simple gradient steps on time-weighted results before until_at."""
+    use = [r for r in rows if until_at is None or r["at"] < until_at]
+    if not use: return {}
+    last = until_at or max(r["at"] for r in use)
+    w = lambda r: 0.5 ** ((last - r["at"]) / 86400000 / HALF_LIFE)
+    s = collections.defaultdict(float)
+    for _ in range(iters):
+        g = collections.defaultdict(float); h = collections.defaultdict(float)
+        for r in use:
+            p = 1 / (1 + math.exp(-(s[r["a"]] - s[r["b"]])))
+            e = (1.0 if r["a_won"] else 0.0) - p
+            ww = w(r)
+            g[r["a"]] += ww * e; g[r["b"]] -= ww * e
+            h[r["a"]] += ww * p * (1 - p); h[r["b"]] += ww * p * (1 - p)
+        for k in list(g):
+            s[k] += g[k] / (h[k] + 1.0)        # +1: pulls guilds with few matches toward average
+    return {k: v * K for k, v in s.items()}
+
+
+_CACHE = {}
+def strength_gap(match_id, tag, at=None, opp=None, ratings=None):
+    """(ladder gap, fitted gap) from tag's side for one match. A match not among the stored results (e.g. a replay newer
+    than the last results update) is rated from every result before its time `at` (ms), against `opp`; the ladder
+    gap then comes from `ratings` ({tag: ladder rating} from the replay) if given."""
+    if "rows" not in _CACHE:
+        _CACHE["rows"] = load(); _CACHE["by_id"] = {r["id"]: r for r in _CACHE["rows"]}
+    r = _CACHE["by_id"].get(match_id)
+    if not r:
+        if at is None or opp is None: return None, None
+        if at not in _CACHE: _CACHE[at] = fit(_CACHE["rows"], at)
+        f = _CACHE[at]
+        lad = (ratings[tag] - ratings[opp]) if ratings and ratings.get(tag) is not None and ratings.get(opp) is not None else None
+        if tag not in f or opp not in f: return lad, lad      # an unrated guild: use the ladder gap (same scale), never 0
+        return lad, round(f[tag] - f[opp])
+    if r["at"] not in _CACHE: _CACHE[r["at"]] = fit(_CACHE["rows"], r["at"])
+    f = _CACHE[r["at"]]
+    sign = 1 if tag == r["a"] else -1
+    lad = (r["ra"] - r["rb"]) * sign if r["ra"] is not None and r["rb"] is not None else None
+    if r["a"] not in f or r["b"] not in f: return lad, lad
+    return lad, round((f[r["a"]] - f[r["b"]]) * sign)
+
+
+def compare(rows):
+    """How well each measure predicts results, on matches after the first 300 (fitted ratings use only earlier ones)."""
+    out = {}
+    test = rows[300::3]                      # every third later match, to keep the fits quick
+    for name in ("ladder", "fitted"):
+        ll = acc = n = 0
+        for r in test:
+            if name == "ladder":
+                if r["ra"] is None or r["rb"] is None: continue
+                gap = r["ra"] - r["rb"]
+            else:
+                f = fit(rows, r["at"], iters=25); gap = f.get(r["a"], 0) - f.get(r["b"], 0)
+            p = 1 / (1 + 10 ** (-gap / 400)); p = min(max(p, 0.02), 0.98)
+            y = 1 if r["a_won"] else 0
+            ll += -(y * math.log(p) + (1 - y) * math.log(1 - p)); acc += (p > 0.5) == bool(y); n += 1
+        out[name] = {"log_loss": round(ll / n, 3), "accuracy": round(acc / n, 3), "matches": n}
+    out["coin flip"] = {"log_loss": round(math.log(2), 3), "accuracy": 0.5}
+    return out
+
+
+if __name__ == "__main__":
+    rows = load()
+    final = fit(rows)
+    games = collections.Counter([r["a"] for r in rows] + [r["b"] for r in rows])
+    cmp = compare(rows)
+    os.makedirs(OUT, exist_ok=True)
+    json.dump({"about": __doc__.split("\n\n")[1].strip(), "matches": len(rows), "half_life_days": HALF_LIFE,
+               "prediction": cmp,
+               "guilds": {g: {"fitted": round(v), "matches": games[g]} for g, v in sorted(final.items(), key=lambda kv: -kv[1])}},
+              open(os.path.join(OUT, "strength.json"), "w"), indent=1, ensure_ascii=False)
+    print(len(rows), "matches,", len(final), "guilds")
+    print("prediction of results:", cmp)
+    print("top:", [(g, round(v), games[g]) for g, v in sorted(final.items(), key=lambda kv: -kv[1])[:12]])

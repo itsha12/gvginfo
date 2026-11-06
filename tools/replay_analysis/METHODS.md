@@ -137,6 +137,41 @@ the Lord (`benchmarks.py lord`), flag run speeds, the flag model's accuracy.
 3. Discovery and choice values as data accumulates; tactics lines replaced by measured statements when the data
    supports them.
 
+## The model as built (batch 0)
+- `strength.py`: team strength from every stored result (1,737 matches, 71 guilds), Bradley-Terry with a 60-day
+  half-life, rated only from results before each match; unrated guilds use the ladder gap (never 0). On later results
+  it predicts 82% of winners (log loss 0.417), better than the ladder (81%, 0.473). The in-match model has to beat
+  this to show it understands play rather than who the better team is.
+- `features.py`: the named variables (one line each, with a plain description). Matching own and enemy quantities are
+  single differences (separate ones partly cancelled and split the data). One row per 5 s per team; training uses
+  every 15 s.
+- `model.py`: glass-box model (Explainable Boosting Machine). Baseline = team strength; the curves are what the game
+  state adds. Staged complexity (`STAGES`): build variables from 60 matches, interactions from 40, because with few
+  matches variables fixed for a whole match only fingerprint matches (seen in batch 0: both models then did worse
+  than strength alone). Few boosting rounds (300), because the library's internal stopping test holds out rows, not
+  whole matches. Validation holds out whole matches; compared with strength alone and a black box; verdict printed.
+  Explanations are in points for an otherwise even game (readable at any win chance), and always come from a model
+  fitted without that match (`model.py explain`). Writes `data/model/wp_model.json`, `wp_model.md` and the site page
+  `knowledge/wp-model.md`. Corrections: `data/model_corrections.json` (direction, drop, interaction, cap), each
+  tested by refitting with and without.
+- `learning.py`: the learning report per batch (`data/model/reports/batch_NN.md`, `latest.md`, site page
+  `knowledge/learning-report.md`; model snapshots in `data/model/history/`): the honest test, what it leans on and
+  how that changed, the curves in words, discovery (interaction screen, untested; the moments it got most wrong),
+  Denning's rulings through a model that never saw the match, questions.
+- `batch.py`: `pick N` (random matches without replays, appended to `replays/requests.txt`, which starts the fetch
+  workflow when pushed), `add` (stored replays not yet trained on become the next batch).
+- Requires `pip install --break-system-packages interpret-core` in a new workspace.
+- Batch 0 (24 matches): not yet better than strength alone (log loss 0.636 against 0.534; accuracy 74% both). It
+  leans on morale difference, knights, Bodyguard, flag lead and Lord damage, but several curves run the wrong way
+  (more own knights lowers win chance), which is the expected noise of 24 matches and a natural place for a
+  direction correction.
+
+### A training round
+1. `python3 batch.py pick 4`, commit and push `replays/requests.txt` (starts "Fetch replays"); wait for it.
+2. `git fetch --depth 1 origin replays:refs/remotes/origin/replays`, `python3 batch.py add`, `python3 learning.py`.
+3. Read the report; explain to Denning in words what changed and why (with match moments); ask the questions.
+4. Log his corrections in `data/model_corrections.json`, new variables in `features.py`; commit everything.
+
 ## Flag position (Denning, tactics `F1` to `F4`)
 - Up on flags = the better position to get a boost and to run, not the team that capped last.
 - ETA to capture: carrying = distance to the stand / 205 units per second; a dropped flag = the nearest runner's walk
