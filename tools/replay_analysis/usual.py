@@ -27,7 +27,7 @@ SIT = ["flag_lead", "stand", "boost_in", "alive", "main", "dp", "npcs", "lord_da
 # variables only some decision kinds have (Denning): can the winners reach the enemy pit before its res; is the team
 # losing its fight when the enemy's boost is near
 SIT_EXTRA = {"after_wipe": ["pit_margin_s"], "boost_clock": ["deaths_30s_diff", "main_diff_now", "health_diff"],
-             "split_in_base": ["split_size", "defender_snare", "attacker_self_defence"]}
+             "split_in_base": ["split_size", "defender_snare", "attacker_self_defence", "main_diff_now", "health_diff"]}
 # per-player flags a choice's effect is also split by (Denning, B23), besides own spike build
 SPLIT_BY = {"split_in_base": ["defender_snare"]}
 # build axes (readable, from the skill data): what kind of build each team is; similar situations include similar builds

@@ -106,8 +106,12 @@ def splits_in_base(st, sb, splits):
         # Denning (B23): with a snare on the defender a collapse is much more likely to kill; without one, holding 1v1
         # (and part running flags, keeping NPCs up) is the usual aim
         role_to = {m.roles[b]: b for b in st.players[y]}
-        first = role_to.get(dfn[0]["role"]) if dfn else None
-        ff = player_flags(m, first) if first is not None else {}
+        # the holder = the first defender not collapsing from main (already in base, or back from the field: a Mes/A
+        # usually comes back as the split approaches), else the first to arrive; collapsers counted apart
+        holder_d = next((x for x in dfn if x["came"] != "collapse from main"), dfn[0] if dfn else None)
+        holder = role_to.get(holder_d["role"]) if holder_d else None
+        ff = player_flags(m, holder) if holder is not None else {}
+        coll = [role_to[x["role"]] for x in dfn if x["came"] == "collapse from main" and x["role"] in role_to]
         atk = {m.roles[a]: a for a in st.players[3 - y]}
         af = [player_flags(m, atk[r]) for r in s["members"] if r in atk]
         collapse = any(x["came"] == "collapse from main" and (x["latency"] or 0) <= 60 for x in dfn)
@@ -116,8 +120,14 @@ def splits_in_base(st, sb, splits):
                        split="+".join(s["members"]), answered_by=[x["role"] for x in dfn],
                        extra={"response": response, "split_size": len(s["members"]), "defenders": len(dfn),
                               "defender_snare": int(ff.get("snare", 0) > 0), "defender_interrupt": int(ff.get("interrupt", 0) > 0),
+                              "holder": holder_d["role"] if holder_d else None,
+                              "holder_in_base": int(bool(holder_d and holder_d["came"] != "collapse from main")),
+                              "collapsers": len(coll), "collapser_snare": int(any(player_flags(m, b)["snare"] for b in coll)),
                               "attacker_self_defence": sum(x["self_defence"] + x["self_heal"] for x in af),
-                              "split_died": int(bool(s["deaths"]))}))
+                              "split_died": int(bool(s["deaths"])),
+                              # Denning (S32): how the main fight is going decides whether the frontline can leave
+                              "main_diff_now": len(st.main_group(y, s["entered_base"])) - len(st.main_group(3 - y, s["entered_base"])),
+                              "health_diff": _health(st, y, s["entered_base"]) - _health(st, 3 - y, s["entered_base"])}))
     return out
 
 

@@ -1,6 +1,6 @@
 # GvG Info — handoff for a new Claude chat
 
-Last updated 2026-11-04 (portal sections unchanged since 2026-10-15; match replay analysis section added). Attach this file (or just ask Claude to attach the repo) in a new chat, then say what you want.
+Last updated 2026-11-06 (portal sections unchanged since 2026-10-15; match replay analysis section added). Attach this file (or just ask Claude to attach the repo) in a new chat, then say what you want.
 
 ## Start a new chat in one message
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md and docs/HANDOFF.md, then: <your request>
@@ -99,10 +99,10 @@ Claude should then:
 ## Start the next chat with
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/HANDOFF.md (the "Match replay
 > analysis" section), knowledge/tactics.md, knowledge/match-reviews.md, tools/replay_analysis/METHODS.md and
-> data/review_labels.json, then `git fetch --depth 1 origin replays:refs/remotes/origin/replays`,
+> data/review_labels.json, then `git fetch --depth 1 origin +replays:refs/remotes/origin/replays`,
 > `pip install --break-system-packages interpret-core`, and run `python3 tools/replay_analysis/analyze.py --all --out
-> /tmp/ga` and `library.py build`. Then, once Denning approves, build the causal model (METHODS.md "The causal
-> model", build order), or: <your request>
+> /tmp/ga` and `library.py build`. Then run training batch 2 (`batch.py pick 4`, fetch, `batch.py add`,
+> `learning.py`) and explain the learning report to Denning, or: <your request>
 
 ## Goal
 Find plays that are better than experts can see, from data across many matches: not to mirror Denning's or anyone's
@@ -125,7 +125,7 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
   model and its accuracy, the death causes, known limits.
 - `data/review_labels.json`: every ruling Denning has made on a specific moment (the calibration record).
 
-## The analysis engine (`tools/replay_analysis/`, ENGINE 15)
+## The analysis engine (`tools/replay_analysis/`, ENGINE 16)
 1. `common.py`: shared thresholds, spike anchors and skill lists.
 2. `state.py`: game state every second; flag spawns; NPC positions (`data/maps/`, written only with `--save-maps`).
 3. `scoreboard.py`: every edge per team at any second: flag position (ETA, response on the next exchange, lead,
@@ -144,6 +144,11 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
 10. Win-probability model: `strength.py` (team strength), `features.py` (named variables), `model.py` (glass box,
     explanations, corrections), `learning.py` (learning report), `batch.py` (pick and add batches). Site pages:
     "Win-probability model" and "Learning report (latest)". Needs `pip install --break-system-packages interpret-core`.
+11. Causal model: `phases.py` (phases, plans, jobs, capacities), `buildfeat.py` (team build features, matchup pairs,
+    per-player skill flags), `nodes.py` (node models: deaths, kill conversion, flag answers, pit NPC loss, Lord damage),
+    `usual.py` (the usual play per decision kind and each choice's effect in win chance, compared between similar
+    builds, with per-kind situation extras and splits by build and by player skills), `values.py` (every result and
+    node cause priced in win points), `causal_map.py` (render and check `data/model/causal_map.json`, now version 9).
 
 ## Plan (see METHODS.md "From rulings to data" and "The causal model")
 - Causal model: steps 1 to 7 built (`phases.py`; `buildfeat.py`; `nodes.py` node models for deaths, kill conversion,
@@ -175,6 +180,14 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
   pressure 45, spike 31, out of range of its monks 24, out-damaged despite prots 21, chased down while retreating 20,
   lack of support 19, forced flag run 12, outnumbered while up on flags 3, overextended 2.
 - Flag model: answer-time error median -5 s (half within 15 s); lead sign matches the real exchange in 152 of 200.
+- Values (30 matches, `values.py`, win points for the team it happened to): a non-healer death -6 (clear), a healer
+  death -1.5 (unclear; likely deliberate monk deaths in base just before the base res +3, 13 cases), a capture +2
+  (clear), a boost +5 (not yet clear), an archer lost -4 (clear), a knight -3 and a Bodyguard 0 (unclear). The win
+  model's +8 for losing a knight is its own error: the backwards curve is the model's, not the game's.
+- Usual play (30 matches): power play held instead of pushed about -4 (clear); with the enemy's boost 30 s away, not
+  running and falling back about -12 (clear; those teams were mostly not losing their fight on health or numbers);
+  after a wipe, taking the flag +12 (most of those wipes couldn't reach the enemy pit before its res, `D5`); split
+  answers: with a snare on the holding defender a collapse killed 5 of 10, without 0 of 14 (`S31`, cells small).
 
 ## Decisions made (confirmed by Denning)
 - Up on flags = better position to get a boost and to run (the next capture exchange), not who capped last; backup
@@ -190,6 +203,16 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
   The runner could wait to cap; the backside group should fall back toward pit and follow only if Men went for the
   runner. Daze beside the ranger was a minor mistake. Not double running; half running is too risky.
 - Cap as soon as reasonably possible after the enemy; the team running can't retreat to its pit.
+- Builds change the best play, down to single skills (`B23`): a snare on a 1v1 defender favours collapsing (`S31`); a
+  2-monk spike build is behind on Lord damage late, so it weighs DP over NPCs, often the reverse of other builds.
+- What a wipe can be turned into depends on where it happened (`D5`); teams very rarely rush the enemy base to spike
+  players as they resurrect.
+- Near the enemy's boost, falling back is likely a mistake unless losing the fight; the read is own monks' energy,
+  enemy health, enemy energy and numbers (`D4`). Whether to collapse on a split has no fixed line: plan, defender's
+  ability, flag position and the main fight decide, and the line comes from data (`S32`).
+- Monks die on purpose only for a base res (every 2 minutes on the minute), e.g. in their own base at 17:55 (`K14`).
+- Healers matter only through damage: 3 healers + 1 damage against 2 + 2 is about even (`J12`).
+- No energy estimate from casts: too large a build for what it adds.
 
 ## Open items
 - Death rulings 3 to 5 and power plays 6 and 7 in [Men v HC C].
@@ -205,7 +228,7 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
 - Judge flag position with the scoreboard's flag lead (the exchange), never from who holds the stand (wrong twice,
   the second time because of a capture gvg.report recorded without a player; now fixed).
 - Run Python with `PYTHONDONTWRITEBYTECODE=1`; `__pycache__` is now ignored by git.
-- No NPC positions or energy in the data; zones and NPC positions are estimates.
+- No NPC positions or energy in the data; zones and NPC positions are estimates. Energy will not be estimated (Denning).
 - Store paraphrased events from transcripts, never the transcripts (public repo).
 
 ## Conventions
@@ -225,8 +248,11 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
   and what decides staying near the enemy boost (`D4`: monk energy, enemy health, enemy energy, numbers); boost-clock
   health difference added; values split by deliberate healer deaths and by the opponent's build; causal map v8.
   Then per-player skill flags built (`buildfeat.player_flags`), used for split answers (`S31`: a snare on the defender
-  favours the collapse; collapses with a snare killed 5 of 17, without 0 of 20); Denning: no energy estimate (too large);
-  teams rarely rush the base to spike resurrected players (`D5`); causal map v9.
+  favours the collapse; first read conflated holder and collapser, corrected below); Denning: no energy estimate (too large);
+  teams rarely rush the base to spike resurrected players (`D5`); causal map v9. Split answers then read the holding
+  defender (first not collapsing from main) apart from collapsers, with main numbers and health: with a snare on the
+  holder a collapse killed 5 of 10, without 0 of 14, and win chance ran Denning's way (unclear); `S32` (what decides a
+  collapse; the line comes from data). Next: batch 2.
 - Session 4k: Denning on pits (`P9` knights first, monk load of a full pit and area damage; `P10` two monks against a
   full pit; `P11` attackers leave before the res); area damage added; step 6 built (usual play); causal map v6.
 - Session 4j: Denning on drops (`F33`: where a drop happens; parked in base = deciding not to run; long hand-offs away

@@ -29,6 +29,7 @@ where each team's 8 players are every second: groups, who is in each, on flag du
 Caused by:
 - **Flag lead**: a team that must run has players on flag duty, which changes numbers elsewhere (Denning; hypothesis; `F5` `J1`)
 - **Scoreboard**: the scoreboard shapes the next second's allocation (a loop over time) (Denning; hypothesis; `J1`)
+- **Split answer**: collapsing on a split depends on the plan (NPCs or DP), the defender's ability to hold, the flag position and how the main fight is going; the line comes from data (Denning; hypothesis; `S32` `S31`)
 
 ### Phase `A.phase`
 a stretch with a stable global setup; ends at a collapse, death, res or capture. *Measured: to build: from changes in allocation.*
@@ -371,3 +372,4 @@ Caused by:
 - 2026-11-06: values.py: every result priced in win points (held-out result and model view), and node causes priced through them (Claude)
 - 2026-11-06: version 8: deliberate deaths only for a base res; individual bars change plays; spike builds weigh DP over NPCs; what decides staying near the enemy boost (Denning)
 - 2026-11-06: version 9: per-player skill flags (buildfeat.player_flags); defender snare on split answers (S31); no rushing the base to spike resurrected players (D5) (Denning)
+- 2026-11-06: split answers: holder (not collapsing) and collapsers read apart; S32 what decides a collapse (Denning)

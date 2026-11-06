@@ -232,10 +232,16 @@ against general principles rather than past games. Match-by-match evidence lives
   part run or half run flags if possible and keep the NPCs up: a minor gain for the team; a collapse that doesn't kill
   just wastes the collapser's time. With one, the collapse is much more deadly, and the defender has one less skill for
   surviving or winning the 1v1, so holding alone is riskier and a missed chance: collapsing is most likely the better
-  play. **Claude (data, 30 matches, 75 splits into a base):** collapses killed a split member in 5 of 17 cases when
-  the first defender had a snare, against 0 of 20 without one, which fits. In win chance the collapse doesn't show the
-  gain yet (snare -2, no snare +1.5 over the window; defending without a collapse +2 to +6), all unclear; the snare is
-  read from the first defender only, and cells are small. Confidence: low.
+  play. **Claude (data, 30 matches, 55 splits into a base with a defender not collapsing from main):** with a snare on
+  that defender, collapses killed a split member in 5 of 10 cases, against 0 of 14 without one. In win chance over the
+  window the pattern runs Denning's way: with a snare, collapsing +5.5 against holding alone +1.6; without a snare,
+  holding alone +6.0 against collapsing +1.7. Cells are small and none is clear; lone attackers alone are 14 cases.
+  Confidence: low.
+- `S32` **Denning:** Whether to collapse on a split (the frontline leaving a main fight for the base) has no fixed line:
+  it depends on the team's plan (whether it values NPCs or DP more), whether the defender can hold the attacker without
+  losing NPCs, the flag position (is the frontline needed at main to keep a numbers edge for pushing a flag?) and how
+  the main fight is going (is the frontline winning it?). The line is wherever the data says it is. (Measured: split
+  decisions carry the defender's skills, split size, main numbers and health, flag lead and build axes.)
 - `S31` **Bounty:** When a split changes (e.g. made beefier), the defence must change too; defending the same way loses
   the pit.
 - `S32` **Denning:** An 8v8 build answers a 3 man split by ignoring it with the main team and having a snare character

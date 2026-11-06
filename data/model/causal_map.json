@@ -2402,6 +2402,18 @@
     "S31",
     "B23"
    ]
+  },
+  {
+   "from": "P.11",
+   "to": "A.allocation",
+   "why": "collapsing on a split depends on the plan (NPCs or DP), the defender's ability to hold, the flag position and how the main fight is going; the line comes from data",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [
+    "S32",
+    "S31"
+   ]
   }
  ],
  "log": [
@@ -2453,6 +2465,11 @@
   {
    "date": "2026-11-06",
    "change": "version 9: per-player skill flags (buildfeat.player_flags); defender snare on split answers (S31); no rushing the base to spike resurrected players (D5)",
+   "by": "Denning"
+  },
+  {
+   "date": "2026-11-06",
+   "change": "split answers: holder (not collapsing) and collapsers read apart; S32 what decides a collapse",
    "by": "Denning"
   }
  ]
