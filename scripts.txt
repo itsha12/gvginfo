@@ -1,0 +1,15 @@
+https://gvg.report/players
+https://gvg.report/guilds
+https://gvg.report/ui/visual-mode.js?v=20260814-terminal-bare-v1
+https://gvg.report/app.js?v=20261106-performance-v1
+https://gvg.report/ui/catalog-search.js
+https://gvg.report/ui/catalog-search-aliases.js
+https://gvg.report/ui/catalog-team-skills.js
+https://gvg.report/ui/catalog-duration-range.js
+https://gvg.report/ui/catalog-date-range.js
+https://gvg.report/ui/catalog-search-suggestions.js
+https://gvg.report/ui/catalog-link-menus.js
+https://gvg.report/ui/overview-effect-applications.js
+https://gvg.report/quality-summary.js
+https://gvg.report/ui/service-notice.js?v=20261018-v2
+https://gvg.report/ui/feedback.js?v=20261024-v2
