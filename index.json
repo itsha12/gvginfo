@@ -1,6 +1,6 @@
 {
  "format": "gvginfo.replay.v1",
- "updated": "2026-11-05T13:13:46.547Z",
+ "updated": "2026-11-06T02:53:39.954Z",
  "matches": {
   "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65": {
    "file": "2026-11/eea5ba87-ac20-5ba3-a6c9-965f11ca8a65.json.gz",
@@ -335,6 +335,90 @@
    "winner": "Men",
    "length_s": 1324,
    "kb": 353,
+   "summary": true,
+   "trim": 3
+  },
+  "25b008b8-486d-5f15-a310-114f6eecca05": {
+   "file": "2026-11/25b008b8-486d-5f15-a310-114f6eecca05.json.gz",
+   "date": "2026-11-05T21:41:22.435Z",
+   "map": "Isle of Jade",
+   "teams": [
+    "hook",
+    "Id"
+   ],
+   "winner": "hook",
+   "length_s": 1330,
+   "kb": 399,
+   "summary": true,
+   "trim": 3
+  },
+  "8086734b-4092-5628-a73e-4042618ea4fa": {
+   "file": "2026-11/8086734b-4092-5628-a73e-4042618ea4fa.json.gz",
+   "date": "2026-11-05T21:31:47.717Z",
+   "map": "Isle of Jade",
+   "teams": [
+    "Men",
+    "mddl"
+   ],
+   "winner": "Men",
+   "length_s": 335,
+   "kb": 82,
+   "summary": true,
+   "trim": 3
+  },
+  "29652def-2992-50c0-ade9-aaddd011aaa5": {
+   "file": "2026-10/29652def-2992-50c0-ade9-aaddd011aaa5.json.gz",
+   "date": "2026-10-18T18:45:02.855Z",
+   "map": "Uncharted Isle",
+   "teams": [
+    "cope",
+    "Apes"
+   ],
+   "winner": "cope",
+   "length_s": 226,
+   "kb": 68,
+   "summary": true,
+   "trim": 3
+  },
+  "a9fa1ae1-f83b-5cd0-a946-cf332aacfca6": {
+   "file": "2026-10/a9fa1ae1-f83b-5cd0-a946-cf332aacfca6.json.gz",
+   "date": "2026-10-09T20:48:05.776Z",
+   "map": "Uncharted Isle",
+   "teams": [
+    "Book",
+    "TFS"
+   ],
+   "winner": "Book",
+   "length_s": 364,
+   "kb": 93,
+   "summary": true,
+   "trim": 3
+  },
+  "f30bb176-a527-508c-acd5-f289b304ee79": {
+   "file": "2026-09/f30bb176-a527-508c-acd5-f289b304ee79.json.gz",
+   "date": "2026-09-13T21:43:53.133Z",
+   "map": "Druid's Isle",
+   "teams": [
+    "cope",
+    "One"
+   ],
+   "winner": "cope",
+   "length_s": 1628,
+   "kb": 312,
+   "summary": true,
+   "trim": 3
+  },
+  "e905b193-051d-5ffb-ae10-118d3c46c055": {
+   "file": "2026-09/e905b193-051d-5ffb-ae10-118d3c46c055.json.gz",
+   "date": "2026-09-14T21:31:57.906Z",
+   "map": "Corrupted Isle",
+   "teams": [
+    "Crew",
+    "Free"
+   ],
+   "winner": "Free",
+   "length_s": 944,
+   "kb": 195,
    "summary": true,
    "trim": 3
   }
