@@ -146,11 +146,12 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
     "Win-probability model" and "Learning report (latest)". Needs `pip install --break-system-packages interpret-core`.
 
 ## Plan (see METHODS.md "From rulings to data" and "The causal model")
-- Causal model: steps 1 to 5 built (`phases.py`; `buildfeat.py`; `nodes.py` node models for deaths, kill conversion,
-  flag answers, pit NPC loss and Lord damage, all beating simple baselines on unseen matches); step 6 built (`usual.py`:
-the usual play and each choice's effect in win chance). Next: link the node models to the win model so each cause is
-valued in win chance, then resume slow training (3 to 5 matches a batch, learning report each time). Previously listed: (6) usual-play models and decision comparisons, then link the
-  node models to the win model so each cause is valued in win chance. Slow training continues (3 to 5 matches a batch). The win model alone explains who is winning, not why (Denning).
+- Causal model: steps 1 to 7 built (`phases.py`; `buildfeat.py`; `nodes.py` node models for deaths, kill conversion,
+  flag answers, pit NPC loss and Lord damage, all beating simple baselines on unseen matches; `usual.py`, the usual
+  play and each choice's effect in win chance, now compared between similar builds; `values.py`, every result and
+  node cause priced in win points). Next: resume slow training (3 to 5 matches a batch, `batch.py pick 4`, learning
+  report each time); value a second of flag answer and a point of Lord damage; build-specific choice effects as cells
+  fill. The win model alone explains who is winning, not why (Denning).
 0. Done: model structure on the 24 stored matches (batch 0). Next: slow training, 3 to 5 random new replays per
    batch (`batch.py pick`), a learning report and Denning's answers after each. No large pull until the reports
    settle.
@@ -216,6 +217,10 @@ valued in win chance, then resume slow training (3 to 5 matches a batch, learnin
 - Improve the toolkit rather than writing one-off scripts; each ruling becomes a label, a tactics line and a check.
 
 ## Recent changes
+- Session 4l: Denning on wipes and the boost clock (`D5`: a wipe at the stand can't be turned into NPCs before the res,
+  and 7 of 12 "took the flag" cases couldn't reach the pit in time; `D4`: falling back with the enemy's boost near is
+  likely a mistake unless losing the fight, it depends); builds in the usual play (similar builds, staged adjustment,
+  splits by build); step 7 built (`values.py`, knowledge/values.md, learning report section 8); causal map v7.
 - Session 4k: Denning on pits (`P9` knights first, monk load of a full pit and area damage; `P10` two monks against a
   full pit; `P11` attackers leave before the res); area damage added; step 6 built (usual play); causal map v6.
 - Session 4j: Denning on drops (`F33`: where a drop happens; parked in base = deciding not to run; long hand-offs away

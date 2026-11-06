@@ -253,6 +253,25 @@ whole matches; unusual choices listed. First clear readings (30 matches): power 
 points; with the enemy's boost 30 s away, not running and falling back about -12; after a wipe, taking the flag
 instead of pushing the pit about +11 (12 cases; a candidate to check). 24:00 decisions: 13 so far, not enough.
 
+**Built (step 7, values, `values.py`):** every result priced in win points for the team it happened to: deaths (all,
+healers and others, by time down), pit NPCs by kind, captures and boosts. Two measures, both from a win model fitted
+without that match: the result (how the match ended against the model's expectation 5 s before, less the average gap:
+data, and it includes what the event usually led to) and the model's view (its change over 30 s). Where they disagree,
+the win model's curve is suspect. 90% ranges by resampling whole matches. Causes priced through them: a node model's
+change in the result's chance (at its real rate) times the result's value. Flag and Lord nodes wait for a measured
+value per second of flag answer and per point of Lord damage. Written to data/model/values.json and
+knowledge/values.md; section 8 of the learning report. First reading (30 matches): a non-healer death about -6 (clear),
+a healer death about -1 (unclear), a capture +2 (clear), a boost +5 (not yet clear), an archer -4 (clear); for knights
+and Bodyguards the result is negative or flat while the win model says +6 to +8: the backwards curves confirmed as the
+model's error, not the game's.
+
+The usual play now also compares decisions between similar builds (`usual.AXES`: spike, shutdown, knockdowns,
+defence, sustain, own and enemy): build axes always count in choosing similar decisions; they enter the situation
+adjustment from 150 decisions of a kind (`BUILD_ADJUST_FROM`); and each choice's raw difference is split by own build
+(spike or not) where each cell has 10 or more cases (`INTERACT_MIN`). Situation extras per kind (`SIT_EXTRA`): after a
+wipe, the margin to reach the enemy pit before its res; at the boost clock, the 30 s death difference and main-team
+numbers.
+
 **Build order:** (1) phases, allocation per phase, plans and jobs (built); (2) capacities per group per phase,
 measured (built); (3) first node models: deaths and kill conversion (built; expected-for-matchup baselines come with
 the matchup features at 60 matches); (4) the flag chain (built: `flag_answer`); (5) pit NPCs and Lord damage (built:

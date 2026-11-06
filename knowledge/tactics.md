@@ -256,7 +256,9 @@ against general principles rather than past games. Match-by-match evidence lives
 - `P9` **Denning:** In non-split situations teams usually take the knights first. A full pit is harder to defend for
   the monks: 5+ extra targets to watch, and against area damage (a dervish, an elementalist) the knights ball up and
   eat it, so the healing needed rises sharply. **Claude (data):** with 4+ pit archers alive, some pit NPC is up to 29
-  points more likely to die within 15 s.
+  points more likely to die within 15 s. **Claude (data, `values.py`):** an archer lost costs the defending team about 4
+  points (clear); a knight about 3 and a Bodyguard about 0 (both unclear, fewer cases); the win model's opposite reading
+  for knights (+8) is its own error.
 - `P10` **Denning:** Two monks on the push side is the norm against a full or mostly full pit; against an empty pit a
   team sometimes pushes with one. The pit deals a lot of damage, so two monks are often needed to live long enough for
   significant Lord damage. **Claude (data):** attackers with two healers in the pit dealt about 66 more Lord damage per
@@ -389,6 +391,11 @@ against general principles rather than past games. Match-by-match evidence lives
   against about 64 expected), deaths in the first 15 s after it are well below (42): the costly deaths are the rare
   ones. A death set was held in 15% of deaths before time against 9 to 10% otherwise, and the team dying before time
   won 21% of those matches against 12 to 14% (descriptive; the win-chance chain will test it).
+- `K16` **Claude:** Valued in win chance (30 matches, `values.py`): a death costs the team about 4 points overall; a
+  non-healer's about 6 (clear) but a healer's only about 1 (unclear), and a player back within 20 s about 3 against
+  about 5 for one down 60 s or more (neither yet clear). Healers dying cheaply fits `K14` (monks dying before time on
+  purpose, or deaths the team has planned for) but could also be monk deaths that come when the fight is already
+  priced as lost. Confidence: low until more batches.
 - `K5` **Bounty:** A team that always has someone timed or stuck has no moment to play tactics and gets overwhelmed.
   Resurrecting too late wastes time; teams under pressure are often scared to go for the res.
 - `K6` **Bounty:** Target choice costs time: 30 to 40 s failing to kill a monk is fine at 2 minutes, not at 22. A build

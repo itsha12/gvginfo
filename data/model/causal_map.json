@@ -2382,6 +2382,11 @@
    "date": "2026-11-06",
    "change": "version 7: wipe place limits conversion (D5); falling back near the enemy boost depends on the fight (D4); builds shape the best play",
    "by": "Denning"
+  },
+  {
+   "date": "2026-11-06",
+   "change": "values.py: every result priced in win points (held-out result and model view), and node causes priced through them",
+   "by": "Claude"
   }
  ]
 }

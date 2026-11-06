@@ -168,7 +168,10 @@ def report():
                 L.append(f"- {c['choice']} (n {c['n']}): {c['effect_vs_usual']:+} [{c['interval'][0]:+}, {c['interval'][1]:+}]"
                          + (" CLEAR" if c.get("clear") else ""))
             L.append("")
-    L += ["## 8. For Denning", "",
+    import values as VAL
+    v = VAL.measure(ids); VAL.write(v)
+    L += ["## 8. What results and causes are worth", ""] + VAL.report_lines(v)
+    L += ["## 9. For Denning", "",
           "- Which curves look wrong to you? A correction (direction, cap, drop, or a pair to always test) is logged with "
           "your reason and tested on held-out matches.",
           "- Do any surprises remind you of something the variables don't capture (a missing variable)?",
