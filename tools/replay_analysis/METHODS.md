@@ -184,8 +184,18 @@ Explanations walk the map backwards from a result to the plays and context behin
     casting); nodes resting on proxies carry lower confidence.
 12. **Plans are found and amended from data** (`J11`): setups are clustered into plans; Denning names or corrects them.
 
-**Build order (when approved):** (1) phases, allocation per phase, plans and jobs; (2) capacities per group per phase,
-measured (descriptive, no learning); (3) expected-for-matchup baselines and the first node models (deaths, kill
+**Built (step 1 and 2, `phases.py`, ENGINE 16):** theatres (all alive players of both teams clustered within 2,000:
+local numbers anywhere on the map), phases (setup changes lasting 8 s, deaths, res times, captures; median 13 s, about
+54 per match), plan labels per team (starting list), a job per group (convert, hold, contest, cap and return, split,
+defend, free) with job done or not, and capacities per group per phase: damage dealers and healers, pressure,
+incoming damage, healing, sustain margin, damage uptime (active = attacking, casting or dealing damage that second)
+with lost damage-seconds by cause, monk uptime, control received, bursts, kills, losses, health ceiling; plus each
+phase's trade. Library kind `groups` (one row per group per phase). First look on 30 matches (descriptive, not causal):
+strong sides that converted had 5 damage dealers against 4, pressure 50/s against 22/s, uptime 51% against 36%; weak
+sides that held took 21/s incoming against 45/s, sustain margin +6 against -10.
+
+**Build order:** (1) phases, allocation per phase, plans and jobs (built); (2) capacities per group per phase,
+measured (built); (3) expected-for-matchup baselines and the first node models (deaths, kill
 conversion), tested on the 30 matches; (4) the flag and boost chain; (5) pit NPCs and Lord damage; (6) usual-play
 models and decision comparisons; (7) learning report sections with "why" chains for the biggest moments, and the
 questions where the data and the map disagree. Slow training continues throughout.

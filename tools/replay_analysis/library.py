@@ -3,7 +3,8 @@ compared across matches.
 
 Build:  python3 library.py build [--src DIR] [--out DIR]     (default src /tmp/ga from analyze.py --all, out /tmp/gl)
 Query:  python3 library.py query <kind> [--where EXPR] [--show f1,f2,...] [--sort FIELD] [--limit N]
-        kinds: splits, flag_runs, flag_cycles, stand, deaths, fights, decisions, monks, windows, findings
+        kinds: splits, flag_runs, flag_cycles, stand, deaths, fights, decisions, monks, windows, findings,
+        groups (one row per group per phase: job, numbers, capacities, results)
         EXPR is a Python expression over a record's fields, e.g.
           --where "members == ['Ranger'] and entered_base is not None"
           --where "victim.endswith('Monk') and monk_distance and max(monk_distance.values()) > 5000"
@@ -14,7 +15,8 @@ Every record carries: match, map, team (the episode's team), opponent, won (did 
 episode's own fields (see episodes.py, fights.py, rules.py)."""
 import glob, json, os, sys
 
-KINDS = ("splits", "flag_runs", "flag_cycles", "stand", "deaths", "fights", "decisions", "monks", "windows", "findings")
+KINDS = ("splits", "flag_runs", "flag_cycles", "stand", "deaths", "fights", "decisions", "monks", "windows", "findings",
+         "groups")
 
 
 def build(src="/tmp/ga", out="/tmp/gl"):
@@ -24,6 +26,9 @@ def build(src="/tmp/ga", out="/tmp/gl"):
         a = json.load(open(f))
         tags = {t["id"]: t["tag"] for t in a["meta"]["teams"]}
         win = tags.get((a["meta"].get("result") or {}).get("winning_team_id"))
+        # groups: one row per group per phase (job, capacities, results), flattened from the phases
+        a["groups"] = [{"team": tag, "start": p["start"], "end": p["end"], "secs": p["secs"], "plan": x["plan"],
+                        "trade": p["trade"], **g} for p in a.get("phases", []) for tag, x in p["teams"].items() for g in x["groups"]]
         for k in KINDS:
             for r in a.get(k, []):
                 team = r.get("team")

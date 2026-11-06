@@ -146,8 +146,8 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
     "Win-probability model" and "Learning report (latest)". Needs `pip install --break-system-packages interpret-core`.
 
 ## Plan (see METHODS.md "From rulings to data" and "The causal model")
-- Next: the causal model (phases, plans, jobs, trades; capacities; node models along the causal map), awaiting
-  Denning's go-ahead. The win model alone explains who is winning, not why (Denning).
+- Causal model: steps 1 and 2 built (`phases.py`: phases, theatres, plans, jobs, capacities). Next: step 3,
+  expected-for-matchup baselines and the first node models (deaths, kill conversion) with time order enforced. The win model alone explains who is winning, not why (Denning).
 0. Done: model structure on the 24 stored matches (batch 0). Next: slow training, 3 to 5 random new replays per
    batch (`batch.py pick`), a learning report and Denning's answers after each. No large pull until the reports
    settle.
@@ -213,6 +213,7 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
 - Improve the toolkit rather than writing one-off scripts; each ruling becomes a label, a tactics line and a check.
 
 ## Recent changes
+- Session 4g: causal model steps 1 and 2 built (phases.py; ENGINE 16; library kind `groups`).
 - Session 4f: causal model designed with Denning (fights are global; phases, plans, jobs and trades; capacities;
   matchup context; decisions modelled as the usual play); causal map version 1 (50 nodes, 169 links) with a site
   page; Denning's answers added to tactics (`J1` to `J11`, `K12`, `K13`, `M16`, `M17`); 12 design amendments.

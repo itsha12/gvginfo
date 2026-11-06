@@ -15,8 +15,9 @@ import episodes as E
 import fights as F
 import rules as R
 import decisions as D
+import phases as PH
 
-ENGINE = 15
+ENGINE = 16
 
 
 def analyze(rid, save_maps=False):
@@ -34,7 +35,7 @@ def analyze(rid, save_maps=False):
         "scoreboard": [sb.at(t) for t in range(0, st.end + 1, 5)],
         "splits": E.splits(st), "flag_runs": E.flag_runs(st), "stand": E.stand_ledger(st), "flag_cycles": E.flag_cycles(st, sb),
         "deaths": ds, "fights": F.engagements(st, sb, ds), "monks": F.monks(st), "windows": F.windows(st),
-        "posture": F.posture(st),
+        "posture": F.posture(st), "phases": PH.phases(st, sb),
     }
     ep = {k: out[k] for k in ("splits", "flag_runs", "stand", "deaths", "windows", "fights")}
     out["decisions"] = D.decision_points(st, sb, ep)
