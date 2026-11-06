@@ -1,6 +1,6 @@
 {
  "format": "gvginfo.replay.v1",
- "updated": "2026-11-06T19:56:59.243Z",
+ "updated": "2026-11-06T20:35:15.348Z",
  "matches": {
   "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65": {
    "file": "2026-11/eea5ba87-ac20-5ba3-a6c9-965f11ca8a65.json.gz",
@@ -643,6 +643,104 @@
    "winner": "BcS",
    "length_s": 1285,
    "kb": 317,
+   "summary": true,
+   "trim": 3
+  },
+  "e14811f2-abbc-5bda-a34a-967d08fe778c": {
+   "file": "2026-11/e14811f2-abbc-5bda-a34a-967d08fe778c.json.gz",
+   "date": "2026-11-06T20:22:26.157Z",
+   "map": "Corrupted Isle",
+   "teams": [
+    "hook",
+    "EDGE"
+   ],
+   "winner": "hook",
+   "length_s": 319,
+   "kb": 88,
+   "summary": true,
+   "trim": 3
+  },
+  "79281720-08a2-550c-aa5f-df0e2a668260": {
+   "file": "2026-09/79281720-08a2-550c-aa5f-df0e2a668260.json.gz",
+   "date": "2026-09-10T19:23:13.200Z",
+   "map": "Isle of Solitude",
+   "teams": [
+    "One",
+    "fM"
+   ],
+   "winner": "One",
+   "length_s": 428,
+   "kb": 109,
+   "summary": true,
+   "trim": 3
+  },
+  "2b13eea5-2968-5421-a481-60215131765d": {
+   "file": "2026-09/2b13eea5-2968-5421-a481-60215131765d.json.gz",
+   "date": "2026-09-05T19:21:54.779Z",
+   "map": "Isle of Solitude",
+   "teams": [
+    "DRKN",
+    "yM"
+   ],
+   "winner": "yM",
+   "length_s": 685,
+   "kb": 169,
+   "summary": true,
+   "trim": 3
+  },
+  "5eedf9cf-fb31-53ac-af54-fa87322c9b74": {
+   "file": "2026-09/5eedf9cf-fb31-53ac-af54-fa87322c9b74.json.gz",
+   "date": "2026-09-19T16:54:53.837Z",
+   "map": "Druid's Isle",
+   "teams": [
+    "EDGE",
+    "Fun"
+   ],
+   "winner": "Fun",
+   "length_s": 703,
+   "kb": 88,
+   "summary": true,
+   "trim": 3
+  },
+  "744a2513-353e-5e41-a6b0-d3354725b3f5": {
+   "file": "2026-07/744a2513-353e-5e41-a6b0-d3354725b3f5.json.gz",
+   "date": "2026-07-30T19:15:14.320Z",
+   "map": "Burning Isle",
+   "teams": [
+    "Team",
+    "SKT"
+   ],
+   "winner": "SKT",
+   "length_s": 233,
+   "kb": 59,
+   "summary": true,
+   "trim": 3
+  },
+  "6c7dfcaa-1141-592f-a625-d5109b087b35": {
+   "file": "2026-09/6c7dfcaa-1141-592f-a625-d5109b087b35.json.gz",
+   "date": "2026-09-23T19:27:54.098Z",
+   "map": "Corrupted Isle",
+   "teams": [
+    "Team",
+    "cope"
+   ],
+   "winner": "Team",
+   "length_s": 703,
+   "kb": 183,
+   "summary": true,
+   "trim": 3
+  },
+  "1037e655-42ac-505f-af04-22b24458fd00": {
+   "file": "2026-08/1037e655-42ac-505f-af04-22b24458fd00.json.gz",
+   "date": "2026-08-15T18:34:27.949Z",
+   "map": "Isle of Meditation",
+   "teams": [
+    "BcS",
+    "Men"
+   ],
+   "winner": "Men",
+   "length_s": 409,
+   "kb": 117,
    "summary": true,
    "trim": 3
   }

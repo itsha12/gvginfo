@@ -1,13 +1,13 @@
 {
- "updated": "2026-11-06T19:56:07.021Z",
+ "updated": "2026-11-06T20:34:15.944Z",
  "matches": [
   {
-   "id": "25b008b8-486d-5f15-a310-114f6eecca05",
-   "date": "2026-11-05",
-   "map": "Isle of Jade",
+   "id": "e14811f2-abbc-5bda-a34a-967d08fe778c",
+   "date": "2026-11-06",
+   "map": "Corrupted Isle",
    "teams": [
     "hook",
-    "Id"
+    "EDGE"
    ],
    "winner": 1,
    "occasion": "automated",
@@ -47,6 +47,17 @@
     "tournament_occasion",
     "observed_match_clock"
    ]
+  },
+  {
+   "id": "25b008b8-486d-5f15-a310-114f6eecca05",
+   "date": "2026-11-05",
+   "map": "Isle of Jade",
+   "teams": [
+    "hook",
+    "Id"
+   ],
+   "winner": 1,
+   "occasion": "automated"
   },
   {
    "id": "8086734b-4092-5628-a73e-4042618ea4fa",
@@ -4422,17 +4433,6 @@
    "teams": [
     "Free",
     "OG"
-   ],
-   "winner": 2,
-   "occasion": "automated"
-  },
-  {
-   "id": "d9b7d5da-6d99-5a3e-a80c-a96399afac19",
-   "date": "2026-10-04",
-   "map": "Isle of Meditation",
-   "teams": [
-    "hook",
-    "옷옷옷옷"
    ],
    "winner": 2,
    "occasion": "automated"
