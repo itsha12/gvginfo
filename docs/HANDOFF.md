@@ -1,6 +1,6 @@
 # GvG Info — handoff for a new Claude chat
 
-Last updated 2026-11-07 (portal sections unchanged since 2026-10-15; match replay analysis updated). Attach this file (or just ask Claude to attach the repo) in a new chat, then say what you want.
+Last updated 2026-11-07 (portal sections unchanged since 2026-10-15; match replay analysis updated, session 4q). Attach this file (or just ask Claude to attach the repo) in a new chat, then say what you want.
 
 ## Start a new chat in one message
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md and docs/HANDOFF.md, then: <your request>
@@ -94,14 +94,14 @@ Claude should then:
 
 # Match replay analysis
 
-**Status:** Active. Last updated 2026-11-07 (session 4p). Building the learned causal map: step 1 (event layer) done;
-step 2 (new node models) next. Commentary transcripts (Bounty, Nick) still to do.
+**Status:** Active. Last updated 2026-11-07 (session 4q). Building the learned causal map: steps 1 (event layer) and 2
+(data-valued wrong casts, nine learned node models with measured link strengths) done. Next: Bounty's and Nick's
+commentary transcripts (Denning sends them), then step 3 (discovery).
 
 ## Start the next chat with
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/HANDOFF.md (the "Match replay
-> analysis" section), knowledge/tactics.md and tools/replay_analysis/METHODS.md, then continue the learned causal map
-> with step 2: add the three remaining wrong-cast measures to eventlayer.py, build the new node models, write link
-> strengths into causal_map.json, rebuild the batch 8 report on GitHub and explain what the nodes learned.
+> analysis" section), knowledge/tactics.md and tools/replay_analysis/METHODS.md, then process the commentary transcripts
+> I attach (Bounty's six matches, then Nick's one) following METHODS.md "Commentary and comms".
 
 Engine setup in the chat (needed for step 2): `git fetch --depth 1 origin +replays:refs/remotes/origin/replays`,
 `pip install --break-system-packages -r .github/workflows/train-requirements.txt`, then in tools/replay_analysis
@@ -119,36 +119,49 @@ chains behind each result come from the data (including chains neither Denning n
 priced by carrying a change forward to the win chance. The causal chains must be reflected in the model, not only in
 the TQ reasoning.
 
-## Current state (commit a193e7b and later; 113 matches trained in 9 batches; 113 replays stored; match data to 2026-11-07)
+## Current state (commit 84b279c and later; 113 matches trained in 9 batches; 113 replays stored; match data to 2026-11-07)
 - Win model: glass box log loss 0.367 against 0.412 for strength alone (ahead, not yet clear). Corrections: Lord damage
   curves capped at 5 points; healing-monk curves dropped (data/model_corrections.json).
 - Node models (nodes.py): deaths, kill conversion, flag answer, NPC loss, Lord damage, Lord kill.
-- Causal map (data/model/causal_map.json): 58 nodes, 212 links; 186 hypotheses, 6 supported, 20 formulas, no link
-  strength measured yet. chain.py's chains are hand-written rules that use the node models only to price fixes.
-- Step 1 built: eventlayer.py (cached per match) with strips, Blinds, hexes, frontline peel, wrong casts for every role,
-  spike timing, run timing, splits, power plays of every size, enemy captures; findings in
-  data/model/reports/measures.md (batches 7 and 8). TQ 3 covers every power-play size (not yet in the GitHub report:
-  rebuild in step 2).
+- Learned nodes (learnednodes.py, rows in lnrows.py; report section 6b): run outcome, flag swing, capture speed, power
+  play, fight outcome, split chance, split answer, split effect, collapse; data/model/nodes/L_<node>.json. Beat the
+  simple baseline on unseen matches: run outcome, power play, fight outcome, split chance, split answer, collapse. Not
+  yet: flag swing, capture speed, split effect.
+- Causal map version 11: 61 nodes (new P.17 wrong casts, P.18 strips, P.19 Blind; P.5 covers hex removal), 241 links;
+  202 hypotheses, 17 supported, 2 rejected, 20 formulas; every link a learned node uses carries its measured strength
+  ("measured"); link_log.json keeps every run's readings. Supported by data: run timing -> run outcome; run timing ->
+  flag swing; numbers, enemy prots and healing, Blind on own players -> power-play kills; strength, numbers, damage
+  against the usual, spike timing -> fight outcome; scoreboard -> split chance; collapse timing -> collapse deaths.
+  Rejected: Blind on the enemy frontline -> fight outcome (few Blinds land before a fight's first death); defenders'
+  pushes in the first 10 s -> capture speed. chain.py's chains are still hand-written rules (step 4 replaces them).
+- Step 1 and 2a built: eventlayer.py (cached per match) with strips (judged against every enchantment in range),
+  hex removals (against every hex in range; how long the removed hex was on), Blinds, hexes, peel, wrong casts, damage
+  against the role's usual, spikes, runs (control and damage times), splits, power plays, captures. Values from data:
+  data/benchmarks/eventlayer_values.json. Findings: data/model/reports/measures.md.
 - Benchmarks to rebuild after new replays, in this order, and commit before a batch: `benchmarks.py spawns`, then
   `benchmarks.py carry`.
+- Run time: the GitHub machine type varies. Session 4q's runs got the slower AMD EPYC 7763: whole run about 20 min
+  (report 16 min; learned nodes 2.5 min of it, event layer 0.25 min). The same report on the faster EPYC 9V45 is
+  about half of that, so a normal batch there is about 11 min (an estimate). Even without step 2, the slow machine
+  already took about 17 min.
 
 ## Next steps (in order)
-1. Step 2a: three wrong-cast measures still missing in eventlayer.py (Denning): strips on the right target when
-   playing defensively (Elementalist enchantments), damage output against the role's usual, the right hexes removed
-   (and how fast).
-2. Step 2b: node models (nodes.py style: held-out, white box, what-if readings), each using only the causal-map links
-   into it: run outcome (read Cripple at the same point of the run, not over the whole run), flag swing, enemy capture
-   speed, power play (every size), fight outcome (numbers, peel, wrong casts, strips, Blind, spike timing), split
-   chance (for "failed to split"), split answer (latency, number), split effect, collapse. Write each link's measured
-   strength and status (supported or rejected) into causal_map.json and log it. Keep a normal batch under about 15 to 16
-   minutes.
-3. Step 3: discovery: every measured variable tested against every node on unseen matches, in its own workflow split
+1. Commentary: Bounty's six matches, then Nick's one (Denning attaches the transcripts; METHODS.md "Commentary and
+   comms"). The variables they suggest can be added to the learned nodes as new links (lnrows.py features,
+   learnednodes.py SPEC), so step 3 tests them too.
+2. Step 3: discovery: every measured variable tested against every node on unseen matches, in its own workflow split
    across several GitHub machines (Denning approved; public repo, no charge). Links it finds are held for Denning's
    approval, never added automatically.
-4. Step 4: chains generated from the node models (replacing chain.py's rules) and fixes priced by carrying the change
-   forward; the late split answer gets its value this way.
-5. Then: Bounty's six commentary matches and Nick's one (ask Denning for the transcripts); more batches of 20 to 30
-   matches from October and November; consider the larger pull (450+) once step 2 is built (Denning to decide).
+3. Step 4: chains generated from the node models (replacing chain.py's rules; `learnednodes.whatif` reads a node with
+   features changed) and fixes priced by carrying the change forward; the late split answer gets its value this way.
+4. More batches of 20 to 30 matches from October and November; most links read "not clear yet" at 113 matches.
+   Consider the larger pull (450+) now that step 2 is built (Denning to decide).
+5. If run time matters: the slow machine type puts a batch near 20 min. Options: fewer candidate-variable tests or
+   node-model bags in the older sections, or the run split across two jobs.
+
+## Decisions made (session 4q)
+Denning: the right strip target and the right hexes to remove are valued from data, not a list; steps 2a and 2b
+first, then the transcripts.
 
 ## Decisions made (session 4p)
 Confirmed by Denning: Lord curves capped at 5 points; carrier ETA discounted by measured capture chance; healing-monk
@@ -159,6 +172,12 @@ the enemy monks); frontline defensive peel = hitting or snaring enemies on its o
 are held for his approval; discovery split across several machines.
 
 ## Known issues and cautions
+- Learned-node links near the line flip between runs (session 4q: split answer's free defenders and split effect's
+  answer latency read supported with 4 bags, not clear yet with 2). Read "supported" by a small margin as a lead.
+- Event-layer values use every trained match (not time ordered) and see output only (damage and healing): an
+  enchantment or hex that works through energy, speed or armor shows only through what it does to output.
+- The power-play node keeps the window's length (exposure): a longer power play has more time to kill.
+- Defensive Blinds are rare before a fight's first death (45 in 113 matches overall), so P.19 has little data.
 - run_bench's "escort 2+ with the main outnumbered" cell has only 6 runs; treat it as a lead, not a result.
 - In the measures, Crippled runners capture more (runs that get far get Crippled): don't read it as Cripple helping.
 - "Wasted" removal casts are higher for winners: probably pressure, not error; check before calling it a mistake.
@@ -365,6 +384,13 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
 - Improve the toolkit rather than writing one-off scripts; each ruling becomes a label, a tactics line and a check.
 
 ## Recent changes
+- Session 4q: step 2a (eventlayer.py: strips against every enchantment in range, hex removals against every hex in
+  range, damage against the role's usual; values from data with differences in differences) and step 2b
+  (learnednodes.py and lnrows.py: nine learned nodes, each link's held-out strength written into causal_map.json and
+  link_log.json; new map nodes P.17 to P.19; the map page shows the measurements). Fixed in the session: fights.py
+  stores fights from the losing side (the fight node reads alternate sides); capture speed leaked its answer (seconds
+  to the first push defaulted to the run's length; now read 10 s into the run). The learning report rebuilds
+  measures.md and eventlayer_values.json; the workflow commits data/benchmarks.
 - Session 4p (2026-11-07): batches 7 (30 matches) and 8 (22) from October and November; Train batch `months` input.
   Fixed: phantom flag swings (lone carrier read as a sure capture; carrier ETA now discounted by measured capture
   chance), flag spawns and stands per map (Imperial, Nomad's and Druid's had double-length flag runs), TQ 3 uptime, dead

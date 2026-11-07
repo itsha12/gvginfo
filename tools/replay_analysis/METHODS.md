@@ -594,14 +594,19 @@ still bends the wrong way at the extremes, so seconds of flag lead are sometimes
 - Step 2b of the learned causal map (`learnednodes.py`): nine node models built from the event layer, each using only
   the causal-map links into it, glass box (main effects only), held out by match (6 folds): run outcome (R.3; control
   and damage on the runner read at 5, 15 and 30 s into every run), flag swing (R.3; flag lead change over the next
-  60 s), capture speed (R.3; seconds of an enemy capture), power play (K.4; any size kills), fight outcome (R.2; play
+  60 s), capture speed (R.3; seconds of an enemy capture, the defence read 10 s into the run: pushers, control and
+  damage on the runner so far; counts over the whole run grow with its length, and "seconds to the first push"
+  defaulting to the run's length leaked the answer in the first build), power play (K.4; any size kills), fight outcome (R.2; play
   before the fight's first death; fights.py stores fights from the losing side, so the side read alternates), split
   chance (A.allocation; a split starts in the next 30 s), split answer (P.11; seconds to the first defender, 60 =
   never), split effect (R.5; a pit NPC killed), collapse (R.1; a split member dies). A link's strength = the held-out
   loss without the link's features minus with them (same folds); supported above twice its spread across folds,
-  rejected when dropping it helps by more than that, else not clear yet. Written into causal_map.json (`measured`, per
-  node; status changed only from hypothesis) and appended to data/model/link_log.json each run; links a node needed and
-  the map lacked were added as hypotheses (logged, with source). New map nodes: P.17 wrong casts, P.18 enchantment
+  rejected when dropping it helps by more than that, else not clear yet (link tests fit 2 bags per variant, the final
+  readable model 4). Written into causal_map.json (`measured`, per node). A link's status follows the data only if it
+  was a hypothesis or the data set it (`status_by: data`): supported if any node supports it, rejected if every node
+  that measured it rejects it, else back to hypothesis; Denning's and formula statuses never change. Appended to data/model/link_log.json each run; links a node needed and
+  the map lacked were added as hypotheses (logged, with source). Rows are built in `lnrows.py` (cache kind "lrows",
+  keyed by that file and the values' hash), so a change to the fitting never rebuilds them. New map nodes: P.17 wrong casts, P.18 enchantment
   strips, P.19 Blind on enemies; P.5 now covers hex removal. `whatif(node, row, changes)` reads a node again with
   features changed (for step 4). The power-play node keeps the window's length as exposure (a longer power play has
   more time to kill).
