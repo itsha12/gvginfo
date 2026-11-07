@@ -402,7 +402,8 @@ def report():
 
 
 # ---- split across machines (the Train batch workflow): parts in parallel, then finish
-PART_SECTIONS = {"main": (s_head, s_lean, s_surprises, s_rulings, s_learned, s_usual, s_values_measure), "cands": (s_cands,)}
+PART_SECTIONS = {"main": (s_head, s_lean, s_surprises, s_rulings, s_usual, s_values_measure), "learned": (s_learned,),
+                 "cands": (s_cands,)}
 
 
 def part(name, out):

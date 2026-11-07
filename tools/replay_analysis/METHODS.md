@@ -483,6 +483,14 @@ moments better than attackers and defenders alone (AUC 0.786 against 0.755) but 
   Actions tab or with `gh api -X POST repos/itsha12/gvginfo/actions/workflows/train-batch.yml/dispatches -f ref=main -f
   'inputs[pick]=6' -f 'inputs[add_batch]=yes' -f 'inputs[note]=...'`; then pull main and read
   `data/model/reports/latest.md`. Runs on GitHub, so it doesn't use the chat's time or usage.
+  Split across machines (session 4r): job "prepare" (pick, fetch, add the batch, analyse, held-out win models,
+  fight-state predictions) hands a git patch and its cache files to six "part" jobs that run side by side
+  (`learning.py part main` = honest test, curves, discovery screen, surprises, rulings, usual play, values measured;
+  `part learned` = event layer and learned nodes (the causal map); `part cands` = candidate variables; `part nodes:<list>` = the node models over three machines),
+  then "finish" joins them and runs what reads the node models' files (values priced, the TQs, the snapshot) with
+  `learning.py finish`, saves the cache and commits. `learning.py` with no argument still runs the whole report on one
+  machine, same text. timings.json keeps each part's wall time under "split". A section added to the report must be put
+  in one part (PART_SECTIONS, or finish if it reads files another part writes) and in ORDER.
 - **Match status** (`status.py`, `data/model/match_status.json`): per match, its batch, engine version, review entry,
   commentary sources and their state (pending, checked, done), Denning's rulings, the events whose why was walked
   through, and notes. `status.py sync` rebuilds the derived fields; `status.py mark` records the rest.

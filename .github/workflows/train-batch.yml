@@ -6,7 +6,7 @@ name: Train batch
 # the learning report, saves the cache back and commits the results to main. Claude then reads
 # data/model/reports/latest.md and explains it. Started by hand (Actions tab, or Claude with gh api).
 # Split across machines for speed (free on a public repo): "prepare" picks, fetches, adds the batch, analyses and warms
-# the held-out models; five "part" jobs then build the report's heavy sections side by side (learning.py part ...);
+# the held-out models; six "part" jobs then build the report's heavy sections side by side (learning.py part ...);
 # "finish" joins them, runs values, the TQs and the snapshot (learning.py finish), saves the cache and commits.
 # Jobs pass their work on as artifacts: a git patch of the files they changed plus the new cache files.
 on:
@@ -128,6 +128,8 @@ jobs:
         include:
           - id: main
             arg: main
+          - id: learned
+            arg: learned
           - id: cands
             arg: cands
           - id: nodes-deaths
