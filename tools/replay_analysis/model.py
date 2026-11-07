@@ -93,15 +93,26 @@ def _frame(ids, step=TRAIN_STEP, extra=()):
     return df, df[NAMES + list(extra)].astype(float), df["won"].astype(int), df["match"]
 
 
+def _validate_candidate(args):
+    df, X, y, g, corr, n = args
+    return validate(df, X[NAMES + ([n] if n else [])], y, g, corr, extra=[n] if n else [])[0]
+
+
 def test_candidates(ids):
     """Held-out log loss with each candidate variable added, against the model without it."""
     corr = corrections()
     df, X, y, g = _frame(ids, extra=[n for n, _, _ in CANDIDATES])
-    base, _ = validate(df, X[NAMES], y, g, corr)
+    import multiprocessing as mp
+    jobs = [None] + [n for n, _, _ in CANDIDATES if n in X]
+    # each validation is independent: run them side by side, in fresh processes ("spawn"): forked workers deadlock once
+    # the parent has used the model library's threads (found 2026-11-06)
+    with mp.get_context("spawn").Pool(min(len(jobs), os.cpu_count() or 2)) as p:
+        res = dict(zip(jobs, p.map(_validate_candidate, [(df, X, y, g, corr, n) for n in jobs])))
+    base = res[None]
     out = []
     for n, dsc, _ in CANDIDATES:
-        if n not in X: continue
-        v, _ = validate(df, X[NAMES + [n]], y, g, corr, extra=[n])
+        if n not in res: continue
+        v = res[n]
         out.append({"candidate": n, "description": dsc, "without": base["glass box"]["all"]["log_loss"],
                     "with": v["glass box"]["all"]["log_loss"],
                     "verdict": "improves: ready to move into the model" if v["glass box"]["all"]["log_loss"] < base["glass box"]["all"]["log_loss"] - 0.005

@@ -12,8 +12,9 @@ Two kinds of entry, both keyed so a stale entry can never be read:
 Where: ~/.cache/gvginfo (or $GVG_CACHE). Prepared data can be kept between sessions on the repo's `cache` branch
 (`sync pull` at the start of a session, `sync push` after building), so a new session does not rebuild it.
 
-Usage:  python3 cache.py warm [--jobs N]     build prepared data and every held-out win and deaths model for the
-                                             current batches, in parallel (do this once per batch)
+Usage:  python3 cache.py warm [--jobs N]     build prepared data and the held-out win models (one per group of matches,
+                                             FOLDS) for the current batches, in parallel (once per batch); deaths
+                                             models are fitted when a why chain first needs them
         python3 cache.py sync pull|push      fetch or store prepared data on the `cache` branch
         python3 cache.py info                what is cached and the current keys
         python3 cache.py clear [fits|prepared|all]
@@ -97,10 +98,29 @@ def prepared(kind, rid, build, sub=None):
     return v
 
 
-def heldout(kind, rid, ids, fit, sub=None):
-    """A model fitted on ids without rid, fitted once per training set and code version, then reused."""
-    train = [x for x in ids if x != rid]
-    name = f"{sub + '_' if sub else ''}{rid}.pkl"
+FOLDS = 10     # held-out models: matches split into 10 fixed groups; 0 = leave one match out (slower, same accuracy)
+# Measured 2026-11-06 on 61 matches: leave-one-out 78.2% accuracy, log loss 0.601; 10 groups 77.6%, 0.546. Every match is
+# still explained by a model that never saw it; 10 fits per batch instead of one per match.
+
+
+def fold_of(rid, k=FOLDS):
+    """A match's fixed group (from its id, so it never changes as batches are added)."""
+    return int(hashlib.sha1(rid.encode()).hexdigest(), 16) % k
+
+
+def heldout_train(rid, ids, k=FOLDS):
+    """The training set for explaining rid: every match outside rid's group (or every match but rid with k=0)."""
+    if not k or rid not in ids: return [x for x in ids if x != rid]
+    f = fold_of(rid, k)
+    return [x for x in ids if fold_of(x, k) != f]
+
+
+def heldout(kind, rid, ids, fit, sub=None, per_match=False):
+    """A model fitted without rid (without rid's whole group of matches, see FOLDS), fitted once per training set and
+    code version, then reused. per_match: the stored value is specific to rid (e.g. a series computed for it)."""
+    train = heldout_train(rid, ids)
+    shared = FOLDS and rid in ids and not per_match
+    name = f"{sub + '_' if sub else ''}{('fold%d' % fold_of(rid)) if shared else rid}.pkl"
     p = _path("fits", kind, fit_key(kind), ids_key(train), name)
     if os.path.exists(p):
         try: return pickle.load(open(p, "rb"))
@@ -148,7 +168,7 @@ def _fit_one(args):
     return kind, rid
 
 
-def warm(jobs=None, kinds=("wp", "deaths")):
+def warm(jobs=None, kinds=("wp",)):
     from multiprocessing import Pool
     ids = _ids(); jobs = jobs or os.cpu_count() or 2
     t = time.time()
@@ -160,8 +180,10 @@ def warm(jobs=None, kinds=("wp", "deaths")):
         for _ in p.imap_unordered(_table_one, ids): pass
     print(f"prepared data: {len(ids)} matches in {time.time() - t:.0f} s")
     t = time.time()
+    reps = {}                  # one match per group is enough: the group shares its model
+    for r in ids: reps.setdefault(fold_of(r) if FOLDS else r, r)
     with Pool(jobs) as p:
-        n = sum(1 for _ in p.imap_unordered(_fit_one, [(k, r) for k in kinds for r in ids]))
+        n = sum(1 for _ in p.imap_unordered(_fit_one, [(k, r) for k in kinds for r in reps.values()]))
     print(f"held-out models: {n} in {time.time() - t:.0f} s")
 
 

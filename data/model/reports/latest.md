@@ -73,27 +73,27 @@ Points = win-chance points added to an otherwise even game at each range of the 
 
 **Surprises** (moments where the held-out model was most confident about the team that went on to lose; each points to something the variables don't capture yet):
 
-- 옷옷옷옷 v Men (36a65ac6) at 14:15: a model that never saw this match gave 옷옷옷옷 13.2%, and 옷옷옷옷 won. Why it thought so: lord_dps_enemy -33.0, morale_diff & map_flag_run +26.1, morale_diff -22.6, team strength +17.5, archers_diff & map_pit_to_stand -12.9
-- hdm v HC (28447c4a) at 15:30: a model that never saw this match gave HC 0.3%, and HC won. Why it thought so: morale_diff & map_bases_apart -31.0, knights_diff -29.8, archers_diff -23.6, morale_diff -19.9, morale_diff & map_flag_run -18.6
-- OG v hold (49eec28d) at 4:30: a model that never saw this match gave OG 0.2%, and OG won. Why it thought so: lord_damage_diff & lord_dps_own -33.4, lord_dps_enemy -27.7, archers_diff & map_flag_run -27.6, morale_diff & map_flag_run -25.1, morale_diff -19.7
-- Team v cope (6c7dfcaa) at 10:00: a model that never saw this match gave Team 5.3%, and Team won. Why it thought so: knights_diff -17.4, morale_diff -17.3, archers_diff & map_flag_run -14.4, archers_diff -13.1, archers_diff & map_bases_apart +12.0
-- RACK v hdm (1f65fd3b) at 15:15: a model that never saw this match gave RACK 1.3%, and RACK won. Why it thought so: knights_diff -33.0, healing_monks_enemy -22.5, lord_damage_diff & lord_dps_own +18.6, morale_diff -16.9, team strength -14.0
-- BcS v yM (b88983e3) at 11:15: a model that never saw this match gave yM 9.2%, and yM won. Why it thought so: morale_diff & lord_dps_own -36.9, morale_diff -28.7, team strength +19.5, lord_dps_own +16.6, lord_dps_enemy +12.6
+- 옷옷옷옷 v Men (36a65ac6) at 14:15: a model that never saw this match gave 옷옷옷옷 13.8%, and 옷옷옷옷 won. Why it thought so: morale_diff -30.2, team strength +17.5, morale_diff & morale_total -10.5, stand -6.7, boost_clock -5.3
+- hdm v HC (28447c4a) at 15:30: a model that never saw this match gave HC 2.5%, and HC won. Why it thought so: knights_diff -36.3, archers_diff -29.9, morale_diff -26.8, morale_diff & morale_total +17.0, team strength -16.4
+- OG v hold (49eec28d) at 4:30: a model that never saw this match gave OG 1.2%, and OG won. Why it thought so: lord_health_diff -37.8, morale_total & archers_diff -34.4, morale_diff & archers_diff -27.1, morale_diff -22.9, team strength +19.0
+- Team v cope (6c7dfcaa) at 10:00: a model that never saw this match gave Team 2.6%, and Team won. Why it thought so: morale_diff -23.9, morale_diff & morale_total -22.8, morale_total & archers_diff -21.0, pit_pressure_diff +11.4, team strength -11.0
+- RACK v hdm (1f65fd3b) at 15:15: a model that never saw this match gave RACK 0.3%, and RACK won. Why it thought so: morale_diff -30.5, morale_diff & archers_diff -28.6, knights_diff -27.8, knights_diff & lord_damage_diff -16.0, team strength -14.0
+- BcS v yM (b88983e3) at 11:15: a model that never saw this match gave yM 4.9%, and yM won. Why it thought so: morale_diff -30.5, morale_diff & archers_diff -28.6, team strength +19.5, morale_diff & morale_total -13.2, alive_diff -7.6
 
 ## 5. Denning's rulings seen through the model
 
 Win chance from a model that never saw the match, 20 s before and 60 s after each ruled moment. Contributions are points for an otherwise even game (the curves' scale).
 
-- hdm v HC (28447c4a) 5:01 (split answered), HC: 11.1% 20 s before -> 69.6% 60 s after (+58.5). After: knights_diff -29.8, morale_diff & map_bases_apart +28.3, team strength -16.4, archers_diff & map_bases_apart +13.6
-- hdm v HC (28447c4a) 5:01 (split answered), hdm: 88.2% 20 s before -> 32.6% 60 s after (-55.6). After: knights_diff +30.6, morale_diff & map_bases_apart -28.9, team strength +16.4, archers_diff & map_bases_apart -13.3
-- hdm v HC (28447c4a) 1:02 (split detection), HC: 26.8% 20 s before -> 28.5% 60 s after (+1.7). After: morale_diff & map_bases_apart +26.4, team strength -16.4, morale_diff & lord_dps_enemy -13.3, lord_dps_enemy +12.4
-- hdm v HC (28447c4a) 1:02 (split detection), hdm: 63.2% 20 s before -> 70.7% 60 s after (+7.5). After: morale_diff & map_bases_apart -28.5, team strength +16.4, flag_lead & map_flag_run +12.7, lord_dps_own -12.0
-- hdm v HC (28447c4a) 7:10 (8 monk in base after the pit died), HC: 40.3% 20 s before -> 19.0% 60 s after (-21.3). After: knights_diff -29.8, morale_diff & map_bases_apart +28.3, archers_diff -23.6, team strength -16.4
-- hdm v HC (28447c4a) 7:10 (8 monk in base after the pit died), hdm: 71.6% 20 s before -> 84.0% 60 s after (+12.4). After: knights_diff +30.6, morale_diff & map_bases_apart -28.9, archers_diff +24.2, team strength +16.4
-- hdm v HC (bbef1904) 8:10 (death), HC: 52.7% 20 s before -> 8.5% 60 s after (-44.2). After: team strength -16.0, lord_dps_own -14.6, morale_diff -12.9, down_diff_s -12.8
-- hdm v HC (bbef1904) 8:10 (death), hdm: 42.8% 20 s before -> 89.9% 60 s after (+47.1). After: team strength +16.0, lord_dps_enemy +14.0, morale_diff +12.9, alive_diff +11.5
-- Men v HC (faec428a) 9:31 (death), HC: 4.0% 20 s before -> 3.7% 60 s after (-0.3). After: lord_dps_own -21.1, knights_diff -18.2, archers_diff & map_flag_run +17.1, team strength -14.9
-- Men v HC (faec428a) 9:31 (death), Men: 95.8% 20 s before -> 95.9% 60 s after (+0.1). After: lord_dps_enemy +21.6, knights_diff +18.7, archers_diff & map_flag_run -17.1, team strength +14.9
+- hdm v HC (28447c4a) 5:01 (split answered), HC: 28.6% 20 s before -> 29.3% 60 s after (+0.7). After: knights_diff -36.3, team strength -16.4, pit_pressure_diff +14.7, flag_lead & morale_diff +11.2
+- hdm v HC (28447c4a) 5:01 (split answered), hdm: 71.0% 20 s before -> 72.8% 60 s after (+1.8). After: knights_diff +37.5, team strength +16.4, flag_lead & morale_diff -16.2, pit_pressure_diff -15.8
+- hdm v HC (28447c4a) 1:02 (split detection), HC: 32.6% 20 s before -> 12.7% 60 s after (-19.9). After: flag_lead & morale_diff -17.9, team strength -16.4, flag_lead & knights_diff -8.0, carrying_diff -7.6
+- hdm v HC (28447c4a) 1:02 (split detection), hdm: 66.9% 20 s before -> 84.7% 60 s after (+17.8). After: team strength +16.4, flag_lead & morale_diff +16.0, flag_lead -7.7, carrying_diff +7.3
+- hdm v HC (28447c4a) 7:10 (8 monk in base after the pit died), HC: 3.2% 20 s before -> 1.4% 60 s after (-1.8). After: knights_diff -36.3, archers_diff -29.9, morale_diff & archers_diff -22.2, team strength -16.4
+- hdm v HC (28447c4a) 7:10 (8 monk in base after the pit died), hdm: 96.0% 20 s before -> 97.4% 60 s after (+1.4). After: knights_diff +37.5, archers_diff +29.3, morale_diff & archers_diff +20.0, team strength +16.4
+- hdm v HC (bbef1904) 8:10 (death), HC: 47.9% 20 s before -> 6.0% 60 s after (-41.9). After: team strength -16.0, alive_diff -14.2, down_diff_s -11.9, morale_diff -11.5
+- hdm v HC (bbef1904) 8:10 (death), hdm: 49.7% 20 s before -> 94.4% 60 s after (+44.7). After: down_diff_s +17.1, team strength +16.0, alive_diff +13.3, morale_diff +13.0
+- Men v HC (faec428a) 9:31 (death), HC: 25.8% 20 s before -> 33.0% 60 s after (+7.2). After: team strength -14.9, archers_diff +10.3, stand -6.3, knights_diff -4.2
+- Men v HC (faec428a) 9:31 (death), Men: 76.2% 20 s before -> 70.9% 60 s after (-5.3). After: team strength +14.9, archers_diff -8.8, stand +6.2, flag_lead & knights_diff +3.9
 
 ## 6. Why: the node models
 
@@ -146,188 +146,188 @@ Each explains one result from what happened before it (time order enforced), tes
 - **npc_healing_10s** (healing on own pit NPCs and Lord in the last 10 s) falls from +3.8 to -17.7 points (0.0..3.0: +3.8; 42.5..73.5: +3.8; 104.5..142.5: +2.5; 180.5..222.5: -5.1; 268.5..318.5: -6.3; 379.0..439.5: -7.4; 534.5..688.5: -14.0)
 - **strength_gap** (attacking minus defending team strength) rises from -6.0 to +4.7 points (-901.0..-415.5: -6.0; -287.5..-133.0: -11.3; -31.0..53.0: +3.8; 91.5..106.0: -2.4; 191.5..256.0: +3.2; 303.5..386.0: +2.8; 459.0..570.0: -0.8)
 
-**lord damage** (Lord damage dealt in the next 10 s while players are in the enemy pit; 59 matches, 8008 rows): adds to the simple baseline (typical error 125.0 against 85.7 for the median; explains 30% of the spread).
-- **defenders** (own players in the pit): 0.0..0.5: +195.9; 0.5..1.5: +110.4; 1.5..2.5: +54.3; 2.5..3.5: -13.8; 3.5..4.5: -67.3; 4.5..5.5: -102.1; 5.5..6.5: -135.1; 6.5..7.5: -146.2; 7.5..8.0: -143.8
-- **defenders_elsewhere** (own players alive outside the pit): 0.0..0.5: +67.3; 0.5..1.5: +69.0; 1.5..2.5: +70.1; 2.5..3.5: +66.7; 3.5..4.5: +28.4; 4.5..5.5: -7.3; 5.5..6.5: -47.1; 6.5..7.5: -108.5; 7.5..8.0: -164.9
-- **bodyguard** (own Bodyguard alive): 0.0..0.5: +104.3; 0.5..1.0: -41.3
-- **attackers_lord_dps** (attackers' measured damage per second against a Lord (benchmarks)): 1.9..18.75: -56.2; 28.8..32.15: -41.4; 32.8..43.25: -35.0; 54.8..64.25: -5.0; 65.7..72.55: +26.2; 76.6..86.35: +48.9; 99.2..110.5: +63.7
-- **attackers** (enemy players in the pit): 1.0..1.5: -33.1; 1.5..2.5: -12.2; 2.5..3.5: -15.6; 3.5..4.5: -7.5; 4.5..5.5: +35.6; 5.5..6.5: +36.1; 6.5..7.5: +40.5; 7.5..8.0: +48.0
-- **attackers_share** (share of the attacking team's live players in the pit (OG comms: merge before pushing the pit)): 0.12..0.13: -17.2; 0.16..0.23: -19.6; 0.27..0.35: -18.0; 0.42..0.53: -24.6; 0.61..0.65: +5.5; 0.73..0.78: +19.8; 0.87..0.94: +43.1
-- **attackers_area_damage** (area-damage skills on the attackers' bars (Denning P9)): 0.0..0.5: +19.7; 0.5..1.5: +18.7; 1.5..2.5: -6.5; 2.5..3.5: -26.2; 3.5..5.0: -58.8; 5.0..6.0: -52.9
-- **defender_healers** (of which healers): 0.0..0.5: +56.7; 0.5..1.5: -7.1; 1.5..2.5: -4.8; 2.5..3.0: -35.2
-- **npc_healing_10s** (healing on own pit NPCs and Lord in the last 10 s): 0.0..3.0: -15.8; 42.5..73.5: +3.6; 106.5..142.5: +19.7; 174.5..218.5: +19.9; 262.5..313.5: +22.8; 373.5..436.5: +26.3; 532.5..685.5: +36.9
-- **seconds_in_pit** (seconds the attackers have been in the pit): 0.0..4.5: -20.3; 10.5..16.5: -18.5; 22.5..28.5: -10.1; 37.5..46.5: -3.5; 58.5..73.5: +16.0; 91.5..112.5: +9.5; 142.5..193.5: +27.6
+**lord damage** (Lord damage dealt in the next 10 s while players are in the enemy pit; 59 matches, 8008 rows): adds to the simple baseline (typical error 124.3 against 85.7 for the median; explains 30% of the spread).
+- **defenders** (own players in the pit): 0.0..0.5: +196.3; 0.5..1.5: +111.1; 1.5..2.5: +53.4; 2.5..3.5: -14.1; 3.5..4.5: -66.4; 4.5..5.5: -100.8; 5.5..6.5: -133.9; 6.5..7.5: -145.6; 7.5..8.0: -148.0
+- **defenders_elsewhere** (own players alive outside the pit): 0.0..0.5: +68.5; 0.5..1.5: +73.3; 1.5..2.5: +73.1; 2.5..3.5: +68.5; 3.5..4.5: +28.2; 4.5..5.5: -7.9; 5.5..6.5: -49.3; 6.5..7.5: -110.4; 7.5..8.0: -170.1
+- **bodyguard** (own Bodyguard alive): 0.0..0.5: +107.4; 0.5..1.0: -42.6
+- **attackers_lord_dps** (attackers' measured damage per second against a Lord (benchmarks)): 1.9..18.75: -55.3; 28.8..32.15: -39.8; 32.8..43.25: -32.9; 54.8..64.25: -1.7; 65.7..72.55: +27.1; 76.6..86.35: +47.4; 99.2..110.5: +56.2
+- **attackers** (enemy players in the pit): 1.0..1.5: -30.5; 1.5..2.5: -10.1; 2.5..3.5: -15.7; 3.5..4.5: -9.3; 4.5..5.5: +35.0; 5.5..6.5: +35.6; 6.5..7.5: +38.9; 7.5..8.0: +41.4
+- **attackers_share** (share of the attacking team's live players in the pit (OG comms: merge before pushing the pit)): 0.12..0.13: -14.6; 0.16..0.23: -17.2; 0.27..0.35: -17.0; 0.42..0.53: -26.1; 0.61..0.65: +5.5; 0.73..0.78: +19.1; 0.87..0.94: +41.1
+- **defender_healers** (of which healers): 0.0..0.5: +57.1; 0.5..1.5: -5.2; 1.5..2.5: -4.1; 2.5..3.0: -39.5
+- **npc_healing_10s** (healing on own pit NPCs and Lord in the last 10 s): 0.0..3.0: -17.0; 42.5..73.5: +3.4; 106.5..142.5: +20.2; 174.5..218.5: +20.7; 262.5..313.5: +24.2; 373.5..436.5: +28.6; 532.5..685.5: +41.3
+- **seconds_in_pit** (seconds the attackers have been in the pit): 0.0..4.5: -20.6; 10.5..16.5: -18.9; 22.5..28.5: -10.1; 37.5..46.5: -3.4; 58.5..73.5: +16.1; 91.5..112.5: +9.9; 142.5..193.5: +28.0
+- **attacker_healers** (of which healers): 0.0..0.5: +15.4; 0.5..1.5: -4.0; 1.5..2.5: +10.5; 2.5..3.0: -51.9
 
-**lord kill** (59 matches, 8004 moments, 528 results): no better than the simple baseline yet (AUC 0.949 against 0.934 for attackers and defenders alone).
-- **defenders** (own players in the pit) falls from +47.3 to -47.9 points (0.0..0.5: +47.3; 0.5..1.5: +41.8; 1.5..2.5: +16.1; 2.5..3.5: -2.3; 3.5..4.5: -25.6; 4.5..5.5: -34.5; 5.5..6.5: -40.9; 6.5..7.5: -42.0; 7.5..8.0: -47.9)
-- **attackers** (enemy players in the pit) rises from -45.0 to +28.6 points (1.0..1.5: -45.0; 1.5..2.5: +8.7; 2.5..3.5: +12.9; 3.5..4.5: +16.9; 4.5..5.5: +35.4; 5.5..6.5: +36.8; 6.5..7.5: +35.3; 7.5..8.0: +28.6)
-- **defenders_elsewhere** (own players alive outside the pit) falls from +40.5 to -43.5 points (0.0..0.5: +40.5; 0.5..1.5: +21.9; 1.5..2.5: +21.4; 2.5..3.5: +20.4; 3.5..4.5: +19.0; 4.5..5.5: -18.1; 5.5..6.5: -23.7; 6.5..7.5: -42.2; 7.5..8.0: -43.5)
-- **minute** (match minute) rises from -47.0 to +31.0 points (0.5..2.85: -47.0; 4.05..5.15: -18.5; 6.25..7.35: +4.6; 8.85..10.35: +11.1; 11.75..13.85: +12.3; 15.65..18.25: +24.8; 20.45..24.75: +30.6)
-- **defender_healers** (of which healers) falls from +25.3 to -31.8 points (0.0..0.5: +25.3; 0.5..1.5: +9.8; 1.5..2.5: -2.1; 2.5..3.0: -31.8)
-- **attackers_lord_dps** (attackers' measured damage per second against a Lord (benchmarks)) rises from -21.3 to +17.4 points (1.9..18.75: -21.3; 28.8..32.15: -22.7; 32.8..43.25: -6.5; 54.8..64.25: -2.9; 65.7..72.55: +6.6; 76.6..86.35: +24.7; 99.2..110.5: +17.5)
-- **seconds_in_pit** (seconds the attackers have been in the pit) rises from -6.4 to +33.3 points (0.0..4.5: -6.4; 10.5..16.5: -14.3; 22.5..28.5: -13.2; 37.5..46.5: -10.9; 58.5..73.5: +5.3; 91.5..112.5: +19.5; 142.5..193.5: +25.7)
-- **res_in** (seconds until the next res) rises from -41.0 to -0.5 points (1.0..8.5: -41.0; 17.5..26.5: +7.3; 35.5..44.5: +11.9; 53.5..62.5: +11.0; 68.5..74.5: +7.5; 80.5..86.5: +5.4; 95.5..107.5: +0.7)
-- **attackers_share** (share of the attacking team's live players in the pit (OG comms: merge before pushing the pit)) rises from -14.5 to +19.5 points (0.12..0.13: -14.5; 0.16..0.23: -10.1; 0.27..0.35: -2.6; 0.42..0.53: -8.6; 0.61..0.65: -3.4; 0.73..0.78: +18.8; 0.87..0.94: +20.9)
+**lord kill** (59 matches, 8004 moments, 528 results): no better than the simple baseline yet (AUC 0.947 against 0.934 for attackers and defenders alone).
+- **defenders** (own players in the pit) falls from +47.3 to -47.5 points (0.0..0.5: +47.3; 0.5..1.5: +41.1; 1.5..2.5: +17.6; 2.5..3.5: -2.0; 3.5..4.5: -26.4; 4.5..5.5: -35.7; 5.5..6.5: -40.8; 6.5..7.5: -41.9; 7.5..8.0: -47.5)
+- **attackers** (enemy players in the pit) rises from -45.2 to +27.4 points (1.0..1.5: -45.2; 1.5..2.5: +10.7; 2.5..3.5: +15.6; 3.5..4.5: +19.5; 4.5..5.5: +34.2; 5.5..6.5: +35.7; 6.5..7.5: +34.0; 7.5..8.0: +27.4)
+- **defenders_elsewhere** (own players alive outside the pit) falls from +40.2 to -42.5 points (0.0..0.5: +40.2; 0.5..1.5: +21.8; 1.5..2.5: +21.6; 2.5..3.5: +20.6; 3.5..4.5: +19.2; 4.5..5.5: -19.6; 5.5..6.5: -24.5; 6.5..7.5: -41.7; 7.5..8.0: -42.5)
+- **minute** (match minute) rises from -47.5 to +30.6 points (0.5..2.85: -47.5; 4.05..5.15: -18.8; 6.25..7.35: +6.1; 8.85..10.35: +12.0; 11.75..13.85: +13.8; 15.65..18.25: +24.8; 20.45..24.75: +30.1)
+- **attackers_lord_dps** (attackers' measured damage per second against a Lord (benchmarks)) rises from -24.3 to +21.9 points (1.9..18.75: -24.3; 28.8..32.15: -22.3; 32.8..43.25: -7.0; 54.8..64.25: -3.7; 65.7..72.55: +4.8; 76.6..86.35: +25.7; 99.2..110.5: +21.4)
+- **defender_healers** (of which healers) falls from +25.1 to -31.6 points (0.0..0.5: +25.1; 0.5..1.5: +9.6; 1.5..2.5: -1.8; 2.5..3.0: -31.6)
+- **seconds_in_pit** (seconds the attackers have been in the pit) rises from -6.4 to +32.8 points (0.0..4.5: -6.4; 10.5..16.5: -14.3; 22.5..28.5: -13.2; 37.5..46.5: -10.8; 58.5..73.5: +5.3; 91.5..112.5: +19.6; 142.5..193.5: +26.3)
+- **attackers_share** (share of the attacking team's live players in the pit (OG comms: merge before pushing the pit)) rises from -16.7 to +23.3 points (0.12..0.13: -16.7; 0.16..0.23: -12.4; 0.27..0.35: -4.8; 0.42..0.53: -8.0; 0.61..0.65: -3.1; 0.73..0.78: +22.2; 0.87..0.94: +24.1)
+- **res_in** (seconds until the next res) rises from -42.2 to -0.7 points (1.0..8.5: -42.2; 17.5..26.5: +6.8; 35.5..44.5: +12.6; 53.5..62.5: +11.7; 68.5..74.5: +8.5; 80.5..86.5: +6.4; 95.5..107.5: +1.0)
 
 ## 7. The usual play
 
 Each choice against the most common one in that kind of decision, in win-chance points over the decision's window, adjusted for the situation, with a 90% range from resampling whole matches. CLEAR = the range excludes 0. Win chance comes from a model that never saw the match. The same comparison over the 30 s BEFORE the decision is a placebo test: a choice can't cause what came before it, so a clear difference there means the effect is partly who makes that choice.
 
 **after wipe** (128 decisions, 56 matches; usual: pushed the pit)
-- took the flag (n 16): -10.3 [-20.3, -2.3] CLEAR; in the 30 s before: +0.2 [-8.5, +9.8]
-- reset (n 13): -2.3 [-8.5, +6.7]; in the 30 s before: -2.2 [-8.0, +1.8]
+- took the flag (n 16): -14.2 [-24.8, -5.5] CLEAR; in the 30 s before: +2.6 [-5.6, +10.8]
+- reset (n 13): -3.1 [-9.0, +3.8]; in the 30 s before: -6.7 [-17.1, -1.0] ALREADY DIFFERENT BEFORE: partly who chooses it
 
 **boost clock** (242 decisions, 58 matches; usual: not running, fought)
-- not running, fell back (n 37): -3.7 [-9.4, +0.6]; in the 30 s before: -0.8 [-4.6, +1.9]
-- running, fought (n 35): +0.9 [-2.0, +3.9]; in the 30 s before: +0.9 [-2.7, +3.8]
-- not running, advanced (n 30): +0.6 [-2.8, +4.4]; in the 30 s before: +0.3 [-3.9, +3.6]
-- running, advanced (n 25): +4.4 [-0.7, +10.6]; in the 30 s before: -0.4 [-7.4, +3.8]
-- not running, held (n 14): -3.5 [-7.9, -0.2] CLEAR; in the 30 s before: +1.9 [-1.4, +4.1]
-- not running, to the spawn (n 13): -1.3 [-6.9, +4.0]; in the 30 s before: +2.0 [-2.3, +4.7]
-- running, fell back (n 9): +0.6 [-5.2, +7.0]; in the 30 s before: -3.6 [-7.6, +1.0]
+- not running, fell back (n 37): -6.3 [-10.4, -1.5] CLEAR; in the 30 s before: +1.1 [-2.1, +3.7]
+- running, fought (n 35): -3.2 [-7.9, +0.9]; in the 30 s before: +3.9 [+0.6, +7.4] ALREADY DIFFERENT BEFORE: partly who chooses it
+- not running, advanced (n 30): -7.2 [-11.1, -0.3] CLEAR; in the 30 s before: +8.1 [+4.5, +11.5] ALREADY DIFFERENT BEFORE: partly who chooses it
+- running, advanced (n 25): +1.5 [-3.1, +7.6]; in the 30 s before: +2.1 [-3.2, +5.8]
+- not running, held (n 14): -4.4 [-11.9, +3.0]; in the 30 s before: +4.8 [-1.7, +10.6]
+- not running, to the spawn (n 13): -4.5 [-10.9, +3.6]; in the 30 s before: +1.0 [-2.4, +3.5]
+- running, fell back (n 9): +4.8 [-7.3, +17.4]; in the 30 s before: +2.1 [-2.9, +8.9]
   By fight state (fightstate.py: enemy minus own expected deaths in the next 10 s; decisions split into thirds; raw win-chance change, against the usual choice in the same third):
-  - not running, fell back, behind in the fight (lowest third, -0.08 or less): +1.4 (n 11 against 41)
-  - not running, fell back, middle third: -2.3 (n 14 against 26)
-  - not running, fell back, ahead in the fight (top third, above -0.01): -4.7 (n 12 against 12)
-  - running, fought, behind in the fight (lowest third, -0.08 or less): +0.4 (n 10 against 41)
-  - running, fought, middle third: +2.3 (n 10 against 26)
-  - running, fought, ahead in the fight (top third, above -0.01): +3.7 (n 15 against 12)
-  - not running, advanced, behind in the fight (lowest third, -0.08 or less): too few yet (n 4 against 41; means -0.1 against -0.0)
-  - not running, advanced, middle third: too few yet (n 9 against 26; means -5.0 against -2.1)
-  - not running, advanced, ahead in the fight (top third, above -0.01): +4.3 (n 17 against 12)
-  - running, advanced, behind in the fight (lowest third, -0.08 or less): too few yet (n 3 against 41; means -2.1 against -0.0)
-  - running, advanced, middle third: too few yet (n 9 against 26; means 0.1 against -2.1)
-  - running, advanced, ahead in the fight (top third, above -0.01): +7.1 (n 13 against 12)
-  - not running, held, behind in the fight (lowest third, -0.08 or less): too few yet (n 4 against 41; means -0.6 against -0.0)
-  - not running, held, middle third: too few yet (n 2 against 26; means -15.3 against -2.1)
-  - not running, held, ahead in the fight (top third, above -0.01): too few yet (n 8 against 12; means -1.5 against -3.4)
-  - not running, to the spawn, behind in the fight (lowest third, -0.08 or less): too few yet (n 7 against 41; means -2.0 against -0.0)
-  - not running, to the spawn, middle third: too few yet (n 4 against 26; means -5.5 against -2.1)
-  - not running, to the spawn, ahead in the fight (top third, above -0.01): too few yet (n 2 against 12; means 0.2 against -3.4)
-  - running, fell back, behind in the fight (lowest third, -0.08 or less): too few yet (n 1 against 41; means -0.2 against -0.0)
-  - running, fell back, middle third: too few yet (n 6 against 26; means -5.0 against -2.1)
-  - running, fell back, ahead in the fight (top third, above -0.01): too few yet (n 2 against 12; means 8.4 against -3.4)
+  - not running, fell back, behind in the fight (lowest third, -0.08 or less): +0.2 (n 11 against 41)
+  - not running, fell back, middle third: -5.2 (n 14 against 26)
+  - not running, fell back, ahead in the fight (top third, above -0.01): -9.9 (n 12 against 12)
+  - running, fought, behind in the fight (lowest third, -0.08 or less): -0.3 (n 10 against 41)
+  - running, fought, middle third: -5.3 (n 10 against 26)
+  - running, fought, ahead in the fight (top third, above -0.01): +1.5 (n 15 against 12)
+  - not running, advanced, behind in the fight (lowest third, -0.08 or less): too few yet (n 4 against 41; means -15.4 against -0.0)
+  - not running, advanced, middle third: too few yet (n 9 against 26; means -8.4 against 1.6)
+  - not running, advanced, ahead in the fight (top third, above -0.01): -3.8 (n 17 against 12)
+  - running, advanced, behind in the fight (lowest third, -0.08 or less): too few yet (n 3 against 41; means -1.4 against -0.0)
+  - running, advanced, middle third: too few yet (n 9 against 26; means 4.0 against 1.6)
+  - running, advanced, ahead in the fight (top third, above -0.01): +2.9 (n 13 against 12)
+  - not running, held, behind in the fight (lowest third, -0.08 or less): too few yet (n 4 against 41; means -5.8 against -0.0)
+  - not running, held, middle third: too few yet (n 2 against 26; means -26.4 against 1.6)
+  - not running, held, ahead in the fight (top third, above -0.01): too few yet (n 8 against 12; means 5.2 against -2.9)
+  - not running, to the spawn, behind in the fight (lowest third, -0.08 or less): too few yet (n 7 against 41; means -1.3 against -0.0)
+  - not running, to the spawn, middle third: too few yet (n 4 against 26; means -8.4 against 1.6)
+  - not running, to the spawn, ahead in the fight (top third, above -0.01): too few yet (n 2 against 12; means -4.7 against -2.9)
+  - running, fell back, behind in the fight (lowest third, -0.08 or less): too few yet (n 1 against 41; means 8.8 against -0.0)
+  - running, fell back, middle third: too few yet (n 6 against 26; means -6.0 against 1.6)
+  - running, fell back, ahead in the fight (top third, above -0.01): too few yet (n 2 against 12; means 29.5 against -2.9)
 
 **enemy pickup** (925 decisions, 59 matches; usual: held, fought)
-- already running, fought (n 137): -2.9 [-6.1, -0.3] CLEAR; in the 30 s before: +1.2 [-0.5, +3.1]
-- held, advanced (n 106): +2.2 [-1.0, +7.1]; in the 30 s before: +2.7 [+0.7, +5.2] ALREADY DIFFERENT BEFORE: partly who chooses it
-- already running, advanced (n 92): -0.8 [-3.8, +2.3]; in the 30 s before: +3.8 [+1.8, +6.5] ALREADY DIFFERENT BEFORE: partly who chooses it
-- held, fell back (n 77): -1.4 [-5.4, +1.6]; in the 30 s before: -2.0 [-4.0, +0.7]
-- ran, fell back (n 67): +0.1 [-3.7, +3.3]; in the 30 s before: -2.3 [-5.5, -0.0] ALREADY DIFFERENT BEFORE: partly who chooses it
-- already running, fell back (n 61): -2.7 [-5.8, +1.0]; in the 30 s before: -1.4 [-3.6, +0.9]
-- ran, fought (n 58): +1.2 [-1.0, +4.5]; in the 30 s before: -4.3 [-6.9, -2.1] ALREADY DIFFERENT BEFORE: partly who chooses it
-- ran, advanced (n 51): -0.7 [-4.3, +3.2]; in the 30 s before: +2.3 [+0.0, +4.8] ALREADY DIFFERENT BEFORE: partly who chooses it
-- already running, held (n 28): +1.4 [-2.6, +6.0]; in the 30 s before: -1.3 [-3.0, +0.3]
-- held, held (n 20): -2.6 [-13.2, +6.6]; in the 30 s before: -0.4 [-9.9, +12.0]
-- ran, held (n 15): +1.8 [-3.0, +5.5]; in the 30 s before: -2.5 [-5.8, +0.3]
-- held, to the spawn (n 8): +6.6 [-0.2, +10.6]; in the 30 s before: -3.5 [-8.3, +1.5]
+- already running, fought (n 137): -5.9 [-9.8, -0.2] CLEAR; in the 30 s before: -0.2 [-2.7, +2.7]
+- held, advanced (n 106): -2.4 [-6.5, +4.5]; in the 30 s before: +0.4 [-2.2, +3.2]
+- already running, advanced (n 92): -5.0 [-8.5, +1.0]; in the 30 s before: +2.4 [-0.8, +5.4]
+- held, fell back (n 77): -6.8 [-13.0, -0.1] CLEAR; in the 30 s before: -0.6 [-3.9, +3.2]
+- ran, fell back (n 67): -3.9 [-8.1, +1.0]; in the 30 s before: -3.6 [-6.0, -1.1] ALREADY DIFFERENT BEFORE: partly who chooses it
+- already running, fell back (n 61): -3.5 [-9.1, +3.4]; in the 30 s before: -2.5 [-5.6, +0.8]
+- ran, fought (n 58): -2.9 [-5.8, +2.8]; in the 30 s before: -4.4 [-6.8, -1.8] ALREADY DIFFERENT BEFORE: partly who chooses it
+- ran, advanced (n 51): -4.9 [-8.5, +0.9]; in the 30 s before: +1.9 [-0.5, +4.2]
+- already running, held (n 28): -3.1 [-7.1, +3.4]; in the 30 s before: -2.8 [-7.7, +2.7]
+- held, held (n 20): +2.8 [-4.0, +16.6]; in the 30 s before: -7.3 [-17.0, -0.7] ALREADY DIFFERENT BEFORE: partly who chooses it
+- ran, held (n 15): -0.0 [-5.7, +5.0]; in the 30 s before: -4.6 [-7.9, -1.7] ALREADY DIFFERENT BEFORE: partly who chooses it
+- held, to the spawn (n 8): -0.0 [-12.9, +19.0]; in the 30 s before: -10.2 [-29.3, +8.9]
   By fight state (fightstate.py: enemy minus own expected deaths in the next 10 s; decisions split into thirds; raw win-chance change, against the usual choice in the same third):
-  - already running, fought, behind in the fight (lowest third, -0.01 or less): +2.7 (n 48 against 55)
-  - already running, fought, middle third: -4.5 (n 34 against 78)
-  - already running, fought, ahead in the fight (top third, above +0.01): -2.9 (n 55 against 72)
-  - held, advanced, behind in the fight (lowest third, -0.01 or less): +5.9 (n 18 against 55)
-  - held, advanced, middle third: +1.6 (n 45 against 78)
-  - held, advanced, ahead in the fight (top third, above +0.01): +3.0 (n 43 against 72)
-  - already running, advanced, behind in the fight (lowest third, -0.01 or less): +5.9 (n 23 against 55)
-  - already running, advanced, middle third: -0.8 (n 35 against 78)
-  - already running, advanced, ahead in the fight (top third, above +0.01): -1.0 (n 34 against 72)
-  - held, fell back, behind in the fight (lowest third, -0.01 or less): -0.7 (n 36 against 55)
-  - held, fell back, middle third: -3.7 (n 18 against 78)
-  - held, fell back, ahead in the fight (top third, above +0.01): +1.9 (n 23 against 72)
-  - ran, fell back, behind in the fight (lowest third, -0.01 or less): +3.5 (n 35 against 55)
-  - ran, fell back, middle third: +2.3 (n 18 against 78)
-  - ran, fell back, ahead in the fight (top third, above +0.01): -4.9 (n 14 against 72)
-  - already running, fell back, behind in the fight (lowest third, -0.01 or less): +1.5 (n 30 against 55)
-  - already running, fell back, middle third: -5.1 (n 20 against 78)
-  - already running, fell back, ahead in the fight (top third, above +0.01): +2.0 (n 11 against 72)
-  - ran, fought, behind in the fight (lowest third, -0.01 or less): +5.3 (n 25 against 55)
-  - ran, fought, middle third: -1.7 (n 14 against 78)
-  - ran, fought, ahead in the fight (top third, above +0.01): +2.7 (n 19 against 72)
-  - ran, advanced, behind in the fight (lowest third, -0.01 or less): +3.5 (n 12 against 55)
-  - ran, advanced, middle third: -2.1 (n 24 against 78)
-  - ran, advanced, ahead in the fight (top third, above +0.01): -1.4 (n 15 against 72)
-  - already running, held, behind in the fight (lowest third, -0.01 or less): +5.7 (n 11 against 55)
-  - already running, held, middle third: -2.0 (n 10 against 78)
-  - already running, held, ahead in the fight (top third, above +0.01): too few yet (n 7 against 72; means 3.2 against -1.4)
-  - held, held, behind in the fight (lowest third, -0.01 or less): +4.6 (n 10 against 55)
-  - held, held, middle third: too few yet (n 8 against 78; means -13.1 against 2.6)
-  - held, held, ahead in the fight (top third, above +0.01): too few yet (n 2 against 72; means 11.8 against -1.4)
-  - ran, held, behind in the fight (lowest third, -0.01 or less): too few yet (n 6 against 55; means -1.1 against -3.5)
-  - ran, held, middle third: too few yet (n 9 against 78; means -0.9 against 2.6)
-  - held, to the spawn, behind in the fight (lowest third, -0.01 or less): too few yet (n 7 against 55; means 1.1 against -3.5)
-  - held, to the spawn, ahead in the fight (top third, above +0.01): too few yet (n 1 against 72; means 22.0 against -1.4)
+  - already running, fought, behind in the fight (lowest third, -0.01 or less): -0.3 (n 48 against 55)
+  - already running, fought, middle third: -8.8 (n 34 against 78)
+  - already running, fought, ahead in the fight (top third, above +0.01): -4.5 (n 55 against 72)
+  - held, advanced, behind in the fight (lowest third, -0.01 or less): -2.7 (n 18 against 55)
+  - held, advanced, middle third: -6.8 (n 45 against 78)
+  - held, advanced, ahead in the fight (top third, above +0.01): +3.2 (n 43 against 72)
+  - already running, advanced, behind in the fight (lowest third, -0.01 or less): +2.9 (n 23 against 55)
+  - already running, advanced, middle third: -9.8 (n 35 against 78)
+  - already running, advanced, ahead in the fight (top third, above +0.01): -1.8 (n 34 against 72)
+  - held, fell back, behind in the fight (lowest third, -0.01 or less): -6.8 (n 36 against 55)
+  - held, fell back, middle third: -15.3 (n 18 against 78)
+  - held, fell back, ahead in the fight (top third, above +0.01): -0.5 (n 23 against 72)
+  - ran, fell back, behind in the fight (lowest third, -0.01 or less): -2.1 (n 35 against 55)
+  - ran, fell back, middle third: -9.6 (n 18 against 78)
+  - ran, fell back, ahead in the fight (top third, above +0.01): +1.9 (n 14 against 72)
+  - already running, fell back, behind in the fight (lowest third, -0.01 or less): -0.1 (n 30 against 55)
+  - already running, fell back, middle third: -6.7 (n 20 against 78)
+  - already running, fell back, ahead in the fight (top third, above +0.01): +0.8 (n 11 against 72)
+  - ran, fought, behind in the fight (lowest third, -0.01 or less): +1.6 (n 25 against 55)
+  - ran, fought, middle third: -6.2 (n 14 against 78)
+  - ran, fought, ahead in the fight (top third, above +0.01): -2.5 (n 19 against 72)
+  - ran, advanced, behind in the fight (lowest third, -0.01 or less): -5.1 (n 12 against 55)
+  - ran, advanced, middle third: -4.4 (n 24 against 78)
+  - ran, advanced, ahead in the fight (top third, above +0.01): -6.5 (n 15 against 72)
+  - already running, held, behind in the fight (lowest third, -0.01 or less): +0.6 (n 11 against 55)
+  - already running, held, middle third: -6.7 (n 10 against 78)
+  - already running, held, ahead in the fight (top third, above +0.01): too few yet (n 7 against 72; means -3.9 against 0.7)
+  - held, held, behind in the fight (lowest third, -0.01 or less): +4.4 (n 10 against 55)
+  - held, held, middle third: too few yet (n 8 against 78; means 2.1 against 9.4)
+  - held, held, ahead in the fight (top third, above +0.01): too few yet (n 2 against 72; means 17.3 against 0.7)
+  - ran, held, behind in the fight (lowest third, -0.01 or less): too few yet (n 6 against 55; means 1.1 against 1.1)
+  - ran, held, middle third: too few yet (n 9 against 78; means -0.6 against 9.4)
+  - held, to the spawn, behind in the fight (lowest third, -0.01 or less): too few yet (n 7 against 55; means 2.5 against 1.1)
+  - held, to the spawn, ahead in the fight (top third, above +0.01): too few yet (n 1 against 72; means 0.4 against 0.7)
 
 - **late_game**: not enough decisions yet (20)
 **power play** (539 decisions, 61 matches; usual: pushed, advanced)
-- pushed, fought (n 150): +1.6 [-0.7, +4.0]; in the 30 s before: -0.1 [-1.9, +1.7]
-- held, fought (n 118): -1.0 [-2.6, +1.1]; in the 30 s before: -2.2 [-4.4, +0.2]
-- held, fell back (n 40): -1.1 [-4.3, +2.2]; in the 30 s before: -3.9 [-8.1, +0.4]
-- pushed, fell back (n 25): -1.4 [-6.2, +5.3]; in the 30 s before: -2.1 [-7.1, +1.7]
-- held, advanced (n 16): +2.8 [+0.5, +7.1] CLEAR; in the 30 s before: -1.8 [-4.4, +0.2]
+- pushed, fought (n 150): +2.6 [+0.3, +5.0] CLEAR; in the 30 s before: -1.8 [-3.8, +0.1]
+- held, fought (n 118): -1.3 [-3.6, +0.6]; in the 30 s before: -2.8 [-4.8, -0.5] ALREADY DIFFERENT BEFORE: partly who chooses it
+- held, fell back (n 40): -2.1 [-4.9, +0.8]; in the 30 s before: -6.3 [-12.0, -0.3] ALREADY DIFFERENT BEFORE: partly who chooses it
+- pushed, fell back (n 25): +3.6 [-1.8, +8.3]; in the 30 s before: -4.5 [-7.7, -0.2] ALREADY DIFFERENT BEFORE: partly who chooses it
+- held, advanced (n 16): +3.9 [-1.4, +12.5]; in the 30 s before: -4.6 [-11.2, +1.0]
   By fight state (fightstate.py: enemy minus own expected deaths in the next 10 s; decisions split into thirds; raw win-chance change, against the usual choice in the same third):
-  - pushed, fought, behind in the fight (lowest third, +0.00 or less): +1.4 (n 42 against 65)
-  - pushed, fought, middle third: +0.1 (n 50 against 49)
-  - pushed, fought, ahead in the fight (top third, above +0.07): +0.7 (n 58 against 76)
-  - held, fought, behind in the fight (lowest third, +0.00 or less): -0.8 (n 43 against 65)
-  - held, fought, middle third: -3.4 (n 43 against 49)
-  - held, fought, ahead in the fight (top third, above +0.07): -2.1 (n 32 against 76)
-  - held, fell back, behind in the fight (lowest third, +0.00 or less): -0.7 (n 18 against 65)
-  - held, fell back, middle third: -4.1 (n 14 against 49)
-  - held, fell back, ahead in the fight (top third, above +0.07): too few yet (n 8 against 76; means 1.4 against 0.7)
-  - pushed, fell back, behind in the fight (lowest third, +0.00 or less): -4.3 (n 10 against 65)
-  - pushed, fell back, middle third: -4.2 (n 12 against 49)
-  - pushed, fell back, ahead in the fight (top third, above +0.07): too few yet (n 3 against 76; means 8.0 against 0.7)
-  - held, advanced, behind in the fight (lowest third, +0.00 or less): too few yet (n 7 against 65; means 1.7 against 1.1)
-  - held, advanced, middle third: too few yet (n 6 against 49; means 4.5 against 0.6)
-  - held, advanced, ahead in the fight (top third, above +0.07): too few yet (n 3 against 76; means 5.5 against 0.7)
+  - pushed, fought, behind in the fight (lowest third, +0.00 or less): +3.2 (n 42 against 65)
+  - pushed, fought, middle third: +2.9 (n 50 against 49)
+  - pushed, fought, ahead in the fight (top third, above +0.07): -1.1 (n 58 against 76)
+  - held, fought, behind in the fight (lowest third, +0.00 or less): +1.7 (n 43 against 65)
+  - held, fought, middle third: -2.5 (n 43 against 49)
+  - held, fought, ahead in the fight (top third, above +0.07): -5.1 (n 32 against 76)
+  - held, fell back, behind in the fight (lowest third, +0.00 or less): +0.6 (n 18 against 65)
+  - held, fell back, middle third: -3.2 (n 14 against 49)
+  - held, fell back, ahead in the fight (top third, above +0.07): too few yet (n 8 against 76; means -4.7 against 3.0)
+  - pushed, fell back, behind in the fight (lowest third, +0.00 or less): -0.2 (n 10 against 65)
+  - pushed, fell back, middle third: +4.6 (n 12 against 49)
+  - pushed, fell back, ahead in the fight (top third, above +0.07): too few yet (n 3 against 76; means 11.5 against 3.0)
+  - held, advanced, behind in the fight (lowest third, +0.00 or less): too few yet (n 7 against 65; means 0.9 against -1.0)
+  - held, advanced, middle third: too few yet (n 6 against 49; means 5.3 against -0.3)
+  - held, advanced, ahead in the fight (top third, above +0.07): too few yet (n 3 against 76; means 10.8 against 3.0)
 
 **split in base** (148 decisions, 42 matches; usual: defended without a collapse)
-- collapsed (n 61): -6.9 [-12.5, -2.4] CLEAR; in the 30 s before: +1.6 [-2.0, +5.7]
-- missed (n 12): -8.5 [-18.5, -2.1] CLEAR; in the 30 s before: +4.5 [-1.6, +14.0]
+- collapsed (n 61): -8.6 [-13.5, -2.6] CLEAR; in the 30 s before: +1.3 [-1.6, +4.5]
+- missed (n 12): -6.0 [-16.2, +2.1]; in the 30 s before: -0.9 [-6.5, +6.9]
 
 **Collapses on a split: time away and its cost** (`S32`; per collapse, averages; main = what the main fight lost while the collapsers were away)
 
 | Group | Cases | Away (median s) | Split killed | Collapser died | Own deaths at main | Enemy deaths at main | Flag lead change | DP change | Win change |
 |---|---|---|---|---|---|---|---|---|---|
-| all | 66 | 18 | 13 | 7 | 0.55 | 0.23 | +2.4 | -2.9 | -4.6 |
-| away under 30 s | 42 | 8 | 10 | 1 | 0.02 | 0.1 | +0.8 | +0.2 | -3.3 |
-| away 30 to 60 s | 11 | 42 | 0 | 1 | 0.18 | 0.09 | +11.6 | -2.7 | -3.7 |
-| away 60 s or more | 13 | 90 | 3 | 5 | 2.54 | 0.77 | -0.4 | -13.2 | -9.8 |
-| before 20:00 | 58 | 17.5 | 9 | 5 | 0.33 | 0.21 | +4.2 | -4.3 | -4.6 |
-| from 20:00 | 8 | 18 | 4 | 2 | 2.12 | 0.38 | -10.8 | +6.9 | -4.9 |
-| split member killed | 13 | 16 | 13 | 1 | 0.08 | 0.77 | +3.6 | +1.4 | -4.0 |
-| no kill | 53 | 19 | 0 | 6 | 0.66 | 0.09 | +2.1 | -4.0 | -4.8 |
+| all | 66 | 18 | 13 | 7 | 0.55 | 0.23 | +2.4 | -2.9 | -3.7 |
+| away under 30 s | 42 | 8 | 10 | 1 | 0.02 | 0.1 | +0.8 | +0.2 | -0.7 |
+| away 30 to 60 s | 11 | 42 | 0 | 1 | 0.18 | 0.09 | +11.6 | -2.7 | -5.1 |
+| away 60 s or more | 13 | 90 | 3 | 5 | 2.54 | 0.77 | -0.4 | -13.2 | -12.5 |
+| before 20:00 | 58 | 17.5 | 9 | 5 | 0.33 | 0.21 | +4.2 | -4.3 | -2.4 |
+| from 20:00 | 8 | 18 | 4 | 2 | 2.12 | 0.38 | -10.8 | +6.9 | -13.6 |
+| split member killed | 13 | 16 | 13 | 1 | 0.08 | 0.77 | +3.6 | +1.4 | -4.7 |
+| no kill | 53 | 19 | 0 | 6 | 0.66 | 0.09 | +2.1 | -4.0 | -3.5 |
 
 **Leverage: where the choice matters most** (share of the spread in win-chance change explained by the choice beyond the situation; range = best minus worst choice, in points)
 
-- after wipe (128): choice explains 5.5% (situation 10.8%); range 10.3 points, best pushed the pit, worst took the flag
-- boost clock (242): choice explains 4.7% (situation 2.9%); range 8.0 points, best running, advanced, worst not running, held
-- split in base (148): choice explains 3.4% (situation 13.6%); range 8.5 points, best defended without a collapse, worst missed
-- enemy pickup (925): choice explains 1.3% (situation 4.0%); range 11.9 points, best held, to the spawn, worst already running, fought
-- power play (539): choice explains 0.8% (situation 2.0%); range 4.3 points, best held, advanced, worst held, fought
+- after wipe (128): choice explains 8.1% (situation 12.5%); range 14.2 points, best pushed the pit, worst took the flag
+- boost clock (242): choice explains 5.7% (situation 1.7%); range 11.5 points, best running, fell back, worst not running, advanced
+- split in base (148): choice explains 3.4% (situation 12.1%); range 8.6 points, best defended without a collapse, worst collapsed
+- power play (539): choice explains 1.6% (situation 1.5%); range 6.3 points, best held, advanced, worst held, fell back
+- enemy pickup (925): choice explains 1.5% (situation 3.3%); range 9.8 points, best held, held, worst held, fell back
 
 **Behaviour clusters: what teams actually did** (each decision's response grouped by what every player did in the next 20 s; UNNAMED = a group no single named choice covers: a response for Denning to name or reject)
 
 *after wipe* (2 groups, separation 0.31):
-- n 78: fought (midline, 1.9 of 8), fought (backline, 1.5 of 8), held (backline, 0.9 of 8), fought (frontline, 0.9 of 8); named as {'pushed the pit': 70, 'reset': 4, 'took the flag': 4}; win change 1.1
-- n 50: advanced (backline, 2.9 of 8), advanced (midline, 2.0 of 8), advanced (frontline, 1.3 of 8); named as {'pushed the pit': 29, 'took the flag': 12, 'reset': 9}; win change 3.8 UNNAMED
+- n 78: fought (midline, 1.9 of 8), fought (backline, 1.5 of 8), held (backline, 0.9 of 8), fought (frontline, 0.9 of 8); named as {'pushed the pit': 70, 'reset': 4, 'took the flag': 4}; win change -0.5
+- n 50: advanced (backline, 2.9 of 8), advanced (midline, 2.0 of 8), advanced (frontline, 1.3 of 8); named as {'pushed the pit': 29, 'took the flag': 12, 'reset': 9}; win change -2.8 UNNAMED
 *boost clock* (4 groups, separation 0.18):
-- n 92: fought (midline, 2.2 of 8), fought (backline, 1.8 of 8), fought (frontline, 1.0 of 8); named as {'not running, fought': 60, 'running, fought': 27, 'running, advanced': 2}; win change -0.7
-- n 64: held (backline, 1.6 of 8), fought (midline, 0.9 of 8), held (midline, 0.8 of 8), fought (frontline, 0.6 of 8); named as {'not running, fought': 17, 'not running, held': 14, 'not running, to the spawn': 10}; win change -0.1 UNNAMED
-- n 58: advanced (midline, 2.2 of 8), advanced (backline, 1.8 of 8), fought (midline, 0.6 of 8), advanced (frontline, 0.5 of 8); named as {'not running, advanced': 29, 'running, advanced': 20, 'running, fought': 2}; win change -1.2 UNNAMED
-- n 37: fell back (midline, 2.8 of 8), fell back (backline, 1.9 of 8), fell back (frontline, 0.8 of 8); named as {'not running, fell back': 30, 'running, fell back': 7}; win change -4.1
+- n 92: fought (midline, 2.2 of 8), fought (backline, 1.8 of 8), fought (frontline, 1.0 of 8); named as {'not running, fought': 60, 'running, fought': 27, 'running, advanced': 2}; win change -1.2
+- n 64: held (backline, 1.6 of 8), fought (midline, 0.9 of 8), held (midline, 0.8 of 8), fought (frontline, 0.6 of 8); named as {'not running, fought': 17, 'not running, held': 14, 'not running, to the spawn': 10}; win change -0.8 UNNAMED
+- n 58: advanced (midline, 2.2 of 8), advanced (backline, 1.8 of 8), fought (midline, 0.6 of 8), advanced (frontline, 0.5 of 8); named as {'not running, advanced': 29, 'running, advanced': 20, 'running, fought': 2}; win change -4.1 UNNAMED
+- n 37: fell back (midline, 2.8 of 8), fell back (backline, 1.9 of 8), fell back (frontline, 0.8 of 8); named as {'not running, fell back': 30, 'running, fell back': 7}; win change -3.2
 *enemy pickup* (3 groups, separation 0.2):
-- n 370: fought (midline, 2.1 of 8), fought (backline, 1.4 of 8), fought (frontline, 1.1 of 8), held (backline, 0.9 of 8); named as {'held, fought': 160, 'already running, fought': 124, 'ran, fought': 46}; win change -1.8 UNNAMED
-- n 307: advanced (midline, 1.9 of 8), advanced (backline, 1.9 of 8), advanced (frontline, 0.9 of 8), fought (backline, 0.6 of 8); named as {'held, advanced': 102, 'already running, advanced': 86, 'ran, advanced': 48}; win change 2.0 UNNAMED
-- n 250: fell back (midline, 1.7 of 8), fell back (backline, 1.7 of 8), fell back (frontline, 0.6 of 8), held (backline, 0.6 of 8); named as {'held, fell back': 72, 'ran, fell back': 65, 'already running, fell back': 57}; win change -0.9 UNNAMED
+- n 370: fought (midline, 2.1 of 8), fought (backline, 1.4 of 8), fought (frontline, 1.1 of 8), held (backline, 0.9 of 8); named as {'held, fought': 160, 'already running, fought': 124, 'ran, fought': 46}; win change -0.2 UNNAMED
+- n 307: advanced (midline, 1.9 of 8), advanced (backline, 1.9 of 8), advanced (frontline, 0.9 of 8), fought (backline, 0.6 of 8); named as {'held, advanced': 102, 'already running, advanced': 86, 'ran, advanced': 48}; win change 4.3 UNNAMED
+- n 250: fell back (midline, 1.7 of 8), fell back (backline, 1.7 of 8), fell back (frontline, 0.6 of 8), held (backline, 0.6 of 8); named as {'held, fell back': 72, 'ran, fell back': 65, 'already running, fell back': 57}; win change -1.1 UNNAMED
 *power play* (3 groups, separation 0.26):
-- n 272: fought (midline, 2.1 of 8), fought (backline, 1.7 of 8), fought (frontline, 1.1 of 8), held (backline, 0.7 of 8); named as {'pushed, fought': 139, 'held, fought': 109, 'pushed, advanced': 16}; win change 0.2 UNNAMED
-- n 185: advanced (backline, 2.4 of 8), advanced (midline, 2.2 of 8), advanced (frontline, 1.1 of 8); named as {'pushed, advanced': 168, 'held, advanced': 13, 'pushed, fought': 3}; win change 1.3
-- n 94: fell back (backline, 2.0 of 8), fell back (midline, 1.7 of 8), fought (midline, 0.6 of 8), fell back (frontline, 0.6 of 8); named as {'held, fell back': 38, 'pushed, fell back': 25, 'held, fought': 8}; win change -0.5 UNNAMED
+- n 272: fought (midline, 2.1 of 8), fought (backline, 1.7 of 8), fought (frontline, 1.1 of 8), held (backline, 0.7 of 8); named as {'pushed, fought': 139, 'held, fought': 109, 'pushed, advanced': 16}; win change 0.4 UNNAMED
+- n 185: advanced (backline, 2.4 of 8), advanced (midline, 2.2 of 8), advanced (frontline, 1.1 of 8); named as {'pushed, advanced': 168, 'held, advanced': 13, 'pushed, fought': 3}; win change 1.6
+- n 94: fell back (backline, 2.0 of 8), fell back (midline, 1.7 of 8), fought (midline, 0.6 of 8), fell back (frontline, 0.6 of 8); named as {'held, fell back': 38, 'pushed, fell back': 25, 'held, fought': 8}; win change -0.2 UNNAMED
 *split in base* (3 groups, separation 0.2):
-- n 71: fought (midline, 2.2 of 8), fought (backline, 1.1 of 8), fought (frontline, 0.9 of 8), held (backline, 0.9 of 8); named as {'defended without a collapse': 43, 'collapsed': 24, 'missed': 4}; win change 0.9
-- n 41: fell back (midline, 2.7 of 8), fell back (backline, 1.4 of 8), fell back (frontline, 0.8 of 8); named as {'collapsed': 21, 'defended without a collapse': 15, 'missed': 5}; win change -4.6 UNNAMED
-- n 35: advanced (midline, 2.4 of 8), advanced (backline, 1.3 of 8), advanced (frontline, 0.5 of 8), died (midline, 0.5 of 8); named as {'collapsed': 16, 'defended without a collapse': 16, 'missed': 3}; win change -4.0 UNNAMED
+- n 71: fought (midline, 2.2 of 8), fought (backline, 1.1 of 8), fought (frontline, 0.9 of 8), held (backline, 0.9 of 8); named as {'defended without a collapse': 43, 'collapsed': 24, 'missed': 4}; win change 2.1
+- n 41: fell back (midline, 2.7 of 8), fell back (backline, 1.4 of 8), fell back (frontline, 0.8 of 8); named as {'collapsed': 21, 'defended without a collapse': 15, 'missed': 5}; win change -5.1 UNNAMED
+- n 35: advanced (midline, 2.4 of 8), advanced (backline, 1.3 of 8), advanced (frontline, 0.5 of 8), died (midline, 0.5 of 8); named as {'collapsed': 16, 'defended without a collapse': 16, 'missed': 3}; win change 0.8 UNNAMED
 
 ## 8. What results and causes are worth
 
@@ -335,118 +335,117 @@ Win points for the team it happened to, from 61 matches. **Result** = how matche
 
 | Event | Cases | Result | 90% range | Model (30 s) | Clear |
 |---|---|---|---|---|---|
-| boost | 208 | +0.3 | -8.4 to +9.0 | +2.7 | no |
-| capture | 587 | +3.0 | +1.9 to +4.3 | +2.8 | yes |
-| death (any) | 1204 | -6.2 | -9.0 to -3.5 | -3.0 | yes |
-| death: against a spike build | 288 | -9.1 | -15.0 to -2.3 | -1.1 | yes |
-| death: against other builds | 916 | -5.3 | -8.4 to -2.2 | -3.5 | yes |
-| death: back within 20 s | 190 | -4.7 | -9.7 to +0.2 | -1.7 | no |
-| death: down 20 to 60 s | 447 | -8.4 | -11.9 to -4.5 | -2.2 | yes |
-| death: down 60 s or more | 567 | -4.9 | -7.6 to -2.2 | -4.0 | yes |
-| death: healer | 411 | -5.0 | -7.7 to -2.3 | -3.2 | yes |
-| death: healer in own base or pit, back within 15 s (likely deliberate) | 26 | -0.5 | -8.3 to +8.9 | +0.3 | no |
-| death: healer, other | 385 | -5.3 | -8.1 to -2.8 | -3.5 | yes |
-| death: not a healer | 793 | -6.8 | -10.3 to -3.3 | -2.8 | yes |
-| death: team boosted (morale above zero) | 171 | -27.6 | -41.3 to -14.0 | -7.7 | yes |
-| death: team not boosted | 1033 | -2.6 | -6.8 to +1.9 | -2.2 | no |
-| footman lost (base NPC) | 188 | +1.1 | -3.9 to +5.8 | -0.3 | no |
-| pit NPC lost (any): taken by a spike build | 88 | -7.6 | -14.0 to +0.9 | -4.1 | no |
-| pit NPC lost (any): taken by other builds | 417 | -3.7 | -6.9 to -0.6 | -1.1 | yes |
-| pit NPC lost: archer | 291 | -2.4 | -5.3 to +0.8 | -0.5 | no |
-| pit NPC lost: bodyguard | 71 | -2.7 | -7.3 to +0.7 | +2.1 | no |
-| pit NPC lost: knight | 143 | -9.2 | -13.0 to -5.7 | -5.7 | yes |
+| boost | 208 | +0.9 | -7.9 to +9.4 | +2.4 | no |
+| capture | 587 | +2.4 | +1.3 to +3.3 | +2.8 | yes |
+| death (any) | 1204 | -4.9 | -7.5 to -2.7 | -3.6 | yes |
+| death: against a spike build | 288 | -7.2 | -10.6 to -2.6 | -2.5 | yes |
+| death: against other builds | 916 | -4.2 | -7.1 to -1.4 | -3.9 | yes |
+| death: back within 20 s | 190 | -1.7 | -5.2 to +2.0 | -0.1 | no |
+| death: down 20 to 60 s | 447 | -6.2 | -9.8 to -2.5 | -2.5 | yes |
+| death: down 60 s or more | 567 | -5.0 | -7.8 to -2.3 | -5.6 | yes |
+| death: healer | 411 | -4.4 | -6.9 to -2.0 | -4.4 | yes |
+| death: healer in own base or pit, back within 15 s (likely deliberate) | 26 | +2.1 | -2.1 to +8.9 | +2.9 | no |
+| death: healer, other | 385 | -4.8 | -7.4 to -2.5 | -4.9 | yes |
+| death: not a healer | 793 | -5.2 | -8.2 to -2.2 | -3.2 | yes |
+| death: team boosted (morale above zero) | 171 | -22.3 | -36.1 to -9.7 | -7.0 | yes |
+| death: team not boosted | 1033 | -2.1 | -5.9 to +2.1 | -3.0 | no |
+| footman lost (base NPC) | 188 | +2.7 | -2.1 to +7.4 | +1.5 | no |
+| pit NPC lost (any): taken by a spike build | 88 | -4.9 | -9.3 to +1.0 | -1.5 | no |
+| pit NPC lost (any): taken by other builds | 417 | -1.9 | -4.8 to +1.0 | -1.3 | no |
+| pit NPC lost: archer | 291 | -0.1 | -2.5 to +2.8 | +0.6 | no |
+| pit NPC lost: bodyguard | 71 | -2.1 | -6.0 to +0.8 | -0.1 | no |
+| pit NPC lost: knight | 143 | -7.4 | -11.4 to -3.8 | -5.9 | yes |
 
 **What causes are worth.** A node model's strongest range for each top variable, turned into win points: the change in the result's chance (at its real rate) times the result's value.
 
-*deaths* (per 10 s in that state; result worth -6.2 points, base rate 1.4%):
+*deaths* (per 10 s in that state; result worth -4.9 points, base rate 1.4%):
 
-- enemies within 1,500 7.5 to 8: result chance +2.5 points, worth -0.16 win points
-- current health % 1 to 47.5: result chance +10.7 points, worth -0.67 win points
-- own minus enemy team strength -901 to -523: result chance +1.3 points, worth -0.08 win points
-- allies minus enemies within 2,000 -8 to -3.5: result chance +2.5 points, worth -0.15 win points
-- allies within 1,500 0 to 0.5: result chance +1.6 points, worth -0.1 win points
-- match minute 20.95 to 28: result chance +1.6 points, worth -0.1 win points
-- enemy enchantment removal skills 5.5 to 6: result chance -1.3 points, worth +0.08 win points
+- enemies within 1,500 7.5 to 8: result chance +2.5 points, worth -0.12 win points
+- current health % 1 to 47.5: result chance +10.7 points, worth -0.53 win points
+- own minus enemy team strength -901 to -523: result chance +1.3 points, worth -0.06 win points
+- allies minus enemies within 2,000 -8 to -3.5: result chance +2.5 points, worth -0.12 win points
+- allies within 1,500 0 to 0.5: result chance +1.6 points, worth -0.08 win points
+- match minute 20.95 to 28: result chance +1.6 points, worth -0.08 win points
+- enemy enchantment removal skills 5.5 to 6: result chance -1.3 points, worth +0.06 win points
 
-*kill conversion* (per burst, for the attacking team; result worth +6.2 points, base rate 29.7%):
+*kill conversion* (per burst, for the attacking team; result worth +4.9 points, base rate 29.7%):
 
-- damage in the 2 s burst 518.5 to 839: result chance +31.7 points, worth +1.96 win points
-- target's health ceiling 0.4 to 0.56: result chance +34.3 points, worth +2.13 win points
-- target health % when the burst started 0 to 38.5: result chance +25.9 points, worth +1.61 win points
-- target's healers in range 0 to 0.5: result chance +32.2 points, worth +2.0 win points
-- attacking minus target team strength 459 to 901: result chance +23.0 points, worth +1.43 win points
-- target team's prot skills 5.5 to 6.5: result chance +19.9 points, worth +1.24 win points
-- a prot on the target 0.5 to 1: result chance -7.7 points, worth -0.48 win points
-- match minute 0.3 to 1.45: result chance -14.8 points, worth -0.92 win points
+- damage in the 2 s burst 518.5 to 839: result chance +31.7 points, worth +1.55 win points
+- target's health ceiling 0.4 to 0.56: result chance +34.3 points, worth +1.68 win points
+- target health % when the burst started 0 to 38.5: result chance +25.9 points, worth +1.27 win points
+- target's healers in range 0 to 0.5: result chance +32.2 points, worth +1.58 win points
+- attacking minus target team strength 459 to 901: result chance +23.0 points, worth +1.13 win points
+- target team's prot skills 5.5 to 6.5: result chance +19.9 points, worth +0.98 win points
+- a prot on the target 0.5 to 1: result chance -7.7 points, worth -0.38 win points
+- match minute 0.3 to 1.45: result chance -14.8 points, worth -0.73 win points
 
-*npc loss* (per case, for the defending team; result worth -4.4 points, base rate 18.5%):
+*npc loss* (per case, for the defending team; result worth -2.4 points, base rate 18.5%):
 
-- own players in the pit 7.5 to 8: result chance -15.5 points, worth +0.67 win points
-- damage on the pit NPCs in the last 5 s 367 to 1170: result chance +36.4 points, worth -1.59 win points
-- own players alive outside the pit 0 to 0.5: result chance +17.6 points, worth -0.77 win points
-- share of the attacking team's live players in the pit (OG comms: merge before pushing the pit) 0.87 to 0.94: result chance +7.8 points, worth -0.34 win points
-- of which healers 0 to 0.5: result chance +15.9 points, worth -0.7 win points
-- attackers' measured damage per second against a Lord (benchmarks) 18.75 to 28.65: result chance -6.8 points, worth +0.3 win points
-- enemy players in the pit 7.5 to 8: result chance +7.0 points, worth -0.3 win points
-- match minute 23.45 to 28: result chance -4.7 points, worth +0.21 win points
+- own players in the pit 7.5 to 8: result chance -15.5 points, worth +0.38 win points
+- damage on the pit NPCs in the last 5 s 367 to 1170: result chance +36.4 points, worth -0.89 win points
+- own players alive outside the pit 0 to 0.5: result chance +17.6 points, worth -0.43 win points
+- share of the attacking team's live players in the pit (OG comms: merge before pushing the pit) 0.87 to 0.94: result chance +7.8 points, worth -0.19 win points
+- of which healers 0 to 0.5: result chance +15.9 points, worth -0.39 win points
+- attackers' measured damage per second against a Lord (benchmarks) 18.75 to 28.65: result chance -6.8 points, worth +0.17 win points
+- enemy players in the pit 7.5 to 8: result chance +7.0 points, worth -0.17 win points
+- match minute 23.45 to 28: result chance -4.7 points, worth +0.12 win points
 
 ## Why: five events of the new matches
 
 For each, the engine's account of why it happened, every number measured and placed against the same role or situation in every stored match (forensics.py, events.py), with models that never saw the match.
 
-### ohno v Crew (77206c78), 1:09 to 1:24: Crew lost 1 player on the backside
+### Men v hook (ad75813a), 6:22 to 6:40: Men lost 2 players on the push side
 
-1. **Result**: deaths Crew 2 until all were back; Crew lost archer, knight; captures {'ohno': 1}; flag lead -95 s; death penalty {'Crew': -30, 'ohno': 0}. Win chance for Crew 38.0% -> 3.0% (-35.0); moved by knights_diff -19.7, stand -10.4, knights_diff & map_flag_run -10.2, morale_diff -9.0, alive_diff -8.2.
+1. **Result**: deaths Men 4 until all were back; hook lost bodyguard; captures {'hook': 1}; flag lead +7 s; death penalty {'Men': 20, 'hook': 0}. Win chance for Men 99.2% -> 28.1% (-71.1); moved by alive_diff -32.1, lord_health_diff +22.4, minute & lord_damage_diff -21.9, down_diff_s -19.2, morale_diff & morale_total -18.9.
 2. **Mechanics** (deaths model that never saw this match, a few seconds before each death; what raised the risk most):
-   - Crew 8 Monk at 1:24 (engine's cause: positioning: chased down while retreating): risk 35.1% at 1:20; health +41.1, enemies within 1,500 +11.7, own_prots +9.1, strength gap +8.8 [health 29%, ceiling 1.0, 4 enemies and 4 allies near, 0 healers in range]
-   - why Crew 8 Monk's health dropped (forensics, against the same role in every stored match):
-     - Position: yes (nearest allied healer 6740 in the last 5 s, nearest enemy 153, allies in casting range 3.0, enemies 3.0)
-     - Prots: late or interrupted (0 from teammates, 1 self; 0 of 1 landed); damage 892 (53% attacks, 49% armor-ignoring), burst 264 in 2 s at 1:05.7
-     - Healers under interrupt pressure: usual (healers 3, interrupts_per_min 3.0, interrupted 1, casts 12, finished_share 0.92, dazed 0, knockdowns 0, hexes 1)
-     - Damage off shield sets: usual (team share 0.25, a shield would have stopped about 40)
-     - Own damage: usual (46.6 per second on [('ohno Mesmer', 431), ('ohno Dervish', 421)]); enemy damage: usual (56.5 per second)
-     - Peel: no (peel on a burst is rare: most bursts on this role get none) (0 of 2 attackers controlled; longest free 8.2 s)
-     - Casting: interrupted far more than usual (casts 5, interrupted 1, cancelled 0, while_dazed 0)
-3. **Setup** (phase 0:52 to 1:23):
-   - Crew plan flag game: push side 4v4 contest (8 Monk, Stand Mes, Paragon, Warrior); backside 3v3 contest (7 Monk, Prot (WoC), Mes/A); backside 1v0 free (Monk 5 (WoC))
-     where the deaths came: 4v4, 3 damage, 1 healers, pressure 37/s, incoming 37/s, sustain margin -2, uptime 47%, control received 1 interrupts (1 on healers), 0 knockdowns
-   - ohno plan regrouping: backside 4v4 contest (7 Monk, Prot, Mesmer, Dervish); push side 3v3 contest (8 Monk, Fire Ele, Air Ele); backside 1v0 free (Ritualist)
-     where the deaths came: 4v4, 2 damage, 2 healers, pressure 37/s, incoming 37/s, sustain margin +11, uptime 65%, control received 1 interrupts (1 on healers), 0 knockdowns
-4. **Decision** (enemy pickup at 1:07): Crew chose 'already running' (fell back 4, carrying 1, died 1, fought 1, to the spawn 1); usual there: already running, fought; that choice is worth +0.0 points against the usual [+0.0, +0.0].
-**Why, in short**: Crew fought 4v4 on the push side (job: contest) with sustain margin -2 while the rest were backside (contest), backside (free); the 8 Monk died because no prot landed in time (0 of 1 landed), its casts were interrupted (1 of 5), position (no allied healer within casting range, nearest enemy 153); after choosing 'already running' at the enemy pickup.
-5. **Context**: Crew: 8 up (main 4), flags up +59 s, DP 0, NPCs K2 A2 B1, Lord dmg 0; ohno: 8 up (main 4), flags down -59 s, DP 0, NPCs K2 A2 B1, Lord dmg 0; stand Crew, boost in 103 s; builds WoC spike v balance; situation: fought away from pit while up on flags (+59 s): could fall back, a monk died first.
+   - Men Earth Ele at 6:37 (engine's cause: backline down (1 monk dead)): risk 79.2% at 6:35; health +41.1, health_pct & hexes_on_own_healers +27.0, own healers dead +20.0, local numbers +19.5 [health 15%, ceiling 1.0, 7 enemies and 3 allies near, 1 healers in range, 2 hexes]
+   - Men Water Ele at 6:40 (engine's cause: backline down (1 monk dead)): risk 14.7% at 6:35; health +41.1, health_pct & hexes_on_own_healers +26.1, own healers dead +20.0, local numbers +13.4 [health 18%, ceiling 1.0, 3 enemies and 4 allies near, 2 healers in range, 1 hexes]
+   - why Men Earth Ele's health dropped (forensics, against the same role in every stored match):
+     - Position: yes (nearest allied healer 814 in the last 5 s, nearest enemy 205, allies in casting range 1, enemies 6)
+     - Prots: no prots (0 from teammates, 0 self; 0 of 0 landed); damage 625 (26% attacks, 8% armor-ignoring), burst 225 in 2 s at 6:30.1; knockdowns 1, knockdown immunity up for 0
+     - Healers under interrupt pressure: usual (healers 3, interrupts_per_min 3.0, interrupted 1, casts 16, finished_share 0.81, dazed 0, knockdowns 0, hexes 10)
+     - Damage off shield sets: no (team share 0.07, a shield would have stopped about 0)
+     - Own damage: usual (31.3 per second on [('hook 8 Monk', 264), ('hook Air Ele', 137)]); enemy damage: high (68.1 per second)
+     - Peel: no (peel on a burst is rare: most bursts on this role get none) (0 of 4 attackers controlled; longest free 20.0 s)
+     - Casting: unclear (casts 6, interrupted 1, cancelled 2, while_dazed 0)
+   - why Men Water Ele's health dropped (forensics, against the same role in every stored match):
+     - Position: no (nearest allied healer 188 in the last 5 s, nearest enemy 744, allies in casting range 3.0, enemies 3.0)
+     - Prots: late or interrupted (1 from teammates, 1 self; 2 of 2 landed); damage 404 (17% attacks, 30% armor-ignoring), burst 129 in 2 s at 6:20.8; ready and in range but not used: Men 8 Monk Shielding Hands
+     - Healers under interrupt pressure: usual (healers 3, interrupts_per_min 3.0, interrupted 1, casts 14, finished_share 0.71, dazed 0, knockdowns 0, hexes 9)
+     - Damage off shield sets: usual (team share 0.18, a shield would have stopped about 17)
+     - Own damage: usual (28.6 per second on [('hook Necromancer 1', 232), ('hook 8 Monk', 166)]); enemy damage: high (78.1 per second)
+     - Peel: partly (controlled, but an attacker was left free for 20.0 s) (1 of 3 attackers controlled; longest free 20.0 s)
+     - Casting: unclear (casts 3, interrupted 0, cancelled 0, while_dazed 0)
+3. **Setup** (phase 6:09 to 6:30):
+   - Men plan weak side holding: push side 5v7 hold (8 Monk, 7 Monk, Water Ele, Air Ele 2, Earth Ele); push side 2v1 convert (Fire Ele, Air Ele 1)
+     where the deaths came: 5v7, 3 damage, 2 healers, pressure 23/s, incoming 46/s, sustain margin +40, uptime 33%, control received 4 interrupts (1 on healers), 0 knockdowns
+   - hook plan power play, weak side holding: backside 7v5 convert (7 Monk, Prot, Stand Mes, Mes/A, Necromancer 2, Necromancer 1, Air Ele); backside 1v2 hold (8 Monk)
+     where the deaths came: 7v5, 5 damage, 2 healers, pressure 58/s, incoming 23/s, sustain margin +2, uptime 73%, control received 0 interrupts (0 on healers), 1 knockdowns
+4. **Decision**: no decision point for Men in the 45 s before.
+**Why, in short**: Men fought 5v7 on the push side (job: hold) with sustain margin +40 while the rest were push side (convert); the Earth Ele died because no prot landed in time (0 of 0 landed), knocked down 1 times with no knockdown immunity up, the enemy hit unusually hard (68.1 per second); the Water Ele died because no prot landed in time (2 of 2 landed; 8 Monk Shielding Hands ready and unused), the enemy hit unusually hard (78.1 per second), its attackers were not peeled (partly (controlled, but an attacker was left free for 20.0 s)).
+5. **Context**: Men: 7 up (main 5), flags down -18 s, DP -45, NPCs K2 A2 B1, Lord dmg 0; hook: 8 up (main 7), flags up +18 s, DP 80, NPCs K0 A2 B1, Lord dmg 0; stand Men, boost in 69 s; builds other v other; situation: outnumbered where it fought 5v7 (Prot down).
 
-### ohno v NwAy (a0d60daa), 7:05 to 7:46: ohno lost 3 players on the backside
+### ohno v Fun (1cb73c20), 20:04 to 20:19: Fun lost 1 player on the backside
 
-1. **Result**: deaths ohno 2, NwAy 1 until all were back; ohno lost knight, archer; flag lead +23 s; death penalty {'ohno': -30, 'NwAy': -15}. Win chance for ohno 45.7% -> 16.7% (-29.0); moved by archers_diff & map_bases_apart +26.2, knights_diff & map_flag_run -17.5, knights_diff -15.1, archers_diff & map_flag_run -14.4, fight_state -10.8.
+1. **Result**: deaths Fun 2 until all were back; flag lead +26 s; death penalty {'Fun': -30, 'ohno': 1}. Win chance for Fun 45.4% -> 3.3% (-42.1); moved by lord_damage_diff & pit_pressure_diff -43.9, alive_diff -14.0, pit_pressure_diff +13.3, down_diff_s -13.2, morale_diff & archers_diff -6.0.
 2. **Mechanics** (deaths model that never saw this match, a few seconds before each death; what raised the risk most):
-   - ohno 8 Monk at 7:20 (engine's cause: positioning: caught away from its group): risk 3.2% at 7:15; enemies within 1,500 +11.8, local numbers +11.8, health +10.2, own_prots +8.6 [health 77%, ceiling 1.0, 4 enemies and 2 allies near, 0 healers in range, 2 hexes]
-   - ohno Ritualist at 7:34 (engine's cause: backline down (1 monk dead, in a chain)): risk 64.7% at 7:30; health +41.0, own healers dead +17.8, group_no_healer +12.1, local numbers +11.8 [health 17%, ceiling 1.0, 2 enemies and 1 allies near, 0 healers in range, 1 hexes]
-   - NwAy Prot at 7:46 (engine's cause: out-pressured despite support (prots cast, one monk tied up)): risk 7.5% at 7:40; health +41.0, enemies within 1,500 +11.8, health_pct & hexes_on_own_healers +9.4, health_pct & minute +7.9 [health 20%, ceiling 1.0, 4 enemies and 3 allies near, 1 healers in range]
-   - why ohno 8 Monk's health dropped (forensics, against the same role in every stored match):
-     - Position: yes (nearest allied healer 7046 in the last 5 s, nearest enemy 608, allies in casting range 1, enemies 4)
-     - Prots: yes (0 from teammates, 1 self; 1 of 1 landed); damage 779 (16% attacks, 12% armor-ignoring), burst 314 in 2 s at 7:17.9
-     - Healers under interrupt pressure: usual (healers 3, interrupts_per_min 0.0, interrupted 0, casts 18, finished_share 1.0, dazed 0, knockdowns 0, hexes 5)
-     - Damage off shield sets: usual (team share 0.43, a shield would have stopped about 178)
-     - Own damage: usual (43.7 per second on [('NwAy 7 Monk', 418), ('NwAy Prot', 235)]); enemy damage: high (100.7 per second)
-     - Peel: usual (1 of 4 attackers controlled; longest free 20.0 s)
-     - Casting: usual (casts 6, interrupted 0, cancelled 0, while_dazed 0)
-   - why ohno Ritualist's health dropped (forensics, against the same role in every stored match):
-     - Position: yes (nearest allied healer 5637 in the last 5 s, nearest enemy 1351, allies in casting range 1.0, enemies 0.0)
-     - Prots: no prots (0 from teammates, 0 self; 0 of 0 landed); damage 374 (0% attacks, 0% armor-ignoring), burst 178 in 2 s at 7:27.8; knockdowns 1, knockdown immunity up for 0
-     - Healers under interrupt pressure: usual (healers 3, interrupts_per_min 0.0, interrupted 0, casts 10, finished_share 1.0, dazed 0, knockdowns 0, hexes 2)
-     - Damage off shield sets: usual (team share 0.53, a shield would have stopped about 103)
-     - Own damage: usual (51.0 per second on [('NwAy Prot', 487), ('NwAy 7 Monk', 484)]); enemy damage: high (66.0 per second)
-     - Peel: partly (controlled, but an attacker was left free for 18.2 s) (1 of 2 attackers controlled; longest free 18.2 s)
-     - Casting: unclear (casts 4, interrupted 1, cancelled 0, while_dazed 0)
-3. **Setup** (phase 6:58 to 7:19):
-   - ohno plan weak side holding: push side 5v4 convert (7 Monk, Prot, Mesmer, AoB Derv, Warrior); backside 3v4 hold (8 Monk, Ritualist, Ranger)
-     where the deaths came: 3v4, 2 damage, 1 healers, pressure 12/s, incoming 71/s, sustain margin -34, uptime 36%, control received 0 interrupts (0 on healers), 1 knockdowns
-   - NwAy plan weak side holding: backside 4v5 hold (7 Monk, Prot, Mesmer, Dervish); push side 4v3 convert (8 Monk, Ritualist, Fire Ele, Air Ele)
-     where the deaths came: 4v3, 3 damage, 1 healers, pressure 71/s, incoming 12/s, sustain margin +17, uptime 70%, control received 1 interrupts (0 on healers), 0 knockdowns
-4. **Decision** (power play at 6:34): ohno chose 'pushed' (advanced 3, fought 2, carrying 1, fell back 1, held 1); usual there: pushed, advanced; that choice is worth +0.0 points against the usual [+0.0, +0.0].
-**Why, in short**: ohno fought 3v4 on the backside (job: hold) with sustain margin -34 while the rest were push side (convert); the 8 Monk died because the enemy hit unusually hard (100.7 per second), position (no allied healer within casting range, nearest enemy 608); the Ritualist died because no prot landed in time (0 of 0 landed), knocked down 1 times with no knockdown immunity up, the enemy hit unusually hard (66.0 per second); after choosing 'pushed' at the power play.
-5. **Context**: ohno: 8 up (main 5), flags down -53 s, DP 0, NPCs K2 A2 B1, Lord dmg 0; NwAy: 8 up (main 4), flags up +53 s, DP 0, NPCs K2 A2 B1, Lord dmg 0; stand NwAy, boost in 99 s; builds balance v balance; situation: outnumbered where it fought 3v4, a monk died first.
+   - Fun Air Ele 1 at 20:19 (engine's cause: positioning: out of range of its monks): risk 6.6% at 20:15; health +29.4, enemies within 1,500 +12.9, group_no_healer +12.1, damage taken (3 s) +9.2 [health 51%, ceiling 1.0, 6 enemies and 5 allies near, 0 healers in range]
+   - why Fun Air Ele 1's health dropped (forensics, against the same role in every stored match):
+     - Position: yes (nearest allied healer 4925 in the last 5 s, nearest enemy 322, allies in casting range 5.0, enemies 4.0)
+     - Prots: no prots (0 from teammates, 0 self; 0 of 0 landed); damage 574 (34% attacks, 66% armor-ignoring), burst 290 in 2 s at 20:14.2
+     - Healers under interrupt pressure: usual (healers 2, interrupts_per_min 0.0, interrupted 0, casts 5, finished_share 1.0, dazed 0, knockdowns 0, hexes 0)
+     - Damage off shield sets: usual (team share 0.56, a shield would have stopped about 24)
+     - Own damage: usual (43.9 per second on [('ohno Dervish 2', 527), ('ohno Mesmer', 351)]); enemy damage: usual (39.5 per second)
+     - Peel: no (peel on a burst is rare: most bursts on this role get none) (0 of 2 attackers controlled; longest free 20.0 s)
+     - Casting: unclear (casts 5, interrupted 0, cancelled 1, while_dazed 0)
+3. **Setup** (phase 20:00 to 20:09):
+   - Fun plan holding in the pit: own pit 5v0 free (8 Monk, 7 Monk, Air Ele 4, Air Ele 2, Fire Ele); backside 3v6 hold (Air Ele 5, Air Ele 3, Air Ele 1)
+     where the deaths came: 3v6, 3 damage, 0 healers, pressure 0/s, incoming 0/s, sustain margin +0, uptime 11%, control received 0 interrupts (0 on healers), 0 knockdowns
+   - ohno plan power play: push side 6v3 convert (8 Monk, 7 Monk, Dervish 2, Mesmer, Dervish 1, Monk 5 (WoC)); push side 2v0 free (Fire Ele, Water Ele)
+     where the deaths came: 6v3, 4 damage, 2 healers, pressure 0/s, incoming 0/s, sustain margin +10, uptime 8%, control received 0 interrupts (0 on healers), 0 knockdowns
+4. **Decision** (boost clock at 19:39): Fun chose 'not running' (fell back 6, held 2); usual there: not running, fought; that choice is worth +0.0 points against the usual [+0.0, +0.0].
+**Why, in short**: Fun fought 3v6 on the backside (job: hold) with sustain margin +0 while the rest were own pit (free); the Air Ele 1 died because no prot landed in time (0 of 0 landed), position (no allied healer within casting range, nearest enemy 322), its attackers were not peeled (no (peel on a burst is rare: most bursts on this role get none)); after choosing 'not running' at the boost clock.
+5. **Context**: Fun: 8 up (main 5), flags down -54 s, DP -30, NPCs K0 A0 B0, Lord dmg 0; ohno: 8 up (main 6), flags up +54 s, DP 79, NPCs K1 A0 B1, Lord dmg 13981; stand ohno, boost in 5 s; builds invoke spike v balance; situation: even fight.
 
 ### Flag swing: ohno v xxx (29aad8d4), 1:30.0 to 2:50.0
 **Result**: ohno's flag lead +79 s -> -73 s (-152 s). Stand: ohno -> xxx.

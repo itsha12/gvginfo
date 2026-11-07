@@ -467,6 +467,14 @@ moments better than attackers and defenders alone (AUC 0.786 against 0.755) but 
   the imports) and the data files it reads, so a stale entry can't be read; tables are also keyed by the fight-state
   predictions they read. `cache.py warm` builds everything for the current batches in parallel; `cache.py sync
   pull|push` keeps prepared data on the `cache` branch between sessions. Held-out models stay in the session.
+- **Speed, measured 2026-11-06 (61 matches, 2 cores):** a win-model fit 12 s, a deaths-model fit 42 s, one win-model
+  validation 70 s. A batch used to cost: rebuild prepared data after an engine change (about 4.5 min), one held-out win
+  model and one deaths model per match (122 fits, 27 min), then the learning report (16 min, of which about 7 min was
+  the candidate-variable tests, one full validation each). Changes: held-out models now come from 10 fixed groups of
+  matches (`cache.FOLDS`; each match is still explained by a model that never saw it; leave-one-out 78.2% accuracy and
+  log loss 0.601 against 10 groups 77.6% and 0.546 on the same matches, so accuracy holds), deaths models are fitted
+  only when a why chain needs them, and candidate tests run side by side. Cache rebuild after an engine change: 32 min
+  down to 5 min. Set `FOLDS = 0` to go back to leave-one-out.
 - **Match status** (`status.py`, `data/model/match_status.json`): per match, its batch, engine version, review entry,
   commentary sources and their state (pending, checked, done), Denning's rulings, the events whose why was walked
   through, and notes. `status.py sync` rebuilds the derived fields; `status.py mark` records the rest.

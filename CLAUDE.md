@@ -107,7 +107,8 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   into the model and onto tactics (METHODS.md "Commentary and comms"). Denning: the new variables matter most.
 - Speed: `cache.py` keeps every "without this match" model and each match's prepared data (keyed by the engine code);
   run `cache.py sync pull` then `cache.py warm` at the start of a session and `cache.py sync push` after building.
-  Never refit a held-out model directly: use `WPModel.heldout` and `nodes.heldout_node`.
+  Never refit a held-out model directly: use `WPModel.heldout` and `nodes.heldout_node` (10 fixed groups of matches,
+  `cache.FOLDS`). Make all engine changes before rebuilding: any engine edit invalidates the cache.
 - Tracking: `data/model/match_status.json` (`status.py`) records, per match, its batch, review, commentary state, the
   events whose why was walked through with Denning, and notes. Run `status.py sync` after each batch and `status.py
   mark` after walking Denning through an event.

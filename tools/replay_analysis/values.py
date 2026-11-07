@@ -83,7 +83,7 @@ def _wp_series(rid, ids):
     def series(train):
         wp = M.WPModel.heldout(ids, rid)
         return [[r["team"], r["t"], wp.explain(r)[0], r["won"]] for r in M.match_table(rid)]
-    rows = cache.heldout("wp", rid, list(ids), series, sub="series")
+    rows = cache.heldout("wp", rid, list(ids), series, sub="series", per_match=True)
     return {(r[0], r[1]): (r[2], r[3]) for r in rows}
 
 
