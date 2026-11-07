@@ -44,6 +44,16 @@ def analyze(rid, save_maps=False):
     return out
 
 
+def _one(job):
+    """Analyse one match into out; with unchanged engine code the saved analysis is reused (cache.py). --save-maps
+    always reruns."""
+    import cache
+    rid, out, save = job
+    a = analyze(rid, True) if save else cache.prepared("analysis", rid, lambda: analyze(rid))
+    json.dump(a, open(os.path.join(out, rid + ".json"), "w"), separators=(",", ":"), default=list)
+    return rid
+
+
 if __name__ == "__main__":
     args = sys.argv[1:]
     out = "/tmp/gvginfo-analysis"
@@ -54,6 +64,10 @@ if __name__ == "__main__":
         repo = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
         args = list(json.loads(subprocess.check_output(["git", "-C", repo, "show", "origin/replays:index.json"]))["matches"])
     os.makedirs(out, exist_ok=True)
-    for rid in args:
-        json.dump(analyze(rid, save), open(os.path.join(out, rid + ".json"), "w"), separators=(",", ":"), default=list)
-        print("wrote", rid)
+    jobs = os.cpu_count() or 2
+    if len(args) > 1 and not save:
+        from multiprocessing import Pool
+        with Pool(jobs) as p:
+            for rid in p.imap_unordered(_one, [(r, out, save) for r in args]): print("wrote", rid)
+    else:
+        for rid in args: print("wrote", _one((rid, out, save)))

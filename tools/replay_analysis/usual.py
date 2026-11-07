@@ -103,7 +103,7 @@ def wp_change(recs):
     for r in recs: by_match[r["match"]].append(r)
     for mid, L in by_match.items():
         if mid not in ids: continue
-        wp = M.WPModel.fit_on([x for x in ids if x != mid])
+        wp = M.WPModel.heldout(ids, mid)
         tab = {(x["team"], x["t"]): x for x in M.match_table(mid)}
         for r in L:
             t0 = r["t"] - r["t"] % 5; t1 = t0 + r["outcome"]["window_s"] - r["outcome"]["window_s"] % 5

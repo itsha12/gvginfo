@@ -24,7 +24,7 @@ warnings.filterwarnings("ignore")
 from common import REPO, BOOST_EVERY
 import model as M
 
-CACHE = "/tmp/gvg_values"
+
 OUT = os.path.join(REPO, "data", "model", "values.json")
 MD = os.path.join(REPO, "knowledge", "values.md")
 AFTER = 30          # seconds for the model's view
@@ -34,8 +34,11 @@ BOOT = 1000
 
 def _events(rid):
     """Deaths, pit NPC losses, captures and boosts in one match, each for the team it happened to."""
-    p = os.path.join(CACHE, f"ev_{rid}.json")
-    if os.path.exists(p): return json.load(open(p))
+    import cache
+    return cache.prepared("events", rid, lambda: _build_events(rid))
+
+
+def _build_events(rid):
     from replaylib import Match
     from state import GameState
     from phases import healer, zone_of
@@ -61,18 +64,16 @@ def _events(rid):
         k = 1
         while tm in st.teams and c + BOOST_EVERY * k < c2:
             ev.append({"kind": "boost", "team": m.tag[tm], "t": c + BOOST_EVERY * k}); k += 1
-    os.makedirs(CACHE, exist_ok=True); json.dump(ev, open(p, "w"))
     return ev
 
 
 def _wp_series(rid, ids):
     """Win chance at every table row of one match, from a model fitted without it (cached per training set)."""
-    key = f"wp_{rid}_{len(ids)}.json"
-    p = os.path.join(CACHE, key)
-    if os.path.exists(p): return {(r[0], r[1]): (r[2], r[3]) for r in json.load(open(p))}
-    wp = M.WPModel.fit_on([x for x in ids if x != rid])
-    rows = [[r["team"], r["t"], wp.explain(r)[0], r["won"]] for r in M.match_table(rid)]
-    os.makedirs(CACHE, exist_ok=True); json.dump(rows, open(p, "w"))
+    import cache
+    def series(train):
+        wp = M.WPModel.heldout(ids, rid)
+        return [[r["team"], r["t"], wp.explain(r)[0], r["won"]] for r in M.match_table(rid)]
+    rows = cache.heldout("wp", rid, list(ids), series, sub="series")
     return {(r[0], r[1]): (r[2], r[3]) for r in rows}
 
 

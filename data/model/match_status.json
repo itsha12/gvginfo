@@ -1,0 +1,752 @@
+{
+ "about": "How far each stored match has been taken, match by match (data/model/match_status.json).",
+ "matches": {
+  "0f1fd794-46cd-5fb1-a661-a7ec5f1cbadd": {
+   "batch": 0,
+   "teams": "hdm v Men",
+   "map": "Nomad's Isle",
+   "engine": 17,
+   "review": "hdm v Men N",
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "1d073205-fdec-5684-aa7a-b03a558a9471": {
+   "batch": 0,
+   "teams": "cope v hdm",
+   "map": "Uncharted Isle",
+   "engine": 17,
+   "review": null,
+   "sources": [
+    "Bounty"
+   ],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {
+    "Bounty": "pending"
+   },
+   "notes": null
+  },
+  "1f65fd3b-9c22-5bb1-a488-86c87801b3a3": {
+   "batch": 0,
+   "teams": "RACK v hdm",
+   "map": "Uncharted Isle",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "28447c4a-7cc6-5db5-ac7c-aa2bcc23c62c": {
+   "batch": 0,
+   "teams": "hdm v HC",
+   "map": "Imperial Isle",
+   "engine": 17,
+   "review": "hdm v HC I2",
+   "sources": [],
+   "labels": 6,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "29b7eca0-2660-5d04-adc2-06632123c2ec": {
+   "batch": 0,
+   "teams": "OG v cope",
+   "map": "Isle of Jade",
+   "engine": 17,
+   "review": "OG v cope J",
+   "sources": [
+    "OG comms"
+   ],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {
+    "OG comms": "pending"
+   },
+   "notes": null
+  },
+  "2df9b7fd-823e-5df7-ad4e-192612cd9249": {
+   "batch": 0,
+   "teams": "Team v push",
+   "map": "Isle of Meditation",
+   "engine": 17,
+   "review": null,
+   "sources": [
+    "Bounty"
+   ],
+   "labels": 0,
+   "why_shown": [
+    "11:38 spike by push on Team Hammer, survived"
+   ],
+   "reviewed": null,
+   "commentary": {
+    "Bounty": "pending"
+   },
+   "notes": null
+  },
+  "34ab1ac3-cd5d-578e-a457-bccff232274a": {
+   "batch": 0,
+   "teams": "hold v RACK",
+   "map": "Isle of Meditation",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "450bb88f-b9a4-537a-a453-17dd925baa65": {
+   "batch": 0,
+   "teams": "RJT v GW크",
+   "map": "Isle of Meditation",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "45cf6756-afc8-51fa-ade0-162d7450be1c": {
+   "batch": 0,
+   "teams": "Men v RACK",
+   "map": "Nomad's Isle",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": "reviewed with Denning (November 2026, no stored summary)",
+   "commentary": {},
+   "notes": null
+  },
+  "49eec28d-0f4b-5cc1-a146-4d1ad0bd642b": {
+   "batch": 0,
+   "teams": "OG v hold",
+   "map": "Isle of Meditation",
+   "engine": 17,
+   "review": null,
+   "sources": [
+    "Bounty"
+   ],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {
+    "Bounty": "pending"
+   },
+   "notes": null
+  },
+  "5739e1e0-483e-58f1-a017-d0d8fee69c6e": {
+   "batch": 0,
+   "teams": "chic v OG",
+   "map": "Uncharted Isle",
+   "engine": 17,
+   "review": "OG v chic",
+   "sources": [
+    "OG comms"
+   ],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {
+    "OG comms": "pending"
+   },
+   "notes": null
+  },
+  "6f7743eb-940d-5cc3-aa5b-32c17a66bf5a": {
+   "batch": 0,
+   "teams": "옷옷옷옷 v Book",
+   "map": "Isle of Meditation",
+   "engine": 17,
+   "review": null,
+   "sources": [
+    "Bounty"
+   ],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {
+    "Bounty": "pending"
+   },
+   "notes": null
+  },
+  "84586253-61c8-5848-ad75-1bfda24302ba": {
+   "batch": 0,
+   "teams": "OG v cope",
+   "map": "Uncharted Isle",
+   "engine": 17,
+   "review": "OG v cope U",
+   "sources": [
+    "OG comms"
+   ],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {
+    "OG comms": "pending"
+   },
+   "notes": null
+  },
+  "9b0816e2-c0eb-5797-a1b1-9962c8415307": {
+   "batch": 0,
+   "teams": "Apes v cope",
+   "map": "Isle of Meditation",
+   "engine": 17,
+   "review": null,
+   "sources": [
+    "Bounty"
+   ],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {
+    "Bounty": "pending"
+   },
+   "notes": null
+  },
+  "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4": {
+   "batch": 0,
+   "teams": "옷옷옷옷 v RACK",
+   "map": "Isle of Solitude",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": "reviewed with Denning (November 2026, no stored summary)",
+   "commentary": {},
+   "notes": null
+  },
+  "bbef1904-cc55-54a4-aea4-ec0367e0d00b": {
+   "batch": 0,
+   "teams": "hdm v HC",
+   "map": "Imperial Isle",
+   "engine": 17,
+   "review": "hdm v HC I1",
+   "sources": [],
+   "labels": 1,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "cb5a5f57-be04-5af2-aa60-8114e98e1202": {
+   "batch": 0,
+   "teams": "RACK v MBP",
+   "map": "Isle of Meditation",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": "reviewed with Denning (November 2026, no stored summary)",
+   "commentary": {},
+   "notes": null
+  },
+  "d016987b-e5a0-5cd5-a23c-4c5b2d2415f8": {
+   "batch": 0,
+   "teams": "OG v hdm",
+   "map": "Isle of the Dead",
+   "engine": 17,
+   "review": "OG v hdm",
+   "sources": [
+    "OG comms"
+   ],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {
+    "OG comms": "pending"
+   },
+   "notes": null
+  },
+  "d06ef3c7-521d-5de4-a453-5fdb82c7c467": {
+   "batch": 0,
+   "teams": "RACK v hdm",
+   "map": "Isle of Meditation",
+   "engine": 17,
+   "review": "RACK v hdm M",
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "d4660b7b-1e09-584e-a786-0e9f48b3f343": {
+   "batch": 0,
+   "teams": "Men v Team",
+   "map": "Isle of Weeping Stone",
+   "engine": 17,
+   "review": "Men v Team",
+   "sources": [
+    "Nick"
+   ],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {
+    "Nick": "pending"
+   },
+   "notes": null
+  },
+  "d492aa6c-a12b-5bce-a5ec-9ada965676f0": {
+   "batch": 0,
+   "teams": "hold v RACK",
+   "map": "Imperial Isle",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": "reviewed with Denning (Imperial; November 2026, no stored summary)",
+   "commentary": {},
+   "notes": null
+  },
+  "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65": {
+   "batch": 0,
+   "teams": "RJT v RACK",
+   "map": "Nomad's Isle",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [
+    "4:01 death RACK 8 Monk (forensics)"
+   ],
+   "reviewed": "reviewed with Denning (November 2026, no stored summary)",
+   "commentary": {},
+   "notes": null
+  },
+  "f34cb3a9-98c7-53d0-a980-60aa7dd5bc8d": {
+   "batch": 0,
+   "teams": "True v One",
+   "map": "Isle of Meditation",
+   "engine": 17,
+   "review": null,
+   "sources": [
+    "Bounty"
+   ],
+   "labels": 0,
+   "why_shown": [
+    "11:21 power play without a kill, True 7v3"
+   ],
+   "reviewed": null,
+   "commentary": {
+    "Bounty": "pending"
+   },
+   "notes": null
+  },
+  "faec428a-5b92-54d1-a28c-b79c7f27cfcf": {
+   "batch": 0,
+   "teams": "Men v HC",
+   "map": "Corrupted Isle",
+   "engine": 17,
+   "review": "Men v HC C",
+   "sources": [],
+   "labels": 4,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "25b008b8-486d-5f15-a310-114f6eecca05": {
+   "batch": 1,
+   "teams": "hook v Id",
+   "map": "Isle of Jade",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "29652def-2992-50c0-ade9-aaddd011aaa5": {
+   "batch": 1,
+   "teams": "cope v Apes",
+   "map": "Uncharted Isle",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "8086734b-4092-5628-a73e-4042618ea4fa": {
+   "batch": 1,
+   "teams": "Men v mddl",
+   "map": "Isle of Jade",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "a9fa1ae1-f83b-5cd0-a946-cf332aacfca6": {
+   "batch": 1,
+   "teams": "Book v TFS",
+   "map": "Uncharted Isle",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [
+    "4:05 flag swing TFS +78 to -73; 4:27 death TFS 8 Monk (forensics)"
+   ],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "e905b193-051d-5ffb-ae10-118d3c46c055": {
+   "batch": 1,
+   "teams": "Crew v Free",
+   "map": "Corrupted Isle",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "f30bb176-a527-508c-acd5-f289b304ee79": {
+   "batch": 1,
+   "teams": "cope v One",
+   "map": "Druid's Isle",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "498894e3-65bf-5f43-a221-38c1f7043166": {
+   "batch": 2,
+   "teams": "yM v OG",
+   "map": "Uncharted Isle",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "c0f32eca-f1c2-58f3-af33-26573c782b3d": {
+   "batch": 2,
+   "teams": "Dz v Crew",
+   "map": "Druid's Isle",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "cd387d1c-9225-5a3e-ab28-05e785e9f31f": {
+   "batch": 2,
+   "teams": "One v Men",
+   "map": "Corrupted Isle",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "ec3eeb47-d0fb-5776-a52d-dc02b752a90a": {
+   "batch": 2,
+   "teams": "BcS v Rum",
+   "map": "Isle of Wurms",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "0e25b283-38b6-59c7-ab8a-7b3397a61d45": {
+   "batch": 3,
+   "teams": "xxx v GWSC",
+   "map": "Frozen Isle",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "1d394550-76b6-5343-a998-78cc7de9cf52": {
+   "batch": 3,
+   "teams": "Book v Team",
+   "map": "Isle of Jade",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "36a65ac6-e25a-5d66-a8ed-2bf1032f243a": {
+   "batch": 3,
+   "teams": "옷옷옷옷 v Men",
+   "map": "Isle of Jade",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "7cd34bd3-93d7-5771-a219-3d27743bc7eb": {
+   "batch": 3,
+   "teams": "OG v chic",
+   "map": "Uncharted Isle",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "b88983e3-67ff-5560-a3a7-7892f6d543c0": {
+   "batch": 3,
+   "teams": "BcS v yM",
+   "map": "Frozen Isle",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "bfffbaa0-ecf0-566b-a660-ff668aa473a1": {
+   "batch": 3,
+   "teams": "yM v げえええ",
+   "map": "Corrupted Isle",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "3ee18c0c-d400-5988-abb5-5e19ff80f64a": {
+   "batch": 4,
+   "teams": "Crew v BcS",
+   "map": "Uncharted Isle",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "5942a7d3-9129-5a9f-aed6-05262bab7522": {
+   "batch": 4,
+   "teams": "yM v BcS",
+   "map": "Nomad's Isle",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "61e3a1c4-8842-5bcf-a12c-dc4d2da41770": {
+   "batch": 4,
+   "teams": "chic v DUM",
+   "map": "Corrupted Isle",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "b4368c72-e097-521c-ad69-171f033df96b": {
+   "batch": 4,
+   "teams": "push v cell",
+   "map": "Corrupted Isle",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "c86a888d-57b8-54a5-aa25-b6fdff69656b": {
+   "batch": 4,
+   "teams": "げえええ v chic",
+   "map": "Isle of Solitude",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "e7a65a0d-2700-5546-aa5f-f2bd7d93299d": {
+   "batch": 4,
+   "teams": "push v OG",
+   "map": "Uncharted Isle",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "1037e655-42ac-505f-af04-22b24458fd00": {
+   "batch": 5,
+   "teams": "BcS v Men",
+   "map": "Isle of Meditation",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [
+    "1:00 fight BcS v Men (batch 5 why chain)"
+   ],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "2b13eea5-2968-5421-a481-60215131765d": {
+   "batch": 5,
+   "teams": "DRKN v yM",
+   "map": "Isle of Solitude",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "5eedf9cf-fb31-53ac-af54-fa87322c9b74": {
+   "batch": 5,
+   "teams": "EDGE v Fun",
+   "map": "Druid's Isle",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "6c7dfcaa-1141-592f-a625-d5109b087b35": {
+   "batch": 5,
+   "teams": "Team v cope",
+   "map": "Corrupted Isle",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [
+    "10:00 to 10:42 fights Team v cope (batch 5 why chain)"
+   ],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "744a2513-353e-5e41-a6b0-d3354725b3f5": {
+   "batch": 5,
+   "teams": "Team v SKT",
+   "map": "Burning Isle",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "79281720-08a2-550c-aa5f-df0e2a668260": {
+   "batch": 5,
+   "teams": "One v fM",
+   "map": "Isle of Solitude",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "e14811f2-abbc-5bda-a34a-967d08fe778c": {
+   "batch": 5,
+   "teams": "hook v EDGE",
+   "map": "Corrupted Isle",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [
+    "1:00 fight hook v EDGE (batch 5 why chain)"
+   ],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  }
+ }
+}

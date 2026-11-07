@@ -16,8 +16,21 @@ import json, os, sys, warnings
 import numpy as np
 warnings.filterwarnings("ignore")
 
-CACHE = "/tmp/gvg_fightstate"
 FOLDS = 6
+
+
+def _dir(ids=None):
+    """Predictions depend on the training set: one folder per set of trained matches and death-model code (cache.py)."""
+    import cache, model as M
+    ids = ids if ids is not None else [m for b in M.batches() for m in b["matches"]]
+    return os.path.join(cache.ROOT, "fightstate", cache.fit_key("node"), cache.ids_key(ids))
+
+
+def version(rid):
+    """A short key for the fight-state predictions a match table reads (changes when they change)."""
+    import hashlib
+    p = os.path.join(_dir(), rid + ".json")
+    return hashlib.sha1(open(p, "rb").read()).hexdigest()[:10] if os.path.exists(p) else "none"
 
 
 def _predict(e, rows, feats):
@@ -31,15 +44,17 @@ def _save(rid, rows, p):
     for r, q in zip(rows, p):
         out.setdefault(str(r["t"]), {}).setdefault(r["team"], 0.0)
         out[str(r["t"])][r["team"]] += float(q)
-    json.dump({t: {k: round(v, 3) for k, v in d.items()} for t, d in out.items()}, open(os.path.join(CACHE, rid + ".json"), "w"))
+    json.dump({t: {k: round(v, 3) for k, v in d.items()} for t, d in out.items()}, open(os.path.join(_dir(), rid + ".json"), "w"))
 
 
 def build(ids, extra=()):
     """Out-of-match predictions for ids (by groups) and for extra (from a model on all ids). Clears the win model's
     table cache, which reads them."""
-    import nodes as N, model as M, shutil
-    os.makedirs(CACHE, exist_ok=True)
+    import nodes as N
     ids = list(ids)
+    os.makedirs(_dir(), exist_ok=True)
+    todo = [r for r in ids + list(extra) if not os.path.exists(os.path.join(_dir(), r + ".json"))]
+    if not todo: return                     # already built for this training set and engine
     groups = [ids[i::FOLDS] for i in range(FOLDS)]
     for g in groups:
         if not g: continue
@@ -51,13 +66,12 @@ def build(ids, extra=()):
         df, X, y, gg, w = N._frame("deaths", ids)
         e = N._ebm(gg.nunique()).fit(X, y, sample_weight=w)
         for rid in extra: rows = N.node_rows("deaths_all", rid); _save(rid, rows, _predict(e, rows, list(X.columns)))
-    shutil.rmtree(M.TABLES, ignore_errors=True)
 
 
 _C = {}
 def expected(rid, t):
     if rid not in _C:
-        p = os.path.join(CACHE, rid + ".json")
+        p = os.path.join(_dir(), rid + ".json")
         _C[rid] = json.load(open(p)) if os.path.exists(p) else None
     d = _C[rid]
     if not d: return None

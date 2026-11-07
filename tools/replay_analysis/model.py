@@ -29,7 +29,6 @@ from common import REPO
 from features import VARIABLES, CANDIDATES, DESCRIPTIONS
 
 MODEL_DIR = os.path.join(REPO, "data", "model")
-TABLES = "/tmp/gvg_tables"
 CORR = os.path.join(REPO, "data", "model_corrections.json")
 STATIC = {"strength_gap", "lord_dps_own", "lord_dps_enemy", "healing_monks_own", "healing_monks_enemy",
           "spike_build_own", "spike_build_enemy", "map_flag_run", "map_pit_to_stand", "map_bases_apart",
@@ -56,19 +55,23 @@ def terms_for(n_matches, names=NAMES):
 def sig(x): return 1 / (1 + math.exp(-x))
 
 
+_TABLES = {}
 def match_table(rid):
-    """The match table for one replay (cached in /tmp)."""
-    os.makedirs(TABLES, exist_ok=True)
-    p = os.path.join(TABLES, rid + ".json")
-    if not os.path.exists(p):
-        from replaylib import Match
-        from state import GameState
-        from scoreboard import Scoreboard
-        from features import table
-        from strength import strength_gap
-        st = GameState(Match.from_branch(rid)); sb = Scoreboard(st)
-        json.dump(table(st, sb, strength_gap), open(p, "w"))
-    return json.load(open(p))
+    """The match table for one replay (shared cache, cache.py: keyed by the engine code and by the fight-state
+    predictions it reads, so it is rebuilt only when either changes)."""
+    import cache, fightstate
+    key = fightstate.version(rid)
+    if (rid, key) not in _TABLES:
+        def build():
+            from replaylib import Match
+            from state import GameState
+            from scoreboard import Scoreboard
+            from features import table
+            from strength import strength_gap
+            st = GameState(Match.from_branch(rid)); sb = Scoreboard(st)
+            return table(st, sb, strength_gap)
+        _TABLES[(rid, key)] = cache.prepared("table", rid, build, sub=key)
+    return _TABLES[(rid, key)]
 
 
 def batches():
@@ -246,6 +249,13 @@ class WPModel:
         df, X, y, g = _frame(ids)
         ebm, use = _fit(X, y, corrections(), g.nunique())
         return cls(ebm, use)
+
+    @classmethod
+    def heldout(cls, ids, rid):
+        """The win model fitted on ids without rid (a model that never saw that match), fitted once per training set
+        and reused by every layer (cache.py)."""
+        import cache
+        return cache.heldout("wp", rid, list(ids), cls.fit_on)
 
     @classmethod
     def load_or_fit(cls):

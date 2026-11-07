@@ -95,6 +95,19 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   (`tools/gvgreport/directory.mjs`); its player groupings are merged into aliases.json with Denning's assignments
   winning (`merge_players.py`, additions under `gvgreport_added`). Today's Elo table must not train the model (it
   includes later results): `strength.py` rebuilds that Elo in time order.
+- Every "why" is answered with data (Denning): `forensics.py` answers the questions behind a death (position, prots and
+  whether they were the right kind, interrupt pressure on the healers, damage off shield sets, both teams' damage
+  output, peel, casting into ready interrupts and cancelling, conditions and their removal), each placed against the
+  same role in every stored match (`data/benchmarks/forensics.json`); `events.py` explains the smaller events (flag
+  swings, power plays without a kill, survived spikes, pit NPC losses, splits); `why.py` uses both. METHODS.md
+  "Answer exemplars" shows the depth expected. When a question can't be answered from the data, say so and add the
+  measurement to forensics.py rather than guessing.
+- Speed: `cache.py` keeps every "without this match" model and each match's prepared data (keyed by the engine code);
+  run `cache.py sync pull` then `cache.py warm` at the start of a session and `cache.py sync push` after building.
+  Never refit a held-out model directly: use `WPModel.heldout` and `nodes.heldout_node`.
+- Tracking: `data/model/match_status.json` (`status.py`) records, per match, its batch, review, commentary state, the
+  events whose why was walked through with Denning, and notes. Run `status.py sync` after each batch and `status.py
+  mark` after walking Denning through an event.
 - Insights must be about decisions and consequences, not correlations. End each analysis with specific questions for
   Denning.
 - Site home page is Schedule (`#/`); Recent matches is `#/matches`.

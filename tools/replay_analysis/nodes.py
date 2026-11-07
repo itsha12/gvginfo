@@ -27,7 +27,6 @@ import model as M
 from buildfeat import matchup
 
 NODE_DIR = os.path.join(REPO, "data", "model", "nodes")
-CACHE = "/tmp/gvg_node_rows"
 SAMPLE, HORIZON, NEG_KEEP = 3, 10, 4
 LORD_HORIZON = 30        # lord_kill: the Lord dies within this many seconds
 MATCHUP_KEYS = ["enemy_knockdowns_v_own_aura_of_stability", "enemy_interrupts", "enemy_energy_denial", "enemy_snares",
@@ -361,11 +360,23 @@ DESC = {"deaths": DEATH_DESC, "kill_conversion": KC_DESC, "flag_answer": FA_DESC
 REGRESSION = {"flag_answer", "lord_damage"}      # these nodes predict a number (seconds), not a yes/no
 
 
+_ROWS = {}
 def node_rows(node, rid):
-    os.makedirs(CACHE, exist_ok=True)
-    p = os.path.join(CACHE, f"{node}_{rid}.json")
-    if not os.path.exists(p): json.dump(_build_rows(node, rid), open(p, "w"))
-    return json.load(open(p))
+    """A node's rows for one match (shared cache, cache.py: keyed by the engine code they are built from)."""
+    import cache
+    key = (node, rid)
+    if key not in _ROWS:
+        _ROWS[key] = cache.prepared("rows", rid, lambda: _build_rows(node, rid), sub=node)
+    return _ROWS[key]
+
+
+def heldout_node(node, ids, rid):
+    """(model, features) for a node fitted on ids without rid, fitted once per training set (cache.py)."""
+    import cache
+    def fit(train):
+        df, X, y, g, w = _frame(node, train)
+        return (_ebm(g.nunique(), node in REGRESSION).fit(X, y, sample_weight=None if node in REGRESSION else w), list(X.columns))
+    return cache.heldout("node", rid, list(ids), fit, sub=node)
 
 
 MATCH_FIXED = {"deaths": set(MATCHUP_KEYS) | {"strength_gap"},

@@ -94,46 +94,51 @@ Claude should then:
 
 # Match replay analysis
 
-**Status:** Active. Last updated 2026-11-06 (session 4m: engine review, ENGINE 17 data fixes and new layers, gvg.report
-players and Elo, refit of batches 0 and 1, training batches 2 to 5, first why chains).
+**Status:** Active. Batches PAUSED (Denning, 2026-11-06) to revisit the Maga, Nick and Bounty transcripts. Last
+updated 2026-11-06 (session 4n: forensics and event explanations, cache, match status; before that session 4m: engine
+review, ENGINE 17, batches 2 to 5, first why chains).
 
 ## Start the next chat with
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/HANDOFF.md (the "Match replay
-> analysis" section, especially "Next session: fixes to do"), knowledge/tactics.md, tools/replay_analysis/METHODS.md
-> and data/review_labels.json, then `git fetch --depth 1 origin +replays:refs/remotes/origin/replays`,
-> `pip install --break-system-packages interpret-core`, run `python3 tools/replay_analysis/analyze.py --all --out
-> /tmp/ga` and `library.py build`. Then do the why fixes, show Denning the why of 5 events with the improved chains,
-> and run batch 6 (`batch.py pick 6`, push, wait for "Fetch replays", fetch the branch, `batch.py add`, `benchmarks.py
-> lord` and `regen`, `analyze.py --all`, `library.py build`, `learning.py`), or: <your request>
+> analysis" section), knowledge/tactics.md and tools/replay_analysis/METHODS.md (especially "Forensics, event
+> explanations, the cache and match status" and "Answer exemplars"), then `git fetch --depth 1 origin
+> +replays:refs/remotes/origin/replays`, `pip install --break-system-packages interpret-core`, and in
+> tools/replay_analysis: `cache.py sync pull`, `cache.py warm`, `analyze.py --all --out /tmp/ga`, `library.py build`,
+> `status.py`. Then: <your request>
 
-How Denning wants batch results reported: the WHY of 5 match events (why.py chains, checked and explained in words),
-not a broad breakdown and not one highlighted item. Keep the focus on why things happened.
+How Denning wants results: the WHY of events, answered with data (each question measured and placed against the same
+role or situation in every stored match), at the depth of METHODS.md "Answer exemplars"; not broad breakdowns and not
+one highlighted item. After each batch: the why of 5 events across kinds (two fights, a flag swing, a power play
+without a kill, a survived spike, a pit NPC loss or split).
 
-## Next session: fixes to do (from the first why chains, batch 5)
-1. **Mechanics stop at a symptom.** The deaths node's top contribution is nearly always "health was low". Why chains
-   must explain what dropped the health: who hit, with which skills and damage kinds (death forensics already record
-   `damage_by`, `damage_kind`), prots cast or missed, monk skills interrupted before the death (`interrupts_on_monks`),
-   knockdowns, Daze, hexes; rank causes of the health drop, and show health itself only as the state.
-2. **Why damage uptime was low.** Capacities give lost damage-seconds by cause (`lost_damage_s`: moving, idle, knocked
-   down, Blind, Weakness...). "Moving" dominates and is not a why: split it into kiting (moving away from enemies),
-   chasing (toward a target out of range), repositioning and running. Team v cope 10:00 (cope 12% uptime, 95 s
-   "moving") is the test case.
-3. **Fight windows overlap.** A fight's consequence runs "until all are back", so a single death at Team v cope 9:59
-   took the blame for the 10:27 wipe. End a fight's consequence at the next fight's start (report the cascade
-   separately) and chain linked fights explicitly.
-4. **Decisions too coarse.** The why chain's decision step uses the unrefined choice ("held") and a kind-wide average
-   (+2.3 for every enemy pickup). Use the refined choice and compare only with similar situations (the usual play's
-   15 nearest decisions), and pick the decision that actually set up the fight (e.g. the split before Team v cope
-   10:27, staying at the stand while up on flags in BcS v Men 1:00), not just the last one in 45 s.
-5. **Recording gaps.** Some deaths carry almost no recorded damage (cope's 8 Monk at 10:42: 13 damage). Flag them in
-   the chain as "not recorded" instead of explaining them; check how often it happens (integrity.py).
-6. **"Why, in short" wording.** Build it from the strongest link at each step (setup, mechanism, decision), in
-   Denning's terms, and say when the engine can't tell.
-7. **Open questions for Denning from batch 5:** cope's low uptime at Team v cope 10:00 (kiting the hexes, chasing, or
-   else?); whether EDGE's early 4/3 split (push side and stand) at hook v EDGE 1:00 is normal or a mistake; whether to
-   keep unrecorded-damage moments in why chains (flagged) or drop them.
+## Next: the commentary transcripts (Denning is finding them)
+Plan agreed in outline (order to confirm with Denning: Maga's OG comms, then Bounty, then Nick):
+1. For each transcript, line up video time with match time (2 or 3 anchors), and extract each claim, paraphrased
+   (public repo), into a claims file: match, time, source, kind (cause, prediction, intent, build), claim, tactics ids.
+2. Check each claim against the engine (`why.py`, `forensics.py`, `events.py`): agrees, disagrees, or can't measure.
+   Disagreements go to Denning (an engine bug or the commentator wrong).
+3. Confirmed causes become causal-map links (source Bounty, Nick or OG comms); intents become decision labels;
+   predictions become win-model test cases; build points become build features or per-skill flags.
+4. Score the why chains each batch by the share of expert causes they find. Track each source's state per match with
+   `status.py mark <id> commentary <source> pending|checked|done` (11 matches: Bounty 6, Nick 1, OG comms 4).
+
+## Fixes from the first why chains (batch 5): state
+1. Done: mechanics stop at a symptom. Why chains now explain what dropped the health with forensics (`forensics.py`),
+   and "why, in short" names the measured causes.
+2. Partly: why damage uptime was low. Power plays now show the enemy group giving ground and joining its others, and
+   own damage against the benchmark; "moving" is still not split into kiting, chasing, repositioning and running.
+3. Open: fight windows overlap (a fight's consequence should end at the next fight's start).
+4. Open: decisions too coarse (use the refined choice and the 15 nearest similar decisions; pick the decision that set
+   up the fight).
+5. Open: recording gaps (deaths with almost no recorded damage should be flagged "not recorded").
+6. Done with 1: "why, in short" built from the measured causes.
+7. Questions for Denning from batch 5 still open: cope's low uptime at Team v cope 10:00; EDGE's early 4/3 split at
+   hook v EDGE 1:00; whether to keep unrecorded-damage moments in why chains.
 Smaller: the regeneration fit is flat (delay 10 to 20 s fit equally); lord_damage_diff and flag_lead still bend at the
 extremes; fight-state thirds give small cells in the boost-clock split.
+Forensics limits to know: no line of sight or facing in the data (a ranger's bow reaches 1,498, so standing closer does
+not by itself allow a shot); "ready interrupt" assumes base recharge; armor per set is estimated from a shield's base
+16 armor; peel counts control only (snares, Blind, Weakness, interrupts, knockdowns, hexes), not body blocks.
 
 ## Goal
 Find plays that are better than experts can see, from data across many matches: not to mirror Denning's or anyone's
@@ -298,6 +303,12 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
 - Improve the toolkit rather than writing one-off scripts; each ruling becomes a label, a tactics line and a check.
 
 ## Recent changes
+- Session 4n: Denning asked for the why of smaller events and every question answered with data. Built `forensics.py`
+  (death questions with benchmarks by role), `events.py` (flag swings, power plays without a kill, survived spikes, pit
+  NPC losses, splits; spike landing benchmarks), wired into `why.py` and the learning report (five events across kinds).
+  Built `cache.py` (held-out models fitted once per batch and shared; prepared data saved by engine code, kept on the
+  `cache` branch; parallel warm-up; analyze.py reuses saved analyses) and `status.py` (per-match tracking). Timing before:
+  a why chain 82 s, the learning report over 11 minutes (stopped). Batches paused for the transcripts.
 - Session 4m (continued): gvg.report players and Elo synced and merged; Lord regeneration per Denning; refit of batches
   0 and 1; batches 2 to 5; fight-state split by thirds; Lord-damage correction; `snapshot.py`; `why.py` and the first
   why chains with the fixes they showed are needed (see "Next session: fixes to do"); hand-off loop fixed.

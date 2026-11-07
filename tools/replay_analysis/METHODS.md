@@ -429,6 +429,72 @@ moments better than attackers and defenders alone (AUC 0.786 against 0.755) but 
 - Fixed: `episodes.flag_cycles` could loop forever on two carriers passing the flag back and forth in one recorded
   second (BcS v yM b88983e3).
 
+## Forensics, event explanations, the cache and match status (2026-11-06)
+- **The standard for an answer** (Denning): every "why" question is answered with a measurement, placed against the
+  same role or situation in every stored match, never with a guess. The four examples that set the standard are below
+  ("Answer exemplars"); new event kinds are built to answer questions of that kind and depth.
+- **Forensics** (`forensics.py`; benchmarks `data/benchmarks/forensics.json`, rebuilt with `forensics.py bench`): the
+  questions behind a death, over the 20 s before it: position (nearest allied healer, allies and enemies in casting
+  range, nearest enemy, front of its team), prots (every prot and heal cast on it with timing against the burst: pre-prot,
+  reaction, late; landed, interrupted, cancelled; what each prot can act on from the skill data: blocks act on attacks
+  only, damage reduction and heal-on-hit on all damage, knockdown immunity on knockdowns; allied prots ready and in range
+  but unused, with what those healers were casting instead; each knockdown with whether immunity was up and who had it
+  ready), healers under interrupt pressure (interrupts, knockdowns, Daze, hexes on the team's healers), damage off
+  shield sets (damage taken while holding a set with no shield and not casting; a shield's 16 armor stops about 24% of
+  armor-respecting damage, `knowledge/armor.md`), both teams' damage output (per second, concentration, armor-ignoring
+  share, spikes), peel (snares, Blind, Weakness, interrupts, knockdowns or hexes the victim's team put on its attackers,
+  and the longest each attacker was left free; damage on the attacker is reported but is not peel), casting (each cast:
+  finished, interrupted, "hit while Dazed", cancelled; enemy interrupts off recharge and in range, bow range from the
+  bow type; Daze), conditions (who, from how far, the attacker's pressure, the victim's set, removal and removal on its
+  own bar). Verdicts come from the benchmark's 20th and 80th percentiles for the role (`BENCH_CUT`), provisional until
+  rulings calibrate them. Hits recorded without a skill are named from the attacker's cast finished within 1.5 s.
+- **Event kinds** (`events.py`): `flag` (a team going from up to down on flags: captures against the fastest possible,
+  every run with the control put on the runner, the stand fight's output on both sides, the forensics of the first
+  deaths, the cascade), `power` (a power play without a kill: the fight's shape every 5 s, the enemy group's distance to
+  its others, own damage and uptime against the benchmark, the enemy's healing, prots and knockdown immunity, pressure
+  on its healers, snares put on retreating players), `spike` (a spike the target survived: every hit with its skill and
+  time, landing spread and share inside 1 s against spikes that killed and spikes survived, `data/benchmarks/spikes.json`
+  from `events.py bench`, pre-prots up, everything cast on the target, control on the spikers, the target's set and
+  health line), `npc` (pit NPCs lost: the split, the defenders and their latency, where the rest of the team was), and
+  `split` (a split and its answer). `events.py find <kind>` lists the biggest events of a kind. Why chains (`why.py`)
+  now explain what dropped the health with the forensics, and "why, in short" names the findings that stand out. The
+  learning report's why section covers five events across kinds: two fights, a flag swing, a power play without a kill,
+  a survived spike, and a pit NPC loss or split.
+- **Cache** (`cache.py`): every "without this match" model (win model, node models) is fitted once per training set
+  and engine code, saved, and shared by the learning report, values, usual play and why chains (before: each layer
+  refitted its own, so a report refitted the same 53 models several times). Each match's prepared data (analysis,
+  match tables, node rows, value events) is saved keyed by the engine code it was built from (found automatically from
+  the imports) and the data files it reads, so a stale entry can't be read; tables are also keyed by the fight-state
+  predictions they read. `cache.py warm` builds everything for the current batches in parallel; `cache.py sync
+  pull|push` keeps prepared data on the `cache` branch between sessions. Held-out models stay in the session.
+- **Match status** (`status.py`, `data/model/match_status.json`): per match, its batch, engine version, review entry,
+  commentary sources and their state (pending, checked, done), Denning's rulings, the events whose why was walked
+  through, and notes. `status.py sync` rebuilds the derived fields; `status.py mark` records the rest.
+
+### Answer exemplars (the four questions of 2026-11-06)
+These set the kind of answer the engine must produce: the event, the measured causes in order, and "why, in short".
+1. **Behind on flags** (Book v TFS, a9fa1ae1, 4:05 to 5:15; TFS +78 s to -73 s): TFS held the stand with its runner
+   waiting (correct); Book capped 5 s before TFS's boost and put 6 players on the stand within 6 s; TFS fought 8v8 at the
+   stand to force the cap into double hammer. TFS's 8 Monk took 666 damage, all from attacks (Hammer B 630, 3
+   knockdowns: Hammer Bash, Coward, Hammer Bash; Deep Wound twice); one prot was cast on him (7 Monk Guardian, interrupted
+   by Power Spike) while the Prot's Guardian and Shielding Hands were ready and in range (the Prot was casting on the AoB
+   dervish and itself); Aura of Stability had ended 12 s before the first knockdown and was not recast. TFS's damage was
+   about 32 per second (below the median of 37) against Book's 120 (above the 90th percentile), so Book could stand on
+   the stand freely. The Ritualist then died with the flag; the cascade lost three more and the flag lead.
+2. **8 Monk death** (RJT v RACK, eea5ba87, 4:01): alone as the only healer in a 3v3 split defence in his own base (allied
+   healers 4,800 away; nearest enemy about 220, below the median 8 monk distance of about 500); the Ranger, 300 away,
+   crippled him (3:43) and dazed him (3:45, Concussion Shot) while he was on his shield set; 7 of his 9 casts came while
+   Dazed and 4 were interrupted (Concussion Shot, Power Spike, Complicate, Savage Shot), far above the 8 monk norm; half
+   the damage ignored armor, so his Guardians could act on only about half of it; his own Dismiss Condition never
+   removed the Daze; neither attacker was snared, blinded, interrupted or knocked down (the AoB dervish was beside the
+   Ranger, hitting it); he died one second after the res.
+3. **Power play without a kill** (True v One, f34cb3a9, 11:21): 7v3 at the stand for 50 s; One's group gave ground and
+   joined its others; True dealt 18 damage per second (below the 20th percentile) spread over four targets; One healed
+   56 per second and cast Aura of Stability three times against True's hammer.
+4. **Spike survived** (Team v push, 2df9b7fd, 11:38): five Word of Censure over 1.5 s and Bane Signets 3 s later (spread
+   3.0 s against a median 1.1 s for spikes that killed); Spirit Bond was up 1.2 s before the first hit; Blessed Light,
+   Aegis and a 440 Infuse followed.
+
 ## Flag position (Denning, tactics `F1` to `F4`)
 - Up on flags = the better position to get a boost and to run, not the team that capped last.
 - ETA to capture: carrying = distance to the stand / 205 units per second; a dropped flag = the nearest runner's walk
@@ -479,8 +545,8 @@ moments better than attackers and defenders alone (AUC 0.786 against 0.755) but 
   NPC positions). Added only with `analyze.py --save-maps`, once per match (re-runs don't change the files).
 - **Case library** (`library.py`): `build` gathers every kind from the analysis files; `query <kind> --where` searches
   them; `compare <decision kind> --where` compares outcomes by choice.
-- **Per-match analysis**: `analyze.py <id>` writes format gvginfo.analysis.v1 (ENGINE 17). Regenerated in about a
-  second per match, so not stored yet; once batches grow it goes to `analysis/<id>.json` on the `replays` branch.
+- **Per-match analysis**: `analyze.py <id>` writes format gvginfo.analysis.v1 (ENGINE 17), saved in the cache keyed by
+  the engine code (`cache.py`); kept between sessions on the `cache` branch (`cache.py sync push`).
 - **Principles**: `knowledge/tactics.md`, ids cited by findings, rulings and situation cards (section 14).
 - **Denning's verdicts**: `data/review_labels.json`, applied in `rules.py` and `fights.assess`.
 

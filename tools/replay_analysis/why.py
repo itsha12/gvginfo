@@ -34,18 +34,25 @@ def _ids():
 
 
 def wp_without(rid):
-    if rid not in _WP: _WP[rid] = M.WPModel.fit_on([x for x in _ids() if x != rid])
+    if rid not in _WP: _WP[rid] = M.WPModel.heldout(_ids(), rid)
     return _WP[rid]
 
 
 def deaths_without(rid):
-    if rid not in _DN:
-        df, X, y, g, w = N._frame("deaths", [x for x in _ids() if x != rid])
-        _DN[rid] = (N._ebm(g.nunique()).fit(X, y, sample_weight=w), list(X.columns))
+    if rid not in _DN: _DN[rid] = N.heldout_node("deaths", _ids(), rid)
     return _DN[rid]
 
 
-def analysis(rid): return json.load(open(os.path.join(SRC, rid + ".json")))
+def analysis(rid):
+    import events
+    return events.analysis(rid)
+
+
+_FX = {}
+def _forensics(rid):
+    import forensics
+    if rid not in _FX: _FX[rid] = forensics.Forensics(rid)
+    return _FX[rid]
 
 
 def _row(tab, team, t):
@@ -147,6 +154,15 @@ def why(rid, f):
                  f"{fx['allies_near']} allies near, {fx['healers_in_range']} healers in range"
                  + (", Dazed" if fx["dazed"] else "") + (", knocked down" if fx["knocked_down_now"] else "")
                  + (f", {fx['hexes_on']} hexes" if fx["hexes_on"] else "") + "]")
+    # what dropped the health: forensics for the first deaths (events.py, forensics.py)
+    import events as EV
+    FCAUSE = {}
+    for t, team, role, cause in f["deaths"][:2]:
+        try: ans = EV.death(rid, team, role, t + .5, _forensics(rid))
+        except Exception as ex: L.append(f"   - forensics for {team} {role}: not available ({ex})"); continue
+        FCAUSE[(team, role)] = EV.key_causes(ans)
+        L.append(f"   - why {team} {role}'s health dropped (forensics, against the same role in every stored match):")
+        L += ["     " + x for x in EV.short(ans)]
     ph = phase_before(a, f["start"])
     if ph:
         L.append(f"3. **Setup** (phase {clock(ph['start'])} to {clock(ph['end'])}):")
@@ -180,8 +196,11 @@ def why(rid, f):
                          f"{c.get('sustain_margin', 0):+}" + (" while the rest were " + ", ".join(rest) if rest else " with everyone there"))
     tops = []
     for t, team, role, _ in f["deaths"][:2]:
-        dr = death_reading(rid, team, role, t)
-        if dr and dr[2]: tops.append(f"the {role} died mainly from {NAMES.get(dr[2][0][0], dr[2][0][0])}")
+        kc = FCAUSE.get((team, role))
+        if kc: tops.append(f"the {role} died because " + ", ".join(kc[:3]))
+        else:
+            dr = death_reading(rid, team, role, t)
+            if dr and dr[2]: tops.append(f"the {role} died mainly from {NAMES.get(dr[2][0][0], dr[2][0][0])} (the engine can't tell what dropped it)")
     short += tops
     if d: short.append(f"after choosing '{d['choice']}' at the {d['kind'].replace('_', ' ')}")
     L.append(f"**Why, in short**: " + "; ".join(short) + ".")

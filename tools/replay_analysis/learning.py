@@ -38,11 +38,10 @@ def tags(rid):
     return " v ".join(sorted({r["team"] for r in t}, key=lambda x: [r["team"] for r in t].index(x))) + f" ({rid[:8]})"
 
 
-_HOLD = {}
 def holdout_model(ids, rid):
-    """A model fitted on every match except rid, so a match is always explained by a model that never saw it."""
-    if rid not in _HOLD: _HOLD[rid] = M.WPModel.fit_on([x for x in ids if x != rid])
-    return _HOLD[rid]
+    """A model fitted on every match except rid, so a match is always explained by a model that never saw it (fitted
+    once per batch and shared with every layer, cache.py)."""
+    return M.WPModel.heldout(ids, rid)
 
 
 def report():
@@ -236,14 +235,20 @@ def report():
     import values as VAL
     v = VAL.measure(ids); VAL.write(v)
     L += ["## 8. What results and causes are worth", ""] + VAL.report_lines(v)
-    # why chains for the biggest moments of the new matches (Denning: the point is the WHY)
-    import why as WHY
-    if os.path.isdir("/tmp/ga"):
-        L += ["## Why: the biggest moments of the new matches", "",
-              "For each, the engine's account of why it happened, from models that never saw the match: result and worth, "
-              "the mechanics of each death, the setup (where every group was and what it could do), the decision before, "
-              "and the context.", ""]
-        for rid, f in WHY.top(5, new_ids): L += WHY.why(rid, f)
+    # why chains for the new matches across event kinds (Denning: the point is the WHY, and not only deaths): the two
+    # biggest fights, then the biggest flag swing, power play without a kill, survived spike, and pit NPC loss or late
+    # split answer; a kind with nothing in the new matches is taken from all trained matches
+    import why as WHY, events as EV
+    L += ["## Why: five events of the new matches", "",
+          "For each, the engine's account of why it happened, every number measured and placed against the same role or "
+          "situation in every stored match (forensics.py, events.py), with models that never saw the match.", ""]
+    for rid, f in WHY.top(2, new_ids): L += WHY.why(rid, f)
+    for kind in ("flag", "power", "spike", "npc" if EV.find("npc", new_ids) else "split"):
+        found = EV.find(kind, new_ids) or EV.find(kind, ids)
+        if not found: L += [f"No {kind} event to explain yet.", ""]; continue
+        _, rid, tag, t, _txt = found[0]
+        try: L += EV.KINDS[kind](rid, tag, t) + [""]
+        except Exception as ex: L += [f"{kind} event {rid[:8]} {tag} {EV.clock(t)}: could not be explained ({ex})", ""]
     import snapshot as SNAP
     if os.path.isdir("/tmp/gl"): L += SNAP.snapshot(ids, new_ids, "/tmp/gl")
     L += ["## 10. For Denning", "",
