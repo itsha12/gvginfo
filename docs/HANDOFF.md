@@ -100,11 +100,13 @@ review, ENGINE 17, batches 2 to 5, first why chains).
 
 ## Start the next chat with
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/HANDOFF.md (the "Match replay
-> analysis" section), knowledge/tactics.md and tools/replay_analysis/METHODS.md (especially "Forensics, event
-> explanations, the cache and match status" and "Answer exemplars"), then `git fetch --depth 1 origin
-> +replays:refs/remotes/origin/replays`, `pip install --break-system-packages interpret-core`, and in
-> tools/replay_analysis: `cache.py sync pull`, `cache.py warm`, `analyze.py --all --out /tmp/ga`, `library.py build`,
-> `status.py`. Then: <your request>
+> analysis" section), knowledge/tactics.md and tools/replay_analysis/METHODS.md, then: <your request>
+
+For a training batch, don't run it in the chat: start the "Train batch" workflow (METHODS.md "Train batch on GitHub",
+e.g. pick=6, add_batch=yes), wait for it (about 10 to 15 minutes), pull main, read data/model/reports/latest.md and
+explain it. For work in the chat that needs the engine: `git fetch --depth 1 origin +replays:refs/remotes/origin/replays`,
+`pip install --break-system-packages interpret-core`, and in tools/replay_analysis `cache.py sync pull`, `cache.py warm`,
+`analyze.py --all --out /tmp/ga`, `library.py build`, `status.py`.
 
 How Denning wants results: the WHY of events, answered with data (each question measured and placed against the same
 role or situation in every stored match), at the depth of METHODS.md "Answer exemplars"; not broad breakdowns and not

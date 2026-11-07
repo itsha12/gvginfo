@@ -44,7 +44,7 @@ jobs:
           cache: pip
           cache-dependency-path: .github/workflows/train-requirements.txt
       - name: Install the model libraries (same versions as the chat workspace)
-        run: pip install -r .github/workflows/train-requirements.txt
+        run: nproc && pip install -r .github/workflows/train-requirements.txt
       - name: Set up git
         run: |
           git config --global user.name "gvginfo-bot"

@@ -475,6 +475,15 @@ moments better than attackers and defenders alone (AUC 0.786 against 0.755) but 
   log loss 0.601 against 10 groups 77.6% and 0.546 on the same matches, so accuracy holds), deaths models are fitted
   only when a why chain needs them, and candidate tests run side by side. Cache rebuild after an engine change: 32 min
   down to 5 min. Set `FOLDS = 0` to go back to leave-one-out.
+- **Side by side** (`parallel.py`): each node's held-out folds and final fit, and the win model's honest-test folds,
+  run on every core in fresh processes (identical results, checked on all six nodes). On 2 cores: node step 6.1 to 4.9
+  min, the win model's honest test 70 to 38 s.
+- **Train batch on GitHub** (`.github/workflows/train-batch.yml`, 4 cores, pinned library versions in
+  `train-requirements.txt`): optionally picks and fetches random matches, adds the batch, analyses, builds the
+  held-out models, writes the learning report, saves the cache and commits the results to main. Start it from the
+  Actions tab or with `gh api -X POST repos/itsha12/gvginfo/actions/workflows/train-batch.yml/dispatches -f ref=main -f
+  'inputs[pick]=6' -f 'inputs[add_batch]=yes' -f 'inputs[note]=...'`; then pull main and read
+  `data/model/reports/latest.md`. Runs on GitHub, so it doesn't use the chat's time or usage.
 - **Match status** (`status.py`, `data/model/match_status.json`): per match, its batch, engine version, review entry,
   commentary sources and their state (pending, checked, done), Denning's rulings, the events whose why was walked
   through, and notes. `status.py sync` rebuilds the derived fields; `status.py mark` records the rest.

@@ -44,7 +44,18 @@ def holdout_model(ids, rid):
     return M.WPModel.heldout(ids, rid)
 
 
+_T = {"t": None, "laps": {}}
+def _lap(name):
+    """Time spent on the section that just finished (shown in the workflow log and data/model/reports/timings.json)."""
+    import time
+    now = time.time()
+    if _T["t"] is not None:
+        _T["laps"][name] = round(now - _T["t"], 1); print(f"[time] {name}: {_T['laps'][name]} s", flush=True)
+    _T["t"] = now
+
+
 def report():
+    _lap("start")
     bs = M.batches(); n = len(bs) - 1
     ids = [m for b in bs for m in b["matches"]]
     new_ids = bs[-1]["matches"]
@@ -62,6 +73,7 @@ def report():
          f"{len(model['variables_in_use'])}; build variables from {M.STAGES['build_variables']} matches, interactions from "
          f"{M.STAGES['interactions']}.", ""]
     v = model["validation"]
+    _lap("fit and honest test")
     # data integrity (integrity.py): what was repaired or can't be trusted in the matches trained on
     from replaylib import Match
     from state import GameState
@@ -88,6 +100,7 @@ def report():
                  f"{v['strength only']['all']['log_loss']}.")
     L.append("")
 
+    _lap("integrity and honest test text")
     L += ["## 2. What it leans on", ""]
     pimp = {t["term"]: t["importance"] for t in prev["terms"]} if prev else {}
     for t in model["terms"][:12]:
@@ -100,6 +113,7 @@ def report():
         else: L.append(f"- **{t['term']}** (interaction): see wp_model.md")
     L.append("")
 
+    _lap("curves")
     # discovery 1: interaction candidates (screen only, coarse bins)
     from interpret.utils import measure_interactions
     use = model["variables_in_use"]
@@ -109,10 +123,12 @@ def report():
           f"{M.STAGES['interactions']} matches):", ""]
     for (i, j), s in cand:
         L.append(f"- {use[i]} with {use[j]} (screen {s:.3f})")
+    _lap("interaction screen")
     # discovery 2: candidate variables, retested every batch
     L += ["", "**Candidate variables** (proposed variables, tested on unseen matches; log loss, lower is better):", ""]
     for c in M.test_candidates(ids):
         L.append(f"- {c['candidate']}: {c['without']} without, {c['with']} with: {c['verdict']}. {c['description']}")
+    _lap("candidate variables")
     # discovery 3: surprises = held-out moments most wrong, one per match
     yv = y.values; p = np.clip(held, 0.02, 0.98)
     loss = -(yv * np.log(p) + (1 - yv) * np.log(1 - p))
@@ -125,6 +141,7 @@ def report():
         pw, parts = holdout_model(ids, r["match"]).explain(row)
         L.append(f"- {tags(r['match'])} at {clock(r['t'])}: a model that never saw this match gave {r['team']} {pw}%, and "
                  f"{r['team']} {'won' if r['won'] else 'lost'}. Why it thought so: " + ", ".join(f"{a} {b:+}" for a, b in parts[:5]))
+    _lap("surprises")
     # rulings
     labels = json.load(open(os.path.join(REPO, "data", "review_labels.json")))["labels"]
     L += ["", "## 5. Denning's rulings seen through the model", "",
@@ -145,6 +162,7 @@ def report():
             pb, partsb = hm.explain(b); pa, partsa = hm.explain(a)
             L.append(f"- {tags(lb['match'])} {clock(lb['t'])} ({lb['rule']}), {team}: {pb}% 20 s before -> {pa}% 60 s after "
                      f"({pa - pb:+.1f}). After: " + ", ".join(f"{x} {y_:+}" for x, y_ in partsa[:4]))
+    _lap("rulings")
     # the node models: why results happen (causal map)
     import nodes as NODES
     L += ["", "## 6. Why: the node models", "",
@@ -171,6 +189,7 @@ def report():
             for t in s_["terms"][:10]:
                 if "curve" in t: L.append(f"- **{t['term']}** ({t['description']}) {curve_words(t)}")
         L.append("")
+    _lap("node models")
     # the usual play (usual.py): needs the analysis files (analyze.py --all --out /tmp/ga)
     import usual as U
     if os.path.isdir("/tmp/ga"):
@@ -234,7 +253,9 @@ def report():
             L.append("")
     import values as VAL
     v = VAL.measure(ids); VAL.write(v)
+    _lap("usual play")
     L += ["## 8. What results and causes are worth", ""] + VAL.report_lines(v)
+    _lap("values")
     # why chains for the new matches across event kinds (Denning: the point is the WHY, and not only deaths): the two
     # biggest fights, then the biggest flag swing, power play without a kill, survived spike, and pit NPC loss or late
     # split answer; a kind with nothing in the new matches is taken from all trained matches
@@ -249,13 +270,17 @@ def report():
         _, rid, tag, t, _txt = found[0]
         try: L += EV.KINDS[kind](rid, tag, t) + [""]
         except Exception as ex: L += [f"{kind} event {rid[:8]} {tag} {EV.clock(t)}: could not be explained ({ex})", ""]
+    _lap("why chains")
     import snapshot as SNAP
     if os.path.isdir("/tmp/gl"): L += SNAP.snapshot(ids, new_ids, "/tmp/gl")
+    _lap("snapshot")
     L += ["## 10. For Denning", "",
           "- Which curves look wrong to you? A correction (direction, cap, drop, or a pair to always test) is logged with "
           "your reason and tested on held-out matches.",
           "- Do any surprises remind you of something the variables don't capture (a missing variable)?",
           "- Any variable you think matters that isn't listed?", ""]
+    _lap("why chains and snapshot")
+    json.dump({"cores": os.cpu_count(), "seconds": _T["laps"]}, open(os.path.join(REPORTS, "timings.json"), "w"), indent=1)
     path = os.path.join(REPORTS, f"batch_{n:02d}.md")
     open(path, "w").write("\n".join(L) + "\n")
     open(os.path.join(REPORTS, "latest.md"), "w").write("\n".join(L) + "\n")
