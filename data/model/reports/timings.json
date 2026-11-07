@@ -1,19 +1,19 @@
 {
  "cores": 4,
- "cpu": "INTEL(R) XEON(R) PLATINUM 8573C",
+ "cpu": "AMD EPYC 9V74 80-Core Processor",
  "seconds": {
-  "fit and honest test": 44.4,
-  "integrity and honest test text": 1.9,
+  "fit and honest test": 64.5,
+  "integrity and honest test text": 2.5,
   "curves": 0.0,
-  "interaction screen": 0.0,
-  "candidate variables": 88.1,
+  "interaction screen": 0.1,
+  "candidate variables": 148.1,
   "surprises": 1.1,
   "rulings": 0.0,
-  "node models": 126.1,
-  "usual play": 55.5,
+  "node models": 157.1,
+  "usual play": 85.8,
   "values": 0.0,
-  "TQs": 27.2,
-  "snapshot": 4.6,
+  "TQs": 35.6,
+  "snapshot": 6.6,
   "questions": 0.0
  }
 }
