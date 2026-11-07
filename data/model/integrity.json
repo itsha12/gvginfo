@@ -1009,5 +1009,159 @@
    "2": 5
   },
   "exclude": []
+ },
+ "04befe7e-4050-51d4-ac06-3560dcb02611": {
+  "length": {
+   "recorded_s": 728,
+   "last_event_s": 726,
+   "lord_death_s": 715,
+   "used_s": 716,
+   "repaired": false
+  },
+  "lord_damage_unobserved": [],
+  "window": {
+   "observed": "0:00 - 12:08",
+   "joined_mid_match": false
+  },
+  "roster_added": {
+   "1": 5,
+   "2": 0
+  },
+  "exclude": []
+ },
+ "ad75813a-2393-56f4-aee1-975ff4c85196": {
+  "length": {
+   "recorded_s": 589,
+   "last_event_s": 589,
+   "lord_death_s": 578,
+   "used_s": 579,
+   "repaired": false
+  },
+  "lord_damage_unobserved": [],
+  "window": {
+   "observed": "0:00 - 9:49",
+   "joined_mid_match": false
+  },
+  "roster_added": {
+   "1": 4,
+   "2": 0
+  },
+  "exclude": []
+ },
+ "77206c78-5eb2-5a36-aa45-8e0168e624df": {
+  "length": {
+   "recorded_s": 550,
+   "last_event_s": 548,
+   "lord_death_s": 539,
+   "used_s": 540,
+   "repaired": false
+  },
+  "lord_damage_unobserved": [],
+  "window": {
+   "observed": "0:00 - 9:10",
+   "joined_mid_match": false
+  },
+  "roster_added": {
+   "1": 5,
+   "2": 1
+  },
+  "exclude": []
+ },
+ "c553716d-a00b-5bff-ac49-6bfc480c5ca9": {
+  "length": {
+   "recorded_s": 1670,
+   "last_event_s": 1666,
+   "lord_death_s": 1656,
+   "used_s": 1656,
+   "repaired": false
+  },
+  "lord_damage_unobserved": [],
+  "window": {
+   "observed": "0:00 - 27:50",
+   "joined_mid_match": false
+  },
+  "roster_added": {
+   "1": 1,
+   "2": 0
+  },
+  "exclude": []
+ },
+ "a0d60daa-0700-5a31-a1f5-495c0db986df": {
+  "length": {
+   "recorded_s": 937,
+   "last_event_s": 935,
+   "lord_death_s": 923,
+   "used_s": 924,
+   "repaired": false
+  },
+  "lord_damage_unobserved": [],
+  "window": {
+   "observed": "0:00 - 15:37",
+   "joined_mid_match": false
+  },
+  "roster_added": {
+   "1": 0,
+   "2": 1
+  },
+  "exclude": []
+ },
+ "29aad8d4-e585-5b0a-af7d-93527a333d2b": {
+  "length": {
+   "recorded_s": 1693,
+   "last_event_s": 1690,
+   "lord_death_s": null,
+   "used_s": 1693,
+   "repaired": false
+  },
+  "lord_damage_unobserved": [],
+  "window": {
+   "observed": "0:00 - 28:13",
+   "joined_mid_match": false
+  },
+  "roster_added": {
+   "1": 2,
+   "2": 0
+  },
+  "exclude": []
+ },
+ "1cb73c20-1b06-5b7b-a728-25c7640f8a84": {
+  "length": {
+   "recorded_s": 1565,
+   "last_event_s": 1553,
+   "lord_death_s": 1550,
+   "used_s": 1551,
+   "repaired": false
+  },
+  "lord_damage_unobserved": [],
+  "window": {
+   "observed": "0:00 - 26:05",
+   "joined_mid_match": false
+  },
+  "roster_added": {
+   "1": 0,
+   "2": 0
+  },
+  "exclude": []
+ },
+ "a921418b-c4d1-5872-aca9-18f9ad99bf40": {
+  "length": {
+   "recorded_s": 535,
+   "last_event_s": 535,
+   "lord_death_s": 524,
+   "used_s": 525,
+   "repaired": false
+  },
+  "lord_damage_unobserved": [
+   1
+  ],
+  "window": {
+   "observed": "0:00 - 8:55",
+   "joined_mid_match": false
+  },
+  "roster_added": {
+   "1": 5,
+   "2": 2
+  },
+  "exclude": []
  }
 }

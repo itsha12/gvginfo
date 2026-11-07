@@ -102,6 +102,9 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   swings, power plays without a kill, survived spikes, pit NPC losses, splits); `why.py` uses both. METHODS.md
   "Answer exemplars" shows the depth expected. When a question can't be answered from the data, say so and add the
   measurement to forensics.py rather than guessing.
+- Commentary and comms: claims (paraphrased, never transcripts) in `data/commentary/<source>.json`, lined up with
+  `timeline.py`; the variables they suggest are measured in every match by `comms_vars.py` and the supported ones move
+  into the model and onto tactics (METHODS.md "Commentary and comms"). Denning: the new variables matter most.
 - Speed: `cache.py` keeps every "without this match" model and each match's prepared data (keyed by the engine code);
   run `cache.py sync pull` then `cache.py warm` at the start of a session and `cache.py sync push` after building.
   Never refit a held-out model directly: use `WPModel.heldout` and `nodes.heldout_node`.

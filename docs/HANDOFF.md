@@ -111,16 +111,21 @@ role or situation in every stored match), at the depth of METHODS.md "Answer exe
 one highlighted item. After each batch: the why of 5 events across kinds (two fights, a flag swing, a power play
 without a kill, a survived spike, a pit NPC loss or split).
 
-## Next: the commentary transcripts (Denning is finding them)
-Plan agreed in outline (order to confirm with Denning: Maga's OG comms, then Bounty, then Nick):
-1. For each transcript, line up video time with match time (2 or 3 anchors), and extract each claim, paraphrased
-   (public repo), into a claims file: match, time, source, kind (cause, prediction, intent, build), claim, tactics ids.
-2. Check each claim against the engine (`why.py`, `forensics.py`, `events.py`): agrees, disagrees, or can't measure.
-   Disagreements go to Denning (an engine bug or the commentator wrong).
-3. Confirmed causes become causal-map links (source Bounty, Nick or OG comms); intents become decision labels;
-   predictions become win-model test cases; build points become build features or per-skill flags.
-4. Score the why chains each batch by the share of expert causes they find. Track each source's state per match with
-   `status.py mark <id> commentary <source> pending|checked|done` (11 matches: Bounty 6, Nick 1, OG comms 4).
+## Next: the commentary transcripts
+Agreed with Denning: the matches go into training (flagged as chosen); the new variables they suggest matter most.
+Process (METHODS.md "Commentary and comms"): match each transcript to its match by player names, line up with
+`timeline.py`, file paraphrased claims in `data/commentary/<source>.json` with the engine's check, measure the
+variables in `comms_vars.py`, move supported ones into the model and tactics, record the rest as open questions, and
+`status.py mark <id> commentary <source> checked|done`.
+- Done (session 4n): OG comms, first six of Maga's nine: ohno v Crew 77206c78, ohno v One c553716d, ohno v NwAy
+  a0d60daa, xxx v ohno 29aad8d4, ohno v Fun 1cb73c20, OG v cope J 29b7eca0 (claims in data/commentary/og_comms.json;
+  batch 6 = these new replays plus 2 others; variables in data/benchmarks/comms_variables.json; tactics P12, P13, K17,
+  L11, X9, Q16). Waiting for Denning's review.
+- Next: the other three Maga matches (OG v hdm d016987b, OG v Dz a921418b, OG v hold 49eec28d; transcripts e3a05cc3,
+  b49cd8df, 1cee3c6a, attached by Denning on 2026-11-06; ask him to re-attach in a new chat), then Bounty (6), then Nick (1).
+- Variables still to build from the comms: area damage taken against spacing (the right outcome for "spread out"),
+  footmen (base NPCs, not tracked yet), death cost while boosted ("we can die for NPCs"), spike rate by weapon set
+  (40/40 against shields), portal jumps tied to Lord damage on Isle of Solitude.
 
 ## Fixes from the first why chains (batch 5): state
 1. Done: mechanics stop at a symptom. Why chains now explain what dropped the health with forensics (`forensics.py`),

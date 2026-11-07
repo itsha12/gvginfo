@@ -1,0 +1,183 @@
+{
+ "about": "Variables suggested by commentary and comms, measured in every stored replay (comms_vars.py). Intervals: 90% from resampling whole matches. Verdict: supported / contradicted when the interval excludes zero, else unclear.",
+ "matches": 61,
+ "variables": {
+  "solo_monk": {
+   "measure": "groups of 3+ players facing enemies in a phase: one healer against two or more, same local numbers; outcome = the group lost a player in that phase",
+   "n": 6279,
+   "rate_one_healer": 0.113,
+   "rate_two_plus": 0.112,
+   "difference": -0.002,
+   "interval_90": [
+    -0.024,
+    0.024
+   ],
+   "verdict": "unclear (interval crosses zero)",
+   "source": "OG comms [ohno v One], [ohno v NwAy]: calls of 'solo monk' as the moment to commit (go on the monk)"
+  },
+  "no_healer_group": {
+   "measure": "groups of 2+ facing enemies in a phase: no healer against at least one, same local numbers; outcome = lost a player",
+   "n": 7234,
+   "rate_no_healer": 0.23,
+   "rate_with_healer": 0.112,
+   "difference": 0.107,
+   "interval_90": [
+    0.053,
+    0.176
+   ],
+   "verdict": "supported",
+   "source": "OG comms [ohno v One]: keep a prot and a monk on one side and the Rit and a monk on the other at all times"
+  },
+  "spread": {
+   "measure": "players in a fight every 5 s: nearest ally under 150 units (tight) against farther, same local numbers; outcome = died within 10 s; split by whether the enemy has 2+ elementalists (area damage)",
+   "all": {
+    "n": 104967,
+    "rate_tight": 0.01,
+    "rate_spread": 0.015,
+    "difference": -0.003,
+    "interval_90": [
+     -0.005,
+     -0.001
+    ],
+    "verdict": "contradicted"
+   },
+   "vs_area_damage": {
+    "n": 18779,
+    "rate_tight": 0.011,
+    "rate_spread": 0.018,
+    "difference": -0.002,
+    "interval_90": [
+     -0.009,
+     0.006
+    ],
+    "verdict": "unclear (interval crosses zero)"
+   },
+   "vs_other": {
+    "n": 86188,
+    "rate_tight": 0.01,
+    "rate_spread": 0.014,
+    "difference": -0.003,
+    "interval_90": [
+     -0.005,
+     -0.001
+    ],
+    "verdict": "contradicted"
+   },
+   "source": "OG comms [ohno v Fun], [OG v cope J]: 'spread out' against invoke and Ele spikes"
+  },
+  "strip_on_spike": {
+   "measure": "spikes (400+ in 3 s): an enchantment removal by the spiking team finished on the target from 2 s before the first hit to 1 s after; outcome = the target died within 8 s; compared within the number of spikers",
+   "n": 546,
+   "cases": 210,
+   "rate_with": 0.333,
+   "rate_without": 0.351,
+   "difference": -0.044,
+   "interval_90": [
+    -0.125,
+    0.054
+   ],
+   "verdict": "unclear (interval crosses zero)",
+   "source": "OG comms [ohno v Crew]: 'double Shatter kills'"
+  },
+  "armor_on_spike": {
+   "measure": "spikes (400+ in 3 s): the target had Cracked Armor at the first hit; outcome = the target died within 8 s; compared within the number of spikers",
+   "n": 546,
+   "cases": 101,
+   "rate_with": 0.307,
+   "rate_without": 0.353,
+   "difference": -0.059,
+   "interval_90": [
+    -0.165,
+    0.03
+   ],
+   "verdict": "unclear (interval crosses zero)",
+   "source": "OG comms [OG v cope J]: land Shell Shock between 'two' and 'one' of the countdown"
+  },
+  "hexed_spikers": {
+   "measure": "spikes (400+ in 3 s): at least one spiker carried a hex at the first hit; outcome = the target died within 8 s; compared within the number of spikers",
+   "n": 546,
+   "cases": 209,
+   "rate_with": 0.244,
+   "rate_without": 0.407,
+   "difference": -0.166,
+   "interval_90": [
+    -0.259,
+    -0.084
+   ],
+   "verdict": "supported",
+   "source": "OG comms [OG v cope J], [OG v hdm]: Migraine not covered on a spiker, 'why are we not killing'"
+  },
+  "low_morale": {
+   "measure": "players in a fight every 5 s: death penalty 15% or more against none; outcome = died within 10 s; same local numbers",
+   "n": 73628,
+   "rate_dp15": 0.049,
+   "rate_no_dp": 0.012,
+   "difference": 0.03,
+   "interval_90": [
+    0.023,
+    0.04
+   ],
+   "verdict": "supported",
+   "source": "OG comms [ohno v One]: their warrior has 30 DP, we could just fight him"
+  },
+  "merge": {
+   "measure": "groups in the enemy pit or base: 7+ players against 3 to 6; outcome = killed a player in that phase (and, separately, lost one)",
+   "n": 1060,
+   "kill_rate_full": 0.485,
+   "kill_rate_partial": 0.189,
+   "difference": 0.296,
+   "interval_90": [
+    0.22,
+    0.362
+   ],
+   "loss_rate_difference": -0.04,
+   "verdict": "supported",
+   "source": "OG comms [ohno v Crew]: whoever called to merge, we ended way earlier"
+  },
+  "turtle": {
+   "measure": "a team with 75%+ of its live players in its own base or pit for 60 s straight (5+ alive), with no deaths in the 2 minutes before (so not just resurrected); what the next 90 s held and who won",
+   "n": 13,
+   "turtling_team_won": 0.231,
+   "after_90s": {
+    "npcs_lost_by_turtle": 0.31,
+    "deaths_turtle": 0.38,
+    "deaths_other": 0.46
+   },
+   "cases": [
+    "1f65fd3b RACK 9:10",
+    "1f65fd3b RACK 11:15",
+    "45cf6756 RACK 10:35",
+    "d016987b OG 4:00",
+    "36a65ac6 \uc637\uc637\uc637\uc637 14:25",
+    "1d394550 Book 10:40",
+    "c553716d One 9:25",
+    "c553716d One 13:25",
+    "c553716d One 15:30",
+    "c553716d One 21:05",
+    "c553716d One 23:10",
+    "1cb73c20 Fun 11:00",
+    "1cb73c20 Fun 14:30"
+   ],
+   "verdict": "descriptive (the win-model candidate turtle_diff tests it on unseen matches)",
+   "source": "OG comms [ohno v One], [ohno v Crew]: they are turtling, so we have to make a play; if they get a kill it may break the turtle"
+  },
+  "portal": {
+   "measure": "Isle of Solitude: a player moving 2,500+ units in one recorded second (a portal jump)",
+   "n": 155,
+   "by_team": {
+    "a8ba43a8 RACK": 22,
+    "a8ba43a8 \uc637\uc637\uc637\uc637": 20,
+    "c86a888d chic": 1,
+    "79281720 fM": 1,
+    "2b13eea5 DRKN": 2,
+    "2b13eea5 yM": 3,
+    "c553716d One": 9,
+    "c553716d ohno": 2,
+    "1cb73c20 ohno": 36,
+    "1cb73c20 Fun": 59
+   },
+   "verdict": "descriptive (too few Solitude matches to test)",
+   "source": "OG comms [ohno v One], [ohno v Fun]: fake a collapse, then port back in; every rotation does Lord damage"
+  }
+ }
+}

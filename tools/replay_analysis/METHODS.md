@@ -495,6 +495,25 @@ These set the kind of answer the engine must produce: the event, the measured ca
    3.0 s against a median 1.1 s for spikes that killed); Spirit Bond was up 1.2 s before the first hit; Blessed Light,
    Aegis and a 440 Infuse followed.
 
+## Commentary and comms: claims and the variables they suggest (2026-11-06)
+- Transcripts are never stored (public repo). Each is matched to its match (players' names in the transcript against the
+  rosters), lined up by anchors (kills, captures, boosts, NPC losses: `timeline.py <id> --people` lists them with each
+  character's person), and turned into paraphrased claims in `data/commentary/<source>.json`: approximate time, kind
+  (plan, read, call, reason, prediction, diagnosis, technique), speaker's role, tactics ids, the variable it suggests,
+  and the engine's check (agrees, disagrees, partly, can't measure) with evidence.
+- Denning: the variables the comms point to are the most important thing they give. `comms_vars.py` measures each one in
+  every stored replay against the outcome the speaker said it drives, within strata (local numbers, number of spikers),
+  with 90% intervals from resampling whole matches (`data/benchmarks/comms_variables.json`). Supported variables go into
+  the model they belong to (win model candidates in `features.CANDIDATES`, node variables) and onto tactics as
+  **OG comms:** lines with the data; contradicted or unclear ones stay recorded there so they aren't re-proposed without
+  new evidence, and become open questions.
+- First six OG matches (batch 6): supported: a group with no healer loses players twice as often (`P12`), merging 7+ for
+  a pit push kills 2.5 times as often (`P13`), hexed spikers halve spike kills (`X9`), players with 15%+ death penalty
+  die about 4 times as often in fights (`K17`, partly selection), turtling teams usually lose (`L11`, win-model candidate
+  `turtle_diff`). Not supported or unclear: "solo monk" alone (`Q16`), Shell Shock and enchantment strips on the spike
+  target, tight groups dying more (deaths are the wrong outcome: area damage taken is the right one, to build).
+  Can't measure: gate control, terrain and line of sight, energy, call timing, footmen (not yet tracked).
+
 ## Flag position (Denning, tactics `F1` to `F4`)
 - Up on flags = the better position to get a boost and to run, not the team that capped last.
 - ETA to capture: carrying = distance to the stand / 205 units per second; a dropped flag = the nearest runner's walk

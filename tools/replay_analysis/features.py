@@ -45,6 +45,16 @@ def _in_pit(sb, tm, t, whose):
     return sum(1 for a in st.players[tm] if st.alive(a, t) and d(st.pos(a, t)[0], pit) < PIT_R + 500)
 
 
+def _home_share(sb, tm, t):
+    """Share of tm's live players at home: within the base radius of its res shrine or near its own pit."""
+    from common import BASE_R
+    st = sb.st; base, pit = st.geo.base.get(tm), st.geo.pit.get(tm)
+    live = [a for a in st.players[tm] if st.alive(a, t)]
+    if not live: return 0.0
+    home = sum(1 for a in live if (p := st.pos(a, t)[0]) and ((base and d(p, base) < BASE_R) or (pit and d(p, pit) < PIT_R + 500)))
+    return home / len(live)
+
+
 def _geo(sb):
     if not hasattr(sb, "_geo_shape"):
         g = sb.st.geo
@@ -128,6 +138,10 @@ CANDIDATES = [
     ("split_diff", "own minus enemy players on a split (away from their main group on the enemy half, not carrying). "
      "Proposed batch 1 by Claude: the knights curve runs backwards, maybe standing in for the cost of splitting",
      lambda s, sb, tm, t, x: _splitting(sb, tm, t) - _splitting(sb, 3 - tm, t)),
+    ("turtle_diff", "own minus enemy share of live players at home (own base or pit). Proposed 2026-11-06 from OG comms "
+     "([ohno v One], [ohno v Crew]: 'they are turtling, we have to make a play'); comms_vars.py: teams that turtled 60 s "
+     "won 3 of 13 times",
+     lambda s, sb, tm, t, x: round(_home_share(sb, tm, t) - _home_share(sb, 3 - tm, t), 3)),
 ]
 DESCRIPTIONS = {n: dsc for n, dsc, _ in VARIABLES + CANDIDATES}
 

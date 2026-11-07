@@ -70,7 +70,7 @@
    "why_shown": [],
    "reviewed": null,
    "commentary": {
-    "OG comms": "pending"
+    "OG comms": "checked"
    },
    "notes": null
   },
@@ -145,7 +145,8 @@
    "why_shown": [],
    "reviewed": null,
    "commentary": {
-    "Bounty": "pending"
+    "Bounty": "pending",
+    "OG comms": "pending"
    },
    "notes": null
   },
@@ -746,6 +747,122 @@
    ],
    "reviewed": null,
    "commentary": {},
+   "notes": null
+  },
+  "04befe7e-4050-51d4-ac06-3560dcb02611": {
+   "batch": 6,
+   "teams": "BcS v Apes",
+   "map": "Nomad's Isle",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "1cb73c20-1b06-5b7b-a728-25c7640f8a84": {
+   "batch": 6,
+   "teams": "ohno v Fun",
+   "map": "Isle of Solitude",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {
+    "OG comms": "checked"
+   },
+   "notes": null
+  },
+  "29aad8d4-e585-5b0a-af7d-93527a333d2b": {
+   "batch": 6,
+   "teams": "xxx v ohno",
+   "map": "Uncharted Isle",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {
+    "OG comms": "checked"
+   },
+   "notes": null
+  },
+  "77206c78-5eb2-5a36-aa45-8e0168e624df": {
+   "batch": 6,
+   "teams": "ohno v Crew",
+   "map": "Corrupted Isle",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {
+    "OG comms": "checked"
+   },
+   "notes": null
+  },
+  "a0d60daa-0700-5a31-a1f5-495c0db986df": {
+   "batch": 6,
+   "teams": "ohno v NwAy",
+   "map": "Isle of Weeping Stone",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {
+    "OG comms": "checked"
+   },
+   "notes": null
+  },
+  "a921418b-c4d1-5872-aca9-18f9ad99bf40": {
+   "batch": 6,
+   "teams": "OG v Dz",
+   "map": "Isle of Meditation",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {
+    "OG comms": "pending"
+   },
+   "notes": null
+  },
+  "ad75813a-2393-56f4-aee1-975ff4c85196": {
+   "batch": 6,
+   "teams": "Men v hook",
+   "map": "Nomad's Isle",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "c553716d-a00b-5bff-ac49-6bfc480c5ca9": {
+   "batch": 6,
+   "teams": "ohno v One",
+   "map": "Isle of Solitude",
+   "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {
+    "OG comms": "checked"
+   },
    "notes": null
   }
  }

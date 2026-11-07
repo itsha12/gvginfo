@@ -292,6 +292,12 @@ against general principles rather than past games. Match-by-match evidence lives
 - `P11` **Denning:** In the last seconds before the defenders' base res, attacking teams often leave the pit so they
   aren't caught in a bad position 8v8 when the team resses. **Claude (data):** Lord damage is highest 20 to 60 s
   before the defenders' res and low in the last 10 s.
+- `P12` **OG comms:** Keep a healer with every group at all times (a prot and a monk on one side, the ritualist and a
+  monk on the other). **Claude (data, `comms_vars.py`, 61 matches):** groups of 2+ with no healer lost a player in 23% of
+  phases against 11% with one, at the same local numbers (interval 5 to 17 points). [ohno v One]
+- `P13` **OG comms:** Merge the whole team before pushing the enemy pit or base. **Claude (data, 61 matches):** groups of
+  7+ in the enemy pit or base killed a player in 49% of phases against 19% for 3 to 6, and lost players slightly less
+  often. [ohno v Crew]
 
 ### Base races
 - `P6` **Bounty:** A team defending with only 2 players is saying "give us time to finish", so it should not chase
@@ -425,6 +431,9 @@ against general principles rather than past games. Match-by-match evidence lives
   priced as lost. Healer deaths in their own base or pit within 15 s of the base res (likely deliberate, `K14`): 13
   so far, about +3 (unclear); the other healer deaths still cost only about 1.5, so deliberate deaths don't explain
   the low cost. Confidence: low until more batches.
+- `K17` **OG comms:** Fight the player carrying a big death penalty. **Claude (data, 61 matches):** players in a fight
+  with 15%+ death penalty died within 10 s 4.9% of the time against 1.2% with none, at the same local numbers (partly
+  because the same players keep being reachable). [ohno v One]
 - `K5` **Bounty:** A team that always has someone timed or stuck has no moment to play tactics and gets overwhelmed.
   Resurrecting too late wastes time; teams under pressure are often scared to go for the res.
 - `K6` **Bounty:** Target choice costs time: 30 to 40 s failing to kill a monk is fine at 2 minutes, not at 22. A build
@@ -474,6 +483,10 @@ against general principles rather than past games. Match-by-match evidence lives
 - `L10` **Claude:** Measured Lord damage per second while at the enemy Lord (24 matches): ranger 37, elementalist 33,
   warrior 27, paragon 24, dervish 23, necromancer 10, ritualist 10, mesmer 7, monk 5. Midline casters and rangers hit
   the Lord as hard as the frontline or harder; the ranger figure leans on solo splits into empty pits.
+- `L11` **OG comms:** A team that turtles (sits in its base and pit) gives up Lord damage, so the other side must
+  make a play to break it, and doesn't need to chase it out late. **Claude (data, 61 matches):** 13 turtles (75%+ of
+  live players at home for a minute, not just resurrected); the turtling team won 3. The win model tests `turtle_diff`
+  as a candidate from batch 6. [ohno v One]
 - `L9` **OG comms:** Watch the clock out loud ("this is 22 minutes"); the late plan (play for 28:00 or push now) has to
   be agreed, not argued during the push. [OG v cope U]
 
@@ -497,6 +510,10 @@ against general principles rather than past games. Match-by-match evidence lives
   knockdown lock or degeneration, and the failure is support or positioning, not prot timing. [Men v Team] [OG v hdm]
 - `X8` **OG comms:** Spike timing micro: land Shell Shock between "two" and "one" of the countdown; call for removal of
   Migraine on the spikers. [OG v cope J]
+- `X9` **OG comms:** A spiker carrying a hex (Migraine uncovered) can't land its part; call for removal. **Claude (data,
+  546 spikes in 61 matches):** spikes with a hexed spiker killed 24% of the time against 41% without (interval 7 to 26
+  points). Shell Shock on the target and an enchantment strip as the spike lands showed no measurable effect on kills
+  (both intervals cross zero), so `X8` is a timing habit the data does not yet support. [OG v cope J] [ohno v Crew]
 
 ## 9. Monk play under pressure (micro)
 - `M1` **Denning:** Judge a death first by its cause: a great enemy play, or a failure. In an even 8v8 with the monks in
@@ -672,3 +689,6 @@ usual one in win chance, adjusted for the situation, with a range from resamplin
 - `Q14` How much is a flag lead worth against a pit NPC or a death? (The engine's weights are first guesses until the
   win-probability model.)
 - `Q15` What should a team do when it is stacking death penalty against a spike build (`D6`)?
+- `Q16` OG calls "solo monk" as the moment to commit, but across 61 matches a group with one healer lost players no
+  more often than one with two at the same numbers (11.3% and 11.2%). What makes a solo monk killable: its energy, its
+  distance from the rest of its team, or the damage facing it? [ohno v One] [ohno v Crew]

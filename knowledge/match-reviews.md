@@ -32,7 +32,11 @@ page; tags such as [Men v Team] on that page point here.
   f34cb3a9-98c7-53d0-a980-60aa7dd5bc8d). Bounty plays mesmer for 옷옷옷옷, so weigh his comments on their games with
   that in mind.
 - **Nick:** YouTube commentary of the September 2026 monthly final, [Men v Team].
-- **OG comms:** Maga's stream of OG's own voice comms, October 2026 monthly. Comms show what a team intended and
+- **OG comms:** Maga's streams of OG's own voice comms. September 2026 automated tournaments (OG played as tag ohno):
+  ohno v Crew (Corrupted, 77206c78), ohno v One (Solitude, c553716d), ohno v NwAy (Weeping Stone, a0d60daa), xxx v
+  ohno (Uncharted, 29aad8d4), ohno v Fun (Solitude, 1cb73c20); claims checked against the engine in
+  data/commentary/og_comms.json, with OG v cope J below. Still to do: OG v hdm, OG v Dz (a921418b), OG v hold.
+  October 2026 monthly: Comms show what a team intended and
   called; each point was checked against the replay. Names: Maga = mesmer; Holy = Holye (WoC monk, mesmer or
   elementalist by build); Enigma = Enigma Og (8 or 7 monk); "No Monk" = No Monk For You (prot). Video time differs
   from match time per video (noted in each review).
