@@ -1,21 +1,21 @@
 {
  "cores": 4,
- "cpu": "AMD EPYC 7763 64-Core Processor",
+ "cpu": "aarch64",
  "seconds": {
-  "fit and honest test": 88.5,
+  "fit and honest test": 143.5,
   "integrity and honest test text": 3.8,
   "curves": 0.0,
   "interaction screen": 0.1,
-  "candidate variables": 203.8,
-  "surprises": 1.5,
+  "candidate variables": 205.0,
+  "surprises": 1.3,
   "rulings": 0.1,
-  "node models": 261.5,
-  "event layer and values": 15.0,
-  "learned nodes": 149.2,
-  "usual play": 155.2,
+  "node models": 616.1,
+  "event layer and values": 9.7,
+  "learned nodes": 80.5,
+  "usual play": 126.9,
   "values": 0.0,
-  "TQs": 80.3,
-  "snapshot": 10.3,
+  "TQs": 193.1,
+  "snapshot": 9.4,
   "questions": 0.0
  }
 }
