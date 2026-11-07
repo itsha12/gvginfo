@@ -441,14 +441,42 @@ def _wmetrics(p, y, w):
     return {"log_loss": round(ll, 4), "auc": round(float(roc_auc_score(y, p, sample_weight=w)), 3), "rate": round(float(np.average(y, weights=w)), 4)}
 
 
-def validate_regression(node, df, X, y, g, w):
+def _node_job(job):
+    """One fit for a node: a held-out fold (predictions for the matches left out, and the simple baseline's) or the
+    final fit on everything (job kind "full"). Top level so it can run in another process (parallel.py)."""
+    kind, n_matches, regression, Xtr, ytr, wtr, Xte, base_cols = job
+    kw = {} if regression else {"sample_weight": wtr}
+    e = _ebm(n_matches, regression).fit(Xtr, ytr, **kw)
+    if kind == "full": return e
+    if regression: return {"glass": e.predict(Xte), "base": float(np.median(ytr))}
+    from sklearn.linear_model import LogisticRegression
+    b = LogisticRegression(max_iter=1000).fit(Xtr[base_cols].fillna(0), ytr, sample_weight=wtr)
+    return {"glass": e.predict_proba(Xte)[:, 1], "base": b.predict_proba(Xte[base_cols].fillna(0))[:, 1]}
+
+
+BASE_COLS = {"deaths": ["health_pct", "damage_taken_3s"], "kill_conversion": ["burst_damage", "target_health_pct"],
+             "npc_loss": ["attackers", "defenders"], "lord_kill": ["attackers", "defenders"]}
+
+
+def _folds_and_full(node, X, y, g, w, regression):
+    """Every held-out fold and the final fit, side by side (parallel.py); the same fits as one after another."""
+    import parallel
+    from sklearn.model_selection import GroupKFold
+    folds = list(GroupKFold(n_splits=min(6, g.nunique())).split(X, y, g))
+    bc = BASE_COLS.get(node, [])
+    jobs = [("fold", g.iloc[tr].nunique(), regression, X.iloc[tr], y.iloc[tr], w.iloc[tr], X.iloc[te], bc) for tr, te in folds]
+    jobs.append(("full", g.nunique(), regression, X, y, w, None, bc))
+    res = parallel.run(_node_job, jobs)
+    return folds, res[:-1], res[-1]
+
+
+def validate_regression(node, df, X, y, g, w, _done=None):
     """Held out by match: mean absolute error against always guessing the training median, and the share of the spread
     explained (R squared)."""
-    from sklearn.model_selection import GroupKFold
+    folds, res, _ = _done or _folds_and_full(node, X, y, g, w, True)
     pe, pb = np.zeros(len(y)), np.zeros(len(y))
-    for tr, te in GroupKFold(n_splits=min(6, g.nunique())).split(X, y, g):
-        pb[te] = float(np.median(y.iloc[tr]))
-        pe[te] = _ebm(g.iloc[tr].nunique(), True).fit(X.iloc[tr], y.iloc[tr]).predict(X.iloc[te])
+    for (tr, te), r in zip(folds, res):
+        pb[te] = r["base"]; pe[te] = r["glass"]
     yv = y.values.astype(float)
     r2 = lambda p: round(1 - float(np.sum((yv - p) ** 2) / np.sum((yv - yv.mean()) ** 2)), 3)
     out = {"glass box": {"mae_s": round(float(np.mean(np.abs(yv - pe))), 1), "r2": r2(pe)},
@@ -476,19 +504,13 @@ def readable_seconds(e, names, X):
     return sorted(out, key=lambda t: -t["importance"])
 
 
-def validate(node, df, X, y, g, w):
-    from sklearn.model_selection import GroupKFold
-    from sklearn.linear_model import LogisticRegression
-    base_cols = {"deaths": ["health_pct", "damage_taken_3s"], "kill_conversion": ["burst_damage", "target_health_pct"],
-                 "npc_loss": ["attackers", "defenders"], "lord_kill": ["attackers", "defenders"]}[node]
+def validate(node, df, X, y, g, w, _done=None):
+    folds, res, _ = _done or _folds_and_full(node, X, y, g, w, False)
     preds = {n: np.zeros(len(y)) for n in ("simple baseline", "glass box")}
-    for tr, te in GroupKFold(n_splits=min(6, g.nunique())).split(X, y, g):
-        b = LogisticRegression(max_iter=1000).fit(X.iloc[tr][base_cols].fillna(0), y.iloc[tr], sample_weight=w.iloc[tr])
-        preds["simple baseline"][te] = b.predict_proba(X.iloc[te][base_cols].fillna(0))[:, 1]
-        e = _ebm(g.iloc[tr].nunique()).fit(X.iloc[tr], y.iloc[tr], sample_weight=w.iloc[tr])
-        preds["glass box"][te] = e.predict_proba(X.iloc[te])[:, 1]
+    for (tr, te), r in zip(folds, res):
+        preds["simple baseline"][te] = r["base"]; preds["glass box"][te] = r["glass"]
     out = {n: _wmetrics(p, y.values, w.values) for n, p in preds.items()}
-    out["baseline uses"] = base_cols
+    out["baseline uses"] = BASE_COLS[node]
     out["verdict"] = "adds to the simple baseline" if out["glass box"]["log_loss"] < out["simple baseline"]["log_loss"] - 0.0005 else "no better than the simple baseline yet"
     return out, preds["glass box"]
 
@@ -497,12 +519,12 @@ def fit_node(node, ids):
     df, X, y, g, w = _frame(node, ids)
     if node in REGRESSION:
         y = df["y"].astype(float)
-        val, held = validate_regression(node, df, X, y, g, w)
-        e = _ebm(g.nunique(), True).fit(X, y)
+        done = _folds_and_full(node, X, y, g, w, True)          # folds and the final fit side by side
+        val, held = validate_regression(node, df, X, y, g, w, done); e = done[2]
         terms = readable_seconds(e, list(X.columns), X)
     else:
-        val, held = validate(node, df, X, y, g, w)
-        e = _ebm(g.nunique()).fit(X, y, sample_weight=w)
+        done = _folds_and_full(node, X, y, g, w, False)
+        val, held = validate(node, df, X, y, g, w, done); e = done[2]
         terms = M.readable(e, list(X.columns), X)
     for t in terms:
         if "curve" in t: t["description"] = DESC[node].get(t["term"], t["description"])

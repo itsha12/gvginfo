@@ -169,21 +169,33 @@ def _metrics(p, y):
             "brier": round(float(np.mean((p - y) ** 2)), 3)}
 
 
+def _validate_fold(job):
+    """One held-out fold of the win model's honest test (top level so it can run in another process)."""
+    from sklearn.ensemble import HistGradientBoostingClassifier
+    Xtr, ytr, Xte, corr, n_tr = job
+    out = {}
+    m1, use = _fit(Xtr, ytr, corr, n_tr); out["glass box"] = _predict(m1, use, Xte)
+    if corr:
+        m0, use0 = _fit(Xtr, ytr, [], n_tr); out["glass box without corrections"] = _predict(m0, use0, Xte)
+    bb = HistGradientBoostingClassifier(max_iter=200, random_state=7).fit(Xtr.fillna(-999), ytr)
+    out["black box"] = bb.predict_proba(Xte.fillna(-999))[:, 1]
+    return out
+
+
 def validate(df, X, y, groups, corr, extra=()):
     """Held-out comparison (matches held out whole): team strength alone, the glass box with and without corrections,
     and a black box given the same variables."""
     from sklearn.model_selection import GroupKFold
     from sklearn.ensemble import HistGradientBoostingClassifier
+    import parallel
     k = min(6, groups.nunique())
     preds = {n: np.zeros(len(y)) for n in ("strength only", "glass box", "glass box without corrections", "black box")}
-    for tr, te in GroupKFold(n_splits=k).split(X, y, groups):
-        n_tr = groups.iloc[tr].nunique()
+    folds = list(GroupKFold(n_splits=k).split(X, y, groups))
+    # every fold's fits are independent: side by side on all cores (parallel.py), same results as one after another
+    res = parallel.run(_validate_fold, [(X.iloc[tr], y.iloc[tr], X.iloc[te], corr, groups.iloc[tr].nunique()) for tr, te in folds])
+    for (tr, te), r in zip(folds, res):
         preds["strength only"][te] = 1 / (1 + np.exp(-strength_score(X.iloc[te])))
-        m1, use = _fit(X.iloc[tr], y.iloc[tr], corr, n_tr); preds["glass box"][te] = _predict(m1, use, X.iloc[te])
-        if corr:
-            m0, use0 = _fit(X.iloc[tr], y.iloc[tr], [], n_tr); preds["glass box without corrections"][te] = _predict(m0, use0, X.iloc[te])
-        bb = HistGradientBoostingClassifier(max_iter=200, random_state=7).fit(X.iloc[tr].fillna(-999), y.iloc[tr])
-        preds["black box"][te] = bb.predict_proba(X.iloc[te].fillna(-999))[:, 1]
+        for n, v in r.items(): preds[n][te] = v
     if not corr: preds.pop("glass box without corrections")
     out = {}
     for n, p in preds.items():

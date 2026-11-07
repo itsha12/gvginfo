@@ -1,0 +1,109 @@
+name: Train batch
+
+# Runs a training batch for the replay-analysis engine on GitHub's machines (4 cores) instead of in a Claude chat:
+# optionally picks random matches and fetches their replays, adds every stored replay not yet trained on as the next
+# batch, rebuilds the analysis and the held-out models (from the prepared data saved on the "cache" branch), writes
+# the learning report, saves the cache back and commits the results to main. Claude then reads
+# data/model/reports/latest.md and explains it. Started by hand (Actions tab, or Claude with gh api).
+on:
+  workflow_dispatch:
+    inputs:
+      pick:
+        description: "Random matches to pick and fetch first (0 = use replays already stored or requested)"
+        default: "0"
+      add_batch:
+        description: "Add the stored replays not yet trained on as a new batch (no = just rebuild the report)"
+        type: choice
+        options: ["yes", "no"]
+        default: "yes"
+      note:
+        description: "Note for the batch (e.g. why these matches were chosen)"
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: replays
+  cancel-in-progress: false
+
+jobs:
+  train:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: .github/workflows/train-requirements.txt
+      - name: Install the model libraries (same versions as the chat workspace)
+        run: pip install -r .github/workflows/train-requirements.txt
+      - name: Set up git
+        run: |
+          git config --global user.name "gvginfo-bot"
+          git config --global user.email "gvginfo-bot@users.noreply.github.com"
+          git fetch --depth 1 origin +replays:refs/remotes/origin/replays || true
+      - name: Pick random matches
+        if: ${{ github.event.inputs.pick != '0' && github.event.inputs.pick != '' }}
+        working-directory: tools/replay_analysis
+        run: python3 batch.py pick ${{ github.event.inputs.pick }}
+      - name: Fetch requested replays
+        run: |
+          git clone --depth 1 --branch replays "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" store
+          rm -rf store/probe
+          MAX_FETCH=500 DELAY_MS=4000 node tools/gvgreport/replays.mjs store
+          cd store
+          git add -A
+          if ! git diff --cached --quiet; then git commit -qm "Add replays (training batch)" && git push origin replays; fi
+          cd .. && rm -rf store
+          git fetch --depth 1 origin +replays:refs/remotes/origin/replays
+      - name: Load saved prepared data
+        working-directory: tools/replay_analysis
+        run: python3 cache.py sync pull
+      - name: Add the batch
+        if: ${{ github.event.inputs.add_batch == 'yes' }}
+        working-directory: tools/replay_analysis
+        env:
+          NOTE: ${{ github.event.inputs.note }}
+        run: |
+          python3 batch.py add
+          python3 - <<'EOF'
+          import json, os
+          p = "../../data/model/batches.json"; b = json.load(open(p))
+          if os.environ.get("NOTE"): b["batches"][-1].setdefault("note", os.environ["NOTE"])
+          json.dump(b, open(p, "w"), indent=1)
+          EOF
+      - name: Analyse every match
+        working-directory: tools/replay_analysis
+        run: |
+          python3 analyze.py --all --out /tmp/ga > /dev/null
+          python3 library.py build > /dev/null
+      - name: Held-out models
+        working-directory: tools/replay_analysis
+        run: python3 cache.py warm
+      - name: Learning report
+        working-directory: tools/replay_analysis
+        run: |
+          python3 learning.py
+          python3 status.py sync > /dev/null
+      - name: Save prepared data
+        working-directory: tools/replay_analysis
+        run: python3 cache.py sync push
+      - name: Commit the results
+        run: |
+          git add -A data/model knowledge replays/requests.txt
+          git diff --cached --quiet && { echo "Nothing to commit."; exit 0; }
+          git commit -qm "Training batch: learning report (Train batch workflow)"
+          for i in 1 2 3 4 5; do git pull -q --rebase origin main && git push -q origin HEAD:main && break; sleep 10; done
+      - name: Summary
+        if: always()
+        run: |
+          echo "## Learning report" >> "$GITHUB_STEP_SUMMARY"
+          [ -f data/model/reports/latest.md ] && sed -n '1,30p' data/model/reports/latest.md >> "$GITHUB_STEP_SUMMARY" || echo "No report." >> "$GITHUB_STEP_SUMMARY"
