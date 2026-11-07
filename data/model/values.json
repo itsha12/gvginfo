@@ -97,7 +97,7 @@
    "matches": 61,
    "result": -6.2,
    "result_90": [
-    -9.8,
+    -9.7,
     -2.5
    ],
    "model": -2.5,
@@ -142,10 +142,10 @@
    "matches": 17,
    "result": 2.1,
    "result_90": [
-    -2.1,
-    8.9
+    -2.0,
+    9.0
    ],
-   "model": 2.9,
+   "model": 2.8,
    "model_90": [
     -0.3,
     6.1
@@ -157,7 +157,7 @@
    "matches": 61,
    "result": -4.8,
    "result_90": [
-    -7.4,
+    -7.3,
     -2.5
    ],
    "model": -4.9,
@@ -172,10 +172,10 @@
    "matches": 61,
    "result": -5.2,
    "result_90": [
-    -8.2,
-    -2.2
+    -8.1,
+    -2.1
    ],
-   "model": -3.2,
+   "model": -3.1,
    "model_90": [
     -4.4,
     -2.0
@@ -200,7 +200,7 @@
   "death: team not boosted": {
    "n": 1033,
    "matches": 61,
-   "result": -2.1,
+   "result": -2.0,
    "result_90": [
     -5.9,
     2.1
@@ -292,13 +292,13 @@
    "matches": 58,
    "result": -7.4,
    "result_90": [
-    -11.4,
+    -11.3,
     -3.8
    ],
-   "model": -5.9,
+   "model": -5.8,
    "model_90": [
     -8.5,
-    -3.3
+    -3.2
    ],
    "clear": true
   }
@@ -395,7 +395,7 @@
       518.5,
       839.0
      ],
-     "result_chance_change": 31.7,
+     "result_chance_change": 31.5,
      "win_points": 1.55
     },
     {
@@ -405,8 +405,8 @@
       0.4,
       0.56
      ],
-     "result_chance_change": 34.3,
-     "win_points": 1.68
+     "result_chance_change": 34.1,
+     "win_points": 1.67
     },
     {
      "term": "target_health_pct",
@@ -415,8 +415,8 @@
       0.0,
       38.5
      ],
-     "result_chance_change": 25.9,
-     "win_points": 1.27
+     "result_chance_change": 25.8,
+     "win_points": 1.26
     },
     {
      "term": "target_healers_in_range",
@@ -435,8 +435,8 @@
       459.0,
       901.0
      ],
-     "result_chance_change": 23.0,
-     "win_points": 1.13
+     "result_chance_change": 22.9,
+     "win_points": 1.12
     },
     {
      "term": "enemy_prots",
@@ -445,8 +445,8 @@
       5.5,
       6.5
      ],
-     "result_chance_change": 19.9,
-     "win_points": 0.98
+     "result_chance_change": 19.7,
+     "win_points": 0.97
     },
     {
      "term": "target_prot_up",
@@ -466,7 +466,7 @@
       1.45
      ],
      "result_chance_change": -14.8,
-     "win_points": -0.73
+     "win_points": -0.72
     }
    ]
   },
@@ -533,7 +533,7 @@
       18.75,
       28.65
      ],
-     "result_chance_change": -6.8,
+     "result_chance_change": -6.7,
      "win_points": 0.17
     },
     {
