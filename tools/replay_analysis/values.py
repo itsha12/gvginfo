@@ -98,9 +98,9 @@ def _groups(e):
         if e["healer"]:   # Denning (K14): a monk dying in its own base just before the base res is likely deliberate
             g.append("death: healer in own base or pit, back within 15 s (likely deliberate)"
                      if d <= 15 and e.get("zone") in ("own base", "own pit") else "death: healer, other")
-        # OG comms: 'we are boosting, so we can die for NPCs'
-        if e.get("morale") is not None:
-            g.append("death: team boosted (morale above zero)" if e["morale"] > 0 else "death: team not boosted")
+        # boosted / not boosted split dropped (Denning, K18): a death while boosted is no different in kind; the split measured
+        # where the team stood (later, already winning), not the death. Matched by minute and win chance it showed no
+        # consistent difference (133 matches)
         return g
     if k == "footman":
         return ["footman lost (base NPC)"]

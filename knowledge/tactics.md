@@ -438,10 +438,14 @@ against general principles rather than past games. Match-by-match evidence lives
 - `K17` **OG comms:** Fight the player carrying a big death penalty. **Claude (data, 61 matches):** players in a fight
   with 15%+ death penalty died within 10 s 4.9% of the time against 1.2% with none, at the same local numbers (partly
   because the same players keep being reachable). [ohno v One]
-- `K18` **Denning:** A death while boosted costs more because boosted teams are usually ahead, and the death loses the
-  lead. **Claude (data, `values.py`, 61 matches):** a death while the team was boosted cost about 22 win points (model
-  view 7) against about 3 when not boosted, so OG's "we are boosting, so we can die for NPCs" is not supported as a
-  trade. [ohno v One]
+- `K18` **Denning:** A death while boosted means nothing different from a death not boosted; if anything it should cost
+  less, since the boost offsets the death penalty. Boosting is a proxy for a late, winning position: boosts take a
+  while to come, so those deaths come later, and a team already winning has more win chance to lose. Fights while
+  boosted get no variable of their own. **Claude (data, 133 matches):** boosted deaths came at a median 13.1 min with
+  the team at 64% to win, against 7.8 min and 13% for the rest, which explains the gap (about 20 win points against 3).
+  Compared at the same minute and win chance there is no consistent difference (some cells favour boosted deaths, some
+  the others, each with few cases). The split is gone from `values.py`. OG's "we are boosting, so we can die for NPCs"
+  stays untested as a trade. [ohno v One]
 - `K5` **Bounty:** A team that always has someone timed or stuck has no moment to play tactics and gets overwhelmed.
   Resurrecting too late wastes time; teams under pressure are often scared to go for the res.
 - `K6` **Bounty:** Target choice costs time: 30 to 40 s failing to kill a monk is fine at 2 minutes, not at 22. A build

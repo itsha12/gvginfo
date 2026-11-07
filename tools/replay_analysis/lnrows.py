@@ -7,6 +7,24 @@ NEVER = 60
 CAP_AT = 10
 
 
+
+def _blind_secs(blinds, t0, t1):
+    """Seconds spent Blind inside [t0, t1], added over the players Blinded (Denning: time Blind, not the count).
+    Overlapping Blinds on one player count once."""
+    by = {}
+    for r in blinds:
+        e = r.get("end", r["t"] + 3)        # records from before the end was kept: Blind's usual few seconds
+        s, e = max(r["t"], t0), min(e, t1)
+        if e > s: by.setdefault(r["target"], []).append((s, e))
+    tot = 0.0
+    for iv in by.values():
+        iv.sort(); cs, ce = iv[0]
+        for s, e in iv[1:]:
+            if s > ce: tot += ce - cs; cs, ce = s, e
+            else: ce = max(ce, e)
+        tot += ce - cs
+    return round(tot, 1)
+
 def _ctx(rid):
     """What every node's rows need from one match."""
     import tq, eventlayer as EL
@@ -149,7 +167,7 @@ def _build(node, rid, V):
                 enemy_prots_10s=round(sum(1 for x in team.get("prot_casts", []) if x[1] == fg and t0 <= x[0] <= t1) / w, 2), enemy_heal_s=round(eh, 1),
                 spikes_10s=round(len(sp) / w, 2), spike_spread=statistics.median([x["spread_s"] for x in sp]) if sp else None,
                 spikes_on_healers=round(sum(1 for x in sp if x["target_class"] == "healer") / len(sp), 2) if sp else None,
-                blinds_on_own_10s=round(sum(1 for x in R.get("blinds", []) if x["team"] == fg and t0 <= x["t"] <= t1) / w, 2),
+                blind_secs_on_own_10s=round(_blind_secs([x for x in R.get("blinds", []) if x["team"] == fg and x.get("attacker", True)], t0, t1) / w, 2),
                 strength_gap=gaps[tg])
     elif node == "fight_outcome":
         for fi, f in enumerate(a.get("fights") or []):
@@ -166,7 +184,7 @@ def _build(node, rid, V):
                 pe = [c["defensive_share"] for c in R.get("peel", []) if c["fight"] == fi and c["team"] == x]
                 s_ = [r for r in R.get("strips", []) if r["team"] == x and t0 <= r["t"] <= t1]
                 sa = [r for r in s_ if r.get("available")]
-                bl = [r for r in R.get("blinds", []) if r["team"] == x and t0 <= r["t"] <= t1]
+                blall = R.get("blinds", [])
                 sp = [r for r in R.get("spikes", []) if r["team"] == x and t0 <= r["t"] <= t1]
                 hx = [r for r in R.get("hexes", []) if r["team"] == x and t0 <= r["t"] <= t1 and r.get("value", 0) > 0]
                 hr = [r for r in R.get("hex_removals", []) if r["team"] == x and t0 <= r["t"] <= t1 and r.get("available")]
@@ -175,7 +193,8 @@ def _build(node, rid, V):
                         "blind_att": sum(c["attacks_while_blind"] for c in cs) / pl if pl else None,
                         "peel": statistics.mean(pe) if pe else None, "strip_right": sum(r["right_target"] for r in sa) / len(sa) if sa else None,
                         "strip_value": sum(r["value"] for r in s_) / max(t1 - t0, 1) * 10,
-                        "blind_front": sum(1 for r in bl if r["target_class"] == "frontline"), "blind_def": sum(1 for r in bl if r["defensive"]),
+                        "blind_front": _blind_secs([r for r in blall if r["team"] == x and r["target_class"] == "frontline"], t0, t1),
+                        "blind_def": _blind_secs([r for r in blall if r["team"] == x and r["defensive"]], t0, t1),
                         "spread": statistics.median([r["spread_s"] for r in sp]) if sp else None, "spikes": len(sp),
                         "dps": _team_dps(team, x, t0, t1, V, roles_alive(x, f["start"])),
                         "hex_secs": hs, "hex_right": sum(r["right_hex"] for r in hr) / len(hr) if hr else None}
@@ -185,7 +204,7 @@ def _build(node, rid, V):
             if tg != f["team"]: ln = ln[::-1]
             add(tg, f["start"], int(f.get("opponent_won_fight") == tg), own_local=ln[0], enemy_local=ln[1],
                 peel_defensive_diff=df("peel"), ready_interrupt_diff=df("ready"), dazed_casts_diff=df("dazed"), blind_attacks_diff=df("blind_att"),
-                strip_right_diff=df("strip_right"), strip_value_diff=df("strip_value"), blind_front_diff=df("blind_front"), blind_defensive_diff=df("blind_def"),
+                strip_right_diff=df("strip_right"), strip_value_diff=df("strip_value"), blind_front_secs_diff=df("blind_front"), blind_defensive_secs_diff=df("blind_def"),
                 spike_spread_diff=df("spread"), spikes_diff=df("spikes"), dps_v_usual_diff=df("dps"), hex_secs_diff=df("hex_secs"), hex_right_diff=df("hex_right"),
                 strength_gap=gaps[tg])
     elif node == "split_chance":

@@ -123,6 +123,17 @@ the commentary transcripts and step 3 (discovery).
   flag -4.6 against pushing the pit (clear, smaller than at 53 matches); boost clock, not running and falling back
   -4.0 (clear). Values: a death -5.0, a death while the team is boosted -19.8, a knight -4.8, the Bodyguard -3.8, a
   capture +1.7.
+- After batch 9, from Denning (engine changed, not yet rebuilt):
+  - Blind is measured as time spent Blind, not the number of Blinds (eventlayer.py keeps each Blind's end and whether
+    the target is a physical attacker; lnrows.py `_blind_secs`). Every Blind now counts: the replays leave the caster
+    blank on 56% of Blinds (799 on players in 133 matches, 353 with a caster), and the old code dropped those.
+    Features: `blind_secs_on_own_10s` (K.11 -> K.4, own attackers only), `blind_front_secs_diff` and
+    `blind_defensive_secs_diff` (P.19 -> R.2). K.11 -> K.4 reset from rejected to hypothesis.
+  - No boosted-death variable. The boosted / not boosted death split is gone from values.py: it measured position
+    (later in the match, already winning), not the death (tactics K18 revised with the matched comparison).
+  - The event-layer, learned-node and value data for all 133 matches rebuild on the next Train batch run. Expect the
+    `learned` part to be much slower that one time (perhaps 30 to 40 min). Make the forensics position fix first if
+    Denning approves it, so there is only one rebuild.
 - Faults found in batch 9's TQs (not fixed yet):
   1. forensics.position uses the median over the whole window before a death, so a ranged spike that closes in for the
      last seconds reads "not in position" (TQ 1: Apes Necromancer at 1:54 in d9d75e55 shown 1,648 from the nearest

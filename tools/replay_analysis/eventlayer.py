@@ -6,8 +6,9 @@ Per match (cached: cache.prepared("eventlayer", rid)), lists of records:
              was a prot, whether the stripper's team was hitting that target (3 s), useful = a prot off a target under
              attack, or an enchantment off a midline/frontline player (defensive strip); plus removal casts that removed
              nothing (wasted)
-  blinds     every Blind put on an enemy: on a frontline player or not, and whether that player had hit the blinder's
-             healers in the 3 s before (defensive Blind)
+  blinds     every Blind put on an enemy, with when it ended (time spent Blind is what counts, Denning): on a frontline
+             player or not, on a physical attacker or not, and whether that player had hit the blinder's healers in the
+             3 s before (defensive Blind)
   hexes      every hex on a player: target healer or not, how long it stayed, removed or expired
   peel       frontline damage: share on enemies within 1,200 of the frontliner's own healers (defensive peel), on enemy
              healers, on others; per player per fight
@@ -279,11 +280,20 @@ def build(rid):
                 out["strips_wasted"].append({"t": round(end, 1), "team": tag[m.team(by)], "by": m.roles[by], "skill": sk, "target": m.roles[tgt]})
     # ---- Blind on enemies
     for e in m.o.get("effects", []):
-        if e[2] != "c" or e[7] != "blind" or e[0] is None or e[5] not in m.PL or e[4] not in m.PL or m.team(e[4]) == m.team(e[5]): continue
+        # the caster is unknown for over half of the Blinds in the replays (44% known in 133 matches): the Blind is credited
+        # to the target's opponents, which is all the time-Blind measures need
+        if e[2] != "c" or e[7] != "blind" or e[0] is None or e[5] not in m.PL: continue
+        if e[4] in m.PL and m.team(e[4]) == m.team(e[5]): continue
         t = e[0] / 10; tgt, by = e[5], e[4]
-        own_heal = [h for h in heal if m.team(h) == m.team(by)]
+        foe_tm = next(x for x in {m.team(q) for q in m.PL} if x != m.team(tgt))
+        own_heal = [h for h in heal if m.team(h) == foe_tm]
         hit_heal = sum(x[3] for h in own_heal for x in F.damage_on(h, t - 3, t) if x[1] == tgt)
-        out["blinds"].append({"t": round(t, 1), "team": tag[m.team(by)], "by": m.roles[by], "target": m.roles[tgt], "target_class": cls(tgt),
+        # Denning: the time spent Blind matters, not the number of Blinds. end = when the Blind ended (expired, removed or
+        # the target died; the match end if never seen ending); attacker = a player whose damage comes from attacks
+        # (frontline, rangers, paragons), the only players Blind slows
+        t_end = min(e[1] / 10, end_t) if e[1] is not None else end_t
+        out["blinds"].append({"t": round(t, 1), "end": round(max(t_end, t), 1), "team": tag[foe_tm], "by": m.roles[by] if by in m.PL else None, "target": m.roles[tgt],
+                              "target_class": cls(tgt), "attacker": cls(tgt) == "frontline" or m.A[tgt].get("p") in ("Ranger", "Paragon"),
                               "defensive": hit_heal > 0})
     # ---- hex removal casts on allies: what was removed and what the remover could have chosen
     removed_by = {}

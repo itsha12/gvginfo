@@ -82,7 +82,7 @@ SPEC = {
     "K.5": {"enemy_prots_10s": "enemy prot casts per 10 s", "enemy_heal_s": "enemy healing per second"},
     "P.2": {"spikes_10s": "own spikes per 10 s", "spike_spread": "median spread of own spikes (s)"},
     "P.1": {"spikes_on_healers": "share of own spikes on healers"},
-    "K.11": {"blinds_on_own_10s": "Blinds on own players per 10 s"},
+    "K.11": {"blind_secs_on_own_10s": "seconds own attackers spent Blind, per 10 s"},
     "C.strength": {"strength_gap": "team strength gap"}}, {"window_s": "seconds the power play lasted"}),
  "fight_outcome": ("R.2", {
     "A.allocation": {"own_local": "own players in the fight", "enemy_local": "enemy players in the fight"},
@@ -91,7 +91,7 @@ SPEC = {
              "dazed_casts_diff": "casts while Dazed, per cast, own minus enemy", "blind_attacks_diff": "attacks while Blind per player, own minus enemy"},
     "P.18": {"strip_right_diff": "share of strips on the best target in range, own minus enemy",
              "strip_value_diff": "value of enchantments stripped per 10 s, own minus enemy"},
-    "P.19": {"blind_front_diff": "Blinds on the enemy frontline, own minus enemy", "blind_defensive_diff": "defensive Blinds, own minus enemy"},
+    "P.19": {"blind_front_secs_diff": "seconds the enemy frontline spent Blind, own minus enemy", "blind_defensive_secs_diff": "seconds Blind from defensive Blinds, own minus enemy"},
     "P.2": {"spike_spread_diff": "median spike spread (s), own minus enemy", "spikes_diff": "spikes, own minus enemy"},
     "K.1": {"dps_v_usual_diff": "damage against the usual of the players alive, own minus enemy"},
     "P.5": {"hex_secs_diff": "value-weighted seconds hexes stayed on own players, own minus enemy",
