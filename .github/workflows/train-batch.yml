@@ -11,6 +11,9 @@ on:
       pick:
         description: "Random matches to pick and fetch first (0 = use replays already stored or requested)"
         default: "0"
+      months:
+        description: "Pick only from these months, comma-separated (e.g. 2026-10,2026-11; blank = any month)"
+        default: ""
       add_batch:
         description: "Add the stored replays not yet trained on as a new batch (no = just rebuild the report)"
         type: choice
@@ -53,7 +56,9 @@ jobs:
       - name: Pick random matches
         if: ${{ github.event.inputs.pick != '0' && github.event.inputs.pick != '' }}
         working-directory: tools/replay_analysis
-        run: python3 batch.py pick ${{ github.event.inputs.pick }}
+        env:
+          MONTHS: ${{ github.event.inputs.months }}
+        run: python3 batch.py pick ${{ github.event.inputs.pick }} ${MONTHS:+--months "$MONTHS"}
       - name: Fetch requested replays
         run: |
           git clone --depth 1 --branch replays "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" store
