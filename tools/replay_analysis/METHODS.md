@@ -580,6 +580,31 @@ still bends the wrong way at the extremes, so seconds of flag lead are sometimes
   match; `eventlayer.py report [--all]` writes data/model/reports/measures.md. Power plays: every size counts (Denning:
   an 8v7 while the enemy runs is a power play); TQ 3 picks the one that cost the most win chance and benchmarks it
   against power plays of the same size.
+- Step 2a of the learned causal map (`eventlayer.py`, Denning 2026-11-07: what counts as right comes from data): every
+  strip is judged against every enchantment on an enemy in the stripper's cast range at that moment; every hex-removal
+  cast against every hex on an ally in the remover's range (and how long the removed hex had been on); every player's
+  fight damage against its role's usual (median damage per second on enemy players per player per fight; class median
+  under 20 cases). Values (`eventlayer.py values` -> data/benchmarks/eventlayer_values.json, rebuilt each batch): an
+  enchantment = its recorded output (gvg.report damage + healing + prevented) per second up, plus the drop in the
+  bearer's output in the 10 s after a strip (attunements record no output of their own); a hex = its recorded damage per
+  second on, plus the drop in the hexed player's output while it was on. Both drops are differences in differences
+  (the same change for allies of the same class over the same seconds is subtracted, so the fight's own rise is taken
+  out); 5+ cases needed; negative values read as no measurable cost. Limits: the values include every trained match
+  (not time ordered); output means damage and healing only (energy, speed and armor show only through them).
+- Step 2b of the learned causal map (`learnednodes.py`): nine node models built from the event layer, each using only
+  the causal-map links into it, glass box (main effects only), held out by match (6 folds): run outcome (R.3; control
+  and damage on the runner read at 5, 15 and 30 s into every run), flag swing (R.3; flag lead change over the next
+  60 s), capture speed (R.3; seconds of an enemy capture), power play (K.4; any size kills), fight outcome (R.2; play
+  before the fight's first death; fights.py stores fights from the losing side, so the side read alternates), split
+  chance (A.allocation; a split starts in the next 30 s), split answer (P.11; seconds to the first defender, 60 =
+  never), split effect (R.5; a pit NPC killed), collapse (R.1; a split member dies). A link's strength = the held-out
+  loss without the link's features minus with them (same folds); supported above twice its spread across folds,
+  rejected when dropping it helps by more than that, else not clear yet. Written into causal_map.json (`measured`, per
+  node; status changed only from hypothesis) and appended to data/model/link_log.json each run; links a node needed and
+  the map lacked were added as hypotheses (logged, with source). New map nodes: P.17 wrong casts, P.18 enchantment
+  strips, P.19 Blind on enemies; P.5 now covers hex removal. `whatif(node, row, changes)` reads a node again with
+  features changed (for step 4). The power-play node keeps the window's length as exposure (a longer power play has
+  more time to kill).
 - Correction (Denning, batch 7): lord_dps_own and lord_dps_enemy capped at 5 points (data/model_corrections.json).
 - Usual play includes the map (usual.py `MAP_COLS`): geometry in the similarity and, with the build axes, the adjustment;
   choice effects split by map name once a map has 10+ cases of the choice and of the usual one.

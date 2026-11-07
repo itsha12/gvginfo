@@ -103,7 +103,7 @@ jobs:
         run: python3 cache.py sync push
       - name: Commit the results
         run: |
-          git add -A data/model knowledge replays/requests.txt
+          git add -A data/model data/benchmarks knowledge replays/requests.txt
           git diff --cached --quiet && { echo "Nothing to commit."; exit 0; }
           git commit -qm "Training batch: learning report (Train batch workflow)"
           for i in 1 2 3 4 5; do git pull -q --rebase origin main && git push -q origin HEAD:main && break; sleep 10; done

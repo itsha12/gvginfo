@@ -192,6 +192,17 @@ def report():
                 if "curve" in t: L.append(f"- **{t['term']}** ({t['description']}) {curve_words(t)}")
         L.append("")
     _lap("node models")
+    # step 2 of the learned causal map: event-layer values (2a) and the learned nodes with every link's measured strength
+    import eventlayer as EL, learnednodes as LN, causal_map as CM
+    EL.warm(ids); V_ = EL.values(ids)
+    bs_ = M.batches(); last2 = [m for b in bs_[-2:] for m in b["matches"]]
+    open(os.path.join(REPO, "data", "model", "reports", "measures.md"), "w").write("\n".join(EL.report(last2)) + "\n")
+    _lap("event layer and values")
+    ln_fits = LN.fit_all(ids, V=V_)
+    L += LN.report_lines(ln_fits)
+    LN.write_map(ln_fits)
+    CM.render()
+    _lap("learned nodes")
     # the usual play (usual.py): needs the analysis files (analyze.py --all --out /tmp/ga)
     import usual as U, copy
     tq_recs = tq_res = None

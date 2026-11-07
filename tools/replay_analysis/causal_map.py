@@ -43,6 +43,15 @@ def render():
                 for (why, src, st, conf, tac), frm in groups.items():
                     L.append(f"- **{', '.join(frm)}**: {why} ({src}{', confirmed' if conf and src != 'Denning' else ''}; {st}"
                              + (f"; {' '.join('`' + t + '`' for t in tac)}" if tac else "") + ")")
+            meas = {}
+            for l in into.get(nid, []):
+                for node, v in (l.get("measured") or {}).items(): meas[(l["from"], node)] = v
+            if meas:
+                L.append("")
+                L.append("Measured on unseen matches (learnednodes.py; gain = how much worse the node predicts without the link):")
+                for (frm, node), v in sorted(meas.items(), key=lambda kv: -kv[1]["strength"]):
+                    L.append(f"- {nodes[frm]['name']} (`{frm}`), {node.replace('_', ' ')} node: gain {v['strength']:+} (+/- {v['plus_minus']}, "
+                             f"{v['metric']}), {v['status']}, {v['matches']} matches")
             L.append("")
     L += ["## Change log", ""] + [f"- {x['date']}: {x['change']} ({x['by']})" for x in m["log"]]
     out = os.path.join(REPO, "knowledge", "causal-map.md")
