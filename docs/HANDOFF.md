@@ -125,10 +125,12 @@ convert it; (4) NPCs lost, why, and how to prevent it. Each answered with data, 
    Batch 8 (2026-11-07): 22 matches (20 picked from October and November, 2 already stored). Same day: flag spawns and
    stands per map pooled over all replays (`benchmarks.py spawns`; Imperial, Nomad's and Druid's had double-length
    flag runs) and TQ 1 cites the swing's final capture. Rebuilt: glass box 0.385 against strength alone 0.412 (first
-   time ahead; not yet clear). Waiting on Denning: drop healing_monks_own and healing_monks_enemy (one value per team
-   per match, almost all 3; 0 monks = 1 team-match, 4 = 5; drop 0.367, cap 5 points 0.382, as now 0.385). Known gap:
-   the lead-up trace only starts from an outnumbered main, so an isolated healer (batch 8 TQ 2, Dz 8 Monk alone in its
-   pit at 25:07) gets no "how it got there"; extend it to when the player left its group.
+   time ahead; not yet clear). Denning then approved dropping healing_monks_own and healing_monks_enemy (0.367 after).
+   Built the causal chain (`chain.py`, METHODS.md): TQs 1, 2 and 4 show how the game state came about (back to the last
+   reset or 3 minutes, the 2 biggest causes per link, ongoing splits and isolated players included) and the 2 fixes that
+   mattered most; `forensics.disruption` measures defensive play (Denning's definition for Mesmers). Next: check with
+   Denning that the chains read the way he reasons; links still missing: a power play's own lead-up (TQ 3), the enemy's
+   side of a flag swing (why their capture was fast), and pricing a late split answer (no measured value yet).
    Order after new replays: `benchmarks.py spawns`, then `benchmarks.py carry`, then commit both before a batch.
 1. Bounty's six matches (ask Denning for the transcripts), then Nick's one. Training batches stay paused until then.
 2. Built in session 4o (2026-11-07), for Denning to check on the next real batch: the learning report's section "The
