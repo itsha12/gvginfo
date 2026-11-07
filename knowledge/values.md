@@ -12,20 +12,20 @@ Win points for the team it happened to, from 61 matches. **Result** = how matche
 | death: against a spike build | 288 | -7.2 | -10.6 to -2.6 | -2.5 | yes |
 | death: against other builds | 916 | -4.2 | -7.1 to -1.4 | -3.9 | yes |
 | death: back within 20 s | 190 | -1.7 | -5.2 to +2.0 | -0.1 | no |
-| death: down 20 to 60 s | 447 | -6.2 | -9.7 to -2.5 | -2.5 | yes |
+| death: down 20 to 60 s | 447 | -6.2 | -9.8 to -2.5 | -2.5 | yes |
 | death: down 60 s or more | 567 | -5.0 | -7.8 to -2.3 | -5.6 | yes |
 | death: healer | 411 | -4.4 | -6.9 to -2.0 | -4.4 | yes |
-| death: healer in own base or pit, back within 15 s (likely deliberate) | 26 | +2.1 | -2.0 to +9.0 | +2.8 | no |
-| death: healer, other | 385 | -4.8 | -7.3 to -2.5 | -4.9 | yes |
-| death: not a healer | 793 | -5.2 | -8.1 to -2.1 | -3.1 | yes |
+| death: healer in own base or pit, back within 15 s (likely deliberate) | 26 | +2.1 | -2.1 to +8.9 | +2.9 | no |
+| death: healer, other | 385 | -4.8 | -7.4 to -2.5 | -4.9 | yes |
+| death: not a healer | 793 | -5.2 | -8.2 to -2.2 | -3.2 | yes |
 | death: team boosted (morale above zero) | 171 | -22.3 | -36.1 to -9.7 | -7.0 | yes |
-| death: team not boosted | 1033 | -2.0 | -5.9 to +2.1 | -3.0 | no |
+| death: team not boosted | 1033 | -2.1 | -5.9 to +2.1 | -3.0 | no |
 | footman lost (base NPC) | 188 | +2.7 | -2.1 to +7.4 | +1.5 | no |
 | pit NPC lost (any): taken by a spike build | 88 | -4.9 | -9.3 to +1.0 | -1.5 | no |
 | pit NPC lost (any): taken by other builds | 417 | -1.9 | -4.8 to +1.0 | -1.3 | no |
 | pit NPC lost: archer | 291 | -0.1 | -2.5 to +2.8 | +0.6 | no |
 | pit NPC lost: bodyguard | 71 | -2.1 | -6.0 to +0.8 | -0.1 | no |
-| pit NPC lost: knight | 143 | -7.4 | -11.3 to -3.8 | -5.8 | yes |
+| pit NPC lost: knight | 143 | -7.4 | -11.4 to -3.8 | -5.9 | yes |
 
 **What causes are worth.** A node model's strongest range for each top variable, turned into win points: the change in the result's chance (at its real rate) times the result's value.
 
@@ -41,14 +41,14 @@ Win points for the team it happened to, from 61 matches. **Result** = how matche
 
 *kill conversion* (per burst, for the attacking team; result worth +4.9 points, base rate 29.7%):
 
-- damage in the 2 s burst 518.5 to 839: result chance +31.5 points, worth +1.55 win points
-- target's health ceiling 0.4 to 0.56: result chance +34.1 points, worth +1.67 win points
-- target health % when the burst started 0 to 38.5: result chance +25.8 points, worth +1.26 win points
+- damage in the 2 s burst 518.5 to 839: result chance +31.7 points, worth +1.55 win points
+- target's health ceiling 0.4 to 0.56: result chance +34.3 points, worth +1.68 win points
+- target health % when the burst started 0 to 38.5: result chance +25.9 points, worth +1.27 win points
 - target's healers in range 0 to 0.5: result chance +32.2 points, worth +1.58 win points
-- attacking minus target team strength 459 to 901: result chance +22.9 points, worth +1.12 win points
-- target team's prot skills 5.5 to 6.5: result chance +19.7 points, worth +0.97 win points
+- attacking minus target team strength 459 to 901: result chance +23.0 points, worth +1.13 win points
+- target team's prot skills 5.5 to 6.5: result chance +19.9 points, worth +0.98 win points
 - a prot on the target 0.5 to 1: result chance -7.7 points, worth -0.38 win points
-- match minute 0.3 to 1.45: result chance -14.8 points, worth -0.72 win points
+- match minute 0.3 to 1.45: result chance -14.8 points, worth -0.73 win points
 
 *npc loss* (per case, for the defending team; result worth -2.4 points, base rate 18.5%):
 
@@ -57,7 +57,7 @@ Win points for the team it happened to, from 61 matches. **Result** = how matche
 - own players alive outside the pit 0 to 0.5: result chance +17.6 points, worth -0.43 win points
 - share of the attacking team's live players in the pit (OG comms: merge before pushing the pit) 0.87 to 0.94: result chance +7.8 points, worth -0.19 win points
 - of which healers 0 to 0.5: result chance +15.9 points, worth -0.39 win points
-- attackers' measured damage per second against a Lord (benchmarks) 18.75 to 28.65: result chance -6.7 points, worth +0.17 win points
+- attackers' measured damage per second against a Lord (benchmarks) 18.75 to 28.65: result chance -6.8 points, worth +0.17 win points
 - enemy players in the pit 7.5 to 8: result chance +7.0 points, worth -0.17 win points
 - match minute 23.45 to 28: result chance -4.7 points, worth +0.12 win points
 

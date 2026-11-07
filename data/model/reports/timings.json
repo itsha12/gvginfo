@@ -1,18 +1,18 @@
 {
  "cores": 4,
  "seconds": {
-  "fit and honest test": 59.1,
+  "fit and honest test": 56.8,
   "integrity and honest test text": 2.1,
   "curves": 0.0,
   "interaction screen": 0.1,
-  "candidate variables": 253.2,
-  "surprises": 1.4,
-  "rulings": 0.1,
-  "node models": 222.4,
-  "usual play": 105.4,
+  "candidate variables": 124.6,
+  "surprises": 1.3,
+  "rulings": 0.0,
+  "node models": 183.4,
+  "usual play": 68.6,
   "values": 0.0,
-  "why chains": 43.6,
-  "snapshot": 5.3,
-  "why chains and snapshot": 0.0
+  "TQs": 37.6,
+  "snapshot": 5.4,
+  "questions": 0.0
  }
 }
