@@ -335,10 +335,18 @@ def s_usual(c):
     c["parts"]["usual"] = L
 
 
+def s_values_measure(c):
+    # measured where the usual play just loaded every match's held-out win chance (reused in memory: about 2 minutes
+    # saved against measuring it on another machine); written and priced after the node models (s_values)
+    import values as VAL
+    c["values_v"] = VAL.measure(c["ids"])
+    _lap("values (measure)")
+
+
 def s_values(c):
     # after the node models: the causes are priced from data/model/nodes/*.json
     import values as VAL
-    v = VAL.measure(c["ids"]); VAL.write(v)
+    v = c.get("values_v") or VAL.measure(c["ids"]); VAL.write(v)
     c["parts"]["values"] = ["## 8. What results and causes are worth", ""] + VAL.report_lines(v)
     _lap("values")
 
@@ -388,13 +396,13 @@ def report():
     """The whole report on one machine, section by section."""
     _lap("start")
     c = _ctx()
-    for fn in (s_head, s_lean, s_cands, s_surprises, s_rulings, s_nodes, s_learned, s_usual, s_values, s_tqs, s_snapshot):
+    for fn in (s_head, s_lean, s_cands, s_surprises, s_rulings, s_nodes, s_learned, s_usual, s_values_measure, s_values, s_tqs, s_snapshot):
         fn(c)
     return _write(c)
 
 
 # ---- split across machines (the Train batch workflow): parts in parallel, then finish
-PART_SECTIONS = {"main": (s_head, s_lean, s_surprises, s_rulings, s_learned, s_usual), "cands": (s_cands,)}
+PART_SECTIONS = {"main": (s_head, s_lean, s_surprises, s_rulings, s_learned, s_usual, s_values_measure), "cands": (s_cands,)}
 
 
 def part(name, out):
@@ -410,7 +418,7 @@ def part(name, out):
     json.dump({"part": name, "lines": c["parts"], "laps": _T["laps"], "seconds": round(time.time() - t0, 1)},
               open(os.path.join(out, f"part_{safe}.json"), "w"))
     if name == "main":
-        pickle.dump({"tq_recs": c.get("tq_recs"), "tq_res": c.get("tq_res")}, open(os.path.join(out, "main_recs.pkl"), "wb"))
+        pickle.dump({"tq_recs": c.get("tq_recs"), "tq_res": c.get("tq_res"), "values_v": c.get("values_v")}, open(os.path.join(out, "main_recs.pkl"), "wb"))
 
 
 def finish(src):
