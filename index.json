@@ -1,6 +1,6 @@
 {
  "format": "gvginfo.replay.v1",
- "updated": "2026-11-07T06:55:04.227Z",
+ "updated": "2026-11-07T10:29:01.453Z",
  "matches": {
   "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65": {
    "file": "2026-11/eea5ba87-ac20-5ba3-a6c9-965f11ca8a65.json.gz",
@@ -853,6 +853,426 @@
    "winner": "OG",
    "length_s": 535,
    "kb": 146,
+   "summary": true,
+   "trim": 3
+  },
+  "7209c1a1-20ff-5f4f-a176-9cf92f7c594c": {
+   "file": "2026-10/7209c1a1-20ff-5f4f-a176-9cf92f7c594c.json.gz",
+   "date": "2026-10-13T19:14:04.156Z",
+   "map": "Isle of Meditation",
+   "teams": [
+    "hdm",
+    "옷옷옷옷"
+   ],
+   "winner": "옷옷옷옷",
+   "length_s": 451,
+   "kb": 112,
+   "summary": true,
+   "trim": 3
+  },
+  "572c2f95-b108-5dea-a98d-e7f39ae64514": {
+   "file": "2026-11/572c2f95-b108-5dea-a98d-e7f39ae64514.json.gz",
+   "date": "2026-11-01T20:06:58.741Z",
+   "map": "Isle of Meditation",
+   "teams": [
+    "Men",
+    "hold"
+   ],
+   "winner": "Men",
+   "length_s": 1273,
+   "kb": 321,
+   "summary": true,
+   "trim": 3
+  },
+  "5eebef5f-5389-5323-a62a-cbf7a40f993a": {
+   "file": "2026-10/5eebef5f-5389-5323-a62a-cbf7a40f993a.json.gz",
+   "date": "2026-10-17T18:34:53.256Z",
+   "map": "Isle of the Dead",
+   "teams": [
+    "옷옷옷옷",
+    "hold"
+   ],
+   "winner": "옷옷옷옷",
+   "length_s": 248,
+   "kb": 52,
+   "summary": true,
+   "trim": 3
+  },
+  "93c42add-af78-5fb0-afd4-1a33706d541c": {
+   "file": "2026-10/93c42add-af78-5fb0-afd4-1a33706d541c.json.gz",
+   "date": "2026-10-03T03:13:06.345Z",
+   "map": "Isle of Meditation",
+   "teams": [
+    "DUM",
+    "chic"
+   ],
+   "winner": "chic",
+   "length_s": 406,
+   "kb": 105,
+   "summary": true,
+   "trim": 3
+  },
+  "4ff1ddfa-b03e-50f8-a919-c69f065eb20c": {
+   "file": "2026-10/4ff1ddfa-b03e-50f8-a919-c69f065eb20c.json.gz",
+   "date": "2026-10-28T02:18:40.312Z",
+   "map": "Isle of Meditation",
+   "teams": [
+    "RACK",
+    "push"
+   ],
+   "winner": "RACK",
+   "length_s": 691,
+   "kb": 168,
+   "summary": true,
+   "trim": 3
+  },
+  "df28f03b-5b7f-54b2-a843-819b5ce27974": {
+   "file": "2026-10/df28f03b-5b7f-54b2-a843-819b5ce27974.json.gz",
+   "date": "2026-10-17T18:13:44.964Z",
+   "map": "Isle of Solitude",
+   "teams": [
+    "chic",
+    "Fun"
+   ],
+   "winner": "Fun",
+   "length_s": 244,
+   "kb": 53,
+   "summary": true,
+   "trim": 3
+  },
+  "6dd8966c-f41b-5c3d-ae07-7344afb5c88c": {
+   "file": "2026-10/6dd8966c-f41b-5c3d-ae07-7344afb5c88c.json.gz",
+   "date": "2026-10-17T19:05:43.151Z",
+   "map": "Isle of Jade",
+   "teams": [
+    "MBP",
+    "Dz"
+   ],
+   "winner": "Dz",
+   "length_s": 1273,
+   "kb": 313,
+   "summary": true,
+   "trim": 3
+  },
+  "b56cb743-cb5f-5dc7-ae59-5fe8d4075c94": {
+   "file": "2026-10/b56cb743-cb5f-5dc7-ae59-5fe8d4075c94.json.gz",
+   "date": "2026-10-17T17:41:29.365Z",
+   "map": "Isle of Jade",
+   "teams": [
+    "hdm",
+    "hook"
+   ],
+   "winner": "hdm",
+   "length_s": 599,
+   "kb": 160,
+   "summary": true,
+   "trim": 3
+  },
+  "bad498e0-bdb7-5eab-a3c5-5fe2d79a00bb": {
+   "file": "2026-10/bad498e0-bdb7-5eab-a3c5-5fe2d79a00bb.json.gz",
+   "date": "2026-10-24T04:23:25.906Z",
+   "map": "Isle of Jade",
+   "teams": [
+    "chic",
+    "aloo"
+   ],
+   "winner": "aloo",
+   "length_s": 421,
+   "kb": 94,
+   "summary": true,
+   "trim": 3
+  },
+  "8540edb4-7ae3-53d2-af81-5c2e20aca3d8": {
+   "file": "2026-10/8540edb4-7ae3-53d2-af81-5c2e20aca3d8.json.gz",
+   "date": "2026-10-10T03:13:03.451Z",
+   "map": "Isle of Meditation",
+   "teams": [
+    "True",
+    "DUM"
+   ],
+   "winner": "True",
+   "length_s": 370,
+   "kb": 98,
+   "summary": true,
+   "trim": 3
+  },
+  "d93289f2-9328-53a3-ae4a-3a7c5464b2ba": {
+   "file": "2026-11/d93289f2-9328-53a3-ae4a-3a7c5464b2ba.json.gz",
+   "date": "2026-11-01T20:05:33.941Z",
+   "map": "Isle of Meditation",
+   "teams": [
+    "cope",
+    "hook"
+   ],
+   "winner": "cope",
+   "length_s": 836,
+   "kb": 224,
+   "summary": true,
+   "trim": 3
+  },
+  "26ba6a2d-768d-504d-ace8-19241884f21c": {
+   "file": "2026-11/26ba6a2d-768d-504d-ace8-19241884f21c.json.gz",
+   "date": "2026-11-02T20:16:46.283Z",
+   "map": "Corrupted Isle",
+   "teams": [
+    "Crew",
+    "hdm"
+   ],
+   "winner": "hdm",
+   "length_s": 587,
+   "kb": 174,
+   "summary": true,
+   "trim": 3
+  },
+  "f2a9b858-508c-5565-ab57-ea1a6063086f": {
+   "file": "2026-10/f2a9b858-508c-5565-ab57-ea1a6063086f.json.gz",
+   "date": "2026-10-03T20:20:53.701Z",
+   "map": "Isle of Jade",
+   "teams": [
+    "Men",
+    "옷옷옷옷"
+   ],
+   "winner": "옷옷옷옷",
+   "length_s": 241,
+   "kb": 69,
+   "summary": true,
+   "trim": 3
+  },
+  "541e0951-a43d-5678-ac46-a9d5ae29299a": {
+   "file": "2026-10/541e0951-a43d-5678-ac46-a9d5ae29299a.json.gz",
+   "date": "2026-10-15T19:12:10.488Z",
+   "map": "Isle of Meditation",
+   "teams": [
+    "Apes",
+    "hold"
+   ],
+   "winner": "hold",
+   "length_s": 313,
+   "kb": 85,
+   "summary": true,
+   "trim": 3
+  },
+  "f6a15931-e0ab-55cf-a72d-25ca64d8fe30": {
+   "file": "2026-10/f6a15931-e0ab-55cf-a72d-25ca64d8fe30.json.gz",
+   "date": "2026-10-15T03:52:05.228Z",
+   "map": "Uncharted Isle",
+   "teams": [
+    "push",
+    "OG"
+   ],
+   "winner": "OG",
+   "length_s": 592,
+   "kb": 140,
+   "summary": true,
+   "trim": 3
+  },
+  "256729a8-dcab-5351-a2a1-5f446865f6e5": {
+   "file": "2026-10/256729a8-dcab-5351-a2a1-5f446865f6e5.json.gz",
+   "date": "2026-10-02T22:56:24.534Z",
+   "map": "Isle of Meditation",
+   "teams": [
+    "옷옷옷옷",
+    "hook"
+   ],
+   "winner": "옷옷옷옷",
+   "length_s": 337,
+   "kb": 95,
+   "summary": true,
+   "trim": 3
+  },
+  "0f3c18b0-3123-5d2d-a09a-1930936ffbc7": {
+   "file": "2026-10/0f3c18b0-3123-5d2d-a09a-1930936ffbc7.json.gz",
+   "date": "2026-10-17T18:40:05.306Z",
+   "map": "Isle of the Dead",
+   "teams": [
+    "Men",
+    "Team"
+   ],
+   "winner": "Team",
+   "length_s": 232,
+   "kb": 56,
+   "summary": true,
+   "trim": 3
+  },
+  "137d4b45-d222-5cd3-aac5-ed8855f315d4": {
+   "file": "2026-10/137d4b45-d222-5cd3-aac5-ed8855f315d4.json.gz",
+   "date": "2026-10-17T19:22:45.743Z",
+   "map": "Isle of Meditation",
+   "teams": [
+    "One",
+    "Men"
+   ],
+   "winner": "Men",
+   "length_s": 1432,
+   "kb": 323,
+   "summary": true,
+   "trim": 3
+  },
+  "516b2bd8-7333-5d2b-acd4-af6dee2be3ef": {
+   "file": "2026-10/516b2bd8-7333-5d2b-acd4-af6dee2be3ef.json.gz",
+   "date": "2026-10-08T06:37:01.489Z",
+   "map": "Isle of Jade",
+   "teams": [
+    "OG",
+    "げえええ"
+   ],
+   "winner": "OG",
+   "length_s": 592,
+   "kb": 165,
+   "summary": true,
+   "trim": 3
+  },
+  "427c825b-7e7f-54f4-aba9-7de41c9fcbaf": {
+   "file": "2026-10/427c825b-7e7f-54f4-aba9-7de41c9fcbaf.json.gz",
+   "date": "2026-10-22T20:31:02.604Z",
+   "map": "Isle of Jade",
+   "teams": [
+    "cope",
+    "Team"
+   ],
+   "winner": "Team",
+   "length_s": 890,
+   "kb": 179,
+   "summary": true,
+   "trim": 3
+  },
+  "c8e26dc9-8cfb-5a36-aa1a-38f8c416753d": {
+   "file": "2026-10/c8e26dc9-8cfb-5a36-aa1a-38f8c416753d.json.gz",
+   "date": "2026-10-11T18:57:49.173Z",
+   "map": "Uncharted Isle",
+   "teams": [
+    "옷옷옷옷",
+    "Team"
+   ],
+   "winner": "옷옷옷옷",
+   "length_s": 1549,
+   "kb": 441,
+   "summary": true,
+   "trim": 3
+  },
+  "910546b6-f76c-5018-ad4f-35e89cc07170": {
+   "file": "2026-10/910546b6-f76c-5018-ad4f-35e89cc07170.json.gz",
+   "date": "2026-10-06T20:59:05.237Z",
+   "map": "Isle of Solitude",
+   "teams": [
+    "hdm",
+    "Men"
+   ],
+   "winner": "hdm",
+   "length_s": 454,
+   "kb": 116,
+   "summary": true,
+   "trim": 3
+  },
+  "94d74d87-fbd0-5de2-af5b-180902fee866": {
+   "file": "2026-11/94d74d87-fbd0-5de2-af5b-180902fee866.json.gz",
+   "date": "2026-11-01T18:56:29.092Z",
+   "map": "Imperial Isle",
+   "teams": [
+    "Fun",
+    "push"
+   ],
+   "winner": "Fun",
+   "length_s": 1327,
+   "kb": 244,
+   "summary": true,
+   "trim": 3
+  },
+  "33dab8e5-e202-5a34-a433-3fcbe714e75c": {
+   "file": "2026-10/33dab8e5-e202-5a34-a433-3fcbe714e75c.json.gz",
+   "date": "2026-10-20T20:31:14.942Z",
+   "map": "Isle of Jade",
+   "teams": [
+    "Men",
+    "BcS"
+   ],
+   "winner": "Men",
+   "length_s": 1057,
+   "kb": 249,
+   "summary": true,
+   "trim": 3
+  },
+  "918fb824-4066-5ab7-a44b-c8110869e8df": {
+   "file": "2026-10/918fb824-4066-5ab7-a44b-c8110869e8df.json.gz",
+   "date": "2026-10-09T21:20:57.951Z",
+   "map": "Isle of Jade",
+   "teams": [
+    "Book",
+    "Men"
+   ],
+   "winner": "Men",
+   "length_s": 232,
+   "kb": 58,
+   "summary": true,
+   "trim": 3
+  },
+  "885d6a9e-8df5-5a7a-a5ca-1cdb0de0c1ca": {
+   "file": "2026-10/885d6a9e-8df5-5a7a-a5ca-1cdb0de0c1ca.json.gz",
+   "date": "2026-10-04T02:18:51.198Z",
+   "map": "Isle of Meditation",
+   "teams": [
+    "meow",
+    "push"
+   ],
+   "winner": "meow",
+   "length_s": 724,
+   "kb": 156,
+   "summary": true,
+   "trim": 3
+  },
+  "31a56cfb-c75a-591f-a7f5-befe157174dd": {
+   "file": "2026-10/31a56cfb-c75a-591f-a7f5-befe157174dd.json.gz",
+   "date": "2026-10-21T19:44:04.959Z",
+   "map": "Isle of Jade",
+   "teams": [
+    "Team",
+    "cope"
+   ],
+   "winner": "cope",
+   "length_s": 247,
+   "kb": 64,
+   "summary": true,
+   "trim": 3
+  },
+  "5cb6a1d7-e86e-55c5-a7c5-7536d91f58aa": {
+   "file": "2026-10/5cb6a1d7-e86e-55c5-a7c5-7536d91f58aa.json.gz",
+   "date": "2026-10-22T19:18:37.407Z",
+   "map": "Isle of Meditation",
+   "teams": [
+    "BcS",
+    "Apes"
+   ],
+   "winner": "Apes",
+   "length_s": 719,
+   "kb": 213,
+   "summary": true,
+   "trim": 3
+  },
+  "99d9b260-fc3f-5305-af78-06ad28699323": {
+   "file": "2026-10/99d9b260-fc3f-5305-af78-06ad28699323.json.gz",
+   "date": "2026-10-17T17:32:43.270Z",
+   "map": "Isle of Jade",
+   "teams": [
+    "Fun",
+    "hold"
+   ],
+   "winner": "hold",
+   "length_s": 709,
+   "kb": 98,
+   "summary": true,
+   "trim": 3
+  },
+  "e3bbd514-c22d-531b-a1d8-74452e2f9e8e": {
+   "file": "2026-10/e3bbd514-c22d-531b-a1d8-74452e2f9e8e.json.gz",
+   "date": "2026-10-07T18:48:02.971Z",
+   "map": "Uncharted Isle",
+   "teams": [
+    "옷옷옷옷",
+    "hook"
+   ],
+   "winner": "옷옷옷옷",
+   "length_s": 370,
+   "kb": 96,
    "summary": true,
    "trim": 3
   }
