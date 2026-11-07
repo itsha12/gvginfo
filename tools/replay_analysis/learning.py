@@ -278,7 +278,9 @@ def report():
           "- Do any surprises remind you of something the variables don't capture (a missing variable)?",
           "- Any variable you think matters that isn't listed?", ""]
     _lap("questions")
-    json.dump({"cores": os.cpu_count(), "seconds": _T["laps"]}, open(os.path.join(REPORTS, "timings.json"), "w"), indent=1)
+    cpu = next((l.split(":", 1)[1].strip() for l in open("/proc/cpuinfo") if l.startswith("model name")), None) if os.path.exists("/proc/cpuinfo") else None
+    # the processor is recorded because the model library's fits can differ in the last digits between processor types
+    json.dump({"cores": os.cpu_count(), "cpu": cpu, "seconds": _T["laps"]}, open(os.path.join(REPORTS, "timings.json"), "w"), indent=1)
     path = os.path.join(REPORTS, f"batch_{n:02d}.md")
     open(path, "w").write("\n".join(L) + "\n")
     open(os.path.join(REPORTS, "latest.md"), "w").write("\n".join(L) + "\n")

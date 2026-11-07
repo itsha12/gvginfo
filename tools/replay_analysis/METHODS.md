@@ -644,6 +644,11 @@ These set the kind of answer the engine must produce: the event, the measured ca
 - **Denning's verdicts**: `data/review_labels.json`, applied in `rules.py` and `fights.assess`.
 
 ## Known limits
+- Fits from the model library (interpret) can differ in the last digits between processor types: the same code and
+  identical input tables gave a held-out log loss of 0.554 on one GitHub machine and 0.550 on another (2026-11-07).
+  Read differences of that size between reports as noise; `timings.json` records the processor.
+- Fixed 2026-11-07: `nodes._aoe_skills` cached area-damage counts by player slot only, so the npc_loss, lord_damage and
+  lord_kill rows (attackers_area_damage) depended on which matches a process built first. Now keyed by the bar.
 - No energy in the data. Positions about once a second. No NPC positions or health (estimated). Intent and what a
   player is looking at are never in the data.
 - The provisional edge's weights are guesses; compare choices by their components (deaths, NPCs, caps) as well.

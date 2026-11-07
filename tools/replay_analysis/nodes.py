@@ -157,12 +157,15 @@ DEATH_DESC = {
 
 _AOE = {}
 def _aoe_skills(m, a):
-    """Area-damage skills on a player's bar (Denning P9: knights ball up and eat area damage)."""
-    if a not in _AOE:
+    """Area-damage skills on a player's bar (Denning P9: knights ball up and eat area damage). Cached by the bar's skill
+    names (until 2026-11-07 it was cached by the player's slot alone, so one match's count leaked into the next match a
+    process handled, and the rows depended on which matches a worker happened to build first)."""
+    bar = tuple(m.sk(b) for b in m.A[a].get("bar", []) if b)
+    if bar not in _AOE:
         from buildfeat import _skills, FEATURES
         S = _skills()
-        _AOE[a] = sum(1 for b in m.A[a].get("bar", []) if b and S.get(m.sk(b)) and FEATURES["area_damage"](S[m.sk(b)]))
-    return _AOE[a]
+        _AOE[bar] = sum(1 for k in bar if S.get(k) and FEATURES["area_damage"](S[k]))
+    return _AOE[bar]
 
 
 def _drops(st, tl, fl, tm, t0, t1):
