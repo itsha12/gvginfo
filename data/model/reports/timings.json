@@ -1,19 +1,19 @@
 {
  "cores": 4,
- "cpu": "AMD EPYC 7763 64-Core Processor",
+ "cpu": "AMD EPYC 9V74 80-Core Processor",
  "seconds": {
-  "fit and honest test": 126.3,
-  "integrity and honest test text": 3.1,
+  "fit and honest test": 88.9,
+  "integrity and honest test text": 4.3,
   "curves": 0.0,
   "interaction screen": 0.1,
-  "candidate variables": 209.6,
-  "surprises": 1.4,
+  "candidate variables": 204.7,
+  "surprises": 1.5,
   "rulings": 0.1,
-  "node models": 219.2,
-  "usual play": 126.8,
+  "node models": 245.3,
+  "usual play": 138.2,
   "values": 0.0,
-  "TQs": 60.3,
-  "snapshot": 7.5,
+  "TQs": 63.4,
+  "snapshot": 10.9,
   "questions": 0.0
  }
 }
