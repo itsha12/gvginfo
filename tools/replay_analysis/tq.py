@@ -454,12 +454,13 @@ def _bench_txt(k):
 # ------------------------------------------------------------------ 3. power play without a kill
 _PP_BENCH = None
 def power_bench():
-    """Damage per second and top-target share of every stored power play (3+ more at main), killed against not."""
+    """Damage per second, top-target share and damage uptime of every stored power play (any numbers advantage at main;
+    until 2026-11-07 only 3+ up), killed against not, by size: "1", "2", "3+" and "all"."""
     global _PP_BENCH
     if _PP_BENCH is None:
         import cache, events as EV
         from forensics import Forensics
-        out = {"killed": collections.defaultdict(list), "no kill": collections.defaultdict(list)}
+        out = {}
         for rid in _ids():
             def build(rid=rid):
                 a = _analysis(rid); F = None; res = []
@@ -467,20 +468,31 @@ def power_bench():
                     if d["kind"] != "power_play": continue
                     try: own, en = map(int, d["state"]["main"].split("v"))
                     except ValueError: continue
-                    if own - en < 3: continue
+                    if own - en < 1: continue
                     F = F or Forensics(rid)
                     foe = [x["tag"] for x in a["meta"]["teams"] if x["tag"] != d["team"]][0]
                     o = F.output(F.team_of(d["team"]), d["t"], d["t"] + d["outcome"]["window_s"])["measures"]
                     up = _uptime(a, d["team"], d["t"], d["t"] + d["outcome"]["window_s"])
-                    res.append({"killed": bool(d["outcome"]["deaths"].get(foe, 0)), "dps": o["dps"], "top_target_share": o["top_target_share"],
+                    res.append({"killed": bool(d["outcome"]["deaths"].get(foe, 0)), "size": own - en, "dps": o["dps"], "top_target_share": o["top_target_share"],
                                 "uptime": up[0] if up else None})
                 return res
             for x in cache.prepared("power_bench", rid, build):
-                g = out["killed" if x["killed"] else "no kill"]
-                for k in ("dps", "top_target_share", "uptime"):
-                    if x.get(k) is not None: g[k].append(x[k])
-        _PP_BENCH = {g: {k: (round(statistics.median(v), 2), len(v)) for k, v in d.items() if v} for g, d in out.items()}
+                for sz in ("all", _size_key(x.get("size", 3))):
+                    g = out.setdefault(sz, {"killed": collections.defaultdict(list), "no kill": collections.defaultdict(list)})["killed" if x["killed"] else "no kill"]
+                    for k in ("dps", "top_target_share", "uptime"):
+                        if x.get(k) is not None: g[k].append(x[k])
+        _PP_BENCH = {sz: {g: {k: (round(statistics.median(v), 2), len(v)) for k, v in d.items() if v} for g, d in o.items()} for sz, o in out.items()}
     return _PP_BENCH
+
+
+def _size_key(n): return "3+" if n >= 3 else str(n)
+
+
+def power_bench_for(size):
+    """The benchmark for power plays of this size (falls back to all sizes when a size has under 15 of either kind)."""
+    b = power_bench(); s = b.get(_size_key(size)) or {}
+    if min(((s.get(g) or {}).get("dps") or (0, 0))[1] for g in ("killed", "no kill")) >= 15: return s, f"{_size_key(size)} up"
+    return b.get("all") or {}, "all sizes"
 
 
 def _uptime(a, tag, t, t1=None):
@@ -509,13 +521,24 @@ def power(new_ids, recs, usual_res):
     from forensics import Forensics
     found = EV.find("power", new_ids); src = "the new matches"
     if not found: found = EV.find("power", _ids()); src = "all trained matches (none in the new matches)"
-    if not found: return ["## TQ 3. A power play without a kill", "", "No power play (3+ more at main) without a kill yet.", ""]
-    found = sorted(found, key=lambda x: -x[0])
-    _, rid, tag, t, txt = next((x for x in found if x[1] not in _USED), found[0]); _USED.add(rid)
+    if not found: return ["## TQ 3. A power play without a kill", "", "No power play without a kill yet.", ""]
+    # the one that cost the team with the advantage the most win chance over its window (every size counts)
+    import why as WHY
+    scored = []
+    for x in found:
+        d_ = min([d for d in _analysis(x[1])["decisions"] if d["kind"] == "power_play" and d["team"] == x[2]], key=lambda d: abs(d["t"] - x[3]))
+        wc = WHY.win_change(x[1], x[2], d_["t"], d_["t"] + d_["outcome"]["window_s"])
+        scored.append(((wc[1] - wc[0]) if wc else 0, x))
+    scored.sort(key=lambda z: z[0])
+    drop_, (_, rid, tag, t, txt) = next((z for z in scored if z[1][1] not in _USED), scored[0]); _USED.add(rid)
     a = _analysis(rid); F = Forensics(rid)
-    L = ["## TQ 3. A power play without a kill", "", f"*The biggest in {src}: {txt}.*", ""]
+    L = ["## TQ 3. A power play without a kill", "", f"*The power play without a kill that cost the most win chance in {src}: {txt}; "
+         f"win chance {drop_:+.1f} points over it.*", ""]
     L += EV.power(rid, tag, t, F)
     dp = min([d for d in a["decisions"] if d["kind"] == "power_play" and d["team"] == tag], key=lambda d: abs(d["t"] - t))
+    es = dp.get("enemy_short") or {}
+    if es: L.append("**Where the power play came from** (why the enemy was short, player-seconds over it): "
+                    + ", ".join(f"{k} {v}" for k, v in sorted(es.items(), key=lambda kv: -kv[1])))
     t0, t1 = dp["t"], dp["t"] + dp["outcome"]["window_s"]
     foe = [x["tag"] for x in a["meta"]["teams"] if x["tag"] != tag][0]
     from forensics import place
@@ -525,7 +548,10 @@ def power(new_ids, recs, usual_res):
         if ev[2] in F.m.PL and F.m.team(ev[2]) == F.team_of(foe): heal += ev[5] or 0
     up = _uptime(a, tag, t0, t1)
     # the short why names only what was worse than in power plays that killed (power_bench); the rest is said as not the cause
-    pbk, pbn = (power_bench().get("killed") or {}), (power_bench().get("no kill") or {})
+    try: _sz = int(dp["state"]["main"].split("v")[0]) - int(dp["state"]["main"].split("v")[1])
+    except (ValueError, KeyError): _sz = 1
+    _pb, _pb_lab = power_bench_for(_sz)
+    pbk, pbn = (_pb.get("killed") or {}), (_pb.get("no kill") or {})
     worse, fine = [], []
     def side(k, x):
         """'worse' if x sits on the no-kill side of the midpoint between the killing and non-killing medians (the
@@ -552,10 +578,10 @@ def power(new_ids, recs, usual_res):
     L += ["", "**How it could have been converted (measured)**", ""]
     conf = []
     o = om
-    pb = power_bench()
+    pb = _pb
     if pb.get("killed"):
         k, n = pb["killed"], pb.get("no kill", {})
-        L.append(f"- Against every stored power play (3+ more at main): those that killed had a median {k['dps'][0]} damage per second "
+        L.append(f"- Against every stored power play ({_pb_lab}): those that killed had a median {k['dps'][0]} damage per second "
                  f"and top-target share {k.get('top_target_share', ('?', 0))[0]} ({k['dps'][1]} cases); those that didn't, "
                  f"{n.get('dps', ('?', 0))[0]} and {n.get('top_target_share', ('?', 0))[0]} ({n.get('dps', ('?', 0))[1]} cases). "
                  f"{tag} here: {o['dps']} and {o['top_target_share']}."

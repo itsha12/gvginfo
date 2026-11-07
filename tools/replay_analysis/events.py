@@ -411,7 +411,8 @@ def find(kind, ids):
                 foe = [x for x in tags if x != d["team"]][0]
                 try: own, en = map(int, d["state"]["main"].split("v"))
                 except ValueError: continue
-                if d["outcome"]["deaths"].get(foe, 0) == 0 and own - en >= 3:
+                # every size counts (Denning: an 8v7 while the enemy runs a flag is a power play); until 2026-11-07 only 3+ up
+                if d["outcome"]["deaths"].get(foe, 0) == 0 and own - en >= 1:
                     out.append((own - en + d["outcome"]["window_s"] / 60, rid, d["team"], d["t"], f"main {d['state']['main']}, {d['choice']}, no kill in {d['outcome']['window_s']} s"))
         elif kind == "spike":
             F = Forensics(rid)

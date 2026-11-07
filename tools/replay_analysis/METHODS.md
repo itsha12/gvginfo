@@ -571,6 +571,15 @@ still bends the wrong way at the extremes, so seconds of flag lead are sometimes
   offensive skills and casting on the enemy midline and frontline; offensive = interrupting the enemy monks): share of
   its interrupts and enemy-targeted casts on the midline or frontline, against every stored own-healer death
   (`chain.mes_benchmark`; first reading: median 86%, 493 cases).
+- The event layer (`eventlayer.py`, step 1 of the learned causal map, 2026-11-07): strips (useful = a prot off a target
+  under attack, or an enchantment off a midline/frontline player) and wasted removal casts, Blinds on enemies (frontline,
+  defensive), hexes (time on, removed), frontline peel (damage on attackers of own backline / on enemy healers), wrong
+  casts for every role (interrupted after casting into a ready interrupt, while Dazed, attacks while Blind), spike
+  timing, run timing (enemy boost clock, enemy power play), splits (answer latency, effect, enemies drawn, cost at
+  main), power plays of every size with why the enemy was short, and enemy captures from the defending side. Cached per
+  match; `eventlayer.py report [--all]` writes data/model/reports/measures.md. Power plays: every size counts (Denning:
+  an 8v7 while the enemy runs is a power play); TQ 3 picks the one that cost the most win chance and benchmarks it
+  against power plays of the same size.
 - Correction (Denning, batch 7): lord_dps_own and lord_dps_enemy capped at 5 points (data/model_corrections.json).
 - Usual play includes the map (usual.py `MAP_COLS`): geometry in the similarity and, with the build axes, the adjustment;
   choice effects split by map name once a map has 10+ cases of the choice and of the usual one.

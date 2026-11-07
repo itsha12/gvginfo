@@ -131,6 +131,13 @@ convert it; (4) NPCs lost, why, and how to prevent it. Each answered with data, 
    mattered most; `forensics.disruption` measures defensive play (Denning's definition for Mesmers). Next: check with
    Denning that the chains read the way he reasons; links still missing: a power play's own lead-up (TQ 3), the enemy's
    side of a flag swing (why their capture was fast), and pricing a late split answer (no measured value yet).
+   Plan agreed 2026-11-07 (Denning): make the causal map the model. Step 1 done (`eventlayer.py`, measures.md on batches
+   7 and 8). Step 2: node models for run outcome, flag swing, enemy capture speed, power play, fight outcome, split
+   chance, split answer, split effect, collapse; link strengths written into causal_map.json. Step 3: discovery (every
+   measured variable against every node) as its own workflow split across several GitHub machines; links it finds are
+   held for Denning's approval. Step 4: chains generated from the node models, fixes priced by carrying a change forward.
+   Wrong casts Denning listed that still need their own measure: strips on the right target when defensive (Elementalist
+   enchantments), damage output against the role's usual, the right hexes removed.
    Order after new replays: `benchmarks.py spawns`, then `benchmarks.py carry`, then commit both before a batch.
 1. Bounty's six matches (ask Denning for the transcripts), then Nick's one. Training batches stay paused until then.
 2. Built in session 4o (2026-11-07), for Denning to check on the next real batch: the learning report's section "The
