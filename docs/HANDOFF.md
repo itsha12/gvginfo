@@ -120,10 +120,16 @@ convert it; (4) NPCs lost, why, and how to prevent it. Each answered with data, 
    input). 91 matches trained. Fixed the same day (METHODS.md "Changes 2026-11-07"): phantom flag swings (lone carrier
    read as a sure capture), TQ 3's uptime, defenders listed as present at NPC kills while dead; added the lead-up trace
    and run benchmark (`tq.lead_up`, `tq.run_bench`) and the map in usual play (`MAP_COLS`, per-map splits). Rebuilt.
-   Waiting on Denning: (a) cap lord_dps_own and lord_dps_enemy at 5 points (held-out log loss 0.404 -> 0.377; drop
-   0.413; directions 0.393; cap + directions 0.384; all constants capped at 10 0.379; constants in 4 bins 0.502; strength
-   alone 0.361), not yet in model_corrections.json; (b) whether the scoreboard should discount a carrier's ETA by its
-   measured capture chance (3 to 5 alive against an enemy holding the stand with 6+: 2 of 14 captured).
+   Denning approved both (2026-11-07): Lord curves capped at 5 points (model_corrections.json) and the carrier ETA
+   discounted by measured capture chance (`benchmarks.py carry`).
+   Batch 8 (2026-11-07): 22 matches (20 picked from October and November, 2 already stored). Same day: flag spawns and
+   stands per map pooled over all replays (`benchmarks.py spawns`; Imperial, Nomad's and Druid's had double-length
+   flag runs) and TQ 1 cites the swing's final capture. Rebuilt: glass box 0.385 against strength alone 0.412 (first
+   time ahead; not yet clear). Waiting on Denning: drop healing_monks_own and healing_monks_enemy (one value per team
+   per match, almost all 3; 0 monks = 1 team-match, 4 = 5; drop 0.367, cap 5 points 0.382, as now 0.385). Known gap:
+   the lead-up trace only starts from an outnumbered main, so an isolated healer (batch 8 TQ 2, Dz 8 Monk alone in its
+   pit at 25:07) gets no "how it got there"; extend it to when the player left its group.
+   Order after new replays: `benchmarks.py spawns`, then `benchmarks.py carry`, then commit both before a batch.
 1. Bounty's six matches (ask Denning for the transcripts), then Nick's one. Training batches stay paused until then.
 2. Built in session 4o (2026-11-07), for Denning to check on the next real batch: the learning report's section "The
    TQs" (`tq.py`, METHODS.md "The TQs", "As built"). Ask him whether the instance picks suit him (biggest swing of each
