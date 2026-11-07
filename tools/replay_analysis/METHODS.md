@@ -548,6 +548,12 @@ still bends the wrong way at the extremes, so seconds of flag lead are sometimes
 - `defenders_present` at an NPC kill (episodes.py) = defenders alive in their own base or pit at the kill (was anyone
   who had defended before it, dead or not).
 - Each TQ prefers a match not used by an earlier TQ in the same report.
+- Flag ETA of a carrier behind on players alive (scoreboard.py `eta`, `carry_chance`; data/benchmarks/carry_capture.json
+  from `benchmarks.py carry`, Denning approved 2026-11-07): carry time plus (1 - chance / chance at even numbers) times a
+  fresh run from the spawn. Measured on 91 matches, capture chance by alive difference: +2 or more 64% (107 carries),
+  -1 to +1 49% (1381), -3 to -2 35% (88), -4 or less 25% (20). Even or better keeps the plain carry time. Rebuild the
+  benchmark after new replays (`benchmarks.py carry`).
+- Correction (Denning, batch 7): lord_dps_own and lord_dps_enemy capped at 5 points (data/model_corrections.json).
 - Usual play includes the map (usual.py `MAP_COLS`): geometry in the similarity and, with the build axes, the adjustment;
   choice effects split by map name once a map has 10+ cases of the choice and of the usual one.
 

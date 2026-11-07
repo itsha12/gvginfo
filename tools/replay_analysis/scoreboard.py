@@ -34,6 +34,27 @@ from common import RUN_SPEED, CARRY_SPEED, RES_EVERY, BOOST_EVERY, SPIKE_REACT
 UP_ON_FLAGS = 10                # seconds of flag lead that count as up on flags
 LATE = 24 * 60                  # the late game (know the tiebreak from here)
 NPC_VALUE = {"knight": 3, "bodyguard": 3, "archer": 1.5}
+_CARRY = None
+def carry_chance(alive_diff):
+    """(capture chance of a carry at this alive difference, chance at even numbers), measured (benchmarks.py carry);
+    a band with fewer than min_n carries uses the nearest band toward even. (None, None) if not measured."""
+    global _CARRY
+    import json, os
+    from common import REPO
+    if _CARRY is None:
+        try: _CARRY = json.load(open(os.path.join(REPO, "data", "benchmarks", "carry_capture.json")))
+        except (OSError, ValueError): _CARRY = {}
+    B = _CARRY.get("bands") or {}
+    order = ["-4 or less", "-3 to -2", "-1 to +1", "+2 or more"]
+    from benchmarks import carry_band
+    i = order.index(carry_band(alive_diff)); ref = B.get(_CARRY.get("reference", "-1 to +1"))
+    while 0 <= i < len(order):
+        b = B.get(order[i])
+        if b and b["carries"] >= _CARRY.get("min_n", 15): return b["chance"], (ref or {}).get("chance")
+        i += 1 if i < 2 else -1
+    return None, None
+
+
 _LORD = None
 def lord_dps(role, prof):
     """Measured Lord damage per second at the Lord (role first, else profession; None if never measured)."""
@@ -211,12 +232,23 @@ class Scoreboard:
         return st.next_res(t) - t + d(st.geo.base[self.m.team(b)], p) / self.rspeed(b)
 
     def eta(self, tm, t):
-        """Seconds until tm could capture, and how (carrying, dropped flag, from the spawn with whom)."""
+        """Seconds until tm could capture, and how (carrying, dropped flag, from the spawn with whom). A carrier whose team
+        is behind on players alive is less likely to capture (data/benchmarks/carry_capture.json, benchmarks.py carry):
+        its time is the carry plus (1 - chance / chance when even) times a fresh run from the spawn. A carrier at even
+        numbers or better keeps its plain carry time, so flag lead keeps the meaning Denning ruled on."""
         st, geo = self.st, self.st.geo
         f = self.flag(tm, t)
-        if f[0] == "carried" and st.alive(f[1], t):
-            return round(d(st.pos(f[1], t)[0], geo.stand) / self.cspeed(f[1])), f"carrying ({self.m.roles[f[1]]})"
         cand = self.runners[tm] or self.st.players[tm]
+        if f[0] == "carried" and st.alive(f[1], t):
+            carry = d(st.pos(f[1], t)[0], geo.stand) / self.cspeed(f[1])
+            own = sum(1 for b in st.players[tm] if st.alive(b, t)); en = sum(1 for b in st.players[3 - tm] if st.alive(b, t))
+            p, p0 = carry_chance(own - en)
+            if p is None or p0 is None or p >= p0:
+                return round(carry), f"carrying ({self.m.roles[f[1]]})"
+            sp = geo.spawn[tm]
+            fresh = min(self._reach(b, sp, t) + d(sp, geo.stand) / self.cspeed(b) for b in cand)
+            extra = (1 - p / p0) * fresh
+            return round(carry + extra), f"carrying ({self.m.roles[f[1]]}, capture chance {p:.0%} at {own}v{en} alive)"
         if f[0] == "dropped":
             best = min(cand, key=lambda b: self._reach(b, f[1], t))
             return round(self._reach(best, f[1], t) + d(f[1], geo.stand) / self.cspeed(best)), f"dropped flag ({self.m.roles[best]})"

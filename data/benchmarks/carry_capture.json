@@ -1,0 +1,28 @@
+{
+ "about": "Capture chance of a flag carry by the alive difference (Denning, 2026-11-07: the scoreboard counted any carrier as\na sure capture, e.g. a lone carrier next to eight enemies). Every carry in every stored replay is sampled every 5 s\nwhile carried; each carry counts once in each band it passes through; outcome: that carry ended in a capture.\n(Enemies near the carrier were tried first and dropped: carriers near the stand are near the enemy and about to\ncapture, so more enemies near went with more captures.)",
+ "matches": 91,
+ "min_n": 15,
+ "reference": "-1 to +1",
+ "bands": {
+  "-1 to +1": {
+   "carries": 1381,
+   "captured": 679,
+   "chance": 0.492
+  },
+  "-3 to -2": {
+   "carries": 88,
+   "captured": 31,
+   "chance": 0.352
+  },
+  "+2 or more": {
+   "carries": 107,
+   "captured": 68,
+   "chance": 0.636
+  },
+  "-4 or less": {
+   "carries": 20,
+   "captured": 5,
+   "chance": 0.25
+  }
+ }
+}

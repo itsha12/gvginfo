@@ -6,6 +6,20 @@
    "kind": "interaction",
    "added": "batch 3",
    "reason": "Denning (agreeing with Claude's batch 3 finding): Lord damage only decides a match at 28:00 (the tiebreak); before that a team can deal a lot of Lord damage and still lose to a Lord kill, so Lord damage should be read together with the clock."
+  },
+  {
+   "term": "lord_dps_own",
+   "kind": "cap",
+   "max_points": 5,
+   "added": "batch 7",
+   "reason": "Denning (2026-11-07, agreeing with Claude's batch 7 finding): each team's Lord damage per second is fixed by its build, so it is one value per team per match; the curves zigzagged in mirror image, each step resting on 11 to 14 team-matches with no trend in win rate (memorizing which teams won). Held-out log loss on 91 matches: as before 0.404, both dropped 0.413, directions 0.393, cap at 5 points 0.377 (best), cap + directions 0.384."
+  },
+  {
+   "term": "lord_dps_enemy",
+   "kind": "cap",
+   "max_points": 5,
+   "added": "batch 7",
+   "reason": "Denning (2026-11-07, agreeing with Claude's batch 7 finding): each team's Lord damage per second is fixed by its build, so it is one value per team per match; the curves zigzagged in mirror image, each step resting on 11 to 14 team-matches with no trend in win rate (memorizing which teams won). Held-out log loss on 91 matches: as before 0.404, both dropped 0.413, directions 0.393, cap at 5 points 0.377 (best), cap + directions 0.384."
   }
  ]
 }

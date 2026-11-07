@@ -3,6 +3,7 @@ Rebuild after new replays are fetched; the scoreboard reads the files.
 
 Usage:  python3 benchmarks.py lord        -> data/benchmarks/lord_damage.json
         python3 benchmarks.py regen       -> data/benchmarks/lord_regen.json
+        python3 benchmarks.py carry       -> data/benchmarks/carry_capture.json
 
 lord: Lord damage per second while at the enemy Lord, by profession and by role. "At the Lord" = alive and within
 PIT_R + 500 of the enemy Lord's estimated position, in a second when at least one teammate hit the Lord (so time spent
@@ -84,11 +85,48 @@ def regen(ids=None):
     return out
 
 
+CARRY_MIN_N = 15        # carries a band needs before it is used; otherwise the nearest band toward even
+
+
+def carry_band(alive_diff):
+    """Alive difference (own minus enemy, carrier included) band for the carry benchmark."""
+    return "+2 or more" if alive_diff >= 2 else "-1 to +1" if alive_diff >= -1 else "-3 to -2" if alive_diff >= -3 else "-4 or less"
+
+
+def carry(ids=None):
+    """Capture chance of a flag carry by the alive difference (Denning, 2026-11-07: the scoreboard counted any carrier as
+    a sure capture, e.g. a lone carrier next to eight enemies). Every carry in every stored replay is sampled every 5 s
+    while carried; each carry counts once in each band it passes through; outcome: that carry ended in a capture.
+    (Enemies near the carrier were tried first and dropped: carriers near the stand are near the enemy and about to
+    capture, so more enemies near went with more captures.)"""
+    cells = collections.defaultdict(lambda: [0, 0])
+    ids = ids or match_ids()
+    for rid in ids:
+        m = Match.from_branch(rid); st = GameState(m)
+        for c in m.carries:
+            a, s0, e0 = c["a"], c["s"] / 10, c["e"] / 10
+            if a not in m.PL or e0 <= max(s0, 0): continue
+            tm = m.team(a); won = c.get("how") == "flagstand_captured"; seen = set()
+            for t in range(int(max(s0, 0)), int(e0) + 1, 5):
+                if not st.alive(a, t): break
+                own = sum(1 for b in st.players[tm] if st.alive(b, t)); en = sum(1 for b in st.players[3 - tm] if st.alive(b, t))
+                k = carry_band(own - en)
+                if k in seen: continue
+                seen.add(k); cells[k][0] += 1; cells[k][1] += won
+    out = {"about": carry.__doc__, "matches": len(ids), "min_n": CARRY_MIN_N, "reference": "-1 to +1",
+           "bands": {k: {"carries": v[0], "captured": v[1], "chance": round(v[1] / v[0], 3)} for k, v in cells.items()}}
+    os.makedirs(OUT, exist_ok=True)
+    json.dump(out, open(os.path.join(OUT, "carry_capture.json"), "w"), indent=1, ensure_ascii=False)
+    return out
+
 if __name__ == "__main__":
     what = sys.argv[1:] or ["lord"]
     if "regen" in what:
         o = regen(); print({k: v for k, v in o.items() if k not in ("grid", "about")})
     what = sys.argv[1:] or ["lord"]
+    if "carry" in what:
+        o = carry()
+        for k, v in o["bands"].items(): print(f"  {k:12} {v['captured']:4}/{v['carries']:<4} {v['chance']:.0%}")
     if "lord" in what:
         o = lord()
         for k, v in o["by_profession"].items(): print(f"  {k:14} {v['dps']:6} dps over {v['seconds']:5} s in {v['matches']:2} matches{' (thin)' if v['thin'] else ''}")
