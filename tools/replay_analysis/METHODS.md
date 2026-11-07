@@ -488,6 +488,20 @@ moments better than attackers and defenders alone (AUC 0.786 against 0.755) but 
   commentary sources and their state (pending, checked, done), Denning's rulings, the events whose why was walked
   through, and notes. `status.py sync` rebuilds the derived fields; `status.py mark` records the rest.
 
+### The TQs (Denning, 2026-11-07): what to answer after every batch
+They replace the five random whys and show how the engine is learning. Each comes from the batch's matches:
+  1. Flags: one instance in a batched match where a team got behind on flags, and why; then how a different play could
+     have increased its win chances.
+  2. Monk death: one instance where a monk died, and why; then how it could have been prevented.
+  3. Power play: one instance where a team couldn't kill on a power play, and why; then how it could have been
+     converted into kills.
+  4. NPCs: one instance where a team lost NPCs, and why; then how it could have been prevented.
+The why half comes from events.py and forensics.py (flag, death, power; npc for NPC losses). The second half (the
+different play, how to prevent or convert) must also come from measurement: the usual play's effect of each choice at
+the decision before (usual.py), the ready-but-unused prots and the uncontrolled attackers in the forensics, the
+benchmarks for the role, and the node models' readings with the variable changed. Say when the engine can't measure
+the alternative. learning.py's why section is to be rebuilt to produce these four (see docs/HANDOFF.md).
+
 ### Answer exemplars (the four questions of 2026-11-06)
 These set the kind of answer the engine must produce: the event, the measured causes in order, and "why, in short".
 1. **Behind on flags** (Book v TFS, a9fa1ae1, 4:05 to 5:15; TFS +78 s to -73 s): TFS held the stand with its runner

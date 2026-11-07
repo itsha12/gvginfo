@@ -94,7 +94,8 @@ Claude should then:
 
 # Match replay analysis
 
-**Status:** Active. Batches PAUSED (Denning, 2026-11-06) to revisit the Maga, Nick and Bounty transcripts. Last
+**Status:** Active. Maga's nine OG comms matches done; Bounty and Nick still to do. Training batches now run on GitHub
+(Train batch workflow). Last
 updated 2026-11-06 (session 4n: forensics and event explanations, cache, match status; before that session 4m: engine
 review, ENGINE 17, batches 2 to 5, first why chains).
 
@@ -108,10 +109,24 @@ explain it. For work in the chat that needs the engine: `git fetch --depth 1 ori
 `pip install --break-system-packages interpret-core`, and in tools/replay_analysis `cache.py sync pull`, `cache.py warm`,
 `analyze.py --all --out /tmp/ga`, `library.py build`, `status.py`.
 
-How Denning wants results: the WHY of events, answered with data (each question measured and placed against the same
-role or situation in every stored match), at the depth of METHODS.md "Answer exemplars"; not broad breakdowns and not
-one highlighted item. After each batch: the why of 5 events across kinds (two fights, a flag swing, a power play
-without a kill, a survived spike, a pit NPC loss or split).
+How Denning wants results after each batch: the TQs (his four question categories, replacing the five random whys;
+CLAUDE.md and METHODS.md "The TQs"): (1) a team behind on flags, why, and what different play would have raised its
+win chances; (2) a monk death, why, and how to prevent it; (3) a power play that couldn't kill, why, and how to
+convert it; (4) NPCs lost, why, and how to prevent it. Each answered with data, the alternative from measurement
+(usual play, forensics' unused options, benchmarks, node models), with a confidence level.
+
+## Next session: build first
+1. TQ section in the learning report: rebuild learning.py's why section to produce the four TQs (flag swing, monk
+   death, power play without a kill, NPC loss), each with a measured "different play" half: the usual play's choice
+   effect at the decision before (usual.py), forensics' ready-but-unused prots and uncontrolled attackers, and a node
+   model reading with the variable changed (e.g. the death risk with a prot up, or with another healer in range).
+2. GitHub speed-ups (measured on the Train batch workflow, 4 cores, 15.6 min per batch; report sections in
+   data/model/reports/timings.json): (a) candidate-variable tests (4.2 min): split every test into its fold fits so all
+   cores stay busy, and reuse the honest test already run as the baseline; (b) node models (3.7 min): pool every
+   node's fits together instead of one node after another; (c) held-out models (3.0 min, mostly the fight-state
+   predictions): save fightstate's predictions with the cache (cache.py sync). Expected about 9 to 11 min per batch
+   with the same results (an estimate). Make all these code changes first, then one test run of the workflow.
+3. Then Bounty's six matches (ask Denning for the transcripts), then Nick's one.
 
 ## Next: the commentary transcripts
 Agreed with Denning: the matches go into training (flagged as chosen); the new variables they suggest matter most.
@@ -309,6 +324,9 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
 - Improve the toolkit rather than writing one-off scripts; each ruling becomes a label, a tactics line and a check.
 
 ## Recent changes
+- Session 4n (end): Train batch workflow (.github/workflows/train-batch.yml, pinned libraries), fits side by side
+  (parallel.py), held-out models from 10 groups of matches (cache.FOLDS), deaths models fitted only when needed,
+  learning report section timers; Denning's TQs replace the five random whys (to build into learning.py next).
 - Session 4n: Denning asked for the why of smaller events and every question answered with data. Built `forensics.py`
   (death questions with benchmarks by role), `events.py` (flag swings, power plays without a kill, survived spikes, pit
   NPC losses, splits; spike landing benchmarks), wired into `why.py` and the learning report (five events across kinds).
