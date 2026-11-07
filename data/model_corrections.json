@@ -20,6 +20,18 @@
    "max_points": 5,
    "added": "batch 7",
    "reason": "Denning (2026-11-07, agreeing with Claude's batch 7 finding): each team's Lord damage per second is fixed by its build, so it is one value per team per match; the curves zigzagged in mirror image, each step resting on 11 to 14 team-matches with no trend in win rate (memorizing which teams won). Held-out log loss on 91 matches: as before 0.404, both dropped 0.413, directions 0.393, cap at 5 points 0.377 (best), cap + directions 0.384."
+  },
+  {
+   "term": "healing_monks_own",
+   "kind": "drop",
+   "added": "batch 8",
+   "reason": "Denning (2026-11-07, agreeing with Claude's batch 8 finding): healing monks are one value per team per match and almost every team runs 3 (0 monks: 1 team-match, 4 monks: 5), so the curves' extreme steps rest on almost nothing and zigzag in mirror image. Held-out log loss on 113 matches: as before 0.385, cap at 5 points 0.382, dropped 0.367 (best)."
+  },
+  {
+   "term": "healing_monks_enemy",
+   "kind": "drop",
+   "added": "batch 8",
+   "reason": "Denning (2026-11-07, agreeing with Claude's batch 8 finding): healing monks are one value per team per match and almost every team runs 3 (0 monks: 1 team-match, 4 monks: 5), so the curves' extreme steps rest on almost nothing and zigzag in mirror image. Held-out log loss on 113 matches: as before 0.385, cap at 5 points 0.382, dropped 0.367 (best)."
   }
  ]
 }
