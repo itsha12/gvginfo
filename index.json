@@ -1,6 +1,6 @@
 {
  "format": "gvginfo.replay.v1",
- "updated": "2026-11-07T22:39:00.605Z",
+ "updated": "2026-11-07T22:53:46.187Z",
  "matches": {
   "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65": {
    "file": "2026-11/eea5ba87-ac20-5ba3-a6c9-965f11ca8a65.json.gz",
@@ -1581,6 +1581,286 @@
    "winner": "옷옷옷옷",
    "length_s": 601,
    "kb": 119,
+   "summary": true,
+   "trim": 3
+  },
+  "d9d75e55-cafe-5408-a092-7c4073de9f1a": {
+   "file": "2026-10/d9d75e55-cafe-5408-a092-7c4073de9f1a.json.gz",
+   "date": "2026-10-22T20:32:15.660Z",
+   "map": "Isle of Jade",
+   "teams": [
+    "Apes",
+    "Fun"
+   ],
+   "winner": "Fun",
+   "length_s": 1007,
+   "kb": 169,
+   "summary": true,
+   "trim": 3
+  },
+  "3690a9a1-92ad-5c6a-a96a-a806a500dcbf": {
+   "file": "2026-09/3690a9a1-92ad-5c6a-a96a-a806a500dcbf.json.gz",
+   "date": "2026-09-24T22:46:54.729Z",
+   "map": "Corrupted Isle",
+   "teams": [
+    "HH",
+    "Apes"
+   ],
+   "winner": "HH",
+   "length_s": 604,
+   "kb": 105,
+   "summary": true,
+   "trim": 3
+  },
+  "4f645fbd-0559-5978-ac3b-7283366eb358": {
+   "file": "2026-10/4f645fbd-0559-5978-ac3b-7283366eb358.json.gz",
+   "date": "2026-10-06T19:21:05.335Z",
+   "map": "Isle of Meditation",
+   "teams": [
+    "Men",
+    "Crew"
+   ],
+   "winner": "Crew",
+   "length_s": 856,
+   "kb": 181,
+   "summary": true,
+   "trim": 3
+  },
+  "18b0e3e7-f4e4-5464-a9d6-47e1ee2013dc": {
+   "file": "2026-09/18b0e3e7-f4e4-5464-a9d6-47e1ee2013dc.json.gz",
+   "date": "2026-09-15T04:54:50.233Z",
+   "map": "Corrupted Isle",
+   "teams": [
+    "ohno",
+    "One"
+   ],
+   "winner": "ohno",
+   "length_s": 1385,
+   "kb": 367,
+   "summary": true,
+   "trim": 3
+  },
+  "0881f8b3-a2f3-5087-a838-9f40b8601ea3": {
+   "file": "2026-09/0881f8b3-a2f3-5087-a838-9f40b8601ea3.json.gz",
+   "date": "2026-09-21T21:07:13.195Z",
+   "map": "Druid's Isle",
+   "teams": [
+    "Dz",
+    "TFS"
+   ],
+   "winner": "TFS",
+   "length_s": 1459,
+   "kb": 350,
+   "summary": true,
+   "trim": 3
+  },
+  "03a87923-8d19-5c72-abc9-2a035df04b81": {
+   "file": "2026-09/03a87923-8d19-5c72-abc9-2a035df04b81.json.gz",
+   "date": "2026-09-17T04:24:55.058Z",
+   "map": "Corrupted Isle",
+   "teams": [
+    "One",
+    "げえええ"
+   ],
+   "winner": "One",
+   "length_s": 518,
+   "kb": 130,
+   "summary": true,
+   "trim": 3
+  },
+  "d22e2968-e061-574c-a0b5-4108c696a90d": {
+   "file": "2026-09/d22e2968-e061-574c-a0b5-4108c696a90d.json.gz",
+   "date": "2026-09-27T19:24:07.734Z",
+   "map": "Druid's Isle",
+   "teams": [
+    "QenK",
+    "Dz"
+   ],
+   "winner": "Dz",
+   "length_s": 449,
+   "kb": 106,
+   "summary": true,
+   "trim": 3
+  },
+  "4f35c4a9-3f61-59ba-ad9a-cb1bb15f31c0": {
+   "file": "2026-10/4f35c4a9-3f61-59ba-ad9a-cb1bb15f31c0.json.gz",
+   "date": "2026-10-07T19:30:07.412Z",
+   "map": "Isle of Jade",
+   "teams": [
+    "Men",
+    "Crew"
+   ],
+   "winner": "Men",
+   "length_s": 793,
+   "kb": 223,
+   "summary": true,
+   "trim": 3
+  },
+  "70134991-57bc-5b1d-a499-e6d242bb35af": {
+   "file": "2026-09/70134991-57bc-5b1d-a499-e6d242bb35af.json.gz",
+   "date": "2026-09-27T02:56:26.484Z",
+   "map": "Druid's Isle",
+   "teams": [
+    "DUM",
+    "RV"
+   ],
+   "winner": "RV",
+   "length_s": 1492,
+   "kb": 397,
+   "summary": true,
+   "trim": 3
+  },
+  "f5bb5394-8615-5ab5-a6ea-46bc3396f68d": {
+   "file": "2026-10/f5bb5394-8615-5ab5-a6ea-46bc3396f68d.json.gz",
+   "date": "2026-10-07T02:21:58.918Z",
+   "map": "Isle of Meditation",
+   "teams": [
+    "push",
+    "DUM"
+   ],
+   "winner": "push",
+   "length_s": 961,
+   "kb": 263,
+   "summary": true,
+   "trim": 3
+  },
+  "b54218f3-b85a-59c5-ab27-5c85025bf1c8": {
+   "file": "2026-09/b54218f3-b85a-59c5-ab27-5c85025bf1c8.json.gz",
+   "date": "2026-09-05T21:06:48.752Z",
+   "map": "Isle of Weeping Stone",
+   "teams": [
+    "Book",
+    "Men"
+   ],
+   "winner": "Men",
+   "length_s": 1453,
+   "kb": 409,
+   "summary": true,
+   "trim": 3
+  },
+  "c975fcf5-19e5-5bb6-aaaa-4ab27c9cb7bd": {
+   "file": "2026-09/c975fcf5-19e5-5bb6-aaaa-4ab27c9cb7bd.json.gz",
+   "date": "2026-09-10T20:32:00.389Z",
+   "map": "Corrupted Isle",
+   "teams": [
+    "Crew",
+    "BcS"
+   ],
+   "winner": "Crew",
+   "length_s": 1063,
+   "kb": 245,
+   "summary": true,
+   "trim": 3
+  },
+  "8621bcc1-3282-53ff-a11d-fd08ea4e6160": {
+   "file": "2026-09/8621bcc1-3282-53ff-a11d-fd08ea4e6160.json.gz",
+   "date": "2026-09-13T21:39:19.944Z",
+   "map": "Druid's Isle",
+   "teams": [
+    "Team",
+    "DMG"
+   ],
+   "winner": "Team",
+   "length_s": 601,
+   "kb": 111,
+   "summary": true,
+   "trim": 3
+  },
+  "3b9c897a-99fb-59ed-ad6f-1c2ae0348745": {
+   "file": "2026-09/3b9c897a-99fb-59ed-ad6f-1c2ae0348745.json.gz",
+   "date": "2026-09-25T21:36:46.606Z",
+   "map": "Corrupted Isle",
+   "teams": [
+    "cope",
+    "hold"
+   ],
+   "winner": "hold",
+   "length_s": 1693,
+   "kb": 378,
+   "summary": true,
+   "trim": 3
+  },
+  "82c41cb9-ad64-5e28-a069-e533f94e0d6b": {
+   "file": "2026-09/82c41cb9-ad64-5e28-a069-e533f94e0d6b.json.gz",
+   "date": "2026-09-11T20:22:35.336Z",
+   "map": "Isle of Solitude",
+   "teams": [
+    "One",
+    "Men"
+   ],
+   "winner": "Men",
+   "length_s": 1031,
+   "kb": 249,
+   "summary": true,
+   "trim": 3
+  },
+  "bd26f29a-f97b-5cf1-a4a6-41e33ad58d3b": {
+   "file": "2026-10/bd26f29a-f97b-5cf1-a4a6-41e33ad58d3b.json.gz",
+   "date": "2026-10-21T19:43:25.145Z",
+   "map": "Isle of Jade",
+   "teams": [
+    "Crew",
+    "mddl"
+   ],
+   "winner": "Crew",
+   "length_s": 334,
+   "kb": 67,
+   "summary": true,
+   "trim": 3
+  },
+  "862d6629-38f3-5359-a885-0285354ce534": {
+   "file": "2026-09/862d6629-38f3-5359-a885-0285354ce534.json.gz",
+   "date": "2026-09-18T21:39:51.776Z",
+   "map": "Corrupted Isle",
+   "teams": [
+    "NwAy",
+    "Men"
+   ],
+   "winner": "NwAy",
+   "length_s": 1666,
+   "kb": 480,
+   "summary": true,
+   "trim": 3
+  },
+  "ce2082b0-caf2-5e98-a926-152b64dd624d": {
+   "file": "2026-09/ce2082b0-caf2-5e98-a926-152b64dd624d.json.gz",
+   "date": "2026-09-19T19:41:45.758Z",
+   "map": "Isle of Solitude",
+   "teams": [
+    "NwAy",
+    "Apes"
+   ],
+   "winner": "NwAy",
+   "length_s": 1048,
+   "kb": 229,
+   "summary": true,
+   "trim": 3
+  },
+  "92b0a4af-442d-51b9-ae75-6d915e16a4ce": {
+   "file": "2026-09/92b0a4af-442d-51b9-ae75-6d915e16a4ce.json.gz",
+   "date": "2026-09-17T21:03:25.392Z",
+   "map": "Isle of Weeping Stone",
+   "teams": [
+    "Team",
+    "BcS"
+   ],
+   "winner": "Team",
+   "length_s": 694,
+   "kb": 151,
+   "summary": true,
+   "trim": 3
+  },
+  "6023823f-1e09-50b5-a8ab-63f809546e0c": {
+   "file": "2026-09/6023823f-1e09-50b5-a8ab-63f809546e0c.json.gz",
+   "date": "2026-09-19T16:09:54.313Z",
+   "map": "Isle of Solitude",
+   "teams": [
+    "Men",
+    "Free"
+   ],
+   "winner": "Men",
+   "length_s": 226,
+   "kb": 65,
    "summary": true,
    "trim": 3
   }
