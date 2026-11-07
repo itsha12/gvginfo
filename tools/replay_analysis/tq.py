@@ -265,8 +265,10 @@ def flags(new_ids, recs, usual_res):
         short.append(f"{tag}'s answer was {c.get('slower_than_possible_s')} s slower than possible")
     dd = collections.Counter(d["team"] for d in a["deaths"] if s - 5 <= d["t"] <= e)
     if dd: short.append("deaths in the window: " + ", ".join(f"{k} {v}" for k, v in dd.items()))
-    lu, lu_short, lu_conf = lead_up(rid, tag, e, recs, usual_res)
-    if lu_short: short.append(f"the position came from earlier: {lu_short}")
+    import chain as CH
+    ch = CH.Chain(rid, tag, recs, usual_res).build("flag_deficit", e)
+    lu, lu_short, lu_conf = ch.lines(), (ch.short() if len(ch.links) > 1 else None), ch.confidence_items()
+    if lu_short: short.append(f"how the game got there: {lu_short}")
     if short: L.append(f"**Why, in short**: " + "; ".join(short) + ".")
     if lu: L += [""] + lu
     L += ["", "**A different play (measured)**", ""]
@@ -341,12 +343,14 @@ def monk(new_ids, recs, usual_res):
          "**Why** (forensics, against the same role in every stored match):"]
     L += EV.short(ans)
     kc = EV.key_causes(ans)
-    lu, lu_short, lu_conf = lead_up(rid, team, t, recs, usual_res)
+    import chain as CH
+    ch = CH.Chain(rid, team, recs, usual_res).build("deaths", t, {"deaths": [x for x in a["deaths"] if x["team"] == team and abs(x["t"] - t) <= CH.CLUSTER_S]})
+    lu, lu_short, lu_conf = ch.lines(), (ch.short() if len(ch.links) > 1 else None), ch.confidence_items()
     if kc: L.append(f"**Why, in short**: the {role} died because " + ", ".join(kc[:4]) + "."
-                    + (f" The position itself came from earlier: {lu_short}." if lu_short else ""))
+                    + (f" How the game got there: {lu_short}." if lu_short else ""))
     if lu: L += [""] + lu
     L += ["", "**How it could have been prevented (measured)**", ""]
-    if lu: L.append(f"- Further back (above): the bad numbers were set up before the fight; the earlier choices are priced in \"How it got there\". "
+    if lu: L.append("- Further back: the fixes along the chain are priced above (\"Where a fix would have mattered most\"). "
                     "The readings below are what was still possible in the last seconds.")
     conf = list(lu_conf)
     # options that were there and unused
@@ -444,65 +448,8 @@ def _bench_txt(k):
             f"win chance {b['win']:+} points" if b["win"] is not None else f"captured {b['captured']} of {b['n']}")
 
 
-def lead_up(rid, team, t, recs=None, usual_res=None):
-    """The further-back cause of a bad position: if the team's main group was outnumbered by OUTNUMBERED or more at t,
-    trace back (up to LEAD_BACK_S) to when that started, who was away from the main and doing what, the flag and stand
-    state then, the team's flag runs in that window priced against run_bench, and the decisions in the window with
-    measured-better choices (usual.py). Returns (lines, short cause or None, confidence items)."""
-    a = _analysis(rid)
-    foe = [x["tag"] for x in a["meta"]["teams"] if x["tag"] != team][0]
-    st = [x for x in a["state"] if t - LEAD_BACK_S <= x["t"] <= t]
-    def gap(x): return x[team]["main"] - x[foe]["main"]
-    if not st or gap(min(st, key=lambda x: abs(x["t"] - t))) > -OUTNUMBERED + 0 and min(gap(x) for x in st[-3:]) > -OUTNUMBERED:
-        return [], None, []
-    first = next(x for x in st if gap(x) <= -OUTNUMBERED)
-    tb = first["t"]
-    sb = max([r for r in a["scoreboard"] if r["t"] <= tb] or a["scoreboard"][:1], key=lambda r: r["t"])
-    L = [f"**How it got there** (traced back from {clock(t)} to when {team}'s main was first outnumbered by {OUTNUMBERED}+, at {clock(tb)}):",
-         f"- At {clock(tb)}: main {first[team]['main']}v{first[foe]['main']}, alive {first[team]['alive']}v{first[foe]['alive']}, "
-         f"stand {sb['stand']['owner'] or 'nobody'}" + (f" (boost in {sb['stand']['boost_in']} s)" if sb['stand'].get('boost_in') else "")
-         + f", {team}'s flag lead {sb[team]['flag_lead']:+} s, DP {sb[team].get('morale_sum')} against {sb[foe].get('morale_sum')}."]
-    runs = [r for r in a["flag_runs"] if r["team"] == team and r["end"] >= tb - 40 and r["start"] <= t]
-    away = collections.OrderedDict()
-    for x in [y for y in a["state"] if tb - 40 <= y["t"] <= t]:
-        for role in x[team]["zones"]:
-            if role in x[team]["main_roles"]: continue
-            if role in x[team]["dead"]: why_ = "dead"
-            elif f"{team} {role}" in x["carriers"]: why_ = "carrying the flag"
-            elif any(r["start"] <= x["t"] <= r["end"] + 5 and role in (r.get("escort") or []) for r in runs): why_ = "escorting the flag"
-            else: why_ = f"away ({x[team]['zones'][role]})"
-            away.setdefault((role, why_), [x["t"], x["t"]])[1] = x["t"]
-    if away:
-        L.append("- Away from the main: " + "; ".join(f"{r} {w} {clock(s)}" + (f" to {clock(e)}" if e > s else "") for (r, w), (s, e) in list(away.items())[:12]))
-    ds = [d for d in a["deaths"] if d["team"] == team and tb - 40 <= d["t"] <= t]
-    if ds: L.append("- Own deaths on the way: " + "; ".join(f"{clock(d['t'])} {d['victim']} ({d.get('zone')}, {d.get('numbers')})" for d in ds))
-    short, conf = None, []
-    if runs:
-        L.append(f"- {team}'s flag runs in that window, each against every stored run made while the enemy held the stand (run_bench):")
-        bad = []
-        for r in runs:
-            k = _run_key(r["main_numbers"], len(r.get("escort") or []))
-            L.append(f"  - {clock(r['start'])} {r['runner']}" + (f" with {', '.join(r['escort'])}" if r.get("escort") else " alone")
-                     + f", main left at {r['main_numbers'][0]:.0f}v{r['main_numbers'][1]:.0f}: {r['outcome']}. Runs like it: {_bench_txt(k)}.")
-            alt = (k[0], "escort 0-1") if k[1] == "escort 2+" else None
-            if alt:
-                L.append(f"    Instead, {_bench_txt(alt)}.")
-                b, ba = run_bench().get(k), run_bench().get(alt)
-                if b and ba and b["win"] is not None and ba["win"] is not None and ba["win"] > b["win"]:
-                    bad.append((r, b, ba))
-        if bad:
-            r, b, ba = bad[0]
-            short = (f"{team} sent {len(r['escort']) + 1} players on a flag run at {clock(r['start'])} (main left {r['main_numbers'][0]:.0f}v{r['main_numbers'][1]:.0f}"
-                     f"), the shape that captured {b['captured']} of {b['n']} stored runs")
-            conf.append(("run benchmark", b["n"] >= 10 and ba["n"] >= 10))
-    if recs is not None and usual_res is not None:
-        dec = decision_alternatives(recs, usual_res, rid, team, tb - 40, t)
-        better = [x for x in dec if better_options(x)]
-        if dec:
-            L.append("- Decisions in the lead-up (usual.py):")
-            L += ["  " + y for y in decision_lines(better or dec[-1:])]
-            conf += [c for c in [decision_conf(x) for x in (better or dec[-1:])] if c]
-    return L, short, conf
+# lead_up (2026-11-07, first version) was replaced the same day by chain.py (Denning: how the game state came about,
+# not only position); run_bench and _bench_txt above are used by chain.py.
 
 # ------------------------------------------------------------------ 3. power play without a kill
 _PP_BENCH = None
@@ -697,13 +644,15 @@ def npcs(new_ids, recs, usual_res):
         for d in dead[:2]:
             kc_ = EV.key_causes(EV.death(rid, tag, d["victim"], d["t"] + .5, F_))
             if kc_: short.append(f"the {d['victim']} died at {clock(d['t'])} ({d.get('zone')}, numbers {d.get('numbers')}) because " + ", ".join(kc_[:3]))
-    lu, lu_short, lu_conf = lead_up(rid, tag, (min(d["t"] for d in dead) if dead else t), recs, usual_res)
-    if lu_short: short.append(f"the collapse that killed them came from earlier: {lu_short}")
+    import chain as CH
+    ch = CH.Chain(rid, tag, recs, usual_res).build("npc_loss", t, {"what": txt.split(" lost ")[-1].split(" (")[0]})
+    lu, lu_short, lu_conf = ch.lines(), (ch.short() if len(ch.links) > 1 else None), ch.confidence_items()
+    if lu_short: short.append(f"how the game got there: {lu_short}")
     if short: L.append("**Why, in short**: " + "; ".join(short) + ".")
     if lu: L += [""] + lu
     L += ["", "**How it could have been prevented (measured)**", ""]
     if dead: L.append(f"- Further back: with {len(dead)} of {tag} dead, more defenders were not available; "
-                      + ("the choices that led to the deaths are priced in \"How it got there\" above." if lu else
+                      + ("the fixes along the chain are priced above." if lu else
                          "the deaths are explained above, and the split's answer is priced below."))
     conf = list(lu_conf)
     if sp:

@@ -560,6 +560,17 @@ still bends the wrong way at the extremes, so seconds of flag lead are sometimes
   the bases, doubling their flag run, every flag ETA and lead on them, and map_flag_run; other single matches caught a
   choke where dropped flags were picked up. Four replays with no located stand (0, 0) now use the map's median stand.
   Rebuild the table after new replays (`benchmarks.py spawns`), before `benchmarks.py carry`.
+- The causal chain (`chain.py`, Denning 2026-11-07; replaces `tq.lead_up`): TQs 1, 2 and 4 trace how the game state
+  came about, as a chain of states each caused by the one before (pit lost <- defenders dead or away <- the deaths and
+  their measured causes <- the fight's numbers <- flag duty <- the flag deficit <- what turned it; plus an enemy split in
+  the base and an isolated player). Back to the last reset (both teams 8 alive, flag lead within 10 s) or 3 minutes;
+  the 2 biggest causes followed at each link (by held-out win change); ongoing states that began before the reset (a
+  split, a player away, flag duty) stay in. Fixes: only the 2 that would have mattered most, priced in win points from
+  measurement (usual play, deaths node read again, run benchmark).
+- Defensive play by a disrupting player (`forensics.disruption`; Denning: for a Mesmer, defensive = interrupting
+  offensive skills and casting on the enemy midline and frontline; offensive = interrupting the enemy monks): share of
+  its interrupts and enemy-targeted casts on the midline or frontline, against every stored own-healer death
+  (`chain.mes_benchmark`; first reading: median 86%, 493 cases).
 - Correction (Denning, batch 7): lord_dps_own and lord_dps_enemy capped at 5 points (data/model_corrections.json).
 - Usual play includes the map (usual.py `MAP_COLS`): geometry in the similarity and, with the build axes, the adjustment;
   choice effects split by map name once a map has 10+ cases of the choice and of the usual one.

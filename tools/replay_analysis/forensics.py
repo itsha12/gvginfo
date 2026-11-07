@@ -420,6 +420,21 @@ class Forensics:
                 "cancelled_when_threatened": sum(1 for r in risky if r["outcome"] == "cancelled")}
         return {"measures": meas, "casts": rows}
 
+    def disruption(self, a, t0, t1):
+        """Defensive or offensive play by a disrupting player (Denning, 2026-11-07, for Mesmers: defensive = interrupting
+        offensive skills and casting on the enemy midline and frontline; offensive = interrupting the enemy monks). Counts
+        a's interrupts landed and a's casts aimed at an enemy in the window, split by the target's line (healer against
+        midline or frontline). defensive_share = the midline/frontline share of both together (None if a did neither)."""
+        foe = 3 - self.m.team(a)
+        def cls(b): return "healer" if b in self.healers else "mid/front"
+        intr = collections.Counter(cls(i[3]) for i in (self.m.o.get("interrupts") or [])
+                                   if i[1] == a and i[3] in self.m.PL and self.m.team(i[3]) == foe and t0 * 10 <= i[0] <= t1 * 10)
+        casts = collections.Counter(cls(c[5]) for c in self.casts()
+                                    if c[0] == a and t0 <= c[2] <= t1 and c[5] in self.m.PL and self.m.team(c[5]) == foe)
+        n = sum(intr.values()) + sum(casts.values())
+        return {"interrupts": dict(intr), "casts_on_enemies": dict(casts),
+                "defensive_share": round((intr["mid/front"] + casts["mid/front"]) / n, 2) if n else None, "actions": n}
+
     def conditions(self, a, t0, t1):
         """Each condition put on it: by whom, from how far, was the attacker pressured, the victim's set and position,
         and whether it was removed."""
