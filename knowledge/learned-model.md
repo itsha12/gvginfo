@@ -68,7 +68,7 @@ Causes tested:
   - defenders alive and not on flag duty at the run's start: at 0 to 3.5: +6.3 points; at 7.5 to 8: -1.8 points
   - conditions and knockdowns on the runner by this point: at 0 to 0.5: -0.2 points; at 4.5 to 13: -1.9 points
 - **Team strength**: not clear yet: more matches needed.
-  - defending team's strength gap: at -989 to -538: +4.3 points; at 581 to 989: -2.2 points
+  - defending team's strength gap: at -989 to -538: +4.4 points; at 581 to 989: -2.2 points
 
 ## How long does an enemy capture take? (Captures only.)
 
@@ -90,25 +90,25 @@ Causes tested:
 Causes tested:
 - **Allocation**: **supported**: it clearly helps predict matches the model never saw.
   - share of the enemy's missing player-seconds: dead: at 0 to 0.01: -19 points; at 0.99 to 1: +20.6 points
-  - in a base or pit: at 0 to 0.01: +2.9 points; at 0.74 to 1: -17.7 points
-  - on the back side or push side: at 0 to 0.01: -1.6 points; at 0.99 to 1: -6.2 points
+  - in a base or pit: at 0 to 0.01: +2.9 points; at 0.74 to 1: -17.5 points
+  - on the back side or push side: at 0 to 0.01: -1.5 points; at 0.99 to 1: -6.2 points
 - **Mitigation**: **supported**: it clearly helps predict matches the model never saw.
-  - enemy prot casts per 10 s: at 0 to 0.58: +19.3 points; at 4.51 to 6.77: -18.3 points
-  - enemy healing per second: at 0 to 21.35: +18.7 points; at 116.6 to 189.7: -24.9 points
+  - enemy prot casts per 10 s: at 0 to 0.58: +19.2 points; at 4.51 to 6.77: -18.2 points
+  - enemy healing per second: at 0 to 21.35: +18.6 points; at 116.6 to 189.7: -24.8 points
 - **Commitment**: not clear yet: more matches needed.
   - pushed (1) or held (0): at 0 to 0.5: -12.9 points; at 0.5 to 1: +6.2 points
 - **Damage uptime**: not clear yet: more matches needed.
-  - own damage per second against the usual of the players alive: at 0.04 to 0.46: -23.8 points; at 2.74 to 19.89: +12.4 points
+  - own damage per second against the usual of the players alive: at 0.04 to 0.46: -23.7 points; at 2.74 to 19.89: +12.3 points
 - **Team strength**: not clear yet: more matches needed.
-  - team strength gap: at -976 to -514: -12.8 points; at 623 to 989: +30.1 points
-- **Control received**: not clear yet: more matches needed.
+  - team strength gap: at -976 to -514: -12.8 points; at 623 to 989: +30 points
+- **Control received**: **supported**: it clearly helps predict matches the model never saw.
   - Blinds on own players per 10 s: at 0 to 0.05: +0 points; at 1.08 to 1.25: +1.8 points
 - **Flag lead**: not clear yet: more matches needed.
-  - flag lead (s): at -80 to -55.5: -0.6 points; at 71.5 to 108: +2.9 points
+  - flag lead (s): at -80 to -55.5: -0.6 points; at 71.5 to 108: +2.8 points
 - **Target choice**: not clear yet: more matches needed.
   - share of own spikes on healers: at 0 to 0.07: +5.4 points; at 0.9 to 1: +7 points
 - **Burst timing**: not clear yet: more matches needed.
-  - median spread of own spikes (s): at 0 to 0.25: +21.7 points; at 2.73 to 3: +7.6 points
+  - median spread of own spikes (s): at 0 to 0.25: +21.5 points; at 2.73 to 3: +7.6 points
   - own spikes per 10 s: at 0 to 0.03: -1.8 points; at 0.69 to 1.23: +10.9 points
 
 ## Who wins a fight? Play measured before the fight's first death.
@@ -117,14 +117,14 @@ Causes tested:
 
 Causes tested:
 - **Team strength**: **supported**: it clearly helps predict matches the model never saw.
-  - team strength gap: at -989 to -623: -32.1 points; at 639 to 989: +30.9 points
+  - team strength gap: at -989 to -623: -32.1 points; at 639 to 989: +30.8 points
 - **Allocation**: **supported**: it clearly helps predict matches the model never saw.
   - own players in the fight: at 0 to 0.5: -34 points; at 7.5 to 8: +22.7 points
   - enemy players in the fight: at 0 to 0.5: +31.9 points; at 7.5 to 8: -26.2 points
 - **Pressure**: **supported**: it clearly helps predict matches the model never saw.
   - damage against the usual of the players alive, own minus enemy: at -14.73 to -2: -21.2 points; at 1.96 to 10.17: +22.1 points
 - **Burst timing**: **supported**: it clearly helps predict matches the model never saw.
-  - spikes, own minus enemy: at -4 to -2.5: -31.1 points; at 2.5 to 3: +35.3 points
+  - spikes, own minus enemy: at -4 to -2.5: -31.2 points; at 2.5 to 3: +35.3 points
   - median spike spread (s), own minus enemy: at -1.4 to -1.1: +0.3 points; at 0.67 to 0.85: -4.2 points
 - **Wrong casts**: not clear yet: more matches needed.
   - interrupted after casting into a ready interrupt, per cast, own minus enemy: at -0.28 to -0.08: +19.3 points; at 0.08 to 0.27: -24.8 points
@@ -135,9 +135,9 @@ Causes tested:
   - value-weighted seconds hexes stayed on own players, own minus enemy: at -28.2 to -10.92: -4.1 points; at 10.72 to 29.6: +9.8 points
 - **Enchantment strips**: not clear yet: more matches needed.
   - value of enchantments stripped per 10 s, own minus enemy: at -95.81 to -27.7: -16.1 points; at 25.59 to 62.99: +8 points
-  - share of strips on the best target in range, own minus enemy: at -1 to -0.88: +1.5 points; at 0.88 to 1: +5 points
+  - share of strips on the best target in range, own minus enemy: at -1 to -0.88: +1.5 points; at 0.88 to 1: +4.9 points
 - **Peel**: not clear yet: more matches needed.
-  - own frontline damage share on attackers of own backline, minus the enemy's: at -1 to -0.64: -5.3 points; at 0.71 to 1: +2.1 points
+  - own frontline damage share on attackers of own backline, minus the enemy's: at -1 to -0.64: -5.3 points; at 0.71 to 1: +2 points
 - **Blind on enemies**: **rejected for now**: leaving it out predicts unseen matches slightly better.
   - Blinds on the enemy frontline, own minus enemy: at -3 to -1.5: -5.4 points; at 2.5 to 6: +13.2 points
   - defensive Blinds, own minus enemy: at -1 to -0.5: +3.2 points; at 1.5 to 2: +9.2 points
@@ -152,9 +152,9 @@ Causes tested:
   - own alive: at 0 to 3.5: -42.1 points; at 7.5 to 8: +3.3 points
   - own team holds the stand: at 0 to 0.5: -1.5 points; at 0.5 to 1: +1.9 points
 - **Build features**: not clear yet: more matches needed.
-  - snares on own bars: at 0 to 0.5: -10.8 points; at 11.5 to 14: +0.6 points
+  - snares on own bars: at 0 to 0.5: -10.8 points; at 11.5 to 14: +0.7 points
   - speed skills on own bars: at 1 to 1.5: +0.7 points; at 8.5 to 10: +9.6 points
-  - snares on enemy bars: at 0 to 0.5: -18.4 points; at 11.5 to 14: -9.7 points
+  - snares on enemy bars: at 0 to 0.5: -18.3 points; at 11.5 to 14: -9.7 points
 - **Team strength**: not clear yet: more matches needed.
   - team strength gap: at -989 to -581: -10.3 points; at 556 to 989: +7.4 points
 - **Clock**: not clear yet: more matches needed.
