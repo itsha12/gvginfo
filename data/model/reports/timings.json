@@ -1,19 +1,21 @@
 {
  "cores": 4,
- "cpu": "AMD EPYC 9V45 96-Core Processor",
+ "cpu": "AMD EPYC 7763 64-Core Processor",
  "seconds": {
-  "fit and honest test": 45.7,
-  "integrity and honest test text": 2.5,
+  "fit and honest test": 89.0,
+  "integrity and honest test text": 3.7,
   "curves": 0.0,
-  "interaction screen": 0.0,
-  "candidate variables": 100.4,
-  "surprises": 0.9,
-  "rulings": 0.0,
-  "node models": 126.2,
-  "usual play": 72.2,
+  "interaction screen": 0.1,
+  "candidate variables": 202.9,
+  "surprises": 1.6,
+  "rulings": 0.1,
+  "node models": 261.3,
+  "event layer and values": 15.1,
+  "learned nodes": 209.7,
+  "usual play": 157.8,
   "values": 0.0,
-  "TQs": 59.8,
-  "snapshot": 8.2,
+  "TQs": 81.3,
+  "snapshot": 9.7,
   "questions": 0.0
  }
 }

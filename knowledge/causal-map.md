@@ -1,6 +1,6 @@
 *Generated from data/model/causal_map.json by tools/replay_analysis/causal_map.py: don't edit this page; tell Claude or edit the JSON (each change is logged with a reason).*
 
-# Causal map (version 10)
+# Causal map (version 11)
 
 What can cause what in a GvG match. Each concept is measured from the replays; the model for each concept may only use the causes listed under it, measured earlier in time, and the data decides how much each matters. Status: **hypothesis** (not yet tested), **supported** or **rejected** by data, **mechanical** (a formula). "Confirmed" = Denning has confirmed the reasoning; the size of the effect still comes from data.
 
@@ -34,9 +34,18 @@ where each team's 8 players are every second: groups, who is in each, on flag du
 
 Caused by:
 - **Flag lead**: a team that must run has players on flag duty, which changes numbers elsewhere (Denning; hypothesis; `F5` `J1`)
-- **Scoreboard**: the scoreboard shapes the next second's allocation (a loop over time) (Denning; hypothesis; `J1`)
+- **Scoreboard**: the scoreboard shapes the next second's allocation (a loop over time) (Denning; supported; `J1`)
 - **Split answer**: collapsing on a split depends on the plan (NPCs or DP), the defender's ability to hold, the flag position and how the main fight is going; the line comes from data (Denning; hypothesis; `S32` `S31`)
 - **Fight state**: staying or falling back near the enemy's boost depends on whether the own team is losing the fight (Denning; hypothesis; `D4`)
+- **Clock**: the res clock and the minute change when a split pays (Claude; hypothesis)
+- **Build features**: split builds (speed, snares) and the enemy's snares decide whether a split is possible (Claude; hypothesis)
+- **Team strength**: stronger teams play better at everything; kept in every model so play isn't confused with strength (Claude; hypothesis)
+
+Measured on unseen matches (learnednodes.py; gain = how much worse the node predicts without the link):
+- Scoreboard (`S.scoreboard`), split chance node: gain +0.0168 (+/- 0.0056, log loss), supported, 113 matches
+- Build features (`C.builds`), split chance node: gain +0.0025 (+/- 0.0049, log loss), not clear yet, 113 matches
+- Team strength (`C.strength`), split chance node: gain +0.0009 (+/- 0.0038, log loss), not clear yet, 113 matches
+- Clock (`C.clock`), split chance node: gain +0.0003 (+/- 0.0013, log loss), not clear yet, 113 matches
 
 ### Phase `A.phase`
 a stretch with a stable global setup; ends at a collapse, death, res or capture. *Measured: to build: from changes in allocation.*
@@ -99,7 +108,7 @@ Caused by:
 - **Scoreboard, Plan, Clock, Build features, Team strength**: decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out (Claude; hypothesis)
 
 ### Condition removal `P.5`
-removal of Blind, Weakness and other conditions from own damage dealers and monks, and how fast. *Measured: effects intervals and removal casts.*
+removal of Blind, Weakness and other conditions from own damage dealers and monks, and how fast; hex removal: the right hexes removed (valued from data) and how fast. *Measured: effects intervals and removal casts; eventlayer.py hex_removals.*
 
 Caused by:
 - **Mesmers free to defend, Monk load, Removal capacity, Build features**: removal and defensive interrupts are missing because the Mes/A is running or defending, the mesmer interrupts offensively, the mesmer is shut down, the monks are overloaded, the bars lack removal, or the enemy reapplies faster than removal recharges (Claude; hypothesis; `K13`)
@@ -141,6 +150,15 @@ who answers a split and how fast. *Measured: splits.*
 Caused by:
 - **Scoreboard, Plan, Clock, Build features, Team strength**: decisions are made in a situation: the engine learns what teams usually do in each situation (the usual play), so a choice that does better than the usual play stands out (Claude; hypothesis)
 - **Build features**: individual bars matter: a Mes/A defending 1v1 with a snare plays differently from one without (Denning; hypothesis; `B23`)
+- **Mesmers free to defend**: free defenders near the base answer a split sooner (Denning; supported)
+- **Allocation**: a bigger split draws more defenders (Claude; hypothesis)
+
+Measured on unseen matches (learnednodes.py; gain = how much worse the node predicts without the link):
+- Mesmers free to defend (`A.mesa_free`), split answer node: gain +0.6 (+/- 0.19, mean absolute error (s)), supported, 78 matches
+- Allocation (`A.allocation`), split answer node: gain +0.57 (+/- 0.36, mean absolute error (s)), not clear yet, 78 matches
+- Scoreboard (`S.scoreboard`), split answer node: gain +0.13 (+/- 0.21, mean absolute error (s)), not clear yet, 78 matches
+- Team strength (`C.strength`), split answer node: gain +0.03 (+/- 0.11, mean absolute error (s)), not clear yet, 78 matches
+- Clock (`C.clock`), split answer node: gain +0.0 (+/- 0.06, mean absolute error (s)), not clear yet, 78 matches
 
 ### Res timing `P.12`
 whether a team waits for its dead to return before fighting. *Measured: fights against res timers.*
@@ -176,6 +194,24 @@ Caused by:
 - **Scoreboard, Clock, Plan, Team strength**: decisions are made in a situation (the usual play) (Claude, confirmed; hypothesis)
 - **Res timing**: monks die on purpose only for a base res (every 2 minutes on the minute), e.g. in their own base at 17:55; never for a Pact or res signet (Denning; supported; `K14`)
 
+### Wrong casts `P.17`
+casting into a ready interrupt without cancelling, casting while Dazed, attacking while Blind (every role). *Measured: eventlayer.py casts.*
+
+Caused by:
+- **Matchup**: the enemy's interrupts, Daze and Blind against own cancels and removal set how many casts go wrong (Claude; hypothesis)
+
+### Enchantment strips `P.18`
+strips on the best target in range, valued from data (an enchantment's recorded output plus the bearer's measured drop after a strip). *Measured: eventlayer.py strips, values().*
+
+Caused by:
+- **Build features**: strips come from the enchantment removal on own bars, and the targets from the enemy's enchantments (Claude; hypothesis)
+
+### Blind on enemies `P.19`
+Blind on the enemy frontline, and on players hitting own healers (defensive). *Measured: eventlayer.py blinds.*
+
+Caused by:
+- **Build features**: Blind comes from the Blind skills on own bars (Claude; hypothesis)
+
 ## Capacities (what a group can do in its fight)
 
 ### Pressure `K.1`
@@ -206,11 +242,24 @@ bursts and pressure that become kills. *Measured: bursts against deaths.*
 Caused by:
 - **Damage potential v healing, Damage uptime, Burst timing, Kiting and spacing, Commitment**: a 5v3 fails to convert when its heads hide few damage dealers against healers, its damage is shut down, its bursts don't line up, the 3 kite to their pit or NPCs, or it doesn't commit (Claude, confirmed; hypothesis; `J3`)
 - **Flag lead**: a team down on flags must send a runner soon, so its power play is shorter and less committed than its numbers suggest (Denning; hypothesis; `J5`)
-- **Control received, Mitigation, Burst timing**: a team can't kill because of the enemy's defence (prots, blocks), shutdown of its spikers (interrupts, knockdowns, Blind, strips) or spread damage (Claude, confirmed; hypothesis; `K12`)
-- **Target choice**: hitting the wrong player matters but isn't huge (Denning; hypothesis; `K12`)
+- **Control received, Burst timing**: a team can't kill because of the enemy's defence (prots, blocks), shutdown of its spikers (interrupts, knockdowns, Blind, strips) or spread damage (Claude, confirmed; hypothesis; `K12`)
+- **Mitigation**: a team can't kill because of the enemy's defence (prots, blocks), shutdown of its spikers (interrupts, knockdowns, Blind, strips) or spread damage (Claude, confirmed; supported; `K12`)
+- **Target choice**: hitting the wrong player matters but isn't huge (Denning; rejected; `K12`)
 - **Matchup**: the matchup sets what each capacity can be expected to be; a team can play well and still lose a hard matchup (how much comes from data) (Denning; hypothesis; `J10`)
 - **Team strength**: stronger teams play better at everything; kept in every model so play isn't confused with strength (Claude; hypothesis)
 - **Build features**: a snare on the split defender makes a collapse on a lone attacker much more likely to kill; without one, holding 1v1 is the aim (Denning; supported; `S31` `B23`)
+- **Allocation**: a power play is any numbers advantage at main, an 8v7 while the enemy runs included (Denning; supported)
+
+Measured on unseen matches (learnednodes.py; gain = how much worse the node predicts without the link):
+- Allocation (`A.allocation`), power play node: gain +0.0557 (+/- 0.0139, log loss), supported, 113 matches
+- Mitigation (`K.5`), power play node: gain +0.0204 (+/- 0.0065, log loss), supported, 113 matches
+- Commitment (`P.14`), power play node: gain +0.0091 (+/- 0.0073, log loss), not clear yet, 113 matches
+- Team strength (`C.strength`), power play node: gain +0.0068 (+/- 0.0101, log loss), not clear yet, 113 matches
+- Damage uptime (`K.2`), power play node: gain +0.0067 (+/- 0.0064, log loss), not clear yet, 113 matches
+- Control received (`K.11`), power play node: gain +0.0004 (+/- 0.0008, log loss), not clear yet, 113 matches
+- Flag lead (`R.3`), power play node: gain -0.0008 (+/- 0.0011, log loss), not clear yet, 113 matches
+- Burst timing (`P.2`), power play node: gain -0.0009 (+/- 0.0017, log loss), not clear yet, 113 matches
+- Target choice (`P.1`), power play node: gain -0.003 (+/- 0.0012, log loss), rejected, 113 matches
 
 ### Mitigation `K.5`
 prots landed on time, blocks, damage prevented. *Measured: effects, prevented damage.*
@@ -302,23 +351,80 @@ Caused by:
 - **Death timing on purpose**: teams time kills and the dying team may choose to die before time; a death's cost depends on when it happens, and some deaths may be positive (energy reset, a short wait) (Denning; hypothesis; `K14` `K15` `K1` `K2`)
 - **Fight state**: a team losing its fight is about to take deaths (data; hypothesis)
 - **Hex pressure**: hexes on a player or its healers make it easier to kill (Claude; hypothesis)
+- **Collapse timing**: collapse timing: defenders arriving together kill a split member (Denning; supported)
+- **Build features**: a snare on the split defender makes a collapse on a lone attacker much more likely to kill (Denning; hypothesis)
+- **Allocation**: a split outnumbered at the point of contact dies (Claude; hypothesis)
+- **Team strength**: stronger teams play better at everything; kept in every model so play isn't confused with strength (Claude; hypothesis)
+
+Measured on unseen matches (learnednodes.py; gain = how much worse the node predicts without the link):
+- Collapse timing (`P.9`), collapse node: gain +0.0065 (+/- 0.0021, log loss), supported, 103 matches
+- Team strength (`C.strength`), collapse node: gain +0.0027 (+/- 0.0034, log loss), not clear yet, 103 matches
+- Allocation (`A.allocation`), collapse node: gain +0.0024 (+/- 0.0015, log loss), not clear yet, 103 matches
+- Split answer (`P.11`), collapse node: gain +0.0017 (+/- 0.003, log loss), not clear yet, 103 matches
+- Build features (`C.builds`), collapse node: gain -0.0007 (+/- 0.0032, log loss), not clear yet, 103 matches
 
 ### Wipes `R.2`
 fights where 3+ players or 2+ monks die. *Measured: fights.*
 
 Caused by:
 - **Collapse timing**: collapse timing is very important (Denning; hypothesis; `J7`)
+- **Allocation**: numbers in a fight decide much of it (Denning; supported)
+- **Peel**: frontline defensive peel (hitting or snaring enemies on its own backline) protects the healers (Denning; hypothesis)
+- **Wrong casts**: wrong casts lose fights: casting into ready interrupts without cancelling, casting while Dazed, attacking while Blind (Denning; hypothesis)
+- **Enchantment strips**: strips on the right target (Elementalist enchantments when defensive, prots off a target under attack) (Denning; hypothesis)
+- **Blind on enemies**: Blind on the enemy frontline, above all on players hitting own healers, is defensive play (Denning; rejected)
+- **Burst timing**: off spike timing fails to kill (Denning; supported)
+- **Pressure**: damage output against the role's usual (Denning; supported)
+- **Condition removal**: the right hexes removed, and fast (Denning; hypothesis)
+- **Team strength**: stronger teams play better at everything; kept in every model so play isn't confused with strength (Claude; supported)
+
+Measured on unseen matches (learnednodes.py; gain = how much worse the node predicts without the link):
+- Team strength (`C.strength`), fight outcome node: gain +0.0632 (+/- 0.008, log loss), supported, 113 matches
+- Allocation (`A.allocation`), fight outcome node: gain +0.0439 (+/- 0.0092, log loss), supported, 113 matches
+- Pressure (`K.1`), fight outcome node: gain +0.0339 (+/- 0.0135, log loss), supported, 113 matches
+- Burst timing (`P.2`), fight outcome node: gain +0.0232 (+/- 0.011, log loss), supported, 113 matches
+- Wrong casts (`P.17`), fight outcome node: gain +0.0131 (+/- 0.0078, log loss), not clear yet, 113 matches
+- Condition removal (`P.5`), fight outcome node: gain +0.0015 (+/- 0.0039, log loss), not clear yet, 113 matches
+- Enchantment strips (`P.18`), fight outcome node: gain +0.001 (+/- 0.0051, log loss), not clear yet, 113 matches
+- Peel (`P.13`), fight outcome node: gain -0.0013 (+/- 0.0022, log loss), not clear yet, 113 matches
+- Blind on enemies (`P.19`), fight outcome node: gain -0.0023 (+/- 0.0006, log loss), rejected, 113 matches
 
 ### Flag lead `R.3`
 the flag position (response on the next capture exchange). *Measured: scoreboard.*
 
 Caused by:
-- **Run timing and runner choice, Allocation, Map geometry**: being up on flags is the better position to boost and to run: runner trips, waiting runners, backup flags, routes (Denning; hypothesis; `F1` `F2` `F3` `F4`)
-- **Allocation**: a team splitting has a different ability to run the flag (Denning; hypothesis; `J1`)
-- **Run timing and runner choice**: a flag parked in base is a team deciding not to run yet; a long hand-off away from base is a response to a push or death, not double running (Denning; hypothesis; `F33`)
+- **Run timing and runner choice**: being up on flags is the better position to boost and to run: runner trips, waiting runners, backup flags, routes (Denning; supported; `F1` `F2` `F3` `F4`)
+- **Allocation**: being up on flags is the better position to boost and to run: runner trips, waiting runners, backup flags, routes (Denning; rejected; `F1` `F2` `F3` `F4`)
+- **Map geometry**: being up on flags is the better position to boost and to run: runner trips, waiting runners, backup flags, routes (Denning; hypothesis; `F1` `F2` `F3` `F4`)
+- **Allocation**: a team splitting has a different ability to run the flag (Denning; rejected; `J1`)
+- **Run timing and runner choice**: a flag parked in base is a team deciding not to run yet; a long hand-off away from base is a response to a push or death, not double running (Denning; supported; `F33`)
 - **Commitment**: a team killing during the enemy's flag cycle answers later, deliberately: it finishes the power play, then runs (Denning; hypothesis; `F34`)
 - **Mobility**: runners with speed skills carry far faster than average; the flag model uses each runner's measured speed (Claude; mechanical; `F35`)
 - **Map geometry**: the length of the flag run (Y) and the distance from the pits to the stand shape the flag game (Claude; hypothesis)
+- **Control received**: control on the runner (Cripple, knockdowns) stops a run; read at the same point of every run (Denning; hypothesis)
+- **Team strength**: stronger teams play better at everything; kept in every model so play isn't confused with strength (Claude; hypothesis)
+- **Scoreboard**: a flag lead tends to grow or shrink by how it stands now (boost and run timing) (Claude; hypothesis)
+- **Deaths**: deaths lose flag position: the runner, the escort or the main (Claude; hypothesis)
+- **Clock**: the res clock and the minute change what a run can do (Claude; hypothesis)
+- **Mesmers free to defend**: defenders free to push a runner slow the enemy's capture (Denning; supported)
+
+Measured on unseen matches (learnednodes.py; gain = how much worse the node predicts without the link):
+- Mesmers free to defend (`A.mesa_free`), capture speed node: gain +6.01 (+/- 0.48, mean absolute error (s)), supported, 108 matches
+- Run timing and runner choice (`P.10`), flag swing node: gain +0.41 (+/- 0.12, mean absolute error (s)), supported, 113 matches
+- Team strength (`C.strength`), flag swing node: gain +0.22 (+/- 0.16, mean absolute error (s)), not clear yet, 113 matches
+- Scoreboard (`S.scoreboard`), flag swing node: gain +0.1 (+/- 0.41, mean absolute error (s)), not clear yet, 113 matches
+- Deaths (`R.1`), flag swing node: gain +0.03 (+/- 0.09, mean absolute error (s)), not clear yet, 113 matches
+- Run timing and runner choice (`P.10`), run outcome node: gain +0.015 (+/- 0.0066, log loss), supported, 113 matches
+- Allocation (`A.allocation`), run outcome node: gain +0.0031 (+/- 0.0044, log loss), not clear yet, 113 matches
+- Map geometry (`C.map`), run outcome node: gain +0.0021 (+/- 0.0022, log loss), not clear yet, 113 matches
+- Control received (`K.11`), run outcome node: gain +0.0007 (+/- 0.0018, log loss), not clear yet, 113 matches
+- Team strength (`C.strength`), run outcome node: gain -0.0064 (+/- 0.0039, log loss), not clear yet, 113 matches
+- Clock (`C.clock`), flag swing node: gain -0.01 (+/- 0.02, mean absolute error (s)), not clear yet, 113 matches
+- Map geometry (`C.map`), flag swing node: gain -0.02 (+/- 0.03, mean absolute error (s)), not clear yet, 113 matches
+- Team strength (`C.strength`), capture speed node: gain -0.07 (+/- 0.05, mean absolute error (s)), not clear yet, 108 matches
+- Allocation (`A.allocation`), flag swing node: gain -0.09 (+/- 0.04, mean absolute error (s)), rejected, 113 matches
+- Map geometry (`C.map`), capture speed node: gain -0.1 (+/- 0.05, mean absolute error (s)), not clear yet, 108 matches
+- Allocation (`A.allocation`), capture speed node: gain -0.47 (+/- 0.36, mean absolute error (s)), not clear yet, 108 matches
 
 ### Boosts `R.4`
 boosts won and conceded. *Measured: stand ledger.*
@@ -330,10 +436,17 @@ Caused by:
 knights, archers and Bodyguard lost. *Measured: NPC deaths.*
 
 Caused by:
-- **Split answer**: a split answered late or with the wrong player takes NPCs (Denning; hypothesis; `S18` `S19`)
+- **Split answer**: a split answered late or with the wrong player takes NPCs (Denning; supported; `S18` `S19`)
 - **Allocation**: flag play and splits change the ability to take and defend NPCs (Denning; hypothesis; `J1`)
 - **Monk load**: a full pit gives the monks 5+ extra targets, and knights ball up and eat area damage, so healing needed rises sharply (Denning; supported; `P9`)
 - **Map geometry**: what a wipe can be turned into depends on where it happened: from the stand a team can't reach the enemy base and take NPCs before the res (Denning; supported; `D5`)
+- **Team strength**: stronger teams play better at everything; kept in every model so play isn't confused with strength (Claude; hypothesis)
+
+Measured on unseen matches (learnednodes.py; gain = how much worse the node predicts without the link):
+- Split answer (`P.11`), split effect node: gain +0.0042 (+/- 0.0018, log loss), supported, 78 matches
+- Team strength (`C.strength`), split effect node: gain +0.0001 (+/- 0.0016, log loss), not clear yet, 78 matches
+- Allocation (`A.allocation`), split effect node: gain -0.0005 (+/- 0.0023, log loss), not clear yet, 78 matches
+- Monk load (`K.8`), split effect node: gain -0.0034 (+/- 0.0033, log loss), not clear yet, 78 matches
 
 ### Lord damage `R.6`
 damage dealt to the enemy Lord (tiebreak). *Measured: Lord hits.*
@@ -417,3 +530,52 @@ Caused by:
 - 2026-11-06: version 9: per-player skill flags (buildfeat.player_flags); defender snare on split answers (S31); no rushing the base to spike resurrected players (D5) (Denning)
 - 2026-11-06: split answers: holder (not collapsing) and collapsers read apart; S32 what decides a collapse (Denning)
 - 2026-11-06: version 10: Lord health, Lord exposed and Lord killed (R.11 to R.13; 28 of 30 matches end with a Lord kill), fight state (K.14), hex pressure (K.15), flux (C.flux); team strength now includes lineups (Claude, with Denning (lineup strength, roster))
+- 2026-11-07: node P.17 Wrong casts added (step 2b: eventlayer.py casts) (Claude, from Denning's list)
+- 2026-11-07: node P.18 Enchantment strips added (step 2b: eventlayer.py strips, values()) (Claude, from Denning's list)
+- 2026-11-07: node P.19 Blind on enemies added (step 2b: eventlayer.py blinds) (Claude, from Denning's list)
+- 2026-11-07: link C.matchup -> P.17 added as a hypothesis: the enemy's interrupts, Daze and Blind against own cancels and removal set how many casts go wrong (Claude)
+- 2026-11-07: link C.builds -> P.18 added as a hypothesis: strips come from the enchantment removal on own bars, and the targets from the enemy's enchantments (Claude)
+- 2026-11-07: link C.builds -> P.19 added as a hypothesis: Blind comes from the Blind skills on own bars (Claude)
+- 2026-11-07: link P.10 -> R.3 supported by the run_outcome node (held-out gain 0.015 +/- 0.0066, 113 matches) (data)
+- 2026-11-07: link P.10 -> R.3 supported by the run_outcome node (held-out gain 0.015 +/- 0.0066, 113 matches) (data)
+- 2026-11-07: link K.11 -> R.3 added as a hypothesis (node run_outcome): control on the runner (Cripple, knockdowns) stops a run; read at the same point of every run (Denning)
+- 2026-11-07: link C.strength -> R.3 added as a hypothesis (node run_outcome): stronger teams play better at everything; kept in every model so play isn't confused with strength (Claude)
+- 2026-11-07: link S.scoreboard -> R.3 added as a hypothesis (node flag_swing): a flag lead tends to grow or shrink by how it stands now (boost and run timing) (Claude)
+- 2026-11-07: link A.allocation -> R.3 rejected by the flag_swing node (held-out gain -0.09 +/- 0.04, 113 matches) (data)
+- 2026-11-07: link A.allocation -> R.3 rejected by the flag_swing node (held-out gain -0.09 +/- 0.04, 113 matches) (data)
+- 2026-11-07: link R.1 -> R.3 added as a hypothesis (node flag_swing): deaths lose flag position: the runner, the escort or the main (Claude)
+- 2026-11-07: link C.clock -> R.3 added as a hypothesis (node flag_swing): the res clock and the minute change what a run can do (Claude)
+- 2026-11-07: link A.mesa_free -> R.3 added as a hypothesis (node capture_speed): defenders free to push a runner slow the enemy's capture (Denning)
+- 2026-11-07: link A.mesa_free -> R.3 supported by the capture_speed node (held-out gain 6.01 +/- 0.48, 108 matches) (data)
+- 2026-11-07: link A.allocation -> K.4 added as a hypothesis (node power_play): a power play is any numbers advantage at main, an 8v7 while the enemy runs included (Denning)
+- 2026-11-07: link A.allocation -> K.4 supported by the power_play node (held-out gain 0.0557 +/- 0.0139, 113 matches) (data)
+- 2026-11-07: link K.5 -> K.4 supported by the power_play node (held-out gain 0.0204 +/- 0.0065, 113 matches) (data)
+- 2026-11-07: link P.1 -> K.4 rejected by the power_play node (held-out gain -0.003 +/- 0.0012, 113 matches) (data)
+- 2026-11-07: link A.allocation -> R.2 added as a hypothesis (node fight_outcome): numbers in a fight decide much of it (Denning)
+- 2026-11-07: link A.allocation -> R.2 supported by the fight_outcome node (held-out gain 0.0439 +/- 0.0092, 113 matches) (data)
+- 2026-11-07: link P.13 -> R.2 added as a hypothesis (node fight_outcome): frontline defensive peel (hitting or snaring enemies on its own backline) protects the healers (Denning)
+- 2026-11-07: link P.17 -> R.2 added as a hypothesis (node fight_outcome): wrong casts lose fights: casting into ready interrupts without cancelling, casting while Dazed, attacking while Blind (Denning)
+- 2026-11-07: link P.18 -> R.2 added as a hypothesis (node fight_outcome): strips on the right target (Elementalist enchantments when defensive, prots off a target under attack) (Denning)
+- 2026-11-07: link P.19 -> R.2 added as a hypothesis (node fight_outcome): Blind on the enemy frontline, above all on players hitting own healers, is defensive play (Denning)
+- 2026-11-07: link P.19 -> R.2 rejected by the fight_outcome node (held-out gain -0.0023 +/- 0.0006, 113 matches) (data)
+- 2026-11-07: link P.2 -> R.2 added as a hypothesis (node fight_outcome): off spike timing fails to kill (Denning)
+- 2026-11-07: link P.2 -> R.2 supported by the fight_outcome node (held-out gain 0.0232 +/- 0.011, 113 matches) (data)
+- 2026-11-07: link K.1 -> R.2 added as a hypothesis (node fight_outcome): damage output against the role's usual (Denning)
+- 2026-11-07: link K.1 -> R.2 supported by the fight_outcome node (held-out gain 0.0339 +/- 0.0135, 113 matches) (data)
+- 2026-11-07: link P.5 -> R.2 added as a hypothesis (node fight_outcome): the right hexes removed, and fast (Denning)
+- 2026-11-07: link C.strength -> R.2 added as a hypothesis (node fight_outcome): stronger teams play better at everything; kept in every model so play isn't confused with strength (Claude)
+- 2026-11-07: link C.strength -> R.2 supported by the fight_outcome node (held-out gain 0.0632 +/- 0.008, 113 matches) (data)
+- 2026-11-07: link S.scoreboard -> A.allocation supported by the split_chance node (held-out gain 0.0168 +/- 0.0056, 113 matches) (data)
+- 2026-11-07: link C.clock -> A.allocation added as a hypothesis (node split_chance): the res clock and the minute change when a split pays (Claude)
+- 2026-11-07: link C.builds -> A.allocation added as a hypothesis (node split_chance): split builds (speed, snares) and the enemy's snares decide whether a split is possible (Claude)
+- 2026-11-07: link C.strength -> A.allocation added as a hypothesis (node split_chance): stronger teams play better at everything; kept in every model so play isn't confused with strength (Claude)
+- 2026-11-07: link A.mesa_free -> P.11 added as a hypothesis (node split_answer): free defenders near the base answer a split sooner (Denning)
+- 2026-11-07: link A.mesa_free -> P.11 supported by the split_answer node (held-out gain 0.6 +/- 0.19, 78 matches) (data)
+- 2026-11-07: link A.allocation -> P.11 added as a hypothesis (node split_answer): a bigger split draws more defenders (Claude)
+- 2026-11-07: link P.11 -> R.5 supported by the split_effect node (held-out gain 0.0042 +/- 0.0018, 78 matches) (data)
+- 2026-11-07: link C.strength -> R.5 added as a hypothesis (node split_effect): stronger teams play better at everything; kept in every model so play isn't confused with strength (Claude)
+- 2026-11-07: link P.9 -> R.1 added as a hypothesis (node collapse): collapse timing: defenders arriving together kill a split member (Denning)
+- 2026-11-07: link P.9 -> R.1 supported by the collapse node (held-out gain 0.0065 +/- 0.0021, 103 matches) (data)
+- 2026-11-07: link C.builds -> R.1 added as a hypothesis (node collapse): a snare on the split defender makes a collapse on a lone attacker much more likely to kill (Denning)
+- 2026-11-07: link A.allocation -> R.1 added as a hypothesis (node collapse): a split outnumbered at the point of contact dies (Claude)
+- 2026-11-07: link C.strength -> R.1 added as a hypothesis (node collapse): stronger teams play better at everything; kept in every model so play isn't confused with strength (Claude)

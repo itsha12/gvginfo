@@ -144,13 +144,13 @@
   {
    "term": "bodyguard",
    "description": "own Bodyguard alive",
-   "importance": 66.598,
+   "importance": 66.597,
    "curve": [
     {
      "from": 0.0,
      "to": 0.5,
      "points": 110.8,
-     "plus_minus": 0.9
+     "plus_minus": 1.0
     },
     {
      "from": 0.5,
@@ -613,19 +613,19 @@
   {
    "term": "seconds_in_pit",
    "description": "seconds the attackers have been in the pit",
-   "importance": 15.259,
+   "importance": 15.265,
    "curve": [
     {
      "from": 0.0,
      "to": 4.5,
      "points": -22.4,
-     "plus_minus": 0.9
+     "plus_minus": 1.0
     },
     {
      "from": 4.5,
      "to": 10.5,
      "points": -22.9,
-     "plus_minus": 0.9
+     "plus_minus": 1.0
     },
     {
      "from": 10.5,

@@ -1,6 +1,6 @@
 {
  "about": "The causal map: what can cause what in a GvG match, as reasoned by Denning and Claude and found in data. Each node is measured; each node's model may only use the links pointing into it, measured earlier in time. The data decides how much each link matters (status: hypothesis, supported, rejected; mechanical = a formula, not learned). Denning can add, correct or remove links; each change is logged with its reason. Rendered to knowledge/causal-map.md by tools/replay_analysis/causal_map.py.",
- "version": 10,
+ "version": 11,
  "nodes": [
   {
    "id": "C.builds",
@@ -126,8 +126,8 @@
    "id": "P.5",
    "layer": "play",
    "name": "Condition removal",
-   "description": "removal of Blind, Weakness and other conditions from own damage dealers and monks, and how fast",
-   "how": "effects intervals and removal casts",
+   "description": "removal of Blind, Weakness and other conditions from own damage dealers and monks, and how fast; hex removal: the right hexes removed (valued from data) and how fast",
+   "how": "effects intervals and removal casts; eventlayer.py hex_removals",
    "kind": "measured"
   },
   {
@@ -465,6 +465,27 @@
    "description": "the month's flux (Minion Apocalypse, Meek Shall Inherit, Jack of All Trades, Chain Combo)",
    "how": "replay meta (gvg.report)",
    "kind": "formula"
+  },
+  {
+   "id": "P.17",
+   "layer": "play",
+   "name": "Wrong casts",
+   "description": "casting into a ready interrupt without cancelling, casting while Dazed, attacking while Blind (every role)",
+   "how": "eventlayer.py casts"
+  },
+  {
+   "id": "P.18",
+   "layer": "play",
+   "name": "Enchantment strips",
+   "description": "strips on the best target in range, valued from data (an enchantment's recorded output plus the bearer's measured drop after a strip)",
+   "how": "eventlayer.py strips, values()"
+  },
+  {
+   "id": "P.19",
+   "layer": "play",
+   "name": "Blind on enemies",
+   "description": "Blind on the enemy frontline, and on players hitting own healers (defensive)",
+   "how": "eventlayer.py blinds"
   }
  ],
  "links": [
@@ -510,7 +531,21 @@
    "status": "hypothesis",
    "tactics": [
     "J3"
-   ]
+   ],
+   "measured": {
+    "power_play": {
+     "node": "power_play",
+     "strength": 0.0067,
+     "plus_minus": 0.0064,
+     "status": "not clear yet",
+     "metric": "log loss",
+     "matches": 113,
+     "features": [
+      "dps_v_usual"
+     ],
+     "date": "2026-11-07"
+    }
+   }
   },
   {
    "from": "P.2",
@@ -521,7 +556,22 @@
    "status": "hypothesis",
    "tactics": [
     "J3"
-   ]
+   ],
+   "measured": {
+    "power_play": {
+     "node": "power_play",
+     "strength": -0.0009,
+     "plus_minus": 0.0017,
+     "status": "not clear yet",
+     "metric": "log loss",
+     "matches": 113,
+     "features": [
+      "spikes_10s",
+      "spike_spread"
+     ],
+     "date": "2026-11-07"
+    }
+   }
   },
   {
    "from": "P.8",
@@ -543,7 +593,21 @@
    "status": "hypothesis",
    "tactics": [
     "J3"
-   ]
+   ],
+   "measured": {
+    "power_play": {
+     "node": "power_play",
+     "strength": 0.0091,
+     "plus_minus": 0.0073,
+     "status": "not clear yet",
+     "metric": "log loss",
+     "matches": 113,
+     "features": [
+      "pushed"
+     ],
+     "date": "2026-11-07"
+    }
+   }
   },
   {
    "from": "A.allocation",
@@ -587,7 +651,21 @@
    "status": "hypothesis",
    "tactics": [
     "J4"
-   ]
+   ],
+   "measured": {
+    "collapse": {
+     "node": "collapse",
+     "strength": 0.0017,
+     "plus_minus": 0.003,
+     "status": "not clear yet",
+     "metric": "log loss",
+     "matches": 103,
+     "features": [
+      "latency"
+     ],
+     "date": "2026-11-07"
+    }
+   }
   },
   {
    "from": "R.3",
@@ -598,7 +676,21 @@
    "status": "hypothesis",
    "tactics": [
     "J5"
-   ]
+   ],
+   "measured": {
+    "power_play": {
+     "node": "power_play",
+     "strength": -0.0008,
+     "plus_minus": 0.0011,
+     "status": "not clear yet",
+     "metric": "log loss",
+     "matches": 113,
+     "features": [
+      "flag_lead"
+     ],
+     "date": "2026-11-07"
+    }
+   }
   },
   {
    "from": "C.clock",
@@ -653,7 +745,21 @@
    "status": "hypothesis",
    "tactics": [
     "K12"
-   ]
+   ],
+   "measured": {
+    "power_play": {
+     "node": "power_play",
+     "strength": 0.0004,
+     "plus_minus": 0.0008,
+     "status": "not clear yet",
+     "metric": "log loss",
+     "matches": 113,
+     "features": [
+      "blinds_on_own_10s"
+     ],
+     "date": "2026-11-07"
+    }
+   }
   },
   {
    "from": "K.5",
@@ -661,10 +767,25 @@
    "why": "a team can't kill because of the enemy's defence (prots, blocks), shutdown of its spikers (interrupts, knockdowns, Blind, strips) or spread damage",
    "source": "Claude",
    "confirmed_by_denning": true,
-   "status": "hypothesis",
+   "status": "supported",
    "tactics": [
     "K12"
-   ]
+   ],
+   "measured": {
+    "power_play": {
+     "node": "power_play",
+     "strength": 0.0204,
+     "plus_minus": 0.0065,
+     "status": "supported",
+     "metric": "log loss",
+     "matches": 113,
+     "features": [
+      "enemy_prots_10s",
+      "enemy_heal_s"
+     ],
+     "date": "2026-11-07"
+    }
+   }
   },
   {
    "from": "P.2",
@@ -675,7 +796,22 @@
    "status": "hypothesis",
    "tactics": [
     "K12"
-   ]
+   ],
+   "measured": {
+    "power_play": {
+     "node": "power_play",
+     "strength": -0.0009,
+     "plus_minus": 0.0017,
+     "status": "not clear yet",
+     "metric": "log loss",
+     "matches": 113,
+     "features": [
+      "spikes_10s",
+      "spike_spread"
+     ],
+     "date": "2026-11-07"
+    }
+   }
   },
   {
    "from": "P.1",
@@ -683,10 +819,24 @@
    "why": "hitting the wrong player matters but isn't huge",
    "source": "Denning",
    "confirmed_by_denning": true,
-   "status": "hypothesis",
+   "status": "rejected",
    "tactics": [
     "K12"
-   ]
+   ],
+   "measured": {
+    "power_play": {
+     "node": "power_play",
+     "strength": -0.003,
+     "plus_minus": 0.0012,
+     "status": "rejected",
+     "metric": "log loss",
+     "matches": 113,
+     "features": [
+      "spikes_on_healers"
+     ],
+     "date": "2026-11-07"
+    }
+   }
   },
   {
    "from": "P.5",
@@ -960,13 +1110,48 @@
    "why": "being up on flags is the better position to boost and to run: runner trips, waiting runners, backup flags, routes",
    "source": "Denning",
    "confirmed_by_denning": true,
-   "status": "hypothesis",
+   "status": "supported",
    "tactics": [
     "F1",
     "F2",
     "F3",
     "F4"
-   ]
+   ],
+   "measured": {
+    "run_outcome": {
+     "node": "run_outcome",
+     "strength": 0.015,
+     "plus_minus": 0.0066,
+     "status": "supported",
+     "metric": "log loss",
+     "matches": 113,
+     "features": [
+      "stand_own",
+      "stand_enemy",
+      "enemy_boost_in",
+      "flag_lead",
+      "runner_line"
+     ],
+     "date": "2026-11-07"
+    },
+    "flag_swing": {
+     "node": "flag_swing",
+     "strength": 0.41,
+     "plus_minus": 0.12,
+     "status": "supported",
+     "metric": "mean absolute error (s)",
+     "matches": 113,
+     "features": [
+      "waiting_runner",
+      "backup_flag",
+      "stand_own",
+      "stand_enemy",
+      "own_boost_in",
+      "enemy_boost_in"
+     ],
+     "date": "2026-11-07"
+    }
+   }
   },
   {
    "from": "A.allocation",
@@ -974,13 +1159,62 @@
    "why": "being up on flags is the better position to boost and to run: runner trips, waiting runners, backup flags, routes",
    "source": "Denning",
    "confirmed_by_denning": true,
-   "status": "hypothesis",
+   "status": "rejected",
    "tactics": [
     "F1",
     "F2",
     "F3",
     "F4"
-   ]
+   ],
+   "measured": {
+    "run_outcome": {
+     "node": "run_outcome",
+     "strength": 0.0031,
+     "plus_minus": 0.0044,
+     "status": "not clear yet",
+     "metric": "log loss",
+     "matches": 113,
+     "features": [
+      "escort",
+      "own_main",
+      "enemy_main",
+      "enemy_power_play"
+     ],
+     "date": "2026-11-07"
+    },
+    "flag_swing": {
+     "node": "flag_swing",
+     "strength": -0.09,
+     "plus_minus": 0.04,
+     "status": "rejected",
+     "metric": "mean absolute error (s)",
+     "matches": 113,
+     "features": [
+      "own_alive",
+      "enemy_alive",
+      "own_main",
+      "enemy_main",
+      "own_flag_duty",
+      "enemy_flag_duty",
+      "own_in_enemy_base",
+      "enemy_in_own_base"
+     ],
+     "date": "2026-11-07"
+    },
+    "capture_speed": {
+     "node": "capture_speed",
+     "strength": -0.47,
+     "plus_minus": 0.36,
+     "status": "not clear yet",
+     "metric": "mean absolute error (s)",
+     "matches": 108,
+     "features": [
+      "defenders_free",
+      "escort"
+     ],
+     "date": "2026-11-07"
+    }
+   }
   },
   {
    "from": "C.map",
@@ -994,7 +1228,45 @@
     "F2",
     "F3",
     "F4"
-   ]
+   ],
+   "measured": {
+    "run_outcome": {
+     "node": "run_outcome",
+     "strength": 0.0021,
+     "plus_minus": 0.0022,
+     "status": "not clear yet",
+     "metric": "log loss",
+     "matches": 113,
+     "features": [
+      "run_dist"
+     ],
+     "date": "2026-11-07"
+    },
+    "flag_swing": {
+     "node": "flag_swing",
+     "strength": -0.02,
+     "plus_minus": 0.03,
+     "status": "not clear yet",
+     "metric": "mean absolute error (s)",
+     "matches": 113,
+     "features": [
+      "run_dist"
+     ],
+     "date": "2026-11-07"
+    },
+    "capture_speed": {
+     "node": "capture_speed",
+     "strength": -0.1,
+     "plus_minus": 0.05,
+     "status": "not clear yet",
+     "metric": "mean absolute error (s)",
+     "matches": 108,
+     "features": [
+      "run_dist"
+     ],
+     "date": "2026-11-07"
+    }
+   }
   },
   {
    "from": "A.allocation",
@@ -1002,10 +1274,59 @@
    "why": "a team splitting has a different ability to run the flag",
    "source": "Denning",
    "confirmed_by_denning": true,
-   "status": "hypothesis",
+   "status": "rejected",
    "tactics": [
     "J1"
-   ]
+   ],
+   "measured": {
+    "run_outcome": {
+     "node": "run_outcome",
+     "strength": 0.0031,
+     "plus_minus": 0.0044,
+     "status": "not clear yet",
+     "metric": "log loss",
+     "matches": 113,
+     "features": [
+      "escort",
+      "own_main",
+      "enemy_main",
+      "enemy_power_play"
+     ],
+     "date": "2026-11-07"
+    },
+    "flag_swing": {
+     "node": "flag_swing",
+     "strength": -0.09,
+     "plus_minus": 0.04,
+     "status": "rejected",
+     "metric": "mean absolute error (s)",
+     "matches": 113,
+     "features": [
+      "own_alive",
+      "enemy_alive",
+      "own_main",
+      "enemy_main",
+      "own_flag_duty",
+      "enemy_flag_duty",
+      "own_in_enemy_base",
+      "enemy_in_own_base"
+     ],
+     "date": "2026-11-07"
+    },
+    "capture_speed": {
+     "node": "capture_speed",
+     "strength": -0.47,
+     "plus_minus": 0.36,
+     "status": "not clear yet",
+     "metric": "mean absolute error (s)",
+     "matches": 108,
+     "features": [
+      "defenders_free",
+      "escort"
+     ],
+     "date": "2026-11-07"
+    }
+   }
   },
   {
    "from": "R.3",
@@ -1034,11 +1355,26 @@
    "why": "a split answered late or with the wrong player takes NPCs",
    "source": "Denning",
    "confirmed_by_denning": true,
-   "status": "hypothesis",
+   "status": "supported",
    "tactics": [
     "S18",
     "S19"
-   ]
+   ],
+   "measured": {
+    "split_effect": {
+     "node": "split_effect",
+     "strength": 0.0042,
+     "plus_minus": 0.0018,
+     "status": "supported",
+     "metric": "log loss",
+     "matches": 78,
+     "features": [
+      "latency",
+      "defenders"
+     ],
+     "date": "2026-11-07"
+    }
+   }
   },
   {
    "from": "A.allocation",
@@ -1049,7 +1385,22 @@
    "status": "hypothesis",
    "tactics": [
     "J1"
-   ]
+   ],
+   "measured": {
+    "split_effect": {
+     "node": "split_effect",
+     "strength": -0.0005,
+     "plus_minus": 0.0023,
+     "status": "not clear yet",
+     "metric": "log loss",
+     "matches": 78,
+     "features": [
+      "size",
+      "main_diff"
+     ],
+     "date": "2026-11-07"
+    }
+   }
   },
   {
    "from": "R.1",
@@ -1093,10 +1444,30 @@
    "why": "the scoreboard shapes the next second's allocation (a loop over time)",
    "source": "Denning",
    "confirmed_by_denning": true,
-   "status": "hypothesis",
+   "status": "supported",
    "tactics": [
     "J1"
-   ]
+   ],
+   "measured": {
+    "split_chance": {
+     "node": "split_chance",
+     "strength": 0.0168,
+     "plus_minus": 0.0056,
+     "status": "supported",
+     "metric": "log loss",
+     "matches": 113,
+     "features": [
+      "flag_lead",
+      "own_alive",
+      "enemy_alive",
+      "own_main",
+      "enemy_main",
+      "stand_own",
+      "stand_enemy"
+     ],
+     "date": "2026-11-07"
+    }
+   }
   },
   {
    "from": "S.scoreboard",
@@ -1287,7 +1658,21 @@
    "source": "Claude",
    "confirmed_by_denning": false,
    "status": "hypothesis",
-   "tactics": []
+   "tactics": [],
+   "measured": {
+    "power_play": {
+     "node": "power_play",
+     "strength": 0.0068,
+     "plus_minus": 0.0101,
+     "status": "not clear yet",
+     "metric": "log loss",
+     "matches": 113,
+     "features": [
+      "strength_gap"
+     ],
+     "date": "2026-11-07"
+    }
+   }
   },
   {
    "from": "S.scoreboard",
@@ -1746,7 +2131,23 @@
    "source": "Claude",
    "confirmed_by_denning": false,
    "status": "hypothesis",
-   "tactics": []
+   "tactics": [],
+   "measured": {
+    "split_answer": {
+     "node": "split_answer",
+     "strength": 0.13,
+     "plus_minus": 0.21,
+     "status": "not clear yet",
+     "metric": "mean absolute error (s)",
+     "matches": 78,
+     "features": [
+      "flag_lead",
+      "def_alive",
+      "att_main"
+     ],
+     "date": "2026-11-07"
+    }
+   }
   },
   {
    "from": "A.plan",
@@ -1764,7 +2165,21 @@
    "source": "Claude",
    "confirmed_by_denning": false,
    "status": "hypothesis",
-   "tactics": []
+   "tactics": [],
+   "measured": {
+    "split_answer": {
+     "node": "split_answer",
+     "strength": 0.0,
+     "plus_minus": 0.06,
+     "status": "not clear yet",
+     "metric": "mean absolute error (s)",
+     "matches": 78,
+     "features": [
+      "minute"
+     ],
+     "date": "2026-11-07"
+    }
+   }
   },
   {
    "from": "C.builds",
@@ -1782,7 +2197,21 @@
    "source": "Claude",
    "confirmed_by_denning": false,
    "status": "hypothesis",
-   "tactics": []
+   "tactics": [],
+   "measured": {
+    "split_answer": {
+     "node": "split_answer",
+     "strength": 0.03,
+     "plus_minus": 0.11,
+     "status": "not clear yet",
+     "metric": "mean absolute error (s)",
+     "matches": 78,
+     "features": [
+      "strength_gap"
+     ],
+     "date": "2026-11-07"
+    }
+   }
   },
   {
    "from": "S.scoreboard",
@@ -2290,10 +2719,45 @@
    "why": "a flag parked in base is a team deciding not to run yet; a long hand-off away from base is a response to a push or death, not double running",
    "source": "Denning",
    "confirmed_by_denning": true,
-   "status": "hypothesis",
+   "status": "supported",
    "tactics": [
     "F33"
-   ]
+   ],
+   "measured": {
+    "run_outcome": {
+     "node": "run_outcome",
+     "strength": 0.015,
+     "plus_minus": 0.0066,
+     "status": "supported",
+     "metric": "log loss",
+     "matches": 113,
+     "features": [
+      "stand_own",
+      "stand_enemy",
+      "enemy_boost_in",
+      "flag_lead",
+      "runner_line"
+     ],
+     "date": "2026-11-07"
+    },
+    "flag_swing": {
+     "node": "flag_swing",
+     "strength": 0.41,
+     "plus_minus": 0.12,
+     "status": "supported",
+     "metric": "mean absolute error (s)",
+     "matches": 113,
+     "features": [
+      "waiting_runner",
+      "backup_flag",
+      "stand_own",
+      "stand_enemy",
+      "own_boost_in",
+      "enemy_boost_in"
+     ],
+     "date": "2026-11-07"
+    }
+   }
   },
   {
    "from": "P.14",
@@ -2326,7 +2790,21 @@
    "status": "supported",
    "tactics": [
     "P9"
-   ]
+   ],
+   "measured": {
+    "split_effect": {
+     "node": "split_effect",
+     "strength": -0.0034,
+     "plus_minus": 0.0033,
+     "status": "not clear yet",
+     "metric": "log loss",
+     "matches": 78,
+     "features": [
+      "split_healers"
+     ],
+     "date": "2026-11-07"
+    }
+   }
   },
   {
    "from": "C.builds",
@@ -2571,7 +3049,45 @@
    "source": "Claude",
    "confirmed_by_denning": false,
    "status": "hypothesis",
-   "tactics": []
+   "tactics": [],
+   "measured": {
+    "run_outcome": {
+     "node": "run_outcome",
+     "strength": 0.0021,
+     "plus_minus": 0.0022,
+     "status": "not clear yet",
+     "metric": "log loss",
+     "matches": 113,
+     "features": [
+      "run_dist"
+     ],
+     "date": "2026-11-07"
+    },
+    "flag_swing": {
+     "node": "flag_swing",
+     "strength": -0.02,
+     "plus_minus": 0.03,
+     "status": "not clear yet",
+     "metric": "mean absolute error (s)",
+     "matches": 113,
+     "features": [
+      "run_dist"
+     ],
+     "date": "2026-11-07"
+    },
+    "capture_speed": {
+     "node": "capture_speed",
+     "strength": -0.1,
+     "plus_minus": 0.05,
+     "status": "not clear yet",
+     "metric": "mean absolute error (s)",
+     "matches": 108,
+     "features": [
+      "run_dist"
+     ],
+     "date": "2026-11-07"
+    }
+   }
   },
   {
    "from": "C.builds",
@@ -2581,6 +3097,682 @@
    "confirmed_by_denning": false,
    "status": "hypothesis",
    "tactics": []
+  },
+  {
+   "from": "C.matchup",
+   "to": "P.17",
+   "why": "the enemy's interrupts, Daze and Blind against own cancels and removal set how many casts go wrong",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.builds",
+   "to": "P.18",
+   "why": "strips come from the enchantment removal on own bars, and the targets from the enemy's enchantments",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "C.builds",
+   "to": "P.19",
+   "why": "Blind comes from the Blind skills on own bars",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": []
+  },
+  {
+   "from": "K.11",
+   "to": "R.3",
+   "why": "control on the runner (Cripple, knockdowns) stops a run; read at the same point of every run",
+   "source": "Denning",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [],
+   "measured": {
+    "run_outcome": {
+     "node": "run_outcome",
+     "strength": 0.0007,
+     "plus_minus": 0.0018,
+     "status": "not clear yet",
+     "metric": "log loss",
+     "matches": 113,
+     "features": [
+      "crippled_so_far",
+      "knocked_down_so_far",
+      "other_control_so_far",
+      "damage_so_far",
+      "pushers_so_far"
+     ],
+     "date": "2026-11-07"
+    }
+   }
+  },
+  {
+   "from": "C.strength",
+   "to": "R.3",
+   "why": "stronger teams play better at everything; kept in every model so play isn't confused with strength",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [],
+   "measured": {
+    "run_outcome": {
+     "node": "run_outcome",
+     "strength": -0.0064,
+     "plus_minus": 0.0039,
+     "status": "not clear yet",
+     "metric": "log loss",
+     "matches": 113,
+     "features": [
+      "strength_gap"
+     ],
+     "date": "2026-11-07"
+    },
+    "flag_swing": {
+     "node": "flag_swing",
+     "strength": 0.22,
+     "plus_minus": 0.16,
+     "status": "not clear yet",
+     "metric": "mean absolute error (s)",
+     "matches": 113,
+     "features": [
+      "strength_gap"
+     ],
+     "date": "2026-11-07"
+    },
+    "capture_speed": {
+     "node": "capture_speed",
+     "strength": -0.07,
+     "plus_minus": 0.05,
+     "status": "not clear yet",
+     "metric": "mean absolute error (s)",
+     "matches": 108,
+     "features": [
+      "strength_gap"
+     ],
+     "date": "2026-11-07"
+    }
+   }
+  },
+  {
+   "from": "S.scoreboard",
+   "to": "R.3",
+   "why": "a flag lead tends to grow or shrink by how it stands now (boost and run timing)",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [],
+   "measured": {
+    "flag_swing": {
+     "node": "flag_swing",
+     "strength": 0.1,
+     "plus_minus": 0.41,
+     "status": "not clear yet",
+     "metric": "mean absolute error (s)",
+     "matches": 113,
+     "features": [
+      "flag_lead"
+     ],
+     "date": "2026-11-07"
+    }
+   }
+  },
+  {
+   "from": "R.1",
+   "to": "R.3",
+   "why": "deaths lose flag position: the runner, the escort or the main",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [],
+   "measured": {
+    "flag_swing": {
+     "node": "flag_swing",
+     "strength": 0.03,
+     "plus_minus": 0.09,
+     "status": "not clear yet",
+     "metric": "mean absolute error (s)",
+     "matches": 113,
+     "features": [
+      "own_deaths_30s",
+      "enemy_deaths_30s"
+     ],
+     "date": "2026-11-07"
+    }
+   }
+  },
+  {
+   "from": "C.clock",
+   "to": "R.3",
+   "why": "the res clock and the minute change what a run can do",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [],
+   "measured": {
+    "flag_swing": {
+     "node": "flag_swing",
+     "strength": -0.01,
+     "plus_minus": 0.02,
+     "status": "not clear yet",
+     "metric": "mean absolute error (s)",
+     "matches": 113,
+     "features": [
+      "minute",
+      "res_in"
+     ],
+     "date": "2026-11-07"
+    }
+   }
+  },
+  {
+   "from": "A.mesa_free",
+   "to": "R.3",
+   "why": "defenders free to push a runner slow the enemy's capture",
+   "source": "Denning",
+   "confirmed_by_denning": false,
+   "status": "supported",
+   "tactics": [],
+   "measured": {
+    "capture_speed": {
+     "node": "capture_speed",
+     "strength": 6.01,
+     "plus_minus": 0.48,
+     "status": "supported",
+     "metric": "mean absolute error (s)",
+     "matches": 108,
+     "features": [
+      "nearest_defender",
+      "pushers",
+      "first_push_s"
+     ],
+     "date": "2026-11-07"
+    }
+   }
+  },
+  {
+   "from": "A.allocation",
+   "to": "K.4",
+   "why": "a power play is any numbers advantage at main, an 8v7 while the enemy runs included",
+   "source": "Denning",
+   "confirmed_by_denning": false,
+   "status": "supported",
+   "tactics": [],
+   "measured": {
+    "power_play": {
+     "node": "power_play",
+     "strength": 0.0557,
+     "plus_minus": 0.0139,
+     "status": "supported",
+     "metric": "log loss",
+     "matches": 113,
+     "features": [
+      "size",
+      "own_main",
+      "enemy_main",
+      "short_dead",
+      "short_running",
+      "short_backside",
+      "short_base"
+     ],
+     "date": "2026-11-07"
+    }
+   }
+  },
+  {
+   "from": "A.allocation",
+   "to": "R.2",
+   "why": "numbers in a fight decide much of it",
+   "source": "Denning",
+   "confirmed_by_denning": false,
+   "status": "supported",
+   "tactics": [],
+   "measured": {
+    "fight_outcome": {
+     "node": "fight_outcome",
+     "strength": 0.0439,
+     "plus_minus": 0.0092,
+     "status": "supported",
+     "metric": "log loss",
+     "matches": 113,
+     "features": [
+      "own_local",
+      "enemy_local"
+     ],
+     "date": "2026-11-07"
+    }
+   }
+  },
+  {
+   "from": "P.13",
+   "to": "R.2",
+   "why": "frontline defensive peel (hitting or snaring enemies on its own backline) protects the healers",
+   "source": "Denning",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [],
+   "measured": {
+    "fight_outcome": {
+     "node": "fight_outcome",
+     "strength": -0.0013,
+     "plus_minus": 0.0022,
+     "status": "not clear yet",
+     "metric": "log loss",
+     "matches": 113,
+     "features": [
+      "peel_defensive_diff"
+     ],
+     "date": "2026-11-07"
+    }
+   }
+  },
+  {
+   "from": "P.17",
+   "to": "R.2",
+   "why": "wrong casts lose fights: casting into ready interrupts without cancelling, casting while Dazed, attacking while Blind",
+   "source": "Denning",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [],
+   "measured": {
+    "fight_outcome": {
+     "node": "fight_outcome",
+     "strength": 0.0131,
+     "plus_minus": 0.0078,
+     "status": "not clear yet",
+     "metric": "log loss",
+     "matches": 113,
+     "features": [
+      "ready_interrupt_diff",
+      "dazed_casts_diff",
+      "blind_attacks_diff"
+     ],
+     "date": "2026-11-07"
+    }
+   }
+  },
+  {
+   "from": "P.18",
+   "to": "R.2",
+   "why": "strips on the right target (Elementalist enchantments when defensive, prots off a target under attack)",
+   "source": "Denning",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [],
+   "measured": {
+    "fight_outcome": {
+     "node": "fight_outcome",
+     "strength": 0.001,
+     "plus_minus": 0.0051,
+     "status": "not clear yet",
+     "metric": "log loss",
+     "matches": 113,
+     "features": [
+      "strip_right_diff",
+      "strip_value_diff"
+     ],
+     "date": "2026-11-07"
+    }
+   }
+  },
+  {
+   "from": "P.19",
+   "to": "R.2",
+   "why": "Blind on the enemy frontline, above all on players hitting own healers, is defensive play",
+   "source": "Denning",
+   "confirmed_by_denning": false,
+   "status": "rejected",
+   "tactics": [],
+   "measured": {
+    "fight_outcome": {
+     "node": "fight_outcome",
+     "strength": -0.0023,
+     "plus_minus": 0.0006,
+     "status": "rejected",
+     "metric": "log loss",
+     "matches": 113,
+     "features": [
+      "blind_front_diff",
+      "blind_defensive_diff"
+     ],
+     "date": "2026-11-07"
+    }
+   }
+  },
+  {
+   "from": "P.2",
+   "to": "R.2",
+   "why": "off spike timing fails to kill",
+   "source": "Denning",
+   "confirmed_by_denning": false,
+   "status": "supported",
+   "tactics": [],
+   "measured": {
+    "fight_outcome": {
+     "node": "fight_outcome",
+     "strength": 0.0232,
+     "plus_minus": 0.011,
+     "status": "supported",
+     "metric": "log loss",
+     "matches": 113,
+     "features": [
+      "spike_spread_diff",
+      "spikes_diff"
+     ],
+     "date": "2026-11-07"
+    }
+   }
+  },
+  {
+   "from": "K.1",
+   "to": "R.2",
+   "why": "damage output against the role's usual",
+   "source": "Denning",
+   "confirmed_by_denning": false,
+   "status": "supported",
+   "tactics": [],
+   "measured": {
+    "fight_outcome": {
+     "node": "fight_outcome",
+     "strength": 0.0339,
+     "plus_minus": 0.0135,
+     "status": "supported",
+     "metric": "log loss",
+     "matches": 113,
+     "features": [
+      "dps_v_usual_diff"
+     ],
+     "date": "2026-11-07"
+    }
+   }
+  },
+  {
+   "from": "P.5",
+   "to": "R.2",
+   "why": "the right hexes removed, and fast",
+   "source": "Denning",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [],
+   "measured": {
+    "fight_outcome": {
+     "node": "fight_outcome",
+     "strength": 0.0015,
+     "plus_minus": 0.0039,
+     "status": "not clear yet",
+     "metric": "log loss",
+     "matches": 113,
+     "features": [
+      "hex_secs_diff",
+      "hex_right_diff"
+     ],
+     "date": "2026-11-07"
+    }
+   }
+  },
+  {
+   "from": "C.strength",
+   "to": "R.2",
+   "why": "stronger teams play better at everything; kept in every model so play isn't confused with strength",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "supported",
+   "tactics": [],
+   "measured": {
+    "fight_outcome": {
+     "node": "fight_outcome",
+     "strength": 0.0632,
+     "plus_minus": 0.008,
+     "status": "supported",
+     "metric": "log loss",
+     "matches": 113,
+     "features": [
+      "strength_gap"
+     ],
+     "date": "2026-11-07"
+    }
+   }
+  },
+  {
+   "from": "C.clock",
+   "to": "A.allocation",
+   "why": "the res clock and the minute change when a split pays",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [],
+   "measured": {
+    "split_chance": {
+     "node": "split_chance",
+     "strength": 0.0003,
+     "plus_minus": 0.0013,
+     "status": "not clear yet",
+     "metric": "log loss",
+     "matches": 113,
+     "features": [
+      "minute",
+      "res_in"
+     ],
+     "date": "2026-11-07"
+    }
+   }
+  },
+  {
+   "from": "C.builds",
+   "to": "A.allocation",
+   "why": "split builds (speed, snares) and the enemy's snares decide whether a split is possible",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [],
+   "measured": {
+    "split_chance": {
+     "node": "split_chance",
+     "strength": 0.0025,
+     "plus_minus": 0.0049,
+     "status": "not clear yet",
+     "metric": "log loss",
+     "matches": 113,
+     "features": [
+      "own_speed",
+      "own_snares",
+      "enemy_snares"
+     ],
+     "date": "2026-11-07"
+    }
+   }
+  },
+  {
+   "from": "C.strength",
+   "to": "A.allocation",
+   "why": "stronger teams play better at everything; kept in every model so play isn't confused with strength",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [],
+   "measured": {
+    "split_chance": {
+     "node": "split_chance",
+     "strength": 0.0009,
+     "plus_minus": 0.0038,
+     "status": "not clear yet",
+     "metric": "log loss",
+     "matches": 113,
+     "features": [
+      "strength_gap"
+     ],
+     "date": "2026-11-07"
+    }
+   }
+  },
+  {
+   "from": "A.mesa_free",
+   "to": "P.11",
+   "why": "free defenders near the base answer a split sooner",
+   "source": "Denning",
+   "confirmed_by_denning": false,
+   "status": "supported",
+   "tactics": [],
+   "measured": {
+    "split_answer": {
+     "node": "split_answer",
+     "strength": 0.6,
+     "plus_minus": 0.19,
+     "status": "supported",
+     "metric": "mean absolute error (s)",
+     "matches": 78,
+     "features": [
+      "def_free",
+      "nearest_to_base"
+     ],
+     "date": "2026-11-07"
+    }
+   }
+  },
+  {
+   "from": "A.allocation",
+   "to": "P.11",
+   "why": "a bigger split draws more defenders",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [],
+   "measured": {
+    "split_answer": {
+     "node": "split_answer",
+     "strength": 0.57,
+     "plus_minus": 0.36,
+     "status": "not clear yet",
+     "metric": "mean absolute error (s)",
+     "matches": 78,
+     "features": [
+      "size"
+     ],
+     "date": "2026-11-07"
+    }
+   }
+  },
+  {
+   "from": "C.strength",
+   "to": "R.5",
+   "why": "stronger teams play better at everything; kept in every model so play isn't confused with strength",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [],
+   "measured": {
+    "split_effect": {
+     "node": "split_effect",
+     "strength": 0.0001,
+     "plus_minus": 0.0016,
+     "status": "not clear yet",
+     "metric": "log loss",
+     "matches": 78,
+     "features": [
+      "strength_gap"
+     ],
+     "date": "2026-11-07"
+    }
+   }
+  },
+  {
+   "from": "P.9",
+   "to": "R.1",
+   "why": "collapse timing: defenders arriving together kill a split member",
+   "source": "Denning",
+   "confirmed_by_denning": false,
+   "status": "supported",
+   "tactics": [],
+   "measured": {
+    "collapse": {
+     "node": "collapse",
+     "strength": 0.0065,
+     "plus_minus": 0.0021,
+     "status": "supported",
+     "metric": "log loss",
+     "matches": 103,
+     "features": [
+      "defenders_10s"
+     ],
+     "date": "2026-11-07"
+    }
+   }
+  },
+  {
+   "from": "C.builds",
+   "to": "R.1",
+   "why": "a snare on the split defender makes a collapse on a lone attacker much more likely to kill",
+   "source": "Denning",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [],
+   "measured": {
+    "collapse": {
+     "node": "collapse",
+     "strength": -0.0007,
+     "plus_minus": 0.0032,
+     "status": "not clear yet",
+     "metric": "log loss",
+     "matches": 103,
+     "features": [
+      "def_snares",
+      "split_speed"
+     ],
+     "date": "2026-11-07"
+    }
+   }
+  },
+  {
+   "from": "A.allocation",
+   "to": "R.1",
+   "why": "a split outnumbered at the point of contact dies",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [],
+   "measured": {
+    "collapse": {
+     "node": "collapse",
+     "strength": 0.0024,
+     "plus_minus": 0.0015,
+     "status": "not clear yet",
+     "metric": "log loss",
+     "matches": 103,
+     "features": [
+      "size",
+      "main_diff"
+     ],
+     "date": "2026-11-07"
+    }
+   }
+  },
+  {
+   "from": "C.strength",
+   "to": "R.1",
+   "why": "stronger teams play better at everything; kept in every model so play isn't confused with strength",
+   "source": "Claude",
+   "confirmed_by_denning": false,
+   "status": "hypothesis",
+   "tactics": [],
+   "measured": {
+    "collapse": {
+     "node": "collapse",
+     "strength": 0.0027,
+     "plus_minus": 0.0034,
+     "status": "not clear yet",
+     "metric": "log loss",
+     "matches": 103,
+     "features": [
+      "strength_gap"
+     ],
+     "date": "2026-11-07"
+    }
+   }
   }
  ],
  "log": [
@@ -2643,6 +3835,251 @@
    "date": "2026-11-06",
    "change": "version 10: Lord health, Lord exposed and Lord killed (R.11 to R.13; 28 of 30 matches end with a Lord kill), fight state (K.14), hex pressure (K.15), flux (C.flux); team strength now includes lineups",
    "by": "Claude, with Denning (lineup strength, roster)"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "node P.17 Wrong casts added (step 2b: eventlayer.py casts)",
+   "by": "Claude, from Denning's list"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "node P.18 Enchantment strips added (step 2b: eventlayer.py strips, values())",
+   "by": "Claude, from Denning's list"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "node P.19 Blind on enemies added (step 2b: eventlayer.py blinds)",
+   "by": "Claude, from Denning's list"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link C.matchup -> P.17 added as a hypothesis: the enemy's interrupts, Daze and Blind against own cancels and removal set how many casts go wrong",
+   "by": "Claude"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link C.builds -> P.18 added as a hypothesis: strips come from the enchantment removal on own bars, and the targets from the enemy's enchantments",
+   "by": "Claude"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link C.builds -> P.19 added as a hypothesis: Blind comes from the Blind skills on own bars",
+   "by": "Claude"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link P.10 -> R.3 supported by the run_outcome node (held-out gain 0.015 +/- 0.0066, 113 matches)",
+   "by": "data"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link P.10 -> R.3 supported by the run_outcome node (held-out gain 0.015 +/- 0.0066, 113 matches)",
+   "by": "data"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link K.11 -> R.3 added as a hypothesis (node run_outcome): control on the runner (Cripple, knockdowns) stops a run; read at the same point of every run",
+   "by": "Denning"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link C.strength -> R.3 added as a hypothesis (node run_outcome): stronger teams play better at everything; kept in every model so play isn't confused with strength",
+   "by": "Claude"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link S.scoreboard -> R.3 added as a hypothesis (node flag_swing): a flag lead tends to grow or shrink by how it stands now (boost and run timing)",
+   "by": "Claude"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link A.allocation -> R.3 rejected by the flag_swing node (held-out gain -0.09 +/- 0.04, 113 matches)",
+   "by": "data"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link A.allocation -> R.3 rejected by the flag_swing node (held-out gain -0.09 +/- 0.04, 113 matches)",
+   "by": "data"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link R.1 -> R.3 added as a hypothesis (node flag_swing): deaths lose flag position: the runner, the escort or the main",
+   "by": "Claude"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link C.clock -> R.3 added as a hypothesis (node flag_swing): the res clock and the minute change what a run can do",
+   "by": "Claude"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link A.mesa_free -> R.3 added as a hypothesis (node capture_speed): defenders free to push a runner slow the enemy's capture",
+   "by": "Denning"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link A.mesa_free -> R.3 supported by the capture_speed node (held-out gain 6.01 +/- 0.48, 108 matches)",
+   "by": "data"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link A.allocation -> K.4 added as a hypothesis (node power_play): a power play is any numbers advantage at main, an 8v7 while the enemy runs included",
+   "by": "Denning"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link A.allocation -> K.4 supported by the power_play node (held-out gain 0.0557 +/- 0.0139, 113 matches)",
+   "by": "data"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link K.5 -> K.4 supported by the power_play node (held-out gain 0.0204 +/- 0.0065, 113 matches)",
+   "by": "data"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link P.1 -> K.4 rejected by the power_play node (held-out gain -0.003 +/- 0.0012, 113 matches)",
+   "by": "data"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link A.allocation -> R.2 added as a hypothesis (node fight_outcome): numbers in a fight decide much of it",
+   "by": "Denning"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link A.allocation -> R.2 supported by the fight_outcome node (held-out gain 0.0439 +/- 0.0092, 113 matches)",
+   "by": "data"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link P.13 -> R.2 added as a hypothesis (node fight_outcome): frontline defensive peel (hitting or snaring enemies on its own backline) protects the healers",
+   "by": "Denning"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link P.17 -> R.2 added as a hypothesis (node fight_outcome): wrong casts lose fights: casting into ready interrupts without cancelling, casting while Dazed, attacking while Blind",
+   "by": "Denning"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link P.18 -> R.2 added as a hypothesis (node fight_outcome): strips on the right target (Elementalist enchantments when defensive, prots off a target under attack)",
+   "by": "Denning"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link P.19 -> R.2 added as a hypothesis (node fight_outcome): Blind on the enemy frontline, above all on players hitting own healers, is defensive play",
+   "by": "Denning"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link P.19 -> R.2 rejected by the fight_outcome node (held-out gain -0.0023 +/- 0.0006, 113 matches)",
+   "by": "data"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link P.2 -> R.2 added as a hypothesis (node fight_outcome): off spike timing fails to kill",
+   "by": "Denning"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link P.2 -> R.2 supported by the fight_outcome node (held-out gain 0.0232 +/- 0.011, 113 matches)",
+   "by": "data"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link K.1 -> R.2 added as a hypothesis (node fight_outcome): damage output against the role's usual",
+   "by": "Denning"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link K.1 -> R.2 supported by the fight_outcome node (held-out gain 0.0339 +/- 0.0135, 113 matches)",
+   "by": "data"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link P.5 -> R.2 added as a hypothesis (node fight_outcome): the right hexes removed, and fast",
+   "by": "Denning"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link C.strength -> R.2 added as a hypothesis (node fight_outcome): stronger teams play better at everything; kept in every model so play isn't confused with strength",
+   "by": "Claude"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link C.strength -> R.2 supported by the fight_outcome node (held-out gain 0.0632 +/- 0.008, 113 matches)",
+   "by": "data"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link S.scoreboard -> A.allocation supported by the split_chance node (held-out gain 0.0168 +/- 0.0056, 113 matches)",
+   "by": "data"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link C.clock -> A.allocation added as a hypothesis (node split_chance): the res clock and the minute change when a split pays",
+   "by": "Claude"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link C.builds -> A.allocation added as a hypothesis (node split_chance): split builds (speed, snares) and the enemy's snares decide whether a split is possible",
+   "by": "Claude"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link C.strength -> A.allocation added as a hypothesis (node split_chance): stronger teams play better at everything; kept in every model so play isn't confused with strength",
+   "by": "Claude"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link A.mesa_free -> P.11 added as a hypothesis (node split_answer): free defenders near the base answer a split sooner",
+   "by": "Denning"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link A.mesa_free -> P.11 supported by the split_answer node (held-out gain 0.6 +/- 0.19, 78 matches)",
+   "by": "data"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link A.allocation -> P.11 added as a hypothesis (node split_answer): a bigger split draws more defenders",
+   "by": "Claude"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link P.11 -> R.5 supported by the split_effect node (held-out gain 0.0042 +/- 0.0018, 78 matches)",
+   "by": "data"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link C.strength -> R.5 added as a hypothesis (node split_effect): stronger teams play better at everything; kept in every model so play isn't confused with strength",
+   "by": "Claude"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link P.9 -> R.1 added as a hypothesis (node collapse): collapse timing: defenders arriving together kill a split member",
+   "by": "Denning"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link P.9 -> R.1 supported by the collapse node (held-out gain 0.0065 +/- 0.0021, 103 matches)",
+   "by": "data"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link C.builds -> R.1 added as a hypothesis (node collapse): a snare on the split defender makes a collapse on a lone attacker much more likely to kill",
+   "by": "Denning"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link A.allocation -> R.1 added as a hypothesis (node collapse): a split outnumbered at the point of contact dies",
+   "by": "Claude"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link C.strength -> R.1 added as a hypothesis (node collapse): stronger teams play better at everything; kept in every model so play isn't confused with strength",
+   "by": "Claude"
   }
  ]
 }

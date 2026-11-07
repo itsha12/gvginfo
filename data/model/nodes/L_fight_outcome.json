@@ -41,8 +41,8 @@
     "dazed_casts_diff",
     "blind_attacks_diff"
    ],
-   "strength": 0.0132,
-   "plus_minus": 0.0077,
+   "strength": 0.0131,
+   "plus_minus": 0.0078,
    "status": "not clear yet"
   },
   {
@@ -63,7 +63,7 @@
     "blind_front_diff",
     "blind_defensive_diff"
    ],
-   "strength": -0.0022,
+   "strength": -0.0023,
    "plus_minus": 0.0006,
    "status": "rejected"
   },
@@ -95,7 +95,7 @@
     "hex_secs_diff",
     "hex_right_diff"
    ],
-   "strength": 0.0016,
+   "strength": 0.0015,
    "plus_minus": 0.0039,
    "status": "not clear yet"
   },
@@ -105,8 +105,8 @@
    "features": [
     "strength_gap"
    ],
-   "strength": 0.0633,
-   "plus_minus": 0.0081,
+   "strength": 0.0632,
+   "plus_minus": 0.008,
    "status": "supported"
   }
  ],

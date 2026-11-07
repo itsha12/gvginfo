@@ -35,7 +35,7 @@
     "enemy_main",
     "enemy_power_play"
    ],
-   "strength": 0.0032,
+   "strength": 0.0031,
    "plus_minus": 0.0044,
    "status": "not clear yet"
   },
@@ -59,7 +59,7 @@
    "features": [
     "run_dist"
    ],
-   "strength": 0.0022,
+   "strength": 0.0021,
    "plus_minus": 0.0022,
    "status": "not clear yet"
   },
@@ -69,7 +69,7 @@
    "features": [
     "strength_gap"
    ],
-   "strength": -0.0063,
+   "strength": -0.0064,
    "plus_minus": 0.0039,
    "status": "not clear yet"
   }

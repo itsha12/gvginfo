@@ -6,7 +6,7 @@
  "rate": 0.402,
  "mean": null,
  "validation": {
-  "glass box": 0.3897,
+  "glass box": 0.3902,
   "simple baseline": 0.6787,
   "metric": "log loss",
   "verdict": "adds to the simple baseline"
@@ -24,8 +24,8 @@
     "short_backside",
     "short_base"
    ],
-   "strength": 0.0562,
-   "plus_minus": 0.0141,
+   "strength": 0.0557,
+   "plus_minus": 0.0139,
    "status": "supported"
   },
   {
@@ -34,8 +34,8 @@
    "features": [
     "flag_lead"
    ],
-   "strength": -0.0002,
-   "plus_minus": 0.0007,
+   "strength": -0.0008,
+   "plus_minus": 0.0011,
    "status": "not clear yet"
   },
   {
@@ -44,8 +44,8 @@
    "features": [
     "pushed"
    ],
-   "strength": 0.0096,
-   "plus_minus": 0.0071,
+   "strength": 0.0091,
+   "plus_minus": 0.0073,
    "status": "not clear yet"
   },
   {
@@ -54,8 +54,8 @@
    "features": [
     "dps_v_usual"
    ],
-   "strength": 0.0072,
-   "plus_minus": 0.0059,
+   "strength": 0.0067,
+   "plus_minus": 0.0064,
    "status": "not clear yet"
   },
   {
@@ -65,8 +65,8 @@
     "enemy_prots_10s",
     "enemy_heal_s"
    ],
-   "strength": 0.0209,
-   "plus_minus": 0.006,
+   "strength": 0.0204,
+   "plus_minus": 0.0065,
    "status": "supported"
   },
   {
@@ -76,8 +76,8 @@
     "spikes_10s",
     "spike_spread"
    ],
-   "strength": -0.0003,
-   "plus_minus": 0.0018,
+   "strength": -0.0009,
+   "plus_minus": 0.0017,
    "status": "not clear yet"
   },
   {
@@ -86,7 +86,7 @@
    "features": [
     "spikes_on_healers"
    ],
-   "strength": -0.0025,
+   "strength": -0.003,
    "plus_minus": 0.0012,
    "status": "rejected"
   },
@@ -96,8 +96,8 @@
    "features": [
     "blinds_on_own_10s"
    ],
-   "strength": 0.0009,
-   "plus_minus": 0.0009,
+   "strength": 0.0004,
+   "plus_minus": 0.0008,
    "status": "not clear yet"
   },
   {
@@ -106,8 +106,8 @@
    "features": [
     "strength_gap"
    ],
-   "strength": 0.0073,
-   "plus_minus": 0.0102,
+   "strength": 0.0068,
+   "plus_minus": 0.0101,
    "status": "not clear yet"
   }
  ],
