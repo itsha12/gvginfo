@@ -24,7 +24,7 @@
     "stand_own",
     "stand_enemy"
    ],
-   "strength": 0.0168,
+   "strength": 0.0167,
    "plus_minus": 0.0056,
    "status": "supported"
   },
@@ -35,8 +35,8 @@
     "minute",
     "res_in"
    ],
-   "strength": 0.0003,
-   "plus_minus": 0.0013,
+   "strength": 0.0008,
+   "plus_minus": 0.0019,
    "status": "not clear yet"
   },
   {
@@ -47,8 +47,8 @@
     "own_snares",
     "enemy_snares"
    ],
-   "strength": 0.0025,
-   "plus_minus": 0.0049,
+   "strength": 0.0029,
+   "plus_minus": 0.0053,
    "status": "not clear yet"
   },
   {
@@ -58,7 +58,7 @@
     "strength_gap"
    ],
    "strength": 0.0009,
-   "plus_minus": 0.0038,
+   "plus_minus": 0.0037,
    "status": "not clear yet"
   }
  ],

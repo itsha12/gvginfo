@@ -6,7 +6,7 @@
  "rate": null,
  "mean": -4.8,
  "validation": {
-  "glass box": 16.8477,
+  "glass box": 16.9482,
   "simple baseline": 18.1847,
   "metric": "mean absolute error (s)",
   "verdict": "adds to the simple baseline"
@@ -20,8 +20,8 @@
     "def_alive",
     "att_main"
    ],
-   "strength": 0.13,
-   "plus_minus": 0.21,
+   "strength": 0.04,
+   "plus_minus": 0.2,
    "status": "not clear yet"
   },
   {
@@ -31,9 +31,9 @@
     "def_free",
     "nearest_to_base"
    ],
-   "strength": 0.6,
-   "plus_minus": 0.19,
-   "status": "supported"
+   "strength": 0.57,
+   "plus_minus": 0.31,
+   "status": "not clear yet"
   },
   {
    "from": "A.allocation",
@@ -41,8 +41,8 @@
    "features": [
     "size"
    ],
-   "strength": 0.57,
-   "plus_minus": 0.36,
+   "strength": 0.54,
+   "plus_minus": 0.4,
    "status": "not clear yet"
   },
   {
@@ -51,8 +51,8 @@
    "features": [
     "minute"
    ],
-   "strength": 0.0,
-   "plus_minus": 0.06,
+   "strength": -0.06,
+   "plus_minus": 0.08,
    "status": "not clear yet"
   },
   {
@@ -61,8 +61,8 @@
    "features": [
     "strength_gap"
    ],
-   "strength": 0.03,
-   "plus_minus": 0.11,
+   "strength": -0.02,
+   "plus_minus": 0.12,
    "status": "not clear yet"
   }
  ],

@@ -6,7 +6,7 @@
  "rate": null,
  "mean": -0.2,
  "validation": {
-  "glass box": 29.4039,
+  "glass box": 29.3941,
   "simple baseline": 29.7057,
   "metric": "mean absolute error (s)",
   "verdict": "no better than the simple baseline yet"
@@ -18,8 +18,8 @@
    "features": [
     "flag_lead"
    ],
-   "strength": 0.1,
-   "plus_minus": 0.41,
+   "strength": 0.15,
+   "plus_minus": 0.42,
    "status": "not clear yet"
   },
   {
@@ -50,8 +50,8 @@
     "own_in_enemy_base",
     "enemy_in_own_base"
    ],
-   "strength": -0.09,
-   "plus_minus": 0.04,
+   "strength": -0.1,
+   "plus_minus": 0.05,
    "status": "rejected"
   },
   {
@@ -61,8 +61,8 @@
     "own_deaths_30s",
     "enemy_deaths_30s"
    ],
-   "strength": 0.03,
-   "plus_minus": 0.09,
+   "strength": 0.06,
+   "plus_minus": 0.08,
    "status": "not clear yet"
   },
   {
@@ -73,7 +73,7 @@
     "res_in"
    ],
    "strength": -0.01,
-   "plus_minus": 0.02,
+   "plus_minus": 0.03,
    "status": "not clear yet"
   },
   {
@@ -82,7 +82,7 @@
    "features": [
     "run_dist"
    ],
-   "strength": -0.02,
+   "strength": -0.0,
    "plus_minus": 0.03,
    "status": "not clear yet"
   },
@@ -92,7 +92,7 @@
    "features": [
     "strength_gap"
    ],
-   "strength": 0.22,
+   "strength": 0.25,
    "plus_minus": 0.16,
    "status": "not clear yet"
   }

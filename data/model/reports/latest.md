@@ -172,99 +172,99 @@ Each explains one result from what happened before it (time order enforced), tes
 
 Each node uses only the causal-map links into it. A link's strength is how much worse the node predicts matches it never saw without that link's features (refit without them, same folds); supported when the gain is more than twice its spread across folds, rejected when dropping it helps by more than that, otherwise not clear yet.
 
-**run outcome** (map R.3; 113 matches, 3695 cases, result rate 60%): log loss 0.6448 against 0.6746 for the simple baseline (adds to the simple baseline).
-- link P.10 -> R.3: gain +0.015 (+/- 0.0066), supported (stand_own, stand_enemy, enemy_boost_in, flag_lead...)
-- link A.allocation -> R.3: gain +0.0031 (+/- 0.0044), not clear yet (escort, own_main, enemy_main, enemy_power_play)
-- link C.map -> R.3: gain +0.0021 (+/- 0.0022), not clear yet (run_dist)
-- link K.11 -> R.3: gain +0.0007 (+/- 0.0018), not clear yet (crippled_so_far, knocked_down_so_far, other_control_so_far, damage_so_far...)
-- link C.strength -> R.3: gain -0.0064 (+/- 0.0039), not clear yet (strength_gap)
+**run outcome** (map R.3; 113 matches, 3695 cases, result rate 60%): log loss 0.6463 against 0.6746 for the simple baseline (adds to the simple baseline).
+- link P.10 -> R.3: gain +0.0135 (+/- 0.0062), supported (stand_own, stand_enemy, enemy_boost_in, flag_lead...)
+- link A.allocation -> R.3: gain +0.0028 (+/- 0.0045), not clear yet (escort, own_main, enemy_main, enemy_power_play)
+- link C.map -> R.3: gain +0.0024 (+/- 0.0018), not clear yet (run_dist)
+- link K.11 -> R.3: gain +0.0011 (+/- 0.0018), not clear yet (crippled_so_far, knocked_down_so_far, other_control_so_far, damage_so_far...)
+- link C.strength -> R.3: gain -0.0054 (+/- 0.004), not clear yet (strength_gap)
   - leans on **checkpoint_s** (seconds into the run): -6.1 points at 5.0 to 10.0, +13.1 at 22.5 to 30.0
   - leans on **flag_lead** (flag lead at the start (s)): +2.3 points at -80.0 to -58.5, -11.2 at 60.5 to 129.0
   - leans on **enemy_boost_in** (seconds to the enemy's boost (if it holds)): -17.7 points at 0.0 to 26.5, +7.8 at 116.5 to 120.0
 
-**flag swing** (map R.3; 113 matches, 4234 cases, average -0.2 s): mean absolute error (s) 29.4039 against 29.7057 for the simple baseline (no better than the simple baseline yet).
+**flag swing** (map R.3; 113 matches, 4234 cases, average -0.2 s): mean absolute error (s) 29.3941 against 29.7057 for the simple baseline (no better than the simple baseline yet).
 - link P.10 -> R.3: gain +0.41 (+/- 0.12), supported (waiting_runner, backup_flag, stand_own, stand_enemy...)
-- link C.strength -> R.3: gain +0.22 (+/- 0.16), not clear yet (strength_gap)
-- link S.scoreboard -> R.3: gain +0.1 (+/- 0.41), not clear yet (flag_lead)
-- link R.1 -> R.3: gain +0.03 (+/- 0.09), not clear yet (own_deaths_30s, enemy_deaths_30s)
-- link C.clock -> R.3: gain -0.01 (+/- 0.02), not clear yet (minute, res_in)
-- link C.map -> R.3: gain -0.02 (+/- 0.03), not clear yet (run_dist)
-- link A.allocation -> R.3: gain -0.09 (+/- 0.04), rejected (own_alive, enemy_alive, own_main, enemy_main...)
+- link C.strength -> R.3: gain +0.25 (+/- 0.16), not clear yet (strength_gap)
+- link S.scoreboard -> R.3: gain +0.15 (+/- 0.42), not clear yet (flag_lead)
+- link R.1 -> R.3: gain +0.06 (+/- 0.08), not clear yet (own_deaths_30s, enemy_deaths_30s)
+- link C.map -> R.3: gain -0.0 (+/- 0.03), not clear yet (run_dist)
+- link C.clock -> R.3: gain -0.01 (+/- 0.03), not clear yet (minute, res_in)
+- link A.allocation -> R.3: gain -0.1 (+/- 0.05), rejected (own_alive, enemy_alive, own_main, enemy_main...)
   - leans on **flag_lead** (flag lead now (s)): +27.9 s at -129.0 to -63.5, -28.2 at 62.5 to 110.0
   - leans on **strength_gap** (team strength gap): -6.2 s at -989.0 to -565.5, +7.4 at 572.5 to 989.0
   - leans on **own_boost_in** (seconds to own boost): +1.2 s at 0.0 to 17.5, -1.8 at 114.5 to 120.0
 
-**capture speed** (map R.3; 108 matches, 911 cases, average 38.1 s): mean absolute error (s) 11.4045 against 16.9528 for the simple baseline (adds to the simple baseline).
-- link A.mesa_free -> R.3: gain +6.01 (+/- 0.48), supported (nearest_defender, pushers, first_push_s)
-- link C.strength -> R.3: gain -0.07 (+/- 0.05), not clear yet (strength_gap)
-- link C.map -> R.3: gain -0.1 (+/- 0.05), not clear yet (run_dist)
-- link A.allocation -> R.3: gain -0.47 (+/- 0.36), not clear yet (defenders_free, escort)
-  - leans on **first_push_s** (seconds into the run of the first push (none = the run's length)): -19.2 s at 0.0 to 3.5, +27.0 at 43.5 to 344.0
-  - leans on **pushers** (defenders who pushed the runner): -8.3 s at 0.0 to 0.5, +36.9 at 5.5 to 7.0
-  - leans on **nearest_defender** (nearest defender to the runner at mid-run): +9.0 s at 36.0 to 121.0, -5.4 at 4861.5 to 10801.0
+**capture speed** (map R.3; 105 matches, 859 cases, average 40.0 s): mean absolute error (s) 17.0613 against 16.2398 for the simple baseline (no better than the simple baseline yet).
+- link A.allocation -> R.3: gain +0.3 (+/- 0.24), not clear yet (defenders_free, escort)
+- link C.strength -> R.3: gain +0.12 (+/- 0.08), not clear yet (strength_gap)
+- link C.map -> R.3: gain -0.07 (+/- 0.05), not clear yet (run_dist)
+- link A.mesa_free -> R.3: gain -0.16 (+/- 0.04), rejected (pushers_10s, control_10s, damage_10s)
+  - leans on **escort** (the runner's escorts): -5.0 s at 0.0 to 0.5, +30.6 at 6.5 to 7.0
+  - leans on **defenders_free** (defenders alive and not on flag duty): -7.5 s at 2.0 to 3.5, +3.5 at 7.5 to 8.0
+  - leans on **strength_gap** (defending team's strength gap): -8.0 s at -989.0 to -545.0, -1.1 at 530.0 to 976.0
 
-**power play** (map K.4; 113 matches, 948 cases, result rate 40%): log loss 0.3902 against 0.6787 for the simple baseline (adds to the simple baseline).
-- link A.allocation -> K.4: gain +0.0557 (+/- 0.0139), supported (size, own_main, enemy_main, short_dead...)
-- link K.5 -> K.4: gain +0.0204 (+/- 0.0065), supported (enemy_prots_10s, enemy_heal_s)
-- link P.14 -> K.4: gain +0.0091 (+/- 0.0073), not clear yet (pushed)
-- link C.strength -> K.4: gain +0.0068 (+/- 0.0101), not clear yet (strength_gap)
-- link K.2 -> K.4: gain +0.0067 (+/- 0.0064), not clear yet (dps_v_usual)
-- link K.11 -> K.4: gain +0.0004 (+/- 0.0008), not clear yet (blinds_on_own_10s)
-- link R.3 -> K.4: gain -0.0008 (+/- 0.0011), not clear yet (flag_lead)
-- link P.2 -> K.4: gain -0.0009 (+/- 0.0017), not clear yet (spikes_10s, spike_spread)
-- link P.1 -> K.4: gain -0.003 (+/- 0.0012), rejected (spikes_on_healers)
+**power play** (map K.4; 113 matches, 948 cases, result rate 40%): log loss 0.3967 against 0.6787 for the simple baseline (adds to the simple baseline).
+- link A.allocation -> K.4: gain +0.0506 (+/- 0.0164), supported (size, own_main, enemy_main, short_dead...)
+- link K.5 -> K.4: gain +0.0198 (+/- 0.0056), supported (enemy_prots_10s, enemy_heal_s)
+- link P.14 -> K.4: gain +0.0093 (+/- 0.0063), not clear yet (pushed)
+- link K.2 -> K.4: gain +0.0052 (+/- 0.0056), not clear yet (dps_v_usual)
+- link C.strength -> K.4: gain +0.0043 (+/- 0.0088), not clear yet (strength_gap)
+- link K.11 -> K.4: gain +0.0012 (+/- 0.0006), supported (blinds_on_own_10s)
+- link R.3 -> K.4: gain -0.0001 (+/- 0.0013), not clear yet (flag_lead)
+- link P.1 -> K.4: gain -0.0021 (+/- 0.0013), not clear yet (spikes_on_healers)
+- link P.2 -> K.4: gain -0.0042 (+/- 0.0033), not clear yet (spikes_10s, spike_spread)
   - leans on **short_dead** (share of the enemy's missing player-seconds: dead): -19.0 points at 0.0 to 0.01, +20.6 at 0.99 to 1.0
   - leans on **window_s** (seconds the power play lasted): -12.9 points at 14.0 to 31.5, +31.8 at 105.5 to 290.0
   - leans on **enemy_prots_10s** (enemy prot casts per 10 s): +19.2 points at 0.0 to 0.58, -18.2 at 4.51 to 6.77
 
-**fight outcome** (map R.2; 113 matches, 831 cases, result rate 47%): log loss 0.3808 against 0.6908 for the simple baseline (adds to the simple baseline).
-- link C.strength -> R.2: gain +0.0632 (+/- 0.008), supported (strength_gap)
-- link A.allocation -> R.2: gain +0.0439 (+/- 0.0092), supported (own_local, enemy_local)
-- link K.1 -> R.2: gain +0.0339 (+/- 0.0135), supported (dps_v_usual_diff)
-- link P.2 -> R.2: gain +0.0232 (+/- 0.011), supported (spike_spread_diff, spikes_diff)
-- link P.17 -> R.2: gain +0.0131 (+/- 0.0078), not clear yet (ready_interrupt_diff, dazed_casts_diff, blind_attacks_diff)
-- link P.5 -> R.2: gain +0.0015 (+/- 0.0039), not clear yet (hex_secs_diff, hex_right_diff)
-- link P.18 -> R.2: gain +0.001 (+/- 0.0051), not clear yet (strip_right_diff, strip_value_diff)
-- link P.13 -> R.2: gain -0.0013 (+/- 0.0022), not clear yet (peel_defensive_diff)
-- link P.19 -> R.2: gain -0.0023 (+/- 0.0006), rejected (blind_front_diff, blind_defensive_diff)
+**fight outcome** (map R.2; 113 matches, 831 cases, result rate 47%): log loss 0.3866 against 0.6908 for the simple baseline (adds to the simple baseline).
+- link C.strength -> R.2: gain +0.0578 (+/- 0.0083), supported (strength_gap)
+- link A.allocation -> R.2: gain +0.0399 (+/- 0.0095), supported (own_local, enemy_local)
+- link K.1 -> R.2: gain +0.0313 (+/- 0.0142), supported (dps_v_usual_diff)
+- link P.2 -> R.2: gain +0.0222 (+/- 0.0102), supported (spike_spread_diff, spikes_diff)
+- link P.17 -> R.2: gain +0.0105 (+/- 0.0086), not clear yet (ready_interrupt_diff, dazed_casts_diff, blind_attacks_diff)
+- link P.5 -> R.2: gain +0.0005 (+/- 0.0028), not clear yet (hex_secs_diff, hex_right_diff)
+- link P.18 -> R.2: gain -0.0012 (+/- 0.005), not clear yet (strip_right_diff, strip_value_diff)
+- link P.13 -> R.2: gain -0.0013 (+/- 0.0019), not clear yet (peel_defensive_diff)
+- link P.19 -> R.2: gain -0.0028 (+/- 0.0012), rejected (blind_front_diff, blind_defensive_diff)
   - leans on **strength_gap** (team strength gap): -32.1 points at -989.0 to -623.0, +30.8 at 639.0 to 989.0
   - leans on **own_local** (own players in the fight): -34.0 points at 0.0 to 0.5, +22.7 at 7.5 to 8.0
   - leans on **enemy_local** (enemy players in the fight): +31.9 points at 0.0 to 0.5, -26.2 at 7.5 to 8.0
 
 **split chance** (map A.allocation; 113 matches, 8133 cases, result rate 14%): log loss 0.3786 against 0.4081 for the simple baseline (adds to the simple baseline).
-- link S.scoreboard -> A.allocation: gain +0.0168 (+/- 0.0056), supported (flag_lead, own_alive, enemy_alive, own_main...)
-- link C.builds -> A.allocation: gain +0.0025 (+/- 0.0049), not clear yet (own_speed, own_snares, enemy_snares)
-- link C.strength -> A.allocation: gain +0.0009 (+/- 0.0038), not clear yet (strength_gap)
-- link C.clock -> A.allocation: gain +0.0003 (+/- 0.0013), not clear yet (minute, res_in)
+- link S.scoreboard -> A.allocation: gain +0.0167 (+/- 0.0056), supported (flag_lead, own_alive, enemy_alive, own_main...)
+- link C.builds -> A.allocation: gain +0.0029 (+/- 0.0053), not clear yet (own_speed, own_snares, enemy_snares)
+- link C.strength -> A.allocation: gain +0.0009 (+/- 0.0037), not clear yet (strength_gap)
+- link C.clock -> A.allocation: gain +0.0008 (+/- 0.0019), not clear yet (minute, res_in)
   - leans on **own_main** (own main): +22.2 points at 0.0 to 2.5, -17.5 at 7.5 to 8.0
   - leans on **own_snares** (snares on own bars): -10.8 points at 0.0 to 0.5, +0.7 at 11.5 to 14.0
   - leans on **strength_gap** (team strength gap): -10.3 points at -989.0 to -581.0, +7.4 at 556.0 to 989.0
 
-**split answer** (map P.11; 78 matches, 314 cases, average -4.8 s): mean absolute error (s) 16.8477 against 18.1847 for the simple baseline (adds to the simple baseline).
-- link A.mesa_free -> P.11: gain +0.6 (+/- 0.19), supported (def_free, nearest_to_base)
-- link A.allocation -> P.11: gain +0.57 (+/- 0.36), not clear yet (size)
-- link S.scoreboard -> P.11: gain +0.13 (+/- 0.21), not clear yet (flag_lead, def_alive, att_main)
-- link C.strength -> P.11: gain +0.03 (+/- 0.11), not clear yet (strength_gap)
-- link C.clock -> P.11: gain +0.0 (+/- 0.06), not clear yet (minute)
+**split answer** (map P.11; 78 matches, 314 cases, average -4.8 s): mean absolute error (s) 16.9482 against 18.1847 for the simple baseline (adds to the simple baseline).
+- link A.mesa_free -> P.11: gain +0.57 (+/- 0.31), not clear yet (def_free, nearest_to_base)
+- link A.allocation -> P.11: gain +0.54 (+/- 0.4), not clear yet (size)
+- link S.scoreboard -> P.11: gain +0.04 (+/- 0.2), not clear yet (flag_lead, def_alive, att_main)
+- link C.strength -> P.11: gain -0.02 (+/- 0.12), not clear yet (strength_gap)
+- link C.clock -> P.11: gain -0.06 (+/- 0.08), not clear yet (minute)
   - leans on **size** (split size): +11.2 s at 1.0 to 1.5, -10.2 at 5.5 to 7.0
   - leans on **nearest_to_base** (nearest defender to its base at the split's entry): +3.3 s at 31.0 to 383.5, +12.7 at 6688.5 to 12934.0
   - leans on **att_main** (attackers' main): +9.7 s at 1.0 to 1.5, -2.4 at 7.5 to 8.0
 
-**split effect** (map R.5; 78 matches, 314 cases, result rate 41%): log loss 0.6779 against 0.6807 for the simple baseline (adds to the simple baseline).
-- link P.11 -> R.5: gain +0.0042 (+/- 0.0018), supported (latency, defenders)
-- link C.strength -> R.5: gain +0.0001 (+/- 0.0016), not clear yet (strength_gap)
-- link A.allocation -> R.5: gain -0.0005 (+/- 0.0023), not clear yet (size, main_diff)
-- link K.8 -> R.5: gain -0.0034 (+/- 0.0033), not clear yet (split_healers)
+**split effect** (map R.5; 78 matches, 314 cases, result rate 41%): log loss 0.6807 against 0.6807 for the simple baseline (no better than the simple baseline yet).
+- link P.11 -> R.5: gain +0.0035 (+/- 0.0031), not clear yet (latency, defenders)
+- link K.8 -> R.5: gain +0.0005 (+/- 0.0008), not clear yet (split_healers)
+- link C.strength -> R.5: gain +0.0005 (+/- 0.0033), not clear yet (strength_gap)
+- link A.allocation -> R.5: gain -0.0011 (+/- 0.0017), not clear yet (size, main_diff)
   - leans on **latency** (seconds until the first defender arrived (60 = never)): +0.3 points at -30.0 to -29.5, -0.0 at 56.5 to 60.0
   - leans on **defenders** (defenders who came): +0.2 points at 0.0 to 0.5, +0.0 at 7.5 to 8.0
   - leans on **main_diff** (own main minus enemy main meanwhile): -0.1 points at -5.1 to -2.45, +0.3 at 1.7 to 6.0
 
-**collapse** (map R.1; 103 matches, 742 cases, result rate 12%): log loss 0.3423 against 0.3726 for the simple baseline (adds to the simple baseline).
-- link P.9 -> R.1: gain +0.0065 (+/- 0.0021), supported (defenders_10s)
-- link C.strength -> R.1: gain +0.0027 (+/- 0.0034), not clear yet (strength_gap)
-- link A.allocation -> R.1: gain +0.0024 (+/- 0.0015), not clear yet (size, main_diff)
-- link P.11 -> R.1: gain +0.0017 (+/- 0.003), not clear yet (latency)
-- link C.builds -> R.1: gain -0.0007 (+/- 0.0032), not clear yet (def_snares, split_speed)
+**collapse** (map R.1; 103 matches, 742 cases, result rate 12%): log loss 0.3442 against 0.3726 for the simple baseline (adds to the simple baseline).
+- link P.9 -> R.1: gain +0.0064 (+/- 0.002), supported (defenders_10s)
+- link A.allocation -> R.1: gain +0.0027 (+/- 0.002), not clear yet (size, main_diff)
+- link P.11 -> R.1: gain +0.0026 (+/- 0.0024), not clear yet (latency)
+- link C.strength -> R.1: gain +0.0025 (+/- 0.0033), not clear yet (strength_gap)
+- link C.builds -> R.1: gain -0.0012 (+/- 0.0039), not clear yet (def_snares, split_speed)
   - leans on **defenders_10s** (defenders arriving within 10 s of the first): -31.0 points at 0.0 to 0.5, +26.2 at 7.5 to 8.0
   - leans on **strength_gap** (splitting team's strength gap): +9.0 points at -989.0 to -521.0, +3.3 at 664.0 to 989.0
   - leans on **def_snares** (snares on the defending team's bars): -6.2 points at 0.0 to 0.5, +21.7 at 9.5 to 14.0

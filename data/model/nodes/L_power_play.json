@@ -6,7 +6,7 @@
  "rate": 0.402,
  "mean": null,
  "validation": {
-  "glass box": 0.3902,
+  "glass box": 0.3967,
   "simple baseline": 0.6787,
   "metric": "log loss",
   "verdict": "adds to the simple baseline"
@@ -24,8 +24,8 @@
     "short_backside",
     "short_base"
    ],
-   "strength": 0.0557,
-   "plus_minus": 0.0139,
+   "strength": 0.0506,
+   "plus_minus": 0.0164,
    "status": "supported"
   },
   {
@@ -34,8 +34,8 @@
    "features": [
     "flag_lead"
    ],
-   "strength": -0.0008,
-   "plus_minus": 0.0011,
+   "strength": -0.0001,
+   "plus_minus": 0.0013,
    "status": "not clear yet"
   },
   {
@@ -44,8 +44,8 @@
    "features": [
     "pushed"
    ],
-   "strength": 0.0091,
-   "plus_minus": 0.0073,
+   "strength": 0.0093,
+   "plus_minus": 0.0063,
    "status": "not clear yet"
   },
   {
@@ -54,8 +54,8 @@
    "features": [
     "dps_v_usual"
    ],
-   "strength": 0.0067,
-   "plus_minus": 0.0064,
+   "strength": 0.0052,
+   "plus_minus": 0.0056,
    "status": "not clear yet"
   },
   {
@@ -65,8 +65,8 @@
     "enemy_prots_10s",
     "enemy_heal_s"
    ],
-   "strength": 0.0204,
-   "plus_minus": 0.0065,
+   "strength": 0.0198,
+   "plus_minus": 0.0056,
    "status": "supported"
   },
   {
@@ -76,8 +76,8 @@
     "spikes_10s",
     "spike_spread"
    ],
-   "strength": -0.0009,
-   "plus_minus": 0.0017,
+   "strength": -0.0042,
+   "plus_minus": 0.0033,
    "status": "not clear yet"
   },
   {
@@ -86,9 +86,9 @@
    "features": [
     "spikes_on_healers"
    ],
-   "strength": -0.003,
-   "plus_minus": 0.0012,
-   "status": "rejected"
+   "strength": -0.0021,
+   "plus_minus": 0.0013,
+   "status": "not clear yet"
   },
   {
    "from": "K.11",
@@ -96,9 +96,9 @@
    "features": [
     "blinds_on_own_10s"
    ],
-   "strength": 0.0004,
-   "plus_minus": 0.0008,
-   "status": "not clear yet"
+   "strength": 0.0012,
+   "plus_minus": 0.0006,
+   "status": "supported"
   },
   {
    "from": "C.strength",
@@ -106,8 +106,8 @@
    "features": [
     "strength_gap"
    ],
-   "strength": 0.0068,
-   "plus_minus": 0.0101,
+   "strength": 0.0043,
+   "plus_minus": 0.0088,
    "status": "not clear yet"
   }
  ],
