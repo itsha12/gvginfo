@@ -439,8 +439,8 @@ against general principles rather than past games. Match-by-match evidence lives
   with 15%+ death penalty died within 10 s 4.9% of the time against 1.2% with none, at the same local numbers (partly
   because the same players keep being reachable). [ohno v One]
 - `K18` **Denning:** A death while boosted costs more because boosted teams are usually ahead, and the death loses the
-  lead. **Claude (data, `values.py`, 61 matches):** a death while the team was boosted cost about 28 win points (model
-  view 8) against about 3 when not boosted, so OG's "we are boosting, so we can die for NPCs" is not supported as a
+  lead. **Claude (data, `values.py`, 61 matches):** a death while the team was boosted cost about 22 win points (model
+  view 7) against about 3 when not boosted, so OG's "we are boosting, so we can die for NPCs" is not supported as a
   trade. [ohno v One]
 - `K5` **Bounty:** A team that always has someone timed or stuck has no moment to play tactics and gets overwhelmed.
   Resurrecting too late wastes time; teams under pressure are often scared to go for the res.
