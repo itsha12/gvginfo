@@ -93,30 +93,40 @@ def _frame(ids, step=TRAIN_STEP, extra=()):
     return df, df[NAMES + list(extra)].astype(float), df["won"].astype(int), df["match"]
 
 
-def _validate_candidate(args):
-    df, X, y, g, corr, n = args
-    return validate(df, X[NAMES + ([n] if n else [])], y, g, corr, extra=[n] if n else [])[0]
+def _candidate_fold(job):
+    """One held-out fold of one candidate test: the glass box's predictions only (the test compares log loss, so the
+    black box and the without-corrections fits of a full validation aren't needed). Top level for parallel.py."""
+    Xtr, ytr, Xte, corr, n_tr = job
+    m, use = _fit(Xtr, ytr, corr, n_tr)
+    return _predict(m, use, Xte)
 
 
-def test_candidates(ids):
-    """Held-out log loss with each candidate variable added, against the model without it."""
+def test_candidates(ids, base=None):
+    """Held-out log loss with each candidate variable added, against the model without it. Every candidate's folds are
+    fitted side by side in one pool (parallel.py), so all cores stay busy; base = the glass box's held-out log loss from
+    the honest test already run on the same matches (learning.py passes it; the same folds and rows, so the same
+    number), otherwise it is fitted here too. Same results as validating each candidate in full."""
+    import parallel
+    from sklearn.model_selection import GroupKFold
     corr = corrections()
     df, X, y, g = _frame(ids, extra=[n for n, _, _ in CANDIDATES])
-    import multiprocessing as mp
-    jobs = [None] + [n for n, _, _ in CANDIDATES if n in X]
-    # each validation is independent: run them side by side, in fresh processes ("spawn"): forked workers deadlock once
-    # the parent has used the model library's threads (found 2026-11-06)
-    with mp.get_context("spawn").Pool(min(len(jobs), os.cpu_count() or 2)) as p:
-        res = dict(zip(jobs, p.map(_validate_candidate, [(df, X, y, g, corr, n) for n in jobs])))
-    base = res[None]
+    folds = list(GroupKFold(n_splits=min(6, g.nunique())).split(X, y, g))
+    names = ([] if base is not None else [None]) + [n for n, _, _ in CANDIDATES if n in X]
+    jobs, keys = [], []
+    for n in names:
+        cols = NAMES + ([n] if n else [])
+        for i, (tr, te) in enumerate(folds):
+            jobs.append((X[cols].iloc[tr], y.iloc[tr], X[cols].iloc[te], corr, g.iloc[tr].nunique())); keys.append((n, i))
+    res = parallel.run(_candidate_fold, jobs)
+    preds = {n: np.zeros(len(y)) for n in names}
+    for (n, i), p in zip(keys, res): preds[n][folds[i][1]] = p
+    ll = {n: _metrics(p, y.values)["log_loss"] for n, p in preds.items()}
+    if base is None: base = ll[None]
     out = []
     for n, dsc, _ in CANDIDATES:
-        if n not in res: continue
-        v = res[n]
-        out.append({"candidate": n, "description": dsc, "without": base["glass box"]["all"]["log_loss"],
-                    "with": v["glass box"]["all"]["log_loss"],
-                    "verdict": "improves: ready to move into the model" if v["glass box"]["all"]["log_loss"] < base["glass box"]["all"]["log_loss"] - 0.005
-                    else "does not improve yet"})
+        if n not in ll: continue
+        out.append({"candidate": n, "description": dsc, "without": base, "with": ll[n],
+                    "verdict": "improves: ready to move into the model" if ll[n] < base - 0.005 else "does not improve yet"})
     return out
 
 

@@ -5,7 +5,9 @@ Usage:  python3 learning.py            fits on every batch in data/model/batches
 Sections: the honest test (better than team strength alone?); what it leans on and how that changed since the last
 batch; each important curve in words, with its uncertainty; discovery (interaction candidates, untested until held-out
 matches confirm them; the moments the model got most wrong, which point to missing variables); Denning's rulings seen
-through the model (win chance before and after each ruled moment, and its breakdown); questions for Denning.
+through the model (win chance before and after each ruled moment, and its breakdown); the node models; the usual play;
+values; the TQs (Denning's four questions with the different play measured, tq.py); the snapshot; questions for Denning.
+Each section's time goes to data/model/reports/timings.json. Candidate tests and node models pool their fits on every core.
 Claude reads the report, adds its own explanation in the chat, and turns confirmed lessons into tactics lines."""
 import collections, json, math, os, sys, warnings
 import numpy as np
@@ -126,7 +128,7 @@ def report():
     _lap("interaction screen")
     # discovery 2: candidate variables, retested every batch
     L += ["", "**Candidate variables** (proposed variables, tested on unseen matches; log loss, lower is better):", ""]
-    for c in M.test_candidates(ids):
+    for c in M.test_candidates(ids, base=v["glass box"]["all"]["log_loss"]):
         L.append(f"- {c['candidate']}: {c['without']} without, {c['with']} with: {c['verdict']}. {c['description']}")
     _lap("candidate variables")
     # discovery 3: surprises = held-out moments most wrong, one per match
@@ -168,8 +170,8 @@ def report():
     L += ["", "## 6. Why: the node models", "",
           "Each explains one result from what happened before it (time order enforced), tested on matches it never saw. "
           "AUC = how often a moment that led to the result scores above one that didn't (0.5 = guessing, 1 = perfect).", ""]
-    for node in ("deaths", "kill_conversion", "flag_answer", "npc_loss", "lord_damage", "lord_kill"):
-        s_, e_, df_, held_ = NODES.fit_node(node, ids)
+    node_fits = NODES.fit_nodes(["deaths", "kill_conversion", "flag_answer", "npc_loss", "lord_damage", "lord_kill"], ids)
+    for node, (s_, e_, df_, held_) in node_fits.items():
         v_ = s_["validation"]
         if node in NODES.REGRESSION:
             what = {"flag_answer": "seconds an answer to an enemy capture was slower than possible",
@@ -191,9 +193,14 @@ def report():
         L.append("")
     _lap("node models")
     # the usual play (usual.py): needs the analysis files (analyze.py --all --out /tmp/ga)
-    import usual as U
+    import usual as U, copy
+    tq_recs = tq_res = None
     if os.path.isdir("/tmp/ga"):
-        res = U.analyse(U.wp_change(U.load("/tmp/ga")))
+        # the decision records are built once (win chance from held-out models) and copied for each use; the TQs reuse the
+        # copy the usual play was measured on (it carries each decision's refined choice and its usual play)
+        base_recs = U.wp_change(U.load("/tmp/ga"))
+        tq_recs = copy.deepcopy(base_recs)
+        res = tq_res = U.analyse(tq_recs)
         L += ["## 7. The usual play", "", "Each choice against the most common one in that kind of decision, in win-chance points over the "
               "decision's window, adjusted for the situation, with a 90% range from resampling whole matches. CLEAR = the "
               "range excludes 0. Win chance comes from a model that never saw the match. The same comparison over the "
@@ -219,7 +226,7 @@ def report():
                         L.append(f"  - {b['choice']}, {b['fight']}: too few yet (n {b['n']} against {b['n_usual']}; "
                                  f"means {b.get('raw_mean')} against {b.get('raw_mean_usual')})")
             L.append("")
-        cc = U.collapse_cost(U.wp_change(U.load("/tmp/ga")))
+        cc = U.collapse_cost(copy.deepcopy(base_recs))
         if cc:
             L += ["**Collapses on a split: time away and its cost** (`S32`; per collapse, averages; main = what the main "
                   "fight lost while the collapsers were away)", "",
@@ -232,7 +239,7 @@ def report():
             L.append("")
         # discovery at decision points (discovery.py): where the choice matters most, and responses nobody named
         import discovery as DSC
-        recs_d = U.wp_change(U.load("/tmp/ga"))
+        recs_d = copy.deepcopy(base_recs)
         lev = DSC.leverage(recs_d)
         if lev:
             L += ["**Leverage: where the choice matters most** (share of the spread in win-chance change explained by the "
@@ -256,21 +263,12 @@ def report():
     _lap("usual play")
     L += ["## 8. What results and causes are worth", ""] + VAL.report_lines(v)
     _lap("values")
-    # why chains for the new matches across event kinds (Denning: the point is the WHY, and not only deaths): the two
-    # biggest fights, then the biggest flag swing, power play without a kill, survived spike, and pit NPC loss or late
-    # split answer; a kind with nothing in the new matches is taken from all trained matches
-    import why as WHY, events as EV
-    L += ["## Why: five events of the new matches", "",
-          "For each, the engine's account of why it happened, every number measured and placed against the same role or "
-          "situation in every stored match (forensics.py, events.py), with models that never saw the match.", ""]
-    for rid, f in WHY.top(2, new_ids): L += WHY.why(rid, f)
-    for kind in ("flag", "power", "spike", "npc" if EV.find("npc", new_ids) else "split"):
-        found = EV.find(kind, new_ids) or EV.find(kind, ids)
-        if not found: L += [f"No {kind} event to explain yet.", ""]; continue
-        _, rid, tag, t, _txt = found[0]
-        try: L += EV.KINDS[kind](rid, tag, t) + [""]
-        except Exception as ex: L += [f"{kind} event {rid[:8]} {tag} {EV.clock(t)}: could not be explained ({ex})", ""]
-    _lap("why chains")
+    # the TQs (Denning's four questions, replacing the five random whys): a flag swing, a monk death, a power play without
+    # a kill and a pit NPC loss from the new matches, each with the different play measured (tq.py)
+    import tq as TQ
+    if tq_recs is not None: L += TQ.lines(new_ids, ids, tq_recs, tq_res)
+    else: L += ["## The TQs", "", "Not answered: the analysis files are missing (analyze.py --all --out /tmp/ga).", ""]
+    _lap("TQs")
     import snapshot as SNAP
     if os.path.isdir("/tmp/gl"): L += SNAP.snapshot(ids, new_ids, "/tmp/gl")
     _lap("snapshot")
@@ -279,7 +277,7 @@ def report():
           "your reason and tested on held-out matches.",
           "- Do any surprises remind you of something the variables don't capture (a missing variable)?",
           "- Any variable you think matters that isn't listed?", ""]
-    _lap("why chains and snapshot")
+    _lap("questions")
     json.dump({"cores": os.cpu_count(), "seconds": _T["laps"]}, open(os.path.join(REPORTS, "timings.json"), "w"), indent=1)
     path = os.path.join(REPORTS, f"batch_{n:02d}.md")
     open(path, "w").write("\n".join(L) + "\n")

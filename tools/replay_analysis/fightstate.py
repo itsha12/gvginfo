@@ -47,25 +47,37 @@ def _save(rid, rows, p):
     json.dump({t: {k: round(v, 3) for k, v in d.items()} for t, d in out.items()}, open(os.path.join(_dir(), rid + ".json"), "w"))
 
 
-def build(ids, extra=()):
-    """Out-of-match predictions for ids (by groups) and for extra (from a model on all ids). Clears the win model's
-    table cache, which reads them."""
+def _fit_job(job):
+    """One death model for the predictions (top level so it can run in another process, parallel.py)."""
     import nodes as N
+    X, y, w, n = job
+    return N._ebm(n).fit(X, y, sample_weight=w)
+
+
+def build(ids, extra=()):
+    """Out-of-match predictions for ids (by groups) and for extra (from a model on all ids). Only the groups with a
+    match still to predict are fitted (the learning report calls this again with the newest replays as extra, after
+    cache.py warm has built the trained ones), and the fits run side by side (parallel.py). Same models, same
+    predictions."""
+    import nodes as N, parallel
     ids = list(ids)
     os.makedirs(_dir(), exist_ok=True)
-    todo = [r for r in ids + list(extra) if not os.path.exists(os.path.join(_dir(), r + ".json"))]
-    if not todo: return                     # already built for this training set and engine
-    groups = [ids[i::FOLDS] for i in range(FOLDS)]
+    have = lambda r: os.path.exists(os.path.join(_dir(), r + ".json"))
+    groups = [g for g in (ids[i::FOLDS] for i in range(FOLDS)) if g and not all(have(r) for r in g)]
+    extra = [r for r in extra if not have(r)]
+    if not groups and not extra: return      # already built for this training set and engine
+    jobs, cols = [], []           # each fit's own variables (they depend on how many matches it is trained on)
     for g in groups:
-        if not g: continue
-        train = [x for x in ids if x not in g]
-        df, X, y, gg, w = N._frame("deaths", train)
-        e = N._ebm(gg.nunique()).fit(X, y, sample_weight=w)
-        for rid in g: rows = N.node_rows("deaths_all", rid); _save(rid, rows, _predict(e, rows, list(X.columns)))
+        df, X, y, gg, w = N._frame("deaths", [x for x in ids if x not in g])
+        jobs.append((X, y, w, gg.nunique())); cols.append(list(X.columns))
     if extra:
         df, X, y, gg, w = N._frame("deaths", ids)
-        e = N._ebm(gg.nunique()).fit(X, y, sample_weight=w)
-        for rid in extra: rows = N.node_rows("deaths_all", rid); _save(rid, rows, _predict(e, rows, list(X.columns)))
+        jobs.append((X, y, w, gg.nunique())); cols.append(list(X.columns))
+    models = parallel.run(_fit_job, jobs)
+    for g, e, c in zip(groups, models, cols):
+        for rid in g: rows = N.node_rows("deaths_all", rid); _save(rid, rows, _predict(e, rows, c))
+    if extra:
+        for rid in extra: rows = N.node_rows("deaths_all", rid); _save(rid, rows, _predict(models[-1], rows, cols[-1]))
 
 
 _C = {}

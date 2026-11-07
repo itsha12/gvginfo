@@ -458,14 +458,19 @@ BASE_COLS = {"deaths": ["health_pct", "damage_taken_3s"], "kill_conversion": ["b
              "npc_loss": ["attackers", "defenders"], "lord_kill": ["attackers", "defenders"]}
 
 
-def _folds_and_full(node, X, y, g, w, regression):
-    """Every held-out fold and the final fit, side by side (parallel.py); the same fits as one after another."""
-    import parallel
+def _jobs(node, X, y, g, w, regression):
     from sklearn.model_selection import GroupKFold
     folds = list(GroupKFold(n_splits=min(6, g.nunique())).split(X, y, g))
     bc = BASE_COLS.get(node, [])
     jobs = [("fold", g.iloc[tr].nunique(), regression, X.iloc[tr], y.iloc[tr], w.iloc[tr], X.iloc[te], bc) for tr, te in folds]
     jobs.append(("full", g.nunique(), regression, X, y, w, None, bc))
+    return folds, jobs
+
+
+def _folds_and_full(node, X, y, g, w, regression):
+    """Every held-out fold and the final fit, side by side (parallel.py); the same fits as one after another."""
+    import parallel
+    folds, jobs = _jobs(node, X, y, g, w, regression)
     res = parallel.run(_node_job, jobs)
     return folds, res[:-1], res[-1]
 
@@ -515,27 +520,49 @@ def validate(node, df, X, y, g, w, _done=None):
     return out, preds["glass box"]
 
 
+COST_ORDER = ["deaths", "lord_kill", "npc_loss", "kill_conversion", "lord_damage", "flag_answer"]   # slowest first (measured)
+
+
+def fit_nodes(nodes, ids):
+    """Fit and validate several nodes with every fit pooled together (each node's held-out folds and final fit), so all
+    cores stay busy instead of one node after another; the slowest node's fits go first. Same fits, same results as
+    fit_node for each node. Returns {node: (summary, model, df, held-out predictions)}."""
+    import parallel
+    prep, jobs, owner = {}, [], []
+    for node in sorted(nodes, key=lambda n: COST_ORDER.index(n) if n in COST_ORDER else 99):
+        df, X, y, g, w = _frame(node, ids)
+        regression = node in REGRESSION
+        if regression: y = df["y"].astype(float)
+        folds, js = _jobs(node, X, y, g, w, regression)
+        prep[node] = (df, X, y, g, w, regression, folds)
+        jobs += js; owner += [node] * len(js)
+    res = parallel.run(_node_job, jobs)
+    out = {}
+    for node in nodes:
+        df, X, y, g, w, regression, folds = prep[node]
+        r = [x for x, o in zip(res, owner) if o == node]
+        done = (folds, r[:-1], r[-1])
+        if regression:
+            val, held = validate_regression(node, df, X, y, g, w, done); e = done[2]
+            terms = readable_seconds(e, list(X.columns), X)
+        else:
+            val, held = validate(node, df, X, y, g, w, done); e = done[2]
+            terms = M.readable(e, list(X.columns), X)
+        for t in terms:
+            if "curve" in t: t["description"] = DESC[node].get(t["term"], t["description"])
+        summary = {"node": node, "matches": int(g.nunique()), "rows": int(len(y)),
+                   "events": int(y.sum()) if node not in REGRESSION else None, "validation": val,
+                   "note": ("seconds added to (or taken off) the answer, compared with the average answer" if node in REGRESSION else
+                            "points = change in the chance of the result for an otherwise even (50%) case; read the direction and size, "
+                            "not the absolute level"), "terms": terms}
+        os.makedirs(NODE_DIR, exist_ok=True)
+        json.dump(summary, open(os.path.join(NODE_DIR, f"{node}.json"), "w"), indent=1)
+        out[node] = (summary, e, df, held)
+    return out
+
+
 def fit_node(node, ids):
-    df, X, y, g, w = _frame(node, ids)
-    if node in REGRESSION:
-        y = df["y"].astype(float)
-        done = _folds_and_full(node, X, y, g, w, True)          # folds and the final fit side by side
-        val, held = validate_regression(node, df, X, y, g, w, done); e = done[2]
-        terms = readable_seconds(e, list(X.columns), X)
-    else:
-        done = _folds_and_full(node, X, y, g, w, False)
-        val, held = validate(node, df, X, y, g, w, done); e = done[2]
-        terms = M.readable(e, list(X.columns), X)
-    for t in terms:
-        if "curve" in t: t["description"] = DESC[node].get(t["term"], t["description"])
-    summary = {"node": node, "matches": int(g.nunique()), "rows": int(len(y)),
-               "events": int(y.sum()) if node not in REGRESSION else None, "validation": val,
-               "note": ("seconds added to (or taken off) the answer, compared with the average answer" if node in REGRESSION else
-                        "points = change in the chance of the result for an otherwise even (50%) case; read the direction and size, "
-                        "not the absolute level"), "terms": terms}
-    os.makedirs(NODE_DIR, exist_ok=True)
-    json.dump(summary, open(os.path.join(NODE_DIR, f"{node}.json"), "w"), indent=1)
-    return summary, e, df, held
+    return fit_nodes([node], ids)[node]
 
 
 def explain_row(e, row, feats):

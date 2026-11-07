@@ -80,7 +80,8 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   with match moments; his corrections go in `data/model_corrections.json` with his reason. Denning: after each batch
   give a snapshot across all the learnings, not one highlighted item, and favour the detailed ones (skills cast, run
   times, runners, node-model readings, values, usual play, discovery).
-- After each batch, answer the TQs (Denning's four question categories, replacing the five random whys; they show how
+- After each batch, answer the TQs (Denning's four question categories, replacing the five random whys; the learning report's
+  section "The TQs" (`tq.py`) answers them, METHODS.md "The TQs"; they show how
   the engine is learning), each from the batch's matches, answered with data at the depth of METHODS.md "Answer
   exemplars", the "different play" or "prevented" half from measured alternatives (the usual play's choice effects,
   forensics' ready-but-unused options, the benchmarks), with a confidence level:

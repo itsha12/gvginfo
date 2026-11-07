@@ -9,8 +9,9 @@ Two kinds of entry, both keyed so a stale entry can never be read:
   Keyed by the kind, the match left out, a hash of the training set and a hash of the model code and corrections.
   A new batch changes the training set, so every held-out model is refitted once per batch, then reused.
 
-Where: ~/.cache/gvginfo (or $GVG_CACHE). Prepared data can be kept between sessions on the repo's `cache` branch
-(`sync pull` at the start of a session, `sync push` after building), so a new session does not rebuild it.
+Where: ~/.cache/gvginfo (or $GVG_CACHE). Prepared data and the fight-state predictions (fightstate.py) can be kept
+between sessions on the repo's `cache` branch (`sync pull` at the start of a session, `sync push` after building), so a
+new session (or a rerun of the Train batch workflow on the same matches) does not rebuild them.
 
 Usage:  python3 cache.py warm [--jobs N]     build prepared data and the held-out win models (one per group of matches,
                                              FOLDS) for the current batches, in parallel (once per batch); deaths
@@ -30,7 +31,7 @@ DATA_DEPS = ["data/model/strength.json", "data/model/lineup.json", "data/model/c
 FIT_DEPS = ["data/model_corrections.json"]
 # the entry modules each kind of prepared data is built from; their local imports are followed automatically
 PREPARED_FROM = {"table": ["features.py", "model.py"], "rows": ["nodes.py"], "events": ["values.py"],
-                 "analysis": ["analyze.py"]}
+                 "analysis": ["analyze.py"], "power_bench": ["tq.py"]}
 FIT_FROM = {"wp": ["model.py"], "node": ["nodes.py"]}
 _KEYS = {}
 
@@ -202,6 +203,15 @@ def sync(direction):
             p = os.path.join(work, name); open(p, "wb").write(raw)
             with tarfile.open(p) as tf: tf.extractall(os.path.join(ROOT, "prepared", kind), filter="data")
             got += 1
+        # the fight-state predictions for the current training set and death-model code (fightstate.py)
+        import fightstate
+        d = fightstate._dir(); name = "fightstate-" + "-".join(d.split(os.sep)[-2:]) + ".tar.gz"
+        if name in names:
+            raw = subprocess.run(["git", "-C", REPO, "show", f"origin/cache:{name}"], check=True, capture_output=True).stdout
+            p = os.path.join(work, name); open(p, "wb").write(raw)
+            os.makedirs(d, exist_ok=True)
+            with tarfile.open(p) as tf: tf.extractall(d, filter="data")
+            got += 1
         print(f"pulled {got} kinds of prepared data for the current engine")
     else:
         files = {}
@@ -210,6 +220,13 @@ def sync(direction):
             if not os.path.isdir(d) or not os.listdir(d): continue
             name = f"{kind}-{code_key(kind)}.tar.gz"; p = os.path.join(work, name)
             with tarfile.open(p, "w:gz") as tf: tf.add(d, arcname=code_key(kind))
+            files[name] = p
+        import fightstate
+        d = fightstate._dir()
+        if os.path.isdir(d) and os.listdir(d):
+            name = "fightstate-" + "-".join(d.split(os.sep)[-2:]) + ".tar.gz"; p = os.path.join(work, name)
+            with tarfile.open(p, "w:gz") as tf:
+                for f in os.listdir(d): tf.add(os.path.join(d, f), arcname=f)
             files[name] = p
         if not files: print("nothing to push"); return
         # one commit holding only the current versions (older versions are dropped), as an orphan branch

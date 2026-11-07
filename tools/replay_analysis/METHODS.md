@@ -458,8 +458,7 @@ moments better than attackers and defenders alone (AUC 0.786 against 0.755) but 
   health line), `npc` (pit NPCs lost: the split, the defenders and their latency, where the rest of the team was), and
   `split` (a split and its answer). `events.py find <kind>` lists the biggest events of a kind. Why chains (`why.py`)
   now explain what dropped the health with the forensics, and "why, in short" names the findings that stand out. The
-  learning report's why section covers five events across kinds: two fights, a flag swing, a power play without a kill,
-  a survived spike, and a pit NPC loss or split.
+  learning report answers the TQs (below) with these; why.py and `events.py <kind>` stay available for any other event.
 - **Cache** (`cache.py`): every "without this match" model (win model, node models) is fitted once per training set
   and engine code, saved, and shared by the learning report, values, usual play and why chains (before: each layer
   refitted its own, so a report refitted the same 53 models several times). Each match's prepared data (analysis,
@@ -500,7 +499,37 @@ The why half comes from events.py and forensics.py (flag, death, power; npc for 
 different play, how to prevent or convert) must also come from measurement: the usual play's effect of each choice at
 the decision before (usual.py), the ready-but-unused prots and the uncontrolled attackers in the forensics, the
 benchmarks for the role, and the node models' readings with the variable changed. Say when the engine can't measure
-the alternative. learning.py's why section is to be rebuilt to produce these four (see docs/HANDOFF.md).
+the alternative.
+
+**As built** (`tq.py`, the learning report's section "The TQs", 2026-11-07). Each instance is the biggest of its kind in
+the newest batch (from all trained matches when the batch has none): the biggest flag swing (`events.find("flag")`), the
+monk death (8 Monk, 7 Monk or Prot; deliberate deaths in the own base back within 15 s left out, `K14`) that cost the
+most win chance from 10 s before to 30 s after, the biggest power play without a kill (`events.find("power")`), and the
+knight or Bodyguard loss that cost the most win chance. Each answer: the event's account (events.py, forensics), "why,
+in short", then the different play from these sources only:
+- Decisions (usual.py): each decision point of the team in the event's window, with its refined choice, the usual play
+  among the 15 most similar decisions in other matches, and the choices that did measurably better (2+ points more than
+  the choice made; marked clear or not, and "partly who chooses it" when the placebo check flags it; effects are
+  against the kind's most common choice, so a difference between two other choices is approximate), plus the
+  fight-state third where the kind has one.
+- Node readings with a variable changed (`tq.what_if`, models that never saw the match): flags, the flag-answer node with
+  a waiting runner, the runner alive, no forced drops, no parking, no own deaths, no enemies on the way (seconds), and
+  the seconds read by the win model as flag lead; monk death, the deaths node with a prot up (only when one was ready and
+  unused), another healer in range, the Daze or Cripple removed, no knockdowns, staying with the group, one attacker
+  peeled off, hexes removed, and all together; power play, the kill-conversion node on its biggest burst with all damage
+  dealers in it, on each other enemy player at that second (their own state from the deaths rows), with a knockdown or
+  Daze on the target (only if the build has them) or a hex on the target's healers; NPCs, the NPC-loss node with one more
+  defender, one more healer defender, two more, and healing on the NPCs. Each change in a result's chance is priced in
+  win points at what that event actually cost (its measured win-chance change) and at the typical value (values.py).
+- Unused options (forensics): prots ready and in range but not cast, knockdown immunity ready, attackers left free.
+- Benchmarks: every stored power play of 3+ more at main, killed against not (damage per second, top-target share,
+  damage uptime; `power_bench`, cached per match); every stored split into a base (first-defender latency).
+- Confidence comes from the evidence: "medium to high" when two independent measurements support the alternative (a node
+  model that beats its baseline on unseen matches and moves the chance by 5+ points or 15% of itself, and a clear
+  usual-play effect not flagged as partly who chooses it), "medium" with one, "low" when the measured ranges still
+  include no effect or nothing could be priced.
+Known gaps: a power play with no 2 s burst can't be read by the kill-conversion node; the win model's flag-lead curve
+still bends the wrong way at the extremes, so seconds of flag lead are sometimes not priced (the answer says so).
 
 ### Answer exemplars (the four questions of 2026-11-06)
 These set the kind of answer the engine must produce: the event, the measured causes in order, and "why, in short".
