@@ -1,6 +1,6 @@
 # GvG Info — handoff for a new Claude chat
 
-Last updated 2026-11-06 (portal sections unchanged since 2026-10-15; match replay analysis section added). Attach this file (or just ask Claude to attach the repo) in a new chat, then say what you want.
+Last updated 2026-11-07 (portal sections unchanged since 2026-10-15; match replay analysis section added). Attach this file (or just ask Claude to attach the repo) in a new chat, then say what you want.
 
 ## Start a new chat in one message
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md and docs/HANDOFF.md, then: <your request>
@@ -115,18 +115,20 @@ win chances; (2) a monk death, why, and how to prevent it; (3) a power play that
 convert it; (4) NPCs lost, why, and how to prevent it. Each answered with data, the alternative from measurement
 (usual play, forensics' unused options, benchmarks, node models), with a confidence level.
 
-## Next session: build first
-1. TQ section in the learning report: rebuild learning.py's why section to produce the four TQs (flag swing, monk
-   death, power play without a kill, NPC loss), each with a measured "different play" half: the usual play's choice
-   effect at the decision before (usual.py), forensics' ready-but-unused prots and uncontrolled attackers, and a node
-   model reading with the variable changed (e.g. the death risk with a prot up, or with another healer in range).
-2. GitHub speed-ups (measured on the Train batch workflow, 4 cores, 15.6 min per batch; report sections in
-   data/model/reports/timings.json): (a) candidate-variable tests (4.2 min): split every test into its fold fits so all
-   cores stay busy, and reuse the honest test already run as the baseline; (b) node models (3.7 min): pool every
-   node's fits together instead of one node after another; (c) held-out models (3.0 min, mostly the fight-state
-   predictions): save fightstate's predictions with the cache (cache.py sync). Expected about 9 to 11 min per batch
-   with the same results (an estimate). Make all these code changes first, then one test run of the workflow.
-3. Then Bounty's six matches (ask Denning for the transcripts), then Nick's one.
+## Next session
+1. Bounty's six matches (ask Denning for the transcripts), then Nick's one. Training batches stay paused until then.
+2. Built in session 4o (2026-11-07), for Denning to check on the next real batch: the learning report's section "The
+   TQs" (`tq.py`, METHODS.md "The TQs", "As built"). Ask him whether the instance picks suit him (biggest swing of each
+   kind; monk death = the one that cost the most win chance, which favours late deaths) and whether the "different
+   play" lines answer his question.
+3. Known TQ gaps: a power play with no 2 s burst can't be read by the kill-conversion node (say so; maybe add a reading
+   of the most exposed enemy at the start); the win model's flag-lead curve bends the wrong way at the extremes, so
+   seconds of flag lead are sometimes not priced.
+4. Speed after session 4o (Train batch workflow, 4 cores, rebuilding the report on the same 61 matches): learning
+   report 11.6 min -> 5.8 min (candidate tests 4.2 -> 1.5 min, node models 3.7 -> 2.1 min, usual play 1.8 -> 0.9 min,
+   TQs 0.5 min); whole run 15.6 -> 10.7 min including a one-off cache rebuild after the engine change. A normal batch
+   should take about 9 to 11 min (an estimate; machine speed varies between runs: the first test run's report took 8.0
+   min).
 
 ## Next: the commentary transcripts
 Agreed with Denning: the matches go into training (flagged as chosen); the new variables they suggest matter most.
@@ -324,6 +326,13 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
 - Improve the toolkit rather than writing one-off scripts; each ruling becomes a label, a tactics line and a check.
 
 ## Recent changes
+- Session 4o: the TQ section of the learning report (`tq.py`; replaces the five whys); speed-ups, each checked to give
+  identical results: candidate tests pool every fold and reuse the honest test as the baseline (`model.test_candidates`),
+  node models pool all their fits (`nodes.fit_nodes`), fight-state fits run side by side and only where a match is
+  missing (`fightstate.build`), fight-state predictions are kept on the `cache` branch, the usual-play records are built
+  once per report. Fixed `nodes._aoe_skills` (counts leaked between matches; lord_damage and lord_kill changed slightly).
+  Found: the model library's fits differ in the last digits between processor types (log loss 0.554 against 0.550 on
+  identical tables); `timings.json` now records the processor.
 - Session 4n (end): Train batch workflow (.github/workflows/train-batch.yml, pinned libraries), fits side by side
   (parallel.py), held-out models from 10 groups of matches (cache.FOLDS), deaths models fitted only when needed,
   learning report section timers; Denning's TQs replace the five random whys (to build into learning.py next).
