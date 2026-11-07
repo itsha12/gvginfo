@@ -229,17 +229,26 @@ def flags(new_ids, recs, usual_res):
     found = EV.find("flag", new_ids); src = "the new matches"
     if not found: found = EV.find("flag", _ids()); src = "all trained matches (none in the new matches)"
     if not found: return ["## TQ 1. Behind on flags", "", "No team fell behind on flags (a +15 s lead turned into -15 s or worse) yet.", ""]
-    _, rid, tag, t, txt = found[0]
+    found = sorted(found, key=lambda x: -x[0])
+    _, rid, tag, t, txt = next((x for x in found if x[1] not in _USED), found[0]); _USED.add(rid)
     a = _analysis(rid)
     L = ["## TQ 1. Behind on flags", "", f"*The biggest flag swing in {src}: {txt}.*", ""]
     L += EV.flag(rid, tag, t)
     # the window flag() used
     rows = [r for r in a["scoreboard"] if t - 60 <= r["t"] <= t + 120]
     best = max([r for r in rows if r["t"] <= t + 30] or rows, key=lambda r: r[tag]["flag_lead"])
-    worst = min([r for r in rows if r["t"] >= best["t"]], key=lambda r: r[tag]["flag_lead"])
-    s, e = best["t"], worst["t"]
     foe = [x["tag"] for x in a["meta"]["teams"] if x["tag"] != tag][0]
+    after = [i for i, r in enumerate(rows) if r["t"] >= best["t"]]
+    real = [rows[i] for i in after if EV._real_low(rows, i, tag, foe)] or [rows[i] for i in after]
+    worst = min(real, key=lambda r: r[tag]["flag_lead"])       # same window as events.flag
+    s, e = best["t"], worst["t"]
     short = []
+    lost = [r for r in a["flag_runs"] if r["team"] == tag and s - 10 <= r["end"] <= e and r["outcome"] in ("died", "dropped")]
+    for r in lost[-1:]:
+        sb_ = max([x for x in a["scoreboard"] if x["t"] <= r["end"]], key=lambda x: x["t"])
+        short.append(f"{tag}'s {r['runner']} {'died' if r['outcome'] == 'died' else 'dropped the flag'} at {clock(r['end'])} after {r['secs']} s of carrying"
+                     + (f", {sb_[tag]['flag_eta']} s from capturing" if sb_[tag].get("flag_how", "").startswith("carrying") else "")
+                     + f" (main {sb_[tag]['main']}v{sb_[foe]['main']}, alive {sb_[tag]['alive']}v{sb_[foe]['alive']})")
     caps = [c for c in a["flag_cycles"] if c["team"] == foe and s - 30 <= (c.get("own_cap") or -1) <= e + 30]
     for c in caps[:1]:
         runs = [r for r in a["flag_runs"] if r["team"] == foe and r["end"] <= c["own_cap"] + 1 and r["start"] >= c["own_cap"] - (c.get("cap_delay") or 60)]
@@ -254,9 +263,12 @@ def flags(new_ids, recs, usual_res):
         short.append(f"{tag}'s answer was {c.get('slower_than_possible_s')} s slower than possible")
     dd = collections.Counter(d["team"] for d in a["deaths"] if s - 5 <= d["t"] <= e)
     if dd: short.append("deaths in the window: " + ", ".join(f"{k} {v}" for k, v in dd.items()))
+    lu, lu_short, lu_conf = lead_up(rid, tag, e, recs, usual_res)
+    if lu_short: short.append(f"the position came from earlier: {lu_short}")
     if short: L.append(f"**Why, in short**: " + "; ".join(short) + ".")
+    if lu: L += [""] + lu
     L += ["", "**A different play (measured)**", ""]
-    conf = []
+    conf = list(lu_conf)
     # the decisions that set it up
     dec = decision_alternatives(recs, usual_res, rid, tag, s - 30, e)
     if dec:
@@ -316,7 +328,7 @@ def monk(new_ids, recs, usual_res):
         if cands: break
     if not cands: return ["## TQ 2. A monk death", "", "No monk death to explain yet.", ""]
     cands.sort(key=lambda c: c[0])
-    drop, rid, d, src = cands[0]
+    drop, rid, d, src = next((c for c in cands if c[1] not in _USED), cands[0]); _USED.add(rid)
     team, role, t = d["team"], d["victim"], d["t"]
     a = _analysis(rid); tags = list(a["archetypes"])
     F = WHY._forensics(rid)
@@ -327,9 +339,14 @@ def monk(new_ids, recs, usual_res):
          "**Why** (forensics, against the same role in every stored match):"]
     L += EV.short(ans)
     kc = EV.key_causes(ans)
-    if kc: L.append(f"**Why, in short**: the {role} died because " + ", ".join(kc[:4]) + ".")
+    lu, lu_short, lu_conf = lead_up(rid, team, t, recs, usual_res)
+    if kc: L.append(f"**Why, in short**: the {role} died because " + ", ".join(kc[:4]) + "."
+                    + (f" The position itself came from earlier: {lu_short}." if lu_short else ""))
+    if lu: L += [""] + lu
     L += ["", "**How it could have been prevented (measured)**", ""]
-    conf = []
+    if lu: L.append(f"- Further back (above): the bad numbers were set up before the fight; the earlier choices are priced in \"How it got there\". "
+                    "The readings below are what was still possible in the last seconds.")
+    conf = list(lu_conf)
     # options that were there and unused
     pr = ans["prots"]
     if pr["ready_unused"]:
@@ -365,7 +382,7 @@ def monk(new_ids, recs, usual_res):
             conf.append(("node", bool(ok) and best[2] < 0 and meaningful(base, best[2])))
         else: L.append(f"- Deaths node at {clock(row['t'])}: none of the variables it reads were in a state a teammate could change.")
     else: L.append("- Deaths node: no reading in the seconds before the death.")
-    dec = decision_alternatives(recs, usual_res, rid, team, t - 45, t)
+    dec = [] if lu else decision_alternatives(recs, usual_res, rid, team, t - 45, t)
     if dec:
         L.append("- The decision before it (usual.py):")
         L += ["  " + x for x in decision_lines(dec[-1:])]
@@ -374,6 +391,116 @@ def monk(new_ids, recs, usual_res):
     L += ["", f"**Confidence**: {c} ({why}).", ""]
     return L
 
+
+
+# ------------------------------------------------------------------ how it got there (the further-back cause)
+OUTNUMBERED = 3         # own main this many or more below the enemy's main counts as a bad position
+LEAD_BACK_S = 120       # how far back the lead-up is traced
+_RUN_BENCH = None
+_USED = set()           # matches already used by an earlier TQ in this report (each TQ prefers a new match)
+
+
+def _run_key(main_numbers, escort):
+    own, en = main_numbers
+    return ("main outnumbered by 3+" if own - en <= -OUTNUMBERED else "main within 2", "escort 2+" if escort >= 2 else "escort 0-1")
+
+
+def run_bench():
+    """Every stored flag run made while the enemy held the stand, grouped by the main group's numbers when it left and
+    the escort size: capture rate, own deaths in the next 40 s, and the held-out win model's change from 5 s before to
+    40 s after (why.win_change). Cached per match."""
+    global _RUN_BENCH
+    if _RUN_BENCH is None:
+        import cache, why as WHY
+        G = collections.defaultdict(list)
+        for rid in _ids():
+            def build(rid=rid):
+                a = _analysis(rid); res = []
+                tags = [x["tag"] for x in a["meta"]["teams"]]
+                for r in a["flag_runs"]:
+                    foe = [x for x in tags if x != r["team"]][0]
+                    rows = [x for x in a["scoreboard"] if x["t"] <= r["start"]]
+                    if not rows or not r.get("main_numbers") or rows[-1]["stand"]["owner"] != foe: continue
+                    od = sum(1 for d in a["deaths"] if d["team"] == r["team"] and r["start"] <= d["t"] <= r["start"] + 40)
+                    wc = WHY.win_change(rid, r["team"], r["start"] - 5, r["start"] + 40)
+                    res.append({"key": list(_run_key(r["main_numbers"], len(r.get("escort") or []))), "captured": r["outcome"] == "captured",
+                                "own_deaths": od, "win": round(wc[1] - wc[0], 2) if wc else None})
+                return res
+            for x in cache.prepared("run_bench", rid, build): G[tuple(x["key"])].append(x)
+        _RUN_BENCH = {}
+        for k, v in G.items():
+            w = [x["win"] for x in v if x["win"] is not None]
+            _RUN_BENCH[k] = {"n": len(v), "captured": sum(x["captured"] for x in v), "own_deaths": round(statistics.mean(x["own_deaths"] for x in v), 2),
+                             "win": round(statistics.mean(w), 1) if w else None}
+    return _RUN_BENCH
+
+
+def _bench_txt(k):
+    b = run_bench().get(k)
+    if not b: return f"{k[0]}, {k[1]}: no stored runs yet"
+    return (f"{k[1]} with the {k[0]}: captured {b['captured']} of {b['n']}, {b['own_deaths']} own deaths in the next 40 s, "
+            f"win chance {b['win']:+} points" if b["win"] is not None else f"captured {b['captured']} of {b['n']}")
+
+
+def lead_up(rid, team, t, recs=None, usual_res=None):
+    """The further-back cause of a bad position: if the team's main group was outnumbered by OUTNUMBERED or more at t,
+    trace back (up to LEAD_BACK_S) to when that started, who was away from the main and doing what, the flag and stand
+    state then, the team's flag runs in that window priced against run_bench, and the decisions in the window with
+    measured-better choices (usual.py). Returns (lines, short cause or None, confidence items)."""
+    a = _analysis(rid)
+    foe = [x["tag"] for x in a["meta"]["teams"] if x["tag"] != team][0]
+    st = [x for x in a["state"] if t - LEAD_BACK_S <= x["t"] <= t]
+    def gap(x): return x[team]["main"] - x[foe]["main"]
+    if not st or gap(min(st, key=lambda x: abs(x["t"] - t))) > -OUTNUMBERED + 0 and min(gap(x) for x in st[-3:]) > -OUTNUMBERED:
+        return [], None, []
+    first = next(x for x in st if gap(x) <= -OUTNUMBERED)
+    tb = first["t"]
+    sb = max([r for r in a["scoreboard"] if r["t"] <= tb] or a["scoreboard"][:1], key=lambda r: r["t"])
+    L = [f"**How it got there** (traced back from {clock(t)} to when {team}'s main was first outnumbered by {OUTNUMBERED}+, at {clock(tb)}):",
+         f"- At {clock(tb)}: main {first[team]['main']}v{first[foe]['main']}, alive {first[team]['alive']}v{first[foe]['alive']}, "
+         f"stand {sb['stand']['owner'] or 'nobody'}" + (f" (boost in {sb['stand']['boost_in']} s)" if sb['stand'].get('boost_in') else "")
+         + f", {team}'s flag lead {sb[team]['flag_lead']:+} s, DP {sb[team].get('morale_sum')} against {sb[foe].get('morale_sum')}."]
+    runs = [r for r in a["flag_runs"] if r["team"] == team and r["end"] >= tb - 40 and r["start"] <= t]
+    away = collections.OrderedDict()
+    for x in [y for y in a["state"] if tb - 40 <= y["t"] <= t]:
+        for role in x[team]["zones"]:
+            if role in x[team]["main_roles"]: continue
+            if role in x[team]["dead"]: why_ = "dead"
+            elif f"{team} {role}" in x["carriers"]: why_ = "carrying the flag"
+            elif any(r["start"] <= x["t"] <= r["end"] + 5 and role in (r.get("escort") or []) for r in runs): why_ = "escorting the flag"
+            else: why_ = f"away ({x[team]['zones'][role]})"
+            away.setdefault((role, why_), [x["t"], x["t"]])[1] = x["t"]
+    if away:
+        L.append("- Away from the main: " + "; ".join(f"{r} {w} {clock(s)}" + (f" to {clock(e)}" if e > s else "") for (r, w), (s, e) in list(away.items())[:12]))
+    ds = [d for d in a["deaths"] if d["team"] == team and tb - 40 <= d["t"] <= t]
+    if ds: L.append("- Own deaths on the way: " + "; ".join(f"{clock(d['t'])} {d['victim']} ({d.get('zone')}, {d.get('numbers')})" for d in ds))
+    short, conf = None, []
+    if runs:
+        L.append(f"- {team}'s flag runs in that window, each against every stored run made while the enemy held the stand (run_bench):")
+        bad = []
+        for r in runs:
+            k = _run_key(r["main_numbers"], len(r.get("escort") or []))
+            L.append(f"  - {clock(r['start'])} {r['runner']}" + (f" with {', '.join(r['escort'])}" if r.get("escort") else " alone")
+                     + f", main left at {r['main_numbers'][0]:.0f}v{r['main_numbers'][1]:.0f}: {r['outcome']}. Runs like it: {_bench_txt(k)}.")
+            alt = (k[0], "escort 0-1") if k[1] == "escort 2+" else None
+            if alt:
+                L.append(f"    Instead, {_bench_txt(alt)}.")
+                b, ba = run_bench().get(k), run_bench().get(alt)
+                if b and ba and b["win"] is not None and ba["win"] is not None and ba["win"] > b["win"]:
+                    bad.append((r, b, ba))
+        if bad:
+            r, b, ba = bad[0]
+            short = (f"{team} sent {len(r['escort']) + 1} players on a flag run at {clock(r['start'])} (main left {r['main_numbers'][0]:.0f}v{r['main_numbers'][1]:.0f}"
+                     f"), the shape that captured {b['captured']} of {b['n']} stored runs")
+            conf.append(("run benchmark", b["n"] >= 10 and ba["n"] >= 10))
+    if recs is not None and usual_res is not None:
+        dec = decision_alternatives(recs, usual_res, rid, team, tb - 40, t)
+        better = [x for x in dec if better_options(x)]
+        if dec:
+            L.append("- Decisions in the lead-up (usual.py):")
+            L += ["  " + y for y in decision_lines(better or dec[-1:])]
+            conf += [c for c in [decision_conf(x) for x in (better or dec[-1:])] if c]
+    return L, short, conf
 
 # ------------------------------------------------------------------ 3. power play without a kill
 _PP_BENCH = None
@@ -395,7 +522,7 @@ def power_bench():
                     F = F or Forensics(rid)
                     foe = [x["tag"] for x in a["meta"]["teams"] if x["tag"] != d["team"]][0]
                     o = F.output(F.team_of(d["team"]), d["t"], d["t"] + d["outcome"]["window_s"])["measures"]
-                    up = _uptime(a, d["team"], d["t"])
+                    up = _uptime(a, d["team"], d["t"], d["t"] + d["outcome"]["window_s"])
                     res.append({"killed": bool(d["outcome"]["deaths"].get(foe, 0)), "dps": o["dps"], "top_target_share": o["top_target_share"],
                                 "uptime": up[0] if up else None})
                 return res
@@ -407,16 +534,25 @@ def power_bench():
     return _PP_BENCH
 
 
-def _uptime(a, tag, t):
-    """The main group's damage uptime in the phase a moment falls in, and what lost the most damage-seconds."""
-    ph = [p for p in a["phases"] if p["start"] <= t + 2 <= p["end"]] or [p for p in a["phases"] if p["start"] <= t]
-    if not ph: return None
-    gs = (ph[-1]["teams"].get(tag) or {}).get("groups") or []
-    if not gs: return None
-    c = max(gs, key=lambda g: len(g["members"])).get("capacities") or {}
-    if c.get("damage_uptime") is None: return None
-    lost = c.get("lost_damage_s") or {}
-    return c["damage_uptime"], (max(lost, key=lost.get) if lost else "nothing")
+def _uptime(a, tag, t, t1=None):
+    """The main group's damage uptime over [t, t1], weighted by time, counting only phases in contact with an enemy group
+    (numbers like 8v7, not 8v0), and what lost the most damage-seconds. Until 2026-11-07 this read only the phase the
+    start fell in, which is often the walk in before contact (batch 7's TQ 3 said 1% for a fight that ran at 50 to 70%)."""
+    t1 = t1 if t1 is not None else t + 1
+    tot = up = 0.0; lost = collections.Counter()
+    for p in a["phases"]:
+        o = min(p["end"], t1) - max(p["start"], t)
+        if o <= 0: continue
+        gs = (p["teams"].get(tag) or {}).get("groups") or []
+        if not gs: continue
+        g = max(gs, key=lambda g: len(g["members"])); c = g.get("capacities") or {}
+        try: contact = int(str(g.get("numbers", "0v0")).split("v")[1]) > 0
+        except (ValueError, IndexError): contact = False
+        if not contact or c.get("damage_uptime") is None: continue
+        tot += o; up += o * c["damage_uptime"]
+        for k, v in (c.get("lost_damage_s") or {}).items(): lost[k] += v * o / max(p["end"] - p["start"], 1)
+    if not tot: return None
+    return round(up / tot, 2), (lost.most_common(1)[0][0] if lost else "nothing")
 
 
 def power(new_ids, recs, usual_res):
@@ -425,7 +561,8 @@ def power(new_ids, recs, usual_res):
     found = EV.find("power", new_ids); src = "the new matches"
     if not found: found = EV.find("power", _ids()); src = "all trained matches (none in the new matches)"
     if not found: return ["## TQ 3. A power play without a kill", "", "No power play (3+ more at main) without a kill yet.", ""]
-    _, rid, tag, t, txt = found[0]
+    found = sorted(found, key=lambda x: -x[0])
+    _, rid, tag, t, txt = next((x for x in found if x[1] not in _USED), found[0]); _USED.add(rid)
     a = _analysis(rid); F = Forensics(rid)
     L = ["## TQ 3. A power play without a kill", "", f"*The biggest in {src}: {txt}.*", ""]
     L += EV.power(rid, tag, t, F)
@@ -437,13 +574,32 @@ def power(new_ids, recs, usual_res):
     om = o0["measures"]; heal = 0
     for ev in F.events(t0, t1, {"hl"}):
         if ev[2] in F.m.PL and F.m.team(ev[2]) == F.team_of(foe): heal += ev[5] or 0
-    up = _uptime(a, tag, t0)
-    short = [f"{tag} had {dp['state']['main']} at main for {t1 - t0:.0f} s but dealt {om['dps']} damage per second "
-             f"({place('team', 'dps', om['dps'])[0]})"]
-    if up: short.append(f"damage uptime {up[0]:.0%} (most damage-seconds lost to {up[1]})")
-    short.append(f"spread over {len(o0['targets'])} targets (top share {om['top_target_share']})")
-    short.append(f"{foe} healed {round(heal / max(t1 - t0, 1))} per second")
+    up = _uptime(a, tag, t0, t1)
+    # the short why names only what was worse than in power plays that killed (power_bench); the rest is said as not the cause
+    pbk, pbn = (power_bench().get("killed") or {}), (power_bench().get("no kill") or {})
+    worse, fine = [], []
+    def side(k, x):
+        """'worse' if x sits on the no-kill side of the midpoint between the killing and non-killing medians (the
+        direction comes from the data, not from assuming more is better), 'fine' otherwise, None if unmeasured."""
+        a_, b_ = (pbk.get(k) or (None,))[0], (pbn.get(k) or (None,))[0]
+        if x is None or a_ is None or b_ is None or a_ == b_: return None
+        mid = (a_ + b_) / 2
+        return "worse" if (x < mid if a_ > b_ else x > mid) else "fine"
+    def med(k):
+        f = (lambda v: f"{v:.0%}") if k == "uptime" else (lambda v: f"{v}")
+        a_, b_ = (pbk.get(k) or (None,))[0], (pbn.get(k) or (None,))[0]
+        return f"killing {f(a_) if a_ is not None else '?'}, not killing {f(b_) if b_ is not None else '?'}"
+    for k, x, txt in (("dps", om["dps"], f"damage {om['dps']} per second ({med('dps')})"),
+                      ("uptime", up[0] if up else None, f"damage uptime in contact {up[0]:.0%} ({med('uptime')}; most lost to {up[1]})" if up else ""),
+                      ("top_target_share", om["top_target_share"], f"top-target share {om['top_target_share']} over {len(o0['targets'])} targets ({med('top_target_share')})")):
+        sd = side(k, x)
+        if sd == "worse": worse.append(txt)
+        elif sd == "fine": fine.append(txt)
+    short = [f"{tag} had {dp['state']['main']} at main for {t1 - t0:.0f} s; {foe} healed {round(heal / max(t1 - t0, 1))} per second"]
+    if worse: short.append("worse than in power plays that killed: " + ", ".join(worse))
+    if fine: short.append("not the cause (on the side of power plays that killed): " + ", ".join(fine))
     L.append("**Why, in short**: " + "; ".join(short) + ".")
+    short_i = len(L) - 1
     L += ["", "**How it could have been converted (measured)**", ""]
     conf = []
     o = om
@@ -486,6 +642,9 @@ def power(new_ids, recs, usual_res):
                      f"with {b['attackers']} attackers, read {base}% to kill within 8 s; read again with")
             for lab, v, dd in out[:6]:
                 L.append(f"  - {lab}: {v}% ({dd:+} points" + (f", about {_pts(dd, kv):+} win points at a converted burst's {kv:+}" if kv is not None else "") + ")")
+            if out and out[0][2] > 0 and meaningful(base, out[0][2]):
+                L[short_i] = L[short_i][:-1] + (f"; the biggest burst went on the {foe} {b['role']} ({base}% to kill), while "
+                                                f"the same burst {out[0][0].replace(' instead', '')} read {out[0][1]}%.")
             conf.append(("node", bool(ok) and out[0][2] > 0 and meaningful(base, out[0][2])))
         L.append(f"- Bursts in the window: {len(bursts)}, on " + ", ".join(f"{r['role']} ({r['burst_damage']})" for r in bursts[:6]))
     else:
@@ -512,7 +671,7 @@ def npcs(new_ids, recs, usual_res):
         if cands: break
     if not cands: return ["## TQ 4. Pit NPCs lost", "", "No knight or Bodyguard lost yet.", ""]
     cands.sort(key=lambda c: c[0])
-    drop, rid, tag, t, txt, src = cands[0]
+    drop, rid, tag, t, txt, src = next((c for c in cands if c[1] not in _USED), cands[0]); _USED.add(rid)
     a = _analysis(rid)
     foe = [x["tag"] for x in a["meta"]["teams"] if x["tag"] != tag][0]
     L = ["## TQ 4. Pit NPCs lost", "", f"*The NPC loss that cost the most win chance in {src}: {txt} at {clock(t)}; win chance {drop:+.1f} "
@@ -528,9 +687,23 @@ def npcs(new_ids, recs, usual_res):
                      f"({r.get('defender_healers')} of them healers), with {r.get('defenders_elsewhere')} of {tag} elsewhere")
     nk = [k for s_ in sp for k in (s_.get("npc_kills") or []) if abs(k["t"] - t) <= 5]
     if nk and nk[0].get("defenders_present"): short.append(f"defenders present at the kill: {', '.join(nk[0]['defenders_present'])}")
+    # how the pit came to be thin: dead defenders and the earlier collapse (deaths in the 90 s before, with the lead-up)
+    dead = [d for d in a["deaths"] if d["team"] == tag and t - 90 <= d["t"] <= t and (d["t"] + (d.get("down_for") or 0)) >= t]
+    if dead:
+        short.append(f"{len(dead)} of {tag} were dead at the time ({', '.join(f'{d['victim']} {clock(d['t'])}' for d in dead[:6])})")
+        F_ = WHY._forensics(rid)
+        for d in dead[:2]:
+            kc_ = EV.key_causes(EV.death(rid, tag, d["victim"], d["t"] + .5, F_))
+            if kc_: short.append(f"the {d['victim']} died at {clock(d['t'])} ({d.get('zone')}, numbers {d.get('numbers')}) because " + ", ".join(kc_[:3]))
+    lu, lu_short, lu_conf = lead_up(rid, tag, (min(d["t"] for d in dead) if dead else t), recs, usual_res)
+    if lu_short: short.append(f"the collapse that killed them came from earlier: {lu_short}")
     if short: L.append("**Why, in short**: " + "; ".join(short) + ".")
+    if lu: L += [""] + lu
     L += ["", "**How it could have been prevented (measured)**", ""]
-    conf = []
+    if dead: L.append(f"- Further back: with {len(dead)} of {tag} dead, more defenders were not available; "
+                      + ("the choices that led to the deaths are priced in \"How it got there\" above." if lu else
+                         "the deaths are explained above, and the split's answer is priced below."))
+    conf = list(lu_conf)
     if sp:
         lats = []
         for f in os.listdir(GA) if os.path.isdir(GA) else []:
@@ -582,6 +755,7 @@ def lines(new_ids, ids=None, recs=None, usual_res=None):
         recs = U.wp_change(U.load(GA))
     if usual_res is None:
         usual_res = U.analyse(recs)        # adds choice2 and the usual play to every record
+    _USED.clear()
     L = ["## The TQs", "",
          "Denning's four questions, each from the batch's matches. The why comes from forensics and events (every number "
          "placed against the same role or situation in every stored match); the different play comes only from "

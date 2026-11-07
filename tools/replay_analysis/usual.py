@@ -42,6 +42,12 @@ SPLIT_BY = {"split_in_base": ["defender_snare"]}
 FIGHT_SPLIT = {"boost_clock", "power_play", "enemy_pickup"}
 # build axes (readable, from the skill data): what kind of build each team is; similar situations include similar builds
 AXES = ["spike", "shutdown", "knockdowns", "defence", "sustain"]
+# the map (Denning, 2026-11-07: the best play differs by guild hall): its measured geometry (features.py: flag run Y,
+# pit-to-stand distance, distance between bases) is part of every situation's similarity, so the usual play compares
+# decisions on similar maps, and enters the adjustment with the build axes; each choice's effect is also split by map
+# name once a map has INTERACT_MIN cases of both the choice and the usual one. Geometry pools similar maps, so a map
+# played rarely still borrows from maps shaped like it.
+MAP_COLS = ["map_flag_run", "map_pit_to_stand", "map_bases_apart"]
 BUILD_ADJUST_FROM = 150      # decisions of a kind before build axes enter the adjustment (they're fixed per match)
 INTERACT_MIN = 10            # cases per cell before a choice's effect is split by build
 
@@ -82,6 +88,7 @@ def situation(r, gap):
     for v in SIT_EXTRA.get(r["kind"], []): out[v] = (r.get("extra") or {}).get(v) or 0
     for side in ("own", "enemy"):
         for ax in AXES: out[f"{side}_{ax}"] = r["axes"][side][ax]
+    for c in MAP_COLS: out[c] = (r.get("map_geo") or {}).get(c) or 0
     return out
 
 
@@ -90,9 +97,13 @@ def load(src):
     for f in sorted(glob.glob(os.path.join(src, "*.json"))):
         a = json.load(open(f))
         ax = build_axes(a["id"])
+        try: row0 = next(iter(M.match_table(a["id"])), {})
+        except Exception: row0 = {}
+        geo = {c: row0.get(c) for c in MAP_COLS}
         for r in a.get("decisions", []):
             other = next(t for t in ax if t != r["team"])
-            recs.append({"match": a["id"], **r, "axes": {"own": ax[r["team"]], "enemy": ax[other]}})
+            recs.append({"match": a["id"], **r, "axes": {"own": ax[r["team"]], "enemy": ax[other]},
+                         "map": a["meta"].get("map"), "map_geo": geo})
     return recs
 
 
@@ -130,8 +141,8 @@ def analyse(recs):
         if len(L) < MIN_N or len(choices) < 2:
             out[kind] = {"n": len(L), "note": "not enough decisions yet"}; continue
         build_cols = [f"{side}_{a}" for side in ("own", "enemy") for a in AXES]
-        adj_cols = SIT + SIT_EXTRA.get(kind, []) + (build_cols if len(L) >= BUILD_ADJUST_FROM else [])
-        nb_cols = SIT + SIT_EXTRA.get(kind, []) + build_cols          # similarity always includes builds
+        adj_cols = SIT + SIT_EXTRA.get(kind, []) + (build_cols + MAP_COLS if len(L) >= BUILD_ADJUST_FROM else [])
+        nb_cols = SIT + SIT_EXTRA.get(kind, []) + build_cols + MAP_COLS     # similarity always includes builds and the map
         X = np.array([[r["sit"][k] for k in adj_cols] for r in L], float)
         XN = np.array([[r["sit"][k] for k in nb_cols] for r in L], float)
         ZN = (XN - XN.mean(0)) / (XN.std(0) + 1e-9)
@@ -182,6 +193,8 @@ def analyse(recs):
         splits = [("own build", lambda r: r["sit"]["own_spike"], {0: "not spike", 1: "spike"})]
         splits += [(f, (lambda f: lambda r: int(bool((r.get("extra") or {}).get(f))))(f), {0: "no", 1: "yes"})
                    for f in SPLIT_BY.get(kind, [])]
+        maps = sorted({r.get("map") for r in L if r.get("map")})
+        splits.append(("map", lambda r: r.get("map"), {mp: mp for mp in maps}))
         if kind in FIGHT_SPLIT:
             fs = np.array([r["sit"]["fight_state"] for r in L], float)
             lo3, hi3 = np.percentile(fs, [100 / 3, 200 / 3])
@@ -196,6 +209,7 @@ def analyse(recs):
                     cell = {"choice": c, name: labels[sp], "n": len(a_), "n_usual": len(b_)}
                     if len(a_) >= INTERACT_MIN and len(b_) >= INTERACT_MIN:
                         cell["raw_difference"] = round(float(np.mean(a_) - np.mean(b_)), 1)
+                    elif name == "map": continue
                     elif name != "own build":
                         cell["note"] = "too few yet"
                         cell["raw_mean"] = round(float(np.mean(a_)), 1) if a_ else None

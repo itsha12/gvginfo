@@ -531,6 +531,27 @@ in short", then the different play from these sources only:
 Known gaps: a power play with no 2 s burst can't be read by the kill-conversion node; the win model's flag-lead curve
 still bends the wrong way at the extremes, so seconds of flag lead are sometimes not priced (the answer says so).
 
+**Changes 2026-11-07 (session 4p, after batch 7):**
+- Flag swings count only real deficits (`events._real_low`): the lead stays below -15 s for 15 s or more, or the enemy
+  takes the stand within 30 s. The scoreboard counts any carrier as a capture in its carry time, so a lone carrier next
+  to eight enemies read as a sure capture ([Team v Men] 3:30). Measured: runs with 3 to 5 own alive against an enemy
+  holding the stand with 6+ captured 2 of 14.
+- How it got there (`tq.lead_up`): monk-death, NPC-loss and flag answers trace back up to 120 s to when the team's main
+  was first outnumbered by 3+, list who was away and doing what (dead, carrying, escorting, elsewhere), and price the
+  team's flag runs in that window against every stored run made while the enemy held the stand (`tq.run_bench`: capture
+  rate, own deaths in 40 s, held-out win change, by main numbers and escort size), plus the decisions in the window.
+  First reading (91 matches): main outnumbered by 3+, escort 2+: captured 0 of 6; escort 0 to 1: 10 of 21.
+- NPC losses with dead defenders explain each defender's death (forensics key causes).
+- Power-play "why, in short": damage uptime over the whole power play in contact with an enemy group (was the phase at
+  its start, often the walk in); each measure is named a cause only if it sits on the non-killing side of the midpoint
+  between the killing and non-killing medians (direction from the data).
+- `defenders_present` at an NPC kill (episodes.py) = defenders alive in their own base or pit at the kill (was anyone
+  who had defended before it, dead or not).
+- Each TQ prefers a match not used by an earlier TQ in the same report.
+- Usual play includes the map (usual.py `MAP_COLS`): geometry in the similarity and, with the build axes, the adjustment;
+  choice effects split by map name once a map has 10+ cases of the choice and of the usual one.
+
+
 ### Answer exemplars (the four questions of 2026-11-06)
 These set the kind of answer the engine must produce: the event, the measured causes in order, and "why, in short".
 1. **Behind on flags** (Book v TFS, a9fa1ae1, 4:05 to 5:15; TFS +78 s to -73 s): TFS held the stand with its runner

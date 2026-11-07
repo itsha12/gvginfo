@@ -225,6 +225,10 @@ def report():
                     elif b.get("n"):
                         L.append(f"  - {b['choice']}, {b['fight']}: too few yet (n {b['n']} against {b['n_usual']}; "
                                  f"means {b.get('raw_mean')} against {b.get('raw_mean_usual')})")
+            mc = [b for b in x.get("by_build", []) if "map" in b and "raw_difference" in b]
+            if mc:
+                L.append("  By map (raw win-chance change against the usual choice on the same map; maps with 10+ cases of both):")
+                for b in mc: L.append(f"  - {b['choice']}, {b['map']}: {b['raw_difference']:+} (n {b['n']} against {b['n_usual']})")
             L.append("")
         cc = U.collapse_cost(copy.deepcopy(base_recs))
         if cc:

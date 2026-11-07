@@ -62,13 +62,32 @@ def _fmt(d): return ", ".join(f"{k} {v}" for k, v in d.items() if v not in (None
 
 
 # ---------------------------------------------------------------- flag swings
+SWING_HOLD_S = 15   # a flag deficit counts as real only if it lasts this long or the enemy captures (see _real_low)
+
+
+def _real_low(rows, j, tag, foe):
+    """True if the team's flag lead at rows[j] is a real deficit, not a blip: it stays below -15 s for SWING_HOLD_S or
+    more, or the enemy takes the stand within 30 s. Added 2026-11-07 after batch 7's TQ 1 picked [Team v Men] 3:30, where
+    Men's last living player picked up a dropped flag next to eight enemies: the scoreboard counts any carrier as a
+    capture in its carry time, the lead read -55 s for 10 s, and he died at 3:40 without capturing."""
+    t = rows[j]["t"]; held = 0
+    for x in rows[j:]:
+        if x["stand"]["owner"] == foe and x["t"] <= t + 30: return True
+        if x[tag]["flag_lead"] >= -15: break
+        held = x["t"] - t
+    if held >= SWING_HOLD_S: return True
+    return any(x["stand"]["owner"] == foe for x in rows[j:] if x["t"] <= t + 30)
+
+
 def flag(rid, tag, t0, t1=None, F=None):
     a = analysis(rid); F = F or Forensics(rid)
     foe = [t["tag"] for t in a["meta"]["teams"] if t["tag"] != tag][0]
     # the window: from the last moment the team was at its best lead before t0 to its worst after (within 120 s)
     rows = [r for r in a["scoreboard"] if t0 - 60 <= r["t"] <= (t1 or t0 + 120)]
     best = max([r for r in rows if r["t"] <= t0 + 30] or rows, key=lambda r: r[tag]["flag_lead"])
-    worst = min([r for r in rows if r["t"] >= best["t"]], key=lambda r: r[tag]["flag_lead"])
+    after = [i for i, r in enumerate(rows) if r["t"] >= best["t"]]
+    real = [rows[i] for i in after if _real_low(rows, i, tag, foe)] or [rows[i] for i in after]
+    worst = min(real, key=lambda r: r[tag]["flag_lead"])
     s, e = best["t"], worst["t"]
     L = [f"### Flag swing: {tag} v {foe} ({rid[:8]}), {clock(s)} to {clock(e)}",
          f"**Result**: {tag}'s flag lead {best[tag]['flag_lead']:+} s -> {worst[tag]['flag_lead']:+} s "
@@ -378,9 +397,9 @@ def find(kind, ids):
         a = analysis(rid); tags = [x["tag"] for x in a["meta"]["teams"]]
         if kind == "flag":
             for tag in tags:
-                rows = a["scoreboard"]
+                rows = a["scoreboard"]; foe = [x for x in tags if x != tag][0]
                 for i, r in enumerate(rows):
-                    later = [x for x in rows[i:i + 24]]
+                    later = [x for k, x in enumerate(rows[i:i + 24], i) if _real_low(rows, k, tag, foe)]
                     if not later: continue
                     w = min(later, key=lambda x: x[tag]["flag_lead"])
                     drop = r[tag]["flag_lead"] - w[tag]["flag_lead"]

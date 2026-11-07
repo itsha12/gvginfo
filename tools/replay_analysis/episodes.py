@@ -114,7 +114,11 @@ def _split_detail(st, e):
     for a, tdead in st.npc_dead.items():
         v = st.geo.npcs.get(a)
         if v and v["team"] == foe and t0 <= tdead <= t1 + 2:
-            dfn = [x["role"] for x in defenders if x["first"] <= tdead]
+            # present = alive and in the own base or pit at the kill (until 2026-11-07: anyone who had defended before it,
+            # dead or gone, which listed dead defenders as present)
+            byrole = {m.roles[b]: b for b in near_secs}
+            dfn = [x["role"] for x in defenders if x["first"] <= tdead
+                   and st.zone(byrole[x["role"]], tdead) in ("own pit", "own base")]
             kills.append({"npc": v["kind"] + ("" if v.get("pit") else " (outside)"), "t": round(tdead), "defenders_present": dfn})
     deaths = [(m.roles[a], round(t)) for a in members for t in st.death_times.get(a, []) if t0 <= t <= t1 + 2]
     # cost at main while the split ran
