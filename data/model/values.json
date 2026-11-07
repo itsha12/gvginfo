@@ -12,8 +12,8 @@
    ],
    "model": 2.9,
    "model_90": [
-    1.9,
-    4.1
+    1.8,
+    4.2
    ],
    "clear": false
   },
@@ -22,20 +22,20 @@
    "matches": 89,
    "result": 2.6,
    "result_90": [
-    1.9,
-    3.4
+    1.7,
+    3.5
    ],
-   "model": 2.5,
+   "model": 2.4,
    "model_90": [
-    1.8,
-    3.2
+    1.7,
+    3.1
    ],
    "clear": true
   },
   "death (any)": {
    "n": 1768,
    "matches": 91,
-   "result": -5.1,
+   "result": -5.2,
    "result_90": [
     -7.2,
     -3.2
@@ -43,31 +43,31 @@
    "model": -3.8,
    "model_90": [
     -4.9,
-    -2.8
+    -2.7
    ],
    "clear": true
   },
   "death: against a spike build": {
    "n": 455,
    "matches": 27,
-   "result": -8.2,
+   "result": -8.0,
    "result_90": [
-    -15.6,
-    -1.6
-   ],
-   "model": -3.3,
-   "model_90": [
-    -5.5,
+    -15.4,
     -1.4
+   ],
+   "model": -3.1,
+   "model_90": [
+    -5.4,
+    -1.3
    ],
    "clear": true
   },
   "death: against other builds": {
    "n": 1313,
    "matches": 80,
-   "result": -4.1,
+   "result": -4.2,
    "result_90": [
-    -6.5,
+    -6.8,
     -1.8
    ],
    "model": -4.0,
@@ -80,29 +80,29 @@
   "death: back within 20 s": {
    "n": 281,
    "matches": 76,
-   "result": -3.1,
+   "result": -3.6,
    "result_90": [
-    -7.1,
-    0.6
+    -7.8,
+    -0.1
    ],
-   "model": -1.4,
+   "model": -1.1,
    "model_90": [
-    -2.9,
-    0.2
+    -3.0,
+    0.9
    ],
-   "clear": false
+   "clear": true
   },
   "death: down 20 to 60 s": {
    "n": 668,
    "matches": 91,
-   "result": -5.1,
+   "result": -5.0,
    "result_90": [
     -7.8,
     -2.4
    ],
    "model": -2.3,
    "model_90": [
-    -3.0,
+    -3.1,
     -1.7
    ],
    "clear": true
@@ -115,10 +115,10 @@
     -8.4,
     -3.6
    ],
-   "model": -5.9,
+   "model": -5.8,
    "model_90": [
-    -8.0,
-    -4.0
+    -7.9,
+    -3.9
    ],
    "clear": true
   },
@@ -130,10 +130,10 @@
     -8.3,
     -2.5
    ],
-   "model": -4.4,
+   "model": -4.3,
    "model_90": [
-    -5.9,
-    -3.1
+    -5.7,
+    -3.0
    ],
    "clear": true
   },
@@ -143,12 +143,12 @@
    "result": 1.2,
    "result_90": [
     -2.8,
-    6.7
+    6.9
    ],
-   "model": 1.2,
+   "model": 2.0,
    "model_90": [
-    -1.0,
-    3.5
+    -0.9,
+    5.4
    ],
    "clear": false
   },
@@ -157,148 +157,148 @@
    "matches": 91,
    "result": -5.6,
    "result_90": [
-    -8.5,
-    -3.0
+    -8.6,
+    -2.9
    ],
-   "model": -4.8,
+   "model": -4.7,
    "model_90": [
-    -6.2,
-    -3.4
+    -6.1,
+    -3.3
    ],
    "clear": true
   },
   "death: not a healer": {
    "n": 1169,
    "matches": 91,
-   "result": -5.1,
+   "result": -5.2,
    "result_90": [
-    -8.0,
+    -8.1,
     -2.8
    ],
    "model": -3.5,
    "model_90": [
     -4.6,
-    -2.5
+    -2.4
    ],
    "clear": true
   },
   "death: team boosted (morale above zero)": {
    "n": 206,
    "matches": 36,
-   "result": -24.6,
+   "result": -24.0,
    "result_90": [
-    -37.2,
-    -13.4
+    -36.6,
+    -12.7
    ],
-   "model": -8.1,
+   "model": -7.7,
    "model_90": [
-    -12.6,
-    -4.0
+    -12.2,
+    -3.7
    ],
    "clear": true
   },
   "death: team not boosted": {
    "n": 1562,
    "matches": 91,
-   "result": -2.6,
+   "result": -2.7,
    "result_90": [
-    -5.4,
-    0.2
+    -5.6,
+    0.0
    ],
-   "model": -3.3,
+   "model": -3.2,
    "model_90": [
     -4.4,
-    -2.3
+    -2.2
    ],
    "clear": false
   },
   "footman lost (base NPC)": {
    "n": 257,
    "matches": 71,
-   "result": 1.3,
+   "result": 1.1,
    "result_90": [
-    -2.8,
-    5.1
+    -3.1,
+    5.0
    ],
-   "model": -0.3,
+   "model": -0.0,
    "model_90": [
-    -1.0,
-    0.5
+    -0.8,
+    0.8
    ],
    "clear": false
   },
   "pit NPC lost (any): taken by a spike build": {
    "n": 142,
    "matches": 24,
-   "result": -2.9,
+   "result": -2.8,
    "result_90": [
-    -6.9,
-    1.7
+    -6.8,
+    1.6
    ],
-   "model": -2.3,
+   "model": -2.4,
    "model_90": [
     -4.4,
-    -0.3
+    -0.6
    ],
    "clear": false
   },
   "pit NPC lost (any): taken by other builds": {
    "n": 573,
    "matches": 86,
-   "result": -1.5,
+   "result": -1.7,
    "result_90": [
-    -3.6,
-    1.0
+    -3.8,
+    0.8
    ],
    "model": -0.3,
    "model_90": [
     -1.5,
-    0.9
+    1.0
    ],
    "clear": false
   },
   "pit NPC lost: archer": {
    "n": 410,
    "matches": 91,
-   "result": 0.6,
+   "result": 0.5,
    "result_90": [
-    -1.9,
-    3.5
+    -1.8,
+    3.4
    ],
-   "model": 0.3,
+   "model": 0.1,
    "model_90": [
     -0.6,
-    1.1
+    0.8
    ],
    "clear": false
   },
   "pit NPC lost: bodyguard": {
    "n": 100,
    "matches": 87,
-   "result": -3.6,
+   "result": -3.7,
    "result_90": [
-    -6.6,
-    -0.8
+    -6.7,
+    -1.0
    ],
-   "model": 0.2,
+   "model": 0.3,
    "model_90": [
-    -1.7,
-    2.4
+    -1.8,
+    2.7
    ],
    "clear": true
   },
   "pit NPC lost: knight": {
    "n": 205,
    "matches": 86,
-   "result": -5.5,
+   "result": -5.8,
    "result_90": [
-    -8.1,
-    -3.2
+    -8.5,
+    -3.3
    ],
-   "model": -3.2,
+   "model": -2.9,
    "model_90": [
-    -5.4,
-    -1.1
+    -5.2,
+    -0.5
    ],
    "clear": true
   }
@@ -306,7 +306,7 @@
  "causes": {
   "deaths": {
    "result": "death (any)",
-   "result_value": -5.1,
+   "result_value": -5.2,
    "base_rate": 0.015,
    "unit": "per 10 s in that state",
    "terms": [
@@ -325,9 +325,9 @@
      "description": "own minus enemy team strength",
      "range": [
       -976.0,
-      -579.5
+      -581.0
      ],
-     "result_chance_change": 1.7,
+     "result_chance_change": 1.8,
      "win_points": -0.09
     },
     {
@@ -337,18 +337,8 @@
       1.0,
       46.5
      ],
-     "result_chance_change": 11.6,
+     "result_chance_change": 11.4,
      "win_points": -0.59
-    },
-    {
-     "term": "local_diff",
-     "description": "allies minus enemies within 2,000",
-     "range": [
-      -8.0,
-      -3.5
-     ],
-     "result_chance_change": 2.7,
-     "win_points": -0.14
     },
     {
      "term": "allies_near",
@@ -359,6 +349,16 @@
      ],
      "result_chance_change": 1.9,
      "win_points": -0.1
+    },
+    {
+     "term": "local_diff",
+     "description": "allies minus enemies within 2,000",
+     "range": [
+      -8.0,
+      -3.5
+     ],
+     "result_chance_change": 2.7,
+     "win_points": -0.14
     },
     {
      "term": "minute",
@@ -377,24 +377,14 @@
       7.5,
       8.0
      ],
-     "result_chance_change": -1.1,
-     "win_points": 0.06
-    },
-    {
-     "term": "enemy_strips",
-     "description": "enemy enchantment removal skills",
-     "range": [
-      0.0,
-      0.5
-     ],
-     "result_chance_change": 6.3,
-     "win_points": -0.32
+     "result_chance_change": -0.9,
+     "win_points": 0.05
     }
    ]
   },
   "kill_conversion": {
    "result": "death (any)",
-   "result_value": 5.1,
+   "result_value": 5.2,
    "base_rate": 0.3072,
    "unit": "per burst, for the attacking team",
    "terms": [
@@ -405,8 +395,8 @@
       506.5,
       839.0
      ],
-     "result_chance_change": 24.1,
-     "win_points": 1.23
+     "result_chance_change": 24.4,
+     "win_points": 1.27
     },
     {
      "term": "target_healers_in_range",
@@ -415,8 +405,8 @@
       0.0,
       0.5
      ],
-     "result_chance_change": 29.3,
-     "win_points": 1.49
+     "result_chance_change": 29.4,
+     "win_points": 1.53
     },
     {
      "term": "target_health_pct",
@@ -425,8 +415,8 @@
       0.0,
       38.5
      ],
-     "result_chance_change": 20.4,
-     "win_points": 1.04
+     "result_chance_change": 20.6,
+     "win_points": 1.07
     },
     {
      "term": "target_ceiling",
@@ -436,7 +426,7 @@
       0.69
      ],
      "result_chance_change": 26.6,
-     "win_points": 1.36
+     "win_points": 1.38
     },
     {
      "term": "strength_gap",
@@ -445,8 +435,8 @@
       611.0,
       976.0
      ],
-     "result_chance_change": 13.9,
-     "win_points": 0.71
+     "result_chance_change": 14.0,
+     "win_points": 0.73
     },
     {
      "term": "enemy_prots",
@@ -455,7 +445,7 @@
       1.0,
       2.5
      ],
-     "result_chance_change": 7.9,
+     "result_chance_change": 7.7,
      "win_points": 0.4
     },
     {
@@ -475,14 +465,14 @@
       -5.5,
       -4.5
      ],
-     "result_chance_change": -4.6,
-     "win_points": -0.23
+     "result_chance_change": -4.2,
+     "win_points": -0.22
     }
    ]
   },
   "npc_loss": {
    "result": "pit NPC lost",
-   "result_value": -1.7,
+   "result_value": -1.9,
    "base_rate": 0.1973,
    "unit": "per case, for the defending team",
    "terms": [
@@ -494,7 +484,7 @@
       1170.0
      ],
      "result_chance_change": 37.5,
-     "win_points": -0.65
+     "win_points": -0.71
     },
     {
      "term": "defenders",
@@ -503,8 +493,8 @@
       7.5,
       8.0
      ],
-     "result_chance_change": -15.5,
-     "win_points": 0.27
+     "result_chance_change": -15.6,
+     "win_points": 0.3
     },
     {
      "term": "defenders_elsewhere",
@@ -513,8 +503,8 @@
       0.0,
       0.5
      ],
-     "result_chance_change": 15.1,
-     "win_points": -0.26
+     "result_chance_change": 15.2,
+     "win_points": -0.29
     },
     {
      "term": "defender_healers",
@@ -523,8 +513,8 @@
       0.0,
       0.5
      ],
-     "result_chance_change": 19.8,
-     "win_points": -0.34
+     "result_chance_change": 19.6,
+     "win_points": -0.37
     },
     {
      "term": "attackers_lord_dps",
@@ -534,7 +524,7 @@
       18.75
      ],
      "result_chance_change": -7.1,
-     "win_points": 0.12
+     "win_points": 0.13
     },
     {
      "term": "attackers_share",
@@ -543,8 +533,8 @@
       0.12,
       0.13
      ],
-     "result_chance_change": -6.3,
-     "win_points": 0.11
+     "result_chance_change": -6.4,
+     "win_points": 0.12
     },
     {
      "term": "attackers",
@@ -553,8 +543,8 @@
       7.5,
       8.0
      ],
-     "result_chance_change": 7.5,
-     "win_points": -0.13
+     "result_chance_change": 7.6,
+     "win_points": -0.14
     }
    ]
   }
