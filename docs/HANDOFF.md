@@ -1,6 +1,6 @@
 # GvG Info — handoff for a new Claude chat
 
-Last updated 2026-11-07 (portal sections unchanged since 2026-10-15; match replay analysis section added). Attach this file (or just ask Claude to attach the repo) in a new chat, then say what you want.
+Last updated 2026-11-07 (portal sections unchanged since 2026-10-15; match replay analysis updated). Attach this file (or just ask Claude to attach the repo) in a new chat, then say what you want.
 
 ## Start a new chat in one message
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md and docs/HANDOFF.md, then: <your request>
@@ -94,64 +94,76 @@ Claude should then:
 
 # Match replay analysis
 
-**Status:** Active. Maga's nine OG comms matches done; Bounty and Nick still to do. Training batches now run on GitHub
-(Train batch workflow). Last
-updated 2026-11-06 (session 4n: forensics and event explanations, cache, match status; before that session 4m: engine
-review, ENGINE 17, batches 2 to 5, first why chains).
+**Status:** Active. Last updated 2026-11-07 (session 4p). Building the learned causal map: step 1 (event layer) done;
+step 2 (new node models) next. Commentary transcripts (Bounty, Nick) still to do.
 
 ## Start the next chat with
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/HANDOFF.md (the "Match replay
-> analysis" section), knowledge/tactics.md and tools/replay_analysis/METHODS.md, then: <your request>
+> analysis" section), knowledge/tactics.md and tools/replay_analysis/METHODS.md, then continue the learned causal map
+> with step 2: add the three remaining wrong-cast measures to eventlayer.py, build the new node models, write link
+> strengths into causal_map.json, rebuild the batch 8 report on GitHub and explain what the nodes learned.
 
-For a training batch, don't run it in the chat: start the "Train batch" workflow (METHODS.md "Train batch on GitHub",
-e.g. pick=6, add_batch=yes), wait for it (about 10 to 15 minutes), pull main, read data/model/reports/latest.md and
-explain it. For work in the chat that needs the engine: `git fetch --depth 1 origin +replays:refs/remotes/origin/replays`,
-`pip install --break-system-packages interpret-core`, and in tools/replay_analysis `cache.py sync pull`, `cache.py warm`,
-`analyze.py --all --out /tmp/ga`, `library.py build`, `status.py`.
+Engine setup in the chat (needed for step 2): `git fetch --depth 1 origin +replays:refs/remotes/origin/replays`,
+`pip install --break-system-packages -r .github/workflows/train-requirements.txt`, then in tools/replay_analysis
+`cache.py sync pull`, `cache.py warm`, `analyze.py --all --out /tmp/ga`, `library.py build`. Training batches run on
+GitHub, not in the chat: the "Train batch" workflow (inputs pick, months, add_batch, note; about 11 minutes, 25 when the
+engine changed), then pull main and read data/model/reports/latest.md. Python that runs the fits in parallel needs an
+`if __name__ == "__main__":` guard in ad hoc scripts.
 
-How Denning wants results after each batch: the TQs (his four question categories, replacing the five random whys;
-CLAUDE.md and METHODS.md "The TQs"): (1) a team behind on flags, why, and what different play would have raised its
-win chances; (2) a monk death, why, and how to prevent it; (3) a power play that couldn't kill, why, and how to
-convert it; (4) NPCs lost, why, and how to prevent it. Each answered with data, the alternative from measurement
-(usual play, forensics' unused options, benchmarks, node models), with a confidence level.
+After each batch, answer the TQs (CLAUDE.md): flags, monk death, power play without a kill, NPCs lost; each with the
+causal chain ("How it got there") and the fixes that mattered most, with a confidence level.
 
-## Next session
-0. Batch 7 (2026-11-07, session 4p): 30 random matches from October and November (Train batch takes a `months`
-   input). 91 matches trained. Fixed the same day (METHODS.md "Changes 2026-11-07"): phantom flag swings (lone carrier
-   read as a sure capture), TQ 3's uptime, defenders listed as present at NPC kills while dead; added the lead-up trace
-   and run benchmark (`tq.lead_up`, `tq.run_bench`) and the map in usual play (`MAP_COLS`, per-map splits). Rebuilt.
-   Denning approved both (2026-11-07): Lord curves capped at 5 points (model_corrections.json) and the carrier ETA
-   discounted by measured capture chance (`benchmarks.py carry`).
-   Batch 8 (2026-11-07): 22 matches (20 picked from October and November, 2 already stored). Same day: flag spawns and
-   stands per map pooled over all replays (`benchmarks.py spawns`; Imperial, Nomad's and Druid's had double-length
-   flag runs) and TQ 1 cites the swing's final capture. Rebuilt: glass box 0.385 against strength alone 0.412 (first
-   time ahead; not yet clear). Denning then approved dropping healing_monks_own and healing_monks_enemy (0.367 after).
-   Built the causal chain (`chain.py`, METHODS.md): TQs 1, 2 and 4 show how the game state came about (back to the last
-   reset or 3 minutes, the 2 biggest causes per link, ongoing splits and isolated players included) and the 2 fixes that
-   mattered most; `forensics.disruption` measures defensive play (Denning's definition for Mesmers). Next: check with
-   Denning that the chains read the way he reasons; links still missing: a power play's own lead-up (TQ 3), the enemy's
-   side of a flag swing (why their capture was fast), and pricing a late split answer (no measured value yet).
-   Plan agreed 2026-11-07 (Denning): make the causal map the model. Step 1 done (`eventlayer.py`, measures.md on batches
-   7 and 8). Step 2: node models for run outcome, flag swing, enemy capture speed, power play, fight outcome, split
-   chance, split answer, split effect, collapse; link strengths written into causal_map.json. Step 3: discovery (every
-   measured variable against every node) as its own workflow split across several GitHub machines; links it finds are
-   held for Denning's approval. Step 4: chains generated from the node models, fixes priced by carrying a change forward.
-   Wrong casts Denning listed that still need their own measure: strips on the right target when defensive (Elementalist
-   enchantments), damage output against the role's usual, the right hexes removed.
-   Order after new replays: `benchmarks.py spawns`, then `benchmarks.py carry`, then commit both before a batch.
-1. Bounty's six matches (ask Denning for the transcripts), then Nick's one. Training batches stay paused until then.
-2. Built in session 4o (2026-11-07), for Denning to check on the next real batch: the learning report's section "The
-   TQs" (`tq.py`, METHODS.md "The TQs", "As built"). Ask him whether the instance picks suit him (biggest swing of each
-   kind; monk death = the one that cost the most win chance, which favours late deaths) and whether the "different
-   play" lines answer his question.
-3. Known TQ gaps: a power play with no 2 s burst can't be read by the kill-conversion node (say so; maybe add a reading
-   of the most exposed enemy at the start); the win model's flag-lead curve bends the wrong way at the extremes, so
-   seconds of flag lead are sometimes not priced.
-4. Speed after session 4o (Train batch workflow, 4 cores, rebuilding the report on the same 61 matches): learning
-   report 11.6 min -> 5.8 min (candidate tests 4.2 -> 1.5 min, node models 3.7 -> 2.1 min, usual play 1.8 -> 0.9 min,
-   TQs 0.5 min); whole run 15.6 -> 10.7 min including a one-off cache rebuild after the engine change. A normal batch
-   should take about 9 to 11 min (an estimate; machine speed varies between runs: the first test run's report took 8.0
-   min).
+## Goal of the current build (agreed with Denning, 2026-11-07)
+Make the causal map the model: every "this causes that" link is measured, learned and tested on unseen matches, so the
+chains behind each result come from the data (including chains neither Denning nor Claude know), and every fix is
+priced by carrying a change forward to the win chance. The causal chains must be reflected in the model, not only in
+the TQ reasoning.
+
+## Current state (commit a193e7b and later; 113 matches trained in 9 batches; 113 replays stored; match data to 2026-11-07)
+- Win model: glass box log loss 0.367 against 0.412 for strength alone (ahead, not yet clear). Corrections: Lord damage
+  curves capped at 5 points; healing-monk curves dropped (data/model_corrections.json).
+- Node models (nodes.py): deaths, kill conversion, flag answer, NPC loss, Lord damage, Lord kill.
+- Causal map (data/model/causal_map.json): 58 nodes, 212 links; 186 hypotheses, 6 supported, 20 formulas, no link
+  strength measured yet. chain.py's chains are hand-written rules that use the node models only to price fixes.
+- Step 1 built: eventlayer.py (cached per match) with strips, Blinds, hexes, frontline peel, wrong casts for every role,
+  spike timing, run timing, splits, power plays of every size, enemy captures; findings in
+  data/model/reports/measures.md (batches 7 and 8). TQ 3 covers every power-play size (not yet in the GitHub report:
+  rebuild in step 2).
+- Benchmarks to rebuild after new replays, in this order, and commit before a batch: `benchmarks.py spawns`, then
+  `benchmarks.py carry`.
+
+## Next steps (in order)
+1. Step 2a: three wrong-cast measures still missing in eventlayer.py (Denning): strips on the right target when
+   playing defensively (Elementalist enchantments), damage output against the role's usual, the right hexes removed
+   (and how fast).
+2. Step 2b: node models (nodes.py style: held-out, white box, what-if readings), each using only the causal-map links
+   into it: run outcome (read Cripple at the same point of the run, not over the whole run), flag swing, enemy capture
+   speed, power play (every size), fight outcome (numbers, peel, wrong casts, strips, Blind, spike timing), split
+   chance (for "failed to split"), split answer (latency, number), split effect, collapse. Write each link's measured
+   strength and status (supported or rejected) into causal_map.json and log it. Keep a normal batch under about 15 to 16
+   minutes.
+3. Step 3: discovery: every measured variable tested against every node on unseen matches, in its own workflow split
+   across several GitHub machines (Denning approved; public repo, no charge). Links it finds are held for Denning's
+   approval, never added automatically.
+4. Step 4: chains generated from the node models (replacing chain.py's rules) and fixes priced by carrying the change
+   forward; the late split answer gets its value this way.
+5. Then: Bounty's six commentary matches and Nick's one (ask Denning for the transcripts); more batches of 20 to 30
+   matches from October and November; consider the larger pull (450+) once step 2 is built (Denning to decide).
+
+## Decisions made (session 4p)
+Confirmed by Denning: Lord curves capped at 5 points; carrier ETA discounted by measured capture chance; healing-monk
+curves dropped; a power play is any numbers advantage at main (an 8v7 while the enemy runs counts); chains go back to
+the last reset or 3 minutes, follow the biggest few causes, and show fixes only where they mattered most; defensive
+Mesmer play = interrupting offensive skills and casting on the enemy midline and frontline (offensive = interrupting
+the enemy monks); frontline defensive peel = hitting or snaring enemies on its own backline; links found by discovery
+are held for his approval; discovery split across several machines.
+
+## Known issues and cautions
+- run_bench's "escort 2+ with the main outnumbered" cell has only 6 runs; treat it as a lead, not a result.
+- In the measures, Crippled runners capture more (runs that get far get Crippled): don't read it as Cripple helping.
+- "Wasted" removal casts are higher for winners: probably pressure, not error; check before calling it a mistake.
+- The model library's fits differ slightly between GitHub processor types; small report differences are noise.
+- Data volume: with 113 matches most new links will read "not clear yet"; say so rather than over-reading.
 
 ## Next: the commentary transcripts
 Agreed with Denning: the matches go into training (flagged as chosen); the new variables they suggest matter most.
@@ -167,6 +179,10 @@ variables in `comms_vars.py`, move supported ones into the model and tactics, re
   apart; check max health, boosts, the Amulet cap and player healing); area damage is found only where the skill is
   recorded or inferred; Denning to confirm gate (lock) control on Weeping Stone, "the jump", and Entourage (gvg.report
   records attackers needed to suppress it); does Aura of Faith reduce Lord damage (test on the Master of Damage).
+
+---
+
+*Background from earlier sessions (up to batch 5). Where it differs from the sections above, the sections above are current.*
 
 ## Fixes from the first why chains (batch 5): state
 1. Done: mechanics stop at a symptom. Why chains now explain what dropped the health with forensics (`forensics.py`),
@@ -349,6 +365,13 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
 - Improve the toolkit rather than writing one-off scripts; each ruling becomes a label, a tactics line and a check.
 
 ## Recent changes
+- Session 4p (2026-11-07): batches 7 (30 matches) and 8 (22) from October and November; Train batch `months` input.
+  Fixed: phantom flag swings (lone carrier read as a sure capture; carrier ETA now discounted by measured capture
+  chance), flag spawns and stands per map (Imperial, Nomad's and Druid's had double-length flag runs), TQ 3 uptime, dead
+  defenders listed as present at NPC kills, TQ 1 citing the wrong capture. Added: map geometry and per-map splits in the
+  usual play, the causal chain (chain.py) in TQs 1, 2 and 4, the defensive-play measure, step 1 of the learned causal map
+  (eventlayer.py, measures.md), TQ 3 for every power-play size. Corrections: Lord curves capped, healing-monk curves
+  dropped. Model ahead of strength alone for the first time (0.367 against 0.412).
 - Session 4o: the TQ section of the learning report (`tq.py`; replaces the five whys); speed-ups, each checked to give
   identical results: candidate tests pool every fold and reuse the honest test as the baseline (`model.test_candidates`),
   node models pool all their fits (`nodes.fit_nodes`), fight-state fits run side by side and only where a match is
@@ -368,61 +391,3 @@ Calibrate on Denning's rulings, then pull hundreds of matches for benchmarks and
 - Session 4m (continued): gvg.report players and Elo synced and merged; Lord regeneration per Denning; refit of batches
   0 and 1; batches 2 to 5; fight-state split by thirds; Lord-damage correction; `snapshot.py`; `why.py` and the first
   why chains with the fixes they showed are needed (see "Next session: fixes to do"); hand-off loop fixed.
-- Session 4m: engine reviewed against the goal. Found and fixed: pit NPCs only recorded once touched (winners' pits
-  looked empty: the backwards knights and Bodyguard curves), RACK v hdm cut at 2:30 (runs to 17:18), Lord damage
-  unobserved in 2 Lord kills. Built: `integrity.py` (data checks and repairs, full roster from Denning: 2 knights, 2
-  archers, Bodyguard, Lord; 3 archers on Isle of Solitude), `lord.py` (Lord health with measured regeneration, exposed;
-  node `lord_kill`), lineup strength (`lineup.py`, Denning's idea, MAT weight measured) and the strength blend,
-  `context.py` (priors, off), `fightstate.py` (fight state variable and situation control), hexes in the death and
-  kill nodes, map shape and flux variables, pre-trend (placebo) check in the usual play, close-game and resampled
-  accuracy in the honest test, `discovery.py` (leverage, behaviour clusters), data-integrity section in the learning
-  report; causal map v10 (Lord health, exposed, killed; fight state; hex pressure; flux). Not refitted yet (Denning:
-  build everything first).
-- Session 4l: Denning on wipes and the boost clock (`D5`: a wipe at the stand can't be turned into NPCs before the res,
-  and 7 of 12 "took the flag" cases couldn't reach the pit in time; `D4`: falling back with the enemy's boost near is
-  likely a mistake unless losing the fight, it depends); builds in the usual play (similar builds, staged adjustment,
-  splits by build); step 7 built (`values.py`, knowledge/values.md, learning report section 8); causal map v7. Then
-  Denning on deliberate deaths (base res only, `K14`), individual bars and spike builds weighing DP over NPCs (`B23`),
-  and what decides staying near the enemy boost (`D4`: monk energy, enemy health, enemy energy, numbers); boost-clock
-  health difference added; values split by deliberate healer deaths and by the opponent's build; causal map v8.
-  Then per-player skill flags built (`buildfeat.player_flags`), used for split answers (`S31`: a snare on the defender
-  favours the collapse; first read conflated holder and collapser, corrected below); Denning: no energy estimate (too large);
-  teams rarely rush the base to spike resurrected players (`D5`); causal map v9. Split answers then read the holding
-  defender (first not collapsing from main) apart from collapsers, with main numbers and health: with a snare on the
-  holder a collapse killed 5 of 10, without 0 of 14, and win chance ran Denning's way (unclear); `S32` (what decides a
-  collapse; the line comes from data). Then collapse cost built (time away from main and what the main fight lost
-  meanwhile; learning report section 7): median 16 s away; kills came within about 6 s; no collapse of 30 s or more
-  killed; 60 s or more cost about 3.5 deaths at main (6 cases). Next: batch 2.
-- Session 4k: Denning on pits (`P9` knights first, monk load of a full pit and area damage; `P10` two monks against a
-  full pit; `P11` attackers leave before the res); area damage added; step 6 built (usual play); causal map v6.
-- Session 4j: Denning on drops (`F33`: where a drop happens; parked in base = deciding not to run; long hand-offs away
-  from base respond to pushes or deaths), killing during the enemy's flag cycle is a deliberate trade (`F34`), 8v8
-  builds hold a flag near the fight (`F35`); runner speeds measured per runner; drops classified; step 5 built (pit
-  NPC loss and Lord damage nodes); causal map v5.
-- Session 4i: Denning on timing (`K14`: teams time kills; the dying team may die before time with death sets or by not
-  healing; monks may die in base before time to reset energy; deaths can be positive); first look `K15`; distance
-  threshold 3,000 for "away from the group"; step 4 built (flag-answer node); causal map v4.
-- Session 4h: step 3 built (build features, death and kill-conversion node models, report section, `nodes.py
-  explain`); 9:31 explained second by second; Denning: Draw Conditions onto the 8 is normal play but maybe a mistake
-  (`M18`, data decides); jobs in the enemy base read from targets; `J12` healers matter only through damage.
-- Session 4g: causal model steps 1 and 2 built (phases.py; ENGINE 16; library kind `groups`).
-- Session 4f: causal model designed with Denning (fights are global; phases, plans, jobs and trades; capacities;
-  matchup context; decisions modelled as the usual play); causal map version 1 (50 nodes, 169 links) with a site
-  page; Denning's answers added to tactics (`J1` to `J11`, `K12`, `K13`, `M16`, `M17`); 12 design amendments.
-- Session 4e: training round 1 (batch 1); candidate variables mechanism (`features.CANDIDATES`, tested every report);
-  split_diff proposed and not yet supported.
-- Session 4d: model structure built and run as batch 0 (not yet better than team strength alone, as expected at 24
-  matches); strength ratings (82% of results predicted), named variables, glass-box model with staging, held-out
-  explanations, corrections file, learning report, batch helper, site pages.
-- Session 4c: model requirements set (white box, explains why, amendable, structure first, slow training with
-  learning reports, discovery first); `interpret` (Explainable Boosting Machine) chosen and tested to install.
-- Session 4b: Lord damage measured (ranger 37, ele 33, warrior 27, paragon 24, dervish 23, necro 10, mesmer 7 per
-  second at the Lord); decision points record every player's action; D6 opened; data-first plan written.
-- Session 4: engine review. Fixed: dead monks counted as out of range, all-monks range rule, death verdicts ignoring
-  the cause, flag cycles sharing rows, the runner assumed to be the Mes/A, captures with no recorded player dropped,
-  map files changing on every run, scattered thresholds. Added: scoreboard with the flag position model, fights,
-  decision points, `library.py compare`, tactics ids and situation cards. Corrected the [Men v HC C] 9:31 reasoning
-  (no boosts in that stretch; HC was up on flags by the exchange).
-- Session 3: engine built (state, episodes, forensics, rules, ledger, library); death 1 and 2 rulings.
-- Session 2: four good-guild matches reviewed; knowledge split into model and reviews; history rewritten.
-- Session 1: Bounty, Nick and Maga reviews.
