@@ -101,7 +101,8 @@ commentary transcripts (Denning sends them), then step 3 (discovery).
 ## Start the next chat with
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/HANDOFF.md (the "Match replay
 > analysis" section), knowledge/tactics.md and tools/replay_analysis/METHODS.md, then process the commentary transcripts
-> I attach (Bounty's six matches, then Nick's one) following METHODS.md "Commentary and comms".
+> I attach (Bounty's six matches, then Nick's one) following METHODS.md "Commentary and comms". Read
+> knowledge/learned-model.md first for what the model has learned so far.
 
 Engine setup in the chat (needed for step 2): `git fetch --depth 1 origin +replays:refs/remotes/origin/replays`,
 `pip install --break-system-packages -r .github/workflows/train-requirements.txt`, then in tools/replay_analysis
@@ -123,45 +124,54 @@ the TQ reasoning.
 - Win model: glass box log loss 0.367 against 0.412 for strength alone (ahead, not yet clear). Corrections: Lord damage
   curves capped at 5 points; healing-monk curves dropped (data/model_corrections.json).
 - Node models (nodes.py): deaths, kill conversion, flag answer, NPC loss, Lord damage, Lord kill.
-- Learned nodes (learnednodes.py, rows in lnrows.py; report section 6b): run outcome, flag swing, capture speed, power
-  play, fight outcome, split chance, split answer, split effect, collapse; data/model/nodes/L_<node>.json. Beat the
-  simple baseline on unseen matches: run outcome, power play, fight outcome, split chance, split answer, collapse. Not
-  yet: flag swing, capture speed, split effect.
+- Learned nodes (learnednodes.py, rows in lnrows.py; report section 6b; in words on knowledge/learned-model.md): run
+  outcome, flag swing, run defence, capture speed, power play, fight outcome, split chance, split answer, split effect,
+  collapse; data/model/nodes/L_<node>.json. Beat the simple baseline on unseen matches: run outcome, run defence, power
+  play, fight outcome, split chance, split answer, collapse. Not yet: flag swing, capture speed, split effect.
 - Causal map version 11: 61 nodes (new P.17 wrong casts, P.18 strips, P.19 Blind; P.5 covers hex removal), 241 links;
-  202 hypotheses, 17 supported, 2 rejected, 20 formulas; every link a learned node uses carries its measured strength
-  ("measured"); link_log.json keeps every run's readings. Supported by data: run timing -> run outcome; run timing ->
-  flag swing; numbers, enemy prots and healing, Blind on own players -> power-play kills; strength, numbers, damage
-  against the usual, spike timing -> fight outcome; scoreboard -> split chance; collapse timing -> collapse deaths.
-  Rejected: Blind on the enemy frontline -> fight outcome (few Blinds land before a fight's first death); defenders'
-  pushes in the first 10 s -> capture speed. chain.py's chains are still hand-written rules (step 4 replaces them).
+  203 hypotheses, 18 supported, 20 formulas; every link a learned node uses carries its measured strength
+  ("measured"); link_log.json keeps every run's readings. Held for Denning: Blind on the enemy frontline -> fight
+  outcome (data says rejected; he ruled "wait for more matches"). Supported by data include run timing -> run outcome
+  and flag swing; numbers, enemy prots and healing -> power-play kills; strength, numbers, damage against the usual,
+  spike timing -> fight outcome; scoreboard -> split chance; collapse timing (the five readings together; none clear
+  alone yet) and split size -> collapse deaths. Pushing the runner: not clear yet over every run. Curious: a runner
+  Crippled by a given point of the run is more often captured (+16 points), even read at the same point; worth a
+  question for Denning. chain.py's chains are still hand-written rules (step 4 replaces them).
 - Step 1 and 2a built: eventlayer.py (cached per match) with strips (judged against every enchantment in range),
   hex removals (against every hex in range; how long the removed hex was on), Blinds, hexes, peel, wrong casts, damage
   against the role's usual, spikes, runs (control and damage times), splits, power plays, captures. Values from data:
   data/benchmarks/eventlayer_values.json. Findings: data/model/reports/measures.md.
 - Benchmarks to rebuild after new replays, in this order, and commit before a batch: `benchmarks.py spawns`, then
   `benchmarks.py carry`.
-- Run time: the GitHub machine type varies. Session 4q's runs got the slower AMD EPYC 7763: whole run about 20 min
-  (report 16 min; learned nodes 2.5 min of it, event layer 0.25 min). The same report on the faster EPYC 9V45 is
-  about half of that, so a normal batch there is about 11 min (an estimate). Even without step 2, the slow machine
-  already took about 17 min.
+- Run time (rebuild of the 113 matches, session 4q): usual x64 machines vary by processor. The faster AMD EPYC 9V45
+  took about 8 min for the report (about 11 min whole run, an estimate); the slower AMD EPYC 7763 took 16 min (20 min
+  whole run). arm64 (ubuntu-24.04-arm, tested at Denning's request) was slowest: 23 min report, 27 min whole run (the
+  older node models section took 10 min against 4.4), so keep "ubuntu-latest" (the workflow's "runner" input). Splitting
+  the run into parallel jobs is the way to speed it up if Denning wants (step 2 below).
 
 ## Next steps (in order)
-1. Commentary: Bounty's six matches, then Nick's one (Denning attaches the transcripts; METHODS.md "Commentary and
-   comms"). The variables they suggest can be added to the learned nodes as new links (lnrows.py features,
-   learnednodes.py SPEC), so step 3 tests them too.
-2. Step 3: discovery: every measured variable tested against every node on unseen matches, in its own workflow split
+1. Commentary (new chat): Bounty's six matches, then Nick's one (Denning attaches the transcripts; METHODS.md
+   "Commentary and comms"). The variables they suggest can become new links in the learned nodes (features in
+   lnrows.py, groups in learnednodes.py SPEC), so step 3 tests them too.
+2. Run time (remind Denning): if batches feel too slow on the usual machines, split the Train batch run into two or
+   three jobs at once (free on a public repo). Session 4q's arm64 test: see "Current state".
+3. Step 3: discovery: every measured variable tested against every node on unseen matches, in its own workflow split
    across several GitHub machines (Denning approved; public repo, no charge). Links it finds are held for Denning's
    approval, never added automatically.
-3. Step 4: chains generated from the node models (replacing chain.py's rules; `learnednodes.whatif` reads a node with
+4. Step 4: chains generated from the node models (replacing chain.py's rules; `learnednodes.whatif` reads a node with
    features changed) and fixes priced by carrying the change forward; the late split answer gets its value this way.
-4. More batches of 20 to 30 matches from October and November; most links read "not clear yet" at 113 matches.
+5. More batches of 20 to 30 matches from October and November; most links read "not clear yet" at 113 matches.
    Consider the larger pull (450+) now that step 2 is built (Denning to decide).
-5. If run time matters: the slow machine type puts a batch near 20 min. Options: fewer candidate-variable tests or
-   node-model bags in the older sections, or the run split across two jobs.
 
 ## Decisions made (session 4q)
 Denning: the right strip target and the right hexes to remove are valued from data, not a list; steps 2a and 2b
-first, then the transcripts.
+first, then the transcripts (in a new chat). Data can't reject a link that came from Denning without his ruling
+(held as `pending_rejection`; if he approves, `override_approved: true` and the link then follows the data both ways,
+back to supported if more data says so). Rulings so far: Blind on the enemy frontline -> fight outcome: keep, wait for
+more matches; defenders pushing the runner: Claude's measurement error (captures only), fixed with the run defence
+node, not clear yet. Collapse = defenders collapsing on a split; collapse timing read five ways (his list approved:
+arrival spread, numbers at contact, time from the split's first NPC hit, res timer, escape skills off recharge), the
+data to pick. A plain-English page of the model, rebuilt each batch: knowledge/learned-model.md.
 
 ## Decisions made (session 4p)
 Confirmed by Denning: Lord curves capped at 5 points; carrier ETA discounted by measured capture chance; healing-monk
