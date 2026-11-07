@@ -26,7 +26,7 @@ class MapGeo:
         self.m = m
         self.map_id = str(m.o["meta"].get("map_id") or m.o["meta"]["map"])
         self.base = {tm: tuple(m.base[tm]) for tm in m.base}
-        self.stand = tuple(m.stand)
+        self.stand = tuple(m.stand)     # replaylib fills a missing stand from the map table
         self.spawn = self._flag_spawns()        # team -> where its flag appears (near its base)
         self.npcs = self._estimate()            # agent -> {kind, team, pos, n (samples), conf}
         self._merge_store(save)
@@ -65,10 +65,23 @@ class MapGeo:
         integ = self.m.o.get("integrity")
         if integ is not None: integ["roster_added"] = added
 
+    SPAWN_CLUSTER_R = 400       # pickups within this of each other count as the same spot
+
     def _flag_spawns(self):
-        """Each team's flag spawn: the median of its pickups far from the stand on its own half (a flag picked up
-        mid-field is a dropped one). Falls back to the base."""
+        """Each team's flag spawn: the densest cluster of its pickups on its own half (a new flag always appears at the
+        same spot, so spawn pickups land together, while dropped flags are picked up all over). Until 2026-11-07 this
+        took pickups more than 6,000 from the stand only, which missed maps with a short flag run: on Imperial Isle the
+        spawns are about 4,300 from the stand and the estimate fell back to the bases (twice the real run). Needs 3+
+        pickups in the cluster; otherwise the old rule, then the base."""
         m, out = self.m, {}
+        tab = _spawn_table().get(m.o["meta"].get("map")) or {}
+        sp = [x for x in tab.get("spawns", []) if x[2] >= _spawn_table_min()]
+        if len(sp) == 2 and self.base.get(1) and self.base.get(2):
+            for tm in (1, 2):
+                own = min(sp, key=lambda x: d(x[:2], self.base[tm]))
+                out[tm] = (float(own[0]), float(own[1]))
+            if out[1] != out[2]: return out        # the map's measured spawns (benchmarks.py spawns)
+            out = {}
         for tm in (1, 2):
             pts = []
             for t, typ, a in m.o.get("flags", []):
@@ -76,8 +89,12 @@ class MapGeo:
                 q = m.snap(a, t)
                 if not q: continue
                 p = (q["x"], q["y"])
-                if d(p, self.stand) > 6000 and d(p, self.base.get(tm)) < d(p, self.base.get(3 - tm)): pts.append(p)
-            out[tm] = (statistics.median(p[0] for p in pts), statistics.median(p[1] for p in pts)) if pts else self.base.get(tm)
+                if self.base.get(tm) and self.base.get(3 - tm) and d(p, self.base[tm]) < d(p, self.base[3 - tm]): pts.append(p)
+            best = max(([q for q in pts if d(p, q) < self.SPAWN_CLUSTER_R] for p in pts), key=len, default=[])
+            if len(best) >= 3:
+                out[tm] = (statistics.median(p[0] for p in best), statistics.median(p[1] for p in best)); continue
+            far = [p for p in pts if d(p, self.stand) > 6000]
+            out[tm] = (statistics.median(p[0] for p in far), statistics.median(p[1] for p in far)) if far else self.base.get(tm)
         return out
 
     def _estimate(self):
@@ -132,6 +149,22 @@ class MapGeo:
         if changed:
             os.makedirs(os.path.dirname(path), exist_ok=True)
             json.dump(store, open(path, "w"), indent=1)
+
+
+_SPAWNS = None
+def _spawn_table():
+    """data/benchmarks/flag_spawns.json maps (benchmarks.py spawns)."""
+    global _SPAWNS
+    if _SPAWNS is None:
+        import json, os
+        from common import REPO
+        try: _SPAWNS = json.load(open(os.path.join(REPO, "data", "benchmarks", "flag_spawns.json")))
+        except (OSError, ValueError): _SPAWNS = {}
+    return _SPAWNS.get("maps") or {}
+
+
+def _spawn_table_min():
+    return (_SPAWNS or {}).get("min_n", 8)
 
 
 class GameState:

@@ -4,12 +4,13 @@ Rebuild after new replays are fetched; the scoreboard reads the files.
 Usage:  python3 benchmarks.py lord        -> data/benchmarks/lord_damage.json
         python3 benchmarks.py regen       -> data/benchmarks/lord_regen.json
         python3 benchmarks.py carry       -> data/benchmarks/carry_capture.json
+        python3 benchmarks.py spawns      -> data/benchmarks/flag_spawns.json
 
 lord: Lord damage per second while at the enemy Lord, by profession and by role. "At the Lord" = alive and within
 PIT_R + 500 of the enemy Lord's estimated position, in a second when at least one teammate hit the Lord (so time spent
 walking past or fighting players in the pit without attacking the Lord doesn't count against a profession). Reported
 with seconds and matches behind each number; a value with fewer than MIN_SECS seconds is marked thin."""
-import collections, json, os, subprocess, sys
+import collections, json, os, statistics, subprocess, sys
 from replaylib import Match
 from state import GameState, d
 from common import PIT_R, REPO
@@ -119,11 +120,46 @@ def carry(ids=None):
     json.dump(out, open(os.path.join(OUT, "carry_capture.json"), "w"), indent=1, ensure_ascii=False)
     return out
 
+SPAWN_MIN = 8           # pickups a map's spawn cluster needs before state.py uses it
+
+
+def spawns(ids=None):
+    """Each map's two flag spawns, pooled over every stored replay of the map (a map's spawns never move): all flag
+    pickups on the map, the densest cluster (pickups within 400 of each other), then the densest cluster at least
+    3,000 from the first. Spawn pickups land together match after match, while dropped flags are picked up all over, so
+    pooling outvotes a match where a team picked up dropped flags at one choke more often than at its spawn. Also the
+    map's stand (median of the matches that located it), for matches whose replay has none (state.py)."""
+    P = collections.defaultdict(list); S = collections.defaultdict(list); ids = ids or match_ids()
+    for rid in ids:
+        m = Match.from_branch(rid); mp = m.o["meta"].get("map")
+        if m.stand and tuple(m.stand) != (0, 0): S[mp].append(tuple(m.stand))
+        for t, typ, a, *_ in m.o.get("flags", []):
+            if typ != "flag_picked_up" or a not in m.PL: continue
+            q = m.snap(a, t)
+            if q: P[mp].append((q["x"], q["y"]))
+    def densest(pts):
+        best = max(([q for q in pts if d(p, q) < 400] for p in pts), key=len, default=[])
+        return ([round(sorted(x[0] for x in best)[len(best) // 2]), round(sorted(x[1] for x in best)[len(best) // 2]), len(best)] if best else None)
+    out = {"about": spawns.__doc__, "min_n": SPAWN_MIN, "maps": {}}
+    for mp, pts in sorted(P.items()):
+        a = densest(pts)
+        b = densest([p for p in pts if a and d(p, a[:2]) >= 3000]) if a else None
+        st_ = S.get(mp) or []
+        out["maps"][mp] = {"pickups": len(pts), "spawns": [x for x in (a, b) if x],
+                           "stand": [round(statistics.median(x[0] for x in st_)), round(statistics.median(x[1] for x in st_)), len(st_)] if st_ else None}
+    os.makedirs(OUT, exist_ok=True)
+    json.dump(out, open(os.path.join(OUT, "flag_spawns.json"), "w"), indent=1, ensure_ascii=False)
+    return out
+
+
 if __name__ == "__main__":
     what = sys.argv[1:] or ["lord"]
     if "regen" in what:
         o = regen(); print({k: v for k, v in o.items() if k not in ("grid", "about")})
     what = sys.argv[1:] or ["lord"]
+    if "spawns" in what:
+        o = spawns()
+        for k, v in o["maps"].items(): print(f"  {k:24} {v['pickups']:5} pickups, spawns {v['spawns']}")
     if "carry" in what:
         o = carry()
         for k, v in o["bands"].items(): print(f"  {k:12} {v['captured']:4}/{v['carries']:<4} {v['chance']:.0%}")

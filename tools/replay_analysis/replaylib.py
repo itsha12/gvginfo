@@ -25,6 +25,10 @@ class Match:
         self.inferred_caps = self._fix_flags()
         self.carries = self._carries()
         self.stand, self.base = self._geometry()
+        if not self.stand or not any(self.stand):      # no located stand: the map's measured one (benchmarks.py spawns)
+            from state import _spawn_table
+            tab = (_spawn_table().get(self.o["meta"].get("map")) or {}).get("stand")
+            if tab: self.stand = (float(tab[0]), float(tab[1]))
         self.roles = self._role_names()
 
     @classmethod

@@ -250,7 +250,8 @@ def flags(new_ids, recs, usual_res):
                      + (f", {sb_[tag]['flag_eta']} s from capturing" if sb_[tag].get("flag_how", "").startswith("carrying") else "")
                      + f" (main {sb_[tag]['main']}v{sb_[foe]['main']}, alive {sb_[tag]['alive']}v{sb_[foe]['alive']})")
     caps = [c for c in a["flag_cycles"] if c["team"] == foe and s - 30 <= (c.get("own_cap") or -1) <= e + 30]
-    for c in caps[:1]:
+    caps = caps[-1:]      # the enemy capture that ended the swing (until 2026-11-07 the first in the window was cited)
+    for c in caps:
         runs = [r for r in a["flag_runs"] if r["team"] == foe and r["end"] <= c["own_cap"] + 1 and r["start"] >= c["own_cap"] - (c.get("cap_delay") or 60)]
         last = runs[-1] if runs else None
         short.append(f"{foe} capped at {clock(c['own_cap'])}, {c.get('cap_delay')} s after {tag}'s capture"
@@ -258,7 +259,8 @@ def flags(new_ids, recs, usual_res):
                         f" ({sum(1 for r in runs if r['outcome'] == 'dropped')} dropped)" if runs else "")
                      + (f"; {tag} pushed the last carrier with {', '.join(last.get('pushers') or {}) or 'nobody'} but its health never went below "
                         f"{last['min_hp']}%" if last and last["outcome"] == "captured" else ""))
-    mine = [c for c in a["flag_cycles"] if c["team"] == tag and s - 30 <= (c.get("own_cap") or -1) <= e + 60]
+    after_cap = caps[0]["own_cap"] if caps else s - 30
+    mine = [c for c in a["flag_cycles"] if c["team"] == tag and after_cap <= (c.get("own_cap") or -1) <= e + 60]
     for c in mine[:1]:
         short.append(f"{tag}'s answer was {c.get('slower_than_possible_s')} s slower than possible")
     dd = collections.Counter(d["team"] for d in a["deaths"] if s - 5 <= d["t"] <= e)

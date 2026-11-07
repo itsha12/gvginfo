@@ -553,6 +553,13 @@ still bends the wrong way at the extremes, so seconds of flag lead are sometimes
   fresh run from the spawn. Measured on 91 matches, capture chance by alive difference: +2 or more 64% (107 carries),
   -1 to +1 49% (1381), -3 to -2 35% (88), -4 or less 25% (20). Even or better keeps the plain carry time. Rebuild the
   benchmark after new replays (`benchmarks.py carry`).
+- Flag spawns and stands per map (state.py `_flag_spawns`, replaylib.py; data/benchmarks/flag_spawns.json from
+  `benchmarks.py spawns`, 2026-11-07): each map's two spawns are the densest clusters of flag pickups pooled over every
+  replay of the map, and a match uses the one nearest each team's base. The old rule (pickups 6,000+ from the stand)
+  missed short flag runs: Imperial, Nomad's and Druid's Isles (spawns about 4,200 to 4,900 from the stand) fell back to
+  the bases, doubling their flag run, every flag ETA and lead on them, and map_flag_run; other single matches caught a
+  choke where dropped flags were picked up. Four replays with no located stand (0, 0) now use the map's median stand.
+  Rebuild the table after new replays (`benchmarks.py spawns`), before `benchmarks.py carry`.
 - Correction (Denning, batch 7): lord_dps_own and lord_dps_enemy capped at 5 points (data/model_corrections.json).
 - Usual play includes the map (usual.py `MAP_COLS`): geometry in the similarity and, with the build axes, the adjustment;
   choice effects split by map name once a map has 10+ cases of the choice and of the usual one.

@@ -1,0 +1,266 @@
+{
+ "about": "Each map's two flag spawns, pooled over every stored replay of the map (a map's spawns never move): all flag\npickups on the map, the densest cluster (pickups within 400 of each other), then the densest cluster at least\n3,000 from the first. Spawn pickups land together match after match, while dropped flags are picked up all over, so\npooling outvotes a match where a team picked up dropped flags at one choke more often than at its spawn. Also the\nmap's stand (median of the matches that located it), for matches whose replay has none (state.py).",
+ "min_n": 8,
+ "maps": {
+  "Burning Isle": {
+   "pickups": 4,
+   "spawns": [
+    [
+     -3841,
+     801,
+     2
+    ],
+    [
+     2033,
+     5269,
+     1
+    ]
+   ],
+   "stand": [
+    -3782,
+    6388,
+    1
+   ]
+  },
+  "Corrupted Isle": {
+   "pickups": 295,
+   "spawns": [
+    [
+     -4515,
+     4564,
+     68
+    ],
+    [
+     4582,
+     -4413,
+     54
+    ]
+   ],
+   "stand": [
+    -3800,
+    -3652,
+    11
+   ]
+  },
+  "Druid's Isle": {
+   "pickups": 81,
+   "spawns": [
+    [
+     861,
+     -4602,
+     32
+    ],
+    [
+     -916,
+     4518,
+     22
+    ]
+   ],
+   "stand": [
+    -33,
+    -256,
+    3
+   ]
+  },
+  "Frozen Isle": {
+   "pickups": 52,
+   "spawns": [
+    [
+     167,
+     4917,
+     10
+    ],
+    [
+     243,
+     -4778,
+     10
+    ]
+   ],
+   "stand": [
+    6672,
+    36,
+    2
+   ]
+  },
+  "Imperial Isle": {
+   "pickups": 191,
+   "spawns": [
+    [
+     4655,
+     6459,
+     69
+    ],
+    [
+     -2457,
+     1716,
+     65
+    ]
+   ],
+   "stand": [
+    1059,
+    4228,
+    5
+   ]
+  },
+  "Isle of Jade": {
+   "pickups": 323,
+   "spawns": [
+    [
+     8465,
+     3459,
+     79
+    ],
+    [
+     -5509,
+     3155,
+     69
+    ]
+   ],
+   "stand": [
+    1666,
+    -2710,
+    20
+   ]
+  },
+  "Isle of Meditation": {
+   "pickups": 429,
+   "spawns": [
+    [
+     -90,
+     7792,
+     123
+    ],
+    [
+     -9,
+     -4558,
+     115
+    ]
+   ],
+   "stand": [
+    1819,
+    1541,
+    25
+   ]
+  },
+  "Isle of Solitude": {
+   "pickups": 227,
+   "spawns": [
+    [
+     -4841,
+     -4979,
+     65
+    ],
+    [
+     4657,
+     4413,
+     65
+    ]
+   ],
+   "stand": [
+    1636,
+    -1686,
+    11
+   ]
+  },
+  "Isle of Weeping Stone": {
+   "pickups": 36,
+   "spawns": [
+    [
+     -1366,
+     -5064,
+     14
+    ],
+    [
+     -1735,
+     7745,
+     11
+    ]
+   ],
+   "stand": [
+    -2113,
+    1555,
+    2
+   ]
+  },
+  "Isle of Wurms": {
+   "pickups": 5,
+   "spawns": [
+    [
+     7256,
+     2137,
+     2
+    ],
+    [
+     -7371,
+     1799,
+     2
+    ]
+   ],
+   "stand": [
+    19,
+    1668,
+    1
+   ]
+  },
+  "Isle of the Dead": {
+   "pickups": 15,
+   "spawns": [
+    [
+     -2485,
+     -1954,
+     4
+    ],
+    [
+     -2665,
+     5056,
+     3
+    ]
+   ],
+   "stand": [
+    4642,
+    1584,
+    2
+   ]
+  },
+  "Nomad's Isle": {
+   "pickups": 159,
+   "spawns": [
+    [
+     4237,
+     4070,
+     44
+    ],
+    [
+     4336,
+     -4197,
+     42
+    ]
+   ],
+   "stand": [
+    5545,
+    55,
+    7
+   ]
+  },
+  "Uncharted Isle": {
+   "pickups": 565,
+   "spawns": [
+    [
+     -4594,
+     3522,
+     147
+    ],
+    [
+     4107,
+     -3930,
+     143
+    ]
+   ],
+   "stand": [
+    -5088,
+    -4974,
+    19
+   ]
+  }
+ }
+}
