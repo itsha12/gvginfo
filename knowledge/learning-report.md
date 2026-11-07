@@ -148,28 +148,28 @@ Each explains one result from what happened before it (time order enforced), tes
 - **npc_healing_10s** (healing on own pit NPCs and Lord in the last 10 s) falls from +3.8 to -17.7 points (0.0..3.0: +3.8; 42.5..73.5: +3.8; 104.5..142.5: +2.5; 180.5..222.5: -5.1; 268.5..318.5: -6.3; 379.0..439.5: -7.4; 534.5..688.5: -14.0)
 - **strength_gap** (attacking minus defending team strength) rises from -6.0 to +4.7 points (-901.0..-415.5: -6.0; -287.5..-133.0: -11.3; -31.0..53.0: +3.8; 91.5..106.0: -2.4; 191.5..256.0: +3.2; 303.5..386.0: +2.8; 459.0..570.0: -0.8)
 
-**lord damage** (Lord damage dealt in the next 10 s while players are in the enemy pit; 59 matches, 8008 rows): adds to the simple baseline (typical error 125.0 against 85.7 for the median; explains 29% of the spread).
-- **defenders** (own players in the pit): 0.0..0.5: +197.3; 0.5..1.5: +111.4; 1.5..2.5: +54.3; 2.5..3.5: -13.3; 3.5..4.5: -66.1; 4.5..5.5: -101.2; 5.5..6.5: -135.6; 6.5..7.5: -148.1; 7.5..8.0: -149.7
-- **defenders_elsewhere** (own players alive outside the pit): 0.0..0.5: +67.8; 0.5..1.5: +73.1; 1.5..2.5: +73.7; 2.5..3.5: +69.6; 3.5..4.5: +28.9; 4.5..5.5: -7.2; 5.5..6.5: -48.8; 6.5..7.5: -111.6; 7.5..8.0: -171.0
-- **bodyguard** (own Bodyguard alive): 0.0..0.5: +105.3; 0.5..1.0: -41.7
-- **attackers_lord_dps** (attackers' measured damage per second against a Lord (benchmarks)): 1.9..18.75: -50.3; 28.8..32.15: -36.0; 32.8..43.25: -29.2; 54.8..64.25: -1.2; 65.7..72.55: +25.6; 76.6..86.35: +44.6; 99.2..110.5: +49.5
-- **attackers** (enemy players in the pit): 1.0..1.5: -29.7; 1.5..2.5: -10.6; 2.5..3.5: -15.0; 3.5..4.5: -8.8; 4.5..5.5: +35.6; 5.5..6.5: +35.8; 6.5..7.5: +37.0; 7.5..8.0: +39.8
-- **attackers_share** (share of the attacking team's live players in the pit (OG comms: merge before pushing the pit)): 0.12..0.13: -13.3; 0.16..0.23: -17.4; 0.27..0.35: -17.4; 0.42..0.53: -25.4; 0.61..0.65: +6.1; 0.73..0.78: +19.6; 0.87..0.94: +39.8
-- **defender_healers** (of which healers): 0.0..0.5: +57.2; 0.5..1.5: -5.9; 1.5..2.5: -3.9; 2.5..3.0: -38.8
-- **npc_healing_10s** (healing on own pit NPCs and Lord in the last 10 s): 0.0..3.0: -16.6; 42.5..73.5: +4.2; 106.5..142.5: +20.7; 174.5..218.5: +21.3; 262.5..313.5: +24.2; 373.5..436.5: +27.7; 532.5..685.5: +38.1
-- **seconds_in_pit** (seconds the attackers have been in the pit): 0.0..4.5: -20.7; 10.5..16.5: -18.3; 22.5..28.5: -9.1; 37.5..46.5: -2.4; 58.5..73.5: +16.6; 91.5..112.5: +9.1; 142.5..193.5: +25.6
-- **attacker_healers** (of which healers): 0.0..0.5: +13.3; 0.5..1.5: -4.0; 1.5..2.5: +13.2; 2.5..3.0: -47.1
+**lord damage** (Lord damage dealt in the next 10 s while players are in the enemy pit; 59 matches, 8008 rows): adds to the simple baseline (typical error 124.7 against 85.7 for the median; explains 29% of the spread).
+- **defenders** (own players in the pit): 0.0..0.5: +197.5; 0.5..1.5: +112.7; 1.5..2.5: +55.8; 2.5..3.5: -11.8; 3.5..4.5: -65.3; 4.5..5.5: -103.4; 5.5..6.5: -139.1; 6.5..7.5: -150.7; 7.5..8.0: -153.3
+- **defenders_elsewhere** (own players alive outside the pit): 0.0..0.5: +70.4; 0.5..1.5: +74.7; 1.5..2.5: +72.3; 2.5..3.5: +67.1; 3.5..4.5: +27.8; 4.5..5.5: -7.3; 5.5..6.5: -49.5; 6.5..7.5: -112.2; 7.5..8.0: -171.4
+- **bodyguard** (own Bodyguard alive): 0.0..0.5: +105.5; 0.5..1.0: -41.8
+- **attackers_lord_dps** (attackers' measured damage per second against a Lord (benchmarks)): 1.9..18.75: -42.0; 28.8..32.15: -29.6; 32.8..43.25: -26.0; 54.8..64.25: -1.7; 65.7..72.55: +22.3; 76.6..86.35: +40.2; 99.2..110.5: +44.2
+- **attackers** (enemy players in the pit): 1.0..1.5: -27.8; 1.5..2.5: -10.1; 2.5..3.5: -15.1; 3.5..4.5: -9.0; 4.5..5.5: +35.7; 5.5..6.5: +34.0; 6.5..7.5: +34.5; 7.5..8.0: +37.7
+- **defender_healers** (of which healers): 0.0..0.5: +57.9; 0.5..1.5: -6.9; 1.5..2.5: -4.4; 2.5..3.0: -37.1
+- **attackers_share** (share of the attacking team's live players in the pit (OG comms: merge before pushing the pit)): 0.12..0.13: -11.8; 0.16..0.23: -16.3; 0.27..0.35: -17.1; 0.42..0.53: -25.3; 0.61..0.65: +6.5; 0.73..0.78: +18.4; 0.87..0.94: +37.2
+- **npc_healing_10s** (healing on own pit NPCs and Lord in the last 10 s): 0.0..3.0: -16.9; 42.5..73.5: +4.0; 106.5..142.5: +20.7; 174.5..218.5: +21.2; 262.5..313.5: +24.4; 373.5..436.5: +29.3; 532.5..685.5: +39.7
+- **seconds_in_pit** (seconds the attackers have been in the pit): 0.0..4.5: -22.2; 10.5..16.5: -19.9; 22.5..28.5: -9.8; 37.5..46.5: -2.4; 58.5..73.5: +17.5; 91.5..112.5: +10.9; 142.5..193.5: +28.2
+- **attacker_healers** (of which healers): 0.0..0.5: +9.9; 0.5..1.5: -5.3; 1.5..2.5: +20.7; 2.5..3.0: -40.1
 
-**lord kill** (59 matches, 8004 moments, 528 results): no better than the simple baseline yet (AUC 0.936 against 0.934 for attackers and defenders alone).
-- **defenders** (own players in the pit) falls from +47.4 to -47.2 points (0.0..0.5: +47.4; 0.5..1.5: +40.2; 1.5..2.5: +17.7; 2.5..3.5: +0.5; 3.5..4.5: -27.2; 4.5..5.5: -36.8; 5.5..6.5: -40.4; 6.5..7.5: -41.5; 7.5..8.0: -47.2)
-- **attackers** (enemy players in the pit) rises from -45.0 to +28.0 points (1.0..1.5: -45.0; 1.5..2.5: +11.2; 2.5..3.5: +15.3; 3.5..4.5: +19.3; 4.5..5.5: +32.6; 5.5..6.5: +34.4; 6.5..7.5: +34.0; 7.5..8.0: +28.0)
-- **defenders_elsewhere** (own players alive outside the pit) falls from +39.9 to -42.4 points (0.0..0.5: +39.9; 0.5..1.5: +23.3; 1.5..2.5: +23.2; 2.5..3.5: +22.2; 3.5..4.5: +20.7; 4.5..5.5: -21.1; 5.5..6.5: -26.6; 6.5..7.5: -41.7; 7.5..8.0: -42.4)
-- **minute** (match minute) rises from -48.9 to +32.1 points (0.5..2.85: -48.9; 4.05..5.15: -11.1; 6.25..7.35: +8.7; 8.85..10.35: +15.8; 11.75..13.85: +17.1; 15.65..18.25: +26.3; 20.45..24.75: +31.6)
-- **attackers_lord_dps** (attackers' measured damage per second against a Lord (benchmarks)) rises from -30.0 to +26.3 points (1.9..18.75: -30.0; 28.8..32.15: -30.9; 32.8..43.25: -6.8; 54.8..64.25: -3.2; 65.7..72.55: +11.4; 76.6..86.35: +29.7; 99.2..110.5: +25.8)
-- **defender_healers** (of which healers) falls from +25.2 to -31.3 points (0.0..0.5: +25.2; 0.5..1.5: +9.6; 1.5..2.5: -2.3; 2.5..3.0: -31.3)
-- **attackers_share** (share of the attacking team's live players in the pit (OG comms: merge before pushing the pit)) rises from -17.9 to +25.0 points (0.12..0.13: -17.9; 0.16..0.23: -13.6; 0.27..0.35: -6.2; 0.42..0.53: -6.9; 0.61..0.65: -1.8; 0.73..0.78: +23.3; 0.87..0.94: +25.4)
-- **seconds_in_pit** (seconds the attackers have been in the pit) rises from -5.7 to +34.0 points (0.0..4.5: -5.7; 10.5..16.5: -13.4; 22.5..28.5: -12.4; 37.5..46.5: -10.6; 58.5..73.5: +2.1; 91.5..112.5: +18.1; 142.5..193.5: +26.5)
-- **res_in** (seconds until the next res) rises from -42.4 to +0.6 points (1.0..8.5: -42.4; 17.5..26.5: +7.8; 35.5..44.5: +12.3; 53.5..62.5: +11.4; 68.5..74.5: +8.6; 80.5..86.5: +6.5; 95.5..107.5: +1.8)
+**lord kill** (59 matches, 8004 moments, 528 results): no better than the simple baseline yet (AUC 0.942 against 0.934 for attackers and defenders alone).
+- **defenders** (own players in the pit) falls from +47.6 to -47.4 points (0.0..0.5: +47.6; 0.5..1.5: +39.9; 1.5..2.5: +17.6; 2.5..3.5: -1.7; 3.5..4.5: -25.8; 4.5..5.5: -36.0; 5.5..6.5: -40.4; 6.5..7.5: -41.5; 7.5..8.0: -47.4)
+- **attackers** (enemy players in the pit) rises from -45.8 to +32.8 points (1.0..1.5: -45.8; 1.5..2.5: +11.1; 2.5..3.5: +16.2; 3.5..4.5: +20.1; 4.5..5.5: +33.2; 5.5..6.5: +34.8; 6.5..7.5: +35.3; 7.5..8.0: +32.8)
+- **defenders_elsewhere** (own players alive outside the pit) falls from +39.9 to -42.2 points (0.0..0.5: +39.9; 0.5..1.5: +22.5; 1.5..2.5: +21.9; 2.5..3.5: +20.9; 3.5..4.5: +19.4; 4.5..5.5: -20.5; 5.5..6.5: -24.7; 6.5..7.5: -41.6; 7.5..8.0: -42.2)
+- **minute** (match minute) rises from -48.6 to +29.8 points (0.5..2.85: -48.6; 4.05..5.15: -15.9; 6.25..7.35: +11.3; 8.85..10.35: +16.0; 11.75..13.85: +17.3; 15.65..18.25: +25.1; 20.45..24.75: +29.3)
+- **attackers_lord_dps** (attackers' measured damage per second against a Lord (benchmarks)) rises from -28.5 to +26.2 points (1.9..18.75: -28.5; 28.8..32.15: -26.4; 32.8..43.25: -9.7; 54.8..64.25: -5.9; 65.7..72.55: +9.8; 76.6..86.35: +28.5; 99.2..110.5: +25.8)
+- **defender_healers** (of which healers) falls from +25.5 to -32.5 points (0.0..0.5: +25.5; 0.5..1.5: +10.1; 1.5..2.5: -1.8; 2.5..3.0: -32.5)
+- **res_in** (seconds until the next res) rises from -42.9 to +0.9 points (1.0..8.5: -42.9; 17.5..26.5: +7.3; 35.5..44.5: +12.3; 53.5..62.5: +11.4; 68.5..74.5: +9.1; 80.5..86.5: +7.0; 95.5..107.5: +2.4)
+- **attackers_share** (share of the attacking team's live players in the pit (OG comms: merge before pushing the pit)) rises from -17.7 to +24.5 points (0.12..0.13: -17.7; 0.16..0.23: -13.4; 0.27..0.35: -5.0; 0.42..0.53: -7.0; 0.61..0.65: -1.9; 0.73..0.78: +21.7; 0.87..0.94: +23.9)
+- **attacker_healers** (of which healers) falls from +13.5 to -6.8 points (0.0..0.5: +13.5; 0.5..1.5: -16.4; 1.5..2.5: -10.0; 2.5..3.0: -6.8)
 
 ## 7. The usual play
 
