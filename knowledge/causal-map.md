@@ -372,7 +372,7 @@ Caused by:
 - **Peel**: frontline defensive peel (hitting or snaring enemies on its own backline) protects the healers (Denning; hypothesis)
 - **Wrong casts**: wrong casts lose fights: casting into ready interrupts without cancelling, casting while Dazed, attacking while Blind (Denning; hypothesis)
 - **Enchantment strips**: strips on the right target (Elementalist enchantments when defensive, prots off a target under attack) (Denning; hypothesis)
-- **Blind on enemies**: Blind on the enemy frontline, above all on players hitting own healers, is defensive play (Denning; rejected)
+- **Blind on enemies**: Blind on the enemy frontline, above all on players hitting own healers, is defensive play (Denning; hypothesis)
 - **Burst timing**: off spike timing fails to kill (Denning; supported)
 - **Pressure**: damage output against the role's usual (Denning; supported)
 - **Condition removal**: the right hexes removed, and fast (Denning; hypothesis)
@@ -388,6 +388,7 @@ Measured on unseen matches (learnednodes.py; gain = how much worse the node pred
 - Enchantment strips (`P.18`), fight outcome node: gain -0.0012 (+/- 0.005, log loss), not clear yet, 113 matches
 - Peel (`P.13`), fight outcome node: gain -0.0013 (+/- 0.0019, log loss), not clear yet, 113 matches
 - Blind on enemies (`P.19`), fight outcome node: gain -0.0028 (+/- 0.0012, log loss), rejected, 113 matches
+- **Held for Denning:** the data says Blind on enemies -> Wipes is rejected; it stays a hypothesis until he rules.
 
 ### Flag lead `R.3`
 the flag position (response on the next capture exchange). *Measured: scoreboard.*
@@ -405,7 +406,7 @@ Caused by:
 - **Scoreboard**: a flag lead tends to grow or shrink by how it stands now (boost and run timing) (Claude; hypothesis)
 - **Deaths**: deaths lose flag position: the runner, the escort or the main (Claude; hypothesis)
 - **Clock**: the res clock and the minute change what a run can do (Claude; hypothesis)
-- **Mesmers free to defend**: defenders free to push a runner slow the enemy's capture (Denning; rejected)
+- **Mesmers free to defend**: defenders free to push a runner slow the enemy's capture (Denning; hypothesis)
 
 Measured on unseen matches (learnednodes.py; gain = how much worse the node predicts without the link):
 - Run timing and runner choice (`P.10`), flag swing node: gain +0.41 (+/- 0.12, mean absolute error (s)), supported, 113 matches
@@ -424,6 +425,7 @@ Measured on unseen matches (learnednodes.py; gain = how much worse the node pred
 - Map geometry (`C.map`), capture speed node: gain -0.07 (+/- 0.05, mean absolute error (s)), not clear yet, 105 matches
 - Allocation (`A.allocation`), flag swing node: gain -0.1 (+/- 0.05, mean absolute error (s)), rejected, 113 matches
 - Mesmers free to defend (`A.mesa_free`), capture speed node: gain -0.16 (+/- 0.04, mean absolute error (s)), rejected, 105 matches
+- **Held for Denning:** the data says Mesmers free to defend -> Flag lead is rejected; it stays a hypothesis until he rules.
 
 ### Boosts `R.4`
 boosts won and conceded. *Measured: stand ledger.*
@@ -585,3 +587,5 @@ Caused by:
 - 2026-11-07: link P.11 -> R.5: supported -> hypothesis by data (split_effect not clear yet +0.0035) (data)
 - 2026-11-07: link A.mesa_free -> R.3: supported -> rejected by data (capture_speed rejected -0.16) (data)
 - 2026-11-07: link A.mesa_free -> P.11: supported -> hypothesis by data (split_answer not clear yet +0.57) (data)
+- 2026-11-07: link A.mesa_free -> R.3: back to hypothesis; the data says rejected, held for Denning's ruling (Claude, at Denning's request)
+- 2026-11-07: link P.19 -> R.2: back to hypothesis; the data says rejected, held for Denning's ruling (Claude, at Denning's request)

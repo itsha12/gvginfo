@@ -604,7 +604,7 @@ still bends the wrong way at the extremes, so seconds of flag lead are sometimes
   rejected when dropping it helps by more than that, else not clear yet (link tests fit 2 bags per variant, the final
   readable model 4). Written into causal_map.json (`measured`, per node). A link's status follows the data only if it
   was a hypothesis or the data set it (`status_by: data`): supported if any node supports it, rejected if every node
-  that measured it rejects it, else back to hypothesis; Denning's and formula statuses never change. Appended to data/model/link_log.json each run; links a node needed and
+  that measured it rejects it, else back to hypothesis; Denning's and formula statuses never change, and a link from Denning is never rejected without his ruling (held with `pending_rejection`; `override_approved: true` lets the data reject it and then follow the data both ways). Appended to data/model/link_log.json each run; links a node needed and
   the map lacked were added as hypotheses (logged, with source). Rows are built in `lnrows.py` (cache kind "lrows",
   keyed by that file and the values' hash), so a change to the fitting never rebuilds them. New map nodes: P.17 wrong casts, P.18 enchantment
   strips, P.19 Blind on enemies; P.5 now covers hex removal. `whatif(node, row, changes)` reads a node again with

@@ -317,6 +317,14 @@ def write_map(summaries):
         ms = [v["status"] for v in (l.get("measured") or {}).values()]
         if not ms or not (l["status"] == "hypothesis" or l.get("status_by") == "data"): continue
         new = "supported" if "supported" in ms else "rejected" if all(x == "rejected" for x in ms) else "hypothesis"
+        # Denning's links are never rejected by data without his approval: held as "data says rejected" for him to rule
+        # on ("override_approved": true lets the data reject it, and then follow the data both ways)
+        if new == "rejected" and l.get("source") == "Denning" and not l.get("override_approved"):
+            if not l.get("pending_rejection"):
+                c["log"].append({"date": today, "change": f"link {l['from']} -> {l['to']}: the data says rejected; held for Denning's ruling", "by": "data"})
+            l["pending_rejection"] = True; new = "hypothesis"
+        else:
+            l.pop("pending_rejection", None)
         if new != l["status"]:
             c["log"].append({"date": today, "change": f"link {l['from']} -> {l['to']}: {l['status']} -> {new} by data ("
                              + ", ".join(f"{k} {v['status']} {v['strength']:+}" for k, v in l["measured"].items()) + ")", "by": "data"})

@@ -3281,7 +3281,7 @@
    "why": "defenders free to push a runner slow the enemy's capture",
    "source": "Denning",
    "confirmed_by_denning": false,
-   "status": "rejected",
+   "status": "hypothesis",
    "tactics": [],
    "measured": {
     "capture_speed": {
@@ -3299,7 +3299,7 @@
      "date": "2026-11-07"
     }
    },
-   "status_by": "data"
+   "pending_rejection": true
   },
   {
    "from": "A.allocation",
@@ -3434,7 +3434,7 @@
    "why": "Blind on the enemy frontline, above all on players hitting own healers, is defensive play",
    "source": "Denning",
    "confirmed_by_denning": false,
-   "status": "rejected",
+   "status": "hypothesis",
    "tactics": [],
    "measured": {
     "fight_outcome": {
@@ -3451,7 +3451,7 @@
      "date": "2026-11-07"
     }
    },
-   "status_by": "data"
+   "pending_rejection": true
   },
   {
    "from": "P.2",
@@ -4128,6 +4128,16 @@
    "date": "2026-11-07",
    "change": "link A.mesa_free -> P.11: supported -> hypothesis by data (split_answer not clear yet +0.57)",
    "by": "data"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link A.mesa_free -> R.3: back to hypothesis; the data says rejected, held for Denning's ruling",
+   "by": "Claude, at Denning's request"
+  },
+  {
+   "date": "2026-11-07",
+   "change": "link P.19 -> R.2: back to hypothesis; the data says rejected, held for Denning's ruling",
+   "by": "Claude, at Denning's request"
   }
  ]
 }

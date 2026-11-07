@@ -52,6 +52,8 @@ def render():
                 for (frm, node), v in sorted(meas.items(), key=lambda kv: -kv[1]["strength"]):
                     L.append(f"- {nodes[frm]['name']} (`{frm}`), {node.replace('_', ' ')} node: gain {v['strength']:+} (+/- {v['plus_minus']}, "
                              f"{v['metric']}), {v['status']}, {v['matches']} matches")
+            pend = [l for l in into.get(nid, []) if l.get("pending_rejection")]
+            for l in pend: L.append(f"- **Held for Denning:** the data says {nodes[l['from']]['name']} -> {x['name']} is rejected; it stays a hypothesis until he rules.")
             L.append("")
     L += ["## Change log", ""] + [f"- {x['date']}: {x['change']} ({x['by']})" for x in m["log"]]
     out = os.path.join(REPO, "knowledge", "causal-map.md")
