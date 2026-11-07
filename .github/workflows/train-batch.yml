@@ -5,6 +5,10 @@ name: Train batch
 # batch, rebuilds the analysis and the held-out models (from the prepared data saved on the "cache" branch), writes
 # the learning report, saves the cache back and commits the results to main. Claude then reads
 # data/model/reports/latest.md and explains it. Started by hand (Actions tab, or Claude with gh api).
+# Split across machines for speed (free on a public repo): "prepare" picks, fetches, adds the batch, analyses and warms
+# the held-out models; five "part" jobs then build the report's heavy sections side by side (learning.py part ...);
+# "finish" joins them, runs values, the TQs and the snapshot (learning.py finish), saves the cache and commits.
+# Jobs pass their work on as artifacts: a git patch of the files they changed plus the new cache files.
 on:
   workflow_dispatch:
     inputs:
@@ -35,12 +39,13 @@ concurrency:
   group: replays
   cancel-in-progress: false
 
+env:
+  PYTHONDONTWRITEBYTECODE: "1"
+
 jobs:
-  train:
+  prepare:
     runs-on: ${{ github.event.inputs.runner || 'ubuntu-latest' }}
-    timeout-minutes: 150
-    env:
-      PYTHONDONTWRITEBYTECODE: "1"
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -84,24 +89,127 @@ jobs:
           NOTE: ${{ github.event.inputs.note }}
         run: |
           python3 batch.py add
-          python3 - <<'EOF'
+          python3 - <<'PY'
           import json, os
           p = "../../data/model/batches.json"; b = json.load(open(p))
           if os.environ.get("NOTE"): b["batches"][-1].setdefault("note", os.environ["NOTE"])
           json.dump(b, open(p, "w"), indent=1)
-          EOF
+          PY
       - name: Analyse every match
         working-directory: tools/replay_analysis
         run: |
           python3 analyze.py --all --out /tmp/ga > /dev/null
           python3 library.py build > /dev/null
-      - name: Held-out models
-        working-directory: tools/replay_analysis
-        run: python3 cache.py warm
-      - name: Learning report
+      - name: Held-out models and fight-state predictions
         working-directory: tools/replay_analysis
         run: |
-          python3 learning.py
+          python3 cache.py warm
+          python3 -c "import learning as L, model as M; L.fightstate_extra([m for b in M.batches() for m in b['matches']])"
+      - name: Pack the prepared state
+        run: |
+          mkdir -p /tmp/state
+          git add -A && git diff --cached --binary > /tmp/state/prep.patch
+          tar -czf /tmp/state/prep.tgz -C / "${HOME#/}/.cache/gvginfo" tmp/ga tmp/gl
+          ls -la /tmp/state
+      - uses: actions/upload-artifact@v4
+        with:
+          name: prep
+          path: /tmp/state
+          retention-days: 1
+          compression-level: 0
+
+  part:
+    needs: prepare
+    runs-on: ${{ github.event.inputs.runner || 'ubuntu-latest' }}
+    timeout-minutes: 90
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+          - id: main
+            arg: main
+          - id: cands
+            arg: cands
+          - id: nodes-deaths
+            arg: "nodes:deaths"
+          - id: nodes-b
+            arg: "nodes:lord_kill,npc_loss"
+          - id: nodes-c
+            arg: "nodes:kill_conversion,lord_damage,flag_answer"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: .github/workflows/train-requirements.txt
+      - name: Install the model libraries
+        run: nproc && pip install -r .github/workflows/train-requirements.txt
+      - uses: actions/download-artifact@v4
+        with:
+          name: prep
+          path: /tmp/state
+      - name: Restore the prepared state
+        run: |
+          git config --global user.name "gvginfo-bot"
+          git config --global user.email "gvginfo-bot@users.noreply.github.com"
+          git fetch --depth 1 origin +replays:refs/remotes/origin/replays
+          [ -s /tmp/state/prep.patch ] && git apply --binary /tmp/state/prep.patch
+          tar -xzf /tmp/state/prep.tgz -C /
+          git add -A && git commit -qm "prepared state (local only)" --allow-empty
+          touch /tmp/marker && sleep 1
+      - name: Build this part of the report
+        working-directory: tools/replay_analysis
+        run: python3 learning.py part "${{ matrix.arg }}" --out /tmp/out
+      - name: Pack this part
+        run: |
+          git add -A && git diff --cached --binary HEAD > /tmp/out/${{ matrix.id }}.patch
+          cd / && find "${HOME#/}/.cache/gvginfo" -type f -newer /tmp/marker > /tmp/newfiles.txt
+          tar -czf /tmp/out/${{ matrix.id }}-cache.tgz -C / -T /tmp/newfiles.txt
+          ls -la /tmp/out
+      - uses: actions/upload-artifact@v4
+        with:
+          name: part-${{ matrix.id }}
+          path: /tmp/out
+          retention-days: 1
+          compression-level: 0
+
+  finish:
+    needs: part
+    runs-on: ${{ github.event.inputs.runner || 'ubuntu-latest' }}
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: .github/workflows/train-requirements.txt
+      - name: Install the model libraries
+        run: nproc && pip install -r .github/workflows/train-requirements.txt
+      - uses: actions/download-artifact@v4
+        with:
+          name: prep
+          path: /tmp/state
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: part-*
+          path: /tmp/parts
+          merge-multiple: true
+      - name: Join the prepared state and the parts
+        run: |
+          git config --global user.name "gvginfo-bot"
+          git config --global user.email "gvginfo-bot@users.noreply.github.com"
+          git fetch --depth 1 origin +replays:refs/remotes/origin/replays
+          [ -s /tmp/state/prep.patch ] && git apply --binary /tmp/state/prep.patch
+          tar -xzf /tmp/state/prep.tgz -C /
+          for p in /tmp/parts/*.patch; do [ -s "$p" ] && git apply --binary "$p"; done
+          for t in /tmp/parts/*-cache.tgz; do tar -xzf "$t" -C /; done
+          ls -la /tmp/parts
+      - name: Learning report (values, TQs, snapshot; join)
+        working-directory: tools/replay_analysis
+        run: |
+          python3 learning.py finish /tmp/parts
           python3 status.py sync > /dev/null
       - name: Save prepared data
         working-directory: tools/replay_analysis
@@ -117,3 +225,4 @@ jobs:
         run: |
           echo "## Learning report" >> "$GITHUB_STEP_SUMMARY"
           [ -f data/model/reports/latest.md ] && sed -n '1,30p' data/model/reports/latest.md >> "$GITHUB_STEP_SUMMARY" || echo "No report." >> "$GITHUB_STEP_SUMMARY"
+          [ -f data/model/reports/timings.json ] && { echo '```' ; cat data/model/reports/timings.json; echo '```'; } >> "$GITHUB_STEP_SUMMARY"

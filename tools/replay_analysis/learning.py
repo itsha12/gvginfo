@@ -2,6 +2,9 @@
 
 Usage:  python3 learning.py            fits on every batch in data/model/batches.json, writes
                                        data/model/reports/batch_NN.md and keeps data/model/history/batch_NN.json
+        python3 learning.py part <name> [--out DIR]   one part of the report on its own machine: main, cands, or
+                                       nodes:<node,node...> (the Train batch workflow runs them side by side)
+        python3 learning.py finish [DIR]   join the saved parts, run values, the TQs and the snapshot, write the report
 Sections: the honest test (better than team strength alone?); what it leans on and how that changed since the last
 batch; each important curve in words, with its uncertainty; discovery (interaction candidates, untested until held-out
 matches confirm them; the moments the model got most wrong, which point to missing variables); Denning's rulings seen
@@ -56,17 +59,36 @@ def _lap(name):
     _T["t"] = now
 
 
-def report():
-    _lap("start")
+# ---- the report in sections. Each section adds its lines to ctx["parts"][name] and may leave values in ctx for later
+# sections. Run serially (report()) or split across machines (the Train batch workflow): part("main"), part("cands"),
+# part("nodes:deaths") ... each save their lines to a folder, and finish() runs the last sections on the saved parts
+# and writes the report. The text and order are the same either way.
+NODE_LIST = ["deaths", "kill_conversion", "flag_answer", "npc_loss", "lord_damage", "lord_kill"]
+ORDER = ["head", "lean", "cands", "surprises", "rulings", "nodes_head"] + [f"node:{x}" for x in NODE_LIST] + \
+        ["learned", "usual", "values", "tqs", "snapshot", "questions"]
+
+
+def _ctx():
     bs = M.batches(); n = len(bs) - 1
     ids = [m for b in bs for m in b["matches"]]
-    new_ids = bs[-1]["matches"]
-    import fightstate, subprocess, integrity
-    allr = list(json.loads(subprocess.check_output(["git", "-C", REPO, "show", "origin/replays:index.json"]))["matches"])
-    fightstate.build(ids, [x for x in allr if x not in ids])       # before the tables: fight_state reads it
-    model, wp, df, held, X, y = M.fit_and_save(ids, n)
     prev_p = os.path.join(HISTORY, f"batch_{n - 1:02d}.json")
     prev = json.load(open(prev_p)) if n > 0 and os.path.exists(prev_p) else None
+    return {"n": n, "ids": ids, "new_ids": bs[-1]["matches"], "prev": prev, "parts": {}}
+
+
+def fightstate_extra(ids):
+    """Fight-state predictions for every stored replay (trained ones by groups, the rest from a model on all trained
+    matches). Run once before any section (the workflow's preparation job does it, so every part shares it)."""
+    import fightstate, subprocess
+    allr = list(json.loads(subprocess.check_output(["git", "-C", REPO, "show", "origin/replays:index.json"]))["matches"])
+    fightstate.build(ids, [x for x in allr if x not in ids])       # before the tables: fight_state reads it
+
+
+def s_head(c):
+    ids, n, prev, new_ids = c["ids"], c["n"], c["prev"], c["new_ids"]
+    fightstate_extra(ids)
+    model, wp, df, held, X, y = M.fit_and_save(ids, n)
+    c.update(model=model, df=df, held=held, X=X, y=y)
     os.makedirs(HISTORY, exist_ok=True); os.makedirs(REPORTS, exist_ok=True)
     json.dump(model, open(os.path.join(HISTORY, f"batch_{n:02d}.json"), "w"), indent=1)
 
@@ -74,7 +96,7 @@ def report():
          f"Trained on {model['matches']} matches ({len(new_ids)} new in this batch). Variables in use: "
          f"{len(model['variables_in_use'])}; build variables from {M.STAGES['build_variables']} matches, interactions from "
          f"{M.STAGES['interactions']}.", ""]
-    v = model["validation"]
+    v = model["validation"]; c["v"] = v
     _lap("fit and honest test")
     # data integrity (integrity.py): what was repaired or can't be trusted in the matches trained on
     from replaylib import Match
@@ -101,9 +123,13 @@ def report():
                  f"{v['glass box']['all']['log_loss']}; strength only {pv['strength only']['all']['log_loss']} -> "
                  f"{v['strength only']['all']['log_loss']}.")
     L.append("")
-
     _lap("integrity and honest test text")
-    L += ["## 2. What it leans on", ""]
+    c["parts"]["head"] = L
+
+
+def s_lean(c):
+    model, prev, X, y = c["model"], c["prev"], c["X"], c["y"]
+    L = ["## 2. What it leans on", ""]
     pimp = {t["term"]: t["importance"] for t in prev["terms"]} if prev else {}
     for t in model["terms"][:12]:
         ch = f" (was {pimp[t['term']]})" if t["term"] in pimp else (" (new)" if prev else "")
@@ -114,7 +140,6 @@ def report():
         if "curve" in t: L.append(f"- **{t['term']}** {curve_words(t)}")
         else: L.append(f"- **{t['term']}** (interaction): see wp_model.md")
     L.append("")
-
     _lap("curves")
     # discovery 1: interaction candidates (screen only, coarse bins)
     from interpret.utils import measure_interactions
@@ -126,29 +151,44 @@ def report():
     for (i, j), s in cand:
         L.append(f"- {use[i]} with {use[j]} (screen {s:.3f})")
     _lap("interaction screen")
-    # discovery 2: candidate variables, retested every batch
-    L += ["", "**Candidate variables** (proposed variables, tested on unseen matches; log loss, lower is better):", ""]
-    for c in M.test_candidates(ids, base=v["glass box"]["all"]["log_loss"]):
-        L.append(f"- {c['candidate']}: {c['without']} without, {c['with']} with: {c['verdict']}. {c['description']}")
+    c["parts"]["lean"] = L
+
+
+def s_cands(c):
+    # discovery 2: candidate variables, retested every batch. Split across machines, the base is fitted here on the same
+    # folds and rows (model.test_candidates), so the number is the honest test's own
+    base = c["v"]["glass box"]["all"]["log_loss"] if "v" in c else None
+    L = ["", "**Candidate variables** (proposed variables, tested on unseen matches; log loss, lower is better):", ""]
+    for x in M.test_candidates(c["ids"], base=base):
+        L.append(f"- {x['candidate']}: {x['without']} without, {x['with']} with: {x['verdict']}. {x['description']}")
     _lap("candidate variables")
+    c["parts"]["cands"] = L
+
+
+def s_surprises(c):
+    ids, df, held, y = c["ids"], c["df"], c["held"], c["y"]
     # discovery 3: surprises = held-out moments most wrong, one per match
     yv = y.values; p = np.clip(held, 0.02, 0.98)
     loss = -(yv * np.log(p) + (1 - yv) * np.log(1 - p))
     d = df.assign(p=p, loss=loss)
     worst = d.sort_values("loss", ascending=False).drop_duplicates("match").head(6)
-    L += ["", "**Surprises** (moments where the held-out model was most confident about the team that went on to lose; "
-          "each points to something the variables don't capture yet):", ""]
+    L = ["", "**Surprises** (moments where the held-out model was most confident about the team that went on to lose; "
+         "each points to something the variables don't capture yet):", ""]
     for _, r in worst.iterrows():
         row = next(x for x in M.match_table(r["match"]) if x["t"] == r["t"] and x["team"] == r["team"])
         pw, parts = holdout_model(ids, r["match"]).explain(row)
         L.append(f"- {tags(r['match'])} at {clock(r['t'])}: a model that never saw this match gave {r['team']} {pw}%, and "
                  f"{r['team']} {'won' if r['won'] else 'lost'}. Why it thought so: " + ", ".join(f"{a} {b:+}" for a, b in parts[:5]))
     _lap("surprises")
-    # rulings
+    c["parts"]["surprises"] = L
+
+
+def s_rulings(c):
+    ids = c["ids"]
     labels = json.load(open(os.path.join(REPO, "data", "review_labels.json")))["labels"]
-    L += ["", "## 5. Denning's rulings seen through the model", "",
-          "Win chance from a model that never saw the match, 20 s before and 60 s after each ruled moment. Contributions are "
-          "points for an otherwise even game (the curves' scale).", ""]
+    L = ["", "## 5. Denning's rulings seen through the model", "",
+         "Win chance from a model that never saw the match, 20 s before and 60 s after each ruled moment. Contributions are "
+         "points for an otherwise even game (the curves' scale).", ""]
     seen = set()
     for lb in labels:
         if "t" not in lb or lb["match"] not in ids or (lb["match"], lb["t"]) in seen: continue
@@ -165,13 +205,19 @@ def report():
             L.append(f"- {tags(lb['match'])} {clock(lb['t'])} ({lb['rule']}), {team}: {pb}% 20 s before -> {pa}% 60 s after "
                      f"({pa - pb:+.1f}). After: " + ", ".join(f"{x} {y_:+}" for x, y_ in partsa[:4]))
     _lap("rulings")
-    # the node models: why results happen (causal map)
+    c["parts"]["rulings"] = L
+
+
+def s_nodes(c, which=None):
+    """The node models (section 6). which = the nodes to fit here (all by default); each node's lines are kept apart
+    so nodes fitted on different machines join in the usual order."""
     import nodes as NODES
-    L += ["", "## 6. Why: the node models", "",
-          "Each explains one result from what happened before it (time order enforced), tested on matches it never saw. "
-          "AUC = how often a moment that led to the result scores above one that didn't (0.5 = guessing, 1 = perfect).", ""]
-    node_fits = NODES.fit_nodes(["deaths", "kill_conversion", "flag_answer", "npc_loss", "lord_damage", "lord_kill"], ids)
+    c["parts"]["nodes_head"] = ["", "## 6. Why: the node models", "",
+        "Each explains one result from what happened before it (time order enforced), tested on matches it never saw. "
+        "AUC = how often a moment that led to the result scores above one that didn't (0.5 = guessing, 1 = perfect).", ""]
+    node_fits = NODES.fit_nodes([x for x in NODE_LIST if which is None or x in which], c["ids"])
     for node, (s_, e_, df_, held_) in node_fits.items():
+        L = []
         v_ = s_["validation"]
         if node in NODES.REGRESSION:
             what = {"flag_answer": "seconds an answer to an enemy capture was slower than possible",
@@ -181,9 +227,9 @@ def report():
                      f"{s_['matches']} matches, {s_['rows']} rows): {v_['verdict']} (typical error {v_['glass box']['mae_s']}{unit} "
                      f"against {v_['simple baseline']['mae_s']}{unit} for the median; explains {v_['glass box']['r2']:.0%} of the spread).")
             for t in s_["terms"][:10]:
-                c = [x for x in t["curve"] if x["from"] is not None]
+                cv = [x for x in t["curve"] if x["from"] is not None]
                 L.append(f"- **{t['term']}** ({NODES.DESC[node].get(t['term'], '')}): " +
-                         "; ".join(f"{x['from']}..{x['to']}: {x['points']:+}{(' ' + unit) if unit else ''}" for x in c[::max(1, len(c) // 5)]))
+                         "; ".join(f"{x['from']}..{x['to']}: {x['points']:+}{(' ' + unit) if unit else ''}" for x in cv[::max(1, len(cv) // 5)]))
         else:
             L.append(f"**{node.replace('_', ' ')}** ({s_['matches']} matches, {s_['rows']} moments, {s_['events']} results): "
                      f"{v_['verdict']} (AUC {v_['glass box']['auc']} against {v_['simple baseline']['auc']} for "
@@ -191,28 +237,39 @@ def report():
             for t in s_["terms"][:10]:
                 if "curve" in t: L.append(f"- **{t['term']}** ({t['description']}) {curve_words(t)}")
         L.append("")
+        c["parts"][f"node:{node}"] = L
     _lap("node models")
+
+
+def s_learned(c):
     # step 2 of the learned causal map: event-layer values (2a) and the learned nodes with every link's measured strength
     import eventlayer as EL, learnednodes as LN, causal_map as CM
+    ids = c["ids"]
     EL.warm(ids); V_ = EL.values(ids)
     bs_ = M.batches(); last2 = [m for b in bs_[-2:] for m in b["matches"]]
     open(os.path.join(REPO, "data", "model", "reports", "measures.md"), "w").write("\n".join(EL.report(last2)) + "\n")
     _lap("event layer and values")
     ln_fits = LN.fit_all(ids, V=V_)
-    L += LN.report_lines(ln_fits)
+    L = LN.report_lines(ln_fits)
     LN.write_map(ln_fits)
     LN.render_overview(ln_fits)
     CM.render()
     _lap("learned nodes")
+    c["parts"]["learned"] = L
+
+
+def s_usual(c):
     # the usual play (usual.py): needs the analysis files (analyze.py --all --out /tmp/ga)
     import usual as U, copy
-    tq_recs = tq_res = None
+    L = []
+    c["tq_recs"] = c["tq_res"] = None
     if os.path.isdir("/tmp/ga"):
         # the decision records are built once (win chance from held-out models) and copied for each use; the TQs reuse the
         # copy the usual play was measured on (it carries each decision's refined choice and its usual play)
         base_recs = U.wp_change(U.load("/tmp/ga"))
         tq_recs = copy.deepcopy(base_recs)
         res = tq_res = U.analyse(tq_recs)
+        c["tq_recs"], c["tq_res"] = tq_recs, tq_res
         L += ["## 7. The usual play", "", "Each choice against the most common one in that kind of decision, in win-chance points over the "
               "decision's window, adjusted for the situation, with a 90% range from resampling whole matches. CLEAR = the "
               "range excludes 0. Win chance comes from a model that never saw the match. The same comparison over the "
@@ -221,12 +278,12 @@ def report():
         for kind, x in res.items():
             if "choices" not in x: L.append(f"- **{kind}**: {x.get('note')} ({x.get('n')})"); continue
             L.append(f"**{kind.replace('_', ' ')}** ({x['n']} decisions, {x['matches']} matches; usual: {x['reference']})")
-            for c in x["choices"][1:]:
-                L.append(f"- {c['choice']} (n {c['n']}): {c['effect_vs_usual']:+} [{c['interval'][0]:+}, {c['interval'][1]:+}]"
-                         + (" CLEAR" if c.get("clear") else "")
-                         + (f"; in the {U.PRE_S} s before: {c['pre_trend_vs_usual']:+} [{c['pre_interval'][0]:+}, {c['pre_interval'][1]:+}]"
-                            + (" ALREADY DIFFERENT BEFORE: partly who chooses it" if c.get("selection_warning") else "")
-                            if "pre_trend_vs_usual" in c else ""))
+            for ch in x["choices"][1:]:
+                L.append(f"- {ch['choice']} (n {ch['n']}): {ch['effect_vs_usual']:+} [{ch['interval'][0]:+}, {ch['interval'][1]:+}]"
+                         + (" CLEAR" if ch.get("clear") else "")
+                         + (f"; in the {U.PRE_S} s before: {ch['pre_trend_vs_usual']:+} [{ch['pre_interval'][0]:+}, {ch['pre_interval'][1]:+}]"
+                            + (" ALREADY DIFFERENT BEFORE: partly who chooses it" if ch.get("selection_warning") else "")
+                            if "pre_trend_vs_usual" in ch else ""))
             fc = [b for b in x.get("by_build", []) if "fight" in b]
             if fc:
                 L.append("  By fight state (fightstate.py: enemy minus own expected deaths in the next 10 s; decisions split into "
@@ -274,31 +331,50 @@ def report():
                     L.append(f"- n {g['n']}: {g['response']}; named as {g['named_choices']}; win change {g['win_change_mean']}"
                              + (" UNNAMED" if g["unnamed"] else ""))
             L.append("")
-    import values as VAL
-    v = VAL.measure(ids); VAL.write(v)
     _lap("usual play")
-    L += ["## 8. What results and causes are worth", ""] + VAL.report_lines(v)
+    c["parts"]["usual"] = L
+
+
+def s_values(c):
+    # after the node models: the causes are priced from data/model/nodes/*.json
+    import values as VAL
+    v = VAL.measure(c["ids"]); VAL.write(v)
+    c["parts"]["values"] = ["## 8. What results and causes are worth", ""] + VAL.report_lines(v)
     _lap("values")
+
+
+def s_tqs(c):
     # the TQs (Denning's four questions, replacing the five random whys): a flag swing, a monk death, a power play without
     # a kill and a pit NPC loss from the new matches, each with the different play measured (tq.py)
     import tq as TQ
-    if tq_recs is not None: L += TQ.lines(new_ids, ids, tq_recs, tq_res)
-    else: L += ["## The TQs", "", "Not answered: the analysis files are missing (analyze.py --all --out /tmp/ga).", ""]
+    if c.get("tq_recs") is not None: L = TQ.lines(c["new_ids"], c["ids"], c["tq_recs"], c["tq_res"])
+    else: L = ["## The TQs", "", "Not answered: the analysis files are missing (analyze.py --all --out /tmp/ga).", ""]
     _lap("TQs")
+    c["parts"]["tqs"] = L
+
+
+def s_snapshot(c):
     import snapshot as SNAP
-    if os.path.isdir("/tmp/gl"): L += SNAP.snapshot(ids, new_ids, "/tmp/gl")
+    c["parts"]["snapshot"] = SNAP.snapshot(c["ids"], c["new_ids"], "/tmp/gl") if os.path.isdir("/tmp/gl") else []
     _lap("snapshot")
-    L += ["## 10. For Denning", "",
+    c["parts"]["questions"] = ["## 10. For Denning", "",
           "- Which curves look wrong to you? A correction (direction, cap, drop, or a pair to always test) is logged with "
           "your reason and tested on held-out matches.",
           "- Do any surprises remind you of something the variables don't capture (a missing variable)?",
           "- Any variable you think matters that isn't listed?", ""]
     _lap("questions")
+
+
+def _write(c, part_seconds=None):
     import platform
+    L = [x for k in ORDER for x in c["parts"].get(k, [])]
+    n = c["n"]
     cpu = next((l.split(":", 1)[1].strip() for l in open("/proc/cpuinfo") if l.startswith("model name")), None) if os.path.exists("/proc/cpuinfo") else None
     cpu = cpu or platform.machine()
     # the processor is recorded because the model library's fits can differ in the last digits between processor types
-    json.dump({"cores": os.cpu_count(), "cpu": cpu, "seconds": _T["laps"]}, open(os.path.join(REPORTS, "timings.json"), "w"), indent=1)
+    t = {"cores": os.cpu_count(), "cpu": cpu, "seconds": _T["laps"]}
+    if part_seconds: t["split"] = part_seconds
+    json.dump(t, open(os.path.join(REPORTS, "timings.json"), "w"), indent=1)
     path = os.path.join(REPORTS, f"batch_{n:02d}.md")
     open(path, "w").write("\n".join(L) + "\n")
     open(os.path.join(REPORTS, "latest.md"), "w").write("\n".join(L) + "\n")
@@ -308,5 +384,54 @@ def report():
     return path
 
 
+def report():
+    """The whole report on one machine, section by section."""
+    _lap("start")
+    c = _ctx()
+    for fn in (s_head, s_lean, s_cands, s_surprises, s_rulings, s_nodes, s_learned, s_usual, s_values, s_tqs, s_snapshot):
+        fn(c)
+    return _write(c)
+
+
+# ---- split across machines (the Train batch workflow): parts in parallel, then finish
+PART_SECTIONS = {"main": (s_head, s_lean, s_surprises, s_rulings, s_learned, s_usual), "cands": (s_cands,)}
+
+
+def part(name, out):
+    """Run one part's sections and save its lines (and, for main, the decision records the TQs reuse) to out/."""
+    import pickle, time
+    t0 = time.time(); _lap("start")
+    c = _ctx()
+    if name.startswith("nodes:"): s_nodes(c, name.split(":", 1)[1].split(","))
+    else:
+        for fn in PART_SECTIONS[name]: fn(c)
+    os.makedirs(out, exist_ok=True)
+    safe = name.replace(":", "_").replace(",", "+")
+    json.dump({"part": name, "lines": c["parts"], "laps": _T["laps"], "seconds": round(time.time() - t0, 1)},
+              open(os.path.join(out, f"part_{safe}.json"), "w"))
+    if name == "main":
+        pickle.dump({"tq_recs": c.get("tq_recs"), "tq_res": c.get("tq_res")}, open(os.path.join(out, "main_recs.pkl"), "wb"))
+
+
+def finish(src):
+    """Join the saved parts and run the last sections (values and the TQs read the node models' files; snapshot)."""
+    import glob, pickle
+    _lap("start")
+    c = _ctx(); split = {}
+    for f in sorted(glob.glob(os.path.join(src, "part_*.json"))):
+        p = json.load(open(f)); c["parts"].update(p["lines"]); split[p["part"]] = {"seconds": p["seconds"], "laps": p["laps"]}
+        for k, s in p["laps"].items(): _T["laps"][k] = round(_T["laps"].get(k, 0) + s, 1)
+    missing = [k for k in ["head", "lean", "cands", "surprises", "rulings", "learned", "usual"] + [f"node:{x}" for x in NODE_LIST]
+               if k not in c["parts"]]
+    if missing: raise SystemExit(f"parts missing: {missing}")
+    rp = os.path.join(src, "main_recs.pkl")
+    if os.path.exists(rp): c.update(pickle.load(open(rp, "rb")))
+    for fn in (s_values, s_tqs, s_snapshot): fn(c)
+    return _write(c, split)
+
+
 if __name__ == "__main__":
-    print(report())
+    a = sys.argv[1:]
+    if a[:1] == ["part"]: part(a[1], a[a.index("--out") + 1] if "--out" in a else "/tmp/parts")
+    elif a[:1] == ["finish"]: print(finish(a[1] if len(a) > 1 else "/tmp/parts"))
+    else: print(report())
