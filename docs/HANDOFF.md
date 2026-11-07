@@ -1,6 +1,6 @@
 # GvG Info — handoff for a new Claude chat
 
-Last updated 2026-11-07 (portal sections unchanged since 2026-10-15; match replay analysis updated, session 4q). Attach this file (or just ask Claude to attach the repo) in a new chat, then say what you want.
+Last updated 2026-11-07 (portal sections unchanged since 2026-10-15; match replay analysis updated, session 4r). Attach this file (or just ask Claude to attach the repo) in a new chat, then say what you want.
 
 ## Start a new chat in one message
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md and docs/HANDOFF.md, then: <your request>
@@ -94,9 +94,47 @@ Claude should then:
 
 # Match replay analysis
 
-**Status:** Active. Last updated 2026-11-07 (session 4q). Building the learned causal map: steps 1 (event layer) and 2
-(data-valued wrong casts, nine learned node models with measured link strengths) done. Next: Bounty's and Nick's
-commentary transcripts (Denning sends them), then step 3 (discovery).
+**Status:** Active. Last updated 2026-11-07 (session 4r). Building the learned causal map: steps 1 (event layer) and 2
+(data-valued wrong casts, nine learned node models with measured link strengths) done. Session 4r: the Train batch run
+is split across parallel GitHub jobs, and batch 9 (20 random matches, 15 from September and 5 from October) trained:
+133 matches. Next: Denning's rulings on the batch 9 questions (below), the forensics position fix if he agrees, then
+the commentary transcripts and step 3 (discovery).
+
+### Session 4r (2026-11-07)
+- Train batch split (`.github/workflows/train-batch.yml`, METHODS.md "Train batch on GitHub"): prepare -> six parts at
+  once (main, learned, cands, nodes:deaths, nodes:lord_kill,npc_loss, nodes:kill_conversion,lord_damage,flag_answer) ->
+  finish (values priced, TQs, snapshot, cache push, commit). `learning.py part <name>` / `learning.py finish`;
+  `learning.py` alone still runs everything on one machine. Checked: a rebuild of batch 8 through the split gave the
+  same report apart from processor noise.
+- Run times: rebuild with no new matches 11 min whole run (prepare 3, longest part 3, finish 4). Batch 9 (20 new
+  matches) 27 min: prepare 12 (fetching 20 replays 3.3 min at gvg.report's 4 s spacing; preparing the new matches'
+  data 7 min), main part 12 (learned nodes 6.7 min building the new matches' event records, values 2.3), finish 2.5.
+  After batch 9 the learned nodes got their own part (`learned`; not yet run on GitHub, first use next batch), which
+  should take the main part to about 5 min. Further speed-up if wanted: spread prepare's per-match data across machines.
+- Batch 9 report: glass box log loss 0.377 against 0.463 for strength alone (gain +0.086, range -0.035 to +0.196, ahead
+  but not yet clear; the new matches were harder for strength alone, 0.412 -> 0.463). Morale now leads (0.691), with
+  new morale x Lord-damage-rate interactions. Learned-node links supported: 17 of 50 (13 before). Newly supported:
+  damage against the usual -> kill conversion; commitment (pushed) -> kill conversion; split size and free defenders
+  -> split answer; defender snares and split speed -> collapse deaths; split-answer latency -> deaths. Flipped to not
+  clear: split size and main numbers -> collapse deaths. Rejected by data: Blind on own players in the last 10 s ->
+  kill conversion (Claude's link, tiny either way, -0.0007; it was supported at +0.0011 in batch 8, a near-line
+  flip). Denning's held link (Blind on the enemy frontline -> fights) moved from rejected to not clear yet.
+  Usual play: split in base, collapsing -4.3 against defending without a collapse (clear); after a wipe, taking the
+  flag -4.6 against pushing the pit (clear, smaller than at 53 matches); boost clock, not running and falling back
+  -4.0 (clear). Values: a death -5.0, a death while the team is boosted -19.8, a knight -4.8, the Bodyguard -3.8, a
+  capture +1.7.
+- Faults found in batch 9's TQs (not fixed yet):
+  1. forensics.position uses the median over the whole window before a death, so a ranged spike that closes in for the
+     last seconds reads "not in position" (TQ 1: Apes Necromancer at 1:54 in d9d75e55 shown 1,648 from the nearest
+     enemy; the replay has Fun's Water and Air Eles at 701 and 739 for the last 4 s). Proposed fix: judge position on
+     the last 5 s (as the healer distance already is), keep the window median as context; then rebuild
+     `data/benchmarks/forensics.json`. Engine change (cache rebuilds): ask Denning first.
+  2. TQ 1's chain stops at "already behind on flags at 4:15" although the swing began at 1:45 (chain.py's hand rules;
+     step 4 replaces them).
+  3. TQ 4's NPC-loss what-ifs aren't monotonic (two more defenders 74.0% to lose, one more 72.3%): the node read
+     outside its data; show such readings as unreliable or cap them.
+  4. TQ 4 says the split was answered on time while the first knight fell at 15:11 with 0 defenders (it was the wipe's
+     conversion, not the split's); the text should separate the two losses.
 
 ## Start the next chat with
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/HANDOFF.md (the "Match replay
@@ -153,8 +191,7 @@ the TQ reasoning.
 1. Commentary (new chat): Bounty's six matches, then Nick's one (Denning attaches the transcripts; METHODS.md
    "Commentary and comms"). The variables they suggest can become new links in the learned nodes (features in
    lnrows.py, groups in learnednodes.py SPEC), so step 3 tests them too.
-2. Run time (remind Denning): if batches feel too slow on the usual machines, split the Train batch run into two or
-   three jobs at once (free on a public repo). Session 4q's arm64 test: see "Current state".
+2. Done (session 4r): Train batch split into parallel jobs. Next speed-up if wanted: prepare's per-match data.
 3. Step 3: discovery: every measured variable tested against every node on unseen matches, in its own workflow split
    across several GitHub machines (Denning approved; public repo, no charge). Links it finds are held for Denning's
    approval, never added automatically.
