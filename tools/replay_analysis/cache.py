@@ -32,7 +32,7 @@ FIT_DEPS = ["data/model_corrections.json"]
 # the entry modules each kind of prepared data is built from; their local imports are followed automatically
 PREPARED_FROM = {"table": ["features.py", "model.py"], "rows": ["nodes.py"], "events": ["values.py"],
                  "analysis": ["analyze.py"], "power_bench": ["tq.py"], "run_bench": ["tq.py"], "mes_bench": ["chain.py"], "eventlayer": ["eventlayer.py"],
-                 "lrows": ["learnednodes.py"]}
+                 "lrows": ["lnrows.py"]}
 FIT_FROM = {"wp": ["model.py"], "node": ["nodes.py"]}
 _KEYS = {}
 

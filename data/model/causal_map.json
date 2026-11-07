@@ -785,7 +785,8 @@
      ],
      "date": "2026-11-07"
     }
-   }
+   },
+   "status_by": "data"
   },
   {
    "from": "P.2",
@@ -836,7 +837,8 @@
      ],
      "date": "2026-11-07"
     }
-   }
+   },
+   "status_by": "data"
   },
   {
    "from": "P.5",
@@ -1151,7 +1153,8 @@
      ],
      "date": "2026-11-07"
     }
-   }
+   },
+   "status_by": "data"
   },
   {
    "from": "A.allocation",
@@ -1214,7 +1217,8 @@
      ],
      "date": "2026-11-07"
     }
-   }
+   },
+   "status_by": "data"
   },
   {
    "from": "C.map",
@@ -1326,7 +1330,8 @@
      ],
      "date": "2026-11-07"
     }
-   }
+   },
+   "status_by": "data"
   },
   {
    "from": "R.3",
@@ -1374,7 +1379,8 @@
      ],
      "date": "2026-11-07"
     }
-   }
+   },
+   "status_by": "data"
   },
   {
    "from": "A.allocation",
@@ -1467,7 +1473,8 @@
      ],
      "date": "2026-11-07"
     }
-   }
+   },
+   "status_by": "data"
   },
   {
    "from": "S.scoreboard",
@@ -2757,7 +2764,8 @@
      ],
      "date": "2026-11-07"
     }
-   }
+   },
+   "status_by": "data"
   },
   {
    "from": "P.14",
@@ -3293,7 +3301,8 @@
      ],
      "date": "2026-11-07"
     }
-   }
+   },
+   "status_by": "data"
   },
   {
    "from": "A.allocation",
@@ -3322,7 +3331,8 @@
      ],
      "date": "2026-11-07"
     }
-   }
+   },
+   "status_by": "data"
   },
   {
    "from": "A.allocation",
@@ -3346,7 +3356,8 @@
      ],
      "date": "2026-11-07"
     }
-   }
+   },
+   "status_by": "data"
   },
   {
    "from": "P.13",
@@ -3442,7 +3453,8 @@
      ],
      "date": "2026-11-07"
     }
-   }
+   },
+   "status_by": "data"
   },
   {
    "from": "P.2",
@@ -3466,7 +3478,8 @@
      ],
      "date": "2026-11-07"
     }
-   }
+   },
+   "status_by": "data"
   },
   {
    "from": "K.1",
@@ -3489,7 +3502,8 @@
      ],
      "date": "2026-11-07"
     }
-   }
+   },
+   "status_by": "data"
   },
   {
    "from": "P.5",
@@ -3536,7 +3550,8 @@
      ],
      "date": "2026-11-07"
     }
-   }
+   },
+   "status_by": "data"
   },
   {
    "from": "C.clock",
@@ -3632,7 +3647,8 @@
      ],
      "date": "2026-11-07"
     }
-   }
+   },
+   "status_by": "data"
   },
   {
    "from": "A.allocation",
@@ -3701,7 +3717,8 @@
      ],
      "date": "2026-11-07"
     }
-   }
+   },
+   "status_by": "data"
   },
   {
    "from": "C.builds",
