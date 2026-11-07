@@ -116,6 +116,14 @@ convert it; (4) NPCs lost, why, and how to prevent it. Each answered with data, 
 (usual play, forensics' unused options, benchmarks, node models), with a confidence level.
 
 ## Next session
+0. Batch 7 (2026-11-07, session 4p): 30 random matches from October and November (Train batch now takes a `months`
+   input; `batch.py pick N --months 2026-10,2026-11`). 91 matches trained. Points raised with Denning, unresolved:
+   the glass box still loses to strength alone on log loss (0.415 against 0.361; overconfident); the lord_dps_own and
+   lord_dps_enemy curves zigzag in mirror image (likely standing in for build identity); TQ 1 picked Team v Men
+   (0f3c18b0) 2:10 to 3:40, where Team captured and Men lost six players yet Team's flag lead fell 184 s (check the
+   flag-lead calculation there); TQ 3's "why, in short" quoted the 1% damage uptime of the opening phase (before contact)
+   instead of the fight's (about 50 to 70%); TQ 2 and TQ 4 both came from cope v Team (427c825b), priced at that
+   moment's whole -93 point swing.
 1. Bounty's six matches (ask Denning for the transcripts), then Nick's one. Training batches stay paused until then.
 2. Built in session 4o (2026-11-07), for Denning to check on the next real batch: the learning report's section "The
    TQs" (`tq.py`, METHODS.md "The TQs", "As built"). Ask him whether the instance picks suit him (biggest swing of each
