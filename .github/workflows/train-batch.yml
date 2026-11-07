@@ -22,6 +22,11 @@ on:
       note:
         description: "Note for the batch (e.g. why these matches were chosen)"
         default: ""
+      runner:
+        description: "Machine type (ubuntu-latest = the usual x64; ubuntu-24.04-arm = arm64, free for public repos)"
+        type: choice
+        options: ["ubuntu-latest", "ubuntu-24.04-arm"]
+        default: "ubuntu-latest"
 
 permissions:
   contents: write
@@ -32,7 +37,7 @@ concurrency:
 
 jobs:
   train:
-    runs-on: ubuntu-latest
+    runs-on: ${{ github.event.inputs.runner || 'ubuntu-latest' }}
     timeout-minutes: 150
     env:
       PYTHONDONTWRITEBYTECODE: "1"

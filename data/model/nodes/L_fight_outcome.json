@@ -96,7 +96,7 @@
     "hex_right_diff"
    ],
    "strength": 0.0005,
-   "plus_minus": 0.0028,
+   "plus_minus": 0.0029,
    "status": "not clear yet"
   },
   {
@@ -105,7 +105,7 @@
    "features": [
     "strength_gap"
    ],
-   "strength": 0.0578,
+   "strength": 0.0579,
    "plus_minus": 0.0083,
    "status": "supported"
   }

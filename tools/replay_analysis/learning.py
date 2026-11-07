@@ -201,6 +201,7 @@ def report():
     ln_fits = LN.fit_all(ids, V=V_)
     L += LN.report_lines(ln_fits)
     LN.write_map(ln_fits)
+    LN.render_overview(ln_fits)
     CM.render()
     _lap("learned nodes")
     # the usual play (usual.py): needs the analysis files (analyze.py --all --out /tmp/ga)
@@ -293,7 +294,9 @@ def report():
           "- Do any surprises remind you of something the variables don't capture (a missing variable)?",
           "- Any variable you think matters that isn't listed?", ""]
     _lap("questions")
+    import platform
     cpu = next((l.split(":", 1)[1].strip() for l in open("/proc/cpuinfo") if l.startswith("model name")), None) if os.path.exists("/proc/cpuinfo") else None
+    cpu = cpu or platform.machine()
     # the processor is recorded because the model library's fits can differ in the last digits between processor types
     json.dump({"cores": os.cpu_count(), "cpu": cpu, "seconds": _T["laps"]}, open(os.path.join(REPORTS, "timings.json"), "w"), indent=1)
     path = os.path.join(REPORTS, f"batch_{n:02d}.md")

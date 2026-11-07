@@ -15,13 +15,14 @@ Nodes (map target):
   run_outcome      (R.3)  a flag run is captured; read at the same point of every run (5, 15, 30 s in): control and
                           damage on the runner so far, not over the whole run (a run that gets far gets Crippled)
   flag_swing       (R.3)  change in flag lead over the next 60 s (s), every 20 s
-  capture_speed    (R.3)  seconds an enemy capture took, from the defending side; defence read 10 s into the run
+  run_defence      (R.3)  an enemy run is captured, from the defending side, at 5, 15, 30 s in (every run, stopped or not)
+  capture_speed    (R.3)  seconds an enemy capture took (captures only, so it can't show what pushing stops)
   power_play       (K.4)  a power play of any size kills
   fight_outcome    (R.2)  a fight is won; play measured before its first death (wrong casts over the fight, as rates)
   split_chance     (A.allocation)  a team starts a split in the next 30 s (for "failed to split")
   split_answer     (P.11) seconds until the first defender reaches a split in the base (60 = never)
   split_effect     (R.5)  a split in the base kills a pit NPC
-  collapse         (R.1)  a split member dies during the split
+  collapse         (R.1)  a split member dies during the split; collapse timing read five ways (each also tested alone)
 Usage:  python3 learnednodes.py fit [node ...]     fit, measure links, write data/model/nodes/L_<node>.json, print
         python3 learnednodes.py write              fit all, write link strengths into the causal map and the log
 In code: fit_all(ids) -> {node: summary}; whatif(node, row, changes) -> (before, after)."""
@@ -61,10 +62,14 @@ SPEC = {
     "C.clock": {"minute": "minute", "res_in": "seconds to the next res"},
     "C.map": {"run_dist": "distance from the team's spawn to the stand"},
     "C.strength": {"strength_gap": "team strength gap"}}, {}),
+ "run_defence": ("R.3", {
+    "A.mesa_free": {"def_free": "defenders alive and not on flag duty at the run's start", "pushers_so_far": "defenders who pushed the runner by this point",
+                    "control_so_far": "conditions and knockdowns on the runner by this point", "damage_so_far": "damage on the runner by this point"},
+    "A.allocation": {"escort": "the runner's escorts", "att_main": "attackers' main", "def_main": "defenders' main"},
+    "C.map": {"run_dist": "distance from the runner's spawn to the stand"},
+    "C.strength": {"strength_gap": "defending team's strength gap"}}, {"checkpoint_s": "seconds into the run"}),
  "capture_speed": ("R.3", {
     "A.allocation": {"defenders_free": "defenders alive and not on flag duty", "escort": "the runner's escorts"},
-    "A.mesa_free": {"pushers_10s": "defenders who pushed the runner in the run's first 10 s",
-                    "control_10s": "conditions and knockdowns on the runner in the first 10 s", "damage_10s": "damage on the runner in the first 10 s"},
     "C.map": {"run_dist": "distance from the runner's spawn to the stand"},
     "C.strength": {"strength_gap": "defending team's strength gap"}}, {}),
  "power_play": ("K.4", {
@@ -111,11 +116,17 @@ SPEC = {
     "C.strength": {"strength_gap": "splitting team's strength gap"}}, {}),
  "collapse": ("R.1", {
     "P.11": {"latency": "seconds until the first defender arrived (60 = never)"},
-    "P.9": {"defenders_10s": "defenders arriving within 10 s of the first"},
+    "P.9": {"defenders_10s": "defenders arriving within 10 s of the first (arrival spread)",
+            "contact_diff": "defenders arriving within 5 s of the first, minus the split's size (numbers at contact)",
+            "npc_hit_to_arrival": "seconds from the split's first hit on an NPC to the first defender's arrival",
+            "res_in_at_arrival": "seconds to the next res when the first defender arrived"},
+    "K.13": {"escape_ready": "split members' speed skills off recharge when the first defender arrived"},
     "C.builds": {"def_snares": "snares on the defending team's bars", "split_speed": "speed skills on the splitting team's bars"},
     "A.allocation": {"size": "split size", "main_diff": "own main minus enemy main meanwhile"},
     "C.strength": {"strength_gap": "splitting team's strength gap"}}, {}),
 }
+# links whose features are also tested one at a time (Denning: which reading of collapse timing matters is for the data)
+EACH = {"collapse": ["P.9"]}
 # why each link that a node needs and the map may lack is a hypothesis, and who it came from
 NEW_LINK_WHY = {
     ("K.11", "R.3"): ("control on the runner (Cripple, knockdowns) stops a run; read at the same point of every run", "Denning"),
@@ -123,7 +134,7 @@ NEW_LINK_WHY = {
     ("S.scoreboard", "R.3"): ("a flag lead tends to grow or shrink by how it stands now (boost and run timing)", "Claude"),
     ("R.1", "R.3"): ("deaths lose flag position: the runner, the escort or the main", "Claude"),
     ("C.clock", "R.3"): ("the res clock and the minute change what a run can do", "Claude"),
-    ("A.mesa_free", "R.3"): ("defenders free to push a runner slow the enemy's capture", "Denning"),
+    ("A.mesa_free", "R.3"): ("defenders free to push a runner slow or stop the enemy's capture", "Denning"),
     ("A.allocation", "K.4"): ("a power play is any numbers advantage at main, an 8v7 while the enemy runs included", "Denning"),
     ("A.allocation", "R.2"): ("numbers in a fight decide much of it", "Denning"),
     ("P.13", "R.2"): ("frontline defensive peel (hitting or snaring enemies on its own backline) protects the healers", "Denning"),
@@ -220,6 +231,8 @@ def fit_all(ids, nodes=None, V=None):
         reg = node in REGRESSION
         folds = list(GroupKFold(n_splits=6).split(X, y, g))
         variants = [("all", list(X.columns))] + [(grp, [c for c in X.columns if c not in fs]) for grp, fs in SPEC[node][1].items()]
+        for grp in EACH.get(node, []):
+            variants += [(f"{grp}:{f}", [c for c in X.columns if c != f]) for f in SPEC[node][1][grp]]
         prep[node] = (df, X, y, g, folds, variants)
         for vn, cols in variants:
             for tr, te in folds:
@@ -243,8 +256,14 @@ def fit_all(ids, nodes=None, V=None):
             d_ = [w["score"] - a_["score"] for w, a_ in zip(R_[grp], allf)]       # positive = the link helps on unseen matches
             mu = statistics.mean(d_); se = statistics.stdev(d_) / math.sqrt(len(d_)) if len(d_) > 1 else float("inf")
             status = "supported" if mu - 2 * se > 0 else "rejected" if mu + 2 * se < 0 else "not clear yet"
+            each = []
+            for f in (fs if grp in EACH.get(node, []) else []):
+                d2 = [w["score"] - a_["score"] for w, a_ in zip(R_[f"{grp}:{f}"], allf)]
+                m2 = statistics.mean(d2); s2 = statistics.stdev(d2) / math.sqrt(len(d2))
+                each.append({"feature": f, "strength": round(m2, 4), "plus_minus": round(s2, 4),
+                             "status": "supported" if m2 - 2 * s2 > 0 else "rejected" if m2 + 2 * s2 < 0 else "not clear yet"})
             links.append({"from": grp, "to": SPEC[node][0], "features": list(fs), "strength": round(mu, 4 if not reg else 2),
-                          "plus_minus": round(se, 4 if not reg else 2), "status": status})
+                          "plus_minus": round(se, 4 if not reg else 2), "status": status, **({"each": each} if each else {})})
         terms = M.readable(e, list(X.columns), X) if not reg else __import__("nodes").readable_seconds(e, list(X.columns), X)
         for t in terms: t["description"] = describe(node, t["term"])
         rate = None if reg else round(float(y.mean()), 3)
@@ -294,6 +313,12 @@ def write_map(summaries):
             n["description"] = (n.get("description", "") + "; hex removal: the right hexes removed (valued from data) and how fast").strip("; ")
             n["how"] = (n.get("how", "") + "; eventlayer.py hex_removals").strip("; ")
     log = json.load(open(LINK_LOG)) if os.path.exists(LINK_LOG) else []
+    # a node that no longer uses a link drops its old measurement of it
+    for l in c["links"]:
+        for node in list((l.get("measured") or {}).keys()):
+            if node in summaries and not any(x["from"] == l["from"] and x["to"] == l["to"] for x in summaries[node]["links"]):
+                del l["measured"][node]
+                c["log"].append({"date": today, "change": f"link {l['from']} -> {l['to']}: the {node} node no longer uses it; its measurement there removed", "by": "Claude"})
     changes = 0
     for node, s in summaries.items():
         for L in s["links"]:
@@ -350,6 +375,8 @@ def report_lines(summaries):
                  f"{v['simple baseline']} for the simple baseline ({v['verdict']}).")
         for l in sorted(s["links"], key=lambda l: -l["strength"]):
             L.append(f"- link {l['from']} -> {l['to']}: gain {l['strength']:+} (+/- {l['plus_minus']}), {l['status']} ({', '.join(l['features'][:4])}{'...' if len(l['features']) > 4 else ''})")
+            for x in l.get("each", []):
+                L.append(f"  - alone: {x['feature']} ({describe(node, x['feature'])}): gain {x['strength']:+} (+/- {x['plus_minus']}), {x['status']}")
         top = [t for t in s["terms"] if "curve" in t][:3]
         for t in top:
             cv = t["curve"]; lo, hi = cv[0], cv[-1]
@@ -359,6 +386,86 @@ def report_lines(summaries):
     return L
 
 
+PLAIN = {
+    "run_outcome": "Does a flag run get captured? Read at 5, 15 and 30 s into every run.",
+    "flag_swing": "How much will the flag lead change over the next minute?",
+    "run_defence": "Does an enemy run get captured? From the defending side, every run, read at 5, 15 and 30 s in.",
+    "capture_speed": "How long does an enemy capture take? (Captures only.)",
+    "power_play": "Does a power play (any numbers advantage at main) kill?",
+    "fight_outcome": "Who wins a fight? Play measured before the fight's first death.",
+    "split_chance": "Does a team start a split in the next 30 s?",
+    "split_answer": "How long until the first defender reaches a split in the base?",
+    "split_effect": "Does a split in the base kill a pit NPC?",
+    "collapse": "Does a split member die when the defenders collapse on it?",
+}
+STATUS_WORDS = {"supported": "**supported**: it clearly helps predict matches the model never saw",
+                "rejected": "**rejected for now**: leaving it out predicts unseen matches slightly better",
+                "not clear yet": "not clear yet: more matches needed"}
+
+
+def _curve_words(t, reg):
+    cv = [c for c in t.get("curve", []) if c["from"] is not None]
+    if len(cv) < 2: return ""
+    lo, hi = cv[0], cv[-1]
+    u = " s" if reg else " points"
+    return f"at {lo['from']:g} to {lo['to']:g}: {lo['points']:+g}{u}; at {hi['from']:g} to {hi['to']:g}: {hi['points']:+g}{u}"
+
+
+def render_overview(summaries):
+    """knowledge/learned-model.md: what the model measures and what it has learned so far, in words (rebuilt each batch)."""
+    c = json.load(open(MAP)); names = {n["id"]: n["name"] for n in c["nodes"]}
+    import eventlayer as EL
+    V = EL.load_values() or {}
+    m = max([s["matches"] for s in summaries.values()] or [0])
+    L = ["*Generated by tools/replay_analysis/learnednodes.py after each batch: don't edit; the full map with every "
+         "hypothesis is on the Causal map page.*", "", "# What the model has learned", "",
+         f"Trained on {m} matches. Each question below is answered by its own small model that may only use the causes the "
+         "causal map allows. Each cause is tested by refitting the model without it and checking predictions on matches the "
+         "model never saw. \"Points\" = change in the chance of the result for an otherwise even (50%) case.", ""]
+    for node, s in summaries.items():
+        reg = node in REGRESSION; v = s["validation"]
+        good = "better than a simple guess" if v["verdict"].startswith("adds") else "not yet better than a simple guess"
+        L += [f"## {PLAIN.get(node, node)}", "",
+              f"{s['rows']} cases from {s['matches']} matches; " + (f"average {s['mean']} s" if reg else f"happens {s['rate']:.0%} of the time")
+              + f". Predicts unseen matches {good}.", "", "Causes tested:"]
+        terms = {t["term"]: t for t in s["terms"] if "curve" in t}
+        for l in sorted(s["links"], key=lambda l: -l["strength"]):
+            L.append(f"- **{names.get(l['from'], l['from'])}**: {STATUS_WORDS[l['status']]}.")
+            feats = sorted(l["features"], key=lambda f: -(terms.get(f, {}).get("importance") or 0))
+            for f in feats[:3]:
+                if f in terms and terms[f]["importance"] > 0:
+                    L.append(f"  - {describe(node, f)}: {_curve_words(terms[f], reg)}")
+            for x in l.get("each", []):
+                L.append(f"  - tested alone, {describe(node, x['feature'])}: {x['status']}")
+        L.append("")
+    if V:
+        L += ["## Values measured from the data", "",
+              "Used to judge strips and hex removal (what the right target was) and damage output.", ""]
+        e = sorted(V.get("enchantments", {}).items(), key=lambda kv: -kv[1]["per_s"])[:10]
+        h = sorted(V.get("hexes", {}).items(), key=lambda kv: -kv[1]["per_s"])[:10]
+        L.append("- Most valuable enchantments to strip (output per second up): " + ", ".join(f"{k} {v['per_s']:g}" for k, v in e))
+        L.append("- Most costly hexes to leave on (output per second on): " + ", ".join(f"{k} {v['per_s']:g}" for k, v in h))
+        r = sorted(((k, v) for k, v in V.get("roles", {}).items() if v["n"] >= 100 and v["median"] > 0), key=lambda kv: -kv[1]["median"])[:8]
+        L.append("- Usual damage per second on players in a fight, by role: " + ", ".join(f"{k} {v['median']:g}" for k, v in r))
+        L.append("")
+    L += ["## What is measured in every match (the event layer)", "",
+          "- Strips: who stripped what from whom, and the best enchantment that was in range",
+          "- Hex removal: which hex was removed, how long it had been on, and the most costly hex in range",
+          "- Hexes: how long each stayed on, and the hexed player's output while it was on",
+          "- Blind on enemies: on the frontline, and on players hitting own healers",
+          "- Frontline peel: damage share on enemies attacking own backline, and on enemy healers",
+          "- Wrong casts: casting into a ready interrupt without cancelling, casting while Dazed, attacking while Blind",
+          "- Damage output against the role's usual",
+          "- Spikes: how tightly the big hits landed, and whether they killed",
+          "- Flag runs: stand and boost clock at the start, escort, control and damage on the runner over time, outcome",
+          "- Splits: size, how fast and how many defenders came, NPCs killed, enemies drawn, deaths",
+          "- Power plays of every size: why the enemy was short, prots and healing against them, spikes",
+          "- Enemy captures: defenders free, escort, how long they took", ""]
+    out = os.path.join(REPO, "knowledge", "learned-model.md")
+    open(out, "w").write("\n".join(L) + "\n")
+    return out
+
+
 if __name__ == "__main__":
     a = sys.argv[1:]
     ids = [m for b in M.batches() for m in b["matches"]]
@@ -366,5 +473,5 @@ if __name__ == "__main__":
         import time; t0 = time.time()
         S = fit_all(ids, a[1:] if a[0] == "fit" and len(a) > 1 else None)
         print("\n".join(report_lines(S)))
-        if a[0] == "write": print("link status changes:", write_map(S))
+        if a[0] == "write": print("link status changes:", write_map(S)); print(render_overview(S))
         print(f"{time.time() - t0:.0f} s")

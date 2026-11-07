@@ -106,6 +106,22 @@ def _build(node, rid, V):
                 own_deaths_30s=sum(1 for x in deaths if x["team"] == tg and t - 30 < x["t"] <= t),
                 enemy_deaths_30s=sum(1 for x in deaths if x["team"] == fg and t - 30 < x["t"] <= t),
                 minute=round(t / 60, 1), res_in=r.get("res_in"), run_dist=run_dist.get(tg), strength_gap=gaps[tg])
+    elif node == "run_defence":
+        # every enemy run, from the defending side, read at the same points as run_outcome (5, 15, 30 s in)
+        rec = {(r["team"], r["t"]): r for r in R.get("runs", [])}
+        for fr in a["flag_runs"]:
+            r = rec.get((fr["team"], fr["start"]))
+            if not r: continue
+            att = fr["team"]; dfn = foe(att); s0 = _row(sb, fr["start"])
+            for k in CHECKPOINTS:
+                if fr["secs"] <= k: continue
+                pf = r.get("pusher_first") or []
+                add(dfn, fr["start"] + k, int(fr["outcome"] == "captured"), checkpoint_s=k,
+                    def_free=s0[dfn]["alive"] - len(s0[dfn].get("flag_duty") or []), pushers_so_far=sum(1 for x in pf if x <= k),
+                    control_so_far=sum(1 for c in r.get("control_times") or [] if c[0] <= k),
+                    damage_so_far=sum(x[1] for x in r.get("damage_times") or [] if x[0] <= k),
+                    escort=r["escort"], att_main=r["main"][0], def_main=r["main"][1],
+                    run_dist=run_dist.get(att), strength_gap=gaps[dfn])
     elif node == "capture_speed":
         # defence read at the same point of every capture (10 s in): counts over the whole run grow with its length
         rec = {(r["team"], r["t"]): r for r in R.get("runs", [])}
@@ -209,10 +225,38 @@ def _build(node, rid, V):
                 add(tg, s_["start"], int(r["pit_kills"] > 0), latency=latency, defenders=r["defenders"], size=r["size"],
                     main_diff=r["main_diff"], split_healers=heal, strength_gap=gaps[tg])
             else:
+                # collapse timing, several readings (Denning: which one matters is for the data to say)
+                arr = sorted(x["first"] for x in s_.get("defenders") or [] if x.get("first") is not None)
+                ta = arr[0] if arr else None
+                mem = [x for x in st.players[tm_of[tg]] if m.roles[x] in s_["members"]]
+                npc_first = next((e[0] / 10 for e in m.o["ev"] if e[1] == "dm" and e[2] in mem and isinstance(e[3], int) and e[3] < len(m.A)
+                                  and m.A[e[3]].get("npc") and e[0] / 10 >= s_["start"]), None)
+                esc = None
+                if ta is not None and mem:
+                    esc = 0
+                    for x in mem:
+                        for sid in (m.A[x].get("bar") or []):
+                            sd = SK().get(m.o.get("skills", {}).get(str(sid)) or "") or {}
+                            if "Increased Movement Speed" not in (sd.get("causes") or []): continue
+                            used = [e[0] / 10 for e in m.o["ev"] if e[1] == "cf" and e[2] == x and e[4] == sid and e[0] / 10 <= ta]
+                            if not used or ta - used[-1] >= (sd.get("recharge") or 0): esc += 1
                 add(tg, s_["start"], int(r["split_deaths"] > 0), latency=latency,
-                    defenders_10s=sum(1 for x in lat if first is not None and x <= first + 10), def_snares=mus[fg].get("own_snares"),
-                    split_speed=mus[tg].get("own_speed"), size=r["size"], main_diff=r["main_diff"], strength_gap=gaps[tg])
+                    defenders_10s=sum(1 for x in arr if x <= ta + 10) if ta is not None else 0,
+                    contact_diff=(sum(1 for x in arr if x <= ta + 5) - r["size"]) if ta is not None else None,
+                    npc_hit_to_arrival=round(ta - npc_first, 1) if ta is not None and npc_first is not None else None,
+                    res_in_at_arrival=_row(sb, ta).get("res_in") if ta is not None else None,
+                    escape_ready=esc,
+                    def_snares=mus[fg].get("own_snares"), split_speed=mus[tg].get("own_speed"), size=r["size"], main_diff=r["main_diff"], strength_gap=gaps[tg])
     return rows
+
+
+_SK = None
+def SK():
+    global _SK
+    if _SK is None:
+        from forensics import skilldata
+        _SK = skilldata()
+    return _SK
 
 
 def _vhash(V): return hashlib.sha1(json.dumps(V, sort_keys=True).encode()).hexdigest()[:10]
