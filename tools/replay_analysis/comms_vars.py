@@ -22,6 +22,10 @@ Variables (more can be added to VARS):
                    we ended way earlier")
   turtle           a team sitting in its own base gives up the game to Lord damage unless it breaks out ("they're
                    turtling, we have to make a play"); also a win-model candidate (features.CANDIDATES turtle_diff)
+  interrupted_spikers  the spiking team interrupted just before the spike lands fewer kills ("Complicate my Deep Wound")
+  area_damage_spacing  area damage taken against allies within 322 (the right test for "spread out")
+  spike_caster_sets, spike_target_shield  weapon sets on spikes (40/40 against shields)
+  footmen          footmen lost and the result
   portal           Isle of Solitude: portal jumps (fake collapse, then port in) and what follows them
 Not measurable from the replay data (said in the comms, kept as open items): gate or lock control, terrain and line of
 sight (stairs, walls, choke points), energy, call timing ("4, 3, 2, 1").
@@ -114,8 +118,15 @@ def _spike_rows(rid):
             hexed = sum(1 for x in atk if any(e[2] == "h" and e[5] == x and e[0] is not None and e[0] <= t0 * 10 and (e[1] is None or e[1] >= t0 * 10)
                                               for e in F.m.o.get("effects", [])))
             l = EV._landing(win)
+            sets = [F.weapon_set(x, t0) for x in atk]
+            caster = sum(1 for w in sets if w and w.get("hct") and "Shield" not in w["label"])
+            shielded = sum(1 for w in sets if w and "Shield" in w["label"])
+            tw = F.weapon_set(tgt, t0)
+            irs = sum(1 for x in F.players(tm) for i in F.intr_on(x, t0 - 5, t0 + 1))
             out.append({"m": rid, "y": int(died), "strip": int(bool(strip)), "cracked": int(cracked), "hexed": int(hexed > 0),
-                        "spread": l["spread_s"], "s": f"{min(l['attackers'], 5)}"})
+                        "spread": l["spread_s"], "s": f"{min(l['attackers'], 5)}", "team": F.tag[tm],
+                        "caster_sets": int(caster > shielded), "target_shield": int(bool(tw and "Shield" in tw["label"])), "t": t0,
+                        "interrupted": int(irs >= 1)})
     return out
 
 
@@ -125,6 +136,14 @@ def _player_rows(rid):
     import events as EV
     from forensics import Forensics
     F = Forensics(rid); a = EV.analysis(rid); m = F.m
+    from forensics import skilldata
+    from common import IN_AREA
+    AOE = {n for n, sd in skilldata().items() if sd.get("aoe")}
+    aoe_hits = collections.defaultdict(list)      # victim -> [(t, damage)] from area skills
+    for e in F.ev:
+        if e[1] == "dm" and e[3] in m.PL and e[2] in m.PL and m.team(e[2]) != m.team(e[3]) and (e[5] or 0) > 0:
+            sid = F.hit_skill(e[2], e[0] / 10, e[4])
+            if sid is not None and F.sname(sid) in AOE: aoe_hits[e[3]].append((e[0] / 10, e[5]))
     dt = collections.defaultdict(list)
     for e in F.ev:
         if e[1] == "dt" and e[2] in m.PL: dt[e[2]].append(e[0] / 10)
@@ -147,9 +166,15 @@ def _player_rows(rid):
                     de = [d for d in (F.dist(x, f, t) for f in F.enemies(x) if F.alive(f, t)) if d is not None]
                     if not de or min(de) > 1500: continue
                     role = m.roles.get(x)
+                    hl = x in F.healers
+                    others_h = [o for y, o in pos if y != x and y in F.healers]
+                    allh = [h for h in F.players(tm) if h in F.healers and h != x and F.alive(h, t)]
                     pl.append({"m": rid, "y": int(any(t < d <= t + 10 for d in dt[x])), "morale": mor.get(role, 0) or 0,
                                "gap": min(others), "aoe": aoe[tm], "s": f"{len(g)}v{sum(1 for d in de if d <= CAST_R)}",
-                               "hp": s["hp"]})
+                               "hp": s["hp"], "healer": int(hl),
+                               "solo": int(hl and not any((F.dist(x, h, t) or 1e9) <= CAST_R for h in allh)),
+                               "in_area": sum(1 for y, o in pos if y != x and math.dist((s["x"], s["y"]), (o["x"], o["y"])) <= IN_AREA),
+                               "aoe_dmg": round(sum(v for tt, v in aoe_hits[x] if t < tt <= t + 5))})
             z = (st.get(t, {}).get(tag) or {}).get("zones") or {}
             alive = row.get("alive") or 0
             inbase = sum(1 for r, zz in z.items() if zz in ("own base", "own pit"))
@@ -184,10 +209,25 @@ def _player_rows(rid):
     return pl, turtles, merges, jumps
 
 
+def _footmen_rows(rid):
+    """Per team: footmen it had, footmen lost, when the first fell, and whether the team won."""
+    import events as EV
+    from features import footmen
+    from replaylib import Match
+    a = EV.analysis(rid); m = Match.from_branch(rid)
+    win = (a["meta"].get("result") or {}).get("winning_team_id"); out = []
+    for tm, L in footmen(m).items():
+        tag = next(t["tag"] for t in a["meta"]["teams"] if t["id"] == tm)
+        lost = sorted(x for _, x in L if x is not None)
+        out.append({"m": rid, "team": tag, "had": len(L), "lost": len(lost), "first": lost[0] if lost else None, "won": int(win == tm)})
+    return out
+
+
 def _one(rid):
     try:
         pl, tu, mg, jp = _player_rows(rid)
-        return {"groups": _phase_groups(rid), "spikes": _spike_rows(rid), "players": pl, "turtles": tu, "merges": mg, "jumps": jp}
+        return {"groups": _phase_groups(rid), "spikes": _spike_rows(rid), "players": pl, "turtles": tu, "merges": mg, "jumps": jp,
+                "footmen": _footmen_rows(rid)}
     except Exception as ex:
         return {"error": f"{rid}: {ex}"}
 
@@ -217,6 +257,15 @@ def measure(ids=None):
     res["solo_monk"] = {"measure": "groups of 3+ players facing enemies in a phase: one healer against two or more, same local numbers; outcome = the group lost a player in that phase",
                         "n": len(G), "rate_one_healer": _rate([g for g in G if g["solo"]]), "rate_two_plus": _rate([g for g in G if not g["solo"]]),
                         "difference": d, "interval_90": ci, "verdict": _verdict(d, ci, +1)}
+    # a monk alone: the healer's own death, no other own healer within casting range against one or more (Denning: a
+    # monk alone is vulnerable because no other monk supports it); the first test above (group losses) measured the
+    # wrong outcome
+    H = [dict(r) for r in R["players"] if r["healer"]]
+    d = _strat_diff(H, "solo"); ci = _boot(_by_match(H), lambda s: _strat_diff(s, "solo"))
+    res["solo_monk"]["healer_death"] = {"measure": "healers in a fight every 5 s: no other own healer within casting range against one or more; outcome = the healer died within 10 s; same local numbers",
+                                        "n": len(H), "rate_alone": _rate([r for r in H if r["solo"]]), "rate_supported": _rate([r for r in H if not r["solo"]]),
+                                        "difference": d, "interval_90": ci, "verdict": _verdict(d, ci, +1)}
+    res["solo_monk"]["verdict"] = res["solo_monk"]["healer_death"]["verdict"] + " (healer's own death; the group test was the wrong outcome)"
     # no healer in a group of 2+
     G2 = [dict(g, y=g["lost"], none=int(g["healers"] == 0)) for g in R["groups"] if g["size"] >= 2]
     d = _strat_diff(G2, "none"); ci = _boot(_by_match(G2), lambda s: _strat_diff(s, "none"))
@@ -231,6 +280,22 @@ def measure(ids=None):
         res.setdefault("spread", {"measure": "players in a fight every 5 s: nearest ally under 150 units (tight) against farther, same local numbers; outcome = died within 10 s; split by whether the enemy has 2+ elementalists (area damage)"})[k] = {
             "n": len(S), "rate_tight": _rate([r for r in S if r["tight"]]), "rate_spread": _rate([r for r in S if not r["tight"]]),
             "difference": d, "interval_90": ci, "verdict": _verdict(d, ci, +1)}
+    # area damage against spacing: area-skill damage taken in the next 5 s by allies within 322
+    A = [r for r in R["players"] if r["aoe"]]
+    def amean(rs): return round(statistics.mean(r["aoe_dmg"] for r in rs), 1) if rs else None
+    def adiff(rs):
+        by = collections.defaultdict(lambda: ([], []))
+        for r in rs: by[r["s"]][0 if r["in_area"] >= 2 else 1].append(r["aoe_dmg"])
+        num = den = 0
+        for x, y in by.values():
+            if len(x) >= 3 and len(y) >= 3: w = len(x) + len(y); num += w * (statistics.mean(x) - statistics.mean(y)); den += w
+        return round(num / den, 1) if den else None
+    d = adiff(A); ci = _boot(_by_match(A), adiff)
+    res["area_damage_spacing"] = {"measure": "players in a fight against a team with 2+ elementalists, every 5 s: area-skill damage taken in the next 5 s with 2+ allies within 322 against 0 or 1; same local numbers",
+                                  "n": len(A), "mean_2plus_allies_close": amean([r for r in A if r["in_area"] >= 2]),
+                                  "mean_0_or_1": amean([r for r in A if r["in_area"] < 2]),
+                                  "by_allies_in_area": {k: amean([r for r in A if min(r["in_area"], 3) == k]) for k in range(4)},
+                                  "difference": d, "interval_90": ci, "verdict": _verdict(d, ci, +1), "source": SOURCE.get("spread")}
     # spikes
     SP = R["spikes"]
     for name, flag, desc in (("strip_on_spike", "strip", "an enchantment removal by the spiking team finished on the target from 2 s before the first hit to 1 s after"),
@@ -240,6 +305,20 @@ def measure(ids=None):
         res[name] = {"measure": f"spikes (400+ in 3 s): {desc}; outcome = the target died within 8 s; compared within the number of spikers",
                      "n": len(SP), "cases": sum(r[flag] for r in SP), "rate_with": _rate([r for r in SP if r[flag]]), "rate_without": _rate([r for r in SP if not r[flag]]),
                      "difference": d, "interval_90": ci, "verdict": _verdict(d, ci, -1 if name == "hexed_spikers" else +1)}
+    # weapon sets on spikes: spikers mostly on fast-cast (40/40) caster sets against mostly not; target on a shield set
+    for name, flag, desc, exp in (("spike_caster_sets", "caster_sets", "most spikers held a fast-cast caster set with no shield (40/40)", +1),
+                                  ("spike_target_shield", "target_shield", "the target held a shield set at the first hit", -1),
+                                  ("interrupted_spikers", "interrupted", "the spiking team was interrupted at least once in the 5 s before the first hit", -1)):
+        d = _strat_diff(SP, flag); ci = _boot(_by_match(SP), lambda s, f=flag: _strat_diff(s, f))
+        res[name] = {"measure": f"spikes (400+ in 3 s): {desc}; outcome = the target died within 8 s; compared within the number of spikers",
+                     "n": len(SP), "cases": sum(r[flag] for r in SP), "rate_with": _rate([r for r in SP if r[flag]]),
+                     "rate_without": _rate([r for r in SP if not r[flag]]), "difference": d, "interval_90": ci,
+                     "verdict": _verdict(d, ci, exp), "source": "OG comms [OG v hdm]: 'they keep Complicating my Deep Wound'" if name == "interrupted_spikers"
+                     else "OG comms [OG v cope J]: against mirrors, spike in 40/40 sets to get as many off as we can"}
+    # spike rate: spikes per minute of match by the share of a team's spikes thrown on caster sets
+    byt = collections.defaultdict(list)
+    for r in SP: byt[(r["m"], r["team"])].append(r)
+    res["spike_caster_sets"]["teams_mostly_caster_sets_spikes"] = sum(1 for v in byt.values() if sum(x["caster_sets"] for x in v) > len(v) / 2)
     # low morale: death penalty 15+ against none, players in a fight, same local numbers
     L = [dict(r, low=int(r["morale"] <= -15)) for r in P if r["morale"] <= 0]
     d = _strat_diff(L, "low"); ci = _boot(_by_match(L), lambda s: _strat_diff(s, "low"))
@@ -262,6 +341,13 @@ def measure(ids=None):
                                    "deaths_other": round(statistics.mean([t["deaths_foe"] for t in T]), 2) if T else None},
                      "cases": [f"{t['m'][:8]} {t['team']} {int(t['t'] // 60)}:{int(t['t'] % 60):02d}" for t in T][:30],
                      "verdict": "descriptive (the win-model candidate turtle_diff tests it on unseen matches)"}
+    FM = R["footmen"]
+    lost_more = [r for r in FM if r["lost"] > 0]
+    res["footmen"] = {"measure": "footmen (base NPCs) per team per match: how many it had, lost, and whether it won",
+                      "teams": len(FM), "had_mean": round(statistics.mean(r["had"] for r in FM), 2) if FM else None,
+                      "teams_losing_any": len(lost_more), "won_when_losing_any": _rate([dict(r, y=r["won"]) for r in lost_more]),
+                      "won_when_losing_none": _rate([dict(r, y=r["won"]) for r in FM if r["lost"] == 0]),
+                      "verdict": "descriptive (the win-model candidate footmen_diff and values.py test it)", "source": "OG comms [ohno v NwAy], [ohno v Fun]"}
     J = R["jumps"]
     res["portal"] = {"measure": "Isle of Solitude: a player moving 2,500+ units in one recorded second (a portal jump)",
                      "n": len(J), "by_team": dict(collections.Counter(f"{j['m'][:8]} {j['team']}" for j in J)),

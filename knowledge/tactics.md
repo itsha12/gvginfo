@@ -298,6 +298,10 @@ against general principles rather than past games. Match-by-match evidence lives
 - `P13` **OG comms:** Merge the whole team before pushing the enemy pit or base. **Claude (data, 61 matches):** groups of
   7+ in the enemy pit or base killed a player in 49% of phases against 19% for 3 to 6, and lost players slightly less
   often. [ohno v Crew]
+- `P14` **OG comms:** Footmen (base NPCs, not pit NPCs) are worth protecting, and killing the enemy's when they split
+  oddly. **Claude (data, 61 matches):** teams that lost a footman won 41% of the time against 65% for teams that lost
+  none (descriptive: losing teams also get pushed). Win-model candidate `footmen_diff`; values.py prices a footman lost.
+  [OG v Dz] [ohno v NwAy]
 
 ### Base races
 - `P6` **Bounty:** A team defending with only 2 players is saying "give us time to finish", so it should not chase
@@ -487,6 +491,9 @@ against general principles rather than past games. Match-by-match evidence lives
   make a play to break it, and doesn't need to chase it out late. **Claude (data, 61 matches):** 13 turtles (75%+ of
   live players at home for a minute, not just resurrected); the turtling team won 3. The win model tests `turtle_diff`
   as a candidate from batch 6. [ohno v One]
+- `L12` **OG comms:** In a base race, heal your own Lord ("heal the Lord, heal the Lord"). **Claude (data):** OG won the
+  race against hold by 0.3 s (hold's Lord died at 5:17, OG's at 5:20) after healing its own Lord for 1,390; hold's got
+  no healing. [OG v hold]
 - `L9` **OG comms:** Watch the clock out loud ("this is 22 minutes"); the late plan (play for 28:00 or push now) has to
   be agreed, not argued during the push. [OG v cope U]
 
@@ -514,6 +521,12 @@ against general principles rather than past games. Match-by-match evidence lives
   546 spikes in 61 matches):** spikes with a hexed spiker killed 24% of the time against 41% without (interval 7 to 26
   points). Shell Shock on the target and an enchantment strip as the spike lands showed no measurable effect on kills
   (both intervals cross zero), so `X8` is a timing habit the data does not yet support. [OG v cope J] [ohno v Crew]
+- `X10` **OG comms:** Interrupts on the spikers just before the spike stop the kill ("they keep Complicating my Deep
+  Wound"). **Claude (data, 546 spikes):** when the spiking team was interrupted in the 5 s before the first hit, spikes
+  killed 23% of the time against 40% (interval 8 to 27 points). Against hdm, OG's 15 spikes killed none: about one
+  interrupt per spike and 466 healing on the target in 3 s, against 0.4 and 328 for cope, which lost 10 of 24 to the same
+  spike. Weapon sets showed no clear effect yet (spikers on 40/40 sets or targets on shields: intervals cross zero).
+  [OG v hdm] [OG v cope J]
 
 ## 9. Monk play under pressure (micro)
 - `M1` **Denning:** Judge a death first by its cause: a great enemy play, or a failure. In an even 8v8 with the monks in
@@ -558,6 +571,10 @@ against general principles rather than past games. Match-by-match evidence lives
 - `M18` **Denning:** An 8 monk using Draw Conditions to take Burning and Deep Wound onto itself is normal play, but it
   might be a mistake when it is the only healer facing a ranger and a hammer (its health ceiling drops by a fifth). The
   data will tell. [Men v HC C]
+- `M19` **Denning:** A monk alone is vulnerable because it has no other monk to support it (OG comms: "solo monk, go on
+  the monk"). **Claude (data, 61 matches):** a healer in a fight with no other own healer within casting range died within
+  10 s 3.4% of the time against 1.1% with one, at the same local numbers (interval 2.2 to 4.8 points). Deaths-node
+  variable `solo_healer`, win-model candidate `solo_healers_diff`. [ohno v One] [OG v Dz]
 - `M15` **Bounty:** Many small inaccuracies add up to lost fights: a monk not watching a split, a ritualist caught off
   shield set by Coward, a sleepy 8 monk.
 
@@ -689,6 +706,5 @@ usual one in win chance, adjusted for the situation, with a range from resamplin
 - `Q14` How much is a flag lead worth against a pit NPC or a death? (The engine's weights are first guesses until the
   win-probability model.)
 - `Q15` What should a team do when it is stacking death penalty against a spike build (`D6`)?
-- `Q16` OG calls "solo monk" as the moment to commit, but across 61 matches a group with one healer lost players no
-  more often than one with two at the same numbers (11.3% and 11.2%). What makes a solo monk killable: its energy, its
-  distance from the rest of its team, or the damage facing it? [ohno v One] [ohno v Crew]
+- `Q16` Answered (Denning, `M19`): "solo monk" means the monk has no other monk supporting it; measured on the monk's
+  own death it holds up. The first test (whether its group lost anyone) measured the wrong outcome. [ohno v One]

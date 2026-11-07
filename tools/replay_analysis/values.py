@@ -44,7 +44,13 @@ def _build_events(rid):
     from phases import healer, zone_of
     from scoreboard import archetype
     st = GameState(Match.from_branch(rid)); m = st.m
+    from scoreboard import Scoreboard
+    from features import footmen
+    sb = Scoreboard(st)
     spike = {tm: archetype(m, tm)["spike"] for tm in st.teams}
+    def morale(tm, t):     # the team's morale just before (sum over players; positive = boosted)
+        try: return (sb.at(max(t - 1, 0))[m.tag[tm]] or {}).get("morale_sum", 0) or 0
+        except Exception: return 0
     ev = []
     for tm in st.teams:
         for a in st.players[tm]:
@@ -52,7 +58,11 @@ def _build_events(rid):
                 where, _ = st.pos(a, max(tt - 0.5, 0))
                 ev.append({"kind": "death", "team": m.tag[tm], "t": tt, "healer": bool(healer(m, a)),
                            "down_s": round(st.next_res(tt) - tt), "role": m.roles.get(a),
-                           "zone": zone_of(st, tm, where) if where else None, "enemy_spike": spike[3 - tm]})
+                           "zone": zone_of(st, tm, where) if where else None, "enemy_spike": spike[3 - tm],
+                           "morale": morale(tm, tt)})
+    for tm in st.teams:            # footmen (base NPCs, not pit NPCs)
+        for a, tt in footmen(m)[tm]:
+            if tt is not None: ev.append({"kind": "footman", "team": m.tag[tm], "t": tt})
     for a, tt in st.npc_dead.items():
         n = st.geo.npcs.get(a)
         if n and n["kind"] != "guild_lord" and n.get("team") in st.teams:
@@ -88,7 +98,12 @@ def _groups(e):
         if e["healer"]:   # Denning (K14): a monk dying in its own base just before the base res is likely deliberate
             g.append("death: healer in own base or pit, back within 15 s (likely deliberate)"
                      if d <= 15 and e.get("zone") in ("own base", "own pit") else "death: healer, other")
+        # OG comms: 'we are boosting, so we can die for NPCs'
+        if e.get("morale") is not None:
+            g.append("death: team boosted (morale above zero)" if e["morale"] > 0 else "death: team not boosted")
         return g
+    if k == "footman":
+        return ["footman lost (base NPC)"]
     if k == "npc":
         return [f"pit NPC lost: {e['npc']}", "pit NPC lost (any): taken by a spike build" if e.get("enemy_spike")
                 else "pit NPC lost (any): taken by other builds"]

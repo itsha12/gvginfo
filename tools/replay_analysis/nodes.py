@@ -22,7 +22,7 @@ In code: node_rows(node, rid), fit_node(node, ids) -> (summary, model)."""
 import bisect, collections, json, math, os, random, statistics, sys, warnings
 import numpy as np
 warnings.filterwarnings("ignore")
-from common import REPO, CAST_R, PROT_SKILLS, BLOCKS, RES_EVERY
+from common import REPO, CAST_R, PROT_SKILLS, BLOCKS, RES_EVERY, IN_AREA
 import model as M
 from buildfeat import matchup
 
@@ -59,6 +59,13 @@ class Timeline:
         self.deaths = {a: sorted(st.death_times.get(a, [])) for a in m.PL}
 
     def window(self, L, t, w): return [x for x in L if t - w < x[0] <= t]
+
+    def group_of(self, a, t):
+        """The player's group (players within fight range of each other) at second t, cached per team and second."""
+        tm = self.m.team(a); k = (tm, int(t))
+        if not hasattr(self, "_groups"): self._groups = {}
+        if k not in self._groups: self._groups[k] = self.m.groups(tm, int(t) * 10)
+        return next((g for g in self._groups[k] if a in g), [a])
 
     def has_cond(self, a, t, names, own_source=None):
         tm = self.m.team(a)
@@ -103,7 +110,14 @@ def death_features(tl, a, t, mu, gap):
         "conditions_self_taken": int(tl.has_cond(a, t, {"deep_wound", "burning", "bleeding", "poison", "crippled", "blind", "weakness", "dazed"}, own_source=True)),
         "prot_up": int(tl.ench_up(a, t, PROT_SKILLS)), "block_up": int(tl.ench_up(a, t, BLOCKS)),
         "hexes_on": tl.hexes_on(a, t), "hexes_on_own_healers": sum(tl.hexes_on(b, t) for b in heal_live),
-        "healers_in_range": len(in_range), "healers_dead": sum(1 for b in tl.healers[tm] if b != a and not st.alive(b, t)),
+        "healers_in_range": len(in_range),
+        # OG comms (comms_vars.py): a monk alone has no other monk to support it; every group needs a healer; fight the
+        # player with a big death penalty; spread out against area damage
+        "solo_healer": int(a in tl.healers[tm] and not in_range),
+        "group_no_healer": int(len(g := tl.group_of(a, t)) >= 2 and not any(b in tl.healers[tm] for b in g)),
+        "own_morale": (sbt.get("morale") or {}).get(m.roles.get(a), 0) or 0 if sbt else 0,
+        "allies_in_area": near(tm, IN_AREA),
+        "healers_dead": sum(1 for b in tl.healers[tm] if b != a and not st.alive(b, t)),
         "allies_near": near(tm, 1500), "enemies_near": near(3 - tm, 1500), "local_diff": near(tm, 2000) - near(3 - tm, 2000),
         "dist_from_group": round(d(p, c)) if a not in main and c else 0,
         "away_3000": int(a not in main and bool(c) and d(p, c) >= 3000),
@@ -124,7 +138,11 @@ DEATH_DESC = {
     "prot_up": "a prot (Guardian, Spirit Bond, Life Sheath, Protective Spirit...) on the player now",
     "block_up": "a block enchantment up now", "hexes_on": "hexes on the player now",
     "hexes_on_own_healers": "hexes on its team's live healers now (hex pressure on the backline)",
-    "healers_in_range": "own healers alive within cast range",
+    "healers_in_range": "own healers alive within cast range (other than the player)",
+    "solo_healer": "the player is a healer with no other own healer within cast range (OG comms: a solo monk is vulnerable)",
+    "group_no_healer": "the player's group (2+) has no healer (OG comms: keep a healer with every group)",
+    "own_morale": "the player's own morale: negative = death penalty, positive = boost (OG comms: fight the player with 30 DP)",
+    "allies_in_area": "allies within 322 (the area of most area spells; OG comms: spread out)",
     "healers_dead": "own healers dead", "allies_near": "allies within 1,500", "enemies_near": "enemies within 1,500",
     "local_diff": "allies minus enemies within 2,000", "dist_from_group": "distance from its main group (0 if in it)",
     "away_3000": "3,000+ from its main group (Denning: clearer than 2,500 for a split or a collapse)",
@@ -282,7 +300,9 @@ def _build_rows(node, rid):
                 first_in = first_in if first_in is not None else t
                 defs = [b for b in st.players[dt] if st.alive(b, t) and d(st.pos(b, t)[0], pit) < PIT_R + 800]
                 alive_n = [(a, v) for a, v in pit_npcs if st.npc_dead.get(a, 1e9) > t]
+                alive_at = sum(1 for b in st.players[at] if st.alive(b, t))
                 base = {"attackers": len(inside), "attacker_healers": sum(1 for b in inside if _healer(m, b)),
+                        "attackers_share": round(len(inside) / alive_at, 2) if alive_at else 0,
                         "attackers_area_damage": sum(_aoe_skills(m, b) for b in inside),
                         "full_pit_targets": len(alive_pre) if (alive_pre := [x for x in pit_npcs if st.npc_dead.get(x[0], 1e9) > t]) else 0,
                         "attackers_lord_dps": round(sum(dps(b) for b in inside), 1),
@@ -313,6 +333,7 @@ def _build_rows(node, rid):
 
 
 NPC_DESC = {"attackers": "enemy players in the pit", "attacker_healers": "of which healers",
+            "attackers_share": "share of the attacking team's live players in the pit (OG comms: merge before pushing the pit)",
             "attackers_area_damage": "area-damage skills on the attackers' bars (Denning P9)",
             "full_pit_targets": "pit NPCs alive (targets the defending monks must watch, P9)",
             "attackers_lord_dps": "attackers' measured damage per second against a Lord (benchmarks)",

@@ -9,6 +9,7 @@ REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 
 # ---- geometry
 CAST_R = 1250            # about spell range
+IN_AREA = 322            # 'in the area' (knowledge/ranges.md): the largest offensive-spell area
 FIGHT_RANGE = 1300       # players closer than this to a group member are in the same group
 STAND_R = 1500           # around the flag stand
 BASE_R = 2500            # around a team's res shrine

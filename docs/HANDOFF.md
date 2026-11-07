@@ -117,15 +117,14 @@ Process (METHODS.md "Commentary and comms"): match each transcript to its match 
 `timeline.py`, file paraphrased claims in `data/commentary/<source>.json` with the engine's check, measure the
 variables in `comms_vars.py`, move supported ones into the model and tactics, record the rest as open questions, and
 `status.py mark <id> commentary <source> checked|done`.
-- Done (session 4n): OG comms, first six of Maga's nine: ohno v Crew 77206c78, ohno v One c553716d, ohno v NwAy
-  a0d60daa, xxx v ohno 29aad8d4, ohno v Fun 1cb73c20, OG v cope J 29b7eca0 (claims in data/commentary/og_comms.json;
-  batch 6 = these new replays plus 2 others; variables in data/benchmarks/comms_variables.json; tactics P12, P13, K17,
-  L11, X9, Q16). Waiting for Denning's review.
-- Next: the other three Maga matches (OG v hdm d016987b, OG v Dz a921418b, OG v hold 49eec28d; transcripts e3a05cc3,
-  b49cd8df, 1cee3c6a, attached by Denning on 2026-11-06; ask him to re-attach in a new chat), then Bounty (6), then Nick (1).
-- Variables still to build from the comms: area damage taken against spacing (the right outcome for "spread out"),
-  footmen (base NPCs, not tracked yet), death cost while boosted ("we can die for NPCs"), spike rate by weapon set
-  (40/40 against shields), portal jumps tied to Lord damage on Isle of Solitude.
+- Done (session 4n): all nine of Maga's OG comms matches (claims in data/commentary/og_comms.json, 55 claims); batch 6;
+  variables measured in data/benchmarks/comms_variables.json; made into model variables at Denning's request (METHODS.md
+  "Commentary and comms"); power plays at home fixed; tactics P12 to P14, K17, L11, L12, X9, X10, M19, Q16 answered.
+- Next: Bounty's six matches, then Nick's one (ask Denning for the transcripts).
+- Open from the comms: lord.py's rebuilt health had the wrong leader in the OG v hold base race (both Lords died 0.3 s
+  apart; check max health, boosts, the Amulet cap and player healing); area damage is found only where the skill is
+  recorded or inferred; Denning to confirm gate (lock) control on Weeping Stone, "the jump", and Entourage (gvg.report
+  records attackers needed to suppress it); does Aura of Faith reduce Lord damage (test on the Master of Damage).
 
 ## Fixes from the first why chains (batch 5): state
 1. Done: mechanics stop at a symptom. Why chains now explain what dropped the health with forensics (`forensics.py`),

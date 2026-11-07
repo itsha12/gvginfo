@@ -35,7 +35,7 @@ page; tags such as [Men v Team] on that page point here.
 - **OG comms:** Maga's streams of OG's own voice comms. September 2026 automated tournaments (OG played as tag ohno):
   ohno v Crew (Corrupted, 77206c78), ohno v One (Solitude, c553716d), ohno v NwAy (Weeping Stone, a0d60daa), xxx v
   ohno (Uncharted, 29aad8d4), ohno v Fun (Solitude, 1cb73c20); claims checked against the engine in
-  data/commentary/og_comms.json, with OG v cope J below. Still to do: OG v hdm, OG v Dz (a921418b), OG v hold.
+  data/commentary/og_comms.json, together with OG v cope J, OG v hdm, OG v Dz (Meditation, a921418b) and OG v hold.
   October 2026 monthly: Comms show what a team intended and
   called; each point was checked against the replay. Names: Maga = mesmer; Holy = Holye (WoC monk, mesmer or
   elementalist by build); Enigma = Enigma Og (8 or 7 monk); "No Monk" = No Monk For You (prot). Video time differs

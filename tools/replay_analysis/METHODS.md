@@ -512,7 +512,21 @@ These set the kind of answer the engine must produce: the event, the measured ca
   die about 4 times as often in fights (`K17`, partly selection), turtling teams usually lose (`L11`, win-model candidate
   `turtle_diff`). Not supported or unclear: "solo monk" alone (`Q16`), Shell Shock and enchantment strips on the spike
   target, tight groups dying more (deaths are the wrong outcome: area damage taken is the right one, to build).
-  Can't measure: gate control, terrain and line of sight, energy, call timing, footmen (not yet tracked).
+  Can't measure: gate control, terrain and line of sight, energy, call timing.
+- Made into model variables (Denning, after the first six): deaths node `solo_healer` (a healer with no other own healer
+  in casting range: Denning's reading of "solo monk"; measured on the monk's own death, 3.4% against 1.1% per 10 s),
+  `group_no_healer`, `own_morale` (the player's own death penalty or boost), `allies_in_area` (allies within 322) and
+  `healers_in_range` now excludes the player; NPC nodes `attackers_share` (share of the attacking team in the pit:
+  merging); win-model candidates `footmen_diff`, `no_healer_groups_diff`, `solo_healers_diff` (and `turtle_diff`);
+  values.py prices a footman lost and splits deaths by whether the team was boosted ("we can die for NPCs"); footmen
+  are read from the replay's agents (`features.footmen`). Measured in comms_vars.py: area damage against spacing
+  (unclear), spikes by weapon set (unclear), interrupts on the spikers before a spike (supported: 23% against 40% kills).
+- Power play fix: a numbers advantage held in the own base or pit is a defence, not a power play (`fights.windows`
+  records `where` and `at_home`; `decisions.power_plays` skips those). Found when batch 6's "power play without a kill"
+  was One holding 8v3 in its own pit while turtling.
+- Last three OG matches: OG v hdm (OG's spikes killed 0 of 15: hdm's healing and interrupts, `X10`), OG v Dz (footmen,
+  out of heal range), OG v hold (a base race won by 0.3 s after OG healed its own Lord for 1,390, `L12`). Engine issue
+  found there: the rebuilt Lord health had hold ahead, the reverse of the result (lord.py to check).
 
 ## Flag position (Denning, tactics `F1` to `F4`)
 - Up on flags = the better position to get a boost and to run, not the team that capped last.

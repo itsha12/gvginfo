@@ -7,7 +7,8 @@ Kinds (each record: kind, team (the team choosing), t, state, choice, actions (w
 carrying, to the spawn, fell back, advanced, fought, held, died), outcome, edge_change):
 - enemy_pickup: the enemy picks up a new flag. Choices: already running, ran (picked up within 25 s), held.
 - split_in_base: an enemy split enters the base. Choices: who answered and how fast (on time 15 s, late, missed).
-- power_play: a numbers advantage at main for 10 s+. Choices: pushed (ground or pressure), held.
+- power_play: a numbers advantage at main for 10 s+, away from home (a numbers advantage in the own base or pit is a
+  defence, not a power play; and the two mains must trade damage). Choices: pushed (ground or pressure), held.
 - boost_clock: the enemy's boost is 30 s away. Choices: running (a carrier out), not running.
 - after_wipe: the team just won a wipe. Choices: pushed the pit, took the flag, reset.
 - late_game: 24:00 reached. Choice: Lord commitment (players at the enemy Lord) against defence; outcome = result.
@@ -161,6 +162,9 @@ def splits_in_base(st, sb, splits):
 def power_plays(st, sb, windows):
     m, out = st.m, []
     for w in windows:
+        # a numbers advantage held at home (own base or pit) is a defence (e.g. a turtle against a push), not a power
+        # play: found in batch 6 (One holding 8v3 in its own pit while turtling, ohno v One)
+        if w.get("at_home") or not w.get("contact", True): continue      # or no damage traded: not a fight
         tm = next(k for k, v in m.tag.items() if v == w["team"])
         pushed = (w["pushed_toward_enemy_pit"] or 0) > 500 or w["pressure_vs_avg"] >= 1.3
         out.append(rec(sb, "power_play", tm, w["start"], "pushed" if pushed else "held", w["end"] + 20,

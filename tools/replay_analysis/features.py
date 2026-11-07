@@ -55,6 +55,39 @@ def _home_share(sb, tm, t):
     return home / len(live)
 
 
+def footmen(m):
+    """Footmen (base NPCs, not pit NPCs; Denning): {team: [(agent, death time or None)]} from the replay's agents and deaths."""
+    if "_footmen" not in m.o:
+        dead = {}
+        for e in m.o["ev"]:
+            if e[1] == "dt" and isinstance(e[2], int) and e[2] < len(m.A) and m.A[e[2]].get("npc") == "footman": dead.setdefault(e[2], e[0] / 10)
+        out = {1: [], 2: []}
+        for a, ag in enumerate(m.A):
+            if ag.get("npc") == "footman" and ag.get("team") in out: out[ag["team"]].append((a, dead.get(a)))
+        m.o["_footmen"] = out
+    return m.o["_footmen"]
+
+
+def _footmen_alive(sb, tm, t):
+    return sum(1 for _, dt in footmen(sb.m)[tm] if dt is None or dt > t)
+
+
+def _groups_no_healer(sb, tm, t):
+    """Groups of 2+ live players of tm with no healer among them (OG comms: keep a healer with every group)."""
+    from phases import healer
+    m = sb.m
+    return sum(1 for g in m.groups(tm, int(t) * 10) if len(g) >= 2 and not any(healer(m, a) for a in g))
+
+
+def _solo_healers(sb, tm, t):
+    """Live healers of tm with no other live own healer within casting range (a monk alone)."""
+    from phases import healer
+    from common import CAST_R
+    st, m = sb.st, sb.m
+    hs = [a for a in st.players[tm] if healer(m, a) and st.alive(a, t)]
+    return sum(1 for a in hs if not any(b != a and (m.dist(a, b, int(t) * 10) or 1e9) <= CAST_R for b in hs))
+
+
 def _geo(sb):
     if not hasattr(sb, "_geo_shape"):
         g = sb.st.geo
@@ -142,6 +175,15 @@ CANDIDATES = [
      "([ohno v One], [ohno v Crew]: 'they are turtling, we have to make a play'); comms_vars.py: teams that turtled 60 s "
      "won 3 of 13 times",
      lambda s, sb, tm, t, x: round(_home_share(sb, tm, t) - _home_share(sb, 3 - tm, t), 3)),
+    ("footmen_diff", "own minus enemy footmen alive (base NPCs, not pit NPCs). Proposed 2026-11-06 from OG comms "
+     "([ohno v NwAy]: 'this way we don't lose footmen'; [ohno v Fun]: fake collapse to the footmen)",
+     lambda s, sb, tm, t, x: _footmen_alive(sb, tm, t) - _footmen_alive(sb, 3 - tm, t)),
+    ("no_healer_groups_diff", "own minus enemy groups of 2+ with no healer. Proposed 2026-11-06 from OG comms ([ohno v One]: "
+     "keep a prot and a monk on one side, the Rit and a monk on the other); comms_vars.py: such groups lose players twice as often",
+     lambda s, sb, tm, t, x: _groups_no_healer(sb, tm, t) - _groups_no_healer(sb, 3 - tm, t)),
+    ("solo_healers_diff", "own minus enemy healers with no other own healer within casting range. Proposed 2026-11-06 from "
+     "OG comms ('solo monk, go on the monk'); Denning: a monk alone has no other monk to support it",
+     lambda s, sb, tm, t, x: _solo_healers(sb, tm, t) - _solo_healers(sb, 3 - tm, t)),
 ]
 DESCRIPTIONS = {n: dsc for n, dsc, _ in VARIABLES + CANDIDATES}
 
