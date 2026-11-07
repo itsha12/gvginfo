@@ -1,6 +1,6 @@
 {
  "format": "gvginfo.replay.v1",
- "updated": "2026-11-07T10:29:01.453Z",
+ "updated": "2026-11-07T15:26:34.299Z",
  "matches": {
   "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65": {
    "file": "2026-11/eea5ba87-ac20-5ba3-a6c9-965f11ca8a65.json.gz",
@@ -1273,6 +1273,34 @@
    "winner": "옷옷옷옷",
    "length_s": 370,
    "kb": 96,
+   "summary": true,
+   "trim": 3
+  },
+  "1086d31d-2728-5802-aedc-3da3db383fbb": {
+   "file": "2026-11/1086d31d-2728-5802-aedc-3da3db383fbb.json.gz",
+   "date": "2026-11-07T11:27:54.091Z",
+   "map": "Nomad's Isle",
+   "teams": [
+    "RACK",
+    "DUM"
+   ],
+   "winner": "RACK",
+   "length_s": 355,
+   "kb": 89,
+   "summary": true,
+   "trim": 3
+  },
+  "bb669b6f-5c52-589e-a4ed-1c621556c9a4": {
+   "file": "2026-11/bb669b6f-5c52-589e-a4ed-1c621556c9a4.json.gz",
+   "date": "2026-11-07T11:29:37.975Z",
+   "map": "Imperial Isle",
+   "teams": [
+    "RACK",
+    "chic"
+   ],
+   "winner": "RACK",
+   "length_s": 1693,
+   "kb": 394,
    "summary": true,
    "trim": 3
   }

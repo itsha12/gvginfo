@@ -1,13 +1,13 @@
 {
- "updated": "2026-11-07T10:24:38.165Z",
+ "updated": "2026-11-07T15:26:11.708Z",
  "matches": [
   {
-   "id": "04befe7e-4050-51d4-ac06-3560dcb02611",
-   "date": "2026-11-06",
+   "id": "1086d31d-2728-5802-aedc-3da3db383fbb",
+   "date": "2026-11-07",
    "map": "Nomad's Isle",
    "teams": [
-    "BcS",
-    "Apes"
+    "RACK",
+    "DUM"
    ],
    "winner": 1,
    "occasion": "automated",
@@ -47,6 +47,61 @@
     "tournament_occasion",
     "observed_match_clock"
    ]
+  },
+  {
+   "id": "bb669b6f-5c52-589e-a4ed-1c621556c9a4",
+   "date": "2026-11-07",
+   "map": "Imperial Isle",
+   "teams": [
+    "RACK",
+    "chic"
+   ],
+   "winner": 1,
+   "occasion": "automated"
+  },
+  {
+   "id": "79dd8824-360b-50e3-a35a-3c8ba8c7d424",
+   "date": "2026-11-07",
+   "map": "Imperial Isle",
+   "teams": [
+    "RV",
+    "DUM"
+   ],
+   "winner": 2,
+   "occasion": "automated"
+  },
+  {
+   "id": "74b45f70-a246-54f2-a9b1-91bb2250c24c",
+   "date": "2026-11-07",
+   "map": "Corrupted Isle",
+   "teams": [
+    "DUM",
+    "chic"
+   ],
+   "winner": 2,
+   "occasion": "automated"
+  },
+  {
+   "id": "83dd4d0d-4ab5-5ada-a5db-3ad508ebb27b",
+   "date": "2026-11-07",
+   "map": "Corrupted Isle",
+   "teams": [
+    "RACK",
+    "戦戦戦戦"
+   ],
+   "winner": 1,
+   "occasion": "automated"
+  },
+  {
+   "id": "04befe7e-4050-51d4-ac06-3560dcb02611",
+   "date": "2026-11-06",
+   "map": "Nomad's Isle",
+   "teams": [
+    "BcS",
+    "Apes"
+   ],
+   "winner": 1,
+   "occasion": "automated"
   },
   {
    "id": "ad75813a-2393-56f4-aee1-975ff4c85196",
@@ -4378,61 +4433,6 @@
    "teams": [
     "hook",
     "옷옷옷옷"
-   ],
-   "winner": 2,
-   "occasion": "automated"
-  },
-  {
-   "id": "328de049-54fa-5d8e-a401-651e954b288d",
-   "date": "2026-10-04",
-   "map": "Isle of Solitude",
-   "teams": [
-    "Book",
-    "cope"
-   ],
-   "winner": 2,
-   "occasion": "automated"
-  },
-  {
-   "id": "0ba9c1ae-de01-547e-afe4-c9f5a897cf25",
-   "date": "2026-10-04",
-   "map": "Isle of Solitude",
-   "teams": [
-    "옷옷옷옷",
-    "OG"
-   ],
-   "winner": 1,
-   "occasion": "automated"
-  },
-  {
-   "id": "c99f9f79-df04-5080-a929-a34cb367e216",
-   "date": "2026-10-04",
-   "map": "Isle of Solitude",
-   "teams": [
-    "push",
-    "Dz"
-   ],
-   "winner": 2,
-   "occasion": "automated"
-  },
-  {
-   "id": "996e36a3-0191-516c-ae13-2fc9651534ae",
-   "date": "2026-10-04",
-   "map": "Isle of Jade",
-   "teams": [
-    "Book",
-    "One"
-   ],
-   "winner": 1,
-   "occasion": "automated"
-  },
-  {
-   "id": "645cb6e9-ef69-5253-a1af-ab3950ab7025",
-   "date": "2026-10-04",
-   "map": "Isle of Jade",
-   "teams": [
-    "Free",
-    "Dz"
    ],
    "winner": 2,
    "occasion": "automated"
