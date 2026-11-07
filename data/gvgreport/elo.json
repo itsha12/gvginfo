@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-06T18:08:40.794Z",
+ "updated": "2026-11-07T10:23:45.560Z",
  "source": "https://gvg.report/api/tournament-rankings?period=all",
  "rating_model": {
   "version": "tournament-elo.v2",
@@ -19,14 +19,14 @@
   {
    "tag": "Men",
    "guild": "Handsome",
-   "elo": 1918,
-   "observed_rating": 1606,
-   "matches": 192,
-   "wins": 159,
+   "elo": 1924,
+   "observed_rating": 1610,
+   "matches": 195,
+   "wins": 162,
    "losses": 32,
    "provisional": false,
    "inactive": false,
-   "last_at": 1793914307717
+   "last_at": 1793999406412
   },
   {
    "tag": "옷옷옷옷",
@@ -77,18 +77,6 @@
    "last_at": 1789848306079
   },
   {
-   "tag": "HH",
-   "guild": "Headhunter Enjoyers",
-   "elo": 1709,
-   "observed_rating": 1691,
-   "matches": 79,
-   "wins": 69,
-   "losses": 10,
-   "provisional": false,
-   "inactive": true,
-   "last_at": 1790373455936
-  },
-  {
    "tag": "RACK",
    "guild": "Sydney Sweeney",
    "elo": 1702,
@@ -123,6 +111,18 @@
    "provisional": false,
    "inactive": false,
    "last_at": 1793914188832
+  },
+  {
+   "tag": "HH",
+   "guild": "Headhunter Enjoyers",
+   "elo": 1659,
+   "observed_rating": 1691,
+   "matches": 79,
+   "wins": 69,
+   "losses": 10,
+   "provisional": false,
+   "inactive": true,
+   "last_at": 1790373455936
   },
   {
    "tag": "OG",
@@ -245,6 +245,18 @@
    "last_at": 1793764688131
   },
   {
+   "tag": "BcS",
+   "guild": "The Bouncers",
+   "elo": 1522,
+   "observed_rating": 1169,
+   "matches": 152,
+   "wins": 71,
+   "losses": 81,
+   "provisional": false,
+   "inactive": false,
+   "last_at": 1793999406412
+  },
+  {
    "tag": "のィィ",
    "guild": "You Need Help So Pls Call",
    "elo": 1515,
@@ -291,18 +303,6 @@
    "provisional": false,
    "inactive": false,
    "last_at": 1792264965743
-  },
-  {
-   "tag": "BcS",
-   "guild": "The Bouncers",
-   "elo": 1501,
-   "observed_rating": 1147,
-   "matches": 149,
-   "wins": 69,
-   "losses": 80,
-   "provisional": false,
-   "inactive": false,
-   "last_at": 1793914223401
   },
   {
    "tag": "GiP",
@@ -557,18 +557,6 @@
    "last_at": 1790656326457
   },
   {
-   "tag": "Book",
-   "guild": "Let Me Write It Down In My Care",
-   "elo": 1487,
-   "observed_rating": 1149,
-   "matches": 188,
-   "wins": 93,
-   "losses": 94,
-   "provisional": false,
-   "inactive": false,
-   "last_at": 1793214605782
-  },
-  {
    "tag": "入入入",
    "guild": "入入入入",
    "elo": 1487,
@@ -761,6 +749,18 @@
    "last_at": 1791261906618
   },
   {
+   "tag": "Book",
+   "guild": "Let Me Write It Down In My Care",
+   "elo": 1451,
+   "observed_rating": 1136,
+   "matches": 190,
+   "wins": 93,
+   "losses": 96,
+   "provisional": false,
+   "inactive": false,
+   "last_at": 1793999388653
+  },
+  {
    "tag": "chic",
    "guild": "Fashion Police",
    "elo": 1448,
@@ -893,6 +893,18 @@
    "last_at": 1792156742864
   },
   {
+   "tag": "hook",
+   "guild": "The Uppercut Providers",
+   "elo": 1415,
+   "observed_rating": 1049,
+   "matches": 200,
+   "wins": 54,
+   "losses": 145,
+   "provisional": false,
+   "inactive": false,
+   "last_at": 1793999406412
+  },
+  {
    "tag": "GW크",
    "guild": "Coming To A Console Near You",
    "elo": 1410,
@@ -903,18 +915,6 @@
    "provisional": true,
    "inactive": false,
    "last_at": 1793764688131
-  },
-  {
-   "tag": "hook",
-   "guild": "The Uppercut Providers",
-   "elo": 1395,
-   "observed_rating": 1004,
-   "matches": 197,
-   "wins": 52,
-   "losses": 144,
-   "provisional": false,
-   "inactive": false,
-   "last_at": 1793914882435
   },
   {
    "tag": "DKKL",
@@ -955,14 +955,14 @@
   {
    "tag": "mddl",
    "guild": "Meddl Loide",
-   "elo": 1371,
-   "observed_rating": 969,
-   "matches": 21,
-   "wins": 5,
-   "losses": 16,
+   "elo": 1383,
+   "observed_rating": 976,
+   "matches": 24,
+   "wins": 7,
+   "losses": 17,
    "provisional": false,
    "inactive": false,
-   "last_at": 1793914307717
+   "last_at": 1793999406412
   },
   {
    "tag": "fM",
@@ -1001,18 +1001,6 @@
    "last_at": 1786818006503
   },
   {
-   "tag": "Apes",
-   "guild": "Animal Planet",
-   "elo": 1330,
-   "observed_rating": 975,
-   "matches": 167,
-   "wins": 52,
-   "losses": 114,
-   "provisional": false,
-   "inactive": false,
-   "last_at": 1793562305680
-  },
-  {
    "tag": "dR",
    "guild": "Dangerous Rebels",
    "elo": 1322,
@@ -1023,6 +1011,18 @@
    "provisional": false,
    "inactive": true,
    "last_at": 1789071714270
+  },
+  {
+   "tag": "Apes",
+   "guild": "Animal Planet",
+   "elo": 1321,
+   "observed_rating": 992,
+   "matches": 169,
+   "wins": 52,
+   "losses": 116,
+   "provisional": false,
+   "inactive": false,
+   "last_at": 1793999406412
   },
   {
    "tag": "戦戦戦戦",
@@ -1123,14 +1123,14 @@
   {
    "tag": "EDGE",
    "guild": "Endless Doom Greatest Endeavour",
-   "elo": 1120,
-   "observed_rating": 1140,
-   "matches": 98,
+   "elo": 1109,
+   "observed_rating": 1127,
+   "matches": 100,
    "wins": 9,
-   "losses": 89,
+   "losses": 91,
    "provisional": false,
    "inactive": false,
-   "last_at": 1793914223401
+   "last_at": 1793999406412
   }
  ]
 }
