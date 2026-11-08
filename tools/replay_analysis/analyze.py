@@ -62,7 +62,7 @@ if __name__ == "__main__":
     if "--out" in args: i = args.index("--out"); out = args[i + 1]; del args[i:i + 2]
     if args == ["--all"]:
         repo = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-        args = list(json.loads(subprocess.check_output(["git", "-C", repo, "show", "origin/replays:index.json"]))["matches"])
+        args = __import__("common").replay_ids()
     os.makedirs(out, exist_ok=True)
     jobs = os.cpu_count() or 2
     if len(args) > 1 and not save:

@@ -1,73 +1,79 @@
 {
  "about": "lord: Lord damage per second while at the enemy Lord, by profession and by role. \"At the Lord\" = alive and within\nPIT_R + 500 of the enemy Lord's estimated position, in a second when at least one teammate hit the Lord (so time spent\nwalking past or fighting players in the pit without attacking the Lord doesn't count against a profession). Reported\nwith seconds and matches behind each number; a value with fewer than MIN_SECS seconds is marked thin.",
- "matches": 53,
+ "matches": 176,
  "by_profession": {
-  "Ranger": {
-   "dps": 32.7,
-   "seconds": 737,
-   "matches": 14,
+  "Assassin": {
+   "dps": 33.4,
+   "seconds": 294,
+   "matches": 11,
    "thin": false
   },
   "Elementalist": {
-   "dps": 32.2,
-   "seconds": 603,
-   "matches": 15,
+   "dps": 29.9,
+   "seconds": 3869,
+   "matches": 55,
    "thin": false
   },
   "Warrior": {
-   "dps": 30.2,
-   "seconds": 1534,
-   "matches": 41,
+   "dps": 27.1,
+   "seconds": 5070,
+   "matches": 124,
    "thin": false
   },
-  "Assassin": {
-   "dps": 26.0,
-   "seconds": 193,
-   "matches": 5,
-   "thin": false
-  },
-  "Dervish": {
-   "dps": 21.7,
-   "seconds": 992,
-   "matches": 30,
-   "thin": false
-  },
-  "Paragon": {
-   "dps": 20.2,
-   "seconds": 488,
-   "matches": 9,
-   "thin": false
-  },
-  "Necromancer": {
-   "dps": 14.0,
-   "seconds": 340,
-   "matches": 6,
-   "thin": false
-  },
-  "Ritualist": {
-   "dps": 10.4,
-   "seconds": 498,
-   "matches": 18,
-   "thin": false
-  },
-  "Mesmer": {
-   "dps": 7.6,
-   "seconds": 1777,
+  "Ranger": {
+   "dps": 25.2,
+   "seconds": 1708,
    "matches": 49,
    "thin": false
   },
+  "Dervish": {
+   "dps": 24.3,
+   "seconds": 3319,
+   "matches": 96,
+   "thin": false
+  },
+  "Paragon": {
+   "dps": 24.1,
+   "seconds": 1677,
+   "matches": 30,
+   "thin": false
+  },
+  "Necromancer": {
+   "dps": 14.5,
+   "seconds": 1187,
+   "matches": 21,
+   "thin": false
+  },
+  "Ritualist": {
+   "dps": 12.9,
+   "seconds": 2173,
+   "matches": 61,
+   "thin": false
+  },
+  "Mesmer": {
+   "dps": 7.5,
+   "seconds": 5956,
+   "matches": 147,
+   "thin": false
+  },
   "Monk": {
-   "dps": 5.1,
-   "seconds": 3511,
-   "matches": 51,
+   "dps": 7.2,
+   "seconds": 12698,
+   "matches": 155,
    "thin": false
   }
  },
  "by_role": {
   "Fire Ele": {
-   "dps": 37.9,
-   "seconds": 109,
-   "matches": 6,
+   "dps": 37.2,
+   "seconds": 1273,
+   "matches": 33,
+   "thin": false
+  },
+  "Earth Ele": {
+   "dps": 35.3,
+   "seconds": 19,
+   "matches": 1,
    "thin": true
   },
   "7 Monk (WoC)": {
@@ -76,40 +82,58 @@
    "matches": 3,
    "thin": true
   },
-  "Ranger": {
-   "dps": 32.7,
-   "seconds": 737,
-   "matches": 14,
+  "Assassin": {
+   "dps": 33.4,
+   "seconds": 294,
+   "matches": 11,
    "thin": false
   },
-  "Air Ele": {
-   "dps": 32.1,
-   "seconds": 450,
-   "matches": 13,
+  "Monk": {
+   "dps": 32.8,
+   "seconds": 1158,
+   "matches": 15,
    "thin": false
   },
   "Hammer": {
-   "dps": 31.0,
-   "seconds": 1180,
-   "matches": 32,
+   "dps": 28.7,
+   "seconds": 3099,
+   "matches": 89,
+   "thin": false
+  },
+  "Air Ele": {
+   "dps": 27.1,
+   "seconds": 2181,
+   "matches": 47,
+   "thin": false
+  },
+  "Ranger": {
+   "dps": 25.2,
+   "seconds": 1708,
+   "matches": 49,
    "thin": false
   },
   "Warrior": {
-   "dps": 27.5,
-   "seconds": 354,
-   "matches": 14,
-   "thin": false
-  },
-  "Assassin": {
-   "dps": 26.0,
-   "seconds": 193,
-   "matches": 5,
+   "dps": 24.7,
+   "seconds": 1971,
+   "matches": 47,
    "thin": false
   },
   "AoB Derv": {
-   "dps": 23.7,
-   "seconds": 602,
-   "matches": 26,
+   "dps": 24.6,
+   "seconds": 2405,
+   "matches": 76,
+   "thin": false
+  },
+  "Paragon": {
+   "dps": 24.1,
+   "seconds": 1677,
+   "matches": 30,
+   "thin": false
+  },
+  "Dervish": {
+   "dps": 23.6,
+   "seconds": 914,
+   "matches": 32,
    "thin": false
   },
   "Prot (WoC)": {
@@ -118,106 +142,88 @@
    "matches": 3,
    "thin": true
   },
+  "Water Ele": {
+   "dps": 21.2,
+   "seconds": 396,
+   "matches": 13,
+   "thin": false
+  },
   "Monk 2 (WoC)": {
    "dps": 20.3,
    "seconds": 69,
    "matches": 4,
    "thin": true
   },
-  "Paragon": {
-   "dps": 20.2,
-   "seconds": 488,
-   "matches": 9,
-   "thin": false
+  "Rit/Para": {
+   "dps": 19.2,
+   "seconds": 48,
+   "matches": 3,
+   "thin": true
   },
   "Monk 4 (WoC)": {
-   "dps": 19.8,
-   "seconds": 104,
-   "matches": 6,
-   "thin": true
-  },
-  "Water Ele": {
-   "dps": 18.6,
-   "seconds": 44,
-   "matches": 4,
-   "thin": true
-  },
-  "Dervish": {
-   "dps": 18.5,
-   "seconds": 390,
-   "matches": 11,
-   "thin": false
-  },
-  "Rit/Para": {
-   "dps": 16.3,
-   "seconds": 12,
-   "matches": 1,
-   "thin": true
-  },
-  "Necromancer": {
-   "dps": 14.0,
-   "seconds": 340,
-   "matches": 6,
+   "dps": 18.2,
+   "seconds": 479,
+   "matches": 20,
    "thin": false
   },
   "Monk 5 (WoC)": {
-   "dps": 13.7,
-   "seconds": 118,
-   "matches": 5,
-   "thin": true
-  },
-  "Monk": {
-   "dps": 12.4,
-   "seconds": 122,
-   "matches": 5,
+   "dps": 17.9,
+   "seconds": 461,
+   "matches": 15,
    "thin": false
   },
-  "Ritualist": {
-   "dps": 10.2,
-   "seconds": 486,
-   "matches": 17,
-   "thin": false
-  },
-  "Stand Mes": {
-   "dps": 9.7,
-   "seconds": 568,
-   "matches": 22,
-   "thin": false
-  },
-  "Mes/A": {
-   "dps": 8.8,
-   "seconds": 489,
+  "Necromancer": {
+   "dps": 14.5,
+   "seconds": 1187,
    "matches": 21,
    "thin": false
   },
   "Monk 3 (WoC)": {
-   "dps": 8.6,
-   "seconds": 69,
-   "matches": 4,
-   "thin": true
-  },
-  "Mesmer": {
-   "dps": 5.2,
-   "seconds": 720,
-   "matches": 26,
+   "dps": 14.2,
+   "seconds": 187,
+   "matches": 10,
    "thin": false
   },
-  "7 Monk": {
-   "dps": 3.0,
-   "seconds": 1360,
-   "matches": 47,
+  "Ritualist": {
+   "dps": 12.8,
+   "seconds": 2125,
+   "matches": 58,
+   "thin": false
+  },
+  "Stand Mes": {
+   "dps": 9.4,
+   "seconds": 1721,
+   "matches": 57,
+   "thin": false
+  },
+  "Mes/A": {
+   "dps": 8.5,
+   "seconds": 1599,
+   "matches": 54,
+   "thin": false
+  },
+  "Mesmer": {
+   "dps": 5.6,
+   "seconds": 2636,
+   "matches": 92,
    "thin": false
   },
   "Prot": {
-   "dps": 2.7,
-   "seconds": 1093,
-   "matches": 39,
+   "dps": 3.1,
+   "seconds": 3402,
+   "matches": 112,
+   "thin": false
+  },
+  "7 Monk": {
+   "dps": 2.8,
+   "seconds": 4557,
+   "matches": 138,
    "thin": false
   },
   "8 Monk": {
-   "dps": 1.9,
-   "seconds": 476,
-   "matches": 27,
+   "dps": 2.7,
+   "seconds": 2285,
+   "matches": 91,
    "thin": false
   }
  }

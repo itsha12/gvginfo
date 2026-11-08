@@ -68,7 +68,7 @@ SOURCE = {
 
 
 def stored():
-    return list(json.loads(subprocess.check_output(["git", "-C", REPO, "show", "origin/replays:index.json"]))["matches"])
+    return __import__("common").replay_ids()
 
 
 def _boot(groups, stat, n=600, seed=7):

@@ -84,7 +84,9 @@ def match_table(rid):
 
 def batches():
     p = os.path.join(MODEL_DIR, "batches.json")
-    return json.load(open(p))["batches"] if os.path.exists(p) else []
+    if not os.path.exists(p): return []
+    from common import counts            # replays before common.TRAIN_FROM are left out (Denning, session 4u)
+    return [dict(b, matches=[m for m in b["matches"] if counts(m)]) for b in json.load(open(p))["batches"]]
 
 
 CAPS = os.path.join(MODEL_DIR, "cap_choices.json")

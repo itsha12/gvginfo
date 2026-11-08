@@ -80,7 +80,7 @@ def fightstate_extra(ids):
     """Fight-state predictions for every stored replay (trained ones by groups, the rest from a model on all trained
     matches). Run once before any section (the workflow's preparation job does it, so every part shares it)."""
     import fightstate, subprocess
-    allr = list(json.loads(subprocess.check_output(["git", "-C", REPO, "show", "origin/replays:index.json"]))["matches"])
+    allr = __import__("common").replay_ids()
     fightstate.build(ids, [x for x in allr if x not in ids])       # before the tables: fight_state reads it
 
 

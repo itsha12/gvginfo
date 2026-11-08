@@ -102,6 +102,9 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   Chains from the node models with fixes carried forward to the result: `causalchain.py` (step 4). Discovery, every
   measured variable against every learned node on unseen matches, held for Denning's approval: `discover.py` and the
   "Discovery" workflow (step 3).
+- Matches count from 1 September 2026 (Denning): replays before `common.TRAIN_FROM` are left out of training and of
+  replay benchmarks, and new picks start at `common.PICK_FROM` (2 September); strength and lineup ratings still use
+  every result (METHODS.md "Which matches count"). Use `common.replay_ids()` for any new replay pool.
 - Data integrity first (`integrity.py`, inside `Match()`): match length repaired, pit NPCs never seen in a replay added
   from the standard roster (2 knights, 2 archers, Bodyguard, Lord; 3 archers on Isle of Solitude), unobserved Lord damage
   left blank. Strength is the measured blend of the guild's fitted rating and the lineup who played (`strength.py`,

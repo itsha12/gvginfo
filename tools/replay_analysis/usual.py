@@ -105,6 +105,7 @@ def load(src):
     recs = []
     for f in sorted(glob.glob(os.path.join(src, "*.json"))):
         a = json.load(open(f))
+        if not __import__("common").counts(a["id"]): continue        # before common.TRAIN_FROM
         ax = build_axes(a["id"])
         try: row0 = next(iter(M.match_table(a["id"])), {})
         except Exception: row0 = {}

@@ -127,7 +127,7 @@ if __name__ == "__main__":
         ids = [m for b in M.batches() for m in b["matches"]]
         import subprocess
         from common import REPO
-        allr = list(json.loads(subprocess.check_output(["git", "-C", REPO, "show", "origin/replays:index.json"]))["matches"])
+        allr = __import__("common").replay_ids()
         build(ids, [x for x in allr if x not in ids])
         print("fight state built for", len(allr), "matches")
     elif a:

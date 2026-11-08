@@ -7,6 +7,33 @@ import json, os
 
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+# ---- which matches count (Denning, session 4u): replays played before TRAIN_FROM are left out of training and of
+# every benchmark built from replays; new picks come from PICK_FROM on. Team strength and lineup ratings still use every
+# stored result (they only rate who is good). Dates are the replay index's UTC dates.
+TRAIN_FROM = "2026-09-01"
+PICK_FROM = "2026-09-02"
+_INDEX = None
+
+
+def replay_index(all_dates=False):
+    """{report id: index entry} of the stored replays, without those before TRAIN_FROM unless all_dates."""
+    global _INDEX
+    if _INDEX is None:
+        import subprocess
+        _INDEX = json.loads(subprocess.check_output(["git", "-C", REPO, "show", "origin/replays:index.json"]))["matches"]
+    return dict(_INDEX) if all_dates else {k: v for k, v in _INDEX.items() if str(v.get("date", ""))[:10] >= TRAIN_FROM}
+
+
+def replay_ids():
+    """Ids of the stored replays that count (from TRAIN_FROM on)."""
+    return list(replay_index())
+
+
+def counts(rid):
+    """Whether a stored replay counts (played from TRAIN_FROM on); unknown ids count."""
+    e = replay_index(all_dates=True).get(rid)
+    return e is None or str(e.get("date", ""))[:10] >= TRAIN_FROM
+
 # ---- geometry
 CAST_R = 1250            # about spell range
 IN_AREA = 322            # 'in the area' (knowledge/ranges.md): the largest offensive-spell area

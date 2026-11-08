@@ -8,9 +8,10 @@
                                        those monthly match files
   python3 batch.py add                 once fetched: add every stored replay not yet trained on as the next batch in
                                        data/model/batches.json; then run learning.py for the report
+Picks come only from matches played on or after common.PICK_FROM; replays before common.TRAIN_FROM are never added.
 Matches from the last day or so may not have replays on gvg.report yet; the workflow skips what it can't fetch."""
 import datetime, glob, json, os, random, subprocess, sys
-from common import REPO
+from common import REPO, PICK_FROM, counts
 
 BATCHES = os.path.join(REPO, "data", "model", "batches.json")
 REQ = os.path.join(REPO, "replays", "requests.txt")
@@ -27,7 +28,7 @@ def pick(n, seed=None, months=None):
     files = glob.glob(os.path.join(REPO, "data", "matches", "2*.json"))
     if months: files = [f for f in files if os.path.basename(f)[:7] in months]
     pool = [r["id"] for f in files for r in json.load(open(f))
-            if r["id"] not in have and r["id"] not in req]
+            if r["id"] not in have and r["id"] not in req and str(r.get("date", ""))[:10] >= PICK_FROM]
     rnd = random.Random(seed)
     chosen = rnd.sample(sorted(pool), min(n, len(pool)))
     with open(REQ, "a") as fh:
@@ -38,7 +39,7 @@ def pick(n, seed=None, months=None):
 def add():
     b = json.load(open(BATCHES))
     done = {m for x in b["batches"] for m in x["matches"]}
-    new = sorted(stored() - done)
+    new = sorted(m for m in stored() - done if counts(m))      # nothing before common.TRAIN_FROM
     if new:
         b["batches"].append({"batch": len(b["batches"]), "added": str(datetime.date.today()), "matches": new})
         json.dump(b, open(BATCHES, "w"), indent=1)

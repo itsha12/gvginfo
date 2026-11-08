@@ -951,3 +951,17 @@ changing status only after two batches in a row, declined: links keep changing s
   (K.9), split_healers and split_self_defence (K.5), def_dps (K.1), def_npc_value (S.scoreboard) and split_npc_dps
   (C.builds); split-in-base decisions carry the same in their situation, so the usual play compares collapses in like
   situations.
+
+## Which matches count: the 1 September cutoff (Denning, session 4u, 2026-11-08)
+- Replays played before `common.TRAIN_FROM` (2026-09-01, the replay index's UTC date) are left out of training and of
+  every benchmark built from replays. `model.batches()` drops them from each batch (batches.json keeps the record, so
+  batch numbers don't change), and `common.replay_ids()` is the replay pool for analyze.py --all, the shards, fight
+  state, forensics, spikes, snare power, Lord damage, carry capture and the commentary variables. 52 of the 228 trained
+  matches were before the cutoff (June 1, July 17, August 34), leaving 176.
+- New picks come only from matches played on or after `common.PICK_FROM` (2026-09-02); `batch.py add` never adds a
+  replay before the cutoff.
+- Not cut (Denning): team strength and lineup ratings (strength.py, lineup.py, context.py) still use every stored
+  result, since they only rate who is good. Game facts measured from replays also keep every date: each map's flag
+  spawns and stand (benchmarks.py spawns) and Lord regeneration (benchmarks.py regen).
+- Benchmarks rebuilt on the 176 matches before chunk 3: forensics.json, spikes.json, snare_measured.json,
+  lord_damage.json, carry_capture.json, comms_variables.json (collapse_snare moved from unclear to supported).

@@ -749,7 +749,7 @@ def npcs(new_ids, recs, usual_res):
     if sp:
         lats = []
         for f in os.listdir(GA) if os.path.isdir(GA) else []:
-            if not f.endswith(".json"): continue
+            if not f.endswith(".json") or not __import__("common").counts(f[:-5]): continue
             for s in json.load(open(os.path.join(GA, f))).get("splits", []):
                 if s.get("entered_base") and s["defenders"]: lats.append(min(d["latency"] for d in s["defenders"]))
         s = sp[0]; lat = min([d["latency"] for d in s["defenders"]] or [None]) if s["defenders"] else None

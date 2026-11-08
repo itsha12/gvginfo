@@ -20,8 +20,7 @@ OUT = os.path.join(REPO, "data", "benchmarks")
 
 
 def match_ids():
-    idx = json.loads(subprocess.check_output(["git", "-C", REPO, "show", "origin/replays:index.json"]))["matches"]
-    return list(idx)
+    return __import__("common").replay_ids()
 
 
 def lord(ids=None):
@@ -60,7 +59,7 @@ def regen(ids=None):
     when Lords die, without any surviving Lord's health reaching 0. Lords whose damage wasn't observed are skipped."""
     from lord import LordState, simulate
     cases = []
-    for rid in ids or match_ids():
+    for rid in ids or list(__import__("common").replay_index(all_dates=True)):      # a game mechanic: every date
         st = GameState(Match.from_branch(rid)); L = LordState(st)
         for tm in (1, 2):
             if 3 - tm in L.unobserved or not L.ev[tm]: continue
@@ -129,7 +128,8 @@ def spawns(ids=None):
     3,000 from the first. Spawn pickups land together match after match, while dropped flags are picked up all over, so
     pooling outvotes a match where a team picked up dropped flags at one choke more often than at its spawn. Also the
     map's stand (median of the matches that located it), for matches whose replay has none (state.py)."""
-    P = collections.defaultdict(list); S = collections.defaultdict(list); ids = ids or match_ids()
+    # game facts, not play: every stored replay, whatever its date (common.TRAIN_FROM doesn't apply)
+    P = collections.defaultdict(list); S = collections.defaultdict(list); ids = ids or list(__import__("common").replay_index(all_dates=True))
     for rid in ids:
         m = Match.from_branch(rid); mp = m.o["meta"].get("map")
         if m.stand and tuple(m.stand) != (0, 0): S[mp].append(tuple(m.stand))

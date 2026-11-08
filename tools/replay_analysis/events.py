@@ -281,7 +281,7 @@ def _landing(win):
 
 def spike_bench():
     from multiprocessing import Pool
-    ids = list(json.loads(subprocess.check_output(["git", "-C", REPO, "show", "origin/replays:index.json"]))["matches"])
+    ids = __import__("common").replay_ids()
     res = {"killed": collections.defaultdict(list), "survived": collections.defaultdict(list)}
     with Pool(os.cpu_count() or 2) as p:
         for r in p.imap_unordered(_spike_match, ids):

@@ -219,7 +219,7 @@ def shard(k, n, jobs=None):
     split across n GitHub machines; this machine builds every n-th match from k. The prepare job then merges the shards'
     cache files and finds everything built."""
     from multiprocessing import Pool
-    allr = sorted(json.loads(subprocess.check_output(["git", "-C", REPO, "show", "origin/replays:index.json"]))["matches"])
+    allr = sorted(__import__("common").replay_ids())
     mine = [r for i, r in enumerate(allr) if i % n == k]
     t = time.time(); bad = 0
     with Pool(jobs or os.cpu_count() or 2) as p:
@@ -257,7 +257,7 @@ def shard_tables(k, jobs=None):
     import fightstate
     ids = _ids(); t = time.time()
     if k == "extra":
-        allr = list(json.loads(subprocess.check_output(["git", "-C", REPO, "show", "origin/replays:index.json"]))["matches"])
+        allr = __import__("common").replay_ids()
         fightstate.build_extra(ids, [x for x in allr if x not in ids])
         print(f"fight state for replays outside the training set in {time.time() - t:.0f} s"); return
     g = fightstate.build_group(ids, int(k))

@@ -24,6 +24,7 @@ def build(src="/tmp/ga", out="/tmp/gl"):
     rows = {k: [] for k in KINDS}
     for f in sorted(glob.glob(os.path.join(src, "*.json"))):
         a = json.load(open(f))
+        if not __import__("common").counts(a.get("id") or os.path.basename(f)[:-5]): continue   # before TRAIN_FROM
         tags = {t["id"]: t["tag"] for t in a["meta"]["teams"]}
         win = tags.get((a["meta"].get("result") or {}).get("winning_team_id"))
         # groups: one row per group per phase (job, capacities, results), flattened from the phases

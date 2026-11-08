@@ -549,7 +549,7 @@ def _bench_match(rid):
 def build_bench():
     import subprocess
     from multiprocessing import Pool
-    ids = list(json.loads(subprocess.check_output(["git", "-C", REPO, "show", "origin/replays:index.json"]))["matches"])
+    ids = __import__("common").replay_ids()
     allv = collections.defaultdict(lambda: collections.defaultdict(list))
     with Pool(os.cpu_count() or 2) as p:
         for r in p.imap_unordered(_bench_match, ids):
