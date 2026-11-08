@@ -176,7 +176,12 @@ engine change before the next run, then the commentary transcripts and step 3 (d
   holding without trying to cap) kept out of run measures; pit_npc_loss learned node (NPC chains price fixes); collapse
   context (split NPC damage, defending NPCs alive, split DP, split healers and self-defence, defenders' damage). Runner
   choice penalties (assassin, paragon): not addressed for now (Denning).
-- Next: chunk 2 running (batch 11); explain it (snapshot, TQs, questions); discovery after chunk 2 or 3. Also proposed to
+- Chunk 2 done (run 42520678255, about 45 min; batch 11, 228 matches, 47 new). Honest test still clear but smaller
+  (0.345 against 0.439; gain +0.094, range +0.02 to +0.158; batch 10 was 0.314). pit_npc_loss node works (0.370 against
+  0.515; TQ 4 now has a chain). Collapse node: def_dps and split_dp supported. Runner choice: only assassin still clear.
+  Collapsing still -4.2 clear. Raised with Denning: npc_damage_5s is the loss happening, not a fix (move to context?),
+  and defenders_elsewhere should chain back to the fight before; test whether split_diff hurt the honest test.
+- Next: Denning's answers on chunk 2; discovery; chunk 3. Also proposed to
   him: a tactics clean-up list (stale 24 to 61 match figures, lines contradicted by the 133-match rebuild, duplicate ids
   S31 and S32).
 - Found: data/model/usual_play.json still holds the 30-match readings; the current ones are only in
