@@ -134,6 +134,33 @@ the commentary transcripts and step 3 (discovery).
   - The event-layer, learned-node and value data for all 133 matches rebuild on the next Train batch run. Expect the
     `learned` part to be much slower that one time (perhaps 30 to 40 min). Make the forensics position fix first if
     Denning approves it, so there is only one rebuild.
+- **Proposed for the next rebuild, awaiting Denning's yes or no** (review after batch 9; numbers from 133 matches):
+  1. Win model: drop the `lord_damage_diff` main term, keep only its pairing with the clock (curve is a sign marker:
+     +-7 to 9 points once any Lord damage exists; the most negative band reads +31.6, backwards; teams ahead on Lord
+     damage won 88%, with alive +0.94 and morale +78: it marks who got into the pit, not the tiebreak).
+  2. Win model: cap or block pairings of build-fixed values (Lord damage per second, spike build) with morale. The batch
+     7 cap covers the main terms only; morale x Lord damage per second came back 3rd and 4th (0.42 each).
+  3. Win model: test caps on `spike_killable_diff` (step of 35 points at one player; at the same morale the real gap is
+     about 13: 64% / 50% / 37% won at morale -20..20).
+  4. Win model: `down_diff_s` direction forced (more enemy time down can only help) or dropped (backwards for 7 to 38 s;
+     mirrors alive_diff).
+  5. Win model: calibration by minute from held-out predictions (a readable lookup). At 6 to 12 min teams given 1% won
+     4.7% and 99% won 94.9%; from 12 min 0.9% won 6.4%. Every win-point value and choice effect uses these numbers.
+  6. Usual play: a choice is what the team did in its first seconds, not over the next 20 s (advancing over 20 s is
+     partly the fight's result: held, advanced +5.5 and held, fell back -4.1, both clear).
+  7. Power-play node: damage, pushing and control measured only up to the first kill (as the fight node does).
+  8. Context-only variables (strength, build skill counts, flag lead, morale, minute) never priced as causes or offered as
+     fixes (values.py prices strength_gap and the enemy's strip-skill count as causes now).
+  9. Snapshot: winners-against-losers comparisons replaced by comparisons at the same win chance, or labelled.
+  10. Learned links change status only after two batches in a row (stops near-line flips).
+  11. Lord damage node: verdict rule fixed (typical error 125 against 92 for the median, still labelled "adds") and a
+      form suited to its skew.
+  12. Rework the three learned nodes still no better than the baseline (flag swing, capture speed, split effect).
+  13. Kill-conversion node: attackers' Blind in seconds, like the new Blind measure.
+  14. Forensics position judged on the last 5 s (TQ 1 fault).
+  15. Values against matched moments without the event (same minute, same win chance).
+  16. TQ what-ifs that aren't monotonic marked unreliable (TQ 4).
+  17. TQ 4 text separates a wipe's NPC loss from a split's.
 - Faults found in batch 9's TQs (not fixed yet):
   1. forensics.position uses the median over the whole window before a death, so a ranged spike that closes in for the
      last seconds reads "not in position" (TQ 1: Apes Necromancer at 1:54 in d9d75e55 shown 1,648 from the nearest
