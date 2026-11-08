@@ -368,16 +368,15 @@ def calibrate(ids):
 
 
 def _interp(knots, p):
-    """Straight lines between the knots; beyond the first and last, the nearest segment's line carried on (clipped to
-    0.5 to 99.5), so the ends follow the data where most rows sit (a line to 0 or 100 put 12 to 18 min teams given 0.5%
-    at 2.3% when 9.6% won)."""
+    """Straight lines between the knots; beyond the first and last knot, that knot's value (each end knot is the middle
+    of a pooled block, so predictions more extreme than it read as that block's win rate). Lines to 0 and 100 (and,
+    next, the end segments carried on) overrode the data at the ends, where most rows sit: teams given 0.4% after
+    18:00 read 0.5% when 7.6% won."""
     if not knots: return p
-    if len(knots) == 1: return min(max(p + knots[0][1] - knots[0][0], 0.5), 99.5)
-    if p <= knots[0][0]: (x0, y0), (x1, y1) = knots[0], knots[1]
-    elif p >= knots[-1][0]: (x0, y0), (x1, y1) = knots[-2], knots[-1]
-    else: (x0, y0), (x1, y1) = next((a, b) for a, b in zip(knots, knots[1:]) if a[0] <= p <= b[0])
-    v = y0 + (y1 - y0) * (p - x0) / (x1 - x0) if x1 > x0 else y1
-    return min(max(v, 0.5), 99.5)
+    if p <= knots[0][0]: return knots[0][1]
+    if p >= knots[-1][0]: return knots[-1][1]
+    (x0, y0), (x1, y1) = next((a, b) for a, b in zip(knots, knots[1:]) if a[0] <= p <= b[0])
+    return y0 + (y1 - y0) * (p - x0) / (x1 - x0) if x1 > x0 else y1
 
 
 _CAL = None
