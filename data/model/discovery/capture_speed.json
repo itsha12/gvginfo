@@ -1,0 +1,187 @@
+{
+ "node": "capture_speed",
+ "target": "R.3",
+ "matches": 125,
+ "rows": 1060,
+ "metric": "mean absolute error (s)",
+ "tested": 93,
+ "screen_passed": 0,
+ "screen": [
+  {
+   "variable": "s.minute",
+   "gain": -0.43314,
+   "plus_minus": 0.27783,
+   "folds_up": 2,
+   "present": 1.0
+  },
+  {
+   "variable": "s.flag_lead",
+   "gain": -0.47587,
+   "plus_minus": 0.2706,
+   "folds_up": 2,
+   "present": 1.0
+  },
+  {
+   "variable": "b.enemy_strips",
+   "gain": -0.64123,
+   "plus_minus": 0.20818,
+   "folds_up": 0,
+   "present": 1.0
+  },
+  {
+   "variable": "b.own_knockdowns",
+   "gain": -0.61544,
+   "plus_minus": 0.23932,
+   "folds_up": 1,
+   "present": 1.0
+  },
+  {
+   "variable": "b.enemy_blocks",
+   "gain": -0.64896,
+   "plus_minus": 0.21571,
+   "folds_up": 0,
+   "present": 1.0
+  },
+  {
+   "variable": "s.map_pit_to_stand",
+   "gain": -0.6452,
+   "plus_minus": 0.22319,
+   "folds_up": 0,
+   "present": 1.0
+  },
+  {
+   "variable": "s.morale_diff",
+   "gain": -0.63606,
+   "plus_minus": 0.26334,
+   "folds_up": 1,
+   "present": 1.0
+  },
+  {
+   "variable": "s.fight_state",
+   "gain": -0.68815,
+   "plus_minus": 0.24267,
+   "folds_up": 0,
+   "present": 1.0
+  },
+  {
+   "variable": "s.morale_total",
+   "gain": -0.70171,
+   "plus_minus": 0.23756,
+   "folds_up": 1,
+   "present": 1.0
+  },
+  {
+   "variable": "b.enemy_aura_of_stability",
+   "gain": -0.68242,
+   "plus_minus": 0.25874,
+   "folds_up": 0,
+   "present": 1.0
+  },
+  {
+   "variable": "s.stand",
+   "gain": -0.69711,
+   "plus_minus": 0.24756,
+   "folds_up": 0,
+   "present": 1.0
+  },
+  {
+   "variable": "b.own_blocks",
+   "gain": -0.72706,
+   "plus_minus": 0.22052,
+   "folds_up": 0,
+   "present": 1.0
+  },
+  {
+   "variable": "b.own_blind_v_enemy_condition_removal",
+   "gain": -0.69501,
+   "plus_minus": 0.25477,
+   "folds_up": 0,
+   "present": 1.0
+  },
+  {
+   "variable": "s.split_diff",
+   "gain": -0.69599,
+   "plus_minus": 0.2549,
+   "folds_up": 0,
+   "present": 1.0
+  },
+  {
+   "variable": "s.solo_healers_diff",
+   "gain": -0.69844,
+   "plus_minus": 0.25439,
+   "folds_up": 0,
+   "present": 1.0
+  },
+  {
+   "variable": "s.alive_diff",
+   "gain": -0.70361,
+   "plus_minus": 0.2552,
+   "folds_up": 0,
+   "present": 1.0
+  },
+  {
+   "variable": "s.turtle_diff",
+   "gain": -0.70738,
+   "plus_minus": 0.2515,
+   "folds_up": 0,
+   "present": 1.0
+  },
+  {
+   "variable": "b.own_hexes",
+   "gain": -0.68738,
+   "plus_minus": 0.27175,
+   "folds_up": 1,
+   "present": 1.0
+  },
+  {
+   "variable": "s.boost_clock",
+   "gain": -0.67612,
+   "plus_minus": 0.28319,
+   "folds_up": 0,
+   "present": 1.0
+  },
+  {
+   "variable": "b.own_knockdowns_v_enemy_aura_of_stability",
+   "gain": -0.71125,
+   "plus_minus": 0.24847,
+   "folds_up": 0,
+   "present": 1.0
+  },
+  {
+   "variable": "b.own_hexes_v_enemy_hex_removal",
+   "gain": -0.69522,
+   "plus_minus": 0.2653,
+   "folds_up": 1,
+   "present": 1.0
+  },
+  {
+   "variable": "b.own_daze",
+   "gain": -0.70897,
+   "plus_minus": 0.2532,
+   "folds_up": 0,
+   "present": 1.0
+  },
+  {
+   "variable": "s.flux_chain_combo",
+   "gain": -0.71806,
+   "plus_minus": 0.24667,
+   "folds_up": 0,
+   "present": 1.0
+  },
+  {
+   "variable": "s.carrying_diff",
+   "gain": -0.70314,
+   "plus_minus": 0.26356,
+   "folds_up": 0,
+   "present": 1.0
+  },
+  {
+   "variable": "b.enemy_blind",
+   "gain": -0.71299,
+   "plus_minus": 0.25378,
+   "folds_up": 0,
+   "present": 1.0
+  }
+ ],
+ "confirmed": []
+}
