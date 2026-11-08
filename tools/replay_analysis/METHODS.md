@@ -789,6 +789,33 @@ changing status only after two batches in a row, declined: links keep changing s
   - values.py prices captures overcapped within 10 s apart from those held longer (`F36`).
   - `buildfeat.FEATURES["snares"]` no longer counts Return.
 
+## Steps 3 and 4 of the learned causal map (session 4t, 2026-11-08)
+- **Step 4, chains from the node models** (`causalchain.py`): a result is traced back through the learned nodes. The
+  result's node reads the moment with a held-out model (learnednodes.py now keeps each node's six fold models of the
+  "all" variant and which fold each match was held out in; data in the cache under fits/lnode, keyed by
+  learnednodes.py alone). Each variable's push = its curve at this moment minus its curve at its usual value (the
+  median over every trained row of the node; the nodes are additive, so the pushes separate). A variable that is
+  another node's result is followed back (flag lead -> the flag swing before; own deaths and numbers -> the fight
+  before; a split answer's latency -> the split-answer node) when it sits on the bad side of its usual value, the two
+  biggest groups at each link, back to the last reset or 3 min, at most 4 links deep; a fight read from the enemy's
+  side has its "enemy_" numbers read as this team's own. Fixes: any play variable (P, K, A.mesa_free groups) among the
+  pushes, set to its usual value; the node is read again and the change carried link by link (seconds carry as they
+  are, and a flag swing keeps a carried lead; a fight's chance carries as that share of a lost fight's deaths, the
+  median over every trained fight, read at full size and scaled because the curves are in steps) to the result's
+  node, priced with values.py (a fight = the deaths of its losing side; flag seconds through the held-out win model).
+  Shown in each TQ beside the rule-based chain (chain.py) while the two are compared; it replaces the rules once
+  Denning approves. Context (strength, builds, clock, map) is never a fix.
+- **Step 3, discovery** (`discover.py`, workflow "Discovery", one node per machine): every variable the engine measures
+  about a team at a moment (the win model's state table, prefix s., and the build and matchup features with snare,
+  speed and escape power, prefix b.) is joined to each node row (same team, the 5 s state at or before the row) and
+  tested on unseen matches with the node's own 6 folds. Screen: a one-variable glass-box curve fitted on top of the
+  node's held-out readings (its starting score), gain = held-out loss without minus with. Confirm: the best 6
+  screen gainers per node refitted as a link test (the node plus the variable against the node). A discovery =
+  confirmed gain more than twice its spread and up in at least 5 of 6 folds; held for Denning's approval
+  (data/model/discovery.json, knowledge/discovery.md), never added automatically. The page states how many screen
+  passes chance alone would give. Tested here on the collapse node (92 variables, 49 s): no discovery yet; closest
+  morale difference and fight state (not clear).
+
 ## Flag position (Denning, tactics `F1` to `F4`)
 - Up on flags = the better position to get a boost and to run, not the team that capped last.
 - ETA to capture: carrying = distance to the stand / 205 units per second; a dropped flag = the nearest runner's walk

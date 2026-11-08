@@ -99,6 +99,9 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   effect in win chance, between similar builds), `values.py` (results and causes priced in win points;
   `knowledge/values.md`). Per-player skill flags: `buildfeat.player_flags` (one skill can change the right play).
   Snare and speed power per player (how strong, not just whether): `movepower.py` (Return is an escape, not a snare).
+  Chains from the node models with fixes carried forward to the result: `causalchain.py` (step 4). Discovery, every
+  measured variable against every learned node on unseen matches, held for Denning's approval: `discover.py` and the
+  "Discovery" workflow (step 3).
 - Data integrity first (`integrity.py`, inside `Match()`): match length repaired, pit NPCs never seen in a replay added
   from the standard roster (2 knights, 2 archers, Bodyguard, Lord; 3 archers on Isle of Solitude), unobserved Lord damage
   left blank. Strength is the measured blend of the guild's fitted rating and the lineup who played (`strength.py`,

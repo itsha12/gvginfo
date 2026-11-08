@@ -253,6 +253,7 @@ def _job(job):
     """One fit: a held-out fold's score (and the baseline's), or the final model. Top level for parallel.py."""
     kind, regression, n, Xtr, ytr, Xte, yte = job[:7]
     node = job[7] if len(job) > 7 else None
+    keep = len(job) > 8 and job[8]        # the "all" variant's fold models are kept: held-out models for step 4
     # the held-out link tests use 2 bags (the same for every variant, so the comparison is fair; measured 2026-11-07:
     # half the time); the final readable model uses 4
     e = _ebm(n, regression, 4 if kind == "full" else 2, node, ytr)
@@ -260,10 +261,11 @@ def _job(job):
     e = e.fit(Xtr, ytr)
     if kind == "full": return e
     if regression:
-        p = e.predict(Xte); return {"score": float(np.mean(np.abs(yte - p))), "base": float(np.mean(np.abs(yte - np.median(ytr)))), "n": len(yte)}
+        p = e.predict(Xte); return {"score": float(np.mean(np.abs(yte - p))), "base": float(np.mean(np.abs(yte - np.median(ytr)))), "n": len(yte),
+                                    **({"model": e} if keep else {})}
     p = np.clip(e.predict_proba(Xte)[:, 1], .002, .998); q = float(np.clip(np.mean(ytr), .002, .998))
     ll = lambda pp: float(np.mean(-(yte * np.log(pp) + (1 - yte) * np.log(1 - pp))))
-    return {"score": ll(p), "base": ll(np.full(len(yte), q)), "n": len(yte)}
+    return {"score": ll(p), "base": ll(np.full(len(yte), q)), "n": len(yte), **({"model": e} if keep else {})}
 
 
 def frame(node, ids, V):
@@ -298,7 +300,8 @@ def fit_all(ids, nodes=None, V=None):
         prep[node] = (df, X, y, g, folds, variants)
         for vn, cols in variants:
             for tr, te in folds:
-                jobs.append(("fold", reg, g.iloc[tr].nunique(), X.iloc[tr][cols], y.iloc[tr].values, X.iloc[te][cols], y.iloc[te].values, node)); owner.append((node, vn))
+                jobs.append(("fold", reg, g.iloc[tr].nunique(), X.iloc[tr][cols], y.iloc[tr].values, X.iloc[te][cols], y.iloc[te].values, node,
+                             vn == "all")); owner.append((node, vn))
         jobs.append(("full", reg, g.nunique(), X, y.values, None, None, node)); owner.append((node, "full"))
     res = parallel.run(_job, jobs)
     out = {}
@@ -336,11 +339,38 @@ def fit_all(ids, nodes=None, V=None):
         os.makedirs(NODE_DIR, exist_ok=True)
         json.dump(summary, open(os.path.join(NODE_DIR, f"L_{node}.json"), "w"), indent=1)
         _MODELS[node] = (e, list(X.columns))
+        # held-out models for step 4 (causalchain.py): each match is explained by the fold model that never saw it
+        fold_of = {}
+        for i, (tr, te) in enumerate(folds):
+            for mm in set(g.iloc[te]): fold_of[mm] = i
+        save_heldout(node, ids, {"cols": list(X.columns), "models": [r["model"] for r in allf], "fold_of": fold_of,
+                                 "regression": reg, "rate": rate, "mean": float(y.mean()),
+                                 "medians": {c: (None if np.isnan(v) else float(v)) for c, v in X.median().items()}})
         out[node] = summary
     return out
 
 
 _MODELS = {}
+
+
+def _heldout_path(node, ids):
+    import cache
+    # keyed by this file alone (not what it imports: an edit to the TQs must not lose the fitted models)
+    return cache._path("fits", "lnode", cache._hash_files(["learnednodes.py"]), cache.ids_key(list(ids)), f"{node}.pkl")
+
+
+def save_heldout(node, ids, obj):
+    import pickle
+    p = _heldout_path(node, ids); tmp = p + f".{os.getpid()}.tmp"
+    pickle.dump(obj, open(tmp, "wb")); os.replace(tmp, p)
+
+
+def load_heldout(node, ids):
+    """The node's held-out fold models from the last fit_all on these matches (None if not fitted yet)."""
+    import pickle
+    p = _heldout_path(node, ids)
+    try: return pickle.load(open(p, "rb"))
+    except Exception: return None
 
 
 def whatif(node, row, changes):

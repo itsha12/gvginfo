@@ -134,7 +134,12 @@ engine change before the next run, then the commentary transcripts and step 3 (d
   running and falling back -5.0. split_or_stay: splitting +0.3 overall (not clear); +0.7 against little enemy snare,
   -0.8 against a lot; by map Solitude +2.7, Corrupted +1.9, Weeping Stone -1.8, Druid's -2.2. Captures overcapped
   within 10 s -3.6 (not clear) against +2.4 for captures held longer (clear).
-- Next (agreed order): step 2, build and test discovery (step 3) and chains (step 4) on the current matches. Also proposed to
+- Step 2 of the agreed order, built (METHODS.md "Steps 3 and 4"): causalchain.py (chains from the node models, fixes
+  carried forward; shown in every TQ beside chain.py for comparison) and discover.py with the "Discovery" workflow.
+  Tested here on the current matches (all four TQs produce a node-model chain; discovery on the collapse node). Then a
+  Train batch rebuild (add_batch no) and the Discovery workflow were started on GitHub.
+- Next (agreed order): Denning's rulings on the node-model chains (replace chain.py?) and on any discoveries; then step
+  3 of the order, the speed-up; then the large pull. Also proposed to
   him: a tactics clean-up list (stale 24 to 61 match figures, lines contradicted by the 133-match rebuild, duplicate ids
   S31 and S32).
 - Found: data/model/usual_play.json still holds the 30-match readings; the current ones are only in

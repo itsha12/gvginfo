@@ -320,6 +320,7 @@ def flags(new_ids, recs, usual_res):
     if lu_short: short.append(f"how the game got there: {lu_short}")
     if short: L.append(f"**Why, in short**: " + "; ".join(short) + ".")
     if lu: L += [""] + lu
+    L += node_chain("start_flags", rid, tag, s, e)
     L += ["", "**A different play (measured)**", ""]
     conf = list(lu_conf)
     # the decisions that set it up
@@ -366,6 +367,15 @@ def flags(new_ids, recs, usual_res):
     return L
 
 
+def node_chain(start, *args):
+    """Step 4 (causalchain.py): the same result traced through the node models, with fixes carried forward. Shown beside
+    the rule-based chain (chain.py) while the two are compared; it replaces the rules once Denning approves."""
+    import causalchain as CC
+    try: c = getattr(CC, start)(*args)
+    except Exception as ex: return [f"*Node-model chain (step 4) not available here: {type(ex).__name__}: {ex}.*"]
+    return [""] + (c.lines() if c and c.links else ["*Node-model chain (step 4): no node row for this moment.*"])
+
+
 # ------------------------------------------------------------------ 2. monk death
 def monk(new_ids, recs, usual_res):
     import why as WHY, events as EV
@@ -398,6 +408,7 @@ def monk(new_ids, recs, usual_res):
     if kc: L.append(f"**Why, in short**: the {role} died because " + ", ".join(kc[:4]) + "."
                     + (f" How the game got there: {lu_short}." if lu_short else ""))
     if lu: L += [""] + lu
+    L += node_chain("start_fight", rid, team, t)
     L += ["", "**How it could have been prevented (measured)**", ""]
     if lu: L.append("- Further back: the fixes along the chain are priced above (\"Where a fix would have mattered most\"). "
                     "The readings below are what was still possible in the last seconds.")
@@ -624,6 +635,7 @@ def power(new_ids, recs, usual_res):
     if fine: short.append("not the cause (on the side of power plays that killed): " + ", ".join(fine))
     L.append("**Why, in short**: " + "; ".join(short) + ".")
     short_i = len(L) - 1
+    L += node_chain("start_power", rid, tag, t0)
     L += ["", "**How it could have been converted (measured)**", ""]
     conf = []
     o = om
@@ -734,6 +746,7 @@ def npcs(new_ids, recs, usual_res):
     if lu_short: short.append(f"how the game got there: {lu_short}")
     if short: L.append("**Why, in short**: " + "; ".join(short) + ".")
     if lu: L += [""] + lu
+    L += node_chain("start_npc", rid, tag, t)
     L += ["", "**How it could have been prevented (measured)**", ""]
     if dead: L.append(f"- Further back: with {len(dead)} of {tag} dead, more defenders were not available; "
                       + ("the fixes along the chain are priced above." if lu else
