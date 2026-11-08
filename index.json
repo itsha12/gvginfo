@@ -1,6 +1,6 @@
 {
  "format": "gvginfo.replay.v1",
- "updated": "2026-11-08T04:29:27.309Z",
+ "updated": "2026-11-08T05:19:01.464Z",
  "matches": {
   "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65": {
    "file": "2026-11/eea5ba87-ac20-5ba3-a6c9-965f11ca8a65.json.gz",
@@ -1931,6 +1931,34 @@
    "winner": "meow",
    "length_s": 1348,
    "kb": 326,
+   "summary": true,
+   "trim": 3
+  },
+  "8c5fe04a-a7be-59f2-a7e9-b6416bab25c4": {
+   "file": "2026-11/8c5fe04a-a7be-59f2-a7e9-b6416bab25c4.json.gz",
+   "date": "2026-11-08T04:06:31.693Z",
+   "map": "Isle of Meditation",
+   "teams": [
+    "DUM",
+    "GW크"
+   ],
+   "winner": "GW크",
+   "length_s": 1288,
+   "kb": 358,
+   "summary": true,
+   "trim": 3
+  },
+  "3dd84ec7-29f5-578d-a7ad-42a272bff049": {
+   "file": "2026-10/3dd84ec7-29f5-578d-a7ad-42a272bff049.json.gz",
+   "date": "2026-10-17T20:21:12.200Z",
+   "map": "Isle of Meditation",
+   "teams": [
+    "Crew",
+    "BcS"
+   ],
+   "winner": "Crew",
+   "length_s": 1229,
+   "kb": 268,
    "summary": true,
    "trim": 3
   }
