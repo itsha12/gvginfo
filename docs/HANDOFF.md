@@ -138,8 +138,18 @@ engine change before the next run, then the commentary transcripts and step 3 (d
   carried forward; shown in every TQ beside chain.py for comparison) and discover.py with the "Discovery" workflow.
   Tested here on the current matches (all four TQs produce a node-model chain; discovery on the collapse node). Then a
   Train batch rebuild (add_batch no) and the Discovery workflow were started on GitHub.
-- Next (agreed order): Denning's rulings on the node-model chains (replace chain.py?) and on any discoveries; then step
-  3 of the order, the speed-up; then the large pull. Also proposed to
+- Results: rebuild run 42485467768 passed; every TQ shows a node-model chain (e.g. TQ 2: the 26:42 fight read from
+  NwAy's side, followed back to Men's 24:07 fight with 1 player in it; fix priced +1.1 win points). Discovery run
+  42486486170 passed: 915 variable-by-node tests, 92 passed the screen (about 21 by chance), 27 discoveries held for
+  Denning (knowledge/discovery.md). Most are state (morale, numbers, stand, boost clock, flag lead) on the fight, flag
+  swing and run defence nodes; the tactical ones: snare skill counts on runs (enemy snares -> fewer captures, run
+  outcome; own snares -> fewer enemy captures, run defence), enemy prots and own Deep Wound on split effect, the enemy
+  carrying a flag on power plays.
+- Known limits of step 4: carries through a fight to a later node shrink a lot (only a share of a lost fight's
+  deaths), so most fixes price small at the result; NPC-loss chains stop at the fight before (the NPC node is not a
+  learned node yet); "diff" variables have sharp steps near 0 (a -0.01 ready-interrupt difference pushed 16 points).
+- Next (agreed order): Denning's rulings on the node-model chains (replace chain.py?) and on the discoveries; then
+  step 3 of the order, the speed-up; then the large pull. Also proposed to
   him: a tactics clean-up list (stale 24 to 61 match figures, lines contradicted by the 133-match rebuild, duplicate ids
   S31 and S32).
 - Found: data/model/usual_play.json still holds the 30-match readings; the current ones are only in
