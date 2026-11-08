@@ -1,13 +1,13 @@
 {
- "updated": "2026-11-08T03:33:10.133Z",
+ "updated": "2026-11-08T04:02:39.491Z",
  "matches": [
   {
-   "id": "9e6d6ce3-cbe4-5c03-a01a-c8dbf58d8542",
+   "id": "82fa12be-98d8-57e0-aa8e-c8e1e0253ea4",
    "date": "2026-11-08",
-   "map": "Imperial Isle",
+   "map": "Nomad's Isle",
    "teams": [
     "RV",
-    "meow"
+    "DUM"
    ],
    "winner": 2,
    "occasion": "automated",
@@ -47,6 +47,17 @@
     "tournament_occasion",
     "observed_match_clock"
    ]
+  },
+  {
+   "id": "9e6d6ce3-cbe4-5c03-a01a-c8dbf58d8542",
+   "date": "2026-11-08",
+   "map": "Imperial Isle",
+   "teams": [
+    "RV",
+    "meow"
+   ],
+   "winner": 2,
+   "occasion": "automated"
   },
   {
    "id": "965d7c49-5c32-5644-ac24-6c495f82fc41",
@@ -4422,17 +4433,6 @@
    "teams": [
     "Crew",
     "hook"
-   ],
-   "winner": 1,
-   "occasion": "automated"
-  },
-  {
-   "id": "6acf4b9e-51f6-5596-a208-d4ebaf5e2539",
-   "date": "2026-10-05",
-   "map": "Isle of Meditation",
-   "teams": [
-    "True",
-    "Apes"
    ],
    "winner": 1,
    "occasion": "automated"

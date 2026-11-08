@@ -1,6 +1,6 @@
 {
  "format": "gvginfo.replay.v1",
- "updated": "2026-11-08T03:33:23.793Z",
+ "updated": "2026-11-08T04:02:55.855Z",
  "matches": {
   "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65": {
    "file": "2026-11/eea5ba87-ac20-5ba3-a6c9-965f11ca8a65.json.gz",
@@ -1889,6 +1889,20 @@
    "winner": "meow",
    "length_s": 694,
    "kb": 166,
+   "summary": true,
+   "trim": 3
+  },
+  "82fa12be-98d8-57e0-aa8e-c8e1e0253ea4": {
+   "file": "2026-11/82fa12be-98d8-57e0-aa8e-c8e1e0253ea4.json.gz",
+   "date": "2026-11-08T03:24:29.436Z",
+   "map": "Nomad's Isle",
+   "teams": [
+    "RV",
+    "DUM"
+   ],
+   "winner": "DUM",
+   "length_s": 488,
+   "kb": 125,
    "summary": true,
    "trim": 3
   }
