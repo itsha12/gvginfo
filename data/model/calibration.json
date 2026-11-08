@@ -1,0 +1,470 @@
+{
+ "about": "Win-chance calibration by minute (model.py calibrate): held-out predictions on every training match against how often those teams won. 'calibrated' is what WPModel.explain reports for a prediction at a cell's 'predicted' value, with straight lines in between.",
+ "matches": 133,
+ "bands": [
+  {
+   "minutes": [
+    0,
+    6
+   ],
+   "cells": [
+    {
+     "from": 0,
+     "to": 2,
+     "rows": 1046,
+     "matches": 81,
+     "predicted": 0.5,
+     "won": 1.1,
+     "calibrated": 1.0
+    },
+    {
+     "from": 2,
+     "to": 5,
+     "rows": 405,
+     "matches": 77,
+     "predicted": 3.2,
+     "won": 5.7,
+     "calibrated": 5.5
+    },
+    {
+     "from": 5,
+     "to": 10,
+     "rows": 352,
+     "matches": 70,
+     "predicted": 7.1,
+     "won": 16.8,
+     "calibrated": 16.1
+    },
+    {
+     "from": 10,
+     "to": 20,
+     "rows": 401,
+     "matches": 67,
+     "predicted": 14.6,
+     "won": 19.7,
+     "calibrated": 19.3
+    },
+    {
+     "from": 20,
+     "to": 35,
+     "rows": 440,
+     "matches": 67,
+     "predicted": 27.7,
+     "won": 31.8,
+     "calibrated": 31.5
+    },
+    {
+     "from": 35,
+     "to": 50,
+     "rows": 453,
+     "matches": 50,
+     "predicted": 41.9,
+     "won": 43.9,
+     "calibrated": 43.7
+    },
+    {
+     "from": 50,
+     "to": 65,
+     "rows": 475,
+     "matches": 50,
+     "predicted": 58.0,
+     "won": 57.1,
+     "calibrated": 57.1
+    },
+    {
+     "from": 65,
+     "to": 80,
+     "rows": 422,
+     "matches": 65,
+     "predicted": 72.4,
+     "won": 69.2,
+     "calibrated": 69.4
+    },
+    {
+     "from": 80,
+     "to": 90,
+     "rows": 403,
+     "matches": 66,
+     "predicted": 85.6,
+     "won": 80.6,
+     "calibrated": 81.0
+    },
+    {
+     "from": 90,
+     "to": 95,
+     "rows": 334,
+     "matches": 70,
+     "predicted": 93.0,
+     "won": 82.0,
+     "calibrated": 82.8
+    },
+    {
+     "from": 95,
+     "to": 98,
+     "rows": 412,
+     "matches": 76,
+     "predicted": 96.7,
+     "won": 93.9,
+     "calibrated": 94.1
+    },
+    {
+     "from": 98,
+     "to": 100,
+     "rows": 1043,
+     "matches": 79,
+     "predicted": 99.4,
+     "won": 99.0,
+     "calibrated": 99.1
+    }
+   ]
+  },
+  {
+   "minutes": [
+    6,
+    12
+   ],
+   "cells": [
+    {
+     "from": 0,
+     "to": 2,
+     "rows": 975,
+     "matches": 82,
+     "predicted": 0.4,
+     "won": 1.0,
+     "calibrated": 1.0
+    },
+    {
+     "from": 2,
+     "to": 5,
+     "rows": 219,
+     "matches": 44,
+     "predicted": 3.5,
+     "won": 21.0,
+     "calibrated": 19.2
+    },
+    {
+     "from": 5,
+     "to": 10,
+     "rows": 174,
+     "matches": 32,
+     "predicted": 7.1,
+     "won": 24.7,
+     "calibrated": 22.3
+    },
+    {
+     "from": 10,
+     "to": 20,
+     "rows": 249,
+     "matches": 45,
+     "predicted": 14.9,
+     "won": 42.2,
+     "calibrated": 35.1
+    },
+    {
+     "from": 20,
+     "to": 35,
+     "rows": 334,
+     "matches": 39,
+     "predicted": 26.9,
+     "won": 30.5,
+     "calibrated": 35.1
+    },
+    {
+     "from": 35,
+     "to": 50,
+     "rows": 184,
+     "matches": 28,
+     "predicted": 42.5,
+     "won": 49.5,
+     "calibrated": 48.4
+    },
+    {
+     "from": 50,
+     "to": 65,
+     "rows": 176,
+     "matches": 27,
+     "predicted": 57.9,
+     "won": 58.0,
+     "calibrated": 58.0
+    },
+    {
+     "from": 65,
+     "to": 80,
+     "rows": 294,
+     "matches": 41,
+     "predicted": 72.8,
+     "won": 64.3,
+     "calibrated": 65.1
+    },
+    {
+     "from": 80,
+     "to": 90,
+     "rows": 245,
+     "matches": 40,
+     "predicted": 84.8,
+     "won": 62.4,
+     "calibrated": 65.1
+    },
+    {
+     "from": 90,
+     "to": 95,
+     "rows": 210,
+     "matches": 41,
+     "predicted": 92.7,
+     "won": 72.9,
+     "calibrated": 75.0
+    },
+    {
+     "from": 95,
+     "to": 98,
+     "rows": 209,
+     "matches": 44,
+     "predicted": 96.4,
+     "won": 78.9,
+     "calibrated": 80.7
+    },
+    {
+     "from": 98,
+     "to": 100,
+     "rows": 977,
+     "matches": 80,
+     "predicted": 99.6,
+     "won": 98.7,
+     "calibrated": 98.7
+    }
+   ]
+  },
+  {
+   "minutes": [
+    12,
+    18
+   ],
+   "cells": [
+    {
+     "from": 0,
+     "to": 2,
+     "rows": 605,
+     "matches": 48,
+     "predicted": 0.5,
+     "won": 9.6,
+     "calibrated": 7.4
+    },
+    {
+     "from": 2,
+     "to": 5,
+     "rows": 144,
+     "matches": 28,
+     "predicted": 3.4,
+     "won": 5.6,
+     "calibrated": 7.4
+    },
+    {
+     "from": 5,
+     "to": 10,
+     "rows": 116,
+     "matches": 24,
+     "predicted": 6.9,
+     "won": 11.2,
+     "calibrated": 10.5
+    },
+    {
+     "from": 10,
+     "to": 20,
+     "rows": 156,
+     "matches": 31,
+     "predicted": 14.4,
+     "won": 23.1,
+     "calibrated": 21.9
+    },
+    {
+     "from": 20,
+     "to": 35,
+     "rows": 152,
+     "matches": 18,
+     "predicted": 25.9,
+     "won": 42.8,
+     "calibrated": 39.1
+    },
+    {
+     "from": 35,
+     "to": 50,
+     "rows": 108,
+     "matches": 16,
+     "predicted": 43.0,
+     "won": 41.7,
+     "calibrated": 42.0
+    },
+    {
+     "from": 50,
+     "to": 65,
+     "rows": 75,
+     "matches": 14,
+     "predicted": 57.2,
+     "won": 58.7,
+     "calibrated": 58.3
+    },
+    {
+     "from": 65,
+     "to": 80,
+     "rows": 182,
+     "matches": 21,
+     "predicted": 73.3,
+     "won": 55.5,
+     "calibrated": 58.9
+    },
+    {
+     "from": 80,
+     "to": 90,
+     "rows": 137,
+     "matches": 32,
+     "predicted": 84.9,
+     "won": 81.8,
+     "calibrated": 82.2
+    },
+    {
+     "from": 90,
+     "to": 95,
+     "rows": 118,
+     "matches": 24,
+     "predicted": 93.0,
+     "won": 91.5,
+     "calibrated": 91.2
+    },
+    {
+     "from": 95,
+     "to": 98,
+     "rows": 141,
+     "matches": 29,
+     "predicted": 96.5,
+     "won": 90.1,
+     "calibrated": 91.2
+    },
+    {
+     "from": 98,
+     "to": 100,
+     "rows": 622,
+     "matches": 48,
+     "predicted": 99.5,
+     "won": 90.2,
+     "calibrated": 91.2
+    }
+   ]
+  },
+  {
+   "minutes": [
+    18,
+    null
+   ],
+   "cells": [
+    {
+     "from": 0,
+     "to": 2,
+     "rows": 579,
+     "matches": 37,
+     "predicted": 0.4,
+     "won": 7.6,
+     "calibrated": 4.0
+    },
+    {
+     "from": 2,
+     "to": 5,
+     "rows": 108,
+     "matches": 16,
+     "predicted": 3.5,
+     "won": 0.9,
+     "calibrated": 4.0
+    },
+    {
+     "from": 5,
+     "to": 10,
+     "rows": 77,
+     "matches": 19,
+     "predicted": 7.4,
+     "won": 0.0,
+     "calibrated": 4.0
+    },
+    {
+     "from": 10,
+     "to": 20,
+     "rows": 86,
+     "matches": 13,
+     "predicted": 13.8,
+     "won": 20.9,
+     "calibrated": 19.0
+    },
+    {
+     "from": 20,
+     "to": 35,
+     "rows": 101,
+     "matches": 10,
+     "predicted": 27.8,
+     "won": 34.7,
+     "calibrated": 32.4
+    },
+    {
+     "from": 35,
+     "to": 50,
+     "rows": 70,
+     "matches": 6,
+     "predicted": 42.8,
+     "won": 47.1,
+     "calibrated": 45.2
+    },
+    {
+     "from": 50,
+     "to": 65,
+     "rows": 84,
+     "matches": 7,
+     "predicted": 58.1,
+     "won": 56.0,
+     "calibrated": 56.9
+    },
+    {
+     "from": 65,
+     "to": 80,
+     "rows": 73,
+     "matches": 10,
+     "predicted": 72.5,
+     "won": 61.6,
+     "calibrated": 65.3
+    },
+    {
+     "from": 80,
+     "to": 90,
+     "rows": 66,
+     "matches": 14,
+     "predicted": 85.2,
+     "won": 72.7,
+     "calibrated": 76.0
+    },
+    {
+     "from": 90,
+     "to": 95,
+     "rows": 104,
+     "matches": 14,
+     "predicted": 92.5,
+     "won": 100.0,
+     "calibrated": 95.9
+    },
+    {
+     "from": 95,
+     "to": 98,
+     "rows": 93,
+     "matches": 19,
+     "predicted": 96.6,
+     "won": 98.9,
+     "calibrated": 95.9
+    },
+    {
+     "from": 98,
+     "to": 100,
+     "rows": 595,
+     "matches": 37,
+     "predicted": 99.6,
+     "won": 92.6,
+     "calibrated": 95.9
+    }
+   ]
+  }
+ ]
+}

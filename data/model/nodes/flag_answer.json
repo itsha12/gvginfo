@@ -10,10 +10,11 @@
   },
   "simple baseline": {
    "mae_s": 27.8,
-   "r2": -0.175
+   "r2": -0.001
   },
   "baseline uses": [
-   "the median"
+   "the median (typical error)",
+   "the average (spread explained)"
   ],
   "verdict": "adds to the simple baseline"
  },

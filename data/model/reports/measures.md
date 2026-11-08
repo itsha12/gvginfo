@@ -25,8 +25,8 @@ Descriptive only: each measure split by who won the fight (or how a run, split o
 - useful share of strips: winners 0.73, losers 0.7 (41 / 36 team-matches)
 - prots stripped off targets under attack: winners 8.19, losers 6.83 (42 / 42 team-matches)
 - wasted removal casts: winners 18.02, losers 16.55 (42 / 42 team-matches)
-- Blinds on enemy frontline: winners 1.76, losers 0.43 (42 / 42 team-matches)
-- defensive Blinds (on a player hitting own healers): winners 0.17, losers 0.1 (42 / 42 team-matches)
+- Blinds on enemy frontline: winners 2.07, losers 1.19 (42 / 42 team-matches)
+- defensive Blinds (on a player hitting own healers): winners 0.19, losers 0.5 (42 / 42 team-matches)
 - hexes on own healers removed (share): winners 0.28, losers 0.23 (39 / 37 team-matches)
 - median seconds a hex stayed on own healers: winners 7.94, losers 6.12 (39 / 37 team-matches)
 
