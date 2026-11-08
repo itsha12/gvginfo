@@ -141,7 +141,8 @@ engine change before the next run, then the commentary transcripts and step 3 (d
   force its direction upward; (f) the shift-and-slope calibration misses some cells (12 to 18 min: predicted 93%, won
   92%, calibrated 77%; 6 to 12 min: 3.5%, won 21%, calibrated 12.7%): a pooled lookup joined by straight lines between
   the pooled blocks' middles would be as accurate as the first form and never flat.
-- Next: Denning's rulings on (e) and (f), then the commentary transcripts (Bounty's six, then Nick's one).
+- Denning approved (e) and (f), built (METHODS.md "After the batch 9 rebuild"); third rebuild started.
+- Next: read the third rebuild with Denning, then the commentary transcripts (Bounty's six, then Nick's one).
 
 ### Session 4r (2026-11-07)
 - Train batch split (`.github/workflows/train-batch.yml`, METHODS.md "Train batch on GitHub"): prepare -> six parts at

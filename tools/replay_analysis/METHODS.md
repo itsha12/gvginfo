@@ -702,9 +702,13 @@ changing status only after two batches in a row, declined: links keep changing s
 - **Train batch**: every job may run 3 hours.
 
 ### After the batch 9 rebuild (Denning, 2026-11-07)
-- **Calibration, smooth form**: per minute band a shift and a slope on the log-odds scale (fitted on the held-out
-  predictions), blended by minute between band middles; it never jumps at a band edge or goes flat (the pooled lookup
-  read 22 s of flag lead as +0.0 points in TQ 1).
+- **Calibration, third form** (after the second rebuild): per minute band, cells shrunk toward the model's number in
+  thin cells and pooled where they run backwards, then joined by straight lines between the pooled blocks' middles
+  ("knots"), blended by minute between band middles. As accurate as the first (pooled lookup) form, never flat, no
+  jump at a band edge. (The second form, a shift and a slope per band, missed some ranges: 12 to 18 min, 93% predicted,
+  92% won, calibrated 77%.)
+- **flag_lead** forced to rise (Denning): the curve was small and ran backwards at both ends, so TQ 1 read 22 s of flag
+  lead as +0.0 points.
 - **Pair test** (`pair_test` corrections, tested together with the cap tests by `model.cap_test`): morale (difference
   and total) with the map's geometry, allowed against blocked on held-out matches; blocked only if that predicts
   better (`cap_choices.json` "pairs").

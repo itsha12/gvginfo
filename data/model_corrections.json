@@ -103,6 +103,13 @@
    ],
    "added": "after the batch 9 rebuild",
    "reason": "Denning (after the batch 9 rebuild, agreeing with Claude): the map's geometry is fixed for a whole match, like the build-fixed values; paired with morale it became the model's top term (morale x pit-to-stand 0.717) and drove the biggest surprises (hdm v HC 24:45, morale x bases apart -45.5). The data decides: blocked only if blocking predicts unseen matches better."
+  },
+  {
+   "term": "flag_lead",
+   "kind": "direction",
+   "increasing": true,
+   "added": "after the batch 9 rebuild",
+   "reason": "Denning (agreeing with Claude, second rebuild, 133 matches): a bigger flag lead can only help; the curve was small (at most 2.6 points) and ran backwards at both ends (-129 to -67.5 s read +0.4, +67.5 to +129 s read -1.6), so TQ 1 read 22 s of flag lead saved as +0.0 points."
   }
  ]
 }

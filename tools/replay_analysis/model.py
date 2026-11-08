@@ -19,7 +19,7 @@ Corrections: data/model_corrections.json, a list of {"term", "kind", "reason", .
       (or none): each option is tested on held-out matches before the held-out models are fitted (cap_test(), run by
       cache.py warm); the choice and its log losses are written to data/model/cap_choices.json and act as a "cap".
 Calibration by minute (calibrate(), also run by cache.py warm): the held-out models' predictions on every training
-match against how often those teams won; per minute band a shift and a slope on the log-odds scale, blended by minute
+match against how often those teams won; per minute band, pooled cells joined by straight lines, blended by minute
 (data/model/calibration.json), applied by WPModel.explain to its win chance (the contributions stay as learned).
 Every fit reports held-out accuracy with and without the corrections, so a correction is tested, not trusted.
 
@@ -315,56 +315,70 @@ def _any_fold(job):
 
 
 CAL_BANDS = [(0, 6), (6, 12), (12, 18), (18, 99)]
-CAL_EDGES = [0, 2, 5, 10, 20, 35, 50, 65, 80, 90, 95, 98, 100]      # the check table's cells (reading only)
-CAL_CLIP = (0.002, 0.998)
-
-
-def _logit(p):
-    p = min(max(p, CAL_CLIP[0]), CAL_CLIP[1]); return math.log(p / (1 - p))
+CAL_EDGES = [0, 2, 5, 10, 20, 35, 50, 65, 80, 90, 95, 98, 100]
+CAL_PRIOR = 5       # matches' worth of weight on the model's own number in a thin cell
 
 
 def calibrate(ids):
-    """Calibration by minute from held-out predictions (Denning, after batch 9; smooth form after the rebuild): every
-    training match predicted by a model that never saw it (its group's held-out model, cache.FOLDS), every 15 s. Per
-    minute band, two numbers fitted on those predictions against how often the teams won: a shift and a slope on the
-    log-odds scale (calibrated log odds = shift + slope x the model's log odds). Between band middles the two numbers
-    are blended by minute, so the calibration never jumps at a band edge and never goes flat (the first, pooled-lookup
-    form erased small changes: 22 s of flag lead read +0.0 points). A check table per band shows predicted, how often
-    those teams won and the calibrated chance. Written to data/model/calibration.json."""
+    """Calibration by minute from held-out predictions (Denning, after batch 9; third form after the second rebuild):
+    every training match predicted by a model that never saw it (its group's held-out model, cache.FOLDS), every 15 s,
+    grouped by minute band and predicted chance, against how often those teams won. Thin cells lean on the model's own
+    number (CAL_PRIOR matches' worth); neighbours that run backwards are pooled; the pooled blocks are then joined by
+    straight lines between their middles, so the calibration follows the data like a lookup but never goes flat, and it
+    is blended by minute between band middles, so it never jumps at a band edge. (The first form, a pooled lookup, went
+    flat; the second, a shift and a slope per band, missed some ranges: 12 to 18 min, 93% predicted, won 92%,
+    calibrated 77%.) Written to data/model/calibration.json."""
     import collections as C
-    from sklearn.linear_model import LogisticRegression
-    pts = C.defaultdict(list)       # band -> [(model log odds, won, match, raw %)]
+    cells = C.defaultdict(lambda: {"n": 0, "raw": 0.0, "won": 0, "matches": set()})
     for rid in ids:
         wp = WPModel.heldout(ids, rid)
         for r in match_table(rid):
             if r["won"] is None or r["t"] % TRAIN_STEP: continue
-            p = wp.raw_chance(r) / 100; mi = (r.get("minute") or r["t"] / 60)
+            p = wp.raw_chance(r); mi = (r.get("minute") or r["t"] / 60)
             band = next(i for i, (lo, hi) in enumerate(CAL_BANDS) if lo <= mi < hi)
-            pts[band].append((_logit(p), int(r["won"]), rid, p * 100))
+            b = min(max(i for i, e in enumerate(CAL_EDGES[:-1]) if p >= e), len(CAL_EDGES) - 2)
+            c = cells[(band, b)]; c["n"] += 1; c["raw"] += p; c["won"] += int(r["won"]) * 100; c["matches"].add(rid)
     out = []
     for band, (lo, hi) in enumerate(CAL_BANDS):
-        L = pts.get(band) or []
-        if len(L) >= 50 and len({w for _, w, _, _ in L}) == 2:
-            lr = LogisticRegression(C=1.0, max_iter=1000).fit(np.array([[x] for x, _, _, _ in L]), np.array([w for _, w, _, _ in L]))
-            shift, slope = float(lr.intercept_[0]), float(lr.coef_[0][0])
-        else: shift, slope = 0.0, 1.0
-        cells = []
+        rows = []
         for b in range(len(CAL_EDGES) - 1):
-            S = [x for x in L if CAL_EDGES[b] <= x[3] < CAL_EDGES[b + 1] or (b == len(CAL_EDGES) - 2 and x[3] == 100)]
-            if not S: continue
-            raw = sum(x[3] for x in S) / len(S)
-            cells.append({"from": CAL_EDGES[b], "to": CAL_EDGES[b + 1], "rows": len(S), "matches": len({x[2] for x in S}),
-                          "predicted": round(raw, 1), "won": round(100 * sum(x[1] for x in S) / len(S), 1),
-                          "calibrated": round(100 * sig(shift + slope * _logit(raw / 100)), 1)})
-        out.append({"minutes": [lo, hi if hi < 99 else None], "middle": (lo + min(hi, 26)) / 2, "rows": len(L),
-                    "shift": round(shift, 3), "slope": round(slope, 3), "cells": cells})
-    json.dump({"about": "Win-chance calibration by minute (model.py calibrate): per minute band a shift and a slope on the "
-               "log-odds scale, fitted on held-out predictions on every training match against how often those teams "
-               "won, blended by minute between band middles. 'cells' is the check table.", "matches": len(ids), "bands": out},
-              open(CALIB, "w"), indent=1)
+            c = cells.get((band, b))
+            if not c or not c["n"]: continue
+            raw, obs, nm = c["raw"] / c["n"], c["won"] / c["n"], len(c["matches"])
+            rows.append({"from": CAL_EDGES[b], "to": CAL_EDGES[b + 1], "rows": c["n"], "matches": nm, "predicted": round(raw, 1),
+                         "won": round(obs, 1), "_w": nm + CAL_PRIOR, "_v": (obs * nm + raw * CAL_PRIOR) / (nm + CAL_PRIOR), "_x": raw})
+        blocks = [[r] for r in rows]
+        v = lambda bl: sum(r["_v"] * r["_w"] for r in bl) / sum(r["_w"] for r in bl)
+        i = 0
+        while i < len(blocks) - 1:
+            if v(blocks[i]) >= v(blocks[i + 1]): blocks[i] += blocks.pop(i + 1); i = max(i - 1, 0)
+            else: i += 1
+        knots = [[round(sum(r["_x"] * r["_w"] for r in bl) / sum(r["_w"] for r in bl), 2), round(min(max(v(bl), 0.5), 99.5), 2)] for bl in blocks]
+        for r in rows:
+            r["calibrated"] = round(_interp(knots, r["_x"]), 1)
+            for k in ("_w", "_v", "_x"): r.pop(k)
+        out.append({"minutes": [lo, hi if hi < 99 else None], "middle": (lo + min(hi, 26)) / 2, "knots": knots, "cells": rows})
+    json.dump({"about": "Win-chance calibration by minute (model.py calibrate): held-out predictions on every training match "
+               "against how often those teams won; per band, pooled cells joined by straight lines between their middles "
+               "('knots': model's chance -> calibrated), blended by minute between band middles. 'cells' is the check table.",
+               "matches": len(ids), "bands": out}, open(CALIB, "w"), indent=1)
     global _CAL
     _CAL = None
     return out
+
+
+def _interp(knots, p):
+    """Straight lines between the knots; below the first and above the last, a straight line to 0 or 100."""
+    if not knots: return p
+    if len(knots) == 1 or p <= knots[0][0]:
+        x0, y0 = knots[0]
+        return y0 * p / x0 if p <= x0 and x0 > 0 else (y0 + (100 - y0) * (p - x0) / (100 - x0) if x0 < 100 else y0)
+    if p >= knots[-1][0]:
+        x1, y1 = knots[-1]
+        return 100 - (100 - y1) * (100 - p) / (100 - x1) if x1 < 100 else y1
+    for (x0, y0), (x1, y1) in zip(knots, knots[1:]):
+        if x0 <= p <= x1: return y0 + (y1 - y0) * (p - x0) / (x1 - x0) if x1 > x0 else y1
+    return p
 
 
 _CAL = None
@@ -373,7 +387,7 @@ def _cal_table():
     if _CAL is None:
         try: _CAL = json.load(open(CALIB))["bands"]
         except (OSError, ValueError, KeyError): _CAL = []
-        if _CAL and "shift" not in _CAL[0]: _CAL = []       # the old pooled-lookup form: not used
+        if _CAL and "knots" not in _CAL[0]: _CAL = []       # an older form: not used
     return _CAL
 
 
@@ -384,17 +398,15 @@ def calib_key():
 
 
 def calibrated(p, minute):
-    """A raw win chance (0..100) through the calibration for its minute (shift and slope blended between band middles)."""
+    """A raw win chance (0..100) through the calibration: each neighbouring band's line, blended by minute."""
     bands = _cal_table()
     if not bands: return p
     mids = [b["middle"] for b in bands]
-    if minute <= mids[0]: sh, sl = bands[0]["shift"], bands[0]["slope"]
-    elif minute >= mids[-1]: sh, sl = bands[-1]["shift"], bands[-1]["slope"]
-    else:
-        i = next(k for k in range(len(mids) - 1) if mids[k] <= minute <= mids[k + 1])
-        f = (minute - mids[i]) / (mids[i + 1] - mids[i])
-        sh = bands[i]["shift"] * (1 - f) + bands[i + 1]["shift"] * f; sl = bands[i]["slope"] * (1 - f) + bands[i + 1]["slope"] * f
-    return round(100 * sig(sh + sl * _logit(p / 100)), 2)
+    if minute <= mids[0]: return round(_interp(bands[0]["knots"], p), 2)
+    if minute >= mids[-1]: return round(_interp(bands[-1]["knots"], p), 2)
+    i = next(k for k in range(len(mids) - 1) if mids[k] <= minute <= mids[k + 1])
+    f = (minute - mids[i]) / (mids[i + 1] - mids[i])
+    return round(_interp(bands[i]["knots"], p) * (1 - f) + _interp(bands[i + 1]["knots"], p) * f, 2)
 
 
 def validate(df, X, y, groups, corr, extra=()):

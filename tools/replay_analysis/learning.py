@@ -134,13 +134,13 @@ def s_head(c):
     except (OSError, ValueError, KeyError): pass
     try:
         cal = json.load(open(M.CALIB))
-        L.append(f"- Calibration by minute (held-out predictions on {cal['matches']} matches; a shift and a slope on the log-odds "
-                 "scale per band, blended by minute; every win chance below and in values, usual play and the TQs goes through "
-                 "it). Predicted -> how often those teams won -> calibrated:")
+        L.append(f"- Calibration by minute (held-out predictions on {cal['matches']} matches; pooled cells joined by straight "
+                 "lines, blended by minute; every win chance below and in values, usual play and the TQs goes through it). "
+                 "Predicted -> how often those teams won -> calibrated:")
         for b in cal["bands"]:
             lo, hi = b["minutes"]
             ends = [x for x in b["cells"] if x["from"] in (0, 2, 35, 50, 90, 98)]
-            L.append(f"  - {lo} to {hi if hi else 'end'} min (shift {b.get('shift', 0):+}, slope {b.get('slope', 1)}): "
+            L.append(f"  - {lo} to {hi if hi else 'end'} min: "
                      + "; ".join(f"{x['predicted']}% -> won {x['won']}% ({x['matches']} matches) -> {x['calibrated']}%" for x in ends))
     except (OSError, ValueError, KeyError): pass
     L.append("")
