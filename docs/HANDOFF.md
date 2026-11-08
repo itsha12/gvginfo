@@ -97,8 +97,8 @@ Claude should then:
 **Status:** Active. Last updated 2026-11-07 (session 4r). Building the learned causal map: steps 1 (event layer) and 2
 (data-valued wrong casts, nine learned node models with measured link strengths) done. Session 4r: the Train batch run
 is split across parallel GitHub jobs, and batch 9 (20 random matches, 15 from September and 5 from October) trained:
-133 matches. Next: Denning's rulings on the batch 9 questions (below), the forensics position fix if he agrees, then
-the commentary transcripts and step 3 (discovery).
+133 matches. Next: Denning's rulings on the three pending proposals (3, 11, 14), then build the approved ones in one
+engine change before the next run, then the commentary transcripts and step 3 (discovery).
 
 ### Session 4r (2026-11-07)
 - Train batch split (`.github/workflows/train-batch.yml`, METHODS.md "Train batch on GitHub"): prepare -> six parts at
@@ -134,33 +134,40 @@ the commentary transcripts and step 3 (discovery).
   - The event-layer, learned-node and value data for all 133 matches rebuild on the next Train batch run. Expect the
     `learned` part to be much slower that one time (perhaps 30 to 40 min). Make the forensics position fix first if
     Denning approves it, so there is only one rebuild.
-- **Proposed for the next rebuild, awaiting Denning's yes or no** (review after batch 9; numbers from 133 matches):
-  1. Win model: drop the `lord_damage_diff` main term, keep only its pairing with the clock (curve is a sign marker:
+- **Proposed for the next rebuild, with Denning's rulings** (review after batch 9; numbers from 133 matches). Approved
+  items are built before the next Train batch run, so there is only one rebuild. Pending items were explained to
+  Denning and await his ruling:
+  1. **Approved.** Win model: drop the `lord_damage_diff` main term, keep only its pairing with the clock (curve is a sign marker:
      +-7 to 9 points once any Lord damage exists; the most negative band reads +31.6, backwards; teams ahead on Lord
      damage won 88%, with alive +0.94 and morale +78: it marks who got into the pit, not the tiebreak).
-  2. Win model: cap or block pairings of build-fixed values (Lord damage per second, spike build) with morale. The batch
+  2. **Approved.** Win model: cap or block pairings of build-fixed values (Lord damage per second, spike build) with morale. The batch
      7 cap covers the main terms only; morale x Lord damage per second came back 3rd and 4th (0.42 each).
-  3. Win model: test caps on `spike_killable_diff` (step of 35 points at one player; at the same morale the real gap is
+  3. **Pending: Denning asked for more information.** Win model: test caps on `spike_killable_diff` (step of 35 points at one player; at the same morale the real gap is
      about 13: 64% / 50% / 37% won at morale -20..20).
-  4. Win model: `down_diff_s` direction forced (more enemy time down can only help) or dropped (backwards for 7 to 38 s;
+  4. **Approved: force the direction (more enemy time down can only help); don't drop it.** Win model: `down_diff_s` direction forced (more enemy time down can only help) or dropped (backwards for 7 to 38 s;
      mirrors alive_diff).
-  5. Win model: calibration by minute from held-out predictions (a readable lookup). At 6 to 12 min teams given 1% won
+  5. **Approved.** Win model: calibration by minute from held-out predictions (a readable lookup). At 6 to 12 min teams given 1% won
      4.7% and 99% won 94.9%; from 12 min 0.9% won 6.4%. Every win-point value and choice effect uses these numbers.
-  6. Usual play: a choice is what the team did in its first seconds, not over the next 20 s (advancing over 20 s is
+  6. **Approved.** Usual play: a choice is what the team did in its first seconds, not over the next 20 s (advancing over 20 s is
      partly the fight's result: held, advanced +5.5 and held, fell back -4.1, both clear).
-  7. Power-play node: damage, pushing and control measured only up to the first kill (as the fight node does).
-  8. Context-only variables (strength, build skill counts, flag lead, morale, minute) never priced as causes or offered as
+  7. **Approved.** Power-play node: damage, pushing and control measured only up to the first kill (as the fight node does).
+  8. **Approved.** Context-only variables (strength, build skill counts, flag lead, morale, minute) never priced as causes or offered as
      fixes (values.py prices strength_gap and the enemy's strip-skill count as causes now).
-  9. Snapshot: winners-against-losers comparisons replaced by comparisons at the same win chance, or labelled.
-  10. Learned links change status only after two batches in a row (stops near-line flips).
-  11. Lord damage node: verdict rule fixed (typical error 125 against 92 for the median, still labelled "adds") and a
+  9. **Approved.** Snapshot: winners-against-losers comparisons replaced by comparisons at the same win chance, or labelled.
+  10. **Declined: links keep changing status batch by batch.** Learned links change status only after two batches in a row (stops near-line flips).
+  11. **Pending: Denning asked for an explanation.** Lord damage node: verdict rule fixed (typical error 125 against 92 for the median, still labelled "adds") and a
       form suited to its skew.
-  12. Rework the three learned nodes still no better than the baseline (flag swing, capture speed, split effect).
-  13. Kill-conversion node: attackers' Blind in seconds, like the new Blind measure.
-  14. Forensics position judged on the last 5 s (TQ 1 fault).
-  15. Values against matched moments without the event (same minute, same win chance).
-  16. TQ what-ifs that aren't monotonic marked unreliable (TQ 4).
-  17. TQ 4 text separates a wipe's NPC loss from a split's.
+  12. **Approved.** Rework the three learned nodes still no better than the baseline (flag swing, capture speed, split effect).
+  13. **Approved.** Kill-conversion node: attackers' Blind in seconds, like the new Blind measure.
+  14. **Pending: Denning asked for an explanation.** Forensics position judged on the last 5 s (TQ 1 fault).
+  15. **Approved.** Values against matched moments without the event (same minute, same win chance).
+  16. **Approved.** TQ what-ifs that aren't monotonic marked unreliable (TQ 4).
+  17. **Approved.** TQ 4 text separates a wipe's NPC loss from a split's.
+- Other batch 9 questions, Denning's answers:
+  - BcS v Crew 15:11 (all five living BcS players went backside to convert with their pit empty and 3 dead): Denning
+    doesn't know; let the data decide. Step 3 (discovery) and step 4 (chains priced from the node models) should
+    measure going backside to convert against the alternatives in that state.
+  - Crippled runners captured more (+16 points, even at the same point of the run): leave for now.
 - Faults found in batch 9's TQs (not fixed yet):
   1. forensics.position uses the median over the whole window before a death, so a ranged spike that closes in for the
      last seconds reads "not in position" (TQ 1: Apes Necromancer at 1:54 in d9d75e55 shown 1,648 from the nearest
@@ -279,10 +286,6 @@ variables in `comms_vars.py`, move supported ones into the model and tactics, re
   variables measured in data/benchmarks/comms_variables.json; made into model variables at Denning's request (METHODS.md
   "Commentary and comms"); power plays at home fixed; tactics P12 to P14, K17, L11, L12, X9, X10, M19, Q16 answered.
 - Next: Bounty's six matches, then Nick's one (ask Denning for the transcripts).
-- Open from the comms: lord.py's rebuilt health had the wrong leader in the OG v hold base race (both Lords died 0.3 s
-  apart; check max health, boosts, the Amulet cap and player healing); area damage is found only where the skill is
-  recorded or inferred; Denning to confirm gate (lock) control on Weeping Stone, "the jump", and Entourage (gvg.report
-  records attackers needed to suppress it); does Aura of Faith reduce Lord damage (test on the Master of Damage).
 
 ---
 
@@ -298,8 +301,6 @@ variables in `comms_vars.py`, move supported ones into the model and tactics, re
    up the fight).
 5. Open: recording gaps (deaths with almost no recorded damage should be flagged "not recorded").
 6. Done with 1: "why, in short" built from the measured causes.
-7. Questions for Denning from batch 5 still open: cope's low uptime at Team v cope 10:00; EDGE's early 4/3 split at
-   hook v EDGE 1:00; whether to keep unrecorded-damage moments in why chains.
 Smaller: the regeneration fit is flat (delay 10 to 20 s fit equally); lord_damage_diff and flag_lead still bend at the
 extremes; fight-state thirds give small cells in the boost-clock split.
 Forensics limits to know: no line of sight or facing in the data (a ranger's bow reaches 1,498, so standing closer does
