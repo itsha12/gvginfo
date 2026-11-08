@@ -913,7 +913,44 @@ Denning's four questions, each from the batch's matches. The why comes from fore
 
 **Confidence**: low (measured, but the ranges include no effect yet).
 
-## power: could not be answered (ValueError: max() iterable argument is empty)
+## TQ 3. A power play without a kill
+
+*The power play without a kill that cost the most win chance in the new matches: main 7v2, pushed, no kill in 49 s; win chance -68.1 points over it.*
+
+### Power play without a kill: BcS v Crew (3dd84ec7), 19:39.0 to 20:28.0
+**Situation**: main 7v2, alive 8v7, flags up (+56 s), DP 40, boost in 56; choice pushed (fought 7, advanced 1); deaths {'BcS': 8, 'Crew': 0} in 49 s
+**The fight's shape** (every 5 s: own main, the enemy group it faced, distance between them, that group's distance to the rest of its team): 19:39.0 7v2 1758 apart, 2386 from its others; 19:44.0 7v5 89 apart, 10384 from its others; 19:49.0 7v5 255 apart, 11283 from its others; 19:54.0 7v5 202 apart, 11727 from its others; 19:59.0 7v5 95 apart, 11687 from its others; 20:04.0 7v5 76 apart, 11875 from its others; 20:09.0 7v5 87 apart, 12267 from its others; 20:14.0 7v5 155 apart, 12497 from its others
+**BcS's damage**: 72.6 per second (above the 80th percentile for team (median 38.4, n 9019)); top target share 0.76 (above the 80th percentile for team (median 0.48, n 9019)); targets [('Crew 8 Monk', 2709), ('Crew Ritualist', 548), ('Crew Mesmer', 298), ('Crew 7 Monk', 1)]; dealers [('BcS Air Ele', 1341), ('BcS Monk 5 (WoC)', 723), ('BcS Water Ele', 531), ('BcS Paragon', 416), ('BcS Dervish', 345)]
+- phase 19:16.0 to 19:51.0: 7v2 (enemy pit, job convert), damage uptime 0.33, damage-seconds lost {'moving': 122, 'idle': 18}
+- phase 19:51.0 to 20:00.0: 7v5 (enemy pit, job convert), damage uptime 0.56, damage-seconds lost {'moving': 20, 'idle': 3, 'knocked down': 1}
+- phase 20:00.0 to 20:08.0: 7v5 (enemy pit, job convert), damage uptime 0.83, damage-seconds lost {'moving': 5, 'idle': 3}
+- phase 20:08.0 to 20:16.0: 7v5 (enemy pit, job convert), damage uptime 0.52, damage-seconds lost {'moving': 12, 'idle': 10, 'knocked down': 1}
+**Crew's answer**: healing 139 per second ({'Crew 8 Monk': 2075, 'Crew 7 Monk': 1907.2, 'Crew Ritualist': 1876.6000000000004, 'Crew Prot': 945}); prots {'Reversal of Fortune': 3, 'Aura of Faith': 3, 'Shielding Hands': 2, 'Guardian': 1}
+- BcS's knockdowns landed 0; Crew's knockdown immunity casts 0
+- Pressure on Crew's healers: healers 4, interrupts_per_min 0.0, interrupted 0, casts 35, finished_share 0.97, dazed 0, knockdowns 0, hexes 10 (around the median for team (median 0, n 10272))
+- Snares, Blind and Weakness BcS put on Crew: none
+**Where the power play came from** (why the enemy was short, player-seconds over it): enemy pit 20, enemy base 13, push side 6
+**Why, in short**: BcS had 7v2 at main for 49 s; Crew healed 139 per second; worse than in power plays that killed: top-target share 0.76 over 4 targets (killing 0.41, not killing 0.5); not the cause (on the side of power plays that killed): damage 72.6 per second (killing 40.2, not killing 22.35), damage uptime in contact 54% (killing 49%, not killing 34%; most lost to moving); the biggest burst went on the Crew 8 Monk (3.9% to kill), while the same burst on the Crew Necromancer read 42.3%.
+
+*Node-model chain: no node row for this moment.*
+
+**How it could have been converted (measured)**
+
+- Against every stored power play (3+ up): those that killed had a median 40.2 damage per second and top-target share 0.41 (84 cases); those that didn't, 22.35 and 0.5 (68 cases). BcS here: 72.6 and 0.76. Damage uptime: 49% in those that killed, 34% in those that didn't, 54% here.
+- Kill-conversion node (AUC 0.794 on unseen matches against 0.68 for burst_damage and target_health_pct alone): the biggest burst, 395 on the Crew 8 Monk at 19:54 with 3 attackers, read 3.9% to kill within 8 s; read again with
+  - on the Crew Necromancer instead: 42.3% (+38.4 points, about +2.9 win points at a converted burst's +7.6)
+  - on the Crew Monk 1 instead: 41.5% (+37.6 points, about +2.9 win points at a converted burst's +7.6)
+  - on the Crew Mesmer instead: 20.4% (+16.5 points, about +1.3 win points at a converted burst's +7.6)
+  - on the Crew 7 Monk instead: 15.3% (+11.4 points, about +0.9 win points at a converted burst's +7.6)
+  - on the Crew Prot instead: 10.6% (+6.7 points, about +0.5 win points at a converted burst's +7.6)
+  - on the Crew Warrior instead: 8.0% (+4.1 points, about +0.3 win points at a converted burst's +7.6)
+- Bursts in the window: 5, on Ritualist (282), 8 Monk (337), 8 Monk (395), 8 Monk (318), 8 Monk (378)
+- The choice at the power play (usual.py):
+  - power play at 19:39 (main 7v2, flags +56 s, boost in 56, fight state None): chose **pushed, fought** (+0.3 [-0.9, +1.9] against the most common choice, pushed, advanced); in the 15 most similar decisions teams usually chose **pushed, advanced**; measured better: **pushed, held** (+2.2 points against the choice made, not clear yet, n 54).
+
+**Confidence**: medium (one measurement supports it).
+
+*(TQ 3 rebuilt in the chat after fixing a crash in events.power: a phase in which the team had no group read. Same engine and data as the rest of this report.)*
 
 ## TQ 4. Pit NPCs lost
 

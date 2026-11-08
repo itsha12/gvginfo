@@ -167,8 +167,12 @@ engine change before the next run, then the commentary transcripts and step 3 (d
   train the large pull in chunks of 40 to 50 matches, each with a learning report and the TQs.
 - Large pull, chunk 1 started: Train batch with pick 35 (any month) plus the 11 stored replays not yet trained (BcS v
   Crew, Nick's four, others) = about 46 matches; also the first run of the full sharded workflow.
-- Next: explain chunk 1 (snapshot across the learnings, the TQs), then further chunks of 40 to 50; discovery after
-  every few chunks. Also proposed to
+- Chunk 1 done (run 42513495642, about 33 min for 48 new matches; batch 10, 181 matches trained). The win model now
+  beats strength alone clearly for the first time (log loss 0.314 against 0.433, gain +0.119, range +0.017 to +0.214);
+  every learned node adds to its baseline (flag swing, capture speed and split effect did not before). split_diff
+  candidate improves the win model (0.314 -> 0.307): asked Denning whether to move it in. TQ 3 crashed on a phase with
+  no group for the team (events.power, fixed; answered in the chat and written into the report).
+- Next: Denning's answers on chunk 1; chunk 2 (pick about 45); discovery after every few chunks. Also proposed to
   him: a tactics clean-up list (stale 24 to 61 match figures, lines contradicted by the 133-match rebuild, duplicate ids
   S31 and S32).
 - Found: data/model/usual_play.json still holds the 30-match readings; the current ones are only in

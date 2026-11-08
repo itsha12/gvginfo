@@ -222,7 +222,9 @@ def power(rid, tag, t, F=None, window=None):
              f"({place('team', 'top_target_share', o['measures']['top_target_share'])[0]}); targets {o['targets']}; dealers {o['dealers']}")
     ph = [x for x in a["phases"] if x["start"] <= t1 and x["end"] >= t0]
     for x in ph:
-        g = max(x["teams"][tag]["groups"], key=lambda g: len(g["members"]))
+        gs = (x["teams"].get(tag) or {}).get("groups") or []
+        if not gs: continue                      # a phase with the whole team dead or unseen: nothing to read
+        g = max(gs, key=lambda g: len(g["members"]))
         c = g["capacities"]
         L.append(f"- phase {clock(x['start'])} to {clock(x['end'])}: {g['numbers']} ({g['zone']}, job {g['job']}), damage uptime {c['damage_uptime']}, "
                  f"damage-seconds lost {c['lost_damage_s']}")
