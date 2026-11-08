@@ -28,6 +28,9 @@ TOP = 2                 # causes followed at each link
 MAX_DEPTH = 4
 FIXES = 2
 MIN_PUSH = {"prob": 1.0, "sec": 1.0}   # a contribution smaller than this (points, or seconds) isn't a cause worth showing
+# Denning: a change too small to matter (a -0.01 difference) can't count as a cause or a fix: the value must be at least
+# this share of the variable's spread (interquartile range over every trained row of the node) from its usual value
+MIN_CHANGE = 0.25
 
 # a variable that is the result of another node: (node, how a change there moves this variable)
 UPSTREAM = {
@@ -188,11 +191,15 @@ class Chain:
         unit = RESULT[node][1]
         sign = 1 if bad_high else -1          # pushes toward the bad result are positive after this
         med = h.get("medians") or {}
+        spr = h.get("spreads") or {}
+        def big(f):
+            v, u, sp = row.get(f), med.get(f), spr.get(f)
+            return v is not None and u is not None and (not sp or abs(v - u) >= MIN_CHANGE * sp)
         # each variable against its usual value: its curve at this moment minus its curve at the usual value (the node is
         # additive, so the two readings separate by variable)
         _, at_usual = read(node, self.rid, {**row, **{k: v for k, v in med.items() if v is not None}})
         pushes = sorted(((f, (c - at_usual.get(f, 0)) * sign, row.get(f), med.get(f)) for f, c in contrib.items()
-                         if row.get(f) is not None and (c - at_usual.get(f, 0)) * sign >= MIN_PUSH[unit]), key=lambda x: -x[1])
+                         if big(f) and (c - at_usual.get(f, 0)) * sign >= MIN_PUSH[unit]), key=lambda x: -x[1])
         idx = len(self.links)
         self.links.append({"depth": depth, "node": node, "row": row, "reading": reading, "pushes": pushes[:6],
                            "parent": parent, "into": into, "bad_high": bad_high})

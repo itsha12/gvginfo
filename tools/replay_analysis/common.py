@@ -97,6 +97,21 @@ def skill_type(name):
     return _TYPE.get(name, _TYPE.get(name.replace(" PvP", " (PvP)"), ""))
 
 
+RUNNER_CLASSES = ["warrior", "dervish", "assassin", "paragon", "ranger", "mesmer", "elementalist", "necromancer", "ritualist", "monk"]
+
+
+def runner_class(m, a):
+    """Who carries (Denning: capping on a warrior, a midline, a dervish or a monk is a strategic decision): the carrier's
+    primary profession. Coded 0-9 in the order of RUNNER_CLASSES for the node models (each code its own bin)."""
+    p = (m.A[a].get("p") or "").lower()
+    return p if p in RUNNER_CLASSES else "other"
+
+
+def runner_code(m, a):
+    c = runner_class(m, a)
+    return RUNNER_CLASSES.index(c) if c in RUNNER_CLASSES else None
+
+
 def line(m, a):
     """Denning: frontline = dervishes, warriors, melee assassins; midline = elementalists, rangers, paragons, mesmers,
     caster assassins (and ritualists, to confirm); backline = monks. Decided by build, not profession alone."""

@@ -314,13 +314,10 @@ def flags(new_ids, recs, usual_res):
         short.append(f"{tag}'s answer was {c.get('slower_than_possible_s')} s slower than possible")
     dd = collections.Counter(d["team"] for d in a["deaths"] if s - 5 <= d["t"] <= e)
     if dd: short.append("deaths in the window: " + ", ".join(f"{k} {v}" for k, v in dd.items()))
-    import chain as CH
-    ch = CH.Chain(rid, tag, recs, usual_res).build("flag_deficit", e)
-    lu, lu_short, lu_conf = ch.lines(), (ch.short() if len(ch.links) > 1 else None), ch.confidence_items()
+    lu, lu_short, lu_conf = node_chain("start_flags", rid, tag, s, e)
     if lu_short: short.append(f"how the game got there: {lu_short}")
     if short: L.append(f"**Why, in short**: " + "; ".join(short) + ".")
     if lu: L += [""] + lu
-    L += node_chain("start_flags", rid, tag, s, e)
     L += ["", "**A different play (measured)**", ""]
     conf = list(lu_conf)
     # the decisions that set it up
@@ -368,12 +365,14 @@ def flags(new_ids, recs, usual_res):
 
 
 def node_chain(start, *args):
-    """Step 4 (causalchain.py): the same result traced through the node models, with fixes carried forward. Shown beside
-    the rule-based chain (chain.py) while the two are compared; it replaces the rules once Denning approves."""
+    """How the game got there (causalchain.py, step 4; Denning 2026-11-08: replaces the rule-based chain.py): the result
+    traced through the node models, fixes carried forward. Returns (lines, short, confidence items)."""
     import causalchain as CC
     try: c = getattr(CC, start)(*args)
-    except Exception as ex: return [f"*Node-model chain (step 4) not available here: {type(ex).__name__}: {ex}.*"]
-    return [""] + (c.lines() if c and c.links else ["*Node-model chain (step 4): no node row for this moment.*"])
+    except Exception as ex: return [f"*Node-model chain not available here: {type(ex).__name__}: {ex}.*"], None, []
+    if not (c and c.links): return ["*Node-model chain: no node row for this moment.*"], None, []
+    conf = [("weak", True)] if c.fixes else []
+    return c.lines(), (c.short() if len(c.links) > 1 else None), conf
 
 
 # ------------------------------------------------------------------ 2. monk death
@@ -402,15 +401,12 @@ def monk(new_ids, recs, usual_res):
          "**Why** (forensics, against the same role in every stored match):"]
     L += EV.short(ans)
     kc = EV.key_causes(ans)
-    import chain as CH
-    ch = CH.Chain(rid, team, recs, usual_res).build("deaths", t, {"deaths": [x for x in a["deaths"] if x["team"] == team and abs(x["t"] - t) <= CH.CLUSTER_S]})
-    lu, lu_short, lu_conf = ch.lines(), (ch.short() if len(ch.links) > 1 else None), ch.confidence_items()
+    lu, lu_short, lu_conf = node_chain("start_fight", rid, team, t)
     if kc: L.append(f"**Why, in short**: the {role} died because " + ", ".join(kc[:4]) + "."
                     + (f" How the game got there: {lu_short}." if lu_short else ""))
     if lu: L += [""] + lu
-    L += node_chain("start_fight", rid, team, t)
     L += ["", "**How it could have been prevented (measured)**", ""]
-    if lu: L.append("- Further back: the fixes along the chain are priced above (\"Where a fix would have mattered most\"). "
+    if lu: L.append("- Further back: the fixes along the chain are priced above (\"Fixes, carried forward\"). "
                     "The readings below are what was still possible in the last seconds.")
     conf = list(lu_conf)
     # options that were there and unused
@@ -448,7 +444,7 @@ def monk(new_ids, recs, usual_res):
             conf.append(("node", bool(ok) and best is not None and best[2] < 0 and meaningful(base, best[2])))
         else: L.append(f"- Deaths node at {clock(row['t'])}: none of the variables it reads were in a state a teammate could change.")
     else: L.append("- Deaths node: no reading in the seconds before the death.")
-    dec = [] if lu else decision_alternatives(recs, usual_res, rid, team, t - 45, t)
+    dec = [] if lu_conf else decision_alternatives(recs, usual_res, rid, team, t - 45, t)
     if dec:
         L.append("- The decision before it (usual.py):")
         L += ["  " + x for x in decision_lines(dec[-1:])]
@@ -635,7 +631,8 @@ def power(new_ids, recs, usual_res):
     if fine: short.append("not the cause (on the side of power plays that killed): " + ", ".join(fine))
     L.append("**Why, in short**: " + "; ".join(short) + ".")
     short_i = len(L) - 1
-    L += node_chain("start_power", rid, tag, t0)
+    lu_p, _, _ = node_chain("start_power", rid, tag, t0)
+    L += [""] + lu_p
     L += ["", "**How it could have been converted (measured)**", ""]
     conf = []
     o = om
@@ -740,13 +737,10 @@ def npcs(new_ids, recs, usual_res):
         for d in dead[:2]:
             kc_ = EV.key_causes(EV.death(rid, tag, d["victim"], d["t"] + .5, F_))
             if kc_: short.append(f"the {d['victim']} died at {clock(d['t'])} ({d.get('zone')}, numbers {d.get('numbers')}) because " + ", ".join(kc_[:3]))
-    import chain as CH
-    ch = CH.Chain(rid, tag, recs, usual_res).build("npc_loss", t, {"what": txt.split(" lost ")[-1].split(" (")[0]})
-    lu, lu_short, lu_conf = ch.lines(), (ch.short() if len(ch.links) > 1 else None), ch.confidence_items()
+    lu, lu_short, lu_conf = node_chain("start_npc", rid, tag, t)
     if lu_short: short.append(f"how the game got there: {lu_short}")
     if short: L.append("**Why, in short**: " + "; ".join(short) + ".")
     if lu: L += [""] + lu
-    L += node_chain("start_npc", rid, tag, t)
     L += ["", "**How it could have been prevented (measured)**", ""]
     if dead: L.append(f"- Further back: with {len(dead)} of {tag} dead, more defenders were not available; "
                       + ("the fixes along the chain are priced above." if lu else

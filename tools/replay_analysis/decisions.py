@@ -16,6 +16,9 @@ choice the usual play groups by), outcome, edge_change):
 - split_or_stay (Denning, after Bounty's and Nick's commentary): every 30 s from 1:00, for a team not already
   splitting with 6+ alive: did it start a split in the next 30 s (split) or not (stayed)? Weighed by the usual play
   against the snare matchup, so "should we split here" gets an answer, not just "will they split".
+- runner_choice (Denning, 2026-11-08: capping on a warrior, a midline, a dervish or a monk is a strategic decision):
+  every fresh run (a pickup within 1,500 of the team's flag spawn). Choice = who carries (common.runner_class); window
+  90 s. The usual play compares carriers in similar situations (and by snare matchup).
 Every record's extra carries the snare matchup at that moment (movepower.py): own and enemy snare power of the live
 players and own speed power (Denning: starting the flag game or a split against a lot of snare is likely poor play;
 the data decides).
@@ -288,10 +291,27 @@ def split_or_stay(st, sb, splits, every=30, ahead=30, window=90):
     return out
 
 
+def runner_choices(st, sb, window=90):
+    from common import runner_class
+    import movepower
+    from common import CARRY_SPEED
+    m, out = st.m, []
+    for c in st.carries:
+        a = c["a"]; tm = m.team(a)
+        if tm not in st.teams or c["s"] < 0: continue
+        p = st.pos(a, c["s"])[0]
+        if not p or d(p, st.geo.spawn[tm]) > 1500 or c["s"] > st.end - window: continue
+        out.append(rec(sb, "runner_choice", tm, c["s"], runner_class(m, a), c["s"] + window,
+                       extra={"runner_role": m.roles.get(a), "runner_speed_bonus": movepower.speed_bonus(m, a),
+                              "min_capture_s": round(d(st.geo.spawn[tm], st.geo.stand) / movepower.carry_speed(m, a, CARRY_SPEED), 1),
+                              "captured": int(c["how"] == "flagstand_captured")}))
+    return out
+
+
 def decision_points(st, sb, ep):
     out = (enemy_pickups(st, sb) + splits_in_base(st, sb, ep["splits"]) + power_plays(st, sb, ep["windows"])
            + boost_clocks(st, sb) + after_wipes(st, sb, ep["fights"]) + late_game(st, sb)
-           + split_or_stay(st, sb, ep["splits"]))
+           + split_or_stay(st, sb, ep["splits"]) + runner_choices(st, sb))
     return sorted(out, key=lambda r: r["t"])
 
 

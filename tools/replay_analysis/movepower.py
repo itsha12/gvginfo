@@ -121,6 +121,24 @@ def player_power(m, a):
     return {k: round(v, 1) if isinstance(v, float) else v for k, v in out.items()}
 
 
+def speed_bonus(m, a):
+    """The bar's average movement bonus while running (fraction): speed power / 60 (a 50% stance up a quarter of the
+    time = 12.5%), capped at the bar's biggest single bonus (speed boosts don't add up; the strongest applies)."""
+    from buildfeat import _skills
+    S = _skills(); top = 0.0
+    for b in m.A[a].get("bar", []):
+        s_ = S.get(m.sk(b)) if b else None
+        mm = re.search(r"(\d+)% faster", (s_ or {}).get("desc") or "") if s_ and "Increased Movement Speed" in (s_.get("causes") or []) else None
+        if mm: top = max(top, int(mm.group(1)) / 100)
+    return round(min(player_power(m, a)["speed"] / 60, top), 3)
+
+
+def carry_speed(m, a, base):
+    """A carrier's fastest expected carry speed from its bar (Denning: the runner's speed skills set the minimum time
+    required to capture): the average carry speed times one plus its speed bonus."""
+    return base * (1 + speed_bonus(m, a))
+
+
 def powers(m):
     """{agent: player_power} for every player of a match."""
     return {a: player_power(m, a) for a in m.PL}

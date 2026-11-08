@@ -816,6 +816,25 @@ changing status only after two batches in a row, declined: links keep changing s
   passes chance alone would give. Tested here on the collapse node (92 variables, 49 s): no discovery yet; closest
   morale difference and fight state (not clear).
 
+## Runner speed, who carries, approved discoveries, the speed-up (session 4t, 2026-11-08)
+- Runner speed (Denning): the runner's speed skills set the minimum time required to capture. scoreboard.py's carry
+  speed per player = the faster of its measured full carries and the average carry speed (205) times one plus its bar's
+  speed bonus (movepower.speed_bonus: speed power / 60, capped at the bar's biggest single bonus, since boosts don't add
+  up). Every flag ETA, response, flag lead and "slower than possible" follows. The run nodes' raw runner_speed is
+  replaced by min_capture_s: seconds the carrier needs at least from where it is, at that speed.
+- Who carries (Denning: capping on a warrior, a midline, a dervish or a monk is a strategic decision): runner_class
+  (common.runner_class, the carrier's primary profession, coded 0 to 9) in the run outcome, run defence and capture
+  speed nodes (P.10), and a new decision, runner_choice (every fresh run from the spawn; the usual play compares
+  carriers in similar situations and by snare matchup).
+- Approved discoveries (Denning, all as suggested): state variables as context (S.scoreboard) in the fight, flag
+  swing, run, power-play and split nodes; snare skill counts on the run nodes (enemy snares on run outcome, own snares
+  on run defence) and the defenders' prots on split effect (C.builds); Deep Wound on split effect left for more
+  matches. Joined onto the rows from the state table and build features (lnrows.APPROVED).
+- Chains: the node-model chain (causalchain.py) replaces chain.py in the TQs. A cause or fix must sit at least a
+  quarter of the variable's spread (interquartile range over the node's rows) from its usual value.
+- Speed-up: Train batch now runs fetch -> four shard jobs (cache.py shard k 4: analysis, node rows and event-layer
+  records for every 4th match) -> prepare (merges the shards' cache files) -> parts -> finish.
+
 ## Flag position (Denning, tactics `F1` to `F4`)
 - Up on flags = the better position to get a boost and to run, not the team that capped last.
 - ETA to capture: carrying = distance to the stand / 205 units per second; a dropped flag = the nearest runner's walk

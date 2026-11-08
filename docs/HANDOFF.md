@@ -148,8 +148,10 @@ engine change before the next run, then the commentary transcripts and step 3 (d
 - Known limits of step 4: carries through a fight to a later node shrink a lot (only a share of a lost fight's
   deaths), so most fixes price small at the result; NPC-loss chains stop at the fight before (the NPC node is not a
   learned node yet); "diff" variables have sharp steps near 0 (a -0.01 ready-interrupt difference pushed 16 points).
-- Next (agreed order): Denning's rulings on the node-model chains (replace chain.py?) and on the discoveries; then
-  step 3 of the order, the speed-up; then the large pull. Also proposed to
+- Denning's rulings (yes to all): node-model chains replace chain.py; discoveries approved as suggested; minimum-change
+  rule added. Plus: runner speed now sets the minimum time to capture; who carries is a variable and a decision
+  (runner_choice). Speed-up built (shards). METHODS.md "Runner speed, who carries ...". Rebuild started to test.
+- Next (agreed order): the large pull (450+), chunked or not still to decide; then discovery and step 4 on it. Also proposed to
   him: a tactics clean-up list (stale 24 to 61 match figures, lines contradicted by the 133-match rebuild, duplicate ids
   S31 and S32).
 - Found: data/model/usual_play.json still holds the 30-match readings; the current ones are only in

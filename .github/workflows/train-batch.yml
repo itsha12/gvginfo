@@ -5,8 +5,10 @@ name: Train batch
 # batch, rebuilds the analysis and the held-out models (from the prepared data saved on the "cache" branch), writes
 # the learning report, saves the cache back and commits the results to main. Claude then reads
 # data/model/reports/latest.md and explains it. Started by hand (Actions tab, or Claude with gh api).
-# Split across machines for speed (free on a public repo): "prepare" picks, fetches, adds the batch, analyses and warms
-# the held-out models; six "part" jobs then build the report's heavy sections side by side (learning.py part ...);
+# Split across machines for speed (free on a public repo): "fetch" picks, fetches and adds the batch; four "shard" jobs
+# build every match's own prepared data side by side (cache.py shard: analysis, node rows, event-layer records);
+# "prepare" merges them, analyses (now cache hits) and warms the held-out models; six "part" jobs then build the
+# report's heavy sections side by side (learning.py part ...);
 # "finish" joins them, runs values, the TQs and the snapshot (learning.py finish), saves the cache and commits.
 # Jobs pass their work on as artifacts: a git patch of the files they changed plus the new cache files.
 # Each job may run up to 3 hours (Denning, after batch 9: room for a full rebuild and larger batches).
@@ -49,7 +51,7 @@ env:
   PYTHONDONTWRITEBYTECODE: "1"
 
 jobs:
-  prepare:
+  fetch:
     runs-on: ${{ github.event.inputs.runner || 'ubuntu-latest' }}
     timeout-minutes: 180
     steps:
@@ -85,9 +87,6 @@ jobs:
           if ! git diff --cached --quiet; then git commit -qm "Add replays (training batch)" && git push origin replays; fi
           cd .. && rm -rf store
           git fetch --depth 1 origin +replays:refs/remotes/origin/replays
-      - name: Load saved prepared data
-        working-directory: tools/replay_analysis
-        run: python3 cache.py sync pull
       - name: Add the batch
         if: ${{ github.event.inputs.add_batch == 'yes' }}
         working-directory: tools/replay_analysis
@@ -101,6 +100,100 @@ jobs:
           if os.environ.get("NOTE"): b["batches"][-1].setdefault("note", os.environ["NOTE"])
           json.dump(b, open(p, "w"), indent=1)
           PY
+      - name: Pack the batch
+        run: |
+          mkdir -p /tmp/fetch
+          git add -A && git diff --cached --binary > /tmp/fetch/fetch.patch
+          ls -la /tmp/fetch
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fetch
+          path: /tmp/fetch
+          retention-days: 1
+
+  # the speed-up (Denning's order, step 3): every match's own prepared data (analysis, node rows, event-layer records)
+  # built on four machines side by side; prepare then merges their cache files and finds everything built
+  shard:
+    needs: fetch
+    runs-on: ${{ github.event.inputs.runner || 'ubuntu-latest' }}
+    timeout-minutes: 180
+    strategy:
+      fail-fast: true
+      matrix:
+        k: [0, 1, 2, 3]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: .github/workflows/train-requirements.txt
+      - name: Install the model libraries
+        run: nproc && pip install -r .github/workflows/train-requirements.txt
+      - uses: actions/download-artifact@v4
+        with:
+          name: fetch
+          path: /tmp/fetch
+      - name: Restore the batch
+        run: |
+          git config --global user.name "gvginfo-bot"
+          git config --global user.email "gvginfo-bot@users.noreply.github.com"
+          git fetch --depth 1 origin +replays:refs/remotes/origin/replays
+          [ -s /tmp/fetch/fetch.patch ] && git apply --binary /tmp/fetch/fetch.patch || true
+      - name: Load saved prepared data
+        working-directory: tools/replay_analysis
+        run: python3 cache.py sync pull
+      - name: Build this shard's matches
+        working-directory: tools/replay_analysis
+        run: |
+          touch /tmp/marker && sleep 1
+          python3 cache.py shard ${{ matrix.k }} 4
+      - name: Pack this shard
+        run: |
+          mkdir -p /tmp/shard
+          cd / && find "${HOME#/}/.cache/gvginfo" -type f -newer /tmp/marker > /tmp/newfiles.txt
+          wc -l /tmp/newfiles.txt
+          tar -czf /tmp/shard/shard-${{ matrix.k }}.tgz -C / -T /tmp/newfiles.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: shard-${{ matrix.k }}
+          path: /tmp/shard
+          retention-days: 1
+          compression-level: 0
+
+  prepare:
+    needs: shard
+    runs-on: ${{ github.event.inputs.runner || 'ubuntu-latest' }}
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: .github/workflows/train-requirements.txt
+      - name: Install the model libraries (same versions as the chat workspace)
+        run: nproc && pip install -r .github/workflows/train-requirements.txt
+      - uses: actions/download-artifact@v4
+        with:
+          name: fetch
+          path: /tmp/fetch
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: shard-*
+          path: /tmp/shards
+          merge-multiple: true
+      - name: Restore the batch
+        run: |
+          git config --global user.name "gvginfo-bot"
+          git config --global user.email "gvginfo-bot@users.noreply.github.com"
+          git fetch --depth 1 origin +replays:refs/remotes/origin/replays
+          [ -s /tmp/fetch/fetch.patch ] && git apply --binary /tmp/fetch/fetch.patch || true
+      - name: Load saved prepared data and the shards
+        working-directory: tools/replay_analysis
+        run: |
+          python3 cache.py sync pull
+          for t in /tmp/shards/*.tgz; do tar -xzf "$t" -C /; done
       - name: Rebuild the forensics benchmarks
         if: ${{ github.event.inputs.rebuild_forensics == 'yes' }}
         working-directory: tools/replay_analysis

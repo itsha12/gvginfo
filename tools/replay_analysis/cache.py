@@ -196,6 +196,38 @@ def warm(jobs=None, kinds=("wp",)):
         t = time.time(); M.calibrate(ids); print(f"calibration by minute in {time.time() - t:.0f} s")
 
 
+def _shard_one(rid):
+    """Every per-match piece of prepared data for one match (one shard's share of the speed-up)."""
+    out = []
+    try:
+        import analyze
+        prepared("analysis", rid, lambda: analyze.analyze(rid)); out.append("analysis")
+    except Exception as ex: out.append(f"analysis failed: {ex}")
+    if rid in set(_ids()):
+        for name, fn in (("rows", _rows_one),):
+            try: fn(rid); out.append(name)
+            except Exception as ex: out.append(f"{name} failed: {ex}")
+        try:
+            import eventlayer as EL
+            EL.records(rid); out.append("eventlayer")
+        except Exception as ex: out.append(f"eventlayer failed: {ex}")
+    return rid, out
+
+
+def shard(k, n, jobs=None):
+    """The speed-up (Denning's order, step 3): the per-match prepared data (analysis, node rows, event-layer records)
+    split across n GitHub machines; this machine builds every n-th match from k. The prepare job then merges the shards'
+    cache files and finds everything built."""
+    from multiprocessing import Pool
+    allr = sorted(json.loads(subprocess.check_output(["git", "-C", REPO, "show", "origin/replays:index.json"]))["matches"])
+    mine = [r for i, r in enumerate(allr) if i % n == k]
+    t = time.time(); bad = 0
+    with Pool(jobs or os.cpu_count() or 2) as p:
+        for rid, out in p.imap_unordered(_shard_one, mine):
+            if any("failed" in x for x in out): bad += 1; print(rid, out)
+    print(f"shard {k} of {n}: {len(mine)} matches in {time.time() - t:.0f} s ({bad} with a failure)")
+
+
 # ---- keeping prepared data between sessions (branch `cache`, one tarball per code version and kind)
 def sync(direction):
     work = _path("branch", ".keep"); work = os.path.dirname(work)
@@ -268,6 +300,7 @@ if __name__ == "__main__":
     if a[:1] == ["warm"]: warm(int(a[a.index("--jobs") + 1]) if "--jobs" in a else None)
     elif a[:1] == ["sync"]: sync(a[1])
     elif a[:1] == ["info"]: info()
+    elif a[:1] == ["shard"]: shard(int(a[1]), int(a[2]))
     elif a[:1] == ["clear"]:
         what = a[1] if len(a) > 1 else "all"
         for d in (["fits", "prepared"] if what == "all" else [what]): shutil.rmtree(os.path.join(ROOT, d), ignore_errors=True)

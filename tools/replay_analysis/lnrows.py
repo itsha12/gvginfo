@@ -72,6 +72,49 @@ def _power_near(st, P, tm, at, t, r=1300, kind="snare"):
     return round(sum(P[b][kind] for b in st.players[tm] if st.alive(b, t) and st.pos(b, t)[0] and d(st.pos(b, t)[0], p0) <= r), 1)
 
 
+def _min_capture(st, m, a, t):
+    """Seconds the carrier would need at least to bring the flag to the stand from where it is at t (Denning: the
+    runner's speed skills set the minimum time required to capture): distance / its fastest expected carry speed."""
+    import movepower
+    from common import CARRY_SPEED
+    from state import d
+    p0 = st.pos(a, t)[0] if a is not None else None
+    if p0 is None: return None
+    return round(d(p0, st.geo.stand) / movepower.carry_speed(m, a, CARRY_SPEED), 1)
+
+
+# variables discovery found and Denning approved (2026-11-08; discover.py, knowledge/discovery.md), joined from the
+# win model's state table and the build features at the row's moment (same team, the 5 s state at or before)
+APPROVED = {
+    "fight_outcome": ["morale_diff", "fight_state", "down_diff_s", "alive_diff", "stand", "spike_killable_diff"],
+    "flag_swing": ["morale_diff"],
+    "run_defence": ["boost_clock", "stand", "flag_lead", "morale_diff", "down_diff_s", "b.own_snares"],
+    "split_effect": ["morale_diff", "flag_lead", "lord_damage_diff", "b.enemy_prots"],
+    "run_outcome": ["morale_diff", "boost_clock", "b.enemy_snares"],
+    "power_play": ["down_diff_s", "carrying_diff"],
+    "split_chance": ["split_diff", "turtle_diff", "pit_pressure_diff"],
+    "split_answer": ["split_diff"],
+}
+
+
+def _approved(node, rows, rid, m):
+    """Join the approved discoveries onto the rows (b. = build feature, else the state table)."""
+    want = APPROVED.get(node)
+    if not want or not rows: return rows
+    import model as M
+    from buildfeat import matchup
+    tab = {(r["team"], int(r["t"])): r for r in M.match_table(rid)}
+    build = {m.tag[tm]: matchup(m, tm) for tm in (1, 2)}
+    for r in rows:
+        t5 = int(r["t"]) - int(r["t"]) % 5
+        st_ = tab.get((r["team"], t5)) or tab.get((r["team"], t5 - 5)) or {}
+        for v in want:
+            name = v.split(".", 1)[1] if v.startswith("b.") else v
+            if name in r: continue
+            r[name] = (build.get(r["team"]) or {}).get(name) if v.startswith("b.") else st_.get(v)
+    return rows
+
+
 def _healer_share(m, ev, team, t0, t1):
     """Share of team's damage on enemy players that landed on enemy healers in [t0, t1] (seconds): Bounty's 'going
     after the monks', measured (Denning, after Bounty's and Nick's commentary)."""
@@ -108,6 +151,7 @@ def _build(node, rid, V):
     roles_alive = lambda tg, t: (_row(sr, t)[tg].get("main_roles") or []) if sr else []
     deaths = a["deaths"]
     import movepower as MP
+    from common import runner_code
     P = MP.powers(m)
     ev = sorted((e for e in m.o.get("ev") or [] if e[0] is not None), key=lambda e: e[0])
     def agent_of(tg, role):
@@ -134,7 +178,8 @@ def _build(node, rid, V):
                     other_control_so_far=sum(1 for c in ct if c[1] not in ("crippled", "knockdown")),
                     damage_so_far=sum(x[1] for x in r.get("damage_times") or [] if x[0] <= k),
                     pushers_so_far=sum(1 for x in r.get("pusher_first") or [] if x <= k),
-                    runner_speed=P[ra]["speed"] if (ra := agent_of(tg, fr["runner"])) is not None else None,
+                    min_capture_s=_min_capture(st, m, ra := agent_of(tg, fr["runner"]), fr["start"] + k),
+                    runner_class=runner_code(m, ra) if ra is not None else None,
                     runner_escapes=P[ra]["escapes"] if ra is not None else None,
                     enemy_snare_near=_power_near(st, P, tm_of[foe(tg)], ra, fr["start"] + k),
                     run_dist=run_dist.get(tg), strength_gap=gaps[tg])
@@ -177,7 +222,8 @@ def _build(node, rid, V):
                     control_so_far=sum(1 for c in r.get("control_times") or [] if c[0] <= k),
                     damage_so_far=sum(x[1] for x in r.get("damage_times") or [] if x[0] <= k),
                     escort=r["escort"], att_main=r["main"][0], def_main=r["main"][1],
-                    runner_speed=P[ra]["speed"] if (ra := agent_of(att, fr["runner"])) is not None else None,
+                    min_capture_s=_min_capture(st, m, ra := agent_of(att, fr["runner"]), fr["start"] + k),
+                    runner_class=runner_code(m, ra) if ra is not None else None,
                     def_snare_near=_power_near(st, P, tm_of[dfn], ra, fr["start"] + k),
                     run_dist=run_dist.get(att), strength_gap=gaps[dfn])
     elif node == "capture_speed":
@@ -192,7 +238,8 @@ def _build(node, rid, V):
             add(c["defender"], c["t"], c["secs"], defenders_free=c["defenders_free"], escort=c["escort"],
                 pushers_10s=sum(1 for x in pf if x <= CAP_AT), control_10s=len(ct),
                 damage_10s=sum(x[1] for x in r.get("damage_times") or [] if x[0] <= CAP_AT),
-                runner_speed=P[ra]["speed"] if (ra := next((fr_["runner"] for fr_ in a["flag_runs"] if fr_["team"] == c["team"] and abs(fr_["end"] - c["t"]) <= 3), None)) and (ra := agent_of(c["team"], ra)) is not None else None,
+                min_capture_s=_min_capture(st, m, ra, c["t"] - c["secs"]) if (ra := next((fr_["runner"] for fr_ in a["flag_runs"] if fr_["team"] == c["team"] and abs(fr_["end"] - c["t"]) <= 3), None)) and (ra := agent_of(c["team"], ra)) is not None else None,
+                runner_class=runner_code(m, ra) if ra is not None else None,
                 def_snare_near=_power_near(st, P, tm_of[c["defender"]], ra, c["t"] - c["secs"] + CAP_AT) if ra is not None else None,
                 run_dist=run_dist.get(c["team"]), strength_gap=gaps[c["defender"]])
     elif node == "power_play":
@@ -333,7 +380,7 @@ def _build(node, rid, V):
                     def_snare_present=round(sum(P[x]["snare"] for x in (agent_of(fg, dd["role"]) for dd in s_.get("defenders") or []) if x is not None), 1),
                     split_speed_power=round(sum(P[x]["speed"] for x in mem), 1), split_escapes=sum(P[x]["escapes"] for x in mem),
                     size=r["size"], main_diff=r["main_diff"], strength_gap=gaps[tg])
-    return rows
+    return _approved(node, rows, rid, m)
 
 
 _SK = None

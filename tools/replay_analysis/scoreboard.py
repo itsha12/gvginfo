@@ -172,9 +172,9 @@ class Scoreboard:
                 C: {"eta": eta[C], "response": round(resp_C), "lead": round(resp_H - resp_C)}}
 
     def _runner_speeds(self):
-        """Each runner's own carry speed, measured from its full carries in this match (straight line from pickup to the
-        stand, pickups 4,000+ from the stand), so runners with speed skills aren't judged by the average; free speed
-        scales with it. Players with no full carry use the averages."""
+        """Each player's carry speed: the faster of its measured full carries in this match (straight line from pickup to
+        the stand, pickups 4,000+ from the stand) and the average carry speed with its bar's speed bonus
+        (movepower.carry_speed). Free speed scales with it."""
         st, m = self.st, self.m
         sp = collections.defaultdict(list)
         for c in st.carries:
@@ -182,6 +182,12 @@ class Scoreboard:
             p = st.pos(c["a"], c["s"])[0]
             if p and d(p, st.geo.stand) > 4000: sp[c["a"]].append(d(p, st.geo.stand) / (c["e"] - c["s"]))
         self.carry_speed = {a: max(min(statistics.median(v), 400), 150) for a, v in sp.items()}
+        # Denning (after the commentary bundle): the runner's speed skills set the minimum time required to capture. Each
+        # player's fastest expected carry = the average carry speed with its bar's speed bonus (movepower.py); a player's
+        # measured full carries count when faster (the minimum is the fastest it showed or its skills allow)
+        import movepower
+        for a in [b for tm in st.teams for b in st.players[tm]]:
+            self.carry_speed[a] = max(self.carry_speed.get(a, 0), movepower.carry_speed(m, a, CARRY_SPEED))
 
     def cspeed(self, a): return self.carry_speed.get(a, CARRY_SPEED)
     def rspeed(self, a): return self.carry_speed.get(a, CARRY_SPEED) * RUN_SPEED / CARRY_SPEED
