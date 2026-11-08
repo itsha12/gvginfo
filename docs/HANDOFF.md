@@ -144,9 +144,12 @@ engine change before the next run, then the commentary transcripts and step 3 (d
 - Denning approved (e) and (f), built (METHODS.md "After the batch 9 rebuild"). Third rebuild: calibration followed
   the data except at the ends (lines to 0 and 100 overrode the most common cells); carrying the end segments on
   helped (12 to 18 min) but not after 18:00 (0.4% predicted, 7.6% won, read 0.5%); the outer knots' values now hold
-  beyond them; fifth rebuild started. Forced flag_lead is flat across deficits of about 30 to 129 s, so TQ 1 still prices 22 s
+  beyond them. Fifth rebuild done: calibration follows the data across every band (where neighbouring cells run
+  backwards they are pooled, e.g. after 18:00 0.4% won 7.6% and 3.4% won 1.0%, both read about 4%); glass box 0.374;
+  values: death -9.2, knight -9.2, boost +5.4, capture +1.5; after a wipe taking the flag -4.5 and collapsing on a
+  split -4.2 (both clear). Forced flag_lead is flat across deficits of about 30 to 129 s, so TQ 1 still prices 22 s
   saved at +0.0 (an honest reading; step 4 prices saved seconds through the chain).
-- Next: read the third rebuild with Denning, then the commentary transcripts (Bounty's six, then Nick's one).
+- Next: the commentary transcripts (Bounty's six, then Nick's one; Denning attaches them), then more batches.
 
 ### Session 4r (2026-11-07)
 - Train batch split (`.github/workflows/train-batch.yml`, METHODS.md "Train batch on GitHub"): prepare -> six parts at
