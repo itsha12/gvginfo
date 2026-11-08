@@ -1,13 +1,13 @@
 {
- "updated": "2026-11-08T15:58:08.884Z",
+ "updated": "2026-11-08T19:08:46.574Z",
  "matches": [
   {
-   "id": "8c5fe04a-a7be-59f2-a7e9-b6416bab25c4",
+   "id": "4f3405ed-8f44-5eec-a64a-1d2e16d7a748",
    "date": "2026-11-08",
-   "map": "Isle of Meditation",
+   "map": "Imperial Isle",
    "teams": [
-    "DUM",
-    "GW크"
+    "Apes",
+    "hold"
    ],
    "winner": 2,
    "occasion": "automated",
@@ -47,6 +47,39 @@
     "tournament_occasion",
     "observed_match_clock"
    ]
+  },
+  {
+   "id": "7d636b3e-ae88-511c-a3a8-f46f2e8ec23e",
+   "date": "2026-11-08",
+   "map": "Corrupted Isle",
+   "teams": [
+    "Men",
+    "hook"
+   ],
+   "winner": 1,
+   "occasion": "automated"
+  },
+  {
+   "id": "8bc76e21-afe9-5bbb-a2c1-76a69c0cc192",
+   "date": "2026-11-08",
+   "map": "Corrupted Isle",
+   "teams": [
+    "hold",
+    "mddl"
+   ],
+   "winner": 1,
+   "occasion": "automated"
+  },
+  {
+   "id": "8c5fe04a-a7be-59f2-a7e9-b6416bab25c4",
+   "date": "2026-11-08",
+   "map": "Isle of Meditation",
+   "teams": [
+    "DUM",
+    "GW크"
+   ],
+   "winner": 2,
+   "occasion": "automated"
   },
   {
    "id": "21459385-888c-5151-aacd-349d9608b7f6",
@@ -4402,39 +4435,6 @@
     "True"
    ],
    "winner": 1,
-   "occasion": "automated"
-  },
-  {
-   "id": "023475ba-4e0c-5ce0-a1d6-f9c660a5d16d",
-   "date": "2026-10-06",
-   "map": "Isle of Solitude",
-   "teams": [
-    "chic",
-    "meow"
-   ],
-   "winner": 2,
-   "occasion": "automated"
-  },
-  {
-   "id": "7af8445a-d417-579c-a439-467283fdecd9",
-   "date": "2026-10-06",
-   "map": "Uncharted Isle",
-   "teams": [
-    "push",
-    "chic"
-   ],
-   "winner": 2,
-   "occasion": "automated"
-  },
-  {
-   "id": "9a5b157b-e324-5810-a57b-6f713ea64fd4",
-   "date": "2026-10-06",
-   "map": "Isle of Meditation",
-   "teams": [
-    "DUM",
-    "True"
-   ],
-   "winner": 2,
    "occasion": "automated"
   }
  ]
