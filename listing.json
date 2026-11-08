@@ -1,15 +1,15 @@
 {
- "updated": "2026-11-08T03:09:21.557Z",
+ "updated": "2026-11-08T03:33:10.133Z",
  "matches": [
   {
-   "id": "965d7c49-5c32-5644-ac24-6c495f82fc41",
+   "id": "9e6d6ce3-cbe4-5c03-a01a-c8dbf58d8542",
    "date": "2026-11-08",
-   "map": "Corrupted Isle",
+   "map": "Imperial Isle",
    "teams": [
-    "meow",
-    "DUM"
+    "RV",
+    "meow"
    ],
-   "winner": 1,
+   "winner": 2,
    "occasion": "automated",
    "keys": [
     "id",
@@ -47,6 +47,17 @@
     "tournament_occasion",
     "observed_match_clock"
    ]
+  },
+  {
+   "id": "965d7c49-5c32-5644-ac24-6c495f82fc41",
+   "date": "2026-11-08",
+   "map": "Corrupted Isle",
+   "teams": [
+    "meow",
+    "DUM"
+   ],
+   "winner": 1,
+   "occasion": "automated"
   },
   {
    "id": "1086d31d-2728-5802-aedc-3da3db383fbb",
@@ -4424,17 +4435,6 @@
     "Apes"
    ],
    "winner": 1,
-   "occasion": "automated"
-  },
-  {
-   "id": "f768ce91-9695-59fd-a587-597a8615c3c9",
-   "date": "2026-10-05",
-   "map": "Isle of Meditation",
-   "teams": [
-    "TFS",
-    "Crew"
-   ],
-   "winner": 2,
    "occasion": "automated"
   }
  ]

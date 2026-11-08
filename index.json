@@ -1,6 +1,6 @@
 {
  "format": "gvginfo.replay.v1",
- "updated": "2026-11-08T03:09:35.490Z",
+ "updated": "2026-11-08T03:33:23.793Z",
  "matches": {
   "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65": {
    "file": "2026-11/eea5ba87-ac20-5ba3-a6c9-965f11ca8a65.json.gz",
@@ -1875,6 +1875,20 @@
    "winner": "meow",
    "length_s": 347,
    "kb": 77,
+   "summary": true,
+   "trim": 3
+  },
+  "9e6d6ce3-cbe4-5c03-a01a-c8dbf58d8542": {
+   "file": "2026-11/9e6d6ce3-cbe4-5c03-a01a-c8dbf58d8542.json.gz",
+   "date": "2026-11-08T02:53:00.061Z",
+   "map": "Imperial Isle",
+   "teams": [
+    "RV",
+    "meow"
+   ],
+   "winner": "meow",
+   "length_s": 694,
+   "kb": 166,
    "summary": true,
    "trim": 3
   }
