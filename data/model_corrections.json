@@ -1,5 +1,5 @@
 {
- "about": "Denning's corrections to the win-probability model. Kinds: direction (curve can only rise or fall: increasing true/false), drop (variable not used), main_drop (no curve of its own, its pairs stay), interaction (always offer this pair, written 'a & b'), no_interaction (never pair the term with the variables in 'with'), cap (effect limited to max_points), cap_test (the data picks a cap from 'options' or none, model.py cap_test). Each needs a reason. Every fit reports accuracy with and without them.",
+ "about": "Denning's corrections to the win-probability model. Kinds: direction (curve can only rise or fall: increasing true/false), drop (variable not used), main_drop (no curve of its own, its pairs stay), interaction (always offer this pair, written 'a & b'), no_interaction (never pair the term with the variables in 'with'), cap (effect limited to max_points), cap_test (the data picks a cap from 'options' or none, model.py cap_test), pair_test (the data decides whether the pairs in 'with' are blocked; all pair_test entries are tested together). Each needs a reason. Every fit reports accuracy with and without them.",
  "corrections": [
   {
    "term": "lord_damage_diff & minute",
@@ -81,6 +81,28 @@
    "increasing": true,
    "added": "after batch 9",
    "reason": "Denning (agreeing with Claude's batch 9 review): more enemy time down can only help; the curve read backwards for 7 to 38 s, mirroring alive_diff. Direction forced rather than dropping the variable."
+  },
+  {
+   "term": "morale_diff",
+   "kind": "pair_test",
+   "with": [
+    "map_flag_run",
+    "map_pit_to_stand",
+    "map_bases_apart"
+   ],
+   "added": "after the batch 9 rebuild",
+   "reason": "Denning (after the batch 9 rebuild, agreeing with Claude): the map's geometry is fixed for a whole match, like the build-fixed values; paired with morale it became the model's top term (morale x pit-to-stand 0.717) and drove the biggest surprises (hdm v HC 24:45, morale x bases apart -45.5). The data decides: blocked only if blocking predicts unseen matches better."
+  },
+  {
+   "term": "morale_total",
+   "kind": "pair_test",
+   "with": [
+    "map_flag_run",
+    "map_pit_to_stand",
+    "map_bases_apart"
+   ],
+   "added": "after the batch 9 rebuild",
+   "reason": "Denning (after the batch 9 rebuild, agreeing with Claude): the map's geometry is fixed for a whole match, like the build-fixed values; paired with morale it became the model's top term (morale x pit-to-stand 0.717) and drove the biggest surprises (hdm v HC 24:45, morale x bases apart -45.5). The data decides: blocked only if blocking predicts unseen matches better."
   }
  ]
 }

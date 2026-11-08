@@ -701,6 +701,22 @@ changing status only after two batches in a row, declined: links keep changing s
   split's answer only on the split's kills.
 - **Train batch**: every job may run 3 hours.
 
+### After the batch 9 rebuild (Denning, 2026-11-07)
+- **Calibration, smooth form**: per minute band a shift and a slope on the log-odds scale (fitted on the held-out
+  predictions), blended by minute between band middles; it never jumps at a band edge or goes flat (the pooled lookup
+  read 22 s of flag lead as +0.0 points in TQ 1).
+- **Pair test** (`pair_test` corrections, tested together with the cap tests by `model.cap_test`): morale (difference
+  and total) with the map's geometry, allowed against blocked on held-out matches; blocked only if that predicts
+  better (`cap_choices.json` "pairs").
+- **What-ifs from a pairing** (`tq.what_if`): a reading that runs against the changed variables' own curves is marked
+  "[from a pairing" and kept out of the fixes and the confidence, like unreliable readings.
+- **TQ 4**: a split that never entered the base has its first defender counted from the split's start, without the
+  base benchmark.
+- **Split depth** (Denning's hypothesis, map node P.20 -> R.1, collapse node, each reading also tested alone): the
+  split's nearest member's distance to the defending pit at the first defender's arrival, and its median over the split.
+- **K14, S32** (tactics): a monk's death before the res may be deliberate, but that turns on energy, which the replays
+  don't record; a quick collapse that fails to kill fails twice (no kill, and the split stays in the base).
+
 ## Commentary and comms: claims and the variables they suggest (2026-11-06)
 - Transcripts are never stored (public repo). Each is matched to its match (players' names in the transcript against the
   rosters), lined up by anchors (kills, captures, boosts, NPC losses: `timeline.py <id> --people` lists them with each

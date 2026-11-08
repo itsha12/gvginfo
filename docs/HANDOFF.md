@@ -128,7 +128,10 @@ engine change before the next run, then the commentary transcripts and step 3 (d
   more defenders as more loss (27.5% -> 31.1% -> 34.3%) against the node's own defenders curve: mark a what-if that
   runs against the variable's main curve as coming from a pairing; (d) TQ 4 text says "after it entered the base" for
   a split that never entered.
-- Next: Denning's rulings on (a) to (d), then the commentary transcripts (Bounty's six, then Nick's one).
+- Denning approved (a) to (d), built (METHODS.md "After the batch 9 rebuild"), plus his split-depth variable for the
+  collapse node (P.20); answers recorded on tactics K14 (energy isn't tracked, so deliberate deaths can't be told
+  apart) and S32 (a quick collapse that fails to kill fails twice). Second rebuild started (add_batch no).
+- Next: read the second rebuild with Denning, then the commentary transcripts (Bounty's six, then Nick's one).
 
 ### Session 4r (2026-11-07)
 - Train batch split (`.github/workflows/train-batch.yml`, METHODS.md "Train batch on GitHub"): prepare -> six parts at

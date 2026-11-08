@@ -251,6 +251,9 @@ against general principles rather than past games. Match-by-match evidence lives
   fight lost about 3.5 players to death, 12 DP and 19 s of flag lead meanwhile. Late (from 20:00, 6 cases) collapses
   killed more often (4 of 6) but cost more at main. A first reading: a collapse that hasn't killed within about 30 s is
   unlikely to, and should go back. All cells small; win changes unclear. Confidence: low.
+  **Denning:** A quick collapse that fails to kill costs, because it fails twice: no kill, and the split isn't pushed out
+  of the base. (Measured, 133 matches: collapses away under 30 s -2.4 win points, collapses with no kill -4.2, those
+  that killed a split member +2.9.)
 - `S31` **Bounty:** When a split changes (e.g. made beefier), the defence must change too; defending the same way loses
   the pit.
 - `S32` **Denning:** An 8v8 build answers a 3 man split by ignoring it with the main team and having a snare character
@@ -428,6 +431,10 @@ against general principles rather than past games. Match-by-match evidence lives
   even when the death isn't inevitable, to reset their energy. Monks die on purpose only for a base res (every 2
   minutes, on the minute), never for a Pact or a res signet: a monk dying in its own base at 17:55 is likely deliberate. So a death can be positive rather than negative,
   depending on the situation; look in the data for where dying before time raises the win rate.
+  **Denning:** Such a death can be deliberate, but whether it is depends on the monk's energy, which the engine doesn't
+  track (the replays don't record it), so the data can't tell a deliberate death from a mistake. (Measured, 133 matches:
+  healer deaths in their own base or pit within 15 s of the base res cost -7.2 win points, clear, 54 cases; read as
+  "possibly deliberate", not as a mistake.)
 - `K15` **Claude:** First look (30 matches, 509 deaths): deaths in the last 15 s before a res are at chance level (62
   against about 64 expected), deaths in the first 15 s after it are well below (42): the costly deaths are the rare
   ones. A death set was held in 15% of deaths before time against 9 to 10% otherwise, and the team dying before time

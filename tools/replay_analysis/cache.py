@@ -184,7 +184,7 @@ def warm(jobs=None, kinds=("wp",)):
     if "wp" in kinds:       # the data picks Denning's cap_test caps before the held-out models are fitted with them
         import model as M
         t = time.time(); ch = M.cap_test(ids); _KEYS.pop("fit_wp", None)
-        if ch: print(f"cap tests in {time.time() - t:.0f} s:", {k: v["verdict"] for k, v in ch.items()})
+        if ch: print(f"cap and pair tests in {time.time() - t:.0f} s:", {k: v["verdict"] for k, v in ch.items()})
     t = time.time()
     reps = {}                  # one match per group is enough: the group shares its model
     for r in ids: reps.setdefault(fold_of(r) if FOLDS else r, r)

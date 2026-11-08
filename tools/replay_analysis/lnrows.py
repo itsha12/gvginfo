@@ -268,7 +268,18 @@ def _build(node, rid, V):
                             if "Increased Movement Speed" not in (sd.get("causes") or []): continue
                             used = [e[0] / 10 for e in m.o["ev"] if e[1] == "cf" and e[2] == x and e[4] == sid and e[0] / 10 <= ta]
                             if not used or ta - used[-1] >= (sd.get("recharge") or 0): esc += 1
+                # split depth (Denning, after the batch 9 rebuild: the deeper the splitters are in the base, the more likely
+                # they die to a collapse): the split's nearest member to the defending pit, at the first defender's
+                # arrival, and its median over the split (every 2 s, from entering the base or the start)
+                pit = st.geo.pit.get(tm_of[fg])
+                def depth(t):
+                    ds = [d(st.pos(x, t)[0], pit) for x in mem if st.alive(x, t) and st.pos(x, t)[0]] if pit else []
+                    return min(ds) if ds else None
+                t_in = s_.get("entered_base") if s_.get("entered_base") is not None else s_["start"]
+                dl = [v for v in (depth(t) for t in range(int(t_in), int(s_["end"]) + 1, 2)) if v is not None]
+                d_arr = depth(ta) if ta is not None else None
                 add(tg, s_["start"], int(r["split_deaths"] > 0), latency=latency,
+                    depth_at_arrival=round(d_arr) if d_arr is not None else None, depth_median=round(statistics.median(dl)) if dl else None,
                     defenders_10s=sum(1 for x in arr if x <= ta + 10) if ta is not None else 0,
                     contact_diff=(sum(1 for x in arr if x <= ta + 5) - r["size"]) if ta is not None else None,
                     npc_hit_to_arrival=round(ta - npc_first, 1) if ta is not None and npc_first is not None else None,

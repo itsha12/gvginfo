@@ -22,7 +22,8 @@ Nodes (map target):
   split_chance     (A.allocation)  a team starts a split in the next 30 s (for "failed to split")
   split_answer     (P.11) seconds until the first defender reaches a split in the base (60 = never)
   split_effect     (R.5)  a split in the base kills a pit NPC
-  collapse         (R.1)  a split member dies during the split; collapse timing read five ways (each also tested alone)
+  collapse         (R.1)  a split member dies during the split; collapse timing read five ways and split depth two ways
+                          (each also tested alone)
 Usage:  python3 learnednodes.py fit [node ...]     fit, measure links, write data/model/nodes/L_<node>.json, print
         python3 learnednodes.py write              fit all, write link strengths into the causal map and the log
 In code: fit_all(ids) -> {node: summary}; whatif(node, row, changes) -> (before, after)."""
@@ -127,12 +128,14 @@ SPEC = {
             "npc_hit_to_arrival": "seconds from the split's first hit on an NPC to the first defender's arrival",
             "res_in_at_arrival": "seconds to the next res when the first defender arrived"},
     "K.13": {"escape_ready": "split members' speed skills off recharge when the first defender arrived"},
+    "P.20": {"depth_at_arrival": "nearest split member's distance to the defending pit when the first defender arrived",
+             "depth_median": "nearest split member's median distance to the defending pit over the split"},
     "C.builds": {"def_snares": "snares on the defending team's bars", "split_speed": "speed skills on the splitting team's bars"},
     "A.allocation": {"size": "split size", "main_diff": "own main minus enemy main meanwhile"},
     "C.strength": {"strength_gap": "splitting team's strength gap"}}, {}),
 }
 # links whose features are also tested one at a time (Denning: which reading of collapse timing matters is for the data)
-EACH = {"collapse": ["P.9"]}
+EACH = {"collapse": ["P.9", "P.20"]}
 # why each link that a node needs and the map may lack is a hypothesis, and who it came from
 NEW_LINK_WHY = {
     ("K.11", "R.3"): ("control on the runner (Cripple, knockdowns) stops a run; read at the same point of every run", "Denning"),
@@ -165,6 +168,7 @@ NEW_LINK_WHY = {
     ("C.strength", "P.11"): ("stronger teams play better at everything; kept in every model so play isn't confused with strength", "Claude"),
     ("C.clock", "P.11"): ("the res clock and the minute change how a split is answered", "Claude"),
     ("K.11", "R.3"): ("control on the runner (Cripple, knockdowns) stops a run; read at the same point of every run", "Denning"),
+    ("P.20", "R.1"): ("the deeper the splitters are in the base (nearer the pit), the more likely they die to a collapse", "Denning"),
     ("S.scoreboard", "R.5"): ("a pit already short of NPCs, or a base with few free defenders, loses an NPC to a split more easily", "Claude"),
 }
 # fitting settings per node (after batch 9, the three nodes that never beat their baseline, reworked): the number nodes
@@ -176,6 +180,7 @@ NODE_FIT = {"flag_swing": {"objective": "pseudo_huber"}, "capture_speed": {"obje
 NEW_NODES = [
     {"id": "P.17", "layer": "play", "name": "Wrong casts", "description": "casting into a ready interrupt without cancelling, casting while Dazed, attacking while Blind (every role)", "how": "eventlayer.py casts"},
     {"id": "P.18", "layer": "play", "name": "Enchantment strips", "description": "strips on the best target in range, valued from data (an enchantment's recorded output plus the bearer's measured drop after a strip)", "how": "eventlayer.py strips, values()"},
+    {"id": "P.20", "layer": "play", "name": "Split depth", "description": "how deep a split plays in the enemy base: its nearest member's distance to the defending pit", "how": "lnrows.py collapse rows"},
     {"id": "P.19", "layer": "play", "name": "Blind on enemies", "description": "Blind on the enemy frontline, and on players hitting own healers (defensive)", "how": "eventlayer.py blinds"},
 ]
 

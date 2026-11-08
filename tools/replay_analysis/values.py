@@ -97,7 +97,7 @@ def _groups(e):
              "death: back within 20 s" if d <= 20 else "death: down 20 to 60 s" if d < 60 else "death: down 60 s or more",
              "death: against a spike build" if e.get("enemy_spike") else "death: against other builds"]
         if e["healer"]:   # Denning (K14): a monk dying in its own base just before the base res is likely deliberate
-            g.append("death: healer in own base or pit, back within 15 s (likely deliberate)"
+            g.append("death: healer in own base or pit, back within 15 s (possibly deliberate; energy not tracked)"
                      if d <= 15 and e.get("zone") in ("own base", "own pit") else "death: healer, other")
         # boosted / not boosted split dropped (Denning, K18): a death while boosted is no different in kind; the split measured
         # where the team stood (later, already winning), not the death. Matched by minute and win chance it showed no

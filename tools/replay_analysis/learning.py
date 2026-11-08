@@ -128,15 +128,20 @@ def s_head(c):
         for term, ch in json.load(open(M.CAPS))["choices"].items():
             L.append(f"- Cap test on {term} (held-out log loss, {ch['matches']} matches): "
                      + ", ".join(f"{k if k == 'none' else k + ' points'} {v}" for k, v in ch["log_loss"].items()) + f"; chosen: {ch['verdict']}.")
+        pr = json.load(open(M.CAPS)).get("pairs") or {}
+        if pr: L.append(f"- Pair test ({'; '.join(pr['pairs'])}; held-out log loss, {pr['matches']} matches): allowed "
+                        f"{pr['log_loss']['allowed']}, blocked {pr['log_loss']['blocked']}; chosen: {pr['verdict']}.")
     except (OSError, ValueError, KeyError): pass
     try:
         cal = json.load(open(M.CALIB))
-        L.append(f"- Calibration by minute (held-out predictions on {cal['matches']} matches; every win chance below and in values, "
-                 "usual play and the TQs goes through it). Predicted -> how often those teams won -> calibrated:")
+        L.append(f"- Calibration by minute (held-out predictions on {cal['matches']} matches; a shift and a slope on the log-odds "
+                 "scale per band, blended by minute; every win chance below and in values, usual play and the TQs goes through "
+                 "it). Predicted -> how often those teams won -> calibrated:")
         for b in cal["bands"]:
             lo, hi = b["minutes"]
-            ends = [x for x in b["cells"] if x["from"] in (0, 2, 90, 95, 98) or x["to"] in (100,)]
-            L.append(f"  - {lo} to {hi if hi else 'end'} min: " + "; ".join(f"{x['predicted']}% -> won {x['won']}% ({x['matches']} matches) -> {x['calibrated']}%" for x in ends))
+            ends = [x for x in b["cells"] if x["from"] in (0, 2, 35, 50, 90, 98)]
+            L.append(f"  - {lo} to {hi if hi else 'end'} min (shift {b.get('shift', 0):+}, slope {b.get('slope', 1)}): "
+                     + "; ".join(f"{x['predicted']}% -> won {x['won']}% ({x['matches']} matches) -> {x['calibrated']}%" for x in ends))
     except (OSError, ValueError, KeyError): pass
     L.append("")
     _lap("integrity and honest test text")

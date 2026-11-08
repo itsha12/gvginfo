@@ -78,6 +78,18 @@ def node_trust(node):
 
 
 UNRELIABLE = " [unreliable"
+PAIRING = " [from a pairing"
+
+
+def _main_vs_total(e, feats, r, r2, changed):
+    """For a what-if: the change from the changed variables' own curves (main terms) and the change from every term
+    (pairings included), on the model's own scale."""
+    import pandas as pd
+    if not hasattr(e, "eval_terms"): return None, None
+    x = pd.DataFrame([{k: r.get(k) for k in feats}, {k: r2.get(k) for k in feats}]).astype(float)
+    c = e.eval_terms(x); names = list(e.feature_names_in_) if hasattr(e, "feature_names_in_") else feats
+    main = sum(c[1][i] - c[0][i] for i, tf in enumerate(e.term_features_) if len(tf) == 1 and names[tf[0]] in changed)
+    return float(main), float(sum(c[1]) - sum(c[0]))
 
 
 def what_if(node, rid, row, changes, ladders=()):
@@ -107,6 +119,13 @@ def what_if(node, rid, row, changes, ladders=()):
         far = [k for k, x in ch.items() if k in bounds and x is not None
                and not (bounds[k][0] - span(k) <= float(x) <= bounds[k][1] + span(k))]
         if far: label += f"{UNRELIABLE}: {', '.join(far)} outside the range the node was trained on]"
+        else:
+            # Denning (after the batch 9 rebuild): a reading that runs against the changed variables' own curves comes from
+            # a pairing in the node (more defenders read as more NPC loss), so it is shown but not trusted as a fix
+            try: mn, tot = _main_vs_total(e, feats, row, r2, set(ch))
+            except Exception: mn, tot = None, None
+            if mn is not None and abs(v - base) >= 0.5 and abs(mn) > 1e-6 and mn * tot < 0:
+                label += f"{PAIRING}: runs against the variable's own curve; the node's pairings outweigh it]"
         out.append((label, v, round(v - base, 1)))
     for lad in ladders:
         idx = [i for l in lad for i, o in enumerate(out) if o[0].split(UNRELIABLE)[0] == l]
@@ -121,7 +140,7 @@ def what_if(node, rid, row, changes, ladders=()):
 
 
 def reliable(out):
-    return [o for o in out if UNRELIABLE not in o[0]]
+    return [o for o in out if UNRELIABLE not in o[0] and PAIRING not in o[0]]
 
 
 _IDS = None
@@ -642,15 +661,15 @@ def power(new_ids, recs, usual_res):
             ch.append(("a hex on the target's healers", {"target_healers_hexed": 1}))
         if ch:
             base, out = what_if("kill_conversion", rid, b, ch)
-            out.sort(key=lambda x: (UNRELIABLE in x[0], -x[2]))     # reliable readings first
+            out.sort(key=lambda x: (x not in reliable([x]), -x[2]))     # reliable readings first
             L.append(f"- Kill-conversion node ({trust}): the biggest burst, {b['burst_damage']} on the {foe} {b['role']} at {clock(b['t'])} "
                      f"with {b['attackers']} attackers, read {base}% to kill within 8 s; read again with")
             for lab, v, dd in out[:6]:
                 L.append(f"  - {lab}: {v}% ({dd:+} points" + (f", about {_pts(dd, kv):+} win points at a converted burst's {kv:+}" if kv is not None else "") + ")")
-            if out and UNRELIABLE not in out[0][0] and out[0][2] > 0 and meaningful(base, out[0][2]):
+            if out and out[0] in reliable(out) and out[0][2] > 0 and meaningful(base, out[0][2]):
                 L[short_i] = L[short_i][:-1] + (f"; the biggest burst went on the {foe} {b['role']} ({base}% to kill), while "
                                                 f"the same burst {out[0][0].replace(' instead', '')} read {out[0][1]}%.")
-            conf.append(("node", bool(ok) and bool(out) and UNRELIABLE not in out[0][0] and out[0][2] > 0 and meaningful(base, out[0][2])))
+            conf.append(("node", bool(ok) and bool(out) and out[0] in reliable(out) and out[0][2] > 0 and meaningful(base, out[0][2])))
         L.append(f"- Bursts in the window: {len(bursts)}, on " + ", ".join(f"{r['role']} ({r['burst_damage']})" for r in bursts[:6]))
     else:
         L.append("- No burst (a 2 s burst that the kill-conversion node reads) in the window: the damage never came together on one target.")
@@ -727,7 +746,11 @@ def npcs(new_ids, recs, usual_res):
             for s in json.load(open(os.path.join(GA, f))).get("splits", []):
                 if s.get("entered_base") and s["defenders"]: lats.append(min(d["latency"] for d in s["defenders"]))
         s = sp[0]; lat = min([d["latency"] for d in s["defenders"]] or [None]) if s["defenders"] else None
-        if lats:
+        if lats and s.get("entered_base") is None:
+            # the split never entered the base: latency counts from the split's start, and the base benchmark doesn't apply
+            L.append(f"- First defender: {'never' if lat is None else f'{lat:.0f} s after the split started'}; the split never "
+                     "entered the base, so the benchmark for splits into a base doesn't apply.")
+        elif lats:
             def when(x): return "never" if x is None else (f"{-x:.0f} s before it entered the base" if x < 0 else f"{x:.0f} s after it entered the base")
             L.append(f"- First defender: {when(lat)}; every stored split into a base: median {when(statistics.median(lats))}, "
                      f"quickest fifth {when(sorted(lats)[len(lats) // 5])} or sooner ({len(lats)} splits). Denning: about 15 s is on time, 60 s is late.")
@@ -755,7 +778,7 @@ def npcs(new_ids, recs, usual_res):
             L.append(f"  - {lab}: {v}% ({dd:+} points; at this loss's measured cost of {drop:+.1f} win points, about {_pts(dd, drop):+} expected"
                      + (f"; at a typical NPC loss's {nv:+}, {_pts(dd, nv):+}" if nv is not None else "") + ")")
         rel = reliable(out)
-        if len(rel) < len(out): L.append("  - Readings marked unreliable are left out of the confidence and the fixes.")
+        if len(rel) < len(out): L.append("  - Readings marked unreliable or from a pairing are left out of the confidence and the fixes.")
         bestn = min(rel, key=lambda x: x[2]) if rel else None
         conf.append(("node", bool(ok) and bestn is not None and bestn[2] < 0 and meaningful(base, bestn[2])))
     else: L.append("- NPC-loss node: no reading of the pit in the 30 s before (the attackers weren't counted in the pit).")
