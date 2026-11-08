@@ -118,7 +118,17 @@ engine change before the next run, then the commentary transcripts and step 3 (d
   8 s, so the windows differ little); Lord damage node now honestly adds (typical error 71 against 92); flag swing and
   split effect now narrowly beat their baselines, capture speed still doesn't; values against matched moments: a death
   -8.9, a knight -9.0, a capture +1.5.
-- Next: go through the rebuild's report (data/model/reports/latest.md) with Denning, then the commentary transcripts.
+- Denning on the rebuild: mid-game comebacks about one in five match what he sees (tactics W13); a knight is worth
+  about a death (W12); the 3 s position window is acceptable.
+- Found reading the rebuild's report, proposed to Denning (not built; each is an engine change, so bundle them before
+  the next run): (a) calibration's pooled flat stretches erase small changes (TQ 1 read 22 s of flag lead as +0.0
+  points): a per-band logistic recalibration (a shift and a slope per minute band) never goes flat; (b) morale x map
+  geometry pairs are now the model's top terms (morale x pit-to-stand 0.717) and drive the biggest surprises (-45.5):
+  test blocking them on held-out matches, the data to decide, like the cap test; (c) TQ 4's NPC-loss what-ifs read
+  more defenders as more loss (27.5% -> 31.1% -> 34.3%) against the node's own defenders curve: mark a what-if that
+  runs against the variable's main curve as coming from a pairing; (d) TQ 4 text says "after it entered the base" for
+  a split that never entered.
+- Next: Denning's rulings on (a) to (d), then the commentary transcripts (Bounty's six, then Nick's one).
 
 ### Session 4r (2026-11-07)
 - Train batch split (`.github/workflows/train-batch.yml`, METHODS.md "Train batch on GitHub"): prepare -> six parts at

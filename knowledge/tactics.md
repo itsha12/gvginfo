@@ -54,6 +54,10 @@ against general principles rather than past games. Match-by-match evidence lives
 - `W9` **Claude:** An empty enemy pit is converted when it is safe: a team that is behind, or racing the clock, takes
   the Lord in the next wipe window; a team that is ahead uses the empty pit as leverage and keeps its lead.
   [hdm v HC I2] [Men v HC C]
+- `W12` **Denning:** A pit knight is worth about as much as a death. (Measured on 133 matches against matched moments
+  without the event: a knight lost -9.0 win points, a death -8.9, the Bodyguard -8.3, an archer -3.2, knowledge/values.md.)
+- `W13` **Denning:** In mid-game (about 6 to 12 minutes), teams that look beaten still come back about one time in five,
+  as he sees in his games. (The win model's held-out calibration: teams given about 3.5% then won 21%.)
 
 ### Phases, plans and jobs
 - `J1` **Denning:** Fights are global: everything in a match affects everything else. A team splitting has a different
