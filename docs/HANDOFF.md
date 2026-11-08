@@ -131,7 +131,17 @@ engine change before the next run, then the commentary transcripts and step 3 (d
 - Denning approved (a) to (d), built (METHODS.md "After the batch 9 rebuild"), plus his split-depth variable for the
   collapse node (P.20); answers recorded on tactics K14 (energy isn't tracked, so deliberate deaths can't be told
   apart) and S32 (a quick collapse that fails to kill fails twice). Second rebuild started (add_batch no).
-- Next: read the second rebuild with Denning, then the commentary transcripts (Bounty's six, then Nick's one).
+- Second rebuild done (all sections ran): pair test kept the morale x map pairs (allowed 0.3752, blocked 0.3937);
+  cap test again no cap; split depth not clear yet (gain -0.0004 +/- 0.0038, each reading alone not clear); the
+  collapse timing readings alone moved from supported to not clear between the two rebuilds (near the line; the
+  group P.9 stays supported); TQ 4's backwards what-ifs now marked "from a pairing"; values: death -9.5, knight -9.1,
+  boost +5.8, possibly deliberate healer death -8.0.
+- Found, proposed to Denning: (e) TQ 1 still reads 22 s of flag lead as +0.0, because the win model's flag_lead curve is
+  small (at most 2.6 points) and runs backwards at both ends (-129 to -67.5 s reads +0.4, +67.5 to +129 s reads -1.6):
+  force its direction upward; (f) the shift-and-slope calibration misses some cells (12 to 18 min: predicted 93%, won
+  92%, calibrated 77%; 6 to 12 min: 3.5%, won 21%, calibrated 12.7%): a pooled lookup joined by straight lines between
+  the pooled blocks' middles would be as accurate as the first form and never flat.
+- Next: Denning's rulings on (e) and (f), then the commentary transcripts (Bounty's six, then Nick's one).
 
 ### Session 4r (2026-11-07)
 - Train batch split (`.github/workflows/train-batch.yml`, METHODS.md "Train batch on GitHub"): prepare -> six parts at
