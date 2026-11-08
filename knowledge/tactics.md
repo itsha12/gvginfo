@@ -261,9 +261,10 @@ against general principles rather than past games. Match-by-match evidence lives
   kill.
 - `S33` **Bounty:** A monk spike defends against splits with the snare character and the 8 (the 6 snares, the 8 heals,
   the collapse kills). Collapsing before the snare lands is wasted time; the 8 following the main team leaves the pit
-  open. **Claude (data, `comms_vars.py` collapse_snare, 140 matches):** splits answered by 2+ defenders killed a
-  splitter 18% of the time with a snare carrier among them against 12% without, at the same numbers (interval -3 to
-  +14 points, not clear yet). The order (snare first, then collapse) isn't measured yet. [Team v push] [BcS v Crew]
+  open. **Claude (data, `comms_vars.py` collapse_snare, 144 matches):** splits answered by 2+ defenders killed a
+  splitter 20% of the time with a snare carrier among them against 11% without, at the same numbers (+6.5 points,
+  interval +1 to +13, supported; Return isn't counted as a snare). The order (snare first, then collapse) isn't
+  measured yet. [Team v push] [BcS v Crew]
 - `S34` **Bounty:** A fast ranger left at the back door can warn the team, take free footmen and lead the answer to
   splits.
 - `S35` **OG comms:** Name the split's make-up the moment it is seen, ask the defenders whether they can hold it, and
@@ -273,6 +274,14 @@ against general principles rather than past games. Match-by-match evidence lives
 - `S37` **Claude:** An 8v8 build should defend splits with monks, not damage, so its damage stays together. Freeing a
   damage dealer from defence can also give the team a runner. Double Paragon WoC teams defend with the prot and 8 monk,
   adding the WoC monk only while the split is dangerous. [OG v chic] [Men v Team] [RACK v hdm M]
+- `S38` **Nick:** With a spirit light weapon ritualist in the build, a 3-player split (the ritualist kept at main to
+  support the 7 monk) beats a 4-player one: a 3v3 is bad for a team defending with two monks. In [NwAy v Men] NwAy's
+  4-player splits took nothing and its 3-player splits took two knights, three archers and the Bodyguard. **Claude
+  (data, `comms_vars.py` split_size, 144 matches):** in general 3-player and 4-player splits into the enemy base took a
+  pit NPC equally often (36% against 35%, 122 splits, unclear). [NwAy v Men] [cope v Book]
+- `S39` **Nick:** On Isle of Weeping Stone a split depends on winning its matchups, not surviving collapses (the map is
+  hard to collapse on); the team holding the gate locks can reinforce through them, and a split team that gives up
+  gate control loses the centre of the map and its boosts. Gates aren't in the replay data. [NwAy v Men]
 
 ## 4. Main team and pit play
 - `P1` **Nick / Denning:** A team relying on its split must keep its main team safe: give up ground, footmen and
@@ -410,7 +419,12 @@ against general principles rather than past games. Match-by-match evidence lives
   better runner is fine.
 - `F36` **Bounty:** If a capture will be overcapped at once, don't take it: the runner's time is a wasted cycle (BcS
   capped at 8:14 and was overcapped at 8:17). Capping can still pay off when it baits the enemy into a fight the team
-  wins (BcS at 15:33, killing Crew's carrier). [BcS v Crew]
+  wins (BcS at 15:33, killing Crew's carrier). **Claude (data, `comms_vars.py` instant_overcap, 144 matches):** 16% of
+  captures are overcapped within 10 s; those runs took longer (45 s against 37 s), and from the start of the run to 30 s
+  after the capture the capturing team lost more players than it killed 22% of the time against 16% (+8.6 points,
+  interval +3 to +16). Partly the situation: an instant overcap means the enemy was ready at the stand. [BcS v Crew]
+- `F37` **Nick:** Shadow of Haste on a main-team runner when the enemy has none keeps a team permanently ahead on flags.
+  In [NwAy v Men] Men's ritualist answered NwAy's captures in 4 to 31 s while NwAy needed 52 to 97 s. [NwAy v Men]
 - `F28` **Nick:** Holding the flag to tie up an enemy prot only helps if the advantage is used somewhere else;
   otherwise it lets the enemy keep its damage together. [Men v Team]
 - `F29` **Claude:** In a long even game, boosts are the scoreboard: they are often the only lasting edge, so
@@ -467,17 +481,12 @@ against general principles rather than past games. Match-by-match evidence lives
 - `K5` **Bounty:** A team that always has someone timed or stuck has no moment to play tactics and gets overwhelmed.
   Resurrecting too late wastes time; teams under pressure are often scared to go for the res.
 - `K6` **Bounty:** Target choice costs time: 30 to 40 s failing to kill a monk is fine at 2 minutes, not at 22. A build
-  that needs time must use every 2 minutes. **Claude (data, `comms_vars.py` monk_focus, 140 matches):** in general
+  that needs time must use every 2 minutes. **Claude (data, `comms_vars.py` monk_focus, 144 matches):** in general
   the opposite holds: groups putting most of their player damage on the enemy healers killed in 19% of phases against
-  14% for groups hitting other players, at the same local numbers and phase length (+2 points, interval +1 to +4).
+  13% for groups hitting other players, at the same local numbers and phase length (+2 points, interval +1 to +4).
   Partly selection (groups that can reach the healers are usually winning the fight); the late-match cost of a
   failed monk kill isn't tested. [Team v push]
-- `K19` **Bounty:** A team that is never one unit (players scattered over the map filling gaps) isn't all there when a
-  chance comes, so it doesn't kill. **Claude (data, `comms_vars.py` scattered, 140 matches):** teams with under 70%
-  of their live players in their biggest engaged group killed in 14% of phases against 18% when together, at the same
-  overall numbers and phase length (-2 points, interval -4 to 0, supported); they didn't lose players more often. In
-  [BcS v Crew] itself the measure has BcS together (88%) and Crew, splitting, scattered, so Bounty's point there may be
-  spacing inside the group. [BcS v Crew]
+
 - `K7` **Bounty:** The first 30 seconds shape the match. A team that double runs out front still has to survive the
   opening fight.
 - `K8` **Claude:** Kills are only worth what they are converted into: the strongest teams turn each kill straight into
@@ -632,6 +641,8 @@ against general principles rather than past games. Match-by-match evidence lives
   to be ready to cover or call them out. [OG v cope U]
 - `O2` **Claude:** Monks split across the pit (one at each end) can't cover each other in the final defence.
   [OG v cope U]
+- `O4` **Nick:** Against a mobile WoC spike that Returns onto its own outside archers, kill those archers first: they
+  make every split or push into its base dangerous. [xxx v Men]
 - `O3` **Claude:** Players who drift away from their monks are the easiest kills; a mobile killer (e.g. a Mo/A WoC
   with speed) punishes this best. [OG v chic]
 
@@ -723,25 +734,10 @@ usual one in win chance, adjusted for the situation, with a range from resamplin
 
 ## 15. Open questions
 - `Q1` When may a pit-defending main team step out (e.g. to stop a flag cap or get a res)? [Men v Team]
-- `Q2` In Men v Team's 2:00 to 4:00 window, should the hammer and stand mesmer have rejoined the ritualist with the 8
-  monk, or should the dervish have capped instead of carrying for 145 s? [Men v Team]
-- `Q3` Once chic's split was one elementalist, OG kept its prot in base with the 8 monk while chic's main team had 3
-  damage. Does that break "the prot follows the enemy's 3rd damage", or is it fine for a spike build whose main team
-  doesn't need the prot? [OG v chic]
-- `Q4` In RJT v RACK both prots sat in the fight with 2 damage per side while the 3-damage fight had no prot; were the
-  prots out of position?
 - `Q5` When does a solo split pay off (what it killed or drew away against what it cost the main fights)?
 - `Q6` When should the power play be pushed hard, and when is it safer to hold?
 - `Q7` How many players to send back to a pushed flagger, and when?
-- `Q8` Where is the line between saveable and not saveable for mixed damage and other windows?
-- `Q9` Does RACK split through the front door or the backdoor on Isle of Meditation? (Denning thinks the front door.)
 - `Q10` What is the benchmark for a good 7 monk's Infuse Health timing?
-- `Q11` What beats Double Paragon WoC (3-0 across reviews)? A split with 3 damage and the 8 monk, a 4-4, or staying 8v8
-  with stacked prots and 2 Auras of Stability? [Men v Team] [RACK v hdm M]
-- `Q12` Why did RACK's split break up at about 4:00, and should the dervishes have rejoined main once the WoC monk left
-  the defence? [RACK v hdm M]
-- `Q13` Men went 146 s without a cap (6:29 to 8:55) while HC capped at 7:57. A flag mistake, or normal for a team
-  holding pit pressure with its ranger split? [Men v HC C]
 - `Q14` How much is a flag lead worth against a pit NPC or a death? (The engine's weights are first guesses until the
   win-probability model.)
 - `Q15` What should a team do when it is stacking death penalty against a spike build (`D6`)?

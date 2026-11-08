@@ -114,7 +114,17 @@ engine change before the next run, then the commentary transcripts and step 3 (d
 - New measured variables (comms_vars.py; no engine change, comms_vars isn't part of the engine fingerprint):
   scattered (supported), monk_focus (contradicted), collapse_snare (unclear). Awaiting Denning's ruling on which become
   model variables.
-- Next: Nick's transcript ([Men v Team], d4660b7b), then the one engine change for both sources and a rebuild.
+- Nick done (5 matches, 47 claims, data/commentary/nick.json): Men v Team, NwAy v SKT, xxx v Men, NwAy v Men, cope v
+  Book. Four replays fetched (457b3a21, b31ffe18, 506102ee, 8de08cc4) and BcS v Crew: none in a training batch yet;
+  include all five in the next batch.
+- Denning's rulings this session: drop open questions Q2, Q3, Q4, Q8, Q9, Q11, Q12, Q13 (done); K19 removed (Bounty spoke
+  metaphorically about "one unit"); Return is not a snare; measure the cost of an instant overcap (done:
+  `instant_overcap`); add healer focus to the model.
+- The one engine change waits for Denning to say go (METHODS.md "Commentary and comms", held list). Also proposed to
+  him: a tactics clean-up list (stale 24 to 61 match figures, lines contradicted by the 133-match rebuild, duplicate ids
+  S31 and S32).
+- Found: data/model/usual_play.json still holds the 30-match readings; the current ones are only in
+  data/model/reports/latest.md (check whether the Train batch finish step should rewrite it).
 
 ### Session 4s (2026-11-07)
 - Built 16 of the 17 batch 9 proposals (all but 10) in one engine change; details in METHODS.md "Rulings after batch 9".
@@ -247,8 +257,8 @@ engine change before the next run, then the commentary transcripts and step 3 (d
 
 ## Start the next chat with
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/HANDOFF.md (the "Match replay
-> analysis" section), knowledge/tactics.md and tools/replay_analysis/METHODS.md, then process Nick's commentary
-> transcript I attach ([Men v Team]) following METHODS.md "Commentary and comms" (Bounty's is done, session 4t). Read
+> analysis" section), knowledge/tactics.md and tools/replay_analysis/METHODS.md, then build the held engine change
+> for the commentary variables (METHODS.md "Commentary and comms") once I say go, and rebuild. Read
 > knowledge/learned-model.md first for what the model has learned so far.
 
 Engine setup in the chat (needed for step 2): `git fetch --depth 1 origin +replays:refs/remotes/origin/replays`,

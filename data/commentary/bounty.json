@@ -34,7 +34,7 @@
      "variable": "collapse_snare",
      "check": {
       "verdict": "partly",
-      "evidence": "Crew's Monk 1 died twice (0:52 backside, 5:01 push side) but still reached the pit at 2:39 and 12:53 (bodyguard). Across 140 matches, collapses with a snare carrier killed a splitter 18% of the time against 12% without, not clear yet."
+      "evidence": "Crew's Monk 1 died twice (0:52 backside, 5:01 push side) but still reached the pit at 2:39 and 12:53 (bodyguard). Across 144 matches, collapses with a snare carrier among the defenders (Return not counted) killed a splitter 20% of the time against 11% without (supported, +6.5 points, interval +1 to +13)."
      }
     },
     {
@@ -65,13 +65,9 @@
      "kind": "diagnosis",
      "who": "commentator",
      "claim": "BcS is never a unit: with two Fall Backs and a God Speed it should move together, but it is always scattered, so when it fills gaps on the map it isn't all there to kill.",
-     "tactics": [
-      "K19"
-     ],
-     "variable": "scattered",
      "check": {
-      "verdict": "disagrees",
-      "evidence": "By the engine's measure BcS kept 88% of its live players in its biggest engaged group (scattered 3% of the time); Crew, splitting, kept 72% (scattered 47%). Across 140 matches a scattered team kills less (14% against 18% of phases, supported), but this match doesn't show BcS as scattered: Bounty's point may be spacing inside the group, which this measure doesn't see."
+      "verdict": "not tested",
+      "evidence": "Denning: Bounty is speaking metaphorically here, so the claim isn't tested."
      }
     },
     {
@@ -84,7 +80,7 @@
      ],
      "check": {
       "verdict": "agrees",
-      "evidence": "BcS capped at 8:14 and Crew overcapped at 8:17 (3 s). The cost of the cap itself (the runner's time away) isn't measured yet."
+      "evidence": "BcS capped at 8:14 and Crew overcapped at 8:17 (3 s). Across 144 matches 16% of captures are overcapped within 10 s; those runs took longer (45 s against 37 s), and from the start of the run to 30 s after the capture the capturing team lost more players than it killed 22% of the time against 16% (supported, +8.6 points, interval +3 to +16). Partly the situation: an instant overcap means the enemy was ready at the stand."
      }
     },
     {
@@ -582,7 +578,7 @@
      "variable": "monk_focus",
      "check": {
       "verdict": "partly",
-      "evidence": "Team's 8 Monk died at 1:50. Across 140 matches, groups putting most of their damage on healers killed in 19% of phases against 14% on other players (healer focus did better, contradicting the general claim); Bounty's narrower point (time spent on a monk late in the match) isn't tested."
+      "evidence": "Team's 8 Monk died at 1:50. Across 144 matches, groups putting most of their damage on healers killed in 19% of phases against 13% on other players (healer focus did better, contradicting the general claim); Bounty's narrower point (time spent on a monk late in the match) isn't tested."
      }
     },
     {
@@ -632,7 +628,7 @@
      "variable": "collapse_snare",
      "check": {
       "verdict": "partly",
-      "evidence": "Across 140 matches a collapse with a snare carrier killed a splitter 18% of the time against 12% without (not clear yet; the order of arrival isn't measured)."
+      "evidence": "Across 144 matches a collapse with a snare carrier killed a splitter 20% of the time against 11% without (supported; the order of arrival, snare first, isn't measured)."
      }
     },
     {

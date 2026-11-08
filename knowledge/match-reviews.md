@@ -32,7 +32,11 @@ page; tags such as [Men v Team] on that page point here.
   f34cb3a9-98c7-53d0-a980-60aa7dd5bc8d), BcS v Crew (Meditation, 3dd84ec7-29f5-578d-a7ad-42a272bff049). Claims checked
   against the engine in data/commentary/bounty.json. Bounty plays mesmer for 옷옷옷옷, so weigh his comments on their games with
   that in mind.
-- **Nick:** YouTube commentary of the September 2026 monthly final, [Men v Team].
+- **Nick:** YouTube commentary, September 2026: the monthly final [Men v Team] (Weeping Stone,
+  d4660b7b-1e09-584e-a786-0e9f48b3f343) and European daily tournaments: NwAy v SKT (Solitude,
+  457b3a21-b67f-5164-a70d-adfd73423fcf), xxx v Men (Corrupted, b31ffe18-07a9-589f-a516-8862f80ab668), NwAy v Men
+  (Weeping Stone, 506102ee-ef94-5ecf-a485-c1c836193322), cope v Book (Corrupted, 8de08cc4-4baa-58dc-a6c9-fd22e4d4f04f).
+  Claims checked against the engine in data/commentary/nick.json.
 - **OG comms:** Maga's streams of OG's own voice comms. September 2026 automated tournaments (OG played as tag ohno):
   ohno v Crew (Corrupted, 77206c78), ohno v One (Solitude, c553716d), ohno v NwAy (Weeping Stone, a0d60daa), xxx v
   ohno (Uncharted, 29aad8d4), ohno v Fun (Solitude, 1cb73c20); claims checked against the engine in

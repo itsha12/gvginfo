@@ -758,14 +758,20 @@ changing status only after two batches in a row, declined: links keep changing s
   found there: the rebuilt Lord health had hold ahead, the reverse of the result (lord.py to check).
 
 - Bounty's seven matches (session 4t, 2026-11-08): Apes v cope, 옷옷옷옷 v Book, OG v hold, Team v push, cope v hdm, True v
-  One and BcS v Crew (new: replay fetched for it). 57 claims in `data/commentary/bounty.json`, each checked. New
-  variables in `comms_vars.py` (140 matches): `scattered` (under 70% of a team's live players in its biggest engaged
-  group: kills in 14% of phases against 18%, supported, tactics `K19`; in BcS v Crew the measure has BcS together, so
-  Bounty may mean spacing inside the group); `monk_focus` (groups hitting mostly healers kill more, 19% against 14%:
-  contradicts the general claim, partly selection, `K6`); `collapse_snare` (a snare carrier among 2+ defenders: a
-  splitter dies 18% against 12%, unclear, `S33`; `buildfeat.player_flags` counts Return as a snare). New lines `F36`
-  (don't cap into an instant overcap), `P15` (kill a one-monk pit push), "cycle" and "inaccuracies" under Language.
-  Not yet model variables: held for Denning's ruling and bundled with Nick's into one engine change.
+  One and BcS v Crew (replay fetched for it). 57 claims in `data/commentary/bounty.json`, each checked. Nick's five
+  (same session): Men v Team, NwAy v SKT, xxx v Men, NwAy v Men, cope v Book (four replays fetched). 47 claims in
+  `data/commentary/nick.json`.
+- New measures in `comms_vars.py` (144 matches): `monk_focus` (groups hitting mostly healers kill in 19% of phases
+  against 13%: contradicts "don't go after the monks", partly selection, tactics `K6`); `collapse_snare` (a snare carrier
+  among 2+ defenders, Return not counted: a splitter dies 20% against 11%, supported, `S33`); `instant_overcap` (16% of
+  captures are overcapped within 10 s; the capturing team lost more than it killed from the run's start to 30 s after,
+  22% against 16%, supported, `F36`; partly the situation); `split_size` (3-player against 4-player splits into the
+  base: a pit NPC taken 36% against 35%, unclear, `S38`); `scattered` kept as a measure only (Denning: Bounty spoke
+  metaphorically). New lines `F36`, `F37`, `P15`, `S38`, `S39`, `O4`, "cycle" and "inaccuracies" under Language.
+- Held for Denning's go-ahead, to build together in one engine change (then one rebuild): healer focus (share of a
+  group's damage on enemy healers) as a variable in the fight-outcome and power-play nodes; Return no longer counted as
+  a snare in `buildfeat.PLAYER_FLAGS` (changes the collapse node's defender-snare variable); the instant overcap
+  priced in values.py; anything else Denning approves from the two sources.
 
 ## Flag position (Denning, tactics `F1` to `F4`)
 - Up on flags = the better position to get a boost and to run, not the team that capped last.

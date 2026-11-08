@@ -30,9 +30,15 @@ Variables (more can be added to VARS):
   monk_focus       (Bounty) a group that keeps hitting the enemy healers kills less than one hitting other players
                    ("they keep trying to kill monks, they're not even killing him")
   scattered        (Bounty) a team spread over the map, not one unit, gets fewer kills at the same overall numbers
-                   ("they're never a unit, always so scattered... they're not all here, so they're not killing")
+                   ("they're never a unit, always so scattered... they're not all here, so they're not killing");
+                   Denning: Bounty spoke metaphorically, so this is kept as a measure only, not proposed for the model
   collapse_snare   (Bounty) a collapse on a split kills the splitters when a snare carrier is in it ("they're
-                   collapsing before these people are snaring, so it's useless")
+                   collapsing before these people are snaring, so it's useless"); Return isn't counted as a snare
+                   (Denning: it is an escape)
+  split_size       (Nick) a 3-player split takes more than a 4-player one against a two-monk defence, and keeps the
+                   main team stronger ("the three-man split proving much better than the four-man")
+  instant_overcap  (Bounty) a capture the enemy overcaps within 10 s is a wasted cycle: the runner's time away from
+                   the team bought nothing ("if you're going to get overcapped instantly, you shouldn't cap")
 Not measurable from the replay data (said in the comms, kept as open items): gate or lock control, terrain and line of
 sight (stairs, walls, choke points), energy, call timing ("4, 3, 2, 1").
 
@@ -56,6 +62,8 @@ SOURCE = {
     "monk_focus": "Bounty [Team v push], [BcS v Crew]: they keep trying to kill monks and don't kill; the 8 monk is not the best target",
     "scattered": "Bounty [BcS v Crew]: they're never a unit, always scattered; when they fill the gaps they're not all here, so they don't kill",
     "collapse_snare": "Bounty [Team v push], [BcS v Crew]: the collapse is useless if it starts before the snare character is there to snare",
+    "split_size": "Nick [NwAy v Men], [cope v Book]: the 3-player split (spirit light weapon kept at main) is much better than the 4-player one",
+    "instant_overcap": "Bounty [BcS v Crew]: if you're going to get overcapped instantly, you shouldn't cap; it wastes a cycle",
 }
 
 
@@ -267,13 +275,57 @@ def _bounty_rows(rid):
             scat.append({"m": rid, "y": int(kills > 0), "lost": int(losses > 0), "scattered": int(share < 0.7), "share": round(share, 2),
                          "s": f"{max(-2, min(2, alive[tag] - alive[other]))}|{sb}"})
     agent = {f"{m.tag[m.team(x)]} {m.roles.get(x)}": x for x in m.PL}
+    from buildfeat import _skills, FEATURES
+    S = _skills()
+    def snares(x):      # Return is an escape, not a snare (Denning)
+        return sum(1 for b in m.A[x].get("bar", []) if b and (s := S.get(m.sk(b))) and s.get("name") != "Return"
+                   and FEATURES["snares"](s))
     for sp in a["splits"]:
         if sp.get("kind") != "split": continue
         ds = [d for d in sp.get("defenders") or [] if (d.get("secs") or 0) >= 5]
         if len(ds) < 2: continue
-        snare = any(player_flags(m, agent[d["who"]]).get("snare", 0) > 0 for d in ds if d["who"] in agent)
+        snare = any(snares(agent[d["who"]]) > 0 for d in ds if d["who"] in agent)
         coll.append({"m": rid, "y": int(bool(sp.get("deaths"))), "snare": int(snare), "s": f"{min(len(ds), 4)}v{min(len(sp['members']), 4)}"})
     return focus, scat, coll
+
+
+def _overcap_rows(rid):
+    """Every capture with the run that brought it in: was it overcapped within 10 s, how long the runner was away, and
+    what happened to both teams from the start of the run to 30 s after the capture."""
+    import events as EV
+    a = EV.analysis(rid); out = []
+    runs = {(r["team"], r["end"]): r for r in a["flag_runs"] if r.get("outcome") == "captured"}
+    cyc = a["flag_cycles"]
+    for c in cyc:
+        cap, tm = c["own_cap"], c["team"]
+        nxt = next((x for x in cyc if x["team"] != tm and x["enemy_cap"] == cap), None)
+        if nxt is None: continue                      # the last capture of the match: no answer to judge
+        r = runs.get((tm, cap)) or next((v for (t2, e), v in runs.items() if t2 == tm and abs(e - cap) <= 3), None)
+        if not r: continue
+        t0, t1 = r["start"], cap + 30
+        own = sum(1 for d in a["deaths"] if d["team"] == tm and t0 <= d["t"] <= t1)
+        foe = sum(1 for d in a["deaths"] if d["team"] != tm and t0 <= d["t"] <= t1)
+        mn = r.get("main_numbers") or [0, 0]
+        out.append({"m": rid, "team": tm, "t": cap, "instant": int(nxt["cap_delay"] <= 10), "answer_s": nxt["cap_delay"],
+                    "run_s": r["secs"], "own_deaths": own, "foe_deaths": foe, "y": int(own > foe), "lost": int(own > 0),
+                    "s": f"{max(-2, min(2, round(mn[0] - mn[1])))}"})
+    return out
+
+
+def _split_rows(rid):
+    """Splits of 3 or 4 players that entered the enemy base: did they take a pit NPC, and did their own main team lose
+    a player meanwhile; compared at the same number of defenders."""
+    import events as EV
+    a = EV.analysis(rid); out = []
+    for sp in a["splits"]:
+        n = len(sp.get("members") or [])
+        if sp.get("kind") != "split" or n not in (3, 4) or sp.get("entered_base") is None: continue
+        ds = [d for d in sp.get("defenders") or [] if (d.get("secs") or 0) >= 5]
+        took = any("outside" not in k["npc"] for k in sp.get("npc_kills") or [])
+        main_lost = sum(1 for d in a["deaths"] if d["team"] == sp["team"] and sp["start"] <= d["t"] <= sp["end"]
+                        and d["victim"] not in sp["members"])
+        out.append({"m": rid, "y": int(took), "three": int(n == 3), "main_lost": int(main_lost > 0), "s": f"{min(len(ds), 4)}"})
+    return out
 
 
 def _one(rid):
@@ -281,7 +333,8 @@ def _one(rid):
         pl, tu, mg, jp = _player_rows(rid)
         fo, sc, co = _bounty_rows(rid)
         return {"groups": _phase_groups(rid), "spikes": _spike_rows(rid), "players": pl, "turtles": tu, "merges": mg, "jumps": jp,
-                "footmen": _footmen_rows(rid), "focus": fo, "scattered": sc, "collapses": co}
+                "footmen": _footmen_rows(rid), "focus": fo, "scattered": sc, "collapses": co, "overcaps": _overcap_rows(rid),
+                "splits": _split_rows(rid)}
     except Exception as ex:
         return {"error": f"{rid}: {ex}"}
 
@@ -424,6 +477,29 @@ def measure(ids=None):
     res["collapse_snare"] = {"measure": "splits answered by 2+ defenders (5 s+ each): a defender carrying a snare against none; outcome = a splitter died during the split; same defenders and splitters (capped at 4)",
                              "n": len(CO), "cases": sum(r["snare"] for r in CO), "rate_with_snare": _rate([r for r in CO if r["snare"]]),
                              "rate_without": _rate([r for r in CO if not r["snare"]]), "difference": d, "interval_90": ci, "verdict": _verdict(d, ci, +1)}
+    OC = R["overcaps"]
+    def mean(rs, k): return round(statistics.mean(r[k] for r in rs), 2) if rs else None
+    d = _strat_diff(OC, "instant"); ci = _boot(_by_match(OC), lambda s: _strat_diff(s, "instant"))
+    dl = _strat_diff([dict(r, y=r["lost"]) for r in OC], "instant")
+    inst = [r for r in OC if r["instant"]]; rest = [r for r in OC if not r["instant"]]
+    res["instant_overcap"] = {"measure": "every capture with an enemy answer: overcapped within 10 s against later; from the start of the run to 30 s after the capture: own deaths, enemy deaths; outcome = the capturing team lost more players than it killed; same main-team numbers during the run",
+                              "n": len(OC), "cases": len(inst), "share_instant": round(len(inst) / len(OC), 3) if OC else None,
+                              "run_s_instant": mean(inst, "run_s"), "run_s_other": mean(rest, "run_s"),
+                              "own_deaths_instant": mean(inst, "own_deaths"), "own_deaths_other": mean(rest, "own_deaths"),
+                              "enemy_deaths_instant": mean(inst, "foe_deaths"), "enemy_deaths_other": mean(rest, "foe_deaths"),
+                              "rate_net_loss_instant": _rate(inst), "rate_net_loss_other": _rate(rest),
+                              "difference": d, "interval_90": ci, "loss_rate_difference": dl, "verdict": _verdict(d, ci, +1),
+                              "note": "the flag time itself is zero by definition (the stand changes hands at once); what the cap costs is the runner's time and what happened to the team meanwhile"}
+    SPL = R["splits"]
+    d = _strat_diff(SPL, "three"); ci = _boot(_by_match(SPL), lambda s: _strat_diff(s, "three"))
+    dm = _strat_diff([dict(r, y=r["main_lost"]) for r in SPL], "three")
+    cim = _boot(_by_match(SPL), lambda s: _strat_diff([dict(r, y=r["main_lost"]) for r in s], "three"))
+    res["split_size"] = {"measure": "splits of 3 or 4 players that entered the enemy base: 3 against 4; outcome = took a pit NPC (outside archers not counted), and separately = the splitting team's main lost a player during the split; same number of defenders",
+                         "n": len(SPL), "cases": sum(r["three"] for r in SPL), "npc_rate_three": _rate([r for r in SPL if r["three"]]),
+                         "npc_rate_four": _rate([r for r in SPL if not r["three"]]), "difference": d, "interval_90": ci, "verdict": _verdict(d, ci, +1),
+                         "main_loss_rate_three": _rate([dict(r, y=r["main_lost"]) for r in SPL if r["three"]]),
+                         "main_loss_rate_four": _rate([dict(r, y=r["main_lost"]) for r in SPL if not r["three"]]),
+                         "main_loss_difference": dm, "main_loss_interval_90": cim, "main_loss_verdict": _verdict(dm, cim, -1)}
     for k in res: res[k]["source"] = SOURCE.get(k)
     out = {"about": "Variables suggested by commentary and comms, measured in every stored replay (comms_vars.py). "
                     "Intervals: 90% from resampling whole matches. Verdict: supported / contradicted when the interval "
