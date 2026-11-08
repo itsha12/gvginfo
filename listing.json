@@ -1,12 +1,12 @@
 {
- "updated": "2026-11-08T02:01:32.369Z",
+ "updated": "2026-11-08T03:09:21.557Z",
  "matches": [
   {
-   "id": "1086d31d-2728-5802-aedc-3da3db383fbb",
-   "date": "2026-11-07",
-   "map": "Nomad's Isle",
+   "id": "965d7c49-5c32-5644-ac24-6c495f82fc41",
+   "date": "2026-11-08",
+   "map": "Corrupted Isle",
    "teams": [
-    "RACK",
+    "meow",
     "DUM"
    ],
    "winner": 1,
@@ -47,6 +47,17 @@
     "tournament_occasion",
     "observed_match_clock"
    ]
+  },
+  {
+   "id": "1086d31d-2728-5802-aedc-3da3db383fbb",
+   "date": "2026-11-07",
+   "map": "Nomad's Isle",
+   "teams": [
+    "RACK",
+    "DUM"
+   ],
+   "winner": 1,
+   "occasion": "automated"
   },
   {
    "id": "bb669b6f-5c52-589e-a4ed-1c621556c9a4",
@@ -4422,17 +4433,6 @@
    "teams": [
     "TFS",
     "Crew"
-   ],
-   "winner": 2,
-   "occasion": "automated"
-  },
-  {
-   "id": "380bb3ea-89f3-5c07-a0be-234bfa4e6ee9",
-   "date": "2026-10-05",
-   "map": "Isle of Meditation",
-   "teams": [
-    "hook",
-    "옷옷옷옷"
    ],
    "winner": 2,
    "occasion": "automated"

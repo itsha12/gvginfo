@@ -1,6 +1,6 @@
 {
  "format": "gvginfo.replay.v1",
- "updated": "2026-11-08T02:01:39.474Z",
+ "updated": "2026-11-08T03:09:35.490Z",
  "matches": {
   "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65": {
    "file": "2026-11/eea5ba87-ac20-5ba3-a6c9-965f11ca8a65.json.gz",
@@ -1861,6 +1861,20 @@
    "winner": "Men",
    "length_s": 226,
    "kb": 65,
+   "summary": true,
+   "trim": 3
+  },
+  "965d7c49-5c32-5644-ac24-6c495f82fc41": {
+   "file": "2026-11/965d7c49-5c32-5644-ac24-6c495f82fc41.json.gz",
+   "date": "2026-11-08T02:12:05.062Z",
+   "map": "Corrupted Isle",
+   "teams": [
+    "meow",
+    "DUM"
+   ],
+   "winner": "meow",
+   "length_s": 347,
+   "kb": 77,
    "summary": true,
    "trim": 3
   }
