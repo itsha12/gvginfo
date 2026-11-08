@@ -29,6 +29,7 @@ numbers, DP, pit NPCs, Lord damage, build archetypes, phase. Outcomes are scoreb
 Usage:  python3 decisions.py <report id>
 In code: decision_points(st, sb, episodes) -> list of dicts (analyze.py)."""
 from buildfeat import player_flags
+from common import split_context
 import collections, sys
 from replaylib import Match
 from state import GameState, d
@@ -189,6 +190,8 @@ def splits_in_base(st, sb, splits):
                               # Denning (S32): how the main fight is going decides whether the frontline can leave
                               "main_diff_now": len(st.main_group(y, s["entered_base"])) - len(st.main_group(3 - y, s["entered_base"])),
                               "health_diff": _health(st, y, s["entered_base"]) - _health(st, 3 - y, s["entered_base"]),
+                              # Denning (batch 10): what the split can get NPC-wise, its death penalty, and whether it can be killed
+                              **split_context(st, [atk[r] for r in s["members"] if r in atk], s["entered_base"], sb.npc_value(y, s["entered_base"])),
                               **away}))
     return out
 
@@ -301,6 +304,8 @@ def runner_choices(st, sb, window=90):
         if tm not in st.teams or c["s"] < 0: continue
         p = st.pos(a, c["s"])[0]
         if not p or d(p, st.geo.spawn[tm]) > 1500 or c["s"] > st.end - window: continue
+        from common import is_hold
+        if is_hold(st, c): continue          # Denning: a hold is not a capture attempt
         out.append(rec(sb, "runner_choice", tm, c["s"], runner_class(m, a), c["s"] + window,
                        extra={"runner_role": m.roles.get(a), "runner_speed_bonus": movepower.speed_bonus(m, a),
                               "min_capture_s": round(d(st.geo.spawn[tm], st.geo.stand) / movepower.carry_speed(m, a, CARRY_SPEED), 1),

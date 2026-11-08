@@ -131,6 +131,13 @@ def _healer_share(m, ev, team, t0, t1):
     return round(on_h / tot, 2) if tot else None
 
 
+def _def_dps(V, roles, team, R=None):
+    """The defenders who came: their usual damage per second summed (eventlayer values), for "can they kill it"."""
+    import eventlayer as EL
+    v = [EL.usual_dps(V, r, None) for r in roles]
+    return round(sum(x for x in v if x), 1) if roles else 0
+
+
 def _team_dps(team, tg, t0, t1, V, alive_roles):
     """A team's damage on enemy players per second in [t0, t1] against the sum of the usual of the players alive."""
     import eventlayer as EL
@@ -151,7 +158,7 @@ def _build(node, rid, V):
     roles_alive = lambda tg, t: (_row(sr, t)[tg].get("main_roles") or []) if sr else []
     deaths = a["deaths"]
     import movepower as MP
-    from common import runner_code
+    from common import runner_code, split_context
     P = MP.powers(m)
     ev = sorted((e for e in m.o.get("ev") or [] if e[0] is not None), key=lambda e: e[0])
     def agent_of(tg, role):
@@ -166,6 +173,7 @@ def _build(node, rid, V):
         for fr in a["flag_runs"]:
             r = rec.get((fr["team"], fr["start"]))
             if not r: continue
+            if fr.get("hold"): continue        # Denning: holds are not capture attempts
             tg = fr["team"]
             for k in CHECKPOINTS:
                 if fr["secs"] <= k: continue
@@ -213,6 +221,7 @@ def _build(node, rid, V):
         for fr in a["flag_runs"]:
             r = rec.get((fr["team"], fr["start"]))
             if not r: continue
+            if fr.get("hold"): continue        # Denning: holds are not capture attempts
             att = fr["team"]; dfn = foe(att); s0 = _row(sb, fr["start"])
             for k in CHECKPOINTS:
                 if fr["secs"] <= k: continue
@@ -316,6 +325,16 @@ def _build(node, rid, V):
                     stand_own=int(r["stand"]["owner"] == tg), stand_enemy=int(r["stand"]["owner"] == fg), minute=round(t / 60, 1), res_in=r.get("res_in"),
                     own_speed_power=team_power(tg, "speed"), own_escapes=team_power(tg, "escapes"),
                     own_snare_power=team_power(tg, "snare"), enemy_snare_power=team_power(fg, "snare"), strength_gap=gaps[tg])
+    elif node == "pit_npc_loss":
+        # Denning (batch 10): the pit NPC loss as a learned node, so a lost NPC's chain prices fixes. Same moments and
+        # measures as the node model (nodes.py npc_loss: every few seconds with enemies in the pit, a pit NPC lost in the
+        # next 15 s), read for the defending team (strength gap turned to its side)
+        import nodes as NM
+        for r0 in NM.node_rows("npc_loss", rid):
+            dfn = foe(r0["team"])
+            f = {k: v for k, v in r0.items() if k not in ("match", "team", "role", "t", "y", "w")}
+            f["strength_gap"] = -f["strength_gap"] if f.get("strength_gap") is not None else None
+            add(dfn, r0["t"], r0["y"], **f)
     elif node in ("split_answer", "split_effect", "collapse"):
         from state import d
         rec = {(r["team"], r["t"]): r for r in R.get("splits", [])}
@@ -379,6 +398,10 @@ def _build(node, rid, V):
                     escape_ready=esc,
                     def_snare_present=round(sum(P[x]["snare"] for x in (agent_of(fg, dd["role"]) for dd in s_.get("defenders") or []) if x is not None), 1),
                     split_speed_power=round(sum(P[x]["speed"] for x in mem), 1), split_escapes=sum(P[x]["escapes"] for x in mem),
+                    # Denning (batch 10): what the split can get NPC-wise, its death penalty, and whether it can be killed
+                    **{k: v for k, v in split_context(st, mem, ta if ta is not None else t_in,
+                                                      _row(sb, ta if ta is not None else t_in)[fg].get("npc_value")).items()},
+                    def_dps=_def_dps(V, [dd["role"] for dd in s_.get("defenders") or []], fg, R),
                     size=r["size"], main_diff=r["main_diff"], strength_gap=gaps[tg])
     return _approved(node, rows, rid, m)
 

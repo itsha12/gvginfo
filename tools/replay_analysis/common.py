@@ -112,6 +112,52 @@ def runner_code(m, a):
     return RUNNER_CLASSES.index(c) if c in RUNNER_CLASSES else None
 
 
+def split_context(st, members, t, def_npc_value=None):
+    """Denning (batch 10): whether a collapse is right depends on what the split can get NPC-wise, the death penalty on
+    the split characters, and whether they can be killed. Measured at t for the split members (agent ids):
+      split_dp          worst morale among the split members (negative = death penalty; lower max health, easier kill)
+      split_npc_dps     the split members' measured damage per second against NPCs and the Lord (benchmarks)
+      def_npc_value     the defending team's pit NPCs still alive, in win points (scoreboard npc_value)
+      split_healers     healers on the split
+      split_self_defence  self-heals and self-defence skills on the split members' bars (buildfeat.player_flags)"""
+    from scoreboard import lord_dps
+    from buildfeat import player_flags
+    m = st.m
+    alive = [a for a in members if st.alive(a, t)] or list(members)
+    fl = [player_flags(m, a) for a in alive]
+    return {"split_dp": min([st.morale(a, t) for a in alive] or [0]),
+            "split_npc_dps": round(sum(lord_dps(m.roles[a], m.A[a].get("p")) or 0 for a in alive), 1),
+            "def_npc_value": def_npc_value,
+            "split_healers": sum(1 for a in alive if line(m, a) == "backline"),
+            "split_self_defence": sum(f.get("self_defence", 0) + f.get("self_heal", 0) for f in fl)}
+
+
+HOLD_MIN_S = 10          # a carry this long that closed under HOLD_PROGRESS of the way to the stand is a hold
+HOLD_PROGRESS = 0.25
+
+
+def carry_progress(st, c):
+    """Share of the distance from the pickup to the stand the carrier closed at its closest (0 = never got nearer,
+    1 = reached the stand), for one carry from GameState.carries (times in seconds)."""
+    from state import d
+    a, s, e = c["a"], max(c["s"], 0), c["e"]
+    p0 = st.pos(a, s)[0]
+    if not p0: return None
+    d0 = d(p0, st.geo.stand)
+    if d0 <= 0: return 1.0
+    ds = [d(p, st.geo.stand) for t in range(int(s), int(e) + 1) if (p := st.pos(a, t)[0])]
+    return round(max(0.0, 1 - min(ds or [d0]) / d0), 2)
+
+
+def is_hold(st, c):
+    """Denning (batch 10): 8 Monks sometimes hold the flag for a while without trying to capture. A hold = a carry of
+    HOLD_MIN_S+ that did not end in a capture and never closed HOLD_PROGRESS of the way to the stand. Holds are kept
+    out of the run models, the runner choice and the runners' capture rates, so they don't count as failed runs."""
+    if c.get("how") == "flagstand_captured" or c["e"] - max(c["s"], 0) < HOLD_MIN_S: return False
+    pr = carry_progress(st, c)
+    return pr is not None and pr < HOLD_PROGRESS
+
+
 def line(m, a):
     """Denning: frontline = dervishes, warriors, melee assassins; midline = elementalists, rangers, paragons, mesmers,
     caster assassins (and ritualists, to confirm); backline = monks. Decided by build, not profession alone."""

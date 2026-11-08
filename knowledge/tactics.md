@@ -242,6 +242,10 @@ against general principles rather than past games. Match-by-match evidence lives
   **Denning:** A quick collapse that fails to kill costs, because it fails twice: no kill, and the split isn't pushed out
   of the base. (Measured, 133 matches: collapses away under 30 s -2.4 win points, collapses with no kill -4.2, those
   that killed a split member +2.9.)
+  **Denning:** Collapsing on a split (batch 10's usual play: collapsing -4.0 win points, clear) makes sense or not
+  depending on what the split can get NPC-wise, the death penalty on the split character, and whether it can be killed.
+  (Measured from batch 11: the collapse node and the split-in-base decisions carry the split's NPC damage, the
+  defending NPCs alive, the split's worst morale, its healers and self-defence, and the defenders' damage.)
 - `S40` **Bounty:** When a split changes (e.g. made beefier), the defence must change too; defending the same way loses
   the pit.
 - `S41` **Denning:** An 8v8 build answers a 3 man split by ignoring it with the main team and having a snare character
@@ -382,6 +386,9 @@ against general principles rather than past games. Match-by-match evidence lives
 - `F18` **Denning:** Not running the flag can be deliberate: a team on death penalty and under pressure may not be able
   to run without being wiped.
 - `F19` **Denning:** Running on the 8 monk is a bad move, normally only when 2 enemy damage are dead or when desperate.
+  **Denning:** An 8 Monk sometimes holds the flag for a while without trying to capture. (Measured: a carry of 10 s+
+  that never closes a quarter of the way to the stand is a hold, kept out of the run models, the runner choice and the
+  runners' capture rates; in a 12-match check, 6 of 29 monk carries were holds, against about 1 in 10 for other classes.)
 
 ### Pushing the flagger
 - `F20` **Denning:** When one enemy solo pushes the flagger, the flagging team should likely send help: a monk to heal,

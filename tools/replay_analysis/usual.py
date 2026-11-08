@@ -37,7 +37,9 @@ PRE_S = 30                   # seconds before a decision for the pre-trend check
 SNARE = ["own_snare_power", "enemy_snare_power", "own_speed_power"]
 SIT_EXTRA = {"after_wipe": ["pit_margin_s"], "boost_clock": ["deaths_30s_diff", "main_diff_now", "health_diff"] + SNARE,
              "enemy_pickup": SNARE, "split_or_stay": SNARE, "runner_choice": SNARE,
-             "split_in_base": ["split_size", "defender_snare_power", "attacker_self_defence", "main_diff_now", "health_diff"]}
+             "split_in_base": ["split_size", "defender_snare_power", "attacker_self_defence", "main_diff_now", "health_diff",
+                               # Denning (batch 10): collapse depends on what the split can get NPC-wise, its DP, and killability
+                               "split_dp", "split_npc_dps", "def_npc_value", "split_healers"]}
 # kinds whose choice effects are also split by the snare matchup (enemy snare power minus own speed power, in thirds)
 SNARE_SPLIT = {"boost_clock", "enemy_pickup", "split_or_stay", "runner_choice"}
 # per-player flags a choice's effect is also split by (Denning, B23), besides own spike build

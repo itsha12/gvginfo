@@ -935,3 +935,19 @@ changing status only after two batches in a row, declined: links keep changing s
   (`fights.monks`, `report.py`).
 - Comms and commentary: line up transcript times with match time using two or three anchors (kills, caps, boosts);
   check every claim against the data; store paraphrased events only, never transcripts (public repo).
+
+## After batch 10 (Denning's answers, 2026-11-08)
+- **split_diff moved into the win model** (features.py VARIABLES; it was a candidate since batch 1). Held-out log loss
+  0.314 to 0.307 in batch 10's candidate test.
+- **Holds** (`common.is_hold`, `carry_progress`): Denning, an 8 Monk sometimes holds the flag without trying to cap. A
+  carry of 10 s+ that does not end in a capture and never closes a quarter of the way to the stand is a hold. Holds are
+  marked on every flag run (`hold`, `progress`) and kept out of run_outcome, run_defence, the runner choice and the
+  runners table's capture rates (the table shows them as a column).
+- **pit_npc_loss learned node** (R.5): the node model's npc_loss moments (nodes.py) read for the defending team, with
+  defenders in the pit as play (P.11), healing on the NPCs (K.6) and damage on them (K.1). causalchain.start_npc starts
+  from it (the last moment in the 15 s before the loss), so TQ 4 can price fixes.
+- **Collapse context** (`common.split_context`): Denning, collapsing on a split depends on what the split can get
+  NPC-wise, the death penalty on the split character and whether it can be killed. The collapse node gains split_dp
+  (K.9), split_healers and split_self_defence (K.5), def_dps (K.1), def_npc_value (S.scoreboard) and split_npc_dps
+  (C.builds); split-in-base decisions carry the same in their situation, so the usual play compares collapses in like
+  situations.

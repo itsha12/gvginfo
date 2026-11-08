@@ -22,6 +22,8 @@ Nodes (map target):
   split_chance     (A.allocation)  a team starts a split in the next 30 s (for "failed to split")
   split_answer     (P.11) seconds until the first defender reaches a split in the base (60 = never)
   split_effect     (R.5)  a split in the base kills a pit NPC
+  pit_npc_loss     (R.5)  a pit NPC dies in the next 15 s while enemies are in the pit (defending side; nodes.py's
+                          npc_loss moments, learned here so NPC chains price fixes)
   collapse         (R.1)  a split member dies during the split; collapse timing read five ways and split depth two ways
                           (each also tested alone)
 Usage:  python3 learnednodes.py fit [node ...]     fit, measure links, write data/model/nodes/L_<node>.json, print
@@ -152,6 +154,18 @@ SPEC = {
     "K.11": {"def_snare_present": "snare power of the defenders who came (movepower.py)"},
     "K.13": {"split_speed_power": "split members' speed power (movepower.py)"},
     "C.strength": {"strength_gap": "splitting team's strength gap"}}, {}),
+ "pit_npc_loss": ("R.5", {
+    "A.allocation": {"attackers": "enemy players in the pit", "attacker_healers": "of which healers",
+                     "attackers_share": "share of the enemy's live players in the pit"},
+    "P.11": {"defenders": "own players in the pit", "defender_healers": "of which healers",
+             "defenders_elsewhere": "own players alive outside the pit"},
+    "S.scoreboard": {"knights": "own knights alive", "archers": "own pit archers alive", "bodyguard": "own Bodyguard alive",
+                     "full_pit_targets": "pit NPCs alive (targets the defending monks must watch)"},
+    "K.1": {"npc_damage_5s": "damage on the pit NPCs in the last 5 s"},
+    "K.6": {"npc_healing_10s": "healing on own pit NPCs and Lord in the last 10 s"},
+    "C.builds": {"attackers_lord_dps": "attackers' measured damage per second against NPCs", "attackers_area_damage": "area-damage skills on the attackers' bars"},
+    "C.clock": {"seconds_in_pit": "seconds the enemy has been in the pit", "res_in": "seconds to the next res", "minute": "minute"},
+    "C.strength": {"strength_gap": "defending team's strength gap"}}, {}),
  "collapse": ("R.1", {
     "P.11": {"latency": "seconds until the first defender arrived (60 = never)"},
     "P.9": {"defenders_10s": "defenders arriving within 10 s of the first (arrival spread)",
@@ -161,6 +175,11 @@ SPEC = {
     "K.13": {"escape_ready": "split members' speed skills off recharge when the first defender arrived",
              "split_speed_power": "split members' speed power (movepower.py)", "split_escapes": "split members' Shadow Step skills"},
     "K.11": {"def_snare_present": "snare power of the defenders who came (movepower.py; how strong, not just whether)"},
+    "K.9": {"split_dp": "worst morale among the split members (death penalty lowers max health; Denning)"},
+    "K.5": {"split_healers": "healers on the split", "split_self_defence": "self-heals and self-defence skills on the split members' bars (Denning: can it be killed)"},
+    "K.1": {"def_dps": "the defenders who came: their usual damage per second, summed (Denning: can they kill it)"},
+    "S.scoreboard": {"def_npc_value": "defending pit NPCs alive, in win points (Denning: what the split can get)"},
+    "C.builds": {"split_npc_dps": "split members' measured damage per second against NPCs (Denning: what the split can get)"},
     "P.20": {"depth_at_arrival": "nearest split member's distance to the defending pit when the first defender arrived",
              "depth_median": "nearest split member's median distance to the defending pit over the split"},
     "A.allocation": {"size": "split size", "main_diff": "own main minus enemy main meanwhile"},
@@ -215,6 +234,14 @@ NEW_LINK_WHY = {
     ("K.11", "R.3"): ("control on the runner (Cripple, knockdowns) stops a run; read at the same point of every run", "Denning"),
     ("P.20", "R.1"): ("the deeper the splitters are in the base (nearer the pit), the more likely they die to a collapse", "Denning"),
     ("S.scoreboard", "R.5"): ("a pit already short of NPCs, or a base with few free defenders, loses an NPC to a split more easily", "Claude"),
+    ("P.11", "R.5"): ("defenders and healers back in the pit keep the NPCs alive (pit NPC loss node, Denning batch 10)", "Denning"),
+    ("K.6", "R.5"): ("healing on the pit NPCs keeps them alive", "Claude"),
+    ("K.1", "R.5"): ("damage landing on the pit NPCs", "Claude"),
+    ("C.clock", "R.5"): ("time in the pit and the res clock", "Claude"),
+    ("K.9", "R.1"): ("death penalty on the split character lowers its health, so a collapse kills it more easily (Denning, batch 10)", "Denning"),
+    ("K.5", "R.1"): ("a split that can heal or defend itself may not be killable, so collapsing on it wastes players (Denning, batch 10)", "Denning"),
+    ("K.1", "R.1"): ("the defenders' damage decides whether they can kill the split (Denning, batch 10)", "Denning"),
+    ("S.scoreboard", "R.1"): ("what the split can get NPC-wise sets how much a collapse is worth (Denning, batch 10)", "Denning"),
 }
 # fitting settings per node (after batch 9, the three nodes that never beat their baseline, reworked): the number nodes
 # judged on typical error are fitted with a robust loss (pseudo-Huber: big swings don't drag every reading toward
@@ -520,6 +547,7 @@ PLAIN = {
     "split_answer": "How long until the first defender reaches a split in the base?",
     "split_effect": "Does a split in the base kill a pit NPC?",
     "collapse": "Does a split member die when the defenders collapse on it?",
+    "pit_npc_loss": "Does the defending team lose a pit NPC in the next 15 s while enemies are in its pit?",
 }
 STATUS_WORDS = {"supported": "**supported**: it clearly helps predict matches the model never saw",
                 "rejected": "**rejected for now**: leaving it out predicts unseen matches slightly better",

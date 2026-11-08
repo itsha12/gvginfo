@@ -56,9 +56,11 @@ def runners(src, ids):
     by = collections.defaultdict(list)
     for r in R: by[r["runner"]].append(r)
     rows = []
-    for role, L in by.items():
+    for role, L0 in by.items():
+        L = [r for r in L0 if not r.get("hold")]             # Denning: holds are not capture attempts
+        if not L: continue
         cap = [r for r in L if r["outcome"] == "captured"]
-        rows.append({"runner": role, "runs": len(L), "captured": round(len(cap) / len(L), 2),
+        rows.append({"runner": role, "runs": len(L), "holds": len(L0) - len(L), "captured": round(len(cap) / len(L), 2),
                      "median_s_captured": _med([r["secs"] for r in cap]), "dropped": sum(1 for r in L if r["outcome"] == "dropped"),
                      "pushed": round(sum(1 for r in L if r["pushers"]) / len(L), 2), "winners_share": round(sum(r["won"] for r in L) / len(L), 2)})
     dbl = collections.Counter((r["double"] or "single", r["won"]) for r in R)
@@ -168,11 +170,12 @@ def snapshot(ids, new_ids, src="/tmp/gl"):
          "brackets where it differs). Not causal on their own: they point to questions and candidate variables.", ""]
     rr, dbl = runners(src, ids); rn, _ = runners(src, new_ids)
     rn = {r["runner"]: r for r in rn}
-    L += ["**Runners** (spawn to capture; pushed = an enemy hit the carrier):", "",
-          "| Runner | Runs | Captured | Median s to capture | Dropped | Pushed | Runs by eventual winners (includes who was ahead) |", "|---|---|---|---|---|---|---|"]
+    L += ["**Runners** (spawn to capture; pushed = an enemy hit the carrier; holds = carries of 10 s+ that never closed a "
+          "quarter of the way to the stand, kept out of runs and captured, Denning: an 8 Monk may hold without trying to cap):", "",
+          "| Runner | Runs | Holds | Captured | Median s to capture | Dropped | Pushed | Runs by eventual winners (includes who was ahead) |", "|---|---|---|---|---|---|---|---|"]
     for r in rr[:10]:
         n = rn.get(r["runner"])
-        L.append(f"| {r['runner']} | {r['runs']} | {r['captured']:.0%} | {r['median_s_captured']}"
+        L.append(f"| {r['runner']} | {r['runs']} | {r['holds']} | {r['captured']:.0%} | {r['median_s_captured']}"
                  + (f" ({n['median_s_captured']})" if n and n["median_s_captured"] is not None else "")
                  + f" | {r['dropped']} | {r['pushed']:.0%} | {r['winners_share']:.0%} |")
     L.append("")

@@ -12,7 +12,7 @@ the carrier), who came back to help and how fast, and what the main fight was do
 import collections, math, sys
 from replaylib import Match
 from state import GameState, d
-from common import PIT_R, BASE_R, NEAR_R, SPLIT_FAR, DEFEND_R, SNARE_CONDITIONS as SNARES, line
+from common import PIT_R, BASE_R, NEAR_R, SPLIT_FAR, DEFEND_R, SNARE_CONDITIONS as SNARES, line, is_hold, carry_progress
 
 
 def _hostile(st, target, t0, t1):
@@ -156,6 +156,7 @@ def flag_runs(st):
         role = m.roles[a]
         out.append({"team": m.tag[tm], "runner": role, "line": line(m, a),
                     "start": round(s), "end": round(e), "secs": round(e - s), "outcome": "died" if died else c["how"].replace("flagstand_", "").replace("flag_", ""),
+                    "hold": is_hold(st, c), "progress": carry_progress(st, c),
                     "min_hp": min(hp) if hp else None, "escort": escort, "pushers": {k: {"first": v["first"], "actions": dict(v["actions"])} for k, v in pushers.items()},
                     "first_push": round(first_push) if first_push is not None else None, "helpers": helpers,
                     "main_numbers": (round(sum(x for x, _ in nums) / len(nums), 1), round(sum(y for _, y in nums) / len(nums), 1)) if nums else None})

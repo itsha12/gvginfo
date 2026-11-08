@@ -46,6 +46,7 @@ RESULT = {
     "power_play": ("killed on the power play", "prob", "death (any)", +1),
     "collapse": ("a split member died", "prob", "death (any)", -1),
     "split_effect": ("the split took a pit NPC", "prob", "pit NPC lost (any): taken by other builds", +1),
+    "pit_npc_loss": ("lost a pit NPC within 15 s", "prob", "pit NPC lost (any): taken by other builds", -1),
     "run_outcome": ("the run was captured", "prob", "capture", +1),
     "run_defence": ("the enemy run was captured", "prob", "capture", -1),
     "flag_swing": ("flag lead change over 60 s", "sec", "flag", +1),
@@ -66,7 +67,7 @@ def clock(t): return f"{int(t // 60)}:{int(t % 60):02d}"
 def good1(node, row, team):
     """Is a "1" (or more seconds) of this node's result good for team? Rows are read for row["team"]."""
     own = row["team"] == team
-    if node in ("collapse", "run_defence"): return not own      # own splitter dying / the enemy capturing is bad
+    if node in ("collapse", "run_defence", "pit_npc_loss"): return not own      # own splitter dying / the enemy capturing is bad
     if node == "split_answer": return False                       # more seconds to answer is bad for the defenders
     return own
 
@@ -373,7 +374,10 @@ def start_power(rid, team, t0):
 
 
 def start_npc(rid, defending_team, t):
-    """A pit NPC lost: the enemy split that took it (split-effect node) if one was in the base, else the fight before."""
+    """A pit NPC lost: the pit NPC loss node at the last moment before it with enemies in the pit (Denning, batch 10),
+    else the enemy split that took it (split-effect node) if one was in the base, else the fight before."""
+    rows = [r for r in _rows("pit_npc_loss", rid) if r["team"] == defending_team and t - 15 <= r["t"] <= t]
+    if rows: return Chain(rid, defending_team).build("pit_npc_loss", max(rows, key=lambda r: r["t"]), t)
     rows = [r for r in _rows("split_effect", rid) if r["team"] != defending_team and r["t"] <= t <= r["t"] + 240]
     if rows: return Chain(rid, defending_team).build("split_effect", max(rows, key=lambda r: r["t"]), t)
     return start_fight(rid, defending_team, t)

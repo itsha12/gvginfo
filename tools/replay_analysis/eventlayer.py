@@ -377,7 +377,7 @@ def build(rid):
             for k in kds: ctimes.append([round((k[0] if isinstance(k, (list, tuple)) else k) - r["start"], 1), "knockdown"])
             dtimes = [[round(x[0] - r["start"], 1), round(x[3])] for x in F.damage_on(runner, r["start"], r["end"])]
         own_m, en_m = st[r["team"]]["main"], st[foe]["main"]
-        out["runs"].append({"t": r["start"], "team": r["team"], "runner": r["runner"], "secs": r["secs"], "outcome": r["outcome"],
+        out["runs"].append({"t": r["start"], "team": r["team"], "runner": r["runner"], "secs": r["secs"], "outcome": r["outcome"], "hold": bool(r.get("hold")),
                             "stand": "own" if s["stand"]["owner"] == r["team"] else "enemy" if s["stand"]["owner"] == foe else "nobody",
                             "enemy_boost_in": s["stand"].get("boost_in") if s["stand"]["owner"] == foe else None,
                             "flag_lead": s[r["team"]]["flag_lead"], "main": [own_m, en_m],

@@ -163,14 +163,15 @@ VARIABLES = [
     ("flux_meek_shall_inherit", "flux Meek Shall Inherit active", lambda s, sb, tm, t, x: _flux(sb, "meek_shall_inherit")),
     ("flux_jack_of_all_trades", "flux Jack of All Trades active", lambda s, sb, tm, t, x: _flux(sb, "jack_of_all_trades")),
     ("flux_chain_combo", "flux Chain Combo active", lambda s, sb, tm, t, x: _flux(sb, "chain_combo")),
+    ("split_diff", "own minus enemy players on a split (away from their main group on the enemy half, not carrying). "
+     "Proposed batch 1 by Claude (the knights curve ran backwards, maybe standing in for the cost of splitting); moved in "
+     "batch 10 on Denning's approval (held-out log loss 0.314 to 0.307)",
+     lambda s, sb, tm, t, x: _splitting(sb, tm, t) - _splitting(sb, 3 - tm, t)),
 ]
 # Candidate variables (discovery): computed and retested in every learning report (held-out accuracy with and without
 # each), but only moved into VARIABLES once they improve predictions on unseen matches. Each notes who proposed it,
 # when, and why.
 CANDIDATES = [
-    ("split_diff", "own minus enemy players on a split (away from their main group on the enemy half, not carrying). "
-     "Proposed batch 1 by Claude: the knights curve runs backwards, maybe standing in for the cost of splitting",
-     lambda s, sb, tm, t, x: _splitting(sb, tm, t) - _splitting(sb, 3 - tm, t)),
     ("turtle_diff", "own minus enemy share of live players at home (own base or pit). Proposed 2026-11-06 from OG comms "
      "([ohno v One], [ohno v Crew]: 'they are turtling, we have to make a play'); comms_vars.py: teams that turtled 60 s "
      "won 3 of 13 times",

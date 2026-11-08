@@ -172,7 +172,11 @@ engine change before the next run, then the commentary transcripts and step 3 (d
   every learned node adds to its baseline (flag swing, capture speed and split effect did not before). split_diff
   candidate improves the win model (0.314 -> 0.307): asked Denning whether to move it in. TQ 3 crashed on a phase with
   no group for the team (events.power, fixed; answered in the chat and written into the report).
-- Next: Denning's answers on chunk 1; chunk 2 (pick about 45); discovery after every few chunks. Also proposed to
+- Denning's answers on chunk 1 built (METHODS.md "After batch 10"): split_diff into the win model; holds (an 8 Monk
+  holding without trying to cap) kept out of run measures; pit_npc_loss learned node (NPC chains price fixes); collapse
+  context (split NPC damage, defending NPCs alive, split DP, split healers and self-defence, defenders' damage). Runner
+  choice penalties (assassin, paragon): not addressed for now (Denning).
+- Next: chunk 2 running (batch 11); explain it (snapshot, TQs, questions); discovery after chunk 2 or 3. Also proposed to
   him: a tactics clean-up list (stale 24 to 61 match figures, lines contradicted by the 133-match rebuild, duplicate ids
   S31 and S32).
 - Found: data/model/usual_play.json still holds the 30-match readings; the current ones are only in
