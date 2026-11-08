@@ -151,6 +151,18 @@ engine change before the next run, then the commentary transcripts and step 3 (d
 - Denning's rulings (yes to all): node-model chains replace chain.py; discoveries approved as suggested; minimum-change
   rule added. Plus: runner speed now sets the minimum time to capture; who carries is a variable and a decision
   (runner_choice). Speed-up built (shards). METHODS.md "Runner speed, who carries ...". Rebuild started to test.
+- Readings (rebuild 42494559984, same in 42497408038): minimum capture time (runner speed) is now a strongly supported
+  link in run outcome, run defence and capture speed (the old raw runner_speed read backwards); part of it is where the
+  runner is, not only its speed (read at 5, 15, 30 s into the run). Snare skill counts supported on both run nodes;
+  the approved state variables supported on the fight node. Who carries (runner_choice, against the Mes/A-type
+  mesmer, the usual): warrior -2.7, elementalist -2.1, paragon -2.7 (clear), assassin -8.9 (clear but partly who
+  chooses it), monk -0.8, dervish -1.0 (not clear), ritualist +0.1, necromancer +1.1. runner_class inside the run nodes:
+  not clear yet.
+- Speed-up result (full rebuilds): shards 3 to 4 min, prepare 11 to 16 min, rows shards 2 min, parts 4 to 5 min (the
+  learned part fell from 13 to 4), finish 4: about 32 min either way, because prepare is now the long pole: the win
+  model's tables (5 min), cap tests, held-out fits and calibration (4 min) and the fight-state predictions for every
+  stored replay (5 min) all run on one machine. Proposed: a third shard round for the tables and fight-state, and 8
+  shards for the large pull.
 - Next (agreed order): the large pull (450+), chunked or not still to decide; then discovery and step 4 on it. Also proposed to
   him: a tactics clean-up list (stale 24 to 61 match figures, lines contradicted by the 133-match rebuild, duplicate ids
   S31 and S32).
