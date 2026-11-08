@@ -1,13 +1,13 @@
 {
  "node": "split_answer",
  "target": "P.11",
- "matches": 125,
- "rows": 453,
+ "matches": 157,
+ "rows": 553,
  "rate": null,
- "mean": -3.6,
+ "mean": -4.4,
  "validation": {
-  "glass box": 16.9659,
-  "simple baseline": 18.9117,
+  "glass box": 16.3192,
+  "simple baseline": 18.5986,
   "metric": "mean absolute error (s)",
   "verdict": "adds to the simple baseline"
  },
@@ -21,7 +21,7 @@
     "att_main",
     "split_diff"
    ],
-   "strength": -0.11,
+   "strength": 0.21,
    "plus_minus": 0.19,
    "status": "not clear yet"
   },
@@ -32,8 +32,8 @@
     "def_free",
     "nearest_to_base"
    ],
-   "strength": 0.69,
-   "plus_minus": 0.2,
+   "strength": 1.01,
+   "plus_minus": 0.3,
    "status": "supported"
   },
   {
@@ -42,8 +42,8 @@
    "features": [
     "size"
    ],
-   "strength": 1.02,
-   "plus_minus": 0.2,
+   "strength": 0.9,
+   "plus_minus": 0.22,
    "status": "supported"
   },
   {
@@ -52,8 +52,8 @@
    "features": [
     "minute"
    ],
-   "strength": -0.22,
-   "plus_minus": 0.12,
+   "strength": 0.05,
+   "plus_minus": 0.06,
    "status": "not clear yet"
   },
   {
@@ -62,8 +62,8 @@
    "features": [
     "strength_gap"
    ],
-   "strength": -0.08,
-   "plus_minus": 0.07,
+   "strength": 0.1,
+   "plus_minus": 0.08,
    "status": "not clear yet"
   }
  ],
@@ -71,615 +71,615 @@
   {
    "term": "size",
    "description": "split size",
-   "importance": 8.415,
+   "importance": 5.933,
    "curve": [
     {
      "from": 1.0,
      "to": 1.5,
-     "points": 16.7,
-     "plus_minus": 0.3
+     "points": 11.2,
+     "plus_minus": 2.0
     },
     {
      "from": 1.5,
      "to": 2.5,
-     "points": -1.1,
-     "plus_minus": 0.3
+     "points": -0.7,
+     "plus_minus": 0.7
     },
     {
      "from": 2.5,
      "to": 3.5,
-     "points": -7.0,
-     "plus_minus": 0.4
+     "points": -5.4,
+     "plus_minus": 1.4
     },
     {
      "from": 3.5,
      "to": 4.5,
-     "points": -8.3,
-     "plus_minus": 0.1
+     "points": -5.2,
+     "plus_minus": 0.5
     },
     {
      "from": 4.5,
      "to": 5.5,
-     "points": -9.8,
-     "plus_minus": 0.2
+     "points": -7.0,
+     "plus_minus": 0.3
     },
     {
      "from": 5.5,
      "to": 7.0,
-     "points": -13.7,
-     "plus_minus": 1.2
+     "points": -9.8,
+     "plus_minus": 1.6
     }
    ]
   },
   {
    "term": "nearest_to_base",
    "description": "nearest defender to its base at the split's entry",
-   "importance": 4.567,
+   "importance": 3.723,
    "curve": [
     {
      "from": 31.0,
-     "to": 451.5,
-     "points": 5.3,
-     "plus_minus": 0.5
+     "to": 482.0,
+     "points": 3.7,
+     "plus_minus": 1.6
     },
     {
-     "from": 451.5,
-     "to": 765.0,
-     "points": 4.1,
-     "plus_minus": 0.6
-    },
-    {
-     "from": 765.0,
-     "to": 1114.5,
-     "points": 4.2,
-     "plus_minus": 0.7
-    },
-    {
-     "from": 1114.5,
-     "to": 1386.5,
-     "points": 2.8,
-     "plus_minus": 0.9
-    },
-    {
-     "from": 1386.5,
-     "to": 1582.5,
-     "points": 0.4,
-     "plus_minus": 0.7
-    },
-    {
-     "from": 1582.5,
-     "to": 1795.0,
-     "points": -2.6,
-     "plus_minus": 0.6
-    },
-    {
-     "from": 1795.0,
-     "to": 2146.5,
-     "points": -4.6,
-     "plus_minus": 0.6
-    },
-    {
-     "from": 2146.5,
-     "to": 2644.0,
-     "points": -6.1,
-     "plus_minus": 0.6
-    },
-    {
-     "from": 2644.0,
-     "to": 3486.0,
-     "points": -6.2,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 3486.0,
-     "to": 4292.5,
-     "points": -5.5,
-     "plus_minus": 1.0
-    },
-    {
-     "from": 4292.5,
-     "to": 4839.5,
-     "points": -4.6,
-     "plus_minus": 1.2
-    },
-    {
-     "from": 4839.5,
-     "to": 5982.5,
-     "points": -3.2,
-     "plus_minus": 1.2
-    },
-    {
-     "from": 5982.5,
-     "to": 7194.0,
-     "points": 1.0,
-     "plus_minus": 1.8
-    },
-    {
-     "from": 7194.0,
-     "to": 13776.0,
-     "points": 13.4,
-     "plus_minus": 3.3
-    }
-   ]
-  },
-  {
-   "term": "strength_gap",
-   "description": "defending team's strength gap",
-   "importance": 1.934,
-   "curve": [
-    {
-     "from": -1059.0,
-     "to": -689.0,
-     "points": -2.9,
-     "plus_minus": 0.8
-    },
-    {
-     "from": -689.0,
-     "to": -530.0,
-     "points": -3.8,
-     "plus_minus": 0.8
-    },
-    {
-     "from": -530.0,
-     "to": -425.0,
-     "points": -1.8,
-     "plus_minus": 0.6
-    },
-    {
-     "from": -425.0,
-     "to": -335.5,
-     "points": -0.1,
-     "plus_minus": 0.5
-    },
-    {
-     "from": -335.5,
-     "to": -271.0,
-     "points": 2.0,
-     "plus_minus": 0.3
-    },
-    {
-     "from": -271.0,
-     "to": -89.0,
-     "points": 1.5,
-     "plus_minus": 0.3
-    },
-    {
-     "from": -89.0,
-     "to": -46.5,
-     "points": 0.7,
-     "plus_minus": 0.3
-    },
-    {
-     "from": -46.5,
-     "to": 0.0,
-     "points": 0.0,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 0.0,
-     "to": 42.5,
-     "points": 0.9,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 42.5,
-     "to": 99.0,
-     "points": 3.2,
+     "from": 482.0,
+     "to": 839.0,
+     "points": 2.3,
      "plus_minus": 1.1
     },
     {
-     "from": 99.0,
-     "to": 271.0,
-     "points": 3.0,
+     "from": 839.0,
+     "to": 1142.5,
+     "points": 1.8,
+     "plus_minus": 1.3
+    },
+    {
+     "from": 1142.5,
+     "to": 1401.5,
+     "points": 0.3,
      "plus_minus": 1.0
     },
     {
-     "from": 271.0,
-     "to": 378.0,
-     "points": 2.9,
+     "from": 1401.5,
+     "to": 1605.0,
+     "points": -1.4,
+     "plus_minus": 0.7
+    },
+    {
+     "from": 1605.0,
+     "to": 1919.5,
+     "points": -3.5,
+     "plus_minus": 1.0
+    },
+    {
+     "from": 1919.5,
+     "to": 2192.0,
+     "points": -4.7,
+     "plus_minus": 1.2
+    },
+    {
+     "from": 2192.0,
+     "to": 2715.0,
+     "points": -5.3,
+     "plus_minus": 1.6
+    },
+    {
+     "from": 2715.0,
+     "to": 3548.0,
+     "points": -4.9,
+     "plus_minus": 1.7
+    },
+    {
+     "from": 3548.0,
+     "to": 4378.0,
+     "points": -3.7,
+     "plus_minus": 1.4
+    },
+    {
+     "from": 4378.0,
+     "to": 5002.0,
+     "points": -2.5,
      "plus_minus": 0.9
     },
     {
-     "from": 378.0,
-     "to": 521.0,
-     "points": -1.4,
-     "plus_minus": 0.3
+     "from": 5002.0,
+     "to": 6145.5,
+     "points": -0.3,
+     "plus_minus": 0.6
     },
     {
-     "from": 521.0,
-     "to": 976.0,
-     "points": -2.7,
-     "plus_minus": 0.5
+     "from": 6145.5,
+     "to": 7293.0,
+     "points": 2.8,
+     "plus_minus": 0.7
+    },
+    {
+     "from": 7293.0,
+     "to": 13999.0,
+     "points": 14.1,
+     "plus_minus": 2.1
     }
    ]
   },
   {
    "term": "split_diff",
    "description": "players splitting, own minus enemy (discovery, approved)",
-   "importance": 1.783,
+   "importance": 1.691,
    "curve": [
     {
      "from": -6.0,
      "to": -5.5,
-     "points": -12.5,
-     "plus_minus": 4.8
+     "points": -4.7,
+     "plus_minus": 2.1
     },
     {
      "from": -5.5,
      "to": -4.5,
-     "points": -14.1,
-     "plus_minus": 3.6
+     "points": -7.6,
+     "plus_minus": 0.9
     },
     {
      "from": -4.5,
      "to": -3.5,
-     "points": -2.7,
-     "plus_minus": 1.0
+     "points": -2.4,
+     "plus_minus": 0.9
     },
     {
      "from": -3.5,
      "to": -2.5,
-     "points": -1.8,
-     "plus_minus": 0.4
+     "points": -2.1,
+     "plus_minus": 0.3
     },
     {
      "from": -2.5,
      "to": -1.5,
-     "points": -0.9,
-     "plus_minus": 0.5
+     "points": -1.2,
+     "plus_minus": 0.3
     },
     {
      "from": -1.5,
      "to": -0.5,
-     "points": 0.6,
-     "plus_minus": 0.1
+     "points": 0.5,
+     "plus_minus": 0.4
     },
     {
      "from": -0.5,
      "to": 0.5,
-     "points": 1.8,
-     "plus_minus": 0.5
+     "points": 1.2,
+     "plus_minus": 0.4
     },
     {
      "from": 0.5,
      "to": 1.5,
-     "points": -0.7,
-     "plus_minus": 0.7
+     "points": 1.7,
+     "plus_minus": 0.8
     },
     {
      "from": 1.5,
      "to": 2.5,
-     "points": 7.9,
-     "plus_minus": 0.9
+     "points": 7.5,
+     "plus_minus": 2.0
     },
     {
      "from": 2.5,
-     "to": 4.0,
-     "points": 10.1,
-     "plus_minus": 1.1
+     "to": 5.0,
+     "points": 9.0,
+     "plus_minus": 2.0
     }
    ]
   },
   {
    "term": "att_main",
    "description": "attackers' main",
-   "importance": 1.645,
+   "importance": 1.361,
    "curve": [
     {
      "from": 1.0,
      "to": 1.5,
-     "points": -1.1,
-     "plus_minus": 5.7
+     "points": -3.1,
+     "plus_minus": 5.5
     },
     {
      "from": 1.5,
      "to": 2.5,
-     "points": -5.4,
+     "points": -1.9,
      "plus_minus": 1.3
     },
     {
      "from": 2.5,
      "to": 3.5,
-     "points": -0.3,
-     "plus_minus": 0.2
+     "points": -0.5,
+     "plus_minus": 0.4
     },
     {
      "from": 3.5,
      "to": 4.5,
-     "points": 1.1,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 4.5,
-     "to": 5.5,
-     "points": -2.6,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 5.5,
-     "to": 6.5,
-     "points": 0.0,
-     "plus_minus": 0.7
-    },
-    {
-     "from": 6.5,
-     "to": 7.5,
-     "points": 2.6,
-     "plus_minus": 1.1
-    },
-    {
-     "from": 7.5,
-     "to": 8.0,
-     "points": 10.9,
-     "plus_minus": 1.7
-    }
-   ]
-  },
-  {
-   "term": "def_alive",
-   "description": "defenders alive",
-   "importance": 1.286,
-   "curve": [
-    {
-     "from": 0.0,
-     "to": 3.5,
-     "points": 8.3,
-     "plus_minus": 2.6
-    },
-    {
-     "from": 3.5,
-     "to": 4.5,
-     "points": -4.9,
-     "plus_minus": 2.8
-    },
-    {
-     "from": 4.5,
-     "to": 5.5,
-     "points": -3.0,
-     "plus_minus": 1.3
-    },
-    {
-     "from": 5.5,
-     "to": 6.5,
-     "points": -4.6,
+     "points": 0.5,
      "plus_minus": 0.8
     },
     {
+     "from": 4.5,
+     "to": 5.5,
+     "points": -1.9,
+     "plus_minus": 0.8
+    },
+    {
+     "from": 5.5,
+     "to": 6.5,
+     "points": -0.8,
+     "plus_minus": 1.2
+    },
+    {
      "from": 6.5,
      "to": 7.5,
-     "points": -2.4,
-     "plus_minus": 1.0
+     "points": 3.3,
+     "plus_minus": 0.7
     },
     {
      "from": 7.5,
      "to": 8.0,
-     "points": 0.6,
-     "plus_minus": 0.2
-    }
-   ]
-  },
-  {
-   "term": "minute",
-   "description": "minute",
-   "importance": 1.147,
-   "curve": [
-    {
-     "from": 0.5,
-     "to": 1.65,
-     "points": 1.6,
-     "plus_minus": 0.6
-    },
-    {
-     "from": 1.65,
-     "to": 2.95,
-     "points": -2.4,
-     "plus_minus": 0.6
-    },
-    {
-     "from": 2.95,
-     "to": 4.05,
-     "points": -0.4,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 4.05,
-     "to": 5.85,
-     "points": 0.0,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 5.85,
-     "to": 7.45,
-     "points": 1.8,
-     "plus_minus": 0.6
-    },
-    {
-     "from": 7.45,
-     "to": 9.05,
-     "points": 2.8,
-     "plus_minus": 0.6
-    },
-    {
-     "from": 9.05,
-     "to": 10.45,
-     "points": 1.3,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 10.45,
-     "to": 11.55,
-     "points": 0.1,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 11.55,
-     "to": 13.65,
-     "points": -0.1,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 13.65,
-     "to": 16.3,
-     "points": -0.2,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 16.3,
-     "to": 18.35,
-     "points": -1.1,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 18.35,
-     "to": 21.35,
-     "points": -1.4,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 21.35,
-     "to": 24.85,
-     "points": -2.2,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 24.85,
-     "to": 27.4,
-     "points": 0.3,
-     "plus_minus": 0.9
+     "points": 6.9,
+     "plus_minus": 3.6
     }
    ]
   },
   {
    "term": "flag_lead",
    "description": "defenders' flag lead (s)",
-   "importance": 1.04,
+   "importance": 0.824,
    "curve": [
     {
      "from": -80.0,
      "to": -63.5,
-     "points": 3.2,
-     "plus_minus": 1.0
+     "points": 2.5,
+     "plus_minus": 1.1
     },
     {
      "from": -63.5,
      "to": -56.5,
-     "points": 1.7,
-     "plus_minus": 0.8
+     "points": 1.4,
+     "plus_minus": 0.4
     },
     {
      "from": -56.5,
-     "to": -42.5,
-     "points": 1.3,
-     "plus_minus": 0.5
+     "to": -43.5,
+     "points": 1.1,
+     "plus_minus": 0.4
     },
     {
-     "from": -42.5,
+     "from": -43.5,
      "to": -35.5,
-     "points": 0.2,
-     "plus_minus": 0.2
+     "points": 0.1,
+     "plus_minus": 0.5
     },
     {
      "from": -35.5,
      "to": -24.5,
      "points": -0.2,
-     "plus_minus": 0.3
+     "plus_minus": 0.5
     },
     {
      "from": -24.5,
      "to": -9.5,
      "points": -0.1,
-     "plus_minus": 0.4
+     "plus_minus": 0.3
     },
     {
      "from": -9.5,
      "to": 1.5,
-     "points": -0.4,
-     "plus_minus": 0.5
+     "points": -0.2,
+     "plus_minus": 0.2
     },
     {
      "from": 1.5,
-     "to": 13.5,
-     "points": -0.6,
-     "plus_minus": 0.4
+     "to": 14.5,
+     "points": -0.5,
+     "plus_minus": 0.2
     },
     {
-     "from": 13.5,
-     "to": 23.5,
-     "points": -1.4,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 23.5,
-     "to": 35.5,
-     "points": -1.4,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 35.5,
-     "to": 45.5,
-     "points": -0.3,
+     "from": 14.5,
+     "to": 26.5,
+     "points": -1.2,
      "plus_minus": 0.5
     },
     {
-     "from": 45.5,
-     "to": 57.5,
-     "points": -0.8,
-     "plus_minus": 0.4
+     "from": 26.5,
+     "to": 36.5,
+     "points": -1.2,
+     "plus_minus": 0.5
     },
     {
-     "from": 57.5,
-     "to": 69.0,
-     "points": -1.7,
+     "from": 36.5,
+     "to": 50.5,
+     "points": -1.0,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 50.5,
+     "to": 56.5,
+     "points": -0.9,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 56.5,
+     "to": 66.5,
+     "points": -0.5,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 66.5,
+     "to": 80.0,
+     "points": 0.3,
+     "plus_minus": 0.9
+    }
+   ]
+  },
+  {
+   "term": "strength_gap",
+   "description": "defending team's strength gap",
+   "importance": 0.757,
+   "curve": [
+    {
+     "from": -1059.0,
+     "to": -657.0,
+     "points": -1.9,
+     "plus_minus": 0.3
+    },
+    {
+     "from": -657.0,
+     "to": -502.5,
+     "points": -1.8,
+     "plus_minus": 0.7
+    },
+    {
+     "from": -502.5,
+     "to": -416.5,
+     "points": -0.5,
+     "plus_minus": 0.3
+    },
+    {
+     "from": -416.5,
+     "to": -364.0,
+     "points": 0.1,
+     "plus_minus": 0.3
+    },
+    {
+     "from": -364.0,
+     "to": -274.5,
+     "points": 1.3,
+     "plus_minus": 0.7
+    },
+    {
+     "from": -274.5,
+     "to": -117.5,
+     "points": 1.0,
      "plus_minus": 0.6
     },
     {
-     "from": 69.0,
-     "to": 80.0,
-     "points": -0.6,
+     "from": -117.5,
+     "to": -75.5,
+     "points": 0.3,
+     "plus_minus": 0.3
+    },
+    {
+     "from": -75.5,
+     "to": -25.0,
+     "points": -0.1,
+     "plus_minus": 0.4
+    },
+    {
+     "from": -25.0,
+     "to": 36.5,
+     "points": 0.0,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 36.5,
+     "to": 81.5,
+     "points": 0.4,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 81.5,
+     "to": 215.0,
+     "points": 0.9,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 215.0,
+     "to": 378.0,
+     "points": 0.9,
+     "plus_minus": 0.5
+    },
+    {
+     "from": 378.0,
+     "to": 498.5,
+     "points": -0.7,
      "plus_minus": 0.8
+    },
+    {
+     "from": 498.5,
+     "to": 1108.0,
+     "points": 0.6,
+     "plus_minus": 0.8
+    }
+   ]
+  },
+  {
+   "term": "minute",
+   "description": "minute",
+   "importance": 0.686,
+   "curve": [
+    {
+     "from": 0.5,
+     "to": 1.55,
+     "points": 0.9,
+     "plus_minus": 0.8
+    },
+    {
+     "from": 1.55,
+     "to": 2.85,
+     "points": -1.6,
+     "plus_minus": 0.9
+    },
+    {
+     "from": 2.85,
+     "to": 3.85,
+     "points": -0.1,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 3.85,
+     "to": 5.45,
+     "points": -0.2,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 5.45,
+     "to": 6.85,
+     "points": 0.6,
+     "plus_minus": 0.6
+    },
+    {
+     "from": 6.85,
+     "to": 8.75,
+     "points": 1.5,
+     "plus_minus": 1.0
+    },
+    {
+     "from": 8.75,
+     "to": 10.05,
+     "points": 0.9,
+     "plus_minus": 0.7
+    },
+    {
+     "from": 10.05,
+     "to": 11.25,
+     "points": 0.3,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 11.25,
+     "to": 13.45,
+     "points": 0.3,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 13.45,
+     "to": 16.3,
+     "points": 0.3,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 16.3,
+     "to": 18.55,
+     "points": 0.0,
+     "plus_minus": 0.1
+    },
+    {
+     "from": 18.55,
+     "to": 21.45,
+     "points": -0.2,
+     "plus_minus": 0.0
+    },
+    {
+     "from": 21.45,
+     "to": 25.0,
+     "points": -1.1,
+     "plus_minus": 0.9
+    },
+    {
+     "from": 25.0,
+     "to": 27.4,
+     "points": -1.5,
+     "plus_minus": 1.6
     }
    ]
   },
   {
    "term": "def_free",
    "description": "defenders alive and not on flag duty",
-   "importance": 0.617,
+   "importance": 0.579,
    "curve": [
     {
      "from": 0.0,
      "to": 3.5,
-     "points": 7.4,
-     "plus_minus": 0.7
+     "points": 4.7,
+     "plus_minus": 0.9
     },
     {
      "from": 3.5,
      "to": 4.5,
-     "points": -2.7,
-     "plus_minus": 0.4
+     "points": -2.6,
+     "plus_minus": 1.4
     },
     {
      "from": 4.5,
      "to": 5.5,
-     "points": -0.8,
-     "plus_minus": 1.2
+     "points": -2.2,
+     "plus_minus": 0.4
     },
     {
      "from": 5.5,
      "to": 6.5,
-     "points": -1.5,
-     "plus_minus": 0.6
+     "points": -1.0,
+     "plus_minus": 0.4
     },
     {
      "from": 6.5,
      "to": 7.5,
-     "points": 0.5,
-     "plus_minus": 0.4
+     "points": 0.0,
+     "plus_minus": 0.1
     },
     {
      "from": 7.5,
      "to": 8.0,
-     "points": -0.1,
-     "plus_minus": 0.1
+     "points": 0.4,
+     "plus_minus": 0.2
+    }
+   ]
+  },
+  {
+   "term": "def_alive",
+   "description": "defenders alive",
+   "importance": 0.526,
+   "curve": [
+    {
+     "from": 0.0,
+     "to": 3.5,
+     "points": 8.6,
+     "plus_minus": 2.5
+    },
+    {
+     "from": 3.5,
+     "to": 4.5,
+     "points": 0.7,
+     "plus_minus": 1.8
+    },
+    {
+     "from": 4.5,
+     "to": 5.5,
+     "points": -0.3,
+     "plus_minus": 1.5
+    },
+    {
+     "from": 5.5,
+     "to": 6.5,
+     "points": -2.4,
+     "plus_minus": 1.3
+    },
+    {
+     "from": 6.5,
+     "to": 7.5,
+     "points": -1.7,
+     "plus_minus": 0.7
+    },
+    {
+     "from": 7.5,
+     "to": 8.0,
+     "points": 0.1,
+     "plus_minus": 0.3
     }
    ]
   }
