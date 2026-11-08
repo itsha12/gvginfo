@@ -1,6 +1,6 @@
 # GvG Info — handoff for a new Claude chat
 
-Last updated 2026-11-07 (portal sections unchanged since 2026-10-15; match replay analysis updated, session 4r). Attach this file (or just ask Claude to attach the repo) in a new chat, then say what you want.
+Last updated 2026-11-08 (portal sections unchanged since 2026-10-15; match replay analysis updated, session 4t). Attach this file (or just ask Claude to attach the repo) in a new chat, then say what you want.
 
 ## Start a new chat in one message
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md and docs/HANDOFF.md, then: <your request>
@@ -94,13 +94,10 @@ Claude should then:
 
 # Match replay analysis
 
-**Status:** Active. Last updated 2026-11-07 (session 4s: Denning's rulings on the batch 9 proposals built; full
-rebuild started with the Train batch workflow, add_batch no, rebuild_forensics yes; jobs may now run 3 hours).
-Previous update: session 4r. Building the learned causal map: steps 1 (event layer) and 2
-(data-valued wrong casts, nine learned node models with measured link strengths) done. Session 4r: the Train batch run
-is split across parallel GitHub jobs, and batch 9 (20 random matches, 15 from September and 5 from October) trained:
-133 matches. Next: Denning's rulings on the three pending proposals (3, 11, 14), then build the approved ones in one
-engine change before the next run, then the commentary transcripts and step 3 (discovery).
+**Status:** Active. Last updated 2026-11-08 (session 4t). The agreed order is down to its last item: the large pull,
+trained in chunks of 40 to 50 matches. 228 matches trained in 11 batches (chunk 2 of the large pull done); about five
+more chunks to reach 450+. Commentary (Bounty, Nick), discovery (step 3), node-model chains (step 4) and the speed-up
+are all built. Next: discovery (due now or after chunk 3), then chunk 3.
 
 ### Session 4t (2026-11-08)
 - Agreed order (Denning): 1) Bounty's and Nick's transcripts, then one engine change and one rebuild; 2) build and test
@@ -181,9 +178,15 @@ engine change before the next run, then the commentary transcripts and step 3 (d
   0.515; TQ 4 now has a chain). Collapse node: def_dps and split_dp supported. Runner choice: only assassin still clear.
   Collapsing still -4.2 clear. Raised with Denning: npc_damage_5s is the loss happening, not a fix (move to context?),
   and defenders_elsewhere should chain back to the fight before; test whether split_diff hurt the honest test.
-- Next: Denning's answers on chunk 2; discovery; chunk 3. Also proposed to
-  him: a tactics clean-up list (stale 24 to 61 match figures, lines contradicted by the 133-match rebuild, duplicate ids
-  S31 and S32).
+- Denning on chunk 2: disregard the three engine questions (npc_damage_5s as context, chaining defenders back to the
+  fight, testing split_diff), so TQ 4 will keep listing "no damage on the NPCs" as its top fix: read past it. Asked
+  what discovery is and what is left; told him the issues: single-batch findings move (act on results clear across 2
+  or 3 chunks; offered to mark them in the report), "partly who chooses it" readings are hints, the honest test dipped
+  once, the hold and collapse thresholds are Claude's definitions, NPC and Lord data gaps, mixed seasons, run time
+  growing (about 45 min a chunk). Open: whether to run discovery now or after chunk 3; whether to mark findings that
+  stay clear across chunks.
+- Next: discovery (Discovery workflow; held for Denning's approval), chunk 3 (Train batch, pick about 45, add_batch
+  yes), explain it (snapshot, TQs, questions), update this file.
 - Found: data/model/usual_play.json still holds the 30-match readings; the current ones are only in
   data/model/reports/latest.md (check whether the Train batch finish step should rewrite it).
 
@@ -318,15 +321,15 @@ engine change before the next run, then the commentary transcripts and step 3 (d
 
 ## Start the next chat with
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/HANDOFF.md (the "Match replay
-> analysis" section), knowledge/tactics.md and tools/replay_analysis/METHODS.md, then read the rebuild's learning
-> report (data/model/reports/latest.md) for the commentary bundle and explain it, then continue the agreed order. Read
-> knowledge/learned-model.md first for what the model has learned so far.
+> analysis" section, session 4t last), knowledge/tactics.md and tools/replay_analysis/METHODS.md, then continue the
+> large pull: run discovery if I say so, then the next chunk (Train batch, pick about 45), and explain it.
 
 Engine setup in the chat (needed for step 2): `git fetch --depth 1 origin +replays:refs/remotes/origin/replays`,
 `pip install --break-system-packages -r .github/workflows/train-requirements.txt`, then in tools/replay_analysis
 `cache.py sync pull`, `cache.py warm`, `analyze.py --all --out /tmp/ga`, `library.py build`. Training batches run on
-GitHub, not in the chat: the "Train batch" workflow (inputs pick, months, add_batch, note; about 11 minutes, 25 when the
-engine changed), then pull main and read data/model/reports/latest.md. Python that runs the fits in parallel needs an
+GitHub, not in the chat: the "Train batch" workflow (inputs pick, months, add_batch, note; about 45 minutes a chunk now,
+sharded across machines), dispatched with `gh api -X POST repos/itsha12/gvginfo/actions/workflows/train-batch.yml/dispatches
+-f ref=main -f 'inputs[pick]=45' -f 'inputs[add_batch]=yes'` (gh's GraphQL commands fail here), then pull main and read data/model/reports/latest.md. Python that runs the fits in parallel needs an
 `if __name__ == "__main__":` guard in ad hoc scripts.
 
 After each batch, answer the TQs (CLAUDE.md): flags, monk death, power play without a kill, NPCs lost; each with the
@@ -338,47 +341,26 @@ chains behind each result come from the data (including chains neither Denning n
 priced by carrying a change forward to the win chance. The causal chains must be reflected in the model, not only in
 the TQ reasoning.
 
-## Current state (commit 84b279c and later; 113 matches trained in 9 batches; 113 replays stored; match data to 2026-11-07)
-- Win model: glass box log loss 0.367 against 0.412 for strength alone (ahead, not yet clear). Corrections: Lord damage
-  curves capped at 5 points; healing-monk curves dropped (data/model_corrections.json).
-- Node models (nodes.py): deaths, kill conversion, flag answer, NPC loss, Lord damage, Lord kill.
-- Learned nodes (learnednodes.py, rows in lnrows.py; report section 6b; in words on knowledge/learned-model.md): run
-  outcome, flag swing, run defence, capture speed, power play, fight outcome, split chance, split answer, split effect,
-  collapse; data/model/nodes/L_<node>.json. Beat the simple baseline on unseen matches: run outcome, run defence, power
-  play, fight outcome, split chance, split answer, collapse. Not yet: flag swing, capture speed, split effect.
-- Causal map version 11: 61 nodes (new P.17 wrong casts, P.18 strips, P.19 Blind; P.5 covers hex removal), 241 links;
-  203 hypotheses, 18 supported, 20 formulas; every link a learned node uses carries its measured strength
-  ("measured"); link_log.json keeps every run's readings. Held for Denning: Blind on the enemy frontline -> fight
-  outcome (data says rejected; he ruled "wait for more matches"). Supported by data include run timing -> run outcome
-  and flag swing; numbers, enemy prots and healing -> power-play kills; strength, numbers, damage against the usual,
-  spike timing -> fight outcome; scoreboard -> split chance; collapse timing (the five readings together; none clear
-  alone yet) and split size -> collapse deaths. Pushing the runner: not clear yet over every run. Curious: a runner
-  Crippled by a given point of the run is more often captured (+16 points), even read at the same point; worth a
-  question for Denning. chain.py's chains are still hand-written rules (step 4 replaces them).
-- Step 1 and 2a built: eventlayer.py (cached per match) with strips (judged against every enchantment in range),
-  hex removals (against every hex in range; how long the removed hex was on), Blinds, hexes, peel, wrong casts, damage
-  against the role's usual, spikes, runs (control and damage times), splits, power plays, captures. Values from data:
-  data/benchmarks/eventlayer_values.json. Findings: data/model/reports/measures.md.
-- Benchmarks to rebuild after new replays, in this order, and commit before a batch: `benchmarks.py spawns`, then
-  `benchmarks.py carry`.
-- Run time (rebuild of the 113 matches, session 4q): usual x64 machines vary by processor. The faster AMD EPYC 9V45
-  took about 8 min for the report (about 11 min whole run, an estimate); the slower AMD EPYC 7763 took 16 min (20 min
-  whole run). arm64 (ubuntu-24.04-arm, tested at Denning's request) was slowest: 23 min report, 27 min whole run (the
-  older node models section took 10 min against 4.4), so keep "ubuntu-latest" (the workflow's "runner" input). Splitting
-  the run into parallel jobs is the way to speed it up if Denning wants (step 2 below).
+## Current state (2026-11-08; 228 matches trained in 11 batches)
+- Win model: glass box log loss 0.345 against 0.439 for strength alone (clear: gain +0.094, range +0.02 to +0.158);
+  85% of winners picked on unseen matches. Batch 10 was 0.314 (first clear result). split_diff moved in after batch 10.
+- Learned nodes (11): run outcome, flag swing, run defence, capture speed, power play, fight outcome, split chance,
+  split answer, split effect, collapse, pit NPC loss (new). All beat their simple baselines.
+- Step 4 (causalchain.py) replaces chain.py in the TQs; TQ 4 now starts from the pit NPC loss node.
+- Step 3 (discover.py, "Discovery" workflow) last run at 144 matches; approved discoveries are in lnrows.APPROVED.
+- Holds (common.is_hold) kept out of run measures; runner choice: only assassin still clearly worse than a mesmer.
+- Collapse: still -4.2 against defending without one (clear); whether it kills depends on the defenders' damage and
+  the split's death penalty (both supported). Collapses that don't kill average -5.5, those that kill +3.5.
+- Values: death -7.7, knight -6.7, Bodyguard -4.6, archer -3.7, capture +1.9, boost +5.1 (clear); overcap within 10 s
+  +0.4 (not clear).
 
 ## Next steps (in order)
-1. Commentary: Bounty's done (session 4t); Nick's one next (Denning attaches it; METHODS.md "Commentary and comms"),
-   then one engine change for both and a rebuild. The variables they suggest can become new links in the learned nodes (features in
-   lnrows.py, groups in learnednodes.py SPEC), so step 3 tests them too.
-2. Done (session 4r): Train batch split into parallel jobs. Next speed-up if wanted: prepare's per-match data.
-3. Step 3: discovery: every measured variable tested against every node on unseen matches, in its own workflow split
-   across several GitHub machines (Denning approved; public repo, no charge). Links it finds are held for Denning's
-   approval, never added automatically.
-4. Step 4: chains generated from the node models (replacing chain.py's rules; `learnednodes.whatif` reads a node with
-   features changed) and fixes priced by carrying the change forward; the late split answer gets its value this way.
-5. More batches of 20 to 30 matches from October and November; most links read "not clear yet" at 113 matches.
-   Consider the larger pull (450+) now that step 2 is built (Denning to decide).
+1. Discovery on the 228 matches (or after chunk 3, Denning to say); findings held for his approval.
+2. Large pull: about five more chunks of 40 to 50 (Train batch, pick about 45, add_batch yes); after each, the
+   snapshot across the learnings, the four TQs and questions for Denning; his answers built as one engine change
+   before the next chunk; update this file.
+3. Discovery every couple of chunks; then discovery and step 4 on the full set.
+4. Open: data/model/usual_play.json still holds old readings (current ones only in the report).
 
 ## Decisions made (session 4q)
 Denning: the right strip target and the right hexes to remove are valued from data, not a list; steps 2a and 2b
