@@ -209,25 +209,30 @@ Causes tested:
 
 Causes tested:
 - **Collapse timing**: **supported**: it clearly helps predict matches the model never saw.
-  - defenders arriving within 10 s of the first (arrival spread): at 0 to 0.5: -12.3 points; at 7.5 to 8: +19.1 points
-  - seconds from the split's first hit on an NPC to the first defender's arrival: at -1537.9 to -234.4: -5.2 points; at 16.8 to 194.5: +15.2 points
-  - seconds to the next res when the first defender arrived: at 5 to 12.5: +0.5 points; at 117.5 to 120: +5.6 points
-  - tested alone, defenders arriving within 10 s of the first (arrival spread): supported
+  - defenders arriving within 10 s of the first (arrival spread): at 0 to 0.5: -10.6 points; at 7.5 to 8: +18 points
+  - seconds from the split's first hit on an NPC to the first defender's arrival: at -1537.9 to -234.4: -2.8 points; at 16.8 to 194.5: +9.5 points
+  - seconds to the next res when the first defender arrived: at 5 to 12.5: -0.6 points; at 117.5 to 120: +3.2 points
+  - tested alone, defenders arriving within 10 s of the first (arrival spread): not clear yet
   - tested alone, defenders arriving within 5 s of the first, minus the split's size (numbers at contact): not clear yet
-  - tested alone, seconds from the split's first hit on an NPC to the first defender's arrival: supported
-  - tested alone, seconds to the next res when the first defender arrived: supported
+  - tested alone, seconds from the split's first hit on an NPC to the first defender's arrival: not clear yet
+  - tested alone, seconds to the next res when the first defender arrived: not clear yet
 - **Build features**: **supported**: it clearly helps predict matches the model never saw.
-  - snares on the defending team's bars: at 0 to 0.5: -1.4 points; at 12.5 to 14: +33.2 points
-  - speed skills on the splitting team's bars: at 1 to 2.5: +7.8 points; at 9.5 to 10: -3.3 points
-- **Split answer**: **supported**: it clearly helps predict matches the model never saw.
-  - seconds until the first defender arrived (60 = never): at -30 to -29.5: +8.8 points; at 59 to 60: -6 points
+  - snares on the defending team's bars: at 0 to 0.5: -2.4 points; at 12.5 to 14: +31.5 points
+  - speed skills on the splitting team's bars: at 1 to 2.5: +8.8 points; at 9.5 to 10: -2.3 points
 - **Allocation**: not clear yet: more matches needed.
-  - own main minus enemy main meanwhile: at -6 to -2.25: +10 points; at 1.95 to 6.2: -20.9 points
-  - split size: at 1 to 1.5: -3.8 points; at 5.5 to 7: +10.5 points
+  - own main minus enemy main meanwhile: at -6 to -2.25: +8 points; at 1.95 to 6.2: -20.2 points
+  - split size: at 1 to 1.5: -3.3 points; at 5.5 to 7: +9.1 points
 - **Team strength**: not clear yet: more matches needed.
-  - splitting team's strength gap: at -989 to -547: -3.4 points; at 607.5 to 989: -1.4 points
-- **Mobility**: not clear yet: more matches needed.
-  - split members' speed skills off recharge when the first defender arrived: at 0 to 0.5: -2.8 points; at 5.5 to 7: +7.5 points
+  - splitting team's strength gap: at -989 to -547: +0.7 points; at 607.5 to 989: -1.7 points
+- **Split answer**: not clear yet: more matches needed.
+  - seconds until the first defender arrived (60 = never): at -30 to -29.5: +7 points; at 59 to 60: -4.5 points
+- **Split depth**: not clear yet: more matches needed.
+  - nearest split member's distance to the defending pit when the first defender arrived: at 0 to 1006: +6.5 points; at 8976 to 12302: +3.9 points
+  - nearest split member's median distance to the defending pit over the split: at 0 to 765: +8.3 points; at 8262.5 to 11011: -4.8 points
+  - tested alone, nearest split member's distance to the defending pit when the first defender arrived: not clear yet
+  - tested alone, nearest split member's median distance to the defending pit over the split: not clear yet
+- **Mobility**: **rejected for now**: leaving it out predicts unseen matches slightly better.
+  - split members' speed skills off recharge when the first defender arrived: at 0 to 0.5: -2.5 points; at 5.5 to 7: +7.1 points
 
 ## Values measured from the data
 

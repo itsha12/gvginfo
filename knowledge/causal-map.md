@@ -212,6 +212,9 @@ Blind on the enemy frontline, and on players hitting own healers (defensive). *M
 Caused by:
 - **Build features**: Blind comes from the Blind skills on own bars (Claude; hypothesis)
 
+### Split depth `P.20`
+how deep a split plays in the enemy base: its nearest member's distance to the defending pit. *Measured: lnrows.py collapse rows.*
+
 ## Capacities (what a group can do in its fight)
 
 ### Pressure `K.1`
@@ -344,8 +347,8 @@ Caused by:
 players killed, with cause (fights.assess). *Measured: deaths.*
 
 Caused by:
-- **Mobility, Kiting and spacing**: a splitting ranger dies to snares or a fast collapse, an escape on recharge or interrupted, going too deep into knights and Lord, or staying after a second defender arrives (Claude, confirmed; hypothesis; `J4`)
-- **Split answer**: a splitting ranger dies to snares or a fast collapse, an escape on recharge or interrupted, going too deep into knights and Lord, or staying after a second defender arrives (Claude, confirmed; supported; `J4`)
+- **Mobility**: a splitting ranger dies to snares or a fast collapse, an escape on recharge or interrupted, going too deep into knights and Lord, or staying after a second defender arrives (Claude, confirmed; rejected; `J4`)
+- **Kiting and spacing, Split answer**: a splitting ranger dies to snares or a fast collapse, an escape on recharge or interrupted, going too deep into knights and Lord, or staying after a second defender arrives (Claude, confirmed; hypothesis; `J4`)
 - **Res timing**: good teams wait for their dead to return before fighting (Denning; hypothesis; `J8`)
 - **Prot timing, Health ceiling, Heal targeting, Monk uptime, Kiting and spacing**: a team heals a lot but still loses a player when heals arrive instead of prots, the health ceiling is low (DP, Deep Wound), healing goes elsewhere, heals are late or interrupted, or the victim can't kite (Claude; hypothesis; `M17`)
 - **Health ceiling**: death penalty stacking against a spike team makes every later spike easier (Denning; hypothesis; `K4`)
@@ -357,14 +360,16 @@ Caused by:
 - **Build features**: a snare on the split defender makes a collapse on a lone attacker much more likely to kill (Denning; supported)
 - **Allocation**: a split outnumbered at the point of contact dies (Claude; hypothesis)
 - **Team strength**: stronger teams play better at everything; kept in every model so play isn't confused with strength (Claude; hypothesis)
+- **Split depth**: the deeper the splitters are in the base (nearer the pit), the more likely they die to a collapse (Denning; hypothesis)
 
 Measured on unseen matches (learnednodes.py; gain = how much worse the node predicts without the link):
-- Collapse timing (`P.9`), collapse node: gain +0.0145 (+/- 0.0033, log loss), supported, 120 matches
-- Build features (`C.builds`), collapse node: gain +0.0083 (+/- 0.0028, log loss), supported, 120 matches
-- Split answer (`P.11`), collapse node: gain +0.0041 (+/- 0.002, log loss), supported, 120 matches
-- Allocation (`A.allocation`), collapse node: gain +0.0041 (+/- 0.0027, log loss), not clear yet, 120 matches
-- Team strength (`C.strength`), collapse node: gain +0.0036 (+/- 0.0021, log loss), not clear yet, 120 matches
-- Mobility (`K.13`), collapse node: gain -0.0003 (+/- 0.0017, log loss), not clear yet, 120 matches
+- Collapse timing (`P.9`), collapse node: gain +0.0102 (+/- 0.0048, log loss), supported, 120 matches
+- Build features (`C.builds`), collapse node: gain +0.0047 (+/- 0.002, log loss), supported, 120 matches
+- Allocation (`A.allocation`), collapse node: gain +0.0029 (+/- 0.0016, log loss), not clear yet, 120 matches
+- Team strength (`C.strength`), collapse node: gain +0.0018 (+/- 0.0029, log loss), not clear yet, 120 matches
+- Split answer (`P.11`), collapse node: gain +0.0011 (+/- 0.0023, log loss), not clear yet, 120 matches
+- Split depth (`P.20`), collapse node: gain -0.0004 (+/- 0.0038, log loss), not clear yet, 120 matches
+- Mobility (`K.13`), collapse node: gain -0.0033 (+/- 0.0013, log loss), rejected, 120 matches
 
 ### Wipes `R.2`
 fights where 3+ players or 2+ monks die. *Measured: fights.*
@@ -614,3 +619,7 @@ Caused by:
 - 2026-11-08: link P.14 -> K.4: supported -> hypothesis by data (power_play not clear yet +0.0066) (data)
 - 2026-11-08: link K.11 -> R.3: hypothesis -> supported by data (run_outcome not clear yet +0.0002, capture_speed supported +0.12) (data)
 - 2026-11-08: link R.1 -> R.3: hypothesis -> supported by data (flag_swing supported +0.05) (data)
+- 2026-11-08: node P.20 Split depth added (step 2b: lnrows.py collapse rows) (Claude, from Denning's list)
+- 2026-11-08: link P.20 -> R.1 added as a hypothesis (node collapse): the deeper the splitters are in the base (nearer the pit), the more likely they die to a collapse (Denning)
+- 2026-11-08: link K.13 -> R.1: hypothesis -> rejected by data (collapse rejected -0.0033) (data)
+- 2026-11-08: link P.11 -> R.1: supported -> hypothesis by data (collapse not clear yet +0.0011) (data)
