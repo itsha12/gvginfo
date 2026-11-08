@@ -123,8 +123,18 @@ engine change before the next run, then the commentary transcripts and step 3 (d
 - Engine change built (Denning said go): snare and speed power (movepower.py) in the run, collapse, split effect and
   split chance nodes and in the run or hold decisions; the new split_or_stay decision; healer focus in the power-play
   and fight nodes; instant overcaps priced; Return not a snare (METHODS.md "Commentary and comms", "Built"). Rebuild
-  started on GitHub (Train batch, add_batch no). The 11 replays not yet in a batch (BcS v Crew, Nick's four and others)
-  go into the next batch. Also proposed to
+  run on GitHub (Train batch, add_batch no; run 42454350473, all jobs passed, about 30 min). The 11 replays not yet in a
+  batch (BcS v Crew, Nick's four and others) go into the next batch.
+- Rebuild readings (133 matches): glass box 0.375 against 0.463 (unchanged). Collapse node: defenders' snare power is
+  its strongest input (splitters die about 5 points less often with weak snares, about 21 more with the strongest),
+  link K.11 -> R.1 +0.0066 +/- 0.0036, just short of clear. Runner speed reads backwards (fast runners captured less,
+  about -13 points at the top; capture slower by about 7 s): to check (selection, or speed skills used to escape rather
+  than run). Healer focus: not clear in fights or power plays. Snare matchup in the decisions (raw, thirds): against a
+  lot of enemy snare, not running and falling back at the boost clock -5.9, holding and fighting at an enemy pickup -6.0,
+  running and falling back -5.0. split_or_stay: splitting +0.3 overall (not clear); +0.7 against little enemy snare,
+  -0.8 against a lot; by map Solitude +2.7, Corrupted +1.9, Weeping Stone -1.8, Druid's -2.2. Captures overcapped
+  within 10 s -3.6 (not clear) against +2.4 for captures held longer (clear).
+- Next (agreed order): step 2, build and test discovery (step 3) and chains (step 4) on the current matches. Also proposed to
   him: a tactics clean-up list (stale 24 to 61 match figures, lines contradicted by the 133-match rebuild, duplicate ids
   S31 and S32).
 - Found: data/model/usual_play.json still holds the 30-match readings; the current ones are only in
