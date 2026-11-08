@@ -249,6 +249,23 @@ def shard_rows(k, n, jobs=None):
     print(f"rows shard {k} of {n}: {len(mine)} matches x {len(LN.SPEC)} nodes in {time.time() - t:.0f} s ({bad} failures)")
 
 
+def shard_tables(k, jobs=None):
+    """The speed-up's third round: the fight-state predictions for one group of trained matches (k = 0 to
+    fightstate.FOLDS - 1) and those matches' win-model tables and value events, which read them; k = "extra" builds the
+    predictions for the stored replays outside the training set. prepare then finds them built."""
+    from multiprocessing import Pool
+    import fightstate
+    ids = _ids(); t = time.time()
+    if k == "extra":
+        allr = list(json.loads(subprocess.check_output(["git", "-C", REPO, "show", "origin/replays:index.json"]))["matches"])
+        fightstate.build_extra(ids, [x for x in allr if x not in ids])
+        print(f"fight state for replays outside the training set in {time.time() - t:.0f} s"); return
+    g = fightstate.build_group(ids, int(k))
+    with Pool(jobs or os.cpu_count() or 2) as p:
+        for _ in p.imap_unordered(_table_one, g): pass
+    print(f"tables shard {k}: {len(g)} matches in {time.time() - t:.0f} s")
+
+
 # ---- keeping prepared data between sessions (branch `cache`, one tarball per code version and kind)
 def sync(direction):
     work = _path("branch", ".keep"); work = os.path.dirname(work)
@@ -323,6 +340,7 @@ if __name__ == "__main__":
     elif a[:1] == ["info"]: info()
     elif a[:1] == ["shard"]: shard(int(a[1]), int(a[2]))
     elif a[:1] == ["shard_rows"]: shard_rows(int(a[1]), int(a[2]))
+    elif a[:1] == ["shard_tables"]: shard_tables(a[1])
     elif a[:1] == ["clear"]:
         what = a[1] if len(a) > 1 else "all"
         for d in (["fits", "prepared"] if what == "all" else [what]): shutil.rmtree(os.path.join(ROOT, d), ignore_errors=True)

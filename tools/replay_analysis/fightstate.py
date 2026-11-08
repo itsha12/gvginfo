@@ -80,6 +80,29 @@ def build(ids, extra=()):
         for rid in extra: rows = N.node_rows("deaths_all", rid); _save(rid, rows, _predict(models[-1], rows, cols[-1]))
 
 
+def build_group(ids, k):
+    """One group's predictions only (the speed-up: each group on its own machine). Same fit as build()."""
+    import nodes as N
+    ids = list(ids); os.makedirs(_dir(), exist_ok=True)
+    g = ids[k::FOLDS]
+    if not g or all(os.path.exists(os.path.join(_dir(), r + ".json")) for r in g): return g
+    df, X, y, gg, w = N._frame("deaths", [x for x in ids if x not in g])
+    e = _fit_job((X, y, w, gg.nunique())); c = list(X.columns)
+    for rid in g: rows = N.node_rows("deaths_all", rid); _save(rid, rows, _predict(e, rows, c))
+    return g
+
+
+def build_extra(ids, extra):
+    """The stored replays outside the training set, from a model on every trained match (the speed-up's last job)."""
+    import nodes as N
+    ids = list(ids); os.makedirs(_dir(), exist_ok=True)
+    extra = [r for r in extra if not os.path.exists(os.path.join(_dir(), r + ".json"))]
+    if not extra: return
+    df, X, y, gg, w = N._frame("deaths", ids)
+    e = _fit_job((X, y, w, gg.nunique())); c = list(X.columns)
+    for rid in extra: rows = N.node_rows("deaths_all", rid); _save(rid, rows, _predict(e, rows, c))
+
+
 _C = {}
 def expected(rid, t):
     if rid not in _C:

@@ -163,7 +163,12 @@ engine change before the next run, then the commentary transcripts and step 3 (d
   model's tables (5 min), cap tests, held-out fits and calibration (4 min) and the fight-state predictions for every
   stored replay (5 min) all run on one machine. Proposed: a third shard round for the tables and fight-state, and 8
   shards for the large pull.
-- Next (agreed order): the large pull (450+), chunked or not still to decide; then discovery and step 4 on it. Also proposed to
+- Denning: build the speed-ups (done: 8 shards, a tables round for fight state and win-model tables, 8 rows jobs);
+  train the large pull in chunks of 40 to 50 matches, each with a learning report and the TQs.
+- Large pull, chunk 1 started: Train batch with pick 35 (any month) plus the 11 stored replays not yet trained (BcS v
+  Crew, Nick's four, others) = about 46 matches; also the first run of the full sharded workflow.
+- Next: explain chunk 1 (snapshot across the learnings, the TQs), then further chunks of 40 to 50; discovery after
+  every few chunks. Also proposed to
   him: a tactics clean-up list (stale 24 to 61 match figures, lines contradicted by the 133-match rebuild, duplicate ids
   S31 and S32).
 - Found: data/model/usual_play.json still holds the 30-match readings; the current ones are only in

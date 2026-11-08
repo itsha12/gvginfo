@@ -5,9 +5,10 @@ name: Train batch
 # batch, rebuilds the analysis and the held-out models (from the prepared data saved on the "cache" branch), writes
 # the learning report, saves the cache back and commits the results to main. Claude then reads
 # data/model/reports/latest.md and explains it. Started by hand (Actions tab, or Claude with gh api).
-# Split across machines for speed (free on a public repo): "fetch" picks, fetches and adds the batch; four "shard" jobs
-# build every match's own prepared data side by side (cache.py shard: analysis, node rows, event-layer records);
-# "prepare" merges them, analyses (now cache hits) and warms the held-out models; four "rows" jobs build the learned
+# Split across machines for speed (free on a public repo): "fetch" picks, fetches and adds the batch; eight "shard" jobs
+# build every match's own prepared data side by side (cache.py shard: analysis, node rows, event-layer records); seven
+# "tables" jobs build the fight-state predictions by group and those matches' win-model tables (cache.py shard_tables);
+# "prepare" merges them, analyses (now cache hits) and warms the held-out models; eight "rows" jobs build the learned
 # nodes' rows (cache.py shard_rows); six "part" jobs then build the
 # report's heavy sections side by side (learning.py part ...);
 # "finish" joins them, runs values, the TQs and the snapshot (learning.py finish), saves the cache and commits.
@@ -121,7 +122,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        k: [0, 1, 2, 3]
+        k: [0, 1, 2, 3, 4, 5, 6, 7]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -148,7 +149,7 @@ jobs:
         working-directory: tools/replay_analysis
         run: |
           touch /tmp/marker && sleep 1
-          python3 cache.py shard ${{ matrix.k }} 4
+          python3 cache.py shard ${{ matrix.k }} 8
       - name: Pack this shard
         run: |
           mkdir -p /tmp/shard
@@ -162,8 +163,61 @@ jobs:
           retention-days: 1
           compression-level: 0
 
-  prepare:
+  # third round: the fight-state predictions by group (fightstate.FOLDS groups, plus the replays outside the training set)
+  # and each group's win-model tables and value events, which read them
+  tables:
     needs: shard
+    runs-on: ${{ github.event.inputs.runner || 'ubuntu-latest' }}
+    timeout-minutes: 180
+    strategy:
+      fail-fast: true
+      matrix:
+        k: ["0", "1", "2", "3", "4", "5", "extra"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: .github/workflows/train-requirements.txt
+      - name: Install the model libraries
+        run: nproc && pip install -r .github/workflows/train-requirements.txt
+      - uses: actions/download-artifact@v4
+        with:
+          name: fetch
+          path: /tmp/fetch
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: shard-*
+          path: /tmp/shards
+          merge-multiple: true
+      - name: Restore the batch and the shards
+        run: |
+          git config --global user.name "gvginfo-bot"
+          git config --global user.email "gvginfo-bot@users.noreply.github.com"
+          git fetch --depth 1 origin +replays:refs/remotes/origin/replays
+          [ -s /tmp/fetch/fetch.patch ] && git apply --binary /tmp/fetch/fetch.patch || true
+          ( cd tools/replay_analysis && python3 cache.py sync pull )
+          for t in /tmp/shards/*.tgz; do tar -xzf "$t" -C /; done
+          touch /tmp/marker && sleep 1
+      - name: Build this group's fight state and tables
+        working-directory: tools/replay_analysis
+        run: python3 cache.py shard_tables ${{ matrix.k }}
+      - name: Pack this group
+        run: |
+          mkdir -p /tmp/tables
+          cd / && find "${HOME#/}/.cache/gvginfo" -type f -newer /tmp/marker > /tmp/newfiles.txt
+          wc -l /tmp/newfiles.txt
+          tar -czf /tmp/tables/tables-${{ matrix.k }}.tgz -C / -T /tmp/newfiles.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: tables-${{ matrix.k }}
+          path: /tmp/tables
+          retention-days: 1
+          compression-level: 0
+
+  prepare:
+    needs: tables
     runs-on: ${{ github.event.inputs.runner || 'ubuntu-latest' }}
     timeout-minutes: 180
     steps:
@@ -184,6 +238,11 @@ jobs:
           pattern: shard-*
           path: /tmp/shards
           merge-multiple: true
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: tables-*
+          path: /tmp/tables
+          merge-multiple: true
       - name: Restore the batch
         run: |
           git config --global user.name "gvginfo-bot"
@@ -194,7 +253,7 @@ jobs:
         working-directory: tools/replay_analysis
         run: |
           python3 cache.py sync pull
-          for t in /tmp/shards/*.tgz; do tar -xzf "$t" -C /; done
+          for t in /tmp/shards/*.tgz /tmp/tables/*.tgz; do tar -xzf "$t" -C /; done
       - name: Rebuild the forensics benchmarks
         if: ${{ github.event.inputs.rebuild_forensics == 'yes' }}
         working-directory: tools/replay_analysis
@@ -230,7 +289,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        k: [0, 1, 2, 3]
+        k: [0, 1, 2, 3, 4, 5, 6, 7]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -254,7 +313,7 @@ jobs:
           touch /tmp/marker && sleep 1
       - name: Build this shard's learned-node rows
         working-directory: tools/replay_analysis
-        run: python3 cache.py shard_rows ${{ matrix.k }} 4
+        run: python3 cache.py shard_rows ${{ matrix.k }} 8
       - name: Pack this shard
         run: |
           mkdir -p /tmp/rows

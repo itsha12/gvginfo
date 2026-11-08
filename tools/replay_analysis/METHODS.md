@@ -838,6 +838,12 @@ changing status only after two batches in a row, declined: links keep changing s
   finish. First sharded run (full rebuild, before the rows shards): shards 2 to 4 min, prepare 11 min (9 of them the
   win model's tables, held-out fits and calibration), the learned part 13 min (rebuilding every node's rows on one
   machine, slowed by recomputing each bar's powers per row: now memoized), finish 3 min; 32 min in all.
+  Second run (with the rows shards): learned part 13 -> 4 min, but prepare 16 min (tables 5, cap tests, held-out fits
+  and calibration 4, fight-state predictions for every stored replay 5) became the long pole. Third round (Denning,
+  before the large pull): seven "tables" jobs (cache.py shard_tables: the fight-state predictions for one of the six
+  groups and that group's win-model tables and value events; "extra" = the stored replays outside the training set,
+  fightstate.build_group / build_extra, the same fits as build) between the shards and prepare; shards and rows jobs
+  now 8 machines each.
 
 ## Flag position (Denning, tactics `F1` to `F4`)
 - Up on flags = the better position to get a boost and to run, not the team that capped last.
