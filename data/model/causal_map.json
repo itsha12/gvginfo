@@ -542,11 +542,11 @@
    "measured": {
     "power_play": {
      "node": "power_play",
-     "strength": 0.0357,
-     "plus_minus": 0.0084,
+     "strength": 0.0338,
+     "plus_minus": 0.0074,
      "status": "supported",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "dps_v_usual"
      ],
@@ -568,11 +568,11 @@
    "measured": {
     "power_play": {
      "node": "power_play",
-     "strength": 0.0031,
-     "plus_minus": 0.0042,
+     "strength": 0.0,
+     "plus_minus": 0.0085,
      "status": "not clear yet",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "spikes_10s",
       "spike_spread"
@@ -598,25 +598,24 @@
    "why": "a 5v3 fails to convert when its heads hide few damage dealers against healers, its damage is shut down, its bursts don't line up, the 3 kite to their pit or NPCs, or it doesn't commit",
    "source": "Claude",
    "confirmed_by_denning": true,
-   "status": "supported",
+   "status": "hypothesis",
    "tactics": [
     "J3"
    ],
    "measured": {
     "power_play": {
      "node": "power_play",
-     "strength": 0.0089,
-     "plus_minus": 0.004,
-     "status": "supported",
+     "strength": 0.0033,
+     "plus_minus": 0.0034,
+     "status": "not clear yet",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "pushed"
      ],
      "date": "2026-11-08"
     }
-   },
-   "status_by": "data"
+   }
   },
   {
    "from": "A.allocation",
@@ -635,18 +634,18 @@
    "why": "a splitting ranger dies to snares or a fast collapse, an escape on recharge or interrupted, going too deep into knights and Lord, or staying after a second defender arrives",
    "source": "Claude",
    "confirmed_by_denning": true,
-   "status": "hypothesis",
+   "status": "rejected",
    "tactics": [
     "J4"
    ],
    "measured": {
     "collapse": {
      "node": "collapse",
-     "strength": -0.0005,
-     "plus_minus": 0.0023,
-     "status": "not clear yet",
+     "strength": -0.0033,
+     "plus_minus": 0.0009,
+     "status": "rejected",
      "metric": "log loss",
-     "matches": 120,
+     "matches": 164,
      "features": [
       "escape_ready",
       "split_speed_power",
@@ -654,7 +653,8 @@
      ],
      "date": "2026-11-08"
     }
-   }
+   },
+   "status_by": "data"
   },
   {
    "from": "P.8",
@@ -673,24 +673,25 @@
    "why": "a splitting ranger dies to snares or a fast collapse, an escape on recharge or interrupted, going too deep into knights and Lord, or staying after a second defender arrives",
    "source": "Claude",
    "confirmed_by_denning": true,
-   "status": "hypothesis",
+   "status": "rejected",
    "tactics": [
     "J4"
    ],
    "measured": {
     "collapse": {
      "node": "collapse",
-     "strength": -0.001,
-     "plus_minus": 0.0014,
-     "status": "not clear yet",
+     "strength": -0.0014,
+     "plus_minus": 0.0007,
+     "status": "rejected",
      "metric": "log loss",
-     "matches": 120,
+     "matches": 164,
      "features": [
       "latency"
      ],
      "date": "2026-11-08"
     }
-   }
+   },
+   "status_by": "data"
   },
   {
    "from": "R.3",
@@ -705,11 +706,11 @@
    "measured": {
     "power_play": {
      "node": "power_play",
-     "strength": -0.0003,
-     "plus_minus": 0.0011,
+     "strength": 0.0002,
+     "plus_minus": 0.0013,
      "status": "not clear yet",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "flag_lead"
      ],
@@ -774,11 +775,11 @@
    "measured": {
     "power_play": {
      "node": "power_play",
-     "strength": -0.0011,
-     "plus_minus": 0.0018,
+     "strength": -0.0006,
+     "plus_minus": 0.0014,
      "status": "not clear yet",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "blind_secs_on_own_10s"
      ],
@@ -792,26 +793,25 @@
    "why": "a team can't kill because of the enemy's defence (prots, blocks), shutdown of its spikers (interrupts, knockdowns, Blind, strips) or spread damage",
    "source": "Claude",
    "confirmed_by_denning": true,
-   "status": "supported",
+   "status": "hypothesis",
    "tactics": [
     "K12"
    ],
    "measured": {
     "power_play": {
      "node": "power_play",
-     "strength": 0.009,
-     "plus_minus": 0.0034,
-     "status": "supported",
+     "strength": 0.0084,
+     "plus_minus": 0.0057,
+     "status": "not clear yet",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "enemy_prots_10s",
       "enemy_heal_s"
      ],
      "date": "2026-11-08"
     }
-   },
-   "status_by": "data"
+   }
   },
   {
    "from": "P.2",
@@ -826,11 +826,11 @@
    "measured": {
     "power_play": {
      "node": "power_play",
-     "strength": 0.0031,
-     "plus_minus": 0.0042,
+     "strength": 0.0,
+     "plus_minus": 0.0085,
      "status": "not clear yet",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "spikes_10s",
       "spike_spread"
@@ -852,11 +852,11 @@
    "measured": {
     "power_play": {
      "node": "power_play",
-     "strength": 0.0028,
-     "plus_minus": 0.0069,
+     "strength": 0.0038,
+     "plus_minus": 0.0028,
      "status": "not clear yet",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "spikes_on_healers",
       "healer_damage_share"
@@ -1147,11 +1147,11 @@
    "measured": {
     "run_outcome": {
      "node": "run_outcome",
-     "strength": -0.0071,
-     "plus_minus": 0.003,
-     "status": "rejected",
+     "strength": -0.0046,
+     "plus_minus": 0.0038,
+     "status": "not clear yet",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "stand_own",
       "stand_enemy",
@@ -1164,11 +1164,11 @@
     },
     "flag_swing": {
      "node": "flag_swing",
-     "strength": 0.74,
-     "plus_minus": 0.15,
+     "strength": 0.77,
+     "plus_minus": 0.11,
      "status": "supported",
      "metric": "mean absolute error (s)",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "waiting_runner",
       "backup_flag",
@@ -1187,11 +1187,11 @@
     },
     "run_defence": {
      "node": "run_defence",
-     "strength": 0.0002,
-     "plus_minus": 0.0018,
+     "strength": -0.0006,
+     "plus_minus": 0.0029,
      "status": "not clear yet",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "runner_class"
      ],
@@ -1199,11 +1199,11 @@
     },
     "capture_speed": {
      "node": "capture_speed",
-     "strength": 0.19,
+     "strength": 0.12,
      "plus_minus": 0.11,
      "status": "not clear yet",
      "metric": "mean absolute error (s)",
-     "matches": 125,
+     "matches": 172,
      "features": [
       "runner_class"
      ],
@@ -1228,11 +1228,11 @@
    "measured": {
     "run_outcome": {
      "node": "run_outcome",
-     "strength": -0.0001,
-     "plus_minus": 0.0049,
+     "strength": -0.0022,
+     "plus_minus": 0.002,
      "status": "not clear yet",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "escort",
       "own_main",
@@ -1243,11 +1243,11 @@
     },
     "flag_swing": {
      "node": "flag_swing",
-     "strength": -0.1,
-     "plus_minus": 0.05,
-     "status": "not clear yet",
+     "strength": -0.03,
+     "plus_minus": 0.01,
+     "status": "rejected",
      "metric": "mean absolute error (s)",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "own_alive",
       "enemy_alive",
@@ -1262,11 +1262,11 @@
     },
     "capture_speed": {
      "node": "capture_speed",
-     "strength": 0.49,
-     "plus_minus": 0.15,
+     "strength": 0.4,
+     "plus_minus": 0.16,
      "status": "supported",
      "metric": "mean absolute error (s)",
-     "matches": 125,
+     "matches": 172,
      "features": [
       "defenders_free",
       "escort"
@@ -1275,11 +1275,11 @@
     },
     "run_defence": {
      "node": "run_defence",
-     "strength": 0.0017,
-     "plus_minus": 0.0049,
+     "strength": -0.0023,
+     "plus_minus": 0.0021,
      "status": "not clear yet",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "escort",
       "att_main",
@@ -1296,7 +1296,7 @@
    "why": "being up on flags is the better position to boost and to run: runner trips, waiting runners, backup flags, routes",
    "source": "Denning",
    "confirmed_by_denning": true,
-   "status": "supported",
+   "status": "hypothesis",
    "tactics": [
     "F1",
     "F2",
@@ -1306,11 +1306,11 @@
    "measured": {
     "run_outcome": {
      "node": "run_outcome",
-     "strength": 0.0023,
-     "plus_minus": 0.0028,
+     "strength": 0.0004,
+     "plus_minus": 0.0023,
      "status": "not clear yet",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "run_dist"
      ],
@@ -1318,11 +1318,11 @@
     },
     "flag_swing": {
      "node": "flag_swing",
-     "strength": -0.03,
-     "plus_minus": 0.02,
+     "strength": -0.02,
+     "plus_minus": 0.01,
      "status": "not clear yet",
      "metric": "mean absolute error (s)",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "run_dist"
      ],
@@ -1330,11 +1330,11 @@
     },
     "capture_speed": {
      "node": "capture_speed",
-     "strength": 0.45,
-     "plus_minus": 0.22,
-     "status": "supported",
+     "strength": 0.31,
+     "plus_minus": 0.16,
+     "status": "not clear yet",
      "metric": "mean absolute error (s)",
-     "matches": 125,
+     "matches": 172,
      "features": [
       "run_dist"
      ],
@@ -1342,18 +1342,17 @@
     },
     "run_defence": {
      "node": "run_defence",
-     "strength": 0.0042,
-     "plus_minus": 0.0023,
+     "strength": 0.0006,
+     "plus_minus": 0.0022,
      "status": "not clear yet",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "run_dist"
      ],
      "date": "2026-11-08"
     }
-   },
-   "status_by": "data"
+   }
   },
   {
    "from": "A.allocation",
@@ -1368,11 +1367,11 @@
    "measured": {
     "run_outcome": {
      "node": "run_outcome",
-     "strength": -0.0001,
-     "plus_minus": 0.0049,
+     "strength": -0.0022,
+     "plus_minus": 0.002,
      "status": "not clear yet",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "escort",
       "own_main",
@@ -1383,11 +1382,11 @@
     },
     "flag_swing": {
      "node": "flag_swing",
-     "strength": -0.1,
-     "plus_minus": 0.05,
-     "status": "not clear yet",
+     "strength": -0.03,
+     "plus_minus": 0.01,
+     "status": "rejected",
      "metric": "mean absolute error (s)",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "own_alive",
       "enemy_alive",
@@ -1402,11 +1401,11 @@
     },
     "capture_speed": {
      "node": "capture_speed",
-     "strength": 0.49,
-     "plus_minus": 0.15,
+     "strength": 0.4,
+     "plus_minus": 0.16,
      "status": "supported",
      "metric": "mean absolute error (s)",
-     "matches": 125,
+     "matches": 172,
      "features": [
       "defenders_free",
       "escort"
@@ -1415,11 +1414,11 @@
     },
     "run_defence": {
      "node": "run_defence",
-     "strength": 0.0017,
-     "plus_minus": 0.0049,
+     "strength": -0.0023,
+     "plus_minus": 0.0021,
      "status": "not clear yet",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "escort",
       "att_main",
@@ -1457,7 +1456,7 @@
    "why": "a split answered late or with the wrong player takes NPCs",
    "source": "Denning",
    "confirmed_by_denning": true,
-   "status": "hypothesis",
+   "status": "supported",
    "tactics": [
     "S18",
     "S19"
@@ -1465,18 +1464,19 @@
    "measured": {
     "split_effect": {
      "node": "split_effect",
-     "strength": -0.0015,
-     "plus_minus": 0.0035,
-     "status": "not clear yet",
+     "strength": 0.0034,
+     "plus_minus": 0.0016,
+     "status": "supported",
      "metric": "log loss",
-     "matches": 94,
+     "matches": 125,
      "features": [
       "latency",
       "defenders"
      ],
      "date": "2026-11-08"
     }
-   }
+   },
+   "status_by": "data"
   },
   {
    "from": "A.allocation",
@@ -1491,18 +1491,19 @@
    "measured": {
     "split_effect": {
      "node": "split_effect",
-     "strength": -0.0059,
-     "plus_minus": 0.0039,
-     "status": "not clear yet",
+     "strength": -0.0088,
+     "plus_minus": 0.0023,
+     "status": "rejected",
      "metric": "log loss",
-     "matches": 94,
+     "matches": 125,
      "features": [
       "size",
       "main_diff"
      ],
      "date": "2026-11-08"
     }
-   }
+   },
+   "pending_rejection": true
   },
   {
    "from": "R.1",
@@ -1553,11 +1554,11 @@
    "measured": {
     "split_chance": {
      "node": "split_chance",
-     "strength": 0.0268,
-     "plus_minus": 0.004,
+     "strength": 0.0313,
+     "plus_minus": 0.0017,
      "status": "supported",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "flag_lead",
       "own_alive",
@@ -1768,11 +1769,11 @@
    "measured": {
     "power_play": {
      "node": "power_play",
-     "strength": 0.0092,
-     "plus_minus": 0.0073,
+     "strength": 0.0032,
+     "plus_minus": 0.0046,
      "status": "not clear yet",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "strength_gap"
      ],
@@ -2241,11 +2242,11 @@
    "measured": {
     "split_answer": {
      "node": "split_answer",
-     "strength": 0.15,
-     "plus_minus": 0.14,
+     "strength": -0.11,
+     "plus_minus": 0.19,
      "status": "not clear yet",
      "metric": "mean absolute error (s)",
-     "matches": 94,
+     "matches": 125,
      "features": [
       "flag_lead",
       "def_alive",
@@ -2276,11 +2277,11 @@
    "measured": {
     "split_answer": {
      "node": "split_answer",
-     "strength": -0.02,
-     "plus_minus": 0.05,
+     "strength": -0.22,
+     "plus_minus": 0.12,
      "status": "not clear yet",
      "metric": "mean absolute error (s)",
-     "matches": 94,
+     "matches": 125,
      "features": [
       "minute"
      ],
@@ -2308,11 +2309,11 @@
    "measured": {
     "split_answer": {
      "node": "split_answer",
-     "strength": -0.01,
+     "strength": -0.08,
      "plus_minus": 0.07,
      "status": "not clear yet",
      "metric": "mean absolute error (s)",
-     "matches": 94,
+     "matches": 125,
      "features": [
       "strength_gap"
      ],
@@ -2832,11 +2833,11 @@
    "measured": {
     "run_outcome": {
      "node": "run_outcome",
-     "strength": -0.0071,
-     "plus_minus": 0.003,
-     "status": "rejected",
+     "strength": -0.0046,
+     "plus_minus": 0.0038,
+     "status": "not clear yet",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "stand_own",
       "stand_enemy",
@@ -2849,11 +2850,11 @@
     },
     "flag_swing": {
      "node": "flag_swing",
-     "strength": 0.74,
-     "plus_minus": 0.15,
+     "strength": 0.77,
+     "plus_minus": 0.11,
      "status": "supported",
      "metric": "mean absolute error (s)",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "waiting_runner",
       "backup_flag",
@@ -2872,11 +2873,11 @@
     },
     "run_defence": {
      "node": "run_defence",
-     "strength": 0.0002,
-     "plus_minus": 0.0018,
+     "strength": -0.0006,
+     "plus_minus": 0.0029,
      "status": "not clear yet",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "runner_class"
      ],
@@ -2884,11 +2885,11 @@
     },
     "capture_speed": {
      "node": "capture_speed",
-     "strength": 0.19,
+     "strength": 0.12,
      "plus_minus": 0.11,
      "status": "not clear yet",
      "metric": "mean absolute error (s)",
-     "matches": 125,
+     "matches": 172,
      "features": [
       "runner_class"
      ],
@@ -2921,11 +2922,11 @@
    "measured": {
     "run_outcome": {
      "node": "run_outcome",
-     "strength": 0.0502,
-     "plus_minus": 0.0063,
+     "strength": 0.0394,
+     "plus_minus": 0.0066,
      "status": "supported",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "min_capture_s",
       "runner_escapes"
@@ -2934,11 +2935,11 @@
     },
     "run_defence": {
      "node": "run_defence",
-     "strength": 0.0499,
-     "plus_minus": 0.0064,
+     "strength": 0.0406,
+     "plus_minus": 0.0056,
      "status": "supported",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "min_capture_s"
      ],
@@ -2946,11 +2947,11 @@
     },
     "capture_speed": {
      "node": "capture_speed",
-     "strength": 1.97,
-     "plus_minus": 0.33,
+     "strength": 2.15,
+     "plus_minus": 0.25,
      "status": "supported",
      "metric": "mean absolute error (s)",
-     "matches": 125,
+     "matches": 172,
      "features": [
       "min_capture_s"
      ],
@@ -2971,11 +2972,11 @@
    "measured": {
     "split_effect": {
      "node": "split_effect",
-     "strength": -0.0093,
-     "plus_minus": 0.0027,
-     "status": "rejected",
+     "strength": 0.0002,
+     "plus_minus": 0.0013,
+     "status": "not clear yet",
      "metric": "log loss",
-     "matches": 94,
+     "matches": 125,
      "features": [
       "split_healers"
      ],
@@ -3225,16 +3226,16 @@
    "why": "the length of the flag run (Y) and the distance from the pits to the stand shape the flag game",
    "source": "Claude",
    "confirmed_by_denning": false,
-   "status": "supported",
+   "status": "hypothesis",
    "tactics": [],
    "measured": {
     "run_outcome": {
      "node": "run_outcome",
-     "strength": 0.0023,
-     "plus_minus": 0.0028,
+     "strength": 0.0004,
+     "plus_minus": 0.0023,
      "status": "not clear yet",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "run_dist"
      ],
@@ -3242,11 +3243,11 @@
     },
     "flag_swing": {
      "node": "flag_swing",
-     "strength": -0.03,
-     "plus_minus": 0.02,
+     "strength": -0.02,
+     "plus_minus": 0.01,
      "status": "not clear yet",
      "metric": "mean absolute error (s)",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "run_dist"
      ],
@@ -3254,11 +3255,11 @@
     },
     "capture_speed": {
      "node": "capture_speed",
-     "strength": 0.45,
-     "plus_minus": 0.22,
-     "status": "supported",
+     "strength": 0.31,
+     "plus_minus": 0.16,
+     "status": "not clear yet",
      "metric": "mean absolute error (s)",
-     "matches": 125,
+     "matches": 172,
      "features": [
       "run_dist"
      ],
@@ -3266,18 +3267,17 @@
     },
     "run_defence": {
      "node": "run_defence",
-     "strength": 0.0042,
-     "plus_minus": 0.0023,
+     "strength": 0.0006,
+     "plus_minus": 0.0022,
      "status": "not clear yet",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "run_dist"
      ],
      "date": "2026-11-08"
     }
-   },
-   "status_by": "data"
+   }
   },
   {
    "from": "C.builds",
@@ -3326,11 +3326,11 @@
    "measured": {
     "run_outcome": {
      "node": "run_outcome",
-     "strength": -0.0011,
-     "plus_minus": 0.001,
-     "status": "not clear yet",
+     "strength": -0.0035,
+     "plus_minus": 0.0012,
+     "status": "rejected",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "crippled_so_far",
       "knocked_down_so_far",
@@ -3343,11 +3343,11 @@
     },
     "capture_speed": {
      "node": "capture_speed",
-     "strength": -0.07,
-     "plus_minus": 0.05,
-     "status": "not clear yet",
+     "strength": -0.13,
+     "plus_minus": 0.06,
+     "status": "rejected",
      "metric": "mean absolute error (s)",
-     "matches": 125,
+     "matches": 172,
      "features": [
       "pushers_10s",
       "control_10s",
@@ -3358,17 +3358,18 @@
     },
     "run_defence": {
      "node": "run_defence",
-     "strength": -0.0002,
-     "plus_minus": 0.0002,
-     "status": "not clear yet",
+     "strength": -0.0012,
+     "plus_minus": 0.0003,
+     "status": "rejected",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "def_snare_near"
      ],
      "date": "2026-11-08"
     }
-   }
+   },
+   "pending_rejection": true
   },
   {
    "from": "C.strength",
@@ -3381,11 +3382,11 @@
    "measured": {
     "run_outcome": {
      "node": "run_outcome",
-     "strength": 0.0003,
-     "plus_minus": 0.0017,
+     "strength": -0.0006,
+     "plus_minus": 0.0014,
      "status": "not clear yet",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "strength_gap"
      ],
@@ -3393,11 +3394,11 @@
     },
     "flag_swing": {
      "node": "flag_swing",
-     "strength": 0.08,
-     "plus_minus": 0.05,
+     "strength": 0.11,
+     "plus_minus": 0.09,
      "status": "not clear yet",
      "metric": "mean absolute error (s)",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "strength_gap"
      ],
@@ -3405,11 +3406,11 @@
     },
     "capture_speed": {
      "node": "capture_speed",
-     "strength": 0.06,
+     "strength": -0.04,
      "plus_minus": 0.04,
      "status": "not clear yet",
      "metric": "mean absolute error (s)",
-     "matches": 125,
+     "matches": 172,
      "features": [
       "strength_gap"
      ],
@@ -3417,11 +3418,11 @@
     },
     "run_defence": {
      "node": "run_defence",
-     "strength": 0.0006,
-     "plus_minus": 0.0019,
+     "strength": -0.0016,
+     "plus_minus": 0.0015,
      "status": "not clear yet",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "strength_gap"
      ],
@@ -3440,11 +3441,11 @@
    "measured": {
     "flag_swing": {
      "node": "flag_swing",
-     "strength": 0.54,
-     "plus_minus": 0.17,
+     "strength": 0.59,
+     "plus_minus": 0.09,
      "status": "supported",
      "metric": "mean absolute error (s)",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "flag_lead",
       "morale_diff"
@@ -3453,11 +3454,11 @@
     },
     "run_outcome": {
      "node": "run_outcome",
-     "strength": 0.0111,
-     "plus_minus": 0.0026,
+     "strength": 0.0084,
+     "plus_minus": 0.0038,
      "status": "supported",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "morale_diff",
       "boost_clock"
@@ -3466,11 +3467,11 @@
     },
     "run_defence": {
      "node": "run_defence",
-     "strength": 0.0349,
-     "plus_minus": 0.0062,
+     "strength": 0.0359,
+     "plus_minus": 0.0041,
      "status": "supported",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "boost_clock",
       "stand",
@@ -3494,11 +3495,11 @@
    "measured": {
     "flag_swing": {
      "node": "flag_swing",
-     "strength": 0.04,
+     "strength": 0.01,
      "plus_minus": 0.02,
      "status": "not clear yet",
      "metric": "mean absolute error (s)",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "own_deaths_30s",
       "enemy_deaths_30s"
@@ -3518,11 +3519,11 @@
    "measured": {
     "flag_swing": {
      "node": "flag_swing",
-     "strength": 0.01,
+     "strength": -0.01,
      "plus_minus": 0.02,
      "status": "not clear yet",
      "metric": "mean absolute error (s)",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "minute",
       "res_in"
@@ -3542,11 +3543,11 @@
    "measured": {
     "run_defence": {
      "node": "run_defence",
-     "strength": -0.0016,
+     "strength": -0.0027,
      "plus_minus": 0.0013,
-     "status": "not clear yet",
+     "status": "rejected",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "def_free",
       "pushers_so_far",
@@ -3555,7 +3556,8 @@
      ],
      "date": "2026-11-08"
     }
-   }
+   },
+   "pending_rejection": true
   },
   {
    "from": "A.allocation",
@@ -3568,11 +3570,11 @@
    "measured": {
     "power_play": {
      "node": "power_play",
-     "strength": 0.0493,
-     "plus_minus": 0.0051,
+     "strength": 0.0519,
+     "plus_minus": 0.0132,
      "status": "supported",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "size",
       "own_main",
@@ -3598,11 +3600,11 @@
    "measured": {
     "fight_outcome": {
      "node": "fight_outcome",
-     "strength": 0.0154,
-     "plus_minus": 0.0024,
+     "strength": 0.0132,
+     "plus_minus": 0.0028,
      "status": "supported",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "own_local",
       "enemy_local"
@@ -3623,11 +3625,11 @@
    "measured": {
     "fight_outcome": {
      "node": "fight_outcome",
-     "strength": 0.0006,
-     "plus_minus": 0.0027,
+     "strength": 0.0014,
+     "plus_minus": 0.0052,
      "status": "not clear yet",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "peel_defensive_diff"
      ],
@@ -3641,16 +3643,16 @@
    "why": "wrong casts lose fights: casting into ready interrupts without cancelling, casting while Dazed, attacking while Blind",
    "source": "Denning",
    "confirmed_by_denning": false,
-   "status": "hypothesis",
+   "status": "supported",
    "tactics": [],
    "measured": {
     "fight_outcome": {
      "node": "fight_outcome",
-     "strength": 0.0059,
-     "plus_minus": 0.0121,
-     "status": "not clear yet",
+     "strength": 0.0088,
+     "plus_minus": 0.0044,
+     "status": "supported",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "ready_interrupt_diff",
       "dazed_casts_diff",
@@ -3658,7 +3660,8 @@
      ],
      "date": "2026-11-08"
     }
-   }
+   },
+   "status_by": "data"
   },
   {
    "from": "P.18",
@@ -3671,11 +3674,11 @@
    "measured": {
     "fight_outcome": {
      "node": "fight_outcome",
-     "strength": 0.0004,
-     "plus_minus": 0.0017,
+     "strength": -0.0012,
+     "plus_minus": 0.0029,
      "status": "not clear yet",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "strip_right_diff",
       "strip_value_diff"
@@ -3695,11 +3698,11 @@
    "measured": {
     "fight_outcome": {
      "node": "fight_outcome",
-     "strength": -0.0014,
-     "plus_minus": 0.0015,
+     "strength": -0.0011,
+     "plus_minus": 0.001,
      "status": "not clear yet",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "blind_front_secs_diff",
       "blind_defensive_secs_diff"
@@ -3719,11 +3722,11 @@
    "measured": {
     "fight_outcome": {
      "node": "fight_outcome",
-     "strength": 0.0154,
-     "plus_minus": 0.0053,
+     "strength": 0.0161,
+     "plus_minus": 0.0069,
      "status": "supported",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "spike_spread_diff",
       "spikes_diff"
@@ -3744,11 +3747,11 @@
    "measured": {
     "fight_outcome": {
      "node": "fight_outcome",
-     "strength": 0.0282,
-     "plus_minus": 0.0096,
+     "strength": 0.0221,
+     "plus_minus": 0.008,
      "status": "supported",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "dps_v_usual_diff"
      ],
@@ -3768,11 +3771,11 @@
    "measured": {
     "fight_outcome": {
      "node": "fight_outcome",
-     "strength": -0.0017,
-     "plus_minus": 0.0027,
+     "strength": -0.0013,
+     "plus_minus": 0.0023,
      "status": "not clear yet",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "hex_secs_diff",
       "hex_right_diff"
@@ -3792,11 +3795,11 @@
    "measured": {
     "fight_outcome": {
      "node": "fight_outcome",
-     "strength": 0.0007,
-     "plus_minus": 0.0012,
+     "strength": 0.0005,
+     "plus_minus": 0.0018,
      "status": "not clear yet",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "strength_gap"
      ],
@@ -3815,11 +3818,11 @@
    "measured": {
     "split_chance": {
      "node": "split_chance",
-     "strength": 0.0019,
-     "plus_minus": 0.0019,
+     "strength": 0.0015,
+     "plus_minus": 0.0011,
      "status": "not clear yet",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "minute",
       "res_in"
@@ -3839,11 +3842,11 @@
    "measured": {
     "split_chance": {
      "node": "split_chance",
-     "strength": 0.0025,
-     "plus_minus": 0.0023,
+     "strength": 0.0002,
+     "plus_minus": 0.0025,
      "status": "not clear yet",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "own_speed_power",
       "own_escapes",
@@ -3865,11 +3868,11 @@
    "measured": {
     "split_chance": {
      "node": "split_chance",
-     "strength": -0.0004,
-     "plus_minus": 0.0014,
+     "strength": -0.0013,
+     "plus_minus": 0.0008,
      "status": "not clear yet",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "strength_gap"
      ],
@@ -3888,11 +3891,11 @@
    "measured": {
     "split_answer": {
      "node": "split_answer",
-     "strength": 0.33,
-     "plus_minus": 0.13,
+     "strength": 0.69,
+     "plus_minus": 0.2,
      "status": "supported",
      "metric": "mean absolute error (s)",
-     "matches": 94,
+     "matches": 125,
      "features": [
       "def_free",
       "nearest_to_base"
@@ -3913,11 +3916,11 @@
    "measured": {
     "split_answer": {
      "node": "split_answer",
-     "strength": 0.77,
-     "plus_minus": 0.3,
+     "strength": 1.02,
+     "plus_minus": 0.2,
      "status": "supported",
      "metric": "mean absolute error (s)",
-     "matches": 94,
+     "matches": 125,
      "features": [
       "size"
      ],
@@ -3937,11 +3940,11 @@
    "measured": {
     "split_effect": {
      "node": "split_effect",
-     "strength": -0.0048,
-     "plus_minus": 0.0033,
+     "strength": -0.0032,
+     "plus_minus": 0.0031,
      "status": "not clear yet",
      "metric": "log loss",
-     "matches": 94,
+     "matches": 125,
      "features": [
       "strength_gap"
      ],
@@ -3955,16 +3958,16 @@
    "why": "collapse timing: defenders arriving together kill a split member",
    "source": "Denning",
    "confirmed_by_denning": false,
-   "status": "supported",
+   "status": "hypothesis",
    "tactics": [],
    "measured": {
     "collapse": {
      "node": "collapse",
-     "strength": 0.0062,
-     "plus_minus": 0.003,
-     "status": "supported",
+     "strength": 0.0073,
+     "plus_minus": 0.0048,
+     "status": "not clear yet",
      "metric": "log loss",
-     "matches": 120,
+     "matches": 164,
      "features": [
       "defenders_10s",
       "contact_diff",
@@ -3973,8 +3976,7 @@
      ],
      "date": "2026-11-08"
     }
-   },
-   "status_by": "data"
+   }
   },
   {
    "from": "C.builds",
@@ -3998,11 +4000,11 @@
    "measured": {
     "collapse": {
      "node": "collapse",
-     "strength": 0.0014,
-     "plus_minus": 0.0019,
+     "strength": 0.0016,
+     "plus_minus": 0.0047,
      "status": "not clear yet",
      "metric": "log loss",
-     "matches": 120,
+     "matches": 164,
      "features": [
       "size",
       "main_diff"
@@ -4022,11 +4024,11 @@
    "measured": {
     "collapse": {
      "node": "collapse",
-     "strength": 0.0002,
-     "plus_minus": 0.0012,
+     "strength": -0.0023,
+     "plus_minus": 0.0055,
      "status": "not clear yet",
      "metric": "log loss",
-     "matches": 120,
+     "matches": 164,
      "features": [
       "strength_gap"
      ],
@@ -4045,11 +4047,11 @@
    "measured": {
     "split_effect": {
      "node": "split_effect",
-     "strength": 0.0448,
-     "plus_minus": 0.0107,
+     "strength": 0.0328,
+     "plus_minus": 0.0057,
      "status": "supported",
      "metric": "log loss",
-     "matches": 94,
+     "matches": 125,
      "features": [
       "def_npc_value",
       "def_free",
@@ -4073,11 +4075,11 @@
    "measured": {
     "collapse": {
      "node": "collapse",
-     "strength": 0.0014,
-     "plus_minus": 0.0027,
+     "strength": -0.0013,
+     "plus_minus": 0.0017,
      "status": "not clear yet",
      "metric": "log loss",
-     "matches": 120,
+     "matches": 164,
      "features": [
       "depth_at_arrival",
       "depth_median"
@@ -4092,22 +4094,23 @@
    "why": "going after the healers (Bounty: target choice costs time; the data: groups on the healers kill more)",
    "source": "Bounty",
    "confirmed_by_denning": false,
-   "status": "hypothesis",
+   "status": "rejected",
    "tactics": [],
    "measured": {
     "fight_outcome": {
      "node": "fight_outcome",
-     "strength": -0.0008,
-     "plus_minus": 0.0011,
-     "status": "not clear yet",
+     "strength": -0.0027,
+     "plus_minus": 0.0009,
+     "status": "rejected",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "healer_focus_diff"
      ],
      "date": "2026-11-08"
     }
-   }
+   },
+   "status_by": "data"
   },
   {
    "from": "K.11",
@@ -4115,22 +4118,23 @@
    "why": "the defenders' snares slow a split's work on the NPCs",
    "source": "Denning",
    "confirmed_by_denning": false,
-   "status": "hypothesis",
+   "status": "supported",
    "tactics": [],
    "measured": {
     "split_effect": {
      "node": "split_effect",
-     "strength": 0.0051,
-     "plus_minus": 0.0028,
-     "status": "not clear yet",
+     "strength": 0.0061,
+     "plus_minus": 0.0021,
+     "status": "supported",
      "metric": "log loss",
-     "matches": 94,
+     "matches": 125,
      "features": [
       "def_snare_present"
      ],
      "date": "2026-11-08"
     }
-   }
+   },
+   "status_by": "data"
   },
   {
    "from": "K.13",
@@ -4138,22 +4142,23 @@
    "why": "a fast split gets in and out of the base",
    "source": "Denning",
    "confirmed_by_denning": false,
-   "status": "hypothesis",
+   "status": "supported",
    "tactics": [],
    "measured": {
     "split_effect": {
      "node": "split_effect",
-     "strength": 0.0012,
-     "plus_minus": 0.003,
-     "status": "not clear yet",
+     "strength": 0.0056,
+     "plus_minus": 0.0022,
+     "status": "supported",
      "metric": "log loss",
-     "matches": 94,
+     "matches": 125,
      "features": [
       "split_speed_power"
      ],
      "date": "2026-11-08"
     }
-   }
+   },
+   "status_by": "data"
   },
   {
    "from": "K.11",
@@ -4166,11 +4171,11 @@
    "measured": {
     "collapse": {
      "node": "collapse",
-     "strength": 0.0066,
-     "plus_minus": 0.0036,
+     "strength": 0.006,
+     "plus_minus": 0.0037,
      "status": "not clear yet",
      "metric": "log loss",
-     "matches": 120,
+     "matches": 164,
      "features": [
       "def_snare_present"
      ],
@@ -4184,16 +4189,16 @@
    "why": "snare skills on the bars change whether runs get through: found by discovery, approved by Denning",
    "source": "Denning",
    "confirmed_by_denning": false,
-   "status": "supported",
+   "status": "hypothesis",
    "tactics": [],
    "measured": {
     "run_outcome": {
      "node": "run_outcome",
-     "strength": 0.0068,
-     "plus_minus": 0.0023,
-     "status": "supported",
+     "strength": 0.0025,
+     "plus_minus": 0.0015,
+     "status": "not clear yet",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "enemy_snares"
      ],
@@ -4201,18 +4206,17 @@
     },
     "run_defence": {
      "node": "run_defence",
-     "strength": 0.0058,
-     "plus_minus": 0.0025,
-     "status": "supported",
+     "strength": 0.0006,
+     "plus_minus": 0.0016,
+     "status": "not clear yet",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "own_snares"
      ],
      "date": "2026-11-08"
     }
-   },
-   "status_by": "data"
+   }
   },
   {
    "from": "S.scoreboard",
@@ -4225,11 +4229,11 @@
    "measured": {
     "power_play": {
      "node": "power_play",
-     "strength": 0.0136,
-     "plus_minus": 0.0029,
+     "strength": 0.0169,
+     "plus_minus": 0.005,
      "status": "supported",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "down_diff_s",
       "carrying_diff"
@@ -4250,11 +4254,11 @@
    "measured": {
     "fight_outcome": {
      "node": "fight_outcome",
-     "strength": 0.0976,
-     "plus_minus": 0.0126,
+     "strength": 0.0891,
+     "plus_minus": 0.0208,
      "status": "supported",
      "metric": "log loss",
-     "matches": 133,
+     "matches": 181,
      "features": [
       "morale_diff",
       "fight_state",
@@ -4274,22 +4278,23 @@
    "why": "the defenders' prots make a split's NPC kills harder: found by discovery, approved by Denning",
    "source": "Denning",
    "confirmed_by_denning": false,
-   "status": "hypothesis",
+   "status": "supported",
    "tactics": [],
    "measured": {
     "split_effect": {
      "node": "split_effect",
-     "strength": 0.0086,
-     "plus_minus": 0.0073,
-     "status": "not clear yet",
+     "strength": 0.0102,
+     "plus_minus": 0.005,
+     "status": "supported",
      "metric": "log loss",
-     "matches": 94,
+     "matches": 125,
      "features": [
       "enemy_prots"
      ],
      "date": "2026-11-08"
     }
-   }
+   },
+   "status_by": "data"
   }
  ],
  "log": [
@@ -4876,6 +4881,91 @@
   {
    "date": "2026-11-08",
    "change": "link S.scoreboard -> R.2: hypothesis -> supported by data (fight_outcome supported +0.0974)",
+   "by": "data"
+  },
+  {
+   "date": "2026-11-08",
+   "change": "link P.14 -> K.4: supported -> hypothesis by data (power_play not clear yet +0.0033)",
+   "by": "data"
+  },
+  {
+   "date": "2026-11-08",
+   "change": "link K.13 -> R.1: hypothesis -> rejected by data (collapse rejected -0.0033)",
+   "by": "data"
+  },
+  {
+   "date": "2026-11-08",
+   "change": "link P.11 -> R.1: hypothesis -> rejected by data (collapse rejected -0.0014)",
+   "by": "data"
+  },
+  {
+   "date": "2026-11-08",
+   "change": "link K.5 -> K.4: supported -> hypothesis by data (power_play not clear yet +0.0084)",
+   "by": "data"
+  },
+  {
+   "date": "2026-11-08",
+   "change": "link C.map -> R.3: supported -> hypothesis by data (run_outcome not clear yet +0.0004, flag_swing not clear yet -0.02, capture_speed not clear yet +0.31, run_defence not clear yet +0.0006)",
+   "by": "data"
+  },
+  {
+   "date": "2026-11-08",
+   "change": "link P.11 -> R.5: hypothesis -> supported by data (split_effect supported +0.0034)",
+   "by": "data"
+  },
+  {
+   "date": "2026-11-08",
+   "change": "link A.allocation -> R.5: the data says rejected; held for Denning's ruling",
+   "by": "data"
+  },
+  {
+   "date": "2026-11-08",
+   "change": "link C.map -> R.3: supported -> hypothesis by data (run_outcome not clear yet +0.0004, flag_swing not clear yet -0.02, capture_speed not clear yet +0.31, run_defence not clear yet +0.0006)",
+   "by": "data"
+  },
+  {
+   "date": "2026-11-08",
+   "change": "link K.11 -> R.3: the data says rejected; held for Denning's ruling",
+   "by": "data"
+  },
+  {
+   "date": "2026-11-08",
+   "change": "link A.mesa_free -> R.3: the data says rejected; held for Denning's ruling",
+   "by": "data"
+  },
+  {
+   "date": "2026-11-08",
+   "change": "link P.17 -> R.2: hypothesis -> supported by data (fight_outcome supported +0.0088)",
+   "by": "data"
+  },
+  {
+   "date": "2026-11-08",
+   "change": "link P.9 -> R.1: supported -> hypothesis by data (collapse not clear yet +0.0073)",
+   "by": "data"
+  },
+  {
+   "date": "2026-11-08",
+   "change": "link P.1 -> R.2: hypothesis -> rejected by data (fight_outcome rejected -0.0027)",
+   "by": "data"
+  },
+  {
+   "date": "2026-11-08",
+   "change": "link K.11 -> R.5: hypothesis -> supported by data (split_effect supported +0.0061)",
+   "by": "data"
+  },
+  {
+   "date": "2026-11-08",
+   "change": "link K.13 -> R.5: hypothesis -> supported by data (split_effect supported +0.0056)",
+   "by": "data"
+  },
+  {
+   "date": "2026-11-08",
+   "change": "link C.builds -> R.3: supported -> hypothesis by data (run_outcome not clear yet +0.0025, run_defence not clear yet +0.0006)",
+   "by": "data"
+  },
+  {
+   "date": "2026-11-08",
+   "change": "link C.builds -> R.5: hypothesis -> supported by data (split_effect supported +0.0102)",
    "by": "data"
   }
  ]
