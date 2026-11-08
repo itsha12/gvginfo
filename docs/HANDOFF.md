@@ -247,8 +247,8 @@ engine change before the next run, then the commentary transcripts and step 3 (d
 
 ## Start the next chat with
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/HANDOFF.md (the "Match replay
-> analysis" section), knowledge/tactics.md and tools/replay_analysis/METHODS.md, then process the commentary transcripts
-> I attach (Bounty's six matches, then Nick's one) following METHODS.md "Commentary and comms". Read
+> analysis" section), knowledge/tactics.md and tools/replay_analysis/METHODS.md, then process Nick's commentary
+> transcript I attach ([Men v Team]) following METHODS.md "Commentary and comms" (Bounty's is done, session 4t). Read
 > knowledge/learned-model.md first for what the model has learned so far.
 
 Engine setup in the chat (needed for step 2): `git fetch --depth 1 origin +replays:refs/remotes/origin/replays`,
