@@ -242,10 +242,14 @@ def s_nodes(c, which=None):
             L.append(f"**{node.replace('_', ' ')}** ({what}; "
                      f"{s_['matches']} matches, {s_['rows']} rows): {v_['verdict']} (typical error {v_['glass box']['mae_s']}{unit} "
                      f"against {v_['simple baseline']['mae_s']}{unit} for the median; explains {v_['glass box']['r2']:.0%} of the spread).")
-            for t in s_["terms"][:10]:
+            if node in getattr(NODES, "TWO_PART", ()): L.append(f"  ({s_['note']}.)")
+            for t in [t for t in s_["terms"] if t.get("curve")][:10]:      # two-variable tables (chance part) are in the node file
                 cv = [x for x in t["curve"] if x["from"] is not None]
-                L.append(f"- **{t['term']}** ({NODES.DESC[node].get(t['term'], '')}): " +
-                         "; ".join(f"{x['from']}..{x['to']}: {x['points']:+}{(' ' + unit) if unit else ''}" for x in cv[::max(1, len(cv) // 5)]))
+                u = "" if node in getattr(NODES, "TWO_PART", ()) else ((" " + unit) if unit else "")
+                if "(amount" in t["term"]: u = "%"
+                elif "(chance" in t["term"]: u = " points"
+                L.append(f"- **{t['term']}** ({NODES.DESC[node].get(t.get('base_term', t['term']), '')}): " +
+                         "; ".join(f"{x['from']}..{x['to']}: {x['points']:+}{u}" for x in cv[::max(1, len(cv) // 5)]))
         else:
             L.append(f"**{node.replace('_', ' ')}** ({s_['matches']} matches, {s_['rows']} moments, {s_['events']} results): "
                      f"{v_['verdict']} (AUC {v_['glass box']['auc']} against {v_['simple baseline']['auc']} for "
