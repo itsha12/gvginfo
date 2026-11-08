@@ -31,18 +31,18 @@ Win points for the team it happened to, from 133 matches. **Result** = how match
 
 *deaths* (per 10 s in that state; result worth -9.3 points, base rate 1.5%):
 
-- enemies within 1,500 7.5 to 8: result chance +3.1 points, worth -0.29 win points
+- enemies within 1,500 7.5 to 8: result chance +3.0 points, worth -0.28 win points
 - current health % 1 to 48.5: result chance +10.9 points, worth -1.01 win points
 - allies within 1,500 0 to 0.5: result chance +1.9 points, worth -0.18 win points
 - allies minus enemies within 2,000 -8 to -3.5: result chance +2.5 points, worth -0.23 win points
 
 *kill conversion* (per burst, for the attacking team; result worth +9.3 points, base rate 29.6%):
 
-- damage in the 2 s burst 506.5 to 839: result chance +24.6 points, worth +2.29 win points
-- target's healers in range 0 to 0.5: result chance +28.7 points, worth +2.67 win points
-- target health % when the burst started 0 to 39.5: result chance +23.7 points, worth +2.21 win points
-- target's health ceiling 0.4 to 0.69: result chance +29.4 points, worth +2.74 win points
-- a prot on the target 0.5 to 1: result chance -4.8 points, worth -0.45 win points
+- damage in the 2 s burst 506.5 to 839: result chance +25.5 points, worth +2.37 win points
+- target's healers in range 0 to 0.5: result chance +29.6 points, worth +2.75 win points
+- target health % when the burst started 0 to 39.5: result chance +24.2 points, worth +2.25 win points
+- target's health ceiling 0.4 to 0.69: result chance +30.1 points, worth +2.8 win points
+- a prot on the target 0.5 to 1: result chance -5.1 points, worth -0.47 win points
 
 *npc loss* (per case, for the defending team; result worth -5.9 points, base rate 19.5%):
 

@@ -16,11 +16,11 @@ Trained on 133 matches (20 new in this batch). Variables in use: 31; build varia
 **Beats strength alone (not yet clear: the range includes 0).** Held-out accuracy (matches held out whole), log loss in brackets (lower is better):
 
 - strength only: all 76% (0.463), 0-5 min 81% (0.378), 5-10 min 79% (0.426), 10-15 min 72% (0.531), 15-end min 66% (0.595), matches lasting 15 min+ 70% (0.567), matches even on strength (gap under 200) 57% (0.628)
-- glass box: all 84% (0.375), 0-5 min 83% (0.378), 5-10 min 84% (0.382), 10-15 min 83% (0.438), 15-end min 89% (0.307), matches lasting 15 min+ 83% (0.421), matches even on strength (gap under 200) 72% (0.636)
-- glass box without corrections: all 81% (0.49), 0-5 min 80% (0.505), 5-10 min 81% (0.45), 10-15 min 77% (0.614), 15-end min 85% (0.414), matches lasting 15 min+ 77% (0.581), matches even on strength (gap under 200) 66% (0.817)
+- glass box: all 84% (0.374), 0-5 min 83% (0.378), 5-10 min 84% (0.382), 10-15 min 83% (0.438), 15-end min 89% (0.307), matches lasting 15 min+ 83% (0.421), matches even on strength (gap under 200) 72% (0.636)
+- glass box without corrections: all 81% (0.49), 0-5 min 79% (0.505), 5-10 min 81% (0.449), 10-15 min 77% (0.614), 15-end min 85% (0.413), matches lasting 15 min+ 77% (0.581), matches even on strength (gap under 200) 66% (0.817)
 - black box: all 77% (0.796), 0-5 min 79% (0.704), 5-10 min 79% (0.759), 10-15 min 75% (0.905), 15-end min 74% (0.904), matches lasting 15 min+ 73% (0.947), matches even on strength (gap under 200) 67% (1.086)
 - Gain over strength alone (log loss, resampling whole matches): +0.089 (90% range -0.031 to +0.197).
-- Change since batch 8: glass box log loss 0.367 -> 0.375; strength only 0.412 -> 0.463.
+- Change since batch 8: glass box log loss 0.367 -> 0.374; strength only 0.412 -> 0.463.
 - Cap test on spike_killable_diff (held-out log loss, 133 matches): none 0.3745, 10 points 0.3856, 15 points 0.3816, 20 points 0.378, 25 points 0.3748; chosen: no cap (no option beat it on unseen matches).
 - Pair test (morale_diff with map_flag_run, map_pit_to_stand, map_bases_apart; morale_total with map_flag_run, map_pit_to_stand, map_bases_apart; held-out log loss, 133 matches): allowed 0.3745, blocked 0.391; chosen: allowed (blocking didn't predict unseen matches better).
 - Calibration by minute (held-out predictions on 133 matches; pooled cells joined by straight lines, blended by minute; every win chance below and in values, usual play and the TQs goes through it). Predicted -> how often those teams won -> calibrated:
@@ -36,13 +36,13 @@ Trained on 133 matches (20 new in this batch). Variables in use: 31; build varia
 - **spike_killable_diff** 0.489 (was 0.315): enemy minus own players within one spike of the other side (DP stacking; 0 unless a spike build is involved)
 - **alive_diff** 0.386 (was 0.131): own minus enemy players alive
 - **knights_diff** 0.305 (was 0.442): own minus enemy pit knights alive
-- **knights_diff & map_flag_run** 0.23 (was 0.088): own minus enemy pit knights alive TOGETHER WITH the map's flag run Y: distance from the flag spawn to the stand (average of both sides)
+- **knights_diff & map_flag_run** 0.229 (was 0.088): own minus enemy pit knights alive TOGETHER WITH the map's flag run Y: distance from the flag spawn to the stand (average of both sides)
 - **spike_build_own** 0.225 (was 0.176): own build is a spike build (1) or not (0)
 - **spike_build_enemy** 0.213 (was 0.169): enemy build is a spike build
 - **stand** 0.205 (was 0.192): who holds the flag stand: 1 own, 0 nobody, -1 enemy
 - **lord_dps_enemy** 0.178 (was 0.159): enemy build's measured Lord damage per second
-- **lord_dps_own** 0.177 (was 0.151): own build's measured Lord damage per second if all its non-healers were at the Lord
-- **archers_diff & map_flag_run** 0.143 (new): own minus enemy pit archers alive TOGETHER WITH the map's flag run Y: distance from the flag spawn to the stand (average of both sides)
+- **lord_dps_own** 0.176 (was 0.151): own build's measured Lord damage per second if all its non-healers were at the Lord
+- **archers_diff & map_flag_run** 0.144 (new): own minus enemy pit archers alive TOGETHER WITH the map's flag run Y: distance from the flag spawn to the stand (average of both sides)
 
 ## 3. The curves in words
 
@@ -51,8 +51,8 @@ Points = win-chance points added to an otherwise even game at each range of the 
 - **morale_diff & map_pit_to_stand** (interaction): see wp_model.md
 - **morale_diff** rises from -30.1 to +25.3 points (-470.0..-199.0: -30.1; -151.5..-110.5: -21.4; -84.5..-45.5: -20.5; -15.5..-0.5: +1.4; 0.5..18.5: -0.7; 47.5..90.5: +25.9; 134.5..180.5: +22.9)
 - **spike_killable_diff** rises from -44.5 to +44.6 points (-8.0..-7.5: -44.5; -5.5..-4.5: -45.5; -3.5..-2.5: -44.2; -1.5..-0.5: -33.7; 0.5..1.5: +33.6; 2.5..4.5: +44.8; 5.5..7.5: +43.9)
-- **alive_diff** rises from -41.4 to +40.5 points (-8.0..-5.5: -41.4; -4.5..-3.5: -27.0; -2.5..-1.5: -22.6; -0.5..0.5: +0.3; 1.5..2.5: +21.5; 3.5..4.5: +26.1)
-- **knights_diff** rises from -20.9 to +21.2 points (-2.0..-1.5: -20.9; -1.5..-0.5: -9.8; -0.5..0.5: +0.0; 0.5..1.5: +9.0; 1.5..2.0: +21.2)
+- **alive_diff** rises from -41.5 to +40.5 points (-8.0..-5.5: -41.5; -4.5..-3.5: -27.1; -2.5..-1.5: -22.6; -0.5..0.5: +0.2; 1.5..2.5: +21.5; 3.5..4.5: +26.1)
+- **knights_diff** rises from -20.9 to +21.2 points (-2.0..-1.5: -20.9; -1.5..-0.5: -9.8; -0.5..0.5: +0.1; 0.5..1.5: +9.0; 1.5..2.0: +21.2)
 - **knights_diff & map_flag_run** (interaction): see wp_model.md
 - **spike_build_own** rises from -3.6 to +12.0 points (0.0..0.5: -3.6; 0.5..1.0: +12.0)
 - **spike_build_enemy** falls from +3.4 to -11.4 points (0.0..0.5: +3.4; 0.5..1.0: -11.4)
@@ -82,12 +82,12 @@ Points = win-chance points added to an otherwise even game at each range of the 
 
 **Surprises** (moments where the held-out model was most confident about the team that went on to lose; each points to something the variables don't capture yet):
 
-- RACK v hdm (1f65fd3b) at 16:00: a model that never saw this match gave RACK 6.9%, and RACK won. Why it thought so: knights_diff & map_flag_run -35.3, alive_diff +22.4, morale_diff -22.1, knights_diff -21.7, team strength -14.0
-- Dz v TFS (0881f8b3) at 1:15: a model that never saw this match gave TFS 2.5%, and TFS won. Why it thought so: team strength -46.5, alive_diff -14.2, spike_build_enemy -12.4, spike_build_own +12.3, lord_dps_own -5.0
-- Fun v hold (99d9b260) at 2:00: a model that never saw this match gave hold 1.0%, and hold won. Why it thought so: spike_killable_diff -46.3, archers_diff & map_flag_run -26.2, team strength +22.8, morale_diff & map_flag_run +22.6, morale_diff -21.8
-- hdm v HC (28447c4a) at 10:45: a model that never saw this match gave HC 5.7%, and HC won. Why it thought so: lord_exposed_diff -36.0, knights_diff -31.0, archers_diff & map_bases_apart +14.1, archers_diff & map_flag_run -12.4, knights_diff & map_pit_to_stand -9.8
-- cope v Team (427c825b) at 10:45: a model that never saw this match gave Team 18.2%, and Team won. Why it thought so: morale_diff -36.4, morale_diff & map_flag_run -33.4, archers_diff & map_flag_run +28.4, morale_diff & map_bases_apart +16.9, team strength -9.9
-- Crew v BcS (3ee18c0c) at 7:15: a model that never saw this match gave BcS 13.2%, and BcS won. Why it thought so: morale_diff -17.8, alive_diff -14.2, knights_diff -12.0, bodyguard_diff & map_flag_run -9.5, lord_damage_diff & map_flag_run -7.4
+- RACK v hdm (1f65fd3b) at 14:30: a model that never saw this match gave RACK 6.8%, and RACK won. Why it thought so: knights_diff & map_flag_run -35.3, morale_diff -22.1, knights_diff -21.7, team strength -14.0, lord_damage_diff & map_flag_run -8.0
+- OG v hold (49eec28d) at 4:15: a model that never saw this match gave OG 0.9%, and OG won. Why it thought so: morale_diff & map_flag_run -34.0, archers_diff & map_flag_run -24.8, morale_diff -23.7, team strength +19.0, knights_diff -12.0
+- hdm v HC (28447c4a) at 25:15: a model that never saw this match gave HC 4.2%, and HC won. Why it thought so: morale_diff & map_bases_apart -45.5, morale_diff -40.0, lord_exposed_diff -36.0, knights_diff -31.0, morale_diff & map_pit_to_stand +13.6
+- cope v Team (427c825b) at 6:45: a model that never saw this match gave Team 14.0%, and Team won. Why it thought so: morale_diff -36.4, morale_diff & map_flag_run -33.3, morale_diff & map_bases_apart +16.9, team strength -9.9, spike_build_own +9.5
+- Crew v BcS (3ee18c0c) at 11:30: a model that never saw this match gave BcS 19.1%, and BcS won. Why it thought so: knights_diff -12.0, bodyguard_diff & map_flag_run -9.5, lord_damage_diff & map_flag_run -7.7, bodyguard_diff -6.2, knights_diff & map_flag_run -5.8
+- Dz v TFS (0881f8b3) at 2:00: a model that never saw this match gave TFS 5.3%, and TFS won. Why it thought so: team strength -46.5, spike_build_enemy -12.4, spike_build_own +12.3, lord_dps_own -5.0, lord_dps_enemy +4.9
 
 ## 5. Denning's rulings seen through the model
 
@@ -120,13 +120,13 @@ Each explains one result from what happened before it (time order enforced), tes
 - **minute** (match minute) rises from +0.0 to +15.1 points (0.1..1.15: +0.0; 2.15..3.15: -3.8; 4.25..5.35: -3.4; 6.55..7.95: -1.3; 9.45..11.05: -1.8; 12.95..15.05: -1.1; 17.75..21.05: +3.5)
 
 **kill conversion** (132 matches, 2448 moments, 725 results): adds to the simple baseline (AUC 0.783 against 0.683 for burst_damage and target_health_pct alone).
-- **burst_damage** (damage in the 2 s burst) rises from -10.8 to +24.5 points (250.0..256.5: -10.8; 264.5..275.5: -10.6; 285.5..296.5: -8.9; 310.5..325.5: -3.2; 342.5..359.5: -0.4; 382.5..409.5: +7.8; 447.5..506.5: +21.0)
-- **target_healers_in_range** (target's healers in range) falls from +27.5 to -8.1 points (0.0..0.5: +27.5; 0.5..1.5: +2.1; 1.5..2.5: -4.3; 2.5..3.0: -8.1)
-- **target_health_pct** (target health % when the burst started) falls from +23.5 to -10.6 points (0.0..39.5: +23.5; 51.5..57.5: +9.4; 63.5..68.5: +3.2; 72.5..76.5: +1.2; 80.5..84.5: -1.3; 87.5..91.5: -3.7; 95.5..99.5: -10.0)
-- **target_ceiling** (target's health ceiling) falls from +27.9 to -10.3 points (0.4..0.69: +27.9; 0.7..0.73: +13.9; 0.84..0.85: +10.4; 0.88..0.91: +5.6; 0.94..0.95: +3.5; 0.99..1.02: -3.5; 1.1..1.1: -10.3)
-- **strength_gap** (attacking minus target team strength) rises from -11.0 to +18.7 points (-958.0..-565.5: -11.0; -381.5..-226.0: -10.9; -92.5..-40.0: -1.3; 0.0..79.5: +2.3; 104.5..151.5: -2.0; 281.5..416.5: +0.4; 565.5..625.5: +7.5)
-- **target_prot_up** (a prot on the target) falls from +3.5 to -6.4 points (0.0..0.5: +3.5; 0.5..1.0: -6.4)
-- **enemy_prots** (target team's prot skills) falls from +9.7 to -6.6 points (1.0..4.5: +9.7; 6.5..7.5: +9.6; 8.5..9.5: +2.0; 10.5..11.5: +0.4; 12.5..13.5: -2.0; 14.5..15.5: -3.6; 16.5..17.5: -5.6)
+- **burst_damage** (damage in the 2 s burst) rises from -10.6 to +23.8 points (250.0..256.5: -10.6; 264.5..275.5: -10.3; 285.5..296.5: -8.6; 310.5..325.5: -3.2; 342.5..359.5: -0.4; 382.5..409.5: +7.6; 447.5..506.5: +20.4)
+- **target_healers_in_range** (target's healers in range) falls from +26.9 to -7.9 points (0.0..0.5: +26.9; 0.5..1.5: +2.2; 1.5..2.5: -4.2; 2.5..3.0: -7.9)
+- **target_health_pct** (target health % when the burst started) falls from +23.1 to -10.3 points (0.0..39.5: +23.1; 51.5..57.5: +9.1; 63.5..68.5: +3.1; 72.5..76.5: +1.1; 80.5..84.5: -1.4; 87.5..91.5: -3.7; 95.5..99.5: -9.7)
+- **target_ceiling** (target's health ceiling) falls from +27.4 to -10.1 points (0.4..0.69: +27.4; 0.7..0.73: +13.6; 0.84..0.85: +10.1; 0.88..0.91: +5.7; 0.94..0.95: +3.5; 0.99..1.02: -3.4; 1.1..1.1: -10.1)
+- **strength_gap** (attacking minus target team strength) rises from -11.0 to +18.2 points (-958.0..-565.5: -11.0; -381.5..-226.0: -10.5; -92.5..-40.0: -1.8; 0.0..79.5: +1.6; 104.5..151.5: -1.4; 281.5..416.5: +0.9; 565.5..625.5: +8.1)
+- **target_prot_up** (a prot on the target) falls from +3.3 to -6.1 points (0.0..0.5: +3.3; 0.5..1.0: -6.1)
+- **enemy_prots** (target team's prot skills) falls from +9.6 to -6.5 points (1.0..4.5: +9.6; 6.5..7.5: +9.0; 8.5..9.5: +2.0; 10.5..11.5: +0.3; 12.5..13.5: -1.9; 14.5..15.5: -3.4; 16.5..17.5: -5.4)
 
 **flag answer** (seconds an answer to an enemy capture was slower than possible; 111 matches, 1014 rows): adds to the simple baseline (typical error 16.7s against 27.8s for the median; explains 71% of the spread).
 - **parked_s** (seconds the flag lay parked (dropped 5 s or more: not running yet)): 0.0..2.5: -5.2 s; 8.5..13.5: +5.2 s; 19.5..27.5: +15.3 s; 32.5..36.5: +33.1 s; 44.5..58.5: +49.6 s; 76.5..99.5: +61.6 s; 118.0..259.0: +65.4 s
@@ -142,12 +142,12 @@ Each explains one result from what happened before it (time order enforced), tes
 
 **npc loss** (133 matches, 13799 moments, 2691 results): adds to the simple baseline (AUC 0.844 against 0.752 for attackers and defenders alone).
 - **npc_damage_5s** (damage on the pit NPCs in the last 5 s) rises from -17.2 to +35.5 points (0.0..0.5: -17.2; 22.5..36.5: +2.7; 50.5..69.5: +7.2; 89.5..111.5: +15.0; 135.5..162.5: +23.9; 195.5..237.5: +27.9; 297.5..398.5: +34.3)
-- **defenders** (own players in the pit) falls from +33.7 to -31.7 points (0.0..0.5: +33.7; 0.5..1.5: +18.1; 1.5..2.5: +10.2; 2.5..3.5: +1.7; 3.5..4.5: -11.5; 4.5..5.5: -14.2; 5.5..6.5: -15.4; 6.5..7.5: -26.9; 7.5..8.0: -31.7)
+- **defenders** (own players in the pit) falls from +33.7 to -31.6 points (0.0..0.5: +33.7; 0.5..1.5: +18.1; 1.5..2.5: +10.2; 2.5..3.5: +1.7; 3.5..4.5: -11.5; 4.5..5.5: -14.2; 5.5..6.5: -15.4; 6.5..7.5: -26.9; 7.5..8.0: -31.6)
 - **defenders_elsewhere** (own players alive outside the pit) falls from +21.5 to -9.4 points (0.0..0.5: +21.5; 0.5..1.5: +12.5; 1.5..2.5: +12.0; 2.5..3.5: +2.2; 3.5..4.5: -7.0; 4.5..5.5: -14.2; 5.5..6.5: -14.2; 6.5..7.5: -13.3; 7.5..8.0: -9.4)
 - **defender_healers** (of which healers) falls from +20.8 to -7.3 points (0.0..0.5: +20.8; 0.5..1.5: -1.4; 1.5..2.5: -5.7; 2.5..3.5: -7.2; 3.5..4.0: -7.3)
-- **attackers_lord_dps** (attackers' measured damage per second against a Lord (benchmarks)) rises from -19.4 to +4.8 points (1.9..12.25: -19.4; 22.5..27.7: -5.9; 32.15..36.95: -3.4; 46.45..57.65: +3.3; 64.35..70.95: +5.7; 76.15..84.55: +7.4; 94.15..110.1: +4.7)
+- **attackers_lord_dps** (attackers' measured damage per second against a Lord (benchmarks)) rises from -19.4 to +4.7 points (1.9..12.25: -19.4; 22.5..27.7: -5.9; 32.15..36.95: -3.4; 46.45..57.65: +3.3; 64.35..70.95: +5.7; 76.15..84.55: +7.4; 94.15..110.1: +4.7)
 - **attackers** (enemy players in the pit) rises from -8.7 to +10.5 points (1.0..1.5: -8.7; 1.5..2.5: -2.8; 2.5..3.5: -1.7; 3.5..4.5: +0.8; 4.5..5.5: +5.9; 5.5..6.5: +7.6; 6.5..7.5: +9.5; 7.5..8.0: +10.5)
-- **attackers_share** (share of the attacking team's live players in the pit (OG comms: merge before pushing the pit)) rises from -5.9 to +8.1 points (0.12..0.13: -5.9; 0.23..0.27: -4.9; 0.35..0.42: -3.3; 0.53..0.61: +3.7; 0.65..0.73: +5.7; 0.78..0.87: +6.8; 0.94..1.0: +8.1)
+- **attackers_share** (share of the attacking team's live players in the pit (OG comms: merge before pushing the pit)) rises from -5.9 to +8.2 points (0.12..0.13: -5.9; 0.23..0.27: -4.9; 0.35..0.42: -3.3; 0.53..0.61: +3.7; 0.65..0.73: +5.7; 0.78..0.87: +6.8; 0.94..1.0: +8.2)
 - **strength_gap** (attacking minus defending team strength) rises from -5.1 to +9.1 points (-989.0..-494.0: -5.1; -295.0..-151.5: -8.4; -55.5..40.0: +1.7; 81.5..108.0: -2.5; 251.5..301.5: +1.2; 386.0..447.5: +2.9; 547.0..665.0: +5.1)
 - **npc_healing_10s** (healing on own pit NPCs and Lord in the last 10 s) falls from +3.1 to -17.8 points (0.0..1.5: +3.1; 41.5..60.5: +2.1; 90.5..134.5: +0.8; 160.5..202.5: -0.6; 241.5..288.5: -5.5; 348.5..408.5: -7.0; 500.5..651.5: -13.3)
 
@@ -161,19 +161,19 @@ Each explains one result from what happened before it (time order enforced), tes
 - **npc_healing_10s (chance of any)** (healing on own pit NPCs and Lord in the last 10 s): 0.0..1.5: -7.5 points; 41.5..60.5: +9.0 points; 90.5..133.5: +10.3 points; 158.5..200.5: +11.4 points; 239.5..285.5: +12.4 points; 347.5..405.5: +13.1 points; 501.5..651.5: +13.6 points
 - **attackers_lord_dps (chance of any)** (attackers' measured damage per second against a Lord (benchmarks)): 1.9..12.55: -15.6 points; 22.7..31.1: -14.2 points; 32.8..43.0: -2.8 points; 53.2..64.25: -1.1 points; 66.25..73.15: +0.1 points; 80.0..85.85: +17.9 points; 99.35..111.4: +14.2 points
 - **attackers_share (chance of any)** (share of the attacking team's live players in the pit (OG comms: merge before pushing the pit)): 0.12..0.13: -10.5 points; 0.23..0.27: -5.6 points; 0.35..0.42: -5.2 points; 0.53..0.61: +6.7 points; 0.65..0.73: +11.0 points; 0.78..0.87: +12.4 points; 0.94..1.0: +13.4 points
-- **attackers (chance of any)** (enemy players in the pit): 1.0..1.5: -9.5 points; 1.5..2.5: -3.1 points; 2.5..3.5: -2.3 points; 3.5..4.5: +1.9 points; 4.5..5.5: +5.0 points; 5.5..6.5: +5.6 points; 6.5..7.5: +6.5 points; 7.5..8.0: +15.4 points
+- **attackers (chance of any)** (enemy players in the pit): 1.0..1.5: -9.5 points; 1.5..2.5: -3.1 points; 2.5..3.5: -2.3 points; 3.5..4.5: +1.9 points; 4.5..5.5: +4.9 points; 5.5..6.5: +5.6 points; 6.5..7.5: +6.5 points; 7.5..8.0: +15.4 points
 - **strength_gap (chance of any)** (attacking minus defending team strength): -989.0..-423.5: -5.2 points; -289.0..-84.0: +6.6 points; -6.0..64.0: +7.7 points; 101.0..226.0: -5.2 points; 295.0..375.0: -6.0 points; 432.5..490.0: -3.6 points; 572.5..665.0: -7.5 points
 
 **lord kill** (128 matches, 15516 moments, 1119 results): adds to the simple baseline (AUC 0.965 against 0.938 for attackers and defenders alone).
-- **defenders** (own players in the pit) falls from +44.2 to -47.9 points (0.0..0.5: +44.2; 0.5..1.5: +37.8; 1.5..2.5: +15.0; 2.5..3.5: +3.8; 3.5..4.5: -18.8; 4.5..5.5: -23.1; 5.5..6.5: -35.9; 6.5..7.5: -43.9; 7.5..8.0: -47.9)
-- **minute** (match minute) rises from -48.2 to +26.4 points (0.5..2.85: -48.2; 3.85..5.05: -13.9; 6.15..7.35: +3.3; 8.75..10.15: +14.7; 11.55..13.55: +16.6; 15.75..18.35: +21.9; 21.05..24.35: +26.0)
-- **defenders_elsewhere** (own players alive outside the pit) falls from +35.6 to -31.3 points (0.0..0.5: +35.6; 0.5..1.5: +17.5; 1.5..2.5: +16.3; 2.5..3.5: +15.0; 3.5..4.5: +3.5; 4.5..5.5: -21.7; 5.5..6.5: -23.2; 6.5..7.5: -31.2; 7.5..8.0: -31.3)
+- **defenders** (own players in the pit) falls from +44.2 to -47.9 points (0.0..0.5: +44.2; 0.5..1.5: +37.8; 1.5..2.5: +15.1; 2.5..3.5: +3.8; 3.5..4.5: -18.8; 4.5..5.5: -23.1; 5.5..6.5: -35.9; 6.5..7.5: -43.9; 7.5..8.0: -47.9)
+- **minute** (match minute) rises from -48.3 to +26.5 points (0.5..2.85: -48.3; 3.85..5.05: -13.9; 6.15..7.35: +3.3; 8.75..10.15: +14.7; 11.55..13.55: +16.6; 15.75..18.35: +21.9; 21.05..24.35: +26.0)
+- **defenders_elsewhere** (own players alive outside the pit) falls from +35.6 to -31.3 points (0.0..0.5: +35.6; 0.5..1.5: +17.5; 1.5..2.5: +16.3; 2.5..3.5: +15.1; 3.5..4.5: +3.5; 4.5..5.5: -21.8; 5.5..6.5: -23.2; 6.5..7.5: -31.2; 7.5..8.0: -31.3)
 - **defender_healers** (of which healers) falls from +32.9 to -34.7 points (0.0..0.5: +32.9; 0.5..1.5: +8.9; 1.5..2.5: -10.6; 2.5..3.5: -30.0; 3.5..4.0: -34.7)
-- **attackers** (enemy players in the pit) rises from -29.7 to +20.7 points (1.0..1.5: -29.7; 1.5..2.5: +2.9; 2.5..3.5: +6.2; 3.5..4.5: +9.5; 4.5..5.5: +14.5; 5.5..6.5: +15.3; 6.5..7.5: +18.0; 7.5..8.0: +20.7)
-- **attackers_share** (share of the attacking team's live players in the pit (OG comms: merge before pushing the pit)) rises from -16.6 to +24.1 points (0.12..0.13: -16.6; 0.23..0.27: -13.2; 0.35..0.42: -9.9; 0.53..0.61: -5.4; 0.65..0.73: +20.2; 0.78..0.87: +22.1; 0.94..1.0: +24.1)
-- **attackers_lord_dps** (attackers' measured damage per second against a Lord (benchmarks)) rises from +14.2 to +18.9 points (1.9..12.55: +14.2; 22.7..31.1: -17.2; 32.8..43.0: -14.2; 53.2..64.25: -7.4; 66.25..73.15: -3.7; 80.0..85.85: +17.6; 99.35..111.4: +19.8)
-- **res_in** (seconds until the next res) rises from -42.8 to -1.8 points (1.0..8.5: -42.8; 17.5..26.5: -0.9; 35.5..44.5: +14.1; 53.5..62.5: +13.0; 68.5..74.5: +11.1; 80.5..86.5: +9.0; 95.5..107.5: +3.3)
-- **lord_health** (the Lord's rebuilt health as a share of its max (lord.py)) falls from +48.7 to -5.7 points (0.0..0.15: +48.7; 0.4..0.59: +36.9; 0.7..0.78: +27.8; 0.83..0.87: +17.8; 0.91..0.94: +12.5; 0.96..0.98: +7.9; 0.99..1.0: +3.0)
+- **attackers** (enemy players in the pit) rises from -29.6 to +20.7 points (1.0..1.5: -29.6; 1.5..2.5: +2.9; 2.5..3.5: +6.2; 3.5..4.5: +9.5; 4.5..5.5: +14.4; 5.5..6.5: +15.3; 6.5..7.5: +18.0; 7.5..8.0: +20.7)
+- **attackers_share** (share of the attacking team's live players in the pit (OG comms: merge before pushing the pit)) rises from -16.5 to +24.1 points (0.12..0.13: -16.5; 0.23..0.27: -13.2; 0.35..0.42: -9.9; 0.53..0.61: -5.4; 0.65..0.73: +20.2; 0.78..0.87: +22.1; 0.94..1.0: +24.1)
+- **attackers_lord_dps** (attackers' measured damage per second against a Lord (benchmarks)) rises from +14.2 to +18.9 points (1.9..12.55: +14.2; 22.7..31.1: -17.2; 32.8..43.0: -14.3; 53.2..64.25: -7.4; 66.25..73.15: -3.7; 80.0..85.85: +17.7; 99.35..111.4: +19.9)
+- **res_in** (seconds until the next res) rises from -42.8 to -1.8 points (1.0..8.5: -42.8; 17.5..26.5: -0.9; 35.5..44.5: +14.1; 53.5..62.5: +13.0; 68.5..74.5: +11.1; 80.5..86.5: +9.0; 95.5..107.5: +3.4)
+- **lord_health** (the Lord's rebuilt health as a share of its max (lord.py)) falls from +48.7 to -5.7 points (0.0..0.15: +48.7; 0.4..0.59: +36.8; 0.7..0.78: +27.8; 0.83..0.87: +17.7; 0.91..0.94: +12.5; 0.96..0.98: +7.9; 0.99..1.0: +2.9)
 
 
 ## 6b. The learned nodes (step 2 of the learned causal map)
@@ -703,18 +703,18 @@ Win points for the team it happened to, from 133 matches. **Result** = how match
 
 *deaths* (per 10 s in that state; result worth -9.3 points, base rate 1.5%):
 
-- enemies within 1,500 7.5 to 8: result chance +3.1 points, worth -0.29 win points
+- enemies within 1,500 7.5 to 8: result chance +3.0 points, worth -0.28 win points
 - current health % 1 to 48.5: result chance +10.9 points, worth -1.01 win points
 - allies within 1,500 0 to 0.5: result chance +1.9 points, worth -0.18 win points
 - allies minus enemies within 2,000 -8 to -3.5: result chance +2.5 points, worth -0.23 win points
 
 *kill conversion* (per burst, for the attacking team; result worth +9.3 points, base rate 29.6%):
 
-- damage in the 2 s burst 506.5 to 839: result chance +24.6 points, worth +2.29 win points
-- target's healers in range 0 to 0.5: result chance +28.7 points, worth +2.67 win points
-- target health % when the burst started 0 to 39.5: result chance +23.7 points, worth +2.21 win points
-- target's health ceiling 0.4 to 0.69: result chance +29.4 points, worth +2.74 win points
-- a prot on the target 0.5 to 1: result chance -4.8 points, worth -0.45 win points
+- damage in the 2 s burst 506.5 to 839: result chance +25.5 points, worth +2.37 win points
+- target's healers in range 0 to 0.5: result chance +29.6 points, worth +2.75 win points
+- target health % when the burst started 0 to 39.5: result chance +24.2 points, worth +2.25 win points
+- target's health ceiling 0.4 to 0.69: result chance +30.1 points, worth +2.8 win points
+- a prot on the target 0.5 to 1: result chance -5.1 points, worth -0.47 win points
 
 *npc loss* (per case, for the defending team; result worth -5.9 points, base rate 19.5%):
 
@@ -775,6 +775,11 @@ Denning's four questions, each from the batch's matches. The why comes from fore
 **Where a fix would have mattered most** (measured, in win points):
 - no alternative along the chain could be priced from the data yet
 
+**How it got there, from the node models** (step 4: each link read by the node's held-out model; the biggest pushes toward the result, against the variable's usual value over every trained moment; a variable that is another node's result is followed back to it):
+- 2:20 flag swing: flag lead change over 60 s -38.8 s; pushed by flag lead now (s) 80 (usual 0): +18.9 s; own deaths in the last 30 s 2 (usual 0): +11.6 s; team strength gap -93 (usual 4): +3.6 s
+  - 1:39 fight outcome: won the fight 4.8% (behind own_deaths_30s in the link above); pushed by enemy players in the fight 8 (usual 6): +21.9 points; spikes, own minus enemy -1 (usual 0): +21.3 points; damage against the usual of the players alive, own minus enemy -0.71 (usual -0.02): +17.7 points
+*Fixes carried forward*: none worth half a win point at the result (closest: spikes, own minus enemy at 1:39 -1 -> 0: +0.6 at its own node, 0.0 carried to the result; damage against the usual of the players alive, own minus enemy at 1:39 -0.71 -> -0.02: +0.4 at its own node, 0.0 carried to the result).
+
 **A different play (measured)**
 
 *The decisions in the swing* (usual.py: win-chance points over the decision's window, against the kind's most common choice):
@@ -821,6 +826,13 @@ Denning's four questions, each from the batch's matches. The why comes from fore
 - step 2: boost clock at 26:46 (main 3v5): running, advanced instead of not running, advanced: about +3.5 win points (usual.py: measured choice effect against the choice made, partly who chooses it; not clear yet)
 - step 2: another healer in range of the 8 Monk: about +2.9 win points (deaths node: risk 14.6% -> 9.4% of dying in the next 10 s, times this death's cost (-55.5 points); clear)
 
+**How it got there, from the node models** (step 4: each link read by the node's held-out model; the biggest pushes toward the result, against the variable's usual value over every trained moment; a variable that is another node's result is followed back to it):
+- 26:42 fight outcome: won the fight 82.3%; read from NwAy's side (own = NwAy); pushed by interrupted after casting into a ready interrupt, per cast, own minus enemy -0.01 (usual 0): +16.3 points; enemy players in the fight 5 (usual 6): +16.3 points; damage against the usual of the players alive, own minus enemy 1.13 (usual -0.02): +7.5 points
+  - 24:07 fight outcome: won the fight 25.1% (behind enemy_local in the link above); pushed by own players in the fight 1 (usual 6): +42.0 points; damage against the usual of the players alive, own minus enemy -1.51 (usual -0.02): +35.7 points; value of enchantments stripped per 10 s, own minus enemy 3.49 (usual 0): +2.4 points
+*Fixes, carried forward to the result* (the variable set to its usual value, the node read again, the change carried link by link and priced with values.py):
+- interrupted after casting into a ready interrupt, per cast, own minus enemy at 26:42: -0.01 -> 0; fight outcome -11.9; worth +1.1 win points at the result
+- damage against the usual of the players alive, own minus enemy at 26:42: 1.13 -> -0.02; fight outcome -5.5; worth +0.5 win points at the result
+
 **How it could have been prevented (measured)**
 
 - Further back: the fixes along the chain are priced above ("Where a fix would have mattered most"). The readings below are what was still possible in the last seconds.
@@ -862,6 +874,11 @@ Denning's four questions, each from the batch's matches. The why comes from fore
 **Where the power play came from** (why the enemy was short, player-seconds over it): enemy pit 71, enemy base 19, running flag 17
 **Why, in short**: BcS had 6v4 at main for 109 s; Team healed 142 per second; worse than in power plays that killed: damage 32.8 per second (killing 45.3, not killing 35.8); not the cause (on the side of power plays that killed): damage uptime in contact 49% (killing 50%, not killing 39%; most lost to moving), top-target share 0.35 over 4 targets (killing 0.37, not killing 0.41).
 
+**How it got there, from the node models** (step 4: each link read by the node's held-out model; the biggest pushes toward the result, against the variable's usual value over every trained moment; a variable that is another node's result is followed back to it):
+- 9:28 power play: killed on the power play 21.0%; pushed by own damage per second against the usual of the players alive 1.05 (usual 1.48): +16.4 points; in a base or pit 0.84 (usual 0): +11.4 points; team strength gap -258 (usual 56): +4.6 points
+*Fixes, carried forward to the result* (the variable set to its usual value, the node read again, the change carried link by link and priced with values.py):
+- own damage per second against the usual of the players alive at 9:28: 1.05 -> 1.48; power play +13.1; worth +1.2 win points at the result
+
 **How it could have been converted (measured)**
 
 - Against every stored power play (2 up): those that killed had a median 45.3 damage per second and top-target share 0.37 (69 cases); those that didn't, 35.8 and 0.41 (139 cases). BcS here: 32.8 and 0.35. Damage uptime: 50% in those that killed, 39% in those that didn't, 49% here.
@@ -902,6 +919,11 @@ Denning's four questions, each from the batch's matches. The why comes from fore
 
 **Where a fix would have mattered most** (measured, in win points):
 - step 2: Aura of Stability (or other knockdown immunity) on the Monk 4 (WoC): cope Prot Aura of Stability, cope Prot Balanced Stance had it ready: about +0.4 win points (deaths node: risk 10.9% -> 6.4% of dying in the next 10 s, times this death's cost (-9.2 points); not clear yet)
+
+**How it got there, from the node models** (step 4: each link read by the node's held-out model; the biggest pushes toward the result, against the variable's usual value over every trained moment; a variable that is another node's result is followed back to it):
+- 15:44 fight outcome: won the fight 64.1%; read from hold's side (own = hold); pushed by enemy players in the fight 4 (usual 6): +13.7 points; own players in the fight 7 (usual 6): +7.3 points; damage against the usual of the players alive, own minus enemy 0.23 (usual -0.02): +2.2 points
+  - 14:29 fight outcome: won the fight 7.8% (behind enemy_local in the link above); pushed by spikes, own minus enemy -1 (usual 0): +22.9 points; damage against the usual of the players alive, own minus enemy -1.02 (usual -0.02): +21.9 points; interrupted after casting into a ready interrupt, per cast, own minus enemy 0.04 (usual 0): +13.3 points
+*Fixes carried forward*: none worth half a win point at the result (closest: spikes, own minus enemy at 14:29 -1 -> 0: +1.0 at its own node, 0.1 carried to the result; damage against the usual of the players alive, own minus enemy at 14:29 -1.02 -> -0.02: +0.9 at its own node, 0.1 carried to the result).
 
 **How it could have been prevented (measured)**
 
