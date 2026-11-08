@@ -9,22 +9,25 @@ Trained on 133 matches. Each question below is answered by its own small model t
 4490 cases from 133 matches; happens 61% of the time. Predicts unseen matches better than a simple guess.
 
 Causes tested:
-- **Run timing and runner choice**: **supported**: it clearly helps predict matches the model never saw.
-  - flag lead at the start (s): at -80 to -60.5: +1 points; at 58.5 to 129: -11.9 points
-  - seconds to the enemy's boost (if it holds): at 0 to 28.5: -19.1 points; at 116.5 to 120: +6.5 points
-  - own team holds the stand: at 0 to 0.5: +1.5 points; at 0.5 to 1: -2.9 points
+- **Run timing and runner choice**: not clear yet: more matches needed.
+  - flag lead at the start (s): at -80 to -60.5: +1.2 points; at 58.5 to 129: -12.1 points
+  - seconds to the enemy's boost (if it holds): at 0 to 28.5: -19.2 points; at 116.5 to 120: +6.3 points
+  - runner 0 frontline, 1 midline, 2 backline: at 0 to 0.5: -3.4 points; at 1.5 to 2: +0.9 points
+- **Mobility**: not clear yet: more matches needed.
+  - runner's speed power (movepower.py): at 0 to 2.5: -0.4 points; at 20.3 to 34.8: -12.9 points
+  - runner's Shadow Step skills: at 0 to 0.5: +0.7 points; at 1.5 to 2: +4.6 points
 - **Map geometry**: not clear yet: more matches needed.
-  - distance from the team's spawn to the stand: at 4170 to 4296: +8.3 points; at 9255.5 to 9335: -1.8 points
+  - distance from the team's spawn to the stand: at 4170 to 4296: +10 points; at 9255.5 to 9335: -2.7 points
 - **Control received**: not clear yet: more matches needed.
-  - enemies who pushed the runner by this point: at 0 to 0.5: -1.3 points; at 3.5 to 7: +7.3 points
-  - runner Crippled by this point: at 0 to 0.5: -0.5 points; at 0.5 to 1: +14.2 points
-  - runner knocked down by this point: at 0 to 0.5: +0.1 points; at 1.5 to 4: -9.8 points
-- **Team strength**: not clear yet: more matches needed.
-  - team strength gap: at -989 to -576: -8.3 points; at 565.5 to 989: +1 points
+  - enemies who pushed the runner by this point: at 0 to 0.5: -0.8 points; at 3.5 to 7: +5.1 points
+  - snare power of live enemies within 1,300 of the runner (movepower.py): at 0 to 4.1: -0.6 points; at 80.95 to 146.9: +3.4 points
+  - runner Crippled by this point: at 0 to 0.5: -0.4 points; at 0.5 to 1: +13.6 points
 - **Allocation**: not clear yet: more matches needed.
-  - enemy main: at 0 to 1.5: -1.2 points; at 7.5 to 8: -5.8 points
-  - own main: at 1 to 1.5: -14.6 points; at 7.5 to 8: -3.7 points
-  - escorts at the start: at 0 to 0.5: +0.4 points; at 6.5 to 7: -4.3 points
+  - enemy main: at 0 to 1.5: -0.2 points; at 7.5 to 8: -6 points
+  - own main: at 1 to 1.5: -14.9 points; at 7.5 to 8: -3.7 points
+  - escorts at the start: at 0 to 0.5: +0.5 points; at 6.5 to 7: -4.2 points
+- **Team strength**: not clear yet: more matches needed.
+  - team strength gap: at -989 to -576: -7.3 points; at 565.5 to 989: +1.4 points
 
 ## How much will the flag lead change over the next minute?
 
@@ -58,34 +61,40 @@ Causes tested:
 
 Causes tested:
 - **Map geometry**: not clear yet: more matches needed.
-  - distance from the runner's spawn to the stand: at 4170 to 4296: +12.4 points; at 9255.5 to 9335: -2.7 points
+  - distance from the runner's spawn to the stand: at 4170 to 4296: +13.7 points; at 9255.5 to 9335: -3.6 points
+- **Mobility**: not clear yet: more matches needed.
+  - runner's speed power (movepower.py): at 0 to 2.5: -0.1 points; at 20.3 to 34.8: -10.6 points
 - **Mesmers free to defend**: not clear yet: more matches needed.
-  - defenders alive and not on flag duty at the run's start: at 0 to 3.5: +6.8 points; at 7.5 to 8: -3 points
-  - defenders who pushed the runner by this point: at 0 to 0.5: -1.3 points; at 3.5 to 7: +8.3 points
-  - conditions and knockdowns on the runner by this point: at 0 to 0.5: -0.2 points; at 4.5 to 13: +0.4 points
-- **Team strength**: not clear yet: more matches needed.
-  - defending team's strength gap: at -989 to -565.5: +0.7 points; at 576 to 989: -5.4 points
+  - defenders alive and not on flag duty at the run's start: at 0 to 3.5: +6.3 points; at 7.5 to 8: -3 points
+  - defenders who pushed the runner by this point: at 0 to 0.5: -0.9 points; at 3.5 to 7: +6.5 points
+  - conditions and knockdowns on the runner by this point: at 0 to 0.5: -0.2 points; at 4.5 to 13: -1 points
+- **Control received**: not clear yet: more matches needed.
+  - snare power of live defenders within 1,300 of the runner (movepower.py): at 0 to 4.1: -0.6 points; at 80.95 to 146.9: +3.1 points
 - **Allocation**: not clear yet: more matches needed.
-  - attackers' main: at 1 to 1.5: -12.2 points; at 7.5 to 8: -4.7 points
-  - the runner's escorts: at 0 to 0.5: +0.6 points; at 6.5 to 7: -2.7 points
-  - defenders' main: at 0 to 1.5: -3.4 points; at 7.5 to 8: -1.1 points
+  - attackers' main: at 1 to 1.5: -15.5 points; at 7.5 to 8: -4.7 points
+  - the runner's escorts: at 0 to 0.5: +0.5 points; at 6.5 to 7: -2.1 points
+  - defenders' main: at 0 to 1.5: -2.4 points; at 7.5 to 8: -1.4 points
+- **Team strength**: not clear yet: more matches needed.
+  - defending team's strength gap: at -989 to -565.5: +1.3 points; at 576 to 989: -5 points
 
 ## How long does an enemy capture take? (Captures only.)
 
 1060 cases from 125 matches; average 40.2 s. Predicts unseen matches not yet better than a simple guess.
 
 Causes tested:
-- **Control received**: **supported**: it clearly helps predict matches the model never saw.
-  - conditions and knockdowns on the runner in the first 10 s: at 0 to 0.5: +0.3 s; at 2.5 to 7: -1.5 s
-  - defenders who pushed the runner in the first 10 s: at 0 to 0.5: +0.2 s; at 3.5 to 7: +5.1 s
-  - damage on the runner in the first 10 s: at 0 to 1: +0 s; at 274 to 841: +2.8 s
-- **Team strength**: **supported**: it clearly helps predict matches the model never saw.
-  - defending team's strength gap: at -989 to -576: -4.1 s; at 547 to 976: +1.1 s
+- **Mobility**: not clear yet: more matches needed.
+  - runner's speed power (movepower.py): at 0 to 2.5: +0.8 s; at 20.3 to 34.8: +6.8 s
+- **Team strength**: not clear yet: more matches needed.
+  - defending team's strength gap: at -989 to -576: -4.9 s; at 547 to 976: +0.7 s
 - **Allocation**: not clear yet: more matches needed.
-  - the runner's escorts: at 0 to 0.5: -1.5 s; at 6.5 to 7: +11.4 s
-  - defenders alive and not on flag duty: at 2 to 3.5: -4.8 s; at 7.5 to 8: +1 s
+  - the runner's escorts: at 0 to 0.5: -1.9 s; at 6.5 to 7: +13.7 s
+  - defenders alive and not on flag duty: at 2 to 3.5: -6.1 s; at 7.5 to 8: +1.2 s
+- **Control received**: not clear yet: more matches needed.
+  - snare power of live defenders within 1,300 of the runner 10 s in (movepower.py): at 0 to 1.65: +0.3 s; at 89.3 to 118.7: -7.7 s
+  - conditions and knockdowns on the runner in the first 10 s: at 0 to 0.5: +0.2 s; at 2.5 to 7: +0.2 s
+  - defenders who pushed the runner in the first 10 s: at 0 to 0.5: +0.2 s; at 3.5 to 7: +8.4 s
 - **Map geometry**: not clear yet: more matches needed.
-  - distance from the runner's spawn to the stand: at 4170 to 4255: +0.1 s; at 9255.5 to 9335: -0.4 s
+  - distance from the runner's spawn to the stand: at 4170 to 4255: -1.1 s; at 9255.5 to 9335: +0 s
 
 ## Does a power play (any numbers advantage at main) kill?
 
@@ -93,27 +102,28 @@ Causes tested:
 
 Causes tested:
 - **Allocation**: **supported**: it clearly helps predict matches the model never saw.
-  - share of the enemy's missing player-seconds: dead: at 0 to 0.01: -16.8 points; at 0.99 to 1: +14.8 points
-  - on the back side or push side: at 0 to 0.01: +5.7 points; at 0.99 to 1: -9.3 points
-  - running the flag: at 0 to 0.01: +2.9 points; at 0.61 to 1: -10.5 points
+  - share of the enemy's missing player-seconds: dead: at 0 to 0.01: -16.7 points; at 0.99 to 1: +14.3 points
+  - on the back side or push side: at 0 to 0.01: +4.9 points; at 0.99 to 1: -8.3 points
+  - running the flag: at 0 to 0.01: +2.3 points; at 0.61 to 1: -7.5 points
 - **Damage uptime**: **supported**: it clearly helps predict matches the model never saw.
-  - own damage per second against the usual of the players alive: at 0.04 to 0.51: -27.6 points; at 3.25 to 19.89: +27.5 points
-- **Mitigation**: **supported**: it clearly helps predict matches the model never saw.
-  - enemy prot casts per 10 s: at 0 to 0.35: +19.6 points; at 5.14 to 10: -6.9 points
-  - enemy healing per second: at 0 to 27.95: +5.3 points; at 139.55 to 337.8: +1.2 points
-- **Burst timing**: not clear yet: more matches needed.
-  - own spikes per 10 s: at 0 to 0.04: -3.1 points; at 1.83 to 4: +33.8 points
-  - median spread of own spikes (s): at 0 to 0.17: +12.3 points; at 2.73 to 3: -6.9 points
+  - own damage per second against the usual of the players alive: at 0.04 to 0.51: -31.7 points; at 3.25 to 19.89: +29.6 points
 - **Team strength**: not clear yet: more matches needed.
-  - team strength gap: at -976 to -530: -9.9 points; at 616.5 to 989: +21.7 points
-- **Commitment**: not clear yet: more matches needed.
+  - team strength gap: at -976 to -530: -10.1 points; at 616.5 to 989: +23.7 points
+- **Mitigation**: **supported**: it clearly helps predict matches the model never saw.
+  - enemy prot casts per 10 s: at 0 to 0.35: +19 points; at 5.14 to 10: -5.5 points
+  - enemy healing per second: at 0 to 27.95: +4.5 points; at 139.55 to 337.8: +0.9 points
+- **Commitment**: **supported**: it clearly helps predict matches the model never saw.
   - pushed (1) or held (0): at 0 to 0.5: -10.4 points; at 0.5 to 1: +5.2 points
-- **Flag lead**: not clear yet: more matches needed.
-  - flag lead (s): at -80 to -55.5: -1.8 points; at 71.5 to 108: +2 points
-- **Control received**: not clear yet: more matches needed.
-  - seconds own attackers spent Blind, per 10 s: at 0 to 0.1: +0.1 points; at 4.75 to 6.97: +2.8 points
+- **Burst timing**: not clear yet: more matches needed.
+  - own spikes per 10 s: at 0 to 0.04: -3.2 points; at 1.83 to 4: +34.5 points
+  - median spread of own spikes (s): at 0 to 0.17: +12.6 points; at 2.73 to 3: -9.3 points
 - **Target choice**: not clear yet: more matches needed.
-  - share of own spikes on healers: at 0 to 0.07: -0.2 points; at 0.9 to 1: +6.7 points
+  - share of own damage on enemy players that landed on enemy healers (Bounty: going after the monks): at 0 to 0.01: +12.6 points; at 0.83 to 1: +16.4 points
+  - share of own spikes on healers: at 0 to 0.07: +0.4 points; at 0.9 to 1: +5.4 points
+- **Flag lead**: not clear yet: more matches needed.
+  - flag lead (s): at -80 to -55.5: -0.8 points; at 71.5 to 108: +2.8 points
+- **Control received**: not clear yet: more matches needed.
+  - seconds own attackers spent Blind, per 10 s: at 0 to 0.1: +0.2 points; at 4.75 to 6.97: +0 points
 
 ## Who wins a fight? Play measured before the fight's first death.
 
@@ -121,30 +131,32 @@ Causes tested:
 
 Causes tested:
 - **Team strength**: **supported**: it clearly helps predict matches the model never saw.
-  - team strength gap: at -989 to -616.5: -29.7 points; at 616.5 to 989: +31.9 points
+  - team strength gap: at -989 to -616.5: -29 points; at 616.5 to 989: +31.1 points
 - **Allocation**: **supported**: it clearly helps predict matches the model never saw.
-  - own players in the fight: at 0 to 0.5: -36.6 points; at 7.5 to 8: +24.5 points
-  - enemy players in the fight: at 0 to 0.5: +30.8 points; at 7.5 to 8: -24.1 points
+  - own players in the fight: at 0 to 0.5: -33.9 points; at 7.5 to 8: +23 points
+  - enemy players in the fight: at 0 to 0.5: +28.7 points; at 7.5 to 8: -22.5 points
 - **Burst timing**: **supported**: it clearly helps predict matches the model never saw.
-  - spikes, own minus enemy: at -4 to -2.5: -32.7 points; at 2.5 to 3: +34.7 points
-  - median spike spread (s), own minus enemy: at -1.4 to -1.1: +1.7 points; at 0.85 to 1.8: -10.9 points
+  - spikes, own minus enemy: at -4 to -2.5: -32.9 points; at 2.5 to 3: +34.1 points
+  - median spike spread (s), own minus enemy: at -1.4 to -1.1: +1.2 points; at 0.85 to 1.8: -11.2 points
 - **Pressure**: **supported**: it clearly helps predict matches the model never saw.
-  - damage against the usual of the players alive, own minus enemy: at -15.38 to -2.01: -19.8 points; at 1.9 to 10.62: +22.2 points
+  - damage against the usual of the players alive, own minus enemy: at -15.38 to -2.01: -19.8 points; at 1.9 to 10.62: +20.9 points
 - **Wrong casts**: not clear yet: more matches needed.
-  - interrupted after casting into a ready interrupt, per cast, own minus enemy: at -0.28 to -0.08: +18.5 points; at 0.08 to 0.27: -27.2 points
-  - casts while Dazed, per cast, own minus enemy: at -0.13 to -0.06: +10.4 points; at 0.1 to 0.19: -5.6 points
-  - attacks while Blind per player, own minus enemy: at -2.25 to -0.94: -1.6 points; at 0.8 to 1.25: +0.5 points
-- **Enchantment strips**: not clear yet: more matches needed.
-  - value of enchantments stripped per 10 s, own minus enemy: at -92.07 to -27.05: -11.4 points; at 23.78 to 67.21: +5.2 points
-  - share of strips on the best target in range, own minus enemy: at -1 to -0.88: +0.6 points; at 0.88 to 1: -0.8 points
+  - interrupted after casting into a ready interrupt, per cast, own minus enemy: at -0.28 to -0.08: +18 points; at 0.08 to 0.27: -25.7 points
+  - casts while Dazed, per cast, own minus enemy: at -0.13 to -0.06: +9.4 points; at 0.1 to 0.19: -6.3 points
+  - attacks while Blind per player, own minus enemy: at -2.25 to -0.94: -1.9 points; at 0.8 to 1.25: +0.9 points
 - **Peel**: not clear yet: more matches needed.
-  - own frontline damage share on attackers of own backline, minus the enemy's: at -1 to -0.63: -2.6 points; at 0.71 to 1: -1.5 points
+  - own frontline damage share on attackers of own backline, minus the enemy's: at -1 to -0.63: -3.4 points; at 0.71 to 1: -0.4 points
+- **Enchantment strips**: not clear yet: more matches needed.
+  - value of enchantments stripped per 10 s, own minus enemy: at -92.07 to -27.05: -10.4 points; at 23.78 to 67.21: +5.1 points
+  - share of strips on the best target in range, own minus enemy: at -1 to -0.88: +1.1 points; at 0.88 to 1: -0.9 points
+- **Target choice**: not clear yet: more matches needed.
+  - share of damage on enemy healers, own minus enemy (Bounty: going after the monks): at -1 to -0.59: -2.7 points; at 0.62 to 1: +6.6 points
 - **Blind on enemies**: not clear yet: more matches needed.
-  - seconds the enemy frontline spent Blind, own minus enemy: at -13.7 to -10.15: -2.9 points; at 10.3 to 27.1: +13.2 points
-  - seconds Blind from defensive Blinds, own minus enemy: at -8.4 to -5.4: +7.2 points; at 5.7 to 14.1: +5.9 points
+  - seconds the enemy frontline spent Blind, own minus enemy: at -13.7 to -10.15: -2.5 points; at 10.3 to 27.1: +12.1 points
+  - seconds Blind from defensive Blinds, own minus enemy: at -8.4 to -5.4: +7.5 points; at 5.7 to 14.1: +7.2 points
 - **Condition removal**: not clear yet: more matches needed.
-  - value-weighted seconds hexes stayed on own players, own minus enemy: at -28.6 to -10.84: -4.9 points; at 10.97 to 29.6: +7.9 points
-  - share of hex removals that took the most costly hex in range, own minus enemy: at -1 to -0.92: -11.9 points; at 0.9 to 1: +2.1 points
+  - value-weighted seconds hexes stayed on own players, own minus enemy: at -28.6 to -10.84: -4.4 points; at 10.97 to 29.6: +7.3 points
+  - share of hex removals that took the most costly hex in range, own minus enemy: at -1 to -0.92: -10.7 points; at 0.9 to 1: +1.3 points
 
 ## Does a team start a split in the next 30 s?
 
@@ -152,18 +164,18 @@ Causes tested:
 
 Causes tested:
 - **Scoreboard**: **supported**: it clearly helps predict matches the model never saw.
-  - own main: at 0 to 2.5: +22.4 points; at 7.5 to 8: -16.9 points
-  - own alive: at 0 to 3.5: -39.9 points; at 7.5 to 8: +3.4 points
-  - enemy main: at 0 to 2.5: +1.9 points; at 7.5 to 8: -2.2 points
-- **Clock**: not clear yet: more matches needed.
-  - minute: at 0.5 to 1.35: -2.1 points; at 20.35 to 27.5: +11 points
-  - seconds to the next res: at 15 to 22.5: -0.2 points; at 112.5 to 120: -1.7 points
+  - own main: at 0 to 2.5: +22.6 points; at 7.5 to 8: -17.3 points
+  - own alive: at 0 to 3.5: -40.4 points; at 7.5 to 8: +3.5 points
+  - enemy main: at 0 to 2.5: +3.5 points; at 7.5 to 8: -3.1 points
 - **Build features**: not clear yet: more matches needed.
-  - snares on own bars: at 0 to 0.5: -8.6 points; at 11.5 to 14: -5.6 points
-  - snares on enemy bars: at 0 to 0.5: -18.3 points; at 11.5 to 14: +6.4 points
-  - speed skills on own bars: at 1 to 1.5: +2.2 points; at 8.5 to 10: +10.1 points
+  - snare power on own bars: at 0 to 15.55: -3.6 points; at 109.45 to 423: +11.7 points
+  - snare power on enemy bars: at 0 to 15.55: -3.3 points; at 115.15 to 423: +8.9 points
+  - Shadow Step skills on own bars: at 0 to 0.5: -6.1 points; at 8.5 to 10: -3.1 points
+- **Clock**: not clear yet: more matches needed.
+  - minute: at 0.5 to 1.35: -2.5 points; at 20.35 to 27.5: +12.1 points
+  - seconds to the next res: at 15 to 22.5: -0.2 points; at 112.5 to 120: -1.8 points
 - **Team strength**: not clear yet: more matches needed.
-  - team strength gap: at -989 to -583: -7.8 points; at 572.5 to 989: +7 points
+  - team strength gap: at -989 to -583: -6.3 points; at 572.5 to 989: +5.3 points
 
 ## How long until the first defender reaches a split in the base?
 
@@ -190,49 +202,54 @@ Causes tested:
 
 Causes tested:
 - **Scoreboard**: not clear yet: more matches needed.
-  - defenders' pit NPC value when the split entered the base: at 0 to 0.75: -17.1 points; at 11.25 to 13.5: +3.9 points
-  - defenders alive and not on flag duty at entry: at 0 to 4.5: +18.5 points; at 7.5 to 8: -1 points
+  - defenders' pit NPC value when the split entered the base: at 0 to 0.75: -16.6 points; at 11.25 to 13.5: +3.5 points
+  - defenders alive and not on flag duty at entry: at 0 to 4.5: +18.5 points; at 7.5 to 8: -1.1 points
+- **Control received**: not clear yet: more matches needed.
+  - snare power of the defenders who came (movepower.py): at 0 to 4.15: -2.1 points; at 77.95 to 162.8: +8.9 points
+- **Mobility**: not clear yet: more matches needed.
+  - split members' speed power (movepower.py): at 0 to 11: -2.3 points; at 37.65 to 65.8: +3.4 points
 - **Split answer**: not clear yet: more matches needed.
-  - seconds until the first defender arrived (60 = never): at -30 to -29.5: +3.2 points; at 13.5 to 60: +0.9 points
-  - defenders who came: at 0 to 1.5: +2 points; at 7.5 to 8: +0.7 points
+  - seconds until the first defender arrived (60 = never): at -30 to -29.5: +2.7 points; at 13.5 to 60: +2 points
+  - defenders who came: at 0 to 1.5: +3.4 points; at 7.5 to 8: -1 points
 - **Allocation**: not clear yet: more matches needed.
-  - own main minus enemy main meanwhile: at -5.1 to -1.65: +2.2 points; at 0.45 to 6: -0.7 points
-  - split size: at 1 to 1.5: -1.3 points; at 5.5 to 7: -0.6 points
-- **Monk load**: not clear yet: more matches needed.
-  - healers in the split: at 0 to 0.5: -0.5 points; at 2.5 to 3: -10.1 points
+  - own main minus enemy main meanwhile: at -5.1 to -1.65: +1.9 points; at 0.45 to 6: -0.4 points
+  - split size: at 1 to 1.5: -0.4 points; at 5.5 to 7: -1.9 points
+- **Monk load**: **rejected for now**: leaving it out predicts unseen matches slightly better.
+  - healers in the split: at 0 to 0.5: -0.4 points; at 2.5 to 3: -11.7 points
 - **Team strength**: not clear yet: more matches needed.
-  - splitting team's strength gap: at -976 to -375: -4.3 points; at 461 to 958: +2.7 points
+  - splitting team's strength gap: at -976 to -375: -3.4 points; at 461 to 958: +2.2 points
 
 ## Does a split member die when the defenders collapse on it?
 
 848 cases from 120 matches; happens 12% of the time. Predicts unseen matches better than a simple guess.
 
 Causes tested:
+- **Control received**: not clear yet: more matches needed.
+  - snare power of the defenders who came (movepower.py; how strong, not just whether): at 0 to 14.35: -5.1 points; at 108.65 to 162.8: +20.7 points
 - **Collapse timing**: **supported**: it clearly helps predict matches the model never saw.
-  - defenders arriving within 10 s of the first (arrival spread): at 0 to 0.5: -10.6 points; at 7.5 to 8: +18 points
-  - seconds from the split's first hit on an NPC to the first defender's arrival: at -1537.9 to -234.4: -2.8 points; at 16.8 to 194.5: +9.5 points
-  - seconds to the next res when the first defender arrived: at 5 to 12.5: -0.6 points; at 117.5 to 120: +3.2 points
+  - defenders arriving within 10 s of the first (arrival spread): at 0 to 0.5: -9 points; at 7.5 to 8: +13.3 points
+  - seconds to the next res when the first defender arrived: at 5 to 12.5: -2.2 points; at 117.5 to 120: +3.5 points
+  - seconds from the split's first hit on an NPC to the first defender's arrival: at -1537.9 to -234.4: -2.4 points; at 16.8 to 194.5: +7.6 points
   - tested alone, defenders arriving within 10 s of the first (arrival spread): not clear yet
   - tested alone, defenders arriving within 5 s of the first, minus the split's size (numbers at contact): not clear yet
   - tested alone, seconds from the split's first hit on an NPC to the first defender's arrival: not clear yet
   - tested alone, seconds to the next res when the first defender arrived: not clear yet
-- **Build features**: **supported**: it clearly helps predict matches the model never saw.
-  - snares on the defending team's bars: at 0 to 0.5: -2.4 points; at 12.5 to 14: +31.5 points
-  - speed skills on the splitting team's bars: at 1 to 2.5: +8.8 points; at 9.5 to 10: -2.3 points
-- **Allocation**: not clear yet: more matches needed.
-  - own main minus enemy main meanwhile: at -6 to -2.25: +8 points; at 1.95 to 6.2: -20.2 points
-  - split size: at 1 to 1.5: -3.3 points; at 5.5 to 7: +9.1 points
-- **Team strength**: not clear yet: more matches needed.
-  - splitting team's strength gap: at -989 to -547: +0.7 points; at 607.5 to 989: -1.7 points
-- **Split answer**: not clear yet: more matches needed.
-  - seconds until the first defender arrived (60 = never): at -30 to -29.5: +7 points; at 59 to 60: -4.5 points
 - **Split depth**: not clear yet: more matches needed.
-  - nearest split member's distance to the defending pit when the first defender arrived: at 0 to 1006: +6.5 points; at 8976 to 12302: +3.9 points
-  - nearest split member's median distance to the defending pit over the split: at 0 to 765: +8.3 points; at 8262.5 to 11011: -4.8 points
+  - nearest split member's distance to the defending pit when the first defender arrived: at 0 to 1006: +8.1 points; at 8976 to 12302: +3.1 points
+  - nearest split member's median distance to the defending pit over the split: at 0 to 765: +8.6 points; at 8262.5 to 11011: -3.9 points
   - tested alone, nearest split member's distance to the defending pit when the first defender arrived: not clear yet
   - tested alone, nearest split member's median distance to the defending pit over the split: not clear yet
-- **Mobility**: **rejected for now**: leaving it out predicts unseen matches slightly better.
-  - split members' speed skills off recharge when the first defender arrived: at 0 to 0.5: -2.5 points; at 5.5 to 7: +7.1 points
+- **Allocation**: not clear yet: more matches needed.
+  - own main minus enemy main meanwhile: at -6 to -2.25: +9.3 points; at 1.95 to 6.2: -17 points
+  - split size: at 1 to 1.5: -2.7 points; at 5.5 to 7: +7.7 points
+- **Team strength**: not clear yet: more matches needed.
+  - splitting team's strength gap: at -989 to -547: +3 points; at 607.5 to 989: +0.2 points
+- **Mobility**: not clear yet: more matches needed.
+  - split members' speed power (movepower.py): at 0 to 5.75: -2.8 points; at 41.25 to 65.8: +5.2 points
+  - split members' Shadow Step skills: at 0 to 0.5: +1.8 points; at 3.5 to 4: -17.9 points
+  - split members' speed skills off recharge when the first defender arrived: at 0 to 0.5: -2.5 points; at 5.5 to 7: +7.2 points
+- **Split answer**: not clear yet: more matches needed.
+  - seconds until the first defender arrived (60 = never): at -30 to -29.5: +6.8 points; at 59 to 60: -6.6 points
 
 ## Values measured from the data
 

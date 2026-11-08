@@ -1839,7 +1839,10 @@
    "commentary": {
     "Bounty": "checked"
    },
-   "notes": null
+   "notes": null,
+   "teams": "Crew v BcS",
+   "map": "Isle of Meditation",
+   "engine": 17
   },
   "457b3a21-b67f-5164-a70d-adfd73423fcf": {
    "batch": null,
@@ -1851,7 +1854,10 @@
    "commentary": {
     "Nick": "checked"
    },
-   "notes": null
+   "notes": null,
+   "teams": "NwAy v SKT",
+   "map": "Isle of Solitude",
+   "engine": 17
   },
   "506102ee-ef94-5ecf-a485-c1c836193322": {
    "batch": null,
@@ -1863,7 +1869,10 @@
    "commentary": {
     "Nick": "checked"
    },
-   "notes": null
+   "notes": null,
+   "teams": "NwAy v Men",
+   "map": "Isle of Weeping Stone",
+   "engine": 17
   },
   "82fa12be-98d8-57e0-aa8e-c8e1e0253ea4": {
    "batch": null,
@@ -1886,7 +1895,10 @@
    "why_shown": [],
    "reviewed": null,
    "commentary": {},
-   "notes": null
+   "notes": null,
+   "teams": "DUM v GW크",
+   "map": "Isle of Meditation",
+   "engine": 17
   },
   "8de08cc4-4baa-58dc-a6c9-fd22e4d4f04f": {
    "batch": null,
@@ -1898,7 +1910,10 @@
    "commentary": {
     "Nick": "checked"
    },
-   "notes": null
+   "notes": null,
+   "teams": "cope v Book",
+   "map": "Corrupted Isle",
+   "engine": 17
   },
   "965d7c49-5c32-5644-ac24-6c495f82fc41": {
    "batch": null,
@@ -1936,7 +1951,10 @@
    "commentary": {
     "Nick": "checked"
    },
-   "notes": null
+   "notes": null,
+   "teams": "xxx v Men",
+   "map": "Corrupted Isle",
+   "engine": 17
   }
  }
 }

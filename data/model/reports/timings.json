@@ -1,61 +1,61 @@
 {
  "cores": 4,
- "cpu": "INTEL(R) XEON(R) PLATINUM 8573C",
+ "cpu": "AMD EPYC 7763 64-Core Processor",
  "seconds": {
-  "candidate variables": 159.5,
-  "event layer and values": 35.3,
-  "learned nodes": 418.4,
-  "fit and honest test": 84.8,
-  "integrity and honest test text": 4.5,
+  "candidate variables": 106.3,
+  "event layer and values": 22.3,
+  "learned nodes": 255.6,
+  "fit and honest test": 84.3,
+  "integrity and honest test text": 4.8,
   "curves": 0.0,
   "interaction screen": 0.1,
-  "surprises": 1.6,
+  "surprises": 1.7,
   "rulings": 0.1,
-  "usual play": 50.2,
-  "values (measure)": 136.1,
-  "node models": 228.5,
+  "usual play": 108.3,
+  "values (measure)": 138.3,
+  "node models": 290.5,
   "values": 0.1,
-  "TQs": 66.8,
-  "snapshot": 9.7,
+  "TQs": 95.4,
+  "snapshot": 11.8,
   "questions": 0.0
  },
  "split": {
   "cands": {
-   "seconds": 159.5,
+   "seconds": 106.3,
    "laps": {
-    "candidate variables": 159.5
+    "candidate variables": 106.3
    }
   },
   "learned": {
-   "seconds": 453.6,
+   "seconds": 277.9,
    "laps": {
-    "event layer and values": 35.3,
-    "learned nodes": 418.4
+    "event layer and values": 22.3,
+    "learned nodes": 255.6
    }
   },
   "main": {
-   "seconds": 277.3,
+   "seconds": 337.5,
    "laps": {
-    "fit and honest test": 84.8,
-    "integrity and honest test text": 4.5,
+    "fit and honest test": 84.3,
+    "integrity and honest test text": 4.8,
     "curves": 0.0,
     "interaction screen": 0.1,
-    "surprises": 1.6,
+    "surprises": 1.7,
     "rulings": 0.1,
-    "usual play": 50.2,
-    "values (measure)": 136.1
+    "usual play": 108.3,
+    "values (measure)": 138.3
    }
   },
   "nodes:deaths": {
-   "seconds": 117.5,
+   "seconds": 163.3,
    "laps": {
-    "node models": 117.4
+    "node models": 163.2
    }
   },
   "nodes:kill_conversion,lord_damage,flag_answer": {
-   "seconds": 44.1,
+   "seconds": 60.3,
    "laps": {
-    "node models": 44.1
+    "node models": 60.3
    }
   },
   "nodes:lord_kill,npc_loss": {
