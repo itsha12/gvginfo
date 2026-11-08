@@ -653,6 +653,54 @@ These set the kind of answer the engine must produce: the event, the measured ca
    3.0 s against a median 1.1 s for spikes that killed); Spirit Bond was up 1.2 s before the first hit; Blessed Light,
    Aegis and a 440 Infuse followed.
 
+## Rulings after batch 9 (Denning, built 2026-11-07)
+Sixteen of the seventeen proposals from the batch 9 review approved and built as one engine change (item 10, links
+changing status only after two batches in a row, declined: links keep changing status batch by batch).
+- **Win model** (`model.py`, `data/model_corrections.json`): `lord_damage_diff` has no curve of its own (`main_drop`;
+  its pair with the clock stays); build-fixed values (Lord damage per second, spike build) never pair with morale
+  (`no_interaction`); `down_diff_s` can only rise (`direction`); `spike_killable_diff` gets the cap the data picks
+  (`cap_test`, options 10, 15, 20, 25 points or none: `model.cap_test`, run by `cache.py warm` before the held-out
+  models, the choice and every option's held-out log loss in `data/model/cap_choices.json`, a hash input of the
+  held-out models).
+- **Calibration by minute** (`model.calibrate`, run by `cache.py warm` after the held-out models): every training match
+  predicted by its group's held-out model every 15 s, grouped by minute band (0-6, 6-12, 12-18, 18+) and predicted
+  chance, against how often those teams won; thin cells lean on the model's number (5 matches' worth) and each band is
+  made to rise with the prediction. `WPModel.explain` reports the calibrated chance (the contributions stay as
+  learned), so values, the usual play, why chains and the TQs all use it; `raw_chance` gives the model's own number.
+  Pooled cells give flat stretches, where small changes read as none.
+- **Usual play** (`decisions.py`, `usual.py`): the choice is what the team did in its first 5 s (`first_actions`,
+  movement threshold scaled to the window); the 20 s actions stay as context.
+- **Power plays** (`fights.windows`, `decisions.py`, `lnrows.py`): pushing, pressure and the power-play node's damage,
+  enemy prots and healing, spikes and Blind are read up to the first kill (the whole window without a kill);
+  `window_s` stays the whole window.
+- **Values** (`values.py`): each event against matched moments without it (same 2-minute band and 10-point win chance
+  band, no event of that kind in the window; the band alone when a cell has under 20 moments). Context (strength, build
+  skill counts, flag lead, morale, the clock, the res timer) is never priced as a cause (`context_only`).
+- **Snapshot** (`snapshot.py`): winners against losers compared at moments when a held-out model gave the team 35 to
+  65%, with every moment beside it, labelled as including who was ahead.
+- **Lord damage node** (`nodes.py` `TwoPart`): chance of any Lord damage in the window (classifier) and the amount when
+  there is some (regressor on log(1 + damage)); typical error from the middle of the predicted spread against the
+  median, spread explained from its average against the average. Number nodes now "add" only if no worse on typical
+  error and better on the spread explained (flag answer too).
+- **Kill-conversion node**: `attackers_blinded` is seconds the burst's physical attackers spent Blind, 3 s before to
+  3 s after the burst.
+- **Reworked learned nodes**: flag swing gets the flag model's readings (each team's ETA, carrying now, can capture
+  before the boost); capture speed gets control on the runner in the first 10 s (K.11); split effect gets the
+  defenders' pit NPC value and free defenders at entry (S.scoreboard -> R.5, a Claude hypothesis). Flag swing and
+  capture speed use a robust loss (pseudo-Huber, delta = the rows' median absolute deviation, fitted on the result
+  less its median: the library's default diverges); split effect uses fewer bins, larger leaves and more smoothing.
+- **Forensics position** (`forensics.py`): judged on the last N s before the death (nearest healer, nearest enemy,
+  allies and enemies in casting range, front share), N chosen by `forensics.py bench` from 3, 5 and 8 s as the window
+  whose nearest enemy and enemies in range best separate deaths from fight moments without one (AUC; in
+  `forensics.json` "position_window"); the window's medians stay as context. The shortest window partly measures the
+  kill itself (attackers close in on a dying player); read the AUCs with that in mind. Rebuild with the Train batch
+  input `rebuild_forensics`.
+- **TQs** (`tq.py`): a what-if is marked unreliable when a change takes a variable outside the node's training range,
+  or when a ladder (one more, two more defenders) stops moving the same way; unreliable readings are shown but kept
+  out of the confidence and the fixes. TQ 4 tells a split's own NPC kill from a wipe's conversion and judges the
+  split's answer only on the split's kills.
+- **Train batch**: every job may run 3 hours.
+
 ## Commentary and comms: claims and the variables they suggest (2026-11-06)
 - Transcripts are never stored (public repo). Each is matched to its match (players' names in the transcript against the
   rosters), lined up by anchors (kills, captures, boosts, NPC losses: `timeline.py <id> --people` lists them with each

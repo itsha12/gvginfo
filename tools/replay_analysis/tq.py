@@ -103,7 +103,9 @@ def what_if(node, rid, row, changes, ladders=()):
     for label, ch in changes:
         r2 = dict(row); r2.update(ch)
         v = read(r2)
-        far = [k for k, x in ch.items() if k in bounds and x is not None and not (bounds[k][0] <= float(x) <= bounds[k][1])]
+        span = lambda k: max(bounds[k][1] - bounds[k][0], 1e-9) * 0.1      # a tenth of the range either side is still inside
+        far = [k for k, x in ch.items() if k in bounds and x is not None
+               and not (bounds[k][0] - span(k) <= float(x) <= bounds[k][1] + span(k))]
         if far: label += f"{UNRELIABLE}: {', '.join(far)} outside the range the node was trained on]"
         out.append((label, v, round(v - base, 1)))
     for lad in ladders:

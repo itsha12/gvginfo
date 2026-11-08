@@ -577,6 +577,7 @@ def readable_seconds(e, names, X):
         col = X[names[f]].dropna(); lo, hi = (float(col.min()), float(col.max())) if len(col) else (None, None)
         b = [lo] + [float(x) for x in edges] + [hi]
         sc, sd = e.term_scores_[i], e.standard_deviations_[i]
+        if sd is None: sd = np.zeros_like(sc)
         out.append({"term": name, "description": "", "importance": round(float(imp[i]), 3),
                     "curve": [{"from": round(b[j], 2) if b[j] is not None else None, "to": round(b[j + 1], 2) if b[j + 1] is not None else None,
                                "points": round(float(sc[j + 1]), 1), "plus_minus": round(float(sd[j + 1]), 1)} for j in range(len(b) - 1)]})

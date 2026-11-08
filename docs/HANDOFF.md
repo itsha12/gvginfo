@@ -94,11 +94,24 @@ Claude should then:
 
 # Match replay analysis
 
-**Status:** Active. Last updated 2026-11-07 (session 4r). Building the learned causal map: steps 1 (event layer) and 2
+**Status:** Active. Last updated 2026-11-07 (session 4s: Denning's rulings on the batch 9 proposals built; full
+rebuild started with the Train batch workflow, add_batch no, rebuild_forensics yes; jobs may now run 3 hours).
+Previous update: session 4r. Building the learned causal map: steps 1 (event layer) and 2
 (data-valued wrong casts, nine learned node models with measured link strengths) done. Session 4r: the Train batch run
 is split across parallel GitHub jobs, and batch 9 (20 random matches, 15 from September and 5 from October) trained:
 133 matches. Next: Denning's rulings on the three pending proposals (3, 11, 14), then build the approved ones in one
 engine change before the next run, then the commentary transcripts and step 3 (discovery).
+
+### Session 4s (2026-11-07)
+- Built 16 of the 17 batch 9 proposals (all but 10) in one engine change; details in METHODS.md "Rulings after batch 9".
+  Notable: the data picks the `spike_killable_diff` cap (10 to 25 points, or none; data/model/cap_choices.json); win
+  chances go through a calibration by minute (data/model/calibration.json); forensics position uses the last 3, 5 or
+  8 s, whichever best separates deaths from other fight moments (forensics.json "position_window"); the Lord damage
+  node is fitted in two parts; values are against matched moments.
+- Tested here on 12 matches end to end (every report section and TQ ran). Fixed on the way: a direction correction
+  leaves no spread on its curve; the robust loss diverged until centred and scaled.
+- Train batch: `timeout-minutes` 180 for every job; new input `rebuild_forensics` (run `forensics.py bench` first).
+- Next: read the rebuild's report (data/model/reports/latest.md) with Denning, then the commentary transcripts.
 
 ### Session 4r (2026-11-07)
 - Train batch split (`.github/workflows/train-batch.yml`, METHODS.md "Train batch on GitHub"): prepare -> six parts at
@@ -134,15 +147,14 @@ engine change before the next run, then the commentary transcripts and step 3 (d
   - The event-layer, learned-node and value data for all 133 matches rebuild on the next Train batch run. Expect the
     `learned` part to be much slower that one time (perhaps 30 to 40 min). Make the forensics position fix first if
     Denning approves it, so there is only one rebuild.
-- **Proposed for the next rebuild, with Denning's rulings** (review after batch 9; numbers from 133 matches). Approved
-  items are built before the next Train batch run, so there is only one rebuild. Pending items were explained to
-  Denning and await his ruling:
+- **Proposed after batch 9, with Denning's rulings** (numbers from 133 matches). All approved except 10; built in
+  session 4s as one engine change (METHODS.md "Rulings after batch 9"), then a full rebuild of the 133 matches:
   1. **Approved.** Win model: drop the `lord_damage_diff` main term, keep only its pairing with the clock (curve is a sign marker:
      +-7 to 9 points once any Lord damage exists; the most negative band reads +31.6, backwards; teams ahead on Lord
      damage won 88%, with alive +0.94 and morale +78: it marks who got into the pit, not the tiebreak).
   2. **Approved.** Win model: cap or block pairings of build-fixed values (Lord damage per second, spike build) with morale. The batch
      7 cap covers the main terms only; morale x Lord damage per second came back 3rd and 4th (0.42 each).
-  3. **Pending: Denning asked for more information.** Win model: test caps on `spike_killable_diff` (step of 35 points at one player; at the same morale the real gap is
+  3. **Approved (after an explanation).** Win model: test caps on `spike_killable_diff` (step of 35 points at one player; at the same morale the real gap is
      about 13: 64% / 50% / 37% won at morale -20..20).
   4. **Approved: force the direction (more enemy time down can only help); don't drop it.** Win model: `down_diff_s` direction forced (more enemy time down can only help) or dropped (backwards for 7 to 38 s;
      mirrors alive_diff).
@@ -155,11 +167,11 @@ engine change before the next run, then the commentary transcripts and step 3 (d
      fixes (values.py prices strength_gap and the enemy's strip-skill count as causes now).
   9. **Approved.** Snapshot: winners-against-losers comparisons replaced by comparisons at the same win chance, or labelled.
   10. **Declined: links keep changing status batch by batch.** Learned links change status only after two batches in a row (stops near-line flips).
-  11. **Pending: Denning asked for an explanation.** Lord damage node: verdict rule fixed (typical error 125 against 92 for the median, still labelled "adds") and a
+  11. **Approved (after an explanation).** Lord damage node: verdict rule fixed (typical error 125 against 92 for the median, still labelled "adds") and a
       form suited to its skew.
   12. **Approved.** Rework the three learned nodes still no better than the baseline (flag swing, capture speed, split effect).
   13. **Approved.** Kill-conversion node: attackers' Blind in seconds, like the new Blind measure.
-  14. **Pending: Denning asked for an explanation.** Forensics position judged on the last 5 s (TQ 1 fault).
+  14. **Approved (after an explanation).** Forensics position judged on the last 5 s (TQ 1 fault).
   15. **Approved.** Values against matched moments without the event (same minute, same win chance).
   16. **Approved.** TQ what-ifs that aren't monotonic marked unreliable (TQ 4).
   17. **Approved.** TQ 4 text separates a wipe's NPC loss from a split's.

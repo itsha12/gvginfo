@@ -416,6 +416,7 @@ def readable(ebm, use, X):
     for i, name in enumerate(ebm.term_names_):
         feats = ebm.term_features_[i]
         sc = ebm.term_scores_[i]; sd = ebm.standard_deviations_[i]
+        if sd is None: sd = np.zeros_like(sc)        # a direction correction (monotonize) leaves no spread
         if len(feats) == 1:
             f = feats[0]; edges = list(ebm.bins_[f][0]) if len(ebm.bins_[f]) else []
             col = X[use[f]].dropna()
