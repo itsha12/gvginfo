@@ -150,8 +150,7 @@ against general principles rather than past games. Match-by-match evidence lives
   Spirit Bond); Aura of Faith alone gets shattered. Life Sheath compresses the prot's bar, leaving room for Spirit
   Bond, Shield Guardian and a stance.
 - `B20` **Nick / Bounty:** Blessed Light (5 energy) is a heal, hex remove and condition remove in one, which frees slots
-  for Shield Guardian, Vigorous Spirit and Infuse Health. Healing Burst on the 7 is more common now; Blessed Light and
-  Aura of Faith are other 7 and 8 elites.
+  for Shield Guardian, Vigorous Spirit and Infuse Health.
 - `B21` **Claude:** Where a team's prot answers sit matters as much as having them: if the only Spirit Bond and Reversal
   of Fortune are on the 8 monk and the 8 monk is away on a split, the main team has no spike answer. [Men v Team]
 - `B22` **Claude:** Knockdown lock on the prot needs Aura of Stability on a second monk (it never covers its caster).
@@ -166,9 +165,9 @@ against general principles rather than past games. Match-by-match evidence lives
   a snare should play differently from the same Mes/A without one. And team builds change what results are worth: a
   2-monk spike build is behind on Lord damage late, so pit NPCs matter less to it and DP matters a lot. After killing
   the enemy team, most teams prefer to push for NPCs rather than build DP; for that spike build the weighing is often
-  reversed. **Claude (data, `values.py`, 30 matches):** a pit NPC taken by a spike build cost the defenders about 2
-  points against about 4 when taken by other builds; deaths against spike builds about 4 against about 4.5 (neither
-  clear yet).
+  reversed. **Claude (data, `values.py`, 133 matches):** a pit NPC taken by a spike build cost the defenders 4.8
+  win points against 6.2 when taken by other builds; a death against a spike build 8.2 against 9.7 (all clear; the
+  gaps between them are small).
 - `S1` **Denning:** Solo splits: one player goes through the back or an unconventional route to hit the enemy pit or
   NPCs. Defended by the 8 monk or 1 damage, or collapsed on.
 - `S2` **Denning:** 3 or 4 man splits push the enemy's backdoor to take NPCs; a 4 man split is a **4-4**.
@@ -219,8 +218,8 @@ against general principles rather than past games. Match-by-match evidence lives
 - `S22` **Denning:** If the enemy prot is pushing with its team while 3 of your damage are on your push side, the enemy
   prot is out of position and your push side should be able to kill. [Men v HC C]
 - `S23` **Denning:** The prot monk follows the 3rd damage: each monk can usually survive 2 damage with team support, but
-  not 3, so the prot mirrors the enemy's 3rd damage, going wherever the enemy has 3 damage.
-- `S24` **Bounty:** A team defends its pit against a split with either its third damage or its prot monk.
+  not 3, so the prot mirrors the enemy's 3rd damage, going wherever the enemy has 3 damage. (Bounty: a pit is defended
+  against a split with either the third damage or the prot.)
 - `S25` **Denning:** Sending the 8 monk alone against a 3 man push is a mistake; that monk needs support.
 - `S26` **Denning:** A good answer to a solo split: one player collapses on the splitter (e.g. the dervish killing a
   splitting ranger) while another defends (e.g. the Mes/A).
@@ -228,35 +227,24 @@ against general principles rather than past games. Match-by-match evidence lives
   anything (dying, NPCs): it shortens the team's next run while the solo pusher accomplishes nothing (see `F3`).
 - `S28` **Bounty:** Against a solo splitter, a team can ignore it and fight 8v7 if it is winning the main fight.
   Answering a split with one damage is enough when the main team can finish the game.
-- `S29` **Bounty:** Mesmer, warrior and monk is a versatile split answer in cope's build. **Denning:** only classic in
-  that build, not a general rule.
 - `S30` **Bounty:** An alternative against a single splitting mesmer: defend with both monks and push with the
   ritualist, since two monks survive better than a ritualist and a monk.
 - `S31` **Denning:** A snare on the defender changes the answer to a lone attacker. Without one, the aim is to hold 1v1,
   part run or half run flags if possible and keep the NPCs up: a minor gain for the team; a collapse that doesn't kill
   just wastes the collapser's time. With one, the collapse is much more deadly, and the defender has one less skill for
   surviving or winning the 1v1, so holding alone is riskier and a missed chance: collapsing is most likely the better
-  play. **Claude (data, 30 matches, 55 splits into a base with a defender not collapsing from main):** with a snare on
-  that defender, collapses killed a split member in 5 of 10 cases, against 0 of 14 without one. In win chance over the
-  window the pattern runs Denning's way: with a snare, collapsing +5.5 against holding alone +1.6; without a snare,
-  holding alone +6.0 against collapsing +1.7. Cells are small and none is clear; lone attackers alone are 14 cases.
-  Confidence: low.
+  play. (Measured across splits in `S33`.)
 - `S32` **Denning:** Whether to collapse on a split (the frontline leaving a main fight for the base) has no fixed line:
   it depends on the team's plan (whether it values NPCs or DP more), whether the defender can hold the attacker without
   losing NPCs, the flag position (is the frontline needed at main to keep a numbers edge for pushing a flag?) and how
   the main fight is going (is the frontline winning it?). The line is wherever the data says it is. (Measured: split
   decisions carry the defender's skills, split size, main numbers and health, flag lead and build axes.)
-  **Claude (data, 30 matches, 39 collapses):** collapsers were away from main a median 16 s. The kills came fast (6
-  kills, median 6 s away); no collapse that lasted 30 s or more killed anyone. Away 60 s or more (6 cases): the main
-  fight lost about 3.5 players to death, 12 DP and 19 s of flag lead meanwhile. Late (from 20:00, 6 cases) collapses
-  killed more often (4 of 6) but cost more at main. A first reading: a collapse that hasn't killed within about 30 s is
-  unlikely to, and should go back. All cells small; win changes unclear. Confidence: low.
   **Denning:** A quick collapse that fails to kill costs, because it fails twice: no kill, and the split isn't pushed out
   of the base. (Measured, 133 matches: collapses away under 30 s -2.4 win points, collapses with no kill -4.2, those
   that killed a split member +2.9.)
-- `S31` **Bounty:** When a split changes (e.g. made beefier), the defence must change too; defending the same way loses
+- `S40` **Bounty:** When a split changes (e.g. made beefier), the defence must change too; defending the same way loses
   the pit.
-- `S32` **Denning:** An 8v8 build answers a 3 man split by ignoring it with the main team and having a snare character
+- `S41` **Denning:** An 8v8 build answers a 3 man split by ignoring it with the main team and having a snare character
   in the 8 slot shadow it; when the split commits too deep, the 8 snares it so the spike characters can collapse and
   kill.
 - `S33` **Bounty:** A monk spike defends against splits with the snare character and the 8 (the 6 snares, the 8 heals,
@@ -300,9 +288,8 @@ against general principles rather than past games. Match-by-match evidence lives
 - `P9` **Denning:** In non-split situations teams usually take the knights first. A full pit is harder to defend for
   the monks: 5+ extra targets to watch, and against area damage (a dervish, an elementalist) the knights ball up and
   eat it, so the healing needed rises sharply. **Claude (data):** with 4+ pit archers alive, some pit NPC is up to 29
-  points more likely to die within 15 s. **Claude (data, `values.py`):** an archer lost costs the defending team about 4
-  points (clear); a knight about 3 and a Bodyguard about 0 (both unclear, fewer cases); the win model's opposite reading
-  for knights (+8) is its own error.
+  points more likely to die within 15 s. **Claude (data, `values.py`, 133 matches):** an archer lost costs the defending
+  team 3.6 win points, a knight 9.2, the Bodyguard 8.4 (all clear; `W12`).
 - `P10` **Denning:** Two monks on the push side is the norm against a full or mostly full pit; against an empty pit a
   team sometimes pushes with one. The pit deals a lot of damage, so two monks are often needed to live long enough for
   significant Lord damage. **Claude (data):** attackers with two healers in the pit dealt about 66 more Lord damage per
@@ -311,13 +298,13 @@ against general principles rather than past games. Match-by-match evidence lives
   aren't caught in a bad position 8v8 when the team resses. **Claude (data):** Lord damage is highest 20 to 60 s
   before the defenders' res and low in the last 10 s.
 - `P12` **OG comms:** Keep a healer with every group at all times (a prot and a monk on one side, the ritualist and a
-  monk on the other). **Claude (data, `comms_vars.py`, 61 matches):** groups of 2+ with no healer lost a player in 23% of
-  phases against 11% with one, at the same local numbers (interval 5 to 17 points). [ohno v One]
-- `P13` **OG comms:** Merge the whole team before pushing the enemy pit or base. **Claude (data, 61 matches):** groups of
-  7+ in the enemy pit or base killed a player in 49% of phases against 19% for 3 to 6, and lost players slightly less
+  monk on the other). **Claude (data, `comms_vars.py`, 144 matches):** groups of 2+ with no healer lost a player in 25% of
+  phases against 12% with one, at the same local numbers (+10 points, interval +7 to +13). [ohno v One]
+- `P13` **OG comms:** Merge the whole team before pushing the enemy pit or base. **Claude (data, 144 matches):** groups of
+  7+ in the enemy pit or base killed a player in 49% of phases against 18% for 3 to 6, and lost players slightly less
   often. [ohno v Crew]
 - `P14` **OG comms:** Footmen (base NPCs, not pit NPCs) are worth protecting, and killing the enemy's when they split
-  oddly. **Claude (data, 61 matches):** teams that lost a footman won 41% of the time against 65% for teams that lost
+  oddly. **Claude (data, 144 matches):** teams that lost a footman won 41% of the time against 65% for teams that lost
   none (descriptive: losing teams also get pushed). Win-model candidate `footmen_diff`; values.py prices a footman lost.
   [OG v Dz] [ohno v NwAy]
 - `P15` **Bounty (Crew's rule):** If a team pushes your pit with only one monk, kill it. BcS's six-damage, one-monk
@@ -456,19 +443,8 @@ against general principles rather than past games. Match-by-match evidence lives
   track (the replays don't record it), so the data can't tell a deliberate death from a mistake. (Measured, 133 matches:
   healer deaths in their own base or pit within 15 s of the base res cost -7.2 win points, clear, 54 cases; read as
   "possibly deliberate", not as a mistake.)
-- `K15` **Claude:** First look (30 matches, 509 deaths): deaths in the last 15 s before a res are at chance level (62
-  against about 64 expected), deaths in the first 15 s after it are well below (42): the costly deaths are the rare
-  ones. A death set was held in 15% of deaths before time against 9 to 10% otherwise, and the team dying before time
-  won 21% of those matches against 12 to 14% (descriptive; the win-chance chain will test it).
-- `K16` **Claude:** Valued in win chance (30 matches, `values.py`): a death costs the team about 4 points overall; a
-  non-healer's about 6 (clear) but a healer's only about 1 (unclear), and a player back within 20 s about 3 against
-  about 5 for one down 60 s or more (neither yet clear). Healers dying cheaply fits `K14` (monks dying before time on
-  purpose, or deaths the team has planned for) but could also be monk deaths that come when the fight is already
-  priced as lost. Healer deaths in their own base or pit within 15 s of the base res (likely deliberate, `K14`): 13
-  so far, about +3 (unclear); the other healer deaths still cost only about 1.5, so deliberate deaths don't explain
-  the low cost. Confidence: low until more batches.
-- `K17` **OG comms:** Fight the player carrying a big death penalty. **Claude (data, 61 matches):** players in a fight
-  with 15%+ death penalty died within 10 s 4.9% of the time against 1.2% with none, at the same local numbers (partly
+- `K17` **OG comms:** Fight the player carrying a big death penalty. **Claude (data, 144 matches):** players in a fight
+  with 15%+ death penalty died within 10 s 4.9% of the time against 1.3% with none, at the same local numbers (partly
   because the same players keep being reachable). [ohno v One]
 - `K18` **Denning:** A death while boosted means nothing different from a death not boosted; if anything it should cost
   less, since the boost offsets the death penalty. Boosting is a proxy for a late, winning position: boosts take a
@@ -533,11 +509,11 @@ against general principles rather than past games. Match-by-match evidence lives
   warrior 27, paragon 24, dervish 23, necromancer 10, ritualist 10, mesmer 7, monk 5. Midline casters and rangers hit
   the Lord as hard as the frontline or harder; the ranger figure leans on solo splits into empty pits.
 - `L11` **OG comms:** A team that turtles (sits in its base and pit) gives up Lord damage, so the other side must
-  make a play to break it, and doesn't need to chase it out late. **Claude (data, 61 matches):** 13 turtles (75%+ of
-  live players at home for a minute, not just resurrected); the turtling team won 3. The win model tests `turtle_diff`
+  make a play to break it, and doesn't need to chase it out late. **Claude (data, 144 matches):** 25 turtles (75%+ of
+  live players at home for a minute, not just resurrected); the turtling team won 7 (28%). The win model tests `turtle_diff`
   as a candidate from batch 6. [ohno v One]
 - `L12` **OG comms:** In a base race, heal your own Lord ("heal the Lord, heal the Lord"). **Claude (data):** OG won the
-  race against hold by 0.3 s (hold's Lord died at 5:17, OG's at 5:20) after healing its own Lord for 1,390; hold's got
+  race against hold by seconds (hold's Lord died at 5:17, OG's at 5:20) after healing its own Lord for 1,390; hold's got
   no healing. [OG v hold]
 - `L9` **OG comms:** Watch the clock out loud ("this is 22 minutes"); the late plan (play for 28:00 or push now) has to
   be agreed, not argued during the push. [OG v cope U]
@@ -561,14 +537,16 @@ against general principles rather than past games. Match-by-match evidence lives
 - `X7` **Claude:** Not every death is a spike: deaths that take 2 to 8 s from the first big hit come from pressure,
   knockdown lock or degeneration, and the failure is support or positioning, not prot timing. [Men v Team] [OG v hdm]
 - `X8` **OG comms:** Spike timing micro: land Shell Shock between "two" and "one" of the countdown; call for removal of
-  Migraine on the spikers. [OG v cope J]
+  Migraine on the spikers. **Claude (data, 144 matches, 1,347 spikes):** Cracked Armor on the target at the first
+  hit went with fewer kills, not more (30% against 36%, interval -13 to -4 points): the Shell Shock timing isn't
+  supported; why it reads backwards (e.g. teams landing it on monks with prots up) is still to check. [OG v cope J]
 - `X9` **OG comms:** A spiker carrying a hex (Migraine uncovered) can't land its part; call for removal. **Claude (data,
-  546 spikes in 61 matches):** spikes with a hexed spiker killed 24% of the time against 41% without (interval 7 to 26
-  points). Shell Shock on the target and an enchantment strip as the spike lands showed no measurable effect on kills
-  (both intervals cross zero), so `X8` is a timing habit the data does not yet support. [OG v cope J] [ohno v Crew]
+  1,347 spikes in 144 matches):** spikes with a hexed spiker killed 28% of the time against 37% without (interval 4 to 16
+  points). An enchantment strip as the spike lands showed no clear effect (interval crosses zero); for Shell Shock see
+  `X8`. [OG v cope J] [ohno v Crew]
 - `X10` **OG comms:** Interrupts on the spikers just before the spike stop the kill ("they keep Complicating my Deep
-  Wound"). **Claude (data, 546 spikes):** when the spiking team was interrupted in the 5 s before the first hit, spikes
-  killed 23% of the time against 40% (interval 8 to 27 points). Against hdm, OG's 15 spikes killed none: about one
+  Wound"). **Claude (data, 1,347 spikes):** when the spiking team was interrupted in the 5 s before the first hit, spikes
+  killed 24% of the time against 38% (interval 8 to 20 points). Against hdm, OG's 15 spikes killed none: about one
   interrupt per spike and 466 healing on the target in 3 s, against 0.4 and 328 for cope, which lost 10 of 24 to the same
   spike. Weapon sets showed no clear effect yet (spikers on 40/40 sets or targets on shields: intervals cross zero).
   [OG v hdm] [OG v cope J]
@@ -617,16 +595,13 @@ against general principles rather than past games. Match-by-match evidence lives
   might be a mistake when it is the only healer facing a ranger and a hammer (its health ceiling drops by a fifth). The
   data will tell. [Men v HC C]
 - `M19` **Denning:** A monk alone is vulnerable because it has no other monk to support it (OG comms: "solo monk, go on
-  the monk"). **Claude (data, 61 matches):** a healer in a fight with no other own healer within casting range died within
-  10 s 3.4% of the time against 1.1% with one, at the same local numbers (interval 2.2 to 4.8 points). Deaths-node
+  the monk"). **Claude (data, 144 matches):** a healer in a fight with no other own healer within casting range died within
+  10 s 3.3% of the time against 1.1% with one, at the same local numbers (interval 2.8 to 4.8 points). Deaths-node
   variable `solo_healer`, win-model candidate `solo_healers_diff`. [ohno v One] [OG v Dz]
-- `M15` **Bounty:** Many small inaccuracies add up to lost fights: a monk not watching a split, a ritualist caught off
-  shield set by Coward, a sleepy 8 monk.
 
 ## 10. Interrupts and shutdown (micro)
 - `I1` **Denning:** An interrupt can be critical, e.g. an interrupt on Healing Burst that leads to a wipe.
-- `I2` **Bounty:** Spiking from max range gets the spikers interrupted easily (Complicate, Cry). Drain Enchantment has a
-  higher ceiling than Signet of Recall.
+- `I2` **Bounty:** Spiking from max range gets the spikers interrupted easily (Complicate, Cry).
 - `I3` **Claude:** Wipes are often chained by interrupts on monk defence: Power Spike or Psychic Instability on Guardian
   or Aegis, a Hammer Bash or Complicate on Healing Burst, Concussion Shot on Reversal of Fortune. [OG v chic]
   [OG v cope U] [hdm v HC I1] [Men v HC C]
@@ -669,7 +644,8 @@ against general principles rather than past games. Match-by-match evidence lives
   while your team already holds it.
 - **Bounty:** A **cycle** is a 2-minute window in which a team can push, do damage and deal with the split; wasting
   one (a needless cap, chasing, a collapse that kills nothing) is how a slow build loses. **Inaccuracies** are small
-  errors that add up to a blunder (his chess comparison).
+  errors that add up to a blunder (his chess comparison), e.g. a monk not watching a split, a ritualist caught off
+  shield set by Coward, a sleepy 8 monk.
 - Auto-transcripts garble terms: "X-way" and "axes" mean hex way and hexes; "Ellie" or "LE" means elementalist.
 
 ## 14. Situations: what is the best play here?
@@ -677,9 +653,9 @@ Each card is a recurring decision: the options and the variables that may decide
 records every one of these moments in every match (the full scoreboard at that second, what each player then did, and
 what followed), so the best play is meant to come from the data, not from anyone's opinion, including the defaults
 below. A default is listed only where a principle already exists (from Denning or commentary); it is the hypothesis the
-data tests first, and it is replaced when the data says otherwise. Data status for every card: not yet tested (24
-matches; needs the bulk pull). Where a card has a **Data** line, it comes from `usual.py`: each choice against the
-usual one in win chance, adjusted for the situation, with a range from resampling whole matches.
+data tests first, and it is replaced when the data says otherwise. Where a card has a **Data** line, it comes from
+`usual.py` (133 matches, the latest learning report): each choice against the usual one in win chance, adjusted for the
+situation, with a range from resampling whole matches. Cards without one aren't measured yet.
 
 - `D1` **The enemy picks up a flag.** Options: run now, hold the flag near the stand (if you hold it), don't run.
   Deciding factors: flag position, who holds the stand and the boost clock, numbers at main, whether your runner can
@@ -690,22 +666,21 @@ usual one in win chance, adjusted for the situation, with a range from resamplin
   ignore it. Deciding factors: the split's size and damage, your pit NPCs, your build (8v8 or not), whether the main
   fight is being won. Default: answer within 15 s (`S18`): a lone ranger with the Mes/A plus a frontline collapse
   (`S19`), a 3rd enemy damage with the prot (`S23`); an 8v8 build shadows it with a snare and collapses when it
-  commits (`S32`); a team winning main can ignore a solo split (`S28`). Confidence: high on timing, medium on who.
+  commits (`S41`); a team winning main can ignore a solo split (`S28`). Confidence: high on timing, medium on who.
 - `D3` **You have more players in the fight (power play).** Options: push, or hold. Deciding factors: why the enemy
   is short (running, split, dead), how long it lasts, flag position, who is ahead. Default: commit and kill
-  (`F23`, `F24`); a team already winning needn't force it (`W8`). Confidence: medium. **Data (30 matches):** holding
-  instead of pushing cost about 4 points of win chance against pushing, adjusted for the situation (clear).
+  (`F23`, `F24`); a team already winning needn't force it (`W8`). Confidence: medium. **Data (133 matches,
+  1,160 power plays):** no choice is clearly better than pushing and advancing (the usual): holding and fighting -0.3,
+  holding and falling back -0.8 (neither clear).
 - `D4` **The enemy's boost is coming.** Options: run now, or give up the boost. Deciding factors: your flag ETA against
   the boost clock, numbers, death penalty. Default: run in time to cap before the boost unless it costs a wipe
   (`F18`, `F26`, `F29`). Confidence: medium. **Denning:** falling back there is likely a mistake: a team that isn't
   going to run may gain by staying and fighting, possibly on a power play; but a team losing the fight and not running
-  has no reason to hold ground and may as well fall back for safety. It depends on the situation. **Data (40
-  matches, ENGINE 17):** not running and falling back cost about 14 points against not running and fighting (clear),
-  with no sign the teams that fell back were already sliding (+2.8 in the 30 s before). Split into thirds by fight state
-  (expected deaths in the next 10 s): falling back cost little when behind in the fight (-4.2 against -1.5, 9 cases)
-  but a lot in the middle third (-14.2 against +1.8, 9 cases) and when ahead (-15.7 against +4.4, 5 cases). Cells are
-  still small, but the pattern is Denning's: falling back is the mistake when the fight isn't being lost. Energy isn't
-  recorded.
+  has no reason to hold ground and may as well fall back for safety. It depends on the situation. **Data (133 matches, 504
+  decisions):** not running and falling back -2.1 against not running and fighting (not clear); by fight state, falling
+  back costs most when the team is ahead in the fight (-4.5) and little when behind (-1.9): still Denning's pattern,
+  but weaker than the 40-match reading (-14). Running and advancing +3.0 (clear, but partly who chooses it). Energy
+  isn't recorded.
   **Denning:** what decides staying to fight against falling back: own monks' energy, enemy health (live in the score
   share), the enemy's estimated energy, and any numbers advantage. (Replays have health and numbers; energy is not
   recorded and would have to be estimated from casts.)
@@ -713,10 +688,9 @@ usual one in win chance, adjusted for the situation, with a range from resamplin
   pit NPCs, the res timer, the clock, whether you are already winning. Default: convert straight into pit NPCs before
   the res (`K8`); a team already winning backs out rather than risk a close Lord window (`W8`, `W9`). Confidence:
   medium. **Denning:** what a wipe can be turned into depends on where it happened: from a wipe at the stand a team is
-  unlikely to reach the enemy base and take NPCs in the 30 s before the res. **Data (30 matches):** taking the flag
-  after a wipe looked better than pushing the pit (about +12 points, 12 cases), but 7 of those 12 couldn't reach the
-  enemy pit before its res (median margin 7.5 s, against 26 s for pushes): most likely the wipe's place, as Denning
-  suspected. To recheck within reachable and unreachable wipes once there are enough.
+  unlikely to reach the enemy base and take NPCs in the 30 s before the res. **Data (133 matches,
+  292 wipes):** taking the flag after a wipe cost 4.5 points against pushing the pit (clear; the 30-match reading of
+  +12 came mostly from wipes too far from the enemy pit to reach it before the res).
   **Denning:** for a 2-monk spike build the weighing is often the reverse: after a wipe, DP on the enemy is worth more
   than NPCs (`B23`).
   **Denning:** a team very rarely rushes into the enemy base to spike players as they resurrect; it doesn't make sense in
@@ -738,8 +712,4 @@ usual one in win chance, adjusted for the situation, with a range from resamplin
 - `Q6` When should the power play be pushed hard, and when is it safer to hold?
 - `Q7` How many players to send back to a pushed flagger, and when?
 - `Q10` What is the benchmark for a good 7 monk's Infuse Health timing?
-- `Q14` How much is a flag lead worth against a pit NPC or a death? (The engine's weights are first guesses until the
-  win-probability model.)
 - `Q15` What should a team do when it is stacking death penalty against a spike build (`D6`)?
-- `Q16` Answered (Denning, `M19`): "solo monk" means the monk has no other monk supporting it; measured on the monk's
-  own death it holds up. The first test (whether its group lost anyone) measured the wrong outcome. [ohno v One]
