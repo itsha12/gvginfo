@@ -391,17 +391,17 @@ Caused by:
 - **Scoreboard**: the state at the fight's start (morale, numbers, time down, the stand, players within one spike): found by discovery, approved by Denning (Denning; supported)
 
 Measured on unseen matches (learnednodes.py; gain = how much worse the node predicts without the link):
-- Scoreboard (`S.scoreboard`), fight outcome node: gain +0.0974 (+/- 0.0125, log loss), supported, 133 matches
-- Pressure (`K.1`), fight outcome node: gain +0.0279 (+/- 0.0096, log loss), supported, 133 matches
-- Allocation (`A.allocation`), fight outcome node: gain +0.0154 (+/- 0.0025, log loss), supported, 133 matches
-- Burst timing (`P.2`), fight outcome node: gain +0.015 (+/- 0.0051, log loss), supported, 133 matches
-- Wrong casts (`P.17`), fight outcome node: gain +0.0047 (+/- 0.0114, log loss), not clear yet, 133 matches
-- Enchantment strips (`P.18`), fight outcome node: gain +0.0011 (+/- 0.0017, log loss), not clear yet, 133 matches
-- Team strength (`C.strength`), fight outcome node: gain +0.0009 (+/- 0.0012, log loss), not clear yet, 133 matches
-- Peel (`P.13`), fight outcome node: gain +0.0002 (+/- 0.0029, log loss), not clear yet, 133 matches
-- Target choice (`P.1`), fight outcome node: gain -0.0002 (+/- 0.0011, log loss), not clear yet, 133 matches
-- Blind on enemies (`P.19`), fight outcome node: gain -0.0011 (+/- 0.0015, log loss), not clear yet, 133 matches
-- Condition removal (`P.5`), fight outcome node: gain -0.0017 (+/- 0.003, log loss), not clear yet, 133 matches
+- Scoreboard (`S.scoreboard`), fight outcome node: gain +0.0976 (+/- 0.0126, log loss), supported, 133 matches
+- Pressure (`K.1`), fight outcome node: gain +0.0282 (+/- 0.0096, log loss), supported, 133 matches
+- Allocation (`A.allocation`), fight outcome node: gain +0.0154 (+/- 0.0024, log loss), supported, 133 matches
+- Burst timing (`P.2`), fight outcome node: gain +0.0154 (+/- 0.0053, log loss), supported, 133 matches
+- Wrong casts (`P.17`), fight outcome node: gain +0.0059 (+/- 0.0121, log loss), not clear yet, 133 matches
+- Team strength (`C.strength`), fight outcome node: gain +0.0007 (+/- 0.0012, log loss), not clear yet, 133 matches
+- Peel (`P.13`), fight outcome node: gain +0.0006 (+/- 0.0027, log loss), not clear yet, 133 matches
+- Enchantment strips (`P.18`), fight outcome node: gain +0.0004 (+/- 0.0017, log loss), not clear yet, 133 matches
+- Target choice (`P.1`), fight outcome node: gain -0.0008 (+/- 0.0011, log loss), not clear yet, 133 matches
+- Blind on enemies (`P.19`), fight outcome node: gain -0.0014 (+/- 0.0015, log loss), not clear yet, 133 matches
+- Condition removal (`P.5`), fight outcome node: gain -0.0017 (+/- 0.0027, log loss), not clear yet, 133 matches
 
 ### Flag lead `R.3`
 the flag position (response on the next capture exchange). *Measured: scoreboard.*

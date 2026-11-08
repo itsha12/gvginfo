@@ -1,67 +1,67 @@
 {
  "cores": 4,
- "cpu": "AMD EPYC 9V45 96-Core Processor",
+ "cpu": "AMD EPYC 9V74 80-Core Processor",
  "seconds": {
-  "candidate variables": 110.6,
-  "event layer and values": 26.6,
-  "learned nodes": 754.2,
-  "fit and honest test": 70.3,
-  "integrity and honest test text": 3.8,
+  "candidate variables": 232.6,
+  "event layer and values": 24.3,
+  "learned nodes": 194.9,
+  "fit and honest test": 51.3,
+  "integrity and honest test text": 3.2,
   "curves": 0.0,
   "interaction screen": 0.1,
-  "surprises": 6.3,
+  "surprises": 5.1,
   "rulings": 0.0,
-  "usual play": 85.0,
-  "values (measure)": 96.7,
-  "node models": 273.7,
+  "usual play": 63.0,
+  "values (measure)": 70.9,
+  "node models": 260.9,
   "values": 0.2,
-  "TQs": 79.1,
-  "snapshot": 8.0,
+  "TQs": 113.6,
+  "snapshot": 10.5,
   "questions": 0.0
  },
  "split": {
   "cands": {
-   "seconds": 110.6,
+   "seconds": 232.6,
    "laps": {
-    "candidate variables": 110.6
+    "candidate variables": 232.6
    }
   },
   "learned": {
-   "seconds": 780.8,
+   "seconds": 219.2,
    "laps": {
-    "event layer and values": 26.6,
-    "learned nodes": 754.2
+    "event layer and values": 24.3,
+    "learned nodes": 194.9
    }
   },
   "main": {
-   "seconds": 262.3,
+   "seconds": 193.6,
    "laps": {
-    "fit and honest test": 70.3,
-    "integrity and honest test text": 3.8,
+    "fit and honest test": 51.3,
+    "integrity and honest test text": 3.2,
     "curves": 0.0,
     "interaction screen": 0.1,
-    "surprises": 6.3,
+    "surprises": 5.1,
     "rulings": 0.0,
-    "usual play": 85.0,
-    "values (measure)": 96.7
+    "usual play": 63.0,
+    "values (measure)": 70.9
    }
   },
   "nodes:deaths": {
-   "seconds": 135.6,
+   "seconds": 145.5,
    "laps": {
-    "node models": 135.5
+    "node models": 145.4
    }
   },
   "nodes:kill_conversion,lord_damage,flag_answer": {
-   "seconds": 65.2,
+   "seconds": 43.1,
    "laps": {
-    "node models": 65.2
+    "node models": 43.1
    }
   },
   "nodes:lord_kill,npc_loss": {
-   "seconds": 73.0,
+   "seconds": 72.4,
    "laps": {
-    "node models": 73.0
+    "node models": 72.4
    }
   }
  }

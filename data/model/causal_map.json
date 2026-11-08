@@ -3599,7 +3599,7 @@
     "fight_outcome": {
      "node": "fight_outcome",
      "strength": 0.0154,
-     "plus_minus": 0.0025,
+     "plus_minus": 0.0024,
      "status": "supported",
      "metric": "log loss",
      "matches": 133,
@@ -3623,8 +3623,8 @@
    "measured": {
     "fight_outcome": {
      "node": "fight_outcome",
-     "strength": 0.0002,
-     "plus_minus": 0.0029,
+     "strength": 0.0006,
+     "plus_minus": 0.0027,
      "status": "not clear yet",
      "metric": "log loss",
      "matches": 133,
@@ -3646,8 +3646,8 @@
    "measured": {
     "fight_outcome": {
      "node": "fight_outcome",
-     "strength": 0.0047,
-     "plus_minus": 0.0114,
+     "strength": 0.0059,
+     "plus_minus": 0.0121,
      "status": "not clear yet",
      "metric": "log loss",
      "matches": 133,
@@ -3671,7 +3671,7 @@
    "measured": {
     "fight_outcome": {
      "node": "fight_outcome",
-     "strength": 0.0011,
+     "strength": 0.0004,
      "plus_minus": 0.0017,
      "status": "not clear yet",
      "metric": "log loss",
@@ -3695,7 +3695,7 @@
    "measured": {
     "fight_outcome": {
      "node": "fight_outcome",
-     "strength": -0.0011,
+     "strength": -0.0014,
      "plus_minus": 0.0015,
      "status": "not clear yet",
      "metric": "log loss",
@@ -3719,8 +3719,8 @@
    "measured": {
     "fight_outcome": {
      "node": "fight_outcome",
-     "strength": 0.015,
-     "plus_minus": 0.0051,
+     "strength": 0.0154,
+     "plus_minus": 0.0053,
      "status": "supported",
      "metric": "log loss",
      "matches": 133,
@@ -3744,7 +3744,7 @@
    "measured": {
     "fight_outcome": {
      "node": "fight_outcome",
-     "strength": 0.0279,
+     "strength": 0.0282,
      "plus_minus": 0.0096,
      "status": "supported",
      "metric": "log loss",
@@ -3769,7 +3769,7 @@
     "fight_outcome": {
      "node": "fight_outcome",
      "strength": -0.0017,
-     "plus_minus": 0.003,
+     "plus_minus": 0.0027,
      "status": "not clear yet",
      "metric": "log loss",
      "matches": 133,
@@ -3792,7 +3792,7 @@
    "measured": {
     "fight_outcome": {
      "node": "fight_outcome",
-     "strength": 0.0009,
+     "strength": 0.0007,
      "plus_minus": 0.0012,
      "status": "not clear yet",
      "metric": "log loss",
@@ -4097,7 +4097,7 @@
    "measured": {
     "fight_outcome": {
      "node": "fight_outcome",
-     "strength": -0.0002,
+     "strength": -0.0008,
      "plus_minus": 0.0011,
      "status": "not clear yet",
      "metric": "log loss",
@@ -4250,8 +4250,8 @@
    "measured": {
     "fight_outcome": {
      "node": "fight_outcome",
-     "strength": 0.0974,
-     "plus_minus": 0.0125,
+     "strength": 0.0976,
+     "plus_minus": 0.0126,
      "status": "supported",
      "metric": "log loss",
      "matches": 133,

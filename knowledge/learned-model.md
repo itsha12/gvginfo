@@ -150,36 +150,36 @@ Causes tested:
 
 Causes tested:
 - **Scoreboard**: **supported**: it clearly helps predict matches the model never saw.
-  - morale, own minus enemy (discovery, approved): at -395 to -198.5: -16.8 points; at 199 to 410: +30.4 points
-  - who is winning the fight (fightstate.py; discovery, approved): at -1.83 to -0.47: -18.6 points; at 0.39 to 1.51: +14.9 points
+  - morale, own minus enemy (discovery, approved): at -395 to -198.5: -16.4 points; at 199 to 410: +30.5 points
+  - who is winning the fight (fightstate.py; discovery, approved): at -1.83 to -0.46: -19 points; at 0.4 to 1.51: +16.3 points
   - stand (discovery, approved): at -1 to -0.5: -7.1 points; at 0.5 to 1: +7.1 points
 - **Pressure**: **supported**: it clearly helps predict matches the model never saw.
-  - damage against the usual of the players alive, own minus enemy: at -15.38 to -2.01: -23.4 points; at 1.9 to 10.62: +23 points
+  - damage against the usual of the players alive, own minus enemy: at -15.38 to -2.01: -23.5 points; at 1.9 to 10.62: +23 points
 - **Allocation**: **supported**: it clearly helps predict matches the model never saw.
-  - own players in the fight: at 0 to 0.5: -33.8 points; at 7.5 to 8: +13.6 points
-  - enemy players in the fight: at 0 to 0.5: +22.3 points; at 7.5 to 8: -12.2 points
+  - own players in the fight: at 0 to 0.5: -34 points; at 7.5 to 8: +13.5 points
+  - enemy players in the fight: at 0 to 0.5: +22.4 points; at 7.5 to 8: -12.1 points
 - **Burst timing**: **supported**: it clearly helps predict matches the model never saw.
-  - spikes, own minus enemy: at -4 to -2.5: -30 points; at 2.5 to 3: +30.2 points
-  - median spike spread (s), own minus enemy: at -1.4 to -1.1: +1.8 points; at 0.85 to 1.8: -11.4 points
+  - spikes, own minus enemy: at -4 to -2.5: -30.2 points; at 2.5 to 3: +30.2 points
+  - median spike spread (s), own minus enemy: at -1.4 to -1.1: +1.7 points; at 0.85 to 1.8: -11.5 points
 - **Wrong casts**: not clear yet: more matches needed.
-  - interrupted after casting into a ready interrupt, per cast, own minus enemy: at -0.28 to -0.08: +15.7 points; at 0.08 to 0.27: -22.1 points
-  - casts while Dazed, per cast, own minus enemy: at -0.13 to -0.06: +7.8 points; at 0.1 to 0.19: +0.9 points
-  - attacks while Blind per player, own minus enemy: at -2.25 to -0.94: +0.4 points; at 0.8 to 1.25: +3 points
-- **Enchantment strips**: not clear yet: more matches needed.
-  - value of enchantments stripped per 10 s, own minus enemy: at -92.07 to -27.05: -8.9 points; at 23.78 to 67.21: +4.1 points
-  - share of strips on the best target in range, own minus enemy: at -1 to -0.88: -3.6 points; at 0.88 to 1: -2 points
+  - interrupted after casting into a ready interrupt, per cast, own minus enemy: at -0.28 to -0.08: +15.7 points; at 0.08 to 0.27: -22.6 points
+  - casts while Dazed, per cast, own minus enemy: at -0.13 to -0.06: +7.4 points; at 0.1 to 0.19: +0.7 points
+  - attacks while Blind per player, own minus enemy: at -2.25 to -0.94: +0.6 points; at 0.8 to 1.25: +2.9 points
 - **Team strength**: not clear yet: more matches needed.
-  - team strength gap: at -989 to -616.5: -11.4 points; at 616.5 to 989: +14.7 points
+  - team strength gap: at -989 to -616.5: -11.2 points; at 616.5 to 989: +14.2 points
 - **Peel**: not clear yet: more matches needed.
-  - own frontline damage share on attackers of own backline, minus the enemy's: at -1 to -0.63: -6.9 points; at 0.71 to 1: +3.3 points
+  - own frontline damage share on attackers of own backline, minus the enemy's: at -1 to -0.63: -6.7 points; at 0.71 to 1: +3.5 points
+- **Enchantment strips**: not clear yet: more matches needed.
+  - value of enchantments stripped per 10 s, own minus enemy: at -92.07 to -27.05: -8.9 points; at 23.78 to 67.21: +4.2 points
+  - share of strips on the best target in range, own minus enemy: at -1 to -0.88: -3.3 points; at 0.88 to 1: -2 points
 - **Target choice**: not clear yet: more matches needed.
-  - share of damage on enemy healers, own minus enemy (Bounty: going after the monks): at -1 to -0.59: -1.8 points; at 0.62 to 1: +3.8 points
+  - share of damage on enemy healers, own minus enemy (Bounty: going after the monks): at -1 to -0.59: -1.9 points; at 0.62 to 1: +3.9 points
 - **Blind on enemies**: not clear yet: more matches needed.
-  - seconds the enemy frontline spent Blind, own minus enemy: at -13.7 to -10.15: -1 points; at 10.3 to 27.1: +5.8 points
-  - seconds Blind from defensive Blinds, own minus enemy: at -8.4 to -5.4: +7 points; at 5.7 to 14.1: +8 points
+  - seconds the enemy frontline spent Blind, own minus enemy: at -13.7 to -10.15: -1 points; at 10.3 to 27.1: +6 points
+  - seconds Blind from defensive Blinds, own minus enemy: at -8.4 to -5.4: +7.1 points; at 5.7 to 14.1: +8 points
 - **Condition removal**: not clear yet: more matches needed.
   - value-weighted seconds hexes stayed on own players, own minus enemy: at -28.6 to -10.84: -2.4 points; at 10.97 to 29.6: +8.9 points
-  - share of hex removals that took the most costly hex in range, own minus enemy: at -1 to -0.92: -1.7 points; at 0.9 to 1: -0.2 points
+  - share of hex removals that took the most costly hex in range, own minus enemy: at -1 to -0.92: -1.4 points; at 0.9 to 1: -0.3 points
 
 ## Does a team start a split in the next 30 s?
 
