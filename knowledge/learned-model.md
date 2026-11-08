@@ -152,16 +152,16 @@ Causes tested:
 
 Causes tested:
 - **Scoreboard**: **supported**: it clearly helps predict matches the model never saw.
-  - own main: at 0 to 2.5: +22.5 points; at 7.5 to 8: -16.9 points
-  - own alive: at 0 to 3.5: -40 points; at 7.5 to 8: +3.4 points
+  - own main: at 0 to 2.5: +22.4 points; at 7.5 to 8: -16.9 points
+  - own alive: at 0 to 3.5: -39.9 points; at 7.5 to 8: +3.4 points
   - enemy main: at 0 to 2.5: +1.9 points; at 7.5 to 8: -2.2 points
 - **Clock**: not clear yet: more matches needed.
   - minute: at 0.5 to 1.35: -2.1 points; at 20.35 to 27.5: +11 points
   - seconds to the next res: at 15 to 22.5: -0.2 points; at 112.5 to 120: -1.7 points
 - **Build features**: not clear yet: more matches needed.
   - snares on own bars: at 0 to 0.5: -8.6 points; at 11.5 to 14: -5.6 points
-  - snares on enemy bars: at 0 to 0.5: -18.4 points; at 11.5 to 14: +6.4 points
-  - speed skills on own bars: at 1 to 1.5: +2.3 points; at 8.5 to 10: +10.1 points
+  - snares on enemy bars: at 0 to 0.5: -18.3 points; at 11.5 to 14: +6.4 points
+  - speed skills on own bars: at 1 to 1.5: +2.2 points; at 8.5 to 10: +10.1 points
 - **Team strength**: not clear yet: more matches needed.
   - team strength gap: at -989 to -583: -7.8 points; at 572.5 to 989: +7 points
 

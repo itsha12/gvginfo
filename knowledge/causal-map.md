@@ -255,14 +255,14 @@ Caused by:
 - **Allocation**: a power play is any numbers advantage at main, an 8v7 while the enemy runs included (Denning; supported)
 
 Measured on unseen matches (learnednodes.py; gain = how much worse the node predicts without the link):
-- Allocation (`A.allocation`), power play node: gain +0.0611 (+/- 0.0084, log loss), supported, 133 matches
-- Damage uptime (`K.2`), power play node: gain +0.0311 (+/- 0.0074, log loss), supported, 133 matches
+- Allocation (`A.allocation`), power play node: gain +0.0613 (+/- 0.0083, log loss), supported, 133 matches
+- Damage uptime (`K.2`), power play node: gain +0.0312 (+/- 0.0074, log loss), supported, 133 matches
 - Mitigation (`K.5`), power play node: gain +0.0125 (+/- 0.0052, log loss), supported, 133 matches
-- Burst timing (`P.2`), power play node: gain +0.007 (+/- 0.0053, log loss), not clear yet, 133 matches
+- Burst timing (`P.2`), power play node: gain +0.0073 (+/- 0.0054, log loss), not clear yet, 133 matches
 - Team strength (`C.strength`), power play node: gain +0.007 (+/- 0.0067, log loss), not clear yet, 133 matches
-- Commitment (`P.14`), power play node: gain +0.0066 (+/- 0.0034, log loss), not clear yet, 133 matches
+- Commitment (`P.14`), power play node: gain +0.0067 (+/- 0.0034, log loss), not clear yet, 133 matches
 - Flag lead (`R.3`), power play node: gain +0.0039 (+/- 0.0028, log loss), not clear yet, 133 matches
-- Control received (`K.11`), power play node: gain -0.0016 (+/- 0.0022, log loss), not clear yet, 133 matches
+- Control received (`K.11`), power play node: gain -0.0015 (+/- 0.0022, log loss), not clear yet, 133 matches
 - Target choice (`P.1`), power play node: gain -0.0027 (+/- 0.002, log loss), not clear yet, 133 matches
 
 ### Mitigation `K.5`
@@ -363,12 +363,12 @@ Caused by:
 - **Split depth**: the deeper the splitters are in the base (nearer the pit), the more likely they die to a collapse (Denning; hypothesis)
 
 Measured on unseen matches (learnednodes.py; gain = how much worse the node predicts without the link):
-- Collapse timing (`P.9`), collapse node: gain +0.0102 (+/- 0.0048, log loss), supported, 120 matches
+- Collapse timing (`P.9`), collapse node: gain +0.0104 (+/- 0.0049, log loss), supported, 120 matches
 - Build features (`C.builds`), collapse node: gain +0.0047 (+/- 0.002, log loss), supported, 120 matches
 - Allocation (`A.allocation`), collapse node: gain +0.0029 (+/- 0.0016, log loss), not clear yet, 120 matches
 - Team strength (`C.strength`), collapse node: gain +0.0018 (+/- 0.0029, log loss), not clear yet, 120 matches
 - Split answer (`P.11`), collapse node: gain +0.0011 (+/- 0.0023, log loss), not clear yet, 120 matches
-- Split depth (`P.20`), collapse node: gain -0.0004 (+/- 0.0038, log loss), not clear yet, 120 matches
+- Split depth (`P.20`), collapse node: gain -0.0005 (+/- 0.0038, log loss), not clear yet, 120 matches
 - Mobility (`K.13`), collapse node: gain -0.0033 (+/- 0.0013, log loss), rejected, 120 matches
 
 ### Wipes `R.2`
@@ -388,13 +388,13 @@ Caused by:
 
 Measured on unseen matches (learnednodes.py; gain = how much worse the node predicts without the link):
 - Team strength (`C.strength`), fight outcome node: gain +0.0478 (+/- 0.0119, log loss), supported, 133 matches
-- Allocation (`A.allocation`), fight outcome node: gain +0.0439 (+/- 0.0086, log loss), supported, 133 matches
-- Burst timing (`P.2`), fight outcome node: gain +0.0335 (+/- 0.0119, log loss), supported, 133 matches
-- Pressure (`K.1`), fight outcome node: gain +0.032 (+/- 0.0134, log loss), supported, 133 matches
-- Wrong casts (`P.17`), fight outcome node: gain +0.0155 (+/- 0.0103, log loss), not clear yet, 133 matches
-- Enchantment strips (`P.18`), fight outcome node: gain +0.0038 (+/- 0.0036, log loss), not clear yet, 133 matches
-- Peel (`P.13`), fight outcome node: gain +0.0007 (+/- 0.0009, log loss), not clear yet, 133 matches
-- Blind on enemies (`P.19`), fight outcome node: gain -0.0006 (+/- 0.0017, log loss), not clear yet, 133 matches
+- Allocation (`A.allocation`), fight outcome node: gain +0.0438 (+/- 0.0086, log loss), supported, 133 matches
+- Burst timing (`P.2`), fight outcome node: gain +0.0333 (+/- 0.0119, log loss), supported, 133 matches
+- Pressure (`K.1`), fight outcome node: gain +0.0312 (+/- 0.0133, log loss), supported, 133 matches
+- Wrong casts (`P.17`), fight outcome node: gain +0.0157 (+/- 0.0104, log loss), not clear yet, 133 matches
+- Enchantment strips (`P.18`), fight outcome node: gain +0.0037 (+/- 0.0036, log loss), not clear yet, 133 matches
+- Peel (`P.13`), fight outcome node: gain +0.0006 (+/- 0.001, log loss), not clear yet, 133 matches
+- Blind on enemies (`P.19`), fight outcome node: gain -0.0006 (+/- 0.0018, log loss), not clear yet, 133 matches
 - Condition removal (`P.5`), fight outcome node: gain -0.0028 (+/- 0.0031, log loss), not clear yet, 133 matches
 
 ### Flag lead `R.3`
@@ -425,7 +425,7 @@ Measured on unseen matches (learnednodes.py; gain = how much worse the node pred
 - Run timing and runner choice (`P.10`), run outcome node: gain +0.0107 (+/- 0.0053, log loss), supported, 133 matches
 - Allocation (`A.allocation`), capture speed node: gain +0.01 (+/- 0.13, mean absolute error (s)), not clear yet, 125 matches
 - Map geometry (`C.map`), run defence node: gain +0.0014 (+/- 0.0031, log loss), not clear yet, 133 matches
-- Map geometry (`C.map`), run outcome node: gain +0.0009 (+/- 0.0025, log loss), not clear yet, 133 matches
+- Map geometry (`C.map`), run outcome node: gain +0.001 (+/- 0.0025, log loss), not clear yet, 133 matches
 - Mesmers free to defend (`A.mesa_free`), run defence node: gain +0.0008 (+/- 0.0011, log loss), not clear yet, 133 matches
 - Control received (`K.11`), run outcome node: gain +0.0002 (+/- 0.0012, log loss), not clear yet, 133 matches
 - Clock (`C.clock`), flag swing node: gain +0.0 (+/- 0.04, mean absolute error (s)), not clear yet, 133 matches

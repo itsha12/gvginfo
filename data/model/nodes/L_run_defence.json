@@ -180,7 +180,7 @@
   {
    "term": "def_free",
    "description": "defenders alive and not on flag duty at the run's start",
-   "importance": 0.115,
+   "importance": 0.114,
    "missing_points": 0.0,
    "curve": [
     {
@@ -366,7 +366,7 @@
     {
      "from": 1.5,
      "to": 2.5,
-     "points": -4.8,
+     "points": -4.9,
      "plus_minus": 2.7
     },
     {

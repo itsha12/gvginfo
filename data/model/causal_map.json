@@ -542,7 +542,7 @@
    "measured": {
     "power_play": {
      "node": "power_play",
-     "strength": 0.0311,
+     "strength": 0.0312,
      "plus_minus": 0.0074,
      "status": "supported",
      "metric": "log loss",
@@ -568,8 +568,8 @@
    "measured": {
     "power_play": {
      "node": "power_play",
-     "strength": 0.007,
-     "plus_minus": 0.0053,
+     "strength": 0.0073,
+     "plus_minus": 0.0054,
      "status": "not clear yet",
      "metric": "log loss",
      "matches": 133,
@@ -605,7 +605,7 @@
    "measured": {
     "power_play": {
      "node": "power_play",
-     "strength": 0.0066,
+     "strength": 0.0067,
      "plus_minus": 0.0034,
      "status": "not clear yet",
      "metric": "log loss",
@@ -772,7 +772,7 @@
    "measured": {
     "power_play": {
      "node": "power_play",
-     "strength": -0.0016,
+     "strength": -0.0015,
      "plus_minus": 0.0022,
      "status": "not clear yet",
      "metric": "log loss",
@@ -824,8 +824,8 @@
    "measured": {
     "power_play": {
      "node": "power_play",
-     "strength": 0.007,
-     "plus_minus": 0.0053,
+     "strength": 0.0073,
+     "plus_minus": 0.0054,
      "status": "not clear yet",
      "metric": "log loss",
      "matches": 133,
@@ -1277,7 +1277,7 @@
    "measured": {
     "run_outcome": {
      "node": "run_outcome",
-     "strength": 0.0009,
+     "strength": 0.001,
      "plus_minus": 0.0025,
      "status": "not clear yet",
      "metric": "log loss",
@@ -3132,7 +3132,7 @@
    "measured": {
     "run_outcome": {
      "node": "run_outcome",
-     "strength": 0.0009,
+     "strength": 0.001,
      "plus_minus": 0.0025,
      "status": "not clear yet",
      "metric": "log loss",
@@ -3427,8 +3427,8 @@
    "measured": {
     "power_play": {
      "node": "power_play",
-     "strength": 0.0611,
-     "plus_minus": 0.0084,
+     "strength": 0.0613,
+     "plus_minus": 0.0083,
      "status": "supported",
      "metric": "log loss",
      "matches": 133,
@@ -3457,7 +3457,7 @@
    "measured": {
     "fight_outcome": {
      "node": "fight_outcome",
-     "strength": 0.0439,
+     "strength": 0.0438,
      "plus_minus": 0.0086,
      "status": "supported",
      "metric": "log loss",
@@ -3482,8 +3482,8 @@
    "measured": {
     "fight_outcome": {
      "node": "fight_outcome",
-     "strength": 0.0007,
-     "plus_minus": 0.0009,
+     "strength": 0.0006,
+     "plus_minus": 0.001,
      "status": "not clear yet",
      "metric": "log loss",
      "matches": 133,
@@ -3505,8 +3505,8 @@
    "measured": {
     "fight_outcome": {
      "node": "fight_outcome",
-     "strength": 0.0155,
-     "plus_minus": 0.0103,
+     "strength": 0.0157,
+     "plus_minus": 0.0104,
      "status": "not clear yet",
      "metric": "log loss",
      "matches": 133,
@@ -3530,7 +3530,7 @@
    "measured": {
     "fight_outcome": {
      "node": "fight_outcome",
-     "strength": 0.0038,
+     "strength": 0.0037,
      "plus_minus": 0.0036,
      "status": "not clear yet",
      "metric": "log loss",
@@ -3555,7 +3555,7 @@
     "fight_outcome": {
      "node": "fight_outcome",
      "strength": -0.0006,
-     "plus_minus": 0.0017,
+     "plus_minus": 0.0018,
      "status": "not clear yet",
      "metric": "log loss",
      "matches": 133,
@@ -3578,7 +3578,7 @@
    "measured": {
     "fight_outcome": {
      "node": "fight_outcome",
-     "strength": 0.0335,
+     "strength": 0.0333,
      "plus_minus": 0.0119,
      "status": "supported",
      "metric": "log loss",
@@ -3603,8 +3603,8 @@
    "measured": {
     "fight_outcome": {
      "node": "fight_outcome",
-     "strength": 0.032,
-     "plus_minus": 0.0134,
+     "strength": 0.0312,
+     "plus_minus": 0.0133,
      "status": "supported",
      "metric": "log loss",
      "matches": 133,
@@ -3819,8 +3819,8 @@
    "measured": {
     "collapse": {
      "node": "collapse",
-     "strength": 0.0102,
-     "plus_minus": 0.0048,
+     "strength": 0.0104,
+     "plus_minus": 0.0049,
      "status": "supported",
      "metric": "log loss",
      "matches": 120,
@@ -3942,7 +3942,7 @@
    "measured": {
     "collapse": {
      "node": "collapse",
-     "strength": -0.0004,
+     "strength": -0.0005,
      "plus_minus": 0.0038,
      "status": "not clear yet",
      "metric": "log loss",

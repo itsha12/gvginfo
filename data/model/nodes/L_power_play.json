@@ -24,8 +24,8 @@
     "short_backside",
     "short_base"
    ],
-   "strength": 0.0611,
-   "plus_minus": 0.0084,
+   "strength": 0.0613,
+   "plus_minus": 0.0083,
    "status": "supported"
   },
   {
@@ -44,7 +44,7 @@
    "features": [
     "pushed"
    ],
-   "strength": 0.0066,
+   "strength": 0.0067,
    "plus_minus": 0.0034,
    "status": "not clear yet"
   },
@@ -54,7 +54,7 @@
    "features": [
     "dps_v_usual"
    ],
-   "strength": 0.0311,
+   "strength": 0.0312,
    "plus_minus": 0.0074,
    "status": "supported"
   },
@@ -76,8 +76,8 @@
     "spikes_10s",
     "spike_spread"
    ],
-   "strength": 0.007,
-   "plus_minus": 0.0053,
+   "strength": 0.0073,
+   "plus_minus": 0.0054,
    "status": "not clear yet"
   },
   {
@@ -96,7 +96,7 @@
    "features": [
     "blind_secs_on_own_10s"
    ],
-   "strength": -0.0016,
+   "strength": -0.0015,
    "plus_minus": 0.0022,
    "status": "not clear yet"
   },

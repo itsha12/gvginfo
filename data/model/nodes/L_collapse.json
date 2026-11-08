@@ -31,8 +31,8 @@
     "npc_hit_to_arrival",
     "res_in_at_arrival"
    ],
-   "strength": 0.0102,
-   "plus_minus": 0.0048,
+   "strength": 0.0104,
+   "plus_minus": 0.0049,
    "status": "supported",
    "each": [
     {
@@ -78,13 +78,13 @@
     "depth_at_arrival",
     "depth_median"
    ],
-   "strength": -0.0004,
+   "strength": -0.0005,
    "plus_minus": 0.0038,
    "status": "not clear yet",
    "each": [
     {
      "feature": "depth_at_arrival",
-     "strength": -0.0016,
+     "strength": -0.0015,
      "plus_minus": 0.0021,
      "status": "not clear yet"
     },

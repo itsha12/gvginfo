@@ -19,7 +19,7 @@
     "own_local",
     "enemy_local"
    ],
-   "strength": 0.0439,
+   "strength": 0.0438,
    "plus_minus": 0.0086,
    "status": "supported"
   },
@@ -29,8 +29,8 @@
    "features": [
     "peel_defensive_diff"
    ],
-   "strength": 0.0007,
-   "plus_minus": 0.0009,
+   "strength": 0.0006,
+   "plus_minus": 0.001,
    "status": "not clear yet"
   },
   {
@@ -41,8 +41,8 @@
     "dazed_casts_diff",
     "blind_attacks_diff"
    ],
-   "strength": 0.0155,
-   "plus_minus": 0.0103,
+   "strength": 0.0157,
+   "plus_minus": 0.0104,
    "status": "not clear yet"
   },
   {
@@ -52,7 +52,7 @@
     "strip_right_diff",
     "strip_value_diff"
    ],
-   "strength": 0.0038,
+   "strength": 0.0037,
    "plus_minus": 0.0036,
    "status": "not clear yet"
   },
@@ -64,7 +64,7 @@
     "blind_defensive_secs_diff"
    ],
    "strength": -0.0006,
-   "plus_minus": 0.0017,
+   "plus_minus": 0.0018,
    "status": "not clear yet"
   },
   {
@@ -74,7 +74,7 @@
     "spike_spread_diff",
     "spikes_diff"
    ],
-   "strength": 0.0335,
+   "strength": 0.0333,
    "plus_minus": 0.0119,
    "status": "supported"
   },
@@ -84,8 +84,8 @@
    "features": [
     "dps_v_usual_diff"
    ],
-   "strength": 0.032,
-   "plus_minus": 0.0134,
+   "strength": 0.0312,
+   "plus_minus": 0.0133,
    "status": "supported"
   },
   {
