@@ -1,6 +1,6 @@
 {
  "format": "gvginfo.replay.v1",
- "updated": "2026-11-08T04:02:55.855Z",
+ "updated": "2026-11-08T04:29:27.309Z",
  "matches": {
   "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65": {
    "file": "2026-11/eea5ba87-ac20-5ba3-a6c9-965f11ca8a65.json.gz",
@@ -1903,6 +1903,34 @@
    "winner": "DUM",
    "length_s": 488,
    "kb": 125,
+   "summary": true,
+   "trim": 3
+  },
+  "21459385-888c-5151-aacd-349d9608b7f6": {
+   "file": "2026-11/21459385-888c-5151-aacd-349d9608b7f6.json.gz",
+   "date": "2026-11-08T03:59:09.596Z",
+   "map": "Isle of Meditation",
+   "teams": [
+    "meow",
+    "戦戦戦戦"
+   ],
+   "winner": "meow",
+   "length_s": 448,
+   "kb": 111,
+   "summary": true,
+   "trim": 3
+  },
+  "3b341008-8ca4-5fbb-aaab-729ca445e4df": {
+   "file": "2026-11/3b341008-8ca4-5fbb-aaab-729ca445e4df.json.gz",
+   "date": "2026-11-08T03:32:06.104Z",
+   "map": "Nomad's Isle",
+   "teams": [
+    "meow",
+    "GW크"
+   ],
+   "winner": "meow",
+   "length_s": 1348,
+   "kb": 326,
    "summary": true,
    "trim": 3
   }

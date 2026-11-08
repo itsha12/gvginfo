@@ -1,15 +1,15 @@
 {
- "updated": "2026-11-08T04:02:39.491Z",
+ "updated": "2026-11-08T04:29:03.064Z",
  "matches": [
   {
-   "id": "82fa12be-98d8-57e0-aa8e-c8e1e0253ea4",
+   "id": "21459385-888c-5151-aacd-349d9608b7f6",
    "date": "2026-11-08",
-   "map": "Nomad's Isle",
+   "map": "Isle of Meditation",
    "teams": [
-    "RV",
-    "DUM"
+    "meow",
+    "戦戦戦戦"
    ],
-   "winner": 2,
+   "winner": 1,
    "occasion": "automated",
    "keys": [
     "id",
@@ -47,6 +47,28 @@
     "tournament_occasion",
     "observed_match_clock"
    ]
+  },
+  {
+   "id": "3b341008-8ca4-5fbb-aaab-729ca445e4df",
+   "date": "2026-11-08",
+   "map": "Nomad's Isle",
+   "teams": [
+    "meow",
+    "GW크"
+   ],
+   "winner": 1,
+   "occasion": "automated"
+  },
+  {
+   "id": "82fa12be-98d8-57e0-aa8e-c8e1e0253ea4",
+   "date": "2026-11-08",
+   "map": "Nomad's Isle",
+   "teams": [
+    "RV",
+    "DUM"
+   ],
+   "winner": 2,
+   "occasion": "automated"
   },
   {
    "id": "9e6d6ce3-cbe4-5c03-a01a-c8dbf58d8542",
@@ -4411,28 +4433,6 @@
    "teams": [
     "meow",
     "げえええ"
-   ],
-   "winner": 1,
-   "occasion": "automated"
-  },
-  {
-   "id": "09d2abcb-8c61-52f1-ac60-67367d988be2",
-   "date": "2026-10-05",
-   "map": "Isle of Jade",
-   "teams": [
-    "옷옷옷옷",
-    "Crew"
-   ],
-   "winner": 1,
-   "occasion": "automated"
-  },
-  {
-   "id": "32882ec3-b8e8-52b5-a232-9d509cfec65e",
-   "date": "2026-10-05",
-   "map": "Uncharted Isle",
-   "teams": [
-    "Crew",
-    "hook"
    ],
    "winner": 1,
    "occasion": "automated"
