@@ -47,7 +47,7 @@ Values from data (eventlayer_values.json): enchantments by recorded output per s
 - spread 1.5 to 9 s: killed 53 of 201 (26%)
 
 ## Run timing (capture rate)
-- into an enemy power play: 75 of 119 (63%); otherwise 324 of 632 (51%)
+- into an enemy power play: 68 of 112 (61%); otherwise 331 of 639 (52%)
 - enemy holds, its boost in 0 to 30 s: 2 of 19 (11%)
 - enemy holds, its boost in 30 to 60 s: 24 of 48 (50%)
 - enemy holds, its boost in 60 to 121 s: 196 of 301 (65%)

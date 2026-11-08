@@ -1,67 +1,67 @@
 {
  "cores": 4,
- "cpu": "AMD EPYC 7763 64-Core Processor",
+ "cpu": "AMD EPYC 9V45 96-Core Processor",
  "seconds": {
-  "candidate variables": 221.4,
-  "event layer and values": 22.1,
-  "learned nodes": 253.6,
-  "fit and honest test": 61.6,
+  "candidate variables": 110.6,
+  "event layer and values": 26.6,
+  "learned nodes": 754.2,
+  "fit and honest test": 70.3,
   "integrity and honest test text": 3.8,
   "curves": 0.0,
   "interaction screen": 0.1,
-  "surprises": 1.3,
+  "surprises": 6.3,
   "rulings": 0.0,
-  "usual play": 69.2,
-  "values (measure)": 91.5,
-  "node models": 207.3,
+  "usual play": 85.0,
+  "values (measure)": 96.7,
+  "node models": 273.7,
   "values": 0.2,
-  "TQs": 111.6,
-  "snapshot": 13.1,
+  "TQs": 79.1,
+  "snapshot": 8.0,
   "questions": 0.0
  },
  "split": {
   "cands": {
-   "seconds": 221.4,
+   "seconds": 110.6,
    "laps": {
-    "candidate variables": 221.4
+    "candidate variables": 110.6
    }
   },
   "learned": {
-   "seconds": 275.8,
+   "seconds": 780.8,
    "laps": {
-    "event layer and values": 22.1,
-    "learned nodes": 253.6
+    "event layer and values": 26.6,
+    "learned nodes": 754.2
    }
   },
   "main": {
-   "seconds": 227.6,
+   "seconds": 262.3,
    "laps": {
-    "fit and honest test": 61.6,
+    "fit and honest test": 70.3,
     "integrity and honest test text": 3.8,
     "curves": 0.0,
     "interaction screen": 0.1,
-    "surprises": 1.3,
+    "surprises": 6.3,
     "rulings": 0.0,
-    "usual play": 69.2,
-    "values (measure)": 91.5
+    "usual play": 85.0,
+    "values (measure)": 96.7
    }
   },
   "nodes:deaths": {
-   "seconds": 115.4,
+   "seconds": 135.6,
    "laps": {
-    "node models": 115.4
+    "node models": 135.5
    }
   },
   "nodes:kill_conversion,lord_damage,flag_answer": {
-   "seconds": 42.9,
+   "seconds": 65.2,
    "laps": {
-    "node models": 42.9
+    "node models": 65.2
    }
   },
   "nodes:lord_kill,npc_loss": {
-   "seconds": 49.0,
+   "seconds": 73.0,
    "laps": {
-    "node models": 49.0
+    "node models": 73.0
    }
   }
  }
