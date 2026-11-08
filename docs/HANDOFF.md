@@ -111,7 +111,14 @@ engine change before the next run, then the commentary transcripts and step 3 (d
 - Tested here on 12 matches end to end (every report section and TQ ran). Fixed on the way: a direction correction
   leaves no spread on its curve; the robust loss diverged until centred and scaled.
 - Train batch: `timeout-minutes` 180 for every job; new input `rebuild_forensics` (run `forensics.py bench` first).
-- Next: read the rebuild's report (data/model/reports/latest.md) with Denning, then the commentary transcripts.
+- Rebuild done (27 min whole run on GitHub; a first try failed on a report line, fixed). Readings at 133 matches:
+  glass box log loss 0.375 against 0.463 for strength alone (not yet clear); cap test chose no cap on
+  `spike_killable_diff` (none 0.3758, 25 points 0.3761, 10 points 0.3869); calibration's biggest correction is 6 to 12
+  min, where teams given about 3.5% won 21%; position window chosen 3 s (AUC 0.632 against 0.624 for 5 s and 0.611 for
+  8 s, so the windows differ little); Lord damage node now honestly adds (typical error 71 against 92); flag swing and
+  split effect now narrowly beat their baselines, capture speed still doesn't; values against matched moments: a death
+  -8.9, a knight -9.0, a capture +1.5.
+- Next: go through the rebuild's report (data/model/reports/latest.md) with Denning, then the commentary transcripts.
 
 ### Session 4r (2026-11-07)
 - Train batch split (`.github/workflows/train-batch.yml`, METHODS.md "Train batch on GitHub"): prepare -> six parts at
