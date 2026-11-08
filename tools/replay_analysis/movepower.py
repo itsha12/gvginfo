@@ -108,7 +108,15 @@ def _ranks():
     return out
 
 
+_PP = {}
 def player_power(m, a):
+    """Snare, speed and escape power of player a's bar (memoized per match and player: called for every row)."""
+    k = (m.o["meta"]["id"], a)
+    if k not in _PP: _PP[k] = _player_power(m, a)
+    return _PP[k]
+
+
+def _player_power(m, a):
     from buildfeat import _skills
     S = _skills(); rid = m.o["meta"]["id"]
     attrs = _ranks().get((rid, m.nm(a)), {})
@@ -121,7 +129,14 @@ def player_power(m, a):
     return {k: round(v, 1) if isinstance(v, float) else v for k, v in out.items()}
 
 
+_SB = {}
 def speed_bonus(m, a):
+    k = (m.o["meta"]["id"], a)
+    if k not in _SB: _SB[k] = _speed_bonus(m, a)
+    return _SB[k]
+
+
+def _speed_bonus(m, a):
     """The bar's average movement bonus while running (fraction): speed power / 60 (a 50% stance up a quarter of the
     time = 12.5%), capped at the bar's biggest single bonus (speed boosts don't add up; the strongest applies)."""
     from buildfeat import _skills

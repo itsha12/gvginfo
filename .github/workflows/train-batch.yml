@@ -7,7 +7,8 @@ name: Train batch
 # data/model/reports/latest.md and explains it. Started by hand (Actions tab, or Claude with gh api).
 # Split across machines for speed (free on a public repo): "fetch" picks, fetches and adds the batch; four "shard" jobs
 # build every match's own prepared data side by side (cache.py shard: analysis, node rows, event-layer records);
-# "prepare" merges them, analyses (now cache hits) and warms the held-out models; six "part" jobs then build the
+# "prepare" merges them, analyses (now cache hits) and warms the held-out models; four "rows" jobs build the learned
+# nodes' rows (cache.py shard_rows); six "part" jobs then build the
 # report's heavy sections side by side (learning.py part ...);
 # "finish" joins them, runs values, the TQs and the snapshot (learning.py finish), saves the cache and commits.
 # Jobs pass their work on as artifacts: a git patch of the files they changed plus the new cache files.
@@ -221,8 +222,54 @@ jobs:
           retention-days: 1
           compression-level: 0
 
-  part:
+  # the learned nodes' rows, split the same way (they need the event-layer values from every match, so after prepare)
+  rows:
     needs: prepare
+    runs-on: ${{ github.event.inputs.runner || 'ubuntu-latest' }}
+    timeout-minutes: 180
+    strategy:
+      fail-fast: true
+      matrix:
+        k: [0, 1, 2, 3]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: .github/workflows/train-requirements.txt
+      - name: Install the model libraries
+        run: nproc && pip install -r .github/workflows/train-requirements.txt
+      - uses: actions/download-artifact@v4
+        with:
+          name: prep
+          path: /tmp/state
+      - name: Restore the prepared state
+        run: |
+          git config --global user.name "gvginfo-bot"
+          git config --global user.email "gvginfo-bot@users.noreply.github.com"
+          git fetch --depth 1 origin +replays:refs/remotes/origin/replays
+          [ -s /tmp/state/prep.patch ] && git apply --binary /tmp/state/prep.patch
+          tar -xzf /tmp/state/prep.tgz -C /
+          touch /tmp/marker && sleep 1
+      - name: Build this shard's learned-node rows
+        working-directory: tools/replay_analysis
+        run: python3 cache.py shard_rows ${{ matrix.k }} 4
+      - name: Pack this shard
+        run: |
+          mkdir -p /tmp/rows
+          cd / && find "${HOME#/}/.cache/gvginfo" -type f -newer /tmp/marker > /tmp/newfiles.txt
+          wc -l /tmp/newfiles.txt
+          tar -czf /tmp/rows/rows-${{ matrix.k }}.tgz -C / -T /tmp/newfiles.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rows-${{ matrix.k }}
+          path: /tmp/rows
+          retention-days: 1
+          compression-level: 0
+
+  part:
+    needs: [prepare, rows]
     runs-on: ${{ github.event.inputs.runner || 'ubuntu-latest' }}
     timeout-minutes: 180
     strategy:
@@ -254,6 +301,11 @@ jobs:
         with:
           name: prep
           path: /tmp/state
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: rows-*
+          path: /tmp/rowshards
+          merge-multiple: true
       - name: Restore the prepared state
         run: |
           git config --global user.name "gvginfo-bot"
@@ -261,6 +313,7 @@ jobs:
           git fetch --depth 1 origin +replays:refs/remotes/origin/replays
           [ -s /tmp/state/prep.patch ] && git apply --binary /tmp/state/prep.patch
           tar -xzf /tmp/state/prep.tgz -C /
+          for t in /tmp/rowshards/*.tgz; do tar -xzf "$t" -C /; done
           git add -A && git commit -qm "prepared state (local only)" --allow-empty
           touch /tmp/marker && sleep 1
       - name: Build this part of the report

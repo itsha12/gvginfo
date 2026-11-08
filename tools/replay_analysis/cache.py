@@ -228,6 +228,27 @@ def shard(k, n, jobs=None):
     print(f"shard {k} of {n}: {len(mine)} matches in {time.time() - t:.0f} s ({bad} with a failure)")
 
 
+def _rows_shard_one(job):
+    node, rid, V = job
+    import lnrows
+    try: lnrows.node_rows(node, rid, V); return None
+    except Exception as ex: return f"{node} {rid}: {ex}"
+
+
+def shard_rows(k, n, jobs=None):
+    """The learned nodes' rows for every n-th trained match from k (after prepare: the event-layer values need every
+    match's records, which the first shards built). The learned part then finds its rows built."""
+    from multiprocessing import Pool
+    import eventlayer as EL, learnednodes as LN
+    ids = sorted(_ids()); V = EL.values(_ids(), save=False)       # same order as the learned part, so the same values
+    mine = [r for i, r in enumerate(ids) if i % n == k]
+    t = time.time(); bad = 0
+    with Pool(jobs or os.cpu_count() or 2) as p:
+        for e in p.imap_unordered(_rows_shard_one, [(node, rid, V) for node in LN.SPEC for rid in mine]):
+            if e: bad += 1; print(e)
+    print(f"rows shard {k} of {n}: {len(mine)} matches x {len(LN.SPEC)} nodes in {time.time() - t:.0f} s ({bad} failures)")
+
+
 # ---- keeping prepared data between sessions (branch `cache`, one tarball per code version and kind)
 def sync(direction):
     work = _path("branch", ".keep"); work = os.path.dirname(work)
@@ -301,6 +322,7 @@ if __name__ == "__main__":
     elif a[:1] == ["sync"]: sync(a[1])
     elif a[:1] == ["info"]: info()
     elif a[:1] == ["shard"]: shard(int(a[1]), int(a[2]))
+    elif a[:1] == ["shard_rows"]: shard_rows(int(a[1]), int(a[2]))
     elif a[:1] == ["clear"]:
         what = a[1] if len(a) > 1 else "all"
         for d in (["fits", "prepared"] if what == "all" else [what]): shutil.rmtree(os.path.join(ROOT, d), ignore_errors=True)

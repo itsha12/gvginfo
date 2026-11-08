@@ -833,7 +833,11 @@ changing status only after two batches in a row, declined: links keep changing s
 - Chains: the node-model chain (causalchain.py) replaces chain.py in the TQs. A cause or fix must sit at least a
   quarter of the variable's spread (interquartile range over the node's rows) from its usual value.
 - Speed-up: Train batch now runs fetch -> four shard jobs (cache.py shard k 4: analysis, node rows and event-layer
-  records for every 4th match) -> prepare (merges the shards' cache files) -> parts -> finish.
+  records for every 4th match) -> prepare (merges the shards' cache files; analysis then takes 15 s) -> four rows jobs
+  (cache.py shard_rows k 4: the learned nodes' rows, which need the event-layer values from every match) -> parts ->
+  finish. First sharded run (full rebuild, before the rows shards): shards 2 to 4 min, prepare 11 min (9 of them the
+  win model's tables, held-out fits and calibration), the learned part 13 min (rebuilding every node's rows on one
+  machine, slowed by recomputing each bar's powers per row: now memoized), finish 3 min; 32 min in all.
 
 ## Flag position (Denning, tactics `F1` to `F4`)
 - Up on flags = the better position to get a boost and to run, not the team that capped last.
