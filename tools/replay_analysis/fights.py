@@ -499,6 +499,13 @@ def windows(st, min_len=10):
         losses = [(round(tt), m.roles[b]) for b in st.players[tm] for tt in st.death_times.get(b, []) if t0 <= tt <= t1 + 5]
         c0 = st.centroid(st.main_group(tm, t0), t0); c1 = st.centroid(st.main_group(tm, t1), t1)
         moved = round(d(c0, st.geo.pit[foe]) - d(c1, st.geo.pit[foe])) if c0 and c1 else None
+        # the same measures up to the first kill (Denning, after batch 9: what a team did after a kill is partly the
+        # kill's result, as the fight node already reads it); the whole window when there was no kill
+        tk = min((tt for tt, _ in kills if tt <= t1), default=None)
+        tke = max(min(tk, t1), t0 + 5) if tk is not None else t1
+        ck = st.centroid(st.main_group(tm, tke), tke)
+        moved_k = round(d(c0, st.geo.pit[foe]) - d(ck, st.geo.pit[foe])) if c0 and ck else None
+        dmg_k = sum(r[5] or 0 for r in m.o["ev"] if r[1] == "dm" and r[2] in st.players[tm] and r[3] in st.players[foe] and t0 * 10 <= r[0] <= tke * 10)
         # where the team with more players was: at home (own base or pit) it was defending, not playing a power play
         zones = collections.Counter(st.zone(b, tt) for tt in range(t0, t1 + 1, 3) for b in st.main_group(tm, tt))
         where = zones.most_common(1)[0][0] if zones else "?"
@@ -509,7 +516,9 @@ def windows(st, min_len=10):
                     "at_home": where in ("own base", "own pit"), "contact": dmg > 0 and taken > 0,
                     "numbers": collections.Counter(f"{a}v{b}" if tm == 1 else f"{b}v{a}" for a, b in w["n"]).most_common(2),
                     "enemy_short_because": dict(why.most_common(3)), "pressure_vs_avg": round(dmg / max(t1 - t0, 1) / max(base, 1), 2),
-                    "kills": kills, "npcs_taken": npcs, "losses": losses, "pushed_toward_enemy_pit": moved})
+                    "kills": kills, "npcs_taken": npcs, "losses": losses, "pushed_toward_enemy_pit": moved,
+                    "first_kill": tk, "pushed_to_first_kill": moved_k,
+                    "pressure_to_first_kill": round(dmg_k / max(tke - t0, 1) / max(base, 1), 2)})
     return res
 
 

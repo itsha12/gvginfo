@@ -82,6 +82,24 @@ class Timeline:
         return i < len(L) and L[i] <= t + h
 
 
+def _physical(m, a):
+    """A physical attacker (Blind stops its attacks): frontline, Ranger or Paragon (as eventlayer.py's Blind records)."""
+    from common import line
+    try: fl = line(m, a) == "frontline"
+    except Exception: fl = m.A[a].get("p") in ("Warrior", "Assassin", "Dervish")
+    return fl or m.A[a].get("p") in ("Ranger", "Paragon")
+
+
+def _blind_secs_on(tl, a, t0, t1):
+    iv = sorted((max(s0, t0), min(s1, t1)) for s0, s1, n, _ in tl.cond.get(a, []) if n == "blind" and s1 > t0 and s0 < t1)
+    tot, cs, ce = 0.0, None, None
+    for s, e in iv:
+        if cs is None: cs, ce = s, e
+        elif s > ce: tot += ce - cs; cs, ce = s, e
+        else: ce = max(ce, e)
+    return tot + (ce - cs if cs is not None else 0)
+
+
 def _healer(m, a):
     from phases import healer
     return healer(m, a)
@@ -231,7 +249,9 @@ def _build_rows(node, rid):
                 if sum(x[1] for x in w) < 250 or len({x[2] for x in w}) < 3 or t - last < 4 or t > st.end - 10: continue
                 last = t; atk = {x[2] for x in w}; vt = m.team(v)
                 f = death_features(tl, v, t, mus[vt], gaps[vt])
-                blind = sum(1 for b in atk if tl.has_cond(b, t + 1, {"blind"}))
+                # Blind as time, not a count (Denning): seconds the burst's physical attackers spent Blind from 3 s
+                # before the burst to 3 s after it, overlaps on one player counted once (as eventlayer's Blind records)
+                blind = round(sum(_blind_secs_on(tl, b, t - 3, t + 3) for b in atk if _physical(m, b)), 1)
                 rup = sum(1 for b in atk for x in tl.ir[b] if t - 5 < x <= t + 2)
                 kdat = sum(1 for b in atk for x in tl.kd[b] if t - 5 < x <= t + 2)
                 rows.append({"match": rid, "team": m.tag[3 - vt], "role": m.roles[v], "t": round(t), "y": int(tl.dies_within(v, t, 8)), "w": 1,
@@ -372,7 +392,7 @@ KC_DESC = {"target_is_healer": "target is a healer", "target_line": "target 0 fr
            "target_dazed": "target Dazed", "target_deep_wound": "target has Deep Wound",
            "target_dist_from_group": "target's distance from its group", "target_hexes": "hexes on the target",
            "target_healers_hexed": "hexes on the target team's live healers", "target_away_3000": "target 3,000+ from its main group", "burst_damage": "damage in the 2 s burst",
-           "attackers": "attackers in the burst", "attackers_blinded": "attackers Blind during the burst",
+           "attackers": "attackers in the burst", "attackers_blinded": "seconds the burst's physical attackers spent Blind (3 s before to 3 s after)",
            "attackers_interrupted": "interrupts on the attackers (5 s before to 2 s after)",
            "attackers_knocked_down": "knockdowns on the attackers (5 s before to 2 s after)",
            "strength_gap": "attacking minus target team strength", "own_interrupts_v_enemy_heals": "attackers' interrupt skills minus target team's heals",
@@ -382,6 +402,48 @@ LK_DESC = dict(NPC_DESC, lord_health="the Lord's rebuilt health as a share of it
 DESC = {"deaths": DEATH_DESC, "kill_conversion": KC_DESC, "flag_answer": FA_DESC, "npc_loss": NPC_DESC, "lord_damage": NPC_DESC,
         "lord_kill": LK_DESC}
 REGRESSION = {"flag_answer", "lord_damage"}      # these nodes predict a number (seconds), not a yes/no
+# Lord damage is lopsided (most 10 s windows little or none, a few big bursts): fitted in two parts (Denning, after
+# batch 9) - the chance of any Lord damage in the window, then how much when there is some (on a log scale) - and read
+# two ways: the middle of the predicted spread for typical error, its average for the share of the spread explained.
+TWO_PART = {"lord_damage"}
+
+
+class TwoPart:
+    """Chance of any (classifier) x amount when there is some (regressor on log(1 + y)), both glass box (EBM)."""
+    def __init__(self, n_matches):
+        self.n = n_matches
+
+    def fit(self, X, y, sample_weight=None):
+        yv = np.asarray(y, float); pos = yv > 0
+        self.rate = float(pos.mean())
+        self.clf = _ebm(self.n, False).fit(X, pos.astype(int))
+        Xp = X[pos] if hasattr(X, "iloc") else X[pos]
+        self.reg = _ebm(self.n, True).fit(Xp, np.log1p(yv[pos]))
+        res = np.log1p(yv[pos]) - self.reg.predict(Xp)
+        self.sigma = float(np.std(res)) if len(res) > 1 else 0.0
+        self.smear = float(np.mean(np.exp(res))) if len(res) else 1.0      # back from the log scale (Duan)
+        return self
+
+    def chance(self, X): return self.clf.predict_proba(X)[:, 1]
+
+    def predict(self, X):
+        """The middle of the predicted spread (what minimizes the typical error): 0 when damage is less likely than not."""
+        from statistics import NormalDist
+        p, mu = self.chance(X), self.reg.predict(X)
+        out = np.zeros(len(p))
+        nd = NormalDist()
+        for i, (pi, mi) in enumerate(zip(p, mu)):
+            if pi > 0.5: out[i] = max(math.expm1(mi + self.sigma * nd.inv_cdf(min(max(1 - 0.5 / pi, 1e-6), 1 - 1e-6))), 0.0)
+        return out
+
+    def predict_mean(self, X):
+        return self.chance(X) * np.maximum(np.exp(self.reg.predict(X)) * self.smear - 1, 0)
+
+    def term_importances(self): return self.clf.term_importances()
+
+
+def _model(node, n_matches):
+    return TwoPart(n_matches) if node in TWO_PART else _ebm(n_matches, node in REGRESSION)
 
 
 _ROWS = {}
@@ -399,7 +461,8 @@ def heldout_node(node, ids, rid):
     import cache
     def fit(train):
         df, X, y, g, w = _frame(node, train)
-        return (_ebm(g.nunique(), node in REGRESSION).fit(X, y, sample_weight=None if node in REGRESSION else w), list(X.columns))
+        if node in REGRESSION: y = df["y"].astype(float)
+        return (_model(node, g.nunique()).fit(X, y, sample_weight=None if node in REGRESSION else w), list(X.columns))
     return cache.heldout("node", rid, list(ids), fit, sub=node)
 
 
@@ -447,11 +510,14 @@ def _wmetrics(p, y, w):
 def _node_job(job):
     """One fit for a node: a held-out fold (predictions for the matches left out, and the simple baseline's) or the
     final fit on everything (job kind "full"). Top level so it can run in another process (parallel.py)."""
-    kind, n_matches, regression, Xtr, ytr, wtr, Xte, base_cols = job
+    kind, n_matches, regression, Xtr, ytr, wtr, Xte, base_cols = job[:8]
+    node = job[8] if len(job) > 8 else None
     kw = {} if regression else {"sample_weight": wtr}
-    e = _ebm(n_matches, regression).fit(Xtr, ytr, **kw)
+    e = (TwoPart(n_matches) if node in TWO_PART else _ebm(n_matches, regression)).fit(Xtr, ytr, **kw)
     if kind == "full": return e
-    if regression: return {"glass": e.predict(Xte), "base": float(np.median(ytr))}
+    if node in TWO_PART:
+        return {"glass": e.predict(Xte), "glass_mean": e.predict_mean(Xte), "base": float(np.median(ytr)), "base_mean": float(np.mean(ytr))}
+    if regression: return {"glass": e.predict(Xte), "base": float(np.median(ytr)), "base_mean": float(np.mean(ytr))}
     from sklearn.linear_model import LogisticRegression
     b = LogisticRegression(max_iter=1000).fit(Xtr[base_cols].fillna(0), ytr, sample_weight=wtr)
     return {"glass": e.predict_proba(Xte)[:, 1], "base": b.predict_proba(Xte[base_cols].fillna(0))[:, 1]}
@@ -465,8 +531,8 @@ def _jobs(node, X, y, g, w, regression):
     from sklearn.model_selection import GroupKFold
     folds = list(GroupKFold(n_splits=min(6, g.nunique())).split(X, y, g))
     bc = BASE_COLS.get(node, [])
-    jobs = [("fold", g.iloc[tr].nunique(), regression, X.iloc[tr], y.iloc[tr], w.iloc[tr], X.iloc[te], bc) for tr, te in folds]
-    jobs.append(("full", g.nunique(), regression, X, y, w, None, bc))
+    jobs = [("fold", g.iloc[tr].nunique(), regression, X.iloc[tr], y.iloc[tr], w.iloc[tr], X.iloc[te], bc, node) for tr, te in folds]
+    jobs.append(("full", g.nunique(), regression, X, y, w, None, bc, node))
     return folds, jobs
 
 
@@ -482,17 +548,22 @@ def validate_regression(node, df, X, y, g, w, _done=None):
     """Held out by match: mean absolute error against always guessing the training median, and the share of the spread
     explained (R squared)."""
     folds, res, _ = _done or _folds_and_full(node, X, y, g, w, True)
-    pe, pb = np.zeros(len(y)), np.zeros(len(y))
+    pe, pb, pem, pbm = (np.zeros(len(y)) for _ in range(4))
     for (tr, te), r in zip(folds, res):
         pb[te] = r["base"]; pe[te] = r["glass"]
+        pem[te] = r.get("glass_mean", r["glass"]); pbm[te] = r.get("base_mean", r["base"])
     yv = y.values.astype(float)
     r2 = lambda p: round(1 - float(np.sum((yv - p) ** 2) / np.sum((yv - yv.mean()) ** 2)), 3)
-    out = {"glass box": {"mae_s": round(float(np.mean(np.abs(yv - pe))), 1), "r2": r2(pe)},
-           "simple baseline": {"mae_s": round(float(np.mean(np.abs(yv - pb))), 1), "r2": r2(pb)}, "baseline uses": ["the median"]}
-    # judged on both: typical error, and share of the spread explained (a result that is usually 0, like Lord damage,
-    # makes the median look good on typical error alone)
-    better = out["glass box"]["mae_s"] < out["simple baseline"]["mae_s"] - 0.5 or out["glass box"]["r2"] > out["simple baseline"]["r2"] + 0.05
+    # typical error from the middle reading against always guessing the median; share of the spread explained from the
+    # average reading against always guessing the average (the fair baseline for each measure)
+    out = {"glass box": {"mae_s": round(float(np.mean(np.abs(yv - pe))), 1), "r2": r2(pem)},
+           "simple baseline": {"mae_s": round(float(np.mean(np.abs(yv - pb))), 1), "r2": r2(pbm)},
+           "baseline uses": ["the median (typical error)", "the average (spread explained)"]}
+    # Denning (after batch 9): "adds" only if no worse on typical error AND better on the spread explained; either alone
+    # misleads on a lopsided result (Lord damage read "adds" at a typical error of 125 against 92 for the median)
+    better = out["glass box"]["mae_s"] <= out["simple baseline"]["mae_s"] and out["glass box"]["r2"] > out["simple baseline"]["r2"] + 0.05
     out["verdict"] = "adds to the simple baseline" if better else "no better than the simple baseline yet"
+    if node in TWO_PART: out["form"] = "two parts: chance of any, then amount when there is some (log scale)"
     return out, pe
 
 
@@ -545,17 +616,27 @@ def fit_nodes(nodes, ids):
         df, X, y, g, w, regression, folds = prep[node]
         r = [x for x, o in zip(res, owner) if o == node]
         done = (folds, r[:-1], r[-1])
-        if regression:
+        if node in TWO_PART:
+            val, held = validate_regression(node, df, X, y, g, w, done); e = done[2]
+            terms = [dict(t, term=t["term"] + " (chance of any)") for t in M.readable(e.clf, list(X.columns), X)]
+            for t in readable_seconds(e.reg, list(X.columns), X):
+                for c in t["curve"]:
+                    c["points"] = round((math.exp(c["points"]) - 1) * 100, 1); c["plus_minus"] = round((math.exp(c["plus_minus"]) - 1) * 100, 1)
+                terms.append(dict(t, term=t["term"] + " (amount when there is some, % more)", base_term=t["term"]))
+            for t in terms: t.setdefault("base_term", t["term"].split(" (")[0])
+        elif regression:
             val, held = validate_regression(node, df, X, y, g, w, done); e = done[2]
             terms = readable_seconds(e, list(X.columns), X)
         else:
             val, held = validate(node, df, X, y, g, w, done); e = done[2]
             terms = M.readable(e, list(X.columns), X)
         for t in terms:
-            if "curve" in t: t["description"] = DESC[node].get(t["term"], t["description"])
+            if "curve" in t: t["description"] = DESC[node].get(t.get("base_term", t["term"]), t["description"])
         summary = {"node": node, "matches": int(g.nunique()), "rows": int(len(y)),
                    "events": int(y.sum()) if node not in REGRESSION else None, "validation": val,
-                   "note": ("seconds added to (or taken off) the answer, compared with the average answer" if node in REGRESSION else
+                   "note": ("'chance of any' curves: points of the chance of any Lord damage in the window; 'amount' curves: % more "
+                            "Lord damage when there is some" if node in TWO_PART else
+                            "seconds added to (or taken off) the answer, compared with the average answer" if node in REGRESSION else
                             "points = change in the chance of the result for an otherwise even (50%) case; read the direction and size, "
                             "not the absolute level"), "terms": terms}
         os.makedirs(NODE_DIR, exist_ok=True)

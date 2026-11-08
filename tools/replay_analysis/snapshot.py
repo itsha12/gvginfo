@@ -4,11 +4,16 @@ shown beside all matches so changes are visible. Not causal on their own: they f
 
 Sections:
 - runners: per runner (role): runs, share captured, median spawn-to-capture time, drops, pushed; double running.
-- flag answers: cap delay and seconds slower than possible, winners against losers.
+- flag answers: cap delay and seconds slower than possible, winners against losers at the same win chance.
 - skills: per skill cast at an enemy, how often that enemy died within 5 s of the cast (kill participation), with casts;
   the skills interrupted most (whose and which), and the interrupt skills that landed most; knockdown skills.
-- spikes survived: spikes (400+ in 3 s) and how many the target survived, by role, winners against losers.
-- monks: casts per minute, fakes, time idle while an ally was hurt, reaction to bursts; winners against losers.
+- spikes survived: spikes (400+ in 3 s) and how many the target survived, by role, winners against losers at the same
+  win chance.
+- monks: casts per minute, fakes, time idle while an ally was hurt, reaction to bursts; winners against losers at the
+  same win chance.
+Winners against losers (Denning, after batch 9): compared only at moments when a win model that never saw the match gave
+the team 35 to 65% (EVEN), so a difference is not just who was already ahead; the comparison over every moment is kept
+beside it, labelled as including who was ahead.
 - deaths: damage kinds, interrupts on monks just before a death (which skills), knockdowns on the victim.
 
 Usage:  python3 snapshot.py [--src /tmp/gl]      prints the snapshot (markdown); learning.py adds it to the report
@@ -16,6 +21,25 @@ In code: snapshot(ids, new_ids, src) -> list of markdown lines."""
 import collections, json, os, statistics, sys
 
 MIN_N = 15          # casts (or cases) behind a skill or role before it is listed
+EVEN = (35, 65)     # win chance (held-out win model) for the same-win-chance comparisons
+_SER = {}
+
+
+def _wp(rid, team, t, ids):
+    """Win chance for team at second t, from a win model that never saw the match (values._wp_series, cached)."""
+    if rid not in ids: return None
+    if rid not in _SER:
+        import values as V
+        try: _SER[rid] = V._wp_series(rid, ids)
+        except Exception: _SER[rid] = {}
+    t0 = int(t) - int(t) % 5
+    v = _SER[rid].get((team, t0)) or _SER[rid].get((team, t0 - 5))
+    return v[0] if v else None
+
+
+def _even(rid, team, t, ids):
+    w = _wp(rid, team, t, ids)
+    return w is not None and EVEN[0] <= w <= EVEN[1]
 
 
 def _lib(src, kind, ids):
@@ -41,12 +65,15 @@ def runners(src, ids):
     return sorted(rows, key=lambda x: -x["runs"]), dbl
 
 
-def flag_answers(src, ids):
+def flag_answers(src, ids, all_ids=None):
     C = [c for c in _lib(src, "flag_cycles", ids) if c.get("slower_than_possible_s") is not None]
+    all_ids = all_ids or ids
+    E = [c for c in C if _even(c["match"], c["team"], c["enemy_cap"], all_ids)]
     out = {}
-    for w in (True, False):
-        L = [c for c in C if c["won"] == w]
-        out["winners" if w else "losers"] = {"answers": len(L), "median_cap_delay": _med([c["cap_delay"] for c in L]),
+    for lab, src_ in (("at even win chance", E), ("every moment (includes who was ahead)", C)):
+      for w in (True, False):
+        L = [c for c in src_ if c["won"] == w]
+        out[f"{'winners' if w else 'losers'} {lab}"] = {"answers": len(L), "median_cap_delay": _med([c["cap_delay"] for c in L]),
                                              "median_slower_than_possible": _med([c["slower_than_possible_s"] for c in L]),
                                              "30s+_slower": sum(1 for c in L if c["slower_than_possible_s"] >= 30)}
     return out
@@ -80,10 +107,11 @@ def skills(ids):
     return kp, intr_on, intr_by, kd_by
 
 
-def saves(ids):
+def saves(ids, all_ids=None):
     """Spikes (400+ damage within 3 s on one player) and whether the target survived the next 5 s; one spike per
-    target per 6 s. By the target's role and for winners against losers."""
+    target per 6 s. By the target's role and for winners against losers (at even win chance, and over every moment)."""
     from replaylib import Match
+    all_ids = all_ids or ids
     by = collections.defaultdict(lambda: [0, 0]); wl = collections.defaultdict(lambda: [0, 0])
     for rid in ids:
         m = Match.from_branch(rid); win = (m.o["meta"].get("result") or {}).get("winning_team_id")
@@ -98,16 +126,22 @@ def saves(ids):
                 last = t; ok = not any(t <= d <= t + 8 for d in deaths[a])
                 role = m.roles[a].rstrip(" 0123456789")
                 by[role][0] += 1; by[role][1] += int(ok)
-                k = "winners" if m.team(a) == win else "losers"; wl[k][0] += 1; wl[k][1] += int(ok)
+                k = "winners" if m.team(a) == win else "losers"
+                wl[k + " (every moment, includes who was ahead)"][0] += 1; wl[k + " (every moment, includes who was ahead)"][1] += int(ok)
+                if _even(rid, m.tag[m.team(a)], t, all_ids): wl[k + " at even win chance"][0] += 1; wl[k + " at even win chance"][1] += int(ok)
     return by, wl
 
 
-def monks(src, ids):
+def monks(src, ids, all_ids=None):
     M = _lib(src, "monks", ids)
+    all_ids = all_ids or ids
+    start = lambda r: int(str(r.get("phase", "0")).split("-")[0]) * 60 + 60      # the phase's middle
+    E = [r for r in M if _even(r["match"], r["team"], start(r), all_ids)]
     out = {}
-    for w in (True, False):
-        L = [r for r in M if r["won"] == w and r["alive_s"] >= 60]
-        out["winners" if w else "losers"] = {"monk_phases": len(L), "casts_per_min": _med([r["casts_per_min"] for r in L]),
+    for lab, src_ in (("at even win chance", E), ("every moment (includes who was ahead)", M)):
+      for w in (True, False):
+        L = [r for r in src_ if r["won"] == w and r["alive_s"] >= 60]
+        out[f"{'winners' if w else 'losers'} {lab}"] = {"monk_phases": len(L), "casts_per_min": _med([r["casts_per_min"] for r in L]),
             "fakes_per_phase": round(sum(r["fakes"] for r in L) / max(len(L), 1), 2),
             "idle_while_ally_hurt_s": _med([r["idle_while_ally_hurt_s"] for r in L]),
             "median_reaction_s": _med([r["median_reaction"] for r in L if r.get("median_reaction") is not None]),
@@ -135,7 +169,7 @@ def snapshot(ids, new_ids, src="/tmp/gl"):
     rr, dbl = runners(src, ids); rn, _ = runners(src, new_ids)
     rn = {r["runner"]: r for r in rn}
     L += ["**Runners** (spawn to capture; pushed = an enemy hit the carrier):", "",
-          "| Runner | Runs | Captured | Median s to capture | Dropped | Pushed | Runs by winners |", "|---|---|---|---|---|---|---|"]
+          "| Runner | Runs | Captured | Median s to capture | Dropped | Pushed | Runs by eventual winners (includes who was ahead) |", "|---|---|---|---|---|---|---|"]
     for r in rr[:10]:
         n = rn.get(r["runner"])
         L.append(f"| {r['runner']} | {r['runs']} | {r['captured']:.0%} | {r['median_s_captured']}"
@@ -144,8 +178,10 @@ def snapshot(ids, new_ids, src="/tmp/gl"):
     L.append("")
     tot = collections.Counter(); wins = collections.Counter()
     for (k, w), c in dbl.items(): tot[k] += c; wins[k] += c * w
-    L.append("Double running: " + "; ".join(f"{k} {tot[k]} runs ({wins[k] / tot[k]:.0%} by winners)" for k in tot) + ".")
+    L.append("Double running: " + "; ".join(f"{k} {tot[k]} runs ({wins[k] / tot[k]:.0%} by eventual winners, includes who was ahead)" for k in tot) + ".")
     fa = flag_answers(src, ids)
+    L += [f"Winners against losers below are compared at moments when a win model that never saw the match gave the team "
+          f"{EVEN[0]} to {EVEN[1]}% (so the gap is not just who was already ahead), with every moment beside it, labelled.", ""]
     L += ["", "**Flag answers** (answering the enemy's capture): " + "; ".join(
         f"{k}: {v['answers']} answers, median {v['median_cap_delay']} s, {v['median_slower_than_possible']} s slower than possible, "
         f"{v['30s+_slower']} answers 30 s+ slower" for k, v in fa.items()) + ".", ""]
@@ -157,12 +193,12 @@ def snapshot(ids, new_ids, src="/tmp/gl"):
           + ". Interrupt skills landing most: " + "; ".join(f"{s} {n}" for s, n in intr_by.most_common(8)) + ".",
           "", "**Knockdowns by skill:** " + "; ".join(f"{s} {n}" for s, n in kd_by.most_common(8)) + ".", ""]
     by, wl = saves(ids)
-    L.append("**Spikes survived** (400+ damage in 3 s on one player; survived = alive 8 s later): " + "; ".join(f"{k} {v[1]} of {v[0]} ({v[1] / v[0]:.0%})" for k, v in wl.items() if v[0])
+    L.append("**Spikes survived** (400+ damage in 3 s on one player; survived = alive 8 s later): " + "; ".join(f"{k} {v[1]} of {v[0]} ({v[1] / v[0]:.0%})" for k, v in sorted(wl.items()) if v[0])
              + ". By target: " + "; ".join(f"{k} {v[1] / v[0]:.0%} of {v[0]}" for k, v in sorted(by.items(), key=lambda kv: -kv[1][0]) if v[0] >= 10) + ".")
     mk = monks(src, ids)
     L += ["", "**Monks** (per 2-minute phase alive 60 s+): " + "; ".join(
         f"{k}: {v['casts_per_min']} casts a minute, {v['fakes_per_phase']} fakes, idle {v['idle_while_ally_hurt_s']} s while an ally was hurt, "
-        f"reaction {v['median_reaction_s']} s, bursts answered {v['bursts_answered']:.0%}" for k, v in mk.items()) + ".", ""]
+        f"reaction {v['median_reaction_s']} s, bursts answered {v['bursts_answered']:.0%}" for k, v in mk.items() if v["monk_phases"]) + ".", ""]
     dd = deaths(src, ids)
     L += [f"**Deaths** ({dd['deaths']}): {dd['with_a_knockdown']} with a knockdown on the victim; {dd['monk_cast_on_victim_last_5s']} had a "
           "monk cast on the victim in the last 5 s. Monk skills interrupted in the 6 s before a death: "

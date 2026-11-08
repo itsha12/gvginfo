@@ -9,6 +9,7 @@ name: Train batch
 # the held-out models; six "part" jobs then build the report's heavy sections side by side (learning.py part ...);
 # "finish" joins them, runs values, the TQs and the snapshot (learning.py finish), saves the cache and commits.
 # Jobs pass their work on as artifacts: a git patch of the files they changed plus the new cache files.
+# Each job may run up to 3 hours (Denning, after batch 9: room for a full rebuild and larger batches).
 on:
   workflow_dispatch:
     inputs:
@@ -26,6 +27,11 @@ on:
       note:
         description: "Note for the batch (e.g. why these matches were chosen)"
         default: ""
+      rebuild_forensics:
+        description: "Rebuild the forensics benchmarks from every stored replay first (after a forensics change; slower)"
+        type: choice
+        options: ["no", "yes"]
+        default: "no"
       runner:
         description: "Machine type (ubuntu-latest = the usual x64; ubuntu-24.04-arm = arm64, free for public repos)"
         type: choice
@@ -45,7 +51,7 @@ env:
 jobs:
   prepare:
     runs-on: ${{ github.event.inputs.runner || 'ubuntu-latest' }}
-    timeout-minutes: 90
+    timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -95,6 +101,10 @@ jobs:
           if os.environ.get("NOTE"): b["batches"][-1].setdefault("note", os.environ["NOTE"])
           json.dump(b, open(p, "w"), indent=1)
           PY
+      - name: Rebuild the forensics benchmarks
+        if: ${{ github.event.inputs.rebuild_forensics == 'yes' }}
+        working-directory: tools/replay_analysis
+        run: python3 forensics.py bench
       - name: Analyse every match
         working-directory: tools/replay_analysis
         run: |
@@ -121,7 +131,7 @@ jobs:
   part:
     needs: prepare
     runs-on: ${{ github.event.inputs.runner || 'ubuntu-latest' }}
-    timeout-minutes: 90
+    timeout-minutes: 180
     strategy:
       fail-fast: true
       matrix:
@@ -179,7 +189,7 @@ jobs:
   finish:
     needs: part
     runs-on: ${{ github.event.inputs.runner || 'ubuntu-latest' }}
-    timeout-minutes: 90
+    timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

@@ -6,7 +6,7 @@ than the usual play is a candidate "more optimal play").
   match (it never saw the result), so no guessed weights are involved. Components (deaths, NPCs, flag lead) are shown
   alongside so the number can be read.
 - Choice: the decision's choice (ran, held, already running, pushed, reset, ...), refined by what the players actually
-  did (e.g. "held, fell back" against "held, fought").
+  did in the first 5 s (e.g. "held, fell back" against "held, fought"), not over the window, which the fight shapes.
 - Usual play in a situation: the most common choice among the 15 most similar decisions of the same kind in OTHER
   matches (similar = flag lead, stand, boost clock, numbers, DP, NPCs, Lord damage, minute, strength gap, scaled).
 - Choice effect: each choice's win-chance change against the most common choice, adjusted for the situation (a linear
@@ -68,8 +68,9 @@ def build_axes(rid):
 
 
 def refine(r):
-    """The choice plus what the players did: the most common action among players not carrying."""
-    acts = collections.Counter(v for v in r["actions"]["by_role"].values() if v not in ("carrying", "died"))
+    """The choice plus what the players did in its first seconds (decisions.FIRST_W; Denning: the 20 s that follow are
+    partly the fight's result): the most common action among players not carrying."""
+    acts = collections.Counter(v for v in (r.get("first_actions") or r["actions"])["by_role"].values() if v not in ("carrying", "died"))
     top = acts.most_common(1)[0][0] if acts else None
     base = r["choice"].split(":")[0]
     if r["kind"] == "split_in_base": return (r.get("extra") or {}).get("response") or base

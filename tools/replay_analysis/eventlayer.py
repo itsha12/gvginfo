@@ -407,7 +407,8 @@ def build(rid):
         except ValueError: continue
         out["power"].append({"t": d["t"], "team": d["team"], "size": own - en, "main": d["state"]["main"], "flag_lead": d["state"]["flag_lead"],
                              "enemy_short_because": d.get("enemy_short"), "choice": d["choice"],
-                             "kills": d["outcome"]["deaths"].get(foe, 0), "losses": d["outcome"]["deaths"].get(d["team"], 0), "window_s": d["outcome"]["window_s"]})
+                             "kills": d["outcome"]["deaths"].get(foe, 0), "losses": d["outcome"]["deaths"].get(d["team"], 0), "window_s": d["outcome"]["window_s"],
+                             "first_kill": d.get("first_kill")})
     # ---- enemy captures, from the defending side
     for r in a["flag_runs"]:
         if r["outcome"] != "captured": continue

@@ -121,6 +121,10 @@ def _build(node, rid, V):
                 own_alive=r[tg]["alive"], enemy_alive=r[fg]["alive"], own_main=r[tg]["main"], enemy_main=r[fg]["main"],
                 own_flag_duty=len(r[tg].get("flag_duty") or []), enemy_flag_duty=len(r[fg].get("flag_duty") or []),
                 own_in_enemy_base=zones(tg, "enemy base") + zones(tg, "enemy pit"), enemy_in_own_base=zones(fg, "enemy base") + zones(fg, "enemy pit"),
+                own_eta=min(r[tg].get("flag_eta") or NEVER * 3, NEVER * 3), enemy_eta=min(r[fg].get("flag_eta") or NEVER * 3, NEVER * 3),
+                own_carrying=int(any(w == "carrying" for _, w in (r[tg].get("flag_duty") or []))),
+                enemy_carrying=int(any(w == "carrying" for _, w in (r[fg].get("flag_duty") or []))),
+                own_cap_before_boost=int(bool(r[tg].get("can_cap_before_boost"))), enemy_cap_before_boost=int(bool(r[fg].get("can_cap_before_boost"))),
                 own_deaths_30s=sum(1 for x in deaths if x["team"] == tg and t - 30 < x["t"] <= t),
                 enemy_deaths_30s=sum(1 for x in deaths if x["team"] == fg and t - 30 < x["t"] <= t),
                 minute=round(t / 60, 1), res_in=r.get("res_in"), run_dist=run_dist.get(tg), strength_gap=gaps[tg])
@@ -155,19 +159,22 @@ def _build(node, rid, V):
                 run_dist=run_dist.get(c["team"]), strength_gap=gaps[c["defender"]])
     elif node == "power_play":
         for p in R.get("power", []):
-            tg, fg = p["team"], foe(p["team"]); t0, t1 = p["t"], p["t"] + max(p["window_s"], 5); w = (t1 - t0) / 10
-            sp = [x for x in R.get("spikes", []) if x["team"] == tg and t0 <= x["t"] <= t1]
+            tg, fg = p["team"], foe(p["team"]); t0, t1 = p["t"], p["t"] + max(p["window_s"], 5)
+            # damage, pushing, control and the enemy's defence read only up to the first kill (Denning, after batch 9;
+            # as the fight node does): after a kill they are partly its result. window_s stays the whole window (exposure)
+            tw = max(min(p["first_kill"], t1), t0 + 5) if p.get("first_kill") is not None else t1; w = (tw - t0) / 10
+            sp = [x for x in R.get("spikes", []) if x["team"] == tg and t0 <= x["t"] <= tw]
             hb = team.get("heal5", {}).get(fg) or []; b = team.get("bucket_s", 5)
-            eh = sum(hb[int(t0 // b):max(int(t0 // b) + 1, int(math.ceil(t1 / b)))]) / max(t1 - t0, 1)
+            eh = sum(hb[int(t0 // b):max(int(t0 // b) + 1, int(math.ceil(tw / b)))]) / max(tw - t0, 1)
             try: own, en = map(int, p["main"].split("v"))
             except ValueError: continue
             add(tg, t0, int(p["kills"] > 0), window_s=round(t1 - t0), size=p["size"], own_main=own, enemy_main=en, **_short(p["enemy_short_because"]),
                 flag_lead=max(min(p["flag_lead"], CLIP), -CLIP), pushed=int(p["choice"] == "pushed"),
-                dps_v_usual=_team_dps(team, tg, t0, t1, V, roles_alive(tg, t0)),
-                enemy_prots_10s=round(sum(1 for x in team.get("prot_casts", []) if x[1] == fg and t0 <= x[0] <= t1) / w, 2), enemy_heal_s=round(eh, 1),
+                dps_v_usual=_team_dps(team, tg, t0, tw, V, roles_alive(tg, t0)),
+                enemy_prots_10s=round(sum(1 for x in team.get("prot_casts", []) if x[1] == fg and t0 <= x[0] <= tw) / w, 2), enemy_heal_s=round(eh, 1),
                 spikes_10s=round(len(sp) / w, 2), spike_spread=statistics.median([x["spread_s"] for x in sp]) if sp else None,
                 spikes_on_healers=round(sum(1 for x in sp if x["target_class"] == "healer") / len(sp), 2) if sp else None,
-                blind_secs_on_own_10s=round(_blind_secs([x for x in R.get("blinds", []) if x["team"] == fg and x.get("attacker", True)], t0, t1) / w, 2),
+                blind_secs_on_own_10s=round(_blind_secs([x for x in R.get("blinds", []) if x["team"] == fg and x.get("attacker", True)], t0, tw) / w, 2),
                 strength_gap=gaps[tg])
     elif node == "fight_outcome":
         for fi, f in enumerate(a.get("fights") or []):
@@ -241,8 +248,10 @@ def _build(node, rid, V):
                 if s_.get("entered_base") is None: continue
                 from common import line as LINE
                 heal = sum(1 for x in s_["members"] if "Monk" in x or x in ("Prot",))
+                se = _row(sb, s_["entered_base"])
                 add(tg, s_["start"], int(r["pit_kills"] > 0), latency=latency, defenders=r["defenders"], size=r["size"],
-                    main_diff=r["main_diff"], split_healers=heal, strength_gap=gaps[tg])
+                    main_diff=r["main_diff"], split_healers=heal, def_npc_value=se[fg].get("npc_value"),
+                    def_free=se[fg]["alive"] - len(se[fg].get("flag_duty") or []), strength_gap=gaps[tg])
             else:
                 # collapse timing, several readings (Denning: which one matters is for the data to say)
                 arr = sorted(x["first"] for x in s_.get("defenders") or [] if x.get("first") is not None)

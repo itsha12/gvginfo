@@ -140,9 +140,11 @@ def flag(rid, tag, t0, t1=None, F=None):
 def short(ans):
     """One line per question with the answer and the deciding numbers."""
     out = []
-    p = ans["position"]; m = p["measures"]
-    out.append(f"- Position: {p['answer']} (nearest allied healer {m.get('healer_dist_last5s', 0):.0f} in the last 5 s, nearest enemy "
-               f"{m.get('nearest_enemy_median') or 0:.0f}, allies in casting range {m.get('allies_in_range_median')}, enemies {m.get('enemies_in_range_median')})")
+    p = ans["position"]; m = p["measures"]; n = p.get("judged_on_last_s", 5); ln = m.get(f"last{n}s") or {}
+    f0 = lambda v: f"{v:.0f}" if isinstance(v, (int, float)) else "?"
+    out.append(f"- Position: {p['answer']} (in the last {n} s: nearest allied healer {f0(ln.get('healer_dist'))}, nearest enemy "
+               f"{f0(ln.get('nearest_enemy'))}, allies in casting range {ln.get('allies_in_range')}, enemies {ln.get('enemies_in_range')}; "
+               f"over the whole window the nearest enemy's median was {f0(m.get('nearest_enemy_median'))})")
     pr = ans["prots"]; pm = pr["measures"]
     kd = pr.get("knockdowns") or []
     out.append(f"- Prots: {pr['answer']}; damage {pm['damage']} ({pm['attack_share']:.0%} attacks, {pm['armor_ignoring_share']:.0%} armor-ignoring), "
@@ -178,9 +180,9 @@ def key_causes(ans):
     if ans["own_output"]["answer"] == "no": out.append(f"its own team's damage was low ({ans['own_output']['measures']['dps']} per second)")
     if ans["monk_pressure"]["answer"] == "yes": out.append("its healers were under interrupt pressure")
     if ans["position"]["answer"] in ("yes", "partly"):
-        m = ans["position"]["measures"]
+        m = ans["position"]["measures"]; n = ans["position"].get("judged_on_last_s", 5); ln = m.get(f"last{n}s") or {}
         out.append(f"position ({'no allied healer within casting range' if (m.get('out_of_healer_range_share') or 0) >= .5 else 'in contact with the enemy'}, "
-                   f"nearest enemy {m.get('nearest_enemy_median') or 0:.0f})")
+                   f"nearest enemy {ln.get('nearest_enemy') or 0:.0f} in the last {n} s)")
     if ans["peel"]["answer"].startswith(("no", "partly")): out.append(f"its attackers were not peeled ({ans['peel']['answer']})")
     if ans["sets"]["answer"] == "yes": out.append("its team took unusual damage off its shield sets")
     return out

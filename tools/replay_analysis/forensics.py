@@ -41,6 +41,8 @@ SHIELD_ARMOR = 16                      # knowledge/armor.md: base shield armor w
 SHIELD_CUT = 1 - 2 ** (-SHIELD_ARMOR / 40)
 WINDOW = 20                            # seconds before a death that the questions look at
 BENCH_CUT = (20, 80)                   # percentiles: below / above = clearly low / high for that role
+POS_WINDOWS = (3, 5, 8)                # seconds before a death that position is judged on; the data picks one (bench)
+POS_DEFAULT = 5
 SNARES = {"crippled", "dazed", "blind", "weakness"}
 
 
@@ -222,12 +224,20 @@ class Forensics:
             closer = sum(1 for b in own if self.alive(b, t) and (min([d for d in (self.dist(b, f, t) for f in foes if self.alive(f, t)) if d is not None] or [1e9]) < (mine or 0)))
             rows.append({"t": t, "healer": min(dh) if dh else None, "allies": al, "enemies": en, "enemy": mine, "front": closer == 0})
         if not rows: return {"answer": "unclear", "why": "no positions recorded"}
-        med = lambda k: statistics.median([r[k] for r in rows if r[k] is not None]) if any(r[k] is not None for r in rows) else None
+        def med(k, L=rows):
+            v = [r[k] for r in L if r[k] is not None]
+            return statistics.median(v) if v else None
         last = rows[-6:]
         meas = {"healer_dist_median": med("healer"), "healer_dist_last5s": statistics.median([r["healer"] for r in last if r["healer"] is not None] or [0]),
                 "out_of_healer_range_share": round(sum(1 for r in rows if r["healer"] is None or r["healer"] > CAST_R) / len(rows), 2),
                 "allies_in_range_median": med("allies"), "enemies_in_range_median": med("enemies"),
                 "nearest_enemy_median": med("enemy"), "front_share": round(sum(r["front"] for r in rows) / len(rows), 2)}
+        # the last seconds (Denning, after batch 9: a ranged spike that closes in only for the last seconds read "not in
+        # position" from the window's median); every tested length, the chosen one (position_window()) is judged on
+        for n in POS_WINDOWS:
+            L = rows[-(n + 1):]
+            meas[f"last{n}s"] = {"healer_dist": med("healer", L), "nearest_enemy": med("enemy", L), "enemies_in_range": med("enemies", L),
+                                 "allies_in_range": med("allies", L), "front_share": round(sum(r["front"] for r in L) / len(L), 2)}
         return {"measures": meas, "rows": rows}
 
     def prots(self, a, t0, t1):
@@ -478,6 +488,31 @@ def _bench_match(rid):
             out[g]["nearest_enemy"].append(min(de))
             out[g]["enemies_in_range"].append(sum(1 for d in de if d <= CAST_R))
             out[g]["allies_in_range"].append(sum(1 for b in own if F.alive(b, t) and (F.dist(a, b, t) or 1e9) <= CAST_R))
+    # which last-seconds window explains deaths best: each death's last N s against moments the same player was in a
+    # fight and didn't die in the next 15 s (sampled every 9 s), nearest enemy and enemies in casting range
+    dmap = collections.defaultdict(list)
+    for e in m.o["ev"]:
+        if e[1] == "dt" and e[2] in m.PL: dmap[e[2]].append(e[0] / 10)
+    for a in m.PL:
+        foes = F.enemies(a); dts = [x for x in dmap[a] if 10 < x < end]
+        def lastn(t, n):
+            ne, er = [], []
+            for tt in range(int(t) - n, int(t) + 1):
+                if not F.alive(a, tt): continue
+                de = [d for d in (F.dist(a, b, tt) for b in foes if F.alive(b, tt)) if d is not None]
+                if de: ne.append(min(de)); er.append(sum(1 for d in de if d <= CAST_R))
+            return (statistics.median(ne), statistics.median(er)) if ne else None
+        for t in dts:
+            for n in POS_WINDOWS:
+                v = lastn(t - 0.5, n)
+                if v: out["position_test"][f"death_{n}"].append(v)
+        for t in range(20, end - 15, 9):
+            if not F.alive(a, t) or any(t <= x <= t + 15 for x in dts): continue
+            de = [d for d in (F.dist(a, b, t) for b in foes if F.alive(b, t)) if d is not None]
+            if not de or min(de) > 1500: continue
+            for n in POS_WINDOWS:
+                v = lastn(t, n)
+                if v: out["position_test"][f"control_{n}"].append(v)
     # per 20 s window: monk pressure, team output, off-shield damage, casting into ready interrupts
     for tm in F.tag:
         for t0 in range(20, end - 20, 20):
@@ -520,15 +555,43 @@ def build_bench():
         for r in p.imap_unordered(_bench_match, ids):
             for g, d in r.items():
                 for k, v in d.items(): allv[g][k] += v
+    pt = allv.pop("position_test", {})
+    pw = _position_auc(pt)
     q = lambda L: {str(p): round(statistics.quantiles(L, n=100, method="inclusive")[p - 1], 2) for p in (10, 20, 50, 80, 90)} if len(L) >= 20 else None
     res = {"about": "Forensics benchmarks: percentiles of each measurement by role group over every stored replay "
                     "(positions sampled every 3 s while an enemy is within 1,500; team measures per 20 s window; peel and "
                     "reaction prots per burst of 250+ damage in 2 s). Rebuilt by forensics.py bench.",
-           "matches": len(ids), "groups": {g: {k: {"n": len(v), "p": q(v), "mean": round(statistics.mean(v), 3)} for k, v in d.items() if v}
-                                           for g, d in allv.items()}}
+           "matches": len(ids), "position_window": pw,
+           "groups": {g: {k: {"n": len(v), "p": q(v), "mean": round(statistics.mean(v), 3)} for k, v in d.items() if v}
+                      for g, d in allv.items()}}
     os.makedirs(os.path.dirname(BENCH), exist_ok=True)
     json.dump(res, open(BENCH, "w"), indent=1)
     return res
+
+
+def _position_auc(pt):
+    """For each tested window: how well the last N s separate deaths from fight moments without one (AUC: the chance
+    a death's reading is worse than a moment's; closer nearest enemy, more enemies in casting range), averaged over
+    the two measures. The highest is chosen."""
+    def auc(pos, neg):
+        if not pos or not neg: return None
+        neg = sorted(neg); import bisect
+        tot = sum(bisect.bisect_left(neg, x) + 0.5 * (bisect.bisect_right(neg, x) - bisect.bisect_left(neg, x)) for x in pos)
+        return tot / (len(pos) * len(neg))
+    res = {}
+    for n in POS_WINDOWS:
+        dth, ctl = pt.get(f"death_{n}") or [], pt.get(f"control_{n}") or []
+        a1 = auc([-x[0] for x in dth], [-x[0] for x in ctl]); a2 = auc([x[1] for x in dth], [x[1] for x in ctl])
+        if a1 is None or a2 is None: continue
+        res[str(n)] = {"deaths": len(dth), "moments": len(ctl), "auc_nearest_enemy": round(a1, 3), "auc_enemies_in_range": round(a2, 3),
+                       "auc": round((a1 + a2) / 2, 3)}
+    chosen = int(max(res, key=lambda k: res[k]["auc"])) if res else POS_DEFAULT
+    return {"chosen_s": chosen, "tested": res, "about": "seconds before a death that position is judged on: the window whose "
+            "nearest enemy and enemies in casting range best separate deaths from fight moments without one (AUC)"}
+
+
+def position_window():
+    return int((bench().get("position_window") or {}).get("chosen_s") or POS_DEFAULT)
 
 
 _B = None
@@ -563,11 +626,15 @@ def death(rid, tag, role, t, F=None):
     ans = {}
     # position
     pm = pos.get("measures", {})
-    ph, bh = place(g, "healer_dist", pm.get("healer_dist_last5s")); pe_, be = place(g, "nearest_enemy", pm.get("nearest_enemy_median"))
-    pn, bn = place(g, "allies_in_range", pm.get("allies_in_range_median"))
-    flags = [bh == "high", be == "low", bn == "low", (pm.get("front_share") or 0) >= 0.5]
+    n = position_window(); ln = pm.get(f"last{n}s") or {}
+    ph, bh = place(g, "healer_dist", ln.get("healer_dist")); pe_, be = place(g, "nearest_enemy", ln.get("nearest_enemy"))
+    pn, bn = place(g, "allies_in_range", ln.get("allies_in_range"))
+    flags = [bh == "high", be == "low", bn == "low", (ln.get("front_share") or 0) >= 0.5]
     ans["position"] = {"q": "Out of position?", "answer": "yes" if sum(flags) >= 2 else "partly" if sum(flags) == 1 else "no",
-                       "measures": pm, "placed": {"healer_dist_last5s": ph, "nearest_enemy_median": pe_, "allies_in_range_median": pn}}
+                       "judged_on_last_s": n, "measures": pm,
+                       "placed": {f"healer_dist_last{n}s": ph, f"nearest_enemy_last{n}s": pe_, f"allies_in_range_last{n}s": pn},
+                       "window_context": {"nearest_enemy_median": pm.get("nearest_enemy_median"), "allies_in_range_median": pm.get("allies_in_range_median"),
+                                          "healer_dist_median": pm.get("healer_dist_median")}}
     # prots
     m = pr["measures"]
     right = [c for c in pr["cast"] if c["kind"] != "heal"]

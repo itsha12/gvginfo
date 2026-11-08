@@ -4,7 +4,8 @@ situations across many matches (and, after the bulk pull, by the win-probability
 edge).
 
 Kinds (each record: kind, team (the team choosing), t, state, choice, actions (what every player did in the next 20 s:
-carrying, to the spawn, fell back, advanced, fought, held, died), outcome, edge_change):
+carrying, to the spawn, fell back, advanced, fought, held, died), first_actions (the same over the first 5 s: the
+choice the usual play groups by), outcome, edge_change):
 - enemy_pickup: the enemy picks up a new flag. Choices: already running, ran (picked up within 25 s), held.
 - split_in_base: an enemy split enters the base. Choices: who answered and how fast (on time 15 s, late, missed).
 - power_play: a numbers advantage at main for 10 s+, away from home (a numbers advantage in the own base or pit is a
@@ -47,9 +48,15 @@ def key(sb, tm, t):
 
 ACT_W = 20           # seconds after a decision point over which each player's action is read
 MOVE = 800           # units of movement toward a pit that count as falling back or advancing
+# the choice itself (Denning, after batch 9): what the team did in its first seconds, because what happened over the
+# next 20 s is partly the fight's result (held, advanced read +5.5 and held, fell back -4.1, both clear, at 133 matches).
+# The usual play groups choices by this; the 20 s actions stay as context (library, discovery). Movement threshold
+# scaled to the shorter window.
+FIRST_W = 5
+FIRST_MOVE = MOVE * FIRST_W / ACT_W
 
 
-def response(sb, tm, t, w=ACT_W):
+def response(sb, tm, t, w=ACT_W, move=MOVE):
     """What each player of team tm actually did in the w seconds after t: died, carrying, to the spawn, fell back
     (toward its own pit), advanced (toward the enemy pit), fought (dealt or took damage while staying), or held.
     Returns per role, the counts, and a short key for grouping in the library (e.g. "advanced 3, fell back 2, ...")."""
@@ -63,8 +70,8 @@ def response(sb, tm, t, w=ACT_W):
         if any(t < x <= t1 for x in st.death_times.get(a, [])): act = "died"
         elif any(c["a"] == a and c["s"] <= t1 and c["e"] >= t for c in st.carries): act = "carrying"
         elif p1 and d(p1, st.geo.spawn[tm]) < 1200 and d(p0, st.geo.spawn[tm]) >= 1200: act = "to the spawn"
-        elif p0 and p1 and d(p1, own) < d(p0, own) - MOVE: act = "fell back"
-        elif p0 and p1 and d(p1, foe) < d(p0, foe) - MOVE: act = "advanced"
+        elif p0 and p1 and d(p1, own) < d(p0, own) - move: act = "fell back"
+        elif p0 and p1 and d(p1, foe) < d(p0, foe) - move: act = "advanced"
         elif any(sb.fighting(a, x, 2) for x in range(int(t), int(t1) + 1, 2)): act = "fought"
         else: act = "held"
         per[m.roles[a]] = act
@@ -76,7 +83,7 @@ def rec(sb, kind, tm, t, choice, t_end, extra=None, **more):
     tag = sb.m.tag[tm]
     sw = sb.swing(tag, t, t_end)
     return {"kind": kind, "team": tag, "t": round(t), "state": key(sb, tm, t), "choice": choice,
-            "actions": response(sb, tm, t), "outcome": sw, "edge_change": sw["edge_change"], "extra": extra or {}, **more}
+            "actions": response(sb, tm, t), "first_actions": response(sb, tm, t, FIRST_W, FIRST_MOVE), "outcome": sw, "edge_change": sw["edge_change"], "extra": extra or {}, **more}
 
 
 def enemy_pickups(st, sb):
@@ -166,9 +173,11 @@ def power_plays(st, sb, windows):
         # play: found in batch 6 (One holding 8v3 in its own pit while turtling, ohno v One)
         if w.get("at_home") or not w.get("contact", True): continue      # or no damage traded: not a fight
         tm = next(k for k, v in m.tag.items() if v == w["team"])
-        pushed = (w["pushed_toward_enemy_pit"] or 0) > 500 or w["pressure_vs_avg"] >= 1.3
+        # pushing read up to the first kill (Denning, after batch 9), the whole window when there was none
+        mv = w.get("pushed_to_first_kill", w["pushed_toward_enemy_pit"]); pr = w.get("pressure_to_first_kill", w["pressure_vs_avg"])
+        pushed = (mv or 0) > 500 or pr >= 1.3
         out.append(rec(sb, "power_play", tm, w["start"], "pushed" if pushed else "held", w["end"] + 20,
-                       numbers=w["numbers"], enemy_short=w["enemy_short_because"]))
+                       numbers=w["numbers"], enemy_short=w["enemy_short_because"], first_kill=w.get("first_kill")))
     return out
 
 

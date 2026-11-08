@@ -77,10 +77,22 @@ def node_trust(node):
     return v["verdict"].startswith("adds"), f"AUC {g['auc']} on unseen matches against {b['auc']} for {' and '.join(v['baseline uses'])} alone"
 
 
-def what_if(node, rid, row, changes):
+UNRELIABLE = " [unreliable"
+
+
+def what_if(node, rid, row, changes, ladders=()):
     """The node's reading of the same moment with variables changed (a model that never saw the match).
-    changes: [(label, {var: new value})]; returns (base reading, [(label, reading, change)])."""
+    changes: [(label, {var: new value})]; returns (base reading, [(label, reading, change)]).
+    A reading is marked unreliable (its label ends " [unreliable: why]") when a change takes a variable outside what
+    the node saw in training, or when a ladder (labels that add more of the same, smallest first) doesn't keep moving
+    the same way (Denning, after batch 9: two more defenders read worse than one; the node was outside its data)."""
     e, feats = N.heldout_node(node, _ids(), rid)
+    bounds = {}
+    fb = getattr(getattr(e, "clf", e), "feature_bounds_", None)
+    if fb is not None:
+        for f, b in zip(feats, fb):
+            try: bounds[f] = (float(b[0]), float(b[1]))
+            except (TypeError, ValueError, IndexError): pass
     def read(r):
         if node in N.REGRESSION:
             import pandas as pd
@@ -90,8 +102,24 @@ def what_if(node, rid, row, changes):
     base = read(row); out = []
     for label, ch in changes:
         r2 = dict(row); r2.update(ch)
-        v = read(r2); out.append((label, v, round(v - base, 1)))
+        v = read(r2)
+        far = [k for k, x in ch.items() if k in bounds and x is not None and not (bounds[k][0] <= float(x) <= bounds[k][1])]
+        if far: label += f"{UNRELIABLE}: {', '.join(far)} outside the range the node was trained on]"
+        out.append((label, v, round(v - base, 1)))
+    for lad in ladders:
+        idx = [i for l in lad for i, o in enumerate(out) if o[0].split(UNRELIABLE)[0] == l]
+        if len(idx) < 2: continue
+        steps = [0.0] + [out[i][2] for i in idx]
+        sign = next((1 if x > 0 else -1 for x in steps[1:] if x), 0)
+        if sign and any((b - a) * sign < 0 for a, b in zip(steps, steps[1:])):
+            for i in idx:
+                if UNRELIABLE not in out[i][0]:
+                    out[i] = (out[i][0] + f"{UNRELIABLE}: more of the same doesn't keep moving the reading the same way; the node is reading outside its data]",) + out[i][1:]
     return base, out
+
+
+def reliable(out):
+    return [o for o in out if UNRELIABLE not in o[0]]
 
 
 _IDS = None
@@ -384,8 +412,8 @@ def monk(new_ids, recs, usual_res):
             for lab, v, dd in out:
                 L.append(f"  - {lab}: {v}% ({dd:+} points of risk; at this death's measured cost of {drop:+.1f} win points, "
                          f"about {_pts(dd, drop):+} expected" + (f"; at a typical healer death's {hv:+}, {_pts(dd, hv):+}" if hv is not None else "") + ")")
-            best = min(out, key=lambda x: x[2])
-            conf.append(("node", bool(ok) and best[2] < 0 and meaningful(base, best[2])))
+            rel = reliable(out); best = min(rel, key=lambda x: x[2]) if rel else None
+            conf.append(("node", bool(ok) and best is not None and best[2] < 0 and meaningful(base, best[2])))
         else: L.append(f"- Deaths node at {clock(row['t'])}: none of the variables it reads were in a state a teammate could change.")
     else: L.append("- Deaths node: no reading in the seconds before the death.")
     dec = [] if lu else decision_alternatives(recs, usual_res, rid, team, t - 45, t)
@@ -612,15 +640,15 @@ def power(new_ids, recs, usual_res):
             ch.append(("a hex on the target's healers", {"target_healers_hexed": 1}))
         if ch:
             base, out = what_if("kill_conversion", rid, b, ch)
-            out.sort(key=lambda x: -x[2])
+            out.sort(key=lambda x: (UNRELIABLE in x[0], -x[2]))     # reliable readings first
             L.append(f"- Kill-conversion node ({trust}): the biggest burst, {b['burst_damage']} on the {foe} {b['role']} at {clock(b['t'])} "
                      f"with {b['attackers']} attackers, read {base}% to kill within 8 s; read again with")
             for lab, v, dd in out[:6]:
                 L.append(f"  - {lab}: {v}% ({dd:+} points" + (f", about {_pts(dd, kv):+} win points at a converted burst's {kv:+}" if kv is not None else "") + ")")
-            if out and out[0][2] > 0 and meaningful(base, out[0][2]):
+            if out and UNRELIABLE not in out[0][0] and out[0][2] > 0 and meaningful(base, out[0][2]):
                 L[short_i] = L[short_i][:-1] + (f"; the biggest burst went on the {foe} {b['role']} ({base}% to kill), while "
                                                 f"the same burst {out[0][0].replace(' instead', '')} read {out[0][1]}%.")
-            conf.append(("node", bool(ok) and out[0][2] > 0 and meaningful(base, out[0][2])))
+            conf.append(("node", bool(ok) and bool(out) and UNRELIABLE not in out[0][0] and out[0][2] > 0 and meaningful(base, out[0][2])))
         L.append(f"- Bursts in the window: {len(bursts)}, on " + ", ".join(f"{r['role']} ({r['burst_damage']})" for r in bursts[:6]))
     else:
         L.append("- No burst (a 2 s burst that the kill-conversion node reads) in the window: the damage never came together on one target.")
@@ -664,6 +692,15 @@ def npcs(new_ids, recs, usual_res):
     if nk and nk[0].get("defenders_present"): short.append(f"defenders present at the kill: {', '.join(nk[0]['defenders_present'])}")
     # how the pit came to be thin: dead defenders and the earlier collapse (deaths in the 90 s before, with the lead-up)
     dead = [d for d in a["deaths"] if d["team"] == tag and t - 90 <= d["t"] <= t and (d["t"] + (d.get("down_for") or 0)) >= t]
+    # what took the NPC (Denning, after batch 9): a split's own kill, or the conversion of a wipe (4+ dead) even with a
+    # split in the base; the two losses are told apart and the split's answer is judged only on the split's own kills
+    cause = "split" if nk else ("wipe" if len(dead) >= 4 else "main push")
+    split_kills = [k for s_ in sp for k in (s_.get("npc_kills") or [])]
+    if cause == "wipe" and sp:
+        short.append(f"this loss came from the wipe's conversion ({len(dead)} of {tag} dead), not from {foe}'s split"
+                     + (f"; the split's own NPC kills: {', '.join(f'{k['npc']} {clock(k['t'])}' for k in split_kills)}" if split_kills else
+                        "; the split itself killed no NPC"))
+    elif cause == "wipe": short.append(f"this loss came from the wipe's conversion ({len(dead)} of {tag} dead)")
     if dead:
         short.append(f"{len(dead)} of {tag} were dead at the time ({', '.join(f'{d['victim']} {clock(d['t'])}' for d in dead[:6])})")
         F_ = WHY._forensics(rid)
@@ -692,8 +729,12 @@ def npcs(new_ids, recs, usual_res):
             def when(x): return "never" if x is None else (f"{-x:.0f} s before it entered the base" if x < 0 else f"{x:.0f} s after it entered the base")
             L.append(f"- First defender: {when(lat)}; every stored split into a base: median {when(statistics.median(lats))}, "
                      f"quickest fifth {when(sorted(lats)[len(lats) // 5])} or sooner ({len(lats)} splits). Denning: about 15 s is on time, 60 s is late.")
-            if lat is not None and lat <= 15:
+            if cause == "split" and lat is not None and lat <= 15:
                 L.append("- The split was answered on time, so the loss came from what the defence did once there (below), not from a late answer.")
+            elif cause != "split":
+                L.append(f"- The split's answer doesn't explain this loss (it came from the {cause}); "
+                         + (f"the split's own NPC kills ({', '.join(k['npc'] + ' ' + clock(k['t']) for k in split_kills)}) are what its answer is judged on."
+                            if split_kills else "the split itself killed no NPC."))
     # the NPC-loss node with more defenders (rows are per attacking team)
     ok, trust = node_trust("npc_loss")
     nv = cause_value("npc_loss")
@@ -704,15 +745,17 @@ def npcs(new_ids, recs, usual_res):
                                               "defenders_elsewhere": max((r.get("defenders_elsewhere") or 0) - 1, 0)}),
               ("two more defenders", {"defenders": (r.get("defenders") or 0) + 2, "defenders_elsewhere": max((r.get("defenders_elsewhere") or 0) - 2, 0)})]
         if (r.get("npc_healing_10s") or 0) == 0: ch.append(("healing on the NPCs (as much as the attackers' damage in 5 s)", {"npc_healing_10s": r.get("npc_damage_5s") or 0}))
-        base, out = what_if("npc_loss", rid, r, ch)
+        base, out = what_if("npc_loss", rid, r, ch, ladders=[["one more defender", "two more defenders"]])
         L.append(f"- NPC-loss node at {clock(r['t'])} ({trust}): {r.get('attackers')} attackers ({_n(r.get('attacker_healers'), 'healer')}) against "
                  f"{r.get('defenders')} defenders ({_n(r.get('defender_healers'), 'healer')}), {r.get('defenders_elsewhere')} of {tag} elsewhere; "
                  f"read {base}% to lose an NPC; read again with")
         for lab, v, dd in out:
             L.append(f"  - {lab}: {v}% ({dd:+} points; at this loss's measured cost of {drop:+.1f} win points, about {_pts(dd, drop):+} expected"
                      + (f"; at a typical NPC loss's {nv:+}, {_pts(dd, nv):+}" if nv is not None else "") + ")")
-        bestn = min(out, key=lambda x: x[2])
-        conf.append(("node", bool(ok) and bestn[2] < 0 and meaningful(base, bestn[2])))
+        rel = reliable(out)
+        if len(rel) < len(out): L.append("  - Readings marked unreliable are left out of the confidence and the fixes.")
+        bestn = min(rel, key=lambda x: x[2]) if rel else None
+        conf.append(("node", bool(ok) and bestn is not None and bestn[2] < 0 and meaningful(base, bestn[2])))
     else: L.append("- NPC-loss node: no reading of the pit in the 30 s before (the attackers weren't counted in the pit).")
     dec = decision_alternatives(recs, usual_res, rid, tag, t - 60, t, kinds={"split_in_base"})
     if dec:

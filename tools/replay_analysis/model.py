@@ -13,6 +13,14 @@ Corrections: data/model_corrections.json, a list of {"term", "kind", "reason", .
   {"term": "boost_clock", "kind": "drop", "reason": "..."}                            variable not used
   {"term": "flag_lead & minute", "kind": "interaction", "reason": "..."}              always offer this pair
   {"term": "lord_damage_diff", "kind": "cap", "max_points": 15, "reason": "..."}      effect limited to +-15 points
+  {"term": "lord_damage_diff", "kind": "main_drop", "reason": "..."}                  no curve of its own; its pairs stay
+  {"term": "morale_diff", "kind": "no_interaction", "with": ["lord_dps_own"], "reason": "..."}   pairs never offered
+  {"term": "spike_killable_diff", "kind": "cap_test", "options": [10, 15, 20], "reason": "..."}  the data picks the cap
+      (or none): each option is tested on held-out matches before the held-out models are fitted (cap_test(), run by
+      cache.py warm); the choice and its log losses are written to data/model/cap_choices.json and act as a "cap".
+Calibration by minute (calibrate(), also run by cache.py warm): the held-out models' predictions on every training
+match, grouped by minute band and predicted chance, against how often those teams won; a readable lookup in
+data/model/calibration.json that WPModel.explain applies to its win chance (the contributions stay as learned).
 Every fit reports held-out accuracy with and without the corrections, so a correction is tested, not trusted.
 
 Validation: matches are held out whole (never the same match in training and test). Compared with team strength alone
@@ -79,9 +87,23 @@ def batches():
     return json.load(open(p))["batches"] if os.path.exists(p) else []
 
 
-def corrections():
-    try: return json.load(open(CORR))["corrections"]
+CAPS = os.path.join(MODEL_DIR, "cap_choices.json")
+CALIB = os.path.join(MODEL_DIR, "calibration.json")
+
+
+def corrections(raw=False):
+    """Denning's corrections; a cap_test becomes the cap the data chose (or nothing) unless raw."""
+    try: corr = json.load(open(CORR))["corrections"]
     except (OSError, ValueError, KeyError): return []
+    if raw: return corr
+    try: chosen = json.load(open(CAPS))["choices"]
+    except (OSError, ValueError, KeyError): chosen = {}
+    out = []
+    for c in corr:
+        if c["kind"] != "cap_test": out.append(c); continue
+        pick = (chosen.get(c["term"]) or {}).get("max_points")
+        if pick: out.append({"term": c["term"], "kind": "cap", "max_points": pick, "reason": c.get("reason", "") + f" (cap chosen by the data: {pick} points)"})
+    return out
 
 
 def _frame(ids, step=TRAIN_STEP, extra=()):
@@ -134,11 +156,27 @@ def _ebm(corr, names, n_matches):
     from interpret.glassbox import ExplainableBoostingClassifier as EBM
     drop = {c["term"] for c in corr if c["kind"] == "drop"}
     use = [n for n in terms_for(n_matches, names) if n not in drop]
-    static_pairs = [(a, b) for a, b in itertools.combinations(use, 2) if a in STATIC and b in STATIC]
-    forced = [tuple(c["term"].split(" & ")) for c in corr if c["kind"] == "interaction"]
     kw = dict(SETTINGS, interactions=8 if n_matches >= STAGES["interactions"] else 0)
-    if static_pairs and kw["interactions"]: kw["exclude"] = static_pairs
+    kw["exclude"] = _excluded(corr, use, bool(kw["interactions"]))
+    if not kw["exclude"]: kw.pop("exclude")
+    forced = [tuple(c["term"].split(" & ")) for c in corr if c["kind"] == "interaction"]
     return EBM(feature_names=use, **kw), use, forced
+
+
+def _excluded(corr, use, pairs=True):
+    """Terms the model may not learn: main curves dropped by Denning (main_drop; the variable still enters its pairs),
+    pairs of two build-fixed values, and pairs he blocked (no_interaction)."""
+    out = [(c["term"],) for c in corr if c["kind"] == "main_drop" and c["term"] in use]
+    if pairs:
+        out += [(a, b) for a, b in itertools.combinations(use, 2) if a in STATIC and b in STATIC]
+        for c in corr:
+            if c["kind"] != "no_interaction" or c["term"] not in use: continue
+            out += [(c["term"], w) for w in c.get("with", []) if w in use and w != c["term"]]
+    seen, res = set(), []
+    for t in out:
+        k = tuple(sorted(t))
+        if k not in seen: seen.add(k); res.append(t)
+    return res
 
 
 def _apply(ebm, corr):
@@ -164,6 +202,8 @@ def _fit(X, y, corr, n_matches):
     if missing:     # Denning asked for these pairs: refit with the chosen pairs plus his
         from interpret.glassbox import ExplainableBoostingClassifier as EBM
         kw = dict(SETTINGS); kw["interactions"] = [tuple(use.index(x) for x in p) for p in chosen + missing]
+        mains = [t for t in _excluded(corr, use, pairs=False)]
+        if mains: kw["exclude"] = mains
         ebm = EBM(feature_names=use, **kw).fit(X[use], y, init_score=init)
     return _apply(ebm, corr), use
 
@@ -174,7 +214,8 @@ def _predict(ebm, use, X):
 
 def _metrics(p, y):
     p = np.clip(p, 0.02, 0.98)
-    return {"log_loss": round(float(-np.mean(y * np.log(p) + (1 - y) * np.log(1 - p))), 3),
+    ll = float(-np.mean(y * np.log(p) + (1 - y) * np.log(1 - p)))
+    return {"log_loss": round(ll, 3), "log_loss_exact": ll,
             "accuracy": round(float(np.mean((p > 0.5) == (y == 1))), 3),
             "brier": round(float(np.mean((p - y) ** 2)), 3)}
 
@@ -190,6 +231,130 @@ def _validate_fold(job):
     bb = HistGradientBoostingClassifier(max_iter=200, random_state=7).fit(Xtr.fillna(-999), ytr)
     out["black box"] = bb.predict_proba(Xte.fillna(-999))[:, 1]
     return out
+
+
+def _cap_fold(job):
+    """One held-out fold of the cap test: fitted once without the tested caps, then every option applied to a copy
+    (a cap acts after fitting, so no refit is needed). Top level for parallel.py."""
+    import copy
+    Xtr, ytr, Xte, corr, n_tr, tests = job
+    m, use = _fit(Xtr, ytr, corr, n_tr)
+    out = {}
+    for term, options in tests.items():
+        for opt in [None] + list(options):
+            if opt is None or term not in m.term_names_: out[(term, opt)] = _predict(m, use, Xte); continue
+            mm = copy.deepcopy(m)
+            out[(term, opt)] = _predict(_apply(mm, [{"term": term, "kind": "cap", "max_points": opt}]), use, Xte)
+    return out
+
+
+def cap_test(ids):
+    """Denning's cap_test corrections decided by the data: held-out log loss (matches held out whole, the same folds as
+    the honest test) with no cap and with each option; the best is kept only if it beats no cap. Written to
+    data/model/cap_choices.json with every option's log loss, so the choice can be read and checked."""
+    import parallel
+    from sklearn.model_selection import GroupKFold
+    raw = corrections(raw=True)
+    tests = {c["term"]: c.get("options", [10, 15, 20, 25]) for c in raw if c["kind"] == "cap_test"}
+    if not tests: return {}
+    corr = [c for c in raw if c["kind"] != "cap_test"]
+    df, X, y, g = _frame(ids)
+    folds = list(GroupKFold(n_splits=min(6, g.nunique())).split(X, y, g))
+    res = parallel.run(_cap_fold, [(X.iloc[tr], y.iloc[tr], X.iloc[te], corr, g.iloc[tr].nunique(), tests) for tr, te in folds])
+    choices = {}
+    for term, options in tests.items():
+        ll = {}
+        for opt in [None] + list(options):
+            p = np.zeros(len(y))
+            for (tr, te), r in zip(folds, res): p[te] = r[(term, opt)]
+            ll["none" if opt is None else str(opt)] = _metrics(p, y.values)["log_loss_exact"]
+        best = min(ll, key=ll.get)
+        pick = int(best) if best != "none" and ll[best] < ll["none"] - 0.0005 else None
+        choices[term] = {"max_points": pick, "log_loss": {k: round(v, 4) for k, v in ll.items()}, "matches": int(g.nunique()),
+                         "verdict": f"cap at {pick} points" if pick else "no cap (no option beat it on unseen matches)"}
+    json.dump({"about": "Caps chosen by the data for Denning's cap_test corrections (model.py cap_test): held-out log loss "
+               "with no cap and with each option; a cap is kept only if it beats no cap by 0.0005.", "choices": choices},
+              open(CAPS, "w"), indent=1)
+    return choices
+
+
+CAL_BANDS = [(0, 6), (6, 12), (12, 18), (18, 99)]
+CAL_EDGES = [0, 2, 5, 10, 20, 35, 50, 65, 80, 90, 95, 98, 100]
+CAL_PRIOR = 5       # matches' worth of weight on the model's own number in a thin cell
+
+
+def calibrate(ids):
+    """Calibration by minute from held-out predictions: every training match predicted by a model that never saw it
+    (its group's held-out model, cache.FOLDS), every 15 s, grouped by minute band and predicted chance, against how
+    often those teams won. Thin cells lean on the model's own number (CAL_PRIOR matches' worth), and each band is made
+    to rise with the prediction (pooling neighbours that run backwards). Written to data/model/calibration.json."""
+    import collections as C
+    cells = C.defaultdict(lambda: {"n": 0, "raw": 0.0, "won": 0, "matches": set()})
+    for rid in ids:
+        wp = WPModel.heldout(ids, rid)
+        for r in match_table(rid):
+            if r["won"] is None or r["t"] % TRAIN_STEP: continue
+            p = wp.raw_chance(r); mi = (r.get("minute") or r["t"] / 60)
+            band = next(i for i, (lo, hi) in enumerate(CAL_BANDS) if lo <= mi < hi)
+            b = min(max(i for i, e in enumerate(CAL_EDGES[:-1]) if p >= e), len(CAL_EDGES) - 2)
+            c = cells[(band, b)]; c["n"] += 1; c["raw"] += p; c["won"] += int(r["won"]) * 100; c["matches"].add(rid)
+    out = []
+    for band, (lo, hi) in enumerate(CAL_BANDS):
+        rows = []
+        for b in range(len(CAL_EDGES) - 1):
+            c = cells.get((band, b))
+            if not c or not c["n"]: continue
+            raw, obs, nm = c["raw"] / c["n"], c["won"] / c["n"], len(c["matches"])
+            rows.append({"from": CAL_EDGES[b], "to": CAL_EDGES[b + 1], "rows": c["n"], "matches": nm, "predicted": round(raw, 1),
+                         "won": round(obs, 1), "w": nm + CAL_PRIOR, "cal": (obs * nm + raw * CAL_PRIOR) / (nm + CAL_PRIOR)})
+        blocks = [[r] for r in rows]          # pool neighbours that run backwards (weights = matches + prior)
+        i = 0
+        while i < len(blocks) - 1:
+            v = lambda bl: sum(r["cal"] * r["w"] for r in bl) / sum(r["w"] for r in bl)
+            if v(blocks[i]) > v(blocks[i + 1]):
+                blocks[i] += blocks.pop(i + 1); i = max(i - 1, 0)
+            else: i += 1
+        for bl in blocks:
+            val = sum(r["cal"] * r["w"] for r in bl) / sum(r["w"] for r in bl)
+            for r in bl: r["calibrated"] = round(min(max(val, 0.5), 99.5), 1)
+        for r in rows: r.pop("w"); r.pop("cal")
+        out.append({"minutes": [lo, hi if hi < 99 else None], "cells": rows})
+    json.dump({"about": "Win-chance calibration by minute (model.py calibrate): held-out predictions on every training match "
+               "against how often those teams won. 'calibrated' is what WPModel.explain reports for a prediction at a "
+               "cell's 'predicted' value, with straight lines in between.", "matches": len(ids), "bands": out},
+              open(CALIB, "w"), indent=1)
+    global _CAL
+    _CAL = None
+    return out
+
+
+_CAL = None
+def _cal_table():
+    global _CAL
+    if _CAL is None:
+        try: _CAL = json.load(open(CALIB))["bands"]
+        except (OSError, ValueError, KeyError): _CAL = []
+    return _CAL
+
+
+def calib_key():
+    """Short hash of the calibration in force (for caches of win-chance series)."""
+    import hashlib
+    return hashlib.sha1(json.dumps(_cal_table(), sort_keys=True).encode()).hexdigest()[:8]
+
+
+def calibrated(p, minute):
+    """A raw win chance (0..100) through the calibration lookup for its minute band."""
+    bands = _cal_table()
+    if not bands: return p
+    band = next((b for b in bands if b["minutes"][0] <= minute < (b["minutes"][1] or 99)), bands[-1])
+    pts = [(c["predicted"], c["calibrated"]) for c in band["cells"]]
+    if len(pts) < 2: return p
+    if p <= pts[0][0]: return round(pts[0][1] * p / pts[0][0], 1) if pts[0][0] > 0 else pts[0][1]
+    if p >= pts[-1][0]: return round(100 - (100 - pts[-1][1]) * (100 - p) / (100 - pts[-1][0]), 1) if pts[-1][0] < 100 else pts[-1][1]
+    for (x0, y0), (x1, y1) in zip(pts, pts[1:]):
+        if x0 <= p <= x1: return round(y0 + (y1 - y0) * (p - x0) / (x1 - x0), 1) if x1 > x0 else y1
+    return p
 
 
 def validate(df, X, y, groups, corr, extra=()):
@@ -295,16 +460,26 @@ class WPModel:
         ids = [m for b in batches() for m in b["matches"]]
         return cls.fit_on(ids)
 
-    def explain(self, row):
-        """Win chance, and each term's contribution in points for an otherwise even (50%) game: the same scale as the
-        curves in wp_model.md, readable even when the chance is near 0 or 100%."""
+    def _terms(self, row):
         import pandas as pd
         x = pd.DataFrame([{n: row.get(n) for n in self.use + ["strength_gap"]}]).astype(float)
         contrib = list(self.ebm.eval_terms(x[self.use])[0])
         strength = float(strength_score(x)[0])
         total = float(np.ravel(self.ebm.intercept_)[0]) + strength + float(sum(contrib))
+        return total, strength, contrib
+
+    def raw_chance(self, row):
+        """The model's own win chance (0..100), before calibration."""
+        return sig(self._terms(row)[0]) * 100
+
+    def explain(self, row):
+        """Win chance (calibrated by minute, calibrate()), and each term's contribution in points for an otherwise even
+        (50%) game: the same scale as the curves in wp_model.md, readable even when the chance is near 0 or 100%."""
+        total, strength, contrib = self._terms(row)
         parts = [("team strength", _points(strength))] + [(self.ebm.term_names_[i], _points(c)) for i, c in enumerate(contrib)]
-        return round(sig(total) * 100, 1), sorted([x for x in parts if abs(x[1]) >= 0.5], key=lambda kv: -abs(kv[1]))
+        minute = row.get("minute") if row.get("minute") is not None else (row.get("t") or 0) / 60
+        p = calibrated(sig(total) * 100, minute)
+        return round(p, 1), sorted([x for x in parts if abs(x[1]) >= 0.5], key=lambda kv: -abs(kv[1]))
 
 
 def write_md(model):

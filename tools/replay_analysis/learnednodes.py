@@ -54,7 +54,10 @@ SPEC = {
  "flag_swing": ("R.3", {
     "S.scoreboard": {"flag_lead": "flag lead now (s)"},
     "P.10": {"waiting_runner": "a runner waiting", "backup_flag": "a backup flag", "stand_own": "own team holds the stand",
-             "stand_enemy": "the enemy holds the stand", "own_boost_in": "seconds to own boost", "enemy_boost_in": "seconds to the enemy's boost"},
+             "stand_enemy": "the enemy holds the stand", "own_boost_in": "seconds to own boost", "enemy_boost_in": "seconds to the enemy's boost",
+             "own_eta": "flag model: seconds until own team could capture", "enemy_eta": "flag model: seconds until the enemy could capture",
+             "own_carrying": "own flag being carried now", "enemy_carrying": "enemy flag being carried now",
+             "own_cap_before_boost": "own team can capture before the enemy's boost", "enemy_cap_before_boost": "the enemy can capture before own boost"},
     "A.allocation": {"own_alive": "own players alive", "enemy_alive": "enemy players alive", "own_main": "own main", "enemy_main": "enemy main",
                      "own_flag_duty": "own players on flag duty", "enemy_flag_duty": "enemy players on flag duty",
                      "own_in_enemy_base": "own players in the enemy base", "enemy_in_own_base": "enemy players in own base"},
@@ -70,6 +73,8 @@ SPEC = {
     "C.strength": {"strength_gap": "defending team's strength gap"}}, {"checkpoint_s": "seconds into the run"}),
  "capture_speed": ("R.3", {
     "A.allocation": {"defenders_free": "defenders alive and not on flag duty", "escort": "the runner's escorts"},
+    "K.11": {"pushers_10s": "defenders who pushed the runner in the first 10 s", "control_10s": "conditions and knockdowns on the runner in the first 10 s",
+             "damage_10s": "damage on the runner in the first 10 s"},
     "C.map": {"run_dist": "distance from the runner's spawn to the stand"},
     "C.strength": {"strength_gap": "defending team's strength gap"}}, {}),
  "power_play": ("K.4", {
@@ -113,6 +118,7 @@ SPEC = {
     "P.11": {"latency": "seconds until the first defender arrived (60 = never)", "defenders": "defenders who came"},
     "A.allocation": {"size": "split size", "main_diff": "own main minus enemy main meanwhile"},
     "K.8": {"split_healers": "healers in the split"},
+    "S.scoreboard": {"def_npc_value": "defenders' pit NPC value when the split entered the base", "def_free": "defenders alive and not on flag duty at entry"},
     "C.strength": {"strength_gap": "splitting team's strength gap"}}, {}),
  "collapse": ("R.1", {
     "P.11": {"latency": "seconds until the first defender arrived (60 = never)"},
@@ -158,7 +164,15 @@ NEW_LINK_WHY = {
     ("C.strength", "R.5"): ("stronger teams play better at everything; kept in every model so play isn't confused with strength", "Claude"),
     ("C.strength", "P.11"): ("stronger teams play better at everything; kept in every model so play isn't confused with strength", "Claude"),
     ("C.clock", "P.11"): ("the res clock and the minute change how a split is answered", "Claude"),
+    ("K.11", "R.3"): ("control on the runner (Cripple, knockdowns) stops a run; read at the same point of every run", "Denning"),
+    ("S.scoreboard", "R.5"): ("a pit already short of NPCs, or a base with few free defenders, loses an NPC to a split more easily", "Claude"),
 }
+# fitting settings per node (after batch 9, the three nodes that never beat their baseline, reworked): the number nodes
+# judged on typical error are fitted with a robust loss (pseudo-Huber: big swings don't drag every reading toward
+# them, so the readings sit nearer the middle that typical error rewards); split effect (a few hundred cases) with
+# fewer bins, larger leaves and more smoothing, so its curves don't memorize matches
+NODE_FIT = {"flag_swing": {"objective": "pseudo_huber"}, "capture_speed": {"objective": "pseudo_huber"},
+            "split_effect": {"max_bins": 8, "min_samples_leaf": 40, "smoothing_rounds": 300, "max_rounds": 200}}
 NEW_NODES = [
     {"id": "P.17", "layer": "play", "name": "Wrong casts", "description": "casting into a ready interrupt without cancelling, casting while Dazed, attacking while Blind (every role)", "how": "eventlayer.py casts"},
     {"id": "P.18", "layer": "play", "name": "Enchantment strips", "description": "strips on the best target in range, valued from data (an enchantment's recorded output plus the bearer's measured drop after a strip)", "how": "eventlayer.py strips, values()"},
@@ -184,18 +198,43 @@ from lnrows import node_rows, _rows_job, _vhash
 
 
 # ---------------------------------------------------------------- fitting
-def _ebm(n_matches, regression, bags=4):
+def _ebm(n_matches, regression, bags=4, node=None, y=None):
     from interpret.glassbox import ExplainableBoostingClassifier as EBM, ExplainableBoostingRegressor as EBR
     kw = dict(max_bins=16, outer_bags=bags, min_samples_leaf=20 if not regression else 8, max_rounds=400, interactions=0, random_state=7)
+    kw.update({k: v for k, v in NODE_FIT.get(node, {}).items() if regression or k != "objective"})
+    if kw.get("objective") == "pseudo_huber" and y is not None:
+        # the loss turns from squared to absolute at delta, set to the training rows' typical spread (median absolute
+        # deviation); the library's default of 1 diverges on results measured in tens of seconds (found 2026-11-07)
+        yy = np.asarray(y, float); kw["objective"] = f"pseudo_huber:delta={max(1.0, float(np.median(np.abs(yy - np.median(yy))))):.2f}"
     return (EBR if regression else EBM)(**kw)
+
+
+class Centered:
+    """A regression EBM fitted on the result less its training median (added back when predicting): a robust loss
+    started far from the data's level takes huge steps and diverges (capture speed, about 40 s, found 2026-11-07).
+    Everything else (curves, importances) is read from the inner model."""
+    def __init__(self, e): self.inner, self.offset = e, 0.0
+
+    def fit(self, X, y):
+        y = np.asarray(y, float); self.offset = float(np.median(y))
+        self.inner.fit(X, y - self.offset); return self
+
+    def predict(self, X): return self.inner.predict(X) + self.offset
+
+    def __getattr__(self, k):
+        if k.startswith("__") or k in ("inner", "offset"): raise AttributeError(k)
+        return getattr(self.inner, k)
 
 
 def _job(job):
     """One fit: a held-out fold's score (and the baseline's), or the final model. Top level for parallel.py."""
-    kind, regression, n, Xtr, ytr, Xte, yte = job
+    kind, regression, n, Xtr, ytr, Xte, yte = job[:7]
+    node = job[7] if len(job) > 7 else None
     # the held-out link tests use 2 bags (the same for every variant, so the comparison is fair; measured 2026-11-07:
     # half the time); the final readable model uses 4
-    e = _ebm(n, regression, 4 if kind == "full" else 2).fit(Xtr, ytr)
+    e = _ebm(n, regression, 4 if kind == "full" else 2, node, ytr)
+    if regression and NODE_FIT.get(node, {}).get("objective") == "pseudo_huber": e = Centered(e)
+    e = e.fit(Xtr, ytr)
     if kind == "full": return e
     if regression:
         p = e.predict(Xte); return {"score": float(np.mean(np.abs(yte - p))), "base": float(np.mean(np.abs(yte - np.median(ytr)))), "n": len(yte)}
@@ -236,8 +275,8 @@ def fit_all(ids, nodes=None, V=None):
         prep[node] = (df, X, y, g, folds, variants)
         for vn, cols in variants:
             for tr, te in folds:
-                jobs.append(("fold", reg, g.iloc[tr].nunique(), X.iloc[tr][cols], y.iloc[tr].values, X.iloc[te][cols], y.iloc[te].values)); owner.append((node, vn))
-        jobs.append(("full", reg, g.nunique(), X, y.values, None, None)); owner.append((node, "full"))
+                jobs.append(("fold", reg, g.iloc[tr].nunique(), X.iloc[tr][cols], y.iloc[tr].values, X.iloc[te][cols], y.iloc[te].values, node)); owner.append((node, vn))
+        jobs.append(("full", reg, g.nunique(), X, y.values, None, None, node)); owner.append((node, "full"))
     res = parallel.run(_job, jobs)
     out = {}
     for node, (df, X, y, g, folds, variants) in prep.items():

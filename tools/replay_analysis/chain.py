@@ -177,7 +177,7 @@ class Chain:
         if not ch: return
         base, out = tq.what_if("deaths", self.rid, row, ch)
         cost = self.win(d["t"] - 10, d["t"] + 30)
-        for lab, v, dd in out:
+        for lab, v, dd in tq.reliable(out):
             if dd < 0 and cost is not None and cost < 0:
                 self.add_fix(lab, -dd / 100 * -cost, link_i,
                              f"deaths node: risk {base}% -> {v}% of dying in the next 10 s, times this death's cost ({cost:+} points)",

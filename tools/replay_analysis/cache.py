@@ -28,7 +28,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.environ.get("GVG_CACHE", os.path.expanduser("~/.cache/gvginfo"))
 DATA_DEPS = ["data/model/strength.json", "data/model/lineup.json", "data/model/context.json",
              "data/model/integrity.json", "data/review_labels.json"]
-FIT_DEPS = ["data/model_corrections.json"]
+FIT_DEPS = ["data/model_corrections.json", "data/model/cap_choices.json"]
 # the entry modules each kind of prepared data is built from; their local imports are followed automatically
 PREPARED_FROM = {"table": ["features.py", "model.py"], "rows": ["nodes.py"], "events": ["values.py"],
                  "analysis": ["analyze.py"], "power_bench": ["tq.py"], "run_bench": ["tq.py"], "mes_bench": ["chain.py"], "eventlayer": ["eventlayer.py"],
@@ -181,12 +181,19 @@ def warm(jobs=None, kinds=("wp",)):
     with Pool(jobs) as p:
         for _ in p.imap_unordered(_table_one, ids): pass
     print(f"prepared data: {len(ids)} matches in {time.time() - t:.0f} s")
+    if "wp" in kinds:       # the data picks Denning's cap_test caps before the held-out models are fitted with them
+        import model as M
+        t = time.time(); ch = M.cap_test(ids); _KEYS.pop("fit_wp", None)
+        if ch: print(f"cap tests in {time.time() - t:.0f} s:", {k: v["verdict"] for k, v in ch.items()})
     t = time.time()
     reps = {}                  # one match per group is enough: the group shares its model
     for r in ids: reps.setdefault(fold_of(r) if FOLDS else r, r)
     with Pool(jobs) as p:
         n = sum(1 for _ in p.imap_unordered(_fit_one, [(k, r) for k in kinds for r in reps.values()]))
     print(f"held-out models: {n} in {time.time() - t:.0f} s")
+    if "wp" in kinds:       # calibration by minute from those held-out models' predictions (model.calibrate)
+        import model as M
+        t = time.time(); M.calibrate(ids); print(f"calibration by minute in {time.time() - t:.0f} s")
 
 
 # ---- keeping prepared data between sessions (branch `cache`, one tarball per code version and kind)

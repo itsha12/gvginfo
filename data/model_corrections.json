@@ -1,5 +1,5 @@
 {
- "about": "Denning's corrections to the win-probability model. Kinds: direction (curve can only rise or fall: increasing true/false), drop (variable not used), interaction (always offer this pair, written 'a & b'), cap (effect limited to max_points). Each needs a reason. Every fit reports accuracy with and without them.",
+ "about": "Denning's corrections to the win-probability model. Kinds: direction (curve can only rise or fall: increasing true/false), drop (variable not used), main_drop (no curve of its own, its pairs stay), interaction (always offer this pair, written 'a & b'), no_interaction (never pair the term with the variables in 'with'), cap (effect limited to max_points), cap_test (the data picks a cap from 'options' or none, model.py cap_test). Each needs a reason. Every fit reports accuracy with and without them.",
  "corrections": [
   {
    "term": "lord_damage_diff & minute",
@@ -32,6 +32,55 @@
    "kind": "drop",
    "added": "batch 8",
    "reason": "Denning (2026-11-07, agreeing with Claude's batch 8 finding): healing monks are one value per team per match and almost every team runs 3 (0 monks: 1 team-match, 4 monks: 5), so the curves' extreme steps rest on almost nothing and zigzag in mirror image. Held-out log loss on 113 matches: as before 0.385, cap at 5 points 0.382, dropped 0.367 (best)."
+  },
+  {
+   "term": "lord_damage_diff",
+   "kind": "main_drop",
+   "added": "after batch 9",
+   "reason": "Denning (agreeing with Claude's batch 9 review, 133 matches): the Lord damage curve on its own acts as a sign marker, not the 28:00 tiebreak: +-7 to 9 points once any Lord damage exists, the most negative band reads +31.6 (backwards), and teams ahead on Lord damage won 88% with alive +0.94 and morale +78 (it marks who got into the pit). Only its pairing with the clock is kept."
+  },
+  {
+   "term": "morale_diff",
+   "kind": "no_interaction",
+   "with": [
+    "lord_dps_own",
+    "lord_dps_enemy",
+    "spike_build_own",
+    "spike_build_enemy"
+   ],
+   "added": "after batch 9",
+   "reason": "Denning (agreeing with Claude's batch 9 review): Lord damage per second and the spike build are fixed by the build, one value per team per match; paired with morale they memorize which teams won (morale x Lord damage per second came back 3rd and 4th, 0.42 each, despite the batch 7 caps on the main terms)."
+  },
+  {
+   "term": "morale_total",
+   "kind": "no_interaction",
+   "with": [
+    "lord_dps_own",
+    "lord_dps_enemy",
+    "spike_build_own",
+    "spike_build_enemy"
+   ],
+   "added": "after batch 9",
+   "reason": "Denning (agreeing with Claude's batch 9 review): as for morale_diff, build-fixed values are not paired with morale."
+  },
+  {
+   "term": "spike_killable_diff",
+   "kind": "cap_test",
+   "options": [
+    10,
+    15,
+    20,
+    25
+   ],
+   "added": "after batch 9",
+   "reason": "Denning (agreeing with Claude's batch 9 review): the curve steps 35 points at one player, but at the same morale (-20 to 20) teams won 64% / 50% / 37% across the same steps, a real gap of about 13; it overlaps death penalty and took part of morale's effect (worst miss: Fun v hold 2:00, hold given 0.4% and won, this variable -46). The data picks the cap, or none if no cap predicts unseen matches better."
+  },
+  {
+   "term": "down_diff_s",
+   "kind": "direction",
+   "increasing": true,
+   "added": "after batch 9",
+   "reason": "Denning (agreeing with Claude's batch 9 review): more enemy time down can only help; the curve read backwards for 7 to 38 s, mirroring alive_diff. Direction forced rather than dropping the variable."
   }
  ]
 }

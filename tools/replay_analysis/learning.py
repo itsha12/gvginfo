@@ -87,6 +87,7 @@ def fightstate_extra(ids):
 def s_head(c):
     ids, n, prev, new_ids = c["ids"], c["n"], c["prev"], c["new_ids"]
     fightstate_extra(ids)
+    if not os.path.exists(M.CAPS): M.cap_test(ids)          # normally built by cache.py warm (the workflow's prepare job)
     model, wp, df, held, X, y = M.fit_and_save(ids, n)
     c.update(model=model, df=df, held=held, X=X, y=y)
     os.makedirs(HISTORY, exist_ok=True); os.makedirs(REPORTS, exist_ok=True)
@@ -122,6 +123,21 @@ def s_head(c):
         L.append(f"- Change since batch {n - 1}: glass box log loss {pv['glass box']['all']['log_loss']} -> "
                  f"{v['glass box']['all']['log_loss']}; strength only {pv['strength only']['all']['log_loss']} -> "
                  f"{v['strength only']['all']['log_loss']}.")
+    # Denning's cap tests (the data picks the cap) and the calibration by minute, both built by cache.py warm
+    try:
+        for term, ch in json.load(open(M.CAPS))["choices"].items():
+            L.append(f"- Cap test on {term} (held-out log loss, {ch['matches']} matches): "
+                     + ", ".join(f"{k if k == 'none' else k + ' points'} {v}" for k, v in ch["log_loss"].items()) + f"; chosen: {ch['verdict']}.")
+    except (OSError, ValueError, KeyError): pass
+    try:
+        cal = json.load(open(M.CALIB))
+        L.append(f"- Calibration by minute (held-out predictions on {cal['matches']} matches; every win chance below and in values, "
+                 "usual play and the TQs goes through it). Predicted -> how often those teams won -> calibrated:")
+        for b in cal["bands"]:
+            lo, hi = b["minutes"]
+            ends = [x for x in b["cells"] if x["from"] in (0, 2, 90, 95, 98) or x["to"] in (100,)]
+            L.append(f"  - {lo} to {hi if hi else 'end'} min: " + "; ".join(f"{x['predicted']}% -> won {x['won']}% ({x['matches']} matches) -> {x['calibrated']}%" for x in ends))
+    except (OSError, ValueError, KeyError): pass
     L.append("")
     _lap("integrity and honest test text")
     c["parts"]["head"] = L
