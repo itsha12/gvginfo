@@ -4,11 +4,11 @@
   "spike_killable_diff": {
    "max_points": null,
    "log_loss": {
-    "none": 0.3743,
+    "none": 0.3748,
     "10": 0.3852,
-    "15": 0.3813,
-    "20": 0.3777,
-    "25": 0.3745
+    "15": 0.3814,
+    "20": 0.3779,
+    "25": 0.3748
    },
    "matches": 133,
    "verdict": "no cap (no option beat it on unseen matches)"
@@ -17,7 +17,7 @@
  "pairs": {
   "block": false,
   "log_loss": {
-   "allowed": 0.3743,
+   "allowed": 0.3748,
    "blocked": 0.3905
   },
   "matches": 133,
