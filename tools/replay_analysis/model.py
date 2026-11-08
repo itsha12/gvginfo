@@ -368,17 +368,16 @@ def calibrate(ids):
 
 
 def _interp(knots, p):
-    """Straight lines between the knots; below the first and above the last, a straight line to 0 or 100."""
+    """Straight lines between the knots; beyond the first and last, the nearest segment's line carried on (clipped to
+    0.5 to 99.5), so the ends follow the data where most rows sit (a line to 0 or 100 put 12 to 18 min teams given 0.5%
+    at 2.3% when 9.6% won)."""
     if not knots: return p
-    if len(knots) == 1 or p <= knots[0][0]:
-        x0, y0 = knots[0]
-        return y0 * p / x0 if p <= x0 and x0 > 0 else (y0 + (100 - y0) * (p - x0) / (100 - x0) if x0 < 100 else y0)
-    if p >= knots[-1][0]:
-        x1, y1 = knots[-1]
-        return 100 - (100 - y1) * (100 - p) / (100 - x1) if x1 < 100 else y1
-    for (x0, y0), (x1, y1) in zip(knots, knots[1:]):
-        if x0 <= p <= x1: return y0 + (y1 - y0) * (p - x0) / (x1 - x0) if x1 > x0 else y1
-    return p
+    if len(knots) == 1: return min(max(p + knots[0][1] - knots[0][0], 0.5), 99.5)
+    if p <= knots[0][0]: (x0, y0), (x1, y1) = knots[0], knots[1]
+    elif p >= knots[-1][0]: (x0, y0), (x1, y1) = knots[-2], knots[-1]
+    else: (x0, y0), (x1, y1) = next((a, b) for a, b in zip(knots, knots[1:]) if a[0] <= p <= b[0])
+    v = y0 + (y1 - y0) * (p - x0) / (x1 - x0) if x1 > x0 else y1
+    return min(max(v, 0.5), 99.5)
 
 
 _CAL = None

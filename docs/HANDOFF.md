@@ -141,7 +141,10 @@ engine change before the next run, then the commentary transcripts and step 3 (d
   force its direction upward; (f) the shift-and-slope calibration misses some cells (12 to 18 min: predicted 93%, won
   92%, calibrated 77%; 6 to 12 min: 3.5%, won 21%, calibrated 12.7%): a pooled lookup joined by straight lines between
   the pooled blocks' middles would be as accurate as the first form and never flat.
-- Denning approved (e) and (f), built (METHODS.md "After the batch 9 rebuild"); third rebuild started.
+- Denning approved (e) and (f), built (METHODS.md "After the batch 9 rebuild"). Third rebuild: calibration followed
+  the data except at the ends (lines to 0 and 100 overrode the most common cells); fixed by carrying the end segments
+  on; fourth rebuild started. Forced flag_lead is flat across deficits of about 30 to 129 s, so TQ 1 still prices 22 s
+  saved at +0.0 (an honest reading; step 4 prices saved seconds through the chain).
 - Next: read the third rebuild with Denning, then the commentary transcripts (Bounty's six, then Nick's one).
 
 ### Session 4r (2026-11-07)
