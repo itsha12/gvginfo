@@ -1,0 +1,779 @@
+{
+ "about": "Claims from Bounty's YouTube commentary (October 2026 monthly playoffs), paraphrased (never the transcript: public repo). Each claim: approximate match time in seconds (set from the anchor named; the transcripts have no timestamps), kind (plan, read, call, reason, prediction, diagnosis, technique), the claim, tactics ids, the variable it suggests (comms_vars.py), and the engine's check: agrees, disagrees, partly, or can't measure, with the evidence. Bounty plays mesmer for 옷옷옷옷, so weigh his comments on their games with that in mind. Vocabulary: footies = footmen; Ellie = elementalist; cycle = a 2-minute window in which a team can push, do damage and deal with the split; inaccuracies = small errors that add up (Bounty's chess comparison).",
+ "matches": {
+  "3dd84ec7-29f5-578d-a7ad-42a272bff049": {
+   "tag": "BcS v Crew",
+   "map": "Isle of Meditation (Bounty called it Volcano)",
+   "event": "October 2026 monthly playoffs",
+   "result": "Crew won at about 20:29 by killing BcS's Lord in a base race",
+   "transcript": "attachment eeee0de0",
+   "teams": "Crew blue, BcS red",
+   "alignment": "Crew Monk 1 (Ray of Judgment smite splitter) death 0:52, BcS archer and two knights 2:39, BcS overcapped 8:14 -> 8:17, BcS Mesmer flag death 12:05, Crew Mesmer death at the stand 15:41, BcS wipe in Crew's base 16:39 to 17:16, BcS boost 17:33, Crew wipe 18:36 to 19:16",
+   "claims": [
+    {
+     "t": 0,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "Crew's build sends a lone Ray of Judgment smite monk to split, babysat by the 8 or a ritualist; it kills NPCs well but does almost nothing against players.",
+     "tactics": [
+      "S3"
+     ],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "Crew's Monk 1 split from 0:35 and alone 3:05 to 3:53; BcS lost an archer (0:58), then an archer and two knights at 2:39 with no Crew death there."
+     }
+    },
+    {
+     "t": 0,
+     "kind": "prediction",
+     "who": "commentator",
+     "claim": "BcS's snares suit this matchup: the smite splitter stays snared after teleporting back, so he can still be collapsed and struggles to reach the pit.",
+     "tactics": [
+      "S33"
+     ],
+     "variable": "collapse_snare",
+     "check": {
+      "verdict": "partly",
+      "evidence": "Crew's Monk 1 died twice (0:52 backside, 5:01 push side) but still reached the pit at 2:39 and 12:53 (bodyguard). Across 140 matches, collapses with a snare carrier killed a splitter 18% of the time against 12% without, not clear yet."
+     }
+    },
+    {
+     "t": 52,
+     "kind": "diagnosis",
+     "who": "commentator",
+     "claim": "The smite monk's early Shadow Step put him in trouble at the back footmen.",
+     "check": {
+      "verdict": "agrees",
+      "evidence": "Crew Monk 1 died at 0:52 on the backside (4v6)."
+     }
+    },
+    {
+     "t": 178,
+     "kind": "diagnosis",
+     "who": "commentator",
+     "claim": "BcS's paragon kited away from his team and died for it.",
+     "tactics": [
+      "F24"
+     ],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "BcS Paragon died at 2:58 on the backside."
+     }
+    },
+    {
+     "t": 400,
+     "kind": "diagnosis",
+     "who": "commentator",
+     "claim": "BcS is never a unit: with two Fall Backs and a God Speed it should move together, but it is always scattered, so when it fills gaps on the map it isn't all there to kill.",
+     "tactics": [
+      "K19"
+     ],
+     "variable": "scattered",
+     "check": {
+      "verdict": "disagrees",
+      "evidence": "By the engine's measure BcS kept 88% of its live players in its biggest engaged group (scattered 3% of the time); Crew, splitting, kept 72% (scattered 47%). Across 140 matches a scattered team kills less (14% against 18% of phases, supported), but this match doesn't show BcS as scattered: Bounty's point may be spacing inside the group, which this measure doesn't see."
+     }
+    },
+    {
+     "t": 494,
+     "kind": "reason",
+     "who": "commentator",
+     "claim": "Capping a flag that gets overcapped at once wastes a cycle; if you will be overcapped instantly, don't cap.",
+     "tactics": [
+      "F36"
+     ],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "BcS capped at 8:14 and Crew overcapped at 8:17 (3 s). The cost of the cap itself (the runner's time away) isn't measured yet."
+     }
+    },
+    {
+     "t": 840,
+     "kind": "diagnosis",
+     "who": "commentator",
+     "claim": "By 14:00 BcS had wasted its cycles: Crew had almost no death penalty, BcS had killed one knight, and BcS's own pit was empty with its Lord damaged.",
+     "tactics": [
+      "P3"
+     ],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "Crew had 3 deaths by 14:00 (Monk 1 twice, Necromancer); BcS killed one Crew knight (13:22) and had lost four archers, two knights and the Bodyguard (0:58 to 12:53)."
+     }
+    },
+    {
+     "t": 941,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "Capping invited Crew to stay and fight, and BcS killed the flag carrier: when you kill, the mistake doesn't matter.",
+     "check": {
+      "verdict": "agrees",
+      "evidence": "BcS capped at 15:33; Crew's Mesmer died at the stand at 15:41."
+     }
+    },
+    {
+     "t": 1000,
+     "kind": "reason",
+     "who": "commentator",
+     "claim": "Crew's rule: if a team pushes your pit with one monk, you kill it. BcS pushed with one monk at home and its main died very fast.",
+     "tactics": [
+      "P15"
+     ],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "BcS lost 5 in Crew's base and the push side from 16:39 to 17:16 (wipe 5v6)."
+     }
+    },
+    {
+     "t": 1130,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "With Crew's third monk back, BcS's six-damage, one-monk push had to keep killing; it nearly finished, but Crew's Warrior resurrected the Flash mesmer, who resurrected the rest, and Crew found the open Lord to end it.",
+     "check": {
+      "verdict": "partly",
+      "evidence": "BcS killed four Crew players 18:36 to 19:16 and the Bodyguard at 19:49; Crew won the base race at about 20:29. Which resurrections happened isn't checked here."
+     }
+    }
+   ]
+  },
+  "f34cb3a9-98c7-53d0-a980-60aa7dd5bc8d": {
+   "tag": "True v One",
+   "map": "Isle of Meditation",
+   "event": "October 2026 monthly playoffs",
+   "result": "One won a flawless victory at about 15:35",
+   "transcript": "attachment 95e5d524",
+   "teams": "True blue, One red",
+   "alignment": "True's Dervish split from 0:34 (One archer 0:58), True deaths 0:56 to 1:43, One boosts 2:39, 4:39, 6:39, 10:32, 12:32, One knight lost at 14:10, True wipe 14:50 to 15:35",
+   "claims": [
+    {
+     "t": 34,
+     "kind": "diagnosis",
+     "who": "commentator",
+     "claim": "True ran its main team into the enemy short-handed (6v8, 7v8) while its Dervish capped and split; it didn't know the game state and was wiped early.",
+     "tactics": [
+      "P4"
+     ],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "True's Dervish split from 0:34; True's first death came at 6v7 (0:56), then 7 Monk, Prot and Mes/A by 1:43."
+     }
+    },
+    {
+     "t": 150,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "One played very carefully after the early win, resetting rather than pushing its advantage.",
+     "check": {
+      "verdict": "can't measure",
+      "evidence": "Intent; One didn't kill again until 3:09."
+     }
+    },
+    {
+     "t": 330,
+     "kind": "diagnosis",
+     "who": "commentator",
+     "claim": "When True had a 7v6 it needed to jump One; its damage didn't commit.",
+     "tactics": [
+      "F24"
+     ],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "True held numbers advantages at 4:14 (7v5), 5:23 (8v7), 7:26 (5v4 for 60 s), 9:04, 9:58 (7v6, then 7v4) and 11:21, and killed no one in any of them."
+     }
+    },
+    {
+     "t": 390,
+     "kind": "diagnosis",
+     "who": "commentator",
+     "claim": "One's Dervish dropped the flag to break a block that was about to fall anyway; with no backup flag, he should have kept it.",
+     "tactics": [
+      "F27"
+     ],
+     "check": {
+      "verdict": "can't measure",
+      "evidence": "Blocks and drops aren't in the replay data."
+     }
+    },
+    {
+     "t": 510,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "One missed a boost by only about 7 or 8 seconds.",
+     "tactics": [
+      "F27"
+     ],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "One boosted at 2:39, 4:39 and 6:39, then not at 8:39 (it recapped at 8:32), next at 10:32."
+     }
+    },
+    {
+     "t": 850,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "True's Dervish split into One's base and killed a knight, True's first accomplishment in 14 minutes, but his flag was overcapped so it didn't pay off.",
+     "check": {
+      "verdict": "agrees",
+      "evidence": "One lost a knight at 14:10 to True's Dervish split; True had capped at 13:19 and One answered at 13:34."
+     }
+    },
+    {
+     "t": 935,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "A flawless victory: True never killed a single player, and kept missing the monks when it had chances.",
+     "check": {
+      "verdict": "agrees",
+      "evidence": "No One deaths in the match; True wiped from 14:50."
+     }
+    }
+   ]
+  },
+  "9b0816e2-c0eb-5797-a1b1-9962c8415307": {
+   "tag": "Apes v cope",
+   "map": "Isle of Meditation",
+   "event": "October 2026 monthly playoffs",
+   "result": "cope won at about 19:42",
+   "transcript": "attachment 57710875",
+   "teams": "Apes blue, cope red",
+   "alignment": "Apes wipe 0:41 to 1:34, Apes Necromancer split 2:13 to 3:56 and death 4:06, cope wipe 7:24 to 8:01, Apes Ritualist death 10:21, Apes wipes 11:06 to 11:59 and 15:52 to 17:10, cope boosts 2:57, 14:05, 16:05, 18:05",
+   "claims": [
+    {
+     "t": 30,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "Apes' unusual build aims to get the flag game going: two Shadow of Haste characters, double run out front, push on the Balthazar dervish.",
+     "tactics": [
+      "K7"
+     ],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "Apes capped at 0:41 with the Necromancer and split him from 2:13."
+     }
+    },
+    {
+     "t": 45,
+     "kind": "diagnosis",
+     "who": "commentator",
+     "claim": "Apes' monks were hit hard in the opening and died within a minute; no build is good if you die in a minute.",
+     "tactics": [
+      "K7"
+     ],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "Apes lost 6 players from 0:56 to 1:34 (wipe, first at 7v8)."
+     }
+    },
+    {
+     "t": 140,
+     "kind": "diagnosis",
+     "who": "commentator",
+     "claim": "Apes' Necromancer leaving the base alone was bound to cost his team, and he died after time.",
+     "tactics": [
+      "S16"
+     ],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "Apes' Necromancer split 2:13 to 3:56 and died at 4:06 (within 15 s after 4:00, so after time)."
+     }
+    },
+    {
+     "t": 200,
+     "kind": "reason",
+     "who": "commentator",
+     "claim": "cope respected the lone splitter more than it should have; winning the main fight, it could have ignored him and fought 8v7.",
+     "tactics": [
+      "S28"
+     ],
+     "check": {
+      "verdict": "can't measure",
+      "evidence": "cope sent its Dervish, 8 Monk and Hammer (3:12); whether fighting 8v7 was better needs the usual-play comparison (step 4)."
+     }
+    },
+    {
+     "t": 400,
+     "kind": "diagnosis",
+     "who": "commentator",
+     "claim": "Apes had an 8v7 for about 90 seconds and didn't know it had to kill: its Dervish stayed far from anyone.",
+     "tactics": [
+      "F24"
+     ],
+     "check": {
+      "verdict": "partly",
+      "evidence": "Apes did kill four cope players 7:24 to 8:01 (cope wiped), so the window wasn't wasted, though late."
+     }
+    },
+    {
+     "t": 480,
+     "kind": "diagnosis",
+     "who": "commentator",
+     "claim": "Small errors added up (inaccuracies, not blunders): the 8 monk should have taken the flag sooner.",
+     "check": {
+      "verdict": "can't measure",
+      "evidence": "Who could take the flag when is a choice the replay doesn't record."
+     }
+    },
+    {
+     "t": 620,
+     "kind": "diagnosis",
+     "who": "commentator",
+     "claim": "Apes' Ritualist got caught away from his team: a bad death, and Apes then spent its time fixing it (failed resurrections) and took more deaths.",
+     "tactics": [
+      "F24"
+     ],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "Apes' Ritualist died at 10:21 (4v5, push side); Apes lost 5 more from 11:06 to 11:59."
+     }
+    },
+    {
+     "t": 700,
+     "kind": "reason",
+     "who": "commentator",
+     "claim": "Without the pressure from its base, Apes should solo split, wait for the answer, then push a flag; pushing 8v8 is a risk for this build.",
+     "tactics": [
+      "S7"
+     ],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "Apes' 8v8 fights went badly: wipes at 11:27 and 15:52."
+     }
+    },
+    {
+     "t": 880,
+     "kind": "reason",
+     "who": "commentator",
+     "claim": "Never send both Shadow of Haste players (Necromancer and Ritualist) on a split; keep one in base.",
+     "tactics": [
+      "S16"
+     ],
+     "check": {
+      "verdict": "partly",
+      "evidence": "Apes split Necromancer, Hammer, Ritualist and 8 Monk at 14:38 and lost that 4v4 (wipe 15:52); whether the split choice caused it isn't separated."
+     }
+    },
+    {
+     "t": 950,
+     "kind": "diagnosis",
+     "who": "commentator",
+     "claim": "Apes should have won the 4v4 but lost it to layers of errors: a monk caught off his shield set by Coward, a sleepy 8, the Necromancer not watching the warrior.",
+     "check": {
+      "verdict": "partly",
+      "evidence": "Apes lost the 4v4 at 15:52 (Ritualist, 8 Monk, Hammer, Necromancer died 16:07 to 17:10); the shield-set and Coward detail can be read with forensics.py but isn't checked here."
+     }
+    }
+   ]
+  },
+  "49eec28d-0f4b-5cc1-a146-4d1ad0bd642b": {
+   "tag": "OG v hold",
+   "map": "Isle of Meditation",
+   "event": "October 2026 monthly playoffs",
+   "result": "OG won a base race: hold's Lord died at 5:17, OG's at 5:20",
+   "transcript": "attachment 07623580 (with Yoko)",
+   "teams": "as in og_comms.json",
+   "alignment": "OG deaths 1:04 and 1:48, OG's four-player split 2:45, OG wipe 3:15 to 3:47, OG capture 3:47, both pits fall 3:48 to 5:20",
+   "claims": [
+    {
+     "t": 20,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "Hex way is a hard matchup for triple melee; OG's mesmers had to do a very good job.",
+     "tactics": [
+      "B12"
+     ],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "OG lost two players at main by 1:48 and turned to the split."
+     }
+    },
+    {
+     "t": 30,
+     "kind": "diagnosis",
+     "who": "commentator",
+     "claim": "hold chose to fight at main early; it had built its monks (Divine Healing, double Blessed Light) to hold longer.",
+     "check": {
+      "verdict": "can't measure",
+      "evidence": "Choice of fight; the healing totals are in the match data."
+     }
+    },
+    {
+     "t": 165,
+     "kind": "diagnosis",
+     "who": "commentator",
+     "claim": "Defending with two players says 'give us time to finish', so hold shouldn't have followed OG's split with axes; it wasted about 25 to 30 seconds, probably the biggest reason it lost.",
+     "tactics": [
+      "P6"
+     ],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "The base race was decided by seconds (hold's Lord died at 5:17, OG's at 5:20; METHODS notes 0.3 s), so 25 to 30 s spent chasing is more than the margin."
+     }
+    },
+    {
+     "t": 225,
+     "kind": "diagnosis",
+     "who": "commentator",
+     "claim": "OG's number 1 capping the flag wasted time in what became a base race, but that's only clear in hindsight.",
+     "tactics": [
+      "P7"
+     ],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "OG capped at 3:47 during the race."
+     }
+    },
+    {
+     "t": 300,
+     "kind": "reason",
+     "who": "commentator",
+     "claim": "hold could instead have defended with both monks and pushed with the ritualist, since the ritualist only faced one mesmer.",
+     "tactics": [
+      "S30"
+     ],
+     "check": {
+      "verdict": "can't measure",
+      "evidence": "A choice not taken; step 4 would price it."
+     }
+    },
+    {
+     "t": 310,
+     "kind": "diagnosis",
+     "who": "commentator",
+     "claim": "hold was too hasty: it played offensively with two monks instead of defending more and working through the game.",
+     "check": {
+      "verdict": "can't measure",
+      "evidence": "A judgment over the whole match."
+     }
+    }
+   ]
+  },
+  "1d073205-fdec-5684-aa7a-b03a558a9471": {
+   "tag": "cope v hdm",
+   "map": "Uncharted Isle",
+   "event": "October 2026 monthly playoffs, second round",
+   "result": "hdm won at about 21:31",
+   "transcript": "attachment fda877d5",
+   "teams": "cope blue, hdm red",
+   "alignment": "hdm 4-4 split wiped 1:16 to 1:48, cope Ranger death 5:08, hdm deaths 7:36 to 8:14, hdm's six-player push takes cope's pit 15:21 to 15:58, cope's push wiped 19:25 to 21:31",
+   "claims": [
+    {
+     "t": 20,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "hdm played a 4-4: two elementalists, a mesmer and a monk on the split, and the main team without its prot; very committed to the split.",
+     "tactics": [
+      "S3"
+     ],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "hdm's split groups held both elementalists and a monk (e.g. 9:37)."
+     }
+    },
+    {
+     "t": 80,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "hdm's first split group got bullied off the side, though cope didn't kill anyone after time.",
+     "check": {
+      "verdict": "agrees",
+      "evidence": "hdm lost Air Ele, Fire Ele and Monk 4 at 1:31 to 1:48 on the push side (3v4), none within 15 s after a 2-minute mark."
+     }
+    },
+    {
+     "t": 100,
+     "kind": "reason",
+     "who": "commentator",
+     "claim": "cope's ranger should have stayed at the back door, to take free footmen and warn the team, since he leads the answer to splits.",
+     "tactics": [
+      "S34"
+     ],
+     "check": {
+      "verdict": "can't measure",
+      "evidence": "Warnings aren't in the data."
+     }
+    },
+    {
+     "t": 308,
+     "kind": "diagnosis",
+     "who": "commentator",
+     "claim": "cope's ranger death looked avoidable, but it cost no NPCs.",
+     "check": {
+      "verdict": "partly",
+      "evidence": "cope's Ranger died at 5:08 in its own pit; cope had lost an archer outside at 4:46, but nothing after the death."
+     }
+    },
+    {
+     "t": 470,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "hdm got killed again at main and was in trouble.",
+     "check": {
+      "verdict": "agrees",
+      "evidence": "hdm lost Mes/A (7:36), Air Ele (7:48) and Monk 4 (8:14)."
+     }
+    },
+    {
+     "t": 560,
+     "kind": "reason",
+     "who": "commentator",
+     "claim": "hdm then made its split beefier (ritualist and two elementalists); cope kept defending the same way and would lose for it.",
+     "tactics": [
+      "S31"
+     ],
+     "check": {
+      "verdict": "partly",
+      "evidence": "hdm split Air Ele, Fire Ele, Ritualist and Dervish at 9:37; cope's pit fell later, at 15:30 to 15:58, to a six-player hdm push."
+     }
+    },
+    {
+     "t": 900,
+     "kind": "reason",
+     "who": "commentator",
+     "claim": "Answer the split with the prot; cope's main team gets no benefit from having it at main.",
+     "tactics": [
+      "S24"
+     ],
+     "check": {
+      "verdict": "can't measure",
+      "evidence": "The usual-play comparison of defender choices needs step 4."
+     }
+    },
+    {
+     "t": 1160,
+     "kind": "diagnosis",
+     "who": "commentator",
+     "claim": "cope's main team did nothing for 19 minutes, killing one footman, then tried a push at the end and was wiped.",
+     "tactics": [
+      "P3"
+     ],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "cope killed no hdm player after 8:14 until the end; its push at 19:25 lost 10 players by 21:31."
+     }
+    },
+    {
+     "t": 1170,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "cope had guests (ranger and another) and without its core lineup looked lost.",
+     "check": {
+      "verdict": "can't measure",
+      "evidence": "Lineup strength is measured (lineup.py) but not checked against this claim here."
+     }
+    }
+   ]
+  },
+  "2df9b7fd-823e-5df7-ad4e-192612cd9249": {
+   "tag": "Team v push",
+   "map": "Isle of Meditation",
+   "event": "October 2026 monthly playoffs",
+   "result": "Team won at about 25:35",
+   "transcript": "attachment 05b655fc",
+   "teams": "Team (double melee, ritualist, two mesmers) against push (monk spike: WoC monks with Return)",
+   "alignment": "Team 8 Monk death 1:50, push knight 2:10, push Snare death 4:16, push knight 4:29, Team boosts 5:44 and 14:16, push Bodyguard 8:52, push wipes 23:56 to 25:27",
+   "claims": [
+    {
+     "t": 60,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "push collapsed Team's split, which is right on this map, but went for the 8 monk, not the best target.",
+     "tactics": [
+      "K6"
+     ],
+     "variable": "monk_focus",
+     "check": {
+      "verdict": "partly",
+      "evidence": "Team's 8 Monk died at 1:50. Across 140 matches, groups putting most of their damage on healers killed in 19% of phases against 14% on other players (healer focus did better, contradicting the general claim); Bounty's narrower point (time spent on a monk late in the match) isn't tested."
+     }
+    },
+    {
+     "t": 250,
+     "kind": "diagnosis",
+     "who": "commentator",
+     "claim": "push's snare character was soloed by Team's warrior while the 8 was out with the split instead of defending; push lost a second knight.",
+     "tactics": [
+      "S33"
+     ],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "push's Snare died at 4:16 in its own base (6v4); push lost knights at 2:10 and 4:29."
+     }
+    },
+    {
+     "t": 330,
+     "kind": "diagnosis",
+     "who": "commentator",
+     "claim": "push's returns were slow for a monk spike; letting Team set up on both fronts is the worst case for this build.",
+     "tactics": [
+      "B10"
+     ],
+     "check": {
+      "verdict": "can't measure",
+      "evidence": "Shadow Step speed and coverage could be measured from positions; not done."
+     }
+    },
+    {
+     "t": 340,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "On top of that, Team boosts.",
+     "check": {
+      "verdict": "agrees",
+      "evidence": "Team boosted at 5:44."
+     }
+    },
+    {
+     "t": 400,
+     "kind": "diagnosis",
+     "who": "commentator",
+     "claim": "push collapsed before its snare character could snare, which wastes the collapse.",
+     "tactics": [
+      "S33"
+     ],
+     "variable": "collapse_snare",
+     "check": {
+      "verdict": "partly",
+      "evidence": "Across 140 matches a collapse with a snare carrier killed a splitter 18% of the time against 12% without (not clear yet; the order of arrival isn't measured)."
+     }
+    },
+    {
+     "t": 500,
+     "kind": "reason",
+     "who": "commentator",
+     "claim": "A monk spike defends splits with the 6 and the 8 in its base; push's 8 kept following the main team and was soloed.",
+     "tactics": [
+      "S33"
+     ],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "push lost its pit piece by piece: archers 4:45 and 7:29, Bodyguard 8:52."
+     }
+    },
+    {
+     "t": 700,
+     "kind": "diagnosis",
+     "who": "commentator",
+     "claim": "push copied a meta bar and changed it: the 6 has only one real snare (Siphon Speed), which one Blight removes.",
+     "tactics": [
+      "B3"
+     ],
+     "check": {
+      "verdict": "partly",
+      "evidence": "The engine's skill data counts three snare skills on push's Snare (Siphon Speed, Caltrops, Return); Return is mainly an escape, so 'one real snare' is close to Bounty's reading."
+     }
+    },
+    {
+     "t": 840,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "At 14 minutes push had put no real death penalty on Team, had no pit NPCs left, and only its position kept it in the game.",
+     "tactics": [
+      "P3"
+     ],
+     "check": {
+      "verdict": "partly",
+      "evidence": "push had lost both knights, two archers and the Bodyguard by 8:52; Team had 5 deaths by 14:00, not none."
+     }
+    },
+    {
+     "t": 1200,
+     "kind": "reason",
+     "who": "commentator",
+     "claim": "Behind at 20 minutes, a team should keep fighting for every edge (spikes, death penalty) until about 26:00, then take a gamble to finish.",
+     "tactics": [
+      "L11"
+     ],
+     "check": {
+      "verdict": "can't measure",
+      "evidence": "A plan; the late-game choice could be priced in step 4."
+     }
+    }
+   ]
+  },
+  "6f7743eb-940d-5cc3-aa5b-32c17a66bf5a": {
+   "tag": "옷옷옷옷 v Book",
+   "map": "Isle of Meditation",
+   "event": "October 2026 monthly playoffs",
+   "result": "옷옷옷옷 won at about 6:08",
+   "transcript": "attachment 73d10592 (Bounty plays mesmer for 옷옷옷옷)",
+   "teams": "옷옷옷옷 (I Council) blue, Book red",
+   "alignment": "Book wipe 1:21 to 3:06, Book Assassin death after time 2:03, Book Mes/A death 3:43, 옷옷옷옷's three-player split 3:45, Book split 4:53, Book wipe 4:55 to 5:41",
+   "claims": [
+    {
+     "t": 60,
+     "kind": "prediction",
+     "who": "commentator",
+     "claim": "Against a pressure build, expect the pressure team to kill slowly and the spike team to kill one target fast.",
+     "tactics": [
+      "B14"
+     ],
+     "check": {
+      "verdict": "partly",
+      "evidence": "옷옷옷옷's spikes killed Book's Prot, AoB Derv and Assassin from 1:36; Book's pressure killed no one."
+     }
+    },
+    {
+     "t": 90,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "Book had all the tools for catching spikes (Reversal of Fortune on the 8, Life Sheath and Spirit Bond on the 6, Infuse on the 7).",
+     "tactics": [
+      "B18"
+     ],
+     "check": {
+      "verdict": "partly",
+      "evidence": "Book still lost six players by 3:43."
+     }
+    },
+    {
+     "t": 123,
+     "kind": "diagnosis",
+     "who": "commentator",
+     "claim": "Book lost its assassin after time on his shield set, which is costly.",
+     "check": {
+      "verdict": "agrees",
+      "evidence": "Book's Assassin died at 2:03 (after time)."
+     }
+    },
+    {
+     "t": 250,
+     "kind": "diagnosis",
+     "who": "commentator",
+     "claim": "Book always had someone timed or stuck, so it never had a moment to play tactics and was simply overwhelmed.",
+     "tactics": [
+      "K5"
+     ],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "Book had 13 deaths by 5:37."
+     }
+    },
+    {
+     "t": 300,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "Book split with three including its 8 monk, leaving two monks at main; the answer (one damage, the smite) was enough.",
+     "tactics": [
+      "S24"
+     ],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "Book's split (4:53: AoB Derv, 8 Monk, Mes/A) lost its Paragon at 4:55 and achieved nothing."
+     }
+    },
+    {
+     "t": 340,
+     "kind": "reason",
+     "who": "commentator",
+     "claim": "Book should have started splitting earlier, though it never had a free moment.",
+     "tactics": [
+      "S7"
+     ],
+     "check": {
+      "verdict": "can't measure",
+      "evidence": "A choice not taken."
+     }
+    }
+   ]
+  }
+ }
+}

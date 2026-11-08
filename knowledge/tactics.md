@@ -261,7 +261,9 @@ against general principles rather than past games. Match-by-match evidence lives
   kill.
 - `S33` **Bounty:** A monk spike defends against splits with the snare character and the 8 (the 6 snares, the 8 heals,
   the collapse kills). Collapsing before the snare lands is wasted time; the 8 following the main team leaves the pit
-  open.
+  open. **Claude (data, `comms_vars.py` collapse_snare, 140 matches):** splits answered by 2+ defenders killed a
+  splitter 18% of the time with a snare carrier among them against 12% without, at the same numbers (interval -3 to
+  +14 points, not clear yet). The order (snare first, then collapse) isn't measured yet. [Team v push] [BcS v Crew]
 - `S34` **Bounty:** A fast ranger left at the back door can warn the team, take free footmen and lead the answer to
   splits.
 - `S35` **OG comms:** Name the split's make-up the moment it is seen, ask the defenders whether they can hold it, and
@@ -309,6 +311,8 @@ against general principles rather than past games. Match-by-match evidence lives
   oddly. **Claude (data, 61 matches):** teams that lost a footman won 41% of the time against 65% for teams that lost
   none (descriptive: losing teams also get pushed). Win-model candidate `footmen_diff`; values.py prices a footman lost.
   [OG v Dz] [ohno v NwAy]
+- `P15` **Bounty (Crew's rule):** If a team pushes your pit with only one monk, kill it. BcS's six-damage, one-monk
+  push lost five players in 37 s (16:39 to 17:16); it is a last resort that only works by killing fast. [BcS v Crew]
 
 ### Base races
 - `P6` **Bounty:** A team defending with only 2 players is saying "give us time to finish", so it should not chase
@@ -404,6 +408,9 @@ against general principles rather than past games. Match-by-match evidence lives
   down on flags: a team with an on-time flag, or up on flags, would have capped earlier. [hdm v HC I2]
 - `F27` **Bounty:** Missing a boost by a few seconds matters. Don't drop the flag without a reason; dropping it to a
   better runner is fine.
+- `F36` **Bounty:** If a capture will be overcapped at once, don't take it: the runner's time is a wasted cycle (BcS
+  capped at 8:14 and was overcapped at 8:17). Capping can still pay off when it baits the enemy into a fight the team
+  wins (BcS at 15:33, killing Crew's carrier). [BcS v Crew]
 - `F28` **Nick:** Holding the flag to tie up an enemy prot only helps if the advantage is used somewhere else;
   otherwise it lets the enemy keep its damage together. [Men v Team]
 - `F29` **Claude:** In a long even game, boosts are the scoreboard: they are often the only lasting edge, so
@@ -460,7 +467,17 @@ against general principles rather than past games. Match-by-match evidence lives
 - `K5` **Bounty:** A team that always has someone timed or stuck has no moment to play tactics and gets overwhelmed.
   Resurrecting too late wastes time; teams under pressure are often scared to go for the res.
 - `K6` **Bounty:** Target choice costs time: 30 to 40 s failing to kill a monk is fine at 2 minutes, not at 22. A build
-  that needs time must use every 2 minutes.
+  that needs time must use every 2 minutes. **Claude (data, `comms_vars.py` monk_focus, 140 matches):** in general
+  the opposite holds: groups putting most of their player damage on the enemy healers killed in 19% of phases against
+  14% for groups hitting other players, at the same local numbers and phase length (+2 points, interval +1 to +4).
+  Partly selection (groups that can reach the healers are usually winning the fight); the late-match cost of a
+  failed monk kill isn't tested. [Team v push]
+- `K19` **Bounty:** A team that is never one unit (players scattered over the map filling gaps) isn't all there when a
+  chance comes, so it doesn't kill. **Claude (data, `comms_vars.py` scattered, 140 matches):** teams with under 70%
+  of their live players in their biggest engaged group killed in 14% of phases against 18% when together, at the same
+  overall numbers and phase length (-2 points, interval -4 to 0, supported); they didn't lose players more often. In
+  [BcS v Crew] itself the measure has BcS together (88%) and Crew, splitting, scattered, so Bounty's point there may be
+  spacing inside the group. [BcS v Crew]
 - `K7` **Bounty:** The first 30 seconds shape the match. A team that double runs out front still has to survive the
   opening fight.
 - `K8` **Claude:** Kills are only worth what they are converted into: the strongest teams turn each kill straight into
@@ -639,6 +656,9 @@ against general principles rather than past games. Match-by-match evidence lives
   warrior, and so on.
 - **Denning:** **Y** is the run from the flag spawn to the stand; a **backup flag** is a flag held near the stand
   while your team already holds it.
+- **Bounty:** A **cycle** is a 2-minute window in which a team can push, do damage and deal with the split; wasting
+  one (a needless cap, chasing, a collapse that kills nothing) is how a slow build loses. **Inaccuracies** are small
+  errors that add up to a blunder (his chess comparison).
 - Auto-transcripts garble terms: "X-way" and "axes" mean hex way and hexes; "Ellie" or "LE" means elementalist.
 
 ## 14. Situations: what is the best play here?

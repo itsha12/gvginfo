@@ -757,6 +757,16 @@ changing status only after two batches in a row, declined: links keep changing s
   out of heal range), OG v hold (a base race won by 0.3 s after OG healed its own Lord for 1,390, `L12`). Engine issue
   found there: the rebuilt Lord health had hold ahead, the reverse of the result (lord.py to check).
 
+- Bounty's seven matches (session 4t, 2026-11-08): Apes v cope, 옷옷옷옷 v Book, OG v hold, Team v push, cope v hdm, True v
+  One and BcS v Crew (new: replay fetched for it). 57 claims in `data/commentary/bounty.json`, each checked. New
+  variables in `comms_vars.py` (140 matches): `scattered` (under 70% of a team's live players in its biggest engaged
+  group: kills in 14% of phases against 18%, supported, tactics `K19`; in BcS v Crew the measure has BcS together, so
+  Bounty may mean spacing inside the group); `monk_focus` (groups hitting mostly healers kill more, 19% against 14%:
+  contradicts the general claim, partly selection, `K6`); `collapse_snare` (a snare carrier among 2+ defenders: a
+  splitter dies 18% against 12%, unclear, `S33`; `buildfeat.player_flags` counts Return as a snare). New lines `F36`
+  (don't cap into an instant overcap), `P15` (kill a one-monk pit push), "cycle" and "inaccuracies" under Language.
+  Not yet model variables: held for Denning's ruling and bundled with Nick's into one engine change.
+
 ## Flag position (Denning, tactics `F1` to `F4`)
 - Up on flags = the better position to get a boost and to run, not the team that capped last.
 - ETA to capture: carrying = distance to the stand / 205 units per second; a dropped flag = the nearest runner's walk

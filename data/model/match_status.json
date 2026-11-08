@@ -27,7 +27,7 @@
    "why_shown": [],
    "reviewed": null,
    "commentary": {
-    "Bounty": "pending"
+    "Bounty": "checked"
    },
    "notes": null
   },
@@ -89,7 +89,7 @@
    ],
    "reviewed": null,
    "commentary": {
-    "Bounty": "pending"
+    "Bounty": "checked"
    },
    "notes": null
   },
@@ -145,7 +145,7 @@
    "why_shown": [],
    "reviewed": null,
    "commentary": {
-    "Bounty": "pending",
+    "Bounty": "checked",
     "OG comms": "checked"
    },
    "notes": null
@@ -180,7 +180,7 @@
    "why_shown": [],
    "reviewed": null,
    "commentary": {
-    "Bounty": "pending"
+    "Bounty": "checked"
    },
    "notes": null
   },
@@ -214,7 +214,7 @@
    "why_shown": [],
    "reviewed": null,
    "commentary": {
-    "Bounty": "pending"
+    "Bounty": "checked"
    },
    "notes": null
   },
@@ -347,7 +347,7 @@
    ],
    "reviewed": null,
    "commentary": {
-    "Bounty": "pending"
+    "Bounty": "checked"
    },
    "notes": null
   },
@@ -1827,11 +1827,35 @@
    "commentary": {},
    "notes": null
   },
+  "3dd84ec7-29f5-578d-a7ad-42a272bff049": {
+   "batch": null,
+   "review": null,
+   "sources": [
+    "Bounty"
+   ],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {
+    "Bounty": "checked"
+   },
+   "notes": null
+  },
   "82fa12be-98d8-57e0-aa8e-c8e1e0253ea4": {
    "batch": null,
    "teams": "RV v DUM",
    "map": "Nomad's Isle",
    "engine": 17,
+   "review": null,
+   "sources": [],
+   "labels": 0,
+   "why_shown": [],
+   "reviewed": null,
+   "commentary": {},
+   "notes": null
+  },
+  "8c5fe04a-a7be-59f2-a7e9-b6416bab25c4": {
+   "batch": null,
    "review": null,
    "sources": [],
    "labels": 0,

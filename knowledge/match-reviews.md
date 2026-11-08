@@ -29,7 +29,8 @@ page; tags such as [Men v Team] on that page point here.
   9b0816e2-c0eb-5797-a1b1-9962c8415307), 옷옷옷옷 v Book (Meditation, 6f7743eb-940d-5cc3-aa5b-32c17a66bf5a), OG v hold
   (Meditation, 49eec28d-0f4b-5cc1-a146-4d1ad0bd642b), Team v push (Meditation, 2df9b7fd-823e-5df7-ad4e-192612cd9249),
   cope v hdm (Uncharted, 1d073205-fdec-5684-aa7a-b03a558a9471), True v One (Meditation,
-  f34cb3a9-98c7-53d0-a980-60aa7dd5bc8d). Bounty plays mesmer for 옷옷옷옷, so weigh his comments on their games with
+  f34cb3a9-98c7-53d0-a980-60aa7dd5bc8d), BcS v Crew (Meditation, 3dd84ec7-29f5-578d-a7ad-42a272bff049). Claims checked
+  against the engine in data/commentary/bounty.json. Bounty plays mesmer for 옷옷옷옷, so weigh his comments on their games with
   that in mind.
 - **Nick:** YouTube commentary of the September 2026 monthly final, [Men v Team].
 - **OG comms:** Maga's streams of OG's own voice comms. September 2026 automated tournaments (OG played as tag ohno):

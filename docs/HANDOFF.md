@@ -102,6 +102,20 @@ is split across parallel GitHub jobs, and batch 9 (20 random matches, 15 from Se
 133 matches. Next: Denning's rulings on the three pending proposals (3, 11, 14), then build the approved ones in one
 engine change before the next run, then the commentary transcripts and step 3 (discovery).
 
+### Session 4t (2026-11-08)
+- Agreed order (Denning): 1) Bounty's and Nick's transcripts, then one engine change and one rebuild; 2) build and test
+  steps 3 (discovery) and 4 (chains from the node models) on the current matches; 3) speed-up (spread prepare and the
+  event records across machines); 4) the large pull (450+), then discovery and step 4 on the full set. Whether to
+  train the large pull in chunks of 50 to 100 is still to decide.
+- Dropped by Denning: the two OG comms matches whose claims were never filed (OG v chic, OG v cope U); status
+  "dropped".
+- Bounty done (7 matches, 57 claims, data/commentary/bounty.json; METHODS.md "Commentary and comms"). BcS v Crew
+  (3dd84ec7) was added to the replays; it isn't in a training batch yet: include it in the next batch.
+- New measured variables (comms_vars.py; no engine change, comms_vars isn't part of the engine fingerprint):
+  scattered (supported), monk_focus (contradicted), collapse_snare (unclear). Awaiting Denning's ruling on which become
+  model variables.
+- Next: Nick's transcript ([Men v Team], d4660b7b), then the one engine change for both sources and a rebuild.
+
 ### Session 4s (2026-11-07)
 - Built 16 of the 17 batch 9 proposals (all but 10) in one engine change; details in METHODS.md "Rulings after batch 9".
   Notable: the data picks the `spike_killable_diff` cap (10 to 25 points, or none; data/model/cap_choices.json); win
@@ -283,8 +297,8 @@ the TQ reasoning.
   the run into parallel jobs is the way to speed it up if Denning wants (step 2 below).
 
 ## Next steps (in order)
-1. Commentary (new chat): Bounty's six matches, then Nick's one (Denning attaches the transcripts; METHODS.md
-   "Commentary and comms"). The variables they suggest can become new links in the learned nodes (features in
+1. Commentary: Bounty's done (session 4t); Nick's one next (Denning attaches it; METHODS.md "Commentary and comms"),
+   then one engine change for both and a rebuild. The variables they suggest can become new links in the learned nodes (features in
    lnrows.py, groups in learnednodes.py SPEC), so step 3 tests them too.
 2. Done (session 4r): Train batch split into parallel jobs. Next speed-up if wanted: prepare's per-match data.
 3. Step 3: discovery: every measured variable tested against every node on unseen matches, in its own workflow split

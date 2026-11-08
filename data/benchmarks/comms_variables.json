@@ -1,27 +1,27 @@
 {
  "about": "Variables suggested by commentary and comms, measured in every stored replay (comms_vars.py). Intervals: 90% from resampling whole matches. Verdict: supported / contradicted when the interval excludes zero, else unclear.",
- "matches": 61,
+ "matches": 140,
  "variables": {
   "solo_monk": {
    "measure": "groups of 3+ players facing enemies in a phase: one healer against two or more, same local numbers; outcome = the group lost a player in that phase",
-   "n": 6279,
-   "rate_one_healer": 0.113,
-   "rate_two_plus": 0.112,
-   "difference": -0.002,
+   "n": 13654,
+   "rate_one_healer": 0.128,
+   "rate_two_plus": 0.117,
+   "difference": 0.001,
    "interval_90": [
-    -0.023,
-    0.023
+    -0.014,
+    0.019
    ],
    "verdict": "supported (healer's own death; the group test was the wrong outcome)",
    "healer_death": {
     "measure": "healers in a fight every 5 s: no other own healer within casting range against one or more; outcome = the healer died within 10 s; same local numbers",
-    "n": 39346,
+    "n": 87567,
     "rate_alone": 0.034,
     "rate_supported": 0.011,
-    "difference": 0.036,
+    "difference": 0.04,
     "interval_90": [
-     0.021,
-     0.048
+     0.028,
+     0.05
     ],
     "verdict": "supported"
    },
@@ -29,13 +29,13 @@
   },
   "no_healer_group": {
    "measure": "groups of 2+ facing enemies in a phase: no healer against at least one, same local numbers; outcome = lost a player",
-   "n": 7234,
-   "rate_no_healer": 0.23,
-   "rate_with_healer": 0.112,
+   "n": 15573,
+   "rate_no_healer": 0.259,
+   "rate_with_healer": 0.119,
    "difference": 0.107,
    "interval_90": [
-    0.053,
-    0.171
+    0.072,
+    0.142
    ],
    "verdict": "supported",
    "source": "OG comms [ohno v One]: keep a prot and a monk on one side and the Rit and a monk on the other at all times"
@@ -43,179 +43,179 @@
   "spread": {
    "measure": "players in a fight every 5 s: nearest ally under 150 units (tight) against farther, same local numbers; outcome = died within 10 s; split by whether the enemy has 2+ elementalists (area damage)",
    "all": {
-    "n": 104967,
-    "rate_tight": 0.01,
-    "rate_spread": 0.015,
-    "difference": -0.003,
+    "n": 231813,
+    "rate_tight": 0.012,
+    "rate_spread": 0.016,
+    "difference": -0.001,
     "interval_90": [
-     -0.005,
-     -0.001
+     -0.003,
+     0.001
     ],
-    "verdict": "contradicted"
+    "verdict": "unclear (interval crosses zero)"
    },
    "vs_area_damage": {
-    "n": 18779,
-    "rate_tight": 0.011,
-    "rate_spread": 0.018,
-    "difference": -0.002,
+    "n": 44300,
+    "rate_tight": 0.013,
+    "rate_spread": 0.019,
+    "difference": -0.003,
     "interval_90": [
-     -0.008,
-     0.006
+     -0.006,
+     0.002
     ],
     "verdict": "unclear (interval crosses zero)"
    },
    "vs_other": {
-    "n": 86188,
-    "rate_tight": 0.01,
-    "rate_spread": 0.014,
-    "difference": -0.003,
+    "n": 187513,
+    "rate_tight": 0.012,
+    "rate_spread": 0.015,
+    "difference": -0.0,
     "interval_90": [
-     -0.005,
-     -0.001
+     -0.002,
+     0.002
     ],
-    "verdict": "contradicted"
+    "verdict": "unclear (interval crosses zero)"
    },
    "source": "OG comms [ohno v Fun], [OG v cope J]: 'spread out' against invoke and Ele spikes"
   },
   "area_damage_spacing": {
    "measure": "players in a fight against a team with 2+ elementalists, every 5 s: area-skill damage taken in the next 5 s with 2+ allies within 322 against 0 or 1; same local numbers",
-   "n": 18779,
-   "mean_2plus_allies_close": 7.6,
-   "mean_0_or_1": 10.4,
+   "n": 44300,
+   "mean_2plus_allies_close": 9.5,
+   "mean_0_or_1": 11.7,
    "by_allies_in_area": {
-    "0": 10.9,
-    "1": 9.5,
-    "2": 7.0,
-    "3": 8.8
+    "0": 12.0,
+    "1": 11.3,
+    "2": 9.6,
+    "3": 9.5
    },
-   "difference": -0.5,
+   "difference": -0.0,
    "interval_90": [
-    -2.5,
-    1.2
+    -1.5,
+    1.1
    ],
    "verdict": "unclear (interval crosses zero)",
    "source": null
   },
   "strip_on_spike": {
    "measure": "spikes (400+ in 3 s): an enchantment removal by the spiking team finished on the target from 2 s before the first hit to 1 s after; outcome = the target died within 8 s; compared within the number of spikers",
-   "n": 546,
-   "cases": 210,
-   "rate_with": 0.333,
-   "rate_without": 0.351,
-   "difference": -0.044,
+   "n": 1323,
+   "cases": 396,
+   "rate_with": 0.323,
+   "rate_without": 0.35,
+   "difference": -0.041,
    "interval_90": [
-    -0.129,
-    0.055
+    -0.089,
+    0.012
    ],
    "verdict": "unclear (interval crosses zero)",
    "source": "OG comms [ohno v Crew]: 'double Shatter kills'"
   },
   "armor_on_spike": {
    "measure": "spikes (400+ in 3 s): the target had Cracked Armor at the first hit; outcome = the target died within 8 s; compared within the number of spikers",
-   "n": 546,
-   "cases": 101,
-   "rate_with": 0.307,
+   "n": 1323,
+   "cases": 260,
+   "rate_with": 0.296,
    "rate_without": 0.353,
-   "difference": -0.059,
+   "difference": -0.077,
    "interval_90": [
-    -0.157,
-    0.031
+    -0.124,
+    -0.034
    ],
-   "verdict": "unclear (interval crosses zero)",
+   "verdict": "contradicted",
    "source": "OG comms [OG v cope J]: land Shell Shock between 'two' and 'one' of the countdown"
   },
   "hexed_spikers": {
    "measure": "spikes (400+ in 3 s): at least one spiker carried a hex at the first hit; outcome = the target died within 8 s; compared within the number of spikers",
-   "n": 546,
-   "cases": 209,
-   "rate_with": 0.244,
-   "rate_without": 0.407,
-   "difference": -0.166,
+   "n": 1323,
+   "cases": 446,
+   "rate_with": 0.28,
+   "rate_without": 0.373,
+   "difference": -0.1,
    "interval_90": [
-    -0.254,
-    -0.075
+    -0.159,
+    -0.044
    ],
    "verdict": "supported",
    "source": "OG comms [OG v cope J], [OG v hdm]: Migraine not covered on a spiker, 'why are we not killing'"
   },
   "spike_caster_sets": {
    "measure": "spikes (400+ in 3 s): most spikers held a fast-cast caster set with no shield (40/40); outcome = the target died within 8 s; compared within the number of spikers",
-   "n": 546,
-   "cases": 303,
-   "rate_with": 0.31,
-   "rate_without": 0.387,
-   "difference": -0.081,
+   "n": 1323,
+   "cases": 720,
+   "rate_with": 0.342,
+   "rate_without": 0.342,
+   "difference": -0.003,
    "interval_90": [
-    -0.164,
-    0.019
+    -0.067,
+    0.06
    ],
    "verdict": "unclear (interval crosses zero)",
    "source": null,
-   "teams_mostly_caster_sets_spikes": 44
+   "teams_mostly_caster_sets_spikes": 104
   },
   "spike_target_shield": {
    "measure": "spikes (400+ in 3 s): the target held a shield set at the first hit; outcome = the target died within 8 s; compared within the number of spikers",
-   "n": 546,
-   "cases": 279,
-   "rate_with": 0.362,
-   "rate_without": 0.326,
-   "difference": 0.019,
+   "n": 1323,
+   "cases": 630,
+   "rate_with": 0.354,
+   "rate_without": 0.33,
+   "difference": 0.014,
    "interval_90": [
-    -0.042,
-    0.077
+    -0.027,
+    0.056
    ],
    "verdict": "unclear (interval crosses zero)",
    "source": null
   },
   "interrupted_spikers": {
    "measure": "spikes (400+ in 3 s): the spiking team was interrupted at least once in the 5 s before the first hit; outcome = the target died within 8 s; compared within the number of spikers",
-   "n": 546,
-   "cases": 173,
-   "rate_with": 0.231,
-   "rate_without": 0.397,
-   "difference": -0.168,
+   "n": 1323,
+   "cases": 377,
+   "rate_with": 0.241,
+   "rate_without": 0.382,
+   "difference": -0.142,
    "interval_90": [
-    -0.269,
-    -0.077
+    -0.2,
+    -0.083
    ],
    "verdict": "supported",
    "source": null
   },
   "low_morale": {
    "measure": "players in a fight every 5 s: death penalty 15% or more against none; outcome = died within 10 s; same local numbers",
-   "n": 73628,
+   "n": 169795,
    "rate_dp15": 0.049,
-   "rate_no_dp": 0.012,
-   "difference": 0.03,
+   "rate_no_dp": 0.013,
+   "difference": 0.028,
    "interval_90": [
-    0.023,
-    0.039
+    0.024,
+    0.034
    ],
    "verdict": "supported",
    "source": "OG comms [ohno v One]: their warrior has 30 DP, we could just fight him"
   },
   "merge": {
    "measure": "groups in the enemy pit or base: 7+ players against 3 to 6; outcome = killed a player in that phase (and, separately, lost one)",
-   "n": 1060,
-   "kill_rate_full": 0.485,
-   "kill_rate_partial": 0.189,
-   "difference": 0.296,
+   "n": 2200,
+   "kill_rate_full": 0.492,
+   "kill_rate_partial": 0.187,
+   "difference": 0.305,
    "interval_90": [
-    0.221,
-    0.368
+    0.256,
+    0.35
    ],
-   "loss_rate_difference": -0.04,
+   "loss_rate_difference": -0.036,
    "verdict": "supported",
    "source": "OG comms [ohno v Crew]: whoever called to merge, we ended way earlier"
   },
   "turtle": {
    "measure": "a team with 75%+ of its live players in its own base or pit for 60 s straight (5+ alive), with no deaths in the 2 minutes before (so not just resurrected); what the next 90 s held and who won",
-   "n": 13,
-   "turtling_team_won": 0.231,
+   "n": 24,
+   "turtling_team_won": 0.25,
    "after_90s": {
-    "npcs_lost_by_turtle": 0.31,
-    "deaths_turtle": 0.38,
-    "deaths_other": 0.46
+    "npcs_lost_by_turtle": 0.5,
+    "deaths_turtle": 0.67,
+    "deaths_other": 0.58
    },
    "cases": [
     "1f65fd3b RACK 9:10",
@@ -230,24 +230,35 @@
     "c553716d One 21:05",
     "c553716d One 23:10",
     "1cb73c20 Fun 11:00",
-    "1cb73c20 Fun 14:30"
+    "1cb73c20 Fun 14:30",
+    "b56cb743 hook 8:10",
+    "6dd8966c MBP 9:05",
+    "1729daac Crew 23:15",
+    "1729daac Crew 25:20",
+    "81b3dd52 BcS 14:55",
+    "2b2f2c43 hook 8:05",
+    "ce2082b0 Apes 12:45",
+    "862d6629 NwAy 24:05",
+    "9e6d6ce3 RV 3:05",
+    "9e6d6ce3 RV 5:10",
+    "9e6d6ce3 RV 7:15"
    ],
    "verdict": "descriptive (the win-model candidate turtle_diff tests it on unseen matches)",
    "source": "OG comms [ohno v One], [ohno v Crew]: they are turtling, so we have to make a play; if they get a kill it may break the turtle"
   },
   "footmen": {
    "measure": "footmen (base NPCs) per team per match: how many it had, lost, and whether it won",
-   "teams": 122,
-   "had_mean": 1.74,
-   "teams_losing_any": 76,
-   "won_when_losing_any": 0.408,
-   "won_when_losing_none": 0.652,
+   "teams": 280,
+   "had_mean": 1.61,
+   "teams_losing_any": 171,
+   "won_when_losing_any": 0.404,
+   "won_when_losing_none": 0.651,
    "verdict": "descriptive (the win-model candidate footmen_diff and values.py test it)",
    "source": null
   },
   "portal": {
    "measure": "Isle of Solitude: a player moving 2,500+ units in one recorded second (a portal jump)",
-   "n": 155,
+   "n": 228,
    "by_team": {
     "a8ba43a8 RACK": 22,
     "a8ba43a8 \uc637\uc637\uc637\uc637": 20,
@@ -258,10 +269,65 @@
     "c553716d One": 9,
     "c553716d ohno": 2,
     "1cb73c20 ohno": 36,
-    "1cb73c20 Fun": 59
+    "1cb73c20 Fun": 59,
+    "df28f03b chic": 1,
+    "910546b6 Men": 4,
+    "1729daac Crew": 6,
+    "1729daac Dz": 3,
+    "6db63508 Crew": 19,
+    "d566775e hold": 10,
+    "d566775e Book": 8,
+    "82c41cb9 Men": 7,
+    "ce2082b0 NwAy": 6,
+    "ce2082b0 Apes": 6,
+    "6023823f Free": 2,
+    "6023823f Men": 1
    },
    "verdict": "descriptive (too few Solitude matches to test)",
    "source": "OG comms [ohno v One], [ohno v Fun]: fake a collapse, then port back in; every rotation does Lord damage"
+  },
+  "monk_focus": {
+   "measure": "groups with 2+ damage dealers facing enemies in a phase (8 s+), most of their player damage on the enemy healers against most on other players; outcome = killed a player in that phase; same local numbers and phase length",
+   "n": 8324,
+   "cases": 2365,
+   "rate_on_healers": 0.191,
+   "rate_on_others": 0.137,
+   "difference": 0.022,
+   "interval_90": [
+    0.006,
+    0.038
+   ],
+   "verdict": "contradicted",
+   "source": "Bounty [Team v push], [BcS v Crew]: they keep trying to kill monks and don't kill; the 8 monk is not the best target"
+  },
+  "scattered": {
+   "measure": "each team in each phase (8 s+, 5+ alive, facing enemies): under 70% of its live players in its biggest engaged group (scattered) against 70%+; outcome = the team killed a player in that phase (and, separately, lost one); same overall numbers alive and phase length",
+   "n": 9134,
+   "cases": 2549,
+   "kill_rate_scattered": 0.142,
+   "kill_rate_unit": 0.176,
+   "difference": -0.021,
+   "interval_90": [
+    -0.037,
+    -0.003
+   ],
+   "loss_rate_difference": -0.002,
+   "verdict": "supported",
+   "source": "Bounty [BcS v Crew]: they're never a unit, always scattered; when they fill the gaps they're not all here, so they don't kill"
+  },
+  "collapse_snare": {
+   "measure": "splits answered by 2+ defenders (5 s+ each): a defender carrying a snare against none; outcome = a splitter died during the split; same defenders and splitters (capped at 4)",
+   "n": 401,
+   "cases": 305,
+   "rate_with_snare": 0.184,
+   "rate_without": 0.115,
+   "difference": 0.063,
+   "interval_90": [
+    -0.034,
+    0.135
+   ],
+   "verdict": "unclear (interval crosses zero)",
+   "source": "Bounty [Team v push], [BcS v Crew]: the collapse is useless if it starts before the snare character is there to snare"
   }
  }
 }

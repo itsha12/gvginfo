@@ -27,6 +27,12 @@ Variables (more can be added to VARS):
   spike_caster_sets, spike_target_shield  weapon sets on spikes (40/40 against shields)
   footmen          footmen lost and the result
   portal           Isle of Solitude: portal jumps (fake collapse, then port in) and what follows them
+  monk_focus       (Bounty) a group that keeps hitting the enemy healers kills less than one hitting other players
+                   ("they keep trying to kill monks, they're not even killing him")
+  scattered        (Bounty) a team spread over the map, not one unit, gets fewer kills at the same overall numbers
+                   ("they're never a unit, always so scattered... they're not all here, so they're not killing")
+  collapse_snare   (Bounty) a collapse on a split kills the splitters when a snare carrier is in it ("they're
+                   collapsing before these people are snaring, so it's useless")
 Not measurable from the replay data (said in the comms, kept as open items): gate or lock control, terrain and line of
 sight (stairs, walls, choke points), energy, call timing ("4, 3, 2, 1").
 
@@ -47,6 +53,9 @@ SOURCE = {
     "merge": "OG comms [ohno v Crew]: whoever called to merge, we ended way earlier",
     "turtle": "OG comms [ohno v One], [ohno v Crew]: they are turtling, so we have to make a play; if they get a kill it may break the turtle",
     "portal": "OG comms [ohno v One], [ohno v Fun]: fake a collapse, then port back in; every rotation does Lord damage",
+    "monk_focus": "Bounty [Team v push], [BcS v Crew]: they keep trying to kill monks and don't kill; the 8 monk is not the best target",
+    "scattered": "Bounty [BcS v Crew]: they're never a unit, always scattered; when they fill the gaps they're not all here, so they don't kill",
+    "collapse_snare": "Bounty [Team v push], [BcS v Crew]: the collapse is useless if it starts before the snare character is there to snare",
 }
 
 
@@ -223,11 +232,56 @@ def _footmen_rows(rid):
     return out
 
 
+def _bounty_rows(rid):
+    """Bounty's three: damage groups by what they hit (healers or other players), each team's spread over the map per
+    phase, and collapses on splits with or without a snare carrier among the defenders."""
+    import events as EV
+    from buildfeat import player_flags
+    from replaylib import Match
+    a = EV.analysis(rid); m = Match.from_branch(rid)
+    focus, scat, coll = [], [], []
+    for p in a["phases"]:
+        if p["secs"] < 8: continue
+        sb = "short" if p["secs"] < 25 else "long"
+        alive = {tag: sum(int(g["numbers"].split("v")[0]) for g in x.get("groups", []) if "v" in g.get("numbers", ""))
+                 for tag, x in p["teams"].items()}
+        for tag, x in p["teams"].items():
+            other = next((t for t in alive if t != tag), None)
+            engaged = []
+            for g in x.get("groups", []):
+                c = g.get("capacities") or {}
+                try: own, en = map(int, g["numbers"].split("v"))
+                except (ValueError, KeyError): continue
+                if en == 0: continue
+                engaged.append(own)
+                t = c.get("targets") or {}
+                if c.get("damage_dealers", 0) >= 2 and t:
+                    mk, ot = t.get("monks", 0), t.get("other players", 0) + t.get("flag carrier", 0)
+                    if mk + ot >= 0.6:
+                        focus.append({"m": rid, "y": int((c.get("kills") or 0) > 0), "monks": int(mk >= ot), "share": mk,
+                                      "s": f"{max(-2, min(2, own - en))}|{sb}"})
+            if not engaged or alive.get(tag, 0) < 5 or other is None: continue
+            share = max(engaged) / alive[tag]
+            kills = sum((g.get("capacities") or {}).get("kills") or 0 for g in x.get("groups", []))
+            losses = sum((g.get("capacities") or {}).get("losses") or 0 for g in x.get("groups", []))
+            scat.append({"m": rid, "y": int(kills > 0), "lost": int(losses > 0), "scattered": int(share < 0.7), "share": round(share, 2),
+                         "s": f"{max(-2, min(2, alive[tag] - alive[other]))}|{sb}"})
+    agent = {f"{m.tag[m.team(x)]} {m.roles.get(x)}": x for x in m.PL}
+    for sp in a["splits"]:
+        if sp.get("kind") != "split": continue
+        ds = [d for d in sp.get("defenders") or [] if (d.get("secs") or 0) >= 5]
+        if len(ds) < 2: continue
+        snare = any(player_flags(m, agent[d["who"]]).get("snare", 0) > 0 for d in ds if d["who"] in agent)
+        coll.append({"m": rid, "y": int(bool(sp.get("deaths"))), "snare": int(snare), "s": f"{min(len(ds), 4)}v{min(len(sp['members']), 4)}"})
+    return focus, scat, coll
+
+
 def _one(rid):
     try:
         pl, tu, mg, jp = _player_rows(rid)
+        fo, sc, co = _bounty_rows(rid)
         return {"groups": _phase_groups(rid), "spikes": _spike_rows(rid), "players": pl, "turtles": tu, "merges": mg, "jumps": jp,
-                "footmen": _footmen_rows(rid)}
+                "footmen": _footmen_rows(rid), "focus": fo, "scattered": sc, "collapses": co}
     except Exception as ex:
         return {"error": f"{rid}: {ex}"}
 
@@ -352,6 +406,24 @@ def measure(ids=None):
     res["portal"] = {"measure": "Isle of Solitude: a player moving 2,500+ units in one recorded second (a portal jump)",
                      "n": len(J), "by_team": dict(collections.Counter(f"{j['m'][:8]} {j['team']}" for j in J)),
                      "verdict": "descriptive (too few Solitude matches to test)"}
+    # Bounty: hitting the healers, a scattered team, snares in a collapse
+    FO = R["focus"]
+    d = _strat_diff(FO, "monks"); ci = _boot(_by_match(FO), lambda s: _strat_diff(s, "monks"))
+    res["monk_focus"] = {"measure": "groups with 2+ damage dealers facing enemies in a phase (8 s+), most of their player damage on the enemy healers against most on other players; outcome = killed a player in that phase; same local numbers and phase length",
+                         "n": len(FO), "cases": sum(r["monks"] for r in FO), "rate_on_healers": _rate([r for r in FO if r["monks"]]),
+                         "rate_on_others": _rate([r for r in FO if not r["monks"]]), "difference": d, "interval_90": ci, "verdict": _verdict(d, ci, -1)}
+    SC = R["scattered"]
+    d = _strat_diff(SC, "scattered"); ci = _boot(_by_match(SC), lambda s: _strat_diff(s, "scattered"))
+    dl = _strat_diff([dict(r, y=r["lost"]) for r in SC], "scattered")
+    res["scattered"] = {"measure": "each team in each phase (8 s+, 5+ alive, facing enemies): under 70% of its live players in its biggest engaged group (scattered) against 70%+; outcome = the team killed a player in that phase (and, separately, lost one); same overall numbers alive and phase length",
+                        "n": len(SC), "cases": sum(r["scattered"] for r in SC), "kill_rate_scattered": _rate([r for r in SC if r["scattered"]]),
+                        "kill_rate_unit": _rate([r for r in SC if not r["scattered"]]), "difference": d, "interval_90": ci,
+                        "loss_rate_difference": dl, "verdict": _verdict(d, ci, -1)}
+    CO = R["collapses"]
+    d = _strat_diff(CO, "snare"); ci = _boot(_by_match(CO), lambda s: _strat_diff(s, "snare"))
+    res["collapse_snare"] = {"measure": "splits answered by 2+ defenders (5 s+ each): a defender carrying a snare against none; outcome = a splitter died during the split; same defenders and splitters (capped at 4)",
+                             "n": len(CO), "cases": sum(r["snare"] for r in CO), "rate_with_snare": _rate([r for r in CO if r["snare"]]),
+                             "rate_without": _rate([r for r in CO if not r["snare"]]), "difference": d, "interval_90": ci, "verdict": _verdict(d, ci, +1)}
     for k in res: res[k]["source"] = SOURCE.get(k)
     out = {"about": "Variables suggested by commentary and comms, measured in every stored replay (comms_vars.py). "
                     "Intervals: 90% from resampling whole matches. Verdict: supported / contradicted when the interval "
