@@ -319,6 +319,16 @@ def s_usual(c):
                     elif b.get("n"):
                         L.append(f"  - {b['choice']}, {b['fight']}: too few yet (n {b['n']} against {b['n_usual']}; "
                                  f"means {b.get('raw_mean')} against {b.get('raw_mean_usual')})")
+            sc = [b for b in x.get("by_build", []) if "snare" in b]
+            if sc:
+                L.append("  By snare matchup (movepower.py: enemy snare power of the live players minus own speed power; decisions "
+                         "split into thirds; raw win-chance change, against the usual choice in the same third):")
+                for b in sc:
+                    if "raw_difference" in b:
+                        L.append(f"  - {b['choice']}, {b['snare']}: {b['raw_difference']:+} (n {b['n']} against {b['n_usual']})")
+                    elif b.get("n"):
+                        L.append(f"  - {b['choice']}, {b['snare']}: too few yet (n {b['n']} against {b['n_usual']}; "
+                                 f"means {b.get('raw_mean')} against {b.get('raw_mean_usual')})")
             mc = [b for b in x.get("by_build", []) if "map" in b and "raw_difference" in b]
             if mc:
                 L.append("  By map (raw win-chance change against the usual choice on the same map; maps with 10+ cases of both):")

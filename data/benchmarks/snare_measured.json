@@ -1,0 +1,101 @@
+{
+ "about": "Slowed target-seconds each finished use of a hex snare produced in the stored replays (the hex on enemies within 1.5 s, by this caster or an unrecorded one; removal included). movepower.py uses it in place of the formula once a skill has 15+ uses. Crippled isn't measured: the replays record it only now and then.",
+ "matches": 144,
+ "skills": {
+  "Binding Chains": {
+   "uses": 14,
+   "secs_per_use": 4.26,
+   "formula_secs_per_use": 6.0
+  },
+  "Crippling Anguish (PvP)": {
+   "uses": 201,
+   "secs_per_use": 13.01,
+   "formula_secs_per_use": 17.0
+  },
+  "Dark Prison": {
+   "uses": 11,
+   "secs_per_use": 5.66,
+   "formula_secs_per_use": 5.0
+  },
+  "Deep Freeze": {
+   "uses": 5,
+   "secs_per_use": 2.32,
+   "formula_secs_per_use": 20.0
+  },
+  "Earthen Shackles": {
+   "uses": 162,
+   "secs_per_use": 4.32,
+   "formula_secs_per_use": 30.0
+  },
+  "Ethereal Burden": {
+   "uses": 191,
+   "secs_per_use": 8.35,
+   "formula_secs_per_use": 11.0
+  },
+  "Freezing Gust": {
+   "uses": 467,
+   "secs_per_use": 2.66,
+   "formula_secs_per_use": 4.0
+  },
+  "Grasping Earth": {
+   "uses": 23,
+   "secs_per_use": 0.0,
+   "formula_secs_per_use": 24.0
+  },
+  "Hidden Caltrops": {
+   "uses": 27,
+   "secs_per_use": 6.7,
+   "formula_secs_per_use": 12.0
+  },
+  "Ice Prison": {
+   "uses": 22,
+   "secs_per_use": 6.34,
+   "formula_secs_per_use": 18.0
+  },
+  "Imagined Burden": {
+   "uses": 5,
+   "secs_per_use": 5.72,
+   "formula_secs_per_use": 18.0
+  },
+  "Kitah's Burden": {
+   "uses": 127,
+   "secs_per_use": 8.22,
+   "formula_secs_per_use": 11.0
+  },
+  "Mind Freeze (PvP)": {
+   "uses": 499,
+   "secs_per_use": 3.32,
+   "formula_secs_per_use": 4.0
+  },
+  "Mirror of Ice": {
+   "uses": 21,
+   "secs_per_use": 8.21,
+   "formula_secs_per_use": 5.0
+  },
+  "Seeping Wound": {
+   "uses": 72,
+   "secs_per_use": 3.84,
+   "formula_secs_per_use": 6.0
+  },
+  "Shadowy Burden": {
+   "uses": 20,
+   "secs_per_use": 8.67,
+   "formula_secs_per_use": 13.0
+  },
+  "Shard Storm": {
+   "uses": 138,
+   "secs_per_use": 3.92,
+   "formula_secs_per_use": 5.0
+  },
+  "Siphon Speed": {
+   "uses": 137,
+   "secs_per_use": 6.18,
+   "formula_secs_per_use": 13.0
+  },
+  "Winter's Embrace": {
+   "uses": 172,
+   "secs_per_use": 4.23,
+   "formula_secs_per_use": 5.0
+  }
+ }
+}

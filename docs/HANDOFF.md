@@ -120,7 +120,11 @@ engine change before the next run, then the commentary transcripts and step 3 (d
 - Denning's rulings this session: drop open questions Q2, Q3, Q4, Q8, Q9, Q11, Q12, Q13 (done); K19 removed (Bounty spoke
   metaphorically about "one unit"); Return is not a snare; measure the cost of an instant overcap (done:
   `instant_overcap`); add healer focus to the model.
-- The one engine change waits for Denning to say go (METHODS.md "Commentary and comms", held list). Also proposed to
+- Engine change built (Denning said go): snare and speed power (movepower.py) in the run, collapse, split effect and
+  split chance nodes and in the run or hold decisions; the new split_or_stay decision; healer focus in the power-play
+  and fight nodes; instant overcaps priced; Return not a snare (METHODS.md "Commentary and comms", "Built"). Rebuild
+  started on GitHub (Train batch, add_batch no). The 11 replays not yet in a batch (BcS v Crew, Nick's four and others)
+  go into the next batch. Also proposed to
   him: a tactics clean-up list (stale 24 to 61 match figures, lines contradicted by the 133-match rebuild, duplicate ids
   S31 and S32).
 - Found: data/model/usual_play.json still holds the 30-match readings; the current ones are only in
@@ -257,8 +261,8 @@ engine change before the next run, then the commentary transcripts and step 3 (d
 
 ## Start the next chat with
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/HANDOFF.md (the "Match replay
-> analysis" section), knowledge/tactics.md and tools/replay_analysis/METHODS.md, then build the held engine change
-> for the commentary variables (METHODS.md "Commentary and comms") once I say go, and rebuild. Read
+> analysis" section), knowledge/tactics.md and tools/replay_analysis/METHODS.md, then read the rebuild's learning
+> report (data/model/reports/latest.md) for the commentary bundle and explain it, then continue the agreed order. Read
 > knowledge/learned-model.md first for what the model has learned so far.
 
 Engine setup in the chat (needed for step 2): `git fetch --depth 1 origin +replays:refs/remotes/origin/replays`,

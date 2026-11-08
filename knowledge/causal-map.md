@@ -353,7 +353,7 @@ Caused by:
 - **Prot timing, Health ceiling, Heal targeting, Monk uptime, Kiting and spacing**: a team heals a lot but still loses a player when heals arrive instead of prots, the health ceiling is low (DP, Deep Wound), healing goes elsewhere, heals are late or interrupted, or the victim can't kite (Claude; hypothesis; `M17`)
 - **Health ceiling**: death penalty stacking against a spike team makes every later spike easier (Denning; hypothesis; `K4`)
 - **Sustain margin**: a group whose margin is negative loses players (Claude; hypothesis)
-- **Death timing on purpose**: teams time kills and the dying team may choose to die before time; a death's cost depends on when it happens, and some deaths may be positive (energy reset, a short wait) (Denning; hypothesis; `K14` `K15` `K1` `K2`)
+- **Death timing on purpose**: teams time kills and the dying team may choose to die before time; a death's cost depends on when it happens, and some deaths may be positive (energy reset, a short wait) (Denning; hypothesis; `K14` `K1` `K2`)
 - **Fight state**: a team losing its fight is about to take deaths (data; hypothesis)
 - **Hex pressure**: hexes on a player or its healers make it easier to kill (Claude; hypothesis)
 - **Collapse timing**: collapse timing: defenders arriving together kill a split member (Denning; supported)

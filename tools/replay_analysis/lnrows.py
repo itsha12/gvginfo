@@ -64,6 +64,30 @@ def _short(why):
             "short_base": g(["own base", "own pit", "enemy base", "enemy pit"])}
 
 
+def _power_near(st, P, tm, at, t, r=1300, kind="snare"):
+    """Snare (or speed) power of team tm's live players within r of agent at, at t seconds (movepower.py)."""
+    from state import d
+    p0 = st.pos(at, t)[0] if at is not None else None
+    if p0 is None: return None
+    return round(sum(P[b][kind] for b in st.players[tm] if st.alive(b, t) and st.pos(b, t)[0] and d(st.pos(b, t)[0], p0) <= r), 1)
+
+
+def _healer_share(m, ev, team, t0, t1):
+    """Share of team's damage on enemy players that landed on enemy healers in [t0, t1] (seconds): Bounty's 'going
+    after the monks', measured (Denning, after Bounty's and Nick's commentary)."""
+    from phases import healer
+    on_h = tot = 0
+    for e in ev:
+        if e[0] < t0 * 10: continue
+        if e[0] > t1 * 10: break
+        if e[1] != "dm" or not (e[5] or 0) > 0 or e[2] not in m.PL or m.team(e[2]) != team: continue
+        b = e[3]
+        if not isinstance(b, int) or b >= len(m.A) or not m.A[b].get("player") or m.team(b) == team: continue
+        tot += e[5]
+        if healer(m, b): on_h += e[5]
+    return round(on_h / tot, 2) if tot else None
+
+
 def _team_dps(team, tg, t0, t1, V, alive_roles):
     """A team's damage on enemy players per second in [t0, t1] against the sum of the usual of the players alive."""
     import eventlayer as EL
@@ -83,6 +107,13 @@ def _build(node, rid, V):
     team = (R.get("team") or [{}])[0]
     roles_alive = lambda tg, t: (_row(sr, t)[tg].get("main_roles") or []) if sr else []
     deaths = a["deaths"]
+    import movepower as MP
+    P = MP.powers(m)
+    ev = sorted((e for e in m.o.get("ev") or [] if e[0] is not None), key=lambda e: e[0])
+    def agent_of(tg, role):
+        return next((x for x in st.players[tm_of[tg]] if m.roles.get(x) == role), None)
+    def team_power(tg, kind):
+        return round(sum(P[x][kind] for x in st.players[tm_of[tg]]), 1)
     rows = []
     def add(tg, t, y, **f):
         rows.append({"match": rid, "team": tg, "t": t, "y": y, **f})
@@ -103,6 +134,9 @@ def _build(node, rid, V):
                     other_control_so_far=sum(1 for c in ct if c[1] not in ("crippled", "knockdown")),
                     damage_so_far=sum(x[1] for x in r.get("damage_times") or [] if x[0] <= k),
                     pushers_so_far=sum(1 for x in r.get("pusher_first") or [] if x <= k),
+                    runner_speed=P[ra]["speed"] if (ra := agent_of(tg, fr["runner"])) is not None else None,
+                    runner_escapes=P[ra]["escapes"] if ra is not None else None,
+                    enemy_snare_near=_power_near(st, P, tm_of[foe(tg)], ra, fr["start"] + k),
                     run_dist=run_dist.get(tg), strength_gap=gaps[tg])
     elif node == "flag_swing":
         by_t = {r["t"]: r for r in sb}; i = 0
@@ -143,6 +177,8 @@ def _build(node, rid, V):
                     control_so_far=sum(1 for c in r.get("control_times") or [] if c[0] <= k),
                     damage_so_far=sum(x[1] for x in r.get("damage_times") or [] if x[0] <= k),
                     escort=r["escort"], att_main=r["main"][0], def_main=r["main"][1],
+                    runner_speed=P[ra]["speed"] if (ra := agent_of(att, fr["runner"])) is not None else None,
+                    def_snare_near=_power_near(st, P, tm_of[dfn], ra, fr["start"] + k),
                     run_dist=run_dist.get(att), strength_gap=gaps[dfn])
     elif node == "capture_speed":
         # defence read at the same point of every capture (10 s in): counts over the whole run grow with its length
@@ -156,6 +192,8 @@ def _build(node, rid, V):
             add(c["defender"], c["t"], c["secs"], defenders_free=c["defenders_free"], escort=c["escort"],
                 pushers_10s=sum(1 for x in pf if x <= CAP_AT), control_10s=len(ct),
                 damage_10s=sum(x[1] for x in r.get("damage_times") or [] if x[0] <= CAP_AT),
+                runner_speed=P[ra]["speed"] if (ra := next((fr_["runner"] for fr_ in a["flag_runs"] if fr_["team"] == c["team"] and abs(fr_["end"] - c["t"]) <= 3), None)) and (ra := agent_of(c["team"], ra)) is not None else None,
+                def_snare_near=_power_near(st, P, tm_of[c["defender"]], ra, c["t"] - c["secs"] + CAP_AT) if ra is not None else None,
                 run_dist=run_dist.get(c["team"]), strength_gap=gaps[c["defender"]])
     elif node == "power_play":
         for p in R.get("power", []):
@@ -174,6 +212,7 @@ def _build(node, rid, V):
                 enemy_prots_10s=round(sum(1 for x in team.get("prot_casts", []) if x[1] == fg and t0 <= x[0] <= tw) / w, 2), enemy_heal_s=round(eh, 1),
                 spikes_10s=round(len(sp) / w, 2), spike_spread=statistics.median([x["spread_s"] for x in sp]) if sp else None,
                 spikes_on_healers=round(sum(1 for x in sp if x["target_class"] == "healer") / len(sp), 2) if sp else None,
+                healer_damage_share=_healer_share(m, ev, tm_of[tg], t0, tw),
                 blind_secs_on_own_10s=round(_blind_secs([x for x in R.get("blinds", []) if x["team"] == fg and x.get("attacker", True)], t0, tw) / w, 2),
                 strength_gap=gaps[tg])
     elif node == "fight_outcome":
@@ -213,6 +252,8 @@ def _build(node, rid, V):
                 peel_defensive_diff=df("peel"), ready_interrupt_diff=df("ready"), dazed_casts_diff=df("dazed"), blind_attacks_diff=df("blind_att"),
                 strip_right_diff=df("strip_right"), strip_value_diff=df("strip_value"), blind_front_secs_diff=df("blind_front"), blind_defensive_secs_diff=df("blind_def"),
                 spike_spread_diff=df("spread"), spikes_diff=df("spikes"), dps_v_usual_diff=df("dps"), hex_secs_diff=df("hex_secs"), hex_right_diff=df("hex_right"),
+                healer_focus_diff=(lambda o_, e_: round(o_ - e_, 2) if o_ is not None and e_ is not None else None)(
+                    _healer_share(m, ev, tm_of[tg], t0, t1), _healer_share(m, ev, tm_of[fg], t0, t1)),
                 strength_gap=gaps[tg])
     elif node == "split_chance":
         spl = collections.defaultdict(list)
@@ -226,7 +267,8 @@ def _build(node, rid, V):
                 add(tg, t, int(any(t < s0 <= t + 30 for s0, _ in spl[tg])), flag_lead=max(min(r[tg]["flag_lead"], CLIP), -CLIP),
                     own_alive=r[tg]["alive"], enemy_alive=r[fg]["alive"], own_main=r[tg]["main"], enemy_main=r[fg]["main"],
                     stand_own=int(r["stand"]["owner"] == tg), stand_enemy=int(r["stand"]["owner"] == fg), minute=round(t / 60, 1), res_in=r.get("res_in"),
-                    own_speed=mu.get("own_speed"), own_snares=mu.get("own_snares"), enemy_snares=mu.get("enemy_snares"), strength_gap=gaps[tg])
+                    own_speed_power=team_power(tg, "speed"), own_escapes=team_power(tg, "escapes"),
+                    own_snare_power=team_power(tg, "snare"), enemy_snare_power=team_power(fg, "snare"), strength_gap=gaps[tg])
     elif node in ("split_answer", "split_effect", "collapse"):
         from state import d
         rec = {(r["team"], r["t"]): r for r in R.get("splits", [])}
@@ -251,7 +293,10 @@ def _build(node, rid, V):
                 se = _row(sb, s_["entered_base"])
                 add(tg, s_["start"], int(r["pit_kills"] > 0), latency=latency, defenders=r["defenders"], size=r["size"],
                     main_diff=r["main_diff"], split_healers=heal, def_npc_value=se[fg].get("npc_value"),
-                    def_free=se[fg]["alive"] - len(se[fg].get("flag_duty") or []), strength_gap=gaps[tg])
+                    def_free=se[fg]["alive"] - len(se[fg].get("flag_duty") or []),
+                    def_snare_present=round(sum(P[x]["snare"] for x in (agent_of(fg, dd["role"]) for dd in s_.get("defenders") or []) if x is not None), 1),
+                    split_speed_power=round(sum(P[x]["speed"] for x in st.players[tm_of[tg]] if m.roles.get(x) in s_["members"]), 1),
+                    strength_gap=gaps[tg])
             else:
                 # collapse timing, several readings (Denning: which one matters is for the data to say)
                 arr = sorted(x["first"] for x in s_.get("defenders") or [] if x.get("first") is not None)
@@ -285,7 +330,9 @@ def _build(node, rid, V):
                     npc_hit_to_arrival=round(ta - npc_first, 1) if ta is not None and npc_first is not None else None,
                     res_in_at_arrival=_row(sb, ta).get("res_in") if ta is not None else None,
                     escape_ready=esc,
-                    def_snares=mus[fg].get("own_snares"), split_speed=mus[tg].get("own_speed"), size=r["size"], main_diff=r["main_diff"], strength_gap=gaps[tg])
+                    def_snare_present=round(sum(P[x]["snare"] for x in (agent_of(fg, dd["role"]) for dd in s_.get("defenders") or []) if x is not None), 1),
+                    split_speed_power=round(sum(P[x]["speed"] for x in mem), 1), split_escapes=sum(P[x]["escapes"] for x in mem),
+                    size=r["size"], main_diff=r["main_diff"], strength_gap=gaps[tg])
     return rows
 
 

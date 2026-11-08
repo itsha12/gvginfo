@@ -32,8 +32,14 @@ SIT = ["flag_lead", "stand", "boost_in", "alive", "main", "dp", "npcs", "lord_da
 PRE_S = 30                   # seconds before a decision for the pre-trend check
 # variables only some decision kinds have (Denning): can the winners reach the enemy pit before its res; is the team
 # losing its fight when the enemy's boost is near
-SIT_EXTRA = {"after_wipe": ["pit_margin_s"], "boost_clock": ["deaths_30s_diff", "main_diff_now", "health_diff"],
-             "split_in_base": ["split_size", "defender_snare", "attacker_self_defence", "main_diff_now", "health_diff"]}
+# Snare matchup (Denning, after Bounty's and Nick's commentary: running the flag or splitting into a lot of snare is
+# likely poor play; the data decides): own and enemy snare power of the live players and own speed power (movepower.py)
+SNARE = ["own_snare_power", "enemy_snare_power", "own_speed_power"]
+SIT_EXTRA = {"after_wipe": ["pit_margin_s"], "boost_clock": ["deaths_30s_diff", "main_diff_now", "health_diff"] + SNARE,
+             "enemy_pickup": SNARE, "split_or_stay": SNARE,
+             "split_in_base": ["split_size", "defender_snare_power", "attacker_self_defence", "main_diff_now", "health_diff"]}
+# kinds whose choice effects are also split by the snare matchup (enemy snare power minus own speed power, in thirds)
+SNARE_SPLIT = {"boost_clock", "enemy_pickup", "split_or_stay"}
 # per-player flags a choice's effect is also split by (Denning, B23), besides own spike build
 SPLIT_BY = {"split_in_base": ["defender_snare"]}
 # kinds whose choice effects are also split by the fight state (fightstate.py; Denning D4: falling back is likely a
@@ -202,6 +208,13 @@ def analyse(recs):
             band = lambda r, lo3=lo3, hi3=hi3: (-1 if r["sit"]["fight_state"] <= lo3 else 1 if r["sit"]["fight_state"] > hi3 else 0)
             splits.append(("fight", band, {-1: f"behind in the fight (lowest third, {lo3:+.2f} or less)",
                                            0: "middle third", 1: f"ahead in the fight (top third, above {hi3:+.2f})"}))
+        if kind in SNARE_SPLIT:
+            sm = lambda r: r["sit"].get("enemy_snare_power", 0) - r["sit"].get("own_speed_power", 0)
+            sv = np.array([sm(r) for r in L], float)
+            slo, shi = np.percentile(sv, [100 / 3, 200 / 3])
+            sband = lambda r, slo=slo, shi=shi: (-1 if sm(r) <= slo else 1 if sm(r) > shi else 0)
+            splits.append(("snare", sband, {-1: f"little enemy snare for own speed (lowest third, {slo:+.0f} or less)",
+                                            0: "middle third", 1: f"a lot of enemy snare for own speed (top third, above {shi:+.0f})"}))
         for c in choices[1:]:
             for name, get, labels in splits:
                 for sp in labels:

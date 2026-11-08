@@ -768,10 +768,26 @@ changing status only after two batches in a row, declined: links keep changing s
   22% against 16%, supported, `F36`; partly the situation); `split_size` (3-player against 4-player splits into the
   base: a pit NPC taken 36% against 35%, unclear, `S38`); `scattered` kept as a measure only (Denning: Bounty spoke
   metaphorically). New lines `F36`, `F37`, `P15`, `S38`, `S39`, `O4`, "cycle" and "inaccuracies" under Language.
-- Held for Denning's go-ahead, to build together in one engine change (then one rebuild): healer focus (share of a
-  group's damage on enemy healers) as a variable in the fight-outcome and power-play nodes; Return no longer counted as
-  a snare in `buildfeat.PLAYER_FLAGS` (changes the collapse node's defender-snare variable); the instant overcap
-  priced in values.py; anything else Denning approves from the two sources.
+- Built (Denning's go-ahead, session 4t), one engine change and one rebuild:
+  - `movepower.py`: snare power and speed power per player, from the skill data at the player's attribute rank
+    (match data attrs, rank 12 when unknown): snare = slow fraction x seconds per use (capped at the recharge) x
+    targets (adjacent 1.5, nearby or area 2) x uses per minute; speed = speed bonus x seconds per use x uses per
+    minute; escapes = Shadow Step skills. Return is an escape, never a snare. Hex snares are checked against the
+    replays (`movepower.py bench`, data/benchmarks/snare_measured.json, in the cache fingerprint): with 15+ uses the
+    measured slowed seconds per use replace the formula (e.g. Siphon Speed 6.2 s per use against 13 by formula: hex
+    removal). Crippled can't be measured (the replays record it only now and then), so condition snares keep the
+    formula.
+  - Learned nodes: run outcome (runner speed and escapes, enemy snare power within 1,300 of the runner), run defence and
+    capture speed (runner speed, defenders' snare power near the runner), collapse and split effect (snare power of the
+    defenders who actually came; splitters' speed and escapes), split chance (team snare, speed and escape power
+    replace the skill counts), power play and fight outcome (healer focus: share of damage on enemy healers, P.1).
+    New groups K.13 (mobility) and K.11 (control) in those nodes; the collapse node's old C.builds counts are gone.
+  - Decisions: every decision record carries the snare matchup (own and enemy snare power of the live players, own
+    speed power); the boost clock, enemy pickup and the new split_or_stay decision are adjusted for it and broken down
+    by it in thirds (report "By snare matchup"); split in base carries the defenders' snare power. split_or_stay: every
+    30 s from 1:00, a team not already splitting with 6+ alive either starts a split in the next 30 s or stays.
+  - values.py prices captures overcapped within 10 s apart from those held longer (`F36`).
+  - `buildfeat.FEATURES["snares"]` no longer counts Return.
 
 ## Flag position (Denning, tactics `F1` to `F4`)
 - Up on flags = the better position to get a boost and to run, not the team that capped last.

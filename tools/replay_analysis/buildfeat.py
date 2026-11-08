@@ -27,7 +27,7 @@ FEATURES = {   # feature: test on a skill record
     "blind": lambda s: "Blind" in (s.get("causes") or []),
     "weakness": lambda s: "Weakness" in (s.get("causes") or []),
     "daze": lambda s: "Dazed" in (s.get("causes") or []),
-    "snares": lambda s: bool({"Crippled", "Decreased Movement Speed"} & set(s.get("causes") or [])),
+    "snares": lambda s: bool({"Crippled", "Decreased Movement Speed"} & set(s.get("causes") or [])) and s["name"] != "Return",  # Return is an escape (Denning)
     "deep_wound": lambda s: "Deep Wound" in (s.get("causes") or []),
     "energy_denial": lambda s: "Energy Loss" in (s.get("causes") or []),
     "strips": lambda s: "Enchantment" in (s.get("removes") or []) and (s.get("target") or "").lower().startswith("foe"),

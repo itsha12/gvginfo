@@ -27,7 +27,7 @@ from common import REPO
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.environ.get("GVG_CACHE", os.path.expanduser("~/.cache/gvginfo"))
 DATA_DEPS = ["data/model/strength.json", "data/model/lineup.json", "data/model/context.json",
-             "data/model/integrity.json", "data/review_labels.json"]
+             "data/model/integrity.json", "data/review_labels.json", "data/benchmarks/snare_measured.json"]
 FIT_DEPS = ["data/model_corrections.json", "data/model/cap_choices.json"]
 # the entry modules each kind of prepared data is built from; their local imports are followed automatically
 PREPARED_FROM = {"table": ["features.py", "model.py"], "rows": ["nodes.py"], "events": ["values.py"],

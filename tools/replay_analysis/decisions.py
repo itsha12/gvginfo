@@ -13,6 +13,12 @@ choice the usual play groups by), outcome, edge_change):
 - boost_clock: the enemy's boost is 30 s away. Choices: running (a carrier out), not running.
 - after_wipe: the team just won a wipe. Choices: pushed the pit, took the flag, reset.
 - late_game: 24:00 reached. Choice: Lord commitment (players at the enemy Lord) against defence; outcome = result.
+- split_or_stay (Denning, after Bounty's and Nick's commentary): every 30 s from 1:00, for a team not already
+  splitting with 6+ alive: did it start a split in the next 30 s (split) or not (stayed)? Weighed by the usual play
+  against the snare matchup, so "should we split here" gets an answer, not just "will they split".
+Every record's extra carries the snare matchup at that moment (movepower.py): own and enemy snare power of the live
+players and own speed power (Denning: starting the flag game or a split against a lot of snare is likely poor play;
+the data decides).
 
 The state is the scoreboard key that makes situations comparable: flag position and lead, stand and boost clock,
 numbers, DP, pit NPCs, Lord damage, build archetypes, phase. Outcomes are scoreboard swings over a fixed window.
@@ -79,9 +85,25 @@ def response(sb, tm, t, w=ACT_W, move=MOVE):
     return {"by_role": per, "counts": dict(c), "key": ", ".join(f"{k} {v}" for k, v in sorted(c.items(), key=lambda kv: (-kv[1], kv[0])))}
 
 
+def _powers(st):
+    """Each player's snare and speed power (movepower.py), once per match."""
+    if getattr(st, "_mp", None) is None:
+        import movepower
+        st._mp = movepower.powers(st.m)
+    return st._mp
+
+
+def _move_ctx(st, tm, t):
+    """Snare matchup at t (movepower.py): power of the live players on each side."""
+    P = _powers(st)
+    live = lambda k, kind: round(sum(P[a][kind] for a in st.players[k] if st.alive(a, t)), 1)
+    return {"own_snare_power": live(tm, "snare"), "enemy_snare_power": live(3 - tm, "snare"), "own_speed_power": live(tm, "speed")}
+
+
 def rec(sb, kind, tm, t, choice, t_end, extra=None, **more):
     tag = sb.m.tag[tm]
     sw = sb.swing(tag, t, t_end)
+    extra = {**_move_ctx(sb.st, tm, t), **(extra or {})}
     return {"kind": kind, "team": tag, "t": round(t), "state": key(sb, tm, t), "choice": choice,
             "actions": response(sb, tm, t), "first_actions": response(sb, tm, t, FIRST_W, FIRST_MOVE), "outcome": sw, "edge_change": sw["edge_change"], "extra": extra or {}, **more}
 
@@ -154,6 +176,8 @@ def splits_in_base(st, sb, splits):
                        split="+".join(s["members"]), answered_by=[x["role"] for x in dfn],
                        extra={"response": response, "split_size": len(s["members"]), "defenders": len(dfn),
                               "defender_snare": int(ff.get("snare", 0) > 0), "defender_interrupt": int(ff.get("interrupt", 0) > 0),
+                              # how strong the defenders' snares are, not just whether (Denning, after the commentary)
+                              "defender_snare_power": round(sum(_powers(st)[role_to[x["role"]]]["snare"] for x in dfn if x["role"] in role_to), 1),
                               "holder": holder_d["role"] if holder_d else None,
                               "holder_in_base": int(bool(holder_d and holder_d["came"] != "collapse from main")),
                               "collapsers": len(coll), "collapser_snare": int(any(player_flags(m, b)["snare"] for b in coll)),
@@ -249,9 +273,25 @@ def late_game(st, sb):
     return out
 
 
+def split_or_stay(st, sb, splits, every=30, ahead=30, window=90):
+    m, out = st.m, []
+    by = collections.defaultdict(list)
+    for s_ in splits:
+        if s_["kind"] == "split": by[s_["team"]].append((s_["start"], s_["end"]))
+    for t in range(60, int(st.end) - window, every):
+        for tm in st.teams:
+            tag = m.tag[tm]
+            if any(s0 <= t <= s1 for s0, s1 in by[tag]): continue          # already splitting
+            if sum(1 for a in st.players[tm] if st.alive(a, t)) < 6: continue
+            went = any(t < s0 <= t + ahead for s0, _ in by[tag])
+            out.append(rec(sb, "split_or_stay", tm, t, "split" if went else "stayed", t + window))
+    return out
+
+
 def decision_points(st, sb, ep):
     out = (enemy_pickups(st, sb) + splits_in_base(st, sb, ep["splits"]) + power_plays(st, sb, ep["windows"])
-           + boost_clocks(st, sb) + after_wipes(st, sb, ep["fights"]) + late_game(st, sb))
+           + boost_clocks(st, sb) + after_wipes(st, sb, ep["fights"]) + late_game(st, sb)
+           + split_or_stay(st, sb, ep["splits"]))
     return sorted(out, key=lambda r: r["t"])
 
 

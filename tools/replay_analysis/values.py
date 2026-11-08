@@ -68,8 +68,12 @@ def _build_events(rid):
         n = st.geo.npcs.get(a)
         if n and n["kind"] != "guild_lord" and n.get("team") in st.teams:
             ev.append({"kind": "npc", "npc": n["kind"], "team": m.tag[n["team"]], "t": tt, "enemy_spike": spike[3 - n["team"]]})
-    for tt, tm in st.caps:
-        if tm in st.teams: ev.append({"kind": "capture", "team": m.tag[tm], "t": tt})
+    caps = [(tt, tm) for tt, tm in st.caps if tm in st.teams]
+    for i, (tt, tm) in enumerate(caps):
+        # Bounty (F36): a capture the enemy overcaps within 10 s is a wasted cycle; priced apart from other captures
+        nxt = next(((t2, m2) for t2, m2 in caps[i + 1:] if m2 != tm), None)
+        ev.append({"kind": "capture", "team": m.tag[tm], "t": tt,
+                   "instant_overcap": bool(nxt and nxt[0] - tt <= 10)})
     cl = st.caps + [(st.end, None)]
     for (c, tm), (c2, _) in zip(cl, cl[1:]):
         k = 1
@@ -108,7 +112,9 @@ def _groups(e):
     if k == "npc":
         return [f"pit NPC lost: {e['npc']}", "pit NPC lost (any): taken by a spike build" if e.get("enemy_spike")
                 else "pit NPC lost (any): taken by other builds"]
-    return {"capture": ["capture"], "boost": ["boost"]}[k]
+    if k == "capture":
+        return ["capture", "capture: overcapped within 10 s (Bounty, F36)" if e.get("instant_overcap") else "capture: held longer"]
+    return {"boost": ["boost"]}[k]
 
 
 MATCH_MIN_S = 120    # minute bands of matched moments (seconds)
