@@ -105,6 +105,16 @@ def _healer(m, a):
     return healer(m, a)
 
 
+def _pressure_on(tl, a, t, heal_live):
+    import pressure as PR
+    if not hasattr(tl, "pr"): tl.pr = PR.record(tl.m.o["meta"]["id"])
+    o = PR.on_player(tl.pr, a, t)
+    hl = [PR.on_player(tl.pr, b, t) for b in heal_live]
+    return {"degen_pips_now": o["degen_pips_now"], "kited_10s": o["kited_10s"], "prekited_10s": o["prekited_10s"],
+            "healers_disabled_10s": round(sum(h["disabled_skill_secs_10s"] for h in hl), 1),
+            "healers_castprev_now": sum(h["castprev_now"] for h in hl)}
+
+
 def death_features(tl, a, t, mu, gap):
     st, sb, m = tl.st, tl.sb, tl.m
     from state import d
@@ -140,6 +150,8 @@ def death_features(tl, a, t, mu, gap):
         "dist_from_group": round(d(p, c)) if a not in main and c else 0,
         "away_3000": int(a not in main and bool(c) and d(p, c) >= 3000),
         "dist_own_pit": round(d(p, st.geo.pit.get(tm))), "res_in": sbt and sb.at(t)["res_in"],
+        # Denning (session 4u, pressure.py): kiting, degen, disables and cast prevention on the player and its healers
+        **_pressure_on(tl, a, t, heal_live),
         "flag_lead": max(min(sbt["flag_lead"], 150), -150), "minute": round(t / 60, 1), "strength_gap": gap,
         **{k: mu[k] for k in MATCHUP_KEYS},
     }
@@ -165,6 +177,11 @@ DEATH_DESC = {
     "local_diff": "allies minus enemies within 2,000", "dist_from_group": "distance from its main group (0 if in it)",
     "away_3000": "3,000+ from its main group (Denning: clearer than 2,500 for a split or a collapse)",
     "dist_own_pit": "distance from its own pit", "res_in": "seconds until the next res", "flag_lead": "own flag lead (s)",
+    "degen_pips_now": "degeneration on the player now, pips (conditions and degen hexes; pressure.py)",
+    "kited_10s": "seconds the player kited enemy melee in the last 10 s (chased without being hit; Denning)",
+    "prekited_10s": "seconds the player kept its distance from melee heading for it in the last 10 s (pre-kiting; Denning)",
+    "healers_disabled_10s": "skill-seconds disabled on its live healers in the last 10 s (Complicate, Power Lock, Power Block, Blackout)",
+    "healers_castprev_now": "its live healers under Shame, Guilt or Diversion now",
     "minute": "match minute", "strength_gap": "own minus enemy team strength",
     "enemy_knockdowns_v_own_aura_of_stability": "enemy knockdown skills minus own Auras of Stability (matchup)",
     "enemy_interrupts": "enemy interrupt skills", "enemy_energy_denial": "enemy energy-denial skills",
@@ -261,6 +278,8 @@ def _build_rows(node, rid):
                              "target_dazed": f["dazed"], "target_deep_wound": f["deep_wound"], "target_dist_from_group": f["dist_from_group"],
                              "target_away_3000": f["away_3000"], "target_hexes": f["hexes_on"],
                              "target_healers_hexed": f["hexes_on_own_healers"],
+                             "target_degen_pips": f["degen_pips_now"], "target_kited_10s": f["kited_10s"],
+                             "target_healers_disabled": f["healers_disabled_10s"], "target_healers_castprev": f["healers_castprev_now"],
                              "burst_damage": round(sum(x[1] for x in w)), "attackers": len(atk), "attackers_blinded": blind,
                              "attackers_interrupted": rup, "attackers_knocked_down": kdat, "strength_gap": -f["strength_gap"] if f["strength_gap"] is not None else None,
                              "own_interrupts_v_enemy_heals": mus[3 - vt]["own_interrupts_v_enemy_heals"],
@@ -307,7 +326,7 @@ def _build_rows(node, rid):
         for r in m.o["ev"]:
             if not isinstance(r[3], int) or r[3] >= len(m.A): continue
             x = m.A[r[3]]
-            if r[1] == "dm" and x.get("npc") in ("knight", "archer", "bodyguard") and r[2] in m.PL: npc_hits[x.get("team")].append((r[0] / 10, r[5] or 0))
+            if r[1] == "dm" and x.get("npc") in ("knight", "archer", "bodyguard") and r[2] in m.PL: npc_hits[x.get("team")].append((r[0] / 10, r[5] or 0, r[2]))
             if r[1] == "hl" and x.get("npc") in ("knight", "archer", "bodyguard", "guild_lord") and r[2] in m.PL: npc_heals[x.get("team")].append((r[0] / 10, r[5] or 0))
             if r[1] == "dm" and x.get("npc") == "guild_lord" and r[2] in m.PL: lord_in[x.get("team")].append((r[0] / 10, r[5] or 0))
         def dps(a): return lord_dps(m.roles[a], m.A[a].get("p")) or 0
@@ -333,7 +352,9 @@ def _build_rows(node, rid):
                         "seconds_in_pit": t - first_in,
                         "knights": sum(1 for _, v in alive_n if v["kind"] == "knight"), "archers": sum(1 for _, v in alive_n if v["kind"] == "archer"),
                         "bodyguard": sum(1 for _, v in alive_n if v["kind"] == "bodyguard"),
-                        "npc_damage_5s": round(sum(v for tt, v in npc_hits[dt] if t - 5 < tt <= t)),
+                        "npc_damage_5s": round(sum(v for tt, v, _ in npc_hits[dt] if t - 5 < tt <= t)),
+                        # Denning (session 4u): attackers hitting the pit from outside it (ranged damage on the NPCs) count too
+                        "attackers_outside": len({b for tt, v, b in npc_hits[dt] if t - 5 < tt <= t and b not in inside}),
                         "npc_healing_10s": round(sum(v for tt, v in npc_heals[dt] if t - 10 < tt <= t)),
                         "defenders_elsewhere": sum(1 for b in st.players[dt] if st.alive(b, t) and b not in defs),
                         "res_in": st.next_res(t) - t, "minute": round(t / 60, 1), "strength_gap": gaps[at]}
@@ -363,7 +384,8 @@ NPC_DESC = {"attackers": "enemy players in the pit", "attacker_healers": "of whi
             "defenders": "own players in the pit", "defender_healers": "of which healers",
             "seconds_in_pit": "seconds the attackers have been in the pit", "knights": "own knights alive",
             "archers": "own pit archers alive", "bodyguard": "own Bodyguard alive",
-            "npc_damage_5s": "damage on the pit NPCs in the last 5 s", "npc_healing_10s": "healing on own pit NPCs and Lord in the last 10 s",
+            "npc_damage_5s": "damage on the pit NPCs in the last 5 s",
+            "attackers_outside": "enemy players hitting the pit NPCs from outside the pit in the last 5 s (ranged; Denning)", "npc_healing_10s": "healing on own pit NPCs and Lord in the last 10 s",
             "defenders_elsewhere": "own players alive outside the pit", "res_in": "seconds until the next res",
             "minute": "match minute", "strength_gap": "attacking minus defending team strength"}
 
@@ -391,7 +413,11 @@ KC_DESC = {"target_is_healer": "target is a healer", "target_line": "target 0 fr
            "target_healers_in_range": "target's healers in range", "target_knocked_down": "target knocked down",
            "target_dazed": "target Dazed", "target_deep_wound": "target has Deep Wound",
            "target_dist_from_group": "target's distance from its group", "target_hexes": "hexes on the target",
-           "target_healers_hexed": "hexes on the target team's live healers", "target_away_3000": "target 3,000+ from its main group", "burst_damage": "damage in the 2 s burst",
+           "target_healers_hexed": "hexes on the target team's live healers",
+           "target_degen_pips": "degeneration on the target, pips (pressure.py)",
+           "target_kited_10s": "seconds the target kited melee in the last 10 s",
+           "target_healers_disabled": "skill-seconds disabled on the target's healers in the last 10 s",
+           "target_healers_castprev": "the target's healers under Shame, Guilt or Diversion", "target_away_3000": "target 3,000+ from its main group", "burst_damage": "damage in the 2 s burst",
            "attackers": "attackers in the burst", "attackers_blinded": "seconds the burst's physical attackers spent Blind (3 s before to 3 s after)",
            "attackers_interrupted": "interrupts on the attackers (5 s before to 2 s after)",
            "attackers_knocked_down": "knockdowns on the attackers (5 s before to 2 s after)",

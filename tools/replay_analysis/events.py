@@ -161,6 +161,11 @@ def short(ans):
     out.append(f"- Peel: {pe['answer']} ({pe['measures']['pressured']} of {pe['measures']['attackers']} attackers controlled; longest free {pe['measures']['longest_free_s']} s)")
     ca = ans["casting"]
     out.append(f"- Casting: {ca['answer']} ({_fmt({k: ca['measures'][k] for k in ('casts', 'interrupted', 'cancelled', 'while_dazed')})})")
+    if "pressure" in ans:
+        pm = ans["pressure"]["measures"]
+        out.append(f"- Kiting, degen, disables (in the {pm['window_s']} s before): kited melee {pm['kited_s']} s, kept its distance "
+                   f"{pm['prekited_s']} s; degen on it {pm['degen_pip_secs']} pip-seconds ({pm['degen_pips_at_death']} pips at death); "
+                   f"its healers disabled {pm['healers_disabled_skill_secs']} skill-seconds, under Shame, Guilt or Diversion {pm['healers_castprev_secs']} s")
     return out
 
 
@@ -185,6 +190,11 @@ def key_causes(ans):
                    f"nearest enemy {ln.get('nearest_enemy') or 0:.0f} in the last {n} s)")
     if ans["peel"]["answer"].startswith(("no", "partly")): out.append(f"its attackers were not peeled ({ans['peel']['answer']})")
     if ans["sets"]["answer"] == "yes": out.append("its team took unusual damage off its shield sets")
+    # named only when above the usual band for the role in every stored match (forensics benchmarks), not a fixed line
+    pm = (ans.get("pressure") or {}).get("measures") or {}; bd = (ans.get("pressure") or {}).get("bands") or {}
+    if bd.get("degen_pip_secs") == "high": out.append(f"heavy degeneration on it ({pm['degen_pip_secs']} pip-seconds, {pm['degen_pips_at_death']} pips at death)")
+    if bd.get("healers_disabled_skill_secs") == "high": out.append(f"its healers' skills were disabled ({pm['healers_disabled_skill_secs']} skill-seconds)")
+    if bd.get("healers_castprev_secs") == "high": out.append(f"its healers were under Shame, Guilt or Diversion ({pm['healers_castprev_secs']} s)")
     return out
 
 
@@ -367,11 +377,16 @@ def npc(rid, tag, t, F=None):
     if not sp: t0, t1 = t - 30, t
     # where the rest of the team was
     rest = []
+    from state import GameState
+    gs = GameState(F.m)
     for x in F.players(tm):
         z = [p for p in a["phases"] if p["start"] <= t <= p["end"]]
         role = F.m.roles.get(x)
-        where = next((g["zone"] + " (" + g["job"] + ")" for p in z for g in p["teams"][tag]["groups"] if role in g["members"]), "dead" if not F.alive(x, t - 5) else "?")
-        rest.append(f"{role}: {where}")
+        # each player's own zone at that second (Denning, session 4u: the phase group's zone put a whole team "backside"
+        # while some of it was in its own pit); the job still comes from the player's group in the phase
+        job = next((g["job"] for p in z for g in p["teams"][tag]["groups"] if role in g["members"]), None)
+        zn = gs.zone(x, t)
+        rest.append(f"{role}: {zn}" + (f" ({job})" if job and zn != "dead" else ""))
     L.append(f"**{tag} at {clock(t)}**: " + "; ".join(rest))
     for side, team in ((foe, F.team_of(foe)), (tag, tm)):
         o = F.output(team, t0, t1)["measures"]

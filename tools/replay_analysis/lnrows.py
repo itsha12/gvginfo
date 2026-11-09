@@ -93,8 +93,15 @@ APPROVED = {
     "run_outcome": ["morale_diff", "boost_clock", "b.enemy_snares"],
     "power_play": ["down_diff_s", "carrying_diff"],
     "split_chance": ["split_diff", "turtle_diff", "pit_pressure_diff"],
-    "split_answer": ["split_diff"],
+    "split_answer": ["split_diff", "b.own_area_damage"],
 }
+# approved after chunk 4's discovery (Denning, session 4u: the tactical and build findings; the state ones left out,
+# enemy energy denial against own heals held until another run confirms its direction)
+for _n, _v in {"fight_outcome": ["b.own_hexes", "b.own_heals"], "power_play": ["b.enemy_strips_v_own_prots"],
+               "split_chance": ["spike_build_own", "b.own_knockdowns"], "split_effect": ["b.own_escapes_power"],
+               "collapse": ["healing_monks_enemy"],
+               "run_defence": ["b.own_area_damage", "b.enemy_snares_v_own_speed", "healing_monks_own"]}.items():
+    APPROVED.setdefault(_n, []).extend(_v)
 
 
 def _approved(node, rows, rid, m):
@@ -113,6 +120,23 @@ def _approved(node, rows, rid, m):
             if name in r: continue
             r[name] = (build.get(r["team"]) or {}).get(name) if v.startswith("b.") else st_.get(v)
     return rows
+
+
+def _pressure_fight(o, e, w):
+    """Denning's session 4u measures for a fight (pressure.py), per 10 s, own minus enemy."""
+    df = lambda k: round((o[k] - e[k]) / w, 2)
+    return {"kite_secs_diff": df("kite_secs"), "prekite_secs_diff": df("prekite_secs"), "degen_diff": df("degen_pip_secs"),
+            "baits_diff": df("baits"), "knockdowns_diff": df("knockdowns"), "knockdowns_on_casting_diff": df("knockdowns_on_casting"),
+            "disable_diff": df("disable_skill_secs"), "castprev_diff": df("castprev_secs")}
+
+
+def _pressure_pp(o, e, w):
+    """The same measures for a power play (up to the first kill), per 10 s: what the team on the power play did, and
+    the enemy's kiting and baits against it."""
+    r = lambda v: round(v / w, 2)
+    return {"knockdowns_10s": r(o["knockdowns"]), "knockdowns_on_casting_10s": r(o["knockdowns_on_casting"]),
+            "disable_10s": r(o["disable_skill_secs"]), "castprev_10s": r(o["castprev_secs"]), "degen_10s": r(o["degen_pip_secs"]),
+            "enemy_kite_10s": r(e["kite_secs"] + e["prekite_secs"]), "enemy_baits_10s": r(e["baits"])}
 
 
 def _healer_share(m, ev, team, t0, t1):
@@ -160,6 +184,11 @@ def _build(node, rid, V):
     import movepower as MP
     from common import runner_code, split_context
     P = MP.powers(m)
+    import pressure as PR
+    PRR = PR.record(rid)
+    def press(tg, t0, t1):
+        own = st.players[tm_of[tg]]; foes = st.players[tm_of[foe(tg)]]
+        return PR.team_window(PRR, own, foes, t0, t1)
     ev = sorted((e for e in m.o.get("ev") or [] if e[0] is not None), key=lambda e: e[0])
     def agent_of(tg, role):
         return next((x for x in st.players[tm_of[tg]] if m.roles.get(x) == role), None)
@@ -270,6 +299,7 @@ def _build(node, rid, V):
                 spikes_on_healers=round(sum(1 for x in sp if x["target_class"] == "healer") / len(sp), 2) if sp else None,
                 healer_damage_share=_healer_share(m, ev, tm_of[tg], t0, tw),
                 blind_secs_on_own_10s=round(_blind_secs([x for x in R.get("blinds", []) if x["team"] == fg and x.get("attacker", True)], t0, tw) / w, 2),
+                **_pressure_pp(press(tg, t0, tw), press(fg, t0, tw), w),
                 strength_gap=gaps[tg])
     elif node == "fight_outcome":
         for fi, f in enumerate(a.get("fights") or []):
@@ -301,6 +331,7 @@ def _build(node, rid, V):
                         "dps": _team_dps(team, x, t0, t1, V, roles_alive(x, f["start"])),
                         "hex_secs": hs, "hex_right": sum(r["right_hex"] for r in hr) / len(hr) if hr else None}
             o, e = side(tg), side(fg)
+            po, pe_ = press(tg, t0, t1), press(fg, t0, t1); wf = max(t1 - t0, 1) / 10
             df = lambda k: (o[k] - e[k]) if o[k] is not None and e[k] is not None else None
             ln = f.get("local_numbers") or [None, None]
             if tg != f["team"]: ln = ln[::-1]
@@ -310,6 +341,7 @@ def _build(node, rid, V):
                 spike_spread_diff=df("spread"), spikes_diff=df("spikes"), dps_v_usual_diff=df("dps"), hex_secs_diff=df("hex_secs"), hex_right_diff=df("hex_right"),
                 healer_focus_diff=(lambda o_, e_: round(o_ - e_, 2) if o_ is not None and e_ is not None else None)(
                     _healer_share(m, ev, tm_of[tg], t0, t1), _healer_share(m, ev, tm_of[fg], t0, t1)),
+                **_pressure_fight(po, pe_, wf),
                 strength_gap=gaps[tg])
     elif node == "split_chance":
         spl = collections.defaultdict(list)

@@ -965,3 +965,36 @@ changing status only after two batches in a row, declined: links keep changing s
   spawns and stand (benchmarks.py spawns) and Lord regeneration (benchmarks.py regen).
 - Benchmarks rebuilt on the 176 matches before chunk 3: forensics.json, spikes.json, snare_measured.json,
   lord_damage.json, carry_capture.json, comms_variables.json (collapse_snare moved from unclear to supported).
+
+## After chunk 4: rulings and pressure beyond damage (Denning, session 4u, 2026-11-08)
+- **Discoveries approved** (chunk 4's discovery; the tactical and build findings, the state ones left out, enemy energy
+  denial against own heals held for another run): fight outcome own_hexes, own_heals; power play
+  enemy_strips_v_own_prots; split chance spike_build_own, own_knockdowns; split effect own_escapes_power; collapse
+  healing_monks_enemy; run defence own_area_damage, enemy_snares_v_own_speed, healing_monks_own; split answer
+  own_area_damage (lnrows.APPROVED).
+- **footmen_diff** moved into the win model (held-out log loss 0.384 to 0.371 at chunk 4).
+- **Ranged attackers on the pit**: the NPC nodes (npc_loss, lord_damage, lord_kill and the learned pit_npc_loss) read
+  `attackers_outside`, enemy players hitting the pit NPCs from outside the pit in the last 5 s. TQ 4 lists each player's
+  own zone at the second (the phase group's zone had put a whole team "backside").
+- **Pressure beyond damage** (`pressure.py`, cache kind "pressure"), per player, measured from the replays:
+  kiting and pre-kiting (enemy warriors, dervishes and assassins only), degen (conditions and degen hexes; pip sizes are
+  game values, uptime measured; the replays record degen as no damage), baited interrupts (only the provable ones; the
+  replays record an interrupt's target only when it lands, so a miss is matched to the enemy within casting range who
+  had just cancelled), offensive knockdowns (and on casting targets), disables (Complicate, Power Lock, Power Block,
+  Blackout; whether they landed is measured, how long the skills stay disabled comes from the skill text at the caster's
+  rank, the one partly rule-based measure; Blackout's target, unrecorded, is the nearest enemy within touch range) and
+  cast prevention (Shame, Guilt, Diversion: seconds up, and triggered = ended early right after the target started a
+  cast). Thresholds (250 to 1,300 apart for a chase, 200 travel over 2 s and about 37 degrees for pre-kiting, 2 s for a
+  bait's cancel) are definitions, not values; what each is worth comes from the nodes.
+- Where they go: new map nodes P.21 Kiting, P.22 Degen pressure, P.23 Baited interrupts, P.24 Offensive knockdowns,
+  P.25 Disables, P.26 Cast prevention, each linked into fight outcome (own minus enemy per 10 s) and power play (own per
+  10 s, and the enemy's kiting and baits against it), all from Denning. The deaths node reads the player's degen, its
+  kiting and pre-kiting, and its healers' disables and cast prevention; kill conversion the same for the target. Death
+  forensics answer "Pressure beyond damage?", placed against the same role in every stored match (forensics.json
+  degen_pip_secs, kited_s, healers_disabled_skill_secs, healers_castprev_secs); "why, in short" names one only above the
+  usual band. The snapshot has a per-role table per minute played.
+- **Snares** (movepower.py): area snares count one target in the formula (Denning: rarely more than one player is
+  snared); uptime stays limited by recharge; the measured figure (hexes, and now Crippled where the replays record it on
+  at least half the skill's uses, e.g. Mantis Touch, Signet of Pious Restraint, Earthen Shackles) replaces the formula
+  once a skill has 15+ uses, capped at the recharge. Crippled from Hamstring, Caltrops, Pin Down and other attack skills
+  is rarely recorded with its skill, so those keep the formula.

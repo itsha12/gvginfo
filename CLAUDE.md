@@ -99,6 +99,8 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   effect in win chance, between similar builds), `values.py` (results and causes priced in win points;
   `knowledge/values.md`). Per-player skill flags: `buildfeat.player_flags` (one skill can change the right play).
   Snare and speed power per player (how strong, not just whether): `movepower.py` (Return is an escape, not a snare).
+  Pressure beyond damage per player (kiting, degen, baited interrupts, offensive knockdowns, disables, cast
+  prevention): `pressure.py` (METHODS.md "After chunk 4").
   Chains from the node models with fixes carried forward to the result: `causalchain.py` (step 4). Discovery, every
   measured variable against every learned node on unseen matches, held for Denning's approval: `discover.py` and the
   "Discovery" workflow (step 3).

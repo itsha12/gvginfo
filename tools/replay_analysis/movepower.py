@@ -21,9 +21,13 @@ from common import REPO
 
 BENCH = os.path.join(REPO, "data", "benchmarks", "snare_measured.json")
 NOT_SNARE = {"Return"}                # an escape (Denning)
-TARGETS = {"adjacent": 1.5, "nearby": 2.0, "in the area": 2.0}
+# Denning (session 4u): an area snare is worth no more than a single-target one (rarely is more than one player
+# snared), so every snare counts one target; what a snare is worth is how long it keeps one player slowed, with its
+# recharge (uptime) taken into account
+TARGETS = {}
 DEFAULT_RANK = 12
 MIN_MEASURED = 15
+RECORDED_MIN = 0.5       # condition snares: share of uses with a recorded Crippled before the measured figure is trusted
 
 
 def _num(x):
@@ -86,8 +90,11 @@ def skill_power(s, rank=DEFAULT_RANK):
         dur = _duration(s, rank, "crippled") or 0
         per_use = min(dur, rech) * targets(s)
         ms = _measured().get(s["name"])
-        if ms and ms.get("uses", 0) >= MIN_MEASURED and (ms.get("secs_per_use") or 0) > 0:   # 0 = never recorded
-            per_use = min(ms["secs_per_use"], rech * 3)
+        # measured once 15+ uses; a condition snare only where the replays record its Crippled on most uses (some skills'
+        # Crippled is recorded every time, e.g. Pin Down; others almost never, e.g. Hamstring: those keep the formula)
+        hexs = "Hex" in (s.get("type") or "")
+        if ms and ms.get("uses", 0) >= MIN_MEASURED and (ms.get("secs_per_use") or 0) > 0 and (hexs or (ms.get("recorded_share") or 0) >= RECORDED_MIN):
+            per_use = min(ms["secs_per_use"], rech)      # uptime on one player can't pass 100% (Denning, session 4u)
         out["snare"] = round(slow_fraction(s) * per_use * 60 / rech, 1)
     m = re.search(r"(\d+)% faster", s.get("desc") or "")
     if "Increased Movement Speed" in c and m:
@@ -173,23 +180,28 @@ def near(m, P, team, x, y, t10, r=1300, kind="snare"):
 def _bench_one(rid):
     from replaylib import Match
     from buildfeat import _skills
-    S = _skills(); m = Match.from_branch(rid); out = collections.defaultdict(lambda: [0, 0.0])
+    S = _skills(); m = Match.from_branch(rid); out = collections.defaultdict(lambda: [0, 0.0, 0])
     eff = m.o.get("effects") or []
     hexes = [e for e in eff if e[2] == "h" and e[0] is not None]
+    cripples = [e for e in eff if e[2] == "c" and e[0] is not None and (e[7] or "") == "crippled"]
     end_t = max((e[0] for e in m.o.get("ev") or [] if e[0] is not None), default=0)
     open_ = {}
     for e in m.o.get("ev") or []:
         if e[1] == "cs": open_[e[2]] = e[4]
-        elif e[1] == "cf" and e[2] in open_:
+        elif e[1] in ("cf", "ca") and e[2] in open_:      # attack skills end on "activated", spells on "finished"
             sid = open_.pop(e[2]); s = S.get(m.sk(sid))
-            if not s or not is_snare(s) or e[2] not in m.PL or "Hex" not in (s.get("type") or ""): continue
+            if not s or not is_snare(s) or e[2] not in m.PL: continue
             t = e[0]; caster = e[2]; foe = 3 - m.team(caster); secs = 0.0
-            cand = [h for h in hexes if h[3] == sid]
+            # hex snares: the hex's interval; condition snares: the Crippled interval the skill caused (recorded with its
+            # skill and caster in the newer replays; session 4u)
+            if "Hex" in (s.get("type") or ""): cand = [h for h in hexes if h[3] == sid]
+            elif "Crippled" in (s.get("causes") or []): cand = [c for c in cripples if c[3] == sid]
+            else: continue
             for x in cand:
                 if not (t - 3 <= x[0] <= t + 15) or m.team(x[5]) != foe: continue
                 if x[4] not in (caster, None): continue
                 secs += ((x[1] if x[1] is not None else min(end_t, x[0] + 200)) - x[0]) / 10
-            out[s["name"]][0] += 1; out[s["name"]][1] += secs
+            out[s["name"]][0] += 1; out[s["name"]][1] += secs; out[s["name"]][2] += int(secs > 0)
         elif e[1] in ("ir", "cx"): open_.pop(e[2], None)
     return dict(out)
 
@@ -197,22 +209,24 @@ def _bench_one(rid):
 def bench():
     from multiprocessing import Pool
     ids = __import__("common").replay_ids()
-    tot = collections.defaultdict(lambda: [0, 0.0])
+    tot = collections.defaultdict(lambda: [0, 0.0, 0])
     with Pool(os.cpu_count() or 2) as p:
         for r in p.imap_unordered(_bench_one, ids):
-            for k, (n, s) in r.items(): tot[k][0] += n; tot[k][1] += s
+            for k, (n, s, h) in r.items(): tot[k][0] += n; tot[k][1] += s; tot[k][2] += h
     from buildfeat import _skills
     S = _skills()
     skills = {}
-    for k, (n, s) in sorted(tot.items()):
+    for k, (n, s, h) in sorted(tot.items()):
         rec = S.get(k); f = skill_power(rec) if rec else {}
         dur = _duration(rec, DEFAULT_RANK, "crippled") if rec else None
-        skills[k] = {"uses": n, "secs_per_use": round(s / n, 2) if n else None,
-                     "formula_secs_per_use": round(min(dur or 0, _recharge(rec) or 0) * targets(rec), 2) if rec else None}
-    json.dump({"about": "Slowed target-seconds each finished use of a hex snare produced in the stored replays (the hex "
-                        "on enemies within 1.5 s, by this caster or an unrecorded one; removal included). movepower.py uses "
-                        "it in place of the formula once a skill has 15+ uses. Crippled isn't measured: the replays record "
-                        "it only now and then.",
+        skills[k] = {"uses": n, "secs_per_use": round(s / n, 2) if n else None, "recorded_share": round(h / n, 2) if n else None,
+                     "formula_secs_per_use": round(min(dur or 0, _recharge(rec) or 0) * targets(rec), 2) if rec else None,
+                     "recharge": _recharge(rec) if rec else None}
+    json.dump({"about": "Slowed target-seconds each finished use of a snare produced in the stored replays (the hex, or "
+                        "the Crippled condition the skill caused, on enemies, by this caster or an unrecorded one; removal "
+                        "included). movepower.py uses it in place of the formula once a skill has 15+ uses, capped at the "
+                        "recharge (one player can't be slowed more than all the time). Area snares count one target in the "
+                        "formula (Denning, session 4u).",
                "matches": len(ids), "skills": skills}, open(BENCH, "w"), indent=1)
     return skills
 

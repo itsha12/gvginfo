@@ -716,7 +716,9 @@ def npcs(new_ids, recs, usual_res):
     if sp: short.append(f"{foe} split {'+'.join(sp[0]['members'])} into {tag}'s base" + (f" at {clock(sp[0]['entered_base'])}" if sp[0].get("entered_base") else ""))
     if rows:
         r = max(rows, key=lambda r: r["t"])
-        short.append(f"at {clock(r['t'])} the pit had {r.get('attackers')} attackers against {r.get('defenders')} defenders "
+        short.append(f"at {clock(r['t'])} the pit had {r.get('attackers')} attackers"
+                     + (f" (plus {r['attackers_outside']} hitting the NPCs from outside the pit)" if r.get("attackers_outside") else "")
+                     + f" against {r.get('defenders')} defenders "
                      f"({r.get('defender_healers')} of them healers), with {r.get('defenders_elsewhere')} of {tag} elsewhere")
     nk = [k for s_ in sp for k in (s_.get("npc_kills") or []) if abs(k["t"] - t) <= 5]
     if nk and nk[0].get("defenders_present"): short.append(f"defenders present at the kill: {', '.join(nk[0]['defenders_present'])}")

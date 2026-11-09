@@ -164,6 +164,37 @@ def deaths(src, ids):
             "damage_kinds": dict(kinds.most_common(6)), "monk_skills_interrupted_6s_before": intr.most_common(8)}
 
 
+def _pressure_one(rid):
+    import pressure as PR
+    try: return PR.players(rid)
+    except Exception: return {}
+
+
+def pressure_table(ids):
+    """Denning's session 4u measures by role, per player-minute over every trained match (pressure.py)."""
+    import parallel
+    keys = ["kite_secs", "prekite_secs", "melee_wasted_secs", "degen_pip_secs", "baits", "knockdowns", "knockdowns_on_casting",
+            "disable_skill_secs", "castprev_secs", "castprev_triggered"]
+    tot = collections.defaultdict(lambda: collections.Counter()); mins = collections.Counter()
+    for r in parallel.run(_pressure_one, list(ids)):
+        for a, v in (r or {}).items():
+            role = v.get("role") or "?"; mins[role] += v["minutes"]
+            for k in keys: tot[role][k] += v[k]
+    rows = sorted(mins, key=lambda r: -mins[r])
+    L = ["**Pressure beyond damage** (Denning, session 4u; per player per minute played, all trained matches; kiting counts "
+         "only warriors, dervishes and assassins chasing; degen in pip-seconds, 1 pip = 2 health a second; disables in "
+         "skill-seconds; baits = enemy interrupts that landed on nothing after a cancel):", "",
+         "| Role | Kited s | Pre-kited s | Melee s wasted chasing | Degen | Baits | Knockdowns (on casters) | Disables | Shame/Guilt/Diversion s (triggered) |",
+         "|---|---|---|---|---|---|---|---|---|"]
+    f = lambda role, k, d=2: round(tot[role][k] / mins[role], d) if mins[role] else 0
+    for role in rows[:22]:
+        if mins[role] < 30: continue
+        L.append(f"| {role} | {f(role, 'kite_secs')} | {f(role, 'prekite_secs')} | {f(role, 'melee_wasted_secs')} | {f(role, 'degen_pip_secs', 1)} | "
+                 f"{f(role, 'baits', 3)} | {f(role, 'knockdowns')} ({f(role, 'knockdowns_on_casting')}) | {f(role, 'disable_skill_secs')} | "
+                 f"{f(role, 'castprev_secs')} ({f(role, 'castprev_triggered', 3)}) |")
+    return L + [""]
+
+
 def snapshot(ids, new_ids, src="/tmp/gl"):
     L = ["## 9. Detailed learnings snapshot", "",
          f"Descriptive measurements across all {len(ids)} trained matches (the latest batch, {len(new_ids)} matches, in "
@@ -202,6 +233,7 @@ def snapshot(ids, new_ids, src="/tmp/gl"):
     L += ["", "**Monks** (per 2-minute phase alive 60 s+): " + "; ".join(
         f"{k}: {v['casts_per_min']} casts a minute, {v['fakes_per_phase']} fakes, idle {v['idle_while_ally_hurt_s']} s while an ally was hurt, "
         f"reaction {v['median_reaction_s']} s, bursts answered {v['bursts_answered']:.0%}" for k, v in mk.items() if v["monk_phases"]) + ".", ""]
+    L += pressure_table(ids)
     dd = deaths(src, ids)
     L += [f"**Deaths** ({dd['deaths']}): {dd['with_a_knockdown']} with a knockdown on the victim; {dd['monk_cast_on_victim_last_5s']} had a "
           "monk cast on the victim in the last 5 s. Monk skills interrupted in the 6 s before a death: "

@@ -543,6 +543,23 @@ def _bench_match(rid):
             if p["attackers"]: out[g]["peel_share"].append(p["pressured"] / p["attackers"])
             pr = F.prots(a, d[0] - 3, d[0] + 3)["measures"]
             out[g]["reaction_prot"].append(1.0 if pr["reaction_prots"] else 0.0)
+    # pressure beyond damage (Denning, session 4u; pressure.py), per WINDOW s with the player alive and near enemies:
+    # degen on it, its kiting; per team: its healers' disabled skill-seconds and cast prevention
+    import pressure as PR
+    pr_ = PR.record(rid)
+    for a in m.PL:
+        g = role_group(m, a)
+        for t0 in range(10, end - WINDOW, WINDOW):
+            t1 = t0 + WINDOW
+            if not F.alive(a, t1): continue
+            out[g]["degen_pip_secs"].append(round(sum(p * PR._overlap(s0, s1, t0, t1) for s0, s1, p, c, tg in pr_["degen"] if tg == a), 1))
+            out[g]["kited_s"].append(sum(1 for x in pr_["kite"].get(a, ()) if t0 <= x <= t1) + sum(1 for x in pr_["prekite"].get(a, ()) if t0 <= x <= t1))
+    for tm in F.tag:
+        hs = [b for b in F.players(tm) if b in F.healers]
+        for t0 in range(10, end - WINDOW, WINDOW):
+            t1 = t0 + WINDOW
+            out["team"]["healers_disabled_skill_secs"].append(round(sum(v for tt, src, tg, v, _ in pr_["disable"] if tg in hs and t0 <= tt <= t1), 1))
+            out["team"]["healers_castprev_secs"].append(round(sum(PR._overlap(s0, s1, t0, t1) for s0, s1, c, tg, tr, _ in pr_["castprev"] if tg in hs), 1))
     return {g: dict(v) for g, v in out.items()}
 
 
@@ -679,6 +696,22 @@ def death(rid, tag, role, t, F=None):
                                 + ("; cancelled less than usual" if bc == "low" else "; cancelled more than usual" if bc == "high" else ""),
                       "measures": cm, "placed": {"interrupted_share": pi, "cancelled_share": pc, "dazed_share": pd_}, "casts": ca["casts"]}
     ans["conditions"] = {"q": "How did the conditions land, and were they removed?", "measures": co["measures"], "rows": co["rows"]}
+    # Denning (session 4u, pressure.py): kiting, degen on the victim, disables and cast prevention on its healers
+    import pressure as PR
+    pr_ = PR.record(rid)
+    healers_ = [b for b in F.players(tm) if b in F.healers and b != a]
+    kite = sum(1 for x in pr_["kite"].get(a, ()) if t0 <= x <= t); pre = sum(1 for x in pr_["prekite"].get(a, ()) if t0 <= x <= t)
+    chased = sum(1 for M, L in pr_["wasted"].items() for x in L if t0 <= x <= t)        # any melee chasing anyone, context
+    degen_ps = round(sum(p * PR._overlap(s0, s1, t0, t) for s0, s1, p, c, tg in pr_["degen"] if tg == a), 1)
+    dis = round(sum(v for tt, src, tg, v, _ in pr_["disable"] if tg in healers_ and t0 <= tt <= t), 1)
+    cp = round(sum(PR._overlap(s0, s1, t0, t) for s0, s1, c, tg, tr, _ in pr_["castprev"] if tg in healers_), 1)
+    on = PR.on_player(pr_, a, t - 0.5)
+    placed_ = {"degen_pip_secs": place(g, "degen_pip_secs", degen_ps), "kited_s": place(g, "kited_s", kite + pre),
+               "healers_disabled_skill_secs": place("team", "healers_disabled_skill_secs", dis),
+               "healers_castprev_secs": place("team", "healers_castprev_secs", cp)}
+    ans["pressure"] = {"q": "Pressure beyond damage?", "placed": {k: v[0] for k, v in placed_.items()}, "bands": {k: v[1] for k, v in placed_.items()},
+                       "measures": {"kited_s": kite, "prekited_s": pre, "degen_pip_secs": degen_ps, "degen_pips_at_death": on["degen_pips_now"],
+                                    "healers_disabled_skill_secs": dis, "healers_castprev_secs": cp, "window_s": WINDOW}}
     ans["victim"] = {"name": F.name(a), "group": g, "set_now": (F.weapon_set(a, t - 1) or {}).get("label")}
     return ans
 
@@ -688,7 +721,8 @@ def lines(ans):
     L = []
     v = ans.get("victim", {})
     L.append(f"**{v.get('name')}** ({v.get('group')}), set at death: {v.get('set_now')}")
-    for k in ("position", "prots", "monk_pressure", "sets", "own_output", "enemy_output", "peel", "casting", "conditions"):
+    for k in ("position", "prots", "monk_pressure", "sets", "own_output", "enemy_output", "peel", "casting", "conditions", "pressure"):
+        if k not in ans: continue
         x = ans[k]
         L.append(f"- **{x['q']}** {x.get('answer', '')}" + (f" ({x['placed']})" if isinstance(x.get('placed'), str) else ""))
         L.append(f"  - measures: {json.dumps(x.get('measures'), ensure_ascii=False)}")

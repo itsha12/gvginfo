@@ -167,6 +167,10 @@ VARIABLES = [
      "Proposed batch 1 by Claude (the knights curve ran backwards, maybe standing in for the cost of splitting); moved in "
      "batch 10 on Denning's approval (held-out log loss 0.314 to 0.307)",
      lambda s, sb, tm, t, x: _splitting(sb, tm, t) - _splitting(sb, 3 - tm, t)),
+    ("footmen_diff", "own minus enemy footmen alive (base NPCs, not pit NPCs). Proposed 2026-11-06 from OG comms "
+     "([ohno v NwAy]: 'this way we don't lose footmen'; [ohno v Fun]: fake collapse to the footmen); moved in after chunk 4 "
+     "on Denning's approval (held-out log loss 0.384 to 0.371)",
+     lambda s, sb, tm, t, x: _footmen_alive(sb, tm, t) - _footmen_alive(sb, 3 - tm, t)),
 ]
 # Candidate variables (discovery): computed and retested in every learning report (held-out accuracy with and without
 # each), but only moved into VARIABLES once they improve predictions on unseen matches. Each notes who proposed it,
@@ -176,9 +180,6 @@ CANDIDATES = [
      "([ohno v One], [ohno v Crew]: 'they are turtling, we have to make a play'); comms_vars.py: teams that turtled 60 s "
      "won 3 of 13 times",
      lambda s, sb, tm, t, x: round(_home_share(sb, tm, t) - _home_share(sb, 3 - tm, t), 3)),
-    ("footmen_diff", "own minus enemy footmen alive (base NPCs, not pit NPCs). Proposed 2026-11-06 from OG comms "
-     "([ohno v NwAy]: 'this way we don't lose footmen'; [ohno v Fun]: fake collapse to the footmen)",
-     lambda s, sb, tm, t, x: _footmen_alive(sb, tm, t) - _footmen_alive(sb, 3 - tm, t)),
     ("no_healer_groups_diff", "own minus enemy groups of 2+ with no healer. Proposed 2026-11-06 from OG comms ([ohno v One]: "
      "keep a prot and a monk on one side, the Rit and a monk on the other); comms_vars.py: such groups lose players twice as often",
      lambda s, sb, tm, t, x: _groups_no_healer(sb, tm, t) - _groups_no_healer(sb, 3 - tm, t)),

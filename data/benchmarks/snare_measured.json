@@ -1,106 +1,265 @@
 {
- "about": "Slowed target-seconds each finished use of a hex snare produced in the stored replays (the hex on enemies within 1.5 s, by this caster or an unrecorded one; removal included). movepower.py uses it in place of the formula once a skill has 15+ uses. Crippled isn't measured: the replays record it only now and then.",
- "matches": 176,
+ "about": "Slowed target-seconds each finished use of a snare produced in the stored replays (the hex, or the Crippled condition the skill caused, on enemies, by this caster or an unrecorded one; removal included). movepower.py uses it in place of the formula once a skill has 15+ uses, capped at the recharge (one player can't be slowed more than all the time). Area snares count one target in the formula (Denning, session 4u).",
+ "matches": 221,
  "skills": {
+  "Aura of Thorns (PvP)": {
+   "uses": 71,
+   "secs_per_use": 0.08,
+   "recorded_share": 0.01,
+   "formula_secs_per_use": 7.0,
+   "recharge": 10.0
+  },
+  "Axe Rake": {
+   "uses": 172,
+   "secs_per_use": 2.12,
+   "recorded_share": 0.58,
+   "formula_secs_per_use": 7.0,
+   "recharge": 7.0
+  },
+  "Binding Chains": {
+   "uses": 5,
+   "secs_per_use": 4.36,
+   "recorded_share": 1.0,
+   "formula_secs_per_use": 3.0,
+   "recharge": 15.0
+  },
+  "Black Mantis Thrust": {
+   "uses": 12,
+   "secs_per_use": 0.0,
+   "recorded_share": 0.0,
+   "formula_secs_per_use": 6.0,
+   "recharge": 6.0
+  },
+  "Caltrops": {
+   "uses": 2394,
+   "secs_per_use": 0.72,
+   "recorded_share": 0.11,
+   "formula_secs_per_use": 10.0,
+   "recharge": 10.0
+  },
   "Crippling Anguish (PvP)": {
-   "uses": 136,
-   "secs_per_use": 14.35,
-   "formula_secs_per_use": 17.0
+   "uses": 169,
+   "secs_per_use": 13.52,
+   "recorded_share": 0.94,
+   "formula_secs_per_use": 17.0,
+   "recharge": 20.0
+  },
+  "Crippling Shot (PvP)": {
+   "uses": 25,
+   "secs_per_use": 0.92,
+   "recorded_share": 0.2,
+   "formula_secs_per_use": 2.0,
+   "recharge": 2.0
+  },
+  "Crippling Slash": {
+   "uses": 58,
+   "secs_per_use": 0.83,
+   "recorded_share": 0.09,
+   "formula_secs_per_use": 7.0,
+   "recharge": 7.0
+  },
+  "Crippling Sweep": {
+   "uses": 118,
+   "secs_per_use": 0.0,
+   "recorded_share": 0.0,
+   "formula_secs_per_use": 6.0,
+   "recharge": 6.0
   },
   "Deep Freeze": {
    "uses": 5,
    "secs_per_use": 2.32,
-   "formula_secs_per_use": 20.0
+   "recorded_share": 0.6,
+   "formula_secs_per_use": 10.0,
+   "recharge": 15.0
+  },
+  "Desperation Blow": {
+   "uses": 48,
+   "secs_per_use": 0.0,
+   "recorded_share": 0.0,
+   "formula_secs_per_use": 7.0,
+   "recharge": 7.0
   },
   "Earthen Shackles": {
    "uses": 230,
    "secs_per_use": 4.2,
-   "formula_secs_per_use": 30.0
+   "recorded_share": 0.99,
+   "formula_secs_per_use": 15.0,
+   "recharge": 15.0
   },
   "Ethereal Burden": {
-   "uses": 233,
-   "secs_per_use": 8.4,
-   "formula_secs_per_use": 11.0
+   "uses": 253,
+   "secs_per_use": 8.55,
+   "recorded_share": 0.98,
+   "formula_secs_per_use": 11.0,
+   "recharge": 30.0
   },
   "Freezing Gust": {
-   "uses": 546,
-   "secs_per_use": 2.65,
-   "formula_secs_per_use": 4.0
+   "uses": 681,
+   "secs_per_use": 2.63,
+   "recorded_share": 0.83,
+   "formula_secs_per_use": 4.0,
+   "recharge": 8.0
   },
   "Grasping Earth": {
    "uses": 26,
    "secs_per_use": 0.0,
-   "formula_secs_per_use": 24.0
+   "recorded_share": 0.0,
+   "formula_secs_per_use": 12.0,
+   "recharge": 12.0
+  },
+  "Hamstring": {
+   "uses": 888,
+   "secs_per_use": 0.0,
+   "recorded_share": 0.0,
+   "formula_secs_per_use": 10.0,
+   "recharge": 10.0
   },
   "Hidden Caltrops": {
    "uses": 27,
    "secs_per_use": 6.7,
-   "formula_secs_per_use": 12.0
+   "recorded_share": 1.0,
+   "formula_secs_per_use": 12.0,
+   "recharge": 12.0
   },
   "Ice Prison": {
-   "uses": 38,
-   "secs_per_use": 5.19,
-   "formula_secs_per_use": 18.0
+   "uses": 40,
+   "secs_per_use": 5.44,
+   "recorded_share": 0.95,
+   "formula_secs_per_use": 18.0,
+   "recharge": 30.0
+  },
+  "Illusion of Haste (PvP)": {
+   "uses": 194,
+   "secs_per_use": 0.0,
+   "recorded_share": 0.0,
+   "formula_secs_per_use": 8.0,
+   "recharge": 8.0
   },
   "Imagined Burden": {
    "uses": 10,
    "secs_per_use": 8.95,
-   "formula_secs_per_use": 18.0
+   "recorded_share": 1.0,
+   "formula_secs_per_use": 18.0,
+   "recharge": 30.0
   },
   "Kitah's Burden": {
-   "uses": 156,
-   "secs_per_use": 8.09,
-   "formula_secs_per_use": 11.0
+   "uses": 178,
+   "secs_per_use": 8.25,
+   "recorded_share": 0.99,
+   "formula_secs_per_use": 11.0,
+   "recharge": 30.0
+  },
+  "Leaping Mantis Sting": {
+   "uses": 204,
+   "secs_per_use": 1.49,
+   "recorded_share": 0.28,
+   "formula_secs_per_use": 8.0,
+   "recharge": 8.0
+  },
+  "Maiming Spear": {
+   "uses": 7,
+   "secs_per_use": 0.0,
+   "recorded_share": 0.0,
+   "formula_secs_per_use": 5.0,
+   "recharge": 5.0
+  },
+  "Mantis Touch": {
+   "uses": 1024,
+   "secs_per_use": 4.89,
+   "recorded_share": 0.88,
+   "formula_secs_per_use": 10.0,
+   "recharge": 10.0
   },
   "Mind Freeze (PvP)": {
-   "uses": 553,
-   "secs_per_use": 3.38,
-   "formula_secs_per_use": 4.0
+   "uses": 678,
+   "secs_per_use": 3.35,
+   "recorded_share": 0.86,
+   "formula_secs_per_use": 4.0,
+   "recharge": 5.0
   },
   "Mirror of Ice": {
    "uses": 21,
    "secs_per_use": 8.21,
-   "formula_secs_per_use": 5.0
+   "recorded_share": 0.86,
+   "formula_secs_per_use": 5.0,
+   "recharge": 15.0
+  },
+  "Pin Down": {
+   "uses": 81,
+   "secs_per_use": 0.37,
+   "recorded_share": 0.06,
+   "formula_secs_per_use": 8.0,
+   "recharge": 8.0
   },
   "Seeping Wound": {
    "uses": 11,
    "secs_per_use": 2.46,
-   "formula_secs_per_use": 6.0
+   "recorded_share": 0.55,
+   "formula_secs_per_use": 6.0,
+   "recharge": 10.0
   },
   "Shadow Prison": {
    "uses": 55,
    "secs_per_use": 2.86,
-   "formula_secs_per_use": 6.0
+   "recorded_share": 1.0,
+   "formula_secs_per_use": 6.0,
+   "recharge": 15.0
   },
   "Shadowy Burden": {
-   "uses": 33,
-   "secs_per_use": 8.07,
-   "formula_secs_per_use": 13.0
+   "uses": 39,
+   "secs_per_use": 7.7,
+   "recorded_share": 0.97,
+   "formula_secs_per_use": 13.0,
+   "recharge": 15.0
   },
   "Shard Storm": {
-   "uses": 101,
-   "secs_per_use": 4.28,
-   "formula_secs_per_use": 5.0
+   "uses": 107,
+   "secs_per_use": 4.11,
+   "recorded_share": 0.82,
+   "formula_secs_per_use": 5.0,
+   "recharge": 10.0
   },
   "Shared Burden (PvP)": {
-   "uses": 22,
-   "secs_per_use": 16.01,
-   "formula_secs_per_use": 34.0
+   "uses": 32,
+   "secs_per_use": 22.57,
+   "recorded_share": 0.88,
+   "formula_secs_per_use": 17.0,
+   "recharge": 20.0
+  },
+  "Signet of Pious Restraint (PvP)": {
+   "uses": 1008,
+   "secs_per_use": 5.81,
+   "recorded_share": 0.91,
+   "formula_secs_per_use": 13.0,
+   "recharge": 16.0
   },
   "Siphon Speed": {
-   "uses": 118,
-   "secs_per_use": 5.53,
-   "formula_secs_per_use": 13.0
+   "uses": 137,
+   "secs_per_use": 5.44,
+   "recorded_share": 0.98,
+   "formula_secs_per_use": 13.0,
+   "recharge": 30.0
   },
   "Sum of All Fears": {
    "uses": 36,
    "secs_per_use": 7.33,
-   "formula_secs_per_use": 10.0
+   "recorded_share": 0.94,
+   "formula_secs_per_use": 10.0,
+   "recharge": 10.0
+  },
+  "Teinai's Prison": {
+   "uses": 10,
+   "secs_per_use": 3.57,
+   "recorded_share": 0.9,
+   "formula_secs_per_use": 7.0,
+   "recharge": 15.0
   },
   "Winter's Embrace": {
-   "uses": 225,
-   "secs_per_use": 4.02,
-   "formula_secs_per_use": 5.0
+   "uses": 265,
+   "secs_per_use": 4.06,
+   "recorded_share": 0.94,
+   "formula_secs_per_use": 5.0,
+   "recharge": 15.0
   }
  }
 }
