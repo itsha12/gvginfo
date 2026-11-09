@@ -1,6 +1,6 @@
 # GvG Info — handoff for a new Claude chat
 
-Last updated 2026-11-08 (portal sections unchanged since 2026-10-15; match replay analysis updated, session 4t). Attach this file (or just ask Claude to attach the repo) in a new chat, then say what you want.
+Last updated 2026-11-09 (portal sections unchanged since 2026-10-15; match replay analysis updated, session 4u). Attach this file (or just ask Claude to attach the repo) in a new chat, then say what you want.
 
 ## Start a new chat in one message
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md and docs/HANDOFF.md, then: <your request>
@@ -94,10 +94,35 @@ Claude should then:
 
 # Match replay analysis
 
-**Status:** Active. Last updated 2026-11-08 (session 4t). The agreed order is down to its last item: the large pull,
-trained in chunks of 40 to 50 matches. 228 matches trained in 11 batches (chunk 2 of the large pull done); about five
-more chunks to reach 450+. Commentary (Bounty, Nick), discovery (step 3), node-model chains (step 4) and the speed-up
-are all built. Next: discovery (due now or after chunk 3), then chunk 3.
+**Status:** Active. Last updated 2026-11-09 (session 4u). Large pull in chunks of 40 to 50. Since session 4u only
+matches from 1 September 2026 count (METHODS.md "Which matches count"): 266 matches trained (13 batches; 52 earlier
+matches left out). Chunks 3 and 4 done. Next: Denning's answers to the chunk 3 and 4 questions as one engine change,
+discovery (overdue), then chunk 5.
+
+### Session 4u (2026-11-08/09)
+- Denning: matches before 1 September 2026 don't count in the model; new picks from 2 September on. Strength and lineup
+  ratings keep every result (his ruling: replays only). Built as common.TRAIN_FROM / PICK_FROM, common.replay_ids(),
+  model.batches() filtered (batches.json unchanged as a record), batch.py picks and adds filtered. Map flag spawns and
+  Lord regeneration (game facts) keep every replay. Benchmarks rebuilt on the 176 counting matches before chunk 3
+  (forensics, spikes, snare, Lord damage, carry capture, commentary variables; collapse_snare unclear -> supported).
+- Chunk 3 (batch 12, run 42533187828, 42 min, full rebuild): 221 matches. Honest test clear: 0.344 against 0.421
+  (gain +0.076, +0.008 to +0.141). Cap test chose a 10-point cap; pair test blocked morale x map pairs.
+- Chunk 4 (batch 13, run 42536700459, 52 min): 266 matches. Honest test not clear: 0.384 against 0.455 (gain +0.071,
+  -0.001 to +0.134); both got worse on the new matches (harder for strength too). Cap test back to no cap; pairs still
+  blocked. footmen_diff candidate now improves the win model (0.384 -> 0.371): asked Denning whether to move it in.
+  spike_killable_diff rose to 5th (0.213). split_diff: more own players splitting reads worse (-20 points at 4+).
+- Clear in both chunks: at the boost clock, running (advanced +2.0, fought +3.2, held +3.7, fell back +3.2 against
+  not running and fighting); collapsing on a split -4.8 / -3.2; late game 0 to 1 at the enemy Lord -18 / -20 (clear in
+  chunk 4). No longer clear after the cutoff: after a wipe taking the flag (-2.8), boost clock not running and falling
+  back, assassin runner. Runner choice usual is now the monk; warrior -1.7 and paragon -2.9 clear in chunk 4.
+  Values (chunk 4): death -8.6, knight -8.4, Bodyguard -5.6, archer -4.2, footman -1.7 (now clear), capture +2.2,
+  boost +5.7. Links: 34 of 88 supported; newly supported in chunk 4: P.1 -> power play (healer focus), K.11 ->
+  collapse (defender snare present), C.strength -> fight outcome.
+- Found (not fixed): TQ 4 of chunk 3 (cope v BcS 18:40): the knight died to BcS's Dervish inside the base with both
+  Air Eles hitting from outside it; the NPC node counts only attackers in the base (read 1 v 4, 2% chance), and the
+  team-position line showed all of cope "backside (contest)". Proposed: count ranged attackers hitting the pit from
+  outside, and check the position labels in TQ 4.
+- TQ confidence was low on 5 of 8 answers: most fixes carried to the result price under half a win point.
 
 ### Session 4t (2026-11-08)
 - Agreed order (Denning): 1) Bounty's and Nick's transcripts, then one engine change and one rebuild; 2) build and test
@@ -322,7 +347,8 @@ are all built. Next: discovery (due now or after chunk 3), then chunk 3.
 ## Start the next chat with
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/HANDOFF.md (the "Match replay
 > analysis" section, session 4t last), knowledge/tactics.md and tools/replay_analysis/METHODS.md, then continue the
-> large pull: run discovery if I say so, then the next chunk (Train batch, pick about 45), and explain it.
+> large pull: build my answers to the session 4u questions, run discovery if I say so, then the next chunk (Train
+> batch, pick about 45; picks start 2 September automatically), and explain it.
 
 Engine setup in the chat (needed for step 2): `git fetch --depth 1 origin +replays:refs/remotes/origin/replays`,
 `pip install --break-system-packages -r .github/workflows/train-requirements.txt`, then in tools/replay_analysis
@@ -341,7 +367,9 @@ chains behind each result come from the data (including chains neither Denning n
 priced by carrying a change forward to the win chance. The causal chains must be reflected in the model, not only in
 the TQ reasoning.
 
-## Current state (2026-11-08; 228 matches trained in 11 batches)
+## Current state (2026-11-09; 266 matches from 1 September on, 13 batches; see session 4u above)
+
+*Below: state at 228 matches before the cutoff, kept for comparison.*
 - Win model: glass box log loss 0.345 against 0.439 for strength alone (clear: gain +0.094, range +0.02 to +0.158);
   85% of winners picked on unseen matches. Batch 10 was 0.314 (first clear result). split_diff moved in after batch 10.
 - Learned nodes (11): run outcome, flag swing, run defence, capture speed, power play, fight outcome, split chance,
@@ -355,7 +383,9 @@ the TQ reasoning.
   +0.4 (not clear).
 
 ## Next steps (in order)
-1. Discovery on the 228 matches (or after chunk 3, Denning to say); findings held for his approval.
+0. Denning's answers to the session 4u questions (footmen_diff, ranged pit attackers, discovery timing) as one engine
+   change; then discovery on the 266 matches.
+1. Discovery (Discovery workflow); findings held for his approval.
 2. Large pull: about five more chunks of 40 to 50 (Train batch, pick about 45, add_batch yes); after each, the
    snapshot across the learnings, the four TQs and questions for Denning; his answers built as one engine change
    before the next chunk; update this file.
