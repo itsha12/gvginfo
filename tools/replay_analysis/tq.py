@@ -68,6 +68,11 @@ def node_validation(node):
 
 
 def node_trust(node):
+    import learnednodes as LN
+    if node in LN.SPEC:
+        try: v = json.load(open(os.path.join(LN.NODE_DIR, f"L_{node}.json")))["validation"]
+        except (OSError, ValueError, KeyError): return None, "not validated yet"
+        return v["verdict"].startswith("adds"), f"{v['metric']} {v['glass box']} on unseen matches against {v['simple baseline']} for the simple baseline"
     v = node_validation(node)
     if not v: return None, "not validated yet"
     if node in N.REGRESSION:
@@ -98,7 +103,15 @@ def what_if(node, rid, row, changes, ladders=()):
     A reading is marked unreliable (its label ends " [unreliable: why]") when a change takes a variable outside what
     the node saw in training, or when a ladder (labels that add more of the same, smallest first) doesn't keep moving
     the same way (Denning, after batch 9: two more defenders read worse than one; the node was outside its data)."""
-    e, feats = N.heldout_node(node, _ids(), rid)
+    import learnednodes as LN
+    learned = node in LN.SPEC
+    if learned:
+        # a learned node (learnednodes.py): the fold model that never saw this match, from the last fit_all
+        h = LN.load_heldout(node, _ids())
+        if not h: raise RuntimeError(f"{node}: no held-out models fitted yet")
+        e, feats = h["models"][h["fold_of"].get(rid, 0)], h["cols"]
+    else:
+        e, feats = N.heldout_node(node, _ids(), rid)
     bounds = {}
     fb = getattr(getattr(e, "clf", e), "feature_bounds_", None)
     if fb is not None:
@@ -106,10 +119,13 @@ def what_if(node, rid, row, changes, ladders=()):
             try: bounds[f] = (float(b[0]), float(b[1]))
             except (TypeError, ValueError, IndexError): pass
     def read(r):
-        if node in N.REGRESSION:
-            import pandas as pd
+        import pandas as pd
+        if (learned and node in LN.REGRESSION) or (not learned and node in N.REGRESSION):
             x = pd.DataFrame([{k: r.get(k) for k in feats}]).astype(float)
             return round(float(e.predict(x)[0]), 1)
+        if learned:
+            x = pd.DataFrame([{k: r.get(k) for k in feats}]).astype(float)
+            return round(float(e.predict_proba(x)[0, 1]) * 100, 1)
         return N.explain_row(e, r, feats)[0]
     base = read(row); out = []
     for label, ch in changes:
@@ -323,7 +339,7 @@ def flags(new_ids, recs, usual_res):
     # the decisions that set it up
     dec = decision_alternatives(recs, usual_res, rid, tag, s - 30, e)
     if dec:
-        L.append("*The decisions in the swing* (usual.py: win-chance points over the decision's window, against the kind's most common choice):")
+        L.append("**Macro: the decisions in the swing** (usual.py: win-chance points over the decision's window, against the kind's most common choice; the measured causes above are the micro half):")
         L += decision_lines(dec[:3])
         conf += [c for c in (decision_conf(x) for x in dec[:3]) if c]
     else:
@@ -446,7 +462,7 @@ def monk(new_ids, recs, usual_res):
     else: L.append("- Deaths node: no reading in the seconds before the death.")
     dec = [] if lu_conf else decision_alternatives(recs, usual_res, rid, team, t - 45, t)
     if dec:
-        L.append("- The decision before it (usual.py):")
+        L.append("- **Macro: the decision before it** (usual.py; the forensics above are the micro half):")
         L += ["  " + x for x in decision_lines(dec[-1:])]
         conf += [c for c in [decision_conf(dec[-1])] if c]
     c, why = confidence(conf)
@@ -682,14 +698,68 @@ def power(new_ids, recs, usual_res):
         L.append(f"- Bursts in the window: {len(bursts)}, on " + ", ".join(f"{r['role']} ({r['burst_damage']})" for r in bursts[:6]))
     else:
         L.append("- No burst (a 2 s burst that the kill-conversion node reads) in the window: the damage never came together on one target.")
+    L += ["", "**Micro: given the power play, what went wrong in carrying it out** (power-play node)", ""]
+    ex, faults = execution_lines("power_play", rid, tag, t0, good_high=True)
+    L += ex
+    conf.append(("node", bool(faults)))
+    L += ["", "**Macro: was the power play the right call** (usual.py: the choice against what similar teams did)", ""]
     dec = decision_alternatives(recs, usual_res, rid, tag, t0 - 2, t0 + 2, kinds={"power_play"})
     if dec:
-        L.append("- The choice at the power play (usual.py):")
-        L += ["  " + x for x in decision_lines(dec)]
+        L += decision_lines(dec)
         conf += [c for c in [decision_conf(dec[0])] if c]
+    else: L.append("- No power-play decision record at this moment.")
     c, why = confidence(conf)
     L += ["", f"**Confidence**: {c} ({why}).", ""]
     return L
+
+
+# ------------------------------------------------------------------ macro, micro and the enemy's response (Denning, November 2026 review)
+def execution_lines(node, rid, team, t, good_high, window=5):
+    """The micro answer from a learned node: the row of this team at (or nearest before) t read by the fold model that
+    never saw the match, and the decision and execution inputs that pushed the reading the wrong way, each against
+    its usual value (the median over every trained row). Context and state are left out (adjustment, not faults);
+    inputs that mark the situation are named as such and not counted. Also the enemy's response measured in the same
+    window (what the enemy did), never as a cause. Returns (lines, faults) where faults = [(feature, push)]."""
+    import causalchain as CC, learnednodes as LN
+    try: rows = [r for r in CC._rows(node, rid) if r["team"] == team and r["t"] <= t + window]
+    except Exception: rows = []
+    if not rows: return [f"- {node.replace('_', ' ')} node: no row for this moment."], []
+    row = max(rows, key=lambda r: r["t"])
+    h = CC.heldout(node)
+    if not h: return [f"- {node.replace('_', ' ')} node: not fitted yet."], []
+    reading, contrib = CC.read(node, rid, row)
+    if reading is None: return [f"- {node.replace('_', ' ')} node: no reading."], []
+    med = h.get("medians") or {}; spr = h.get("spreads") or {}
+    kinds = h.get("kinds") or {}; marks = set(h.get("marks_situation") or [])
+    _, at_usual = CC.read(node, rid, {**row, **{k: v for k, v in med.items() if v is not None}})
+    sign = -1 if good_high else 1          # positive = pushed toward the bad result
+    unit = "points" if not h.get("regression") else "s"
+    faults, situation = [], []
+    for f, c in contrib.items():
+        k = kinds.get(f) or LN.kind_of(node, f)
+        if k not in ("decision", "execution"): continue
+        v, u, sp = row.get(f), med.get(f), spr.get(f)
+        if v is None or u is None: continue
+        if sp and abs(v - u) < 0.25 * sp: continue
+        push = (c - at_usual.get(f, 0)) * sign
+        if push < (1.0 if unit == "points" else 0.5): continue
+        (situation if f in marks else faults).append((f, k, v, u, push))
+    faults.sort(key=lambda x: -x[4])
+    fmt = lambda x: f"{x:g}" if isinstance(x, (int, float)) else str(x)
+    L = [f"- {node.replace('_', ' ')} node at {clock(row['t'])} read {reading}{'%' if unit == 'points' else ' s'} (a model that never saw the match)."]
+    if faults:
+        L.append("- Execution and decision inputs that pushed it the wrong way, against their usual value:")
+        for f, k, v, u, push in faults[:5]:
+            L.append(f"  - {LN.describe(node, f) or f} ({k}): {fmt(v)} against the usual {fmt(u)}: {push:+.1f} {unit}")
+    else:
+        L.append("- No decision or execution input sat clearly on the bad side of its usual value: the node reads this as state, not execution.")
+    if situation:
+        L.append("- Marks the situation (not counted as a fault): " + ", ".join(LN.describe(node, f) or f for f, *_ in situation[:4]))
+    conc = LN.CONCURRENT.get(node, {})
+    if conc:
+        got = [(f, row.get(f)) for f in conc if row.get(f) is not None]
+        if got: L.append("- What the enemy did in the window (measured, never a cause): " + "; ".join(f"{conc[f]}: {fmt(v)}" for f, v in got))
+    return L, [(f, push) for f, k, v, u, push in faults]
 
 
 # ------------------------------------------------------------------ 4. NPCs lost
@@ -711,7 +781,10 @@ def npcs(new_ids, recs, usual_res):
          "points from 20 s before to 20 s after.*", ""]
     L += EV.npc(rid, tag, t)
     sp = [s for s in a["splits"] if s["team"] == foe and s["start"] <= t + 5 and s["end"] >= t - 40]
-    rows = [r for r in N.node_rows("npc_loss", rid) if r["team"] == foe and t - 30 <= r["t"] <= t - 3]
+    # the pit NPC loss learned node (rows are read for the defending team; nodes.py's npc_loss is retired, M1)
+    import learnednodes as LN, eventlayer as EL
+    _V = EL.load_values() or {}
+    rows = [r for r in LN.node_rows("pit_npc_loss", rid, _V) if r["team"] == tag and t - 30 <= r["t"] <= t - 3]
     short = []
     if sp: short.append(f"{foe} split {'+'.join(sp[0]['members'])} into {tag}'s base" + (f" at {clock(sp[0]['entered_base'])}" if sp[0].get("entered_base") else ""))
     if rows:
@@ -770,8 +843,8 @@ def npcs(new_ids, recs, usual_res):
                          + (f"the split's own NPC kills ({', '.join(k['npc'] + ' ' + clock(k['t']) for k in split_kills)}) are what its answer is judged on."
                             if split_kills else "the split itself killed no NPC."))
     # the NPC-loss node with more defenders (rows are per attacking team)
-    ok, trust = node_trust("npc_loss")
-    nv = cause_value("npc_loss")
+    ok, trust = node_trust("pit_npc_loss")
+    nv = cause_value("pit_npc_loss")
     if rows:
         r = max(rows, key=lambda r: r["t"])
         ch = [("one more defender", {"defenders": (r.get("defenders") or 0) + 1, "defenders_elsewhere": max((r.get("defenders_elsewhere") or 0) - 1, 0)}),
@@ -779,7 +852,7 @@ def npcs(new_ids, recs, usual_res):
                                               "defenders_elsewhere": max((r.get("defenders_elsewhere") or 0) - 1, 0)}),
               ("two more defenders", {"defenders": (r.get("defenders") or 0) + 2, "defenders_elsewhere": max((r.get("defenders_elsewhere") or 0) - 2, 0)})]
         if (r.get("npc_healing_10s") or 0) == 0: ch.append(("healing on the NPCs (as much as the attackers' damage in 5 s)", {"npc_healing_10s": r.get("npc_damage_5s") or 0}))
-        base, out = what_if("npc_loss", rid, r, ch, ladders=[["one more defender", "two more defenders"]])
+        base, out = what_if("pit_npc_loss", rid, r, ch, ladders=[["one more defender", "two more defenders"]])
         L.append(f"- NPC-loss node at {clock(r['t'])} ({trust}): {r.get('attackers')} attackers ({_n(r.get('attacker_healers'), 'healer')}) against "
                  f"{r.get('defenders')} defenders ({_n(r.get('defender_healers'), 'healer')}), {r.get('defenders_elsewhere')} of {tag} elsewhere; "
                  f"read {base}% to lose an NPC; read again with")
@@ -791,12 +864,16 @@ def npcs(new_ids, recs, usual_res):
         bestn = min(rel, key=lambda x: x[2]) if rel else None
         conf.append(("node", bool(ok) and bestn is not None and bestn[2] < 0 and meaningful(base, bestn[2])))
     else: L.append("- NPC-loss node: no reading of the pit in the 30 s before (the attackers weren't counted in the pit).")
+    L += ["", "**Micro: given the defence chosen, what went wrong in carrying it out** (pit NPC loss node)", ""]
+    ex, faults = execution_lines("pit_npc_loss", rid, tag, t - 3, good_high=False, window=0)
+    L += ex
+    L += ["", "**Macro: was the answer to the split the right call** (usual.py; this prices the whole decision, including what "
+          "the main fight lost while defenders were away, which the node above does not)", ""]
     dec = decision_alternatives(recs, usual_res, rid, tag, t - 60, t, kinds={"split_in_base"})
     if dec:
-        L.append("- The answer to the split (usual.py; this prices the whole decision, including what the main fight lost while "
-                 "defenders were away, which the NPC-loss node above does not):")
-        L += ["  " + x for x in decision_lines(dec[-1:])]
+        L += decision_lines(dec[-1:])
         conf += [c for c in [decision_conf(dec[-1])] if c]
+    else: L.append("- No split-in-base decision record in the minute before.")
     c, why = confidence(conf)
     L += ["", f"**Confidence**: {c} ({why}).", ""]
     return L

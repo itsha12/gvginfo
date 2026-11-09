@@ -63,9 +63,12 @@ def _lap(name):
 # sections. Run serially (report()) or split across machines (the Train batch workflow): part("main"), part("cands"),
 # part("nodes:deaths") ... each save their lines to a folder, and finish() runs the last sections on the saved parts
 # and writes the report. The text and order are the same either way.
-NODE_LIST = ["deaths", "kill_conversion", "flag_answer", "npc_loss", "lord_damage", "lord_kill"]
-ORDER = ["head", "lean", "cands", "surprises", "rulings", "nodes_head"] + [f"node:{x}" for x in NODE_LIST] + \
-        ["learned", "usual", "values", "tqs", "snapshot", "questions"]
+from nodes import FITTED as NODE_LIST        # retired nodes (npc_loss, lord_kill) are not fitted or reported (M1)
+ORDER = ["head", "diff", "lean", "cands", "surprises", "rulings", "nodes_head"] + [f"node:{x}" for x in NODE_LIST] + \
+        ["learned", "usual", "advice", "values", "tqs", "snapshot", "questions"]
+# E5 (Denning, November 2026 review): the TQs and the snapshot run every other chunk unless asked (GVG_TQS=yes|no|auto),
+# candidate-variable tests only when there are candidates
+TQS = os.environ.get("GVG_TQS", "auto")
 
 
 def _ctx():
@@ -112,8 +115,13 @@ def s_head(c):
           f"- Left out of training: {sum(1 for x in ig.values() if x['exclude'])}", ""]
     L += ["## 1. The honest test", "",
           f"**{v['verdict'].capitalize()}.** Held-out accuracy (matches held out whole), log loss in brackets (lower is better):", ""]
-    for name in [k for k in v if k not in ("verdict", "gain_over_strength")]:
+    for name in [k for k in v if k not in ("verdict", "gain_over_strength", "by_period", "by_strength_band")]:
         L.append(f"- {name}: " + ", ".join(f"{k} {x['accuracy']:.0%} ({x['log_loss']})" for k, x in v[name].items()))
+    # by period and by strength band (Denning, November 2026 review): glass box against strength alone, log loss
+    for key, lab in (("by_period", "By month played"), ("by_strength_band", "By strength band")):
+        if v.get(key):
+            L.append(f"- {lab} (glass box against strength alone, log loss; matches): "
+                     + "; ".join(f"{k} {x['glass box']['log_loss']} v {x['strength only']['log_loss']} ({x['matches']})" for k, x in v[key].items()))
     if "gain_over_strength" in v:
         gs = v["gain_over_strength"]
         L.append(f"- Gain over strength alone (log loss, resampling whole matches): {gs['log_loss_gain']:+} "
@@ -179,6 +187,10 @@ def s_cands(c):
     # discovery 2: candidate variables, retested every batch. Split across machines, the base is fitted here on the same
     # folds and rows (model.test_candidates), so the number is the honest test's own
     base = c["v"]["glass box"]["all"]["log_loss"] if "v" in c else None
+    from features import CANDIDATES
+    if not CANDIDATES:
+        c["parts"]["cands"] = ["", "**Candidate variables**: none queued (proposals wait for the next bundled engine change).", ""]
+        _lap("candidate variables"); return
     L = ["", "**Candidate variables** (proposed variables, tested on unseen matches; log loss, lower is better):", ""]
     for x in M.test_candidates(c["ids"], base=base):
         L.append(f"- {x['candidate']}: {x['without']} without, {x['with']} with: {x['verdict']}. {x['description']}")
@@ -295,6 +307,15 @@ def s_usual(c):
         tq_recs = copy.deepcopy(base_recs)
         res = tq_res = U.analyse(tq_recs)
         c["tq_recs"], c["tq_res"] = tq_recs, tq_res
+        # data/model/usual_play.json kept current (it held old readings before; the report was the only current copy)
+        json.dump({"about": U.__doc__.split("\n\n")[1].strip(), "decisions": len(tq_recs), "kinds": res}, open(U.OUT, "w"), indent=1, default=str)
+        # the goal test (advice.py): does matching the advice built from unseen-to-the-match groups do better
+        try:
+            import advice as ADV
+            c["parts"]["advice"] = ADV.lines(ADV.advice_test(copy.deepcopy(base_recs)))
+        except Exception as ex:
+            c["parts"]["advice"] = ["## Does the advice work? (the goal test)", "", f"Not run: {ex}", ""]
+        _lap("advice test")
         L += ["## 7. The usual play", "", "Each choice against the most common one in that kind of decision, in win-chance points over the "
               "decision's window, adjusted for the situation, with a 90% range from resampling whole matches. CLEAR = the "
               "range excludes 0. Win chance comes from a model that never saw the match. The same comparison over the "
@@ -390,22 +411,97 @@ def s_tqs(c):
     # the TQs (Denning's four questions, replacing the five random whys): a flag swing, a monk death, a power play without
     # a kill and a pit NPC loss from the new matches, each with the different play measured (tq.py)
     import tq as TQ
-    if c.get("tq_recs") is not None: L = TQ.lines(c["new_ids"], c["ids"], c["tq_recs"], c["tq_res"])
+    if not _run_tqs(c): L = ["## The TQs", "", f"Not run this chunk (batch {c['n']}; the TQs run every other chunk, or with GVG_TQS=yes).", ""]
+    elif c.get("tq_recs") is not None: L = TQ.lines(c["new_ids"], c["ids"], c["tq_recs"], c["tq_res"])
     else: L = ["## The TQs", "", "Not answered: the analysis files are missing (analyze.py --all --out /tmp/ga).", ""]
     _lap("TQs")
     c["parts"]["tqs"] = L
 
 
+def _run_tqs(c):
+    if TQS == "yes": return True
+    if TQS == "no": return False
+    return c["n"] % 2 == 0
+
+
 def s_snapshot(c):
     import snapshot as SNAP
-    c["parts"]["snapshot"] = SNAP.snapshot(c["ids"], c["new_ids"], "/tmp/gl") if os.path.isdir("/tmp/gl") else []
+    c["parts"]["snapshot"] = (SNAP.snapshot(c["ids"], c["new_ids"], "/tmp/gl") if os.path.isdir("/tmp/gl") and _run_tqs(c)
+                              else ["## 9. Detailed learnings snapshot", "", "Not run this chunk (every other chunk, or with GVG_TQS=yes).", ""])
     _lap("snapshot")
-    c["parts"]["questions"] = ["## 10. For Denning", "",
-          "- Which curves look wrong to you? A correction (direction, cap, drop, or a pair to always test) is logged with "
-          "your reason and tested on held-out matches.",
-          "- Do any surprises remind you of something the variables don't capture (a missing variable)?",
-          "- Any variable you think matters that isn't listed?", ""]
+    c["parts"]["questions"] = questions_lines()
     _lap("questions")
+
+
+def s_diff(c):
+    """E6 (Denning, November 2026 review): what changed since the last batch, as a diff: link status changes (from
+    link_log.json's last two runs), inputs pruned or restored (the map's waiting list), win-model terms that moved most,
+    and the honest test's movement. Everything else in the report is the full state; this is what to read first."""
+    L = ["## What changed since the last batch", ""]
+    n, prev, model = c["n"], c.get("prev"), c.get("model")
+    try:
+        log = json.load(open(os.path.join(M.MODEL_DIR, "link_log.json")))
+        dates = sorted({e["date"] for e in log})
+        if len(dates) >= 2:
+            last, before = dates[-1], dates[-2]
+            cur = {(e["node"], e["from"], e["to"]): e for e in log if e["date"] == last}
+            old = {(e["node"], e["from"], e["to"]): e for e in log if e["date"] == before}
+            ch = [(k, old[k]["status"], v["status"], v["strength"]) for k, v in cur.items() if k in old and old[k]["status"] != v["status"]]
+            new = [k for k in cur if k not in old]; gone = [k for k in old if k not in cur]
+            L.append(f"- Learned-node links: {len(ch)} status changes since {before}"
+                     + (": " + "; ".join(f"{k[0]} {k[1]} -> {k[2]}: {a} -> {b} ({s:+})" for k, a, b, s in ch) if ch else "") + ".")
+            if new: L.append(f"- Links measured for the first time: {', '.join(f'{k[0]} {k[1]} -> {k[2]}' for k in new[:12])}{'...' if len(new) > 12 else ''}.")
+            if gone: L.append(f"- Links no longer fitted: {', '.join(f'{k[0]} {k[1]} -> {k[2]}' for k in gone[:12])}.")
+    except (OSError, ValueError, KeyError) as ex: L.append(f"- Link changes: not read ({ex}).")
+    try:
+        cmap = json.load(open(os.path.join(M.MODEL_DIR, "causal_map.json")))
+        W = [w for w in cmap.get("waiting", []) if w.get("kind") == "pruned input"]
+        if W: L.append(f"- Inputs left out so the nodes fit the data: {len(W)} (" + "; ".join(f"{w['node']} {w['feature']}" for w in W[:10]) + ("..." if len(W) > 10 else "") + ").")
+        conc = [l for l in cmap.get("links", []) if l.get("status") == "concurrent"]
+        if conc: L.append("- Links held as the enemy's concurrent response (measured, not fitted): " + "; ".join(l["from"] + " -> " + l["to"] for l in conc) + ".")
+    except (OSError, ValueError): pass
+    if model and prev:
+        pimp = {t["term"]: t["importance"] for t in prev["terms"]}
+        moved = sorted(((t["term"], t["importance"] - pimp.get(t["term"], 0)) for t in model["terms"]), key=lambda x: -abs(x[1]))[:6]
+        L.append("- Win-model terms that moved most (importance): " + ", ".join(f"{t} {d:+.3f}" for t, d in moved) + ".")
+        pv, v = prev["validation"], model["validation"]
+        L.append(f"- Honest test: glass box {pv['glass box']['all']['log_loss']} -> {v['glass box']['all']['log_loss']}, strength alone "
+                 f"{pv['strength only']['all']['log_loss']} -> {v['strength only']['all']['log_loss']} (batch {n - 1} -> {n}).")
+    marks = []
+    for f in sorted(__import__("glob").glob(os.path.join(M.MODEL_DIR, "nodes", "L_*.json"))):
+        try:
+            s_ = json.load(open(f))
+            for m in s_.get("marks_situation") or []: marks.append(f"{s_['node']} {m}")
+        except (OSError, ValueError): pass
+    if marks: L.append(f"- Inputs that mark the situation (never a fix): {', '.join(marks)}.")
+    L.append("")
+    c["parts"]["diff"] = L
+
+
+def questions_lines():
+    """Questions for Denning come from the mechanisms (Denning, November 2026 review): clusters to name, candidates to
+    approve, pruned inputs to confirm, links the data wants to reject. No list of Claude's ideas."""
+    L = ["## 10. For Denning", ""]
+    try:
+        cmap = json.load(open(os.path.join(M.MODEL_DIR, "causal_map.json")))
+        pend = [l for l in cmap.get("links", []) if l.get("pending_rejection")]
+        if pend: L.append("- Links of yours the data says to reject (rule: override yes, or not yet): " + "; ".join(f"{l['from']} -> {l['to']}" for l in pend) + ".")
+        W = cmap.get("waiting", [])
+        if W: L.append(f"- Waiting list: {len(W)} items (data/model/causal_map.json, waiting); nothing moves in until the next bundled engine change.")
+    except (OSError, ValueError): pass
+    try:
+        d = json.load(open(os.path.join(M.MODEL_DIR, "discovery.json")))
+        held = d.get("held") or d.get("discoveries") or []
+        if held: L.append(f"- Discovery candidates held for approval: {len(held)} (knowledge/discovery.md; only decision and execution variables that passed twice are offered).")
+    except (OSError, ValueError): pass
+    try:
+        b = json.load(open(os.path.join(M.MODEL_DIR, "behaviour.json")))
+        un = [x for k in b.get("kinds", {}).values() for x in k.get("clusters", []) if x.get("unnamed")]
+        if un: L.append(f"- Behaviour clusters no named choice covers: {len(un)} to name or reject (knowledge/behaviour.md).")
+    except (OSError, ValueError): pass
+    if len(L) == 2: L.append("- Nothing to rule on this batch.")
+    L.append("")
+    return L
 
 
 def _write(c, part_seconds=None):
@@ -431,8 +527,11 @@ def report():
     """The whole report on one machine, section by section."""
     _lap("start")
     c = _ctx()
-    for fn in (s_head, s_lean, s_cands, s_surprises, s_rulings, s_nodes, s_learned, s_usual, s_values_measure, s_values, s_tqs, s_snapshot):
+    for fn in (s_head, s_lean, s_cands, s_surprises, s_rulings, s_nodes, s_learned, s_usual, s_values_measure, s_values, s_tqs, s_snapshot, s_diff):
         fn(c)
+    try:
+        import modelpage; modelpage.render()
+    except Exception as ex: print("model page not rendered:", ex)
     return _write(c)
 
 
@@ -470,7 +569,10 @@ def finish(src):
     if missing: raise SystemExit(f"parts missing: {missing}")
     rp = os.path.join(src, "main_recs.pkl")
     if os.path.exists(rp): c.update(pickle.load(open(rp, "rb")))
-    for fn in (s_values, s_tqs, s_snapshot): fn(c)
+    for fn in (s_values, s_tqs, s_snapshot, s_diff): fn(c)
+    try:
+        import modelpage; modelpage.render()
+    except Exception as ex: print("model page not rendered:", ex)
     return _write(c, split)
 
 

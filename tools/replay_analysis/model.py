@@ -437,6 +437,18 @@ def validate(df, X, y, groups, corr, extra=()):
     for n, p in preds.items():
         for name, sel in subsets.items():
             if sel.sum(): out[n][name] = dict(_metrics(p[sel], y.values[sel]), matches=int(df["match"][sel].nunique()))
+    # by period (month played) and by strength band (Denning, November 2026 review): does the model hold across the meta
+    # and at every level, or only where most of the data sits
+    from common import period, strength_band
+    per = df["match"].map(lambda r: period(r) or "?")
+    band = df["strength_gap"].map(strength_band)
+    out["by_period"], out["by_strength_band"] = {}, {}
+    for name, col, store in (("period", per, out["by_period"]), ("band", band, out["by_strength_band"])):
+        for v in sorted(col.unique()):
+            sel = (col == v).values
+            nm = int(df["match"][sel].nunique())
+            if nm < 8: continue
+            store[v] = {"matches": nm, **{n: _metrics(p[sel], y.values[sel]) for n, p in preds.items() if n in ("strength only", "glass box")}}
     g, s0 = out["glass box"]["all"], out["strength only"]["all"]
     # how sure: the glass box's log loss gain over strength alone, resampling whole matches (90% range)
     lossg = -(y.values * np.log(np.clip(preds["glass box"], .02, .98)) + (1 - y.values) * np.log(1 - np.clip(preds["glass box"], .02, .98)))

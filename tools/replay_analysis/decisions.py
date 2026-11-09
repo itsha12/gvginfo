@@ -19,9 +19,24 @@ choice the usual play groups by), outcome, edge_change):
 - runner_choice (Denning, 2026-11-08: capping on a warrior, a midline, a dervish or a monk is a strategic decision):
   every fresh run (a pickup within 1,500 of the team's flag spawn). Choice = who carries (common.runner_class); window
   90 s. The usual play compares carriers in similar situations (and by snare matchup).
+- offence_or_defence (Denning, November 2026 review): at each fight's start, how the team's disrupting players
+  (interrupt skills on the bar, not healers) spent their first 10 s: offensive = interrupts and casts on the enemy
+  healers, defensive = on the enemy midline and frontline (Denning's definition of defensive play), mixed otherwise.
+  Detection is Claude's, to confirm.
+- eight_v_eight_or_flag (Denning): when the enemy picks up with own team 7+ alive: commit all 8 (nobody on flag duty
+  10 s later, 7+ at main) or keep the flag game (a runner carrying, waiting or on flag duty). Detection Claude's.
+- who_defends (Denning: who to defend with): at a split entering the base, the class of the first defender (Mes/A,
+  frontline, 8 Monk or other healer, midline) and whether a collapse came with it.
+- npcs_or_dp (Denning: try for NPCs or DP): after a wipe, and at a power play fought at the enemy base: where the
+  team's damage went in the next 20 s, the pit NPCs or the enemy players (DP), or both.
+- play_for_28_or_lord (Denning: play for 28 or try to kill the Lord): from 24:00 every 30 s, for the team ahead on the
+  tiebreak (Lord damage, else morale): push the Lord (3+ at the enemy pit or Lord damage dealt in the next 30 s) or
+  hold.
 Every record's extra carries the snare matchup at that moment (movepower.py): own and enemy snare power of the live
 players and own speed power (Denning: starting the flag game or a split against a lot of snare is likely poor play;
 the data decides).
+
+KINDS below is the table the generated model page shows (modelpage.py): moment, choices and whose definition.
 
 The state is the scoreboard key that makes situations comparable: flag position and lead, stand and boost clock,
 numbers, DP, pit NPCs, Lord damage, build archetypes, phase. Outcomes are scoreboard swings over a fixed window.
@@ -37,6 +52,22 @@ from scoreboard import Scoreboard, LATE
 from common import RES_EVERY, PIT_R
 
 WINDOW = 90          # seconds of outcome after a decision unless the episode defines its own
+
+KINDS = {
+    "enemy_pickup": {"moment": "the enemy picks up a new flag", "choices": "already running; ran (within 25 s); held", "source": "Denning"},
+    "split_in_base": {"moment": "an enemy split enters the base", "choices": "collapsed; defended without a collapse; missed (speed: on time 15 s, late, missed 60 s)", "source": "Denning"},
+    "power_play": {"moment": "a numbers advantage at main, away from home, damage traded (any size)", "choices": "pushed; held", "source": "Denning"},
+    "boost_clock": {"moment": "the enemy's boost is 30 s away", "choices": "running; not running (with the players' first action)", "source": "Denning"},
+    "after_wipe": {"moment": "the team just won a wipe", "choices": "pushed the pit; took the flag; reset", "source": "Denning"},
+    "late_game": {"moment": "24:00", "choices": "players at the enemy Lord, in levels", "source": "Denning"},
+    "split_or_stay": {"moment": "every 30 s from 1:00, 6+ alive, not splitting", "choices": "split within 30 s; stayed", "source": "Denning"},
+    "runner_choice": {"moment": "a fresh run from the spawn (holds left out)", "choices": "who carries (class)", "source": "Denning"},
+    "offence_or_defence": {"moment": "a fight starts", "choices": "offensive (disruption on enemy healers); defensive (on midline and frontline); mixed", "source": "Denning's definition; detection Claude's, to confirm"},
+    "eight_v_eight_or_flag": {"moment": "the enemy picks up, own team 7+ alive", "choices": "commit all 8; flag game", "source": "Denning; detection Claude's, to confirm"},
+    "who_defends": {"moment": "a split enters the base", "choices": "first defender's class (Mes/A, frontline, 8 Monk or healer, midline), alone or with a collapse", "source": "Denning; detection Claude's, to confirm"},
+    "npcs_or_dp": {"moment": "after a wipe, or a power play at the enemy base", "choices": "NPCs; DP (players); both", "source": "Denning; detection Claude's, to confirm"},
+    "play_for_28_or_lord": {"moment": "from 24:00 every 30 s, the team ahead on the tiebreak", "choices": "push the Lord; hold", "source": "Denning; detection Claude's, to confirm"},
+}
 
 
 def phase(t): return "early" if t < 8 * 60 else ("late" if t >= LATE else "mid")
@@ -313,10 +344,158 @@ def runner_choices(st, sb, window=90):
     return out
 
 
+
+
+# ---- the five decisions of the November 2026 review (Denning). Thresholds are definitions, to confirm; values come from data.
+def _healer_set(m):
+    from phases import healer
+    return {a for a in m.PL if healer(m, a)}
+
+
+def _defender_class(m, a):
+    from common import line
+    role = m.roles.get(a, "")
+    if role.startswith("Mes"): return "Mes/A"
+    if a in _healer_set(m): return "8 Monk" if "8" in role else "healer"
+    return line(m, a)
+
+
+def offence_or_defence(st, sb, fights, w=10):
+    """At each fight's start, for each team: how its disrupting players spent the first w seconds."""
+    m, out = st.m, []
+    H = _healer_set(m)
+    intr = m.o.get("interrupts") or []
+    ev = m.o.get("ev") or []
+    for f in fights:
+        s0 = f["start"]
+        for tm in st.teams:
+            foe = 3 - tm
+            dis = [a for a in st.players[tm] if a not in H and st.alive(a, s0) and player_flags(m, a).get("interrupt", 0) > 0]
+            if not dis: continue
+            on_h = on_mf = 0
+            for i in intr:
+                if i[1] in dis and i[3] in m.PL and m.team(i[3]) == foe and s0 * 10 <= i[0] <= (s0 + w) * 10:
+                    if i[3] in H: on_h += 1
+                    else: on_mf += 1
+            for e in ev:
+                if e[0] is None or e[0] < s0 * 10: continue
+                if e[0] > (s0 + w) * 10: break
+                if e[1] == "cf" and e[2] in dis and isinstance(e[3], int) and e[3] in m.PL and m.team(e[3]) == foe:
+                    if e[3] in H: on_h += 1
+                    else: on_mf += 1
+            n = on_h + on_mf
+            if n < 2: continue
+            share = on_mf / n
+            choice = "defensive" if share >= 0.6 else ("offensive" if share <= 0.4 else "mixed")
+            out.append(rec(sb, "offence_or_defence", tm, s0, choice, f["end"] + 20,
+                           extra={"disruptors": len(dis), "actions": n, "defensive_share": round(share, 2),
+                                  "fight_won": int(f.get("opponent_won_fight") == m.tag[tm])}))
+    return out
+
+
+def eight_v_eight_or_flag(st, sb, look=10):
+    """At each enemy pickup with own team 7+ alive: did the team keep anyone on the flag game?"""
+    m, out = st.m, []
+    fl = [(t / 10, typ, a) for t, typ, a, *_ in m.o.get("flags", []) if m.team(a)]
+    for i, (t, typ, a) in enumerate(fl):
+        if typ != "flag_picked_up" or t < 0 or t > st.end - WINDOW: continue
+        x = m.team(a); y = 3 - x
+        if any(ty == "flag_dropped" and m.team(b) == x and 0 <= t - tt <= 15 for tt, ty, b in fl[max(i - 3, 0):i]): continue
+        if sum(1 for b in st.players[y] if st.alive(b, t)) < 7: continue
+        t1 = min(t + look, st.end - 1)
+        duty = sb.flag_duty(y, t1) or []
+        carrying = any(m.team(c["a"]) == y and c["s"] <= t1 <= c["e"] for c in st.carries)
+        main = len(st.main_group(y, t1))
+        if not duty and not carrying and main >= 7: choice = "commit all 8"
+        elif duty or carrying: choice = "flag game"
+        else: continue
+        out.append(rec(sb, "eight_v_eight_or_flag", y, t, choice, t + WINDOW, extra={"flag_duty_10s": len(duty), "main_10s": main}))
+    return out
+
+
+def who_defends(st, sb, splits):
+    m, out = st.m, []
+    for s in splits:
+        if s["kind"] != "split" or s["entered_base"] is None: continue
+        y = next(k for k, v in m.tag.items() if v != s["team"])
+        dfn = s["defenders"]
+        if not dfn: continue
+        role_to = {m.roles[b]: b for b in st.players[y]}
+        first = dfn[0]
+        a = role_to.get(first["role"])
+        if a is None: continue
+        collapse = any(x["came"] == "collapse from main" and (x["latency"] or 0) <= 60 for x in dfn)
+        choice = _defender_class(m, a) + (" with a collapse" if collapse else " alone")
+        out.append(rec(sb, "who_defends", y, s["entered_base"], choice, s["end"] + 30,
+                       extra={"first_role": first["role"], "first_latency": first.get("latency"), "defenders": len(dfn),
+                              "split_size": len(s["members"]), "split_died": int(bool(s["deaths"])), "pit_kills": len(s.get("npc_kills") or [])}))
+    return out
+
+
+def _damage_split(st, tm, t0, t1):
+    """Team tm's damage in [t0, t1]: on pit NPCs against on enemy players."""
+    m = st.m; npc = pl = 0
+    for e in m.o.get("ev") or []:
+        if e[0] is None or e[0] < t0 * 10: continue
+        if e[0] > t1 * 10: break
+        if e[1] != "dm" or e[2] not in m.PL or m.team(e[2]) != tm or not (e[5] or 0) > 0: continue
+        b = e[3]
+        if not isinstance(b, int) or b >= len(m.A): continue
+        if m.A[b].get("npc"): npc += e[5]
+        elif m.A[b].get("player") and m.team(b) != tm: pl += e[5]
+    return npc, pl
+
+
+def npcs_or_dp(st, sb, fights, windows, w=20):
+    m, out = st.m, []
+    moments = []
+    for f in fights:
+        if f["wipe"]:
+            wtm = next(k for k, v in m.tag.items() if v == f["opponent_won_fight"])
+            moments.append((wtm, f["end"], "after a wipe"))
+    for win in windows:
+        if win.get("at_home") or not win.get("contact", True): continue
+        tm = next(k for k, v in m.tag.items() if v == win["team"])
+        pit = st.geo.pit.get(3 - tm)
+        g = st.main_group(tm, win["start"]); c = st.centroid(g, int(win["start"])) if g else None
+        if c and pit and d(c, pit) < PIT_R + 1500: moments.append((tm, win["start"], "power play at the enemy base"))
+    for tm, t, why in moments:
+        if t > st.end - w: continue
+        npc, pl = _damage_split(st, tm, t, t + w)
+        if npc + pl <= 0: continue
+        share = npc / (npc + pl)
+        choice = "NPCs" if share >= 0.7 else ("DP" if share <= 0.3 else "both")
+        out.append(rec(sb, "npcs_or_dp", tm, t, choice, t + 45, extra={"from": why, "npc_damage_share": round(share, 2), "npc_damage": npc, "player_damage": pl}))
+    return out
+
+
+def play_for_28_or_lord(st, sb, every=30, look=30):
+    m, out = st.m, []
+    if st.end < LATE + look: return []
+    for t in range(LATE, int(st.end) - look, every):
+        s = sb.at(t)
+        for tm in st.teams:
+            me, foe = m.tag[tm], m.tag[3 - tm]
+            ld = s[me]["lord_damage_dealt"] - s[foe]["lord_damage_dealt"]
+            ahead = ld > 0 or (ld == 0 and s[me]["morale_sum"] > s[foe]["morale_sum"])
+            if not ahead: continue
+            pit = st.geo.pit.get(3 - tm)
+            at_pit = max(sum(1 for b in st.players[tm] if st.alive(b, x) and st.pos(b, x)[0] and d(st.pos(b, x)[0], pit) < PIT_R + 500)
+                         for x in range(t, t + look, 5)) if pit else 0
+            s2 = sb.at(min(t + look, int(st.end) - 1))
+            dealt = s2[me]["lord_damage_dealt"] - s[me]["lord_damage_dealt"]
+            choice = "push the Lord" if at_pit >= 3 or dealt > 0 else "hold"
+            out.append(rec(sb, "play_for_28_or_lord", tm, t, choice, min(t + 60, int(st.end) - 1),
+                           extra={"tiebreak_lord_damage": ld, "at_enemy_pit_max": at_pit, "lord_damage_in_window": dealt}))
+    return out
+
+
 def decision_points(st, sb, ep):
     out = (enemy_pickups(st, sb) + splits_in_base(st, sb, ep["splits"]) + power_plays(st, sb, ep["windows"])
            + boost_clocks(st, sb) + after_wipes(st, sb, ep["fights"]) + late_game(st, sb)
-           + split_or_stay(st, sb, ep["splits"]) + runner_choices(st, sb))
+           + split_or_stay(st, sb, ep["splits"]) + runner_choices(st, sb)
+           + offence_or_defence(st, sb, ep["fights"]) + eight_v_eight_or_flag(st, sb) + who_defends(st, sb, ep["splits"])
+           + npcs_or_dp(st, sb, ep["fights"], ep["windows"]) + play_for_28_or_lord(st, sb))
     return sorted(out, key=lambda r: r["t"])
 
 

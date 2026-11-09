@@ -29,6 +29,23 @@ def replay_ids():
     return list(replay_index())
 
 
+def period(rid):
+    """The month a stored replay was played (YYYY-MM), for readings by period (Denning, November 2026 review: a model
+    trained on one meta can mislead on the next; show whether readings hold across months). None if unknown."""
+    e = replay_index(all_dates=True).get(rid)
+    d = str((e or {}).get("date", ""))[:7]
+    return d if len(d) == 7 else None
+
+
+STRENGTH_BANDS = (("even (gap under 200)", 0, 200), ("moderate (200 to 600)", 200, 600), ("uneven (600+)", 600, 10 ** 9))
+
+
+def strength_band(gap):
+    """Which strength band a match sits in (Denning: whether a best play holds at the top and in close games)."""
+    g = abs(gap or 0)
+    return next(n for n, lo, hi in STRENGTH_BANDS if lo <= g < hi)
+
+
 def counts(rid):
     """Whether a stored replay counts (played from TRAIN_FROM on); unknown ids count."""
     e = replay_index(all_dates=True).get(rid)

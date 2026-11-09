@@ -54,7 +54,7 @@ RESULT = {
     "split_answer": ("seconds to the first defender", "sec", None, -1),
     "split_chance": ("started a split", "prob", None, +1),
 }
-ACTIONABLE = ("P.", "K.", "A.mesa_free")
+ACTIONABLE = ("decision", "execution")      # kinds (learnednodes.kind_of), not map prefixes
 # a variable is followed back only when it sits on the bad side of its usual value for the team (a high flag lead pushes
 # the next swing down by reverting, but it is a good state, not a cause to trace)
 BAD_SIDE = {"flag_lead": -1, "own_deaths_30s": +1, "own_alive": -1, "own_main": -1, "own_local": -1, "def_alive": -1,
@@ -204,10 +204,15 @@ class Chain:
         idx = len(self.links)
         self.links.append({"depth": depth, "node": node, "row": row, "reading": reading, "pushes": pushes[:6],
                            "parent": parent, "into": into, "bad_high": bad_high})
-        # any play variable among the pushes is a possible fix
+        # a decision or execution input among the pushes is a possible fix (Denning, November 2026 review: context and
+        # state are adjustment, never a fix; an input that marks the situation (learnednodes.selection_check) is never a fix)
+        import learnednodes as LN
+        marks = set(h.get("marks_situation") or [])
+        kinds = h.get("kinds") or {}
         for f, c, v, u in pushes[:6]:
-            if group_of(node, f).startswith(ACTIONABLE) and u is not None and v is not None:
-                self.fixes.append({"link": idx, "feature": f, "value": v, "usual": u, "push": c})
+            k = kinds.get(f) or LN.kind_of(node, f)
+            if k in ("decision", "execution") and f not in marks and u is not None and v is not None:
+                self.fixes.append({"link": idx, "feature": f, "value": v, "usual": u, "push": c, "kind": k})
         # follow the biggest causes: up to TOP groups, one variable each
         seen_g = []
         for f, c, v, u in pushes:

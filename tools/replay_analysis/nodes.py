@@ -428,6 +428,11 @@ LK_DESC = dict(NPC_DESC, lord_health="the Lord's rebuilt health as a share of it
 DESC = {"deaths": DEATH_DESC, "kill_conversion": KC_DESC, "flag_answer": FA_DESC, "npc_loss": NPC_DESC, "lord_damage": NPC_DESC,
         "lord_kill": LK_DESC}
 REGRESSION = {"flag_answer", "lord_damage"}      # these nodes predict a number (seconds), not a yes/no
+# the nodes fitted here (Denning, November 2026 review, M1): npc_loss is retired as a fitted node (its rows are read by the
+# learned node pit_npc_loss, which answers the same question for the defending side and prices fixes in the chains);
+# lord_kill is retired (no better than "who is in the pit"). Their row builders stay: npc_loss rows feed pit_npc_loss.
+FITTED = ["deaths", "kill_conversion", "flag_answer", "lord_damage"]
+RETIRED = {"npc_loss": "rows read by the learned node pit_npc_loss", "lord_kill": "no better than attackers and defenders alone"}
 # Lord damage is lopsided (most 10 s windows little or none, a few big bursts): fitted in two parts (Denning, after
 # batch 9) - the chance of any Lord damage in the window, then how much when there is some (on a log scale) - and read
 # two ways: the middle of the predicted spread for typical error, its average for the share of the spread explained.
@@ -621,7 +626,7 @@ def validate(node, df, X, y, g, w, _done=None):
     return out, preds["glass box"]
 
 
-COST_ORDER = ["deaths", "lord_kill", "npc_loss", "kill_conversion", "lord_damage", "flag_answer"]   # slowest first (measured)
+COST_ORDER = ["deaths", "kill_conversion", "lord_damage", "flag_answer"]   # slowest first (measured); retired nodes left out
 
 
 def fit_nodes(nodes, ids):
@@ -689,7 +694,7 @@ if __name__ == "__main__":
     a = sys.argv[1:]
     ids = [m for b in M.batches() for m in b["matches"]]
     if a and a[0] == "fit":
-        for node in (a[1:] or ["deaths", "kill_conversion", "flag_answer", "npc_loss", "lord_damage", "lord_kill"]):
+        for node in (a[1:] or FITTED):
             s, e, df, held = fit_node(node, ids)
             print(f"== {node}: {s['matches']} matches, {s['rows']} rows, {s['events']} events")
             print(json.dumps(s["validation"]))

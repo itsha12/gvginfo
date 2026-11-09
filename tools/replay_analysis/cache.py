@@ -39,20 +39,38 @@ _KEYS = {}
 
 NOT_ENGINE = {"cache.py", "status.py"}      # bookkeeping only: changing them never changes a result
 
+# ---- cache keys by layer (Denning, November 2026 review, E4). Before this, every kind's key followed the import graph,
+# and because the row builders import the report modules (lnrows -> tq for a loader), every kind shared one key and
+# any edit anywhere rebuilt everything (a text fix in tq.py cost a 45-minute rebuild). Now:
+#   measurement layer = every analysis module except the report layer and the fitting-only modules; it is the key of
+#                       every kind of prepared data, so a change to how anything is measured rebuilds what reads it
+#                       (the row builders read each other's output, so one shared key is the safe choice);
+#   fitting-only      = modules that fit models from prepared rows and never build rows (learnednodes.py); they key
+#                       only their own fits, so a change to the fitting refits without rebuilding rows;
+#   report layer      = modules that only read prepared data and fitted models to write text, chains or screens; they
+#                       are in no key. A module that starts writing prepared data must be taken off this list.
+REPORT_LAYER = {"learning.py", "snapshot.py", "why.py", "report.py", "causalchain.py", "chain.py", "discover.py",
+                "discovery.py", "behaviour.py", "batch.py", "library.py", "timeline.py", "parallel.py", "modelpage.py",
+                "catalogue.py", "ask.py", "advice.py", "tq.py"}
+FIT_ONLY = {"learnednodes.py"}
+# tq.py is report layer for every kind but the two benchmarks it builds itself (power_bench, run_bench), which name it
+# as their entry module below, so those two rebuild when it changes and nothing else does.
+
+
+def _measurement_files():
+    return sorted(f for f in os.listdir(HERE) if f.endswith(".py") and f not in NOT_ENGINE and f not in REPORT_LAYER
+                  and f not in FIT_ONLY)
+
 
 def _local_deps(entries):
-    """Every analysis module the entry modules import, directly or not (bookkeeping modules left out)."""
-    seen, todo = set(), list(entries)
-    while todo:
-        f = todo.pop()
-        if f in seen or not os.path.exists(os.path.join(HERE, f)): continue
-        seen.add(f)
-        mf = modulefinder.ModuleFinder(path=[HERE])
-        try: mf.load_file(os.path.join(HERE, f))
-        except Exception: pass
-        for name in mf.badmodules.keys() | mf.modules.keys():
-            if os.path.exists(os.path.join(HERE, name + ".py")): todo.append(name + ".py")
-    return sorted(seen - NOT_ENGINE)
+    """The files a kind's key is built from: the measurement layer plus the kind's own entry modules (see above)."""
+    return sorted(set(_measurement_files()) | {f for f in entries if os.path.exists(os.path.join(HERE, f))})
+
+
+def layer_keys():
+    """For `cache.py info`: the measurement layer's own hash and the files in it."""
+    files = _measurement_files()
+    return {"measurement": _hash_files(files), "files": files, "report_layer": sorted(REPORT_LAYER)}
 
 
 def _hash_files(files):
@@ -151,7 +169,7 @@ def _ids():
 
 def _rows_one(rid):
     import nodes as N
-    for node in list(N.DESC) + ["deaths_all"]: N.node_rows(node, rid)
+    for node in N.FITTED + ["npc_loss", "deaths_all"]: N.node_rows(node, rid)       # npc_loss rows feed pit_npc_loss
     return rid
 
 
@@ -331,6 +349,8 @@ def info():
     fits = os.path.join(ROOT, "fits")
     if os.path.isdir(fits):
         n = sum(len(f) for _, _, f in os.walk(fits)); print(f"held-out models stored: {n}")
+    lk = layer_keys()
+    print(f"measurement layer key {lk['measurement']} ({len(lk['files'])} files); report layer (no key): {', '.join(lk['report_layer'])}")
 
 
 if __name__ == "__main__":

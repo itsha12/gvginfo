@@ -106,7 +106,6 @@ SPEC = {
     "S.scoreboard": {"down_diff_s": "time down, own minus enemy (discovery, approved)", "carrying_diff": "players carrying a flag, own minus enemy (discovery, approved)"},
     "P.14": {"pushed": "pushed (1) or held (0)"},
     "K.2": {"dps_v_usual": "own damage per second against the usual of the players alive"},
-    "K.5": {"enemy_prots_10s": "enemy prot casts per 10 s", "enemy_heal_s": "enemy healing per second"},
     "P.2": {"spikes_10s": "own spikes per 10 s", "spike_spread": "median spread of own spikes (s)"},
     "P.1": {"spikes_on_healers": "share of own spikes on healers",
             "healer_damage_share": "share of own damage on enemy players that landed on enemy healers (Bounty: going after the monks)"},
@@ -116,8 +115,6 @@ SPEC = {
     "P.25": {"disable_10s": "skill-seconds disabled on the enemy per 10 s (Complicate, Power Lock, Power Block, Blackout)"},
     "P.26": {"castprev_10s": "seconds Shame, Guilt or Diversion sat on enemies, per 10 s"},
     "P.22": {"degen_10s": "degeneration put on the enemy, pip-seconds per 10 s (conditions and degen hexes)"},
-    "P.21": {"enemy_kite_10s": "seconds the enemy kited or pre-kited own melee, per 10 s"},
-    "P.23": {"enemy_baits_10s": "own interrupts the enemy baited (landed on nothing after a cancel), per 10 s"},
     "C.builds": {"enemy_strips_v_own_prots": "enemy strips against own prots (discovery, approved)"},
     "C.strength": {"strength_gap": "team strength gap"}}, {"window_s": "seconds the power play lasted"}),
  "fight_outcome": ("R.2", {
@@ -183,7 +180,6 @@ SPEC = {
              "defenders_elsewhere": "own players alive outside the pit"},
     "S.scoreboard": {"knights": "own knights alive", "archers": "own pit archers alive", "bodyguard": "own Bodyguard alive",
                      "full_pit_targets": "pit NPCs alive (targets the defending monks must watch)"},
-    "K.1": {"npc_damage_5s": "damage on the pit NPCs in the last 5 s"},
     "K.6": {"npc_healing_10s": "healing on own pit NPCs and Lord in the last 10 s"},
     "C.builds": {"attackers_lord_dps": "attackers' measured damage per second against NPCs", "attackers_area_damage": "area-damage skills on the attackers' bars"},
     "C.clock": {"seconds_in_pit": "seconds the enemy has been in the pit", "res_in": "seconds to the next res", "minute": "minute"},
@@ -210,6 +206,47 @@ SPEC = {
 }
 # links whose features are also tested one at a time (Denning: which reading of collapse timing matters is for the data)
 EACH = {"collapse": ["P.9", "P.20"]}
+
+# ---- the kind of every input (Denning, November 2026 review; docs/SPEC.md section 3 and 5). The kind decides what a
+# model may do with it: context and state are adjustment and never a fix; decision and execution inputs are the only
+# candidates for "what should have been done" and "what went wrong"; concurrent response is not an input at all.
+KIND_BY_GROUP = {"C.builds": "context", "C.matchup": "context", "C.strength": "context", "C.map": "context", "C.flux": "context",
+                 "S.scoreboard": "state", "C.clock": "state", "A.allocation": "state", "A.mesa_free": "state", "R.1": "state",
+                 "R.3": "state", "K.9": "state", "K.8": "state"}
+# features whose kind is not their group's: choices a team made at the moment
+DECISION_FEATURES = {"pushed", "runner_class", "runner_line", "escort", "size", "defenders", "defenders_10s", "contact_diff",
+                     "split_healers", "split_size", "own_flag_duty", "enemy_flag_duty"}
+# what the other team did during the window: measured (lnrows.py keeps it in every row) and shown beside the node's
+# reading as "what the enemy did", never fitted (M2: a cause must be measured before the result's window)
+CONCURRENT = {
+    "power_play": {"enemy_prots_10s": "enemy prot casts per 10 s", "enemy_heal_s": "enemy healing per second",
+                   "enemy_kite_10s": "seconds the enemy kited or pre-kited own melee, per 10 s",
+                   "enemy_baits_10s": "own interrupts the enemy baited (landed on nothing after a cancel), per 10 s"},
+    "pit_npc_loss": {"npc_damage_5s": "damage on the pit NPCs in the last 5 s (the loss happening, not a cause)"},
+}
+# the links those measures used to stand for, kept on the map with the status "concurrent" (not fitted)
+CONCURRENT_LINKS = {("K.5", "K.4"), ("P.21", "K.4"), ("P.23", "K.4"), ("K.1", "R.5")}
+# inputs the data can carry (M4): one input per EVENTS_PER_INPUT events (the rarer class for yes/no nodes; rows / 40 for
+# number nodes). Pruning order: Claude's links not clear yet, Claude's links rejected, approved discoveries not clear
+# yet. Denning's links and supported links are never pruned. Pruned inputs go to the map's waiting list.
+EVENTS_PER_INPUT = 20
+REGRESSION_ROWS_PER_INPUT = 40
+
+
+def kind_of(node, f):
+    """context, state, decision or execution for a node's input (concurrent measures are not inputs)."""
+    if f in CONCURRENT.get(node, {}): return "concurrent"
+    if f in DECISION_FEATURES: return "decision"
+    g = group_of(node, f)
+    if g is None: return "state"
+    return KIND_BY_GROUP.get(g, "execution")
+
+
+def group_of(node, f):
+    tgt, groups, base = SPEC[node]
+    for g, fs in groups.items():
+        if f in fs: return g
+    return None
 # why each link that a node needs and the map may lack is a hypothesis, and who it came from
 NEW_LINK_WHY = {
     ("P.21", "R.2"): ("a player who kites enemy melee avoids damage and wastes the frontline's time (Denning, session 4u)", "Denning"),
@@ -312,7 +349,96 @@ def describe(node, f):
     if f in base: return base[f]
     for g in groups.values():
         if f in g: return g[f]
-    return ""
+    return CONCURRENT.get(node, {}).get(f, "")
+
+
+def input_cap(node, y):
+    """How many inputs the node's data can carry (M4)."""
+    n = len(y)
+    if node in REGRESSION: return max(3, int(n // REGRESSION_ROWS_PER_INPUT))
+    pos = int(np.sum(np.asarray(y) == 1)); return max(3, int(min(pos, n - pos) // EVENTS_PER_INPUT))
+
+
+def _map_links():
+    try: c = json.load(open(MAP))
+    except Exception: return {}
+    return {(l["from"], l["to"]): l for l in c.get("links", [])}
+
+
+def prune_plan(node, X, y, prev=None):
+    """Which inputs to leave out so the count fits the data (M4), in the pruning order; never Denning's links or
+    supported ones. prev = the node's last summary (its link statuses and term importances), if any.
+    Returns (kept features, [{feature, group, reason}])."""
+    feats = [c for c in X.columns]
+    cap = input_cap(node, y)
+    tgt, groups, base = SPEC[node]
+    if len(feats) <= cap: return feats, [], cap
+    links = _map_links()
+    status = {l["from"]: l["status"] for l in (prev or {}).get("links", [])}
+    imp = {t["term"]: t.get("importance") or 0 for t in (prev or {}).get("terms", [])}
+    from lnrows import APPROVED
+    approved = set(v.split(".", 1)[-1] for v in APPROVED.get(node, []))
+    def rank(f):
+        g = group_of(node, f)
+        if f in base or g is None: return None
+        L = links.get((g, tgt), {})
+        src = L.get("source", "Claude"); st = status.get(g, L.get("status", "hypothesis"))
+        if st == "supported" or src == "Denning" and f not in approved: return None
+        if f in approved: return (2, imp.get(f, 0), "approved discovery, not clear yet")
+        if st == "rejected": return (1, imp.get(f, 0), "Claude's link, rejected")
+        return (0, imp.get(f, 0), "Claude's link, not clear yet")
+    cands = sorted(((rank(f), f) for f in feats if rank(f) is not None), key=lambda x: (x[0][0], x[0][1]))
+    drop = []
+    for r, f in cands:
+        if len(feats) - len(drop) <= cap: break
+        drop.append({"feature": f, "group": group_of(node, f), "reason": r[2]})
+    dropped = {d["feature"] for d in drop}
+    return [f for f in feats if f not in dropped], drop, cap
+
+
+def selection_check(node, df, X, y, kinds, folds=None):
+    """M5: does a decision or execution input predict the same team's PREVIOUS result of this kind in the match as well
+    as the next one? If so it marks the situation rather than causing the result (Crippled runners capture more
+    because runs that get far get Crippled). Association = AUC for yes/no nodes, |Spearman| for number nodes; spread
+    from resampling whole matches. Flag when the previous association is at least three quarters of the next one and
+    its range stays clear of none."""
+    from sklearn.metrics import roc_auc_score
+    from scipy.stats import spearmanr
+    reg = node in REGRESSION
+    d = df[["match", "team", "t"]].copy(); d["y"] = np.asarray(y, float)
+    d = d.sort_values(["match", "team", "t"])
+    d["y_prev"] = d.groupby(["match", "team"])["y"].shift(1)
+    yp = d["y_prev"].reindex(df.index).values
+    ok = ~np.isnan(yp)
+    if ok.sum() < 60: return {}
+    matches = df["match"].values
+    rng = np.random.default_rng(7); um = np.unique(matches[ok])
+    def assoc(v, lab, idx):
+        v, lab = v[idx], lab[idx]
+        m = ~np.isnan(v)
+        if m.sum() < 30: return None
+        v, lab = v[m], lab[m]
+        if reg:
+            if np.std(v) == 0 or np.std(lab) == 0: return None
+            return abs(float(spearmanr(v, lab).correlation))
+        if len(set(lab)) < 2 or np.std(v) == 0: return None
+        return abs(float(roc_auc_score(lab, v)) - 0.5)
+    out = {}
+    for f in X.columns:
+        if kinds.get(f) not in ("decision", "execution"): continue
+        v = X[f].values.astype(float)
+        a_next = assoc(v, np.asarray(y, float), ok); a_prev = assoc(v, yp, ok)
+        if a_next is None or a_prev is None: continue
+        boots = []
+        for _ in range(25):
+            pick = set(rng.choice(um, len(um), replace=True))
+            idx = ok & np.isin(matches, list(pick))
+            b = assoc(v, yp, idx)
+            if b is not None: boots.append(b)
+        lo = float(np.percentile(boots, 5)) if len(boots) >= 10 else 0.0
+        marks = bool(a_prev >= 0.75 * a_next and lo > 0.02 and a_prev > 0.03)
+        out[f] = {"next": round(a_next, 3), "previous": round(a_prev, 3), "previous_low": round(lo, 3), "marks_situation": marks}
+    return out
 
 
 # ---------------------------------------------------------------- rows (lnrows.py)
@@ -392,11 +518,19 @@ def fit_all(ids, nodes=None, V=None):
         df, X, y, g = frame(node, ids, V)
         if len(df) < 40 or g.nunique() < 6 or (node not in REGRESSION and y.nunique() < 2): continue
         reg = node in REGRESSION
+        # M4: inputs the data can carry; the plan reads the node's last summary for statuses and importances
+        prev = None
+        try: prev = json.load(open(os.path.join(NODE_DIR, f"L_{node}.json")))
+        except Exception: pass
+        keep, pruned, cap = prune_plan(node, X, y, prev)
+        X = X[keep]
         folds = list(GroupKFold(n_splits=6).split(X, y, g))
-        variants = [("all", list(X.columns))] + [(grp, [c for c in X.columns if c not in fs]) for grp, fs in SPEC[node][1].items()]
+        groups_in = {grp: [f for f in fs if f in keep] for grp, fs in SPEC[node][1].items()}
+        groups_in = {grp: fs for grp, fs in groups_in.items() if fs}
+        variants = [("all", list(X.columns))] + [(grp, [c for c in X.columns if c not in fs]) for grp, fs in groups_in.items()]
         for grp in EACH.get(node, []):
-            variants += [(f"{grp}:{f}", [c for c in X.columns if c != f]) for f in SPEC[node][1][grp]]
-        prep[node] = (df, X, y, g, folds, variants)
+            variants += [(f"{grp}:{f}", [c for c in X.columns if c != f]) for f in groups_in.get(grp, [])]
+        prep[node] = (df, X, y, g, folds, variants, pruned, cap, groups_in)
         for vn, cols in variants:
             for tr, te in folds:
                 jobs.append(("fold", reg, g.iloc[tr].nunique(), X.iloc[tr][cols], y.iloc[tr].values, X.iloc[te][cols], y.iloc[te].values, node,
@@ -404,7 +538,7 @@ def fit_all(ids, nodes=None, V=None):
         jobs.append(("full", reg, g.nunique(), X, y.values, None, None, node)); owner.append((node, "full"))
     res = parallel.run(_job, jobs)
     out = {}
-    for node, (df, X, y, g, folds, variants) in prep.items():
+    for node, (df, X, y, g, folds, variants, pruned, cap, groups_in) in prep.items():
         reg = node in REGRESSION
         R_ = collections.defaultdict(list)
         for o, r in zip(owner, res):
@@ -416,7 +550,7 @@ def fit_all(ids, nodes=None, V=None):
                "metric": "mean absolute error (s)" if reg else "log loss"}
         val["verdict"] = "adds to the simple baseline" if val["glass box"] < val["simple baseline"] - (0.5 if reg else 0.0005) else "no better than the simple baseline yet"
         links = []
-        for grp, fs in SPEC[node][1].items():
+        for grp, fs in groups_in.items():
             d_ = [w["score"] - a_["score"] for w, a_ in zip(R_[grp], allf)]       # positive = the link helps on unseen matches
             mu = statistics.mean(d_); se = statistics.stdev(d_) / math.sqrt(len(d_)) if len(d_) > 1 else float("inf")
             status = "supported" if mu - 2 * se > 0 else "rejected" if mu + 2 * se < 0 else "not clear yet"
@@ -429,10 +563,18 @@ def fit_all(ids, nodes=None, V=None):
             links.append({"from": grp, "to": SPEC[node][0], "features": list(fs), "strength": round(mu, 4 if not reg else 2),
                           "plus_minus": round(se, 4 if not reg else 2), "status": status, **({"each": each} if each else {})})
         terms = M.readable(e, list(X.columns), X) if not reg else __import__("nodes").readable_seconds(e, list(X.columns), X)
-        for t in terms: t["description"] = describe(node, t["term"])
+        kinds = {f: kind_of(node, f) for f in X.columns}
+        for t in terms: t["description"] = describe(node, t["term"]); t["kind"] = kinds.get(t["term"])
         rate = None if reg else round(float(y.mean()), 3)
+        # M5: the selection check on every decision and execution input
+        sel = selection_check(node, df, X, y, kinds)
+        marks = sorted(f for f, v in sel.items() if v["marks_situation"])
+        for l in links: l["kinds"] = sorted({kinds[f] for f in l["features"]})
         summary = {"node": node, "target": SPEC[node][0], "matches": int(g.nunique()), "rows": int(len(y)), "rate": rate,
                    "mean": round(float(y.mean()), 1) if reg else None, "validation": val, "links": links, "terms": terms,
+                   "kinds": kinds, "input_cap": cap, "inputs": len(X.columns), "pruned": pruned,
+                   "concurrent": {f: describe(node, f) for f in CONCURRENT.get(node, {})},
+                   "selection": sel, "marks_situation": marks,
                    "note": ("seconds added to (or taken off) the result, against the average" if reg else
                             "points = change in the chance of the result for an otherwise even (50%) case")}
         os.makedirs(NODE_DIR, exist_ok=True)
@@ -443,7 +585,7 @@ def fit_all(ids, nodes=None, V=None):
         for i, (tr, te) in enumerate(folds):
             for mm in set(g.iloc[te]): fold_of[mm] = i
         save_heldout(node, ids, {"cols": list(X.columns), "models": [r["model"] for r in allf], "fold_of": fold_of,
-                                 "regression": reg, "rate": rate, "mean": float(y.mean()),
+                                 "regression": reg, "rate": rate, "mean": float(y.mean()), "kinds": kinds, "marks_situation": marks,
                                  "medians": {c: (None if np.isnan(v) else float(v)) for c, v in X.median().items()},
                                  # each variable's spread (interquartile range, else standard deviation): the smallest
                                  # change that can count as a cause or a fix in a chain (Denning: not a -0.01 difference)
@@ -458,8 +600,10 @@ _MODELS = {}
 
 def _heldout_path(node, ids):
     import cache
-    # keyed by this file alone (not what it imports: an edit to the TQs must not lose the fitted models)
-    return cache._path("fits", "lnode", cache._hash_files(["learnednodes.py"]), cache.ids_key(list(ids)), f"{node}.pkl")
+    # keyed by this file and the rows' key (not the report layer: an edit to the TQs must not lose the fitted models;
+    # an edit to how rows are measured must)
+    return cache._path("fits", "lnode", cache._hash_files(["learnednodes.py"]) + "-" + cache.code_key("lrows"),
+                       cache.ids_key(list(ids)), f"{node}.pkl")
 
 
 def save_heldout(node, ids, obj):
@@ -551,7 +695,20 @@ def write_map(summaries):
             l["status"] = new
         if new == "hypothesis": l.pop("status_by", None)
         else: l["status_by"] = "data"
-    c["version"] = max(c.get("version", 10), 11)
+    # M2: links whose measures are the other team's concurrent response are not fitted; they keep the map entry with
+    # the status "concurrent" so nobody re-proposes them as causes
+    for l in c["links"]:
+        if (l["from"], l["to"]) in CONCURRENT_LINKS and l["status"] != "concurrent":
+            c["log"].append({"date": today, "change": f"link {l['from']} -> {l['to']}: {l['status']} -> concurrent (the enemy's response during the window; shown beside the node, not fitted; Denning, November 2026 review)", "by": "Denning"})
+            l["status"] = "concurrent"; l["status_by"] = "Denning"
+    # M4: inputs pruned for the data's sake go on the waiting list (and come off it when a node carries them again)
+    waiting = [w for w in c.get("waiting", []) if w.get("kind") != "pruned input"]
+    for node, s in summaries.items():
+        for pr in s.get("pruned", []):
+            waiting.append({"kind": "pruned input", "node": node, "feature": pr["feature"], "group": pr["group"], "why": pr["reason"],
+                            "cap": s.get("input_cap"), "date": today})
+    c["waiting"] = waiting
+    c["version"] = max(c.get("version", 10), 12)
     json.dump(c, open(MAP, "w"), indent=1, ensure_ascii=False)
     json.dump(log, open(LINK_LOG, "w"), indent=1)
     return changes
@@ -567,9 +724,14 @@ def report_lines(summaries):
         v = s["validation"]; reg = node in REGRESSION
         what = (f"{s['rows']} cases, average {s['mean']} s" if reg else f"{s['rows']} cases, result rate {s['rate']:.0%}")
         L.append(f"**{node.replace('_', ' ')}** (map {s['target']}; {s['matches']} matches, {what}): {v['metric']} {v['glass box']} against "
-                 f"{v['simple baseline']} for the simple baseline ({v['verdict']}).")
+                 f"{v['simple baseline']} for the simple baseline ({v['verdict']}). Inputs {s.get('inputs')} of a cap of {s.get('input_cap')}"
+                 + (f"; pruned: {', '.join(p['feature'] for p in s['pruned'])}" if s.get("pruned") else "") + ".")
+        if s.get("marks_situation"):
+            L.append(f"- marks the situation (predicts the previous result as well as the next; never a fix): {', '.join(s['marks_situation'])}")
+        if s.get("concurrent"):
+            L.append(f"- measured but not fitted (the enemy's response during the window): {', '.join(s['concurrent'])}")
         for l in sorted(s["links"], key=lambda l: -l["strength"]):
-            L.append(f"- link {l['from']} -> {l['to']}: gain {l['strength']:+} (+/- {l['plus_minus']}), {l['status']} ({', '.join(l['features'][:4])}{'...' if len(l['features']) > 4 else ''})")
+            L.append(f"- link {l['from']} -> {l['to']} [{'/'.join(l.get('kinds', []))}]: gain {l['strength']:+} (+/- {l['plus_minus']}), {l['status']} ({', '.join(l['features'][:4])}{'...' if len(l['features']) > 4 else ''})")
             for x in l.get("each", []):
                 L.append(f"  - alone: {x['feature']} ({describe(node, x['feature'])}): gain {x['strength']:+} (+/- {x['plus_minus']}), {x['status']}")
         top = [t for t in s["terms"] if "curve" in t][:3]
@@ -625,14 +787,22 @@ def render_overview(summaries):
               f"{s['rows']} cases from {s['matches']} matches; " + (f"average {s['mean']} s" if reg else f"happens {s['rate']:.0%} of the time")
               + f". Predicts unseen matches {good}.", "", "Causes tested:"]
         terms = {t["term"]: t for t in s["terms"] if "curve" in t}
+        marks = set(s.get("marks_situation") or [])
+        kinds = s.get("kinds") or {}
         for l in sorted(s["links"], key=lambda l: -l["strength"]):
-            L.append(f"- **{names.get(l['from'], l['from'])}**: {STATUS_WORDS[l['status']]}.")
+            kw = "/".join(l.get("kinds", [])) or "input"
+            L.append(f"- **{names.get(l['from'], l['from'])}** ({kw}): {STATUS_WORDS[l['status']]}.")
             feats = sorted(l["features"], key=lambda f: -(terms.get(f, {}).get("importance") or 0))
             for f in feats[:3]:
                 if f in terms and terms[f]["importance"] > 0:
-                    L.append(f"  - {describe(node, f)}: {_curve_words(terms[f], reg)}")
+                    tag = " [marks the situation]" if f in marks else ""
+                    L.append(f"  - {describe(node, f)}: {_curve_words(terms[f], reg)}{tag}")
             for x in l.get("each", []):
                 L.append(f"  - tested alone, {describe(node, x['feature'])}: {x['status']}")
+        if s.get("concurrent"):
+            L.append("- Measured beside the node, not as a cause (what the enemy did during the window): " + "; ".join(s["concurrent"].values()) + ".")
+        if s.get("pruned"):
+            L.append(f"- Left out for now so the inputs fit the data ({s['inputs']} of a cap of {s['input_cap']}): " + ", ".join(f"{describe(node, p['feature'])} ({p['reason']})" for p in s["pruned"]) + ".")
         L.append("")
     if V:
         L += ["## Values measured from the data", "",
