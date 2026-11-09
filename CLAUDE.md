@@ -105,7 +105,8 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   and Claude's reasoning about what causes what, as links whose strength the data measures. Add his answers as links
   (with reason, source and tactics ids) and log every change; keep `knowledge/causal-map.md` rendered. Built so far:
   `phases.py` (phases, plans, jobs, capacities), `buildfeat.py` (build and matchup features), `nodes.py` (node models: deaths,
-  kill conversion, flag answers, pit NPC loss, Lord damage; `explain` for a player's risk second by second), `usual.py` (the usual play and each choice's
+  kill conversion, flag answers, Lord damage; `explain` for a player's risk second by second; pit NPC loss is the learned
+  node `pit_npc_loss` in `learnednodes.py`), `usual.py` (the usual play and each choice's
   effect in win chance, between similar builds), `values.py` (results and causes priced in win points;
   `knowledge/values.md`). Per-player skill flags: `buildfeat.player_flags` (one skill can change the right play).
   Snare and speed power per player (how strong, not just whether): `movepower.py` (Return is an escape, not a snare).
@@ -141,7 +142,8 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
 - Speed: `cache.py` keeps every "without this match" model and each match's prepared data (keyed by the engine code);
   run `cache.py sync pull` then `cache.py warm` at the start of a session and `cache.py sync push` after building.
   Never refit a held-out model directly: use `WPModel.heldout` and `nodes.heldout_node` (10 fixed groups of matches,
-  `cache.FOLDS`). Make all engine changes before rebuilding: any engine edit invalidates the cache. Run training
+  `cache.FOLDS`). Cache keys are by layer (`cache.py info`): an edit to a measurement module invalidates prepared data,
+  an edit to a report module (tq, learning, causalchain, snapshot, modelpage, advice, ask, behaviour, discover) nothing. Run training
   batches on GitHub with the "Train batch" workflow (METHODS.md "Train batch on GitHub"), not in the chat.
 - Tracking: `data/model/match_status.json` (`status.py`) records, per match, its batch, review, commentary state, the
   events whose why was walked through with Denning, and notes. Run `status.py sync` after each batch and `status.py

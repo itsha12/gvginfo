@@ -216,6 +216,10 @@ KIND_BY_GROUP = {"C.builds": "context", "C.matchup": "context", "C.strength": "c
 # features whose kind is not their group's: choices a team made at the moment
 DECISION_FEATURES = {"pushed", "runner_class", "runner_line", "escort", "size", "defenders", "defenders_10s", "contact_diff",
                      "split_healers", "split_size", "own_flag_duty", "enemy_flag_duty"}
+# features in a play group (P.10 run timing) that describe the situation, not a play: the flag model's readings
+STATE_FEATURES = {"stand_own", "stand_enemy", "enemy_boost_in", "own_boost_in", "flag_lead", "own_eta", "enemy_eta", "own_carrying",
+                  "enemy_carrying", "own_cap_before_boost", "enemy_cap_before_boost", "waiting_runner", "backup_flag", "enemy_power_play",
+                  "window_s", "checkpoint_s"}
 # what the other team did during the window: measured (lnrows.py keeps it in every row) and shown beside the node's
 # reading as "what the enemy did", never fitted (M2: a cause must be measured before the result's window)
 CONCURRENT = {
@@ -236,6 +240,7 @@ REGRESSION_ROWS_PER_INPUT = 40
 def kind_of(node, f):
     """context, state, decision or execution for a node's input (concurrent measures are not inputs)."""
     if f in CONCURRENT.get(node, {}): return "concurrent"
+    if f in STATE_FEATURES: return "state"
     if f in DECISION_FEATURES: return "decision"
     g = group_of(node, f)
     if g is None: return "state"
