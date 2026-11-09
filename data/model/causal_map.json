@@ -6226,6 +6226,11 @@
    "date": "2026-11-09",
    "change": "link P.20 -> R.1: supported -> hypothesis by data (collapse not clear yet +0.0026)",
    "by": "data"
+  },
+  {
+   "date": "2026-11-09",
+   "change": "R-288 to R-291: direction signs ruled; runner_escapes retired from run outcome (R.3); four measurement proposals queued",
+   "by": "Denning"
   }
  ],
  "waiting": [
@@ -6290,6 +6295,38 @@
    "group": "S.scoreboard",
    "why": "Denning's link, not clear yet (R-278)",
    "cap": 14,
+   "date": "2026-11-09"
+  },
+  {
+   "kind": "proposal",
+   "node": "run_outcome, capture_speed",
+   "feature": "control on the runner by distance to the stand",
+   "why": "R-288: control, damage and pushes received read as a reaction because runs that get far get hit; measure them by distance band (far from the stand v near) or before the halfway point, so both run nodes and capture speed read the control where it mattered",
+   "source": "Denning",
+   "date": "2026-11-09"
+  },
+  {
+   "kind": "proposal",
+   "node": "flag_answer, run_outcome",
+   "feature": "flag dropped by a Shadow Step",
+   "why": "R-289: a Shadow Step drops the flag now; a runner who uses one is an execution fault, not a speed asset (replacement for the retired runner_escapes)",
+   "source": "Claude, from Denning's ruling",
+   "date": "2026-11-09"
+  },
+  {
+   "kind": "proposal",
+   "node": "fight_outcome (values.py)",
+   "feature": "hex value incl. trigger damage",
+   "why": "R-290: trigger hexes (Mind Wrack) leave the target when they fire, so time-on-player undervalues them; value a hex by its recorded output incl. the damage on trigger or removal and the energy pressure it stands for; and a harmless hex left on is not a fault",
+   "source": "Denning",
+   "date": "2026-11-09"
+  },
+  {
+   "kind": "proposal",
+   "node": "pit_npc_loss, lord_damage",
+   "feature": "NPC healing by target and kind",
+   "why": "R-291: split npc_healing_10s by which NPC was healed (archer, knight, Bodyguard, Lord; under AoE or not) and by heal kind (direct v enchantment), so the data can test the common wisdom (archer over knight under AoE, Bodyguard over Lord) and whether enchantment heals on the Lord cost Lord damage",
+   "source": "Denning",
    "date": "2026-11-09"
   }
  ]

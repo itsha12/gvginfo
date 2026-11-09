@@ -884,3 +884,4 @@ Caused by:
 - 2026-11-09: link C.strength -> R.3: hypothesis -> supported by data (run_outcome not clear yet +0.0003, flag_swing not clear yet +0.05, capture_speed supported +0.06, run_defence not clear yet +0.0002) (data)
 - 2026-11-09: link P.19 -> R.2: hypothesis -> rejected by data (fight_outcome rejected -0.0014) (data)
 - 2026-11-09: link P.20 -> R.1: supported -> hypothesis by data (collapse not clear yet +0.0026) (data)
+- 2026-11-09: R-288 to R-291: direction signs ruled; runner_escapes retired from run outcome (R.3); four measurement proposals queued (Denning)

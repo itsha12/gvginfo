@@ -56,7 +56,7 @@ SPEC = {
              "pushers_so_far": "enemies who pushed the runner by this point",
              "enemy_snare_near": "snare power of live enemies within 1,300 of the runner (movepower.py)"},
     "K.13": {"min_capture_s": "seconds the carrier needs at least to reach the stand from here, at its fastest expected carry speed (its speed skills; Denning)",
-             "runner_escapes": "runner's Shadow Step skills"},
+             },
     "C.builds": {"enemy_snares": "snare skills on enemy bars (discovery, approved)"},
     "C.map": {"run_dist": "distance from the team's spawn to the stand"},
     "C.strength": {"strength_gap": "team strength gap"}}, {"checkpoint_s": "seconds into the run"}),
@@ -240,19 +240,25 @@ ALLOCATION = {
 # expected direction of every execution input (Denning, R-285: as the win model has direction corrections): +1 = more of
 # it should help the row's team, -1 = more of it should hurt. An input whose fitted curve runs the other way is
 # labelled "reads backwards: likely a reaction" (disabling more because the kill is not coming; healing NPCs because
-# they are being hit) and is never a fault or a fix, though it stays in the fit as adjustment. Claude's list, to confirm.
+# they are being hit) and is never a fault or a fix, though it stays in the fit as adjustment. Signs ruled by Denning
+# 2026-11-09 (R-288 to R-291); an input with no entry has no expected direction yet and is read as the data says.
 EXPECTED = {
     "run_outcome": {"crippled_so_far": -1, "knocked_down_so_far": -1, "other_control_so_far": -1, "damage_so_far": -1, "pushers_so_far": -1,
-                    "min_capture_s": -1, "runner_escapes": +1},
+                    "min_capture_s": -1},                     # runner_escapes retired (R-289: a Shadow Step drops the flag now)
     "run_defence": {"pushers_so_far": +1, "control_so_far": +1, "damage_so_far": +1, "def_snare_near": +1},
     "capture_speed": {"pushers_10s": +1, "control_10s": +1, "damage_10s": +1, "def_snare_near": +1},
     "power_play": {"dps_v_usual": +1, "spikes_10s": +1, "spike_spread": -1, "spikes_on_healers": +1, "healer_damage_share": +1,
                    "blind_secs_on_own_10s": -1, "knockdowns_10s": +1, "knockdowns_on_casting_10s": +1, "disable_10s": +1,
                    "castprev_10s": +1, "degen_10s": +1},
-    "fight_outcome": {"peel_defensive_diff": +1, "ready_interrupt_diff": -1, "dazed_casts_diff": -1, "blind_attacks_diff": -1,
+    # fight outcome (Denning, R-290): good = Blind on their frontline, defensive Blind, damage v the usual, the right hex
+    # removed, kiting, degen, baited interrupts, knockdowns (and on casters), disables, cast prevention, strips on the
+    # right target and their value; bad = casting into a ready interrupt, casting while Dazed, attacking while Blind,
+    # loose spikes, impactful hexes on own players (value-weighted). No sign yet for pre-kiting (unknown), peel (good
+    # when playing defensively, not for a global fight), spikes and damage focus on healers (not ruled): the data reads them.
+    "fight_outcome": {"ready_interrupt_diff": -1, "dazed_casts_diff": -1, "blind_attacks_diff": -1,
                       "strip_right_diff": +1, "strip_value_diff": +1, "blind_front_secs_diff": +1, "blind_defensive_secs_diff": +1,
-                      "healer_focus_diff": +1, "spike_spread_diff": -1, "spikes_diff": +1, "dps_v_usual_diff": +1, "hex_secs_diff": -1,
-                      "hex_right_diff": +1, "kite_secs_diff": +1, "prekite_secs_diff": +1, "degen_diff": +1, "baits_diff": +1,
+                      "spike_spread_diff": -1, "dps_v_usual_diff": +1, "hex_secs_diff": -1,
+                      "hex_right_diff": +1, "kite_secs_diff": +1, "degen_diff": +1, "baits_diff": +1,
                       "knockdowns_diff": +1, "knockdowns_on_casting_diff": +1, "disable_diff": +1, "castprev_diff": +1},
     "split_effect": {"split_speed_power": +1, "own_escapes_power": +1},
     "pit_npc_loss": {"npc_healing_10s": +1},

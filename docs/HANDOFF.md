@@ -29,6 +29,8 @@ Rewritten each session; stays under 80 lines. Read `CLAUDE.md`, then `docs/SPEC.
   outcome blind attacks, disables, hexes on own, knockdowns on casters, pre-kiting, strip targeting: for Denning to
   check against the direction list. The report's "What changed" diff compares to batch 14, not to the pre-bundle
   rebuild (same batch number); the numbers above are the comparison. Blind-test round 1 written (8 picks, 3 specific).
+- After the rebuild (fit layer only, no rebuild run): signs ruled (R-288 to R-291), runner_escapes retired; the next
+  chunk carries these, so compare its learned-node readings against this rebuild's, not batch 14's.
 - Discovery run 1 on the catalogue (run 42618611013): 1,633 tests, 24 own_/diff_ candidates passed once; nothing is
   offered until a second run (the pass history is now committed; before today it never was, so nothing could pass twice).
 - Readability test 2 (docs/tests/readability-2026-11-09b.md): verdict no, 14 of 18 items at least partly explained.
@@ -48,8 +50,10 @@ Rewritten each session; stays under 80 lines. Read `CLAUDE.md`, then `docs/SPEC.
    framework if wanted; a results history for blind-test rounds across engine versions.
 
 ## Open rulings for Denning
-- Direction list (learnednodes.EXPECTED, R-285): Claude's; confirm or change the signs (the report lists what read
-  backwards after the rebuild).
+- Direction signs: ruled (R-288 to R-291) except two in fight outcome Denning did not list either way: spikes
+  (own minus enemy) and damage focus on healers; both now carry no sign. Say + or leave them to the data.
+- Four measurement proposals from the rulings wait on the map (control by distance to the stand; flag dropped by a
+  Shadow Step; hex value incl. trigger damage, Mind Wrack; NPC healing by target and kind): next bundle.
 - play_for_28_or_lord starts at 10:00 and counts footmen as NPCs taken (R-281 left both open): confirm or change.
 - `flag_answer` kept as its own node (R: keep for now); fold into the runs once they carry a lateness reading?
 - Discovery candidates offered after the second run: approve, reject or wait, each.
