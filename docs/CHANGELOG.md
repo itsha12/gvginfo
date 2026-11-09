@@ -2,6 +2,10 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-09 (night): batch 16, 90 matches
+- Four Train batch runs failed on GitHub's side (matrix jobs never created, then runs with no jobs) after two runs were queued at once; chunk 6's 45 replays stayed stored.
+- Denning chose to train them with 45 new picks as one batch (run 42675808241): 446 matches, 0.355 v 0.47 (+0.115), advice test 4 of 13 clear (power_play joins), P.26 cast prevention -> power play rejected, blind round 2 written, TQs ran.
+
 ## 2026-11-09 (evening): bundle 3 from Denning's rulings R-278 to R-287, the Model tab and the blind test page
 - Site: a Model tab (`#/model`) holds the engine's pages (discovery now listed); Mechanics keeps the game pages. Blind test page (Model > Blind test): sealed rounds in `data/model/blind_tests.json`, 8 picks (6 random, 2 specific), calls saved with a reason, model call revealed after saving, scored in the browser; Train batch adds a round per chunk (input `blind`).
 - Decisions (decisions.py; R-279 to R-281): offence/defence window 15 s; NPCs or DP fires on 3+ kills at or past the enemy footmen; play for 28 or the Lord redefined (from 10:00, a team that has taken enemy NPCs, push for the kill = 3+ at the enemy pit). Measurement layer: all prepared data rebuilt.
