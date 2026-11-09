@@ -1,8 +1,7 @@
 # GvG Info: handoff for a new chat
 
-Rewritten each session; stays under 80 lines. Read `CLAUDE.md`, then `docs/SPEC.md`, then this. History is in
-`docs/CHANGELOG.md`; Denning's rulings in `docs/RULINGS.md` (cite R-numbers); the structure of every fitted model in
-`knowledge/model.md` (generated).
+Rewritten each session; under 80 lines. Read `CLAUDE.md`, `docs/SPEC.md`, then this. History: `docs/CHANGELOG.md`;
+rulings: `docs/RULINGS.md` (cite R-numbers); every fitted model's structure: `knowledge/model.md` (generated).
 
 ## Start a new chat in one message
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/SPEC.md and docs/HANDOFF.md, then:
