@@ -28,7 +28,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: [run_outcome, flag_swing, run_defence, capture_speed, power_play, fight_outcome, split_chance, split_answer, split_effect, collapse]
+        node: [run_outcome, flag_swing, run_defence, capture_speed, power_play, fight_outcome, split_chance, split_answer, split_effect, collapse, pit_npc_loss]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
