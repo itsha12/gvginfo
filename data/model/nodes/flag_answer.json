@@ -1,7 +1,7 @@
 {
  "node": "flag_answer",
- "matches": 189,
- "rows": 1826,
+ "matches": 229,
+ "rows": 2189,
  "events": null,
  "validation": {
   "glass box": {
@@ -9,8 +9,8 @@
    "r2": 0.728
   },
   "simple baseline": {
-   "mae_s": 27.4,
-   "r2": -0.002
+   "mae_s": 27.7,
+   "r2": -0.001
   },
   "baseline uses": [
    "the median (typical error)",
@@ -23,98 +23,98 @@
   {
    "term": "parked_s",
    "description": "seconds the flag lay parked (dropped 5 s or more: not running yet)",
-   "importance": 9.057,
+   "importance": 9.215,
    "curve": [
     {
      "from": 0.0,
      "to": 2.5,
-     "points": -5.1,
-     "plus_minus": 0.1
+     "points": -5.2,
+     "plus_minus": 0.2
     },
     {
      "from": 2.5,
      "to": 7.5,
-     "points": -1.7,
-     "plus_minus": 1.0
+     "points": -0.1,
+     "plus_minus": 2.8
     },
     {
      "from": 7.5,
      "to": 11.5,
-     "points": 2.3,
-     "plus_minus": 0.6
+     "points": 3.6,
+     "plus_minus": 2.3
     },
     {
      "from": 11.5,
      "to": 15.5,
-     "points": 9.5,
-     "plus_minus": 3.2
+     "points": 11.4,
+     "plus_minus": 2.1
     },
     {
      "from": 15.5,
      "to": 21.5,
-     "points": 18.5,
-     "plus_minus": 1.7
+     "points": 16.4,
+     "plus_minus": 0.9
     },
     {
      "from": 21.5,
-     "to": 30.5,
-     "points": 25.0,
-     "plus_minus": 2.0
+     "to": 29.5,
+     "points": 23.9,
+     "plus_minus": 3.5
     },
     {
-     "from": 30.5,
+     "from": 29.5,
      "to": 38.5,
-     "points": 34.7,
-     "plus_minus": 2.3
+     "points": 32.1,
+     "plus_minus": 2.4
     },
     {
      "from": 38.5,
      "to": 47.0,
-     "points": 44.4,
-     "plus_minus": 2.2
+     "points": 39.6,
+     "plus_minus": 1.0
     },
     {
      "from": 47.0,
-     "to": 68.5,
-     "points": 58.0,
-     "plus_minus": 1.1
+     "to": 68.0,
+     "points": 52.4,
+     "plus_minus": 2.9
     },
     {
-     "from": 68.5,
-     "to": 88.5,
-     "points": 64.2,
-     "plus_minus": 1.7
+     "from": 68.0,
+     "to": 90.5,
+     "points": 63.4,
+     "plus_minus": 4.9
     },
     {
-     "from": 88.5,
-     "to": 103.0,
-     "points": 69.7,
-     "plus_minus": 1.5
+     "from": 90.5,
+     "to": 111.5,
+     "points": 68.6,
+     "plus_minus": 4.3
     },
     {
-     "from": 103.0,
-     "to": 131.5,
-     "points": 72.6,
-     "plus_minus": 3.4
+     "from": 111.5,
+     "to": 164.0,
+     "points": 72.3,
+     "plus_minus": 2.9
     },
     {
-     "from": 131.5,
-     "to": 259.0,
-     "points": 68.8,
-     "plus_minus": 1.9
+     "from": 164.0,
+     "to": 275.0,
+     "points": 71.0,
+     "plus_minus": 2.5
     },
     {
-     "from": 259.0,
+     "from": 275.0,
      "to": 956.0,
-     "points": 63.3,
-     "plus_minus": 3.5
+     "points": 62.1,
+     "plus_minus": 6.6
     }
    ]
   },
   {
-   "term": "enemy_deaths_during",
-   "description": "enemy deaths during the answer",
-   "importance": 5.28,
+   "term": "own_deaths_during",
+   "description": "own deaths during the answer",
+   "importance": 5.413,
    "curve": [
     {
      "from": 0.0,
@@ -125,369 +125,369 @@
     {
      "from": 0.5,
      "to": 1.5,
-     "points": 7.8,
-     "plus_minus": 0.5
+     "points": 6.4,
+     "plus_minus": 0.9
     },
     {
      "from": 1.5,
      "to": 2.5,
-     "points": 16.0,
-     "plus_minus": 1.4
+     "points": 14.5,
+     "plus_minus": 1.3
     },
     {
      "from": 2.5,
      "to": 3.5,
-     "points": 20.0,
-     "plus_minus": 2.0
+     "points": 19.6,
+     "plus_minus": 3.4
     },
     {
      "from": 3.5,
      "to": 4.5,
-     "points": 22.2,
-     "plus_minus": 0.4
+     "points": 28.3,
+     "plus_minus": 1.5
     },
     {
      "from": 4.5,
      "to": 5.5,
-     "points": 19.5,
-     "plus_minus": 0.9
+     "points": 36.8,
+     "plus_minus": 5.1
     },
     {
      "from": 5.5,
-     "to": 12.0,
-     "points": 50.3,
-     "plus_minus": 2.8
+     "to": 6.5,
+     "points": 50.1,
+     "plus_minus": 3.2
+    },
+    {
+     "from": 6.5,
+     "to": 8.5,
+     "points": 57.3,
+     "plus_minus": 4.5
+    },
+    {
+     "from": 8.5,
+     "to": 17.0,
+     "points": 48.1,
+     "plus_minus": 4.9
     }
    ]
   },
   {
-   "term": "own_deaths_during",
-   "description": "own deaths during the answer",
-   "importance": 5.228,
+   "term": "enemy_deaths_during",
+   "description": "enemy deaths during the answer",
+   "importance": 5.113,
    "curve": [
     {
      "from": 0.0,
      "to": 0.5,
-     "points": -3.1,
-     "plus_minus": 0.2
+     "points": -3.2,
+     "plus_minus": 0.3
     },
     {
      "from": 0.5,
      "to": 1.5,
-     "points": 6.7,
-     "plus_minus": 1.6
+     "points": 7.7,
+     "plus_minus": 1.3
     },
     {
      "from": 1.5,
      "to": 2.5,
-     "points": 13.9,
-     "plus_minus": 1.0
+     "points": 16.3,
+     "plus_minus": 1.5
     },
     {
      "from": 2.5,
      "to": 3.5,
-     "points": 18.6,
-     "plus_minus": 2.9
+     "points": 19.2,
+     "plus_minus": 0.7
     },
     {
      "from": 3.5,
      "to": 4.5,
-     "points": 27.6,
-     "plus_minus": 1.9
+     "points": 19.1,
+     "plus_minus": 0.5
     },
     {
      "from": 4.5,
      "to": 5.5,
-     "points": 39.3,
-     "plus_minus": 2.3
+     "points": 18.9,
+     "plus_minus": 1.7
     },
     {
      "from": 5.5,
-     "to": 7.5,
-     "points": 54.4,
-     "plus_minus": 4.4
-    },
-    {
-     "from": 7.5,
-     "to": 9.5,
-     "points": 52.6,
-     "plus_minus": 6.0
-    },
-    {
-     "from": 9.5,
-     "to": 17.0,
-     "points": 49.9,
-     "plus_minus": 5.0
-    }
-   ]
-  },
-  {
-   "term": "carrier_damage_taken",
-   "description": "damage the carrier took while carrying",
-   "importance": 5.167,
-   "curve": [
-    {
-     "from": 0.0,
-     "to": 0.5,
-     "points": -4.3,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 0.5,
-     "to": 30.5,
-     "points": -4.0,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 30.5,
-     "to": 56.0,
-     "points": -3.6,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 56.0,
-     "to": 83.5,
-     "points": -2.8,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 83.5,
-     "to": 116.5,
-     "points": -2.4,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 116.5,
-     "to": 158.5,
-     "points": -2.1,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 158.5,
-     "to": 225.5,
-     "points": -1.0,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 225.5,
-     "to": 275.0,
-     "points": -0.0,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 275.0,
-     "to": 349.5,
-     "points": 0.9,
-     "plus_minus": 0.7
-    },
-    {
-     "from": 349.5,
-     "to": 444.0,
-     "points": 2.3,
-     "plus_minus": 0.7
-    },
-    {
-     "from": 444.0,
-     "to": 583.5,
-     "points": 5.7,
-     "plus_minus": 1.1
-    },
-    {
-     "from": 583.5,
-     "to": 785.5,
-     "points": 9.9,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 785.5,
-     "to": 1170.5,
-     "points": 15.6,
-     "plus_minus": 0.8
-    },
-    {
-     "from": 1170.5,
-     "to": 4568.0,
-     "points": 25.4,
-     "plus_minus": 2.0
+     "to": 12.0,
+     "points": 41.9,
+     "plus_minus": 3.3
     }
    ]
   },
   {
    "term": "enemies_in_the_way",
    "description": "enemy presence along the runner's trip back to the spawn",
-   "importance": 5.041,
+   "importance": 5.004,
    "curve": [
     {
      "from": 0.0,
      "to": 0.5,
-     "points": -3.9,
-     "plus_minus": 0.3
+     "points": -4.6,
+     "plus_minus": 0.5
     },
     {
      "from": 0.5,
      "to": 4.5,
-     "points": -4.6,
-     "plus_minus": 0.4
+     "points": -4.3,
+     "plus_minus": 0.5
     },
     {
      "from": 4.5,
-     "to": 9.5,
-     "points": -4.5,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 9.5,
-     "to": 15.5,
-     "points": -4.0,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 15.5,
-     "to": 20.5,
-     "points": -3.7,
+     "to": 10.5,
+     "points": -3.6,
      "plus_minus": 0.3
     },
     {
-     "from": 20.5,
-     "to": 27.5,
-     "points": -2.5,
-     "plus_minus": 0.6
+     "from": 10.5,
+     "to": 16.5,
+     "points": -3.3,
+     "plus_minus": 0.4
     },
     {
-     "from": 27.5,
-     "to": 36.5,
+     "from": 16.5,
+     "to": 21.5,
+     "points": -2.8,
+     "plus_minus": 0.8
+    },
+    {
+     "from": 21.5,
+     "to": 28.5,
      "points": -2.1,
-     "plus_minus": 0.5
+     "plus_minus": 0.4
     },
     {
-     "from": 36.5,
-     "to": 46.5,
-     "points": -0.5,
-     "plus_minus": 0.6
-    },
-    {
-     "from": 46.5,
-     "to": 57.5,
-     "points": 1.6,
+     "from": 28.5,
+     "to": 38.5,
+     "points": -1.1,
      "plus_minus": 0.9
     },
     {
-     "from": 57.5,
-     "to": 76.5,
-     "points": 3.4,
+     "from": 38.5,
+     "to": 48.5,
+     "points": 0.4,
+     "plus_minus": 0.9
+    },
+    {
+     "from": 48.5,
+     "to": 60.5,
+     "points": 2.0,
+     "plus_minus": 0.5
+    },
+    {
+     "from": 60.5,
+     "to": 80.5,
+     "points": 4.1,
+     "plus_minus": 0.9
+    },
+    {
+     "from": 80.5,
+     "to": 106.5,
+     "points": 6.1,
+     "plus_minus": 0.9
+    },
+    {
+     "from": 106.5,
+     "to": 139.5,
+     "points": 8.5,
+     "plus_minus": 1.2
+    },
+    {
+     "from": 139.5,
+     "to": 213.0,
+     "points": 12.6,
+     "plus_minus": 0.8
+    },
+    {
+     "from": 213.0,
+     "to": 1672.0,
+     "points": 19.6,
+     "plus_minus": 2.6
+    }
+   ]
+  },
+  {
+   "term": "carrier_damage_taken",
+   "description": "damage the carrier took while carrying",
+   "importance": 4.988,
+   "curve": [
+    {
+     "from": 0.0,
+     "to": 0.5,
+     "points": -4.2,
      "plus_minus": 0.2
     },
     {
-     "from": 76.5,
-     "to": 103.5,
-     "points": 5.8,
-     "plus_minus": 0.7
+     "from": 0.5,
+     "to": 30.5,
+     "points": -3.6,
+     "plus_minus": 0.5
     },
     {
-     "from": 103.5,
-     "to": 136.5,
-     "points": 9.1,
-     "plus_minus": 0.6
+     "from": 30.5,
+     "to": 58.5,
+     "points": -3.2,
+     "plus_minus": 0.2
     },
     {
-     "from": 136.5,
-     "to": 203.0,
-     "points": 13.7,
+     "from": 58.5,
+     "to": 88.5,
+     "points": -2.7,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 88.5,
+     "to": 120.5,
+     "points": -2.5,
+     "plus_minus": 0.5
+    },
+    {
+     "from": 120.5,
+     "to": 173.5,
+     "points": -1.7,
+     "plus_minus": 0.8
+    },
+    {
+     "from": 173.5,
+     "to": 239.5,
+     "points": -1.2,
+     "plus_minus": 0.8
+    },
+    {
+     "from": 239.5,
+     "to": 287.5,
+     "points": 0.3,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 287.5,
+     "to": 363.5,
+     "points": 0.9,
+     "plus_minus": 0.5
+    },
+    {
+     "from": 363.5,
+     "to": 458.5,
+     "points": 2.8,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 458.5,
+     "to": 590.5,
+     "points": 6.0,
+     "plus_minus": 0.8
+    },
+    {
+     "from": 590.5,
+     "to": 795.5,
+     "points": 9.4,
+     "plus_minus": 1.2
+    },
+    {
+     "from": 795.5,
+     "to": 1178.5,
+     "points": 15.2,
      "plus_minus": 1.9
     },
     {
-     "from": 203.0,
-     "to": 1672.0,
-     "points": 19.6,
-     "plus_minus": 0.6
+     "from": 1178.5,
+     "to": 4568.0,
+     "points": 24.5,
+     "plus_minus": 2.5
     }
    ]
   },
   {
    "term": "possible_s",
    "description": "fastest possible answer (s) from the flag model at the enemy's capture",
-   "importance": 4.687,
+   "importance": 4.245,
    "curve": [
     {
      "from": 0.0,
      "to": 3.5,
-     "points": -9.3,
-     "plus_minus": 0.8
-    },
-    {
-     "from": 3.5,
-     "to": 7.5,
-     "points": -8.3,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 7.5,
-     "to": 11.5,
-     "points": -6.4,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 11.5,
-     "to": 16.5,
-     "points": -4.4,
+     "points": -8.6,
      "plus_minus": 0.7
     },
     {
-     "from": 16.5,
-     "to": 20.5,
-     "points": -2.3,
+     "from": 3.5,
+     "to": 8.5,
+     "points": -7.5,
+     "plus_minus": 1.0
+    },
+    {
+     "from": 8.5,
+     "to": 13.5,
+     "points": -5.2,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 13.5,
+     "to": 18.5,
+     "points": -3.0,
+     "plus_minus": 0.6
+    },
+    {
+     "from": 18.5,
+     "to": 22.5,
+     "points": -1.4,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 22.5,
+     "to": 27.5,
+     "points": 0.9,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 27.5,
+     "to": 30.5,
+     "points": 2.6,
      "plus_minus": 0.5
     },
     {
-     "from": 20.5,
-     "to": 23.5,
-     "points": -0.7,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 23.5,
-     "to": 26.5,
-     "points": 1.6,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 26.5,
-     "to": 29.5,
-     "points": 3.2,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 29.5,
-     "to": 32.5,
-     "points": 4.5,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 32.5,
-     "to": 35.5,
-     "points": 5.8,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 35.5,
-     "to": 40.5,
-     "points": 5.5,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 40.5,
-     "to": 44.5,
-     "points": 4.9,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 44.5,
-     "to": 50.5,
+     "from": 30.5,
+     "to": 33.5,
      "points": 4.0,
+     "plus_minus": 0.6
+    },
+    {
+     "from": 33.5,
+     "to": 36.5,
+     "points": 4.5,
+     "plus_minus": 1.0
+    },
+    {
+     "from": 36.5,
+     "to": 39.5,
+     "points": 4.6,
+     "plus_minus": 0.7
+    },
+    {
+     "from": 39.5,
+     "to": 42.5,
+     "points": 4.4,
      "plus_minus": 0.3
     },
     {
-     "from": 50.5,
+     "from": 42.5,
+     "to": 46.5,
+     "points": 4.9,
+     "plus_minus": 0.6
+    },
+    {
+     "from": 46.5,
+     "to": 51.5,
+     "points": 5.1,
+     "plus_minus": 0.5
+    },
+    {
+     "from": 51.5,
      "to": 81.0,
      "points": 2.4,
      "plus_minus": 0.4
@@ -497,567 +497,322 @@
   {
    "term": "runner_to_spawn",
    "description": "runner's distance to its flag spawn when the enemy captured",
-   "importance": 3.081,
+   "importance": 2.527,
    "curve": [
     {
      "from": 17.0,
-     "to": 768.0,
-     "points": -6.9,
-     "plus_minus": 0.2
+     "to": 770.0,
+     "points": -6.4,
+     "plus_minus": 0.8
     },
     {
-     "from": 768.0,
-     "to": 1442.5,
-     "points": -5.6,
+     "from": 770.0,
+     "to": 1442.0,
+     "points": -4.9,
+     "plus_minus": 0.7
+    },
+    {
+     "from": 1442.0,
+     "to": 2033.0,
+     "points": -3.1,
      "plus_minus": 0.3
     },
     {
-     "from": 1442.5,
-     "to": 2021.0,
-     "points": -4.1,
-     "plus_minus": 0.6
-    },
-    {
-     "from": 2021.0,
-     "to": 2787.5,
-     "points": -2.2,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 2787.5,
-     "to": 3518.0,
+     "from": 2033.0,
+     "to": 2840.0,
      "points": -1.4,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 3518.0,
-     "to": 4109.0,
-     "points": -0.0,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 4109.0,
-     "to": 4478.5,
-     "points": 0.8,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 4478.5,
-     "to": 4892.5,
-     "points": 1.9,
      "plus_minus": 0.2
     },
     {
-     "from": 4892.5,
-     "to": 5510.5,
-     "points": 1.6,
+     "from": 2840.0,
+     "to": 3615.0,
+     "points": -0.7,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 3615.0,
+     "to": 4214.5,
+     "points": 0.4,
      "plus_minus": 0.2
     },
     {
-     "from": 5510.5,
-     "to": 6154.0,
+     "from": 4214.5,
+     "to": 4536.5,
+     "points": 0.9,
+     "plus_minus": 0.1
+    },
+    {
+     "from": 4536.5,
+     "to": 4928.5,
+     "points": 1.3,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 4928.5,
+     "to": 5552.0,
+     "points": 1.0,
+     "plus_minus": 0.1
+    },
+    {
+     "from": 5552.0,
+     "to": 6174.5,
+     "points": 1.3,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 6174.5,
+     "to": 6709.5,
      "points": 2.2,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 6154.0,
-     "to": 6714.0,
-     "points": 3.6,
      "plus_minus": 0.4
     },
     {
-     "from": 6714.0,
-     "to": 7342.5,
-     "points": 3.9,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 7342.5,
-     "to": 8362.5,
-     "points": 3.0,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 8362.5,
-     "to": 15577.0,
-     "points": 4.8,
-     "plus_minus": 0.3
-    }
-   ]
-  },
-  {
-   "term": "quick_handoffs",
-   "description": "quick hand-offs (a teammate picked it up within 5 s)",
-   "importance": 2.283,
-   "curve": [
-    {
-     "from": 0.0,
-     "to": 0.5,
-     "points": -1.4,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 0.5,
-     "to": 1.5,
-     "points": 4.7,
+     "from": 6709.5,
+     "to": 7319.0,
+     "points": 2.4,
      "plus_minus": 0.5
     },
     {
-     "from": 1.5,
-     "to": 2.5,
-     "points": 7.1,
-     "plus_minus": 1.1
-    },
-    {
-     "from": 2.5,
-     "to": 3.0,
-     "points": 23.1,
-     "plus_minus": 6.0
-    }
-   ]
-  },
-  {
-   "term": "morale_diff",
-   "description": "own minus enemy morale",
-   "importance": 2.024,
-   "curve": [
-    {
-     "from": -303.0,
-     "to": -108.0,
-     "points": 7.6,
-     "plus_minus": 0.8
-    },
-    {
-     "from": -108.0,
-     "to": -74.5,
-     "points": 6.1,
-     "plus_minus": 0.3
-    },
-    {
-     "from": -74.5,
-     "to": -49.5,
-     "points": 4.7,
-     "plus_minus": 0.3
-    },
-    {
-     "from": -49.5,
-     "to": -31.5,
+     "from": 7319.0,
+     "to": 8319.0,
      "points": 2.6,
-     "plus_minus": 0.8
-    },
-    {
-     "from": -31.5,
-     "to": -15.5,
-     "points": 1.7,
-     "plus_minus": 0.5
-    },
-    {
-     "from": -15.5,
-     "to": -3.5,
-     "points": 0.6,
-     "plus_minus": 0.2
-    },
-    {
-     "from": -3.5,
-     "to": 4.5,
-     "points": -0.2,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 4.5,
-     "to": 16.0,
-     "points": -0.4,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 16.0,
-     "to": 30.5,
-     "points": -0.8,
      "plus_minus": 0.3
     },
     {
-     "from": 30.5,
-     "to": 46.5,
-     "points": -1.3,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 46.5,
-     "to": 69.5,
-     "points": -2.5,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 69.5,
-     "to": 91.5,
-     "points": -3.5,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 91.5,
-     "to": 135.5,
-     "points": -5.0,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 135.5,
-     "to": 348.0,
-     "points": -9.0,
-     "plus_minus": 0.9
+     "from": 8319.0,
+     "to": 15577.0,
+     "points": 5.7,
+     "plus_minus": 0.7
     }
    ]
   },
   {
    "term": "flag_lead_at_enemy_cap",
    "description": "own flag lead when the enemy captured",
-   "importance": 1.744,
+   "importance": 2.309,
    "curve": [
     {
      "from": -80.0,
-     "to": -58.5,
-     "points": -2.9,
-     "plus_minus": 0.9
+     "to": -57.5,
+     "points": -1.8,
+     "plus_minus": 0.7
     },
     {
-     "from": -58.5,
-     "to": -49.5,
-     "points": -0.6,
+     "from": -57.5,
+     "to": -48.5,
+     "points": 0.4,
      "plus_minus": 0.3
     },
     {
-     "from": -49.5,
+     "from": -48.5,
      "to": -40.5,
-     "points": 0.2,
-     "plus_minus": 0.2
+     "points": 1.6,
+     "plus_minus": 0.1
     },
     {
      "from": -40.5,
      "to": -33.5,
-     "points": 1.2,
-     "plus_minus": 0.4
+     "points": 2.9,
+     "plus_minus": 0.5
     },
     {
      "from": -33.5,
      "to": -26.5,
-     "points": 2.1,
-     "plus_minus": 0.3
+     "points": 3.1,
+     "plus_minus": 0.6
     },
     {
      "from": -26.5,
      "to": -20.5,
      "points": 3.0,
-     "plus_minus": 0.4
+     "plus_minus": 0.2
     },
     {
      "from": -20.5,
-     "to": -13.5,
-     "points": 2.7,
+     "to": -14.5,
+     "points": 2.3,
      "plus_minus": 0.3
     },
     {
-     "from": -13.5,
-     "to": -6.5,
-     "points": 1.7,
-     "plus_minus": 0.5
+     "from": -14.5,
+     "to": -7.5,
+     "points": 1.8,
+     "plus_minus": 0.3
     },
     {
-     "from": -6.5,
-     "to": -0.5,
+     "from": -7.5,
+     "to": -1.5,
      "points": 0.9,
      "plus_minus": 0.2
     },
     {
-     "from": -0.5,
-     "to": 7.5,
-     "points": -0.3,
-     "plus_minus": 0.5
+     "from": -1.5,
+     "to": 4.5,
+     "points": -1.0,
+     "plus_minus": 0.3
     },
     {
-     "from": 7.5,
-     "to": 19.5,
-     "points": -1.2,
+     "from": 4.5,
+     "to": 15.5,
+     "points": -2.4,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 15.5,
+     "to": 26.5,
+     "points": -3.1,
      "plus_minus": 0.4
     },
     {
-     "from": 19.5,
+     "from": 26.5,
+     "to": 41.5,
+     "points": -3.7,
+     "plus_minus": 0.9
+    },
+    {
+     "from": 41.5,
+     "to": 79.0,
+     "points": -4.4,
+     "plus_minus": 0.5
+    }
+   ]
+  },
+  {
+   "term": "morale_diff",
+   "description": "own minus enemy morale",
+   "importance": 2.134,
+   "curve": [
+    {
+     "from": -303.0,
+     "to": -110.5,
+     "points": 6.8,
+     "plus_minus": 0.9
+    },
+    {
+     "from": -110.5,
+     "to": -74.5,
+     "points": 5.9,
+     "plus_minus": 0.7
+    },
+    {
+     "from": -74.5,
+     "to": -48.5,
+     "points": 4.6,
+     "plus_minus": 0.2
+    },
+    {
+     "from": -48.5,
+     "to": -30.5,
+     "points": 3.4,
+     "plus_minus": 0.3
+    },
+    {
+     "from": -30.5,
+     "to": -15.5,
+     "points": 2.5,
+     "plus_minus": 0.4
+    },
+    {
+     "from": -15.5,
+     "to": -2.5,
+     "points": 1.1,
+     "plus_minus": 0.4
+    },
+    {
+     "from": -2.5,
+     "to": 3.5,
+     "points": -0.1,
+     "plus_minus": 0.1
+    },
+    {
+     "from": 3.5,
+     "to": 15.5,
+     "points": -0.4,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 15.5,
      "to": 30.5,
-     "points": -1.8,
+     "points": -0.8,
      "plus_minus": 0.3
     },
     {
      "from": 30.5,
-     "to": 46.5,
-     "points": -2.7,
-     "plus_minus": 0.5
+     "to": 48.5,
+     "points": -1.3,
+     "plus_minus": 0.3
     },
     {
-     "from": 46.5,
-     "to": 79.0,
-     "points": -3.5,
+     "from": 48.5,
+     "to": 72.5,
+     "points": -2.7,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 72.5,
+     "to": 95.5,
+     "points": -4.4,
      "plus_minus": 0.3
+    },
+    {
+     "from": 95.5,
+     "to": 140.5,
+     "points": -6.7,
+     "plus_minus": 1.0
+    },
+    {
+     "from": 140.5,
+     "to": 348.0,
+     "points": -9.3,
+     "plus_minus": 1.3
+    }
+   ]
+  },
+  {
+   "term": "quick_handoffs",
+   "description": "quick hand-offs (a teammate picked it up within 5 s)",
+   "importance": 2.015,
+   "curve": [
+    {
+     "from": 0.0,
+     "to": 0.5,
+     "points": -1.3,
+     "plus_minus": 0.1
+    },
+    {
+     "from": 0.5,
+     "to": 1.5,
+     "points": 4.2,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 1.5,
+     "to": 2.5,
+     "points": 7.3,
+     "plus_minus": 1.3
+    },
+    {
+     "from": 2.5,
+     "to": 3.0,
+     "points": 19.9,
+     "plus_minus": 2.2
     }
    ]
   },
   {
    "term": "pushers",
    "description": "enemies who hit the carrier",
-   "importance": 1.569,
+   "importance": 1.464,
    "curve": [
     {
      "from": 0.0,
      "to": 0.5,
-     "points": -1.5,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 0.5,
-     "to": 1.5,
-     "points": -0.7,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 1.5,
-     "to": 2.5,
-     "points": 1.5,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 2.5,
-     "to": 3.5,
-     "points": 2.4,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 3.5,
-     "to": 4.5,
-     "points": 4.1,
-     "plus_minus": 0.9
-    },
-    {
-     "from": 4.5,
-     "to": 7.0,
-     "points": 1.3,
-     "plus_minus": 1.1
-    }
-   ]
-  },
-  {
-   "term": "strength_gap",
-   "description": "own minus enemy team strength",
-   "importance": 1.463,
-   "curve": [
-    {
-     "from": -1059.0,
-     "to": -527.0,
-     "points": 4.5,
-     "plus_minus": 0.5
-    },
-    {
-     "from": -527.0,
-     "to": -389.5,
-     "points": 2.7,
-     "plus_minus": 0.4
-    },
-    {
-     "from": -389.5,
-     "to": -303.5,
-     "points": 2.0,
-     "plus_minus": 0.3
-    },
-    {
-     "from": -303.5,
-     "to": -203.5,
-     "points": 0.7,
-     "plus_minus": 0.3
-    },
-    {
-     "from": -203.5,
-     "to": -86.0,
-     "points": -0.3,
-     "plus_minus": 0.2
-    },
-    {
-     "from": -86.0,
-     "to": -25.0,
-     "points": -0.8,
-     "plus_minus": 0.2
-    },
-    {
-     "from": -25.0,
-     "to": 5.5,
-     "points": -0.9,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 5.5,
-     "to": 51.5,
-     "points": -1.5,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 51.5,
-     "to": 116.0,
-     "points": -1.3,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 116.0,
-     "to": 243.0,
      "points": -1.4,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 243.0,
-     "to": 315.5,
-     "points": -0.4,
-     "plus_minus": 0.1
-    },
-    {
-     "from": 315.5,
-     "to": 414.5,
-     "points": -0.2,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 414.5,
-     "to": 547.0,
-     "points": -1.6,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 547.0,
-     "to": 1183.0,
-     "points": -2.1,
-     "plus_minus": 0.6
-    }
-   ]
-  },
-  {
-   "term": "own_fighting_at_enemy_cap",
-   "description": "own players fighting when the enemy captured",
-   "importance": 1.108,
-   "curve": [
-    {
-     "from": 0.0,
-     "to": 0.5,
-     "points": 4.1,
-     "plus_minus": 0.7
-    },
-    {
-     "from": 0.5,
-     "to": 1.5,
-     "points": 1.7,
-     "plus_minus": 0.6
-    },
-    {
-     "from": 1.5,
-     "to": 2.5,
-     "points": -0.7,
-     "plus_minus": 0.1
-    },
-    {
-     "from": 2.5,
-     "to": 3.5,
-     "points": 0.1,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 3.5,
-     "to": 4.5,
-     "points": -1.5,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 4.5,
-     "to": 5.5,
-     "points": -0.2,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 5.5,
-     "to": 6.5,
-     "points": -0.3,
-     "plus_minus": 0.1
-    },
-    {
-     "from": 6.5,
-     "to": 7.5,
-     "points": -4.2,
-     "plus_minus": 1.1
-    },
-    {
-     "from": 7.5,
-     "to": 8.0,
-     "points": -1.4,
-     "plus_minus": 1.6
-    }
-   ]
-  },
-  {
-   "term": "runner_line",
-   "description": "runner 0 frontline, 1 midline, 2 backline",
-   "importance": 1.076,
-   "curve": [
-    {
-     "from": 0.0,
-     "to": 0.5,
-     "points": -0.9,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 0.5,
-     "to": 1.5,
-     "points": 1.1,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 1.5,
-     "to": 2.0,
-     "points": -1.2,
-     "plus_minus": 0.6
-    }
-   ]
-  },
-  {
-   "term": "forced_drops",
-   "description": "drops with the carrier hit in the 5 s before, or dying",
-   "importance": 0.976,
-   "curve": [
-    {
-     "from": 0.0,
-     "to": 0.5,
-     "points": -0.5,
      "plus_minus": 0.2
     },
     {
      "from": 0.5,
      "to": 1.5,
-     "points": 9.4,
-     "plus_minus": 3.3
-    },
-    {
-     "from": 1.5,
-     "to": 7.0,
-     "points": -0.1,
-     "plus_minus": 4.9
-    }
-   ]
-  },
-  {
-   "term": "runners_used",
-   "description": "players who had carried so far",
-   "importance": 0.97,
-   "curve": [
-    {
-     "from": 0.0,
-     "to": 0.5,
-     "points": -0.9,
-     "plus_minus": 1.5
-    },
-    {
-     "from": 0.5,
-     "to": 1.5,
-     "points": -1.5,
+     "points": -0.6,
      "plus_minus": 0.5
     },
     {
@@ -1069,31 +824,319 @@
     {
      "from": 2.5,
      "to": 3.5,
+     "points": 2.2,
+     "plus_minus": 0.5
+    },
+    {
+     "from": 3.5,
+     "to": 4.5,
+     "points": 3.5,
+     "plus_minus": 1.6
+    },
+    {
+     "from": 4.5,
+     "to": 7.0,
+     "points": 3.1,
+     "plus_minus": 2.1
+    }
+   ]
+  },
+  {
+   "term": "runner_line",
+   "description": "runner 0 frontline, 1 midline, 2 backline",
+   "importance": 1.302,
+   "curve": [
+    {
+     "from": 0.0,
+     "to": 0.5,
+     "points": -1.0,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 0.5,
+     "to": 1.5,
+     "points": 1.4,
+     "plus_minus": 0.1
+    },
+    {
+     "from": 1.5,
+     "to": 2.0,
+     "points": -1.5,
+     "plus_minus": 0.2
+    }
+   ]
+  },
+  {
+   "term": "own_fighting_at_enemy_cap",
+   "description": "own players fighting when the enemy captured",
+   "importance": 1.28,
+   "curve": [
+    {
+     "from": 0.0,
+     "to": 0.5,
+     "points": 4.4,
+     "plus_minus": 0.6
+    },
+    {
+     "from": 0.5,
+     "to": 1.5,
+     "points": 2.2,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 1.5,
+     "to": 2.5,
+     "points": -0.3,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 2.5,
+     "to": 3.5,
+     "points": -0.3,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 3.5,
+     "to": 4.5,
+     "points": -1.6,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 4.5,
+     "to": 5.5,
+     "points": -0.5,
+     "plus_minus": 0.1
+    },
+    {
+     "from": 5.5,
+     "to": 6.5,
+     "points": -0.3,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 6.5,
+     "to": 7.5,
+     "points": -3.8,
+     "plus_minus": 1.1
+    },
+    {
+     "from": 7.5,
+     "to": 8.0,
+     "points": -5.8,
+     "plus_minus": 4.6
+    }
+   ]
+  },
+  {
+   "term": "forced_drops",
+   "description": "drops with the carrier hit in the 5 s before, or dying",
+   "importance": 1.229,
+   "curve": [
+    {
+     "from": 0.0,
+     "to": 0.5,
+     "points": -0.7,
+     "plus_minus": 0.1
+    },
+    {
+     "from": 0.5,
+     "to": 1.5,
+     "points": 10.0,
+     "plus_minus": 1.5
+    },
+    {
+     "from": 1.5,
+     "to": 7.0,
+     "points": 5.9,
+     "plus_minus": 4.5
+    }
+   ]
+  },
+  {
+   "term": "strength_gap",
+   "description": "own minus enemy team strength",
+   "importance": 1.22,
+   "curve": [
+    {
+     "from": -1059.0,
+     "to": -547.0,
+     "points": 3.8,
+     "plus_minus": 0.6
+    },
+    {
+     "from": -547.0,
+     "to": -402.0,
+     "points": 2.3,
+     "plus_minus": 0.3
+    },
+    {
+     "from": -402.0,
+     "to": -315.5,
+     "points": 1.6,
+     "plus_minus": 0.2
+    },
+    {
+     "from": -315.5,
+     "to": -226.0,
+     "points": -0.0,
+     "plus_minus": 0.2
+    },
+    {
+     "from": -226.0,
+     "to": -103.5,
+     "points": -0.8,
+     "plus_minus": 0.4
+    },
+    {
+     "from": -103.5,
+     "to": -25.0,
+     "points": -1.1,
+     "plus_minus": 0.2
+    },
+    {
+     "from": -25.0,
+     "to": 6.5,
+     "points": -1.3,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 6.5,
+     "to": 79.5,
+     "points": -1.6,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 79.5,
+     "to": 147.0,
+     "points": -1.1,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 147.0,
+     "to": 251.5,
+     "points": -1.0,
+     "plus_minus": 0.1
+    },
+    {
+     "from": 251.5,
+     "to": 352.0,
+     "points": -0.0,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 352.0,
+     "to": 428.5,
+     "points": 0.5,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 428.5,
+     "to": 562.5,
+     "points": -0.6,
+     "plus_minus": 0.1
+    },
+    {
+     "from": 562.5,
+     "to": 1183.0,
+     "points": -1.2,
+     "plus_minus": 0.5
+    }
+   ]
+  },
+  {
+   "term": "own_splitting",
+   "description": "own players on a split",
+   "importance": 0.857,
+   "curve": [
+    {
+     "from": 0.0,
+     "to": 0.5,
+     "points": 0.6,
+     "plus_minus": 0.1
+    },
+    {
+     "from": 0.5,
+     "to": 1.5,
+     "points": -0.3,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 1.5,
+     "to": 2.5,
+     "points": -0.4,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 2.5,
+     "to": 3.5,
+     "points": -1.7,
+     "plus_minus": 0.8
+    },
+    {
+     "from": 3.5,
+     "to": 4.5,
+     "points": -5.0,
+     "plus_minus": 0.7
+    },
+    {
+     "from": 4.5,
+     "to": 5.0,
+     "points": -11.4,
+     "plus_minus": 4.8
+    }
+   ]
+  },
+  {
+   "term": "runners_used",
+   "description": "players who had carried so far",
+   "importance": 0.748,
+   "curve": [
+    {
+     "from": 0.0,
+     "to": 0.5,
+     "points": 2.5,
+     "plus_minus": 1.0
+    },
+    {
+     "from": 0.5,
+     "to": 1.5,
+     "points": -0.3,
+     "plus_minus": 0.5
+    },
+    {
+     "from": 1.5,
+     "to": 2.5,
+     "points": 0.6,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 2.5,
+     "to": 3.5,
      "points": 0.6,
      "plus_minus": 0.3
     },
     {
      "from": 3.5,
      "to": 4.5,
-     "points": 0.3,
-     "plus_minus": 0.5
+     "points": -0.0,
+     "plus_minus": 0.1
     },
     {
      "from": 4.5,
      "to": 5.5,
-     "points": -1.6,
+     "points": -2.1,
      "plus_minus": 0.4
     },
     {
      "from": 5.5,
      "to": 6.5,
-     "points": -3.3,
-     "plus_minus": 0.3
+     "points": -3.4,
+     "plus_minus": 0.9
     },
     {
      "from": 6.5,
      "to": 8.0,
-     "points": -2.7,
+     "points": -7.4,
      "plus_minus": 1.4
     }
    ]
@@ -1101,209 +1144,94 @@
   {
    "term": "alive_diff",
    "description": "own minus enemy players alive",
-   "importance": 0.924,
+   "importance": 0.703,
    "curve": [
     {
-     "from": -5.0,
+     "from": -6.0,
      "to": -3.5,
-     "points": 3.3,
-     "plus_minus": 3.7
+     "points": 1.9,
+     "plus_minus": 2.5
     },
     {
      "from": -3.5,
      "to": -2.5,
-     "points": 3.5,
-     "plus_minus": 2.1
+     "points": 2.4,
+     "plus_minus": 2.4
     },
     {
      "from": -2.5,
      "to": -1.5,
-     "points": 8.3,
-     "plus_minus": 1.8
+     "points": 4.9,
+     "plus_minus": 1.2
     },
     {
      "from": -1.5,
      "to": -0.5,
-     "points": 3.5,
-     "plus_minus": 0.7
+     "points": 3.1,
+     "plus_minus": 0.8
     },
     {
      "from": -0.5,
      "to": 0.5,
-     "points": -0.3,
+     "points": -0.2,
      "plus_minus": 0.1
     },
     {
      "from": 0.5,
      "to": 1.5,
      "points": -1.7,
-     "plus_minus": 0.8
+     "plus_minus": 0.2
     },
     {
      "from": 1.5,
      "to": 6.0,
-     "points": -4.9,
-     "plus_minus": 0.6
+     "points": -2.8,
+     "plus_minus": 0.8
     }
    ]
   },
   {
-   "term": "own_splitting",
-   "description": "own players on a split",
-   "importance": 0.808,
+   "term": "runner_is_mesa",
+   "description": "the runner is the Mes/A",
+   "importance": 0.557,
    "curve": [
     {
      "from": 0.0,
      "to": 0.5,
-     "points": 0.6,
-     "plus_minus": 0.2
+     "points": 0.3,
+     "plus_minus": 0.0
     },
     {
      "from": 0.5,
-     "to": 1.5,
-     "points": -0.4,
-     "plus_minus": 0.6
-    },
-    {
-     "from": 1.5,
-     "to": 2.5,
-     "points": -1.9,
-     "plus_minus": 0.1
-    },
-    {
-     "from": 2.5,
-     "to": 3.5,
-     "points": -0.9,
-     "plus_minus": 1.1
-    },
-    {
-     "from": 3.5,
-     "to": 4.5,
-     "points": -3.4,
-     "plus_minus": 1.0
-    },
-    {
-     "from": 4.5,
-     "to": 5.0,
-     "points": -4.1,
-     "plus_minus": 2.0
+     "to": 1.0,
+     "points": -2.6,
+     "plus_minus": 0.4
     }
    ]
   },
   {
    "term": "waiting_runner",
    "description": "a runner was already waiting at the spawn",
-   "importance": 0.714,
+   "importance": 0.476,
    "curve": [
     {
      "from": 0.0,
      "to": 0.5,
-     "points": -0.4,
+     "points": -0.3,
      "plus_minus": 0.1
     },
     {
      "from": 0.5,
      "to": 1.0,
-     "points": 5.3,
-     "plus_minus": 0.8
-    }
-   ]
-  },
-  {
-   "term": "minute",
-   "description": "match minute",
-   "importance": 0.434,
-   "curve": [
-    {
-     "from": 0.3,
-     "to": 0.65,
-     "points": 0.4,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 0.65,
-     "to": 1.45,
-     "points": 1.4,
-     "plus_minus": 0.8
-    },
-    {
-     "from": 1.45,
-     "to": 2.25,
-     "points": 0.5,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 2.25,
-     "to": 3.25,
-     "points": -0.1,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 3.25,
-     "to": 4.25,
-     "points": -0.1,
-     "plus_minus": 0.1
-    },
-    {
-     "from": 4.25,
-     "to": 5.35,
-     "points": 0.0,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 5.35,
-     "to": 6.55,
-     "points": -0.1,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 6.55,
-     "to": 7.85,
-     "points": -0.7,
-     "plus_minus": 0.1
-    },
-    {
-     "from": 7.85,
-     "to": 9.35,
-     "points": -0.4,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 9.35,
-     "to": 11.25,
-     "points": -0.3,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 11.25,
-     "to": 12.95,
-     "points": -0.5,
-     "plus_minus": 0.6
-    },
-    {
-     "from": 12.95,
-     "to": 15.25,
-     "points": 0.1,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 15.25,
-     "to": 18.25,
-     "points": 0.3,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 18.25,
-     "to": 25.1,
-     "points": -0.9,
-     "plus_minus": 0.6
+     "points": 3.3,
+     "plus_minus": 1.6
     }
    ]
   },
   {
    "term": "runner_dead_at_enemy_cap",
    "description": "the runner was dead when the enemy captured",
-   "importance": 0.372,
+   "importance": 0.315,
    "curve": [
     {
      "from": 0.0,
@@ -1314,26 +1242,98 @@
     {
      "from": 0.5,
      "to": 1.0,
-     "points": 9.7,
-     "plus_minus": 1.6
+     "points": 8.0,
+     "plus_minus": 1.8
     }
    ]
   },
   {
-   "term": "runner_is_mesa",
-   "description": "the runner is the Mes/A",
-   "importance": 0.314,
+   "term": "minute",
+   "description": "match minute",
+   "importance": 0.275,
    "curve": [
     {
-     "from": 0.0,
-     "to": 0.5,
-     "points": 0.2,
-     "plus_minus": 0.1
+     "from": 0.3,
+     "to": 0.65,
+     "points": -0.4,
+     "plus_minus": 0.5
     },
     {
-     "from": 0.5,
-     "to": 1.0,
-     "points": -1.4,
+     "from": 0.65,
+     "to": 1.35,
+     "points": 0.3,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 1.35,
+     "to": 2.15,
+     "points": 0.4,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 2.15,
+     "to": 3.05,
+     "points": -0.1,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 3.05,
+     "to": 3.95,
+     "points": -0.1,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 3.95,
+     "to": 5.05,
+     "points": 0.1,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 5.05,
+     "to": 6.25,
+     "points": -0.0,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 6.25,
+     "to": 7.55,
+     "points": -0.1,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 7.55,
+     "to": 9.05,
+     "points": 0.4,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 9.05,
+     "to": 10.95,
+     "points": 0.6,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 10.95,
+     "to": 12.85,
+     "points": 0.0,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 12.85,
+     "to": 15.25,
+     "points": 0.1,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 15.25,
+     "to": 18.25,
+     "points": -0.2,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 18.25,
+     "to": 25.1,
+     "points": -1.1,
      "plus_minus": 0.4
     }
    ]
@@ -1341,91 +1341,91 @@
   {
    "term": "parked_in_base_s",
    "description": "of which in the own base (Denning: deciding not to run)",
-   "importance": 0.182,
+   "importance": 0.184,
    "curve": [
     {
      "from": 0.0,
      "to": 2.5,
-     "points": -0.0,
-     "plus_minus": 0.1
+     "points": -0.1,
+     "plus_minus": 0.0
     },
     {
      "from": 2.5,
      "to": 6.5,
-     "points": 2.3,
-     "plus_minus": 1.7
+     "points": 1.4,
+     "plus_minus": 1.2
     },
     {
      "from": 6.5,
      "to": 13.0,
-     "points": 2.9,
-     "plus_minus": 2.3
+     "points": 4.3,
+     "plus_minus": 2.5
     },
     {
      "from": 13.0,
      "to": 24.5,
-     "points": 3.0,
-     "plus_minus": 2.9
+     "points": 3.5,
+     "plus_minus": 2.0
     },
     {
      "from": 24.5,
      "to": 30.5,
-     "points": 5.6,
-     "plus_minus": 3.7
+     "points": 2.0,
+     "plus_minus": 1.8
     },
     {
      "from": 30.5,
      "to": 36.0,
-     "points": 7.7,
-     "plus_minus": 2.3
+     "points": 2.1,
+     "plus_minus": 1.3
     },
     {
      "from": 36.0,
      "to": 45.5,
-     "points": 9.4,
-     "plus_minus": 3.6
-    },
-    {
-     "from": 45.5,
-     "to": 61.5,
-     "points": 10.6,
+     "points": 3.8,
      "plus_minus": 2.1
     },
     {
-     "from": 61.5,
-     "to": 73.0,
-     "points": 3.5,
-     "plus_minus": 2.6
+     "from": 45.5,
+     "to": 65.0,
+     "points": 3.6,
+     "plus_minus": 5.3
     },
     {
-     "from": 73.0,
-     "to": 87.0,
-     "points": -1.0,
-     "plus_minus": 2.6
+     "from": 65.0,
+     "to": 79.5,
+     "points": 6.0,
+     "plus_minus": 5.7
     },
     {
-     "from": 87.0,
-     "to": 95.5,
-     "points": 0.5,
-     "plus_minus": 1.9
+     "from": 79.5,
+     "to": 89.0,
+     "points": 4.6,
+     "plus_minus": 4.2
     },
     {
-     "from": 95.5,
-     "to": 119.5,
-     "points": -0.3,
-     "plus_minus": 3.9
+     "from": 89.0,
+     "to": 102.0,
+     "points": 5.2,
+     "plus_minus": 1.6
     },
     {
-     "from": 119.5,
-     "to": 195.0,
-     "points": 0.2,
-     "plus_minus": 5.6
+     "from": 102.0,
+     "to": 168.0,
+     "points": 4.1,
+     "plus_minus": 2.0
     },
     {
-     "from": 195.0,
+     "from": 168.0,
+     "to": 225.5,
+     "points": 1.8,
+     "plus_minus": 5.4
+    },
+    {
+     "from": 225.5,
      "to": 676.0,
-     "points": -18.1,
-     "plus_minus": 3.9
+     "points": -5.1,
+     "plus_minus": 8.3
     }
    ]
   }

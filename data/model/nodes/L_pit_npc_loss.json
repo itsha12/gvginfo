@@ -1,13 +1,13 @@
 {
  "node": "pit_npc_loss",
  "target": "R.5",
- "matches": 220,
- "rows": 22342,
- "rate": 0.199,
+ "matches": 264,
+ "rows": 27063,
+ "rate": 0.203,
  "mean": null,
  "validation": {
-  "glass box": 0.3602,
-  "simple baseline": 0.4998,
+  "glass box": 0.3594,
+  "simple baseline": 0.5042,
   "metric": "log loss",
   "verdict": "adds to the simple baseline"
  },
@@ -20,8 +20,8 @@
     "attacker_healers",
     "attackers_share"
    ],
-   "strength": -0.0004,
-   "plus_minus": 0.0007,
+   "strength": -0.0007,
+   "plus_minus": 0.0004,
    "status": "not clear yet"
   },
   {
@@ -32,8 +32,8 @@
     "defender_healers",
     "defenders_elsewhere"
    ],
-   "strength": 0.0473,
-   "plus_minus": 0.0016,
+   "strength": 0.049,
+   "plus_minus": 0.0041,
    "status": "supported"
   },
   {
@@ -45,8 +45,8 @@
     "bodyguard",
     "full_pit_targets"
    ],
-   "strength": 0.001,
-   "plus_minus": 0.0008,
+   "strength": -0.0004,
+   "plus_minus": 0.0006,
    "status": "not clear yet"
   },
   {
@@ -55,8 +55,8 @@
    "features": [
     "npc_damage_5s"
    ],
-   "strength": 0.0352,
-   "plus_minus": 0.0042,
+   "strength": 0.036,
+   "plus_minus": 0.0017,
    "status": "supported"
   },
   {
@@ -65,8 +65,8 @@
    "features": [
     "npc_healing_10s"
    ],
-   "strength": 0.0017,
-   "plus_minus": 0.001,
+   "strength": 0.0011,
+   "plus_minus": 0.0006,
    "status": "not clear yet"
   },
   {
@@ -76,8 +76,8 @@
     "attackers_lord_dps",
     "attackers_area_damage"
    ],
-   "strength": 0.0002,
-   "plus_minus": 0.001,
+   "strength": 0.0023,
+   "plus_minus": 0.0012,
    "status": "not clear yet"
   },
   {
@@ -88,9 +88,9 @@
     "res_in",
     "minute"
    ],
-   "strength": -0.001,
-   "plus_minus": 0.0004,
-   "status": "rejected"
+   "strength": -0.0002,
+   "plus_minus": 0.0009,
+   "status": "not clear yet"
   },
   {
    "from": "C.strength",
@@ -98,9 +98,9 @@
    "features": [
     "strength_gap"
    ],
-   "strength": 0.0022,
-   "plus_minus": 0.0008,
-   "status": "supported"
+   "strength": 0.0014,
+   "plus_minus": 0.0011,
+   "status": "not clear yet"
   }
  ],
  "terms": [
@@ -113,1182 +113,1146 @@
     {
      "from": 0.0,
      "to": 0.5,
-     "points": 33.3,
-     "plus_minus": 1.3
+     "points": 33.9,
+     "plus_minus": 0.8
     },
     {
      "from": 0.5,
      "to": 1.5,
-     "points": 17.1,
-     "plus_minus": 0.6
+     "points": 18.4,
+     "plus_minus": 1.1
     },
     {
      "from": 1.5,
      "to": 2.5,
-     "points": 13.2,
-     "plus_minus": 0.2
+     "points": 11.4,
+     "plus_minus": 0.3
     },
     {
      "from": 2.5,
      "to": 3.5,
-     "points": 5.1,
-     "plus_minus": 0.5
+     "points": 3.5,
+     "plus_minus": 0.3
     },
     {
      "from": 3.5,
      "to": 4.5,
-     "points": -10.6,
-     "plus_minus": 0.6
+     "points": -11.3,
+     "plus_minus": 0.5
     },
     {
      "from": 4.5,
      "to": 5.5,
-     "points": -14.8,
-     "plus_minus": 1.2
+     "points": -15.4,
+     "plus_minus": 1.1
     },
     {
      "from": 5.5,
      "to": 6.5,
-     "points": -16.4,
+     "points": -17.0,
      "plus_minus": 0.7
     },
     {
      "from": 6.5,
      "to": 7.5,
      "points": -29.2,
-     "plus_minus": 1.1
+     "plus_minus": 0.6
     },
     {
      "from": 7.5,
      "to": 8.0,
-     "points": -33.3,
-     "plus_minus": 1.1
+     "points": -33.1,
+     "plus_minus": 1.7
     }
    ]
   },
   {
    "term": "npc_damage_5s",
    "description": "damage on the pit NPCs in the last 5 s",
-   "importance": 0.736,
+   "importance": 0.754,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 0.0,
      "to": 0.5,
-     "points": -16.3,
-     "plus_minus": 0.3
+     "points": -16.9,
+     "plus_minus": 0.1
     },
     {
      "from": 0.5,
      "to": 21.5,
-     "points": 1.6,
-     "plus_minus": 0.9
+     "points": 2.0,
+     "plus_minus": 0.5
     },
     {
      "from": 21.5,
      "to": 36.5,
-     "points": 3.5,
-     "plus_minus": 0.3
+     "points": 4.0,
+     "plus_minus": 0.6
     },
     {
      "from": 36.5,
      "to": 50.5,
-     "points": 5.6,
-     "plus_minus": 0.6
-    },
-    {
-     "from": 50.5,
-     "to": 68.5,
-     "points": 7.5,
+     "points": 6.2,
      "plus_minus": 0.7
     },
     {
-     "from": 68.5,
-     "to": 86.5,
-     "points": 9.9,
-     "plus_minus": 1.4
+     "from": 50.5,
+     "to": 69.5,
+     "points": 8.2,
+     "plus_minus": 0.4
     },
     {
-     "from": 86.5,
-     "to": 108.5,
-     "points": 17.7,
-     "plus_minus": 1.0
+     "from": 69.5,
+     "to": 87.5,
+     "points": 9.7,
+     "plus_minus": 0.5
     },
     {
-     "from": 108.5,
-     "to": 132.5,
-     "points": 20.0,
-     "plus_minus": 0.2
+     "from": 87.5,
+     "to": 109.5,
+     "points": 16.9,
+     "plus_minus": 0.5
     },
     {
-     "from": 132.5,
+     "from": 109.5,
+     "to": 134.5,
+     "points": 19.3,
+     "plus_minus": 0.5
+    },
+    {
+     "from": 134.5,
      "to": 160.5,
-     "points": 23.2,
-     "plus_minus": 1.4
+     "points": 23.1,
+     "plus_minus": 0.5
     },
     {
      "from": 160.5,
      "to": 193.5,
-     "points": 25.6,
-     "plus_minus": 0.4
+     "points": 25.7,
+     "plus_minus": 0.5
     },
     {
      "from": 193.5,
-     "to": 233.5,
-     "points": 27.1,
+     "to": 234.5,
+     "points": 27.7,
+     "plus_minus": 0.5
+    },
+    {
+     "from": 234.5,
+     "to": 292.5,
+     "points": 29.5,
      "plus_minus": 0.8
     },
     {
-     "from": 233.5,
-     "to": 293.5,
-     "points": 29.1,
-     "plus_minus": 0.2
+     "from": 292.5,
+     "to": 385.5,
+     "points": 32.7,
+     "plus_minus": 0.9
     },
     {
-     "from": 293.5,
-     "to": 387.5,
-     "points": 32.6,
-     "plus_minus": 1.1
-    },
-    {
-     "from": 387.5,
+     "from": 385.5,
      "to": 1370.0,
      "points": 34.3,
-     "plus_minus": 1.2
+     "plus_minus": 0.3
     }
    ]
   },
   {
    "term": "defenders_elsewhere",
    "description": "own players alive outside the pit",
-   "importance": 0.542,
+   "importance": 0.541,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 0.0,
      "to": 0.5,
-     "points": 19.8,
-     "plus_minus": 0.8
+     "points": 21.0,
+     "plus_minus": 0.5
     },
     {
      "from": 0.5,
      "to": 1.5,
-     "points": 15.4,
-     "plus_minus": 0.7
+     "points": 16.3,
+     "plus_minus": 0.5
     },
     {
      "from": 1.5,
      "to": 2.5,
-     "points": 12.5,
-     "plus_minus": 0.9
+     "points": 9.7,
+     "plus_minus": 0.6
     },
     {
      "from": 2.5,
      "to": 3.5,
-     "points": 0.7,
-     "plus_minus": 1.1
+     "points": 0.5,
+     "plus_minus": 0.5
     },
     {
      "from": 3.5,
      "to": 4.5,
-     "points": -9.5,
-     "plus_minus": 0.5
+     "points": -8.9,
+     "plus_minus": 0.6
     },
     {
      "from": 4.5,
      "to": 5.5,
-     "points": -12.1,
-     "plus_minus": 0.7
+     "points": -11.9,
+     "plus_minus": 0.5
     },
     {
      "from": 5.5,
      "to": 6.5,
-     "points": -14.9,
+     "points": -13.6,
      "plus_minus": 0.3
     },
     {
      "from": 6.5,
      "to": 7.5,
-     "points": -14.0,
-     "plus_minus": 0.5
+     "points": -14.9,
+     "plus_minus": 0.8
     },
     {
      "from": 7.5,
      "to": 8.0,
-     "points": -10.3,
-     "plus_minus": 1.4
+     "points": -11.9,
+     "plus_minus": 0.6
     }
    ]
   },
   {
    "term": "attackers_lord_dps",
    "description": "attackers' measured damage per second against NPCs",
-   "importance": 0.429,
+   "importance": 0.439,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 2.7,
-     "to": 21.35,
-     "points": -20.8,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 21.35,
-     "to": 25.15,
-     "points": -14.5,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 25.15,
-     "to": 28.85,
-     "points": -11.8,
-     "plus_minus": 0.9
-    },
-    {
-     "from": 28.85,
-     "to": 37.45,
-     "points": -8.9,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 37.45,
-     "to": 48.35,
-     "points": -8.2,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 48.35,
-     "to": 53.95,
-     "points": -6.0,
-     "plus_minus": 1.1
-    },
-    {
-     "from": 53.95,
-     "to": 63.25,
-     "points": 3.9,
-     "plus_minus": 0.6
-    },
-    {
-     "from": 63.25,
-     "to": 68.65,
-     "points": 5.8,
+     "to": 17.95,
+     "points": -22.8,
      "plus_minus": 1.0
     },
     {
-     "from": 68.65,
-     "to": 77.05,
-     "points": 8.3,
-     "plus_minus": 0.6
+     "from": 17.95,
+     "to": 24.65,
+     "points": -17.1,
+     "plus_minus": 0.9
     },
     {
-     "from": 77.05,
-     "to": 83.05,
-     "points": 9.2,
+     "from": 24.65,
+     "to": 27.15,
+     "points": -9.7,
      "plus_minus": 0.5
     },
     {
-     "from": 83.05,
-     "to": 91.35,
+     "from": 27.15,
+     "to": 34.4,
+     "points": -9.4,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 34.4,
+     "to": 42.4,
+     "points": -8.9,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 42.4,
+     "to": 50.85,
+     "points": -6.4,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 50.85,
+     "to": 56.55,
+     "points": -1.5,
+     "plus_minus": 0.6
+    },
+    {
+     "from": 56.55,
+     "to": 64.45,
+     "points": 1.4,
+     "plus_minus": 0.5
+    },
+    {
+     "from": 64.45,
+     "to": 72.25,
+     "points": 6.4,
+     "plus_minus": 0.6
+    },
+    {
+     "from": 72.25,
+     "to": 79.85,
      "points": 10.1,
      "plus_minus": 0.3
     },
     {
-     "from": 91.35,
-     "to": 101.45,
-     "points": 10.8,
-     "plus_minus": 0.3
+     "from": 79.85,
+     "to": 89.85,
+     "points": 11.1,
+     "plus_minus": 0.2
     },
     {
-     "from": 101.45,
-     "to": 106.2,
-     "points": 13.4,
+     "from": 89.85,
+     "to": 99.05,
+     "points": 11.9,
      "plus_minus": 0.4
     },
     {
-     "from": 106.2,
+     "from": 99.05,
+     "to": 105.45,
+     "points": 15.0,
+     "plus_minus": 1.1
+    },
+    {
+     "from": 105.45,
      "to": 189.4,
-     "points": 14.2,
-     "plus_minus": 0.3
+     "points": 15.9,
+     "plus_minus": 0.8
     }
    ]
   },
   {
    "term": "defender_healers",
    "description": "of which healers",
-   "importance": 0.298,
+   "importance": 0.315,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 0.0,
      "to": 0.5,
-     "points": 20.5,
-     "plus_minus": 0.7
+     "points": 21.0,
+     "plus_minus": 0.6
     },
     {
      "from": 0.5,
      "to": 1.5,
      "points": -1.2,
-     "plus_minus": 0.5
+     "plus_minus": 0.2
     },
     {
      "from": 1.5,
      "to": 2.5,
      "points": -5.5,
-     "plus_minus": 0.5
+     "plus_minus": 0.2
     },
     {
      "from": 2.5,
      "to": 3.5,
-     "points": -7.1,
-     "plus_minus": 0.5
+     "points": -8.1,
+     "plus_minus": 0.3
     },
     {
      "from": 3.5,
      "to": 4.0,
-     "points": -7.1,
-     "plus_minus": 1.1
+     "points": -1.4,
+     "plus_minus": 4.2
     }
    ]
   },
   {
    "term": "strength_gap",
    "description": "defending team's strength gap",
-   "importance": 0.186,
+   "importance": 0.172,
    "missing_points": 0.0,
    "curve": [
     {
      "from": -1183.0,
-     "to": -681.0,
-     "points": 7.8,
-     "plus_minus": 0.3
+     "to": -692.5,
+     "points": 6.9,
+     "plus_minus": 0.7
     },
     {
-     "from": -681.0,
-     "to": -547.0,
-     "points": 6.0,
-     "plus_minus": 0.2
-    },
-    {
-     "from": -547.0,
-     "to": -437.5,
+     "from": -692.5,
+     "to": -568.5,
      "points": 5.0,
      "plus_minus": 0.3
     },
     {
-     "from": -437.5,
-     "to": -393.0,
-     "points": 3.8,
-     "plus_minus": 0.2
-    },
-    {
-     "from": -393.0,
-     "to": -319.5,
-     "points": 2.6,
+     "from": -568.5,
+     "to": -486.5,
+     "points": 4.4,
      "plus_minus": 0.3
     },
     {
-     "from": -319.5,
-     "to": -266.5,
-     "points": 1.5,
-     "plus_minus": 0.2
-    },
-    {
-     "from": -266.5,
-     "to": -181.0,
-     "points": 0.8,
+     "from": -486.5,
+     "to": -416.5,
+     "points": 3.7,
      "plus_minus": 0.3
     },
     {
-     "from": -181.0,
+     "from": -416.5,
+     "to": -352.0,
+     "points": 3.0,
+     "plus_minus": 0.1
+    },
+    {
+     "from": -352.0,
+     "to": -295.0,
+     "points": 2.4,
+     "plus_minus": 0.1
+    },
+    {
+     "from": -295.0,
+     "to": -185.5,
+     "points": 2.0,
+     "plus_minus": 0.1
+    },
+    {
+     "from": -185.5,
      "to": -101.0,
-     "points": 0.3,
-     "plus_minus": 0.3
+     "points": 1.2,
+     "plus_minus": 0.2
     },
     {
      "from": -101.0,
-     "to": -40.0,
-     "points": 2.1,
-     "plus_minus": 0.5
+     "to": -18.0,
+     "points": 1.3,
+     "plus_minus": 0.7
     },
     {
-     "from": -40.0,
-     "to": 31.0,
-     "points": 1.8,
-     "plus_minus": 0.3
+     "from": -18.0,
+     "to": 46.5,
+     "points": 0.5,
+     "plus_minus": 0.7
     },
     {
-     "from": 31.0,
-     "to": 154.0,
-     "points": 1.0,
-     "plus_minus": 0.3
+     "from": 46.5,
+     "to": 181.0,
+     "points": -0.4,
+     "plus_minus": 0.8
     },
     {
-     "from": 154.0,
-     "to": 300.5,
-     "points": -12.1,
-     "plus_minus": 0.3
+     "from": 181.0,
+     "to": 340.0,
+     "points": -10.8,
+     "plus_minus": 0.8
     },
     {
-     "from": 300.5,
-     "to": 437.5,
-     "points": -12.7,
-     "plus_minus": 0.4
+     "from": 340.0,
+     "to": 479.5,
+     "points": -11.4,
+     "plus_minus": 1.0
     },
     {
-     "from": 437.5,
+     "from": 479.5,
      "to": 1108.0,
-     "points": -6.3,
-     "plus_minus": 0.5
+     "points": -6.4,
+     "plus_minus": 0.4
     }
    ]
   },
   {
    "term": "attackers",
    "description": "enemy players in the pit",
-   "importance": 0.175,
+   "importance": 0.169,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 1.0,
      "to": 1.5,
-     "points": -5.9,
-     "plus_minus": 0.9
+     "points": -6.9,
+     "plus_minus": 0.6
     },
     {
      "from": 1.5,
      "to": 2.5,
-     "points": -3.3,
-     "plus_minus": 0.3
+     "points": -1.9,
+     "plus_minus": 0.4
     },
     {
      "from": 2.5,
      "to": 3.5,
-     "points": -2.0,
-     "plus_minus": 0.6
+     "points": -0.4,
+     "plus_minus": 0.4
     },
     {
      "from": 3.5,
      "to": 4.5,
-     "points": 1.1,
-     "plus_minus": 0.3
+     "points": 1.3,
+     "plus_minus": 0.2
     },
     {
      "from": 4.5,
      "to": 5.5,
-     "points": 3.2,
-     "plus_minus": 0.3
+     "points": 3.0,
+     "plus_minus": 0.5
     },
     {
      "from": 5.5,
      "to": 6.5,
-     "points": 4.4,
-     "plus_minus": 0.5
+     "points": 4.6,
+     "plus_minus": 0.7
     },
     {
      "from": 6.5,
      "to": 7.5,
-     "points": 6.1,
-     "plus_minus": 0.7
+     "points": 5.6,
+     "plus_minus": 0.6
     },
     {
      "from": 7.5,
      "to": 8.0,
-     "points": 7.4,
-     "plus_minus": 0.8
+     "points": 7.2,
+     "plus_minus": 0.2
     }
    ]
   },
   {
    "term": "npc_healing_10s",
    "description": "healing on own pit NPCs and Lord in the last 10 s",
-   "importance": 0.154,
+   "importance": 0.127,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 0.0,
      "to": 1.5,
-     "points": 2.7,
-     "plus_minus": 0.2
+     "points": 2.4,
+     "plus_minus": 0.1
     },
     {
      "from": 1.5,
      "to": 41.5,
-     "points": 2.3,
-     "plus_minus": 0.2
+     "points": 1.8,
+     "plus_minus": 0.1
     },
     {
      "from": 41.5,
-     "to": 48.5,
-     "points": 2.0,
+     "to": 49.5,
+     "points": 1.4,
      "plus_minus": 0.2
     },
     {
-     "from": 48.5,
+     "from": 49.5,
      "to": 85.5,
-     "points": 2.3,
-     "plus_minus": 0.4
+     "points": 0.8,
+     "plus_minus": 0.2
     },
     {
      "from": 85.5,
      "to": 124.5,
-     "points": 1.8,
-     "plus_minus": 0.4
+     "points": 0.3,
+     "plus_minus": 0.1
     },
     {
      "from": 124.5,
      "to": 155.5,
-     "points": 1.5,
-     "plus_minus": 0.4
+     "points": -0.1,
+     "plus_minus": 0.2
     },
     {
      "from": 155.5,
-     "to": 189.5,
-     "points": -4.8,
-     "plus_minus": 1.3
-    },
-    {
-     "from": 189.5,
-     "to": 224.5,
-     "points": -5.4,
-     "plus_minus": 1.3
-    },
-    {
-     "from": 224.5,
-     "to": 267.5,
-     "points": -6.9,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 267.5,
-     "to": 319.5,
-     "points": -7.5,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 319.5,
-     "to": 385.5,
-     "points": -8.0,
+     "to": 187.5,
+     "points": -3.3,
      "plus_minus": 0.4
     },
     {
-     "from": 385.5,
-     "to": 472.5,
-     "points": -9.8,
-     "plus_minus": 0.9
+     "from": 187.5,
+     "to": 220.5,
+     "points": -3.9,
+     "plus_minus": 0.2
     },
     {
-     "from": 472.5,
-     "to": 623.5,
-     "points": -10.5,
-     "plus_minus": 0.7
+     "from": 220.5,
+     "to": 264.5,
+     "points": -4.7,
+     "plus_minus": 0.5
     },
     {
-     "from": 623.5,
+     "from": 264.5,
+     "to": 315.5,
+     "points": -5.1,
+     "plus_minus": 0.5
+    },
+    {
+     "from": 315.5,
+     "to": 378.5,
+     "points": -6.1,
+     "plus_minus": 1.0
+    },
+    {
+     "from": 378.5,
+     "to": 465.5,
+     "points": -9.4,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 465.5,
+     "to": 610.5,
+     "points": -10.0,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 610.5,
      "to": 1801.0,
-     "points": -10.9,
-     "plus_minus": 0.9
+     "points": -10.3,
+     "plus_minus": 0.4
     }
    ]
   },
   {
    "term": "attackers_share",
    "description": "share of the enemy's live players in the pit",
-   "importance": 0.121,
+   "importance": 0.098,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 0.12,
      "to": 0.13,
-     "points": -3.9,
-     "plus_minus": 0.1
+     "points": -3.1,
+     "plus_minus": 0.3
     },
     {
      "from": 0.13,
      "to": 0.16,
-     "points": -3.4,
-     "plus_minus": 0.2
+     "points": -2.6,
+     "plus_minus": 0.4
     },
     {
      "from": 0.16,
      "to": 0.23,
-     "points": -3.2,
-     "plus_minus": 0.2
+     "points": -2.2,
+     "plus_minus": 0.5
     },
     {
      "from": 0.23,
      "to": 0.27,
-     "points": -2.8,
-     "plus_minus": 0.2
+     "points": -1.9,
+     "plus_minus": 0.6
     },
     {
      "from": 0.27,
      "to": 0.35,
-     "points": -2.2,
-     "plus_minus": 0.2
+     "points": -2.0,
+     "plus_minus": 0.5
     },
     {
      "from": 0.35,
      "to": 0.42,
-     "points": -1.5,
-     "plus_minus": 0.3
+     "points": -1.6,
+     "plus_minus": 0.5
     },
     {
      "from": 0.42,
      "to": 0.53,
      "points": -0.5,
-     "plus_minus": 0.4
+     "plus_minus": 0.3
     },
     {
      "from": 0.53,
      "to": 0.61,
-     "points": 0.4,
-     "plus_minus": 0.4
+     "points": 0.7,
+     "plus_minus": 0.7
     },
     {
      "from": 0.61,
      "to": 0.65,
-     "points": 2.0,
-     "plus_minus": 0.3
+     "points": 1.6,
+     "plus_minus": 0.5
     },
     {
      "from": 0.65,
      "to": 0.73,
-     "points": 2.7,
-     "plus_minus": 0.3
+     "points": 2.3,
+     "plus_minus": 0.4
     },
     {
      "from": 0.73,
      "to": 0.84,
-     "points": 3.5,
-     "plus_minus": 0.4
+     "points": 2.8,
+     "plus_minus": 0.6
     },
     {
      "from": 0.84,
      "to": 0.94,
-     "points": 4.5,
-     "plus_minus": 0.2
+     "points": 3.4,
+     "plus_minus": 0.6
     },
     {
      "from": 0.94,
      "to": 1.0,
-     "points": 5.0,
-     "plus_minus": 0.2
+     "points": 4.4,
+     "plus_minus": 0.5
     }
    ]
   },
   {
    "term": "minute",
    "description": "minute",
-   "importance": 0.112,
+   "importance": 0.098,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 0.2,
-     "to": 2.65,
-     "points": 5.0,
-     "plus_minus": 0.1
+     "to": 2.55,
+     "points": 3.1,
+     "plus_minus": 0.4
     },
     {
-     "from": 2.65,
+     "from": 2.55,
      "to": 3.65,
-     "points": 4.4,
-     "plus_minus": 0.2
+     "points": 2.6,
+     "plus_minus": 0.5
     },
     {
      "from": 3.65,
      "to": 4.85,
-     "points": 3.5,
-     "plus_minus": 0.2
+     "points": 2.9,
+     "plus_minus": 0.3
     },
     {
      "from": 4.85,
-     "to": 6.05,
-     "points": 2.4,
+     "to": 5.95,
+     "points": 2.0,
      "plus_minus": 0.2
     },
     {
-     "from": 6.05,
-     "to": 7.35,
-     "points": 1.6,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 7.35,
-     "to": 8.75,
-     "points": 0.6,
+     "from": 5.95,
+     "to": 7.25,
+     "points": 1.2,
      "plus_minus": 0.3
     },
     {
-     "from": 8.75,
-     "to": 10.15,
-     "points": -1.5,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 10.15,
-     "to": 11.85,
-     "points": -2.0,
+     "from": 7.25,
+     "to": 8.65,
+     "points": 0.5,
      "plus_minus": 0.2
     },
     {
-     "from": 11.85,
-     "to": 13.95,
-     "points": -2.6,
-     "plus_minus": 0.2
+     "from": 8.65,
+     "to": 10.05,
+     "points": -0.4,
+     "plus_minus": 0.3
     },
     {
-     "from": 13.95,
-     "to": 16.15,
+     "from": 10.05,
+     "to": 11.75,
+     "points": -2.1,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 11.75,
+     "to": 13.75,
+     "points": -2.9,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 13.75,
+     "to": 15.95,
      "points": -3.3,
-     "plus_minus": 0.1
-    },
-    {
-     "from": 16.15,
-     "to": 19.05,
-     "points": -3.7,
-     "plus_minus": 0.1
-    },
-    {
-     "from": 19.05,
-     "to": 21.95,
-     "points": -4.0,
-     "plus_minus": 0.1
-    },
-    {
-     "from": 21.95,
-     "to": 25.05,
-     "points": -3.0,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 25.05,
-     "to": 28.0,
-     "points": 1.7,
-     "plus_minus": 1.3
-    }
-   ]
-  },
-  {
-   "term": "attacker_healers",
-   "description": "of which healers",
-   "importance": 0.077,
-   "missing_points": 0.0,
-   "curve": [
-    {
-     "from": 0.0,
-     "to": 0.5,
-     "points": 0.2,
      "plus_minus": 0.4
     },
     {
-     "from": 0.5,
-     "to": 1.5,
-     "points": 3.2,
-     "plus_minus": 0.1
-    },
-    {
-     "from": 1.5,
-     "to": 2.5,
+     "from": 15.95,
+     "to": 18.65,
      "points": -3.0,
-     "plus_minus": 1.1
+     "plus_minus": 0.5
     },
     {
-     "from": 2.5,
-     "to": 3.5,
+     "from": 18.65,
+     "to": 21.65,
      "points": -3.2,
      "plus_minus": 0.4
     },
     {
-     "from": 3.5,
-     "to": 4.0,
-     "points": -4.4,
-     "plus_minus": 1.2
-    }
-   ]
-  },
-  {
-   "term": "bodyguard",
-   "description": "own Bodyguard alive",
-   "importance": 0.073,
-   "missing_points": 0.0,
-   "curve": [
-    {
-     "from": 0.0,
-     "to": 0.5,
-     "points": -6.5,
-     "plus_minus": 0.8
+     "from": 21.65,
+     "to": 24.75,
+     "points": -2.6,
+     "plus_minus": 0.7
     },
     {
-     "from": 0.5,
-     "to": 1.0,
-     "points": 1.1,
-     "plus_minus": 0.1
+     "from": 24.75,
+     "to": 28.0,
+     "points": 4.5,
+     "plus_minus": 0.4
     }
    ]
   },
   {
    "term": "seconds_in_pit",
    "description": "seconds the enemy has been in the pit",
-   "importance": 0.069,
+   "importance": 0.082,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 0.0,
      "to": 4.5,
-     "points": 1.5,
-     "plus_minus": 0.3
+     "points": 2.7,
+     "plus_minus": 0.6
     },
     {
      "from": 4.5,
      "to": 10.5,
-     "points": 2.1,
-     "plus_minus": 0.2
+     "points": 3.1,
+     "plus_minus": 0.6
     },
     {
      "from": 10.5,
      "to": 16.5,
      "points": 1.8,
-     "plus_minus": 0.3
+     "plus_minus": 0.1
     },
     {
      "from": 16.5,
      "to": 22.5,
-     "points": 1.6,
-     "plus_minus": 0.3
+     "points": 1.5,
+     "plus_minus": 0.2
     },
     {
      "from": 22.5,
      "to": 28.5,
-     "points": 1.3,
-     "plus_minus": 0.2
+     "points": 1.2,
+     "plus_minus": 0.1
     },
     {
      "from": 28.5,
      "to": 37.5,
-     "points": 0.9,
+     "points": 0.7,
      "plus_minus": 0.2
     },
     {
      "from": 37.5,
      "to": 46.5,
-     "points": 0.6,
+     "points": 0.2,
      "plus_minus": 0.2
     },
     {
      "from": 46.5,
      "to": 58.5,
-     "points": 0.4,
+     "points": 0.2,
      "plus_minus": 0.3
     },
     {
      "from": 58.5,
      "to": 73.5,
-     "points": -0.3,
+     "points": -0.7,
      "plus_minus": 0.4
     },
     {
      "from": 73.5,
      "to": 91.5,
-     "points": -1.6,
-     "plus_minus": 0.4
+     "points": -2.5,
+     "plus_minus": 0.3
     },
     {
      "from": 91.5,
      "to": 115.5,
-     "points": -2.2,
-     "plus_minus": 0.4
+     "points": -2.9,
+     "plus_minus": 0.3
     },
     {
      "from": 115.5,
      "to": 151.5,
-     "points": -2.9,
+     "points": -3.5,
      "plus_minus": 0.4
     },
     {
      "from": 151.5,
      "to": 211.5,
-     "points": -3.4,
+     "points": -3.7,
      "plus_minus": 0.3
     },
     {
      "from": 211.5,
      "to": 603.0,
-     "points": -4.3,
-     "plus_minus": 0.2
+     "points": -4.4,
+     "plus_minus": 0.3
+    }
+   ]
+  },
+  {
+   "term": "attacker_healers",
+   "description": "of which healers",
+   "importance": 0.078,
+   "missing_points": 0.0,
+   "curve": [
+    {
+     "from": 0.0,
+     "to": 0.5,
+     "points": 0.5,
+     "plus_minus": 0.1
+    },
+    {
+     "from": 0.5,
+     "to": 1.5,
+     "points": 2.8,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 1.5,
+     "to": 2.5,
+     "points": -1.4,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 2.5,
+     "to": 3.5,
+     "points": -4.7,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 3.5,
+     "to": 4.0,
+     "points": -4.7,
+     "plus_minus": 0.6
     }
    ]
   },
   {
    "term": "knights",
    "description": "own knights alive",
-   "importance": 0.059,
+   "importance": 0.058,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 0.0,
      "to": 0.5,
-     "points": -1.9,
-     "plus_minus": 0.3
+     "points": -1.8,
+     "plus_minus": 0.2
     },
     {
      "from": 0.5,
      "to": 1.5,
-     "points": 3.5,
-     "plus_minus": 0.5
+     "points": 1.5,
+     "plus_minus": 0.2
     },
     {
      "from": 1.5,
      "to": 2.0,
-     "points": 0.1,
-     "plus_minus": 0.4
+     "points": 1.1,
+     "plus_minus": 0.1
     }
    ]
   },
   {
-   "term": "archers",
-   "description": "own pit archers alive",
-   "importance": 0.055,
+   "term": "bodyguard",
+   "description": "own Bodyguard alive",
+   "importance": 0.057,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 0.0,
      "to": 0.5,
-     "points": -3.3,
-     "plus_minus": 0.2
+     "points": -5.5,
+     "plus_minus": 0.8
     },
     {
      "from": 0.5,
-     "to": 1.5,
-     "points": -1.2,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 1.5,
-     "to": 2.5,
-     "points": 1.1,
-     "plus_minus": 0.1
-    },
-    {
-     "from": 2.5,
-     "to": 3.0,
-     "points": 1.2,
-     "plus_minus": 0.1
-    }
-   ]
-  },
-  {
-   "term": "full_pit_targets",
-   "description": "pit NPCs alive (targets the defending monks must watch)",
-   "importance": 0.037,
-   "missing_points": 0.0,
-   "curve": [
-    {
-     "from": 1.0,
-     "to": 1.5,
-     "points": -2.8,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 1.5,
-     "to": 2.5,
-     "points": -0.5,
-     "plus_minus": 0.1
-    },
-    {
-     "from": 2.5,
-     "to": 3.5,
-     "points": -0.2,
-     "plus_minus": 0.1
-    },
-    {
-     "from": 3.5,
-     "to": 4.5,
-     "points": 0.4,
-     "plus_minus": 0.1
-    },
-    {
-     "from": 4.5,
-     "to": 5.5,
-     "points": 1.4,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 5.5,
-     "to": 6.0,
+     "to": 1.0,
      "points": 0.8,
-     "plus_minus": 0.5
-    }
-   ]
-  },
-  {
-   "term": "res_in",
-   "description": "seconds to the next res",
-   "importance": 0.033,
-   "missing_points": 0.0,
-   "curve": [
-    {
-     "from": 1.0,
-     "to": 8.5,
-     "points": 1.0,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 8.5,
-     "to": 17.5,
-     "points": 1.0,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 17.5,
-     "to": 26.5,
-     "points": 0.5,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 26.5,
-     "to": 35.5,
-     "points": -0.2,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 35.5,
-     "to": 44.5,
-     "points": -0.7,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 44.5,
-     "to": 53.5,
-     "points": -1.3,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 53.5,
-     "to": 59.5,
-     "points": -1.7,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 59.5,
-     "to": 65.5,
-     "points": -0.8,
-     "plus_minus": 0.6
-    },
-    {
-     "from": 65.5,
-     "to": 71.5,
-     "points": -1.3,
-     "plus_minus": 0.6
-    },
-    {
-     "from": 71.5,
-     "to": 77.5,
-     "points": 1.4,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 77.5,
-     "to": 86.5,
-     "points": 1.1,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 86.5,
-     "to": 95.5,
-     "points": 0.8,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 95.5,
-     "to": 107.5,
-     "points": 0.2,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 107.5,
-     "to": 118.0,
-     "points": -0.4,
-     "plus_minus": 0.3
+     "plus_minus": 0.1
     }
    ]
   },
   {
    "term": "attackers_area_damage",
    "description": "area-damage skills on the attackers' bars",
-   "importance": 0.032,
+   "importance": 0.043,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 0.0,
      "to": 0.5,
      "points": 0.4,
-     "plus_minus": 0.0
+     "plus_minus": 0.1
     },
     {
      "from": 0.5,
      "to": 1.5,
-     "points": 0.7,
-     "plus_minus": 0.1
+     "points": 1.1,
+     "plus_minus": 0.3
     },
     {
      "from": 1.5,
      "to": 2.5,
-     "points": 0.7,
+     "points": 1.5,
      "plus_minus": 0.3
     },
     {
      "from": 2.5,
      "to": 3.5,
+     "points": -4.3,
+     "plus_minus": 0.1
+    },
+    {
+     "from": 3.5,
+     "to": 5.5,
+     "points": -6.9,
+     "plus_minus": 0.8
+    },
+    {
+     "from": 5.5,
+     "to": 12.0,
+     "points": -8.4,
+     "plus_minus": 1.4
+    }
+   ]
+  },
+  {
+   "term": "archers",
+   "description": "own pit archers alive",
+   "importance": 0.039,
+   "missing_points": 0.0,
+   "curve": [
+    {
+     "from": 0.0,
+     "to": 0.5,
+     "points": -2.5,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 0.5,
+     "to": 1.5,
+     "points": -0.8,
+     "plus_minus": 0.1
+    },
+    {
+     "from": 1.5,
+     "to": 2.5,
+     "points": 0.8,
+     "plus_minus": 0.1
+    },
+    {
+     "from": 2.5,
+     "to": 3.0,
+     "points": 0.7,
+     "plus_minus": 0.1
+    }
+   ]
+  },
+  {
+   "term": "res_in",
+   "description": "seconds to the next res",
+   "importance": 0.031,
+   "missing_points": 0.0,
+   "curve": [
+    {
+     "from": 1.0,
+     "to": 8.5,
+     "points": -0.7,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 8.5,
+     "to": 17.5,
+     "points": 1.4,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 17.5,
+     "to": 26.5,
+     "points": 1.0,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 26.5,
+     "to": 35.5,
+     "points": 0.6,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 35.5,
+     "to": 44.5,
+     "points": -0.1,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 44.5,
+     "to": 50.5,
+     "points": -0.6,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 50.5,
+     "to": 56.5,
+     "points": -1.2,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 56.5,
+     "to": 62.5,
      "points": -1.7,
-     "plus_minus": 0.9
+     "plus_minus": 0.4
+    },
+    {
+     "from": 62.5,
+     "to": 68.5,
+     "points": -1.0,
+     "plus_minus": 0.7
+    },
+    {
+     "from": 68.5,
+     "to": 74.5,
+     "points": 1.3,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 74.5,
+     "to": 83.5,
+     "points": 0.9,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 83.5,
+     "to": 95.5,
+     "points": 0.3,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 95.5,
+     "to": 107.5,
+     "points": -0.2,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 107.5,
+     "to": 118.0,
+     "points": -0.8,
+     "plus_minus": 0.2
+    }
+   ]
+  },
+  {
+   "term": "full_pit_targets",
+   "description": "pit NPCs alive (targets the defending monks must watch)",
+   "importance": 0.025,
+   "missing_points": 0.0,
+   "curve": [
+    {
+     "from": 1.0,
+     "to": 1.5,
+     "points": -2.1,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 1.5,
+     "to": 2.5,
+     "points": 0.0,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 2.5,
+     "to": 3.5,
+     "points": -0.1,
+     "plus_minus": 0.1
     },
     {
      "from": 3.5,
      "to": 4.5,
-     "points": -7.5,
-     "plus_minus": 1.4
+     "points": 0.3,
+     "plus_minus": 0.0
     },
     {
      "from": 4.5,
      "to": 5.5,
-     "points": -7.1,
-     "plus_minus": 1.4
+     "points": 1.0,
+     "plus_minus": 0.2
     },
     {
      "from": 5.5,
-     "to": 6.5,
-     "points": -6.6,
-     "plus_minus": 1.4
-    },
-    {
-     "from": 6.5,
-     "to": 8.5,
-     "points": -6.0,
-     "plus_minus": 1.2
-    },
-    {
-     "from": 8.5,
-     "to": 9.5,
-     "points": -5.3,
-     "plus_minus": 1.5
-    },
-    {
-     "from": 9.5,
-     "to": 10.5,
-     "points": -10.4,
-     "plus_minus": 1.9
-    },
-    {
-     "from": 10.5,
-     "to": 11.5,
-     "points": -11.4,
-     "plus_minus": 1.6
-    },
-    {
-     "from": 11.5,
-     "to": 12.0,
-     "points": -12.5,
-     "plus_minus": 1.6
+     "to": 6.0,
+     "points": -0.3,
+     "plus_minus": 0.3
     }
    ]
   }

@@ -1,13 +1,13 @@
 {
  "node": "split_chance",
  "target": "A.allocation",
- "matches": 221,
- "rows": 16961,
- "rate": 0.131,
+ "matches": 266,
+ "rows": 20099,
+ "rate": 0.132,
  "mean": null,
  "validation": {
-  "glass box": 0.3456,
-  "simple baseline": 0.3878,
+  "glass box": 0.3479,
+  "simple baseline": 0.3903,
   "metric": "log loss",
   "verdict": "adds to the simple baseline"
  },
@@ -27,8 +27,8 @@
     "turtle_diff",
     "pit_pressure_diff"
    ],
-   "strength": 0.0299,
-   "plus_minus": 0.0019,
+   "strength": 0.029,
+   "plus_minus": 0.0018,
    "status": "supported"
   },
   {
@@ -39,7 +39,7 @@
     "res_in"
    ],
    "strength": 0.0026,
-   "plus_minus": 0.0004,
+   "plus_minus": 0.0005,
    "status": "supported"
   },
   {
@@ -51,8 +51,8 @@
     "own_snare_power",
     "enemy_snare_power"
    ],
-   "strength": 0.003,
-   "plus_minus": 0.0022,
+   "strength": 0.0028,
+   "plus_minus": 0.0029,
    "status": "not clear yet"
   },
   {
@@ -61,7 +61,7 @@
    "features": [
     "strength_gap"
    ],
-   "strength": -0.0009,
+   "strength": -0.0008,
    "plus_minus": 0.0004,
    "status": "rejected"
   }
@@ -70,191 +70,191 @@
   {
    "term": "own_main",
    "description": "own main",
-   "importance": 0.576,
+   "importance": 0.544,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 0.0,
      "to": 2.5,
-     "points": 31.7,
-     "plus_minus": 1.0
+     "points": 29.8,
+     "plus_minus": 2.5
     },
     {
      "from": 2.5,
      "to": 3.5,
-     "points": 26.5,
-     "plus_minus": 0.5
+     "points": 25.1,
+     "plus_minus": 0.7
     },
     {
      "from": 3.5,
      "to": 4.5,
-     "points": 24.3,
-     "plus_minus": 0.6
+     "points": 23.3,
+     "plus_minus": 0.5
     },
     {
      "from": 4.5,
      "to": 5.5,
-     "points": 13.5,
-     "plus_minus": 0.6
+     "points": 13.1,
+     "plus_minus": 0.2
     },
     {
      "from": 5.5,
      "to": 6.5,
-     "points": 4.3,
-     "plus_minus": 0.6
+     "points": 3.6,
+     "plus_minus": 0.8
     },
     {
      "from": 6.5,
      "to": 7.5,
-     "points": -0.6,
-     "plus_minus": 0.6
+     "points": -0.2,
+     "plus_minus": 0.3
     },
     {
      "from": 7.5,
      "to": 8.0,
-     "points": -19.3,
-     "plus_minus": 0.8
-    }
-   ]
-  },
-  {
-   "term": "turtle_diff",
-   "description": "turtling, own minus enemy (discovery, approved)",
-   "importance": 0.277,
-   "missing_points": 0.0,
-   "curve": [
-    {
-     "from": -1.0,
-     "to": -0.94,
-     "points": 5.0,
-     "plus_minus": 1.0
-    },
-    {
-     "from": -0.94,
-     "to": -0.74,
-     "points": 12.5,
-     "plus_minus": 0.7
-    },
-    {
-     "from": -0.74,
-     "to": -0.51,
-     "points": 11.8,
-     "plus_minus": 0.6
-    },
-    {
-     "from": -0.51,
-     "to": -0.37,
-     "points": 11.8,
-     "plus_minus": 0.6
-    },
-    {
-     "from": -0.37,
-     "to": -0.13,
-     "points": 10.5,
-     "plus_minus": 1.4
-    },
-    {
-     "from": -0.13,
-     "to": -0.01,
-     "points": 4.2,
+     "points": -18.7,
      "plus_minus": 0.4
-    },
-    {
-     "from": -0.01,
-     "to": 0.05,
-     "points": 3.3,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 0.05,
-     "to": 0.13,
-     "points": -0.9,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 0.13,
-     "to": 0.26,
-     "points": -2.5,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 0.26,
-     "to": 0.42,
-     "points": -3.6,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 0.42,
-     "to": 0.69,
-     "points": -4.4,
-     "plus_minus": 0.6
-    },
-    {
-     "from": 0.69,
-     "to": 0.94,
-     "points": -5.4,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 0.94,
-     "to": 1.0,
-     "points": -32.8,
-     "plus_minus": 3.4
     }
    ]
   },
   {
    "term": "split_diff",
    "description": "players splitting, own minus enemy (discovery, approved)",
-   "importance": 0.274,
+   "importance": 0.268,
    "missing_points": 0.0,
    "curve": [
     {
      "from": -5.0,
      "to": -4.5,
-     "points": -11.6,
-     "plus_minus": 2.1
+     "points": -14.5,
+     "plus_minus": 3.1
     },
     {
      "from": -4.5,
      "to": -3.5,
-     "points": -19.3,
-     "plus_minus": 0.1
+     "points": -18.4,
+     "plus_minus": 1.0
     },
     {
      "from": -3.5,
      "to": -2.5,
-     "points": -18.8,
-     "plus_minus": 0.3
+     "points": -17.9,
+     "plus_minus": 0.9
     },
     {
      "from": -2.5,
      "to": -1.5,
-     "points": -13.5,
-     "plus_minus": 0.5
+     "points": -14.0,
+     "plus_minus": 0.7
     },
     {
      "from": -1.5,
      "to": -0.5,
-     "points": -0.3,
-     "plus_minus": 0.2
+     "points": 1.3,
+     "plus_minus": 0.5
     },
     {
      "from": -0.5,
      "to": 0.5,
-     "points": 5.1,
-     "plus_minus": 0.0
+     "points": 4.8,
+     "plus_minus": 0.2
     },
     {
      "from": 0.5,
      "to": 1.5,
-     "points": 4.2,
+     "points": 1.5,
      "plus_minus": 1.1
     },
     {
      "from": 1.5,
-     "to": 4.0,
-     "points": -6.3,
+     "to": 5.0,
+     "points": -2.8,
+     "plus_minus": 1.1
+    }
+   ]
+  },
+  {
+   "term": "turtle_diff",
+   "description": "turtling, own minus enemy (discovery, approved)",
+   "importance": 0.261,
+   "missing_points": 0.0,
+   "curve": [
+    {
+     "from": -1.0,
+     "to": -0.94,
+     "points": 4.5,
+     "plus_minus": 0.8
+    },
+    {
+     "from": -0.94,
+     "to": -0.74,
+     "points": 12.2,
+     "plus_minus": 0.4
+    },
+    {
+     "from": -0.74,
+     "to": -0.51,
+     "points": 12.4,
+     "plus_minus": 0.4
+    },
+    {
+     "from": -0.51,
+     "to": -0.37,
+     "points": 12.4,
+     "plus_minus": 0.4
+    },
+    {
+     "from": -0.37,
+     "to": -0.13,
+     "points": 11.0,
+     "plus_minus": 0.5
+    },
+    {
+     "from": -0.13,
+     "to": -0.01,
+     "points": 3.7,
+     "plus_minus": 0.4
+    },
+    {
+     "from": -0.01,
+     "to": 0.05,
+     "points": 2.9,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 0.05,
+     "to": 0.13,
+     "points": -2.4,
+     "plus_minus": 0.6
+    },
+    {
+     "from": 0.13,
+     "to": 0.26,
+     "points": -3.6,
+     "plus_minus": 0.5
+    },
+    {
+     "from": 0.26,
+     "to": 0.44,
+     "points": -4.1,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 0.44,
+     "to": 0.72,
+     "points": -3.8,
+     "plus_minus": 1.0
+    },
+    {
+     "from": 0.72,
+     "to": 0.94,
+     "points": -3.7,
+     "plus_minus": 0.6
+    },
+    {
+     "from": 0.94,
+     "to": 1.0,
+     "points": -30.7,
      "plus_minus": 2.1
     }
    ]
@@ -262,235 +262,241 @@
   {
    "term": "own_alive",
    "description": "own alive",
-   "importance": 0.202,
+   "importance": 0.198,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 0.0,
      "to": 3.5,
-     "points": -38.3,
-     "plus_minus": 6.2
+     "points": -39.4,
+     "plus_minus": 5.8
     },
     {
      "from": 3.5,
      "to": 4.5,
-     "points": -31.6,
-     "plus_minus": 1.9
+     "points": -32.7,
+     "plus_minus": 1.5
     },
     {
      "from": 4.5,
      "to": 5.5,
-     "points": -13.8,
-     "plus_minus": 1.5
+     "points": -13.1,
+     "plus_minus": 1.2
     },
     {
      "from": 5.5,
      "to": 6.5,
-     "points": -12.5,
-     "plus_minus": 1.4
+     "points": -9.7,
+     "plus_minus": 0.5
     },
     {
      "from": 6.5,
      "to": 7.5,
-     "points": -5.4,
-     "plus_minus": 1.0
+     "points": -5.2,
+     "plus_minus": 0.6
     },
     {
      "from": 7.5,
      "to": 8.0,
-     "points": 3.1,
-     "plus_minus": 0.1
+     "points": 3.0,
+     "plus_minus": 0.2
     }
    ]
   },
   {
    "term": "enemy_main",
    "description": "enemy main",
-   "importance": 0.16,
+   "importance": 0.167,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 0.0,
      "to": 2.5,
-     "points": 6.1,
-     "plus_minus": 0.5
+     "points": 6.8,
+     "plus_minus": 0.6
     },
     {
      "from": 2.5,
      "to": 3.5,
-     "points": 5.4,
-     "plus_minus": 0.5
+     "points": 5.9,
+     "plus_minus": 0.3
     },
     {
      "from": 3.5,
      "to": 4.5,
-     "points": 4.4,
-     "plus_minus": 0.3
+     "points": 4.7,
+     "plus_minus": 0.2
     },
     {
      "from": 4.5,
      "to": 5.5,
      "points": 4.1,
-     "plus_minus": 0.5
+     "plus_minus": 0.3
     },
     {
      "from": 5.5,
      "to": 6.5,
-     "points": 2.5,
-     "plus_minus": 0.2
+     "points": 2.7,
+     "plus_minus": 0.4
     },
     {
      "from": 6.5,
      "to": 7.5,
-     "points": 0.5,
-     "plus_minus": 0.4
+     "points": 0.3,
+     "plus_minus": 0.7
     },
     {
      "from": 7.5,
      "to": 8.0,
-     "points": -6.2,
-     "plus_minus": 0.3
+     "points": -6.5,
+     "plus_minus": 0.4
     }
    ]
   },
   {
    "term": "own_escapes",
    "description": "Shadow Step skills on own bars",
-   "importance": 0.137,
+   "importance": 0.163,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 0.0,
      "to": 0.5,
-     "points": -7.3,
-     "plus_minus": 0.6
+     "points": -6.2,
+     "plus_minus": 0.7
     },
     {
      "from": 0.5,
      "to": 1.5,
-     "points": 1.5,
-     "plus_minus": 0.2
+     "points": 1.7,
+     "plus_minus": 0.4
     },
     {
      "from": 1.5,
      "to": 2.5,
-     "points": 2.4,
-     "plus_minus": 0.3
+     "points": 3.0,
+     "plus_minus": 0.1
     },
     {
      "from": 2.5,
      "to": 3.5,
-     "points": 3.5,
-     "plus_minus": 0.3
+     "points": 3.7,
+     "plus_minus": 0.1
     },
     {
      "from": 3.5,
      "to": 4.5,
-     "points": 6.7,
-     "plus_minus": 0.3
+     "points": 11.0,
+     "plus_minus": 1.1
     },
     {
      "from": 4.5,
+     "to": 5.5,
+     "points": 10.4,
+     "plus_minus": 1.1
+    },
+    {
+     "from": 5.5,
      "to": 8.5,
-     "points": 6.2,
-     "plus_minus": 0.3
+     "points": -21.3,
+     "plus_minus": 1.7
     },
     {
      "from": 8.5,
      "to": 10.0,
-     "points": -5.6,
-     "plus_minus": 1.8
+     "points": -23.2,
+     "plus_minus": 1.5
     }
    ]
   },
   {
    "term": "own_snare_power",
    "description": "snare power on own bars",
-   "importance": 0.137,
+   "importance": 0.153,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 0.0,
-     "to": 14.1,
-     "points": -1.1,
-     "plus_minus": 0.9
+     "to": 10.75,
+     "points": -3.5,
+     "plus_minus": 0.4
     },
     {
-     "from": 14.1,
+     "from": 10.75,
      "to": 19.9,
-     "points": 3.4,
+     "points": 2.7,
      "plus_minus": 0.2
     },
     {
      "from": 19.9,
-     "to": 30.1,
-     "points": 3.3,
+     "to": 36.6,
+     "points": 2.7,
      "plus_minus": 0.2
     },
     {
-     "from": 30.1,
-     "to": 43.65,
-     "points": -1.4,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 43.65,
+     "from": 36.6,
      "to": 44.6,
-     "points": -1.5,
+     "points": -0.1,
      "plus_minus": 0.5
     },
     {
      "from": 44.6,
      "to": 45.9,
-     "points": -5.1,
+     "points": -4.8,
      "plus_minus": 0.2
     },
     {
      "from": 45.9,
      "to": 51.6,
-     "points": 2.1,
-     "plus_minus": 0.4
+     "points": 2.7,
+     "plus_minus": 0.6
     },
     {
      "from": 51.6,
-     "to": 62.15,
-     "points": 2.1,
-     "plus_minus": 0.4
+     "to": 64.4,
+     "points": 2.6,
+     "plus_minus": 0.7
     },
     {
-     "from": 62.15,
+     "from": 64.4,
      "to": 66.8,
-     "points": 2.1,
-     "plus_minus": 0.4
+     "points": 2.6,
+     "plus_minus": 0.6
     },
     {
      "from": 66.8,
      "to": 69.9,
-     "points": 3.8,
-     "plus_minus": 0.9
+     "points": 4.0,
+     "plus_minus": 0.5
     },
     {
      "from": 69.9,
-     "to": 81.0,
-     "points": 3.6,
-     "plus_minus": 0.8
+     "to": 79.75,
+     "points": 3.5,
+     "plus_minus": 0.6
     },
     {
-     "from": 81.0,
-     "to": 89.6,
-     "points": -9.5,
-     "plus_minus": 0.8
+     "from": 79.75,
+     "to": 88.75,
+     "points": -6.2,
+     "plus_minus": 0.5
     },
     {
-     "from": 89.6,
-     "to": 109.7,
-     "points": -5.4,
-     "plus_minus": 0.9
+     "from": 88.75,
+     "to": 95.1,
+     "points": -6.5,
+     "plus_minus": 0.6
     },
     {
-     "from": 109.7,
+     "from": 95.1,
+     "to": 113.95,
+     "points": -6.5,
+     "plus_minus": 0.6
+    },
+    {
+     "from": 113.95,
      "to": 422.4,
-     "points": 3.8,
+     "points": 8.9,
      "plus_minus": 0.6
     }
    ]
@@ -498,91 +504,91 @@
   {
    "term": "minute",
    "description": "minute",
-   "importance": 0.129,
+   "importance": 0.137,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 0.5,
      "to": 1.35,
-     "points": -4.3,
+     "points": -4.6,
      "plus_minus": 0.2
     },
     {
      "from": 1.35,
      "to": 2.35,
-     "points": -4.1,
-     "plus_minus": 0.1
+     "points": -4.3,
+     "plus_minus": 0.4
     },
     {
      "from": 2.35,
      "to": 3.35,
-     "points": -2.7,
+     "points": -2.8,
      "plus_minus": 0.1
     },
     {
      "from": 3.35,
      "to": 4.35,
-     "points": -2.5,
-     "plus_minus": 0.2
+     "points": -2.6,
+     "plus_minus": 0.1
     },
     {
      "from": 4.35,
      "to": 5.35,
-     "points": -2.2,
+     "points": -2.4,
      "plus_minus": 0.2
     },
     {
      "from": 5.35,
      "to": 6.65,
      "points": -1.9,
-     "plus_minus": 0.2
+     "plus_minus": 0.1
     },
     {
      "from": 6.65,
      "to": 7.9,
-     "points": -1.6,
-     "plus_minus": 0.2
+     "points": -1.7,
+     "plus_minus": 0.1
     },
     {
      "from": 7.9,
      "to": 9.35,
-     "points": -1.2,
+     "points": -1.3,
      "plus_minus": 0.2
     },
     {
      "from": 9.35,
      "to": 11.1,
-     "points": -0.8,
-     "plus_minus": 0.3
+     "points": -0.7,
+     "plus_minus": 0.1
     },
     {
      "from": 11.1,
      "to": 13.1,
-     "points": -0.1,
-     "plus_minus": 0.1
+     "points": -0.0,
+     "plus_minus": 0.2
     },
     {
      "from": 13.1,
      "to": 15.35,
-     "points": 0.5,
-     "plus_minus": 0.1
+     "points": 1.0,
+     "plus_minus": 0.4
     },
     {
      "from": 15.35,
      "to": 17.9,
-     "points": 2.7,
-     "plus_minus": 0.6
+     "points": 3.8,
+     "plus_minus": 0.4
     },
     {
      "from": 17.9,
      "to": 21.1,
-     "points": 8.9,
-     "plus_minus": 1.4
+     "points": 8.5,
+     "plus_minus": 0.7
     },
     {
      "from": 21.1,
      "to": 27.5,
-     "points": 12.7,
+     "points": 12.9,
      "plus_minus": 0.4
     }
    ]
@@ -590,437 +596,437 @@
   {
    "term": "own_speed_power",
    "description": "speed power on own bars (movepower.py)",
-   "importance": 0.111,
+   "importance": 0.13,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 6.5,
-     "to": 35.0,
-     "points": -10.0,
-     "plus_minus": 1.0
+     "to": 35.25,
+     "points": -8.0,
+     "plus_minus": 0.9
     },
     {
-     "from": 35.0,
-     "to": 41.4,
-     "points": -8.7,
-     "plus_minus": 0.7
+     "from": 35.25,
+     "to": 41.75,
+     "points": -9.5,
+     "plus_minus": 1.4
     },
     {
-     "from": 41.4,
-     "to": 45.1,
-     "points": 1.1,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 45.1,
-     "to": 47.9,
-     "points": 1.9,
-     "plus_minus": 0.6
-    },
-    {
-     "from": 47.9,
-     "to": 50.55,
-     "points": 2.5,
-     "plus_minus": 0.6
-    },
-    {
-     "from": 50.55,
-     "to": 52.45,
-     "points": 0.4,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 52.45,
-     "to": 55.4,
-     "points": 0.7,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 55.4,
-     "to": 57.9,
-     "points": 1.2,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 57.9,
-     "to": 59.5,
-     "points": 0.3,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 59.5,
-     "to": 62.45,
-     "points": 1.0,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 62.45,
-     "to": 64.45,
-     "points": 1.6,
+     "from": 41.75,
+     "to": 45.4,
+     "points": -1.9,
      "plus_minus": 0.4
     },
     {
-     "from": 64.45,
-     "to": 69.0,
-     "points": 2.3,
-     "plus_minus": 0.5
+     "from": 45.4,
+     "to": 48.45,
+     "points": -1.1,
+     "plus_minus": 0.4
     },
     {
-     "from": 69.0,
-     "to": 75.35,
+     "from": 48.45,
+     "to": 51.3,
+     "points": -0.8,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 51.3,
+     "to": 53.95,
+     "points": -1.1,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 53.95,
+     "to": 55.65,
+     "points": -0.1,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 55.65,
+     "to": 58.15,
+     "points": 0.6,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 58.15,
+     "to": 60.85,
+     "points": 1.2,
+     "plus_minus": 0.1
+    },
+    {
+     "from": 60.85,
+     "to": 62.95,
      "points": 2.9,
-     "plus_minus": 0.6
+     "plus_minus": 0.5
     },
     {
-     "from": 75.35,
+     "from": 62.95,
+     "to": 64.75,
+     "points": 3.7,
+     "plus_minus": 0.8
+    },
+    {
+     "from": 64.75,
+     "to": 69.45,
+     "points": 4.2,
+     "plus_minus": 0.8
+    },
+    {
+     "from": 69.45,
+     "to": 75.8,
+     "points": 4.8,
+     "plus_minus": 0.7
+    },
+    {
+     "from": 75.8,
      "to": 106.4,
-     "points": 3.3,
-     "plus_minus": 0.5
+     "points": 5.3,
+     "plus_minus": 0.6
     }
    ]
   },
   {
    "term": "enemy_snare_power",
    "description": "snare power on enemy bars",
-   "importance": 0.101,
+   "importance": 0.089,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 0.0,
      "to": 10.75,
-     "points": -2.9,
+     "points": -2.8,
      "plus_minus": 0.3
     },
     {
      "from": 10.75,
      "to": 19.9,
-     "points": -2.4,
+     "points": -2.0,
      "plus_minus": 0.3
     },
     {
      "from": 19.9,
      "to": 30.1,
-     "points": -3.0,
-     "plus_minus": 0.7
+     "points": -1.9,
+     "plus_minus": 0.2
     },
     {
      "from": 30.1,
      "to": 43.65,
-     "points": -2.2,
-     "plus_minus": 0.2
+     "points": -1.6,
+     "plus_minus": 0.1
     },
     {
      "from": 43.65,
      "to": 44.6,
-     "points": -1.6,
-     "plus_minus": 0.5
+     "points": -1.3,
+     "plus_minus": 0.1
     },
     {
      "from": 44.6,
      "to": 45.9,
-     "points": -1.3,
-     "plus_minus": 0.4
+     "points": -1.0,
+     "plus_minus": 0.1
     },
     {
      "from": 45.9,
      "to": 51.6,
-     "points": -0.1,
-     "plus_minus": 0.2
+     "points": -0.8,
+     "plus_minus": 0.1
     },
     {
      "from": 51.6,
      "to": 64.4,
-     "points": 0.3,
+     "points": -0.3,
      "plus_minus": 0.2
     },
     {
      "from": 64.4,
-     "to": 69.0,
+     "to": 67.85,
+     "points": 0.6,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 67.85,
+     "to": 69.9,
      "points": 1.1,
      "plus_minus": 0.2
     },
     {
-     "from": 69.0,
-     "to": 74.6,
+     "from": 69.9,
+     "to": 79.75,
      "points": 1.7,
      "plus_minus": 0.2
     },
     {
-     "from": 74.6,
-     "to": 88.75,
-     "points": 3.7,
-     "plus_minus": 0.7
+     "from": 79.75,
+     "to": 91.65,
+     "points": 4.9,
+     "plus_minus": 0.4
     },
     {
-     "from": 88.75,
-     "to": 95.1,
-     "points": 4.2,
-     "plus_minus": 0.6
-    },
-    {
-     "from": 95.1,
-     "to": 113.95,
-     "points": 5.1,
-     "plus_minus": 0.6
-    },
-    {
-     "from": 113.95,
-     "to": 422.4,
-     "points": 8.6,
+     "from": 91.65,
+     "to": 111.55,
+     "points": 5.6,
      "plus_minus": 0.5
+    },
+    {
+     "from": 111.55,
+     "to": 422.4,
+     "points": 6.4,
+     "plus_minus": 0.6
     }
    ]
   },
   {
    "term": "res_in",
    "description": "seconds to the next res",
-   "importance": 0.068,
+   "importance": 0.083,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 15.0,
      "to": 22.5,
-     "points": -1.7,
-     "plus_minus": 0.3
+     "points": -2.1,
+     "plus_minus": 0.2
     },
     {
      "from": 22.5,
      "to": 37.5,
-     "points": -1.3,
-     "plus_minus": 0.3
+     "points": -1.8,
+     "plus_minus": 0.2
     },
     {
      "from": 37.5,
      "to": 52.5,
-     "points": -0.8,
-     "plus_minus": 0.2
+     "points": -1.0,
+     "plus_minus": 0.4
     },
     {
      "from": 52.5,
      "to": 67.5,
-     "points": 0.5,
+     "points": 0.6,
      "plus_minus": 0.6
     },
     {
      "from": 67.5,
      "to": 82.5,
-     "points": 2.0,
-     "plus_minus": 0.3
+     "points": 2.3,
+     "plus_minus": 0.2
     },
     {
      "from": 82.5,
      "to": 97.5,
-     "points": 2.2,
-     "plus_minus": 0.3
+     "points": 2.6,
+     "plus_minus": 0.2
     },
     {
      "from": 97.5,
      "to": 112.5,
-     "points": 1.8,
-     "plus_minus": 0.6
+     "points": 2.5,
+     "plus_minus": 0.2
     },
     {
      "from": 112.5,
      "to": 120.0,
-     "points": -3.3,
-     "plus_minus": 0.5
+     "points": -3.6,
+     "plus_minus": 0.4
     }
    ]
   },
   {
    "term": "strength_gap",
    "description": "team strength gap",
-   "importance": 0.062,
+   "importance": 0.067,
    "missing_points": 0.0,
    "curve": [
     {
      "from": -1183.0,
-     "to": -592.5,
-     "points": -1.4,
-     "plus_minus": 0.4
-    },
-    {
-     "from": -592.5,
-     "to": -472.5,
-     "points": -1.2,
-     "plus_minus": 0.4
-    },
-    {
-     "from": -472.5,
-     "to": -361.5,
-     "points": -0.7,
-     "plus_minus": 0.5
-    },
-    {
-     "from": -361.5,
-     "to": -251.5,
-     "points": -0.3,
-     "plus_minus": 0.5
-    },
-    {
-     "from": -251.5,
-     "to": -140.0,
-     "points": -3.1,
-     "plus_minus": 1.1
-    },
-    {
-     "from": -140.0,
-     "to": -79.5,
-     "points": -3.8,
-     "plus_minus": 0.5
-    },
-    {
-     "from": -79.5,
-     "to": -5.5,
-     "points": 0.1,
+     "to": -587.5,
+     "points": 1.2,
      "plus_minus": 0.2
     },
     {
-     "from": -5.5,
-     "to": 59.0,
-     "points": 0.5,
-     "plus_minus": 0.3
+     "from": -587.5,
+     "to": -486.5,
+     "points": -2.9,
+     "plus_minus": 0.2
     },
     {
-     "from": 59.0,
-     "to": 124.5,
-     "points": 0.6,
-     "plus_minus": 0.4
+     "from": -486.5,
+     "to": -368.0,
+     "points": -2.5,
+     "plus_minus": 0.1
     },
     {
-     "from": 124.5,
-     "to": 225.0,
-     "points": 0.7,
-     "plus_minus": 0.4
+     "from": -368.0,
+     "to": -266.5,
+     "points": -2.2,
+     "plus_minus": 0.2
     },
     {
-     "from": 225.0,
-     "to": 324.0,
-     "points": 1.0,
-     "plus_minus": 0.3
+     "from": -266.5,
+     "to": -154.0,
+     "points": -1.9,
+     "plus_minus": 0.2
     },
     {
-     "from": 324.0,
-     "to": 437.5,
-     "points": 1.6,
-     "plus_minus": 0.3
+     "from": -154.0,
+     "to": -84.0,
+     "points": -1.7,
+     "plus_minus": 0.2
     },
     {
-     "from": 437.5,
-     "to": 572.5,
-     "points": 1.9,
+     "from": -84.0,
+     "to": -6.5,
+     "points": -0.4,
      "plus_minus": 0.5
     },
     {
-     "from": 572.5,
+     "from": -6.5,
+     "to": 58.5,
+     "points": -0.1,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 58.5,
+     "to": 130.5,
+     "points": 0.2,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 130.5,
+     "to": 230.5,
+     "points": 0.4,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 230.5,
+     "to": 346.5,
+     "points": 0.7,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 346.5,
+     "to": 435.5,
+     "points": 2.6,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 435.5,
+     "to": 570.5,
+     "points": 3.1,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 570.5,
      "to": 1183.0,
-     "points": 4.5,
-     "plus_minus": 1.1
+     "points": 3.3,
+     "plus_minus": 0.3
     }
    ]
   },
   {
    "term": "pit_pressure_diff",
    "description": "pit pressure, own minus enemy (discovery, approved)",
-   "importance": 0.052,
+   "importance": 0.058,
    "missing_points": 0.0,
    "curve": [
     {
      "from": -8.0,
      "to": -7.5,
-     "points": 10.9,
-     "plus_minus": 4.9
+     "points": 14.6,
+     "plus_minus": 2.7
     },
     {
      "from": -7.5,
-     "to": -5.5,
-     "points": 13.3,
-     "plus_minus": 3.0
+     "to": -6.5,
+     "points": 15.7,
+     "plus_minus": 2.6
     },
     {
-     "from": -5.5,
+     "from": -6.5,
      "to": -4.5,
-     "points": 7.1,
-     "plus_minus": 2.2
+     "points": 7.8,
+     "plus_minus": 0.9
     },
     {
      "from": -4.5,
      "to": -3.5,
-     "points": -4.7,
-     "plus_minus": 0.3
+     "points": -2.1,
+     "plus_minus": 0.7
     },
     {
      "from": -3.5,
      "to": -2.5,
-     "points": -3.9,
-     "plus_minus": 0.5
+     "points": -2.3,
+     "plus_minus": 0.4
     },
     {
      "from": -2.5,
      "to": -1.5,
-     "points": -2.9,
-     "plus_minus": 0.5
+     "points": -1.8,
+     "plus_minus": 0.4
     },
     {
      "from": -1.5,
      "to": -0.5,
-     "points": -2.2,
-     "plus_minus": 0.4
+     "points": -1.1,
+     "plus_minus": 0.5
     },
     {
      "from": -0.5,
      "to": 0.5,
-     "points": -0.1,
+     "points": -0.3,
      "plus_minus": 0.2
     },
     {
      "from": 0.5,
      "to": 2.5,
      "points": -0.0,
-     "plus_minus": 0.3
+     "plus_minus": 0.1
     },
     {
      "from": 2.5,
-     "to": 4.5,
+     "to": 3.5,
      "points": 0.0,
-     "plus_minus": 0.3
+     "plus_minus": 0.2
     },
     {
-     "from": 4.5,
-     "to": 6.5,
-     "points": -0.5,
-     "plus_minus": 0.3
+     "from": 3.5,
+     "to": 5.5,
+     "points": -0.0,
+     "plus_minus": 0.2
     },
     {
-     "from": 6.5,
+     "from": 5.5,
      "to": 7.5,
-     "points": -4.4,
-     "plus_minus": 2.1
+     "points": -1.5,
+     "plus_minus": 0.4
     },
     {
      "from": 7.5,
      "to": 8.0,
-     "points": -7.3,
-     "plus_minus": 0.9
+     "points": -11.5,
+     "plus_minus": 1.3
     }
    ]
   },
   {
    "term": "stand_own",
    "description": "own team holds the stand",
-   "importance": 0.046,
+   "importance": 0.052,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 0.0,
      "to": 0.5,
-     "points": -1.0,
-     "plus_minus": 0.1
+     "points": -1.2,
+     "plus_minus": 0.0
     },
     {
      "from": 0.5,
      "to": 1.0,
-     "points": 1.2,
+     "points": 1.4,
      "plus_minus": 0.1
     }
    ]
@@ -1028,135 +1034,135 @@
   {
    "term": "flag_lead",
    "description": "flag lead (s)",
-   "importance": 0.024,
+   "importance": 0.021,
    "missing_points": 0.0,
    "curve": [
     {
      "from": -125.0,
      "to": -61.5,
-     "points": -0.2,
-     "plus_minus": 0.2
+     "points": -0.8,
+     "plus_minus": 1.0
     },
     {
      "from": -61.5,
      "to": -49.5,
-     "points": 0.0,
+     "points": -0.1,
      "plus_minus": 0.1
     },
     {
      "from": -49.5,
      "to": -35.5,
-     "points": 0.1,
+     "points": -0.0,
      "plus_minus": 0.1
     },
     {
      "from": -35.5,
      "to": -22.5,
-     "points": -0.0,
+     "points": -0.1,
      "plus_minus": 0.1
     },
     {
      "from": -22.5,
-     "to": -13.5,
+     "to": -12.5,
      "points": -0.0,
      "plus_minus": 0.1
     },
     {
-     "from": -13.5,
-     "to": -5.5,
+     "from": -12.5,
+     "to": -4.5,
      "points": 0.0,
      "plus_minus": 0.1
     },
     {
-     "from": -5.5,
-     "to": 0.5,
-     "points": 0.1,
-     "plus_minus": 0.0
+     "from": -4.5,
+     "to": 2.5,
+     "points": 0.2,
+     "plus_minus": 0.2
     },
     {
-     "from": 0.5,
-     "to": 7.5,
+     "from": 2.5,
+     "to": 10.5,
      "points": 0.6,
-     "plus_minus": 0.4
+     "plus_minus": 0.1
     },
     {
-     "from": 7.5,
-     "to": 15.5,
+     "from": 10.5,
+     "to": 19.5,
      "points": 0.8,
-     "plus_minus": 0.4
+     "plus_minus": 0.1
     },
     {
-     "from": 15.5,
-     "to": 25.5,
-     "points": 1.1,
-     "plus_minus": 0.3
+     "from": 19.5,
+     "to": 28.5,
+     "points": 1.0,
+     "plus_minus": 0.2
     },
     {
-     "from": 25.5,
-     "to": 37.5,
-     "points": 1.5,
-     "plus_minus": 0.3
+     "from": 28.5,
+     "to": 38.5,
+     "points": 1.4,
+     "plus_minus": 0.2
     },
     {
-     "from": 37.5,
+     "from": 38.5,
      "to": 53.5,
-     "points": -1.0,
-     "plus_minus": 0.5
+     "points": -1.1,
+     "plus_minus": 0.3
     },
     {
      "from": 53.5,
      "to": 62.5,
-     "points": -1.5,
+     "points": -1.1,
      "plus_minus": 0.3
     },
     {
      "from": 62.5,
      "to": 125.0,
-     "points": -1.3,
-     "plus_minus": 0.4
+     "points": -0.4,
+     "plus_minus": 0.2
     }
    ]
   },
   {
    "term": "enemy_alive",
    "description": "enemy alive",
-   "importance": 0.011,
+   "importance": 0.017,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 0.0,
      "to": 3.5,
-     "points": 4.1,
+     "points": 8.3,
      "plus_minus": 1.5
     },
     {
      "from": 3.5,
      "to": 4.5,
-     "points": 1.2,
-     "plus_minus": 0.2
+     "points": 1.8,
+     "plus_minus": 0.4
     },
     {
      "from": 4.5,
      "to": 5.5,
      "points": 1.2,
-     "plus_minus": 0.2
+     "plus_minus": 0.3
     },
     {
      "from": 5.5,
      "to": 6.5,
-     "points": 0.8,
-     "plus_minus": 0.3
+     "points": 0.9,
+     "plus_minus": 0.2
     },
     {
      "from": 6.5,
      "to": 7.5,
-     "points": 0.2,
+     "points": 0.3,
      "plus_minus": 0.2
     },
     {
      "from": 7.5,
      "to": 8.0,
-     "points": -0.2,
+     "points": -0.3,
      "plus_minus": 0.0
     }
    ]
@@ -1164,7 +1170,7 @@
   {
    "term": "stand_enemy",
    "description": "the enemy holds the stand",
-   "importance": 0.01,
+   "importance": 0.008,
    "missing_points": 0.0,
    "curve": [
     {
@@ -1176,7 +1182,7 @@
     {
      "from": 0.5,
      "to": 1.0,
-     "points": -0.3,
+     "points": -0.2,
      "plus_minus": 0.1
     }
    ]
