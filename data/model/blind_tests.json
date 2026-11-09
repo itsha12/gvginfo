@@ -2079,7 +2079,7 @@
      "model_call": "collapsed",
      "usual_play": "collapsed",
      "specific": false,
-     "denning_call": null,
+     "denning_call": "collapsed",
      "denning_reason": "",
      "context": {
       "team": "hook",
