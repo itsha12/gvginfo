@@ -543,7 +543,7 @@
      "model_call": "stayed",
      "usual_play": "stayed",
      "specific": false,
-     "denning_call": null,
+     "denning_call": "split",
      "denning_reason": "",
      "sealed": "eyJhY3R1YWxfY2hvaWNlIjogInN0YXllZCIsICJ3cF9jaGFuZ2UiOiAwLjAsICJjaG9pY2VfZWZmZWN0cyI6IHsic3RheWVkIjogeyJtZWFuX3dwX2NoYW5nZSI6IC0yLjUsICJjYXNlcyI6IDEzfSwgInNwbGl0IjogeyJtZWFuX3dwX2NoYW5nZSI6IDAuNiwgImNhc2VzIjogMn19fQ==",
      "id": 4,
