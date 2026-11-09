@@ -689,7 +689,7 @@
      "model_call": "collapsed",
      "usual_play": "collapsed",
      "specific": false,
-     "denning_call": null,
+     "denning_call": "defended without a collapse",
      "denning_reason": "",
      "sealed": "eyJhY3R1YWxfY2hvaWNlIjogImRlZmVuZGVkIHdpdGhvdXQgYSBjb2xsYXBzZSIsICJ3cF9jaGFuZ2UiOiAtMC40LCAiY2hvaWNlX2VmZmVjdHMiOiB7ImNvbGxhcHNlZCI6IHsibWVhbl93cF9jaGFuZ2UiOiA0LjEsICJjYXNlcyI6IDl9LCAiZGVmZW5kZWQgd2l0aG91dCBhIGNvbGxhcHNlIjogeyJtZWFuX3dwX2NoYW5nZSI6IC0yLjksICJjYXNlcyI6IDZ9fX0=",
      "id": 5,
