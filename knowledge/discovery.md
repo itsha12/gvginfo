@@ -1,6 +1,6 @@
 # What discovery found
 
-Step 3 of the learned causal map (`discover.py`): the variable catalogue (`catalogue.py`: what each team did in the 10 s and 30 s before a moment, generated from the replay schema; decision and execution variables only) tested against every learned node on matches the node never saw. A **pass** predicts what the node misses by more than twice its spread, in at least 5 of 6 held-out folds. A candidate is **offered** to Denning once it has passed in two runs (the two-run rule): approve (it becomes a link in the causal map and an input of the node), reject, or wait.
+Step 3 of the learned causal map (`discover.py`): the variable catalogue (`catalogue.py`: what each team did in the 10 s and 30 s before a moment, generated from the replay schema; decision and execution variables only) tested against every learned node on matches the node never saw. A **pass** predicts what the node misses by more than twice its spread, in at least 5 of 6 held-out folds. A candidate is **offered** to Denning once it has passed in two runs (the two-run rule): approve (it becomes a link in the causal map and an input of the node), reject, or wait. Only what the team itself did (own_, and own minus enemy as diff_) is offered; the enemy's side of the same measure (enemy_) is the enemy's concurrent response, never advice, and is shown beside a candidate as what the enemy did (Denning, R-286).
 
 Variables tested: 1633 (variable by node); 137 passed the screen, where chance alone would pass about 38 (2.3% at twice the spread). Treat a candidate as a lead.
 
@@ -8,33 +8,36 @@ Nothing offered yet (no candidate has passed in two runs).
 
 ## Passed once (waits for a second run)
 
-- split answer: p.own_heal_30s +0.1494 (+/- 0.0701), 5 of 6 folds up
-- split answer: p.enemy_heal_30s +0.1031 (+/- 0.0401), 5 of 6 folds up
-- pit npc loss: p.enemy_dm_npcs_10s +0.0109 (+/- 0.0018), 6 of 6 folds up
-- pit npc loss: p.diff_dm_npcs_10s +0.0083 (+/- 0.0015), 6 of 6 folds up
-- pit npc loss: p.enemy_dm_npcs_30s +0.0074 (+/- 0.0016), 6 of 6 folds up
-- split effect: p.own_frontline_moving_s_30s +0.0054 (+/- 0.0020), 5 of 6 folds up
-- pit npc loss: p.diff_dm_npcs_30s +0.0050 (+/- 0.0010), 6 of 6 folds up
-- split effect: p.own_frontline_moving_s_10s +0.0047 (+/- 0.0017), 5 of 6 folds up
-- power play: p.diff_moving_s_10s +0.0032 (+/- 0.0011), 6 of 6 folds up
-- power play: p.own_casts_10s +0.0024 (+/- 0.0005), 6 of 6 folds up
-- split effect: p.own_frontline_dm_npcs_30s +0.0022 (+/- 0.0007), 6 of 6 folds up
-- power play: p.own_backline_dm_npcs_30s +0.0021 (+/- 0.0007), 5 of 6 folds up
-- collapse: p.own_midline_deaths_30s +0.0019 (+/- 0.0008), 5 of 6 folds up
-- split chance: p.own_moving_s_30s +0.0019 (+/- 0.0005), 5 of 6 folds up
-- split chance: p.own_moving_s_10s +0.0017 (+/- 0.0005), 5 of 6 folds up
-- fight outcome: p.own_casts_10s +0.0017 (+/- 0.0005), 6 of 6 folds up
-- fight outcome: p.own_backline_heal_30s +0.0017 (+/- 0.0005), 6 of 6 folds up
-- fight outcome: p.own_backline_interrupts_30s +0.0013 (+/- 0.0006), 5 of 6 folds up
-- fight outcome: p.diff_dm_players_10s +0.0013 (+/- 0.0006), 5 of 6 folds up
-- run outcome: p.own_dm_players_30s +0.0012 (+/- 0.0005), 5 of 6 folds up
-- fight outcome: p.own_conditions_on_enemies_30s +0.0011 (+/- 0.0005), 5 of 6 folds up
-- run outcome: p.own_dm_healers_10s +0.0010 (+/- 0.0003), 6 of 6 folds up
-- run outcome: p.diff_dm_healers_10s +0.0010 (+/- 0.0002), 6 of 6 folds up
-- run outcome: p.own_frontline_dm_healers_10s +0.0009 (+/- 0.0002), 6 of 6 folds up
-- collapse: p.own_frontline_heal_10s +0.0006 (+/- 0.0003), 5 of 6 folds up
-- run defence: p.diff_dm_healers_10s +0.0005 (+/- 0.0002), 5 of 6 folds up
-- split chance: p.diff_heal_10s +0.0004 (+/- 0.0002), 5 of 6 folds up
+- split answer: p.own_heal_30s +0.1494 (+/- 0.0701), 5 of 6 folds up; the enemy's side: p.enemy_heal_30s +0.1031 (discovery (held for Denning))
+- pit npc loss: p.diff_dm_npcs_10s +0.0083 (+/- 0.0015), 6 of 6 folds up; the enemy's side: p.enemy_dm_npcs_10s +0.0109 (discovery (held for Denning))
+- split effect: p.own_frontline_moving_s_30s +0.0054 (+/- 0.0020), 5 of 6 folds up; the enemy's side: did not pass the screen
+- pit npc loss: p.diff_dm_npcs_30s +0.0050 (+/- 0.0010), 6 of 6 folds up; the enemy's side: p.enemy_dm_npcs_30s +0.0074 (discovery (held for Denning))
+- split effect: p.own_frontline_moving_s_10s +0.0047 (+/- 0.0017), 5 of 6 folds up; the enemy's side: did not pass the screen
+- power play: p.diff_moving_s_10s +0.0032 (+/- 0.0011), 6 of 6 folds up; the enemy's side: p.enemy_moving_s_10s +0.0017 (not clear yet)
+- power play: p.own_casts_10s +0.0024 (+/- 0.0005), 6 of 6 folds up; the enemy's side: did not pass the screen
+- split effect: p.own_frontline_dm_npcs_30s +0.0022 (+/- 0.0007), 6 of 6 folds up; the enemy's side: did not pass the screen
+- power play: p.own_backline_dm_npcs_30s +0.0021 (+/- 0.0007), 5 of 6 folds up; the enemy's side: did not pass the screen
+- collapse: p.own_midline_deaths_30s +0.0019 (+/- 0.0008), 5 of 6 folds up; the enemy's side: did not pass the screen
+- split chance: p.own_moving_s_30s +0.0019 (+/- 0.0005), 5 of 6 folds up; the enemy's side: p.enemy_moving_s_30s +0.0006 (not clear yet)
+- split chance: p.own_moving_s_10s +0.0017 (+/- 0.0005), 5 of 6 folds up; the enemy's side: did not pass the screen
+- fight outcome: p.own_casts_10s +0.0017 (+/- 0.0005), 6 of 6 folds up; the enemy's side: did not pass the screen
+- fight outcome: p.own_backline_heal_30s +0.0017 (+/- 0.0005), 6 of 6 folds up; the enemy's side: did not pass the screen
+- fight outcome: p.own_backline_interrupts_30s +0.0013 (+/- 0.0006), 5 of 6 folds up; the enemy's side: did not pass the screen
+- fight outcome: p.diff_dm_players_10s +0.0013 (+/- 0.0006), 5 of 6 folds up; the enemy's side: did not pass the screen
+- run outcome: p.own_dm_players_30s +0.0012 (+/- 0.0005), 5 of 6 folds up; the enemy's side: did not pass the screen
+- fight outcome: p.own_conditions_on_enemies_30s +0.0011 (+/- 0.0005), 5 of 6 folds up; the enemy's side: did not pass the screen
+- run outcome: p.own_dm_healers_10s +0.0010 (+/- 0.0003), 6 of 6 folds up; the enemy's side: did not pass the screen
+- run outcome: p.diff_dm_healers_10s +0.0010 (+/- 0.0002), 6 of 6 folds up; the enemy's side: did not pass the screen
+- run outcome: p.own_frontline_dm_healers_10s +0.0009 (+/- 0.0002), 6 of 6 folds up; the enemy's side: did not pass the screen
+- collapse: p.own_frontline_heal_10s +0.0006 (+/- 0.0003), 5 of 6 folds up; the enemy's side: did not pass the screen
+- run defence: p.diff_dm_healers_10s +0.0005 (+/- 0.0002), 5 of 6 folds up; the enemy's side: p.enemy_dm_healers_10s +0.0008 (not clear yet)
+- split chance: p.diff_heal_10s +0.0004 (+/- 0.0002), 5 of 6 folds up; the enemy's side: did not pass the screen
+
+## The enemy's side (passed, never offered: concurrent response)
+
+- p.enemy_heal_30s +0.1031 (+/- 0.0401)
+- p.enemy_dm_npcs_10s +0.0109 (+/- 0.0018)
+- p.enemy_dm_npcs_30s +0.0074 (+/- 0.0016)
 
 ## Per node
 

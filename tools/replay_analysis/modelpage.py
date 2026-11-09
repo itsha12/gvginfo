@@ -37,6 +37,24 @@ def _nodes_py():
     return out
 
 
+# whose side each node's rows are read from ("own" in the inputs), and what a high result means for that team
+PERSPECTIVE = {
+    "run_outcome": "the running team's: \"own\" is the team whose flag is being carried; a high result (captured) is good for it",
+    "flag_swing": "each team's in turn: a positive swing is seconds gained on flags",
+    "run_defence": "the defending team's: the runner, carrier and escorts are the enemy's; a high result (the enemy captured) is bad for it",
+    "capture_speed": "the defending team's: the runner is the enemy's; more seconds (a slower enemy capture) is good for it",
+    "power_play": "the team with the numbers: a high result (a kill) is good for it",
+    "fight_outcome": "each team's in turn (\"own minus enemy\" inputs flip sign from the other side): a high result (won the fight) is good",
+    "split_chance": "each team's in turn: the result is whether it starts a split",
+    "split_answer": "the defending team's: the split is the enemy's; more seconds (a later first defender) is bad for it",
+    "split_effect": "the splitting team's: the defenders are the enemy's; a high result (an NPC killed) is good for it",
+    "collapse": "the splitting team's: the defenders who collapse are the enemy's; a high result (a split member killed) is bad for it",
+    "pit_npc_loss": "the defending team's: the attackers are the enemy's; a high result (an NPC lost) is bad for it",
+    "deaths": "the player's own team's: a high result (the player dies) is bad",
+    "kill_conversion": "the attacking team's: a high result (the burst killed) is good for it",
+    "flag_answer": "the answering team's: more seconds (a slower answer than possible) is bad for it",
+    "lord_damage": "the attacking team's: more Lord damage is good for it",
+}
 ROW_UNIT = {"run_outcome": "a run at 5, 15 and 30 s in", "flag_swing": "a 20 s moment", "run_defence": "an enemy run at 5, 15 and 30 s in",
             "capture_speed": "an enemy capture", "power_play": "a power-play window", "fight_outcome": "a fight", "split_chance": "a 15 s moment",
             "split_answer": "a split entering the base", "split_effect": "a split entering the base", "collapse": "a split",
@@ -48,13 +66,16 @@ NODES_PY_QUESTION = {"deaths": "Does this player die in the next 10 s?", "kill_c
                      "lord_damage": "How much Lord damage lands in the next 10 s?"}
 
 
-def _score(s, learned):
+def _score(s, learned, node=None):
     v = s["validation"]
     if learned:
         return f"{v['metric']} {v['glass box']} against {v['simple baseline']} ({v['verdict']})"
     g, b = v["glass box"], v["simple baseline"]
-    if "auc" in g: return f"AUC {g['auc']} against {b['auc']} for {' and '.join(v.get('baseline uses') or [])} alone ({v['verdict']})"
-    return f"typical error {g.get('mae_s')} s against {b.get('mae_s')} s ({v['verdict']})"
+    plain = {"health_pct": "current health", "damage_taken_3s": "damage taken in the last 3 s", "burst_damage": "the burst's damage",
+             "target_health_pct": "the target's health", "attackers": "attackers", "defenders": "defenders"}
+    if "auc" in g: return f"AUC {g['auc']} against {b['auc']} for {' and '.join(plain.get(x, x) for x in (v.get('baseline uses') or []))} alone ({v['verdict']})"
+    u = " s" if node == "flag_answer" else " damage"
+    return f"typical error {g.get('mae_s')}{u} against {b.get('mae_s')}{u} ({v['verdict']})"
 
 
 def learned_table(node, s):
@@ -63,8 +84,9 @@ def learned_table(node, s):
     q = LN.PLAIN.get(node, node)
     what = f"{s['rows']:,} rows ({ROW_UNIT.get(node, 'event')}), " + (f"average {s['mean']} s" if node in LN.REGRESSION else f"{s['rate']:.0%} positive") + f", {s['matches']} matches"
     L += [f"### {node.replace('_', ' ')}: {q}", "", f"{what}. Held out by match: {_score(s, True)}. "
-          f"Inputs {s.get('inputs', sum(len(l['features']) for l in s['links']))}" + (f" of a cap of {s['input_cap']}" if s.get('input_cap') else "") + ".", ""]
-    marks = set(s.get("marks_situation") or [])
+          f"Inputs {s.get('inputs', sum(len(l['features']) for l in s['links']))}" + (f" of a cap of {s['input_cap']}" if s.get('input_cap') else "") + ".",
+          "", f"Read from {PERSPECTIVE.get(node, 'the row team\'s side')}.", ""]
+    marks = set(s.get("marks_situation") or []); alloc = set(s.get("marks_allocation") or []); back = set(s.get("reads_backwards") or [])
     # the current classification (learnednodes.kind_of) is the authority; the stored kinds date from the last fit
     kinds = {f: LN.kind_of(node, f) for l in s["links"] for f in l["features"]}
     terms = {t["term"]: t for t in s.get("terms", [])}
@@ -74,14 +96,16 @@ def learned_table(node, s):
     def reading(f):
         cv = [c for c in (terms.get(f, {}).get("curve") or []) if c.get("from") is not None]
         if len(cv) < 2: return ""
-        return f" ({cv[0]['points']:+g} {unit} at {cv[0]['from']:g}..{cv[0]['to']:g}; {cv[-1]['points']:+g} at {cv[-1]['from']:g}..{cv[-1]['to']:g})"
+        return f" ({cv[0]['points']:+g} {unit} at {cv[0]['from']:g}..{cv[0]['to']:g}; {cv[-1]['points']:+g} at {cv[-1]['from']:g}..{cv[-1]['to']:g}{shape(cv)})"
     act = []
     for l in sorted(s["links"], key=lambda l: -l["strength"]):
         ins = []
         for f in sorted(l["features"], key=lambda f: -(terms.get(f, {}).get("importance") or 0)):
             d = clean(LN.describe(node, f)) or f
-            ins.append(d + reading(f) + (" [marks the situation]" if f in marks else ""))
-            if l["status"] == "supported" and kinds.get(f) in ("decision", "execution") and f not in marks: act.append(d)
+            tag = (" [marks the situation]" if f in marks else " [allocation: marks the situation, may still be a fix]" if f in alloc else "")
+            tag += " [reads backwards: likely a reaction, never a fix]" if f in back else ""
+            ins.append(d + reading(f) + tag)
+            if l["status"] == "supported" and kinds.get(f) in ("decision", "execution") and f not in marks and f not in back: act.append(d)
         gname = _GROUP_NAMES.get(l["from"], names.get(l["from"], l["from"]))
         L.append(f"| {gname} | {'/'.join(sorted({kinds.get(f, '?') for f in l['features']}))} | {l['status']} | {l['strength']:+} ± {l['plus_minus']} | {'; '.join(ins)} |")
     L.append("")
@@ -90,10 +114,14 @@ def learned_table(node, s):
     if s.get("concurrent"):
         L += ["", "Measured beside the node, never a cause (what the enemy did in the window): " + "; ".join(clean(x) for x in s["concurrent"].values()) + "."]
     if s.get("pruned"):
-        L += ["", f"Left out so the inputs fit the data (cap {s.get('input_cap')}): " + "; ".join(f"{clean(LN.describe(node, p['feature'])) or p['feature']} ({p['reason']})" for p in s["pruned"]) + "."]
+        L += ["", f"Left out to bring the inputs toward the cap of {s.get('input_cap')} (they wait in the map's waiting list and return as the data grows): "
+              + "; ".join(f"{clean(LN.describe(node, p['feature'])) or p['feature']} ({p['reason']})" for p in s["pruned"]) + "."]
     if s.get("inputs") and s.get("input_cap") and s["inputs"] > s["input_cap"]:
-        L += ["", f"Over the cap ({s['inputs']} of {s['input_cap']}): the remaining inputs are Denning's links or supported ones, which are never pruned; "
+        L += ["", f"Still over the cap ({s['inputs']} of {s['input_cap']}): the remaining inputs are supported, or kept by Denning's ruling, and are never pruned; "
               "read the not-clear readings here as leads."]
+    if s.get("reads_backwards"):
+        L += ["", "Reads backwards (the curve runs against the expected direction, so it is read as a reaction to the result coming, not a cause; never a fault or a fix): "
+              + "; ".join(clean(LN.describe(node, f)) or f for f in s["reads_backwards"]) + "."]
     L.append("")
     return L
 
@@ -106,24 +134,42 @@ _GROUP_NAMES = {"A.mesa_free": "Defenders free (not on flag duty)", "P.5": "Remo
 
 def nodes_py_table(node, s):
     import nodes as N
+    ev = f"{s['events']:,} events, " if s.get("events") else ""
     L = [f"### {node.replace('_', ' ')}: {NODES_PY_QUESTION.get(node, node)}", "",
-         f"{s['rows']:,} rows ({ROW_UNIT.get(node, 'row')}), {s.get('events', '?')} events, {s['matches']} matches. Held out by match: {_score(s, False)}.", "",
+         f"{s['rows']:,} rows ({ROW_UNIT.get(node, 'row')}), {ev}{s['matches']} matches. Held out by match: {_score(s, False, node)}.", "",
+         f"Read from {PERSPECTIVE.get(node, 'the row team\'s side')}."
+         + (" Two parts: the chance of any Lord damage in the window, and the amount when there is some (% more than typical), so an input can appear once per part." if node == "lord_damage" else ""), "",
          "| Input | Kind | Reading |", "|---|---|---|"]
     ctx = set(N.MATCH_FIXED.get(node, set()))
     seen = set(); act = []
-    unit = "s" if node in N.REGRESSION else "points"
+    unit = "points" if node not in N.REGRESSION else ("s" if node == "flag_answer" else "% more")
     for t in sorted(s.get("terms", []), key=lambda t: -(t.get("importance") or 0)):
         if "&" in t["term"] or t["term"] in seen: continue
         seen.add(t["term"])
         if len(seen) > 14: break
+        part = " (chance of any)" if "(chance of any)" in t["term"] else (" (amount)" if "(amount" in t["term"] else "")
         kind = "context" if t["term"] in ctx or t["term"] == "strength_gap" else ("state" if any(k in t["term"] for k in ("flag_lead", "minute", "res_", "morale", "health", "alive", "numbers", "local", "distance", "attackers", "defenders", "knights", "bodyguard", "archers", "seconds_in")) else "execution")
         cv = [c for c in t.get("curve") or [] if c.get("from") is not None]
-        rd = f"{cv[0]['points']:+g} {unit} at {cv[0]['from']:g}..{cv[0]['to']:g}; {cv[-1]['points']:+g} at {cv[-1]['from']:g}..{cv[-1]['to']:g}" if len(cv) >= 2 else ""
-        d = clean(t.get("description")) or t["term"]
+        rd = f"{cv[0]['points']:+g} {unit} at {cv[0]['from']:g}..{cv[0]['to']:g}; {cv[-1]['points']:+g} at {cv[-1]['from']:g}..{cv[-1]['to']:g}{shape(cv)}" if len(cv) >= 2 else ""
+        d = (clean(t.get("description")) or t["term"]) + part
         if kind == "execution" and (t.get("importance") or 0) > 0: act.append(d)
         L.append(f"| {d} | {kind} | {rd} |")
     L += ["", "**What to act on** (execution inputs with weight): " + ("; ".join(act[:6]) + "." if act else "nothing yet."), ""]
+    if node == "lord_damage":
+        L += ["Healing on own pit NPCs reads as more Lord damage because healers heal the Lord while it is being hit: a reaction, not a cause (R-285).", ""]
     return L
+
+
+def shape(cv):
+    """A note when a curve is not a straight rise or fall (the readability test: a reader cannot tell from two ends)."""
+    ys = [c["points"] for c in cv]
+    if len(ys) < 3: return ""
+    hi, lo = max(range(len(ys)), key=lambda i: ys[i]), min(range(len(ys)), key=lambda i: ys[i])
+    ends = (0, len(ys) - 1)
+    margin = max(5, 0.25 * (max(ys) - min(ys)))          # only a clear bump counts, not the usual wobble
+    if hi not in ends and ys[hi] > max(ys[0], ys[-1]) + margin: return f"; peaks in the middle ({ys[hi]:+g} around {(cv[hi]['from'] + cv[hi]['to']) / 2:g})"
+    if lo not in ends and ys[lo] < min(ys[0], ys[-1]) - margin: return f"; dips in the middle ({ys[lo]:+g} around {(cv[lo]['from'] + cv[lo]['to']) / 2:g})"
+    return ""
 
 
 import re as _re
@@ -147,8 +193,11 @@ GLOSSARY = [
     ("morale", "death penalty and boosts, in percent of maximum health, summed over a team's eight players (-60 to +10 each); \"own minus enemy\" is the gap"),
     ("stand", "who holds the flag stand: 1 own team, 0 nobody, -1 the enemy"),
     ("flag lead", "seconds the team is ahead (+) or behind (-) in the flag exchange: how much sooner than the enemy it could capture next"),
-    ("boost clock", "seconds until the stand holder's next morale boost (every 2 minutes held)"),
-    ("time down", "seconds the team's dead players have spent dead so far, own minus enemy"),
+    ("boost clock", "seconds until the stand holder's next morale boost (every 2 minutes held): + when own boost is coming, - when the enemy's is, 0 when nobody holds"),
+    ("time down", "enemy minus own seconds until all dead players are back: positive means the enemy has more time down than own team, so more is good for own team"),
+    ("seconds until the first defender arrived", "counted from the split entering the base; negative means a defender was already there or arrived before the split entered; 60 means nobody came within a minute"),
+    ("who carries (runner class)", "a label, not a scale: 0 warrior, 1 dervish, 2 assassin, 3 paragon, 4 ranger, 5 elementalist, 6 mesmer, 7 necromancer, 8 ritualist, 9 monk; read the curve as one reading per class"),
+    ("escorts", "players travelling with the carrier; a run with many escorts is usually a contested run, so more escorts can read as a slower capture"),
     ("main", "the team's main group (players within 2,500 units of each other, not splitting or running)"),
     ("players within one spike", "players whose health, after death penalty, an enemy spike build could take in one spike (DP stacking)"),
     ("turtling", "the team holding inside its own base or pit (share of live players at home)"),
@@ -184,14 +233,21 @@ def win_model_lines():
     v = w["validation"]; so, gb = v.get("strength only", {}).get("all", {}), v.get("glass box", {}).get("all", {})
     L = [f"{w['rows']:,} rows (one per team per 15 s), {w['matches']} matches, {len(w['variables_in_use'])} variables in use. Held out by whole match: "
          f"log loss {gb.get('log_loss')} against {so.get('log_loss')} for strength alone; accuracy {gb.get('accuracy', 0):.0%} against {so.get('accuracy', 0):.0%}.", "",
-         "| Variable | Kind | Importance |", "|---|---|---|"]
+         "Importance = the variable's average absolute contribution to the win chance across every row, in log-odds (0.8 is large, 0.1 small); "
+         "it says how much the variable moves the reading, not which way. Direction = the sign of its curve from low to high value, read on "
+         "\"Win-probability model\" (+ means more of it raises own win chance).", "",
+         "| Variable | Kind | Importance | Direction |", "|---|---|---|---|"]
     import features as F
     desc = getattr(F, "DESCRIPTIONS", {})
     fixed = {"strength_gap", "lord_dps_own", "lord_dps_enemy", "healing_monks_own", "healing_monks_enemy", "spike_build_own", "spike_build_enemy",
              "map_flag_run", "map_pit_to_stand", "map_bases_apart", "period"} | {v for v in w["variables_in_use"] if v.startswith("flux_")}
     for t in sorted(w["terms"], key=lambda t: -(t.get("importance") or 0))[:20]:
-        kind = "pairing" if "&" in t["term"] else ("context" if t["term"] in fixed else "state")
-        L.append(f"| {desc.get(t['term'], t.get('description') or t['term'])} | {kind} | {t.get('importance', 0):.3f} |")
+        kind = "pairing (two variables together)" if "&" in t["term"] else ("context" if t["term"] in fixed else "state")
+        d = clean(desc.get(t["term"], t.get("description") or t["term"]))
+        d = _re.split(r"\.\s+(?=[A-Z])", d)[0].rstrip(".")       # the first sentence: the definition, not the history
+        cv = [c for c in (t.get("curve") or []) if c.get("from") is not None]
+        direction = ("+" if cv[-1]["points"] > cv[0]["points"] + 1 else "-" if cv[-1]["points"] < cv[0]["points"] - 1 else "flat") if len(cv) >= 2 else ""
+        L.append(f"| {d} | {kind} | {t.get('importance', 0):.3f} | {direction} |")
     L.append("")
     return L
 
@@ -252,9 +308,15 @@ def render():
          "points more chance of winning the fight than an even case, and a team under it by that much about 29 points less.", "",
          "- **Kind**: context (fixed for the match), state (the situation now), decision (a choice the team made), execution (how the "
          "play was carried out). Only decision and execution inputs can be a fix; **[marks the situation]** flags an input that "
-         "predicts the previous result as well as the next, so it describes the spot rather than causing the result. **Cap**: the "
-         "number of inputs the node's data can carry (one per 20 of the rarer outcome); a node over its cap keeps Denning's and "
-         "supported inputs and prunes Claude's unclear ones first.", "",
+         "predicts the previous result as well as the next, so it describes the spot rather than causing the result; an "
+         "**allocation** decision (how many to send, escort, defend with) carries the flag but may still be a fix (R-282); "
+         "**[reads backwards]** flags an execution input whose curve runs against its expected direction, read as a reaction to the "
+         "result coming (disabling more because the kill is not coming), never a fault or a fix (R-285). **Cap**: the number of "
+         "inputs the node's data can carry (one per 20 of the rarer outcome); over the cap, inputs are pruned in order (Claude's "
+         "unclear, Claude's rejected, approved discoveries unclear, Denning's unclear; R-278); supported inputs and those Denning "
+         "ruled to keep are never pruned.", "",
+         "- Every node says whose side its rows are read from (\"Read from ...\"): \"own\" and \"enemy\" in its inputs follow that side, "
+         "and so does what a high result means.", "",
          "- Nodes that look alike are the same event read from a different side or at a different moment, by design: *run outcome* "
          "(the running team), *run defence* (the defending team, every run) and *capture speed* (captures only, how long); *flag "
          "answer* (how well one answering run was executed) and *flag swing* (how the lead moves over a minute). A node's result "

@@ -730,7 +730,7 @@ def execution_lines(node, rid, team, t, good_high, window=5, back=60):
     reading, contrib = CC.read(node, rid, row)
     if reading is None: return [f"- {node.replace('_', ' ')} node: no reading."], []
     med = h.get("medians") or {}; spr = h.get("spreads") or {}
-    kinds = h.get("kinds") or {}; marks = set(h.get("marks_situation") or [])
+    kinds = h.get("kinds") or {}; marks = set(h.get("marks_situation") or []); back = set(h.get("reads_backwards") or [])
     _, at_usual = CC.read(node, rid, {**row, **{k: v for k, v in med.items() if v is not None}})
     sign = -1 if good_high else 1          # positive = pushed toward the bad result
     unit = "points" if not h.get("regression") else "s"
@@ -743,7 +743,7 @@ def execution_lines(node, rid, team, t, good_high, window=5, back=60):
         if sp and abs(v - u) < 0.25 * sp: continue
         push = (c - at_usual.get(f, 0)) * sign
         if push < (1.0 if unit == "points" else 0.5): continue
-        (situation if f in marks else faults).append((f, k, v, u, push))
+        (situation if f in marks or f in back else faults).append((f, k, v, u, push))
     faults.sort(key=lambda x: -x[4])
     fmt = lambda x: f"{x:g}" if isinstance(x, (int, float)) else str(x)
     L = [f"- {node.replace('_', ' ')} node at {clock(row['t'])} read {reading}{'%' if unit == 'points' else ' s'} (a model that never saw the match)."]
@@ -754,7 +754,9 @@ def execution_lines(node, rid, team, t, good_high, window=5, back=60):
     else:
         L.append("- No decision or execution input sat clearly on the bad side of its usual value: the node reads this as state, not execution.")
     if situation:
-        L.append("- Marks the situation (not counted as a fault): " + ", ".join(LN.describe(node, f) or f for f, *_ in situation[:4]))
+        mk = [x for x in situation if x[0] in marks]; bk = [x for x in situation if x[0] in back and x[0] not in marks]
+        if mk: L.append("- Marks the situation (not counted as a fault): " + ", ".join(LN.describe(node, f) or f for f, *_ in mk[:4]))
+        if bk: L.append("- Reads backwards, likely a reaction to the fight going badly, not a cause (R-285; not counted as a fault): " + ", ".join(LN.describe(node, f) or f for f, *_ in bk[:4]))
     conc = LN.CONCURRENT.get(node, {})
     if conc:
         got = [(f, row.get(f)) for f in conc if row.get(f) is not None]

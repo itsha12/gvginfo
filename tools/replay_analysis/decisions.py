@@ -19,19 +19,20 @@ choice the usual play groups by), outcome, edge_change):
 - runner_choice (Denning, 2026-11-08: capping on a warrior, a midline, a dervish or a monk is a strategic decision):
   every fresh run (a pickup within 1,500 of the team's flag spawn). Choice = who carries (common.runner_class); window
   90 s. The usual play compares carriers in similar situations (and by snare matchup).
-- offence_or_defence (Denning, November 2026 review): at each fight's start, how the team's disrupting players
-  (interrupt skills on the bar, not healers) spent their first 10 s: offensive = interrupts and casts on the enemy
-  healers, defensive = on the enemy midline and frontline (Denning's definition of defensive play), mixed otherwise.
-  Detection is Claude's, to confirm.
+- offence_or_defence (Denning, November 2026 review; R-279): at each fight's start, how the team's disrupting players
+  (interrupt skills on the bar, not healers) spent their first 15 s: offensive = interrupts and casts on the enemy
+  healers (40% or less on midline and frontline), defensive = on the enemy midline and frontline (60%+; Denning's
+  definition of defensive play), mixed otherwise.
 - eight_v_eight_or_flag (Denning): when the enemy picks up with own team 7+ alive: commit all 8 (nobody on flag duty
   10 s later, 7+ at main) or keep the flag game (a runner carrying, waiting or on flag duty). Detection Claude's.
 - who_defends (Denning: who to defend with): at a split entering the base, the class of the first defender (Mes/A,
   frontline, 8 Monk or other healer, midline) and whether a collapse came with it.
-- npcs_or_dp (Denning: try for NPCs or DP): after a wipe, and at a power play fought at the enemy base: where the
-  team's damage went in the next 20 s, the pit NPCs or the enemy players (DP), or both.
-- play_for_28_or_lord (Denning: play for 28 or try to kill the Lord): from 24:00 every 30 s, for the team ahead on the
-  tiebreak (Lord damage, else morale): push the Lord (3+ at the enemy pit or Lord damage dealt in the next 30 s) or
-  hold.
+- npcs_or_dp (Denning: try for NPCs or DP; R-280): after killing 3+ enemy players at or past their footmen (half or
+  more of the kills inside their base or pit): where the team's damage went in the next 20 s, the pit NPCs before the
+  res (70%+), the surviving players (DP, 30% or less), or both.
+- play_for_28_or_lord (Denning: play for 28 or try to kill the Lord; R-281): from 10:00 every 60 s, for a team that has
+  taken 1+ enemy NPCs (pit NPCs or footmen): push for the kill (3+ at the enemy pit in the next 60 s) or play for 28
+  (everything else: flags, defence, NPC and Lord damage without a push). Ahead on the tiebreak is recorded.
 Every record's extra carries the snare matchup at that moment (movepower.py): own and enemy snare power of the live
 players and own speed power (Denning: starting the flag game or a split against a lot of snare is likely poor play;
 the data decides).
@@ -62,11 +63,11 @@ KINDS = {
     "late_game": {"moment": "24:00", "choices": "players at the enemy Lord, in levels", "source": "Denning"},
     "split_or_stay": {"moment": "every 30 s from 1:00, 6+ alive, not splitting", "choices": "split within 30 s; stayed", "source": "Denning"},
     "runner_choice": {"moment": "a fresh run from the spawn (holds left out)", "choices": "who carries (class)", "source": "Denning"},
-    "offence_or_defence": {"moment": "a fight starts", "choices": "offensive (disruption on enemy healers); defensive (on midline and frontline); mixed", "source": "Denning's definition; detection Claude's, to confirm"},
-    "eight_v_eight_or_flag": {"moment": "the enemy picks up, own team 7+ alive", "choices": "commit all 8; flag game", "source": "Denning; detection Claude's, to confirm"},
-    "who_defends": {"moment": "a split enters the base", "choices": "first defender's class (Mes/A, frontline, 8 Monk or healer, midline), alone or with a collapse", "source": "Denning; detection Claude's, to confirm"},
-    "npcs_or_dp": {"moment": "after a wipe, or a power play at the enemy base", "choices": "NPCs; DP (players); both", "source": "Denning; detection Claude's, to confirm"},
-    "play_for_28_or_lord": {"moment": "from 24:00 every 30 s, the team ahead on the tiebreak", "choices": "push the Lord; hold", "source": "Denning; detection Claude's, to confirm"},
+    "offence_or_defence": {"moment": "a fight starts (first 15 s)", "choices": "offensive (disruption on enemy healers); defensive (on midline and frontline); mixed", "source": "Denning (R-279)"},
+    "eight_v_eight_or_flag": {"moment": "the enemy picks up, own team 7+ alive (a power play when not up on flags)", "choices": "commit all 8; flag game", "source": "Denning (R-279)"},
+    "who_defends": {"moment": "a split enters the base", "choices": "first defender's class (Mes/A, frontline, 8 Monk or healer, midline), alone or with a collapse", "source": "Denning (R-279)"},
+    "npcs_or_dp": {"moment": "3+ kills at or past the enemy footmen", "choices": "NPCs; DP (players); both", "source": "Denning (R-280)"},
+    "play_for_28_or_lord": {"moment": "from 10:00 every 60 s, a team that has taken enemy NPCs", "choices": "push for the kill; play for 28", "source": "Denning (R-281)"},
 }
 
 
@@ -360,8 +361,9 @@ def _defender_class(m, a):
     return line(m, a)
 
 
-def offence_or_defence(st, sb, fights, w=10):
-    """At each fight's start, for each team: how its disrupting players spent the first w seconds."""
+def offence_or_defence(st, sb, fights, w=15):
+    """At each fight's start, for each team: how its disrupting players spent the first w seconds (15 s, Denning R-279: 10 s
+    is short for disrupts)."""
     m, out = st.m, []
     H = _healer_set(m)
     intr = m.o.get("interrupts") or []
@@ -446,19 +448,27 @@ def _damage_split(st, tm, t0, t1):
     return npc, pl
 
 
-def npcs_or_dp(st, sb, fights, windows, w=20):
+def npcs_or_dp(st, sb, fights, windows, w=20, kills=3):
+    """Denning (R-280): the moment is killing 3+ enemy players at or past their footmen (inside their base, BASE_R around
+    the res shrine, or their pit); the choice is where the team's damage went in the next 20 s: the pit NPCs before the
+    res, the surviving players (DP), or both. Which is better likely depends on the build (a two-monk spike build may
+    value DP over NPCs); the data decides."""
     m, out = st.m, []
     moments = []
     for f in fights:
-        if f["wipe"]:
-            wtm = next(k for k, v in m.tag.items() if v == f["opponent_won_fight"])
-            moments.append((wtm, f["end"], "after a wipe"))
-    for win in windows:
-        if win.get("at_home") or not win.get("contact", True): continue
-        tm = next(k for k, v in m.tag.items() if v == win["team"])
-        pit = st.geo.pit.get(3 - tm)
-        g = st.main_group(tm, win["start"]); c = st.centroid(g, int(win["start"])) if g else None
-        if c and pit and d(c, pit) < PIT_R + 1500: moments.append((tm, win["start"], "power play at the enemy base"))
+        loser = f["team"]; wtm = next((k for k, v in m.tag.items() if v == f["opponent_won_fight"]), None)
+        if wtm is None or m.tag.get(wtm) == loser: continue
+        ds = [x for x in f["deaths"] if x[1] == loser]
+        if len(ds) < kills: continue
+        # where the victims fell: in their own base or pit = at or past their footmen
+        ltm = 3 - wtm
+        inside = 0
+        for x in ds:
+            a = next((b for b in st.players[ltm] if m.roles.get(b) == x[2]), None)
+            z = st.zone(a, x[0] - 2) if a is not None else "?"
+            inside += z in ("own base", "own pit")
+        if inside * 2 < len(ds): continue
+        moments.append((wtm, f["end"], f"{len(ds)} kills in their base" + (" (wipe)" if f["wipe"] else "")))
     for tm, t, why in moments:
         if t > st.end - w: continue
         npc, pl = _damage_split(st, tm, t, t + w)
@@ -469,24 +479,43 @@ def npcs_or_dp(st, sb, fights, windows, w=20):
     return out
 
 
-def play_for_28_or_lord(st, sb, every=30, look=30):
+MID = 600            # 10:00: from here a team that has taken enemy NPCs faces the play-for-28 question (Denning R-281)
+
+
+def _npcs_taken(st, tm, t):
+    """Enemy NPCs (pit NPCs and footmen) dead by t, i.e. taken by tm at some point."""
+    from features import footmen
+    foe = 3 - tm
+    pit = sum(1 for a, dt in st.npc_dead.items() if dt <= t and st.geo.npcs.get(a, {}).get("team") == foe
+              and st.geo.npcs[a]["kind"] != "guild_lord")
+    foot = sum(1 for _, dt in footmen(st.m)[foe] if dt is not None and dt <= t)
+    return pit + foot
+
+
+def play_for_28_or_lord(st, sb, every=60, look=60):
+    """Denning (R-281): not a 24:00 decision but a global one from mid game on. For a team that has taken 1+ NPCs in the
+    enemy base (pit NPCs or footmen), every 60 s from 10:00 (or the first NPC taken): play for 28 (safe: flags,
+    defence, NPC and Lord damage without a push; win on Lord damage at 28:00) or push for the kill (3+ players at the
+    enemy pit in the next 60 s). Being ahead on the tiebreak is recorded, not required."""
     m, out = st.m, []
-    if st.end < LATE + look: return []
-    for t in range(LATE, int(st.end) - look, every):
+    if st.end < MID + look: return []
+    for t in range(MID, int(st.end) - look, every):
         s = sb.at(t)
         for tm in st.teams:
             me, foe = m.tag[tm], m.tag[3 - tm]
+            taken = _npcs_taken(st, tm, t)
+            if taken < 1: continue
             ld = s[me]["lord_damage_dealt"] - s[foe]["lord_damage_dealt"]
             ahead = ld > 0 or (ld == 0 and s[me]["morale_sum"] > s[foe]["morale_sum"])
-            if not ahead: continue
             pit = st.geo.pit.get(3 - tm)
             at_pit = max(sum(1 for b in st.players[tm] if st.alive(b, x) and st.pos(b, x)[0] and d(st.pos(b, x)[0], pit) < PIT_R + 500)
                          for x in range(t, t + look, 5)) if pit else 0
             s2 = sb.at(min(t + look, int(st.end) - 1))
             dealt = s2[me]["lord_damage_dealt"] - s[me]["lord_damage_dealt"]
-            choice = "push the Lord" if at_pit >= 3 or dealt > 0 else "hold"
-            out.append(rec(sb, "play_for_28_or_lord", tm, t, choice, min(t + 60, int(st.end) - 1),
-                           extra={"tiebreak_lord_damage": ld, "at_enemy_pit_max": at_pit, "lord_damage_in_window": dealt}))
+            choice = "push for the kill" if at_pit >= 3 else "play for 28"
+            out.append(rec(sb, "play_for_28_or_lord", tm, t, choice, min(t + 90, int(st.end) - 1),
+                           extra={"npcs_taken": taken, "ahead_on_tiebreak": int(ahead), "tiebreak_lord_damage": ld,
+                                  "at_enemy_pit_max": at_pit, "lord_damage_in_window": dealt}))
     return out
 
 

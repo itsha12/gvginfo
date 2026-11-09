@@ -207,7 +207,7 @@ class Chain:
         # a decision or execution input among the pushes is a possible fix (Denning, November 2026 review: context and
         # state are adjustment, never a fix; an input that marks the situation (learnednodes.selection_check) is never a fix)
         import learnednodes as LN
-        marks = set(h.get("marks_situation") or [])
+        marks = set(h.get("marks_situation") or []) | set(h.get("reads_backwards") or [])   # R-282 lets allocation through; R-285 blocks reactions
         kinds = h.get("kinds") or {}
         for f, c, v, u in pushes[:6]:
             k = kinds.get(f) or LN.kind_of(node, f)

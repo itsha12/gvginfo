@@ -1,0 +1,122 @@
+{
+ "collapse|p.own_midline_deaths_30s": {
+  "passes": [
+   "2026-11-09:356"
+  ]
+ },
+ "collapse|p.own_frontline_heal_10s": {
+  "passes": [
+   "2026-11-09:356"
+  ]
+ },
+ "fight_outcome|p.own_backline_heal_30s": {
+  "passes": [
+   "2026-11-09:356"
+  ]
+ },
+ "fight_outcome|p.own_casts_10s": {
+  "passes": [
+   "2026-11-09:356"
+  ]
+ },
+ "fight_outcome|p.diff_dm_players_10s": {
+  "passes": [
+   "2026-11-09:356"
+  ]
+ },
+ "fight_outcome|p.own_conditions_on_enemies_30s": {
+  "passes": [
+   "2026-11-09:356"
+  ]
+ },
+ "fight_outcome|p.own_backline_interrupts_30s": {
+  "passes": [
+   "2026-11-09:356"
+  ]
+ },
+ "pit_npc_loss|p.diff_dm_npcs_10s": {
+  "passes": [
+   "2026-11-09:356"
+  ]
+ },
+ "pit_npc_loss|p.diff_dm_npcs_30s": {
+  "passes": [
+   "2026-11-09:356"
+  ]
+ },
+ "power_play|p.diff_moving_s_10s": {
+  "passes": [
+   "2026-11-09:356"
+  ]
+ },
+ "power_play|p.own_casts_10s": {
+  "passes": [
+   "2026-11-09:356"
+  ]
+ },
+ "power_play|p.own_backline_dm_npcs_30s": {
+  "passes": [
+   "2026-11-09:356"
+  ]
+ },
+ "run_defence|p.diff_dm_healers_10s": {
+  "passes": [
+   "2026-11-09:356"
+  ]
+ },
+ "run_outcome|p.own_dm_players_30s": {
+  "passes": [
+   "2026-11-09:356"
+  ]
+ },
+ "run_outcome|p.own_dm_healers_10s": {
+  "passes": [
+   "2026-11-09:356"
+  ]
+ },
+ "run_outcome|p.diff_dm_healers_10s": {
+  "passes": [
+   "2026-11-09:356"
+  ]
+ },
+ "run_outcome|p.own_frontline_dm_healers_10s": {
+  "passes": [
+   "2026-11-09:356"
+  ]
+ },
+ "split_answer|p.own_heal_30s": {
+  "passes": [
+   "2026-11-09:356"
+  ]
+ },
+ "split_chance|p.own_moving_s_10s": {
+  "passes": [
+   "2026-11-09:356"
+  ]
+ },
+ "split_chance|p.own_moving_s_30s": {
+  "passes": [
+   "2026-11-09:356"
+  ]
+ },
+ "split_chance|p.diff_heal_10s": {
+  "passes": [
+   "2026-11-09:356"
+  ]
+ },
+ "split_effect|p.own_frontline_moving_s_10s": {
+  "passes": [
+   "2026-11-09:356"
+  ]
+ },
+ "split_effect|p.own_frontline_dm_npcs_30s": {
+  "passes": [
+   "2026-11-09:356"
+  ]
+ },
+ "split_effect|p.own_frontline_moving_s_30s": {
+  "passes": [
+   "2026-11-09:356"
+  ]
+ }
+}

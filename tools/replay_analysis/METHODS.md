@@ -329,6 +329,15 @@ These set the kind of answer the engine must produce: the event, the measured ca
   the engine code (`cache.py`); kept between sessions on the `cache` branch (`cache.py sync push`).
 - **Principles**: `knowledge/tactics.md`, ids cited by findings, rulings and situation cards (section 14).
 - **Denning's verdicts**: `data/review_labels.json`, applied in `rules.py` and `fights.assess`.
+- **The blind test** (`advice.py`, R-284): `data/model/blind_tests.json` holds every round (open and scored). A round =
+  8 picks, 6 random decisions spread over kinds and 2 where the advice differs from the usual play; each pick carries
+  the moment (match, team, opponent, map, time, situation, choices seen), the model's call, the usual play, Denning's
+  call and reason, and a sealed part (base64, never printed: the actual choice, its win-chance change, and the mean
+  win-chance change of each choice among the 15 most similar decisions in other matches). Added by the Train batch
+  workflow after each chunk (`advice.py /tmp/ga --blind-only --batch=N`; input `blind`), never refreshed. Answered and
+  scored on the site (Model > Blind test, `assets/js/pages/blindtest.js`, which decodes the sealed part only once every
+  call is in) or with `advice.py blind_score [round]`; the two score the same way: each call's expected win-chance
+  change in that situation, and whether it matched what the team did.
 
 ## Known limits
 - Fits from the model library (interpret) can differ in the last digits between processor types: the same code and

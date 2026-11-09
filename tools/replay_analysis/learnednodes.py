@@ -82,7 +82,7 @@ SPEC = {
     "P.10": {"runner_class": "who carries: 0 warrior, 1 dervish, 2 assassin, 3 paragon, 4 ranger, 5 mesmer, 6 elementalist, 7 necromancer, 8 ritualist, 9 monk"},
     "S.scoreboard": {"boost_clock": "boost clock (discovery, approved)", "stand": "stand (discovery, approved)",
                      "flag_lead": "flag lead (discovery, approved)", "morale_diff": "morale, own minus enemy (discovery, approved)",
-                     "down_diff_s": "time down, own minus enemy (discovery, approved)"},
+                     "down_diff_s": "time down: enemy minus own seconds until the dead are back (+ = the enemy has more time down) (discovery, approved)"},
     "C.builds": {"own_snares": "snare skills on own bars (discovery, approved)", "own_area_damage": "area-damage skills on own bars (discovery, approved)",
                  "enemy_snares_v_own_speed": "enemy snares against own speed (discovery, approved)"},
     "K.5": {"healing_monks_own": "own healing monks (discovery, approved)"},
@@ -103,7 +103,7 @@ SPEC = {
                      "short_dead": "share of the enemy's missing player-seconds: dead", "short_running": "running the flag",
                      "short_backside": "on the back side or push side", "short_base": "in a base or pit"},
     "R.3": {"flag_lead": "flag lead (s)"},
-    "S.scoreboard": {"down_diff_s": "time down, own minus enemy (discovery, approved)", "carrying_diff": "players carrying a flag, own minus enemy (discovery, approved)"},
+    "S.scoreboard": {"down_diff_s": "time down: enemy minus own seconds until the dead are back (+ = the enemy has more time down) (discovery, approved)", "carrying_diff": "players carrying a flag, own minus enemy (discovery, approved)"},
     "P.14": {"pushed": "pushed (1) or held (0)"},
     "K.2": {"dps_v_usual": "own damage per second against the usual of the players alive"},
     "P.2": {"spikes_10s": "own spikes per 10 s", "spike_spread": "median spread of own spikes (s)"},
@@ -127,14 +127,14 @@ SPEC = {
     "P.19": {"blind_front_secs_diff": "seconds the enemy frontline spent Blind, own minus enemy", "blind_defensive_secs_diff": "seconds Blind from defensive Blinds, own minus enemy"},
     "P.1": {"healer_focus_diff": "share of damage on enemy healers, own minus enemy (Bounty: going after the monks)"},
     "S.scoreboard": {"morale_diff": "morale, own minus enemy (discovery, approved)", "fight_state": "who is winning the fight (fightstate.py; discovery, approved)",
-                     "down_diff_s": "time down, own minus enemy (discovery, approved)", "alive_diff": "alive, own minus enemy (discovery, approved)",
+                     "down_diff_s": "time down: enemy minus own seconds until the dead are back (+ = the enemy has more time down) (discovery, approved)", "alive_diff": "alive, own minus enemy (discovery, approved)",
                      "stand": "stand (discovery, approved)", "spike_killable_diff": "players within one spike, own minus enemy (discovery, approved)"},
     "P.2": {"spike_spread_diff": "median spike spread (s), own minus enemy", "spikes_diff": "spikes, own minus enemy"},
     "K.1": {"dps_v_usual_diff": "damage against the usual of the players alive, own minus enemy"},
     "P.5": {"hex_secs_diff": "value-weighted seconds hexes stayed on own players, own minus enemy",
             "hex_right_diff": "share of hex removals that took the most costly hex in range, own minus enemy"},
-    "P.21": {"kite_secs_diff": "seconds own players kited enemy melee (chased without being hit), per 10 s, own minus enemy",
-             "prekite_secs_diff": "seconds own players kept their distance from melee heading for them, per 10 s, own minus enemy"},
+    "P.21": {"kite_secs_diff": "seconds own players kited enemy melee (chased without being hit), per 10 s, own minus enemy"},
+    "P.27": {"prekite_secs_diff": "seconds own players kept their distance from melee heading for them, per 10 s, own minus enemy"},
     "P.22": {"degen_diff": "degeneration put on the other team, pip-seconds per 10 s, own minus enemy"},
     "P.23": {"baits_diff": "enemy interrupts baited (landed on nothing after a cancel), per 10 s, own minus enemy"},
     "P.24": {"knockdowns_diff": "knockdowns landed per 10 s, own minus enemy", "knockdowns_on_casting_diff": "knockdowns on casting targets per 10 s, own minus enemy"},
@@ -216,6 +216,51 @@ KIND_BY_GROUP = {"C.builds": "context", "C.matchup": "context", "C.strength": "c
 # features whose kind is not their group's: choices a team made at the moment
 DECISION_FEATURES = {"pushed", "runner_class", "runner_line", "escort", "size", "defenders", "defenders_10s", "contact_diff",
                      "split_healers", "split_size", "own_flag_duty", "enemy_flag_duty"}
+# the kind of an input in one node when it differs from the feature's usual kind: the same count is the acting team's
+# own choice in one node and the enemy's situation in another (the readability test, 2026-11-09: perspective)
+NODE_KINDS = {
+    "run_defence": {"escort": "state", "runner_class": "state", "min_capture_s": "state"},     # the enemy's runner, escorts and carry
+    "capture_speed": {"escort": "state", "runner_class": "state", "min_capture_s": "state", "defenders_free": "decision"},
+    "power_play": {"size": "state"},                                               # how many the enemy is short
+    "flag_swing": {"enemy_flag_duty": "state"},
+    "split_answer": {"size": "state"},                                             # the enemy's split
+    "split_effect": {"latency": "state", "defenders": "state", "def_snare_present": "state"},   # the defenders' answer
+    "pit_npc_loss": {"defenders": "decision", "defender_healers": "decision", "defenders_elsewhere": "decision"},
+    "collapse": {"healing_monks_enemy": "state", "latency": "state", "defenders_10s": "state", "contact_diff": "state",
+                 "def_snare_present": "state", "def_dps": "state", "res_in_at_arrival": "state"},   # rows are the split's; the defenders are the enemy
+}
+# allocation decisions (Denning, R-282): how many to send, escort, defend with, keep on flag duty. The selection check
+# flags them like markers (they persist through a match), but they are choices a team can change, so they may still be
+# a fix; the report says so beside them.
+ALLOCATION = {
+    "run_outcome": {"escort"}, "capture_speed": {"defenders_free"}, "flag_swing": {"own_flag_duty"},
+    "split_effect": {"size", "split_healers"}, "pit_npc_loss": {"defenders", "defender_healers", "defenders_elsewhere"},
+    "collapse": {"size", "split_healers"},
+}
+# expected direction of every execution input (Denning, R-285: as the win model has direction corrections): +1 = more of
+# it should help the row's team, -1 = more of it should hurt. An input whose fitted curve runs the other way is
+# labelled "reads backwards: likely a reaction" (disabling more because the kill is not coming; healing NPCs because
+# they are being hit) and is never a fault or a fix, though it stays in the fit as adjustment. Claude's list, to confirm.
+EXPECTED = {
+    "run_outcome": {"crippled_so_far": -1, "knocked_down_so_far": -1, "other_control_so_far": -1, "damage_so_far": -1, "pushers_so_far": -1,
+                    "min_capture_s": -1, "runner_escapes": +1},
+    "run_defence": {"pushers_so_far": +1, "control_so_far": +1, "damage_so_far": +1, "def_snare_near": +1},
+    "capture_speed": {"pushers_10s": +1, "control_10s": +1, "damage_10s": +1, "def_snare_near": +1},
+    "power_play": {"dps_v_usual": +1, "spikes_10s": +1, "spike_spread": -1, "spikes_on_healers": +1, "healer_damage_share": +1,
+                   "blind_secs_on_own_10s": -1, "knockdowns_10s": +1, "knockdowns_on_casting_10s": +1, "disable_10s": +1,
+                   "castprev_10s": +1, "degen_10s": +1},
+    "fight_outcome": {"peel_defensive_diff": +1, "ready_interrupt_diff": -1, "dazed_casts_diff": -1, "blind_attacks_diff": -1,
+                      "strip_right_diff": +1, "strip_value_diff": +1, "blind_front_secs_diff": +1, "blind_defensive_secs_diff": +1,
+                      "healer_focus_diff": +1, "spike_spread_diff": -1, "spikes_diff": +1, "dps_v_usual_diff": +1, "hex_secs_diff": -1,
+                      "hex_right_diff": +1, "kite_secs_diff": +1, "prekite_secs_diff": +1, "degen_diff": +1, "baits_diff": +1,
+                      "knockdowns_diff": +1, "knockdowns_on_casting_diff": +1, "disable_diff": +1, "castprev_diff": +1},
+    "split_effect": {"split_speed_power": +1, "own_escapes_power": +1},
+    "pit_npc_loss": {"npc_healing_10s": +1},
+    "collapse": {"escape_ready": +1, "split_speed_power": +1, "split_escapes": +1},
+}
+# is a high result good for the row's team? (collapse rows are the split's: a member dying is bad; run defence and pit
+# NPC loss rows are the defender's: the enemy capturing or an NPC falling is bad; split answer: more seconds is bad)
+GOOD_HIGH = {"collapse": False, "run_defence": False, "pit_npc_loss": False, "split_answer": False}
 # features in a play group (P.10 run timing) that describe the situation, not a play: the flag model's readings
 STATE_FEATURES = {"stand_own", "stand_enemy", "enemy_boost_in", "own_boost_in", "flag_lead", "own_eta", "enemy_eta", "own_carrying",
                   "enemy_carrying", "own_cap_before_boost", "enemy_cap_before_boost", "waiting_runner", "backup_flag", "enemy_power_play",
@@ -232,7 +277,8 @@ CONCURRENT = {
 CONCURRENT_LINKS = {("K.5", "K.4"), ("P.21", "K.4"), ("P.23", "K.4"), ("K.1", "R.5")}
 # inputs the data can carry (M4): one input per EVENTS_PER_INPUT events (the rarer class for yes/no nodes; rows / 40 for
 # number nodes). Pruning order: Claude's links not clear yet, Claude's links rejected, approved discoveries not clear
-# yet. Denning's links and supported links are never pruned. Pruned inputs go to the map's waiting list.
+# yet, then Denning's links not clear yet (R-278; they return as the data grows). Supported links, and links Denning
+# ruled to keep ("denning_keep" on the map), are never pruned. Pruned inputs go to the map's waiting list.
 EVENTS_PER_INPUT = 20
 REGRESSION_ROWS_PER_INPUT = 40
 
@@ -240,6 +286,7 @@ REGRESSION_ROWS_PER_INPUT = 40
 def kind_of(node, f):
     """context, state, decision or execution for a node's input (concurrent measures are not inputs)."""
     if f in CONCURRENT.get(node, {}): return "concurrent"
+    if f in NODE_KINDS.get(node, {}): return NODE_KINDS[node][f]
     if f in STATE_FEATURES: return "state"
     if f in DECISION_FEATURES: return "decision"
     g = group_of(node, f)
@@ -255,6 +302,7 @@ def group_of(node, f):
 # why each link that a node needs and the map may lack is a hypothesis, and who it came from
 NEW_LINK_WHY = {
     ("P.21", "R.2"): ("a player who kites enemy melee avoids damage and wastes the frontline's time (Denning, session 4u)", "Denning"),
+    ("P.27", "R.2"): ("keeping distance from melee heading for you avoids the first hit (Denning, session 4u; split from P.21, R-283)", "Denning"),
     ("P.22", "R.2"): ("degen pressure (a ranger's poison on the whole team, a degen mesmer) wears a team down without showing as damage (Denning, session 4u)", "Denning"),
     ("P.23", "R.2"): ("a player who fakes out an interrupt wastes it (Denning, session 4u)", "Denning"),
     ("P.24", "R.2"): ("offensive knockdowns (a warrior landing many) stop casts and set up kills (Denning, session 4u)", "Denning"),
@@ -331,7 +379,8 @@ NEW_LINK_WHY = {
 NODE_FIT = {"flag_swing": {"objective": "pseudo_huber"}, "capture_speed": {"objective": "pseudo_huber"},
             "split_effect": {"max_bins": 8, "min_samples_leaf": 40, "smoothing_rounds": 300, "max_rounds": 200}}
 NEW_NODES = [
-    {"id": "P.21", "layer": "play", "name": "Kiting", "description": "kiting and pre-kiting enemy melee (warriors, dervishes, assassins): seconds chased without being hit, and distance kept before contact", "how": "pressure.py"},
+    {"id": "P.21", "layer": "play", "name": "Kiting", "description": "kiting enemy melee (warriors, dervishes, assassins): seconds chased without being hit", "how": "pressure.py"},
+    {"id": "P.27", "layer": "play", "name": "Pre-kiting", "description": "distance kept from enemy melee heading for the player, before contact (split from P.21, Denning R-283: kiting stays by his ruling, pre-kiting sits as the data reads it)", "how": "pressure.py"},
     {"id": "P.22", "layer": "play", "name": "Degen pressure", "description": "degeneration put on the enemy (conditions and degen hexes), pip-seconds; the replays record degen as no damage", "how": "pressure.py"},
     {"id": "P.23", "layer": "play", "name": "Baited interrupts", "description": "enemy interrupts that landed on nothing because the player cancelled", "how": "pressure.py"},
     {"id": "P.24", "layer": "play", "name": "Offensive knockdowns", "description": "knockdowns landed on enemies, and on casting targets", "how": "pressure.py"},
@@ -371,8 +420,8 @@ def _map_links():
 
 
 def prune_plan(node, X, y, prev=None):
-    """Which inputs to leave out so the count fits the data (M4), in the pruning order; never Denning's links or
-    supported ones. prev = the node's last summary (its link statuses and term importances), if any.
+    """Which inputs to leave out so the count fits the data (M4), in the pruning order; never supported links or links
+    Denning ruled to keep (R-278 lets his not-clear links go last). prev = the node's last summary (its link statuses and term importances), if any.
     Returns (kept features, [{feature, group, reason}])."""
     feats = [c for c in X.columns]
     cap = input_cap(node, y)
@@ -388,7 +437,8 @@ def prune_plan(node, X, y, prev=None):
         if f in base or g is None: return None
         L = links.get((g, tgt), {})
         src = L.get("source", "Claude"); st = status.get(g, L.get("status", "hypothesis"))
-        if st == "supported" or src == "Denning" and f not in approved: return None
+        if st == "supported" or L.get("denning_keep"): return None
+        if src == "Denning" and f not in approved: return (3, imp.get(f, 0), "Denning's link, not clear yet (R-278)")
         if f in approved: return (2, imp.get(f, 0), "approved discovery, not clear yet")
         if st == "rejected": return (1, imp.get(f, 0), "Claude's link, rejected")
         return (0, imp.get(f, 0), "Claude's link, not clear yet")
@@ -445,7 +495,32 @@ def selection_check(node, df, X, y, kinds, folds=None):
         # none. A persistent cause (defenders standing in the pit) reads much like a marker here; the flag says the test
         # can't tell them apart, and the ruling is that such an input is not offered as a fix
         marks = bool(a_prev >= 1.0 * a_next and lo > 0.02 and a_prev > 0.03)
-        out[f] = {"next": round(a_next, 3), "previous": round(a_prev, 3), "previous_low": round(lo, 3), "marks_situation": marks}
+        alloc = f in ALLOCATION.get(node, set())
+        out[f] = {"next": round(a_next, 3), "previous": round(a_prev, 3), "previous_low": round(lo, 3), "marks_situation": marks,
+                  "allocation": alloc, "fix_allowed": (not marks) or alloc}
+    return out
+
+
+def direction_check(node, terms):
+    """R-285: for every execution input with an expected direction, does the fitted curve run that way? Returns
+    {feature: {"expected": +1/-1, "fitted": +1/-1/0, "reads_backwards": bool}}; fitted = the sign of the Spearman
+    correlation between the curve's bin midpoints and its points (0 when |rho| < 0.3, read as flat), turned to the
+    row team's good side with GOOD_HIGH so the two can be compared."""
+    from scipy.stats import spearmanr
+    good_high = GOOD_HIGH.get(node, True)
+    out = {}
+    for t in terms:
+        f = t["term"]; exp = EXPECTED.get(node, {}).get(f)
+        if exp is None or t.get("kind") != "execution": continue
+        cv = [c for c in t.get("curve", []) if c.get("from") is not None and c.get("to") is not None]
+        if len(cv) < 3: continue
+        xs = [(c["from"] + c["to"]) / 2 for c in cv]; ys = [c["points"] for c in cv]
+        if len(set(xs)) < 3 or len(set(ys)) < 2: continue
+        rho = spearmanr(xs, ys).correlation
+        fitted = 0 if rho != rho or abs(rho) < 0.3 else (1 if rho > 0 else -1)
+        toward_good = fitted * (1 if good_high else -1)          # +1: more of it reads as good for the row's team
+        out[f] = {"expected": exp, "fitted_toward_good": toward_good, "rho": round(float(rho), 2) if rho == rho else None,
+                  "reads_backwards": bool(toward_good != 0 and toward_good != exp)}
     return out
 
 
@@ -576,13 +651,21 @@ def fit_all(ids, nodes=None, V=None):
         rate = None if reg else round(float(y.mean()), 3)
         # M5: the selection check on every decision and execution input
         sel = selection_check(node, df, X, y, kinds)
-        marks = sorted(f for f, v in sel.items() if v["marks_situation"])
+        # marks_situation is the set that blocks fixes: flagged inputs that are not allocation decisions (R-282);
+        # marks_allocation lists the flagged allocation decisions, labelled on the page but still allowed as fixes
+        marks = sorted(f for f, v in sel.items() if v["marks_situation"] and not v.get("allocation"))
+        marks_alloc = sorted(f for f, v in sel.items() if v["marks_situation"] and v.get("allocation"))
+        dirs = direction_check(node, terms)
+        backwards = sorted(f for f, v in dirs.items() if v["reads_backwards"])
+        for t in terms:
+            if t["term"] in backwards: t["reads_backwards"] = True
         for l in links: l["kinds"] = sorted({kinds[f] for f in l["features"]})
         summary = {"node": node, "target": SPEC[node][0], "matches": int(g.nunique()), "rows": int(len(y)), "rate": rate,
                    "mean": round(float(y.mean()), 1) if reg else None, "validation": val, "links": links, "terms": terms,
                    "kinds": kinds, "input_cap": cap, "inputs": len(X.columns), "pruned": pruned,
                    "concurrent": {f: describe(node, f) for f in CONCURRENT.get(node, {})},
-                   "selection": sel, "marks_situation": marks,
+                   "selection": sel, "marks_situation": marks, "marks_allocation": marks_alloc,
+                   "directions": dirs, "reads_backwards": backwards,
                    "note": ("seconds added to (or taken off) the result, against the average" if reg else
                             "points = change in the chance of the result for an otherwise even (50%) case")}
         os.makedirs(NODE_DIR, exist_ok=True)
@@ -594,6 +677,7 @@ def fit_all(ids, nodes=None, V=None):
             for mm in set(g.iloc[te]): fold_of[mm] = i
         save_heldout(node, ids, {"cols": list(X.columns), "models": [r["model"] for r in allf], "fold_of": fold_of,
                                  "regression": reg, "rate": rate, "mean": float(y.mean()), "kinds": kinds, "marks_situation": marks,
+                                 "marks_allocation": marks_alloc, "reads_backwards": backwards,
                                  "medians": {c: (None if np.isnan(v) else float(v)) for c, v in X.median().items()},
                                  # each variable's spread (interquartile range, else standard deviation): the smallest
                                  # change that can count as a cause or a fix in a chain (Denning: not a -0.01 difference)
@@ -691,6 +775,8 @@ def write_map(summaries):
         new = "supported" if "supported" in ms else "rejected" if all(x == "rejected" for x in ms) else "hypothesis"
         # Denning's links are never rejected by data without his approval: held as "data says rejected" for him to rule
         # on ("override_approved": true lets the data reject it, and then follow the data both ways)
+        if l.get("denning_keep"):          # R-283: kept by Denning's ruling whatever the data says; the measurement is recorded beside it
+            l.pop("pending_rejection", None); continue
         if new == "rejected" and l.get("source") == "Denning" and not l.get("override_approved"):
             if not l.get("pending_rejection"):
                 c["log"].append({"date": today, "change": f"link {l['from']} -> {l['to']}: the data says rejected; held for Denning's ruling", "by": "data"})
@@ -736,6 +822,10 @@ def report_lines(summaries):
                  + (f"; pruned: {', '.join(p['feature'] for p in s['pruned'])}" if s.get("pruned") else "") + ".")
         if s.get("marks_situation"):
             L.append(f"- marks the situation (predicts the previous result as well as the next; never a fix): {', '.join(s['marks_situation'])}")
+        if s.get("marks_allocation"):
+            L.append(f"- marks the situation but is an allocation decision (R-282: may still be a fix): {', '.join(s['marks_allocation'])}")
+        if s.get("reads_backwards"):
+            L.append(f"- reads backwards: likely a reaction, not a cause (R-285; never a fault or a fix): {', '.join(s['reads_backwards'])}")
         if s.get("concurrent"):
             L.append(f"- measured but not fitted (the enemy's response during the window): {', '.join(s['concurrent'])}")
         for l in sorted(s["links"], key=lambda l: -l["strength"]):
@@ -795,7 +885,7 @@ def render_overview(summaries):
               f"{s['rows']} cases from {s['matches']} matches; " + (f"average {s['mean']} s" if reg else f"happens {s['rate']:.0%} of the time")
               + f". Predicts unseen matches {good}.", "", "Causes tested:"]
         terms = {t["term"]: t for t in s["terms"] if "curve" in t}
-        marks = set(s.get("marks_situation") or [])
+        marks = set(s.get("marks_situation") or []); alloc = set(s.get("marks_allocation") or []); back = set(s.get("reads_backwards") or [])
         kinds = s.get("kinds") or {}
         for l in sorted(s["links"], key=lambda l: -l["strength"]):
             kw = "/".join(l.get("kinds", [])) or "input"
@@ -803,7 +893,7 @@ def render_overview(summaries):
             feats = sorted(l["features"], key=lambda f: -(terms.get(f, {}).get("importance") or 0))
             for f in feats[:3]:
                 if f in terms and terms[f]["importance"] > 0:
-                    tag = " [marks the situation]" if f in marks else ""
+                    tag = (" [marks the situation]" if f in marks else " [allocation; marks the situation, may still be a fix]" if f in alloc else "") + (" [reads backwards: likely a reaction]" if f in back else "")
                     L.append(f"  - {describe(node, f)}: {_curve_words(terms[f], reg)}{tag}")
             for x in l.get("each", []):
                 L.append(f"  - tested alone, {describe(node, x['feature'])}: {x['status']}")

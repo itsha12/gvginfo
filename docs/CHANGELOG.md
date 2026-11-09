@@ -2,6 +2,15 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-09 (evening): bundle 3 from Denning's rulings R-278 to R-287, the Model tab and the blind test page
+- Site: a Model tab (`#/model`) holds the engine's pages (discovery now listed); Mechanics keeps the game pages. Blind test page (Model > Blind test): sealed rounds in `data/model/blind_tests.json`, 8 picks (6 random, 2 specific), calls saved with a reason, model call revealed after saving, scored in the browser; Train batch adds a round per chunk (input `blind`).
+- Decisions (decisions.py; R-279 to R-281): offence/defence window 15 s; NPCs or DP fires on 3+ kills at or past the enemy footmen; play for 28 or the Lord redefined (from 10:00, a team that has taken enemy NPCs, push for the kill = 3+ at the enemy pit). Measurement layer: all prepared data rebuilt.
+- Learned nodes (learnednodes.py): kinds fixed per node by perspective (NODE_KINDS); allocation decisions may be fixes despite the selection flag (ALLOCATION, R-282); pruning order adds Denning's not-clear links last, `denning_keep` never pruned (R-278); P.21 kiting kept by ruling, P.27 pre-kiting split off and P.19 let go by the data (R-283); expected directions and "reads backwards" labels on execution inputs (EXPECTED, direction_check, R-285), honoured in causalchain.py and tq.py.
+- Discovery (discover.py; R-286): own_ and diff_ offered, enemy_ shown beside as what the enemy did. Fixed: the two-run history (`discovery_history.json`) was never committed by the workflow, so nothing could pass twice; now committed.
+- Model page (modelpage.py): perspective line per node, Importance and Direction defined on the win model, lord damage in damage units with its two parts named, plain baseline names, glossary for boost clock, time down (sign corrected), arrival seconds, runner class and escorts, curve-shape notes, legend for allocation, reads-backwards and the pruning order.
+- Docs: RULINGS R-278 to R-287; SPEC sections 1, 5, 6, 8 replaced; METHODS "The blind test".
+- Rebuild (no new matches) dispatched to compare against the pre-bundle reading; result in HANDOFF.md.
+
 ## 2026-11-09 (later): outstanding items after the review, no chunk
 - Update matches (run 42618614199): the last 20 listed matches stored, 0 remaining.
 - Discovery run 1 on the variable catalogue (run 42618611013, 4.5 min): 1,633 tests, 137 passed the screen, 27 passed once, nothing offered yet (two-run rule). Enemy_* variables among them; ruling asked (HANDOFF.md).

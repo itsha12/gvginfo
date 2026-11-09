@@ -165,7 +165,19 @@ def join():
     rows = []
     for f in sorted(glob.glob(os.path.join(OUT_DIR, "*.json"))):
         rows.append(json.load(open(f)))
-    passed = [dict(c, node=r["node"], target=r["target"]) for r in rows for c in r["confirmed"] if c["status"].startswith("discovery")]
+    # R-286 (Denning): own_ and diff_ variables are offered; enemy_ variables are the enemy's concurrent response and are
+    # never offered, but the matching enemy_ reading is shown beside an offered candidate as "what the enemy did"
+    passed = [dict(c, node=r["node"], target=r["target"]) for r in rows for c in r["confirmed"]
+              if c["status"].startswith("discovery") and not c["variable"].startswith("p.enemy_")]
+    enemy_side = {(r["node"], c["variable"]): c for r in rows for c in r["confirmed"] if c["variable"].startswith("p.enemy_")}
+    def beside(d):
+        base = d["variable"].split("_", 1)[1] if d["variable"].startswith(("p.own_", "p.diff_")) else None
+        # own_<line>_<thing>: the enemy counterpart is the team-level enemy_<thing>
+        e = enemy_side.get((d["node"], f"p.enemy_{base}")) if base else None
+        if e is None and base:
+            parts = base.split("_", 1)
+            if len(parts) == 2: e = enemy_side.get((d["node"], f"p.enemy_{parts[1]}"))
+        return f"{e['variable']} {e['confirm_gain']:+.4f} ({e['status']})" if e else "did not pass the screen"
     tested = sum(r["tested"] for r in rows)
     # the two-run rule: a pass is recorded; a candidate is offered once it has passed in two runs
     import datetime
@@ -184,28 +196,36 @@ def join():
         (found if n >= 2 else once).append(dict(d, passes=n))
     json.dump({"about": "Step 3 discovery (discover.py): the variable catalogue (play variables) against every learned node, held "
                         "out by match. A candidate is offered after passing in two runs; none is in the model until Denning approves.",
-               "tested": tested, "nodes": rows, "discoveries": found, "passed_once": once, "held": found},
+               "tested": tested, "nodes": rows, "discoveries": found, "passed_once": once, "held": found,
+               "enemy_side": [dict(c, node=n) for (n, v), c in sorted(enemy_side.items())]},
               open(os.path.join(REPO, "data", "model", "discovery.json"), "w"), indent=1)
     L = ["# What discovery found", "",
          "Step 3 of the learned causal map (`discover.py`): the variable catalogue (`catalogue.py`: what each team did in the 10 s "
          "and 30 s before a moment, generated from the replay schema; decision and execution variables only) tested against "
          "every learned node on matches the node never saw. A **pass** predicts what the node misses by more than twice its "
          "spread, in at least 5 of 6 held-out folds. A candidate is **offered** to Denning once it has passed in two runs (the "
-         "two-run rule): approve (it becomes a link in the causal map and an input of the node), reject, or wait.", "",
+         "two-run rule): approve (it becomes a link in the causal map and an input of the node), reject, or wait. Only what "
+         "the team itself did (own_, and own minus enemy as diff_) is offered; the enemy's side of the same measure (enemy_) is the "
+         "enemy's concurrent response, never advice, and is shown beside a candidate as what the enemy did (Denning, R-286).", "",
          f"Variables tested: {tested} (variable by node); {sum(r['screen_passed'] for r in rows)} passed the screen, where chance alone "
          f"would pass about {round(tested * 0.023)} (2.3% at twice the spread). Treat a candidate as a lead.", ""]
     if found:
         L += ["## Offered (passed in two runs)", "",
-              "| Node | Variable | Gain on unseen matches | Folds up | Result, lowest third -> highest third |", "|---|---|---|---|---|"]
+              "| Node | Variable | Gain on unseen matches | Folds up | Result, lowest third -> highest third | What the enemy did (enemy_ side) |", "|---|---|---|---|---|---|"]
         for d in sorted(found, key=lambda d: -d["confirm_gain"]):
             L.append(f"| {d['node'].replace('_', ' ')} | {d['variable']} | {d['confirm_gain']:+.4f} (+/- {d['confirm_plus_minus']:.4f}) | "
-                     f"{d['confirm_folds_up']} of 6 | {d['result_low_third']} (at or below {d['cut_low']:g}) -> {d['result_high_third']} (above {d['cut_high']:g}) |")
+                     f"{d['confirm_folds_up']} of 6 | {d['result_low_third']} (at or below {d['cut_low']:g}) -> {d['result_high_third']} (above {d['cut_high']:g}) | {beside(d)} |")
     else:
         L.append("Nothing offered yet (no candidate has passed in two runs).")
     if once:
         L += ["", "## Passed once (waits for a second run)", ""]
         for d in sorted(once, key=lambda d: -d["confirm_gain"]):
-            L.append(f"- {d['node'].replace('_', ' ')}: {d['variable']} {d['confirm_gain']:+.4f} (+/- {d['confirm_plus_minus']:.4f}), {d['confirm_folds_up']} of 6 folds up")
+            L.append(f"- {d['node'].replace('_', ' ')}: {d['variable']} {d['confirm_gain']:+.4f} (+/- {d['confirm_plus_minus']:.4f}), {d['confirm_folds_up']} of 6 folds up; the enemy's side: {beside(d)}")
+    es = sorted((c for c in enemy_side.values() if c["status"].startswith("discovery")), key=lambda c: -c["confirm_gain"])
+    if es:
+        L += ["", "## The enemy's side (passed, never offered: concurrent response)", ""]
+        for c in es[:12]:
+            L.append(f"- {c['variable']} {c['confirm_gain']:+.4f} (+/- {c['confirm_plus_minus']:.4f})")
     L += ["", "## Per node", ""]
     for r in rows:
         L.append(f"**{r['node'].replace('_', ' ')}** ({r['target']}; {r['matches']} matches, {r['rows']} rows, {r['metric']}): "

@@ -15,7 +15,11 @@ from data. In testable form:
 3. A "better play" is a choice a team could have made at that moment, measured against what similar teams did in
    similar situations (the decision tier).
 4. The engine's advice beats the usual play on held-out matches (the advice test, report section "Does the advice
-   work?"), and beats Denning's calls in the sealed blind test (R: 2026-11 review).
+   work?"), and beats Denning's calls in the sealed blind test (R-274, R-284): a round of eight sealed picks (six
+   random, two where the advice differs from the usual play) is added after every chunk and never refreshed; Denning
+   answers and scores rounds on the site (Model > Blind test; `data/model/blind_tests.json`), each call priced by the
+   mean win-chance change of teams that made that choice in the 15 most similar decisions, and matched against what
+   the team did.
 
 Nothing is a weight or a default unless it is measured or is a definition (R-series "Model and engine rules").
 Definitions (what counts as a fight, a hold, a power play) come from Denning; values and best plays come from data.
@@ -132,13 +136,23 @@ nodes. Rendered to `knowledge/causal-map.md`.
    the node's reading as "what the enemy did" (in the TQs and the query tool).
 3. **Inputs the data can carry.** A node has at most one input per 20 events (the rarer class for yes/no nodes;
    rows / 40 for number nodes). Above that, inputs are dropped in this order until the limit holds: Claude's links not
-   clear yet, Claude's links rejected, then approved discoveries not clear yet. Denning's links and supported links are
-   never pruned. Dropped inputs go to the waiting list with the reason.
+   clear yet, Claude's links rejected, approved discoveries not clear yet, then Denning's links not clear yet (R-278).
+   Supported links, and links Denning ruled to keep (`denning_keep` on the map; today P.21 kiting -> fight outcome,
+   R-283), are never pruned. Dropped inputs go to the waiting list with the reason and return as the data grows.
 4. **Selection check.** Every decision and execution input is tested against the same team's *previous* outcome of
    that kind in the match as well as the next. An input that predicts the past at least as well as the future marks the
    situation; it is labelled "marks the situation" on the page and in the report and is never offered as a fix. (This
-   is the standing form of the "partly who chooses it" check.) Known limit: a persistent cause (defenders standing in
-   the pit through an enemy's visit) reads like a marker here; the test says it cannot tell them apart.
+   is the standing form of the "partly who chooses it" check.) Exception (R-282): an **allocation decision** (escorts,
+   defenders in the pit, players on flag duty, split size and healers; `learnednodes.ALLOCATION`) keeps the label but
+   may still be a fix, because it is a choice the team can change even though it persists through a match.
+4b. **Perspective and kind by node.** The same count is a team's own choice in one node and the enemy's situation in
+   another (escorts: the running team's decision in run outcome, state in run defence). `learnednodes.NODE_KINDS`
+   fixes the kind per node, and every node on the model page says whose side its rows are read from.
+4c. **Expected direction (R-285).** Every execution input carries an expected direction (`learnednodes.EXPECTED`:
+   more disables should help, more damage taken by the runner should hurt). After each fit the curve is read against
+   it; an input whose curve runs the other way is labelled "reads backwards: likely a reaction" (teams disable more
+   when the kill is not coming, heal NPCs more when they are being hit), stays in the fit as adjustment, and is never
+   a fault or a fix. The direction list is Claude's, to confirm.
 5. **Status by data.** A link is supported when the held-out gain is more than twice its spread across folds,
    rejected when dropping it helps by that much, otherwise not clear yet. Near-line flips between runs are expected;
    the report shows status changes as a diff.
@@ -160,13 +174,13 @@ to confirm) and is compared by the usual-play method. Choices are what the team 
 | late_game | 24:00 | positions and plan | Denning |
 | split_or_stay | every 30 s from 1:00 with 6+ alive | start a split in 30 s, stay | Denning |
 | runner_choice | a fresh run from the spawn | who carries (class) | Denning |
-| offence_or_defence | a fight begins (first contact) | offensive (interrupts and casts on enemy healers), defensive (on enemy midline and frontline), by the disrupting players' first 10 s | Denning's definition of defensive play; detection Claude's, to confirm |
-| eight_v_eight_or_flag | the enemy picks up or carries while own team has 7+ at main | commit all 8 (nobody on flag duty), keep the flag game (a runner carrying or waiting) | Claude's, to confirm |
-| who_defends | a split enters the base | class of the first defender (Mes/A, frontline, 8 Monk, other), and alone or with a collapse | Denning (who to defend with) |
-| npcs_or_dp | the team is at the enemy base with a numbers advantage, or after a wipe | damage on the pit NPCs, damage on players at the res, both | Denning (NPCs or DP) |
-| play_for_28_or_lord | from 24:00, ahead on the tiebreak (Lord damage or morale) | hold (base or pit, no Lord attempt), push the Lord | Denning (play for 28 or kill the Lord) |
+| offence_or_defence | a fight begins (first contact) | offensive (interrupts and casts on enemy healers: 40% or less on midline and frontline), defensive (60%+ on enemy midline and frontline), mixed; by the disrupting players' first 15 s | Denning (R-279) |
+| eight_v_eight_or_flag | the enemy picks up or carries while own team has 7+ at main: a power play when not up on flags | commit all 8 (nobody on flag duty 10 s later), keep the flag game (a runner carrying, waiting or on duty) | Denning (R-279) |
+| who_defends | a split enters the base | class of the first defender (Mes/A, frontline, 8 Monk or other healer, midline), and alone or with a collapse (someone from main within 60 s) | Denning (R-279) |
+| npcs_or_dp | 3+ enemy players killed at or past their footmen (half or more of the kills inside their base or pit) | damage in the next 20 s on the pit NPCs (70%+), on the surviving players (DP, 30% or less), both | Denning (R-280) |
+| play_for_28_or_lord | from 10:00 every 60 s, a team that has taken 1+ enemy NPCs (pit NPCs or footmen) | push for the kill (3+ at the enemy pit in the next 60 s), play for 28 (flags, defence, NPC and Lord damage without a push) | Denning (R-281); the 10:00 start is Claude's |
 
-The last five are detected as described (definitions to confirm). Behaviour clusters (section 8) are the way new kinds are found: at every
+All thirteen are confirmed by Denning (R-279 to R-281); the usual play compares each choice against the most common one in similar situations. Behaviour clusters (section 8) are the way new kinds are found: at every
 recurring state the eight players' actions are clustered, and groups no named choice covers are shown to Denning as
 UNNAMED with example moments, to name or reject.
 
@@ -195,7 +209,9 @@ UNNAMED with example moments, to name or reject.
   while Blind, by skill type) x window (before the window, first N seconds, per 10 s). Screened by `discover.py`
   against every tier 3 node on unseen matches, with the chance rate stated; a candidate is offered to Denning only
   after it passes in two discovery runs (R: 2026-11 review) and only if it is a decision or execution variable (state
-  and build variables are already adjustment and are never offered).
+  and build variables are already adjustment and are never offered). Of the catalogue's three forms, own_ and diff_
+  (own minus enemy) are offered; enemy_ is the enemy's concurrent response, never offered, and shown beside an offered
+  candidate as "what the enemy did" (R-286).
 - **Behaviour clusters** (`behaviour.py`): at every recurring state, the per-player action vectors clustered; groups no
   named choice covers are UNNAMED decisions for Denning to name or reject. Leverage (how much the choice explains
   beyond the situation) says where attention goes.

@@ -218,7 +218,7 @@ Caused by:
 how deep a split plays in the enemy base: its nearest member's distance to the defending pit. *Measured: lnrows.py collapse rows.*
 
 ### Kiting `P.21`
-kiting and pre-kiting enemy melee (warriors, dervishes, assassins): seconds chased without being hit, and distance kept before contact. *Measured: pressure.py.*
+kiting enemy melee (warriors, dervishes, assassins): seconds chased without being hit. *Measured: pressure.py.*
 
 ### Degen pressure `P.22`
 degeneration put on the enemy (conditions and degen hexes), pip-seconds; the replays record degen as no damage. *Measured: pressure.py.*
@@ -234,6 +234,9 @@ skill-seconds disabled on enemies by Complicate, Power Lock, Power Block and Bla
 
 ### Cast prevention `P.26`
 Shame, Guilt and Diversion on enemies: seconds up and casts they punished. *Measured: pressure.py.*
+
+### Pre-kiting `P.27`
+distance kept from enemy melee heading for the player, before contact (split from P.21, Denning R-283). *Measured: pressure.py.*
 
 ## Capacities (what a group can do in its fight)
 
@@ -433,6 +436,7 @@ Caused by:
 - **Disables**: disables (Complicate, Blackout, Power Lock, Power Block) take the enemy's key skills away (Denning, session 4u) (Denning; hypothesis)
 - **Cast prevention**: cast prevention (Shame, Diversion, Guilt) stops the enemy's casts (Denning, session 4u) (Denning; hypothesis)
 - **Build features**: hex and heal skills on the bars change fights: found by discovery, approved by Denning (Denning; supported)
+- **Pre-kiting**: keeping distance from melee heading for you avoids the first hit (Denning, session 4u; split from P.21, R-283) (Denning; hypothesis)
 
 Measured on unseen matches (learnednodes.py; gain = how much worse the node predicts without the link):
 - Scoreboard (`S.scoreboard`), fight outcome node: gain +0.1008 (+/- 0.0092, log loss), supported, 355 matches
@@ -452,9 +456,7 @@ Measured on unseen matches (learnednodes.py; gain = how much worse the node pred
 - Offensive knockdowns (`P.24`), fight outcome node: gain -0.0008 (+/- 0.0007, log loss), not clear yet, 355 matches
 - Blind on enemies (`P.19`), fight outcome node: gain -0.0014 (+/- 0.0006, log loss), rejected, 355 matches
 - Condition removal (`P.5`), fight outcome node: gain -0.0018 (+/- 0.0018, log loss), not clear yet, 355 matches
-- Kiting (`P.21`), fight outcome node: gain -0.002 (+/- 0.0006, log loss), rejected, 355 matches
 - **Held for Denning:** the data says Blind on enemies -> Wipes is rejected; it stays a hypothesis until he rules.
-- **Held for Denning:** the data says Kiting -> Wipes is rejected; it stays a hypothesis until he rules.
 
 ### Flag lead `R.3`
 the flag position (response on the next capture exchange). *Measured: scoreboard.*
@@ -869,3 +871,7 @@ Caused by:
 - 2026-11-09: link K.1 -> R.5: supported -> concurrent (the enemy's response during the window; shown beside the node, not fitted; Denning, November 2026 review) (Denning)
 - 2026-11-09: link P.21 -> K.4: supported -> concurrent (the enemy's response during the window; shown beside the node, not fitted; Denning, November 2026 review) (Denning)
 - 2026-11-09: link P.23 -> K.4: hypothesis -> concurrent (the enemy's response during the window; shown beside the node, not fitted; Denning, November 2026 review) (Denning)
+- 2026-11-09: node P.27 Pre-kiting added: split from P.21 Kiting so Denning's rulings on the two can differ (R-283) (Denning)
+- 2026-11-09: link P.19 -> R.2 (Blind on enemies into fight outcome): Denning lets the data reject it for now (R-283); it sits as the data reads it and is remeasured each run (Denning)
+- 2026-11-09: link P.21 -> R.2 (kiting into fight outcome): kept by Denning's ruling whatever the data says (R-283); the joint kiting + pre-kiting measurement dropped, remeasured as kiting alone (Denning)
+- 2026-11-09: link P.27 -> R.2 added (pre-kiting into fight outcome), split from P.21; Denning lets the data reject it for now (R-283) (Denning)

@@ -498,7 +498,7 @@
    "id": "P.21",
    "layer": "play",
    "name": "Kiting",
-   "description": "kiting and pre-kiting enemy melee (warriors, dervishes, assassins): seconds chased without being hit, and distance kept before contact",
+   "description": "kiting enemy melee (warriors, dervishes, assassins): seconds chased without being hit",
    "how": "pressure.py"
   },
   {
@@ -534,6 +534,13 @@
    "layer": "play",
    "name": "Cast prevention",
    "description": "Shame, Guilt and Diversion on enemies: seconds up and casts they punished",
+   "how": "pressure.py"
+  },
+  {
+   "id": "P.27",
+   "layer": "play",
+   "name": "Pre-kiting",
+   "description": "distance kept from enemy melee heading for the player, before contact (split from P.21, Denning R-283)",
    "how": "pressure.py"
   }
  ],
@@ -3826,7 +3833,8 @@
      "date": "2026-11-09"
     }
    },
-   "pending_rejection": true
+   "pending_rejection": true,
+   "override_approved": true
   },
   {
    "from": "P.2",
@@ -4738,22 +4746,7 @@
    "confirmed_by_denning": false,
    "status": "hypothesis",
    "tactics": [],
-   "measured": {
-    "fight_outcome": {
-     "node": "fight_outcome",
-     "strength": -0.002,
-     "plus_minus": 0.0006,
-     "status": "rejected",
-     "metric": "log loss",
-     "matches": 355,
-     "features": [
-      "kite_secs_diff",
-      "prekite_secs_diff"
-     ],
-     "date": "2026-11-09"
-    }
-   },
-   "pending_rejection": true
+   "denning_keep": true
   },
   {
    "from": "P.22",
@@ -4895,6 +4888,16 @@
     }
    },
    "status_by": "data"
+  },
+  {
+   "from": "P.27",
+   "to": "R.2",
+   "why": "keeping distance from melee heading for you avoids the first hit (Denning, session 4u; split from P.21, R-283)",
+   "source": "Denning",
+   "confirmed_by_denning": true,
+   "status": "hypothesis",
+   "tactics": [],
+   "override_approved": true
   }
  ],
  "log": [
@@ -6151,6 +6154,26 @@
   {
    "date": "2026-11-09",
    "change": "link P.23 -> K.4: hypothesis -> concurrent (the enemy's response during the window; shown beside the node, not fitted; Denning, November 2026 review)",
+   "by": "Denning"
+  },
+  {
+   "date": "2026-11-09",
+   "change": "node P.27 Pre-kiting added: split from P.21 Kiting so Denning's rulings on the two can differ (R-283)",
+   "by": "Denning"
+  },
+  {
+   "date": "2026-11-09",
+   "change": "link P.19 -> R.2 (Blind on enemies into fight outcome): Denning lets the data reject it for now (R-283); it sits as the data reads it and is remeasured each run",
+   "by": "Denning"
+  },
+  {
+   "date": "2026-11-09",
+   "change": "link P.21 -> R.2 (kiting into fight outcome): kept by Denning's ruling whatever the data says (R-283); the joint kiting + pre-kiting measurement dropped, remeasured as kiting alone",
+   "by": "Denning"
+  },
+  {
+   "date": "2026-11-09",
+   "change": "link P.27 -> R.2 added (pre-kiting into fight outcome), split from P.21; Denning lets the data reject it for now (R-283)",
    "by": "Denning"
   }
  ],
