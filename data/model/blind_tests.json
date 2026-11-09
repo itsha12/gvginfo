@@ -1021,7 +1021,7 @@
      "model_call": "not running, fought",
      "usual_play": "not running, advanced",
      "specific": true,
-     "denning_call": null,
+     "denning_call": "not running, fought",
      "denning_reason": "",
      "sealed": "eyJhY3R1YWxfY2hvaWNlIjogIm5vdCBydW5uaW5nLCBoZWxkIiwgIndwX2NoYW5nZSI6IDAuMCwgImNob2ljZV9lZmZlY3RzIjogeyJub3QgcnVubmluZywgYWR2YW5jZWQiOiB7Im1lYW5fd3BfY2hhbmdlIjogLTEuNSwgImNhc2VzIjogNn0sICJub3QgcnVubmluZywgaGVsZCI6IHsibWVhbl93cF9jaGFuZ2UiOiAtMC4xLCAiY2FzZXMiOiAxfSwgIm5vdCBydW5uaW5nLCBmb3VnaHQiOiB7Im1lYW5fd3BfY2hhbmdlIjogMC42LCAiY2FzZXMiOiA1fSwgIm5vdCBydW5uaW5nLCBmZWxsIGJhY2siOiB7Im1lYW5fd3BfY2hhbmdlIjogMC4zLCAiY2FzZXMiOiAyfSwgInJ1bm5pbmcsIGZlbGwgYmFjayI6IHsibWVhbl93cF9jaGFuZ2UiOiAwLjIsICJjYXNlcyI6IDF9fX0=",
      "id": 7,
