@@ -1,67 +1,67 @@
 {
  "cores": 4,
- "cpu": "Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz",
+ "cpu": "AMD EPYC 9V74 80-Core Processor",
  "seconds": {
-  "candidate variables": 232.1,
-  "event layer and values": 34.9,
-  "learned nodes": 392.4,
-  "fit and honest test": 110.7,
-  "integrity and honest test text": 10.0,
+  "candidate variables": 205.5,
+  "event layer and values": 39.1,
+  "learned nodes": 507.9,
+  "fit and honest test": 90.9,
+  "integrity and honest test text": 9.3,
   "curves": 0.0,
   "interaction screen": 0.1,
-  "surprises": 8.6,
+  "surprises": 7.6,
   "rulings": 0.1,
-  "usual play": 251.3,
-  "values (measure)": 291.3,
-  "node models": 586.0,
-  "values": 0.3,
-  "TQs": 183.0,
-  "snapshot": 24.3,
+  "usual play": 213.3,
+  "values (measure)": 224.7,
+  "node models": 422.4,
+  "values": 0.4,
+  "TQs": 211.4,
+  "snapshot": 47.5,
   "questions": 0.0
  },
  "split": {
   "cands": {
-   "seconds": 232.1,
+   "seconds": 205.5,
    "laps": {
-    "candidate variables": 232.1
+    "candidate variables": 205.5
    }
   },
   "learned": {
-   "seconds": 427.3,
+   "seconds": 547.0,
    "laps": {
-    "event layer and values": 34.9,
-    "learned nodes": 392.4
+    "event layer and values": 39.1,
+    "learned nodes": 507.9
    }
   },
   "main": {
-   "seconds": 672.0,
+   "seconds": 545.9,
    "laps": {
-    "fit and honest test": 110.7,
-    "integrity and honest test text": 10.0,
+    "fit and honest test": 90.9,
+    "integrity and honest test text": 9.3,
     "curves": 0.0,
     "interaction screen": 0.1,
-    "surprises": 8.6,
+    "surprises": 7.6,
     "rulings": 0.1,
-    "usual play": 251.3,
-    "values (measure)": 291.3
+    "usual play": 213.3,
+    "values (measure)": 224.7
    }
   },
   "nodes:deaths": {
-   "seconds": 470.8,
+   "seconds": 279.0,
    "laps": {
-    "node models": 470.7
+    "node models": 278.9
    }
   },
   "nodes:kill_conversion,lord_damage,flag_answer": {
-   "seconds": 36.8,
+   "seconds": 55.3,
    "laps": {
-    "node models": 36.8
+    "node models": 55.3
    }
   },
   "nodes:lord_kill,npc_loss": {
-   "seconds": 78.5,
+   "seconds": 88.2,
    "laps": {
-    "node models": 78.5
+    "node models": 88.2
    }
   }
  }
