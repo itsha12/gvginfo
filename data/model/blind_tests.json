@@ -2574,7 +2574,7 @@
      "model_call": "DP",
      "usual_play": "NPCs",
      "specific": true,
-     "denning_call": null,
+     "denning_call": "NPCs",
      "denning_reason": "",
      "context": {
       "team": "RACK",
