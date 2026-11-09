@@ -62,8 +62,8 @@ Rewritten each session; stays under 80 lines. Read `CLAUDE.md`, then `docs/SPEC.
   -f 'inputs[pick]=45' -f 'inputs[add_batch]=yes'` (rebuild only: `inputs[add_batch]=no`; TQs `inputs[tqs]=yes|no|auto`;
   blind round `inputs[blind]=auto|yes|no`). Then pull main and read `data/model/reports/latest.md`. Discovery: the
   "Discovery" workflow (commits discovery.json, the history and knowledge/discovery.md).
-- Blind test: rounds in `data/model/blind_tests.json`; the site page answers and scores; `advice.py blind_score [n]`
-  scores from the shell; `advice.py /tmp/ga --blind-only --batch=N` adds a round. Sealed fields are base64: don't decode.
+- Blind test: rounds in `data/model/blind_tests.json`; the site page answers and scores (`advice.py blind_score [n]`
+  from the shell; `advice.py /tmp/ga --blind-only --batch=N` adds a round; `blind_enrich` fills missing context).
 - Query tool: `python3 ask.py <report id> <m:ss> [team]` (needs `analyze.py --all --out /tmp/ga` and the cache warm).
 - Local engine: `git fetch --depth 1 origin +replays:refs/remotes/origin/replays`; `pip install
   --break-system-packages -r .github/workflows/train-requirements.txt`; in tools/replay_analysis `cache.py sync pull`,
@@ -71,8 +71,8 @@ Rewritten each session; stays under 80 lines. Read `CLAUDE.md`, then `docs/SPEC.
   nodes took about 10 min here on 2 cores). Run Python with `PYTHONDONTWRITEBYTECODE=1`.
 - Cache keys are by layer (`cache.py info`): edits to report modules (tq, learning, causalchain, snapshot, modelpage,
   advice, ask, behaviour, discover) rebuild nothing; edits to measurement modules (decisions.py included) rebuild all
-  prepared data. Workflow artifacts can't be downloaded from the chat workspace (Azure blocked); `gh api` and git work.
-- GitHub GraphQL is blocked; use `gh api` (REST). The workspace can't reach gvg.report or the wiki.
+  prepared data. Workflow artifacts can't be downloaded here (Azure blocked); `gh api` (REST; GraphQL blocked) and
+  git work; the workspace can't reach gvg.report or the wiki.
 
 ## Cautions
 - Links near the line flip between runs ("supported" by a small margin is a lead; the diff lists flips); fits differ
