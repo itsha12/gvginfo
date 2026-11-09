@@ -1180,7 +1180,7 @@
      "model_call": "DP",
      "usual_play": "NPCs",
      "specific": true,
-     "denning_call": null,
+     "denning_call": "DP",
      "denning_reason": "",
      "sealed": "eyJhY3R1YWxfY2hvaWNlIjogIk5QQ3MiLCAid3BfY2hhbmdlIjogMS4yLCAiY2hvaWNlX2VmZmVjdHMiOiB7Ik5QQ3MiOiB7Im1lYW5fd3BfY2hhbmdlIjogLTguMSwgImNhc2VzIjogNn0sICJEUCI6IHsibWVhbl93cF9jaGFuZ2UiOiAtNC4zLCAiY2FzZXMiOiA2fSwgImJvdGgiOiB7Im1lYW5fd3BfY2hhbmdlIjogOS4yLCAiY2FzZXMiOiAzfX19",
      "id": 8,
