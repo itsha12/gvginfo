@@ -2,6 +2,13 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-09 (late): decision redesign planned, step 1 built (no rebuild)
+- Denning's review of blind rounds 1 and 2: the picks did not get to the point and the options were unreadable. Plan in docs/REDESIGN.md: five decision families with scenarios, calls read as allocations over 20 to 30 s, shape (who, when, which way), objective and mechanics, one decision card with three verdicts, enemy execution scored, the TQs replaced by the card. Draft rulings R-292 to R-303 await his confirmation.
+- Blind test: round 3 void (unanswered, sealed parts never opened); rounds 1 and 2 marked first design; Train batch input `blind` defaults to no. advice.py and blindtest.js: a call is priced only with 5+ similar cases, "matched the team" is no longer a score, one cumulative total with a 90% range, a reason asked for whenever Denning differs from the model. Checked with a mock round: site and advice.py give the same figures.
+- Site fix (core.js): saving a file over about 120 KB failed with "Maximum call stack size exceeded"; blind_tests.json was at 107 KB, so the next round's saves would have failed.
+- Guild hall maps (Model > Guild hall maps, assets/js/pages/maps.js; tools/maps/build_maps.py): all 14 halls drawn from gvg.report's walkable outline (9 halls) or from where players walked in 558 stored replays (5 halls gvg.report has no geometry for), with flag stand, team starts, flag spawns and estimated NPC spots; Denning adds points, areas and routes, saved to data/maps/labels/. The engine does not read them until bundle 4.
+- Docs: REDESIGN.md added; SPEC section 1, METHODS "The blind test", CLAUDE.md (readability test covers what Denning answers; maps; never add a .py to tools/replay_analysis for tooling) and HANDOFF updated. RULINGS unchanged until the drafts are confirmed.
+
 ## 2026-11-09 (night): batches 16 (90 matches) and 17 (60)
 - Four Train batch runs failed on GitHub's side (matrix jobs never created, then runs with no jobs) after two runs were queued at once; chunk 6's 45 replays stayed stored.
 - Denning chose to train them with 45 new picks as one batch (run 42675808241): 446 matches, 0.355 v 0.47 (+0.115), advice test 4 of 13 clear (power_play joins), P.26 cast prevention -> power play rejected, blind round 2 written, TQs ran.

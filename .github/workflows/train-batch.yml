@@ -42,10 +42,10 @@ on:
         options: ["auto", "yes", "no"]
         default: "auto"
       blind:
-        description: "Add a sealed blind-test round for Denning (auto = when a batch is added)"
+        description: "Add a sealed blind-test round for Denning (paused: leave on no until the decision card exists, docs/REDESIGN.md)"
         type: choice
-        options: ["auto", "yes", "no"]
-        default: "auto"
+        options: ["no", "yes", "auto"]
+        default: "no"
       runner:
         description: "Machine type (ubuntu-latest = the usual x64; ubuntu-24.04-arm = arm64, free for public repos)"
         type: choice
@@ -438,7 +438,7 @@ jobs:
           python3 learning.py finish /tmp/parts
           python3 status.py sync > /dev/null
       - name: Blind test round (Denning answers it on the site, Model > Blind test)
-        if: ${{ github.event.inputs.blind == 'yes' || (github.event.inputs.blind != 'no' && github.event.inputs.add_batch != 'no') }}
+        if: ${{ github.event.inputs.blind == 'yes' || (github.event.inputs.blind == 'auto' && github.event.inputs.add_batch != 'no') }}
         working-directory: tools/replay_analysis
         run: python3 advice.py /tmp/ga --blind-only --batch="$(python3 -c 'import model; print(len(model.batches()) - 1)')"
       - name: Save prepared data

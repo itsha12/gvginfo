@@ -1,0 +1,341 @@
+{
+ "map_id": "356",
+ "map": "Isle of Jade",
+ "replays": 62,
+ "stand": [
+  1683,
+  -2712
+ ],
+ "res_shrines": [
+  [
+   -7512,
+   3551
+  ],
+  [
+   10226,
+   3448
+  ]
+ ],
+ "flag_spawns": [
+  [
+   8482,
+   3458
+  ],
+  [
+   -5514,
+   3148
+  ]
+ ],
+ "npcs": [
+  {
+   "kind": "guild_lord",
+   "pos": [
+    -7458,
+    3612
+   ],
+   "matches": 20,
+   "samples": 668,
+   "how": "melee"
+  },
+  {
+   "kind": "guild_lord",
+   "pos": [
+    10274,
+    3438
+   ],
+   "matches": 19,
+   "samples": 1200,
+   "how": "melee"
+  },
+  {
+   "kind": "bodyguard",
+   "pos": [
+    10348,
+    3749
+   ],
+   "matches": 17,
+   "samples": 200,
+   "how": "melee"
+  },
+  {
+   "kind": "bodyguard",
+   "pos": [
+    -7564,
+    3891
+   ],
+   "matches": 9,
+   "samples": 82,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    8868,
+    3410
+   ],
+   "matches": 24,
+   "samples": 601,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    -5838,
+    3347
+   ],
+   "matches": 20,
+   "samples": 766,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    -5335,
+    3971
+   ],
+   "matches": 5,
+   "samples": 171,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    -6778,
+    3052
+   ],
+   "matches": 4,
+   "samples": 63,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    10322,
+    3366
+   ],
+   "matches": 4,
+   "samples": 34,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    -5175,
+    3038
+   ],
+   "matches": 3,
+   "samples": 39,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    8121,
+    3350
+   ],
+   "matches": 3,
+   "samples": 61,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    9726,
+    2980
+   ],
+   "matches": 2,
+   "samples": 35,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -1132,
+    2062
+   ],
+   "matches": 13,
+   "samples": 168,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -4692,
+    3838
+   ],
+   "matches": 12,
+   "samples": 158,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    4171,
+    2050
+   ],
+   "matches": 11,
+   "samples": 105,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    9744,
+    3118
+   ],
+   "matches": 11,
+   "samples": 104,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -6732,
+    3804
+   ],
+   "matches": 6,
+   "samples": 49,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -6773,
+    3096
+   ],
+   "matches": 5,
+   "samples": 70,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    7483,
+    4119
+   ],
+   "matches": 5,
+   "samples": 62,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -5084,
+    1340
+   ],
+   "matches": 4,
+   "samples": 41,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    9737,
+    3818
+   ],
+   "matches": 3,
+   "samples": 17,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -2998,
+    1448
+   ],
+   "matches": 2,
+   "samples": 33,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    8075,
+    1580
+   ],
+   "matches": 15,
+   "samples": 138,
+   "how": "ranged"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    -1017,
+    1067
+   ],
+   "matches": 19,
+   "samples": 327,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    4207,
+    1348
+   ],
+   "matches": 14,
+   "samples": 181,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    -1193,
+    1836
+   ],
+   "matches": 8,
+   "samples": 114,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    -934,
+    150
+   ],
+   "matches": 5,
+   "samples": 49,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    5093,
+    1575
+   ],
+   "matches": 2,
+   "samples": 16,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    4208,
+    1958
+   ],
+   "matches": 2,
+   "samples": 30,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    -2938,
+    1354
+   ],
+   "matches": 2,
+   "samples": 17,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    4198,
+    455
+   ],
+   "matches": 2,
+   "samples": 8,
+   "how": "melee"
+  }
+ ]
+}

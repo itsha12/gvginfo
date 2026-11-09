@@ -1,14 +1,22 @@
 # GvG Info: handoff for a new chat
 
-Rewritten each session; under 80 lines. Read `CLAUDE.md`, `docs/SPEC.md`, then this. History: `docs/CHANGELOG.md`;
-rulings: `docs/RULINGS.md` (cite R-numbers); every fitted model's structure: `knowledge/model.md` (generated).
+Rewritten each session; under 80 lines. Read `CLAUDE.md`, `docs/SPEC.md`, then this, then `docs/REDESIGN.md` (the
+plan for the decision tier). History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.md` (cite R-numbers); every fitted
+model's structure: `knowledge/model.md` (generated).
 
 ## Start a new chat in one message
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/SPEC.md and docs/HANDOFF.md, then:
 > <your request>
 
-## State (2026-11-09 night, batch 17 trained: 60 matches, 506 in all)
-- Portal: Model tab (engine pages, Blind test page); Mechanics keeps the game pages; all listed matches stored.
+## State (2026-11-09 late, batch 17 trained: 506 matches; redesign step 1 built)
+- Decision redesign (docs/REDESIGN.md), from Denning's review of blind rounds 1 and 2: decisions become five families
+  with scenarios, calls read as allocations over 20 to 30 s, a shape (who, when, which way), an objective and
+  mechanics, answered as one decision card with three verdicts. Step 1 (no rebuild) is built: round 3 void, rounds
+  paused (Train batch `blind` defaults to no), blind page scores cumulatively with a 5-case minimum and asks for a
+  reason on disagreement, and Model > Guild hall maps draws all 14 halls for Denning to label (9 with gvg.report's
+  outline; Druid's, Nomad's, Isle of the Dead, Frozen and Burning Isle from where players walked, because gvg.report
+  publishes no geometry for map ids 167, 168, 170, 174, 175).
+- Portal: Model tab (engine pages, Blind test, Guild hall maps); Mechanics keeps the game pages; all matches stored.
 - Bundle 3 (R-278 to R-287) and the sign rulings (R-288 to R-291) are in the engine (CHANGELOG 2026-11-09 evening).
 - Batch 16 (run 42675808241): 90 matches as one batch (45 left by GitHub job failures plus 45 new): 0.355 v 0.47.
 - Batch 17 (run 42689196937, 65 min, no TQs): 0.382 v 0.475 (gain +0.094, +0.057 to +0.133), 84% v 78%, Brier
@@ -18,21 +26,21 @@ rulings: `docs/RULINGS.md` (cite R-numbers); every fitted model's structure: `kn
   map_flag_run, with settings unchanged; the new October matches were also harder. Advice test 6 of 13 clear
   (late_game +11.6 and npcs_or_dp +1.9 join after_wipe, power_play, runner_choice, split_or_stay); play_for_28 -1.0.
   Rejected link of Denning's now P.26 -> R.2 (fight outcome) as well as P.26 -> K.4.
-- Blind test: round 1 model +21 v Denning +3 v usual +4.7 (expected points); round 2 Denning +19.5 v model -6.1 v
-  usual -15.5; round 3 open (batch 17).
+- Blind test: rounds 1 and 2 are first design (kept, not counted); round 3 void; nothing counted yet.
 - Discovery run 1 (run 42618611013): 24 own_/diff_ candidates passed once; the second run is next (offers candidates).
 - Readability test 2 (docs/tests/readability-2026-11-09b.md): no, 14 of 18 at least partly explained; items 7 and 9
   queued below. Never queue two Train batch runs at once (both failed on 2026-11-09).
 
 ## Next (in order)
-1. Run the readability test a third time on the regenerated page (a fresh session reads knowledge/model.md alone).
-2. Discovery workflow (second run; candidates passing twice are offered). Then chunks of about 45 (Train batch,
-   pick 45, add_batch yes; TQs every other chunk; a blind round each chunk), no engine change between them; proposals queue in `data/model/causal_map.json` "waiting" and here.
-3. Next bundle (after 4 or 5 chunks): the open rulings below; interaction selection stable across batches (batch 17
-   swapped pairs and lost 0.027 log loss; e.g. keep pairs that won the held-out pair test); Tier 2 table results column (readability item 7);
-   rename map groups "Control received" where there is no runner (item 9); the second form of the query tool (a
-   situation without a match); per-node readings by strength band; port `nodes.py` nodes into the learned-node
-   framework if wanted; a results history for blind-test rounds across engine versions.
+1. Denning: confirm or reword the draft rulings R-292 to R-303 and answer the open questions (both in REDESIGN.md);
+   then append the confirmed ones to RULINGS.md. Label the halls on Model > Guild hall maps, most played first.
+2. Redesign step 2 = bundle 4, one rebuild (REDESIGN.md "Step 2 items"): zones and path distance from the maps,
+   departures, event triggers, scenarios, calls as allocations, shape, the consequence record, jobs, enemy execution,
+   interaction pairs that must pass twice. Before the rebuild: about 20 to 30 golden moments for Denning to label (a
+   site page to build). Fold in: the open rulings below, the Tier 2 results column and the "Control received" rename
+   (readability items 7 and 9). Then step 3 (the decision card; blind rounds resume; TQs retired), then step 4.
+3. Meanwhile, if wanted: chunks of about 45 (Train batch, pick 45, add_batch yes; no engine change between them), the
+   Discovery workflow's second run, and a third readability run on knowledge/model.md.
 
 ## Open rulings for Denning
 - P.26 cast prevention: rejected into power play (batch 16) and fight outcome (batch 17): override or not yet.
@@ -47,10 +55,12 @@ rulings: `docs/RULINGS.md` (cite R-numbers); every fitted model's structure: `kn
 ## Running it
 - Train batch: `gh api -X POST repos/itsha12/gvginfo/actions/workflows/train-batch.yml/dispatches -f ref=main
   -f 'inputs[pick]=45' -f 'inputs[add_batch]=yes'` (rebuild only: `inputs[add_batch]=no`; TQs `inputs[tqs]=yes|no|auto`;
-  blind round `inputs[blind]=auto|yes|no`). Then pull main and read `data/model/reports/latest.md`. Discovery: the
+  blind round `inputs[blind]=no|yes|auto`, default no while rounds are paused). Then pull main and read `data/model/reports/latest.md`. Discovery: the
   "Discovery" workflow (commits discovery.json, the history and knowledge/discovery.md).
 - Blind test: rounds in `data/model/blind_tests.json`; the site page answers and scores (`advice.py blind_score [n]`
   from the shell; `advice.py /tmp/ga --blind-only --batch=N` adds a round; `blind_enrich` fills missing context).
+- Maps: `python3 tools/maps/build_maps.py` (needs the replays branch, about 30 s) rebuilds outlines and replay-derived
+  points after new replays; it never touches `data/maps/labels/` (Denning's) or the engine's `data/maps/<id>.json`.
 - Query tool: `python3 ask.py <report id> <m:ss> [team]` (needs `analyze.py --all --out /tmp/ga` and the cache warm).
 - Local engine: `git fetch --depth 1 origin +replays:refs/remotes/origin/replays`; `pip install
   --break-system-packages -r .github/workflows/train-requirements.txt`; in tools/replay_analysis `cache.py sync pull`,
@@ -66,3 +76,4 @@ rulings: `docs/RULINGS.md` (cite R-numbers); every fitted model's structure: `kn
   in the last digits between machines, so small report differences are noise.
 - No energy, line of sight or NPC positions in the replays; proxies carry lower confidence. Never print or decode a
   blind-test pick's sealed field in a chat (a round was discarded for that).
+- The site's save failed on files over about 120 KB (fixed in core.js, 2026-11-09): blind_tests.json was at 107 KB.

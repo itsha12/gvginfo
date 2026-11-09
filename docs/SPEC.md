@@ -15,11 +15,12 @@ from data. In testable form:
 3. A "better play" is a choice a team could have made at that moment, measured against what similar teams did in
    similar situations (the decision tier).
 4. The engine's advice beats the usual play on held-out matches (the advice test, report section "Does the advice
-   work?"), and beats Denning's calls in the sealed blind test (R-274, R-284): a round of eight sealed picks (six
-   random, two where the advice differs from the usual play) is added after every chunk and never refreshed; Denning
-   answers and scores rounds on the site (Model > Blind test; `data/model/blind_tests.json`), each call priced by the
-   mean win-chance change of teams that made that choice in the 15 most similar decisions, and matched against what
-   the team did.
+   work?"), and beats Denning's calls in the sealed blind test (R-274, R-284). The blind test is paused while the
+   decision tier is rebuilt (`docs/REDESIGN.md`): rounds 1 and 2 were scored on the first design and are kept for the
+   record, round 3 is void, and none of them counts. When rounds resume, Denning answers and scores them on the site
+   (Model > Blind test; `data/model/blind_tests.json`); a call is priced by the mean win-chance change of teams that
+   made that choice in the most similar decisions, only when at least 5 such teams exist, and the one score kept is
+   cumulative across rounds with a 90% range (what the team did is description, not a score).
 
 Nothing is a weight or a default unless it is measured or is a definition (R-series "Model and engine rules").
 Definitions (what counts as a fight, a hold, a power play) come from Denning; values and best plays come from data.

@@ -146,6 +146,11 @@ def lines(res):
 # ---- the blind test (sealed rounds; answered on the site's Model > Blind test page, scored there or by `advice.py blind_score`)
 BLIND = os.path.join(REPO, "data", "model", "blind_tests.json")
 BLIND_N, BLIND_SPECIFIC = 8, 2       # Denning (R-284): 8 picks a round, 6 random and 2 where the advice differs from the usual play
+# A call is priced only when this many similar teams made it (Claude's threshold, for Denning to confirm): in rounds 1 and
+# 2, 9 of Denning's 16 calls rested on fewer, and the round totals came almost entirely from those cells.
+BLIND_MIN_CASES = 5
+# Rounds of the first design (5 s movement labels, up to 16 options, mostly random picks) carry "design": "old": kept for
+# the record, never counted in the cumulative score. A round with status "void" is never scored or shown as open.
 
 
 def _seal(obj):
@@ -160,12 +165,12 @@ def _unseal(txt):
 
 def _load_blind():
     if os.path.exists(BLIND): return json.load(open(BLIND))
-    return {"about": "The blind test (Denning, November 2026 review): sealed moments where Denning's call and the model's are both "
-                     "recorded before the outcome is read. A round is added after every training chunk and never refreshed: open "
-                     "rounds wait until Denning answers them on the site (Model > Blind test). Each pick carries the model's call, "
-                     "the usual play, and a sealed part (base64, never printed: the actual choice, its win-chance change, and the "
-                     "mean win-chance change of each choice among the 15 most similar decisions in other matches). Scoring: each "
-                     "call's expected win-chance change in that situation, and whether it matched what the team did.", "rounds": []}
+    return {"about": "The blind test: sealed moments where Denning's call and the model's are both recorded before the outcome is "
+                     "read. Each pick carries the model's call, the usual play, and a sealed part (base64, never printed: the "
+                     "actual choice, its win-chance change, and the mean win-chance change of each choice among the most similar "
+                     "decisions in other matches). Scoring: each call's expected win-chance change in that situation, priced only "
+                     f"when the call has at least {BLIND_MIN_CASES} similar cases; totals are cumulative across rounds, with a range.",
+            "rounds": []}
 
 
 _SRC = ["/tmp/ga"]
@@ -296,36 +301,61 @@ def blind_pick(recs, n=BLIND_N, specific=BLIND_SPECIFIC, seed=None, batch=None):
 
 
 def blind_score(rid=None):
-    """Reveal and score one round (the oldest open one by default). Refuses until every denning_call is filled in. For each
-    pick: the mean win-chance change of teams that made each caller's choice in that situation (sealed at pick time),
-    whether each call matched what the team actually did, and the actual outcome. Totals per caller."""
+    """Reveal and score one round (the oldest open one by default; a void round is never scored). Refuses until every
+    denning_call is filled in. For each pick: the mean win-chance change of teams that made each caller's choice in that
+    situation (sealed at pick time), priced only when at least BLIND_MIN_CASES similar teams made it; what the team
+    actually did and its outcome are recorded as description, not as a score. Totals per caller count priced calls only."""
     data = _load_blind()
-    rounds = [r for r in data["rounds"] if (rid is None and r["status"] == "open") or r["id"] == rid]
+    rounds = [r for r in data["rounds"] if (rid is None and r["status"] == "open") or (rid is not None and r["id"] == rid)]
     if not rounds: print("No such round, or nothing open."); return None
     rd = rounds[0]
+    if rd["status"] == "void": print(f"Round {rd['id']} is void and is not scored."); return None
     missing = [p["id"] for p in rd["picks"] if not p.get("denning_call")]
     if missing: print(f"Round {rd['id']} not scored: denning_call is empty for picks {missing}. Fill every call in first."); return None
-    tot = collections.Counter(); hit = collections.Counter(); rows = []
+    tot = collections.Counter(); priced = collections.Counter(); rows = []
     for p in rd["picks"]:
         s = _unseal(p["sealed"]); eff = s["choice_effects"]
         row = {"id": p["id"], "actual_choice": s["actual_choice"], "outcome_wp_change": s["wp_change"]}
         for who, call in (("model", p["model_call"]), ("denning", p["denning_call"]), ("usual", p["usual_play"])):
             e = eff.get(call)
+            ok = bool(e) and e["cases"] >= BLIND_MIN_CASES
             row[who] = {"call": call, "expected": e["mean_wp_change"] if e else None, "cases": e["cases"] if e else 0,
-                        "matched_actual": call == s["actual_choice"]}
-            if e: tot[who] += e["mean_wp_change"]
-            if call == s["actual_choice"]: hit[who] += 1
+                        "priced": ok, "matched_actual": call == s["actual_choice"]}
+            if ok: tot[who] += e["mean_wp_change"]; priced[who] += 1
         rows.append(row)
     rd["status"] = "scored"
-    rd["scored"] = {"at": __import__("datetime").date.today().isoformat(), "picks": rows,
-                    "totals": {who: {"expected_wp_change_sum": round(tot[who], 1), "matched_actual": hit[who]} for who in ("model", "denning", "usual")}}
+    rd["scored"] = {"at": __import__("datetime").date.today().isoformat(), "min_cases": BLIND_MIN_CASES, "picks": rows,
+                    "totals": {who: {"expected_wp_change_sum": round(tot[who], 1), "priced": priced[who]} for who in ("model", "denning", "usual")}}
     json.dump(data, open(BLIND, "w"), indent=1)
     for p, r in zip(rd["picks"], rows):
-        print(f"{r['id']:>2} {p['kind']:<24} {p['match'][:8]} {p['team']:<6} {p['t']:>5}  actual: {r['actual_choice']} ({r['outcome_wp_change']:+})")
+        print(f"{r['id']:>2} {p['kind']:<24} {p['match'][:8]} {p['team']:<6} {p['t']:>5}  the team did: {r['actual_choice']} ({r['outcome_wp_change']:+})")
         for who in ("model", "denning", "usual"):
-            c = r[who]; print(f"     {who:<8} {c['call']:<28} expected {c['expected'] if c['expected'] is not None else 'n/a (no similar case)'} ({c['cases']} cases){'  = actual' if c['matched_actual'] else ''}")
-    print("Totals:", json.dumps(rd["scored"]["totals"]))
+            c = r[who]; print(f"     {who:<8} {c['call']:<28} " + (f"expected {c['expected']} ({c['cases']} cases)" if c["priced"] else f"not enough similar cases ({c['cases']})"))
+    print("Totals (priced calls only):", json.dumps(rd["scored"]["totals"]))
+    cu = blind_cumulative(data)
+    if cu["n"]: print("Cumulative:", json.dumps(cu))
     return rd
+
+
+def blind_cumulative(data=None):
+    """The one score the blind test keeps: over every scored round of the current design (not "design": "old"), the picks
+    where both Denning's call and the model's are priced. Returns the number of such picks, each caller's summed expected
+    win-chance change, and the mean difference Denning minus model per pick with a 90% range (normal approximation over
+    picks; None below 10 picks). The site computes the same figures (assets/js/pages/blindtest.js)."""
+    data = data or _load_blind()
+    d, m, diffs = 0.0, 0.0, []
+    for rd in data["rounds"]:
+        if rd.get("status") != "scored" or rd.get("design") == "old": continue
+        for r in rd["scored"]["picks"]:
+            a, b = r["denning"], r["model"]
+            ok = lambda c: c.get("expected") is not None and c.get("cases", 0) >= BLIND_MIN_CASES
+            if ok(a) and ok(b): d += a["expected"]; m += b["expected"]; diffs.append(a["expected"] - b["expected"])
+    n = len(diffs)
+    out = {"n": n, "denning": round(d, 1), "model": round(m, 1), "mean_diff": round(float(np.mean(diffs)), 2) if n else None, "range90": None}
+    if n >= 10:
+        half = 1.645 * float(np.std(diffs, ddof=1)) / n ** 0.5
+        out["range90"] = [round(out["mean_diff"] - half, 2), round(out["mean_diff"] + half, 2)]
+    return out
 
 
 if __name__ == "__main__":

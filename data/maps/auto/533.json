@@ -1,0 +1,501 @@
+{
+ "map_id": "533",
+ "map": "Uncharted Isle",
+ "replays": 68,
+ "stand": [
+  -5082,
+  -4981
+ ],
+ "res_shrines": [
+  [
+   -3675,
+   5473
+  ],
+  [
+   5194,
+   -3947
+  ]
+ ],
+ "flag_spawns": [
+  [
+   4107,
+   -3931
+  ],
+  [
+   -4590,
+   3520
+  ]
+ ],
+ "npcs": [
+  {
+   "kind": "guild_lord",
+   "pos": [
+    5314,
+    -3985
+   ],
+   "matches": 41,
+   "samples": 2911,
+   "how": "melee"
+  },
+  {
+   "kind": "guild_lord",
+   "pos": [
+    -3575,
+    5498
+   ],
+   "matches": 38,
+   "samples": 3415,
+   "how": "melee"
+  },
+  {
+   "kind": "bodyguard",
+   "pos": [
+    5596,
+    -3929
+   ],
+   "matches": 31,
+   "samples": 513,
+   "how": "melee"
+  },
+  {
+   "kind": "bodyguard",
+   "pos": [
+    -3469,
+    5470
+   ],
+   "matches": 28,
+   "samples": 653,
+   "how": "melee"
+  },
+  {
+   "kind": "bodyguard",
+   "pos": [
+    -2856,
+    6138
+   ],
+   "matches": 5,
+   "samples": 297,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    -4365,
+    3910
+   ],
+   "matches": 48,
+   "samples": 2560,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    3561,
+    -3854
+   ],
+   "matches": 46,
+   "samples": 2611,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    5327,
+    -3740
+   ],
+   "matches": 19,
+   "samples": 914,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    -3424,
+    5546
+   ],
+   "matches": 11,
+   "samples": 512,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    6140,
+    -3320
+   ],
+   "matches": 8,
+   "samples": 268,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    4294,
+    -3902
+   ],
+   "matches": 7,
+   "samples": 319,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    -2800,
+    6139
+   ],
+   "matches": 6,
+   "samples": 83,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    2712,
+    -3837
+   ],
+   "matches": 5,
+   "samples": 114,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    -3945,
+    2933
+   ],
+   "matches": 3,
+   "samples": 44,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    6151,
+    -2696
+   ],
+   "matches": 3,
+   "samples": 57,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    5348,
+    -4125
+   ],
+   "matches": 32,
+   "samples": 1023,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    2367,
+    -2728
+   ],
+   "matches": 25,
+   "samples": 454,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -3686,
+    2365
+   ],
+   "matches": 21,
+   "samples": 438,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    6286,
+    -1388
+   ],
+   "matches": 18,
+   "samples": 362,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -977,
+    6282
+   ],
+   "matches": 16,
+   "samples": 296,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -3362,
+    5019
+   ],
+   "matches": 15,
+   "samples": 308,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -4059,
+    5384
+   ],
+   "matches": 13,
+   "samples": 184,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    5362,
+    -3543
+   ],
+   "matches": 8,
+   "samples": 156,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -3049,
+    515
+   ],
+   "matches": 3,
+   "samples": 40,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -3832,
+    444
+   ],
+   "matches": 2,
+   "samples": 25,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -4456,
+    3902
+   ],
+   "matches": 2,
+   "samples": 34,
+   "how": "ranged"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    -2000,
+    -679
+   ],
+   "matches": 45,
+   "samples": 2631,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    -580,
+    -1990
+   ],
+   "matches": 41,
+   "samples": 3385,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    5824,
+    1336
+   ],
+   "matches": 29,
+   "samples": 775,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    -1440,
+    -1231
+   ],
+   "matches": 27,
+   "samples": 1068,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    1686,
+    5898
+   ],
+   "matches": 24,
+   "samples": 384,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    -3126,
+    -554
+   ],
+   "matches": 18,
+   "samples": 769,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    -2273,
+    -98
+   ],
+   "matches": 16,
+   "samples": 501,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    -662,
+    -2796
+   ],
+   "matches": 12,
+   "samples": 553,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    5536,
+    2141
+   ],
+   "matches": 10,
+   "samples": 212,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    -661,
+    -3779
+   ],
+   "matches": 9,
+   "samples": 296,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    1077,
+    6124
+   ],
+   "matches": 7,
+   "samples": 130,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    368,
+    -2984
+   ],
+   "matches": 7,
+   "samples": 313,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    16,
+    -1575
+   ],
+   "matches": 7,
+   "samples": 159,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    1081,
+    -3021
+   ],
+   "matches": 5,
+   "samples": 150,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    -870,
+    -1380
+   ],
+   "matches": 4,
+   "samples": 400,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    6226,
+    582
+   ],
+   "matches": 4,
+   "samples": 143,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    -3123,
+    774
+   ],
+   "matches": 3,
+   "samples": 20,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    -1386,
+    -719
+   ],
+   "matches": 3,
+   "samples": 104,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    -2406,
+    -1080
+   ],
+   "matches": 2,
+   "samples": 430,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    97,
+    6136
+   ],
+   "matches": 2,
+   "samples": 32,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    -1100,
+    621
+   ],
+   "matches": 2,
+   "samples": 54,
+   "how": "melee"
+  }
+ ]
+}

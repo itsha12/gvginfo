@@ -1,0 +1,241 @@
+{
+ "map_id": "534",
+ "map": "Isle of Wurms",
+ "replays": 6,
+ "stand": [
+  0,
+  1668
+ ],
+ "res_shrines": [
+  [
+   8570,
+   3020
+  ],
+  [
+   -9172,
+   3081
+  ]
+ ],
+ "flag_spawns": [
+  [
+   -7387,
+   1841
+  ],
+  [
+   7310,
+   1910
+  ]
+ ],
+ "npcs": [
+  {
+   "kind": "guild_lord",
+   "pos": [
+    -9037,
+    3066
+   ],
+   "matches": 4,
+   "samples": 142,
+   "how": "melee"
+  },
+  {
+   "kind": "guild_lord",
+   "pos": [
+    8630,
+    3040
+   ],
+   "matches": 2,
+   "samples": 152,
+   "how": "melee"
+  },
+  {
+   "kind": "bodyguard",
+   "pos": [
+    -9081,
+    3337
+   ],
+   "matches": 4,
+   "samples": 63,
+   "how": "melee"
+  },
+  {
+   "kind": "bodyguard",
+   "pos": [
+    8666,
+    3446
+   ],
+   "matches": 2,
+   "samples": 33,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    7277,
+    2457
+   ],
+   "matches": 3,
+   "samples": 83,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    -7083,
+    2936
+   ],
+   "matches": 3,
+   "samples": 72,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    -7104,
+    2176
+   ],
+   "matches": 2,
+   "samples": 18,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    -9027,
+    3372
+   ],
+   "matches": 2,
+   "samples": 31,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    6273,
+    2743
+   ],
+   "matches": 2,
+   "samples": 55,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    7108,
+    1854
+   ],
+   "matches": 1,
+   "samples": 8,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    -7879,
+    3292
+   ],
+   "matches": 1,
+   "samples": 21,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -8263,
+    3474
+   ],
+   "matches": 5,
+   "samples": 70,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    8029,
+    2418
+   ],
+   "matches": 3,
+   "samples": 72,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -8356,
+    2608
+   ],
+   "matches": 2,
+   "samples": 19,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    8062,
+    3530
+   ],
+   "matches": 2,
+   "samples": 19,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -5502,
+    -1442
+   ],
+   "matches": 1,
+   "samples": 4,
+   "how": "ranged"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -3468,
+    2537
+   ],
+   "matches": 1,
+   "samples": 10,
+   "how": "ranged"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    -1732,
+    1558
+   ],
+   "matches": 6,
+   "samples": 124,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    1961,
+    2079
+   ],
+   "matches": 3,
+   "samples": 108,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    1427,
+    1696
+   ],
+   "matches": 2,
+   "samples": 28,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    -936,
+    1625
+   ],
+   "matches": 1,
+   "samples": 7,
+   "how": "melee"
+  }
+ ]
+}

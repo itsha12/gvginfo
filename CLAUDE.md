@@ -176,7 +176,19 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
 - Documents: SPEC.md and METHODS.md are replaced in place; the CHANGELOG gets at most ten lines per session; HANDOFF.md
   stays under 80 lines. Don't write session narrative into any other file.
 - Before an engine change ships, a fresh session that has not seen the build reads `knowledge/model.md` alone and must
-  be able to explain each node in GvG terms (the readability test).
+  be able to explain each node in GvG terms (the readability test). The same test covers anything Denning answers or
+  reads a verdict on (the blind test page, a decision card): the fresh session must be able to say each option and
+  each verdict as a sentence a player would use.
+- The decision tier is being rebuilt: `docs/REDESIGN.md` is the plan (families, scenarios, calls, the decision card,
+  the steps and their gates). Read it before touching `decisions.py`, `usual.py`, `advice.py`, `ask.py` or `tq.py`.
+  Its draft rulings are not in force until Denning confirms them. Blind rounds are paused meanwhile (Train batch
+  input `blind` stays on no).
+- Guild hall maps: `tools/maps/build_maps.py` builds the site's map data from the replays branch
+  (`data/maps/index.json`, `outline/<map id>.json`, `auto/<map id>.json`); Denning's labels (points, areas, routes) are
+  saved by the site's Model > Guild hall maps page to `data/maps/labels/<map id>.json` and override estimates. The
+  engine does not read outlines or labels yet (REDESIGN.md step 2). `data/maps/<map id>.json` (no subfolder) is the
+  engine's own NPC store and is not touched by either. Never add a `.py` file to `tools/replay_analysis/` for site or
+  tooling work: every file there is part of the measurement cache key and would force a full rebuild.
 
 ## Rules
 - Do not edit `data/skills.json` by hand; it is regenerated from the wiki. Put corrections in `data/skill_notes.json`
@@ -191,5 +203,6 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
 - `data/` — skills, template id map, templates, skill notes.
 - `knowledge/` — markdown pages shown on the portal's "Mechanics and rules" page (`index.json` lists them; Misc last).
 - `tools/` — calculator (`gw_calc.py`), template codec (`gwtemplate.py`), `gvgreport/` (sync + aggregate, Node),
-  `wiki/sync.mjs` (skill refresh, Node), `wiki_scraper.js` (browser version of the scraper).
+  `wiki/sync.mjs` (skill refresh, Node), `wiki_scraper.js` (browser version of the scraper), `replay_analysis/` (the
+  engine), `maps/` (map data for the site).
 - `.github/workflows/` — "Update matches" and "Update skills from the wiki", started from the portal's Recent matches page.

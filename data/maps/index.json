@@ -1,0 +1,103 @@
+{
+ "generated": "2026-11-09",
+ "halls": [
+  {
+   "id": "541",
+   "map": "Corrupted Isle",
+   "replays": 87,
+   "outline": "gvg.report",
+   "wiki": "https://wiki.guildwars.com/wiki/Corrupted_Isle"
+  },
+  {
+   "id": "358",
+   "map": "Isle of Meditation",
+   "replays": 86,
+   "outline": "gvg.report",
+   "wiki": "https://wiki.guildwars.com/wiki/Isle_of_Meditation"
+  },
+  {
+   "id": "542",
+   "map": "Isle of Solitude",
+   "replays": 80,
+   "outline": "gvg.report",
+   "wiki": "https://wiki.guildwars.com/wiki/Isle_of_Solitude"
+  },
+  {
+   "id": "168",
+   "map": "Druid's Isle",
+   "replays": 71,
+   "outline": "walked",
+   "wiki": "https://wiki.guildwars.com/wiki/Druid's_Isle"
+  },
+  {
+   "id": "533",
+   "map": "Uncharted Isle",
+   "replays": 68,
+   "outline": "gvg.report",
+   "wiki": "https://wiki.guildwars.com/wiki/Uncharted_Isle"
+  },
+  {
+   "id": "356",
+   "map": "Isle of Jade",
+   "replays": 62,
+   "outline": "gvg.report",
+   "wiki": "https://wiki.guildwars.com/wiki/Isle_of_Jade"
+  },
+  {
+   "id": "355",
+   "map": "Isle of Weeping Stone",
+   "replays": 39,
+   "outline": "gvg.report",
+   "wiki": "https://wiki.guildwars.com/wiki/Isle_of_Weeping_Stone"
+  },
+  {
+   "id": "174",
+   "map": "Nomad's Isle",
+   "replays": 17,
+   "outline": "walked",
+   "wiki": "https://wiki.guildwars.com/wiki/Nomad's_Isle"
+  },
+  {
+   "id": "357",
+   "map": "Imperial Isle",
+   "replays": 14,
+   "outline": "gvg.report",
+   "wiki": "https://wiki.guildwars.com/wiki/Imperial_Isle"
+  },
+  {
+   "id": "171",
+   "map": "Warrior's Isle",
+   "replays": 10,
+   "outline": "gvg.report",
+   "wiki": "https://wiki.guildwars.com/wiki/Warrior's_Isle"
+  },
+  {
+   "id": "175",
+   "map": "Isle of the Dead",
+   "replays": 9,
+   "outline": "walked",
+   "wiki": "https://wiki.guildwars.com/wiki/Isle_of_the_Dead_(guild_hall)"
+  },
+  {
+   "id": "534",
+   "map": "Isle of Wurms",
+   "replays": 6,
+   "outline": "gvg.report",
+   "wiki": "https://wiki.guildwars.com/wiki/Isle_of_Wurms"
+  },
+  {
+   "id": "170",
+   "map": "Frozen Isle",
+   "replays": 6,
+   "outline": "walked",
+   "wiki": "https://wiki.guildwars.com/wiki/Frozen_Isle"
+  },
+  {
+   "id": "167",
+   "map": "Burning Isle",
+   "replays": 3,
+   "outline": "walked",
+   "wiki": "https://wiki.guildwars.com/wiki/Burning_Isle"
+  }
+ ]
+}

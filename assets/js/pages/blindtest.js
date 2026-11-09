@@ -1,12 +1,18 @@
 import { esc, readJson, writeJson, canSave, toast } from "../core.js";
 
-// The blind test (Denning, November 2026 review). Rounds are added by the engine after each training chunk
-// (tools/replay_analysis/advice.py) and never refreshed. For each pick Denning records his call before the model's is
-// shown; once every call in a round is in, the round is scored here in the browser from the sealed part of each pick
-// (base64: the actual choice, its win-chance change and the mean win-chance change of each choice among the 15 most
-// similar decisions in other matches) and the result is saved back to the same file. Scoring matches advice.py.
+// The blind test (Denning, November 2026 review). Rounds are added by the engine (tools/replay_analysis/advice.py) and
+// never refreshed. For each pick Denning records his call before the model's is shown; once every call in a round is in,
+// the round is scored here in the browser from the sealed part of each pick (base64: the actual choice, its win-chance
+// change and the mean win-chance change of each choice among the most similar decisions in other matches) and the
+// result is saved back to the same file. Scoring matches advice.py (blind_score, blind_cumulative):
+// - a call is priced only when at least MIN_CASES similar teams made it; otherwise "not enough similar cases";
+// - what the team actually did is shown as description, never as a score;
+// - the only total is cumulative, over rounds of the current design (rounds marked design "old" are kept for the
+//   record and not counted; a round with status "void" is never shown as open or scored), with a 90% range.
 
 const PATH = "data/model/blind_tests.json";
+const MIN_CASES = 5;             // advice.BLIND_MIN_CASES
+const RANGE_FROM = 10;           // picks before a range is shown (advice.blind_cumulative)
 let data = null;
 const open = new Set();          // picks whose model call Denning asked to see before saving (noted on the pick)
 
@@ -42,22 +48,41 @@ function situation(s) {
   return parts.join(" · ");
 }
 
+const isPriced = (c) => c && c.expected !== null && c.expected !== undefined && (c.cases || 0) >= MIN_CASES;
+
 function scoreRound(rd) {
-  const tot = { model: 0, denning: 0, usual: 0 }, hit = { model: 0, denning: 0, usual: 0 }, rows = [];
+  const tot = { model: 0, denning: 0, usual: 0 }, priced = { model: 0, denning: 0, usual: 0 }, rows = [];
   for (const p of rd.picks) {
     const s = unseal(p.sealed), eff = s.choice_effects || {};
     const row = { id: p.id, actual_choice: s.actual_choice, outcome_wp_change: s.wp_change };
     for (const [who, call] of [["model", p.model_call], ["denning", p.denning_call], ["usual", p.usual_play]]) {
       const e = eff[call];
-      row[who] = { call, expected: e ? e.mean_wp_change : null, cases: e ? e.cases : 0, matched_actual: call === s.actual_choice };
-      if (e) tot[who] += e.mean_wp_change;
-      if (call === s.actual_choice) hit[who] += 1;
+      const c = { call, expected: e ? e.mean_wp_change : null, cases: e ? e.cases : 0, matched_actual: call === s.actual_choice };
+      c.priced = isPriced(c);
+      row[who] = c;
+      if (c.priced) { tot[who] += e.mean_wp_change; priced[who] += 1; }
     }
     rows.push(row);
   }
   const totals = {};
-  for (const who of ["model", "denning", "usual"]) totals[who] = { expected_wp_change_sum: Math.round(tot[who] * 10) / 10, matched_actual: hit[who] };
-  return { at: new Date().toISOString().slice(0, 10), picks: rows, totals };
+  for (const who of ["model", "denning", "usual"]) totals[who] = { expected_wp_change_sum: Math.round(tot[who] * 10) / 10, priced: priced[who] };
+  return { at: new Date().toISOString().slice(0, 10), min_cases: MIN_CASES, picks: rows, totals };
+}
+
+// The one score kept: over scored rounds of the current design, the picks where both calls are priced.
+function cumulative(rounds) {
+  const diffs = []; let d = 0, m = 0;
+  for (const rd of rounds) {
+    if (rd.status !== "scored" || rd.design === "old") continue;
+    for (const r of rd.scored.picks) if (isPriced(r.denning) && isPriced(r.model)) { d += r.denning.expected; m += r.model.expected; diffs.push(r.denning.expected - r.model.expected); }
+  }
+  const n = diffs.length, mean = n ? diffs.reduce((a, b) => a + b, 0) / n : null;
+  let range = null;
+  if (n >= RANGE_FROM) {
+    const sd = Math.sqrt(diffs.reduce((a, x) => a + (x - mean) ** 2, 0) / (n - 1)), half = 1.645 * sd / Math.sqrt(n);
+    range = [mean - half, mean + half];
+  }
+  return { n, denning: d, model: m, mean, range };
 }
 
 // zones are recorded from each team's own point of view; shown from the deciding team's
@@ -95,48 +120,52 @@ function contextHtml(p) {
 function pickHtml(rd, p) {
   const answered = !!p.denning_call;
   const showModel = answered || open.has(`${rd.id}:${p.id}`);
+  const needReason = answered && p.denning_call !== p.model_call && !p.denning_reason;   // asked for, never forced
   return `<div class="bt-pick" data-pick="${p.id}">
     <div class="row" style="justify-content:space-between"><b>${p.id}. ${esc(KIND[p.kind] || p.kind)}: ${esc(QUESTION[p.kind] || "")}</b>
       <span class="muted small">${esc(p.team)} v ${esc(p.opponent || "?")}${p.map ? `, ${esc(p.map)}` : ""}, at ${clock(p.t)}${p.specific && answered ? ' · <span title="the model\'s call differs from the usual play">specific advice</span>' : ""}</span></div>
     ${contextHtml(p)}
     <div class="row">${(p.choices_seen || []).map((c) => `<button class="btn small${p.denning_call === c ? " primary" : ""}" data-call="${esc(c)}"${answered ? " disabled" : ""}>${esc(c)}</button>`).join("")}</div>
-    <textarea data-reason placeholder="Why (optional)"${answered ? " disabled" : ""} style="min-height:48px;margin:.5rem 0">${esc(p.denning_reason || "")}</textarea>
+    ${needReason ? `<p class="bt-ask small"><b>Your call differs from the model's.</b> One line on why is the most useful thing this page collects: it becomes a candidate variable or a ruling.</p>` : ""}
+    <textarea data-reason placeholder="${needReason ? "Why your call and not the model's" : "Why (asked for whenever your call differs from the model's)"}"${answered && !needReason ? " disabled" : ""} style="min-height:48px;margin:.5rem 0">${esc(p.denning_reason || "")}</textarea>
     <div class="row">
-      ${answered ? "" : `<button class="btn small primary" data-save>Save my call</button><button class="btn small ghost" data-peek>Show the model's call first</button>`}
+      ${answered ? (needReason ? `<button class="btn small primary" data-save-reason>Save my reason</button>` : "") : `<button class="btn small primary" data-save>Save my call</button><button class="btn small ghost" data-peek>Show the model's call first</button>`}
       ${showModel ? `<span class="small">Model: <b>${esc(p.model_call)}</b> · usual play: ${esc(p.usual_play)}${p.peeked ? ' <span class="muted">(seen before calling)</span>' : ""}</span>` : `<span class="muted small">The model's call is shown after you save yours.</span>`}
     </div>
   </div>`;
 }
 
 function scoredHtml(rd) {
-  const sc = rd.scored, T = sc.totals;
-  const who = (w) => `${fmt(T[w].expected_wp_change_sum)} pts, matched the team ${T[w].matched_actual} of ${rd.picks.length}`;
-  return `<p><b>Scored ${esc(sc.at)}.</b> Expected win-chance change summed over the round (each call priced by what teams making that choice in that situation went on to do), and how often each call matched what the team actually did.</p>
-  <ul><li>You: ${who("denning")}</li><li>Model: ${who("model")}</li><li>Usual play: ${who("usual")}</li></ul>
-  <div class="tablewrap"><table class="data"><thead><tr><th>#</th><th>Decision</th><th>Moment</th><th>Your call</th><th>Model</th><th>Usual</th><th>Team did</th><th class="num">Outcome</th></tr></thead><tbody>
-  ${rd.picks.map((p) => { const r = sc.picks.find((x) => x.id === p.id); const cell = (c) => `${esc(c.call)}<br><span class="muted small">${fmt(c.expected)}${c.matched_actual ? " ✓" : ""}</span>`;
-    return `<tr><td>${p.id}</td><td>${esc(KIND[p.kind] || p.kind)}</td><td class="wrap small">${esc(p.team)} v ${esc(p.opponent || "?")} ${clock(p.t)}${p.denning_reason ? `<br><span class="muted">${esc(p.denning_reason)}</span>` : ""}</td><td>${cell(r.denning)}</td><td>${cell(r.model)}</td><td>${cell(r.usual)}</td><td>${esc(r.actual_choice)}</td><td class="num">${fmt(r.outcome_wp_change)}</td></tr>`; }).join("")}
+  const sc = rd.scored;
+  const cell = (c) => `${esc(c.call)}<br><span class="muted small">${isPriced(c) ? `${fmt(c.expected)} (${c.cases} cases)` : `not enough similar cases (${c.cases || 0})`}</span>`;
+  const thin = sc.picks.filter((r) => !isPriced(r.denning) || !isPriced(r.model)).length;
+  return `<p><b>Scored ${esc(sc.at)}.</b> ${rd.design === "old" ? "First design: kept for the record, not counted in the cumulative score." : ""} ${thin} of ${sc.picks.length} picks have a call resting on fewer than ${MIN_CASES} similar cases, so those picks carry no price.</p>
+  <div class="tablewrap"><table class="data"><thead><tr><th>#</th><th>Decision</th><th>Moment</th><th>Your call</th><th>Model</th><th>Usual</th><th>What the team did</th><th class="num">What followed</th></tr></thead><tbody>
+  ${rd.picks.map((p) => { const r = sc.picks.find((x) => x.id === p.id);
+    return `<tr><td>${p.id}</td><td>${esc(KIND[p.kind] || p.kind)}</td><td class="small">${esc(p.team)} v ${esc(p.opponent || "?")} ${clock(p.t)}</td><td>${cell(r.denning)}</td><td>${cell(r.model)}</td><td>${cell(r.usual)}</td><td>${esc(r.actual_choice)}</td><td class="num">${fmt(r.outcome_wp_change)}</td></tr>${p.denning_reason ? `<tr><td></td><td colspan="7" class="small muted" style="white-space:normal"><b>Your reason:</b> ${esc(p.denning_reason)}</td></tr>` : ""}`; }).join("")}
   </tbody></table></div>
-  <p class="muted small">✓ = the call matched what the team did. Points under a call = the mean win-chance change of teams that made it in the 15 most similar decisions (a blank means no similar team made that call). Outcome = this team's win-chance change over the decision's window.</p>`;
+  <p class="muted small">Points under a call = the mean win-chance change of teams that made it in the most similar decisions, shown only with ${MIN_CASES}+ such teams. "What the team did" and "what followed" (its win-chance change over the decision's window) describe this match; they are not a score for any caller.</p>`;
 }
 
-function historyHtml(rounds) {
-  const done = rounds.filter((r) => r.status === "scored");
-  if (!done.length) return "";
-  const sum = (w, k) => done.reduce((a, r) => a + (r.scored.totals[w][k] || 0), 0);
-  const n = done.reduce((a, r) => a + r.picks.length, 0);
-  return `<h3>Across ${done.length} scored round${done.length === 1 ? "" : "s"} (${n} picks)</h3>
-  <div class="tablewrap"><table class="data"><thead><tr><th>Caller</th><th class="num">Expected points</th><th class="num">Matched the team</th></tr></thead><tbody>
-  ${["denning", "model", "usual"].map((w) => `<tr><td>${w === "denning" ? "You" : w === "model" ? "Model" : "Usual play"}</td><td class="num">${fmt(sum(w, "expected_wp_change_sum"))}</td><td class="num">${sum(w, "matched_actual")} of ${n}</td></tr>`).join("")}
-  </tbody></table></div>`;
+function cumulativeHtml(rounds) {
+  const c = cumulative(rounds);
+  const old = rounds.filter((r) => r.design === "old" && r.status === "scored").length;
+  if (!c.n) return `<h3>Cumulative score</h3><p class="muted">No picks counted yet.${old ? ` The ${old} scored round${old === 1 ? "" : "s"} below used the first design and ${old === 1 ? "is" : "are"} not counted.` : ""}</p>`;
+  const sign = c.mean > 0 ? "you ahead" : c.mean < 0 ? "the model ahead" : "level";
+  return `<h3>Cumulative score <span class="muted small">(${c.n} picks where both calls have ${MIN_CASES}+ similar cases)</span></h3>
+  <div class="tablewrap"><table class="data"><thead><tr><th>Caller</th><th class="num">Expected win points, summed</th></tr></thead><tbody>
+  <tr><td>You</td><td class="num">${fmt(c.denning)}</td></tr><tr><td>Model</td><td class="num">${fmt(c.model)}</td></tr></tbody></table></div>
+  <p>Per pick, your call minus the model's: <b>${fmt(c.mean)}</b> (${sign})${c.range ? `, 90% range ${fmt(c.range[0])} to ${fmt(c.range[1])}${c.range[0] <= 0 && c.range[1] >= 0 ? ": no clear difference yet" : ""}` : `; a range is shown from ${RANGE_FROM} picks`}.</p>`;
 }
 
 export async function renderBlindTest(out) {
   data = await readJson(PATH, { rounds: [] });
   const rounds = [...(data.rounds || [])].sort((a, b) => b.id - a.id);
   const openRounds = rounds.filter((r) => r.status === "open");
+  const voided = rounds.filter((r) => r.status === "void");
   out.innerHTML = `<h1>Blind test</h1>
-  <p>Ten seconds of a stored match, the situation, and the choices teams made there. Record your call before the model's is shown; when all picks in a round are answered, score it. A round is added after every training chunk and waits until you answer it. ${canSave() ? "" : '<b>Add your GitHub key in Settings to save calls.</b>'}</p>
+  <p>A moment from a stored match, the situation, and the calls teams made there. Record your call before the model's is shown; when all picks in a round are answered, score it. ${canSave() ? "" : '<b>Add your GitHub key in Settings to save calls.</b>'}</p>
+  <p class="bt-ask"><b>New rounds are paused.</b> The first design asked about five seconds of movement, offered up to 16 options, and priced calls on too few cases. Rounds resume once picks are built from decisions as a shot-caller makes them: at most five options, chosen where the call matters, with the full reasoning shown after you answer.</p>
   <details class="bt-terms"><summary>The terms used in a pick</summary><ul class="small">
     <li><b>The call is X's</b>: you decide for team X; everything "own" is X's, "the other side" is the opponent.</li>
     <li><b>Flags +N s</b>: X could capture N seconds sooner than the opponent on the next exchange (its flag is nearer the stand, or the opponent's is further); -N the reverse. "Flag: carrying (role)" says who has X's flag.</li>
@@ -151,10 +180,11 @@ export async function renderBlindTest(out) {
   ${!rounds.length ? `<div class="empty-state">No rounds yet. The next training run adds one.</div>` : ""}
   ${openRounds.map((rd) => `<section class="bt-round" data-round="${rd.id}"><h2>Round ${rd.id} <span class="muted small">(${esc(rd.created)}, model trained on ${esc(rd.matches_trained)} matches${rd.batch ? `, batch ${esc(rd.batch)}` : ""}; ${rd.picks.filter((p) => p.denning_call).length} of ${rd.picks.length} answered)</span></h2>
     ${rd.picks.map((p) => pickHtml(rd, p)).join("")}
-    ${rd.picks.every((p) => p.denning_call) ? `<p><button class="btn primary" data-score>Score this round</button></p>` : ""}</section>`).join("")}
-  ${historyHtml(rounds)}
-  ${rounds.filter((r) => r.status === "scored").map((rd) => `<section class="bt-round"><h2>Round ${rd.id} <span class="muted small">(${esc(rd.created)}, ${esc(rd.matches_trained)} matches)</span></h2>${scoredHtml(rd)}</section>`).join("")}
-  <style>.bt-pick{border:1px solid var(--line);padding:.9rem 1rem;margin:.8rem 0}.bt-side{margin:.35rem 0 .35rem;padding-left:.6rem;border-left:2px solid var(--line)}.bt-terms{margin:.6rem 0 1rem}.bt-terms summary{cursor:pointer}.bt-round h2{margin-top:2rem}.small{font-size:.86rem}</style>`;
+    ${rd.picks.every((p) => p.denning_call) ? `<p><button class="btn primary" data-score>Score this round</button>${rd.picks.some((p) => p.denning_call !== p.model_call && !p.denning_reason) ? ' <span class="muted small">Some calls that differ from the model\'s have no reason yet.</span>' : ""}</p>` : ""}</section>`).join("")}
+  ${cumulativeHtml(rounds)}
+  ${rounds.filter((r) => r.status === "scored").map((rd) => `<section class="bt-round"><h2>Round ${rd.id} <span class="muted small">(${esc(rd.created)}, ${esc(rd.matches_trained)} matches${rd.design === "old" ? ", first design" : ""})</span></h2>${scoredHtml(rd)}</section>`).join("")}
+  ${voided.map((rd) => `<section class="bt-round"><h2>Round ${rd.id} <span class="muted small">(${esc(rd.created)}, void)</span></h2><p class="muted">Not answered and not scored. ${esc(rd.void_reason || "")}</p></section>`).join("")}
+  <style>.bt-pick{border:1px solid var(--line);padding:.9rem 1rem;margin:.8rem 0}.bt-side{margin:.35rem 0 .35rem;padding-left:.6rem;border-left:2px solid var(--line)}.bt-terms{margin:.6rem 0 1rem}.bt-terms summary{cursor:pointer}.bt-round h2{margin-top:2rem}.small{font-size:.86rem}.bt-ask{background:var(--accent-soft);border-left:3px solid var(--accent);padding:.5rem .8rem;margin:.6rem 0}</style>`;
 
   const save = async (msg) => { await writeJson(PATH, data, msg); };
   out.querySelectorAll(".bt-round[data-round]").forEach((sec) => {
@@ -168,6 +198,13 @@ export async function renderBlindTest(out) {
         if (!chosen) { toast("Pick a call first."); return; }
         p.denning_call = chosen; p.denning_reason = el.querySelector("[data-reason]").value.trim();
         try { await save(`Blind test: round ${rd.id}, pick ${p.id} called`); toast("Saved"); } catch (e) { toast(e.message); p.denning_call = null; }
+        renderBlindTest(out);
+      });
+      el.querySelector("[data-save-reason]")?.addEventListener("click", async () => {
+        const why = el.querySelector("[data-reason]").value.trim();
+        if (!why) { toast("Write a line first."); return; }
+        p.denning_reason = why;
+        try { await save(`Blind test: round ${rd.id}, pick ${p.id} reason`); toast("Saved"); } catch (e) { toast(e.message); p.denning_reason = ""; }
         renderBlindTest(out);
       });
     });
