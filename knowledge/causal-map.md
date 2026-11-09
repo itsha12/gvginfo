@@ -42,10 +42,10 @@ Caused by:
 - **Team strength**: stronger teams play better at everything; kept in every model so play isn't confused with strength (Claude; hypothesis)
 
 Measured on unseen matches (learnednodes.py; gain = how much worse the node predicts without the link):
-- Scoreboard (`S.scoreboard`), split chance node: gain +0.0295 (+/- 0.002, log loss), supported, 446 matches
-- Build features (`C.builds`), split chance node: gain +0.0104 (+/- 0.0018, log loss), supported, 446 matches
-- Clock (`C.clock`), split chance node: gain +0.0029 (+/- 0.0007, log loss), supported, 446 matches
-- Team strength (`C.strength`), split chance node: gain -0.0003 (+/- 0.0004, log loss), not clear yet, 446 matches
+- Scoreboard (`S.scoreboard`), split chance node: gain +0.029 (+/- 0.0018, log loss), supported, 506 matches
+- Build features (`C.builds`), split chance node: gain +0.01 (+/- 0.0033, log loss), supported, 506 matches
+- Clock (`C.clock`), split chance node: gain +0.0025 (+/- 0.0006, log loss), supported, 506 matches
+- Team strength (`C.strength`), split chance node: gain -0.0001 (+/- 0.0003, log loss), not clear yet, 506 matches
 
 ### Phase `A.phase`
 a stretch with a stable global setup; ends at a collapse, death, res or capture. *Measured: to build: from changes in allocation.*
@@ -155,12 +155,12 @@ Caused by:
 - **Allocation**: a bigger split draws more defenders (Claude; supported)
 
 Measured on unseen matches (learnednodes.py; gain = how much worse the node predicts without the link):
-- Allocation (`A.allocation`), split answer node: gain +0.85 (+/- 0.29, mean absolute error (s)), supported, 319 matches
-- Mesmers free to defend (`A.mesa_free`), split answer node: gain +0.61 (+/- 0.09, mean absolute error (s)), supported, 319 matches
-- Scoreboard (`S.scoreboard`), split answer node: gain +0.33 (+/- 0.09, mean absolute error (s)), supported, 319 matches
-- Build features (`C.builds`), split answer node: gain +0.0 (+/- 0.05, mean absolute error (s)), not clear yet, 319 matches
-- Clock (`C.clock`), split answer node: gain -0.02 (+/- 0.03, mean absolute error (s)), not clear yet, 319 matches
-- Team strength (`C.strength`), split answer node: gain -0.02 (+/- 0.07, mean absolute error (s)), not clear yet, 319 matches
+- Allocation (`A.allocation`), split answer node: gain +1.04 (+/- 0.16, mean absolute error (s)), supported, 357 matches
+- Mesmers free to defend (`A.mesa_free`), split answer node: gain +0.59 (+/- 0.15, mean absolute error (s)), supported, 357 matches
+- Scoreboard (`S.scoreboard`), split answer node: gain +0.47 (+/- 0.13, mean absolute error (s)), supported, 357 matches
+- Build features (`C.builds`), split answer node: gain +0.12 (+/- 0.09, mean absolute error (s)), not clear yet, 357 matches
+- Clock (`C.clock`), split answer node: gain +0.06 (+/- 0.08, mean absolute error (s)), not clear yet, 357 matches
+- Team strength (`C.strength`), split answer node: gain +0.05 (+/- 0.09, mean absolute error (s)), not clear yet, 357 matches
 
 ### Res timing `P.12`
 whether a team waits for its dead to return before fighting. *Measured: fights against res timers.*
@@ -269,7 +269,7 @@ Caused by:
 - **Damage potential v healing, Kiting and spacing, Commitment**: a 5v3 fails to convert when its heads hide few damage dealers against healers, its damage is shut down, its bursts don't line up, the 3 kite to their pit or NPCs, or it doesn't commit (Claude, confirmed; hypothesis; `J3`)
 - **Damage uptime, Burst timing**: a 5v3 fails to convert when its heads hide few damage dealers against healers, its damage is shut down, its bursts don't line up, the 3 kite to their pit or NPCs, or it doesn't commit (Claude, confirmed; supported; `J3`)
 - **Flag lead**: a team down on flags must send a runner soon, so its power play is shorter and less committed than its numbers suggest (Denning; hypothesis; `J5`)
-- **Control received**: a team can't kill because of the enemy's defence (prots, blocks), shutdown of its spikers (interrupts, knockdowns, Blind, strips) or spread damage (Claude, confirmed; rejected; `K12`)
+- **Control received**: a team can't kill because of the enemy's defence (prots, blocks), shutdown of its spikers (interrupts, knockdowns, Blind, strips) or spread damage (Claude, confirmed; hypothesis; `K12`)
 - **Mitigation**: a team can't kill because of the enemy's defence (prots, blocks), shutdown of its spikers (interrupts, knockdowns, Blind, strips) or spread damage (Claude, confirmed; concurrent; `K12`)
 - **Burst timing**: a team can't kill because of the enemy's defence (prots, blocks), shutdown of its spikers (interrupts, knockdowns, Blind, strips) or spread damage (Claude, confirmed; supported; `K12`)
 - **Target choice**: hitting the wrong player matters but isn't huge (Denning; supported; `K12`)
@@ -278,29 +278,28 @@ Caused by:
 - **Build features**: a snare on the split defender makes a collapse on a lone attacker much more likely to kill; without one, holding 1v1 is the aim (Denning; supported; `S31` `B23`)
 - **Allocation**: a power play is any numbers advantage at main, an 8v7 while the enemy runs included (Denning; supported)
 - **Scoreboard**: time down and flag carriers when the power play starts: found by discovery, approved by Denning (Denning; supported)
-- **Offensive knockdowns**: offensive knockdowns convert a power play (Denning, session 4u) (Denning; supported)
-- **Disables**: disables on the enemy healers convert a power play (Denning, session 4u) (Denning; hypothesis)
+- **Offensive knockdowns**: offensive knockdowns convert a power play (Denning, session 4u) (Denning; hypothesis)
+- **Disables**: disables on the enemy healers convert a power play (Denning, session 4u) (Denning; supported)
 - **Cast prevention**: cast prevention on the enemy healers converts a power play (Denning, session 4u) (Denning; hypothesis)
 - **Degen pressure**: degen pressure helps a power play wear the enemy down (Denning, session 4u) (Denning; hypothesis)
 - **Kiting**: enemies kiting a power play's melee waste its time (Denning, session 4u) (Denning; concurrent)
 - **Baited interrupts**: baited interrupts leave the enemy healers free (Denning, session 4u) (Denning; concurrent)
 
 Measured on unseen matches (learnednodes.py; gain = how much worse the node predicts without the link):
-- Allocation (`A.allocation`), power play node: gain +0.0414 (+/- 0.0063, log loss), supported, 443 matches
-- Damage uptime (`K.2`), power play node: gain +0.0195 (+/- 0.0024, log loss), supported, 443 matches
-- Offensive knockdowns (`P.24`), power play node: gain +0.009 (+/- 0.0034, log loss), supported, 443 matches
-- Team strength (`C.strength`), power play node: gain +0.0073 (+/- 0.0014, log loss), supported, 443 matches
-- Target choice (`P.1`), power play node: gain +0.007 (+/- 0.0008, log loss), supported, 443 matches
-- Burst timing (`P.2`), power play node: gain +0.0066 (+/- 0.0015, log loss), supported, 443 matches
-- Scoreboard (`S.scoreboard`), power play node: gain +0.0057 (+/- 0.0013, log loss), supported, 443 matches
-- Disables (`P.25`), power play node: gain +0.0036 (+/- 0.0023, log loss), not clear yet, 443 matches
-- Degen pressure (`P.22`), power play node: gain +0.0011 (+/- 0.0007, log loss), not clear yet, 443 matches
-- Commitment (`P.14`), power play node: gain -0.0001 (+/- 0.0007, log loss), not clear yet, 443 matches
-- Flag lead (`R.3`), power play node: gain -0.0004 (+/- 0.0005, log loss), not clear yet, 443 matches
-- Control received (`K.11`), power play node: gain -0.0012 (+/- 0.0003, log loss), rejected, 443 matches
-- Cast prevention (`P.26`), power play node: gain -0.0016 (+/- 0.0006, log loss), rejected, 443 matches
-- Build features (`C.builds`), power play node: gain -0.0017 (+/- 0.0002, log loss), rejected, 443 matches
-- **Held for Denning:** the data says Cast prevention -> Kill conversion is rejected; it stays a hypothesis until he rules.
+- Allocation (`A.allocation`), power play node: gain +0.0398 (+/- 0.0063, log loss), supported, 503 matches
+- Damage uptime (`K.2`), power play node: gain +0.0211 (+/- 0.002, log loss), supported, 503 matches
+- Burst timing (`P.2`), power play node: gain +0.0075 (+/- 0.0021, log loss), supported, 503 matches
+- Team strength (`C.strength`), power play node: gain +0.0074 (+/- 0.001, log loss), supported, 503 matches
+- Target choice (`P.1`), power play node: gain +0.0071 (+/- 0.0011, log loss), supported, 503 matches
+- Offensive knockdowns (`P.24`), power play node: gain +0.0069 (+/- 0.0047, log loss), not clear yet, 503 matches
+- Disables (`P.25`), power play node: gain +0.0063 (+/- 0.0008, log loss), supported, 503 matches
+- Scoreboard (`S.scoreboard`), power play node: gain +0.0051 (+/- 0.0009, log loss), supported, 503 matches
+- Degen pressure (`P.22`), power play node: gain +0.0019 (+/- 0.001, log loss), not clear yet, 503 matches
+- Commitment (`P.14`), power play node: gain +0.0 (+/- 0.0008, log loss), not clear yet, 503 matches
+- Cast prevention (`P.26`), power play node: gain +0.0 (+/- 0.0004, log loss), not clear yet, 503 matches
+- Flag lead (`R.3`), power play node: gain -0.0001 (+/- 0.0002, log loss), not clear yet, 503 matches
+- Control received (`K.11`), power play node: gain -0.0003 (+/- 0.0004, log loss), not clear yet, 503 matches
+- Build features (`C.builds`), power play node: gain -0.0007 (+/- 0.0005, log loss), not clear yet, 503 matches
 
 ### Mitigation `K.5`
 prots landed on time, blocks, damage prevented. *Measured: effects, prevented damage.*
@@ -395,26 +394,27 @@ Caused by:
 - **Hex pressure**: hexes on a player or its healers make it easier to kill (Claude; hypothesis)
 - **Collapse timing**: collapse timing: defenders arriving together kill a split member (Denning; hypothesis)
 - **Build features**: a snare on the split defender makes a collapse on a lone attacker much more likely to kill (Denning; hypothesis)
-- **Allocation**: a split outnumbered at the point of contact dies (Claude; hypothesis)
+- **Allocation**: a split outnumbered at the point of contact dies (Claude; supported)
 - **Team strength**: stronger teams play better at everything; kept in every model so play isn't confused with strength (Claude; supported)
 - **Split depth**: the deeper the splitters are in the base (nearer the pit), the more likely they die to a collapse (Denning; supported)
 - **Control received**: how strong the defenders' snares are, not just whether there is one, decides whether a collapse kills (Bounty, Denning) (Denning; hypothesis)
-- **Mitigation**: a split that can heal or defend itself may not be killable, so collapsing on it wastes players (Denning, batch 10) (Denning; hypothesis)
+- **Mitigation**: a split that can heal or defend itself may not be killable, so collapsing on it wastes players (Denning, batch 10) (Denning; supported)
 - **Pressure**: the defenders' damage decides whether they can kill the split (Denning, batch 10) (Denning; supported)
 - **Scoreboard**: what the split can get NPC-wise sets how much a collapse is worth (Denning, batch 10) (Denning; hypothesis)
 
 Measured on unseen matches (learnednodes.py; gain = how much worse the node predicts without the link):
-- Pressure (`K.1`), collapse node: gain +0.0121 (+/- 0.0021, log loss), supported, 407 matches
-- Team strength (`C.strength`), collapse node: gain +0.0095 (+/- 0.0024, log loss), supported, 407 matches
-- Health ceiling (`K.9`), collapse node: gain +0.0052 (+/- 0.0024, log loss), supported, 407 matches
-- Split depth (`P.20`), collapse node: gain +0.0034 (+/- 0.0013, log loss), supported, 407 matches
-- Allocation (`A.allocation`), collapse node: gain +0.0022 (+/- 0.0023, log loss), not clear yet, 407 matches
-- Mitigation (`K.5`), collapse node: gain +0.0017 (+/- 0.0015, log loss), not clear yet, 407 matches
-- Control received (`K.11`), collapse node: gain +0.0006 (+/- 0.0013, log loss), not clear yet, 407 matches
-- Mobility (`K.13`), collapse node: gain +0.0001 (+/- 0.0003, log loss), not clear yet, 407 matches
-- Build features (`C.builds`), collapse node: gain +0.0001 (+/- 0.0003, log loss), not clear yet, 407 matches
-- Collapse timing (`P.9`), collapse node: gain +0.0 (+/- 0.0008, log loss), not clear yet, 407 matches
-- Scoreboard (`S.scoreboard`), collapse node: gain -0.0004 (+/- 0.0009, log loss), not clear yet, 407 matches
+- Pressure (`K.1`), collapse node: gain +0.0112 (+/- 0.0027, log loss), supported, 457 matches
+- Team strength (`C.strength`), collapse node: gain +0.0111 (+/- 0.0033, log loss), supported, 457 matches
+- Health ceiling (`K.9`), collapse node: gain +0.0056 (+/- 0.0019, log loss), supported, 457 matches
+- Allocation (`A.allocation`), collapse node: gain +0.0028 (+/- 0.0007, log loss), supported, 457 matches
+- Split depth (`P.20`), collapse node: gain +0.0023 (+/- 0.0009, log loss), supported, 457 matches
+- Mitigation (`K.5`), collapse node: gain +0.002 (+/- 0.0007, log loss), supported, 457 matches
+- Split answer (`P.11`), collapse node: gain +0.001 (+/- 0.0006, log loss), not clear yet, 457 matches
+- Mobility (`K.13`), collapse node: gain +0.0003 (+/- 0.0005, log loss), not clear yet, 457 matches
+- Control received (`K.11`), collapse node: gain +0.0001 (+/- 0.0013, log loss), not clear yet, 457 matches
+- Scoreboard (`S.scoreboard`), collapse node: gain +0.0001 (+/- 0.0006, log loss), not clear yet, 457 matches
+- Build features (`C.builds`), collapse node: gain -0.0002 (+/- 0.0005, log loss), not clear yet, 457 matches
+- Collapse timing (`P.9`), collapse node: gain -0.0016 (+/- 0.0017, log loss), not clear yet, 457 matches
 
 ### Wipes `R.2`
 fights where 3+ players or 2+ monks die. *Measured: fights.*
@@ -425,12 +425,12 @@ Caused by:
 - **Peel**: frontline defensive peel (hitting or snaring enemies on its own backline) protects the healers (Denning; hypothesis)
 - **Wrong casts**: wrong casts lose fights: casting into ready interrupts without cancelling, casting while Dazed, attacking while Blind (Denning; supported)
 - **Enchantment strips**: strips on the right target (Elementalist enchantments when defensive, prots off a target under attack) (Denning; hypothesis)
-- **Blind on enemies**: Blind on the enemy frontline, above all on players hitting own healers, is defensive play (Denning; rejected)
+- **Blind on enemies**: Blind on the enemy frontline, above all on players hitting own healers, is defensive play (Denning; hypothesis)
 - **Burst timing**: off spike timing fails to kill (Denning; supported)
 - **Pressure**: damage output against the role's usual (Denning; supported)
 - **Condition removal**: the right hexes removed, and fast (Denning; hypothesis)
 - **Team strength**: stronger teams play better at everything; kept in every model so play isn't confused with strength (Claude; hypothesis)
-- **Target choice**: going after the healers (Bounty: target choice costs time; the data: groups on the healers kill more) (Bounty; rejected)
+- **Target choice**: going after the healers (Bounty: target choice costs time; the data: groups on the healers kill more) (Bounty; hypothesis)
 - **Scoreboard**: the state at the fight's start (morale, numbers, time down, the stand, players within one spike): found by discovery, approved by Denning (Denning; supported)
 - **Kiting**: a player who kites enemy melee avoids damage and wastes the frontline's time (Denning, session 4u) (Denning; hypothesis)
 - **Degen pressure**: degen pressure (a ranger's poison on the whole team, a degen mesmer) wears a team down without showing as damage (Denning, session 4u) (Denning; hypothesis)
@@ -438,29 +438,30 @@ Caused by:
 - **Offensive knockdowns**: offensive knockdowns (a warrior landing many) stop casts and set up kills (Denning, session 4u) (Denning; hypothesis)
 - **Disables**: disables (Complicate, Blackout, Power Lock, Power Block) take the enemy's key skills away (Denning, session 4u) (Denning; hypothesis)
 - **Cast prevention**: cast prevention (Shame, Diversion, Guilt) stops the enemy's casts (Denning, session 4u) (Denning; hypothesis)
-- **Build features**: hex and heal skills on the bars change fights: found by discovery, approved by Denning (Denning; supported)
+- **Build features**: hex and heal skills on the bars change fights: found by discovery, approved by Denning (Denning; hypothesis)
 - **Pre-kiting**: keeping distance from melee heading for you avoids the first hit (Denning, session 4u; split from P.21, R-283) (Denning; hypothesis)
 
 Measured on unseen matches (learnednodes.py; gain = how much worse the node predicts without the link):
-- Scoreboard (`S.scoreboard`), fight outcome node: gain +0.0936 (+/- 0.0062, log loss), supported, 445 matches
-- Pressure (`K.1`), fight outcome node: gain +0.0251 (+/- 0.0026, log loss), supported, 445 matches
-- Burst timing (`P.2`), fight outcome node: gain +0.0204 (+/- 0.0035, log loss), supported, 445 matches
-- Allocation (`A.allocation`), fight outcome node: gain +0.0176 (+/- 0.0044, log loss), supported, 445 matches
-- Wrong casts (`P.17`), fight outcome node: gain +0.012 (+/- 0.0041, log loss), supported, 445 matches
-- Build features (`C.builds`), fight outcome node: gain +0.0038 (+/- 0.0007, log loss), supported, 445 matches
-- Offensive knockdowns (`P.24`), fight outcome node: gain +0.0012 (+/- 0.0011, log loss), not clear yet, 445 matches
-- Team strength (`C.strength`), fight outcome node: gain +0.0011 (+/- 0.0009, log loss), not clear yet, 445 matches
-- Baited interrupts (`P.23`), fight outcome node: gain +0.0002 (+/- 0.0003, log loss), not clear yet, 445 matches
-- Enchantment strips (`P.18`), fight outcome node: gain +0.0001 (+/- 0.0006, log loss), not clear yet, 445 matches
-- Pre-kiting (`P.27`), fight outcome node: gain -0.0002 (+/- 0.0005, log loss), not clear yet, 445 matches
-- Condition removal (`P.5`), fight outcome node: gain -0.0003 (+/- 0.001, log loss), not clear yet, 445 matches
-- Kiting (`P.21`), fight outcome node: gain -0.0003 (+/- 0.0005, log loss), not clear yet, 445 matches
-- Disables (`P.25`), fight outcome node: gain -0.0004 (+/- 0.0008, log loss), not clear yet, 445 matches
-- Peel (`P.13`), fight outcome node: gain -0.0005 (+/- 0.0011, log loss), not clear yet, 445 matches
-- Degen pressure (`P.22`), fight outcome node: gain -0.0005 (+/- 0.0003, log loss), not clear yet, 445 matches
-- Cast prevention (`P.26`), fight outcome node: gain -0.0008 (+/- 0.0006, log loss), not clear yet, 445 matches
-- Target choice (`P.1`), fight outcome node: gain -0.0011 (+/- 0.0004, log loss), rejected, 445 matches
-- Blind on enemies (`P.19`), fight outcome node: gain -0.0014 (+/- 0.0004, log loss), rejected, 445 matches
+- Scoreboard (`S.scoreboard`), fight outcome node: gain +0.0914 (+/- 0.0045, log loss), supported, 505 matches
+- Pressure (`K.1`), fight outcome node: gain +0.0234 (+/- 0.004, log loss), supported, 505 matches
+- Burst timing (`P.2`), fight outcome node: gain +0.0199 (+/- 0.0044, log loss), supported, 505 matches
+- Allocation (`A.allocation`), fight outcome node: gain +0.0191 (+/- 0.0024, log loss), supported, 505 matches
+- Wrong casts (`P.17`), fight outcome node: gain +0.0121 (+/- 0.0024, log loss), supported, 505 matches
+- Build features (`C.builds`), fight outcome node: gain +0.0021 (+/- 0.0012, log loss), not clear yet, 505 matches
+- Condition removal (`P.5`), fight outcome node: gain +0.0013 (+/- 0.0011, log loss), not clear yet, 505 matches
+- Target choice (`P.1`), fight outcome node: gain +0.0006 (+/- 0.0006, log loss), not clear yet, 505 matches
+- Team strength (`C.strength`), fight outcome node: gain +0.0001 (+/- 0.0013, log loss), not clear yet, 505 matches
+- Peel (`P.13`), fight outcome node: gain -0.0 (+/- 0.0003, log loss), not clear yet, 505 matches
+- Kiting (`P.21`), fight outcome node: gain -0.0 (+/- 0.0003, log loss), not clear yet, 505 matches
+- Offensive knockdowns (`P.24`), fight outcome node: gain -0.0 (+/- 0.0024, log loss), not clear yet, 505 matches
+- Baited interrupts (`P.23`), fight outcome node: gain -0.0001 (+/- 0.0004, log loss), not clear yet, 505 matches
+- Disables (`P.25`), fight outcome node: gain -0.0002 (+/- 0.0007, log loss), not clear yet, 505 matches
+- Enchantment strips (`P.18`), fight outcome node: gain -0.0003 (+/- 0.0012, log loss), not clear yet, 505 matches
+- Degen pressure (`P.22`), fight outcome node: gain -0.0003 (+/- 0.0004, log loss), not clear yet, 505 matches
+- Pre-kiting (`P.27`), fight outcome node: gain -0.0003 (+/- 0.0006, log loss), not clear yet, 505 matches
+- Cast prevention (`P.26`), fight outcome node: gain -0.0009 (+/- 0.0004, log loss), rejected, 505 matches
+- Blind on enemies (`P.19`), fight outcome node: gain -0.001 (+/- 0.0008, log loss), not clear yet, 505 matches
+- **Held for Denning:** the data says Cast prevention -> Wipes is rejected; it stays a hypothesis until he rules.
 
 ### Flag lead `R.3`
 the flag position (response on the next capture exchange). *Measured: scoreboard.*
@@ -473,7 +474,7 @@ Caused by:
 - **Mobility**: runners with speed skills carry far faster than average; the flag model uses each runner's measured speed (Claude; mechanical; `F35`)
 - **Map geometry**: the length of the flag run (Y) and the distance from the pits to the stand shape the flag game (Claude; supported)
 - **Control received**: control on the runner (Cripple, knockdowns) stops a run; read at the same point of every run (Denning; hypothesis)
-- **Team strength**: stronger teams play better at everything; kept in every model so play isn't confused with strength (Claude; supported)
+- **Team strength**: stronger teams play better at everything; kept in every model so play isn't confused with strength (Claude; hypothesis)
 - **Scoreboard**: a flag lead tends to grow or shrink by how it stands now (boost and run timing) (Claude; supported)
 - **Deaths**: deaths lose flag position: the runner, the escort or the main (Claude; hypothesis)
 - **Clock**: the res clock and the minute change what a run can do (Claude; hypothesis)
@@ -482,37 +483,37 @@ Caused by:
 - **Mitigation**: own healing monks help defend against runs: found by discovery, approved by Denning (Denning; hypothesis)
 
 Measured on unseen matches (learnednodes.py; gain = how much worse the node predicts without the link):
-- Mobility (`K.13`), capture speed node: gain +2.28 (+/- 0.11, mean absolute error (s)), supported, 428 matches
-- Run timing and runner choice (`P.10`), flag swing node: gain +0.8 (+/- 0.05, mean absolute error (s)), supported, 446 matches
-- Scoreboard (`S.scoreboard`), flag swing node: gain +0.64 (+/- 0.07, mean absolute error (s)), supported, 446 matches
-- Allocation (`A.allocation`), capture speed node: gain +0.46 (+/- 0.1, mean absolute error (s)), supported, 428 matches
-- Map geometry (`C.map`), capture speed node: gain +0.4 (+/- 0.07, mean absolute error (s)), supported, 428 matches
-- Run timing and runner choice (`P.10`), capture speed node: gain +0.19 (+/- 0.05, mean absolute error (s)), supported, 428 matches
-- Team strength (`C.strength`), flag swing node: gain +0.07 (+/- 0.03, mean absolute error (s)), supported, 446 matches
-- Scoreboard (`S.scoreboard`), run defence node: gain +0.0411 (+/- 0.0022, log loss), supported, 445 matches
-- Mobility (`K.13`), run outcome node: gain +0.0327 (+/- 0.0027, log loss), supported, 445 matches
-- Mobility (`K.13`), run defence node: gain +0.0313 (+/- 0.0022, log loss), supported, 445 matches
-- Team strength (`C.strength`), capture speed node: gain +0.03 (+/- 0.03, mean absolute error (s)), not clear yet, 428 matches
-- Scoreboard (`S.scoreboard`), run outcome node: gain +0.0112 (+/- 0.0011, log loss), supported, 445 matches
-- Run timing and runner choice (`P.10`), run outcome node: gain +0.0024 (+/- 0.0017, log loss), not clear yet, 445 matches
-- Map geometry (`C.map`), run defence node: gain +0.0022 (+/- 0.0007, log loss), supported, 445 matches
-- Map geometry (`C.map`), run outcome node: gain +0.0017 (+/- 0.0004, log loss), supported, 445 matches
-- Team strength (`C.strength`), run defence node: gain +0.0008 (+/- 0.0008, log loss), not clear yet, 445 matches
-- Build features (`C.builds`), run outcome node: gain +0.0007 (+/- 0.0004, log loss), not clear yet, 445 matches
-- Run timing and runner choice (`P.10`), run defence node: gain +0.0005 (+/- 0.0009, log loss), not clear yet, 445 matches
-- Team strength (`C.strength`), run outcome node: gain +0.0004 (+/- 0.0007, log loss), not clear yet, 445 matches
-- Mesmers free to defend (`A.mesa_free`), run defence node: gain +0.0002 (+/- 0.0005, log loss), not clear yet, 445 matches
-- Allocation (`A.allocation`), flag swing node: gain +0.0 (+/- 0.02, mean absolute error (s)), not clear yet, 446 matches
-- Deaths (`R.1`), flag swing node: gain +0.0 (+/- 0.01, mean absolute error (s)), not clear yet, 446 matches
-- Clock (`C.clock`), flag swing node: gain -0.0 (+/- 0.01, mean absolute error (s)), not clear yet, 446 matches
-- Mitigation (`K.5`), run defence node: gain -0.0001 (+/- 0.0002, log loss), not clear yet, 445 matches
-- Control received (`K.11`), run outcome node: gain -0.0002 (+/- 0.0006, log loss), not clear yet, 445 matches
-- Control received (`K.11`), run defence node: gain -0.0002 (+/- 0.0004, log loss), not clear yet, 445 matches
-- Allocation (`A.allocation`), run outcome node: gain -0.0003 (+/- 0.0006, log loss), not clear yet, 445 matches
-- Allocation (`A.allocation`), run defence node: gain -0.0006 (+/- 0.0007, log loss), not clear yet, 445 matches
-- Build features (`C.builds`), run defence node: gain -0.0006 (+/- 0.0006, log loss), not clear yet, 445 matches
-- Map geometry (`C.map`), flag swing node: gain -0.01 (+/- 0.0, mean absolute error (s)), rejected, 446 matches
-- Control received (`K.11`), capture speed node: gain -0.01 (+/- 0.03, mean absolute error (s)), not clear yet, 428 matches
+- Mobility (`K.13`), capture speed node: gain +2.31 (+/- 0.11, mean absolute error (s)), supported, 486 matches
+- Run timing and runner choice (`P.10`), flag swing node: gain +0.78 (+/- 0.07, mean absolute error (s)), supported, 506 matches
+- Scoreboard (`S.scoreboard`), flag swing node: gain +0.66 (+/- 0.07, mean absolute error (s)), supported, 506 matches
+- Allocation (`A.allocation`), capture speed node: gain +0.41 (+/- 0.1, mean absolute error (s)), supported, 486 matches
+- Map geometry (`C.map`), capture speed node: gain +0.41 (+/- 0.04, mean absolute error (s)), supported, 486 matches
+- Run timing and runner choice (`P.10`), capture speed node: gain +0.19 (+/- 0.07, mean absolute error (s)), supported, 486 matches
+- Team strength (`C.strength`), flag swing node: gain +0.06 (+/- 0.04, mean absolute error (s)), not clear yet, 506 matches
+- Scoreboard (`S.scoreboard`), run defence node: gain +0.0403 (+/- 0.0031, log loss), supported, 505 matches
+- Team strength (`C.strength`), capture speed node: gain +0.04 (+/- 0.03, mean absolute error (s)), not clear yet, 486 matches
+- Mobility (`K.13`), run outcome node: gain +0.0333 (+/- 0.0028, log loss), supported, 505 matches
+- Mobility (`K.13`), run defence node: gain +0.0327 (+/- 0.0027, log loss), supported, 505 matches
+- Scoreboard (`S.scoreboard`), run outcome node: gain +0.0106 (+/- 0.002, log loss), supported, 505 matches
+- Map geometry (`C.map`), run defence node: gain +0.0036 (+/- 0.0009, log loss), supported, 505 matches
+- Map geometry (`C.map`), run outcome node: gain +0.0031 (+/- 0.0008, log loss), supported, 505 matches
+- Run timing and runner choice (`P.10`), run outcome node: gain +0.0025 (+/- 0.0012, log loss), supported, 505 matches
+- Run timing and runner choice (`P.10`), run defence node: gain +0.0011 (+/- 0.0004, log loss), supported, 505 matches
+- Team strength (`C.strength`), run defence node: gain +0.0008 (+/- 0.0006, log loss), not clear yet, 505 matches
+- Team strength (`C.strength`), run outcome node: gain +0.0005 (+/- 0.0007, log loss), not clear yet, 505 matches
+- Mesmers free to defend (`A.mesa_free`), run defence node: gain +0.0002 (+/- 0.0006, log loss), not clear yet, 505 matches
+- Build features (`C.builds`), run defence node: gain +0.0001 (+/- 0.0005, log loss), not clear yet, 505 matches
+- Control received (`K.11`), capture speed node: gain +0.0 (+/- 0.01, mean absolute error (s)), not clear yet, 486 matches
+- Control received (`K.11`), run defence node: gain +0.0 (+/- 0.0003, log loss), not clear yet, 505 matches
+- Deaths (`R.1`), flag swing node: gain -0.0 (+/- 0.01, mean absolute error (s)), not clear yet, 506 matches
+- Mitigation (`K.5`), run defence node: gain -0.0 (+/- 0.0004, log loss), not clear yet, 505 matches
+- Allocation (`A.allocation`), run outcome node: gain -0.0001 (+/- 0.0009, log loss), not clear yet, 505 matches
+- Build features (`C.builds`), run outcome node: gain -0.0001 (+/- 0.0007, log loss), not clear yet, 505 matches
+- Allocation (`A.allocation`), run defence node: gain -0.0002 (+/- 0.0005, log loss), not clear yet, 505 matches
+- Control received (`K.11`), run outcome node: gain -0.001 (+/- 0.0005, log loss), rejected, 505 matches
+- Allocation (`A.allocation`), flag swing node: gain -0.01 (+/- 0.02, mean absolute error (s)), not clear yet, 506 matches
+- Map geometry (`C.map`), flag swing node: gain -0.01 (+/- 0.01, mean absolute error (s)), not clear yet, 506 matches
+- Clock (`C.clock`), flag swing node: gain -0.01 (+/- 0.01, mean absolute error (s)), not clear yet, 506 matches
 
 ### Boosts `R.4`
 boosts won and conceded. *Measured: stand ledger.*
@@ -534,25 +535,25 @@ Caused by:
 - **Mobility**: a fast split gets in and out of the base (Denning; hypothesis)
 - **Build features**: the defenders' prots make a split's NPC kills harder: found by discovery, approved by Denning (Denning; supported)
 - **Pressure**: damage landing on the pit NPCs (Claude; concurrent)
-- **Healing**: healing on the pit NPCs keeps them alive (Claude; hypothesis)
-- **Clock**: time in the pit and the res clock (Claude; hypothesis)
+- **Healing**: healing on the pit NPCs keeps them alive (Claude; supported)
+- **Clock**: time in the pit and the res clock (Claude; supported)
 
 Measured on unseen matches (learnednodes.py; gain = how much worse the node predicts without the link):
-- Split answer (`P.11`), pit npc loss node: gain +0.0735 (+/- 0.0043, log loss), supported, 444 matches
-- Scoreboard (`S.scoreboard`), split effect node: gain +0.0286 (+/- 0.01, log loss), supported, 319 matches
-- Split answer (`P.11`), split effect node: gain +0.0061 (+/- 0.0011, log loss), supported, 319 matches
-- Build features (`C.builds`), split effect node: gain +0.0061 (+/- 0.0019, log loss), supported, 319 matches
-- Scoreboard (`S.scoreboard`), pit npc loss node: gain +0.0059 (+/- 0.001, log loss), supported, 444 matches
-- Allocation (`A.allocation`), pit npc loss node: gain +0.0033 (+/- 0.0006, log loss), supported, 444 matches
-- Team strength (`C.strength`), pit npc loss node: gain +0.0027 (+/- 0.0009, log loss), supported, 444 matches
-- Mobility (`K.13`), split effect node: gain +0.0026 (+/- 0.0014, log loss), not clear yet, 319 matches
-- Allocation (`A.allocation`), split effect node: gain +0.0025 (+/- 0.0009, log loss), supported, 319 matches
-- Build features (`C.builds`), pit npc loss node: gain +0.0017 (+/- 0.001, log loss), not clear yet, 444 matches
-- Clock (`C.clock`), pit npc loss node: gain +0.0011 (+/- 0.0008, log loss), not clear yet, 444 matches
-- Healing (`K.6`), pit npc loss node: gain +0.0003 (+/- 0.0002, log loss), not clear yet, 444 matches
-- Team strength (`C.strength`), split effect node: gain +0.0001 (+/- 0.0007, log loss), not clear yet, 319 matches
-- Monk load (`K.8`), split effect node: gain -0.0 (+/- 0.0007, log loss), not clear yet, 319 matches
-- Control received (`K.11`), split effect node: gain -0.0 (+/- 0.0014, log loss), not clear yet, 319 matches
+- Split answer (`P.11`), pit npc loss node: gain +0.0737 (+/- 0.0031, log loss), supported, 504 matches
+- Scoreboard (`S.scoreboard`), split effect node: gain +0.0271 (+/- 0.0078, log loss), supported, 357 matches
+- Scoreboard (`S.scoreboard`), pit npc loss node: gain +0.0054 (+/- 0.0007, log loss), supported, 504 matches
+- Build features (`C.builds`), split effect node: gain +0.0034 (+/- 0.0028, log loss), not clear yet, 357 matches
+- Allocation (`A.allocation`), pit npc loss node: gain +0.003 (+/- 0.0008, log loss), supported, 504 matches
+- Split answer (`P.11`), split effect node: gain +0.0029 (+/- 0.001, log loss), supported, 357 matches
+- Build features (`C.builds`), pit npc loss node: gain +0.0029 (+/- 0.0008, log loss), supported, 504 matches
+- Allocation (`A.allocation`), split effect node: gain +0.0028 (+/- 0.0007, log loss), supported, 357 matches
+- Team strength (`C.strength`), pit npc loss node: gain +0.0026 (+/- 0.001, log loss), supported, 504 matches
+- Clock (`C.clock`), pit npc loss node: gain +0.0021 (+/- 0.0006, log loss), supported, 504 matches
+- Healing (`K.6`), pit npc loss node: gain +0.0006 (+/- 0.0002, log loss), supported, 504 matches
+- Mobility (`K.13`), split effect node: gain +0.0001 (+/- 0.0018, log loss), not clear yet, 357 matches
+- Control received (`K.11`), split effect node: gain -0.0014 (+/- 0.0009, log loss), not clear yet, 357 matches
+- Team strength (`C.strength`), split effect node: gain -0.0016 (+/- 0.001, log loss), not clear yet, 357 matches
+- Monk load (`K.8`), split effect node: gain -0.002 (+/- 0.0011, log loss), not clear yet, 357 matches
 
 ### Lord damage `R.6`
 damage dealt to the enemy Lord (tiebreak). *Measured: Lord hits.*
@@ -899,3 +900,15 @@ Caused by:
 - 2026-11-09: link K.5 -> R.1: supported -> hypothesis by data (collapse not clear yet +0.0017) (data)
 - 2026-11-09: link P.25 -> K.4: supported -> hypothesis by data (power_play not clear yet +0.0036) (data)
 - 2026-11-09: link P.26 -> K.4: the data says rejected; held for Denning's ruling (data)
+- 2026-11-09: link K.11 -> K.4: rejected -> hypothesis by data (power_play not clear yet -0.0003) (data)
+- 2026-11-09: link C.strength -> R.3: supported -> hypothesis by data (run_outcome not clear yet +0.0005, flag_swing not clear yet +0.06, capture_speed not clear yet +0.04, run_defence not clear yet +0.0008) (data)
+- 2026-11-09: link P.19 -> R.2: rejected -> hypothesis by data (fight_outcome not clear yet -0.001) (data)
+- 2026-11-09: link A.allocation -> R.1: hypothesis -> supported by data (collapse supported +0.0028) (data)
+- 2026-11-09: link P.1 -> R.2: rejected -> hypothesis by data (fight_outcome not clear yet +0.0006) (data)
+- 2026-11-09: link K.6 -> R.5: hypothesis -> supported by data (pit_npc_loss supported +0.0006) (data)
+- 2026-11-09: link C.clock -> R.5: hypothesis -> supported by data (pit_npc_loss supported +0.0021) (data)
+- 2026-11-09: link K.5 -> R.1: hypothesis -> supported by data (collapse supported +0.002) (data)
+- 2026-11-09: link P.24 -> K.4: supported -> hypothesis by data (power_play not clear yet +0.0069) (data)
+- 2026-11-09: link P.25 -> K.4: hypothesis -> supported by data (power_play supported +0.0063) (data)
+- 2026-11-09: link P.26 -> R.2: the data says rejected; held for Denning's ruling (data)
+- 2026-11-09: link C.builds -> R.2: supported -> hypothesis by data (fight_outcome not clear yet +0.0021) (data)

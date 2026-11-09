@@ -1,48 +1,13 @@
 {
  "about": "eventlayer.values(): measured from the cached event-layer records of every trained match. enchantments: recorded output (damage + healing + prevented) per second of uptime, plus the drop in the bearer's output (damage + healing per second) in the 10 s after it was stripped against the 10 s before, less the same change for its allies of the same class (5+ strips); hexes: recorded damage per second of uptime plus the drop in the hexed player's output (damage + healing per second) while it was on, against the same length before and after, less the same change for its allies of the same class over the same seconds (5+ cases); roles: median damage per second on enemy players per player per fight.",
- "matches": 446,
+ "matches": 506,
  "enchantments": {
-  "Spirit Channeling": {
-   "per_s": 0.0,
-   "direct_per_s": 0.0,
+  "Armor of Sanctity": {
+   "per_s": 0.02,
+   "direct_per_s": 0.02,
    "strip_output_drop_per_s": 0.0,
-   "strips": 0,
-   "uptime_s": 768
-  },
-  "Conjure Flame": {
-   "per_s": 7.85,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 7.85,
-   "strips": 14,
-   "uptime_s": 3405
-  },
-  "Conviction": {
-   "per_s": 0.0,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 0.0,
-   "strips": 0,
-   "uptime_s": 311
-  },
-  "Ebon Dust Aura": {
-   "per_s": 2.84,
-   "direct_per_s": 0.1,
-   "strip_output_drop_per_s": 2.74,
-   "strips": 37,
-   "uptime_s": 10995
-  },
-  "Order of Pain": {
-   "per_s": 0.0,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 0.0,
-   "strips": 0,
-   "uptime_s": 155
-  },
-  "Fire Attunement": {
-   "per_s": 6.44,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 6.44,
-   "strips": 159,
-   "uptime_s": 124820
+   "strips": 4,
+   "uptime_s": 1659
   },
   "Mark of Protection": {
    "per_s": 12.86,
@@ -51,26 +16,40 @@
    "strips": 11,
    "uptime_s": 918
   },
-  "Earth Attunement": {
-   "per_s": 10.37,
+  "Enchanted Haste": {
+   "per_s": 5.39,
    "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 10.37,
-   "strips": 10,
-   "uptime_s": 4251
+   "strip_output_drop_per_s": 5.39,
+   "strips": 56,
+   "uptime_s": 13647
   },
-  "Shield of Regeneration": {
-   "per_s": 10.83,
-   "direct_per_s": 11.31,
-   "strip_output_drop_per_s": -0.48,
-   "strips": 48,
-   "uptime_s": 8391
+  "Harriers Grasp": {
+   "per_s": 1.29,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 1.29,
+   "strips": 2000,
+   "uptime_s": 529138
   },
-  "Peace and Harmony": {
-   "per_s": 1.0,
-   "direct_per_s": 1.0,
-   "strip_output_drop_per_s": 0.0,
-   "strips": 3,
-   "uptime_s": 1052
+  "Aura of Displacement": {
+   "per_s": -2.24,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": -2.24,
+   "strips": 16,
+   "uptime_s": 2152
+  },
+  "Vigorous Spirit": {
+   "per_s": 7.1,
+   "direct_per_s": 4.73,
+   "strip_output_drop_per_s": 2.37,
+   "strips": 1242,
+   "uptime_s": 421742
+  },
+  "Reversal of Damage": {
+   "per_s": 8.08,
+   "direct_per_s": 9.62,
+   "strip_output_drop_per_s": -1.54,
+   "strips": 75,
+   "uptime_s": 6312
   },
   "Awaken the Blood": {
    "per_s": 0.0,
@@ -79,153 +58,6 @@
    "strips": 0,
    "uptime_s": 296
   },
-  "Air of Enchantment": {
-   "per_s": 1.88,
-   "direct_per_s": 1.51,
-   "strip_output_drop_per_s": 0.37,
-   "strips": 16,
-   "uptime_s": 3186
-  },
-  "Shield of Deflection": {
-   "per_s": 5.57,
-   "direct_per_s": 7.96,
-   "strip_output_drop_per_s": -2.38,
-   "strips": 23,
-   "uptime_s": 1676
-  },
-  "Mystic Regeneration": {
-   "per_s": 7.3,
-   "direct_per_s": 4.44,
-   "strip_output_drop_per_s": 2.86,
-   "strips": 96,
-   "uptime_s": 43896
-  },
-  "Fleeting Stability": {
-   "per_s": 2.12,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 2.12,
-   "strips": 350,
-   "uptime_s": 89680
-  },
-  "Watchful Healing": {
-   "per_s": 3.76,
-   "direct_per_s": 3.76,
-   "strip_output_drop_per_s": 0.0,
-   "strips": 2,
-   "uptime_s": 284
-  },
-  "Spirit Bond": {
-   "per_s": 17.99,
-   "direct_per_s": 11.44,
-   "strip_output_drop_per_s": 6.56,
-   "strips": 1173,
-   "uptime_s": 97135
-  },
-  "Master of Magic": {
-   "per_s": 0.0,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 0.0,
-   "strips": 2,
-   "uptime_s": 121
-  },
-  "Patient Spirit": {
-   "per_s": 54.88,
-   "direct_per_s": 51.89,
-   "strip_output_drop_per_s": 2.99,
-   "strips": 2173,
-   "uptime_s": 84895
-  },
-  "Veil of Thorns": {
-   "per_s": 1.45,
-   "direct_per_s": 1.45,
-   "strip_output_drop_per_s": 0.0,
-   "strips": 3,
-   "uptime_s": 1120
-  },
-  "Reverse Hex": {
-   "per_s": 3.08,
-   "direct_per_s": 3.82,
-   "strip_output_drop_per_s": -0.74,
-   "strips": 66,
-   "uptime_s": 7784
-  },
-  "Elemental Attunement": {
-   "per_s": 0.0,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 0.0,
-   "strips": 2,
-   "uptime_s": 2315
-  },
-  "Lyssa's Haste": {
-   "per_s": 6.08,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 6.08,
-   "strips": 39,
-   "uptime_s": 19987
-  },
-  "Mirage Cloak": {
-   "per_s": 3.65,
-   "direct_per_s": 2.76,
-   "strip_output_drop_per_s": 0.88,
-   "strips": 165,
-   "uptime_s": 39257
-  },
-  "Meditation": {
-   "per_s": 0.0,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 0.0,
-   "strips": 0,
-   "uptime_s": 1039
-  },
-  "Zealous Renewal": {
-   "per_s": 3.67,
-   "direct_per_s": 0.09,
-   "strip_output_drop_per_s": 3.58,
-   "strips": 36,
-   "uptime_s": 10647
-  },
-  "Balthazar's Aura": {
-   "per_s": 23.88,
-   "direct_per_s": 15.12,
-   "strip_output_drop_per_s": 8.76,
-   "strips": 22,
-   "uptime_s": 4152
-  },
-  "Magnetic Aura": {
-   "per_s": 5.39,
-   "direct_per_s": 3.26,
-   "strip_output_drop_per_s": 2.13,
-   "strips": 6,
-   "uptime_s": 1441
-  },
-  "Arcane Echo": {
-   "per_s": 0.0,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 0.0,
-   "strips": 2,
-   "uptime_s": 309
-  },
-  "Holy Veil": {
-   "per_s": 21.12,
-   "direct_per_s": 0.87,
-   "strip_output_drop_per_s": 20.24,
-   "strips": 9,
-   "uptime_s": 2695
-  },
-  "Verata's Aura": {
-   "per_s": -1.4,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": -1.4,
-   "strips": 5,
-   "uptime_s": 1025
-  },
-  "Aegis": {
-   "per_s": 6.81,
-   "direct_per_s": 6.76,
-   "strip_output_drop_per_s": 0.05,
-   "strips": 22,
-   "uptime_s": 20583
-  },
   "Dark Bond": {
    "per_s": 0.0,
    "direct_per_s": 0.0,
@@ -233,152 +65,26 @@
    "strips": 0,
    "uptime_s": 1585
   },
-  "Rending Aura": {
-   "per_s": 5.16,
-   "direct_per_s": 3.22,
-   "strip_output_drop_per_s": 1.95,
-   "strips": 198,
-   "uptime_s": 38847
-  },
-  "Dwayna's Sorrow": {
-   "per_s": 5.72,
-   "direct_per_s": 5.72,
-   "strip_output_drop_per_s": 0.0,
-   "strips": 0,
-   "uptime_s": 316
-  },
-  "Water Attunement": {
-   "per_s": 3.71,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 3.71,
-   "strips": 77,
-   "uptime_s": 41883
-  },
-  "Mystic Vigor": {
-   "per_s": 0.0,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 0.0,
-   "strips": 0,
-   "uptime_s": 947
-  },
-  "Guardian": {
-   "per_s": 11.27,
-   "direct_per_s": 9.34,
-   "strip_output_drop_per_s": 1.93,
-   "strips": 3128,
-   "uptime_s": 283570
-  },
-  "Masochism": {
-   "per_s": 0.0,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 0.0,
-   "strips": 4,
-   "uptime_s": 203
-  },
-  "Mystic Corruption": {
-   "per_s": 2.62,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 2.62,
-   "strips": 459,
-   "uptime_s": 76434
-  },
-  "Shield of Absorption": {
-   "per_s": 12.36,
-   "direct_per_s": 14.61,
-   "strip_output_drop_per_s": -2.26,
-   "strips": 88,
-   "uptime_s": 7314
-  },
-  "Judge's Insight": {
-   "per_s": 9.95,
-   "direct_per_s": 0.36,
-   "strip_output_drop_per_s": 9.58,
-   "strips": 19,
-   "uptime_s": 5514
-  },
-  "Windborne Speed": {
-   "per_s": 4.29,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 4.29,
-   "strips": 316,
-   "uptime_s": 90589
-  },
-  "Healing Breeze": {
-   "per_s": 12.11,
-   "direct_per_s": 6.91,
-   "strip_output_drop_per_s": 5.19,
-   "strips": 110,
-   "uptime_s": 34181
-  },
-  "Shield Guardian": {
-   "per_s": 7.29,
-   "direct_per_s": 4.65,
-   "strip_output_drop_per_s": 2.64,
-   "strips": 1499,
-   "uptime_s": 398128
-  },
-  "Harrier's Haste": {
-   "per_s": 2.11,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 2.11,
-   "strips": 1007,
-   "uptime_s": 214903
-  },
-  "Spotless Mind": {
-   "per_s": 5.54,
-   "direct_per_s": 1.63,
-   "strip_output_drop_per_s": 3.91,
-   "strips": 19,
-   "uptime_s": 3358
-  },
-  "Feigned Neutrality": {
-   "per_s": 0.0,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 0.0,
-   "strips": 0,
-   "uptime_s": 254
-  },
-  "Air Attunement": {
-   "per_s": 7.32,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 7.32,
-   "strips": 278,
-   "uptime_s": 242261
-  },
-  "Divine Spirit": {
-   "per_s": 20.66,
-   "direct_per_s": 0.91,
-   "strip_output_drop_per_s": 19.75,
-   "strips": 8,
-   "uptime_s": 1224
-  },
-  "Spotless Soul": {
-   "per_s": 10.02,
-   "direct_per_s": 1.63,
-   "strip_output_drop_per_s": 8.39,
-   "strips": 23,
-   "uptime_s": 8644
-  },
-  "Blood Renewal": {
-   "per_s": 9.95,
-   "direct_per_s": 9.95,
-   "strip_output_drop_per_s": 0.0,
-   "strips": 1,
-   "uptime_s": 333
-  },
-  "Featherfoot Grace": {
+  "Boon of Creation": {
    "per_s": 0.0,
    "direct_per_s": 0.0,
    "strip_output_drop_per_s": 0.0,
    "strips": 1,
-   "uptime_s": 1339
+   "uptime_s": 211
   },
-  "Heart of Holy Flame": {
-   "per_s": 7.41,
-   "direct_per_s": 4.16,
-   "strip_output_drop_per_s": 3.25,
-   "strips": 67,
-   "uptime_s": 13389
+  "Spirit's Strength": {
+   "per_s": 2.5,
+   "direct_per_s": 0.56,
+   "strip_output_drop_per_s": 1.94,
+   "strips": 19,
+   "uptime_s": 6526
+  },
+  "Illusion of Haste": {
+   "per_s": 0.74,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 0.74,
+   "strips": 43,
+   "uptime_s": 3131
   },
   "Staggering Force": {
    "per_s": 0.28,
@@ -387,33 +93,187 @@
    "strips": 1,
    "uptime_s": 476
   },
-  "Aura of Faith": {
-   "per_s": 42.13,
-   "direct_per_s": 41.11,
-   "strip_output_drop_per_s": 1.02,
-   "strips": 734,
-   "uptime_s": 25277
-  },
-  "Symbolic Celerity": {
-   "per_s": 4.01,
+  "Master of Magic": {
+   "per_s": 0.0,
    "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 4.01,
-   "strips": 15,
-   "uptime_s": 3155
+   "strip_output_drop_per_s": 0.0,
+   "strips": 2,
+   "uptime_s": 121
   },
-  "Hexer's Vigor": {
+  "Eremite's Zeal": {
+   "per_s": 5.64,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 5.64,
+   "strips": 50,
+   "uptime_s": 9995
+  },
+  "Air of Enchantment": {
+   "per_s": 1.88,
+   "direct_per_s": 1.51,
+   "strip_output_drop_per_s": 0.37,
+   "strips": 16,
+   "uptime_s": 3186
+  },
+  "Shielding Hands": {
+   "per_s": 14.01,
+   "direct_per_s": 11.86,
+   "strip_output_drop_per_s": 2.15,
+   "strips": 2432,
+   "uptime_s": 191199
+  },
+  "Fire Attunement": {
+   "per_s": 7.2,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 7.2,
+   "strips": 173,
+   "uptime_s": 138329
+  },
+  "Holy Veil": {
+   "per_s": 21.14,
+   "direct_per_s": 0.89,
+   "strip_output_drop_per_s": 20.24,
+   "strips": 9,
+   "uptime_s": 2700
+  },
+  "Mirage Cloak": {
+   "per_s": 3.81,
+   "direct_per_s": 2.79,
+   "strip_output_drop_per_s": 1.02,
+   "strips": 171,
+   "uptime_s": 44137
+  },
+  "Divine Spirit": {
+   "per_s": 20.69,
+   "direct_per_s": 0.94,
+   "strip_output_drop_per_s": 19.75,
+   "strips": 8,
+   "uptime_s": 1232
+  },
+  "Whirling Charge": {
+   "per_s": 2.57,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 2.57,
+   "strips": 137,
+   "uptime_s": 35928
+  },
+  "Echo": {
+   "per_s": -0.52,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": -0.52,
+   "strips": 132,
+   "uptime_s": 14825
+  },
+  "Supportive Spirit": {
+   "per_s": -3.62,
+   "direct_per_s": 1.18,
+   "strip_output_drop_per_s": -4.8,
+   "strips": 10,
+   "uptime_s": 3368
+  },
+  "Heart of Holy Flame": {
+   "per_s": 7.7,
+   "direct_per_s": 4.15,
+   "strip_output_drop_per_s": 3.55,
+   "strips": 68,
+   "uptime_s": 15398
+  },
+  "Spirit Channeling": {
    "per_s": 0.0,
    "direct_per_s": 0.0,
    "strip_output_drop_per_s": 0.0,
    "strips": 0,
-   "uptime_s": 100
+   "uptime_s": 768
   },
-  "Way of the Master": {
-   "per_s": -0.31,
+  "Watchful Healing": {
+   "per_s": 3.76,
+   "direct_per_s": 3.76,
+   "strip_output_drop_per_s": 0.0,
+   "strips": 2,
+   "uptime_s": 284
+  },
+  "Mystic Vigor": {
+   "per_s": 0.0,
    "direct_per_s": 0.0,
-   "strip_output_drop_per_s": -0.31,
-   "strips": 10,
-   "uptime_s": 3661
+   "strip_output_drop_per_s": 0.0,
+   "strips": 0,
+   "uptime_s": 947
+  },
+  "Elemental Attunement": {
+   "per_s": 0.0,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 0.0,
+   "strips": 2,
+   "uptime_s": 2315
+  },
+  "Life Sheath": {
+   "per_s": 17.87,
+   "direct_per_s": 18.46,
+   "strip_output_drop_per_s": -0.59,
+   "strips": 984,
+   "uptime_s": 87017
+  },
+  "Mystic Regeneration": {
+   "per_s": 7.47,
+   "direct_per_s": 4.52,
+   "strip_output_drop_per_s": 2.95,
+   "strips": 101,
+   "uptime_s": 49680
+  },
+  "Stone Sheath": {
+   "per_s": 9.21,
+   "direct_per_s": 3.0,
+   "strip_output_drop_per_s": 6.21,
+   "strips": 18,
+   "uptime_s": 3823
+  },
+  "Healer's Covenant": {
+   "per_s": 7.08,
+   "direct_per_s": 0.06,
+   "strip_output_drop_per_s": 7.02,
+   "strips": 87,
+   "uptime_s": 33424
+  },
+  "Rending Aura": {
+   "per_s": 5.66,
+   "direct_per_s": 3.17,
+   "strip_output_drop_per_s": 2.49,
+   "strips": 216,
+   "uptime_s": 44186
+  },
+  "Attackers Insight": {
+   "per_s": 4.11,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 4.11,
+   "strips": 16,
+   "uptime_s": 5947
+  },
+  "Blood Renewal": {
+   "per_s": 11.49,
+   "direct_per_s": 11.49,
+   "strip_output_drop_per_s": 0.0,
+   "strips": 1,
+   "uptime_s": 454
+  },
+  "Order of Apostasy": {
+   "per_s": 0.0,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 0.0,
+   "strips": 0,
+   "uptime_s": 486
+  },
+  "Mystic Corruption": {
+   "per_s": 2.26,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 2.26,
+   "strips": 506,
+   "uptime_s": 82877
+  },
+  "Aura of Stability": {
+   "per_s": 3.83,
+   "direct_per_s": 2.5,
+   "strip_output_drop_per_s": 1.32,
+   "strips": 1270,
+   "uptime_s": 154168
   },
   "Magnetic Surge": {
    "per_s": 4.24,
@@ -422,19 +282,173 @@
    "strips": 1,
    "uptime_s": 370
   },
-  "Supportive Spirit": {
-   "per_s": -3.61,
-   "direct_per_s": 1.19,
-   "strip_output_drop_per_s": -4.8,
-   "strips": 10,
-   "uptime_s": 3236
+  "Burning Speed": {
+   "per_s": 0.0,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 0.0,
+   "strips": 4,
+   "uptime_s": 141
   },
-  "Grenth's Fingers": {
-   "per_s": 2.27,
-   "direct_per_s": 2.27,
+  "Healing Breeze": {
+   "per_s": 11.43,
+   "direct_per_s": 6.98,
+   "strip_output_drop_per_s": 4.45,
+   "strips": 135,
+   "uptime_s": 39276
+  },
+  "Lyssa's Haste": {
+   "per_s": 6.08,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 6.08,
+   "strips": 39,
+   "uptime_s": 21921
+  },
+  "Shield of Absorption": {
+   "per_s": 12.85,
+   "direct_per_s": 14.36,
+   "strip_output_drop_per_s": -1.51,
+   "strips": 102,
+   "uptime_s": 8766
+  },
+  "Guardian": {
+   "per_s": 11.12,
+   "direct_per_s": 9.34,
+   "strip_output_drop_per_s": 1.78,
+   "strips": 3475,
+   "uptime_s": 317556
+  },
+  "Dust Cloak": {
+   "per_s": 6.22,
+   "direct_per_s": 4.03,
+   "strip_output_drop_per_s": 2.19,
+   "strips": 16,
+   "uptime_s": 2071
+  },
+  "Balthazar's Rage": {
+   "per_s": 1.98,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 1.98,
+   "strips": 48,
+   "uptime_s": 14282
+  },
+  "Symbolic Celerity": {
+   "per_s": 2.65,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 2.65,
+   "strips": 17,
+   "uptime_s": 3682
+  },
+  "Order of Pain": {
+   "per_s": 0.0,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 0.0,
+   "strips": 0,
+   "uptime_s": 292
+  },
+  "Faithful Intervention": {
+   "per_s": 0.0,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 0.0,
+   "strips": 2,
+   "uptime_s": 382
+  },
+  "Judge's Insight": {
+   "per_s": 9.96,
+   "direct_per_s": 0.38,
+   "strip_output_drop_per_s": 9.58,
+   "strips": 19,
+   "uptime_s": 5800
+  },
+  "Storm Djinn's Haste": {
+   "per_s": 0.0,
+   "direct_per_s": 0.0,
    "strip_output_drop_per_s": 0.0,
    "strips": 1,
-   "uptime_s": 131
+   "uptime_s": 539
+  },
+  "Contagion": {
+   "per_s": 0.0,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 0.0,
+   "strips": 2,
+   "uptime_s": 493
+  },
+  "Featherfoot Grace": {
+   "per_s": 0.0,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 0.0,
+   "strips": 1,
+   "uptime_s": 1339
+  },
+  "Healing Seed": {
+   "per_s": 2.21,
+   "direct_per_s": 2.21,
+   "strip_output_drop_per_s": 0.0,
+   "strips": 1,
+   "uptime_s": 229
+  },
+  "Way of the Master": {
+   "per_s": 3.46,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 3.46,
+   "strips": 28,
+   "uptime_s": 4886
+  },
+  "Magnetic Aura": {
+   "per_s": 5.39,
+   "direct_per_s": 3.26,
+   "strip_output_drop_per_s": 2.13,
+   "strips": 6,
+   "uptime_s": 1441
+  },
+  "Spotless Mind": {
+   "per_s": 5.54,
+   "direct_per_s": 1.63,
+   "strip_output_drop_per_s": 3.91,
+   "strips": 19,
+   "uptime_s": 3358
+  },
+  "Aura of Faith": {
+   "per_s": 42.0,
+   "direct_per_s": 41.15,
+   "strip_output_drop_per_s": 0.85,
+   "strips": 825,
+   "uptime_s": 28011
+  },
+  "Aegis": {
+   "per_s": 9.76,
+   "direct_per_s": 6.82,
+   "strip_output_drop_per_s": 2.93,
+   "strips": 27,
+   "uptime_s": 23431
+  },
+  "Divine Intervention": {
+   "per_s": 5.05,
+   "direct_per_s": 5.05,
+   "strip_output_drop_per_s": 0.0,
+   "strips": 3,
+   "uptime_s": 434
+  },
+  "Judge's Intervention": {
+   "per_s": 0.56,
+   "direct_per_s": 0.56,
+   "strip_output_drop_per_s": 0.0,
+   "strips": 1,
+   "uptime_s": 183
+  },
+  "Meditation": {
+   "per_s": 0.0,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 0.0,
+   "strips": 0,
+   "uptime_s": 1536
+  },
+  "Conjure Lightning": {
+   "per_s": 0.0,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 0.0,
+   "strips": 0,
+   "uptime_s": 529
   },
   "Dark Fury": {
    "per_s": 0.0,
@@ -444,74 +458,25 @@
    "uptime_s": 120
   },
   "Armor of Mist": {
-   "per_s": 9.2,
+   "per_s": 11.02,
    "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 9.2,
-   "strips": 50,
-   "uptime_s": 18342
-  },
-  "Shielding Hands": {
-   "per_s": 13.98,
-   "direct_per_s": 11.9,
-   "strip_output_drop_per_s": 2.08,
-   "strips": 2175,
-   "uptime_s": 170707
-  },
-  "Echo": {
-   "per_s": -1.3,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": -1.3,
-   "strips": 112,
-   "uptime_s": 12712
-  },
-  "Contagion": {
-   "per_s": 0.0,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 0.0,
-   "strips": 2,
-   "uptime_s": 493
-  },
-  "Channeling": {
-   "per_s": 0.0,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 0.0,
-   "strips": 0,
-   "uptime_s": 249
-  },
-  "Watchful Intervention": {
-   "per_s": 4.21,
-   "direct_per_s": 1.38,
-   "strip_output_drop_per_s": 2.83,
-   "strips": 30,
-   "uptime_s": 10047
-  },
-  "Order of Apostasy": {
-   "per_s": 0.0,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 0.0,
-   "strips": 0,
-   "uptime_s": 300
-  },
-  "Shadow Refuge": {
-   "per_s": -3.18,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": -3.18,
-   "strips": 13,
-   "uptime_s": 3375
-  },
-  "Aura of Stability": {
-   "per_s": 3.63,
-   "direct_per_s": 2.5,
-   "strip_output_drop_per_s": 1.13,
-   "strips": 1151,
-   "uptime_s": 138779
-  },
-  "Gust": {
-   "per_s": 5.02,
-   "direct_per_s": 1.59,
-   "strip_output_drop_per_s": 3.43,
+   "strip_output_drop_per_s": 11.02,
    "strips": 55,
-   "uptime_s": 9285
+   "uptime_s": 21283
+  },
+  "Auspicious Incantation": {
+   "per_s": -0.47,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": -0.47,
+   "strips": 36,
+   "uptime_s": 6118
+  },
+  "Grenth's Aura": {
+   "per_s": 20.37,
+   "direct_per_s": 9.42,
+   "strip_output_drop_per_s": 10.95,
+   "strips": 50,
+   "uptime_s": 14760
   },
   "Pensive Guardian": {
    "per_s": 4.49,
@@ -520,264 +485,61 @@
    "strips": 4,
    "uptime_s": 438
   },
-  "Illusion of Haste": {
-   "per_s": 0.76,
+  "Reverse Hex": {
+   "per_s": 3.17,
+   "direct_per_s": 3.77,
+   "strip_output_drop_per_s": -0.6,
+   "strips": 68,
+   "uptime_s": 8070
+  },
+  "Conjure Flame": {
+   "per_s": 6.93,
    "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 0.76,
-   "strips": 33,
-   "uptime_s": 2899
-  },
-  "Flame Djinn's Haste": {
-   "per_s": 7.51,
-   "direct_per_s": 0.94,
-   "strip_output_drop_per_s": 6.56,
-   "strips": 151,
-   "uptime_s": 45094
-  },
-  "Judge's Intervention": {
-   "per_s": 0.56,
-   "direct_per_s": 0.56,
-   "strip_output_drop_per_s": 0.0,
-   "strips": 1,
-   "uptime_s": 183
-  },
-  "Faithful Intervention": {
-   "per_s": 0.0,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 0.0,
-   "strips": 2,
-   "uptime_s": 382
-  },
-  "Aura of Displacement": {
-   "per_s": -3.89,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": -3.89,
-   "strips": 10,
-   "uptime_s": 1448
-  },
-  "Whirling Charge": {
-   "per_s": 2.52,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 2.52,
-   "strips": 120,
-   "uptime_s": 29283
-  },
-  "Double Dragon": {
-   "per_s": 24.09,
-   "direct_per_s": 18.79,
-   "strip_output_drop_per_s": 5.3,
-   "strips": 42,
-   "uptime_s": 6046
-  },
-  "Healing Seed": {
-   "per_s": 2.21,
-   "direct_per_s": 2.21,
-   "strip_output_drop_per_s": 0.0,
-   "strips": 1,
-   "uptime_s": 229
-  },
-  "Eremite's Zeal": {
-   "per_s": 5.82,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 5.82,
-   "strips": 49,
-   "uptime_s": 8375
-  },
-  "Balthazar's Rage": {
-   "per_s": 2.05,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 2.05,
-   "strips": 45,
-   "uptime_s": 12184
-  },
-  "Grenth's Aura": {
-   "per_s": 19.48,
-   "direct_per_s": 9.54,
-   "strip_output_drop_per_s": 9.93,
-   "strips": 49,
-   "uptime_s": 12129
-  },
-  "Spirit's Strength": {
-   "per_s": 3.5,
-   "direct_per_s": 0.63,
-   "strip_output_drop_per_s": 2.88,
-   "strips": 14,
-   "uptime_s": 5511
-  },
-  "Aura of Restoration": {
-   "per_s": 9.22,
-   "direct_per_s": 1.46,
-   "strip_output_drop_per_s": 7.75,
-   "strips": 741,
-   "uptime_s": 345581
-  },
-  "Reversal of Fortune": {
-   "per_s": 25.65,
-   "direct_per_s": 24.1,
-   "strip_output_drop_per_s": 1.55,
-   "strips": 606,
-   "uptime_s": 69171
-  },
-  "Harriers Grasp": {
-   "per_s": 0.98,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 0.98,
-   "strips": 1808,
-   "uptime_s": 477073
-  },
-  "Conjure Lightning": {
-   "per_s": 0.0,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 0.0,
-   "strips": 0,
-   "uptime_s": 300
-  },
-  "Attackers Insight": {
-   "per_s": 4.46,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 4.46,
-   "strips": 10,
-   "uptime_s": 3632
-  },
-  "Enchanted Haste": {
-   "per_s": 5.2,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 5.2,
-   "strips": 53,
-   "uptime_s": 13359
-  },
-  "Storm Djinn's Haste": {
-   "per_s": 0.0,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 0.0,
-   "strips": 1,
-   "uptime_s": 539
-  },
-  "Vow of Piety": {
-   "per_s": -4.05,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": -4.05,
-   "strips": 8,
-   "uptime_s": 5029
-  },
-  "Stone Sheath": {
-   "per_s": 9.21,
-   "direct_per_s": 3.0,
-   "strip_output_drop_per_s": 6.21,
+   "strip_output_drop_per_s": 6.93,
    "strips": 18,
-   "uptime_s": 3823
+   "uptime_s": 4431
   },
-  "Divine Intervention": {
-   "per_s": 5.23,
-   "direct_per_s": 5.23,
+  "Spirit Bond": {
+   "per_s": 17.96,
+   "direct_per_s": 11.48,
+   "strip_output_drop_per_s": 6.48,
+   "strips": 1342,
+   "uptime_s": 109878
+  },
+  "Veil of Thorns": {
+   "per_s": 1.45,
+   "direct_per_s": 1.45,
    "strip_output_drop_per_s": 0.0,
-   "strips": 2,
-   "uptime_s": 386
-  },
-  "Vigorous Spirit": {
-   "per_s": 6.98,
-   "direct_per_s": 4.77,
-   "strip_output_drop_per_s": 2.21,
-   "strips": 1116,
-   "uptime_s": 378910
-  },
-  "Auspicious Incantation": {
-   "per_s": -2.45,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": -2.45,
-   "strips": 33,
-   "uptime_s": 5806
-  },
-  "Swirling Aura": {
-   "per_s": 8.7,
-   "direct_per_s": 3.38,
-   "strip_output_drop_per_s": 5.32,
-   "strips": 99,
-   "uptime_s": 23319
-  },
-  "Conjure Frost": {
-   "per_s": 13.24,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 13.24,
-   "strips": 14,
-   "uptime_s": 4592
-  },
-  "Life Sheath": {
-   "per_s": 17.68,
-   "direct_per_s": 18.61,
-   "strip_output_drop_per_s": -0.94,
-   "strips": 872,
-   "uptime_s": 77842
-  },
-  "Armor of Sanctity": {
-   "per_s": 0.0,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 0.0,
-   "strips": 2,
-   "uptime_s": 1455
-  },
-  "Sight Beyond Sight": {
-   "per_s": -0.08,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": -0.08,
-   "strips": 5,
-   "uptime_s": 2075
-  },
-  "Reversal of Damage": {
-   "per_s": 7.55,
-   "direct_per_s": 9.86,
-   "strip_output_drop_per_s": -2.32,
-   "strips": 70,
-   "uptime_s": 5847
+   "strips": 3,
+   "uptime_s": 1120
   },
   "Aura of Thorns": {
    "per_s": 2.0,
    "direct_per_s": 0.0,
    "strip_output_drop_per_s": 2.0,
    "strips": 26,
-   "uptime_s": 5762
+   "uptime_s": 5984
   },
-  "Jaundiced Gaze": {
-   "per_s": 0.0,
+  "Sight Beyond Sight": {
+   "per_s": 0.17,
    "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 0.0,
-   "strips": 0,
-   "uptime_s": 49
+   "strip_output_drop_per_s": 0.17,
+   "strips": 6,
+   "uptime_s": 2531
   },
-  "Dust Cloak": {
-   "per_s": 6.22,
-   "direct_per_s": 4.03,
-   "strip_output_drop_per_s": 2.19,
-   "strips": 16,
-   "uptime_s": 2071
+  "Watchful Intervention": {
+   "per_s": 3.85,
+   "direct_per_s": 1.41,
+   "strip_output_drop_per_s": 2.43,
+   "strips": 31,
+   "uptime_s": 11043
   },
-  "Attacker's Insight": {
-   "per_s": 0.0,
+  "Conjure Frost": {
+   "per_s": 11.46,
    "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 0.0,
-   "strips": 0,
-   "uptime_s": 397
-  },
-  "Iron Mist": {
-   "per_s": 0.0,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 0.0,
-   "strips": 0,
-   "uptime_s": 171
-  },
-  "Protective Spirit": {
-   "per_s": 3.76,
-   "direct_per_s": 0.48,
-   "strip_output_drop_per_s": 3.28,
-   "strips": 603,
-   "uptime_s": 100878
-  },
-  "Burning Speed": {
-   "per_s": 0.0,
-   "direct_per_s": 0.0,
-   "strip_output_drop_per_s": 0.0,
-   "strips": 4,
-   "uptime_s": 141
+   "strip_output_drop_per_s": 11.46,
+   "strips": 18,
+   "uptime_s": 5502
   },
   "Intimidating Aura": {
    "per_s": 0.0,
@@ -786,505 +548,267 @@
    "strips": 3,
    "uptime_s": 673
   },
-  "Healer's Covenant": {
-   "per_s": 7.31,
-   "direct_per_s": 0.06,
-   "strip_output_drop_per_s": 7.25,
-   "strips": 80,
-   "uptime_s": 31082
+  "Reversal of Fortune": {
+   "per_s": 25.78,
+   "direct_per_s": 24.03,
+   "strip_output_drop_per_s": 1.75,
+   "strips": 676,
+   "uptime_s": 78581
+  },
+  "Peace and Harmony": {
+   "per_s": 1.0,
+   "direct_per_s": 1.0,
+   "strip_output_drop_per_s": 0.0,
+   "strips": 3,
+   "uptime_s": 1052
+  },
+  "Jaundiced Gaze": {
+   "per_s": 0.0,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 0.0,
+   "strips": 0,
+   "uptime_s": 49
+  },
+  "Gust": {
+   "per_s": 5.21,
+   "direct_per_s": 1.5,
+   "strip_output_drop_per_s": 3.71,
+   "strips": 74,
+   "uptime_s": 12136
+  },
+  "Patient Spirit": {
+   "per_s": 55.04,
+   "direct_per_s": 51.93,
+   "strip_output_drop_per_s": 3.12,
+   "strips": 2377,
+   "uptime_s": 94423
+  },
+  "Double Dragon": {
+   "per_s": 23.7,
+   "direct_per_s": 18.18,
+   "strip_output_drop_per_s": 5.52,
+   "strips": 46,
+   "uptime_s": 6716
+  },
+  "Verata's Aura": {
+   "per_s": -1.4,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": -1.4,
+   "strips": 5,
+   "uptime_s": 1025
+  },
+  "Aura of Restoration": {
+   "per_s": 9.44,
+   "direct_per_s": 1.48,
+   "strip_output_drop_per_s": 7.96,
+   "strips": 831,
+   "uptime_s": 387807
+  },
+  "Conviction": {
+   "per_s": 0.0,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 0.0,
+   "strips": 0,
+   "uptime_s": 311
+  },
+  "Shadow Refuge": {
+   "per_s": -4.52,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": -4.52,
+   "strips": 18,
+   "uptime_s": 3706
+  },
+  "Dwayna's Sorrow": {
+   "per_s": 5.72,
+   "direct_per_s": 5.72,
+   "strip_output_drop_per_s": 0.0,
+   "strips": 0,
+   "uptime_s": 316
+  },
+  "Zealous Renewal": {
+   "per_s": 4.3,
+   "direct_per_s": 0.08,
+   "strip_output_drop_per_s": 4.22,
+   "strips": 41,
+   "uptime_s": 11734
+  },
+  "Iron Mist": {
+   "per_s": 0.0,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 0.0,
+   "strips": 0,
+   "uptime_s": 171
+  },
+  "Water Attunement": {
+   "per_s": 5.56,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 5.56,
+   "strips": 86,
+   "uptime_s": 48144
+  },
+  "Way of Perfection": {
+   "per_s": 0.0,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 0.0,
+   "strips": 1,
+   "uptime_s": 258
+  },
+  "Hexer's Vigor": {
+   "per_s": 0.0,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 0.0,
+   "strips": 0,
+   "uptime_s": 100
+  },
+  "Fleeting Stability": {
+   "per_s": 2.04,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 2.04,
+   "strips": 369,
+   "uptime_s": 99506
+  },
+  "Air Attunement": {
+   "per_s": 7.42,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 7.42,
+   "strips": 306,
+   "uptime_s": 271441
+  },
+  "Shield Guardian": {
+   "per_s": 7.3,
+   "direct_per_s": 4.61,
+   "strip_output_drop_per_s": 2.69,
+   "strips": 1760,
+   "uptime_s": 456799
+  },
+  "Shield of Deflection": {
+   "per_s": 6.61,
+   "direct_per_s": 7.99,
+   "strip_output_drop_per_s": -1.37,
+   "strips": 24,
+   "uptime_s": 2016
+  },
+  "Arcane Echo": {
+   "per_s": 0.0,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 0.0,
+   "strips": 2,
+   "uptime_s": 309
+  },
+  "Earth Attunement": {
+   "per_s": 10.37,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 10.37,
+   "strips": 10,
+   "uptime_s": 4251
+  },
+  "Windborne Speed": {
+   "per_s": 4.08,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 4.08,
+   "strips": 348,
+   "uptime_s": 101195
+  },
+  "Attacker's Insight": {
+   "per_s": 0.0,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 0.0,
+   "strips": 0,
+   "uptime_s": 397
+  },
+  "Protective Spirit": {
+   "per_s": 3.74,
+   "direct_per_s": 0.46,
+   "strip_output_drop_per_s": 3.28,
+   "strips": 700,
+   "uptime_s": 117051
+  },
+  "Spotless Soul": {
+   "per_s": 7.77,
+   "direct_per_s": 1.63,
+   "strip_output_drop_per_s": 6.14,
+   "strips": 37,
+   "uptime_s": 9470
+  },
+  "Feigned Neutrality": {
+   "per_s": 0.0,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 0.0,
+   "strips": 0,
+   "uptime_s": 357
+  },
+  "Swirling Aura": {
+   "per_s": 8.86,
+   "direct_per_s": 3.39,
+   "strip_output_drop_per_s": 5.47,
+   "strips": 103,
+   "uptime_s": 25346
+  },
+  "Vow of Piety": {
+   "per_s": -4.05,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": -4.05,
+   "strips": 8,
+   "uptime_s": 5554
+  },
+  "Balthazar's Aura": {
+   "per_s": 23.78,
+   "direct_per_s": 15.02,
+   "strip_output_drop_per_s": 8.76,
+   "strips": 22,
+   "uptime_s": 4456
+  },
+  "Harrier's Haste": {
+   "per_s": 2.03,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 2.03,
+   "strips": 1080,
+   "uptime_s": 233168
+  },
+  "Flame Djinn's Haste": {
+   "per_s": 7.65,
+   "direct_per_s": 0.98,
+   "strip_output_drop_per_s": 6.67,
+   "strips": 167,
+   "uptime_s": 50587
+  },
+  "Channeling": {
+   "per_s": 0.0,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 0.0,
+   "strips": 0,
+   "uptime_s": 606
+  },
+  "Masochism": {
+   "per_s": 0.0,
+   "direct_per_s": 0.0,
+   "strip_output_drop_per_s": 0.0,
+   "strips": 4,
+   "uptime_s": 203
+  },
+  "Grenth's Fingers": {
+   "per_s": 2.27,
+   "direct_per_s": 2.27,
+   "strip_output_drop_per_s": 0.0,
+   "strips": 1,
+   "uptime_s": 131
+  },
+  "Ebon Dust Aura": {
+   "per_s": 3.02,
+   "direct_per_s": 0.1,
+   "strip_output_drop_per_s": 2.92,
+   "strips": 41,
+   "uptime_s": 11781
+  },
+  "Shield of Regeneration": {
+   "per_s": 10.83,
+   "direct_per_s": 11.31,
+   "strip_output_drop_per_s": -0.48,
+   "strips": 48,
+   "uptime_s": 8391
   }
  },
  "hexes": {
-  "Soul Barbs": {
-   "per_s": 13.58,
-   "direct_per_s": 11.61,
-   "output_drop_per_s": 1.97,
-   "n": 256,
-   "uptime_s": 3790
-  },
-  "Mind Freeze": {
-   "per_s": 24.59,
-   "direct_per_s": 22.46,
-   "output_drop_per_s": 2.13,
-   "n": 785,
-   "uptime_s": 3240
-  },
-  "Shame": {
-   "per_s": 18.53,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": 18.53,
-   "n": 1444,
-   "uptime_s": 6915
-  },
-  "Shrinking Armor": {
-   "per_s": 1.22,
-   "direct_per_s": 0.56,
-   "output_drop_per_s": 0.66,
-   "n": 468,
-   "uptime_s": 3411
-  },
-  "Mark of Insecurity": {
-   "per_s": 7.56,
-   "direct_per_s": 9.06,
-   "output_drop_per_s": -1.5,
-   "n": 169,
-   "uptime_s": 1922
-  },
-  "Lamentation": {
-   "per_s": 9.63,
-   "direct_per_s": 10.99,
-   "output_drop_per_s": -1.36,
-   "n": 6184,
-   "uptime_s": 77876
-  },
-  "Ineptitude": {
-   "per_s": -7.4,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": -7.4,
-   "n": 5,
-   "uptime_s": 16
-  },
-  "Smoldering Embers": {
-   "per_s": 54.27,
-   "direct_per_s": 56.84,
-   "output_drop_per_s": -2.56,
-   "n": 1646,
-   "uptime_s": 4613
-  },
-  "Price of Failure": {
-   "per_s": 3.33,
-   "direct_per_s": 2.33,
-   "output_drop_per_s": 1.0,
-   "n": 72,
-   "uptime_s": 1650
-  },
-  "Atrophy": {
-   "per_s": 0.0,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": 0.0,
-   "n": 2,
-   "uptime_s": 12
-  },
-  "Ethereal Burden": {
-   "per_s": 1.42,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": 1.42,
-   "n": 460,
-   "uptime_s": 4332
-  },
-  "Migraine": {
-   "per_s": 19.55,
-   "direct_per_s": 13.28,
-   "output_drop_per_s": 6.27,
-   "n": 545,
-   "uptime_s": 7296
-  },
-  "Suffering": {
-   "per_s": 5.65,
-   "direct_per_s": 5.05,
-   "output_drop_per_s": 0.6,
-   "n": 743,
-   "uptime_s": 12805
-  },
-  "Kitah's Burden": {
-   "per_s": -1.85,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": -1.85,
-   "n": 315,
-   "uptime_s": 2796
-  },
-  "Winter's Embrace": {
-   "per_s": 7.43,
-   "direct_per_s": 6.28,
-   "output_drop_per_s": 1.15,
-   "n": 344,
-   "uptime_s": 1607
-  },
-  "Defile Defenses": {
-   "per_s": -0.13,
-   "direct_per_s": 0.95,
-   "output_drop_per_s": -1.08,
-   "n": 2312,
-   "uptime_s": 25475
-  },
-  "Meekness": {
-   "per_s": 14.25,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": 14.25,
-   "n": 13,
-   "uptime_s": 215
-  },
-  "Scourge Enchantment": {
-   "per_s": 5.0,
-   "direct_per_s": 4.94,
-   "output_drop_per_s": 0.05,
-   "n": 262,
-   "uptime_s": 4683
-  },
-  "Teinai's Prison": {
-   "per_s": 5.11,
-   "direct_per_s": 9.67,
-   "output_drop_per_s": -4.56,
-   "n": 17,
-   "uptime_s": 76
-  },
-  "Shadow Prison": {
-   "per_s": -3.1,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": -3.1,
-   "n": 84,
-   "uptime_s": 240
-  },
-  "Images of Remorse": {
-   "per_s": -2.96,
-   "direct_per_s": 1.37,
-   "output_drop_per_s": -4.33,
-   "n": 15,
-   "uptime_s": 111
-  },
-  "Wastrel's Demise": {
-   "per_s": 21.17,
-   "direct_per_s": 19.24,
-   "output_drop_per_s": 1.92,
-   "n": 683,
-   "uptime_s": 3282
-  },
-  "Frustration": {
-   "per_s": 3.96,
-   "direct_per_s": 0.06,
-   "output_drop_per_s": 3.9,
-   "n": 369,
-   "uptime_s": 6107
-  },
-  "Mark of Fury": {
-   "per_s": -3.74,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": -3.74,
-   "n": 13,
-   "uptime_s": 59
-  },
-  "Shadowy Burden": {
-   "per_s": 1.59,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": 1.59,
-   "n": 60,
-   "uptime_s": 464
-  },
-  "Diversion": {
-   "per_s": 8.0,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": 8.0,
-   "n": 213,
-   "uptime_s": 948
-  },
-  "Shadow Shroud": {
-   "per_s": 9.0,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": 9.0,
-   "n": 337,
-   "uptime_s": 1548
-  },
-  "Empathy": {
-   "per_s": 16.72,
-   "direct_per_s": 15.87,
-   "output_drop_per_s": 0.85,
-   "n": 1203,
-   "uptime_s": 14095
-  },
-  "Mistrust": {
-   "per_s": 12.22,
-   "direct_per_s": 3.88,
-   "output_drop_per_s": 8.34,
-   "n": 33,
-   "uptime_s": 163
-  },
-  "Seeping Wound": {
-   "per_s": -27.37,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": -27.37,
-   "n": 6,
-   "uptime_s": 27
-  },
-  "Scorpion Wire": {
-   "per_s": -5.31,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": -5.31,
-   "n": 48,
-   "uptime_s": 163
-  },
-  "Expose Defenses": {
-   "per_s": 10.51,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": 10.51,
-   "n": 17,
-   "uptime_s": 159
-  },
-  "Shard Storm": {
-   "per_s": 10.83,
-   "direct_per_s": 8.93,
-   "output_drop_per_s": 1.9,
-   "n": 175,
-   "uptime_s": 888
-  },
-  "Web of Disruption": {
-   "per_s": 0.35,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": 0.35,
-   "n": 89,
-   "uptime_s": 798
-  },
-  "Overload": {
-   "per_s": 0.19,
-   "direct_per_s": 1.49,
-   "output_drop_per_s": -1.29,
-   "n": 38,
-   "uptime_s": 169
-  },
-  "Shared Burden": {
-   "per_s": 0.76,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": 0.76,
-   "n": 51,
-   "uptime_s": 722
-  },
-  "Ice Spikes": {
-   "per_s": 15.34,
-   "direct_per_s": 12.43,
-   "output_drop_per_s": 2.91,
-   "n": 50,
-   "uptime_s": 263
-  },
-  "Faintheartedness": {
-   "per_s": 6.65,
-   "direct_per_s": 4.66,
-   "output_drop_per_s": 2.0,
-   "n": 808,
-   "uptime_s": 9388
-  },
-  "Conjure Phantasm": {
-   "per_s": 11.67,
-   "direct_per_s": 10.16,
-   "output_drop_per_s": 1.51,
-   "n": 1095,
-   "uptime_s": 14194
-  },
-  "Backfire": {
-   "per_s": 25.32,
-   "direct_per_s": 23.96,
-   "output_drop_per_s": 1.36,
-   "n": 198,
-   "uptime_s": 1479
-  },
-  "Crippling Anguish": {
-   "per_s": 10.26,
-   "direct_per_s": 10.95,
-   "output_drop_per_s": -0.69,
-   "n": 230,
-   "uptime_s": 2990
-  },
-  "Siphon Speed": {
-   "per_s": -2.06,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": -2.06,
-   "n": 304,
-   "uptime_s": 1844
-  },
-  "Siphon Strength": {
-   "per_s": 0.0,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": 0.0,
-   "n": 2,
-   "uptime_s": 24
-  },
-  "Weaken Knees": {
-   "per_s": 16.31,
-   "direct_per_s": 17.06,
-   "output_drop_per_s": -0.75,
-   "n": 3230,
-   "uptime_s": 33404
-  },
-  "Price of Pride": {
-   "per_s": 8.93,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": 8.93,
-   "n": 39,
-   "uptime_s": 177
-  },
-  "Hidden Caltrops": {
-   "per_s": 3.3,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": 3.3,
-   "n": 49,
-   "uptime_s": 342
-  },
-  "Ether Lord": {
-   "per_s": 9.7,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": 9.7,
-   "n": 7,
-   "uptime_s": 61
-  },
-  "Sum of All Fears": {
-   "per_s": 2.91,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": 2.91,
-   "n": 39,
-   "uptime_s": 343
-  },
-  "Guilt": {
-   "per_s": 4.31,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": 4.31,
-   "n": 376,
-   "uptime_s": 1855
-  },
-  "Freezing Gust": {
-   "per_s": 6.37,
-   "direct_per_s": 7.47,
-   "output_drop_per_s": -1.11,
-   "n": 888,
-   "uptime_s": 3393
-  },
-  "Mind Wrack": {
-   "per_s": 0.97,
-   "direct_per_s": 1.98,
-   "output_drop_per_s": -1.02,
-   "n": 24951,
-   "uptime_s": 339127
-  },
-  "Spiteful Spirit": {
-   "per_s": 22.21,
-   "direct_per_s": 10.41,
-   "output_drop_per_s": 11.8,
-   "n": 7,
-   "uptime_s": 194
-  },
-  "Phantom Pain": {
-   "per_s": 7.24,
-   "direct_per_s": 7.74,
-   "output_drop_per_s": -0.5,
-   "n": 182,
-   "uptime_s": 1478
-  },
-  "Renewing Surge": {
-   "per_s": 11.61,
-   "direct_per_s": 12.47,
-   "output_drop_per_s": -0.86,
-   "n": 5521,
-   "uptime_s": 39254
-  },
-  "Deep Freeze": {
-   "per_s": 162.92,
-   "direct_per_s": 166.32,
-   "output_drop_per_s": -3.4,
-   "n": 11,
-   "uptime_s": 63
-  },
-  "Enduring Toxin": {
-   "per_s": 14.55,
-   "direct_per_s": 8.98,
-   "output_drop_per_s": 5.57,
-   "n": 249,
-   "uptime_s": 1332
-  },
-  "Vile Miasma": {
-   "per_s": 19.77,
-   "direct_per_s": 19.86,
-   "output_drop_per_s": -0.09,
-   "n": 191,
-   "uptime_s": 1285
-  },
-  "Wastrel's Worry": {
-   "per_s": 0.97,
-   "direct_per_s": 0.19,
-   "output_drop_per_s": 0.78,
-   "n": 75,
-   "uptime_s": 557
-  },
-  "Lightning Surge": {
-   "per_s": 24.35,
-   "direct_per_s": 31.03,
-   "output_drop_per_s": -6.68,
-   "n": 2210,
-   "uptime_s": 6299
-  },
-  "Ether Phantom": {
-   "per_s": 3.68,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": 3.68,
-   "n": 46,
-   "uptime_s": 217
-  },
-  "Dark Prison": {
-   "per_s": 8.34,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": 8.34,
-   "n": 17,
-   "uptime_s": 93
-  },
-  "Ice Prison": {
-   "per_s": -1.44,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": -1.44,
-   "n": 71,
-   "uptime_s": 551
-  },
-  "Parasitic Bond": {
-   "per_s": 3.59,
-   "direct_per_s": 4.27,
-   "output_drop_per_s": -0.68,
-   "n": 263,
-   "uptime_s": 2663
-  },
-  "Defile Flesh": {
-   "per_s": 2.3,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": 2.3,
-   "n": 92,
-   "uptime_s": 1132
-  },
-  "Corrupt Enchantment": {
-   "per_s": 12.45,
-   "direct_per_s": 12.1,
-   "output_drop_per_s": 0.35,
-   "n": 745,
-   "uptime_s": 5203
-  },
-  "Arcane Languor": {
-   "per_s": 4.08,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": 4.08,
-   "n": 192,
-   "uptime_s": 1635
-  },
-  "Rust": {
-   "per_s": 10.94,
-   "direct_per_s": 9.47,
-   "output_drop_per_s": 1.47,
-   "n": 230,
-   "uptime_s": 2464
-  },
-  "Imagined Burden": {
-   "per_s": 3.44,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": 3.44,
-   "n": 27,
-   "uptime_s": 191
-  },
-  "Mirror of Ice": {
-   "per_s": 16.77,
-   "direct_per_s": 14.34,
-   "output_drop_per_s": 2.42,
-   "n": 77,
-   "uptime_s": 379
-  },
-  "Rigor Mortis": {
-   "per_s": -4.49,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": -4.49,
-   "n": 17,
-   "uptime_s": 133
-  },
   "Soothing Images": {
    "per_s": -0.52,
    "direct_per_s": 0.0,
@@ -1292,33 +816,26 @@
    "n": 64,
    "uptime_s": 914
   },
+  "Mind Freeze": {
+   "per_s": 24.83,
+   "direct_per_s": 23.05,
+   "output_drop_per_s": 1.78,
+   "n": 845,
+   "uptime_s": 3469
+  },
+  "Deep Freeze": {
+   "per_s": 111.64,
+   "direct_per_s": 111.75,
+   "output_drop_per_s": -0.11,
+   "n": 17,
+   "uptime_s": 96
+  },
   "Illusion of Pain": {
-   "per_s": 29.81,
-   "direct_per_s": 31.37,
-   "output_drop_per_s": -1.56,
-   "n": 40,
-   "uptime_s": 263
-  },
-  "Lightning Strike": {
-   "per_s": 42.86,
-   "direct_per_s": 43.85,
-   "output_drop_per_s": -0.99,
-   "n": 5540,
-   "uptime_s": 15515
-  },
-  "Scourge Healing": {
-   "per_s": 5.06,
-   "direct_per_s": 6.68,
-   "output_drop_per_s": -1.62,
-   "n": 193,
-   "uptime_s": 3641
-  },
-  "Augury of Death": {
-   "per_s": 0.76,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": 0.76,
-   "n": 362,
-   "uptime_s": 1876
+   "per_s": 29.91,
+   "direct_per_s": 31.21,
+   "output_drop_per_s": -1.3,
+   "n": 42,
+   "uptime_s": 266
   },
   "Binding Chains": {
    "per_s": 13.24,
@@ -1327,96 +844,26 @@
    "n": 31,
    "uptime_s": 91
   },
-  "Rising Bile": {
-   "per_s": 8.33,
-   "direct_per_s": 8.45,
-   "output_drop_per_s": -0.12,
-   "n": 590,
-   "uptime_s": 8991
-  },
-  "Blurred Vision": {
-   "per_s": 5.12,
+  "Siphon Strength": {
+   "per_s": 0.0,
    "direct_per_s": 0.0,
-   "output_drop_per_s": 5.12,
-   "n": 281,
-   "uptime_s": 2023
-  },
-  "Insidious Parasite": {
-   "per_s": 20.06,
-   "direct_per_s": 19.14,
-   "output_drop_per_s": 0.91,
-   "n": 1112,
-   "uptime_s": 13055
-  },
-  "Life Siphon": {
-   "per_s": 10.76,
-   "direct_per_s": 12.45,
-   "output_drop_per_s": -1.69,
-   "n": 48,
-   "uptime_s": 627
+   "output_drop_per_s": 0.0,
+   "n": 2,
+   "uptime_s": 24
   },
   "Earthen Shackles": {
-   "per_s": -1.58,
+   "per_s": -2.28,
    "direct_per_s": 0.0,
-   "output_drop_per_s": -1.58,
-   "n": 531,
-   "uptime_s": 1816
+   "output_drop_per_s": -2.28,
+   "n": 557,
+   "uptime_s": 1888
   },
-  "Incendiary Bonds": {
-   "per_s": 64.11,
-   "direct_per_s": 59.11,
-   "output_drop_per_s": 5.0,
-   "n": 39,
-   "uptime_s": 105
-  },
-  "Conjure Nightmare": {
-   "per_s": 7.98,
-   "direct_per_s": 13.36,
-   "output_drop_per_s": -5.38,
-   "n": 79,
-   "uptime_s": 998
-  },
-  "Shameful Fear": {
-   "per_s": -2.72,
-   "direct_per_s": 8.39,
-   "output_drop_per_s": -11.11,
-   "n": 7,
-   "uptime_s": 61
-  },
-  "Malaise": {
-   "per_s": 0.22,
-   "direct_per_s": 0.51,
-   "output_drop_per_s": -0.3,
-   "n": 420,
-   "uptime_s": 7917
-  },
-  "Putrid Bile": {
-   "per_s": 6.06,
-   "direct_per_s": 7.04,
-   "output_drop_per_s": -0.99,
-   "n": 479,
-   "uptime_s": 7914
-  },
-  "Power Leech": {
-   "per_s": 19.57,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": 19.57,
-   "n": 13,
-   "uptime_s": 122
-  },
-  "Painful Bond": {
-   "per_s": 8.93,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": 8.93,
-   "n": 12,
-   "uptime_s": 161
-  },
-  "Air of Disenchantment": {
-   "per_s": 0.83,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": 0.83,
-   "n": 709,
-   "uptime_s": 8986
+  "Price of Failure": {
+   "per_s": 3.31,
+   "direct_per_s": 2.39,
+   "output_drop_per_s": 0.91,
+   "n": 77,
+   "uptime_s": 1724
   },
   "Stolen Speed": {
    "per_s": 2.16,
@@ -1425,54 +872,19 @@
    "n": 160,
    "uptime_s": 1119
   },
-  "Shroud of Silence": {
-   "per_s": 18.93,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": 18.93,
-   "n": 19,
-   "uptime_s": 104
+  "Mind Wrack": {
+   "per_s": 0.87,
+   "direct_per_s": 1.99,
+   "output_drop_per_s": -1.12,
+   "n": 27844,
+   "uptime_s": 378607
   },
-  "Mark of Death": {
-   "per_s": 7.73,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": 7.73,
-   "n": 153,
-   "uptime_s": 629
-  },
-  "Clumsiness": {
-   "per_s": 0.0,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": 0.0,
-   "n": 4,
-   "uptime_s": 16
-  },
-  "Confusing Images": {
-   "per_s": -13.66,
-   "direct_per_s": 0.0,
-   "output_drop_per_s": -13.66,
-   "n": 5,
-   "uptime_s": 45
-  },
-  "Barbs": {
-   "per_s": 2.53,
-   "direct_per_s": 3.47,
-   "output_drop_per_s": -0.94,
-   "n": 722,
-   "uptime_s": 12056
-  },
-  "Shatterstone": {
-   "per_s": 67.91,
-   "direct_per_s": 69.67,
-   "output_drop_per_s": -1.76,
-   "n": 726,
-   "uptime_s": 2044
-  },
-  "Chilling Winds": {
-   "per_s": 11.31,
-   "direct_per_s": 12.01,
-   "output_drop_per_s": -0.7,
-   "n": 18,
-   "uptime_s": 86
+  "Scourge Enchantment": {
+   "per_s": 5.17,
+   "direct_per_s": 5.13,
+   "output_drop_per_s": 0.03,
+   "n": 304,
+   "uptime_s": 5397
   },
   "Arcane Conundrum": {
    "per_s": 13.18,
@@ -1481,6 +893,34 @@
    "n": 5,
    "uptime_s": 54
   },
+  "Ether Lord": {
+   "per_s": 9.7,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": 9.7,
+   "n": 7,
+   "uptime_s": 61
+  },
+  "Winter's Embrace": {
+   "per_s": 5.93,
+   "direct_per_s": 6.21,
+   "output_drop_per_s": -0.28,
+   "n": 360,
+   "uptime_s": 1677
+  },
+  "Shameful Fear": {
+   "per_s": -2.72,
+   "direct_per_s": 8.39,
+   "output_drop_per_s": -11.11,
+   "n": 7,
+   "uptime_s": 61
+  },
+  "Images of Remorse": {
+   "per_s": -2.96,
+   "direct_per_s": 1.37,
+   "output_drop_per_s": -4.33,
+   "n": 15,
+   "uptime_s": 111
+  },
   "Shadow of Fear": {
    "per_s": 1.15,
    "direct_per_s": 0.0,
@@ -1488,137 +928,711 @@
    "n": 73,
    "uptime_s": 1115
   },
-  "Lingering Curse": {
-   "per_s": 7.88,
-   "direct_per_s": 7.12,
+  "Blurred Vision": {
+   "per_s": 5.53,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": 5.53,
+   "n": 287,
+   "uptime_s": 2054
+  },
+  "Mirror of Ice": {
+   "per_s": 16.77,
+   "direct_per_s": 14.34,
+   "output_drop_per_s": 2.42,
+   "n": 77,
+   "uptime_s": 379
+  },
+  "Parasitic Bond": {
+   "per_s": 3.73,
+   "direct_per_s": 4.36,
+   "output_drop_per_s": -0.63,
+   "n": 274,
+   "uptime_s": 2824
+  },
+  "Rust": {
+   "per_s": 10.67,
+   "direct_per_s": 9.16,
+   "output_drop_per_s": 1.51,
+   "n": 242,
+   "uptime_s": 2592
+  },
+  "Shared Burden": {
+   "per_s": 0.76,
+   "direct_per_s": 0.0,
    "output_drop_per_s": 0.76,
-   "n": 986,
-   "uptime_s": 16669
+   "n": 51,
+   "uptime_s": 722
+  },
+  "Lamentation": {
+   "per_s": 9.72,
+   "direct_per_s": 10.9,
+   "output_drop_per_s": -1.18,
+   "n": 6904,
+   "uptime_s": 87138
+  },
+  "Shroud of Silence": {
+   "per_s": 18.93,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": 18.93,
+   "n": 19,
+   "uptime_s": 104
+  },
+  "Hidden Caltrops": {
+   "per_s": 3.3,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": 3.3,
+   "n": 49,
+   "uptime_s": 342
+  },
+  "Mark of Fury": {
+   "per_s": -3.74,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": -3.74,
+   "n": 13,
+   "uptime_s": 59
+  },
+  "Scourge Healing": {
+   "per_s": 4.75,
+   "direct_per_s": 6.45,
+   "output_drop_per_s": -1.7,
+   "n": 212,
+   "uptime_s": 3941
+  },
+  "Meekness": {
+   "per_s": 14.25,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": 14.25,
+   "n": 13,
+   "uptime_s": 215
+  },
+  "Soul Barbs": {
+   "per_s": 12.97,
+   "direct_per_s": 11.26,
+   "output_drop_per_s": 1.71,
+   "n": 305,
+   "uptime_s": 4642
+  },
+  "Guilt": {
+   "per_s": 4.31,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": 4.31,
+   "n": 381,
+   "uptime_s": 1879
+  },
+  "Conjure Nightmare": {
+   "per_s": 7.98,
+   "direct_per_s": 13.36,
+   "output_drop_per_s": -5.38,
+   "n": 79,
+   "uptime_s": 998
+  },
+  "Painful Bond": {
+   "per_s": 8.93,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": 8.93,
+   "n": 12,
+   "uptime_s": 161
+  },
+  "Mistrust": {
+   "per_s": 12.91,
+   "direct_per_s": 5.98,
+   "output_drop_per_s": 6.94,
+   "n": 55,
+   "uptime_s": 229
+  },
+  "Overload": {
+   "per_s": 6.26,
+   "direct_per_s": 4.61,
+   "output_drop_per_s": 1.65,
+   "n": 76,
+   "uptime_s": 275
+  },
+  "Spiteful Spirit": {
+   "per_s": 22.21,
+   "direct_per_s": 10.41,
+   "output_drop_per_s": 11.8,
+   "n": 7,
+   "uptime_s": 194
+  },
+  "Lightning Strike": {
+   "per_s": 43.39,
+   "direct_per_s": 44.42,
+   "output_drop_per_s": -1.03,
+   "n": 6225,
+   "uptime_s": 17352
+  },
+  "Phantom Pain": {
+   "per_s": 7.34,
+   "direct_per_s": 7.8,
+   "output_drop_per_s": -0.45,
+   "n": 189,
+   "uptime_s": 1537
+  },
+  "Mark of Insecurity": {
+   "per_s": 7.56,
+   "direct_per_s": 9.06,
+   "output_drop_per_s": -1.5,
+   "n": 169,
+   "uptime_s": 1922
+  },
+  "Ice Spikes": {
+   "per_s": 14.15,
+   "direct_per_s": 11.62,
+   "output_drop_per_s": 2.53,
+   "n": 54,
+   "uptime_s": 291
+  },
+  "Wastrel's Demise": {
+   "per_s": 20.71,
+   "direct_per_s": 18.84,
+   "output_drop_per_s": 1.86,
+   "n": 703,
+   "uptime_s": 3418
+  },
+  "Rising Bile": {
+   "per_s": 8.72,
+   "direct_per_s": 8.48,
+   "output_drop_per_s": 0.24,
+   "n": 627,
+   "uptime_s": 9506
+  },
+  "Conjure Phantasm": {
+   "per_s": 11.97,
+   "direct_per_s": 10.25,
+   "output_drop_per_s": 1.72,
+   "n": 1303,
+   "uptime_s": 16529
   },
   "Fragility": {
-   "per_s": 5.42,
-   "direct_per_s": 5.69,
-   "output_drop_per_s": -0.27,
-   "n": 723,
-   "uptime_s": 9224
+   "per_s": 5.37,
+   "direct_per_s": 5.72,
+   "output_drop_per_s": -0.34,
+   "n": 811,
+   "uptime_s": 10204
+  },
+  "Imagined Burden": {
+   "per_s": 3.44,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": 3.44,
+   "n": 27,
+   "uptime_s": 191
+  },
+  "Defile Defenses": {
+   "per_s": 0.18,
+   "direct_per_s": 0.94,
+   "output_drop_per_s": -0.75,
+   "n": 2578,
+   "uptime_s": 28107
+  },
+  "Shatterstone": {
+   "per_s": 70.42,
+   "direct_per_s": 72.77,
+   "output_drop_per_s": -2.35,
+   "n": 928,
+   "uptime_s": 2595
+  },
+  "Backfire": {
+   "per_s": 25.32,
+   "direct_per_s": 23.96,
+   "output_drop_per_s": 1.36,
+   "n": 198,
+   "uptime_s": 1479
+  },
+  "Air of Disenchantment": {
+   "per_s": 0.35,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": 0.35,
+   "n": 831,
+   "uptime_s": 10512
+  },
+  "Siphon Speed": {
+   "per_s": -1.69,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": -1.69,
+   "n": 314,
+   "uptime_s": 1890
+  },
+  "Shadowy Burden": {
+   "per_s": 0.15,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": 0.15,
+   "n": 71,
+   "uptime_s": 539
+  },
+  "Ether Phantom": {
+   "per_s": 6.12,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": 6.12,
+   "n": 51,
+   "uptime_s": 224
+  },
+  "Rigor Mortis": {
+   "per_s": -4.49,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": -4.49,
+   "n": 17,
+   "uptime_s": 133
+  },
+  "Corrupt Enchantment": {
+   "per_s": 12.07,
+   "direct_per_s": 11.73,
+   "output_drop_per_s": 0.34,
+   "n": 769,
+   "uptime_s": 5365
+  },
+  "Malaise": {
+   "per_s": 0.77,
+   "direct_per_s": 0.52,
+   "output_drop_per_s": 0.25,
+   "n": 453,
+   "uptime_s": 8345
+  },
+  "Web of Disruption": {
+   "per_s": 0.17,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": 0.17,
+   "n": 103,
+   "uptime_s": 936
+  },
+  "Kitah's Burden": {
+   "per_s": -1.19,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": -1.19,
+   "n": 371,
+   "uptime_s": 3281
+  },
+  "Mark of Death": {
+   "per_s": 7.76,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": 7.76,
+   "n": 158,
+   "uptime_s": 642
+  },
+  "Shard Storm": {
+   "per_s": 11.23,
+   "direct_per_s": 9.22,
+   "output_drop_per_s": 2.02,
+   "n": 183,
+   "uptime_s": 922
+  },
+  "Migraine": {
+   "per_s": 19.67,
+   "direct_per_s": 13.28,
+   "output_drop_per_s": 6.39,
+   "n": 652,
+   "uptime_s": 8392
+  },
+  "Empathy": {
+   "per_s": 16.65,
+   "direct_per_s": 15.7,
+   "output_drop_per_s": 0.95,
+   "n": 1292,
+   "uptime_s": 15138
+  },
+  "Ice Prison": {
+   "per_s": -2.18,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": -2.18,
+   "n": 88,
+   "uptime_s": 660
+  },
+  "Putrid Bile": {
+   "per_s": 6.21,
+   "direct_per_s": 6.97,
+   "output_drop_per_s": -0.76,
+   "n": 521,
+   "uptime_s": 8602
+  },
+  "Atrophy": {
+   "per_s": 0.0,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": 0.0,
+   "n": 2,
+   "uptime_s": 12
+  },
+  "Incendiary Bonds": {
+   "per_s": 59.26,
+   "direct_per_s": 59.46,
+   "output_drop_per_s": -0.2,
+   "n": 51,
+   "uptime_s": 141
+  },
+  "Diversion": {
+   "per_s": 8.5,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": 8.5,
+   "n": 240,
+   "uptime_s": 1039
+  },
+  "Crippling Anguish": {
+   "per_s": 11.09,
+   "direct_per_s": 10.99,
+   "output_drop_per_s": 0.1,
+   "n": 293,
+   "uptime_s": 3834
+  },
+  "Clumsiness": {
+   "per_s": 0.0,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": 0.0,
+   "n": 4,
+   "uptime_s": 16
+  },
+  "Wastrel's Worry": {
+   "per_s": 0.56,
+   "direct_per_s": 0.17,
+   "output_drop_per_s": 0.4,
+   "n": 80,
+   "uptime_s": 633
+  },
+  "Lightning Surge": {
+   "per_s": 24.0,
+   "direct_per_s": 31.02,
+   "output_drop_per_s": -7.02,
+   "n": 2612,
+   "uptime_s": 7420
+  },
+  "Price of Pride": {
+   "per_s": 8.93,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": 8.93,
+   "n": 39,
+   "uptime_s": 177
+  },
+  "Enduring Toxin": {
+   "per_s": 14.55,
+   "direct_per_s": 8.98,
+   "output_drop_per_s": 5.57,
+   "n": 249,
+   "uptime_s": 1332
+  },
+  "Shadow Prison": {
+   "per_s": -2.89,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": -2.89,
+   "n": 96,
+   "uptime_s": 284
+  },
+  "Defile Flesh": {
+   "per_s": 2.3,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": 2.3,
+   "n": 92,
+   "uptime_s": 1132
+  },
+  "Power Leech": {
+   "per_s": 19.57,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": 19.57,
+   "n": 13,
+   "uptime_s": 122
+  },
+  "Expose Defenses": {
+   "per_s": 10.51,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": 10.51,
+   "n": 17,
+   "uptime_s": 159
+  },
+  "Teinai's Prison": {
+   "per_s": 5.11,
+   "direct_per_s": 9.67,
+   "output_drop_per_s": -4.56,
+   "n": 17,
+   "uptime_s": 76
+  },
+  "Arcane Languor": {
+   "per_s": 3.83,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": 3.83,
+   "n": 222,
+   "uptime_s": 1918
+  },
+  "Renewing Surge": {
+   "per_s": 11.66,
+   "direct_per_s": 12.38,
+   "output_drop_per_s": -0.72,
+   "n": 6112,
+   "uptime_s": 43465
+  },
+  "Augury of Death": {
+   "per_s": 0.94,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": 0.94,
+   "n": 427,
+   "uptime_s": 2198
+  },
+  "Life Siphon": {
+   "per_s": 10.76,
+   "direct_per_s": 12.45,
+   "output_drop_per_s": -1.69,
+   "n": 48,
+   "uptime_s": 627
+  },
+  "Shadow Shroud": {
+   "per_s": 9.2,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": 9.2,
+   "n": 343,
+   "uptime_s": 1561
+  },
+  "Lingering Curse": {
+   "per_s": 7.93,
+   "direct_per_s": 7.11,
+   "output_drop_per_s": 0.82,
+   "n": 1071,
+   "uptime_s": 18202
+  },
+  "Faintheartedness": {
+   "per_s": 6.62,
+   "direct_per_s": 4.62,
+   "output_drop_per_s": 2.0,
+   "n": 939,
+   "uptime_s": 10909
+  },
+  "Vile Miasma": {
+   "per_s": 19.7,
+   "direct_per_s": 19.83,
+   "output_drop_per_s": -0.13,
+   "n": 212,
+   "uptime_s": 1414
+  },
+  "Confusing Images": {
+   "per_s": -13.66,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": -13.66,
+   "n": 5,
+   "uptime_s": 45
+  },
+  "Ineptitude": {
+   "per_s": -7.4,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": -7.4,
+   "n": 5,
+   "uptime_s": 16
+  },
+  "Insidious Parasite": {
+   "per_s": 20.12,
+   "direct_per_s": 19.22,
+   "output_drop_per_s": 0.9,
+   "n": 1233,
+   "uptime_s": 14466
+  },
+  "Smoldering Embers": {
+   "per_s": 55.12,
+   "direct_per_s": 57.54,
+   "output_drop_per_s": -2.42,
+   "n": 1850,
+   "uptime_s": 5184
+  },
+  "Weaken Knees": {
+   "per_s": 16.29,
+   "direct_per_s": 16.94,
+   "output_drop_per_s": -0.66,
+   "n": 3789,
+   "uptime_s": 38248
+  },
+  "Seeping Wound": {
+   "per_s": -27.37,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": -27.37,
+   "n": 6,
+   "uptime_s": 27
+  },
+  "Dark Prison": {
+   "per_s": 8.34,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": 8.34,
+   "n": 17,
+   "uptime_s": 93
+  },
+  "Barbs": {
+   "per_s": 2.44,
+   "direct_per_s": 3.53,
+   "output_drop_per_s": -1.09,
+   "n": 830,
+   "uptime_s": 13694
+  },
+  "Scorpion Wire": {
+   "per_s": -5.31,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": -5.31,
+   "n": 48,
+   "uptime_s": 163
+  },
+  "Frustration": {
+   "per_s": 3.22,
+   "direct_per_s": 0.05,
+   "output_drop_per_s": 3.17,
+   "n": 437,
+   "uptime_s": 7079
+  },
+  "Shrinking Armor": {
+   "per_s": 1.33,
+   "direct_per_s": 0.49,
+   "output_drop_per_s": 0.84,
+   "n": 541,
+   "uptime_s": 3931
+  },
+  "Sum of All Fears": {
+   "per_s": 2.91,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": 2.91,
+   "n": 39,
+   "uptime_s": 343
+  },
+  "Chilling Winds": {
+   "per_s": 11.31,
+   "direct_per_s": 12.01,
+   "output_drop_per_s": -0.7,
+   "n": 18,
+   "uptime_s": 86
+  },
+  "Ethereal Burden": {
+   "per_s": 1.04,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": 1.04,
+   "n": 505,
+   "uptime_s": 4740
+  },
+  "Freezing Gust": {
+   "per_s": 7.02,
+   "direct_per_s": 8.2,
+   "output_drop_per_s": -1.18,
+   "n": 1010,
+   "uptime_s": 3758
+  },
+  "Suffering": {
+   "per_s": 5.54,
+   "direct_per_s": 4.96,
+   "output_drop_per_s": 0.58,
+   "n": 805,
+   "uptime_s": 13997
+  },
+  "Shame": {
+   "per_s": 18.79,
+   "direct_per_s": 0.0,
+   "output_drop_per_s": 18.79,
+   "n": 1713,
+   "uptime_s": 8229
   }
  },
  "roles": {
   "Hammer A": {
-   "median": 14.1,
-   "n": 169
+   "median": 14.0,
+   "n": 177
   },
   "Paragon": {
-   "median": 8.0,
-   "n": 487
+   "median": 8.4,
+   "n": 551
   },
   "Hammer B": {
-   "median": 14.1,
-   "n": 168
+   "median": 13.9,
+   "n": 179
   },
   "Ranger": {
-   "median": 5.1,
-   "n": 1146
+   "median": 5.2,
+   "n": 1239
   },
   "Mes/A": {
    "median": 6.3,
-   "n": 1717
+   "n": 1952
   },
   "Monk 4 (WoC)": {
    "median": 8.0,
-   "n": 1029
+   "n": 1108
   },
   "Mesmer": {
    "median": 4.9,
-   "n": 3873
+   "n": 4398
   },
   "Stand Mes": {
-   "median": 6.5,
-   "n": 1665
+   "median": 6.7,
+   "n": 1895
   },
   "Prot": {
    "median": 0.0,
-   "n": 5415
+   "n": 6171
   },
   "7 Monk": {
    "median": 0.0,
-   "n": 5816
+   "n": 6635
   },
   "8 Monk": {
    "median": 0.0,
-   "n": 5487
+   "n": 6212
   },
   "Air Ele": {
-   "median": 8.4,
-   "n": 1230
+   "median": 8.1,
+   "n": 1418
   },
   "AoB Derv": {
-   "median": 8.3,
-   "n": 2075
+   "median": 8.4,
+   "n": 2328
   },
   "Fire Ele": {
-   "median": 7.6,
-   "n": 1018
+   "median": 7.2,
+   "n": 1147
   },
   "Hammer": {
-   "median": 12.7,
-   "n": 2449
+   "median": 12.8,
+   "n": 2750
   },
   "Monk 4": {
    "median": 0.0,
-   "n": 133
+   "n": 154
   },
   "Necromancer": {
-   "median": 6.3,
-   "n": 726
+   "median": 6.5,
+   "n": 810
   },
   "Dervish": {
    "median": 7.1,
-   "n": 1168
+   "n": 1306
   },
   "Ritualist": {
-   "median": 5.2,
-   "n": 2271
+   "median": 5.3,
+   "n": 2529
   },
   "Ritualist 1": {
-   "median": 2.5,
-   "n": 84
+   "median": 2.8,
+   "n": 95
   },
   "Ritualist 2": {
-   "median": 4.3,
-   "n": 81
+   "median": 4.5,
+   "n": 95
   },
   "Ritualist 3": {
    "median": 2.8,
    "n": 12
   },
   "Rit/Para": {
-   "median": 3.3,
-   "n": 71
+   "median": 3.4,
+   "n": 90
   },
   "Necromancer 1": {
-   "median": 6.7,
-   "n": 257
+   "median": 6.4,
+   "n": 279
   },
   "Air Ele 1": {
-   "median": 6.8,
-   "n": 404
+   "median": 7.0,
+   "n": 454
   },
   "Necromancer 2": {
-   "median": 3.5,
-   "n": 257
+   "median": 4.1,
+   "n": 281
   },
   "Air Ele 2": {
-   "median": 8.8,
-   "n": 405
+   "median": 8.9,
+   "n": 460
   },
   "Air Ele 3": {
-   "median": 8.6,
-   "n": 242
+   "median": 8.8,
+   "n": 271
   },
   "Air Ele 4": {
-   "median": 8.8,
-   "n": 138
+   "median": 8.5,
+   "n": 159
   },
   "Monk 2 (WoC)": {
    "median": 5.6,
@@ -1626,11 +1640,11 @@
   },
   "Monk 3 (WoC)": {
    "median": 7.2,
-   "n": 693
+   "n": 761
   },
   "Monk 5 (WoC)": {
    "median": 7.6,
-   "n": 719
+   "n": 877
   },
   "Snare (WoC)": {
    "median": 4.6,
@@ -1649,24 +1663,24 @@
    "n": 16
   },
   "Warrior": {
-   "median": 11.5,
-   "n": 1735
+   "median": 11.6,
+   "n": 2051
   },
   "Water Ele": {
-   "median": 7.6,
-   "n": 507
+   "median": 7.7,
+   "n": 585
   },
   "Paragon 1": {
    "median": 10.3,
-   "n": 435
+   "n": 547
   },
   "Paragon 2": {
-   "median": 11.4,
-   "n": 424
+   "median": 11.1,
+   "n": 534
   },
   "Assassin": {
-   "median": 10.0,
-   "n": 279
+   "median": 10.5,
+   "n": 369
   },
   "Prot (WoC)": {
    "median": 5.2,
@@ -1690,51 +1704,51 @@
   },
   "Monk 5": {
    "median": 0.0,
-   "n": 157
+   "n": 166
   },
   "Necromancer 6": {
    "median": 6.6,
    "n": 26
   },
   "Warrior 2": {
-   "median": 11.1,
-   "n": 386
+   "median": 11.4,
+   "n": 419
   },
   "Warrior 1": {
-   "median": 10.9,
-   "n": 391
+   "median": 11.2,
+   "n": 419
   },
   "Monk 1 (WoC)": {
    "median": 5.5,
    "n": 112
   },
   "Assassin 1": {
-   "median": 13.6,
-   "n": 77
+   "median": 13.5,
+   "n": 84
   },
   "Assassin 2": {
-   "median": 14.9,
-   "n": 79
+   "median": 14.1,
+   "n": 89
   },
   "Stand Mes 1": {
-   "median": 5.0,
-   "n": 72
+   "median": 5.3,
+   "n": 76
   },
   "Stand Mes 2": {
-   "median": 6.8,
-   "n": 73
+   "median": 5.4,
+   "n": 77
   },
   "Dervish 1": {
-   "median": 7.8,
-   "n": 177
+   "median": 7.7,
+   "n": 206
   },
   "Dervish 2": {
-   "median": 5.8,
-   "n": 178
+   "median": 5.5,
+   "n": 211
   },
   "Monk 1": {
    "median": 0.0,
-   "n": 145
+   "n": 182
   },
   "Air Ele 5": {
    "median": 8.8,
@@ -1742,11 +1756,11 @@
   },
   "Fire Ele 1": {
    "median": 7.7,
-   "n": 116
+   "n": 129
   },
   "Fire Ele 2": {
-   "median": 6.8,
-   "n": 119
+   "median": 7.0,
+   "n": 130
   },
   "Ele 1": {
    "median": 5.7,
@@ -1793,12 +1807,12 @@
    "n": 30
   },
   "Ranger 1": {
-   "median": 8.3,
-   "n": 45
+   "median": 8.8,
+   "n": 48
   },
   "Ranger 2": {
-   "median": 11.2,
-   "n": 41
+   "median": 10.6,
+   "n": 44
   },
   "Ranger 3": {
    "median": 11.9,
@@ -1806,7 +1820,7 @@
   },
   "8 Monk (WoC)": {
    "median": 5.5,
-   "n": 8
+   "n": 14
   },
   "Warrior 5": {
    "median": 9.7,
@@ -1817,8 +1831,8 @@
    "n": 22
   },
   "Dervish 3": {
-   "median": 3.0,
-   "n": 25
+   "median": 2.4,
+   "n": 33
   },
   "Monk 2": {
    "median": 0.0,
@@ -1831,16 +1845,16 @@
  },
  "classes": {
   "frontline": {
-   "median": 10.6,
-   "n": 9468
+   "median": 10.7,
+   "n": 10733
   },
   "midline": {
    "median": 6.4,
-   "n": 20750
+   "n": 23423
   },
   "healer": {
    "median": 0.0,
-   "n": 17914
+   "n": 20308
   }
  }
 }

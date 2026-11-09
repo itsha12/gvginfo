@@ -4,193 +4,189 @@
 
 At every decision point and every recurring state (every 30 s), what the eight players did in the next 20 s, grouped by similarity. A group no single named choice covers is **UNNAMED**: a response the engine sees teams make that nobody has named. Denning names it (it becomes a choice the usual play compares), merges it, or rejects it. Win change = win-chance points over the window, raw and adjusted for the situation (against the kind's mean).
 
-## Unnamed responses to rule on: 26
+## Unnamed responses to rule on: 25
 
-- **after wipe** (n 425): advanced (midline, 2.5 of 8), advanced (backline, 2.5 of 8), advanced (frontline, 1.2 of 8); named today as {'pushed the pit': 252, 'reset': 97, 'took the flag': 76}; win change raw 0.4, adjusted 0.7
-  - example: Team at 14:11 in bf17b54e (recorded as took the flag, +68.4 points)
-  - example: Fun at 0:55 in df634bdc (recorded as reset, -64.0 points)
-  - example: BcS at 14:22 in 3ee18c0c (recorded as pushed the pit, +60.6 points)
-- **boost clock** (n 639): fought (midline, 2.2 of 8), fought (backline, 2.1 of 8), fought (frontline, 0.9 of 8), held (backline, 0.5 of 8); named today as {'not running, fought': 228, 'running, fought': 123, 'not running, fell back': 60}; win change raw 0.1, adjusted 0.8
-  - example: Apes at 26:46 in 6acf4b9e (recorded as not running, fought, -57.7 points)
-  - example: xxx at 26:54 in c3973a8c (recorded as not running, fought, -53.9 points)
-  - example: One at 11:38 in dac72124 (recorded as running, fell back, +51.2 points)
-- **boost clock** (n 412): held (backline, 1.3 of 8), fought (midline, 0.8 of 8), fought (frontline, 0.6 of 8), to the spawn (backline, 0.5 of 8); named today as {'not running, fought': 78, 'not running, fell back': 77, 'not running, held': 69}; win change raw -0.8, adjusted -0.2
-  - example: DMG at 8:45 in e906615a (recorded as not running, fought, -71.9 points)
-  - example: Fun at 14:10 in 7cb3ef17 (recorded as not running, fell back, -58.7 points)
-  - example: EDGE at 3:59 in e14811f2 (recorded as not running, fought, -39.2 points)
-- **boost clock** (n 336): advanced (backline, 2.1 of 8), advanced (midline, 2.0 of 8), advanced (frontline, 0.9 of 8), fought (midline, 0.5 of 8); named today as {'running, advanced': 122, 'not running, advanced': 108, 'running, fought': 22}; win change raw 0.1, adjusted 0.7
-  - example: cope at 13:38 in 427c825b (recorded as running, advanced, -60.5 points)
-  - example: Team at 26:44 in 1af4f8f8 (recorded as not running, advanced, -41.9 points)
-  - example: Men at 20:00 in 36a65ac6 (recorded as not running, advanced, -41.3 points)
-- **boost clock** (n 274): fell back (backline, 1.9 of 8), fell back (midline, 1.7 of 8), fell back (frontline, 0.7 of 8); named today as {'not running, fell back': 110, 'running, fell back': 58, 'not running, fought': 25}; win change raw -1.9, adjusted -1.3
-  - example: Fun at 2:00 in 99d9b260 (recorded as not running, fell back, -71.7 points)
-  - example: Men at 10:13 in c19f13e3 (recorded as not running, held, -39.1 points)
-  - example: Fun at 3:51 in 85fa697c (recorded as not running, advanced, -37.1 points)
-- **enemy pickup** (n 2642): fought (midline, 1.9 of 8), fought (backline, 1.6 of 8), fought (frontline, 1.0 of 8), held (backline, 0.9 of 8); named today as {'held, fought': 454, 'already running, fought': 359, 'held, advanced': 280}; win change raw -0.8, adjusted -0.5
-  - example: hold at 2:03 in 99d9b260 (recorded as held, advanced, +82.8 points)
-  - example: chic at 1:44 in bad498e0 (recorded as held, advanced, -72.6 points)
-  - example: Crew at 13:25 in 3ee18c0c (recorded as held, fought, -67.7 points)
-- **enemy pickup** (n 1551): advanced (backline, 2.0 of 8), advanced (midline, 2.0 of 8), advanced (frontline, 0.9 of 8); named today as {'held, advanced': 440, 'already running, advanced': 426, 'ran, advanced': 193}; win change raw 0.3, adjusted 0.5
-  - example: chic at 1:42 in bad498e0 (recorded as held, fought, -72.6 points)
-  - example: BcS at 14:15 in 3ee18c0c (recorded as held, fell back, +66.2 points)
-  - example: yM at 0:45 in 7887be10 (recorded as held, advanced, -64.4 points)
-- **enemy pickup** (n 1318): fell back (backline, 2.0 of 8), fell back (midline, 1.8 of 8), fell back (frontline, 0.8 of 8); named today as {'held, fell back': 420, 'already running, fell back': 258, 'ran, fell back': 220}; win change raw -0.1, adjusted 0.0
-  - example: DMG at 8:13 in e906615a (recorded as already running, advanced, -69.8 points)
-  - example: hold at 2:04 in ffb99c54 (recorded as held, advanced, -67.7 points)
-  - example: chic at 1:49 in bad498e0 (recorded as held, advanced, -63.0 points)
-- **late game** (n 42): fought (midline, 2.4 of 8), fought (backline, 1.9 of 8), fought (frontline, 1.0 of 8), held (backline, 0.5 of 8); named today as {'4+ at the enemy Lord': 16, '2 to 3 at the enemy Lord': 15, '0 to 1 at the enemy Lord': 11}; win change raw 1.6, adjusted 3.9
-  - example: xxx at 24:00 in c3973a8c (recorded as 2 to 3 at the enemy Lord, -82.0 points)
-  - example: True at 24:00 in 6acf4b9e (recorded as 0 to 1 at the enemy Lord, +64.5 points)
-  - example: NwAy at 24:00 in d6ef0b00 (recorded as 2 to 3 at the enemy Lord, -63.3 points)
-- **late game** (n 41): advanced (backline, 2.1 of 8), advanced (midline, 2.0 of 8), advanced (frontline, 1.0 of 8); named today as {'2 to 3 at the enemy Lord': 21, '0 to 1 at the enemy Lord': 11, '4+ at the enemy Lord': 9}; win change raw 2.0, adjusted 7.8
-  - example: DMG at 24:00 in 933638bc (recorded as 0 to 1 at the enemy Lord, -68.3 points)
-  - example: Crew at 24:00 in 1af4f8f8 (recorded as 2 to 3 at the enemy Lord, +67.3 points)
-  - example: NwAy at 24:00 in 457b3a21 (recorded as 2 to 3 at the enemy Lord, -62.2 points)
-- **late game** (n 36): fell back (backline, 2.2 of 8), fell back (midline, 1.5 of 8), fell back (frontline, 1.1 of 8); named today as {'0 to 1 at the enemy Lord': 18, '2 to 3 at the enemy Lord': 11, '4+ at the enemy Lord': 7}; win change raw 1.2, adjusted 0.5
-  - example: One at 24:00 in c3973a8c (recorded as 2 to 3 at the enemy Lord, +82.9 points)
-  - example: hold at 24:00 in 5f9df5bb (recorded as 0 to 1 at the enemy Lord, -74.3 points)
-  - example: Team at 24:00 in 1af4f8f8 (recorded as 0 to 1 at the enemy Lord, -69.4 points)
-- **late game** (n 27): held (backline, 1.5 of 8), to the spawn (backline, 0.8 of 8), fought (backline, 0.7 of 8), to the spawn (midline, 0.6 of 8); named today as {'0 to 1 at the enemy Lord': 14, '2 to 3 at the enemy Lord': 8, '4+ at the enemy Lord': 5}; win change raw -8.4, adjusted -8.3
-  - example: Apes at 24:00 in 7e05bf53 (recorded as 2 to 3 at the enemy Lord, -68.4 points)
-  - example: OG at 24:00 in 5f9df5bb (recorded as 2 to 3 at the enemy Lord, +63.8 points)
-  - example: DUM at 24:00 in c2abad8e (recorded as 4+ at the enemy Lord, -56.8 points)
-- **npcs or dp** (n 178): fought (midline, 2.7 of 8), fought (backline, 2.2 of 8), fought (frontline, 1.2 of 8); named today as {'NPCs': 103, 'DP': 40, 'both': 35}; win change raw 0.5, adjusted 0.4
-  - example: DMG at 2:04 in 799ca1a5 (recorded as both, +42.3 points)
-  - example: Men at 9:43 in c19f13e3 (recorded as NPCs, -35.9 points)
-  - example: Fun at 13:31 in 7cb3ef17 (recorded as DP, -31.8 points)
-- **offence or defence** (n 685): fought (midline, 2.4 of 8), fought (backline, 1.9 of 8), fought (frontline, 1.3 of 8), held (backline, 0.7 of 8); named today as {'defensive': 263, 'offensive': 254, 'mixed': 168}; win change raw 0.8, adjusted 0.1
-  - example: hold at 14:08 in 7cb3ef17 (recorded as mixed, +70.2 points)
-  - example: hold at 1:48 in 7cb3ef17 (recorded as defensive, -66.7 points)
-  - example: OG at 4:21 in 49eec28d (recorded as defensive, +64.8 points)
-- **offence or defence** (n 252): advanced (backline, 1.9 of 8), advanced (midline, 1.7 of 8), advanced (frontline, 1.0 of 8), fought (midline, 0.8 of 8); named today as {'offensive': 96, 'defensive': 90, 'mixed': 66}; win change raw 3.9, adjusted 3.1
-  - example: Team at 1:47 in 0f3c18b0 (recorded as offensive, +78.2 points)
-  - example: DUM at 9:52 in c2abad8e (recorded as offensive, +47.0 points)
-  - example: push at 2:25 in 9b962f38 (recorded as mixed, +44.7 points)
-- **offence or defence** (n 197): fell back (backline, 1.7 of 8), fell back (midline, 1.6 of 8), fell back (frontline, 0.8 of 8), fought (midline, 0.7 of 8); named today as {'defensive': 101, 'offensive': 55, 'mixed': 41}; win change raw -2.6, adjusted -3.2
-  - example: Men at 1:47 in 0f3c18b0 (recorded as offensive, -77.7 points)
-  - example: OG at 14:26 in 5f9df5bb (recorded as mixed, -54.1 points)
-  - example: hold at 1:21 in 99d9b260 (recorded as defensive, -49.4 points)
-- **power play** (n 2776): fought (midline, 1.8 of 8), fought (backline, 1.6 of 8), fought (frontline, 1.0 of 8), held (backline, 0.7 of 8); named today as {'pushed, fought': 690, 'held, fought': 470, 'held, fell back': 422}; win change raw 0.2, adjusted -0.7
-  - example: Fun at 12:42 in 7cb3ef17 (recorded as pushed, fought, -90.4 points)
-  - example: Fun at 1:20 in 7cb3ef17 (recorded as pushed, fell back, +80.4 points)
-  - example: DUM at 4:03 in f5bb5394 (recorded as pushed, to the spawn, +78.3 points)
-- **runner choice** (n 1554): fought (backline, 1.9 of 8), fought (midline, 1.8 of 8), fought (frontline, 1.0 of 8), held (backline, 0.8 of 8); named today as {'monk': 370, 'dervish': 282, 'mesmer': 272}; win change raw 1.1, adjusted 0.7
-  - example: chic at 8:13 in e906615a (recorded as monk, +68.4 points)
-  - example: BcS at 13:25 in 3ee18c0c (recorded as ritualist, +67.0 points)
-  - example: Crew at 0:45 in 7887be10 (recorded as mesmer, +62.9 points)
-- **runner choice** (n 1191): fell back (backline, 1.5 of 8), fell back (midline, 1.3 of 8), held (backline, 0.7 of 8), fell back (frontline, 0.6 of 8); named today as {'mesmer': 236, 'dervish': 233, 'monk': 219}; win change raw 0.4, adjusted -0.1
-  - example: Fun at 2:03 in 99d9b260 (recorded as elementalist, -83.3 points)
-  - example: chic at 4:21 in 933638bc (recorded as dervish, +54.3 points)
-  - example: Team at 7:10 in 9a5c0133 (recorded as necromancer, +51.2 points)
-- **runner choice** (n 1052): advanced (backline, 2.2 of 8), advanced (midline, 1.7 of 8), advanced (frontline, 0.8 of 8), carrying (midline, 0.5 of 8); named today as {'monk': 285, 'mesmer': 212, 'dervish': 173}; win change raw -0.4, adjusted -0.6
-  - example: HH at 2:04 in ffb99c54 (recorded as monk, +69.4 points)
-  - example: DMG at 7:58 in e906615a (recorded as monk, -62.7 points)
-  - example: cope at 13:01 in 427c825b (recorded as dervish, -61.2 points)
-- **split in base** (n 413): fought (midline, 1.9 of 8), fought (backline, 1.3 of 8), fought (frontline, 0.9 of 8), held (backline, 0.7 of 8); named today as {'defended without a collapse': 210, 'collapsed': 150, 'missed': 53}; win change raw -0.6, adjusted 0.6
-  - example: Dz at 2:00 in 4732d15c (recorded as defended without a collapse, -78.1 points)
-  - example: Crew at 16:57 in fe3fd3d2 (recorded as collapsed, +64.7 points)
-  - example: RJT at 7:07 in eea5ba87 (recorded as collapsed, -62.0 points)
-- **split in base** (n 255): fell back (backline, 1.9 of 8), fell back (midline, 1.9 of 8), fell back (frontline, 0.8 of 8); named today as {'collapsed': 134, 'defended without a collapse': 102, 'missed': 19}; win change raw -1.8, adjusted -0.3
-  - example: hold at 11:35 in 5f9df5bb (recorded as defended without a collapse, +48.1 points)
-  - example: Fun at 1:29 in 62ab0750 (recorded as collapsed, +43.0 points)
-  - example: xxx at 26:06 in c3973a8c (recorded as defended without a collapse, -42.1 points)
-- **split in base** (n 221): advanced (midline, 1.9 of 8), advanced (backline, 1.8 of 8), advanced (frontline, 1.0 of 8), fought (midline, 0.5 of 8); named today as {'defended without a collapse': 102, 'collapsed': 97, 'missed': 22}; win change raw -1.4, adjusted -0.3
-  - example: Fun at 12:12 in 7cb3ef17 (recorded as missed, -84.6 points)
-  - example: Fun at 1:41 in 7cb3ef17 (recorded as defended without a collapse, +75.1 points)
-  - example: Id at 7:29 in 1abf62cc (recorded as collapsed, -64.1 points)
-- **who defends** (n 369): fought (midline, 2.0 of 8), fought (backline, 1.3 of 8), fought (frontline, 0.9 of 8), held (backline, 0.7 of 8); named today as {'midline alone': 68, 'frontline alone': 50, 'midline with a collapse': 40}; win change raw -0.6, adjusted 0.5
-  - example: Dz at 2:00 in 4732d15c (recorded as healer alone, -78.1 points)
-  - example: Crew at 16:57 in fe3fd3d2 (recorded as Mes/A with a collapse, +64.7 points)
-  - example: RJT at 7:07 in eea5ba87 (recorded as frontline with a collapse, -62.0 points)
-- **who defends** (n 239): fell back (backline, 1.9 of 8), fell back (midline, 1.9 of 8), fell back (frontline, 0.8 of 8); named today as {'frontline with a collapse': 41, 'midline alone': 37, 'midline with a collapse': 35}; win change raw -1.9, adjusted -0.8
-  - example: hold at 11:35 in 5f9df5bb (recorded as frontline alone, +48.1 points)
-  - example: Fun at 1:29 in 62ab0750 (recorded as 8 Monk with a collapse, +43.0 points)
-  - example: xxx at 26:06 in c3973a8c (recorded as midline alone, -42.1 points)
-- **who defends** (n 199): advanced (midline, 1.9 of 8), advanced (backline, 1.8 of 8), advanced (frontline, 1.1 of 8), fought (midline, 0.5 of 8); named today as {'frontline with a collapse': 33, 'midline alone': 30, 'midline with a collapse': 28}; win change raw -0.9, adjusted 0.2
-  - example: Fun at 1:41 in 7cb3ef17 (recorded as 8 Monk alone, +75.1 points)
-  - example: Id at 7:29 in 1abf62cc (recorded as healer with a collapse, -64.1 points)
-  - example: One at 22:40 in 9fb1069f (recorded as 8 Monk with a collapse, -58.1 points)
+- **boost clock** (n 703): fought (midline, 2.2 of 8), fought (backline, 2.1 of 8), fought (frontline, 0.9 of 8), held (backline, 0.5 of 8); named today as {'not running, fought': 247, 'running, fought': 135, 'not running, fell back': 71}; win change raw 0.4, adjusted 0.8
+  - example: xxx at 26:54 in c3973a8c (recorded as not running, fought, -52.0 points)
+  - example: hook at 24:30 in 19f38ea6 (recorded as not running, fell back, +51.8 points)
+  - example: Apes at 26:46 in 6acf4b9e (recorded as not running, fought, -46.4 points)
+- **boost clock** (n 467): held (backline, 1.3 of 8), fought (midline, 0.8 of 8), fought (frontline, 0.6 of 8), to the spawn (backline, 0.6 of 8); named today as {'not running, fell back': 94, 'not running, fought': 86, 'not running, held': 72}; win change raw -0.4, adjusted -0.2
+  - example: Fun at 14:10 in 7cb3ef17 (recorded as not running, fell back, -58.8 points)
+  - example: DMG at 8:45 in e906615a (recorded as not running, fought, -57.7 points)
+  - example: One at 26:34 in fabafc13 (recorded as not running, fought, -34.5 points)
+- **boost clock** (n 373): advanced (backline, 2.1 of 8), advanced (midline, 2.0 of 8), advanced (frontline, 0.9 of 8), fought (midline, 0.5 of 8); named today as {'running, advanced': 134, 'not running, advanced': 120, 'running, fought': 27}; win change raw 0.5, adjusted 0.8
+  - example: 옷옷옷옷 at 2:52 in 4732d15c (recorded as not running, fought, +46.8 points)
+  - example: cope at 13:38 in 427c825b (recorded as running, advanced, -40.7 points)
+  - example: Apes at 26:03 in 7e05bf53 (recorded as not running, advanced, -36.9 points)
+- **boost clock** (n 294): fell back (backline, 1.9 of 8), fell back (midline, 1.7 of 8), fell back (frontline, 0.7 of 8); named today as {'not running, fell back': 120, 'running, fell back': 58, 'not running, fought': 29}; win change raw -1.6, adjusted -1.4
+  - example: Fun at 2:00 in 99d9b260 (recorded as not running, fell back, -63.5 points)
+  - example: Fun at 3:51 in 85fa697c (recorded as not running, advanced, -53.3 points)
+  - example: Book at 15:44 in 349561f3 (recorded as not running, fell back, +50.3 points)
+- **enemy pickup** (n 2726): fought (midline, 1.9 of 8), fought (backline, 1.7 of 8), fought (frontline, 1.0 of 8), held (backline, 0.9 of 8); named today as {'held, fought': 498, 'already running, fought': 387, 'held, advanced': 294}; win change raw -0.8, adjusted -0.6
+  - example: hold at 2:03 in 99d9b260 (recorded as held, advanced, +72.2 points)
+  - example: chic at 1:44 in bad498e0 (recorded as held, advanced, -67.9 points)
+  - example: DMG at 2:12 in 799ca1a5 (recorded as held, held, +60.7 points)
+- **enemy pickup** (n 1720): advanced (backline, 2.0 of 8), advanced (midline, 2.0 of 8), advanced (frontline, 1.0 of 8); named today as {'held, advanced': 493, 'already running, advanced': 475, 'ran, advanced': 211}; win change raw 0.6, adjusted 0.7
+  - example: BcS at 14:15 in 3ee18c0c (recorded as held, fell back, +68.9 points)
+  - example: chic at 1:42 in bad498e0 (recorded as held, fought, -67.9 points)
+  - example: yM at 0:45 in 7887be10 (recorded as held, advanced, -58.6 points)
+- **enemy pickup** (n 1643): fell back (backline, 1.8 of 8), fell back (midline, 1.6 of 8), fell back (frontline, 0.7 of 8), held (backline, 0.5 of 8); named today as {'held, fell back': 500, 'already running, fell back': 304, 'ran, fell back': 262}; win change raw -0.1, adjusted -0.1
+  - example: hold at 2:04 in ffb99c54 (recorded as held, advanced, -64.1 points)
+  - example: DMG at 8:13 in e906615a (recorded as already running, advanced, -63.1 points)
+  - example: chic at 1:49 in bad498e0 (recorded as held, advanced, -62.1 points)
+- **late game** (n 47): fought (midline, 2.4 of 8), fought (backline, 1.8 of 8), fought (frontline, 1.0 of 8), held (backline, 0.5 of 8); named today as {'2 to 3 at the enemy Lord': 18, '4+ at the enemy Lord': 18, '0 to 1 at the enemy Lord': 11}; win change raw 4.8, adjusted 5.1
+  - example: Book at 24:00 in 19f38ea6 (recorded as 0 to 1 at the enemy Lord, -77.6 points)
+  - example: hook at 24:00 in 19f38ea6 (recorded as 4+ at the enemy Lord, +77.0 points)
+  - example: hook at 24:00 in 7e05bf53 (recorded as 4+ at the enemy Lord, +71.6 points)
+- **late game** (n 41): advanced (backline, 2.1 of 8), advanced (midline, 2.1 of 8), advanced (frontline, 1.0 of 8); named today as {'2 to 3 at the enemy Lord': 21, '0 to 1 at the enemy Lord': 11, '4+ at the enemy Lord': 9}; win change raw 3.0, adjusted 6.9
+  - example: Free at 24:00 in d9e8531e (recorded as 4+ at the enemy Lord, +72.0 points)
+  - example: Fun at 24:00 in 27618d5b (recorded as 2 to 3 at the enemy Lord, -66.2 points)
+  - example: SKT at 24:00 in 457b3a21 (recorded as 2 to 3 at the enemy Lord, +65.0 points)
+- **late game** (n 40): fell back (backline, 2.0 of 8), fell back (midline, 1.5 of 8), fell back (frontline, 1.2 of 8), held (backline, 0.6 of 8); named today as {'0 to 1 at the enemy Lord': 21, '2 to 3 at the enemy Lord': 12, '4+ at the enemy Lord': 7}; win change raw -2.4, adjusted -3.5
+  - example: Team at 24:00 in 1af4f8f8 (recorded as 0 to 1 at the enemy Lord, -73.9 points)
+  - example: One at 24:00 in c3973a8c (recorded as 2 to 3 at the enemy Lord, +67.3 points)
+  - example: Team at 24:00 in 27618d5b (recorded as 2 to 3 at the enemy Lord, +66.9 points)
+- **npcs or dp** (n 200): fought (midline, 2.7 of 8), fought (backline, 2.3 of 8), fought (frontline, 1.3 of 8); named today as {'NPCs': 113, 'DP': 47, 'both': 40}; win change raw 0.6, adjusted 0.1
+  - example: DMG at 2:04 in 799ca1a5 (recorded as both, +48.3 points)
+  - example: Men at 9:43 in c19f13e3 (recorded as NPCs, -42.2 points)
+  - example: RV at 4:28 in eaf05d44 (recorded as both, +31.4 points)
+- **offence or defence** (n 775): fought (midline, 2.3 of 8), fought (backline, 1.9 of 8), fought (frontline, 1.3 of 8), held (backline, 0.7 of 8); named today as {'offensive': 293, 'defensive': 290, 'mixed': 192}; win change raw 1.0, adjusted 0.3
+  - example: hook at 24:25 in 19f38ea6 (recorded as offensive, +77.1 points)
+  - example: hold at 14:08 in 7cb3ef17 (recorded as mixed, +67.6 points)
+  - example: hold at 1:48 in 7cb3ef17 (recorded as defensive, -64.8 points)
+- **offence or defence** (n 275): advanced (backline, 1.9 of 8), advanced (midline, 1.7 of 8), advanced (frontline, 1.0 of 8), fought (midline, 0.8 of 8); named today as {'offensive': 106, 'defensive': 99, 'mixed': 70}; win change raw 3.6, adjusted 2.9
+  - example: push at 2:25 in 9b962f38 (recorded as mixed, +54.9 points)
+  - example: Team at 1:47 in 0f3c18b0 (recorded as offensive, +50.3 points)
+  - example: Team at 10:27 in 6c7dfcaa (recorded as mixed, +47.1 points)
+- **offence or defence** (n 224): fell back (backline, 1.7 of 8), fell back (midline, 1.6 of 8), fell back (frontline, 0.8 of 8), fought (midline, 0.6 of 8); named today as {'defensive': 115, 'offensive': 63, 'mixed': 46}; win change raw -2.5, adjusted -3.2
+  - example: hold at 1:21 in 99d9b260 (recorded as defensive, -56.4 points)
+  - example: Men at 1:47 in 0f3c18b0 (recorded as offensive, -51.7 points)
+  - example: OG at 14:26 in 5f9df5bb (recorded as mixed, -48.4 points)
+- **power play** (n 2384): fought (midline, 2.1 of 8), fought (backline, 1.9 of 8), fought (frontline, 1.2 of 8), held (backline, 0.8 of 8); named today as {'pushed, fought': 716, 'held, fought': 462, 'pushed, advanced': 337}; win change raw 0.8, adjusted 0.2
+  - example: Fun at 1:38 in 99d9b260 (recorded as pushed, fought, +71.0 points)
+  - example: Fun at 12:42 in 7cb3ef17 (recorded as pushed, fought, -69.2 points)
+  - example: Fun at 1:20 in 7cb3ef17 (recorded as pushed, fell back, +68.7 points)
+- **power play** (n 747): fell back (backline, 1.9 of 8), fell back (midline, 1.6 of 8), fell back (frontline, 0.8 of 8), fought (midline, 0.7 of 8); named today as {'held, fell back': 286, 'pushed, fell back': 171, 'held, fought': 67}; win change raw -1.1, adjusted -1.4
+  - example: DUM at 4:03 in f5bb5394 (recorded as pushed, to the spawn, +65.6 points)
+  - example: Apes at 23:05 in 2125c1f6 (recorded as held, fell back, +51.9 points)
+  - example: Apes at 25:57 in 6acf4b9e (recorded as pushed, advanced, -50.9 points)
+- **runner choice** (n 1748): fought (backline, 1.8 of 8), fought (midline, 1.8 of 8), fought (frontline, 1.0 of 8), held (backline, 0.8 of 8); named today as {'monk': 417, 'dervish': 331, 'mesmer': 298}; win change raw 0.8, adjusted 0.5
+  - example: chic at 8:13 in e906615a (recorded as monk, +64.3 points)
+  - example: Apes at 2:27 in d48b3b17 (recorded as dervish, +63.2 points)
+  - example: Crew at 0:45 in 7887be10 (recorded as mesmer, +59.6 points)
+- **runner choice** (n 1289): fell back (backline, 1.6 of 8), fell back (midline, 1.3 of 8), held (backline, 0.6 of 8), fell back (frontline, 0.6 of 8); named today as {'dervish': 255, 'mesmer': 248, 'monk': 239}; win change raw 0.4, adjusted 0.1
+  - example: Fun at 2:03 in 99d9b260 (recorded as elementalist, -71.8 points)
+  - example: hook at 9:53 in 19f38ea6 (recorded as ritualist, -53.7 points)
+  - example: chic at 20:03 in 933638bc (recorded as monk, +50.6 points)
+- **runner choice** (n 1181): advanced (backline, 2.2 of 8), advanced (midline, 1.8 of 8), advanced (frontline, 0.8 of 8), carrying (midline, 0.5 of 8); named today as {'monk': 312, 'mesmer': 229, 'dervish': 194}; win change raw -0.5, adjusted -0.6
+  - example: Crew at 7:26 in 3ab8082d (recorded as monk, -70.9 points)
+  - example: HH at 2:04 in ffb99c54 (recorded as monk, +64.8 points)
+  - example: Team at 9:58 in 6c7dfcaa (recorded as ritualist, +59.9 points)
+- **split in base** (n 473): fought (midline, 1.9 of 8), fought (backline, 1.3 of 8), fought (frontline, 0.9 of 8), held (backline, 0.7 of 8); named today as {'defended without a collapse': 232, 'collapsed': 173, 'missed': 68}; win change raw -0.7, adjusted 0.3
+  - example: BcS at 7:47 in 3ee18c0c (recorded as defended without a collapse, +66.1 points)
+  - example: Crew at 16:57 in fe3fd3d2 (recorded as collapsed, +63.4 points)
+  - example: Dz at 2:00 in 4732d15c (recorded as defended without a collapse, -59.9 points)
+- **split in base** (n 277): fell back (backline, 1.9 of 8), fell back (midline, 1.8 of 8), fell back (frontline, 0.8 of 8); named today as {'collapsed': 141, 'defended without a collapse': 116, 'missed': 20}; win change raw -2.1, adjusted -0.9
+  - example: Dz at 13:39 in b57ab90a (recorded as missed, -52.4 points)
+  - example: Crew at 25:27 in 336d3897 (recorded as defended without a collapse, +50.0 points)
+  - example: chic at 19:38 in 933638bc (recorded as collapsed, +45.9 points)
+- **split in base** (n 241): advanced (midline, 1.9 of 8), advanced (backline, 1.8 of 8), advanced (frontline, 1.0 of 8); named today as {'defended without a collapse': 112, 'collapsed': 104, 'missed': 25}; win change raw -0.5, adjusted 0.6
+  - example: Fun at 1:41 in 7cb3ef17 (recorded as defended without a collapse, +70.7 points)
+  - example: Fun at 12:12 in 7cb3ef17 (recorded as missed, -68.7 points)
+  - example: Id at 7:29 in 1abf62cc (recorded as collapsed, -61.7 points)
+- **who defends** (n 410): fought (midline, 1.9 of 8), fought (backline, 1.3 of 8), fought (frontline, 0.9 of 8), held (backline, 0.7 of 8); named today as {'midline alone': 74, 'frontline alone': 58, 'frontline with a collapse': 45}; win change raw -0.8, adjusted 0.1
+  - example: BcS at 7:47 in 3ee18c0c (recorded as midline alone, +66.1 points)
+  - example: Crew at 16:57 in fe3fd3d2 (recorded as Mes/A with a collapse, +63.4 points)
+  - example: Dz at 2:00 in 4732d15c (recorded as healer alone, -59.9 points)
+- **who defends** (n 257): fell back (backline, 1.9 of 8), fell back (midline, 1.9 of 8), fell back (frontline, 0.8 of 8); named today as {'frontline with a collapse': 43, 'midline alone': 41, 'midline with a collapse': 36}; win change raw -1.9, adjusted -1.1
+  - example: Crew at 25:27 in 336d3897 (recorded as 8 Monk alone, +50.0 points)
+  - example: chic at 19:38 in 933638bc (recorded as midline with a collapse, +45.9 points)
+  - example: xxx at 26:06 in c3973a8c (recorded as midline alone, -45.5 points)
+- **who defends** (n 225): advanced (midline, 1.9 of 8), advanced (backline, 1.8 of 8), advanced (frontline, 1.0 of 8), fought (midline, 0.5 of 8); named today as {'frontline with a collapse': 38, 'midline alone': 35, 'frontline alone': 31}; win change raw -0.1, adjusted 1.0
+  - example: Fun at 1:41 in 7cb3ef17 (recorded as 8 Monk alone, +70.7 points)
+  - example: Id at 7:29 in 1abf62cc (recorded as healer with a collapse, -61.7 points)
+  - example: Team at 9:46 in 6c7dfcaa (recorded as healer alone, +61.5 points)
 
 ## Leverage: where the choice matters most
 
-- late game (156): the choice explains 7.9% beyond the situation (8.2%); range 25.9 points, best 4+ at the enemy Lord, worst 0 to 1 at the enemy Lord
-- boost clock (1665): the choice explains 2.1% beyond the situation (1.9%); range 4.6 points, best not running, worst not running, fell back
-- who defends (814): the choice explains 1.4% beyond the situation (2.1%); range 7.6 points, best 8 Monk alone, worst healer with a collapse
-- after wipe (1037): the choice explains 1.1% beyond the situation (3.3%); range 3.0 points, best pushed the pit, worst reset
-- offence or defence (1134): the choice explains 0.9% beyond the situation (0.8%); range 2.7 points, best offensive, worst defensive
-- power play (4146): the choice explains 0.7% beyond the situation (1.5%); range 7.0 points, best pushed, to the spawn, worst held, fell back
-- enemy pickup (5518): the choice explains 0.5% beyond the situation (2.3%); range 15.8 points, best already running, to the spawn, worst held
-- split in base (897): the choice explains 0.4% beyond the situation (2.7%); range 1.8 points, best defended without a collapse, worst missed
-- npcs or dp (263): the choice explains 0.3% beyond the situation (6.1%); range 1.4 points, best both, worst DP
-- play for 28 or lord (3713): the choice explains 0.3% beyond the situation (1.8%); range 1.7 points, best push for the kill, worst play for 28
-- runner choice (3797): the choice explains 0.2% beyond the situation (2.6%); range 2.7 points, best paragon, worst warrior
-- eight v eight or flag (3967): the choice explains 0.0% beyond the situation (1.9%); range 0.5 points, best commit all 8, worst flag game
-- split or stay (15967): the choice explains 0.0% beyond the situation (1.5%); range 0.7 points, best stayed, worst split
+- late game (164): the choice explains 16.1% beyond the situation (8.4%); range 38.6 points, best 4+ at the enemy Lord, worst 0 to 1 at the enemy Lord
+- boost clock (1841): the choice explains 1.9% beyond the situation (2.1%); range 3.6 points, best running, fought, worst not running, fell back
+- after wipe (1183): the choice explains 1.2% beyond the situation (3.7%); range 3.4 points, best pushed the pit, worst reset
+- who defends (899): the choice explains 1.1% beyond the situation (2.0%); range 5.4 points, best 8 Monk alone, worst healer with a collapse
+- offence or defence (1274): the choice explains 0.9% beyond the situation (1.2%); range 2.6 points, best offensive, worst defensive
+- power play (4646): the choice explains 0.8% beyond the situation (1.8%); range 5.5 points, best pushed, to the spawn, worst held, fell back
+- split in base (999): the choice explains 0.5% beyond the situation (2.6%); range 2.0 points, best defended without a collapse, worst collapsed
+- enemy pickup (6098): the choice explains 0.4% beyond the situation (2.2%); range 13.7 points, best already running, to the spawn, worst held
+- npcs or dp (296): the choice explains 0.4% beyond the situation (4.9%); range 1.6 points, best both, worst DP
+- play for 28 or lord (4046): the choice explains 0.3% beyond the situation (1.9%); range 1.5 points, best push for the kill, worst play for 28
+- runner choice (4218): the choice explains 0.2% beyond the situation (2.8%); range 2.2 points, best ranger, worst warrior
+- eight v eight or flag (4374): the choice explains 0.0% beyond the situation (2.2%); range 0.5 points, best commit all 8, worst flag game
+- split or stay (17779): the choice explains 0.0% beyond the situation (2.1%); range 0.5 points, best stayed, worst split
 
 ## Every kind
 
 **after wipe** (2 groups, separation 0.3)
-- n 612: fought (midline, 1.9 of 8), fought (backline, 1.6 of 8), fought (frontline, 0.9 of 8), held (backline, 0.8 of 8); named as {'pushed the pit': 510, 'reset': 64, 'took the flag': 38}; win change -0.9 (adjusted -0.7)
-- n 425: advanced (midline, 2.5 of 8), advanced (backline, 2.5 of 8), advanced (frontline, 1.2 of 8); named as {'pushed the pit': 252, 'reset': 97, 'took the flag': 76}; win change 0.4 (adjusted 0.7) UNNAMED
+- n 702: fought (midline, 1.9 of 8), fought (backline, 1.5 of 8), fought (frontline, 0.9 of 8), held (backline, 0.8 of 8); named as {'pushed the pit': 584, 'reset': 73, 'took the flag': 45}; win change -0.6 (adjusted -0.7)
+- n 481: advanced (midline, 2.5 of 8), advanced (backline, 2.5 of 8), advanced (frontline, 1.3 of 8); named as {'pushed the pit': 292, 'reset': 110, 'took the flag': 79}; win change 0.4 (adjusted 0.7)
 
 **boost clock** (4 groups, separation 0.18)
-- n 639: fought (midline, 2.2 of 8), fought (backline, 2.1 of 8), fought (frontline, 0.9 of 8), held (backline, 0.5 of 8); named as {'not running, fought': 228, 'running, fought': 123, 'not running, fell back': 60}; win change 0.1 (adjusted 0.8) UNNAMED
-- n 412: held (backline, 1.3 of 8), fought (midline, 0.8 of 8), fought (frontline, 0.6 of 8), to the spawn (backline, 0.5 of 8); named as {'not running, fought': 78, 'not running, fell back': 77, 'not running, held': 69}; win change -0.8 (adjusted -0.2) UNNAMED
-- n 336: advanced (backline, 2.1 of 8), advanced (midline, 2.0 of 8), advanced (frontline, 0.9 of 8), fought (midline, 0.5 of 8); named as {'running, advanced': 122, 'not running, advanced': 108, 'running, fought': 22}; win change 0.1 (adjusted 0.7) UNNAMED
-- n 274: fell back (backline, 1.9 of 8), fell back (midline, 1.7 of 8), fell back (frontline, 0.7 of 8); named as {'not running, fell back': 110, 'running, fell back': 58, 'not running, fought': 25}; win change -1.9 (adjusted -1.3) UNNAMED
+- n 703: fought (midline, 2.2 of 8), fought (backline, 2.1 of 8), fought (frontline, 0.9 of 8), held (backline, 0.5 of 8); named as {'not running, fought': 247, 'running, fought': 135, 'not running, fell back': 71}; win change 0.4 (adjusted 0.8) UNNAMED
+- n 467: held (backline, 1.3 of 8), fought (midline, 0.8 of 8), fought (frontline, 0.6 of 8), to the spawn (backline, 0.6 of 8); named as {'not running, fell back': 94, 'not running, fought': 86, 'not running, held': 72}; win change -0.4 (adjusted -0.2) UNNAMED
+- n 373: advanced (backline, 2.1 of 8), advanced (midline, 2.0 of 8), advanced (frontline, 0.9 of 8), fought (midline, 0.5 of 8); named as {'running, advanced': 134, 'not running, advanced': 120, 'running, fought': 27}; win change 0.5 (adjusted 0.8) UNNAMED
+- n 294: fell back (backline, 1.9 of 8), fell back (midline, 1.7 of 8), fell back (frontline, 0.7 of 8); named as {'not running, fell back': 120, 'running, fell back': 58, 'not running, fought': 29}; win change -1.6 (adjusted -1.4) UNNAMED
 
 **eight v eight or flag** (3 groups, separation 0.24)
-- n 1887: fought (midline, 2.0 of 8), fought (backline, 1.8 of 8), fought (frontline, 1.1 of 8), held (backline, 0.9 of 8); named as {'flag game': 1220, 'commit all 8': 667}; win change -1.2 (adjusted -0.6)
-- n 1083: advanced (backline, 2.1 of 8), advanced (midline, 2.0 of 8), advanced (frontline, 0.9 of 8); named as {'flag game': 837, 'commit all 8': 246}; win change -0.3 (adjusted 0.1)
-- n 997: fell back (backline, 1.6 of 8), fell back (midline, 1.6 of 8), held (backline, 0.7 of 8), fell back (frontline, 0.6 of 8); named as {'flag game': 780, 'commit all 8': 217}; win change 0.1 (adjusted 0.5)
+- n 2078: fought (midline, 2.0 of 8), fought (backline, 1.8 of 8), fought (frontline, 1.1 of 8), held (backline, 0.9 of 8); named as {'flag game': 1344, 'commit all 8': 734}; win change -1.0 (adjusted -0.6)
+- n 1201: advanced (backline, 2.1 of 8), advanced (midline, 2.0 of 8), advanced (frontline, 0.9 of 8); named as {'flag game': 922, 'commit all 8': 279}; win change 0.0 (adjusted 0.4)
+- n 1095: fell back (backline, 1.6 of 8), fell back (midline, 1.5 of 8), held (backline, 0.7 of 8), fell back (frontline, 0.6 of 8); named as {'flag game': 853, 'commit all 8': 242}; win change -0.1 (adjusted 0.2)
 
 **enemy pickup** (3 groups, separation 0.22)
-- n 2642: fought (midline, 1.9 of 8), fought (backline, 1.6 of 8), fought (frontline, 1.0 of 8), held (backline, 0.9 of 8); named as {'held, fought': 454, 'already running, fought': 359, 'held, advanced': 280}; win change -0.8 (adjusted -0.5) UNNAMED
-- n 1551: advanced (backline, 2.0 of 8), advanced (midline, 2.0 of 8), advanced (frontline, 0.9 of 8); named as {'held, advanced': 440, 'already running, advanced': 426, 'ran, advanced': 193}; win change 0.3 (adjusted 0.5) UNNAMED
-- n 1318: fell back (backline, 2.0 of 8), fell back (midline, 1.8 of 8), fell back (frontline, 0.8 of 8); named as {'held, fell back': 420, 'already running, fell back': 258, 'ran, fell back': 220}; win change -0.1 (adjusted 0.0) UNNAMED
+- n 2726: fought (midline, 1.9 of 8), fought (backline, 1.7 of 8), fought (frontline, 1.0 of 8), held (backline, 0.9 of 8); named as {'held, fought': 498, 'already running, fought': 387, 'held, advanced': 294}; win change -0.8 (adjusted -0.6) UNNAMED
+- n 1720: advanced (backline, 2.0 of 8), advanced (midline, 2.0 of 8), advanced (frontline, 1.0 of 8); named as {'held, advanced': 493, 'already running, advanced': 475, 'ran, advanced': 211}; win change 0.6 (adjusted 0.7) UNNAMED
+- n 1643: fell back (backline, 1.8 of 8), fell back (midline, 1.6 of 8), fell back (frontline, 0.7 of 8), held (backline, 0.5 of 8); named as {'held, fell back': 500, 'already running, fell back': 304, 'ran, fell back': 262}; win change -0.1 (adjusted -0.1) UNNAMED
 
-**late game** (5 groups, separation 0.21)
-- n 42: fought (midline, 2.4 of 8), fought (backline, 1.9 of 8), fought (frontline, 1.0 of 8), held (backline, 0.5 of 8); named as {'4+ at the enemy Lord': 16, '2 to 3 at the enemy Lord': 15, '0 to 1 at the enemy Lord': 11}; win change 1.6 (adjusted 3.9) UNNAMED
-- n 41: advanced (backline, 2.1 of 8), advanced (midline, 2.0 of 8), advanced (frontline, 1.0 of 8); named as {'2 to 3 at the enemy Lord': 21, '0 to 1 at the enemy Lord': 11, '4+ at the enemy Lord': 9}; win change 2.0 (adjusted 7.8) UNNAMED
-- n 36: fell back (backline, 2.2 of 8), fell back (midline, 1.5 of 8), fell back (frontline, 1.1 of 8); named as {'0 to 1 at the enemy Lord': 18, '2 to 3 at the enemy Lord': 11, '4+ at the enemy Lord': 7}; win change 1.2 (adjusted 0.5) UNNAMED
-- n 27: held (backline, 1.5 of 8), to the spawn (backline, 0.8 of 8), fought (backline, 0.7 of 8), to the spawn (midline, 0.6 of 8); named as {'0 to 1 at the enemy Lord': 14, '2 to 3 at the enemy Lord': 8, '4+ at the enemy Lord': 5}; win change -8.4 (adjusted -8.3) UNNAMED
-- n 7: died (backline, 2.8 of 8), died (midline, 2.0 of 8), died (frontline, 1.3 of 8); named as {'0 to 1 at the enemy Lord': 5, '2 to 3 at the enemy Lord': 2}; win change -6.9 (adjusted -3.9)
+**late game** (4 groups, separation 0.2)
+- n 47: fought (midline, 2.4 of 8), fought (backline, 1.8 of 8), fought (frontline, 1.0 of 8), held (backline, 0.5 of 8); named as {'2 to 3 at the enemy Lord': 18, '4+ at the enemy Lord': 18, '0 to 1 at the enemy Lord': 11}; win change 4.8 (adjusted 5.1) UNNAMED
+- n 41: advanced (backline, 2.1 of 8), advanced (midline, 2.1 of 8), advanced (frontline, 1.0 of 8); named as {'2 to 3 at the enemy Lord': 21, '0 to 1 at the enemy Lord': 11, '4+ at the enemy Lord': 9}; win change 3.0 (adjusted 6.9) UNNAMED
+- n 40: fell back (backline, 2.0 of 8), fell back (midline, 1.5 of 8), fell back (frontline, 1.2 of 8), held (backline, 0.6 of 8); named as {'0 to 1 at the enemy Lord': 21, '2 to 3 at the enemy Lord': 12, '4+ at the enemy Lord': 7}; win change -2.4 (adjusted -3.5) UNNAMED
+- n 33: held (backline, 1.2 of 8), died (backline, 0.6 of 8), died (midline, 0.6 of 8), to the spawn (backline, 0.6 of 8); named as {'0 to 1 at the enemy Lord': 20, '2 to 3 at the enemy Lord': 9, '4+ at the enemy Lord': 4}; win change -8.7 (adjusted -8.6)
 
-**npcs or dp** (2 groups, separation 0.27)
-- n 178: fought (midline, 2.7 of 8), fought (backline, 2.2 of 8), fought (frontline, 1.2 of 8); named as {'NPCs': 103, 'DP': 40, 'both': 35}; win change 0.5 (adjusted 0.4) UNNAMED
-- n 85: advanced (backline, 1.5 of 8), advanced (midline, 1.4 of 8), fell back (midline, 0.8 of 8), fought (midline, 0.7 of 8); named as {'NPCs': 55, 'both': 16, 'DP': 14}; win change -0.1 (adjusted -0.4)
+**npcs or dp** (2 groups, separation 0.28)
+- n 200: fought (midline, 2.7 of 8), fought (backline, 2.3 of 8), fought (frontline, 1.3 of 8); named as {'NPCs': 113, 'DP': 47, 'both': 40}; win change 0.6 (adjusted 0.1) UNNAMED
+- n 96: advanced (midline, 1.5 of 8), advanced (backline, 1.5 of 8), advanced (frontline, 0.8 of 8), fell back (midline, 0.7 of 8); named as {'NPCs': 62, 'both': 18, 'DP': 16}; win change 0.5 (adjusted -0.1)
 
-**offence or defence** (3 groups, separation 0.26)
-- n 685: fought (midline, 2.4 of 8), fought (backline, 1.9 of 8), fought (frontline, 1.3 of 8), held (backline, 0.7 of 8); named as {'defensive': 263, 'offensive': 254, 'mixed': 168}; win change 0.8 (adjusted 0.1) UNNAMED
-- n 252: advanced (backline, 1.9 of 8), advanced (midline, 1.7 of 8), advanced (frontline, 1.0 of 8), fought (midline, 0.8 of 8); named as {'offensive': 96, 'defensive': 90, 'mixed': 66}; win change 3.9 (adjusted 3.1) UNNAMED
-- n 197: fell back (backline, 1.7 of 8), fell back (midline, 1.6 of 8), fell back (frontline, 0.8 of 8), fought (midline, 0.7 of 8); named as {'defensive': 101, 'offensive': 55, 'mixed': 41}; win change -2.6 (adjusted -3.2) UNNAMED
+**offence or defence** (3 groups, separation 0.27)
+- n 775: fought (midline, 2.3 of 8), fought (backline, 1.9 of 8), fought (frontline, 1.3 of 8), held (backline, 0.7 of 8); named as {'offensive': 293, 'defensive': 290, 'mixed': 192}; win change 1.0 (adjusted 0.3) UNNAMED
+- n 275: advanced (backline, 1.9 of 8), advanced (midline, 1.7 of 8), advanced (frontline, 1.0 of 8), fought (midline, 0.8 of 8); named as {'offensive': 106, 'defensive': 99, 'mixed': 70}; win change 3.6 (adjusted 2.9) UNNAMED
+- n 224: fell back (backline, 1.7 of 8), fell back (midline, 1.6 of 8), fell back (frontline, 0.8 of 8), fought (midline, 0.6 of 8); named as {'defensive': 115, 'offensive': 63, 'mixed': 46}; win change -2.5 (adjusted -3.2) UNNAMED
 
 **play for 28 or lord** (3 groups, separation 0.22)
-- n 1560: fought (midline, 2.0 of 8), fought (backline, 1.8 of 8), fought (frontline, 1.0 of 8), held (backline, 0.7 of 8); named as {'play for 28': 1042, 'push for the kill': 518}; win change -0.2 (adjusted -0.4)
-- n 1117: advanced (backline, 2.0 of 8), advanced (midline, 1.8 of 8), advanced (frontline, 0.9 of 8); named as {'play for 28': 749, 'push for the kill': 368}; win change 0.7 (adjusted 0.5)
-- n 1036: fell back (backline, 1.8 of 8), fell back (midline, 1.6 of 8), fell back (frontline, 0.7 of 8), fought (midline, 0.5 of 8); named as {'play for 28': 831, 'push for the kill': 205}; win change -0.0 (adjusted -0.1)
+- n 1706: fought (midline, 2.0 of 8), fought (backline, 1.8 of 8), fought (frontline, 1.1 of 8), held (backline, 0.7 of 8); named as {'play for 28': 1130, 'push for the kill': 576}; win change -0.1 (adjusted -0.3)
+- n 1209: advanced (backline, 2.0 of 8), advanced (midline, 1.8 of 8), advanced (frontline, 0.9 of 8); named as {'play for 28': 808, 'push for the kill': 401}; win change 0.9 (adjusted 0.7)
+- n 1131: fell back (backline, 1.8 of 8), fell back (midline, 1.6 of 8), fell back (frontline, 0.7 of 8), fought (midline, 0.5 of 8); named as {'play for 28': 906, 'push for the kill': 225}; win change -0.4 (adjusted -0.5)
 
-**power play** (2 groups, separation 0.27)
-- n 2776: fought (midline, 1.8 of 8), fought (backline, 1.6 of 8), fought (frontline, 1.0 of 8), held (backline, 0.7 of 8); named as {'pushed, fought': 690, 'held, fought': 470, 'held, fell back': 422}; win change 0.2 (adjusted -0.7) UNNAMED
-- n 1371: advanced (backline, 2.3 of 8), advanced (midline, 2.0 of 8), advanced (frontline, 1.2 of 8); named as {'pushed, advanced': 872, 'pushed, fought': 191, 'pushed, fell back': 100}; win change 1.6 (adjusted 0.7)
+**power play** (3 groups, separation 0.27)
+- n 2384: fought (midline, 2.1 of 8), fought (backline, 1.9 of 8), fought (frontline, 1.2 of 8), held (backline, 0.8 of 8); named as {'pushed, fought': 716, 'held, fought': 462, 'pushed, advanced': 337}; win change 0.8 (adjusted 0.2) UNNAMED
+- n 1516: advanced (backline, 2.3 of 8), advanced (midline, 2.1 of 8), advanced (frontline, 1.2 of 8); named as {'pushed, advanced': 978, 'pushed, fought': 216, 'pushed, fell back': 103}; win change 1.7 (adjusted 1.2)
+- n 747: fell back (backline, 1.9 of 8), fell back (midline, 1.6 of 8), fell back (frontline, 0.8 of 8), fought (midline, 0.7 of 8); named as {'held, fell back': 286, 'pushed, fell back': 171, 'held, fought': 67}; win change -1.1 (adjusted -1.4) UNNAMED
 
 **runner choice** (3 groups, separation 0.22)
-- n 1554: fought (backline, 1.9 of 8), fought (midline, 1.8 of 8), fought (frontline, 1.0 of 8), held (backline, 0.8 of 8); named as {'monk': 370, 'dervish': 282, 'mesmer': 272}; win change 1.1 (adjusted 0.7) UNNAMED
-- n 1191: fell back (backline, 1.5 of 8), fell back (midline, 1.3 of 8), held (backline, 0.7 of 8), fell back (frontline, 0.6 of 8); named as {'mesmer': 236, 'dervish': 233, 'monk': 219}; win change 0.4 (adjusted -0.1) UNNAMED
-- n 1052: advanced (backline, 2.2 of 8), advanced (midline, 1.7 of 8), advanced (frontline, 0.8 of 8), carrying (midline, 0.5 of 8); named as {'monk': 285, 'mesmer': 212, 'dervish': 173}; win change -0.4 (adjusted -0.6) UNNAMED
+- n 1748: fought (backline, 1.8 of 8), fought (midline, 1.8 of 8), fought (frontline, 1.0 of 8), held (backline, 0.8 of 8); named as {'monk': 417, 'dervish': 331, 'mesmer': 298}; win change 0.8 (adjusted 0.5) UNNAMED
+- n 1289: fell back (backline, 1.6 of 8), fell back (midline, 1.3 of 8), held (backline, 0.6 of 8), fell back (frontline, 0.6 of 8); named as {'dervish': 255, 'mesmer': 248, 'monk': 239}; win change 0.4 (adjusted 0.1) UNNAMED
+- n 1181: advanced (backline, 2.2 of 8), advanced (midline, 1.8 of 8), advanced (frontline, 0.8 of 8), carrying (midline, 0.5 of 8); named as {'monk': 312, 'mesmer': 229, 'dervish': 194}; win change -0.5 (adjusted -0.6) UNNAMED
 
 **split in base** (3 groups, separation 0.18)
-- n 413: fought (midline, 1.9 of 8), fought (backline, 1.3 of 8), fought (frontline, 0.9 of 8), held (backline, 0.7 of 8); named as {'defended without a collapse': 210, 'collapsed': 150, 'missed': 53}; win change -0.6 (adjusted 0.6) UNNAMED
-- n 255: fell back (backline, 1.9 of 8), fell back (midline, 1.9 of 8), fell back (frontline, 0.8 of 8); named as {'collapsed': 134, 'defended without a collapse': 102, 'missed': 19}; win change -1.8 (adjusted -0.3) UNNAMED
-- n 221: advanced (midline, 1.9 of 8), advanced (backline, 1.8 of 8), advanced (frontline, 1.0 of 8), fought (midline, 0.5 of 8); named as {'defended without a collapse': 102, 'collapsed': 97, 'missed': 22}; win change -1.4 (adjusted -0.3) UNNAMED
+- n 473: fought (midline, 1.9 of 8), fought (backline, 1.3 of 8), fought (frontline, 0.9 of 8), held (backline, 0.7 of 8); named as {'defended without a collapse': 232, 'collapsed': 173, 'missed': 68}; win change -0.7 (adjusted 0.3) UNNAMED
+- n 277: fell back (backline, 1.9 of 8), fell back (midline, 1.8 of 8), fell back (frontline, 0.8 of 8); named as {'collapsed': 141, 'defended without a collapse': 116, 'missed': 20}; win change -2.1 (adjusted -0.9) UNNAMED
+- n 241: advanced (midline, 1.9 of 8), advanced (backline, 1.8 of 8), advanced (frontline, 1.0 of 8); named as {'defended without a collapse': 112, 'collapsed': 104, 'missed': 25}; win change -0.5 (adjusted 0.6) UNNAMED
 
-**split or stay** (3 groups, separation 0.24)
-- n 7817: fought (midline, 2.1 of 8), fought (backline, 2.0 of 8), fought (frontline, 1.1 of 8), held (backline, 0.8 of 8); named as {'stayed': 7195, 'split': 622}; win change 0.1 (adjusted 0.2)
-- n 4412: fell back (backline, 1.6 of 8), fell back (midline, 1.4 of 8), fell back (frontline, 0.7 of 8), held (backline, 0.6 of 8); named as {'stayed': 3962, 'split': 450}; win change -0.4 (adjusted -0.3)
-- n 3738: advanced (backline, 2.1 of 8), advanced (midline, 2.0 of 8), advanced (frontline, 1.0 of 8); named as {'stayed': 3203, 'split': 535}; win change -0.2 (adjusted 0.1)
+**split or stay** (3 groups, separation 0.25)
+- n 8728: fought (midline, 2.1 of 8), fought (backline, 2.0 of 8), fought (frontline, 1.1 of 8), held (backline, 0.8 of 8); named as {'stayed': 8040, 'split': 688}; win change 0.0 (adjusted 0.1)
+- n 4845: fell back (backline, 1.6 of 8), fell back (midline, 1.4 of 8), fell back (frontline, 0.7 of 8), held (backline, 0.6 of 8); named as {'stayed': 4354, 'split': 491}; win change -0.5 (adjusted -0.5)
+- n 4206: advanced (backline, 2.1 of 8), advanced (midline, 2.0 of 8), advanced (frontline, 1.0 of 8); named as {'stayed': 3592, 'split': 614}; win change -0.0 (adjusted 0.3)
 
-**who defends** (3 groups, separation 0.19)
-- n 369: fought (midline, 2.0 of 8), fought (backline, 1.3 of 8), fought (frontline, 0.9 of 8), held (backline, 0.7 of 8); named as {'midline alone': 68, 'frontline alone': 50, 'midline with a collapse': 40}; win change -0.6 (adjusted 0.5) UNNAMED
-- n 239: fell back (backline, 1.9 of 8), fell back (midline, 1.9 of 8), fell back (frontline, 0.8 of 8); named as {'frontline with a collapse': 41, 'midline alone': 37, 'midline with a collapse': 35}; win change -1.9 (adjusted -0.8) UNNAMED
-- n 199: advanced (midline, 1.9 of 8), advanced (backline, 1.8 of 8), advanced (frontline, 1.1 of 8), fought (midline, 0.5 of 8); named as {'frontline with a collapse': 33, 'midline alone': 30, 'midline with a collapse': 28}; win change -0.9 (adjusted 0.2) UNNAMED
+**who defends** (3 groups, separation 0.18)
+- n 410: fought (midline, 1.9 of 8), fought (backline, 1.3 of 8), fought (frontline, 0.9 of 8), held (backline, 0.7 of 8); named as {'midline alone': 74, 'frontline alone': 58, 'frontline with a collapse': 45}; win change -0.8 (adjusted 0.1) UNNAMED
+- n 257: fell back (backline, 1.9 of 8), fell back (midline, 1.9 of 8), fell back (frontline, 0.8 of 8); named as {'frontline with a collapse': 43, 'midline alone': 41, 'midline with a collapse': 36}; win change -1.9 (adjusted -1.1) UNNAMED
+- n 225: advanced (midline, 1.9 of 8), advanced (backline, 1.8 of 8), advanced (frontline, 1.0 of 8), fought (midline, 0.5 of 8); named as {'frontline with a collapse': 38, 'midline alone': 35, 'frontline alone': 31}; win change -0.1 (adjusted 1.0) UNNAMED
 

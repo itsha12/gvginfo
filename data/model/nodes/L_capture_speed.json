@@ -1,13 +1,13 @@
 {
  "node": "capture_speed",
  "target": "R.3",
- "matches": 428,
- "rows": 3677,
+ "matches": 486,
+ "rows": 4103,
  "rate": null,
- "mean": 39.4,
+ "mean": 39.3,
  "validation": {
-  "glass box": 13.1904,
-  "simple baseline": 15.7669,
+  "glass box": 12.984,
+  "simple baseline": 15.6242,
   "metric": "mean absolute error (s)",
   "verdict": "adds to the simple baseline"
  },
@@ -19,7 +19,7 @@
     "defenders_free",
     "escort"
    ],
-   "strength": 0.46,
+   "strength": 0.41,
    "plus_minus": 0.1,
    "status": "supported",
    "kinds": [
@@ -36,8 +36,8 @@
     "damage_10s",
     "def_snare_near"
    ],
-   "strength": -0.01,
-   "plus_minus": 0.03,
+   "strength": 0.0,
+   "plus_minus": 0.01,
    "status": "not clear yet",
    "kinds": [
     "execution"
@@ -49,7 +49,7 @@
    "features": [
     "min_capture_s"
    ],
-   "strength": 2.28,
+   "strength": 2.31,
    "plus_minus": 0.11,
    "status": "supported",
    "kinds": [
@@ -63,7 +63,7 @@
     "runner_class"
    ],
    "strength": 0.19,
-   "plus_minus": 0.05,
+   "plus_minus": 0.07,
    "status": "supported",
    "kinds": [
     "state"
@@ -75,8 +75,8 @@
    "features": [
     "run_dist"
    ],
-   "strength": 0.4,
-   "plus_minus": 0.07,
+   "strength": 0.41,
+   "plus_minus": 0.04,
    "status": "supported",
    "kinds": [
     "context"
@@ -88,7 +88,7 @@
    "features": [
     "strength_gap"
    ],
-   "strength": 0.03,
+   "strength": 0.04,
    "plus_minus": 0.03,
    "status": "not clear yet",
    "kinds": [
@@ -100,90 +100,90 @@
   {
    "term": "min_capture_s",
    "description": "seconds the carrier needed at least, at its fastest expected carry speed (its speed skills)",
-   "importance": 8.422,
+   "importance": 8.47,
    "curve": [
     {
      "from": 0.9,
      "to": 9.55,
-     "points": -15.7,
+     "points": -15.8,
      "plus_minus": 0.2
     },
     {
      "from": 9.55,
-     "to": 12.85,
-     "points": -14.1,
+     "to": 12.95,
+     "points": -14.0,
      "plus_minus": 0.2
     },
     {
-     "from": 12.85,
-     "to": 15.35,
-     "points": -11.2,
+     "from": 12.95,
+     "to": 15.55,
+     "points": -11.4,
      "plus_minus": 0.5
     },
     {
-     "from": 15.35,
-     "to": 17.15,
-     "points": -8.7,
+     "from": 15.55,
+     "to": 17.35,
+     "points": -8.1,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 17.35,
+     "to": 18.65,
+     "points": -5.4,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 18.65,
+     "to": 19.85,
+     "points": -3.2,
      "plus_minus": 0.2
     },
     {
-     "from": 17.15,
-     "to": 18.55,
-     "points": -5.3,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 18.55,
-     "to": 19.75,
-     "points": -2.7,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 19.75,
-     "to": 21.75,
-     "points": -0.9,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 21.75,
-     "to": 24.75,
-     "points": 1.0,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 24.75,
-     "to": 26.55,
-     "points": 3.6,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 26.55,
-     "to": 27.75,
-     "points": 6.8,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 27.75,
-     "to": 29.75,
-     "points": 9.3,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 29.75,
-     "to": 33.05,
-     "points": 11.1,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 33.05,
-     "to": 35.85,
-     "points": 12.6,
+     "from": 19.85,
+     "to": 21.95,
+     "points": -0.8,
      "plus_minus": 0.1
     },
     {
-     "from": 35.85,
+     "from": 21.95,
+     "to": 24.95,
+     "points": 1.5,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 24.95,
+     "to": 26.65,
+     "points": 4.0,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 26.65,
+     "to": 27.95,
+     "points": 7.0,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 27.95,
+     "to": 29.95,
+     "points": 8.9,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 29.95,
+     "to": 33.45,
+     "points": 10.6,
+     "plus_minus": 0.1
+    },
+    {
+     "from": 33.45,
+     "to": 36.15,
+     "points": 12.7,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 36.15,
      "to": 45.4,
-     "points": 14.9,
+     "points": 14.8,
      "plus_minus": 0.1
     }
    ],
@@ -192,55 +192,55 @@
   {
    "term": "escort",
    "description": "the runner's escorts",
-   "importance": 4.014,
+   "importance": 3.842,
    "curve": [
     {
      "from": 0.0,
      "to": 0.5,
-     "points": -3.9,
-     "plus_minus": 0.0
+     "points": -3.8,
+     "plus_minus": 0.1
     },
     {
      "from": 0.5,
      "to": 1.5,
-     "points": -0.8,
-     "plus_minus": 0.1
+     "points": -0.4,
+     "plus_minus": 0.2
     },
     {
      "from": 1.5,
      "to": 2.5,
      "points": 1.6,
-     "plus_minus": 0.1
+     "plus_minus": 0.2
     },
     {
      "from": 2.5,
      "to": 3.5,
-     "points": 3.5,
-     "plus_minus": 0.2
+     "points": 3.1,
+     "plus_minus": 0.3
     },
     {
      "from": 3.5,
      "to": 4.5,
-     "points": 4.5,
-     "plus_minus": 0.1
+     "points": 4.3,
+     "plus_minus": 0.2
     },
     {
      "from": 4.5,
      "to": 5.5,
-     "points": 3.9,
+     "points": 4.1,
      "plus_minus": 0.2
     },
     {
      "from": 5.5,
      "to": 6.5,
-     "points": 6.0,
+     "points": 5.7,
      "plus_minus": 0.4
     },
     {
      "from": 6.5,
      "to": 7.0,
-     "points": 13.4,
-     "plus_minus": 0.6
+     "points": 12.2,
+     "plus_minus": 0.9
     }
    ],
    "kind": "state"
@@ -248,91 +248,91 @@
   {
    "term": "run_dist",
    "description": "distance from the runner's spawn to the stand",
-   "importance": 3.036,
+   "importance": 3.221,
    "curve": [
     {
      "from": 4133.0,
-     "to": 4430.5,
-     "points": 5.4,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 4430.5,
-     "to": 4807.0,
-     "points": 5.8,
-     "plus_minus": 0.1
-    },
-    {
-     "from": 4807.0,
-     "to": 6173.0,
-     "points": 4.1,
+     "to": 4432.5,
+     "points": 5.7,
      "plus_minus": 0.2
     },
     {
-     "from": 6173.0,
-     "to": 6365.0,
-     "points": 2.2,
+     "from": 4432.5,
+     "to": 4821.5,
+     "points": 5.9,
      "plus_minus": 0.2
     },
     {
-     "from": 6365.0,
-     "to": 6541.5,
-     "points": 1.6,
+     "from": 4821.5,
+     "to": 6179.0,
+     "points": 3.9,
      "plus_minus": 0.2
     },
     {
-     "from": 6541.5,
-     "to": 6684.0,
+     "from": 6179.0,
+     "to": 6374.0,
+     "points": 2.6,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 6374.0,
+     "to": 6556.5,
+     "points": 2.0,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 6556.5,
+     "to": 6698.5,
      "points": 1.0,
      "plus_minus": 0.1
     },
     {
-     "from": 6684.0,
-     "to": 6834.0,
-     "points": 0.6,
-     "plus_minus": 0.1
-    },
-    {
-     "from": 6834.0,
-     "to": 7215.0,
-     "points": 0.5,
-     "plus_minus": 0.0
-    },
-    {
-     "from": 7215.0,
-     "to": 8239.5,
-     "points": -0.5,
+     "from": 6698.5,
+     "to": 6841.0,
+     "points": 1.0,
      "plus_minus": 0.2
     },
     {
-     "from": 8239.5,
-     "to": 8398.0,
+     "from": 6841.0,
+     "to": 7231.0,
+     "points": 0.4,
+     "plus_minus": 0.1
+    },
+    {
+     "from": 7231.0,
+     "to": 8246.5,
+     "points": -0.9,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 8246.5,
+     "to": 8415.5,
      "points": -2.3,
      "plus_minus": 0.2
     },
     {
-     "from": 8398.0,
-     "to": 8451.0,
-     "points": -3.5,
+     "from": 8415.5,
+     "to": 8496.0,
+     "points": -3.7,
      "plus_minus": 0.2
     },
     {
-     "from": 8451.0,
-     "to": 8542.0,
-     "points": -4.5,
+     "from": 8496.0,
+     "to": 8769.5,
+     "points": -4.8,
      "plus_minus": 0.2
     },
     {
-     "from": 8542.0,
-     "to": 9243.5,
-     "points": -5.3,
+     "from": 8769.5,
+     "to": 9244.5,
+     "points": -5.4,
      "plus_minus": 0.1
     },
     {
-     "from": 9243.5,
+     "from": 9244.5,
      "to": 9974.0,
-     "points": -5.0,
-     "plus_minus": 0.2
+     "points": -5.1,
+     "plus_minus": 0.0
     }
    ],
    "kind": "context"
@@ -340,60 +340,60 @@
   {
    "term": "runner_class",
    "description": "who carries: 0 warrior, 1 dervish, 2 assassin, 3 paragon, 4 ranger, 5 mesmer, 6 elementalist, 7 necromancer, 8 ritualist, 9 monk",
-   "importance": 2.356,
+   "importance": 2.218,
    "curve": [
     {
      "from": 0.0,
      "to": 0.5,
-     "points": -4.3,
+     "points": -4.1,
      "plus_minus": 0.0
     },
     {
      "from": 0.5,
      "to": 1.5,
-     "points": -2.5,
+     "points": -2.3,
      "plus_minus": 0.1
     },
     {
      "from": 1.5,
      "to": 3.5,
-     "points": -1.4,
-     "plus_minus": 0.3
+     "points": -1.1,
+     "plus_minus": 0.1
     },
     {
      "from": 3.5,
      "to": 4.5,
-     "points": 0.3,
-     "plus_minus": 0.4
+     "points": 0.2,
+     "plus_minus": 0.3
     },
     {
      "from": 4.5,
      "to": 5.5,
-     "points": 2.0,
+     "points": 1.8,
      "plus_minus": 0.1
     },
     {
      "from": 5.5,
      "to": 6.5,
-     "points": 2.5,
+     "points": 2.1,
      "plus_minus": 0.2
     },
     {
      "from": 6.5,
      "to": 7.5,
-     "points": 2.2,
-     "plus_minus": 0.1
+     "points": 2.0,
+     "plus_minus": 0.2
     },
     {
      "from": 7.5,
      "to": 8.5,
-     "points": 2.6,
-     "plus_minus": 0.1
+     "points": 2.3,
+     "plus_minus": 0.2
     },
     {
      "from": 8.5,
      "to": 9.0,
-     "points": 1.1,
+     "points": 1.4,
      "plus_minus": 0.1
     }
    ],
@@ -402,99 +402,249 @@
   {
    "term": "strength_gap",
    "description": "defending team's strength gap",
-   "importance": 1.01,
+   "importance": 0.994,
    "curve": [
     {
      "from": -1183.0,
      "to": -566.5,
-     "points": -2.9,
-     "plus_minus": 0.1
-    },
-    {
-     "from": -566.5,
-     "to": -421.5,
-     "points": -2.0,
+     "points": -2.6,
      "plus_minus": 0.2
     },
     {
-     "from": -421.5,
-     "to": -339.5,
-     "points": -0.8,
-     "plus_minus": 0.0
+     "from": -566.5,
+     "to": -424.0,
+     "points": -1.9,
+     "plus_minus": 0.2
     },
     {
-     "from": -339.5,
-     "to": -241.0,
+     "from": -424.0,
+     "to": -340.5,
+     "points": -1.1,
+     "plus_minus": 0.2
+    },
+    {
+     "from": -340.5,
+     "to": -243.0,
      "points": -0.5,
      "plus_minus": 0.1
     },
     {
-     "from": -241.0,
-     "to": -167.5,
-     "points": -0.2,
+     "from": -243.0,
+     "to": -165.0,
+     "points": -0.3,
      "plus_minus": 0.1
     },
     {
-     "from": -167.5,
-     "to": -81.0,
+     "from": -165.0,
+     "to": -79.5,
      "points": -0.4,
      "plus_minus": 0.1
     },
     {
-     "from": -81.0,
-     "to": -6.5,
-     "points": -0.0,
-     "plus_minus": 0.2
+     "from": -79.5,
+     "to": -5.5,
+     "points": -0.2,
+     "plus_minus": 0.0
     },
     {
-     "from": -6.5,
-     "to": 43.5,
-     "points": 0.3,
+     "from": -5.5,
+     "to": 56.5,
+     "points": 0.4,
      "plus_minus": 0.1
     },
     {
-     "from": 43.5,
-     "to": 136.5,
-     "points": 0.9,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 136.5,
-     "to": 229.0,
-     "points": 1.7,
+     "from": 56.5,
+     "to": 145.0,
+     "points": 0.8,
      "plus_minus": 0.1
     },
     {
-     "from": 229.0,
+     "from": 145.0,
+     "to": 230.5,
+     "points": 1.5,
+     "plus_minus": 0.1
+    },
+    {
+     "from": 230.5,
      "to": 318.0,
-     "points": 1.4,
+     "points": 1.3,
      "plus_minus": 0.1
     },
     {
      "from": 318.0,
-     "to": 402.5,
-     "points": 1.4,
+     "to": 406.5,
+     "points": 1.2,
      "plus_minus": 0.1
     },
     {
-     "from": 402.5,
-     "to": 545.5,
-     "points": 1.0,
-     "plus_minus": 0.2
+     "from": 406.5,
+     "to": 547.0,
+     "points": 0.8,
+     "plus_minus": 0.1
     },
     {
-     "from": 545.5,
+     "from": 547.0,
      "to": 1183.0,
-     "points": 0.5,
-     "plus_minus": 0.2
+     "points": 1.0,
+     "plus_minus": 0.1
     }
    ],
    "kind": "context"
   },
   {
+   "term": "defenders_free",
+   "description": "defenders alive and not on flag duty",
+   "importance": 0.485,
+   "curve": [
+    {
+     "from": 0.0,
+     "to": 3.5,
+     "points": -3.6,
+     "plus_minus": 0.6
+    },
+    {
+     "from": 3.5,
+     "to": 4.5,
+     "points": -3.5,
+     "plus_minus": 0.6
+    },
+    {
+     "from": 4.5,
+     "to": 5.5,
+     "points": -3.3,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 5.5,
+     "to": 6.5,
+     "points": -0.6,
+     "plus_minus": 0.1
+    },
+    {
+     "from": 6.5,
+     "to": 7.5,
+     "points": -0.1,
+     "plus_minus": 0.1
+    },
+    {
+     "from": 7.5,
+     "to": 8.0,
+     "points": 0.5,
+     "plus_minus": 0.0
+    }
+   ],
+   "kind": "decision"
+  },
+  {
+   "term": "control_10s",
+   "description": "conditions and knockdowns on the runner in the first 10 s",
+   "importance": 0.351,
+   "curve": [
+    {
+     "from": 0.0,
+     "to": 0.5,
+     "points": -0.2,
+     "plus_minus": 0.0
+    },
+    {
+     "from": 0.5,
+     "to": 1.5,
+     "points": 1.8,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 1.5,
+     "to": 2.5,
+     "points": 3.3,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 2.5,
+     "to": 7.0,
+     "points": 0.5,
+     "plus_minus": 0.5
+    }
+   ],
+   "kind": "execution"
+  },
+  {
+   "term": "def_snare_near",
+   "description": "snare power of live defenders within 1,300 of the runner 10 s in (movepower.py)",
+   "importance": 0.316,
+   "curve": [
+    {
+     "from": 0.0,
+     "to": 1.8,
+     "points": -0.1,
+     "plus_minus": 0.0
+    },
+    {
+     "from": 1.8,
+     "to": 10.0,
+     "points": -0.0,
+     "plus_minus": 0.1
+    },
+    {
+     "from": 10.0,
+     "to": 11.95,
+     "points": 0.3,
+     "plus_minus": 0.1
+    },
+    {
+     "from": 11.95,
+     "to": 19.05,
+     "points": 0.4,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 19.05,
+     "to": 20.4,
+     "points": 0.9,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 20.4,
+     "to": 29.7,
+     "points": 1.2,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 29.7,
+     "to": 30.35,
+     "points": 2.1,
+     "plus_minus": 0.1
+    },
+    {
+     "from": 30.35,
+     "to": 31.85,
+     "points": 2.4,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 31.85,
+     "to": 49.5,
+     "points": 0.7,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 49.5,
+     "to": 49.85,
+     "points": -0.7,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 49.85,
+     "to": 144.6,
+     "points": -2.2,
+     "plus_minus": 0.4
+    }
+   ],
+   "kind": "execution"
+  },
+  {
    "term": "damage_10s",
    "description": "damage on the runner in the first 10 s",
-   "importance": 0.394,
+   "importance": 0.297,
    "curve": [
     {
      "from": 0.0,
@@ -511,224 +661,74 @@
     {
      "from": 18.5,
      "to": 27.5,
+     "points": -0.4,
+     "plus_minus": 0.0
+    },
+    {
+     "from": 27.5,
+     "to": 39.5,
      "points": -0.3,
      "plus_minus": 0.1
     },
     {
-     "from": 27.5,
-     "to": 40.5,
+     "from": 39.5,
+     "to": 51.5,
      "points": -0.1,
-     "plus_minus": 0.2
+     "plus_minus": 0.1
     },
     {
-     "from": 40.5,
-     "to": 53.5,
-     "points": 0.2,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 53.5,
-     "to": 66.5,
-     "points": 1.1,
+     "from": 51.5,
+     "to": 64.0,
+     "points": 0.5,
      "plus_minus": 0.3
     },
     {
-     "from": 66.5,
+     "from": 64.0,
      "to": 77.5,
-     "points": 1.3,
-     "plus_minus": 0.3
+     "points": 0.7,
+     "plus_minus": 0.4
     },
     {
      "from": 77.5,
      "to": 97.5,
-     "points": 1.5,
-     "plus_minus": 0.4
+     "points": 0.9,
+     "plus_minus": 0.3
     },
     {
      "from": 97.5,
-     "to": 115.5,
-     "points": 2.1,
+     "to": 117.5,
+     "points": 1.6,
      "plus_minus": 0.3
     },
     {
-     "from": 115.5,
-     "to": 138.5,
-     "points": 2.2,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 138.5,
-     "to": 171.0,
-     "points": 2.4,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 171.0,
-     "to": 222.0,
-     "points": 1.8,
+     "from": 117.5,
+     "to": 141.5,
+     "points": 1.9,
      "plus_minus": 0.5
     },
     {
-     "from": 222.0,
-     "to": 301.0,
-     "points": 2.7,
+     "from": 141.5,
+     "to": 178.5,
+     "points": 2.1,
+     "plus_minus": 0.5
+    },
+    {
+     "from": 178.5,
+     "to": 225.0,
+     "points": 1.8,
      "plus_minus": 0.6
     },
     {
-     "from": 301.0,
+     "from": 225.0,
+     "to": 309.0,
+     "points": 2.5,
+     "plus_minus": 0.7
+    },
+    {
+     "from": 309.0,
      "to": 841.0,
-     "points": 3.7,
-     "plus_minus": 0.9
-    }
-   ],
-   "kind": "execution"
-  },
-  {
-   "term": "defenders_free",
-   "description": "defenders alive and not on flag duty",
-   "importance": 0.377,
-   "curve": [
-    {
-     "from": 0.0,
-     "to": 3.5,
-     "points": -4.0,
-     "plus_minus": 0.1
-    },
-    {
-     "from": 3.5,
-     "to": 4.5,
-     "points": -3.8,
-     "plus_minus": 0.6
-    },
-    {
-     "from": 4.5,
-     "to": 5.5,
-     "points": -2.9,
-     "plus_minus": 0.1
-    },
-    {
-     "from": 5.5,
-     "to": 6.5,
-     "points": -0.4,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 6.5,
-     "to": 7.5,
-     "points": 0.0,
-     "plus_minus": 0.0
-    },
-    {
-     "from": 7.5,
-     "to": 8.0,
-     "points": 0.4,
-     "plus_minus": 0.1
-    }
-   ],
-   "kind": "decision"
-  },
-  {
-   "term": "def_snare_near",
-   "description": "snare power of live defenders within 1,300 of the runner 10 s in (movepower.py)",
-   "importance": 0.244,
-   "curve": [
-    {
-     "from": 0.0,
-     "to": 1.8,
-     "points": -0.1,
-     "plus_minus": 0.1
-    },
-    {
-     "from": 1.8,
-     "to": 10.0,
-     "points": 0.1,
-     "plus_minus": 0.0
-    },
-    {
-     "from": 10.0,
-     "to": 11.95,
-     "points": 0.4,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 11.95,
-     "to": 19.05,
-     "points": 0.5,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 19.05,
-     "to": 20.4,
-     "points": 0.7,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 20.4,
-     "to": 29.7,
-     "points": 0.7,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 29.7,
-     "to": 30.35,
-     "points": 1.4,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 30.35,
-     "to": 31.85,
-     "points": 1.7,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 31.85,
-     "to": 49.5,
-     "points": 0.5,
-     "plus_minus": 0.7
-    },
-    {
-     "from": 49.5,
-     "to": 49.85,
-     "points": -0.4,
-     "plus_minus": 0.8
-    },
-    {
-     "from": 49.85,
-     "to": 144.6,
-     "points": -2.5,
-     "plus_minus": 0.3
-    }
-   ],
-   "kind": "execution"
-  },
-  {
-   "term": "control_10s",
-   "description": "conditions and knockdowns on the runner in the first 10 s",
-   "importance": 0.212,
-   "curve": [
-    {
-     "from": 0.0,
-     "to": 0.5,
-     "points": -0.1,
-     "plus_minus": 0.0
-    },
-    {
-     "from": 0.5,
-     "to": 1.5,
-     "points": 1.0,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 1.5,
-     "to": 2.5,
-     "points": 1.6,
-     "plus_minus": 0.6
-    },
-    {
-     "from": 2.5,
-     "to": 7.0,
-     "points": 0.7,
-     "plus_minus": 0.7
+     "points": 2.8,
+     "plus_minus": 0.5
     }
    ],
    "kind": "execution"
@@ -736,37 +736,37 @@
   {
    "term": "pushers_10s",
    "description": "defenders who pushed the runner in the first 10 s",
-   "importance": 0.109,
+   "importance": 0.178,
    "curve": [
     {
      "from": 0.0,
      "to": 0.5,
-     "points": 0.0,
+     "points": 0.1,
      "plus_minus": 0.1
     },
     {
      "from": 0.5,
      "to": 1.5,
-     "points": -0.1,
-     "plus_minus": 0.2
+     "points": -0.3,
+     "plus_minus": 0.3
     },
     {
      "from": 1.5,
      "to": 2.5,
-     "points": -0.4,
-     "plus_minus": 0.7
+     "points": -0.6,
+     "plus_minus": 0.5
     },
     {
      "from": 2.5,
      "to": 3.5,
-     "points": -2.4,
+     "points": -2.8,
      "plus_minus": 0.8
     },
     {
      "from": 3.5,
      "to": 7.0,
-     "points": 4.2,
-     "plus_minus": 1.7
+     "points": 1.9,
+     "plus_minus": 0.6
     }
    ],
    "kind": "execution"
@@ -784,46 +784,46 @@
   "run_dist": "context",
   "strength_gap": "context"
  },
- "input_cap": 91,
+ "input_cap": 102,
  "inputs": 10,
  "pruned": [],
  "concurrent": {},
  "selection": {
   "defenders_free": {
-   "next": 0.042,
-   "previous": 0.037,
-   "previous_low": 0.028,
+   "next": 0.04,
+   "previous": 0.029,
+   "previous_low": 0.014,
    "marks_situation": false,
    "allocation": true,
    "fix_allowed": true
   },
   "pushers_10s": {
-   "next": 0.112,
+   "next": 0.116,
    "previous": 0.001,
-   "previous_low": 0.001,
+   "previous_low": 0.002,
    "marks_situation": false,
    "allocation": false,
    "fix_allowed": true
   },
   "control_10s": {
-   "next": 0.09,
-   "previous": 0.036,
-   "previous_low": 0.006,
+   "next": 0.085,
+   "previous": 0.034,
+   "previous_low": 0.007,
    "marks_situation": false,
    "allocation": false,
    "fix_allowed": true
   },
   "damage_10s": {
-   "next": 0.095,
-   "previous": 0.004,
+   "next": 0.1,
+   "previous": 0.005,
    "previous_low": 0.001,
    "marks_situation": false,
    "allocation": false,
    "fix_allowed": true
   },
   "def_snare_near": {
-   "next": 0.088,
-   "previous": 0.033,
+   "next": 0.082,
+   "previous": 0.035,
    "previous_low": 0.013,
    "marks_situation": false,
    "allocation": false,
@@ -833,22 +833,22 @@
  "marks_situation": [],
  "marks_allocation": [],
  "directions": {
-  "damage_10s": {
+  "control_10s": {
    "expected": 1,
    "fitted_toward_good": 1,
-   "rho": 0.96,
+   "rho": 0.4,
    "reads_backwards": false
   },
   "def_snare_near": {
    "expected": 1,
    "fitted_toward_good": 0,
-   "rho": -0.03,
+   "rho": 0.0,
    "reads_backwards": false
   },
-  "control_10s": {
+  "damage_10s": {
    "expected": 1,
    "fitted_toward_good": 1,
-   "rho": 0.4,
+   "rho": 0.96,
    "reads_backwards": false
   },
   "pushers_10s": {

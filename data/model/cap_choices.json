@@ -4,23 +4,23 @@
   "spike_killable_diff": {
    "max_points": null,
    "log_loss": {
-    "none": 0.355,
-    "10": 0.3607,
-    "15": 0.3586,
-    "20": 0.3569,
-    "25": 0.3558
+    "none": 0.3816,
+    "10": 0.3832,
+    "15": 0.3821,
+    "20": 0.3817,
+    "25": 0.3816
    },
-   "matches": 446,
+   "matches": 506,
    "verdict": "no cap (no option beat it on unseen matches)"
   }
  },
  "pairs": {
   "block": false,
   "log_loss": {
-   "allowed": 0.355,
-   "blocked": 0.3648
+   "allowed": 0.3816,
+   "blocked": 0.3853
   },
-  "matches": 446,
+  "matches": 506,
   "pairs": [
    "morale_diff with map_flag_run, map_pit_to_stand, map_bases_apart",
    "morale_total with map_flag_run, map_pit_to_stand, map_bases_apart"

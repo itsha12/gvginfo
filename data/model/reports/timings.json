@@ -2,62 +2,62 @@
  "cores": 4,
  "cpu": "AMD EPYC 9V74 80-Core Processor",
  "seconds": {
-  "candidate variables": 271.1,
-  "event layer and values": 4.7,
-  "learned nodes": 407.7,
-  "fit and honest test": 150.2,
-  "integrity and honest test text": 17.6,
+  "candidate variables": 117.7,
+  "event layer and values": 5.3,
+  "learned nodes": 385.4,
+  "fit and honest test": 140.1,
+  "integrity and honest test text": 18.5,
   "curves": 0.0,
   "interaction screen": 0.2,
   "surprises": 0.1,
   "rulings": 0.1,
-  "advice test": 500.6,
-  "usual play": 62.0,
-  "values (measure)": 396.1,
-  "node models": 820.1,
-  "values": 0.7,
-  "TQs": 203.4,
-  "snapshot": 55.8,
+  "advice test": 663.7,
+  "usual play": 83.4,
+  "values (measure)": 456.1,
+  "node models": 991.2,
+  "values": 0.8,
+  "TQs": 0.0,
+  "snapshot": 0.0,
   "questions": 0.0
  },
  "split": {
   "cands": {
-   "seconds": 271.1,
+   "seconds": 117.7,
    "laps": {
-    "candidate variables": 271.1
+    "candidate variables": 117.7
    }
   },
   "learned": {
-   "seconds": 412.4,
+   "seconds": 390.7,
    "laps": {
-    "event layer and values": 4.7,
-    "learned nodes": 407.7
+    "event layer and values": 5.3,
+    "learned nodes": 385.4
    }
   },
   "main": {
-   "seconds": 1126.8,
+   "seconds": 1362.3,
    "laps": {
-    "fit and honest test": 150.2,
-    "integrity and honest test text": 17.6,
+    "fit and honest test": 140.1,
+    "integrity and honest test text": 18.5,
     "curves": 0.0,
     "interaction screen": 0.2,
     "surprises": 0.1,
     "rulings": 0.1,
-    "advice test": 500.6,
-    "usual play": 62.0,
-    "values (measure)": 396.1
+    "advice test": 663.7,
+    "usual play": 83.4,
+    "values (measure)": 456.1
    }
   },
   "nodes:deaths": {
-   "seconds": 736.0,
+   "seconds": 900.0,
    "laps": {
-    "node models": 735.9
+    "node models": 899.9
    }
   },
   "nodes:kill_conversion,lord_damage,flag_answer": {
-   "seconds": 84.2,
+   "seconds": 91.3,
    "laps": {
-    "node models": 84.2
+    "node models": 91.3
    }
   }
  }

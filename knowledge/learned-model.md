@@ -2,359 +2,362 @@
 
 # What the model has learned
 
-Trained on 446 matches. Each question below is answered by its own small model that may only use the causes the causal map allows. Each cause is tested by refitting the model without it and checking predictions on matches the model never saw. "Points" = change in the chance of the result for an otherwise even (50%) case.
+Trained on 506 matches. Each question below is answered by its own small model that may only use the causes the causal map allows. Each cause is tested by refitting the model without it and checking predictions on matches the model never saw. "Points" = change in the chance of the result for an otherwise even (50%) case.
 
 ## Does a flag run get captured? Read at 5, 15 and 30 s into every run.
 
-14278 cases from 445 matches; happens 66% of the time. Predicts unseen matches better than a simple guess.
+15912 cases from 505 matches; happens 66% of the time. Predicts unseen matches better than a simple guess.
 
 Causes tested:
 - **Mobility** (execution): **supported**: it clearly helps predict matches the model never saw.
-  - seconds the carrier needs at least to reach the stand from here, at its fastest expected carry speed (its speed skills; Denning): at 0 to 3.75: +29.7 points; at 31.15 to 52.2: -28.3 points
+  - seconds the carrier needs at least to reach the stand from here, at its fastest expected carry speed (its speed skills; Denning): at 0 to 3.75: +30.4 points; at 31.25 to 52.2: -28.4 points
 - **Scoreboard** (state): **supported**: it clearly helps predict matches the model never saw.
-  - boost clock (discovery, approved): at -120 to -112.5: +5.9 points; at 101.5 to 120: -20.4 points
-  - morale, own minus enemy (discovery, approved): at -410 to -151.5: -17.5 points; at 139.5 to 419: -3.8 points
-- **Run timing and runner choice** (decision/state): not clear yet: more matches needed.
-  - flag lead at the start (s): at -80 to -58.5: +4.6 points; at 57.5 to 125: -14.4 points
-  - own team holds the stand: at 0 to 0.5: -2.1 points; at 0.5 to 1: +4.2 points
-  - the enemy holds the stand: at 0 to 0.5: -2.7 points; at 0.5 to 1: +2.7 points
+  - boost clock (discovery, approved): at -120 to -112.5: +4.6 points; at 101.5 to 120: -20.1 points
+  - morale, own minus enemy (discovery, approved): at -410 to -150.5: -17.1 points; at 135.5 to 425: -3.7 points
 - **Map geometry** (context): **supported**: it clearly helps predict matches the model never saw.
-  - distance from the team's spawn to the stand: at 3654 to 4440: +9.6 points; at 9244.5 to 9974: +4.1 points
-- **Build features** (context): not clear yet: more matches needed.
-  - snare skills on enemy bars (discovery, approved): at 0 to 0.5: +1 points; at 6.5 to 13: -37.8 points
+  - distance from the team's spawn to the stand: at 3206 to 4446.5: +8.4 points; at 9245.5 to 9974: +6.1 points
+- **Run timing and runner choice** (decision/state): **supported**: it clearly helps predict matches the model never saw.
+  - flag lead at the start (s): at -80 to -56.5: +2.8 points; at 57.5 to 125: -14.5 points
+  - own team holds the stand: at 0 to 0.5: -2.5 points; at 0.5 to 1: +4.9 points
+  - the enemy holds the stand: at 0 to 0.5: -2.8 points; at 0.5 to 1: +2.8 points
 - **Team strength** (context): not clear yet: more matches needed.
-  - team strength gap: at -1183 to -568.5: -5 points; at 566.5 to 1183: -1.8 points
-- **Control received** (execution): not clear yet: more matches needed.
-  - snare power of live enemies within 1,300 of the runner (movepower.py): at 0 to 1.8: -0.6 points; at 60.8 to 144.6: -2.5 points
-  - runner Crippled by this point: at 0 to 0.5: -0.3 points; at 0.5 to 1: +9.1 points
-  - damage on the runner by this point: at 0 to 0.5: -0.3 points; at 463.5 to 1596: +3.7 points [reads backwards: likely a reaction]
+  - team strength gap: at -1183 to -568.5: -4.7 points; at 565 to 1183: -2.4 points
 - **Allocation** (decision/state): not clear yet: more matches needed.
-  - enemy main: at 0 to 1.5: +1.8 points; at 7.5 to 8: -4.8 points
-  - own main: at 1 to 1.5: -0.8 points; at 7.5 to 8: +0.8 points
-  - escorts at the start: at 0 to 0.5: -0.4 points; at 6.5 to 7: -7.5 points [allocation; marks the situation, may still be a fix]
+  - enemy main: at 0 to 1.5: +2.2 points; at 7.5 to 8: -5.9 points
+  - own main: at 1 to 1.5: +1.6 points; at 7.5 to 8: +0.7 points
+  - escorts at the start: at 0 to 0.5: +0.1 points; at 6.5 to 7: -7.1 points [allocation; marks the situation, may still be a fix]
+- **Build features** (context): not clear yet: more matches needed.
+  - snare skills on enemy bars (discovery, approved): at 0 to 0.5: +0.8 points; at 6.5 to 13: -33.8 points
+- **Control received** (execution): **rejected for now**: leaving it out predicts unseen matches slightly better.
+  - snare power of live enemies within 1,300 of the runner (movepower.py): at 0 to 1.8: -0.5 points; at 60.45 to 144.6: -4.9 points
+  - damage on the runner by this point: at 0 to 0.5: -0.4 points; at 461 to 1596: +1.5 points [reads backwards: likely a reaction]
+  - enemies who pushed the runner by this point: at 0 to 0.5: -0.2 points; at 3.5 to 7: -5.3 points
 
 ## How much will the flag lead change over the next minute?
 
-16837 cases from 446 matches; average 0.3 s. Predicts unseen matches better than a simple guess.
+18780 cases from 506 matches; average 0.3 s. Predicts unseen matches better than a simple guess.
 
 Causes tested:
 - **Run timing and runner choice** (state): **supported**: it clearly helps predict matches the model never saw.
-  - own team holds the stand: at 0 to 0.5: +2.3 s; at 0.5 to 1: -2.7 s
-  - seconds to own boost: at 0 to 17.5: +1.5 s; at 114.5 to 120: -4.4 s
-  - flag model: seconds until the enemy could capture: at 1 to 5.5: +0.3 s; at 58.5 to 180: +1.9 s
+  - own team holds the stand: at 0 to 0.5: +2.3 s; at 0.5 to 1: -2.6 s
+  - the enemy holds the stand: at 0 to 0.5: -1.8 s; at 0.5 to 1: +2.1 s
+  - seconds to own boost: at 0 to 17.5: +1.2 s; at 114.5 to 120: -4.1 s
 - **Scoreboard** (state): **supported**: it clearly helps predict matches the model never saw.
-  - flag lead now (s): at -137 to -61.5: +15 s; at 61.5 to 109: -15.7 s
-  - morale, own minus enemy (discovery, approved): at -445 to -170.5: -11.4 s; at 193.5 to 430: +11.9 s
-- **Team strength** (context): **supported**: it clearly helps predict matches the model never saw.
-  - team strength gap: at -1183 to -576: -5.5 s; at 576 to 1183: +4.4 s
-- **Allocation** (decision/state): not clear yet: more matches needed.
-  - enemy main: at 0 to 2.5: -4.1 s; at 7.5 to 8: +0.5 s
-  - enemy players in own base: at 0 to 0.5: +0.4 s; at 7.5 to 8: -1.2 s
-  - own players in the enemy base: at 0 to 0.5: -0.3 s; at 7.5 to 8: +0.2 s
+  - flag lead now (s): at -137 to -62.5: +15 s; at 61.5 to 128: -15.9 s
+  - morale, own minus enemy (discovery, approved): at -445 to -175.5: -11.7 s; at 194.5 to 430: +12 s
+- **Team strength** (context): not clear yet: more matches needed.
+  - team strength gap: at -1183 to -573.5: -5 s; at 577.5 to 1183: +4.3 s
 - **Deaths** (state): not clear yet: more matches needed.
   - own deaths in the last 30 s: at 0 to 0.5: +0.5 s; at 3.5 to 8: -2.1 s
-  - enemy deaths in the last 30 s: at 0 to 0.5: -0.2 s; at 3.5 to 8: +5.3 s
+  - enemy deaths in the last 30 s: at 0 to 0.5: -0.2 s; at 3.5 to 8: +5.1 s
+- **Allocation** (decision/state): not clear yet: more matches needed.
+  - enemy main: at 0 to 2.5: -4.6 s; at 7.5 to 8: +0.5 s
+  - enemy players in own base: at 0 to 0.5: +0.3 s; at 6.5 to 8: -1.3 s
+  - own players in the enemy base: at 0 to 0.5: -0.3 s; at 7.5 to 8: -0 s
 - **Clock** (state): not clear yet: more matches needed.
-  - minute: at 0.3 to 1.15: -0.1 s; at 21.15 to 27: +0.2 s
-  - seconds to the next res: at 20 to 30: -0.3 s; at 110 to 120: +0.5 s
-- **Map geometry** (context): **rejected for now**: leaving it out predicts unseen matches slightly better.
-  - distance from the team's spawn to the stand: at 3654 to 4432.5: +0.3 s; at 9251.5 to 9974: -1 s
+  - seconds to the next res: at 20 to 30: -0.2 s; at 110 to 120: +0.3 s
+  - minute: at 0.3 to 1.15: +0.1 s; at 21.15 to 27: +0.3 s
+- **Map geometry** (context): not clear yet: more matches needed.
+  - distance from the team's spawn to the stand: at 3206 to 4436.5: +0.9 s; at 9252.5 to 9974: -1.5 s
 
 ## Does an enemy run get captured? From the defending side, every run, read at 5, 15 and 30 s in.
 
-14278 cases from 445 matches; happens 66% of the time. Predicts unseen matches better than a simple guess.
+15912 cases from 505 matches; happens 66% of the time. Predicts unseen matches better than a simple guess.
 
 Causes tested:
 - **Scoreboard** (state): **supported**: it clearly helps predict matches the model never saw.
-  - stand (discovery, approved): at -1 to -0.5: -9.6 points; at 0.5 to 1: +6.2 points
-  - flag lead (discovery, approved): at -137 to -58.5: -15.1 points; at 59.5 to 86: +1.4 points
-  - boost clock (discovery, approved): at -120 to -101.5: -8.9 points; at 112.5 to 120: -3.2 points
+  - stand (discovery, approved): at -1 to -0.5: -8.6 points; at 0.5 to 1: +5.6 points
+  - flag lead (discovery, approved): at -137 to -58.5: -16.4 points; at 59.5 to 86: +1.7 points
+  - boost clock (discovery, approved): at -120 to -101.5: -8.3 points; at 112.5 to 120: -4.4 points
 - **Mobility** (state): **supported**: it clearly helps predict matches the model never saw.
-  - seconds the carrier needs at least to reach the stand from here (its speed skills): at 0 to 3.75: +30.4 points; at 31.15 to 52.2: -28.2 points
+  - seconds the carrier needs at least to reach the stand from here (its speed skills): at 0 to 3.75: +31.3 points; at 31.25 to 52.2: -28.5 points
 - **Map geometry** (context): **supported**: it clearly helps predict matches the model never saw.
-  - distance from the runner's spawn to the stand: at 3654 to 4440: +10.4 points; at 9244.5 to 9974: +4.4 points
+  - distance from the runner's spawn to the stand: at 3206 to 4446.5: +8.7 points; at 9245.5 to 9974: +6.5 points
+- **Run timing and runner choice** (state): **supported**: it clearly helps predict matches the model never saw.
+  - who carries: 0 warrior, 1 dervish, 2 assassin, 3 paragon, 4 ranger, 5 mesmer, 6 elementalist, 7 necromancer, 8 ritualist, 9 monk: at 0 to 0.5: -3.6 points; at 8.5 to 9: -1.8 points
 - **Team strength** (context): not clear yet: more matches needed.
-  - defending team's strength gap: at -1183 to -566.5: -2 points; at 568.5 to 1183: -4.5 points
-- **Run timing and runner choice** (state): not clear yet: more matches needed.
-  - who carries: 0 warrior, 1 dervish, 2 assassin, 3 paragon, 4 ranger, 5 mesmer, 6 elementalist, 7 necromancer, 8 ritualist, 9 monk: at 0 to 0.5: -4 points; at 8.5 to 9: -1.5 points
+  - defending team's strength gap: at -1183 to -565: -2.4 points; at 568.5 to 1183: -4.2 points
 - **Mesmers free to defend** (state): not clear yet: more matches needed.
-  - defenders alive and not on flag duty at the run's start: at 0 to 3.5: +20.7 points; at 7.5 to 8: -2.3 points
-  - defenders who pushed the runner by this point: at 0 to 0.5: -0.3 points; at 3.5 to 7: -7.4 points
-  - damage on the runner by this point: at 0 to 0.5: -0.4 points; at 463.5 to 1596: +3.2 points
-- **Mitigation** (execution): not clear yet: more matches needed.
-  - own healing monks (discovery, approved): at 0 to 0.5: -2.5 points; at 3.5 to 4: +2.1 points
-- **Control received** (execution): not clear yet: more matches needed.
-  - snare power of live defenders within 1,300 of the runner (movepower.py): at 0 to 1.8: -0.6 points; at 60.8 to 144.6: -3 points
+  - defenders alive and not on flag duty at the run's start: at 0 to 3.5: +11.7 points; at 7.5 to 8: -2.5 points
+  - damage on the runner by this point: at 0 to 0.5: -0.4 points; at 461 to 1596: +1.5 points
+  - defenders who pushed the runner by this point: at 0 to 0.5: -0.3 points; at 3.5 to 7: -3.2 points
 - **Build features** (context): not clear yet: more matches needed.
-  - snare skills on own bars (discovery, approved): at 0 to 0.5: +1.3 points; at 6.5 to 13: -37.4 points
-  - enemy snares against own speed (discovery, approved): at -9 to -7.5: -0.7 points; at 0.5 to 11: -13.4 points
-  - area-damage skills on own bars (discovery, approved): at 0 to 0.5: -0 points; at 11.5 to 16: +3.1 points
+  - enemy snares against own speed (discovery, approved): at -9 to -7.5: -2.1 points; at 0.5 to 11: -13.3 points
+  - snare skills on own bars (discovery, approved): at 0 to 0.5: +1.1 points; at 6.5 to 13: -32.9 points
+  - area-damage skills on own bars (discovery, approved): at 0 to 0.5: +0.3 points; at 12.5 to 16: -0.1 points
+- **Control received** (execution): not clear yet: more matches needed.
+  - snare power of live defenders within 1,300 of the runner (movepower.py): at 0 to 1.8: -0.4 points; at 60.45 to 144.6: -5.5 points
+- **Mitigation** (execution): not clear yet: more matches needed.
+  - own healing monks (discovery, approved): at 0 to 0.5: -1.5 points; at 3.5 to 4: +1.1 points
 - **Allocation** (state): not clear yet: more matches needed.
-  - defenders' main: at 0 to 1.5: -13.7 points; at 7.5 to 8: -1.4 points
-  - the runner's escorts: at 0 to 0.5: -0 points; at 6.5 to 7: -8.2 points
-  - attackers' main: at 1 to 1.5: +2.6 points; at 7.5 to 8: -1.3 points
+  - defenders' main: at 0 to 1.5: -4.7 points; at 7.5 to 8: -2.4 points
+  - the runner's escorts: at 0 to 0.5: +0.4 points; at 6.5 to 7: -7.9 points
+  - attackers' main: at 1 to 1.5: +5.4 points; at 7.5 to 8: -1.2 points
 
 ## How long does an enemy capture take? (Captures only.)
 
-3677 cases from 428 matches; average 39.4 s. Predicts unseen matches better than a simple guess.
+4103 cases from 486 matches; average 39.3 s. Predicts unseen matches better than a simple guess.
 
 Causes tested:
 - **Mobility** (state): **supported**: it clearly helps predict matches the model never saw.
-  - seconds the carrier needed at least, at its fastest expected carry speed (its speed skills): at 0.9 to 9.55: -15.7 s; at 35.85 to 45.4: +14.9 s
+  - seconds the carrier needed at least, at its fastest expected carry speed (its speed skills): at 0.9 to 9.55: -15.8 s; at 36.15 to 45.4: +14.8 s
 - **Allocation** (decision/state): **supported**: it clearly helps predict matches the model never saw.
-  - the runner's escorts: at 0 to 0.5: -3.9 s; at 6.5 to 7: +13.4 s
-  - defenders alive and not on flag duty: at 0 to 3.5: -4 s; at 7.5 to 8: +0.4 s
+  - the runner's escorts: at 0 to 0.5: -3.8 s; at 6.5 to 7: +12.2 s
+  - defenders alive and not on flag duty: at 0 to 3.5: -3.6 s; at 7.5 to 8: +0.5 s
 - **Map geometry** (context): **supported**: it clearly helps predict matches the model never saw.
-  - distance from the runner's spawn to the stand: at 4133 to 4430.5: +5.4 s; at 9243.5 to 9974: -5 s
+  - distance from the runner's spawn to the stand: at 4133 to 4432.5: +5.7 s; at 9244.5 to 9974: -5.1 s
 - **Run timing and runner choice** (state): **supported**: it clearly helps predict matches the model never saw.
-  - who carries: 0 warrior, 1 dervish, 2 assassin, 3 paragon, 4 ranger, 5 mesmer, 6 elementalist, 7 necromancer, 8 ritualist, 9 monk: at 0 to 0.5: -4.3 s; at 8.5 to 9: +1.1 s
+  - who carries: 0 warrior, 1 dervish, 2 assassin, 3 paragon, 4 ranger, 5 mesmer, 6 elementalist, 7 necromancer, 8 ritualist, 9 monk: at 0 to 0.5: -4.1 s; at 8.5 to 9: +1.4 s
 - **Team strength** (context): not clear yet: more matches needed.
-  - defending team's strength gap: at -1183 to -566.5: -2.9 s; at 545.5 to 1183: +0.5 s
+  - defending team's strength gap: at -1183 to -566.5: -2.6 s; at 547 to 1183: +1 s
 - **Control received** (execution): not clear yet: more matches needed.
-  - damage on the runner in the first 10 s: at 0 to 0.5: -0.2 s; at 301 to 841: +3.7 s
-  - snare power of live defenders within 1,300 of the runner 10 s in (movepower.py): at 0 to 1.8: -0.1 s; at 49.85 to 144.6: -2.5 s
-  - conditions and knockdowns on the runner in the first 10 s: at 0 to 0.5: -0.1 s; at 2.5 to 7: +0.7 s
+  - conditions and knockdowns on the runner in the first 10 s: at 0 to 0.5: -0.2 s; at 2.5 to 7: +0.5 s
+  - snare power of live defenders within 1,300 of the runner 10 s in (movepower.py): at 0 to 1.8: -0.1 s; at 49.85 to 144.6: -2.2 s
+  - damage on the runner in the first 10 s: at 0 to 0.5: -0.2 s; at 309 to 841: +2.8 s
 
 ## Does a power play (any numbers advantage at main) kill?
 
-4147 cases from 443 matches; happens 40% of the time. Predicts unseen matches better than a simple guess.
+4647 cases from 503 matches; happens 40% of the time. Predicts unseen matches better than a simple guess.
 
 Causes tested:
 - **Allocation** (state): **supported**: it clearly helps predict matches the model never saw.
-  - share of the enemy's missing player-seconds: dead: at 0 to 0.01: -19.2 points; at 0.99 to 1: +19.6 points
-  - on the back side or push side: at 0 to 0.01: +5.7 points; at 0.99 to 1: -12.6 points
-  - running the flag: at 0 to 0.01: +2.8 points; at 0.61 to 1: -8.7 points
+  - share of the enemy's missing player-seconds: dead: at 0 to 0.01: -19.6 points; at 0.99 to 1: +19.2 points
+  - on the back side or push side: at 0 to 0.01: +4.7 points; at 0.99 to 1: -12.2 points
+  - enemy main: at 1 to 1.5: +13.3 points; at 6.5 to 7: -3.7 points
 - **Damage uptime** (execution): **supported**: it clearly helps predict matches the model never saw.
-  - own damage per second against the usual of the players alive: at 0 to 0.56: -33.5 points; at 3.23 to 21.09: +24.4 points
-- **Offensive knockdowns** (execution): **supported**: it clearly helps predict matches the model never saw.
-  - knockdowns landed on the enemy per 10 s (Denning: offensive knockdowns): at 0 to 0.03: +0.9 points; at 1.87 to 5: +26.7 points
-  - of which on a target that was casting, per 10 s: at 0 to 0.04: +1.5 points; at 0.98 to 2: +8.1 points
-- **Team strength** (context): **supported**: it clearly helps predict matches the model never saw.
-  - team strength gap: at -1183 to -527: -14.3 points; at 611 to 1183: +16.6 points
-- **Target choice** (execution): **supported**: it clearly helps predict matches the model never saw.
-  - share of own damage on enemy players that landed on enemy healers (Bounty: going after the monks): at 0 to 0.01: +18.3 points; at 0.81 to 1: +14.7 points
-  - share of own spikes on healers: at 0 to 0.07: -0.5 points; at 0.9 to 1: +5.9 points
+  - own damage per second against the usual of the players alive: at 0 to 0.56: -30.6 points; at 3.2 to 21.09: +23.6 points
 - **Burst timing** (execution): **supported**: it clearly helps predict matches the model never saw.
-  - own spikes per 10 s: at 0 to 0.03: -6 points; at 1.38 to 4: +46.9 points
-  - median spread of own spikes (s): at 0 to 0.23: +9.7 points; at 2.77 to 3: -7.2 points
+  - own spikes per 10 s: at 0 to 0.03: -7 points; at 1.38 to 4: +48.5 points
+  - median spread of own spikes (s): at 0 to 0.28: +12.1 points; at 2.77 to 3: -9.2 points
+- **Team strength** (context): **supported**: it clearly helps predict matches the model never saw.
+  - team strength gap: at -1183 to -522.5: -15.4 points; at 619.5 to 1183: +14.8 points
+- **Target choice** (execution): **supported**: it clearly helps predict matches the model never saw.
+  - share of own damage on enemy players that landed on enemy healers (Bounty: going after the monks): at 0 to 0.01: +19.1 points; at 0.82 to 1: +14.7 points
+  - share of own spikes on healers: at 0 to 0.07: +0.1 points; at 0.9 to 1: +2.3 points
+- **Offensive knockdowns** (execution): not clear yet: more matches needed.
+  - knockdowns landed on the enemy per 10 s (Denning: offensive knockdowns): at 0 to 0.03: +1.2 points; at 1.92 to 5: +25 points
+  - of which on a target that was casting, per 10 s: at 0 to 0.04: +1.7 points; at 0.98 to 2: +9.5 points
+- **Disables** (execution): **supported**: it clearly helps predict matches the model never saw.
+  - skill-seconds disabled on the enemy per 10 s (Complicate, Power Lock, Power Block, Blackout): at 0 to 0.3: +4 points; at 17.05 to 91.43: +4.8 points
 - **Scoreboard** (state): **supported**: it clearly helps predict matches the model never saw.
-  - time down: enemy minus own seconds until the dead are back (+ = the enemy has more time down) (discovery, approved): at -180 to -52.5: +0.9 points; at 175 to 575: -0.7 points
-  - players carrying a flag, own minus enemy (discovery, approved): at -1 to -0.5: +0.4 points; at 0.5 to 1: -9.8 points
-- **Disables** (execution): not clear yet: more matches needed.
-  - skill-seconds disabled on the enemy per 10 s (Complicate, Power Lock, Power Block, Blackout): at 0 to 0.3: +4.1 points; at 16.62 to 91.43: +3 points
+  - time down: enemy minus own seconds until the dead are back (+ = the enemy has more time down) (discovery, approved): at -180 to -52.5: +0.6 points; at 185 to 575: +4.6 points
+  - players carrying a flag, own minus enemy (discovery, approved): at -1 to -0.5: +0.8 points; at 0.5 to 1: -10.9 points
 - **Degen pressure** (execution): not clear yet: more matches needed.
-  - degeneration put on the enemy, pip-seconds per 10 s (conditions and degen hexes): at 0 to 0.07: +2 points; at 179.84 to 458.65: +12.4 points [marks the situation]
+  - degeneration put on the enemy, pip-seconds per 10 s (conditions and degen hexes): at 0 to 0.07: +1.5 points; at 177.46 to 458.65: +12.7 points [marks the situation]
 - **Commitment** (decision): not clear yet: more matches needed.
-  - pushed (1) or held (0): at 0 to 0.5: -6.7 points; at 0.5 to 1: +3.5 points
+  - pushed (1) or held (0): at 0 to 0.5: -5.2 points; at 0.5 to 1: +2.7 points
+- **Cast prevention** (execution): not clear yet: more matches needed.
+  - seconds Shame, Guilt or Diversion sat on enemies, per 10 s: at 0 to 0.01: -0.1 points; at 2.77 to 9.4: +10 points
 - **Flag lead** (state): not clear yet: more matches needed.
-  - flag lead (s): at -86 to -56.5: -3.4 points; at 65.5 to 112: +5.3 points
-- **Control received** (execution): **rejected for now**: leaving it out predicts unseen matches slightly better.
-  - seconds own attackers spent Blind, per 10 s: at 0 to 0.01: +0.3 points; at 5.57 to 11.5: +1 points
-- **Cast prevention** (execution): **rejected for now**: leaving it out predicts unseen matches slightly better.
-  - seconds Shame, Guilt or Diversion sat on enemies, per 10 s: at 0 to 0.01: -0.2 points; at 2.77 to 8.57: +10.9 points
-- **Build features** (context): **rejected for now**: leaving it out predicts unseen matches slightly better.
-  - enemy strips against own prots (discovery, approved): at -19 to -15.5: -1.7 points; at -4.5 to 3: +2.2 points
+  - flag lead (s): at -86 to -56.5: -0.2 points; at 66.5 to 112: +4.7 points
+- **Control received** (execution): not clear yet: more matches needed.
+  - seconds own attackers spent Blind, per 10 s: at 0 to 0.01: +0.1 points; at 5.86 to 11.5: +17.4 points [reads backwards: likely a reaction]
+- **Build features** (context): not clear yet: more matches needed.
+  - enemy strips against own prots (discovery, approved): at -19 to -15.5: -0.4 points; at -4.5 to 3: +2.8 points
 - Measured beside the node, not as a cause (what the enemy did during the window): enemy prot casts per 10 s; enemy healing per second; seconds the enemy kited or pre-kited own melee, per 10 s; own interrupts the enemy baited (landed on nothing after a cancel), per 10 s.
 
 ## Who wins a fight? Play measured before the fight's first death.
 
-3417 cases from 445 matches; happens 47% of the time. Predicts unseen matches better than a simple guess.
+3863 cases from 505 matches; happens 47% of the time. Predicts unseen matches better than a simple guess.
 
 Causes tested:
 - **Scoreboard** (state): **supported**: it clearly helps predict matches the model never saw.
-  - morale, own minus enemy (discovery, approved): at -470 to -214.5: -25.4 points; at 214.5 to 410: +38.8 points
-  - who is winning the fight (fightstate.py; discovery, approved): at -1.93 to -0.42: -17.5 points; at 0.42 to 2.36: +20.2 points
-  - time down: enemy minus own seconds until the dead are back (+ = the enemy has more time down) (discovery, approved): at -630 to -172.5: -16.3 points; at 192.5 to 490: +34.7 points
+  - morale, own minus enemy (discovery, approved): at -470 to -214.5: -24.3 points; at 214.5 to 410: +36.3 points
+  - who is winning the fight (fightstate.py; discovery, approved): at -2.15 to -0.41: -19 points; at 0.42 to 2.43: +19.9 points
+  - time down: enemy minus own seconds until the dead are back (+ = the enemy has more time down) (discovery, approved): at -630 to -185: -17.9 points; at 177.5 to 490: +21.5 points
 - **Pressure** (execution): **supported**: it clearly helps predict matches the model never saw.
-  - damage against the usual of the players alive, own minus enemy: at -15.04 to -1.91: -31 points; at 1.93 to 14.07: +32.5 points
+  - damage against the usual of the players alive, own minus enemy: at -15.05 to -1.92: -31.5 points; at 1.89 to 33.36: +30.4 points
 - **Burst timing** (execution): **supported**: it clearly helps predict matches the model never saw.
-  - spikes, own minus enemy: at -4 to -2.5: -38.8 points; at 2.5 to 4: +31.4 points
-  - median spike spread (s), own minus enemy: at -2.5 to -1.3: +5.4 points; at 1.2 to 2.6: -39.1 points
+  - spikes, own minus enemy: at -4 to -2.5: -38.1 points; at 2.5 to 4: +34.8 points
+  - median spike spread (s), own minus enemy: at -2.5 to -1.38: +6.1 points; at 1.32 to 2.6: -27.3 points
 - **Allocation** (state): **supported**: it clearly helps predict matches the model never saw.
-  - own players in the fight: at 0 to 0.5: -41.4 points; at 7.5 to 8: +24.2 points
-  - enemy players in the fight: at 0 to 0.5: +25.7 points; at 7.5 to 8: -22.6 points
+  - enemy players in the fight: at 0 to 0.5: +21.5 points; at 7.5 to 8: -22.6 points
+  - own players in the fight: at 0 to 0.5: -40.4 points; at 7.5 to 8: +23.8 points
 - **Wrong casts** (execution): **supported**: it clearly helps predict matches the model never saw.
-  - interrupted after casting into a ready interrupt, per cast, own minus enemy: at -0.5 to -0.08: +31.5 points; at 0.09 to 0.4: -29.2 points
-  - attacks while Blind per player, own minus enemy: at -2.25 to -0.94: -17.7 points; at 0.94 to 2.98: -2.7 points [reads backwards: likely a reaction]
-  - casts while Dazed, per cast, own minus enemy: at -0.27 to -0.06: +6.3 points; at 0.09 to 0.5: +12.9 points
-- **Build features** (context): **supported**: it clearly helps predict matches the model never saw.
-  - hex skills on own bars (discovery, approved): at 0 to 0.5: +6.6 points; at 12.5 to 19: +3.1 points
-  - heal skills on own bars (discovery, approved): at 0 to 8.5: +18.7 points; at 18.5 to 21: -16.3 points
-- **Offensive knockdowns** (execution): not clear yet: more matches needed.
-  - knockdowns landed per 10 s, own minus enemy: at -3.5 to -1.75: -14.6 points; at 1.75 to 4.5: +20 points
-  - knockdowns on casting targets per 10 s, own minus enemy: at -2.5 to -1.25: +24.1 points; at 1.25 to 2: +0.7 points [reads backwards: likely a reaction]
-- **Team strength** (context): not clear yet: more matches needed.
-  - team strength gap: at -1183 to -622: -11.3 points; at 611 to 1183: +12.6 points
-- **Baited interrupts** (execution): not clear yet: more matches needed.
-  - enemy interrupts baited (landed on nothing after a cancel), per 10 s, own minus enemy: at -1.5 to -0.75: -4.3 points; at 0.75 to 1.5: +9.1 points
-- **Enchantment strips** (execution): not clear yet: more matches needed.
-  - value of enchantments stripped per 10 s, own minus enemy: at -91.78 to -27.19: -8.8 points; at 24.34 to 84.78: +6.4 points
-  - share of strips on the best target in range, own minus enemy: at -1 to -0.9: +7.7 points; at 0.94 to 1: -3 points [reads backwards: likely a reaction]
-- **Pre-kiting** (execution): not clear yet: more matches needed.
-  - seconds own players kept their distance from melee heading for them, per 10 s, own minus enemy: at -10.5 to -2.25: -2.2 points; at 2.75 to 14.5: +2 points
+  - interrupted after casting into a ready interrupt, per cast, own minus enemy: at -0.5 to -0.08: +29 points; at 0.09 to 0.4: -29.7 points
+  - attacks while Blind per player, own minus enemy: at -2.25 to -0.94: -10.8 points; at 0.94 to 2.98: -0.6 points [reads backwards: likely a reaction]
+  - casts while Dazed, per cast, own minus enemy: at -0.27 to -0.06: +2.4 points; at 0.09 to 0.5: +4.6 points
+- **Build features** (context): not clear yet: more matches needed.
+  - heal skills on own bars (discovery, approved): at 0 to 8.5: +5.2 points; at 18.5 to 21: -13.3 points
+  - hex skills on own bars (discovery, approved): at 0 to 0.5: +5.3 points; at 13.5 to 19: -0.6 points
 - **Condition removal** (execution): not clear yet: more matches needed.
-  - value-weighted seconds hexes stayed on own players, own minus enemy: at -28.88 to -11.94: -12 points; at 12.1 to 29.6: +15.2 points [reads backwards: likely a reaction]
-  - share of hex removals that took the most costly hex in range, own minus enemy: at -1 to -0.9: -2.9 points; at 0.92 to 1: +7 points
-- **Kiting** (execution): not clear yet: more matches needed.
-  - seconds own players kited enemy melee (chased without being hit), per 10 s, own minus enemy: at -8 to -2.75: -5 points; at 2.75 to 9: -2.6 points
-- **Disables** (execution): not clear yet: more matches needed.
-  - skill-seconds disabled on the other team per 10 s, own minus enemy: at -72 to -30: +5.1 points; at 29 to 84: -6.9 points [reads backwards: likely a reaction]
+  - value-weighted seconds hexes stayed on own players, own minus enemy: at -29.7 to -11.66: -10.6 points; at 12.27 to 29.6: +14.8 points [reads backwards: likely a reaction]
+  - share of hex removals that took the most costly hex in range, own minus enemy: at -1 to -0.9: -5.3 points; at 0.92 to 1: +8.9 points
+- **Target choice** (execution): not clear yet: more matches needed.
+  - share of damage on enemy healers, own minus enemy (Bounty: going after the monks): at -1 to -0.57: -2.2 points; at 0.64 to 1: +6.9 points
+- **Team strength** (context): not clear yet: more matches needed.
+  - team strength gap: at -1183 to -626.5: -6.1 points; at 606 to 1183: +10.9 points
 - **Peel** (execution): not clear yet: more matches needed.
-  - own frontline damage share on attackers of own backline, minus the enemy's: at -1 to -0.66: -8.5 points; at 0.69 to 1: +5.5 points
+  - own frontline damage share on attackers of own backline, minus the enemy's: at -1 to -0.66: -3.5 points; at 0.69 to 1: +5 points
+- **Kiting** (execution): not clear yet: more matches needed.
+  - seconds own players kited enemy melee (chased without being hit), per 10 s, own minus enemy: at -8 to -2.75: -3.3 points; at 3.25 to 9: -3.5 points
+- **Offensive knockdowns** (execution): not clear yet: more matches needed.
+  - knockdowns landed per 10 s, own minus enemy: at -3.5 to -1.75: -16 points; at 1.75 to 4.5: +19.5 points
+  - knockdowns on casting targets per 10 s, own minus enemy: at -2.5 to -1.25: +19.5 points; at 1.25 to 2: -1.7 points [reads backwards: likely a reaction]
+- **Baited interrupts** (execution): not clear yet: more matches needed.
+  - enemy interrupts baited (landed on nothing after a cancel), per 10 s, own minus enemy: at -1.5 to -0.75: -6.4 points; at 0.75 to 1.5: +13.1 points
+- **Disables** (execution): not clear yet: more matches needed.
+  - skill-seconds disabled on the other team per 10 s, own minus enemy: at -72 to -30: -1 points; at 27.75 to 84: -5.4 points [reads backwards: likely a reaction]
+- **Enchantment strips** (execution): not clear yet: more matches needed.
+  - value of enchantments stripped per 10 s, own minus enemy: at -91.98 to -27.47: -9.5 points; at 25.24 to 84.97: +7.6 points
+  - share of strips on the best target in range, own minus enemy: at -1 to -0.9: +8.3 points; at 0.94 to 1: -3 points [reads backwards: likely a reaction]
+- **Pre-kiting** (execution): not clear yet: more matches needed.
+  - seconds own players kept their distance from melee heading for them, per 10 s, own minus enemy: at -10.5 to -2.75: +8.1 points; at 2.75 to 14.5: +5.6 points
 - **Degen pressure** (execution): not clear yet: more matches needed.
-  - degeneration put on the other team, pip-seconds per 10 s, own minus enemy: at -440.35 to -133.68: -4.7 points; at 122.12 to 610.15: +2.5 points
-- **Cast prevention** (execution): not clear yet: more matches needed.
-  - seconds of Shame, Guilt or Diversion on the other team per 10 s, own minus enemy: at -7 to -3.02: +9.7 points; at 2.98 to 6: +2.5 points [marks the situation]
-- **Target choice** (execution): **rejected for now**: leaving it out predicts unseen matches slightly better.
-  - share of damage on enemy healers, own minus enemy (Bounty: going after the monks): at -1 to -0.57: -1.5 points; at 0.65 to 1: +4.4 points
-- **Blind on enemies** (execution): **rejected for now**: leaving it out predicts unseen matches slightly better.
-  - seconds Blind from defensive Blinds, own minus enemy: at -20.8 to -8.2: +17.1 points; at 7.15 to 14.1: +10.4 points [reads backwards: likely a reaction]
-  - seconds the enemy frontline spent Blind, own minus enemy: at -14.1 to -8.8: -23.3 points; at 9.05 to 27.1: +15.3 points
+  - degeneration put on the other team, pip-seconds per 10 s, own minus enemy: at -440.35 to -123.4: -4.4 points; at 131.27 to 610.15: +2.8 points
+- **Cast prevention** (execution): **rejected for now**: leaving it out predicts unseen matches slightly better.
+  - seconds of Shame, Guilt or Diversion on the other team per 10 s, own minus enemy: at -7 to -3.02: +4.8 points; at 2.98 to 6: +2 points [marks the situation] [reads backwards: likely a reaction]
+- **Blind on enemies** (execution): not clear yet: more matches needed.
+  - seconds the enemy frontline spent Blind, own minus enemy: at -15.1 to -8.65: -22.6 points; at 9.05 to 27.1: +15.8 points
+  - seconds Blind from defensive Blinds, own minus enemy: at -20.8 to -7.9: +17.3 points; at 6.65 to 14.1: +1.6 points [reads backwards: likely a reaction]
 
 ## Does a team start a split in the next 30 s?
 
-32415 cases from 446 matches; happens 14% of the time. Predicts unseen matches better than a simple guess.
+36203 cases from 506 matches; happens 14% of the time. Predicts unseen matches better than a simple guess.
 
 Causes tested:
 - **Scoreboard** (state): **supported**: it clearly helps predict matches the model never saw.
-  - own main: at 0 to 2.5: +28.5 points; at 7.5 to 8: -17.1 points
-  - turtling, own minus enemy (discovery, approved): at -1 to -0.94: -1.2 points; at 0.94 to 1: -29.2 points
-  - players splitting, own minus enemy (discovery, approved): at -5 to -4.5: -12.6 points; at 1.5 to 5: -5.5 points
+  - own main: at 0 to 2.5: +30.1 points; at 7.5 to 8: -17.2 points
+  - players splitting, own minus enemy (discovery, approved): at -6 to -4.5: -16.4 points; at 1.5 to 5: -3.5 points
+  - turtling, own minus enemy (discovery, approved): at -1 to -0.94: -1.3 points; at 0.94 to 1: -28.9 points
 - **Build features** (context): **supported**: it clearly helps predict matches the model never saw.
-  - own build is a spike build (discovery, approved): at 0 to 0.5: +6.3 points; at 0.5 to 1: -14.8 points
-  - snare power on enemy bars: at 0 to 1.8: -4.7 points; at 86.75 to 263.4: +6.8 points
-  - speed power on own bars (movepower.py): at 6.5 to 35: -12.6 points; at 76.15 to 106.4: +4.2 points
+  - own build is a spike build (discovery, approved): at 0 to 0.5: +6.3 points; at 0.5 to 1: -14.4 points
+  - snare power on enemy bars: at 0 to 1.8: -4.6 points; at 87.4 to 263.4: +6.1 points
+  - speed power on own bars (movepower.py): at 6.5 to 35: -11.8 points; at 76.25 to 106.4: +5.3 points
 - **Clock** (state): **supported**: it clearly helps predict matches the model never saw.
-  - minute: at 0.5 to 1.35: -5.4 points; at 21.1 to 27.5: +12.9 points
-  - seconds to the next res: at 15 to 22.5: -2 points; at 112.5 to 120: -3.3 points
+  - minute: at 0.5 to 1.35: -4.9 points; at 20.9 to 27.5: +12.8 points
+  - seconds to the next res: at 15 to 22.5: -1.5 points; at 112.5 to 120: -3.8 points
 - **Team strength** (context): not clear yet: more matches needed.
-  - team strength gap: at -1183 to -587.5: -2.5 points; at 568.5 to 1183: +3.2 points
+  - team strength gap: at -1183 to -587.5: -2.7 points; at 568.5 to 1183: +4.3 points
 
 ## How long until the first defender reaches a split in the base?
 
-1226 cases from 319 matches; average -5.6 s. Predicts unseen matches better than a simple guess.
+1362 cases from 357 matches; average -5.2 s. Predicts unseen matches better than a simple guess.
 
 Causes tested:
 - **Allocation** (state): **supported**: it clearly helps predict matches the model never saw.
-  - split size: at 1 to 1.5: +12.9 s; at 5.5 to 8: -10 s
+  - split size: at 1 to 1.5: +15.4 s; at 5.5 to 8: -11.8 s
 - **Mesmers free to defend** (state): **supported**: it clearly helps predict matches the model never saw.
-  - nearest defender to its base at the split's entry: at 17 to 390: +6.3 s; at 6978.5 to 16553: +6.9 s
-  - defenders alive and not on flag duty: at 0 to 3.5: +6.5 s; at 7.5 to 8: -0.2 s
+  - nearest defender to its base at the split's entry: at 17 to 386.5: +9.1 s; at 7068.5 to 16553: +10.9 s
+  - defenders alive and not on flag duty: at 0 to 3.5: +6.2 s; at 7.5 to 8: -0 s
 - **Scoreboard** (state): **supported**: it clearly helps predict matches the model never saw.
-  - players splitting, own minus enemy (discovery, approved): at -6 to -5.5: -5.3 s; at 2.5 to 4: +8.9 s
-  - attackers' main: at 1 to 1.5: +10 s; at 7.5 to 8: +4.8 s
-  - defenders alive: at 0 to 3.5: +10.2 s; at 7.5 to 8: -0.3 s
+  - players splitting, own minus enemy (discovery, approved): at -6 to -5.5: +5 s; at 2.5 to 4: +9.6 s
+  - attackers' main: at 1 to 1.5: +13.9 s; at 7.5 to 8: +4.6 s
+  - defenders' flag lead (s): at -80 to -63.5: -1.1 s; at 70.5 to 80: +2.9 s
 - **Build features** (context): not clear yet: more matches needed.
-  - area-damage skills on the defenders' bars (discovery, approved): at 0 to 0.5: -0.3 s; at 12.5 to 13: +7.8 s
+  - area-damage skills on the defenders' bars (discovery, approved): at 0 to 0.5: -0.5 s; at 12.5 to 13: +8.4 s
 - **Clock** (state): not clear yet: more matches needed.
-  - minute: at 0.5 to 1.45: +1 s; at 24.85 to 27.9: -0.3 s
+  - minute: at 0.5 to 1.45: +2 s; at 24.95 to 27.9: -0 s
 - **Team strength** (context): not clear yet: more matches needed.
-  - defending team's strength gap: at -1096 to -631: +0.8 s; at 527 to 1108: -0.3 s
+  - defending team's strength gap: at -1096 to -622: -0.7 s; at 541.5 to 1108: +0.4 s
 
 ## Does a split in the base kill a pit NPC?
 
-1226 cases from 319 matches; happens 39% of the time. Predicts unseen matches better than a simple guess.
+1362 cases from 357 matches; happens 39% of the time. Predicts unseen matches better than a simple guess.
 
 Causes tested:
 - **Scoreboard** (state): **supported**: it clearly helps predict matches the model never saw.
-  - defenders' pit NPC value when the split entered the base: at 0 to 0.75: -14.8 points; at 11.25 to 13.5: +3.2 points
-  - morale, own minus enemy (discovery, approved): at -430 to -126.5: -6.9 points; at 89 to 395: +3.8 points
-  - flag lead (discovery, approved): at -80 to -52.5: -6.5 points; at 54.5 to 80: +2.4 points
+  - defenders' pit NPC value when the split entered the base: at 0 to 0.75: -16.9 points; at 11.25 to 13.5: +4 points
+  - morale, own minus enemy (discovery, approved): at -430 to -126.5: -7.4 points; at 89 to 395: +4.8 points
+  - flag lead (discovery, approved): at -80 to -52.5: -7.2 points; at 54.5 to 80: +3 points
+- **Build features** (context): not clear yet: more matches needed.
+  - prot skills on the defenders' bars (discovery, approved): at 0 to 9.5: +5.3 points; at 14.5 to 19: -5.4 points
 - **Split answer** (state): **supported**: it clearly helps predict matches the model never saw.
-  - seconds until the first defender arrived (60 = never): at -30 to -29.5: +2.3 points; at 0.5 to 60: +0.9 points
-  - defenders who came: at 0 to 1.5: +0.8 points; at 7.5 to 8: +2.4 points
-- **Build features** (context): **supported**: it clearly helps predict matches the model never saw.
-  - prot skills on the defenders' bars (discovery, approved): at 0 to 10.5: +6.8 points; at 14.5 to 19: -5.6 points
-- **Mobility** (execution): not clear yet: more matches needed.
-  - split members' speed power (movepower.py): at 0 to 11: -2.5 points; at 38.6 to 100.6: +4.5 points
+  - defenders who came: at 0 to 1.5: +1.2 points; at 7.5 to 8: +2.1 points
+  - seconds until the first defender arrived (60 = never): at -30 to -29.5: +1.7 points; at 0.5 to 60: +1.2 points
 - **Allocation** (decision/state): **supported**: it clearly helps predict matches the model never saw.
-  - own main minus enemy main meanwhile: at -6.7 to -1.65: -1.2 points; at 0.45 to 6: -1.9 points
-  - split size: at 1 to 1.5: +1.3 points; at 5.5 to 8: -5.2 points
-- **Team strength** (context): not clear yet: more matches needed.
-  - splitting team's strength gap: at -1108 to -383.5: -2.8 points; at 482 to 1096: +2.6 points
-- **Monk load** (decision): not clear yet: more matches needed.
-  - healers in the split: at 0 to 0.5: -0.4 points; at 2.5 to 4: +3.3 points
+  - split size: at 1 to 1.5: +1.3 points; at 5.5 to 8: -7.2 points
+  - own main minus enemy main meanwhile: at -6.7 to -1.65: -2.1 points; at 0.45 to 6: -0.8 points
+- **Mobility** (execution): not clear yet: more matches needed.
+  - split members' speed power (movepower.py): at 0 to 11: -3.5 points; at 38.6 to 100.6: +5.8 points
 - **Control received** (state): not clear yet: more matches needed.
-  - snare power of the defenders who came (movepower.py): at 0 to 1.8: -0.3 points; at 60.35 to 132.2: +2.4 points
+  - snare power of the defenders who came (movepower.py): at 0 to 1.8: -0.8 points; at 60.35 to 132.2: +2.5 points
+- **Team strength** (context): not clear yet: more matches needed.
+  - splitting team's strength gap: at -1108 to -391.5: -1.4 points; at 478.5 to 1096: +1.3 points
+- **Monk load** (decision): not clear yet: more matches needed.
+  - healers in the split: at 0 to 0.5: -0.8 points; at 2.5 to 4: +2.9 points
 
 ## Does the defending team lose a pit NPC in the next 15 s while enemies are in its pit?
 
-44718 cases from 444 matches; happens 21% of the time. Predicts unseen matches better than a simple guess.
+50165 cases from 504 matches; happens 21% of the time. Predicts unseen matches better than a simple guess.
 
 Causes tested:
 - **Split answer** (decision): **supported**: it clearly helps predict matches the model never saw.
-  - own players in the pit: at 0 to 0.5: +36.6 points; at 7.5 to 8: -35.2 points
-  - own players alive outside the pit: at 0 to 0.5: +15.5 points; at 7.5 to 8: -4.7 points
-  - of which healers: at 0 to 0.5: +19 points; at 3.5 to 4: -7.3 points
+  - own players in the pit: at 0 to 0.5: +36.8 points; at 7.5 to 8: -35.2 points
+  - own players alive outside the pit: at 0 to 0.5: +15.5 points; at 7.5 to 8: -6.2 points
+  - of which healers: at 0 to 0.5: +20 points; at 3.5 to 4: -11 points
 - **Scoreboard** (state): **supported**: it clearly helps predict matches the model never saw.
-  - own Bodyguard alive: at 0 to 0.5: -11.4 points; at 0.5 to 1: +2.2 points
-  - own knights alive: at 0 to 0.5: -4.3 points; at 1.5 to 2: +1 points
-  - pit NPCs alive (targets the defending monks must watch): at 1 to 1.5: -3.6 points; at 5.5 to 6: +1.6 points
+  - own Bodyguard alive: at 0 to 0.5: -12.4 points; at 0.5 to 1: +2.4 points
+  - own knights alive: at 0 to 0.5: -4.5 points; at 1.5 to 2: +1.6 points
+  - own pit archers alive: at 0 to 0.5: -3.2 points; at 2.5 to 3: +1.8 points
 - **Allocation** (state): **supported**: it clearly helps predict matches the model never saw.
-  - enemy players in the pit: at 1 to 1.5: -7.3 points; at 7.5 to 8: +8.7 points
-  - share of the enemy's live players in the pit: at 0.12 to 0.13: -5.1 points; at 0.94 to 1: +5.9 points
-  - enemy players hitting the pit NPCs from outside the pit (ranged; Denning, session 4u): at 0 to 0.5: -1.3 points; at 1.5 to 5: +27.9 points
+  - enemy players in the pit: at 1 to 1.5: -7.2 points; at 7.5 to 8: +8.6 points
+  - share of the enemy's live players in the pit: at 0.12 to 0.13: -5 points; at 0.94 to 1: +5.7 points
+  - enemy players hitting the pit NPCs from outside the pit (ranged; Denning, session 4u): at 0 to 0.5: -1.2 points; at 1.5 to 5: +26.9 points
+- **Build features** (context): **supported**: it clearly helps predict matches the model never saw.
+  - attackers' measured damage per second against NPCs: at 2.7 to 23.55: -25.1 points; at 107.45 to 189.4: +17 points
+  - area-damage skills on the attackers' bars: at 0 to 0.5: +0 points; at 7.5 to 13: -9.2 points
 - **Team strength** (context): **supported**: it clearly helps predict matches the model never saw.
-  - defending team's strength gap: at -1183 to -650: +10.3 points; at 429.5 to 1108: -8 points
-- **Build features** (context): not clear yet: more matches needed.
-  - attackers' measured damage per second against NPCs: at 2.7 to 23.55: -24.4 points; at 106.5 to 189.4: +17.7 points
-  - area-damage skills on the attackers' bars: at 0 to 0.5: +0 points; at 6.5 to 13: -2.5 points
-- **Clock** (state): not clear yet: more matches needed.
-  - seconds the enemy has been in the pit: at 0 to 4.5: -7.8 points; at 205.5 to 711: -4.1 points
-  - minute: at 0.2 to 2.55: +4.8 points; at 24.75 to 28: -3.6 points
-  - seconds to the next res: at 1 to 8.5: +1.3 points; at 107.5 to 118: -0.2 points
-- **Healing** (execution): not clear yet: more matches needed.
-  - healing on own pit NPCs and Lord in the last 10 s: at 0 to 1.5: -1.8 points; at 618.5 to 2034: +3.1 points [reads backwards: likely a reaction]
+  - defending team's strength gap: at -1183 to -670.5: +9.8 points; at 437.5 to 1108: -8.3 points
+- **Clock** (state): **supported**: it clearly helps predict matches the model never saw.
+  - seconds the enemy has been in the pit: at 0 to 4.5: -8 points; at 208.5 to 711: -5 points
+  - minute: at 0.2 to 2.55: +4.7 points; at 24.65 to 28: -4.1 points
+  - seconds to the next res: at 1 to 8.5: +1.7 points; at 107.5 to 118: -0.5 points
+- **Healing** (execution): **supported**: it clearly helps predict matches the model never saw.
+  - healing on own pit NPCs and Lord in the last 10 s: at 0 to 1.5: -2 points; at 614.5 to 2034: +3.5 points [reads backwards: likely a reaction]
 - Measured beside the node, not as a cause (what the enemy did during the window): damage on the pit NPCs in the last 5 s (the loss happening, not a cause).
 
 ## Does a split member die when the defenders collapse on it?
 
-2858 cases from 407 matches; happens 13% of the time. Predicts unseen matches better than a simple guess.
+3216 cases from 457 matches; happens 13% of the time. Predicts unseen matches better than a simple guess.
 
 Causes tested:
 - **Pressure** (state): **supported**: it clearly helps predict matches the model never saw.
-  - the defenders who came: their usual damage per second, summed (Denning: can they kill it): at 0 to 1.75: -16.8 points; at 41.65 to 57.9: +18.7 points
+  - the defenders who came: their usual damage per second, summed (Denning: can they kill it): at 0 to 1.2: -18.9 points; at 41.35 to 58.8: +19.9 points
 - **Team strength** (context): **supported**: it clearly helps predict matches the model never saw.
-  - splitting team's strength gap: at -1183 to -547: +14.7 points; at 616.5 to 1183: -8.8 points
+  - splitting team's strength gap: at -1183 to -547: +16.4 points; at 616.5 to 1183: -8.9 points
 - **Health ceiling** (state): **supported**: it clearly helps predict matches the model never saw.
-  - worst morale among the split members (death penalty lowers max health; Denning): at -60 to -44.5: +17.9 points; at 9.5 to 10: -5.4 points
+  - worst morale among the split members (death penalty lowers max health; Denning): at -60 to -44.5: +19.7 points; at 9.5 to 10: -6.9 points
+- **Allocation** (decision/state): **supported**: it clearly helps predict matches the model never saw.
+  - own main minus enemy main meanwhile: at -6.7 to -2.75: +12.8 points; at 1.95 to 7: -11.3 points
+  - split size: at 1 to 1.5: -0.6 points; at 5.5 to 8: -0.5 points
 - **Split depth** (execution): **supported**: it clearly helps predict matches the model never saw.
-  - nearest split member's median distance to the defending pit over the split: at 0 to 844: +9 points; at 7937.5 to 11674: -8.6 points
-  - nearest split member's distance to the defending pit when the first defender arrived: at 0 to 1154.5: +1.9 points; at 8603 to 12302: +1.4 points
-  - tested alone, nearest split member's distance to the defending pit when the first defender arrived: supported
-  - tested alone, nearest split member's median distance to the defending pit over the split: supported
-- **Allocation** (decision/state): not clear yet: more matches needed.
-  - own main minus enemy main meanwhile: at -6.7 to -2.75: +10.3 points; at 1.95 to 7: -8.9 points
-  - split size: at 1 to 1.5: -1 points; at 6.5 to 8: -5.5 points
-- **Mitigation** (decision/execution/state): not clear yet: more matches needed.
-  - healers on the split: at 0 to 0.5: +2.2 points; at 3.5 to 4: -3.1 points [allocation; marks the situation, may still be a fix]
-  - healing monks on the defending team (discovery, approved): at 0 to 0.5: +6 points; at 3.5 to 4: -2.5 points
-  - self-heals and self-defence skills on the split members' bars (Denning: can it be killed): at 0 to 0.5: +0.5 points; at 5.5 to 8: +2.2 points
-- **Control received** (state): not clear yet: more matches needed.
-  - snare power of the defenders who came (movepower.py; how strong, not just whether): at 0 to 1.8: -4.6 points; at 79.3 to 132.2: +12.2 points
+  - nearest split member's median distance to the defending pit over the split: at 0 to 829.5: +6.2 points; at 7884 to 11674: -6.7 points
+  - nearest split member's distance to the defending pit when the first defender arrived: at 0 to 1129: +4.8 points; at 8576 to 12302: +0.4 points
+  - tested alone, nearest split member's distance to the defending pit when the first defender arrived: not clear yet
+  - tested alone, nearest split member's median distance to the defending pit over the split: not clear yet
+- **Mitigation** (decision/execution/state): **supported**: it clearly helps predict matches the model never saw.
+  - healers on the split: at 0 to 0.5: +2.4 points; at 3.5 to 4: -8.3 points [allocation; marks the situation, may still be a fix]
+  - healing monks on the defending team (discovery, approved): at 0 to 0.5: +7.3 points; at 3.5 to 4: -1.6 points
+  - self-heals and self-defence skills on the split members' bars (Denning: can it be killed): at 0 to 0.5: +1.3 points; at 5.5 to 8: +0.7 points
+- **Split answer** (state): not clear yet: more matches needed.
+  - seconds until the first defender arrived (60 = never): at -30 to -29.5: +4 points; at 59 to 60: +1.1 points
 - **Mobility** (execution): not clear yet: more matches needed.
-  - split members' Shadow Step skills: at 0 to 0.5: +0.4 points; at 3.5 to 5: -7.3 points [marks the situation]
+  - split members' speed skills off recharge when the first defender arrived: at 0 to 0.5: -0.8 points; at 5.5 to 9: -1.3 points
+  - split members' speed power (movepower.py): at 0 to 7.25: -0.7 points; at 44.2 to 100.6: -2 points [reads backwards: likely a reaction]
+  - split members' Shadow Step skills: at 0 to 0.5: +0.4 points; at 3.5 to 5: -6.7 points
+- **Control received** (state): not clear yet: more matches needed.
+  - snare power of the defenders who came (movepower.py; how strong, not just whether): at 0 to 1.8: -3.4 points; at 79.3 to 132.2: +11.5 points
+- **Scoreboard** (state): not clear yet: more matches needed.
+  - defending pit NPCs alive, in win points (Denning: what the split can get): at 0 to 0.75: +2.9 points; at 12.75 to 13.5: -2.4 points
 - **Build features** (context): not clear yet: more matches needed.
-  - split members' measured damage per second against NPCs (Denning: what the split can get): at 2.7 to 11.45: -0.7 points; at 79.75 to 136.6: +0.8 points
+  - split members' measured damage per second against NPCs (Denning: what the split can get): at 2.7 to 8.65: +1.6 points; at 78.55 to 136.6: +0 points
 - **Collapse timing** (execution/state): not clear yet: more matches needed.
-  - defenders arriving within 5 s of the first, minus the split's size (numbers at contact): at -7 to -3.5: -4.6 points; at 4.5 to 7: +0.9 points
-  - seconds from the split's first hit on an NPC to the first defender's arrival: at -1537.9 to -253.75: -4.5 points; at 13.95 to 194.5: +4.7 points
-  - seconds to the next res when the first defender arrived: at 5 to 7.5: -2.9 points; at 107.5 to 120: +2.7 points
+  - defenders arriving within 5 s of the first, minus the split's size (numbers at contact): at -7 to -3.5: -3.2 points; at 5.5 to 7: -4.1 points
+  - seconds from the split's first hit on an NPC to the first defender's arrival: at -1537.9 to -246.4: -3.9 points; at 14.15 to 194.5: +2.2 points
+  - defenders arriving within 10 s of the first (arrival spread): at 0 to 0.5: -3.2 points; at 7.5 to 8: +6.2 points
   - tested alone, defenders arriving within 10 s of the first (arrival spread): not clear yet
   - tested alone, defenders arriving within 5 s of the first, minus the split's size (numbers at contact): not clear yet
   - tested alone, seconds from the split's first hit on an NPC to the first defender's arrival: not clear yet
   - tested alone, seconds to the next res when the first defender arrived: not clear yet
-- **Scoreboard** (state): not clear yet: more matches needed.
-  - defending pit NPCs alive, in win points (Denning: what the split can get): at 0 to 0.75: +1.5 points; at 12.75 to 13.5: -1.4 points
-- Left out for now so the inputs fit the data (18 of a cap of 18): seconds until the first defender arrived (60 = never) (Claude's link, not clear yet), split members' speed skills off recharge when the first defender arrived (Claude's link, not clear yet), split members' speed power (movepower.py) (Claude's link, not clear yet).
 
 ## Values measured from the data
 
 Used to judge strips and hex removal (what the right target was) and damage output.
 
-- Most valuable enchantments to strip (output per second up): Patient Spirit 54.88, Aura of Faith 42.13, Reversal of Fortune 25.65, Double Dragon 24.09, Balthazar's Aura 23.88, Holy Veil 21.12, Divine Spirit 20.66, Grenth's Aura 19.48, Spirit Bond 17.99, Life Sheath 17.68
-- Most costly hexes to leave on (output per second on): Deep Freeze 162.92, Shatterstone 67.91, Incendiary Bonds 64.11, Smoldering Embers 54.27, Lightning Strike 42.86, Illusion of Pain 29.81, Backfire 25.32, Mind Freeze 24.59, Lightning Surge 24.35, Spiteful Spirit 22.21
-- Usual damage per second on players in a fight, by role: Hammer A 14.1, Hammer B 14.1, Hammer 12.7, Warrior 11.5, Paragon 2 11.4, Warrior 2 11.1, Warrior 1 10.9, Paragon 1 10.3
+- Most valuable enchantments to strip (output per second up): Patient Spirit 55.04, Aura of Faith 42, Reversal of Fortune 25.78, Balthazar's Aura 23.78, Double Dragon 23.7, Holy Veil 21.14, Divine Spirit 20.69, Grenth's Aura 20.37, Spirit Bond 17.96, Life Sheath 17.87
+- Most costly hexes to leave on (output per second on): Deep Freeze 111.64, Shatterstone 70.42, Incendiary Bonds 59.26, Smoldering Embers 55.12, Lightning Strike 43.39, Illusion of Pain 29.91, Backfire 25.32, Mind Freeze 24.83, Lightning Surge 24, Spiteful Spirit 22.21
+- Usual damage per second on players in a fight, by role: Hammer A 14, Hammer B 13.9, Hammer 12.8, Warrior 11.6, Warrior 2 11.4, Warrior 1 11.2, Paragon 2 11.1, Assassin 10.5
 
 ## What is measured in every match (the event layer)
 
