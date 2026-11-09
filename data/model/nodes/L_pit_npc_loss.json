@@ -37,11 +37,10 @@
     "defenders_elsewhere"
    ],
    "strength": 0.0743,
-   "plus_minus": 0.0054,
+   "plus_minus": 0.0053,
    "status": "supported",
    "kinds": [
-    "decision",
-    "execution"
+    "decision"
    ]
   },
   {
@@ -53,7 +52,7 @@
     "bodyguard",
     "full_pit_targets"
    ],
-   "strength": 0.0041,
+   "strength": 0.004,
    "plus_minus": 0.0008,
    "status": "supported",
    "kinds": [
@@ -66,7 +65,7 @@
    "features": [
     "npc_healing_10s"
    ],
-   "strength": 0.0005,
+   "strength": 0.0004,
    "plus_minus": 0.0003,
    "status": "not clear yet",
    "kinds": [
@@ -120,7 +119,7 @@
   {
    "term": "defenders",
    "description": "own players in the pit",
-   "importance": 0.844,
+   "importance": 0.843,
    "missing_points": 0.0,
    "curve": [
     {
@@ -151,7 +150,7 @@
      "from": 3.5,
      "to": 4.5,
      "points": -10.9,
-     "plus_minus": 0.5
+     "plus_minus": 0.6
     },
     {
      "from": 4.5,
@@ -196,7 +195,7 @@
      "from": 18.1,
      "to": 24.65,
      "points": -19.4,
-     "plus_minus": 1.0
+     "plus_minus": 0.9
     },
     {
      "from": 24.65,
@@ -249,7 +248,7 @@
     {
      "from": 83.45,
      "to": 92.25,
-     "points": 13.3,
+     "points": 13.4,
      "plus_minus": 0.5
     },
     {
@@ -276,7 +275,7 @@
   {
    "term": "defenders_elsewhere",
    "description": "own players alive outside the pit",
-   "importance": 0.407,
+   "importance": 0.406,
    "missing_points": 0.0,
    "curve": [
     {
@@ -306,13 +305,13 @@
     {
      "from": 3.5,
      "to": 4.5,
-     "points": -8.9,
+     "points": -8.8,
      "plus_minus": 0.3
     },
     {
      "from": 4.5,
      "to": 5.5,
-     "points": -9.6,
+     "points": -9.5,
      "plus_minus": 0.2
     },
     {
@@ -330,11 +329,11 @@
     {
      "from": 7.5,
      "to": 8.0,
-     "points": -5.6,
+     "points": -5.5,
      "plus_minus": 0.8
     }
    ],
-   "kind": "execution"
+   "kind": "decision"
   },
   {
    "term": "defender_healers",
@@ -357,7 +356,7 @@
     {
      "from": 1.5,
      "to": 2.5,
-     "points": -6.4,
+     "points": -6.5,
      "plus_minus": 0.2
     },
     {
@@ -369,22 +368,22 @@
     {
      "from": 3.5,
      "to": 4.0,
-     "points": -5.4,
-     "plus_minus": 4.4
+     "points": -5.3,
+     "plus_minus": 4.5
     }
    ],
-   "kind": "execution"
+   "kind": "decision"
   },
   {
    "term": "attackers",
    "description": "enemy players in the pit",
-   "importance": 0.235,
+   "importance": 0.234,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 1.0,
      "to": 1.5,
-     "points": -8.4,
+     "points": -8.3,
      "plus_minus": 0.3
     },
     {
@@ -403,7 +402,7 @@
      "from": 3.5,
      "to": 4.5,
      "points": 2.9,
-     "plus_minus": 0.3
+     "plus_minus": 0.2
     },
     {
      "from": 4.5,
@@ -435,19 +434,19 @@
   {
    "term": "strength_gap",
    "description": "defending team's strength gap",
-   "importance": 0.172,
+   "importance": 0.173,
    "missing_points": 0.0,
    "curve": [
     {
      "from": -1183.0,
      "to": -692.5,
-     "points": 8.0,
+     "points": 8.1,
      "plus_minus": 0.4
     },
     {
      "from": -692.5,
      "to": -568.5,
-     "points": 5.1,
+     "points": 5.2,
      "plus_minus": 0.5
     },
     {
@@ -459,26 +458,26 @@
     {
      "from": -479.5,
      "to": -393.5,
-     "points": 3.4,
-     "plus_minus": 0.2
+     "points": 3.5,
+     "plus_minus": 0.3
     },
     {
      "from": -393.5,
      "to": -324.0,
-     "points": 2.7,
+     "points": 2.8,
      "plus_minus": 0.1
     },
     {
      "from": -324.0,
-     "to": -267.5,
-     "points": 2.1,
+     "to": -260.5,
+     "points": 2.2,
      "plus_minus": 0.2
     },
     {
-     "from": -267.5,
+     "from": -260.5,
      "to": -181.0,
-     "points": 1.5,
-     "plus_minus": 0.4
+     "points": 1.6,
+     "plus_minus": 0.3
     },
     {
      "from": -181.0,
@@ -488,15 +487,15 @@
     },
     {
      "from": -92.5,
-     "to": -7.5,
-     "points": 1.4,
-     "plus_minus": 0.5
+     "to": -6.5,
+     "points": 1.1,
+     "plus_minus": 0.4
     },
     {
-     "from": -7.5,
+     "from": -6.5,
      "to": 79.5,
-     "points": 0.7,
-     "plus_minus": 0.6
+     "points": 0.4,
+     "plus_minus": 0.5
     },
     {
      "from": 79.5,
@@ -514,7 +513,7 @@
      "from": 329.0,
      "to": 504.5,
      "points": -10.1,
-     "plus_minus": 0.3
+     "plus_minus": 0.4
     },
     {
      "from": 504.5,
@@ -528,20 +527,20 @@
   {
    "term": "minute",
    "description": "minute",
-   "importance": 0.149,
+   "importance": 0.148,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 0.2,
      "to": 2.55,
-     "points": 6.1,
+     "points": 6.0,
      "plus_minus": 0.4
     },
     {
      "from": 2.55,
      "to": 3.65,
      "points": 5.5,
-     "plus_minus": 0.5
+     "plus_minus": 0.4
     },
     {
      "from": 3.65,
@@ -553,18 +552,18 @@
      "from": 4.75,
      "to": 5.85,
      "points": 3.7,
-     "plus_minus": 0.3
+     "plus_minus": 0.2
     },
     {
      "from": 5.85,
      "to": 7.25,
-     "points": 2.9,
+     "points": 2.8,
      "plus_minus": 0.4
     },
     {
      "from": 7.25,
      "to": 8.75,
-     "points": 2.2,
+     "points": 2.1,
      "plus_minus": 0.4
     },
     {
@@ -588,7 +587,7 @@
     {
      "from": 14.15,
      "to": 16.45,
-     "points": -3.7,
+     "points": -3.6,
      "plus_minus": 0.2
     },
     {
@@ -607,12 +606,12 @@
      "from": 22.05,
      "to": 24.85,
      "points": -4.5,
-     "plus_minus": 0.2
+     "plus_minus": 0.1
     },
     {
      "from": 24.85,
      "to": 28.0,
-     "points": -4.5,
+     "points": -4.4,
      "plus_minus": 0.4
     }
    ],
@@ -699,7 +698,7 @@
     {
      "from": 0.94,
      "to": 1.0,
-     "points": 6.0,
+     "points": 6.1,
      "plus_minus": 0.4
     }
    ],
@@ -822,7 +821,7 @@
   {
    "term": "knights",
    "description": "own knights alive",
-   "importance": 0.118,
+   "importance": 0.119,
    "missing_points": 0.0,
    "curve": [
     {
@@ -835,7 +834,7 @@
      "from": 0.5,
      "to": 1.5,
      "points": 4.8,
-     "plus_minus": 0.4
+     "plus_minus": 0.5
     },
     {
      "from": 1.5,
@@ -861,14 +860,14 @@
     {
      "from": 0.5,
      "to": 1.5,
-     "points": 14.0,
+     "points": 14.1,
      "plus_minus": 0.7
     },
     {
      "from": 1.5,
      "to": 5.0,
      "points": 29.4,
-     "plus_minus": 1.0
+     "plus_minus": 0.9
     }
    ],
    "kind": "state"
@@ -1078,7 +1077,7 @@
      "from": 3.5,
      "to": 4.0,
      "points": 0.5,
-     "plus_minus": 0.4
+     "plus_minus": 0.5
     }
    ],
    "kind": "state"
@@ -1171,7 +1170,7 @@
      "from": 107.5,
      "to": 118.0,
      "points": -0.4,
-     "plus_minus": 0.3
+     "plus_minus": 0.2
     }
    ],
    "kind": "state"
@@ -1234,13 +1233,13 @@
      "from": 8.5,
      "to": 9.5,
      "points": 1.8,
-     "plus_minus": 0.4
+     "plus_minus": 0.5
     },
     {
      "from": 9.5,
      "to": 11.5,
      "points": -11.9,
-     "plus_minus": 1.1
+     "plus_minus": 1.2
     },
     {
      "from": 11.5,
@@ -1258,8 +1257,8 @@
   "attackers_share": "state",
   "attackers_outside": "state",
   "defenders": "decision",
-  "defender_healers": "execution",
-  "defenders_elsewhere": "execution",
+  "defender_healers": "decision",
+  "defenders_elsewhere": "decision",
   "knights": "state",
   "archers": "state",
   "bodyguard": "state",
@@ -1283,27 +1282,45 @@
    "next": 0.14,
    "previous": 0.135,
    "previous_low": 0.123,
-   "marks_situation": false
+   "marks_situation": false,
+   "allocation": true,
+   "fix_allowed": true
   },
   "defender_healers": {
    "next": 0.149,
    "previous": 0.144,
    "previous_low": 0.135,
-   "marks_situation": false
+   "marks_situation": false,
+   "allocation": true,
+   "fix_allowed": true
   },
   "defenders_elsewhere": {
    "next": 0.051,
    "previous": 0.046,
    "previous_low": 0.038,
-   "marks_situation": false
+   "marks_situation": false,
+   "allocation": true,
+   "fix_allowed": true
   },
   "npc_healing_10s": {
    "next": 0.042,
    "previous": 0.038,
    "previous_low": 0.026,
-   "marks_situation": false
+   "marks_situation": false,
+   "allocation": false,
+   "fix_allowed": true
   }
  },
  "marks_situation": [],
+ "marks_allocation": [],
+ "directions": {
+  "npc_healing_10s": {
+   "expected": 1,
+   "fitted_toward_good": 0,
+   "rho": 0.12,
+   "reads_backwards": false
+  }
+ },
+ "reads_backwards": [],
  "note": "points = change in the chance of the result for an otherwise even (50%) case"
 }

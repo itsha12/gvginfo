@@ -32,11 +32,11 @@ Descriptive only: each measure split by who won the fight (or how a run, split o
 
 ## Step 2a: right strip targets, right hexes removed, damage against the role's usual
 Values from data (eventlayer_values.json): enchantments by recorded output per second up, hexes by recorded damage plus the drop in the hexed player's output.
-- most valuable enchantments to strip (per second up): Dwayna's Sorrow 60.27, Patient Spirit 52.87, Aura of Faith 42.43, Reversal of Fortune 26.07, Double Dragon 24.76, Holy Veil 23.64, Grenth's Aura 19.07, Balthazar's Aura 18.35
-- most costly hexes (per second on): Deep Freeze 162.92 (direct 166.32, output drop -3.4, 11), Shatterstone 66.03 (direct 67.73, output drop -1.7, 532), Incendiary Bonds 64.11 (direct 59.11, output drop 5.0, 39), Smoldering Embers 53.58 (direct 56.54, output drop -2.97, 1316), Lightning Strike 40.73 (direct 41.81, output drop -1.07, 4798), Illusion of Pain 29.81 (direct 31.37, output drop -1.56, 40), Backfire 25.08 (direct 24.06, output drop 1.01, 191), Life Siphon 24.2 (direct 15.81, output drop 8.39, 9)
+- most valuable enchantments to strip (per second up): Dwayna's Sorrow 60.27, Patient Spirit 54.53, Aura of Faith 43.36, Reversal of Fortune 26.61, Double Dragon 25.39, Holy Veil 23.7, Balthazar's Aura 22.26, Grenth's Aura 19.24
+- most costly hexes (per second on): Deep Freeze 162.92 (direct 166.32, output drop -3.4, 11), Shatterstone 66.03 (direct 67.73, output drop -1.7, 532), Incendiary Bonds 64.11 (direct 59.11, output drop 5.0, 39), Smoldering Embers 53.58 (direct 56.54, output drop -2.97, 1316), Lightning Strike 41.92 (direct 43.0, output drop -1.07, 4798), Illusion of Pain 29.81 (direct 31.37, output drop -1.56, 40), Backfire 25.08 (direct 24.06, output drop 1.01, 191), Life Siphon 24.2 (direct 15.81, output drop 8.39, 9)
 - strips on the best target in range (share): winners 0.56, losers 0.45 (85 / 82 team-matches)
 - hex removals that took the most costly hex in range (share): winners 0.66, losers 0.59 (79 / 85 team-matches)
-- value-weighted seconds a removed hex stayed on: winners 4.82, losers 5.18 (77 / 83 team-matches)
+- value-weighted seconds a removed hex stayed on: winners 4.83, losers 5.18 (77 / 83 team-matches)
 - healer, damage against the role's usual: winners 1.13 (104), losers 1.02 (48)
 - midline, damage against the role's usual: winners 1.39 (2388), losers 0.85 (1950)
 - frontline, damage against the role's usual: winners 1.31 (1003), losers 0.79 (950)

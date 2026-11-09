@@ -5,101 +5,101 @@
    "n": 821,
    "matches": 337,
    "matched_share": 0.75,
-   "effect_matched_vs_not": 1.4,
+   "effect_matched_vs_not": 1.6,
    "interval": [
-    -0.4,
+    0.1,
     2.9
    ],
-   "clear": false,
-   "raw_matched": 0.2,
-   "raw_unmatched": -2.2,
-   "specific_advice_share": 0.05,
-   "specific_advice_effect_raw": 1.0,
+   "clear": true,
+   "raw_matched": 0.3,
+   "raw_unmatched": -2.0,
+   "specific_advice_share": 0.06,
+   "specific_advice_effect_raw": 2.4,
    "recommended": {
-    "pushed the pit": 739,
-    "took the flag": 60,
-    "reset": 22
+    "pushed the pit": 740,
+    "took the flag": 63,
+    "reset": 18
    }
   },
   "boost_clock": {
    "n": 1322,
    "matches": 330,
-   "matched_share": 0.21,
+   "matched_share": 0.22,
    "effect_matched_vs_not": 0.7,
    "interval": [
-    -0.1,
+    -0.2,
     1.6
    ],
    "clear": false,
    "raw_matched": 0.3,
-   "raw_unmatched": -0.5,
+   "raw_unmatched": -0.4,
    "specific_advice_share": 0.01,
    "specific_advice_effect_raw": null,
    "recommended": {
-    "not running, fought": 475,
-    "running, advanced": 265,
-    "not running, fell back": 185,
-    "running, fought": 151,
+    "not running, fought": 478,
+    "running, advanced": 267,
+    "not running, fell back": 184,
+    "running, fought": 149,
     "not running, advanced": 108,
-    "running, fell back": 58
+    "not running, held": 57
    }
   },
   "eight_v_eight_or_flag": {
    "n": 3264,
    "matches": 328,
    "matched_share": 0.74,
-   "effect_matched_vs_not": -0.3,
+   "effect_matched_vs_not": -0.4,
    "interval": [
-    -1.4,
-    0.7
+    -1.7,
+    0.8
    ],
    "clear": false,
    "raw_matched": -0.4,
-   "raw_unmatched": -0.7,
+   "raw_unmatched": -0.4,
    "specific_advice_share": 0.11,
-   "specific_advice_effect_raw": 0.9,
+   "specific_advice_effect_raw": 2.0,
    "recommended": {
-    "flag game": 2790,
-    "commit all 8": 474
+    "flag game": 2783,
+    "commit all 8": 481
    }
   },
   "enemy_pickup": {
    "n": 4443,
    "matches": 339,
    "matched_share": 0.2,
-   "effect_matched_vs_not": -0.6,
+   "effect_matched_vs_not": -0.4,
    "interval": [
-    -1.6,
-    0.4
+    -1.3,
+    0.5
    ],
    "clear": false,
-   "raw_matched": -0.5,
+   "raw_matched": -0.3,
    "raw_unmatched": 0.0,
    "specific_advice_share": 0.01,
-   "specific_advice_effect_raw": 1.7,
+   "specific_advice_effect_raw": 2.3,
    "recommended": {
-    "already running, advanced": 879,
-    "held, advanced": 658,
-    "held, fell back": 628,
-    "already running, fell back": 612,
-    "already running, fought": 507,
-    "held, fought": 453
+    "already running, advanced": 886,
+    "held, advanced": 647,
+    "held, fell back": 631,
+    "already running, fell back": 614,
+    "already running, fought": 500,
+    "held, fought": 458
    }
   },
   "late_game": {
    "n": 128,
    "matches": 64,
    "matched_share": 0.47,
-   "effect_matched_vs_not": -4.9,
+   "effect_matched_vs_not": -4.7,
    "interval": [
-    -14.1,
-    4.0
+    -14.0,
+    4.5
    ],
    "clear": false,
-   "raw_matched": -1.9,
-   "raw_unmatched": 1.5,
+   "raw_matched": -1.8,
+   "raw_unmatched": 1.4,
    "specific_advice_share": 0.28,
-   "specific_advice_effect_raw": -6.8,
+   "specific_advice_effect_raw": -6.4,
    "recommended": {
     "2 to 3 at the enemy Lord": 95,
     "0 to 1 at the enemy Lord": 24,
@@ -107,62 +107,62 @@
    }
   },
   "npcs_or_dp": {
-   "n": 1188,
-   "matches": 336,
-   "matched_share": 0.52,
-   "effect_matched_vs_not": 0.3,
+   "n": 196,
+   "matches": 153,
+   "matched_share": 0.64,
+   "effect_matched_vs_not": 1.2,
    "interval": [
-    -0.5,
-    1.3
+    -0.6,
+    3.2
    ],
    "clear": false,
-   "raw_matched": 0.3,
-   "raw_unmatched": 0.2,
-   "specific_advice_share": 0.13,
-   "specific_advice_effect_raw": -1.4,
+   "raw_matched": 0.7,
+   "raw_unmatched": -0.6,
+   "specific_advice_share": 0.05,
+   "specific_advice_effect_raw": null,
    "recommended": {
-    "DP": 752,
-    "both": 220,
-    "NPCs": 216
+    "NPCs": 153,
+    "DP": 37,
+    "both": 6
    }
   },
   "offence_or_defence": {
-   "n": 466,
-   "matches": 223,
-   "matched_share": 0.41,
-   "effect_matched_vs_not": 1.4,
+   "n": 913,
+   "matches": 302,
+   "matched_share": 0.46,
+   "effect_matched_vs_not": 0.6,
    "interval": [
-    -0.3,
-    3.3
+    -0.7,
+    1.8
    ],
    "clear": false,
-   "raw_matched": 1.5,
-   "raw_unmatched": -0.3,
-   "specific_advice_share": 0.23,
-   "specific_advice_effect_raw": 3.8,
+   "raw_matched": 1.0,
+   "raw_unmatched": 0.3,
+   "specific_advice_share": 0.19,
+   "specific_advice_effect_raw": 0.4,
    "recommended": {
-    "offensive": 199,
-    "defensive": 169,
-    "mixed": 98
+    "offensive": 511,
+    "defensive": 274,
+    "mixed": 128
    }
   },
   "play_for_28_or_lord": {
-   "n": 354,
-   "matches": 58,
-   "matched_share": 0.63,
-   "effect_matched_vs_not": -1.7,
+   "n": 2970,
+   "matches": 187,
+   "matched_share": 0.71,
+   "effect_matched_vs_not": -0.8,
    "interval": [
-    -4.3,
-    1.1
+    -1.7,
+    0.1
    ],
    "clear": false,
-   "raw_matched": -0.1,
-   "raw_unmatched": 1.6,
-   "specific_advice_share": 0.23,
-   "specific_advice_effect_raw": -0.3,
+   "raw_matched": 0.0,
+   "raw_unmatched": 0.8,
+   "specific_advice_share": 0.12,
+   "specific_advice_effect_raw": 1.3,
    "recommended": {
-    "push the Lord": 273,
-    "hold": 81
+    "play for 28": 2378,
+    "push for the kill": 592
    }
   },
   "power_play": {
@@ -171,21 +171,21 @@
    "matched_share": 0.27,
    "effect_matched_vs_not": 0.4,
    "interval": [
-    -0.2,
-    1.0
+    -0.3,
+    0.9
    ],
    "clear": false,
    "raw_matched": 0.9,
    "raw_unmatched": 0.5,
    "specific_advice_share": 0.02,
-   "specific_advice_effect_raw": 0.3,
+   "specific_advice_effect_raw": 0.7,
    "recommended": {
-    "pushed, advanced": 1682,
-    "pushed, fought": 841,
+    "pushed, advanced": 1684,
+    "pushed, fought": 837,
     "held, fought": 284,
-    "pushed, fell back": 224,
-    "held, fell back": 171,
-    "held, advanced": 56
+    "pushed, fell back": 226,
+    "held, fell back": 170,
+    "held, advanced": 58
    }
   },
   "runner_choice": {
@@ -199,15 +199,15 @@
    ],
    "clear": true,
    "raw_matched": 0.8,
-   "raw_unmatched": 0.0,
+   "raw_unmatched": -0.0,
    "specific_advice_share": 0.05,
-   "specific_advice_effect_raw": 1.0,
+   "specific_advice_effect_raw": 0.2,
    "recommended": {
-    "mesmer": 782,
-    "dervish": 769,
-    "monk": 659,
-    "ritualist": 480,
-    "warrior": 289,
+    "mesmer": 785,
+    "dervish": 767,
+    "monk": 663,
+    "ritualist": 477,
+    "warrior": 286,
     "elementalist": 86
    }
   },
@@ -215,19 +215,19 @@
    "n": 702,
    "matches": 226,
    "matched_share": 0.52,
-   "effect_matched_vs_not": -0.2,
+   "effect_matched_vs_not": -0.5,
    "interval": [
-    -1.9,
-    1.7
+    -2.4,
+    1.3
    ],
    "clear": false,
-   "raw_matched": -1.4,
-   "raw_unmatched": -1.1,
-   "specific_advice_share": 0.26,
-   "specific_advice_effect_raw": -3.9,
+   "raw_matched": -1.5,
+   "raw_unmatched": -1.0,
+   "specific_advice_share": 0.27,
+   "specific_advice_effect_raw": -4.0,
    "recommended": {
-    "defended without a collapse": 385,
-    "collapsed": 301,
+    "defended without a collapse": 370,
+    "collapsed": 316,
     "missed": 16
    }
   },
@@ -237,17 +237,17 @@
    "matched_share": 0.9,
    "effect_matched_vs_not": 0.5,
    "interval": [
-    0.0,
+    0.1,
     1.1
    ],
    "clear": true,
    "raw_matched": -0.1,
-   "raw_unmatched": -0.7,
+   "raw_unmatched": -0.8,
    "specific_advice_share": 0.01,
-   "specific_advice_effect_raw": -0.4,
+   "specific_advice_effect_raw": -0.8,
    "recommended": {
-    "stayed": 12804,
-    "split": 120
+    "stayed": 12803,
+    "split": 121
    }
   },
   "who_defends": {
@@ -257,7 +257,7 @@
    "effect_matched_vs_not": 1.2,
    "interval": [
     -1.0,
-    3.5
+    3.6
    ],
    "clear": false,
    "raw_matched": -0.3,
@@ -265,10 +265,10 @@
    "specific_advice_share": 0.01,
    "specific_advice_effect_raw": null,
    "recommended": {
-    "midline alone": 208,
-    "frontline with a collapse": 129,
-    "midline with a collapse": 91,
-    "frontline alone": 85,
+    "midline alone": 211,
+    "frontline with a collapse": 130,
+    "midline with a collapse": 90,
+    "frontline alone": 82,
     "8 Monk alone": 30,
     "backline alone": 30
    }

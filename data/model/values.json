@@ -1,12 +1,12 @@
 {
  "matches": 356,
- "offset": 0.0,
+ "offset": -0.0,
  "compared_with": "matched moments without the event (same minute band of 2 min and win-chance band of 10 points)",
  "values": {
   "boost": {
    "n": 1011,
    "matches": 312,
-   "result": 5.3,
+   "result": 5.2,
    "result_90": [
     2.8,
     7.6
@@ -21,29 +21,29 @@
   "capture": {
    "n": 3247,
    "matches": 348,
-   "result": 2.5,
+   "result": 2.4,
    "result_90": [
-    2.2,
-    2.9
+    2.1,
+    2.8
    ],
-   "model": 3.3,
+   "model": 3.2,
    "model_90": [
-    3.0,
-    3.6
+    2.9,
+    3.5
    ],
    "clear": true
   },
   "capture: held longer": {
    "n": 2800,
    "matches": 348,
-   "result": 3.3,
+   "result": 3.2,
    "result_90": [
-    2.4,
-    4.2
+    2.3,
+    4.1
    ],
    "model": 3.6,
    "model_90": [
-    3.3,
+    3.2,
     3.9
    ],
    "clear": true
@@ -53,7 +53,7 @@
    "matches": 182,
    "result": -2.5,
    "result_90": [
-    -7.9,
+    -7.8,
     3.1
    ],
    "model": 1.1,
@@ -81,14 +81,14 @@
   "death: against a spike build": {
    "n": 2089,
    "matches": 123,
-   "result": -8.1,
+   "result": -7.8,
    "result_90": [
-    -11.1,
-    -5.2
+    -10.9,
+    -5.0
    ],
-   "model": -4.7,
+   "model": -4.6,
    "model_90": [
-    -5.8,
+    -5.7,
     -3.8
    ],
    "clear": true
@@ -96,14 +96,14 @@
   "death: against other builds": {
    "n": 5105,
    "matches": 304,
-   "result": -7.9,
+   "result": -8.0,
    "result_90": [
-    -9.0,
-    -6.8
+    -9.1,
+    -6.9
    ],
-   "model": -4.8,
+   "model": -4.9,
    "model_90": [
-    -5.4,
+    -5.5,
     -4.2
    ],
    "clear": true
@@ -116,10 +116,10 @@
     -9.0,
     -5.5
    ],
-   "model": -2.5,
+   "model": -2.6,
    "model_90": [
-    -3.2,
-    -1.9
+    -3.3,
+    -2.0
    ],
    "clear": true
   },
@@ -128,13 +128,13 @@
    "matches": 348,
    "result": -7.0,
    "result_90": [
-    -8.4,
+    -8.5,
     -5.6
    ],
-   "model": -4.3,
+   "model": -4.4,
    "model_90": [
     -5.1,
-    -3.7
+    -3.8
    ],
    "clear": true
   },
@@ -143,7 +143,7 @@
    "matches": 354,
    "result": -8.9,
    "result_90": [
-    -10.2,
+    -10.1,
     -7.6
    ],
    "model": -5.9,
@@ -156,10 +156,10 @@
   "death: healer": {
    "n": 2428,
    "matches": 354,
-   "result": -7.5,
+   "result": -7.6,
    "result_90": [
-    -8.7,
-    -6.2
+    -8.8,
+    -6.3
    ],
    "model": -4.7,
    "model_90": [
@@ -173,13 +173,13 @@
    "matches": 103,
    "result": -3.4,
    "result_90": [
-    -5.1,
+    -5.0,
     -1.4
    ],
-   "model": -1.5,
+   "model": -1.7,
    "model_90": [
-    -2.7,
-    -0.2
+    -2.9,
+    -0.4
    ],
    "clear": true
   },
@@ -188,7 +188,7 @@
    "matches": 354,
    "result": -7.8,
    "result_90": [
-    -9.0,
+    -9.1,
     -6.5
    ],
    "model": -4.9,
@@ -203,12 +203,12 @@
    "matches": 356,
    "result": -8.1,
    "result_90": [
-    -9.2,
+    -9.3,
     -7.1
    ],
-   "model": -4.8,
+   "model": -4.9,
    "model_90": [
-    -5.3,
+    -5.4,
     -4.3
    ],
    "clear": true
@@ -231,10 +231,10 @@
   "pit NPC lost (any): taken by a spike build": {
    "n": 619,
    "matches": 111,
-   "result": -3.7,
+   "result": -3.6,
    "result_90": [
     -7.5,
-    0.2
+    0.3
    ],
    "model": -2.3,
    "model_90": [
@@ -249,12 +249,12 @@
    "result": -4.7,
    "result_90": [
     -6.0,
-    -3.3
+    -3.4
    ],
    "model": -2.2,
    "model_90": [
     -2.7,
-    -1.7
+    -1.8
    ],
    "clear": true
   },
@@ -263,7 +263,7 @@
    "matches": 354,
    "result": -3.3,
    "result_90": [
-    -4.4,
+    -4.3,
     -2.3
    ],
    "model": -0.6,
@@ -276,10 +276,10 @@
   "pit NPC lost: bodyguard": {
    "n": 379,
    "matches": 332,
-   "result": -4.7,
+   "result": -4.8,
    "result_90": [
-    -5.8,
-    -3.6
+    -5.9,
+    -3.7
    ],
    "model": -2.2,
    "model_90": [
@@ -293,7 +293,7 @@
    "matches": 346,
    "result": -6.5,
    "result_90": [
-    -7.7,
+    -7.6,
     -5.4
    ],
    "model": -5.4,
@@ -396,8 +396,8 @@
       0.0,
       0.5
      ],
-     "result_chance_change": 35.4,
-     "win_points": 2.8
+     "result_chance_change": 35.6,
+     "win_points": 2.81
     },
     {
      "term": "target_ceiling",
@@ -433,7 +433,7 @@
   },
   "pit_npc_loss": {
    "result": "pit NPC lost",
-   "result_value": -4.4,
+   "result_value": -4.5,
    "base_rate": 0.207,
    "unit": "per case, for the defending team",
    "terms": [
@@ -444,18 +444,8 @@
       0.0,
       0.5
      ],
-     "result_chance_change": 35.2,
-     "win_points": -1.56
-    },
-    {
-     "term": "npc_damage_5s",
-     "description": "damage on the pit NPCs in the last 5 s",
-     "range": [
-      385.5,
-      1370.0
-     ],
-     "result_chance_change": 35.3,
-     "win_points": -1.57
+     "result_chance_change": 41.9,
+     "win_points": -1.87
     },
     {
      "term": "defenders_elsewhere",
@@ -464,18 +454,8 @@
       0.0,
       0.5
      ],
-     "result_chance_change": 16.7,
-     "win_points": -0.74
-    },
-    {
-     "term": "attackers_lord_dps",
-     "description": "attackers' measured damage per second against NPCs",
-     "range": [
-      2.7,
-      18.1
-     ],
-     "result_chance_change": -12.2,
-     "win_points": 0.54
+     "result_chance_change": 13.0,
+     "win_points": -0.58
     },
     {
      "term": "defender_healers",
@@ -484,28 +464,8 @@
       0.0,
       0.5
      ],
-     "result_chance_change": 18.9,
-     "win_points": -0.84
-    },
-    {
-     "term": "attackers",
-     "description": "enemy players in the pit",
-     "range": [
-      7.5,
-      8.0
-     ],
-     "result_chance_change": 4.3,
-     "win_points": -0.19
-    },
-    {
-     "term": "npc_healing_10s",
-     "description": "healing on own pit NPCs and Lord in the last 10 s",
-     "range": [
-      623.5,
-      2034.0
-     ],
-     "result_chance_change": -7.1,
-     "win_points": 0.31
+     "result_chance_change": 17.7,
+     "win_points": -0.79
     }
    ]
   }

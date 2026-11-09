@@ -6,7 +6,7 @@
  "rate": 0.667,
  "mean": null,
  "validation": {
-  "glass box": 0.5376,
+  "glass box": 0.5377,
   "simple baseline": 0.6365,
   "metric": "log loss",
   "verdict": "adds to the simple baseline"
@@ -28,7 +28,7 @@
    "status": "not clear yet",
    "kinds": [
     "decision",
-    "execution"
+    "state"
    ]
   },
   {
@@ -38,7 +38,7 @@
     "morale_diff",
     "boost_clock"
    ],
-   "strength": 0.0111,
+   "strength": 0.0112,
    "plus_minus": 0.0023,
    "status": "supported",
    "kinds": [
@@ -73,7 +73,7 @@
     "pushers_so_far",
     "enemy_snare_near"
    ],
-   "strength": -0.0001,
+   "strength": -0.0,
    "plus_minus": 0.0007,
    "status": "not clear yet",
    "kinds": [
@@ -100,7 +100,7 @@
    "features": [
     "enemy_snares"
    ],
-   "strength": 0.0006,
+   "strength": 0.0007,
    "plus_minus": 0.0014,
    "status": "not clear yet",
    "kinds": [
@@ -114,7 +114,7 @@
     "run_dist"
    ],
    "strength": 0.0031,
-   "plus_minus": 0.0014,
+   "plus_minus": 0.0015,
    "status": "supported",
    "kinds": [
     "context"
@@ -126,7 +126,7 @@
    "features": [
     "strength_gap"
    ],
-   "strength": 0.0004,
+   "strength": 0.0003,
    "plus_minus": 0.0005,
    "status": "not clear yet",
    "kinds": [
@@ -231,7 +231,7 @@
   {
    "term": "boost_clock",
    "description": "boost clock (discovery, approved)",
-   "importance": 0.446,
+   "importance": 0.447,
    "missing_points": 0.0,
    "curve": [
     {
@@ -261,19 +261,19 @@
     {
      "from": -89.5,
      "to": -80.5,
-     "points": 12.1,
+     "points": 12.2,
      "plus_minus": 0.4
     },
     {
      "from": -80.5,
      "to": -70.5,
      "points": 11.4,
-     "plus_minus": 0.4
+     "plus_minus": 0.3
     },
     {
      "from": -70.5,
      "to": -58.5,
-     "points": 10.6,
+     "points": 10.7,
      "plus_minus": 0.3
     },
     {
@@ -366,7 +366,7 @@
     {
      "from": 6692.0,
      "to": 6836.5,
-     "points": -6.0,
+     "points": -6.1,
      "plus_minus": 0.2
     },
     {
@@ -390,7 +390,7 @@
     {
      "from": 8400.5,
      "to": 8448.5,
-     "points": 2.2,
+     "points": 2.3,
      "plus_minus": 1.1
     },
     {
@@ -528,7 +528,7 @@
     {
      "from": 22.5,
      "to": 30.0,
-     "points": -4.7,
+     "points": -4.8,
      "plus_minus": 0.7
     }
    ],
@@ -591,20 +591,20 @@
     {
      "from": 4.5,
      "to": 11.5,
-     "points": 4.6,
+     "points": 4.7,
      "plus_minus": 0.3
     },
     {
      "from": 11.5,
      "to": 21.5,
      "points": 4.2,
-     "plus_minus": 0.3
+     "plus_minus": 0.4
     },
     {
      "from": 21.5,
      "to": 33.5,
-     "points": 3.7,
-     "plus_minus": 0.3
+     "points": 3.8,
+     "plus_minus": 0.4
     },
     {
      "from": 33.5,
@@ -625,7 +625,7 @@
      "plus_minus": 0.4
     }
    ],
-   "kind": "execution"
+   "kind": "state"
   },
   {
    "term": "stand_enemy",
@@ -646,12 +646,12 @@
      "plus_minus": 0.1
     }
    ],
-   "kind": "execution"
+   "kind": "state"
   },
   {
    "term": "runner_class",
    "description": "who carries: 0 warrior, 1 dervish, 2 assassin, 3 paragon, 4 ranger, 5 mesmer, 6 elementalist, 7 necromancer, 8 ritualist, 9 monk",
-   "importance": 0.107,
+   "importance": 0.108,
    "missing_points": 0.0,
    "curve": [
     {
@@ -675,7 +675,7 @@
     {
      "from": 3.5,
      "to": 4.5,
-     "points": 0.4,
+     "points": 0.5,
      "plus_minus": 0.4
     },
     {
@@ -694,7 +694,7 @@
      "from": 6.5,
      "to": 7.5,
      "points": 7.3,
-     "plus_minus": 1.1
+     "plus_minus": 1.2
     },
     {
      "from": 7.5,
@@ -706,7 +706,7 @@
      "from": 8.5,
      "to": 9.0,
      "points": -0.9,
-     "plus_minus": 0.6
+     "plus_minus": 0.5
     }
    ],
    "kind": "decision"
@@ -726,7 +726,7 @@
     {
      "from": 31.5,
      "to": 48.5,
-     "points": -4.7,
+     "points": -4.6,
      "plus_minus": 0.4
     },
     {
@@ -781,7 +781,7 @@
      "from": 100.5,
      "to": 105.5,
      "points": 1.5,
-     "plus_minus": 0.6
+     "plus_minus": 0.7
     },
     {
      "from": 105.5,
@@ -799,10 +799,10 @@
      "from": 115.5,
      "to": 120.0,
      "points": 3.3,
-     "plus_minus": 0.7
+     "plus_minus": 0.6
     }
    ],
-   "kind": "execution"
+   "kind": "state"
   },
   {
    "term": "own_main",
@@ -876,14 +876,14 @@
     {
      "from": -581.0,
      "to": -437.0,
-     "points": -3.0,
+     "points": -2.8,
      "plus_minus": 0.6
     },
     {
      "from": -437.0,
      "to": -364.5,
-     "points": -2.6,
-     "plus_minus": 0.4
+     "points": -2.4,
+     "plus_minus": 0.5
     },
     {
      "from": -364.5,
@@ -893,21 +893,21 @@
     },
     {
      "from": -253.5,
-     "to": -168.0,
+     "to": -170.5,
      "points": -0.2,
      "plus_minus": 0.5
     },
     {
-     "from": -168.0,
-     "to": -64.0,
-     "points": 0.3,
+     "from": -170.5,
+     "to": -66.5,
+     "points": 0.1,
      "plus_minus": 0.5
     },
     {
-     "from": -64.0,
+     "from": -66.5,
      "to": 0.0,
      "points": 1.3,
-     "plus_minus": 0.3
+     "plus_minus": 0.4
     },
     {
      "from": 0.0,
@@ -917,38 +917,38 @@
     },
     {
      "from": 61.5,
-     "to": 159.0,
+     "to": 164.0,
      "points": 3.1,
      "plus_minus": 0.6
     },
     {
-     "from": 159.0,
+     "from": 164.0,
      "to": 251.5,
      "points": 3.1,
      "plus_minus": 0.6
     },
     {
      "from": 251.5,
-     "to": 358.0,
+     "to": 364.5,
+     "points": 2.1,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 364.5,
+     "to": 438.5,
      "points": 1.9,
      "plus_minus": 0.4
     },
     {
-     "from": 358.0,
-     "to": 437.0,
-     "points": 1.8,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 437.0,
+     "from": 438.5,
      "to": 581.0,
-     "points": -1.1,
+     "points": -1.3,
      "plus_minus": 0.8
     },
     {
      "from": 581.0,
      "to": 1183.0,
-     "points": -1.3,
+     "points": -1.5,
      "plus_minus": 0.8
     }
    ],
@@ -963,7 +963,7 @@
     {
      "from": 0.0,
      "to": 1.5,
-     "points": 1.7,
+     "points": 1.8,
      "plus_minus": 1.0
     },
     {
@@ -1138,7 +1138,7 @@
      "plus_minus": 0.8
     }
    ],
-   "kind": "execution"
+   "kind": "state"
   },
   {
    "term": "runner_escapes",
@@ -1162,15 +1162,16 @@
      "from": 1.5,
      "to": 2.0,
      "points": -4.4,
-     "plus_minus": 0.9
+     "plus_minus": 1.0
     }
    ],
-   "kind": "execution"
+   "kind": "execution",
+   "reads_backwards": true
   },
   {
    "term": "enemy_snare_near",
    "description": "snare power of live enemies within 1,300 of the runner (movepower.py)",
-   "importance": 0.047,
+   "importance": 0.046,
    "missing_points": 0.0,
    "curve": [
     {
@@ -1243,7 +1244,7 @@
      "from": 60.8,
      "to": 144.6,
      "points": -5.3,
-     "plus_minus": 1.2
+     "plus_minus": 1.3
     }
    ],
    "kind": "execution"
@@ -1251,7 +1252,7 @@
   {
    "term": "runner_line",
    "description": "runner 0 frontline, 1 midline, 2 backline",
-   "importance": 0.03,
+   "importance": 0.031,
    "missing_points": 0.0,
    "curve": [
     {
@@ -1350,7 +1351,7 @@
     {
      "from": 0.5,
      "to": 22.5,
-     "points": 0.5,
+     "points": 0.6,
      "plus_minus": 0.2
     },
     {
@@ -1368,7 +1369,7 @@
     {
      "from": 51.5,
      "to": 67.5,
-     "points": 2.0,
+     "points": 2.1,
      "plus_minus": 0.6
     },
     {
@@ -1392,7 +1393,7 @@
     {
      "from": 129.5,
      "to": 160.5,
-     "points": 1.2,
+     "points": 1.1,
      "plus_minus": 0.8
     },
     {
@@ -1426,7 +1427,8 @@
      "plus_minus": 0.7
     }
    ],
-   "kind": "execution"
+   "kind": "execution",
+   "reads_backwards": true
   },
   {
    "term": "other_control_so_far",
@@ -1471,7 +1473,8 @@
      "plus_minus": 1.3
     }
    ],
-   "kind": "execution"
+   "kind": "execution",
+   "reads_backwards": true
   },
   {
    "term": "enemy_power_play",
@@ -1488,7 +1491,7 @@
     {
      "from": 0.5,
      "to": 1.0,
-     "points": 0.5,
+     "points": 0.6,
      "plus_minus": 0.1
     }
    ],
@@ -1524,10 +1527,10 @@
  ],
  "kinds": {
   "checkpoint_s": "state",
-  "stand_own": "execution",
-  "stand_enemy": "execution",
-  "enemy_boost_in": "execution",
-  "flag_lead": "execution",
+  "stand_own": "state",
+  "stand_enemy": "state",
+  "enemy_boost_in": "state",
+  "flag_lead": "state",
   "runner_line": "decision",
   "runner_class": "decision",
   "morale_diff": "state",
@@ -1553,100 +1556,141 @@
  "pruned": [],
  "concurrent": {},
  "selection": {
-  "stand_own": {
-   "next": 0.085,
-   "previous": 0.009,
-   "previous_low": 0.001,
-   "marks_situation": false
-  },
-  "stand_enemy": {
-   "next": 0.082,
-   "previous": 0.011,
-   "previous_low": 0.005,
-   "marks_situation": false
-  },
-  "enemy_boost_in": {
-   "next": 0.064,
-   "previous": 0.073,
-   "previous_low": 0.061,
-   "marks_situation": true
-  },
-  "flag_lead": {
-   "next": 0.102,
-   "previous": 0.017,
-   "previous_low": 0.003,
-   "marks_situation": false
-  },
   "runner_line": {
    "next": 0.011,
    "previous": 0.016,
-   "previous_low": 0.007,
-   "marks_situation": false
+   "previous_low": 0.006,
+   "marks_situation": false,
+   "allocation": false,
+   "fix_allowed": true
   },
   "runner_class": {
    "next": 0.005,
    "previous": 0.024,
-   "previous_low": 0.013,
-   "marks_situation": false
+   "previous_low": 0.017,
+   "marks_situation": false,
+   "allocation": false,
+   "fix_allowed": true
   },
   "escort": {
    "next": 0.041,
    "previous": 0.05,
-   "previous_low": 0.043,
-   "marks_situation": true
+   "previous_low": 0.044,
+   "marks_situation": true,
+   "allocation": true,
+   "fix_allowed": true
   },
   "crippled_so_far": {
    "next": 0.015,
    "previous": 0.013,
    "previous_low": 0.011,
-   "marks_situation": false
+   "marks_situation": false,
+   "allocation": false,
+   "fix_allowed": true
   },
   "knocked_down_so_far": {
    "next": 0.01,
    "previous": 0.009,
    "previous_low": 0.007,
-   "marks_situation": false
+   "marks_situation": false,
+   "allocation": false,
+   "fix_allowed": true
   },
   "other_control_so_far": {
    "next": 0.031,
    "previous": 0.017,
    "previous_low": 0.012,
-   "marks_situation": false
+   "marks_situation": false,
+   "allocation": false,
+   "fix_allowed": true
   },
   "damage_so_far": {
    "next": 0.055,
    "previous": 0.033,
    "previous_low": 0.029,
-   "marks_situation": false
+   "marks_situation": false,
+   "allocation": false,
+   "fix_allowed": true
   },
   "pushers_so_far": {
    "next": 0.06,
    "previous": 0.032,
-   "previous_low": 0.028,
-   "marks_situation": false
+   "previous_low": 0.027,
+   "marks_situation": false,
+   "allocation": false,
+   "fix_allowed": true
   },
   "enemy_snare_near": {
    "next": 0.059,
    "previous": 0.007,
-   "previous_low": 0.005,
-   "marks_situation": false
+   "previous_low": 0.004,
+   "marks_situation": false,
+   "allocation": false,
+   "fix_allowed": true
   },
   "min_capture_s": {
    "next": 0.201,
    "previous": 0.014,
-   "previous_low": 0.004,
-   "marks_situation": false
+   "previous_low": 0.007,
+   "marks_situation": false,
+   "allocation": false,
+   "fix_allowed": true
   },
   "runner_escapes": {
    "next": 0.004,
    "previous": 0.013,
    "previous_low": 0.007,
-   "marks_situation": false
+   "marks_situation": false,
+   "allocation": false,
+   "fix_allowed": true
   }
  },
- "marks_situation": [
-  "enemy_boost_in",
+ "marks_situation": [],
+ "marks_allocation": [
   "escort"
+ ],
+ "directions": {
+  "min_capture_s": {
+   "expected": -1,
+   "fitted_toward_good": -1,
+   "rho": -1.0,
+   "reads_backwards": false
+  },
+  "runner_escapes": {
+   "expected": 1,
+   "fitted_toward_good": -1,
+   "rho": -1.0,
+   "reads_backwards": true
+  },
+  "pushers_so_far": {
+   "expected": -1,
+   "fitted_toward_good": -1,
+   "rho": -0.6,
+   "reads_backwards": false
+  },
+  "damage_so_far": {
+   "expected": -1,
+   "fitted_toward_good": 1,
+   "rho": 0.62,
+   "reads_backwards": true
+  },
+  "other_control_so_far": {
+   "expected": -1,
+   "fitted_toward_good": 1,
+   "rho": 0.6,
+   "reads_backwards": true
+  },
+  "knocked_down_so_far": {
+   "expected": -1,
+   "fitted_toward_good": -1,
+   "rho": -0.5,
+   "reads_backwards": false
+  }
+ },
+ "reads_backwards": [
+  "damage_so_far",
+  "other_control_so_far",
+  "runner_escapes"
  ],
  "note": "points = change in the chance of the result for an otherwise even (50%) case"
 }

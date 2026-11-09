@@ -6,7 +6,7 @@
  "rate": 0.382,
  "mean": null,
  "validation": {
-  "glass box": 0.6335,
+  "glass box": 0.6338,
   "simple baseline": 0.6676,
   "metric": "log loss",
   "verdict": "adds to the simple baseline"
@@ -19,12 +19,11 @@
     "latency",
     "defenders"
    ],
-   "strength": 0.0027,
+   "strength": 0.0028,
    "plus_minus": 0.0019,
    "status": "not clear yet",
    "kinds": [
-    "decision",
-    "execution"
+    "state"
    ]
   },
   {
@@ -34,8 +33,8 @@
     "size",
     "main_diff"
    ],
-   "strength": 0.0011,
-   "plus_minus": 0.001,
+   "strength": 0.0012,
+   "plus_minus": 0.0009,
    "status": "not clear yet",
    "kinds": [
     "decision",
@@ -65,8 +64,8 @@
     "flag_lead",
     "lord_damage_diff"
    ],
-   "strength": 0.0281,
-   "plus_minus": 0.0101,
+   "strength": 0.0283,
+   "plus_minus": 0.01,
    "status": "supported",
    "kinds": [
     "state"
@@ -95,7 +94,7 @@
    "plus_minus": 0.0012,
    "status": "not clear yet",
    "kinds": [
-    "execution"
+    "state"
    ]
   },
   {
@@ -118,7 +117,7 @@
    "features": [
     "strength_gap"
    ],
-   "strength": 0.0001,
+   "strength": -0.0002,
    "plus_minus": 0.0005,
    "status": "not clear yet",
    "kinds": [
@@ -361,7 +360,7 @@
     {
      "from": 0.0,
      "to": 4.5,
-     "points": 12.3,
+     "points": 12.4,
      "plus_minus": 3.2
     },
     {
@@ -434,7 +433,7 @@
      "plus_minus": 0.4
     }
    ],
-   "kind": "execution"
+   "kind": "state"
   },
   {
    "term": "split_healers",
@@ -512,7 +511,7 @@
      "plus_minus": 1.5
     }
    ],
-   "kind": "execution"
+   "kind": "state"
   },
   {
    "term": "defenders",
@@ -557,7 +556,7 @@
      "plus_minus": 1.3
     }
    ],
-   "kind": "decision"
+   "kind": "state"
   },
   {
    "term": "main_diff",
@@ -697,29 +696,29 @@
   {
    "term": "strength_gap",
    "description": "splitting team's strength gap",
-   "importance": 0.038,
+   "importance": 0.039,
    "missing_points": 0.0,
    "curve": [
     {
      "from": -1108.0,
      "to": -401.5,
-     "points": -1.5,
+     "points": -1.6,
      "plus_minus": 0.9
     },
     {
      "from": -401.5,
-     "to": -136.5,
-     "points": -1.3,
+     "to": -144.5,
+     "points": -1.4,
      "plus_minus": 0.6
     },
     {
-     "from": -136.5,
-     "to": 46.5,
+     "from": -144.5,
+     "to": 47.5,
      "points": 0.3,
      "plus_minus": 0.5
     },
     {
-     "from": 46.5,
+     "from": 47.5,
      "to": 304.5,
      "points": 1.0,
      "plus_minus": 0.5
@@ -732,7 +731,7 @@
     },
     {
      "from": 516.0,
-     "to": 1059.0,
+     "to": 1096.0,
      "points": 0.6,
      "plus_minus": 0.5
     }
@@ -756,8 +755,8 @@
   }
  ],
  "kinds": {
-  "latency": "execution",
-  "defenders": "decision",
+  "latency": "state",
+  "defenders": "state",
   "size": "decision",
   "main_diff": "state",
   "split_healers": "decision",
@@ -767,7 +766,7 @@
   "flag_lead": "state",
   "lord_damage_diff": "state",
   "enemy_prots": "context",
-  "def_snare_present": "execution",
+  "def_snare_present": "state",
   "split_speed_power": "execution",
   "own_escapes_power": "execution",
   "strength_gap": "context"
@@ -777,43 +776,43 @@
  "pruned": [],
  "concurrent": {},
  "selection": {
-  "latency": {
-   "next": 0.016,
-   "previous": 0.028,
-   "previous_low": 0.005,
-   "marks_situation": false
-  },
-  "defenders": {
-   "next": 0.026,
-   "previous": 0.04,
-   "previous_low": 0.007,
-   "marks_situation": false
-  },
   "size": {
    "next": 0.03,
    "previous": 0.039,
-   "previous_low": 0.009,
-   "marks_situation": false
+   "previous_low": 0.021,
+   "marks_situation": true,
+   "allocation": true,
+   "fix_allowed": true
   },
   "split_healers": {
    "next": 0.062,
    "previous": 0.05,
-   "previous_low": 0.02,
-   "marks_situation": false
-  },
-  "def_snare_present": {
-   "next": 0.019,
-   "previous": 0.043,
-   "previous_low": 0.009,
-   "marks_situation": false
+   "previous_low": 0.031,
+   "marks_situation": false,
+   "allocation": true,
+   "fix_allowed": true
   },
   "split_speed_power": {
    "next": 0.038,
    "previous": 0.003,
-   "previous_low": 0.001,
-   "marks_situation": false
+   "previous_low": 0.002,
+   "marks_situation": false,
+   "allocation": false,
+   "fix_allowed": true
   }
  },
  "marks_situation": [],
+ "marks_allocation": [
+  "size"
+ ],
+ "directions": {
+  "split_speed_power": {
+   "expected": 1,
+   "fitted_toward_good": 1,
+   "rho": 0.99,
+   "reads_backwards": false
+  }
+ },
+ "reads_backwards": [],
  "note": "points = change in the chance of the result for an otherwise even (50%) case"
 }
