@@ -519,7 +519,7 @@
     {
      "match": "113c3dc5-a172-5fcc-af51-02392df65383",
      "team": "DMG",
-     "opponent": "\u3052\u3048\u3048\u3048",
+     "opponent": "げえええ",
      "map": "Isle of Weeping Stone",
      "t": 630,
      "kind": "split_or_stay",
@@ -549,7 +549,7 @@
      "id": 4,
      "context": {
       "team": "DMG",
-      "opponent": "\u3052\u3048\u3048\u3048",
+      "opponent": "げえええ",
       "map": "Isle of Weeping Stone",
       "t": 630,
       "res_in": 90,
@@ -609,7 +609,7 @@
        ]
       },
       "enemy": {
-       "tag": "\u3052\u3048\u3048\u3048",
+       "tag": "げえええ",
        "alive": 8,
        "dead": [],
        "main": 4,
@@ -663,7 +663,7 @@
     },
     {
      "match": "113c3dc5-a172-5fcc-af51-02392df65383",
-     "team": "\u3052\u3048\u3048\u3048",
+     "team": "げえええ",
      "opponent": "DMG",
      "map": "Isle of Weeping Stone",
      "t": 347,
@@ -694,7 +694,7 @@
      "sealed": "eyJhY3R1YWxfY2hvaWNlIjogImRlZmVuZGVkIHdpdGhvdXQgYSBjb2xsYXBzZSIsICJ3cF9jaGFuZ2UiOiAtMC40LCAiY2hvaWNlX2VmZmVjdHMiOiB7ImNvbGxhcHNlZCI6IHsibWVhbl93cF9jaGFuZ2UiOiA0LjEsICJjYXNlcyI6IDl9LCAiZGVmZW5kZWQgd2l0aG91dCBhIGNvbGxhcHNlIjogeyJtZWFuX3dwX2NoYW5nZSI6IC0yLjksICJjYXNlcyI6IDZ9fX0=",
      "id": 5,
      "context": {
-      "team": "\u3052\u3048\u3048\u3048",
+      "team": "げえええ",
       "opponent": "DMG",
       "map": "Isle of Weeping Stone",
       "t": 347,
@@ -706,7 +706,7 @@
       },
       "mains_apart": 1101,
       "own": {
-       "tag": "\u3052\u3048\u3048\u3048",
+       "tag": "げえええ",
        "alive": 5,
        "dead": [
         "Prot",
@@ -1545,7 +1545,7 @@
       "alive": "8v7",
       "main": "5v4",
       "dp": 15,
-      "npcs": 0.0,
+      "npcs": 0,
       "lord_damage": 0,
       "builds": "balance v balance"
      },
@@ -1613,9 +1613,9 @@
        "waiting_runner": null,
        "morale": 0,
        "pit_npcs": "K2 A2 B1",
-       "npc_value": 12.0,
+       "npc_value": 12,
        "lord_damage": 0,
-       "lord_health": 1.0,
+       "lord_health": 1,
        "build": "balance",
        "healing_monks": 3,
        "spike_build": false,
@@ -1668,9 +1668,9 @@
        "waiting_runner": null,
        "morale": -15,
        "pit_npcs": "K2 A2 B1",
-       "npc_value": 12.0,
+       "npc_value": 12,
        "lord_damage": 0,
-       "lord_health": 1.0,
+       "lord_health": 1,
        "build": "balance",
        "healing_monks": 3,
        "spike_build": false,
@@ -1720,7 +1720,7 @@
       "alive": "8v8",
       "main": "5v5",
       "dp": 0,
-      "npcs": 0.0,
+      "npcs": 0,
       "lord_damage": 0,
       "builds": "balance v balance"
      },
@@ -1745,7 +1745,7 @@
      "model_call": "ran, fell back",
      "usual_play": "ran, fell back",
      "specific": false,
-     "denning_call": null,
+     "denning_call": "already running, advanced",
      "denning_reason": "",
      "context": {
       "team": "cope",
@@ -1794,9 +1794,9 @@
        "waiting_runner": "Hammer",
        "morale": 0,
        "pit_npcs": "K2 A2 B1",
-       "npc_value": 12.0,
+       "npc_value": 12,
        "lord_damage": 0,
-       "lord_health": 1.0,
+       "lord_health": 1,
        "build": "balance",
        "healing_monks": 3,
        "spike_build": false,
@@ -1844,9 +1844,9 @@
        "waiting_runner": null,
        "morale": 0,
        "pit_npcs": "K2 A2 B1",
-       "npc_value": 12.0,
+       "npc_value": 12,
        "lord_damage": 0,
-       "lord_health": 1.0,
+       "lord_health": 1,
        "build": "balance",
        "healing_monks": 3,
        "spike_build": false,
@@ -1870,7 +1870,7 @@
        "start": 267,
        "entered_base": 346,
        "main_numbers": [
-        5.0,
+        5,
         4.9
        ]
       }
@@ -1880,7 +1880,7 @@
     },
     {
      "match": "113c3dc5-a172-5fcc-af51-02392df65383",
-     "team": "\u3052\u3048\u3048\u3048",
+     "team": "げえええ",
      "opponent": "DMG",
      "map": "Isle of Weeping Stone",
      "t": 1616,
@@ -1917,7 +1917,7 @@
      "denning_call": null,
      "denning_reason": "",
      "context": {
-      "team": "\u3052\u3048\u3048\u3048",
+      "team": "げえええ",
       "opponent": "DMG",
       "map": "Isle of Weeping Stone",
       "t": 1616,
@@ -1929,7 +1929,7 @@
       },
       "mains_apart": 370,
       "own": {
-       "tag": "\u3052\u3048\u3048\u3048",
+       "tag": "げえええ",
        "alive": 6,
        "dead": [
         "Air Ele",
@@ -1966,7 +1966,7 @@
        "pit_npcs": "K0 A0 B0",
        "npc_value": 0,
        "lord_damage": 438,
-       "lord_health": 1.0,
+       "lord_health": 1,
        "build": "balance",
        "healing_monks": 3,
        "spike_build": false,
@@ -2017,7 +2017,7 @@
        "pit_npcs": "K1 A1 B0",
        "npc_value": 4.5,
        "lord_damage": 2080,
-       "lord_health": 1.0,
+       "lord_health": 1,
        "build": "balance",
        "healing_monks": 2,
        "spike_build": false,
@@ -2033,7 +2033,7 @@
        ]
       },
       "split": {
-       "team": "\u3052\u3048\u3048\u3048",
+       "team": "げえええ",
        "members": [
         "Hammer",
         "Mesmer",
@@ -2043,7 +2043,7 @@
        "start": 1563,
        "entered_base": 1563,
        "main_numbers": [
-        3.0,
+        3,
         4.7
        ]
       }
@@ -2067,7 +2067,7 @@
       "alive": "5v8",
       "main": "3v4",
       "dp": -35,
-      "npcs": 0.0,
+      "npcs": 0,
       "lord_damage": 0,
       "builds": "balance v balance"
      },
@@ -2132,9 +2132,9 @@
        "waiting_runner": null,
        "morale": 5,
        "pit_npcs": "K2 A2 B1",
-       "npc_value": 12.0,
+       "npc_value": 12,
        "lord_damage": 0,
-       "lord_health": 1.0,
+       "lord_health": 1,
        "build": "balance",
        "healing_monks": 3,
        "spike_build": false,
@@ -2181,9 +2181,9 @@
        "waiting_runner": null,
        "morale": 40,
        "pit_npcs": "K2 A2 B1",
-       "npc_value": 12.0,
+       "npc_value": 12,
        "lord_damage": 0,
-       "lord_health": 1.0,
+       "lord_health": 1,
        "build": "balance",
        "healing_monks": 3,
        "spike_build": false,
@@ -2209,7 +2209,7 @@
        "start": 1171,
        "entered_base": 1187,
        "main_numbers": [
-        4.0,
+        4,
         4.1
        ]
       }
@@ -2233,7 +2233,7 @@
       "alive": "8v8",
       "main": "5v5",
       "dp": 53,
-      "npcs": 0.0,
+      "npcs": 0,
       "lord_damage": 0,
       "builds": "paragon spike v WoC spike"
      },
@@ -2301,9 +2301,9 @@
        "waiting_runner": null,
        "morale": -27,
        "pit_npcs": "K2 A2 B1",
-       "npc_value": 12.0,
+       "npc_value": 12,
        "lord_damage": 0,
-       "lord_health": 1.0,
+       "lord_health": 1,
        "build": "paragon spike",
        "healing_monks": 3,
        "spike_build": true,
@@ -2353,9 +2353,9 @@
        "waiting_runner": null,
        "morale": -80,
        "pit_npcs": "K2 A2 B1",
-       "npc_value": 12.0,
+       "npc_value": 12,
        "lord_damage": 0,
-       "lord_health": 1.0,
+       "lord_health": 1,
        "build": "WoC spike",
        "healing_monks": 3,
        "spike_build": true,
@@ -2404,7 +2404,7 @@
       "alive": "8v3",
       "main": "8v1",
       "dp": -40,
-      "npcs": -3.0,
+      "npcs": -3,
       "lord_damage": 0,
       "builds": "other v balance"
      },
@@ -2466,9 +2466,9 @@
        "waiting_runner": null,
        "morale": -43,
        "pit_npcs": "K1 A2 B1",
-       "npc_value": 9.0,
+       "npc_value": 9,
        "lord_damage": 0,
-       "lord_health": 1.0,
+       "lord_health": 1,
        "build": "other",
        "healing_monks": 2,
        "spike_build": false,
@@ -2525,9 +2525,9 @@
        "waiting_runner": "AoB Derv",
        "morale": 20,
        "pit_npcs": "K2 A2 B1",
-       "npc_value": 12.0,
+       "npc_value": 12,
        "lord_damage": 0,
-       "lord_health": 1.0,
+       "lord_health": 1,
        "build": "balance",
        "healing_monks": 3,
        "spike_build": false,
@@ -2562,7 +2562,7 @@
       "alive": "8v4",
       "main": "6v2",
       "dp": 245,
-      "npcs": 0.0,
+      "npcs": 0,
       "lord_damage": 0,
       "builds": "balance v balance"
      },
@@ -2628,7 +2628,7 @@
        "pit_npcs": "K1 A1 B1",
        "npc_value": 7.5,
        "lord_damage": 0,
-       "lord_health": 1.0,
+       "lord_health": 1,
        "build": "balance",
        "healing_monks": 3,
        "spike_build": false,
@@ -2684,7 +2684,7 @@
        "pit_npcs": "K1 A1 B1",
        "npc_value": 7.5,
        "lord_damage": 0,
-       "lord_health": 1.0,
+       "lord_health": 1,
        "build": "balance",
        "healing_monks": 3,
        "spike_build": false,
@@ -2708,7 +2708,7 @@
        "entered_base": null,
        "main_numbers": [
         1.5,
-        6.0
+        6
        ]
       }
      },
@@ -2731,7 +2731,7 @@
       "alive": "8v8",
       "main": "6v7",
       "dp": 95,
-      "npcs": 0.0,
+      "npcs": 0,
       "lord_damage": 0,
       "builds": "balance v invoke spike"
      },
@@ -2791,9 +2791,9 @@
        "waiting_runner": null,
        "morale": 80,
        "pit_npcs": "K2 A2 B1",
-       "npc_value": 12.0,
+       "npc_value": 12,
        "lord_damage": 0,
-       "lord_health": 1.0,
+       "lord_health": 1,
        "build": "balance",
        "healing_monks": 3,
        "spike_build": false,
@@ -2845,9 +2845,9 @@
        "waiting_runner": null,
        "morale": -15,
        "pit_npcs": "K2 A2 B1",
-       "npc_value": 12.0,
+       "npc_value": 12,
        "lord_damage": 0,
-       "lord_health": 1.0,
+       "lord_health": 1,
        "build": "invoke spike",
        "healing_monks": 3,
        "spike_build": true,
