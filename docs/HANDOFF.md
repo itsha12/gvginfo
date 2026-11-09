@@ -35,18 +35,15 @@ Rewritten each session; stays under 80 lines. Read `CLAUDE.md`, then `docs/SPEC.
 - Readability test 2 (docs/tests/readability-2026-11-09b.md): no, 14 of 18 at least partly explained; page-text
   items built, items 7 and 9 queued below.
 
-- Chunk 6 (batch 16) not trained yet: its 45 replays were fetched and stored on the replays branch (run 42668315551),
-  then four runs failed on GitHub's side (jobs never created, later 0 jobs). Next run: `inputs[pick]=0` to train
-  exactly those 45; only then a pick-45 run for chunk 7 (a pick-45 run now would make one batch of 90). Don't queue
-  two Train batch runs at once.
+- Chunk 6's 45 replays are stored but untrained (GitHub failed four runs before jobs started): next run `pick=0`, then
+  pick 45 for chunk 7 (pick 45 now would make a batch of 90); never queue two runs. Blind round 1 scored.
 
 ## Next (in order)
-1. Blind-test round 1: answered and scored (read the totals when reporting the next chunk).
-2. Run the readability test a third time on the regenerated page (a fresh session reads knowledge/model.md alone).
-3. Chunks of about 45 (Train batch, pick 45, add_batch yes; TQs every other chunk; a blind round each chunk), no
+1. Run the readability test a third time on the regenerated page (a fresh session reads knowledge/model.md alone).
+2. Chunks of about 45 (Train batch, pick 45, add_batch yes; TQs every other chunk; a blind round each chunk), no
    engine change between them; proposals queue in `data/model/causal_map.json` "waiting" and here. Discovery after
    the second chunk (second run offers candidates).
-4. Next bundle (after 4 or 5 chunks): the open rulings below; Tier 2 table results column (readability item 7);
+3. Next bundle (after 4 or 5 chunks): the open rulings below; Tier 2 table results column (readability item 7);
    rename map groups "Control received" where there is no runner (item 9); the second form of the query tool (a
    situation without a match); per-node readings by strength band; port `nodes.py` nodes into the learned-node
    framework if wanted; a results history for blind-test rounds across engine versions.
