@@ -77,5 +77,5 @@ Rewritten each session; stays under 80 lines. Read `CLAUDE.md`, then `docs/SPEC.
 ## Cautions
 - Links near the line flip between runs ("supported" by a small margin is a lead; the diff lists flips); fits differ
   in the last digits between machines, so small report differences are noise.
-- No energy, line of sight or NPC positions in the replays; proxies carry lower confidence.
-- Never print or decode a blind-test pick's sealed field in a chat; the first round of the day was discarded for that.
+- No energy, line of sight or NPC positions in the replays; proxies carry lower confidence. Never print or decode a
+  blind-test pick's sealed field in a chat (a round was discarded for that).
