@@ -68,11 +68,20 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   tactics.md under the right situation, each ending with match tags as evidence; when a new match contradicts a line,
   revise it rather than adding a second one; add Denning's answers as **Denning:** lines (no dates). Keep the tactics
   page a model, not a log: merge duplicates and keep match detail on the reviews page.
-- How concepts are measured, the analysis framework and where its outputs are stored:
-  `tools/replay_analysis/METHODS.md` (not on the site). Deep reviews start from `analyze.py <id>` (scoreboard, fights,
-  decision points, findings), then `fights.py <id> fights`, `scoreboard.py`, `report.py` and `episodes.py` for
-  detail. Judge flag position with the scoreboard's flag lead, never from who holds the stand. Thresholds live in
-  `common.py`. Findings and situation cards cite tactics line ids (`F1`, `S18`...); keep ids stable.
+- The engine's documents, and what each is for (read in this order in a new chat):
+  - `docs/SPEC.md`: the engine as it is now (tiers, nodes, decisions, the rules every node follows). Current state
+    only; edits replace text, nothing is appended with a date.
+  - `docs/RULINGS.md`: Denning's definitions and decisions, numbered R-nnn, never renumbered; new rulings are appended
+    with the next number. A ruling overrides Claude's reasoning. Cite the number, don't re-litigate.
+  - `docs/HANDOFF.md`: under 80 lines: state, next step, open rulings. Rewritten, not appended.
+  - `docs/CHANGELOG.md`: dated session log, newest first, at most ten lines per session.
+  - `knowledge/model.md`: generated each run, the structural reference (every fitted node, rows, inputs by kind,
+    held-out score). If a node can't be explained in GvG terms from that page, it isn't explainable yet.
+  - `tools/replay_analysis/METHODS.md`: how each concept is measured (reference, not history).
+  Deep reviews start from `analyze.py <id>` (scoreboard, fights, decision points, findings), then `fights.py <id>
+  fights`, `scoreboard.py`, `report.py` and `episodes.py` for detail. Judge flag position with the scoreboard's flag
+  lead, never from who holds the stand. Thresholds live in `common.py`. Findings and situation cards cite tactics
+  line ids (`F1`, `S18`...); keep ids stable.
 - The goal is plays better than experts can see, from data: values and best plays come from measurement, never from
   guessed weights or defaults. The win-probability model must stay white box (readable contributions, explanation
   breakdowns, Denning's logged corrections) and is trained a few matches at a time with a learning report after each
@@ -80,11 +89,12 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   with match moments; his corrections go in `data/model_corrections.json` with his reason. Denning: after each batch
   give a snapshot across all the learnings, not one highlighted item, and favour the detailed ones (skills cast, run
   times, runners, node-model readings, values, usual play, discovery).
-- After each batch, answer the TQs (Denning's four question categories, replacing the five random whys; the learning report's
-  section "The TQs" (`tq.py`) answers them, METHODS.md "The TQs"; they show how
-  the engine is learning), each from the batch's matches, answered with data at the depth of METHODS.md "Answer
-  exemplars", the "different play" or "prevented" half from measured alternatives (the usual play's choice effects,
-  forensics' ready-but-unused options, the benchmarks), with a confidence level:
+- The TQs (Denning's four question categories; the learning report's section "The TQs", `tq.py`, METHODS.md "The TQs")
+  are a demonstration of the model after a batch, not part of it; they run every other chunk unless asked. Each is
+  answered with data at the depth of METHODS.md "Answer exemplars", in two parts kept apart: macro (was the decision
+  the right call: the usual play's choice effects at the decision before) and micro (given the call, what went wrong
+  in execution: the execution inputs against the role's benchmark), with what the enemy did described beside them,
+  and a confidence level:
   1. Flags: one instance in a batched match where a team got behind on flags, and why; then how a different play could
      have increased its win chances.
   2. Monk death: one instance where a monk died, and why; then how it could have been prevented.
@@ -138,6 +148,30 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
 - Site home page is Schedule (`#/`); Recent matches is `#/matches`.
 - People: `data/aliases.json` = {"people": {"Person": ["Character", ...]}}, edited from the Players page (tick names,
   assign). Use it when Denning asks about a player by their person name.
+
+## Working rules for the analysis engine (Denning, November 2026 review; RULINGS.md "2026-11 review")
+- One model family in tiers (SPEC.md section 4): context, state, decision nodes, execution nodes, win model. Every
+  fitted model answers one question and appears once. Don't add a second model for a question a node already answers;
+  change the node.
+- Every input is one of five kinds (context, state, decision, execution, concurrent response). Context and state are
+  adjustment and never a fix. Concurrent response (what the enemy did during the window) is never an input; show it
+  apart. Inputs are measured before the window or at a fixed early point in it.
+- Inputs are capped by the data (one per 20 events); the cap and the pruning order are in SPEC.md section 5. Every
+  decision and execution input carries the selection check ("marks the situation"); such inputs are never fixes.
+- No engine change between chunks. Proposals (new variables, decisions, corrections) go on the waiting list in
+  `data/model/causal_map.json` and in HANDOFF.md; one bundled engine change per run of chunks, then one rebuild,
+  compared against the reading just before it. A text-only change to a report section is not an engine change and
+  must not invalidate prepared data (cache keys by layer).
+- Discovery offers Denning only decision and execution variables, and only after a candidate passes in two runs.
+  State and build variables are never offered (they are already adjustment).
+- Answers are macro ("was it the right call": the decision tier) and micro ("what went wrong in carrying it out":
+  the execution tier), kept apart, each with its evidence. Enemy response is described beside them.
+- Questions for Denning come from the catalogue and cluster mechanisms (name this cluster, approve this candidate),
+  not a list of Claude's ideas after each batch.
+- Documents: SPEC.md and METHODS.md are replaced in place; the CHANGELOG gets at most ten lines per session; HANDOFF.md
+  stays under 80 lines. Don't write session narrative into any other file.
+- Before an engine change ships, a fresh session that has not seen the build reads `knowledge/model.md` alone and must
+  be able to explain each node in GvG terms (the readability test).
 
 ## Rules
 - Do not edit `data/skills.json` by hand; it is regenerated from the wiki. Put corrections in `data/skill_notes.json`
