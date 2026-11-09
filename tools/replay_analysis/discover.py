@@ -1,12 +1,13 @@
 """Step 3 of the learned causal map: discovery (Denning: discovery of unknown variables and interactions matters most).
-Every measured variable is tested against every learned node on matches the node never saw; what holds up is held
+Candidate variables are tested against every learned node on matches the node never saw; what holds up twice is held
 for Denning's approval as a new link, never added to the model automatically.
 
-The variables: everything the engine measures about a team at a moment, joined to each node row at its time (the
-same team, the 5 s state at or before the row): the win model's state table (flag lead, numbers, morale, pit NPCs,
-Lord damage and health, res timer, fight state, carriers, splits, turtling, footmen, map geometry, flux ...; prefix
-"s.") and the build and matchup features (counts from the skill data, threat against answer pairs, and snare, speed
-and escape power; prefix "b."). Variables already in the node are skipped.
+The candidates (Denning, November 2026 review, M6): the variable catalogue (catalogue.py, prefix "p."): what each team
+did in the 10 s and 30 s before the moment, generated mechanically from the replay schema (damage by target class,
+healing, casts by target class, cancels, attacks, interrupts, conditions, knockdown and moving seconds, deaths; own,
+enemy, own by line, and own minus enemy). They are decision and execution variables by construction, so a discovery
+can become advice. State and build variables (the old pool: the win model's table, prefix "s.", and the build
+features, prefix "b.") are no longer offered: they are adjustment in every node already, never a fix.
 
 The test, in two stages (both held out by match, the node's own 6 folds):
   1. Screen: the node's current model is fitted on the training folds; a one-variable glass-box curve is then fitted on
@@ -14,9 +15,10 @@ The test, in two stages (both held out by match, the node's own 6 folds):
      (positive = the variable predicts what the node misses). Cheap, so every variable gets it.
   2. Confirm: the best SCREEN_KEEP variables per node that gained on the screen are refitted properly (the node's
      variables plus the new one, the same fits as a link test) against the node without it, on the same folds.
-     A discovery = confirmed gain more than twice its spread and positive in at least 5 of 6 folds.
-Many variables are tested, so some chance winners are expected: a discovery is a lead for Denning to rule on (approve
-as a link, reject, or wait for more matches), and the report says how many would pass by chance.
+     A pass = confirmed gain more than twice its spread and positive in at least 5 of 6 folds.
+The two-run rule (Denning): a candidate is offered only after it passes in two discovery runs (on different training
+sets); a first pass is recorded in data/model/discovery_history.json as "passed once". Many variables are tested, so
+chance winners are expected; the page says how many would pass by chance.
 
 Usage:  python3 discover.py node <node>      one node (a GitHub job), writes data/model/discovery/<node>.json
         python3 discover.py join             joins the nodes' files: data/model/discovery.json, knowledge/discovery.md
@@ -37,27 +39,13 @@ def _ids():
     return [m for b in M.batches() for m in b["matches"]]
 
 
+HISTORY = os.path.join(REPO, "data", "model", "discovery_history.json")
+
+
 def panel(rid):
-    """{(team, t): {variable: value}} every 5 s: the state table plus the team's build features."""
-    import model as M
-    from replaylib import Match
-    from buildfeat import matchup
-    import movepower as MP
-    m = Match.from_branch(rid)
-    P = MP.powers(m)
-    build = {}
-    for tm in (1, 2):
-        b = {f"b.{k}": v for k, v in matchup(m, tm).items()}
-        for side, k in (("own", tm), ("enemy", 3 - tm)):
-            for kind in ("snare", "speed", "escapes"):
-                b[f"b.{side}_{kind}_power"] = round(sum(P[a][kind] for a in m.PL if m.team(a) == k), 1)
-        build[m.tag[tm]] = b
-    out = {}
-    for r in M.match_table(rid):
-        v = {f"s.{k}": x for k, x in r.items() if k not in SKIP and isinstance(x, (int, float)) and not isinstance(x, bool)}
-        v.update(build.get(r["team"], {}))
-        out[(r["team"], int(r["t"]))] = v
-    return out
+    """{(team, t): {variable: value}} every 5 s: the variable catalogue (play variables only, M6)."""
+    import catalogue
+    return catalogue.panel(rid)
 
 
 def _panel_job(rid):
@@ -177,26 +165,47 @@ def join():
     rows = []
     for f in sorted(glob.glob(os.path.join(OUT_DIR, "*.json"))):
         rows.append(json.load(open(f)))
-    found = [dict(c, node=r["node"], target=r["target"]) for r in rows for c in r["confirmed"] if c["status"].startswith("discovery")]
+    passed = [dict(c, node=r["node"], target=r["target"]) for r in rows for c in r["confirmed"] if c["status"].startswith("discovery")]
     tested = sum(r["tested"] for r in rows)
-    json.dump({"about": "Step 3 discovery (discover.py): every measured variable against every learned node, held out by match. "
-                        "Discoveries are held for Denning's approval; none is in the model until he approves.",
-               "tested": tested, "nodes": rows, "discoveries": found}, open(os.path.join(REPO, "data", "model", "discovery.json"), "w"), indent=1)
+    # the two-run rule: a pass is recorded; a candidate is offered once it has passed in two runs
+    import datetime
+    today = datetime.date.today().isoformat()
+    try: hist = json.load(open(HISTORY))
+    except (OSError, ValueError): hist = {}
+    run_key = f"{today}:{max((r['matches'] for r in rows), default=0)}"
+    for d in passed:
+        k = f"{d['node']}|{d['variable']}"
+        h = hist.setdefault(k, {"passes": []})
+        if run_key not in h["passes"]: h["passes"].append(run_key)
+    json.dump(hist, open(HISTORY, "w"), indent=1)
+    found, once = [], []
+    for d in passed:
+        n = len(hist[f"{d['node']}|{d['variable']}"]["passes"])
+        (found if n >= 2 else once).append(dict(d, passes=n))
+    json.dump({"about": "Step 3 discovery (discover.py): the variable catalogue (play variables) against every learned node, held "
+                        "out by match. A candidate is offered after passing in two runs; none is in the model until Denning approves.",
+               "tested": tested, "nodes": rows, "discoveries": found, "passed_once": once, "held": found},
+              open(os.path.join(REPO, "data", "model", "discovery.json"), "w"), indent=1)
     L = ["# What discovery found", "",
-         "Step 3 of the learned causal map (`discover.py`): every variable the engine measures about a team at a moment (the "
-         "state table, prefix s., and the build and matchup features, prefix b.) tested against every learned node on matches "
-         "the node never saw. A **discovery** predicts what the node misses by more than twice its spread, in at least 5 of 6 "
-         "held-out folds. Each is held for Denning's approval: approve (it becomes a link in the causal map and a variable in the "
-         "node), reject, or wait for more matches.", "",
+         "Step 3 of the learned causal map (`discover.py`): the variable catalogue (`catalogue.py`: what each team did in the 10 s "
+         "and 30 s before a moment, generated from the replay schema; decision and execution variables only) tested against "
+         "every learned node on matches the node never saw. A **pass** predicts what the node misses by more than twice its "
+         "spread, in at least 5 of 6 held-out folds. A candidate is **offered** to Denning once it has passed in two runs (the "
+         "two-run rule): approve (it becomes a link in the causal map and an input of the node), reject, or wait.", "",
          f"Variables tested: {tested} (variable by node); {sum(r['screen_passed'] for r in rows)} passed the screen, where chance alone "
-         f"would pass about {round(tested * 0.023)} (2.3% at twice the spread). Treat a discovery as a lead.", ""]
+         f"would pass about {round(tested * 0.023)} (2.3% at twice the spread). Treat a candidate as a lead.", ""]
     if found:
-        L += ["| Node | Variable | Gain on unseen matches | Folds up | Result, lowest third -> highest third |", "|---|---|---|---|---|"]
+        L += ["## Offered (passed in two runs)", "",
+              "| Node | Variable | Gain on unseen matches | Folds up | Result, lowest third -> highest third |", "|---|---|---|---|---|"]
         for d in sorted(found, key=lambda d: -d["confirm_gain"]):
             L.append(f"| {d['node'].replace('_', ' ')} | {d['variable']} | {d['confirm_gain']:+.4f} (+/- {d['confirm_plus_minus']:.4f}) | "
                      f"{d['confirm_folds_up']} of 6 | {d['result_low_third']} (at or below {d['cut_low']:g}) -> {d['result_high_third']} (above {d['cut_high']:g}) |")
     else:
-        L.append("No discoveries yet.")
+        L.append("Nothing offered yet (no candidate has passed in two runs).")
+    if once:
+        L += ["", "## Passed once (waits for a second run)", ""]
+        for d in sorted(once, key=lambda d: -d["confirm_gain"]):
+            L.append(f"- {d['node'].replace('_', ' ')}: {d['variable']} {d['confirm_gain']:+.4f} (+/- {d['confirm_plus_minus']:.4f}), {d['confirm_folds_up']} of 6 folds up")
     L += ["", "## Per node", ""]
     for r in rows:
         L.append(f"**{r['node'].replace('_', ' ')}** ({r['target']}; {r['matches']} matches, {r['rows']} rows, {r['metric']}): "

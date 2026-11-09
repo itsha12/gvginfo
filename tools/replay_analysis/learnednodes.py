@@ -436,7 +436,10 @@ def selection_check(node, df, X, y, kinds, folds=None):
             b = assoc(v, yp, idx)
             if b is not None: boots.append(b)
         lo = float(np.percentile(boots, 5)) if len(boots) >= 10 else 0.0
-        marks = bool(a_prev >= 0.75 * a_next and lo > 0.02 and a_prev > 0.03)
+        # "as well as the next" (Denning): the previous association at least as strong as the next one and clearly above
+        # none. A persistent cause (defenders standing in the pit) reads much like a marker here; the flag says the test
+        # can't tell them apart, and the ruling is that such an input is not offered as a fix
+        marks = bool(a_prev >= 1.0 * a_next and lo > 0.02 and a_prev > 0.03)
         out[f] = {"next": round(a_next, 3), "previous": round(a_prev, 3), "previous_low": round(lo, 3), "marks_situation": marks}
     return out
 

@@ -86,7 +86,17 @@ def batches():
     p = os.path.join(MODEL_DIR, "batches.json")
     if not os.path.exists(p): return []
     from common import counts            # replays before common.TRAIN_FROM are left out (Denning, session 4u)
-    return [dict(b, matches=[m for m in b["matches"] if counts(m)]) for b in json.load(open(p))["batches"]]
+    out = [dict(b, matches=[m for m in b["matches"] if counts(m)]) for b in json.load(open(p))["batches"]]
+    # GVG_SUBSET=N (local smoke tests only, never on GitHub): keep the first N counting matches so an engine change can be
+    # run end to end in minutes; batch numbers and order are kept
+    n = int(os.environ.get("GVG_SUBSET") or 0)
+    if n:
+        keep = set(); 
+        for b in out:
+            for m in b["matches"]:
+                if len(keep) < n: keep.add(m)
+        out = [dict(b, matches=[m for m in b["matches"] if m in keep]) for b in out]
+    return out
 
 
 CAPS = os.path.join(MODEL_DIR, "cap_choices.json")
@@ -562,9 +572,13 @@ def write_md(model):
                  f"{gs['range_90'][0]:+} to {gs['range_90'][1]:+}.")
         L.append("")
     for n, v in model["validation"].items():
-        if n in ("verdict", "gain_over_strength"): continue
+        if n in ("verdict", "gain_over_strength", "by_period", "by_strength_band") or "all" not in v: continue
         L.append(f"- {n}: accuracy {v['all']['accuracy']:.0%}, log loss {v['all']['log_loss']} "
                  f"({'; '.join(f'{k} {vv['accuracy']:.0%}' for k, vv in v.items() if k != 'all')})")
+    for key, lab in (("by_period", "By month played"), ("by_strength_band", "By strength band")):
+        if model["validation"].get(key):
+            L.append(f"- {lab} (glass box v strength alone, log loss; matches): " + "; ".join(
+                f"{k} {x['glass box']['log_loss']} v {x['strength only']['log_loss']} ({x['matches']})" for k, x in model["validation"][key].items()))
     L += ["", "## What it learned, most important first", ""]
     for t in model["terms"]:
         L.append(f"### {t['term']} (importance {t['importance']})")

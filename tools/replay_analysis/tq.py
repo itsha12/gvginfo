@@ -520,8 +520,8 @@ def _bench_txt(k):
             f"win chance {b['win']:+} points" if b["win"] is not None else f"captured {b['captured']} of {b['n']}")
 
 
-# lead_up (2026-11-07, first version) was replaced the same day by chain.py (Denning: how the game state came about,
-# not only position); run_bench and _bench_txt above are used by chain.py.
+# lead_up (first version) was replaced by the rule-based chain.py, itself replaced by causalchain.py (Denning: how the game state came about,
+# not only position); run_bench and _bench_txt above are still used by the TQs.
 
 # ------------------------------------------------------------------ 3. power play without a kill
 _PP_BENCH = None
@@ -714,16 +714,16 @@ def power(new_ids, recs, usual_res):
 
 
 # ------------------------------------------------------------------ macro, micro and the enemy's response (Denning, November 2026 review)
-def execution_lines(node, rid, team, t, good_high, window=5):
+def execution_lines(node, rid, team, t, good_high, window=5, back=60):
     """The micro answer from a learned node: the row of this team at (or nearest before) t read by the fold model that
     never saw the match, and the decision and execution inputs that pushed the reading the wrong way, each against
     its usual value (the median over every trained row). Context and state are left out (adjustment, not faults);
     inputs that mark the situation are named as such and not counted. Also the enemy's response measured in the same
     window (what the enemy did), never as a cause. Returns (lines, faults) where faults = [(feature, push)]."""
     import causalchain as CC, learnednodes as LN
-    try: rows = [r for r in CC._rows(node, rid) if r["team"] == team and r["t"] <= t + window]
+    try: rows = [r for r in CC._rows(node, rid) if r["team"] == team and t - back <= r["t"] <= t + window]
     except Exception: rows = []
-    if not rows: return [f"- {node.replace('_', ' ')} node: no row for this moment."], []
+    if not rows: return [f"- {node.replace('_', ' ')} node: no row of {team} within {back} s before this moment."], []
     row = max(rows, key=lambda r: r["t"])
     h = CC.heldout(node)
     if not h: return [f"- {node.replace('_', ' ')} node: not fitted yet."], []

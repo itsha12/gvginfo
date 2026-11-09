@@ -206,17 +206,21 @@ def causes(values):
     plan = {"deaths": ("death (any)", V("death (any)"), "per 10 s in that state"),
             "kill_conversion": ("death (any)", -V("death (any)") if V("death (any)") is not None else None,
                                 "per burst, for the attacking team"),
-            "npc_loss": ("pit NPC lost", sum(n * r for n, r in npc) / sum(n for n, _ in npc) if npc else None,
-                         "per case, for the defending team")}
+            "pit_npc_loss": ("pit NPC lost", sum(n * r for n, r in npc) / sum(n for n, _ in npc) if npc else None,
+                             "per case, for the defending team")}
     import nodes as N
     out = {}
     for node, (res, val, unit) in plan.items():
-        p = os.path.join(REPO, "data", "model", "nodes", node + ".json")
+        # pit_npc_loss is a learned node (learnednodes.py, L_<node>.json; nodes.py's npc_loss is retired, M1)
+        p = os.path.join(REPO, "data", "model", "nodes", ("L_" if node == "pit_npc_loss" else "") + node + ".json")
         if val is None or not os.path.exists(p): continue
-        d = json.load(open(p)); rate = d["validation"]["glass box"]["rate"]
+        d = json.load(open(p)); rate = d.get("rate") if node == "pit_npc_loss" else d["validation"]["glass box"]["rate"]
+        if rate is None: continue
+        kinds = d.get("kinds") or {}
         L = []
         for t in sorted(d["terms"], key=lambda t: -t["importance"])[:8]:
             if "&" in t["term"] or not t.get("curve") or context_only(node, t["term"]): continue
+            if kinds and kinds.get(t["term"]) in ("context", "state"): continue       # adjustment, never priced as a cause
             b = max(t["curve"], key=lambda c: abs(c["points"]))
             pts = max(min(b["points"], 49), -49)
             dp = 1 / (1 + math.exp(-(_logit(rate) + _logit(0.5 + pts / 100)))) - rate

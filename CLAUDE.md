@@ -111,17 +111,20 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   Snare and speed power per player (how strong, not just whether): `movepower.py` (Return is an escape, not a snare).
   Pressure beyond damage per player (kiting, degen, baited interrupts, offensive knockdowns, disables, cast
   prevention): `pressure.py` (METHODS.md "After chunk 4").
-  Chains from the node models with fixes carried forward to the result: `causalchain.py` (step 4). Discovery, every
-  measured variable against every learned node on unseen matches, held for Denning's approval: `discover.py` and the
-  "Discovery" workflow (step 3).
+  Chains from the node models with fixes carried forward to the result: `causalchain.py` (step 4). Discovery: the
+  variable catalogue (`catalogue.py`, play variables generated from the replay schema) against every learned node on
+  unseen matches, offered after passing twice: `discover.py` and the "Discovery" workflow (step 3). The goal test:
+  `advice.py` (does matching the advice do better on unseen matches; the sealed blind test). The query tool: `ask.py`
+  (a match and a moment in; state, macro, micro and the enemy's response out). The generated structure page:
+  `modelpage.py` -> `knowledge/model.md`.
 - Matches count from 1 September 2026 (Denning): replays before `common.TRAIN_FROM` are left out of training and of
   replay benchmarks, and new picks start at `common.PICK_FROM` (2 September); strength and lineup ratings still use
   every result (METHODS.md "Which matches count"). Use `common.replay_ids()` for any new replay pool.
 - Data integrity first (`integrity.py`, inside `Match()`): match length repaired, pit NPCs never seen in a replay added
   from the standard roster (2 knights, 2 archers, Bodyguard, Lord; 3 archers on Isle of Solitude), unobserved Lord damage
   left blank. Strength is the measured blend of the guild's fitted rating and the lineup who played (`strength.py`,
-  `lineup.py`); `lord.py` rebuilds Lord health; `fightstate.py` gives who is winning the fight; `discovery.py` gives
-  leverage and behaviour clusters. gvg.report's player directory and guild Elo are synced to `data/gvgreport/`
+  `lineup.py`); `lord.py` rebuilds Lord health; `fightstate.py` gives who is winning the fight; `behaviour.py` gives
+  leverage and behaviour clusters (responses nobody named, for Denning to name). gvg.report's player directory and guild Elo are synced to `data/gvgreport/`
   (`tools/gvgreport/directory.mjs`); its player groupings are merged into aliases.json with Denning's assignments
   winning (`merge_players.py`, additions under `gvgreport_added`). Today's Elo table must not train the model (it
   includes later results): `strength.py` rebuilds that Elo in time order.

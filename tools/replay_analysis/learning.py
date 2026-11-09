@@ -367,8 +367,10 @@ def s_usual(c):
                          f"{x['dp_change']:+} | {x['win_change']:+} |")
             L.append("")
         # discovery at decision points (discovery.py): where the choice matters most, and responses nobody named
-        import discovery as DSC
+        import behaviour as DSC
         recs_d = copy.deepcopy(base_recs)
+        try: DSC.write(copy.deepcopy(base_recs))          # data/model/behaviour.json, knowledge/behaviour.md
+        except Exception as ex: L.append(f"- behaviour page not written: {ex}")
         lev = DSC.leverage(recs_d)
         if lev:
             L += ["**Leverage: where the choice matters most** (share of the spread in win-chance change explained by the "
@@ -379,14 +381,9 @@ def s_usual(c):
             L.append("")
         cl = DSC.clusters(recs_d)
         if cl:
-            L += ["**Behaviour clusters: what teams actually did** (each decision's response grouped by what every player did "
-                  "in the next 20 s; UNNAMED = a group no single named choice covers: a response for Denning to name or reject)", ""]
-            for kind, x in cl.items():
-                L.append(f"*{kind.replace('_', ' ')}* ({x['k']} groups, separation {x['silhouette']}):")
-                for g in x["groups"]:
-                    L.append(f"- n {g['n']}: {g['response']}; named as {g['named_choices']}; win change {g['win_change_mean']}"
-                             + (" UNNAMED" if g["unnamed"] else ""))
-            L.append("")
+            un = sum(1 for x in cl.values() for g in x["clusters"] if g["unnamed"])
+            L += [f"**Behaviour clusters: what teams actually did** ({un} UNNAMED responses for Denning to name or reject; the full "
+                  "list with example moments is on the page \"What teams actually do\", knowledge/behaviour.md)", ""]
     _lap("usual play")
     c["parts"]["usual"] = L
 

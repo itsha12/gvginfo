@@ -104,9 +104,10 @@ micro answer: "given the call, what went wrong in carrying it out".
 | flag_answer | seconds slower than possible the answer to an enemy capture was | answer | nodes |
 | lord_damage | Lord damage in the next 10 s while enemies are in the pit | 3 s moment | nodes |
 
-Retired (bundle 1): `nodes.py npc_loss` (the same rows as pit_npc_loss), `nodes.py lord_kill` (no better than "who is
-in the pit"), `chain.py` (rule-based chains; replaced by `causalchain.py`). The TQ what-ifs that used `npc_loss` read
-`pit_npc_loss`.
+Retired: `nodes.py npc_loss` as a fitted node (its row builder stays: the learned node pit_npc_loss reads those
+rows for the defending side), `nodes.py lord_kill` (no better than "who is in the pit"), and the TQ what-ifs that used
+`npc_loss` now read `pit_npc_loss`. `chain.py` (rule-based chains) is kept only for its run benchmark helpers;
+`causalchain.py` makes every chain.
 
 ### Tier 4: the win model (`model.py`)
 Glass box (Explainable Boosting Machine) on the state table with team strength as the baseline, staged complexity,
@@ -134,9 +135,10 @@ nodes. Rendered to `knowledge/causal-map.md`.
    clear yet, Claude's links rejected, then approved discoveries not clear yet. Denning's links and supported links are
    never pruned. Dropped inputs go to the waiting list with the reason.
 4. **Selection check.** Every decision and execution input is tested against the same team's *previous* outcome of
-   that kind in the match as well as the next. An input that predicts the past as well as the future marks the
+   that kind in the match as well as the next. An input that predicts the past at least as well as the future marks the
    situation; it is labelled "marks the situation" on the page and in the report and is never offered as a fix. (This
-   is the standing form of the "partly who chooses it" check.)
+   is the standing form of the "partly who chooses it" check.) Known limit: a persistent cause (defenders standing in
+   the pit through an enemy's visit) reads like a marker here; the test says it cannot tell them apart.
 5. **Status by data.** A link is supported when the held-out gain is more than twice its spread across folds,
    rejected when dropping it helps by that much, otherwise not clear yet. Near-line flips between runs are expected;
    the report shows status changes as a diff.
@@ -164,7 +166,7 @@ to confirm) and is compared by the usual-play method. Choices are what the team 
 | npcs_or_dp | the team is at the enemy base with a numbers advantage, or after a wipe | damage on the pit NPCs, damage on players at the res, both | Denning (NPCs or DP) |
 | play_for_28_or_lord | from 24:00, ahead on the tiebreak (Lord damage or morale) | hold (base or pit, no Lord attempt), push the Lord | Denning (play for 28 or kill the Lord) |
 
-The last five are built in bundle 1. Behaviour clusters (section 8) are the way new kinds are found: at every
+The last five are detected as described (definitions to confirm). Behaviour clusters (section 8) are the way new kinds are found: at every
 recurring state the eight players' actions are clustered, and groups no named choice covers are shown to Denning as
 UNNAMED with example moments, to name or reject.
 
@@ -182,13 +184,13 @@ UNNAMED with example moments, to name or reject.
   before) and **micro** (given the call, what went wrong: the execution inputs that pushed the node's reading the wrong
   way, each against the role's benchmark), plus **what the enemy did** (concurrent response, described). Confidence
   from the evidence as before.
-- The query tool (`ask.py`, bundle 2): a match and a moment, or a situation and builds, in; the data-favoured
+- The query tool (`ask.py`): a match and a moment in (a situation without a match is the next form); the data-favoured
   decision, the usual play, the margin with its range, the evidence (cases, nodes, benchmarks) and the execution
   faults out. The end product the rest of the engine serves.
 
 ## 8. Finding variables and decisions from data
 
-- **Variable catalogue** (`catalogue.py`, bundle 2): every candidate variable generated mechanically from the replay
+- **Variable catalogue** (`catalogue.py`): every candidate variable generated mechanically from the replay
   schema as recorded thing x subject (own or enemy; team, group, role class, player) x filter (on healers, on casters,
   while Blind, by skill type) x window (before the window, first N seconds, per 10 s). Screened by `discover.py`
   against every tier 3 node on unseen matches, with the chance rate stated; a candidate is offered to Denning only

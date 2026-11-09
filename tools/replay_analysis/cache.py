@@ -31,8 +31,8 @@ DATA_DEPS = ["data/model/strength.json", "data/model/lineup.json", "data/model/c
 FIT_DEPS = ["data/model_corrections.json", "data/model/cap_choices.json"]
 # the entry modules each kind of prepared data is built from; their local imports are followed automatically
 PREPARED_FROM = {"table": ["features.py", "model.py"], "rows": ["nodes.py"], "events": ["values.py"],
-                 "analysis": ["analyze.py"], "power_bench": ["tq.py"], "run_bench": ["tq.py"], "mes_bench": ["chain.py"], "eventlayer": ["eventlayer.py"],
-                 "lrows": ["lnrows.py"], "pressure": ["pressure.py"]}
+                 "analysis": ["analyze.py"], "power_bench": ["tq.py"], "run_bench": ["tq.py"], "eventlayer": ["eventlayer.py"],
+                 "lrows": ["lnrows.py"], "pressure": ["pressure.py"], "catalogue": ["catalogue.py"]}
 FIT_FROM = {"wp": ["model.py"], "node": ["nodes.py"]}
 _KEYS = {}
 
@@ -49,10 +49,11 @@ NOT_ENGINE = {"cache.py", "status.py"}      # bookkeeping only: changing them ne
 #                       only their own fits, so a change to the fitting refits without rebuilding rows;
 #   report layer      = modules that only read prepared data and fitted models to write text, chains or screens; they
 #                       are in no key. A module that starts writing prepared data must be taken off this list.
-REPORT_LAYER = {"learning.py", "snapshot.py", "why.py", "report.py", "causalchain.py", "chain.py", "discover.py",
+REPORT_LAYER = {"learning.py", "snapshot.py", "why.py", "report.py", "causalchain.py", "discover.py",
                 "discovery.py", "behaviour.py", "batch.py", "library.py", "timeline.py", "parallel.py", "modelpage.py",
-                "catalogue.py", "ask.py", "advice.py", "tq.py"}
-FIT_ONLY = {"learnednodes.py"}
+                "ask.py", "advice.py", "tq.py"}
+# modules that key only their own kind (fitting from prepared rows, or a prepared kind nothing else reads)
+FIT_ONLY = {"learnednodes.py", "catalogue.py"}
 # tq.py is report layer for every kind but the two benchmarks it builds itself (power_bench, run_bench), which name it
 # as their entry module below, so those two rebuild when it changes and nothing else does.
 
