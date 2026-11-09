@@ -65,22 +65,43 @@ def learned_table(node, s):
     L += [f"### {node.replace('_', ' ')}: {q}", "", f"{what}. Held out by match: {_score(s, True)}. "
           f"Inputs {s.get('inputs', sum(len(l['features']) for l in s['links']))}" + (f" of a cap of {s['input_cap']}" if s.get('input_cap') else "") + ".", ""]
     marks = set(s.get("marks_situation") or [])
-    kinds = s.get("kinds") or {f: LN.kind_of(node, f) for l in s["links"] for f in l["features"]}
+    # the current classification (learnednodes.kind_of) is the authority; the stored kinds date from the last fit
+    kinds = {f: LN.kind_of(node, f) for l in s["links"] for f in l["features"]}
     terms = {t["term"]: t for t in s.get("terms", [])}
-    L += ["| Link (cause group) | Kind | Status | Gain | Inputs |", "|---|---|---|---|---|"]
+    L += ["| Cause group | Kind | Status | Gain | Inputs (reading at the low end; at the high end) |", "|---|---|---|---|---|"]
     names = _map_names()
+    unit = "s" if node in LN.REGRESSION else "points"
+    def reading(f):
+        cv = [c for c in (terms.get(f, {}).get("curve") or []) if c.get("from") is not None]
+        if len(cv) < 2: return ""
+        return f" ({cv[0]['points']:+g} {unit} at {cv[0]['from']:g}..{cv[0]['to']:g}; {cv[-1]['points']:+g} at {cv[-1]['from']:g}..{cv[-1]['to']:g})"
+    act = []
     for l in sorted(s["links"], key=lambda l: -l["strength"]):
         ins = []
         for f in sorted(l["features"], key=lambda f: -(terms.get(f, {}).get("importance") or 0)):
-            d = LN.describe(node, f) or f
-            ins.append(d + (" [marks the situation]" if f in marks else ""))
-        L.append(f"| {names.get(l['from'], l['from'])} ({l['from']}) | {'/'.join(l.get('kinds') or sorted({kinds.get(f, '?') for f in l['features']}))} | {l['status']} | {l['strength']:+} ± {l['plus_minus']} | {'; '.join(ins)} |")
+            d = clean(LN.describe(node, f)) or f
+            ins.append(d + reading(f) + (" [marks the situation]" if f in marks else ""))
+            if l["status"] == "supported" and kinds.get(f) in ("decision", "execution") and f not in marks: act.append(d)
+        gname = _GROUP_NAMES.get(l["from"], names.get(l["from"], l["from"]))
+        L.append(f"| {gname} | {'/'.join(sorted({kinds.get(f, '?') for f in l['features']}))} | {l['status']} | {l['strength']:+} ± {l['plus_minus']} | {'; '.join(ins)} |")
+    L.append("")
+    L.append("**What to act on** (supported decision and execution inputs): " + ("; ".join(act[:8]) + "." if act else
+             "nothing yet: the supported inputs are all situation (context and state), so this node explains the result but does not yet name a fix."))
     if s.get("concurrent"):
-        L += ["", "Measured beside the node, never a cause (what the enemy did in the window): " + "; ".join(s["concurrent"].values()) + "."]
+        L += ["", "Measured beside the node, never a cause (what the enemy did in the window): " + "; ".join(clean(x) for x in s["concurrent"].values()) + "."]
     if s.get("pruned"):
-        L += ["", "Left out so the inputs fit the data: " + "; ".join(f"{LN.describe(node, p['feature']) or p['feature']} ({p['reason']})" for p in s["pruned"]) + "."]
+        L += ["", f"Left out so the inputs fit the data (cap {s.get('input_cap')}): " + "; ".join(f"{clean(LN.describe(node, p['feature'])) or p['feature']} ({p['reason']})" for p in s["pruned"]) + "."]
+    if s.get("inputs") and s.get("input_cap") and s["inputs"] > s["input_cap"]:
+        L += ["", f"Over the cap ({s['inputs']} of {s['input_cap']}): the remaining inputs are Denning's links or supported ones, which are never pruned; "
+              "read the not-clear readings here as leads."]
     L.append("")
     return L
+
+
+# plainer names for the cause groups than the map's labels where those mislead a reader
+_GROUP_NAMES = {"A.mesa_free": "Defenders free (not on flag duty)", "P.5": "Removal (hexes and conditions)", "A.allocation": "Who is where (allocation)",
+                "S.scoreboard": "Scoreboard (state)", "C.builds": "Build features", "C.strength": "Team strength", "C.map": "Map", "C.clock": "Clock",
+                "K.11": "Control received (snares, Cripple, knockdowns on the runner)", "K.13": "Mobility (speed skills, Shadow Steps)"}
 
 
 def nodes_py_table(node, s):
@@ -89,14 +110,63 @@ def nodes_py_table(node, s):
          f"{s['rows']:,} rows ({ROW_UNIT.get(node, 'row')}), {s.get('events', '?')} events, {s['matches']} matches. Held out by match: {_score(s, False)}.", "",
          "| Input | Kind | Reading |", "|---|---|---|"]
     ctx = set(N.MATCH_FIXED.get(node, set()))
-    for t in sorted(s.get("terms", []), key=lambda t: -(t.get("importance") or 0))[:14]:
-        if "&" in t["term"]: continue
-        kind = "context" if t["term"] in ctx or t["term"] == "strength_gap" else ("state" if any(k in t["term"] for k in ("flag_lead", "minute", "res_", "morale", "health", "alive", "numbers", "local", "distance")) else "execution")
+    seen = set(); act = []
+    unit = "s" if node in N.REGRESSION else "points"
+    for t in sorted(s.get("terms", []), key=lambda t: -(t.get("importance") or 0)):
+        if "&" in t["term"] or t["term"] in seen: continue
+        seen.add(t["term"])
+        if len(seen) > 14: break
+        kind = "context" if t["term"] in ctx or t["term"] == "strength_gap" else ("state" if any(k in t["term"] for k in ("flag_lead", "minute", "res_", "morale", "health", "alive", "numbers", "local", "distance", "attackers", "defenders", "knights", "bodyguard", "archers", "seconds_in")) else "execution")
         cv = [c for c in t.get("curve") or [] if c.get("from") is not None]
-        rd = f"{cv[0]['points']:+g} at {cv[0]['from']:g}..{cv[0]['to']:g}; {cv[-1]['points']:+g} at {cv[-1]['from']:g}..{cv[-1]['to']:g}" if len(cv) >= 2 else ""
-        L.append(f"| {t.get('description') or t['term']} | {kind} | {rd} |")
-    L.append("")
+        rd = f"{cv[0]['points']:+g} {unit} at {cv[0]['from']:g}..{cv[0]['to']:g}; {cv[-1]['points']:+g} at {cv[-1]['from']:g}..{cv[-1]['to']:g}" if len(cv) >= 2 else ""
+        d = clean(t.get("description")) or t["term"]
+        if kind == "execution" and (t.get("importance") or 0) > 0: act.append(d)
+        L.append(f"| {d} | {kind} | {rd} |")
+    L += ["", "**What to act on** (execution inputs with weight): " + ("; ".join(act[:6]) + "." if act else "nothing yet."), ""]
     return L
+
+
+import re as _re
+_TAGS = _re.compile(r"\s*\((?:discovery, approved|Denning[^)]*|Bounty[^)]*|Nick[^)]*|OG comms[^)]*|movepower\.py[^)]*|fightstate\.py[^)]*|pressure\.py[^)]*|"
+                    r"eventlayer\.py[^)]*|lnrows\.py[^)]*|[a-z_]+\.py)\)")
+_TAGS2 = _re.compile(r";?\s*(Denning|Bounty|Nick|Claude)[^;)]*(?=\)|$)")
+
+
+def clean(d):
+    """An input's description in game language: internal tags (who proposed it, which file measures it) stripped."""
+    d = _TAGS.sub("", d or "")
+    d = _re.sub(r"\s*\(session [^)]*\)|\s*\(after [^)]*\)|\s*\(batch [^)]*\)|\s*\(chunk [^)]*\)", "", d)
+    # "; Denning", "; Denning, session 4u", "; Claude hypothesis" and the like inside a bracket
+    d = _re.sub(r";\s*(Denning|Claude|Bounty|Nick|OG comms)[^;)]*(?=\))", "", d)
+    d = _re.sub(r"\s*\((Denning|Claude|Bounty|Nick)[^)]*\)", "", d)
+    d = _re.sub(r",\s*P\d+\)", ")", d)
+    return d.strip().rstrip(";").strip()
+
+
+GLOSSARY = [
+    ("morale", "death penalty and boosts, in percent of maximum health, summed over a team's eight players (-60 to +10 each); \"own minus enemy\" is the gap"),
+    ("stand", "who holds the flag stand: 1 own team, 0 nobody, -1 the enemy"),
+    ("flag lead", "seconds the team is ahead (+) or behind (-) in the flag exchange: how much sooner than the enemy it could capture next"),
+    ("boost clock", "seconds until the stand holder's next morale boost (every 2 minutes held)"),
+    ("time down", "seconds the team's dead players have spent dead so far, own minus enemy"),
+    ("main", "the team's main group (players within 2,500 units of each other, not splitting or running)"),
+    ("players within one spike", "players whose health, after death penalty, an enemy spike build could take in one spike (DP stacking)"),
+    ("turtling", "the team holding inside its own base or pit (share of live players at home)"),
+    ("pit pressure", "players of each side within 500 units of a pit, own minus enemy"),
+    ("team strength gap", "the measured rating gap between the two guilds (fitted rating blended with the lineup who played); 400 points is about 10 to 1 odds"),
+    ("the usual", "the median for that role across every stored fight (damage per second on players), so output is judged against what that role normally does"),
+    ("value (of an enchantment or hex)", "its measured output: recorded damage, healing and prevented damage per second while up, plus the drop in the bearer's output after a strip"),
+    ("pit NPC value", "the pit NPCs alive priced in win points (knights, archers, Bodyguard) from the win model"),
+    ("snare, speed and escape power", "from the bar's skills at the player's attribute rank: slow fraction x seconds x uses per minute (snares), speed bonus x seconds x uses per minute (speed), Shadow Steps (escapes); measured seconds replace the formula once a skill has 15+ uses"),
+    ("skill-seconds disabled", "for each enemy skill disabled by Complicate, Power Lock, Power Block or Blackout, the seconds it stayed disabled, added up"),
+    ("pip-seconds", "health degeneration put on the enemy: pips (2 health per second each) x seconds, added up"),
+    ("health ceiling", "maximum health after death penalty (what a spike has to get through)"),
+    ("backup flag, waiting runner", "a second flag held near the stand while your team holds it; a runner standing at the spawn ready for the next flag"),
+    ("flag model", "the engine's estimate of how many seconds each team needs to capture next, from carrier positions, speeds and spawns"),
+    ("distance", "game units: 1,000 is about the aggro bubble's radius; a spell's cast range is about 1,250; a flag run is 4,000 to 9,000"),
+    ("the 28:00 tiebreak", "a match that reaches 28:00 goes to the team that dealt more Lord damage"),
+    ("split depth", "the nearest split member's distance to the defending pit: smaller is deeper into the base"),
+]
 
 
 _NAMES = None
@@ -170,7 +240,30 @@ def render():
          "\"what went wrong\". What the other team did during the same window is measured beside a node, never fitted. An "
          "input that predicts the previous result as well as the next **marks the situation** and is never a fix. Every link's "
          "status comes from refitting without it on matches the model never saw.", "",
-         "## Tier 2: decision nodes (the macro answer)", ""]
+         "## How to read the tables", "",
+         "- **Gain**: how much worse the node predicts matches it never saw when that cause group's inputs are left out (log loss for "
+         "yes/no nodes, seconds of typical error for number nodes); ± is the spread across the six held-out groups of matches. "
+         "**Status**: *supported* = the gain is more than twice its spread; *rejected* = leaving the group out predicts better by "
+         "that much; *not clear yet* = anything between, so read it as a lead. A supported group with a small gain is real but "
+         "small.", "",
+         "- **Reading**: the node's curve for that input, in points of result chance for an otherwise even case (yes/no nodes) or "
+         "in seconds (number nodes), at the input's low end and at its high end. Example: *damage against the usual, own minus enemy "
+         "(-28.8 points at -15.4..-2.0; +27.9 at 1.9..13.2)* means a team out-damaging the usual by 2 to 13 per second had about 28 "
+         "points more chance of winning the fight than an even case, and a team under it by that much about 29 points less.", "",
+         "- **Kind**: context (fixed for the match), state (the situation now), decision (a choice the team made), execution (how the "
+         "play was carried out). Only decision and execution inputs can be a fix; **[marks the situation]** flags an input that "
+         "predicts the previous result as well as the next, so it describes the spot rather than causing the result. **Cap**: the "
+         "number of inputs the node's data can carry (one per 20 of the rarer outcome); a node over its cap keeps Denning's and "
+         "supported inputs and prunes Claude's unclear ones first.", "",
+         "- Nodes that look alike are the same event read from a different side or at a different moment, by design: *run outcome* "
+         "(the running team), *run defence* (the defending team, every run) and *capture speed* (captures only, how long); *flag "
+         "answer* (how well one answering run was executed) and *flag swing* (how the lead moves over a minute). A node's result "
+         "can be another node's input (split answer feeds split effect and collapse): that is how chains are followed back.", "",
+         "- **Denning** in a definition column is the player whose rulings define the engine's terms (docs/RULINGS.md); "
+         "\"Claude's, to confirm\" marks a detection rule Claude wrote that he has not yet ruled on.", "",
+         "## Glossary (the measured terms in game language)", ""]
+    L += [f"- **{k}**: {v}" for k, v in GLOSSARY]
+    L += ["", "## Tier 2: decision nodes (the macro answer)", ""]
     L += decision_lines()
     L += ["## Tier 3: execution nodes (the micro answer)", ""]
     order = ["fight_outcome", "power_play", "run_outcome", "run_defence", "capture_speed", "flag_swing", "split_chance",

@@ -4,6 +4,43 @@
 
 Trained on 356 matches. Every fitted model answers one question and appears once. Each input has a kind: **context** (fixed for the match) and **state** (the situation now) are adjustment and never a fix; **decision** (a choice the team made) and **execution** (how well it was carried out) are the only candidates for "what should have been done" and "what went wrong". What the other team did during the same window is measured beside a node, never fitted. An input that predicts the previous result as well as the next **marks the situation** and is never a fix. Every link's status comes from refitting without it on matches the model never saw.
 
+## How to read the tables
+
+- **Gain**: how much worse the node predicts matches it never saw when that cause group's inputs are left out (log loss for yes/no nodes, seconds of typical error for number nodes); ± is the spread across the six held-out groups of matches. **Status**: *supported* = the gain is more than twice its spread; *rejected* = leaving the group out predicts better by that much; *not clear yet* = anything between, so read it as a lead. A supported group with a small gain is real but small.
+
+- **Reading**: the node's curve for that input, in points of result chance for an otherwise even case (yes/no nodes) or in seconds (number nodes), at the input's low end and at its high end. Example: *damage against the usual, own minus enemy (-28.8 points at -15.4..-2.0; +27.9 at 1.9..13.2)* means a team out-damaging the usual by 2 to 13 per second had about 28 points more chance of winning the fight than an even case, and a team under it by that much about 29 points less.
+
+- **Kind**: context (fixed for the match), state (the situation now), decision (a choice the team made), execution (how the play was carried out). Only decision and execution inputs can be a fix; **[marks the situation]** flags an input that predicts the previous result as well as the next, so it describes the spot rather than causing the result. **Cap**: the number of inputs the node's data can carry (one per 20 of the rarer outcome); a node over its cap keeps Denning's and supported inputs and prunes Claude's unclear ones first.
+
+- Nodes that look alike are the same event read from a different side or at a different moment, by design: *run outcome* (the running team), *run defence* (the defending team, every run) and *capture speed* (captures only, how long); *flag answer* (how well one answering run was executed) and *flag swing* (how the lead moves over a minute). A node's result can be another node's input (split answer feeds split effect and collapse): that is how chains are followed back.
+
+- **Denning** in a definition column is the player whose rulings define the engine's terms (docs/RULINGS.md); "Claude's, to confirm" marks a detection rule Claude wrote that he has not yet ruled on.
+
+## Glossary (the measured terms in game language)
+
+- **morale**: death penalty and boosts, in percent of maximum health, summed over a team's eight players (-60 to +10 each); "own minus enemy" is the gap
+- **stand**: who holds the flag stand: 1 own team, 0 nobody, -1 the enemy
+- **flag lead**: seconds the team is ahead (+) or behind (-) in the flag exchange: how much sooner than the enemy it could capture next
+- **boost clock**: seconds until the stand holder's next morale boost (every 2 minutes held)
+- **time down**: seconds the team's dead players have spent dead so far, own minus enemy
+- **main**: the team's main group (players within 2,500 units of each other, not splitting or running)
+- **players within one spike**: players whose health, after death penalty, an enemy spike build could take in one spike (DP stacking)
+- **turtling**: the team holding inside its own base or pit (share of live players at home)
+- **pit pressure**: players of each side within 500 units of a pit, own minus enemy
+- **team strength gap**: the measured rating gap between the two guilds (fitted rating blended with the lineup who played); 400 points is about 10 to 1 odds
+- **the usual**: the median for that role across every stored fight (damage per second on players), so output is judged against what that role normally does
+- **value (of an enchantment or hex)**: its measured output: recorded damage, healing and prevented damage per second while up, plus the drop in the bearer's output after a strip
+- **pit NPC value**: the pit NPCs alive priced in win points (knights, archers, Bodyguard) from the win model
+- **snare, speed and escape power**: from the bar's skills at the player's attribute rank: slow fraction x seconds x uses per minute (snares), speed bonus x seconds x uses per minute (speed), Shadow Steps (escapes); measured seconds replace the formula once a skill has 15+ uses
+- **skill-seconds disabled**: for each enemy skill disabled by Complicate, Power Lock, Power Block or Blackout, the seconds it stayed disabled, added up
+- **pip-seconds**: health degeneration put on the enemy: pips (2 health per second each) x seconds, added up
+- **health ceiling**: maximum health after death penalty (what a spike has to get through)
+- **backup flag, waiting runner**: a second flag held near the stand while your team holds it; a runner standing at the spawn ready for the next flag
+- **flag model**: the engine's estimate of how many seconds each team needs to capture next, from carrier positions, speeds and spawns
+- **distance**: game units: 1,000 is about the aggro bubble's radius; a spell's cast range is about 1,250; a flag run is 4,000 to 9,000
+- **the 28:00 tiebreak**: a match that reaches 28:00 goes to the team that dealt more Lord damage
+- **split depth**: the nearest split member's distance to the defending pit: smaller is deeper into the base
+
 ## Tier 2: decision nodes (the macro answer)
 
 | Kind | Moment | Choices | Definition |
@@ -30,47 +67,51 @@ Cases per kind in the usual play (last report): after_wipe 821, boost_clock 1322
 
 2,718 rows (a fight), 46% positive, 355 matches. Held out by match: log loss 0.2324 against 0.6908 (adds to the simple baseline). Inputs 33 of a cap of 63.
 
-| Link (cause group) | Kind | Status | Gain | Inputs |
+| Cause group | Kind | Status | Gain | Inputs (reading at the low end; at the high end) |
 |---|---|---|---|---|
-| Scoreboard (S.scoreboard) | state | supported | +0.1008 ± 0.0092 | morale, own minus enemy (discovery, approved); who is winning the fight (fightstate.py; discovery, approved); time down, own minus enemy (discovery, approved); stand (discovery, approved); players within one spike, own minus enemy (discovery, approved); alive, own minus enemy (discovery, approved) |
-| Burst timing (P.2) | execution | supported | +0.0233 ± 0.0062 | spikes, own minus enemy; median spike spread (s), own minus enemy |
-| Pressure (K.1) | execution | supported | +0.0216 ± 0.002 | damage against the usual of the players alive, own minus enemy |
-| Allocation (A.allocation) | state | supported | +0.0157 ± 0.0013 | own players in the fight; enemy players in the fight |
-| Wrong casts (P.17) | execution | supported | +0.0099 ± 0.003 | interrupted after casting into a ready interrupt, per cast, own minus enemy; attacks while Blind per player, own minus enemy; casts while Dazed, per cast, own minus enemy |
-| Build features (C.builds) | context | supported | +0.0046 ± 0.0012 | hex skills on own bars (discovery, approved); heal skills on own bars (discovery, approved) |
-| Team strength (C.strength) | context | not clear yet | +0.0015 ± 0.0016 | team strength gap |
-| Peel (P.13) | execution | not clear yet | +0.0005 ± 0.0009 | own frontline damage share on attackers of own backline, minus the enemy's |
-| Disables (P.25) | execution | not clear yet | +0.0001 ± 0.0011 | skill-seconds disabled on the other team per 10 s, own minus enemy |
-| Cast prevention (P.26) | execution | not clear yet | +0.0001 ± 0.0007 | seconds of Shame, Guilt or Diversion on the other team per 10 s, own minus enemy [marks the situation] |
-| Enchantment strips (P.18) | execution | not clear yet | -0.0001 ± 0.0015 | value of enchantments stripped per 10 s, own minus enemy; share of strips on the best target in range, own minus enemy [marks the situation] |
-| Baited interrupts (P.23) | execution | not clear yet | -0.0004 ± 0.0008 | enemy interrupts baited (landed on nothing after a cancel), per 10 s, own minus enemy |
-| Target choice (P.1) | execution | not clear yet | -0.0007 ± 0.0007 | share of damage on enemy healers, own minus enemy (Bounty: going after the monks) |
-| Degen pressure (P.22) | execution | not clear yet | -0.0008 ± 0.0008 | degeneration put on the other team, pip-seconds per 10 s, own minus enemy |
-| Offensive knockdowns (P.24) | execution | not clear yet | -0.0008 ± 0.0007 | knockdowns landed per 10 s, own minus enemy; knockdowns on casting targets per 10 s, own minus enemy |
-| Blind on enemies (P.19) | execution | rejected | -0.0014 ± 0.0006 | seconds the enemy frontline spent Blind, own minus enemy; seconds Blind from defensive Blinds, own minus enemy |
-| Condition removal (P.5) | execution | not clear yet | -0.0018 ± 0.0018 | value-weighted seconds hexes stayed on own players, own minus enemy; share of hex removals that took the most costly hex in range, own minus enemy |
-| Kiting (P.21) | execution | rejected | -0.002 ± 0.0006 | seconds own players kept their distance from melee heading for them, per 10 s, own minus enemy; seconds own players kited enemy melee (chased without being hit), per 10 s, own minus enemy |
+| Scoreboard (state) | state | supported | +0.1008 ± 0.0092 | morale, own minus enemy (-18.3 points at -470..-213.5; +35.7 at 214.5..410); who is winning the fight (-21.6 points at -1.9..-0.43; +26.2 at 0.41..2.42); time down, own minus enemy (-14.9 points at -630..-172.5; +32.4 at 192.5..490); stand (-3.8 points at -1..-0.5; +3.8 at 0.5..1); players within one spike, own minus enemy (-12.8 points at -8..-7.5; +19 at 7.5..8); alive, own minus enemy (-12.3 points at -7..-4.5; +14.6 at 4.5..7) |
+| Burst timing | execution | supported | +0.0233 ± 0.0062 | spikes, own minus enemy (-37.4 points at -4..-2.5; +34 at 2.5..4); median spike spread (s), own minus enemy (+8.7 points at -2.5..-1.17; -35.5 at 1.27..2.6) |
+| Pressure | execution | supported | +0.0216 ± 0.002 | damage against the usual of the players alive, own minus enemy (-30.5 points at -15.06..-1.87; +33.9 at 1.9..13.46) |
+| Who is where (allocation) | state | supported | +0.0157 ± 0.0013 | own players in the fight (-36.6 points at 0..0.5; +20.1 at 7.5..8); enemy players in the fight (+32.7 points at 0..0.5; -20.1 at 7.5..8) |
+| Wrong casts | execution | supported | +0.0099 ± 0.003 | interrupted after casting into a ready interrupt, per cast, own minus enemy (+27.2 points at -0.28..-0.08; -27 at 0.09..0.4); attacks while Blind per player, own minus enemy (-12.7 points at -2.25..-0.94; -0.2 at 0.87..2.5); casts while Dazed, per cast, own minus enemy (+2.8 points at -0.27..-0.06; +6.5 at 0.09..0.5) |
+| Build features | context | supported | +0.0046 ± 0.0012 | hex skills on own bars (+9.9 points at 0..0.5; +0.1 at 14.5..19); heal skills on own bars (+18.7 points at 0..8.5; -13.1 at 17.5..19) |
+| Team strength | context | not clear yet | +0.0015 ± 0.0016 | team strength gap (-10.4 points at -1183..-647; +13 at 621..1183) |
+| Peel | execution | not clear yet | +0.0005 ± 0.0009 | own frontline damage share on attackers of own backline, minus the enemy's (-6.6 points at -1..-0.67; +3.2 at 0.7..1) |
+| Disables | execution | not clear yet | +0.0001 ± 0.0011 | skill-seconds disabled on the other team per 10 s, own minus enemy (+3.7 points at -64..-29.75; -18.3 at 31..68) |
+| Cast prevention | execution | not clear yet | +0.0001 ± 0.0007 | seconds of Shame, Guilt or Diversion on the other team per 10 s, own minus enemy (+6.8 points at -7..-3.02; +7 at 2.98..6) [marks the situation] |
+| Enchantment strips | execution | not clear yet | -0.0001 ± 0.0015 | value of enchantments stripped per 10 s, own minus enemy (-8.4 points at -89.45..-26.27; +6.4 at 23.66..82.56); share of strips on the best target in range, own minus enemy (+2.9 points at -1..-0.9; -2.9 at 0.88..1) [marks the situation] |
+| Baited interrupts | execution | not clear yet | -0.0004 ± 0.0008 | enemy interrupts baited (landed on nothing after a cancel), per 10 s, own minus enemy (-6.3 points at -1.5..-0.75; +11.4 at 0.75..1.5) |
+| Target choice | execution | not clear yet | -0.0007 ± 0.0007 | share of damage on enemy healers, own minus enemy (-1.3 points at -1..-0.59; +3.9 at 0.68..1) |
+| Degen pressure | execution | not clear yet | -0.0008 ± 0.0008 | degeneration put on the other team, pip-seconds per 10 s, own minus enemy (-2.6 points at -440.35..-117.95; +0.9 at 131.43..610.15) |
+| Offensive knockdowns | execution | not clear yet | -0.0008 ± 0.0007 | knockdowns landed per 10 s, own minus enemy (-11.5 points at -3.5..-1.75; +17.2 at 1.75..4.5); knockdowns on casting targets per 10 s, own minus enemy (+18.9 points at -2.5..-1.25; -0 at 1.25..2) |
+| Blind on enemies | execution | rejected | -0.0014 ± 0.0006 | seconds the enemy frontline spent Blind, own minus enemy (-21.9 points at -14.1..-8.65; +4.7 at 9.35..27.1); seconds Blind from defensive Blinds, own minus enemy (+7.4 points at -15..-7.9; +22.1 at 7.15..14.1) |
+| Removal (hexes and conditions) | execution | not clear yet | -0.0018 ± 0.0018 | value-weighted seconds hexes stayed on own players, own minus enemy (-10.2 points at -28.95..-11.98; +11.3 at 11.94..29.6); share of hex removals that took the most costly hex in range, own minus enemy (-5.6 points at -1..-0.9; +9.8 at 0.9..1) |
+| Kiting | execution | rejected | -0.002 ± 0.0006 | seconds own players kept their distance from melee heading for them, per 10 s, own minus enemy (-0.5 points at -10.5..-2.25; +3 at 2.75..14.5); seconds own players kited enemy melee (chased without being hit), per 10 s, own minus enemy (-1.5 points at -6.5..-3.25; -1.9 at 2.75..9) |
+
+**What to act on** (supported decision and execution inputs): spikes, own minus enemy; median spike spread (s), own minus enemy; damage against the usual of the players alive, own minus enemy; interrupted after casting into a ready interrupt, per cast, own minus enemy; attacks while Blind per player, own minus enemy; casts while Dazed, per cast, own minus enemy.
 
 ### power play: Does a power play (any numbers advantage at main) kill?
 
 3,277 rows (a power-play window), 39% positive, 353 matches. Held out by match: log loss 0.3551 against 0.67 (adds to the simple baseline). Inputs 25 of a cap of 64.
 
-| Link (cause group) | Kind | Status | Gain | Inputs |
+| Cause group | Kind | Status | Gain | Inputs (reading at the low end; at the high end) |
 |---|---|---|---|---|
-| Allocation (A.allocation) | decision/state | supported | +0.0411 ± 0.0041 | share of the enemy's missing player-seconds: dead; on the back side or push side; running the flag; enemy main; players up [marks the situation]; in a base or pit; own main |
-| Damage uptime (K.2) | execution | supported | +0.0215 ± 0.0038 | own damage per second against the usual of the players alive |
-| Target choice (P.1) | execution | supported | +0.0073 ± 0.0022 | share of own damage on enemy players that landed on enemy healers (Bounty: going after the monks); share of own spikes on healers |
-| Team strength (C.strength) | context | supported | +0.007 ± 0.0016 | team strength gap |
-| Scoreboard (S.scoreboard) | state | supported | +0.0069 ± 0.0012 | time down, own minus enemy (discovery, approved); players carrying a flag, own minus enemy (discovery, approved) |
-| Offensive knockdowns (P.24) | execution | supported | +0.0065 ± 0.0026 | knockdowns landed on the enemy per 10 s (Denning: offensive knockdowns); of which on a target that was casting, per 10 s |
-| Burst timing (P.2) | execution | supported | +0.0063 ± 0.0024 | own spikes per 10 s; median spread of own spikes (s) |
-| Disables (P.25) | execution | supported | +0.0043 ± 0.0015 | skill-seconds disabled on the enemy per 10 s (Complicate, Power Lock, Power Block, Blackout) |
-| Degen pressure (P.22) | execution | not clear yet | +0.0005 ± 0.0012 | degeneration put on the enemy, pip-seconds per 10 s (conditions and degen hexes) |
-| Cast prevention (P.26) | execution | not clear yet | +0.0003 ± 0.0009 | seconds Shame, Guilt or Diversion sat on enemies, per 10 s |
-| Flag lead (R.3) | state | not clear yet | +0.0001 ± 0.0011 | flag lead (s) |
-| Control received (K.11) | execution | not clear yet | -0.0011 ± 0.0006 | seconds own attackers spent Blind, per 10 s |
-| Build features (C.builds) | context | not clear yet | -0.0012 ± 0.0007 | enemy strips against own prots (discovery, approved) |
-| Commitment (P.14) | decision | not clear yet | -0.0014 ± 0.0014 | pushed (1) or held (0) |
+| Who is where (allocation) | decision/state | supported | +0.0411 ± 0.0041 | share of the enemy's missing player-seconds: dead (-18.7 points at 0..0.01; +20.5 at 0.99..1); on the back side or push side (+5.5 points at 0..0.01; -10.4 at 0.99..1); running the flag (+2.4 points at 0..0.01; -0.3 at 0.72..1); enemy main (+10.2 points at 1..1.5; -2.2 at 6.5..7); players up (-1.6 points at 1..1.5; +17.5 at 4.5..7) [marks the situation]; in a base or pit (+1.3 points at 0..0.01; -10.5 at 0.74..1); own main (-4.9 points at 3..3.5; +0.9 at 7.5..8) |
+| Damage uptime | execution | supported | +0.0215 ± 0.0038 | own damage per second against the usual of the players alive (-31.9 points at 0..0.56; +23.5 at 3.16..21.09) |
+| Target choice | execution | supported | +0.0073 ± 0.0022 | share of own damage on enemy players that landed on enemy healers (+19.7 points at 0..0.01; +13.1 at 0.81..1); share of own spikes on healers (+2.3 points at 0..0.07; +2.2 at 0.9..1) |
+| Team strength | context | supported | +0.007 ± 0.0016 | team strength gap (-13.6 points at -1183..-547; +16 at 621..1183) |
+| Scoreboard (state) | state | supported | +0.0069 ± 0.0012 | time down, own minus enemy (-7.6 points at -180..-52.5; +0 at 175..575); players carrying a flag, own minus enemy (+0.1 points at -1..-0.5; -8.8 at 0.5..1) |
+| Offensive knockdowns | execution | supported | +0.0065 ± 0.0026 | knockdowns landed on the enemy per 10 s (-0.2 points at 0..0.03; +22.6 at 1.87..5); of which on a target that was casting, per 10 s (+1.5 points at 0..0.04; +4.8 at 0.89..2) |
+| Burst timing | execution | supported | +0.0063 ± 0.0024 | own spikes per 10 s (-5 points at 0..0.04; +45.3 at 1.34..4); median spread of own spikes (s) (+9.3 points at 0..0.23; -7.5 at 2.77..3) |
+| Disables | execution | supported | +0.0043 ± 0.0015 | skill-seconds disabled on the enemy per 10 s (Complicate, Power Lock, Power Block, Blackout) (+3.9 points at 0..0.3; +4.6 at 15.66..91.43) |
+| Degen pressure | execution | not clear yet | +0.0005 ± 0.0012 | degeneration put on the enemy, pip-seconds per 10 s (conditions and degen hexes) (+0.4 points at 0..0.07; +10 at 183.37..458.65) |
+| Cast prevention | execution | not clear yet | +0.0003 ± 0.0009 | seconds Shame, Guilt or Diversion sat on enemies, per 10 s (-0 points at 0..0.01; +7.1 at 2.88..8.57) |
+| Flag lead | state | not clear yet | +0.0001 ± 0.0011 | flag lead (s) (-2.6 points at -86..-56.5; +8.3 at 65.5..112) |
+| Control received (snares, Cripple, knockdowns on the runner) | execution | not clear yet | -0.0011 ± 0.0006 | seconds own attackers spent Blind, per 10 s (+0.2 points at 0..0.01; +2.2 at 5.94..11.5) |
+| Build features | context | not clear yet | -0.0012 ± 0.0007 | enemy strips against own prots (+0.3 points at -19..-15.5; +4.5 at -4.5..3) |
+| Commitment | decision | not clear yet | -0.0014 ± 0.0014 | pushed (1) or held (0) (-6 points at 0..0.5; +3.2 at 0.5..1) |
+
+**What to act on** (supported decision and execution inputs): own damage per second against the usual of the players alive; share of own damage on enemy players that landed on enemy healers; share of own spikes on healers; knockdowns landed on the enemy per 10 s; of which on a target that was casting, per 10 s; own spikes per 10 s; median spread of own spikes (s); skill-seconds disabled on the enemy per 10 s (Complicate, Power Lock, Power Block, Blackout).
 
 Measured beside the node, never a cause (what the enemy did in the window): enemy prot casts per 10 s; enemy healing per second; seconds the enemy kited or pre-kited own melee, per 10 s; own interrupts the enemy baited (landed on nothing after a cancel), per 10 s.
 
@@ -78,132 +119,152 @@ Measured beside the node, never a cause (what the enemy did in the window): enem
 
 11,585 rows (a run at 5, 15 and 30 s in), 67% positive, 355 matches. Held out by match: log loss 0.5376 against 0.6365 (adds to the simple baseline). Inputs 24 of a cap of 192.
 
-| Link (cause group) | Kind | Status | Gain | Inputs |
+| Cause group | Kind | Status | Gain | Inputs (reading at the low end; at the high end) |
 |---|---|---|---|---|
-| Mobility (K.13) | execution | supported | +0.0288 ± 0.0045 | seconds the carrier needs at least to reach the stand from here, at its fastest expected carry speed (its speed skills; Denning); runner's Shadow Step skills |
-| Scoreboard (S.scoreboard) | state | supported | +0.0111 ± 0.0023 | boost clock (discovery, approved); morale, own minus enemy (discovery, approved) |
-| Map geometry (C.map) | context | supported | +0.0031 ± 0.0014 | distance from the team's spawn to the stand |
-| Run timing and runner choice (P.10) | decision/execution | not clear yet | +0.002 ± 0.0014 | flag lead at the start (s); the enemy holds the stand; who carries: 0 warrior, 1 dervish, 2 assassin, 3 paragon, 4 ranger, 5 mesmer, 6 elementalist, 7 necromancer, 8 ritualist, 9 monk; seconds to the enemy's boost (if it holds) [marks the situation]; own team holds the stand; runner 0 frontline, 1 midline, 2 backline |
-| Allocation (A.allocation) | decision/state | not clear yet | +0.0013 ± 0.0012 | own main; enemy main; escorts at the start [marks the situation]; running into an enemy power play |
-| Build features (C.builds) | context | not clear yet | +0.0006 ± 0.0014 | snare skills on enemy bars (discovery, approved) |
-| Team strength (C.strength) | context | not clear yet | +0.0004 ± 0.0005 | team strength gap |
-| Control received (K.11) | execution | not clear yet | -0.0001 ± 0.0007 | snare power of live enemies within 1,300 of the runner (movepower.py); runner Crippled by this point; enemies who pushed the runner by this point; damage on the runner by this point; other conditions on the runner by this point; runner knocked down by this point |
+| Mobility (speed skills, Shadow Steps) | execution | supported | +0.0288 ± 0.0045 | seconds the carrier needs at least to reach the stand from here, at its fastest expected carry speed (its speed skills) (+28 points at 0..3.65; -27.9 at 31.05..46.4); runner's Shadow Step skills (+0.8 points at 0..0.5; -4.4 at 1.5..2) |
+| Scoreboard (state) | state | supported | +0.0111 ± 0.0023 | boost clock (+6.4 points at -120..-112.5; -21.1 at 101.5..120); morale, own minus enemy (-16.7 points at -410..-152.5; -6.8 at 136.5..419) |
+| Map | context | supported | +0.0031 ± 0.0014 | distance from the team's spawn to the stand (+8.8 points at 3654..4432.5; +4.6 at 9244..9974) |
+| Run timing and runner choice | decision/state | not clear yet | +0.002 ± 0.0014 | flag lead at the start (s) (+1.7 points at -80..-56.5; -9.9 at 58.5..125); the enemy holds the stand (-2.7 points at 0..0.5; +2.8 at 0.5..1); who carries: 0 warrior, 1 dervish, 2 assassin, 3 paragon, 4 ranger, 5 mesmer, 6 elementalist, 7 necromancer, 8 ritualist, 9 monk (-6.5 points at 0..0.5; -0.9 at 8.5..9); seconds to the enemy's boost (if it holds) (-5.4 points at 0..31.5; +3.3 at 115.5..120) [marks the situation]; own team holds the stand (-1.2 points at 0..0.5; +2.2 at 0.5..1); runner 0 frontline, 1 midline, 2 backline (+0.6 points at 0..0.5; +0.9 at 1.5..2) |
+| Who is where (allocation) | decision/state | not clear yet | +0.0013 ± 0.0012 | own main (+0.2 points at 1..1.5; +0.7 at 7.5..8); enemy main (+1.7 points at 0..1.5; -5 at 7.5..8); escorts at the start (-0.5 points at 0..0.5; -9 at 6.5..7) [marks the situation]; running into an enemy power play (-0.1 points at 0..0.5; +0.5 at 0.5..1) |
+| Build features | context | not clear yet | +0.0006 ± 0.0014 | snare skills on enemy bars (+1.1 points at 0..0.5; -16.4 at 5.5..13) |
+| Team strength | context | not clear yet | +0.0004 ± 0.0005 | team strength gap (-4.5 points at -1183..-581; -1.3 at 581..1183) |
+| Control received (snares, Cripple, knockdowns on the runner) | execution | not clear yet | -0.0001 ± 0.0007 | snare power of live enemies within 1,300 of the runner (-0.6 points at 0..1.8; -5.3 at 60.8..144.6); runner Crippled by this point (-0.4 points at 0..0.5; +11.9 at 0.5..1); enemies who pushed the runner by this point (-0.2 points at 0..0.5; -11.6 at 3.5..7); damage on the runner by this point (-0.3 points at 0..0.5; +2.6 at 464.5..1596); other conditions on the runner by this point (-0.1 points at 0..0.5; +1.3 at 5.5..23); runner knocked down by this point (-0.1 points at 0..0.5; -0.8 at 1.5..4) |
+
+**What to act on** (supported decision and execution inputs): seconds the carrier needs at least to reach the stand from here, at its fastest expected carry speed (its speed skills); runner's Shadow Step skills.
 
 ### run defence: Does an enemy run get captured? From the defending side, every run, read at 5, 15 and 30 s in.
 
 11,585 rows (an enemy run at 5, 15 and 30 s in), 67% positive, 355 matches. Held out by match: log loss 0.5336 against 0.6365 (adds to the simple baseline). Inputs 22 of a cap of 192.
 
-| Link (cause group) | Kind | Status | Gain | Inputs |
+| Cause group | Kind | Status | Gain | Inputs (reading at the low end; at the high end) |
 |---|---|---|---|---|
-| Scoreboard (S.scoreboard) | state | supported | +0.0411 ± 0.0039 | stand (discovery, approved); boost clock (discovery, approved); flag lead (discovery, approved); morale, own minus enemy (discovery, approved); time down, own minus enemy (discovery, approved) |
-| Mobility (K.13) | execution | supported | +0.0276 ± 0.0036 | seconds the carrier needs at least to reach the stand from here (its speed skills) |
-| Map geometry (C.map) | context | supported | +0.0037 ± 0.0018 | distance from the runner's spawn to the stand |
-| Allocation (A.allocation) | decision/state | not clear yet | +0.0013 ± 0.001 | defenders' main; the runner's escorts [marks the situation]; attackers' main |
-| Run timing and runner choice (P.10) | decision | not clear yet | +0.001 ± 0.0009 | who carries: 0 warrior, 1 dervish, 2 assassin, 3 paragon, 4 ranger, 5 mesmer, 6 elementalist, 7 necromancer, 8 ritualist, 9 monk |
-| Team strength (C.strength) | context | not clear yet | +0.0003 ± 0.0005 | defending team's strength gap |
-| Control received (K.11) | execution | not clear yet | +0.0 ± 0.0005 | snare power of live defenders within 1,300 of the runner (movepower.py) |
-| Mesmers free to defend (A.mesa_free) | state | not clear yet | -0.0002 ± 0.0008 | defenders alive and not on flag duty at the run's start; defenders who pushed the runner by this point; damage on the runner by this point; conditions and knockdowns on the runner by this point |
-| Mitigation (K.5) | execution | not clear yet | -0.0003 ± 0.0005 | own healing monks (discovery, approved) |
-| Build features (C.builds) | context | not clear yet | -0.0005 ± 0.0013 | snare skills on own bars (discovery, approved); enemy snares against own speed (discovery, approved); area-damage skills on own bars (discovery, approved) |
+| Scoreboard (state) | state | supported | +0.0411 ± 0.0039 | stand (-10.1 points at -1..-0.5; +6.2 at 0.5..1); boost clock (-9.3 points at -120..-101.5; -2.5 at 112.5..120); flag lead (-13.8 points at -137..-61.5; +1 at 59.5..86); morale, own minus enemy (-7.7 points at -419..-136.5; -12.3 at 152.5..410); time down, own minus enemy (+8.4 points at -525..-117.5; -14.9 at 107.5..525) |
+| Mobility (speed skills, Shadow Steps) | execution | supported | +0.0276 ± 0.0036 | seconds the carrier needs at least to reach the stand from here (its speed skills) (+28.9 points at 0..3.65; -27.7 at 31.05..46.4) |
+| Map | context | supported | +0.0037 ± 0.0018 | distance from the runner's spawn to the stand (+9.9 points at 3654..4432.5; +4.5 at 9244..9974) |
+| Who is where (allocation) | decision/state | not clear yet | +0.0013 ± 0.001 | defenders' main (-8.3 points at 0..1.5; -1.4 at 7.5..8); the runner's escorts (-0.2 points at 0..0.5; -9.8 at 6.5..7) [marks the situation]; attackers' main (+4.2 points at 1..1.5; -1.6 at 7.5..8) |
+| Run timing and runner choice | decision | not clear yet | +0.001 ± 0.0009 | who carries: 0 warrior, 1 dervish, 2 assassin, 3 paragon, 4 ranger, 5 mesmer, 6 elementalist, 7 necromancer, 8 ritualist, 9 monk (-6.8 points at 0..0.5; -0.8 at 8.5..9) |
+| Team strength | context | not clear yet | +0.0003 ± 0.0005 | defending team's strength gap (-1.2 points at -1183..-581; -3.8 at 581..1183) |
+| Control received (snares, Cripple, knockdowns on the runner) | execution | not clear yet | +0.0 ± 0.0005 | snare power of live defenders within 1,300 of the runner (-0.6 points at 0..1.8; -5 at 60.8..144.6) |
+| Defenders free (not on flag duty) | state | not clear yet | -0.0002 ± 0.0008 | defenders alive and not on flag duty at the run's start (+21.6 points at 0..3.5; -1.8 at 7.5..8); defenders who pushed the runner by this point (-0.3 points at 0..0.5; -8.4 at 3.5..7); damage on the runner by this point (-0.3 points at 0..0.5; +2.8 at 464.5..1596); conditions and knockdowns on the runner by this point (-0.2 points at 0..0.5; +0.9 at 5.5..23) |
+| Mitigation | execution | not clear yet | -0.0003 ± 0.0005 | own healing monks (-4.1 points at 0..0.5; +3.5 at 3.5..4) |
+| Build features | context | not clear yet | -0.0005 ± 0.0013 | snare skills on own bars (+1.3 points at 0..0.5; -16.9 at 5.5..13); enemy snares against own speed (-7.5 points at -9..-8.5; -13.7 at 0.5..11); area-damage skills on own bars (+0.5 points at 0..0.5; +8.6 at 10.5..16) |
+
+**What to act on** (supported decision and execution inputs): seconds the carrier needs at least to reach the stand from here (its speed skills).
 
 ### capture speed: How long does an enemy capture take? (Captures only.)
 
 2,988 rows (an enemy capture), average 39.5 s, 340 matches. Held out by match: mean absolute error (s) 13.1475 against 15.6824 (adds to the simple baseline). Inputs 10 of a cap of 74.
 
-| Link (cause group) | Kind | Status | Gain | Inputs |
+| Cause group | Kind | Status | Gain | Inputs (reading at the low end; at the high end) |
 |---|---|---|---|---|
-| Mobility (K.13) | execution | supported | +2.23 ± 0.19 | seconds the carrier needed at least, at its fastest expected carry speed (its speed skills) |
-| Map geometry (C.map) | context | supported | +0.41 ± 0.09 | distance from the runner's spawn to the stand |
-| Allocation (A.allocation) | decision/state | supported | +0.38 ± 0.06 | the runner's escorts; defenders alive and not on flag duty |
-| Run timing and runner choice (P.10) | decision | supported | +0.21 ± 0.03 | who carries: 0 warrior, 1 dervish, 2 assassin, 3 paragon, 4 ranger, 5 mesmer, 6 elementalist, 7 necromancer, 8 ritualist, 9 monk |
-| Team strength (C.strength) | context | not clear yet | +0.05 ± 0.03 | defending team's strength gap |
-| Control received (K.11) | execution | not clear yet | -0.0 ± 0.03 | conditions and knockdowns on the runner in the first 10 s; damage on the runner in the first 10 s; snare power of live defenders within 1,300 of the runner 10 s in (movepower.py); defenders who pushed the runner in the first 10 s |
+| Mobility (speed skills, Shadow Steps) | execution | supported | +2.23 ± 0.19 | seconds the carrier needed at least, at its fastest expected carry speed (its speed skills) (-15.1 s at 0.9..9.95; +14.6 at 35.95..45.4) |
+| Map | context | supported | +0.41 ± 0.09 | distance from the runner's spawn to the stand (+5.6 s at 4133..4417; -5.1 at 9242..9974) |
+| Who is where (allocation) | decision/state | supported | +0.38 ± 0.06 | the runner's escorts (-4 s at 0..0.5; +11.8 at 6.5..7); defenders alive and not on flag duty (-4.3 s at 0..3.5; +0.9 at 7.5..8) |
+| Run timing and runner choice | decision | supported | +0.21 ± 0.03 | who carries: 0 warrior, 1 dervish, 2 assassin, 3 paragon, 4 ranger, 5 mesmer, 6 elementalist, 7 necromancer, 8 ritualist, 9 monk (-4.7 s at 0..0.5; +1.4 at 8.5..9) |
+| Team strength | context | not clear yet | +0.05 ± 0.03 | defending team's strength gap (-3.2 s at -1183..-581; +0.4 at 563.5..1183) |
+| Control received (snares, Cripple, knockdowns on the runner) | execution | not clear yet | -0.0 ± 0.03 | conditions and knockdowns on the runner in the first 10 s (-0.2 s at 0..0.5; +3.6 at 2.5..7); damage on the runner in the first 10 s (-0.2 s at 0..0.5; +4.5 at 305..841); snare power of live defenders within 1,300 of the runner 10 s in (+0.1 s at 0..1.8; -3.8 at 49.85..144.6); defenders who pushed the runner in the first 10 s (+0.1 s at 0..0.5; +0.6 at 3.5..7) |
+
+**What to act on** (supported decision and execution inputs): seconds the carrier needed at least, at its fastest expected carry speed (its speed skills); the runner's escorts; who carries: 0 warrior, 1 dervish, 2 assassin, 3 paragon, 4 ranger, 5 mesmer, 6 elementalist, 7 necromancer, 8 ritualist, 9 monk.
 
 ### flag swing: How much will the flag lead change over the next minute?
 
 13,520 rows (a 20 s moment), average 0.3 s, 356 matches. Held out by match: mean absolute error (s) 26.5689 against 28.0692 (adds to the simple baseline). Inputs 28 of a cap of 338.
 
-| Link (cause group) | Kind | Status | Gain | Inputs |
+| Cause group | Kind | Status | Gain | Inputs (reading at the low end; at the high end) |
 |---|---|---|---|---|
-| Run timing and runner choice (P.10) | execution | supported | +0.8 ± 0.1 | own team holds the stand; the enemy holds the stand; seconds to own boost [marks the situation]; flag model: seconds until the enemy could capture [marks the situation]; own flag being carried now [marks the situation]; the enemy can capture before own boost; seconds to the enemy's boost [marks the situation]; own team can capture before the enemy's boost; enemy flag being carried now [marks the situation]; flag model: seconds until own team could capture [marks the situation]; a backup flag; a runner waiting |
-| Scoreboard (S.scoreboard) | state | supported | +0.58 ± 0.07 | flag lead now (s); morale, own minus enemy (discovery, approved) |
-| Team strength (C.strength) | context | not clear yet | +0.05 ± 0.03 | team strength gap |
-| Allocation (A.allocation) | decision/state | not clear yet | -0.0 ± 0.01 | own players in the enemy base; enemy players in own base; own main; enemy main; enemy players on flag duty [marks the situation]; enemy players alive; own players alive; own players on flag duty [marks the situation] |
-| Deaths (R.1) | state | not clear yet | -0.01 ± 0.02 | own deaths in the last 30 s; enemy deaths in the last 30 s |
-| Clock (C.clock) | state | not clear yet | -0.01 ± 0.0 | minute; seconds to the next res |
-| Map geometry (C.map) | context | not clear yet | -0.01 ± 0.01 | distance from the team's spawn to the stand |
+| Run timing and runner choice | state | supported | +0.8 ± 0.1 | own team holds the stand (+2.4 s at 0..0.5; -2.8 at 0.5..1); the enemy holds the stand (-2.3 s at 0..0.5; +2.7 at 0.5..1); seconds to own boost (+1.4 s at 0..17.5; -4.6 at 114.5..120) [marks the situation]; flag model: seconds until the enemy could capture (+0.1 s at 1..5.5; +2 at 58.5..180) [marks the situation]; own flag being carried now (-0.8 s at 0..0.5; +4 at 0.5..1) [marks the situation]; the enemy can capture before own boost (+1 s at 0..0.5; -1.5 at 0.5..1); seconds to the enemy's boost (-0.7 s at 0..17.5; +0.5 at 115.5..120) [marks the situation]; own team can capture before the enemy's boost (-0.9 s at 0..0.5; +1.3 at 0.5..1); enemy flag being carried now (+0.6 s at 0..0.5; -2.9 at 0.5..1) [marks the situation]; flag model: seconds until own team could capture (-2.5 s at 1..6.5; +0 at 58.5..180) [marks the situation]; a backup flag (-0.3 s at 0..0.5; +5.4 at 0.5..1); a runner waiting (+0 s at 0..0.5; -0.5 at 0.5..1) |
+| Scoreboard (state) | state | supported | +0.58 ± 0.07 | flag lead now (s) (+14 s at -137..-62.5; -14.7 at 61.5..109); morale, own minus enemy (-11.6 s at -445..-178.5; +12 at 196.5..430) |
+| Team strength | context | not clear yet | +0.05 ± 0.03 | team strength gap (-5.5 s at -1183..-590; +4.9 at 590..1183) |
+| Who is where (allocation) | decision/state | not clear yet | -0.0 ± 0.01 | own players in the enemy base (-0.4 s at 0..0.5; -0.4 at 7.5..8); enemy players in own base (+0.3 s at 0..0.5; -0.5 at 7.5..8); own main (-0.6 s at 0..2.5; -0.8 at 7.5..8); enemy main (-2 s at 0..2.5; +0.2 at 7.5..8); enemy players on flag duty (-0.2 s at 0..0.5; -4.6 at 2.5..5) [marks the situation]; enemy players alive (-4.6 s at 0..3.5; -0.2 at 7.5..8); own players alive (+2.9 s at 0..4.5; +0 at 7.5..8); own players on flag duty (+0.2 s at 0..0.5; -8.2 at 2.5..4) [marks the situation] |
+| Deaths | state | not clear yet | -0.01 ± 0.02 | own deaths in the last 30 s (+0.6 s at 0..0.5; -1.7 at 3.5..8); enemy deaths in the last 30 s (-0.2 s at 0..0.5; +2.4 at 3.5..8) |
+| Clock | state | not clear yet | -0.01 ± 0.0 | minute (+0.3 s at 0.3..1.15; -0.3 at 21.15..27); seconds to the next res (-0 s at 20..30; -0.2 at 110..120) |
+| Map | context | not clear yet | -0.01 ± 0.01 | distance from the team's spawn to the stand (+0.7 s at 3654..4426.5; -0.6 at 9251.5..9974) |
+
+**What to act on** (supported decision and execution inputs): nothing yet: the supported inputs are all situation (context and state), so this node explains the result but does not yet name a fix.
 
 ### split chance: Does a team start a split in the next 30 s?
 
 26,277 rows (a 15 s moment), 14% positive, 356 matches. Held out by match: log loss 0.343 against 0.3962 (adds to the simple baseline). Inputs 19 of a cap of 177.
 
-| Link (cause group) | Kind | Status | Gain | Inputs |
+| Cause group | Kind | Status | Gain | Inputs (reading at the low end; at the high end) |
 |---|---|---|---|---|
-| Scoreboard (S.scoreboard) | state | supported | +0.029 ± 0.0017 | own main; turtling, own minus enemy (discovery, approved); players splitting, own minus enemy (discovery, approved); own alive; enemy main; pit pressure, own minus enemy (discovery, approved); own team holds the stand; flag lead (s); enemy alive; the enemy holds the stand |
-| Build features (C.builds) | context | supported | +0.0104 ± 0.0026 | own build is a spike build (discovery, approved); knockdown skills on own bars (discovery, approved); snare power on enemy bars; speed power on own bars (movepower.py); Shadow Step skills on own bars; snare power on own bars |
-| Clock (C.clock) | state | supported | +0.0032 ± 0.0012 | minute; seconds to the next res |
-| Team strength (C.strength) | context | not clear yet | -0.0002 ± 0.0003 | team strength gap |
+| Scoreboard (state) | state | supported | +0.029 ± 0.0017 | own main (+27.5 points at 0..2.5; -17.5 at 7.5..8); turtling, own minus enemy (+1 points at -1..-0.94; -29.9 at 0.94..1); players splitting, own minus enemy (-16.3 points at -5..-4.5; -3 at 1.5..5); own alive (-35.6 points at 0..3.5; +3.2 at 7.5..8); enemy main (+8.3 points at 0..2.5; -7.9 at 7.5..8); pit pressure, own minus enemy (+14.2 points at -8..-7.5; -10.7 at 7.5..8); own team holds the stand (-1 points at 0..0.5; +1.2 at 0.5..1); flag lead (s) (-1 points at -140..-61.5; +1 at 62.5..140); enemy alive (+2.6 points at 0..3.5; -0.2 at 7.5..8); the enemy holds the stand (+0.1 points at 0..0.5; -0.1 at 0.5..1) |
+| Build features | context | supported | +0.0104 ± 0.0026 | own build is a spike build (+5.9 points at 0..0.5; -13.8 at 0.5..1); knockdown skills on own bars (-0.2 points at 0..0.5; -25.5 at 6.5..8); snare power on enemy bars (-7 points at 0..1.8; +5.6 at 88.8..263.4); speed power on own bars (-8.2 points at 6.5..35; +4.4 at 76.15..106.4); Shadow Step skills on own bars (-5 points at 0..0.5; -3.6 at 8.5..10); snare power on own bars (+0.7 points at 0..1.8; +4.6 at 90.9..263.4) |
+| Clock | state | supported | +0.0032 ± 0.0012 | minute (-5.4 points at 0.5..1.35; +15.5 at 21.1..27.5); seconds to the next res (-2.2 points at 15..22.5; -3.2 at 112.5..120) |
+| Team strength | context | not clear yet | -0.0002 ± 0.0003 | team strength gap (-1 points at -1183..-604.5; +5.3 at 581..1183) |
+
+**What to act on** (supported decision and execution inputs): nothing yet: the supported inputs are all situation (context and state), so this node explains the result but does not yet name a fix.
 
 ### split answer: How long until the first defender reaches a split in the base?
 
 968 rows (a split entering the base), average -5.5 s, 250 matches. Held out by match: mean absolute error (s) 15.6319 against 17.9628 (adds to the simple baseline). Inputs 10 of a cap of 24.
 
-| Link (cause group) | Kind | Status | Gain | Inputs |
+| Cause group | Kind | Status | Gain | Inputs (reading at the low end; at the high end) |
 |---|---|---|---|---|
-| Allocation (A.allocation) | decision | supported | +0.86 ± 0.2 | split size |
-| Mesmers free to defend (A.mesa_free) | state | supported | +0.59 ± 0.14 | nearest defender to its base at the split's entry; defenders alive and not on flag duty |
-| Scoreboard (S.scoreboard) | state | supported | +0.41 ± 0.09 | players splitting, own minus enemy (discovery, approved); attackers' main; defenders' flag lead (s); defenders alive |
-| Build features (C.builds) | context | not clear yet | +0.09 ± 0.05 | area-damage skills on the defenders' bars (discovery, approved) |
-| Clock (C.clock) | state | not clear yet | +0.07 ± 0.06 | minute |
-| Team strength (C.strength) | context | not clear yet | +0.0 ± 0.04 | defending team's strength gap |
+| Who is where (allocation) | decision | supported | +0.86 ± 0.2 | split size (+15.9 s at 1..1.5; -10.1 at 5.5..7) |
+| Defenders free (not on flag duty) | state | supported | +0.59 ± 0.14 | nearest defender to its base at the split's entry (+8.3 s at 17..368.5; +11.6 at 6896..13999); defenders alive and not on flag duty (+2.4 s at 0..3.5; -0.7 at 7.5..8) |
+| Scoreboard (state) | state | supported | +0.41 ± 0.09 | players splitting, own minus enemy (+9.5 s at -6..-5.5; +12 at 2.5..4); attackers' main (+7.8 s at 1..1.5; -0.3 at 7.5..8); defenders' flag lead (s) (+0.6 s at -80..-63.5; +2.9 at 70.5..80); defenders alive (+5.9 s at 0..3.5; +0.1 at 7.5..8) |
+| Build features | context | not clear yet | +0.09 ± 0.05 | area-damage skills on the defenders' bars (+0.3 s at 0..0.5; +5.8 at 11.5..12) |
+| Clock | state | not clear yet | +0.07 ± 0.06 | minute (+4.5 s at 0.5..1.45; -1.1 at 25.25..27.9) |
+| Team strength | context | not clear yet | +0.0 ± 0.04 | defending team's strength gap (-0 s at -1059..-667.5; -0.8 at 568..1108) |
+
+**What to act on** (supported decision and execution inputs): split size.
 
 ### split effect: Does a split in the base kill a pit NPC?
 
 968 rows (a split entering the base), 38% positive, 250 matches. Held out by match: log loss 0.6335 against 0.6676 (adds to the simple baseline). Inputs 15 of a cap of 18.
 
-| Link (cause group) | Kind | Status | Gain | Inputs |
+| Cause group | Kind | Status | Gain | Inputs (reading at the low end; at the high end) |
 |---|---|---|---|---|
-| Scoreboard (S.scoreboard) | state | supported | +0.0281 ± 0.0101 | flag lead (discovery, approved); defenders' pit NPC value when the split entered the base; Lord damage, own minus enemy (discovery, approved); morale, own minus enemy (discovery, approved); defenders alive and not on flag duty at entry |
-| Build features (C.builds) | context | supported | +0.008 ± 0.0018 | prot skills on the defenders' bars (discovery, approved) |
-| Split answer (P.11) | decision/execution | not clear yet | +0.0027 ± 0.0019 | seconds until the first defender arrived (60 = never); defenders who came |
-| Allocation (A.allocation) | decision/state | not clear yet | +0.0011 ± 0.001 | own main minus enemy main meanwhile; split size |
-| Control received (K.11) | execution | not clear yet | +0.0003 ± 0.0012 | snare power of the defenders who came (movepower.py) |
-| Mobility (K.13) | execution | not clear yet | +0.0001 ± 0.0011 | split members' speed power (movepower.py); escape power on the splitting team's bars (discovery, approved) |
-| Team strength (C.strength) | context | not clear yet | +0.0001 ± 0.0005 | splitting team's strength gap |
-| Monk load (K.8) | decision | not clear yet | -0.0003 ± 0.001 | healers in the split |
+| Scoreboard (state) | state | supported | +0.0281 ± 0.0101 | flag lead (-7.1 points at -80..-53.5; +4.2 at 54.5..80); defenders' pit NPC value when the split entered the base (-13.3 points at 0..0.75; +3 at 11.25..13.5); Lord damage, own minus enemy (-3.3 points at -17769..-631; -9 at 1342..16474); morale, own minus enemy (-6.6 points at -430..-124.5; +3 at 87.5..395); defenders alive and not on flag duty at entry (+12.3 points at 0..4.5; +0.5 at 7.5..8) |
+| Build features | context | supported | +0.008 ± 0.0018 | prot skills on the defenders' bars (+5.5 points at 0..9.5; -5.4 at 14.5..19) |
+| Split answer | decision/execution | not clear yet | +0.0027 ± 0.0019 | seconds until the first defender arrived (60 = never) (+3 points at -30..-29.5; +0.1 at 0.5..60); defenders who came (-0 points at 0..1.5; +1.6 at 7.5..8) |
+| Who is where (allocation) | decision/state | not clear yet | +0.0011 ± 0.001 | own main minus enemy main meanwhile (-0.3 points at -6.7..-1.75; -1.7 at 0.45..6); split size (+1.4 points at 1..1.5; -3 at 5.5..7) |
+| Control received (snares, Cripple, knockdowns on the runner) | execution | not clear yet | +0.0003 ± 0.0012 | snare power of the defenders who came (-0.9 points at 0..1.8; +3.1 at 60.35..132.2) |
+| Mobility (speed skills, Shadow Steps) | execution | not clear yet | +0.0001 ± 0.0011 | split members' speed power (-2.1 points at 0..11; +3.1 at 38.75..76.6); escape power on the splitting team's bars |
+| Team strength | context | not clear yet | +0.0001 ± 0.0005 | splitting team's strength gap (-1.5 points at -1108..-401.5; +0.6 at 516..1059) |
+| Monk load | decision | not clear yet | -0.0003 ± 0.001 | healers in the split (-1.6 points at 0..0.5; +2.5 at 2.5..4) |
+
+**What to act on** (supported decision and execution inputs): nothing yet: the supported inputs are all situation (context and state), so this node explains the result but does not yet name a fix.
 
 ### collapse: Does a split member die when the defenders collapse on it?
 
 2,251 rows (a split), 13% positive, 325 matches. Held out by match: log loss 0.3146 against 0.3927 (adds to the simple baseline). Inputs 16 of a cap of 14.
 
-| Link (cause group) | Kind | Status | Gain | Inputs |
+| Cause group | Kind | Status | Gain | Inputs (reading at the low end; at the high end) |
 |---|---|---|---|---|
-| Team strength (C.strength) | context | supported | +0.0102 ± 0.0028 | splitting team's strength gap |
-| Health ceiling (K.9) | state | not clear yet | +0.0067 ± 0.0034 | worst morale among the split members (death penalty lowers max health; Denning) |
-| Pressure (K.1) | execution | supported | +0.0064 ± 0.0029 | the defenders who came: their usual damage per second, summed (Denning: can they kill it) |
-| Mitigation (K.5) | decision/execution | supported | +0.0049 ± 0.0017 | healers on the split [marks the situation]; healing monks on the defending team (discovery, approved) [marks the situation]; self-heals and self-defence skills on the split members' bars (Denning: can it be killed) [marks the situation] |
-| Split depth (P.20) | execution | supported | +0.0023 ± 0.0008 | nearest split member's median distance to the defending pit over the split; nearest split member's distance to the defending pit when the first defender arrived |
-| Control received (K.11) | execution | not clear yet | +0.0014 ± 0.0009 | snare power of the defenders who came (movepower.py; how strong, not just whether) |
-| Split answer (P.11) | execution | not clear yet | +0.0009 ± 0.0007 | seconds until the first defender arrived (60 = never) |
-| Scoreboard (S.scoreboard) | state | not clear yet | -0.0004 ± 0.0004 | defending pit NPCs alive, in win points (Denning: what the split can get) |
-| Build features (C.builds) | context | not clear yet | -0.0007 ± 0.001 | split members' measured damage per second against NPCs (Denning: what the split can get) |
-| Collapse timing (P.9) | decision/execution | not clear yet | -0.002 ± 0.0019 | defenders arriving within 5 s of the first, minus the split's size (numbers at contact); seconds from the split's first hit on an NPC to the first defender's arrival; seconds to the next res when the first defender arrived; defenders arriving within 10 s of the first (arrival spread) |
+| Team strength | context | supported | +0.0102 ± 0.0028 | splitting team's strength gap (+15.1 points at -1183..-592.5; -7.4 at 621..1183) |
+| Health ceiling | state | not clear yet | +0.0067 ± 0.0034 | worst morale among the split members (death penalty lowers max health) (+27.7 points at -60..-44.5; -8.1 at 9.5..10) |
+| Pressure | execution | supported | +0.0064 ± 0.0029 | the defenders who came: their usual damage per second, summed (-15 points at 0..1.7; +18 at 41.7..53.7) |
+| Mitigation | decision/execution | supported | +0.0049 ± 0.0017 | healers on the split (+3.5 points at 0..0.5; -9.3 at 3.5..4) [marks the situation]; healing monks on the defending team (+11.9 points at 0..0.5; -1.6 at 3.5..4) [marks the situation]; self-heals and self-defence skills on the split members' bars (+0.8 points at 0..0.5; +1.2 at 5.5..8) [marks the situation] |
+| Split depth | execution | supported | +0.0023 ± 0.0008 | nearest split member's median distance to the defending pit over the split (+8.8 points at 0..808; -6.6 at 8044..11011); nearest split member's distance to the defending pit when the first defender arrived (+6 points at 0..1143.5; -0.1 at 8619.5..12302) |
+| Control received (snares, Cripple, knockdowns on the runner) | execution | not clear yet | +0.0014 ± 0.0009 | snare power of the defenders who came (-4.4 points at 0..1.8; +14 at 80.15..132.2) |
+| Split answer | execution | not clear yet | +0.0009 ± 0.0007 | seconds until the first defender arrived (60 = never) (+6.2 points at -30..-29.5; -0.6 at 59..60) |
+| Scoreboard (state) | state | not clear yet | -0.0004 ± 0.0004 | defending pit NPCs alive, in win points (+0.8 points at 0..0.75; -1.2 at 12.75..13.5) |
+| Build features | context | not clear yet | -0.0007 ± 0.001 | split members' measured damage per second against NPCs (+0.9 points at 2.7..11.45; +1.1 at 79.7..132.8) |
+| Collapse timing | decision/execution | not clear yet | -0.002 ± 0.0019 | defenders arriving within 5 s of the first, minus the split's size (numbers at contact) (-3.5 points at -5..-3.5; -3.1 at 4.5..7); seconds from the split's first hit on an NPC to the first defender's arrival (-3.6 points at -1537.9..-264.65; +5.5 at 13.1..194.5); seconds to the next res when the first defender arrived (-2 points at 5..12.5; +2.6 at 107.5..120); defenders arriving within 10 s of the first (arrival spread) (-3.8 points at 0..0.5; +5.5 at 7.5..8) |
 
-Left out so the inputs fit the data: split size (Claude's link, not clear yet); split members' Shadow Step skills (Claude's link, not clear yet); split members' speed skills off recharge when the first defender arrived (Claude's link, not clear yet); split members' speed power (movepower.py) (Claude's link, not clear yet); own main minus enemy main meanwhile (Claude's link, not clear yet).
+**What to act on** (supported decision and execution inputs): the defenders who came: their usual damage per second, summed; nearest split member's median distance to the defending pit over the split; nearest split member's distance to the defending pit when the first defender arrived.
+
+Left out so the inputs fit the data (cap 14): split size (Claude's link, not clear yet); split members' Shadow Step skills (Claude's link, not clear yet); split members' speed skills off recharge when the first defender arrived (Claude's link, not clear yet); split members' speed power (Claude's link, not clear yet); own main minus enemy main meanwhile (Claude's link, not clear yet).
+
+Over the cap (16 of 14): the remaining inputs are Denning's links or supported ones, which are never pruned; read the not-clear readings here as leads.
 
 ### pit npc loss: Does the defending team lose a pit NPC in the next 15 s while enemies are in its pit?
 
 35,789 rows (a 3 s moment with enemies in the pit (defending side)), 21% positive, 354 matches. Held out by match: log loss 0.3922 against 0.5093 (adds to the simple baseline). Inputs 18 of a cap of 369.
 
-| Link (cause group) | Kind | Status | Gain | Inputs |
+| Cause group | Kind | Status | Gain | Inputs (reading at the low end; at the high end) |
 |---|---|---|---|---|
-| Split answer (P.11) | decision/execution | supported | +0.0743 ± 0.0054 | own players in the pit; own players alive outside the pit; of which healers |
-| Scoreboard (S.scoreboard) | state | supported | +0.0041 ± 0.0008 | own Bodyguard alive; own knights alive; own pit archers alive; pit NPCs alive (targets the defending monks must watch) |
-| Allocation (A.allocation) | state | supported | +0.0034 ± 0.0006 | enemy players in the pit; share of the enemy's live players in the pit; enemy players hitting the pit NPCs from outside the pit (ranged; Denning, session 4u); of which healers |
-| Build features (C.builds) | context | supported | +0.0034 ± 0.0008 | attackers' measured damage per second against NPCs; area-damage skills on the attackers' bars |
-| Clock (C.clock) | state | supported | +0.0025 ± 0.0008 | minute; seconds the enemy has been in the pit; seconds to the next res |
-| Team strength (C.strength) | context | not clear yet | +0.0022 ± 0.0013 | defending team's strength gap |
-| Healing (K.6) | execution | not clear yet | +0.0005 ± 0.0003 | healing on own pit NPCs and Lord in the last 10 s |
+| Split answer | decision/execution | supported | +0.0743 ± 0.0054 | own players in the pit (+36.5 points at 0..0.5; -35.3 at 7.5..8); own players alive outside the pit (+16.1 points at 0..0.5; -5.6 at 7.5..8); of which healers (+20.5 points at 0..0.5; -5.4 at 3.5..4) |
+| Scoreboard (state) | state | supported | +0.0041 ± 0.0008 | own Bodyguard alive (-10.6 points at 0..0.5; +1.9 at 0.5..1); own knights alive (-3.8 points at 0..0.5; +1.2 at 1.5..2); own pit archers alive (-3.4 points at 0..0.5; +1.2 at 2.5..3); pit NPCs alive (targets the defending monks must watch) (-3.4 points at 1..1.5; +1.2 at 5.5..6) |
+| Who is where (allocation) | state | supported | +0.0034 ± 0.0006 | enemy players in the pit (-8.4 points at 1..1.5; +8.9 at 7.5..8); share of the enemy's live players in the pit (-4.9 points at 0.12..0.13; +6 at 0.94..1); enemy players hitting the pit NPCs from outside the pit (ranged) (-1.5 points at 0..0.5; +29.4 at 1.5..5); of which healers (-0.8 points at 0..0.5; +0.5 at 3.5..4) |
+| Build features | context | supported | +0.0034 ± 0.0008 | attackers' measured damage per second against NPCs (-25.7 points at 2.7..18.1; +19.4 at 106.65..189.4); area-damage skills on the attackers' bars (+0.2 points at 0..0.5; -15.2 at 11.5..12) |
+| Clock | state | supported | +0.0025 ± 0.0008 | minute (+6.1 points at 0.2..2.55; -4.5 at 24.85..28); seconds the enemy has been in the pit (-6.3 points at 0..4.5; -6.8 at 214.5..711); seconds to the next res (+0.8 points at 1..8.5; -0.4 at 107.5..118) |
+| Team strength | context | not clear yet | +0.0022 ± 0.0013 | defending team's strength gap (+8 points at -1183..-692.5; -8.8 at 504.5..1108) |
+| Healing | execution | not clear yet | +0.0005 ± 0.0003 | healing on own pit NPCs and Lord in the last 10 s (-1.8 points at 0..1.5; +2.2 at 623.5..2034) |
+
+**What to act on** (supported decision and execution inputs): own players in the pit; own players alive outside the pit; of which healers.
 
 Measured beside the node, never a cause (what the enemy did in the window): damage on the pit NPCs in the last 5 s (the loss happening, not a cause).
 
@@ -213,19 +274,22 @@ Measured beside the node, never a cause (what the enemy did in the window): dama
 
 | Input | Kind | Reading |
 |---|---|---|
-| enemies within 1,500 | execution | -23.9 at 0..0.5; +25.9 at 7.5..8 |
-| own minus enemy team strength | context | +14.6 at -1183..-596; -17.3 at 590..1183 |
-| allies within 1,500 | execution | +21.6 at 0..0.5; -8.6 at 6.5..7 |
-| allies minus enemies within 2,000 | state | +23.9 at -8..-3.5; -15.8 at 5.5..7 |
-| current health % | state | +39.5 at 1..48.5; -5.1 at 99.5..100 |
-| a prot (Guardian, Spirit Bond, Life Sheath, Protective Spirit...) on the player now | execution | +2.1 at 0..0.5; -8.4 at 0.5..1 |
-| distance from its own pit | execution | -2 at 6..1373.5; +10.2 at 13165.5..18468 |
-| the player's own morale: negative = death penalty, positive = boost (OG comms: fight the player with 30 DP) | state | +17.2 at -60..-33.5; -4.4 at 5.5..10 |
-| own healers alive within cast range (other than the player) | execution | +5.8 at 0..0.5; -11 at 3.5..4 |
-| maximum health after death penalty, as a share of normal | state | +16.9 at 0.4..0.67; -4.5 at 1.06..1.1 |
-| enemy interrupt skills | context | +2 at 0..0.5; -2.7 at 8.5..9 |
-| own condition removal skills | context | +7.3 at 0..0.5; -6.1 at 7.5..9 |
-| own healers dead | execution | -1.3 at 0..0.5; +31.8 at 1.5..4 |
+| enemies within 1,500 | execution | -23.9 points at 0..0.5; +25.9 at 7.5..8 |
+| own minus enemy team strength | context | +14.6 points at -1183..-596; -17.3 at 590..1183 |
+| allies within 1,500 | execution | +21.6 points at 0..0.5; -8.6 at 6.5..7 |
+| allies minus enemies within 2,000 | state | +23.9 points at -8..-3.5; -15.8 at 5.5..7 |
+| current health % | state | +39.5 points at 1..48.5; -5.1 at 99.5..100 |
+| a prot (Guardian, Spirit Bond, Life Sheath, Protective Spirit...) on the player now | execution | +2.1 points at 0..0.5; -8.4 at 0.5..1 |
+| distance from its own pit | execution | -2 points at 6..1373.5; +10.2 at 13165.5..18468 |
+| the player's own morale: negative = death penalty, positive = boost | state | +17.2 points at -60..-33.5; -4.4 at 5.5..10 |
+| own healers alive within cast range (other than the player) | execution | +5.8 points at 0..0.5; -11 at 3.5..4 |
+| maximum health after death penalty, as a share of normal | state | +16.9 points at 0.4..0.67; -4.5 at 1.06..1.1 |
+| enemy interrupt skills | context | +2 points at 0..0.5; -2.7 at 8.5..9 |
+| own condition removal skills | context | +7.3 points at 0..0.5; -6.1 at 7.5..9 |
+| own healers dead | execution | -1.3 points at 0..0.5; +31.8 at 1.5..4 |
+| own prot skills | context | +0.9 points at 0..5.5; -0.3 at 16.5..20 |
+
+**What to act on** (execution inputs with weight): enemies within 1,500; allies within 1,500; a prot (Guardian, Spirit Bond, Life Sheath, Protective Spirit...) on the player now; distance from its own pit; own healers alive within cast range (other than the player); own healers dead.
 
 ### kill conversion: Does this burst kill within 8 s?
 
@@ -233,18 +297,22 @@ Measured beside the node, never a cause (what the enemy did in the window): dama
 
 | Input | Kind | Reading |
 |---|---|---|
-| damage in the 2 s burst | execution | -12 at 250..257.5; +27.3 at 505.5..1069 |
-| target's healers in range | execution | +31.7 at 0..0.5; -5.2 at 3.5..4 |
-| target's health ceiling | execution | +38.8 at 0.4..0.56; -13.7 at 1.1..1.1 |
-| target health % when the burst started | state | +29.8 at 0..36.5; -11.4 at 99.5..100 |
-| a prot on the target | execution | +5.6 at 0..0.5; -10.3 at 0.5..1 |
-| attacking minus target team strength | context | -9.7 at -1183..-559.5; +13.9 at 678..1108 |
-| target team's prot skills | context | +10.5 at 1..5.5; -5 at 17.5..20 |
-| attackers in the burst | execution | -1.3 at 3..3.5; -13.7 at 6.5..7 |
-| degeneration on the target, pips (pressure.py) | execution | -1.3 at 0..1.2; +7.7 at 9.95..10 |
-| match minute | state | +1.1 at 0.1..1.15; +2.5 at 19.85..27.8 |
-| interrupts on the attackers (5 s before to 2 s after) | execution | +0.9 at 0..0.5; -16 at 2.5..4 |
-| attackers' interrupt skills minus target team's heals | context | +0.3 at -17..-15.5; -5.9 at -5.5..1 |
+| damage in the 2 s burst | execution | -12 points at 250..257.5; +27.3 at 505.5..1069 |
+| target's healers in range | execution | +31.7 points at 0..0.5; -5.2 at 3.5..4 |
+| target's health ceiling | execution | +38.8 points at 0.4..0.56; -13.7 at 1.1..1.1 |
+| target health % when the burst started | state | +29.8 points at 0..36.5; -11.4 at 99.5..100 |
+| a prot on the target | execution | +5.6 points at 0..0.5; -10.3 at 0.5..1 |
+| attacking minus target team strength | context | -9.7 points at -1183..-559.5; +13.9 at 678..1108 |
+| target team's prot skills | context | +10.5 points at 1..5.5; -5 at 17.5..20 |
+| attackers in the burst | state | -1.3 points at 3..3.5; -13.7 at 6.5..7 |
+| degeneration on the target, pips | execution | -1.3 points at 0..1.2; +7.7 at 9.95..10 |
+| match minute | state | +1.1 points at 0.1..1.15; +2.5 at 19.85..27.8 |
+| interrupts on the attackers (5 s before to 2 s after) | state | +0.9 points at 0..0.5; -16 at 2.5..4 |
+| attackers' interrupt skills minus target team's heals | context | +0.3 points at -17..-15.5; -5.9 at -5.5..1 |
+| target 3,000+ from its main group | execution | -0.6 points at 0..0.5; +11.2 at 0.5..1 |
+| hexes on the target | execution | -0.7 points at 0..0.5; +15.4 at 5.5..12 |
+
+**What to act on** (execution inputs with weight): damage in the 2 s burst; target's healers in range; target's health ceiling; a prot on the target; degeneration on the target, pips; target 3,000+ from its main group.
 
 ### flag answer: How many seconds slower than possible was the answer to the enemy's capture?
 
@@ -252,20 +320,22 @@ Measured beside the node, never a cause (what the enemy did in the window): dama
 
 | Input | Kind | Reading |
 |---|---|---|
-| seconds the flag lay parked (dropped 5 s or more: not running yet) | execution | -5.1 at 0..2.5; +65.3 at 281.5..956 |
-| own deaths during the answer | execution | -3.3 at 0..0.5; +50.5 at 9.5..17 |
-| enemy presence along the runner's trip back to the spawn | execution | -5.2 at 0..0.5; +20.4 at 220.5..1672 |
-| enemy deaths during the answer | execution | -3.2 at 0..0.5; +41.6 at 5.5..12 |
-| damage the carrier took while carrying | execution | -4 at 0..0.5; +20.6 at 1170.5..4568 |
-| fastest possible answer (s) from the flag model at the enemy's capture | execution | -8.4 at 0..3.5; +1.1 at 53.5..81 |
-| own flag lead when the enemy captured | state | -0.5 at -80..-58.5; -4.9 at 39.5..79 |
-| runner's distance to its flag spawn when the enemy captured | execution | -5.3 at 8..758; +4.2 at 8376.5..15577 |
-| own minus enemy morale | state | +6.2 at -303..-110.5; -7.7 at 142..348 |
-| quick hand-offs (a teammate picked it up within 5 s) | execution | -1.2 at 0..0.5; +21.4 at 2.5..3 |
-| enemies who hit the carrier | execution | -1.6 at 0..0.5; +2.7 at 4.5..7 |
-| drops with the carrier hit in the 5 s before, or dying | execution | -0.6 at 0..0.5; +5.1 at 1.5..7 |
-| own minus enemy players alive | state | +8 at -6..-3.5; -2.4 at 1.5..6 |
-| own minus enemy team strength | context | +2.4 at -1059..-547; -1.5 at 572.5..1183 |
+| seconds the flag lay parked (dropped 5 s or more: not running yet) | execution | -5.1 s at 0..2.5; +65.3 at 281.5..956 |
+| own deaths during the answer | execution | -3.3 s at 0..0.5; +50.5 at 9.5..17 |
+| enemy presence along the runner's trip back to the spawn | execution | -5.2 s at 0..0.5; +20.4 at 220.5..1672 |
+| enemy deaths during the answer | execution | -3.2 s at 0..0.5; +41.6 at 5.5..12 |
+| damage the carrier took while carrying | execution | -4 s at 0..0.5; +20.6 at 1170.5..4568 |
+| fastest possible answer (s) from the flag model at the enemy's capture | execution | -8.4 s at 0..3.5; +1.1 at 53.5..81 |
+| own flag lead when the enemy captured | state | -0.5 s at -80..-58.5; -4.9 at 39.5..79 |
+| runner's distance to its flag spawn when the enemy captured | execution | -5.3 s at 8..758; +4.2 at 8376.5..15577 |
+| own minus enemy morale | state | +6.2 s at -303..-110.5; -7.7 at 142..348 |
+| quick hand-offs (a teammate picked it up within 5 s) | execution | -1.2 s at 0..0.5; +21.4 at 2.5..3 |
+| enemies who hit the carrier | execution | -1.6 s at 0..0.5; +2.7 at 4.5..7 |
+| drops with the carrier hit in the 5 s before, or dying | execution | -0.6 s at 0..0.5; +5.1 at 1.5..7 |
+| own minus enemy players alive | state | +8 s at -6..-3.5; -2.4 at 1.5..6 |
+| own minus enemy team strength | context | +2.4 s at -1059..-547; -1.5 at 572.5..1183 |
+
+**What to act on** (execution inputs with weight): seconds the flag lay parked (dropped 5 s or more: not running yet); own deaths during the answer; enemy presence along the runner's trip back to the spawn; enemy deaths during the answer; damage the carrier took while carrying; fastest possible answer (s) from the flag model at the enemy's capture.
 
 ### lord damage: How much Lord damage lands in the next 10 s?
 
@@ -273,18 +343,22 @@ Measured beside the node, never a cause (what the enemy did in the window): dama
 
 | Input | Kind | Reading |
 |---|---|---|
-| own players in the pit | execution | +35.7 at 0..0.5; -41.3 at 7.5..8 |
-| own Bodyguard alive | execution | +25.3 at 0..0.5; -10.5 at 0.5..1 |
-| match minute | state | -22.2 at 0.5..2.75; +38.6 at 25.05..28 |
-| healing on own pit NPCs and Lord in the last 10 s | execution | -8.4 at 0..1.5; +18 at 641.5..2034 |
-| attackers' measured damage per second against a Lord (benchmarks) | execution | -26 at 2.7..22.6; +12.3 at 109.8..189.4 |
-| own knights alive | execution | +9.8 at 0..0.5; -9.5 at 1.5..2 |
-| own players in the pit | execution | +82.2 at 0..0.5; -59.3 at 6.5..8 |
-| share of the attacking team's live players in the pit (OG comms: merge before pushing the pit) | execution | -8.9 at 0.12..0.13; +11.9 at 0.94..1 |
-| enemy players in the pit | execution | -7.9 at 1..1.5; +12.4 at 7.5..8 |
-| own Bodyguard alive | execution | +22.1 at 0..0.5; -33 at 0.5..1 |
-| pit NPCs alive (targets the defending monks must watch, P9) | execution | +10.5 at 0..0.5; -9 at 5.5..6 |
-| enemy players in the pit | execution | -25.9 at 1..1.5; +35 at 7.5..8 |
+| own players in the pit | state | +35.7 s at 0..0.5; -41.3 at 7.5..8 |
+| own Bodyguard alive | state | +25.3 s at 0..0.5; -10.5 at 0.5..1 |
+| match minute | state | -22.2 s at 0.5..2.75; +38.6 at 25.05..28 |
+| healing on own pit NPCs and Lord in the last 10 s | execution | -8.4 s at 0..1.5; +18 at 641.5..2034 |
+| attackers' measured damage per second against a Lord (benchmarks) | state | -26 s at 2.7..22.6; +12.3 at 109.8..189.4 |
+| own knights alive | state | +9.8 s at 0..0.5; -9.5 at 1.5..2 |
+| own players in the pit | state | +82.2 s at 0..0.5; -59.3 at 6.5..8 |
+| share of the attacking team's live players in the pit | state | -8.9 s at 0.12..0.13; +11.9 at 0.94..1 |
+| enemy players in the pit | state | -7.9 s at 1..1.5; +12.4 at 7.5..8 |
+| own Bodyguard alive | state | +22.1 s at 0..0.5; -33 at 0.5..1 |
+| pit NPCs alive (targets the defending monks must watch) | execution | +10.5 s at 0..0.5; -9 at 5.5..6 |
+| enemy players in the pit | state | -25.9 s at 1..1.5; +35 at 7.5..8 |
+| match minute | state | -9.5 s at 0.5..3.85; +82.2 at 27.15..28 |
+| own players alive outside the pit | state | +2.9 s at 0..0.5; -11.8 at 7.5..8 |
+
+**What to act on** (execution inputs with weight): healing on own pit NPCs and Lord in the last 10 s; pit NPCs alive (targets the defending monks must watch).
 
 ## Tier 4: the win model
 

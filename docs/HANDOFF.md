@@ -26,8 +26,9 @@ Rewritten each session; stays under 80 lines. Read `CLAUDE.md`, then `docs/SPEC.
 1. Read the rebuild's report (`data/model/reports/latest.md`): the "What changed" diff, the learned nodes' new kind
    labels, the pruned inputs and "marks the situation" flags, the advice test, and the TQs' macro/micro split.
    Explain it to Denning; collect his rulings (below) as one bundle; build nothing between chunks.
-2. Readability test (RULINGS R-series "2026-11 review"): a fresh session reads `knowledge/model.md` alone and explains
-   each node in GvG terms; what it cannot explain is not explainable yet and goes on the list for the next bundle.
+2. Readability test: run once after the rebuild (docs/tests/readability-2026-11-09.md): verdict no, three page
+   changes asked for and built the same night (legend, glossary, one layout with a "what to act on" line per node).
+   Run it again on the regenerated page; what a fresh reader still cannot explain goes on the list for the next bundle.
 3. Run the Discovery workflow once (it now screens the variable catalogue; a candidate is offered after two runs), and
    `python3 advice.py --blind` once locally to write `data/model/blind_test.json` for the sealed blind test.
 4. Then chunks of about 45 (Train batch, pick 45, add_batch yes; TQs run every other chunk by default), with no engine
