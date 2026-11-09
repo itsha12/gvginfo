@@ -212,8 +212,8 @@
      "model_call": "not running, advanced",
      "usual_play": "not running, advanced",
      "specific": false,
-     "denning_call": null,
-     "denning_reason": "",
+     "denning_call": "not running, fell back",
+     "denning_reason": "Hook cannot fight this build 8v8. They have to split damage before they run the flag.",
      "sealed": "eyJhY3R1YWxfY2hvaWNlIjogIm5vdCBydW5uaW5nLCBmZWxsIGJhY2siLCAid3BfY2hhbmdlIjogLTMuNSwgImNob2ljZV9lZmZlY3RzIjogeyJydW5uaW5nLCBoZWxkIjogeyJtZWFuX3dwX2NoYW5nZSI6IDEuMSwgImNhc2VzIjogMn0sICJub3QgcnVubmluZywgZmVsbCBiYWNrIjogeyJtZWFuX3dwX2NoYW5nZSI6IDQuNSwgImNhc2VzIjogMn0sICJydW5uaW5nLCBmb3VnaHQiOiB7Im1lYW5fd3BfY2hhbmdlIjogMi4zLCAiY2FzZXMiOiAxfSwgIm5vdCBydW5uaW5nLCBhZHZhbmNlZCI6IHsibWVhbl93cF9jaGFuZ2UiOiAxLjIsICJjYXNlcyI6IDR9LCAicnVubmluZywgYWR2YW5jZWQiOiB7Im1lYW5fd3BfY2hhbmdlIjogLTUuMSwgImNhc2VzIjogM30sICJydW5uaW5nLCBmZWxsIGJhY2siOiB7Im1lYW5fd3BfY2hhbmdlIjogLTEuMiwgImNhc2VzIjogMn0sICJub3QgcnVubmluZywgaGVsZCI6IHsibWVhbl93cF9jaGFuZ2UiOiAtMS43LCAiY2FzZXMiOiAxfX19",
      "id": 2,
      "context": {
