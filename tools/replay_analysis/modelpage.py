@@ -285,7 +285,7 @@ def _index():
     idx = _load(p) or []
     if not any(x.get("id") == "model" for x in idx):
         pos = next((i for i, x in enumerate(idx) if x.get("id") == "learned-model"), len(idx))
-        idx.insert(pos, {"id": "model", "title": "The model: structure", "file": "model.md", "group": "GvG"})
+        idx.insert(pos, {"id": "model", "title": "The model: structure", "file": "model.md", "group": "Structure", "tab": "model"})
         json.dump(idx, open(p, "w"), indent=1, ensure_ascii=False)
 
 

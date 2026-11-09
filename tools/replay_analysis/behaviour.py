@@ -133,7 +133,7 @@ def write(recs):
         idx = json.load(open(idx_p))
         if not any(i.get("id") == "behaviour" for i in idx):
             pos = next((n for n, i in enumerate(idx) if i.get("id") == "learned-model"), len(idx))
-            idx.insert(pos, {"id": "behaviour", "title": "What teams actually do", "file": "behaviour.md", "group": "GvG"})
+            idx.insert(pos, {"id": "behaviour", "title": "What teams actually do", "file": "behaviour.md", "group": "Finding new variables", "tab": "model"})
             json.dump(idx, open(idx_p, "w"), indent=1, ensure_ascii=False)
     except (OSError, ValueError): pass
     return out

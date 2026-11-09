@@ -1,0 +1,4 @@
+{
+ "about": "The blind test (Denning, November 2026 review): sealed moments where Denning's call and the model's are both recorded before the outcome is read. A round is added after every training chunk and never refreshed: open rounds wait until Denning answers them on the site (Model > Blind test). Each pick carries the model's call, the usual play, and a sealed part (base64, never printed: the actual choice, its win-chance change, and the mean win-chance change of each choice among the 15 most similar decisions in other matches). Scoring: each call's expected win-chance change in that situation, and whether it matched what the team did.",
+ "rounds": []
+}
