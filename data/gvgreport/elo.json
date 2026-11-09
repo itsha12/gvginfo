@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-07T10:23:45.560Z",
+ "updated": "2026-11-09T12:39:31.426Z",
  "source": "https://gvg.report/api/tournament-rankings?period=all",
  "rating_model": {
   "version": "tournament-elo.v2",
@@ -19,14 +19,14 @@
   {
    "tag": "Men",
    "guild": "Handsome",
-   "elo": 1924,
-   "observed_rating": 1610,
-   "matches": 195,
-   "wins": 162,
+   "elo": 1937,
+   "observed_rating": 1615,
+   "matches": 198,
+   "wins": 165,
    "losses": 32,
    "provisional": false,
    "inactive": false,
-   "last_at": 1793999406412
+   "last_at": 1794165006465
   },
   {
    "tag": "옷옷옷옷",
@@ -37,7 +37,7 @@
    "wins": 46,
    "losses": 5,
    "provisional": false,
-   "inactive": false,
+   "inactive": true,
    "last_at": 1792270815931
   },
   {
@@ -55,19 +55,55 @@
   {
    "tag": "HC",
    "guild": "The Very High Council",
-   "elo": 1713,
-   "observed_rating": 1213,
-   "matches": 19,
-   "wins": 15,
-   "losses": 4,
+   "elo": 1723,
+   "observed_rating": 1250,
+   "matches": 22,
+   "wins": 17,
+   "losses": 5,
    "provisional": false,
    "inactive": false,
-   "last_at": 1793912942270
+   "last_at": 1794165006465
+  },
+  {
+   "tag": "RACK",
+   "guild": "Sydney Sweeney",
+   "elo": 1712,
+   "observed_rating": 1297,
+   "matches": 34,
+   "wins": 29,
+   "losses": 5,
+   "provisional": false,
+   "inactive": false,
+   "last_at": 1794050988917
+  },
+  {
+   "tag": "meow",
+   "guild": "Kitten Pounce",
+   "elo": 1696,
+   "observed_rating": 1561,
+   "matches": 31,
+   "wins": 30,
+   "losses": 1,
+   "provisional": false,
+   "inactive": false,
+   "last_at": 1794109505776
+  },
+  {
+   "tag": "Team",
+   "guild": "Now And Always",
+   "elo": 1665,
+   "observed_rating": 1335,
+   "matches": 190,
+   "wins": 121,
+   "losses": 68,
+   "provisional": false,
+   "inactive": false,
+   "last_at": 1794165006465
   },
   {
    "tag": "NwAy",
    "guild": "Twenty Five Wins",
-   "elo": 1711,
+   "elo": 1661,
    "observed_rating": 1576,
    "matches": 125,
    "wins": 98,
@@ -75,42 +111,6 @@
    "provisional": false,
    "inactive": true,
    "last_at": 1789848306079
-  },
-  {
-   "tag": "RACK",
-   "guild": "Sydney Sweeney",
-   "elo": 1702,
-   "observed_rating": 1287,
-   "matches": 31,
-   "wins": 26,
-   "losses": 5,
-   "provisional": false,
-   "inactive": false,
-   "last_at": 1793765184805
-  },
-  {
-   "tag": "meow",
-   "guild": "Kitten Pounce",
-   "elo": 1683,
-   "observed_rating": 1555,
-   "matches": 27,
-   "wins": 26,
-   "losses": 1,
-   "provisional": false,
-   "inactive": false,
-   "last_at": 1793730322524
-  },
-  {
-   "tag": "Team",
-   "guild": "Now And Always",
-   "elo": 1668,
-   "observed_rating": 1342,
-   "matches": 187,
-   "wins": 119,
-   "losses": 67,
-   "provisional": false,
-   "inactive": false,
-   "last_at": 1793914188832
   },
   {
    "tag": "HH",
@@ -133,7 +133,7 @@
    "wins": 59,
    "losses": 19,
    "provisional": false,
-   "inactive": false,
+   "inactive": true,
    "last_at": 1792267049763
   },
   {
@@ -147,18 +147,6 @@
    "provisional": false,
    "inactive": false,
    "last_at": 1793736601007
-  },
-  {
-   "tag": "xxx",
-   "guild": "Gamble Problems",
-   "elo": 1645,
-   "observed_rating": 1750,
-   "matches": 58,
-   "wins": 50,
-   "losses": 8,
-   "provisional": false,
-   "inactive": true,
-   "last_at": 1789844101005
   },
   {
    "tag": "Dz",
@@ -175,14 +163,26 @@
   {
    "tag": "hold",
    "guild": "Bodyblock Brigade",
-   "elo": 1597,
-   "observed_rating": 1259,
-   "matches": 41,
-   "wins": 24,
-   "losses": 17,
+   "elo": 1606,
+   "observed_rating": 1271,
+   "matches": 44,
+   "wins": 26,
+   "losses": 18,
    "provisional": false,
    "inactive": false,
-   "last_at": 1793912633633
+   "last_at": 1794165006465
+  },
+  {
+   "tag": "xxx",
+   "guild": "Gamble Problems",
+   "elo": 1595,
+   "observed_rating": 1750,
+   "matches": 58,
+   "wins": 50,
+   "losses": 8,
+   "provisional": false,
+   "inactive": true,
+   "last_at": 1789844101005
   },
   {
    "tag": "SKT",
@@ -195,18 +195,6 @@
    "provisional": false,
    "inactive": true,
    "last_at": 1789678620990
-  },
-  {
-   "tag": "ohno",
-   "guild": "Mischievous Minions",
-   "elo": 1548,
-   "observed_rating": 1341,
-   "matches": 42,
-   "wins": 34,
-   "losses": 8,
-   "provisional": false,
-   "inactive": true,
-   "last_at": 1789850533086
   },
   {
    "tag": "Crew",
@@ -301,7 +289,7 @@
    "wins": 73,
    "losses": 50,
    "provisional": false,
-   "inactive": false,
+   "inactive": true,
    "last_at": 1792264965743
   },
   {
@@ -351,6 +339,18 @@
    "provisional": false,
    "inactive": true,
    "last_at": 1785447081701
+  },
+  {
+   "tag": "ohno",
+   "guild": "Mischievous Minions",
+   "elo": 1500,
+   "observed_rating": 1341,
+   "matches": 42,
+   "wins": 34,
+   "losses": 8,
+   "provisional": false,
+   "inactive": true,
+   "last_at": 1789850533086
   },
   {
    "tag": "yM",
@@ -557,18 +557,6 @@
    "last_at": 1790656326457
   },
   {
-   "tag": "入入入",
-   "guild": "入入入入",
-   "elo": 1487,
-   "observed_rating": null,
-   "matches": 1,
-   "wins": 0,
-   "losses": 1,
-   "provisional": true,
-   "inactive": false,
-   "last_at": 1793905206085
-  },
-  {
    "tag": "Fun",
    "guild": "Girls Just Wanna Have",
    "elo": 1484,
@@ -581,18 +569,6 @@
    "last_at": 1793914188832
   },
   {
-   "tag": "只只只",
-   "guild": "只只只",
-   "elo": 1483,
-   "observed_rating": null,
-   "matches": 1,
-   "wins": 0,
-   "losses": 1,
-   "provisional": true,
-   "inactive": false,
-   "last_at": 1793905206085
-  },
-  {
    "tag": "tyro",
    "guild": "Glaring Talents",
    "elo": 1482,
@@ -603,18 +579,6 @@
    "provisional": true,
    "inactive": false,
    "last_at": 1793300406186
-  },
-  {
-   "tag": "日v日",
-   "guild": "日vs日",
-   "elo": 1482,
-   "observed_rating": null,
-   "matches": 1,
-   "wins": 0,
-   "losses": 1,
-   "provisional": true,
-   "inactive": false,
-   "last_at": 1793905206085
   },
   {
    "tag": "zZz",
@@ -649,8 +613,20 @@
    "wins": 0,
    "losses": 1,
    "provisional": true,
-   "inactive": false,
+   "inactive": true,
    "last_at": 1792346406000
+  },
+  {
+   "tag": "OG",
+   "guild": "Love",
+   "elo": 1476,
+   "observed_rating": null,
+   "matches": 1,
+   "wins": 0,
+   "losses": 1,
+   "provisional": true,
+   "inactive": false,
+   "last_at": 1794160806496
   },
   {
    "tag": "CCP",
@@ -689,6 +665,18 @@
    "last_at": 1791261906618
   },
   {
+   "tag": "入入入",
+   "guild": "入入入入",
+   "elo": 1464,
+   "observed_rating": null,
+   "matches": 2,
+   "wins": 0,
+   "losses": 2,
+   "provisional": true,
+   "inactive": false,
+   "last_at": 1794103205839
+  },
+  {
    "tag": "EST",
    "guild": "Est At Trolls",
    "elo": 1463,
@@ -699,6 +687,18 @@
    "provisional": true,
    "inactive": false,
    "last_at": 1793558105827
+  },
+  {
+   "tag": "日v日",
+   "guild": "日vs日",
+   "elo": 1463,
+   "observed_rating": null,
+   "matches": 2,
+   "wins": 0,
+   "losses": 2,
+   "provisional": true,
+   "inactive": false,
+   "last_at": 1794103205839
   },
   {
    "tag": "전사",
@@ -749,6 +749,18 @@
    "last_at": 1791261906618
   },
   {
+   "tag": "只只只",
+   "guild": "只只只",
+   "elo": 1455,
+   "observed_rating": null,
+   "matches": 2,
+   "wins": 0,
+   "losses": 2,
+   "provisional": true,
+   "inactive": false,
+   "last_at": 1794103205839
+  },
+  {
    "tag": "Book",
    "guild": "Let Me Write It Down In My Care",
    "elo": 1451,
@@ -764,13 +776,13 @@
    "tag": "chic",
    "guild": "Fashion Police",
    "elo": 1448,
-   "observed_rating": 1144,
-   "matches": 157,
-   "wins": 88,
-   "losses": 69,
+   "observed_rating": 1153,
+   "matches": 159,
+   "wins": 89,
+   "losses": 70,
    "provisional": false,
    "inactive": false,
-   "last_at": 1793764552719
+   "last_at": 1794051290675
   },
   {
    "tag": "Jwz",
@@ -845,6 +857,18 @@
    "last_at": 1786832567779
   },
   {
+   "tag": "GW크",
+   "guild": "Coming To A Console Near You",
+   "elo": 1440,
+   "observed_rating": 1039,
+   "matches": 12,
+   "wins": 4,
+   "losses": 8,
+   "provisional": false,
+   "inactive": false,
+   "last_at": 1794109505776
+  },
+  {
    "tag": "ML",
    "guild": "Tree Of Healing",
    "elo": 1435,
@@ -895,26 +919,14 @@
   {
    "tag": "hook",
    "guild": "The Uppercut Providers",
-   "elo": 1415,
-   "observed_rating": 1049,
-   "matches": 200,
+   "elo": 1407,
+   "observed_rating": 1047,
+   "matches": 202,
    "wins": 54,
-   "losses": 145,
+   "losses": 147,
    "provisional": false,
    "inactive": false,
-   "last_at": 1793999406412
-  },
-  {
-   "tag": "GW크",
-   "guild": "Coming To A Console Near You",
-   "elo": 1410,
-   "observed_rating": 1029,
-   "matches": 8,
-   "wins": 1,
-   "losses": 7,
-   "provisional": true,
-   "inactive": false,
-   "last_at": 1793764688131
+   "last_at": 1794162906606
   },
   {
    "tag": "DKKL",
@@ -955,14 +967,14 @@
   {
    "tag": "mddl",
    "guild": "Meddl Loide",
-   "elo": 1383,
-   "observed_rating": 976,
-   "matches": 24,
+   "elo": 1370,
+   "observed_rating": 990,
+   "matches": 26,
    "wins": 7,
-   "losses": 17,
+   "losses": 19,
    "provisional": false,
    "inactive": false,
-   "last_at": 1793999406412
+   "last_at": 1794165006465
   },
   {
    "tag": "fM",
@@ -1001,6 +1013,30 @@
    "last_at": 1786818006503
   },
   {
+   "tag": "Apes",
+   "guild": "Animal Planet",
+   "elo": 1335,
+   "observed_rating": 981,
+   "matches": 172,
+   "wins": 53,
+   "losses": 118,
+   "provisional": false,
+   "inactive": false,
+   "last_at": 1794165006465
+  },
+  {
+   "tag": "戦戦戦戦",
+   "guild": "Mortalツkumbat",
+   "elo": 1323,
+   "observed_rating": 1025,
+   "matches": 50,
+   "wins": 13,
+   "losses": 37,
+   "provisional": false,
+   "inactive": false,
+   "last_at": 1794109505776
+  },
+  {
    "tag": "dR",
    "guild": "Dangerous Rebels",
    "elo": 1322,
@@ -1011,30 +1047,6 @@
    "provisional": false,
    "inactive": true,
    "last_at": 1789071714270
-  },
-  {
-   "tag": "Apes",
-   "guild": "Animal Planet",
-   "elo": 1321,
-   "observed_rating": 992,
-   "matches": 169,
-   "wins": 52,
-   "losses": 116,
-   "provisional": false,
-   "inactive": false,
-   "last_at": 1793999406412
-  },
-  {
-   "tag": "戦戦戦戦",
-   "guild": "Mortalツkumbat",
-   "elo": 1318,
-   "observed_rating": 1017,
-   "matches": 46,
-   "wins": 12,
-   "losses": 34,
-   "provisional": false,
-   "inactive": false,
-   "last_at": 1793676044150
   },
   {
    "tag": "QenK",
@@ -1099,26 +1111,26 @@
   {
    "tag": "RV",
    "guild": "I Royal Vanguard I",
-   "elo": 1170,
-   "observed_rating": 926,
-   "matches": 43,
-   "wins": 5,
-   "losses": 38,
+   "elo": 1161,
+   "observed_rating": 907,
+   "matches": 47,
+   "wins": 6,
+   "losses": 41,
    "provisional": false,
    "inactive": false,
-   "last_at": 1793763122280
+   "last_at": 1794107405848
   },
   {
    "tag": "DUM",
    "guild": "Sumthing Stoopid Returns",
-   "elo": 1136,
-   "observed_rating": 1049,
-   "matches": 116,
-   "wins": 16,
-   "losses": 100,
+   "elo": 1158,
+   "observed_rating": 1118,
+   "matches": 122,
+   "wins": 18,
+   "losses": 104,
    "provisional": false,
    "inactive": false,
-   "last_at": 1793764552719
+   "last_at": 1794109505776
   },
   {
    "tag": "EDGE",
