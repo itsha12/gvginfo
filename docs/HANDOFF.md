@@ -35,9 +35,13 @@ Rewritten each session; stays under 80 lines. Read `CLAUDE.md`, then `docs/SPEC.
 - Readability test 2 (docs/tests/readability-2026-11-09b.md): no, 14 of 18 at least partly explained; page-text
   items built, items 7 and 9 queued below.
 
+- Chunk 6 (batch 16) not trained yet: its 45 replays were fetched and stored on the replays branch (run 42668315551),
+  then four runs failed on GitHub's side (jobs never created, later 0 jobs). Next run: `inputs[pick]=0` to train
+  exactly those 45; only then a pick-45 run for chunk 7 (a pick-45 run now would make one batch of 90). Don't queue
+  two Train batch runs at once.
+
 ## Next (in order)
-1. Denning: Model > Blind test on the site, answer round 1 (8 picks, reason optional, the model's call shows after
-   saving), press Score. Then `python3 advice.py blind_score 1` is not needed (the page scores); read the totals.
+1. Blind-test round 1: answered and scored (read the totals when reporting the next chunk).
 2. Run the readability test a third time on the regenerated page (a fresh session reads knowledge/model.md alone).
 3. Chunks of about 45 (Train batch, pick 45, add_batch yes; TQs every other chunk; a blind round each chunk), no
    engine change between them; proposals queue in `data/model/causal_map.json` "waiting" and here. Discovery after
