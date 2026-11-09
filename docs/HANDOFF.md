@@ -9,8 +9,7 @@ Rewritten each session; stays under 80 lines. Read `CLAUDE.md`, then `docs/SPEC.
 > <your request>
 
 ## State (2026-11-09 evening, after bundle 3; no chunk since batch 15)
-- Portal: Model tab added (engine pages plus the Blind test page); Mechanics keeps the game pages. Update matches run
-  42618614199: all listed matches stored.
+- Portal: Model tab (engine pages, Blind test page); Mechanics keeps the game pages; all listed matches stored.
 - Model: 356 matches (batch 15). Reading before bundle 3 (run 42569970450): glass box 0.358 against 0.472 for strength
   alone (gain +0.114, +0.064 to +0.161), 84% against 77%; by month Sept 0.443 v 0.577, Oct 0.282 v 0.395, Nov 0.317 v
   0.363; by strength band even 0.525 v 0.65, moderate 0.33 v 0.469, uneven 0.083 v 0.078. Advice test: 2 of 13 kinds
@@ -54,8 +53,8 @@ Rewritten each session; stays under 80 lines. Read `CLAUDE.md`, then `docs/SPEC.
 - Four measurement proposals from the rulings wait on the map (control by distance to the stand; flag dropped by a
   Shadow Step; hex value incl. trigger damage, Mind Wrack; NPC healing by target and kind): next bundle.
 - play_for_28_or_lord starts at 10:00 and counts footmen as NPCs taken (R-281 left both open): confirm or change.
-- Discovery candidates offered after the second run: approve, reject or wait, each.
-- Behaviour clusters no named choice covers: 28 to name or reject (knowledge/behaviour.md).
+- Discovery candidates offered after the second run: approve, reject or wait, each; 28 behaviour clusters to name
+  (knowledge/behaviour.md).
 
 ## Running it
 - Train batch: `gh api -X POST repos/itsha12/gvginfo/actions/workflows/train-batch.yml/dispatches -f ref=main
