@@ -2416,7 +2416,7 @@
      "model_call": "pushed the pit",
      "usual_play": "pushed the pit",
      "specific": false,
-     "denning_call": null,
+     "denning_call": "took the flag",
      "denning_reason": "",
      "context": {
       "team": "push",
