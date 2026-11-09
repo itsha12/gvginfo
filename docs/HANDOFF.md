@@ -33,9 +33,8 @@ Rewritten each session; stays under 80 lines. Read `CLAUDE.md`, then `docs/SPEC.
   chunk carries these, so compare its learned-node readings against this rebuild's, not batch 14's.
 - Discovery run 1 on the catalogue (run 42618611013): 1,633 tests, 24 own_/diff_ candidates passed once; nothing is
   offered until a second run (the pass history is now committed; before today it never was, so nothing could pass twice).
-- Readability test 2 (docs/tests/readability-2026-11-09b.md): verdict no, 14 of 18 items at least partly explained.
-  Page-text items built; items 2, 3, 4, 7, 9 (engine or map) partly built (3: time-down sign fixed; 4: runner class
-  explained in the glossary; 2: lord damage units and parts) and the rest below.
+- Readability test 2 (docs/tests/readability-2026-11-09b.md): no, 14 of 18 at least partly explained; page-text
+  items built, items 7 and 9 queued below.
 
 ## Next (in order)
 1. Denning: Model > Blind test on the site, answer round 1 (8 picks, reason optional, the model's call shows after
@@ -55,7 +54,6 @@ Rewritten each session; stays under 80 lines. Read `CLAUDE.md`, then `docs/SPEC.
 - Four measurement proposals from the rulings wait on the map (control by distance to the stand; flag dropped by a
   Shadow Step; hex value incl. trigger damage, Mind Wrack; NPC healing by target and kind): next bundle.
 - play_for_28_or_lord starts at 10:00 and counts footmen as NPCs taken (R-281 left both open): confirm or change.
-- `flag_answer` kept as its own node (R: keep for now); fold into the runs once they carry a lateness reading?
 - Discovery candidates offered after the second run: approve, reject or wait, each.
 - Behaviour clusters no named choice covers: 28 to name or reject (knowledge/behaviour.md).
 
