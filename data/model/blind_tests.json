@@ -380,7 +380,7 @@
      "model_call": "pushed, fought",
      "usual_play": "pushed, advanced",
      "specific": true,
-     "denning_call": null,
+     "denning_call": "pushed, fought",
      "denning_reason": "",
      "sealed": "eyJhY3R1YWxfY2hvaWNlIjogInB1c2hlZCwgYWR2YW5jZWQiLCAid3BfY2hhbmdlIjogMy4yLCAiY2hvaWNlX2VmZmVjdHMiOiB7InB1c2hlZCwgZm91Z2h0IjogeyJtZWFuX3dwX2NoYW5nZSI6IDQuNSwgImNhc2VzIjogNX0sICJwdXNoZWQsIGFkdmFuY2VkIjogeyJtZWFuX3dwX2NoYW5nZSI6IC01LjksICJjYXNlcyI6IDh9LCAiaGVsZCwgZm91Z2h0IjogeyJtZWFuX3dwX2NoYW5nZSI6IC0xNi40LCAiY2FzZXMiOiAyfX19",
      "id": 3,
