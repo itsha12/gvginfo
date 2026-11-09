@@ -1,13 +1,13 @@
 {
  "node": "split_effect",
  "target": "R.5",
- "matches": 220,
- "rows": 845,
- "rate": 0.402,
+ "matches": 250,
+ "rows": 968,
+ "rate": 0.382,
  "mean": null,
  "validation": {
-  "glass box": 0.6463,
-  "simple baseline": 0.6754,
+  "glass box": 0.6335,
+  "simple baseline": 0.6676,
   "metric": "log loss",
   "verdict": "adds to the simple baseline"
  },
@@ -19,7 +19,7 @@
     "latency",
     "defenders"
    ],
-   "strength": 0.0023,
+   "strength": 0.0027,
    "plus_minus": 0.0019,
    "status": "not clear yet"
   },
@@ -30,8 +30,8 @@
     "size",
     "main_diff"
    ],
-   "strength": -0.004,
-   "plus_minus": 0.0021,
+   "strength": 0.0011,
+   "plus_minus": 0.001,
    "status": "not clear yet"
   },
   {
@@ -40,8 +40,8 @@
    "features": [
     "split_healers"
    ],
-   "strength": 0.0002,
-   "plus_minus": 0.0009,
+   "strength": -0.0003,
+   "plus_minus": 0.001,
    "status": "not clear yet"
   },
   {
@@ -54,8 +54,8 @@
     "flag_lead",
     "lord_damage_diff"
    ],
-   "strength": 0.0246,
-   "plus_minus": 0.0074,
+   "strength": 0.0281,
+   "plus_minus": 0.0101,
    "status": "supported"
   },
   {
@@ -64,9 +64,9 @@
    "features": [
     "enemy_prots"
    ],
-   "strength": 0.0035,
-   "plus_minus": 0.0027,
-   "status": "not clear yet"
+   "strength": 0.008,
+   "plus_minus": 0.0018,
+   "status": "supported"
   },
   {
    "from": "K.11",
@@ -74,8 +74,8 @@
    "features": [
     "def_snare_present"
    ],
-   "strength": 0.0005,
-   "plus_minus": 0.0018,
+   "strength": 0.0003,
+   "plus_minus": 0.0012,
    "status": "not clear yet"
   },
   {
@@ -85,8 +85,8 @@
     "split_speed_power",
     "own_escapes_power"
    ],
-   "strength": -0.0014,
-   "plus_minus": 0.0014,
+   "strength": 0.0001,
+   "plus_minus": 0.0011,
    "status": "not clear yet"
   },
   {
@@ -95,8 +95,8 @@
    "features": [
     "strength_gap"
    ],
-   "strength": -0.0039,
-   "plus_minus": 0.0021,
+   "strength": 0.0001,
+   "plus_minus": 0.0005,
    "status": "not clear yet"
   }
  ],
@@ -104,175 +104,87 @@
   {
    "term": "enemy_prots",
    "description": "prot skills on the defenders' bars (discovery, approved)",
-   "importance": 0.159,
+   "importance": 0.162,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 0.0,
-     "to": 8.5,
-     "points": 6.7,
-     "plus_minus": 0.7
+     "to": 9.5,
+     "points": 5.5,
+     "plus_minus": 0.9
     },
     {
-     "from": 8.5,
-     "to": 10.5,
-     "points": 4.3,
-     "plus_minus": 0.3
+     "from": 9.5,
+     "to": 11.5,
+     "points": 4.6,
+     "plus_minus": 0.9
     },
     {
-     "from": 10.5,
+     "from": 11.5,
      "to": 12.5,
-     "points": 2.0,
-     "plus_minus": 0.3
+     "points": 0.8,
+     "plus_minus": 0.6
     },
     {
      "from": 12.5,
      "to": 13.5,
-     "points": -1.9,
-     "plus_minus": 0.7
+     "points": -3.0,
+     "plus_minus": 1.0
     },
     {
      "from": 13.5,
      "to": 14.5,
-     "points": -4.9,
-     "plus_minus": 0.4
+     "points": -4.2,
+     "plus_minus": 0.8
     },
     {
      "from": 14.5,
      "to": 19.0,
-     "points": -6.0,
+     "points": -5.4,
      "plus_minus": 0.3
-    }
-   ]
-  },
-  {
-   "term": "morale_diff",
-   "description": "morale, own minus enemy (discovery, approved)",
-   "importance": 0.155,
-   "missing_points": 0.0,
-   "curve": [
-    {
-     "from": -430.0,
-     "to": -128.5,
-     "points": -7.8,
-     "plus_minus": 1.1
-    },
-    {
-     "from": -128.5,
-     "to": -46.5,
-     "points": -4.4,
-     "plus_minus": 0.5
-    },
-    {
-     "from": -46.5,
-     "to": -0.5,
-     "points": -1.1,
-     "plus_minus": 0.1
-    },
-    {
-     "from": -0.5,
-     "to": 0.5,
-     "points": 2.9,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 0.5,
-     "to": 89.0,
-     "points": 3.8,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 89.0,
-     "to": 395.0,
-     "points": 3.5,
-     "plus_minus": 0.6
-    }
-   ]
-  },
-  {
-   "term": "lord_damage_diff",
-   "description": "Lord damage, own minus enemy (discovery, approved)",
-   "importance": 0.146,
-   "missing_points": -8.4,
-   "curve": [
-    {
-     "from": -17769.0,
-     "to": -498.0,
-     "points": -3.2,
-     "plus_minus": 1.2
-    },
-    {
-     "from": -498.0,
-     "to": -2.5,
-     "points": -0.9,
-     "plus_minus": 0.5
-    },
-    {
-     "from": -2.5,
-     "to": 2.5,
-     "points": 2.9,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 2.5,
-     "to": 175.5,
-     "points": -1.7,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 175.5,
-     "to": 1342.0,
-     "points": -6.1,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 1342.0,
-     "to": 16474.0,
-     "points": -10.4,
-     "plus_minus": 0.8
     }
    ]
   },
   {
    "term": "flag_lead",
    "description": "flag lead (discovery, approved)",
-   "importance": 0.144,
+   "importance": 0.155,
    "missing_points": 0.0,
    "curve": [
     {
      "from": -80.0,
-     "to": -52.5,
-     "points": -6.4,
-     "plus_minus": 1.4
+     "to": -53.5,
+     "points": -7.1,
+     "plus_minus": 1.1
     },
     {
-     "from": -52.5,
-     "to": -22.5,
-     "points": -3.7,
+     "from": -53.5,
+     "to": -26.5,
+     "points": -4.5,
      "plus_minus": 0.7
     },
     {
-     "from": -22.5,
-     "to": 0.5,
+     "from": -26.5,
+     "to": -1.5,
      "points": -0.4,
+     "plus_minus": 0.4
+    },
+    {
+     "from": -1.5,
+     "to": 23.5,
+     "points": 2.5,
      "plus_minus": 0.5
     },
     {
-     "from": 0.5,
-     "to": 24.5,
-     "points": 2.9,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 24.5,
+     "from": 23.5,
      "to": 54.5,
-     "points": 4.1,
-     "plus_minus": 0.6
+     "points": 4.4,
+     "plus_minus": 0.7
     },
     {
      "from": 54.5,
      "to": 80.0,
-     "points": 3.9,
+     "points": 4.2,
      "plus_minus": 0.8
     }
    ]
@@ -280,422 +192,510 @@
   {
    "term": "def_npc_value",
    "description": "defenders' pit NPC value when the split entered the base",
-   "importance": 0.123,
+   "importance": 0.153,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 0.0,
      "to": 0.75,
-     "points": -12.6,
-     "plus_minus": 1.0
+     "points": -13.3,
+     "plus_minus": 2.9
     },
     {
      "from": 0.75,
      "to": 5.25,
-     "points": -0.8,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 5.25,
-     "to": 8.25,
-     "points": 2.2,
+     "points": -2.6,
      "plus_minus": 0.4
     },
     {
-     "from": 8.25,
+     "from": 5.25,
+     "to": 6.75,
+     "points": 0.5,
+     "plus_minus": 0.7
+    },
+    {
+     "from": 6.75,
      "to": 9.75,
-     "points": 3.0,
-     "plus_minus": 0.3
+     "points": 2.6,
+     "plus_minus": 0.9
     },
     {
      "from": 9.75,
      "to": 11.25,
-     "points": 2.1,
+     "points": 2.0,
      "plus_minus": 0.3
     },
     {
      "from": 11.25,
      "to": 13.5,
-     "points": 1.8,
-     "plus_minus": 0.3
+     "points": 3.0,
+     "plus_minus": 0.5
     }
    ]
   },
   {
-   "term": "latency",
-   "description": "seconds until the first defender arrived (60 = never)",
-   "importance": 0.089,
+   "term": "lord_damage_diff",
+   "description": "Lord damage, own minus enemy (discovery, approved)",
+   "importance": 0.135,
+   "missing_points": -9.5,
+   "curve": [
+    {
+     "from": -17769.0,
+     "to": -631.0,
+     "points": -3.3,
+     "plus_minus": 1.0
+    },
+    {
+     "from": -631.0,
+     "to": -2.5,
+     "points": 0.2,
+     "plus_minus": 0.5
+    },
+    {
+     "from": -2.5,
+     "to": 2.5,
+     "points": 2.6,
+     "plus_minus": 0.6
+    },
+    {
+     "from": 2.5,
+     "to": 199.0,
+     "points": -1.6,
+     "plus_minus": 0.9
+    },
+    {
+     "from": 199.0,
+     "to": 1342.0,
+     "points": -6.2,
+     "plus_minus": 1.6
+    },
+    {
+     "from": 1342.0,
+     "to": 16474.0,
+     "points": -9.0,
+     "plus_minus": 1.5
+    }
+   ]
+  },
+  {
+   "term": "morale_diff",
+   "description": "morale, own minus enemy (discovery, approved)",
+   "importance": 0.126,
    "missing_points": 0.0,
    "curve": [
     {
-     "from": -30.0,
-     "to": -29.5,
-     "points": 1.9,
-     "plus_minus": 0.6
+     "from": -430.0,
+     "to": -124.5,
+     "points": -6.6,
+     "plus_minus": 0.9
     },
     {
-     "from": -29.5,
-     "to": -14.5,
-     "points": -0.5,
-     "plus_minus": 0.6
+     "from": -124.5,
+     "to": -45.5,
+     "points": -3.4,
+     "plus_minus": 0.5
     },
     {
-     "from": -14.5,
+     "from": -45.5,
      "to": -0.5,
-     "points": -2.6,
+     "points": -0.8,
      "plus_minus": 0.3
     },
     {
      "from": -0.5,
      "to": 0.5,
-     "points": -2.7,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 0.5,
-     "to": 16.5,
-     "points": -1.1,
-     "plus_minus": 0.6
-    },
-    {
-     "from": 16.5,
-     "to": 60.0,
-     "points": 5.4,
-     "plus_minus": 0.5
-    }
-   ]
-  },
-  {
-   "term": "def_snare_present",
-   "description": "snare power of the defenders who came (movepower.py)",
-   "importance": 0.083,
-   "missing_points": 0.0,
-   "curve": [
-    {
-     "from": 0.0,
-     "to": 1.8,
-     "points": -1.8,
-     "plus_minus": 0.7
-    },
-    {
-     "from": 1.8,
-     "to": 20.05,
-     "points": -1.7,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 20.05,
-     "to": 30.1,
-     "points": -0.7,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 30.1,
-     "to": 49.5,
-     "points": 1.5,
-     "plus_minus": 0.7
-    },
-    {
-     "from": 49.5,
-     "to": 60.35,
-     "points": 3.1,
-     "plus_minus": 1.0
-    },
-    {
-     "from": 60.35,
-     "to": 132.2,
-     "points": 4.6,
-     "plus_minus": 1.2
-    }
-   ]
-  },
-  {
-   "term": "defenders",
-   "description": "defenders who came",
-   "importance": 0.081,
-   "missing_points": 0.0,
-   "curve": [
-    {
-     "from": 0.0,
-     "to": 1.5,
-     "points": -0.9,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 1.5,
-     "to": 2.5,
-     "points": -3.0,
-     "plus_minus": 0.7
-    },
-    {
-     "from": 2.5,
-     "to": 3.5,
-     "points": -3.0,
-     "plus_minus": 0.7
-    },
-    {
-     "from": 3.5,
-     "to": 5.5,
-     "points": -0.5,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 5.5,
-     "to": 7.5,
      "points": 2.5,
      "plus_minus": 0.3
     },
     {
-     "from": 7.5,
-     "to": 8.0,
-     "points": 2.9,
-     "plus_minus": 1.2
+     "from": 0.5,
+     "to": 87.5,
+     "points": 2.8,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 87.5,
+     "to": 395.0,
+     "points": 3.0,
+     "plus_minus": 0.7
     }
    ]
   },
   {
    "term": "def_free",
    "description": "defenders alive and not on flag duty at entry",
-   "importance": 0.072,
+   "importance": 0.079,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 0.0,
      "to": 4.5,
-     "points": 13.7,
-     "plus_minus": 1.9
+     "points": 12.3,
+     "plus_minus": 3.2
     },
     {
      "from": 4.5,
      "to": 5.5,
-     "points": 4.7,
-     "plus_minus": 0.6
+     "points": 5.6,
+     "plus_minus": 1.5
     },
     {
      "from": 5.5,
      "to": 6.5,
-     "points": -0.4,
-     "plus_minus": 0.2
+     "points": -1.0,
+     "plus_minus": 0.4
     },
     {
      "from": 6.5,
      "to": 7.5,
      "points": -2.4,
-     "plus_minus": 0.3
+     "plus_minus": 0.6
     },
     {
      "from": 7.5,
      "to": 8.0,
-     "points": -0.1,
+     "points": 0.5,
      "plus_minus": 0.2
     }
    ]
   },
   {
-   "term": "size",
-   "description": "split size",
-   "importance": 0.058,
+   "term": "latency",
+   "description": "seconds until the first defender arrived (60 = never)",
+   "importance": 0.059,
    "missing_points": 0.0,
    "curve": [
     {
-     "from": 1.0,
-     "to": 1.5,
-     "points": 1.4,
-     "plus_minus": 0.2
+     "from": -30.0,
+     "to": -29.5,
+     "points": 3.0,
+     "plus_minus": 0.7
     },
     {
-     "from": 1.5,
-     "to": 2.5,
-     "points": 1.6,
-     "plus_minus": 0.2
+     "from": -29.5,
+     "to": -18.5,
+     "points": 0.4,
+     "plus_minus": 0.3
     },
     {
-     "from": 2.5,
-     "to": 3.5,
-     "points": -0.6,
-     "plus_minus": 0.1
+     "from": -18.5,
+     "to": -9.5,
+     "points": -1.0,
+     "plus_minus": 0.6
     },
     {
-     "from": 3.5,
-     "to": 4.5,
-     "points": -1.2,
-     "plus_minus": 0.2
+     "from": -9.5,
+     "to": -0.5,
+     "points": -2.1,
+     "plus_minus": 0.6
     },
     {
-     "from": 4.5,
-     "to": 5.5,
-     "points": -4.7,
-     "plus_minus": 1.2
+     "from": -0.5,
+     "to": 0.5,
+     "points": -2.2,
+     "plus_minus": 0.5
     },
     {
-     "from": 5.5,
-     "to": 7.0,
-     "points": -6.3,
-     "plus_minus": 1.6
+     "from": 0.5,
+     "to": 60.0,
+     "points": 0.1,
+     "plus_minus": 0.4
     }
    ]
   },
   {
    "term": "split_healers",
    "description": "healers in the split",
-   "importance": 0.058,
+   "importance": 0.059,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 0.0,
      "to": 0.5,
-     "points": -1.5,
+     "points": -1.6,
      "plus_minus": 0.3
     },
     {
      "from": 0.5,
      "to": 1.5,
-     "points": 1.3,
-     "plus_minus": 0.1
+     "points": 1.0,
+     "plus_minus": 0.4
     },
     {
      "from": 1.5,
      "to": 2.5,
-     "points": 2.0,
-     "plus_minus": 0.7
+     "points": 2.8,
+     "plus_minus": 1.0
     },
     {
      "from": 2.5,
      "to": 4.0,
-     "points": -2.0,
-     "plus_minus": 3.1
+     "points": 2.5,
+     "plus_minus": 1.9
     }
    ]
   },
   {
-   "term": "split_speed_power",
-   "description": "split members' speed power (movepower.py)",
-   "importance": 0.043,
+   "term": "def_snare_present",
+   "description": "snare power of the defenders who came (movepower.py)",
+   "importance": 0.054,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 0.0,
-     "to": 12.5,
-     "points": -1.3,
-     "plus_minus": 1.2
-    },
-    {
-     "from": 12.5,
-     "to": 18.5,
+     "to": 1.8,
      "points": -0.9,
      "plus_minus": 0.5
     },
     {
-     "from": 18.5,
-     "to": 25.25,
-     "points": -0.7,
-     "plus_minus": 0.1
+     "from": 1.8,
+     "to": 20.05,
+     "points": -1.4,
+     "plus_minus": 0.6
     },
     {
-     "from": 25.25,
-     "to": 32.35,
-     "points": -0.2,
-     "plus_minus": 0.2
+     "from": 20.05,
+     "to": 30.1,
+     "points": -0.8,
+     "plus_minus": 0.4
     },
     {
-     "from": 32.35,
-     "to": 38.6,
-     "points": 0.4,
-     "plus_minus": 0.5
+     "from": 30.1,
+     "to": 49.5,
+     "points": 0.7,
+     "plus_minus": 0.4
     },
     {
-     "from": 38.6,
-     "to": 76.6,
-     "points": 3.0,
+     "from": 49.5,
+     "to": 60.35,
+     "points": 2.0,
+     "plus_minus": 0.9
+    },
+    {
+     "from": 60.35,
+     "to": 132.2,
+     "points": 3.1,
+     "plus_minus": 1.5
+    }
+   ]
+  },
+  {
+   "term": "defenders",
+   "description": "defenders who came",
+   "importance": 0.052,
+   "missing_points": 0.0,
+   "curve": [
+    {
+     "from": 0.0,
+     "to": 1.5,
+     "points": -0.0,
+     "plus_minus": 0.7
+    },
+    {
+     "from": 1.5,
+     "to": 2.5,
+     "points": -2.4,
      "plus_minus": 1.1
+    },
+    {
+     "from": 2.5,
+     "to": 3.5,
+     "points": -2.2,
+     "plus_minus": 1.1
+    },
+    {
+     "from": 3.5,
+     "to": 5.5,
+     "points": -0.3,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 5.5,
+     "to": 7.5,
+     "points": 1.8,
+     "plus_minus": 0.9
+    },
+    {
+     "from": 7.5,
+     "to": 8.0,
+     "points": 1.6,
+     "plus_minus": 1.3
     }
    ]
   },
   {
    "term": "main_diff",
    "description": "own main minus enemy main meanwhile",
-   "importance": 0.038,
+   "importance": 0.052,
    "missing_points": 0.0,
    "curve": [
     {
      "from": -6.7,
-     "to": -1.65,
-     "points": -1.3,
+     "to": -1.75,
+     "points": -0.3,
      "plus_minus": 1.0
     },
     {
-     "from": -1.65,
-     "to": -0.85,
-     "points": 1.2,
-     "plus_minus": 1.2
+     "from": -1.75,
+     "to": -0.95,
+     "points": 1.7,
+     "plus_minus": 0.1
     },
     {
-     "from": -0.85,
-     "to": -0.35,
-     "points": 1.4,
-     "plus_minus": 0.7
+     "from": -0.95,
+     "to": -0.45,
+     "points": 1.7,
+     "plus_minus": 0.4
     },
     {
-     "from": -0.35,
+     "from": -0.45,
      "to": -0.05,
-     "points": 0.3,
-     "plus_minus": 0.6
+     "points": 0.6,
+     "plus_minus": 0.2
     },
     {
      "from": -0.05,
      "to": 0.45,
-     "points": -1.2,
-     "plus_minus": 1.0
+     "points": -1.8,
+     "plus_minus": 0.2
     },
     {
      "from": 0.45,
      "to": 6.0,
-     "points": -0.2,
-     "plus_minus": 1.5
+     "points": -1.7,
+     "plus_minus": 0.3
+    }
+   ]
+  },
+  {
+   "term": "split_speed_power",
+   "description": "split members' speed power (movepower.py)",
+   "importance": 0.051,
+   "missing_points": 0.0,
+   "curve": [
+    {
+     "from": 0.0,
+     "to": 11.0,
+     "points": -2.1,
+     "plus_minus": 0.7
+    },
+    {
+     "from": 11.0,
+     "to": 18.5,
+     "points": -1.3,
+     "plus_minus": 0.1
+    },
+    {
+     "from": 18.5,
+     "to": 25.25,
+     "points": -0.3,
+     "plus_minus": 0.1
+    },
+    {
+     "from": 25.25,
+     "to": 32.35,
+     "points": 0.4,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 32.35,
+     "to": 38.75,
+     "points": 0.4,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 38.75,
+     "to": 76.6,
+     "points": 3.1,
+     "plus_minus": 0.9
+    }
+   ]
+  },
+  {
+   "term": "size",
+   "description": "split size",
+   "importance": 0.049,
+   "missing_points": 0.0,
+   "curve": [
+    {
+     "from": 1.0,
+     "to": 1.5,
+     "points": 1.4,
+     "plus_minus": 1.0
+    },
+    {
+     "from": 1.5,
+     "to": 2.5,
+     "points": 1.2,
+     "plus_minus": 0.5
+    },
+    {
+     "from": 2.5,
+     "to": 3.5,
+     "points": -0.5,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 3.5,
+     "to": 4.5,
+     "points": -1.4,
+     "plus_minus": 0.8
+    },
+    {
+     "from": 4.5,
+     "to": 5.5,
+     "points": -2.7,
+     "plus_minus": 1.0
+    },
+    {
+     "from": 5.5,
+     "to": 7.0,
+     "points": -3.0,
+     "plus_minus": 0.9
     }
    ]
   },
   {
    "term": "strength_gap",
    "description": "splitting team's strength gap",
-   "importance": 0.035,
+   "importance": 0.038,
    "missing_points": 0.0,
    "curve": [
     {
      "from": -1108.0,
      "to": -401.5,
      "points": -1.5,
-     "plus_minus": 1.0
+     "plus_minus": 0.9
     },
     {
      "from": -401.5,
-     "to": -110.0,
-     "points": -1.1,
-     "plus_minus": 0.5
-    },
-    {
-     "from": -110.0,
-     "to": 56.5,
-     "points": 0.6,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 56.5,
-     "to": 308.0,
-     "points": 0.7,
+     "to": -136.5,
+     "points": -1.3,
      "plus_minus": 0.6
     },
     {
-     "from": 308.0,
-     "to": 521.0,
-     "points": 0.5,
-     "plus_minus": 0.3
+     "from": -136.5,
+     "to": 46.5,
+     "points": 0.3,
+     "plus_minus": 0.5
     },
     {
-     "from": 521.0,
+     "from": 46.5,
+     "to": 304.5,
+     "points": 1.0,
+     "plus_minus": 0.5
+    },
+    {
+     "from": 304.5,
+     "to": 516.0,
+     "points": 1.0,
+     "plus_minus": 0.6
+    },
+    {
+     "from": 516.0,
      "to": 1059.0,
-     "points": 0.8,
-     "plus_minus": 0.7
+     "points": 0.6,
+     "plus_minus": 0.5
     }
    ]
   },

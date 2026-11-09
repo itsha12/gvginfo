@@ -1,13 +1,13 @@
 {
  "node": "collapse",
  "target": "R.1",
- "matches": 284,
- "rows": 1930,
+ "matches": 325,
+ "rows": 2251,
  "rate": 0.133,
  "mean": null,
  "validation": {
-  "glass box": 0.3094,
-  "simple baseline": 0.3936,
+  "glass box": 0.3117,
+  "simple baseline": 0.3927,
   "metric": "log loss",
   "verdict": "adds to the simple baseline"
  },
@@ -18,8 +18,8 @@
    "features": [
     "latency"
    ],
-   "strength": 0.0004,
-   "plus_minus": 0.0002,
+   "strength": 0.0018,
+   "plus_minus": 0.0005,
    "status": "supported"
   },
   {
@@ -31,32 +31,32 @@
     "npc_hit_to_arrival",
     "res_in_at_arrival"
    ],
-   "strength": 0.0036,
-   "plus_minus": 0.002,
+   "strength": -0.0016,
+   "plus_minus": 0.0009,
    "status": "not clear yet",
    "each": [
     {
      "feature": "defenders_10s",
-     "strength": -0.0004,
-     "plus_minus": 0.0005,
-     "status": "not clear yet"
-    },
-    {
-     "feature": "contact_diff",
      "strength": 0.0001,
      "plus_minus": 0.0003,
      "status": "not clear yet"
     },
     {
+     "feature": "contact_diff",
+     "strength": 0.0003,
+     "plus_minus": 0.0007,
+     "status": "not clear yet"
+    },
+    {
      "feature": "npc_hit_to_arrival",
-     "strength": 0.0033,
-     "plus_minus": 0.0017,
+     "strength": 0.0002,
+     "plus_minus": 0.0005,
      "status": "not clear yet"
     },
     {
      "feature": "res_in_at_arrival",
-     "strength": 0.0016,
-     "plus_minus": 0.0017,
+     "strength": -0.0001,
+     "plus_minus": 0.0008,
      "status": "not clear yet"
     }
    ]
@@ -69,8 +69,8 @@
     "split_speed_power",
     "split_escapes"
    ],
-   "strength": 0.0009,
-   "plus_minus": 0.0008,
+   "strength": -0.0005,
+   "plus_minus": 0.0011,
    "status": "not clear yet"
   },
   {
@@ -79,8 +79,8 @@
    "features": [
     "def_snare_present"
    ],
-   "strength": 0.003,
-   "plus_minus": 0.0019,
+   "strength": 0.0013,
+   "plus_minus": 0.0011,
    "status": "not clear yet"
   },
   {
@@ -89,8 +89,8 @@
    "features": [
     "split_dp"
    ],
-   "strength": 0.0085,
-   "plus_minus": 0.003,
+   "strength": 0.0069,
+   "plus_minus": 0.0021,
    "status": "supported"
   },
   {
@@ -101,9 +101,9 @@
     "split_self_defence",
     "healing_monks_enemy"
    ],
-   "strength": 0.0071,
-   "plus_minus": 0.004,
-   "status": "not clear yet"
+   "strength": 0.0025,
+   "plus_minus": 0.0012,
+   "status": "supported"
   },
   {
    "from": "K.1",
@@ -111,8 +111,8 @@
    "features": [
     "def_dps"
    ],
-   "strength": 0.0089,
-   "plus_minus": 0.0024,
+   "strength": 0.0076,
+   "plus_minus": 0.002,
    "status": "supported"
   },
   {
@@ -121,8 +121,8 @@
    "features": [
     "def_npc_value"
    ],
-   "strength": 0.0005,
-   "plus_minus": 0.0003,
+   "strength": -0.0006,
+   "plus_minus": 0.0006,
    "status": "not clear yet"
   },
   {
@@ -131,8 +131,8 @@
    "features": [
     "split_npc_dps"
    ],
-   "strength": 0.0021,
-   "plus_minus": 0.0016,
+   "strength": 0.0,
+   "plus_minus": 0.0004,
    "status": "not clear yet"
   },
   {
@@ -142,20 +142,20 @@
     "depth_at_arrival",
     "depth_median"
    ],
-   "strength": 0.0046,
-   "plus_minus": 0.0033,
-   "status": "not clear yet",
+   "strength": 0.0023,
+   "plus_minus": 0.0008,
+   "status": "supported",
    "each": [
     {
      "feature": "depth_at_arrival",
-     "strength": 0.001,
+     "strength": 0.0008,
      "plus_minus": 0.0005,
-     "status": "supported"
+     "status": "not clear yet"
     },
     {
      "feature": "depth_median",
-     "strength": 0.0038,
-     "plus_minus": 0.0019,
+     "strength": 0.0002,
+     "plus_minus": 0.001,
      "status": "not clear yet"
     }
    ]
@@ -167,8 +167,8 @@
     "size",
     "main_diff"
    ],
-   "strength": 0.0011,
-   "plus_minus": 0.0031,
+   "strength": 0.0034,
+   "plus_minus": 0.0022,
    "status": "not clear yet"
   },
   {
@@ -177,8 +177,8 @@
    "features": [
     "strength_gap"
    ],
-   "strength": 0.0094,
-   "plus_minus": 0.003,
+   "strength": 0.0086,
+   "plus_minus": 0.0032,
    "status": "supported"
   }
  ],
@@ -186,1219 +186,873 @@
   {
    "term": "def_dps",
    "description": "the defenders who came: their usual damage per second, summed (Denning: can they kill it)",
-   "importance": 0.403,
+   "importance": 0.479,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 0.0,
-     "to": 1.65,
-     "points": -12.8,
-     "plus_minus": 4.0
+     "to": 1.7,
+     "points": -17.2,
+     "plus_minus": 5.2
     },
     {
-     "from": 1.65,
+     "from": 1.7,
      "to": 5.45,
-     "points": -11.5,
-     "plus_minus": 4.0
+     "points": -14.0,
+     "plus_minus": 4.3
     },
     {
      "from": 5.45,
-     "to": 7.65,
-     "points": -8.9,
-     "plus_minus": 1.7
+     "to": 7.55,
+     "points": -5.7,
+     "plus_minus": 1.3
     },
     {
-     "from": 7.65,
-     "to": 10.25,
-     "points": -4.6,
-     "plus_minus": 1.8
+     "from": 7.55,
+     "to": 10.45,
+     "points": -3.9,
+     "plus_minus": 1.2
     },
     {
-     "from": 10.25,
-     "to": 12.95,
-     "points": -2.3,
-     "plus_minus": 2.6
+     "from": 10.45,
+     "to": 12.75,
+     "points": -0.8,
+     "plus_minus": 1.1
     },
     {
-     "from": 12.95,
-     "to": 15.5,
-     "points": 4.2,
-     "plus_minus": 1.8
-    },
-    {
-     "from": 15.5,
-     "to": 18.35,
-     "points": 5.5,
-     "plus_minus": 2.3
-    },
-    {
-     "from": 18.35,
-     "to": 21.7,
-     "points": 7.2,
+     "from": 12.75,
+     "to": 14.0,
+     "points": 5.3,
      "plus_minus": 2.2
     },
     {
-     "from": 21.7,
-     "to": 25.25,
-     "points": 8.7,
+     "from": 14.0,
+     "to": 17.85,
+     "points": 6.4,
+     "plus_minus": 1.9
+    },
+    {
+     "from": 17.85,
+     "to": 20.35,
+     "points": 7.8,
+     "plus_minus": 2.2
+    },
+    {
+     "from": 20.35,
+     "to": 23.65,
+     "points": 10.5,
+     "plus_minus": 3.0
+    },
+    {
+     "from": 23.65,
+     "to": 28.15,
+     "points": 11.3,
+     "plus_minus": 2.8
+    },
+    {
+     "from": 28.15,
+     "to": 33.95,
+     "points": 13.0,
      "plus_minus": 2.9
     },
     {
-     "from": 25.25,
-     "to": 28.55,
-     "points": 10.1,
-     "plus_minus": 2.3
+     "from": 33.95,
+     "to": 37.95,
+     "points": 14.0,
+     "plus_minus": 3.5
     },
     {
-     "from": 28.55,
-     "to": 34.45,
-     "points": 11.4,
-     "plus_minus": 2.7
+     "from": 37.95,
+     "to": 41.7,
+     "points": 15.4,
+     "plus_minus": 3.0
     },
     {
-     "from": 34.45,
-     "to": 38.2,
-     "points": 12.4,
-     "plus_minus": 2.5
-    },
-    {
-     "from": 38.2,
-     "to": 42.1,
-     "points": 14.5,
-     "plus_minus": 3.1
-    },
-    {
-     "from": 42.1,
-     "to": 55.2,
-     "points": 16.6,
-     "plus_minus": 3.3
+     "from": 41.7,
+     "to": 53.7,
+     "points": 19.1,
+     "plus_minus": 5.7
     }
    ]
   },
   {
    "term": "strength_gap",
    "description": "splitting team's strength gap",
-   "importance": 0.302,
+   "importance": 0.318,
    "missing_points": 0.0,
    "curve": [
     {
      "from": -1183.0,
      "to": -592.5,
-     "points": 12.9,
-     "plus_minus": 1.2
+     "points": 14.3,
+     "plus_minus": 1.9
     },
     {
      "from": -592.5,
-     "to": -438.5,
-     "points": 12.2,
-     "plus_minus": 1.5
+     "to": -446.5,
+     "points": 12.8,
+     "plus_minus": 1.9
     },
     {
-     "from": -438.5,
-     "to": -311.5,
-     "points": 11.0,
-     "plus_minus": 1.4
+     "from": -446.5,
+     "to": -321.5,
+     "points": 11.5,
+     "plus_minus": 2.1
     },
     {
-     "from": -311.5,
-     "to": -181.0,
-     "points": 8.6,
-     "plus_minus": 1.4
+     "from": -321.5,
+     "to": -210.0,
+     "points": 9.8,
+     "plus_minus": 2.1
     },
     {
-     "from": -181.0,
-     "to": -86.0,
-     "points": 6.8,
-     "plus_minus": 1.5
+     "from": -210.0,
+     "to": -91.5,
+     "points": 6.6,
+     "plus_minus": 0.3
     },
     {
-     "from": -86.0,
-     "to": -15.5,
-     "points": -1.8,
-     "plus_minus": 0.7
+     "from": -91.5,
+     "to": -18.5,
+     "points": -1.3,
+     "plus_minus": 2.2
     },
     {
-     "from": -15.5,
-     "to": 44.0,
-     "points": -3.0,
-     "plus_minus": 0.7
+     "from": -18.5,
+     "to": 36.5,
+     "points": -2.5,
+     "plus_minus": 2.0
     },
     {
-     "from": 44.0,
-     "to": 121.5,
-     "points": -4.3,
-     "plus_minus": 0.7
-    },
-    {
-     "from": 121.5,
-     "to": 248.0,
-     "points": -5.5,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 248.0,
-     "to": 352.0,
-     "points": -6.1,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 352.0,
-     "to": 428.5,
-     "points": -7.2,
-     "plus_minus": 0.9
-    },
-    {
-     "from": 428.5,
-     "to": 525.0,
-     "points": -7.8,
-     "plus_minus": 1.0
-    },
-    {
-     "from": 525.0,
-     "to": 626.5,
-     "points": -8.6,
+     "from": 36.5,
+     "to": 110.0,
+     "points": -4.5,
      "plus_minus": 1.2
     },
     {
-     "from": 626.5,
+     "from": 110.0,
+     "to": 235.5,
+     "points": -5.8,
+     "plus_minus": 0.8
+    },
+    {
+     "from": 235.5,
+     "to": 318.0,
+     "points": -6.7,
+     "plus_minus": 0.6
+    },
+    {
+     "from": 318.0,
+     "to": 416.5,
+     "points": -8.1,
+     "plus_minus": 0.6
+    },
+    {
+     "from": 416.5,
+     "to": 522.5,
+     "points": -8.9,
+     "plus_minus": 0.6
+    },
+    {
+     "from": 522.5,
+     "to": 621.0,
+     "points": -10.1,
+     "plus_minus": 2.1
+    },
+    {
+     "from": 621.0,
      "to": 1183.0,
-     "points": -8.3,
-     "plus_minus": 1.2
+     "points": -6.9,
+     "plus_minus": 1.9
     }
    ]
   },
   {
    "term": "split_dp",
    "description": "worst morale among the split members (death penalty lowers max health; Denning)",
-   "importance": 0.218,
+   "importance": 0.242,
    "missing_points": 0.0,
    "curve": [
     {
      "from": -60.0,
      "to": -44.5,
-     "points": 23.6,
-     "plus_minus": 2.7
+     "points": 26.4,
+     "plus_minus": 5.7
     },
     {
      "from": -44.5,
      "to": -30.5,
-     "points": 21.2,
+     "points": 20.9,
      "plus_minus": 2.2
     },
     {
      "from": -30.5,
      "to": -29.5,
      "points": 19.3,
-     "plus_minus": 2.3
+     "plus_minus": 1.8
     },
     {
      "from": -29.5,
      "to": -23.0,
-     "points": 16.2,
-     "plus_minus": 3.0
+     "points": 16.9,
+     "plus_minus": 1.4
     },
     {
      "from": -23.0,
      "to": -15.5,
-     "points": 12.5,
-     "plus_minus": 1.6
+     "points": 12.9,
+     "plus_minus": 1.7
     },
     {
      "from": -15.5,
      "to": -14.5,
-     "points": 8.3,
-     "plus_minus": 1.0
+     "points": 9.5,
+     "plus_minus": 0.8
     },
     {
      "from": -14.5,
      "to": -12.5,
-     "points": 6.7,
-     "plus_minus": 1.0
+     "points": 7.4,
+     "plus_minus": 0.8
     },
     {
      "from": -12.5,
      "to": -10.5,
-     "points": 4.4,
-     "plus_minus": 1.7
+     "points": 5.5,
+     "plus_minus": 0.7
     },
     {
      "from": -10.5,
      "to": -5.5,
-     "points": 2.0,
-     "plus_minus": 1.9
+     "points": 3.6,
+     "plus_minus": 1.1
     },
     {
      "from": -5.5,
      "to": -4.5,
-     "points": 0.1,
-     "plus_minus": 0.9
+     "points": 1.8,
+     "plus_minus": 1.3
     },
     {
      "from": -4.5,
      "to": -0.5,
-     "points": -1.8,
-     "plus_minus": 0.7
+     "points": -1.2,
+     "plus_minus": 0.8
     },
     {
      "from": -0.5,
      "to": 0.5,
-     "points": -2.7,
-     "plus_minus": 0.4
+     "points": -2.6,
+     "plus_minus": 0.6
     },
     {
      "from": 0.5,
      "to": 9.5,
-     "points": -3.9,
+     "points": -3.5,
      "plus_minus": 0.6
     },
     {
      "from": 9.5,
      "to": 10.0,
-     "points": -5.9,
-     "plus_minus": 1.8
+     "points": -7.5,
+     "plus_minus": 1.4
     }
    ]
   },
   {
    "term": "main_diff",
    "description": "own main minus enemy main meanwhile",
-   "importance": 0.172,
+   "importance": 0.207,
    "missing_points": 0.0,
    "curve": [
     {
      "from": -6.7,
-     "to": -2.65,
-     "points": 9.4,
-     "plus_minus": 1.9
+     "to": -2.45,
+     "points": 11.9,
+     "plus_minus": 2.4
     },
     {
-     "from": -2.65,
-     "to": -1.95,
-     "points": 7.7,
-     "plus_minus": 1.9
+     "from": -2.45,
+     "to": -1.65,
+     "points": 10.0,
+     "plus_minus": 2.3
     },
     {
-     "from": -1.95,
-     "to": -1.45,
-     "points": 6.2,
-     "plus_minus": 1.4
+     "from": -1.65,
+     "to": -1.15,
+     "points": 5.6,
+     "plus_minus": 2.6
     },
     {
-     "from": -1.45,
-     "to": -1.05,
-     "points": 4.2,
-     "plus_minus": 0.7
+     "from": -1.15,
+     "to": -0.85,
+     "points": 3.3,
+     "plus_minus": 1.3
     },
     {
-     "from": -1.05,
-     "to": -0.75,
-     "points": 3.1,
-     "plus_minus": 0.5
+     "from": -0.85,
+     "to": -0.55,
+     "points": 2.4,
+     "plus_minus": 1.1
     },
     {
-     "from": -0.75,
-     "to": -0.45,
-     "points": 2.0,
-     "plus_minus": 0.8
+     "from": -0.55,
+     "to": -0.35,
+     "points": 1.9,
+     "plus_minus": 1.1
     },
     {
-     "from": -0.45,
+     "from": -0.35,
      "to": -0.25,
-     "points": 1.1,
-     "plus_minus": 0.9
+     "points": 1.3,
+     "plus_minus": 1.0
     },
     {
      "from": -0.25,
      "to": -0.05,
-     "points": -0.1,
-     "plus_minus": 0.7
+     "points": 0.1,
+     "plus_minus": 1.3
     },
     {
      "from": -0.05,
      "to": 0.05,
      "points": -2.0,
-     "plus_minus": 0.3
+     "plus_minus": 0.9
     },
     {
      "from": 0.05,
      "to": 0.25,
-     "points": -2.8,
-     "plus_minus": 0.6
+     "points": -3.0,
+     "plus_minus": 1.2
     },
     {
      "from": 0.25,
-     "to": 0.55,
-     "points": -3.4,
-     "plus_minus": 0.5
+     "to": 0.45,
+     "points": -6.1,
+     "plus_minus": 2.8
     },
     {
-     "from": 0.55,
+     "from": 0.45,
      "to": 0.95,
-     "points": -5.8,
-     "plus_minus": 1.7
+     "points": -7.7,
+     "plus_minus": 3.2
     },
     {
      "from": 0.95,
      "to": 1.95,
-     "points": -6.7,
-     "plus_minus": 1.8
+     "points": -5.9,
+     "plus_minus": 2.0
     },
     {
      "from": 1.95,
      "to": 7.0,
-     "points": -9.1,
-     "plus_minus": 2.7
-    }
-   ]
-  },
-  {
-   "term": "def_snare_present",
-   "description": "snare power of the defenders who came (movepower.py; how strong, not just whether)",
-   "importance": 0.166,
-   "missing_points": 0.0,
-   "curve": [
-    {
-     "from": 0.0,
-     "to": 1.8,
-     "points": -4.0,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 1.8,
-     "to": 11.95,
-     "points": -3.0,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 11.95,
-     "to": 14.9,
-     "points": -2.1,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 14.9,
-     "to": 19.2,
-     "points": -1.2,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 19.2,
-     "to": 27.55,
-     "points": 0.1,
-     "plus_minus": 0.7
-    },
-    {
-     "from": 27.55,
-     "to": 30.1,
-     "points": 1.1,
-     "plus_minus": 0.8
-    },
-    {
-     "from": 30.1,
-     "to": 34.05,
-     "points": 3.1,
-     "plus_minus": 0.8
-    },
-    {
-     "from": 34.05,
-     "to": 49.5,
-     "points": 5.1,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 49.5,
-     "to": 49.85,
-     "points": 7.5,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 49.85,
-     "to": 60.35,
-     "points": 9.4,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 60.35,
-     "to": 69.5,
-     "points": 10.5,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 69.5,
-     "to": 80.15,
-     "points": 12.5,
-     "plus_minus": 0.7
-    },
-    {
-     "from": 80.15,
-     "to": 132.2,
-     "points": 14.6,
-     "plus_minus": 1.4
+     "points": -11.1,
+     "plus_minus": 5.1
     }
    ]
   },
   {
    "term": "depth_median",
    "description": "nearest split member's median distance to the defending pit over the split",
-   "importance": 0.144,
+   "importance": 0.198,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 0.0,
-     "to": 778.5,
-     "points": 6.1,
-     "plus_minus": 0.5
+     "to": 808.0,
+     "points": 8.4,
+     "plus_minus": 0.9
     },
     {
-     "from": 778.5,
-     "to": 1454.0,
-     "points": 5.7,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 1454.0,
-     "to": 1931.0,
-     "points": 4.9,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 1931.0,
-     "to": 2351.5,
-     "points": 4.0,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 2351.5,
-     "to": 3174.5,
-     "points": 3.1,
-     "plus_minus": 0.8
-    },
-    {
-     "from": 3174.5,
-     "to": 3980.0,
-     "points": 1.4,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 3980.0,
-     "to": 4555.5,
-     "points": 0.0,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 4555.5,
-     "to": 5089.0,
-     "points": -1.1,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 5089.0,
-     "to": 5538.0,
-     "points": -2.0,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 5538.0,
-     "to": 6049.0,
-     "points": -3.0,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 6049.0,
-     "to": 6533.5,
-     "points": -3.9,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 6533.5,
-     "to": 7063.0,
-     "points": -4.8,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 7063.0,
-     "to": 7989.5,
-     "points": -4.9,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 7989.5,
-     "to": 11011.0,
-     "points": -5.4,
-     "plus_minus": 0.7
-    }
-   ]
-  },
-  {
-   "term": "npc_hit_to_arrival",
-   "description": "seconds from the split's first hit on an NPC to the first defender's arrival",
-   "importance": 0.119,
-   "missing_points": -0.4,
-   "curve": [
-    {
-     "from": -1537.9,
-     "to": -250.75,
-     "points": -6.3,
-     "plus_minus": 2.4
-    },
-    {
-     "from": -250.75,
-     "to": -135.9,
-     "points": -5.9,
-     "plus_minus": 2.3
-    },
-    {
-     "from": -135.9,
-     "to": -88.15,
-     "points": -5.4,
-     "plus_minus": 2.5
-    },
-    {
-     "from": -88.15,
-     "to": -57.95,
-     "points": -5.0,
-     "plus_minus": 2.2
-    },
-    {
-     "from": -57.95,
-     "to": -39.25,
-     "points": -3.1,
-     "plus_minus": 3.2
-    },
-    {
-     "from": -39.25,
-     "to": -28.55,
-     "points": 0.9,
-     "plus_minus": 0.7
-    },
-    {
-     "from": -28.55,
-     "to": -20.55,
-     "points": 1.3,
-     "plus_minus": 0.7
-    },
-    {
-     "from": -20.55,
-     "to": -14.35,
-     "points": 2.2,
-     "plus_minus": 1.0
-    },
-    {
-     "from": -14.35,
-     "to": -8.05,
-     "points": 2.6,
-     "plus_minus": 1.0
-    },
-    {
-     "from": -8.05,
-     "to": -3.45,
-     "points": 3.0,
-     "plus_minus": 1.0
-    },
-    {
-     "from": -3.45,
-     "to": -0.75,
-     "points": 3.3,
+     "from": 808.0,
+     "to": 1484.0,
+     "points": 8.0,
      "plus_minus": 1.1
     },
     {
-     "from": -0.75,
-     "to": 2.75,
-     "points": 4.2,
+     "from": 1484.0,
+     "to": 1955.0,
+     "points": 7.1,
+     "plus_minus": 1.3
+    },
+    {
+     "from": 1955.0,
+     "to": 2390.5,
+     "points": 5.4,
+     "plus_minus": 1.8
+    },
+    {
+     "from": 2390.5,
+     "to": 3314.5,
+     "points": 4.7,
+     "plus_minus": 2.0
+    },
+    {
+     "from": 3314.5,
+     "to": 4033.5,
+     "points": 0.7,
+     "plus_minus": 0.9
+    },
+    {
+     "from": 4033.5,
+     "to": 4591.5,
+     "points": -0.8,
+     "plus_minus": 0.7
+    },
+    {
+     "from": 4591.5,
+     "to": 5114.0,
+     "points": -2.5,
+     "plus_minus": 0.6
+    },
+    {
+     "from": 5114.0,
+     "to": 5570.0,
+     "points": -3.4,
+     "plus_minus": 0.6
+    },
+    {
+     "from": 5570.0,
+     "to": 6062.5,
+     "points": -4.1,
+     "plus_minus": 0.7
+    },
+    {
+     "from": 6062.5,
+     "to": 6556.5,
+     "points": -5.3,
      "plus_minus": 0.8
     },
     {
-     "from": 2.75,
-     "to": 13.65,
-     "points": 4.5,
-     "plus_minus": 0.4
+     "from": 6556.5,
+     "to": 7081.0,
+     "points": -6.1,
+     "plus_minus": 1.1
     },
     {
-     "from": 13.65,
-     "to": 194.5,
-     "points": 5.1,
-     "plus_minus": 1.2
+     "from": 7081.0,
+     "to": 8044.0,
+     "points": -5.8,
+     "plus_minus": 2.0
+    },
+    {
+     "from": 8044.0,
+     "to": 11011.0,
+     "points": -6.5,
+     "plus_minus": 2.0
     }
    ]
   },
   {
-   "term": "healing_monks_enemy",
-   "description": "healing monks on the defending team (discovery, approved)",
-   "importance": 0.099,
+   "term": "def_snare_present",
+   "description": "snare power of the defenders who came (movepower.py; how strong, not just whether)",
+   "importance": 0.17,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 0.0,
-     "to": 0.5,
+     "to": 1.8,
+     "points": -4.1,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 1.8,
+     "to": 11.95,
+     "points": -3.1,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 11.95,
+     "to": 14.9,
+     "points": -1.9,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 14.9,
+     "to": 19.2,
+     "points": -0.4,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 19.2,
+     "to": 27.35,
+     "points": 0.7,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 27.35,
+     "to": 30.1,
+     "points": 2.2,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 30.1,
+     "to": 34.35,
+     "points": 4.2,
+     "plus_minus": 1.0
+    },
+    {
+     "from": 34.35,
+     "to": 49.5,
+     "points": 5.9,
+     "plus_minus": 0.8
+    },
+    {
+     "from": 49.5,
+     "to": 49.85,
+     "points": 7.2,
+     "plus_minus": 0.7
+    },
+    {
+     "from": 49.85,
+     "to": 60.35,
      "points": 8.5,
-     "plus_minus": 1.8
+     "plus_minus": 0.6
     },
     {
-     "from": 0.5,
-     "to": 1.5,
-     "points": 15.9,
-     "plus_minus": 2.3
-    },
-    {
-     "from": 1.5,
-     "to": 2.5,
-     "points": 2.1,
+     "from": 60.35,
+     "to": 68.0,
+     "points": 9.5,
      "plus_minus": 0.5
     },
     {
-     "from": 2.5,
-     "to": 3.5,
-     "points": -1.5,
-     "plus_minus": 0.1
+     "from": 68.0,
+     "to": 80.15,
+     "points": 10.3,
+     "plus_minus": 0.8
     },
     {
-     "from": 3.5,
-     "to": 4.0,
-     "points": -2.2,
-     "plus_minus": 0.5
+     "from": 80.15,
+     "to": 132.2,
+     "points": 12.8,
+     "plus_minus": 1.9
     }
    ]
   },
   {
    "term": "contact_diff",
    "description": "defenders arriving within 5 s of the first, minus the split's size (numbers at contact)",
-   "importance": 0.096,
-   "missing_points": -6.5,
+   "importance": 0.117,
+   "missing_points": -6.8,
    "curve": [
     {
      "from": -5.0,
      "to": -3.5,
-     "points": -3.8,
-     "plus_minus": 0.7
+     "points": -2.9,
+     "plus_minus": 1.2
     },
     {
      "from": -3.5,
      "to": -2.5,
-     "points": -1.8,
-     "plus_minus": 0.3
+     "points": -1.5,
+     "plus_minus": 0.9
     },
     {
      "from": -2.5,
      "to": -1.5,
-     "points": -0.4,
-     "plus_minus": 0.4
+     "points": -0.2,
+     "plus_minus": 0.9
     },
     {
      "from": -1.5,
      "to": -0.5,
-     "points": 0.4,
-     "plus_minus": 0.4
+     "points": 1.4,
+     "plus_minus": 0.5
     },
     {
      "from": -0.5,
      "to": 0.5,
-     "points": 1.3,
-     "plus_minus": 0.2
+     "points": 2.0,
+     "plus_minus": 0.7
     },
     {
      "from": 0.5,
      "to": 1.5,
-     "points": 2.5,
-     "plus_minus": 0.5
+     "points": 2.8,
+     "plus_minus": 0.8
     },
     {
      "from": 1.5,
      "to": 2.5,
-     "points": 3.0,
-     "plus_minus": 0.5
+     "points": 3.3,
+     "plus_minus": 0.8
     },
     {
      "from": 2.5,
      "to": 3.5,
      "points": 3.6,
-     "plus_minus": 0.5
+     "plus_minus": 0.8
     },
     {
      "from": 3.5,
      "to": 4.5,
-     "points": 3.0,
-     "plus_minus": 0.6
+     "points": -1.0,
+     "plus_minus": 3.7
     },
     {
      "from": 4.5,
      "to": 7.0,
-     "points": 2.2,
-     "plus_minus": 2.0
-    }
-   ]
-  },
-  {
-   "term": "res_in_at_arrival",
-   "description": "seconds to the next res when the first defender arrived",
-   "importance": 0.094,
-   "missing_points": -4.3,
-   "curve": [
-    {
-     "from": 5.0,
-     "to": 12.5,
-     "points": -3.1,
-     "plus_minus": 0.8
-    },
-    {
-     "from": 12.5,
-     "to": 22.5,
-     "points": -2.4,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 22.5,
-     "to": 27.5,
-     "points": -1.6,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 27.5,
-     "to": 32.5,
-     "points": -1.3,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 32.5,
-     "to": 37.5,
-     "points": -0.7,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 37.5,
-     "to": 42.5,
-     "points": 0.4,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 42.5,
-     "to": 47.5,
-     "points": 0.9,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 47.5,
-     "to": 57.5,
-     "points": 1.2,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 57.5,
-     "to": 67.5,
-     "points": 1.6,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 67.5,
-     "to": 77.5,
-     "points": 1.9,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 77.5,
-     "to": 87.5,
-     "points": 2.0,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 87.5,
-     "to": 97.5,
-     "points": 2.1,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 97.5,
-     "to": 107.5,
-     "points": 2.2,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 107.5,
-     "to": 120.0,
-     "points": 3.2,
-     "plus_minus": 0.8
-    }
-   ]
-  },
-  {
-   "term": "escape_ready",
-   "description": "split members' speed skills off recharge when the first defender arrived",
-   "importance": 0.083,
-   "missing_points": -5.9,
-   "curve": [
-    {
-     "from": 0.0,
-     "to": 0.5,
-     "points": -2.0,
-     "plus_minus": 0.9
-    },
-    {
-     "from": 0.5,
-     "to": 1.5,
-     "points": 0.0,
-     "plus_minus": 0.6
-    },
-    {
-     "from": 1.5,
-     "to": 2.5,
-     "points": 1.0,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 2.5,
-     "to": 3.5,
-     "points": 2.3,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 3.5,
-     "to": 4.5,
-     "points": 2.1,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 4.5,
-     "to": 5.5,
-     "points": 2.9,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 5.5,
-     "to": 8.0,
-     "points": -0.0,
-     "plus_minus": 1.0
-    }
-   ]
-  },
-  {
-   "term": "defenders_10s",
-   "description": "defenders arriving within 10 s of the first (arrival spread)",
-   "importance": 0.078,
-   "missing_points": 0.0,
-   "curve": [
-    {
-     "from": 0.0,
-     "to": 0.5,
-     "points": -3.6,
-     "plus_minus": 0.1
-    },
-    {
-     "from": 0.5,
-     "to": 1.5,
-     "points": -1.3,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 1.5,
-     "to": 2.5,
-     "points": -0.2,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 2.5,
-     "to": 3.5,
-     "points": 0.7,
-     "plus_minus": 0.1
-    },
-    {
-     "from": 3.5,
-     "to": 4.5,
-     "points": 1.4,
-     "plus_minus": 0.2
-    },
-    {
-     "from": 4.5,
-     "to": 5.5,
-     "points": 2.5,
-     "plus_minus": 0.1
-    },
-    {
-     "from": 5.5,
-     "to": 6.5,
-     "points": 3.9,
-     "plus_minus": 0.6
-    },
-    {
-     "from": 6.5,
-     "to": 7.5,
-     "points": 5.3,
-     "plus_minus": 0.7
-    },
-    {
-     "from": 7.5,
-     "to": 8.0,
-     "points": 6.3,
-     "plus_minus": 0.9
-    }
-   ]
-  },
-  {
-   "term": "latency",
-   "description": "seconds until the first defender arrived (60 = never)",
-   "importance": 0.071,
-   "missing_points": 0.0,
-   "curve": [
-    {
-     "from": -30.0,
-     "to": -29.5,
-     "points": 5.1,
-     "plus_minus": 0.3
-    },
-    {
-     "from": -29.5,
-     "to": -20.5,
-     "points": 4.2,
-     "plus_minus": 0.7
-    },
-    {
-     "from": -20.5,
-     "to": -13.5,
-     "points": 2.9,
-     "plus_minus": 0.8
-    },
-    {
-     "from": -13.5,
-     "to": -6.5,
-     "points": 1.7,
-     "plus_minus": 0.5
-    },
-    {
-     "from": -6.5,
-     "to": -0.5,
-     "points": 0.1,
-     "plus_minus": 1.1
-    },
-    {
-     "from": -0.5,
-     "to": 0.5,
-     "points": -0.9,
-     "plus_minus": 0.8
-    },
-    {
-     "from": 0.5,
-     "to": 2.5,
-     "points": -0.9,
-     "plus_minus": 0.8
-    },
-    {
-     "from": 2.5,
-     "to": 5.5,
-     "points": -1.3,
-     "plus_minus": 0.6
-    },
-    {
-     "from": 5.5,
-     "to": 9.5,
-     "points": -1.5,
-     "plus_minus": 0.6
-    },
-    {
-     "from": 9.5,
-     "to": 13.5,
-     "points": -0.9,
-     "plus_minus": 0.7
-    },
-    {
-     "from": 13.5,
-     "to": 18.5,
-     "points": -0.4,
-     "plus_minus": 1.5
-    },
-    {
-     "from": 18.5,
-     "to": 26.5,
-     "points": -0.4,
-     "plus_minus": 1.5
-    },
-    {
-     "from": 26.5,
-     "to": 59.0,
-     "points": -1.3,
-     "plus_minus": 1.7
-    },
-    {
-     "from": 59.0,
-     "to": 60.0,
-     "points": -2.0,
-     "plus_minus": 1.2
-    }
-   ]
-  },
-  {
-   "term": "depth_at_arrival",
-   "description": "nearest split member's distance to the defending pit when the first defender arrived",
-   "importance": 0.058,
-   "missing_points": -2.9,
-   "curve": [
-    {
-     "from": 0.0,
-     "to": 1097.5,
-     "points": 3.5,
-     "plus_minus": 2.5
-    },
-    {
-     "from": 1097.5,
-     "to": 1827.5,
-     "points": 3.7,
-     "plus_minus": 2.3
-    },
-    {
-     "from": 1827.5,
-     "to": 2598.5,
-     "points": 1.3,
-     "plus_minus": 0.7
-    },
-    {
-     "from": 2598.5,
-     "to": 3431.0,
-     "points": 1.2,
-     "plus_minus": 0.6
-    },
-    {
-     "from": 3431.0,
-     "to": 4205.0,
-     "points": 1.0,
-     "plus_minus": 0.6
-    },
-    {
-     "from": 4205.0,
-     "to": 4847.5,
-     "points": 0.9,
-     "plus_minus": 0.6
-    },
-    {
-     "from": 4847.5,
-     "to": 5410.5,
-     "points": 0.4,
-     "plus_minus": 0.1
-    },
-    {
-     "from": 5410.5,
-     "to": 5868.5,
-     "points": 0.1,
-     "plus_minus": 0.1
-    },
-    {
-     "from": 5868.5,
-     "to": 6374.0,
-     "points": 0.1,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 6374.0,
-     "to": 6857.5,
-     "points": -0.0,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 6857.5,
-     "to": 7355.0,
-     "points": -0.1,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 7355.0,
-     "to": 7857.5,
-     "points": -0.3,
-     "plus_minus": 0.5
-    },
-    {
-     "from": 7857.5,
-     "to": 8591.5,
-     "points": -1.8,
-     "plus_minus": 2.0
-    },
-    {
-     "from": 8591.5,
-     "to": 12302.0,
-     "points": -1.5,
-     "plus_minus": 2.2
+     "points": -5.4,
+     "plus_minus": 6.8
     }
    ]
   },
   {
    "term": "split_healers",
    "description": "healers on the split",
-   "importance": 0.055,
+   "importance": 0.102,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 0.0,
      "to": 0.5,
-     "points": 1.5,
-     "plus_minus": 0.4
+     "points": 2.7,
+     "plus_minus": 0.8
     },
     {
      "from": 0.5,
      "to": 1.5,
-     "points": -1.0,
-     "plus_minus": 0.3
+     "points": -2.2,
+     "plus_minus": 0.8
     },
     {
      "from": 1.5,
      "to": 2.5,
-     "points": -1.6,
-     "plus_minus": 0.2
+     "points": -2.4,
+     "plus_minus": 0.5
     },
     {
      "from": 2.5,
      "to": 3.5,
-     "points": -8.5,
-     "plus_minus": 2.4
+     "points": -9.3,
+     "plus_minus": 4.0
     },
     {
      "from": 3.5,
      "to": 4.0,
-     "points": -8.7,
-     "plus_minus": 3.9
+     "points": -6.8,
+     "plus_minus": 4.3
     }
    ]
   },
   {
-   "term": "split_self_defence",
-   "description": "self-heals and self-defence skills on the split members' bars (Denning: can it be killed)",
-   "importance": 0.042,
+   "term": "latency",
+   "description": "seconds until the first defender arrived (60 = never)",
+   "importance": 0.093,
+   "missing_points": 0.0,
+   "curve": [
+    {
+     "from": -30.0,
+     "to": -29.5,
+     "points": 5.8,
+     "plus_minus": 0.8
+    },
+    {
+     "from": -29.5,
+     "to": -21.5,
+     "points": 5.0,
+     "plus_minus": 1.0
+    },
+    {
+     "from": -21.5,
+     "to": -16.5,
+     "points": 4.3,
+     "plus_minus": 0.8
+    },
+    {
+     "from": -16.5,
+     "to": -10.5,
+     "points": 2.5,
+     "plus_minus": 0.6
+    },
+    {
+     "from": -10.5,
+     "to": -5.5,
+     "points": 1.6,
+     "plus_minus": 0.7
+    },
+    {
+     "from": -5.5,
+     "to": -0.5,
+     "points": -1.0,
+     "plus_minus": 1.3
+    },
+    {
+     "from": -0.5,
+     "to": 0.5,
+     "points": -2.2,
+     "plus_minus": 1.6
+    },
+    {
+     "from": 0.5,
+     "to": 3.5,
+     "points": -2.3,
+     "plus_minus": 1.6
+    },
+    {
+     "from": 3.5,
+     "to": 7.5,
+     "points": -2.4,
+     "plus_minus": 1.6
+    },
+    {
+     "from": 7.5,
+     "to": 11.5,
+     "points": -2.5,
+     "plus_minus": 1.6
+    },
+    {
+     "from": 11.5,
+     "to": 16.5,
+     "points": -2.8,
+     "plus_minus": 1.4
+    },
+    {
+     "from": 16.5,
+     "to": 23.5,
+     "points": 1.8,
+     "plus_minus": 2.9
+    },
+    {
+     "from": 23.5,
+     "to": 59.0,
+     "points": 1.2,
+     "plus_minus": 2.8
+    },
+    {
+     "from": 59.0,
+     "to": 60.0,
+     "points": 0.2,
+     "plus_minus": 3.1
+    }
+   ]
+  },
+  {
+   "term": "npc_hit_to_arrival",
+   "description": "seconds from the split's first hit on an NPC to the first defender's arrival",
+   "importance": 0.086,
+   "missing_points": -0.2,
+   "curve": [
+    {
+     "from": -1537.9,
+     "to": -264.65,
+     "points": -3.1,
+     "plus_minus": 1.6
+    },
+    {
+     "from": -264.65,
+     "to": -148.15,
+     "points": -2.7,
+     "plus_minus": 1.7
+    },
+    {
+     "from": -148.15,
+     "to": -92.3,
+     "points": -5.3,
+     "plus_minus": 2.2
+    },
+    {
+     "from": -92.3,
+     "to": -60.25,
+     "points": -5.1,
+     "plus_minus": 2.5
+    },
+    {
+     "from": -60.25,
+     "to": -40.0,
+     "points": -2.8,
+     "plus_minus": 2.1
+    },
+    {
+     "from": -40.0,
+     "to": -28.75,
+     "points": 0.0,
+     "plus_minus": 0.4
+    },
+    {
+     "from": -28.75,
+     "to": -20.55,
+     "points": 0.5,
+     "plus_minus": 0.5
+    },
+    {
+     "from": -20.55,
+     "to": -13.9,
+     "points": 1.2,
+     "plus_minus": 0.6
+    },
+    {
+     "from": -13.9,
+     "to": -8.15,
+     "points": 1.7,
+     "plus_minus": 0.6
+    },
+    {
+     "from": -8.15,
+     "to": -3.45,
+     "points": 2.0,
+     "plus_minus": 0.7
+    },
+    {
+     "from": -3.45,
+     "to": -0.65,
+     "points": 2.3,
+     "plus_minus": 0.8
+    },
+    {
+     "from": -0.65,
+     "to": 2.55,
+     "points": 3.3,
+     "plus_minus": 1.0
+    },
+    {
+     "from": 2.55,
+     "to": 13.1,
+     "points": 3.8,
+     "plus_minus": 1.1
+    },
+    {
+     "from": 13.1,
+     "to": 194.5,
+     "points": 5.1,
+     "plus_minus": 0.7
+    }
+   ]
+  },
+  {
+   "term": "healing_monks_enemy",
+   "description": "healing monks on the defending team (discovery, approved)",
+   "importance": 0.085,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 0.0,
      "to": 0.5,
-     "points": 1.1,
-     "plus_minus": 0.6
+     "points": 9.6,
+     "plus_minus": 4.1
     },
     {
      "from": 0.5,
      "to": 1.5,
-     "points": 0.7,
-     "plus_minus": 0.4
+     "points": 15.9,
+     "plus_minus": 3.1
     },
     {
      "from": 1.5,
      "to": 2.5,
-     "points": -1.0,
+     "points": 1.6,
      "plus_minus": 0.4
     },
     {
      "from": 2.5,
      "to": 3.5,
-     "points": -1.4,
-     "plus_minus": 0.6
+     "points": -1.3,
+     "plus_minus": 0.3
     },
     {
      "from": 3.5,
-     "to": 4.5,
-     "points": -1.2,
-     "plus_minus": 0.9
-    },
-    {
-     "from": 4.5,
-     "to": 5.5,
-     "points": 1.7,
-     "plus_minus": 2.4
-    },
-    {
-     "from": 5.5,
-     "to": 8.0,
-     "points": 3.0,
+     "to": 4.0,
+     "points": -1.0,
      "plus_minus": 2.4
     }
    ]
@@ -1406,91 +1060,183 @@
   {
    "term": "split_npc_dps",
    "description": "split members' measured damage per second against NPCs (Denning: what the split can get)",
-   "importance": 0.032,
+   "importance": 0.082,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 2.7,
-     "to": 11.55,
-     "points": -0.8,
-     "plus_minus": 1.3
+     "to": 11.45,
+     "points": 2.1,
+     "plus_minus": 2.4
     },
     {
-     "from": 11.55,
-     "to": 18.05,
-     "points": -0.0,
-     "plus_minus": 1.3
+     "from": 11.45,
+     "to": 17.75,
+     "points": 2.7,
+     "plus_minus": 2.4
     },
     {
-     "from": 18.05,
-     "to": 24.45,
-     "points": -1.2,
-     "plus_minus": 0.4
+     "from": 17.75,
+     "to": 23.65,
+     "points": -3.2,
+     "plus_minus": 1.7
     },
     {
-     "from": 24.45,
+     "from": 23.65,
      "to": 25.4,
-     "points": -1.2,
-     "plus_minus": 0.3
+     "points": -3.2,
+     "plus_minus": 1.6
     },
     {
      "from": 25.4,
      "to": 28.85,
-     "points": -1.1,
-     "plus_minus": 0.2
+     "points": -3.0,
+     "plus_minus": 1.6
     },
     {
      "from": 28.85,
      "to": 33.15,
-     "points": -0.7,
-     "plus_minus": 0.2
+     "points": -2.5,
+     "plus_minus": 1.5
     },
     {
      "from": 33.15,
      "to": 38.05,
-     "points": -0.2,
-     "plus_minus": 0.3
+     "points": -1.8,
+     "plus_minus": 1.3
     },
     {
      "from": 38.05,
-     "to": 45.35,
-     "points": 0.4,
-     "plus_minus": 0.6
+     "to": 44.5,
+     "points": 0.8,
+     "plus_minus": 0.7
     },
     {
-     "from": 45.35,
-     "to": 51.0,
-     "points": 0.7,
-     "plus_minus": 0.6
-    },
-    {
-     "from": 51.0,
-     "to": 56.25,
-     "points": 0.9,
-     "plus_minus": 0.4
-    },
-    {
-     "from": 56.25,
-     "to": 61.05,
+     "from": 44.5,
+     "to": 50.15,
      "points": 1.1,
-     "plus_minus": 0.3
+     "plus_minus": 0.6
     },
     {
-     "from": 61.05,
+     "from": 50.15,
+     "to": 55.55,
+     "points": 1.4,
+     "plus_minus": 0.6
+    },
+    {
+     "from": 55.55,
+     "to": 60.9,
+     "points": 1.7,
+     "plus_minus": 0.6
+    },
+    {
+     "from": 60.9,
      "to": 66.9,
-     "points": 1.1,
+     "points": 1.5,
      "plus_minus": 0.3
     },
     {
      "from": 66.9,
-     "to": 77.4,
+     "to": 79.7,
+     "points": 1.6,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 79.7,
+     "to": 132.8,
+     "points": 1.4,
+     "plus_minus": 0.3
+    }
+   ]
+  },
+  {
+   "term": "res_in_at_arrival",
+   "description": "seconds to the next res when the first defender arrived",
+   "importance": 0.079,
+   "missing_points": -3.4,
+   "curve": [
+    {
+     "from": 5.0,
+     "to": 12.5,
+     "points": -2.3,
+     "plus_minus": 0.5
+    },
+    {
+     "from": 12.5,
+     "to": 22.5,
+     "points": -1.7,
+     "plus_minus": 0.6
+    },
+    {
+     "from": 22.5,
+     "to": 27.5,
+     "points": -1.2,
+     "plus_minus": 0.6
+    },
+    {
+     "from": 27.5,
+     "to": 32.5,
+     "points": -2.2,
+     "plus_minus": 2.0
+    },
+    {
+     "from": 32.5,
+     "to": 37.5,
+     "points": -1.9,
+     "plus_minus": 2.1
+    },
+    {
+     "from": 37.5,
+     "to": 42.5,
+     "points": -0.1,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 42.5,
+     "to": 47.5,
+     "points": 0.3,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 47.5,
+     "to": 57.5,
      "points": 0.9,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 57.5,
+     "to": 67.5,
+     "points": 1.2,
      "plus_minus": 0.4
     },
     {
-     "from": 77.4,
-     "to": 132.8,
-     "points": 0.8,
+     "from": 67.5,
+     "to": 77.5,
+     "points": 1.6,
+     "plus_minus": 0.5
+    },
+    {
+     "from": 77.5,
+     "to": 87.5,
+     "points": 1.8,
+     "plus_minus": 0.6
+    },
+    {
+     "from": 87.5,
+     "to": 97.5,
+     "points": 2.0,
+     "plus_minus": 0.5
+    },
+    {
+     "from": 97.5,
+     "to": 107.5,
+     "points": 2.1,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 107.5,
+     "to": 120.0,
+     "points": 2.5,
      "plus_minus": 0.5
     }
    ]
@@ -1498,135 +1244,295 @@
   {
    "term": "split_speed_power",
    "description": "split members' speed power (movepower.py)",
-   "importance": 0.031,
+   "importance": 0.078,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 0.0,
      "to": 7.25,
-     "points": -0.7,
-     "plus_minus": 1.9
+     "points": 2.6,
+     "plus_minus": 1.8
     },
     {
      "from": 7.25,
      "to": 8.65,
-     "points": -0.0,
-     "plus_minus": 2.2
-    },
-    {
-     "from": 8.65,
-     "to": 11.7,
-     "points": -0.1,
-     "plus_minus": 2.1
-    },
-    {
-     "from": 11.7,
-     "to": 14.15,
-     "points": -0.1,
+     "points": 2.9,
      "plus_minus": 2.0
     },
     {
-     "from": 14.15,
-     "to": 15.45,
-     "points": -0.1,
-     "plus_minus": 1.9
+     "from": 8.65,
+     "to": 11.15,
+     "points": 2.7,
+     "plus_minus": 2.0
     },
     {
-     "from": 15.45,
-     "to": 18.25,
-     "points": -1.3,
-     "plus_minus": 1.0
+     "from": 11.15,
+     "to": 13.95,
+     "points": -0.5,
+     "plus_minus": 1.1
     },
     {
-     "from": 18.25,
+     "from": 13.95,
+     "to": 15.2,
+     "points": -1.9,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 15.2,
+     "to": 18.7,
+     "points": -1.8,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 18.7,
      "to": 20.6,
-     "points": -0.8,
-     "plus_minus": 1.0
+     "points": -1.0,
+     "plus_minus": 0.4
     },
     {
      "from": 20.6,
-     "to": 23.55,
-     "points": -0.1,
-     "plus_minus": 1.2
+     "to": 23.75,
+     "points": 0.3,
+     "plus_minus": 0.9
     },
     {
-     "from": 23.55,
-     "to": 27.55,
-     "points": 1.1,
-     "plus_minus": 0.5
+     "from": 23.75,
+     "to": 27.4,
+     "points": 1.0,
+     "plus_minus": 0.7
     },
     {
-     "from": 27.55,
-     "to": 30.25,
-     "points": 2.2,
-     "plus_minus": 0.8
+     "from": 27.4,
+     "to": 30.35,
+     "points": 1.5,
+     "plus_minus": 0.6
     },
     {
-     "from": 30.25,
-     "to": 34.4,
-     "points": 2.4,
-     "plus_minus": 0.8
+     "from": 30.35,
+     "to": 34.9,
+     "points": 1.6,
+     "plus_minus": 0.4
     },
     {
-     "from": 34.4,
-     "to": 37.65,
-     "points": 0.2,
-     "plus_minus": 2.3
+     "from": 34.9,
+     "to": 37.9,
+     "points": -1.4,
+     "plus_minus": 2.5
     },
     {
-     "from": 37.65,
-     "to": 44.2,
-     "points": 0.1,
-     "plus_minus": 2.3
+     "from": 37.9,
+     "to": 44.55,
+     "points": -0.9,
+     "plus_minus": 2.2
     },
     {
-     "from": 44.2,
+     "from": 44.55,
      "to": 78.1,
-     "points": -2.0,
-     "plus_minus": 4.7
+     "points": -7.3,
+     "plus_minus": 4.8
     }
    ]
   },
   {
-   "term": "size",
-   "description": "split size",
-   "importance": 0.031,
+   "term": "depth_at_arrival",
+   "description": "nearest split member's distance to the defending pit when the first defender arrived",
+   "importance": 0.077,
+   "missing_points": -3.1,
+   "curve": [
+    {
+     "from": 0.0,
+     "to": 1143.5,
+     "points": 5.8,
+     "plus_minus": 2.1
+    },
+    {
+     "from": 1143.5,
+     "to": 1839.0,
+     "points": 6.3,
+     "plus_minus": 2.2
+    },
+    {
+     "from": 1839.0,
+     "to": 2638.5,
+     "points": 1.1,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 2638.5,
+     "to": 3431.0,
+     "points": 0.9,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 3431.0,
+     "to": 4217.0,
+     "points": 0.7,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 4217.0,
+     "to": 4869.0,
+     "points": 0.6,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 4869.0,
+     "to": 5401.5,
+     "points": 0.1,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 5401.5,
+     "to": 5858.5,
+     "points": -0.1,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 5858.5,
+     "to": 6332.0,
+     "points": -0.2,
+     "plus_minus": 0.5
+    },
+    {
+     "from": 6332.0,
+     "to": 6786.5,
+     "points": -0.3,
+     "plus_minus": 0.5
+    },
+    {
+     "from": 6786.5,
+     "to": 7352.0,
+     "points": -0.4,
+     "plus_minus": 0.6
+    },
+    {
+     "from": 7352.0,
+     "to": 7854.0,
+     "points": -0.6,
+     "plus_minus": 0.6
+    },
+    {
+     "from": 7854.0,
+     "to": 8619.5,
+     "points": -5.5,
+     "plus_minus": 4.0
+    },
+    {
+     "from": 8619.5,
+     "to": 12302.0,
+     "points": 0.6,
+     "plus_minus": 1.6
+    }
+   ]
+  },
+  {
+   "term": "defenders_10s",
+   "description": "defenders arriving within 10 s of the first (arrival spread)",
+   "importance": 0.067,
    "missing_points": 0.0,
    "curve": [
     {
-     "from": 1.0,
+     "from": 0.0,
+     "to": 0.5,
+     "points": -3.2,
+     "plus_minus": 0.6
+    },
+    {
+     "from": 0.5,
      "to": 1.5,
-     "points": -0.9,
+     "points": -1.1,
      "plus_minus": 0.2
     },
     {
      "from": 1.5,
      "to": 2.5,
-     "points": -0.3,
-     "plus_minus": 0.2
+     "points": -0.1,
+     "plus_minus": 0.3
     },
     {
      "from": 2.5,
      "to": 3.5,
-     "points": 0.8,
-     "plus_minus": 0.2
+     "points": 0.6,
+     "plus_minus": 0.4
     },
     {
      "from": 3.5,
      "to": 4.5,
-     "points": 1.0,
-     "plus_minus": 0.1
+     "points": 1.4,
+     "plus_minus": 0.3
     },
     {
      "from": 4.5,
      "to": 5.5,
-     "points": 1.8,
-     "plus_minus": 0.3
+     "points": 2.4,
+     "plus_minus": 0.5
     },
     {
      "from": 5.5,
-     "to": 7.0,
+     "to": 6.5,
+     "points": 3.3,
+     "plus_minus": 0.5
+    },
+    {
+     "from": 6.5,
+     "to": 7.5,
+     "points": 4.2,
+     "plus_minus": 0.9
+    },
+    {
+     "from": 7.5,
+     "to": 8.0,
+     "points": 4.8,
+     "plus_minus": 0.7
+    }
+   ]
+  },
+  {
+   "term": "escape_ready",
+   "description": "split members' speed skills off recharge when the first defender arrived",
+   "importance": 0.063,
+   "missing_points": -4.4,
+   "curve": [
+    {
+     "from": 0.0,
+     "to": 0.5,
+     "points": -1.9,
+     "plus_minus": 0.8
+    },
+    {
+     "from": 0.5,
+     "to": 1.5,
      "points": 0.2,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 1.5,
+     "to": 2.5,
+     "points": 0.8,
+     "plus_minus": 0.1
+    },
+    {
+     "from": 2.5,
+     "to": 3.5,
+     "points": 1.7,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 3.5,
+     "to": 4.5,
+     "points": 1.3,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 4.5,
+     "to": 5.5,
+     "points": 2.2,
+     "plus_minus": 0.7
+    },
+    {
+     "from": 5.5,
+     "to": 8.0,
+     "points": 0.3,
      "plus_minus": 0.8
     }
    ]
@@ -1634,75 +1540,169 @@
   {
    "term": "split_escapes",
    "description": "split members' Shadow Step skills",
-   "importance": 0.024,
+   "importance": 0.039,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 0.0,
      "to": 0.5,
-     "points": 0.6,
-     "plus_minus": 0.1
+     "points": 0.9,
+     "plus_minus": 0.3
     },
     {
      "from": 0.5,
      "to": 1.5,
-     "points": -0.1,
-     "plus_minus": 0.1
+     "points": -0.4,
+     "plus_minus": 0.2
     },
     {
      "from": 1.5,
      "to": 2.5,
-     "points": -1.0,
+     "points": -1.3,
+     "plus_minus": 0.5
+    },
+    {
+     "from": 2.5,
+     "to": 3.5,
+     "points": -5.4,
+     "plus_minus": 1.4
+    },
+    {
+     "from": 3.5,
+     "to": 5.0,
+     "points": -9.8,
+     "plus_minus": 3.0
+    }
+   ]
+  },
+  {
+   "term": "size",
+   "description": "split size",
+   "importance": 0.03,
+   "missing_points": 0.0,
+   "curve": [
+    {
+     "from": 1.0,
+     "to": 1.5,
+     "points": -0.8,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 1.5,
+     "to": 2.5,
+     "points": -0.4,
+     "plus_minus": 0.1
+    },
+    {
+     "from": 2.5,
+     "to": 3.5,
+     "points": 0.8,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 3.5,
+     "to": 4.5,
+     "points": 1.1,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 4.5,
+     "to": 5.5,
+     "points": 1.2,
+     "plus_minus": 0.4
+    },
+    {
+     "from": 5.5,
+     "to": 7.0,
+     "points": -0.5,
+     "plus_minus": 0.7
+    }
+   ]
+  },
+  {
+   "term": "split_self_defence",
+   "description": "self-heals and self-defence skills on the split members' bars (Denning: can it be killed)",
+   "importance": 0.022,
+   "missing_points": 0.0,
+   "curve": [
+    {
+     "from": 0.0,
+     "to": 0.5,
+     "points": 0.5,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 0.5,
+     "to": 1.5,
+     "points": 0.4,
+     "plus_minus": 0.2
+    },
+    {
+     "from": 1.5,
+     "to": 2.5,
+     "points": -0.4,
      "plus_minus": 0.2
     },
     {
      "from": 2.5,
      "to": 3.5,
-     "points": -4.2,
-     "plus_minus": 1.0
+     "points": -1.0,
+     "plus_minus": 0.1
     },
     {
      "from": 3.5,
-     "to": 4.0,
-     "points": -7.6,
-     "plus_minus": 4.5
+     "to": 4.5,
+     "points": -0.7,
+     "plus_minus": 1.1
+    },
+    {
+     "from": 4.5,
+     "to": 5.5,
+     "points": 1.3,
+     "plus_minus": 2.3
+    },
+    {
+     "from": 5.5,
+     "to": 8.0,
+     "points": 2.4,
+     "plus_minus": 3.2
     }
    ]
   },
   {
    "term": "def_npc_value",
    "description": "defending pit NPCs alive, in win points (Denning: what the split can get)",
-   "importance": 0.021,
+   "importance": 0.012,
    "missing_points": 0.0,
    "curve": [
     {
      "from": 0.0,
      "to": 0.75,
-     "points": -1.4,
-     "plus_minus": 0.9
+     "points": 0.9,
+     "plus_minus": 0.6
     },
     {
      "from": 0.75,
      "to": 2.25,
-     "points": -1.1,
-     "plus_minus": 0.6
+     "points": 0.5,
+     "plus_minus": 0.5
     },
     {
      "from": 2.25,
      "to": 3.75,
-     "points": -1.0,
+     "points": 0.3,
      "plus_minus": 0.4
     },
     {
      "from": 3.75,
      "to": 5.25,
-     "points": -0.6,
+     "points": 0.2,
      "plus_minus": 0.3
     },
     {
      "from": 5.25,
      "to": 6.75,
-     "points": -0.2,
+     "points": 0.2,
      "plus_minus": 0.2
     },
     {
@@ -1714,26 +1714,26 @@
     {
      "from": 8.25,
      "to": 9.75,
-     "points": 0.4,
+     "points": 0.1,
      "plus_minus": 0.1
     },
     {
      "from": 9.75,
      "to": 11.25,
-     "points": 0.4,
-     "plus_minus": 0.2
+     "points": -0.1,
+     "plus_minus": 0.1
     },
     {
      "from": 11.25,
      "to": 12.75,
-     "points": 0.4,
-     "plus_minus": 0.2
+     "points": -0.1,
+     "plus_minus": 0.1
     },
     {
      "from": 12.75,
      "to": 13.5,
-     "points": -0.5,
-     "plus_minus": 0.9
+     "points": -1.1,
+     "plus_minus": 0.5
     }
    ]
   }
