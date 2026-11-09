@@ -1527,7 +1527,7 @@
    "created": "2026-11-09",
    "batch": 16,
    "matches_trained": 446,
-   "status": "open",
+   "status": "scored",
    "picks": [
     {
      "match": "d6ef0b00-a841-55ac-a976-4eca9f15c175",
@@ -2878,7 +2878,210 @@
      "sealed": "eyJhY3R1YWxfY2hvaWNlIjogImNvbGxhcHNlZCIsICJ3cF9jaGFuZ2UiOiAtMi4zLCAiY2hvaWNlX2VmZmVjdHMiOiB7ImNvbGxhcHNlZCI6IHsibWVhbl93cF9jaGFuZ2UiOiA4LjIsICJjYXNlcyI6IDZ9LCAiZGVmZW5kZWQgd2l0aG91dCBhIGNvbGxhcHNlIjogeyJtZWFuX3dwX2NoYW5nZSI6IDAuOSwgImNhc2VzIjogOH0sICJtaXNzZWQiOiB7Im1lYW5fd3BfY2hhbmdlIjogLTEuOCwgImNhc2VzIjogMX19fQ==",
      "id": 8
     }
-   ]
+   ],
+   "scored": {
+    "at": "2026-11-09",
+    "picks": [
+     {
+      "id": 1,
+      "actual_choice": "held, fell back",
+      "outcome_wp_change": -6,
+      "model": {
+       "call": "pushed, fell back",
+       "expected": -3.8,
+       "cases": 3,
+       "matched_actual": false
+      },
+      "denning": {
+       "call": "pushed, advanced",
+       "expected": 8.6,
+       "cases": 2,
+       "matched_actual": false
+      },
+      "usual": {
+       "call": "pushed, fell back",
+       "expected": -3.8,
+       "cases": 3,
+       "matched_actual": false
+      }
+     },
+     {
+      "id": 2,
+      "actual_choice": "already running, advanced",
+      "outcome_wp_change": -0.5,
+      "model": {
+       "call": "ran, fell back",
+       "expected": 7.3,
+       "cases": 5,
+       "matched_actual": false
+      },
+      "denning": {
+       "call": "already running, advanced",
+       "expected": 15.8,
+       "cases": 1,
+       "matched_actual": true
+      },
+      "usual": {
+       "call": "ran, fell back",
+       "expected": 7.3,
+       "cases": 5,
+       "matched_actual": false
+      }
+     },
+     {
+      "id": 3,
+      "actual_choice": "not running, advanced",
+      "outcome_wp_change": 0,
+      "model": {
+       "call": "not running, advanced",
+       "expected": -7.6,
+       "cases": 4,
+       "matched_actual": true
+      },
+      "denning": {
+       "call": "not running, fell back",
+       "expected": 0,
+       "cases": 1,
+       "matched_actual": false
+      },
+      "usual": {
+       "call": "not running, advanced",
+       "expected": -7.6,
+       "cases": 4,
+       "matched_actual": true
+      }
+     },
+     {
+      "id": 4,
+      "actual_choice": "collapsed",
+      "outcome_wp_change": -0.3,
+      "model": {
+       "call": "collapsed",
+       "expected": -2.9,
+       "cases": 10,
+       "matched_actual": true
+      },
+      "denning": {
+       "call": "collapsed",
+       "expected": -2.9,
+       "cases": 10,
+       "matched_actual": true
+      },
+      "usual": {
+       "call": "collapsed",
+       "expected": -2.9,
+       "cases": 10,
+       "matched_actual": true
+      }
+     },
+     {
+      "id": 5,
+      "actual_choice": "8 Monk alone",
+      "outcome_wp_change": 9.5,
+      "model": {
+       "call": "midline alone",
+       "expected": -9.3,
+       "cases": 5,
+       "matched_actual": false
+      },
+      "denning": {
+       "call": "healer with a collapse",
+       "expected": null,
+       "cases": 0,
+       "matched_actual": false
+      },
+      "usual": {
+       "call": "midline alone",
+       "expected": -9.3,
+       "cases": 5,
+       "matched_actual": false
+      }
+     },
+     {
+      "id": 6,
+      "actual_choice": "took the flag",
+      "outcome_wp_change": -22.4,
+      "model": {
+       "call": "pushed the pit",
+       "expected": -3.1,
+       "cases": 7,
+       "matched_actual": false
+      },
+      "denning": {
+       "call": "took the flag",
+       "expected": -5.9,
+       "cases": 3,
+       "matched_actual": true
+      },
+      "usual": {
+       "call": "pushed the pit",
+       "expected": -3.1,
+       "cases": 7,
+       "matched_actual": false
+      }
+     },
+     {
+      "id": 7,
+      "actual_choice": "NPCs",
+      "outcome_wp_change": -0.1,
+      "model": {
+       "call": "DP",
+       "expected": 5.1,
+       "cases": 6,
+       "matched_actual": false
+      },
+      "denning": {
+       "call": "NPCs",
+       "expected": 3,
+       "cases": 6,
+       "matched_actual": true
+      },
+      "usual": {
+       "call": "NPCs",
+       "expected": 3,
+       "cases": 6,
+       "matched_actual": true
+      }
+     },
+     {
+      "id": 8,
+      "actual_choice": "collapsed",
+      "outcome_wp_change": -2.3,
+      "model": {
+       "call": "collapsed",
+       "expected": 8.2,
+       "cases": 6,
+       "matched_actual": true
+      },
+      "denning": {
+       "call": "defended without a collapse",
+       "expected": 0.9,
+       "cases": 8,
+       "matched_actual": false
+      },
+      "usual": {
+       "call": "defended without a collapse",
+       "expected": 0.9,
+       "cases": 8,
+       "matched_actual": false
+      }
+     }
+    ],
+    "totals": {
+     "model": {
+      "expected_wp_change_sum": -6.1,
+      "matched_actual": 3
+     },
+     "denning": {
+      "expected_wp_change_sum": 19.5,
+      "matched_actual": 4
+     },
+     "usual": {
+      "expected_wp_change_sum": -15.5,
+      "matched_actual": 3
+     }
+    }
+   }
   }
  ]
 }
