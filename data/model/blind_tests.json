@@ -1563,7 +1563,7 @@
      "model_call": "pushed, fell back",
      "usual_play": "pushed, fell back",
      "specific": false,
-     "denning_call": null,
+     "denning_call": "pushed, advanced",
      "denning_reason": "",
      "context": {
       "team": "NwAy",
