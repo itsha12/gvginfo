@@ -857,7 +857,7 @@
      "model_call": "NPCs",
      "usual_play": "NPCs",
      "specific": false,
-     "denning_call": null,
+     "denning_call": "both",
      "denning_reason": "",
      "sealed": "eyJhY3R1YWxfY2hvaWNlIjogIk5QQ3MiLCAid3BfY2hhbmdlIjogMC4wLCAiY2hvaWNlX2VmZmVjdHMiOiB7Ik5QQ3MiOiB7Im1lYW5fd3BfY2hhbmdlIjogLTAuMSwgImNhc2VzIjogMTN9LCAiRFAiOiB7Im1lYW5fd3BfY2hhbmdlIjogLTAuMSwgImNhc2VzIjogMn19fQ==",
      "id": 6,
