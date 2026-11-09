@@ -2,29 +2,29 @@
  "about": "Choices made by the data for Denning's cap_test and pair_test corrections (model.py cap_test): held-out log loss with no cap and with each option, and with the tested pairs allowed or blocked; a change is kept only if it beats the alternative by 0.0005.",
  "choices": {
   "spike_killable_diff": {
-   "max_points": 15,
+   "max_points": null,
    "log_loss": {
-    "none": 0.3691,
-    "10": 0.3615,
-    "15": 0.3611,
-    "20": 0.3611,
-    "25": 0.3616
+    "none": 0.355,
+    "10": 0.3607,
+    "15": 0.3586,
+    "20": 0.3569,
+    "25": 0.3558
    },
-   "matches": 356,
-   "verdict": "cap at 15 points"
+   "matches": 446,
+   "verdict": "no cap (no option beat it on unseen matches)"
   }
  },
  "pairs": {
-  "block": true,
+  "block": false,
   "log_loss": {
-   "allowed": 0.3691,
-   "blocked": 0.36
+   "allowed": 0.355,
+   "blocked": 0.3648
   },
-  "matches": 356,
+  "matches": 446,
   "pairs": [
    "morale_diff with map_flag_run, map_pit_to_stand, map_bases_apart",
    "morale_total with map_flag_run, map_pit_to_stand, map_bases_apart"
   ],
-  "verdict": "blocked (it predicts unseen matches better)"
+  "verdict": "allowed (blocking didn't predict unseen matches better)"
  }
 }

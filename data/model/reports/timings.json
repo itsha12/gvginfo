@@ -1,63 +1,63 @@
 {
  "cores": 4,
- "cpu": "Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz",
+ "cpu": "AMD EPYC 9V74 80-Core Processor",
  "seconds": {
-  "candidate variables": 143.8,
-  "event layer and values": 3.6,
-  "learned nodes": 343.8,
-  "fit and honest test": 112.9,
-  "integrity and honest test text": 13.5,
+  "candidate variables": 271.1,
+  "event layer and values": 4.7,
+  "learned nodes": 407.7,
+  "fit and honest test": 150.2,
+  "integrity and honest test text": 17.6,
   "curves": 0.0,
   "interaction screen": 0.2,
   "surprises": 0.1,
   "rulings": 0.1,
-  "advice test": 426.8,
-  "usual play": 47.6,
-  "values (measure)": 364.0,
-  "node models": 742.1,
-  "values": 0.5,
-  "TQs": 210.3,
-  "snapshot": 43.9,
+  "advice test": 500.6,
+  "usual play": 62.0,
+  "values (measure)": 396.1,
+  "node models": 820.1,
+  "values": 0.7,
+  "TQs": 203.4,
+  "snapshot": 55.8,
   "questions": 0.0
  },
  "split": {
   "cands": {
-   "seconds": 143.8,
+   "seconds": 271.1,
    "laps": {
-    "candidate variables": 143.8
+    "candidate variables": 271.1
    }
   },
   "learned": {
-   "seconds": 347.4,
+   "seconds": 412.4,
    "laps": {
-    "event layer and values": 3.6,
-    "learned nodes": 343.8
+    "event layer and values": 4.7,
+    "learned nodes": 407.7
    }
   },
   "main": {
-   "seconds": 965.1,
+   "seconds": 1126.8,
    "laps": {
-    "fit and honest test": 112.9,
-    "integrity and honest test text": 13.5,
+    "fit and honest test": 150.2,
+    "integrity and honest test text": 17.6,
     "curves": 0.0,
     "interaction screen": 0.2,
     "surprises": 0.1,
     "rulings": 0.1,
-    "advice test": 426.8,
-    "usual play": 47.6,
-    "values (measure)": 364.0
+    "advice test": 500.6,
+    "usual play": 62.0,
+    "values (measure)": 396.1
    }
   },
   "nodes:deaths": {
-   "seconds": 666.6,
+   "seconds": 736.0,
    "laps": {
-    "node models": 666.5
+    "node models": 735.9
    }
   },
   "nodes:kill_conversion,lord_damage,flag_answer": {
-   "seconds": 75.6,
+   "seconds": 84.2,
    "laps": {
-    "node models": 75.6
+    "node models": 84.2
    }
   }
  }
