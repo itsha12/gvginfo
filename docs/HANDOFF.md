@@ -122,6 +122,14 @@ discovery (overdue), then chunk 5.
   Air Eles hitting from outside it; the NPC node counts only attackers in the base (read 1 v 4, 2% chance), and the
   team-position line showed all of cope "backside (contest)". Proposed: count ranged attackers hitting the pit from
   outside, and check the position labels in TQ 4.
+- Discovery after chunk 4 (run 42544583826, about 3 min; pit NPC loss node added to the workflow): 958 tests, 56 passed
+  the screen (about 22 by chance), 18 discoveries held for Denning (knowledge/discovery.md). Tactical/build ones: more
+  hexes or heals on own bars -> fewer fights won; enemy energy denial against own heals and enemy strips against own
+  prots (matchup terms); spike and knockdown builds split less; splitters' escape power -> split effect; own area
+  damage -> split answer and run defence; enemy snares against own speed and own healing monks -> run defence; enemy
+  healing monks -> fewer collapse kills. State ones: morale_total (fights), morale_diff (power play), down_diff_s
+  (runs), main_diff (split answer), turtle_diff (split effect), map_flag_run (split chance). Nothing on capture speed
+  or pit NPC loss. Awaiting Denning's rulings.
 - TQ confidence was low on 5 of 8 answers: most fixes carried to the result price under half a win point.
 
 ### Session 4t (2026-11-08)
@@ -384,7 +392,7 @@ the TQ reasoning.
 
 ## Next steps (in order)
 0. Denning's answers to the session 4u questions (footmen_diff, ranged pit attackers, discovery timing) as one engine
-   change; then discovery on the 266 matches.
+   change (discovery done after chunk 4: rule on its 18 findings).
 1. Discovery (Discovery workflow); findings held for his approval.
 2. Large pull: about five more chunks of 40 to 50 (Train batch, pick about 45, add_batch yes); after each, the
    snapshot across the learnings, the four TQs and questions for Denning; his answers built as one engine change
