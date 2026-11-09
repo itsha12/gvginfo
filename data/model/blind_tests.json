@@ -48,7 +48,134 @@
      "denning_call": null,
      "denning_reason": "",
      "sealed": "eyJhY3R1YWxfY2hvaWNlIjogImZyb250bGluZSB3aXRoIGEgY29sbGFwc2UiLCAid3BfY2hhbmdlIjogMTQuMiwgImNob2ljZV9lZmZlY3RzIjogeyI4IE1vbmsgd2l0aCBhIGNvbGxhcHNlIjogeyJtZWFuX3dwX2NoYW5nZSI6IDE0LjQsICJjYXNlcyI6IDN9LCAiaGVhbGVyIGFsb25lIjogeyJtZWFuX3dwX2NoYW5nZSI6IDE3LjUsICJjYXNlcyI6IDR9LCAiOCBNb25rIGFsb25lIjogeyJtZWFuX3dwX2NoYW5nZSI6IDEuMiwgImNhc2VzIjogMn0sICJmcm9udGxpbmUgd2l0aCBhIGNvbGxhcHNlIjogeyJtZWFuX3dwX2NoYW5nZSI6IC0zLjEsICJjYXNlcyI6IDN9LCAibWlkbGluZSBhbG9uZSI6IHsibWVhbl93cF9jaGFuZ2UiOiAtOC44LCAiY2FzZXMiOiAyfSwgImZyb250bGluZSBhbG9uZSI6IHsibWVhbl93cF9jaGFuZ2UiOiAyLjMsICJjYXNlcyI6IDF9fX0=",
-     "id": 1
+     "id": 1,
+     "context": {
+      "team": "EDGE",
+      "opponent": "hook",
+      "map": "Corrupted Isle",
+      "t": 108,
+      "res_in": 15,
+      "stand": {
+       "owner": null,
+       "held_s": 0,
+       "boost_in": null
+      },
+      "mains_apart": 5418,
+      "own": {
+       "tag": "EDGE",
+       "alive": 3,
+       "dead": [
+        "Fire Ele",
+        "Air Ele",
+        "Assassin",
+        "Prot"
+       ],
+       "main": 3,
+       "main_roles": [
+        "7 Monk",
+        "Mesmer",
+        "AoB Derv"
+       ],
+       "zones": {
+        "backside": [
+         "AoB Derv",
+         "Mesmer",
+         "7 Monk"
+        ],
+        "dead": [
+         "Fire Ele",
+         "Air Ele",
+         "Assassin",
+         "Prot"
+        ]
+       },
+       "carrying": [],
+       "flag_lead": 10,
+       "flag_how": "carrying (AoB Derv, capture chance 37% at 3v8 alive)",
+       "flag_eta": 26,
+       "waiting_runner": null,
+       "morale": -60,
+       "pit_npcs": "K2 A2 B1",
+       "npc_value": 12.0,
+       "lord_damage": 0,
+       "lord_health": 1.0,
+       "build": "balance",
+       "healing_monks": 2,
+       "spike_build": false,
+       "roles": [
+        "AoB Derv",
+        "Fire Ele",
+        "Air Ele",
+        "Mesmer",
+        "Assassin",
+        "Prot",
+        "7 Monk"
+       ]
+      },
+      "enemy": {
+       "tag": "hook",
+       "alive": 8,
+       "dead": [],
+       "main": 4,
+       "main_roles": [
+        "8 Monk",
+        "Ritualist",
+        "Hammer",
+        "Ranger"
+       ],
+       "zones": {
+        "push side": [
+         "AoB Derv",
+         "Hammer",
+         "Ranger",
+         "Ritualist",
+         "7 Monk",
+         "8 Monk"
+        ],
+        "backside": [
+         "Mesmer",
+         "Prot"
+        ]
+       },
+       "carrying": [],
+       "flag_lead": -10,
+       "flag_how": "carrying (Mesmer)",
+       "flag_eta": 36,
+       "waiting_runner": null,
+       "morale": 0,
+       "pit_npcs": "K2 A2 B1",
+       "npc_value": 12.0,
+       "lord_damage": 0,
+       "lord_health": 1.0,
+       "build": "balance",
+       "healing_monks": 3,
+       "spike_build": false,
+       "roles": [
+        "AoB Derv",
+        "Hammer",
+        "Ranger",
+        "Ritualist",
+        "Mesmer",
+        "Prot",
+        "7 Monk",
+        "8 Monk"
+       ]
+      },
+      "split": {
+       "team": "hook",
+       "members": [
+        "AoB Derv",
+        "7 Monk",
+        "Prot"
+       ],
+       "start": 103,
+       "entered_base": 108,
+       "main_numbers": [
+        4.4,
+        4.6
+       ]
+      }
+     }
     },
     {
      "match": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
@@ -88,7 +215,136 @@
      "denning_call": null,
      "denning_reason": "",
      "sealed": "eyJhY3R1YWxfY2hvaWNlIjogIm5vdCBydW5uaW5nLCBmZWxsIGJhY2siLCAid3BfY2hhbmdlIjogLTMuNSwgImNob2ljZV9lZmZlY3RzIjogeyJydW5uaW5nLCBoZWxkIjogeyJtZWFuX3dwX2NoYW5nZSI6IDEuMSwgImNhc2VzIjogMn0sICJub3QgcnVubmluZywgZmVsbCBiYWNrIjogeyJtZWFuX3dwX2NoYW5nZSI6IDQuNSwgImNhc2VzIjogMn0sICJydW5uaW5nLCBmb3VnaHQiOiB7Im1lYW5fd3BfY2hhbmdlIjogMi4zLCAiY2FzZXMiOiAxfSwgIm5vdCBydW5uaW5nLCBhZHZhbmNlZCI6IHsibWVhbl93cF9jaGFuZ2UiOiAxLjIsICJjYXNlcyI6IDR9LCAicnVubmluZywgYWR2YW5jZWQiOiB7Im1lYW5fd3BfY2hhbmdlIjogLTUuMSwgImNhc2VzIjogM30sICJydW5uaW5nLCBmZWxsIGJhY2siOiB7Im1lYW5fd3BfY2hhbmdlIjogLTEuMiwgImNhc2VzIjogMn0sICJub3QgcnVubmluZywgaGVsZCI6IHsibWVhbl93cF9jaGFuZ2UiOiAtMS43LCAiY2FzZXMiOiAxfX19",
-     "id": 2
+     "id": 2,
+     "context": {
+      "team": "hook",
+      "opponent": "hold",
+      "map": "Nomad's Isle",
+      "t": 463,
+      "res_in": 20,
+      "stand": {
+       "owner": "hold",
+       "held_s": 87,
+       "boost_in": 33
+      },
+      "mains_apart": 1063,
+      "own": {
+       "tag": "hook",
+       "alive": 8,
+       "dead": [],
+       "main": 5,
+       "main_roles": [
+        "7 Monk",
+        "Prot",
+        "Stand Mes",
+        "Mes/A",
+        "AoB Derv"
+       ],
+       "zones": {
+        "backside": [
+         "AoB Derv",
+         "Mes/A",
+         "Stand Mes",
+         "Prot",
+         "7 Monk"
+        ],
+        "push side": [
+         "Warrior",
+         "Necromancer",
+         "8 Monk"
+        ]
+       },
+       "carrying": [
+        "Mes/A"
+       ],
+       "flag_lead": -26,
+       "flag_how": "carrying (Mes/A)",
+       "flag_eta": 21,
+       "waiting_runner": null,
+       "morale": -26,
+       "pit_npcs": "K2 A2 B1",
+       "npc_value": 12.0,
+       "lord_damage": 0,
+       "lord_health": 1.0,
+       "build": "balance",
+       "healing_monks": 3,
+       "spike_build": false,
+       "roles": [
+        "AoB Derv",
+        "Warrior",
+        "Mes/A",
+        "Stand Mes",
+        "Necromancer",
+        "Prot",
+        "7 Monk",
+        "8 Monk"
+       ]
+      },
+      "enemy": {
+       "tag": "hold",
+       "alive": 8,
+       "dead": [],
+       "main": 5,
+       "main_roles": [
+        "7 Monk",
+        "Mes/A",
+        "Stand Mes",
+        "Necromancer 2",
+        "Necromancer 1"
+       ],
+       "zones": {
+        "backside": [
+         "Air Ele",
+         "Prot",
+         "Ritualist"
+        ],
+        "push side": [
+         "Necromancer 1",
+         "Necromancer 2",
+         "Stand Mes",
+         "Mes/A",
+         "7 Monk"
+        ]
+       },
+       "carrying": [],
+       "flag_lead": 26,
+       "flag_how": "from the spawn (Ritualist)",
+       "flag_eta": 26,
+       "waiting_runner": null,
+       "morale": -15,
+       "pit_npcs": "K2 A2 B1",
+       "npc_value": 12.0,
+       "lord_damage": 0,
+       "lord_health": 1.0,
+       "build": "other",
+       "healing_monks": 2,
+       "spike_build": false,
+       "roles": [
+        "Air Ele",
+        "Necromancer 1",
+        "Necromancer 2",
+        "Stand Mes",
+        "Mes/A",
+        "Prot",
+        "7 Monk",
+        "Ritualist"
+       ]
+      },
+      "split": {
+       "team": "hook",
+       "members": [
+        "Warrior",
+        "Necromancer",
+        "8 Monk"
+       ],
+       "start": 376,
+       "entered_base": null,
+       "main_numbers": [
+        5.1,
+        5.8
+       ]
+      }
+     }
     },
     {
      "match": "c2abad8e-8baa-58f6-a330-8fa18efaa156",
@@ -127,7 +383,138 @@
      "denning_call": null,
      "denning_reason": "",
      "sealed": "eyJhY3R1YWxfY2hvaWNlIjogInB1c2hlZCwgYWR2YW5jZWQiLCAid3BfY2hhbmdlIjogMy4yLCAiY2hvaWNlX2VmZmVjdHMiOiB7InB1c2hlZCwgZm91Z2h0IjogeyJtZWFuX3dwX2NoYW5nZSI6IDQuNSwgImNhc2VzIjogNX0sICJwdXNoZWQsIGFkdmFuY2VkIjogeyJtZWFuX3dwX2NoYW5nZSI6IC01LjksICJjYXNlcyI6IDh9LCAiaGVsZCwgZm91Z2h0IjogeyJtZWFuX3dwX2NoYW5nZSI6IC0xNi40LCAiY2FzZXMiOiAyfX19",
-     "id": 3
+     "id": 3,
+     "context": {
+      "team": "DUM",
+      "opponent": "True",
+      "map": "Isle of Jade",
+      "t": 28,
+      "res_in": 95,
+      "stand": {
+       "owner": null,
+       "held_s": 0,
+       "boost_in": null
+      },
+      "mains_apart": 3173,
+      "own": {
+       "tag": "DUM",
+       "alive": 8,
+       "dead": [],
+       "main": 8,
+       "main_roles": [
+        "8 Monk",
+        "7 Monk",
+        "Prot",
+        "Ritualist",
+        "Dervish",
+        "Warrior",
+        "Hammer",
+        "Mes/A"
+       ],
+       "zones": {
+        "backside": [
+         "Hammer",
+         "Warrior",
+         "Dervish",
+         "Mes/A",
+         "Ritualist",
+         "Prot",
+         "7 Monk",
+         "8 Monk"
+        ]
+       },
+       "carrying": [
+        "Dervish"
+       ],
+       "flag_lead": -3,
+       "flag_how": "carrying (Dervish)",
+       "flag_eta": 10,
+       "waiting_runner": null,
+       "morale": 0,
+       "pit_npcs": "K2 A2 B1",
+       "npc_value": 12.0,
+       "lord_damage": 0,
+       "lord_health": 1.0,
+       "build": "balance",
+       "healing_monks": 3,
+       "spike_build": false,
+       "roles": [
+        "Hammer",
+        "Warrior",
+        "Dervish",
+        "Mes/A",
+        "Ritualist",
+        "Prot",
+        "7 Monk",
+        "8 Monk"
+       ]
+      },
+      "enemy": {
+       "tag": "True",
+       "alive": 7,
+       "dead": [],
+       "main": 5,
+       "main_roles": [
+        "Prot",
+        "Monk 5",
+        "Hammer",
+        "Mesmer",
+        "Air Ele"
+       ],
+       "zones": {
+        "backside": [
+         "Air Ele",
+         "Mesmer",
+         "Hammer",
+         "Prot",
+         "7 Monk"
+        ],
+        "own base": [
+         "Fire Ele"
+        ],
+        "stand": [
+         "Monk 5"
+        ]
+       },
+       "carrying": [
+        "Hammer"
+       ],
+       "flag_lead": 3,
+       "flag_how": "carrying (Hammer)",
+       "flag_eta": 7,
+       "waiting_runner": "Fire Ele",
+       "morale": 0,
+       "pit_npcs": "K2 A2 B1",
+       "npc_value": 12.0,
+       "lord_damage": 0,
+       "lord_health": 1.0,
+       "build": "balance",
+       "healing_monks": 3,
+       "spike_build": false,
+       "roles": [
+        "Air Ele",
+        "Mesmer",
+        "Hammer",
+        "Fire Ele",
+        "Monk 5",
+        "Prot",
+        "7 Monk"
+       ]
+      },
+      "split": {
+       "team": "True",
+       "members": [
+        "7 Monk",
+        "Fire Ele"
+       ],
+       "start": 41,
+       "entered_base": 55,
+       "main_numbers": [
+        5.2,
+        6.2
+       ]
+      }
+     }
     },
     {
      "match": "113c3dc5-a172-5fcc-af51-02392df65383",
@@ -159,7 +546,120 @@
      "denning_call": null,
      "denning_reason": "",
      "sealed": "eyJhY3R1YWxfY2hvaWNlIjogInN0YXllZCIsICJ3cF9jaGFuZ2UiOiAwLjAsICJjaG9pY2VfZWZmZWN0cyI6IHsic3RheWVkIjogeyJtZWFuX3dwX2NoYW5nZSI6IC0yLjUsICJjYXNlcyI6IDEzfSwgInNwbGl0IjogeyJtZWFuX3dwX2NoYW5nZSI6IDAuNiwgImNhc2VzIjogMn19fQ==",
-     "id": 4
+     "id": 4,
+     "context": {
+      "team": "DMG",
+      "opponent": "\u3052\u3048\u3048\u3048",
+      "map": "Isle of Weeping Stone",
+      "t": 630,
+      "res_in": 90,
+      "stand": {
+       "owner": "DMG",
+       "held_s": 0,
+       "boost_in": 120
+      },
+      "mains_apart": 533,
+      "own": {
+       "tag": "DMG",
+       "alive": 8,
+       "dead": [],
+       "main": 4,
+       "main_roles": [
+        "7 Monk",
+        "Prot (WoC)",
+        "Mesmer",
+        "Dervish"
+       ],
+       "zones": {
+        "backside": [
+         "Fire Ele",
+         "Air Ele",
+         "Necromancer",
+         "8 Monk"
+        ],
+        "stand": [
+         "Dervish",
+         "Mesmer",
+         "Prot (WoC)",
+         "7 Monk"
+        ]
+       },
+       "carrying": [],
+       "flag_lead": 53,
+       "flag_how": "from the spawn (Air Ele)",
+       "flag_eta": 38,
+       "waiting_runner": null,
+       "morale": -103,
+       "pit_npcs": "K1 A2 B0",
+       "npc_value": 6.0,
+       "lord_damage": 986,
+       "lord_health": 1.0,
+       "build": "balance",
+       "healing_monks": 2,
+       "spike_build": false,
+       "roles": [
+        "Fire Ele",
+        "Air Ele",
+        "Necromancer",
+        "Dervish",
+        "Mesmer",
+        "Prot (WoC)",
+        "7 Monk",
+        "8 Monk"
+       ]
+      },
+      "enemy": {
+       "tag": "\u3052\u3048\u3048\u3048",
+       "alive": 8,
+       "dead": [],
+       "main": 4,
+       "main_roles": [
+        "7 Monk",
+        "Prot",
+        "Mesmer",
+        "Hammer"
+       ],
+       "zones": {
+        "push side": [
+         "Assassin",
+         "Air Ele",
+         "Fire Ele"
+        ],
+        "stand": [
+         "Hammer",
+         "Mesmer",
+         "Prot",
+         "7 Monk"
+        ],
+        "backside": [
+         "8 Monk"
+        ]
+       },
+       "carrying": [],
+       "flag_lead": -53,
+       "flag_how": "from the spawn (8 Monk)",
+       "flag_eta": 43,
+       "waiting_runner": null,
+       "morale": 33,
+       "pit_npcs": "K0 A0 B0",
+       "npc_value": 0,
+       "lord_damage": 242,
+       "lord_health": 1.0,
+       "build": "balance",
+       "healing_monks": 3,
+       "spike_build": false,
+       "roles": [
+        "Assassin",
+        "Air Ele",
+        "Fire Ele",
+        "Hammer",
+        "Mesmer",
+        "Prot",
+        "7 Monk",
+        "8 Monk"
+       ]
+      }
+     }
     },
     {
      "match": "113c3dc5-a172-5fcc-af51-02392df65383",
@@ -192,7 +692,142 @@
      "denning_call": null,
      "denning_reason": "",
      "sealed": "eyJhY3R1YWxfY2hvaWNlIjogImRlZmVuZGVkIHdpdGhvdXQgYSBjb2xsYXBzZSIsICJ3cF9jaGFuZ2UiOiAtMC40LCAiY2hvaWNlX2VmZmVjdHMiOiB7ImNvbGxhcHNlZCI6IHsibWVhbl93cF9jaGFuZ2UiOiA0LjEsICJjYXNlcyI6IDl9LCAiZGVmZW5kZWQgd2l0aG91dCBhIGNvbGxhcHNlIjogeyJtZWFuX3dwX2NoYW5nZSI6IC0yLjksICJjYXNlcyI6IDZ9fX0=",
-     "id": 5
+     "id": 5,
+     "context": {
+      "team": "\u3052\u3048\u3048\u3048",
+      "opponent": "DMG",
+      "map": "Isle of Weeping Stone",
+      "t": 347,
+      "res_in": 15,
+      "stand": {
+       "owner": "DMG",
+       "held_s": 62,
+       "boost_in": 58
+      },
+      "mains_apart": 1101,
+      "own": {
+       "tag": "\u3052\u3048\u3048\u3048",
+       "alive": 5,
+       "dead": [
+        "Prot",
+        "7 Monk",
+        "8 Monk"
+       ],
+       "main": 5,
+       "main_roles": [
+        "Mesmer",
+        "Hammer",
+        "Fire Ele",
+        "Air Ele",
+        "Assassin"
+       ],
+       "zones": {
+        "own base": [
+         "Assassin",
+         "Air Ele",
+         "Fire Ele"
+        ],
+        "backside": [
+         "Hammer"
+        ],
+        "own pit": [
+         "Mesmer"
+        ],
+        "dead": [
+         "Prot",
+         "7 Monk",
+         "8 Monk"
+        ]
+       },
+       "carrying": [],
+       "flag_lead": 3,
+       "flag_how": "from the spawn (Hammer)",
+       "flag_eta": 26,
+       "waiting_runner": null,
+       "morale": -75,
+       "pit_npcs": "K2 A2 B1",
+       "npc_value": 12.0,
+       "lord_damage": 0,
+       "lord_health": 1.0,
+       "build": "balance",
+       "healing_monks": 3,
+       "spike_build": false,
+       "roles": [
+        "Assassin",
+        "Air Ele",
+        "Fire Ele",
+        "Hammer",
+        "Mesmer",
+        "Prot",
+        "7 Monk",
+        "8 Monk"
+       ]
+      },
+      "enemy": {
+       "tag": "DMG",
+       "alive": 8,
+       "dead": [],
+       "main": 4,
+       "main_roles": [
+        "7 Monk",
+        "Prot (WoC)",
+        "Mesmer",
+        "Dervish"
+       ],
+       "zones": {
+        "push side": [
+         "Fire Ele",
+         "Air Ele",
+         "Necromancer",
+         "Mesmer",
+         "Prot (WoC)",
+         "7 Monk",
+         "8 Monk"
+        ],
+        "enemy base": [
+         "Dervish"
+        ]
+       },
+       "carrying": [],
+       "flag_lead": -3,
+       "flag_how": "from the spawn (Air Ele)",
+       "flag_eta": 54,
+       "waiting_runner": null,
+       "morale": -28,
+       "pit_npcs": "K2 A2 B0",
+       "npc_value": 9.0,
+       "lord_damage": 0,
+       "lord_health": 1.0,
+       "build": "balance",
+       "healing_monks": 2,
+       "spike_build": false,
+       "roles": [
+        "Fire Ele",
+        "Air Ele",
+        "Necromancer",
+        "Dervish",
+        "Mesmer",
+        "Prot (WoC)",
+        "7 Monk",
+        "8 Monk"
+       ]
+      },
+      "split": {
+       "team": "DMG",
+       "members": [
+        "8 Monk",
+        "Fire Ele",
+        "Necromancer",
+        "Air Ele"
+       ],
+       "start": 312,
+       "entered_base": 347,
+       "main_numbers": [
+        3.8,
+        5.2
+       ]
+      }
+     }
     },
     {
      "match": "f9d6932f-090d-532a-aa9f-3b5a58613df0",
@@ -225,7 +860,131 @@
      "denning_call": null,
      "denning_reason": "",
      "sealed": "eyJhY3R1YWxfY2hvaWNlIjogIk5QQ3MiLCAid3BfY2hhbmdlIjogMC4wLCAiY2hvaWNlX2VmZmVjdHMiOiB7Ik5QQ3MiOiB7Im1lYW5fd3BfY2hhbmdlIjogLTAuMSwgImNhc2VzIjogMTN9LCAiRFAiOiB7Im1lYW5fd3BfY2hhbmdlIjogLTAuMSwgImNhc2VzIjogMn19fQ==",
-     "id": 6
+     "id": 6,
+     "context": {
+      "team": "HC",
+      "opponent": "Id",
+      "map": "Corrupted Isle",
+      "t": 189,
+      "res_in": 55,
+      "stand": {
+       "owner": null,
+       "held_s": 0,
+       "boost_in": null
+      },
+      "mains_apart": 807,
+      "own": {
+       "tag": "HC",
+       "alive": 8,
+       "dead": [],
+       "main": 8,
+       "main_roles": [
+        "8 Monk",
+        "Hammer",
+        "7 Monk",
+        "Prot",
+        "Stand Mes",
+        "Mes/A",
+        "Ranger",
+        "AoB Derv"
+       ],
+       "zones": {
+        "enemy pit": [
+         "Hammer",
+         "8 Monk"
+        ],
+        "enemy base": [
+         "AoB Derv",
+         "Ranger",
+         "Mes/A",
+         "Stand Mes",
+         "Prot",
+         "7 Monk"
+        ]
+       },
+       "carrying": [],
+       "flag_lead": 21,
+       "flag_how": "dropped flag (AoB Derv)",
+       "flag_eta": 33,
+       "waiting_runner": null,
+       "morale": 0,
+       "pit_npcs": "K2 A2 B1",
+       "npc_value": 12.0,
+       "lord_damage": 324,
+       "lord_health": 1.0,
+       "build": "balance",
+       "healing_monks": 3,
+       "spike_build": false,
+       "roles": [
+        "Hammer",
+        "AoB Derv",
+        "Ranger",
+        "Mes/A",
+        "Stand Mes",
+        "Prot",
+        "7 Monk",
+        "8 Monk"
+       ]
+      },
+      "enemy": {
+       "tag": "Id",
+       "alive": 3,
+       "dead": [
+        "Fire Ele",
+        "Monk 5"
+       ],
+       "main": 2,
+       "main_roles": [
+        "Mesmer",
+        "Warrior"
+       ],
+       "zones": {
+        "own base": [
+         "Warrior",
+         "Mesmer"
+        ],
+        "backside": [
+         "Ranger"
+        ],
+        "dead": [
+         "Fire Ele",
+         "Monk 5"
+        ]
+       },
+       "carrying": [],
+       "flag_lead": -21,
+       "flag_how": "carrying (Mesmer, capture chance 37% at 3v8 alive)",
+       "flag_eta": 54,
+       "waiting_runner": null,
+       "morale": -120,
+       "pit_npcs": "K0 A0 B0",
+       "npc_value": 0,
+       "lord_damage": 0,
+       "lord_health": 0.844,
+       "build": "balance",
+       "healing_monks": 1,
+       "spike_build": false,
+       "roles": [
+        "Warrior",
+        "Ranger",
+        "Fire Ele",
+        "Mesmer",
+        "Monk 5"
+       ]
+      },
+      "split": {
+       "team": "HC",
+       "members": [
+        "Ranger"
+       ],
+       "start": 197,
+       "entered_base": 197,
+       "main_numbers": [
+        7.0,
+        1.0
+       ]
+      }
+     }
     },
     {
      "match": "1cb73c20-1b06-5b7b-a728-25c7640f8a84",
@@ -265,7 +1024,133 @@
      "denning_call": null,
      "denning_reason": "",
      "sealed": "eyJhY3R1YWxfY2hvaWNlIjogIm5vdCBydW5uaW5nLCBoZWxkIiwgIndwX2NoYW5nZSI6IDAuMCwgImNob2ljZV9lZmZlY3RzIjogeyJub3QgcnVubmluZywgYWR2YW5jZWQiOiB7Im1lYW5fd3BfY2hhbmdlIjogLTEuNSwgImNhc2VzIjogNn0sICJub3QgcnVubmluZywgaGVsZCI6IHsibWVhbl93cF9jaGFuZ2UiOiAtMC4xLCAiY2FzZXMiOiAxfSwgIm5vdCBydW5uaW5nLCBmb3VnaHQiOiB7Im1lYW5fd3BfY2hhbmdlIjogMC42LCAiY2FzZXMiOiA1fSwgIm5vdCBydW5uaW5nLCBmZWxsIGJhY2siOiB7Im1lYW5fd3BfY2hhbmdlIjogMC4zLCAiY2FzZXMiOiAyfSwgInJ1bm5pbmcsIGZlbGwgYmFjayI6IHsibWVhbl93cF9jaGFuZ2UiOiAwLjIsICJjYXNlcyI6IDF9fX0=",
-     "id": 7
+     "id": 7,
+     "context": {
+      "team": "Fun",
+      "opponent": "ohno",
+      "map": "Isle of Solitude",
+      "t": 1179,
+      "res_in": 25,
+      "stand": {
+       "owner": "ohno",
+       "held_s": 806,
+       "boost_in": 34
+      },
+      "mains_apart": 1912,
+      "own": {
+       "tag": "Fun",
+       "alive": 8,
+       "dead": [],
+       "main": 3,
+       "main_roles": [
+        "Air Ele 2",
+        "Air Ele 1",
+        "Fire Ele"
+       ],
+       "zones": {
+        "backside": [
+         "Fire Ele",
+         "Air Ele 1",
+         "Air Ele 2",
+         "Air Ele 3",
+         "Air Ele 4",
+         "Air Ele 5"
+        ],
+        "own pit": [
+         "7 Monk",
+         "8 Monk"
+        ]
+       },
+       "carrying": [],
+       "flag_lead": -64,
+       "flag_how": "dropped flag (Air Ele 1)",
+       "flag_eta": 24,
+       "waiting_runner": null,
+       "morale": -30,
+       "pit_npcs": "K0 A0 B0",
+       "npc_value": 0,
+       "lord_damage": 0,
+       "lord_health": 0.818,
+       "build": "invoke spike",
+       "healing_monks": 2,
+       "spike_build": true,
+       "roles": [
+        "Fire Ele",
+        "Air Ele 1",
+        "Air Ele 2",
+        "Air Ele 3",
+        "Air Ele 4",
+        "Air Ele 5",
+        "7 Monk",
+        "8 Monk"
+       ]
+      },
+      "enemy": {
+       "tag": "ohno",
+       "alive": 8,
+       "dead": [],
+       "main": 5,
+       "main_roles": [
+        "8 Monk",
+        "7 Monk",
+        "Dervish 2",
+        "Monk 5 (WoC)",
+        "Mesmer"
+       ],
+       "zones": {
+        "push side": [
+         "Dervish 1",
+         "Monk 5 (WoC)"
+        ],
+        "enemy pit": [
+         "Water Ele",
+         "Fire Ele"
+        ],
+        "backside": [
+         "Mesmer",
+         "Dervish 2",
+         "7 Monk",
+         "8 Monk"
+        ]
+       },
+       "carrying": [],
+       "flag_lead": 64,
+       "flag_how": "dropped flag (Dervish 1)",
+       "flag_eta": 22,
+       "waiting_runner": null,
+       "morale": 79,
+       "pit_npcs": "K1 A0 B1",
+       "npc_value": 6,
+       "lord_damage": 13981,
+       "lord_health": 1.0,
+       "build": "balance",
+       "healing_monks": 2,
+       "spike_build": false,
+       "roles": [
+        "Dervish 1",
+        "Water Ele",
+        "Fire Ele",
+        "Mesmer",
+        "Monk 5 (WoC)",
+        "Dervish 2",
+        "7 Monk",
+        "8 Monk"
+       ]
+      },
+      "split": {
+       "team": "ohno",
+       "members": [
+        "Fire Ele",
+        "Water Ele"
+       ],
+       "start": 1113,
+       "entered_base": 1116,
+       "main_numbers": [
+        5.9,
+        5.4
+       ]
+      }
+     }
     },
     {
      "match": "ad4aaeb2-5ca6-5a3d-a6bc-cd93a9c1e183",
@@ -298,7 +1183,139 @@
      "denning_call": null,
      "denning_reason": "",
      "sealed": "eyJhY3R1YWxfY2hvaWNlIjogIk5QQ3MiLCAid3BfY2hhbmdlIjogMS4yLCAiY2hvaWNlX2VmZmVjdHMiOiB7Ik5QQ3MiOiB7Im1lYW5fd3BfY2hhbmdlIjogLTguMSwgImNhc2VzIjogNn0sICJEUCI6IHsibWVhbl93cF9jaGFuZ2UiOiAtNC4zLCAiY2FzZXMiOiA2fSwgImJvdGgiOiB7Im1lYW5fd3BfY2hhbmdlIjogOS4yLCAiY2FzZXMiOiAzfX19",
-     "id": 8
+     "id": 8,
+     "context": {
+      "team": "Crew",
+      "opponent": "hook",
+      "map": "Druid's Isle",
+      "t": 253,
+      "res_in": 110,
+      "stand": {
+       "owner": "hook",
+       "held_s": 130,
+       "boost_in": 110
+      },
+      "mains_apart": 1338,
+      "own": {
+       "tag": "Crew",
+       "alive": 8,
+       "dead": [],
+       "main": 5,
+       "main_roles": [
+        "Necromancer 6",
+        "Necromancer 5",
+        "Necromancer 3",
+        "Necromancer 2",
+        "Necromancer 1"
+       ],
+       "zones": {
+        "enemy pit": [
+         "Necromancer 1",
+         "Necromancer 2",
+         "Necromancer 3",
+         "Necromancer 5",
+         "Necromancer 6"
+        ],
+        "backside": [
+         "Necromancer 4"
+        ],
+        "own pit": [
+         "7 Monk",
+         "8 Monk"
+        ]
+       },
+       "carrying": [],
+       "flag_lead": -42,
+       "flag_how": "from the spawn (Necromancer 2)",
+       "flag_eta": 67,
+       "waiting_runner": null,
+       "morale": -3,
+       "pit_npcs": "K2 A1 B1",
+       "npc_value": 10.5,
+       "lord_damage": 2621,
+       "lord_health": 1.0,
+       "build": "other",
+       "healing_monks": 2,
+       "spike_build": false,
+       "roles": [
+        "Necromancer 1",
+        "Necromancer 2",
+        "Necromancer 3",
+        "Necromancer 4",
+        "Necromancer 5",
+        "Necromancer 6",
+        "7 Monk",
+        "8 Monk"
+       ]
+      },
+      "enemy": {
+       "tag": "hook",
+       "alive": 8,
+       "dead": [],
+       "main": 4,
+       "main_roles": [
+        "7 Monk",
+        "Prot",
+        "Stand Mes",
+        "Paragon"
+       ],
+       "zones": {
+        "enemy pit": [
+         "Warrior",
+         "Ranger",
+         "Mes/A"
+        ],
+        "own base": [
+         "Paragon",
+         "Prot"
+        ],
+        "own pit": [
+         "Stand Mes",
+         "7 Monk"
+        ],
+        "backside": [
+         "8 Monk"
+        ]
+       },
+       "carrying": [],
+       "flag_lead": 42,
+       "flag_how": "from the spawn (Stand Mes)",
+       "flag_eta": 27,
+       "waiting_runner": null,
+       "morale": 5,
+       "pit_npcs": "K0 A0 B0",
+       "npc_value": 0,
+       "lord_damage": 0,
+       "lord_health": 0.0,
+       "build": "paragon spike",
+       "healing_monks": 3,
+       "spike_build": true,
+       "roles": [
+        "Warrior",
+        "Paragon",
+        "Ranger",
+        "Mes/A",
+        "Stand Mes",
+        "Prot",
+        "7 Monk",
+        "8 Monk"
+       ]
+      },
+      "split": {
+       "team": "hook",
+       "members": [
+        "Ranger",
+        "Warrior",
+        "Mes/A"
+       ],
+       "start": 232,
+       "entered_base": 232,
+       "main_numbers": [
+        2.8,
+        5.0
+       ]
+      }
+     }
     }
    ]
   }

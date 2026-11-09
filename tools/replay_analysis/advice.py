@@ -177,6 +177,63 @@ def _meta(match):
     except (OSError, ValueError): return {}
 
 
+def _at(rows, t):
+    """The 5 s record at or just before t."""
+    i = min(max(int(t // 5), 0), len(rows) - 1)
+    while i > 0 and rows[i].get("t", 0) > t: i -= 1
+    return rows[i]
+
+
+def blind_context(match, team, t, kind):
+    """What a player needs to call the moment (Denning, 2026-11-09): whose decision it is, where every player of both
+    teams is, flags, stand and boost, morale, pit NPCs, Lord damage, the builds, the split in play. Read from the
+    analysis record at the decision time, before the choice; nothing that reveals what the team then did."""
+    try: a = json.load(open(os.path.join(_SRC[0], match + ".json")))
+    except (OSError, ValueError): return {}
+    meta = a.get("meta", {}); teams = [x["tag"] for x in meta.get("teams", [])]
+    foe = next((x for x in teams if x != team), None)
+    st = _at(a["state"], t); sb = _at(a["scoreboard"], t)
+    arch = a.get("archetypes", {})
+    roles = collections.defaultdict(list)
+    for key in a.get("roles", {}):
+        tag, role = key.split(" ", 1); roles[tag].append(role)
+    def side(tag):
+        s_, b_ = st.get(tag, {}), sb.get(tag, {})
+        zones = collections.defaultdict(list)
+        for role, z in (s_.get("zones") or {}).items(): zones[z].append(role)
+        carrying = [c.split(" ", 1)[1] for c in (st.get("carriers") or []) if c.startswith(tag + " ")]
+        ar = arch.get(tag, {})
+        return {"tag": tag, "alive": s_.get("alive"), "dead": s_.get("dead") or [], "main": s_.get("main"), "main_roles": s_.get("main_roles") or [],
+                "zones": dict(zones), "carrying": carrying, "flag_lead": b_.get("flag_lead"), "flag_how": b_.get("flag_how"),
+                "flag_eta": b_.get("flag_eta"), "waiting_runner": b_.get("waiting_runner"), "morale": b_.get("morale_sum"),
+                "pit_npcs": b_.get("pit_npcs"), "npc_value": b_.get("npc_value"), "lord_damage": b_.get("lord_damage_dealt"),
+                "lord_health": b_.get("lord_health"), "build": ar.get("kind"), "healing_monks": ar.get("healing_monks"),
+                "spike_build": ar.get("spike"), "roles": roles.get(tag, [])}
+    out = {"team": team, "opponent": foe, "map": meta.get("map"), "t": t, "res_in": st.get("res_in"),
+           "stand": st.get("stand"), "mains_apart": st.get("mains_apart"), "own": side(team), "enemy": side(foe) if foe else None}
+    # the split in play: the enemy's for a defence decision, own for a split decision; either within 20 s of t
+    want = {"who_defends": "enemy", "split_in_base": "enemy", "collapse": "enemy", "split_or_stay": "own", "split_effect": "own"}.get(kind)
+    for sp in a.get("splits", []):
+        who = "own" if sp["team"] == team else "enemy"
+        near = (sp.get("entered_base") is not None and abs(sp["entered_base"] - t) <= 20) or (sp["start"] - 20 <= t <= sp["end"])
+        if near and (want is None or who == want):
+            out["split"] = {"team": sp["team"], "members": sp["members"], "start": sp["start"], "entered_base": sp.get("entered_base"),
+                            "main_numbers": sp.get("main_numbers")}
+            break
+    return out
+
+
+def blind_enrich():
+    """Fill in the context for every pick of every round that lacks it (needs the analysis records in the --out dir)."""
+    data = _load_blind(); n = 0
+    for rd in data["rounds"]:
+        for p in rd["picks"]:
+            if p.get("context"): continue
+            p["context"] = blind_context(p["match"], p["team"], p["t"], p["kind"]); n += bool(p["context"])
+    json.dump(data, open(BLIND, "w"), indent=1)
+    return n
+
+
 def _pick_one(rnd, L, ZN, y, choices, k, want_specific, tries=400):
     """One pick from kind k: a random decision, or one where the advice differs from the usual play."""
     for _ in range(tries if want_specific else 1):
@@ -194,6 +251,7 @@ def _pick_one(rnd, L, ZN, y, choices, k, want_specific, tries=400):
         return {"match": r["match"], "team": r["team"], "opponent": next((t["tag"] for t in meta.get("teams", []) if t["tag"] != r["team"]), None),
                 "map": meta.get("map"), "t": r["t"], "kind": k, "situation": r["state"], "choices_seen": choices,
                 "model_call": best, "usual_play": usual, "specific": best != usual, "denning_call": None, "denning_reason": "",
+                "context": blind_context(r["match"], r["team"], r["t"], k),
                 "sealed": _seal({"actual_choice": r["choice2"], "wp_change": r["wp_change"], "choice_effects": effects})}
     return None
 
@@ -271,6 +329,9 @@ def blind_score(rid=None):
 
 
 if __name__ == "__main__":
+    if "blind_enrich" in sys.argv:
+        _SRC[0] = next((a for a in sys.argv[1:] if not a.startswith("--") and a != "blind_enrich"), "/tmp/ga")
+        print(blind_enrich(), "picks given their context"); sys.exit()
     if "blind_score" in sys.argv:
         arg = [a for a in sys.argv[1:] if a.isdigit()]
         blind_score(int(arg[0]) if arg else None); sys.exit()
