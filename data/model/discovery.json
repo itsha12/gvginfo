@@ -1,188 +1,188 @@
 {
  "about": "Step 3 discovery (discover.py): every measured variable against every learned node, held out by match. Discoveries are held for Denning's approval; none is in the model until he approves.",
- "tested": 915,
+ "tested": 958,
  "nodes": [
   {
    "node": "capture_speed",
    "target": "R.3",
-   "matches": 125,
-   "rows": 1060,
+   "matches": 253,
+   "rows": 2255,
    "metric": "mean absolute error (s)",
-   "tested": 93,
+   "tested": 91,
    "screen_passed": 0,
    "screen": [
     {
      "variable": "s.minute",
-     "gain": -0.43314,
-     "plus_minus": 0.27783,
-     "folds_up": 2,
+     "gain": -0.85964,
+     "plus_minus": 0.20567,
+     "folds_up": 0,
      "present": 1.0
     },
     {
      "variable": "s.flag_lead",
-     "gain": -0.47587,
-     "plus_minus": 0.2706,
-     "folds_up": 2,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_strips",
-     "gain": -0.64123,
-     "plus_minus": 0.20818,
+     "gain": -0.9241,
+     "plus_minus": 0.20358,
      "folds_up": 0,
      "present": 1.0
     },
     {
-     "variable": "b.own_knockdowns",
-     "gain": -0.61544,
-     "plus_minus": 0.23932,
-     "folds_up": 1,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_blocks",
-     "gain": -0.64896,
-     "plus_minus": 0.21571,
+     "variable": "s.boost_clock",
+     "gain": -0.94077,
+     "plus_minus": 0.19298,
      "folds_up": 0,
      "present": 1.0
     },
     {
-     "variable": "s.map_pit_to_stand",
-     "gain": -0.6452,
-     "plus_minus": 0.22319,
+     "variable": "s.res_in",
+     "gain": -1.00945,
+     "plus_minus": 0.19871,
+     "folds_up": 0,
+     "present": 1.0
+    },
+    {
+     "variable": "s.fight_state",
+     "gain": -1.00359,
+     "plus_minus": 0.20637,
      "folds_up": 0,
      "present": 1.0
     },
     {
      "variable": "s.morale_diff",
-     "gain": -0.63606,
-     "plus_minus": 0.26334,
-     "folds_up": 1,
-     "present": 1.0
-    },
-    {
-     "variable": "s.fight_state",
-     "gain": -0.68815,
-     "plus_minus": 0.24267,
+     "gain": -1.0248,
+     "plus_minus": 0.21954,
      "folds_up": 0,
      "present": 1.0
     },
     {
-     "variable": "s.morale_total",
-     "gain": -0.70171,
-     "plus_minus": 0.23756,
-     "folds_up": 1,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_aura_of_stability",
-     "gain": -0.68242,
-     "plus_minus": 0.25874,
-     "folds_up": 0,
-     "present": 1.0
-    },
-    {
-     "variable": "s.stand",
-     "gain": -0.69711,
-     "plus_minus": 0.24756,
-     "folds_up": 0,
-     "present": 1.0
-    },
-    {
-     "variable": "b.own_blocks",
-     "gain": -0.72706,
-     "plus_minus": 0.22052,
-     "folds_up": 0,
-     "present": 1.0
-    },
-    {
-     "variable": "b.own_blind_v_enemy_condition_removal",
-     "gain": -0.69501,
-     "plus_minus": 0.25477,
-     "folds_up": 0,
-     "present": 1.0
-    },
-    {
-     "variable": "s.split_diff",
-     "gain": -0.69599,
-     "plus_minus": 0.2549,
-     "folds_up": 0,
-     "present": 1.0
-    },
-    {
-     "variable": "s.solo_healers_diff",
-     "gain": -0.69844,
-     "plus_minus": 0.25439,
-     "folds_up": 0,
-     "present": 1.0
-    },
-    {
-     "variable": "s.alive_diff",
-     "gain": -0.70361,
-     "plus_minus": 0.2552,
-     "folds_up": 0,
-     "present": 1.0
-    },
-    {
-     "variable": "s.turtle_diff",
-     "gain": -0.70738,
-     "plus_minus": 0.2515,
-     "folds_up": 0,
-     "present": 1.0
-    },
-    {
-     "variable": "b.own_hexes",
-     "gain": -0.68738,
-     "plus_minus": 0.27175,
-     "folds_up": 1,
-     "present": 1.0
-    },
-    {
-     "variable": "s.boost_clock",
-     "gain": -0.67612,
-     "plus_minus": 0.28319,
-     "folds_up": 0,
-     "present": 1.0
-    },
-    {
-     "variable": "b.own_knockdowns_v_enemy_aura_of_stability",
-     "gain": -0.71125,
-     "plus_minus": 0.24847,
-     "folds_up": 0,
-     "present": 1.0
-    },
-    {
-     "variable": "b.own_hexes_v_enemy_hex_removal",
-     "gain": -0.69522,
-     "plus_minus": 0.2653,
-     "folds_up": 1,
-     "present": 1.0
-    },
-    {
-     "variable": "b.own_daze",
-     "gain": -0.70897,
-     "plus_minus": 0.2532,
-     "folds_up": 0,
-     "present": 1.0
-    },
-    {
-     "variable": "s.flux_chain_combo",
-     "gain": -0.71806,
-     "plus_minus": 0.24667,
+     "variable": "s.map_pit_to_stand",
+     "gain": -1.06324,
+     "plus_minus": 0.18758,
      "folds_up": 0,
      "present": 1.0
     },
     {
      "variable": "s.carrying_diff",
-     "gain": -0.70314,
-     "plus_minus": 0.26356,
+     "gain": -1.05158,
+     "plus_minus": 0.20134,
      "folds_up": 0,
      "present": 1.0
     },
     {
-     "variable": "b.enemy_blind",
-     "gain": -0.71299,
-     "plus_minus": 0.25378,
+     "variable": "b.enemy_interrupts",
+     "gain": -1.09321,
+     "plus_minus": 0.16571,
+     "folds_up": 0,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_knockdowns",
+     "gain": -1.07069,
+     "plus_minus": 0.18928,
+     "folds_up": 0,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_speed",
+     "gain": -1.0601,
+     "plus_minus": 0.20504,
+     "folds_up": 0,
+     "present": 1.0
+    },
+    {
+     "variable": "s.turtle_diff",
+     "gain": -1.07356,
+     "plus_minus": 0.19436,
+     "folds_up": 0,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_interrupts_v_own_heals",
+     "gain": -1.09356,
+     "plus_minus": 0.17701,
+     "folds_up": 0,
+     "present": 1.0
+    },
+    {
+     "variable": "s.archers_diff",
+     "gain": -1.10503,
+     "plus_minus": 0.16858,
+     "folds_up": 0,
+     "present": 1.0
+    },
+    {
+     "variable": "s.map_bases_apart",
+     "gain": -1.08798,
+     "plus_minus": 0.18727,
+     "folds_up": 0,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_speed_power",
+     "gain": -1.07395,
+     "plus_minus": 0.20407,
+     "folds_up": 0,
+     "present": 1.0
+    },
+    {
+     "variable": "s.map_flag_run",
+     "gain": -1.08678,
+     "plus_minus": 0.1944,
+     "folds_up": 0,
+     "present": 1.0
+    },
+    {
+     "variable": "s.lord_exposed_diff",
+     "gain": -1.08476,
+     "plus_minus": 0.19748,
+     "folds_up": 0,
+     "present": 1.0
+    },
+    {
+     "variable": "s.stand",
+     "gain": -1.06794,
+     "plus_minus": 0.21584,
+     "folds_up": 0,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_snares_v_enemy_speed",
+     "gain": -1.06973,
+     "plus_minus": 0.21438,
+     "folds_up": 0,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_speed",
+     "gain": -1.08326,
+     "plus_minus": 0.20394,
+     "folds_up": 0,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_energy_denial_v_own_heals",
+     "gain": -1.09387,
+     "plus_minus": 0.19968,
+     "folds_up": 0,
+     "present": 1.0
+    },
+    {
+     "variable": "s.healing_monks_enemy",
+     "gain": -1.10146,
+     "plus_minus": 0.19282,
+     "folds_up": 0,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_blocks",
+     "gain": -1.09706,
+     "plus_minus": 0.19863,
+     "folds_up": 0,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_prots",
+     "gain": -1.08741,
+     "plus_minus": 0.21222,
      "folds_up": 0,
      "present": 1.0
     }
@@ -192,554 +192,554 @@
   {
    "node": "collapse",
    "target": "R.1",
-   "matches": 120,
-   "rows": 848,
+   "matches": 242,
+   "rows": 1687,
    "metric": "log loss",
-   "tested": 92,
-   "screen_passed": 9,
+   "tested": 90,
+   "screen_passed": 15,
    "screen": [
     {
-     "variable": "b.own_aura_of_stability",
-     "gain": 0.00575,
-     "plus_minus": 0.00139,
+     "variable": "s.lord_dps_enemy",
+     "gain": 0.00294,
+     "plus_minus": 0.0011,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "s.healing_monks_enemy",
+     "gain": 0.0021,
+     "plus_minus": 0.00046,
      "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "s.fight_state",
-     "gain": 0.00632,
-     "plus_minus": 0.00361,
-     "folds_up": 4,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_prots",
-     "gain": 0.00445,
-     "plus_minus": 0.00183,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_interrupts",
-     "gain": 0.00393,
-     "plus_minus": 0.00138,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "s.morale_diff",
-     "gain": 0.00741,
-     "plus_minus": 0.00501,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "s.turtle_diff",
-     "gain": 0.00364,
-     "plus_minus": 0.00154,
-     "folds_up": 5,
      "present": 1.0
     },
     {
      "variable": "b.own_energy_denial_v_enemy_heals",
-     "gain": 0.00249,
-     "plus_minus": 0.00058,
+     "gain": 0.00209,
+     "plus_minus": 0.00061,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_heals",
+     "gain": 0.00201,
+     "plus_minus": 0.00072,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_knockdowns",
+     "gain": 0.00242,
+     "plus_minus": 0.00115,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "s.morale_diff",
+     "gain": 0.00277,
+     "plus_minus": 0.00162,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_aura_of_stability",
+     "gain": 0.00197,
+     "plus_minus": 0.00086,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_hex_removal",
+     "gain": 0.00143,
+     "plus_minus": 0.00035,
      "folds_up": 6,
      "present": 1.0
     },
     {
      "variable": "b.own_prots",
-     "gain": 0.00341,
-     "plus_minus": 0.00162,
-     "folds_up": 5,
+     "gain": 0.00201,
+     "plus_minus": 0.00109,
+     "folds_up": 4,
      "present": 1.0
     },
     {
      "variable": "b.enemy_daze",
-     "gain": 0.0029,
-     "plus_minus": 0.00142,
-     "folds_up": 4,
+     "gain": 0.0016,
+     "plus_minus": 0.00072,
+     "folds_up": 6,
      "present": 1.0
     },
     {
-     "variable": "s.lord_dps_enemy",
-     "gain": 0.0024,
-     "plus_minus": 0.00123,
-     "folds_up": 4,
+     "variable": "b.own_strips_v_enemy_prots",
+     "gain": 0.00125,
+     "plus_minus": 0.00039,
+     "folds_up": 6,
      "present": 1.0
     },
     {
-     "variable": "b.own_weakness",
-     "gain": 0.00159,
+     "variable": "b.enemy_prots",
+     "gain": 0.00127,
+     "plus_minus": 0.00044,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "s.healing_monks_own",
+     "gain": 0.00119,
+     "plus_minus": 0.0004,
+     "folds_up": 6,
+     "present": 1.0
+    },
+    {
+     "variable": "s.spike_killable_diff",
+     "gain": 0.00093,
+     "plus_minus": 0.00028,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_deep_wound",
+     "gain": 0.00113,
+     "plus_minus": 0.00068,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_area_damage",
+     "gain": 0.00061,
+     "plus_minus": 0.00018,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "s.lord_health_diff",
+     "gain": 0.00161,
+     "plus_minus": 0.00121,
+     "folds_up": 3,
+     "present": 0.94
+    },
+    {
+     "variable": "b.own_blind_v_enemy_condition_removal",
+     "gain": 0.0011,
      "plus_minus": 0.00071,
      "folds_up": 5,
      "present": 1.0
     },
     {
-     "variable": "s.spike_killable_diff",
-     "gain": 0.00309,
-     "plus_minus": 0.00242,
+     "variable": "b.own_hexes_v_enemy_hex_removal",
+     "gain": 0.0018,
+     "plus_minus": 0.00144,
      "folds_up": 4,
      "present": 1.0
     },
     {
-     "variable": "b.own_strips_v_enemy_prots",
-     "gain": 0.00295,
-     "plus_minus": 0.00234,
+     "variable": "b.enemy_deep_wound",
+     "gain": 0.00055,
+     "plus_minus": 0.00025,
      "folds_up": 5,
      "present": 1.0
     },
     {
-     "variable": "s.flag_lead",
-     "gain": 0.00129,
-     "plus_minus": 0.0007,
-     "folds_up": 4,
+     "variable": "b.enemy_condition_removal",
+     "gain": 0.00067,
+     "plus_minus": 0.00044,
+     "folds_up": 5,
      "present": 1.0
     },
     {
-     "variable": "s.morale_total",
-     "gain": 0.00098,
-     "plus_minus": 0.00048,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "s.alive_diff",
-     "gain": 0.00231,
-     "plus_minus": 0.00183,
+     "variable": "b.own_hexes",
+     "gain": 0.00128,
+     "plus_minus": 0.00113,
      "folds_up": 3,
      "present": 1.0
     },
     {
-     "variable": "b.enemy_blind",
-     "gain": 0.00141,
-     "plus_minus": 0.00096,
+     "variable": "b.own_weakness",
+     "gain": 0.00021,
+     "plus_minus": 9e-05,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "s.pit_pressure_diff",
+     "gain": 0.00081,
+     "plus_minus": 0.00069,
      "folds_up": 4,
      "present": 1.0
     },
     {
-     "variable": "b.own_hex_removal",
-     "gain": 0.00093,
-     "plus_minus": 0.00051,
+     "variable": "b.own_interrupts_v_enemy_heals",
+     "gain": 0.00041,
+     "plus_minus": 0.00034,
      "folds_up": 4,
-     "present": 1.0
-    },
-    {
-     "variable": "s.bodyguard_diff",
-     "gain": 0.00112,
-     "plus_minus": 0.00083,
-     "folds_up": 4,
-     "present": 1.0
-    },
-    {
-     "variable": "s.carrying_diff",
-     "gain": 0.00045,
-     "plus_minus": 0.00029,
-     "folds_up": 4,
-     "present": 1.0
-    },
-    {
-     "variable": "s.lord_dps_own",
-     "gain": 0.00184,
-     "plus_minus": 0.00175,
-     "folds_up": 4,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_hex_removal",
-     "gain": 0.00086,
-     "plus_minus": 0.0009,
-     "folds_up": 3,
-     "present": 1.0
-    },
-    {
-     "variable": "s.flux_meek_shall_inherit",
-     "gain": -1e-05,
-     "plus_minus": 6e-05,
-     "folds_up": 2,
-     "present": 1.0
-    },
-    {
-     "variable": "s.spike_build_enemy",
-     "gain": 2e-05,
-     "plus_minus": 0.00012,
-     "folds_up": 2,
-     "present": 1.0
-    },
-    {
-     "variable": "s.flux_minion_apocalypse",
-     "gain": -5e-05,
-     "plus_minus": 5e-05,
-     "folds_up": 1,
      "present": 1.0
     }
    ],
    "confirmed": [
     {
-     "variable": "b.own_aura_of_stability",
-     "gain": 0.00575,
-     "plus_minus": 0.00139,
-     "folds_up": 6,
-     "present": 1.0,
-     "confirm_gain": 0.0039,
-     "confirm_plus_minus": 0.00197,
-     "confirm_folds_up": 3,
-     "status": "not clear yet",
-     "result_low_third": 0.144,
-     "result_high_third": 0.062,
-     "cut_low": 1.0,
-     "cut_high": 1.0
-    },
-    {
-     "variable": "s.fight_state",
-     "gain": 0.00632,
-     "plus_minus": 0.00361,
-     "folds_up": 4,
-     "present": 1.0,
-     "confirm_gain": 0.00642,
-     "confirm_plus_minus": 0.0041,
-     "confirm_folds_up": 4,
-     "status": "not clear yet",
-     "result_low_third": 0.195,
-     "result_high_third": 0.078,
-     "cut_low": -0.02,
-     "cut_high": 0.02
-    },
-    {
-     "variable": "b.enemy_prots",
-     "gain": 0.00445,
-     "plus_minus": 0.00183,
+     "variable": "s.lord_dps_enemy",
+     "gain": 0.00294,
+     "plus_minus": 0.0011,
      "folds_up": 5,
      "present": 1.0,
-     "confirm_gain": 0.00332,
-     "confirm_plus_minus": 0.0024,
-     "confirm_folds_up": 3,
+     "confirm_gain": 0.00279,
+     "confirm_plus_minus": 0.00158,
+     "confirm_folds_up": 4,
      "status": "not clear yet",
-     "result_low_third": 0.144,
-     "result_high_third": 0.101,
-     "cut_low": 11.0,
-     "cut_high": 14.0
+     "result_low_third": 0.15,
+     "result_high_third": 0.135,
+     "cut_low": 94.8,
+     "cut_high": 100.5
     },
     {
-     "variable": "b.enemy_interrupts",
-     "gain": 0.00393,
-     "plus_minus": 0.00138,
+     "variable": "s.healing_monks_enemy",
+     "gain": 0.0021,
+     "plus_minus": 0.00046,
      "folds_up": 6,
      "present": 1.0,
-     "confirm_gain": 0.00048,
-     "confirm_plus_minus": 0.00155,
+     "confirm_gain": 0.00411,
+     "confirm_plus_minus": 0.00107,
+     "confirm_folds_up": 6,
+     "status": "discovery (held for Denning)",
+     "result_low_third": 0.129,
+     "result_high_third": 0.108,
+     "cut_low": 3.0,
+     "cut_high": 3.0
+    },
+    {
+     "variable": "b.own_energy_denial_v_enemy_heals",
+     "gain": 0.00209,
+     "plus_minus": 0.00061,
+     "folds_up": 5,
+     "present": 1.0,
+     "confirm_gain": 0.00254,
+     "confirm_plus_minus": 0.00263,
+     "confirm_folds_up": 4,
+     "status": "not clear yet",
+     "result_low_third": 0.09,
+     "result_high_third": 0.16,
+     "cut_low": -12.0,
+     "cut_high": -10.0
+    },
+    {
+     "variable": "b.enemy_heals",
+     "gain": 0.00201,
+     "plus_minus": 0.00072,
+     "folds_up": 5,
+     "present": 1.0,
+     "confirm_gain": 0.0021,
+     "confirm_plus_minus": 0.00122,
+     "confirm_folds_up": 4,
+     "status": "not clear yet",
+     "result_low_third": 0.166,
+     "result_high_third": 0.104,
+     "cut_low": 13.0,
+     "cut_high": 15.0
+    },
+    {
+     "variable": "b.own_knockdowns",
+     "gain": 0.00242,
+     "plus_minus": 0.00115,
+     "folds_up": 5,
+     "present": 1.0,
+     "confirm_gain": 0.0005,
+     "confirm_plus_minus": 0.00135,
      "confirm_folds_up": 3,
      "status": "not clear yet",
-     "result_low_third": 0.156,
-     "result_high_third": 0.109,
-     "cut_low": 3.0,
-     "cut_high": 5.0
+     "result_low_third": 0.145,
+     "result_high_third": 0.103,
+     "cut_low": 1.0,
+     "cut_high": 2.0
     },
     {
      "variable": "s.morale_diff",
-     "gain": 0.00741,
-     "plus_minus": 0.00501,
-     "folds_up": 5,
+     "gain": 0.00277,
+     "plus_minus": 0.00162,
+     "folds_up": 4,
      "present": 1.0,
-     "confirm_gain": 0.0062,
-     "confirm_plus_minus": 0.00741,
+     "confirm_gain": 0.00212,
+     "confirm_plus_minus": 0.00137,
      "confirm_folds_up": 5,
      "status": "not clear yet",
-     "result_low_third": 0.189,
-     "result_high_third": 0.064,
+     "result_low_third": 0.222,
+     "result_high_third": 0.057,
      "cut_low": -13.0,
-     "cut_high": 31.67
-    },
-    {
-     "variable": "s.turtle_diff",
-     "gain": 0.00364,
-     "plus_minus": 0.00154,
-     "folds_up": 5,
-     "present": 1.0,
-     "confirm_gain": 0.00097,
-     "confirm_plus_minus": 0.00127,
-     "confirm_folds_up": 2,
-     "status": "not clear yet",
-     "result_low_third": 0.114,
-     "result_high_third": 0.138,
-     "cut_low": 0.0,
-     "cut_high": 0.0
+     "cut_high": 35.0
     }
    ]
   },
   {
    "node": "fight_outcome",
    "target": "R.2",
-   "matches": 133,
-   "rows": 989,
+   "matches": 265,
+   "rows": 2009,
    "metric": "log loss",
-   "tested": 93,
-   "screen_passed": 22,
+   "tested": 85,
+   "screen_passed": 6,
    "screen": [
     {
-     "variable": "s.morale_diff",
-     "gain": 0.07315,
-     "plus_minus": 0.00999,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "s.down_diff_s",
-     "gain": 0.0279,
-     "plus_minus": 0.00447,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "s.fight_state",
-     "gain": 0.0301,
-     "plus_minus": 0.0104,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "s.alive_diff",
-     "gain": 0.01809,
-     "plus_minus": 0.0021,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "s.stand",
-     "gain": 0.02029,
-     "plus_minus": 0.00481,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "s.spike_killable_diff",
-     "gain": 0.01921,
-     "plus_minus": 0.00524,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "s.main_diff",
-     "gain": 0.01733,
-     "plus_minus": 0.00411,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "s.boost_clock",
-     "gain": 0.01736,
-     "plus_minus": 0.00453,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "s.turtle_diff",
-     "gain": 0.01722,
-     "plus_minus": 0.00484,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
      "variable": "s.morale_total",
-     "gain": 0.01063,
-     "plus_minus": 0.00188,
+     "gain": 0.00318,
+     "plus_minus": 0.00043,
      "folds_up": 6,
      "present": 1.0
     },
     {
-     "variable": "s.pit_pressure_diff",
-     "gain": 0.01216,
-     "plus_minus": 0.00411,
+     "variable": "b.own_hexes",
+     "gain": 0.00207,
+     "plus_minus": 0.00093,
      "folds_up": 5,
      "present": 1.0
     },
     {
-     "variable": "s.knights_diff",
-     "gain": 0.00845,
-     "plus_minus": 0.00319,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "s.minute",
-     "gain": 0.00699,
-     "plus_minus": 0.00196,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "s.no_healer_groups_diff",
-     "gain": 0.00617,
-     "plus_minus": 0.00174,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "s.solo_healers_diff",
-     "gain": 0.00663,
-     "plus_minus": 0.00269,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "s.lord_damage_diff",
-     "gain": 0.00529,
-     "plus_minus": 0.00176,
-     "folds_up": 6,
-     "present": 0.93
-    },
-    {
-     "variable": "s.flag_lead",
-     "gain": 0.00649,
-     "plus_minus": 0.00328,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "s.spike_build_own",
-     "gain": 0.00473,
-     "plus_minus": 0.00154,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_speed",
-     "gain": 0.00417,
-     "plus_minus": 0.00124,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "s.spike_build_enemy",
-     "gain": 0.0058,
-     "plus_minus": 0.00307,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "b.own_speed",
-     "gain": 0.00348,
-     "plus_minus": 0.00116,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "b.own_energy_denial_v_enemy_heals",
-     "gain": 0.00434,
-     "plus_minus": 0.00235,
-     "folds_up": 4,
-     "present": 1.0
-    },
-    {
-     "variable": "b.own_snare_power",
-     "gain": 0.0027,
-     "plus_minus": 0.00078,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "s.carrying_diff",
-     "gain": 0.00324,
-     "plus_minus": 0.00145,
+     "variable": "b.own_knockdowns",
+     "gain": 0.00139,
+     "plus_minus": 0.00045,
      "folds_up": 5,
      "present": 1.0
     },
     {
      "variable": "b.enemy_energy_denial_v_own_heals",
-     "gain": 0.00416,
-     "plus_minus": 0.00252,
+     "gain": 0.00138,
+     "plus_minus": 0.00052,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_heals",
+     "gain": 0.00073,
+     "plus_minus": 0.00015,
+     "folds_up": 6,
+     "present": 1.0
+    },
+    {
+     "variable": "s.split_diff",
+     "gain": 0.00074,
+     "plus_minus": 0.00025,
+     "folds_up": 6,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_blind",
+     "gain": 0.00091,
+     "plus_minus": 0.00048,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_snare_power",
+     "gain": 0.00068,
+     "plus_minus": 0.00037,
+     "folds_up": 3,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_interrupts_v_own_heals",
+     "gain": 0.00089,
+     "plus_minus": 0.00063,
      "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_area_damage",
+     "gain": 0.00047,
+     "plus_minus": 0.00024,
+     "folds_up": 6,
+     "present": 1.0
+    },
+    {
+     "variable": "s.spike_build_own",
+     "gain": 0.00037,
+     "plus_minus": 0.00026,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_blind",
+     "gain": 0.00027,
+     "plus_minus": 0.00021,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_strips",
+     "gain": 0.0001,
+     "plus_minus": 5e-05,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "s.spike_build_enemy",
+     "gain": 0.00023,
+     "plus_minus": 0.00019,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_knockdowns_v_own_aura_of_stability",
+     "gain": 0.0002,
+     "plus_minus": 0.00016,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_snares",
+     "gain": 9e-05,
+     "plus_minus": 6e-05,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "s.archers_diff",
+     "gain": 0.0,
+     "plus_minus": 0.0,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_daze",
+     "gain": -0.0,
+     "plus_minus": 0.0,
+     "folds_up": 3,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_energy_denial",
+     "gain": 0.0,
+     "plus_minus": 0.0,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_escapes_power",
+     "gain": 1e-05,
+     "plus_minus": 1e-05,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_hex_removal",
+     "gain": 1e-05,
+     "plus_minus": 2e-05,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_hexes",
+     "gain": 8e-05,
+     "plus_minus": 0.0001,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "s.map_bases_apart",
+     "gain": -1e-05,
+     "plus_minus": 1e-05,
+     "folds_up": 2,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_strips_v_own_prots",
+     "gain": -2e-05,
+     "plus_minus": 2e-05,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "s.no_healer_groups_diff",
+     "gain": 8e-05,
+     "plus_minus": 0.00013,
+     "folds_up": 3,
      "present": 1.0
     }
    ],
    "confirmed": [
     {
-     "variable": "s.morale_diff",
-     "gain": 0.07315,
-     "plus_minus": 0.00999,
+     "variable": "s.morale_total",
+     "gain": 0.00318,
+     "plus_minus": 0.00043,
      "folds_up": 6,
      "present": 1.0,
-     "confirm_gain": 0.08456,
-     "confirm_plus_minus": 0.01307,
+     "confirm_gain": 0.01006,
+     "confirm_plus_minus": 0.00131,
      "confirm_folds_up": 6,
      "status": "discovery (held for Denning)",
-     "result_low_third": 0.199,
-     "result_high_third": 0.834,
-     "cut_low": -32.0,
-     "cut_high": 32.0
-    },
-    {
-     "variable": "s.down_diff_s",
-     "gain": 0.0279,
-     "plus_minus": 0.00447,
-     "folds_up": 6,
-     "present": 1.0,
-     "confirm_gain": 0.0272,
-     "confirm_plus_minus": 0.00683,
-     "confirm_folds_up": 6,
-     "status": "discovery (held for Denning)",
-     "result_low_third": 0.371,
-     "result_high_third": 0.904,
-     "cut_low": 0.0,
+     "result_low_third": 0.49,
+     "result_high_third": 0.505,
+     "cut_low": -52.67,
      "cut_high": 0.0
     },
     {
-     "variable": "s.fight_state",
-     "gain": 0.0301,
-     "plus_minus": 0.0104,
-     "folds_up": 6,
+     "variable": "b.own_hexes",
+     "gain": 0.00207,
+     "plus_minus": 0.00093,
+     "folds_up": 5,
      "present": 1.0,
-     "confirm_gain": 0.0417,
-     "confirm_plus_minus": 0.01071,
+     "confirm_gain": 0.00478,
+     "confirm_plus_minus": 0.00142,
      "confirm_folds_up": 6,
      "status": "discovery (held for Denning)",
-     "result_low_third": 0.139,
-     "result_high_third": 0.834,
-     "cut_low": -0.06,
-     "cut_high": 0.04
+     "result_low_third": 0.509,
+     "result_high_third": 0.402,
+     "cut_low": 3.0,
+     "cut_high": 4.0
     },
     {
-     "variable": "s.alive_diff",
-     "gain": 0.01809,
-     "plus_minus": 0.0021,
-     "folds_up": 6,
+     "variable": "b.own_knockdowns",
+     "gain": 0.00139,
+     "plus_minus": 0.00045,
+     "folds_up": 5,
      "present": 1.0,
-     "confirm_gain": 0.01432,
-     "confirm_plus_minus": 0.00615,
-     "confirm_folds_up": 5,
-     "status": "discovery (held for Denning)",
-     "result_low_third": 0.367,
-     "result_high_third": 0.848,
-     "cut_low": 0.0,
-     "cut_high": 0.0
+     "confirm_gain": 0.00196,
+     "confirm_plus_minus": 0.00166,
+     "confirm_folds_up": 4,
+     "status": "not clear yet",
+     "result_low_third": 0.455,
+     "result_high_third": 0.532,
+     "cut_low": 1.0,
+     "cut_high": 2.0
     },
     {
-     "variable": "s.stand",
-     "gain": 0.02029,
-     "plus_minus": 0.00481,
-     "folds_up": 6,
+     "variable": "b.enemy_energy_denial_v_own_heals",
+     "gain": 0.00138,
+     "plus_minus": 0.00052,
+     "folds_up": 5,
      "present": 1.0,
-     "confirm_gain": 0.01909,
-     "confirm_plus_minus": 0.00516,
-     "confirm_folds_up": 5,
-     "status": "discovery (held for Denning)",
-     "result_low_third": 0.286,
-     "result_high_third": NaN,
-     "cut_low": -1.0,
-     "cut_high": 1.0
-    },
-    {
-     "variable": "s.spike_killable_diff",
-     "gain": 0.01921,
-     "plus_minus": 0.00524,
-     "folds_up": 6,
-     "present": 1.0,
-     "confirm_gain": 0.02187,
-     "confirm_plus_minus": 0.0052,
+     "confirm_gain": 0.00434,
+     "confirm_plus_minus": 0.0009,
      "confirm_folds_up": 6,
      "status": "discovery (held for Denning)",
-     "result_low_third": 0.418,
-     "result_high_third": 0.855,
+     "result_low_third": 0.416,
+     "result_high_third": 0.507,
+     "cut_low": -12.0,
+     "cut_high": -10.0
+    },
+    {
+     "variable": "b.own_heals",
+     "gain": 0.00073,
+     "plus_minus": 0.00015,
+     "folds_up": 6,
+     "present": 1.0,
+     "confirm_gain": 0.00279,
+     "confirm_plus_minus": 0.00065,
+     "confirm_folds_up": 6,
+     "status": "discovery (held for Denning)",
+     "result_low_third": 0.504,
+     "result_high_third": 0.402,
+     "cut_low": 13.0,
+     "cut_high": 15.0
+    },
+    {
+     "variable": "s.split_diff",
+     "gain": 0.00074,
+     "plus_minus": 0.00025,
+     "folds_up": 6,
+     "present": 1.0,
+     "confirm_gain": 0.00035,
+     "confirm_plus_minus": 0.00133,
+     "confirm_folds_up": 3,
+     "status": "not clear yet",
+     "result_low_third": 0.486,
+     "result_high_third": 0.405,
      "cut_low": 0.0,
      "cut_high": 0.0
     }
@@ -748,277 +748,555 @@
   {
    "node": "flag_swing",
    "target": "R.3",
-   "matches": 133,
-   "rows": 5131,
+   "matches": 266,
+   "rows": 10306,
    "metric": "mean absolute error (s)",
-   "tested": 90,
-   "screen_passed": 9,
+   "tested": 87,
+   "screen_passed": 1,
    "screen": [
     {
-     "variable": "s.morale_diff",
-     "gain": 0.16581,
-     "plus_minus": 0.06093,
+     "variable": "s.turtle_diff",
+     "gain": 0.01078,
+     "plus_minus": 0.00225,
      "folds_up": 6,
      "present": 1.0
     },
     {
      "variable": "s.no_healer_groups_diff",
-     "gain": 0.07757,
-     "plus_minus": 0.03591,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "s.lord_damage_diff",
-     "gain": 0.04518,
-     "plus_minus": 0.01536,
-     "folds_up": 6,
-     "present": 0.94
-    },
-    {
-     "variable": "b.own_speed",
-     "gain": 0.0301,
-     "plus_minus": 0.01229,
+     "gain": 0.00595,
+     "plus_minus": 0.00374,
      "folds_up": 5,
      "present": 1.0
     },
     {
-     "variable": "s.knights_diff",
-     "gain": 0.02216,
-     "plus_minus": 0.01163,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "s.archers_diff",
-     "gain": 0.01525,
-     "plus_minus": 0.00549,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_energy_denial_v_own_heals",
-     "gain": 0.01616,
-     "plus_minus": 0.00663,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_energy_denial",
-     "gain": 0.01404,
-     "plus_minus": 0.0057,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "s.spike_killable_diff",
-     "gain": 0.01855,
-     "plus_minus": 0.01107,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_daze",
-     "gain": 0.03292,
-     "plus_minus": 0.02558,
+     "variable": "s.healing_monks_enemy",
+     "gain": 0.00444,
+     "plus_minus": 0.00338,
      "folds_up": 4,
      "present": 1.0
     },
     {
-     "variable": "b.enemy_blind_v_own_condition_removal",
-     "gain": 0.01662,
-     "plus_minus": 0.01012,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_blind",
-     "gain": 0.02064,
-     "plus_minus": 0.01504,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "s.bodyguard_diff",
-     "gain": 0.01406,
-     "plus_minus": 0.0089,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "b.own_aura_of_stability",
-     "gain": 0.00822,
-     "plus_minus": 0.00331,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_aura_of_stability",
-     "gain": 0.00613,
-     "plus_minus": 0.00251,
+     "variable": "s.map_pit_to_stand",
+     "gain": 0.00123,
+     "plus_minus": 0.00085,
      "folds_up": 5,
      "present": 1.0
     },
     {
      "variable": "s.morale_total",
-     "gain": 0.0061,
-     "plus_minus": 0.00385,
+     "gain": 0.00108,
+     "plus_minus": 0.00105,
      "folds_up": 3,
      "present": 1.0
     },
     {
-     "variable": "s.map_pit_to_stand",
-     "gain": 0.0041,
-     "plus_minus": 0.0024,
+     "variable": "b.enemy_snares_v_own_speed",
+     "gain": 0.00334,
+     "plus_minus": 0.00354,
      "folds_up": 4,
      "present": 1.0
     },
     {
-     "variable": "b.own_energy_denial",
-     "gain": 0.01351,
-     "plus_minus": 0.01198,
+     "variable": "b.own_speed_power",
+     "gain": 0.00301,
+     "plus_minus": 0.00353,
      "folds_up": 3,
      "present": 1.0
     },
     {
-     "variable": "s.flux_minion_apocalypse",
-     "gain": 0.00357,
-     "plus_minus": 0.00263,
+     "variable": "b.own_deep_wound",
+     "gain": 0.00134,
+     "plus_minus": 0.00193,
      "folds_up": 4,
      "present": 1.0
     },
     {
-     "variable": "s.fight_state",
-     "gain": 0.00454,
-     "plus_minus": 0.00366,
-     "folds_up": 5,
+     "variable": "s.knights_diff",
+     "gain": 0.00695,
+     "plus_minus": 0.00769,
+     "folds_up": 4,
      "present": 1.0
     },
     {
-     "variable": "s.pit_pressure_diff",
-     "gain": 0.00324,
-     "plus_minus": 0.00252,
+     "variable": "s.map_flag_run",
+     "gain": 0.00025,
+     "plus_minus": 0.0011,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "s.split_diff",
+     "gain": 0.00112,
+     "plus_minus": 0.00222,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_strips_v_own_prots",
+     "gain": 0.00122,
+     "plus_minus": 0.0025,
      "folds_up": 3,
      "present": 1.0
     },
     {
-     "variable": "s.flux_meek_shall_inherit",
-     "gain": 0.00293,
-     "plus_minus": 0.00227,
-     "folds_up": 4,
+     "variable": "s.alive_diff",
+     "gain": -5e-05,
+     "plus_minus": 0.00124,
+     "folds_up": 3,
      "present": 1.0
     },
     {
-     "variable": "s.flux_chain_combo",
-     "gain": 0.00258,
-     "plus_minus": 0.00206,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_hexes_v_own_hex_removal",
-     "gain": 0.0055,
-     "plus_minus": 0.00501,
-     "folds_up": 4,
+     "variable": "s.map_bases_apart",
+     "gain": 0.00038,
+     "plus_minus": 0.00169,
+     "folds_up": 3,
      "present": 1.0
     },
     {
      "variable": "b.own_snares",
-     "gain": 0.00254,
-     "plus_minus": 0.00227,
-     "folds_up": 5,
+     "gain": 0.00338,
+     "plus_minus": 0.00481,
+     "folds_up": 3,
+     "present": 1.0
+    },
+    {
+     "variable": "s.lord_health_diff",
+     "gain": 0.00029,
+     "plus_minus": 0.00186,
+     "folds_up": 4,
+     "present": 0.95
+    },
+    {
+     "variable": "s.spike_build_own",
+     "gain": 5e-05,
+     "plus_minus": 0.00177,
+     "folds_up": 3,
+     "present": 1.0
+    },
+    {
+     "variable": "s.pit_pressure_diff",
+     "gain": -0.00016,
+     "plus_minus": 0.00177,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_knockdowns_v_own_aura_of_stability",
+     "gain": -0.00013,
+     "plus_minus": 0.00192,
+     "folds_up": 3,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_strips",
+     "gain": -0.00053,
+     "plus_minus": 0.00162,
+     "folds_up": 3,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_interrupts_v_enemy_heals",
+     "gain": -0.00087,
+     "plus_minus": 0.00141,
+     "folds_up": 3,
+     "present": 1.0
+    },
+    {
+     "variable": "s.carrying_diff",
+     "gain": -0.00019,
+     "plus_minus": 0.0022,
+     "folds_up": 2,
+     "present": 1.0
+    },
+    {
+     "variable": "s.lord_exposed_diff",
+     "gain": -0.00111,
+     "plus_minus": 0.00134,
+     "folds_up": 3,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_energy_denial_v_enemy_heals",
+     "gain": -0.00089,
+     "plus_minus": 0.00157,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "s.spike_killable_diff",
+     "gain": -4e-05,
+     "plus_minus": 0.00244,
+     "folds_up": 3,
      "present": 1.0
     }
    ],
    "confirmed": [
     {
-     "variable": "s.morale_diff",
-     "gain": 0.16581,
-     "plus_minus": 0.06093,
+     "variable": "s.turtle_diff",
+     "gain": 0.01078,
+     "plus_minus": 0.00225,
      "folds_up": 6,
      "present": 1.0,
-     "confirm_gain": 0.29874,
-     "confirm_plus_minus": 0.14335,
+     "confirm_gain": 0.02562,
+     "confirm_plus_minus": 0.01375,
      "confirm_folds_up": 5,
-     "status": "discovery (held for Denning)",
-     "result_low_third": -1.1,
-     "result_high_third": 1.815,
-     "cut_low": -23.0,
-     "cut_high": 23.0
+     "status": "not clear yet",
+     "result_low_third": 0.252,
+     "result_high_third": -0.067,
+     "cut_low": 0.0,
+     "cut_high": 0.0
     },
     {
      "variable": "s.no_healer_groups_diff",
-     "gain": 0.07757,
-     "plus_minus": 0.03591,
-     "folds_up": 6,
+     "gain": 0.00595,
+     "plus_minus": 0.00374,
+     "folds_up": 5,
      "present": 1.0,
-     "confirm_gain": 0.06124,
-     "confirm_plus_minus": 0.03823,
+     "confirm_gain": 0.02613,
+     "confirm_plus_minus": 0.01956,
      "confirm_folds_up": 5,
      "status": "not clear yet",
-     "result_low_third": 0.766,
-     "result_high_third": -5.621,
+     "result_low_third": 0.268,
+     "result_high_third": -0.852,
      "cut_low": 0.0,
      "cut_high": 0.0
     },
     {
-     "variable": "s.lord_damage_diff",
-     "gain": 0.04518,
-     "plus_minus": 0.01536,
-     "folds_up": 6,
-     "present": 0.94,
-     "confirm_gain": 0.06527,
-     "confirm_plus_minus": 0.0607,
-     "confirm_folds_up": 5,
+     "variable": "s.healing_monks_enemy",
+     "gain": 0.00444,
+     "plus_minus": 0.00338,
+     "folds_up": 4,
+     "present": 1.0,
+     "confirm_gain": 0.01095,
+     "confirm_plus_minus": 0.00856,
+     "confirm_folds_up": 4,
      "status": "not clear yet",
-     "result_low_third": -0.053,
-     "result_high_third": 1.819,
-     "cut_low": 0.0,
+     "result_low_third": 0.182,
+     "result_high_third": -0.468,
+     "cut_low": 3.0,
+     "cut_high": 3.0
+    },
+    {
+     "variable": "s.map_pit_to_stand",
+     "gain": 0.00123,
+     "plus_minus": 0.00085,
+     "folds_up": 5,
+     "present": 1.0,
+     "confirm_gain": -0.00501,
+     "confirm_plus_minus": 0.00871,
+     "confirm_folds_up": 3,
+     "status": "not clear yet",
+     "result_low_third": -0.189,
+     "result_high_third": -0.154,
+     "cut_low": 8091.0,
+     "cut_high": 9542.0
+    },
+    {
+     "variable": "s.morale_total",
+     "gain": 0.00108,
+     "plus_minus": 0.00105,
+     "folds_up": 3,
+     "present": 1.0,
+     "confirm_gain": 0.00667,
+     "confirm_plus_minus": 0.01154,
+     "confirm_folds_up": 3,
+     "status": "not clear yet",
+     "result_low_third": 0.565,
+     "result_high_third": -0.886,
+     "cut_low": -35.0,
      "cut_high": 0.0
     },
     {
-     "variable": "b.own_speed",
-     "gain": 0.0301,
-     "plus_minus": 0.01229,
-     "folds_up": 5,
+     "variable": "b.enemy_snares_v_own_speed",
+     "gain": 0.00334,
+     "plus_minus": 0.00354,
+     "folds_up": 4,
      "present": 1.0,
-     "confirm_gain": 0.00251,
-     "confirm_plus_minus": 0.01629,
-     "confirm_folds_up": 4,
-     "status": "not clear yet",
-     "result_low_third": 0.772,
-     "result_high_third": -0.467,
-     "cut_low": 5.0,
-     "cut_high": 7.0
-    },
-    {
-     "variable": "s.knights_diff",
-     "gain": 0.02216,
-     "plus_minus": 0.01163,
-     "folds_up": 5,
-     "present": 1.0,
-     "confirm_gain": 0.03788,
-     "confirm_plus_minus": 0.03475,
-     "confirm_folds_up": 4,
+     "confirm_gain": -0.01746,
+     "confirm_plus_minus": 0.02586,
+     "confirm_folds_up": 3,
      "status": "not clear yet",
      "result_low_third": -0.087,
-     "result_high_third": 1.236,
+     "result_high_third": 0.223,
+     "cut_low": -5.0,
+     "cut_high": -3.0
+    }
+   ]
+  },
+  {
+   "node": "pit_npc_loss",
+   "target": "R.5",
+   "matches": 264,
+   "rows": 27063,
+   "metric": "log loss",
+   "tested": 89,
+   "screen_passed": 1,
+   "screen": [
+    {
+     "variable": "s.main_diff",
+     "gain": 0.0007,
+     "plus_minus": 0.00033,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "s.fight_state",
+     "gain": 0.00072,
+     "plus_minus": 0.00037,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "s.lord_health_diff",
+     "gain": 0.00084,
+     "plus_minus": 0.00056,
+     "folds_up": 4,
+     "present": 0.96
+    },
+    {
+     "variable": "b.own_interrupts",
+     "gain": 0.00053,
+     "plus_minus": 0.00027,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "s.alive_diff",
+     "gain": 0.00054,
+     "plus_minus": 0.00029,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "s.down_diff_s",
+     "gain": 0.00061,
+     "plus_minus": 0.0004,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_knockdowns_v_own_aura_of_stability",
+     "gain": 0.00034,
+     "plus_minus": 0.00019,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_interrupts_v_own_heals",
+     "gain": 0.00029,
+     "plus_minus": 0.00018,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_interrupts_v_enemy_heals",
+     "gain": 0.00023,
+     "plus_minus": 0.00015,
+     "folds_up": 3,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_snare_power",
+     "gain": 0.00012,
+     "plus_minus": 6e-05,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "s.morale_diff",
+     "gain": 0.00029,
+     "plus_minus": 0.00025,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_escapes_power",
+     "gain": 0.00079,
+     "plus_minus": 0.00075,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "s.no_healer_groups_diff",
+     "gain": 9e-05,
+     "plus_minus": 7e-05,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_blind",
+     "gain": 0.00012,
+     "plus_minus": 0.0001,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_blind_v_enemy_condition_removal",
+     "gain": 9e-05,
+     "plus_minus": 8e-05,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "s.spike_build_enemy",
+     "gain": 0.00025,
+     "plus_minus": 0.00026,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "s.flux_minion_apocalypse",
+     "gain": 2e-05,
+     "plus_minus": 3e-05,
+     "folds_up": 3,
+     "present": 1.0
+    },
+    {
+     "variable": "s.healing_monks_own",
+     "gain": 0.00022,
+     "plus_minus": 0.00026,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_energy_denial_v_own_heals",
+     "gain": 0.00032,
+     "plus_minus": 0.00036,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "s.carrying_diff",
+     "gain": -1e-05,
+     "plus_minus": 3e-05,
+     "folds_up": 3,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_daze",
+     "gain": 6e-05,
+     "plus_minus": 0.0001,
+     "folds_up": 3,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_condition_removal",
+     "gain": 7e-05,
+     "plus_minus": 0.00014,
+     "folds_up": 3,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_area_damage",
+     "gain": -4e-05,
+     "plus_minus": 3e-05,
+     "folds_up": 0,
+     "present": 1.0
+    },
+    {
+     "variable": "s.lord_dps_enemy",
+     "gain": 0.00018,
+     "plus_minus": 0.00027,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_heals",
+     "gain": 0.00011,
+     "plus_minus": 0.0002,
+     "folds_up": 4,
+     "present": 1.0
+    }
+   ],
+   "confirmed": [
+    {
+     "variable": "s.main_diff",
+     "gain": 0.0007,
+     "plus_minus": 0.00033,
+     "folds_up": 4,
+     "present": 1.0,
+     "confirm_gain": 9e-05,
+     "confirm_plus_minus": 0.00065,
+     "confirm_folds_up": 4,
+     "status": "not clear yet",
+     "result_low_third": 0.293,
+     "result_high_third": 0.167,
+     "cut_low": -1.0,
+     "cut_high": 0.0
+    },
+    {
+     "variable": "s.fight_state",
+     "gain": 0.00072,
+     "plus_minus": 0.00037,
+     "folds_up": 4,
+     "present": 1.0,
+     "confirm_gain": 0.00061,
+     "confirm_plus_minus": 0.00071,
+     "confirm_folds_up": 5,
+     "status": "not clear yet",
+     "result_low_third": 0.286,
+     "result_high_third": 0.151,
+     "cut_low": -0.12,
+     "cut_high": 0.0
+    },
+    {
+     "variable": "s.lord_health_diff",
+     "gain": 0.00084,
+     "plus_minus": 0.00056,
+     "folds_up": 4,
+     "present": 0.96,
+     "confirm_gain": 0.00091,
+     "confirm_plus_minus": 0.00092,
+     "confirm_folds_up": 4,
+     "status": "not clear yet",
+     "result_low_third": 0.208,
+     "result_high_third": 0.152,
      "cut_low": 0.0,
      "cut_high": 0.0
     },
     {
-     "variable": "s.archers_diff",
-     "gain": 0.01525,
-     "plus_minus": 0.00549,
-     "folds_up": 6,
+     "variable": "b.own_interrupts",
+     "gain": 0.00053,
+     "plus_minus": 0.00027,
+     "folds_up": 5,
      "present": 1.0,
-     "confirm_gain": 0.02703,
-     "confirm_plus_minus": 0.04204,
+     "confirm_gain": 0.00068,
+     "confirm_plus_minus": 0.00041,
+     "confirm_folds_up": 5,
+     "status": "not clear yet",
+     "result_low_third": 0.19,
+     "result_high_third": 0.201,
+     "cut_low": 3.0,
+     "cut_high": 5.0
+    },
+    {
+     "variable": "s.alive_diff",
+     "gain": 0.00054,
+     "plus_minus": 0.00029,
+     "folds_up": 4,
+     "present": 1.0,
+     "confirm_gain": 0.00124,
+     "confirm_plus_minus": 0.00065,
+     "confirm_folds_up": 5,
+     "status": "not clear yet",
+     "result_low_third": 0.34,
+     "result_high_third": 0.134,
+     "cut_low": -1.0,
+     "cut_high": 0.0
+    },
+    {
+     "variable": "s.down_diff_s",
+     "gain": 0.00061,
+     "plus_minus": 0.0004,
+     "folds_up": 5,
+     "present": 1.0,
+     "confirm_gain": 0.00075,
+     "confirm_plus_minus": 0.00081,
      "confirm_folds_up": 4,
      "status": "not clear yet",
-     "result_low_third": -0.111,
-     "result_high_third": 1.524,
-     "cut_low": 0.0,
+     "result_low_third": 0.346,
+     "result_high_third": 0.119,
+     "cut_low": -5.0,
      "cut_high": 0.0
     }
    ]
@@ -1026,183 +1304,461 @@
   {
    "node": "power_play",
    "target": "K.4",
-   "matches": 133,
-   "rows": 1162,
+   "matches": 265,
+   "rows": 2503,
    "metric": "log loss",
-   "tested": 92,
-   "screen_passed": 6,
+   "tested": 88,
+   "screen_passed": 8,
    "screen": [
     {
-     "variable": "s.carrying_diff",
-     "gain": 0.0046,
-     "plus_minus": 0.00171,
+     "variable": "s.fight_state",
+     "gain": 0.00528,
+     "plus_minus": 0.00288,
      "folds_up": 5,
      "present": 1.0
     },
     {
-     "variable": "s.down_diff_s",
-     "gain": 0.00426,
-     "plus_minus": 0.00153,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "s.flux_minion_apocalypse",
-     "gain": 0.00136,
-     "plus_minus": 0.00038,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "b.own_heals",
-     "gain": 0.00134,
-     "plus_minus": 0.0006,
+     "variable": "s.morale_diff",
+     "gain": 0.00377,
+     "plus_minus": 0.00145,
      "folds_up": 6,
      "present": 1.0
     },
     {
-     "variable": "b.enemy_snares",
-     "gain": 0.00133,
-     "plus_minus": 0.00072,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "s.alive_diff",
-     "gain": 0.00196,
-     "plus_minus": 0.00138,
+     "variable": "s.pit_pressure_diff",
+     "gain": 0.00324,
+     "plus_minus": 0.00159,
      "folds_up": 4,
-     "present": 1.0
-    },
-    {
-     "variable": "b.own_hex_removal",
-     "gain": 0.00067,
-     "plus_minus": 0.00026,
-     "folds_up": 4,
-     "present": 1.0
-    },
-    {
-     "variable": "s.no_healer_groups_diff",
-     "gain": 0.00085,
-     "plus_minus": 0.00064,
-     "folds_up": 4,
-     "present": 1.0
-    },
-    {
-     "variable": "s.split_diff",
-     "gain": 0.0007,
-     "plus_minus": 0.00059,
-     "folds_up": 2,
-     "present": 1.0
-    },
-    {
-     "variable": "s.lord_health_diff",
-     "gain": 0.00092,
-     "plus_minus": 0.00083,
-     "folds_up": 4,
-     "present": 0.95
-    },
-    {
-     "variable": "s.morale_total",
-     "gain": 0.00014,
-     "plus_minus": 5e-05,
-     "folds_up": 5,
      "present": 1.0
     },
     {
      "variable": "s.main_diff",
-     "gain": 0.00128,
-     "plus_minus": 0.00125,
-     "folds_up": 3,
-     "present": 1.0
-    },
-    {
-     "variable": "s.stand",
-     "gain": 0.00047,
-     "plus_minus": 0.00045,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "b.own_deep_wound",
-     "gain": 1e-05,
-     "plus_minus": 1e-05,
-     "folds_up": 3,
-     "present": 1.0
-    },
-    {
-     "variable": "s.flux_meek_shall_inherit",
-     "gain": 1e-05,
-     "plus_minus": 3e-05,
-     "folds_up": 2,
-     "present": 1.0
-    },
-    {
-     "variable": "s.boost_clock",
-     "gain": 0.00015,
-     "plus_minus": 0.0002,
+     "gain": 0.00225,
+     "plus_minus": 0.00128,
      "folds_up": 4,
      "present": 1.0
     },
     {
-     "variable": "b.own_blind",
-     "gain": -5e-05,
-     "plus_minus": 3e-05,
-     "folds_up": 0,
+     "variable": "b.enemy_strips_v_own_prots",
+     "gain": 0.00131,
+     "plus_minus": 0.00047,
+     "folds_up": 6,
      "present": 1.0
     },
     {
-     "variable": "b.enemy_strips",
-     "gain": 0.00039,
+     "variable": "b.own_heals",
+     "gain": 0.00124,
+     "plus_minus": 0.00052,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_speed_power",
+     "gain": 0.00123,
+     "plus_minus": 0.00053,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "s.lord_health_diff",
+     "gain": 0.0015,
+     "plus_minus": 0.00085,
+     "folds_up": 5,
+     "present": 0.95
+    },
+    {
+     "variable": "b.own_prots",
+     "gain": 0.00105,
      "plus_minus": 0.00054,
-     "folds_up": 3,
+     "folds_up": 5,
      "present": 1.0
     },
     {
-     "variable": "b.own_snares",
-     "gain": -8e-05,
-     "plus_minus": 0.00017,
-     "folds_up": 3,
+     "variable": "s.solo_healers_diff",
+     "gain": 0.00089,
+     "plus_minus": 0.0004,
+     "folds_up": 5,
      "present": 1.0
     },
     {
-     "variable": "b.enemy_blind",
-     "gain": -0.00013,
+     "variable": "b.own_escapes_power",
+     "gain": 0.0007,
+     "plus_minus": 0.00043,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_aura_of_stability",
+     "gain": 0.00059,
+     "plus_minus": 0.00033,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "s.spike_build_enemy",
+     "gain": 0.00028,
+     "plus_minus": 0.0001,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_blocks",
+     "gain": 0.00026,
+     "plus_minus": 0.0001,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "s.minute",
+     "gain": 0.00046,
+     "plus_minus": 0.00031,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "s.healing_monks_own",
+     "gain": 0.00076,
+     "plus_minus": 0.00063,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "s.spike_build_own",
+     "gain": 0.00023,
+     "plus_minus": 0.00012,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_speed",
+     "gain": 0.00082,
+     "plus_minus": 0.00071,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_snares",
+     "gain": 0.0004,
+     "plus_minus": 0.00031,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_energy_denial",
+     "gain": 0.00022,
      "plus_minus": 0.00014,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "s.map_flag_run",
+     "gain": 0.00065,
+     "plus_minus": 0.00057,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_snare_power",
+     "gain": 0.00019,
+     "plus_minus": 0.00014,
+     "folds_up": 3,
+     "present": 1.0
+    },
+    {
+     "variable": "s.alive_diff",
+     "gain": 0.00017,
+     "plus_minus": 0.00012,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "s.split_diff",
+     "gain": 0.00094,
+     "plus_minus": 0.0009,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "s.turtle_diff",
+     "gain": 0.00031,
+     "plus_minus": 0.00029,
+     "folds_up": 3,
+     "present": 1.0
+    }
+   ],
+   "confirmed": [
+    {
+     "variable": "s.fight_state",
+     "gain": 0.00528,
+     "plus_minus": 0.00288,
+     "folds_up": 5,
+     "present": 1.0,
+     "confirm_gain": 0.00572,
+     "confirm_plus_minus": 0.00403,
+     "confirm_folds_up": 5,
+     "status": "not clear yet",
+     "result_low_third": 0.188,
+     "result_high_third": 0.666,
+     "cut_low": 0.0,
+     "cut_high": 0.07
+    },
+    {
+     "variable": "s.morale_diff",
+     "gain": 0.00377,
+     "plus_minus": 0.00145,
+     "folds_up": 6,
+     "present": 1.0,
+     "confirm_gain": 0.00446,
+     "confirm_plus_minus": 0.00196,
+     "confirm_folds_up": 5,
+     "status": "discovery (held for Denning)",
+     "result_low_third": 0.235,
+     "result_high_third": 0.578,
+     "cut_low": 0.0,
+     "cut_high": 47.0
+    },
+    {
+     "variable": "s.pit_pressure_diff",
+     "gain": 0.00324,
+     "plus_minus": 0.00159,
+     "folds_up": 4,
+     "present": 1.0,
+     "confirm_gain": 0.00452,
+     "confirm_plus_minus": 0.00281,
+     "confirm_folds_up": 4,
+     "status": "not clear yet",
+     "result_low_third": 0.336,
+     "result_high_third": 0.58,
+     "cut_low": 0.0,
+     "cut_high": 0.0
+    },
+    {
+     "variable": "s.main_diff",
+     "gain": 0.00225,
+     "plus_minus": 0.00128,
+     "folds_up": 4,
+     "present": 1.0,
+     "confirm_gain": 0.00258,
+     "confirm_plus_minus": 0.00262,
+     "confirm_folds_up": 4,
+     "status": "not clear yet",
+     "result_low_third": 0.368,
+     "result_high_third": 0.449,
+     "cut_low": 0.0,
+     "cut_high": 1.0
+    },
+    {
+     "variable": "b.enemy_strips_v_own_prots",
+     "gain": 0.00131,
+     "plus_minus": 0.00047,
+     "folds_up": 6,
+     "present": 1.0,
+     "confirm_gain": 0.00233,
+     "confirm_plus_minus": 0.00082,
+     "confirm_folds_up": 5,
+     "status": "discovery (held for Denning)",
+     "result_low_third": 0.359,
+     "result_high_third": 0.422,
+     "cut_low": -11.0,
+     "cut_high": -9.0
+    },
+    {
+     "variable": "b.own_heals",
+     "gain": 0.00124,
+     "plus_minus": 0.00052,
+     "folds_up": 5,
+     "present": 1.0,
+     "confirm_gain": 0.00166,
+     "confirm_plus_minus": 0.001,
+     "confirm_folds_up": 4,
+     "status": "not clear yet",
+     "result_low_third": 0.44,
+     "result_high_third": 0.293,
+     "cut_low": 13.0,
+     "cut_high": 15.0
+    }
+   ]
+  },
+  {
+   "node": "run_defence",
+   "target": "R.3",
+   "matches": 265,
+   "rows": 8816,
+   "metric": "log loss",
+   "tested": 85,
+   "screen_passed": 1,
+   "screen": [
+    {
+     "variable": "b.own_blind_v_enemy_condition_removal",
+     "gain": 0.00151,
+     "plus_minus": 0.00089,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_snares_v_own_speed",
+     "gain": 0.00045,
+     "plus_minus": 0.00019,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_area_damage",
+     "gain": 0.00053,
+     "plus_minus": 0.0003,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_snares_v_enemy_speed",
+     "gain": 0.0005,
+     "plus_minus": 0.00031,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "s.spike_killable_diff",
+     "gain": 0.00036,
+     "plus_minus": 0.00027,
+     "folds_up": 3,
+     "present": 1.0
+    },
+    {
+     "variable": "s.healing_monks_own",
+     "gain": 0.0004,
+     "plus_minus": 0.00031,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_knockdowns_v_enemy_aura_of_stability",
+     "gain": 0.00044,
+     "plus_minus": 0.00036,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "s.archers_diff",
+     "gain": 3e-05,
+     "plus_minus": 2e-05,
+     "folds_up": 3,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_blind_v_own_condition_removal",
+     "gain": 0.00048,
+     "plus_minus": 0.00049,
+     "folds_up": 3,
+     "present": 1.0
+    },
+    {
+     "variable": "s.split_diff",
+     "gain": 5e-05,
+     "plus_minus": 7e-05,
+     "folds_up": 3,
+     "present": 1.0
+    },
+    {
+     "variable": "s.pit_pressure_diff",
+     "gain": 4e-05,
+     "plus_minus": 7e-05,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "s.main_diff",
+     "gain": -1e-05,
+     "plus_minus": 4e-05,
      "folds_up": 2,
      "present": 1.0
     },
     {
-     "variable": "b.own_knockdowns",
-     "gain": -3e-05,
-     "plus_minus": 0.00026,
+     "variable": "s.no_healer_groups_diff",
+     "gain": 1e-05,
+     "plus_minus": 7e-05,
      "folds_up": 3,
      "present": 1.0
     },
     {
-     "variable": "b.enemy_aura_of_stability",
-     "gain": -0.00016,
-     "plus_minus": 0.00014,
+     "variable": "b.enemy_heals",
+     "gain": 0.00031,
+     "plus_minus": 0.00037,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "s.flux_minion_apocalypse",
+     "gain": -3e-05,
+     "plus_minus": 3e-05,
      "folds_up": 1,
      "present": 1.0
     },
     {
-     "variable": "b.own_daze",
-     "gain": -0.00015,
-     "plus_minus": 0.00018,
-     "folds_up": 2,
+     "variable": "s.minute",
+     "gain": 0.00064,
+     "plus_minus": 0.00072,
+     "folds_up": 4,
      "present": 1.0
     },
     {
-     "variable": "b.enemy_hex_removal",
-     "gain": -3e-05,
+     "variable": "b.enemy_strips",
+     "gain": 0.00021,
      "plus_minus": 0.00031,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_speed",
+     "gain": 0.00014,
+     "plus_minus": 0.00025,
      "folds_up": 3,
      "present": 1.0
     },
     {
-     "variable": "b.enemy_prots",
-     "gain": 1e-05,
+     "variable": "b.enemy_snare_power",
+     "gain": -6e-05,
+     "plus_minus": 6e-05,
+     "folds_up": 1,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_heals",
+     "gain": 0.00014,
+     "plus_minus": 0.00027,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_escapes_power",
+     "gain": -8e-05,
+     "plus_minus": 5e-05,
+     "folds_up": 1,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_knockdowns",
+     "gain": 3e-05,
+     "plus_minus": 0.00017,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_aura_of_stability",
+     "gain": 0.00032,
+     "plus_minus": 0.00047,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_speed_power",
+     "gain": -4e-05,
+     "plus_minus": 0.00011,
+     "folds_up": 3,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_interrupts_v_enemy_heals",
+     "gain": 0.0002,
      "plus_minus": 0.00037,
      "folds_up": 4,
      "present": 1.0
@@ -1210,371 +1766,93 @@
    ],
    "confirmed": [
     {
-     "variable": "s.carrying_diff",
-     "gain": 0.0046,
-     "plus_minus": 0.00171,
-     "folds_up": 5,
+     "variable": "b.own_blind_v_enemy_condition_removal",
+     "gain": 0.00151,
+     "plus_minus": 0.00089,
+     "folds_up": 4,
      "present": 1.0,
-     "confirm_gain": 0.00665,
-     "confirm_plus_minus": 0.00192,
-     "confirm_folds_up": 5,
-     "status": "discovery (held for Denning)",
-     "result_low_third": 0.411,
-     "result_high_third": 0.236,
-     "cut_low": 0.0,
-     "cut_high": 0.0
-    },
-    {
-     "variable": "s.down_diff_s",
-     "gain": 0.00426,
-     "plus_minus": 0.00153,
-     "folds_up": 5,
-     "present": 1.0,
-     "confirm_gain": 0.00765,
-     "confirm_plus_minus": 0.00277,
-     "confirm_folds_up": 5,
-     "status": "discovery (held for Denning)",
-     "result_low_third": 0.331,
-     "result_high_third": 0.585,
-     "cut_low": 0.0,
-     "cut_high": 0.0
-    },
-    {
-     "variable": "s.flux_minion_apocalypse",
-     "gain": 0.00136,
-     "plus_minus": 0.00038,
-     "folds_up": 5,
-     "present": 1.0,
-     "confirm_gain": 0.00106,
-     "confirm_plus_minus": 0.00107,
+     "confirm_gain": 0.00328,
+     "confirm_plus_minus": 0.00181,
      "confirm_folds_up": 4,
      "status": "not clear yet",
-     "result_low_third": 0.367,
-     "result_high_third": NaN,
-     "cut_low": 0.0,
-     "cut_high": 1.0
+     "result_low_third": 0.666,
+     "result_high_third": 0.659,
+     "cut_low": -4.0,
+     "cut_high": -3.0
     },
     {
-     "variable": "b.own_heals",
-     "gain": 0.00134,
-     "plus_minus": 0.0006,
-     "folds_up": 6,
-     "present": 1.0,
-     "confirm_gain": 0.00324,
-     "confirm_plus_minus": 0.00217,
-     "confirm_folds_up": 4,
-     "status": "not clear yet",
-     "result_low_third": 0.477,
-     "result_high_third": 0.269,
-     "cut_low": 13.0,
-     "cut_high": 15.0
-    },
-    {
-     "variable": "b.enemy_snares",
-     "gain": 0.00133,
-     "plus_minus": 0.00072,
-     "folds_up": 5,
-     "present": 1.0,
-     "confirm_gain": 0.00014,
-     "confirm_plus_minus": 0.00064,
-     "confirm_folds_up": 3,
-     "status": "not clear yet",
-     "result_low_third": 0.377,
-     "result_high_third": 0.441,
-     "cut_low": 1.0,
-     "cut_high": 3.0
-    },
-    {
-     "variable": "s.alive_diff",
-     "gain": 0.00196,
-     "plus_minus": 0.00138,
-     "folds_up": 4,
-     "present": 1.0,
-     "confirm_gain": 0.00495,
-     "confirm_plus_minus": 0.00409,
-     "confirm_folds_up": 5,
-     "status": "not clear yet",
-     "result_low_third": 0.322,
-     "result_high_third": 0.57,
-     "cut_low": 0.0,
-     "cut_high": 0.0
-    }
-   ]
-  },
-  {
-   "node": "run_defence",
-   "target": "R.3",
-   "matches": 133,
-   "rows": 4490,
-   "metric": "log loss",
-   "tested": 93,
-   "screen_passed": 13,
-   "screen": [
-    {
-     "variable": "s.boost_clock",
-     "gain": 0.02231,
-     "plus_minus": 0.00547,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "s.stand",
-     "gain": 0.02012,
-     "plus_minus": 0.00497,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "s.flag_lead",
-     "gain": 0.0095,
-     "plus_minus": 0.00366,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "s.morale_diff",
-     "gain": 0.00674,
-     "plus_minus": 0.00195,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "s.down_diff_s",
-     "gain": 0.00551,
-     "plus_minus": 0.00185,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "b.own_snares",
-     "gain": 0.00552,
-     "plus_minus": 0.00246,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "b.own_snares_v_enemy_speed",
-     "gain": 0.00381,
-     "plus_minus": 0.00177,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "s.turtle_diff",
-     "gain": 0.00258,
-     "plus_minus": 0.00107,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "b.own_strips_v_enemy_prots",
-     "gain": 0.00224,
-     "plus_minus": 0.00074,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_interrupts_v_own_heals",
-     "gain": 0.00245,
-     "plus_minus": 0.00115,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "s.solo_healers_diff",
-     "gain": 0.002,
-     "plus_minus": 0.00079,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_prots",
-     "gain": 0.00228,
-     "plus_minus": 0.00127,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "b.own_interrupts_v_enemy_heals",
-     "gain": 0.00245,
-     "plus_minus": 0.00185,
-     "folds_up": 4,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_energy_denial_v_own_heals",
-     "gain": 0.00136,
-     "plus_minus": 0.00104,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "s.split_diff",
-     "gain": 0.0005,
-     "plus_minus": 0.0002,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "s.pit_pressure_diff",
-     "gain": 0.00053,
-     "plus_minus": 0.00027,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "s.spike_build_enemy",
-     "gain": 0.00039,
-     "plus_minus": 0.00015,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_area_damage",
-     "gain": 0.00024,
-     "plus_minus": 0.00012,
-     "folds_up": 4,
-     "present": 1.0
-    },
-    {
-     "variable": "b.own_heals",
-     "gain": 0.00122,
-     "plus_minus": 0.00115,
-     "folds_up": 4,
-     "present": 1.0
-    },
-    {
-     "variable": "b.own_interrupts",
-     "gain": 0.00063,
-     "plus_minus": 0.00059,
-     "folds_up": 3,
-     "present": 1.0
-    },
-    {
-     "variable": "s.res_in",
-     "gain": 0.00021,
+     "variable": "b.enemy_snares_v_own_speed",
+     "gain": 0.00045,
      "plus_minus": 0.00019,
-     "folds_up": 4,
-     "present": 1.0
-    },
-    {
-     "variable": "s.fight_state",
-     "gain": 0.00028,
-     "plus_minus": 0.00028,
      "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "s.flux_meek_shall_inherit",
-     "gain": 0.0,
-     "plus_minus": 0.0,
-     "folds_up": 0,
-     "present": 1.0
+     "present": 1.0,
+     "confirm_gain": 0.00091,
+     "confirm_plus_minus": 0.00041,
+     "confirm_folds_up": 5,
+     "status": "discovery (held for Denning)",
+     "result_low_third": 0.659,
+     "result_high_third": 0.666,
+     "cut_low": -5.0,
+     "cut_high": -4.0
     },
     {
      "variable": "b.own_area_damage",
-     "gain": 0.00095,
-     "plus_minus": 0.00103,
-     "folds_up": 3,
-     "present": 1.0
-    },
-    {
-     "variable": "s.map_bases_apart",
-     "gain": 0.00025,
-     "plus_minus": 0.00038,
+     "gain": 0.00053,
+     "plus_minus": 0.0003,
      "folds_up": 4,
-     "present": 1.0
-    }
-   ],
-   "confirmed": [
-    {
-     "variable": "s.boost_clock",
-     "gain": 0.02231,
-     "plus_minus": 0.00547,
-     "folds_up": 6,
      "present": 1.0,
-     "confirm_gain": 0.02483,
-     "confirm_plus_minus": 0.00678,
-     "confirm_folds_up": 6,
+     "confirm_gain": 0.00112,
+     "confirm_plus_minus": 0.00037,
+     "confirm_folds_up": 5,
      "status": "discovery (held for Denning)",
-     "result_low_third": 0.495,
-     "result_high_third": 0.712,
-     "cut_low": 0.0,
-     "cut_high": 79.0
-    },
-    {
-     "variable": "s.stand",
-     "gain": 0.02012,
-     "plus_minus": 0.00497,
-     "folds_up": 6,
-     "present": 1.0,
-     "confirm_gain": 0.02256,
-     "confirm_plus_minus": 0.00534,
-     "confirm_folds_up": 6,
-     "status": "discovery (held for Denning)",
-     "result_low_third": 0.494,
-     "result_high_third": NaN,
+     "result_low_third": 0.668,
+     "result_high_third": 0.621,
      "cut_low": 0.0,
      "cut_high": 1.0
     },
     {
-     "variable": "s.flag_lead",
-     "gain": 0.0095,
-     "plus_minus": 0.00366,
-     "folds_up": 5,
+     "variable": "b.own_snares_v_enemy_speed",
+     "gain": 0.0005,
+     "plus_minus": 0.00031,
+     "folds_up": 4,
      "present": 1.0,
-     "confirm_gain": 0.0113,
-     "confirm_plus_minus": 0.00456,
-     "confirm_folds_up": 5,
-     "status": "discovery (held for Denning)",
-     "result_low_third": 0.522,
-     "result_high_third": 0.66,
-     "cut_low": -19.0,
-     "cut_high": 20.0
+     "confirm_gain": 9e-05,
+     "confirm_plus_minus": 0.00027,
+     "confirm_folds_up": 3,
+     "status": "not clear yet",
+     "result_low_third": 0.662,
+     "result_high_third": 0.67,
+     "cut_low": -5.0,
+     "cut_high": -4.0
     },
     {
-     "variable": "s.morale_diff",
-     "gain": 0.00674,
-     "plus_minus": 0.00195,
-     "folds_up": 6,
+     "variable": "s.spike_killable_diff",
+     "gain": 0.00036,
+     "plus_minus": 0.00027,
+     "folds_up": 3,
      "present": 1.0,
-     "confirm_gain": 0.00756,
-     "confirm_plus_minus": 0.00297,
-     "confirm_folds_up": 6,
-     "status": "discovery (held for Denning)",
-     "result_low_third": 0.635,
-     "result_high_third": 0.553,
-     "cut_low": 0.0,
-     "cut_high": 15.0
-    },
-    {
-     "variable": "s.down_diff_s",
-     "gain": 0.00551,
-     "plus_minus": 0.00185,
-     "folds_up": 6,
-     "present": 1.0,
-     "confirm_gain": 0.0053,
-     "confirm_plus_minus": 0.00265,
+     "confirm_gain": 0.00055,
+     "confirm_plus_minus": 0.00063,
      "confirm_folds_up": 5,
-     "status": "discovery (held for Denning)",
-     "result_low_third": 0.626,
-     "result_high_third": 0.49,
+     "status": "not clear yet",
+     "result_low_third": 0.669,
+     "result_high_third": 0.573,
      "cut_low": 0.0,
      "cut_high": 0.0
     },
     {
-     "variable": "b.own_snares",
-     "gain": 0.00552,
-     "plus_minus": 0.00246,
-     "folds_up": 6,
+     "variable": "s.healing_monks_own",
+     "gain": 0.0004,
+     "plus_minus": 0.00031,
+     "folds_up": 4,
      "present": 1.0,
-     "confirm_gain": 0.00849,
-     "confirm_plus_minus": 0.00244,
+     "confirm_gain": 0.00072,
+     "confirm_plus_minus": 0.00035,
      "confirm_folds_up": 6,
      "status": "discovery (held for Denning)",
-     "result_low_third": 0.61,
-     "result_high_third": 0.502,
-     "cut_low": 1.0,
+     "result_low_third": 0.659,
+     "result_high_third": 0.697,
+     "cut_low": 3.0,
      "cut_high": 3.0
     }
    ]
@@ -1582,740 +1860,740 @@
   {
    "node": "run_outcome",
    "target": "R.3",
-   "matches": 133,
-   "rows": 4490,
+   "matches": 265,
+   "rows": 8816,
    "metric": "log loss",
-   "tested": 92,
-   "screen_passed": 10,
+   "tested": 87,
+   "screen_passed": 1,
    "screen": [
     {
-     "variable": "s.morale_diff",
-     "gain": 0.00709,
-     "plus_minus": 0.00244,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "s.boost_clock",
-     "gain": 0.00726,
-     "plus_minus": 0.00302,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
      "variable": "s.down_diff_s",
-     "gain": 0.00529,
-     "plus_minus": 0.00189,
+     "gain": 0.00121,
+     "plus_minus": 0.00057,
      "folds_up": 5,
      "present": 1.0
     },
     {
-     "variable": "b.enemy_snares",
-     "gain": 0.00467,
-     "plus_minus": 0.00188,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_strips_v_own_prots",
-     "gain": 0.00295,
-     "plus_minus": 0.0009,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "b.own_prots",
-     "gain": 0.0031,
-     "plus_minus": 0.00142,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "b.own_interrupts_v_enemy_heals",
-     "gain": 0.00225,
-     "plus_minus": 0.00088,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "s.solo_healers_diff",
-     "gain": 0.00222,
-     "plus_minus": 0.00092,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "s.stand",
-     "gain": 0.00339,
-     "plus_minus": 0.00225,
-     "folds_up": 5,
+     "variable": "b.enemy_blind_v_own_condition_removal",
+     "gain": 0.00107,
+     "plus_minus": 0.00062,
+     "folds_up": 4,
      "present": 1.0
     },
     {
      "variable": "b.enemy_snares_v_own_speed",
-     "gain": 0.00212,
-     "plus_minus": 0.00102,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "s.turtle_diff",
-     "gain": 0.00236,
-     "plus_minus": 0.00138,
-     "folds_up": 4,
-     "present": 1.0
-    },
-    {
-     "variable": "b.own_energy_denial_v_enemy_heals",
-     "gain": 0.00154,
-     "plus_minus": 0.00076,
-     "folds_up": 4,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_heals",
-     "gain": 0.00156,
-     "plus_minus": 0.00109,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "b.own_energy_denial",
-     "gain": 0.00071,
-     "plus_minus": 0.0005,
-     "folds_up": 4,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_interrupts",
-     "gain": 0.00089,
-     "plus_minus": 0.00074,
-     "folds_up": 4,
-     "present": 1.0
-    },
-    {
-     "variable": "s.spike_build_own",
-     "gain": 0.0003,
-     "plus_minus": 0.00016,
-     "folds_up": 4,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_interrupts_v_own_heals",
-     "gain": 0.00164,
-     "plus_minus": 0.00157,
-     "folds_up": 3,
-     "present": 1.0
-    },
-    {
-     "variable": "s.res_in",
-     "gain": 0.00031,
+     "gain": 0.0005,
      "plus_minus": 0.00025,
-     "folds_up": 3,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_blind_v_enemy_condition_removal",
+     "gain": 0.00068,
+     "plus_minus": 0.00047,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_knockdowns_v_own_aura_of_stability",
+     "gain": 0.00071,
+     "plus_minus": 0.00052,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "s.healing_monks_enemy",
+     "gain": 0.00046,
+     "plus_minus": 0.00028,
+     "folds_up": 5,
      "present": 1.0
     },
     {
      "variable": "s.spike_killable_diff",
-     "gain": 0.00111,
-     "plus_minus": 0.00107,
-     "folds_up": 4,
+     "gain": 0.00049,
+     "plus_minus": 0.00031,
+     "folds_up": 5,
      "present": 1.0
     },
     {
-     "variable": "s.flux_meek_shall_inherit",
-     "gain": -2e-05,
-     "plus_minus": 2e-05,
-     "folds_up": 0,
-     "present": 1.0
-    },
-    {
-     "variable": "s.pit_pressure_diff",
-     "gain": 0.00028,
+     "variable": "b.enemy_area_damage",
+     "gain": 0.00045,
      "plus_minus": 0.00033,
      "folds_up": 4,
      "present": 1.0
     },
     {
-     "variable": "s.no_healer_groups_diff",
-     "gain": -6e-05,
-     "plus_minus": 4e-05,
-     "folds_up": 0,
+     "variable": "b.own_snares_v_enemy_speed",
+     "gain": 0.00026,
+     "plus_minus": 0.00017,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "s.split_diff",
+     "gain": 0.00025,
+     "plus_minus": 0.00019,
+     "folds_up": 3,
      "present": 1.0
     },
     {
      "variable": "b.own_area_damage",
-     "gain": 6e-05,
-     "plus_minus": 0.00017,
-     "folds_up": 5,
+     "gain": 0.0005,
+     "plus_minus": 0.00049,
+     "folds_up": 4,
      "present": 1.0
     },
     {
-     "variable": "b.own_condition_removal",
-     "gain": 5e-05,
+     "variable": "s.main_diff",
+     "gain": 9e-05,
+     "plus_minus": 8e-05,
+     "folds_up": 3,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_speed",
+     "gain": 0.0003,
+     "plus_minus": 0.00029,
+     "folds_up": 3,
+     "present": 1.0
+    },
+    {
+     "variable": "s.stand",
+     "gain": 1e-05,
+     "plus_minus": 2e-05,
+     "folds_up": 2,
+     "present": 1.0
+    },
+    {
+     "variable": "s.no_healer_groups_diff",
+     "gain": 2e-05,
+     "plus_minus": 4e-05,
+     "folds_up": 2,
+     "present": 1.0
+    },
+    {
+     "variable": "s.archers_diff",
+     "gain": 0.0,
+     "plus_minus": 7e-05,
+     "folds_up": 2,
+     "present": 1.0
+    },
+    {
+     "variable": "s.flux_minion_apocalypse",
+     "gain": -4e-05,
+     "plus_minus": 3e-05,
+     "folds_up": 0,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_interrupts_v_own_heals",
+     "gain": 0.00026,
+     "plus_minus": 0.00033,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "s.alive_diff",
+     "gain": 0.00017,
+     "plus_minus": 0.00026,
+     "folds_up": 3,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_snare_power",
+     "gain": -3e-05,
+     "plus_minus": 6e-05,
+     "folds_up": 3,
+     "present": 1.0
+    },
+    {
+     "variable": "s.turtle_diff",
+     "gain": 0.00018,
+     "plus_minus": 0.00028,
+     "folds_up": 3,
+     "present": 1.0
+    },
+    {
+     "variable": "s.pit_pressure_diff",
+     "gain": -4e-05,
+     "plus_minus": 6e-05,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_knockdowns",
+     "gain": 9e-05,
      "plus_minus": 0.00019,
      "folds_up": 4,
      "present": 1.0
     },
     {
-     "variable": "s.map_bases_apart",
-     "gain": 0.0002,
-     "plus_minus": 0.00039,
+     "variable": "s.minute",
+     "gain": 0.0004,
+     "plus_minus": 0.00056,
      "folds_up": 3,
      "present": 1.0
+    },
+    {
+     "variable": "s.lord_health_diff",
+     "gain": 7e-05,
+     "plus_minus": 0.00023,
+     "folds_up": 3,
+     "present": 0.95
     }
    ],
    "confirmed": [
     {
-     "variable": "s.morale_diff",
-     "gain": 0.00709,
-     "plus_minus": 0.00244,
-     "folds_up": 6,
-     "present": 1.0,
-     "confirm_gain": 0.00916,
-     "confirm_plus_minus": 0.00371,
-     "confirm_folds_up": 6,
-     "status": "discovery (held for Denning)",
-     "result_low_third": 0.563,
-     "result_high_third": 0.65,
-     "cut_low": -15.0,
-     "cut_high": 0.0
-    },
-    {
-     "variable": "s.boost_clock",
-     "gain": 0.00726,
-     "plus_minus": 0.00302,
-     "folds_up": 5,
-     "present": 1.0,
-     "confirm_gain": 0.00898,
-     "confirm_plus_minus": 0.00342,
-     "confirm_folds_up": 6,
-     "status": "discovery (held for Denning)",
-     "result_low_third": 0.715,
-     "result_high_third": 0.448,
-     "cut_low": -79.0,
-     "cut_high": 0.0
-    },
-    {
      "variable": "s.down_diff_s",
-     "gain": 0.00529,
-     "plus_minus": 0.00189,
+     "gain": 0.00121,
+     "plus_minus": 0.00057,
      "folds_up": 5,
      "present": 1.0,
-     "confirm_gain": 0.00532,
-     "confirm_plus_minus": 0.00282,
-     "confirm_folds_up": 4,
-     "status": "not clear yet",
-     "result_low_third": 0.605,
-     "result_high_third": 0.694,
+     "confirm_gain": 0.00208,
+     "confirm_plus_minus": 0.0006,
+     "confirm_folds_up": 6,
+     "status": "discovery (held for Denning)",
+     "result_low_third": 0.656,
+     "result_high_third": 0.704,
      "cut_low": 0.0,
      "cut_high": 0.0
     },
     {
-     "variable": "b.enemy_snares",
-     "gain": 0.00467,
-     "plus_minus": 0.00188,
-     "folds_up": 6,
+     "variable": "b.enemy_blind_v_own_condition_removal",
+     "gain": 0.00107,
+     "plus_minus": 0.00062,
+     "folds_up": 4,
      "present": 1.0,
-     "confirm_gain": 0.00762,
-     "confirm_plus_minus": 0.00249,
-     "confirm_folds_up": 6,
-     "status": "discovery (held for Denning)",
-     "result_low_third": 0.61,
-     "result_high_third": 0.502,
-     "cut_low": 1.0,
+     "confirm_gain": 0.00237,
+     "confirm_plus_minus": 0.00177,
+     "confirm_folds_up": 4,
+     "status": "not clear yet",
+     "result_low_third": 0.666,
+     "result_high_third": 0.659,
+     "cut_low": -4.0,
+     "cut_high": -3.0
+    },
+    {
+     "variable": "b.enemy_snares_v_own_speed",
+     "gain": 0.0005,
+     "plus_minus": 0.00025,
+     "folds_up": 5,
+     "present": 1.0,
+     "confirm_gain": -2e-05,
+     "confirm_plus_minus": 0.00044,
+     "confirm_folds_up": 2,
+     "status": "not clear yet",
+     "result_low_third": 0.662,
+     "result_high_third": 0.67,
+     "cut_low": -5.0,
+     "cut_high": -4.0
+    },
+    {
+     "variable": "b.own_blind_v_enemy_condition_removal",
+     "gain": 0.00068,
+     "plus_minus": 0.00047,
+     "folds_up": 4,
+     "present": 1.0,
+     "confirm_gain": 0.00148,
+     "confirm_plus_minus": 0.00136,
+     "confirm_folds_up": 3,
+     "status": "not clear yet",
+     "result_low_third": 0.674,
+     "result_high_third": 0.61,
+     "cut_low": -4.0,
+     "cut_high": -3.0
+    },
+    {
+     "variable": "b.enemy_knockdowns_v_own_aura_of_stability",
+     "gain": 0.00071,
+     "plus_minus": 0.00052,
+     "folds_up": 4,
+     "present": 1.0,
+     "confirm_gain": 0.00163,
+     "confirm_plus_minus": 0.00129,
+     "confirm_folds_up": 5,
+     "status": "not clear yet",
+     "result_low_third": 0.664,
+     "result_high_third": 0.671,
+     "cut_low": 0.0,
+     "cut_high": 1.0
+    },
+    {
+     "variable": "s.healing_monks_enemy",
+     "gain": 0.00046,
+     "plus_minus": 0.00028,
+     "folds_up": 5,
+     "present": 1.0,
+     "confirm_gain": 0.00066,
+     "confirm_plus_minus": 0.00033,
+     "confirm_folds_up": 5,
+     "status": "not clear yet",
+     "result_low_third": 0.659,
+     "result_high_third": 0.697,
+     "cut_low": 3.0,
      "cut_high": 3.0
-    },
-    {
-     "variable": "b.enemy_strips_v_own_prots",
-     "gain": 0.00295,
-     "plus_minus": 0.0009,
-     "folds_up": 5,
-     "present": 1.0,
-     "confirm_gain": 0.00441,
-     "confirm_plus_minus": 0.00238,
-     "confirm_folds_up": 4,
-     "status": "not clear yet",
-     "result_low_third": 0.651,
-     "result_high_third": 0.594,
-     "cut_low": -11.0,
-     "cut_high": -8.0
-    },
-    {
-     "variable": "b.own_prots",
-     "gain": 0.0031,
-     "plus_minus": 0.00142,
-     "folds_up": 5,
-     "present": 1.0,
-     "confirm_gain": 0.00593,
-     "confirm_plus_minus": 0.00318,
-     "confirm_folds_up": 4,
-     "status": "not clear yet",
-     "result_low_third": 0.601,
-     "result_high_third": 0.643,
-     "cut_low": 11.0,
-     "cut_high": 14.0
     }
    ]
   },
   {
    "node": "split_answer",
    "target": "P.11",
-   "matches": 94,
-   "rows": 375,
+   "matches": 189,
+   "rows": 743,
    "metric": "mean absolute error (s)",
-   "tested": 91,
-   "screen_passed": 2,
+   "tested": 88,
+   "screen_passed": 5,
    "screen": [
     {
-     "variable": "s.split_diff",
-     "gain": 0.21178,
-     "plus_minus": 0.03893,
+     "variable": "s.spike_build_own",
+     "gain": 0.1431,
+     "plus_minus": 0.03061,
      "folds_up": 6,
      "present": 1.0
     },
     {
-     "variable": "b.own_strips_v_enemy_prots",
-     "gain": 0.13574,
-     "plus_minus": 0.07703,
+     "variable": "s.spike_killable_diff",
+     "gain": 0.12985,
+     "plus_minus": 0.05467,
      "folds_up": 5,
      "present": 1.0
     },
     {
-     "variable": "s.spike_build_own",
-     "gain": 0.04267,
-     "plus_minus": 0.01443,
+     "variable": "s.main_diff",
+     "gain": 0.08106,
+     "plus_minus": 0.03928,
      "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_strips_v_enemy_prots",
+     "gain": 0.08672,
+     "plus_minus": 0.05293,
+     "folds_up": 4,
      "present": 1.0
     },
     {
      "variable": "b.own_area_damage",
-     "gain": 0.03936,
-     "plus_minus": 0.0211,
+     "gain": 0.04967,
+     "plus_minus": 0.01882,
+     "folds_up": 6,
+     "present": 1.0
+    },
+    {
+     "variable": "s.lord_dps_own",
+     "gain": 0.07164,
+     "plus_minus": 0.0429,
      "folds_up": 5,
      "present": 1.0
     },
     {
-     "variable": "b.enemy_blocks",
-     "gain": 0.02879,
-     "plus_minus": 0.01441,
+     "variable": "b.own_speed",
+     "gain": 0.04154,
+     "plus_minus": 0.0137,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_interrupts",
+     "gain": 0.06387,
+     "plus_minus": 0.04298,
      "folds_up": 4,
      "present": 1.0
     },
     {
-     "variable": "b.own_strips",
-     "gain": 0.03244,
-     "plus_minus": 0.02007,
+     "variable": "b.own_interrupts",
+     "gain": 0.0586,
+     "plus_minus": 0.0383,
      "folds_up": 5,
      "present": 1.0
     },
     {
-     "variable": "b.own_blind_v_enemy_condition_removal",
-     "gain": 0.08819,
-     "plus_minus": 0.07614,
-     "folds_up": 3,
-     "present": 1.0
-    },
-    {
-     "variable": "s.knights_diff",
-     "gain": 0.02228,
-     "plus_minus": 0.01188,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "s.flux_meek_shall_inherit",
-     "gain": 0.05015,
-     "plus_minus": 0.04363,
+     "variable": "s.carrying_diff",
+     "gain": 0.04079,
+     "plus_minus": 0.02402,
      "folds_up": 4,
-     "present": 1.0
-    },
-    {
-     "variable": "s.spike_build_enemy",
-     "gain": 0.12252,
-     "plus_minus": 0.11759,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "s.lord_damage_diff",
-     "gain": 0.01564,
-     "plus_minus": 0.01138,
-     "folds_up": 5,
-     "present": 0.96
-    },
-    {
-     "variable": "s.no_healer_groups_diff",
-     "gain": 0.03288,
-     "plus_minus": 0.03196,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "b.own_blind",
-     "gain": 0.01387,
-     "plus_minus": 0.01484,
-     "folds_up": 3,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_speed_power",
-     "gain": 0.0128,
-     "plus_minus": 0.01581,
-     "folds_up": 3,
-     "present": 1.0
-    },
-    {
-     "variable": "b.own_weakness",
-     "gain": -0.00181,
-     "plus_minus": 0.00464,
-     "folds_up": 3,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_blind",
-     "gain": -0.00741,
-     "plus_minus": 0.00328,
-     "folds_up": 1,
-     "present": 1.0
-    },
-    {
-     "variable": "s.lord_exposed_diff",
-     "gain": 0.02,
-     "plus_minus": 0.03075,
-     "folds_up": 2,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_snares",
-     "gain": -0.00793,
-     "plus_minus": 0.00347,
-     "folds_up": 2,
-     "present": 1.0
-    },
-    {
-     "variable": "s.healing_monks_enemy",
-     "gain": -0.00872,
-     "plus_minus": 0.0063,
-     "folds_up": 2,
-     "present": 1.0
-    },
-    {
-     "variable": "s.stand",
-     "gain": -0.00993,
-     "plus_minus": 0.00588,
-     "folds_up": 2,
      "present": 1.0
     },
     {
      "variable": "b.own_hexes",
-     "gain": 0.01592,
-     "plus_minus": 0.03209,
+     "gain": 0.03655,
+     "plus_minus": 0.02027,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "s.stand",
+     "gain": 0.0289,
+     "plus_minus": 0.01955,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_escapes_power",
+     "gain": 0.04439,
+     "plus_minus": 0.03804,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "s.knights_diff",
+     "gain": 0.01633,
+     "plus_minus": 0.0115,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "s.pit_pressure_diff",
+     "gain": 0.01348,
+     "plus_minus": 0.01028,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_energy_denial",
+     "gain": 0.01833,
+     "plus_minus": 0.01816,
+     "folds_up": 3,
+     "present": 1.0
+    },
+    {
+     "variable": "s.fight_state",
+     "gain": 0.02482,
+     "plus_minus": 0.02622,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "s.boost_clock",
+     "gain": 0.0081,
+     "plus_minus": 0.01107,
+     "folds_up": 3,
+     "present": 1.0
+    },
+    {
+     "variable": "s.bodyguard_diff",
+     "gain": 0.001,
+     "plus_minus": 0.00496,
+     "folds_up": 3,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_hexes_v_enemy_hex_removal",
+     "gain": 0.02091,
+     "plus_minus": 0.02564,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "s.turtle_diff",
+     "gain": -0.00243,
+     "plus_minus": 0.00312,
      "folds_up": 2,
      "present": 1.0
     },
     {
-     "variable": "s.map_flag_run",
-     "gain": 0.08358,
-     "plus_minus": 0.10105,
+     "variable": "s.flux_minion_apocalypse",
+     "gain": -0.00319,
+     "plus_minus": 0.00341,
+     "folds_up": 3,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_knockdowns_v_enemy_aura_of_stability",
+     "gain": 0.01219,
+     "plus_minus": 0.01906,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_speed_power",
+     "gain": 0.01609,
+     "plus_minus": 0.02302,
      "folds_up": 4,
      "present": 1.0
     },
     {
-     "variable": "b.own_daze",
-     "gain": 0.02026,
-     "plus_minus": 0.03841,
-     "folds_up": 4,
-     "present": 1.0
-    },
-    {
-     "variable": "s.morale_diff",
-     "gain": -0.00782,
-     "plus_minus": 0.01213,
-     "folds_up": 2,
-     "present": 1.0
-    },
-    {
-     "variable": "s.map_pit_to_stand",
-     "gain": 0.02297,
-     "plus_minus": 0.04344,
-     "folds_up": 4,
-     "present": 1.0
+     "variable": "s.lord_damage_diff",
+     "gain": -0.00361,
+     "plus_minus": 0.00424,
+     "folds_up": 3,
+     "present": 0.97
     }
    ],
    "confirmed": [
     {
-     "variable": "s.split_diff",
-     "gain": 0.21178,
-     "plus_minus": 0.03893,
+     "variable": "s.spike_build_own",
+     "gain": 0.1431,
+     "plus_minus": 0.03061,
      "folds_up": 6,
      "present": 1.0,
-     "confirm_gain": 0.18769,
-     "confirm_plus_minus": 0.06989,
+     "confirm_gain": 0.32593,
+     "confirm_plus_minus": 0.16311,
      "confirm_folds_up": 5,
-     "status": "discovery (held for Denning)",
-     "result_low_third": -10.234,
-     "result_high_third": 0.188,
-     "cut_low": -2.0,
-     "cut_high": -1.0
-    },
-    {
-     "variable": "b.own_strips_v_enemy_prots",
-     "gain": 0.13574,
-     "plus_minus": 0.07703,
-     "folds_up": 5,
-     "present": 1.0,
-     "confirm_gain": 0.02075,
-     "confirm_plus_minus": 0.10439,
-     "confirm_folds_up": 4,
      "status": "not clear yet",
-     "result_low_third": -0.524,
-     "result_high_third": -4.824,
-     "cut_low": -12.0,
-     "cut_high": -9.67
-    },
-    {
-     "variable": "s.spike_build_own",
-     "gain": 0.04267,
-     "plus_minus": 0.01443,
-     "folds_up": 5,
-     "present": 1.0,
-     "confirm_gain": 0.07725,
-     "confirm_plus_minus": 0.07513,
-     "confirm_folds_up": 4,
-     "status": "not clear yet",
-     "result_low_third": -4.639,
-     "result_high_third": -2.698,
+     "result_low_third": -4.721,
+     "result_high_third": -4.1,
      "cut_low": 0.0,
      "cut_high": 0.0
     },
     {
-     "variable": "b.own_area_damage",
-     "gain": 0.03936,
-     "plus_minus": 0.0211,
+     "variable": "s.spike_killable_diff",
+     "gain": 0.12985,
+     "plus_minus": 0.05467,
      "folds_up": 5,
      "present": 1.0,
-     "confirm_gain": 0.01906,
-     "confirm_plus_minus": 0.08233,
-     "confirm_folds_up": 3,
+     "confirm_gain": 0.17347,
+     "confirm_plus_minus": 0.24917,
+     "confirm_folds_up": 4,
      "status": "not clear yet",
-     "result_low_third": -4.878,
-     "result_high_third": -2.438,
+     "result_low_third": -4.667,
+     "result_high_third": -3.856,
+     "cut_low": 0.0,
+     "cut_high": 0.0
+    },
+    {
+     "variable": "s.main_diff",
+     "gain": 0.08106,
+     "plus_minus": 0.03928,
+     "folds_up": 5,
+     "present": 1.0,
+     "confirm_gain": 0.39301,
+     "confirm_plus_minus": 0.14176,
+     "confirm_folds_up": 6,
+     "status": "discovery (held for Denning)",
+     "result_low_third": -5.222,
+     "result_high_third": -3.926,
      "cut_low": 0.0,
      "cut_high": 1.0
     },
     {
-     "variable": "b.enemy_blocks",
-     "gain": 0.02879,
-     "plus_minus": 0.01441,
+     "variable": "b.own_strips_v_enemy_prots",
+     "gain": 0.08672,
+     "plus_minus": 0.05293,
      "folds_up": 4,
      "present": 1.0,
-     "confirm_gain": -0.11697,
-     "confirm_plus_minus": 0.11711,
-     "confirm_folds_up": 1,
+     "confirm_gain": 0.16069,
+     "confirm_plus_minus": 0.13246,
+     "confirm_folds_up": 5,
      "status": "not clear yet",
-     "result_low_third": -6.551,
-     "result_high_third": -1.571,
-     "cut_low": 3.0,
-     "cut_high": 5.0
+     "result_low_third": -5.094,
+     "result_high_third": -3.115,
+     "cut_low": -11.0,
+     "cut_high": -9.0
     },
     {
-     "variable": "b.own_strips",
-     "gain": 0.03244,
-     "plus_minus": 0.02007,
+     "variable": "b.own_area_damage",
+     "gain": 0.04967,
+     "plus_minus": 0.01882,
+     "folds_up": 6,
+     "present": 1.0,
+     "confirm_gain": 0.22076,
+     "confirm_plus_minus": 0.09755,
+     "confirm_folds_up": 6,
+     "status": "discovery (held for Denning)",
+     "result_low_third": -4.288,
+     "result_high_third": -5.018,
+     "cut_low": 0.0,
+     "cut_high": 1.0
+    },
+    {
+     "variable": "s.lord_dps_own",
+     "gain": 0.07164,
+     "plus_minus": 0.0429,
      "folds_up": 5,
      "present": 1.0,
-     "confirm_gain": 0.03217,
-     "confirm_plus_minus": 0.07768,
-     "confirm_folds_up": 3,
+     "confirm_gain": 0.27407,
+     "confirm_plus_minus": 0.19653,
+     "confirm_folds_up": 5,
      "status": "not clear yet",
-     "result_low_third": -2.665,
-     "result_high_third": -6.366,
-     "cut_low": 2.0,
-     "cut_high": 3.0
+     "result_low_third": -2.032,
+     "result_high_third": -5.711,
+     "cut_low": 94.6,
+     "cut_high": 99.4
     }
    ]
   },
   {
    "node": "split_chance",
    "target": "A.allocation",
-   "matches": 133,
-   "rows": 10033,
+   "matches": 266,
+   "rows": 20099,
    "metric": "log loss",
-   "tested": 87,
-   "screen_passed": 9,
+   "tested": 82,
+   "screen_passed": 11,
    "screen": [
     {
      "variable": "s.spike_build_own",
-     "gain": 0.00609,
-     "plus_minus": 0.00299,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "s.turtle_diff",
-     "gain": 0.00277,
-     "plus_minus": 0.00031,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "s.split_diff",
-     "gain": 0.004,
-     "plus_minus": 0.00173,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "s.archers_diff",
-     "gain": 0.00346,
-     "plus_minus": 0.00126,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_interrupts",
-     "gain": 0.00206,
-     "plus_minus": 0.00103,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "s.pit_pressure_diff",
-     "gain": 0.00124,
-     "plus_minus": 0.00034,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "s.map_flag_run",
-     "gain": 0.00121,
-     "plus_minus": 0.0004,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "b.own_heals",
-     "gain": 0.0014,
-     "plus_minus": 0.00061,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "s.knights_diff",
-     "gain": 0.00173,
-     "plus_minus": 0.00097,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "b.own_daze",
-     "gain": 0.00096,
-     "plus_minus": 0.00036,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_deep_wound",
-     "gain": 0.00101,
-     "plus_minus": 0.00045,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_knockdowns_v_own_aura_of_stability",
-     "gain": 0.00121,
-     "plus_minus": 0.00073,
-     "folds_up": 4,
-     "present": 1.0
-    },
-    {
-     "variable": "s.solo_healers_diff",
-     "gain": 0.0011,
-     "plus_minus": 0.00065,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_energy_denial",
-     "gain": 0.00115,
-     "plus_minus": 0.00077,
-     "folds_up": 4,
-     "present": 1.0
-    },
-    {
-     "variable": "b.own_aura_of_stability",
-     "gain": 0.00078,
-     "plus_minus": 0.00043,
-     "folds_up": 4,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_area_damage",
-     "gain": 0.00063,
-     "plus_minus": 0.00034,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "b.own_area_damage",
-     "gain": 0.00065,
-     "plus_minus": 0.00036,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_daze",
-     "gain": 0.00062,
-     "plus_minus": 0.00036,
-     "folds_up": 4,
-     "present": 1.0
-    },
-    {
-     "variable": "b.own_hexes_v_enemy_hex_removal",
-     "gain": 0.00154,
-     "plus_minus": 0.00128,
-     "folds_up": 4,
-     "present": 1.0
-    },
-    {
-     "variable": "s.carrying_diff",
-     "gain": 0.00048,
-     "plus_minus": 0.00024,
+     "gain": 0.00439,
+     "plus_minus": 0.00175,
      "folds_up": 5,
      "present": 1.0
     },
     {
      "variable": "b.own_knockdowns",
-     "gain": 0.00071,
-     "plus_minus": 0.00053,
-     "folds_up": 3,
+     "gain": 0.00299,
+     "plus_minus": 0.00073,
+     "folds_up": 6,
      "present": 1.0
     },
     {
-     "variable": "b.own_snares_v_enemy_speed",
-     "gain": 0.00118,
-     "plus_minus": 0.00105,
-     "folds_up": 3,
+     "variable": "s.map_flag_run",
+     "gain": 0.00172,
+     "plus_minus": 0.00028,
+     "folds_up": 6,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_prots",
+     "gain": 0.00152,
+     "plus_minus": 0.00042,
+     "folds_up": 6,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_knockdowns_v_enemy_aura_of_stability",
+     "gain": 0.00163,
+     "plus_minus": 0.00066,
+     "folds_up": 5,
      "present": 1.0
     },
     {
      "variable": "b.own_energy_denial",
-     "gain": 0.00122,
-     "plus_minus": 0.00109,
-     "folds_up": 3,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_blind_v_own_condition_removal",
-     "gain": 0.00154,
-     "plus_minus": 0.00143,
+     "gain": 0.00175,
+     "plus_minus": 0.00101,
      "folds_up": 4,
      "present": 1.0
     },
     {
+     "variable": "s.solo_healers_diff",
+     "gain": 0.00108,
+     "plus_minus": 0.00038,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_daze",
+     "gain": 0.00123,
+     "plus_minus": 0.00055,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_interrupts",
+     "gain": 0.00131,
+     "plus_minus": 0.00076,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_strips_v_own_prots",
+     "gain": 0.00101,
+     "plus_minus": 0.00047,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "s.archers_diff",
+     "gain": 0.00122,
+     "plus_minus": 0.0008,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "s.lord_damage_diff",
+     "gain": 0.00054,
+     "plus_minus": 0.00024,
+     "folds_up": 5,
+     "present": 0.94
+    },
+    {
      "variable": "s.main_diff",
-     "gain": 0.00036,
-     "plus_minus": 0.0003,
+     "gain": 0.00042,
+     "plus_minus": 0.00016,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_interrupts",
+     "gain": 0.00066,
+     "plus_minus": 0.0004,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_knockdowns",
+     "gain": 0.00096,
+     "plus_minus": 0.00075,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_hexes",
+     "gain": 0.00085,
+     "plus_minus": 0.00069,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "s.map_bases_apart",
+     "gain": 0.00053,
+     "plus_minus": 0.0004,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_blind_v_own_condition_removal",
+     "gain": 0.001,
+     "plus_minus": 0.00092,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_blocks",
+     "gain": 0.00033,
+     "plus_minus": 0.00029,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_area_damage",
+     "gain": 0.0005,
+     "plus_minus": 0.00047,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "s.knights_diff",
+     "gain": 0.0003,
+     "plus_minus": 0.00028,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "s.fight_state",
+     "gain": 1e-05,
+     "plus_minus": 0.0,
+     "folds_up": 3,
+     "present": 1.0
+    },
+    {
+     "variable": "s.alive_diff",
+     "gain": 1e-05,
+     "plus_minus": 1e-05,
+     "folds_up": 1,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_energy_denial",
+     "gain": 0.00013,
+     "plus_minus": 0.00013,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "s.no_healer_groups_diff",
+     "gain": 0.00012,
+     "plus_minus": 0.00013,
      "folds_up": 4,
      "present": 1.0
     }
@@ -2323,832 +2601,679 @@
    "confirmed": [
     {
      "variable": "s.spike_build_own",
-     "gain": 0.00609,
-     "plus_minus": 0.00299,
+     "gain": 0.00439,
+     "plus_minus": 0.00175,
      "folds_up": 5,
      "present": 1.0,
-     "confirm_gain": 0.00721,
-     "confirm_plus_minus": 0.00425,
+     "confirm_gain": 0.005,
+     "confirm_plus_minus": 0.00122,
      "confirm_folds_up": 5,
-     "status": "not clear yet",
-     "result_low_third": 0.163,
-     "result_high_third": 0.054,
+     "status": "discovery (held for Denning)",
+     "result_low_third": 0.165,
+     "result_high_third": 0.058,
      "cut_low": 0.0,
      "cut_high": 0.0
     },
     {
-     "variable": "s.turtle_diff",
-     "gain": 0.00277,
-     "plus_minus": 0.00031,
+     "variable": "b.own_knockdowns",
+     "gain": 0.00299,
+     "plus_minus": 0.00073,
      "folds_up": 6,
      "present": 1.0,
-     "confirm_gain": 0.00437,
-     "confirm_plus_minus": 0.00168,
-     "confirm_folds_up": 5,
+     "confirm_gain": 0.00415,
+     "confirm_plus_minus": 0.00113,
+     "confirm_folds_up": 6,
      "status": "discovery (held for Denning)",
-     "result_low_third": 0.143,
-     "result_high_third": 0.108,
-     "cut_low": 0.0,
-     "cut_high": 0.0
+     "result_low_third": 0.142,
+     "result_high_third": 0.079,
+     "cut_low": 1.0,
+     "cut_high": 3.0
     },
     {
-     "variable": "s.split_diff",
-     "gain": 0.004,
-     "plus_minus": 0.00173,
-     "folds_up": 5,
+     "variable": "s.map_flag_run",
+     "gain": 0.00172,
+     "plus_minus": 0.00028,
+     "folds_up": 6,
      "present": 1.0,
-     "confirm_gain": 0.00668,
-     "confirm_plus_minus": 0.00208,
+     "confirm_gain": 0.00278,
+     "confirm_plus_minus": 0.00097,
      "confirm_folds_up": 5,
      "status": "discovery (held for Denning)",
-     "result_low_third": 0.129,
-     "result_high_third": 0.233,
-     "cut_low": 0.0,
-     "cut_high": 0.0
+     "result_low_third": 0.12,
+     "result_high_third": 0.124,
+     "cut_low": 6447.0,
+     "cut_high": 8335.0
     },
     {
-     "variable": "s.archers_diff",
-     "gain": 0.00346,
-     "plus_minus": 0.00126,
-     "folds_up": 5,
+     "variable": "b.own_prots",
+     "gain": 0.00152,
+     "plus_minus": 0.00042,
+     "folds_up": 6,
      "present": 1.0,
-     "confirm_gain": 0.00631,
-     "confirm_plus_minus": 0.00247,
+     "confirm_gain": 0.00157,
+     "confirm_plus_minus": 0.00087,
      "confirm_folds_up": 4,
      "status": "not clear yet",
-     "result_low_third": 0.116,
-     "result_high_third": 0.219,
-     "cut_low": 0.0,
-     "cut_high": 0.0
+     "result_low_third": 0.122,
+     "result_high_third": 0.13,
+     "cut_low": 11.0,
+     "cut_high": 13.0
     },
     {
-     "variable": "b.enemy_interrupts",
-     "gain": 0.00206,
-     "plus_minus": 0.00103,
+     "variable": "b.own_knockdowns_v_enemy_aura_of_stability",
+     "gain": 0.00163,
+     "plus_minus": 0.00066,
      "folds_up": 5,
      "present": 1.0,
-     "confirm_gain": 0.00216,
-     "confirm_plus_minus": 0.00133,
-     "confirm_folds_up": 5,
+     "confirm_gain": 0.00149,
+     "confirm_plus_minus": 0.0013,
+     "confirm_folds_up": 3,
      "status": "not clear yet",
-     "result_low_third": 0.129,
-     "result_high_third": 0.147,
-     "cut_low": 3.0,
-     "cut_high": 5.0
+     "result_low_third": 0.147,
+     "result_high_third": 0.098,
+     "cut_low": 0.0,
+     "cut_high": 1.0
     },
     {
-     "variable": "s.pit_pressure_diff",
-     "gain": 0.00124,
-     "plus_minus": 0.00034,
-     "folds_up": 6,
+     "variable": "b.own_energy_denial",
+     "gain": 0.00175,
+     "plus_minus": 0.00101,
+     "folds_up": 4,
      "present": 1.0,
-     "confirm_gain": 0.0011,
-     "confirm_plus_minus": 0.00054,
-     "confirm_folds_up": 5,
-     "status": "discovery (held for Denning)",
-     "result_low_third": 0.13,
-     "result_high_third": 0.146,
-     "cut_low": 0.0,
-     "cut_high": 0.0
+     "confirm_gain": 0.00202,
+     "confirm_plus_minus": 0.001,
+     "confirm_folds_up": 4,
+     "status": "not clear yet",
+     "result_low_third": 0.108,
+     "result_high_third": 0.144,
+     "cut_low": 2.0,
+     "cut_high": 3.0
     }
    ]
   },
   {
    "node": "split_effect",
    "target": "R.5",
-   "matches": 94,
-   "rows": 375,
+   "matches": 189,
+   "rows": 743,
    "metric": "log loss",
-   "tested": 92,
-   "screen_passed": 12,
+   "tested": 86,
+   "screen_passed": 7,
    "screen": [
     {
-     "variable": "b.own_deep_wound",
-     "gain": 0.01291,
-     "plus_minus": 0.00166,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "s.morale_diff",
-     "gain": 0.01101,
-     "plus_minus": 0.00385,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_prots",
-     "gain": 0.01209,
-     "plus_minus": 0.00556,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "s.lord_damage_diff",
-     "gain": 0.00967,
-     "plus_minus": 0.00316,
-     "folds_up": 6,
-     "present": 0.96
-    },
-    {
-     "variable": "s.archers_diff",
-     "gain": 0.01125,
-     "plus_minus": 0.00558,
-     "folds_up": 4,
-     "present": 1.0
-    },
-    {
-     "variable": "s.flag_lead",
-     "gain": 0.00789,
-     "plus_minus": 0.0042,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_hexes",
-     "gain": 0.00502,
-     "plus_minus": 0.00147,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_speed_power",
-     "gain": 0.00676,
-     "plus_minus": 0.00334,
-     "folds_up": 4,
-     "present": 1.0
-    },
-    {
-     "variable": "s.knights_diff",
-     "gain": 0.00496,
-     "plus_minus": 0.00168,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "s.carrying_diff",
-     "gain": 0.00578,
-     "plus_minus": 0.00254,
-     "folds_up": 6,
-     "present": 1.0
-    },
-    {
      "variable": "b.own_escapes_power",
-     "gain": 0.00646,
-     "plus_minus": 0.0033,
+     "gain": 0.00586,
+     "plus_minus": 0.0008,
      "folds_up": 6,
-     "present": 1.0
-    },
-    {
-     "variable": "b.own_area_damage",
-     "gain": 0.00462,
-     "plus_minus": 0.00195,
-     "folds_up": 5,
      "present": 1.0
     },
     {
      "variable": "s.minute",
-     "gain": 0.00936,
-     "plus_minus": 0.00678,
-     "folds_up": 3,
-     "present": 1.0
-    },
-    {
-     "variable": "b.enemy_heals",
-     "gain": 0.00444,
-     "plus_minus": 0.0023,
-     "folds_up": 4,
-     "present": 1.0
-    },
-    {
-     "variable": "s.map_pit_to_stand",
-     "gain": 0.00397,
-     "plus_minus": 0.00186,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "s.lord_exposed_diff",
-     "gain": 0.00571,
-     "plus_minus": 0.00365,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "s.map_bases_apart",
-     "gain": 0.00419,
-     "plus_minus": 0.00224,
-     "folds_up": 4,
-     "present": 1.0
-    },
-    {
-     "variable": "b.own_strips",
-     "gain": 0.00545,
-     "plus_minus": 0.00356,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "s.lord_health_diff",
-     "gain": 0.00356,
-     "plus_minus": 0.00172,
-     "folds_up": 4,
-     "present": 0.96
-    },
-    {
-     "variable": "b.enemy_hexes_v_own_hex_removal",
-     "gain": 0.00282,
-     "plus_minus": 0.00169,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "b.own_hexes",
-     "gain": 0.00294,
-     "plus_minus": 0.00192,
-     "folds_up": 5,
-     "present": 1.0
-    },
-    {
-     "variable": "s.healing_monks_own",
-     "gain": 0.0026,
-     "plus_minus": 0.00181,
+     "gain": 0.00438,
+     "plus_minus": 0.00179,
      "folds_up": 5,
      "present": 1.0
     },
     {
      "variable": "b.enemy_escapes_power",
-     "gain": 0.00133,
+     "gain": 0.0056,
+     "plus_minus": 0.00316,
+     "folds_up": 3,
+     "present": 1.0
+    },
+    {
+     "variable": "s.turtle_diff",
+     "gain": 0.00362,
+     "plus_minus": 0.00137,
+     "folds_up": 6,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_area_damage",
+     "gain": 0.00286,
+     "plus_minus": 0.00115,
+     "folds_up": 6,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_deep_wound",
+     "gain": 0.00227,
+     "plus_minus": 0.00068,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "s.fight_state",
+     "gain": 0.00324,
+     "plus_minus": 0.00214,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "s.solo_healers_diff",
+     "gain": 0.00198,
      "plus_minus": 0.00088,
      "folds_up": 5,
      "present": 1.0
     },
     {
-     "variable": "b.own_blind",
-     "gain": 0.00093,
-     "plus_minus": 0.00052,
+     "variable": "s.down_diff_s",
+     "gain": 0.00314,
+     "plus_minus": 0.00211,
+     "folds_up": 3,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_speed",
+     "gain": 0.00204,
+     "plus_minus": 0.00117,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_strips",
+     "gain": 0.00146,
+     "plus_minus": 0.0007,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "s.archers_diff",
+     "gain": 0.00166,
+     "plus_minus": 0.00105,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_area_damage",
+     "gain": 0.00152,
+     "plus_minus": 0.00114,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "s.lord_exposed_diff",
+     "gain": 0.00154,
+     "plus_minus": 0.00118,
      "folds_up": 5,
      "present": 1.0
     },
     {
-     "variable": "b.own_weakness",
-     "gain": 0.00339,
-     "plus_minus": 0.00298,
+     "variable": "b.enemy_blind",
+     "gain": 0.00277,
+     "plus_minus": 0.00247,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_energy_denial_v_own_heals",
+     "gain": 0.00125,
+     "plus_minus": 0.00107,
      "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "s.lord_dps_own",
+     "gain": 0.00103,
+     "plus_minus": 0.00098,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "s.bodyguard_diff",
+     "gain": 0.00031,
+     "plus_minus": 0.00033,
+     "folds_up": 5,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_condition_removal",
+     "gain": 0.00059,
+     "plus_minus": 0.00066,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "s.spike_build_enemy",
+     "gain": 0.00018,
+     "plus_minus": 0.00029,
+     "folds_up": 3,
+     "present": 1.0
+    },
+    {
+     "variable": "s.alive_diff",
+     "gain": 0.00098,
+     "plus_minus": 0.00109,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "b.enemy_weakness",
+     "gain": -0.00015,
+     "plus_minus": 0.00012,
+     "folds_up": 3,
+     "present": 1.0
+    },
+    {
+     "variable": "s.morale_total",
+     "gain": 0.00053,
+     "plus_minus": 0.00083,
+     "folds_up": 4,
+     "present": 1.0
+    },
+    {
+     "variable": "s.flux_minion_apocalypse",
+     "gain": 8e-05,
+     "plus_minus": 0.00045,
+     "folds_up": 3,
+     "present": 1.0
+    },
+    {
+     "variable": "b.own_energy_denial",
+     "gain": 0.00017,
+     "plus_minus": 0.00058,
+     "folds_up": 3,
      "present": 1.0
     }
    ],
    "confirmed": [
     {
-     "variable": "b.own_deep_wound",
-     "gain": 0.01291,
-     "plus_minus": 0.00166,
+     "variable": "b.own_escapes_power",
+     "gain": 0.00586,
+     "plus_minus": 0.0008,
      "folds_up": 6,
      "present": 1.0,
-     "confirm_gain": 0.01111,
-     "confirm_plus_minus": 0.00396,
-     "confirm_folds_up": 5,
+     "confirm_gain": 0.00477,
+     "confirm_plus_minus": 0.00184,
+     "confirm_folds_up": 6,
      "status": "discovery (held for Denning)",
-     "result_low_third": 0.406,
-     "result_high_third": 0.289,
-     "cut_low": 2.0,
+     "result_low_third": 0.413,
+     "result_high_third": 0.436,
+     "cut_low": 1.0,
      "cut_high": 2.0
     },
     {
-     "variable": "s.morale_diff",
-     "gain": 0.01101,
-     "plus_minus": 0.00385,
+     "variable": "s.minute",
+     "gain": 0.00438,
+     "plus_minus": 0.00179,
      "folds_up": 5,
      "present": 1.0,
-     "confirm_gain": 0.01518,
-     "confirm_plus_minus": 0.00278,
+     "confirm_gain": 0.0041,
+     "confirm_plus_minus": 0.00226,
+     "confirm_folds_up": 5,
+     "status": "not clear yet",
+     "result_low_third": 0.508,
+     "result_high_third": 0.3,
+     "cut_low": 6.28,
+     "cut_high": 14.33
+    },
+    {
+     "variable": "b.enemy_escapes_power",
+     "gain": 0.0056,
+     "plus_minus": 0.00316,
+     "folds_up": 3,
+     "present": 1.0,
+     "confirm_gain": 0.00511,
+     "confirm_plus_minus": 0.00423,
+     "confirm_folds_up": 4,
+     "status": "not clear yet",
+     "result_low_third": 0.445,
+     "result_high_third": 0.28,
+     "cut_low": 1.0,
+     "cut_high": 2.0
+    },
+    {
+     "variable": "s.turtle_diff",
+     "gain": 0.00362,
+     "plus_minus": 0.00137,
+     "folds_up": 6,
+     "present": 1.0,
+     "confirm_gain": 0.0056,
+     "confirm_plus_minus": 0.00131,
      "confirm_folds_up": 6,
      "status": "discovery (held for Denning)",
-     "result_low_third": 0.286,
-     "result_high_third": 0.423,
-     "cut_low": -21.0,
-     "cut_high": 30.0
-    },
-    {
-     "variable": "b.enemy_prots",
-     "gain": 0.01209,
-     "plus_minus": 0.00556,
-     "folds_up": 5,
-     "present": 1.0,
-     "confirm_gain": 0.01124,
-     "confirm_plus_minus": 0.00431,
-     "confirm_folds_up": 5,
-     "status": "discovery (held for Denning)",
-     "result_low_third": 0.503,
-     "result_high_third": 0.286,
-     "cut_low": 11.0,
-     "cut_high": 14.0
-    },
-    {
-     "variable": "s.lord_damage_diff",
-     "gain": 0.00967,
-     "plus_minus": 0.00316,
-     "folds_up": 6,
-     "present": 0.96,
-     "confirm_gain": 0.01073,
-     "confirm_plus_minus": 0.00448,
-     "confirm_folds_up": 5,
-     "status": "discovery (held for Denning)",
-     "result_low_third": 0.451,
-     "result_high_third": 0.264,
+     "result_low_third": 0.407,
+     "result_high_third": 0.362,
      "cut_low": 0.0,
      "cut_high": 0.0
     },
     {
-     "variable": "s.archers_diff",
-     "gain": 0.01125,
-     "plus_minus": 0.00558,
-     "folds_up": 4,
+     "variable": "b.own_area_damage",
+     "gain": 0.00286,
+     "plus_minus": 0.00115,
+     "folds_up": 6,
      "present": 1.0,
-     "confirm_gain": 0.0107,
-     "confirm_plus_minus": 0.00642,
+     "confirm_gain": -0.00102,
+     "confirm_plus_minus": 0.00439,
      "confirm_folds_up": 5,
      "status": "not clear yet",
-     "result_low_third": 0.44,
-     "result_high_third": 0.135,
+     "result_low_third": 0.352,
+     "result_high_third": 0.453,
      "cut_low": 0.0,
      "cut_high": 1.0
     },
     {
-     "variable": "s.flag_lead",
-     "gain": 0.00789,
-     "plus_minus": 0.0042,
+     "variable": "b.own_deep_wound",
+     "gain": 0.00227,
+     "plus_minus": 0.00068,
      "folds_up": 5,
      "present": 1.0,
-     "confirm_gain": 0.01126,
-     "confirm_plus_minus": 0.00309,
-     "confirm_folds_up": 6,
-     "status": "discovery (held for Denning)",
-     "result_low_third": 0.307,
-     "result_high_third": 0.435,
-     "cut_low": -22.0,
-     "cut_high": 34.0
+     "confirm_gain": -0.00381,
+     "confirm_plus_minus": 0.00626,
+     "confirm_folds_up": 4,
+     "status": "not clear yet",
+     "result_low_third": 0.456,
+     "result_high_third": 0.351,
+     "cut_low": 1.0,
+     "cut_high": 2.0
     }
    ]
   }
  ],
  "discoveries": [
   {
-   "variable": "s.morale_diff",
-   "gain": 0.07315,
-   "plus_minus": 0.00999,
+   "variable": "s.healing_monks_enemy",
+   "gain": 0.0021,
+   "plus_minus": 0.00046,
    "folds_up": 6,
    "present": 1.0,
-   "confirm_gain": 0.08456,
-   "confirm_plus_minus": 0.01307,
+   "confirm_gain": 0.00411,
+   "confirm_plus_minus": 0.00107,
    "confirm_folds_up": 6,
    "status": "discovery (held for Denning)",
-   "result_low_third": 0.199,
-   "result_high_third": 0.834,
-   "cut_low": -32.0,
-   "cut_high": 32.0,
-   "node": "fight_outcome",
-   "target": "R.2"
+   "result_low_third": 0.129,
+   "result_high_third": 0.108,
+   "cut_low": 3.0,
+   "cut_high": 3.0,
+   "node": "collapse",
+   "target": "R.1"
   },
   {
-   "variable": "s.down_diff_s",
-   "gain": 0.0279,
-   "plus_minus": 0.00447,
+   "variable": "s.morale_total",
+   "gain": 0.00318,
+   "plus_minus": 0.00043,
    "folds_up": 6,
    "present": 1.0,
-   "confirm_gain": 0.0272,
-   "confirm_plus_minus": 0.00683,
+   "confirm_gain": 0.01006,
+   "confirm_plus_minus": 0.00131,
    "confirm_folds_up": 6,
    "status": "discovery (held for Denning)",
-   "result_low_third": 0.371,
-   "result_high_third": 0.904,
-   "cut_low": 0.0,
+   "result_low_third": 0.49,
+   "result_high_third": 0.505,
+   "cut_low": -52.67,
    "cut_high": 0.0,
    "node": "fight_outcome",
    "target": "R.2"
   },
   {
-   "variable": "s.fight_state",
-   "gain": 0.0301,
-   "plus_minus": 0.0104,
-   "folds_up": 6,
-   "present": 1.0,
-   "confirm_gain": 0.0417,
-   "confirm_plus_minus": 0.01071,
-   "confirm_folds_up": 6,
-   "status": "discovery (held for Denning)",
-   "result_low_third": 0.139,
-   "result_high_third": 0.834,
-   "cut_low": -0.06,
-   "cut_high": 0.04,
-   "node": "fight_outcome",
-   "target": "R.2"
-  },
-  {
-   "variable": "s.alive_diff",
-   "gain": 0.01809,
-   "plus_minus": 0.0021,
-   "folds_up": 6,
-   "present": 1.0,
-   "confirm_gain": 0.01432,
-   "confirm_plus_minus": 0.00615,
-   "confirm_folds_up": 5,
-   "status": "discovery (held for Denning)",
-   "result_low_third": 0.367,
-   "result_high_third": 0.848,
-   "cut_low": 0.0,
-   "cut_high": 0.0,
-   "node": "fight_outcome",
-   "target": "R.2"
-  },
-  {
-   "variable": "s.stand",
-   "gain": 0.02029,
-   "plus_minus": 0.00481,
-   "folds_up": 6,
-   "present": 1.0,
-   "confirm_gain": 0.01909,
-   "confirm_plus_minus": 0.00516,
-   "confirm_folds_up": 5,
-   "status": "discovery (held for Denning)",
-   "result_low_third": 0.286,
-   "result_high_third": NaN,
-   "cut_low": -1.0,
-   "cut_high": 1.0,
-   "node": "fight_outcome",
-   "target": "R.2"
-  },
-  {
-   "variable": "s.spike_killable_diff",
-   "gain": 0.01921,
-   "plus_minus": 0.00524,
-   "folds_up": 6,
-   "present": 1.0,
-   "confirm_gain": 0.02187,
-   "confirm_plus_minus": 0.0052,
-   "confirm_folds_up": 6,
-   "status": "discovery (held for Denning)",
-   "result_low_third": 0.418,
-   "result_high_third": 0.855,
-   "cut_low": 0.0,
-   "cut_high": 0.0,
-   "node": "fight_outcome",
-   "target": "R.2"
-  },
-  {
-   "variable": "s.morale_diff",
-   "gain": 0.16581,
-   "plus_minus": 0.06093,
-   "folds_up": 6,
-   "present": 1.0,
-   "confirm_gain": 0.29874,
-   "confirm_plus_minus": 0.14335,
-   "confirm_folds_up": 5,
-   "status": "discovery (held for Denning)",
-   "result_low_third": -1.1,
-   "result_high_third": 1.815,
-   "cut_low": -23.0,
-   "cut_high": 23.0,
-   "node": "flag_swing",
-   "target": "R.3"
-  },
-  {
-   "variable": "s.carrying_diff",
-   "gain": 0.0046,
-   "plus_minus": 0.00171,
+   "variable": "b.own_hexes",
+   "gain": 0.00207,
+   "plus_minus": 0.00093,
    "folds_up": 5,
    "present": 1.0,
-   "confirm_gain": 0.00665,
-   "confirm_plus_minus": 0.00192,
-   "confirm_folds_up": 5,
+   "confirm_gain": 0.00478,
+   "confirm_plus_minus": 0.00142,
+   "confirm_folds_up": 6,
    "status": "discovery (held for Denning)",
-   "result_low_third": 0.411,
-   "result_high_third": 0.236,
-   "cut_low": 0.0,
-   "cut_high": 0.0,
-   "node": "power_play",
-   "target": "K.4"
+   "result_low_third": 0.509,
+   "result_high_third": 0.402,
+   "cut_low": 3.0,
+   "cut_high": 4.0,
+   "node": "fight_outcome",
+   "target": "R.2"
   },
   {
-   "variable": "s.down_diff_s",
-   "gain": 0.00426,
-   "plus_minus": 0.00153,
+   "variable": "b.enemy_energy_denial_v_own_heals",
+   "gain": 0.00138,
+   "plus_minus": 0.00052,
    "folds_up": 5,
    "present": 1.0,
-   "confirm_gain": 0.00765,
-   "confirm_plus_minus": 0.00277,
-   "confirm_folds_up": 5,
-   "status": "discovery (held for Denning)",
-   "result_low_third": 0.331,
-   "result_high_third": 0.585,
-   "cut_low": 0.0,
-   "cut_high": 0.0,
-   "node": "power_play",
-   "target": "K.4"
-  },
-  {
-   "variable": "s.boost_clock",
-   "gain": 0.02231,
-   "plus_minus": 0.00547,
-   "folds_up": 6,
-   "present": 1.0,
-   "confirm_gain": 0.02483,
-   "confirm_plus_minus": 0.00678,
+   "confirm_gain": 0.00434,
+   "confirm_plus_minus": 0.0009,
    "confirm_folds_up": 6,
    "status": "discovery (held for Denning)",
-   "result_low_third": 0.495,
-   "result_high_third": 0.712,
-   "cut_low": 0.0,
-   "cut_high": 79.0,
-   "node": "run_defence",
-   "target": "R.3"
+   "result_low_third": 0.416,
+   "result_high_third": 0.507,
+   "cut_low": -12.0,
+   "cut_high": -10.0,
+   "node": "fight_outcome",
+   "target": "R.2"
   },
   {
-   "variable": "s.stand",
-   "gain": 0.02012,
-   "plus_minus": 0.00497,
+   "variable": "b.own_heals",
+   "gain": 0.00073,
+   "plus_minus": 0.00015,
    "folds_up": 6,
    "present": 1.0,
-   "confirm_gain": 0.02256,
-   "confirm_plus_minus": 0.00534,
+   "confirm_gain": 0.00279,
+   "confirm_plus_minus": 0.00065,
    "confirm_folds_up": 6,
    "status": "discovery (held for Denning)",
-   "result_low_third": 0.494,
-   "result_high_third": NaN,
-   "cut_low": 0.0,
-   "cut_high": 1.0,
-   "node": "run_defence",
-   "target": "R.3"
-  },
-  {
-   "variable": "s.flag_lead",
-   "gain": 0.0095,
-   "plus_minus": 0.00366,
-   "folds_up": 5,
-   "present": 1.0,
-   "confirm_gain": 0.0113,
-   "confirm_plus_minus": 0.00456,
-   "confirm_folds_up": 5,
-   "status": "discovery (held for Denning)",
-   "result_low_third": 0.522,
-   "result_high_third": 0.66,
-   "cut_low": -19.0,
-   "cut_high": 20.0,
-   "node": "run_defence",
-   "target": "R.3"
-  },
-  {
-   "variable": "s.morale_diff",
-   "gain": 0.00674,
-   "plus_minus": 0.00195,
-   "folds_up": 6,
-   "present": 1.0,
-   "confirm_gain": 0.00756,
-   "confirm_plus_minus": 0.00297,
-   "confirm_folds_up": 6,
-   "status": "discovery (held for Denning)",
-   "result_low_third": 0.635,
-   "result_high_third": 0.553,
-   "cut_low": 0.0,
+   "result_low_third": 0.504,
+   "result_high_third": 0.402,
+   "cut_low": 13.0,
    "cut_high": 15.0,
+   "node": "fight_outcome",
+   "target": "R.2"
+  },
+  {
+   "variable": "s.morale_diff",
+   "gain": 0.00377,
+   "plus_minus": 0.00145,
+   "folds_up": 6,
+   "present": 1.0,
+   "confirm_gain": 0.00446,
+   "confirm_plus_minus": 0.00196,
+   "confirm_folds_up": 5,
+   "status": "discovery (held for Denning)",
+   "result_low_third": 0.235,
+   "result_high_third": 0.578,
+   "cut_low": 0.0,
+   "cut_high": 47.0,
+   "node": "power_play",
+   "target": "K.4"
+  },
+  {
+   "variable": "b.enemy_strips_v_own_prots",
+   "gain": 0.00131,
+   "plus_minus": 0.00047,
+   "folds_up": 6,
+   "present": 1.0,
+   "confirm_gain": 0.00233,
+   "confirm_plus_minus": 0.00082,
+   "confirm_folds_up": 5,
+   "status": "discovery (held for Denning)",
+   "result_low_third": 0.359,
+   "result_high_third": 0.422,
+   "cut_low": -11.0,
+   "cut_high": -9.0,
+   "node": "power_play",
+   "target": "K.4"
+  },
+  {
+   "variable": "b.enemy_snares_v_own_speed",
+   "gain": 0.00045,
+   "plus_minus": 0.00019,
+   "folds_up": 5,
+   "present": 1.0,
+   "confirm_gain": 0.00091,
+   "confirm_plus_minus": 0.00041,
+   "confirm_folds_up": 5,
+   "status": "discovery (held for Denning)",
+   "result_low_third": 0.659,
+   "result_high_third": 0.666,
+   "cut_low": -5.0,
+   "cut_high": -4.0,
+   "node": "run_defence",
+   "target": "R.3"
+  },
+  {
+   "variable": "b.own_area_damage",
+   "gain": 0.00053,
+   "plus_minus": 0.0003,
+   "folds_up": 4,
+   "present": 1.0,
+   "confirm_gain": 0.00112,
+   "confirm_plus_minus": 0.00037,
+   "confirm_folds_up": 5,
+   "status": "discovery (held for Denning)",
+   "result_low_third": 0.668,
+   "result_high_third": 0.621,
+   "cut_low": 0.0,
+   "cut_high": 1.0,
+   "node": "run_defence",
+   "target": "R.3"
+  },
+  {
+   "variable": "s.healing_monks_own",
+   "gain": 0.0004,
+   "plus_minus": 0.00031,
+   "folds_up": 4,
+   "present": 1.0,
+   "confirm_gain": 0.00072,
+   "confirm_plus_minus": 0.00035,
+   "confirm_folds_up": 6,
+   "status": "discovery (held for Denning)",
+   "result_low_third": 0.659,
+   "result_high_third": 0.697,
+   "cut_low": 3.0,
+   "cut_high": 3.0,
    "node": "run_defence",
    "target": "R.3"
   },
   {
    "variable": "s.down_diff_s",
-   "gain": 0.00551,
-   "plus_minus": 0.00185,
-   "folds_up": 6,
-   "present": 1.0,
-   "confirm_gain": 0.0053,
-   "confirm_plus_minus": 0.00265,
-   "confirm_folds_up": 5,
-   "status": "discovery (held for Denning)",
-   "result_low_third": 0.626,
-   "result_high_third": 0.49,
-   "cut_low": 0.0,
-   "cut_high": 0.0,
-   "node": "run_defence",
-   "target": "R.3"
-  },
-  {
-   "variable": "b.own_snares",
-   "gain": 0.00552,
-   "plus_minus": 0.00246,
-   "folds_up": 6,
-   "present": 1.0,
-   "confirm_gain": 0.00849,
-   "confirm_plus_minus": 0.00244,
-   "confirm_folds_up": 6,
-   "status": "discovery (held for Denning)",
-   "result_low_third": 0.61,
-   "result_high_third": 0.502,
-   "cut_low": 1.0,
-   "cut_high": 3.0,
-   "node": "run_defence",
-   "target": "R.3"
-  },
-  {
-   "variable": "s.morale_diff",
-   "gain": 0.00709,
-   "plus_minus": 0.00244,
-   "folds_up": 6,
-   "present": 1.0,
-   "confirm_gain": 0.00916,
-   "confirm_plus_minus": 0.00371,
-   "confirm_folds_up": 6,
-   "status": "discovery (held for Denning)",
-   "result_low_third": 0.563,
-   "result_high_third": 0.65,
-   "cut_low": -15.0,
-   "cut_high": 0.0,
-   "node": "run_outcome",
-   "target": "R.3"
-  },
-  {
-   "variable": "s.boost_clock",
-   "gain": 0.00726,
-   "plus_minus": 0.00302,
+   "gain": 0.00121,
+   "plus_minus": 0.00057,
    "folds_up": 5,
    "present": 1.0,
-   "confirm_gain": 0.00898,
-   "confirm_plus_minus": 0.00342,
+   "confirm_gain": 0.00208,
+   "confirm_plus_minus": 0.0006,
    "confirm_folds_up": 6,
    "status": "discovery (held for Denning)",
-   "result_low_third": 0.715,
-   "result_high_third": 0.448,
-   "cut_low": -79.0,
+   "result_low_third": 0.656,
+   "result_high_third": 0.704,
+   "cut_low": 0.0,
    "cut_high": 0.0,
    "node": "run_outcome",
    "target": "R.3"
   },
   {
-   "variable": "b.enemy_snares",
-   "gain": 0.00467,
-   "plus_minus": 0.00188,
-   "folds_up": 6,
+   "variable": "s.main_diff",
+   "gain": 0.08106,
+   "plus_minus": 0.03928,
+   "folds_up": 5,
    "present": 1.0,
-   "confirm_gain": 0.00762,
-   "confirm_plus_minus": 0.00249,
+   "confirm_gain": 0.39301,
+   "confirm_plus_minus": 0.14176,
    "confirm_folds_up": 6,
    "status": "discovery (held for Denning)",
-   "result_low_third": 0.61,
-   "result_high_third": 0.502,
-   "cut_low": 1.0,
-   "cut_high": 3.0,
-   "node": "run_outcome",
-   "target": "R.3"
-  },
-  {
-   "variable": "s.split_diff",
-   "gain": 0.21178,
-   "plus_minus": 0.03893,
-   "folds_up": 6,
-   "present": 1.0,
-   "confirm_gain": 0.18769,
-   "confirm_plus_minus": 0.06989,
-   "confirm_folds_up": 5,
-   "status": "discovery (held for Denning)",
-   "result_low_third": -10.234,
-   "result_high_third": 0.188,
-   "cut_low": -2.0,
-   "cut_high": -1.0,
+   "result_low_third": -5.222,
+   "result_high_third": -3.926,
+   "cut_low": 0.0,
+   "cut_high": 1.0,
    "node": "split_answer",
    "target": "P.11"
   },
   {
-   "variable": "s.turtle_diff",
-   "gain": 0.00277,
-   "plus_minus": 0.00031,
+   "variable": "b.own_area_damage",
+   "gain": 0.04967,
+   "plus_minus": 0.01882,
    "folds_up": 6,
    "present": 1.0,
-   "confirm_gain": 0.00437,
-   "confirm_plus_minus": 0.00168,
-   "confirm_folds_up": 5,
+   "confirm_gain": 0.22076,
+   "confirm_plus_minus": 0.09755,
+   "confirm_folds_up": 6,
    "status": "discovery (held for Denning)",
-   "result_low_third": 0.143,
-   "result_high_third": 0.108,
+   "result_low_third": -4.288,
+   "result_high_third": -5.018,
    "cut_low": 0.0,
-   "cut_high": 0.0,
-   "node": "split_chance",
-   "target": "A.allocation"
+   "cut_high": 1.0,
+   "node": "split_answer",
+   "target": "P.11"
   },
   {
-   "variable": "s.split_diff",
-   "gain": 0.004,
-   "plus_minus": 0.00173,
+   "variable": "s.spike_build_own",
+   "gain": 0.00439,
+   "plus_minus": 0.00175,
    "folds_up": 5,
    "present": 1.0,
-   "confirm_gain": 0.00668,
-   "confirm_plus_minus": 0.00208,
+   "confirm_gain": 0.005,
+   "confirm_plus_minus": 0.00122,
    "confirm_folds_up": 5,
    "status": "discovery (held for Denning)",
-   "result_low_third": 0.129,
-   "result_high_third": 0.233,
+   "result_low_third": 0.165,
+   "result_high_third": 0.058,
    "cut_low": 0.0,
    "cut_high": 0.0,
    "node": "split_chance",
    "target": "A.allocation"
   },
   {
-   "variable": "s.pit_pressure_diff",
-   "gain": 0.00124,
-   "plus_minus": 0.00034,
+   "variable": "b.own_knockdowns",
+   "gain": 0.00299,
+   "plus_minus": 0.00073,
    "folds_up": 6,
    "present": 1.0,
-   "confirm_gain": 0.0011,
-   "confirm_plus_minus": 0.00054,
-   "confirm_folds_up": 5,
+   "confirm_gain": 0.00415,
+   "confirm_plus_minus": 0.00113,
+   "confirm_folds_up": 6,
    "status": "discovery (held for Denning)",
-   "result_low_third": 0.13,
-   "result_high_third": 0.146,
-   "cut_low": 0.0,
-   "cut_high": 0.0,
+   "result_low_third": 0.142,
+   "result_high_third": 0.079,
+   "cut_low": 1.0,
+   "cut_high": 3.0,
    "node": "split_chance",
    "target": "A.allocation"
   },
   {
-   "variable": "b.own_deep_wound",
-   "gain": 0.01291,
-   "plus_minus": 0.00166,
+   "variable": "s.map_flag_run",
+   "gain": 0.00172,
+   "plus_minus": 0.00028,
    "folds_up": 6,
    "present": 1.0,
-   "confirm_gain": 0.01111,
-   "confirm_plus_minus": 0.00396,
+   "confirm_gain": 0.00278,
+   "confirm_plus_minus": 0.00097,
    "confirm_folds_up": 5,
    "status": "discovery (held for Denning)",
-   "result_low_third": 0.406,
-   "result_high_third": 0.289,
-   "cut_low": 2.0,
+   "result_low_third": 0.12,
+   "result_high_third": 0.124,
+   "cut_low": 6447.0,
+   "cut_high": 8335.0,
+   "node": "split_chance",
+   "target": "A.allocation"
+  },
+  {
+   "variable": "b.own_escapes_power",
+   "gain": 0.00586,
+   "plus_minus": 0.0008,
+   "folds_up": 6,
+   "present": 1.0,
+   "confirm_gain": 0.00477,
+   "confirm_plus_minus": 0.00184,
+   "confirm_folds_up": 6,
+   "status": "discovery (held for Denning)",
+   "result_low_third": 0.413,
+   "result_high_third": 0.436,
+   "cut_low": 1.0,
    "cut_high": 2.0,
    "node": "split_effect",
    "target": "R.5"
   },
   {
-   "variable": "s.morale_diff",
-   "gain": 0.01101,
-   "plus_minus": 0.00385,
-   "folds_up": 5,
+   "variable": "s.turtle_diff",
+   "gain": 0.00362,
+   "plus_minus": 0.00137,
+   "folds_up": 6,
    "present": 1.0,
-   "confirm_gain": 0.01518,
-   "confirm_plus_minus": 0.00278,
+   "confirm_gain": 0.0056,
+   "confirm_plus_minus": 0.00131,
    "confirm_folds_up": 6,
    "status": "discovery (held for Denning)",
-   "result_low_third": 0.286,
-   "result_high_third": 0.423,
-   "cut_low": -21.0,
-   "cut_high": 30.0,
-   "node": "split_effect",
-   "target": "R.5"
-  },
-  {
-   "variable": "b.enemy_prots",
-   "gain": 0.01209,
-   "plus_minus": 0.00556,
-   "folds_up": 5,
-   "present": 1.0,
-   "confirm_gain": 0.01124,
-   "confirm_plus_minus": 0.00431,
-   "confirm_folds_up": 5,
-   "status": "discovery (held for Denning)",
-   "result_low_third": 0.503,
-   "result_high_third": 0.286,
-   "cut_low": 11.0,
-   "cut_high": 14.0,
-   "node": "split_effect",
-   "target": "R.5"
-  },
-  {
-   "variable": "s.lord_damage_diff",
-   "gain": 0.00967,
-   "plus_minus": 0.00316,
-   "folds_up": 6,
-   "present": 0.96,
-   "confirm_gain": 0.01073,
-   "confirm_plus_minus": 0.00448,
-   "confirm_folds_up": 5,
-   "status": "discovery (held for Denning)",
-   "result_low_third": 0.451,
-   "result_high_third": 0.264,
+   "result_low_third": 0.407,
+   "result_high_third": 0.362,
    "cut_low": 0.0,
    "cut_high": 0.0,
-   "node": "split_effect",
-   "target": "R.5"
-  },
-  {
-   "variable": "s.flag_lead",
-   "gain": 0.00789,
-   "plus_minus": 0.0042,
-   "folds_up": 5,
-   "present": 1.0,
-   "confirm_gain": 0.01126,
-   "confirm_plus_minus": 0.00309,
-   "confirm_folds_up": 6,
-   "status": "discovery (held for Denning)",
-   "result_low_third": 0.307,
-   "result_high_third": 0.435,
-   "cut_low": -22.0,
-   "cut_high": 34.0,
    "node": "split_effect",
    "target": "R.5"
   }
