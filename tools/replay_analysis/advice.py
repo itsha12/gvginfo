@@ -14,7 +14,8 @@ with a 90% range from resampling whole matches. A kind passes when the range exc
 The second reading, "the blind test", is set up here and scored by hand: ten sealed moments (data/model/blind_test.json)
 where Denning's call and the model's are both recorded before the outcome is read; the outcome then scores both.
 
-Usage: python3 advice.py            (reads the decision records usual.py builds; prints the table)
+Usage: python3 advice.py [DIR] [--blind | --blind-only]   (reads the decision records usual.py builds; prints the table;
+       --blind also writes the sealed blind test, --blind-only writes only that)   python3 advice.py blind_score
 In code: advice_test(recs) -> {kind: {...}}; lines(res) -> report lines. Report layer: no cache key."""
 import collections, json, os, random, sys
 import numpy as np
@@ -139,13 +140,26 @@ def lines(res):
     return L
 
 
-# ---- the blind test (scored by hand)
+# ---- the blind test (sealed; scored by `advice.py blind_score` once every denning_call is filled in)
 BLIND = os.path.join(REPO, "data", "model", "blind_test.json")
 
 
-def blind_pick(recs, n=10, seed=11):
+def _seal(obj):
+    import base64
+    return base64.b64encode(json.dumps(obj).encode()).decode()
+
+
+def _unseal(txt):
+    import base64
+    return json.loads(base64.b64decode(txt.encode()).decode())
+
+
+def blind_pick(recs, n=10, seed=12):
     """Ten sealed moments for the blind test: decisions of kinds with specific advice, spread over kinds and matches,
-    with the model's call recorded (from the other matches) and the outcome hidden until both calls are in."""
+    with the model's call recorded (from the other matches) and the outcome hidden until both calls are in. The sealed
+    part (the actual choice, its win-chance change, and the mean win-chance change of each choice among the 15 most
+    similar decisions in other matches) is base64-encoded so a glance at the file reveals nothing; nothing sealed is
+    printed. Seed 12 since 2026-11-09 (the first pick, seed 11, printed its sealed fields and was discarded)."""
     rnd = random.Random(seed)
     byk = collections.defaultdict(list)
     for r in recs:
@@ -160,21 +174,63 @@ def blind_pick(recs, n=10, seed=11):
         i = rnd.randrange(len(L))
         tr = np.array([j for j in range(len(L)) if L[j]["match"] != L[i]["match"]])
         best, usual, nn = advise(i, tr, L, ZN, y)
+        d = np.sqrt(((ZN[tr] - ZN[i]) ** 2).sum(1))
+        near = [tr[j] for j in np.argsort(d)[:K]]
+        by = collections.defaultdict(list)
+        for j in near: by[L[j]["choice2"]].append(float(y[j]))
+        effects = {c: {"mean_wp_change": round(float(np.mean(v)), 1), "cases": len(v)} for c, v in by.items()}
         r = L[i]
         picks.append({"id": len(picks) + 1, "match": r["match"], "team": r["team"], "t": r["t"], "kind": k,
                       "situation": r["state"], "choices_seen": choices, "model_call": best, "usual_play": usual,
                       "denning_call": None, "actual_choice": "(sealed)", "outcome_wp_change": "(sealed)",
-                      "_sealed": {"actual_choice": r["choice2"], "wp_change": r["wp_change"]}})
+                      "sealed": _seal({"actual_choice": r["choice2"], "wp_change": r["wp_change"], "choice_effects": effects})})
     json.dump({"about": "The blind test (Denning, November 2026 review): ten moments; Denning writes his call in denning_call "
-                        "before anyone reads the sealed fields; then advice.py blind_score reveals and scores both calls by the "
-                        "measured outcome of teams that made each choice in that situation.", "picks": picks}, open(BLIND, "w"), indent=1)
+                        "before anyone reads the sealed fields; then `advice.py blind_score` reveals and scores both calls by the "
+                        "measured outcome of teams that made each choice in that situation (the 15 most similar decisions in "
+                        "other matches) and by what actually happened. The sealed field is base64; do not decode it by hand.",
+               "picks": picks}, open(BLIND, "w"), indent=1)
     return picks
 
 
+def blind_score():
+    """Reveal and score the blind test. Refuses until every denning_call is filled in. For each pick: the mean win-chance
+    change of teams that made each caller's choice in that situation (sealed at pick time), whether each call matched
+    what the team actually did, and the actual outcome. Totals: the sum of expected win-chance change per caller."""
+    b = json.load(open(BLIND))
+    missing = [p["id"] for p in b["picks"] if not p.get("denning_call")]
+    if missing: print(f"Not scored: denning_call is empty for picks {missing}. Fill every call in first."); return None
+    tot = collections.Counter(); hit = collections.Counter(); rows = []
+    for p in b["picks"]:
+        s = _unseal(p["sealed"]); eff = s["choice_effects"]
+        row = {"id": p["id"], "kind": p["kind"], "match": p["match"][:8], "team": p["team"], "t": p["t"],
+               "actual_choice": s["actual_choice"], "outcome_wp_change": s["wp_change"]}
+        for who, call in (("model", p["model_call"]), ("denning", p["denning_call"]), ("usual", p["usual_play"])):
+            e = eff.get(call)
+            row[who] = {"call": call, "expected": e["mean_wp_change"] if e else None, "cases": e["cases"] if e else 0,
+                        "matched_actual": call == s["actual_choice"]}
+            if e: tot[who] += e["mean_wp_change"]
+            if call == s["actual_choice"]: hit[who] += 1
+        rows.append(row)
+    out = {"scored_at": __import__("datetime").date.today().isoformat(), "picks": rows,
+           "totals": {who: {"expected_wp_change_sum": round(tot[who], 1), "matched_actual": hit[who]} for who in ("model", "denning", "usual")}}
+    json.dump(out, open(BLIND.replace(".json", "_scored.json"), "w"), indent=1)
+    for r in rows:
+        print(f"{r['id']:>2} {r['kind']:<24} {r['match']} {r['team']:<6} {r['t']:>5}  actual: {r['actual_choice']} ({r['outcome_wp_change']:+})")
+        for who in ("model", "denning", "usual"):
+            c = r[who]; print(f"     {who:<8} {c['call']:<28} expected {c['expected'] if c['expected'] is not None else 'n/a (no similar case)'} ({c['cases']} cases){'  = actual' if c['matched_actual'] else ''}")
+    print("Totals:", json.dumps(out["totals"]))
+    return out
+
+
 if __name__ == "__main__":
-    import usual as U, pickle
-    src = sys.argv[1] if len(sys.argv) > 1 else "/tmp/ga"
+    if "blind_score" in sys.argv: blind_score(); sys.exit()
+    import usual as U
+    src = next((a for a in sys.argv[1:] if not a.startswith("--")), "/tmp/ga")
     recs = U.wp_change(U.load(src))
-    res = advice_test(recs)
-    print("\n".join(lines(res)))
-    if "--blind" in sys.argv: print(json.dumps(blind_pick(recs), indent=1)[:2000])
+    if "--blind-only" not in sys.argv:
+        res = advice_test(recs)
+        print("\n".join(lines(res)))
+    if "--blind" in sys.argv or "--blind-only" in sys.argv:
+        picks = blind_pick(recs)
+        print(f"Blind test: {len(picks)} sealed picks written to {BLIND} (nothing sealed is printed).")
+        for p in picks: print(f"  {p['id']:>2} {p['kind']:<24} {p['match'][:8]} {p['team']:<6} {p['t']:>5}  model: {p['model_call']}; usual: {p['usual_play']}")

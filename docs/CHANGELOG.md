@@ -2,6 +2,13 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-09 (later): outstanding items after the review, no chunk
+- Update matches (run 42618614199): the last 20 listed matches stored, 0 remaining.
+- Discovery run 1 on the variable catalogue (run 42618611013, 4.5 min): 1,633 tests, 137 passed the screen, 27 passed once, nothing offered yet (two-run rule). Enemy_* variables among them; ruling asked (HANDOFF.md).
+- Blind test sealed (`data/model/blind_test.json`, seed 12): sealed fields base64 and never printed; `advice.py blind_score` added (refuses until every denning_call is filled; scores each call by the mean win-chance change of that choice among the 15 most similar decisions, and against what happened); `--blind-only` flag. The first pick (seed 11) printed its sealed fields and was discarded. Report layer only, nothing rebuilt.
+- Readability test 2 filed (docs/tests/readability-2026-11-09b.md): verdict no; ten ranked blockers, five page-text only (queued, HANDOFF.md Next 2), the rest for the next bundle.
+- Noted: workflow artifacts can't be downloaded from the chat workspace; the local route (cache pull, `analyze.py --all`) takes seconds.
+
 ## 2026-11-09: chunk 6 and the engine review
 - Chunk 6 rebuild (Train batch run 42560128096, 50 min) landed with the footmen fix (footmen counted as losses in the win model): 356 matches trained. Honest test clear: glass box log loss 0.358 against 0.472 for strength alone (gain +0.114, 90% range +0.064 to +0.161); 84% of winners picked against 77%; matches even on strength 76% against 59%.
 - Review of the engine against its goal (Denning's rulings in docs/RULINGS.md, "Rulings of the 2026-11 review", R-260 to R-277): one model family in four tiers, duplicates retired, strict time order in execution nodes with the enemy's response shown apart, inputs pruned, a standing selection check, discovery limited to decision and execution variables with a two-run rule, one bundled engine change per run of chunks, diff-style reports, a generated model page, a readability test, macro and micro answers kept apart, five new decisions, a variable catalogue and behaviour clusters, the query as the end product, period and strength-band checks, and the held-out advice test plus a sealed blind test as the goal test.
