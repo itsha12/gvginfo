@@ -1914,7 +1914,7 @@
      "model_call": "not running, advanced",
      "usual_play": "not running, advanced",
      "specific": false,
-     "denning_call": null,
+     "denning_call": "not running, fell back",
      "denning_reason": "",
      "context": {
       "team": "げえええ",
