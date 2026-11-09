@@ -998,3 +998,8 @@ changing status only after two batches in a row, declined: links keep changing s
   at least half the skill's uses, e.g. Mantis Touch, Signet of Pious Restraint, Earthen Shackles) replaces the formula
   once a skill has 15+ uses, capped at the recharge. Crippled from Hamstring, Caltrops, Pin Down and other attack skills
   is rarely recorded with its skill, so those keep the formula.
+- **Footmen** (Denning, after chunk 5): the win model reads `footmen_lost_diff` (own minus enemy footmen lost so far)
+  instead of footmen alive. A footman only enters the replay once something touches it, so "own footmen alive" marked a
+  base that had been visited and read backwards (-42 points at +4; values priced a lost footman at +1.0). Deaths are
+  always recorded. Readings that ran against expectation at chunk 5 (knockdowns on casting targets in fights,
+  pre-kiting on deaths) are held for more data (Denning).

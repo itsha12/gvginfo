@@ -68,6 +68,11 @@ def footmen(m):
     return m.o["_footmen"]
 
 
+def _footmen_lost(sb, tm, t):
+    """Footmen of tm dead by t (deaths are always recorded, unlike footmen never touched)."""
+    return sum(1 for _, dt in footmen(sb.m)[tm] if dt is not None and dt <= t)
+
+
 def _footmen_alive(sb, tm, t):
     return sum(1 for _, dt in footmen(sb.m)[tm] if dt is None or dt > t)
 
@@ -167,10 +172,11 @@ VARIABLES = [
      "Proposed batch 1 by Claude (the knights curve ran backwards, maybe standing in for the cost of splitting); moved in "
      "batch 10 on Denning's approval (held-out log loss 0.314 to 0.307)",
      lambda s, sb, tm, t, x: _splitting(sb, tm, t) - _splitting(sb, 3 - tm, t)),
-    ("footmen_diff", "own minus enemy footmen alive (base NPCs, not pit NPCs). Proposed 2026-11-06 from OG comms "
-     "([ohno v NwAy]: 'this way we don't lose footmen'; [ohno v Fun]: fake collapse to the footmen); moved in after chunk 4 "
-     "on Denning's approval (held-out log loss 0.384 to 0.371)",
-     lambda s, sb, tm, t, x: _footmen_alive(sb, tm, t) - _footmen_alive(sb, 3 - tm, t)),
+    ("footmen_lost_diff", "own minus enemy footmen lost so far (base NPCs, not pit NPCs). Proposed 2026-11-06 from OG comms "
+     "([ohno v NwAy]: 'this way we don't lose footmen'); moved in as footmen alive after chunk 4, then counted as losses after "
+     "chunk 5 (Denning): a footman only enters the replay once something touches it, so 'alive' marked a base that was visited "
+     "and read backwards (-42 points at +4); deaths are always recorded",
+     lambda s, sb, tm, t, x: _footmen_lost(sb, tm, t) - _footmen_lost(sb, 3 - tm, t)),
 ]
 # Candidate variables (discovery): computed and retested in every learning report (held-out accuracy with and without
 # each), but only moved into VARIABLES once they improve predictions on unseen matches. Each notes who proposed it,
