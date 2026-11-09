@@ -95,9 +95,9 @@ Claude should then:
 # Match replay analysis
 
 **Status:** Active. Last updated 2026-11-09 (session 4u). Large pull in chunks of 40 to 50. Since session 4u only
-matches from 1 September 2026 count (METHODS.md "Which matches count"): 266 matches trained (13 batches; 52 earlier
-matches left out). Chunks 3 and 4 done. Next: Denning's answers to the chunk 3 and 4 questions as one engine change,
-discovery (overdue), then chunk 5.
+matches from 1 September 2026 count (METHODS.md "Which matches count"): 311 matches trained (14 batches; 52 earlier
+matches left out). Chunks 3 to 5 done, discovery after chunk 4, the pressure measures built. Next: Denning's ruling on
+the footmen fix and the chunk 5 questions as one engine change, then chunk 6.
 
 ### Session 4u (2026-11-08/09)
 - Denning: matches before 1 September 2026 don't count in the model; new picks from 2 September on. Strength and lineup
@@ -130,6 +130,21 @@ discovery (overdue), then chunk 5.
   healing monks -> fewer collapse kills. State ones: morale_total (fights), morale_diff (power play), down_diff_s
   (runs), main_diff (split answer), turtle_diff (split effect), map_flag_run (split chance). Nothing on capture speed
   or pit NPC loss. Awaiting Denning's rulings.
+- Engine change after chunk 4 (Denning): 11 discoveries approved, footmen_diff in the win model, ranged attackers on the
+  pit (attackers_outside), TQ 4 positions per player, and pressure.py (kiting and pre-kiting vs warriors, dervishes and
+  assassins only; degen; baited interrupts; offensive knockdowns; disables; cast prevention) as map nodes P.21 to P.26
+  into fight outcome and power play, plus the deaths and kill-conversion nodes, forensics and the snapshot. Snares: area
+  = one target, measured Crippled where recorded on half the uses (METHODS.md "After chunk 4").
+- Chunk 5 (batch 14, run 42555058885, 50 min, rebuild_forensics yes): 311 matches. Honest test clear again: 0.367 against
+  0.452 (gain +0.085, +0.026 to +0.136). New links supported: power play <- enemy kiting, own knockdowns, disables, degen;
+  fight outcome <- knockdowns (and the approved own hexes and heals); split answer <- own area damage. Not clear yet:
+  baits, cast prevention, kiting and degen on fights. Deaths node: kiting lowers death risk (about -6 points at 3.5 s+
+  in 10 s), degen on the player raises it (+10 at 7 to 10 pips), healers disabled raise it (+8.5); pre-kiting reads
+  higher risk (+8, likely selection: players being chased). Power play: 1+ knockdowns per 10 s +15 to +20; the enemy
+  kiting the power play's melee -9; heavy degen +12; disables read non-monotonic (-14 in the middle).
+- Found: footmen_diff reads backwards (-42 points at +4) and values price a lost footman at +1.0: footmen only enter the
+  replay's agent list once seen, so 'more own footmen alive' marks a base that was visited. Proposed: count footmen
+  lost (deaths), or add the standard footman roster like the pit NPCs. Not built; ask Denning.
 - TQ confidence was low on 5 of 8 answers: most fixes carried to the result price under half a win point.
 
 ### Session 4t (2026-11-08)
