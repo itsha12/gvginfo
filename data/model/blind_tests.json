@@ -2743,7 +2743,7 @@
      "model_call": "collapsed",
      "usual_play": "defended without a collapse",
      "specific": true,
-     "denning_call": null,
+     "denning_call": "defended without a collapse",
      "denning_reason": "",
      "context": {
       "team": "meow",
