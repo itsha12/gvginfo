@@ -23,7 +23,10 @@
    ],
    "strength": -0.0002,
    "plus_minus": 0.0008,
-   "status": "not clear yet"
+   "status": "not clear yet",
+   "kinds": [
+    "state"
+   ]
   },
   {
    "from": "K.11",
@@ -33,7 +36,10 @@
    ],
    "strength": 0.0,
    "plus_minus": 0.0005,
-   "status": "not clear yet"
+   "status": "not clear yet",
+   "kinds": [
+    "execution"
+   ]
   },
   {
    "from": "K.13",
@@ -43,7 +49,10 @@
    ],
    "strength": 0.0276,
    "plus_minus": 0.0036,
-   "status": "supported"
+   "status": "supported",
+   "kinds": [
+    "execution"
+   ]
   },
   {
    "from": "P.10",
@@ -51,9 +60,12 @@
    "features": [
     "runner_class"
    ],
-   "strength": 0.0009,
+   "strength": 0.001,
    "plus_minus": 0.0009,
-   "status": "not clear yet"
+   "status": "not clear yet",
+   "kinds": [
+    "decision"
+   ]
   },
   {
    "from": "S.scoreboard",
@@ -67,7 +79,10 @@
    ],
    "strength": 0.0411,
    "plus_minus": 0.0039,
-   "status": "supported"
+   "status": "supported",
+   "kinds": [
+    "state"
+   ]
   },
   {
    "from": "C.builds",
@@ -79,7 +94,10 @@
    ],
    "strength": -0.0005,
    "plus_minus": 0.0013,
-   "status": "not clear yet"
+   "status": "not clear yet",
+   "kinds": [
+    "context"
+   ]
   },
   {
    "from": "K.5",
@@ -89,7 +107,10 @@
    ],
    "strength": -0.0003,
    "plus_minus": 0.0005,
-   "status": "not clear yet"
+   "status": "not clear yet",
+   "kinds": [
+    "execution"
+   ]
   },
   {
    "from": "A.allocation",
@@ -101,7 +122,11 @@
    ],
    "strength": 0.0013,
    "plus_minus": 0.001,
-   "status": "not clear yet"
+   "status": "not clear yet",
+   "kinds": [
+    "decision",
+    "state"
+   ]
   },
   {
    "from": "C.map",
@@ -111,7 +136,10 @@
    ],
    "strength": 0.0037,
    "plus_minus": 0.0018,
-   "status": "supported"
+   "status": "supported",
+   "kinds": [
+    "context"
+   ]
   },
   {
    "from": "C.strength",
@@ -121,7 +149,10 @@
    ],
    "strength": 0.0003,
    "plus_minus": 0.0005,
-   "status": "not clear yet"
+   "status": "not clear yet",
+   "kinds": [
+    "context"
+   ]
   }
  ],
  "terms": [
@@ -212,28 +243,29 @@
     {
      "from": 31.05,
      "to": 46.4,
-     "points": -27.6,
+     "points": -27.7,
      "plus_minus": 0.3
     }
-   ]
+   ],
+   "kind": "execution"
   },
   {
    "term": "stand",
    "description": "stand (discovery, approved)",
-   "importance": 0.289,
+   "importance": 0.288,
    "missing_points": 0.0,
    "curve": [
     {
      "from": -1.0,
      "to": -0.5,
      "points": -10.1,
-     "plus_minus": 0.7
+     "plus_minus": 0.6
     },
     {
      "from": -0.5,
      "to": 0.5,
      "points": -5.3,
-     "plus_minus": 1.6
+     "plus_minus": 1.7
     },
     {
      "from": 0.5,
@@ -241,7 +273,8 @@
      "points": 6.2,
      "plus_minus": 0.7
     }
-   ]
+   ],
+   "kind": "state"
   },
   {
    "term": "run_dist",
@@ -333,7 +366,8 @@
      "points": 4.5,
      "plus_minus": 0.3
     }
-   ]
+   ],
+   "kind": "context"
   },
   {
    "term": "boost_clock",
@@ -345,19 +379,19 @@
      "from": -120.0,
      "to": -101.5,
      "points": -9.3,
-     "plus_minus": 0.7
+     "plus_minus": 0.6
     },
     {
      "from": -101.5,
      "to": -83.5,
      "points": -3.0,
-     "plus_minus": 1.2
+     "plus_minus": 1.1
     },
     {
      "from": -83.5,
      "to": -63.5,
      "points": -1.8,
-     "plus_minus": 1.2
+     "plus_minus": 1.0
     },
     {
      "from": -63.5,
@@ -375,13 +409,13 @@
      "from": 0.5,
      "to": 40.5,
      "points": -3.0,
-     "plus_minus": 0.5
+     "plus_minus": 0.4
     },
     {
      "from": 40.5,
      "to": 58.5,
      "points": 4.9,
-     "plus_minus": 1.1
+     "plus_minus": 1.0
     },
     {
      "from": 58.5,
@@ -399,19 +433,19 @@
      "from": 80.5,
      "to": 89.5,
      "points": 7.2,
-     "plus_minus": 1.2
+     "plus_minus": 1.1
     },
     {
      "from": 89.5,
      "to": 97.5,
      "points": 7.7,
-     "plus_minus": 1.4
+     "plus_minus": 1.3
     },
     {
      "from": 97.5,
      "to": 105.5,
      "points": 3.7,
-     "plus_minus": 0.8
+     "plus_minus": 0.9
     },
     {
      "from": 105.5,
@@ -423,9 +457,10 @@
      "from": 112.5,
      "to": 120.0,
      "points": -2.5,
-     "plus_minus": 0.8
+     "plus_minus": 0.7
     }
-   ]
+   ],
+   "kind": "state"
   },
   {
    "term": "flag_lead",
@@ -448,8 +483,8 @@
     {
      "from": -50.5,
      "to": -35.5,
-     "points": -4.9,
-     "plus_minus": 0.7
+     "points": -4.8,
+     "plus_minus": 0.6
     },
     {
      "from": -35.5,
@@ -517,7 +552,8 @@
      "points": 1.0,
      "plus_minus": 0.5
     }
-   ]
+   ],
+   "kind": "state"
   },
   {
    "term": "morale_diff",
@@ -534,13 +570,13 @@
     {
      "from": -136.5,
      "to": -89.5,
-     "points": -6.0,
+     "points": -5.9,
      "plus_minus": 0.9
     },
     {
      "from": -89.5,
      "to": -59.5,
-     "points": 5.0,
+     "points": 5.1,
      "plus_minus": 0.4
     },
     {
@@ -609,33 +645,8 @@
      "points": -12.3,
      "plus_minus": 0.7
     }
-   ]
-  },
-  {
-   "term": "checkpoint_s",
-   "description": "seconds into the run",
-   "importance": 0.109,
-   "missing_points": 0.0,
-   "curve": [
-    {
-     "from": 5.0,
-     "to": 10.0,
-     "points": 3.1,
-     "plus_minus": 0.3
-    },
-    {
-     "from": 10.0,
-     "to": 22.5,
-     "points": -1.4,
-     "plus_minus": 0.1
-    },
-    {
-     "from": 22.5,
-     "to": 30.0,
-     "points": -4.2,
-     "plus_minus": 0.8
-    }
-   ]
+   ],
+   "kind": "state"
   },
   {
    "term": "runner_class",
@@ -658,7 +669,7 @@
     {
      "from": 1.5,
      "to": 3.5,
-     "points": 3.1,
+     "points": 3.2,
      "plus_minus": 0.4
     },
     {
@@ -689,7 +700,7 @@
      "from": 7.5,
      "to": 8.5,
      "points": -2.3,
-     "plus_minus": 0.7
+     "plus_minus": 0.8
     },
     {
      "from": 8.5,
@@ -697,7 +708,35 @@
      "points": -0.8,
      "plus_minus": 0.3
     }
-   ]
+   ],
+   "kind": "decision"
+  },
+  {
+   "term": "checkpoint_s",
+   "description": "seconds into the run",
+   "importance": 0.108,
+   "missing_points": 0.0,
+   "curve": [
+    {
+     "from": 5.0,
+     "to": 10.0,
+     "points": 3.1,
+     "plus_minus": 0.3
+    },
+    {
+     "from": 10.0,
+     "to": 22.5,
+     "points": -1.4,
+     "plus_minus": 0.1
+    },
+    {
+     "from": 22.5,
+     "to": 30.0,
+     "points": -4.2,
+     "plus_minus": 0.8
+    }
+   ],
+   "kind": "state"
   },
   {
    "term": "strength_gap",
@@ -789,7 +828,8 @@
      "points": -3.8,
      "plus_minus": 0.4
     }
-   ]
+   ],
+   "kind": "context"
   },
   {
    "term": "def_free",
@@ -801,7 +841,7 @@
      "from": 0.0,
      "to": 3.5,
      "points": 21.6,
-     "plus_minus": 2.9
+     "plus_minus": 3.0
     },
     {
      "from": 3.5,
@@ -813,7 +853,7 @@
      "from": 4.5,
      "to": 5.5,
      "points": 2.4,
-     "plus_minus": 0.6
+     "plus_minus": 0.7
     },
     {
      "from": 5.5,
@@ -833,7 +873,8 @@
      "points": -1.8,
      "plus_minus": 0.1
     }
-   ]
+   ],
+   "kind": "state"
   },
   {
    "term": "def_main",
@@ -845,13 +886,13 @@
      "from": 0.0,
      "to": 1.5,
      "points": -8.3,
-     "plus_minus": 0.7
+     "plus_minus": 0.6
     },
     {
      "from": 1.5,
      "to": 2.5,
      "points": -5.5,
-     "plus_minus": 2.2
+     "plus_minus": 2.1
     },
     {
      "from": 2.5,
@@ -869,7 +910,7 @@
      "from": 4.5,
      "to": 5.5,
      "points": -1.1,
-     "plus_minus": 0.2
+     "plus_minus": 0.1
     },
     {
      "from": 5.5,
@@ -889,7 +930,8 @@
      "points": -1.4,
      "plus_minus": 0.2
     }
-   ]
+   ],
+   "kind": "state"
   },
   {
    "term": "down_diff_s",
@@ -913,7 +955,7 @@
      "from": -87.5,
      "to": -67.5,
      "points": 5.3,
-     "plus_minus": 0.3
+     "plus_minus": 0.2
     },
     {
      "from": -67.5,
@@ -979,9 +1021,10 @@
      "from": 107.5,
      "to": 525.0,
      "points": -14.9,
-     "plus_minus": 1.1
+     "plus_minus": 1.0
     }
-   ]
+   ],
+   "kind": "state"
   },
   {
    "term": "own_snares",
@@ -1031,7 +1074,8 @@
      "points": -16.9,
      "plus_minus": 0.9
     }
-   ]
+   ],
+   "kind": "context"
   },
   {
    "term": "escort",
@@ -1087,7 +1131,8 @@
      "points": -9.8,
      "plus_minus": 1.1
     }
-   ]
+   ],
+   "kind": "decision"
   },
   {
    "term": "def_snare_near",
@@ -1116,7 +1161,7 @@
     {
      "from": 11.95,
      "to": 19.65,
-     "points": 2.2,
+     "points": 2.1,
      "plus_minus": 0.3
     },
     {
@@ -1141,7 +1186,7 @@
      "from": 30.1,
      "to": 30.8,
      "points": 4.8,
-     "plus_minus": 0.2
+     "plus_minus": 0.3
     },
     {
      "from": 30.8,
@@ -1165,9 +1210,10 @@
      "from": 60.8,
      "to": 144.6,
      "points": -5.0,
-     "plus_minus": 1.1
+     "plus_minus": 1.0
     }
-   ]
+   ],
+   "kind": "execution"
   },
   {
    "term": "enemy_snares_v_own_speed",
@@ -1241,7 +1287,8 @@
      "points": -13.7,
      "plus_minus": 0.8
     }
-   ]
+   ],
+   "kind": "context"
   },
   {
    "term": "att_main",
@@ -1253,7 +1300,7 @@
      "from": 1.0,
      "to": 1.5,
      "points": 4.2,
-     "plus_minus": 2.6
+     "plus_minus": 2.5
     },
     {
      "from": 1.5,
@@ -1297,7 +1344,8 @@
      "points": -1.6,
      "plus_minus": 0.3
     }
-   ]
+   ],
+   "kind": "state"
   },
   {
    "term": "pushers_so_far",
@@ -1327,7 +1375,7 @@
      "from": 2.5,
      "to": 3.5,
      "points": 2.1,
-     "plus_minus": 1.2
+     "plus_minus": 1.1
     },
     {
      "from": 3.5,
@@ -1335,7 +1383,8 @@
      "points": -8.4,
      "plus_minus": 2.9
     }
-   ]
+   ],
+   "kind": "state"
   },
   {
    "term": "healing_monks_own",
@@ -1373,7 +1422,8 @@
      "points": 3.5,
      "plus_minus": 0.4
     }
-   ]
+   ],
+   "kind": "execution"
   },
   {
    "term": "own_area_damage",
@@ -1439,7 +1489,7 @@
      "from": 9.5,
      "to": 10.5,
      "points": -16.3,
-     "plus_minus": 1.8
+     "plus_minus": 1.7
     },
     {
      "from": 10.5,
@@ -1447,7 +1497,8 @@
      "points": 8.6,
      "plus_minus": 4.8
     }
-   ]
+   ],
+   "kind": "context"
   },
   {
    "term": "damage_so_far",
@@ -1465,7 +1516,7 @@
      "from": 0.5,
      "to": 22.5,
      "points": 0.3,
-     "plus_minus": 0.3
+     "plus_minus": 0.4
     },
     {
      "from": 22.5,
@@ -1513,7 +1564,7 @@
      "from": 160.5,
      "to": 200.5,
      "points": 2.2,
-     "plus_minus": 0.6
+     "plus_minus": 0.7
     },
     {
      "from": 200.5,
@@ -1539,7 +1590,8 @@
      "points": 2.8,
      "plus_minus": 1.3
     }
-   ]
+   ],
+   "kind": "state"
   },
   {
    "term": "control_so_far",
@@ -1589,8 +1641,72 @@
      "points": 0.9,
      "plus_minus": 2.6
     }
-   ]
+   ],
+   "kind": "state"
   }
+ ],
+ "kinds": {
+  "checkpoint_s": "state",
+  "def_free": "state",
+  "pushers_so_far": "state",
+  "control_so_far": "state",
+  "damage_so_far": "state",
+  "def_snare_near": "execution",
+  "min_capture_s": "execution",
+  "runner_class": "decision",
+  "boost_clock": "state",
+  "stand": "state",
+  "flag_lead": "state",
+  "morale_diff": "state",
+  "down_diff_s": "state",
+  "own_snares": "context",
+  "own_area_damage": "context",
+  "enemy_snares_v_own_speed": "context",
+  "healing_monks_own": "execution",
+  "escort": "decision",
+  "att_main": "state",
+  "def_main": "state",
+  "run_dist": "context",
+  "strength_gap": "context"
+ },
+ "input_cap": 192,
+ "inputs": 22,
+ "pruned": [],
+ "concurrent": {},
+ "selection": {
+  "def_snare_near": {
+   "next": 0.059,
+   "previous": 0.007,
+   "previous_low": 0.001,
+   "marks_situation": false
+  },
+  "min_capture_s": {
+   "next": 0.201,
+   "previous": 0.014,
+   "previous_low": 0.006,
+   "marks_situation": false
+  },
+  "runner_class": {
+   "next": 0.005,
+   "previous": 0.024,
+   "previous_low": 0.013,
+   "marks_situation": false
+  },
+  "healing_monks_own": {
+   "next": 0.028,
+   "previous": 0.03,
+   "previous_low": 0.022,
+   "marks_situation": false
+  },
+  "escort": {
+   "next": 0.041,
+   "previous": 0.05,
+   "previous_low": 0.042,
+   "marks_situation": true
+  }
+ },
+ "marks_situation": [
+  "escort"
  ],
  "note": "points = change in the chance of the result for an otherwise even (50%) case"
 }

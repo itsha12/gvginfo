@@ -1,17 +1,17 @@
 {
- "about": "- Outcome: the change in the deciding team's win chance over the decision's window, from a win model fitted WITHOUT that\n  match (it never saw the result), so no guessed weights are involved. Components (deaths, NPCs, flag lead) are shown\n  alongside so the number can be read.\n- Choice: the decision's choice (ran, held, already running, pushed, reset, ...), refined by what the players actually\n  did (e.g. \"held, fell back\" against \"held, fought\").\n- Usual play in a situation: the most common choice among the 15 most similar decisions of the same kind in OTHER\n  matches (similar = flag lead, stand, boost clock, numbers, DP, NPCs, Lord damage, minute, strength gap, scaled).\n- Choice effect: each choice's win-chance change against the most common choice, adjusted for the situation (a linear\n  fit on the same variables, readable as one number per choice), with a 90% interval from resampling whole matches.\n  With few matches most intervals include 0: \"not enough data yet\" is the honest reading.",
- "decisions": 1057,
+ "about": "- Outcome: the change in the deciding team's win chance over the decision's window, from a win model fitted WITHOUT that\n  match (it never saw the result), so no guessed weights are involved. Components (deaths, NPCs, flag lead) are shown\n  alongside so the number can be read.\n- Choice: the decision's choice (ran, held, already running, pushed, reset, ...), refined by what the players actually\n  did in the first 5 s (e.g. \"held, fell back\" against \"held, fought\"), not over the window, which the fight shapes.\n- Usual play in a situation: the most common choice among the 15 most similar decisions of the same kind in OTHER\n  matches (similar = flag lead, stand, boost clock, numbers, DP, NPCs, Lord damage, minute, strength gap, scaled).\n- Choice effect: each choice's win-chance change against the most common choice, adjusted for the situation (a linear\n  fit on the same variables, readable as one number per choice), with a 90% interval from resampling whole matches.\n  With few matches most intervals include 0: \"not enough data yet\" is the honest reading.\n- Pre-trend check (a placebo test): the same comparison on the change in win chance over the PRE_S seconds BEFORE the\n  decision. A choice can't cause what happened before it, so a clear pre-trend difference means teams making that\n  choice were already sliding (or rising): its effect is partly who chooses it, not what it does, and is marked so.\n- Fight state (fightstate.py: enemy minus own expected deaths in the next 10 s) is part of every situation, so a choice\n  is compared with teams that were winning or losing their fight about as much.",
+ "decisions": 32629,
  "kinds": {
   "after_wipe": {
-   "n": 65,
-   "matches": 27,
+   "n": 821,
+   "matches": 337,
    "reference": "pushed the pit",
    "choices": [
     {
      "choice": "pushed the pit",
-     "n": 46,
-     "share": 0.71,
-     "raw_wp_change": -2.5,
+     "n": 603,
+     "share": 0.73,
+     "raw_wp_change": 0.3,
      "effect_vs_usual": 0.0,
      "interval": [
       0.0,
@@ -19,28 +19,40 @@
      ]
     },
     {
-     "choice": "took the flag",
-     "n": 12,
-     "share": 0.18,
-     "raw_wp_change": 0.4,
-     "effect_vs_usual": 12.9,
+     "choice": "reset",
+     "n": 122,
+     "share": 0.15,
+     "raw_wp_change": -3.0,
+     "effect_vs_usual": -2.6,
      "interval": [
-      2.0,
-      26.1
+      -4.2,
+      -1.0
      ],
-     "clear": true
+     "clear": true,
+     "pre_trend_vs_usual": 0.4,
+     "pre_interval": [
+      -1.4,
+      2.3
+     ],
+     "selection_warning": false
     },
     {
-     "choice": "reset",
-     "n": 7,
-     "share": 0.11,
-     "raw_wp_change": 0.1,
-     "effect_vs_usual": 2.8,
+     "choice": "took the flag",
+     "n": 96,
+     "share": 0.12,
+     "raw_wp_change": -1.9,
+     "effect_vs_usual": -1.2,
      "interval": [
-      -5.3,
-      8.7
+      -3.9,
+      2.0
      ],
-     "clear": false
+     "clear": false,
+     "pre_trend_vs_usual": 1.9,
+     "pre_interval": [
+      0.1,
+      4.7
+     ],
+     "selection_warning": true
     }
    ],
    "adjusted_for": [
@@ -54,112 +66,141 @@
     "lord_damage",
     "minute",
     "strength_gap",
-    "pit_margin_s"
+    "fight_state",
+    "pit_margin_s",
+    "own_spike",
+    "own_shutdown",
+    "own_knockdowns",
+    "own_defence",
+    "own_sustain",
+    "enemy_spike",
+    "enemy_shutdown",
+    "enemy_knockdowns",
+    "enemy_defence",
+    "enemy_sustain",
+    "map_flag_run",
+    "map_pit_to_stand",
+    "map_bases_apart"
    ],
-   "by_build": [],
-   "unusual_choices": [
+   "by_build": [
     {
-     "match": "1d073205-fdec-5684-aa7a-b03a558a9471",
-     "team": "cope",
-     "t": 108,
-     "chose": "took the flag",
-     "usual": "pushed the pit",
-     "difference": 12.9,
-     "wp_change": 2.8
+     "choice": "reset",
+     "own build": "not spike",
+     "n": 80,
+     "n_usual": 451,
+     "raw_difference": -4.1
     },
     {
-     "match": "28447c4a-7cc6-5db5-ac7c-aa2bcc23c62c",
-     "team": "HC",
-     "t": 354,
-     "chose": "took the flag",
-     "usual": "pushed the pit",
-     "difference": 12.9,
-     "wp_change": 1.4
+     "choice": "reset",
+     "own build": "spike",
+     "n": 42,
+     "n_usual": 152,
+     "raw_difference": -1.7
     },
     {
-     "match": "29b7eca0-2660-5d04-adc2-06632123c2ec",
-     "team": "OG",
-     "t": 72,
-     "chose": "took the flag",
-     "usual": "pushed the pit",
-     "difference": 12.9,
-     "wp_change": 0.0
+     "choice": "reset",
+     "map": "Corrupted Isle",
+     "n": 20,
+     "n_usual": 76,
+     "raw_difference": -3.0
     },
     {
-     "match": "29b7eca0-2660-5d04-adc2-06632123c2ec",
-     "team": "OG",
-     "t": 190,
-     "chose": "took the flag",
-     "usual": "pushed the pit",
-     "difference": 12.9,
-     "wp_change": -0.3
+     "choice": "reset",
+     "map": "Druid's Isle",
+     "n": 13,
+     "n_usual": 74,
+     "raw_difference": -3.0
     },
     {
-     "match": "9b0816e2-c0eb-5797-a1b1-9962c8415307",
-     "team": "Apes",
-     "t": 481,
-     "chose": "took the flag",
-     "usual": "pushed the pit",
-     "difference": 12.9,
-     "wp_change": -0.8
+     "choice": "reset",
+     "map": "Isle of Jade",
+     "n": 22,
+     "n_usual": 81,
+     "raw_difference": -4.0
     },
     {
-     "match": "9b0816e2-c0eb-5797-a1b1-9962c8415307",
-     "team": "cope",
-     "t": 719,
-     "chose": "took the flag",
-     "usual": "pushed the pit",
-     "difference": 12.9,
-     "wp_change": -0.1
+     "choice": "reset",
+     "map": "Isle of Meditation",
+     "n": 21,
+     "n_usual": 113,
+     "raw_difference": -2.0
     },
     {
-     "match": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
-     "team": "\uc637\uc637\uc637\uc637",
-     "t": 152,
-     "chose": "pushed the pit",
-     "usual": "took the flag",
-     "difference": -12.9,
-     "wp_change": -2.8
+     "choice": "reset",
+     "map": "Isle of Solitude",
+     "n": 13,
+     "n_usual": 107,
+     "raw_difference": -2.5
     },
     {
-     "match": "bbef1904-cc55-54a4-aea4-ec0367e0d00b",
-     "team": "hdm",
-     "t": 511,
-     "chose": "took the flag",
-     "usual": "pushed the pit",
-     "difference": 12.9,
-     "wp_change": 0.0
+     "choice": "reset",
+     "map": "Isle of Weeping Stone",
+     "n": 10,
+     "n_usual": 49,
+     "raw_difference": -0.6
     },
     {
-     "match": "e905b193-051d-5ffb-ae10-118d3c46c055",
-     "team": "Free",
-     "t": 112,
-     "chose": "took the flag",
-     "usual": "pushed the pit",
-     "difference": 12.9,
-     "wp_change": -2.3
+     "choice": "reset",
+     "map": "Uncharted Isle",
+     "n": 10,
+     "n_usual": 74,
+     "raw_difference": -7.4
     },
     {
-     "match": "e905b193-051d-5ffb-ae10-118d3c46c055",
-     "team": "Free",
-     "t": 228,
-     "chose": "took the flag",
-     "usual": "pushed the pit",
-     "difference": 12.9,
-     "wp_change": 6.9
+     "choice": "took the flag",
+     "own build": "not spike",
+     "n": 60,
+     "n_usual": 451,
+     "raw_difference": -3.0
+    },
+    {
+     "choice": "took the flag",
+     "own build": "spike",
+     "n": 36,
+     "n_usual": 152,
+     "raw_difference": -0.8
+    },
+    {
+     "choice": "took the flag",
+     "map": "Corrupted Isle",
+     "n": 19,
+     "n_usual": 76,
+     "raw_difference": 3.8
+    },
+    {
+     "choice": "took the flag",
+     "map": "Druid's Isle",
+     "n": 16,
+     "n_usual": 74,
+     "raw_difference": -0.9
+    },
+    {
+     "choice": "took the flag",
+     "map": "Isle of Jade",
+     "n": 14,
+     "n_usual": 81,
+     "raw_difference": -5.3
+    },
+    {
+     "choice": "took the flag",
+     "map": "Isle of Meditation",
+     "n": 21,
+     "n_usual": 113,
+     "raw_difference": -4.0
     }
-   ]
+   ],
+   "unusual_choices": []
   },
   "boost_clock": {
-   "n": 107,
-   "matches": 29,
+   "n": 1322,
+   "matches": 330,
    "reference": "not running, fought",
    "choices": [
     {
      "choice": "not running, fought",
-     "n": 36,
-     "share": 0.34,
-     "raw_wp_change": -2.5,
+     "n": 290,
+     "share": 0.22,
+     "raw_wp_change": -1.4,
      "effect_vs_usual": 0.0,
      "interval": [
       0.0,
@@ -167,64 +208,166 @@
      ]
     },
     {
-     "choice": "running, fought",
-     "n": 20,
-     "share": 0.19,
-     "raw_wp_change": -1.1,
-     "effect_vs_usual": 4.7,
-     "interval": [
-      -0.5,
-      12.8
-     ],
-     "clear": false
-    },
-    {
-     "choice": "not running, advanced",
-     "n": 17,
+     "choice": "not running, fell back",
+     "n": 211,
      "share": 0.16,
-     "raw_wp_change": -2.2,
-     "effect_vs_usual": 0.1,
+     "raw_wp_change": -2.0,
+     "effect_vs_usual": -0.5,
      "interval": [
-      -4.8,
-      6.2
+      -1.8,
+      1.2
      ],
-     "clear": false
+     "clear": false,
+     "pre_trend_vs_usual": -0.3,
+     "pre_interval": [
+      -1.3,
+      0.8
+     ],
+     "selection_warning": false
     },
     {
      "choice": "running, advanced",
-     "n": 15,
-     "share": 0.14,
-     "raw_wp_change": -4.8,
-     "effect_vs_usual": 1.3,
+     "n": 193,
+     "share": 0.15,
+     "raw_wp_change": 0.5,
+     "effect_vs_usual": 2.3,
      "interval": [
-      -9.9,
-      13.7
+      0.7,
+      3.7
      ],
-     "clear": false
+     "clear": true,
+     "pre_trend_vs_usual": 1.5,
+     "pre_interval": [
+      0.5,
+      2.3
+     ],
+     "selection_warning": true
     },
     {
-     "choice": "not running, fell back",
-     "n": 14,
+     "choice": "not running, advanced",
+     "n": 174,
      "share": 0.13,
-     "raw_wp_change": -15.7,
-     "effect_vs_usual": -11.6,
+     "raw_wp_change": -1.0,
+     "effect_vs_usual": 0.6,
      "interval": [
-      -21.4,
-      -4.4
+      -0.9,
+      2.0
      ],
-     "clear": true
+     "clear": false,
+     "pre_trend_vs_usual": 0.6,
+     "pre_interval": [
+      -0.3,
+      1.6
+     ],
+     "selection_warning": false
+    },
+    {
+     "choice": "running, fought",
+     "n": 146,
+     "share": 0.11,
+     "raw_wp_change": 1.2,
+     "effect_vs_usual": 3.2,
+     "interval": [
+      1.5,
+      4.7
+     ],
+     "clear": true,
+     "pre_trend_vs_usual": 0.7,
+     "pre_interval": [
+      -0.5,
+      1.9
+     ],
+     "selection_warning": false
     },
     {
      "choice": "not running, held",
-     "n": 5,
-     "share": 0.05,
-     "raw_wp_change": -11.5,
-     "effect_vs_usual": -11.4,
+     "n": 118,
+     "share": 0.09,
+     "raw_wp_change": -0.2,
+     "effect_vs_usual": 1.3,
      "interval": [
-      -38.1,
-      5.8
+      -0.1,
+      2.7
      ],
-     "clear": false
+     "clear": false,
+     "pre_trend_vs_usual": -0.0,
+     "pre_interval": [
+      -1.1,
+      0.8
+     ],
+     "selection_warning": false
+    },
+    {
+     "choice": "running, fell back",
+     "n": 98,
+     "share": 0.07,
+     "raw_wp_change": 3.6,
+     "effect_vs_usual": 5.6,
+     "interval": [
+      3.5,
+      7.9
+     ],
+     "clear": true,
+     "pre_trend_vs_usual": -1.1,
+     "pre_interval": [
+      -2.4,
+      0.2
+     ],
+     "selection_warning": false
+    },
+    {
+     "choice": "running, held",
+     "n": 66,
+     "share": 0.05,
+     "raw_wp_change": 0.4,
+     "effect_vs_usual": 2.3,
+     "interval": [
+      0.3,
+      3.6
+     ],
+     "clear": true,
+     "pre_trend_vs_usual": 1.5,
+     "pre_interval": [
+      0.2,
+      2.8
+     ],
+     "selection_warning": true
+    },
+    {
+     "choice": "not running, to the spawn",
+     "n": 21,
+     "share": 0.02,
+     "raw_wp_change": -1.7,
+     "effect_vs_usual": -0.8,
+     "interval": [
+      -3.3,
+      1.3
+     ],
+     "clear": false,
+     "pre_trend_vs_usual": 2.3,
+     "pre_interval": [
+      -0.1,
+      4.8
+     ],
+     "selection_warning": false
+    },
+    {
+     "choice": "running, to the spawn",
+     "n": 5,
+     "share": 0.0,
+     "raw_wp_change": 0.9,
+     "effect_vs_usual": 1.8,
+     "interval": [
+      0.3,
+      3.5
+     ],
+     "clear": true,
+     "pre_trend_vs_usual": 1.5,
+     "pre_interval": [
+      -0.8,
+      3.5
+     ],
+     "selection_warning": false
     }
    ],
    "adjusted_for": [
@@ -238,137 +381,4492 @@
     "lord_damage",
     "minute",
     "strength_gap",
+    "fight_state",
     "deaths_30s_diff",
-    "main_diff_now"
+    "main_diff_now",
+    "health_diff",
+    "own_snare_power",
+    "enemy_snare_power",
+    "own_speed_power",
+    "own_spike",
+    "own_shutdown",
+    "own_knockdowns",
+    "own_defence",
+    "own_sustain",
+    "enemy_spike",
+    "enemy_shutdown",
+    "enemy_knockdowns",
+    "enemy_defence",
+    "enemy_sustain",
+    "map_flag_run",
+    "map_pit_to_stand",
+    "map_bases_apart"
    ],
    "by_build": [
     {
-     "choice": "running, fought",
+     "choice": "not running, fell back",
      "own build": "not spike",
-     "n": 20,
-     "raw_difference": 1.5
+     "n": 160,
+     "n_usual": 231,
+     "raw_difference": 0.0
     },
     {
-     "choice": "not running, advanced",
-     "own build": "not spike",
-     "n": 14,
-     "raw_difference": 0.9
+     "choice": "not running, fell back",
+     "own build": "spike",
+     "n": 51,
+     "n_usual": 59,
+     "raw_difference": -2.7
+    },
+    {
+     "choice": "not running, fell back",
+     "map": "Corrupted Isle",
+     "n": 34,
+     "n_usual": 33,
+     "raw_difference": 4.4
+    },
+    {
+     "choice": "not running, fell back",
+     "map": "Druid's Isle",
+     "n": 32,
+     "n_usual": 26,
+     "raw_difference": 1.2
+    },
+    {
+     "choice": "not running, fell back",
+     "map": "Isle of Jade",
+     "n": 22,
+     "n_usual": 48,
+     "raw_difference": -3.7
+    },
+    {
+     "choice": "not running, fell back",
+     "map": "Isle of Meditation",
+     "n": 37,
+     "n_usual": 66,
+     "raw_difference": -0.9
+    },
+    {
+     "choice": "not running, fell back",
+     "map": "Isle of Solitude",
+     "n": 32,
+     "n_usual": 41,
+     "raw_difference": -1.0
+    },
+    {
+     "choice": "not running, fell back",
+     "map": "Uncharted Isle",
+     "n": 29,
+     "n_usual": 38,
+     "raw_difference": -0.1
+    },
+    {
+     "choice": "not running, fell back",
+     "fight": "behind in the fight (lowest third, -0.12 or less)",
+     "n": 104,
+     "n_usual": 127,
+     "raw_difference": 0.3
+    },
+    {
+     "choice": "not running, fell back",
+     "fight": "middle third",
+     "n": 67,
+     "n_usual": 95,
+     "raw_difference": -2.6
+    },
+    {
+     "choice": "not running, fell back",
+     "fight": "ahead in the fight (top third, above -0.01)",
+     "n": 40,
+     "n_usual": 68,
+     "raw_difference": -0.3
+    },
+    {
+     "choice": "not running, fell back",
+     "snare": "little enemy snare for own speed (lowest third, -28 or less)",
+     "n": 65,
+     "n_usual": 69,
+     "raw_difference": -2.1
+    },
+    {
+     "choice": "not running, fell back",
+     "snare": "middle third",
+     "n": 73,
+     "n_usual": 114,
+     "raw_difference": 0.7
+    },
+    {
+     "choice": "not running, fell back",
+     "snare": "a lot of enemy snare for own speed (top third, above -1)",
+     "n": 73,
+     "n_usual": 107,
+     "raw_difference": -0.7
     },
     {
      "choice": "running, advanced",
      "own build": "not spike",
-     "n": 13,
-     "raw_difference": -3.3
+     "n": 152,
+     "n_usual": 231,
+     "raw_difference": 1.7
     },
     {
-     "choice": "not running, fell back",
+     "choice": "running, advanced",
+     "own build": "spike",
+     "n": 41,
+     "n_usual": 59,
+     "raw_difference": 2.3
+    },
+    {
+     "choice": "running, advanced",
+     "map": "Corrupted Isle",
+     "n": 37,
+     "n_usual": 33,
+     "raw_difference": 5.7
+    },
+    {
+     "choice": "running, advanced",
+     "map": "Druid's Isle",
+     "n": 15,
+     "n_usual": 26,
+     "raw_difference": 1.6
+    },
+    {
+     "choice": "running, advanced",
+     "map": "Isle of Jade",
+     "n": 13,
+     "n_usual": 48,
+     "raw_difference": -4.2
+    },
+    {
+     "choice": "running, advanced",
+     "map": "Isle of Meditation",
+     "n": 49,
+     "n_usual": 66,
+     "raw_difference": 3.4
+    },
+    {
+     "choice": "running, advanced",
+     "map": "Isle of Solitude",
+     "n": 27,
+     "n_usual": 41,
+     "raw_difference": 1.5
+    },
+    {
+     "choice": "running, advanced",
+     "map": "Isle of Weeping Stone",
+     "n": 27,
+     "n_usual": 13,
+     "raw_difference": -5.0
+    },
+    {
+     "choice": "running, advanced",
+     "map": "Uncharted Isle",
+     "n": 14,
+     "n_usual": 38,
+     "raw_difference": 0.3
+    },
+    {
+     "choice": "running, advanced",
+     "fight": "behind in the fight (lowest third, -0.12 or less)",
+     "n": 31,
+     "n_usual": 127,
+     "raw_difference": 1.3
+    },
+    {
+     "choice": "running, advanced",
+     "fight": "middle third",
+     "n": 69,
+     "n_usual": 95,
+     "raw_difference": 0.5
+    },
+    {
+     "choice": "running, advanced",
+     "fight": "ahead in the fight (top third, above -0.01)",
+     "n": 93,
+     "n_usual": 68,
+     "raw_difference": 4.1
+    },
+    {
+     "choice": "running, advanced",
+     "snare": "little enemy snare for own speed (lowest third, -28 or less)",
+     "n": 76,
+     "n_usual": 69,
+     "raw_difference": 1.9
+    },
+    {
+     "choice": "running, advanced",
+     "snare": "middle third",
+     "n": 60,
+     "n_usual": 114,
+     "raw_difference": 3.6
+    },
+    {
+     "choice": "running, advanced",
+     "snare": "a lot of enemy snare for own speed (top third, above -1)",
+     "n": 57,
+     "n_usual": 107,
+     "raw_difference": 0.2
+    },
+    {
+     "choice": "not running, advanced",
      "own build": "not spike",
-     "n": 12,
-     "raw_difference": -8.4
+     "n": 151,
+     "n_usual": 231,
+     "raw_difference": 0.1
+    },
+    {
+     "choice": "not running, advanced",
+     "own build": "spike",
+     "n": 23,
+     "n_usual": 59,
+     "raw_difference": 1.9
+    },
+    {
+     "choice": "not running, advanced",
+     "map": "Corrupted Isle",
+     "n": 32,
+     "n_usual": 33,
+     "raw_difference": 6.3
+    },
+    {
+     "choice": "not running, advanced",
+     "map": "Druid's Isle",
+     "n": 10,
+     "n_usual": 26,
+     "raw_difference": 3.6
+    },
+    {
+     "choice": "not running, advanced",
+     "map": "Isle of Jade",
+     "n": 18,
+     "n_usual": 48,
+     "raw_difference": -3.0
+    },
+    {
+     "choice": "not running, advanced",
+     "map": "Isle of Meditation",
+     "n": 33,
+     "n_usual": 66,
+     "raw_difference": 1.0
+    },
+    {
+     "choice": "not running, advanced",
+     "map": "Isle of Solitude",
+     "n": 34,
+     "n_usual": 41,
+     "raw_difference": 1.7
+    },
+    {
+     "choice": "not running, advanced",
+     "map": "Isle of Weeping Stone",
+     "n": 11,
+     "n_usual": 13,
+     "raw_difference": -11.3
+    },
+    {
+     "choice": "not running, advanced",
+     "map": "Uncharted Isle",
+     "n": 26,
+     "n_usual": 38,
+     "raw_difference": -2.7
+    },
+    {
+     "choice": "not running, advanced",
+     "fight": "behind in the fight (lowest third, -0.12 or less)",
+     "n": 49,
+     "n_usual": 127,
+     "raw_difference": 0.2
+    },
+    {
+     "choice": "not running, advanced",
+     "fight": "middle third",
+     "n": 68,
+     "n_usual": 95,
+     "raw_difference": 0.7
+    },
+    {
+     "choice": "not running, advanced",
+     "fight": "ahead in the fight (top third, above -0.01)",
+     "n": 57,
+     "n_usual": 68,
+     "raw_difference": 0.6
+    },
+    {
+     "choice": "not running, advanced",
+     "snare": "little enemy snare for own speed (lowest third, -28 or less)",
+     "n": 71,
+     "n_usual": 69,
+     "raw_difference": 0.5
+    },
+    {
+     "choice": "not running, advanced",
+     "snare": "middle third",
+     "n": 58,
+     "n_usual": 114,
+     "raw_difference": 0.6
+    },
+    {
+     "choice": "not running, advanced",
+     "snare": "a lot of enemy snare for own speed (top third, above -1)",
+     "n": 45,
+     "n_usual": 107,
+     "raw_difference": 0.6
+    },
+    {
+     "choice": "running, fought",
+     "own build": "not spike",
+     "n": 104,
+     "n_usual": 231,
+     "raw_difference": 2.5
+    },
+    {
+     "choice": "running, fought",
+     "own build": "spike",
+     "n": 42,
+     "n_usual": 59,
+     "raw_difference": 2.9
+    },
+    {
+     "choice": "running, fought",
+     "map": "Corrupted Isle",
+     "n": 17,
+     "n_usual": 33,
+     "raw_difference": 3.4
+    },
+    {
+     "choice": "running, fought",
+     "map": "Druid's Isle",
+     "n": 29,
+     "n_usual": 26,
+     "raw_difference": 4.1
+    },
+    {
+     "choice": "running, fought",
+     "map": "Isle of Jade",
+     "n": 11,
+     "n_usual": 48,
+     "raw_difference": 1.0
+    },
+    {
+     "choice": "running, fought",
+     "map": "Isle of Meditation",
+     "n": 30,
+     "n_usual": 66,
+     "raw_difference": -0.2
+    },
+    {
+     "choice": "running, fought",
+     "map": "Isle of Solitude",
+     "n": 23,
+     "n_usual": 41,
+     "raw_difference": 2.9
+    },
+    {
+     "choice": "running, fought",
+     "map": "Uncharted Isle",
+     "n": 15,
+     "n_usual": 38,
+     "raw_difference": 4.4
+    },
+    {
+     "choice": "running, fought",
+     "fight": "behind in the fight (lowest third, -0.12 or less)",
+     "n": 37,
+     "n_usual": 127,
+     "raw_difference": 0.2
+    },
+    {
+     "choice": "running, fought",
+     "fight": "middle third",
+     "n": 45,
+     "n_usual": 95,
+     "raw_difference": 1.4
+    },
+    {
+     "choice": "running, fought",
+     "fight": "ahead in the fight (top third, above -0.01)",
+     "n": 64,
+     "n_usual": 68,
+     "raw_difference": 5.8
+    },
+    {
+     "choice": "running, fought",
+     "snare": "little enemy snare for own speed (lowest third, -28 or less)",
+     "n": 57,
+     "n_usual": 69,
+     "raw_difference": 2.6
+    },
+    {
+     "choice": "running, fought",
+     "snare": "middle third",
+     "n": 38,
+     "n_usual": 114,
+     "raw_difference": 2.9
+    },
+    {
+     "choice": "running, fought",
+     "snare": "a lot of enemy snare for own speed (top third, above -1)",
+     "n": 51,
+     "n_usual": 107,
+     "raw_difference": 2.3
+    },
+    {
+     "choice": "not running, held",
+     "own build": "not spike",
+     "n": 83,
+     "n_usual": 231,
+     "raw_difference": 0.9
+    },
+    {
+     "choice": "not running, held",
+     "own build": "spike",
+     "n": 35,
+     "n_usual": 59,
+     "raw_difference": 2.0
+    },
+    {
+     "choice": "not running, held",
+     "map": "Corrupted Isle",
+     "n": 15,
+     "n_usual": 33,
+     "raw_difference": 0.6
+    },
+    {
+     "choice": "not running, held",
+     "map": "Druid's Isle",
+     "n": 18,
+     "n_usual": 26,
+     "raw_difference": 3.2
+    },
+    {
+     "choice": "not running, held",
+     "map": "Isle of Jade",
+     "n": 25,
+     "n_usual": 48,
+     "raw_difference": 0.4
+    },
+    {
+     "choice": "not running, held",
+     "map": "Isle of Meditation",
+     "n": 16,
+     "n_usual": 66,
+     "raw_difference": 2.3
+    },
+    {
+     "choice": "not running, held",
+     "map": "Isle of Solitude",
+     "n": 27,
+     "n_usual": 41,
+     "raw_difference": 2.5
+    },
+    {
+     "choice": "not running, held",
+     "fight": "behind in the fight (lowest third, -0.12 or less)",
+     "n": 48,
+     "n_usual": 127,
+     "raw_difference": 0.9
+    },
+    {
+     "choice": "not running, held",
+     "fight": "middle third",
+     "n": 34,
+     "n_usual": 95,
+     "raw_difference": -0.7
+    },
+    {
+     "choice": "not running, held",
+     "fight": "ahead in the fight (top third, above -0.01)",
+     "n": 36,
+     "n_usual": 68,
+     "raw_difference": 4.0
+    },
+    {
+     "choice": "not running, held",
+     "snare": "little enemy snare for own speed (lowest third, -28 or less)",
+     "n": 33,
+     "n_usual": 69,
+     "raw_difference": 1.3
+    },
+    {
+     "choice": "not running, held",
+     "snare": "middle third",
+     "n": 39,
+     "n_usual": 114,
+     "raw_difference": 1.6
+    },
+    {
+     "choice": "not running, held",
+     "snare": "a lot of enemy snare for own speed (top third, above -1)",
+     "n": 46,
+     "n_usual": 107,
+     "raw_difference": 0.6
+    },
+    {
+     "choice": "running, fell back",
+     "own build": "not spike",
+     "n": 76,
+     "n_usual": 231,
+     "raw_difference": 3.9
+    },
+    {
+     "choice": "running, fell back",
+     "own build": "spike",
+     "n": 22,
+     "n_usual": 59,
+     "raw_difference": 9.0
+    },
+    {
+     "choice": "running, fell back",
+     "map": "Corrupted Isle",
+     "n": 16,
+     "n_usual": 33,
+     "raw_difference": 8.4
+    },
+    {
+     "choice": "running, fell back",
+     "map": "Isle of Meditation",
+     "n": 16,
+     "n_usual": 66,
+     "raw_difference": 4.1
+    },
+    {
+     "choice": "running, fell back",
+     "map": "Isle of Solitude",
+     "n": 17,
+     "n_usual": 41,
+     "raw_difference": 5.2
+    },
+    {
+     "choice": "running, fell back",
+     "map": "Isle of Weeping Stone",
+     "n": 16,
+     "n_usual": 13,
+     "raw_difference": -3.4
+    },
+    {
+     "choice": "running, fell back",
+     "map": "Uncharted Isle",
+     "n": 18,
+     "n_usual": 38,
+     "raw_difference": 5.3
+    },
+    {
+     "choice": "running, fell back",
+     "fight": "behind in the fight (lowest third, -0.12 or less)",
+     "n": 25,
+     "n_usual": 127,
+     "raw_difference": 1.5
+    },
+    {
+     "choice": "running, fell back",
+     "fight": "middle third",
+     "n": 40,
+     "n_usual": 95,
+     "raw_difference": 5.7
+    },
+    {
+     "choice": "running, fell back",
+     "fight": "ahead in the fight (top third, above -0.01)",
+     "n": 33,
+     "n_usual": 68,
+     "raw_difference": 7.3
+    },
+    {
+     "choice": "running, fell back",
+     "snare": "little enemy snare for own speed (lowest third, -28 or less)",
+     "n": 43,
+     "n_usual": 69,
+     "raw_difference": 5.5
+    },
+    {
+     "choice": "running, fell back",
+     "snare": "middle third",
+     "n": 26,
+     "n_usual": 114,
+     "raw_difference": 6.3
+    },
+    {
+     "choice": "running, fell back",
+     "snare": "a lot of enemy snare for own speed (top third, above -1)",
+     "n": 29,
+     "n_usual": 107,
+     "raw_difference": 3.5
+    },
+    {
+     "choice": "running, held",
+     "own build": "not spike",
+     "n": 49,
+     "n_usual": 231,
+     "raw_difference": 1.6
+    },
+    {
+     "choice": "running, held",
+     "own build": "spike",
+     "n": 17,
+     "n_usual": 59,
+     "raw_difference": 2.2
+    },
+    {
+     "choice": "running, held",
+     "map": "Isle of Jade",
+     "n": 21,
+     "n_usual": 48,
+     "raw_difference": -1.4
+    },
+    {
+     "choice": "running, held",
+     "map": "Isle of Solitude",
+     "n": 10,
+     "n_usual": 41,
+     "raw_difference": 3.0
+    },
+    {
+     "choice": "running, held",
+     "fight": "behind in the fight (lowest third, -0.12 or less)",
+     "n": 7,
+     "n_usual": 127,
+     "note": "too few yet",
+     "raw_mean": 0.4,
+     "raw_mean_usual": -1.1
+    },
+    {
+     "choice": "running, held",
+     "fight": "middle third",
+     "n": 25,
+     "n_usual": 95,
+     "raw_difference": 1.5
+    },
+    {
+     "choice": "running, held",
+     "fight": "ahead in the fight (top third, above -0.01)",
+     "n": 34,
+     "n_usual": 68,
+     "raw_difference": 3.2
+    },
+    {
+     "choice": "running, held",
+     "snare": "little enemy snare for own speed (lowest third, -28 or less)",
+     "n": 24,
+     "n_usual": 69,
+     "raw_difference": 1.8
+    },
+    {
+     "choice": "running, held",
+     "snare": "middle third",
+     "n": 24,
+     "n_usual": 114,
+     "raw_difference": 2.8
+    },
+    {
+     "choice": "running, held",
+     "snare": "a lot of enemy snare for own speed (top third, above -1)",
+     "n": 18,
+     "n_usual": 107,
+     "raw_difference": 0.9
+    },
+    {
+     "choice": "not running, to the spawn",
+     "own build": "not spike",
+     "n": 19,
+     "n_usual": 231,
+     "raw_difference": -0.6
+    },
+    {
+     "choice": "not running, to the spawn",
+     "fight": "behind in the fight (lowest third, -0.12 or less)",
+     "n": 13,
+     "n_usual": 127,
+     "raw_difference": -1.4
+    },
+    {
+     "choice": "not running, to the spawn",
+     "fight": "middle third",
+     "n": 3,
+     "n_usual": 95,
+     "note": "too few yet",
+     "raw_mean": 1.1,
+     "raw_mean_usual": -0.2
+    },
+    {
+     "choice": "not running, to the spawn",
+     "fight": "ahead in the fight (top third, above -0.01)",
+     "n": 5,
+     "n_usual": 68,
+     "note": "too few yet",
+     "raw_mean": -1.4,
+     "raw_mean_usual": -3.5
+    },
+    {
+     "choice": "not running, to the spawn",
+     "snare": "little enemy snare for own speed (lowest third, -28 or less)",
+     "n": 3,
+     "n_usual": 69,
+     "note": "too few yet",
+     "raw_mean": -8.9,
+     "raw_mean_usual": -2.0
+    },
+    {
+     "choice": "not running, to the spawn",
+     "snare": "middle third",
+     "n": 5,
+     "n_usual": 114,
+     "note": "too few yet",
+     "raw_mean": -0.5,
+     "raw_mean_usual": -2.4
+    },
+    {
+     "choice": "not running, to the spawn",
+     "snare": "a lot of enemy snare for own speed (top third, above -1)",
+     "n": 13,
+     "n_usual": 107,
+     "raw_difference": -0.6
+    },
+    {
+     "choice": "running, to the spawn",
+     "fight": "behind in the fight (lowest third, -0.12 or less)",
+     "n": 2,
+     "n_usual": 127,
+     "note": "too few yet",
+     "raw_mean": 0.0,
+     "raw_mean_usual": -1.1
+    },
+    {
+     "choice": "running, to the spawn",
+     "fight": "middle third",
+     "n": 2,
+     "n_usual": 95,
+     "note": "too few yet",
+     "raw_mean": 1.2,
+     "raw_mean_usual": -0.2
+    },
+    {
+     "choice": "running, to the spawn",
+     "fight": "ahead in the fight (top third, above -0.01)",
+     "n": 1,
+     "n_usual": 68,
+     "note": "too few yet",
+     "raw_mean": 2.0,
+     "raw_mean_usual": -3.5
+    },
+    {
+     "choice": "running, to the spawn",
+     "snare": "little enemy snare for own speed (lowest third, -28 or less)",
+     "n": 2,
+     "n_usual": 69,
+     "note": "too few yet",
+     "raw_mean": 2.2,
+     "raw_mean_usual": -2.0
+    },
+    {
+     "choice": "running, to the spawn",
+     "snare": "middle third",
+     "n": 1,
+     "n_usual": 114,
+     "note": "too few yet",
+     "raw_mean": 0.0,
+     "raw_mean_usual": -2.4
+    },
+    {
+     "choice": "running, to the spawn",
+     "snare": "a lot of enemy snare for own speed (top third, above -1)",
+     "n": 2,
+     "n_usual": 107,
+     "note": "too few yet",
+     "raw_mean": 0.0,
+     "raw_mean_usual": 0.1
     }
    ],
    "unusual_choices": [
     {
-     "match": "2df9b7fd-823e-5df7-ad4e-192612cd9249",
-     "team": "push",
-     "t": 314,
-     "chose": "not running, fell back",
-     "usual": "running, fought",
-     "difference": -16.3,
-     "wp_change": -43.4
-    },
-    {
-     "match": "f30bb176-a527-508c-acd5-f289b304ee79",
-     "team": "cope",
-     "t": 192,
-     "chose": "not running, fell back",
-     "usual": "running, fought",
-     "difference": -16.3,
-     "wp_change": -46.1
-    },
-    {
      "match": "f30bb176-a527-508c-acd5-f289b304ee79",
      "team": "One",
-     "t": 438,
-     "chose": "not running, fell back",
-     "usual": "running, fought",
-     "difference": -16.3,
-     "wp_change": -6.7
+     "t": 1244,
+     "chose": "not running, to the spawn",
+     "usual": "running, fell back",
+     "difference": -6.4,
+     "wp_change": -8.3
     },
     {
-     "match": "f30bb176-a527-508c-acd5-f289b304ee79",
-     "team": "cope",
-     "t": 312,
-     "chose": "not running, advanced",
+     "match": "13bbd90b-447d-58ff-ad9b-68f14cefa564",
+     "team": "One",
+     "t": 503,
+     "chose": "running, fell back",
      "usual": "not running, fell back",
-     "difference": 11.7,
-     "wp_change": -17.7
+     "difference": 6.1,
+     "wp_change": 12.2
     },
     {
-     "match": "25b008b8-486d-5f15-a310-114f6eecca05",
-     "team": "Id",
-     "t": 267,
-     "chose": "not running, fell back",
-     "usual": "not running, fought",
-     "difference": -11.6,
-     "wp_change": -11.0
+     "match": "22415c15-10a8-50a4-af4f-3bb410464703",
+     "team": "OG",
+     "t": 763,
+     "chose": "running, fell back",
+     "usual": "not running, fell back",
+     "difference": 6.1,
+     "wp_change": 3.1
     },
     {
-     "match": "28447c4a-7cc6-5db5-ac7c-aa2bcc23c62c",
-     "team": "HC",
-     "t": 646,
-     "chose": "not running, fell back",
-     "usual": "not running, fought",
-     "difference": -11.6,
-     "wp_change": -63.7
+     "match": "27618d5b-0360-556c-aac4-c56b314adffb",
+     "team": "Fun",
+     "t": 774,
+     "chose": "running, fell back",
+     "usual": "not running, fell back",
+     "difference": 6.1,
+     "wp_change": 25.9
     },
     {
-     "match": "28447c4a-7cc6-5db5-ac7c-aa2bcc23c62c",
-     "team": "HC",
-     "t": 1348,
-     "chose": "not running, fell back",
-     "usual": "not running, fought",
-     "difference": -11.6,
-     "wp_change": 0.8
-    },
-    {
-     "match": "5739e1e0-483e-58f1-a017-d0d8fee69c6e",
-     "team": "chic",
-     "t": 482,
-     "chose": "not running, fell back",
-     "usual": "not running, fought",
-     "difference": -11.6,
-     "wp_change": 0.0
-    },
-    {
-     "match": "8086734b-4092-5628-a73e-4042618ea4fa",
-     "team": "mddl",
-     "t": 193,
-     "chose": "not running, fell back",
-     "usual": "not running, fought",
-     "difference": -11.6,
-     "wp_change": 0.0
-    },
-    {
-     "match": "9b0816e2-c0eb-5797-a1b1-9962c8415307",
+     "match": "27d03c34-b283-5a83-a5dd-70a02424523d",
      "team": "Apes",
-     "t": 815,
+     "t": 1084,
+     "chose": "running, fell back",
+     "usual": "not running, fell back",
+     "difference": 6.1,
+     "wp_change": 0.0
+    },
+    {
+     "match": "2b13eea5-2968-5421-a481-60215131765d",
+     "team": "DRKN",
+     "t": 626,
      "chose": "not running, fell back",
-     "usual": "not running, fought",
-     "difference": -11.6,
+     "usual": "running, fell back",
+     "difference": -6.1,
+     "wp_change": -0.2
+    },
+    {
+     "match": "2df9b7fd-823e-5df7-ad4e-192612cd9249",
+     "team": "Team",
+     "t": 116,
+     "chose": "running, fell back",
+     "usual": "not running, fell back",
+     "difference": 6.1,
+     "wp_change": 24.7
+    },
+    {
+     "match": "3a2d3d65-d3d3-51c6-a041-b3dcee70fb13",
+     "team": "Fun",
+     "t": 233,
+     "chose": "running, fell back",
+     "usual": "not running, fell back",
+     "difference": 6.1,
+     "wp_change": 5.9
+    },
+    {
+     "match": "3ba08a68-bd67-5d9d-a851-03b998b0b9b9",
+     "team": "NwAy",
+     "t": 309,
+     "chose": "running, fell back",
+     "usual": "not running, fell back",
+     "difference": 6.1,
+     "wp_change": 3.5
+    },
+    {
+     "match": "4f35c4a9-3f61-59ba-ad9a-cb1bb15f31c0",
+     "team": "Crew",
+     "t": 152,
+     "chose": "running, fell back",
+     "usual": "not running, fell back",
+     "difference": 6.1,
+     "wp_change": 0.0
+    }
+   ]
+  },
+  "eight_v_eight_or_flag": {
+   "n": 3264,
+   "matches": 328,
+   "reference": "flag game",
+   "choices": [
+    {
+     "choice": "flag game",
+     "n": 2370,
+     "share": 0.73,
+     "raw_wp_change": -0.4,
+     "effect_vs_usual": 0.0,
+     "interval": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "choice": "commit all 8",
+     "n": 894,
+     "share": 0.27,
+     "raw_wp_change": -0.8,
+     "effect_vs_usual": 0.1,
+     "interval": [
+      -1.1,
+      1.2
+     ],
+     "clear": false,
+     "pre_trend_vs_usual": -1.2,
+     "pre_interval": [
+      -1.8,
+      -0.6
+     ],
+     "selection_warning": true
+    }
+   ],
+   "adjusted_for": [
+    "flag_lead",
+    "stand",
+    "boost_in",
+    "alive",
+    "main",
+    "dp",
+    "npcs",
+    "lord_damage",
+    "minute",
+    "strength_gap",
+    "fight_state",
+    "own_spike",
+    "own_shutdown",
+    "own_knockdowns",
+    "own_defence",
+    "own_sustain",
+    "enemy_spike",
+    "enemy_shutdown",
+    "enemy_knockdowns",
+    "enemy_defence",
+    "enemy_sustain",
+    "map_flag_run",
+    "map_pit_to_stand",
+    "map_bases_apart"
+   ],
+   "by_build": [
+    {
+     "choice": "commit all 8",
+     "own build": "not spike",
+     "n": 579,
+     "n_usual": 1933,
+     "raw_difference": -0.3
+    },
+    {
+     "choice": "commit all 8",
+     "own build": "spike",
+     "n": 315,
+     "n_usual": 437,
+     "raw_difference": -0.9
+    },
+    {
+     "choice": "commit all 8",
+     "map": "Corrupted Isle",
+     "n": 107,
+     "n_usual": 403,
+     "raw_difference": 0.4
+    },
+    {
+     "choice": "commit all 8",
+     "map": "Druid's Isle",
+     "n": 173,
+     "n_usual": 170,
+     "raw_difference": -2.8
+    },
+    {
+     "choice": "commit all 8",
+     "map": "Imperial Isle",
+     "n": 32,
+     "n_usual": 150,
+     "raw_difference": -3.1
+    },
+    {
+     "choice": "commit all 8",
+     "map": "Isle of Jade",
+     "n": 172,
+     "n_usual": 142,
+     "raw_difference": 0.2
+    },
+    {
+     "choice": "commit all 8",
+     "map": "Isle of Meditation",
+     "n": 152,
+     "n_usual": 320,
+     "raw_difference": -0.5
+    },
+    {
+     "choice": "commit all 8",
+     "map": "Isle of Solitude",
+     "n": 99,
+     "n_usual": 338,
+     "raw_difference": -0.3
+    },
+    {
+     "choice": "commit all 8",
+     "map": "Isle of Weeping Stone",
+     "n": 67,
+     "n_usual": 283,
+     "raw_difference": -2.0
+    },
+    {
+     "choice": "commit all 8",
+     "map": "Nomad's Isle",
+     "n": 31,
+     "n_usual": 94,
+     "raw_difference": 2.4
+    },
+    {
+     "choice": "commit all 8",
+     "map": "Uncharted Isle",
+     "n": 58,
+     "n_usual": 468,
+     "raw_difference": 2.2
+    }
+   ],
+   "unusual_choices": []
+  },
+  "enemy_pickup": {
+   "n": 4443,
+   "matches": 339,
+   "reference": "held, advanced",
+   "choices": [
+    {
+     "choice": "held, advanced",
+     "n": 631,
+     "share": 0.14,
+     "raw_wp_change": 0.2,
+     "effect_vs_usual": 0.0,
+     "interval": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "choice": "already running, advanced",
+     "n": 615,
+     "share": 0.14,
+     "raw_wp_change": 0.1,
+     "effect_vs_usual": -1.0,
+     "interval": [
+      -2.6,
+      0.8
+     ],
+     "clear": false,
+     "pre_trend_vs_usual": 2.1,
+     "pre_interval": [
+      1.0,
+      3.6
+     ],
+     "selection_warning": true
+    },
+    {
+     "choice": "held, fell back",
+     "n": 572,
+     "share": 0.13,
+     "raw_wp_change": -0.7,
+     "effect_vs_usual": -0.8,
+     "interval": [
+      -2.3,
+      0.7
+     ],
+     "clear": false,
+     "pre_trend_vs_usual": -0.1,
+     "pre_interval": [
+      -1.2,
+      1.2
+     ],
+     "selection_warning": false
+    },
+    {
+     "choice": "already running, fell back",
+     "n": 470,
+     "share": 0.11,
+     "raw_wp_change": 0.1,
+     "effect_vs_usual": -1.0,
+     "interval": [
+      -2.4,
+      0.9
+     ],
+     "clear": false,
+     "pre_trend_vs_usual": 1.3,
+     "pre_interval": [
+      0.3,
+      2.8
+     ],
+     "selection_warning": true
+    },
+    {
+     "choice": "held, fought",
+     "n": 455,
+     "share": 0.1,
+     "raw_wp_change": -1.6,
+     "effect_vs_usual": -1.3,
+     "interval": [
+      -2.8,
+      0.3
+     ],
+     "clear": false,
+     "pre_trend_vs_usual": 0.2,
+     "pre_interval": [
+      -0.6,
+      1.2
+     ],
+     "selection_warning": false
+    },
+    {
+     "choice": "already running, fought",
+     "n": 381,
+     "share": 0.09,
+     "raw_wp_change": -0.8,
+     "effect_vs_usual": -1.9,
+     "interval": [
+      -3.7,
+      -0.1
+     ],
+     "clear": true,
+     "pre_trend_vs_usual": 1.6,
+     "pre_interval": [
+      0.4,
+      3.0
+     ],
+     "selection_warning": true
+    },
+    {
+     "choice": "ran, fell back",
+     "n": 338,
+     "share": 0.08,
+     "raw_wp_change": 2.2,
+     "effect_vs_usual": 1.8,
+     "interval": [
+      0.4,
+      3.4
+     ],
+     "clear": true,
+     "pre_trend_vs_usual": 0.7,
+     "pre_interval": [
+      -0.5,
+      2.0
+     ],
+     "selection_warning": false
+    },
+    {
+     "choice": "ran, advanced",
+     "n": 266,
+     "share": 0.06,
+     "raw_wp_change": 0.0,
+     "effect_vs_usual": -0.2,
+     "interval": [
+      -1.9,
+      2.0
+     ],
+     "clear": false,
+     "pre_trend_vs_usual": 1.9,
+     "pre_interval": [
+      0.6,
+      3.4
+     ],
+     "selection_warning": true
+    },
+    {
+     "choice": "ran, fought",
+     "n": 195,
+     "share": 0.04,
+     "raw_wp_change": 0.3,
+     "effect_vs_usual": 0.2,
+     "interval": [
+      -1.1,
+      1.8
+     ],
+     "clear": false,
+     "pre_trend_vs_usual": 0.7,
+     "pre_interval": [
+      -0.5,
+      2.3
+     ],
+     "selection_warning": false
+    },
+    {
+     "choice": "held, held",
+     "n": 191,
+     "share": 0.04,
+     "raw_wp_change": 0.1,
+     "effect_vs_usual": -0.2,
+     "interval": [
+      -1.7,
+      1.6
+     ],
+     "clear": false,
+     "pre_trend_vs_usual": 0.7,
+     "pre_interval": [
+      -0.3,
+      2.0
+     ],
+     "selection_warning": false
+    },
+    {
+     "choice": "already running, held",
+     "n": 189,
+     "share": 0.04,
+     "raw_wp_change": -0.9,
+     "effect_vs_usual": -2.2,
+     "interval": [
+      -4.0,
+      0.0
+     ],
+     "clear": false,
+     "pre_trend_vs_usual": 1.6,
+     "pre_interval": [
+      0.4,
+      3.4
+     ],
+     "selection_warning": true
+    },
+    {
+     "choice": "ran, held",
+     "n": 117,
+     "share": 0.03,
+     "raw_wp_change": 1.5,
+     "effect_vs_usual": 0.7,
+     "interval": [
+      -1.3,
+      3.1
+     ],
+     "clear": false,
+     "pre_trend_vs_usual": 0.6,
+     "pre_interval": [
+      -0.7,
+      2.2
+     ],
+     "selection_warning": false
+    },
+    {
+     "choice": "held, to the spawn",
+     "n": 10,
+     "share": 0.0,
+     "raw_wp_change": -0.7,
+     "effect_vs_usual": -3.4,
+     "interval": [
+      -7.7,
+      0.6
+     ],
+     "clear": false,
+     "pre_trend_vs_usual": 1.9,
+     "pre_interval": [
+      -1.6,
+      6.3
+     ],
+     "selection_warning": false
+    },
+    {
+     "choice": "held",
+     "n": 8,
+     "share": 0.0,
+     "raw_wp_change": -4.3,
+     "effect_vs_usual": -11.3,
+     "interval": [
+      -19.8,
+      -3.7
+     ],
+     "clear": true,
+     "pre_trend_vs_usual": 9.4,
+     "pre_interval": [
+      4.8,
+      14.0
+     ],
+     "selection_warning": true
+    },
+    {
+     "choice": "ran, to the spawn",
+     "n": 5,
+     "share": 0.0,
+     "raw_wp_change": 0.8,
+     "effect_vs_usual": 0.6,
+     "interval": [
+      -1.5,
+      3.0
+     ],
+     "clear": false,
+     "pre_trend_vs_usual": -2.0,
+     "pre_interval": [
+      -6.1,
+      1.8
+     ],
+     "selection_warning": false
+    }
+   ],
+   "adjusted_for": [
+    "flag_lead",
+    "stand",
+    "boost_in",
+    "alive",
+    "main",
+    "dp",
+    "npcs",
+    "lord_damage",
+    "minute",
+    "strength_gap",
+    "fight_state",
+    "own_snare_power",
+    "enemy_snare_power",
+    "own_speed_power",
+    "own_spike",
+    "own_shutdown",
+    "own_knockdowns",
+    "own_defence",
+    "own_sustain",
+    "enemy_spike",
+    "enemy_shutdown",
+    "enemy_knockdowns",
+    "enemy_defence",
+    "enemy_sustain",
+    "map_flag_run",
+    "map_pit_to_stand",
+    "map_bases_apart"
+   ],
+   "by_build": [
+    {
+     "choice": "already running, advanced",
+     "own build": "not spike",
+     "n": 502,
+     "n_usual": 504,
+     "raw_difference": -0.1
+    },
+    {
+     "choice": "already running, advanced",
+     "own build": "spike",
+     "n": 113,
+     "n_usual": 127,
+     "raw_difference": 0.1
+    },
+    {
+     "choice": "already running, advanced",
+     "map": "Corrupted Isle",
+     "n": 125,
+     "n_usual": 131,
+     "raw_difference": -0.6
+    },
+    {
+     "choice": "already running, advanced",
+     "map": "Druid's Isle",
+     "n": 45,
+     "n_usual": 42,
+     "raw_difference": -0.7
+    },
+    {
+     "choice": "already running, advanced",
+     "map": "Imperial Isle",
+     "n": 33,
+     "n_usual": 20,
+     "raw_difference": -4.1
+    },
+    {
+     "choice": "already running, advanced",
+     "map": "Isle of Jade",
+     "n": 31,
+     "n_usual": 64,
+     "raw_difference": -1.9
+    },
+    {
+     "choice": "already running, advanced",
+     "map": "Isle of Meditation",
+     "n": 98,
+     "n_usual": 100,
+     "raw_difference": -0.5
+    },
+    {
+     "choice": "already running, advanced",
+     "map": "Isle of Solitude",
+     "n": 87,
+     "n_usual": 74,
+     "raw_difference": 2.3
+    },
+    {
+     "choice": "already running, advanced",
+     "map": "Isle of Weeping Stone",
+     "n": 77,
+     "n_usual": 59,
+     "raw_difference": 1.2
+    },
+    {
+     "choice": "already running, advanced",
+     "map": "Uncharted Isle",
+     "n": 110,
+     "n_usual": 124,
+     "raw_difference": -0.1
+    },
+    {
+     "choice": "already running, advanced",
+     "fight": "behind in the fight (lowest third, -0.01 or less)",
+     "n": 164,
+     "n_usual": 160,
+     "raw_difference": 2.3
+    },
+    {
+     "choice": "already running, advanced",
+     "fight": "middle third",
+     "n": 273,
+     "n_usual": 189,
+     "raw_difference": -0.2
+    },
+    {
+     "choice": "already running, advanced",
+     "fight": "ahead in the fight (top third, above +0.02)",
+     "n": 178,
+     "n_usual": 282,
+     "raw_difference": -1.2
+    },
+    {
+     "choice": "already running, advanced",
+     "snare": "little enemy snare for own speed (lowest third, -33 or less)",
+     "n": 260,
+     "n_usual": 185,
+     "raw_difference": 2.0
+    },
+    {
+     "choice": "already running, advanced",
+     "snare": "middle third",
+     "n": 182,
+     "n_usual": 238,
+     "raw_difference": -3.9
+    },
+    {
+     "choice": "already running, advanced",
+     "snare": "a lot of enemy snare for own speed (top third, above -5)",
+     "n": 173,
+     "n_usual": 208,
+     "raw_difference": 2.2
+    },
+    {
+     "choice": "held, fell back",
+     "own build": "not spike",
+     "n": 444,
+     "n_usual": 504,
+     "raw_difference": -1.0
+    },
+    {
+     "choice": "held, fell back",
+     "own build": "spike",
+     "n": 128,
+     "n_usual": 127,
+     "raw_difference": -0.7
+    },
+    {
+     "choice": "held, fell back",
+     "map": "Corrupted Isle",
+     "n": 119,
+     "n_usual": 131,
+     "raw_difference": -3.8
+    },
+    {
+     "choice": "held, fell back",
+     "map": "Druid's Isle",
+     "n": 35,
+     "n_usual": 42,
+     "raw_difference": -1.3
+    },
+    {
+     "choice": "held, fell back",
+     "map": "Imperial Isle",
+     "n": 19,
+     "n_usual": 20,
+     "raw_difference": 1.2
+    },
+    {
+     "choice": "held, fell back",
+     "map": "Isle of Jade",
+     "n": 52,
+     "n_usual": 64,
+     "raw_difference": 5.1
+    },
+    {
+     "choice": "held, fell back",
+     "map": "Isle of Meditation",
+     "n": 100,
+     "n_usual": 100,
+     "raw_difference": -2.8
+    },
+    {
+     "choice": "held, fell back",
+     "map": "Isle of Solitude",
+     "n": 75,
+     "n_usual": 74,
+     "raw_difference": 1.9
+    },
+    {
+     "choice": "held, fell back",
+     "map": "Isle of Weeping Stone",
+     "n": 58,
+     "n_usual": 59,
+     "raw_difference": -0.2
+    },
+    {
+     "choice": "held, fell back",
+     "map": "Nomad's Isle",
+     "n": 15,
+     "n_usual": 17,
+     "raw_difference": 0.2
+    },
+    {
+     "choice": "held, fell back",
+     "map": "Uncharted Isle",
+     "n": 98,
+     "n_usual": 124,
+     "raw_difference": -1.4
+    },
+    {
+     "choice": "held, fell back",
+     "fight": "behind in the fight (lowest third, -0.01 or less)",
+     "n": 262,
+     "n_usual": 160,
+     "raw_difference": 0.0
+    },
+    {
+     "choice": "held, fell back",
+     "fight": "middle third",
+     "n": 149,
+     "n_usual": 189,
+     "raw_difference": 0.9
+    },
+    {
+     "choice": "held, fell back",
+     "fight": "ahead in the fight (top third, above +0.02)",
+     "n": 161,
+     "n_usual": 282,
+     "raw_difference": -2.7
+    },
+    {
+     "choice": "held, fell back",
+     "snare": "little enemy snare for own speed (lowest third, -33 or less)",
+     "n": 179,
+     "n_usual": 185,
+     "raw_difference": -1.1
+    },
+    {
+     "choice": "held, fell back",
+     "snare": "middle third",
+     "n": 185,
+     "n_usual": 238,
+     "raw_difference": -2.1
+    },
+    {
+     "choice": "held, fell back",
+     "snare": "a lot of enemy snare for own speed (top third, above -5)",
+     "n": 208,
+     "n_usual": 208,
+     "raw_difference": 1.1
+    },
+    {
+     "choice": "already running, fell back",
+     "own build": "not spike",
+     "n": 395,
+     "n_usual": 504,
+     "raw_difference": 0.2
+    },
+    {
+     "choice": "already running, fell back",
+     "own build": "spike",
+     "n": 75,
+     "n_usual": 127,
+     "raw_difference": -1.4
+    },
+    {
+     "choice": "already running, fell back",
+     "map": "Corrupted Isle",
+     "n": 84,
+     "n_usual": 131,
+     "raw_difference": 0.1
+    },
+    {
+     "choice": "already running, fell back",
+     "map": "Druid's Isle",
+     "n": 28,
+     "n_usual": 42,
+     "raw_difference": -2.8
+    },
+    {
+     "choice": "already running, fell back",
+     "map": "Imperial Isle",
+     "n": 17,
+     "n_usual": 20,
+     "raw_difference": -0.2
+    },
+    {
+     "choice": "already running, fell back",
+     "map": "Isle of Jade",
+     "n": 20,
+     "n_usual": 64,
+     "raw_difference": 0.4
+    },
+    {
+     "choice": "already running, fell back",
+     "map": "Isle of Meditation",
+     "n": 71,
+     "n_usual": 100,
+     "raw_difference": 0.1
+    },
+    {
+     "choice": "already running, fell back",
+     "map": "Isle of Solitude",
+     "n": 65,
+     "n_usual": 74,
+     "raw_difference": -0.1
+    },
+    {
+     "choice": "already running, fell back",
+     "map": "Isle of Weeping Stone",
+     "n": 53,
+     "n_usual": 59,
+     "raw_difference": 2.1
+    },
+    {
+     "choice": "already running, fell back",
+     "map": "Nomad's Isle",
+     "n": 19,
+     "n_usual": 17,
+     "raw_difference": -1.8
+    },
+    {
+     "choice": "already running, fell back",
+     "map": "Uncharted Isle",
+     "n": 113,
+     "n_usual": 124,
+     "raw_difference": -0.7
+    },
+    {
+     "choice": "already running, fell back",
+     "fight": "behind in the fight (lowest third, -0.01 or less)",
+     "n": 204,
+     "n_usual": 160,
+     "raw_difference": 2.1
+    },
+    {
+     "choice": "already running, fell back",
+     "fight": "middle third",
+     "n": 176,
+     "n_usual": 189,
+     "raw_difference": -0.7
+    },
+    {
+     "choice": "already running, fell back",
+     "fight": "ahead in the fight (top third, above +0.02)",
+     "n": 90,
+     "n_usual": 282,
+     "raw_difference": -1.0
+    },
+    {
+     "choice": "already running, fell back",
+     "snare": "little enemy snare for own speed (lowest third, -33 or less)",
+     "n": 174,
+     "n_usual": 185,
+     "raw_difference": 0.3
+    },
+    {
+     "choice": "already running, fell back",
+     "snare": "middle third",
+     "n": 146,
+     "n_usual": 238,
+     "raw_difference": -2.7
+    },
+    {
+     "choice": "already running, fell back",
+     "snare": "a lot of enemy snare for own speed (top third, above -5)",
+     "n": 150,
+     "n_usual": 208,
+     "raw_difference": 3.1
+    },
+    {
+     "choice": "held, fought",
+     "own build": "not spike",
+     "n": 330,
+     "n_usual": 504,
+     "raw_difference": -1.3
+    },
+    {
+     "choice": "held, fought",
+     "own build": "spike",
+     "n": 125,
+     "n_usual": 127,
+     "raw_difference": -2.9
+    },
+    {
+     "choice": "held, fought",
+     "map": "Corrupted Isle",
+     "n": 64,
+     "n_usual": 131,
+     "raw_difference": 1.3
+    },
+    {
+     "choice": "held, fought",
+     "map": "Druid's Isle",
+     "n": 83,
+     "n_usual": 42,
+     "raw_difference": -4.9
+    },
+    {
+     "choice": "held, fought",
+     "map": "Imperial Isle",
+     "n": 13,
+     "n_usual": 20,
+     "raw_difference": -6.5
+    },
+    {
+     "choice": "held, fought",
+     "map": "Isle of Jade",
+     "n": 42,
+     "n_usual": 64,
+     "raw_difference": 1.2
+    },
+    {
+     "choice": "held, fought",
+     "map": "Isle of Meditation",
+     "n": 80,
+     "n_usual": 100,
+     "raw_difference": -1.3
+    },
+    {
+     "choice": "held, fought",
+     "map": "Isle of Solitude",
+     "n": 47,
+     "n_usual": 74,
+     "raw_difference": -0.4
+    },
+    {
+     "choice": "held, fought",
+     "map": "Isle of Weeping Stone",
+     "n": 40,
+     "n_usual": 59,
+     "raw_difference": -0.7
+    },
+    {
+     "choice": "held, fought",
+     "map": "Nomad's Isle",
+     "n": 39,
+     "n_usual": 17,
+     "raw_difference": -3.2
+    },
+    {
+     "choice": "held, fought",
+     "map": "Uncharted Isle",
+     "n": 45,
+     "n_usual": 124,
+     "raw_difference": -5.3
+    },
+    {
+     "choice": "held, fought",
+     "fight": "behind in the fight (lowest third, -0.01 or less)",
+     "n": 125,
+     "n_usual": 160,
+     "raw_difference": -1.6
+    },
+    {
+     "choice": "held, fought",
+     "fight": "middle third",
+     "n": 79,
+     "n_usual": 189,
+     "raw_difference": 0.4
+    },
+    {
+     "choice": "held, fought",
+     "fight": "ahead in the fight (top third, above +0.02)",
+     "n": 251,
+     "n_usual": 282,
+     "raw_difference": -2.7
+    },
+    {
+     "choice": "held, fought",
+     "snare": "little enemy snare for own speed (lowest third, -33 or less)",
+     "n": 145,
+     "n_usual": 185,
+     "raw_difference": -0.5
+    },
+    {
+     "choice": "held, fought",
+     "snare": "middle third",
+     "n": 159,
+     "n_usual": 238,
+     "raw_difference": -2.2
+    },
+    {
+     "choice": "held, fought",
+     "snare": "a lot of enemy snare for own speed (top third, above -5)",
+     "n": 151,
+     "n_usual": 208,
+     "raw_difference": -2.1
+    },
+    {
+     "choice": "already running, fought",
+     "own build": "not spike",
+     "n": 294,
+     "n_usual": 504,
+     "raw_difference": -0.9
+    },
+    {
+     "choice": "already running, fought",
+     "own build": "spike",
+     "n": 87,
+     "n_usual": 127,
+     "raw_difference": -1.2
+    },
+    {
+     "choice": "already running, fought",
+     "map": "Corrupted Isle",
+     "n": 59,
+     "n_usual": 131,
+     "raw_difference": -2.8
+    },
+    {
+     "choice": "already running, fought",
+     "map": "Druid's Isle",
+     "n": 42,
+     "n_usual": 42,
+     "raw_difference": -4.4
+    },
+    {
+     "choice": "already running, fought",
+     "map": "Imperial Isle",
+     "n": 22,
+     "n_usual": 20,
+     "raw_difference": 1.3
+    },
+    {
+     "choice": "already running, fought",
+     "map": "Isle of Jade",
+     "n": 19,
+     "n_usual": 64,
+     "raw_difference": 3.9
+    },
+    {
+     "choice": "already running, fought",
+     "map": "Isle of Meditation",
+     "n": 59,
+     "n_usual": 100,
+     "raw_difference": -1.3
+    },
+    {
+     "choice": "already running, fought",
+     "map": "Isle of Solitude",
+     "n": 62,
+     "n_usual": 74,
+     "raw_difference": 1.3
+    },
+    {
+     "choice": "already running, fought",
+     "map": "Isle of Weeping Stone",
+     "n": 51,
+     "n_usual": 59,
+     "raw_difference": 2.3
+    },
+    {
+     "choice": "already running, fought",
+     "map": "Nomad's Isle",
+     "n": 27,
+     "n_usual": 17,
+     "raw_difference": -1.4
+    },
+    {
+     "choice": "already running, fought",
+     "map": "Uncharted Isle",
+     "n": 40,
+     "n_usual": 124,
+     "raw_difference": -5.1
+    },
+    {
+     "choice": "already running, fought",
+     "fight": "behind in the fight (lowest third, -0.01 or less)",
+     "n": 131,
+     "n_usual": 160,
+     "raw_difference": 1.2
+    },
+    {
+     "choice": "already running, fought",
+     "fight": "middle third",
+     "n": 113,
+     "n_usual": 189,
+     "raw_difference": -0.2
+    },
+    {
+     "choice": "already running, fought",
+     "fight": "ahead in the fight (top third, above +0.02)",
+     "n": 137,
+     "n_usual": 282,
+     "raw_difference": -3.0
+    },
+    {
+     "choice": "already running, fought",
+     "snare": "little enemy snare for own speed (lowest third, -33 or less)",
+     "n": 107,
+     "n_usual": 185,
+     "raw_difference": -0.9
+    },
+    {
+     "choice": "already running, fought",
+     "snare": "middle third",
+     "n": 143,
+     "n_usual": 238,
+     "raw_difference": -3.3
+    },
+    {
+     "choice": "already running, fought",
+     "snare": "a lot of enemy snare for own speed (top third, above -5)",
+     "n": 131,
+     "n_usual": 208,
+     "raw_difference": 1.6
+    },
+    {
+     "choice": "ran, fell back",
+     "own build": "not spike",
+     "n": 280,
+     "n_usual": 504,
+     "raw_difference": 1.9
+    },
+    {
+     "choice": "ran, fell back",
+     "own build": "spike",
+     "n": 58,
+     "n_usual": 127,
+     "raw_difference": 2.7
+    },
+    {
+     "choice": "ran, fell back",
+     "map": "Corrupted Isle",
+     "n": 69,
+     "n_usual": 131,
+     "raw_difference": 3.0
+    },
+    {
+     "choice": "ran, fell back",
+     "map": "Druid's Isle",
+     "n": 23,
+     "n_usual": 42,
+     "raw_difference": -0.2
+    },
+    {
+     "choice": "ran, fell back",
+     "map": "Imperial Isle",
+     "n": 20,
+     "n_usual": 20,
+     "raw_difference": 0.1
+    },
+    {
+     "choice": "ran, fell back",
+     "map": "Isle of Jade",
+     "n": 21,
+     "n_usual": 64,
+     "raw_difference": 4.2
+    },
+    {
+     "choice": "ran, fell back",
+     "map": "Isle of Meditation",
+     "n": 41,
+     "n_usual": 100,
+     "raw_difference": -0.0
+    },
+    {
+     "choice": "ran, fell back",
+     "map": "Isle of Solitude",
+     "n": 50,
+     "n_usual": 74,
+     "raw_difference": 1.8
+    },
+    {
+     "choice": "ran, fell back",
+     "map": "Isle of Weeping Stone",
+     "n": 40,
+     "n_usual": 59,
+     "raw_difference": 4.9
+    },
+    {
+     "choice": "ran, fell back",
+     "map": "Uncharted Isle",
+     "n": 67,
+     "n_usual": 124,
+     "raw_difference": 2.7
+    },
+    {
+     "choice": "ran, fell back",
+     "fight": "behind in the fight (lowest third, -0.01 or less)",
+     "n": 143,
+     "n_usual": 160,
+     "raw_difference": 3.0
+    },
+    {
+     "choice": "ran, fell back",
+     "fight": "middle third",
+     "n": 115,
+     "n_usual": 189,
+     "raw_difference": 3.0
+    },
+    {
+     "choice": "ran, fell back",
+     "fight": "ahead in the fight (top third, above +0.02)",
+     "n": 80,
+     "n_usual": 282,
+     "raw_difference": 0.8
+    },
+    {
+     "choice": "ran, fell back",
+     "snare": "little enemy snare for own speed (lowest third, -33 or less)",
+     "n": 109,
+     "n_usual": 185,
+     "raw_difference": 4.8
+    },
+    {
+     "choice": "ran, fell back",
+     "snare": "middle third",
+     "n": 120,
+     "n_usual": 238,
+     "raw_difference": -2.0
+    },
+    {
+     "choice": "ran, fell back",
+     "snare": "a lot of enemy snare for own speed (top third, above -5)",
+     "n": 109,
+     "n_usual": 208,
+     "raw_difference": 4.0
+    },
+    {
+     "choice": "ran, advanced",
+     "own build": "not spike",
+     "n": 233,
+     "n_usual": 504,
+     "raw_difference": -0.5
+    },
+    {
+     "choice": "ran, advanced",
+     "own build": "spike",
+     "n": 33,
+     "n_usual": 127,
+     "raw_difference": 2.2
+    },
+    {
+     "choice": "ran, advanced",
+     "map": "Corrupted Isle",
+     "n": 35,
+     "n_usual": 131,
+     "raw_difference": -4.4
+    },
+    {
+     "choice": "ran, advanced",
+     "map": "Druid's Isle",
+     "n": 15,
+     "n_usual": 42,
+     "raw_difference": -4.1
+    },
+    {
+     "choice": "ran, advanced",
+     "map": "Imperial Isle",
+     "n": 24,
+     "n_usual": 20,
+     "raw_difference": -3.9
+    },
+    {
+     "choice": "ran, advanced",
+     "map": "Isle of Jade",
+     "n": 33,
+     "n_usual": 64,
+     "raw_difference": 6.6
+    },
+    {
+     "choice": "ran, advanced",
+     "map": "Isle of Meditation",
+     "n": 42,
+     "n_usual": 100,
+     "raw_difference": 0.3
+    },
+    {
+     "choice": "ran, advanced",
+     "map": "Isle of Solitude",
+     "n": 32,
+     "n_usual": 74,
+     "raw_difference": 1.4
+    },
+    {
+     "choice": "ran, advanced",
+     "map": "Isle of Weeping Stone",
+     "n": 32,
+     "n_usual": 59,
+     "raw_difference": 4.6
+    },
+    {
+     "choice": "ran, advanced",
+     "map": "Uncharted Isle",
+     "n": 51,
+     "n_usual": 124,
+     "raw_difference": -2.2
+    },
+    {
+     "choice": "ran, advanced",
+     "fight": "behind in the fight (lowest third, -0.01 or less)",
+     "n": 79,
+     "n_usual": 160,
+     "raw_difference": 1.6
+    },
+    {
+     "choice": "ran, advanced",
+     "fight": "middle third",
+     "n": 104,
+     "n_usual": 189,
+     "raw_difference": 1.0
+    },
+    {
+     "choice": "ran, advanced",
+     "fight": "ahead in the fight (top third, above +0.02)",
+     "n": 83,
+     "n_usual": 282,
+     "raw_difference": -2.5
+    },
+    {
+     "choice": "ran, advanced",
+     "snare": "little enemy snare for own speed (lowest third, -33 or less)",
+     "n": 88,
+     "n_usual": 185,
+     "raw_difference": 1.2
+    },
+    {
+     "choice": "ran, advanced",
+     "snare": "middle third",
+     "n": 85,
+     "n_usual": 238,
+     "raw_difference": -2.7
+    },
+    {
+     "choice": "ran, advanced",
+     "snare": "a lot of enemy snare for own speed (top third, above -5)",
+     "n": 93,
+     "n_usual": 208,
+     "raw_difference": 1.7
+    },
+    {
+     "choice": "ran, fought",
+     "own build": "not spike",
+     "n": 145,
+     "n_usual": 504,
+     "raw_difference": -0.5
+    },
+    {
+     "choice": "ran, fought",
+     "own build": "spike",
+     "n": 50,
+     "n_usual": 127,
+     "raw_difference": 2.0
+    },
+    {
+     "choice": "ran, fought",
+     "map": "Corrupted Isle",
+     "n": 17,
+     "n_usual": 131,
+     "raw_difference": 2.1
+    },
+    {
+     "choice": "ran, fought",
+     "map": "Druid's Isle",
+     "n": 29,
+     "n_usual": 42,
+     "raw_difference": 1.7
+    },
+    {
+     "choice": "ran, fought",
+     "map": "Imperial Isle",
+     "n": 23,
+     "n_usual": 20,
+     "raw_difference": -1.5
+    },
+    {
+     "choice": "ran, fought",
+     "map": "Isle of Jade",
+     "n": 13,
+     "n_usual": 64,
+     "raw_difference": -1.0
+    },
+    {
+     "choice": "ran, fought",
+     "map": "Isle of Meditation",
+     "n": 26,
+     "n_usual": 100,
+     "raw_difference": 0.4
+    },
+    {
+     "choice": "ran, fought",
+     "map": "Isle of Solitude",
+     "n": 26,
+     "n_usual": 74,
+     "raw_difference": 2.3
+    },
+    {
+     "choice": "ran, fought",
+     "map": "Isle of Weeping Stone",
+     "n": 31,
+     "n_usual": 59,
+     "raw_difference": 1.1
+    },
+    {
+     "choice": "ran, fought",
+     "map": "Nomad's Isle",
+     "n": 12,
+     "n_usual": 17,
+     "raw_difference": -5.5
+    },
+    {
+     "choice": "ran, fought",
+     "map": "Uncharted Isle",
+     "n": 18,
+     "n_usual": 124,
+     "raw_difference": -2.9
+    },
+    {
+     "choice": "ran, fought",
+     "fight": "behind in the fight (lowest third, -0.01 or less)",
+     "n": 67,
+     "n_usual": 160,
+     "raw_difference": 2.8
+    },
+    {
+     "choice": "ran, fought",
+     "fight": "middle third",
+     "n": 57,
+     "n_usual": 189,
+     "raw_difference": 0.3
+    },
+    {
+     "choice": "ran, fought",
+     "fight": "ahead in the fight (top third, above +0.02)",
+     "n": 71,
+     "n_usual": 282,
+     "raw_difference": -2.0
+    },
+    {
+     "choice": "ran, fought",
+     "snare": "little enemy snare for own speed (lowest third, -33 or less)",
+     "n": 56,
+     "n_usual": 185,
+     "raw_difference": 1.4
+    },
+    {
+     "choice": "ran, fought",
+     "snare": "middle third",
+     "n": 67,
+     "n_usual": 238,
+     "raw_difference": -1.2
+    },
+    {
+     "choice": "ran, fought",
+     "snare": "a lot of enemy snare for own speed (top third, above -5)",
+     "n": 72,
+     "n_usual": 208,
+     "raw_difference": 0.9
+    },
+    {
+     "choice": "held, held",
+     "own build": "not spike",
+     "n": 133,
+     "n_usual": 504,
+     "raw_difference": 0.1
+    },
+    {
+     "choice": "held, held",
+     "own build": "spike",
+     "n": 58,
+     "n_usual": 127,
+     "raw_difference": -0.5
+    },
+    {
+     "choice": "held, held",
+     "map": "Corrupted Isle",
+     "n": 14,
+     "n_usual": 131,
+     "raw_difference": 0.0
+    },
+    {
+     "choice": "held, held",
+     "map": "Druid's Isle",
+     "n": 38,
+     "n_usual": 42,
+     "raw_difference": -2.1
+    },
+    {
+     "choice": "held, held",
+     "map": "Isle of Jade",
+     "n": 41,
+     "n_usual": 64,
+     "raw_difference": 5.9
+    },
+    {
+     "choice": "held, held",
+     "map": "Isle of Meditation",
+     "n": 23,
+     "n_usual": 100,
+     "raw_difference": -3.9
+    },
+    {
+     "choice": "held, held",
+     "map": "Isle of Solitude",
+     "n": 22,
+     "n_usual": 74,
+     "raw_difference": 0.8
+    },
+    {
+     "choice": "held, held",
+     "map": "Isle of Weeping Stone",
+     "n": 16,
+     "n_usual": 59,
+     "raw_difference": -6.8
+    },
+    {
+     "choice": "held, held",
+     "map": "Nomad's Isle",
+     "n": 16,
+     "n_usual": 17,
+     "raw_difference": 1.0
+    },
+    {
+     "choice": "held, held",
+     "map": "Uncharted Isle",
+     "n": 16,
+     "n_usual": 124,
+     "raw_difference": 1.2
+    },
+    {
+     "choice": "held, held",
+     "fight": "behind in the fight (lowest third, -0.01 or less)",
+     "n": 54,
+     "n_usual": 160,
+     "raw_difference": -1.5
+    },
+    {
+     "choice": "held, held",
+     "fight": "middle third",
+     "n": 78,
+     "n_usual": 189,
+     "raw_difference": 3.2
+    },
+    {
+     "choice": "held, held",
+     "fight": "ahead in the fight (top third, above +0.02)",
+     "n": 59,
+     "n_usual": 282,
+     "raw_difference": -2.2
+    },
+    {
+     "choice": "held, held",
+     "snare": "little enemy snare for own speed (lowest third, -33 or less)",
+     "n": 60,
+     "n_usual": 185,
+     "raw_difference": 1.7
+    },
+    {
+     "choice": "held, held",
+     "snare": "middle third",
+     "n": 61,
+     "n_usual": 238,
+     "raw_difference": -4.6
+    },
+    {
+     "choice": "held, held",
+     "snare": "a lot of enemy snare for own speed (top third, above -5)",
+     "n": 70,
+     "n_usual": 208,
+     "raw_difference": 3.2
+    },
+    {
+     "choice": "already running, held",
+     "own build": "not spike",
+     "n": 143,
+     "n_usual": 504,
+     "raw_difference": -0.9
+    },
+    {
+     "choice": "already running, held",
+     "own build": "spike",
+     "n": 46,
+     "n_usual": 127,
+     "raw_difference": -1.8
+    },
+    {
+     "choice": "already running, held",
+     "map": "Corrupted Isle",
+     "n": 16,
+     "n_usual": 131,
+     "raw_difference": -4.6
+    },
+    {
+     "choice": "already running, held",
+     "map": "Druid's Isle",
+     "n": 24,
+     "n_usual": 42,
+     "raw_difference": -3.9
+    },
+    {
+     "choice": "already running, held",
+     "map": "Isle of Jade",
+     "n": 24,
+     "n_usual": 64,
+     "raw_difference": 1.9
+    },
+    {
+     "choice": "already running, held",
+     "map": "Isle of Meditation",
+     "n": 19,
+     "n_usual": 100,
+     "raw_difference": -2.5
+    },
+    {
+     "choice": "already running, held",
+     "map": "Isle of Solitude",
+     "n": 29,
+     "n_usual": 74,
+     "raw_difference": 0.6
+    },
+    {
+     "choice": "already running, held",
+     "map": "Isle of Weeping Stone",
+     "n": 19,
+     "n_usual": 59,
+     "raw_difference": -2.5
+    },
+    {
+     "choice": "already running, held",
+     "map": "Uncharted Isle",
+     "n": 39,
+     "n_usual": 124,
+     "raw_difference": 1.2
+    },
+    {
+     "choice": "already running, held",
+     "fight": "behind in the fight (lowest third, -0.01 or less)",
+     "n": 55,
+     "n_usual": 160,
+     "raw_difference": -0.5
+    },
+    {
+     "choice": "already running, held",
+     "fight": "middle third",
+     "n": 98,
+     "n_usual": 189,
+     "raw_difference": -0.7
+    },
+    {
+     "choice": "already running, held",
+     "fight": "ahead in the fight (top third, above +0.02)",
+     "n": 36,
+     "n_usual": 282,
+     "raw_difference": -0.9
+    },
+    {
+     "choice": "already running, held",
+     "snare": "little enemy snare for own speed (lowest third, -33 or less)",
+     "n": 75,
+     "n_usual": 185,
+     "raw_difference": 0.7
+    },
+    {
+     "choice": "already running, held",
+     "snare": "middle third",
+     "n": 58,
+     "n_usual": 238,
+     "raw_difference": -5.7
+    },
+    {
+     "choice": "already running, held",
+     "snare": "a lot of enemy snare for own speed (top third, above -5)",
+     "n": 56,
+     "n_usual": 208,
+     "raw_difference": 2.3
+    },
+    {
+     "choice": "ran, held",
+     "own build": "not spike",
+     "n": 93,
+     "n_usual": 504,
+     "raw_difference": 1.5
+    },
+    {
+     "choice": "ran, held",
+     "own build": "spike",
+     "n": 24,
+     "n_usual": 127,
+     "raw_difference": 0.4
+    },
+    {
+     "choice": "ran, held",
+     "map": "Druid's Isle",
+     "n": 15,
+     "n_usual": 42,
+     "raw_difference": -2.2
+    },
+    {
+     "choice": "ran, held",
+     "map": "Imperial Isle",
+     "n": 10,
+     "n_usual": 20,
+     "raw_difference": -1.9
+    },
+    {
+     "choice": "ran, held",
+     "map": "Isle of Jade",
+     "n": 25,
+     "n_usual": 64,
+     "raw_difference": 6.6
+    },
+    {
+     "choice": "ran, held",
+     "map": "Isle of Meditation",
+     "n": 11,
+     "n_usual": 100,
+     "raw_difference": -1.3
+    },
+    {
+     "choice": "ran, held",
+     "map": "Isle of Solitude",
+     "n": 19,
+     "n_usual": 74,
+     "raw_difference": 1.4
+    },
+    {
+     "choice": "ran, held",
+     "map": "Isle of Weeping Stone",
+     "n": 10,
+     "n_usual": 59,
+     "raw_difference": 2.8
+    },
+    {
+     "choice": "ran, held",
+     "map": "Uncharted Isle",
+     "n": 13,
+     "n_usual": 124,
+     "raw_difference": 1.6
+    },
+    {
+     "choice": "ran, held",
+     "fight": "behind in the fight (lowest third, -0.01 or less)",
+     "n": 48,
+     "n_usual": 160,
+     "raw_difference": 2.1
+    },
+    {
+     "choice": "ran, held",
+     "fight": "middle third",
+     "n": 50,
+     "n_usual": 189,
+     "raw_difference": 1.7
+    },
+    {
+     "choice": "ran, held",
+     "fight": "ahead in the fight (top third, above +0.02)",
+     "n": 19,
+     "n_usual": 282,
+     "raw_difference": 1.6
+    },
+    {
+     "choice": "ran, held",
+     "snare": "little enemy snare for own speed (lowest third, -33 or less)",
+     "n": 34,
+     "n_usual": 185,
+     "raw_difference": 4.2
+    },
+    {
+     "choice": "ran, held",
+     "snare": "middle third",
+     "n": 39,
+     "n_usual": 238,
+     "raw_difference": -0.1
+    },
+    {
+     "choice": "ran, held",
+     "snare": "a lot of enemy snare for own speed (top third, above -5)",
+     "n": 44,
+     "n_usual": 208,
+     "raw_difference": 0.9
+    },
+    {
+     "choice": "held, to the spawn",
+     "fight": "behind in the fight (lowest third, -0.01 or less)",
+     "n": 6,
+     "n_usual": 160,
+     "note": "too few yet",
+     "raw_mean": -2.2,
+     "raw_mean_usual": -1.0
+    },
+    {
+     "choice": "held, to the spawn",
+     "fight": "middle third",
+     "n": 3,
+     "n_usual": 189,
+     "note": "too few yet",
+     "raw_mean": 2.5,
+     "raw_mean_usual": -0.4
+    },
+    {
+     "choice": "held, to the spawn",
+     "fight": "ahead in the fight (top third, above +0.02)",
+     "n": 1,
+     "n_usual": 282,
+     "note": "too few yet",
+     "raw_mean": -1.0,
+     "raw_mean_usual": 1.2
+    },
+    {
+     "choice": "held, to the spawn",
+     "snare": "little enemy snare for own speed (lowest third, -33 or less)",
+     "n": 4,
+     "n_usual": 185,
+     "note": "too few yet",
+     "raw_mean": -0.6,
+     "raw_mean_usual": -1.3
+    },
+    {
+     "choice": "held, to the spawn",
+     "snare": "middle third",
+     "n": 1,
+     "n_usual": 238,
+     "note": "too few yet",
+     "raw_mean": 0.7,
+     "raw_mean_usual": 3.2
+    },
+    {
+     "choice": "held, to the spawn",
+     "snare": "a lot of enemy snare for own speed (top third, above -5)",
+     "n": 5,
+     "n_usual": 208,
+     "note": "too few yet",
+     "raw_mean": -1.0,
+     "raw_mean_usual": -1.9
+    },
+    {
+     "choice": "held",
+     "fight": "behind in the fight (lowest third, -0.01 or less)",
+     "n": 3,
+     "n_usual": 160,
+     "note": "too few yet",
+     "raw_mean": -11.4,
+     "raw_mean_usual": -1.0
+    },
+    {
+     "choice": "held",
+     "fight": "middle third",
+     "n": 4,
+     "n_usual": 189,
+     "note": "too few yet",
+     "raw_mean": 0.0,
+     "raw_mean_usual": -0.4
+    },
+    {
+     "choice": "held",
+     "fight": "ahead in the fight (top third, above +0.02)",
+     "n": 1,
+     "n_usual": 282,
+     "note": "too few yet",
+     "raw_mean": 0.0,
+     "raw_mean_usual": 1.2
+    },
+    {
+     "choice": "held",
+     "snare": "little enemy snare for own speed (lowest third, -33 or less)",
+     "n": 1,
+     "n_usual": 185,
+     "note": "too few yet",
+     "raw_mean": -34.7,
+     "raw_mean_usual": -1.3
+    },
+    {
+     "choice": "held",
+     "snare": "middle third",
+     "n": 0,
+     "n_usual": 238,
+     "note": "too few yet",
+     "raw_mean": null,
+     "raw_mean_usual": 3.2
+    },
+    {
+     "choice": "held",
+     "snare": "a lot of enemy snare for own speed (top third, above -5)",
+     "n": 7,
+     "n_usual": 208,
+     "note": "too few yet",
+     "raw_mean": 0.1,
+     "raw_mean_usual": -1.9
+    },
+    {
+     "choice": "ran, to the spawn",
+     "fight": "behind in the fight (lowest third, -0.01 or less)",
+     "n": 0,
+     "n_usual": 160,
+     "note": "too few yet",
+     "raw_mean": null,
+     "raw_mean_usual": -1.0
+    },
+    {
+     "choice": "ran, to the spawn",
+     "fight": "middle third",
+     "n": 2,
+     "n_usual": 189,
+     "note": "too few yet",
+     "raw_mean": 1.4,
+     "raw_mean_usual": -0.4
+    },
+    {
+     "choice": "ran, to the spawn",
+     "fight": "ahead in the fight (top third, above +0.02)",
+     "n": 3,
+     "n_usual": 282,
+     "note": "too few yet",
+     "raw_mean": 0.4,
+     "raw_mean_usual": 1.2
+    },
+    {
+     "choice": "ran, to the spawn",
+     "snare": "little enemy snare for own speed (lowest third, -33 or less)",
+     "n": 4,
+     "n_usual": 185,
+     "note": "too few yet",
+     "raw_mean": 0.3,
+     "raw_mean_usual": -1.3
+    },
+    {
+     "choice": "ran, to the spawn",
+     "snare": "middle third",
+     "n": 1,
+     "n_usual": 238,
+     "note": "too few yet",
+     "raw_mean": 2.9,
+     "raw_mean_usual": 3.2
+    },
+    {
+     "choice": "ran, to the spawn",
+     "snare": "a lot of enemy snare for own speed (top third, above -5)",
+     "n": 0,
+     "n_usual": 208,
+     "note": "too few yet",
+     "raw_mean": null,
+     "raw_mean_usual": -1.9
+    }
+   ],
+   "unusual_choices": [
+    {
+     "match": "a899db48-1dba-52c1-a532-4930d4dc52e5",
+     "team": "GW\ud06c",
+     "t": 538,
+     "chose": "held",
+     "usual": "held, advanced",
+     "difference": -11.3,
+     "wp_change": 0.0
+    },
+    {
+     "match": "a2be2d5f-43bd-5007-abb7-4bd317947c58",
+     "team": "hold",
+     "t": 204,
+     "chose": "held",
+     "usual": "held, fell back",
+     "difference": -10.5,
+     "wp_change": 0.5
+    },
+    {
+     "match": "5c2dbcaa-aeb5-5b7c-adc0-b06c00127253",
+     "team": "mugu",
+     "t": 457,
+     "chose": "held",
+     "usual": "already running, advanced",
+     "difference": -10.3,
+     "wp_change": -34.7
+    },
+    {
+     "match": "0f6a7e67-37aa-5fd8-aa92-e6e91f027f85",
+     "team": "hdm",
+     "t": 350,
+     "chose": "already running, held",
+     "usual": "ran, fell back",
+     "difference": -4.0,
+     "wp_change": -0.1
+    },
+    {
+     "match": "137d4b45-d222-5cd3-aac5-ed8855f315d4",
+     "team": "One",
+     "t": 698,
+     "chose": "already running, held",
+     "usual": "ran, fell back",
+     "difference": -4.0,
+     "wp_change": 15.5
+    },
+    {
+     "match": "1729daac-175f-50db-a0ee-ea543f3a22e0",
+     "team": "Crew",
+     "t": 532,
+     "chose": "already running, held",
+     "usual": "ran, fell back",
+     "difference": -4.0,
+     "wp_change": -3.3
+    },
+    {
+     "match": "1f65fd3b-9c22-5bb1-a488-86c87801b3a3",
+     "team": "RACK",
+     "t": 38,
+     "chose": "ran, fell back",
+     "usual": "already running, held",
+     "difference": 4.0,
+     "wp_change": 31.0
+    },
+    {
+     "match": "39229b8c-24bc-5823-a4a7-9da747fe1189",
+     "team": "\uc637\uc637\uc637\uc637",
+     "t": 266,
+     "chose": "already running, held",
+     "usual": "ran, fell back",
+     "difference": -4.0,
+     "wp_change": 2.3
+    },
+    {
+     "match": "51683de9-4096-5833-ad4a-56a69c4759e4",
+     "team": "Men",
+     "t": 814,
+     "chose": "already running, held",
+     "usual": "ran, fell back",
+     "difference": -4.0,
+     "wp_change": -7.7
+    },
+    {
+     "match": "645cb6e9-ef69-5253-a1af-ab3950ab7025",
+     "team": "Dz",
+     "t": 1016,
+     "chose": "ran, fell back",
+     "usual": "already running, held",
+     "difference": 4.0,
      "wp_change": 0.1
     }
    ]
   },
-  "enemy_pickup": {
-   "n": 447,
-   "matches": 29,
-   "reference": "already running, fought",
+  "late_game": {
+   "n": 128,
+   "matches": 64,
+   "reference": "2 to 3 at the enemy Lord",
    "choices": [
     {
-     "choice": "already running, fought",
-     "n": 96,
+     "choice": "2 to 3 at the enemy Lord",
+     "n": 53,
+     "share": 0.41,
+     "raw_wp_change": 5.5,
+     "effect_vs_usual": 0.0,
+     "interval": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "choice": "0 to 1 at the enemy Lord",
+     "n": 48,
+     "share": 0.38,
+     "raw_wp_change": -8.9,
+     "effect_vs_usual": -19.7,
+     "interval": [
+      -31.9,
+      -5.9
+     ],
+     "clear": true,
+     "pre_trend_vs_usual": 0.3,
+     "pre_interval": [
+      -1.4,
+      2.2
+     ],
+     "selection_warning": false
+    },
+    {
+     "choice": "4+ at the enemy Lord",
+     "n": 27,
      "share": 0.21,
+     "raw_wp_change": 4.5,
+     "effect_vs_usual": 5.7,
+     "interval": [
+      -4.5,
+      18.3
+     ],
+     "clear": false,
+     "pre_trend_vs_usual": 0.7,
+     "pre_interval": [
+      -1.3,
+      2.4
+     ],
+     "selection_warning": false
+    }
+   ],
+   "adjusted_for": [
+    "flag_lead",
+    "stand",
+    "boost_in",
+    "alive",
+    "main",
+    "dp",
+    "npcs",
+    "lord_damage",
+    "minute",
+    "strength_gap",
+    "fight_state"
+   ],
+   "by_build": [
+    {
+     "choice": "0 to 1 at the enemy Lord",
+     "own build": "not spike",
+     "n": 37,
+     "n_usual": 40,
+     "raw_difference": -17.6
+    },
+    {
+     "choice": "0 to 1 at the enemy Lord",
+     "own build": "spike",
+     "n": 11,
+     "n_usual": 13,
+     "raw_difference": -3.9
+    },
+    {
+     "choice": "4+ at the enemy Lord",
+     "own build": "not spike",
+     "n": 17,
+     "n_usual": 40,
+     "raw_difference": -3.6
+    },
+    {
+     "choice": "4+ at the enemy Lord",
+     "own build": "spike",
+     "n": 10,
+     "n_usual": 13,
+     "raw_difference": 3.0
+    }
+   ],
+   "unusual_choices": [
+    {
+     "match": "07b6b99a-d32b-5ab2-a6a0-542a1045f980",
+     "team": "Crew",
+     "t": 1440,
+     "chose": "4+ at the enemy Lord",
+     "usual": "0 to 1 at the enemy Lord",
+     "difference": 25.4,
+     "wp_change": -41.9
+    },
+    {
+     "match": "1729daac-175f-50db-a0ee-ea543f3a22e0",
+     "team": "Dz",
+     "t": 1440,
+     "chose": "4+ at the enemy Lord",
+     "usual": "0 to 1 at the enemy Lord",
+     "difference": 25.4,
+     "wp_change": -22.4
+    },
+    {
+     "match": "1cb73c20-1b06-5b7b-a728-25c7640f8a84",
+     "team": "Fun",
+     "t": 1440,
+     "chose": "4+ at the enemy Lord",
+     "usual": "0 to 1 at the enemy Lord",
+     "difference": 25.4,
+     "wp_change": 0.0
+    },
+    {
+     "match": "70134991-57bc-5b1d-a499-e6d242bb35af",
+     "team": "RV",
+     "t": 1440,
+     "chose": "4+ at the enemy Lord",
+     "usual": "0 to 1 at the enemy Lord",
+     "difference": 25.4,
+     "wp_change": 32.4
+    },
+    {
+     "match": "d6ef0b00-a841-55ac-a976-4eca9f15c175",
+     "team": "Men",
+     "t": 1440,
+     "chose": "4+ at the enemy Lord",
+     "usual": "0 to 1 at the enemy Lord",
+     "difference": 25.4,
+     "wp_change": 51.9
+    },
+    {
+     "match": "0881f8b3-a2f3-5087-a838-9f40b8601ea3",
+     "team": "Dz",
+     "t": 1440,
+     "chose": "2 to 3 at the enemy Lord",
+     "usual": "0 to 1 at the enemy Lord",
+     "difference": 19.7,
+     "wp_change": -20.3
+    },
+    {
+     "match": "0f1fd794-46cd-5fb1-a661-a7ec5f1cbadd",
+     "team": "hdm",
+     "t": 1440,
+     "chose": "0 to 1 at the enemy Lord",
+     "usual": "2 to 3 at the enemy Lord",
+     "difference": -19.7,
+     "wp_change": -39.7
+    },
+    {
+     "match": "113c3dc5-a172-5fcc-af51-02392df65383",
+     "team": "\u3052\u3048\u3048\u3048",
+     "t": 1440,
+     "chose": "0 to 1 at the enemy Lord",
+     "usual": "2 to 3 at the enemy Lord",
+     "difference": -19.7,
+     "wp_change": -1.8
+    },
+    {
+     "match": "1af4f8f8-57d2-5f68-ae23-05564e57993c",
+     "team": "Team",
+     "t": 1440,
+     "chose": "0 to 1 at the enemy Lord",
+     "usual": "2 to 3 at the enemy Lord",
+     "difference": -19.7,
+     "wp_change": -79.3
+    },
+    {
+     "match": "1af4f8f8-57d2-5f68-ae23-05564e57993c",
+     "team": "Crew",
+     "t": 1440,
+     "chose": "2 to 3 at the enemy Lord",
+     "usual": "0 to 1 at the enemy Lord",
+     "difference": 19.7,
+     "wp_change": 80.0
+    }
+   ]
+  },
+  "npcs_or_dp": {
+   "n": 1188,
+   "matches": 336,
+   "reference": "DP",
+   "choices": [
+    {
+     "choice": "DP",
+     "n": 559,
+     "share": 0.47,
+     "raw_wp_change": 0.6,
+     "effect_vs_usual": 0.0,
+     "interval": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "choice": "NPCs",
+     "n": 337,
+     "share": 0.28,
+     "raw_wp_change": -0.7,
+     "effect_vs_usual": -0.7,
+     "interval": [
+      -2.8,
+      1.3
+     ],
+     "clear": false,
+     "pre_trend_vs_usual": 0.3,
+     "pre_interval": [
+      -0.9,
+      1.7
+     ],
+     "selection_warning": false
+    },
+    {
+     "choice": "both",
+     "n": 292,
+     "share": 0.25,
+     "raw_wp_change": 0.6,
+     "effect_vs_usual": 0.2,
+     "interval": [
+      -0.8,
+      1.1
+     ],
+     "clear": false,
+     "pre_trend_vs_usual": -0.5,
+     "pre_interval": [
+      -1.5,
+      0.3
+     ],
+     "selection_warning": false
+    }
+   ],
+   "adjusted_for": [
+    "flag_lead",
+    "stand",
+    "boost_in",
+    "alive",
+    "main",
+    "dp",
+    "npcs",
+    "lord_damage",
+    "minute",
+    "strength_gap",
+    "fight_state",
+    "own_spike",
+    "own_shutdown",
+    "own_knockdowns",
+    "own_defence",
+    "own_sustain",
+    "enemy_spike",
+    "enemy_shutdown",
+    "enemy_knockdowns",
+    "enemy_defence",
+    "enemy_sustain",
+    "map_flag_run",
+    "map_pit_to_stand",
+    "map_bases_apart"
+   ],
+   "by_build": [
+    {
+     "choice": "NPCs",
+     "own build": "not spike",
+     "n": 243,
+     "n_usual": 389,
+     "raw_difference": -2.1
+    },
+    {
+     "choice": "NPCs",
+     "own build": "spike",
+     "n": 94,
+     "n_usual": 170,
+     "raw_difference": 0.8
+    },
+    {
+     "choice": "NPCs",
+     "map": "Corrupted Isle",
+     "n": 50,
+     "n_usual": 87,
+     "raw_difference": -3.6
+    },
+    {
+     "choice": "NPCs",
+     "map": "Druid's Isle",
+     "n": 37,
+     "n_usual": 61,
+     "raw_difference": 0.2
+    },
+    {
+     "choice": "NPCs",
+     "map": "Isle of Jade",
+     "n": 54,
+     "n_usual": 88,
+     "raw_difference": -3.0
+    },
+    {
+     "choice": "NPCs",
+     "map": "Isle of Meditation",
+     "n": 44,
+     "n_usual": 124,
+     "raw_difference": -0.3
+    },
+    {
+     "choice": "NPCs",
+     "map": "Isle of Solitude",
+     "n": 61,
+     "n_usual": 83,
+     "raw_difference": 0.2
+    },
+    {
+     "choice": "NPCs",
+     "map": "Isle of Weeping Stone",
+     "n": 31,
+     "n_usual": 39,
+     "raw_difference": -1.0
+    },
+    {
+     "choice": "NPCs",
+     "map": "Uncharted Isle",
+     "n": 47,
+     "n_usual": 47,
+     "raw_difference": -3.6
+    },
+    {
+     "choice": "both",
+     "own build": "not spike",
+     "n": 228,
+     "n_usual": 389,
+     "raw_difference": 0.0
+    },
+    {
+     "choice": "both",
+     "own build": "spike",
+     "n": 64,
+     "n_usual": 170,
+     "raw_difference": 0.0
+    },
+    {
+     "choice": "both",
+     "map": "Corrupted Isle",
+     "n": 36,
+     "n_usual": 87,
+     "raw_difference": 0.6
+    },
+    {
+     "choice": "both",
+     "map": "Druid's Isle",
+     "n": 23,
+     "n_usual": 61,
+     "raw_difference": 1.3
+    },
+    {
+     "choice": "both",
+     "map": "Isle of Jade",
+     "n": 29,
+     "n_usual": 88,
+     "raw_difference": 0.4
+    },
+    {
+     "choice": "both",
+     "map": "Isle of Meditation",
+     "n": 68,
+     "n_usual": 124,
+     "raw_difference": 1.9
+    },
+    {
+     "choice": "both",
+     "map": "Isle of Solitude",
+     "n": 57,
+     "n_usual": 83,
+     "raw_difference": 0.7
+    },
+    {
+     "choice": "both",
+     "map": "Isle of Weeping Stone",
+     "n": 21,
+     "n_usual": 39,
+     "raw_difference": -6.0
+    },
+    {
+     "choice": "both",
+     "map": "Uncharted Isle",
+     "n": 47,
+     "n_usual": 47,
+     "raw_difference": -2.4
+    }
+   ],
+   "unusual_choices": []
+  },
+  "offence_or_defence": {
+   "n": 466,
+   "matches": 223,
+   "reference": "defensive",
+   "choices": [
+    {
+     "choice": "defensive",
+     "n": 192,
+     "share": 0.41,
+     "raw_wp_change": -1.0,
+     "effect_vs_usual": 0.0,
+     "interval": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "choice": "offensive",
+     "n": 153,
+     "share": 0.33,
+     "raw_wp_change": 1.5,
+     "effect_vs_usual": 2.5,
+     "interval": [
+      0.6,
+      4.6
+     ],
+     "clear": true,
+     "pre_trend_vs_usual": 0.1,
+     "pre_interval": [
+      -1.1,
+      1.1
+     ],
+     "selection_warning": false
+    },
+    {
+     "choice": "mixed",
+     "n": 121,
+     "share": 0.26,
+     "raw_wp_change": 1.4,
+     "effect_vs_usual": 2.1,
+     "interval": [
+      -0.1,
+      4.1
+     ],
+     "clear": false,
+     "pre_trend_vs_usual": -0.6,
+     "pre_interval": [
+      -1.9,
+      0.7
+     ],
+     "selection_warning": false
+    }
+   ],
+   "adjusted_for": [
+    "flag_lead",
+    "stand",
+    "boost_in",
+    "alive",
+    "main",
+    "dp",
+    "npcs",
+    "lord_damage",
+    "minute",
+    "strength_gap",
+    "fight_state",
+    "own_spike",
+    "own_shutdown",
+    "own_knockdowns",
+    "own_defence",
+    "own_sustain",
+    "enemy_spike",
+    "enemy_shutdown",
+    "enemy_knockdowns",
+    "enemy_defence",
+    "enemy_sustain",
+    "map_flag_run",
+    "map_pit_to_stand",
+    "map_bases_apart"
+   ],
+   "by_build": [
+    {
+     "choice": "offensive",
+     "own build": "not spike",
+     "n": 138,
+     "n_usual": 171,
+     "raw_difference": 2.9
+    },
+    {
+     "choice": "offensive",
+     "own build": "spike",
+     "n": 15,
+     "n_usual": 21,
+     "raw_difference": -0.1
+    },
+    {
+     "choice": "offensive",
+     "map": "Corrupted Isle",
+     "n": 23,
+     "n_usual": 29,
+     "raw_difference": 3.4
+    },
+    {
+     "choice": "offensive",
+     "map": "Druid's Isle",
+     "n": 21,
+     "n_usual": 31,
+     "raw_difference": 3.9
+    },
+    {
+     "choice": "offensive",
+     "map": "Isle of Jade",
+     "n": 18,
+     "n_usual": 33,
+     "raw_difference": 3.5
+    },
+    {
+     "choice": "offensive",
+     "map": "Isle of Meditation",
+     "n": 26,
+     "n_usual": 30,
+     "raw_difference": 0.1
+    },
+    {
+     "choice": "offensive",
+     "map": "Isle of Solitude",
+     "n": 15,
+     "n_usual": 28,
+     "raw_difference": 7.0
+    },
+    {
+     "choice": "offensive",
+     "map": "Uncharted Isle",
+     "n": 21,
+     "n_usual": 20,
+     "raw_difference": 2.7
+    },
+    {
+     "choice": "mixed",
+     "own build": "not spike",
+     "n": 109,
+     "n_usual": 171,
+     "raw_difference": 2.1
+    },
+    {
+     "choice": "mixed",
+     "own build": "spike",
+     "n": 12,
+     "n_usual": 21,
+     "raw_difference": 4.7
+    },
+    {
+     "choice": "mixed",
+     "map": "Corrupted Isle",
+     "n": 19,
+     "n_usual": 29,
+     "raw_difference": 4.6
+    },
+    {
+     "choice": "mixed",
+     "map": "Druid's Isle",
+     "n": 11,
+     "n_usual": 31,
+     "raw_difference": -2.4
+    },
+    {
+     "choice": "mixed",
+     "map": "Isle of Jade",
+     "n": 10,
+     "n_usual": 33,
+     "raw_difference": 6.8
+    },
+    {
+     "choice": "mixed",
+     "map": "Isle of Meditation",
+     "n": 24,
+     "n_usual": 30,
+     "raw_difference": -0.8
+    },
+    {
+     "choice": "mixed",
+     "map": "Isle of Solitude",
+     "n": 24,
+     "n_usual": 28,
+     "raw_difference": 3.7
+    },
+    {
+     "choice": "mixed",
+     "map": "Uncharted Isle",
+     "n": 17,
+     "n_usual": 20,
+     "raw_difference": 1.1
+    }
+   ],
+   "unusual_choices": []
+  },
+  "play_for_28_or_lord": {
+   "n": 354,
+   "matches": 58,
+   "reference": "push the Lord",
+   "choices": [
+    {
+     "choice": "push the Lord",
+     "n": 228,
+     "share": 0.64,
+     "raw_wp_change": 0.5,
+     "effect_vs_usual": 0.0,
+     "interval": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "choice": "hold",
+     "n": 126,
+     "share": 0.36,
+     "raw_wp_change": 0.6,
+     "effect_vs_usual": -1.8,
+     "interval": [
+      -5.2,
+      1.9
+     ],
+     "clear": false,
+     "pre_trend_vs_usual": -0.8,
+     "pre_interval": [
+      -2.1,
+      0.8
+     ],
+     "selection_warning": false
+    }
+   ],
+   "adjusted_for": [
+    "flag_lead",
+    "stand",
+    "boost_in",
+    "alive",
+    "main",
+    "dp",
+    "npcs",
+    "lord_damage",
+    "minute",
+    "strength_gap",
+    "fight_state",
+    "own_spike",
+    "own_shutdown",
+    "own_knockdowns",
+    "own_defence",
+    "own_sustain",
+    "enemy_spike",
+    "enemy_shutdown",
+    "enemy_knockdowns",
+    "enemy_defence",
+    "enemy_sustain",
+    "map_flag_run",
+    "map_pit_to_stand",
+    "map_bases_apart"
+   ],
+   "by_build": [
+    {
+     "choice": "hold",
+     "own build": "not spike",
+     "n": 98,
+     "n_usual": 195,
+     "raw_difference": -0.5
+    },
+    {
+     "choice": "hold",
+     "own build": "spike",
+     "n": 28,
+     "n_usual": 33,
+     "raw_difference": 1.2
+    },
+    {
+     "choice": "hold",
+     "map": "Corrupted Isle",
+     "n": 20,
+     "n_usual": 35,
+     "raw_difference": 3.6
+    },
+    {
+     "choice": "hold",
+     "map": "Druid's Isle",
+     "n": 12,
+     "n_usual": 10,
+     "raw_difference": 3.0
+    },
+    {
+     "choice": "hold",
+     "map": "Isle of Meditation",
+     "n": 12,
+     "n_usual": 38,
+     "raw_difference": 2.9
+    },
+    {
+     "choice": "hold",
+     "map": "Isle of Solitude",
+     "n": 23,
+     "n_usual": 56,
+     "raw_difference": 2.8
+    },
+    {
+     "choice": "hold",
+     "map": "Isle of Weeping Stone",
+     "n": 17,
+     "n_usual": 29,
+     "raw_difference": -9.2
+    },
+    {
+     "choice": "hold",
+     "map": "Uncharted Isle",
+     "n": 20,
+     "n_usual": 42,
+     "raw_difference": -2.0
+    }
+   ],
+   "unusual_choices": []
+  },
+  "power_play": {
+   "n": 3276,
+   "matches": 353,
+   "reference": "pushed, advanced",
+   "choices": [
+    {
+     "choice": "pushed, advanced",
+     "n": 953,
+     "share": 0.29,
+     "raw_wp_change": 1.2,
+     "effect_vs_usual": 0.0,
+     "interval": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "choice": "pushed, fought",
+     "n": 715,
+     "share": 0.22,
+     "raw_wp_change": 1.2,
+     "effect_vs_usual": 0.1,
+     "interval": [
+      -0.7,
+      1.0
+     ],
+     "clear": false,
+     "pre_trend_vs_usual": 0.0,
+     "pre_interval": [
+      -0.5,
+      0.6
+     ],
+     "selection_warning": false
+    },
+    {
+     "choice": "held, fought",
+     "n": 392,
+     "share": 0.12,
+     "raw_wp_change": -0.1,
+     "effect_vs_usual": -1.0,
+     "interval": [
+      -1.9,
+      -0.1
+     ],
+     "clear": true,
+     "pre_trend_vs_usual": -0.7,
+     "pre_interval": [
+      -1.4,
+      -0.0
+     ],
+     "selection_warning": true
+    },
+    {
+     "choice": "pushed, fell back",
+     "n": 364,
+     "share": 0.11,
+     "raw_wp_change": 0.4,
+     "effect_vs_usual": -0.4,
+     "interval": [
+      -1.6,
+      0.7
+     ],
+     "clear": false,
+     "pre_trend_vs_usual": -0.3,
+     "pre_interval": [
+      -1.1,
+      0.4
+     ],
+     "selection_warning": false
+    },
+    {
+     "choice": "held, fell back",
+     "n": 358,
+     "share": 0.11,
+     "raw_wp_change": -0.4,
+     "effect_vs_usual": -1.3,
+     "interval": [
+      -2.3,
+      -0.2
+     ],
+     "clear": true,
+     "pre_trend_vs_usual": -0.4,
+     "pre_interval": [
+      -1.2,
+      0.4
+     ],
+     "selection_warning": false
+    },
+    {
+     "choice": "held, advanced",
+     "n": 251,
+     "share": 0.08,
+     "raw_wp_change": -0.3,
+     "effect_vs_usual": -1.3,
+     "interval": [
+      -2.4,
+      -0.4
+     ],
+     "clear": true,
+     "pre_trend_vs_usual": -0.3,
+     "pre_interval": [
+      -1.3,
+      0.4
+     ],
+     "selection_warning": false
+    },
+    {
+     "choice": "held, held",
+     "n": 123,
+     "share": 0.04,
+     "raw_wp_change": -0.6,
+     "effect_vs_usual": -1.2,
+     "interval": [
+      -2.6,
+      -0.0
+     ],
+     "clear": true,
+     "pre_trend_vs_usual": -0.1,
+     "pre_interval": [
+      -1.2,
+      1.1
+     ],
+     "selection_warning": false
+    },
+    {
+     "choice": "pushed, held",
+     "n": 113,
+     "share": 0.03,
+     "raw_wp_change": -0.2,
+     "effect_vs_usual": -1.4,
+     "interval": [
+      -2.9,
+      0.1
+     ],
+     "clear": false,
+     "pre_trend_vs_usual": -0.4,
+     "pre_interval": [
+      -1.6,
+      0.5
+     ],
+     "selection_warning": false
+    },
+    {
+     "choice": "pushed, to the spawn",
+     "n": 7,
+     "share": 0.0,
+     "raw_wp_change": 14.5,
+     "effect_vs_usual": 12.5,
+     "interval": [
+      -1.8,
+      29.5
+     ],
+     "clear": false,
+     "pre_trend_vs_usual": -3.8,
+     "pre_interval": [
+      -7.8,
+      -0.1
+     ],
+     "selection_warning": true
+    }
+   ],
+   "adjusted_for": [
+    "flag_lead",
+    "stand",
+    "boost_in",
+    "alive",
+    "main",
+    "dp",
+    "npcs",
+    "lord_damage",
+    "minute",
+    "strength_gap",
+    "fight_state",
+    "own_spike",
+    "own_shutdown",
+    "own_knockdowns",
+    "own_defence",
+    "own_sustain",
+    "enemy_spike",
+    "enemy_shutdown",
+    "enemy_knockdowns",
+    "enemy_defence",
+    "enemy_sustain",
+    "map_flag_run",
+    "map_pit_to_stand",
+    "map_bases_apart"
+   ],
+   "by_build": [
+    {
+     "choice": "pushed, fought",
+     "own build": "not spike",
+     "n": 497,
+     "n_usual": 712,
+     "raw_difference": 0.0
+    },
+    {
+     "choice": "pushed, fought",
+     "own build": "spike",
+     "n": 218,
+     "n_usual": 241,
+     "raw_difference": -0.2
+    },
+    {
+     "choice": "pushed, fought",
+     "map": "Corrupted Isle",
+     "n": 91,
+     "n_usual": 182,
+     "raw_difference": -0.2
+    },
+    {
+     "choice": "pushed, fought",
+     "map": "Druid's Isle",
+     "n": 121,
+     "n_usual": 83,
+     "raw_difference": 0.5
+    },
+    {
+     "choice": "pushed, fought",
+     "map": "Imperial Isle",
+     "n": 22,
+     "n_usual": 37,
+     "raw_difference": 1.1
+    },
+    {
+     "choice": "pushed, fought",
+     "map": "Isle of Jade",
+     "n": 66,
+     "n_usual": 71,
+     "raw_difference": 2.4
+    },
+    {
+     "choice": "pushed, fought",
+     "map": "Isle of Meditation",
+     "n": 111,
+     "n_usual": 200,
+     "raw_difference": -2.0
+    },
+    {
+     "choice": "pushed, fought",
+     "map": "Isle of Solitude",
+     "n": 106,
+     "n_usual": 131,
+     "raw_difference": -1.3
+    },
+    {
+     "choice": "pushed, fought",
+     "map": "Isle of Weeping Stone",
+     "n": 72,
+     "n_usual": 95,
+     "raw_difference": -0.2
+    },
+    {
+     "choice": "pushed, fought",
+     "map": "Nomad's Isle",
+     "n": 46,
+     "n_usual": 17,
+     "raw_difference": 0.3
+    },
+    {
+     "choice": "pushed, fought",
+     "map": "Uncharted Isle",
+     "n": 76,
+     "n_usual": 134,
+     "raw_difference": 2.3
+    },
+    {
+     "choice": "pushed, fought",
+     "fight": "behind in the fight (lowest third, +0.00 or less)",
+     "n": 205,
+     "n_usual": 288,
+     "raw_difference": 0.5
+    },
+    {
+     "choice": "pushed, fought",
+     "fight": "middle third",
+     "n": 198,
+     "n_usual": 331,
+     "raw_difference": -0.3
+    },
+    {
+     "choice": "pushed, fought",
+     "fight": "ahead in the fight (top third, above +0.08)",
+     "n": 312,
+     "n_usual": 334,
+     "raw_difference": -0.3
+    },
+    {
+     "choice": "held, fought",
+     "own build": "not spike",
+     "n": 264,
+     "n_usual": 712,
+     "raw_difference": -1.3
+    },
+    {
+     "choice": "held, fought",
+     "own build": "spike",
+     "n": 128,
+     "n_usual": 241,
+     "raw_difference": -1.7
+    },
+    {
+     "choice": "held, fought",
+     "map": "Corrupted Isle",
+     "n": 40,
+     "n_usual": 182,
+     "raw_difference": 0.8
+    },
+    {
+     "choice": "held, fought",
+     "map": "Druid's Isle",
+     "n": 66,
+     "n_usual": 83,
+     "raw_difference": -3.2
+    },
+    {
+     "choice": "held, fought",
+     "map": "Imperial Isle",
+     "n": 18,
+     "n_usual": 37,
+     "raw_difference": -1.9
+    },
+    {
+     "choice": "held, fought",
+     "map": "Isle of Jade",
+     "n": 42,
+     "n_usual": 71,
+     "raw_difference": -2.8
+    },
+    {
+     "choice": "held, fought",
+     "map": "Isle of Meditation",
+     "n": 71,
+     "n_usual": 200,
+     "raw_difference": -2.4
+    },
+    {
+     "choice": "held, fought",
+     "map": "Isle of Solitude",
+     "n": 49,
+     "n_usual": 131,
+     "raw_difference": -1.3
+    },
+    {
+     "choice": "held, fought",
+     "map": "Isle of Weeping Stone",
+     "n": 32,
+     "n_usual": 95,
+     "raw_difference": 0.2
+    },
+    {
+     "choice": "held, fought",
+     "map": "Nomad's Isle",
+     "n": 40,
+     "n_usual": 17,
+     "raw_difference": 1.9
+    },
+    {
+     "choice": "held, fought",
+     "map": "Uncharted Isle",
+     "n": 34,
+     "n_usual": 134,
+     "raw_difference": -1.0
+    },
+    {
+     "choice": "held, fought",
+     "fight": "behind in the fight (lowest third, +0.00 or less)",
+     "n": 121,
+     "n_usual": 288,
+     "raw_difference": 0.2
+    },
+    {
+     "choice": "held, fought",
+     "fight": "middle third",
+     "n": 131,
+     "n_usual": 331,
+     "raw_difference": -0.8
+    },
+    {
+     "choice": "held, fought",
+     "fight": "ahead in the fight (top third, above +0.08)",
+     "n": 140,
+     "n_usual": 334,
+     "raw_difference": -3.1
+    },
+    {
+     "choice": "pushed, fell back",
+     "own build": "not spike",
+     "n": 266,
+     "n_usual": 712,
+     "raw_difference": -0.2
+    },
+    {
+     "choice": "pushed, fell back",
+     "own build": "spike",
+     "n": 98,
+     "n_usual": 241,
+     "raw_difference": -2.3
+    },
+    {
+     "choice": "pushed, fell back",
+     "map": "Corrupted Isle",
+     "n": 68,
+     "n_usual": 182,
+     "raw_difference": -0.7
+    },
+    {
+     "choice": "pushed, fell back",
+     "map": "Druid's Isle",
+     "n": 21,
+     "n_usual": 83,
+     "raw_difference": -3.2
+    },
+    {
+     "choice": "pushed, fell back",
+     "map": "Imperial Isle",
+     "n": 11,
+     "n_usual": 37,
+     "raw_difference": -6.4
+    },
+    {
+     "choice": "pushed, fell back",
+     "map": "Isle of Jade",
+     "n": 23,
+     "n_usual": 71,
+     "raw_difference": -0.5
+    },
+    {
+     "choice": "pushed, fell back",
+     "map": "Isle of Meditation",
+     "n": 57,
+     "n_usual": 200,
+     "raw_difference": -0.8
+    },
+    {
+     "choice": "pushed, fell back",
+     "map": "Isle of Solitude",
+     "n": 70,
+     "n_usual": 131,
+     "raw_difference": 1.4
+    },
+    {
+     "choice": "pushed, fell back",
+     "map": "Isle of Weeping Stone",
+     "n": 36,
+     "n_usual": 95,
+     "raw_difference": -2.5
+    },
+    {
+     "choice": "pushed, fell back",
+     "map": "Nomad's Isle",
+     "n": 18,
+     "n_usual": 17,
+     "raw_difference": 0.2
+    },
+    {
+     "choice": "pushed, fell back",
+     "map": "Uncharted Isle",
+     "n": 55,
+     "n_usual": 134,
+     "raw_difference": 0.9
+    },
+    {
+     "choice": "pushed, fell back",
+     "fight": "behind in the fight (lowest third, +0.00 or less)",
+     "n": 149,
+     "n_usual": 288,
+     "raw_difference": 0.7
+    },
+    {
+     "choice": "pushed, fell back",
+     "fight": "middle third",
+     "n": 109,
+     "n_usual": 331,
+     "raw_difference": -0.1
+    },
+    {
+     "choice": "pushed, fell back",
+     "fight": "ahead in the fight (top third, above +0.08)",
+     "n": 106,
+     "n_usual": 334,
+     "raw_difference": -2.9
+    },
+    {
+     "choice": "held, fell back",
+     "own build": "not spike",
+     "n": 270,
+     "n_usual": 712,
+     "raw_difference": -1.3
+    },
+    {
+     "choice": "held, fell back",
+     "own build": "spike",
+     "n": 88,
+     "n_usual": 241,
+     "raw_difference": -2.3
+    },
+    {
+     "choice": "held, fell back",
+     "map": "Corrupted Isle",
+     "n": 51,
+     "n_usual": 182,
+     "raw_difference": -0.3
+    },
+    {
+     "choice": "held, fell back",
+     "map": "Druid's Isle",
+     "n": 33,
+     "n_usual": 83,
+     "raw_difference": -1.1
+    },
+    {
+     "choice": "held, fell back",
+     "map": "Imperial Isle",
+     "n": 14,
+     "n_usual": 37,
+     "raw_difference": -5.1
+    },
+    {
+     "choice": "held, fell back",
+     "map": "Isle of Jade",
+     "n": 22,
+     "n_usual": 71,
+     "raw_difference": -1.1
+    },
+    {
+     "choice": "held, fell back",
+     "map": "Isle of Meditation",
+     "n": 69,
+     "n_usual": 200,
+     "raw_difference": -1.7
+    },
+    {
+     "choice": "held, fell back",
+     "map": "Isle of Solitude",
+     "n": 66,
+     "n_usual": 131,
+     "raw_difference": -2.4
+    },
+    {
+     "choice": "held, fell back",
+     "map": "Isle of Weeping Stone",
+     "n": 36,
+     "n_usual": 95,
+     "raw_difference": -2.8
+    },
+    {
+     "choice": "held, fell back",
+     "map": "Nomad's Isle",
+     "n": 18,
+     "n_usual": 17,
+     "raw_difference": 0.5
+    },
+    {
+     "choice": "held, fell back",
+     "map": "Uncharted Isle",
+     "n": 49,
+     "n_usual": 134,
+     "raw_difference": -0.3
+    },
+    {
+     "choice": "held, fell back",
+     "fight": "behind in the fight (lowest third, +0.00 or less)",
+     "n": 166,
+     "n_usual": 288,
+     "raw_difference": -1.3
+    },
+    {
+     "choice": "held, fell back",
+     "fight": "middle third",
+     "n": 125,
+     "n_usual": 331,
+     "raw_difference": -1.8
+    },
+    {
+     "choice": "held, fell back",
+     "fight": "ahead in the fight (top third, above +0.08)",
+     "n": 67,
+     "n_usual": 334,
+     "raw_difference": -0.3
+    },
+    {
+     "choice": "held, advanced",
+     "own build": "not spike",
+     "n": 203,
+     "n_usual": 712,
+     "raw_difference": -1.2
+    },
+    {
+     "choice": "held, advanced",
+     "own build": "spike",
+     "n": 48,
+     "n_usual": 241,
+     "raw_difference": -2.3
+    },
+    {
+     "choice": "held, advanced",
+     "map": "Corrupted Isle",
+     "n": 39,
+     "n_usual": 182,
+     "raw_difference": -0.2
+    },
+    {
+     "choice": "held, advanced",
+     "map": "Druid's Isle",
+     "n": 20,
+     "n_usual": 83,
+     "raw_difference": -1.2
+    },
+    {
+     "choice": "held, advanced",
+     "map": "Imperial Isle",
+     "n": 17,
+     "n_usual": 37,
+     "raw_difference": -2.1
+    },
+    {
+     "choice": "held, advanced",
+     "map": "Isle of Jade",
+     "n": 24,
+     "n_usual": 71,
+     "raw_difference": -3.6
+    },
+    {
+     "choice": "held, advanced",
+     "map": "Isle of Meditation",
+     "n": 51,
+     "n_usual": 200,
+     "raw_difference": -1.0
+    },
+    {
+     "choice": "held, advanced",
+     "map": "Isle of Solitude",
+     "n": 34,
+     "n_usual": 131,
+     "raw_difference": -2.6
+    },
+    {
+     "choice": "held, advanced",
+     "map": "Isle of Weeping Stone",
+     "n": 27,
+     "n_usual": 95,
+     "raw_difference": -1.8
+    },
+    {
+     "choice": "held, advanced",
+     "map": "Uncharted Isle",
+     "n": 33,
+     "n_usual": 134,
+     "raw_difference": -2.4
+    },
+    {
+     "choice": "held, advanced",
+     "fight": "behind in the fight (lowest third, +0.00 or less)",
+     "n": 87,
+     "n_usual": 288,
+     "raw_difference": -0.2
+    },
+    {
+     "choice": "held, advanced",
+     "fight": "middle third",
+     "n": 86,
+     "n_usual": 331,
+     "raw_difference": -2.9
+    },
+    {
+     "choice": "held, advanced",
+     "fight": "ahead in the fight (top third, above +0.08)",
+     "n": 78,
+     "n_usual": 334,
+     "raw_difference": -1.1
+    },
+    {
+     "choice": "held, held",
+     "own build": "not spike",
+     "n": 84,
+     "n_usual": 712,
+     "raw_difference": -1.9
+    },
+    {
+     "choice": "held, held",
+     "own build": "spike",
+     "n": 39,
+     "n_usual": 241,
+     "raw_difference": -1.6
+    },
+    {
+     "choice": "held, held",
+     "map": "Druid's Isle",
+     "n": 36,
+     "n_usual": 83,
+     "raw_difference": -2.6
+    },
+    {
+     "choice": "held, held",
+     "map": "Isle of Meditation",
+     "n": 13,
+     "n_usual": 200,
+     "raw_difference": -3.2
+    },
+    {
+     "choice": "held, held",
+     "map": "Isle of Solitude",
+     "n": 19,
+     "n_usual": 131,
+     "raw_difference": -1.1
+    },
+    {
+     "choice": "held, held",
+     "map": "Isle of Weeping Stone",
+     "n": 14,
+     "n_usual": 95,
+     "raw_difference": -1.4
+    },
+    {
+     "choice": "held, held",
+     "map": "Nomad's Isle",
+     "n": 11,
+     "n_usual": 17,
+     "raw_difference": 3.1
+    },
+    {
+     "choice": "held, held",
+     "map": "Uncharted Isle",
+     "n": 13,
+     "n_usual": 134,
+     "raw_difference": 0.5
+    },
+    {
+     "choice": "held, held",
+     "fight": "behind in the fight (lowest third, +0.00 or less)",
+     "n": 56,
+     "n_usual": 288,
+     "raw_difference": 0.7
+    },
+    {
+     "choice": "held, held",
+     "fight": "middle third",
+     "n": 47,
+     "n_usual": 331,
+     "raw_difference": -3.7
+    },
+    {
+     "choice": "held, held",
+     "fight": "ahead in the fight (top third, above +0.08)",
+     "n": 20,
+     "n_usual": 334,
+     "raw_difference": -1.9
+    },
+    {
+     "choice": "pushed, held",
+     "own build": "not spike",
+     "n": 79,
+     "n_usual": 712,
+     "raw_difference": -0.6
+    },
+    {
+     "choice": "pushed, held",
+     "own build": "spike",
+     "n": 34,
+     "n_usual": 241,
+     "raw_difference": -3.5
+    },
+    {
+     "choice": "pushed, held",
+     "map": "Corrupted Isle",
+     "n": 10,
+     "n_usual": 182,
+     "raw_difference": -5.6
+    },
+    {
+     "choice": "pushed, held",
+     "map": "Druid's Isle",
+     "n": 16,
+     "n_usual": 83,
+     "raw_difference": -4.3
+    },
+    {
+     "choice": "pushed, held",
+     "map": "Isle of Jade",
+     "n": 10,
+     "n_usual": 71,
+     "raw_difference": 0.5
+    },
+    {
+     "choice": "pushed, held",
+     "map": "Isle of Meditation",
+     "n": 16,
+     "n_usual": 200,
+     "raw_difference": -0.8
+    },
+    {
+     "choice": "pushed, held",
+     "map": "Isle of Solitude",
+     "n": 22,
+     "n_usual": 131,
+     "raw_difference": -1.0
+    },
+    {
+     "choice": "pushed, held",
+     "map": "Isle of Weeping Stone",
+     "n": 19,
+     "n_usual": 95,
+     "raw_difference": -2.4
+    },
+    {
+     "choice": "pushed, held",
+     "map": "Uncharted Isle",
+     "n": 13,
+     "n_usual": 134,
+     "raw_difference": 2.6
+    },
+    {
+     "choice": "pushed, held",
+     "fight": "behind in the fight (lowest third, +0.00 or less)",
+     "n": 51,
+     "n_usual": 288,
+     "raw_difference": -0.5
+    },
+    {
+     "choice": "pushed, held",
+     "fight": "middle third",
+     "n": 38,
+     "n_usual": 331,
+     "raw_difference": -1.6
+    },
+    {
+     "choice": "pushed, held",
+     "fight": "ahead in the fight (top third, above +0.08)",
+     "n": 24,
+     "n_usual": 334,
+     "raw_difference": -1.5
+    },
+    {
+     "choice": "pushed, to the spawn",
+     "fight": "behind in the fight (lowest third, +0.00 or less)",
+     "n": 6,
+     "n_usual": 288,
+     "note": "too few yet",
+     "raw_mean": 16.9,
+     "raw_mean_usual": 0.3
+    },
+    {
+     "choice": "pushed, to the spawn",
+     "fight": "middle third",
+     "n": 0,
+     "n_usual": 331,
+     "note": "too few yet",
+     "raw_mean": null,
+     "raw_mean_usual": 0.9
+    },
+    {
+     "choice": "pushed, to the spawn",
+     "fight": "ahead in the fight (top third, above +0.08)",
+     "n": 1,
+     "n_usual": 334,
+     "note": "too few yet",
+     "raw_mean": 0.0,
+     "raw_mean_usual": 2.2
+    }
+   ],
+   "unusual_choices": [
+    {
+     "match": "f5bb5394-8615-5ab5-a6ea-46bc3396f68d",
+     "team": "DUM",
+     "t": 243,
+     "chose": "pushed, to the spawn",
+     "usual": "held, fought",
+     "difference": 13.5,
+     "wp_change": 68.0
+    },
+    {
+     "match": "8aad2895-62a2-5696-a186-c71b2d325bf4",
+     "team": "Crew",
+     "t": 359,
+     "chose": "pushed, to the spawn",
+     "usual": "pushed, fell back",
+     "difference": 12.9,
+     "wp_change": 5.0
+    },
+    {
+     "match": "1af4f8f8-57d2-5f68-ae23-05564e57993c",
+     "team": "Crew",
+     "t": 1439,
+     "chose": "pushed, to the spawn",
+     "usual": "pushed, advanced",
+     "difference": 12.5,
+     "wp_change": 1.3
+    },
+    {
+     "match": "27d03c34-b283-5a83-a5dd-70a02424523d",
+     "team": "Apes",
+     "t": 844,
+     "chose": "pushed, to the spawn",
+     "usual": "pushed, advanced",
+     "difference": 12.5,
+     "wp_change": 0.2
+    },
+    {
+     "match": "3690a9a1-92ad-5c6a-a96a-a806a500dcbf",
+     "team": "HH",
+     "t": 313,
+     "chose": "pushed, to the spawn",
+     "usual": "pushed, advanced",
+     "difference": 12.5,
+     "wp_change": 0.0
+    },
+    {
+     "match": "cacbe610-a5aa-5307-abaf-6088a46d5da6",
+     "team": "TFS",
+     "t": 326,
+     "chose": "pushed, to the spawn",
+     "usual": "pushed, advanced",
+     "difference": 12.5,
+     "wp_change": 27.5
+    },
+    {
+     "match": "e96a75b6-1fe4-5fe9-acda-5baaf44a5116",
+     "team": "hook",
+     "t": 481,
+     "chose": "pushed, to the spawn",
+     "usual": "pushed, advanced",
+     "difference": 12.5,
+     "wp_change": -0.8
+    }
+   ]
+  },
+  "runner_choice": {
+   "n": 3097,
+   "matches": 319,
+   "reference": "monk",
+   "choices": [
+    {
+     "choice": "monk",
+     "n": 727,
+     "share": 0.23,
      "raw_wp_change": -0.0,
      "effect_vs_usual": 0.0,
      "interval": [
@@ -377,136 +4875,166 @@
      ]
     },
     {
-     "choice": "held, fought",
-     "n": 67,
-     "share": 0.15,
-     "raw_wp_change": 1.0,
-     "effect_vs_usual": 2.3,
+     "choice": "mesmer",
+     "n": 614,
+     "share": 0.2,
+     "raw_wp_change": 0.5,
+     "effect_vs_usual": 0.9,
      "interval": [
-      -3.1,
-      6.6
+      -0.1,
+      2.0
      ],
-     "clear": false
+     "clear": false,
+     "pre_trend_vs_usual": 0.7,
+     "pre_interval": [
+      -0.1,
+      1.5
+     ],
+     "selection_warning": false
     },
     {
-     "choice": "already running, advanced",
-     "n": 52,
-     "share": 0.12,
-     "raw_wp_change": 1.6,
-     "effect_vs_usual": 1.2,
+     "choice": "dervish",
+     "n": 541,
+     "share": 0.17,
+     "raw_wp_change": 0.4,
+     "effect_vs_usual": 0.3,
      "interval": [
-      -3.3,
-      5.2
+      -1.0,
+      1.6
      ],
-     "clear": false
+     "clear": false,
+     "pre_trend_vs_usual": -0.0,
+     "pre_interval": [
+      -1.0,
+      0.8
+     ],
+     "selection_warning": false
     },
     {
-     "choice": "held, fell back",
-     "n": 38,
-     "share": 0.09,
-     "raw_wp_change": -5.4,
-     "effect_vs_usual": -4.5,
-     "interval": [
-      -13.4,
-      0.9
-     ],
-     "clear": false
-    },
-    {
-     "choice": "ran, fought",
-     "n": 37,
-     "share": 0.08,
-     "raw_wp_change": 2.2,
-     "effect_vs_usual": 2.0,
-     "interval": [
-      -3.2,
-      6.8
-     ],
-     "clear": false
-    },
-    {
-     "choice": "already running, fell back",
-     "n": 34,
-     "share": 0.08,
-     "raw_wp_change": 2.6,
-     "effect_vs_usual": 2.1,
-     "interval": [
-      -2.0,
-      4.7
-     ],
-     "clear": false
-    },
-    {
-     "choice": "held, advanced",
-     "n": 34,
-     "share": 0.08,
-     "raw_wp_change": -1.8,
+     "choice": "warrior",
+     "n": 404,
+     "share": 0.13,
+     "raw_wp_change": -0.8,
      "effect_vs_usual": -0.9,
      "interval": [
-      -7.2,
-      3.8
+      -2.2,
+      0.4
      ],
-     "clear": false
+     "clear": false,
+     "pre_trend_vs_usual": 0.9,
+     "pre_interval": [
+      -0.0,
+      1.5
+     ],
+     "selection_warning": false
     },
     {
-     "choice": "ran, fell back",
-     "n": 33,
+     "choice": "ritualist",
+     "n": 365,
+     "share": 0.12,
+     "raw_wp_change": 1.0,
+     "effect_vs_usual": 1.2,
+     "interval": [
+      0.0,
+      2.6
+     ],
+     "clear": true,
+     "pre_trend_vs_usual": -0.2,
+     "pre_interval": [
+      -1.0,
+      0.5
+     ],
+     "selection_warning": false
+    },
+    {
+     "choice": "elementalist",
+     "n": 219,
      "share": 0.07,
-     "raw_wp_change": 0.5,
-     "effect_vs_usual": -1.0,
+     "raw_wp_change": 0.6,
+     "effect_vs_usual": 0.9,
      "interval": [
-      -7.3,
-      4.7
+      -0.5,
+      2.4
      ],
-     "clear": false
+     "clear": false,
+     "pre_trend_vs_usual": 0.4,
+     "pre_interval": [
+      -0.6,
+      1.4
+     ],
+     "selection_warning": false
     },
     {
-     "choice": "ran, advanced",
-     "n": 26,
-     "share": 0.06,
-     "raw_wp_change": -0.1,
-     "effect_vs_usual": -0.7,
+     "choice": "necromancer",
+     "n": 129,
+     "share": 0.04,
+     "raw_wp_change": 0.8,
+     "effect_vs_usual": 0.7,
      "interval": [
-      -4.3,
+      -1.2,
+      2.5
+     ],
+     "clear": false,
+     "pre_trend_vs_usual": -1.3,
+     "pre_interval": [
+      -2.6,
+      -0.2
+     ],
+     "selection_warning": true
+    },
+    {
+     "choice": "ranger",
+     "n": 66,
+     "share": 0.02,
+     "raw_wp_change": 1.1,
+     "effect_vs_usual": 1.7,
+     "interval": [
+      -0.5,
+      4.8
+     ],
+     "clear": false,
+     "pre_trend_vs_usual": 1.7,
+     "pre_interval": [
+      0.2,
       3.1
      ],
-     "clear": false
+     "selection_warning": true
     },
     {
-     "choice": "already running, held",
-     "n": 15,
-     "share": 0.03,
-     "raw_wp_change": -0.5,
-     "effect_vs_usual": 0.5,
+     "choice": "paragon",
+     "n": 20,
+     "share": 0.01,
+     "raw_wp_change": 1.6,
+     "effect_vs_usual": 1.3,
      "interval": [
-      -3.3,
-      3.8
+      -3.0,
+      6.7
      ],
-     "clear": false
+     "clear": false,
+     "pre_trend_vs_usual": 1.6,
+     "pre_interval": [
+      -1.4,
+      4.6
+     ],
+     "selection_warning": false
     },
     {
-     "choice": "held, held",
-     "n": 8,
-     "share": 0.02,
-     "raw_wp_change": -11.0,
-     "effect_vs_usual": -12.7,
+     "choice": "assassin",
+     "n": 12,
+     "share": 0.0,
+     "raw_wp_change": 0.1,
+     "effect_vs_usual": -0.5,
      "interval": [
-      -28.2,
-      9.8
+      -5.8,
+      7.2
      ],
-     "clear": false
-    },
-    {
-     "choice": "ran, held",
-     "n": 7,
-     "share": 0.02,
-     "raw_wp_change": -2.1,
-     "effect_vs_usual": -3.9,
-     "interval": [
-      -14.5,
-      5.4
+     "clear": false,
+     "pre_trend_vs_usual": 1.8,
+     "pre_interval": [
+      -1.2,
+      5.2
      ],
-     "clear": false
+     "selection_warning": false
     }
    ],
    "adjusted_for": [
@@ -520,6 +5048,10 @@
     "lord_damage",
     "minute",
     "strength_gap",
+    "fight_state",
+    "own_snare_power",
+    "enemy_snare_power",
+    "own_speed_power",
     "own_spike",
     "own_shutdown",
     "own_knockdowns",
@@ -529,171 +5061,646 @@
     "enemy_shutdown",
     "enemy_knockdowns",
     "enemy_defence",
-    "enemy_sustain"
+    "enemy_sustain",
+    "map_flag_run",
+    "map_pit_to_stand",
+    "map_bases_apart"
    ],
    "by_build": [
     {
-     "choice": "held, fought",
+     "choice": "mesmer",
      "own build": "not spike",
-     "n": 54,
-     "raw_difference": 1.4
+     "n": 587,
+     "n_usual": 314,
+     "raw_difference": 1.1
     },
     {
-     "choice": "already running, advanced",
-     "own build": "not spike",
-     "n": 40,
-     "raw_difference": 1.4
+     "choice": "mesmer",
+     "own build": "spike",
+     "n": 27,
+     "n_usual": 413,
+     "raw_difference": 1.1
     },
     {
-     "choice": "held, fell back",
-     "own build": "not spike",
+     "choice": "mesmer",
+     "map": "Corrupted Isle",
+     "n": 103,
+     "n_usual": 166,
+     "raw_difference": -0.1
+    },
+    {
+     "choice": "mesmer",
+     "map": "Druid's Isle",
+     "n": 23,
+     "n_usual": 138,
+     "raw_difference": -0.8
+    },
+    {
+     "choice": "mesmer",
+     "map": "Imperial Isle",
+     "n": 55,
+     "n_usual": 15,
+     "raw_difference": 0.1
+    },
+    {
+     "choice": "mesmer",
+     "map": "Isle of Jade",
      "n": 29,
-     "raw_difference": -6.6
+     "n_usual": 64,
+     "raw_difference": -0.4
     },
     {
-     "choice": "ran, fought",
-     "own build": "not spike",
-     "n": 33,
+     "choice": "mesmer",
+     "map": "Isle of Meditation",
+     "n": 88,
+     "n_usual": 89,
      "raw_difference": 2.0
     },
     {
-     "choice": "already running, fell back",
+     "choice": "mesmer",
+     "map": "Isle of Solitude",
+     "n": 90,
+     "n_usual": 88,
+     "raw_difference": 0.9
+    },
+    {
+     "choice": "mesmer",
+     "map": "Isle of Weeping Stone",
+     "n": 86,
+     "n_usual": 91,
+     "raw_difference": 1.9
+    },
+    {
+     "choice": "mesmer",
+     "map": "Nomad's Isle",
+     "n": 18,
+     "n_usual": 17,
+     "raw_difference": -0.5
+    },
+    {
+     "choice": "mesmer",
+     "map": "Uncharted Isle",
+     "n": 122,
+     "n_usual": 59,
+     "raw_difference": 3.0
+    },
+    {
+     "choice": "mesmer",
+     "snare": "little enemy snare for own speed (lowest third, -37 or less)",
+     "n": 231,
+     "n_usual": 223,
+     "raw_difference": 0.3
+    },
+    {
+     "choice": "mesmer",
+     "snare": "middle third",
+     "n": 152,
+     "n_usual": 288,
+     "raw_difference": -0.1
+    },
+    {
+     "choice": "mesmer",
+     "snare": "a lot of enemy snare for own speed (top third, above -6)",
+     "n": 231,
+     "n_usual": 216,
+     "raw_difference": 1.0
+    },
+    {
+     "choice": "dervish",
      "own build": "not spike",
+     "n": 536,
+     "n_usual": 314,
+     "raw_difference": 1.0
+    },
+    {
+     "choice": "dervish",
+     "map": "Corrupted Isle",
+     "n": 66,
+     "n_usual": 166,
+     "raw_difference": -0.2
+    },
+    {
+     "choice": "dervish",
+     "map": "Druid's Isle",
+     "n": 28,
+     "n_usual": 138,
+     "raw_difference": -2.2
+    },
+    {
+     "choice": "dervish",
+     "map": "Imperial Isle",
+     "n": 29,
+     "n_usual": 15,
+     "raw_difference": 2.5
+    },
+    {
+     "choice": "dervish",
+     "map": "Isle of Jade",
+     "n": 11,
+     "n_usual": 64,
+     "raw_difference": -6.7
+    },
+    {
+     "choice": "dervish",
+     "map": "Isle of Meditation",
+     "n": 99,
+     "n_usual": 89,
+     "raw_difference": 0.2
+    },
+    {
+     "choice": "dervish",
+     "map": "Isle of Solitude",
+     "n": 128,
+     "n_usual": 88,
+     "raw_difference": 1.3
+    },
+    {
+     "choice": "dervish",
+     "map": "Isle of Weeping Stone",
+     "n": 76,
+     "n_usual": 91,
+     "raw_difference": 2.6
+    },
+    {
+     "choice": "dervish",
+     "map": "Uncharted Isle",
+     "n": 97,
+     "n_usual": 59,
+     "raw_difference": 2.7
+    },
+    {
+     "choice": "dervish",
+     "snare": "little enemy snare for own speed (lowest third, -37 or less)",
+     "n": 156,
+     "n_usual": 223,
+     "raw_difference": 0.6
+    },
+    {
+     "choice": "dervish",
+     "snare": "middle third",
+     "n": 176,
+     "n_usual": 288,
+     "raw_difference": 1.3
+    },
+    {
+     "choice": "dervish",
+     "snare": "a lot of enemy snare for own speed (top third, above -6)",
+     "n": 209,
+     "n_usual": 216,
+     "raw_difference": -0.4
+    },
+    {
+     "choice": "warrior",
+     "own build": "not spike",
+     "n": 340,
+     "n_usual": 314,
+     "raw_difference": -0.1
+    },
+    {
+     "choice": "warrior",
+     "own build": "spike",
+     "n": 64,
+     "n_usual": 413,
+     "raw_difference": -1.3
+    },
+    {
+     "choice": "warrior",
+     "map": "Corrupted Isle",
+     "n": 77,
+     "n_usual": 166,
+     "raw_difference": -1.2
+    },
+    {
+     "choice": "warrior",
+     "map": "Druid's Isle",
      "n": 32,
+     "n_usual": 138,
+     "raw_difference": -4.2
+    },
+    {
+     "choice": "warrior",
+     "map": "Imperial Isle",
+     "n": 29,
+     "n_usual": 15,
+     "raw_difference": -0.7
+    },
+    {
+     "choice": "warrior",
+     "map": "Isle of Jade",
+     "n": 29,
+     "n_usual": 64,
+     "raw_difference": 0.6
+    },
+    {
+     "choice": "warrior",
+     "map": "Isle of Meditation",
+     "n": 54,
+     "n_usual": 89,
+     "raw_difference": -0.6
+    },
+    {
+     "choice": "warrior",
+     "map": "Isle of Solitude",
+     "n": 52,
+     "n_usual": 88,
+     "raw_difference": -0.7
+    },
+    {
+     "choice": "warrior",
+     "map": "Isle of Weeping Stone",
+     "n": 62,
+     "n_usual": 91,
+     "raw_difference": 0.6
+    },
+    {
+     "choice": "warrior",
+     "map": "Uncharted Isle",
+     "n": 64,
+     "n_usual": 59,
+     "raw_difference": 2.5
+    },
+    {
+     "choice": "warrior",
+     "snare": "little enemy snare for own speed (lowest third, -37 or less)",
+     "n": 143,
+     "n_usual": 223,
+     "raw_difference": -1.1
+    },
+    {
+     "choice": "warrior",
+     "snare": "middle third",
+     "n": 149,
+     "n_usual": 288,
+     "raw_difference": -0.2
+    },
+    {
+     "choice": "warrior",
+     "snare": "a lot of enemy snare for own speed (top third, above -6)",
+     "n": 112,
+     "n_usual": 216,
+     "raw_difference": -1.0
+    },
+    {
+     "choice": "ritualist",
+     "own build": "not spike",
+     "n": 358,
+     "n_usual": 314,
+     "raw_difference": 1.8
+    },
+    {
+     "choice": "ritualist",
+     "map": "Corrupted Isle",
+     "n": 39,
+     "n_usual": 166,
+     "raw_difference": -0.7
+    },
+    {
+     "choice": "ritualist",
+     "map": "Druid's Isle",
+     "n": 20,
+     "n_usual": 138,
+     "raw_difference": -0.3
+    },
+    {
+     "choice": "ritualist",
+     "map": "Isle of Jade",
+     "n": 19,
+     "n_usual": 64,
+     "raw_difference": -1.1
+    },
+    {
+     "choice": "ritualist",
+     "map": "Isle of Meditation",
+     "n": 100,
+     "n_usual": 89,
+     "raw_difference": 1.0
+    },
+    {
+     "choice": "ritualist",
+     "map": "Isle of Solitude",
+     "n": 56,
+     "n_usual": 88,
      "raw_difference": 2.9
     },
     {
-     "choice": "held, advanced",
-     "own build": "not spike",
-     "n": 22,
-     "raw_difference": 1.5
+     "choice": "ritualist",
+     "map": "Isle of Weeping Stone",
+     "n": 58,
+     "n_usual": 91,
+     "raw_difference": 0.9
     },
     {
-     "choice": "ran, fell back",
+     "choice": "ritualist",
+     "map": "Uncharted Isle",
+     "n": 68,
+     "n_usual": 59,
+     "raw_difference": 6.5
+    },
+    {
+     "choice": "ritualist",
+     "snare": "little enemy snare for own speed (lowest third, -37 or less)",
+     "n": 128,
+     "n_usual": 223,
+     "raw_difference": -1.0
+    },
+    {
+     "choice": "ritualist",
+     "snare": "middle third",
+     "n": 134,
+     "n_usual": 288,
+     "raw_difference": 1.7
+    },
+    {
+     "choice": "ritualist",
+     "snare": "a lot of enemy snare for own speed (top third, above -6)",
+     "n": 103,
+     "n_usual": 216,
+     "raw_difference": 2.8
+    },
+    {
+     "choice": "elementalist",
      "own build": "not spike",
+     "n": 143,
+     "n_usual": 314,
+     "raw_difference": 1.4
+    },
+    {
+     "choice": "elementalist",
+     "own build": "spike",
+     "n": 76,
+     "n_usual": 413,
+     "raw_difference": -0.0
+    },
+    {
+     "choice": "elementalist",
+     "map": "Corrupted Isle",
+     "n": 48,
+     "n_usual": 166,
+     "raw_difference": 0.4
+    },
+    {
+     "choice": "elementalist",
+     "map": "Druid's Isle",
+     "n": 24,
+     "n_usual": 138,
+     "raw_difference": -1.8
+    },
+    {
+     "choice": "elementalist",
+     "map": "Imperial Isle",
      "n": 29,
-     "raw_difference": 0.7
+     "n_usual": 15,
+     "raw_difference": 2.9
     },
     {
-     "choice": "ran, advanced",
+     "choice": "elementalist",
+     "map": "Isle of Jade",
+     "n": 24,
+     "n_usual": 64,
+     "raw_difference": 2.3
+    },
+    {
+     "choice": "elementalist",
+     "map": "Isle of Meditation",
+     "n": 34,
+     "n_usual": 89,
+     "raw_difference": 1.3
+    },
+    {
+     "choice": "elementalist",
+     "map": "Isle of Solitude",
+     "n": 19,
+     "n_usual": 88,
+     "raw_difference": -2.0
+    },
+    {
+     "choice": "elementalist",
+     "map": "Isle of Weeping Stone",
+     "n": 22,
+     "n_usual": 91,
+     "raw_difference": 3.3
+    },
+    {
+     "choice": "elementalist",
+     "map": "Uncharted Isle",
+     "n": 12,
+     "n_usual": 59,
+     "raw_difference": 0.6
+    },
+    {
+     "choice": "elementalist",
+     "snare": "little enemy snare for own speed (lowest third, -37 or less)",
+     "n": 55,
+     "n_usual": 223,
+     "raw_difference": -2.0
+    },
+    {
+     "choice": "elementalist",
+     "snare": "middle third",
+     "n": 82,
+     "n_usual": 288,
+     "raw_difference": 2.1
+    },
+    {
+     "choice": "elementalist",
+     "snare": "a lot of enemy snare for own speed (top third, above -6)",
+     "n": 82,
+     "n_usual": 216,
+     "raw_difference": 1.1
+    },
+    {
+     "choice": "necromancer",
      "own build": "not spike",
-     "n": 23,
-     "raw_difference": 0.0
+     "n": 121,
+     "n_usual": 314,
+     "raw_difference": 1.8
     },
     {
-     "choice": "already running, held",
+     "choice": "necromancer",
+     "map": "Druid's Isle",
+     "n": 19,
+     "n_usual": 138,
+     "raw_difference": -0.1
+    },
+    {
+     "choice": "necromancer",
+     "map": "Isle of Meditation",
+     "n": 26,
+     "n_usual": 89,
+     "raw_difference": 2.4
+    },
+    {
+     "choice": "necromancer",
+     "map": "Isle of Solitude",
+     "n": 20,
+     "n_usual": 88,
+     "raw_difference": -0.2
+    },
+    {
+     "choice": "necromancer",
+     "map": "Isle of Weeping Stone",
+     "n": 12,
+     "n_usual": 91,
+     "raw_difference": 5.6
+    },
+    {
+     "choice": "necromancer",
+     "map": "Uncharted Isle",
+     "n": 34,
+     "n_usual": 59,
+     "raw_difference": 1.8
+    },
+    {
+     "choice": "necromancer",
+     "snare": "little enemy snare for own speed (lowest third, -37 or less)",
+     "n": 61,
+     "n_usual": 223,
+     "raw_difference": -0.6
+    },
+    {
+     "choice": "necromancer",
+     "snare": "middle third",
+     "n": 28,
+     "n_usual": 288,
+     "raw_difference": 3.0
+    },
+    {
+     "choice": "necromancer",
+     "snare": "a lot of enemy snare for own speed (top third, above -6)",
+     "n": 40,
+     "n_usual": 216,
+     "raw_difference": 1.4
+    },
+    {
+     "choice": "ranger",
+     "own build": "not spike",
+     "n": 64,
+     "n_usual": 314,
+     "raw_difference": 1.8
+    },
+    {
+     "choice": "ranger",
+     "map": "Corrupted Isle",
+     "n": 12,
+     "n_usual": 166,
+     "raw_difference": 4.2
+    },
+    {
+     "choice": "ranger",
+     "map": "Isle of Meditation",
+     "n": 19,
+     "n_usual": 89,
+     "raw_difference": 0.8
+    },
+    {
+     "choice": "ranger",
+     "map": "Uncharted Isle",
+     "n": 11,
+     "n_usual": 59,
+     "raw_difference": 4.1
+    },
+    {
+     "choice": "ranger",
+     "snare": "little enemy snare for own speed (lowest third, -37 or less)",
+     "n": 30,
+     "n_usual": 223,
+     "raw_difference": 0.9
+    },
+    {
+     "choice": "ranger",
+     "snare": "middle third",
+     "n": 17,
+     "n_usual": 288,
+     "raw_difference": 0.9
+    },
+    {
+     "choice": "ranger",
+     "snare": "a lot of enemy snare for own speed (top third, above -6)",
+     "n": 19,
+     "n_usual": 216,
+     "raw_difference": 1.3
+    },
+    {
+     "choice": "paragon",
+     "own build": "spike",
+     "n": 13,
+     "n_usual": 413,
+     "raw_difference": 2.5
+    },
+    {
+     "choice": "paragon",
+     "snare": "little enemy snare for own speed (lowest third, -37 or less)",
+     "n": 9,
+     "n_usual": 223,
+     "note": "too few yet",
+     "raw_mean": -0.3,
+     "raw_mean_usual": 0.2
+    },
+    {
+     "choice": "paragon",
+     "snare": "middle third",
+     "n": 6,
+     "n_usual": 288,
+     "note": "too few yet",
+     "raw_mean": 8.8,
+     "raw_mean_usual": -0.2
+    },
+    {
+     "choice": "paragon",
+     "snare": "a lot of enemy snare for own speed (top third, above -6)",
+     "n": 5,
+     "n_usual": 216,
+     "note": "too few yet",
+     "raw_mean": -3.4,
+     "raw_mean_usual": -0.1
+    },
+    {
+     "choice": "assassin",
      "own build": "not spike",
      "n": 12,
-     "raw_difference": -0.2
+     "n_usual": 314,
+     "raw_difference": 0.8
+    },
+    {
+     "choice": "assassin",
+     "snare": "little enemy snare for own speed (lowest third, -37 or less)",
+     "n": 3,
+     "n_usual": 223,
+     "note": "too few yet",
+     "raw_mean": -9.8,
+     "raw_mean_usual": 0.2
+    },
+    {
+     "choice": "assassin",
+     "snare": "middle third",
+     "n": 5,
+     "n_usual": 288,
+     "note": "too few yet",
+     "raw_mean": 5.5,
+     "raw_mean_usual": -0.2
+    },
+    {
+     "choice": "assassin",
+     "snare": "a lot of enemy snare for own speed (top third, above -6)",
+     "n": 4,
+     "n_usual": 216,
+     "note": "too few yet",
+     "raw_mean": 0.8,
+     "raw_mean_usual": -0.1
     }
    ],
-   "unusual_choices": [
-    {
-     "match": "e905b193-051d-5ffb-ae10-118d3c46c055",
-     "team": "Free",
-     "t": 371,
-     "chose": "held, held",
-     "usual": "held, fought",
-     "difference": -15.0,
-     "wp_change": 3.6
-    },
-    {
-     "match": "2df9b7fd-823e-5df7-ad4e-192612cd9249",
-     "team": "Team",
-     "t": 626,
-     "chose": "held, held",
-     "usual": "already running, fell back",
-     "difference": -14.8,
-     "wp_change": -64.8
-    },
-    {
-     "match": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
-     "team": "RACK",
-     "t": 36,
-     "chose": "held, held",
-     "usual": "already running, fell back",
-     "difference": -14.8,
-     "wp_change": -37.5
-    },
-    {
-     "match": "2df9b7fd-823e-5df7-ad4e-192612cd9249",
-     "team": "Team",
-     "t": 1036,
-     "chose": "held, held",
-     "usual": "already running, held",
-     "difference": -13.2,
-     "wp_change": -18.2
-    },
-    {
-     "match": "1d073205-fdec-5684-aa7a-b03a558a9471",
-     "team": "hdm",
-     "t": 984,
-     "chose": "held, held",
-     "usual": "already running, fought",
-     "difference": -12.7,
-     "wp_change": 31.6
-    },
-    {
-     "match": "2df9b7fd-823e-5df7-ad4e-192612cd9249",
-     "team": "Team",
-     "t": 1137,
-     "chose": "held, held",
-     "usual": "ran, fell back",
-     "difference": -11.7,
-     "wp_change": -2.9
-    },
-    {
-     "match": "a9fa1ae1-f83b-5cd0-a946-cf332aacfca6",
-     "team": "TFS",
-     "t": 300,
-     "chose": "held, held",
-     "usual": "held, fell back",
-     "difference": -8.2,
-     "wp_change": 0.1
-    },
-    {
-     "match": "f30bb176-a527-508c-acd5-f289b304ee79",
-     "team": "One",
-     "t": 1186,
-     "chose": "held, held",
-     "usual": "held, fell back",
-     "difference": -8.2,
-     "wp_change": 0.1
-    },
-    {
-     "match": "1d073205-fdec-5684-aa7a-b03a558a9471",
-     "team": "cope",
-     "t": 689,
-     "chose": "held, fell back",
-     "usual": "held, fought",
-     "difference": -6.8,
-     "wp_change": -39.2
-    },
-    {
-     "match": "1d073205-fdec-5684-aa7a-b03a558a9471",
-     "team": "hdm",
-     "t": 948,
-     "chose": "held, fell back",
-     "usual": "held, fought",
-     "difference": -6.8,
-     "wp_change": -1.8
-    }
-   ]
+   "unusual_choices": []
   },
-  "late_game": {
-   "n": 13,
-   "note": "not enough decisions yet"
-  },
-  "power_play": {
-   "n": 329,
-   "matches": 30,
-   "reference": "pushed, advanced",
+  "split_in_base": {
+   "n": 702,
+   "matches": 226,
+   "reference": "defended without a collapse",
    "choices": [
     {
-     "choice": "pushed, advanced",
-     "n": 123,
-     "share": 0.37,
-     "raw_wp_change": 2.5,
+     "choice": "defended without a collapse",
+     "n": 330,
+     "share": 0.47,
+     "raw_wp_change": -0.6,
      "effect_vs_usual": 0.0,
      "interval": [
       0.0,
@@ -701,76 +5708,40 @@
      ]
     },
     {
-     "choice": "pushed, fought",
-     "n": 90,
-     "share": 0.27,
-     "raw_wp_change": 3.5,
-     "effect_vs_usual": 0.0,
+     "choice": "collapsed",
+     "n": 297,
+     "share": 0.42,
+     "raw_wp_change": -1.8,
+     "effect_vs_usual": -1.6,
      "interval": [
-      -5.1,
-      4.0
+      -3.5,
+      0.1
      ],
-     "clear": false
+     "clear": false,
+     "pre_trend_vs_usual": 1.1,
+     "pre_interval": [
+      -0.0,
+      2.2
+     ],
+     "selection_warning": false
     },
     {
-     "choice": "held, fought",
-     "n": 67,
-     "share": 0.2,
-     "raw_wp_change": -0.4,
-     "effect_vs_usual": -3.2,
+     "choice": "missed",
+     "n": 75,
+     "share": 0.11,
+     "raw_wp_change": -2.3,
+     "effect_vs_usual": -2.4,
      "interval": [
-      -7.7,
-      -0.4
+      -6.8,
+      0.5
      ],
-     "clear": true
-    },
-    {
-     "choice": "held, fell back",
-     "n": 26,
-     "share": 0.08,
-     "raw_wp_change": -0.9,
-     "effect_vs_usual": -4.2,
-     "interval": [
-      -9.0,
-      0.0
+     "clear": false,
+     "pre_trend_vs_usual": 2.6,
+     "pre_interval": [
+      1.1,
+      4.4
      ],
-     "clear": false
-    },
-    {
-     "choice": "held, advanced",
-     "n": 10,
-     "share": 0.03,
-     "raw_wp_change": 5.9,
-     "effect_vs_usual": 3.1,
-     "interval": [
-      -4.6,
-      18.8
-     ],
-     "clear": false
-    },
-    {
-     "choice": "pushed, fell back",
-     "n": 8,
-     "share": 0.02,
-     "raw_wp_change": -1.0,
-     "effect_vs_usual": -3.5,
-     "interval": [
-      -9.1,
-      0.6
-     ],
-     "clear": false
-    },
-    {
-     "choice": "pushed, held",
-     "n": 5,
-     "share": 0.02,
-     "raw_wp_change": 0.6,
-     "effect_vs_usual": -7.6,
-     "interval": [
-      -14.9,
-      1.1
-     ],
-     "clear": false
+     "selection_warning": true
     }
    ],
    "adjusted_for": [
@@ -784,6 +5755,16 @@
     "lord_damage",
     "minute",
     "strength_gap",
+    "fight_state",
+    "split_size",
+    "defender_snare_power",
+    "attacker_self_defence",
+    "main_diff_now",
+    "health_diff",
+    "split_dp",
+    "split_npc_dps",
+    "def_npc_value",
+    "split_healers",
     "own_spike",
     "own_shutdown",
     "own_knockdowns",
@@ -793,143 +5774,146 @@
     "enemy_shutdown",
     "enemy_knockdowns",
     "enemy_defence",
-    "enemy_sustain"
+    "enemy_sustain",
+    "map_flag_run",
+    "map_pit_to_stand",
+    "map_bases_apart"
    ],
    "by_build": [
     {
-     "choice": "pushed, fought",
+     "choice": "collapsed",
      "own build": "not spike",
-     "n": 68,
-     "raw_difference": 1.0
+     "n": 229,
+     "n_usual": 246,
+     "raw_difference": -0.9
     },
     {
-     "choice": "pushed, fought",
+     "choice": "collapsed",
      "own build": "spike",
-     "n": 22,
-     "raw_difference": 1.8
+     "n": 68,
+     "n_usual": 84,
+     "raw_difference": -2.3
     },
     {
-     "choice": "held, fought",
-     "own build": "not spike",
-     "n": 60,
+     "choice": "collapsed",
+     "defender_snare": "no",
+     "n": 198,
+     "n_usual": 207,
+     "raw_difference": -1.1
+    },
+    {
+     "choice": "collapsed",
+     "defender_snare": "yes",
+     "n": 99,
+     "n_usual": 123,
+     "raw_difference": -1.6
+    },
+    {
+     "choice": "collapsed",
+     "map": "Corrupted Isle",
+     "n": 47,
+     "n_usual": 55,
+     "raw_difference": -1.5
+    },
+    {
+     "choice": "collapsed",
+     "map": "Druid's Isle",
+     "n": 22,
+     "n_usual": 12,
+     "raw_difference": -2.7
+    },
+    {
+     "choice": "collapsed",
+     "map": "Isle of Meditation",
+     "n": 57,
+     "n_usual": 34,
+     "raw_difference": -0.0
+    },
+    {
+     "choice": "collapsed",
+     "map": "Isle of Solitude",
+     "n": 61,
+     "n_usual": 92,
+     "raw_difference": 0.6
+    },
+    {
+     "choice": "collapsed",
+     "map": "Isle of Weeping Stone",
+     "n": 19,
+     "n_usual": 39,
+     "raw_difference": 0.1
+    },
+    {
+     "choice": "collapsed",
+     "map": "Uncharted Isle",
+     "n": 44,
+     "n_usual": 85,
      "raw_difference": -2.2
     },
     {
-     "choice": "held, fell back",
+     "choice": "missed",
      "own build": "not spike",
-     "n": 15,
-     "raw_difference": -1.4
+     "n": 64,
+     "n_usual": 246,
+     "raw_difference": -0.9
     },
     {
-     "choice": "held, fell back",
+     "choice": "missed",
      "own build": "spike",
      "n": 11,
-     "raw_difference": -6.7
+     "n_usual": 84,
+     "raw_difference": -6.5
+    },
+    {
+     "choice": "missed",
+     "defender_snare": "no",
+     "n": 72,
+     "n_usual": 207,
+     "raw_difference": -2.8
+    },
+    {
+     "choice": "missed",
+     "defender_snare": "yes",
+     "n": 3,
+     "n_usual": 123,
+     "note": "too few yet",
+     "raw_mean": 21.1,
+     "raw_mean_usual": -0.7
+    },
+    {
+     "choice": "missed",
+     "map": "Corrupted Isle",
+     "n": 12,
+     "n_usual": 55,
+     "raw_difference": -1.0
+    },
+    {
+     "choice": "missed",
+     "map": "Isle of Solitude",
+     "n": 26,
+     "n_usual": 92,
+     "raw_difference": -1.7
+    },
+    {
+     "choice": "missed",
+     "map": "Uncharted Isle",
+     "n": 13,
+     "n_usual": 85,
+     "raw_difference": -5.3
     }
    ],
-   "unusual_choices": [
-    {
-     "match": "2df9b7fd-823e-5df7-ad4e-192612cd9249",
-     "team": "push",
-     "t": 817,
-     "chose": "pushed, held",
-     "usual": "pushed, advanced",
-     "difference": -7.6,
-     "wp_change": 5.7
-    },
-    {
-     "match": "5739e1e0-483e-58f1-a017-d0d8fee69c6e",
-     "team": "chic",
-     "t": 81,
-     "chose": "pushed, held",
-     "usual": "pushed, fought",
-     "difference": -7.6,
-     "wp_change": -13.5
-    },
-    {
-     "match": "84586253-61c8-5848-ad75-1bfda24302ba",
-     "team": "cope",
-     "t": 1321,
-     "chose": "pushed, held",
-     "usual": "pushed, advanced",
-     "difference": -7.6,
-     "wp_change": 10.3
-    },
-    {
-     "match": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
-     "team": "RACK",
-     "t": 847,
-     "chose": "pushed, held",
-     "usual": "pushed, fought",
-     "difference": -7.6,
-     "wp_change": 0.1
-    },
-    {
-     "match": "f30bb176-a527-508c-acd5-f289b304ee79",
-     "team": "One",
-     "t": 1199,
-     "chose": "pushed, held",
-     "usual": "pushed, advanced",
-     "difference": -7.6,
-     "wp_change": 0.2
-    },
-    {
-     "match": "cb5a5f57-be04-5af2-aa60-8114e98e1202",
-     "team": "MBP",
-     "t": 50,
-     "chose": "held, advanced",
-     "usual": "held, fought",
-     "difference": 6.3,
-     "wp_change": -1.2
-    },
-    {
-     "match": "0f1fd794-46cd-5fb1-a661-a7ec5f1cbadd",
-     "team": "Men",
-     "t": 1131,
-     "chose": "held, fell back",
-     "usual": "pushed, advanced",
-     "difference": -4.2,
-     "wp_change": 1.9
-    },
-    {
-     "match": "28447c4a-7cc6-5db5-ac7c-aa2bcc23c62c",
-     "team": "HC",
-     "t": 387,
-     "chose": "held, fell back",
-     "usual": "pushed, fought",
-     "difference": -4.2,
-     "wp_change": -6.4
-    },
-    {
-     "match": "29b7eca0-2660-5d04-adc2-06632123c2ec",
-     "team": "OG",
-     "t": 55,
-     "chose": "held, fell back",
-     "usual": "pushed, advanced",
-     "difference": -4.2,
-     "wp_change": 0.2
-    },
-    {
-     "match": "29b7eca0-2660-5d04-adc2-06632123c2ec",
-     "team": "OG",
-     "t": 79,
-     "chose": "held, fell back",
-     "usual": "pushed, advanced",
-     "difference": -4.2,
-     "wp_change": 0.1
-    }
-   ]
+   "unusual_choices": []
   },
-  "split_in_base": {
-   "n": 72,
-   "matches": 21,
-   "reference": "on time",
+  "split_or_stay": {
+   "n": 12924,
+   "matches": 356,
+   "reference": "stayed",
    "choices": [
     {
-     "choice": "on time",
-     "n": 64,
-     "share": 0.89,
-     "raw_wp_change": 1.5,
+     "choice": "stayed",
+     "n": 11669,
+     "share": 0.9,
+     "raw_wp_change": -0.1,
      "effect_vs_usual": 0.0,
      "interval": [
       0.0,
@@ -937,16 +5921,22 @@
      ]
     },
     {
-     "choice": "missed",
-     "n": 8,
-     "share": 0.11,
-     "raw_wp_change": -2.0,
-     "effect_vs_usual": -2.2,
+     "choice": "split",
+     "n": 1255,
+     "share": 0.1,
+     "raw_wp_change": -0.8,
+     "effect_vs_usual": -0.6,
      "interval": [
-      -7.4,
-      3.1
+      -1.2,
+      0.1
      ],
-     "clear": false
+     "clear": false,
+     "pre_trend_vs_usual": 0.3,
+     "pre_interval": [
+      -0.0,
+      0.7
+     ],
+     "selection_warning": false
     }
    ],
    "adjusted_for": [
@@ -959,10 +5949,637 @@
     "npcs",
     "lord_damage",
     "minute",
-    "strength_gap"
+    "strength_gap",
+    "fight_state",
+    "own_snare_power",
+    "enemy_snare_power",
+    "own_speed_power",
+    "own_spike",
+    "own_shutdown",
+    "own_knockdowns",
+    "own_defence",
+    "own_sustain",
+    "enemy_spike",
+    "enemy_shutdown",
+    "enemy_knockdowns",
+    "enemy_defence",
+    "enemy_sustain",
+    "map_flag_run",
+    "map_pit_to_stand",
+    "map_bases_apart"
    ],
-   "by_build": [],
+   "by_build": [
+    {
+     "choice": "split",
+     "own build": "not spike",
+     "n": 1090,
+     "n_usual": 8318,
+     "raw_difference": -1.1
+    },
+    {
+     "choice": "split",
+     "own build": "spike",
+     "n": 165,
+     "n_usual": 3351,
+     "raw_difference": 1.7
+    },
+    {
+     "choice": "split",
+     "map": "Corrupted Isle",
+     "n": 200,
+     "n_usual": 1649,
+     "raw_difference": -3.8
+    },
+    {
+     "choice": "split",
+     "map": "Druid's Isle",
+     "n": 82,
+     "n_usual": 1581,
+     "raw_difference": 1.3
+    },
+    {
+     "choice": "split",
+     "map": "Imperial Isle",
+     "n": 43,
+     "n_usual": 439,
+     "raw_difference": -1.3
+    },
+    {
+     "choice": "split",
+     "map": "Isle of Jade",
+     "n": 73,
+     "n_usual": 1530,
+     "raw_difference": -0.4
+    },
+    {
+     "choice": "split",
+     "map": "Isle of Meditation",
+     "n": 231,
+     "n_usual": 1960,
+     "raw_difference": 0.5
+    },
+    {
+     "choice": "split",
+     "map": "Isle of Solitude",
+     "n": 226,
+     "n_usual": 1589,
+     "raw_difference": -0.2
+    },
+    {
+     "choice": "split",
+     "map": "Isle of Weeping Stone",
+     "n": 119,
+     "n_usual": 1114,
+     "raw_difference": 0.4
+    },
+    {
+     "choice": "split",
+     "map": "Nomad's Isle",
+     "n": 53,
+     "n_usual": 445,
+     "raw_difference": -0.0
+    },
+    {
+     "choice": "split",
+     "map": "Uncharted Isle",
+     "n": 226,
+     "n_usual": 1302,
+     "raw_difference": -1.2
+    },
+    {
+     "choice": "split",
+     "snare": "little enemy snare for own speed (lowest third, -34 or less)",
+     "n": 473,
+     "n_usual": 3907,
+     "raw_difference": -1.0
+    },
+    {
+     "choice": "split",
+     "snare": "middle third",
+     "n": 379,
+     "n_usual": 3860,
+     "raw_difference": 0.3
+    },
+    {
+     "choice": "split",
+     "snare": "a lot of enemy snare for own speed (top third, above -6)",
+     "n": 403,
+     "n_usual": 3902,
+     "raw_difference": -1.3
+    }
+   ],
    "unusual_choices": []
+  },
+  "who_defends": {
+   "n": 636,
+   "matches": 214,
+   "reference": "midline alone",
+   "choices": [
+    {
+     "choice": "midline alone",
+     "n": 109,
+     "share": 0.17,
+     "raw_wp_change": -2.9,
+     "effect_vs_usual": 0.0,
+     "interval": [
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "choice": "frontline with a collapse",
+     "n": 94,
+     "share": 0.15,
+     "raw_wp_change": -1.5,
+     "effect_vs_usual": 1.0,
+     "interval": [
+      -2.5,
+      4.3
+     ],
+     "clear": false,
+     "pre_trend_vs_usual": 0.8,
+     "pre_interval": [
+      -1.0,
+      2.6
+     ],
+     "selection_warning": false
+    },
+    {
+     "choice": "frontline alone",
+     "n": 78,
+     "share": 0.12,
+     "raw_wp_change": -0.9,
+     "effect_vs_usual": 0.6,
+     "interval": [
+      -2.1,
+      3.2
+     ],
+     "clear": false,
+     "pre_trend_vs_usual": -1.1,
+     "pre_interval": [
+      -2.7,
+      0.7
+     ],
+     "selection_warning": false
+    },
+    {
+     "choice": "midline with a collapse",
+     "n": 76,
+     "share": 0.12,
+     "raw_wp_change": -3.3,
+     "effect_vs_usual": -1.1,
+     "interval": [
+      -4.7,
+      1.7
+     ],
+     "clear": false,
+     "pre_trend_vs_usual": 0.5,
+     "pre_interval": [
+      -1.5,
+      2.6
+     ],
+     "selection_warning": false
+    },
+    {
+     "choice": "8 Monk with a collapse",
+     "n": 51,
+     "share": 0.08,
+     "raw_wp_change": -1.5,
+     "effect_vs_usual": 1.4,
+     "interval": [
+      -2.4,
+      4.8
+     ],
+     "clear": false,
+     "pre_trend_vs_usual": 0.1,
+     "pre_interval": [
+      -1.9,
+      1.8
+     ],
+     "selection_warning": false
+    },
+    {
+     "choice": "8 Monk alone",
+     "n": 51,
+     "share": 0.08,
+     "raw_wp_change": 2.4,
+     "effect_vs_usual": 6.1,
+     "interval": [
+      1.5,
+      10.8
+     ],
+     "clear": true,
+     "pre_trend_vs_usual": 0.5,
+     "pre_interval": [
+      -2.0,
+      3.4
+     ],
+     "selection_warning": false
+    },
+    {
+     "choice": "healer alone",
+     "n": 41,
+     "share": 0.06,
+     "raw_wp_change": -1.2,
+     "effect_vs_usual": 0.7,
+     "interval": [
+      -3.9,
+      5.2
+     ],
+     "clear": false,
+     "pre_trend_vs_usual": -0.8,
+     "pre_interval": [
+      -3.0,
+      1.3
+     ],
+     "selection_warning": false
+    },
+    {
+     "choice": "Mes/A alone",
+     "n": 34,
+     "share": 0.05,
+     "raw_wp_change": 0.7,
+     "effect_vs_usual": 2.2,
+     "interval": [
+      -2.4,
+      7.2
+     ],
+     "clear": false,
+     "pre_trend_vs_usual": -0.7,
+     "pre_interval": [
+      -3.7,
+      2.0
+     ],
+     "selection_warning": false
+    },
+    {
+     "choice": "Mes/A with a collapse",
+     "n": 33,
+     "share": 0.05,
+     "raw_wp_change": 0.7,
+     "effect_vs_usual": 3.2,
+     "interval": [
+      -1.7,
+      8.7
+     ],
+     "clear": false,
+     "pre_trend_vs_usual": 0.8,
+     "pre_interval": [
+      -2.1,
+      2.8
+     ],
+     "selection_warning": false
+    },
+    {
+     "choice": "healer with a collapse",
+     "n": 29,
+     "share": 0.05,
+     "raw_wp_change": -2.7,
+     "effect_vs_usual": -0.0,
+     "interval": [
+      -4.2,
+      4.6
+     ],
+     "clear": false,
+     "pre_trend_vs_usual": 2.4,
+     "pre_interval": [
+      -0.1,
+      4.6
+     ],
+     "selection_warning": false
+    },
+    {
+     "choice": "backline alone",
+     "n": 26,
+     "share": 0.04,
+     "raw_wp_change": 4.8,
+     "effect_vs_usual": 10.6,
+     "interval": [
+      5.3,
+      15.5
+     ],
+     "clear": true,
+     "pre_trend_vs_usual": 0.9,
+     "pre_interval": [
+      -1.6,
+      2.7
+     ],
+     "selection_warning": false
+    },
+    {
+     "choice": "backline with a collapse",
+     "n": 14,
+     "share": 0.02,
+     "raw_wp_change": -0.8,
+     "effect_vs_usual": 4.3,
+     "interval": [
+      -4.0,
+      13.0
+     ],
+     "clear": false,
+     "pre_trend_vs_usual": -2.6,
+     "pre_interval": [
+      -5.2,
+      -0.5
+     ],
+     "selection_warning": true
+    }
+   ],
+   "adjusted_for": [
+    "flag_lead",
+    "stand",
+    "boost_in",
+    "alive",
+    "main",
+    "dp",
+    "npcs",
+    "lord_damage",
+    "minute",
+    "strength_gap",
+    "fight_state",
+    "own_spike",
+    "own_shutdown",
+    "own_knockdowns",
+    "own_defence",
+    "own_sustain",
+    "enemy_spike",
+    "enemy_shutdown",
+    "enemy_knockdowns",
+    "enemy_defence",
+    "enemy_sustain",
+    "map_flag_run",
+    "map_pit_to_stand",
+    "map_bases_apart"
+   ],
+   "by_build": [
+    {
+     "choice": "frontline with a collapse",
+     "own build": "not spike",
+     "n": 75,
+     "n_usual": 101,
+     "raw_difference": 0.6
+    },
+    {
+     "choice": "frontline with a collapse",
+     "map": "Corrupted Isle",
+     "n": 10,
+     "n_usual": 18,
+     "raw_difference": 7.8
+    },
+    {
+     "choice": "frontline with a collapse",
+     "map": "Isle of Meditation",
+     "n": 17,
+     "n_usual": 15,
+     "raw_difference": 3.4
+    },
+    {
+     "choice": "frontline with a collapse",
+     "map": "Isle of Solitude",
+     "n": 25,
+     "n_usual": 29,
+     "raw_difference": 2.7
+    },
+    {
+     "choice": "frontline with a collapse",
+     "map": "Uncharted Isle",
+     "n": 20,
+     "n_usual": 24,
+     "raw_difference": -0.7
+    },
+    {
+     "choice": "frontline alone",
+     "own build": "not spike",
+     "n": 75,
+     "n_usual": 101,
+     "raw_difference": 1.7
+    },
+    {
+     "choice": "frontline alone",
+     "map": "Isle of Solitude",
+     "n": 23,
+     "n_usual": 29,
+     "raw_difference": 4.9
+    },
+    {
+     "choice": "frontline alone",
+     "map": "Uncharted Isle",
+     "n": 34,
+     "n_usual": 24,
+     "raw_difference": 1.6
+    },
+    {
+     "choice": "midline with a collapse",
+     "own build": "not spike",
+     "n": 68,
+     "n_usual": 101,
+     "raw_difference": -1.0
+    },
+    {
+     "choice": "midline with a collapse",
+     "map": "Corrupted Isle",
+     "n": 13,
+     "n_usual": 18,
+     "raw_difference": 3.1
+    },
+    {
+     "choice": "midline with a collapse",
+     "map": "Isle of Meditation",
+     "n": 20,
+     "n_usual": 15,
+     "raw_difference": -4.6
+    },
+    {
+     "choice": "midline with a collapse",
+     "map": "Isle of Solitude",
+     "n": 14,
+     "n_usual": 29,
+     "raw_difference": 3.3
+    },
+    {
+     "choice": "midline with a collapse",
+     "map": "Uncharted Isle",
+     "n": 12,
+     "n_usual": 24,
+     "raw_difference": -1.4
+    },
+    {
+     "choice": "8 Monk with a collapse",
+     "own build": "not spike",
+     "n": 35,
+     "n_usual": 101,
+     "raw_difference": 2.1
+    },
+    {
+     "choice": "8 Monk with a collapse",
+     "map": "Isle of Solitude",
+     "n": 11,
+     "n_usual": 29,
+     "raw_difference": 4.8
+    },
+    {
+     "choice": "8 Monk alone",
+     "own build": "not spike",
+     "n": 17,
+     "n_usual": 101,
+     "raw_difference": 0.5
+    },
+    {
+     "choice": "8 Monk alone",
+     "map": "Corrupted Isle",
+     "n": 10,
+     "n_usual": 18,
+     "raw_difference": 6.1
+    },
+    {
+     "choice": "8 Monk alone",
+     "map": "Isle of Solitude",
+     "n": 23,
+     "n_usual": 29,
+     "raw_difference": 6.0
+    },
+    {
+     "choice": "healer alone",
+     "own build": "not spike",
+     "n": 28,
+     "n_usual": 101,
+     "raw_difference": 5.1
+    },
+    {
+     "choice": "healer alone",
+     "map": "Uncharted Isle",
+     "n": 10,
+     "n_usual": 24,
+     "raw_difference": 5.1
+    },
+    {
+     "choice": "Mes/A alone",
+     "own build": "not spike",
+     "n": 29,
+     "n_usual": 101,
+     "raw_difference": 3.5
+    },
+    {
+     "choice": "Mes/A alone",
+     "map": "Uncharted Isle",
+     "n": 11,
+     "n_usual": 24,
+     "raw_difference": 0.2
+    },
+    {
+     "choice": "Mes/A with a collapse",
+     "own build": "not spike",
+     "n": 30,
+     "n_usual": 101,
+     "raw_difference": 4.2
+    },
+    {
+     "choice": "healer with a collapse",
+     "own build": "not spike",
+     "n": 18,
+     "n_usual": 101,
+     "raw_difference": -2.9
+    },
+    {
+     "choice": "backline alone",
+     "map": "Corrupted Isle",
+     "n": 12,
+     "n_usual": 18,
+     "raw_difference": 12.9
+    }
+   ],
+   "unusual_choices": [
+    {
+     "match": "3b9c897a-99fb-59ed-ad6f-1c2ae0348745",
+     "team": "hold",
+     "t": 1194,
+     "chose": "midline with a collapse",
+     "usual": "backline alone",
+     "difference": -11.7,
+     "wp_change": -0.5
+    },
+    {
+     "match": "07b6b99a-d32b-5ab2-a6a0-542a1045f980",
+     "team": "Crew",
+     "t": 59,
+     "chose": "backline alone",
+     "usual": "midline alone",
+     "difference": 10.6,
+     "wp_change": -12.3
+    },
+    {
+     "match": "18b0e3e7-f4e4-5464-a9d6-47e1ee2013dc",
+     "team": "ohno",
+     "t": 952,
+     "chose": "backline alone",
+     "usual": "midline alone",
+     "difference": 10.6,
+     "wp_change": 0.0
+    },
+    {
+     "match": "18b0e3e7-f4e4-5464-a9d6-47e1ee2013dc",
+     "team": "ohno",
+     "t": 1087,
+     "chose": "backline alone",
+     "usual": "midline alone",
+     "difference": 10.6,
+     "wp_change": 0.1
+    },
+    {
+     "match": "1daf140d-efb3-5b8d-aa20-14f36371b766",
+     "team": "BcS",
+     "t": 250,
+     "chose": "midline alone",
+     "usual": "backline alone",
+     "difference": -10.6,
+     "wp_change": -2.8
+    },
+    {
+     "match": "1daf140d-efb3-5b8d-aa20-14f36371b766",
+     "team": "BcS",
+     "t": 524,
+     "chose": "midline alone",
+     "usual": "backline alone",
+     "difference": -10.6,
+     "wp_change": -18.0
+    },
+    {
+     "match": "1daf140d-efb3-5b8d-aa20-14f36371b766",
+     "team": "BcS",
+     "t": 764,
+     "chose": "midline alone",
+     "usual": "backline alone",
+     "difference": -10.6,
+     "wp_change": -12.7
+    },
+    {
+     "match": "1daf140d-efb3-5b8d-aa20-14f36371b766",
+     "team": "BcS",
+     "t": 811,
+     "chose": "midline alone",
+     "usual": "backline alone",
+     "difference": -10.6,
+     "wp_change": -22.2
+    },
+    {
+     "match": "3b9c897a-99fb-59ed-ad6f-1c2ae0348745",
+     "team": "hold",
+     "t": 853,
+     "chose": "backline alone",
+     "usual": "midline alone",
+     "difference": 10.6,
+     "wp_change": 48.9
+    },
+    {
+     "match": "92977824-d166-5e37-a5c4-dc4846027086",
+     "team": "DMG",
+     "t": 1426,
+     "chose": "backline alone",
+     "usual": "midline alone",
+     "difference": 10.6,
+     "wp_change": 0.0
+    }
+   ]
   }
  }
 }

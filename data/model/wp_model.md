@@ -12,6 +12,8 @@ Gain over strength alone (log loss, resampling whole matches): +0.114, 90% range
 - glass box: accuracy 84%, log loss 0.358 (0-5 min 85%; 5-10 min 85%; 10-15 min 82%; 15-end min 85%; matches lasting 15 min+ 81%; matches even on strength (gap under 200) 76%)
 - glass box without corrections: accuracy 83%, log loss 0.387 (0-5 min 83%; 5-10 min 83%; 10-15 min 82%; 15-end min 85%; matches lasting 15 min+ 80%; matches even on strength (gap under 200) 77%)
 - black box: accuracy 79%, log loss 0.626 (0-5 min 82%; 5-10 min 80%; 10-15 min 76%; 15-end min 77%; matches lasting 15 min+ 74%; matches even on strength (gap under 200) 64%)
+- By month played (glass box v strength alone, log loss; matches): 2026-09 0.443 v 0.577 (156); 2026-10 0.282 v 0.395 (157); 2026-11 0.317 v 0.363 (43)
+- By strength band (glass box v strength alone, log loss; matches): even (gap under 200) 0.525 v 0.65 (102); moderate (200 to 600) 0.33 v 0.469 (181); uneven (600+) 0.083 v 0.078 (73)
 
 ## What it learned, most important first
 

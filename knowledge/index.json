@@ -138,6 +138,18 @@
   "group": "GvG"
  },
  {
+  "id": "behaviour",
+  "title": "What teams actually do",
+  "file": "behaviour.md",
+  "group": "GvG"
+ },
+ {
+  "id": "model",
+  "title": "The model: structure",
+  "file": "model.md",
+  "group": "GvG"
+ },
+ {
   "id": "learned-model",
   "title": "What the model has learned",
   "file": "learned-model.md",

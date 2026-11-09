@@ -25,7 +25,11 @@
    ],
    "strength": 0.002,
    "plus_minus": 0.0014,
-   "status": "not clear yet"
+   "status": "not clear yet",
+   "kinds": [
+    "decision",
+    "execution"
+   ]
   },
   {
    "from": "S.scoreboard",
@@ -36,7 +40,10 @@
    ],
    "strength": 0.0111,
    "plus_minus": 0.0023,
-   "status": "supported"
+   "status": "supported",
+   "kinds": [
+    "state"
+   ]
   },
   {
    "from": "A.allocation",
@@ -49,7 +56,11 @@
    ],
    "strength": 0.0013,
    "plus_minus": 0.0012,
-   "status": "not clear yet"
+   "status": "not clear yet",
+   "kinds": [
+    "decision",
+    "state"
+   ]
   },
   {
    "from": "K.11",
@@ -64,7 +75,10 @@
    ],
    "strength": -0.0001,
    "plus_minus": 0.0007,
-   "status": "not clear yet"
+   "status": "not clear yet",
+   "kinds": [
+    "execution"
+   ]
   },
   {
    "from": "K.13",
@@ -75,7 +89,10 @@
    ],
    "strength": 0.0288,
    "plus_minus": 0.0045,
-   "status": "supported"
+   "status": "supported",
+   "kinds": [
+    "execution"
+   ]
   },
   {
    "from": "C.builds",
@@ -85,7 +102,10 @@
    ],
    "strength": 0.0006,
    "plus_minus": 0.0014,
-   "status": "not clear yet"
+   "status": "not clear yet",
+   "kinds": [
+    "context"
+   ]
   },
   {
    "from": "C.map",
@@ -95,7 +115,10 @@
    ],
    "strength": 0.0031,
    "plus_minus": 0.0014,
-   "status": "supported"
+   "status": "supported",
+   "kinds": [
+    "context"
+   ]
   },
   {
    "from": "C.strength",
@@ -105,7 +128,10 @@
    ],
    "strength": 0.0004,
    "plus_minus": 0.0005,
-   "status": "not clear yet"
+   "status": "not clear yet",
+   "kinds": [
+    "context"
+   ]
   }
  ],
  "terms": [
@@ -199,7 +225,8 @@
      "points": -27.9,
      "plus_minus": 0.2
     }
-   ]
+   ],
+   "kind": "execution"
   },
   {
    "term": "boost_clock",
@@ -241,7 +268,7 @@
      "from": -80.5,
      "to": -70.5,
      "points": 11.4,
-     "plus_minus": 0.3
+     "plus_minus": 0.4
     },
     {
      "from": -70.5,
@@ -265,7 +292,7 @@
      "from": -0.5,
      "to": 0.5,
      "points": -9.7,
-     "plus_minus": 0.3
+     "plus_minus": 0.4
     },
     {
      "from": 0.5,
@@ -276,7 +303,7 @@
     {
      "from": 63.5,
      "to": 83.5,
-     "points": -11.7,
+     "points": -11.8,
      "plus_minus": 0.6
     },
     {
@@ -291,7 +318,8 @@
      "points": -21.1,
      "plus_minus": 0.2
     }
-   ]
+   ],
+   "kind": "state"
   },
   {
    "term": "run_dist",
@@ -383,7 +411,8 @@
      "points": 4.6,
      "plus_minus": 0.8
     }
-   ]
+   ],
+   "kind": "context"
   },
   {
    "term": "morale_diff",
@@ -475,7 +504,8 @@
      "points": -6.8,
      "plus_minus": 0.5
     }
-   ]
+   ],
+   "kind": "state"
   },
   {
    "term": "checkpoint_s",
@@ -501,7 +531,8 @@
      "points": -4.7,
      "plus_minus": 0.7
     }
-   ]
+   ],
+   "kind": "state"
   },
   {
    "term": "flag_lead",
@@ -593,7 +624,8 @@
      "points": -9.9,
      "plus_minus": 0.4
     }
-   ]
+   ],
+   "kind": "execution"
   },
   {
    "term": "stand_enemy",
@@ -613,12 +645,13 @@
      "points": 2.8,
      "plus_minus": 0.1
     }
-   ]
+   ],
+   "kind": "execution"
   },
   {
    "term": "runner_class",
    "description": "who carries: 0 warrior, 1 dervish, 2 assassin, 3 paragon, 4 ranger, 5 mesmer, 6 elementalist, 7 necromancer, 8 ritualist, 9 monk",
-   "importance": 0.106,
+   "importance": 0.107,
    "missing_points": 0.0,
    "curve": [
     {
@@ -636,7 +669,7 @@
     {
      "from": 1.5,
      "to": 3.5,
-     "points": 2.4,
+     "points": 2.5,
      "plus_minus": 0.8
     },
     {
@@ -654,13 +687,13 @@
     {
      "from": 5.5,
      "to": 6.5,
-     "points": 1.5,
+     "points": 1.6,
      "plus_minus": 0.3
     },
     {
      "from": 6.5,
      "to": 7.5,
-     "points": 7.2,
+     "points": 7.3,
      "plus_minus": 1.1
     },
     {
@@ -672,10 +705,11 @@
     {
      "from": 8.5,
      "to": 9.0,
-     "points": -0.7,
-     "plus_minus": 0.5
+     "points": -0.9,
+     "plus_minus": 0.6
     }
-   ]
+   ],
+   "kind": "decision"
   },
   {
    "term": "enemy_boost_in",
@@ -686,13 +720,13 @@
     {
      "from": 0.0,
      "to": 31.5,
-     "points": -5.3,
+     "points": -5.4,
      "plus_minus": 0.3
     },
     {
      "from": 31.5,
      "to": 48.5,
-     "points": -4.6,
+     "points": -4.7,
      "plus_minus": 0.4
     },
     {
@@ -728,7 +762,7 @@
     {
      "from": 86.5,
      "to": 91.5,
-     "points": 3.4,
+     "points": 3.3,
      "plus_minus": 0.8
     },
     {
@@ -752,7 +786,7 @@
     {
      "from": 105.5,
      "to": 110.5,
-     "points": 1.7,
+     "points": 1.8,
      "plus_minus": 0.6
     },
     {
@@ -767,7 +801,8 @@
      "points": 3.3,
      "plus_minus": 0.7
     }
-   ]
+   ],
+   "kind": "execution"
   },
   {
    "term": "own_main",
@@ -823,7 +858,8 @@
      "points": 0.7,
      "plus_minus": 0.3
     }
-   ]
+   ],
+   "kind": "state"
   },
   {
    "term": "strength_gap",
@@ -865,7 +901,7 @@
      "from": -168.0,
      "to": -64.0,
      "points": 0.3,
-     "plus_minus": 0.6
+     "plus_minus": 0.5
     },
     {
      "from": -64.0,
@@ -915,7 +951,8 @@
      "points": -1.3,
      "plus_minus": 0.8
     }
-   ]
+   ],
+   "kind": "context"
   },
   {
    "term": "enemy_main",
@@ -971,7 +1008,8 @@
      "points": -5.0,
      "plus_minus": 0.2
     }
-   ]
+   ],
+   "kind": "state"
   },
   {
    "term": "escort",
@@ -1018,7 +1056,7 @@
     {
      "from": 5.5,
      "to": 6.5,
-     "points": 3.6,
+     "points": 3.7,
      "plus_minus": 0.4
     },
     {
@@ -1027,7 +1065,8 @@
      "points": -9.0,
      "plus_minus": 1.0
     }
-   ]
+   ],
+   "kind": "decision"
   },
   {
    "term": "enemy_snares",
@@ -1077,7 +1116,8 @@
      "points": -16.4,
      "plus_minus": 0.8
     }
-   ]
+   ],
+   "kind": "context"
   },
   {
    "term": "stand_own",
@@ -1088,7 +1128,7 @@
     {
      "from": 0.0,
      "to": 0.5,
-     "points": -1.1,
+     "points": -1.2,
      "plus_minus": 0.4
     },
     {
@@ -1097,7 +1137,8 @@
      "points": 2.2,
      "plus_minus": 0.8
     }
-   ]
+   ],
+   "kind": "execution"
   },
   {
    "term": "runner_escapes",
@@ -1123,7 +1164,8 @@
      "points": -4.4,
      "plus_minus": 0.9
     }
-   ]
+   ],
+   "kind": "execution"
   },
   {
    "term": "enemy_snare_near",
@@ -1203,7 +1245,8 @@
      "points": -5.3,
      "plus_minus": 1.2
     }
-   ]
+   ],
+   "kind": "execution"
   },
   {
    "term": "runner_line",
@@ -1226,10 +1269,11 @@
     {
      "from": 1.5,
      "to": 2.0,
-     "points": 0.8,
-     "plus_minus": 0.4
+     "points": 0.9,
+     "plus_minus": 0.5
     }
-   ]
+   ],
+   "kind": "decision"
   },
   {
    "term": "crippled_so_far",
@@ -1249,7 +1293,8 @@
      "points": 11.9,
      "plus_minus": 0.4
     }
-   ]
+   ],
+   "kind": "execution"
   },
   {
    "term": "pushers_so_far",
@@ -1285,9 +1330,10 @@
      "from": 3.5,
      "to": 7.0,
      "points": -11.6,
-     "plus_minus": 2.0
+     "plus_minus": 1.9
     }
-   ]
+   ],
+   "kind": "execution"
   },
   {
    "term": "damage_so_far",
@@ -1316,7 +1362,7 @@
     {
      "from": 35.5,
      "to": 51.5,
-     "points": 1.6,
+     "points": 1.7,
      "plus_minus": 0.4
     },
     {
@@ -1328,7 +1374,7 @@
     {
      "from": 67.5,
      "to": 85.5,
-     "points": 2.4,
+     "points": 2.5,
      "plus_minus": 0.6
     },
     {
@@ -1379,7 +1425,8 @@
      "points": 2.6,
      "plus_minus": 0.7
     }
-   ]
+   ],
+   "kind": "execution"
   },
   {
    "term": "other_control_so_far",
@@ -1423,7 +1470,8 @@
      "points": 1.3,
      "plus_minus": 1.3
     }
-   ]
+   ],
+   "kind": "execution"
   },
   {
    "term": "enemy_power_play",
@@ -1443,7 +1491,8 @@
      "points": 0.5,
      "plus_minus": 0.1
     }
-   ]
+   ],
+   "kind": "state"
   },
   {
    "term": "knocked_down_so_far",
@@ -1469,8 +1518,135 @@
      "points": -0.8,
      "plus_minus": 2.2
     }
-   ]
+   ],
+   "kind": "execution"
   }
+ ],
+ "kinds": {
+  "checkpoint_s": "state",
+  "stand_own": "execution",
+  "stand_enemy": "execution",
+  "enemy_boost_in": "execution",
+  "flag_lead": "execution",
+  "runner_line": "decision",
+  "runner_class": "decision",
+  "morale_diff": "state",
+  "boost_clock": "state",
+  "escort": "decision",
+  "own_main": "state",
+  "enemy_main": "state",
+  "enemy_power_play": "state",
+  "crippled_so_far": "execution",
+  "knocked_down_so_far": "execution",
+  "other_control_so_far": "execution",
+  "damage_so_far": "execution",
+  "pushers_so_far": "execution",
+  "enemy_snare_near": "execution",
+  "min_capture_s": "execution",
+  "runner_escapes": "execution",
+  "enemy_snares": "context",
+  "run_dist": "context",
+  "strength_gap": "context"
+ },
+ "input_cap": 192,
+ "inputs": 24,
+ "pruned": [],
+ "concurrent": {},
+ "selection": {
+  "stand_own": {
+   "next": 0.085,
+   "previous": 0.009,
+   "previous_low": 0.001,
+   "marks_situation": false
+  },
+  "stand_enemy": {
+   "next": 0.082,
+   "previous": 0.011,
+   "previous_low": 0.005,
+   "marks_situation": false
+  },
+  "enemy_boost_in": {
+   "next": 0.064,
+   "previous": 0.073,
+   "previous_low": 0.061,
+   "marks_situation": true
+  },
+  "flag_lead": {
+   "next": 0.102,
+   "previous": 0.017,
+   "previous_low": 0.003,
+   "marks_situation": false
+  },
+  "runner_line": {
+   "next": 0.011,
+   "previous": 0.016,
+   "previous_low": 0.007,
+   "marks_situation": false
+  },
+  "runner_class": {
+   "next": 0.005,
+   "previous": 0.024,
+   "previous_low": 0.013,
+   "marks_situation": false
+  },
+  "escort": {
+   "next": 0.041,
+   "previous": 0.05,
+   "previous_low": 0.043,
+   "marks_situation": true
+  },
+  "crippled_so_far": {
+   "next": 0.015,
+   "previous": 0.013,
+   "previous_low": 0.011,
+   "marks_situation": false
+  },
+  "knocked_down_so_far": {
+   "next": 0.01,
+   "previous": 0.009,
+   "previous_low": 0.007,
+   "marks_situation": false
+  },
+  "other_control_so_far": {
+   "next": 0.031,
+   "previous": 0.017,
+   "previous_low": 0.012,
+   "marks_situation": false
+  },
+  "damage_so_far": {
+   "next": 0.055,
+   "previous": 0.033,
+   "previous_low": 0.029,
+   "marks_situation": false
+  },
+  "pushers_so_far": {
+   "next": 0.06,
+   "previous": 0.032,
+   "previous_low": 0.028,
+   "marks_situation": false
+  },
+  "enemy_snare_near": {
+   "next": 0.059,
+   "previous": 0.007,
+   "previous_low": 0.005,
+   "marks_situation": false
+  },
+  "min_capture_s": {
+   "next": 0.201,
+   "previous": 0.014,
+   "previous_low": 0.004,
+   "marks_situation": false
+  },
+  "runner_escapes": {
+   "next": 0.004,
+   "previous": 0.013,
+   "previous_low": 0.007,
+   "marks_situation": false
+  }
+ },
+ "marks_situation": [
+  "enemy_boost_in",
+  "escort"
  ],
  "note": "points = change in the chance of the result for an otherwise even (50%) case"
 }

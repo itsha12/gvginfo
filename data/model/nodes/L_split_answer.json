@@ -23,7 +23,10 @@
    ],
    "strength": 0.41,
    "plus_minus": 0.09,
-   "status": "supported"
+   "status": "supported",
+   "kinds": [
+    "state"
+   ]
   },
   {
    "from": "A.mesa_free",
@@ -34,7 +37,10 @@
    ],
    "strength": 0.59,
    "plus_minus": 0.14,
-   "status": "supported"
+   "status": "supported",
+   "kinds": [
+    "state"
+   ]
   },
   {
    "from": "C.builds",
@@ -44,7 +50,10 @@
    ],
    "strength": 0.09,
    "plus_minus": 0.05,
-   "status": "not clear yet"
+   "status": "not clear yet",
+   "kinds": [
+    "context"
+   ]
   },
   {
    "from": "A.allocation",
@@ -54,7 +63,10 @@
    ],
    "strength": 0.86,
    "plus_minus": 0.2,
-   "status": "supported"
+   "status": "supported",
+   "kinds": [
+    "decision"
+   ]
   },
   {
    "from": "C.clock",
@@ -64,7 +76,10 @@
    ],
    "strength": 0.07,
    "plus_minus": 0.06,
-   "status": "not clear yet"
+   "status": "not clear yet",
+   "kinds": [
+    "state"
+   ]
   },
   {
    "from": "C.strength",
@@ -74,7 +89,10 @@
    ],
    "strength": 0.0,
    "plus_minus": 0.04,
-   "status": "not clear yet"
+   "status": "not clear yet",
+   "kinds": [
+    "context"
+   ]
   }
  ],
  "terms": [
@@ -119,7 +137,8 @@
      "points": -10.1,
      "plus_minus": 0.6
     }
-   ]
+   ],
+   "kind": "decision"
   },
   {
    "term": "nearest_to_base",
@@ -210,7 +229,8 @@
      "points": 11.6,
      "plus_minus": 1.1
     }
-   ]
+   ],
+   "kind": "state"
   },
   {
    "term": "split_diff",
@@ -277,7 +297,8 @@
      "points": 12.0,
      "plus_minus": 0.5
     }
-   ]
+   ],
+   "kind": "state"
   },
   {
    "term": "own_area_damage",
@@ -338,7 +359,8 @@
      "points": 5.8,
      "plus_minus": 0.7
     }
-   ]
+   ],
+   "kind": "context"
   },
   {
    "term": "att_main",
@@ -393,7 +415,8 @@
      "points": -0.3,
      "plus_minus": 1.4
     }
-   ]
+   ],
+   "kind": "state"
   },
   {
    "term": "minute",
@@ -484,7 +507,8 @@
      "points": -1.1,
      "plus_minus": 0.2
     }
-   ]
+   ],
+   "kind": "state"
   },
   {
    "term": "flag_lead",
@@ -575,7 +599,8 @@
      "points": 2.9,
      "plus_minus": 0.5
     }
-   ]
+   ],
+   "kind": "state"
   },
   {
    "term": "def_free",
@@ -618,7 +643,8 @@
      "points": -0.7,
      "plus_minus": 0.3
     }
-   ]
+   ],
+   "kind": "state"
   },
   {
    "term": "def_alive",
@@ -661,7 +687,8 @@
      "points": 0.1,
      "plus_minus": 0.1
     }
-   ]
+   ],
+   "kind": "state"
   },
   {
    "term": "strength_gap",
@@ -752,8 +779,34 @@
      "points": -0.8,
      "plus_minus": 0.7
     }
-   ]
+   ],
+   "kind": "context"
   }
  ],
+ "kinds": {
+  "flag_lead": "state",
+  "def_alive": "state",
+  "att_main": "state",
+  "split_diff": "state",
+  "def_free": "state",
+  "nearest_to_base": "state",
+  "own_area_damage": "context",
+  "size": "decision",
+  "minute": "state",
+  "strength_gap": "context"
+ },
+ "input_cap": 24,
+ "inputs": 10,
+ "pruned": [],
+ "concurrent": {},
+ "selection": {
+  "size": {
+   "next": 0.214,
+   "previous": 0.041,
+   "previous_low": 0.006,
+   "marks_situation": false
+  }
+ },
+ "marks_situation": [],
  "note": "seconds added to (or taken off) the result, against the average"
 }

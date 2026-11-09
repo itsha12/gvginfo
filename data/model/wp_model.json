@@ -338,6 +338,100 @@
     "matches": 102
    }
   },
+  "by_period": {
+   "2026-09": {
+    "matches": 156,
+    "strength only": {
+     "log_loss": 0.577,
+     "log_loss_exact": 0.5772128406307966,
+     "accuracy": 0.72,
+     "brier": 0.188
+    },
+    "glass box": {
+     "log_loss": 0.443,
+     "log_loss_exact": 0.4428098150082941,
+     "accuracy": 0.803,
+     "brier": 0.142
+    }
+   },
+   "2026-10": {
+    "matches": 157,
+    "strength only": {
+     "log_loss": 0.395,
+     "log_loss_exact": 0.3946457440602248,
+     "accuracy": 0.828,
+     "brier": 0.126
+    },
+    "glass box": {
+     "log_loss": 0.282,
+     "log_loss_exact": 0.2816878379475562,
+     "accuracy": 0.877,
+     "brier": 0.087
+    }
+   },
+   "2026-11": {
+    "matches": 43,
+    "strength only": {
+     "log_loss": 0.363,
+     "log_loss_exact": 0.3630610661557953,
+     "accuracy": 0.745,
+     "brier": 0.119
+    },
+    "glass box": {
+     "log_loss": 0.317,
+     "log_loss_exact": 0.31675985604012713,
+     "accuracy": 0.878,
+     "brier": 0.091
+    }
+   }
+  },
+  "by_strength_band": {
+   "even (gap under 200)": {
+    "matches": 102,
+    "strength only": {
+     "log_loss": 0.65,
+     "log_loss_exact": 0.649739211343639,
+     "accuracy": 0.589,
+     "brier": 0.229
+    },
+    "glass box": {
+     "log_loss": 0.525,
+     "log_loss_exact": 0.5245856766075517,
+     "accuracy": 0.758,
+     "brier": 0.17
+    }
+   },
+   "moderate (200 to 600)": {
+    "matches": 181,
+    "strength only": {
+     "log_loss": 0.469,
+     "log_loss_exact": 0.468881720003881,
+     "accuracy": 0.822,
+     "brier": 0.143
+    },
+    "glass box": {
+     "log_loss": 0.33,
+     "log_loss_exact": 0.3296961472656485,
+     "accuracy": 0.859,
+     "brier": 0.103
+    }
+   },
+   "uneven (600+)": {
+    "matches": 73,
+    "strength only": {
+     "log_loss": 0.078,
+     "log_loss_exact": 0.07757883723372357,
+     "accuracy": 0.986,
+     "brier": 0.014
+    },
+    "glass box": {
+     "log_loss": 0.083,
+     "log_loss_exact": 0.082637147368608,
+     "accuracy": 0.985,
+     "brier": 0.015
+    }
+   }
+  },
   "gain_over_strength": {
    "log_loss_gain": 0.114,
    "range_90": [

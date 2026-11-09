@@ -21,7 +21,11 @@
    ],
    "strength": 0.38,
    "plus_minus": 0.06,
-   "status": "supported"
+   "status": "supported",
+   "kinds": [
+    "decision",
+    "state"
+   ]
   },
   {
    "from": "K.11",
@@ -34,7 +38,10 @@
    ],
    "strength": -0.0,
    "plus_minus": 0.03,
-   "status": "not clear yet"
+   "status": "not clear yet",
+   "kinds": [
+    "execution"
+   ]
   },
   {
    "from": "K.13",
@@ -44,7 +51,10 @@
    ],
    "strength": 2.23,
    "plus_minus": 0.19,
-   "status": "supported"
+   "status": "supported",
+   "kinds": [
+    "execution"
+   ]
   },
   {
    "from": "P.10",
@@ -54,7 +64,10 @@
    ],
    "strength": 0.21,
    "plus_minus": 0.03,
-   "status": "supported"
+   "status": "supported",
+   "kinds": [
+    "decision"
+   ]
   },
   {
    "from": "C.map",
@@ -64,7 +77,10 @@
    ],
    "strength": 0.41,
    "plus_minus": 0.09,
-   "status": "supported"
+   "status": "supported",
+   "kinds": [
+    "context"
+   ]
   },
   {
    "from": "C.strength",
@@ -74,7 +90,10 @@
    ],
    "strength": 0.05,
    "plus_minus": 0.03,
-   "status": "not clear yet"
+   "status": "not clear yet",
+   "kinds": [
+    "context"
+   ]
   }
  ],
  "terms": [
@@ -167,7 +186,8 @@
      "points": 14.6,
      "plus_minus": 0.3
     }
-   ]
+   ],
+   "kind": "execution"
   },
   {
    "term": "escort",
@@ -222,7 +242,8 @@
      "points": 11.8,
      "plus_minus": 0.4
     }
-   ]
+   ],
+   "kind": "decision"
   },
   {
    "term": "run_dist",
@@ -313,7 +334,8 @@
      "points": -5.1,
      "plus_minus": 0.0
     }
-   ]
+   ],
+   "kind": "context"
   },
   {
    "term": "runner_class",
@@ -374,7 +396,8 @@
      "points": 1.4,
      "plus_minus": 0.2
     }
-   ]
+   ],
+   "kind": "decision"
   },
   {
    "term": "strength_gap",
@@ -465,7 +488,8 @@
      "points": 0.4,
      "plus_minus": 0.2
     }
-   ]
+   ],
+   "kind": "context"
   },
   {
    "term": "defenders_free",
@@ -508,7 +532,8 @@
      "points": 0.9,
      "plus_minus": 0.1
     }
-   ]
+   ],
+   "kind": "state"
   },
   {
    "term": "control_10s",
@@ -539,7 +564,8 @@
      "points": 3.6,
      "plus_minus": 0.2
     }
-   ]
+   ],
+   "kind": "execution"
   },
   {
    "term": "damage_10s",
@@ -630,7 +656,8 @@
      "points": 4.5,
      "plus_minus": 0.8
     }
-   ]
+   ],
+   "kind": "execution"
   },
   {
    "term": "def_snare_near",
@@ -703,7 +730,8 @@
      "points": -3.8,
      "plus_minus": 0.7
     }
-   ]
+   ],
+   "kind": "execution"
   },
   {
    "term": "pushers_10s",
@@ -740,8 +768,70 @@
      "points": 0.6,
      "plus_minus": 1.5
     }
-   ]
+   ],
+   "kind": "execution"
   }
  ],
+ "kinds": {
+  "defenders_free": "state",
+  "escort": "decision",
+  "pushers_10s": "execution",
+  "control_10s": "execution",
+  "damage_10s": "execution",
+  "def_snare_near": "execution",
+  "min_capture_s": "execution",
+  "runner_class": "decision",
+  "run_dist": "context",
+  "strength_gap": "context"
+ },
+ "input_cap": 74,
+ "inputs": 10,
+ "pruned": [],
+ "concurrent": {},
+ "selection": {
+  "escort": {
+   "next": 0.097,
+   "previous": 0.01,
+   "previous_low": 0.002,
+   "marks_situation": false
+  },
+  "pushers_10s": {
+   "next": 0.093,
+   "previous": 0.01,
+   "previous_low": 0.001,
+   "marks_situation": false
+  },
+  "control_10s": {
+   "next": 0.069,
+   "previous": 0.036,
+   "previous_low": 0.01,
+   "marks_situation": false
+  },
+  "damage_10s": {
+   "next": 0.079,
+   "previous": 0.016,
+   "previous_low": 0.001,
+   "marks_situation": false
+  },
+  "def_snare_near": {
+   "next": 0.097,
+   "previous": 0.028,
+   "previous_low": 0.007,
+   "marks_situation": false
+  },
+  "min_capture_s": {
+   "next": 0.462,
+   "previous": 0.081,
+   "previous_low": 0.045,
+   "marks_situation": false
+  },
+  "runner_class": {
+   "next": 0.133,
+   "previous": 0.054,
+   "previous_low": 0.027,
+   "marks_situation": false
+  }
+ },
+ "marks_situation": [],
  "note": "seconds added to (or taken off) the result, against the average"
 }

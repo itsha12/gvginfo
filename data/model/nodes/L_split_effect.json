@@ -21,7 +21,11 @@
    ],
    "strength": 0.0027,
    "plus_minus": 0.0019,
-   "status": "not clear yet"
+   "status": "not clear yet",
+   "kinds": [
+    "decision",
+    "execution"
+   ]
   },
   {
    "from": "A.allocation",
@@ -32,7 +36,11 @@
    ],
    "strength": 0.0011,
    "plus_minus": 0.001,
-   "status": "not clear yet"
+   "status": "not clear yet",
+   "kinds": [
+    "decision",
+    "state"
+   ]
   },
   {
    "from": "K.8",
@@ -42,7 +50,10 @@
    ],
    "strength": -0.0003,
    "plus_minus": 0.001,
-   "status": "not clear yet"
+   "status": "not clear yet",
+   "kinds": [
+    "decision"
+   ]
   },
   {
    "from": "S.scoreboard",
@@ -56,7 +67,10 @@
    ],
    "strength": 0.0281,
    "plus_minus": 0.0101,
-   "status": "supported"
+   "status": "supported",
+   "kinds": [
+    "state"
+   ]
   },
   {
    "from": "C.builds",
@@ -66,7 +80,10 @@
    ],
    "strength": 0.008,
    "plus_minus": 0.0018,
-   "status": "supported"
+   "status": "supported",
+   "kinds": [
+    "context"
+   ]
   },
   {
    "from": "K.11",
@@ -76,7 +93,10 @@
    ],
    "strength": 0.0003,
    "plus_minus": 0.0012,
-   "status": "not clear yet"
+   "status": "not clear yet",
+   "kinds": [
+    "execution"
+   ]
   },
   {
    "from": "K.13",
@@ -87,7 +107,10 @@
    ],
    "strength": 0.0001,
    "plus_minus": 0.0011,
-   "status": "not clear yet"
+   "status": "not clear yet",
+   "kinds": [
+    "execution"
+   ]
   },
   {
    "from": "C.strength",
@@ -97,7 +120,10 @@
    ],
    "strength": 0.0001,
    "plus_minus": 0.0005,
-   "status": "not clear yet"
+   "status": "not clear yet",
+   "kinds": [
+    "context"
+   ]
   }
  ],
  "terms": [
@@ -143,7 +169,8 @@
      "points": -5.4,
      "plus_minus": 0.3
     }
-   ]
+   ],
+   "kind": "context"
   },
   {
    "term": "flag_lead",
@@ -187,7 +214,8 @@
      "points": 4.2,
      "plus_minus": 0.8
     }
-   ]
+   ],
+   "kind": "state"
   },
   {
    "term": "def_npc_value",
@@ -231,7 +259,8 @@
      "points": 3.0,
      "plus_minus": 0.5
     }
-   ]
+   ],
+   "kind": "state"
   },
   {
    "term": "lord_damage_diff",
@@ -275,7 +304,8 @@
      "points": -9.0,
      "plus_minus": 1.5
     }
-   ]
+   ],
+   "kind": "state"
   },
   {
    "term": "morale_diff",
@@ -319,7 +349,8 @@
      "points": 3.0,
      "plus_minus": 0.7
     }
-   ]
+   ],
+   "kind": "state"
   },
   {
    "term": "def_free",
@@ -357,7 +388,8 @@
      "points": 0.5,
      "plus_minus": 0.2
     }
-   ]
+   ],
+   "kind": "state"
   },
   {
    "term": "latency",
@@ -401,7 +433,8 @@
      "points": 0.1,
      "plus_minus": 0.4
     }
-   ]
+   ],
+   "kind": "execution"
   },
   {
    "term": "split_healers",
@@ -433,7 +466,8 @@
      "points": 2.5,
      "plus_minus": 1.9
     }
-   ]
+   ],
+   "kind": "decision"
   },
   {
    "term": "def_snare_present",
@@ -477,7 +511,8 @@
      "points": 3.1,
      "plus_minus": 1.5
     }
-   ]
+   ],
+   "kind": "execution"
   },
   {
    "term": "defenders",
@@ -521,7 +556,8 @@
      "points": 1.6,
      "plus_minus": 1.3
     }
-   ]
+   ],
+   "kind": "decision"
   },
   {
    "term": "main_diff",
@@ -565,7 +601,8 @@
      "points": -1.7,
      "plus_minus": 0.3
     }
-   ]
+   ],
+   "kind": "state"
   },
   {
    "term": "split_speed_power",
@@ -609,7 +646,8 @@
      "points": 3.1,
      "plus_minus": 0.9
     }
-   ]
+   ],
+   "kind": "execution"
   },
   {
    "term": "size",
@@ -653,7 +691,8 @@
      "points": -3.0,
      "plus_minus": 0.9
     }
-   ]
+   ],
+   "kind": "decision"
   },
   {
    "term": "strength_gap",
@@ -697,7 +736,8 @@
      "points": 0.6,
      "plus_minus": 0.5
     }
-   ]
+   ],
+   "kind": "context"
   },
   {
    "term": "own_escapes_power",
@@ -711,8 +751,69 @@
      "points": 0.0,
      "plus_minus": 0.0
     }
-   ]
+   ],
+   "kind": "execution"
   }
  ],
+ "kinds": {
+  "latency": "execution",
+  "defenders": "decision",
+  "size": "decision",
+  "main_diff": "state",
+  "split_healers": "decision",
+  "def_npc_value": "state",
+  "def_free": "state",
+  "morale_diff": "state",
+  "flag_lead": "state",
+  "lord_damage_diff": "state",
+  "enemy_prots": "context",
+  "def_snare_present": "execution",
+  "split_speed_power": "execution",
+  "own_escapes_power": "execution",
+  "strength_gap": "context"
+ },
+ "input_cap": 18,
+ "inputs": 15,
+ "pruned": [],
+ "concurrent": {},
+ "selection": {
+  "latency": {
+   "next": 0.016,
+   "previous": 0.028,
+   "previous_low": 0.005,
+   "marks_situation": false
+  },
+  "defenders": {
+   "next": 0.026,
+   "previous": 0.04,
+   "previous_low": 0.007,
+   "marks_situation": false
+  },
+  "size": {
+   "next": 0.03,
+   "previous": 0.039,
+   "previous_low": 0.009,
+   "marks_situation": false
+  },
+  "split_healers": {
+   "next": 0.062,
+   "previous": 0.05,
+   "previous_low": 0.02,
+   "marks_situation": false
+  },
+  "def_snare_present": {
+   "next": 0.019,
+   "previous": 0.043,
+   "previous_low": 0.009,
+   "marks_situation": false
+  },
+  "split_speed_power": {
+   "next": 0.038,
+   "previous": 0.003,
+   "previous_low": 0.001,
+   "marks_situation": false
+  }
+ },
+ "marks_situation": [],
  "note": "points = change in the chance of the result for an otherwise even (50%) case"
 }
