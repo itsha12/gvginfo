@@ -2254,7 +2254,7 @@
      "model_call": "midline alone",
      "usual_play": "midline alone",
      "specific": false,
-     "denning_call": null,
+     "denning_call": "healer with a collapse",
      "denning_reason": "",
      "context": {
       "team": "hold",
