@@ -20,11 +20,15 @@ Rewritten each session; stays under 80 lines. Read `CLAUDE.md`, then `docs/SPEC.
   node by perspective, allocation decisions allowed as fixes, pruning of Denning's unclear links last, P.21 kiting
   kept and P.27 pre-kiting / P.19 Blind let go by the data, direction corrections ("reads backwards") on execution
   inputs, discovery offers own_ and diff_ with the enemy's side beside, page-text fixes from readability test 2.
-- REBUILD PENDING: a Train batch with add_batch=no, blind=yes, tqs=yes was dispatched after the bundle. Read its
-  report (`data/model/reports/latest.md`) against the reading above (decisions.py changed, so every prepared layer was
-  rebuilt; expect noise in the last digits): the "What changed" diff, the new "reads backwards" and allocation labels,
-  how many inputs collapse now carries, whether play_for_28_or_lord and npcs_or_dp have enough cases (npcs_or_dp fired
-  once in ten matches locally), and the advice test. The rebuild also writes blind-test round 1.
+- Rebuild after bundle 3 (run 42645700361, 56 min, every prepared layer remade): glass box 0.354 against 0.471
+  (gain +0.117, +0.065 to +0.164), 85% against 77%; by month Sept 0.441, Oct 0.279, Nov 0.308; by band even 0.519,
+  moderate 0.327, uneven 0.085: the same within noise. Advice test now 3 of 13 clear (after_wipe joins runner_choice
+  and split_or_stay). New decisions: npcs_or_dp 196 cases in 153 matches (NPCs the usual), play_for_28_or_lord 2,970
+  in 187 (play for 28 the usual, 71% matched), offence_or_defence 913 in 302. Collapse now 14 of 14 (Denning's unclear
+  links pruned, R-278). Reads backwards (R-285): run outcome damage/control on the runner and runner escapes; fight
+  outcome blind attacks, disables, hexes on own, knockdowns on casters, pre-kiting, strip targeting: for Denning to
+  check against the direction list. The report's "What changed" diff compares to batch 14, not to the pre-bundle
+  rebuild (same batch number); the numbers above are the comparison. Blind-test round 1 written (8 picks, 3 specific).
 - Discovery run 1 on the catalogue (run 42618611013): 1,633 tests, 24 own_/diff_ candidates passed once; nothing is
   offered until a second run (the pass history is now committed; before today it never was, so nothing could pass twice).
 - Readability test 2 (docs/tests/readability-2026-11-09b.md): verdict no, 14 of 18 items at least partly explained.

@@ -743,7 +743,13 @@ def execution_lines(node, rid, team, t, good_high, window=5, back=60):
         if sp and abs(v - u) < 0.25 * sp: continue
         push = (c - at_usual.get(f, 0)) * sign
         if push < (1.0 if unit == "points" else 0.5): continue
-        (situation if f in marks or f in back else faults).append((f, k, v, u, push))
+        # R-285, read at this row: the team did more of a good thing (or less of a bad one) than usual and the node still
+        # pushes toward the bad result; that is a reaction to the result coming (more disables because the kill is not
+        # coming), not a fault, whatever the curve does over its whole range
+        exp = LN.EXPECTED.get(node, {}).get(f)
+        local_back = exp is not None and (v - u) * exp > 0
+        (situation if f in marks or f in back or local_back else faults).append((f, k, v, u, push))
+        if local_back and f not in back: back.add(f)
     faults.sort(key=lambda x: -x[4])
     fmt = lambda x: f"{x:g}" if isinstance(x, (int, float)) else str(x)
     L = [f"- {node.replace('_', ' ')} node at {clock(row['t'])} read {reading}{'%' if unit == 'points' else ' s'} (a model that never saw the match)."]

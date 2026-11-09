@@ -212,6 +212,10 @@ class Chain:
         for f, c, v, u in pushes[:6]:
             k = kinds.get(f) or LN.kind_of(node, f)
             if k in ("decision", "execution") and f not in marks and u is not None and v is not None:
+                # R-285 at this row: a "fix" that means doing less of a good thing (or more of a bad one) is a reaction
+                # read backwards, not a fix
+                exp = LN.EXPECTED.get(node, {}).get(f)
+                if exp is not None and (v - u) * exp > 0: continue
                 self.fixes.append({"link": idx, "feature": f, "value": v, "usual": u, "push": c, "kind": k})
         # follow the biggest causes: up to TOP groups, one variable each
         seen_g = []

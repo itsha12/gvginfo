@@ -9,7 +9,7 @@ Dated session log of the GvG Info analysis engine and portal, newest first. Entr
 - Discovery (discover.py; R-286): own_ and diff_ offered, enemy_ shown beside as what the enemy did. Fixed: the two-run history (`discovery_history.json`) was never committed by the workflow, so nothing could pass twice; now committed.
 - Model page (modelpage.py): perspective line per node, Importance and Direction defined on the win model, lord damage in damage units with its two parts named, plain baseline names, glossary for boost clock, time down (sign corrected), arrival seconds, runner class and escorts, curve-shape notes, legend for allocation, reads-backwards and the pruning order.
 - Docs: RULINGS R-278 to R-287; SPEC sections 1, 5, 6, 8 replaced; METHODS "The blind test".
-- Rebuild (no new matches) dispatched to compare against the pre-bundle reading; result in HANDOFF.md.
+- Rebuild (run 42645700361, 56 min): 0.354 v 0.471 (+0.117), the same within noise; advice test 3 of 13 clear; collapse at its cap; round 1 of the blind test written. Then (report layer) the direction rule applied at the row too: a team that did more of a good thing than usual is never shown a fault or a fix for it (tq.py, causalchain.py).
 
 ## 2026-11-09 (later): outstanding items after the review, no chunk
 - Update matches (run 42618614199): the last 20 listed matches stored, 0 remaining.
