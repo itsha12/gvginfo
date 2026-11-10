@@ -1,5 +1,5 @@
 {
- "about": "The blind test (Denning, November 2026 review): sealed moments where Denning's call and the model's are both recorded before the outcome is read. A round is added after every training chunk and never refreshed: open rounds wait until Denning answers them on the site (Model > Blind test). Each pick carries the model's call, the usual play, and a sealed part (base64, never printed: the actual choice, its win-chance change, and the mean win-chance change of each choice among the 15 most similar decisions in other matches). Scoring: each call's expected win-chance change in that situation, and whether it matched what the team did.",
+ "about": "The blind test: sealed moments where Denning's call and the model's are both recorded before the outcome is read. Rounds 1 to 3 used the first design (design: old): rounds 1 and 2 are scored and kept for the record, round 3 is void, and none of them counts in the cumulative score. New rounds are paused until the decision card exists (docs/REDESIGN.md). Each pick carries the model's call, the usual play, and a sealed part (base64, never printed: the actual choice, its win-chance change, and the mean win-chance change of each choice among the most similar decisions in other matches). Scoring: each call's expected win-chance change in that situation, priced only when the call has at least 5 similar cases; totals are cumulative across rounds of the current design, with a range.",
  "rounds": [
   {
    "id": 1,
@@ -1520,7 +1520,8 @@
       "matched_actual": 4
      }
     }
-   }
+   },
+   "design": "old"
   },
   {
    "id": 2,
@@ -3081,14 +3082,15 @@
       "matched_actual": 3
      }
     }
-   }
+   },
+   "design": "old"
   },
   {
    "id": 3,
    "created": "2026-11-09",
    "batch": 17,
    "matches_trained": 506,
-   "status": "open",
+   "status": "void",
    "picks": [
     {
      "match": "1d073205-fdec-5684-aa7a-b03a558a9471",
@@ -4416,7 +4418,9 @@
      "sealed": "eyJhY3R1YWxfY2hvaWNlIjogIk5QQ3MiLCAid3BfY2hhbmdlIjogMC4yLCAiY2hvaWNlX2VmZmVjdHMiOiB7Ik5QQ3MiOiB7Im1lYW5fd3BfY2hhbmdlIjogLTIuNCwgImNhc2VzIjogNn0sICJEUCI6IHsibWVhbl93cF9jaGFuZ2UiOiAtMC4yLCAiY2FzZXMiOiA2fSwgImJvdGgiOiB7Im1lYW5fd3BfY2hhbmdlIjogMS4xLCAiY2FzZXMiOiAzfX19",
      "id": 8
     }
-   ]
+   ],
+   "design": "old",
+   "void_reason": "Denning: old design (5 second movement labels, up to 16 options, random picks); voided unanswered before the decision redesign. Sealed parts never opened."
   }
  ]
 }

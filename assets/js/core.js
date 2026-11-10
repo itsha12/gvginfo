@@ -27,7 +27,13 @@ function gh(path, opts = {}) {
     headers: { Authorization: `Bearer ${s.token}`, Accept: "application/vnd.github+json", ...(opts.headers || {}) },
   });
 }
-const b64encode = (str) => btoa(String.fromCharCode(...new TextEncoder().encode(str)));
+// encoded in chunks: spreading a whole file into one call fails ("Maximum call stack size exceeded") from about 120 KB
+const b64encode = (str) => {
+  const bytes = new TextEncoder().encode(str);
+  let s = "";
+  for (let i = 0; i < bytes.length; i += 0x8000) s += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+  return btoa(s);
+};
 const b64decode = (b64) => new TextDecoder().decode(Uint8Array.from(atob(b64.replace(/\n/g, "")), (c) => c.charCodeAt(0)));
 
 // Read a JSON file: freshest copy from GitHub when a key is set, otherwise the published copy.

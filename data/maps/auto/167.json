@@ -1,0 +1,171 @@
+{
+ "map_id": "167",
+ "map": "Burning Isle",
+ "replays": 3,
+ "stand": [
+  -3816,
+  6446
+ ],
+ "res_shrines": [
+  [
+   -2824,
+   -254
+  ],
+  [
+   2021,
+   4187
+  ]
+ ],
+ "flag_spawns": [
+  [
+   -3841,
+   770
+  ],
+  [
+   2127,
+   5293
+  ]
+ ],
+ "npcs": [
+  {
+   "kind": "guild_lord",
+   "pos": [
+    -2706,
+    -294
+   ],
+   "matches": 2,
+   "samples": 230,
+   "how": "melee"
+  },
+  {
+   "kind": "guild_lord",
+   "pos": [
+    2020,
+    4243
+   ],
+   "matches": 1,
+   "samples": 146,
+   "how": "melee"
+  },
+  {
+   "kind": "bodyguard",
+   "pos": [
+    -2636,
+    -467
+   ],
+   "matches": 2,
+   "samples": 23,
+   "how": "melee"
+  },
+  {
+   "kind": "bodyguard",
+   "pos": [
+    2176,
+    3934
+   ],
+   "matches": 1,
+   "samples": 8,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    -3828,
+    818
+   ],
+   "matches": 2,
+   "samples": 25,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    1732,
+    4566
+   ],
+   "matches": 2,
+   "samples": 40,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    -2459,
+    171
+   ],
+   "matches": 2,
+   "samples": 36,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    -2786,
+    -252
+   ],
+   "matches": 1,
+   "samples": 13,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    -2819,
+    -1188
+   ],
+   "matches": 1,
+   "samples": 9,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -1778,
+    -820
+   ],
+   "matches": 1,
+   "samples": 6,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -2978,
+    -311
+   ],
+   "matches": 1,
+   "samples": 13,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    2129,
+    4403
+   ],
+   "matches": 1,
+   "samples": 10,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    1664,
+    3937
+   ],
+   "matches": 1,
+   "samples": 6,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -2459,
+    171
+   ],
+   "matches": 1,
+   "samples": 19,
+   "how": "melee"
+  }
+ ]
+}

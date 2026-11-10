@@ -1,0 +1,201 @@
+{
+ "map_id": "175",
+ "map": "Isle of the Dead",
+ "replays": 9,
+ "stand": [
+  4662,
+  1536
+ ],
+ "res_shrines": [
+  [
+   -4181,
+   -1918
+  ],
+  [
+   -3854,
+   5060
+  ]
+ ],
+ "flag_spawns": [
+  [
+   -2434,
+   -1990
+  ],
+  [
+   -2669,
+   5056
+  ]
+ ],
+ "npcs": [
+  {
+   "kind": "guild_lord",
+   "pos": [
+    -3855,
+    5132
+   ],
+   "matches": 2,
+   "samples": 121,
+   "how": "melee"
+  },
+  {
+   "kind": "guild_lord",
+   "pos": [
+    -4120,
+    -2032
+   ],
+   "matches": 1,
+   "samples": 14,
+   "how": "melee"
+  },
+  {
+   "kind": "bodyguard",
+   "pos": [
+    -4586,
+    4852
+   ],
+   "matches": 3,
+   "samples": 26,
+   "how": "melee"
+  },
+  {
+   "kind": "bodyguard",
+   "pos": [
+    -4850,
+    -1590
+   ],
+   "matches": 1,
+   "samples": 8,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    -2090,
+    5408
+   ],
+   "matches": 4,
+   "samples": 41,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    -2296,
+    -1857
+   ],
+   "matches": 2,
+   "samples": 18,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    -2091,
+    4322
+   ],
+   "matches": 1,
+   "samples": 3,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    -3744,
+    -2027
+   ],
+   "matches": 4,
+   "samples": 105,
+   "how": "ranged"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    56,
+    5325
+   ],
+   "matches": 3,
+   "samples": 22,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -4019,
+    5498
+   ],
+   "matches": 1,
+   "samples": 7,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -4039,
+    4784
+   ],
+   "matches": 1,
+   "samples": 8,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -4101,
+    -2496
+   ],
+   "matches": 1,
+   "samples": 24,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -202,
+    3719
+   ],
+   "matches": 1,
+   "samples": 7,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -1366,
+    3378
+   ],
+   "matches": 1,
+   "samples": 6,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -761,
+    -103
+   ],
+   "matches": 6,
+   "samples": 82,
+   "how": "ranged"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    247,
+    -1821
+   ],
+   "matches": 3,
+   "samples": 22,
+   "how": "ranged"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -2836,
+    5080
+   ],
+   "matches": 1,
+   "samples": 8,
+   "how": "ranged"
+  }
+ ]
+}

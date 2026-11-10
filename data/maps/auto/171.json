@@ -1,0 +1,201 @@
+{
+ "map_id": "171",
+ "map": "Warrior's Isle",
+ "replays": 10,
+ "stand": [
+  -40,
+  1522
+ ],
+ "res_shrines": [
+  [
+   4178,
+   8922
+  ],
+  [
+   -4110,
+   -5158
+  ]
+ ],
+ "flag_spawns": [
+  [
+   -3442,
+   -3950
+  ],
+  [
+   3412,
+   7132
+  ]
+ ],
+ "npcs": [
+  {
+   "kind": "guild_lord",
+   "pos": [
+    4243,
+    8943
+   ],
+   "matches": 7,
+   "samples": 579,
+   "how": "melee"
+  },
+  {
+   "kind": "guild_lord",
+   "pos": [
+    -4108,
+    -5150
+   ],
+   "matches": 3,
+   "samples": 128,
+   "how": "melee"
+  },
+  {
+   "kind": "bodyguard",
+   "pos": [
+    4148,
+    9272
+   ],
+   "matches": 6,
+   "samples": 92,
+   "how": "melee"
+  },
+  {
+   "kind": "bodyguard",
+   "pos": [
+    -3984,
+    -5378
+   ],
+   "matches": 2,
+   "samples": 12,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    4046,
+    7557
+   ],
+   "matches": 6,
+   "samples": 112,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    4163,
+    8411
+   ],
+   "matches": 3,
+   "samples": 70,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    -3510,
+    -3999
+   ],
+   "matches": 3,
+   "samples": 150,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    2470,
+    6352
+   ],
+   "matches": 2,
+   "samples": 20,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    3418,
+    8514
+   ],
+   "matches": 2,
+   "samples": 23,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -2910,
+    -3198
+   ],
+   "matches": 2,
+   "samples": 44,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -208,
+    -3600
+   ],
+   "matches": 4,
+   "samples": 68,
+   "how": "ranged"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -47,
+    6910
+   ],
+   "matches": 2,
+   "samples": 89,
+   "how": "ranged"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    1325,
+    1532
+   ],
+   "matches": 8,
+   "samples": 409,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    -900,
+    1616
+   ],
+   "matches": 7,
+   "samples": 103,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    2171,
+    1838
+   ],
+   "matches": 2,
+   "samples": 23,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    -2506,
+    1869
+   ],
+   "matches": 2,
+   "samples": 78,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    741,
+    1973
+   ],
+   "matches": 2,
+   "samples": 127,
+   "how": "melee"
+  }
+ ]
+}

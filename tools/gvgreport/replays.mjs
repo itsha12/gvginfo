@@ -46,19 +46,29 @@ async function latest(n) {
   return ids;
 }
 
-// Walkable map outline (pathing trapezoids), stored once per map in maps/<map id>.json.gz
-async function saveMap(mapId) {
+// Walkable map outline (pathing trapezoids), stored once per map in maps/<map id>.json.gz.
+// gvg.report answers /api/map-geometry by map id for some halls and only by the game's map file id for others (its own
+// page sends both, taken from the report's session; a report can also carry the geometry itself). The trimmed replays
+// do not keep the file id, so the ids of the halls that need it are listed here (found with the probe, 2026-11-09).
+const MAP_FILE_IDS = { 167: 127565, 168: 127610, 170: 127589, 174: 127592, 175: 127643 };
+const noGeometry = new Set();
+async function saveMap(mapId, session = null, embedded = null) {
   const file = path.join(STORE, "maps", `${mapId}.json.gz`);
-  if (!mapId || fs.existsSync(file)) return;
-  const j = await getJson(`${BASE}/api/map-geometry?map_id=${mapId}`, 2).catch(() => null);
-  if (!j?.pathing_map) return console.warn(`  no map geometry for map ${mapId}`);
-  const m = j.pathing_map;
+  if (!mapId || fs.existsSync(file) || noGeometry.has(mapId)) return;
+  let m = (Array.isArray(embedded) ? embedded : []).find((p) => p?.planes?.length) || null;
+  const fileId = session?.map_file_id || MAP_FILE_IDS[mapId];
+  for (const q of [`map_id=${mapId}`, fileId ? `map_file_id=${fileId}` : null]) {
+    if (m || !q) continue;
+    const j = await getJson(`${BASE}/api/map-geometry?${q}`, 2).catch(() => null);
+    if (j?.pathing_map?.planes?.length) m = j.pathing_map;
+    await sleep(1000);
+  }
+  if (!m) { noGeometry.add(mapId); return console.warn(`  no map geometry for map ${mapId}`); }
   const out = { map_id: m.map_id, map: m.map_name, bounds: m.bounds,
     planes: (m.planes || []).map((p) => ({ plane: p.plane_index, trapezoids: p.trapezoids })) };
   fs.mkdirSync(path.dirname(file), { recursive: true });
   fs.writeFileSync(file, zlib.gzipSync(JSON.stringify(out), { level: 9 }));
   console.log(`  saved map ${mapId} (${m.map_name})`);
-  await sleep(1000);
 }
 
 // A cheap listing of the newest matches (no replays): listing.json on the replays branch, to find matches to request.
@@ -122,7 +132,7 @@ async function main() {
         teams: t.map((x) => x.tag), winner: t.find((x) => x.id === out.meta.result?.winning_team_id)?.tag || null,
         length_s: out.meta.match_length_s, kb: Math.round(gz.length / 1024), summary: !!sm?.summary, trim: TRIM_VERSION };
       console.log(`  ${id}: ${out.meta.map}, ${t.map((x) => x.tag).join(" vs ")}, ${Math.round(gz.length / 1024)} KB`);
-      await saveMap(out.meta.map_id);
+      await saveMap(out.meta.map_id, raw.report?.sessions?.[0], raw.report?.map_geometry?.pathing_maps);
       done++;
       if (done % 20 === 0) { index.updated = new Date().toISOString(); fs.writeFileSync(indexFile, JSON.stringify(index, null, 1)); }
     } catch (e) { console.warn(`  ${id}: ${e.message}`); }

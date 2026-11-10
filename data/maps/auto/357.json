@@ -1,0 +1,161 @@
+{
+ "map_id": "357",
+ "map": "Imperial Isle",
+ "replays": 14,
+ "stand": [
+  1050,
+  4154
+ ],
+ "res_shrines": [
+  [
+   864,
+   -5150
+  ],
+  [
+   1337,
+   13343
+  ]
+ ],
+ "flag_spawns": [
+  [
+   4657,
+   6461
+  ],
+  [
+   -2455,
+   1684
+  ]
+ ],
+ "npcs": [
+  {
+   "kind": "guild_lord",
+   "pos": [
+    916,
+    -5065
+   ],
+   "matches": 6,
+   "samples": 353,
+   "how": "melee"
+  },
+  {
+   "kind": "guild_lord",
+   "pos": [
+    1414,
+    13255
+   ],
+   "matches": 4,
+   "samples": 119,
+   "how": "melee"
+  },
+  {
+   "kind": "bodyguard",
+   "pos": [
+    1168,
+    13288
+   ],
+   "matches": 2,
+   "samples": 52,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    832,
+    11616
+   ],
+   "matches": 6,
+   "samples": 464,
+   "how": "melee"
+  },
+  {
+   "kind": "knight",
+   "pos": [
+    822,
+    -4762
+   ],
+   "matches": 2,
+   "samples": 8,
+   "how": "ranged"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -808,
+    -170
+   ],
+   "matches": 4,
+   "samples": 57,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    3222,
+    8548
+   ],
+   "matches": 4,
+   "samples": 67,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    3230,
+    10728
+   ],
+   "matches": 4,
+   "samples": 24,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    2949,
+    -2766
+   ],
+   "matches": 2,
+   "samples": 32,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -764,
+    11120
+   ],
+   "matches": 2,
+   "samples": 35,
+   "how": "melee"
+  },
+  {
+   "kind": "archer",
+   "pos": [
+    -822,
+    -2442
+   ],
+   "matches": 2,
+   "samples": 19,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    2259,
+    7319
+   ],
+   "matches": 6,
+   "samples": 81,
+   "how": "melee"
+  },
+  {
+   "kind": "footman",
+   "pos": [
+    -787,
+    -180
+   ],
+   "matches": 2,
+   "samples": 49,
+   "how": "melee"
+  }
+ ]
+}
