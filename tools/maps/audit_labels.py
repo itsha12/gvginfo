@@ -8,8 +8,12 @@ What it checks on each hall:
              with the spot where the partner would stand
   replays    res shrines, flag spawns and NPCs the replays show with no label of that type near them
 
+  routes     with --routes: each labelled route's drawn length and its walked length. A route drawn through a
+             teleporter cannot be drawn with a hop of no length, so the hop is taken out here (R-316): a leg of the
+             route whose two ends sit on teleporter ends is a hop and is not walked.
+
 Output: the findings per hall, printed. Sides are named by where each Guild Lord sits on the Maps page.
-Usage:  python3 tools/maps/audit_labels.py [map id ...]
+Usage:  python3 tools/maps/audit_labels.py [map id ...] [--routes]
 Kept outside tools/replay_analysis on purpose (every .py there is part of the engine's cache key).
 """
 import collections, json, math, os, sys
@@ -20,12 +24,32 @@ from draft_labels import Land, MAPS, CELL, cell, in_poly
 PIT = {"Guild Lord": 1, "Bodyguard": 1, "Knight": 2, "Archer": 2}
 ONE_EACH = ("Res shrine", "Flag spawn")
 MUST_MATCH = {"Guild Lord", "Bodyguard", "Knight", "Archer", "Footman", "Res shrine", "Flag spawn", "Base", "Pit"}
+# types that come one set a side; the rest (flag stand, sentinels, a health shrine, lava, tar...) belong to neither side
+PER_SIDE = MUST_MATCH | {"Footmen area", "Choke point", "Bridge", "Gate", "Vine seed", "Teleporter", "Teleporter entrance", "Teleporter exit",
+                         "Trebuchet", "Repair kit", "Statue"}
+HOP_END = 600         # a route leg is a teleporter hop when both its ends are this close to teleporter ends
+HOP_MIN = 1500        # and it is at least this long
+
+
+def teleporter_ends(L):
+    ends = [tuple(q) for l in L if l["kind"] == "route" and l["type"].startswith("Teleporter") for q in (l["pts"][0], l["pts"][-1])]
+    return ends + [tuple(l["pts"][0]) for l in L if l["kind"] == "point" and l["type"].startswith("Teleporter")]
+
+
+def walked(route, ends):
+    """(drawn length, walked length, hops) of a labelled route: legs between two teleporter ends are not walked."""
+    drawn = hop = 0.0; n = 0
+    for a, b in zip(route, route[1:]):
+        leg = math.dist(a, b); drawn += leg
+        if leg >= HOP_MIN and ends and min(math.dist(a, e) for e in ends) <= HOP_END and min(math.dist(b, e) for e in ends) <= HOP_END:
+            hop += leg; n += 1
+    return round(drawn), round(drawn - hop), n
 NPC = ("Guild Lord", "Bodyguard", "Knight", "Archer", "Footman")
 KIND = {"guild_lord": "Guild Lord", "bodyguard": "Bodyguard", "knight": "Knight", "archer": "Archer", "footman": "Footman"}
 PAIR_TOL = 1000       # a mirrored label counts as matched within this many units (halls are not exact mirrors)
 SYM_MIN = 0.9         # the mirror check runs only when this share of the outline lands on the outline when carried across
 DOUBLE = 60           # two labels of one type this close are one label saved twice (pit knights stand about 100 apart)
-AREA_TOL = 1300       # the same, for the middle of a mirrored area
+AREA_TOL = 1500       # the same, for the middle of a mirrored area
 PIT_PAD = 150         # a point this close outside the pit's edge still counts as in the pit
 NEAR = {"Res shrine": 700, "Flag spawn": 500, "npc": 1500}   # a replay point is "labelled" within these distances
 
@@ -81,6 +105,8 @@ def audit(mid_):
     land = Land(mid_)
     L = json.load(open(os.path.join(MAPS, "labels", f"{mid_}.json")))["labels"]
     auto = json.load(open(os.path.join(MAPS, "auto", f"{mid_}.json")))
+    feat = json.load(open(os.path.join(MAPS, "hall_features.json")))["halls"].get(mid_, {})
+    shared = set(feat.get("shared", []))            # types Denning confirmed as one for both sides (Isle of the Dead's bridge)
     out = {"map_id": mid_, "map": land.name, "labels": len(L), "issues": [], "roster": {}, "pit": {}, "features": {}}
     issue = lambda kind, text, at=None: out["issues"].append({"kind": kind, "text": text, **({"at": [round(at[0]), round(at[1])]} if at else {})})
     lords = sorted((centre(l) for l in L if l["kind"] == "point" and l["type"] == "Guild Lord"))
@@ -104,7 +130,7 @@ def audit(mid_):
         out["roster"][f"{kind}: {typ}"] = {k: len(v) for k, v in sorted(s.items())}
         a, b = len(s.get("A", [])), len(s.get("B", []))
         counted[(kind, typ)] = (a, b)
-        if a != b and (typ in MUST_MATCH or kind == "route"):
+        if a != b and (typ in MUST_MATCH or (kind == "route" and not s.get("mid"))):
             issue("lopsided", f"{typ} ({kind}): {a} on the {names['A']} side, {b} on the {names['B']} side")
     for typ in ONE_EACH:
         s = by.get(("point", typ), {})
@@ -146,11 +172,11 @@ def audit(mid_):
     if fitness < SYM_MIN:
         out["symmetry"]["used"] = False                 # too far from symmetric to place partners: fall back to counts per side
         for (kind, typ), (a, b) in sorted(counted.items()):
-            if a != b and typ not in MUST_MATCH and kind != "route":
+            if a != b and typ in PER_SIDE and typ not in MUST_MATCH and typ not in shared and kind != "route":
                 issue("lopsided", f"{typ} ({kind}): {a} on the {names['A']} side, {b} on the {names['B']} side (counted by the nearer Guild Lord; one may sit near the middle)")
     else:
         out["symmetry"]["used"] = True
-        for kind, typ, tol in sorted({(l["kind"], l["type"], PAIR_TOL if l["kind"] == "point" else AREA_TOL) for l in L if l["kind"] != "route"}):
+        for kind, typ, tol in sorted({(l["kind"], l["type"], PAIR_TOL if l["kind"] == "point" else AREA_TOL) for l in L if l["kind"] != "route" and l["type"] in PER_SIDE}):
             grp = [l for l in L if l["kind"] == kind and l["type"] == typ]
             rest = grp
             cand = sorted((math.dist(T(centre(l)), centre(m)), i, j) for i, l in enumerate(rest) for j, m in enumerate(rest) if i < j)
@@ -168,6 +194,10 @@ def audit(mid_):
                 issue("mirror", f"{typ}{' area' if kind == 'area' else ''}{' (' + l['name'] + ')' if l.get('name') else ''} at {land.where(p)} ({round(p[0])}, {round(p[1])}) "
                       f"has no partner across the hall"
                       + (f" (the nearest {typ} is {round(gap)} units from where the partner would stand)" if gap is not None else ""), image)
+
+    ends = teleporter_ends(L)
+    out["routes"] = [{"id": l["id"], "type": l["type"], "name": l.get("name", ""), "side": side(l["pts"][0]),
+                      **dict(zip(("drawn", "walked", "hops"), walked(l["pts"], ends)))} for l in L if l["kind"] == "route" and not l["type"].startswith("Teleporter")]
 
     # what the replays show
     def nearest(typ, p):
@@ -204,6 +234,9 @@ def main():
         print(f"\n{r['map']} ({m}): {r['labels']} labels; {s.get('kind', '?')} symmetry, outline fit {s.get('outline_fit', '?')}; pits {r['pit']}")
         for i in r["issues"]: print(f"  [{i['kind']}] {i['text']}" + (f"  -> {i['at']}" if i.get("at") and i["kind"] == "mirror" else ""))
         if not r["issues"]: print("  nothing found")
+        if "--routes" in sys.argv:
+            for x in r.get("routes", []):
+                print(f"  route {x['id']} {x['type']:<15} {r.get('sides', {}).get(x['side'], 'middle'):<13} drawn {x['drawn']:>6}  walked {x['walked']:>6}" + (f"  ({x['hops']} teleporter hop)" if x["hops"] else ""))
 
 
 if __name__ == "__main__":

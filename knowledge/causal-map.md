@@ -912,3 +912,4 @@ Caused by:
 - 2026-11-09: link P.25 -> K.4: hypothesis -> supported by data (power_play supported +0.0063) (data)
 - 2026-11-09: link P.26 -> R.2: the data says rejected; held for Denning's ruling (data)
 - 2026-11-09: link C.builds -> R.2: supported -> hypothesis by data (fight_outcome not clear yet +0.0021) (data)
+- 2026-11-10: waiting: path distance with teleporters as hops of no length (R-316), for the step 2 rebuild (Denning)
