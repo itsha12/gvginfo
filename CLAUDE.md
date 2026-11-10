@@ -196,7 +196,8 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   engine's own NPC store and is not touched by either. `tools/maps/audit_labels.py` checks his labels against R-310 (pit roster, one res shrine and flag
   spawn a side, equal NPCs, doubles, mirror partners) and never writes them; run it after he labels. What each hall adds to
   decisions (footmen or none, fall-back zones, effects, objects and flag routes by label id, its decisions) is in
-  `data/maps/hall_features.json` and `knowledge/guild-halls.md` (R-310 to R-314). Never add a `.py` file to `tools/replay_analysis/` for site or
+  `data/maps/hall_features.json` and `knowledge/guild-halls.md` (R-310 to R-317). A route drawn through a teleporter
+  overstates the walk: use its walked length (`audit_labels.py --routes`, R-316). Never add a `.py` file to `tools/replay_analysis/` for site or
   tooling work: every file there is part of the measurement cache key and would force a full rebuild.
 
 ## Rules

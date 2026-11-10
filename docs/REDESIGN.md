@@ -67,8 +67,11 @@ offence_or_defence becomes part of the objective layer of a fight.
   no object events. The fall-back zones of a retreat are footmen, front door, pit, or front door and pit alone on the
   five halls without footmen (R-311). Environment areas (healing water, coral, acid, quicksand, tar, ice, lava, spores,
   miasma) are execution inputs: time spent in them, by role.
-- Path distance must treat a teleporter as a hop of no length: Isle of Jade's coral flag runs are drawn through one
-  (11,500 units drawn, about 7,000 walked). One-way and two-way teleporters are edges in the walk graph.
+- Path distance must treat a teleporter as a hop of no length (R-316): a route drawn through one shows the full drawn
+  distance (Isle of Jade's coral flag runs: 11,500 to 12,000 drawn, 6,700 to 7,300 walked; its back doors and Nomad's
+  Isle's too). One-way and two-way teleporters are edges of no length in the walk graph; a labelled route's length is
+  its walked length (`tools/maps/audit_labels.py` `walked`, the rule to carry into the engine). Today's three map
+  numbers are straight lines and know no teleporters; this is fixed with the step 2 rebuild, not before.
 
 ## The decision card
 One format for the blind test, match review and query tool:
@@ -93,7 +96,8 @@ fix; no number without its cases.
 | 4 | one (bundle 5) | families 4 and 5, win model stability, speed | as step 2 |
 
 ### Step 2 items (build order)
-2.1 named zones from labelled areas (unlabelled halls keep the circles); 2.2 path distance along the walkable outline;
+2.1 named zones from labelled areas (all 14 halls are labelled); 2.2 path distance along the walkable outline, with
+teleporters as hops of no length (R-316), replacing the three straight-line map numbers;
 2.3 departures (every leave from a main group, the res shrine or the base, labelled afterwards as run, split, collapse, retreat
 or return); 2.4 event triggers instead of polls, one record a moment; 2.5 scenario from the state at the trigger;
 2.6 the call as an allocation over 20 to 30 s (runners, where the rest are, defenders and their mix; never from damage
@@ -155,10 +159,10 @@ call's shape (timing and who).
 - Isle of Solitude has a one-way teleporter in each base near the Guild Lord, out to the main field: a split's escape
   route and a path that bypasses both doors. Direction confirmed (R-309): in beside the Lord, out on the field.
 - Route direction: front and back doors are drawn from inside the base outward; flag runs from the spawn to the stand.
-- All 14 halls are labelled (43 to 59 labels each). `tools/maps/audit_labels.py` checks them against R-310 (pit
+- All 14 halls are labelled (43 to 60 labels each). `tools/maps/audit_labels.py` checks them against R-310 (pit
   roster, one res shrine and flag spawn a side, equal NPCs, mirror partners, doubles); step 2 starts only when it reads
-  clean. Open at 2026-11-10: flag spawns on the first three halls, res shrines on Isle of the Dead, the Knights on
-  Nomad's Isle (labelled Footman), two pit archers on Warrior's Isle, doubled labels on Isle of Weeping Stone.
+  clean. Open at 2026-11-10 after Denning's corrections: the two flag spawns on Isle of Solitude (drafted, not yet
+  accepted), and one outer archer a side on Isle of Weeping Stone that does not mirror (his to judge).
 
 ## Risks
 Thin cells at 506 matches (many cards will read "no clear difference"); intent is not recorded; hindsight labels suit

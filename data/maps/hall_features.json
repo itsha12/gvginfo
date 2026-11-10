@@ -1,5 +1,5 @@
 {
- "about": "What each guild hall adds to the decisions, from Denning (2026-11-10) and the Guild Wars Wiki. Label ids point into data/maps/labels/<map id>.json. footmen = labelled footmen per side (0: the team cannot fall to footmen, R-310). fall_back = where a retreating team can fall, in order. family = the decision family of docs/REDESIGN.md. The engine does not read this yet (REDESIGN.md step 2). Checked by tools/maps/audit_labels.py.",
+ "about": "What each guild hall adds to the decisions, from Denning (2026-11-10) and the Guild Wars Wiki. Label ids point into data/maps/labels/<map id>.json. footmen = labelled footmen per side (0: the team cannot fall to footmen, R-310). fall_back = where a retreating team can fall, in order. family = the decision family of docs/REDESIGN.md. The engine does not read this yet (REDESIGN.md step 2). Checked by tools/maps/audit_labels.py. A route drawn through a teleporter carries drawn_length and walked_length: the hop cannot be drawn with no length, so it is taken out (R-316).",
  "halls": {
   "541": {
    "map": "Corrupted Isle",
@@ -72,14 +72,14 @@
       "gu0ltv",
       "porksf"
      ],
-     "what": "where each team's vine seed spawns, inside its base"
+     "what": "where each team's vine seed spawns, inside its base (confirmed by Denning)"
     },
     "vine seed drop spot": {
      "labels": [
       "tlaovu",
       "bahppi"
      ],
-     "what": "where the seed is capped to grow the vine bridge; until then that way is blocked and the base has one way in and out"
+     "what": "where the seed is capped to grow the vine bridge; until then that way is blocked and the base has one way in and out (confirmed by Denning)"
     }
    },
    "flag_routes": [
@@ -192,11 +192,11 @@
       11967
      ],
      "walked_length": [
-      7020,
-      7460
+      6712,
+      7297
      ],
      "cost": "coral damage and more exposure to the enemy team",
-     "note": "drawn through a teleporter: the hop (about 4,500 units) is not walked"
+     "note": "drawn through a teleporter: the hop (about 4,700 units) is not walked (R-316)"
     }
    ],
    "decisions": [
@@ -213,7 +213,23 @@
      "what": "split, back door and collapse usually go through the teleporter"
     }
    ],
-   "wiki": "https://wiki.guildwars.com/wiki/Isle_of_Jade"
+   "wiki": "https://wiki.guildwars.com/wiki/Isle_of_Jade",
+   "other_routes_through_teleporter": {
+    "back doors": {
+     "labels": [
+      "esrc2s",
+      "4pmq43"
+     ],
+     "drawn_length": [
+      7802,
+      7546
+     ],
+     "walked_length": [
+      2824,
+      2939
+     ]
+    }
+   }
   },
   "355": {
    "map": "Isle of Weeping Stone",
@@ -248,7 +264,7 @@
      "labels": [
       "z56o1k"
      ],
-     "what": "opens the gate; it sits on the split side"
+     "what": "opens the gate; it can only be reached from the back (split) side (Denning, R-315)"
     }
    },
    "decisions": [
@@ -256,7 +272,7 @@
      "id": "weeping-gate",
      "family": 2,
      "layer": "route",
-     "what": "with gate control a team can collapse on a split through the gate; a split with gate control can collapse on the main team the same way"
+     "what": "the gate opens only from the back side, so gate control belongs to whoever holds the back side: a team that has it can collapse on a split through the gate, and a split that has it can collapse on the main team the same way"
     }
    ],
    "wiki": "https://wiki.guildwars.com/wiki/Isle_of_Weeping_Stone"
@@ -268,7 +284,6 @@
     "front door",
     "pit"
    ],
-   "pending": "the four Footman labels stand inside the pits beside each Guild Lord and no Knight is labelled; 17 replays show two knights a team and no footman, so they are read as the Knights until Denning confirms",
    "effects": [
     {
      "name": "Quicksand",
@@ -295,7 +310,23 @@
      "what": "split out through the teleporter (the usual back door)"
     }
    ],
-   "wiki": "https://wiki.guildwars.com/wiki/Nomad's_Isle"
+   "wiki": "https://wiki.guildwars.com/wiki/Nomad's_Isle",
+   "other_routes_through_teleporter": {
+    "back doors": {
+     "labels": [
+      "7uknj6",
+      "tbsmde"
+     ],
+     "drawn_length": [
+      9808,
+      9665
+     ],
+     "walked_length": [
+      5770,
+      5837
+     ]
+    }
+   }
   },
   "357": {
    "map": "Imperial Isle",
@@ -379,14 +410,14 @@
       "81r6jd",
       "7qpawd"
      ],
-     "what": "labelled Catapult; the two markers nearest the flag stand. Carried to a trebuchet's lever to repair it"
+     "what": "labelled Repair kit (one a side, the markers nearest the flag stand; confirmed by Denning). Carried to a trebuchet's lever to repair it"
     },
     "trebuchet": {
      "labels": [
       "ftygj8",
       "zrarhc"
      ],
-     "what": "labelled Catapult; the two outer markers. Once repaired: pull the lever to load, again to fire"
+     "what": "labelled Trebuchet (the two outer markers; confirmed by Denning). Once repaired: pull the lever to load, again to fire"
     }
    },
    "decisions": [
@@ -425,10 +456,14 @@
    ],
    "notes": [
     "Front door and back door are largely the same paths: each has two ways out of the base of about equal length that end in about the same place. The real difference is that the back door (usually the split side) runs over the bridge.",
-    "Two flag paths, not a decision: both end in about the same place."
+    "Two flag paths, not a decision: both end in about the same place.",
+    "One bridge, crossed by both sides' back doors (confirmed by Denning)."
    ],
    "decisions": [],
-   "wiki": "https://wiki.guildwars.com/wiki/Isle_of_the_Dead"
+   "wiki": "https://wiki.guildwars.com/wiki/Isle_of_the_Dead",
+   "shared": [
+    "Bridge"
+   ]
   },
   "534": {
    "map": "Isle of Wurms",
@@ -444,7 +479,7 @@
      "labels": [
       "um9d78"
      ],
-     "what": "labelled Other. +120 maximum Health to every member of the team holding it; captured like an Alliance Battle shrine (wiki)"
+     "what": "labelled Health shrine. +120 maximum Health to every member of the team holding it; captured like an Alliance Battle shrine (wiki)"
     }
    },
    "decisions": [
@@ -525,7 +560,7 @@
       "vnbi8v",
       "z8cb12"
      ],
-     "what": "labelled Other. Hostile to both teams, on the lava route between the bases; they die of their own degeneration at about 8:00 if neither team damages them"
+     "what": "labelled Flame sentinel. Hostile to both teams, on the lava route between the bases; they die of their own degeneration at about 8:00 if neither team damages them"
     }
    },
    "decisions": [

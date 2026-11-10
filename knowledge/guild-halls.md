@@ -15,8 +15,9 @@ The monthly Flux changes the rules (gvg.report shows the current one, e.g. Minio
   retreating team falls back to its front door or its pit.
 - Footmen per side, from the labels and the replays: four on Corrupted Isle and Uncharted Isle; two on Isle of
   Meditation, Isle of Solitude, Isle of Jade, Isle of Weeping Stone, Imperial Isle, Warrior's Isle, and Isle of Wurms;
-  none on Druid's Isle, Isle of the Dead, Frozen Isle, and Burning Isle. Nomad's Isle reads as none (no footman in 17
-  replays; the four Footman labels there stand in the pits where the Knights should be), pending Denning's check.
+  none on Druid's Isle, Isle of the Dead, Frozen Isle, Burning Isle, and Nomad's Isle.
+- A route drawn through a teleporter is longer on the map than on foot: the hop cannot be drawn with no length, so it
+  is taken out when the route is measured (`audit_labels.py --routes`). Walked lengths are given below where they differ.
 
 ## Halls with a decision of their own
 
@@ -38,20 +39,21 @@ The monthly Flux changes the rules (gvg.report shows the current one, e.g. Minio
 - **Denning:** The hazards are the coral. There are two ways to run the flag: over the bridge (longer), or over the
   coral (shorter, but with coral damage and more exposure to the enemy team). The decision is which way to run.
 - **Denning:** A split and the back door usually go through the teleporter, and a collapse can too.
-- The coral flag runs are drawn through a teleporter: about 7,000 to 7,500 units are walked, against 10,800 to 11,600
-  over the bridge.
+- The coral flag runs are drawn through a teleporter: about 6,700 to 7,300 units are walked (11,500 to 12,000 drawn),
+  against 10,800 to 11,600 over the bridge. The back doors through the teleporter walk about 2,900 (7,500 to 7,800 drawn).
 
 ### Isle of Weeping Stone
 - Wiki: a gate facing the flag stand is the only direct link between the main path and the split path, and it opens
   from the split side. Stone Spores (near the giant mushrooms): 33% less damage and healing and -2 to all attributes
   for 10 seconds. Standing in water gives Blessed Water. The res shrine is far from the pit.
-- **Denning:** The gate is opened by the gate lock. A team with gate control can collapse on a split through the gate;
-  a split with gate control can collapse on the main team the same way.
+- **Denning:** The gate is opened by the gate lock, which is only available from the back side. A team with gate
+  control can collapse on a split through the gate; a split with gate control can collapse on the main team the same way.
 
 ### Nomad's Isle
 - Wiki: quicksand slows movement by 15% and costs 1 Energy on every attack or skill. A teleporter outside the
   quicksand leads to each base, in both directions, for either team. Three archers stand outside each pit.
-- **Denning:** The hazard is the quicksand. The back door is usually a split out the teleporter.
+- **Denning:** The hazard is the quicksand. The back door is usually a split out the teleporter. There are no footmen.
+- The back doors are drawn through the teleporter: about 5,800 units are walked (9,700 to 9,800 drawn).
 
 ### Imperial Isle
 - Wiki: flags spawn outside the bases in a corridor of Acid Traps (20 armor-ignoring earth damage each second). The
@@ -64,8 +66,8 @@ The monthly Flux changes the rules (gvg.report shows the current one, e.g. Minio
 - Wiki: a trebuchet faces each base. A repair kit starts on a bluff opposite each one; holding it and using the lever
   repairs the trebuchet, which is then loaded and fired with the lever, into the ground between the gate and the Lord
   (707 fire damage against 60 armor).
-- **Denning:** Of the Catapult markers, the one nearest the flag stand on each side is the repair kit; the others are
-  the trebuchets. The Hazard areas are where each trebuchet lands.
+- **Denning:** The marker nearest the flag stand on each side is the repair kit; the two outer ones are the
+  trebuchets (labelled Repair kit and Trebuchet). The Hazard areas are where each trebuchet lands.
 - **Denning:** Decisions: whether to run the team's own repair kit back to its base, so the enemy cannot capture the
   trebuchet aimed at it; whether to run the kit to the enemy's trebuchet to capture it; whether to push for the
   enemy's kit while it has not been taken to safety, to steal it and capture their trebuchet.
@@ -75,12 +77,13 @@ The monthly Flux changes the rules (gvg.report shows the current one, e.g. Minio
   shrine is far from the pit and lets resurrected players split at once. The smallest hall. No footmen.
 - **Denning:** The front door and back door paths are largely the same: each has two ways out of the base, about equal
   in length, that end in about the same place. The real difference is that the back door (usually the split side) runs
-  over the bridge. There are two flag paths, but it is not really a decision, as both end in about the same place.
+  over the bridge: one bridge, crossed by both sides. There are two flag paths, but it is not really a decision, as
+  both end in about the same place.
 
 ### Isle of Wurms
 - Wiki: the Health Shrine on the southern path gives the team holding it +120 maximum Health and is captured like an
   Alliance Battle shrine. The flag stand is on the northern path, the shortest way between the bases.
-- **Denning:** The Other point is the shrine. The decision is whether to fight for it, capture it, or split for it;
+- **Denning:** The decision is whether to fight for the shrine (labelled Health shrine), capture it, or split for it;
   capping it is paid for with a numbers disadvantage or a flag disadvantage elsewhere.
 
 ### Frozen Isle
@@ -92,7 +95,7 @@ The monthly Flux changes the rules (gvg.report shows the current one, e.g. Minio
 ### Burning Isle
 - Wiki: lava applies Crippled and Burning every 3 seconds. Lesser Flame Sentinels, hostile to both teams, guard the
   short lava route between the bases; they die of their own Health degeneration at about 8:00. No footmen.
-- **Denning:** The two Other points are the flame sentinels. Decisions: whether to kill them at the start (it opens
+- **Denning:** Decisions: whether to kill the two flame sentinels (labelled Flame sentinel) at the start (it opens
   splitting for the team, and for the enemy too), and when to split, which depends on whether they are dead (about
   8 minutes if neither team damages them).
 

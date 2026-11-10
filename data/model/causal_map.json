@@ -6394,6 +6394,11 @@
    "date": "2026-11-09",
    "change": "link C.builds -> R.2: supported -> hypothesis by data (fight_outcome not clear yet +0.0021)",
    "by": "data"
+  },
+  {
+   "date": "2026-11-10",
+   "change": "waiting: path distance with teleporters as hops of no length (R-316), for the step 2 rebuild",
+   "by": "Denning"
   }
  ],
  "waiting": [
@@ -6428,6 +6433,14 @@
    "why": "R-291: split npc_healing_10s by which NPC was healed (archer, knight, Bodyguard, Lord; under AoE or not) and by heal kind (direct v enchantment), so the data can test the common wisdom (archer over knight under AoE, Bodyguard over Lord) and whether enchantment heals on the Lord cost Lord damage",
    "source": "Denning",
    "date": "2026-11-09"
+  },
+  {
+   "kind": "proposal",
+   "node": "map distances (features.py _geo: map_flag_run, map_pit_to_stand, map_bases_apart)",
+   "feature": "path distance with teleporters as hops of no length",
+   "why": "R-316: today's three map numbers are straight lines and know no teleporters; a route drawn through a teleporter shows the full drawn distance because a hop of no length cannot be drawn (Isle of Jade coral flag runs 11,500 to 12,000 drawn, 6,700 to 7,300 walked; back doors on Isle of Jade and Nomad's Isle). Replace with path distance over the labelled outline, teleporters as edges of no length (one way on Isle of Solitude and Imperial Isle, two way on Isle of Jade and Nomad's Isle); a labelled route's length is its walked length (tools/maps/audit_labels.py walked). Needs the rebuild: step 2 item 2.2",
+   "source": "Denning",
+   "date": "2026-11-10"
   }
  ]
 }
