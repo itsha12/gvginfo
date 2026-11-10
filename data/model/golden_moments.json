@@ -431,7 +431,7 @@
    "label": {
     "real": "yes",
     "at": "2026-11-10",
-    "became": "none",
+    "became": "split",
     "scenario": {
      "trigger": "own_flag",
      "stand": "enemy"
