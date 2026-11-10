@@ -129,6 +129,22 @@ first pickup; a drop and pickup between two team-mates part-way to the stand (th
 carrier returns to the spawn. In family 1 the "two runners" calls are these forms; which form was used is part of the
 call's shape (timing and who).
 
+## What the first labelled halls show (Corrupted Isle, Isle of Meditation, Isle of Solitude)
+- The labels read cleanly: equal rosters on both sides, flag runs that start at the replay-derived spawn and end at
+  the stand, routes wholly on walkable ground. Sides are assigned by the nearer Guild Lord.
+- Areas overlap by design (a pit and its choke points sit inside the base hull): the zone of a point is the smallest
+  labelled area containing it, cut to the walkable ground. To confirm with Denning.
+- No hall uses "Footmen area"; footmen stand inside or beside the choke point areas at each door. "Fell to footmen"
+  needs a ruling: the door's choke point area, or a radius around the footmen points.
+- Isle of Meditation has two stands. All 279 recorded captures in 40 replays are at the tower stand (morale); none at
+  the obelisk, so obelisk control and the fireballs it turns on are not in the replay data. The gate nearest neither
+  base opens from outside; the two nearest the bases open from the lever inside; the paths to the outer gate carry
+  Miasma (5 pips of degeneration, not removable, spreads to adjacent players).
+- Isle of Solitude has a one-way teleporter in each base near the Guild Lord, out to the main field: a split's escape
+  route and a path that bypasses both doors. Direction is inferred (the end nearer the Lord is the way in) until
+  Denning marks entrance and exit.
+- Route direction: front and back doors are drawn from inside the base outward; flag runs from the spawn to the stand.
+
 ## Risks
 Thin cells at 506 matches (many cards will read "no clear difference"); intent is not recorded; hindsight labels suit
 analysis but not the blind test's question; longer reads risk recording the fight's result (positions and commitments

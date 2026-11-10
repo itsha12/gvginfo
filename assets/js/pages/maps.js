@@ -9,16 +9,72 @@ import { esc, readJson, writeJson, canSave, toast } from "../core.js";
 // The engine does not read the labels yet; they define zones, routes and NPC positions from the next engine bundle on.
 
 const TYPES = {
-  point: ["Footman", "Archer", "Knight", "Bodyguard", "Guild Lord", "Res shrine", "Flag spawn", "Flag stand", "Gate", "Gate lock", "Teleporter", "Catapult", "Other"],
-  area: ["Footmen area", "Base", "Pit", "Flag stand area", "Bridge", "Choke point", "Other"],
-  route: ["Front door", "Back door", "Flag run", "Other"],
+  point: ["Footman", "Archer", "Knight", "Bodyguard", "Guild Lord", "Res shrine", "Flag spawn", "Flag stand", "Obelisk flag stand", "Gate", "Gate lock", "Gate lever", "Teleporter entrance", "Teleporter exit", "Teleporter", "Statue", "Catapult", "Other"],
+  area: ["Base", "Pit", "Flag stand area", "Footmen area", "Bridge", "Choke point", "Miasma", "Fireball zone", "Other"],
+  route: ["Front door", "Back door", "Flag run", "Collapse route", "Teleporter (one way)", "Other"],
 };
 const NPC = { guild_lord: ["Guild Lord", "#b3261e"], bodyguard: ["Bodyguard", "#d97a1c"], knight: ["Knight", "#6b4fb8"], archer: ["Archer", "#0f7a6c"], footman: ["Footman", "#c2448a"] };
 const MODES = [["move", "Look around"], ["point", "Add a point"], ["area", "Trace an area"], ["route", "Draw a route"]];
+// how each type is drawn: areas [fill, opacity], routes [stroke, dash in pixels or null], points [shape, colour, always named]
+const AREA = { "Base": ["#5b8fd6", 0.26], "Pit": ["#c7473d", 0.5], "Flag stand area": ["#d9a514", 0.55], "Footmen area": ["#c2448a", 0.45], "Bridge": ["#1f9e98", 0.55],
+  "Choke point": ["#e07b1f", 0.55], "Miasma": ["#7a4fb8", 0.5], "Fireball zone": ["#d9482b", 0.4], "Other": ["#8a8a85", 0.4] };
+const ROUTE = { "Front door": ["#1f7a3a", null], "Back door": ["#a8432b", null], "Flag run": ["#1f5fd1", [2, 5]], "Collapse route": ["#6b4fb8", [9, 5]],
+  "Teleporter (one way)": ["#0088aa", [3, 4]], "Other": ["#74746f", [9, 5]] };
+const POINT = { "Footman": ["circle", "#c2448a"], "Archer": ["tri", "#0f7a6c"], "Knight": ["square", "#6b4fb8"], "Bodyguard": ["diamond", "#d97a1c"], "Guild Lord": ["star", "#b3261e"],
+  "Res shrine": ["plus", "#1f5fd1"], "Flag spawn": ["tri", "#1f7a3a"], "Flag stand": ["flag", "#111111"], "Obelisk flag stand": ["flag", "#7a5c2e", true], "Gate": ["bar", "#7a5c2e", true],
+  "Gate lock": ["ring", "#7a5c2e", true], "Gate lever": ["ring", "#7a5c2e", true], "Teleporter entrance": ["hex", "#0088aa", true], "Teleporter exit": ["hex", "#0088aa", true],
+  "Teleporter": ["hex", "#0088aa", true], "Statue": ["square", "#74746f", true], "Catapult": ["square", "#74746f", true], "Other": ["circle", "#74746f", true] };
+// a label typed "Other" but named after a known type is drawn as that type ("Miasma", "Collapse route option")
+function typeOf(l) {
+  const table = l.kind === "area" ? AREA : l.kind === "route" ? ROUTE : POINT;
+  if (l.type !== "Other" || !l.name) return table[l.type] ? l.type : "Other";
+  const n = l.name.trim().toLowerCase();
+  return Object.keys(table).find((t) => t !== "Other" && n.startsWith(t.toLowerCase().replace(/ \(.*$/, ""))) || "Other";
+}
 
-const S = { index: null, id: null, outline: null, auto: null, labels: {}, dirty: new Set(), mode: "move", draft: [], view: null, showNpc: true };
+const S = { index: null, id: null, outline: null, auto: null, labels: {}, dirty: new Set(), mode: "move", draft: [], view: null, show: null };
 const Y = (y) => -y;                         // game y runs up, the screen's runs down
 const uid = () => Math.random().toString(36).slice(2, 8);
+const dist = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1]);
+
+// is a game point on the walkable area of the hall being shown
+function inLand(x, y) {
+  const o = S.outline;
+  if (o.source !== "gvg.report") { const c = o.cell; return (o.rows[Math.floor(y / c)] || []).some(([a, b]) => Math.floor(x / c) >= a && Math.floor(x / c) <= b); }
+  for (const [xtl, xtr, yt, xbl, xbr, yb] of o.traps) {
+    if (yt === yb || y > Math.max(yt, yb) || y < Math.min(yt, yb)) continue;
+    const f = (y - yb) / (yt - yb), xl = xbl + (xtl - xbl) * f, xr = xbr + (xtr - xbr) * f;
+    if (x >= Math.min(xl, xr) && x <= Math.max(xl, xr)) return true;
+  }
+  return false;
+}
+function inPoly(x, y, pts) {
+  let c = false;
+  for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
+    const [x1, y1] = pts[i], [x2, y2] = pts[j];
+    if ((y1 > y) !== (y2 > y) && x < (x2 - x1) * (y - y1) / (y2 - y1) + x1) c = !c;
+  }
+  return c;
+}
+const polyArea = (pts) => Math.abs(pts.reduce((a, p, i) => { const q = pts[(i + 1) % pts.length]; return a + p[0] * q[1] - q[0] * p[1]; }, 0)) / 2;
+// where an area's name goes: the walkable spot inside the shape nearest its middle (the middle itself can be a wall)
+const anchors = new Map();
+function anchor(l, all) {
+  const smaller = all.filter((o) => o !== l && o.kind === "area" && polyArea(o.pts) < polyArea(l.pts));   // a base's name stays out of its pit
+  const key = `${S.id}:${l.id}:${l.pts.length}:${smaller.length}`;
+  if (anchors.has(key)) return anchors.get(key);
+  const c = centre(l.pts), xs = l.pts.map((p) => p[0]), ys = l.pts.map((p) => p[1]);
+  let best = c, bd = Infinity;
+  const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys), n = 16;
+  for (const clear of [true, false]) {
+    for (let i = 1; i < n; i++) for (let j = 1; j < n; j++) {
+      const x = x0 + (x1 - x0) * i / n, y = y0 + (y1 - y0) * j / n, d = dist([x, y], c);
+      if (d < bd && inPoly(x, y, l.pts) && inLand(x, y) && (!clear || !smaller.some((o) => inPoly(x, y, o.pts)))) { best = [x, y]; bd = d; }
+    }
+    if (bd < Infinity) break;
+  }
+  anchors.set(key, best); return best;
+}
 
 function outlinePath(o) {
   if (o.source === "gvg.report") return o.traps.map(([xtl, xtr, yt, xbl, xbr, yb]) => `M${xtl} ${Y(yt)}L${xtr} ${Y(yt)}L${xbr} ${Y(yb)}L${xbl} ${Y(yb)}Z`).join("");
@@ -34,33 +90,103 @@ function fitView(o) {
 
 const centre = (pts) => [pts.reduce((a, p) => a + p[0], 0) / pts.length, pts.reduce((a, p) => a + p[1], 0) / pts.length];
 
+function glyph(shape, x, y, r, col) {
+  const Yy = Y(y), a = `fill="${col}" stroke="#fff" stroke-width="${r * 0.28}"`;
+  if (shape === "tri") return `<path d="M${x} ${Yy - r * 1.15}L${x + r} ${Yy + r * 0.8}H${x - r}Z" ${a}/>`;
+  if (shape === "square") return `<rect x="${x - r * 0.85}" y="${Yy - r * 0.85}" width="${r * 1.7}" height="${r * 1.7}" ${a}/>`;
+  if (shape === "diamond") return `<path d="M${x} ${Yy - r * 1.15}L${x + r * 1.15} ${Yy}L${x} ${Yy + r * 1.15}L${x - r * 1.15} ${Yy}Z" ${a}/>`;
+  if (shape === "star") { let d = ""; for (let i = 0; i < 10; i++) { const rr = (i % 2 ? 0.62 : 1.5) * r, t = Math.PI * i / 5 - Math.PI / 2; d += `${i ? "L" : "M"}${x + rr * Math.cos(t)} ${Yy + rr * Math.sin(t)}`; } return `<path d="${d}Z" ${a}/>`; }
+  if (shape === "plus") return `<path d="M${x - r * 0.4} ${Yy - r * 1.1}h${r * 0.8}v${r * 0.7}h${r * 0.7}v${r * 0.8}h${-r * 0.7}v${r * 0.7}h${-r * 0.8}v${-r * 0.7}h${-r * 0.7}v${-r * 0.8}h${r * 0.7}Z" ${a}/>`;
+  if (shape === "flag") return `<path d="M${x - r * 0.7} ${Yy + r * 1.3}V${Yy - r * 1.5}L${x + r * 1.3} ${Yy - r * 0.75}L${x - r * 0.7} ${Yy}" fill="${col}" stroke="${col}" stroke-width="${r * 0.4}" stroke-linejoin="round"/>`;
+  if (shape === "bar") return `<rect x="${x - r * 1.3}" y="${Yy - r * 0.45}" width="${r * 2.6}" height="${r * 0.9}" ${a}/>`;
+  if (shape === "ring") return `<circle cx="${x}" cy="${Yy}" r="${r * 0.8}" fill="#fff" stroke="${col}" stroke-width="${r * 0.5}"/>`;
+  if (shape === "hex") { let d = ""; for (let i = 0; i < 6; i++) { const t = Math.PI * i / 3; d += `${i ? "L" : "M"}${x + r * 1.15 * Math.cos(t)} ${Yy + r * 1.15 * Math.sin(t)}`; } return `<path d="${d}Z" ${a}/>`; }
+  return `<circle cx="${x}" cy="${Yy}" r="${r}" ${a}/>`;
+}
+// an arrow head at the end of a line that came from `from`
+function head(to, from, r, col) {
+  const t = Math.atan2(Y(to[1]) - Y(from[1]), to[0] - from[0]), p = (da, k) => `${to[0] + k * r * Math.cos(t + da)} ${Y(to[1]) + k * r * Math.sin(t + da)}`;
+  return `<path d="M${p(0, 1.6)}L${p(2.5, 1.5)}L${p(-2.5, 1.5)}Z" fill="${col}"/>`;
+}
+// plain "Teleporter" points come in pairs: the end nearer a Guild Lord is taken as the way in (they are one-way)
+function teleporterPairs(L) {
+  const tp = L.filter((l) => l.kind === "point" && l.type === "Teleporter"), lords = L.filter((l) => l.kind === "point" && l.type === "Guild Lord").map((l) => l.pts[0]);
+  const out = [], used = new Set();
+  if (!lords.length) return out;
+  const toLord = (p) => Math.min(...lords.map((q) => dist(p, q)));
+  for (const a of [...tp].sort((x, y) => toLord(x.pts[0]) - toLord(y.pts[0]))) {
+    if (used.has(a)) continue;
+    const b = tp.filter((x) => x !== a && !used.has(x)).sort((x, y) => dist(a.pts[0], x.pts[0]) - dist(a.pts[0], y.pts[0]))[0];
+    if (!b) break;
+    used.add(a); used.add(b); out.push([a.pts[0], b.pts[0]]);
+  }
+  return out;
+}
+
 function overlay(svg) {
   const u = S.view.w / (svg.clientWidth || 800);           // game units per screen pixel: keeps marks the same size at any zoom
-  const a = S.auto || {}, L = S.labels[S.id] || [];
+  const a = S.auto || {}, L = S.labels[S.id] || [], sh = S.show;
+  const tip = (l) => `<title>${esc(l.name || l.type)}${l.name && l.name !== l.type ? ` (${esc(l.type)})` : ""}${l.note ? ": " + esc(l.note) : ""}</title>`;
   const txt = (x, y, s, cls = "", mid = false) => `<text x="${mid ? x : x + 9 * u}" y="${Y(y) + 4 * u}" font-size="${11 * u}" class="${cls}"${mid ? ' text-anchor="middle"' : ""}>${esc(s)}</text>`;
-  let h = "";
-  if (S.showNpc) for (const n of a.npcs || []) {
+  let h = "", names = "";
+  // areas first, biggest underneath, cut to the walkable area so a rough outline still reads cleanly
+  if (sh.areas) {
+    h += `<g clip-path="url(#mp-clip)">`;
+    for (const l of L.filter((x) => x.kind === "area").sort((x, y) => polyArea(y.pts) - polyArea(x.pts))) {
+      const [col, op] = AREA[typeOf(l)];
+      h += `<path d="${l.pts.map((p, i) => `${i ? "L" : "M"}${p[0]} ${Y(p[1])}`).join("")}Z" fill="${col}" fill-opacity="${op}" stroke="${col}" stroke-width="${3 * u}" stroke-linejoin="round">${tip(l)}</path>`;
+      const c = anchor(l, L);
+      names += `<text x="${c[0]}" y="${Y(c[1]) + 3 * u}" font-size="${9 * u}" text-anchor="middle" class="mp-area-t" fill="${col}">${esc(l.name || l.type)}</text>`;
+    }
+    h += `</g>`;
+  }
+  if (sh.npc) for (const n of a.npcs || []) {
     const [name, col] = NPC[n.kind] || [n.kind, "#888"];
     const firm = n.how === "melee";
-    h += `<circle cx="${n.pos[0]}" cy="${Y(n.pos[1])}" r="${4 * u}" fill="${firm ? col : "none"}" stroke="${col}" stroke-width="${1.5 * u}" opacity="${Math.min(1, 0.35 + n.matches / Math.max(a.replays || 1, 1) * 2)}"><title>${esc(name)} (estimate): attackers stood here in ${n.matches} of ${a.replays} replays${firm ? "" : "; ranged attackers only, so rough"}</title></circle>`;
+    h += `<circle cx="${n.pos[0]}" cy="${Y(n.pos[1])}" r="${3.5 * u}" fill="${firm ? col : "none"}" stroke="${col}" stroke-width="${1.5 * u}" opacity="${Math.min(0.75, 0.25 + n.matches / Math.max(a.replays || 1, 1) * 2)}"><title>${esc(name)} (estimate): attackers stood here in ${n.matches} of ${a.replays} replays${firm ? "" : "; ranged attackers only, so rough"}</title></circle>`;
   }
-  for (const p of a.res_shrines || []) h += `<rect x="${p[0] - 6 * u}" y="${Y(p[1]) - 6 * u}" width="${12 * u}" height="${12 * u}" fill="#1f5fd1"><title>Team start (res shrine): where a team's players stand when the replay begins</title></rect>${txt(p[0], p[1], "Team start")}`;
-  for (const p of a.flag_spawns || []) h += `<path d="M${p[0]} ${Y(p[1]) - 7 * u}l${7 * u} ${13 * u}h${-14 * u}Z" fill="#1f7a3a"><title>Flag spawn: where new flags are picked up</title></path>${txt(p[0], p[1], "Flag spawn")}`;
-  if (a.stand) h += `<path d="M${a.stand[0]} ${Y(a.stand[1]) - 9 * u}l${9 * u} ${9 * u}l${-9 * u} ${9 * u}l${-9 * u} ${-9 * u}Z" fill="#111"><title>Flag stand: where captures happen</title></path>${txt(a.stand[0], a.stand[1], "Flag stand")}`;
-  for (const l of L) {
-    const name = l.name || l.type;
-    if (l.kind === "point") h += `<circle cx="${l.pts[0][0]}" cy="${Y(l.pts[0][1])}" r="${5.5 * u}" class="mp-label-pt" stroke-width="${2 * u}"><title>${esc(name)}${l.note ? ": " + esc(l.note) : ""}</title></circle>${txt(l.pts[0][0], l.pts[0][1], name, "mp-label-t")}`;
-    else {
-      const d = l.pts.map((p, i) => `${i ? "L" : "M"}${p[0]} ${Y(p[1])}`).join("") + (l.kind === "area" ? "Z" : "");
-      const c = l.kind === "area" ? centre(l.pts) : l.pts[Math.floor(l.pts.length / 2)];
-      h += `<path d="${d}" class="mp-label-${l.kind}" stroke-width="${2 * u}"${l.kind === "route" ? ` stroke-dasharray="${8 * u} ${5 * u}"` : ""}><title>${esc(name)}${l.note ? ": " + esc(l.note) : ""}</title></path>${txt(c[0], c[1], name, "mp-label-t", l.kind === "area")}`;
+  if (sh.replay) {
+    for (const p of a.res_shrines || []) h += `<rect x="${p[0] - 5 * u}" y="${Y(p[1]) - 5 * u}" width="${10 * u}" height="${10 * u}" fill="none" stroke="#1f5fd1" stroke-width="${2 * u}"><title>Team start, from the replays: where a team's players stand when the replay begins</title></rect>${txt(p[0], p[1], "Team start")}`;
+    for (const p of a.flag_spawns || []) h += `<path d="M${p[0]} ${Y(p[1]) - 7 * u}l${7 * u} ${13 * u}h${-14 * u}Z" fill="none" stroke="#1f7a3a" stroke-width="${2 * u}"><title>Flag spawn, from the replays: where new flags are picked up</title></path>${txt(p[0], p[1], "Flag spawn")}`;
+    if (a.stand) h += `<path d="M${a.stand[0]} ${Y(a.stand[1]) - 9 * u}l${9 * u} ${9 * u}l${-9 * u} ${9 * u}l${-9 * u} ${-9 * u}Z" fill="none" stroke="#111" stroke-width="${2 * u}"><title>Flag stand, from the replays: where captures happen</title></path>${txt(a.stand[0], a.stand[1], "Flag stand")}`;
+  }
+  if (sh.routes) {
+    for (const l of L.filter((x) => x.kind === "route")) {
+      const [col, dash] = ROUTE[typeOf(l)], p = l.pts;
+      h += `<path d="${p.map((q, i) => `${i ? "L" : "M"}${q[0]} ${Y(q[1])}`).join("")}" fill="none" stroke="#fff" stroke-width="${6 * u}" stroke-linejoin="round" stroke-linecap="round" opacity=".7"/>`
+        + `<path d="${p.map((q, i) => `${i ? "L" : "M"}${q[0]} ${Y(q[1])}`).join("")}" fill="none" stroke="${col}" stroke-width="${3 * u}" stroke-linejoin="round" stroke-linecap="round"${dash ? ` stroke-dasharray="${dash[0] * u} ${dash[1] * u}"` : ""}>${tip(l)}</path>`
+        + `<circle cx="${p[0][0]}" cy="${Y(p[0][1])}" r="${3.5 * u}" fill="${col}"/>${head(p[p.length - 1], p[p.length - 2], 5 * u, col)}`;
+      const m = p[Math.floor((p.length - 1) / 2)];
+      if (l.name) names += `<text x="${m[0] + 7 * u}" y="${Y(m[1]) - 5 * u}" font-size="${10 * u}" class="mp-route-t" fill="${col}">${esc(l.name)}</text>`;   // the key names the plain ones by colour
     }
+    for (const [from, to] of teleporterPairs(L)) h += `<path d="M${from[0]} ${Y(from[1])}L${to[0]} ${Y(to[1])}" fill="none" stroke="#0088aa" stroke-width="${2 * u}" stroke-dasharray="${3 * u} ${4 * u}"><title>One-way teleporter. Direction is a reading: the end nearer the Guild Lord is taken as the way in.</title></path>${head([to[0] + (from[0] - to[0]) * 12 * u / dist(from, to), to[1] + (from[1] - to[1]) * 12 * u / dist(from, to)], from, 5 * u, "#0088aa")}`;
   }
+  if (sh.points) for (const l of L.filter((x) => x.kind === "point")) {
+    const [shape, col, named] = POINT[typeOf(l)], [x, y] = l.pts[0];
+    h += `<g>${tip(l)}${glyph(shape, x, y, 5 * u, col)}</g>`;
+    if (named || l.name) names += txt(x, y, l.name || l.type, "mp-label-t");
+  }
+  h += names;
   if (S.draft.length) {
     h += `<path d="${S.draft.map((p, i) => `${i ? "L" : "M"}${p[0]} ${Y(p[1])}`).join("")}" class="mp-draft" stroke-width="${2 * u}"/>`;
     for (const p of S.draft) h += `<circle cx="${p[0]}" cy="${Y(p[1])}" r="${3.5 * u}" class="mp-draft-pt"/>`;
   }
   svg.querySelector("#mp-over").innerHTML = h;
+}
+
+// the key under the map: only what this hall shows
+function legendHtml() {
+  const L = S.labels[S.id] || [], sh = S.show, a = S.auto || {};
+  const seen = (kind) => [...new Set(L.filter((l) => l.kind === kind).map(typeOf))];
+  const rows = [];
+  if (sh.areas && seen("area").length) rows.push(["Areas", seen("area").map((t) => `<span><i style="background:${AREA[t][0]};opacity:${Math.min(1, AREA[t][1] + 0.35)}"></i>${esc(t)}</span>`)]);
+  if (sh.routes && seen("route").length) rows.push(["Routes", seen("route").map((t) => `<span><i class="mp-line" style="border-top:3px ${ROUTE[t][1] ? "dashed" : "solid"} ${ROUTE[t][0]}"></i>${esc(t)}</span>`).concat(teleporterPairs(L).length ? [`<span><i class="mp-line" style="border-top:3px dotted #0088aa"></i>Teleporter, one way</span>`] : [])]);
+  if (sh.points && seen("point").length) rows.push(["Points", seen("point").map((t) => `<span><svg viewBox="-9 -9 18 18" width="14" height="14">${glyph(POINT[t][0], 0, 0, 5, POINT[t][1])}</svg>${esc(t)}</span>`)]);
+  const rep = [];
+  if (sh.replay) rep.push(`<span><i class="mp-hollow" style="border-color:#111"></i>Flag stand</span>`, `<span><i class="mp-hollow" style="border-color:#1f5fd1"></i>Team start</span>`, `<span><i class="mp-hollow" style="border-color:#1f7a3a"></i>Flag spawn</span>`);
+  if (sh.npc) rep.push(...Object.values(NPC).map(([n, c]) => `<span><i style="background:${c};border-radius:50%;opacity:.6"></i>${n}</span>`));
+  if (rep.length) rows.push(["From the replays (estimates)", rep]);
+  return rows.map(([t, items]) => `<div class="row small mp-legend"><b>${t}</b>${items.join("")}</div>`).join("");
 }
 
 function setView(svg) { svg.setAttribute("viewBox", `${S.view.x} ${S.view.y} ${S.view.w} ${S.view.h}`); overlay(svg); }
@@ -84,6 +210,8 @@ async function loadHall(id) {
   ]);
   if (!S.labels[id]) S.labels[id] = (await readJson(`data/maps/labels/${id}.json`, { labels: [] })).labels || [];
   S.view = fitView(S.outline);
+  const mine = S.labels[id];
+  S.show = { areas: true, routes: true, points: true, replay: !mine.length, npc: !mine.some((l) => l.kind === "point" && ["Footman", "Archer", "Knight", "Bodyguard", "Guild Lord"].includes(l.type)) };
 }
 
 export async function renderMaps(out) {
@@ -101,20 +229,19 @@ export async function renderMaps(out) {
   <div class="row" style="margin:.4rem 0">${MODES.map(([m, t]) => `<button class="btn small${S.mode === m ? " primary" : ""}" data-mode="${m}">${t}</button>`).join("")}
     ${types.length ? `<select data-type aria-label="Type">${types.map((t) => `<option>${esc(t)}</option>`).join("")}</select>` : ""}
     ${S.mode === "area" || S.mode === "route" ? `<button class="btn small" data-finish${S.draft.length >= need ? "" : " disabled"}>Finish (${S.draft.length} point${S.draft.length === 1 ? "" : "s"})</button><button class="btn small ghost" data-undo${S.draft.length ? "" : " disabled"}>Undo last point</button>` : ""}
-    <label class="small" style="margin-left:auto"><input type="checkbox" data-npc${S.showNpc ? " checked" : ""}> Estimated NPCs</label>
-    <button class="btn small ghost" data-fit>Whole map</button></div>
+    <button class="btn small ghost" data-fit style="margin-left:auto">Whole map</button></div>
+  <div class="row small" style="margin:.2rem 0;gap:1rem"><span class="muted">Show:</span>${[["areas", "Areas"], ["routes", "Routes"], ["points", "Points"], ["replay", "Stand, starts, and spawns from the replays"], ["npc", "Estimated NPCs"]].map(([k, t]) => `<label><input type="checkbox" data-show="${k}"${S.show[k] ? " checked" : ""}> ${t}</label>`).join("")}</div>
   <p class="small muted" style="margin:.2rem 0 .5rem">${S.mode === "move" ? "Drag to move, scroll to zoom." : S.mode === "point" ? "Pick a type, then click the map to place it. Drag still moves the map." : S.mode === "area" ? "Pick a type, click each corner in turn, then Finish. Drag still moves the map." : "Pick a type, click along the path from start to end, then Finish. Drag still moves the map."} <span data-xy></span></p>
-  <svg class="mp-svg" role="img" aria-label="Map of ${esc(hall.map)}"><path d="${outlinePath(o)}" class="mp-land"/><g id="mp-over"></g></svg>
-  <div class="row small mp-legend"><span><i style="background:#111"></i>Flag stand</span><span><i style="background:#1f5fd1"></i>Team start</span><span><i style="background:#1f7a3a"></i>Flag spawn</span>
-    ${Object.values(NPC).map(([n, c]) => `<span><i style="background:${c};border-radius:50%"></i>${n} (estimate)</span>`).join("")}<span><i class="mp-yours"></i>Your labels</span></div>
-  <p class="small muted">NPC estimates come from where attackers stood when they hit that NPC, so an NPC that walks out to fight shows as several spots. Solid = melee attackers (close to the NPC); hollow = ranged attackers only (rough). Fainter = seen in fewer replays.</p>
+  <svg class="mp-svg" role="img" aria-label="Map of ${esc(hall.map)}"><defs><clipPath id="mp-clip"><path d="${outlinePath(o)}"/></clipPath></defs><path d="${outlinePath(o)}" class="mp-land"/><g id="mp-over"></g></svg>
+  <div data-legend>${legendHtml()}</div>
+  <p class="small muted">Areas are drawn only where the hall is walkable, with the smaller area on top where two overlap. A route starts at its dot and ends at its arrow. NPC estimates come from where attackers stood when they hit that NPC, so an NPC that walks out to fight shows as several spots.</p>
   <h3>Labels on ${esc(hall.map)} <button class="btn small primary" data-save${S.dirty.has(S.id) ? "" : " disabled"} style="margin-left:.6rem">Save labels</button></h3>
   <div data-list>${listHtml()}</div>
   <style>.mp-svg{width:100%;height:min(74vh,820px);border:1px solid var(--line);background:#fbfbfa;touch-action:none;cursor:${S.mode === "move" ? "grab" : "crosshair"};user-select:none}
   .mp-land{fill:#dfdfd8;stroke:#dfdfd8;stroke-width:1;vector-effect:non-scaling-stroke}.mp-svg text{fill:var(--ink-2);font-family:var(--sans);pointer-events:none;paint-order:stroke;stroke:#fbfbfa;stroke-width:.25em}
-  .mp-label-pt{fill:var(--accent);stroke:#fff}.mp-label-area{fill:var(--accent);fill-opacity:.18;stroke:var(--accent)}.mp-label-route{fill:none;stroke:var(--accent)}.mp-svg text.mp-label-t{fill:#6b5210;font-weight:600}
-  .mp-draft{fill:none;stroke:var(--bad)}.mp-draft-pt{fill:var(--bad)}.mp-legend{gap:1.1rem;margin:.5rem 0}.mp-legend i{display:inline-block;width:.7rem;height:.7rem;margin-right:.35rem;vertical-align:-1px}
-  .mp-legend i.mp-yours{background:var(--accent);border-radius:50%}.mp-halls{gap:.4rem}.small{font-size:.86rem}</style>`;
+  .mp-svg text.mp-label-t{fill:var(--ink);font-weight:600}.mp-svg text.mp-area-t{font-weight:600;text-transform:uppercase;letter-spacing:.05em;filter:brightness(.5);stroke-width:.2em}.mp-svg text.mp-route-t{font-weight:600;filter:brightness(.8)}
+  .mp-draft{fill:none;stroke:var(--bad)}.mp-draft-pt{fill:var(--bad)}.mp-legend{gap:1rem;margin:.35rem 0}.mp-legend b{min-width:5.5rem;font-weight:600}.mp-legend i{display:inline-block;width:.8rem;height:.8rem;margin-right:.35rem;vertical-align:-1px}
+  .mp-legend i.mp-line{height:0;width:1.3rem;vertical-align:.25rem;background:none}.mp-legend i.mp-hollow{background:none;border:2px solid}.mp-legend svg{vertical-align:-2px;margin-right:.3rem}.mp-halls{gap:.4rem}.small{font-size:.86rem}</style>`;
 
   const svg = out.querySelector(".mp-svg"), xy = out.querySelector("[data-xy]");
   setView(svg);
@@ -161,7 +288,7 @@ export async function renderMaps(out) {
   sel?.addEventListener("change", () => { S.keepType = sel.value; });
   out.querySelectorAll("[data-hall]").forEach((b) => b.onclick = async () => { await loadHall(b.dataset.hall); renderMaps(out); });
   out.querySelectorAll("[data-mode]").forEach((b) => b.onclick = () => { S.mode = b.dataset.mode; S.draft = []; S.keepType = null; renderMaps(out); });
-  out.querySelector("[data-npc]").onchange = (e) => { S.showNpc = e.target.checked; overlay(svg); };
+  out.querySelectorAll("[data-show]").forEach((c) => c.onchange = () => { S.show[c.dataset.show] = c.checked; overlay(svg); out.querySelector("[data-legend]").innerHTML = legendHtml(); });
   out.querySelector("[data-fit]").onclick = () => { S.view = fitView(S.outline); renderMaps(out); };
   out.querySelector("[data-undo]")?.addEventListener("click", () => { S.draft.pop(); renderMaps(out); });
   out.querySelector("[data-finish]")?.addEventListener("click", () => {
