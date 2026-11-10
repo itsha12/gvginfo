@@ -521,23 +521,692 @@
    "from_draft": "flag-stand-0"
   },
   {
-   "id": "wfdhbk",
+   "id": "lfqnrq",
    "kind": "point",
    "type": "Res shrine",
    "name": "",
    "note": "",
    "pts": [
     [
-     4775,
-     -4017
+     -5330,
+     3503
     ]
-   ],
-   "from_draft": "res-shrine-1"
+   ]
+  },
+  {
+   "id": "0732r8",
+   "kind": "point",
+   "type": "Res shrine",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     3008,
+     -4754
+    ]
+   ]
+  },
+  {
+   "id": "xz98bi",
+   "kind": "route",
+   "type": "Collapse route",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     624,
+     -1552
+    ],
+    [
+     1183,
+     -367
+    ],
+    [
+     1005,
+     723
+    ],
+    [
+     1455,
+     1228
+    ],
+    [
+     2709,
+     2440
+    ],
+    [
+     3799,
+     3707
+    ],
+    [
+     4752,
+     4348
+    ]
+   ]
+  },
+  {
+   "id": "xnmf2y",
+   "kind": "route",
+   "type": "Collapse route",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -1679,
+     287
+    ],
+    [
+     -616,
+     887
+    ],
+    [
+     433,
+     832
+    ],
+    [
+     1728,
+     1541
+    ],
+    [
+     3049,
+     2794
+    ],
+    [
+     3785,
+     3803
+    ],
+    [
+     4643,
+     4361
+    ]
+   ]
+  },
+  {
+   "id": "qesx3s",
+   "kind": "area",
+   "type": "Choke point",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -3513,
+     -5136
+    ],
+    [
+     -3365,
+     -5465
+    ],
+    [
+     -1151,
+     -4659
+    ],
+    [
+     -1174,
+     -4091
+    ],
+    [
+     -3513,
+     -5102
+    ]
+   ]
+  },
+  {
+   "id": "pakt8q",
+   "kind": "area",
+   "type": "Choke point",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -4966,
+     -3580
+    ],
+    [
+     -4012,
+     -1536
+    ],
+    [
+     -4614,
+     -1139
+    ],
+    [
+     -5613,
+     -3058
+    ],
+    [
+     -4966,
+     -3603
+    ]
+   ]
+  },
+  {
+   "id": "jxexv3",
+   "kind": "area",
+   "type": "Choke point",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     427,
+     -2354
+    ],
+    [
+     166,
+     -3444
+    ],
+    [
+     1120,
+     -3671
+    ],
+    [
+     1654,
+     -2808
+    ],
+    [
+     416,
+     -2365
+    ]
+   ]
+  },
+  {
+   "id": "q8nf2u",
+   "kind": "area",
+   "type": "Choke point",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -3751,
+     780
+    ],
+    [
+     -3240,
+     201
+    ],
+    [
+     -2229,
+     859
+    ],
+    [
+     -2581,
+     1359
+    ],
+    [
+     -3728,
+     848
+    ]
+   ]
+  },
+  {
+   "id": "509xiy",
+   "kind": "area",
+   "type": "Choke point",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -5057,
+     3891
+    ],
+    [
+     -4103,
+     3357
+    ],
+    [
+     -3751,
+     4084
+    ],
+    [
+     -4273,
+     4720
+    ],
+    [
+     -4716,
+     4470
+    ],
+    [
+     -5034,
+     3948
+    ]
+   ]
+  },
+  {
+   "id": "dmu5uf",
+   "kind": "area",
+   "type": "Choke point",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     1075,
+     6480
+    ],
+    [
+     870,
+     5628
+    ],
+    [
+     2914,
+     5072
+    ],
+    [
+     3130,
+     5833
+    ],
+    [
+     1109,
+     6412
+    ]
+   ]
+  },
+  {
+   "id": "fg5z38",
+   "kind": "area",
+   "type": "Choke point",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     5650,
+     394
+    ],
+    [
+     5730,
+     -435
+    ],
+    [
+     6843,
+     -390
+    ],
+    [
+     6854,
+     451
+    ],
+    [
+     5662,
+     394
+    ]
+   ]
+  },
+  {
+   "id": "tpkkk2",
+   "kind": "area",
+   "type": "Choke point",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     5821,
+     -2331
+    ],
+    [
+     5968,
+     -3796
+    ],
+    [
+     7024,
+     -3751
+    ],
+    [
+     6752,
+     -2172
+    ],
+    [
+     6684,
+     -1321
+    ],
+    [
+     5639,
+     -1332
+    ],
+    [
+     5832,
+     -2320
+    ]
+   ]
+  },
+  {
+   "id": "0wvve5",
+   "kind": "point",
+   "type": "Bodyguard",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -3492,
+     5394
+    ]
+   ]
+  },
+  {
+   "id": "vdvl7k",
+   "kind": "point",
+   "type": "Bodyguard",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     5479,
+     -3919
+    ]
+   ]
+  },
+  {
+   "id": "gvebd5",
+   "kind": "point",
+   "type": "Guild Lord",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     5292,
+     -3997
+    ]
+   ]
+  },
+  {
+   "id": "sejcdv",
+   "kind": "point",
+   "type": "Guild Lord",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -3611,
+     5463
+    ]
+   ]
+  },
+  {
+   "id": "9ysupb",
+   "kind": "point",
+   "type": "Archer",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -4061,
+     5368
+    ]
+   ]
+  },
+  {
+   "id": "go9tfp",
+   "kind": "point",
+   "type": "Archer",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -3559,
+     4942
+    ]
+   ]
+  },
+  {
+   "id": "dumdsp",
+   "kind": "point",
+   "type": "Archer",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -3706,
+     2356
+    ]
+   ]
+  },
+  {
+   "id": "45yoha",
+   "kind": "point",
+   "type": "Archer",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -3843,
+     444
+    ]
+   ]
+  },
+  {
+   "id": "yxte3h",
+   "kind": "point",
+   "type": "Archer",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     2361,
+     -2702
+    ]
+   ]
+  },
+  {
+   "id": "h5aydc",
+   "kind": "point",
+   "type": "Archer",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     357,
+     -3776
+    ]
+   ]
+  },
+  {
+   "id": "x7p240",
+   "kind": "point",
+   "type": "Archer",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     6292,
+     -1405
+    ]
+   ]
+  },
+  {
+   "id": "mhmf70",
+   "kind": "point",
+   "type": "Archer",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -980,
+     6272
+    ]
+   ]
+  },
+  {
+   "id": "b86nt7",
+   "kind": "point",
+   "type": "Knight",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -4057,
+     5111
+    ]
+   ]
+  },
+  {
+   "id": "bxcbrh",
+   "kind": "point",
+   "type": "Knight",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -3860,
+     4953
+    ]
+   ]
+  },
+  {
+   "id": "16ucbr",
+   "kind": "point",
+   "type": "Knight",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     4622,
+     -3666
+    ]
+   ]
+  },
+  {
+   "id": "lyhz4i",
+   "kind": "point",
+   "type": "Knight",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     4606,
+     -4055
+    ]
+   ]
+  },
+  {
+   "id": "33lfl2",
+   "kind": "point",
+   "type": "Archer",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     5328,
+     -3502
+    ]
+   ]
+  },
+  {
+   "id": "mfxyzk",
+   "kind": "point",
+   "type": "Archer",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     5345,
+     -4143
+    ]
+   ]
+  },
+  {
+   "id": "upbps3",
+   "kind": "point",
+   "type": "Footman",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     38,
+     6276
+    ]
+   ]
+  },
+  {
+   "id": "76jznq",
+   "kind": "point",
+   "type": "Footman",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -21,
+     6040
+    ]
+   ]
+  },
+  {
+   "id": "u9beix",
+   "kind": "point",
+   "type": "Footman",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     5886,
+     743
+    ]
+   ]
+  },
+  {
+   "id": "7vtels",
+   "kind": "point",
+   "type": "Footman",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     6274,
+     783
+    ]
+   ]
+  },
+  {
+   "id": "jwa0q6",
+   "kind": "point",
+   "type": "Footman",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -134,
+     -2936
+    ]
+   ]
+  },
+  {
+   "id": "535tr6",
+   "kind": "point",
+   "type": "Footman",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     188,
+     -2444
+    ]
+   ]
+  },
+  {
+   "id": "6wx9hk",
+   "kind": "point",
+   "type": "Footman",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -2888,
+     -41
+    ]
+   ]
+  },
+  {
+   "id": "6wutko",
+   "kind": "point",
+   "type": "Footman",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -2452,
+     309
+    ]
+   ]
   }
  ],
  "dismissed": [
   "front-door-0",
   "front-door-1",
-  "res-shrine-0"
+  "res-shrine-0",
+  "res-shrine-1"
  ]
 }
