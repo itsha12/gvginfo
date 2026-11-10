@@ -1475,6 +1475,56 @@
     ]
    ],
    "from_draft": "res-shrine-1"
+  },
+  {
+   "id": "834cm6",
+   "kind": "route",
+   "type": "Collapse route",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     3628,
+     -729
+    ],
+    [
+     2179,
+     -144
+    ],
+    [
+     1243,
+     -56
+    ],
+    [
+     203,
+     -27
+    ]
+   ]
+  },
+  {
+   "id": "x3nlfi",
+   "kind": "route",
+   "type": "Collapse route",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     3862,
+     1217
+    ],
+    [
+     2428,
+     427
+    ],
+    [
+     1243,
+     119
+    ],
+    [
+     43,
+     105
+    ]
+   ]
   }
  ],
  "dismissed": [
