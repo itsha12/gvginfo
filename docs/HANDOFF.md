@@ -49,11 +49,11 @@ model's structure: `knowledge/model.md` (generated).
   decisions and variables follow from that. Ruled from the notes: greater stand area (R-334), main team in a 4v4
   (R-335), flag position and stand holder both (R-336), pinned or desperate (R-337), one flag a team and the four
   hand-off and double run forms (R-339, R-340). Built so far: the flag ledger (`Moments.flag_lives`).
-- Put to him in chat, answers pending (labelling paused until the page is amended): where the greater stand area
-  ends (he draws it, or accepts a draft from the replays); whether a player already home (back from a split,
-  defending, resurrected) who takes the next flag is a double run; that holding on a frontliner counts as a player
-  down; the golden test in two parts (his note first, then the engine's story for him to mark); Resurrection Signets
-  in the worth of a boost (R-333); where gvg.report's "packet window" option is.
+- Answered 2026-11-10 (R-342 to R-347): Claude drafts the greater stand area a hall and he accepts or redraws; a
+  player already home who takes the next flag is a double run (half); a flag held on a weapon character is about
+  80% of a player down; the golden test in two parts (his note, then the engine's story to mark). Before the page
+  is amended he writes notes only (no drop-downs) on four split answers and four numbers moments, to see whether
+  the same reading carries to those families; `Moments.fights(t)` (every fight with its numbers) is the first draft.
 - Then the build order: flag ledger (hold, match, overcap, flag position) > theatres with numbers and R-335's main
   team > pressure, death penalty, pinned > places and routes in his words > the story so far for any moment > the
   golden page amended > scenarios, calls and triggers rewritten on top. Also open: discovery candidates after the
