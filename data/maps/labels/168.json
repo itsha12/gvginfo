@@ -1092,7 +1092,61 @@
      -4096
     ]
    ]
+  },
+  {
+   "id": "4o1c1y",
+   "kind": "point",
+   "type": "Flag spawn",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -916,
+     4515
+    ]
+   ],
+   "from_draft": "flag-spawn-0"
+  },
+  {
+   "id": "7kut2j",
+   "kind": "point",
+   "type": "Flag spawn",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     867,
+     -4604
+    ]
+   ],
+   "from_draft": "flag-spawn-1"
+  },
+  {
+   "id": "gpdjsv",
+   "kind": "point",
+   "type": "Flag stand",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -26,
+     -234
+    ]
+   ],
+   "from_draft": "flag-stand-0"
   }
  ],
- "dismissed": []
+ "dismissed": [
+  "base-0",
+  "base-1",
+  "flag-stand-area-0",
+  "pit-0",
+  "pit-1",
+  "back-door-0",
+  "flag-run-0",
+  "flag-run-1",
+  "front-door-0",
+  "front-door-1",
+  "res-shrine-0"
+ ]
 }
