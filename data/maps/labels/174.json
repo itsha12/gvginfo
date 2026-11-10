@@ -820,58 +820,6 @@
    ]
   },
   {
-   "id": "e0oyz2",
-   "kind": "point",
-   "type": "Footman",
-   "name": "",
-   "note": "",
-   "pts": [
-    [
-     6091,
-     4246
-    ]
-   ]
-  },
-  {
-   "id": "jm2azf",
-   "kind": "point",
-   "type": "Footman",
-   "name": "",
-   "note": "",
-   "pts": [
-    [
-     6097,
-     4013
-    ]
-   ]
-  },
-  {
-   "id": "wxj2ni",
-   "kind": "point",
-   "type": "Footman",
-   "name": "",
-   "note": "",
-   "pts": [
-    [
-     6091,
-     -3700
-    ]
-   ]
-  },
-  {
-   "id": "1ujfjl",
-   "kind": "point",
-   "type": "Footman",
-   "name": "",
-   "note": "",
-   "pts": [
-    [
-     6091,
-     -3980
-    ]
-   ]
-  },
-  {
    "id": "cp9985",
    "kind": "point",
    "type": "Bodyguard",
@@ -1099,6 +1047,58 @@
     [
      5617,
      -129
+    ]
+   ]
+  },
+  {
+   "id": "j0a3q2",
+   "kind": "point",
+   "type": "Knight",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     6121,
+     4181
+    ]
+   ]
+  },
+  {
+   "id": "wuttnh",
+   "kind": "point",
+   "type": "Knight",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     6129,
+     3996
+    ]
+   ]
+  },
+  {
+   "id": "u1l5ok",
+   "kind": "point",
+   "type": "Knight",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     6155,
+     -3707
+    ]
+   ]
+  },
+  {
+   "id": "j0q7c3",
+   "kind": "point",
+   "type": "Knight",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     6228,
+     -3961
     ]
    ]
   }
