@@ -45,26 +45,17 @@ model's structure: `knowledge/model.md` (generated).
    matches, so the comparison is the engine alone). Then step 3 (the decision card), then step 4.
 5. Meanwhile, if wanted, on main: chunks of about 45, the Discovery workflow's second run, a third readability run.
 
-## Open rulings for Denning
-- Set every open item out in the chat when asking (R-329). Ruled 2026-11-10: R-318 to R-333 (P.26, the two signs
-  and play for 28 are closed: R-330 to R-332, in the branch).
-- From his first six golden labels (notes reviewed 2026-11-10; proposals put to him in chat, his answers pending;
-  he was asked to pause labelling until the page is amended):
-  1. Flag scenario keyed on flag position (up, even, behind, backup held) and pressure, not on who holds the stand.
-  2. "Own pickup" is not a trigger: the moment is when the runner turns to go, usually an answer to the enemy's run
-     20 to 60 s earlier; a pickup dropped within seconds is not a run; a hand-off is one flag, not a double run.
-  3. Theatres: every fight on the map with its own numbers (the back door 4v4 as well as the stand), so "add one",
-     "match" and a numbers advantage are read per theatre. What makes a group the main team in a 4v4 is his to say.
-  4. Named places: mid (around the stand, wider than the labelled area), own and enemy front door, front and back
-     door footmen; routes "through mid" and "through the pit". His definitions needed.
-  5. A pinned or desperate team (in base, heavy death penalty, late) is its own scenario with its own options.
-  6. New calls and triggers in his words: match, overcap, hold the flag, cap on a kill, park a backup, intercept
-     the runner, trade with a split instead of running.
-  7. Golden page: frame each moment as an exchange (both teams), let him correct the time, ask for the story so far.
-- Enemy boost worth (R-333): carried in every moment's state on the branch (`boost_worth`: morale points, share of
-  health, players with death penalty); whether it also enters the win model and the price of a boost is stage D.
-- gvg.report "packet window": not found in the scripts the probe reads; our replays are 1 position a second and
-  events to a tenth of a second. Ask Denning where the option is, or extend the probe to follow imported modules.
+## Open rulings for Denning (set each out in the chat, R-329; R-318 to R-333 ruled 2026-11-10)
+- From his first six golden labels (notes reviewed; proposals put to him in chat, answers pending; he was asked to
+  pause labelling until the page is amended): (1) flag scenario keyed on flag position and pressure, not the stand
+  holder; (2) an own pickup is not a trigger (the moment is the runner turning to go), a pickup dropped in seconds
+  is not a run, a hand-off is one flag and not a double run; (3) theatres: every fight with its own numbers, and
+  what makes a group the main team in a 4v4; (4) named places (mid, front doors, front and back footmen) and routes
+  (through mid, through the pit); (5) a pinned or desperate team as its own scenario; (6) calls and triggers in his
+  words (match, overcap, hold, cap on a kill, park a backup, intercept the runner, split instead of running);
+  (7) the golden page as an exchange between both teams, with a time correction and the story so far.
+- Enemy boost worth (R-333): in every moment's state on the branch (`boost_worth`); the win model and the price of
+  a boost are stage D. gvg.report "packet window": not found by the probe; ask Denning where the option is.
 - Discovery candidates after the second run; 28 behaviour clusters to name (knowledge/behaviour.md).
 
 ## Running it
@@ -78,10 +69,8 @@ model's structure: `knowledge/model.md` (generated).
   --break-system-packages -r .github/workflows/train-requirements.txt`; in tools/replay_analysis `cache.py sync pull`,
   `cache.py warm`. `GVG_SUBSET=30` for smoke tests. Run Python with `PYTHONDONTWRITEBYTECODE=1`. The branch's moment
   classifier needs none of the cache: it reads replays directly.
-- Site check: `python3 -m http.server` in the repo, then playwright with `/usr/bin/google-chrome` (mock
-  api.github.com to test a save).
-- Workflow artifacts can't be downloaded here (Azure blocked); `gh api` (REST) and git work; the workspace can't
-  reach gvg.report or the wiki.
+- Site check: `python3 -m http.server`, then playwright with `/usr/bin/google-chrome` (mock api.github.com to test
+  a save). `gh api` (REST) and git work; the workspace can't reach gvg.report or the wiki (use the probe workflow).
 
 ## Cautions
 - Never print or decode a blind-test pick's sealed field, or a golden moment's `sealed` field, in a chat.
