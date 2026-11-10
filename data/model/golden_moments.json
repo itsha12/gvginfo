@@ -1063,7 +1063,14 @@
     "Front door",
     "Through a teleporter"
    ],
-   "label": null,
+   "label": {
+    "real": "yes",
+    "at": "2026-11-10",
+    "scenario": {},
+    "call": {},
+    "who": [],
+    "notes": "Both teams start the game at stand. Nway has a lyssa derv waiting back for second flag (a double run) right off the start and SKT does not. Nway is at a player disadvantage so caps flag on warrior immediately, to allow lyssa to bring next flag and return to mainteam to mate 8v8. This \"waiting back for second flag\" is a very common tactic, as is capping first if the other team has all 8 players at main. Nway's derv halfruns the flag to their warrior, and goes back for another flag (double run, half running). Meanwhile, SKT overcapped and sends necro back for second flag. \n\nFor the first minutes of the game, it is just a full mainteam fight around the flag stand, nway's footies, and SKT's footies, until SKT's derv dies and get's based at 4 minutes. It continues to be a mainteam fight with flag runs until nway takes two deaths and then retreats to their pit around 7 minutes. At the 8 minute base res, nway's players res and nway sends a three man split of warrior, mes/a, 8 monk out portal. nway's split pushes in through backdoor and SKT defends 3v3 with warrior, ranger, and 7 monk at around 8:50. both teams maintain this position (nway potentially fighting for NPCs) until nway falls out back door around 9:20. nway's same split stays backdoor and splits offensively into SKT's base through backdoor again around 10:20. SKT defends in their pit with the same composition 3v3 at around 10:55. At 11:30, nway's split falls out backdoor and collapses main, trying to get a numbers advantage before SKT's defenders can reach mainteam through front door. Fight continues 8v8 main until around 12:15 where nway sends the same split. nway does not push backdoor and instead is defended by warrior, necro, and 7 monk of SKT. nway retreats to their own backdoor and now SKT has the 3v3 offensive split at around 12:32. Both 3 man teams \"posture\" in nway's back door at bridge without engaging, whilst SKT's mainteam pushes front door to nway's base, and nway retreats to pit. At around 13:48, nway's split pushes out backdoor and engages SKT's split. SKT's mainteam moves towards collapsing and nway's split at around 14:22 retreats to their backdoor bridge. \n\nFrom around 14:35 to 15:25, nway's 3 man team waits in their backdoor threatening a split, whilst SKT's 3 man matches them and waits outside their front door ready to defend or to split offensively. MEanwhile, SKT's mainteam is pushing the front door of Nway, who has fallen back to their base."
+   },
    "sealed": null,
    "picked_for": "scenario"
   },
