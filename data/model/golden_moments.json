@@ -679,7 +679,26 @@
     "Flag run",
     "Front door"
    ],
-   "label": null,
+   "label": {
+    "real": "yes",
+    "at": "2026-11-10",
+    "became": "run",
+    "scenario": {
+     "trigger": "enemy_run"
+    },
+    "call": {
+     "runners": "2",
+     "rest": "stay at the stand"
+    },
+    "who": [
+     "Hammer",
+     "Mes/A"
+    ],
+    "when_s": 20,
+    "route": "Flag run",
+    "forced": false,
+    "notes": "Book opens with a solo split through backdoor. One defends with 1 damage (rit). Both teams 7v7 at stand with main/stand mesmers holding flag. 1v1 in split doesn't accomplish anything for 4 minutes and mainteams just 7v7 with no kills and no flag game. Book takes a death on 7 monk at 4:42 so enemy mesmer goes to cap right away. Book is under pressure so mesmer drops flag to warrior and warrior runs to cap (around 5:15 or so). Warrior manages to cap the flag. Book has the flag capped now but is under pressure so no one from one goes to run, they are trying to kill mainteam. Enemy warrior goes to run around 5:55 and our mes/a matches, going back for flag. We push up to their front door to contest flag/push flagger as they are running on a warrior so we are essentially in a power play. Enemy warrior manages to cap whilst enemy mesmer goes back to collapse split. We overcap with mes/a and send back warrior to doublerun. We are now very up on flags so our warrior drops flag to mes/a to hold (we have flag capped and nearly a full flag advantage now). Enemy warrior also went back to run and tries to cap 6v7 by pushing through our team. Warrior caps and we overcap. Neither team sends anyone back to run yet, but enemy mesmer is now coming from split (at 8:20) and picks up a flag to run. Our rit also leaves split and picks up flag. Their mesmer drops flag to warrior to cap. Our flag is coming on rit (8:44). We are not behind on flags but have lost some of our flag advantage time. Our rit halfruns the flag and our warrior picks up the flag to run. Our rit goes out backdoor again to split. Enemy now has the flag capped and our warrior drops the flag to mesmer. Their rit was returning from split and waited in base to halfrun the flag. Enemy rit halfruns the flag to enemy warrior and we are now behind on flags (they have flag capped and our player with flag is around the same distance to flag stand as theirs). We cap, they over cap, and we send back our warrior to doublerun."
+   },
    "sealed": null,
    "picked_for": "scenario"
   },
