@@ -28,7 +28,7 @@ Usage:  python3 moments.py <report id> [family]      the match's moments in orde
 In code: Moments(st, sb).records() -> list of dicts."""
 import collections, json, math, statistics, sys
 from common import (READ_FROM, READ_TO, AREA_SHARE, PURPOSE_S, LEAVE_MIN_S, HOME_WAIT_S, SPAWN_R, GROUP_LEAVE_S, MEET_R,
-                    NUMBERS_MIN_S, MERGE_S, BOOST_WARN_S, FLAGGER_R, SPLIT_FAR, BOOST_EVERY, SERIOUS_CARRY_S)
+                    NUMBERS_MIN_S, MERGE_S, BOOST_WARN_S, FLAGGER_R, SPLIT_FAR, BOOST_EVERY, SERIOUS_CARRY_S, FIGHT_LINK)
 from state import d
 
 HOME, THEIRS = ("own pit", "own base"), ("enemy pit", "enemy base")
@@ -122,6 +122,29 @@ class Moments:
         if sh("backside", *HOME) > AREA_SHARE: return "own half"
         if sh("push side", *THEIRS) > AREA_SHARE: return "enemy half"
         return "spread"
+
+    # ---- every fight on the map, with its own numbers (a draft of the theatre layer, R-341)
+    def fights(self, t):
+        """The groups on the map at second t: living players of both teams linked within FIGHT_LINK, each with its
+        numbers by team and where it stands (the place of team 1's players, else team 2's, named by whose ground it
+        is). Denning reads a match this way ("3v4 in the back door", "7v7 at the stand")."""
+        st, m = self.st, self.m
+        live = [a for a in m.PL if self.AL[a][t]]
+        gs = []
+        for a in live:
+            hit = [g for g in gs if any(d(self.P[a][t], self.P[b][t]) < FIGHT_LINK for b in g)]
+            gs = [g for g in gs if g not in hit] + [[a] + [x for g in hit for x in g]]
+        out = []
+        for g in gs:
+            n = {tm: [a for a in g if m.team(a) == tm] for tm in st.teams}
+            z = collections.Counter(self.zone(a, t) for a in (n[1] or n[2]))
+            place = max(z, key=lambda k: (z[k], k)); own = 1 if n[1] else 2
+            words = {"stand": "the stand", "own pit": f"{m.tag[own]}'s pit", "own base": f"{m.tag[own]}'s base",
+                     "enemy pit": f"{m.tag[3 - own]}'s pit", "enemy base": f"{m.tag[3 - own]}'s base",
+                     "backside": f"{m.tag[own]}'s side of the field", "push side": f"{m.tag[3 - own]}'s side of the field"}[place]
+            out.append({"n": {tm: len(n[tm]) for tm in st.teams}, "who": {tm: sorted(m.roles[a] for a in n[tm]) for tm in st.teams},
+                        "place": words, "flag": [m.roles[a] for a in g if self.carrying(a, t)]})
+        return sorted(out, key=lambda x: -(x["n"][1] + x["n"][2]))
 
     # ---- the flag, one life at a time
     def flag_lives(self):
