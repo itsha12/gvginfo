@@ -6,8 +6,11 @@ on:
   workflow_dispatch:
     inputs:
       pages:
-        description: "Pages to probe (space separated)"
+        description: "Pages to scan, and /api/... endpoints to fetch as they are (space separated; no & in a query)"
         default: "/players /guilds"
+      grep:
+        description: "Optional: a regular expression; matches in the scanned scripts are saved with the text around them"
+        default: ""
 
 permissions:
   contents: write
@@ -22,6 +25,8 @@ jobs:
         with:
           node-version: 22
       - name: Probe
+        env:
+          GREP: ${{ github.event.inputs.grep }}
         run: node tools/gvgreport/probe.mjs out ${{ github.event.inputs.pages || '/players /guilds' }}
       - name: Save to the probe branch
         run: |
