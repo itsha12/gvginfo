@@ -1,0 +1,68 @@
+{
+ "map_id": "358",
+ "map": "Isle of Meditation",
+ "replays": 86,
+ "labels": [
+  {
+   "id": "flag-spawn-0",
+   "kind": "point",
+   "type": "Flag spawn",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -102,
+     7784
+    ]
+   ],
+   "how": "431 pickups here"
+  },
+  {
+   "id": "flag-spawn-1",
+   "kind": "point",
+   "type": "Flag spawn",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -4,
+     -4554
+    ]
+   ],
+   "how": "442 pickups here"
+  },
+  {
+   "id": "res-shrine-0",
+   "kind": "point",
+   "type": "Res shrine",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -2654,
+     6940
+    ]
+   ],
+   "how": "14 of 22 resurrections on the two-minute timer landed here"
+  },
+  {
+   "id": "res-shrine-1",
+   "kind": "point",
+   "type": "Res shrine",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -2405,
+     -4002
+    ]
+   ],
+   "how": "21 of 41 resurrections on the two-minute timer landed here"
+  }
+ ],
+ "notes": [],
+ "only": [
+  "Flag spawn",
+  "Res shrine"
+ ]
+}

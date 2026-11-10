@@ -1,0 +1,547 @@
+{
+ "about": "What each guild hall adds to the decisions, from Denning (2026-11-10) and the Guild Wars Wiki. Label ids point into data/maps/labels/<map id>.json. footmen = labelled footmen per side (0: the team cannot fall to footmen, R-310). fall_back = where a retreating team can fall, in order. family = the decision family of docs/REDESIGN.md. The engine does not read this yet (REDESIGN.md step 2). Checked by tools/maps/audit_labels.py.",
+ "halls": {
+  "541": {
+   "map": "Corrupted Isle",
+   "footmen": 4,
+   "fall_back": [
+    "footmen",
+    "front door",
+    "pit"
+   ],
+   "effects": [],
+   "decisions": [],
+   "wiki": "https://wiki.guildwars.com/wiki/Corrupted_Isle"
+  },
+  "358": {
+   "map": "Isle of Meditation",
+   "footmen": 2,
+   "fall_back": [
+    "footmen",
+    "front door",
+    "pit"
+   ],
+   "effects": [
+    {
+     "name": "Miasma",
+     "labels": "area Other named Miasma",
+     "what": "5 pips of health degeneration, cannot be removed, spreads to adjacent creatures",
+     "source": "wiki"
+    }
+   ],
+   "objects": {
+    "obelisk flag stand": "turns the beach statues' Fireballs on the team not holding it; almost never used (R-308), not modelled"
+   },
+   "decisions": [],
+   "wiki": "https://wiki.guildwars.com/wiki/Isle_of_Meditation"
+  },
+  "542": {
+   "map": "Isle of Solitude",
+   "footmen": 2,
+   "fall_back": [
+    "footmen",
+    "front door",
+    "pit"
+   ],
+   "effects": [],
+   "teleporters": {
+    "two_way": false,
+    "note": "one way: in beside the Guild Lord, out on the main field (R-309)"
+   },
+   "decisions": [],
+   "wiki": "https://wiki.guildwars.com/wiki/Isle_of_Solitude"
+  },
+  "168": {
+   "map": "Druid's Isle",
+   "footmen": 0,
+   "fall_back": [
+    "front door",
+    "pit"
+   ],
+   "effects": [
+    {
+     "name": "Fount Of Maguuma",
+     "labels": "area Water",
+     "what": "+1 health regeneration while standing in the water around the flag stand",
+     "source": "wiki, Denning"
+    }
+   ],
+   "objects": {
+    "vine seed spawn": {
+     "labels": [
+      "gu0ltv",
+      "porksf"
+     ],
+     "what": "where each team's vine seed spawns, inside its base"
+    },
+    "vine seed drop spot": {
+     "labels": [
+      "tlaovu",
+      "bahppi"
+     ],
+     "what": "where the seed is capped to grow the vine bridge; until then that way is blocked and the base has one way in and out"
+    }
+   },
+   "flag_routes": [
+    {
+     "name": "long way",
+     "labels": [
+      "42l5x8",
+      "2edhp0"
+     ],
+     "drawn_length": [
+      8594,
+      8875
+     ],
+     "open": "always"
+    },
+    {
+     "name": "over the vine",
+     "labels": [
+      "5lup5v",
+      "sl7w3u"
+     ],
+     "drawn_length": [
+      7284,
+      6980
+     ],
+     "open": "only once that team's vine seed is capped",
+     "cost": "passes two choke points"
+    }
+   ],
+   "decisions": [
+    {
+     "id": "druid-seed",
+     "family": 4,
+     "what": "cap the vine seed or not (opens a second way out of the base, for the flag and for splits, and a second way in)"
+    },
+    {
+     "id": "druid-flag-route",
+     "family": 1,
+     "layer": "route",
+     "what": "run the flag the long way or over the vine (about 1,600 units shorter as drawn, through two choke points, and only with the seed capped)"
+    }
+   ],
+   "execution": [
+    {
+     "id": "druid-water",
+     "what": "not standing in the healing water while the team is around the flag stand is a micro mistake"
+    }
+   ],
+   "wiki": "https://wiki.guildwars.com/wiki/Druid's_Isle"
+  },
+  "533": {
+   "map": "Uncharted Isle",
+   "footmen": 4,
+   "fall_back": [
+    "footmen",
+    "front door",
+    "pit"
+   ],
+   "effects": [],
+   "decisions": [],
+   "wiki": "https://wiki.guildwars.com/wiki/Uncharted_Isle"
+  },
+  "356": {
+   "map": "Isle of Jade",
+   "footmen": 2,
+   "fall_back": [
+    "footmen",
+    "front door",
+    "pit"
+   ],
+   "effects": [
+    {
+     "name": "Spiked Coral",
+     "labels": "area Hazard",
+     "what": "10% slower and 25 damage each second while moving",
+     "source": "wiki, Denning"
+    }
+   ],
+   "teleporters": {
+    "two_way": true,
+    "labels": [
+     "0g1huk",
+     "fvb9jc",
+     "fidh56",
+     "pu6ms8"
+    ],
+    "note": "two teleporters, either team, either direction; the usual way out for a split and for the back door, and a way to collapse"
+   },
+   "flag_routes": [
+    {
+     "name": "over the bridge",
+     "labels": [
+      "cw51q1",
+      "isyeqe"
+     ],
+     "drawn_length": [
+      10753,
+      11591
+     ],
+     "cost": "longer"
+    },
+    {
+     "name": "over the coral",
+     "labels": [
+      "0jc1ej",
+      "p3qgv6"
+     ],
+     "drawn_length": [
+      11521,
+      11967
+     ],
+     "walked_length": [
+      7020,
+      7460
+     ],
+     "cost": "coral damage and more exposure to the enemy team",
+     "note": "drawn through a teleporter: the hop (about 4,500 units) is not walked"
+    }
+   ],
+   "decisions": [
+    {
+     "id": "jade-flag-route",
+     "family": 1,
+     "layer": "route",
+     "what": "run the flag over the bridge (longer, safer) or over the coral (shorter, takes coral damage, more exposed)"
+    },
+    {
+     "id": "jade-teleporter",
+     "family": 2,
+     "layer": "route",
+     "what": "split, back door and collapse usually go through the teleporter"
+    }
+   ],
+   "wiki": "https://wiki.guildwars.com/wiki/Isle_of_Jade"
+  },
+  "355": {
+   "map": "Isle of Weeping Stone",
+   "footmen": 2,
+   "fall_back": [
+    "footmen",
+    "front door",
+    "pit"
+   ],
+   "effects": [
+    {
+     "name": "Blessed Water",
+     "labels": "not labelled",
+     "what": "standing in water gives Blessed Water (the hall page gives no numbers)",
+     "source": "wiki"
+    },
+    {
+     "name": "Stone Spores",
+     "labels": "not labelled",
+     "what": "33% less damage and healing and -2 to all attributes for 10 seconds, near the giant mushrooms; always on in PvP",
+     "source": "wiki"
+    }
+   ],
+   "objects": {
+    "gate": {
+     "labels": [
+      "zhjzff"
+     ],
+     "what": "the one direct link between the main path and the split path, facing the flag stand"
+    },
+    "gate lock": {
+     "labels": [
+      "z56o1k"
+     ],
+     "what": "opens the gate; it sits on the split side"
+    }
+   },
+   "decisions": [
+    {
+     "id": "weeping-gate",
+     "family": 2,
+     "layer": "route",
+     "what": "with gate control a team can collapse on a split through the gate; a split with gate control can collapse on the main team the same way"
+    }
+   ],
+   "wiki": "https://wiki.guildwars.com/wiki/Isle_of_Weeping_Stone"
+  },
+  "174": {
+   "map": "Nomad's Isle",
+   "footmen": 0,
+   "fall_back": [
+    "front door",
+    "pit"
+   ],
+   "pending": "the four Footman labels stand inside the pits beside each Guild Lord and no Knight is labelled; 17 replays show two knights a team and no footman, so they are read as the Knights until Denning confirms",
+   "effects": [
+    {
+     "name": "Quicksand",
+     "labels": "area Hazard",
+     "what": "15% slower, and 1 Energy lost on every attack or skill",
+     "source": "wiki, Denning"
+    }
+   ],
+   "teleporters": {
+    "two_way": true,
+    "labels": [
+     "z30qns",
+     "3j856j",
+     "h7xw8m",
+     "b4pgiv"
+    ],
+    "note": "one to each base from outside the quicksand, either team, either direction; the back door is usually a split out the teleporter"
+   },
+   "decisions": [
+    {
+     "id": "nomad-teleporter",
+     "family": 4,
+     "layer": "route",
+     "what": "split out through the teleporter (the usual back door)"
+    }
+   ],
+   "wiki": "https://wiki.guildwars.com/wiki/Nomad's_Isle"
+  },
+  "357": {
+   "map": "Imperial Isle",
+   "footmen": 2,
+   "fall_back": [
+    "footmen",
+    "front door",
+    "pit"
+   ],
+   "effects": [
+    {
+     "name": "Acid Trap",
+     "labels": "area Hazard",
+     "what": "20 armor-ignoring earth damage each second, in the corridor where the flags spawn",
+     "source": "wiki, Denning"
+    }
+   ],
+   "teleporters": {
+    "two_way": false,
+    "labels": [
+     "myx6n6",
+     "cn36vn"
+    ],
+    "note": "one way, to the far side of the flag stand; a carried flag is not dropped (wiki)"
+   },
+   "flag_routes": [
+    {
+     "name": "short way",
+     "labels": [
+      "9q3fjr",
+      "08qxkf"
+     ],
+     "drawn_length": [
+      5264,
+      5312
+     ],
+     "cost": "can be body blocked; runs straight into the enemy team"
+    },
+    {
+     "name": "long way (safe way)",
+     "labels": [
+      "90b8vi",
+      "9ma2fs"
+     ],
+     "drawn_length": [
+      7693,
+      8248
+     ],
+     "cost": "longer"
+    }
+   ],
+   "decisions": [
+    {
+     "id": "imperial-flag-route",
+     "family": 1,
+     "layer": "route",
+     "what": "run the flag the short way (body blocks, straight into the enemy) or the long, safe way"
+    }
+   ],
+   "wiki": "https://wiki.guildwars.com/wiki/Imperial_Isle"
+  },
+  "171": {
+   "map": "Warrior's Isle",
+   "footmen": 2,
+   "fall_back": [
+    "footmen",
+    "front door",
+    "pit"
+   ],
+   "effects": [
+    {
+     "name": "Trebuchet",
+     "labels": "area Hazard",
+     "what": "the ground a trebuchet hits when fired; 707 fire damage against 60 armor (wiki)",
+     "source": "wiki, Denning"
+    }
+   ],
+   "objects": {
+    "repair kit": {
+     "labels": [
+      "81r6jd",
+      "7qpawd"
+     ],
+     "what": "labelled Catapult; the two markers nearest the flag stand. Carried to a trebuchet's lever to repair it"
+    },
+    "trebuchet": {
+     "labels": [
+      "ftygj8",
+      "zrarhc"
+     ],
+     "what": "labelled Catapult; the two outer markers. Once repaired: pull the lever to load, again to fire"
+    }
+   },
+   "decisions": [
+    {
+     "id": "warrior-kit-home",
+     "family": 4,
+     "what": "run the team's own repair kit back to its base, so the enemy cannot repair the trebuchet aimed at it"
+    },
+    {
+     "id": "warrior-kit-attack",
+     "family": 4,
+     "what": "run the repair kit to the enemy's trebuchet to capture it"
+    },
+    {
+     "id": "warrior-kit-steal",
+     "family": 4,
+     "what": "push for the enemy's repair kit while it has not been taken to safety, to steal it and capture their trebuchet"
+    }
+   ],
+   "wiki": "https://wiki.guildwars.com/wiki/Warrior's_Isle"
+  },
+  "175": {
+   "map": "Isle of the Dead",
+   "footmen": 0,
+   "fall_back": [
+    "front door",
+    "pit"
+   ],
+   "effects": [
+    {
+     "name": "Tar",
+     "labels": "area Tar",
+     "what": "30% slower around the flag stand",
+     "source": "wiki, Denning"
+    }
+   ],
+   "notes": [
+    "Front door and back door are largely the same paths: each has two ways out of the base of about equal length that end in about the same place. The real difference is that the back door (usually the split side) runs over the bridge.",
+    "Two flag paths, not a decision: both end in about the same place."
+   ],
+   "decisions": [],
+   "wiki": "https://wiki.guildwars.com/wiki/Isle_of_the_Dead"
+  },
+  "534": {
+   "map": "Isle of Wurms",
+   "footmen": 2,
+   "fall_back": [
+    "footmen",
+    "front door",
+    "pit"
+   ],
+   "effects": [],
+   "objects": {
+    "health shrine": {
+     "labels": [
+      "um9d78"
+     ],
+     "what": "labelled Other. +120 maximum Health to every member of the team holding it; captured like an Alliance Battle shrine (wiki)"
+    }
+   },
+   "decisions": [
+    {
+     "id": "wurms-shrine",
+     "family": 4,
+     "what": "fight for, capture or split for the health shrine, paid for with a numbers disadvantage or a flag disadvantage elsewhere"
+    }
+   ],
+   "wiki": "https://wiki.guildwars.com/wiki/Isle_of_Wurms"
+  },
+  "170": {
+   "map": "Frozen Isle",
+   "footmen": 0,
+   "fall_back": [
+    "front door",
+    "pit"
+   ],
+   "effects": [
+    {
+     "name": "Icy Ground",
+     "labels": "area Ice",
+     "what": "a creature standing still on the ice moves 70% slower for 5 seconds (checked every 2 seconds; no effect while already moving)",
+     "source": "wiki, Denning"
+    }
+   ],
+   "objects": {
+    "gates": {
+     "labels": [
+      "5dtafu",
+      "zpj7s2",
+      "njemer",
+      "zvlio9"
+     ],
+     "what": "two on each side; when one of a side's gates is open the other is closed"
+    },
+    "gate levers": {
+     "labels": [
+      "ypwf1t",
+      "g1rh6v"
+     ],
+     "what": "one for each side's pair of gates, on the dais in the middle"
+    }
+   },
+   "decisions": [
+    {
+     "id": "frozen-levers",
+     "family": 4,
+     "what": "defend or control the gate levers"
+    },
+    {
+     "id": "frozen-split-route",
+     "family": 4,
+     "layer": "route",
+     "what": "split through the bridge gates or around the back"
+    }
+   ],
+   "wiki": "https://wiki.guildwars.com/wiki/Frozen_Isle"
+  },
+  "167": {
+   "map": "Burning Isle",
+   "footmen": 0,
+   "fall_back": [
+    "front door",
+    "pit"
+   ],
+   "effects": [
+    {
+     "name": "Lava",
+     "labels": "area Lava",
+     "what": "Crippled and Burning every 3 seconds while standing in it",
+     "source": "wiki, Denning"
+    }
+   ],
+   "objects": {
+    "lesser flame sentinels": {
+     "labels": [
+      "vnbi8v",
+      "z8cb12"
+     ],
+     "what": "labelled Other. Hostile to both teams, on the lava route between the bases; they die of their own degeneration at about 8:00 if neither team damages them"
+    }
+   },
+   "decisions": [
+    {
+     "id": "burning-sentinels",
+     "family": 4,
+     "what": "kill the sentinels at the start (opens splitting for the team, and for the enemy)"
+    },
+    {
+     "id": "burning-split-timing",
+     "family": 4,
+     "layer": "timing",
+     "what": "when to split depends on whether the sentinels are dead (about 8:00 if left alone)"
+    }
+   ],
+   "wiki": "https://wiki.guildwars.com/wiki/Burning_Isle"
+  }
+ }
+}

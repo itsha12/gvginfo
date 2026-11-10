@@ -14,6 +14,8 @@ Not drafted: choke points, archers, knights, footmen, gates, hazards (Denning la
 Output: data/maps/draft/<map id>.json, the same shape as a labels file, each label with "how" (the evidence).
 Usage:  python3 tools/maps/draft_labels.py [map id ...]          write drafts (all halls by default)
         python3 tools/maps/draft_labels.py --score 541 358 542   compare drafts with Denning's labels on those halls
+        python3 tools/maps/draft_labels.py 541 "--only=Flag spawn,Flag stand"   write only those types (for a hall he
+                                                                 has already labelled, where the audit found a type missing)
 Kept outside tools/replay_analysis on purpose (every .py there is part of the engine's cache key).
 """
 import bisect, collections, gzip, heapq, json, math, os, statistics, subprocess, sys
@@ -421,8 +423,10 @@ if __name__ == "__main__":
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     ids = args or [h["id"] for h in json.load(open(os.path.join(MAPS, "index.json")))["halls"]]
     os.makedirs(os.path.join(MAPS, "draft"), exist_ok=True)
+    only = next((set(a[7:].split(",")) for a in sys.argv[1:] if a.startswith("--only=")), None)
     for mid_ in ids:
         d = draft(mid_)
+        if only: d["labels"] = [l for l in d["labels"] if l["type"] in only and l["kind"] == "point"]; d["notes"] = []; d["only"] = sorted(only)
         if "--score" in sys.argv:
             print(f"\n== {d['map']} ({d['replays']} replays) ==")
             for typ, kind, text in score(mid_, d): print(f"  {typ:<16} {text}")

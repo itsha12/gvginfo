@@ -13,7 +13,7 @@ import { esc, readJson, writeJson, canSave, toast } from "../core.js";
 // dealt with stays dealt with when the drafts are rebuilt.
 
 const TYPES = {
-  point: ["Footman", "Archer", "Knight", "Bodyguard", "Guild Lord", "Res shrine", "Flag spawn", "Flag stand", "Obelisk flag stand", "Gate", "Gate lock", "Gate lever", "Vine seed", "Teleporter entrance", "Teleporter exit", "Teleporter", "Statue", "Catapult", "Hazard", "Other"],
+  point: ["Footman", "Archer", "Knight", "Bodyguard", "Guild Lord", "Res shrine", "Flag spawn", "Flag stand", "Obelisk flag stand", "Gate", "Gate lock", "Gate lever", "Vine seed", "Teleporter entrance", "Teleporter exit", "Teleporter", "Statue", "Catapult", "Trebuchet", "Repair kit", "Health shrine", "Flame sentinel", "Hazard", "Other"],
   area: ["Base", "Pit", "Flag stand area", "Footmen area", "Bridge", "Choke point", "Miasma", "Lava", "Tar", "Ice", "Water", "Fireball zone", "Hazard", "Other"],
   route: ["Front door", "Back door", "Flag run", "Collapse route", "Teleporter (one way)", "Other"],
 };
@@ -28,7 +28,8 @@ const ROUTE = { "Front door": ["#1f7a3a", null], "Back door": ["#a8432b", null],
 const POINT = { "Footman": ["circle", "#c2448a"], "Archer": ["tri", "#0f7a6c"], "Knight": ["square", "#6b4fb8"], "Bodyguard": ["diamond", "#d97a1c"], "Guild Lord": ["star", "#b3261e"],
   "Res shrine": ["plus", "#1f5fd1"], "Flag spawn": ["tri", "#1f7a3a"], "Flag stand": ["flag", "#111111"], "Obelisk flag stand": ["flag", "#7a5c2e", true], "Gate": ["bar", "#7a5c2e", true],
   "Gate lock": ["ring", "#7a5c2e", true], "Gate lever": ["ring", "#7a5c2e", true], "Vine seed": ["diamond", "#5c9a1f", true], "Hazard": ["tri", "#9a3fa0", true], "Teleporter entrance": ["hex", "#0088aa", true], "Teleporter exit": ["hex", "#0088aa", true],
-  "Teleporter": ["hex", "#0088aa", true], "Statue": ["square", "#74746f", true], "Catapult": ["square", "#74746f", true], "Other": ["circle", "#74746f", true] };
+  "Teleporter": ["hex", "#0088aa", true], "Statue": ["square", "#74746f", true], "Catapult": ["square", "#74746f", true], "Trebuchet": ["square", "#8a5a2b", true], "Repair kit": ["ring", "#8a5a2b", true],
+  "Health shrine": ["plus", "#b3261e", true], "Flame sentinel": ["star", "#d9482b", true], "Other": ["circle", "#74746f", true] };
 // a label typed "Other" but named after a known type is drawn as that type ("Miasma", "Collapse route option")
 function typeOf(l) {
   const table = l.kind === "area" ? AREA : l.kind === "route" ? ROUTE : POINT;
@@ -40,7 +41,9 @@ function typeOf(l) {
 const S = { index: null, id: null, outline: null, auto: null, labels: {}, dirty: new Set(), mode: "move", draft: [], view: null, show: null,
   drafts: {}, dismissed: {}, hot: null };
 // the drafts of the hall being shown that Denning has neither accepted nor removed
-const pending = () => ((S.drafts[S.id] || {}).labels || []).filter((d) => !(S.dismissed[S.id] || new Set()).has(d.id) && !(S.labels[S.id] || []).some((l) => l.from_draft === d.id));
+// (a drafted point is also dropped when a label of its type already sits on it, so a hall labelled by hand is only offered what it lacks)
+const pending = () => ((S.drafts[S.id] || {}).labels || []).filter((d) => !(S.dismissed[S.id] || new Set()).has(d.id)
+  && !(S.labels[S.id] || []).some((l) => l.from_draft === d.id || (d.kind === "point" && l.kind === "point" && l.type === d.type && Math.hypot(l.pts[0][0] - d.pts[0][0], l.pts[0][1] - d.pts[0][1]) < 300)));
 const Y = (y) => -y;                         // game y runs up, the screen's runs down
 const uid = () => Math.random().toString(36).slice(2, 8);
 const dist = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1]);

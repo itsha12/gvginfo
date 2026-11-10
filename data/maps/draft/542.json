@@ -1,0 +1,54 @@
+{
+ "map_id": "542",
+ "map": "Isle of Solitude",
+ "replays": 80,
+ "labels": [
+  {
+   "id": "flag-stand-0",
+   "kind": "point",
+   "type": "Flag stand",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     1606,
+     -1701
+    ]
+   ],
+   "how": "742 captures in 80 replays"
+  },
+  {
+   "id": "flag-spawn-0",
+   "kind": "point",
+   "type": "Flag spawn",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -4837,
+     -4980
+    ]
+   ],
+   "how": "416 pickups here"
+  },
+  {
+   "id": "flag-spawn-1",
+   "kind": "point",
+   "type": "Flag spawn",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     4679,
+     4411
+    ]
+   ],
+   "how": "443 pickups here"
+  }
+ ],
+ "notes": [],
+ "only": [
+  "Flag spawn",
+  "Flag stand"
+ ]
+}
