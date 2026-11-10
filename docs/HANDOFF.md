@@ -57,8 +57,8 @@ model's structure: `knowledge/model.md` (generated).
   in the worth of a boost (R-333); where gvg.report's "packet window" option is.
 - Then the build order: flag ledger (hold, match, overcap, flag position) > theatres with numbers and R-335's main
   team > pressure, death penalty, pinned > places and routes in his words > the story so far for any moment > the
-  golden page amended > scenarios, calls and triggers rewritten on top.
-- Discovery candidates after the second run; 28 behaviour clusters to name (knowledge/behaviour.md).
+  golden page amended > scenarios, calls and triggers rewritten on top. Also open: discovery candidates after the
+  second run; 28 behaviour clusters to name (knowledge/behaviour.md).
 
 ## Running it
 - Train batch: `gh api -X POST repos/itsha12/gvginfo/actions/workflows/train-batch.yml/dispatches -f ref=main
@@ -78,4 +78,4 @@ model's structure: `knowledge/model.md` (generated).
 - Never print or decode a blind-test pick's sealed field, or a golden moment's `sealed` field, in a chat.
 - Never show Denning the engine's reading of a golden moment before he has labelled it (not in chat either).
 - Don't merge `bundle-4` into main piecemeal (it would force a rebuild). No Train batch or Discovery run in progress.
-- Label files are saved whole by the site: after a change made here, Denning reloads the map page before labelling.
+- Label files are saved whole by the site: after a change here, Denning reloads the page before labelling.
