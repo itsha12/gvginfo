@@ -898,6 +898,49 @@
      -3565
     ]
    ]
+  },
+  {
+   "id": "tez6i8",
+   "kind": "point",
+   "type": "Flag spawn",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -4530,
+     4575
+    ]
+   ],
+   "from_draft": "flag-spawn-0"
+  },
+  {
+   "id": "amn3zd",
+   "kind": "point",
+   "type": "Flag spawn",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     4608,
+     -4429
+    ]
+   ],
+   "from_draft": "flag-spawn-1"
+  },
+  {
+   "id": "bfiscu",
+   "kind": "point",
+   "type": "Flag stand",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -3811,
+     -3660
+    ]
+   ],
+   "from_draft": "flag-stand-0"
   }
- ]
+ ],
+ "dismissed": []
 }
