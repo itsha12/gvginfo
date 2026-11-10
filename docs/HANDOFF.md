@@ -31,8 +31,9 @@ model's structure: `knowledge/model.md` (generated).
   queued below. Never queue two Train batch runs at once (both failed on 2026-11-09).
 
 ## Next (in order)
-1. Denning: label the halls on Model > Guild hall maps, most played first (rulings R-292 to R-305 are confirmed).
-   Definitions still needed before step 2 are listed in REDESIGN.md.
+1. Denning: label the remaining 11 halls on Model > Guild hall maps (Corrupted Isle, Isle of Meditation and Isle of
+   Solitude are done and read cleanly). Drafts from replays exist for those three as a test (`draft_labels.py`,
+   scores in the CHANGELOG); next: a draft layer on the map page to accept or remove each, then drafts for the rest.
 2. Redesign step 2 = bundle 4, one rebuild (REDESIGN.md "Step 2 items"): zones and path distance from the maps,
    departures, event triggers, scenarios, calls as allocations, shape, the consequence record, jobs, enemy execution,
    interaction pairs that must pass twice. Before the rebuild: about 20 to 30 golden moments for Denning to label (a

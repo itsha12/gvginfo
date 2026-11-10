@@ -1,0 +1,682 @@
+{
+ "map_id": "542",
+ "map": "Isle of Solitude",
+ "replays": 80,
+ "labels": [
+  {
+   "id": "d1",
+   "kind": "point",
+   "type": "Flag stand",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     1606,
+     -1701
+    ]
+   ],
+   "how": "742 captures in 80 replays",
+   "draft": true
+  },
+  {
+   "id": "d2",
+   "kind": "point",
+   "type": "Flag spawn",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     4679,
+     4411
+    ]
+   ],
+   "how": "443 pickups here",
+   "draft": true
+  },
+  {
+   "id": "d3",
+   "kind": "point",
+   "type": "Flag spawn",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -4837,
+     -4980
+    ]
+   ],
+   "how": "416 pickups here",
+   "draft": true
+  },
+  {
+   "id": "d4",
+   "kind": "point",
+   "type": "Res shrine",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     4084,
+     4762
+    ]
+   ],
+   "how": "4 of 7 resurrections on the two-minute timer landed here",
+   "draft": true
+  },
+  {
+   "id": "d5",
+   "kind": "point",
+   "type": "Res shrine",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -5205,
+     -4341
+    ]
+   ],
+   "how": "5 of 7 resurrections on the two-minute timer landed here",
+   "draft": true
+  },
+  {
+   "id": "d6",
+   "kind": "area",
+   "type": "Flag stand area",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     900,
+     -2200
+    ],
+    [
+     1500,
+     -3500
+    ],
+    [
+     1800,
+     -3700
+    ],
+    [
+     2300,
+     -3700
+    ],
+    [
+     3000,
+     -3400
+    ],
+    [
+     3300,
+     -2800
+    ],
+    [
+     3500,
+     -2300
+    ],
+    [
+     3500,
+     -2200
+    ],
+    [
+     3400,
+     -2000
+    ],
+    [
+     3300,
+     -1900
+    ],
+    [
+     2300,
+     -1000
+    ],
+    [
+     1500,
+     -1000
+    ],
+    [
+     1000,
+     -1600
+    ],
+    [
+     900,
+     -1800
+    ]
+   ],
+   "how": "holds 75% of the time players spent within 2,600 units of the stand",
+   "draft": true
+  },
+  {
+   "id": "d7",
+   "kind": "area",
+   "type": "Pit",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     2651,
+     4149
+    ],
+    [
+     2706,
+     3656
+    ],
+    [
+     2911,
+     2691
+    ],
+    [
+     3483,
+     2498
+    ],
+    [
+     4243,
+     2498
+    ],
+    [
+     4684,
+     2693
+    ],
+    [
+     5746,
+     3440
+    ],
+    [
+     5746,
+     4200
+    ],
+    [
+     3411,
+     4909
+    ],
+    [
+     2651,
+     4909
+    ]
+   ],
+   "how": "around the Guild Lord and the 8 pit NPC positions attackers found within reach of him",
+   "draft": true
+  },
+  {
+   "id": "d8",
+   "kind": "route",
+   "type": "Flag run",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     4688,
+     4398
+    ],
+    [
+     5421,
+     4217
+    ],
+    [
+     5720,
+     3564
+    ],
+    [
+     5336,
+     2632
+    ],
+    [
+     3796,
+     957
+    ],
+    [
+     3256,
+     103
+    ],
+    [
+     3056,
+     -363
+    ],
+    [
+     3290,
+     -1603
+    ],
+    [
+     3168,
+     -2084
+    ],
+    [
+     2797,
+     -2341
+    ],
+    [
+     1802,
+     -1586
+    ]
+   ],
+   "how": "the most typical of 162 runs from this spawn to the stand",
+   "draft": true
+  },
+  {
+   "id": "d9",
+   "kind": "route",
+   "type": "Front door",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     5206,
+     3808
+    ],
+    [
+     5544,
+     3802
+    ],
+    [
+     5686,
+     3466
+    ],
+    [
+     5429,
+     2595
+    ],
+    [
+     3603,
+     717
+    ],
+    [
+     2280,
+     22
+    ],
+    [
+     1075,
+     -866
+    ]
+   ],
+   "how": "1732 of 2448 crossings 3180 units' walk from the Guild Lord went this way",
+   "draft": true
+  },
+  {
+   "id": "d10",
+   "kind": "route",
+   "type": "Back door",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     3249,
+     4157
+    ],
+    [
+     2369,
+     4970
+    ],
+    [
+     1535,
+     5442
+    ],
+    [
+     -349,
+     5784
+    ],
+    [
+     -863,
+     5512
+    ]
+   ],
+   "how": "686 of 2448 crossings 3180 units' walk from the Guild Lord went this way",
+   "draft": true
+  },
+  {
+   "id": "d11",
+   "kind": "area",
+   "type": "Base",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     600,
+     5600
+    ],
+    [
+     1300,
+     700
+    ],
+    [
+     1700,
+     200
+    ],
+    [
+     2200,
+     0
+    ],
+    [
+     2800,
+     100
+    ],
+    [
+     4400,
+     1200
+    ],
+    [
+     4800,
+     1500
+    ],
+    [
+     6000,
+     2600
+    ],
+    [
+     6100,
+     3000
+    ],
+    [
+     6100,
+     3900
+    ],
+    [
+     6000,
+     4600
+    ],
+    [
+     5300,
+     5100
+    ],
+    [
+     2300,
+     5800
+    ],
+    [
+     600,
+     5800
+    ]
+   ],
+   "how": "rough: the ground within 4416 units' walk of the Guild Lord, half the walk to the stand (the doors did not close the base off)",
+   "draft": true
+  },
+  {
+   "id": "d12",
+   "kind": "area",
+   "type": "Pit",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -5112,
+     -3364
+    ],
+    [
+     -4568,
+     -5496
+    ],
+    [
+     -3808,
+     -5496
+    ],
+    [
+     -3250,
+     -5206
+    ],
+    [
+     -3001,
+     -4716
+    ],
+    [
+     -2779,
+     -4242
+    ],
+    [
+     -2779,
+     -3482
+    ],
+    [
+     -3120,
+     -2858
+    ],
+    [
+     -3423,
+     -2730
+    ],
+    [
+     -4352,
+     -2604
+    ],
+    [
+     -5112,
+     -2604
+    ]
+   ],
+   "how": "around the Guild Lord and the 10 pit NPC positions attackers found within reach of him",
+   "draft": true
+  },
+  {
+   "id": "d13",
+   "kind": "route",
+   "type": "Flag run",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -4837,
+     -4962
+    ],
+    [
+     -4712,
+     -5441
+    ],
+    [
+     -4362,
+     -5814
+    ],
+    [
+     -3878,
+     -5973
+    ],
+    [
+     -3107,
+     -5939
+    ],
+    [
+     -209,
+     -3378
+    ],
+    [
+     2052,
+     -3115
+    ],
+    [
+     2126,
+     -2742
+    ],
+    [
+     1904,
+     -2625
+    ],
+    [
+     1560,
+     -1935
+    ]
+   ],
+   "how": "the most typical of 141 runs from this spawn to the stand",
+   "draft": true
+  },
+  {
+   "id": "d14",
+   "kind": "route",
+   "type": "Front door",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -4248,
+     -5221
+    ],
+    [
+     -4374,
+     -5778
+    ],
+    [
+     -4049,
+     -6021
+    ],
+    [
+     -3445,
+     -6080
+    ],
+    [
+     -2900,
+     -5806
+    ],
+    [
+     -1328,
+     -4188
+    ],
+    [
+     -1211,
+     -3795
+    ],
+    [
+     -478,
+     -3086
+    ],
+    [
+     605,
+     -1589
+    ]
+   ],
+   "how": "1964 of 2919 crossings 3075 units' walk from the Guild Lord went this way",
+   "draft": true
+  },
+  {
+   "id": "d15",
+   "kind": "route",
+   "type": "Back door",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -4429,
+     -3203
+    ],
+    [
+     -4860,
+     -2825
+    ],
+    [
+     -5377,
+     -1676
+    ],
+    [
+     -5682,
+     252
+    ],
+    [
+     -5487,
+     911
+    ]
+   ],
+   "how": "879 of 2919 crossings 3075 units' walk from the Guild Lord went this way",
+   "draft": true
+  },
+  {
+   "id": "d16",
+   "kind": "area",
+   "type": "Base",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -5700,
+     -4600
+    ],
+    [
+     -5500,
+     -5500
+    ],
+    [
+     -5300,
+     -5800
+    ],
+    [
+     -4600,
+     -6500
+    ],
+    [
+     -3200,
+     -6500
+    ],
+    [
+     -2700,
+     -6100
+    ],
+    [
+     -2100,
+     -5400
+    ],
+    [
+     -500,
+     -3000
+    ],
+    [
+     -400,
+     -2800
+    ],
+    [
+     -400,
+     -2300
+    ],
+    [
+     -600,
+     -1800
+    ],
+    [
+     -800,
+     -1700
+    ],
+    [
+     -5500,
+     -500
+    ],
+    [
+     -5800,
+     -600
+    ]
+   ],
+   "how": "rough: the ground within 4271 units' walk of the Guild Lord, half the walk to the stand (the doors did not close the base off)",
+   "draft": true
+  },
+  {
+   "id": "d17",
+   "kind": "route",
+   "type": "Teleporter (one way)",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -3543,
+     -2682
+    ],
+    [
+     -2047,
+     -740
+    ]
+   ],
+   "how": "763 jumps from here to there in 63 of 80 replays",
+   "draft": true
+  },
+  {
+   "id": "d18",
+   "kind": "route",
+   "type": "Teleporter (one way)",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     2222,
+     3273
+    ],
+    [
+     747,
+     2071
+    ]
+   ],
+   "how": "579 jumps from here to there in 61 of 80 replays",
+   "draft": true
+  }
+ ],
+ "notes": []
+}
