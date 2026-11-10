@@ -22,8 +22,7 @@ model's structure: `knowledge/model.md` (generated).
     against Denning's labels. It never reads the sealed field.
 - On main: Model > Golden moments (`assets/js/pages/golden.js`, `data/model/golden_moments.json`): 30 moments for
   Denning to label. The file never holds the engine's reading. Rulings R-318 to R-324 recorded.
-- All 14 halls labelled and the audit clean (R-318). Batch 17, discovery run 1 and readability test 2: unchanged
-  since the last handoff (CHANGELOG 2026-11-09 night, 2026-11-10).
+- All 14 halls labelled, audit clean (R-318). Batch 17, discovery run 1, readability test 2: unchanged (CHANGELOG).
 
 ## Next (in order)
 1. Denning: label the golden moments on the site (Model > Golden moments). Where a list cannot say what happened,
@@ -65,17 +64,16 @@ model's structure: `knowledge/model.md` (generated).
   -f 'inputs[pick]=45' -f 'inputs[add_batch]=yes'` (rebuild only: `inputs[add_batch]=no`; TQs `inputs[tqs]=yes|no|auto`;
   blind round `inputs[blind]=no|yes|auto`, default no while rounds are paused). Then pull main and read
   `data/model/reports/latest.md`. Never queue two runs at once. Discovery: the "Discovery" workflow.
-- Maps: `python3 tools/maps/build_maps.py` (needs the replays branch) rebuilds outlines; after Denning labels,
-  `python3 tools/maps/audit_labels.py [--routes]`. On the branch: `python3 hallmap.py numbers|routes|reach [--write]`.
+- Maps: `tools/maps/build_maps.py` rebuilds outlines; `tools/maps/audit_labels.py [--routes]` after Denning labels;
+  on the branch `hallmap.py numbers|routes|reach [--write]`, `moments.py flags` (the flag ledger over all matches).
 - Local engine: `git fetch --depth 1 origin +replays:refs/remotes/origin/replays`; `pip install
   --break-system-packages -r .github/workflows/train-requirements.txt`; in tools/replay_analysis `cache.py sync pull`,
-  `cache.py warm`. `GVG_SUBSET=30` for smoke tests. Run Python with `PYTHONDONTWRITEBYTECODE=1`. The branch's moment
-  classifier needs none of the cache: it reads replays directly.
+  `cache.py warm`. `GVG_SUBSET=30` for smoke tests; `PYTHONDONTWRITEBYTECODE=1`. `moments.py` needs no cache.
 - Site check: `python3 -m http.server`, then playwright with `/usr/bin/google-chrome` (mock api.github.com to test
   a save). `gh api` (REST) and git work; the workspace can't reach gvg.report or the wiki (use the probe workflow).
 
 ## Cautions
-- Never print or decode a blind-test pick's sealed field, or a golden moment's `sealed` field, in a chat.
-- Never show Denning the engine's reading of a golden moment before he has labelled it (not in chat either).
+- Never print or decode a sealed field (blind picks, golden moments) in a chat, and never show Denning the engine's
+  reading of a golden moment he has not labelled.
 - Don't merge `bundle-4` into main piecemeal (it would force a rebuild). No Train batch or Discovery run in progress.
 - Label files are saved whole by the site: after a change here, Denning reloads the page before labelling.
