@@ -366,7 +366,25 @@
     "Flag run",
     "Front door"
    ],
-   "label": null,
+   "label": {
+    "real": "yes",
+    "at": "2026-11-10",
+    "became": "run",
+    "scenario": {
+     "trigger": "enemy_run",
+     "stand": "own"
+    },
+    "call": {
+     "runners": "1",
+     "rest": "fall back into the base"
+    },
+    "who": [
+     "Mesmer"
+    ],
+    "when_s": 20,
+    "route": "Flag run",
+    "forced": false
+   },
    "sealed": null,
    "picked_for": "scenario"
   },
@@ -812,10 +830,10 @@
    "match": "36a65ac6-e25a-5d66-a8ed-2bf1032f243a",
    "map": "Isle of Jade",
    "team": "Men",
-   "opponent": "\uc637\uc637\uc637\uc637",
+   "opponent": "옷옷옷옷",
    "t": 174,
    "family": 2,
-   "trigger": "\uc637\uc637\uc637\uc637's Air Ele, Ritualist leave the main group",
+   "trigger": "옷옷옷옷's Air Ele, Ritualist leave the main group",
    "watch": [
     159,
     234
@@ -1375,10 +1393,10 @@
    "match": "5eebef5f-5389-5323-a62a-cbf7a40f993a",
    "map": "Isle of the Dead",
    "team": "hold",
-   "opponent": "\uc637\uc637\uc637\uc637",
+   "opponent": "옷옷옷옷",
    "t": 134,
    "family": 3,
-   "trigger": "numbers differ where the main groups meet: hold 7 v 8 \uc637\uc637\uc637\uc637",
+   "trigger": "numbers differ where the main groups meet: hold 7 v 8 옷옷옷옷",
    "watch": [
     119,
     194
