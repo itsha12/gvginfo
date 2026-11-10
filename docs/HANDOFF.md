@@ -33,6 +33,8 @@ model's structure: `knowledge/model.md` (generated).
    decisions have the main group in no named place (backside, push side, enemy base); 27% of split answers are a
    count no named call covers; a split met outside the base is not read as a collapse; a second player joining a
    split 15 s later is a second moment; timing uses hindsight purposes (fine for analysis, R-296).
+   First six labels (`golden.py score`): found 5 of 6, became 3 of 3, trigger 2 of 5, runners 2 of 5, rest 2 of 5.
+   Known faults: a runner whose team stands in its base is not counted; a runner passing through main leaves twice.
 3. Stage D on the branch: shape (composition properties, route with `Hall.route_followed`, timing with R-321), the
    consequence record at 90 s and about 3 min, similar cases by scenario, the job table (Claude drafts, Denning
    rules), enemy execution, interaction pairs that pass twice, the five proposals (R-324), the Tier 2 results column
@@ -44,11 +46,25 @@ model's structure: `knowledge/model.md` (generated).
 5. Meanwhile, if wanted, on main: chunks of about 45, the Discovery workflow's second run, a third readability run.
 
 ## Open rulings for Denning
-- Set every open item out in the chat when asking (R-329). Ruled since the build: R-325 to R-328.
-- P.26 cast prevention: rejected into power play (batch 16) and fight outcome (batch 17): override or not yet.
-- Direction signs: spikes (own minus enemy) and damage focus on healers in fight outcome carry no sign: + or leave.
-  (Set out for Denning in chat 2026-11-10 with P.26 and play for 28; his answers pending.)
-- play_for_28_or_lord starts at 10:00 and counts footmen as NPCs taken (R-281 left both open): confirm or change.
+- Set every open item out in the chat when asking (R-329). Ruled 2026-11-10: R-318 to R-333 (P.26, the two signs
+  and play for 28 are closed: R-330 to R-332, in the branch).
+- From his first six golden labels (notes reviewed 2026-11-10; proposals put to him in chat, his answers pending;
+  he was asked to pause labelling until the page is amended):
+  1. Flag scenario keyed on flag position (up, even, behind, backup held) and pressure, not on who holds the stand.
+  2. "Own pickup" is not a trigger: the moment is when the runner turns to go, usually an answer to the enemy's run
+     20 to 60 s earlier; a pickup dropped within seconds is not a run; a hand-off is one flag, not a double run.
+  3. Theatres: every fight on the map with its own numbers (the back door 4v4 as well as the stand), so "add one",
+     "match" and a numbers advantage are read per theatre. What makes a group the main team in a 4v4 is his to say.
+  4. Named places: mid (around the stand, wider than the labelled area), own and enemy front door, front and back
+     door footmen; routes "through mid" and "through the pit". His definitions needed.
+  5. A pinned or desperate team (in base, heavy death penalty, late) is its own scenario with its own options.
+  6. New calls and triggers in his words: match, overcap, hold the flag, cap on a kill, park a backup, intercept
+     the runner, trade with a split instead of running.
+  7. Golden page: frame each moment as an exchange (both teams), let him correct the time, ask for the story so far.
+- Enemy boost worth (R-333): carried in every moment's state on the branch (`boost_worth`: morale points, share of
+  health, players with death penalty); whether it also enters the win model and the price of a boost is stage D.
+- gvg.report "packet window": not found in the scripts the probe reads; our replays are 1 position a second and
+  events to a tenth of a second. Ask Denning where the option is, or extend the probe to follow imported modules.
 - Discovery candidates after the second run; 28 behaviour clusters to name (knowledge/behaviour.md).
 
 ## Running it
