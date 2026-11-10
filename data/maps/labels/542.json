@@ -1150,6 +1150,49 @@
      -1754
     ]
    ]
+  },
+  {
+   "id": "henk79",
+   "kind": "point",
+   "type": "Flag spawn",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -4837,
+     -4980
+    ]
+   ],
+   "from_draft": "flag-spawn-0"
+  },
+  {
+   "id": "l0zl9h",
+   "kind": "point",
+   "type": "Flag spawn",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     4679,
+     4411
+    ]
+   ],
+   "from_draft": "flag-spawn-1"
+  },
+  {
+   "id": "4jl82l",
+   "kind": "point",
+   "type": "Flag stand",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     1606,
+     -1701
+    ]
+   ],
+   "from_draft": "flag-stand-0"
   }
- ]
+ ],
+ "dismissed": []
 }
