@@ -1,0 +1,540 @@
+{
+ "map_id": "534",
+ "map": "Isle of Wurms",
+ "replays": 6,
+ "labels": [
+  {
+   "id": "flag-stand-0",
+   "kind": "point",
+   "type": "Flag stand",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     19,
+     1668
+    ]
+   ],
+   "how": "18 captures in 6 replays"
+  },
+  {
+   "id": "flag-spawn-0",
+   "kind": "point",
+   "type": "Flag spawn",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -7387,
+     1841
+    ]
+   ],
+   "how": "19 pickups here"
+  },
+  {
+   "id": "flag-spawn-1",
+   "kind": "point",
+   "type": "Flag spawn",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     7310,
+     1910
+    ]
+   ],
+   "how": "17 pickups here"
+  },
+  {
+   "id": "flag-stand-area-0",
+   "kind": "area",
+   "type": "Flag stand area",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -1900,
+     1500
+    ],
+    [
+     -1600,
+     800
+    ],
+    [
+     -1400,
+     600
+    ],
+    [
+     -1100,
+     500
+    ],
+    [
+     800,
+     400
+    ],
+    [
+     1100,
+     400
+    ],
+    [
+     1600,
+     700
+    ],
+    [
+     2000,
+     1500
+    ],
+    [
+     2000,
+     1800
+    ],
+    [
+     1700,
+     2300
+    ],
+    [
+     -400,
+     2400
+    ],
+    [
+     -1600,
+     2300
+    ],
+    [
+     -1700,
+     2200
+    ],
+    [
+     -1900,
+     1800
+    ]
+   ],
+   "how": "holds 75% of the time players spent within 2,600 units of the stand"
+  },
+  {
+   "id": "pit-0",
+   "kind": "area",
+   "type": "Pit",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -9461,
+     2957
+    ],
+    [
+     -9417,
+     2686
+    ],
+    [
+     -8736,
+     2228
+    ],
+    [
+     -7976,
+     2228
+    ],
+    [
+     -7808,
+     2972
+    ],
+    [
+     -7808,
+     3732
+    ],
+    [
+     -8647,
+     3752
+    ],
+    [
+     -9407,
+     3752
+    ],
+    [
+     -9461,
+     3717
+    ]
+   ],
+   "how": "around the Guild Lord and the 4 pit NPC positions attackers found within reach of him"
+  },
+  {
+   "id": "flag-run-0",
+   "kind": "route",
+   "type": "Flag run",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -7399,
+     1728
+    ],
+    [
+     -5847,
+     2756
+    ],
+    [
+     -4464,
+     3167
+    ],
+    [
+     -3652,
+     3039
+    ],
+    [
+     -871,
+     1702
+    ],
+    [
+     -51,
+     1666
+    ]
+   ],
+   "how": "the most typical of 6 runs from this spawn to the stand"
+  },
+  {
+   "id": "front-door-0",
+   "kind": "route",
+   "type": "Front door",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -7759,
+     3082
+    ],
+    [
+     -6773,
+     2872
+    ],
+    [
+     -6729,
+     2980
+    ],
+    [
+     -6098,
+     2932
+    ],
+    [
+     -4336,
+     3211
+    ],
+    [
+     -3005,
+     2788
+    ]
+   ],
+   "how": "147 of 241 crossings 3515 units' walk from the Guild Lord went this way"
+  },
+  {
+   "id": "back-door-0",
+   "kind": "route",
+   "type": "Back door",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -7870,
+     3054
+    ],
+    [
+     -7395,
+     2620
+    ],
+    [
+     -7343,
+     2366
+    ],
+    [
+     -7411,
+     312
+    ],
+    [
+     -6055,
+     -1238
+    ]
+   ],
+   "how": "82 of 241 crossings 3515 units' walk from the Guild Lord went this way"
+  },
+  {
+   "id": "base-0",
+   "kind": "area",
+   "type": "Base",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -9400,
+     2100
+    ],
+    [
+     -8700,
+     500
+    ],
+    [
+     -8200,
+     -500
+    ],
+    [
+     -7600,
+     -600
+    ],
+    [
+     -7100,
+     -500
+    ],
+    [
+     -5900,
+     0
+    ],
+    [
+     -4800,
+     1500
+    ],
+    [
+     -4500,
+     2100
+    ],
+    [
+     -4200,
+     3100
+    ],
+    [
+     -4300,
+     3500
+    ],
+    [
+     -4800,
+     4700
+    ],
+    [
+     -5000,
+     5000
+    ],
+    [
+     -8000,
+     4900
+    ],
+    [
+     -9400,
+     4200
+    ]
+   ],
+   "how": "rough: the ground within 4881 units' walk of the Guild Lord, half the walk to the stand (the doors did not close the base off)"
+  },
+  {
+   "id": "pit-1",
+   "kind": "area",
+   "type": "Pit",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     6897,
+     2077
+    ],
+    [
+     7649,
+     2038
+    ],
+    [
+     8409,
+     2038
+    ],
+    [
+     9010,
+     2660
+    ],
+    [
+     9046,
+     3066
+    ],
+    [
+     9046,
+     3826
+    ],
+    [
+     8442,
+     3910
+    ],
+    [
+     7682,
+     3910
+    ],
+    [
+     6897,
+     2837
+    ]
+   ],
+   "how": "around the Guild Lord and the 4 pit NPC positions attackers found within reach of him"
+  },
+  {
+   "id": "flag-run-1",
+   "kind": "route",
+   "type": "Flag run",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     7351,
+     1885
+    ],
+    [
+     6245,
+     2687
+    ],
+    [
+     4178,
+     3195
+    ],
+    [
+     3605,
+     3068
+    ],
+    [
+     1500,
+     2004
+    ],
+    [
+     352,
+     1728
+    ]
+   ],
+   "how": "the most typical of 4 runs from this spawn to the stand"
+  },
+  {
+   "id": "front-door-1",
+   "kind": "route",
+   "type": "Front door",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     7401,
+     2942
+    ],
+    [
+     6127,
+     2965
+    ],
+    [
+     6153,
+     2748
+    ],
+    [
+     5897,
+     2762
+    ],
+    [
+     4330,
+     3239
+    ],
+    [
+     2957,
+     2767
+    ]
+   ],
+   "how": "132 of 195 crossings 3394 units' walk from the Guild Lord went this way"
+  },
+  {
+   "id": "back-door-1",
+   "kind": "route",
+   "type": "Back door",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     7554,
+     2849
+    ],
+    [
+     7052,
+     2680
+    ],
+    [
+     6892,
+     2329
+    ],
+    [
+     7257,
+     494
+    ],
+    [
+     7177,
+     241
+    ],
+    [
+     5797,
+     -1353
+    ]
+   ],
+   "how": "49 of 195 crossings 3394 units' walk from the Guild Lord went this way"
+  },
+  {
+   "id": "base-1",
+   "kind": "area",
+   "type": "Base",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     4300,
+     2000
+    ],
+    [
+     4400,
+     1800
+    ],
+    [
+     5700,
+     -100
+    ],
+    [
+     6700,
+     -500
+    ],
+    [
+     7400,
+     -600
+    ],
+    [
+     7800,
+     -600
+    ],
+    [
+     8000,
+     -500
+    ],
+    [
+     8700,
+     300
+    ],
+    [
+     9500,
+     2900
+    ],
+    [
+     9500,
+     3000
+    ],
+    [
+     9000,
+     4200
+    ],
+    [
+     7600,
+     4800
+    ],
+    [
+     4600,
+     4800
+    ],
+    [
+     4100,
+     3200
+    ]
+   ],
+   "how": "rough: the ground within 4714 units' walk of the Guild Lord, half the walk to the stand (the doors did not close the base off)"
+  }
+ ],
+ "notes": []
+}

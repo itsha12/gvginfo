@@ -1,0 +1,495 @@
+{
+ "map_id": "175",
+ "map": "Isle of the Dead",
+ "replays": 9,
+ "labels": [
+  {
+   "id": "flag-stand-0",
+   "kind": "point",
+   "type": "Flag stand",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     4662,
+     1536
+    ]
+   ],
+   "how": "10 captures in 9 replays"
+  },
+  {
+   "id": "flag-spawn-0",
+   "kind": "point",
+   "type": "Flag spawn",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -2434,
+     -1990
+    ]
+   ],
+   "how": "14 pickups here"
+  },
+  {
+   "id": "flag-spawn-1",
+   "kind": "point",
+   "type": "Flag spawn",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -2669,
+     5056
+    ]
+   ],
+   "how": "11 pickups here"
+  },
+  {
+   "id": "flag-stand-area-0",
+   "kind": "area",
+   "type": "Flag stand area",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     2700,
+     1200
+    ],
+    [
+     3000,
+     400
+    ],
+    [
+     3100,
+     200
+    ],
+    [
+     3300,
+     0
+    ],
+    [
+     4200,
+     -200
+    ],
+    [
+     4300,
+     -200
+    ],
+    [
+     4500,
+     100
+    ],
+    [
+     4700,
+     1400
+    ],
+    [
+     4700,
+     1700
+    ],
+    [
+     4300,
+     3400
+    ],
+    [
+     4000,
+     3400
+    ],
+    [
+     3300,
+     3100
+    ],
+    [
+     3100,
+     2900
+    ],
+    [
+     2700,
+     2000
+    ]
+   ],
+   "how": "holds 75% of the time players spent within 2,600 units of the stand"
+  },
+  {
+   "id": "pit-0",
+   "kind": "area",
+   "type": "Pit",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -4960,
+     -2074
+    ],
+    [
+     -4526,
+     -2382
+    ],
+    [
+     -4234,
+     -2506
+    ],
+    [
+     -3474,
+     -2506
+    ],
+    [
+     -3067,
+     -2407
+    ],
+    [
+     -3067,
+     -1647
+    ],
+    [
+     -4200,
+     -1314
+    ],
+    [
+     -4960,
+     -1314
+    ]
+   ],
+   "how": "around the Guild Lord and the 4 pit NPC positions attackers found within reach of him"
+  },
+  {
+   "id": "front-door-0",
+   "kind": "route",
+   "type": "Front door",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -2890,
+     -2040
+    ],
+    [
+     -1909,
+     -1658
+    ],
+    [
+     -1575,
+     -522
+    ],
+    [
+     -1155,
+     -106
+    ],
+    [
+     -708,
+     -69
+    ],
+    [
+     -296,
+     -237
+    ],
+    [
+     340,
+     -1233
+    ],
+    [
+     1224,
+     -1366
+    ]
+   ],
+   "how": "81 of 232 crossings 4007 units' walk from the Guild Lord went this way"
+  },
+  {
+   "id": "back-door-0",
+   "kind": "route",
+   "type": "Back door",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -3063,
+     -1965
+    ],
+    [
+     -2444,
+     -1975
+    ],
+    [
+     -2069,
+     -2253
+    ],
+    [
+     -1520,
+     -3341
+    ],
+    [
+     -1096,
+     -3518
+    ],
+    [
+     -346,
+     -3450
+    ],
+    [
+     84,
+     -2499
+    ],
+    [
+     1229,
+     -2334
+    ]
+   ],
+   "how": "122 of 232 crossings 4007 units' walk from the Guild Lord went this way"
+  },
+  {
+   "id": "base-0",
+   "kind": "area",
+   "type": "Base",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -5500,
+     -2700
+    ],
+    [
+     -5400,
+     -2900
+    ],
+    [
+     -5100,
+     -3300
+    ],
+    [
+     -4400,
+     -4000
+    ],
+    [
+     -1800,
+     -4500
+    ],
+    [
+     -1300,
+     -4500
+    ],
+    [
+     -100,
+     -3900
+    ],
+    [
+     200,
+     -2700
+    ],
+    [
+     200,
+     500
+    ],
+    [
+     -1900,
+     500
+    ],
+    [
+     -4700,
+     -1000
+    ],
+    [
+     -4800,
+     -1100
+    ],
+    [
+     -5000,
+     -1400
+    ],
+    [
+     -5500,
+     -2400
+    ]
+   ],
+   "how": "rough: the ground within 5565 units' walk of the Guild Lord, half the walk to the stand (the doors did not close the base off)"
+  },
+  {
+   "id": "pit-1",
+   "kind": "area",
+   "type": "Pit",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -4966,
+     4472
+    ],
+    [
+     -4198,
+     4462
+    ],
+    [
+     -3438,
+     4462
+    ],
+    [
+     -2556,
+     4699
+    ],
+    [
+     -1835,
+     4996
+    ],
+    [
+     -1835,
+     5756
+    ],
+    [
+     -3639,
+     5896
+    ],
+    [
+     -4399,
+     5896
+    ],
+    [
+     -4966,
+     5232
+    ]
+   ],
+   "how": "around the Guild Lord and the 5 pit NPC positions attackers found within reach of him"
+  },
+  {
+   "id": "front-door-1",
+   "kind": "route",
+   "type": "Front door",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -2658,
+     5035
+    ],
+    [
+     -2151,
+     4759
+    ],
+    [
+     -1561,
+     3376
+    ],
+    [
+     -692,
+     3137
+    ],
+    [
+     115,
+     4377
+    ],
+    [
+     1458,
+     4427
+    ]
+   ],
+   "how": "61 of 125 crossings 3943 units' walk from the Guild Lord went this way"
+  },
+  {
+   "id": "back-door-1",
+   "kind": "route",
+   "type": "Back door",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -2781,
+     5129
+    ],
+    [
+     -1925,
+     5602
+    ],
+    [
+     -1779,
+     6418
+    ],
+    [
+     -533,
+     6693
+    ],
+    [
+     45,
+     6309
+    ],
+    [
+     248,
+     5623
+    ],
+    [
+     1041,
+     5348
+    ]
+   ],
+   "how": "58 of 125 crossings 3943 units' walk from the Guild Lord went this way"
+  },
+  {
+   "id": "base-1",
+   "kind": "area",
+   "type": "Base",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -5100,
+     4100
+    ],
+    [
+     -4800,
+     3900
+    ],
+    [
+     -2000,
+     2600
+    ],
+    [
+     -400,
+     2500
+    ],
+    [
+     -100,
+     2500
+    ],
+    [
+     0,
+     2600
+    ],
+    [
+     400,
+     4200
+    ],
+    [
+     300,
+     6200
+    ],
+    [
+     0,
+     7000
+    ],
+    [
+     -1400,
+     7800
+    ],
+    [
+     -1900,
+     7900
+    ],
+    [
+     -4800,
+     7500
+    ],
+    [
+     -5000,
+     7000
+    ],
+    [
+     -5100,
+     6100
+    ]
+   ],
+   "how": "rough: the ground within 5477 units' walk of the Guild Lord, half the walk to the stand (the doors did not close the base off)"
+  }
+ ],
+ "notes": [
+  "the bottom left base: too few complete flag runs in the replays to draft its flag run",
+  "the top left base: too few complete flag runs in the replays to draft its flag run"
+ ]
+}
