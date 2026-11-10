@@ -1628,6 +1628,32 @@
      5346
     ]
    ]
+  },
+  {
+   "id": "bomqr0",
+   "kind": "point",
+   "type": "Res shrine",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -1512,
+     -4086
+    ]
+   ]
+  },
+  {
+   "id": "diedn9",
+   "kind": "point",
+   "type": "Res shrine",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -1597,
+     7489
+    ]
+   ]
   }
  ],
  "dismissed": [
