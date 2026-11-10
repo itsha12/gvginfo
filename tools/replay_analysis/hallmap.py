@@ -29,7 +29,7 @@ REACH_FILE = os.path.join(REPO, "data", "benchmarks", "footmen_reach.json")
 TERRITORY = ("Pit", "Base", "Flag stand area")
 HOP_END, HOP_MIN = 600, 1500      # a drawn route leg between two teleporter ends, this long, is a hop (audit_labels.py)
 SNAP_RING = 6                     # cells searched around a point that is just off the walkable ground
-REACH_PCT = 0.75                  # the share of footman hits on players that the reach covers (Claude's, to confirm)
+REACH_PCT = 0.75                  # the share of footman hits on players that the reach covers (R-326)
 REACH_MIN_HITS = 30               # fewer hits than this on a hall: the pooled reach of all halls is used
 
 
