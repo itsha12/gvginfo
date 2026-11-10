@@ -1347,6 +1347,32 @@
      8698
     ]
    ]
+  },
+  {
+   "id": "joqtrg",
+   "kind": "point",
+   "type": "Archer",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     3434,
+     8572
+    ]
+   ]
+  },
+  {
+   "id": "zflt47",
+   "kind": "point",
+   "type": "Archer",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     4919,
+     8572
+    ]
+   ]
   }
  ],
  "dismissed": [
