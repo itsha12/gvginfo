@@ -9,20 +9,21 @@ import { esc, readJson, writeJson, canSave, toast } from "../core.js";
 // The engine does not read the labels yet; they define zones, routes and NPC positions from the next engine bundle on.
 
 const TYPES = {
-  point: ["Footman", "Archer", "Knight", "Bodyguard", "Guild Lord", "Res shrine", "Flag spawn", "Flag stand", "Obelisk flag stand", "Gate", "Gate lock", "Gate lever", "Teleporter entrance", "Teleporter exit", "Teleporter", "Statue", "Catapult", "Other"],
-  area: ["Base", "Pit", "Flag stand area", "Footmen area", "Bridge", "Choke point", "Miasma", "Fireball zone", "Other"],
+  point: ["Footman", "Archer", "Knight", "Bodyguard", "Guild Lord", "Res shrine", "Flag spawn", "Flag stand", "Obelisk flag stand", "Gate", "Gate lock", "Gate lever", "Vine seed", "Teleporter entrance", "Teleporter exit", "Teleporter", "Statue", "Catapult", "Hazard", "Other"],
+  area: ["Base", "Pit", "Flag stand area", "Footmen area", "Bridge", "Choke point", "Miasma", "Lava", "Tar", "Ice", "Water", "Fireball zone", "Hazard", "Other"],
   route: ["Front door", "Back door", "Flag run", "Collapse route", "Teleporter (one way)", "Other"],
 };
 const NPC = { guild_lord: ["Guild Lord", "#b3261e"], bodyguard: ["Bodyguard", "#d97a1c"], knight: ["Knight", "#6b4fb8"], archer: ["Archer", "#0f7a6c"], footman: ["Footman", "#c2448a"] };
 const MODES = [["move", "Look around"], ["point", "Add a point"], ["area", "Trace an area"], ["route", "Draw a route"]];
 // how each type is drawn: areas [fill, opacity], routes [stroke, dash in pixels or null], points [shape, colour, always named]
 const AREA = { "Base": ["#5b8fd6", 0.26], "Pit": ["#c7473d", 0.5], "Flag stand area": ["#d9a514", 0.55], "Footmen area": ["#c2448a", 0.45], "Bridge": ["#1f9e98", 0.55],
-  "Choke point": ["#e07b1f", 0.55], "Miasma": ["#7a4fb8", 0.5], "Fireball zone": ["#d9482b", 0.4], "Other": ["#8a8a85", 0.4] };
+  "Choke point": ["#e07b1f", 0.55], "Miasma": ["#7a4fb8", 0.5], "Lava": ["#d9482b", 0.55], "Tar": ["#3d3d3d", 0.5], "Ice": ["#7fc4e8", 0.6], "Water": ["#3d7fc9", 0.45],
+  "Fireball zone": ["#e0662b", 0.4], "Hazard": ["#9a3fa0", 0.45], "Other": ["#8a8a85", 0.4] };
 const ROUTE = { "Front door": ["#1f7a3a", null], "Back door": ["#a8432b", null], "Flag run": ["#1f5fd1", [2, 5]], "Collapse route": ["#6b4fb8", [9, 5]],
   "Teleporter (one way)": ["#0088aa", [3, 4]], "Other": ["#74746f", [9, 5]] };
 const POINT = { "Footman": ["circle", "#c2448a"], "Archer": ["tri", "#0f7a6c"], "Knight": ["square", "#6b4fb8"], "Bodyguard": ["diamond", "#d97a1c"], "Guild Lord": ["star", "#b3261e"],
   "Res shrine": ["plus", "#1f5fd1"], "Flag spawn": ["tri", "#1f7a3a"], "Flag stand": ["flag", "#111111"], "Obelisk flag stand": ["flag", "#7a5c2e", true], "Gate": ["bar", "#7a5c2e", true],
-  "Gate lock": ["ring", "#7a5c2e", true], "Gate lever": ["ring", "#7a5c2e", true], "Teleporter entrance": ["hex", "#0088aa", true], "Teleporter exit": ["hex", "#0088aa", true],
+  "Gate lock": ["ring", "#7a5c2e", true], "Gate lever": ["ring", "#7a5c2e", true], "Vine seed": ["diamond", "#5c9a1f", true], "Hazard": ["tri", "#9a3fa0", true], "Teleporter entrance": ["hex", "#0088aa", true], "Teleporter exit": ["hex", "#0088aa", true],
   "Teleporter": ["hex", "#0088aa", true], "Statue": ["square", "#74746f", true], "Catapult": ["square", "#74746f", true], "Other": ["circle", "#74746f", true] };
 // a label typed "Other" but named after a known type is drawn as that type ("Miasma", "Collapse route option")
 function typeOf(l) {

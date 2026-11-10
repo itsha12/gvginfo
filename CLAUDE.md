@@ -185,7 +185,9 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
 - Guild hall maps: `tools/maps/build_maps.py` builds the site's map data from the replays branch
   (`data/maps/index.json`, `outline/<map id>.json`, `auto/<map id>.json`); Denning's labels (points, areas, routes) are
   saved by the site's Model > Guild hall maps page to `data/maps/labels/<map id>.json` and override estimates. The
-  engine does not read outlines or labels yet (REDESIGN.md step 2). gvg.report serves some halls' geometry only by the
+  engine does not read outlines or labels yet (REDESIGN.md step 2). `tools/maps/draft_labels.py` drafts labels from
+  the replays for Denning to accept (`data/maps/draft/<map id>.json`; `--score <ids>` compares drafts with his labels);
+  it never reads or writes his labels, and he keeps choke points, NPCs, gates and hazards for himself. gvg.report serves some halls' geometry only by the
   game's map file id (`replays.mjs` MAP_FILE_IDS); to look at any gvg.report endpoint, run the "Probe gvg.report"
   workflow with the endpoint in `pages` (optional `pick` = parts to keep, `grep` = pattern to find in its scripts) and
   read the `probe` branch. `data/maps/<map id>.json` (no subfolder) is the
