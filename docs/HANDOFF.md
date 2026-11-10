@@ -44,13 +44,11 @@ model's structure: `knowledge/model.md` (generated).
 5. Meanwhile, if wanted, on main: chunks of about 45, the Discovery workflow's second run, a third readability run.
 
 ## Open rulings for Denning
-- Departure purpose: fixed 60 s after the leave, earlier on a pickup or on entering the enemy base (Claude's;
-  asked 2026-11-10, not yet answered). The footmen reach cut at 75% of footman hits (R-320).
+- Set every open item out in the chat when asking (R-329). Ruled since the build: R-325 to R-328.
 - P.26 cast prevention: rejected into power play (batch 16) and fight outcome (batch 17): override or not yet.
 - Direction signs: spikes (own minus enemy) and damage focus on healers in fight outcome carry no sign: + or leave.
+  (Set out for Denning in chat 2026-11-10 with P.26 and play for 28; his answers pending.)
 - play_for_28_or_lord starts at 10:00 and counts footmen as NPCs taken (R-281 left both open): confirm or change.
-- Labels: Warrior's Isle has no Flag stand point (the replays' stand is used); footmen sit inside the Base area on
-  one side only on Corrupted Isle and Uncharted Isle (the bases are drawn to different depths): leave or redraw.
 - Discovery candidates after the second run; 28 behaviour clusters to name (knowledge/behaviour.md).
 
 ## Running it

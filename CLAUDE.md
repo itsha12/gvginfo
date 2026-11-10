@@ -150,6 +150,11 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   mark` after walking Denning through an event.
 - Insights must be about decisions and consequences, not correlations. End each analysis with specific questions for
   Denning.
+- Writing to Denning in this project (R-329): explain fully, not in shorthand: what is to be done, why, and what he
+  should consider. Engine labels (P.26, K.4, R.2, bundle and stage names) are always given with their GvG meaning.
+  Whenever something needs his ruling, or he asks what is outstanding, set every item out in the chat itself (what it
+  is in GvG terms, what the data says, the options, the recommendation) so he can rule there; never point him to a
+  document to find it.
 - Site home page is Schedule (`#/`); Recent matches is `#/matches`.
 - People: `data/aliases.json` = {"people": {"Person": ["Character", ...]}}, edited from the Players page (tick names,
   assign). Use it when Denning asks about a player by their person name.
