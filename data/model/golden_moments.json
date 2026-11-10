@@ -428,8 +428,28 @@
     "Flag run long way",
     "Flag run over the vine"
    ],
-   "label": null,
-   "sealed": null,
+   "label": {
+    "real": "yes",
+    "at": "2026-11-10",
+    "became": "none",
+    "scenario": {
+     "trigger": "own_flag",
+     "stand": "enemy"
+    },
+    "call": {
+     "runners": "1",
+     "rest": "other",
+     "rest_text": "Split through enemy backdoor"
+    },
+    "who": [
+     "Warrior 2"
+    ],
+    "when_s": 1,
+    "route": "Front door",
+    "forced": false,
+    "notes": "This was a desperation split out the front door with a high DP team late in the game without many other options. The flag pick-up was not a serious attempt to capture flag, he dropped it after and never capped. But there was a decision on whether to cap and what the team should do."
+   },
+   "sealed": "eyJzaG91bGQiOiJyZXRyZWF0IHRvIHRoZSBwaXQiLCJ3aHkiOiJCb29rIHB1c2hlZCBwaXQgYW5kIGVuZGVkIGdhbWUgYmVmb3JlIEFwZXMgY291bGQgY2FwIG9yIGdldCBhbnl0aGluZyBkb25lIG9uIHNwbGl0In0=",
    "picked_for": "scenario"
   },
   {
