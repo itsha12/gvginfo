@@ -1137,19 +1137,6 @@
    ]
   },
   {
-   "id": "m7f8hx",
-   "kind": "point",
-   "type": "Res shrine",
-   "name": "",
-   "note": "",
-   "pts": [
-    [
-     -1835,
-     7623
-    ]
-   ]
-  },
-  {
    "id": "1tywd7",
    "kind": "point",
    "type": "Res shrine",
@@ -1161,6 +1148,49 @@
      -4140
     ]
    ]
+  },
+  {
+   "id": "adubvp",
+   "kind": "point",
+   "type": "Flag spawn",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -102,
+     7784
+    ]
+   ],
+   "from_draft": "flag-spawn-0"
+  },
+  {
+   "id": "0c55c9",
+   "kind": "point",
+   "type": "Flag spawn",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -4,
+     -4554
+    ]
+   ],
+   "from_draft": "flag-spawn-1"
+  },
+  {
+   "id": "lhpjkr",
+   "kind": "point",
+   "type": "Res shrine",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -2654,
+     6940
+    ]
+   ],
+   "from_draft": "res-shrine-0"
   }
- ]
+ ],
+ "dismissed": []
 }
