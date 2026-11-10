@@ -59,6 +59,16 @@ offence_or_defence becomes part of the objective layer of a fight.
 - **Map**: moments are compared across halls, weighted by map features, never restricted to one hall; a single-hall
   reading is shown when the hall has enough cases. Labelled maps add entrances, door path lengths, the collapse path,
   NPC cover and teleporters to today's three numbers.
+- **Hall features** (R-310 to R-314; `data/maps/hall_features.json`, `knowledge/guild-halls.md`): a hall can add
+  options to a scenario or a scenario of its own. Flag route choice (Druid's Isle, Isle of Jade, Imperial Isle) is the
+  route of a family 1 call, read from which labelled flag run the carrier followed. Object control (vine seed, gate
+  lock and levers, repair kit and trebuchet, health shrine, flame sentinels) is a family 4 decision with its own state
+  (seed capped, gate open, kit position, shrine holder, sentinels alive), read from positions since the replays carry
+  no object events. The fall-back zones of a retreat are footmen, front door, pit, or front door and pit alone on the
+  five halls without footmen (R-311). Environment areas (healing water, coral, acid, quicksand, tar, ice, lava, spores,
+  miasma) are execution inputs: time spent in them, by role.
+- Path distance must treat a teleporter as a hop of no length: Isle of Jade's coral flag runs are drawn through one
+  (11,500 units drawn, about 7,000 walked). One-way and two-way teleporters are edges in the walk graph.
 
 ## The decision card
 One format for the blind test, match review and query tool:
@@ -129,7 +139,7 @@ first pickup; a drop and pickup between two team-mates part-way to the stand (th
 carrier returns to the spawn. In family 1 the "two runners" calls are these forms; which form was used is part of the
 call's shape (timing and who).
 
-## What the first labelled halls show (Corrupted Isle, Isle of Meditation, Isle of Solitude)
+## What the labelled halls show (all 14 labelled; the first three in detail)
 - The labels read cleanly: equal rosters on both sides, flag runs that start at the replay-derived spawn and end at
   the stand, routes wholly on walkable ground. Sides are assigned by the nearer Guild Lord.
 - Areas overlap by design (a pit and its choke points sit inside the base hull): the zone of a point is the smallest
@@ -145,6 +155,10 @@ call's shape (timing and who).
 - Isle of Solitude has a one-way teleporter in each base near the Guild Lord, out to the main field: a split's escape
   route and a path that bypasses both doors. Direction confirmed (R-309): in beside the Lord, out on the field.
 - Route direction: front and back doors are drawn from inside the base outward; flag runs from the spawn to the stand.
+- All 14 halls are labelled (43 to 59 labels each). `tools/maps/audit_labels.py` checks them against R-310 (pit
+  roster, one res shrine and flag spawn a side, equal NPCs, mirror partners, doubles); step 2 starts only when it reads
+  clean. Open at 2026-11-10: flag spawns on the first three halls, res shrines on Isle of the Dead, the Knights on
+  Nomad's Isle (labelled Footman), two pit archers on Warrior's Isle, doubled labels on Isle of Weeping Stone.
 
 ## Risks
 Thin cells at 506 matches (many cards will read "no clear difference"); intent is not recorded; hindsight labels suit

@@ -1,0 +1,54 @@
+{
+ "map_id": "541",
+ "map": "Corrupted Isle",
+ "replays": 87,
+ "labels": [
+  {
+   "id": "flag-stand-0",
+   "kind": "point",
+   "type": "Flag stand",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -3811,
+     -3660
+    ]
+   ],
+   "how": "713 captures in 87 replays"
+  },
+  {
+   "id": "flag-spawn-0",
+   "kind": "point",
+   "type": "Flag spawn",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -4530,
+     4575
+    ]
+   ],
+   "how": "443 pickups here"
+  },
+  {
+   "id": "flag-spawn-1",
+   "kind": "point",
+   "type": "Flag spawn",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     4608,
+     -4429
+    ]
+   ],
+   "how": "454 pickups here"
+  }
+ ],
+ "notes": [],
+ "only": [
+  "Flag spawn",
+  "Flag stand"
+ ]
+}

@@ -14,7 +14,7 @@ model's structure: `knowledge/model.md` (generated).
   mechanics, answered as one decision card with three verdicts. Step 1 (no rebuild) is built: round 3 void, rounds
   paused (Train batch `blind` defaults to no), blind page scores cumulatively with a 5-case minimum and asks for a
   reason on disagreement, and Model > Guild hall maps draws all 14 halls from gvg.report's outline for Denning to
-  label (five halls are served only by map file id: `replays.mjs` MAP_FILE_IDS). Rulings R-292 to R-305 confirmed.
+  label (five halls are served only by map file id: `replays.mjs` MAP_FILE_IDS). Rulings R-292 to R-314 recorded.
 - Portal: Model tab (engine pages, Blind test, Guild hall maps); Mechanics keeps the game pages; all matches stored.
 - Bundle 3 (R-278 to R-287) and the sign rulings (R-288 to R-291) are in the engine (CHANGELOG 2026-11-09 evening).
 - Batch 16 (run 42675808241): 90 matches as one batch (45 left by GitHub job failures plus 45 new): 0.355 v 0.47.
@@ -31,9 +31,9 @@ model's structure: `knowledge/model.md` (generated).
   queued below. Never queue two Train batch runs at once (both failed on 2026-11-09).
 
 ## Next (in order)
-1. Denning: label the remaining 11 halls on Model > Guild hall maps (Corrupted Isle, Isle of Meditation and Isle of
-   Solitude are done and read cleanly). The other halls carry drafts from the replays (`draft_labels.py`; scores
-   against his three halls in the CHANGELOG) to accept or remove; he adds choke points, NPCs, gates and hazards.
+1. Denning: close the label gaps `tools/maps/audit_labels.py` lists (all 14 halls are labelled; open: flag spawns on
+   the first three halls, res shrines on Isle of the Dead, Knights on Nomad's Isle, two pit archers on Warrior's Isle,
+   doubles on Isle of Weeping Stone). Hall features and their decisions: `data/maps/hall_features.json`, R-310 to R-314.
 2. Redesign step 2 = bundle 4, one rebuild (REDESIGN.md "Step 2 items"): zones and path distance from the maps,
    departures, event triggers, scenarios, calls as allocations, shape, the consequence record, jobs, enemy execution,
    interaction pairs that must pass twice. Before the rebuild: about 20 to 30 golden moments for Denning to label (a
