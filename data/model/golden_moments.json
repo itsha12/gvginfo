@@ -925,7 +925,14 @@
     "Flag run",
     "Front door"
    ],
-   "label": null,
+   "label": {
+    "real": "yes",
+    "at": "2026-11-10",
+    "scenario": {},
+    "call": {},
+    "who": [],
+    "notes": "hdm starts the match in a 4-4 split. THis is a classic tactic for this type of build. The build is designed to have 2 teams of 4 on opposite sides of the map. Men send 3 out backdoor and initially fall to footies because of the 3v4. Men's rit joins defense through pit and both teams are 4v4 in Men's back footies. Before 1:40, Men swaps rit for prot and defends the 4v4 in their back footies. The split side fight doesn't get any kills, not sure about NPCs or footmen. Men is double running at 4:10 with rit and derv. Before 5:11, Men double runs again on Rit but Rit stays in pit briefly to support the defense before running back to main with a flag. By 6:40, Men's defense has been pushed into their pit (or fell into pit). Before 6:50, Men swaps stand mes for ranger, and defends 4v4 with warrior, mes, prot, and 8 monk. At 7:20, hdm's air ele collapses main through mid. Men responds by sending prot back to main, so split is 3v3. hdm's 7 monk dies mainteam and base reses at 8 min. At 8:15, hdm's mainteam has retreated to their front door footies. At 8:20, hdm's air ele starts going back to split through mid, whilst Men's prot mirrors to join split through front door and pit. 4v4 on split side is maintained until hdm's air ele again collapses through mid, whilst Men's prot again mirrors through front door. Instead of going to main, hdm's air ele solo splits front door followed by Men's prot on defense, whilst hdm's split pulls out backdoor, followed by Men's split team. \n\nAt 10:11, hdm's air ele abandon's the split front door. hdm's air ele pauses in mid for a while, potentially threatening to rejoin split before committing to mainteam whilst Men's prot is out of position."
+   },
    "sealed": null,
    "picked_for": "scenario"
   },
