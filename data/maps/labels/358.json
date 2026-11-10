@@ -1,0 +1,561 @@
+{
+ "map_id": "358",
+ "map": "Isle of Meditation",
+ "labels": [
+  {
+   "id": "zsgsyv",
+   "kind": "point",
+   "type": "Gate",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     4154,
+     2860
+    ]
+   ]
+  },
+  {
+   "id": "h0zxuk",
+   "kind": "point",
+   "type": "Gate",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     4218,
+     80
+    ]
+   ]
+  },
+  {
+   "id": "dinwwv",
+   "kind": "point",
+   "type": "Gate",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     5132,
+     1457
+    ]
+   ]
+  },
+  {
+   "id": "37zrnd",
+   "kind": "point",
+   "type": "Gate lock",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     5428,
+     1457
+    ]
+   ]
+  },
+  {
+   "id": "1sa1zs",
+   "kind": "point",
+   "type": "Gate lock",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     4128,
+     1496
+    ]
+   ]
+  },
+  {
+   "id": "g64ice",
+   "kind": "point",
+   "type": "Flag stand",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     4283,
+     1522
+    ]
+   ]
+  },
+  {
+   "id": "kqtsic",
+   "kind": "point",
+   "type": "Flag stand",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     1811,
+     1547
+    ]
+   ]
+  },
+  {
+   "id": "70564y",
+   "kind": "route",
+   "type": "Other",
+   "name": "Miasma",
+   "note": "",
+   "pts": [
+    [
+     5338,
+     4032
+    ],
+    [
+     5287,
+     3427
+    ],
+    [
+     6561,
+     2732
+    ],
+    [
+     7011,
+     3658
+    ],
+    [
+     5351,
+     4083
+    ]
+   ]
+  },
+  {
+   "id": "qux67f",
+   "kind": "route",
+   "type": "Other",
+   "name": "Miasma",
+   "note": "",
+   "pts": [
+    [
+     5793,
+     -266
+    ],
+    [
+     6190,
+     -910
+    ],
+    [
+     7541,
+     366
+    ],
+    [
+     6651,
+     849
+    ],
+    [
+     5804,
+     -256
+    ]
+   ]
+  },
+  {
+   "id": "6uyhh9",
+   "kind": "route",
+   "type": "Front door",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -836,
+     -406
+    ],
+    [
+     -868,
+     -2315
+    ],
+    [
+     -182,
+     -2283
+    ],
+    [
+     -193,
+     -320
+    ],
+    [
+     -815,
+     -384
+    ]
+   ]
+  },
+  {
+   "id": "a3quph",
+   "kind": "route",
+   "type": "Front door",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -761,
+     5859
+    ],
+    [
+     -697,
+     3917
+    ],
+    [
+     -96,
+     3885
+    ],
+    [
+     -235,
+     5869
+    ],
+    [
+     -740,
+     5891
+    ]
+   ]
+  },
+  {
+   "id": "jzkins",
+   "kind": "route",
+   "type": "Back door",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     1374,
+     5869
+    ],
+    [
+     2382,
+     4668
+    ],
+    [
+     3015,
+     5322
+    ],
+    [
+     1931,
+     6309
+    ],
+    [
+     1427,
+     5880
+    ]
+   ]
+  },
+  {
+   "id": "8dim4y",
+   "kind": "route",
+   "type": "Back door",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     1513,
+     -3087
+    ],
+    [
+     2435,
+     -2026
+    ],
+    [
+     2875,
+     -2508
+    ],
+    [
+     1674,
+     -3635
+    ],
+    [
+     1277,
+     -3334
+    ],
+    [
+     1524,
+     -3087
+    ]
+   ]
+  },
+  {
+   "id": "ganj0s",
+   "kind": "point",
+   "type": "Guild Lord",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -1185,
+     -5859
+    ]
+   ]
+  },
+  {
+   "id": "7kx40e",
+   "kind": "point",
+   "type": "Guild Lord",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -1327,
+     9101
+    ]
+   ]
+  },
+  {
+   "id": "83rhus",
+   "kind": "point",
+   "type": "Bodyguard",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -1191,
+     9225
+    ]
+   ]
+  },
+  {
+   "id": "0wxhx3",
+   "kind": "point",
+   "type": "Bodyguard",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -1067,
+     -6008
+    ]
+   ]
+  },
+  {
+   "id": "9nhkpz",
+   "kind": "point",
+   "type": "Archer",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -1204,
+     8175
+    ]
+   ]
+  },
+  {
+   "id": "gzf51b",
+   "kind": "point",
+   "type": "Archer",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -460,
+     8901
+    ]
+   ]
+  },
+  {
+   "id": "6jgzik",
+   "kind": "point",
+   "type": "Archer",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -1408,
+     5107
+    ]
+   ]
+  },
+  {
+   "id": "1t5ucw",
+   "kind": "point",
+   "type": "Archer",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     749,
+     5218
+    ]
+   ]
+  },
+  {
+   "id": "izt26x",
+   "kind": "point",
+   "type": "Archer",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     3129,
+     -1477
+    ]
+   ]
+  },
+  {
+   "id": "xje3di",
+   "kind": "point",
+   "type": "Archer",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -1297,
+     -1960
+    ]
+   ]
+  },
+  {
+   "id": "npaawl",
+   "kind": "point",
+   "type": "Archer",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     256,
+     -1951
+    ]
+   ]
+  },
+  {
+   "id": "8q9avc",
+   "kind": "point",
+   "type": "Archer",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -1111,
+     -5048
+    ]
+   ]
+  },
+  {
+   "id": "x145pf",
+   "kind": "point",
+   "type": "Archer",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -581,
+     -5671
+    ]
+   ]
+  },
+  {
+   "id": "8aw3ij",
+   "kind": "point",
+   "type": "Knight",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -841,
+     -5206
+    ]
+   ]
+  },
+  {
+   "id": "0un4ej",
+   "kind": "point",
+   "type": "Knight",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -637,
+     -5410
+    ]
+   ]
+  },
+  {
+   "id": "mp43d7",
+   "kind": "point",
+   "type": "Knight",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -785,
+     8352
+    ]
+   ]
+  },
+  {
+   "id": "o8v9k0",
+   "kind": "point",
+   "type": "Knight",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -581,
+     8519
+    ]
+   ]
+  },
+  {
+   "id": "aqpmdz",
+   "kind": "point",
+   "type": "Archer",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     3036,
+     4372
+    ]
+   ]
+  },
+  {
+   "id": "x778h0",
+   "kind": "point",
+   "type": "Footman",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     3046,
+     4084
+    ]
+   ]
+  },
+  {
+   "id": "8li8ix",
+   "kind": "point",
+   "type": "Footman",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     3427,
+     4354
+    ]
+   ]
+  },
+  {
+   "id": "8rb0ks",
+   "kind": "point",
+   "type": "Footman",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     3111,
+     -1151
+    ]
+   ]
+  },
+  {
+   "id": "gs8j4t",
+   "kind": "point",
+   "type": "Footman",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     3474,
+     -1356
+    ]
+   ]
+  }
+ ]
+}
