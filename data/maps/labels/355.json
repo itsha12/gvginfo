@@ -1061,45 +1061,6 @@
    ]
   },
   {
-   "id": "h6u25w",
-   "kind": "point",
-   "type": "Flag spawn",
-   "name": "",
-   "note": "",
-   "pts": [
-    [
-     -1327,
-     -5148
-    ]
-   ]
-  },
-  {
-   "id": "q0doyc",
-   "kind": "point",
-   "type": "Flag spawn",
-   "name": "",
-   "note": "",
-   "pts": [
-    [
-     -1752,
-     7732
-    ]
-   ]
-  },
-  {
-   "id": "3nxnlx",
-   "kind": "point",
-   "type": "Flag stand",
-   "name": "",
-   "note": "",
-   "pts": [
-    [
-     -2158,
-     1589
-    ]
-   ]
-  },
-  {
    "id": "6nr5c5",
    "kind": "route",
    "type": "Collapse route",
