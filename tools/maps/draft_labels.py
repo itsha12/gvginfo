@@ -68,6 +68,13 @@ class Land:
                     for ix in range(a, b + 1): self.cells.add((ix, int(iy)))
         self.name = o["map"]
 
+    def where(self, p):
+        """A point's place on the map in words, as the Maps page draws it (game y runs up the screen)."""
+        xs = [c[0] for c in self.cells]; ys = [c[1] for c in self.cells]
+        fx = (p[0] / CELL - min(xs)) / max(max(xs) - min(xs), 1); fy = (p[1] / CELL - min(ys)) / max(max(ys) - min(ys), 1)
+        v = "top" if fy > 0.6 else "bottom" if fy < 0.4 else ""; h = "left" if fx < 0.4 else "right" if fx > 0.6 else ""
+        return (v + " " + h).strip() or "middle"
+
     def snap(self, p):
         """The walkable cell at or nearest a point."""
         c = cell(p)
@@ -245,12 +252,18 @@ def pooled(mid_, land, limit=None):
 def draft(mid_, limit=None):
     land = Land(mid_); H = pooled(mid_, land, limit)
     L = []; note = []
-    def add(kind, typ, pts, how, name=""): L.append({"id": f"d{len(L) + 1}", "kind": kind, "type": typ, "name": name, "note": "", "pts": pts, "how": how, "draft": True})
+    seen_ids = collections.Counter()
+    def add(kind, typ, pts, how, name="", key=None):
+        # ids stay the same from one run to the next (sides are in a fixed order, a teleporter is keyed by where it starts),
+        # so a draft Denning accepted or removed stays that way when the drafts are rebuilt with more replays
+        slug = typ.lower().replace(" (one way)", "").replace(" ", "-")
+        if key is None: key = seen_ids[slug]; seen_ids[slug] += 1
+        L.append({"id": f"{slug}-{key}", "kind": kind, "type": typ, "name": name, "note": "", "pts": pts, "how": how})
     if not H["caps"]: return {"map_id": mid_, "map": land.name, "replays": H["n"], "labels": [], "notes": ["no captures in the stored replays: nothing drafted"]}
     stand = med(clusters(H["caps"], 500)[0])
     add("point", "Flag stand", [stand], f"{len(H['caps'])} captures in {H['n']} replays")
     # the two Lords: where melee attackers stood when they hit a Guild Lord
-    lords = [med(m) for m in clusters(H["npc"].get("guild_lord", []), 600)[:2]]
+    lords = sorted(med(m) for m in clusters(H["npc"].get("guild_lord", []), 600)[:2])      # fixed order: lower x first
     if len(lords) < 2: note.append("fewer than two Guild Lords located: pits, bases and doors need more replays")
     D = [land.field(p) for p in lords]; DS = land.field(stand)
     side = lambda p: min(range(len(lords)), key=lambda i: D[i].get(land.snap(p), 1e18)) if lords else 0
@@ -298,7 +311,7 @@ def draft(mid_, limit=None):
             runs = [r for r in H["runs"] if math.dist(r[0], spawns[s][0]) < 700 and math.dist(r[-1], stand) < 700]
             if len(runs) >= 3:
                 run = medoid(runs); add("route", "Flag run", simplify(run), f"the most typical of {len(runs)} runs from this spawn to the stand")
-            else: note.append(f"side {s}: fewer than three full flag runs")
+            else: note.append(f"the {land.where(lord)} base: too few complete flag runs in the replays to draft its flag run")
         # doors: where players cross a ring some way out from the Lord, in either direction; each crossing keeps the walk
         # from the edge of the pit to well past the ring
         ring = min(max(DOOR_SHARE * D[s].get(land.snap(stand), 9000), 2500), 4200); near, far = 1300, ring + 2600
@@ -340,7 +353,7 @@ def draft(mid_, limit=None):
                 w = min(CL[cell(q)] for q in pts)
                 door = [q for q in pts if CL[cell(q)] <= w + 1][-1]
                 cuts.append((door, (w + 2.5) * CELL))
-        if len(picked) < 2: note.append(f"side {s}: only {len(picked)} busy way out of the base found")
+        if len(picked) < 2: note.append(f"the {land.where(lord)} base: only {['no', 'one'][len(picked)]} busy way out found, so {'no door' if not picked else 'no back door'} is drafted")
         # base: the ground still joined to the Guild Lord with the narrowest point of each drafted way out shut; where
         # that does not close it off (an open-sided base), the half of the walk to the stand that lies nearer the Lord.
         # (Shutting Denning's own choke points was tried and reads worse: his chokes sit beyond the edge of his bases.)
@@ -362,7 +375,7 @@ def draft(mid_, limit=None):
         a, b = med([x for x in m if any(math.dist(x[2], e[:2]) < 1 for e in ends)] or m), med(ends)
         if any(math.dist(a, fa) < 500 and math.dist(b, fb) < 500 for fa, fb in found): continue
         found.append((a, b))
-        add("route", "Teleporter (one way)", [a, b], f"{len(ends)} jumps from here to there in {reps} of {H['n']} replays")
+        add("route", "Teleporter (one way)", [a, b], f"{len(ends)} jumps from here to there in {reps} of {H['n']} replays", key=f"{round(a[0] / 300)}_{round(a[1] / 300)}")
     return {"map_id": mid_, "map": land.name, "replays": H["n"], "labels": L, "notes": note}
 
 

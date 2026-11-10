@@ -7,6 +7,10 @@ import { esc, readJson, writeJson, canSave, toast } from "../core.js";
 // Denning's labels are saved to data/maps/labels/<id>.json: {map_id, map, labels: [{id, kind, type, name, note, pts}]}
 // with kind "point" (one [x, y]), "area" (a closed shape) or "route" (a line), all in game coordinates.
 // The engine does not read the labels yet; they define zones, routes and NPC positions from the next engine bundle on.
+// Drafts: data/maps/draft/<id>.json (tools/maps/draft_labels.py) holds labels guessed from the replays, each with its
+// evidence ("how"). They are drawn dashed and listed for Denning to accept (copied into his labels with from_draft = the
+// draft's id) or remove (the id is added to "dismissed" in his labels file). Draft ids are stable, so a draft he has
+// dealt with stays dealt with when the drafts are rebuilt.
 
 const TYPES = {
   point: ["Footman", "Archer", "Knight", "Bodyguard", "Guild Lord", "Res shrine", "Flag spawn", "Flag stand", "Obelisk flag stand", "Gate", "Gate lock", "Gate lever", "Vine seed", "Teleporter entrance", "Teleporter exit", "Teleporter", "Statue", "Catapult", "Hazard", "Other"],
@@ -33,7 +37,10 @@ function typeOf(l) {
   return Object.keys(table).find((t) => t !== "Other" && n.startsWith(t.toLowerCase().replace(/ \(.*$/, ""))) || "Other";
 }
 
-const S = { index: null, id: null, outline: null, auto: null, labels: {}, dirty: new Set(), mode: "move", draft: [], view: null, show: null };
+const S = { index: null, id: null, outline: null, auto: null, labels: {}, dirty: new Set(), mode: "move", draft: [], view: null, show: null,
+  drafts: {}, dismissed: {}, hot: null };
+// the drafts of the hall being shown that Denning has neither accepted nor removed
+const pending = () => ((S.drafts[S.id] || {}).labels || []).filter((d) => !(S.dismissed[S.id] || new Set()).has(d.id) && !(S.labels[S.id] || []).some((l) => l.from_draft === d.id));
 const Y = (y) => -y;                         // game y runs up, the screen's runs down
 const uid = () => Math.random().toString(36).slice(2, 8);
 const dist = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1]);
@@ -130,6 +137,25 @@ function overlay(svg) {
   const tip = (l) => `<title>${esc(l.name || l.type)}${l.name && l.name !== l.type ? ` (${esc(l.type)})` : ""}${l.note ? ": " + esc(l.note) : ""}</title>`;
   const txt = (x, y, s, cls = "", mid = false) => `<text x="${mid ? x : x + 9 * u}" y="${Y(y) + 4 * u}" font-size="${11 * u}" class="${cls}"${mid ? ' text-anchor="middle"' : ""}>${esc(s)}</text>`;
   let h = "", names = "";
+  if (sh.drafts) {
+    const P = pending(), w = (d) => (S.hot === d.id ? 2.2 : 1);
+    h += `<g clip-path="url(#mp-clip)">`;
+    for (const d of P.filter((x) => x.kind === "area").sort((x, y) => polyArea(y.pts) - polyArea(x.pts))) {
+      const [col] = AREA[typeOf(d)];
+      h += `<path d="${d.pts.map((p, i) => `${i ? "L" : "M"}${p[0]} ${Y(p[1])}`).join("")}Z" fill="${col}" fill-opacity="${S.hot === d.id ? 0.4 : 0.13}" stroke="${col}" stroke-width="${3 * u * w(d)}" stroke-dasharray="${7 * u} ${5 * u}"><title>Draft ${esc(d.type)}: ${esc(d.how)}</title></path>`;
+    }
+    h += `</g>`;
+    for (const d of P.filter((x) => x.kind === "route")) {
+      const [col] = ROUTE[typeOf(d)], p = d.pts;
+      h += `<path d="${p.map((q, i) => `${i ? "L" : "M"}${q[0]} ${Y(q[1])}`).join("")}" fill="none" stroke="${col}" stroke-width="${2.5 * u * w(d)}" stroke-dasharray="${7 * u} ${5 * u}" stroke-linejoin="round" opacity="${S.hot === d.id ? 1 : 0.8}"><title>Draft ${esc(d.type)}: ${esc(d.how)}</title></path>`
+        + `<circle cx="${p[0][0]}" cy="${Y(p[0][1])}" r="${3 * u * w(d)}" fill="${col}"/>${head(p[p.length - 1], p[p.length - 2], 4.5 * u * w(d), col)}`;
+    }
+    for (const d of P.filter((x) => x.kind === "point")) {
+      const [shape, col] = POINT[typeOf(d)], [x, y] = d.pts[0];
+      h += `<g opacity="${S.hot === d.id ? 1 : 0.75}"><title>Draft ${esc(d.type)}: ${esc(d.how)}</title><circle cx="${x}" cy="${Y(y)}" r="${10 * u * w(d)}" fill="none" stroke="${col}" stroke-width="${1.5 * u}" stroke-dasharray="${3 * u} ${3 * u}"/>${glyph(shape, x, y, 4.5 * u, col)}</g>`;
+      names += txt(x + 4 * u, y, d.type, "mp-draft-t");
+    }
+  }
   // areas first, biggest underneath, cut to the walkable area so a rough outline still reads cleanly
   if (sh.areas) {
     h += `<g clip-path="url(#mp-clip)">`;
@@ -187,10 +213,32 @@ function legendHtml() {
   if (sh.replay) rep.push(`<span><i class="mp-hollow" style="border-color:#111"></i>Flag stand</span>`, `<span><i class="mp-hollow" style="border-color:#1f5fd1"></i>Team start</span>`, `<span><i class="mp-hollow" style="border-color:#1f7a3a"></i>Flag spawn</span>`);
   if (sh.npc) rep.push(...Object.values(NPC).map(([n, c]) => `<span><i style="background:${c};border-radius:50%;opacity:.6"></i>${n}</span>`));
   if (rep.length) rows.push(["From the replays (estimates)", rep]);
+  if (sh.drafts && pending().length) rows.push(["Drafts", [`<span><i class="mp-line" style="border-top:3px dashed #74746f"></i>dashed, in the colour of their type, until you accept or remove them</span>`]]);
   return rows.map(([t, items]) => `<div class="row small mp-legend"><b>${t}</b>${items.join("")}</div>`).join("");
 }
 
 function setView(svg) { svg.setAttribute("viewBox", `${S.view.x} ${S.view.y} ${S.view.w} ${S.view.h}`); overlay(svg); }
+
+// where a label sits on the map as drawn, in words ("top left"), so two drafts of one type can be told apart
+function whereOn(pts) {
+  const [x0, y0, x1, y1] = S.outline.bounds, c = centre(pts), fx = (c[0] - x0) / (x1 - x0), fy = (c[1] - y0) / (y1 - y0);
+  return `${fy > 0.6 ? "top" : fy < 0.4 ? "bottom" : ""} ${fx < 0.4 ? "left" : fx > 0.6 ? "right" : ""}`.trim() || "middle";
+}
+
+function draftsHtml() {
+  const P = pending(), D = S.drafts[S.id];
+  if (!D) return "";
+  const done = (D.labels || []).length - P.length;
+  if (!P.length) return (D.labels || []).length ? `<p class="small muted">All ${(D.labels || []).length} drafts for this hall have been accepted or removed.</p>` : "";
+  const order = { area: 0, route: 1, point: 2 };
+  return `<h3>Drafts from the replays <span class="muted small">(${P.length} to review${done ? `, ${done} done` : ""}; from ${D.replays} stored replays)</span>
+    <button class="btn small" data-accept-all style="margin-left:.6rem">Accept all ${P.length}</button></h3>
+  <p class="small muted">Guesses made from where players walked, fought, and came back to life. Point at a row to pick it out on the map. Accept keeps it as your label; Remove discards it. Either way nothing is saved until you press Save labels. To change a shape, remove it and draw your own.${(D.notes || []).length ? ` <b>Gaps:</b> ${esc(D.notes.join("; "))}.` : ""}</p>
+  <div class="tablewrap"><table class="data"><thead><tr><th>Kind</th><th>Type</th><th>Where</th><th>What it rests on</th><th></th></tr></thead><tbody>
+  ${[...P].sort((a, b) => order[a.kind] - order[b.kind] || a.type.localeCompare(b.type)).map((d) => `<tr data-draft="${esc(d.id)}"><td>${d.kind === "point" ? "Point" : d.kind === "area" ? "Area" : "Route"}</td><td>${esc(d.type)}</td><td>${whereOn(d.kind === "route" ? [d.pts[0]] : d.pts)}</td>
+    <td class="small" style="white-space:normal">${esc(d.how)}</td><td><button class="btn small" data-accept>Accept</button> <button class="btn small ghost danger" data-dismiss>Remove</button></td></tr>`).join("")}
+  </tbody></table></div>`;
+}
 
 function listHtml() {
   const L = S.labels[S.id] || [];
@@ -209,10 +257,14 @@ async function loadHall(id) {
     fetch(`data/maps/outline/${id}.json`, { cache: "no-cache" }).then((r) => r.json()),
     fetch(`data/maps/auto/${id}.json`, { cache: "no-cache" }).then((r) => r.json()).catch(() => ({})),
   ]);
-  if (!S.labels[id]) S.labels[id] = (await readJson(`data/maps/labels/${id}.json`, { labels: [] })).labels || [];
+  if (!S.labels[id]) {
+    const mine = await readJson(`data/maps/labels/${id}.json`, { labels: [] });
+    S.labels[id] = mine.labels || []; S.dismissed[id] = new Set(mine.dismissed || []);
+  }
+  if (!(id in S.drafts)) S.drafts[id] = await fetch(`data/maps/draft/${id}.json`, { cache: "no-cache" }).then((r) => (r.ok ? r.json() : null)).catch(() => null);
   S.view = fitView(S.outline);
   const mine = S.labels[id];
-  S.show = { areas: true, routes: true, points: true, replay: !mine.length, npc: !mine.some((l) => l.kind === "point" && ["Footman", "Archer", "Knight", "Bodyguard", "Guild Lord"].includes(l.type)) };
+  S.show = { areas: true, routes: true, points: true, drafts: true, replay: !mine.length && !pending().length, npc: !mine.some((l) => l.kind === "point" && ["Footman", "Archer", "Knight", "Bodyguard", "Guild Lord"].includes(l.type)) };
 }
 
 export async function renderMaps(out) {
@@ -225,22 +277,24 @@ export async function renderMaps(out) {
   out.innerHTML = `<h1>Guild hall maps</h1>
   <p>Each hall as the replays see it, for you to label. Points mark a single thing (a footman, a gate), areas mark a place (the footmen area, a bridge), and routes mark a way in (front door, back door). Your labels override the estimates. The engine does not read them yet; they define zones, routes, and NPC positions from the next engine change on. ${canSave() ? "" : '<b>Add your GitHub key in Settings to save labels.</b>'}</p>
   <div class="row mp-halls">${S.index.halls.map((x) => `<button class="btn small${x.id === S.id ? " primary" : ""}" data-hall="${esc(x.id)}" title="${x.replays} stored replays">${esc(x.map)}${(S.labels[x.id] || []).length ? ` (${S.labels[x.id].length})` : ""}${S.dirty.has(x.id) ? " *" : ""}</button>`).join("")}</div>
+  <p class="small muted" style="margin:.3rem 0 0">A number is how many labels a hall has; * means unsaved changes.</p>
   <p class="small muted" style="margin:.6rem 0">${esc(hall.map)}: ${hall.replays} stored replays. ${o.source === "gvg.report" ? "Outline: gvg.report's walkable area." : `gvg.report publishes no outline for this hall, so the shape is where players walked in the stored replays; corners nobody visited are missing.`}
     <a href="${esc(hall.wiki)}" target="_blank" rel="noopener">Open the wiki page for this hall</a> to compare with its map.</p>
   <div class="row" style="margin:.4rem 0">${MODES.map(([m, t]) => `<button class="btn small${S.mode === m ? " primary" : ""}" data-mode="${m}">${t}</button>`).join("")}
     ${types.length ? `<select data-type aria-label="Type">${types.map((t) => `<option>${esc(t)}</option>`).join("")}</select>` : ""}
     ${S.mode === "area" || S.mode === "route" ? `<button class="btn small" data-finish${S.draft.length >= need ? "" : " disabled"}>Finish (${S.draft.length} point${S.draft.length === 1 ? "" : "s"})</button><button class="btn small ghost" data-undo${S.draft.length ? "" : " disabled"}>Undo last point</button>` : ""}
     <button class="btn small ghost" data-fit style="margin-left:auto">Whole map</button></div>
-  <div class="row small" style="margin:.2rem 0;gap:1rem"><span class="muted">Show:</span>${[["areas", "Areas"], ["routes", "Routes"], ["points", "Points"], ["replay", "Stand, starts, and spawns from the replays"], ["npc", "Estimated NPCs"]].map(([k, t]) => `<label><input type="checkbox" data-show="${k}"${S.show[k] ? " checked" : ""}> ${t}</label>`).join("")}</div>
+  <div class="row small" style="margin:.2rem 0;gap:1rem"><span class="muted">Show:</span>${[["areas", "Areas"], ["routes", "Routes"], ["points", "Points"], ["drafts", "Drafts"], ["replay", "Stand, starts, and spawns from the replays"], ["npc", "Estimated NPCs"]].map(([k, t]) => `<label><input type="checkbox" data-show="${k}"${S.show[k] ? " checked" : ""}> ${t}</label>`).join("")}</div>
   <p class="small muted" style="margin:.2rem 0 .5rem">${S.mode === "move" ? "Drag to move, scroll to zoom." : S.mode === "point" ? "Pick a type, then click the map to place it. Drag still moves the map." : S.mode === "area" ? "Pick a type, click each corner in turn, then Finish. Drag still moves the map." : "Pick a type, click along the path from start to end, then Finish. Drag still moves the map."} <span data-xy></span></p>
   <svg class="mp-svg" role="img" aria-label="Map of ${esc(hall.map)}"><defs><clipPath id="mp-clip"><path d="${outlinePath(o)}"/></clipPath></defs><path d="${outlinePath(o)}" class="mp-land"/><g id="mp-over"></g></svg>
   <div data-legend>${legendHtml()}</div>
   <p class="small muted">Areas are drawn only where the hall is walkable, with the smaller area on top where two overlap. A route starts at its dot and ends at its arrow. NPC estimates come from where attackers stood when they hit that NPC, so an NPC that walks out to fight shows as several spots.</p>
+  <div data-drafts>${draftsHtml()}</div>
   <h3>Labels on ${esc(hall.map)} <button class="btn small primary" data-save${S.dirty.has(S.id) ? "" : " disabled"} style="margin-left:.6rem">Save labels</button></h3>
   <div data-list>${listHtml()}</div>
   <style>.mp-svg{width:100%;height:min(74vh,820px);border:1px solid var(--line);background:#fbfbfa;touch-action:none;cursor:${S.mode === "move" ? "grab" : "crosshair"};user-select:none}
   .mp-land{fill:#dfdfd8;stroke:#dfdfd8;stroke-width:1;vector-effect:non-scaling-stroke}.mp-svg text{fill:var(--ink-2);font-family:var(--sans);pointer-events:none;paint-order:stroke;stroke:#fbfbfa;stroke-width:.25em}
-  .mp-svg text.mp-label-t{fill:var(--ink);font-weight:600}.mp-svg text.mp-area-t{font-weight:600;text-transform:uppercase;letter-spacing:.05em;filter:brightness(.5);stroke-width:.2em}.mp-svg text.mp-route-t{font-weight:600;filter:brightness(.8)}
+  .mp-svg text.mp-label-t{fill:var(--ink);font-weight:600}.mp-svg text.mp-draft-t{fill:var(--muted);font-style:italic}.mp-svg text.mp-area-t{font-weight:600;text-transform:uppercase;letter-spacing:.05em;filter:brightness(.5);stroke-width:.2em}.mp-svg text.mp-route-t{font-weight:600;filter:brightness(.8)}
   .mp-draft{fill:none;stroke:var(--bad)}.mp-draft-pt{fill:var(--bad)}.mp-legend{gap:1rem;margin:.35rem 0}.mp-legend b{min-width:5.5rem;font-weight:600}.mp-legend i{display:inline-block;width:.8rem;height:.8rem;margin-right:.35rem;vertical-align:-1px}
   .mp-legend i.mp-line{height:0;width:1.3rem;vertical-align:.25rem;background:none}.mp-legend i.mp-hollow{background:none;border:2px solid}.mp-legend svg{vertical-align:-2px;margin-right:.3rem}.mp-halls{gap:.4rem}.small{font-size:.86rem}</style>`;
 
@@ -304,9 +358,18 @@ export async function renderMaps(out) {
     }));
     tr.querySelector("[data-remove]").onclick = () => { S.labels[S.id] = S.labels[S.id].filter((x) => x !== l); touch(); };
   });
+  const accept = (d) => (S.labels[S.id] ||= []).push({ id: uid(), kind: d.kind, type: d.type, name: "", note: "", pts: d.pts, from_draft: d.id });
+  out.querySelectorAll("[data-draft]").forEach((tr) => {
+    const d = pending().find((x) => x.id === tr.dataset.draft);
+    tr.onmouseenter = () => { S.hot = d.id; overlay(svg); };
+    tr.onmouseleave = () => { S.hot = null; overlay(svg); };
+    tr.querySelector("[data-accept]").onclick = () => { S.hot = null; accept(d); touch(); };
+    tr.querySelector("[data-dismiss]").onclick = () => { S.hot = null; (S.dismissed[S.id] ||= new Set()).add(d.id); touch(); };
+  });
+  out.querySelector("[data-accept-all]")?.addEventListener("click", () => { for (const d of pending()) accept(d); touch(); });
   out.querySelector("[data-save]").onclick = async () => {
     try {
-      await writeJson(`data/maps/labels/${S.id}.json`, { map_id: S.id, map: hall.map, labels: S.labels[S.id] || [] }, `Map labels: ${hall.map}`);
+      await writeJson(`data/maps/labels/${S.id}.json`, { map_id: S.id, map: hall.map, labels: S.labels[S.id] || [], dismissed: [...(S.dismissed[S.id] || [])] }, `Map labels: ${hall.map}`);
       S.dirty.delete(S.id); toast("Saved"); renderMaps(out);
     } catch (e) { toast(e.message); }
   };
