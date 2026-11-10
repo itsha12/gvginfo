@@ -1424,7 +1424,14 @@
     "Front door",
     "Through a teleporter"
    ],
-   "label": null,
+   "label": {
+    "real": "yes",
+    "at": "2026-11-10",
+    "scenario": {},
+    "call": {},
+    "who": [],
+    "notes": "Men opens the game with flag on their mesmer, with a warrior waiting back for second flag. hdm brings flag up on their warrior and caps first, with their WoC running back to double run the second flag. \n\nMen's warrior brings up the second flag and hands off to Men's mesmer. hdm brings flag on their mesmer and caps with Men' overcapping shortly after around 1:49, whilst Men's WoC goes to double run another flag. At the same time, hdm's warrior also went back to double run the next flag. \n\nAt around 2:01, it looks like hdm's warrior get's block on the bridge with flag in hand and drops the flag (possibly to their paragon). At 2:58, hdm's paragon caps the flag and Men's mesmer goes to overcap. hdm's mesmer and Men's WoC are both going back to double run. At around 3:20, hdm's mesmer goes to cap the flag whilst hdm's warrior solo pushes Men's WoC flag runner. hdm's warrior dies on the push but get's resed around 3:48. Men caps the flag on their WoC whilst their mainteam pushes hdm's front door. hdm's warrior goes to run another flag but is pushed by Men's ranger. Men is also capping at the same time (3:55) so mainteam is a 7v6 for hdm. All players return to mainteam making it briefly an 8v8 (though messy/a bit spaced out) in frong of hdm's base."
+   },
    "sealed": null,
    "picked_for": "scenario"
   },
