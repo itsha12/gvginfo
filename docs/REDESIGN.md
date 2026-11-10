@@ -1,7 +1,7 @@
 # Decision engine redesign: plan
 
 A plan, not the current state: `docs/SPEC.md` still describes the engine as built. This file is replaced as steps land
-and removed once SPEC.md describes the new structure. Its rulings are R-292 to R-305 in `docs/RULINGS.md`.
+and removed once SPEC.md describes the new structure. Its rulings are R-292 to R-309 in `docs/RULINGS.md`.
 
 Status: step 1 built (2026-11-09). Steps 2 to 4 not started.
 
@@ -118,7 +118,7 @@ questions: the timing rule is right (R-297); a blind pick says what a leave beca
 (R-296); the down side of a numbers advantage is its own decision (R-301).
 
 ## Definitions still needed before step 2
-At the stand / fell to footmen / retreated to the pit (from the labelled areas); how long after leaving a departure's
+At the stand / retreated to the pit (from the labelled areas; fell to footmen is R-307); how long after leaving a departure's
 purpose is fixed (proposed 60 s, or earlier on a pickup or entering the enemy base); the job table (Claude drafts);
 what counts as something gained elsewhere. For step 4: a stand-off, a turtle.
 
@@ -133,16 +133,17 @@ call's shape (timing and who).
 - The labels read cleanly: equal rosters on both sides, flag runs that start at the replay-derived spawn and end at
   the stand, routes wholly on walkable ground. Sides are assigned by the nearer Guild Lord.
 - Areas overlap by design (a pit and its choke points sit inside the base hull): the zone of a point is the smallest
-  labelled area containing it, cut to the walkable ground. To confirm with Denning.
-- No hall uses "Footmen area"; footmen stand inside or beside the choke point areas at each door. "Fell to footmen"
-  needs a ruling: the door's choke point area, or a radius around the footmen points.
+  labelled area containing it, cut to the walkable ground (R-306).
+- "Fell to footmen" is not an area on the map: it is the team standing where its footmen are engaged in the fight
+  (R-307). Read it from the footmen themselves: the team's fight is within reach of its living footmen (they deal or
+  take damage, or the main group is close enough that they would).
 - Isle of Meditation has two stands. All 279 recorded captures in 40 replays are at the tower stand (morale); none at
-  the obelisk, so obelisk control and the fireballs it turns on are not in the replay data. The gate nearest neither
+  the obelisk, so obelisk control and the fireballs it turns on are not in the replay data; it is almost never used
+  (R-308), so it is not modelled. The gate nearest neither
   base opens from outside; the two nearest the bases open from the lever inside; the paths to the outer gate carry
   Miasma (5 pips of degeneration, not removable, spreads to adjacent players).
 - Isle of Solitude has a one-way teleporter in each base near the Guild Lord, out to the main field: a split's escape
-  route and a path that bypasses both doors. Direction is inferred (the end nearer the Lord is the way in) until
-  Denning marks entrance and exit.
+  route and a path that bypasses both doors. Direction confirmed (R-309): in beside the Lord, out on the field.
 - Route direction: front and back doors are drawn from inside the base outward; flag runs from the spawn to the stand.
 
 ## Risks

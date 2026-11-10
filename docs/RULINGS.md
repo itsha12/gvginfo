@@ -252,3 +252,7 @@ This register is the model's constitution: every definition and decision Denning
 - R-303. Detection is tested against golden moments labelled by Denning before a rebuild is accepted and after every later engine change.
 - R-304. Offence or defence is not a decision of its own: it is part of the objective layer of a fight (whether the disrupting players played on the enemy healers or on the midline and frontline).
 - R-305. Double run, defined: two players are never sent to the flag spawn together (a waste of one of them). The forms are: (a) one player runs back to the spawn while the flag holder goes to cap; (b) the second runner stays at main until the first has picked up, then runs back to the spawn as the first runs to cap; (c) the half run: the first player carries the flag about half-way to the stand and drops it for a second player, who picks it up and caps while the first runs back to the spawn for another flag.
+- R-306. Where labelled map areas overlap, the smaller area names the zone: falling to the pit is described as distinct from falling to the base, though the pit lies within the base.
+- R-307. "At the footmen" or "fell to footmen" means the area around the footmen such that they are engaged in the fight. It is not a fixed distance and not the choke point.
+- R-308. The obelisk on Isle of Meditation is still a feature but is almost never used.
+- R-309. Isle of Solitude's teleporters are one way: in beside the Guild Lord, out on the main field.

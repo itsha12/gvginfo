@@ -181,7 +181,7 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   each verdict as a sentence a player would use.
 - The decision tier is being rebuilt: `docs/REDESIGN.md` is the plan (families, scenarios, calls, the decision card,
   the steps and their gates). Read it before touching `decisions.py`, `usual.py`, `advice.py`, `ask.py` or `tq.py`.
-  Its rulings are R-292 to R-305. Blind rounds are paused meanwhile (Train batch input `blind` stays on no).
+  Its rulings are R-292 to R-309. Blind rounds are paused meanwhile (Train batch input `blind` stays on no).
 - Guild hall maps: `tools/maps/build_maps.py` builds the site's map data from the replays branch
   (`data/maps/index.json`, `outline/<map id>.json`, `auto/<map id>.json`); Denning's labels (points, areas, routes) are
   saved by the site's Model > Guild hall maps page to `data/maps/labels/<map id>.json` and override estimates. The
