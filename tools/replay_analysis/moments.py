@@ -28,7 +28,7 @@ Usage:  python3 moments.py <report id> [family]      the match's moments in orde
 In code: Moments(st, sb).records() -> list of dicts."""
 import collections, json, math, statistics, sys
 from common import (READ_FROM, READ_TO, AREA_SHARE, PURPOSE_S, LEAVE_MIN_S, HOME_WAIT_S, SPAWN_R, GROUP_LEAVE_S, MEET_R,
-                    NUMBERS_MIN_S, MERGE_S, BOOST_WARN_S, FLAGGER_R, SPLIT_FAR, BOOST_EVERY)
+                    NUMBERS_MIN_S, MERGE_S, BOOST_WARN_S, FLAGGER_R, SPLIT_FAR, BOOST_EVERY, SERIOUS_CARRY_S)
 from state import d
 
 HOME, THEIRS = ("own pit", "own base"), ("enemy pit", "enemy base")
@@ -122,6 +122,53 @@ class Moments:
         if sh("backside", *HOME) > AREA_SHARE: return "own half"
         if sh("push side", *THEIRS) > AREA_SHARE: return "enemy half"
         return "spread"
+
+    # ---- the flag, one life at a time
+    def flag_lives(self):
+        """A team has one flag (Denning, R-339). Its life runs from the pickup at the own flag spawn to the capture, or
+        to its return to the spawn (not recorded: read from the next pickup being at the spawn again). Each life is
+        labelled afterwards by what the players went on to do (R-340):
+          single run          one player carried it in;
+          hand-off to cap     it changed hands and nobody went back for the next flag;
+          double run, half    a player who handed it off was back toward the spawn at the capture and took the next flag;
+          double run, full    a player who never carried it was back toward the spawn at the capture and took the next.
+        A pickup dropped within SERIOUS_CARRY_S without a capture is not a carry (R-339). "Back toward the spawn at the
+        capture" = nearer the own spawn than the stand, walked. Not yet read: a hand-off to hold (the receiver keeps
+        the flag near the fight, R-340 form 2), and whether the next runner went back for the flag or was already
+        home (back from a split, defending, resurrected): today both count as a double run."""
+        st, m, out = self.st, self.m, []
+        ev = [(t / 10, typ, a) for t, typ, a, *_ in m.o.get("flags", []) if a in self.P and typ in ("flag_picked_up", "flag_dropped", "flagstand_captured")]
+        for tm in st.teams:
+            cur, lives = None, []
+            for t, typ, a in ev:
+                if m.team(a) != tm: continue
+                u = min(max(int(t), 0), self.T)
+                if typ == "flag_picked_up":
+                    fresh = self.P[a][u] is not None and d(self.P[a][u], self.spawn[tm]) < SPAWN_R
+                    if fresh and cur is not None and cur["carries"]:        # the flag was returned to the spawn
+                        cur["end"], cur["how"] = t, "returned"; lives.append(cur); cur = None
+                    if cur is None: cur = {"team": tm, "start": t, "carries": [], "end": None, "how": None}
+                    cur["carries"].append([a, t, None])
+                elif cur is not None and cur["carries"] and cur["carries"][-1][0] == a and cur["carries"][-1][2] is None:
+                    cur["carries"][-1][2] = t
+                    if typ == "flagstand_captured":
+                        cur["end"], cur["how"], cur["capper"] = t, "captured", a; lives.append(cur); cur = None
+            if cur is not None: lives.append(cur)
+            for i, L in enumerate(lives):
+                L["serious"] = [c[0] for c in L["carries"] if (c[2] is None or c[2] - c[1] >= SERIOUS_CARRY_S or c[0] == L.get("capper"))]
+                order = list(dict.fromkeys(L["serious"]))
+                L["form"] = None
+                if L["how"] != "captured": continue
+                nxt = lives[i + 1] if i + 1 < len(lives) else None
+                n = nxt["carries"][0][0] if nxt else None
+                tc = min(int(L["end"]), self.T)
+                back = (n is not None and n != L["capper"] and self.P[n][tc] is not None and self.hall is not None
+                        and (self.hall.walk(self.P[n][tc], self.spawn[tm]) or 1e9) < (self.hall.walk(self.P[n][tc], self.hall.stand) or 0))
+                if back: L["form"] = "double run, half" if n in order else "double run, full"
+                else: L["form"] = "hand-off to cap" if len(order) > 1 else "single run"
+                L["next_runner"] = n if back else None
+            out += lives
+        return sorted(out, key=lambda L: L["start"])
 
     # ---- 2.3 departures
     def _departures(self):
@@ -411,6 +458,17 @@ def match_records(rid):
     return Moments(st, Scoreboard(st)).records()
 
 
+def _flag_forms(rid):
+    from replaylib import Match
+    from state import GameState
+    try:
+        st = GameState(Match.from_branch(rid))
+        if not st.hall: return rid, None
+        M = Moments(st)
+        return rid, [(L["form"] or L["how"] or "open", len(set(L["serious"])), sum(1 for c in L["carries"] if c[0] not in L["serious"])) for L in M.flag_lives()]
+    except Exception as e: return rid, {"error": f"{type(e).__name__}: {e}"}
+
+
 def _one(rid):
     try: return rid, match_records(rid)
     except Exception as e: return rid, {"error": f"{type(e).__name__}: {e}"}
@@ -447,6 +505,16 @@ if __name__ == "__main__":
     a = sys.argv[1:]
     if a and a[0] == "all": run_all(a[1], int(a[a.index("--jobs") + 1]) if "--jobs" in a else 2)
     elif a and a[0] == "counts": counts(a[1])
+    elif a and a[0] == "flags":         # how every flag's life ended, over all counted matches
+        import multiprocessing, common
+        c, brief, bad = collections.Counter(), 0, 0
+        with multiprocessing.Pool(int(a[a.index("--jobs") + 1]) if "--jobs" in a else 2) as pool:
+            for rid, rows in pool.imap_unordered(_flag_forms, common.replay_ids(), chunksize=4):
+                if not isinstance(rows, list): bad += rows is not None; continue
+                for form, n, b in rows: c[form] += 1; brief += b
+        tot = sum(c.values())
+        for k, v in c.most_common(): print(f"{v:6} {round(100 * v / tot):3}%  {k}")
+        print(f"{brief} pickups dropped within {SERIOUS_CARRY_S} s without a capture (not counted as carries); {bad} matches failed")
     elif a:
         from replaylib import Match
         recs = match_records(a[0]) or []

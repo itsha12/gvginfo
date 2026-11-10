@@ -189,6 +189,7 @@ MEET_R = 2500                   # the mains meet when their middles are this clo
 NUMBERS_MIN_S = 10              # a numbers difference shorter than this is not a moment (fights.windows)
 MERGE_S = 20                    # triggers of one family for one team within this many seconds are one moment
 BOOST_WARN_S = 30               # "a boost is coming": the enemy's boost is this far away (Denning, boost clock)
+SERIOUS_CARRY_S = 5              # a pickup dropped sooner than this, without capping, is not an attempt to run (Denning: "like 3 s")
 FLAGGER_R = 2500                # the main group is on the enemy flagger when its middle is this close to that player
 
 HOLD_MIN_S = 10          # a carry this long that closed under HOLD_PROGRESS of the way to the stand is a hold
