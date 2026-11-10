@@ -113,7 +113,7 @@ SPEC = {
     "P.24": {"knockdowns_10s": "knockdowns landed on the enemy per 10 s (Denning: offensive knockdowns)",
              "knockdowns_on_casting_10s": "of which on a target that was casting, per 10 s"},
     "P.25": {"disable_10s": "skill-seconds disabled on the enemy per 10 s (Complicate, Power Lock, Power Block, Blackout)"},
-    "P.26": {"castprev_10s": "seconds Shame, Guilt or Diversion sat on enemies, per 10 s"},
+    "P.26": {"castprev_10s": "enemy casts that Shame, Guilt or Diversion punished, per 10 s"},
     "P.22": {"degen_10s": "degeneration put on the enemy, pip-seconds per 10 s (conditions and degen hexes)"},
     "C.builds": {"enemy_strips_v_own_prots": "enemy strips against own prots (discovery, approved)"},
     "C.strength": {"strength_gap": "team strength gap"}}, {"window_s": "seconds the power play lasted"}),
@@ -139,7 +139,7 @@ SPEC = {
     "P.23": {"baits_diff": "enemy interrupts baited (landed on nothing after a cancel), per 10 s, own minus enemy"},
     "P.24": {"knockdowns_diff": "knockdowns landed per 10 s, own minus enemy", "knockdowns_on_casting_diff": "knockdowns on casting targets per 10 s, own minus enemy"},
     "P.25": {"disable_diff": "skill-seconds disabled on the other team per 10 s, own minus enemy"},
-    "P.26": {"castprev_diff": "seconds of Shame, Guilt or Diversion on the other team per 10 s, own minus enemy"},
+    "P.26": {"castprev_diff": "casts punished by Shame, Guilt or Diversion per 10 s, own minus enemy"},
     "C.builds": {"own_hexes": "hex skills on own bars (discovery, approved)", "own_heals": "heal skills on own bars (discovery, approved)"},
     "C.strength": {"strength_gap": "team strength gap"}}, {}),
  "split_chance": ("A.allocation", {
@@ -254,10 +254,10 @@ EXPECTED = {
     # removed, kiting, degen, baited interrupts, knockdowns (and on casters), disables, cast prevention, strips on the
     # right target and their value; bad = casting into a ready interrupt, casting while Dazed, attacking while Blind,
     # loose spikes, impactful hexes on own players (value-weighted). No sign yet for pre-kiting (unknown), peel (good
-    # when playing defensively, not for a global fight), spikes and damage focus on healers (not ruled): the data reads them.
+    # when playing defensively, not for a global fight), damage focus on healers (left unsigned by Denning, R-331: it depends on offence or defence, R-304): the data reads it.
     "fight_outcome": {"ready_interrupt_diff": -1, "dazed_casts_diff": -1, "blind_attacks_diff": -1,
                       "strip_right_diff": +1, "strip_value_diff": +1, "blind_front_secs_diff": +1, "blind_defensive_secs_diff": +1,
-                      "spike_spread_diff": -1, "dps_v_usual_diff": +1, "hex_secs_diff": -1,
+                      "spike_spread_diff": -1, "spikes_diff": +1, "dps_v_usual_diff": +1, "hex_secs_diff": -1,      # spikes: more helps (R-331)
                       "hex_right_diff": +1, "kite_secs_diff": +1, "degen_diff": +1, "baits_diff": +1,
                       "knockdowns_diff": +1, "knockdowns_on_casting_diff": +1, "disable_diff": +1, "castprev_diff": +1},
     "split_effect": {"split_speed_power": +1, "own_escapes_power": +1},
@@ -391,7 +391,7 @@ NEW_NODES = [
     {"id": "P.23", "layer": "play", "name": "Baited interrupts", "description": "enemy interrupts that landed on nothing because the player cancelled", "how": "pressure.py"},
     {"id": "P.24", "layer": "play", "name": "Offensive knockdowns", "description": "knockdowns landed on enemies, and on casting targets", "how": "pressure.py"},
     {"id": "P.25", "layer": "play", "name": "Disables", "description": "skill-seconds disabled on enemies by Complicate, Power Lock, Power Block and Blackout", "how": "pressure.py"},
-    {"id": "P.26", "layer": "play", "name": "Cast prevention", "description": "Shame, Guilt and Diversion on enemies: seconds up and casts they punished", "how": "pressure.py"},
+    {"id": "P.26", "layer": "play", "name": "Cast prevention", "description": "Shame, Guilt and Diversion on enemies: the casts they punished (a hex that catches a cast ends at once, so seconds up counted the misses: R-330)", "how": "pressure.py"},
     {"id": "P.17", "layer": "play", "name": "Wrong casts", "description": "casting into a ready interrupt without cancelling, casting while Dazed, attacking while Blind (every role)", "how": "eventlayer.py casts"},
     {"id": "P.18", "layer": "play", "name": "Enchantment strips", "description": "strips on the best target in range, valued from data (an enchantment's recorded output plus the bearer's measured drop after a strip)", "how": "eventlayer.py strips, values()"},
     {"id": "P.20", "layer": "play", "name": "Split depth", "description": "how deep a split plays in the enemy base: its nearest member's distance to the defending pit", "how": "lnrows.py collapse rows"},

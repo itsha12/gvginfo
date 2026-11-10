@@ -127,7 +127,7 @@ def _pressure_fight(o, e, w):
     df = lambda k: round((o[k] - e[k]) / w, 2)
     return {"kite_secs_diff": df("kite_secs"), "prekite_secs_diff": df("prekite_secs"), "degen_diff": df("degen_pip_secs"),
             "baits_diff": df("baits"), "knockdowns_diff": df("knockdowns"), "knockdowns_on_casting_diff": df("knockdowns_on_casting"),
-            "disable_diff": df("disable_skill_secs"), "castprev_diff": df("castprev_secs")}
+            "disable_diff": df("disable_skill_secs"), "castprev_diff": df("castprev_triggered")}     # casts punished, not seconds up (R-330)
 
 
 def _pressure_pp(o, e, w):
@@ -135,7 +135,7 @@ def _pressure_pp(o, e, w):
     the enemy's kiting and baits against it."""
     r = lambda v: round(v / w, 2)
     return {"knockdowns_10s": r(o["knockdowns"]), "knockdowns_on_casting_10s": r(o["knockdowns_on_casting"]),
-            "disable_10s": r(o["disable_skill_secs"]), "castprev_10s": r(o["castprev_secs"]), "degen_10s": r(o["degen_pip_secs"]),
+            "disable_10s": r(o["disable_skill_secs"]), "castprev_10s": r(o["castprev_triggered"]), "degen_10s": r(o["degen_pip_secs"]),
             "enemy_kite_10s": r(e["kite_secs"] + e["prekite_secs"]), "enemy_baits_10s": r(e["baits"])}
 
 

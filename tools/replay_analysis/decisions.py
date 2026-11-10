@@ -30,8 +30,8 @@ choice the usual play groups by), outcome, edge_change):
 - npcs_or_dp (Denning: try for NPCs or DP; R-280): after killing 3+ enemy players at or past their footmen (half or
   more of the kills inside their base or pit): where the team's damage went in the next 20 s, the pit NPCs before the
   res (70%+), the surviving players (DP, 30% or less), or both.
-- play_for_28_or_lord (Denning: play for 28 or try to kill the Lord; R-281): from 10:00 every 60 s, for a team that has
-  taken 1+ enemy NPCs (pit NPCs or footmen): push for the kill (3+ at the enemy pit in the next 60 s) or play for 28
+- play_for_28_or_lord (Denning: play for 28 or try to kill the Lord; R-281): from 12:00 every 60 s, for a team that has
+  taken 1+ enemy pit NPCs (R-332): push for the kill (3+ at the enemy pit in the next 60 s) or play for 28
   (everything else: flags, defence, NPC and Lord damage without a push). Ahead on the tiebreak is recorded.
 Every record's extra carries the snare matchup at that moment (movepower.py): own and enemy snare power of the live
 players and own speed power (Denning: starting the flag game or a split against a lot of snare is likely poor play;
@@ -67,7 +67,7 @@ KINDS = {
     "eight_v_eight_or_flag": {"moment": "the enemy picks up, own team 7+ alive (a power play when not up on flags)", "choices": "commit all 8; flag game", "source": "Denning (R-279)"},
     "who_defends": {"moment": "a split enters the base", "choices": "first defender's class (Mes/A, frontline, 8 Monk or healer, midline), alone or with a collapse", "source": "Denning (R-279)"},
     "npcs_or_dp": {"moment": "3+ kills at or past the enemy footmen", "choices": "NPCs; DP (players); both", "source": "Denning (R-280)"},
-    "play_for_28_or_lord": {"moment": "from 10:00 every 60 s, a team that has taken enemy NPCs", "choices": "push for the kill; play for 28", "source": "Denning (R-281)"},
+    "play_for_28_or_lord": {"moment": "from 12:00 every 60 s, a team that has taken enemy pit NPCs", "choices": "push for the kill; play for 28", "source": "Denning (R-281)"},
 }
 
 
@@ -479,22 +479,20 @@ def npcs_or_dp(st, sb, fights, windows, w=20, kills=3):
     return out
 
 
-MID = 600            # 10:00: from here a team that has taken enemy NPCs faces the play-for-28 question (Denning R-281)
+MID = 720            # 12:00: from here a team that has taken enemy pit NPCs faces the play-for-28 question (R-281, R-332)
 
 
 def _npcs_taken(st, tm, t):
-    """Enemy NPCs (pit NPCs and footmen) dead by t, i.e. taken by tm at some point."""
-    from features import footmen
+    """Enemy pit NPCs dead by t, i.e. taken by tm at some point. Footmen do not count (R-332: "in the enemy base";
+    footmen stand in the field on most halls and five halls have none)."""
     foe = 3 - tm
-    pit = sum(1 for a, dt in st.npc_dead.items() if dt <= t and st.geo.npcs.get(a, {}).get("team") == foe
-              and st.geo.npcs[a]["kind"] != "guild_lord")
-    foot = sum(1 for _, dt in footmen(st.m)[foe] if dt is not None and dt <= t)
-    return pit + foot
+    return sum(1 for a, dt in st.npc_dead.items() if dt <= t and st.geo.npcs.get(a, {}).get("team") == foe
+               and st.geo.npcs[a].get("pit") and st.geo.npcs[a]["kind"] != "guild_lord")
 
 
 def play_for_28_or_lord(st, sb, every=60, look=60):
     """Denning (R-281): not a 24:00 decision but a global one from mid game on. For a team that has taken 1+ NPCs in the
-    enemy base (pit NPCs or footmen), every 60 s from 10:00 (or the first NPC taken): play for 28 (safe: flags,
+    enemy base (pit NPCs only, R-332), every 60 s from 12:00: play for 28 (safe: flags,
     defence, NPC and Lord damage without a push; win on Lord damage at 28:00) or push for the kill (3+ players at the
     enemy pit in the next 60 s). Being ahead on the tiebreak is recorded, not required."""
     m, out = st.m, []

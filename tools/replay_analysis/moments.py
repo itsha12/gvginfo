@@ -89,6 +89,16 @@ class Moments:
         if not self.hall or tm not in self.st.side: return 0
         return len(self.hall.footmen[self.st.side[tm]]) - sum(1 for x in self.foot_dead.get(tm, ()) if x <= t)
 
+    def boost_worth(self, tm, t):
+        """What the next boost would give team tm (R-333): a boost adds 10 morale to each player up to +10, so a team
+        at full morale gains nothing and a team deep in death penalty gains most, in proportion to the health it has
+        left. points = morale the boost would add over the eight players; health = the gain in maximum health as a
+        share of what they have now, averaged; dp_players = players carrying death penalty."""
+        ms = [self.st.morale(a, t) for a in self.st.players[tm]]
+        gain = [min(10, 10 - x) for x in ms]
+        return {"points": sum(gain), "health": round(sum(g / (100 + x) for g, x in zip(gain, ms)) / max(len(ms), 1), 3),
+                "dp_players": sum(1 for x in ms if x < 0)}
+
     def centre(self, g, t):
         pts = [self.P[a][t] for a in g if self.AL[a][t]]
         return (statistics.fmean(p[0] for p in pts), statistics.fmean(p[1] for p in pts)) if pts else None
@@ -244,7 +254,8 @@ class Moments:
              "own_main": self.where(self.MAIN[tm][t], t, tm), "enemy_main": self.where(self.MAIN[foe][t], t, foe),
              "own_flag": any(self.carrying(a, t) for a in st.players[tm]),
              "enemy_flag": any(self.carrying(a, t) for a in st.players[foe]),
-             "res_in": round(st.next_res(t) - t), "footmen": self.footmen_alive(tm, t)}
+             "res_in": round(st.next_res(t) - t), "footmen": self.footmen_alive(tm, t),
+             "enemy_boost": self.boost_worth(foe, t), "own_boost": self.boost_worth(tm, t)}
         s["enemy_main"] = {"own pit": "enemy pit", "own base": "enemy base", "enemy pit": "own pit", "enemy base": "own base",
                            "backside": "push side", "push side": "backside", "own half": "enemy half",
                            "enemy half": "own half", "footmen": "enemy footmen"}.get(s["enemy_main"], s["enemy_main"])
@@ -318,6 +329,10 @@ class Moments:
         place = self._mode([self.where([a for a in self.MAIN[tm][u] if a not in runners], u, tm) for u in self._samples(t)])
         meet = sum(d(self.centre(self.MAIN[tm][u], u), self.centre(self.MAIN[foe][u], u)) < MEET_R for u in self._samples(t)) / max(len(self._samples(t)), 1) > 0.5
         shape = {"runners": sorted(role(a) for a in runners)}
+        # how far the rest are from the stand, walked (for the "mid" question: fighting around the stand but outside its labelled area)
+        cs = [self.centre([a for a in self.MAIN[tm][u] if a not in runners], u) for u in self._samples(t)]
+        ds = sorted(self.hall.walk(c, self.hall.stand) or 0 for c in cs if c)
+        shape["rest_to_stand"] = ds[len(ds) // 2] if ds else None
         if fam == 1:
             with_team = [a for a in runners if sum(self.carrying(a, u) and a in self.MAIN[tm][u] for u in self._samples(t)) > len(self._samples(t)) / 2]
             u0 = min(t + READ_FROM, self.T)
