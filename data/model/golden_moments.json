@@ -556,7 +556,26 @@
     "Flag run over the coral",
     "Through a teleporter"
    ],
-   "label": null,
+   "label": {
+    "real": "yes",
+    "at": "2026-11-10",
+    "became": "run",
+    "scenario": {
+     "trigger": "enemy_run",
+     "stand": "own"
+    },
+    "call": {
+     "runners": "1",
+     "rest": "fall to footmen"
+    },
+    "who": [
+     "Monk 4 (WoC)"
+    ],
+    "when_s": 5,
+    "route": "Flag run over the bridge",
+    "forced": false,
+    "notes": "One is stuck in their base with high DP. In a desperation move, they manage to get a flag out on WoC monk. Enemy team collapses but WoC monk manages to escape with shadow of haste. Enemy must now run a flag and sends 8 monk to run, whilst they sit in middle south of flag stand. One responds almost instantly and picks up very very briefly on the warrior before dropping for WoC to run flag. \n\nEnemy 8 monk caps flag at 18:02 and goes to run a backup whilst team still waits between portals south of flagstand. 8 monk ran over corals both times. At 18:44, enemy leaves there backup flag just over portal (correct play) and is now 8 strong with the flag capped and a backup. Enemy pushes base through portal/backdoor with all 8 at 18:51 leaving space for WoC to finish the flag run."
+   },
    "sealed": null,
    "picked_for": "scenario"
   },
