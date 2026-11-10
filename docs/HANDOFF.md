@@ -32,8 +32,8 @@ model's structure: `knowledge/model.md` (generated).
   queued below. Never queue two Train batch runs at once (both failed on 2026-11-09).
 
 ## Next (in order)
-1. Denning: confirm or reword the draft rulings R-292 to R-303 and answer the open questions (both in REDESIGN.md);
-   then append the confirmed ones to RULINGS.md. Label the halls on Model > Guild hall maps, most played first.
+1. Denning: label the halls on Model > Guild hall maps, most played first (rulings R-292 to R-305 are confirmed).
+   Definitions still needed before step 2 are listed in REDESIGN.md.
 2. Redesign step 2 = bundle 4, one rebuild (REDESIGN.md "Step 2 items"): zones and path distance from the maps,
    departures, event triggers, scenarios, calls as allocations, shape, the consequence record, jobs, enemy execution,
    interaction pairs that must pass twice. Before the rebuild: about 20 to 30 golden moments for Denning to label (a

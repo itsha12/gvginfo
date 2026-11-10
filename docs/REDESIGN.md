@@ -1,8 +1,7 @@
 # Decision engine redesign: plan
 
 A plan, not the current state: `docs/SPEC.md` still describes the engine as built. This file is replaced as steps land
-and removed once SPEC.md describes the new structure. Draft rulings below are **not in force** until Denning confirms
-them; only then are they appended to `docs/RULINGS.md`.
+and removed once SPEC.md describes the new structure. Its rulings are R-292 to R-305 in `docs/RULINGS.md`.
 
 Status: step 1 built (2026-11-09). Steps 2 to 4 not started.
 
@@ -36,7 +35,7 @@ The first four are the decision (macro); the last two are execution (micro), sco
 ### Families
 | Family | Trigger | Scenario set by | Calls | Replaces |
 |---|---|---|---|---|
-| 1 Flag decision | an enemy player leaves main to run; a boost is coming; own flag in hand | where both mains are, flag lead, enemy backup in hand, own flag in hand, seconds to boost, who holds on each side | runners (none, one, two) with where the rest go: stay at the stand, fall to footmen, retreat to the pit, push their flagger, push the flag through as a team | enemy_pickup, boost_clock, eight_v_eight_or_flag, runner_choice |
+| 1 Flag decision | an enemy player leaves main, the res shrine or the base to run; a boost is coming; own flag in hand | where both mains are, flag lead, enemy backup in hand, own flag in hand, seconds to boost, who holds on each side | runners (none, one, two: R-305) with where the rest go: stay at the stand, fall to footmen, retreat to the pit, push their flagger, push the flag through as a team | enemy_pickup, boost_clock, eight_v_eight_or_flag, runner_choice |
 | 2 Answer to a split | an enemy group leaves main and turns out to be a split | split size and make-up, defenders home, flag state, numbers at main | no answer, one defender, mirror, two monks, add one, full collapse | split_in_base, who_defends |
 | 3 Numbers advantage | numbers differ where the mains meet | source (runner away, split elsewhere, kills, wipe), how long it should last, res timer | up: stay and kill, push their flagger, run again for a backup, push the pit for NPCs, chase DP, take the flag and reset. Down: fight on, fall to footmen, retreat to the pit, trade with a split | power_play, after_wipe, npcs_or_dp |
 | 4 Game plan | a slow clock, read when the state shifts | morale, NPCs, Lord damage, clock, fights so far, match-up, map | fight at main, split game (solo, two, three, 4v4), turtle, play for 28, push for the Lord | split_or_stay, play_for_28_or_lord, late_game |
@@ -85,7 +84,7 @@ fix; no number without its cases.
 
 ### Step 2 items (build order)
 2.1 named zones from labelled areas (unlabelled halls keep the circles); 2.2 path distance along the walkable outline;
-2.3 departures (every leave from a main group or the res shrine, labelled afterwards as run, split, collapse, retreat
+2.3 departures (every leave from a main group, the res shrine or the base, labelled afterwards as run, split, collapse, retreat
 or return); 2.4 event triggers instead of polls, one record a moment; 2.5 scenario from the state at the trigger;
 2.6 the call as an allocation over 20 to 30 s (runners, where the rest are, defenders and their mix; never from damage
 or deaths); 2.7 "forced" reads (a death in the read window) kept apart; 2.8 shape (composition properties, timing with
@@ -112,36 +111,23 @@ forensics stay as the mechanics evidence.
   cases. The engine's labels must match before a rebuild is accepted; the set is re-run after every engine change.
 - Held-out advice test; readability test (now also the blind page and the card); mock picks; the cumulative blind test.
 
-## Draft rulings (awaiting Denning's confirmation)
-- R-292. Blind round 3 is void; new rounds are paused until the decision card exists; rounds 1 and 2 are kept as the
-  first design and left out of the cumulative score.
-- R-293. R-284 amended: five picks a round, at least three where the model differs from the usual play, chosen for
-  leverage and a real choice; at most five options plus "Other"; scored cumulatively with a range; a reason whenever
-  Denning differs from the model.
-- R-294. A call is read over 20 to 30 s from positions and commitments, not damage or deaths; outcomes at 90 s and about
-  3 minutes, as hard results beside win points.
-- R-295. Decisions are five families, each with scenarios, each scenario with its own options.
-- R-296. The enemy's decision to run or split is read from the moment a player leaves main or the res shrine, labelled
-  afterwards by what the leave became.
-- R-297. A call has a shape: composition, route, timing. Composition and route are decisions; a delay is a decision
-  when something was being gained elsewhere, execution otherwise.
-- R-298. Each call has a job with a success test read across the whole map; playing for the wrong job is an execution
-  fault, apart from mechanics.
-- R-299. Three verdicts on a call; execution read before the result; enemy execution scored, never a fix.
-- R-300. The decision card is the one answer format; the TQs are retired from the report.
-- R-301. A numbers advantage is read from both sides.
-- R-302. Maps are pooled by features, never restricted to one hall; Denning's map labels override estimates.
-- R-303. Detection is tested against Denning's golden moments before a rebuild is accepted and after every engine change.
+## Rulings
+Confirmed by Denning on 2026-11-09 and appended to `docs/RULINGS.md` as R-292 to R-305 (R-296 widened to a player
+leaving base; R-304 offence or defence in the objective layer; R-305 the double run). His answers to the open
+questions: the timing rule is right (R-297); a blind pick says what a leave became, because players can usually tell
+(R-296); the down side of a numbers advantage is its own decision (R-301).
 
-## Open questions for Denning
-1. Is the timing rule (R-297) the right line?
-2. When an enemy player leaves main, should a blind pick say what the leave became (hindsight the team lacked, though
-   players usually read it), or be set a few seconds later once the direction is unmistakable?
-3. The down side of a numbers advantage as its own decision inside family 3?
-4. Offence or defence moved from a decision to the objective layer of a fight?
-5. Definitions needed before step 2: at the stand / fell to footmen / retreated to the pit (from labelled areas); a
-   double run; how long after leaving a departure's purpose is fixed (proposed 60 s, or earlier on a pickup or entering
-   the enemy base); the job table; what counts as something gained elsewhere. For step 4: a stand-off, a turtle.
+## Definitions still needed before step 2
+At the stand / fell to footmen / retreated to the pit (from the labelled areas); how long after leaving a departure's
+purpose is fixed (proposed 60 s, or earlier on a pickup or entering the enemy base); the job table (Claude drafts);
+what counts as something gained elsewhere. For step 4: a stand-off, a turtle.
+
+### Reading a double run (R-305)
+Two flags in motion at once, never two players leaving for the spawn together. Detected from: a second player leaving
+for the spawn while the first flag is carried or about to be capped; a second runner who leaves main only after the
+first pickup; a drop and pickup between two team-mates part-way to the stand (the half run), after which the first
+carrier returns to the spawn. In family 1 the "two runners" calls are these forms; which form was used is part of the
+call's shape (timing and who).
 
 ## Risks
 Thin cells at 506 matches (many cards will read "no clear difference"); intent is not recorded; hindsight labels suit

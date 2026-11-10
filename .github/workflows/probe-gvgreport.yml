@@ -8,6 +8,9 @@ on:
       pages:
         description: "Pages to scan, and /api/... endpoints to fetch as they are (space separated; no & in a query)"
         default: "/players /guilds"
+      pick:
+        description: "Optional: comma-separated paths to keep from each fetched endpoint (report.map_geometry,report.sessions.0.map_id)"
+        default: ""
       grep:
         description: "Optional: a regular expression; matches in the scanned scripts are saved with the text around them"
         default: ""
@@ -27,6 +30,7 @@ jobs:
       - name: Probe
         env:
           GREP: ${{ github.event.inputs.grep }}
+          PICK: ${{ github.event.inputs.pick }}
         run: node tools/gvgreport/probe.mjs out ${{ github.event.inputs.pages || '/players /guilds' }}
       - name: Save to the probe branch
         run: |

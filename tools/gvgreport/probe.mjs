@@ -10,6 +10,10 @@ const UA = "gvginfo-sync (personal stats portal; https://github.com/itsha12/gvgi
 const out = process.argv[2]; const args = process.argv.slice(3);
 const direct = args.filter((a) => a.startsWith("/api/")); const pages = args.filter((a) => !a.startsWith("/api/"));
 const GREP = process.env.GREP ? new RegExp(process.env.GREP, "gi") : null; const snippets = [];
+// PICK (env) = comma-separated paths (report.map_geometry,report.sessions.0.map_id): for a directly fetched endpoint,
+// save only its key outline and these parts, not the whole response (replay payloads are several MB).
+const PICK = (process.env.PICK || "").split(",").map((x) => x.trim()).filter(Boolean);
+const dig = (o, p) => p.split(".").reduce((a, k) => (a == null ? a : a[k]), o);
 fs.mkdirSync(out, { recursive: true });
 const get = async (u) => { const r = await fetch(u, { headers: { "User-Agent": UA } }); return { status: r.status, type: r.headers.get("content-type"), text: await r.text() }; };
 const found = new Set(); const seen = new Set();
@@ -40,9 +44,9 @@ for (const c of cands) {
 for (const d of direct) {
   try {
     const r = await get(BASE + d);
-    let keys = "";
-    try { const j = JSON.parse(r.text); const walk = (o, depth) => (o && typeof o === "object" && depth < 3 ? (Array.isArray(o) ? `[${o.length}${o.length ? ": " + walk(o[0], depth + 1) : ""}]` : `{${Object.entries(o).map(([k, v]) => k + (v && typeof v === "object" ? " " + walk(v, depth + 1) : "")).join(", ")}}`) : typeof o); keys = walk(j, 0); } catch {}
-    fs.writeFileSync(path.join(out, "direct_" + d.replace(/[^A-Za-z0-9]+/g, "_") + ".txt"), `${r.status} ${r.type} ${r.text.length} bytes\nKEYS ${keys}\n` + r.text.slice(0, 8000000));
+    let keys = "", picked = null;
+    try { const j = JSON.parse(r.text); if (PICK.length) picked = Object.fromEntries(PICK.map((p) => [p, dig(j, p) ?? null])); const walk = (o, depth) => (o && typeof o === "object" && depth < 3 ? (Array.isArray(o) ? `[${o.length}${o.length ? ": " + walk(o[0], depth + 1) : ""}]` : `{${Object.entries(o).map(([k, v]) => k + (v && typeof v === "object" ? " " + walk(v, depth + 1) : "")).join(", ")}}`) : typeof o); keys = walk(j, 0); } catch {}
+    fs.writeFileSync(path.join(out, "direct_" + d.replace(/[^A-Za-z0-9]+/g, "_") + ".txt"), `${r.status} ${r.type} ${r.text.length} bytes\nKEYS ${keys}\n` + (picked ? JSON.stringify(picked) : r.text.slice(0, 8000000)));
   } catch (e) { fs.writeFileSync(path.join(out, "direct_" + d.replace(/[^A-Za-z0-9]+/g, "_") + ".txt"), "FAILED " + e.message); }
   await new Promise((s) => setTimeout(s, 1500));
 }
