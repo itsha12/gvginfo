@@ -1,0 +1,512 @@
+{
+ "map_id": "541",
+ "map": "Corrupted Isle",
+ "labels": [
+  {
+   "id": "b0fdzy",
+   "kind": "point",
+   "type": "Archer",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     5704,
+     -3699
+    ]
+   ]
+  },
+  {
+   "id": "todlc8",
+   "kind": "point",
+   "type": "Archer",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     5808,
+     -4839
+    ]
+   ]
+  },
+  {
+   "id": "pnal4s",
+   "kind": "point",
+   "type": "Archer",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     2626,
+     -3784
+    ]
+   ]
+  },
+  {
+   "id": "y5rsr5",
+   "kind": "point",
+   "type": "Archer",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     338,
+     -2475
+    ]
+   ]
+  },
+  {
+   "id": "miz8gl",
+   "kind": "point",
+   "type": "Archer",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     314,
+     -4867
+    ]
+   ]
+  },
+  {
+   "id": "d85i7g",
+   "kind": "point",
+   "type": "Archer",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     1954,
+     -210
+    ]
+   ]
+  },
+  {
+   "id": "cvfvk4",
+   "kind": "point",
+   "type": "Archer",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -36,
+     1998
+    ]
+   ]
+  },
+  {
+   "id": "znu4ib",
+   "kind": "point",
+   "type": "Archer",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -3847,
+     2679
+    ]
+   ]
+  },
+  {
+   "id": "xhdzc3",
+   "kind": "point",
+   "type": "Archer",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -2480,
+     400
+    ]
+   ]
+  },
+  {
+   "id": "mylrj5",
+   "kind": "point",
+   "type": "Archer",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -4943,
+     296
+    ]
+   ]
+  },
+  {
+   "id": "jgd2pj",
+   "kind": "point",
+   "type": "Archer",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -4910,
+     5671
+    ]
+   ]
+  },
+  {
+   "id": "jzxvyd",
+   "kind": "point",
+   "type": "Archer",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -3771,
+     5643
+    ]
+   ]
+  },
+  {
+   "id": "x86cmw",
+   "kind": "point",
+   "type": "Knight",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -4627,
+     5397
+    ]
+   ]
+  },
+  {
+   "id": "cs3rdu",
+   "kind": "point",
+   "type": "Knight",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -4395,
+     5373
+    ]
+   ]
+  },
+  {
+   "id": "n39aoz",
+   "kind": "point",
+   "type": "Knight",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     5510,
+     -4233
+    ]
+   ]
+  },
+  {
+   "id": "gvu5wq",
+   "kind": "point",
+   "type": "Knight",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     5519,
+     -4489
+    ]
+   ]
+  },
+  {
+   "id": "ogqjtt",
+   "kind": "point",
+   "type": "Bodyguard",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     6480,
+     -3902
+    ]
+   ]
+  },
+  {
+   "id": "9vqo5k",
+   "kind": "point",
+   "type": "Guild Lord",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     6480,
+     -4137
+    ]
+   ]
+  },
+  {
+   "id": "zb45pp",
+   "kind": "point",
+   "type": "Guild Lord",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -4083,
+     6466
+    ]
+   ]
+  },
+  {
+   "id": "iflp4c",
+   "kind": "point",
+   "type": "Bodyguard",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -4418,
+     6589
+    ]
+   ]
+  },
+  {
+   "id": "3zm4nq",
+   "kind": "point",
+   "type": "Footman",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     3477,
+     -1181
+    ]
+   ]
+  },
+  {
+   "id": "ao1f3k",
+   "kind": "point",
+   "type": "Footman",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     3790,
+     -1153
+    ]
+   ]
+  },
+  {
+   "id": "v1errg",
+   "kind": "point",
+   "type": "Footman",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -1302,
+     3837
+    ]
+   ]
+  },
+  {
+   "id": "dem2u0",
+   "kind": "point",
+   "type": "Footman",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -1329,
+     3578
+    ]
+   ]
+  },
+  {
+   "id": "p7s9o2",
+   "kind": "point",
+   "type": "Footman",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -3971,
+     2462
+    ]
+   ]
+  },
+  {
+   "id": "930h3q",
+   "kind": "point",
+   "type": "Footman",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -3746,
+     2455
+    ]
+   ]
+  },
+  {
+   "id": "dyl8j4",
+   "kind": "point",
+   "type": "Footman",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     2429,
+     -3632
+    ]
+   ]
+  },
+  {
+   "id": "msc1rc",
+   "kind": "point",
+   "type": "Footman",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     2422,
+     -3924
+    ]
+   ]
+  },
+  {
+   "id": "966tqc",
+   "kind": "point",
+   "type": "Res shrine",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     4615,
+     -6269
+    ]
+   ]
+  },
+  {
+   "id": "5dtzye",
+   "kind": "point",
+   "type": "Res shrine",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -6354,
+     4210
+    ]
+   ]
+  },
+  {
+   "id": "fw5jql",
+   "kind": "area",
+   "type": "Footmen area",
+   "name": "Frontdoor",
+   "note": "",
+   "pts": [
+    [
+     -425,
+     -3412
+    ],
+    [
+     -376,
+     -4029
+    ],
+    [
+     3204,
+     -4004
+    ],
+    [
+     3376,
+     -3535
+    ],
+    [
+     -413,
+     -3387
+    ]
+   ]
+  },
+  {
+   "id": "evyqu7",
+   "kind": "area",
+   "type": "Footmen area",
+   "name": "Frontdoor",
+   "note": "",
+   "pts": [
+    [
+     -4152,
+     3228
+    ],
+    [
+     -4276,
+     -302
+    ],
+    [
+     -3609,
+     -314
+    ],
+    [
+     -3584,
+     3191
+    ],
+    [
+     -4103,
+     3277
+    ]
+   ]
+  },
+  {
+   "id": "zveikd",
+   "kind": "area",
+   "type": "Footmen area",
+   "name": "Backdoor",
+   "note": "",
+   "pts": [
+    [
+     -1647,
+     4005
+    ],
+    [
+     -1733,
+     3487
+    ],
+    [
+     883,
+     2722
+    ],
+    [
+     1118,
+     3080
+    ],
+    [
+     -1610,
+     3993
+    ]
+   ]
+  },
+  {
+   "id": "kc7xwa",
+   "kind": "area",
+   "type": "Footmen area",
+   "name": "Backdoor",
+   "note": "",
+   "pts": [
+    [
+     2673,
+     476
+    ],
+    [
+     3512,
+     -1906
+    ],
+    [
+     3882,
+     -1906
+    ],
+    [
+     3586,
+     784
+    ],
+    [
+     2673,
+     562
+    ]
+   ]
+  }
+ ]
+}
