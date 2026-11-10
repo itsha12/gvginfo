@@ -76,6 +76,5 @@ model's structure: `knowledge/model.md` (generated).
 - Never print or decode a blind-test pick's sealed field, or a golden moment's `sealed` field, in a chat.
 - Never show Denning the engine's reading of a golden moment before he has labelled it (not in chat either).
 - Don't merge `bundle-4` into main piecemeal: any engine file on main changes the cache key and forces a rebuild.
-- Links near the line flip between runs; fits differ in the last digits between machines.
 - Label files are saved whole by the site: after a change made here, Denning reloads the map page before labelling.
 - At handoff: no Train batch or Discovery run in progress.
