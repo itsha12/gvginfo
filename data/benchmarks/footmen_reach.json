@@ -1,0 +1,61 @@
+{
+ "about": "Distance from a labelled Footman within which 75% of footman hits on players land, per hall (hallmap.py reach). A team is at its footmen inside this distance while a footman is alive (R-307).",
+ "pct": 0.75,
+ "pooled": 1453,
+ "halls": {
+  "171": {
+   "map": "Warrior's Isle",
+   "hits": 799,
+   "reach": 1372,
+   "median": 1002
+  },
+  "355": {
+   "map": "Isle of Weeping Stone",
+   "hits": 3214,
+   "reach": 1401,
+   "median": 1082
+  },
+  "356": {
+   "map": "Isle of Jade",
+   "hits": 966,
+   "reach": 1189,
+   "median": 765
+  },
+  "357": {
+   "map": "Imperial Isle",
+   "hits": 608,
+   "reach": 1498,
+   "median": 1029
+  },
+  "358": {
+   "map": "Isle of Meditation",
+   "hits": 2061,
+   "reach": 1546,
+   "median": 941
+  },
+  "533": {
+   "map": "Uncharted Isle",
+   "hits": 10190,
+   "reach": 1545,
+   "median": 1054
+  },
+  "534": {
+   "map": "Isle of Wurms",
+   "hits": 187,
+   "reach": 1618,
+   "median": 1378
+  },
+  "541": {
+   "map": "Corrupted Isle",
+   "hits": 5045,
+   "reach": 1493,
+   "median": 1096
+  },
+  "542": {
+   "map": "Isle of Solitude",
+   "hits": 4901,
+   "reach": 1305,
+   "median": 841
+  }
+ }
+}

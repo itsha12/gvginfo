@@ -100,6 +100,11 @@ def _geo(sb):
         ps = [d(g.pit[tm], g.stand) for tm in (1, 2) if g.pit.get(tm)]
         sb._geo_shape = {"y": round(sum(y) / len(y)) if y else None, "pit_stand": round(sum(ps) / len(ps)) if ps else None,
                          "bases": round(d(g.base.get(1), g.base.get(2))) if g.base.get(1) and g.base.get(2) else None}
+        hall = getattr(sb.st, "hall", None)
+        if hall:        # walked distances over the labelled hall, teleporters as hops of no length (R-316)
+            n = hall.numbers()
+            for k, v in (("y", n["flag_run"]), ("pit_stand", n["pit_to_stand"]), ("bases", n["bases_apart"])):
+                if v is not None: sb._geo_shape[k] = v
     return sb._geo_shape
 
 
@@ -158,11 +163,11 @@ VARIABLES = [
     ("spike_build_own", "own build is a spike build (1) or not (0)", lambda s, sb, tm, t, x: int(sb.arch[tm]["spike"])),
     ("spike_build_enemy", "enemy build is a spike build", lambda s, sb, tm, t, x: int(sb.arch[3 - tm]["spike"])),
     # map shape (state.MapGeo; fixed for a match, so staged like the build variables)
-    ("map_flag_run", "the map's flag run Y: distance from the flag spawn to the stand (average of both sides)",
+    ("map_flag_run", "the map's flag run Y: walked distance from the flag spawn to the stand (average of both sides)",
      lambda s, sb, tm, t, x: _geo(sb)["y"]),
-    ("map_pit_to_stand", "the map's distance from a pit to the stand (average of both sides)",
+    ("map_pit_to_stand", "the map's walked distance from a Guild Lord to the stand (average of both sides)",
      lambda s, sb, tm, t, x: _geo(sb)["pit_stand"]),
-    ("map_bases_apart", "the map's distance between the two bases", lambda s, sb, tm, t, x: _geo(sb)["bases"]),
+    ("map_bases_apart", "the map's walked distance between the two res shrines", lambda s, sb, tm, t, x: _geo(sb)["bases"]),
     # flux (gvg.report records which flux was active; fixed for a match)
     ("flux_minion_apocalypse", "flux Minion Apocalypse active", lambda s, sb, tm, t, x: _flux(sb, "minion_apocalypse")),
     ("flux_meek_shall_inherit", "flux Meek Shall Inherit active", lambda s, sb, tm, t, x: _flux(sb, "meek_shall_inherit")),

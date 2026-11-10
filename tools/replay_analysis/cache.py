@@ -28,6 +28,10 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.environ.get("GVG_CACHE", os.path.expanduser("~/.cache/gvginfo"))
 DATA_DEPS = ["data/model/strength.json", "data/model/lineup.json", "data/model/context.json",
              "data/model/integrity.json", "data/review_labels.json", "data/benchmarks/snare_measured.json"]
+# the labelled halls are measurement inputs since bundle 4 (hallmap.py): a saved label changes zones and distances
+DATA_DEPS += ["data/maps/hall_features.json", "data/benchmarks/footmen_reach.json"] + sorted(
+    f"data/maps/{sub}/{f}" for sub in ("labels", "outline") if os.path.isdir(os.path.join(REPO, "data", "maps", sub))
+    for f in os.listdir(os.path.join(REPO, "data", "maps", sub)) if f.endswith(".json"))
 FIT_DEPS = ["data/model_corrections.json", "data/model/cap_choices.json"]
 # the entry modules each kind of prepared data is built from; their local imports are followed automatically
 PREPARED_FROM = {"table": ["features.py", "model.py"], "rows": ["nodes.py"], "events": ["values.py"],

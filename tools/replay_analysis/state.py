@@ -170,6 +170,10 @@ def _spawn_table_min():
 class GameState:
     def __init__(self, m, save_maps=False):
         self.m, self.geo = m, MapGeo(m, save_maps)
+        # the labelled hall (hallmap.py): named zones and walked distances; None on a hall Denning has not labelled
+        from hallmap import Hall
+        self.hall = Hall.get(self.geo.map_id)
+        self.side = self.hall.team_sides(self.geo.base) if self.hall else {}
         self.end = int(m.o["meta"]["match_length_s"])
         self.teams = (1, 2)
         self.players = {tm: [a for a in m.PL if m.team(a) == tm] for tm in self.teams}
@@ -223,6 +227,7 @@ class GameState:
         if not p: return "?"
         if not self.m.alive(s): return "dead"
         tm, geo = self.m.team(a), self.geo
+        if self.hall and tm in self.side: return self.hall.zone(p, self.side[tm])      # Denning's labelled areas (R-306)
         if d(p, geo.pit.get(tm)) < PIT_R: return "own pit"
         if d(p, geo.pit.get(3 - tm)) < PIT_R: return "enemy pit"
         if d(p, geo.stand) < STAND_R: return "stand"

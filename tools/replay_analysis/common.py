@@ -176,6 +176,21 @@ def split_context(st, members, t, def_npc_value=None):
             "split_self_defence": sum(f.get("self_defence", 0) + f.get("self_heal", 0) for f in fl)}
 
 
+# ---- decision moments (moments.py; docs/REDESIGN.md step 2). Definitions: Denning's where a ruling is cited, otherwise
+# Claude's draft to confirm (tested against the golden moments, R-303).
+READ_FROM, READ_TO = 20, 30     # a call is read from where players stand 20 to 30 s after the trigger (R-294)
+AREA_SHARE = 0.5                # a group is "at" a place when more than this share of its living players stand in it (Denning 2026-11-10)
+PURPOSE_S = 60                  # a leave's purpose is fixed this long after it, earlier on a pickup or on entering the enemy base (Claude's)
+LEAVE_MIN_S = 8                 # a player out of the main group for less than this never left (a flank, a kite)
+HOME_WAIT_S = 5                 # this long in the own base (or at the own flag spawn) before leaving it: a leave from the base or res shrine
+SPAWN_R = 800                   # at the flag spawn: waiting for the flag, or picking a fresh one up
+GROUP_LEAVE_S = 15              # leaves of one purpose within this many seconds are one group (a three-player split)
+MEET_R = 2500                   # the mains meet when their middles are this close (fights.windows, Denning's power play)
+NUMBERS_MIN_S = 10              # a numbers difference shorter than this is not a moment (fights.windows)
+MERGE_S = 20                    # triggers of one family for one team within this many seconds are one moment
+BOOST_WARN_S = 30               # "a boost is coming": the enemy's boost is this far away (Denning, boost clock)
+FLAGGER_R = 2500                # the main group is on the enemy flagger when its middle is this close to that player
+
 HOLD_MIN_S = 10          # a carry this long that closed under HOLD_PROGRESS of the way to the stand is a hold
 HOLD_PROGRESS = 0.25
 
