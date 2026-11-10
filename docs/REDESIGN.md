@@ -157,12 +157,15 @@ at main, NPC damage in progress or a boost about to land (R-321). Still needed: 
 purpose is fixed (in use as a draft: 60 s, or earlier on a pickup or on entering the enemy base); the job table
 (Claude drafts in stage D). For step 4: a stand-off, a turtle. The draft's thresholds are in `common.py` on the branch.
 
-### Reading a double run (R-305)
-Two flags in motion at once, never two players leaving for the spawn together. Detected from: a second player leaving
-for the spawn while the first flag is carried or about to be capped; a second runner who leaves main only after the
-first pickup; a drop and pickup between two team-mates part-way to the stand (the half run), after which the first
-carrier returns to the spawn. In family 1 the "two runners" calls are these forms; which form was used is part of the
-call's shape (timing and who).
+### Reading the flag (R-305, R-339, R-340)
+A team has one flag. Its life runs from the pickup at the spawn to the capture or to its return to the spawn (not
+recorded; read from the next pickup being at the spawn). A pickup dropped within about 5 s without a capture is not a
+carry. Each life is labelled afterwards by what the players went on to do: single run; hand-off to cap; hand-off to
+hold; double run with each player half running; double run with each player full running (R-340's four forms). Drafted
+as `Moments.flag_lives` on the branch (`python3 moments.py flags`): of 5,977 lives in 506 matches, single run 36%,
+returned 19%, hand-off to cap 15%, double run full 14%, double run half 7%, open at the end 9%. Not yet read: the
+hand-off to hold, and whether the next runner went back for the flag or was already home (back from a split,
+defending, resurrected).
 
 ## What the labelled halls show (all 14 labelled; the first three in detail)
 - The labels read cleanly: equal rosters on both sides, flag runs that start at the replay-derived spawn and end at

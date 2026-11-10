@@ -45,17 +45,19 @@ model's structure: `knowledge/model.md` (generated).
    matches, so the comparison is the engine alone). Then step 3 (the decision card), then step 4.
 5. Meanwhile, if wanted, on main: chunks of about 45, the Discovery workflow's second run, a third readability run.
 
-## Open rulings for Denning (set each out in the chat, R-329; R-318 to R-333 ruled 2026-11-10)
-- From his first six golden labels (notes reviewed; proposals put to him in chat, answers pending; he was asked to
-  pause labelling until the page is amended): (1) flag scenario keyed on flag position and pressure, not the stand
-  holder; (2) an own pickup is not a trigger (the moment is the runner turning to go), a pickup dropped in seconds
-  is not a run, a hand-off is one flag and not a double run; (3) theatres: every fight with its own numbers, and
-  what makes a group the main team in a 4v4; (4) named places (mid, front doors, front and back footmen) and routes
-  (through mid, through the pit); (5) a pinned or desperate team as its own scenario; (6) calls and triggers in his
-  words (match, overcap, hold, cap on a kill, park a backup, intercept the runner, split instead of running);
-  (7) the golden page as an exchange between both teams, with a time correction and the story so far.
-- Enemy boost worth (R-333): in every moment's state on the branch (`boost_worth`); the win model and the price of
-  a boost are stage D. gvg.report "packet window": not found by the probe; ask Denning where the option is.
+## Open rulings for Denning (set each out in the chat, R-329; R-318 to R-341 ruled 2026-11-10)
+- R-341 sets the direction: the engine should think as his golden notes do (the story so far), and the options,
+  decisions and variables follow from that. Ruled from the notes: greater stand area (R-334), main team in a 4v4
+  (R-335), flag position and stand holder both (R-336), pinned or desperate (R-337), one flag a team and the four
+  hand-off and double run forms (R-339, R-340). Built so far: the flag ledger (`Moments.flag_lives`).
+- Put to him in chat, answers pending (labelling paused until the page is amended): where the greater stand area
+  ends (he draws it, or accepts a draft from the replays); whether a player already home (back from a split,
+  defending, resurrected) who takes the next flag is a double run; that holding on a frontliner counts as a player
+  down; the golden test in two parts (his note first, then the engine's story for him to mark); Resurrection Signets
+  in the worth of a boost (R-333); where gvg.report's "packet window" option is.
+- Then the build order: flag ledger (hold, match, overcap, flag position) > theatres with numbers and R-335's main
+  team > pressure, death penalty, pinned > places and routes in his words > the story so far for any moment > the
+  golden page amended > scenarios, calls and triggers rewritten on top.
 - Discovery candidates after the second run; 28 behaviour clusters to name (knowledge/behaviour.md).
 
 ## Running it
