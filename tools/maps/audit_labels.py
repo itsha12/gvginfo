@@ -106,6 +106,7 @@ def audit(mid_):
     L = json.load(open(os.path.join(MAPS, "labels", f"{mid_}.json")))["labels"]
     auto = json.load(open(os.path.join(MAPS, "auto", f"{mid_}.json")))
     feat = json.load(open(os.path.join(MAPS, "hall_features.json")))["halls"].get(mid_, {})
+    as_in_game = set(feat.get("as_in_game", []))    # label ids with no mirror partner that Denning ruled are right (R-318)
     shared = set(feat.get("shared", []))            # types Denning confirmed as one for both sides (Isle of the Dead's bridge)
     out = {"map_id": mid_, "map": land.name, "labels": len(L), "issues": [], "roster": {}, "pit": {}, "features": {}}
     issue = lambda kind, text, at=None: out["issues"].append({"kind": kind, "text": text, **({"at": [round(at[0]), round(at[1])]} if at else {})})
@@ -188,7 +189,7 @@ def audit(mid_):
             # what is left may sit on the centre line, where a label is its own partner
             done |= {i for i, l in enumerate(rest) if i not in done and math.dist(centre(l), T(centre(l))) <= tol}
             for i, l in enumerate(rest):
-                if i in done: continue
+                if i in done or l["id"] in as_in_game: continue        # ruled by Denning: the hall is like that (R-318)
                 p = centre(l); image = T(p)
                 gap = min((math.dist(centre(m), image) for m in rest if m is not l), default=None)
                 issue("mirror", f"{typ}{' area' if kind == 'area' else ''}{' (' + l['name'] + ')' if l.get('name') else ''} at {land.where(p)} ({round(p[0])}, {round(p[1])}) "

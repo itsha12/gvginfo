@@ -275,7 +275,12 @@
      "what": "the gate opens only from the back side, so gate control belongs to whoever holds the back side: a team that has it can collapse on a split through the gate, and a split that has it can collapse on the main team the same way"
     }
    ],
-   "wiki": "https://wiki.guildwars.com/wiki/Isle_of_Weeping_Stone"
+   "wiki": "https://wiki.guildwars.com/wiki/Isle_of_Weeping_Stone",
+   "as_in_game": [
+    "ms91xe",
+    "qe7l56"
+   ],
+   "as_in_game_note": "one outer archer a side does not mirror: as it stands in the game (Denning, R-318)"
   },
   "174": {
    "map": "Nomad's Isle",

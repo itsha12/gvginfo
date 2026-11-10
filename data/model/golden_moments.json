@@ -1,0 +1,1633 @@
+{
+ "about": "Golden moments (R-303): Denning labels each by hand on Model > Golden moments; the engine's reading of the same moment must match before a rebuild is accepted (tools/golden/golden.py score). The engine's own reading is never stored here. `sealed` holds his optional view of what the team should have done, encoded so it is not read by accident: never decode or print it in a chat.",
+ "version": 1,
+ "generated": "2026-11-10",
+ "read_window": [
+  20,
+  30
+ ],
+ "families": {
+  "1": {
+   "name": "Flag decision",
+   "question": "The enemy sends a runner, a boost is coming, or the team has its own flag in hand: who runs, and where does everyone else go?",
+   "became": true,
+   "scenario": [
+    {
+     "id": "trigger",
+     "q": "What set it off?",
+     "options": [
+      [
+       "enemy_run",
+       "an enemy player leaves to run a flag"
+      ],
+      [
+       "boost",
+       "the enemy's boost is 30 s away"
+      ],
+      [
+       "own_flag",
+       "an own player picks up a fresh flag"
+      ]
+     ]
+    },
+    {
+     "id": "stand",
+     "q": "Who holds the stand?",
+     "options": [
+      [
+       "own",
+       "the deciding team"
+      ],
+      [
+       "enemy",
+       "the enemy"
+      ],
+      [
+       "nobody",
+       "nobody"
+      ]
+     ]
+    }
+   ],
+   "call": [
+    {
+     "id": "runners",
+     "q": "Runners (players on flag duty 20 to 30 s later)",
+     "options": [
+      [
+       "0",
+       "none"
+      ],
+      [
+       "1",
+       "one"
+      ],
+      [
+       "2",
+       "two (a double run)"
+      ]
+     ]
+    },
+    {
+     "id": "rest",
+     "q": "Where the rest go",
+     "options": [
+      [
+       "stay at the stand",
+       "stay at the stand"
+      ],
+      [
+       "fall to footmen",
+       "fall to footmen"
+      ],
+      [
+       "retreat to the pit",
+       "retreat to the pit"
+      ],
+      [
+       "fall back into the base",
+       "fall back into the base"
+      ],
+      [
+       "push their flagger",
+       "push their flagger"
+      ],
+      [
+       "push the flag through as a team",
+       "push the flag through as a team"
+      ]
+     ],
+     "other": true
+    }
+   ]
+  },
+  "2": {
+   "name": "Answer to a split",
+   "question": "An enemy group leaves its main and turns out to be a split: how is it answered?",
+   "became": true,
+   "scenario": [
+    {
+     "id": "size",
+     "q": "How many players split?",
+     "options": [
+      [
+       "1",
+       "one"
+      ],
+      [
+       "2",
+       "two"
+      ],
+      [
+       "3",
+       "three"
+      ],
+      [
+       "4",
+       "four or more"
+      ]
+     ]
+    },
+    {
+     "id": "home",
+     "q": "Who is home when they leave?",
+     "options": [
+      [
+       "empty",
+       "nobody"
+      ],
+      [
+       "home",
+       "a defender or two"
+      ],
+      [
+       "main",
+       "the main group"
+      ]
+     ]
+    }
+   ],
+   "call": [
+    {
+     "id": "call",
+     "q": "The answer (who is home or on the way 30 s later)",
+     "options": [
+      [
+       "no answer",
+       "no answer"
+      ],
+      [
+       "one defender",
+       "one defender"
+      ],
+      [
+       "mirror",
+       "mirror"
+      ],
+      [
+       "two monks",
+       "two monks"
+      ],
+      [
+       "add one",
+       "add one"
+      ],
+      [
+       "full collapse",
+       "full collapse"
+      ]
+     ],
+     "other": true
+    }
+   ]
+  },
+  "3": {
+   "name": "Numbers advantage",
+   "question": "Numbers differ where the main groups meet: what does the deciding team do with it (up), or about it (down)?",
+   "became": false,
+   "scenario": [
+    {
+     "id": "side",
+     "q": "Is the deciding team up or down?",
+     "options": [
+      [
+       "up",
+       "up"
+      ],
+      [
+       "down",
+       "down"
+      ]
+     ]
+    },
+    {
+     "id": "source",
+     "q": "Why is the short side short?",
+     "options": [
+      [
+       "kills",
+       "kills"
+      ],
+      [
+       "runner away",
+       "a runner is away"
+      ],
+      [
+       "split elsewhere",
+       "players are split elsewhere"
+      ],
+      [
+       "wipe",
+       "a wipe"
+      ]
+     ]
+    }
+   ],
+   "call": [
+    {
+     "id": "call",
+     "q": "The call",
+     "options": [
+      [
+       "stay and kill",
+       "stay and kill"
+      ],
+      [
+       "push their flagger",
+       "push their flagger"
+      ],
+      [
+       "run again for a backup",
+       "run again for a backup"
+      ],
+      [
+       "push the pit for NPCs",
+       "push the pit for NPCs"
+      ],
+      [
+       "chase DP",
+       "chase DP"
+      ],
+      [
+       "take the flag and reset",
+       "take the flag and reset"
+      ],
+      [
+       "fight on",
+       "fight on"
+      ],
+      [
+       "fall to footmen",
+       "fall to footmen"
+      ],
+      [
+       "retreat to the pit",
+       "retreat to the pit"
+      ],
+      [
+       "fall back into the base",
+       "fall back into the base"
+      ],
+      [
+       "trade with a split",
+       "trade with a split"
+      ]
+     ],
+     "other": true,
+     "by": {
+      "id": "side",
+      "up": [
+       "stay and kill",
+       "push their flagger",
+       "run again for a backup",
+       "push the pit for NPCs",
+       "chase DP",
+       "take the flag and reset"
+      ],
+      "down": [
+       "fight on",
+       "fall to footmen",
+       "retreat to the pit",
+       "fall back into the base",
+       "trade with a split"
+      ]
+     }
+    }
+   ]
+  }
+ },
+ "became": [
+  [
+   "run",
+   "a flag run"
+  ],
+  [
+   "split",
+   "a split"
+  ],
+  [
+   "collapse",
+   "a collapse (home to defend)"
+  ],
+  [
+   "retreat",
+   "a retreat (home, nobody to defend against)"
+  ],
+  [
+   "return",
+   "back to the main group"
+  ],
+  [
+   "other",
+   "something else"
+  ],
+  [
+   "none",
+   "nobody left"
+  ]
+ ],
+ "moments": [
+  {
+   "id": "25a90723-1-1-425",
+   "match": "25a90723-16b6-533d-a15d-570d9901c8a7",
+   "map": "Isle of Weeping Stone",
+   "team": "BcS",
+   "opponent": "hook",
+   "t": 425,
+   "family": 1,
+   "trigger": "hook's 8 Monk leaves the base at 7:05",
+   "watch": [
+    410,
+    485
+   ],
+   "roles": [
+    "Ritualist",
+    "Fire Ele",
+    "Air Ele",
+    "Dervish",
+    "Mesmer",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "enemy_roles": [
+    "Mesmer",
+    "Monk 2 (WoC)",
+    "Monk 3 (WoC)",
+    "Monk 4 (WoC)",
+    "Monk 5 (WoC)",
+    "Prot (WoC)",
+    "7 Monk (WoC)",
+    "8 Monk"
+   ],
+   "routes": [
+    "Back door",
+    "Collapse route",
+    "Flag run",
+    "Front door"
+   ],
+   "label": null,
+   "sealed": null,
+   "picked_for": "scenario"
+  },
+  {
+   "id": "27d03c34-1-2-1324",
+   "match": "27d03c34-b283-5a83-a5dd-70a02424523d",
+   "map": "Druid's Isle",
+   "team": "Apes",
+   "opponent": "Book",
+   "t": 1324,
+   "family": 1,
+   "trigger": "Book's boost is 30 s away (it lands at 22:34); Apes's Warrior 2 picks up a fresh flag at the spawn",
+   "watch": [
+    1309,
+    1384
+   ],
+   "roles": [
+    "Warrior 1",
+    "Warrior 2",
+    "Mesmer",
+    "Monk 4 (WoC)",
+    "Dervish",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "enemy_roles": [
+    "Warrior",
+    "Hammer",
+    "Monk 3 (WoC)",
+    "Monk 4 (WoC)",
+    "Mesmer",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "routes": [
+    "Back door",
+    "Flag run",
+    "Front door",
+    "Flag run long way",
+    "Flag run over the vine"
+   ],
+   "label": null,
+   "sealed": null,
+   "picked_for": "scenario"
+  },
+  {
+   "id": "29aad8d4-1-2-722",
+   "match": "29aad8d4-e585-5b0a-af7d-93527a333d2b",
+   "map": "Uncharted Isle",
+   "team": "ohno",
+   "opponent": "xxx",
+   "t": 722,
+   "family": 1,
+   "trigger": "ohno's Air Ele picks up a fresh flag at the spawn",
+   "watch": [
+    707,
+    782
+   ],
+   "roles": [
+    "AoB Derv",
+    "Hammer",
+    "Air Ele",
+    "Ritualist",
+    "Mesmer",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "enemy_roles": [
+    "Fire Ele",
+    "Air Ele",
+    "Ritualist",
+    "AoB Derv",
+    "Mesmer",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "routes": [
+    "Back door",
+    "Collapse route",
+    "Flag run",
+    "Front door"
+   ],
+   "label": null,
+   "sealed": null,
+   "picked_for": "scenario"
+  },
+  {
+   "id": "2bd43b13-1-2-1044",
+   "match": "2bd43b13-b0d7-5fe4-ab0c-32897209152f",
+   "map": "Isle of Jade",
+   "team": "One",
+   "opponent": "hdm",
+   "t": 1044,
+   "family": 1,
+   "trigger": "One's Warrior picks up a fresh flag at the spawn",
+   "watch": [
+    1029,
+    1104
+   ],
+   "roles": [
+    "Warrior",
+    "Paragon 1",
+    "Paragon 2",
+    "Monk 4 (WoC)",
+    "Mesmer",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "enemy_roles": [
+    "Ranger 1",
+    "Ranger 2",
+    "Ranger 3",
+    "Mesmer",
+    "Ritualist",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "routes": [
+    "Back door",
+    "Flag run",
+    "Front door",
+    "Flag run over the bridge",
+    "Flag run over the coral",
+    "Through a teleporter"
+   ],
+   "label": null,
+   "sealed": null,
+   "picked_for": "scenario"
+  },
+  {
+   "id": "541e0951-1-2-97",
+   "match": "541e0951-a43d-5678-ac46-a9d5ae29299a",
+   "map": "Isle of Meditation",
+   "team": "hold",
+   "opponent": "Apes",
+   "t": 97,
+   "family": 1,
+   "trigger": "Apes's Monk 5 (WoC) leaves the base at 1:37",
+   "watch": [
+    82,
+    157
+   ],
+   "roles": [
+    "Warrior",
+    "Paragon 1",
+    "Paragon 2",
+    "Monk 4 (WoC)",
+    "Mesmer",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "enemy_roles": [
+    "Hammer",
+    "AoB Derv",
+    "Necromancer",
+    "Mesmer",
+    "Monk 5 (WoC)",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "routes": [
+    "Back door",
+    "Collapse route option",
+    "Flag run",
+    "Front door"
+   ],
+   "label": null,
+   "sealed": null,
+   "picked_for": "scenario"
+  },
+  {
+   "id": "7761aa5f-1-1-556",
+   "match": "7761aa5f-0ff1-5724-a537-f257af86b9a5",
+   "map": "Corrupted Isle",
+   "team": "Book",
+   "opponent": "One",
+   "t": 556,
+   "family": 1,
+   "trigger": "One's Hammer leaves the base at 9:16; One's Ritualist leaves the base at 9:34",
+   "watch": [
+    541,
+    616
+   ],
+   "roles": [
+    "Hammer",
+    "Dervish",
+    "Mes/A",
+    "Stand Mes",
+    "Ritualist",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "enemy_roles": [
+    "Hammer",
+    "AoB Derv",
+    "Ranger",
+    "Ritualist",
+    "Mesmer",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "routes": [
+    "Back door",
+    "Flag run",
+    "Front door"
+   ],
+   "label": null,
+   "sealed": null,
+   "picked_for": "scenario"
+  },
+  {
+   "id": "bb669b6f-1-1-342",
+   "match": "bb669b6f-5c52-589e-a4ed-1c621556c9a4",
+   "map": "Imperial Isle",
+   "team": "RACK",
+   "opponent": "chic",
+   "t": 342,
+   "family": 1,
+   "trigger": "RACK's Mes/A picks up a fresh flag at the spawn; chic's Dervish leaves the main group at 5:53",
+   "watch": [
+    327,
+    402
+   ],
+   "roles": [
+    "Hammer A",
+    "Hammer B",
+    "Ranger",
+    "Mes/A",
+    "Stand Mes",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "enemy_roles": [
+    "Assassin",
+    "Warrior",
+    "Dervish",
+    "Stand Mes",
+    "Mes/A",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "routes": [
+    "Back door",
+    "Collapse route",
+    "Flag run",
+    "Front door",
+    "Flag run short way",
+    "Flag run long way (safe way)",
+    "Through a teleporter"
+   ],
+   "label": null,
+   "sealed": null,
+   "picked_for": "double run"
+  },
+  {
+   "id": "d016987b-1-1-104",
+   "match": "d016987b-e5a0-5cd5-a23c-4c5b2d2415f8",
+   "map": "Isle of the Dead",
+   "team": "OG",
+   "opponent": "hdm",
+   "t": 104,
+   "family": 1,
+   "trigger": "OG's Air Ele 3 picks up a fresh flag at the spawn",
+   "watch": [
+    89,
+    164
+   ],
+   "roles": [
+    "Rit/Para",
+    "Air Ele 1",
+    "Air Ele 2",
+    "Monk 4 (WoC)",
+    "Mesmer",
+    "Prot",
+    "7 Monk",
+    "Air Ele 3"
+   ],
+   "enemy_roles": [
+    "Air Ele",
+    "Necromancer 1",
+    "Mes/A",
+    "Necromancer 2",
+    "Stand Mes",
+    "Prot",
+    "7 Monk",
+    "Ritualist"
+   ],
+   "routes": [
+    "Back door",
+    "Flag run",
+    "Front door"
+   ],
+   "label": null,
+   "sealed": null,
+   "picked_for": "scenario"
+  },
+  {
+   "id": "28447c4a-2-1-1087",
+   "match": "28447c4a-7cc6-5db5-ac7c-aa2bcc23c62c",
+   "map": "Imperial Isle",
+   "team": "hdm",
+   "opponent": "HC",
+   "t": 1087,
+   "family": 2,
+   "trigger": "HC's 7 Monk leaves the main group",
+   "watch": [
+    1072,
+    1147
+   ],
+   "roles": [
+    "Hammer A",
+    "Hammer B",
+    "Ranger",
+    "Mes/A",
+    "Stand Mes",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "enemy_roles": [
+    "Hammer",
+    "AoB Derv",
+    "Ranger",
+    "Mes/A",
+    "Stand Mes",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "routes": [
+    "Back door",
+    "Collapse route",
+    "Flag run",
+    "Front door",
+    "Flag run short way",
+    "Flag run long way (safe way)",
+    "Through a teleporter"
+   ],
+   "label": null,
+   "sealed": null,
+   "picked_for": "scenario"
+  },
+  {
+   "id": "2c764dac-2-2-228",
+   "match": "2c764dac-d2cb-50e3-a072-6b5b3bb9b633",
+   "map": "Isle of Solitude",
+   "team": "BcS",
+   "opponent": "Team",
+   "t": 228,
+   "family": 2,
+   "trigger": "Team's Hammer, AoB Derv, Stand Mes, Ritualist leave the main group",
+   "watch": [
+    213,
+    288
+   ],
+   "roles": [
+    "Dervish",
+    "Paragon",
+    "Air Ele",
+    "Mesmer",
+    "Monk 5 (WoC)",
+    "Prot",
+    "7 Monk",
+    "Water Ele"
+   ],
+   "enemy_roles": [
+    "AoB Derv",
+    "Hammer",
+    "Stand Mes",
+    "Mes/A",
+    "Ritualist",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "routes": [
+    "Back door",
+    "Flag run",
+    "Front door",
+    "Through a teleporter"
+   ],
+   "label": null,
+   "sealed": null,
+   "picked_for": "scenario"
+  },
+  {
+   "id": "368cb5d2-2-2-565",
+   "match": "368cb5d2-f517-5137-ae27-0607789747a8",
+   "map": "Uncharted Isle",
+   "team": "Men",
+   "opponent": "hdm",
+   "t": 565,
+   "family": 2,
+   "trigger": "hdm's Air Ele, Fire Ele, Ritualist 1, Ritualist 2 leave the main group",
+   "watch": [
+    550,
+    625
+   ],
+   "roles": [
+    "Hammer",
+    "AoB Derv",
+    "Ranger",
+    "Ritualist",
+    "Mesmer",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "enemy_roles": [
+    "Air Ele",
+    "Fire Ele",
+    "Ritualist 1",
+    "Ritualist 2",
+    "Dervish",
+    "Ritualist 3",
+    "Mesmer",
+    "8 Monk"
+   ],
+   "routes": [
+    "Back door",
+    "Collapse route",
+    "Flag run",
+    "Front door"
+   ],
+   "label": null,
+   "sealed": null,
+   "picked_for": "scenario"
+  },
+  {
+   "id": "36a65ac6-2-2-174",
+   "match": "36a65ac6-e25a-5d66-a8ed-2bf1032f243a",
+   "map": "Isle of Jade",
+   "team": "Men",
+   "opponent": "\uc637\uc637\uc637\uc637",
+   "t": 174,
+   "family": 2,
+   "trigger": "\uc637\uc637\uc637\uc637's Air Ele, Ritualist leave the main group",
+   "watch": [
+    159,
+    234
+   ],
+   "roles": [
+    "Hammer",
+    "AoB Derv",
+    "Mes/A",
+    "Stand Mes 1",
+    "Stand Mes 2",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "enemy_roles": [
+    "Air Ele",
+    "Necromancer 1",
+    "Necromancer 2",
+    "Mes/A",
+    "Stand Mes",
+    "Prot",
+    "7 Monk",
+    "Ritualist"
+   ],
+   "routes": [
+    "Back door",
+    "Flag run",
+    "Front door",
+    "Flag run over the bridge",
+    "Flag run over the coral",
+    "Through a teleporter"
+   ],
+   "label": null,
+   "sealed": null,
+   "picked_for": "scenario"
+  },
+  {
+   "id": "39e9d728-2-1-431",
+   "match": "39e9d728-9eec-5804-a9cf-14db1ef436c2",
+   "map": "Isle of Solitude",
+   "team": "DUM",
+   "opponent": "ohno",
+   "t": 431,
+   "family": 2,
+   "trigger": "ohno's 7 Monk leaves the main group",
+   "watch": [
+    416,
+    491
+   ],
+   "roles": [
+    "Dervish 1",
+    "Dervish 2",
+    "Dervish 3",
+    "Ritualist",
+    "Water Ele",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "enemy_roles": [
+    "Water Ele",
+    "Air Ele",
+    "Mes/A",
+    "AoB Derv",
+    "Stand Mes",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "routes": [
+    "Back door",
+    "Flag run",
+    "Front door",
+    "Through a teleporter"
+   ],
+   "label": null,
+   "sealed": null,
+   "picked_for": "scenario"
+  },
+  {
+   "id": "457b3a21-2-1-890",
+   "match": "457b3a21-b67f-5164-a70d-adfd73423fcf",
+   "map": "Isle of Solitude",
+   "team": "NwAy",
+   "opponent": "SKT",
+   "t": 890,
+   "family": 2,
+   "trigger": "SKT's Hammer, Ranger, 7 Monk leave the main group",
+   "watch": [
+    875,
+    950
+   ],
+   "roles": [
+    "AoB Derv",
+    "Hammer",
+    "Dervish",
+    "Mes/A",
+    "Stand Mes",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "enemy_roles": [
+    "AoB Derv",
+    "Hammer",
+    "Ranger",
+    "Necromancer",
+    "Mesmer",
+    "Prot",
+    "7 Monk",
+    "Ritualist"
+   ],
+   "routes": [
+    "Back door",
+    "Flag run",
+    "Front door",
+    "Through a teleporter"
+   ],
+   "label": null,
+   "sealed": null,
+   "picked_for": "scenario"
+  },
+  {
+   "id": "5f9df5bb-2-1-420",
+   "match": "5f9df5bb-014e-5494-a552-e66a2dc9794d",
+   "map": "Corrupted Isle",
+   "team": "hold",
+   "opponent": "OG",
+   "t": 420,
+   "family": 2,
+   "trigger": "OG's AoB Derv, Ranger leave the main group",
+   "watch": [
+    405,
+    480
+   ],
+   "roles": [
+    "Paragon 1",
+    "Paragon 2",
+    "Warrior",
+    "Monk 4 (WoC)",
+    "Mesmer",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "enemy_roles": [
+    "Hammer",
+    "AoB Derv",
+    "Ranger",
+    "Mesmer",
+    "Ritualist",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "routes": [
+    "Back door",
+    "Flag run",
+    "Front door"
+   ],
+   "label": null,
+   "sealed": null,
+   "picked_for": "scenario"
+  },
+  {
+   "id": "9b5cdf62-2-2-720",
+   "match": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "map": "Imperial Isle",
+   "team": "Team",
+   "opponent": "HC",
+   "t": 720,
+   "family": 2,
+   "trigger": "HC's Hammer, Ranger, Prot leave the main group",
+   "watch": [
+    705,
+    780
+   ],
+   "roles": [
+    "Hammer",
+    "Warrior",
+    "Ranger",
+    "Mesmer",
+    "Monk 5 (WoC)",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "enemy_roles": [
+    "Hammer",
+    "AoB Derv",
+    "Ranger",
+    "Mes/A",
+    "Stand Mes",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "routes": [
+    "Back door",
+    "Collapse route",
+    "Flag run",
+    "Front door",
+    "Flag run short way",
+    "Flag run long way (safe way)",
+    "Through a teleporter"
+   ],
+   "label": null,
+   "sealed": null,
+   "picked_for": "scenario"
+  },
+  {
+   "id": "9c9f7436-2-2-394",
+   "match": "9c9f7436-11d7-5283-a5aa-cbcc5f68bb77",
+   "map": "Druid's Isle",
+   "team": "Men",
+   "opponent": "One",
+   "t": 394,
+   "family": 2,
+   "trigger": "One's Dervish, Hammer leave the main group",
+   "watch": [
+    379,
+    454
+   ],
+   "roles": [
+    "Warrior",
+    "Paragon 1",
+    "Paragon 2",
+    "Monk 4 (WoC)",
+    "Mesmer",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "enemy_roles": [
+    "Hammer",
+    "AoB Derv",
+    "Dervish",
+    "Mes/A",
+    "Stand Mes",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "routes": [
+    "Back door",
+    "Flag run",
+    "Front door",
+    "Flag run long way",
+    "Flag run over the vine"
+   ],
+   "label": null,
+   "sealed": null,
+   "picked_for": "scenario"
+  },
+  {
+   "id": "ad75813a-2-2-141",
+   "match": "ad75813a-2393-56f4-aee1-975ff4c85196",
+   "map": "Nomad's Isle",
+   "team": "hook",
+   "opponent": "Men",
+   "t": 141,
+   "family": 2,
+   "trigger": "Men's Air Ele 1 leaves the main group",
+   "watch": [
+    126,
+    201
+   ],
+   "roles": [
+    "Air Ele",
+    "Necromancer 1",
+    "Necromancer 2",
+    "Mes/A",
+    "Stand Mes",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "enemy_roles": [
+    "Air Ele 1",
+    "Fire Ele",
+    "Earth Ele",
+    "Air Ele 2",
+    "Water Ele",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "routes": [
+    "Back door",
+    "Flag run",
+    "Front door",
+    "Through a teleporter"
+   ],
+   "label": null,
+   "sealed": null,
+   "picked_for": "scenario"
+  },
+  {
+   "id": "bd3aa6a4-2-2-121",
+   "match": "bd3aa6a4-bc68-52c7-ac37-2fdf071652ac",
+   "map": "Isle of Meditation",
+   "team": "Crew",
+   "opponent": "hdm",
+   "t": 121,
+   "family": 2,
+   "trigger": "hdm's Air Ele, Fire Ele, 8 Monk leave the main group",
+   "watch": [
+    106,
+    181
+   ],
+   "roles": [
+    "Monk 1",
+    "Ritualist",
+    "Warrior",
+    "Necromancer",
+    "Mesmer",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "enemy_roles": [
+    "Air Ele",
+    "Fire Ele",
+    "Dervish",
+    "Mesmer",
+    "Ritualist",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "routes": [
+    "Back door",
+    "Collapse route option",
+    "Flag run",
+    "Front door"
+   ],
+   "label": null,
+   "sealed": null,
+   "picked_for": "scenario"
+  },
+  {
+   "id": "e9a25309-2-2-76",
+   "match": "e9a25309-dd47-53a5-a0c8-fe2888dd5078",
+   "map": "Isle of Weeping Stone",
+   "team": "fM",
+   "opponent": "Crew",
+   "t": 76,
+   "family": 2,
+   "trigger": "Crew's Ritualist, Air Ele, Fire Ele, 8 Monk leave the main group",
+   "watch": [
+    61,
+    136
+   ],
+   "roles": [
+    "Stand Mes",
+    "Warrior",
+    "Hammer",
+    "Ritualist",
+    "Mes/A",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "enemy_roles": [
+    "Ritualist",
+    "Air Ele",
+    "Fire Ele",
+    "Warrior",
+    "Mesmer",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "routes": [
+    "Back door",
+    "Collapse route",
+    "Flag run",
+    "Front door"
+   ],
+   "label": null,
+   "sealed": null,
+   "picked_for": "scenario"
+  },
+  {
+   "id": "ec92867f-2-2-453",
+   "match": "ec92867f-c951-5299-a1de-3ba47e08bd9d",
+   "map": "Isle of Weeping Stone",
+   "team": "One",
+   "opponent": "Dz",
+   "t": 453,
+   "family": 2,
+   "trigger": "Dz's Fire Ele, Air Ele, Ritualist, 8 Monk leave the main group",
+   "watch": [
+    438,
+    513
+   ],
+   "roles": [
+    "Warrior",
+    "AoB Derv",
+    "Monk 3 (WoC)",
+    "Monk 4 (WoC)",
+    "Mesmer",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "enemy_roles": [
+    "Fire Ele",
+    "Air Ele",
+    "Ritualist",
+    "Hammer",
+    "Mesmer",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "routes": [
+    "Back door",
+    "Collapse route",
+    "Flag run",
+    "Front door"
+   ],
+   "label": null,
+   "sealed": null,
+   "picked_for": "forced read"
+  },
+  {
+   "id": "0f1fd794-3-2-230",
+   "match": "0f1fd794-46cd-5fb1-a661-a7ec5f1cbadd",
+   "map": "Nomad's Isle",
+   "team": "Men",
+   "opponent": "hdm",
+   "t": 230,
+   "family": 3,
+   "trigger": "numbers differ where the main groups meet: Men 6 v 7 hdm",
+   "watch": [
+    215,
+    290
+   ],
+   "roles": [
+    "Hammer A",
+    "Hammer B",
+    "Ranger",
+    "Monk 4 (WoC)",
+    "Mesmer",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "enemy_roles": [
+    "Hammer A",
+    "Paragon",
+    "Hammer B",
+    "Mes/A",
+    "Stand Mes",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "routes": [
+    "Back door",
+    "Flag run",
+    "Front door",
+    "Through a teleporter"
+   ],
+   "label": null,
+   "sealed": null,
+   "picked_for": "scenario"
+  },
+  {
+   "id": "26ba6a2d-3-1-331",
+   "match": "26ba6a2d-768d-504d-ace8-19241884f21c",
+   "map": "Corrupted Isle",
+   "team": "Crew",
+   "opponent": "hdm",
+   "t": 331,
+   "family": 3,
+   "trigger": "numbers differ where the main groups meet: Crew 8 v 7 hdm",
+   "watch": [
+    316,
+    391
+   ],
+   "roles": [
+    "Assassin 1",
+    "Air Ele 1",
+    "Assassin 2",
+    "Air Ele 2",
+    "Mesmer",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "enemy_roles": [
+    "Hammer",
+    "AoB Derv",
+    "Ranger",
+    "Mes/A",
+    "Stand Mes",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "routes": [
+    "Back door",
+    "Flag run",
+    "Front door"
+   ],
+   "label": null,
+   "sealed": null,
+   "picked_for": "scenario"
+  },
+  {
+   "id": "4629b08c-3-2-1203",
+   "match": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "map": "Nomad's Isle",
+   "team": "hold",
+   "opponent": "hook",
+   "t": 1203,
+   "family": 3,
+   "trigger": "numbers differ where the main groups meet: hold 6 v 5 hook",
+   "watch": [
+    1188,
+    1263
+   ],
+   "roles": [
+    "Air Ele",
+    "Necromancer 1",
+    "Necromancer 2",
+    "Stand Mes",
+    "Mes/A",
+    "Prot",
+    "7 Monk",
+    "Ritualist"
+   ],
+   "enemy_roles": [
+    "AoB Derv",
+    "Warrior",
+    "Mes/A",
+    "Stand Mes",
+    "Necromancer",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "routes": [
+    "Back door",
+    "Flag run",
+    "Front door",
+    "Through a teleporter"
+   ],
+   "label": null,
+   "sealed": null,
+   "picked_for": "scenario"
+  },
+  {
+   "id": "5eebef5f-3-2-134",
+   "match": "5eebef5f-5389-5323-a62a-cbf7a40f993a",
+   "map": "Isle of the Dead",
+   "team": "hold",
+   "opponent": "\uc637\uc637\uc637\uc637",
+   "t": 134,
+   "family": 3,
+   "trigger": "numbers differ where the main groups meet: hold 7 v 8 \uc637\uc637\uc637\uc637",
+   "watch": [
+    119,
+    194
+   ],
+   "roles": [
+    "Mesmer",
+    "Monk 2 (WoC)",
+    "Monk 3 (WoC)",
+    "Monk 4 (WoC)",
+    "Monk 5 (WoC)",
+    "Prot (WoC)",
+    "7 Monk (WoC)",
+    "8 Monk"
+   ],
+   "enemy_roles": [
+    "Assassin",
+    "Paragon 1",
+    "Paragon 2",
+    "Monk 4 (WoC)",
+    "Mesmer",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "routes": [
+    "Back door",
+    "Flag run",
+    "Front door"
+   ],
+   "label": null,
+   "sealed": null,
+   "picked_for": "forced read"
+  },
+  {
+   "id": "65f274b6-3-2-93",
+   "match": "65f274b6-a46b-5dcf-aae4-0a4d09448f2d",
+   "map": "Uncharted Isle",
+   "team": "Dz",
+   "opponent": "Men",
+   "t": 93,
+   "family": 3,
+   "trigger": "numbers differ where the main groups meet: Dz 2 v 7 Men",
+   "watch": [
+    78,
+    153
+   ],
+   "roles": [
+    "Hammer",
+    "AoB Derv",
+    "Dervish",
+    "Stand Mes",
+    "Mes/A",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "enemy_roles": [
+    "AoB Derv",
+    "Hammer",
+    "Ranger",
+    "Mesmer",
+    "Necromancer",
+    "Prot",
+    "7 Monk",
+    "Ritualist"
+   ],
+   "routes": [
+    "Back door",
+    "Collapse route",
+    "Flag run",
+    "Front door"
+   ],
+   "label": null,
+   "sealed": null,
+   "picked_for": "scenario"
+  },
+  {
+   "id": "713d9cd0-3-2-312",
+   "match": "713d9cd0-d843-5087-a4de-6daf8ecd79f3",
+   "map": "Isle of Meditation",
+   "team": "One",
+   "opponent": "DUM",
+   "t": 312,
+   "family": 3,
+   "trigger": "numbers differ where the main groups meet: One 8 v 1 DUM",
+   "watch": [
+    297,
+    353
+   ],
+   "roles": [
+    "Dervish",
+    "Hammer",
+    "AoB Derv",
+    "Mes/A",
+    "Stand Mes",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "enemy_roles": [
+    "Dervish",
+    "Warrior",
+    "Hammer",
+    "Ritualist",
+    "Air Ele",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "routes": [
+    "Back door",
+    "Collapse route option",
+    "Flag run",
+    "Front door"
+   ],
+   "label": null,
+   "sealed": null,
+   "picked_for": "scenario"
+  },
+  {
+   "id": "75312515-3-2-482",
+   "match": "75312515-a408-5381-a999-7ec2432a66f8",
+   "map": "Isle of the Dead",
+   "team": "Crew",
+   "opponent": "One",
+   "t": 482,
+   "family": 3,
+   "trigger": "numbers differ where the main groups meet: Crew 7 v 8 One",
+   "watch": [
+    467,
+    542
+   ],
+   "roles": [
+    "Paragon",
+    "Monk 2 (WoC)",
+    "Monk 3 (WoC)",
+    "Monk 4 (WoC)",
+    "Monk 5 (WoC)",
+    "Prot (WoC)",
+    "7 Monk (WoC)",
+    "8 Monk"
+   ],
+   "enemy_roles": [
+    "Dervish",
+    "Hammer",
+    "AoB Derv",
+    "Stand Mes",
+    "Mes/A",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "routes": [
+    "Back door",
+    "Flag run",
+    "Front door"
+   ],
+   "label": null,
+   "sealed": null,
+   "picked_for": "scenario"
+  },
+  {
+   "id": "799ca1a5-3-2-57",
+   "match": "799ca1a5-3c22-51c7-a654-f3b25368173a",
+   "map": "Druid's Isle",
+   "team": "DMG",
+   "opponent": "Dz",
+   "t": 57,
+   "family": 3,
+   "trigger": "numbers differ where the main groups meet: DMG 8 v 3 Dz",
+   "watch": [
+    42,
+    117
+   ],
+   "roles": [
+    "Fire Ele",
+    "Necromancer 1",
+    "Necromancer 2",
+    "Mes/A",
+    "Stand Mes",
+    "Prot",
+    "7 Monk",
+    "Ritualist"
+   ],
+   "enemy_roles": [
+    "Monk 1 (WoC)",
+    "Monk 2 (WoC)",
+    "Monk 3 (WoC)",
+    "Monk 4 (WoC)",
+    "Monk 5 (WoC)",
+    "Prot (WoC)",
+    "Mesmer",
+    "8 Monk"
+   ],
+   "routes": [
+    "Back door",
+    "Flag run",
+    "Front door",
+    "Flag run long way",
+    "Flag run over the vine"
+   ],
+   "label": null,
+   "sealed": null,
+   "picked_for": "scenario"
+  },
+  {
+   "id": "fca07aa2-3-1-112",
+   "match": "fca07aa2-6a37-577f-a277-b61243f85e42",
+   "map": "Isle of Jade",
+   "team": "push",
+   "opponent": "One",
+   "t": 112,
+   "family": 3,
+   "trigger": "numbers differ where the main groups meet: push 6 v 7 One",
+   "watch": [
+    97,
+    172
+   ],
+   "roles": [
+    "Dervish",
+    "AoB Derv",
+    "Mesmer",
+    "Water Ele",
+    "Fire Ele",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "enemy_roles": [
+    "AoB Derv",
+    "Hammer",
+    "Ranger",
+    "Mes/A",
+    "Stand Mes",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "routes": [
+    "Back door",
+    "Flag run",
+    "Front door",
+    "Flag run over the bridge",
+    "Flag run over the coral",
+    "Through a teleporter"
+   ],
+   "label": null,
+   "sealed": null,
+   "picked_for": "scenario"
+  }
+ ]
+}

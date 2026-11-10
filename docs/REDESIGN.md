@@ -3,7 +3,7 @@
 A plan, not the current state: `docs/SPEC.md` still describes the engine as built. This file is replaced as steps land
 and removed once SPEC.md describes the new structure. Its rulings are R-292 to R-309 in `docs/RULINGS.md`.
 
-Status: step 1 built (2026-11-09). Steps 2 to 4 not started.
+Status: step 1 built (2026-11-09). Step 2 under way on the branch `bundle-4` (stages A and B drafted 2026-11-10; see "Step 2: where it stands"). Steps 3 and 4 not started.
 
 ## Why
 The two scored blind rounds showed the decision tier cannot say whether a call was right, whether it was executed, or
@@ -118,6 +118,25 @@ scored cumulatively, on matches that played no part in choosing the picks; no ve
 disagreement picks; each reason filed as a candidate variable or ruling request. The TQ section leaves the report;
 forensics stay as the mechanics evidence.
 
+### Step 2: where it stands (branch `bundle-4`, R-322)
+| Stage | Items | State |
+|---|---|---|
+| A Map foundation | 2.1, 2.2 | built: `hallmap.py` (zones R-306, walked distance R-316, footmen reach R-320); `state.zone` and the three map numbers read it |
+| B Moments | 2.3 to 2.7 | drafted: `moments.py` (departures, triggers, scenarios, calls, forced); 23,041 moments in 506 matches |
+| C Golden moments | test | page on main (Model > Golden moments), 30 moments picked; waits for Denning's labels, then `tools/golden/golden.py score` |
+| D Depth | 2.8 to 2.13 | not started (shape, consequence record, similar cases, jobs, enemy execution, interaction rule, the five proposals R-324) |
+| E Close | 2.14 | not started (side by side for one rebuild R-323, retire, causal map, SPEC and METHODS, readability, merge, rebuild on the same 506 matches) |
+
+Scenarios as drafted (the key the cases are grouped by; the rest of the state rides along for similar cases):
+family 1 = what set it off (an enemy player leaves to run, the enemy's boost is 30 s away, an own player picks up a
+fresh flag) x who holds the stand (7 in use, 39 to 2,630 cases); family 2 = split size (1, 2, 3, 4+) x who is home
+(nobody, a defender, the main group) (12, 25 to 787 cases); family 3 = up or down x why the short side is short
+(kills, a runner away, players split elsewhere, a wipe) (8, 33 to 2,562 cases).
+
+What the draft shows before any label: the family 1 call list has no option for a main group fighting in the field
+(39% of flag decisions: backside 14%, push side 14%, enemy base 9%), and the family 2 list none for three or more
+defenders against a solo split or other uneven counts (27%). Both wait for Denning's words from the golden moments.
+
 ## Tests
 - **Golden moments** (new): about 20 to 30 moments (a match and a time) Denning labels by hand on a site page: which
   scenario, what the team did (call and shape), optionally what they should have done (stored sealed from the model).
@@ -131,10 +150,12 @@ leaving base; R-304 offence or defence in the objective layer; R-305 the double 
 questions: the timing rule is right (R-297); a blind pick says what a leave became, because players can usually tell
 (R-296); the down side of a numbers advantage is its own decision (R-301).
 
-## Definitions still needed before step 2
-At the stand / retreated to the pit (from the labelled areas; fell to footmen is R-307); how long after leaving a departure's
-purpose is fixed (proposed 60 s, or earlier on a pickup or entering the enemy base); the job table (Claude drafts);
-what counts as something gained elsewhere. For step 4: a stand-off, a turtle.
+## Definitions
+Ruled 2026-11-10: at a place = more than half of the group's living players inside the labelled area (R-319); fell to
+footmen from the Footman labels and the measured reach (R-320); something gained elsewhere = a live numbers advantage
+at main, NPC damage in progress or a boost about to land (R-321). Still needed: how long after leaving a departure's
+purpose is fixed (in use as a draft: 60 s, or earlier on a pickup or on entering the enemy base); the job table
+(Claude drafts in stage D). For step 4: a stand-off, a turtle. The draft's thresholds are in `common.py` on the branch.
 
 ### Reading a double run (R-305)
 Two flags in motion at once, never two players leaving for the spawn together. Detected from: a second player leaving

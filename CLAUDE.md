@@ -182,6 +182,12 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
 - The decision tier is being rebuilt: `docs/REDESIGN.md` is the plan (families, scenarios, calls, the decision card,
   the steps and their gates). Read it before touching `decisions.py`, `usual.py`, `advice.py`, `ask.py` or `tq.py`.
   Its rulings are R-292 to R-309. Blind rounds are paused meanwhile (Train batch input `blind` stays on no).
+- Redesign step 2 (bundle 4) is built on the branch `bundle-4`, never on main piecemeal (R-322): `hallmap.py` (zones
+  and walked distances from the labelled halls), `moments.py` (departures, triggers, scenarios, calls) and
+  `tools/golden/golden.py` (pick, score) live there until the bundle lands. Golden moments (R-303): Denning labels
+  them on Model > Golden moments (`data/model/golden_moments.json`, on main). That file never holds the engine's
+  reading; never show him the engine's reading of a moment he has not labelled, and never decode or print a
+  moment's `sealed` field in a chat.
 - Guild hall maps: `tools/maps/build_maps.py` builds the site's map data from the replays branch
   (`data/maps/index.json`, `outline/<map id>.json`, `auto/<map id>.json`); Denning's labels (points, areas, routes) are
   saved by the site's Model > Guild hall maps page to `data/maps/labels/<map id>.json` and override estimates. The
