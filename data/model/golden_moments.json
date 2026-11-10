@@ -618,8 +618,27 @@
     "Flag run",
     "Front door"
    ],
-   "label": null,
-   "sealed": null,
+   "label": {
+    "real": "yes",
+    "at": "2026-11-10",
+    "became": "run",
+    "scenario": {
+     "trigger": "boost",
+     "stand": "enemy"
+    },
+    "call": {
+     "runners": "1",
+     "rest": "retreat to the pit"
+    },
+    "who": [
+     "Monk 4 (WoC)"
+    ],
+    "when_s": 1,
+    "route": "Back door",
+    "forced": false,
+    "notes": "Apes splits three out the backdoor right off the bat. WoC is holding flag, but mainteam sees 5v8 and realises they can't cap the flag (correct play). Mainteam falls back to frontdoor at 0:40 whilst enemy sends two monks (6 and 8) to defend split 2v3. Mainteam is still at a player disadvantage 5v6. Mainteam falls all the way back to pit at 1:37 but has already taken two deaths. WoC runs the flag out backdoor but is met by the enemy WoC and then collapsed on. WoC drops the flag and then dies."
+   },
+   "sealed": "eyJzaG91bGQiOiJyZXRyZWF0IHRvIHRoZSBwaXQiLCJ3aHkiOiIifQ==",
    "picked_for": "scenario"
   },
   {
