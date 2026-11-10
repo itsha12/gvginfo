@@ -1135,6 +1135,32 @@
      -558
     ]
    ]
+  },
+  {
+   "id": "m7f8hx",
+   "kind": "point",
+   "type": "Res shrine",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -1835,
+     7623
+    ]
+   ]
+  },
+  {
+   "id": "1tywd7",
+   "kind": "point",
+   "type": "Res shrine",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -2311,
+     -4140
+    ]
+   ]
   }
  ]
 }
