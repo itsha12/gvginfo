@@ -13,9 +13,8 @@ model's structure: `knowledge/model.md` (generated).
   with scenarios, calls read as allocations over 20 to 30 s, a shape (who, when, which way), an objective and
   mechanics, answered as one decision card with three verdicts. Step 1 (no rebuild) is built: round 3 void, rounds
   paused (Train batch `blind` defaults to no), blind page scores cumulatively with a 5-case minimum and asks for a
-  reason on disagreement, and Model > Guild hall maps draws all 14 halls for Denning to label (9 with gvg.report's
-  outline; Druid's, Nomad's, Isle of the Dead, Frozen and Burning Isle from where players walked, because gvg.report
-  publishes no geometry for map ids 167, 168, 170, 174, 175).
+  reason on disagreement, and Model > Guild hall maps draws all 14 halls from gvg.report's outline for Denning to
+  label (five halls are served only by map file id: `replays.mjs` MAP_FILE_IDS). Rulings R-292 to R-305 confirmed.
 - Portal: Model tab (engine pages, Blind test, Guild hall maps); Mechanics keeps the game pages; all matches stored.
 - Bundle 3 (R-278 to R-287) and the sign rulings (R-288 to R-291) are in the engine (CHANGELOG 2026-11-09 evening).
 - Batch 16 (run 42675808241): 90 matches as one batch (45 left by GitHub job failures plus 45 new): 0.355 v 0.47.

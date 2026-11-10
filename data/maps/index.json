@@ -26,7 +26,7 @@
    "id": "168",
    "map": "Druid's Isle",
    "replays": 71,
-   "outline": "walked",
+   "outline": "gvg.report",
    "wiki": "https://wiki.guildwars.com/wiki/Druid's_Isle"
   },
   {
@@ -54,7 +54,7 @@
    "id": "174",
    "map": "Nomad's Isle",
    "replays": 17,
-   "outline": "walked",
+   "outline": "gvg.report",
    "wiki": "https://wiki.guildwars.com/wiki/Nomad's_Isle"
   },
   {
@@ -75,7 +75,7 @@
    "id": "175",
    "map": "Isle of the Dead",
    "replays": 9,
-   "outline": "walked",
+   "outline": "gvg.report",
    "wiki": "https://wiki.guildwars.com/wiki/Isle_of_the_Dead_(guild_hall)"
   },
   {
@@ -89,14 +89,14 @@
    "id": "170",
    "map": "Frozen Isle",
    "replays": 6,
-   "outline": "walked",
+   "outline": "gvg.report",
    "wiki": "https://wiki.guildwars.com/wiki/Frozen_Isle"
   },
   {
    "id": "167",
    "map": "Burning Isle",
    "replays": 3,
-   "outline": "walked",
+   "outline": "gvg.report",
    "wiki": "https://wiki.guildwars.com/wiki/Burning_Isle"
   }
  ]
