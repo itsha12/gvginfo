@@ -18,8 +18,7 @@ model's structure: `knowledge/model.md` (generated).
   - `moments.py` (draft): departures, triggers, scenarios, calls as allocations, forced reads for families 1 to 3.
     `python3 moments.py <report id>` prints a match; `moments.py all /tmp/moments.json --jobs 4` then
     `moments.py counts /tmp/moments.json` gives cases per scenario and call (70 s for 506 matches).
-  - `tools/golden/golden.py pick|score` (outside the engine folder): picks the golden moments, scores the engine
-    against Denning's labels. It never reads the sealed field.
+  - `tools/golden/golden.py pick|score|stories` (outside the engine folder); it never reads the sealed field.
 - On main: Model > Golden moments (`assets/js/pages/golden.js`, `data/model/golden_moments.json`): 30 moments for
   Denning to label. The file never holds the engine's reading. Rulings R-318 to R-324 recorded.
 
