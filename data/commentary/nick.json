@@ -1,5 +1,5 @@
 {
- "about": "Claims from Nick's YouTube commentary (September 2026 monthly final and European daily tournaments), paraphrased (never the transcript: public repo). Each claim: approximate match time in seconds (set from the anchor named; the transcripts have no timestamps), kind, the claim, tactics ids, the variable it suggests (comms_vars.py), and the engine's check (agrees, disagrees, partly, can't measure) with the evidence. Vocabulary: SLW = spirit light weapon ritualist; boss = boost (auto-transcript); Lisa = Avatar of Lyssa dervish; Gren = Grenth's dervish; the auto-transcript often writes 'men' for 'NwAy' or 'SKT'.",
+ "about": "Claims from Nick's YouTube commentary (September 2026 monthly final and European daily tournaments), paraphrased (never the transcript: public repo). Each claim: approximate match time in seconds (set from the anchor named; the transcripts have no timestamps), kind, the claim, tactics ids, the variable it suggests (comms_vars.py), and the engine's check (agrees, disagrees, partly, can't measure) with the evidence. Vocabulary: SLW = spirit light weapon ritualist; boss = the Boss status of September's flux, Like a Boss (whoever kills the Boss becomes it); it is not the morale boost; Lisa = Avatar of Lyssa dervish; Gren = Grenth's dervish; the auto-transcript often writes 'men' for 'NwAy' or 'SKT'.",
  "matches": {
   "d4660b7b-1e09-584e-a786-0e9f48b3f343": {
    "tag": "Men v Team",
@@ -160,11 +160,12 @@
      "t": 225,
      "kind": "read",
      "who": "commentator",
-     "claim": "SKT's first death gave NwAy's warrior the boost, the best character to boost in the match.",
+     "claim": "SKT's first death made NwAy's warrior the Boss (September's flux), the best character to hold it in the match.",
      "check": {
       "verdict": "agrees",
       "evidence": "SKT's AoB Derv died at 3:45."
-     }
+     },
+     "variable": "who holds the Boss status (flux), and each transfer by a kill"
     },
     {
      "t": 415,
@@ -297,11 +298,12 @@
      "t": 460,
      "kind": "read",
      "who": "commentator",
-     "claim": "Book's 7 monk went down and gave cope's dervish the boost.",
+     "claim": "Book's 7 monk went down and made cope's dervish the Boss (September's flux).",
      "check": {
       "verdict": "agrees",
       "evidence": "Book's 7 Monk died at 7:42 at the stand."
-     }
+     },
+     "variable": "who holds the Boss status (flux), and each transfer by a kill"
     },
     {
      "t": 700,
@@ -417,11 +419,12 @@
      "t": 499,
      "kind": "read",
      "who": "commentator",
-     "claim": "Men's ranger, pushed up on the ritualist too long, went down and gave NwAy's air elementalist the boost.",
+     "claim": "Men's ranger, pushed up on the ritualist too long, went down and made NwAy's air elementalist the Boss (September's flux).",
      "check": {
       "verdict": "agrees",
       "evidence": "Men's Ranger died at 8:19 on the push side (3v4)."
-     }
+     },
+     "variable": "who holds the Boss status (flux), and each transfer by a kill"
     },
     {
      "t": 560,
@@ -611,6 +614,440 @@
      "check": {
       "verdict": "can't measure",
       "evidence": "One match; Men lost this one."
+     }
+    }
+   ]
+  },
+  "b5760ac4-e21a-54d0-a6ea-d6b5bb0d0e5d": {
+   "tag": "Men v NwAy 2",
+   "map": "Isle of Weeping Stone",
+   "event": "European daily tournament, 3 September 2026",
+   "result": "Men won at 13:57 by killing the Guild Lord, 2 s before a base res",
+   "transcript": "attachment 2897b062",
+   "teams": "Men (hammer, dervish, ranger, mesmer, spirit light weapon ritualist, three monks) against NwAy (hammer, two Avatar of Lyssa dervishes, two mesmers, three monks)",
+   "alignment": "NwAy's first cap 0:15 and Men's overcap 0:18, NwAy falls back 1:26, NwAy's four man split from 1:46, its 8 Monk dies 3:36 and 5:22, Mes/A dies 3:58 (based), five man split fight 7:06, knight 9:41, back cap 9:46, Mes/A based at 10:00 and Hammer dead just after it (resurrected 10:05), Men's Mesmer and 7 Monk 10:42, Men's dervish dies carrying 11:15, NwAy's 8 Monk 12:09, Lord 13:57",
+   "claims": [
+    {
+     "t": 0,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "NwAy has no party-wide protection against a ranger balance and one party heal, so it can't stand in the 8v8: it has to fall back at once and split.",
+     "tactics": [],
+     "variable": "party-wide defence against ranged pressure, as a build feature that decides whether to stand or split",
+     "check": {
+      "verdict": "agrees",
+      "evidence": "NwAy fell back from the stand to its front door at 1:26 with team health at 67% and split four from 1:46."
+     }
+    },
+    {
+     "t": 60,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "Men's single runner with a run skill keeps flags going alone; NwAy has to send a second player back each time, so in a straight 8v8 Men is often a player up.",
+     "tactics": [],
+     "variable": "seconds each runner is away from the fight per flag",
+     "check": {
+      "verdict": "partly",
+      "evidence": "8 v 7 for Men from 0:44 to 1:20 while NwAy's Hammer was away (he returned 36 s behind); Men's own runner also cost a player from 1:20."
+     }
+    },
+    {
+     "t": 110,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "NwAy's four man split (two dervishes, Mes/A, 8 Monk) is met by Men's hammer, ranger and two monks.",
+     "tactics": [],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "Men's 8 Monk went back at 1:39, Hammer, Ranger and Prot at 1:55; 4 v 4 at Men's back door from 2:42."
+     }
+    },
+    {
+     "t": 216,
+     "kind": "diagnosis",
+     "who": "commentator",
+     "claim": "NwAy's 8 Monk dies on the split because he is pushed into the range of two archers and crippled, with no shadow step to get out; a split monk without one can't escape.",
+     "tactics": [],
+     "variable": "NPC damage and snares on a split's monk; whether the split's monk has an escape",
+     "check": {
+      "verdict": "partly",
+      "evidence": "He died at 3:36 in Men's base and again at 5:22; archer damage and snares on him aren't measured in the story."
+     }
+    },
+    {
+     "t": 238,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "NwAy's Mes/A dies just before the base res, so the death costs little time.",
+     "tactics": [],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "Died 3:58, based at 4:00."
+     }
+    },
+    {
+     "t": 300,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "At main, NwAy's four can only win if it gets ahead on flags; its window is the short time Men's runner is away, and it has to kill the footmen first to reach the 7 Monk.",
+     "tactics": [],
+     "variable": "the window while the enemy's runner is away; footmen alive as cover for a monk",
+     "check": {
+      "verdict": "can't measure",
+      "evidence": "The story shows who is away and when, but not footmen as cover for a monk standing in them."
+     }
+    },
+    {
+     "t": 437,
+     "kind": "reason",
+     "who": "commentator",
+     "claim": "One dervish coming home forces Men's four out of NwAy's base and saves the knights; when he leaves to rejoin the split Men push back in, and he comes home again.",
+     "tactics": [],
+     "variable": "one returning defender turning a base fight",
+     "check": {
+      "verdict": "agrees",
+      "evidence": "He went back at 7:17 and Men were pushed out at 7:24; Men pushed in again at 7:54; he was back at 8:00 and Men out at 8:02. The story has each move but doesn't link them."
+     }
+    },
+    {
+     "t": 530,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "With both halves even and stalled, the only way for NwAy to move the game on is to take a flag out; it does so late.",
+     "tactics": [],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "NwAy capped nothing from 5:00 until its dervish's back cap at 9:46 (flag picked up 8:56)."
+     }
+    },
+    {
+     "t": 600,
+     "kind": "reason",
+     "who": "commentator",
+     "claim": "NwAy's Mes/A dies on the split just before the base res and comes back in his own base, putting NwAy a player up there; its hammer dies just after the res and needs a skill res. NwAy then kills Men's mesmer and 7 Monk.",
+     "tactics": [],
+     "variable": "base res as a change of numbers where the dead player was needed",
+     "check": {
+      "verdict": "agrees",
+      "evidence": "Mes/A died 9:58 and was based; Hammer died 9:59 and was not (resurrected 10:05); 4 v 5 at NwAy's front door from 10:14; Men's Mesmer and 7 Monk died 10:42. The story's clock had the Hammer 0 s before the res; it now reads whether the res took him."
+     }
+    },
+    {
+     "t": 656,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "Men's dervish tries to give his life for a cap to deny NwAy's boost, worth trying because NwAy carries death penalty; he falls short.",
+     "tactics": [],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "He picked the flag up at 10:56 and died holding it at the stand at 11:15; NwAy boosted at 11:46."
+     }
+    },
+    {
+     "t": 708,
+     "kind": "diagnosis",
+     "who": "commentator",
+     "claim": "After the boost NwAy pushes all eight into Men's base and is caught in a bad spot as Men's dead come back; its 8 Monk dies right after the base res, the rest are routed and Men has time to kill the Lord before the next one.",
+     "tactics": [],
+     "variable": "pushing into a base shortly before the defenders' base res",
+     "check": {
+      "verdict": "agrees",
+      "evidence": "5 v 8 at Men's pit at 11:48, base res 12:00, NwAy's 8 Monk died 12:09 (111 s before the next res), 8 v 7 at 12:10, all eight dead by 13:30, Lord 13:57."
+     }
+    }
+   ]
+  },
+  "2615ca0c-12b4-5ae6-a73d-53c0f0fc627c": {
+   "tag": "Rudi v yM",
+   "map": "Isle of Weeping Stone",
+   "event": "European daily tournament, 3 September 2026",
+   "result": "yM won at 15:07 by killing the Guild Lord",
+   "transcript": "attachment 87ec0df0",
+   "teams": "Rudi (primal rage warrior, dervish, two mesmers, smiting monk with Word of Censure, three monks) against yM (hammer, sword warrior, mesmer, curses necromancer, spirit light weapon ritualist, three monks)",
+   "alignment": "yM's Ritualist dies in Rudi's pit 1:10, Rudi's flag returned 3:17, Rudi's overcap 3:49, Rudi's split away 3:56 to 5:26, Rudi's Stand Mes dies 6:36, yM's cap 7:00, Rudi's knight 8:22, yM's Prot dies 9:22 (resurrected 9:33), Rudi's smiting monk dies carrying 10:38, Rudi's deaths 11:00 to 11:44, Rudi's Warrior dies at yM's front footies 14:30, Lord 15:07",
+   "claims": [
+    {
+     "t": 10,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "yM opens with its ritualist alone at Rudi's back door; Rudi has nobody suited to defend him and few snares. Because yM brings no second flag, it looks to Rudi as if the ritualist is only waiting back for one.",
+     "tactics": [],
+     "variable": "the opening split: players who never join the main team",
+     "check": {
+      "verdict": "partly",
+      "evidence": "Only seven yM at the stand from 0:12; Rudi's Mes/A left at 0:38 and Warrior at 0:50. The story doesn't narrate a split that starts at 0:00."
+     }
+    },
+    {
+     "t": 70,
+     "kind": "diagnosis",
+     "who": "commentator",
+     "claim": "The ritualist nearly kills a knight, then runs back into the returning warrior and dies; under September's flux that hands the Boss status to Rudi's mesmer, who can then defend him alone. A large mistake: a split player has to watch for the collapse.",
+     "tactics": [],
+     "variable": "who holds the Boss status (flux), and each transfer by a kill",
+     "check": {
+      "verdict": "partly",
+      "evidence": "yM's Ritualist died in Rudi's pit at 1:10. Who holds the Boss status isn't in the data."
+     }
+    },
+    {
+     "t": 197,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "Rudi's flag is returned, the commentator can't see how.",
+     "tactics": [],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "Rudi's Warrior dropped it at 3:01 and yM's 7 Monk returned it at 3:17: the story adds who."
+     }
+    },
+    {
+     "t": 245,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "Rudi splits its warrior and a mesmer although the 8v8 should suit it; the split needs a monk to do anything. When it rejoins main ahead of yM's defenders Rudi is briefly a player or two up, but is under pressure and can't use it.",
+     "tactics": [],
+     "variable": "arriving ahead of the defenders after a split collapses, and whether the lead was used",
+     "check": {
+      "verdict": "agrees",
+      "evidence": "Split away 3:56 to 5:26; 8 v 6 at the stand at 5:26, 8 v 8 at 5:42 (yM 12 s behind); no kill."
+     }
+    },
+    {
+     "t": 380,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "Rudi gives up the 8v8 to run a flag on its warrior, and loses a mesmer left too far forward as it pulls back.",
+     "tactics": [],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "Warrior left for the flag at 6:18; Stand Mes died at the stand at 6:36."
+     }
+    },
+    {
+     "t": 455,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "Rudi splits again without taking a flag out the back (it is left at the front), so there is no back cap; the split does nothing and lets yM bring another flag.",
+     "tactics": [],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "Flag dropped at Rudi's front door 6:55; split from 7:33, met by yM's Ritualist and 8 Monk; yM's main took a knight at 8:22."
+     }
+    },
+    {
+     "t": 640,
+     "kind": "diagnosis",
+     "who": "commentator",
+     "claim": "Rudi runs its flag in on the smiting monk too boldly: he dies, and three Rudi monks follow.",
+     "tactics": [],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "He died holding the flag at the stand at 10:38; Prot died 11:00, 7 Monk and two more 11:12."
+     }
+    },
+    {
+     "t": 770,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "yM's ritualist detours to kill the outside archers before rejoining, so Rudi is a player up for a while; if Rudi can't win 8 v 7 it won't win 8 v 8.",
+     "tactics": [],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "8 v 7 in Rudi's pit from 12:40, 8 v 8 at 13:10 (yM 30 s behind); Rudi lost six players from 13:36 to 13:58."
+     }
+    },
+    {
+     "t": 860,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "Rudi's warrior leaves the base without a flag, is chased into yM's archer and footmen and dies there.",
+     "tactics": [],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "1 v 1 at yM's front footies at 14:20; he died there at 14:30."
+     }
+    }
+   ]
+  },
+  "5f380eb5-7b0f-5b35-acbd-b82c08e02750": {
+   "tag": "cope v xxx",
+   "map": "Druid's Isle",
+   "event": "European daily tournament, 9 September 2026",
+   "result": "xxx won at 7:35 by killing the Guild Lord",
+   "transcript": "attachment e563f9e6",
+   "teams": "cope (hex build with five casters, air elementalist, spirit light weapon ritualist) against xxx (six necromancers building a minion army, two monks)",
+   "alignment": "xxx's first cap 0:59, cope's overcap 1:21, cope's 7 Monk dies 1:23, the fight moves to cope's side 1:40, xxx's cap 2:51, cope's Air Ele leaves 4:05, cope's cap 5:13, three cope deaths at its front door 5:16, base res 6:00, bodyguard 7:08, cope's boost 7:13, Lord 7:35",
+   "claims": [
+    {
+     "t": 0,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "xxx builds a minion army in the first seconds from its own monk's sacrifice; an alert enemy could see it happen.",
+     "tactics": [],
+     "check": {
+      "verdict": "can't measure",
+      "evidence": "Minions aren't in the story."
+     }
+    },
+    {
+     "t": 40,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "Both teams go to the vine seeds without carrying them, and meet at the stand each on the other's side. When cope has to retreat, the enemy's base is behind it and its own way home runs through a choke; a monk is surrounded by minions and dies.",
+     "tactics": [],
+     "variable": "inverted position: a main team with the enemy between it and its base",
+     "check": {
+      "verdict": "partly",
+      "evidence": "8 v 8 at the stand from 0:38; cope's 7 Monk died 1:23; the fight moved to cope's side at 1:40. The story has no reading of which side of the stand each team stands on."
+     }
+    },
+    {
+     "t": 245,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "cope's elementalist carries the vine seed to repair xxx's bridge and open a second way into xxx's base; cope leaves its own bridge unrepaired, so the minions come straight at it.",
+     "tactics": [],
+     "variable": "map objects: who carries which, and which bridges are open",
+     "check": {
+      "verdict": "partly",
+      "evidence": "The story has cope's Air Ele leaving at 4:05 and fighting xxx's 8 Monk in xxx's pit from 5:32, but not the seed or the bridges."
+     }
+    },
+    {
+     "t": 316,
+     "kind": "diagnosis",
+     "who": "commentator",
+     "claim": "cope takes heavy damage outside its front door because it hesitates to go into its base and be cornered; it loses three there.",
+     "tactics": [],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "xxx pushed to cope's front door at 4:50 (6 v 7); cope lost Stand Mes, 7 Monk and a necromancer there at 5:16, 44 s before the base res."
+     }
+    },
+    {
+     "t": 330,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "With cope's flag capped and two cope players in xxx's base, xxx has to win on this one push: a race between its push and cope's split and boost.",
+     "tactics": [],
+     "variable": "a race: the push must win before the split or the boost pays",
+     "check": {
+      "verdict": "agrees",
+      "evidence": "cope capped at 5:13 and boosted at 7:13; xxx killed the Lord at 7:35."
+     }
+    },
+    {
+     "t": 455,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "The Lord dies very quickly to the minions; cope's prot never reaches him.",
+     "tactics": [],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "cope's last three defenders died in the pit at 7:32, the Lord at 7:35."
+     }
+    }
+   ]
+  },
+  "62c3fad6-2ebb-5a65-ae51-186c08822dc4": {
+   "tag": "xxx v NwAy",
+   "map": "Corrupted Isle",
+   "event": "European daily tournament, 3 September 2026",
+   "result": "NwAy won at 21:22 when xxx resigned",
+   "transcript": "attachment 9a85be98",
+   "teams": "xxx (air and fire elementalists, spirit light weapon ritualist, dervish, mesmer, three monks; a mobile split) against NwAy (hammer, two Avatar of Lyssa dervishes, two mesmers, three monks)",
+   "alignment": "double runs by both to 5:14, xxx's knight 6:49, xxx's 7 Monk dies 8:56, Prot 9:06, Ritualist 9:31, Air Ele 10:10 (resurrected 10:45), NwAy's knights 11:24 and 11:35, Air Ele 11:40 (based), Fire Ele 11:58 (missed the res), Ritualist 12:15, NwAy's Stand Mes 14:45 (resurrected), Air Ele 20:33, resignation 21:22",
+   "claims": [
+    {
+     "t": 0,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "xxx opens with a four man split (two elementalists, ritualist, monk), four at main and one waiting back for the second flag; NwAy takes seven to the stand, seemingly unaware.",
+     "tactics": [],
+     "variable": "the opening split: players who never join the main team",
+     "check": {
+      "verdict": "partly",
+      "evidence": "The story first says xxx's three 'go to split' at 2:00; a split from 0:00 isn't narrated."
+     }
+    },
+    {
+     "t": 120,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "NwAy answers with a passive three man base defence whose hammer runs flags, and plays a player up at main. With continuous double running it stalls the split and builds a kill threat at main; a split on Corrupted Isle is hard against that.",
+     "tactics": [],
+     "variable": "passive base defence with a player up at main; share of flags double run",
+     "check": {
+      "verdict": "agrees",
+      "evidence": "Both teams double ran to 5:14; NwAy lost no pit NPC until 11:24; xxx's main fell back under pressure at 2:14 and 7:12."
+     }
+    },
+    {
+     "t": 200,
+     "kind": "reason",
+     "who": "commentator",
+     "claim": "Each time the hammer comes home with a flag he forces the split out before it can build pressure; the split's monk can't follow him out.",
+     "tactics": [],
+     "variable": "one returning defender turning a base fight",
+     "check": {
+      "verdict": "can't measure",
+      "evidence": "Same link as in Men v NwAy 2: the story has the moves but doesn't tie a defender's return to the split leaving."
+     }
+    },
+    {
+     "t": 400,
+     "kind": "diagnosis",
+     "who": "commentator",
+     "claim": "With its 8 Monk on the split, xxx's main is crushed: it drops the flag, gives up footmen, then knights and front NPCs, while the split runs out of energy having killed nothing. The gamble fails.",
+     "tactics": [],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "xxx lost a knight at 6:49, fell back into its base at 7:12 (team health 81%) and NwAy boosted at 7:14; NwAy held the stand to the end."
+     }
+    },
+    {
+     "t": 536,
+     "kind": "diagnosis",
+     "who": "commentator",
+     "claim": "xxx's main pushes too far forward while short of players and is caught; both monks die a minute before the base res. NwAy then turns on the collapsing split, and the ritualist, with no shadow step, is left to die.",
+     "tactics": [],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "7 Monk died 8:56 (64 s before the res), Prot 9:06 (54 s), Ritualist 9:31."
+     }
+    },
+    {
+     "t": 718,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "xxx's air elementalist dies just before the base res; the fire elementalist just after it, by a fraction of a second.",
+     "tactics": [],
+     "check": {
+      "verdict": "agrees",
+      "evidence": "Air Ele died 11:40 and was based at 12:00; Fire Ele died 11:58 and was not. The replay clock puts him 2 s before the res, so the story now reads the outcome instead of the clock."
+     }
+    },
+    {
+     "t": 700,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "The air elementalist runs to NwAy's base and takes one knight, sending NwAy home.",
+     "tactics": [],
+     "check": {
+      "verdict": "partly",
+      "evidence": "The story has two NwAy knights lost, at 11:24 and 11:35; the commentator saw one."
+     }
+    },
+    {
+     "t": 1200,
+     "kind": "read",
+     "who": "commentator",
+     "claim": "Far behind, xxx can't push a base without its flag capped; it would do better to keep a flag in hand while the elementalists run the defenders around.",
+     "tactics": [],
+     "check": {
+      "verdict": "partly",
+      "evidence": "NwAy held the stand from 5:14 to the end and boosted every two minutes from 7:14."
      }
     }
    ]

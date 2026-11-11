@@ -1,7 +1,7 @@
 {
 "about": "The engine's story of each golden moment's game (tools/golden/golden.py stories; story.py on the bundle-4 branch). Shown on Model > Golden moments for Denning to mark (R-354).",
 "generated": "2026-11-11",
-"draft": 3,
+"draft": 4,
 "stories": {
 "25a90723-1-1-425": [
 [
@@ -804,7 +804,11 @@
 ],
 [
 763,
-"Apes loses Mesmer, Dervish at the flag stand (77 s before the base res)"
+"Apes loses Mesmer at the flag stand (77 s before the base res)"
+],
+[
+771,
+"Apes loses Dervish at the greater stand area (68 s before the base res)"
 ],
 [
 771,
@@ -1104,11 +1108,15 @@
 ],
 [
 1272,
-"Apes loses Warrior 1, Mesmer, Dervish at Apes's back door (47 s before the base res)"
+"Apes loses Warrior 1, Mesmer at Apes's back door (47 s before the base res)"
 ],
 [
 1280,
 "Apes's Dervish drops the flag at Apes's front door; it stays there"
+],
+[
+1280,
+"Apes loses Dervish at Apes's front door (39 s before the base res)"
 ],
 [
 1295,
@@ -2124,7 +2132,7 @@
 ],
 [
 898,
-"One loses Warrior, 7 Monk, Mesmer, 8 Monk, Paragon 1 at hdm's pit (62 s before the base res)"
+"One loses Warrior, Paragon 1 at hdm's pit (62 s before the base res)"
 ],
 [
 900,
@@ -2133,6 +2141,10 @@
 [
 900,
 "One's Paragon 2 picks up the flag at the spawn"
+],
+[
+904,
+"One loses 7 Monk, Mesmer, 8 Monk at hdm's back door (55 s before the base res)"
 ],
 [
 907,
@@ -3414,7 +3426,11 @@
 ],
 [
 616,
-"HC loses 7 Monk, Mes/A at the flag stand (104 s before the base res)"
+"HC loses 7 Monk at the flag stand (104 s before the base res)"
+],
+[
+620,
+"HC loses Mes/A at the field on HC's side (100 s before the base res)"
 ],
 [
 626,
@@ -4456,7 +4472,11 @@
 ],
 [
 71,
-"Men loses Stand Mes 1, AoB Derv at the flag stand (49 s before the base res)"
+"Men loses Stand Mes 1 at the flag stand (49 s before the base res)"
+],
+[
+72,
+"Men loses AoB Derv at the greater stand area (48 s before the base res)"
 ],
 [
 72,
@@ -4846,11 +4866,15 @@
 ],
 [
 375,
-"DUM loses 7 Monk, Ritualist at ohno's pit (104 s before the base res)"
+"DUM loses 7 Monk at ohno's pit (104 s before the base res)"
 ],
 [
 382,
 "ohno pushes out from ohno's pit to ohno's front door (DUM 3 v 7 ohno)"
+],
+[
+385,
+"DUM loses Ritualist at ohno's front door (94 s before the base res)"
 ],
 [
 388,
@@ -6032,7 +6056,11 @@
 ],
 [
 462,
-"HC loses Mes/A, Prot at the field on HC's side (18 s before the base res)"
+"HC loses Mes/A at the field on HC's side (18 s before the base res)"
+],
+[
+466,
+"HC loses Prot at the flag stand (13 s before the base res)"
 ],
 [
 468,
@@ -6430,7 +6458,7 @@
 ],
 [
 157,
-"One loses 7 Monk, Hammer, AoB Derv, Mes/A, 7 Monk at the flag stand (82 s before the base res)"
+"One loses 7 Monk, Hammer, AoB Derv, Mes/A at the flag stand (82 s before the base res)"
 ],
 [
 159,
@@ -6449,6 +6477,10 @@
 "One's AoB Derv is resurrected at the flag stand (6 s after dying)"
 ],
 [
+174,
+"One loses 7 Monk at the flag stand (65 s before the base res)"
+],
+[
 178,
 "One's Hammer is resurrected at the flag stand (16 s after dying)"
 ],
@@ -6462,11 +6494,15 @@
 ],
 [
 187,
-"One loses Prot, AoB Derv at the field on One's side (52 s before the base res)"
+"One loses Prot at the field on One's side (52 s before the base res)"
 ],
 [
 196,
 "Men pushes from the flag stand to One's back door (One 1 v 6 Men)"
+],
+[
+196,
+"One loses AoB Derv at the flag stand (44 s before the base res)"
 ],
 [
 198,
@@ -6602,7 +6638,11 @@
 ],
 [
 334,
-"One loses Stand Mes, Dervish at One's back door (26 s before the base res)"
+"One loses Stand Mes at One's back door (26 s before the base res)"
+],
+[
+342,
+"One loses Dervish at the field on One's side (18 s before the base res)"
 ],
 [
 346,
@@ -8188,11 +8228,15 @@
 ],
 [
 684,
-"hold loses Ritualist, 7 Monk at hold's back door (36 s before the base res)"
+"hold loses Ritualist at hold's back door (36 s before the base res)"
 ],
 [
 692,
 "hook's 8 Monk leaves the flag stand to go back for the flag"
+],
+[
+692,
+"hold loses 7 Monk at the flag stand (27 s before the base res)"
 ],
 [
 698,
@@ -8316,7 +8360,15 @@
 ],
 [
 887,
-"hook loses Warrior, AoB Derv, Necromancer at the greater stand area (73 s before the base res)"
+"hook loses Warrior at the greater stand area (73 s before the base res)"
+],
+[
+895,
+"hook loses AoB Derv at the flag stand (64 s before the base res)"
+],
+[
+896,
+"hook loses Necromancer at hold's back door (63 s before the base res)"
 ],
 [
 900,
@@ -8530,7 +8582,7 @@
 ],
 [
 43,
-"hold loses Monk 2 (WoC), 8 Monk, Mesmer, 8 Monk, Mesmer at the field on \uc637\uc637\uc637\uc637's side (76 s before the base res)"
+"hold loses Monk 2 (WoC), 8 Monk at the field on \uc637\uc637\uc637\uc637's side (76 s before the base res)"
 ],
 [
 45,
@@ -8539,6 +8591,10 @@
 [
 49,
 "hold's Monk 2 (WoC) is resurrected at the field on \uc637\uc637\uc637\uc637's side (5 s after dying)"
+],
+[
+55,
+"hold loses Mesmer, 8 Monk at the field on hold's side (64 s before the base res)"
 ],
 [
 56,
@@ -8551,6 +8607,10 @@
 [
 61,
 "hold's Mesmer is resurrected at the field on hold's side (5 s after dying)"
+],
+[
+70,
+"hold loses Mesmer at the field on hold's side (50 s before the base res)"
 ],
 [
 74,
@@ -8594,7 +8654,7 @@
 ],
 [
 126,
-"hold loses Mesmer, Monk 5 (WoC), Mesmer, 8 Monk at hold's base (113 s before the base res)"
+"hold loses Mesmer, Monk 5 (WoC) at hold's base (113 s before the base res)"
 ],
 [
 127,
@@ -8607,6 +8667,14 @@
 [
 132,
 "hold's Mesmer is resurrected at hold's base (5 s after dying)"
+],
+[
+140,
+"hold loses Mesmer at hold's front door (100 s before the base res)"
+],
+[
+146,
+"hold loses 8 Monk at hold's back door (94 s before the base res)"
 ],
 [
 152,
@@ -8660,7 +8728,11 @@
 ],
 [
 40,
-"Dz loses Hammer, 7 Monk, AoB Derv at the greater stand area (79 s before the base res)"
+"Dz loses Hammer at the greater stand area (79 s before the base res)"
+],
+[
+43,
+"Dz loses 7 Monk, AoB Derv at the flag stand (77 s before the base res)"
 ],
 [
 45,
@@ -8878,7 +8950,11 @@
 ],
 [
 257,
-"DUM loses Air Ele, Dervish, 8 Monk at DUM's front door (102 s before the base res)"
+"DUM loses Air Ele at DUM's front door (102 s before the base res)"
+],
+[
+258,
+"DUM loses Dervish, 8 Monk at the greater stand area (102 s before the base res)"
 ],
 [
 259,
@@ -8930,7 +9006,11 @@
 ],
 [
 321,
-"DUM loses Ritualist, Prot at DUM's base (39 s before the base res)"
+"DUM loses Ritualist at DUM's base (39 s before the base res)"
+],
+[
+321,
+"DUM loses Prot at DUM's pit (39 s before the base res)"
 ],
 [
 321,
@@ -8969,20 +9049,8 @@
 "DUM's Prot is resurrected at DUM's front door (26 s after dying)"
 ],
 [
-351,
-"DUM loses Ritualist, 7 Monk, Dervish, Warrior, Hammer, Air Ele, Prot, 8 Monk at DUM's front door (8 s before the base res)"
-],
-[
 352,
-"One takes DUM's archer"
-],
-[
-352,
-"One takes DUM's knight"
-],
-[
-352,
-"One takes DUM's knight"
+"DUM resigns: One wins"
 ]
 ],
 "75312515-3-2-482": [
@@ -9124,11 +9192,15 @@
 ],
 [
 427,
-"One loses Mes/A, AoB Derv, Dervish at One's back door (53 s before the base res)"
+"One loses Mes/A, Dervish at One's back door (53 s before the base res)"
 ],
 [
 434,
 "Crew boosts"
+],
+[
+436,
+"One loses AoB Derv at One's front door (43 s before the base res)"
 ],
 [
 477,

@@ -2,6 +2,14 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-11 (second): Nick's commentary lined up with the story (stories draft 4)
+- Denning attached eight of Nick's transcripts and nine report links. The transcripts carry no timestamps; five reports were not stored and were fetched (`replays/requests.txt`). One link (00cb0759, xxx v Apes) has no transcript.
+- Lining up works without timestamps: deaths, caps, splits and NPC kills in the commentary fall in the story's order, an anchor every 30 to 60 s. Four games added to `data/commentary/nick.json` (now 9 games, 81 claims, each with the story's check). One game (983a47db) still to do.
+- The commentary found four plain errors in `story.py`, fixed on `bundle-4`: deaths in different places merged into one line; "N s before the base res" read from the replay clock, which is off by up to 2 s (it now reads whether the res took the player: "just too late for the base res"); no line for the Lord's death (the story now ends there); a resignation shown as a Lord kill and a list of deaths.
+- Stories regenerated (2,342 lines); only death, Lord and resignation lines changed; none of his marked lines; blind notes agree ("before time", "right after time", "gets based").
+- "Boss" in the transcripts is September's flux (Like a Boss), not the morale boost: the file's vocabulary note and three older claims corrected. The engine has no reading of any flux.
+- Waiting list for his ruling (nothing built): the flux and its holder, opening splits, main team in a 4-4 (R-335 against the monks rule), returning defender, arriving ahead after a collapse, caught out of position, runner-seconds away, inverted position, map objects, minions, pushing in before the defenders' base res.
+
 ## 2026-11-11: the story rewritten from Denning's first marks (branch `bundle-4`; stories draft 3)
 - He marked game 1 (BcS v hook): 7 lines wrong and a note asking for the game state (who is where, what they are doing) and for when players go to run, not only pickups. `story.py` now writes STATE lines at the opening and each minute, who leaves to go back for the flag, a dropped flag that stays where it falls and its return, resurrections, footmen taken, where the next runner came from; fights are told only once damage is traded, and a fight's place and numbers are followed apart.
 - Places: footies only where the footmen are engaged (R-307), a door is its drawn route out to 1,500 past the base, his greater stand areas (all 14 halls) come before doors. Low team health under 85% (R-352); no energy estimate for now (R-353); golden page shows the story first (R-354).

@@ -8,7 +8,7 @@ model's structure: `knowledge/model.md` (generated).
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/SPEC.md and docs/HANDOFF.md, then:
 > <your request>
 
-## State (2026-11-10, second session: redesign step 2 under way on branch `bundle-4`; batch 17, 506 matches)
+## State (2026-11-11: redesign step 2 under way on branch `bundle-4`; batch 17, 506 matches)
 - Main's engine is unchanged (still as SPEC.md describes; batch 17 readings in CHANGELOG 2026-11-09 night). Chunks
   can still run on main. Bundle 4 is built on the branch `bundle-4` and lands in one piece, then one rebuild (R-322).
 - On `bundle-4` so far (stages A and B of five; REDESIGN.md "Step 2: where it stands"):
@@ -26,13 +26,9 @@ model's structure: `knowledge/model.md` (generated).
 ## Next (in order)
 1. Denning: label the golden moments on the site (Model > Golden moments). Where a list cannot say what happened,
    pick Other and write it; those words become options.
-2. Then, on `bundle-4`: `git fetch origin && git rebase origin/main`, `python3 tools/golden/golden.py score`, fix
-   the classifier or bring definitions to Denning until R-323's rate holds. Known before the labels: 39% of flag
-   decisions have the main group in no named place (backside, push side, enemy base); 27% of split answers are a
-   count no named call covers; a split met outside the base is not read as a collapse; a second player joining a
-   split 15 s later is a second moment; timing uses hindsight purposes (fine for analysis, R-296).
-   First six labels (`golden.py score`): found 5 of 6, became 3 of 3, trigger 2 of 5, runners 2 of 5, rest 2 of 5.
-   Known faults: a runner whose team stands in its base is not counted; a runner passing through main leaves twice.
+2. Then, on `bundle-4`: `git fetch origin && git rebase origin/main`, regenerate the stories after each change to
+   `story.py`, run the blind check, and rewrite `golden.py score` against his marks (R-354; the drop-down score is
+   set aside, R-341).
 3. Stage D on the branch: shape (composition properties, route with `Hall.route_followed`, timing with R-321), the
    consequence record at 90 s and about 3 min, similar cases by scenario, the job table (Claude drafts, Denning
    rules), enemy execution, interaction pairs that pass twice, the five proposals (R-324), the Tier 2 results column
@@ -50,17 +46,22 @@ model's structure: `knowledge/model.md` (generated).
 - On the branch (drafts): `Hall.place`, `Moments.fights`, `Moments.flag_lives`, `story.py` (R-348 to R-352). All 14
   halls have a Greater stand area label (9 accepted drafts, 5 drawn by him).
 - Golden moments (R-354): the page shows the engine's story of each of the 30 games (`golden_stories.json`, draft
-  3); he ticks wrong lines and adds notes. His 13 earlier notes are the fixed blind check (`blind_note`). His first
-  marks (game 1, BcS v hook) reshaped the story on 2026-11-11: STATE lines (who is where, doing what) at the opening
-  and each minute, who goes back for the flag and when, a dropped flag stays where it falls (returned by the last
-  enemy to stand on it), footmen engaged (R-307), doors as their routes, fights only once damage is traded.
-  Waiting on him: review game 1's new story first, then say whether the form is right before marking the rest.
-- Commentary: he will record his own; asked for a timestamped transcript (.srt, .vtt, YouTube) with the match clock
-  spoken at the start and after each pause. Claims stored paraphrased unless he allows his own words.
-- Next on the branch: his answer on the new story form; known faults (main team choice in a 4-4, noisy "go to
-  split" and "go back to defend" lines from the old departures, long stories); a threat or posture; hand-off to
-  hold; time to cap; then scenarios, calls and triggers rebuilt on the story (R-351) and `golden.py score` against
-  his marks. A monk energy estimate only if needed (R-353). Also open: discovery second run; behaviour clusters.
+  4); he ticks wrong lines and adds notes. His 13 earlier notes are the fixed blind check (`blind_note`). Draft 3
+  (from his marks on game 1): STATE lines, who goes back for the flag and when, dropped flags, footmen engaged,
+  doors as routes. Draft 4 (from Nick's commentary): one death line per place, the base res read from whether it
+  took the player (the replay clock is off by up to 2 s), the Lord's death ends the story, a resignation is named.
+  Waiting on him: review game 1's story, then say whether the form is right before marking the rest.
+- Commentary trial (2026-11-11): Nick's transcripts have no timestamps, but the order of deaths, caps, splits and
+  NPC kills lines them up with the story every 30 to 60 s. `data/commentary/nick.json` now holds 9 games (81
+  claims, each with the story's check). "Boss" is September's flux (Like a Boss), not the boost: corrected.
+  Still to line up: 983a47db (xxx v ohno, d70f3684). 00cb0759 (xxx v Apes) was fetched but has no transcript.
+- Waiting list from the trial (nothing built; each needs his ruling, set out in chat 2026-11-11): the flux and who
+  holds the Boss; opening splits; main team in a 4-4 by R-335 over the monks rule; a returning defender linked to
+  the enemy leaving; arriving ahead after a collapse ("jump"); caught out of position; runner-seconds away;
+  inverted position; map objects (vine seed, bridges); minions; pushing in just before the defenders' base res.
+- Also next on the branch: noisy "go to split" lines, long stories, threat or posture, hand-off to hold, time to
+  cap; then scenarios, calls and triggers on the story (R-351) and `golden.py score` against his marks. A monk
+  energy estimate only if needed (R-353). Also open: discovery second run; behaviour clusters.
 
 ## Running it
 - Train batch: `gh api -X POST repos/itsha12/gvginfo/actions/workflows/train-batch.yml/dispatches -f ref=main
