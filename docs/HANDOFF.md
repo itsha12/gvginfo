@@ -68,12 +68,11 @@ model's structure: `knowledge/model.md` (generated).
   -f 'inputs[pick]=45' -f 'inputs[add_batch]=yes'` (rebuild only: `inputs[add_batch]=no`; TQs `inputs[tqs]=yes|no|auto`;
   blind round `inputs[blind]=no|yes|auto`, default no while rounds are paused). Then pull main and read
   `data/model/reports/latest.md`. Never queue two runs at once. Discovery: the "Discovery" workflow.
-- Maps: `tools/maps/build_maps.py` rebuilds outlines; `tools/maps/audit_labels.py [--routes]` after Denning labels;
-  on the branch `hallmap.py numbers|routes|reach [--write]`, `moments.py flags` (the flag ledger over all matches).
+- Maps: `tools/maps/build_maps.py`, `audit_labels.py [--routes]`; branch: `hallmap.py numbers|routes|reach`, `moments.py flags`.
 - Local engine: `git fetch --depth 1 origin +replays:refs/remotes/origin/replays`; `pip install
   --break-system-packages -r .github/workflows/train-requirements.txt`; in tools/replay_analysis `cache.py sync pull`,
-  `cache.py warm`. `GVG_SUBSET=30` for smoke tests; `PYTHONDONTWRITEBYTECODE=1`. `moments.py` needs no cache.
-- Site check: `python3 -m http.server` and playwright with `/usr/bin/google-chrome` (mock api.github.com for a save).
+  `cache.py warm`. `GVG_SUBSET=30` for smoke tests; `PYTHONDONTWRITEBYTECODE=1`. `moments.py` needs no cache. Site check:
+  `python3 -m http.server` and playwright with `/usr/bin/google-chrome` (mock api.github.com for a save).
 
 ## Cautions
 - Never print or decode a sealed field (blind picks, golden moments) in a chat, and never show Denning the engine's
