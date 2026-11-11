@@ -76,5 +76,5 @@ model's structure: `knowledge/model.md` (generated).
 
 ## Cautions
 - Never print or decode a sealed field (blind picks, golden moments) in a chat.
-- Don't merge `bundle-4` into main piecemeal (it would force a rebuild). No Train batch or Discovery run in progress.
-- Label and golden files are saved whole by the site: after a change here, Denning reloads the page first.
+- Don't merge `bundle-4` piecemeal (R-322). No Train batch or Discovery run in progress. Label and golden files are
+  saved whole by the site: after a change here, Denning reloads the page first.
