@@ -1,0 +1,202 @@
+"""Line up timestamped commentary and comms with the engine's record (R-362: the record is the work).
+
+Each transcript is filed as paraphrased statements, never the transcript itself, in data/lineup/<report id>.<source>.txt:
+header lines "# key: value" (match, source, teams in the story's order, clock, held_out), then one statement a line:
+
+    m:ss | kind | team | who | arg | what was said, paraphrased
+
+m:ss is the transcript's own clock; "clock" turns it into match time (a fixed offset in seconds, or anchors
+"m:ss=m:ss, ..." read as transcript=match and joined by straight lines). A kind may carry a prefix: "i." an intent
+called before the move, "s." a call about the enemy.
+
+Checked kinds are looked for in the engine's story and fight numbers within a window of the statement; the rest are
+things the story has no word for yet and are counted by kind, so the list of missing words comes from the data.
+
+Usage:  python3 tools/golden/lineup.py score [--data DIR] [--held] [--show] [report id ...]
+        python3 tools/golden/lineup.py lines <report id> <from m:ss> <to m:ss> [word]
+A report tool: it is in no cache key and writes nothing but its own cache of stories (LINEUP_CACHE, default /tmp)."""
+import collections, glob, json, os, re, sys
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+ENGINE = os.path.join(HERE, "..", "replay_analysis")
+CACHE = os.environ.get("LINEUP_CACHE", "/tmp/lineup_cache")
+BEFORE, AFTER = 40, 40            # a spoken line trails or leads the event: seconds searched either side
+INTENT_AFTER = 75                 # an intent, or a call about the enemy, comes before the move
+NO_WORD = ("build", "plan", "option", "reason", "timing", "route", "posture", "pushflag", "trade", "judge", "cause",
+           "lead", "support", "micro", "unsure", "standoff", "pull", "lord", "object", "question", "clock", "monks", "energy")
+NUM = {1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six", 7: "seven", 8: "eight"}
+
+
+def secs(s):
+    m, x = s.strip().split(":"); return int(m) * 60 + int(x)
+def clock(t): return f"{int(t) // 60}:{int(t) % 60:02d}"
+
+
+def record(rid):
+    """The engine's story and fight numbers for one match, cached."""
+    os.makedirs(CACHE, exist_ok=True)
+    p = os.path.join(CACHE, rid[:8] + ".json")
+    if os.path.exists(p): return json.load(open(p))
+    sys.path.insert(0, ENGINE); cwd = os.getcwd(); os.chdir(ENGINE)
+    from replaylib import Match
+    from state import GameState
+    import moments, story
+    st = GameState(Match.from_branch(rid)); M = moments.Moments(st); m = st.m
+    fights = [[t, [[f["n"][1], f["n"][2], f["place"]] for f in M.fights(t) if f["n"][1] and f["n"][2]]] for t in range(0, M.T + 1, 3)]
+    out = {"id": rid, "map": m.o["meta"]["map"], "teams": [m.tag[1], m.tag[2]], "T": M.T,
+           "roster": {m.tag[tm]: {str(m.A[a].get("slot")): m.roles[a] for a in m.PL if m.team(a) == tm} for tm in (1, 2)},
+           "story": [[t, s] for t, s in story.story(M, 0, None)], "fights": fights}
+    os.chdir(cwd); json.dump(out, open(p, "w"), ensure_ascii=False)
+    return out
+
+
+def load(path):
+    head, rows = {}, []
+    for ln in open(path, encoding="utf-8"):
+        ln = ln.rstrip("\n")
+        if ln.startswith("#"):
+            if ":" in ln: k, v = ln[1:].split(":", 1); head[k.strip()] = v.strip()
+            continue
+        if not ln.strip(): continue
+        c = [x.strip() for x in ln.split("|")]
+        c += [""] * (6 - len(c))
+        rows.append({"at": secs(c[0]), "kind": c[1], "team": c[2], "who": [w.strip() for w in c[3].split(",") if w.strip()], "arg": c[4], "say": c[5]})
+    ck = head.get("clock", "0")
+    anchors = sorted((secs(a.split("=")[0]), secs(a.split("=")[1])) for a in ck.split(",")) if "=" in ck else None
+    def to_match(s):
+        if not anchors: return s - int(ck)
+        if s <= anchors[0][0]: return s - (anchors[0][0] - anchors[0][1])
+        for (a0, m0), (a1, m1) in zip(anchors, anchors[1:]):
+            if s <= a1: return m0 + (s - a0) * (m1 - m0) / max(a1 - a0, 1)
+        return s - (anchors[-1][0] - anchors[-1][1])
+    for r in rows: r["t"] = to_match(r["at"])
+    return head, rows
+
+
+def _seg(line, tag):
+    """A team's part of a STATE line."""
+    m = re.search(rf"(?:^|\. ){re.escape(tag)}: (.*?)(?=\. [^ ]+: |$)", line)
+    return m.group(1) if m else ""
+
+
+def check(r, rec):
+    """(verdict, the engine line that agrees or the nearest lines of the kind)."""
+    kind = r["kind"].split(".")[-1]
+    if kind in NO_WORD: return "no word", ""
+    T = r["team"]; E = next((x for x in rec["teams"] if x != T), "")
+    te, ee = re.escape(T), re.escape(E)
+    who = r["who"]; arg = r["arg"]
+    lo, hi = r["t"] - BEFORE, r["t"] + (INTENT_AFTER if r["kind"][:2] in ("i.", "s.") else AFTER)
+    has = lambda s: all(re.search(rf"(?<![\w]){re.escape(w)}", s) for w in who)
+    near = [(t, s) for t, s in rec["story"] if lo <= t <= hi]
+    wide = [(t, s) for t, s in rec["story"] if lo - 60 <= t <= hi + 60]
+    state = lambda pool: [(t, _seg(s, T)) for t, s in pool if s.startswith("STATE")]
+    one = (who[0] if who else r"[^']*?")
+    R = rf"{te}'s {re.escape(who[0]) + '(?: [A-Z0-9])?' if who else '[^.;]*?'}"
+    def find(pat, pool=None, need_who=False):
+        for t, s in (near if pool is None else pool):
+            if s.startswith("STATE"): continue
+            if re.search(pat, s) and (not need_who or has(s)): return t, s
+    hit = None; fam = None
+    if kind == "go":
+        fam = rf"{te}'s .*(go back for the flag|picks up the flag at the spawn|waits back|takes the next flag)"
+        hit = find(rf"{R}\S* (leaves .*to go back for the flag|picks up the flag at the spawn|waits back at the flag spawn)") \
+            or find(rf"^{te}'s .*; {re.escape(one)} (went back for it|was waiting back).*takes the next flag")
+        if not hit:
+            hit = next(((t, s) for t, s in state(near) if re.search(rf"{re.escape(one)} (going back for the flag|running the flag|waiting back)", s)), None)
+    elif kind == "wait":
+        fam = rf"{te}'s .*wait"
+        hit = find(rf"{R}\S* waits back") or find(rf"^{te}'s .*; {re.escape(one)} was waiting back") \
+            or next(((t, s) for t, s in state(near) if re.search(rf"{re.escape(one)} waiting back", s)), None)
+    elif kind == "pickup": fam = rf"{te}'s .*picks"; hit = find(rf"{R}\S* picks (up the flag|the flag up)")
+    elif kind == "cap": fam = rf"{te}'s .*caps"; hit = find(rf"{R}\S* (over)?caps")
+    elif kind == "overcap": fam = rf"{te}'s .*caps"; hit = find(rf"{R}\S* overcaps")
+    elif kind == "hand":
+        fam = rf"{te}'s .*hands the flag"
+        hit = find(rf"{R}\S* hands the flag to {re.escape(arg)}") or find(rf"{R}\S* drops the flag.*{re.escape(arg)} picks it up")
+    elif kind == "drop": fam = rf"{te}'s .*drops the flag"; hit = find(rf"{R}\S* drops the flag")
+    elif kind == "ret": fam = rf"{te}'s .*returns"; hit = find(rf"{R}\S* returns {ee}'s flag")
+    elif kind == "hold":
+        fam = rf"{te}.*holding the flag"
+        hit = next(((t, s) for t, s in state(near) if re.search(rf"{re.escape(one)} holding the flag", s) or (not who and "holding the flag" in s)), None)
+        if not hit: hit = find(rf"{R}\S* (picks up the flag|picks the flag up)") or find(rf"{te}'s .* hands the flag to {re.escape(one)}")
+    elif kind == "form":
+        fam = rf"^{te}'s .*double run"; hit = find(rf"^{te}'s .*double run, each {arg} running")
+    elif kind == "split":
+        fam = rf"^{te} splits"
+        n = NUM.get(int(arg)) if arg.isdigit() else None
+        hit = find(rf"^{te} splits {n or ''}", need_who=True)
+        if not hit: hit = next(((t, s) for t, s in state(near) if re.search(r"splitting", s) and all(re.search(rf"{re.escape(w)}[^;]*splitting", s) for w in who)), None)
+    elif kind == "answer":
+        fam = rf"^{te} (answers|does not answer|sends)"
+        hit = find(rf"^{te} answers {ee}'s split with", need_who=True) or find(rf"^{te} sends .* back for {ee}'s split", need_who=True)
+        if not hit: hit = next(((t, s) for t, s in state(near) if all(re.search(rf"{re.escape(w)}[^;]*(defending|against)", s) for w in who) and "defending" in s), None)
+    elif kind == "noanswer": fam = rf"^{te} (answers|does not answer)"; hit = find(rf"^{te} does not answer {ee}'s split")
+    elif kind == "fight":
+        fam = None
+        m = re.match(r"(\d)\s*v\s*(\d)(?:\s*@\s*(.*))?", arg); a, b, pl = int(m.group(1)), int(m.group(2)), (m.group(3) or "").lower()
+        seen = collections.Counter()
+        for t, fs in rec["fights"]:
+            if lo <= t <= hi:
+                for x, y, p in fs:
+                    seen[(x, y, p)] += 1
+                    if (x, y) == (a, b) and pl in p.lower(): hit = (t, f"{rec['teams'][0]} {x} v {y} {rec['teams'][1]} at {p}")
+        if not hit:
+            top = [f"{x}v{y} {p}" for (x, y, p), c in seen.most_common(4)]
+            return "differs", "engine's numbers in the window: " + "; ".join(top)
+    elif kind == "death": fam = rf"^{te} loses"; hit = find(rf"^{te} loses [^(]*{re.escape(one)}")
+    elif kind == "baseres": fam = rf"^Base res: {te}"; hit = find(rf"^Base res: {te}'s [^.]*{re.escape(one)}")
+    elif kind == "res": fam = rf"^{te}'s .*resurrected"; hit = find(rf"{R}\S* is resurrected")
+    elif kind == "npc": fam = rf"^{te} takes"; hit = find(rf"^{te} takes {ee}'s {arg}")
+    elif kind == "fall":            # the story often tells a retreat from the pusher's side: both tellings count
+        fam = rf"^{te} (falls back|gives ground)|^The fight moves|^{ee} pushes"
+        hit = find(rf"^{te} (falls back|gives ground)[^(]*{re.escape(arg)}")
+        if not hit and arg: hit = find(rf"^(?:{ee} pushes|The fight moves) [^(]*to {te}'s {re.escape(arg)}")
+    elif kind == "push":
+        fam = rf"^{te}(?:'s main team)? pushes"; hit = find(rf"^{te}(?:'s main team)? pushes[^(]*{re.escape(arg)}")
+    elif kind == "join":
+        fam = rf"{te}'s [^;)]*joins?"; hit = find(rf"{te}'s [^;)]*{re.escape(one)}[^;)]* joins?[^;)]*{re.escape(arg)}")
+    elif kind == "leave": fam = rf"{te}'s [^;)]*leaves?"; hit = find(rf"{te}'s [^;)]*{re.escape(one)}[^;)]* leaves?")
+    elif kind == "boost": fam = rf"^{te} boosts"; hit = find(rf"^{te} boosts")
+    elif kind == "caught": fam = rf"^{te} is in"; hit = find(rf"^{te} is in {ee}'s base")
+    elif kind == "swap": fam = rf"{te} swaps"; hit = find(rf"{te} swaps")
+    elif kind == "end": fam = rf"^{te}'s (split|push) ends"; hit = find(rf"^{te}'s (split|push) ends[^;]*{re.escape(arg)}")
+    else: return "unknown kind", kind
+    if hit: return "agrees", f"{clock(hit[0])} {hit[1][:150]}"
+    alt = [f"{clock(t)} {s[:110]}" for t, s in wide if fam and not s.startswith("STATE") and re.search(fam, s)][:3]
+    return "differs", " // ".join(alt) if alt else "nothing of this kind within two minutes"
+
+
+def score(paths, show=False):
+    tot = collections.defaultdict(collections.Counter); per = {}
+    for p in paths:
+        head, rows = load(p); rec = record(head["match"])
+        c = collections.Counter(); name = f"{'-v-'.join(rec['teams'])} ({head['source']})"
+        for r in rows:
+            v, why = check(r, rec); c[v] += 1; tot[r["kind"].split(".")[-1]][v] += 1
+            if show and v == "differs": print(f"  {name} {clock(r['at'])} (match {clock(max(r['t'], 0))}) {r['kind']} {r['team']} {','.join(r['who'])} {r['arg']}: {r['say']}\n      -> {why}")
+            if v == "unknown kind": print("  UNKNOWN", r)
+        per[name] = c
+    print(f"{'game':34} {'agrees':>7} {'differs':>8} {'no word':>8}")
+    for k, c in per.items(): print(f"{k:34} {c['agrees']:7} {c['differs']:8} {c['no word']:8}")
+    print(f"\n{'kind':10} {'agrees':>7} {'differs':>8} {'no word':>8}")
+    for k, c in sorted(tot.items(), key=lambda kv: -sum(kv[1].values())): print(f"{k:10} {c['agrees']:7} {c['differs']:8} {c['no word']:8}")
+    a = sum(c["agrees"] for c in per.values()); d = sum(c["differs"] for c in per.values()); n = sum(c["no word"] for c in per.values())
+    print(f"\nall: {a + d + n} statements; checked {a + d}: agrees {a} ({round(100 * a / max(a + d, 1))}%), differs {d}; no word yet {n}")
+
+
+if __name__ == "__main__":
+    av = sys.argv[1:]
+    if not av: print(__doc__); sys.exit()
+    data = os.path.join(HERE, "..", "..", "data", "lineup")
+    if "--data" in av: i = av.index("--data"); data = av[i + 1]; del av[i:i + 2]
+    if av[0] == "lines":
+        rec = record(next((os.path.basename(f).split(".")[0] for f in glob.glob(os.path.join(data, av[1] + "*"))), av[1]))
+        for t, s in rec["story"]:
+            if secs(av[2]) <= t <= secs(av[3]) and (len(av) < 5 or re.search(av[4], s)): print(clock(t), s[:260])
+    elif av[0] == "score":
+        show = "--show" in av; held = "--held" in av
+        ids = [x for x in av[1:] if not x.startswith("--")]
+        paths = [p for p in sorted(glob.glob(os.path.join(data, "*.txt"))) if not ids or any(os.path.basename(p).startswith(i) for i in ids)]
+        paths = [p for p in paths if (load(p)[0].get("held_out", "no") == "yes") == held]
+        score(paths, show)
