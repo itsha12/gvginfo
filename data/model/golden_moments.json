@@ -1565,7 +1565,14 @@
     "Flag run",
     "Front door"
    ],
-   "label": null,
+   "label": {
+    "real": "yes",
+    "at": "2026-11-11",
+    "scenario": {},
+    "call": {},
+    "who": [],
+    "notes": "match opens with hold immediately pushing high council's front door WITHOUT taking a flag. high council brings flag on WoC but retreats to frontdoor without capping. Teams fight 8v8 over backdoor bridge before hold takes 3 deaths. \n\nhold's players base res and teams fight 8v8 in hold's base by res shrine. hold gets a spike kill on the 7 monk but takes two more deaths."
+   },
    "sealed": null,
    "picked_for": "forced read"
   },
