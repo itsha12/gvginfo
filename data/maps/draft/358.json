@@ -58,6 +58,52 @@
     ]
    ],
    "how": "21 of 41 resurrections on the two-minute timer landed here"
+  },
+  {
+   "id": "greater-stand-0",
+   "kind": "area",
+   "type": "Greater stand area",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -950,
+     -250
+    ],
+    [
+     -650,
+     -750
+    ],
+    [
+     -550,
+     -850
+    ],
+    [
+     -350,
+     -750
+    ],
+    [
+     2050,
+     1050
+    ],
+    [
+     2050,
+     1750
+    ],
+    [
+     1950,
+     1950
+    ],
+    [
+     -450,
+     3950
+    ],
+    [
+     -950,
+     3150
+    ]
+   ],
+   "how": "where fights of 3+ a side stood around the stand in 85 replays (85% of those positions); reaches 3400 units from the stand"
   }
  ],
  "notes": [],

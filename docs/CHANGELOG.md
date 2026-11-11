@@ -2,6 +2,12 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-10 (evening): the engine starts to read a match as Denning's notes do (branch `bundle-4`)
+- Denning set the first drop-down labels aside and wrote notes on 14 golden moments; rulings R-334 to R-347 (greater stand area; main team in a 4v4; flag position and stand holder both; pinned teams; one flag a team and the four hand-off and double run forms; the model thinks as his notes do, R-341; golden test in two parts).
+- Drafted on the branch: the flag ledger (`Moments.flag_lives`: 5,977 flag lives; single run 36%, returned 19%, hand-off to cap 15%, double run full 13%, half 7%), every fight with its numbers (`Moments.fights`), places in his words (`Hall.place`: doors, front and back footies, greater stand area), and `story.py`, which prints the chain. Against his notes on three games the numbers, places, swaps, deaths and flag forms agree; the "why" words and routes are not written yet.
+- Map page: area type "Greater stand area", drafted for 9 halls from where fights of 3+ a side stand around the stand (`tools/maps/draft_greater_stand.py`); the engine reads his drawn area where one exists.
+- Also in the branch from his rulings: cast prevention by casts punished (R-330), spikes signed (R-331), play for 28 on pit NPCs from 12:00 (R-332), the worth of each team's next boost in every moment (R-333).
+
 ## 2026-11-10 (second session): redesign step 2 started on branch `bundle-4`; golden moments page
 - Denning accepted Isle of Solitude's flag spawns and ruled Weeping Stone's unmirrored outer archer as in the game (R-318); the audit reads clean, so step 2 began. Rulings R-318 to R-324 (more than half = at a place; footmen from the labels; gained elsewhere; the branch; pass rates left to Claude; all five proposals in the bundle).
 - Branch `bundle-4` (not on main: one bundled engine change, one rebuild). `hallmap.py`: zones from the labelled areas (R-306), walked distance over the outline with teleporters as hops of no length (R-316), footmen reach measured around the Footman labels (1,190 to 1,620 units by hall; `data/benchmarks/footmen_reach.json`). `state.zone` and the three map numbers read it; the labels and outlines join the cache key.

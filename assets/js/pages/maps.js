@@ -14,13 +14,13 @@ import { esc, readJson, writeJson, canSave, toast } from "../core.js";
 
 const TYPES = {
   point: ["Footman", "Archer", "Knight", "Bodyguard", "Guild Lord", "Res shrine", "Flag spawn", "Flag stand", "Obelisk flag stand", "Gate", "Gate lock", "Gate lever", "Vine seed", "Teleporter entrance", "Teleporter exit", "Teleporter", "Statue", "Catapult", "Trebuchet", "Repair kit", "Health shrine", "Flame sentinel", "Hazard", "Other"],
-  area: ["Base", "Pit", "Flag stand area", "Footmen area", "Bridge", "Choke point", "Miasma", "Lava", "Tar", "Ice", "Water", "Fireball zone", "Hazard", "Other"],
+  area: ["Base", "Pit", "Flag stand area", "Greater stand area", "Footmen area", "Bridge", "Choke point", "Miasma", "Lava", "Tar", "Ice", "Water", "Fireball zone", "Hazard", "Other"],
   route: ["Front door", "Back door", "Flag run", "Collapse route", "Teleporter (one way)", "Other"],
 };
 const NPC = { guild_lord: ["Guild Lord", "#b3261e"], bodyguard: ["Bodyguard", "#d97a1c"], knight: ["Knight", "#6b4fb8"], archer: ["Archer", "#0f7a6c"], footman: ["Footman", "#c2448a"] };
 const MODES = [["move", "Look around"], ["point", "Add a point"], ["area", "Trace an area"], ["route", "Draw a route"]];
 // how each type is drawn: areas [fill, opacity], routes [stroke, dash in pixels or null], points [shape, colour, always named]
-const AREA = { "Base": ["#5b8fd6", 0.26], "Pit": ["#c7473d", 0.5], "Flag stand area": ["#d9a514", 0.55], "Footmen area": ["#c2448a", 0.45], "Bridge": ["#1f9e98", 0.55],
+const AREA = { "Base": ["#5b8fd6", 0.26], "Pit": ["#c7473d", 0.5], "Flag stand area": ["#d9a514", 0.55], "Greater stand area": ["#e8c95a", 0.22], "Footmen area": ["#c2448a", 0.45], "Bridge": ["#1f9e98", 0.55],
   "Choke point": ["#e07b1f", 0.55], "Miasma": ["#7a4fb8", 0.5], "Lava": ["#d9482b", 0.55], "Tar": ["#3d3d3d", 0.5], "Ice": ["#7fc4e8", 0.6], "Water": ["#3d7fc9", 0.45],
   "Fireball zone": ["#e0662b", 0.4], "Hazard": ["#9a3fa0", 0.45], "Other": ["#8a8a85", 0.4] };
 const ROUTE = { "Front door": ["#1f7a3a", null], "Back door": ["#a8432b", null], "Flag run": ["#1f5fd1", [2, 5]], "Collapse route": ["#6b4fb8", [9, 5]],

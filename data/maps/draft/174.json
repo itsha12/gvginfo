@@ -562,6 +562,52 @@
     ]
    ],
    "how": "52 jumps from here to there in 10 of 17 replays"
+  },
+  {
+   "id": "greater-stand-0",
+   "kind": "area",
+   "type": "Greater stand area",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     550,
+     1050
+    ],
+    [
+     650,
+     -1250
+    ],
+    [
+     1050,
+     -2250
+    ],
+    [
+     2050,
+     -3450
+    ],
+    [
+     2150,
+     -3450
+    ],
+    [
+     5550,
+     50
+    ],
+    [
+     2050,
+     3550
+    ],
+    [
+     1950,
+     3450
+    ],
+    [
+     550,
+     1950
+    ]
+   ],
+   "how": "where fights of 3+ a side stood around the stand in 13 replays (85% of those positions); reaches 5400 units from the stand"
   }
  ],
  "notes": [

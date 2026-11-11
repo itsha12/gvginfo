@@ -566,6 +566,52 @@
     ]
    ],
    "how": "rough: the ground within 4393 units' walk of the Guild Lord, half the walk to the stand (the doors did not close the base off)"
+  },
+  {
+   "id": "greater-stand-0",
+   "kind": "area",
+   "type": "Greater stand area",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -3350,
+     -2450
+    ],
+    [
+     -3250,
+     -2850
+    ],
+    [
+     -3050,
+     -3250
+    ],
+    [
+     -2750,
+     -3250
+    ],
+    [
+     2450,
+     -2350
+    ],
+    [
+     3150,
+     1950
+    ],
+    [
+     3150,
+     2550
+    ],
+    [
+     2950,
+     2850
+    ],
+    [
+     -2150,
+     -50
+    ]
+   ],
+   "how": "where fights of 3+ a side stood around the stand in 71 replays (85% of those positions); reaches 4300 units from the stand"
   }
  ],
  "notes": [

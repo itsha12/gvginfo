@@ -137,6 +137,31 @@ What the draft shows before any label: the family 1 call list has no option for 
 (39% of flag decisions: backside 14%, push side 14%, enemy base 9%), and the family 2 list none for three or more
 defenders against a solo split or other uneven counts (27%). Both wait for Denning's words from the golden moments.
 
+### The story so far (R-341; from Denning's notes on 14 golden moments)
+His notes tell a match as a chain, and the engine is being rebuilt to read it the same way. What the notes use:
+- **The map at any second** is a set of fights, each with its place, its numbers and who is in it: the main fight,
+  a split fight, a solo split and its defender, a flag run being pushed, two groups posturing without engaging.
+  Numbers are per fight ("2v3 back door, but main 5v4"); a player who casts a few skills from between two fights is
+  support, not a player more.
+- **Places, a ladder a fight moves along**: greater stand area, footies (front and back), front door, base, pit; a
+  fight moving down a team's ladder is that team under pressure. **Routes**: through mid, through the pit, front
+  door, back door, the portal, the short and the long flag way; route length decides who arrives first.
+- **Flag verbs**: run, wait back for the second flag, hand off (to cap, to hold), cap first when a player down,
+  overcap, match, double run (half, full), hold, push the flagger, support the runner, time taken to cap once at
+  the fight.
+- **Split verbs**: split (who, which door), defend (who; 1v1, 2v3), collapse, match or mirror (instantly, on time,
+  late), swap who is in it, fall out or pull out, threaten, abandon, rejoin; undefended and taking NPCs. A split can
+  be the build's plan from 0:00 (4-4), not a leave from main.
+- **Main verbs**: fight N v N at a place, take deaths, retreat down the ladder, push in, fall out, full collapse.
+- **Clocks and stocks**: the base res ("time": a kill before it, a death right after it), death penalty and boosts,
+  NPCs (he often cannot see them; the engine can), builds (4-4 split build, spike, Lyssa dervish, WoC).
+- Some movement has no purpose he can name ("not sure what this play is"); the engine may say so too.
+Decisions are then the points where a team chose one of these verbs in a given map state; the three families remain as
+groupings, but a trigger is any change the enemy makes to the map, not only a leave or a numbers difference.
+Built as drafts on the branch: `Moments.flag_lives`, `Moments.fights`, `Hall.place`, `story.py` (prints the chain).
+Checked against his notes on three games: numbers, places, swaps, deaths against the base res and flag forms agree;
+the "why" words (match, mirror, threaten, under pressure) and routes are not written yet.
+
 ## Tests
 - **Golden moments** (new): about 20 to 30 moments (a match and a time) Denning labels by hand on a site page: which
   scenario, what the team did (call and shape), optionally what they should have done (stored sealed from the model).

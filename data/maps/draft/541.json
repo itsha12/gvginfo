@@ -44,6 +44,52 @@
     ]
    ],
    "how": "454 pickups here"
+  },
+  {
+   "id": "greater-stand-0",
+   "kind": "area",
+   "type": "Greater stand area",
+   "name": "",
+   "note": "",
+   "pts": [
+    [
+     -3850,
+     -3650
+    ],
+    [
+     -3750,
+     -3650
+    ],
+    [
+     -550,
+     -3550
+    ],
+    [
+     -550,
+     -3450
+    ],
+    [
+     -1150,
+     -1950
+    ],
+    [
+     -1250,
+     -1750
+    ],
+    [
+     -2050,
+     -950
+    ],
+    [
+     -2850,
+     -750
+    ],
+    [
+     -3350,
+     -650
+    ]
+   ],
+   "how": "where fights of 3+ a side stood around the stand in 74 replays (85% of those positions); reaches 3300 units from the stand"
   }
  ],
  "notes": [],

@@ -49,15 +49,17 @@ model's structure: `knowledge/model.md` (generated).
   decisions and variables follow from that. Ruled from the notes: greater stand area (R-334), main team in a 4v4
   (R-335), flag position and stand holder both (R-336), pinned or desperate (R-337), one flag a team and the four
   hand-off and double run forms (R-339, R-340). Built so far: the flag ledger (`Moments.flag_lives`).
-- Answered 2026-11-10 (R-342 to R-347): Claude drafts the greater stand area a hall and he accepts or redraws; a
-  player already home who takes the next flag is a double run (half); a flag held on a weapon character is about
-  80% of a player down; the golden test in two parts (his note, then the engine's story to mark). Before the page
-  is amended he writes notes only (no drop-downs) on four split answers and four numbers moments, to see whether
-  the same reading carries to those families; `Moments.fights(t)` (every fight with its numbers) is the first draft.
-- Then the build order: flag ledger (hold, match, overcap, flag position) > theatres with numbers and R-335's main
-  team > pressure, death penalty, pinned > places and routes in his words > the story so far for any moment > the
-  golden page amended > scenarios, calls and triggers rewritten on top. Also open: discovery candidates after the
-  second run; 28 behaviour clusters to name (knowledge/behaviour.md).
+- R-342 to R-347 answered. He then wrote notes on eight more moments (four split answers, four numbers moments);
+  reviewed 2026-11-10 evening: the same reading carries over (REDESIGN "The story so far"). Drafted since:
+  `Hall.place` (doors, front and back footies, greater stand area), `Moments.fights`, `story.py`, and a Greater stand
+  area draft on the map page for 9 halls (no draft: Burning, Frozen, Warrior's, Wurms, Isle of the Dead: too few
+  counted replays; he draws those or the 3,500 walk stands in). Waiting on him: accept or redraw the drafts.
+- Next on the branch, in order: the "why" words in the story (match, mirror and on time by arrival against walked
+  distance, swap, threaten, fall out, under pressure from the place ladder, pinned R-337), routes (through mid,
+  through the pit), hand-off to hold, time to cap, quieter flag lines in a fast flag game; then the golden page in
+  two parts (R-345); then scenarios, calls and triggers rebuilt on the story. Questions put to him in chat (answers
+  pending): what "on time" means; what makes a fight "under pressure"; front or back footies where a hall's labels
+  split oddly (Warrior's, Meditation, Corrupted). Also open: discovery second run; 28 behaviour clusters.
 
 ## Running it
 - Train batch: `gh api -X POST repos/itsha12/gvginfo/actions/workflows/train-batch.yml/dispatches -f ref=main
