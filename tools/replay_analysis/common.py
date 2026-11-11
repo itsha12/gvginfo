@@ -260,3 +260,11 @@ def flux_at(ms):
     import datetime
     t = datetime.datetime.fromtimestamp(ms / 1000, datetime.timezone.utc) - datetime.timedelta(hours=7)
     return FLUX[t.month - 1]
+
+# ---- joins, leaves, swaps and the split fight record (moments.py; R-365, R-374). Claude's drafts, to confirm.
+JOIN_LOOK_S = 16          # a join or a leave is read over this long before or after it
+JOIN_MOVE = 800           # the player moved at least this far in that time ...
+JOIN_LEAD = 1.3           # ... and this many times further than the players he joined or left: otherwise the fight came to him
+SWAP_S = 40               # a leave and a join by one team at the same fight within this long is a swap
+SPLIT_FIGHT_GAP_S = 60    # the same two groups out of contact no longer than this are still one split fight (R-365)
+SPLIT_FIGHT_MIN = 2       # a split fight opens with at least this many players a side

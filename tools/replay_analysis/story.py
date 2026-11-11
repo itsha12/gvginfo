@@ -142,7 +142,9 @@ def _attempt_events(M):
     the story says what the record holds and nothing else (R-362)."""
     m, out = M.m, []
     mk = lambda n: "no monk" if not n else ("one monk" if n == 1 else f"{NUM.get(n, n)} monks")
-    for x in M.attempts():
+    covered = {i for r in M.split_fights() for i in r["attempts"]}     # told as one split fight (R-365)
+    for i, x in enumerate(M.attempts()):
+        if i in covered: continue
         tag, foe, an = x["team"], m.tag[3 - x["tm"]], x["answer"]
         who = ", ".join(q["role"] for q in x["members"])
         way = f" by the {x['way']}" if x["way"] else ""
@@ -180,6 +182,46 @@ def _attempt_events(M):
         what = "is outnumbered" if c["outnumbered"] else ("loses its numbers lead" if c["lead_lost"] else "keeps its lead")
         after = f"; {c['team']} loses {', '.join(c['lost_after'])} in the next minute" if c["lost_after"] else ""
         out.append((c["t"] - 5, f"{c['team']} is in {foe}'s base at the base res: {c['attackers']} v {c['defenders']} becomes {c['attackers']} v {c['defenders'] + c['coming_back']} ({c['team']} {what}){after}"))
+    return out
+
+
+def _record_events(M):
+    """Split fights (R-365) and every join, leave and swap (R-374), printed from the records."""
+    m, out = M.m, []
+    mk = lambda n: "no monk" if not n else ("one monk" if n == 1 else f"{NUM.get(n, n)} monks")
+    t1, t2 = m.tag[1], m.tag[2]
+    swapped = set()
+    for r in M.split_fights():
+        who = {tg: ", ".join(q["role"] for q in r["members"][tg] if q["from"] <= r["t0"] + JOIN_S) for tg in (t1, t2)}
+        n0 = {tg: sum(1 for q in r["members"][tg] if q["from"] <= r["t0"] + JOIN_S) for tg in (t1, t2)}
+        if r["started"]:
+            a, b = r["started"], (t2 if r["started"] == t1 else t1)
+            out.append((r["t0"], f"{a} splits {NUM.get(n0[a], n0[a])}" + (" from the opening" if r["opening"] else "") + f" ({who[a]}; {mk(r['monks'][a])})"))
+            out.append((r["t0"], f"{b} answers {a}'s split with {NUM.get(n0[b], n0[b])} ({who[b]}; {mk(r['monks'][b])}) at {r['place']}: a split fight"))
+        else:
+            out.append((r["t0"], f"A split fight at {r['place']}: {t1} {n0[t1]} v {n0[t2]} {t2} ({t1}: {who[t1]}; {t2}: {who[t2]})"))
+        for w in r["swaps"]:
+            out.append((w["t"], f"{w['team']} swaps {w['in']} in for {w['out']} in the split fight"))
+            swapped.add(("join", w["in_id"], w["t_in"])); swapped.add(("leave", w["out_id"], w["t_out"]))
+        g = r["ground_s"]
+        took = "; ".join(f"{tg} takes {', '.join(r['npcs'][tg])}" for tg in (t1, t2) if r["npcs"][tg]) or "no NPC taken"
+        died = "; ".join(f"{tg} loses {', '.join(r['deaths'][tg])}" for tg in (t1, t2) if r["deaths"][tg]) or "no deaths"
+        mn = r["main"]
+        out.append((r["t1"], f"The split fight ends after {clock(r['t1'] - r['t0'])}: {g[t1]} s on {t1}'s ground, {g[t2]} s on {t2}'s, {g['between']} s between them; {took}; {died}; "
+                             f"meanwhile at main {t1} was a player or more up for {mn['up_s']} s, even {mn['even_s']} s, down {mn['down_s']} s"))
+    for x in M.moves():
+        ids = [a for a, t_, _ in x["each"] if (x["kind"], a, t_) not in swapped]
+        if not ids or (x["kind"] == "leave" and x.get("flag")): continue          # leaving for the flag is told by the flag lines
+        tag, names = x["team"], _names(M, ids)
+        b, a_ = x["before"], x["after"]
+        nums = f"{t1} {b[0]} v {b[1]} {t2} becomes {a_[0]} v {a_[1]}"
+        mine = b[0] if x["tm"] == 1 else b[1]
+        if x["kind"] == "join":
+            out.append((x["t"], f"{tag}'s {names} join{_s(ids)}{_came(M, ids[0], x['t'])} at {x['place']}" + (", back from a res" if x.get("res") else "") + f": {nums}"))
+        elif len(x["ids"]) >= mine and mine >= 2:
+            out.append((x["t"], f"{tag} falls back from {x['place']} to {x['to']} ({names}): {nums}"))
+        else:
+            out.append((x["t"], f"{tag}'s {names} leave{_s(ids)} {x['place']}{_went(M, ids[0], x['t'])}: {nums}"))
     return out
 
 
@@ -299,11 +341,6 @@ def _fight_events(M):
                     dead = [x for x in went if not M.AL[x][min(tr["nsince"], T)]]
                     left = [x for x in went if x not in dead]
                     came_by[tm] = came
-                    if came and left and len(came) == len(left):
-                        bits.append(f"{tag[tm]} swaps {_names(M, came)} in for {_names(M, left)}"); left = []
-                    elif came:
-                        bits.append(f"{tag[tm]}'s {_names(M, came)} join{_s(came)}{_came(M, came[0], tr['first'].get(came[0], t))}")
-                    if left: bits.append(f"{tag[tm]}'s {_names(M, left)} leave{_s(left)}")
                     if dead: bits.append(f"{tag[tm]}'s {_names(M, dead)} {'is' if len(dead) == 1 else 'are'} dead")
                 for tm in (1, 2):                    # an answer: one side's join after the other's (R-348)
                     foe = 3 - tm
@@ -403,7 +440,7 @@ def story(M, t0=0, t1=None, states=True):
     lord = min((td for a, td in M.st.npc_dead.items() if (M.st.geo.npcs.get(a) or {}).get("kind") == "guild_lord"), default=None)
     t1 = M.T if t1 is None else t1
     if lord is not None: t1 = min(t1, lord)               # the game is over when a Lord dies; the replay runs on a few seconds
-    ev = _flag_events(M) + _move_events(M) + _fight_events(M) + _death_events(M)
+    ev = _flag_events(M) + _move_events(M) + _fight_events(M) + _death_events(M) + _record_events(M)
     if states: ev += [(u, state_line(M, u)) for u in [45] + list(range(120, M.T + 1, 60)) if u <= M.T]
     return sorted(((t, s) for t, s in ev if t0 <= t <= t1), key=lambda x: (x[0], not x[1].startswith("STATE")))
 

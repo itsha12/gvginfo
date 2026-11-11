@@ -30,7 +30,7 @@ import collections, json, math, statistics, sys
 from common import (READ_FROM, READ_TO, AREA_SHARE, PURPOSE_S, LEAVE_MIN_S, HOME_WAIT_S, SPAWN_R, GROUP_LEAVE_S, MEET_R,
                     NUMBERS_MIN_S, MERGE_S, BOOST_WARN_S, FLAGGER_R, SPLIT_FAR, BOOST_EVERY, SERIOUS_CARRY_S, FIGHT_LINK,
                     RETURN_R, FOOT_ENGAGED_S, SPLIT_STEP, SPLIT_MIN_S, SPLIT_GAP_S, FORCED_OUT_S, AHEAD_LOOK_S, CAUGHT_S, NPC_NEAR,
-                    JOIN_S, RES_EVERY, flux_at)
+                    JOIN_S, RES_EVERY, flux_at, JOIN_LOOK_S, JOIN_MOVE, JOIN_LEAD, SWAP_S, SPLIT_FIGHT_GAP_S, SPLIT_FIGHT_MIN)
 from state import d
 
 HOME, THEIRS = ("own pit", "own base"), ("enemy pit", "enemy base")
@@ -77,6 +77,7 @@ class Moments:
             if r[2] in self.P and r[3] in self.P and m.team(r[2]) != m.team(r[3]): self.hits[int(r[0] / 10)].append((r[2], r[3]))
         self._eng = {}
         self._dp, self._ov, self._fp, self._att, self._last, self._mt, self._ln, self._fr = {}, {}, None, None, {}, {}, None, None
+        self._fi, self._mv, self._sf = None, None, None
         self.legs = self._departures()
         self.by_player = collections.defaultdict(list)
         for g in self.legs: self.by_player[g["a"]].append(g)
@@ -547,6 +548,184 @@ class Moments:
                 "end": end, "after": after, "lost": [m.roles[a] for _, a in sorted(lost)], "kills": [m.roles[b] for _, b in sorted(kills)],
                 "npcs": [k for _, k in sorted(npcs)], "forced_out": forced, "ahead": ahead}
 
+    # ---- joins, leaves and swaps; the split fight record (R-365, R-374)
+    def _fight_index(self):
+        """second -> {player: the fight he stands in}, for fights with both teams in them, read every SPLIT_STEP."""
+        if self._fi is None:
+            self._fi = {}
+            for t in range(0, self.T + 1, SPLIT_STEP):
+                row = {}
+                for f in self.fights(t):
+                    if f["n"][1] and f["n"][2]:
+                        for a in f["ids"][1] | f["ids"][2]: row[a] = f
+                self._fi[t] = row
+        return self._fi
+
+    def moves(self):
+        """Every join, leave and swap at a fight, one record each (R-374): the collapses and rotations Denning calls.
+        Read player by player, so a fight that breaks up or merges does not hide it. A player joins when he comes to
+        stand in a fight (JOIN_S or longer, R-350) with players he was not with JOIN_LOOK_S earlier, having moved
+        JOIN_MOVE or more and JOIN_LEAD times further than they did (otherwise the fight came to him: two groups
+        meeting is a fight starting, not a join). A leave is the same read forwards, for a player who stays alive. Each
+        record: the second, the team, who, the place, the numbers before and after, whether he came from a res,
+        whether he left for the flag and where a leaver went. Swaps are read inside a split fight (split_fights)."""
+        if self._mv is not None: return self._mv
+        m, T, S = self.m, self.T, SPLIT_STEP
+        idx = self._fight_index()
+        comp = lambda a, t: ((idx[t][a]["ids"][1] | idx[t][a]["ids"][2]) - {a}) if a in idx[t] else frozenset()
+        def travel(ids, u, v):
+            ids = [x for x in ids if self.AL[x][u] and self.AL[x][v]]
+            return d(self.centre(ids, u), self.centre(ids, v)) if ids else None
+        ev = []
+        for a in m.PL:
+            tm, stays, cur = m.team(a), [], None
+            for t in range(0, T + 1, S):
+                c = comp(a, t)
+                if not c: continue
+                if cur is not None and t - cur["t1"] <= 6 and len(c & cur["last"]) * 2 >= min(len(c), len(cur["last"])): cur["t1"], cur["last"] = t, c
+                else:
+                    if cur: stays.append(cur)
+                    cur = {"t0": t, "t1": t, "first": c, "last": c}
+            if cur: stays.append(cur)
+            for s_ in stays:
+                t0, t1 = s_["t0"], s_["t1"]
+                if t1 - t0 < JOIN_S: continue
+                u = max(t0 - JOIN_LOOK_S, 0)
+                ua = next((x for x in range(u, t0) if self.AL[a][x]), None)
+                if t0 >= 6 and len(s_["first"]) >= 2 and ua is not None:
+                    theirs = travel(s_["first"], u, t0)
+                    fresh = [x for x in s_["first"] if x not in comp(a, u - u % S)]
+                    mine = d(self.P[a][ua], self.P[a][t0])
+                    if theirs is not None and len(fresh) * 2 >= len(s_["first"]) and mine >= JOIN_MOVE and mine >= JOIN_LEAD * theirs:
+                        f = idx[t0][a]
+                        ev.append({"t": t0, "kind": "join", "tm": tm, "ids": [a], "with": s_["first"], "place": f["place"], "n": (f["n"][1], f["n"][2]),
+                                   "res": any(t0 - 60 <= td <= t0 for td in self.st.death_times.get(a, [])), "stay_s": t1 - t0})
+                v = min(t1 + JOIN_LOOK_S, T)
+                if t1 <= T - 6 and len(s_["last"]) >= 2 and all(self.AL[a][x] for x in range(t1, v + 1)):
+                    theirs = travel(s_["last"], t1, v)
+                    mine = d(self.P[a][t1], self.P[a][v])
+                    if theirs is not None and len(comp(a, v - v % S) & s_["last"]) * 2 < len(s_["last"]) and mine >= JOIN_MOVE and mine >= JOIN_LEAD * theirs:
+                        f = idx[t1][a]
+                        ev.append({"t": t1, "kind": "leave", "tm": tm, "ids": [a], "with": s_["last"], "place": f["place"], "n": (f["n"][1], f["n"][2]),
+                                   "flag": any(t1 <= p <= t1 + 60 for p in self.pick.get(a, ())), "stay_s": t1 - t0, "to": self.place_words(*self.place_at(a, v))})
+        ev.sort(key=lambda x: (x["kind"], x["tm"], x["t"]))
+        merged = []
+        for x in ev:                                         # players arriving or leaving together are one move
+            y = merged[-1] if merged else None
+            if y and y["kind"] == x["kind"] and y["tm"] == x["tm"] and x["t"] - y["t1"] <= 6 and (len(x["with"] & y["with"]) >= 2 or set(x["ids"]) & y["with"] or set(y["ids"]) & x["with"]):
+                y["ids"] += x["ids"]; y["each"].append((x["ids"][0], x["t"], x["stay_s"])); y["t1"] = x["t"]; y["with"] = y["with"] | x["with"]
+                y["res"] = y.get("res") and x.get("res"); y["flag"] = y.get("flag") and x.get("flag")
+                if x["kind"] == "join": y["n"], y["place"] = x["n"], x["place"]
+            else: merged.append(dict(x, t1=x["t"], each=[(x["ids"][0], x["t"], x["stay_s"])]))
+        for x in merged:
+            k = len(x["ids"]); n = x["n"]
+            side = (k, 0) if x["tm"] == 1 else (0, k)
+            if x["kind"] == "join": x["before"], x["after"] = (max(n[0] - side[0], 0), max(n[1] - side[1], 0)), n
+            else: x["before"], x["after"] = n, (max(n[0] - side[0], 0), max(n[1] - side[1], 0))
+            x["roles"] = [m.roles[a] for a in x["ids"]]; x["team"] = m.tag[x["tm"]]
+        self._mv = sorted(merged, key=lambda x: x["t"])
+        return self._mv
+
+    def split_fights(self):
+        """The split fights of the match, one record each (R-365): a fight away from both main teams, at least
+        SPLIT_FIGHT_MIN a side when it opens, kept as one record for as long as the same two groups stay on each other,
+        wherever it drifts and whoever is pushing (out of contact for up to SPLIT_FIGHT_GAP_S is still the same fight).
+        Each record: when, who on each side and from when to when, who started it (whose ground it opened on), the
+        seconds on each team's ground and between them, the usual numbers and monks a side (R-378), the joins, leaves
+        and swaps inside it (moves), NPCs taken and deaths by side, what the main teams had meanwhile, and the split
+        attempts it covers (those are told as this one fight, not as separate splits)."""
+        if self._sf is not None: return self._sf
+        st, m, T, S = self.st, self.m, self.T, SPLIT_STEP
+        side_tm = {v: k for k, v in st.side.items()}
+        mainers = {}
+        def in_main(ids, tm, t):
+            if (tm, t) not in mainers: mainers[(tm, t)] = [a for a in self.main_team(tm, t) if self.AL[a][t]]
+            mt = mainers[(tm, t)]
+            return bool(mt) and sum(1 for a in mt if a in ids) * 2 >= len(mt)
+        recs, mainn = [], {}
+        for t in range(0, T + 1, S):
+            for f in self.fights(t):
+                n = f["n"]
+                if not (n[1] and n[2]): continue
+                ids = f["ids"][1] | f["ids"][2]
+                if in_main(ids, 1, t) or in_main(ids, 2, t):
+                    mainn[t] = (n[1], n[2]); continue
+                best = None
+                for r in recs:
+                    if t - r["seen"] > SPLIT_FIGHT_GAP_S: continue
+                    rc = {tm: {a for a, u in r["last"].items() if m.team(a) == tm and t - u <= 30 and self.AL[a][t]} or {a for a, u in r["last"].items() if m.team(a) == tm and u == r["seen"]} for tm in (1, 2)}
+                    o1, o2 = len(f["ids"][1] & rc[1]), len(f["ids"][2] & rc[2])
+                    if o1 and o2 and (o1 + o2) * 2 >= min(len(ids), len(rc[1]) + len(rc[2])) and (best is None or o1 + o2 > best[0]): best = (o1 + o2, r)
+                if best is None:
+                    if min(n[1], n[2]) < SPLIT_FIGHT_MIN: continue
+                    r = {"t0": t, "seen": t, "last": {}, "at": collections.defaultdict(list), "track": []}
+                    recs.append(r)
+                else: r = best[1]
+                r["seen"] = t
+                for a in ids: r["last"][a] = t; r["at"][a].append(t)
+                r["track"].append((t, n[1], n[2], f["place"], f["side"], f["kind"]))
+        out, atts = [], self.attempts()
+        mk = lambda ids: sum(1 for a in ids if m.A[a].get("p") == "Monk" and not m.roles[a].startswith("Monk "))
+        cl = lambda x: max(min(int(x), T), 0)
+        for r in recs:
+            t0, t1 = r["t0"], r["seen"]
+            if len(r["track"]) * S < SPLIT_MIN_S or t1 - t0 < SPLIT_MIN_S: continue
+            span = {}
+            for a, ts in r["at"].items():
+                sp = []
+                for t in ts:
+                    if sp and t - sp[-1][1] <= JOIN_S: sp[-1][1] = t
+                    else: sp.append([t, t])
+                sp = [(s_, e) for s_, e in sp if e - s_ >= JOIN_S]
+                if sp: span[a] = sp
+            mem = {tm: sorted((a for a in span if m.team(a) == tm), key=lambda a: span[a][0][0]) for tm in (1, 2)}
+            if not (mem[1] and mem[2]): continue
+            first = [x for x in r["track"] if x[0] <= t0 + 10]
+            sd = collections.Counter(x[4] for x in first).most_common(1)[0][0]
+            started = (3 - side_tm[sd]) if sd in side_tm and collections.Counter(x[5] for x in first).most_common(1)[0][0] not in ("stand", "greater stand") else None
+            ground = collections.Counter()
+            for x in r["track"]: ground[side_tm.get(x[4]) if x[5] not in ("stand", "greater stand", "field") else 0] += S
+            nums = collections.Counter((x[1], x[2]) for x in r["track"])
+            on = lambda a, t: any(s_ <= t <= e for s_, e in span.get(a, ()))
+            monks = {tm: collections.Counter(mk([a for a in mem[tm] if on(a, x[0])]) for x in r["track"]).most_common(1)[0][0] for tm in (1, 2)}
+            everyone = set(mem[1]) | set(mem[2])
+            inside = [x for x in self.moves() if t0 - 4 <= x["t"] <= t1 + 4 and len(x["with"] & everyone) * 2 >= len(x["with"])]
+            swaps, joins1, leaves1 = [], [], []         # a leave and a join by one team within SWAP_S: a swap (the longest-standing leaver first)
+            for x in inside:
+                for a, t_, stay in x["each"]: (joins1 if x["kind"] == "join" else leaves1).append((t_, a, stay, x["tm"]))
+            gone = set()
+            for tj, a, _, tm_ in sorted(joins1):
+                c = [l for l in leaves1 if l[3] == tm_ and l[1] != a and abs(l[0] - tj) <= SWAP_S and (l[0], l[1]) not in gone and a in mem[tm_] and l[1] in mem[tm_]]
+                if c:
+                    l = max(c, key=lambda l: l[2]); gone.add((l[0], l[1]))
+                    swaps.append({"t": max(tj, l[0]), "team": m.tag[tm_], "tm": tm_, "in": m.roles[a], "out": m.roles[l[1]], "in_id": a, "out_id": l[1], "t_in": tj, "t_out": l[0]})
+            deaths = {tm: [m.roles[a] for td, a in sorted((td, a) for a in mem[tm] for td in st.death_times.get(a, []) if any(s_ - 1 <= td <= e + 4 for s_, e in span[a]))] for tm in (1, 2)}
+            npcs = {1: [], 2: []}
+            for x, td in st.npc_dead.items():
+                v = st.geo.npcs.get(x)
+                if not v or v.get("team") not in (1, 2) or not (t0 <= td <= t1 + 4): continue
+                by = 3 - v["team"]; u = cl(td)
+                if v.get("pos") is not None and any(on(a, u - u % S) and self.P[a][u] and d(self.P[a][u], v["pos"]) < NPC_NEAR for a in mem[by]): npcs[by].append((td, v["kind"].replace("_", " ")))
+            for tm in (1, 2):
+                for td in self.foot_dead.get(3 - tm, ()):
+                    u = cl(td)
+                    if t0 <= td <= t1 + 4 and any(on(a, u - u % S) and str(self._deep(a, u) or "").endswith("footies") for a in mem[tm]): npcs[tm].append((td, "footman"))
+            mm = collections.Counter()
+            for x in r["track"]:
+                if x[0] in mainn: a_, b_ = mainn[x[0]]; mm["up" if a_ > b_ else "down" if a_ < b_ else "even"] += S
+            cov = [i for i, x in enumerate(atts) if x["kind"] == "split" and set(x["ids"]) & set(mem[x["tm"]])
+                   and (min(x["t1"], t1) - max(x["t_in"], t0)) * 2 >= (x["t1"] - x["t_in"])]
+            p0 = collections.Counter(x[3] for x in first).most_common(1)[0][0]
+            out.append({"t0": t0, "t1": t1, "opening": t0 <= 75, "place": p0, "started": m.tag[started] if started else None, "started_tm": started,
+                        "members": {m.tag[tm]: [{"role": m.roles[a], "from": span[a][0][0], "to": span[a][-1][1]} for a in mem[tm]] for tm in (1, 2)},
+                        "ids": {tm: mem[tm] for tm in (1, 2)}, "n": max(nums, key=nums.get), "monks": {m.tag[tm]: monks[tm] for tm in (1, 2)},
+                        "ground_s": {m.tag[1]: ground[1], m.tag[2]: ground[2], "between": ground[0]}, "linked_s": len(r["track"]) * S,
+                        "moves": [{"t": x["t"], "kind": x["kind"], "team": x["team"], "roles": x["roles"]} for x in inside], "swaps": swaps,
+                        "npcs": {m.tag[tm]: [k for _, k in sorted(npcs[tm])] for tm in (1, 2)}, "deaths": {m.tag[tm]: deaths[tm] for tm in (1, 2)},
+                        "main": {"up_s": mm["up"], "even_s": mm["even"], "down_s": mm["down"]}, "attempts": cov})
+        self._sf = out
+        return self._sf
+
     def caught(self):
         """Caught out (R-359): a team in the enemy's base CAUGHT_S or less before the defenders' base res, outnumbered
         or about to be once the dead come back. One record a base res and attacking team, with what followed."""
@@ -968,7 +1147,7 @@ if __name__ == "__main__":
             import common
             st_ = GameState(Match.from_branch(next((r for r in common.replay_ids() if r.startswith(a[0])), a[0])))
             M_ = Moments(st_)
-            print(json.dumps({"flux": flux_at(st_.m.o["meta"]["started"]), "attempts": M_.attempts(), "caught": M_.caught()} if a[1] == "splits" else M_.flags_record(), indent=1, default=list))
+            print(json.dumps({"flux": flux_at(st_.m.o["meta"]["started"]), "attempts": M_.attempts(), "caught": M_.caught(), "split_fights": M_.split_fights(), "moves": [{k: v for k, v in x.items() if k not in ("with", "ids", "each")} for x in M_.moves()]} if a[1] == "splits" else M_.flags_record(), indent=1, default=list))
             sys.exit()
         recs = match_records(a[0]) or []
         for x in recs:
