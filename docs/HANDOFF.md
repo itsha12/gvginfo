@@ -44,7 +44,7 @@ model's structure: `knowledge/model.md` (generated).
 - On the branch (drafts): `Hall.place`, `Moments.fights`, `Moments.flag_lives`, `story.py` (R-348 to R-352). All 14
   halls have a Greater stand area label (9 accepted drafts, 5 drawn by him).
 - Golden moments (R-354): the page shows the engine's story of each of the 30 games (`golden_stories.json`, draft
-  4); he ticks wrong lines and adds notes. His 13 earlier notes are the fixed blind check (`blind_note`). Draft 3
+  5); he ticks wrong lines and adds notes. His 13 earlier notes are the fixed blind check (`blind_note`). Draft 3
   (from his marks on game 1): STATE lines, who goes back for the flag and when, dropped flags, footmen engaged,
   doors as routes. Draft 4 (from Nick's commentary): one death line per place, the base res read from whether it
   took the player (the replay clock is off by up to 2 s), the Lord's death ends the story, a resignation is named.
@@ -53,12 +53,17 @@ model's structure: `knowledge/model.md` (generated).
   NPC kills lines them up with the story every 30 to 60 s. `data/commentary/nick.json` now holds 9 games (81
   claims, each with the story's check). "Boss" is September's flux (Like a Boss), not the boost: corrected.
   Still to line up: 983a47db (xxx v ohno, report d70f3684); 00cb0759 has no transcript.
-- Ruled 2026-11-11 from the trial (R-355 to R-362), none built yet: main team in a 4-4 by R-335; flux as context;
-  opening splits; linked moves; caught out (20 s); runner time away. Not yet: inverted position, objects, minions.
-  R-362: the record is the work, not the description. Checked against Nick's three games, `moments.py` finds about
-  11 of 15 split attempts but about half its split records are repeats or not splits (players rejoining their main
-  in the enemy base; a defender going home read as a flag run). Proposed, awaiting his go-ahead: one record per
-  split attempt (start, who, answer, end, result) and flag records with runner, backup flag and back cap.
+- Built 2026-11-11 on the branch from R-355 to R-364 (the record is the work, R-362): `Moments.attempts()` (one
+  record a split attempt or main team push: who, monks, way in, the answer, main team numbers meanwhile, end,
+  result, linked moves), `caught()` (in the enemy base at the defenders' base res), `flags_record()` (runner, time
+  away, backup flag, back cap, with a split, drop place, boost clock, died carrying), `main_team()` and `lane()`,
+  `common.flux_at`. `moments.py <id> splits|flags` prints them; `story.py` prints its split, push and cap lines from
+  them. 513 matches: 1,909 splits (3.7 a match), 1,681 pushes. Against Nick's three games 12 of 13 attempts found.
+- Not right yet, for his ruling (set out in chat): an even split fight that moves across the middle is recorded as
+  alternating attempts by each team (his notes call it one 4v4 split); a split met before it crosses is not an
+  attempt; "back cap" is defined by me; solo splits are 45% of records and "main team joined" 35%, unchecked;
+  being pushed back is read from the middle player, so a small step back is missed. The old F1 to F3 moments
+  (triggers, scenarios, calls) still run beside these and are not yet rebuilt on them.
 - Also open: noisy "go to split" lines, threat or posture, hand-off to hold, time to cap, `golden.py score` against
   his marks, a monk energy estimate only if needed (R-353), discovery second run, behaviour clusters.
 

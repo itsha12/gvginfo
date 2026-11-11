@@ -200,6 +200,11 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   (`label.story.wrong`, `label.notes`). The 13 notes marked `blind_note` were written before he saw any story: after
   every change to `story.py`, regenerate the stories and compare them with those notes yourself (the blind check).
   His marks keep the text of the line they were made on.
+  The record is the work, not the description (R-362): `Moments.attempts()` (one record a split attempt or main team
+  push, R-357, R-358, R-363, R-364), `caught()` (R-359), `flags_record()` (R-360), `main_team()` (R-335, R-355) and
+  `common.flux_at` (R-356) hold what the engine keeps; `moments.py <report id> splits|flags` prints them, and `story.py`
+  prints its split, push and cap lines from them, never from a second reading. Lessons from his marks, notes or
+  commentary go into these records first.
 - Guild hall maps: `tools/maps/build_maps.py` builds the site's map data from the replays branch
   (`data/maps/index.json`, `outline/<map id>.json`, `auto/<map id>.json`); Denning's labels (points, areas, routes) are
   saved by the site's Model > Guild hall maps page to `data/maps/labels/<map id>.json` and override estimates. The

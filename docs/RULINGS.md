@@ -318,3 +318,5 @@ This register is the model's constitution: every definition and decision Denning
 - R-360. A runner's time away is totalled per flag, in seconds away from the fight.
 - R-361. Inverted position, map objects (vine seed, bridges) and minions: not yet.
 - R-362. The golden moments and the story are a learning exercise for the engine, not the work product. What matters is that the engine records and accounts for the right things; the description comes second. Whatever is learned from his marks, notes or commentary goes into the record first.
+- R-363. A split attempt ends when its players are back with their main team, dead, or back on their own side of the stand for 20 seconds. Going in and out of the enemy base within one attempt stays one attempt.
+- R-364. A main team pushing into a base held by a passive defence is not a split, even when it is four players: it is a main team push, and the enemy's defence is its answer.

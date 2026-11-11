@@ -2,6 +2,12 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-11 (third): the engine's split, push and flag records (branch `bundle-4`; stories draft 5)
+- Denning ruled R-355 to R-364 and directed that the record, not the description, is the work (R-362).
+- `moments.py`: `attempts()` (split attempts and main team pushes, one record each), `caught()`, `flags_record()`, `main_team()` (the part that carries the flags and stays; the part on the front lane when the other went round the back), `lane()`; `common.flux_at`. `story.py` prints from these; the old "go to split" and "go back to defend" lines are gone.
+- Checked against Nick's three games (12 of 13 attempts, composition and answers right) and four of the blind notes (opening and solo splits agree; an even 4v4 split fight that crosses the middle does not).
+- 513 matches run in 2.5 minutes: 1,909 splits, 1,681 pushes, 22 flags carried with a split, 226 splits back ahead of or behind their defenders.
+
 ## 2026-11-11 (second): Nick's commentary lined up with the story (stories draft 4)
 - Denning attached eight of Nick's transcripts and nine report links. The transcripts carry no timestamps; five reports were not stored and were fetched (`replays/requests.txt`). One link (00cb0759, xxx v Apes) has no transcript.
 - Lining up works without timestamps: deaths, caps, splits and NPC kills in the commentary fall in the story's order, an anchor every 30 to 60 s. Four games added to `data/commentary/nick.json` (now 9 games, 81 claims, each with the story's check). One game (983a47db) still to do.
