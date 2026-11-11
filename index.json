@@ -1,6 +1,6 @@
 {
  "format": "gvginfo.replay.v1",
- "updated": "2026-11-11T05:55:43.631Z",
+ "updated": "2026-11-11T19:54:31.721Z",
  "matches": {
   "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65": {
    "file": "2026-11/eea5ba87-ac20-5ba3-a6c9-965f11ca8a65.json.gz",
@@ -7909,6 +7909,34 @@
    "winner": "NwAy",
    "length_s": 1295,
    "kb": 347,
+   "summary": true,
+   "trim": 3
+  },
+  "cc1e770d-8fbc-5a0f-ac5f-1d27864fdf37": {
+   "file": "2026-09/cc1e770d-8fbc-5a0f-ac5f-1d27864fdf37.json.gz",
+   "date": "2026-09-19T19:59:54.393Z",
+   "map": "Druid's Isle",
+   "teams": [
+    "NwAy",
+    "ohno"
+   ],
+   "winner": "NwAy",
+   "length_s": 709,
+   "kb": 188,
+   "summary": true,
+   "trim": 3
+  },
+  "453bd7a0-ec5b-5e03-a6a2-023431c7deaa": {
+   "file": "2026-10/453bd7a0-ec5b-5e03-a6a2-023431c7deaa.json.gz",
+   "date": "2026-10-17T18:09:42.760Z",
+   "map": "Isle of Solitude",
+   "teams": [
+    "Men",
+    "OG"
+   ],
+   "winner": "Men",
+   "length_s": 244,
+   "kb": 67,
    "summary": true,
    "trim": 3
   }
