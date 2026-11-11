@@ -36,7 +36,6 @@ model's structure: `knowledge/model.md` (generated).
 4. Stage E: old and new kinds side by side for one rebuild (R-323), then retire the replaced kinds, clean the causal
    map, rewrite SPEC.md and METHODS.md, readability test, merge to main, Train batch with `add_batch=no` (same 506
    matches, so the comparison is the engine alone). Then step 3 (the decision card), then step 4.
-5. Meanwhile, if wanted, on main: chunks of about 45, the Discovery workflow's second run, a third readability run.
 
 ## Open rulings for Denning (set each out in the chat, R-329; R-318 to R-341 ruled 2026-11-10)
 - R-341 sets the direction: the engine should think as his golden notes do (the story so far); options, decisions
