@@ -1473,7 +1473,14 @@
     "Flag run",
     "Front door"
    ],
-   "label": null,
+   "label": {
+    "real": "yes",
+    "at": "2026-11-11",
+    "scenario": {},
+    "call": {},
+    "who": [],
+    "notes": "Match starts with both teams running main. Crew has flag on air ele, hdm has flag on warrior with derv waiting back for second flag. hdm warrior caps first and hdm derv brings the second flag. Crew over caps and teams are fighting 8v8 in front of hdm's base whilst derv goes to cap flag. \n\nAt around 1:30, crew air ele goes back to run flag. Crew is fighting 7v8 in front of their base and dies on assassin. Crew retreats to footies through front door around 1:55 and assassin bases at 2 minutes. Teams fight 8v8 for around a minute in the choke in crew's footies before hdm falls out. \n\nAt around 3:20, crew's air ele goes back to flag. Crew fights 8v8 while trying to cap for over a minute. It takes crew's air ele 50+ seconds from when he reaches main team to when he caps. \n\nhdm continues to fight 8v8 in the greater flag area for around 45s before sending back mes/a to run a flag. hdm fights 7v8 for around 35s whilst their mes/a runs a flag until he rejoins mainteam and runs to cap the flag around 6:20. At the same time, hdm's ranger is splitting back door with no one from crew going to defend yet, so hdm is fighting 7v8 again in the greater flag area whilst also trying cap flag on mes/a. Around 6:50, crew's air ele runs back to flag and teams fight 7v7 in front of crew's front door. At around 7:25, crew sends 8 monk to defend the ranger, whilst crew runs flag on their air ele 7v7 through choke. Crew's air ele takes over a minute to cap, and I think dies before capping but not sure, timing was close. Crew takes 2 more deaths in mainteam fight and retreats to pit."
+   },
    "sealed": null,
    "picked_for": "scenario"
   },
