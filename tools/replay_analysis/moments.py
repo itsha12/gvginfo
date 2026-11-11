@@ -28,7 +28,8 @@ Usage:  python3 moments.py <report id> [family]      the match's moments in orde
 In code: Moments(st, sb).records() -> list of dicts."""
 import collections, json, math, statistics, sys
 from common import (READ_FROM, READ_TO, AREA_SHARE, PURPOSE_S, LEAVE_MIN_S, HOME_WAIT_S, SPAWN_R, GROUP_LEAVE_S, MEET_R,
-                    NUMBERS_MIN_S, MERGE_S, BOOST_WARN_S, FLAGGER_R, SPLIT_FAR, BOOST_EVERY, SERIOUS_CARRY_S, FIGHT_LINK)
+                    NUMBERS_MIN_S, MERGE_S, BOOST_WARN_S, FLAGGER_R, SPLIT_FAR, BOOST_EVERY, SERIOUS_CARRY_S, FIGHT_LINK,
+                    RETURN_R, FOOT_ENGAGED_S)
 from state import d
 
 HOME, THEIRS = ("own pit", "own base"), ("enemy pit", "enemy base")
@@ -66,6 +67,14 @@ class Moments:
         for r in m.o["ev"]:
             if r[1] == "dt" and isinstance(r[2], int) and r[2] < len(m.A) and m.A[r[2]].get("npc") == "footman":
                 self.foot_dead[m.A[r[2]].get("team")].append(r[0] / 10)
+        self.foot_act = collections.defaultdict(list)        # team -> seconds its footmen dealt or took damage
+        self.hits = collections.defaultdict(list)            # second -> [(actor, target)] damage between players
+        for r in m.o["ev"]:
+            if r[1] != "dm" or not isinstance(r[2], int) or not isinstance(r[3], int) or max(r[2], r[3]) >= len(m.A): continue
+            for x in (r[2], r[3]):
+                if m.A[x].get("npc") == "footman": self.foot_act[m.A[x].get("team")].append(r[0] / 10)
+            if r[2] in self.P and r[3] in self.P and m.team(r[2]) != m.team(r[3]): self.hits[int(r[0] / 10)].append((r[2], r[3]))
+        self._eng = {}
         self.legs = self._departures()
         self.by_player = collections.defaultdict(list)
         for g in self.legs: self.by_player[g["a"]].append(g)
@@ -137,13 +146,27 @@ class Moments:
         out = []
         for g in gs:
             n = {tm: [a for a in g if m.team(a) == tm] for tm in st.teams}
-            z = collections.Counter(self.hall.place(self.P[a][t]) for a in g)
+            z = collections.Counter(self.place_at(a, t) for a in g)
             kind, side = max(z, key=lambda k: (z[k], str(k)))
             out.append({"n": {tm: len(n[tm]) for tm in st.teams}, "ids": {tm: frozenset(n[tm]) for tm in st.teams},
                         "who": {tm: sorted(m.roles[a] for a in n[tm]) for tm in st.teams},
                         "kind": kind, "side": side, "place": self.place_words(kind, side),
                         "flag": [a for a in g if self.carrying(a, t)]})
         return sorted(out, key=lambda x: -(x["n"][1] + x["n"][2]))
+
+    def engaged(self, t):
+        """{side: are that side's footmen in a fight now} (R-307: fell to footmen means the footmen are engaged)."""
+        if t not in self._eng:
+            self._eng[t] = {self.st.side[tm]: self.footmen_alive(tm, t) > 0 and any(t - FOOT_ENGAGED_S <= x <= t for x in self.foot_act.get(tm, ()))
+                            for tm in self.st.teams if tm in self.st.side}
+        return self._eng[t]
+
+    def place_at(self, a, t):
+        return self.hall.place(self.P[a][t], self.engaged(t))
+
+    def contact(self, ids1, ids2, t0, t1):
+        """Did these two groups trade damage between t0 and t1 (standing near each other is not a fight)."""
+        return any((x in ids1 and y in ids2) or (x in ids2 and y in ids1) for u in range(max(int(t0), 0), int(t1) + 1) for x, y in self.hits.get(u, ()))
 
     def place_words(self, kind, side):
         tag = {v: self.m.tag[k] for k, v in self.st.side.items()}.get(side)
@@ -174,8 +197,21 @@ class Moments:
                 u = min(max(int(t), 0), self.T)
                 if typ == "flag_picked_up":
                     fresh = self.P[a][u] is not None and d(self.P[a][u], self.spawn[tm]) < SPAWN_R
+                    if fresh and cur is not None and cur["carries"] and cur["carries"][-1][2] is not None:
+                        lc = cur["carries"][-1]; lp = self.P[lc[0]][min(int(lc[2]), self.T)]
+                        if lp and d(self.P[a][u], lp) < RETURN_R: fresh = False      # the flag lay there: picked up from the ground
                     if fresh and cur is not None and cur["carries"]:        # the flag was returned to the spawn
-                        cur["end"], cur["how"] = t, "returned"; lives.append(cur); cur = None
+                        last = cur["carries"][-1]; td = last[2] if last[2] is not None else t
+                        pos = self.P[last[0]][min(int(td), self.T)]
+                        near = [(d(self.P[b][u], pos), u, b) for u in range(int(td), min(int(t), self.T) + 1) for b in st.players[3 - tm]
+                                if pos and self.AL[b][u] and d(self.P[b][u], pos) < RETURN_R]
+                        # players run past a flag without returning it, so the last enemy to stand on it before the
+                        # next pickup at the spawn is taken as the one who returned it (Denning's mark, BcS v hook 6:22)
+                        close = [x for x in near if x[0] < 150] or near
+                        who = (lambda x: (x[1], x[2]))(max(close, key=lambda x: x[1])) if close else None
+                        cur["end"], cur["how"] = t, "returned"
+                        cur["dropped"], cur["returned"] = (td, last[0], pos), who
+                        lives.append(cur); cur = None
                     if cur is None: cur = {"team": tm, "start": t, "carries": [], "end": None, "how": None}
                     cur["carries"].append([a, t, None])
                 elif cur is not None and cur["carries"] and cur["carries"][-1][0] == a and cur["carries"][-1][2] is None:
@@ -191,8 +227,10 @@ class Moments:
                 nxt = next((x for x in lives[i + 1:] if any(c[2] is None or c[2] - c[1] >= SERIOUS_CARRY_S for c in x["carries"])), None)
                 n = next((c[0] for c in nxt["carries"] if c[2] is None or c[2] - c[1] >= SERIOUS_CARRY_S), None) if nxt else None
                 tc = min(int(L["end"]), self.T)
-                back = (n is not None and n != L["capper"] and self.P[n][tc] is not None and self.hall is not None
-                        and (self.hall.walk(self.P[n][tc], self.spawn[tm]) or 1e9) < (self.hall.walk(self.P[n][tc], self.hall.stand) or 0))
+                back = False
+                if n is not None and n != L["capper"] and self.P[n][tc] is not None and self.hall is not None:
+                    w1, w2 = self.hall.walk(self.P[n][tc], self.spawn[tm]), self.hall.walk(self.P[n][tc], self.hall.stand)
+                    back = w1 is not None and w2 is not None and w1 < w2
                 if back: L["form"] = "double run, half" if n in order else "double run, full"
                 else: L["form"] = "hand-off to cap" if len(order) > 1 else "single run"
                 L["next_runner"] = n if back else None

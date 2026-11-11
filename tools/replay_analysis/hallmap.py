@@ -115,6 +115,23 @@ class Hall:
                             if cell((a[0] + (b[0] - a[0]) * i / n, a[1] + (b[1] - a[1]) * i / n)) not in base[r["side"]]), None)
                 if out: pt = out; break
             self.doors[r["side"]][k].append(pt)
+        self.door_routes = {s: {"front": [], "back": []} for s in "AB"}
+        from common import DOOR_OUT
+        for r in self.routes:
+            k = {"Front door": "front", "Back door": "back"}.get(r["type"])
+            if not k: continue
+            keep, out_len = [r["pts"][0]], None
+            for u, v in zip(r["pts"], r["pts"][1:]):
+                n = max(int(math.dist(u, v) // 50), 1)
+                for i in range(1, n + 1):
+                    q = (u[0] + (v[0] - u[0]) * i / n, u[1] + (v[1] - u[1]) * i / n)
+                    if out_len is None and cell(q) not in base[r["side"]]: out_len = 0.0
+                    elif out_len is not None: out_len += math.dist(keep[-1], q)
+                    keep.append(q)
+                    if out_len is not None and out_len >= DOOR_OUT: break
+                if out_len is not None and out_len >= DOOR_OUT: break
+            self.door_routes[r["side"]][k].append(keep[::4] + [keep[-1]])
+        self.gates = [tuple(l["pts"][0]) for l in self.labels if l["kind"] == "point" and l["type"] in ("Gate", "Gate lock", "Gate lever")]
         self.footies = {s: {"front": [], "back": []} for s in "AB"}
         for s in "AB":
             for f in self.footmen[s]:
@@ -207,25 +224,32 @@ class Hall:
         c = self.snap(p); other = "B" if side == "A" else "A"
         return "backside" if self.to(self.lord[side]).get(c, 1e9) <= self.to(self.lord[other]).get(c, 1e9) else "push side"
 
-    def place(self, p):
-        """A point in Denning's words (his golden notes): (kind, side). kind is pit, front door, back door, front
-        footies, back footies, stand, base, greater stand or field; side is whose ground it is (None at the stand).
-        Smaller and more specific places first."""
+    def place(self, p, engaged=None):
+        """A point in Denning's words (his golden notes): (kind, side). kind is pit, stand, front footies, back
+        footies, greater stand, front door, back door, base or field; side is whose ground it is (None at the stand).
+        Footies are named only where that side's footmen are engaged (R-307; `engaged` = {side: bool}, None = not
+        known, then their reach alone decides). A door is the drawn door route, inside the base and out to where the
+        greater stand area begins ("in front of their front door")."""
         from common import DOOR_R, GREATER_STAND_WALK
         a = self.area_at(p, True)
         if a and a["type"] == "Pit": return "pit", a["side"]
         if a and a["type"] == "Flag stand area": return "stand", None
-        for s in "AB":
-            for k in ("front", "back"):
-                if any(math.dist(p, q) <= DOOR_R for q in self.doors[s][k]): return k + " door", s
         r = self.reach()
         if r:
             for s in "AB":
+                if engaged is not None and not engaged.get(s): continue
                 for k in ("front", "back"):
                     if any(math.dist(p, f) <= r for f in self.footies[s][k]): return k + " footies", s
-        if a and a["type"] == "Base": return "base", a["side"]
         c = self.snap(p)
         if (c in self.greater) if self.greater else (self.to(self.stand).get(c, 1e9) <= GREATER_STAND_WALK): return "greater stand", None
+        best = None
+        for s in "AB":
+            for k in ("front", "back"):
+                for pts in self.door_routes[s][k]:
+                    dd = min(_seg_dist(p, u, v) for u, v in zip(pts, pts[1:]))
+                    if dd <= DOOR_R and (best is None or dd < best[0]): best = (dd, k + " door", s)
+        if best: return best[1], best[2]
+        if a and a["type"] == "Base": return "base", a["side"]
         return "field", ("A" if self.to(self.lord["A"]).get(c, 1e9) <= self.to(self.lord["B"]).get(c, 1e9) else "B")
 
     def spot(self, p):
