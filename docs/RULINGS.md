@@ -337,3 +337,4 @@ This register is the model's constitution: every definition and decision Denning
 - R-377. Timing choices the record keeps: delaying a pickup while pushed; holding a flag until just before the boost; staying to help a flag in before going back for the next; leaving a base just before the enemy's base res.
 - R-378. Monk counts in a fight ("solo monk", "on two monks") and who is on the Guild Lord go into the record now. Map objects (R-361) and trades across the map are left for later.
 - R-379. The vine seed comms transcript is dropped: its match is not on gvg.report. The line-up is 16 transcripts.
+- R-380. The gate for the reading stage is 90% agreement on the four held-out games (R-370). Golden moments are limited to 15 for now: 30 is too many to mark.

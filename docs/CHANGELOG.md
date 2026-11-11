@@ -9,6 +9,7 @@ Dated session log of the GvG Info analysis engine and portal, newest first. Entr
 - Reads well: caps, deaths, who goes back for the flag, fight numbers, NPCs. Reads badly: collapses (25 of 66), swaps (0 of 5), falling back, pushes, answers, a split's later joiners listed from the opening, pre-game flag events, a half run (hdm v Men 2:01).
 - Denning ruled the scope (R-373): build flag route, pushing the flagger, flag lead, posture, timing; plans, options, reasons, micro calls and build labels stay out; what reads badly is fixed in the engine's rules (R-374).
 - Built on `bundle-4`: the split fight record (R-365) and joins, leaves and swaps read player by player (`moves()`, `split_fights()`); xxx v ohno's back side is one record 0:30 to 14:14 where six split attempts stood; joins agree 35 of 66 (from 25), swaps 3 of 5. Six draft thresholds in `common.py` to confirm; all-match counts and the golden stories not yet rerun.
+- Then on the branch: answers (a defender who traded damage; later defenders told), split openings, retreats told with both teams, the flag at the gates; all 516 matches run clean (711 split fights, median 92 s; 12.9 joins per 10 minutes; 507 swaps, a count not yet trusted). Line-up 76%, held-out 77%; gate 90% and golden set of 15 (R-380).
 - Replays queued: 453bd7a0 (Men v OG), cc1e770d (NwAy v ohno, stored as 11:49; the comms run 28 minutes), ee3a719f.
 
 ## 2026-11-11 (third): the engine's split, push and flag records (branch `bundle-4`; stories draft 5)
