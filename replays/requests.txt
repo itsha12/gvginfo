@@ -528,3 +528,5 @@ d70f3684-8f70-5513-a327-83e1a45013f1
 # Maga comms games not yet stored: NwAy v ohno (Druid's Isle, 2026-09-19), Men v OG (Isle of Solitude, 2026-10-17)
 cc1e770d-8fbc-5a0f-ac5f-1d27864fdf37
 453bd7a0-ec5b-5e03-a6a2-023431c7deaa
+# Candidate for the vine seed comms transcript: Book v ohno (Druid's Isle, 2026-09-06), to be confirmed
+ee3a719f-bd1a-561d-a5b5-57cae6999c1f
