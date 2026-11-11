@@ -48,18 +48,16 @@ model's structure: `knowledge/model.md` (generated).
 - R-341 sets the direction: the engine should think as his golden notes do (the story so far); options, decisions
   and variables follow from that. Ruled from the notes: R-334 to R-340 (greater stand area, main team in a 4v4, flag
   position and stand holder both, pinned teams, one flag a team, the hand-off and double run forms).
-- Built 2026-11-10 night (branch, drafts): `Hall.place`, `Moments.fights`, `Moments.flag_lives`, `story.py` with the
-  why words (routes, on time R-348, swaps, falls back under pressure R-349 and R-352, falls out; 12 s to count in a
-  fight R-350). All 14 halls now have a Greater stand area label (9 accepted drafts, 5 drawn by him).
+- On the branch (drafts): `Hall.place`, `Moments.fights`, `Moments.flag_lives`, `story.py` (R-348 to R-352). All 14
+  halls have a Greater stand area label (9 accepted drafts, 5 drawn by him).
 - Golden moments (R-354): the page shows the engine's story of each of the 30 games (`golden_stories.json`, draft
   3); he ticks wrong lines and adds notes. His 13 earlier notes are the fixed blind check (`blind_note`). His first
   marks (game 1, BcS v hook) reshaped the story on 2026-11-11: STATE lines (who is where, doing what) at the opening
   and each minute, who goes back for the flag and when, a dropped flag stays where it falls (returned by the last
   enemy to stand on it), footmen engaged (R-307), doors as their routes, fights only once damage is traded.
   Waiting on him: review game 1's new story first, then say whether the form is right before marking the rest.
-- Commentary: he will record his own spoken commentary of games; asked for a timestamped transcript (.srt, .vtt or
-  a YouTube transcript) with the match clock spoken at the start and after every pause, so it lines up with match
-  time. Store claims paraphrased as before unless he says his own words may be stored.
+- Commentary: he will record his own; asked for a timestamped transcript (.srt, .vtt, YouTube) with the match clock
+  spoken at the start and after each pause. Claims stored paraphrased unless he allows his own words.
 - Next on the branch: his answer on the new story form; known faults (main team choice in a 4-4, noisy "go to
   split" and "go back to defend" lines from the old departures, long stories); a threat or posture; hand-off to
   hold; time to cap; then scenarios, calls and triggers rebuilt on the story (R-351) and `golden.py score` against
