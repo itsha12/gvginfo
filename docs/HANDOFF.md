@@ -53,16 +53,15 @@ model's structure: `knowledge/model.md` (generated).
 - Commentary trial (2026-11-11): Nick's transcripts have no timestamps, but the order of deaths, caps, splits and
   NPC kills lines them up with the story every 30 to 60 s. `data/commentary/nick.json` now holds 9 games (81
   claims, each with the story's check). "Boss" is September's flux (Like a Boss), not the boost: corrected.
-  Still to line up: 983a47db (xxx v ohno, d70f3684). 00cb0759 (xxx v Apes) was fetched but has no transcript.
+  Still to line up: 983a47db (xxx v ohno, report d70f3684); 00cb0759 has no transcript.
 - Ruled 2026-11-11 from the trial (R-355 to R-362), none built yet: main team in a 4-4 by R-335; flux as context;
   opening splits; linked moves; caught out (20 s); runner time away. Not yet: inverted position, objects, minions.
   R-362: the record is the work, not the description. Checked against Nick's three games, `moments.py` finds about
   11 of 15 split attempts but about half its split records are repeats or not splits (players rejoining their main
   in the enemy base; a defender going home read as a flag run). Proposed, awaiting his go-ahead: one record per
   split attempt (start, who, answer, end, result) and flag records with runner, backup flag and back cap.
-- Also next on the branch: noisy "go to split" lines, long stories, threat or posture, hand-off to hold, time to
-  cap; then scenarios, calls and triggers on the story (R-351) and `golden.py score` against his marks. A monk
-  energy estimate only if needed (R-353). Also open: discovery second run; behaviour clusters.
+- Also open: noisy "go to split" lines, threat or posture, hand-off to hold, time to cap, `golden.py score` against
+  his marks, a monk energy estimate only if needed (R-353), discovery second run, behaviour clusters.
 
 ## Running it
 - Train batch: `gh api -X POST repos/itsha12/gvginfo/actions/workflows/train-batch.yml/dispatches -f ref=main
