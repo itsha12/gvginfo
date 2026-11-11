@@ -2,6 +2,10 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-11: the story rewritten from Denning's first marks (branch `bundle-4`; stories draft 3)
+- He marked game 1 (BcS v hook): 7 lines wrong and a note asking for the game state (who is where, what they are doing) and for when players go to run, not only pickups. `story.py` now writes STATE lines at the opening and each minute, who leaves to go back for the flag, a dropped flag that stays where it falls and its return, resurrections, footmen taken, where the next runner came from; fights are told only once damage is traded, and a fight's place and numbers are followed apart.
+- Places: footies only where the footmen are engaged (R-307), a door is its drawn route out to 1,500 past the base, his greater stand areas (all 14 halls) come before doors. Low team health under 85% (R-352); no energy estimate for now (R-353); golden page shows the story first (R-354).
+
 ## 2026-11-10 (evening): the engine starts to read a match as Denning's notes do (branch `bundle-4`)
 - Denning set the first drop-down labels aside and wrote notes on 14 golden moments; rulings R-334 to R-347 (greater stand area; main team in a 4v4; flag position and stand holder both; pinned teams; one flag a team and the four hand-off and double run forms; the model thinks as his notes do, R-341; golden test in two parts).
 - Drafted on the branch: the flag ledger (`Moments.flag_lives`: 5,977 flag lives; single run 36%, returned 19%, hand-off to cap 15%, double run full 13%, half 7%), every fight with its numbers (`Moments.fights`), places in his words (`Hall.place`: doors, front and back footies, greater stand area), and `story.py`, which prints the chain. Against his notes on three games the numbers, places, swaps, deaths and flag forms agree; the "why" words and routes are not written yet.

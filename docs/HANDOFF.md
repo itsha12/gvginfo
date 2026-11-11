@@ -51,14 +51,19 @@ model's structure: `knowledge/model.md` (generated).
 - Built 2026-11-10 night (branch, drafts): `Hall.place`, `Moments.fights`, `Moments.flag_lives`, `story.py` with the
   why words (routes, on time R-348, swaps, falls back under pressure R-349 and R-352, falls out; 12 s to count in a
   fight R-350). All 14 halls now have a Greater stand area label (9 accepted drafts, 5 drawn by him).
-- Golden moments (R-354, replacing R-345's two parts): the page shows the engine's story of each of the 30 games
-  (`golden_stories.json`, draft 2); he ticks wrong lines and adds notes or corrections. His 13 earlier notes are the
-  fixed blind check (`blind_note`). Waiting on him: mark the stories.
-- Next on the branch: read his marks (`label.story.wrong`, `label.notes`), fix the story, compare it with the 13
-  blind notes; add a threat or posture, hand-off to hold, time to cap, quieter flag lines; regenerate `golden.py
-  stories` (raise `draft`); then scenarios, calls and triggers rebuilt on the story (numbers advantage in every
-  fight, R-351) and `golden.py score` rewritten against his marks. A monk energy estimate only if needed (R-353).
-  Also open: discovery second run; 28 behaviour clusters to name.
+- Golden moments (R-354): the page shows the engine's story of each of the 30 games (`golden_stories.json`, draft
+  3); he ticks wrong lines and adds notes. His 13 earlier notes are the fixed blind check (`blind_note`). His first
+  marks (game 1, BcS v hook) reshaped the story on 2026-11-11: STATE lines (who is where, doing what) at the opening
+  and each minute, who goes back for the flag and when, a dropped flag stays where it falls (returned by the last
+  enemy to stand on it), footmen engaged (R-307), doors as their routes, fights only once damage is traded.
+  Waiting on him: review game 1's new story first, then say whether the form is right before marking the rest.
+- Commentary: he will record his own spoken commentary of games; asked for a timestamped transcript (.srt, .vtt or
+  a YouTube transcript) with the match clock spoken at the start and after every pause, so it lines up with match
+  time. Store claims paraphrased as before unless he says his own words may be stored.
+- Next on the branch: his answer on the new story form; known faults (main team choice in a 4-4, noisy "go to
+  split" and "go back to defend" lines from the old departures, long stories); a threat or posture; hand-off to
+  hold; time to cap; then scenarios, calls and triggers rebuilt on the story (R-351) and `golden.py score` against
+  his marks. A monk energy estimate only if needed (R-353). Also open: discovery second run; behaviour clusters.
 
 ## Running it
 - Train batch: `gh api -X POST repos/itsha12/gvginfo/actions/workflows/train-batch.yml/dispatches -f ref=main
