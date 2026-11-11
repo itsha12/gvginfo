@@ -15,8 +15,7 @@ model's structure: `knowledge/model.md` (generated).
   - `hallmap.py`: zones, walked distance with teleporter hops, footmen reach, places in his words (R-306, R-316, R-320).
   - `moments.py`: the old draft moments (families 1 to 3: triggers, scenarios, calls) and, since 2026-11-11, the records.
   - `tools/golden/golden.py pick|score|stories` (outside the engine folder); it never reads the sealed field.
-- On main: Model > Golden moments (`assets/js/pages/golden.js`, `data/model/golden_moments.json`): 30 moments for
-  Denning to label. The file never holds the engine's reading. Rulings R-318 to R-324 recorded.
+- On main: Model > Golden moments (`golden.js`, `golden_moments.json`: his labels only). Rulings to R-364 recorded.
 
 ## Next (in order)
 1. Denning: label the golden moments on the site (Model > Golden moments). Where a list cannot say what happened,
