@@ -301,9 +301,18 @@ def _death_events(M):
         while i < len(ds):
             j = i
             while j + 1 < len(ds) and ds[j + 1][0] - ds[j][0] <= 10: j += 1
-            t0 = ds[i][0]; res = RES_EVERY - t0 % RES_EVERY
-            who = ", ".join(m.roles[a] for _, a in ds[i:j + 1])
-            out.append((t0, f"{m.tag[tm]} loses {who} at {_where(M, ds[i][1], t0 - 2)} ({round(res)} s before the base res)"))
+            lines = []                                    # one line per place and base-res outcome; nobody twice in a line
+            for td, a in ds[i:j + 1]:
+                nxt = (int(td) // RES_EVERY + 1) * RES_EVERY; res = nxt - td
+                based = any(M.AL[a][u] for u in range(min(nxt, M.T), min(nxt + 4, M.T) + 1))
+                late = res <= 5 and not based and nxt + 4 <= M.T      # seen in the replay, not read off the clock
+                key = (_where(M, a, td - 2), late)
+                L = next((x for x in lines if x[0] == key and a not in x[2]), None)
+                if L is None: lines.append([key, td, [a], res])
+                else: L[2].append(a)
+            for (where, late), t0, xs, res in lines:
+                when = f"just too late for the base res; the next is in {round(RES_EVERY + res)} s" if late else f"{round(res)} s before the base res"
+                out.append((t0, f"{m.tag[tm]} loses {', '.join(m.roles[a] for a in xs)} at {where} ({when})"))
             i = j + 1
         for td, a in ds:
             up = next((u for u in range(int(td) + 2, M.T + 1) if M.AL[a][u]), None)
@@ -314,12 +323,25 @@ def _death_events(M):
                 out.append((up, f"{m.tag[tm]}'s {m.roles[a]} is resurrected" + (f" by {m.roles[by]}" if by is not None else "") + f" at {_where(M, a, up)} ({round(up - td)} s after dying)"))
     for (tm, tr), xs in base.items():
         out.append((tr, f"Base res: {m.tag[tm]}'s {_names(M, sorted(set(xs)))} come{_s(set(xs))} back"))
+    resign = {}                                           # a resignation kills the whole side in one instant: say so, don't list it
     for a, td in st.npc_dead.items():
         v = st.geo.npcs.get(a)
-        if v and v.get("team") in m.tag and v["kind"] != "guild_lord":
+        if v and v.get("team") in m.tag and v["kind"] == "guild_lord":
+            up = [b for b in st.players[v["team"]] if M.AL[b][max(0, int(td) - 2)]]
+            if len(up) >= 2 and all(any(abs(x - td) <= 1.5 for x in st.death_times.get(b, [])) for b in up): resign[v["team"]] = td
+    for tm, td in resign.items():
+        out[:] = [(t, x) for t, x in out if not (abs(t - td) <= 1.5 and x.startswith(f"{m.tag[tm]} loses "))]
+        out.append((td, f"{m.tag[tm]} resigns: {m.tag[3 - tm]} wins"))
+    for a, td in st.npc_dead.items():
+        v = st.geo.npcs.get(a)
+        if v and v.get("team") in resign and abs(td - resign[v["team"]]) <= 1.5: continue
+        if v and v.get("team") in m.tag and v["kind"] == "guild_lord":
+            out.append((td, f"{m.tag[3 - v['team']]} kills {m.tag[v['team']]}'s Guild Lord ({round(RES_EVERY - td % RES_EVERY)} s before the base res): {m.tag[3 - v['team']]} wins"))
+        elif v and v.get("team") in m.tag:
             out.append((td, f"{m.tag[3 - v['team']]} takes {m.tag[v['team']]}'s {v['kind'].replace('_', ' ')}"))
     for tm, xs in M.foot_dead.items():
         for td in xs:
+            if tm in resign and abs(td - resign[tm]) <= 1.5: continue
             if tm in m.tag: out.append((td, f"{m.tag[3 - tm]} takes {m.tag[tm]}'s footman"))
     caps = st.caps + [(st.end, None)]
     for (c, h), (c2, _) in zip(caps, caps[1:]):
@@ -330,7 +352,9 @@ def _death_events(M):
 
 
 def story(M, t0=0, t1=None, states=True):
+    lord = min((td for a, td in M.st.npc_dead.items() if (M.st.geo.npcs.get(a) or {}).get("kind") == "guild_lord"), default=None)
     t1 = M.T if t1 is None else t1
+    if lord is not None: t1 = min(t1, lord)               # the game is over when a Lord dies; the replay runs on a few seconds
     ev = _flag_events(M) + _move_events(M) + _fight_events(M) + _death_events(M)
     if states: ev += [(u, state_line(M, u)) for u in [45] + list(range(120, M.T + 1, 60)) if u <= M.T]
     return sorted(((t, s) for t, s in ev if t0 <= t <= t1), key=lambda x: (x[0], not x[1].startswith("STATE")))
