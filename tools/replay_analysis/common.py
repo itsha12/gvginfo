@@ -194,8 +194,9 @@ GREATER_STAND_WALK = 3500       # the greater stand area until Denning's drawn a
 JOIN_S = 12                     # a player counts in a fight after this long in it; shorter is support, not a player more (R-350)
 ON_TIME_S = round(1.5 * CAST_R / RUN_SPEED)   # "on time": the answer arrives within the time to run 1 to 1.5 cast ranges unboosted, about 5 to 7 s (R-348)
 LATE_S = 30                     # an answer this far behind is late (R-348); between the two the seconds are stated
-PRESSURE_HP = 80                # low team health: under the 10th percentile of team health in fights of 3+ a side (79% at 506 matches); Claude's cut, to confirm
+PRESSURE_HP = 85                # low team health: under 85% (R-352; about the lowest fifth of team health in fights of 3+ a side), to adjust if needed
 PRESSURE_DEATH_S = 30           # or a death in this many seconds. Under pressure is health, energy and deaths (R-349); energy is not in the replays
+                                # and is left out for now: a monk energy estimate is to be added only if needed (R-353)
 OVERCAP_S = 45                  # a capture this soon after the enemy's is an overcap (Claude's draft)
 FIGHT_LINK = 1600               # players of either team this close are in the same fight (Claude's draft: about a cast range and a bit)
 SERIOUS_CARRY_S = 5              # a pickup dropped sooner than this, without capping, is not an attempt to run (Denning: "like 3 s")

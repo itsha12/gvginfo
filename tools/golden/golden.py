@@ -172,9 +172,9 @@ def score():
 
 
 def stories():
-    """The engine's story of each golden moment's game, up to a minute after the moment (R-345, part two: revealed on
-    the page only after Denning has saved his own note; he marks each line right, wrong or missing). Kept in its own
-    file so the labels file never holds the engine's reading."""
+    """The engine's story of each golden moment's game, up to a minute after the moment. Denning reads it on the page,
+    ticks the lines that are wrong and adds his own notes or corrections (R-354). Kept in its own file so the labels
+    file holds only what he wrote."""
     from replaylib import Match
     from state import GameState
     import moments as MO, story as ST
@@ -183,8 +183,8 @@ def stories():
         M = MO.Moments(GameState(Match.from_branch(g["match"])))
         out[g["id"]] = [[int(t), s] for t, s in ST.story(M, 0, g["t"] + 60)]
     json.dump({"about": "The engine's story of each golden moment's game (tools/golden/golden.py stories; story.py on the bundle-4 "
-                        "branch). Shown on Model > Golden moments only after Denning has saved his own note for that moment.",
-               "generated": datetime.date.today().isoformat(), "draft": 1, "stories": out},
+                        "branch). Shown on Model > Golden moments for Denning to mark (R-354).",
+               "generated": datetime.date.today().isoformat(), "draft": 2, "stories": out},
               open(os.path.join(REPO, "data", "model", "golden_stories.json"), "w"), indent=0)
     print(len(out), "stories;", sum(len(v) for v in out.values()), "lines")
 
