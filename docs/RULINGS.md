@@ -323,3 +323,8 @@ This register is the model's constitution: every definition and decision Denning
 - R-365. An even split fight is one record for as long as the same two groups stay engaged, wherever it drifts: whose ground it is on and for how long, and who started it, are kept inside the record. This replaces R-363's end rule for these cases (a split met in the middle is part of the fight, not a missing attempt).
 - R-366. A back cap is a cap with no enemy at the stand while the enemy's main team stands on the capper's ground.
 - R-367. Whether a lone player on the enemy's ground is a split depends on what he is doing there. Parked: the solo records stay as they are and are not relied on until this is ruled.
+
+## Rulings of 2026-11-11 (timestamped commentary and comms)
+- R-368. Fog of war is not considered. Experienced players are expected to know where everyone is on the map, as the engine does: no vision or "could they see it" variable, and a call is judged on the full map.
+- R-369. Words heard on comms: "walk" is WoC (Word of Censure); "pact" or "pacted" (transcribed "packed") is a player resurrected by Death Pact Signet and still under its effect; "ages" is Aegis; "blight" (transcribed "be light") is Blessed Light.
+- R-370. Four of the timestamped games are held out of tuning the engine's reading and used only to check it: BcS v hook (25a90723), RACK v chic (bb669b6f), ohno v Fun (1cb73c20), OG v cope on Uncharted Isle (84586253).

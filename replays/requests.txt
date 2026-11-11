@@ -525,3 +525,6 @@ d70f3684-8f70-5513-a327-83e1a45013f1
 2615ca0c-12b4-5ae6-a73d-53c0f0fc627c
 00cb0759-90c2-5d30-acf1-cae674b4cbae
 62c3fad6-2ebb-5a65-ae51-186c08822dc4
+# Maga comms games not yet stored: NwAy v ohno (Druid's Isle, 2026-09-19), Men v OG (Isle of Solitude, 2026-10-17)
+cc1e770d-8fbc-5a0f-ac5f-1d27864fdf37
+453bd7a0-ec5b-5e03-a6a2-023431c7deaa
