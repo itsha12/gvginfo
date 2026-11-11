@@ -310,3 +310,11 @@ This register is the model's constitution: every definition and decision Denning
 - R-352. Low team health, for reading pressure (R-349), starts at under 85%, to be adjusted if needed.
 - R-353. Pressure is read from health and deaths for now. A monk energy estimate is noted as something to add if it turns out to be needed.
 - R-354. Golden moments, replacing the two parts of R-345: Denning reads the engine's story of the game, marks the lines that are wrong, and adds his own notes or corrections; he no longer writes his own note first. The 13 notes he wrote before seeing any engine story are kept as the fixed blind check (`blind_note`): each rewritten story is compared with them by Claude.
+- R-355. In an even split (4 v 4), R-335 decides the main team: the group on the stand side, responsible for flags. The number of monks in a group is only a tie-break. (From Nick's Men v NwAy, 3 September.)
+- R-356. The month's flux is recorded as context for every match. Who holds the Boss status (Like a Boss) is not tracked for now.
+- R-357. A split that starts at 0:00 is a split: it is recorded at the opening with who is on it and who answers it.
+- R-358. Linked moves are recorded as one thing: a defender's return and the enemy leaving the base; a collapsing split arriving ahead of its defenders, the numbers lead that gives, and whether it was used.
+- R-359. Caught out: a team in the enemy's base, outnumbered or about to be, within 20 s of the defenders' base res, is flagged.
+- R-360. A runner's time away is totalled per flag, in seconds away from the fight.
+- R-361. Inverted position, map objects (vine seed, bridges) and minions: not yet.
+- R-362. The golden moments and the story are a learning exercise for the engine, not the work product. What matters is that the engine records and accounts for the right things; the description comes second. Whatever is learned from his marks, notes or commentary goes into the record first.
