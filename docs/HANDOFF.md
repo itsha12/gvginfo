@@ -70,8 +70,7 @@ model's structure: `knowledge/model.md` (generated).
 - Local engine: `git fetch --depth 1 origin +replays:refs/remotes/origin/replays`; `pip install
   --break-system-packages -r .github/workflows/train-requirements.txt`; in tools/replay_analysis `cache.py sync pull`,
   `cache.py warm`. `GVG_SUBSET=30` for smoke tests; `PYTHONDONTWRITEBYTECODE=1`. `moments.py` needs no cache.
-- Site check: `python3 -m http.server`, then playwright with `/usr/bin/google-chrome` (mock api.github.com to test
-  a save). `gh api` (REST) and git work; the workspace can't reach gvg.report or the wiki (use the probe workflow).
+- Site check: `python3 -m http.server` and playwright with `/usr/bin/google-chrome` (mock api.github.com for a save).
 
 ## Cautions
 - Never print or decode a sealed field (blind picks, golden moments) in a chat, and never show Denning the engine's
