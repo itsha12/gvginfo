@@ -22,8 +22,11 @@ ENGINE = os.path.join(HERE, "..", "replay_analysis")
 CACHE = os.environ.get("LINEUP_CACHE", "/tmp/lineup_cache")
 BEFORE, AFTER = 40, 40            # a spoken line trails or leads the event: seconds searched either side
 INTENT_AFTER = 75                 # an intent, or a call about the enemy, comes before the move
-NO_WORD = ("build", "plan", "option", "reason", "timing", "route", "posture", "pushflag", "trade", "judge", "cause",
-           "lead", "support", "micro", "unsure", "standoff", "pull", "lord", "object", "question", "clock", "monks", "energy")
+TO_BUILD = ("route", "pushflag", "lead", "posture", "timing")      # words Denning ruled the record needs (R-373)
+SEALED = ("judge", "cause")                                         # kept as tests of verdicts and of execution (R-372, R-373)
+OUT = ("plan", "option", "reason", "micro", "build", "question", "energy")   # outside what the engine reads (R-373, R-353)
+OPEN = ("lord", "pull", "support", "trade", "standoff", "monks", "unsure", "clock", "object")   # not ruled yet
+NO_WORD = TO_BUILD + SEALED + OUT + OPEN
 NUM = {1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six", 7: "seven", 8: "eight"}
 
 
@@ -82,7 +85,8 @@ def _seg(line, tag):
 def check(r, rec):
     """(verdict, the engine line that agrees or the nearest lines of the kind)."""
     kind = r["kind"].split(".")[-1]
-    if kind in NO_WORD: return "no word", ""
+    if kind in NO_WORD:
+        return ("to build" if kind in TO_BUILD else "sealed" if kind in SEALED else "out of scope" if kind in OUT else "not ruled"), ""
     T = r["team"]; E = next((x for x in rec["teams"] if x != T), "")
     te, ee = re.escape(T), re.escape(E)
     who = r["who"]; arg = r["arg"]
@@ -177,12 +181,14 @@ def score(paths, show=False):
             if show and v == "differs": print(f"  {name} {clock(r['at'])} (match {clock(max(r['t'], 0))}) {r['kind']} {r['team']} {','.join(r['who'])} {r['arg']}: {r['say']}\n      -> {why}")
             if v == "unknown kind": print("  UNKNOWN", r)
         per[name] = c
-    print(f"{'game':34} {'agrees':>7} {'differs':>8} {'no word':>8}")
-    for k, c in per.items(): print(f"{k:34} {c['agrees']:7} {c['differs']:8} {c['no word']:8}")
-    print(f"\n{'kind':10} {'agrees':>7} {'differs':>8} {'no word':>8}")
-    for k, c in sorted(tot.items(), key=lambda kv: -sum(kv[1].values())): print(f"{k:10} {c['agrees']:7} {c['differs']:8} {c['no word']:8}")
-    a = sum(c["agrees"] for c in per.values()); d = sum(c["differs"] for c in per.values()); n = sum(c["no word"] for c in per.values())
-    print(f"\nall: {a + d + n} statements; checked {a + d}: agrees {a} ({round(100 * a / max(a + d, 1))}%), differs {d}; no word yet {n}")
+    cols = ("agrees", "differs", "to build", "not ruled", "sealed", "out of scope")
+    print(f"{'game':34}" + "".join(f"{c:>13}" for c in cols))
+    for k, c in per.items(): print(f"{k:34}" + "".join(f"{c[x]:13}" for x in cols))
+    print(f"\n{'kind':10}" + "".join(f"{c:>13}" for c in cols))
+    for k, c in sorted(tot.items(), key=lambda kv: -sum(kv[1].values())): print(f"{k:10}" + "".join(f"{c[x]:13}" for x in cols))
+    sm = {x: sum(c[x] for c in per.values()) for x in cols}; chk = sm["agrees"] + sm["differs"]
+    print(f"\nall: {sum(sm.values())} statements; checked {chk}: agrees {sm['agrees']} ({round(100 * sm['agrees'] / max(chk, 1))}%), differs {sm['differs']}; "
+          f"to build {sm['to build']}, not ruled {sm['not ruled']}, sealed {sm['sealed']}, out of scope {sm['out of scope']}")
 
 
 if __name__ == "__main__":
