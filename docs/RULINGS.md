@@ -338,3 +338,5 @@ This register is the model's constitution: every definition and decision Denning
 - R-378. Monk counts in a fight ("solo monk", "on two monks") and who is on the Guild Lord go into the record now. Map objects (R-361) and trades across the map are left for later.
 - R-379. The vine seed comms transcript is dropped: its match is not on gvg.report. The line-up is 16 transcripts.
 - R-380. The gate for the reading stage is 90% agreement on the four held-out games (R-370). Golden moments are limited to 15 for now: 30 is too many to mark.
+- R-381. A lone player is splitting when he is on the enemy's side of the stand, away from his main team, for 15 s or more, and is either hitting NPCs or trading damage with a defender. This replaces the parking in R-367.
+- R-382. The golden set is 15 games for now: the 14 he has labelled and RACK v chic. The other 15 are parked, not deleted.
