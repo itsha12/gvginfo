@@ -173,12 +173,13 @@ def check(r, rec):
 
 
 def score(paths, show=False):
-    tot = collections.defaultdict(collections.Counter); per = {}
+    tot = collections.defaultdict(collections.Counter); per = {}; said = collections.defaultdict(collections.Counter)
     for p in paths:
         head, rows = load(p); rec = record(head["match"])
         c = collections.Counter(); name = f"{'-v-'.join(rec['teams'])} ({head['source']})"
         for r in rows:
             v, why = check(r, rec); c[v] += 1; tot[r["kind"].split(".")[-1]][v] += 1
+            said["a call on comms (what a team means to do, or says the enemy is doing)" if r["kind"][:2] in ("i.", "s.") else "something seen happening"][v] += 1
             if show and v == "differs": print(f"  {name} {clock(r['at'])} (match {clock(max(r['t'], 0))}) {r['kind']} {r['team']} {','.join(r['who'])} {r['arg']}: {r['say']}\n      -> {why}")
             if v == "unknown kind": print("  UNKNOWN", r)
         per[name] = c
@@ -190,6 +191,9 @@ def score(paths, show=False):
     sm = {x: sum(c[x] for c in per.values()) for x in cols}; chk = sm["agrees"] + sm["differs"]
     print(f"\nall: {sum(sm.values())} statements; checked {chk}: agrees {sm['agrees']} ({round(100 * sm['agrees'] / max(chk, 1))}%), differs {sm['differs']}; "
           f"to build {sm['to build']}, not ruled {sm['not ruled']}, sealed {sm['sealed']}, out of scope {sm['out of scope']}")
+    for k, c in said.items():
+        n = c["agrees"] + c["differs"]
+        print(f"  {k}: checked {n}, agrees {c['agrees']} ({round(100 * c['agrees'] / max(n, 1))}%)")
 
 
 if __name__ == "__main__":

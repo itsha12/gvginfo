@@ -248,7 +248,8 @@ def _record_events(M):
 def _next_runner(M, L):
     """Where the player who takes the next flag came from (R-340, R-343)."""
     n, tc = L["next_runner"], min(int(L["end"]), M.T)
-    rs = next((v for (a, tp), v in sorted(_run_starts(M).items(), key=lambda kv: kv[0][1]) if a == n and tp >= tc - 2), None)
+    nxt = min((x["start"] for x in M.flag_lives() if x["team"] == L["team"] and x["start"] >= tc - 2), default=None)      # his pickup of the next flag, not a later one
+    rs = next((v for (a, tp), v in sorted(_run_starts(M).items(), key=lambda kv: kv[0][1]) if a == n and tp >= tc - 2 and (nxt is None or tp <= nxt + 4)), None)
     if rs and rs[0] is not None: return f"went back for it at {clock(rs[0])} from {_where(M, n, rs[0])}"
     if rs and rs[1] is not None: return "was waiting back at the flag spawn"
     return "was already near the flag spawn"
