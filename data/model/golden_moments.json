@@ -1,5 +1,5 @@
 {
- "about": "Golden moments (R-303, R-354): Denning reads the engine's story of each game on Model > Golden moments, ticks the lines that are wrong and adds his own notes or corrections. The engine's story is in golden_stories.json, never here. Notes marked blind_note were written before he saw any engine story and are the fixed blind check. `sealed` holds his optional view of what the team should have done, encoded: never decode or print it in a chat.",
+ "about": "Golden moments (R-303, R-354): Denning reads the engine's story of each game on Model > Golden moments, ticks the lines that are wrong and adds his own notes or corrections. The engine's story is in golden_stories.json, never here. Notes marked blind_note were written before he saw any engine story and are the fixed blind check. `sealed` holds his optional view of what the team should have done, encoded: never decode or print it in a chat. The set is 15 games for now (R-382); the others are under \"parked\".",
  "version": 1,
  "generated": "2026-11-10",
  "read_window": [
@@ -797,48 +797,6 @@
    "picked_for": "double run"
   },
   {
-   "id": "d016987b-1-1-104",
-   "match": "d016987b-e5a0-5cd5-a23c-4c5b2d2415f8",
-   "map": "Isle of the Dead",
-   "team": "OG",
-   "opponent": "hdm",
-   "t": 104,
-   "family": 1,
-   "trigger": "OG's Air Ele 3 picks up a fresh flag at the spawn",
-   "watch": [
-    89,
-    164
-   ],
-   "roles": [
-    "Rit/Para",
-    "Air Ele 1",
-    "Air Ele 2",
-    "Monk 4 (WoC)",
-    "Mesmer",
-    "Prot",
-    "7 Monk",
-    "Air Ele 3"
-   ],
-   "enemy_roles": [
-    "Air Ele",
-    "Necromancer 1",
-    "Mes/A",
-    "Necromancer 2",
-    "Stand Mes",
-    "Prot",
-    "7 Monk",
-    "Ritualist"
-   ],
-   "routes": [
-    "Back door",
-    "Flag run",
-    "Front door"
-   ],
-   "label": null,
-   "sealed": null,
-   "picked_for": "scenario"
-  },
-  {
    "id": "28447c4a-2-1-1087",
    "match": "28447c4a-7cc6-5db5-ac7c-aa2bcc23c62c",
    "map": "Imperial Isle",
@@ -893,49 +851,6 @@
    "picked_for": "scenario"
   },
   {
-   "id": "2c764dac-2-2-228",
-   "match": "2c764dac-d2cb-50e3-a072-6b5b3bb9b633",
-   "map": "Isle of Solitude",
-   "team": "BcS",
-   "opponent": "Team",
-   "t": 228,
-   "family": 2,
-   "trigger": "Team's Hammer, AoB Derv, Stand Mes, Ritualist leave the main group",
-   "watch": [
-    213,
-    288
-   ],
-   "roles": [
-    "Dervish",
-    "Paragon",
-    "Air Ele",
-    "Mesmer",
-    "Monk 5 (WoC)",
-    "Prot",
-    "7 Monk",
-    "Water Ele"
-   ],
-   "enemy_roles": [
-    "AoB Derv",
-    "Hammer",
-    "Stand Mes",
-    "Mes/A",
-    "Ritualist",
-    "Prot",
-    "7 Monk",
-    "8 Monk"
-   ],
-   "routes": [
-    "Back door",
-    "Flag run",
-    "Front door",
-    "Through a teleporter"
-   ],
-   "label": null,
-   "sealed": null,
-   "picked_for": "scenario"
-  },
-  {
    "id": "368cb5d2-2-2-565",
    "match": "368cb5d2-f517-5137-ae27-0607789747a8",
    "map": "Uncharted Isle",
@@ -983,6 +898,397 @@
     "notes": "hdm starts the match in a 4-4 split. THis is a classic tactic for this type of build. The build is designed to have 2 teams of 4 on opposite sides of the map. Men send 3 out backdoor and initially fall to footies because of the 3v4. Men's rit joins defense through pit and both teams are 4v4 in Men's back footies. Before 1:40, Men swaps rit for prot and defends the 4v4 in their back footies. The split side fight doesn't get any kills, not sure about NPCs or footmen. Men is double running at 4:10 with rit and derv. Before 5:11, Men double runs again on Rit but Rit stays in pit briefly to support the defense before running back to main with a flag. By 6:40, Men's defense has been pushed into their pit (or fell into pit). Before 6:50, Men swaps stand mes for ranger, and defends 4v4 with warrior, mes, prot, and 8 monk. At 7:20, hdm's air ele collapses main through mid. Men responds by sending prot back to main, so split is 3v3. hdm's 7 monk dies mainteam and base reses at 8 min. At 8:15, hdm's mainteam has retreated to their front door footies. At 8:20, hdm's air ele starts going back to split through mid, whilst Men's prot mirrors to join split through front door and pit. 4v4 on split side is maintained until hdm's air ele again collapses through mid, whilst Men's prot again mirrors through front door. Instead of going to main, hdm's air ele solo splits front door followed by Men's prot on defense, whilst hdm's split pulls out backdoor, followed by Men's split team. \n\nAt 10:11, hdm's air ele abandon's the split front door. hdm's air ele pauses in mid for a while, potentially threatening to rejoin split before committing to mainteam whilst Men's prot is out of position.",
     "blind_note": true
    },
+   "sealed": null,
+   "picked_for": "scenario"
+  },
+  {
+   "id": "457b3a21-2-1-890",
+   "match": "457b3a21-b67f-5164-a70d-adfd73423fcf",
+   "map": "Isle of Solitude",
+   "team": "NwAy",
+   "opponent": "SKT",
+   "t": 890,
+   "family": 2,
+   "trigger": "SKT's Hammer, Ranger, 7 Monk leave the main group",
+   "watch": [
+    875,
+    950
+   ],
+   "roles": [
+    "AoB Derv",
+    "Hammer",
+    "Dervish",
+    "Mes/A",
+    "Stand Mes",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "enemy_roles": [
+    "AoB Derv",
+    "Hammer",
+    "Ranger",
+    "Necromancer",
+    "Mesmer",
+    "Prot",
+    "7 Monk",
+    "Ritualist"
+   ],
+   "routes": [
+    "Back door",
+    "Flag run",
+    "Front door",
+    "Through a teleporter"
+   ],
+   "label": {
+    "real": "yes",
+    "at": "2026-11-10",
+    "scenario": {},
+    "call": {},
+    "who": [],
+    "notes": "Both teams start the game at stand. Nway has a lyssa derv waiting back for second flag (a double run) right off the start and SKT does not. Nway is at a player disadvantage so caps flag on warrior immediately, to allow lyssa to bring next flag and return to mainteam to mate 8v8. This \"waiting back for second flag\" is a very common tactic, as is capping first if the other team has all 8 players at main. Nway's derv halfruns the flag to their warrior, and goes back for another flag (double run, half running). Meanwhile, SKT overcapped and sends necro back for second flag. \n\nFor the first minutes of the game, it is just a full mainteam fight around the flag stand, nway's footies, and SKT's footies, until SKT's derv dies and get's based at 4 minutes. It continues to be a mainteam fight with flag runs until nway takes two deaths and then retreats to their pit around 7 minutes. At the 8 minute base res, nway's players res and nway sends a three man split of warrior, mes/a, 8 monk out portal. nway's split pushes in through backdoor and SKT defends 3v3 with warrior, ranger, and 7 monk at around 8:50. both teams maintain this position (nway potentially fighting for NPCs) until nway falls out back door around 9:20. nway's same split stays backdoor and splits offensively into SKT's base through backdoor again around 10:20. SKT defends in their pit with the same composition 3v3 at around 10:55. At 11:30, nway's split falls out backdoor and collapses main, trying to get a numbers advantage before SKT's defenders can reach mainteam through front door. Fight continues 8v8 main until around 12:15 where nway sends the same split. nway does not push backdoor and instead is defended by warrior, necro, and 7 monk of SKT. nway retreats to their own backdoor and now SKT has the 3v3 offensive split at around 12:32. Both 3 man teams \"posture\" in nway's back door at bridge without engaging, whilst SKT's mainteam pushes front door to nway's base, and nway retreats to pit. At around 13:48, nway's split pushes out backdoor and engages SKT's split. SKT's mainteam moves towards collapsing and nway's split at around 14:22 retreats to their backdoor bridge. \n\nFrom around 14:35 to 15:25, nway's 3 man team waits in their backdoor threatening a split, whilst SKT's 3 man matches them and waits outside their front door ready to defend or to split offensively. MEanwhile, SKT's mainteam is pushing the front door of Nway, who has fallen back to their base.",
+    "blind_note": true
+   },
+   "sealed": null,
+   "picked_for": "scenario"
+  },
+  {
+   "id": "9c9f7436-2-2-394",
+   "match": "9c9f7436-11d7-5283-a5aa-cbcc5f68bb77",
+   "map": "Druid's Isle",
+   "team": "Men",
+   "opponent": "One",
+   "t": 394,
+   "family": 2,
+   "trigger": "One's Dervish, Hammer leave the main group",
+   "watch": [
+    379,
+    454
+   ],
+   "roles": [
+    "Warrior",
+    "Paragon 1",
+    "Paragon 2",
+    "Monk 4 (WoC)",
+    "Mesmer",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "enemy_roles": [
+    "Hammer",
+    "AoB Derv",
+    "Dervish",
+    "Mes/A",
+    "Stand Mes",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "routes": [
+    "Back door",
+    "Flag run",
+    "Front door",
+    "Flag run long way",
+    "Flag run over the vine"
+   ],
+   "label": {
+    "real": "yes",
+    "at": "2026-11-10",
+    "scenario": {},
+    "call": {},
+    "who": [],
+    "notes": "Both teams start 8v8 with One bringing flag on their warrior and Men bringing flag on their mesmer. Both teams run through gutter and come to stand through backdoor. It looks like the lyssa dervish of One caps their vine seed but I cannot confirm. One's warrior caps first whilst one's lyssa splits Men's base through frontdoor at 0:41. Men defends with 8 monk, who has to run through gutter and frontdoor because they have not capped vine seed. Meanwhile, at 0:50, One sends warrior back to run another flag, whilst Men has still not capped. One is at the flag stand 6v7. Men collapses a WoC to defend split at around 1:12, followed by a further warrior collapse around 1:32. One pushes their 8 monk front door to join split and save the derv, who is about to be 1v3. Men's mesmer caps the flag and all splits return to mainteam around 2 minutes. I assume One's lyssa stole their vine seed from their base during the split. At around 2:20, One's dervish goes to cap their vine seed (I assume) whilst their warrior goes to run next flag. One's dervish then solo splits over the now capped vine seed and pushes into Men's base, defended by a WoC and an 8 monk. Men's WoC picks up the next flag with the now obsolete shadow of haste mechanic and returns with flag to mainteam. Around 2:50, One's solo spit derv is defended by an 8 monk 1v1. One takes 4 deaths and retreats to their pit at around 3:30. The split in Men's base is still 1v1 derv vs 8 monk. \n\nOne's 4 dead players base res at 4 minutes, turning it into a 7v7. Men pulls away from One's pit and fights at One's front door. At around 4:30 whilst Men is engaged in a fight in One's base, One's warrior runs a flag over vine seed. One's warrior is followed/chased by Men's warrior but One caps flag with no deaths and both warriors return to main team in One's base (Men's over vine seed; One's through front door). Before 4:40, Men's WoC goes to run a flag. One's dervish pulls out of the split through vine seed and engage's Men's WoC near flag stand at around 5:20. One's dervish attempts to return to mainteam through vine seed but is collapse by Men's para and mesmer, who kill him before time with help from Men's WoC. \n\nOne fights Men 8v8 in One's base but their derv dies to a spike right after time. One's entire mainteam runs out their front door. I'm not sure what this play is. At some point around 6:35, One's mesmer drops back to base from mainteam through front door to res their dead dervish. \n\nAFter resing, One's mesmer rejoins mainteam through front door whilst One's dervish runs a flag over vine bridge. After capping flag, from 7:55 it looks like One's dervish basically accomplishes nothing and does nothing to contribute. Maybe he was confused. One's mainteam is fighting Men's mainteam in Men's base. One's dervish tries to solo split out of the front at around 7:35 (no idea what the purpose was) and was followed/defended by Men's WoC.",
+    "blind_note": true
+   },
+   "sealed": null,
+   "picked_for": "scenario"
+  },
+  {
+   "id": "0f1fd794-3-2-230",
+   "match": "0f1fd794-46cd-5fb1-a661-a7ec5f1cbadd",
+   "map": "Nomad's Isle",
+   "team": "Men",
+   "opponent": "hdm",
+   "t": 230,
+   "family": 3,
+   "trigger": "numbers differ where the main groups meet: Men 6 v 7 hdm",
+   "watch": [
+    215,
+    290
+   ],
+   "roles": [
+    "Hammer A",
+    "Hammer B",
+    "Ranger",
+    "Monk 4 (WoC)",
+    "Mesmer",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "enemy_roles": [
+    "Hammer A",
+    "Paragon",
+    "Hammer B",
+    "Mes/A",
+    "Stand Mes",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "routes": [
+    "Back door",
+    "Flag run",
+    "Front door",
+    "Through a teleporter"
+   ],
+   "label": {
+    "real": "yes",
+    "at": "2026-11-10",
+    "scenario": {},
+    "call": {},
+    "who": [],
+    "notes": "Men opens the game with flag on their mesmer, with a warrior waiting back for second flag. hdm brings flag up on their warrior and caps first, with their WoC running back to double run the second flag. \n\nMen's warrior brings up the second flag and hands off to Men's mesmer. hdm brings flag on their mesmer and caps with Men' overcapping shortly after around 1:49, whilst Men's WoC goes to double run another flag. At the same time, hdm's warrior also went back to double run the next flag. \n\nAt around 2:01, it looks like hdm's warrior get's block on the bridge with flag in hand and drops the flag (possibly to their paragon). At 2:58, hdm's paragon caps the flag and Men's mesmer goes to overcap. hdm's mesmer and Men's WoC are both going back to double run. At around 3:20, hdm's mesmer goes to cap the flag whilst hdm's warrior solo pushes Men's WoC flag runner. hdm's warrior dies on the push but get's resed around 3:48. Men caps the flag on their WoC whilst their mainteam pushes hdm's front door. hdm's warrior goes to run another flag but is pushed by Men's ranger. Men is also capping at the same time (3:55) so mainteam is a 7v6 for hdm. All players return to mainteam making it briefly an 8v8 (though messy/a bit spaced out) in frong of hdm's base.",
+    "blind_note": true
+   },
+   "sealed": null,
+   "picked_for": "scenario"
+  },
+  {
+   "id": "26ba6a2d-3-1-331",
+   "match": "26ba6a2d-768d-504d-ace8-19241884f21c",
+   "map": "Corrupted Isle",
+   "team": "Crew",
+   "opponent": "hdm",
+   "t": 331,
+   "family": 3,
+   "trigger": "numbers differ where the main groups meet: Crew 8 v 7 hdm",
+   "watch": [
+    316,
+    391
+   ],
+   "roles": [
+    "Assassin 1",
+    "Air Ele 1",
+    "Assassin 2",
+    "Air Ele 2",
+    "Mesmer",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "enemy_roles": [
+    "Hammer",
+    "AoB Derv",
+    "Ranger",
+    "Mes/A",
+    "Stand Mes",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "routes": [
+    "Back door",
+    "Flag run",
+    "Front door"
+   ],
+   "label": {
+    "real": "yes",
+    "at": "2026-11-11",
+    "scenario": {},
+    "call": {},
+    "who": [],
+    "notes": "Match starts with both teams running main. Crew has flag on air ele, hdm has flag on warrior with derv waiting back for second flag. hdm warrior caps first and hdm derv brings the second flag. Crew over caps and teams are fighting 8v8 in front of hdm's base whilst derv goes to cap flag. \n\nAt around 1:30, crew air ele goes back to run flag. Crew is fighting 7v8 in front of their base and dies on assassin. Crew retreats to footies through front door around 1:55 and assassin bases at 2 minutes. Teams fight 8v8 for around a minute in the choke in crew's footies before hdm falls out. \n\nAt around 3:20, crew's air ele goes back to flag. Crew fights 8v8 while trying to cap for over a minute. It takes crew's air ele 50+ seconds from when he reaches main team to when he caps. \n\nhdm continues to fight 8v8 in the greater flag area for around 45s before sending back mes/a to run a flag. hdm fights 7v8 for around 35s whilst their mes/a runs a flag until he rejoins mainteam and runs to cap the flag around 6:20. At the same time, hdm's ranger is splitting back door with no one from crew going to defend yet, so hdm is fighting 7v8 again in the greater flag area whilst also trying cap flag on mes/a. Around 6:50, crew's air ele runs back to flag and teams fight 7v7 in front of crew's front door. At around 7:25, crew sends 8 monk to defend the ranger, whilst crew runs flag on their air ele 7v7 through choke. Crew's air ele takes over a minute to cap, and I think dies before capping but not sure, timing was close. Crew takes 2 more deaths in mainteam fight and retreats to pit.",
+    "blind_note": true
+   },
+   "sealed": null,
+   "picked_for": "scenario"
+  },
+  {
+   "id": "5eebef5f-3-2-134",
+   "match": "5eebef5f-5389-5323-a62a-cbf7a40f993a",
+   "map": "Isle of the Dead",
+   "team": "hold",
+   "opponent": "옷옷옷옷",
+   "t": 134,
+   "family": 3,
+   "trigger": "numbers differ where the main groups meet: hold 7 v 8 옷옷옷옷",
+   "watch": [
+    119,
+    194
+   ],
+   "roles": [
+    "Mesmer",
+    "Monk 2 (WoC)",
+    "Monk 3 (WoC)",
+    "Monk 4 (WoC)",
+    "Monk 5 (WoC)",
+    "Prot (WoC)",
+    "7 Monk (WoC)",
+    "8 Monk"
+   ],
+   "enemy_roles": [
+    "Assassin",
+    "Paragon 1",
+    "Paragon 2",
+    "Monk 4 (WoC)",
+    "Mesmer",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "routes": [
+    "Back door",
+    "Flag run",
+    "Front door"
+   ],
+   "label": {
+    "real": "yes",
+    "at": "2026-11-11",
+    "scenario": {},
+    "call": {},
+    "who": [],
+    "notes": "match opens with hold immediately pushing high council's front door WITHOUT taking a flag. high council brings flag on WoC but retreats to frontdoor without capping. Teams fight 8v8 over backdoor bridge before hold takes 3 deaths. \n\nhold's players base res and teams fight 8v8 in hold's base by res shrine. hold gets a spike kill on the 7 monk but takes two more deaths.",
+    "blind_note": true
+   },
+   "sealed": null,
+   "picked_for": "forced read"
+  },
+  {
+   "id": "75312515-3-2-482",
+   "match": "75312515-a408-5381-a999-7ec2432a66f8",
+   "map": "Isle of the Dead",
+   "team": "Crew",
+   "opponent": "One",
+   "t": 482,
+   "family": 3,
+   "trigger": "numbers differ where the main groups meet: Crew 7 v 8 One",
+   "watch": [
+    467,
+    542
+   ],
+   "roles": [
+    "Paragon",
+    "Monk 2 (WoC)",
+    "Monk 3 (WoC)",
+    "Monk 4 (WoC)",
+    "Monk 5 (WoC)",
+    "Prot (WoC)",
+    "7 Monk (WoC)",
+    "8 Monk"
+   ],
+   "enemy_roles": [
+    "Dervish",
+    "Hammer",
+    "AoB Derv",
+    "Stand Mes",
+    "Mes/A",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "routes": [
+    "Back door",
+    "Flag run",
+    "Front door"
+   ],
+   "label": {
+    "real": "yes",
+    "at": "2026-11-11",
+    "scenario": {},
+    "call": {},
+    "who": [],
+    "notes": "Both teams open pushing all 8 to stand, with crew bringing flag on a WoC and One bringing flag on a derv. \n\nTeams fight 8v8 with One taking 2 spike deaths before 50s. One's derv goes to solo split front door but is immediately collapsed and spiked by crew's mainteam. One collapses to their base before 1:40. \n\nBoth teams fight in One's front door with Crew boosting and One taking DP on spike deaths. \n\nCrew pushes in to One's base through one door while Crew's #2 WoC takes the other path into base leading to a 7v8. Crew fights 7v8 and retreats through One's front door to greater flag area. \n\nOne takes a number of spike deaths and base reses members. One resigns.",
+    "blind_note": true
+   },
+   "sealed": null,
+   "picked_for": "scenario"
+  }
+ ],
+ "parked": [
+  {
+   "id": "d016987b-1-1-104",
+   "match": "d016987b-e5a0-5cd5-a23c-4c5b2d2415f8",
+   "map": "Isle of the Dead",
+   "team": "OG",
+   "opponent": "hdm",
+   "t": 104,
+   "family": 1,
+   "trigger": "OG's Air Ele 3 picks up a fresh flag at the spawn",
+   "watch": [
+    89,
+    164
+   ],
+   "roles": [
+    "Rit/Para",
+    "Air Ele 1",
+    "Air Ele 2",
+    "Monk 4 (WoC)",
+    "Mesmer",
+    "Prot",
+    "7 Monk",
+    "Air Ele 3"
+   ],
+   "enemy_roles": [
+    "Air Ele",
+    "Necromancer 1",
+    "Mes/A",
+    "Necromancer 2",
+    "Stand Mes",
+    "Prot",
+    "7 Monk",
+    "Ritualist"
+   ],
+   "routes": [
+    "Back door",
+    "Flag run",
+    "Front door"
+   ],
+   "label": null,
+   "sealed": null,
+   "picked_for": "scenario"
+  },
+  {
+   "id": "2c764dac-2-2-228",
+   "match": "2c764dac-d2cb-50e3-a072-6b5b3bb9b633",
+   "map": "Isle of Solitude",
+   "team": "BcS",
+   "opponent": "Team",
+   "t": 228,
+   "family": 2,
+   "trigger": "Team's Hammer, AoB Derv, Stand Mes, Ritualist leave the main group",
+   "watch": [
+    213,
+    288
+   ],
+   "roles": [
+    "Dervish",
+    "Paragon",
+    "Air Ele",
+    "Mesmer",
+    "Monk 5 (WoC)",
+    "Prot",
+    "7 Monk",
+    "Water Ele"
+   ],
+   "enemy_roles": [
+    "AoB Derv",
+    "Hammer",
+    "Stand Mes",
+    "Mes/A",
+    "Ritualist",
+    "Prot",
+    "7 Monk",
+    "8 Monk"
+   ],
+   "routes": [
+    "Back door",
+    "Flag run",
+    "Front door",
+    "Through a teleporter"
+   ],
+   "label": null,
    "sealed": null,
    "picked_for": "scenario"
   },
@@ -1075,57 +1381,6 @@
    "picked_for": "scenario"
   },
   {
-   "id": "457b3a21-2-1-890",
-   "match": "457b3a21-b67f-5164-a70d-adfd73423fcf",
-   "map": "Isle of Solitude",
-   "team": "NwAy",
-   "opponent": "SKT",
-   "t": 890,
-   "family": 2,
-   "trigger": "SKT's Hammer, Ranger, 7 Monk leave the main group",
-   "watch": [
-    875,
-    950
-   ],
-   "roles": [
-    "AoB Derv",
-    "Hammer",
-    "Dervish",
-    "Mes/A",
-    "Stand Mes",
-    "Prot",
-    "7 Monk",
-    "8 Monk"
-   ],
-   "enemy_roles": [
-    "AoB Derv",
-    "Hammer",
-    "Ranger",
-    "Necromancer",
-    "Mesmer",
-    "Prot",
-    "7 Monk",
-    "Ritualist"
-   ],
-   "routes": [
-    "Back door",
-    "Flag run",
-    "Front door",
-    "Through a teleporter"
-   ],
-   "label": {
-    "real": "yes",
-    "at": "2026-11-10",
-    "scenario": {},
-    "call": {},
-    "who": [],
-    "notes": "Both teams start the game at stand. Nway has a lyssa derv waiting back for second flag (a double run) right off the start and SKT does not. Nway is at a player disadvantage so caps flag on warrior immediately, to allow lyssa to bring next flag and return to mainteam to mate 8v8. This \"waiting back for second flag\" is a very common tactic, as is capping first if the other team has all 8 players at main. Nway's derv halfruns the flag to their warrior, and goes back for another flag (double run, half running). Meanwhile, SKT overcapped and sends necro back for second flag. \n\nFor the first minutes of the game, it is just a full mainteam fight around the flag stand, nway's footies, and SKT's footies, until SKT's derv dies and get's based at 4 minutes. It continues to be a mainteam fight with flag runs until nway takes two deaths and then retreats to their pit around 7 minutes. At the 8 minute base res, nway's players res and nway sends a three man split of warrior, mes/a, 8 monk out portal. nway's split pushes in through backdoor and SKT defends 3v3 with warrior, ranger, and 7 monk at around 8:50. both teams maintain this position (nway potentially fighting for NPCs) until nway falls out back door around 9:20. nway's same split stays backdoor and splits offensively into SKT's base through backdoor again around 10:20. SKT defends in their pit with the same composition 3v3 at around 10:55. At 11:30, nway's split falls out backdoor and collapses main, trying to get a numbers advantage before SKT's defenders can reach mainteam through front door. Fight continues 8v8 main until around 12:15 where nway sends the same split. nway does not push backdoor and instead is defended by warrior, necro, and 7 monk of SKT. nway retreats to their own backdoor and now SKT has the 3v3 offensive split at around 12:32. Both 3 man teams \"posture\" in nway's back door at bridge without engaging, whilst SKT's mainteam pushes front door to nway's base, and nway retreats to pit. At around 13:48, nway's split pushes out backdoor and engages SKT's split. SKT's mainteam moves towards collapsing and nway's split at around 14:22 retreats to their backdoor bridge. \n\nFrom around 14:35 to 15:25, nway's 3 man team waits in their backdoor threatening a split, whilst SKT's 3 man matches them and waits outside their front door ready to defend or to split offensively. MEanwhile, SKT's mainteam is pushing the front door of Nway, who has fallen back to their base.",
-    "blind_note": true
-   },
-   "sealed": null,
-   "picked_for": "scenario"
-  },
-  {
    "id": "5f9df5bb-2-1-420",
    "match": "5f9df5bb-014e-5494-a552-e66a2dc9794d",
    "map": "Corrupted Isle",
@@ -1210,58 +1465,6 @@
     "Through a teleporter"
    ],
    "label": null,
-   "sealed": null,
-   "picked_for": "scenario"
-  },
-  {
-   "id": "9c9f7436-2-2-394",
-   "match": "9c9f7436-11d7-5283-a5aa-cbcc5f68bb77",
-   "map": "Druid's Isle",
-   "team": "Men",
-   "opponent": "One",
-   "t": 394,
-   "family": 2,
-   "trigger": "One's Dervish, Hammer leave the main group",
-   "watch": [
-    379,
-    454
-   ],
-   "roles": [
-    "Warrior",
-    "Paragon 1",
-    "Paragon 2",
-    "Monk 4 (WoC)",
-    "Mesmer",
-    "Prot",
-    "7 Monk",
-    "8 Monk"
-   ],
-   "enemy_roles": [
-    "Hammer",
-    "AoB Derv",
-    "Dervish",
-    "Mes/A",
-    "Stand Mes",
-    "Prot",
-    "7 Monk",
-    "8 Monk"
-   ],
-   "routes": [
-    "Back door",
-    "Flag run",
-    "Front door",
-    "Flag run long way",
-    "Flag run over the vine"
-   ],
-   "label": {
-    "real": "yes",
-    "at": "2026-11-10",
-    "scenario": {},
-    "call": {},
-    "who": [],
-    "notes": "Both teams start 8v8 with One bringing flag on their warrior and Men bringing flag on their mesmer. Both teams run through gutter and come to stand through backdoor. It looks like the lyssa dervish of One caps their vine seed but I cannot confirm. One's warrior caps first whilst one's lyssa splits Men's base through frontdoor at 0:41. Men defends with 8 monk, who has to run through gutter and frontdoor because they have not capped vine seed. Meanwhile, at 0:50, One sends warrior back to run another flag, whilst Men has still not capped. One is at the flag stand 6v7. Men collapses a WoC to defend split at around 1:12, followed by a further warrior collapse around 1:32. One pushes their 8 monk front door to join split and save the derv, who is about to be 1v3. Men's mesmer caps the flag and all splits return to mainteam around 2 minutes. I assume One's lyssa stole their vine seed from their base during the split. At around 2:20, One's dervish goes to cap their vine seed (I assume) whilst their warrior goes to run next flag. One's dervish then solo splits over the now capped vine seed and pushes into Men's base, defended by a WoC and an 8 monk. Men's WoC picks up the next flag with the now obsolete shadow of haste mechanic and returns with flag to mainteam. Around 2:50, One's solo spit derv is defended by an 8 monk 1v1. One takes 4 deaths and retreats to their pit at around 3:30. The split in Men's base is still 1v1 derv vs 8 monk. \n\nOne's 4 dead players base res at 4 minutes, turning it into a 7v7. Men pulls away from One's pit and fights at One's front door. At around 4:30 whilst Men is engaged in a fight in One's base, One's warrior runs a flag over vine seed. One's warrior is followed/chased by Men's warrior but One caps flag with no deaths and both warriors return to main team in One's base (Men's over vine seed; One's through front door). Before 4:40, Men's WoC goes to run a flag. One's dervish pulls out of the split through vine seed and engage's Men's WoC near flag stand at around 5:20. One's dervish attempts to return to mainteam through vine seed but is collapse by Men's para and mesmer, who kill him before time with help from Men's WoC. \n\nOne fights Men 8v8 in One's base but their derv dies to a spike right after time. One's entire mainteam runs out their front door. I'm not sure what this play is. At some point around 6:35, One's mesmer drops back to base from mainteam through front door to res their dead dervish. \n\nAFter resing, One's mesmer rejoins mainteam through front door whilst One's dervish runs a flag over vine bridge. After capping flag, from 7:55 it looks like One's dervish basically accomplishes nothing and does nothing to contribute. Maybe he was confused. One's mainteam is fighting Men's mainteam in Men's base. One's dervish tries to solo split out of the front at around 7:35 (no idea what the purpose was) and was followed/defended by Men's WoC.",
-    "blind_note": true
-   },
    "sealed": null,
    "picked_for": "scenario"
   },
@@ -1438,107 +1641,6 @@
    "picked_for": "forced read"
   },
   {
-   "id": "0f1fd794-3-2-230",
-   "match": "0f1fd794-46cd-5fb1-a661-a7ec5f1cbadd",
-   "map": "Nomad's Isle",
-   "team": "Men",
-   "opponent": "hdm",
-   "t": 230,
-   "family": 3,
-   "trigger": "numbers differ where the main groups meet: Men 6 v 7 hdm",
-   "watch": [
-    215,
-    290
-   ],
-   "roles": [
-    "Hammer A",
-    "Hammer B",
-    "Ranger",
-    "Monk 4 (WoC)",
-    "Mesmer",
-    "Prot",
-    "7 Monk",
-    "8 Monk"
-   ],
-   "enemy_roles": [
-    "Hammer A",
-    "Paragon",
-    "Hammer B",
-    "Mes/A",
-    "Stand Mes",
-    "Prot",
-    "7 Monk",
-    "8 Monk"
-   ],
-   "routes": [
-    "Back door",
-    "Flag run",
-    "Front door",
-    "Through a teleporter"
-   ],
-   "label": {
-    "real": "yes",
-    "at": "2026-11-10",
-    "scenario": {},
-    "call": {},
-    "who": [],
-    "notes": "Men opens the game with flag on their mesmer, with a warrior waiting back for second flag. hdm brings flag up on their warrior and caps first, with their WoC running back to double run the second flag. \n\nMen's warrior brings up the second flag and hands off to Men's mesmer. hdm brings flag on their mesmer and caps with Men' overcapping shortly after around 1:49, whilst Men's WoC goes to double run another flag. At the same time, hdm's warrior also went back to double run the next flag. \n\nAt around 2:01, it looks like hdm's warrior get's block on the bridge with flag in hand and drops the flag (possibly to their paragon). At 2:58, hdm's paragon caps the flag and Men's mesmer goes to overcap. hdm's mesmer and Men's WoC are both going back to double run. At around 3:20, hdm's mesmer goes to cap the flag whilst hdm's warrior solo pushes Men's WoC flag runner. hdm's warrior dies on the push but get's resed around 3:48. Men caps the flag on their WoC whilst their mainteam pushes hdm's front door. hdm's warrior goes to run another flag but is pushed by Men's ranger. Men is also capping at the same time (3:55) so mainteam is a 7v6 for hdm. All players return to mainteam making it briefly an 8v8 (though messy/a bit spaced out) in frong of hdm's base.",
-    "blind_note": true
-   },
-   "sealed": null,
-   "picked_for": "scenario"
-  },
-  {
-   "id": "26ba6a2d-3-1-331",
-   "match": "26ba6a2d-768d-504d-ace8-19241884f21c",
-   "map": "Corrupted Isle",
-   "team": "Crew",
-   "opponent": "hdm",
-   "t": 331,
-   "family": 3,
-   "trigger": "numbers differ where the main groups meet: Crew 8 v 7 hdm",
-   "watch": [
-    316,
-    391
-   ],
-   "roles": [
-    "Assassin 1",
-    "Air Ele 1",
-    "Assassin 2",
-    "Air Ele 2",
-    "Mesmer",
-    "Prot",
-    "7 Monk",
-    "8 Monk"
-   ],
-   "enemy_roles": [
-    "Hammer",
-    "AoB Derv",
-    "Ranger",
-    "Mes/A",
-    "Stand Mes",
-    "Prot",
-    "7 Monk",
-    "8 Monk"
-   ],
-   "routes": [
-    "Back door",
-    "Flag run",
-    "Front door"
-   ],
-   "label": {
-    "real": "yes",
-    "at": "2026-11-11",
-    "scenario": {},
-    "call": {},
-    "who": [],
-    "notes": "Match starts with both teams running main. Crew has flag on air ele, hdm has flag on warrior with derv waiting back for second flag. hdm warrior caps first and hdm derv brings the second flag. Crew over caps and teams are fighting 8v8 in front of hdm's base whilst derv goes to cap flag. \n\nAt around 1:30, crew air ele goes back to run flag. Crew is fighting 7v8 in front of their base and dies on assassin. Crew retreats to footies through front door around 1:55 and assassin bases at 2 minutes. Teams fight 8v8 for around a minute in the choke in crew's footies before hdm falls out. \n\nAt around 3:20, crew's air ele goes back to flag. Crew fights 8v8 while trying to cap for over a minute. It takes crew's air ele 50+ seconds from when he reaches main team to when he caps. \n\nhdm continues to fight 8v8 in the greater flag area for around 45s before sending back mes/a to run a flag. hdm fights 7v8 for around 35s whilst their mes/a runs a flag until he rejoins mainteam and runs to cap the flag around 6:20. At the same time, hdm's ranger is splitting back door with no one from crew going to defend yet, so hdm is fighting 7v8 again in the greater flag area whilst also trying cap flag on mes/a. Around 6:50, crew's air ele runs back to flag and teams fight 7v7 in front of crew's front door. At around 7:25, crew sends 8 monk to defend the ranger, whilst crew runs flag on their air ele 7v7 through choke. Crew's air ele takes over a minute to cap, and I think dies before capping but not sure, timing was close. Crew takes 2 more deaths in mainteam fight and retreats to pit.",
-    "blind_note": true
-   },
-   "sealed": null,
-   "picked_for": "scenario"
-  },
-  {
    "id": "4629b08c-3-2-1203",
    "match": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
    "map": "Nomad's Isle",
@@ -1580,56 +1682,6 @@
    "label": null,
    "sealed": null,
    "picked_for": "scenario"
-  },
-  {
-   "id": "5eebef5f-3-2-134",
-   "match": "5eebef5f-5389-5323-a62a-cbf7a40f993a",
-   "map": "Isle of the Dead",
-   "team": "hold",
-   "opponent": "옷옷옷옷",
-   "t": 134,
-   "family": 3,
-   "trigger": "numbers differ where the main groups meet: hold 7 v 8 옷옷옷옷",
-   "watch": [
-    119,
-    194
-   ],
-   "roles": [
-    "Mesmer",
-    "Monk 2 (WoC)",
-    "Monk 3 (WoC)",
-    "Monk 4 (WoC)",
-    "Monk 5 (WoC)",
-    "Prot (WoC)",
-    "7 Monk (WoC)",
-    "8 Monk"
-   ],
-   "enemy_roles": [
-    "Assassin",
-    "Paragon 1",
-    "Paragon 2",
-    "Monk 4 (WoC)",
-    "Mesmer",
-    "Prot",
-    "7 Monk",
-    "8 Monk"
-   ],
-   "routes": [
-    "Back door",
-    "Flag run",
-    "Front door"
-   ],
-   "label": {
-    "real": "yes",
-    "at": "2026-11-11",
-    "scenario": {},
-    "call": {},
-    "who": [],
-    "notes": "match opens with hold immediately pushing high council's front door WITHOUT taking a flag. high council brings flag on WoC but retreats to frontdoor without capping. Teams fight 8v8 over backdoor bridge before hold takes 3 deaths. \n\nhold's players base res and teams fight 8v8 in hold's base by res shrine. hold gets a spike kill on the 7 monk but takes two more deaths.",
-    "blind_note": true
-   },
-   "sealed": null,
-   "picked_for": "forced read"
   },
   {
    "id": "65f274b6-3-2-93",
@@ -1714,56 +1766,6 @@
     "Front door"
    ],
    "label": null,
-   "sealed": null,
-   "picked_for": "scenario"
-  },
-  {
-   "id": "75312515-3-2-482",
-   "match": "75312515-a408-5381-a999-7ec2432a66f8",
-   "map": "Isle of the Dead",
-   "team": "Crew",
-   "opponent": "One",
-   "t": 482,
-   "family": 3,
-   "trigger": "numbers differ where the main groups meet: Crew 7 v 8 One",
-   "watch": [
-    467,
-    542
-   ],
-   "roles": [
-    "Paragon",
-    "Monk 2 (WoC)",
-    "Monk 3 (WoC)",
-    "Monk 4 (WoC)",
-    "Monk 5 (WoC)",
-    "Prot (WoC)",
-    "7 Monk (WoC)",
-    "8 Monk"
-   ],
-   "enemy_roles": [
-    "Dervish",
-    "Hammer",
-    "AoB Derv",
-    "Stand Mes",
-    "Mes/A",
-    "Prot",
-    "7 Monk",
-    "8 Monk"
-   ],
-   "routes": [
-    "Back door",
-    "Flag run",
-    "Front door"
-   ],
-   "label": {
-    "real": "yes",
-    "at": "2026-11-11",
-    "scenario": {},
-    "call": {},
-    "who": [],
-    "notes": "Both teams open pushing all 8 to stand, with crew bringing flag on a WoC and One bringing flag on a derv. \n\nTeams fight 8v8 with One taking 2 spike deaths before 50s. One's derv goes to solo split front door but is immediately collapsed and spiked by crew's mainteam. One collapses to their base before 1:40. \n\nBoth teams fight in One's front door with Crew boosting and One taking DP on spike deaths. \n\nCrew pushes in to One's base through one door while Crew's #2 WoC takes the other path into base leading to a 7v8. Crew fights 7v8 and retreats through One's front door to greater flag area. \n\nOne takes a number of spike deaths and base reses members. One resigns.",
-    "blind_note": true
-   },
    "sealed": null,
    "picked_for": "scenario"
   },
