@@ -19,7 +19,7 @@ Report layer: reads the measurement layers (moments.py, hallmap.py) and writes t
 Usage:  python3 story.py <report id> [from m:ss] [to m:ss]
 In code: story(Moments(st)) -> [(second, text)], in time order."""
 import collections, re, sys
-from common import (JOIN_S, OVERCAP_S, RES_EVERY, BOOST_EVERY, ON_TIME_S, LATE_S, PRESSURE_HP, PRESSURE_DEATH_S, PRESSURE_MIN,
+from common import (JOIN_S, OVERCAP_S, RES_EVERY, BOOST_EVERY, ON_TIME_S, LATE_S, PRESSURE_HP, PRESSURE_DEATH_S, PRESSURE_MIN, GROUND_MIN, GROUND_MOVE,
                     SPAWN_R, FIGHT_LINK)
 from state import d
 
@@ -301,6 +301,39 @@ def _pressure(M, tm, ids, t):
     return (h is not None and h < PRESSURE_HP) or n > 0, words
 
 
+def _ground_told(M, g):
+    """Which main team moves the story tells (moments.ground): a fall back that ends on the team's own ground or
+    leaves the enemy's, and a push up that ends on the enemy's ground. Moves about the stand are left to the fights."""
+    own, foe = M.st.side.get(g["tm"]), M.st.side.get(3 - g["tm"])
+    if g["n"] < GROUND_MIN or own is None: return None
+    if g["way"] == "back":
+        if g["to_side"] == own and g["to_kind"] in GROUND: return "home"
+        if g["from_side"] == foe and g["from_kind"] in GROUND and not (g["to_side"] == foe and g["to_kind"] in GROUND): return "out"
+        return None
+    return "push" if g["to_side"] == foe and g["to_kind"] in GROUND and not (g["from_side"] == foe and LADDER[g["from_kind"]] > LADDER[g["to_kind"]]) else None
+
+
+def _ground_events(M):
+    out = []
+    for g in M.ground():
+        k = _ground_told(M, g)
+        same = g["from"] == g["to"]                      # a door is the whole drawn route (R-307 wording), so a long move can begin and end "at the front door"
+        if not k or (same and k == "out"): continue
+        tag, foe = g["team"], M.m.tag[3 - g["tm"]]
+        if k == "push":
+            out.append((g["t"], (f"{tag}'s main team pushes deeper along {g['to']}, toward {foe}'s pit" if same else f"{tag}'s main team pushes up from {g['from']} to {g['to']}")
+                        + f" ({g['n']} of them" + (f", {foe} in front of it" if g["followed"] else ", nobody in front of it") + ")"))
+            continue
+        hot, words = _pressure(M, g["tm"], set(g["ids"]), g["t"])
+        line = f"{tag} falls back deeper along {g['to']}, toward its pit" if same else f"{tag} falls back from {g['from']} to {g['to']}"
+        if g["pressed"] and g["fighting"] and hot: line += f", under pressure ({words})"
+        elif not g["pressed"]: line += ", nobody on it"
+        if g["followed"] >= 2 and k == "home": line += f"; {foe} follows"
+        elif g["pressed"] and not g["followed"]: line += f"; {foe} does not follow"
+        out.append((g["t"], line + f" ({g['n']} of them)"))
+    return out
+
+
 def _fight_events(M):
     """Fights followed through time: told once damage is traded. Numbers and place are followed apart, each told once
     it has lasted (numbers JOIN_S, R-350; place 8 s), so a death or a res does not hide a move."""
@@ -338,7 +371,7 @@ def _fight_events(M):
                 head = (f"{tag[home]}'s {_names(M, sorted(key[home - 1]))} defend{_s(key[home - 1])} {n[home - 1]} v {n[2 - home]} at {p[0]}" if few
                         else f"A fight at {p[0]}: {tag[1]} {n[0]} v {n[1]} {tag[2]}")
                 out.append((max(tr["nsince"], t - JOIN_S), f"{head} ({tag[1]}: {', '.join(f['who'][1])}; {tag[2]}: {', '.join(f['who'][2])})"))
-                tr["n"], tr["key"], tr["p"], tr["start"] = n, key, p, tr["nsince"]
+                tr["n"], tr["key"], tr["p"], tr["start"], tr["pc"] = n, key, p, tr["nsince"], M.centre(sorted(ids), t)
                 continue
             if tr["pcount"] >= need_p and canon(p) != canon(tr["p"]):
                 old = tr["p"]
@@ -349,9 +382,15 @@ def _fight_events(M):
                     else: line = f"{tag[fwd]} pushes {tag[back]} back from {old[0]} to {p[0]}"
                 elif old[2] in side_tm and (p[2] != old[2] or LADDER[p[1]] < LADDER[old[1]]):
                     line = f"{tag[side_tm[old[2]]]} pushes out from {old[0]} to {p[0]}"
-                else: line = f"The fight moves from {old[0]} to {p[0]}"
-                out.append((tr["psince"], f"{line} ({tag[1]} {n[0]} v {n[1]} {tag[2]})"))
+                else:                                     # sideways (door to door in one base): told only when the fight really went somewhere
+                    line = f"The fight moves from {old[0]} to {p[0]}"
+                    cn = M.centre(sorted(ids), t)
+                    if tr.get("pc") and cn and d(tr["pc"], cn) < GROUND_MOVE: line = None
+                mover = None if not line else (back, "back") if line.startswith((f"{tag[1]} falls", f"{tag[2]} falls")) or " back from " in line else (side_tm[old[2]], "up") if "pushes out" in line else None
+                told = not line or mover and any(g["tm"] == mover[0] and g["way"] == mover[1] and g["t"] - 20 <= tr["psince"] <= g["t1"] + 10 and _ground_told(M, g) for g in M.ground())
+                if not told: out.append((tr["psince"], f"{line} ({tag[1]} {n[0]} v {n[1]} {tag[2]})"))      # the main team's own move is told from its ground record
                 tr["p"] = p
+                if line: tr["pc"] = M.centre(sorted(ids), t)
             if tr["ncount"] >= need and n != tr["n"]:
                 bits, came_by, okey = [], {}, tr["key"]
                 for tm in (1, 2):
@@ -459,7 +498,7 @@ def story(M, t0=0, t1=None, states=True):
     lord = min((td for a, td in M.st.npc_dead.items() if (M.st.geo.npcs.get(a) or {}).get("kind") == "guild_lord"), default=None)
     t1 = M.T if t1 is None else t1
     if lord is not None: t1 = min(t1, lord)               # the game is over when a Lord dies; the replay runs on a few seconds
-    ev = _flag_events(M) + _move_events(M) + _fight_events(M) + _death_events(M) + _record_events(M) + _pregame(M)
+    ev = _flag_events(M) + _move_events(M) + _fight_events(M) + _death_events(M) + _record_events(M) + _ground_events(M) + _pregame(M)
     if states: ev += [(u, state_line(M, u)) for u in [45] + list(range(120, M.T + 1, 60)) if u <= M.T]
     return sorted(((t, s) for t, s in ev if t0 <= t <= t1), key=lambda x: (x[0], not x[1].startswith("STATE")))
 

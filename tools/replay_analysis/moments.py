@@ -28,7 +28,7 @@ Usage:  python3 moments.py <report id> [family]      the match's moments in orde
 In code: Moments(st, sb).records() -> list of dicts."""
 import collections, json, math, statistics, sys
 from common import (READ_FROM, READ_TO, AREA_SHARE, PURPOSE_S, LEAVE_MIN_S, HOME_WAIT_S, SPAWN_R, GROUP_LEAVE_S, MEET_R,
-                    NUMBERS_MIN_S, MERGE_S, BOOST_WARN_S, FLAGGER_R, SPLIT_FAR, BOOST_EVERY, SERIOUS_CARRY_S, FIGHT_LINK,
+                    NUMBERS_MIN_S, MERGE_S, BOOST_WARN_S, FLAGGER_R, SPLIT_FAR, BOOST_EVERY, SERIOUS_CARRY_S, FIGHT_LINK, GROUND_MOVE, GROUND_S, GROUND_BACK, GROUND_JUMP,
                     RETURN_R, FOOT_ENGAGED_S, SPLIT_STEP, SPLIT_MIN_S, SPLIT_GAP_S, FORCED_OUT_S, AHEAD_LOOK_S, CAUGHT_S, NPC_NEAR,
                     JOIN_S, RES_EVERY, flux_at, JOIN_LOOK_S, JOIN_MOVE, JOIN_LEAD, SWAP_S, SWAP_STAY_S, SPLIT_FIGHT_GAP_S, SPLIT_FIGHT_MIN)
 from state import d
@@ -79,7 +79,7 @@ class Moments:
             if r[2] in self.P and r[3] not in self.P and m.A[r[3]].get("npc") and m.A[r[3]].get("team") not in (None, m.team(r[2])): self.npc_hits[r[2]].append(r[0] / 10)
         self._eng = {}
         self._dp, self._ov, self._fp, self._att, self._last, self._mt, self._ln, self._fr = {}, {}, None, None, {}, {}, None, None
-        self._fi, self._mv, self._sf = None, None, None
+        self._fi, self._mv, self._sf, self._gr = None, None, None, None
         self.legs = self._departures()
         self.by_player = collections.defaultdict(list)
         for g in self.legs: self.by_player[g["a"]].append(g)
@@ -572,6 +572,70 @@ class Moments:
                         for a in f["ids"][1] | f["ids"][2]: row[a] = f
                 self._fi[t] = row
         return self._fi
+
+    def ground(self):
+        """The main team's ground, one record each time it moves up or back (R-374: "falls back to its footies",
+        "pushes up to the front door"). The main team's depth is the walked distance of its middle player from its own
+        Guild Lord, read every 2 s; a move is GROUND_MOVE or more of it covered within GROUND_S, ended once the team
+        comes GROUND_BACK the other way. The reading starts again when the depth jumps (a wipe and a base res, or the
+        main team being a different group), so those are never told as moves. Each record: when it started and ended,
+        the team, back or up, where from and to, how far, who, the enemy next to it at the start (pressed) and at the
+        end (followed), and whether the two were trading damage as it began."""
+        if self._gr is not None: return self._gr
+        st, m, hall, T, S = self.st, self.m, self.hall, self.T, SPLIT_STEP
+        out = []
+        for tm in (st.teams if hall is not None else ()):
+            side = st.side.get(tm)
+            if side is None: continue
+            fld, foe = hall.to(hall.lord[side]), 3 - tm
+            row = []
+            for u in range(0, T + 1, S):
+                g = [a for a in self.main_team(tm, u) if self.AL[a][u] and self.P[a][u]]
+                ds = sorted(v for v in (fld.get(hall.snap(self.P[a][u])) for a in g) if v is not None)
+                row.append((u, statistics.median(ds) if len(ds) >= 2 else None, g))
+            runs, cur = [], []
+            for x in row:                                    # unbroken stretches of walking
+                if x[1] is None or (cur and abs(x[1] - cur[-1][1]) > GROUND_JUMP):
+                    if len(cur) > 2: runs.append(cur)
+                    cur = [] if x[1] is None else [x]
+                else: cur.append(x)
+            if len(cur) > 2: runs.append(cur)
+            for run in runs:
+                segs, piv, ext, way = [], 0, 0, 0
+                for i in range(1, len(run)):
+                    dv = run[i][1] - run[ext][1]
+                    if way == 0:
+                        if abs(run[i][1] - run[piv][1]) >= GROUND_BACK: way, ext = (1 if run[i][1] > run[piv][1] else -1), i
+                    elif dv * way > 0: ext = i
+                    elif -dv * way >= GROUND_BACK:
+                        segs.append((piv, ext, way)); piv, ext, way = ext, i, -way
+                if way: segs.append((piv, ext, way))
+                for i0, i1, way in segs:
+                    full = run[i1][1] - run[i0][1]
+                    if abs(full) < GROUND_MOVE: continue
+                    a = max(i for i in range(i0, i1 + 1) if abs(run[i][1] - run[i0][1]) <= 0.15 * abs(full))
+                    b = min(i for i in range(a, i1 + 1) if abs(run[i][1] - run[i1][1]) <= 0.15 * abs(full))
+                    best = None                               # the fastest GROUND_MOVE inside it must fit in GROUND_S
+                    for i in range(a, b + 1):
+                        j = next((j for j in range(i + 1, b + 1) if abs(run[j][1] - run[i][1]) >= GROUND_MOVE), None)
+                        if j is not None and (best is None or run[j][0] - run[i][0] < best): best = run[j][0] - run[i][0]
+                    if best is None or best > GROUND_S: continue
+                    u0, u1, g0, g1 = run[a][0], run[b][0], run[a][2], run[b][2]
+                    same = [x for x in g0 if x in g1]         # the same players must have made the move: a main team that only gains or loses players has not moved
+                    dep = lambda x, u: fld.get(hall.snap(self.P[x][u]))
+                    dd = [dep(x, u1) - dep(x, u0) for x in same if dep(x, u0) is not None and dep(x, u1) is not None]
+                    if len(dd) < 2 or len(dd) * 2 < len(g0) or statistics.median(dd) * way < GROUND_MOVE * 0.75: continue
+                    def where(g, u):
+                        z = collections.Counter(self.place_at(x, u) for x in g)
+                        return max(z, key=lambda k: (z[k], str(k)))
+                    near = lambda g, u: [e for e in st.players[foe] if self.AL[e][u] and self.P[e][u] and any(d(self.P[e][u], self.P[x][u]) < FIGHT_LINK for x in g)]
+                    k0, k1 = where(g0, u0), where(g1, u1)
+                    out.append({"t": u0, "t1": u1, "team": m.tag[tm], "tm": tm, "way": "up" if way > 0 else "back", "dist": round(abs(run[b][1] - run[a][1])),
+                                "from": self.place_words(*k0), "to": self.place_words(*k1), "from_kind": k0[0], "from_side": k0[1], "to_kind": k1[0], "to_side": k1[1],
+                                "ids": sorted(g0), "n": len(g0), "pressed": len(near(g0, u0)), "followed": len(near(g1, u1)),
+                                "fighting": self.contact(set(g0), set(st.players[foe]), max(u0 - 10, 0), u0)})
+        self._gr = sorted(out, key=lambda x: x["t"])
+        return self._gr
 
     def moves(self):
         """Every join, leave and swap at a fight, one record each (R-374): the collapses and rotations Denning calls.
