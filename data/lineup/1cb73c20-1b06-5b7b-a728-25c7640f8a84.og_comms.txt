@@ -1,0 +1,70 @@
+# match: 1cb73c20-1b06-5b7b-a728-25c7640f8a84
+# source: og_comms
+# teams: ohno, Fun
+# clock: 54
+# held_out: yes
+0:05 | s.build | Fun | | | it is the Invoke spike
+0:26 | i.wait | ohno | | | wait back for the second flag
+0:37 | object | ohno | | | we can take the portal out and teleport back in
+0:42 | plan | ohno | | | we are just going to get far up on flags
+0:55 | s.push | Fun | | | they are all rushing our back door
+1:12 | i.split | ohno | Water Ele, Fire Ele | | I am going to their base: send the eles and the rest fight in our base
+1:21 | i.split | ohno | | | I am in their back door already
+2:16 | s.fall | Fun | | | they are probably collapsing on you: do not follow
+2:34 | s.npc | Fun | | footman | they are going to cap a flag and take our footies
+2:41 | s.cap | Fun | 7 Monk | | they brought the flag with them on their 7
+2:50 | i.go | ohno | Monk 5 (WoC) | | I will run the flag
+3:04 | object | ohno | | | come out by the portal
+3:21 | i.npc | ohno | | footman | they left their front footies undefended: I am going for them
+3:28 | object | ohno | | | do the trick: pretend to collapse on main, then jump back in
+3:53 | i.split | ohno | | | if they push our base again I go to split
+4:30 | i.fall | ohno | | | we are giving them space
+4:38 | s.hold | Fun | | | they have a flag
+4:41 | i.go | ohno | | | I am bringing one
+4:56 | npc | ohno | | knight | we have cleared a lot of NPCs: only one archer left
+5:20 | i.fall | ohno | | | our bars are low: fall back
+5:30 | death | ohno | Dervish 2 | | you have to come and res
+5:34 | s.join | Fun | | | they are collapsing through the front
+5:56 | object | ohno | | | port out
+6:06 | timing | ohno | | | pacted until 7: too risky to jump back in, run away
+6:39 | judge | ohno | | | we should have pushed the flag
+7:20 | s.posture | Fun | | | a fake push: they are waiting for you to port and will fall on you
+7:43 | object | ohno | | | this is our chance to jump back in
+8:05 | s.join | Fun | | | their full team is collapsing by the front door
+8:15 | i.npc | ohno | | footman | collapse and get the footies
+8:18 | lord | ohno | | | we do Lord damage every time we do that
+8:56 | boost | ohno | | | we are going to boost
+9:10 | timing | ohno | | | do not return their flag: leave it and take the front NPCs
+9:56 | i.npc | ohno | | archer | we get the front archer this time
+11:02 | judge | ohno | | | the only problem with this position is how easily they collapse on us
+12:38 | lord | ohno | | | if we do not lose the stand team we are very good on damage at 28
+13:07 | judge | ohno | | | every rotation we do damage: as long as our Lord is not ganked we have won
+13:16 | standoff | ohno | | | I am going to hide
+14:29 | s.posture | Fun | | | they will not do anything until they see me
+14:51 | s.timing | Fun | | | they will wait for 26 and make one attempt on the Lord
+14:59 | i.answer | ohno | | | I will defend in that case
+15:36 | option | ohno | | | if they defend with one monk I go out the portal and we end the game
+16:23 | s.push | Fun | | | they are coming through the portal
+16:30 | monks | Fun | | | two monks in their base
+16:36 | s.push | Fun | | front door | they are pushing our front door
+17:42 | death | Fun | Air Ele 5 | | I got the Boss
+17:44 | clock | Fun | | | they have two dead after time: push hard
+18:03 | option | ohno | | | is it worth pushing in: no
+18:36 | s.timing | Fun | | | the same at 26: he will try to wipe us on the stairs, so stand further back
+19:28 | monks | Fun | | | one monk in their base: I stay
+20:11 | s.join | Fun | | | their whole team is collapsing toward the back door
+20:17 | i.push | ohno | | | I am chasing
+20:25 | object | ohno | | | we port
+20:55 | s.push | Fun | | | they are rushing: portal jump
+21:01 | monks | Fun | | | no monks with these eles: pick a target
+21:35 | death | Fun | Air Ele 1 | | good job
+21:38 | death | Fun | Air Ele 2 | | two eles dead after time
+21:52 | object | ohno | | | we jump in again
+22:01 | timing | ohno | | | everybody in the pit, and we leave by the portal right before they base res
+23:10 | s.fall | Fun | | | they are going toward the back door: we do not chase
+24:24 | lord | ohno | | | we have far more Lord damage
+24:52 | option | ohno | | | if they defend with only monks, fake a push then collapse and kill, or just let them make the mistake
+25:08 | s.push | Fun | | | they are going to our back door
+25:18 | i.push | ohno | | | I go to their base then
+25:57 | lord | ohno | | | kill the Lord
+26:27 | clock | ohno | | | do not kill him yet: time it

@@ -1,0 +1,36 @@
+# match: 453bd7a0-ec5b-5e03-a6a2-023431c7deaa
+# source: og_comms
+# teams: Men, OG
+# clock: 20
+# held_out: no
+0:07 | s.split | Men | Ranger, Hammer, 8 Monk | 3 | they will try to make it a 3-3: ranger, warrior and 8 monk for me
+0:21 | plan | OG | | | do not answer the 3-3: win on the other side and get up on flags
+0:29 | i.cap | OG | Dervish | | I cap this first flag at once
+0:47 | option | OG | | | if they commit the ritualist to me that is good; if he runs flags I can push him
+0:58 | s.build | Men | | | their ritualist has Shadow of Haste, so he is weaker in the skirmish
+1:14 | i.split | OG | Dervish | 1 | I am starting for their back door
+1:27 | plan | OG | | | we do not want to play at the flag stand at all
+1:36 | s.noanswer | Men | | | nobody is in their base for me
+1:42 | s.go | Men | Ritualist | | the ritualist is here picking up the flag
+1:50 | i.ret | OG | Dervish | | I can maybe return their flag
+1:53 | s.leave | Men | Ritualist | | the ritualist is leaving me
+2:01 | s.join | Men | Ranger | through mid | their ranger is going through the middle
+2:11 | pushflag | OG | Dervish | | I am holding the ritualist
+2:13 | i.ret | OG | Dervish | | I will bounce their backup as soon as I cap: nobody is watching it
+2:17 | s.go | Men | 8 Monk | | their 8 monk will have to go for it
+2:19 | i.fall | OG | | | main team should hold or get out
+2:26 | s.cap | Men | 8 Monk | | the 8 monk is capping: I am snaring him
+2:30 | cause | OG | | | we need to stabilise main team right now
+2:35 | i.join | OG | Dervish | | I am coming back to main
+2:42 | judge | OG | | | I go one for one with the ritualist, so we should be fine
+2:46 | s.answer | Men | 8 Monk | | I have their 8 monk alone on me now
+3:08 | option | OG | | | you need not play the main team side: play the middle
+3:16 | i.go | OG | | | come back and get us up on flags
+3:20 | object | OG | | | going to the portal
+3:25 | death | OG | 8 Monk | | it is going badly over there: why am I dying
+3:49 | option | OG | | | we are dying at main: trade a monk and the ritualist
+4:01 | i.fall | OG | | base | you have to come back to our base: they are going to end it
+4:09 | i.npc | OG | | knight | I get the knight actually
+4:12 | npc | Men | | bodyguard | they are going for the end: they are on the bodyguard
+4:30 | cause | OG | | | keep the ritualist at main and split differently so we do not die in three seconds
+4:40 | cause | OG | | | too many of us stood in the same area and were hit together

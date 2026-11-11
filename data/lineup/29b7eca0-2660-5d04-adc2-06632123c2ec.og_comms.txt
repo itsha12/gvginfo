@@ -1,0 +1,43 @@
+# match: 29b7eca0-2660-5d04-adc2-06632123c2ec
+# source: og_comms
+# teams: OG, cope
+# clock: 36
+# held_out: no
+0:16 | plan | OG | | | against a hex build: spike and run; against a mirror: spike and go to 40/40 sets
+0:54 | plan | OG | | | spike, then fall back; go in again when the speed shout is up
+1:04 | death | cope | Necromancer 1 | | the first spike kills
+1:14 | death | cope | Stand Mes | | another
+1:17 | s.hold | cope | | | who has their flag: I see him
+1:27 | i.fall | OG | | | we fall back hard after this one
+1:48 | death | OG | Mesmer | | I could not close a menu
+2:01 | i.fall | OG | | | keep running back
+2:12 | i.go | OG | Air Ele 4 | | can he grab the backup
+2:36 | s.go | cope | Ritualist | | they run on their 8, because they do not need the 8 to catch spikes
+2:42 | reason | OG | | | if we push through we have to spread out
+2:50 | i.push | OG | | | let us go
+3:37 | death | cope | Necromancer 1 | | good job
+3:47 | i.go | OG | | | I am going to miss the flag
+3:56 | i.fall | OG | | | just run: they are all dead still
+4:11 | judge | OG | | | we do not even need to push
+4:29 | option | OG | | | whenever they push, spike them on the bridge
+4:32 | object | OG | | | can I go through the portal
+4:42 | plan | OG | | | cap the flag; if they try to cap we spike them; if they retreat we advance slowly
+4:52 | lead | OG | | | the DP advantage is hugely in our favour
+5:29 | i.fall | OG | | | fall back
+5:38 | death | cope | 7 Monk | | their infuse monk died to two Invokes
+5:46 | i.go | OG | | | someone has to get a flag
+5:51 | s.go | cope | Ritualist | | they are running a backup on their 8
+5:56 | i.push | OG | | | we advance when he is back
+6:06 | judge | OG | | | it does not matter if they have a backup: we can spike the carrier
+6:31 | i.push | OG | | | now we push through and stop falling back
+6:46 | s.hold | cope | | | he has a flag as well
+6:49 | i.cap | OG | | | I am pushing the cap now
+7:09 | i.fall | OG | | | fall back again to get the flag
+7:22 | i.go | OG | Air Ele 4 | | he is just getting the flag
+8:28 | death | cope | Necromancer 2 | | a kill at the back
+8:30 | clock | cope | | | do they base res now
+8:56 | judge | cope | | | their whole team is dead: they have given up
+9:01 | i.push | OG | | | just push through
+9:16 | monks | OG | | | you have no monks with you yet: wait
+9:33 | lord | OG | | | we can end the game here
+9:40 | npc | OG | | bodyguard | bodyguard, then the Lord

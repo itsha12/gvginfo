@@ -1,0 +1,32 @@
+# match: a921418b-c4d1-5872-aca9-18f9ad99bf40
+# source: og_comms
+# teams: OG, Dz
+# clock: 0
+# held_out: no
+0:15 | s.build | Dz | | | they are playing assassins too
+1:13 | death | Dz | Paragon | | keep the deep wound on: he dies
+1:21 | s.fall | Dz | | | they are falling back: push forward
+1:43 | i.cap | OG | 8 Monk | | the 8 monk caps the flag
+1:56 | i.fall | OG | | | do not push: back out, we are low
+2:02 | i.npc | OG | | footman | kill the footies while we wait
+2:04 | baseres | Dz | Paragon | | they are base ressing right now
+2:13 | s.split | Dz | Assassin | | they are going for a split with an assassin
+2:22 | i.split | OG | | | come this way with me and a monk; the rest stay
+2:35 | s.hold | Dz | | | their flag is on the top
+2:40 | i.join | OG | | | I am going to collapse on the top
+2:53 | judge | Dz | | | they are neutralised
+2:56 | i.npc | OG | | archer | let us kill the archer
+3:39 | i.push | OG | | | walk up here and push in so we reach our monks
+3:57 | death | Dz | Assassin 2 | | an assassin is dead
+4:15 | i.join | OG | | | collapse
+4:30 | npc | OG | | knight | next knight
+4:35 | npc | OG | | knight | the knights are down
+4:38 | i.split | OG | | | I will go top
+5:38 | energy | OG | | | I can reset my energy now
+5:43 | i.fall | OG | | | let us just fall out
+6:03 | death | Dz | Assassin 1 | | the assassin is down, and they just base ressed
+6:43 | energy | OG | | | I need an energy reset
+6:49 | i.fall | OG | | | disengage
+8:23 | clock | Dz | | | they are going to die here and it is not their time
+8:27 | death | Dz | Assassin 1 | | dead
+8:49 | death | Dz | 7 Monk | | they are done

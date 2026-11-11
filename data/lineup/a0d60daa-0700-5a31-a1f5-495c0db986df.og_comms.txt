@@ -1,0 +1,58 @@
+# match: a0d60daa-0700-5a31-a1f5-495c0db986df
+# source: og_comms
+# teams: ohno, NwAy
+# clock: 57
+# held_out: no
+0:06 | s.split | NwAy | Air Ele, Fire Ele | | it is a double ele split, with Return on the four
+0:14 | i.split | ohno | Warrior, AoB Derv, Ranger, Ritualist, 8 Monk | 5 | one, two, three, four and eight go out the back
+0:34 | i.cap | ohno | Prot | | one of the monks brings the flag to the front
+0:50 | reason | ohno | | | this way we lose no footmen, our damage protects our one monk, and we can mob their split
+1:16 | s.answer | NwAy | | | two monks and a dervish here
+1:18 | s.split | NwAy | | 4 | it is four out the back
+1:30 | i.join | ohno | | | I am going to the stand team; the dervish plays the back side
+1:47 | lead | ohno | | | we need another flag
+1:53 | i.go | ohno | AoB Derv | | the dervish runs it
+2:14 | object | ohno | | | open the gate so he can collapse from time to time
+2:53 | s.pushflag | NwAy | | | they have an ele pushing me
+2:58 | i.join | ohno | | | come to the stand and fight from the perch
+3:26 | s.push | NwAy | | | they are going to our base
+3:29 | object | ohno | | | they can never fully commit to our base while we hold the gate lock
+3:50 | micro | ohno | | | I will block their monk from following
+4:52 | trade | ohno | | | let one of the footies die
+5:02 | judge | NwAy | | | the eles cannot last much longer
+5:25 | cause | ohno | | | we have no strong knockdowns or snares
+5:40 | plan | ohno | | | bring one more to the stand, let them commit to our base, then collapse
+5:49 | fight | | | 3v4 | you are 3v4: do not fight them on the split
+5:53 | i.go | ohno | | | I am running flags
+6:02 | s.split | NwAy | | 1 | one ele is going to our back door for the footies
+6:11 | i.answer | ohno | Ritualist | | the ritualist should handle it one for one
+6:23 | object | ohno | | | we are losing the lock: open it
+6:59 | judge | ohno | | | we should never lose gate control to one ele running through us
+7:12 | i.answer | ohno | Ritualist | | you are always the answer to that one
+7:35 | option | ohno | | | ignore flags for a moment and kill at the stand with three
+8:10 | death | ohno | 8 Monk | | we are going to take a death on the back side
+8:29 | object | NwAy | | | they got the Boss on an ele
+8:43 | s.npc | NwAy | | knight | we are going to lose our pit: they get one knight
+8:56 | s.join | NwAy | 8 Monk | | their 8 monk is here
+9:14 | npc | NwAy | | archer | a knight and an archer gone
+9:21 | monks | NwAy | | | their 8 left: only two monks again
+9:29 | object | NwAy | | | the gate switch makes their collapse too easy: pull back
+9:42 | s.boost | NwAy | | | they are going to boost
+9:46 | i.ret | ohno | | | I can return their flag: doing it
+10:09 | s.join | NwAy | Air Ele, Fire Ele | | their eles are collapsing on you by their back door
+10:46 | judge | ohno | | | we cannot let them run a flag
+10:51 | plan | ohno | | | when they split their 8 monk, three of us kill at the stand and end it
+11:03 | s.split | NwAy | | 4 | they are sending four
+11:25 | i.push | ohno | | pit | go and get knights: we are boosting
+12:10 | monks | NwAy | | | it is only two monks
+12:39 | s.join | NwAy | Air Ele, Fire Ele | | the eles are collapsing through the gate switches: back up
+13:47 | s.go | NwAy | 8 Monk | | they are running the flag on their 8
+13:53 | s.split | NwAy | | | they are resplitting with just two damage
+14:27 | judge | ohno | | | we have to kill here and ignore the flag
+14:41 | i.npc | ohno | | knight | get the knights in: we are going to boost
+15:01 | clock | ohno | | | it is after time: this is a race
+15:29 | lord | NwAy | | | they are trying to get to the Lord
+15:44 | death | NwAy | Mesmer | | their mesmer is dead
+15:56 | npc | ohno | | knight | we got the knight
+16:03 | plan | ohno | | | kill these monks and end the game
+16:19 | death | ohno | 8 Monk | | that is the game

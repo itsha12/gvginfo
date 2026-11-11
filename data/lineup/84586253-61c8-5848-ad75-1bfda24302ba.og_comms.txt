@@ -1,0 +1,101 @@
+# match: 84586253-61c8-5848-ad75-1bfda24302ba
+# source: og_comms
+# teams: OG, cope
+# clock: 74
+# held_out: yes
+0:20 | i.wait | OG | Ritualist | | I am putting spirits up at the back in case I have to fight back here
+0:46 | plan | OG | | | we just keep the ritualist out the back
+0:54 | s.build | cope | | | they are most likely three at the front
+1:00 | option | OG | | | if it is three front, do we solo split, or force a three man in the back
+1:24 | i.split | OG | | | try to go back side: hit their footies
+1:36 | s.drop | cope | | | they are dropping their flag to another player
+1:45 | s.answer | cope | 8 Monk | | they send the 8 monk to their footmen
+1:49 | s.cap | cope | AoB Derv | | they just capped on the dervish
+1:51 | i.cap | OG | | | I have to push this flag in
+1:58 | i.npc | OG | | footman | I am cleaning up their footmen
+2:04 | s.join | cope | Hammer | | they have a warrior coming too
+2:12 | i.go | OG | | | I am double running at the moment
+2:35 | s.join | cope | Hammer | through mid | the warrior is collapsing through the middle
+2:37 | judge | OG | | | you do not need to win your side on the split
+2:47 | i.go | OG | | | I am going to run this flag in
+2:51 | s.go | cope | AoB Derv | | there is a dervish going
+2:53 | i.pushflag | OG | | | I am pushing
+3:31 | monks | cope | | | they have two monks at main, so they will use at least one
+3:38 | i.answer | OG | | | I am trading for the 8 monk right now
+3:40 | s.leave | cope | Mes/A | | their mesmer is going back to the stand
+3:55 | s.join | cope | Hammer | | their warrior is collapsing
+4:07 | i.fall | OG | | | back up: the warrior is coming to kill you
+4:13 | judge | OG | | | we have a winning match-up here
+4:16 | s.hold | cope | Hammer | | the warrior has the flag
+4:29 | s.join | cope | AoB Derv, Hammer | through mid | the dervish and the hammer are collapsing through the middle
+4:40 | i.go | OG | | | I am going to get a flag
+4:44 | swap | cope | Ritualist | | they swapped the 8 monk for the ritualist against me
+5:22 | plan | OG | | | we do not want to 8v8: keep the split going
+5:32 | i.split | OG | | | go to the split side through the middle
+5:39 | judge | OG | | | that is a better three man
+5:42 | s.pushflag | cope | 8 Monk | | they escort their flagger with the 8 monk every time
+5:52 | judge | OG | | | our two and eight are on the split now, and they cannot flag
+6:30 | i.cap | OG | | | I will try to get the overcap
+6:57 | i.npc | OG | | knight | we go for the knights here
+7:08 | judge | OG | | | too much: back off
+7:20 | timing | OG | | | if they push this flag in, I go and ball the knights
+7:26 | swap | cope | Mes/A | | they have the mesmer, the warrior and the 8 on the split now, and the ritualist is going back
+7:31 | i.fall | OG | | | run away: they will turn and kill me
+8:04 | lead | OG | | | we are not ahead on flags right now
+8:05 | i.fall | OG | | | fall back
+8:14 | i.go | OG | | | I will double run with you to get back up
+8:45 | s.join | cope | Hammer | | they have the warrior coming
+8:54 | i.ret | OG | | | I am going to return their flag
+9:11 | s.fall | cope | | | they are running to the front of their base and collapsing: back up
+9:31 | s.go | cope | Ritualist | | they are running the flag on the ritualist
+9:54 | monks | cope | | | solo monk at their main
+9:56 | i.push | OG | | | we are pushing NPCs
+10:15 | i.go | OG | | | I am going to run the flag
+10:38 | judge | OG | | | just go for the solo monk
+11:02 | judge | OG | | | they have no answer for what we are doing
+11:27 | reason | cope | | | their dervish cannot run without the 7 monk
+11:45 | lead | OG | | | we are ahead on this
+12:12 | option | OG | | | not enough space: swap sides, you play the front door and we play the flag stand
+12:46 | cause | OG | | | they worked out that we cannot create enough space
+13:03 | i.push | OG | | | we go to their base so the 7 has to come, then we go on the 6
+13:46 | s.join | cope | Hammer | | the warrior is coming to you
+14:09 | s.fall | cope | Hammer | | the warrior is going back to their base
+14:30 | judge | OG | | | a window: they have only five here and three in the back
+15:20 | cause | OG | | | this is what I mean: not enough space
+15:26 | s.hold | cope | | | they have a backup already
+15:28 | i.go | OG | | | I am going to double run
+15:31 | option | OG | | | try the 4-4: put one more on the split
+15:58 | i.split | OG | | 4 | we try different patterns until we get ahead
+16:26 | s.answer | cope | Hammer, Mes/A | | they defend with the warrior, a monk and the mesmer
+16:47 | monks | cope | | | solo monk
+17:15 | npc | OG | | | I took an NPC
+17:23 | s.join | cope | Hammer | through mid | they send their warrior through the middle: we can push the flag
+17:30 | i.pushflag | OG | | | go and intercept that warrior alone
+17:48 | s.fall | cope | Hammer, Mes/A | | the warrior and the mesmer go back to the stand
+17:54 | s.go | cope | Ritualist | | the ritualist splits off to run a flag
+18:00 | s.go | cope | | | they are double running
+18:02 | i.go | OG | | | I am going to grab a backup
+18:37 | death | cope | 7 Monk | | he is dazed and crippled: nice
+19:09 | s.go | cope | Ritualist | | the ritualist goes for another flag
+19:37 | s.go | cope | Hammer | | the warrior is running the flag and the ritualist goes back to main
+19:56 | cause | OG | | | our split needs to accomplish something
+20:17 | option | OG | | | swap the warrior and the dervish so we can ball the knights harder, and always bring an extra damage
+21:57 | option | OG | | | swap the warrior and the dervish and redo the four man split
+22:05 | judge | OG | | | trading a ranger for their 8 monk is good
+22:28 | s.answer | cope | Ritualist | | they defend me with the ritualist, so they lose the ability to flag
+22:39 | i.split | OG | | 4 | the four man split again
+23:17 | clock | OG | | | this is 22 minutes
+23:38 | pull | OG | | | you have two knights on you here
+24:16 | death | OG | AoB Derv | | I hit the wrong hotkey
+24:35 | lord | cope | | | they can end the game here
+24:58 | death | cope | Ritualist | | we killed a ritualist
+25:39 | i.boost | OG | | | can we at least get the boost
+25:47 | option | OG | | | play for 28, or go with the power play
+26:10 | option | OG | | | at 28: who defends, and we send two monks
+26:31 | i.cap | OG | | | we need to cap this flag
+26:38 | judge | OG | | | it is 26: probably not worth it
+27:08 | option | OG | | | do I defend because I have the hard res, or push with two
+27:59 | lord | cope | | | they are ending
+28:08 | cause | OG | | | I needed to be back because I had the only hard res
+28:12 | cause | OG | | | our ritualist was at one end of the pit and our monk at the other
+28:42 | cause | OG | | | the turning point was the dervish dying while holding the two knights

@@ -1,0 +1,83 @@
+# match: c553716d-a00b-5bff-ac49-6bfc480c5ca9
+# source: og_comms
+# teams: ohno, One
+# clock: 47
+# held_out: no
+0:36 | i.wait | ohno | | | we get flags in early and I am waiting back
+0:40 | plan | ohno | | | against the double paragon, warrior, ranger and 8 monk should be strong on a split
+0:54 | i.drop | ohno | | | paragons: I am dropping the flag and going
+1:06 | plan | ohno | | | keep a prot and a monk on one side and the ritualist and a monk on the other
+1:28 | monks | One | | | they are five at main team with a solo monk
+1:32 | s.answer | One | | | they have two monks back for us
+1:43 | death | One | Warrior | | got one: I have the Boss
+1:47 | i.cap | ohno | Ritualist | | I can cap this then
+1:58 | object | ohno | | | collapse by the portal: I am going to jump in
+2:18 | s.leave | One | | | one of theirs is going back through their front door, maybe to collapse
+2:29 | i.join | ohno | | | we have to collapse
+2:35 | i.go | ohno | | | I am going for the next flag
+2:43 | option | One | | | they could have a power play on you
+3:02 | i.hand | ohno | | | can I drop this flag to somebody for a double run
+3:11 | monks | One | | | we can kill their 8 monk: solo monk
+3:26 | npc | ohno | | knight | pretty sure we can get this knight
+3:31 | s.join | One | | | they are collapsing the damage: go to the portal
+3:36 | object | ohno | | | keep doing the loop through the portal
+4:08 | i.split | ohno | | | we are splitting
+4:30 | i.pushflag | ohno | | | check who is capping: can we push him
+4:55 | i.fall | ohno | | | pull back if they push you, I am not there
+5:05 | option | ohno | Ritualist | | should we give you another player on the split, the ritualist
+5:16 | s.leave | One | | | their runner is going to their base
+5:19 | i.cap | ohno | | | I am capping this flag
+5:24 | npc | ohno | | footman | we killed the footy
+5:31 | i.go | ohno | | | I am getting a backup
+5:45 | option | ohno | Ritualist | | if the ritualist joins the split and they only defend with the smite monk and the 8, we can kill
+6:14 | lead | ohno | | | we are ahead on flags
+6:16 | s.answer | One | | | he is defending this time, and they have a warrior too
+6:28 | monks | One | | | solo monk: go on the monk
+6:50 | death | One | 7 Monk | | on the solo monk again
+7:17 | death | One | Warrior | | we just killed their warrior
+7:15 | s.join | One | | | they are collapsing on you
+7:53 | standoff | One | | | they are turtling, not sure why
+7:59 | npc | ohno | | knight | we got a knight earlier
+8:08 | judge | ohno | | | we have the good 28 with four monks
+8:33 | option | ohno | | | their warrior has 30 DP: maybe just fight them, or wait a minute for the boost
+9:38 | option | ohno | | | wait for 28 or make a play: they are turtling, so we have to make a play, and a kill may break the turtle
+10:14 | pull | ohno | | | pull this knight down: he will follow a long way
+10:20 | i.npc | ohno | | archer | I will clean up the archer at the back
+10:58 | npc | ohno | | archer | the archer died
+11:22 | death | ohno | AoB Derv | | one of ours is down and being ressed
+11:42 | i.fall | ohno | | | let us get out
+12:07 | s.go | One | | | they are pushing a flag on their runner
+12:11 | lead | ohno | | | we have no backup
+12:20 | plan | ohno | | | resplit hard and cap when it is safe
+12:34 | monks | One | | | they have a solo monk here
+13:28 | option | ohno | | | boost again and play the knight move again: we have time
+13:45 | option | ohno | | | to take the knight we all have to be pushed further forward
+14:00 | cause | ohno | | | fighting in the choke lets them swap targets freely
+15:22 | i.npc | ohno | | archer | help me kill this archer while the rest work on the knight
+15:54 | npc | ohno | | archer | archer down
+16:10 | judge | ohno | | | we took an NPC, that is already really good
+16:50 | i.npc | ohno | | knight | kill the knight: they are healing it from the top
+17:19 | death | One | Paragon 2 | | a paragon is down
+18:06 | i.fall | ohno | | | back up: we are all at 75% and easy to spike
+19:22 | death | ohno | Ranger | | he is dead too deep to res safely
+19:50 | option | ohno | Ranger | | do it again with one player pushing from the back, so they must split at least one monk
+20:20 | object | ohno | | | go to the portal
+20:54 | judge | ohno | | | one pushing from the back and the rest from the front works
+21:15 | option | ohno | | | for 28: who defends and who pushes; the ritualist has to be with the solo monk
+22:50 | i.npc | ohno | Ranger | archer | that back archer is a pit NPC: he kills it from the back while we are on the knight
+23:06 | i.npc | ohno | | bodyguard | engage the bodyguard: they cannot hold NPCs on three sides
+24:20 | npc | ohno | | bodyguard | the bodyguard is down
+24:28 | npc | ohno | | knight | knight down
+24:33 | i.fall | ohno | | | everybody retreat: two NPCs
+24:42 | s.push | One | | | they may suicide rush our base through the portal
+25:18 | clock | ohno | | | he will base res at 26 and defend the base anyway
+25:30 | s.push | One | | | this time they rush our base: they have to at 25 minutes
+25:37 | monks | One | | | they have two monks defending
+25:50 | lord | ohno | | | hit the Lord
+26:26 | lord | One | | | they cannot do Lord damage
+26:35 | clock | ohno | | | do not die after 26
+27:01 | s.join | One | | | they sent a smite monk for you
+27:26 | s.push | One | | pit | they are pushing into our pit now
+27:33 | npc | One | | knight | one knight lost
+27:57 | judge | ohno | | | they cannot do Lord damage: if we do not wipe it is over
+28:05 | death | One | Warrior | | they are dead
