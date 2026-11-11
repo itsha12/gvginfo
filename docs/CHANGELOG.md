@@ -12,7 +12,7 @@ Dated session log of the GvG Info analysis engine and portal, newest first. Entr
 - Then on the branch: answers (a defender who traded damage; later defenders told), split openings, retreats told with both teams, the flag at the gates; all 516 matches run clean (711 split fights, median 92 s; 12.9 joins per 10 minutes; 507 swaps, a count not yet trusted). Line-up 76%, held-out 77%; gate 90% and golden set of 15 (R-380).
 - Replays queued: 453bd7a0 (Men v OG), cc1e770d (NwAy v ohno, stored as 11:49; the comms run 28 minutes), ee3a719f.
 - Denning ruled R-379 to R-382 (vine seed transcript dropped; gate 90% on held-out games; solo split; golden set of 15, the other 15 parked). 90 random matches from 2 September on fetched (606 replays; the records read all of them).
-- Then on the branch: solo split (708 of 811 lone attempts count), swaps from each player's stay in a split fight (184 over 606 matches; the three he called read), the main team ground record `ground()` (16 moves a match, 7.7 told), door-to-door shuffles dropped, the next runner's time fixed. Line-up 77%, held-out 79%; seen events 82%, comms calls 65%. Ten draft thresholds to confirm.
+- Then on the branch: solo split (708 of 811 lone attempts count), swaps from each player's stay in a split fight (184 over 606 matches; the three he called read), the main team ground record `ground()` (16 moves a match, 7.7 told), door-to-door shuffles dropped, the next runner's time fixed. Line-up 77%, held-out 79%; seen events 82%, comms calls 65%. Twelve draft thresholds to confirm.
 
 ## 2026-11-11 (third): the engine's split, push and flag records (branch `bundle-4`; stories draft 5)
 - Denning ruled R-355 to R-364 and directed that the record, not the description, is the work (R-362).
