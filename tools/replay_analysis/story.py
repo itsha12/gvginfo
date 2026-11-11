@@ -82,7 +82,8 @@ def state_line(M, t):
         to_stand = M.hall.to(M.hall.stand)
         near = lambda g: min(to_stand.get(M.hall.snap(M.P[a][t]), 1e9) for a in g)
         monks = lambda g: sum(1 for a in g if m.A[a].get("p") == "Monk")
-        main = max(gs, key=lambda g: (monks(g), -near(g))) if gs else []      # the main team keeps the monks; then the stand side (R-335)
+        mt = M.main_team(tm, t)                               # the engine's main team (R-335, R-355), not a second reading
+        main = max(gs, key=lambda g: (len(mt & set(g)), len(g), -near(g))) if gs else []
         bits = []
         for g in sorted(gs, key=lambda g: (g is not main, -len(g))):
             z = collections.Counter(M.place_at(a, t) for a in g); kind, sd = max(z, key=lambda k: (z[k], str(k)))
@@ -130,10 +131,55 @@ def _move_events(M):
         tm = m.team(a)
         if start is not None: out.append((start, f"{m.tag[tm]}'s {m.roles[a]} leaves {_where(M, a, start)} to go back for the flag"))
         if waited is not None: out.append((waited, f"{m.tag[tm]}'s {m.roles[a]} waits back at the flag spawn for the next flag"))
-    for purpose, words in (("split", "to split"), ("collapse", "back to defend")):
-        for g in M.groups(purpose):
-            xs = g["members"]
-            out.append((g["t"], f"{m.tag[g['team']]}'s {_names(M, xs)} go{'es' if len(xs) == 1 else ''} {words}{_went(M, xs[0], g['t'])}"))
+    return out + _attempt_events(M)
+
+
+NUM = {1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six", 7: "seven", 8: "eight"}
+
+
+def _attempt_events(M):
+    """Splits, main team pushes and base res swings, printed from the engine's records (moments.attempts, caught):
+    the story says what the record holds and nothing else (R-362)."""
+    m, out = M.m, []
+    mk = lambda n: "no monk" if not n else ("one monk" if n == 1 else f"{NUM.get(n, n)} monks")
+    for x in M.attempts():
+        tag, foe, an = x["team"], m.tag[3 - x["tm"]], x["answer"]
+        who = ", ".join(q["role"] for q in x["members"])
+        way = f" by the {x['way']}" if x["way"] else ""
+        if x["kind"] == "split":
+            size = NUM.get(x["size"], x["size"]) + (f" (up to {NUM.get(x['max'], x['max'])})" if x["max"] > x["size"] else "")
+            head = f"{tag} splits {size}{way}" + (" from the opening" if x["opening"] else "") + f" ({who}; {mk(x['monks'])})"
+            if x["carried_flag"]: head += ", taking the flag with it"
+            out.append((x["t0"], head))
+            if an["defenders"]:
+                beh = "already there" if (an["behind_s"] or 0) <= 4 else f"{an['behind_s']} s behind"
+                out.append((x["t_in"] + (an["behind_s"] or 0), f"{foe} answers {tag}'s split with {NUM.get(len(an['defenders']), len(an['defenders']))} ({', '.join(an['defenders'])}; {mk(an['monks'])}), {beh}, {an['met']}"
+                            + (f"; {', '.join(an['went_back'])} also go{'es' if len(an['went_back']) == 1 else ''} back" if an["went_back"] else "")))
+            elif an["went_back"]: out.append((x["t_in"], f"{foe} sends {', '.join(an['went_back'])} back for {tag}'s split; they never meet it"))
+            else: out.append((x["t_in"], f"{foe} does not answer {tag}'s split"))
+            mn = x["main"]
+            res = [f"takes {', '.join(x['npcs'])}" if x["npcs"] else "takes no NPC", f"kills {', '.join(x['kills'])}" if x["kills"] else "no kills",
+                   f"loses {', '.join(x['lost'])}" if x["lost"] else "no deaths"]
+            end = {"left": "it leaves", "routed": "it is routed", "killed": "it is killed", "main team joined": "its main team joins it", "match ended": "the match ends"}[x["end"]]
+            tail = f" ({x['after']})" if x["after"] and x["after"] != "elsewhere" else ""
+            main = f"; meanwhile its main team fought a player or more up for {mn['up_s']} s, even {mn['even_s']} s, down {mn['down_s']} s" if mn["contact_s"] else "; its main team was in no fight meanwhile"
+            out.append((x["t1"], f"{tag}'s split ends after {clock(x['t1'] - x['t_in'])}: {end}{tail}; {'; '.join(res)}{main}"))
+            if x["ahead"] and abs(x["ahead"]["lead_s"]) >= 4:
+                ah = x["ahead"]; first = tag if ah["lead_s"] > 0 else foe
+                out.append((ah["split_back"], f"{tag}'s split is back with its main team {abs(ah['lead_s'])} s {'ahead of' if ah['lead_s'] > 0 else 'behind'} {foe}'s defenders: {first} has the numbers there for that long"
+                            + (f" and kills {ah['kills_for'] if first == tag else ah['kills_against']}" if (ah['kills_for'] if first == tag else ah['kills_against']) else " and gets no kill")))
+        else:
+            out.append((x["t_in"], f"{tag}'s main team pushes in{way}, {NUM.get(x['size'], x['size'])} against {NUM.get(an['n'], an['n']) if an['n'] else 'nobody'}"))
+            res = [f"takes {', '.join(x['npcs'])}" if x["npcs"] else "takes no NPC", f"kills {len(x['kills'])}" if x["kills"] else "no kills", f"loses {len(x['lost'])}" if x["lost"] else "no deaths"]
+            if x["end"] != "match ended": out.append((x["t1"], f"{tag}'s push ends after {clock(x['t1'] - x['t_in'])}: {'; '.join(res)}"))
+        for f in x["forced_out"]:
+            out.append((f["left"], f"{tag} gives ground in {foe}'s base as {foe}'s {f['defender']} arrives"))
+    for c in M.caught():
+        if not (c["outnumbered"] or c["lead_lost"]): continue
+        foe = m.tag[3 - c["tm"]]
+        what = "is outnumbered" if c["outnumbered"] else ("loses its numbers lead" if c["lead_lost"] else "keeps its lead")
+        after = f"; {c['team']} loses {', '.join(c['lost_after'])} in the next minute" if c["lost_after"] else ""
+        out.append((c["t"] - 5, f"{c['team']} is in {foe}'s base at the base res: {c['attackers']} v {c['defenders']} becomes {c['attackers']} v {c['defenders'] + c['coming_back']} ({c['team']} {what}){after}"))
     return out
 
 
@@ -169,6 +215,8 @@ def _flag_events(M):
             over = any(tm != L["team"] and 0 <= L["end"] - t <= OVERCAP_S for t, tm in caps)
             tail = ""
             if L["form"] == "double run, full": tail = f"; {role(nxt)} {_next_runner(M, L)} and takes the next flag (double run, each full running)"
+            fr = next((x for x in M.flags_record() if x["tm"] == L["team"] and abs(x["end"] - L["end"]) <= 1), None)
+            if fr: tail = (" behind their main team (a back cap)" if fr["back_cap"] else "") + f" (runner {fr['runner']} away {fr['away_s']} s" + (", next flag already waiting" if fr["backup_waiting"] else "") + ")" + tail
             out.append((L["end"], f"{tag}'s {role(L['capper'])} {'overcaps' if over else 'caps'}{tail}"))
         elif L["how"] == "returned":
             who = L.get("returned")

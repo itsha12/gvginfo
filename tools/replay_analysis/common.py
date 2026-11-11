@@ -242,3 +242,21 @@ def line(m, a):
         bar = " ".join(m.sk(b) for b in m.A[a].get("bar", []) if b)
         return "frontline" if any(w in bar for w in ("Strike", "Blossom", "Fang", "Jagged", "Wild Blow", "Twisting")) else "midline"
     return "midline"
+
+# ---- split attempts and main team pushes (moments.py; R-355, R-357 to R-364)
+SPLIT_STEP = 2            # the records are read every 2 s
+SPLIT_MIN_S = 15          # a player is on a split after this long on the enemy's ground away from his team
+SPLIT_GAP_S = 20          # back on the own side of the stand this long ends the attempt (R-363)
+FORCED_OUT_S = 15         # a defender arrives and the attackers leave the base within this: one linked move (R-358)
+AHEAD_LOOK_S = 60         # after a split ends: how long to look for it and its defenders rejoining the main fight
+CAUGHT_S = 20             # in the enemy's base this close to the defenders' base res, outnumbered or about to be (R-359)
+NPC_NEAR = 2500           # an NPC's death belongs to a split or push with a player this near
+FLUX = ["Odran's Razor", "Amateur Hour", "Hidden Talent", "There Can Be Only One", "Meek Shall Inherit", "Jack of All Trades",
+        "Chain Combo", "Xinrae's Revenge", "Like a Boss", "Minion Apocalypse", "All In", "Parting Gift"]
+
+
+def flux_at(ms):
+    """The flux in effect at a time (unix ms): by month, changing at 07:00 UTC on the 1st (Guild Wars Wiki, Flux; R-356)."""
+    import datetime
+    t = datetime.datetime.fromtimestamp(ms / 1000, datetime.timezone.utc) - datetime.timedelta(hours=7)
+    return FLUX[t.month - 1]
