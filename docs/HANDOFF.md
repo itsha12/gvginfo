@@ -22,7 +22,6 @@ model's structure: `knowledge/model.md` (generated).
     against Denning's labels. It never reads the sealed field.
 - On main: Model > Golden moments (`assets/js/pages/golden.js`, `data/model/golden_moments.json`): 30 moments for
   Denning to label. The file never holds the engine's reading. Rulings R-318 to R-324 recorded.
-- All 14 halls labelled, audit clean (R-318). Batch 17, discovery run 1, readability test 2: unchanged (CHANGELOG).
 
 ## Next (in order)
 1. Denning: label the golden moments on the site (Model > Golden moments). Where a list cannot say what happened,
