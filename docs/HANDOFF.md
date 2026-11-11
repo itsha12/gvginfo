@@ -45,10 +45,9 @@ model's structure: `knowledge/model.md` (generated).
 5. Meanwhile, if wanted, on main: chunks of about 45, the Discovery workflow's second run, a third readability run.
 
 ## Open rulings for Denning (set each out in the chat, R-329; R-318 to R-341 ruled 2026-11-10)
-- R-341 sets the direction: the engine should think as his golden notes do (the story so far), and the options,
-  decisions and variables follow from that. Ruled from the notes: greater stand area (R-334), main team in a 4v4
-  (R-335), flag position and stand holder both (R-336), pinned or desperate (R-337), one flag a team and the four
-  hand-off and double run forms (R-339, R-340). Built so far: the flag ledger (`Moments.flag_lives`).
+- R-341 sets the direction: the engine should think as his golden notes do (the story so far); options, decisions
+  and variables follow from that. Ruled from the notes: R-334 to R-340 (greater stand area, main team in a 4v4, flag
+  position and stand holder both, pinned teams, one flag a team, the hand-off and double run forms).
 - R-342 to R-347 answered. He then wrote notes on eight more moments (four split answers, four numbers moments);
   reviewed 2026-11-10 evening: the same reading carries over (REDESIGN "The story so far"). Drafted since:
   `Hall.place` (doors, front and back footies, greater stand area), `Moments.fights`, `story.py`, and a Greater stand
