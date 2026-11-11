@@ -5,39 +5,36 @@ plan for the decision tier). History: `docs/CHANGELOG.md`; rulings: `docs/RULING
 model's structure: `knowledge/model.md` (generated).
 
 ## Start a new chat in one message
-> Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/SPEC.md and docs/HANDOFF.md, then:
-> <your request>
+> Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/SPEC.md and docs/HANDOFF.md, check
+> out the branch `bundle-4` in a second worktree, then build the split fight record (R-365) and show it to me on
+> Nick's three games before anything else.
 
-## State (2026-11-11: redesign step 2 under way on branch `bundle-4`; batch 17, 506 matches)
-- Main's engine is unchanged (still as SPEC.md describes; batch 17 readings in CHANGELOG 2026-11-09 night). Chunks
-  can still run on main. Bundle 4 is built on the branch `bundle-4` and lands in one piece, then one rebuild (R-322).
-- On `bundle-4` so far (stages A and B of five; REDESIGN.md "Step 2: where it stands"):
-  - `hallmap.py`: zones, walked distance with teleporter hops, footmen reach, places in his words (R-306, R-316, R-320).
-  - `moments.py`: the old draft moments (families 1 to 3: triggers, scenarios, calls) and, since 2026-11-11, the records.
-  - `tools/golden/golden.py pick|score|stories` (outside the engine folder); it never reads the sealed field.
-- On main: Model > Golden moments (`golden.js`, `golden_moments.json`: his labels only). Rulings to R-364 recorded.
+## State (2026-11-11: redesign step 2 on branch `bundle-4`, last engine commit 9570f3d; batch 17, 506 matches trained)
+- Main's engine is unchanged (as SPEC.md describes). Bundle 4 is built on `bundle-4` and lands in one piece, then
+  one rebuild (R-322). 513 replays stored. No Train batch, Discovery or fetch run in progress.
+- On `bundle-4`: `hallmap.py` (zones, walked distance, footmen reach, places in his words), `moments.py` (the old
+  draft moments, families 1 to 3, and since 2026-11-11 the records), `story.py` (prints from the records),
+  `tools/golden/golden.py pick|score|stories` (never reads the sealed field).
+- On main: Model > Golden moments (`golden.js`, `golden_moments.json`: his labels only; `golden_stories.json`, draft
+  5), `data/commentary/nick.json` (9 games), rulings to R-367.
 
 ## Next (in order)
-1. Denning: label the golden moments on the site (Model > Golden moments). Where a list cannot say what happened,
-   pick Other and write it; those words become options.
-2. Then, on `bundle-4`: `git fetch origin && git rebase origin/main`, regenerate the stories after each change to
-   `story.py`, run the blind check, and rewrite `golden.py score` against his marks (R-354; the drop-down score is
-   set aside, R-341).
-3. Stage D on the branch: shape (composition properties, route with `Hall.route_followed`, timing with R-321), the
-   consequence record at 90 s and about 3 min, similar cases by scenario, the job table (Claude drafts, Denning
-   rules), enemy execution, interaction pairs that pass twice, the five proposals (R-324), the Tier 2 results column
-   and the "Control received" rename. Swap the engine's remaining straight-line radius checks (PIT_R, BASE_R,
-   STAND_R in episodes, fights, scoreboard, lnrows) for `st.zone` and walked distance.
-4. Stage E: old and new kinds side by side for one rebuild (R-323), then retire the replaced kinds, clean the causal
-   map, rewrite SPEC.md and METHODS.md, readability test, merge to main, Train batch with `add_batch=no` (same 506
-   matches, so the comparison is the engine alone). Then step 3 (the decision card), then step 4.
+1. On `bundle-4` (`git fetch origin && git rebase origin/main` first): the split fight record (R-365), one record
+   while the same two groups stay engaged wherever it drifts. Test on Nick's games (b5760ac4 Men v NwAy: NwAy's
+   second attempt, met in the middle; 2615ca0c; 62c3fad6) and on the blind note for ohno v xxx (29aad8d4, "the 4v4
+   split"). Then the all-match counts, regenerate the stories, blind check.
+2. Check what is unchecked: "main team joined" endings (35%), the main team rule on more of his notes, giving
+   ground. Then rebuild the old moments (triggers, scenarios, calls) on the records (R-351) and `golden.py score`
+   against his marks (R-354).
+3. Commentary: line up xxx v ohno (transcript 983a47db, report d70f3684); then Bounty and Maga if he sends them;
+   then his own, with a timestamped transcript. Every lesson goes into the records first (R-362).
+4. Stage D on the branch (consequence record at 90 s and about 3 min, similar cases, the job table, enemy
+   execution, the five proposals of R-324, radius checks to `st.zone`), then stage E (side by side for one rebuild,
+   SPEC.md and METHODS.md rewritten, readability test, merge, Train batch with `add_batch=no`). REDESIGN.md has both.
 
 ## Open rulings for Denning (set each out in the chat, R-329; R-318 to R-341 ruled 2026-11-10)
-- R-341 sets the direction: the engine should think as his golden notes do (the story so far); options, decisions
-  and variables follow from that. Ruled from the notes: R-334 to R-340 (greater stand area, main team in a 4v4, flag
-  position and stand holder both, pinned teams, one flag a team, the hand-off and double run forms).
-- On the branch (drafts): `Hall.place`, `Moments.fights`, `Moments.flag_lives`, `story.py` (R-348 to R-352). All 14
-  halls have a Greater stand area label (9 accepted drafts, 5 drawn by him).
+- R-341 sets the direction: the engine reads a match as his golden notes do; R-334 to R-340 and R-348 to R-352
+  define its words. All 14 halls have a Greater stand area label.
 - Golden moments (R-354): the page shows the engine's story of each of the 30 games (`golden_stories.json`, draft
   5); he ticks wrong lines and adds notes. His 13 earlier notes are the fixed blind check (`blind_note`). Draft 3
   (from his marks on game 1): STATE lines, who goes back for the flag and when, dropped flags, footmen engaged,
