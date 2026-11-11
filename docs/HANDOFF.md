@@ -54,11 +54,11 @@ model's structure: `knowledge/model.md` (generated).
   away, backup flag, back cap, with a split, drop place, boost clock, died carrying), `main_team()` and `lane()`,
   `common.flux_at`. `moments.py <id> splits|flags` prints them; `story.py` prints its split, push and cap lines from
   them. 513 matches: 1,909 splits (3.7 a match), 1,681 pushes. Against Nick's three games 12 of 13 attempts found.
-- Not right yet, for his ruling (set out in chat): an even split fight that moves across the middle is recorded as
-  alternating attempts by each team (his notes call it one 4v4 split); a split met before it crosses is not an
-  attempt; "back cap" is defined by me; solo splits are 45% of records and "main team joined" 35%, unchecked;
-  being pushed back is read from the middle player, so a small step back is missed. The old F1 to F3 moments
-  (triggers, scenarios, calls) still run beside these and are not yet rebuilt on them.
+- Ruled 2026-11-11 (R-365 to R-367), next to build: one split fight record for as long as the same two groups
+  stay engaged, wherever it drifts (whose ground, how long, who started it); this also covers a split met in the
+  middle. Back cap confirmed as built. Solo splits parked (45% of records; do not rely on them). Still unchecked:
+  "main team joined" is 35% of endings; the main team rule was tuned on Nick's three games; giving ground is read
+  from the middle player. The old F1 to F3 moments still run beside the records and are not rebuilt on them.
 - Also open: noisy "go to split" lines, threat or posture, hand-off to hold, time to cap, `golden.py score` against
   his marks, a monk energy estimate only if needed (R-353), discovery second run, behaviour clusters.
 

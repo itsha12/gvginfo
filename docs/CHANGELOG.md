@@ -7,6 +7,7 @@ Dated session log of the GvG Info analysis engine and portal, newest first. Entr
 - `moments.py`: `attempts()` (split attempts and main team pushes, one record each), `caught()`, `flags_record()`, `main_team()` (the part that carries the flags and stays; the part on the front lane when the other went round the back), `lane()`; `common.flux_at`. `story.py` prints from these; the old "go to split" and "go back to defend" lines are gone.
 - Checked against Nick's three games (12 of 13 attempts, composition and answers right) and four of the blind notes (opening and solo splits agree; an even 4v4 split fight that crosses the middle does not).
 - 513 matches run in 2.5 minutes: 1,909 splits, 1,681 pushes, 22 flags carried with a split, 226 splits back ahead of or behind their defenders.
+- He then ruled R-365 (an even split fight is one record while the same groups stay engaged), R-366 (back cap as built) and R-367 (solo splits parked). R-365 is not built.
 
 ## 2026-11-11 (second): Nick's commentary lined up with the story (stories draft 4)
 - Denning attached eight of Nick's transcripts and nine report links. The transcripts carry no timestamps; five reports were not stored and were fetched (`replays/requests.txt`). One link (00cb0759, xxx v Apes) has no transcript.
