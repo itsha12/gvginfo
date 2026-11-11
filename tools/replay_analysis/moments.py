@@ -448,7 +448,13 @@ class Moments:
                 self._last[(id(g), b)] = t; link[b] += SPLIT_STEP
         died_on = {b for a in members for td in st.death_times.get(a, []) if any(s_ - 1 <= td <= e_ + 4 for s_, e_ in span[a])
                    for b in link if self.AL[b][cl(td - 1)] and self.P[a][cl(td - 1)] and d(self.P[b][cl(td - 1)], self.P[a][cl(td - 1)]) < FIGHT_LINK}
-        defenders = sorted((b for b in link if link[b] >= JOIN_S or b in died_on), key=lambda b: first[b])
+        traded = collections.Counter()                    # damage traded with the split: a defender even when he stood off it (a ranger 1v1)
+        for t in range(t_in, min(t1 + 10, T) + 1):
+            for x_, y_ in self.hits.get(t, ()):
+                for mine, his in ((x_, y_), (y_, x_)):
+                    if mine in span and his in self.P and m.team(his) == foe and (on(mine, t - t % SPLIT_STEP) or t > t1):
+                        traded[his] += 1; first.setdefault(his, t)
+        defenders = sorted((b for b in set(link) | set(traded) if link[b] >= JOIN_S or b in died_on or traded[b] >= 3), key=lambda b: first[b])
         # who went home to cover it without reaching it (R-358: an answer is also the players it pulls back)
         homeg = ("pit", "base", "front door", "back door", "front footies", "back footies")
         def home(b, u):
@@ -543,7 +549,7 @@ class Moments:
                 "carried_flag": any(self.carrying(a, t) and on(a, t) for a in members for t in R),
                 "way": max(ways, key=ways.get) if ways else None, "where": max(places, key=places.get) if places else None,
                 "answer": {"defenders": [m.roles[b] for b in defenders], "ids": defenders, "n": usual, "max": max(ndef) if ndef else 0, "monks": mk(defenders),
-                           "behind_s": (t_met - t_in) if t_met is not None else None, "met": met, "went_back": [m.roles[b] for b in covered], "went_back_ids": covered},
+                           "behind_s": (t_met - t_in) if t_met is not None else None, "met": met, "arrivals": [(first[b], m.roles[b]) for b in defenders], "went_back": [m.roles[b] for b in covered], "went_back_ids": covered},
                 "main": {"contact_s": contact * SPLIT_STEP, "up_s": diffs["up"], "even_s": diffs["even"], "down_s": diffs["down"]},
                 "end": end, "after": after, "lost": [m.roles[a] for _, a in sorted(lost)], "kills": [m.roles[b] for _, b in sorted(kills)],
                 "npcs": [k for _, k in sorted(npcs)], "forced_out": forced, "ahead": ahead}
@@ -716,7 +722,14 @@ class Moments:
             cov = [i for i, x in enumerate(atts) if x["kind"] == "split" and set(x["ids"]) & set(mem[x["tm"]])
                    and (min(x["t1"], t1) - max(x["t_in"], t0)) * 2 >= (x["t1"] - x["t_in"])]
             p0 = collections.Counter(x[3] for x in first).most_common(1)[0][0]
-            out.append({"t0": t0, "t1": t1, "opening": t0 <= 75, "place": p0, "started": m.tag[started] if started else None, "started_tm": started,
+            start = {}
+            for tm in (1, 2):
+                a0 = [a for a in mem[tm] if span[a][0][0] <= t0 + 20]
+                start[tm] = a0 or [a for a in mem[tm] if span[a][0][0] == min(span[b][0][0] for b in mem[tm])]
+            left = min((atts[i]["t0"] for i in cov if atts[i]["tm"] == started), default=t0) if started else t0
+            away = lambda tm: all(a not in self.main_team(tm, min(20, T)) for a in start[tm])
+            both = t0 <= 75 and away(1) and away(2)
+            out.append({"t0": t0, "t1": t1, "t_left": min(left, t0), "opening": t0 <= 75, "both_opening": both, "start": {m.tag[tm]: [m.roles[a] for a in start[tm]] for tm in (1, 2)}, "place": p0, "started": m.tag[started] if started else None, "started_tm": started,
                         "members": {m.tag[tm]: [{"role": m.roles[a], "from": span[a][0][0], "to": span[a][-1][1]} for a in mem[tm]] for tm in (1, 2)},
                         "ids": {tm: mem[tm] for tm in (1, 2)}, "n": max(nums, key=nums.get), "monks": {m.tag[tm]: monks[tm] for tm in (1, 2)},
                         "ground_s": {m.tag[1]: ground[1], m.tag[2]: ground[2], "between": ground[0]}, "linked_s": len(r["track"]) * S,

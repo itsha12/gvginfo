@@ -146,10 +146,11 @@ def _attempt_events(M):
     for i, x in enumerate(M.attempts()):
         if i in covered: continue
         tag, foe, an = x["team"], m.tag[3 - x["tm"]], x["answer"]
-        who = ", ".join(q["role"] for q in x["members"])
+        starters = [q["role"] for q in x["members"] if q["from"] <= x["t_in"] + JOIN_S] or [x["members"][0]["role"]]
+        who = ", ".join(starters) if x["kind"] == "split" else ", ".join(q["role"] for q in x["members"])
         way = f" by the {x['way']}" if x["way"] else ""
         if x["kind"] == "split":
-            size = NUM.get(x["size"], x["size"]) + (f" (up to {NUM.get(x['max'], x['max'])})" if x["max"] > x["size"] else "")
+            size = NUM.get(len(starters), len(starters)) + (f" (up to {NUM.get(x['max'], x['max'])})" if x["max"] > len(starters) else "")
             head = f"{tag} splits {size}{way}" + (" from the opening" if x["opening"] else "") + f" ({who}; {mk(x['monks'])})"
             if x["carried_flag"]: head += ", taking the flag with it"
             out.append((x["t0"], head))
@@ -157,6 +158,9 @@ def _attempt_events(M):
                 beh = "already there" if (an["behind_s"] or 0) <= 4 else f"{an['behind_s']} s behind"
                 out.append((x["t_in"] + (an["behind_s"] or 0), f"{foe} answers {tag}'s split with {NUM.get(len(an['defenders']), len(an['defenders']))} ({', '.join(an['defenders'])}; {mk(an['monks'])}), {beh}, {an['met']}"
                             + (f"; {', '.join(an['went_back'])} also go{'es' if len(an['went_back']) == 1 else ''} back" if an["went_back"] else "")))
+                t_first = x["t_in"] + (an["behind_s"] or 0)
+                for t_, role in an["arrivals"]:
+                    if t_ > t_first + 20: out.append((t_, f"{foe} answers {tag}'s split with {role} as well, {clock(t_ - x['t_in'])} into it"))
             elif an["went_back"]: out.append((x["t_in"], f"{foe} sends {', '.join(an['went_back'])} back for {tag}'s split; they never meet it"))
             else: out.append((x["t_in"], f"{foe} does not answer {tag}'s split"))
             mn = x["main"]
@@ -185,6 +189,16 @@ def _attempt_events(M):
     return out
 
 
+def _pregame(M):
+    """Who holds each team's flag when the gates open (the replay keeps the flag events from before 0:00)."""
+    m, hold = M.m, {}
+    for t, typ, a, *_ in m.o.get("flags", []):
+        if t >= 0 or a not in M.P: continue
+        if typ == "flag_picked_up": hold[m.team(a)] = a
+        elif typ == "flag_dropped" and hold.get(m.team(a)) == a: hold[m.team(a)] = None
+    return [(0, f"At the gates {m.tag[tm]}'s {m.roles[hold[tm]]} has the flag" if hold.get(tm) is not None else f"At the gates nobody on {m.tag[tm]} has the flag") for tm in (1, 2)]
+
+
 def _record_events(M):
     """Split fights (R-365) and every join, leave and swap (R-374), printed from the records."""
     m, out = M.m, []
@@ -192,11 +206,16 @@ def _record_events(M):
     t1, t2 = m.tag[1], m.tag[2]
     swapped = set()
     for r in M.split_fights():
-        who = {tg: ", ".join(q["role"] for q in r["members"][tg] if q["from"] <= r["t0"] + JOIN_S) for tg in (t1, t2)}
-        n0 = {tg: sum(1 for q in r["members"][tg] if q["from"] <= r["t0"] + JOIN_S) for tg in (t1, t2)}
-        if r["started"]:
+        who = {tg: ", ".join(r["start"][tg]) for tg in (t1, t2)}
+        n0 = {tg: len(r["start"][tg]) for tg in (t1, t2)}
+        op = " from the opening" if r["opening"] else ""
+        if r["both_opening"]:
+            a, b = (r["started"] or t1), (t2 if (r["started"] or t1) == t1 else t1)
+            out.append((r["t_left"], f"{a} splits {NUM.get(n0[a], n0[a])}{op} ({who[a]}; {mk(r['monks'][a])})"))
+            out.append((r["t_left"], f"{b} splits {NUM.get(n0[b], n0[b])}{op} ({who[b]}; {mk(r['monks'][b])}): the two meet at {r['place']}, a split fight"))
+        elif r["started"]:
             a, b = r["started"], (t2 if r["started"] == t1 else t1)
-            out.append((r["t0"], f"{a} splits {NUM.get(n0[a], n0[a])}" + (" from the opening" if r["opening"] else "") + f" ({who[a]}; {mk(r['monks'][a])})"))
+            out.append((r["t_left"], f"{a} splits {NUM.get(n0[a], n0[a])}{op} ({who[a]}; {mk(r['monks'][a])})"))
             out.append((r["t0"], f"{b} answers {a}'s split with {NUM.get(n0[b], n0[b])} ({who[b]}; {mk(r['monks'][b])}) at {r['place']}: a split fight"))
         else:
             out.append((r["t0"], f"A split fight at {r['place']}: {t1} {n0[t1]} v {n0[t2]} {t2} ({t1}: {who[t1]}; {t2}: {who[t2]})"))
@@ -327,7 +346,7 @@ def _fight_events(M):
                     back = side_tm[p[2]]; fwd = 3 - back
                     hot, words = _pressure(M, back, key[back - 1], tr["psince"])
                     if len(key[back - 1]) >= PRESSURE_MIN and hot: line = f"{tag[back]} falls back from {old[0]} to {p[0]}, under pressure ({words}); {tag[fwd]} follows"
-                    else: line = f"{tag[fwd]} pushes from {old[0]} to {p[0]}"
+                    else: line = f"{tag[fwd]} pushes {tag[back]} back from {old[0]} to {p[0]}"
                 elif old[2] in side_tm and (p[2] != old[2] or LADDER[p[1]] < LADDER[old[1]]):
                     line = f"{tag[side_tm[old[2]]]} pushes out from {old[0]} to {p[0]}"
                 else: line = f"The fight moves from {old[0]} to {p[0]}"
@@ -440,7 +459,7 @@ def story(M, t0=0, t1=None, states=True):
     lord = min((td for a, td in M.st.npc_dead.items() if (M.st.geo.npcs.get(a) or {}).get("kind") == "guild_lord"), default=None)
     t1 = M.T if t1 is None else t1
     if lord is not None: t1 = min(t1, lord)               # the game is over when a Lord dies; the replay runs on a few seconds
-    ev = _flag_events(M) + _move_events(M) + _fight_events(M) + _death_events(M) + _record_events(M)
+    ev = _flag_events(M) + _move_events(M) + _fight_events(M) + _death_events(M) + _record_events(M) + _pregame(M)
     if states: ev += [(u, state_line(M, u)) for u in [45] + list(range(120, M.T + 1, 60)) if u <= M.T]
     return sorted(((t, s) for t, s in ev if t0 <= t <= t1), key=lambda x: (x[0], not x[1].startswith("STATE")))
 

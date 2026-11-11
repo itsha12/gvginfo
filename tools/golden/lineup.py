@@ -72,7 +72,7 @@ def load(path):
         for (a0, m0), (a1, m1) in zip(anchors, anchors[1:]):
             if s <= a1: return m0 + (s - a0) * (m1 - m0) / max(a1 - a0, 1)
         return s - (anchors[-1][0] - anchors[-1][1])
-    for r in rows: r["t"] = to_match(r["at"])
+    for r in rows: r["t"] = max(to_match(r["at"]), 0)      # said before the gates: read against the opening
     return head, rows
 
 
@@ -123,7 +123,7 @@ def check(r, rec):
     elif kind == "hold":
         fam = rf"{te}.*holding the flag"
         hit = next(((t, s) for t, s in state(near) if re.search(rf"{re.escape(one)} holding the flag", s) or (not who and "holding the flag" in s)), None)
-        if not hit: hit = find(rf"{R}\S* (picks up the flag|picks the flag up)") or find(rf"{te}'s .* hands the flag to {re.escape(one)}")
+        if not hit: hit = find(rf"{R}\S* (picks up the flag|picks the flag up)") or find(rf"{te}'s .* hands the flag to {re.escape(one)}") or find(rf"^At the gates {R}\S* has the flag")
     elif kind == "form":
         fam = rf"^{te}'s .*double run"; hit = find(rf"^{te}'s .*double run, each {arg} running")
     elif kind == "split":
@@ -155,6 +155,7 @@ def check(r, rec):
     elif kind == "fall":            # the story often tells a retreat from the pusher's side: both tellings count
         fam = rf"^{te} (falls back|gives ground)|^The fight moves|^{ee} pushes"
         hit = find(rf"^{te} (falls back|gives ground)[^(]*{re.escape(arg)}")
+        if not hit: hit = find(rf"^{ee} pushes {te} back[^(]*{re.escape(arg)}")
         if not hit and arg: hit = find(rf"^(?:{ee} pushes|The fight moves) [^(]*to {te}'s {re.escape(arg)}")
     elif kind == "push":
         fam = rf"^{te}(?:'s main team)? pushes"; hit = find(rf"^{te}(?:'s main team)? pushes[^(]*{re.escape(arg)}")
