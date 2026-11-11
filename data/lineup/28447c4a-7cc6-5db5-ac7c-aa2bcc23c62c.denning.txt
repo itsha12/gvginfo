@@ -1,0 +1,159 @@
+# match: 28447c4a-7cc6-5db5-ac7c-aa2bcc23c62c
+# source: denning
+# teams: hdm, HC
+# clock: 60
+# held_out: no
+# note: commentary ends at about 23:00 of 26:56
+0:15 | build | hdm | | | both balance builds; HC's mes/a is an energy surge mesmer, hdm's an illusion mesmer; HC has a dervish on 2 where hdm has a warrior
+0:44 | split | hdm | Ranger | 1 | seven out the front and the ranger alone out the back
+1:05 | go | hdm | Mes/A | | mes/a runs the first flag
+1:05 | go | HC | Mes/A | | mes/a runs the first flag
+1:22 | answer | HC | Ranger | | HC's ranger defends the solo split at once: a ranger 1v1 at the back door
+1:30 | fight | | | 7v7 @ stand | 7v7 main team with the ranger 1v1 on the side
+1:40 | support | HC | 8 Monk | | the 8 monk gives the defending ranger a little support from main
+1:55 | plan | HC | | | HC tries to keep the ranger contained and make it a team fight; he pushes out the back door again
+2:14 | go | hdm | Mes/A | | mes/a has gone back and picked up
+2:14 | route | hdm | Mes/A | short way | running short way
+2:20 | go | HC | Mes/A | | mes/a has gone back and picked up
+2:20 | route | HC | Mes/A | short way | running short way
+2:30 | split | hdm | Ranger, Hammer B, 8 Monk | 3 | the ranger is joined by the 2 warrior and the 8 monk
+2:35 | answer | HC | Ranger, 8 Monk, AoB Derv | | HC's ranger is joined by the 8 monk and the 2 dervish
+2:40 | fight | | | 3v3 @ back door | a 3v3 on HC's back side
+2:53 | micro | hdm | 8 Monk | | hdm's 8 monk is dazed by the ranger (Concussion Shot)
+3:06 | fight | | | 5v5 @ stand | 5v5 main team
+3:10 | hold | hdm | Mes/A | | hdm has a backup flag in hand
+3:12 | lead | hdm | | | a full flag advantage for hdm
+3:22 | leave | HC | Prot | | HC's prot goes to support the back side, leaving main 5v4
+3:35 | fight | | | 8v7 | the split teams return: 8v7 for hdm as HC's 1 warrior goes to run
+3:40 | go | HC | Hammer | | the 1 warrior runs the flag
+3:45 | route | HC | Hammer | long way | long way
+3:50 | go | hdm | Mes/A | | hdm's mes/a is also running
+4:02 | pushflag | HC | Ranger | | HC's ranger goes through the portal and pushes hdm's mes/a on the flag
+4:10 | lead | hdm | | | nearly a full flag advantage, the backup on the mes/a
+4:20 | go | HC | Mes/A | | HC sends the mes/a to run again
+4:20 | route | HC | Mes/A | long way | long way
+4:27 | pushflag | hdm | Ranger | | hdm's ranger pushes that flag
+4:34 | fight | | | 7v7 | 7v7 in the centre while the mes/a runs
+4:38 | pushflag | hdm | Hammer B | | the 2 warrior also pushes HC's mes/a; HC's 8 monk responds
+4:44 | fight | | | 3v3 | a 3v3 on the flag run with similar characters
+4:48 | death | HC | Mes/A | | HC's mes/a goes down in the 3v3
+5:00 | hold | hdm | Mes/A | | hdm's mes/a has the flag
+5:10 | baseres | HC | Mes/A | | HC's mes/a base resses
+5:14 | go | HC | Mes/A | | and runs the backup flag from the res
+5:20 | go | HC | AoB Derv | | the 2 dervish runs the flag
+5:20 | route | HC | AoB Derv | long way | long way
+5:26 | form | HC | | full | HC is double running
+5:33 | overcap | hdm | Mes/A | | hdm has the backup on the mes/a and overcaps as soon as HC caps
+5:40 | split | HC | Ranger | 1 | HC's ranger pushes hdm's back door
+5:44 | split | hdm | Ranger | 1 | hdm's ranger pushes HC's back door
+5:56 | answer | hdm | Stand Mes | | HC's ranger is defended by hdm's stand mesmer
+6:05 | noanswer | HC | | | hdm's ranger is undefended
+6:10 | reason | HC | | | so HC has a numbers advantage somewhere else on the map
+6:20 | go | hdm | Hammer A | | hdm's 1 warrior runs the next flag
+6:25 | pushflag | HC | Hammer | | HC's 1 warrior jumps on him
+6:32 | go | HC | Mes/A | | HC's mes/a also goes to run
+6:55 | death | hdm | 8 Monk | | hdm's 8 monk goes down in the 7v7
+6:55 | death | hdm | 7 Monk | | and the 7 monk
+7:00 | drop | HC | Mes/A | | HC's mes/a drops the backup flag near the stand
+7:05 | trade | HC | | | HC takes the main team advantage at the cost of giving NPCs to the undefended ranger
+7:15 | npc | hdm | Ranger | knight | the ranger takes both knights and the pit archers
+7:15 | npc | hdm | Ranger | archer | and the archers
+7:30 | npc | hdm | Ranger | bodyguard | the bodyguard falls: HC's pit is cleared
+7:40 | lord | hdm | Ranger | | the ranger starts on the Guild Lord
+7:50 | answer | HC | 8 Monk | | HC's 8 monk runs back to defend
+8:05 | go | hdm | Mes/A | | hdm's mes/a goes to run
+8:08 | fight | | | 6v7 | a 7v6 for HC at main
+8:22 | cap | hdm | Mes/A | | hdm's mes/a caps
+8:28 | go | HC | Mes/A | | HC's mes/a goes for the next flag
+8:28 | route | HC | Mes/A | short way | short way to the spawn
+8:36 | pushflag | hdm | | | the warrior jumps on him at the spawn
+8:40 | timing | HC | Mes/A | | he does not pick up yet, to keep his defensive set until the prot can support him
+8:46 | support | HC | Prot | | he gets Aegis from the prot
+8:50 | pickup | HC | Mes/A | | then picks up
+8:52 | route | HC | Mes/A | long way | and runs long way to cap
+9:00 | posture | hdm | | | hdm sits around HC's footies without engaging them
+9:12 | fight | | | 1v1 @ pit | the ranger against the 8 monk in HC's pit
+9:25 | lord | hdm | | | in this flux the 8 monk has little healing without enchantments, so keeping the Lord up adds Lord damage for hdm
+9:42 | hold | hdm | Mes/A | | hdm has the flag capped and a backup on the mes/a
+9:50 | fight | | | 7v7 @ stand | a straight 7v7 as HC's mes/a tries to cap
+10:10 | judge | HC | 8 Monk | | one monk for one damage is probably not a great trade for HC's main team
+10:25 | fall | hdm | | footies | hdm falls back to its footies
+10:30 | unsure | hdm | | | not clear whether that is to run a flag or under pressure, despite the monk advantage
+10:48 | go | HC | Mes/A | | HC's mes/a runs the flag
+10:52 | fight | | | 6v5 | hdm has a numbers advantage against only two monks
+10:52 | monks | HC | | | HC is fighting on two monks
+11:00 | fall | HC | | | HC retreats
+11:18 | death | HC | 7 Monk | | HC's 7 monk goes down at main
+11:20 | res | HC | 7 Monk | | pacted by the 2 dervish
+11:22 | death | HC | Mes/A | | HC's mes/a also goes down, probably running the flag
+11:40 | fight | | | 6v5 | HC five against hdm's six
+11:42 | res | HC | Mes/A | | the mes/a is pacted by the 2 dervish
+11:45 | death | HC | Mes/A | | and goes down again
+12:00 | cause | HC | | | HC's pressure probably comes from the monk defending one damage, or from the mesmer leaving to run
+12:25 | end | hdm | | killed | HC collapses on the ranger and hdm's monks do not arrive in time
+12:35 | death | hdm | Ranger | | HC's three damage kill the ranger as he falls out of the pit toward the front door
+12:50 | caught | hdm | | | he will base res, leaving hdm in HC's base at a numbers disadvantage
+12:58 | fall | hdm | | | hdm falls out through HC's footies and front door, fighting 7v8
+13:18 | split | hdm | Mes/A | 1 | hdm's mes/a splits through the back door, undefended at first
+13:25 | answer | HC | Mes/A | | then defended by HC's mes/a
+13:30 | go | HC | Ranger | | so HC's ranger picks up the flag
+13:32 | reason | HC | Ranger | | because the usual runner is defending
+13:38 | go | hdm | Ranger | | hdm's ranger mirrors and picks up too
+13:45 | judge | | | | both teams running flags on rangers: a loss of damage for both
+13:56 | join | HC | 8 Monk | | HC's 8 monk goes back to support the mes/a
+14:15 | go | hdm | Hammer | | now a warrior runs for hdm
+14:18 | go | HC | Hammer | | and a warrior for HC
+14:27 | join | HC | Ranger | | HC's ranger collapses over the bridge onto hdm's mes/a, who gets out
+14:40 | hold | hdm | Stand Mes | | hdm's stand mesmer was holding the flag
+14:42 | lead | hdm | | | hdm is at a flag advantage
+14:55 | split | HC | Ranger | 1 | HC splits the ranger over the bridge to hdm's back door
+15:00 | answer | hdm | Mes/A | | hdm's mes/a does not run the backup and answers the split by the front door
+15:22 | hand | hdm | Hammer | Stand Mes | the warrior drops the flag to the stand mesmer
+15:26 | reason | hdm | | | a warrior should not hold a flag in the fight when the flag is already capped
+15:42 | split | hdm | Ranger | 1 | hdm's ranger solo splits again
+15:45 | answer | HC | Mes/A | | defended by HC's mes/a
+15:55 | fight | | | 7v7 | a straight 7v7 at main
+16:12 | hold | HC | Stand Mes | | HC's stand mesmer holds the flag
+16:18 | timing | HC | | | no point capping while hdm has a backup: wait until a few seconds before the boost
+16:28 | overcap | hdm | Stand Mes | | hdm answers by overcapping with its stand mesmer
+16:40 | standoff | | | | neither team sends a runner yet: who responds first
+16:46 | pull | hdm | Ranger | | the ranger has footman aggro
+17:25 | go | HC | Hammer | | HC's 1 warrior goes to run
+17:32 | split | hdm | Ranger, Hammer B, 8 Monk | 3 | hdm's 2 warrior and 8 monk join the ranger: a three man split
+17:38 | death | HC | Mes/A | | HC's mes/a died, to the ranger
+17:50 | answer | HC | 8 Monk, Mes/A | | HC answers with the 8 monk and the pacted mes/a
+17:52 | res | HC | Mes/A | | pacted by the dervish, who rejoins main
+18:08 | end | hdm | | | the three man split falls out by the back door and leaves the ranger to push the pit alone
+18:20 | go | hdm | Mes/A | | hdm's mes/a picks up the flag
+18:22 | go | HC | AoB Derv | | HC's 2 dervish picks up the flag
+18:26 | pushflag | HC | Hammer | | HC's warrior pushes hdm's mes/a on the run
+18:30 | split | HC | Ranger | 1 | HC's ranger solo splits the back door
+18:36 | answer | hdm | Stand Mes, 7 Monk | | defended by a warrior, the stand mesmer and the 7 monk
+18:45 | join | HC | Prot | | HC's prot follows to support its ranger
+18:50 | fight | | | 3v2 | a 3v2 for hdm at its back door
+19:00 | join | hdm | Mes/A | | hdm's mes/a collapses onto that split
+19:12 | fight | | | 3v4 | which leaves HC a one man power play at main
+19:55 | fight | | | 7v7 @ back door | it becomes a messy extended 7v7 at hdm's back door
+20:15 | lord | hdm | Ranger | | hdm's ranger still alone in HC's base, building Lord damage through the prots on the Lord
+20:32 | pull | HC | Ranger | | HC's ranger pulls a knight into the fight
+20:40 | hold | HC | | | HC now has the flag capped
+20:45 | question | | | | how did the flag disadvantage turn over
+20:52 | boost | HC | | | HC is going to boost from this
+21:00 | go | hdm | Mes/A | | hdm's mes/a tries to run the flag
+21:00 | route | hdm | Mes/A | long way | long way through the front door, then short way
+21:05 | pushflag | HC | Hammer | | pushed by HC's warrior
+21:30 | fight | | | 6v6 @ back door | a 6v6 at hdm's back door with a knight in it
+21:35 | npc | HC | | archer | HC has taken an archer
+21:42 | pull | HC | AoB Derv | | HC's dervish pulls one or both knights: the fight is in hdm's pit
+21:52 | death | HC | Hammer | | HC's 1 warrior dies 1v1 to hdm's mes/a
+21:55 | judge | hdm | Mes/A | | a very good play: he kills the pusher while running the flag
+22:00 | split | hdm | Mes/A | 1 | and splits straight into HC's front door for a 2v1 on HC's mesmer
+22:10 | answer | HC | 8 Monk | | HC's 8 monk responds late, two or three aggro bubbles away
+22:38 | death | HC | Mes/A | | HC's mes/a goes down in the pit
+22:42 | death | HC | Stand Mes | | HC's stand mesmer also goes down
+23:00 | join | hdm | 8 Monk | | hdm's 8 monk, a warrior and the stand mesmer join through the back door: five against two monks
+23:08 | baseres | HC | Mes/A | | both HC mesmers base res
+23:20 | pushflag | hdm | Mes/A | | hdm's mes/a falls out over the bridge and pushes the warrior who is running, to stop the boost
+23:40 | death | HC | Hammer | | he solo kills the warrior; the 8 monk is not in time
+23:50 | go | HC | Mes/A | | HC's mes/a runs the flag
+23:57 | boost | hdm | | | hdm boosts

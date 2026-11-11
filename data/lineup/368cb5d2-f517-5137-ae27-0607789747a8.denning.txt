@@ -1,0 +1,86 @@
+# match: 368cb5d2-f517-5137-ae27-0607789747a8
+# source: denning
+# teams: hdm, Men
+# clock: 8
+# held_out: no
+# note: commentary ends at about 12:00 of 28:14
+0:13 | split | hdm | | 4 | four out the back and four out the front
+0:18 | build | hdm | | | an intentional 4-4 build
+0:24 | hold | hdm | Dervish | | hdm's flag is on the 5 dervish
+0:28 | answer | Men | | | Men puts three on the back and five to the front door
+0:38 | join | Men | Ritualist | | Men's ritualist leaves to support the back door
+0:45 | fight | | | 4v4 @ back footies | a 4v4 in Men's back footies
+0:48 | hold | Men | Mesmer | | Men holds the flag on the 5 mesmer
+0:50 | support | Men | Prot | | the prot is only shadowing
+0:53 | fight | | | 3v3 | a 3v3 at main
+0:57 | go | hdm | Ritualist 3 | | hdm's 6 ritualist goes back to double on the flag
+1:00 | micro | hdm | Ritualist 3 | | he uses the Shadow of Haste flag mechanic, since removed from the game
+1:05 | fight | | | 3v4 | a 4v3 for Men at main until the ritualist returns
+1:18 | npc | hdm | | footman | hdm's four man split takes both back footies
+1:22 | answer | Men | | | Men defends with four as well
+1:25 | cap | hdm | | | hdm gets its flag capped
+1:38 | fall | Men | | pit | Men falls to its pit and hdm's four disengage slightly
+1:44 | go | Men | AoB Derv | | Men's 2 dervish runs the flag
+1:50 | go | hdm | Ritualist 3 | | hdm's 6 ritualist also runs
+1:57 | fight | | | 3v4 | soon a 4v3 for Men at hdm's footies
+2:03 | fall | hdm | | | hdm, with only the dervish for damage, falls back toward its flag carrier
+2:15 | fight | | | 4v4 @ back door | still a 4v4 at Men's back door
+2:17 | npc | hdm | | archer | hdm takes the outer archer
+2:30 | cap | Men | AoB Derv | | Men capped on the 2 dervish
+2:33 | go | Men | Ritualist | | and ran the backup on the 4 ritualist
+2:37 | hand | Men | Ritualist | AoB Derv | who dropped it to the dervish for the second part
+2:40 | form | Men | | half | a double run, half run
+2:50 | go | hdm | Ritualist 3 | | hdm's ritualist goes back for the flag again
+3:02 | fight | | | 3v4 | hdm is 3v4 at main while he runs, taking pressure
+3:12 | fight | | | 4v4 | then 4v4
+3:20 | fight | | | 4v4 @ back | the back side 4v4 pushes toward Men's pit, neither side ahead
+3:30 | hand | hdm | Ritualist 3 | Dervish | the 6 ritualist drops the flag to the 5 dervish
+3:36 | timing | hdm | Ritualist 3 | | a half run, but he stays at four to help the flag in rather than going back yet
+3:50 | standoff | | | | the back side has stalled: outside NPCs gone, no kills, no pit NPCs
+4:04 | answer | Men | Hammer, Ranger | | Men's defence is two monks, the warrior and the ranger
+4:10 | build | hdm | | | the build's only plan is two strong 4v4 sides
+4:32 | go | Men | AoB Derv | | Men's dervish runs back for the flag
+4:40 | lead | hdm | | | hdm is a full flag up
+4:44 | pushflag | hdm | | | hdm holds the stand with four and pushes onto Men's flag
+5:02 | hand | hdm | Ritualist 3 | Mesmer | hdm passes the flag from the ritualist to the 7 mesmer
+5:06 | reason | hdm | | | so the ritualist is free to run the next flag after the overcap
+5:17 | go | hdm | Ritualist 3 | | he goes to run it
+5:23 | go | Men | Ritualist | | Men's 4 ritualist also runs
+5:27 | judge | hdm | | | a little time wasted: hdm will not be as far up on flags
+5:36 | hand | Men | Ritualist | AoB Derv | Men's ritualist drops to the 2 dervish and runs straight back
+5:40 | form | Men | | half | a very quick double run
+5:50 | go | hdm | Ritualist 3 | | hdm's 6 ritualist goes back too
+6:03 | trade | Men | Ritualist | | Men's ritualist passes the flag by and runs through the pit to make a numbers advantage on the split
+6:10 | fight | | | 4v5 | a brief 5v4 on the split side; hdm disengages
+6:16 | go | Men | Ritualist | | he runs straight back and picks up the flag
+6:25 | judge | Men | | | it could have been a big flag swing for Men; he chose numbers on the split instead
+6:33 | hand | Men | Ritualist | AoB Derv | he drops it to the dervish to finish the run
+6:42 | go | Men | Ritualist | | stays a moment to support, then goes back with Shadow of Haste
+6:52 | go | hdm | Ritualist 3 | | hdm's ritualist also goes back
+7:08 | lead | Men | | | Men is up on flags
+7:20 | swap | Men | Mesmer | | Men swaps the ranger and the mesmer: the mesmer defends the pit, the ranger joins main
+7:36 | overcap | Men | | | Men is about to overcap
+7:40 | go | Men | Ritualist | | Men's 4 ritualist goes back for the next flag
+7:44 | go | hdm | Ritualist 3 | | hdm's 6 ritualist too: a quick double run on both sides
+7:50 | hold | Men | Prot | | Men's prot carries the flag up for the ritualist while defending, not quite a half run
+8:03 | lead | Men | | | Men is now a full flag up
+8:14 | join | hdm | Air Ele | | hdm's 1 ele pushes to main team
+8:20 | join | Men | Prot | | followed by Men's prot, a little late
+8:30 | join | hdm | Mesmer | | hdm's 7 joins from base
+8:40 | fight | | | 4v4 @ front | a 4v4 in hdm's front footies and front door
+8:45 | npc | Men | AoB Derv | footman | Men's dervish takes a footman, then the second
+8:55 | go | hdm | Dervish | | hdm has to run the flag on the dervish through Men's four
+9:03 | join | hdm | Air Ele | through mid | the 1 ele rejoins the split through mid
+9:10 | join | Men | Prot | through the pit | mirrored by Men's prot, who waits at the front door and joins through the pit once he sees him
+9:32 | standoff | hdm | | | hdm's four have accomplished little for six minutes: no pit NPCs
+9:53 | join | hdm | Air Ele | through mid | the 1 ele pushes through mid to collapse on main again
+9:58 | join | Men | Prot | | Men's prot mirrors it and brings a flag with him
+10:06 | push | Men | | front door | Men's four have pushed through hdm's front door
+10:14 | go | hdm | Dervish | | hdm tries to get the flag in on the dervish
+10:26 | fight | | | 3v3 | the split side has become a 3v3
+11:05 | fight | | | 5v3 @ front door | hdm's ele collapses through mid: 5v3 at hdm's front door
+11:15 | go | Men | Ritualist | | Men's 4 ritualist runs the flag
+11:24 | end | hdm | | | hdm collapses its whole split through mid, followed closely by Men
+11:45 | fight | | | 4v3 | a very brief 4v3 as Men's prot arrives a little late
+11:53 | death | Men | Mesmer | | hdm kills the mesmer before the prot is in range
+11:57 | judge | hdm | | | a very good heads-up collapse through the middle

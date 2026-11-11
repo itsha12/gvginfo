@@ -328,3 +328,5 @@ This register is the model's constitution: every definition and decision Denning
 - R-368. Fog of war is not considered. Experienced players are expected to know where everyone is on the map, as the engine does: no vision or "could they see it" variable, and a call is judged on the full map.
 - R-369. Words heard on comms: "walk" is WoC (Word of Censure); "pact" or "pacted" (transcribed "packed") is a player resurrected by Death Pact Signet and still under its effect; "ages" is Aegis; "blight" (transcribed "be light") is Blessed Light.
 - R-370. Four of the timestamped games are held out of tuning the engine's reading and used only to check it: BcS v hook (25a90723), RACK v chic (bb669b6f), ohno v Fun (1cb73c20), OG v cope on Uncharted Isle (84586253).
+- R-371. Pushing the enemy's flagger and posturing (standing at a door or footmen without going in) are each their own record, apart from a split and a push.
+- R-372. Judgement lines in Denning's commentary ("not a great trade", "a good rotation") are kept sealed as tests of the engine's verdicts. They are not fed in as rules.

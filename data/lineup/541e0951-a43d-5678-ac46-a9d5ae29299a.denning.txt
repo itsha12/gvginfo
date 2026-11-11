@@ -1,0 +1,42 @@
+# match: 541e0951-a43d-5678-ac46-a9d5ae29299a
+# source: denning
+# teams: Apes, hold
+# clock: 53
+# held_out: no
+0:20 | plan | hold | | | hold plays an eight man main team at the front door
+0:26 | go | hold | Monk 4 (WoC) | | hold's 4 runs back to the flag before the gates
+0:33 | split | Apes | | 3 | Apes sends a three man split out the back door
+0:40 | hold | Apes | AoB Derv | | five at main with the flag on the 2
+0:50 | plan | hold | | | hold does not bring its flag up: it stays in base
+0:57 | hand | Apes | AoB Derv | Monk 5 (WoC) | Apes switches the flag to the 5
+1:05 | go | Apes | Monk 5 (WoC) | | the 5 WoC monk will run the flag
+1:18 | route | Apes | | back door | the three man split runs the back door through the miasma
+1:25 | fight | | | 5v5 | hold pushes five on five
+1:33 | fall | Apes | | front door | Apes retreats to its front door
+1:45 | death | Apes | Prot | | Apes takes a death on the prot
+1:50 | answer | hold | 7 Monk, 8 Monk | | hold defends its footies with two monks against three
+1:53 | judge | hold | | | a split advantage to Apes, but two monks should be safe
+2:00 | push | hold | | front door | hold's main pushes through Apes's front door
+2:05 | fall | Apes | | pit | Apes retreats up the stairs to its pit, the flag still on the WoC monk
+2:25 | death | Apes | Mesmer | | the 4 mesmer lies dead in base, 25 s from the base res
+2:36 | push | Apes | | pit | Apes's split pushes past the footies and aggros the knights in hold's pit
+2:50 | route | Apes | Monk 5 (WoC) | back door | the 5 runs the flag by the back door
+2:55 | death | Apes | Monk 5 (WoC) | | and dies to hold's 4 with a collapse from part of hold's main
+3:15 | join | Apes | AoB Derv | | Apes's 2 joins the split: 4v2 in hold's footies
+3:20 | fight | | | 4v2 | a 4v2 for Apes on the split side
+3:30 | go | hold | Monk 4 (WoC) | | hold's 4 goes to run the flag before defending
+3:40 | npc | Apes | | footman | Apes takes both footies and the archer
+3:46 | fall | hold | | pit | hold's two monks retreat to the pit
+3:58 | fight | | | 3v5 | hold's five push Apes's three in Apes's pit
+4:04 | npc | hold | | knight | one knight down at 3:11
+4:14 | npc | hold | | knight | the second knight
+4:20 | clock | Apes | | | Apes's 5 died about 30 s before the base res
+4:30 | npc | Apes | | knight | Apes's 4v3 takes a knight in hold's pit
+4:35 | answer | hold | Monk 4 (WoC), 7 Monk, 8 Monk | | hold defends 3 against 4
+4:52 | npc | hold | | archer | hold kills an archer, no deaths yet
+5:00 | baseres | Apes | Monk 5 (WoC) | | Apes's 5 base resses and the mesmer is back up
+5:08 | death | Apes | Mesmer | | Apes's 4 goes down
+5:20 | death | Apes | Prot | | the prot goes down: 5v2 in Apes's pit
+5:26 | end | Apes | | | hold's three push Apes's four out, or Apes collapses as it loses its base
+5:46 | npc | hold | | bodyguard | hold takes the bodyguard
+5:52 | lord | hold | | | and kills the Guild Lord a minute before the base res

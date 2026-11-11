@@ -2,6 +2,13 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-11 (fourth): timestamped commentary and comms lined up with the record
+- Denning sent 17 timestamped transcripts (7 of his own on golden games, 10 of Maga's comms) and ruled R-368 to R-372.
+- `tools/golden/lineup.py` (branch `bundle-4`): paraphrased statements a line (`data/lineup/`, on main) checked against the story and the fight numbers; kinds the story has no word for are counted.
+- First seven transcripts (five games): 549 statements, 383 checked, 289 agree (75%), 94 differ, 166 no word yet (pushing the flagger, routes, flag lead, posture, judgements, reasons, plans).
+- Differences found: collapses and swaps not written, a split's later joiners listed from the opening, pre-game flag events left out, a half run not read (hdm v Men 2:01).
+- Replays queued: 453bd7a0 (Men v OG), cc1e770d (NwAy v ohno, stored as 11:49; the comms run 28 minutes), ee3a719f.
+
 ## 2026-11-11 (third): the engine's split, push and flag records (branch `bundle-4`; stories draft 5)
 - Denning ruled R-355 to R-364 and directed that the record, not the description, is the work (R-362).
 - `moments.py`: `attempts()` (split attempts and main team pushes, one record each), `caught()`, `flags_record()`, `main_team()` (the part that carries the flags and stays; the part on the front lane when the other went round the back), `lane()`; `common.flux_at`. `story.py` prints from these; the old "go to split" and "go back to defend" lines are gone.

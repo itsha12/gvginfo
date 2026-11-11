@@ -1,0 +1,40 @@
+# match: d016987b-e5a0-5cd5-a23c-4c5b2d2415f8
+# source: og_comms
+# teams: OG, hdm
+# clock: 4
+# held_out: no
+0:04 | i.drop | OG | Air Ele 3 | | do not hold the flag: drop it somewhere here on the island
+0:10 | i.plan | OG | | | spread out; we push
+0:14 | s.build | hdm | | | their ritualist has party heals
+0:30 | micro | OG | | | six spike calls in the first minute and none kills
+0:27 | micro | OG | | | they shattered my enchantment
+0:50 | cause | OG | | | I have a debuff and people got Complicated: we have to fall back
+0:52 | i.fall | OG | | front door | fall back; keep running away
+1:16 | plan | OG | | | I have them in the choke if they come
+1:28 | s.fall | hdm | | | they are falling back: this is regen
+1:54 | s.go | hdm | Ritualist | | they are getting a flag: they had not even capped yet
+1:58 | s.cap | hdm | Ritualist | | they have just capped their first one
+2:05 | i.push | OG | | | we all need to move forward: push through and spread out
+2:16 | micro | OG | | | Complicate on my deep wound, three spikes running
+2:36 | i.fall | OG | | | last one, then run away
+2:44 | plan | OG | | | when they come to where we are, we turn and spike
+3:03 | option | OG | | | I will go on their main mesmer so you can use deep wound
+3:08 | cause | OG | | | the spike itself is fine: we are not doing enough damage to kill, so something is stopping it
+3:13 | question | OG | | | if you are being interrupted we need to work that out now
+3:33 | micro | OG | | | Complicate on the deep wound again
+3:42 | micro | OG | | | no deep wound on that one either
+3:59 | death | hdm | Stand Mes | | I got one; he was pacted
+4:02 | s.boost | hdm | | | they boosted, so they will have pact back
+4:12 | i.push | OG | | | push up, one more spike; keep pushing
+4:25 | option | OG | | | can you Shell Shock on the next fight
+4:38 | hold | OG | Air Ele 3 | | you have the flag with us too; get through
+4:44 | cause | OG | | | no energy and Complicate on the deep wound again: we have to fall back
+4:46 | i.fall | OG | | | run away, fall back
+4:56 | option | OG | | | kill one and the game turns: let an ele call the spike
+5:22 | i.fall | OG | | pit | we need to be with our NPCs right now
+5:32 | plan | OG | | | everybody can base res: run around, base, and kill them
+5:40 | question | OG | | | who is getting their damage stopped right now
+5:50 | energy | OG | | | I have no energy and cannot heal myself
+6:42 | judge | OG | | | this is over
+6:46 | cause | OG | | | they come one at a time: Migraine on one, then another, and someone interrupted by the domination mesmers
+7:14 | cause | OG | | | they infuse every spike; it is the same hex match-up as cope

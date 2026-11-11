@@ -26,8 +26,9 @@ model's structure: `knowledge/model.md` (generated).
 2. Check what is unchecked: "main team joined" endings (35%), the main team rule on more of his notes, giving
    ground. Then rebuild the old moments (triggers, scenarios, calls) on the records (R-351) and `golden.py score`
    against his marks (R-354).
-3. Commentary: line up xxx v ohno (transcript 983a47db, report d70f3684); then Bounty and Maga if he sends them;
-   then his own, with a timestamped transcript. Every lesson goes into the records first (R-362).
+3. Line-up (`tools/golden/lineup.py` on the branch, statements in `data/lineup/` on main, R-368 to R-372): 7 of 17
+   timestamped transcripts filed (549 statements: 75% of the checked ones agree, 94 differ, 166 have no word yet).
+   Still to file: Maga's other comms and the four held-out games (R-370). Open: which match is the vine seed comms.
 4. Stage D on the branch (consequence record at 90 s and about 3 min, similar cases, the job table, enemy
    execution, the five proposals of R-324, radius checks to `st.zone`), then stage E (side by side for one rebuild,
    SPEC.md and METHODS.md rewritten, readability test, merge, Train batch with `add_batch=no`). REDESIGN.md has both.

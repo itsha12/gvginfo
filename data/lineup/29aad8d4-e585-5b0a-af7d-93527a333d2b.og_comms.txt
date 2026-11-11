@@ -1,0 +1,88 @@
+# match: 29aad8d4-e585-5b0a-af7d-93527a333d2b
+# source: og_comms
+# teams: xxx, ohno
+# clock: 40
+# held_out: no
+0:04 | i.plan | ohno | | | before the gates: keep the ele out back, and one player has to wait for the flag
+0:10 | i.wait | ohno | Ritualist | | I can wait for the flag; putting spirits up in case I have to fight
+0:22 | s.split | xxx | Fire Ele, Air Ele | | it is a double ele split
+0:24 | i.plan | ohno | | | all right, I will stay back
+0:56 | s.build | xxx | | | they are doing the Echo tech on the mesmer; the eles have monk secondaries and no Return
+1:00 | option | ohno | Hammer | | the 2 warrior is a good collapse option
+1:22 | i.plan | ohno | | | we are defending
+1:26 | i.push | ohno | | | we are going to push them at main: they only have two monks
+1:30 | cause | ohno | | | we do not have enough damage to hold these footies
+1:33 | trade | ohno | | | it is fine to lose the footmen; they will be lost eventually
+2:08 | s.npc | xxx | | archer | we lost the archer; you need to collapse soon
+2:14 | i.fall | ohno | | pit | go to the pit
+2:22 | i.join | ohno | Hammer | through mid | the 2 warrior has to collapse on the back door; he is going through the middle
+2:31 | s.fall | xxx | | | they are backing off, not collapsing
+3:06 | i.boost | ohno | | | I am trying to get us the boost; we are getting it
+3:26 | plan | ohno | | | we have to win on the split
+3:36 | i.go | ohno | AoB Derv | | who is running? I think I have to run
+3:44 | s.join | xxx | Mesmer | | their mesmer is coming to the split through his base: back up
+3:52 | unsure | xxx | Mesmer | | he might be running a flag or splitting, we do not know
+4:01 | s.join | xxx | | | they are fully collapsing on main
+4:18 | i.join | ohno | Mesmer | through mid | can I collapse through the middle? Yes; going for it
+4:56 | s.join | xxx | Prot | | their prot is going to join you soon
+5:26 | option | xxx | Mesmer | | their mesmer has a collapse option on you through the middle; he is not going, I am watching him
+5:32 | monks | xxx | | | solo monk at main if we can go on the 7
+5:38 | i.drop | ohno | | | I have to drop this flag
+5:58 | judge | ohno | | | that was interesting: if they get deeper, try that play again
+6:06 | i.pushflag | ohno | | | I am going to push their flagger here
+6:36 | s.go | xxx | | | he is running the backup
+7:14 | s.boost | xxx | | | they will boost
+7:24 | s.leave | xxx | Prot | | they are sending their prot away
+7:30 | trade | ohno | | | let the lower one die; it is not worth it
+7:48 | option | ohno | | | put the ele in the front: swap the ele and the mesmer
+8:00 | reason | ohno | | | the ele can help run flags and the mesmer can maybe kill on the split side
+8:02 | i.swap | ohno | Mesmer | | I am going through the back
+8:16 | i.wait | ohno | Air Ele | | I am staying back for a second flag
+8:36 | s.join | xxx | Air Ele | through mid | they are collapsing an ele through the middle
+8:52 | s.join | xxx | Ritualist | | their ritualist is at the stand now, running through their base to the front
+9:36 | option | ohno | Hammer | | wherever you have a jump on anybody on their team, make a move
+10:06 | s.join | xxx | Mesmer | through mid | their mesmer is going middle
+10:12 | s.drop | xxx | | | they are sacking the flag
+10:38 | i.go | ohno | Air Ele | | I should run instead of going into their base
+10:46 | i.push | ohno | | pit | then I go into their base with our monks and ball the knights
+11:04 | s.go | xxx | AoB Derv | | watch for that dervish running straight to our base
+11:46 | plan | ohno | | | either we boost or I get a knight
+11:54 | s.npc | ohno | | footman | we are making progress on the back: the second footy is down
+12:08 | i.pushflag | ohno | Air Ele | | main team stay; the ele follows their flagger
+12:14 | posture | ohno | | | I have to hold this knight threat
+12:24 | s.join | xxx | Fire Ele | | the fire ele is collapsing
+13:24 | option | ohno | Air Ele | | if the ele stays on the flag path, can he not kill their flagger?
+13:28 | s.join | xxx | Air Ele | | they are collapsing an ele: back up
+13:36 | monks | xxx | | | they defend with two monks and an ele now: one monk at the stand
+13:46 | judge | ohno | | | we should not risk it
+13:54 | death | ohno | 7 Monk | | are we dead? They fully collapsed on us
+14:05 | cause | ohno | | | it was two eles, not one: the second joined after the first, and we should have left as soon as we saw them
+14:26 | s.npc | xxx | | knight | they take the knights
+14:46 | i.fall | ohno | | | stop pushing and go back: they can collapse on us through the middle
+15:18 | option | ohno | | | change the game plan, or keep it: the plan was fine and we got caught
+15:54 | s.join | xxx | Ritualist | | they have the ritualist coming to you, probably trading with the prot
+16:54 | s.join | xxx | Mesmer | | their mesmer and dervish are off the map: they are collapsing, run
+17:56 | plan | ohno | | | retreat: defend with two monks, double run with the ele, and send the damage to main
+18:18 | cause | ohno | | | the mesmer collapsed and I was crippled: I could not teleport out
+18:30 | clock | ohno | | | try to die before the base res if you can
+18:33 | death | ohno | 8 Monk | | I am dead
+18:38 | plan | ohno | | | to save the game: defend on the 7 and 8 monks, everyone else to main, and the ele double runs until we are up
+19:08 | lead | ohno | | | we are up on flags
+19:16 | i.drop | ohno | Air Ele | | drop the flag, they are not capping; go back and help defend
+20:00 | i.pushflag | ohno | | | I am going to train this flagger
+21:02 | judge | ohno | | | we can hold this indefinitely
+21:36 | lord | xxx | | | they are only trying to get Lord damage, and with three NPCs up they cannot get much
+22:15 | i.split | ohno | Air Ele | 1 | the ele goes to their back door
+22:20 | energy | ohno | | | I have no energy
+23:06 | s.join | xxx | Fire Ele, Air Ele | | two eles are following him at the back door
+23:14 | death | ohno | Air Ele | | I am dead
+24:06 | s.go | xxx | Mesmer | | their mesmer is running the flag
+25:26 | option | ohno | | | who holds the base: the 8 monk and the ritualist, or the 8 monk and the ele with the ele spear-bombing the bodyguard
+26:04 | plan | ohno | | | move into their base and out-damage their Lord: our melee can out-damage those eles
+26:26 | timing | ohno | | | we do not need to go now: go at about 27 minutes
+26:40 | s.split | xxx | AoB Derv, Mesmer | | they are sending a dervish and a mesmer
+27:00 | i.answer | ohno | | | we have to defend; send the ritualist as well
+27:22 | clock | ohno | | | 27 minutes: we need more Lord damage or we lose
+27:44 | lord | ohno | | | we do not have enough to break entourage
+28:16 | judge | ohno | | | that was our shot
+28:40 | cause | ohno | | | at the end you need the ritualist in base, or they simply kill the monk
