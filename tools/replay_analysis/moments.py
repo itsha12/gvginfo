@@ -30,7 +30,7 @@ import collections, json, math, statistics, sys
 from common import (READ_FROM, READ_TO, AREA_SHARE, PURPOSE_S, LEAVE_MIN_S, HOME_WAIT_S, SPAWN_R, GROUP_LEAVE_S, MEET_R,
                     NUMBERS_MIN_S, MERGE_S, BOOST_WARN_S, FLAGGER_R, SPLIT_FAR, BOOST_EVERY, SERIOUS_CARRY_S, FIGHT_LINK,
                     RETURN_R, FOOT_ENGAGED_S, SPLIT_STEP, SPLIT_MIN_S, SPLIT_GAP_S, FORCED_OUT_S, AHEAD_LOOK_S, CAUGHT_S, NPC_NEAR,
-                    JOIN_S, RES_EVERY, flux_at, JOIN_LOOK_S, JOIN_MOVE, JOIN_LEAD, SWAP_S, SPLIT_FIGHT_GAP_S, SPLIT_FIGHT_MIN)
+                    JOIN_S, RES_EVERY, flux_at, JOIN_LOOK_S, JOIN_MOVE, JOIN_LEAD, SWAP_S, SWAP_STAY_S, SPLIT_FIGHT_GAP_S, SPLIT_FIGHT_MIN)
 from state import d
 
 HOME, THEIRS = ("own pit", "own base"), ("enemy pit", "enemy base")
@@ -70,11 +70,13 @@ class Moments:
                 self.foot_dead[m.A[r[2]].get("team")].append(r[0] / 10)
         self.foot_act = collections.defaultdict(list)        # team -> seconds its footmen dealt or took damage
         self.hits = collections.defaultdict(list)            # second -> [(actor, target)] damage between players
+        self.npc_hits = collections.defaultdict(list)        # player -> seconds he damaged an enemy NPC
         for r in m.o["ev"]:
             if r[1] != "dm" or not isinstance(r[2], int) or not isinstance(r[3], int) or max(r[2], r[3]) >= len(m.A): continue
             for x in (r[2], r[3]):
                 if m.A[x].get("npc") == "footman": self.foot_act[m.A[x].get("team")].append(r[0] / 10)
             if r[2] in self.P and r[3] in self.P and m.team(r[2]) != m.team(r[3]): self.hits[int(r[0] / 10)].append((r[2], r[3]))
+            if r[2] in self.P and r[3] not in self.P and m.A[r[3]].get("npc") and m.A[r[3]].get("team") not in (None, m.team(r[2])): self.npc_hits[r[2]].append(r[0] / 10)
         self._eng = {}
         self._dp, self._ov, self._fp, self._att, self._last, self._mt, self._ln, self._fr = {}, {}, None, None, {}, {}, None, None
         self._fi, self._mv, self._sf = None, None, None
@@ -542,7 +544,11 @@ class Moments:
                          "kills_for": sum(1 for b in st.players[foe] for x in st.death_times.get(b, []) if win[0] <= x <= win[1]),
                          "kills_against": sum(1 for b in st.players[tm] for x in st.death_times.get(b, []) if win[0] <= x <= win[1])}
         mk = lambda ids: sum(1 for a in ids if m.A[a].get("p") == "Monk" and not m.roles[a].startswith("Monk "))   # backline monks, not a smiter
-        return {"kind": kind, "tm": tm, "team": m.tag[tm], "t0": t0, "t_in": t_in, "t1": t1, "opening": t_in <= 75,
+        solo = None                                       # R-381: a lone player is splitting only when he hits NPCs or trades damage with a defender
+        if kind == "split" and max(sizes) == 1:
+            busy = bool(npcs) or sum(traded.values()) >= 2 or any(t_in <= x <= t1 + 4 for a in members for x in self.npc_hits.get(a, ()))
+            solo = "split" if busy else "other"
+        return {"kind": kind, "tm": tm, "solo": solo, "team": m.tag[tm], "t0": t0, "t_in": t_in, "t1": t1, "opening": t_in <= 75,
                 "members": [{"role": m.roles[a], "prof": m.A[a].get("p"), "from": span[a][0][0], "to": span[a][-1][1]} for a in members],
                 "ids": members, "size": max(sizes, key=lambda n: (sizes[n], n)), "max": max(sizes), "monks": mk(members),
                 "flag_player": self.flag_player(tm, t_in) in members,
@@ -677,11 +683,15 @@ class Moments:
             t0, t1 = r["t0"], r["seen"]
             if len(r["track"]) * S < SPLIT_MIN_S or t1 - t0 < SPLIT_MIN_S: continue
             span = {}
-            for a, ts in r["at"].items():
-                sp = []
-                for t in ts:
-                    if sp and t - sp[-1][1] <= JOIN_S: sp[-1][1] = t
-                    else: sp.append([t, t])
+            ticks = [x[0] for x in r["track"]]
+            for a, ts in r["at"].items():      # a stay ends when the fight goes on without him for JOIN_S of its own time: a lull in the fight itself is not a leave
+                sp, had, miss = [], set(ts), 0
+                for t in ticks:
+                    if t in had:
+                        if sp and miss * S <= JOIN_S: sp[-1][1] = t
+                        else: sp.append([t, t])
+                        miss = 0
+                    else: miss += 1
                 sp = [(s_, e) for s_, e in sp if e - s_ >= JOIN_S]
                 if sp: span[a] = sp
             mem = {tm: sorted((a for a in span if m.team(a) == tm), key=lambda a: span[a][0][0]) for tm in (1, 2)}
@@ -696,15 +706,19 @@ class Moments:
             monks = {tm: collections.Counter(mk([a for a in mem[tm] if on(a, x[0])]) for x in r["track"]).most_common(1)[0][0] for tm in (1, 2)}
             everyone = set(mem[1]) | set(mem[2])
             inside = [x for x in self.moves() if t0 - 4 <= x["t"] <= t1 + 4 and len(x["with"] & everyone) * 2 >= len(x["with"])]
-            swaps, joins1, leaves1 = [], [], []         # a leave and a join by one team within SWAP_S: a swap (the longest-standing leaver first)
-            for x in inside:
-                for a, t_, stay in x["each"]: (joins1 if x["kind"] == "join" else leaves1).append((t_, a, stay, x["tm"]))
-            gone = set()
-            for tj, a, _, tm_ in sorted(joins1):
-                c = [l for l in leaves1 if l[3] == tm_ and l[1] != a and abs(l[0] - tj) <= SWAP_S and (l[0], l[1]) not in gone and a in mem[tm_] and l[1] in mem[tm_]]
-                if c:
-                    l = max(c, key=lambda l: l[2]); gone.add((l[0], l[1]))
-                    swaps.append({"t": max(tj, l[0]), "team": m.tag[tm_], "tm": tm_, "in": m.roles[a], "out": m.roles[l[1]], "in_id": a, "out_id": l[1], "t_in": tj, "t_out": l[0]})
+            swaps = []         # a swap (R-374): a new player comes into the fight within SWAP_S of one who had been in it leaving it
+            for tm_ in (1, 2):
+                ins = [(s_, a) for a in mem[tm_] for i, (s_, e) in enumerate(span[a])
+                       if s_ > t0 + JOIN_S and e - s_ >= SWAP_STAY_S and not (i and s_ - span[a][i - 1][1] <= 60)]
+                outs = [(e, a, e - s_) for a in mem[tm_] for i, (s_, e) in enumerate(span[a])
+                        if e < t1 - JOIN_S and e - s_ >= SWAP_STAY_S and not (i + 1 < len(span[a]) and span[a][i + 1][0] - e <= 60)
+                        and not any(e - 2 <= td <= e + 6 for td in st.death_times.get(a, []))]
+                gone = set()
+                for tj, a in sorted(ins):
+                    c = [o for o in outs if o[1] != a and abs(o[0] - tj) <= SWAP_S and (o[0], o[1]) not in gone]
+                    if c:
+                        o = min(c, key=lambda o: (abs(o[0] - tj), -o[2])); gone.add((o[0], o[1]))
+                        swaps.append({"t": max(tj, o[0]), "team": m.tag[tm_], "tm": tm_, "in": m.roles[a], "out": m.roles[o[1]], "in_id": a, "out_id": o[1], "t_in": tj, "t_out": o[0]})
             deaths = {tm: [m.roles[a] for td, a in sorted((td, a) for a in mem[tm] for td in st.death_times.get(a, []) if any(s_ - 1 <= td <= e + 4 for s_, e in span[a]))] for tm in (1, 2)}
             npcs = {1: [], 2: []}
             for x, td in st.npc_dead.items():
@@ -730,7 +744,7 @@ class Moments:
             away = lambda tm: all(a not in self.main_team(tm, min(20, T)) for a in start[tm])
             both = t0 <= 75 and away(1) and away(2)
             out.append({"t0": t0, "t1": t1, "t_left": min(left, t0), "opening": t0 <= 75, "both_opening": both, "start": {m.tag[tm]: [m.roles[a] for a in start[tm]] for tm in (1, 2)}, "place": p0, "started": m.tag[started] if started else None, "started_tm": started,
-                        "members": {m.tag[tm]: [{"role": m.roles[a], "from": span[a][0][0], "to": span[a][-1][1]} for a in mem[tm]] for tm in (1, 2)},
+                        "members": {m.tag[tm]: [{"role": m.roles[a], "from": span[a][0][0], "to": span[a][-1][1], "spans": span[a]} for a in mem[tm]] for tm in (1, 2)},
                         "ids": {tm: mem[tm] for tm in (1, 2)}, "n": max(nums, key=nums.get), "monks": {m.tag[tm]: monks[tm] for tm in (1, 2)},
                         "ground_s": {m.tag[1]: ground[1], m.tag[2]: ground[2], "between": ground[0]}, "linked_s": len(r["track"]) * S,
                         "moves": [{"t": x["t"], "kind": x["kind"], "team": x["team"], "roles": x["roles"]} for x in inside], "swaps": swaps,

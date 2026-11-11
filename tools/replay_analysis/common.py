@@ -266,5 +266,6 @@ JOIN_LOOK_S = 16          # a join or a leave is read over this long before or a
 JOIN_MOVE = 800           # the player moved at least this far in that time ...
 JOIN_LEAD = 1.3           # ... and this many times further than the players he joined or left: otherwise the fight came to him
 SWAP_S = 40               # a leave and a join by one team at the same fight within this long is a swap
+SWAP_STAY_S = 30          # ... when the one going out had been in it this long, the one coming in stays this long, and the first does not come straight back
 SPLIT_FIGHT_GAP_S = 60    # the same two groups out of contact no longer than this are still one split fight (R-365)
 SPLIT_FIGHT_MIN = 2       # a split fight opens with at least this many players a side

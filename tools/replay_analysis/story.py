@@ -144,7 +144,7 @@ def _attempt_events(M):
     mk = lambda n: "no monk" if not n else ("one monk" if n == 1 else f"{NUM.get(n, n)} monks")
     covered = {i for r in M.split_fights() for i in r["attempts"]}     # told as one split fight (R-365)
     for i, x in enumerate(M.attempts()):
-        if i in covered: continue
+        if i in covered or x.get("solo") == "other": continue     # a lone player doing neither (R-381) is not told as a split
         tag, foe, an = x["team"], m.tag[3 - x["tm"]], x["answer"]
         starters = [q["role"] for q in x["members"] if q["from"] <= x["t_in"] + JOIN_S] or [x["members"][0]["role"]]
         who = ", ".join(starters) if x["kind"] == "split" else ", ".join(q["role"] for q in x["members"])
@@ -229,7 +229,7 @@ def _record_events(M):
         out.append((r["t1"], f"The split fight ends after {clock(r['t1'] - r['t0'])}: {g[t1]} s on {t1}'s ground, {g[t2]} s on {t2}'s, {g['between']} s between them; {took}; {died}; "
                              f"meanwhile at main {t1} was a player or more up for {mn['up_s']} s, even {mn['even_s']} s, down {mn['down_s']} s"))
     for x in M.moves():
-        ids = [a for a, t_, _ in x["each"] if (x["kind"], a, t_) not in swapped]
+        ids = [a for a, t_, _ in x["each"] if not any(k == x["kind"] and b == a and abs(t_ - u) <= 20 for k, b, u in swapped)]
         if not ids or (x["kind"] == "leave" and x.get("flag")): continue          # leaving for the flag is told by the flag lines
         tag, names = x["team"], _names(M, ids)
         b, a_ = x["before"], x["after"]
