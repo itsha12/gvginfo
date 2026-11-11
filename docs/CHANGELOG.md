@@ -6,7 +6,7 @@ Dated session log of the GvG Info analysis engine and portal, newest first. Entr
 - Denning sent 17 timestamped transcripts (7 of his own on golden games, 10 of Maga's comms) and ruled R-368 to R-372.
 - `tools/golden/lineup.py` (branch `bundle-4`): paraphrased statements a line (`data/lineup/`, on main) checked against the story and the fight numbers; kinds the story has no word for are counted.
 - 16 transcripts filed (12 for building, 4 held out, R-370): 1,126 statements; of 761 checked, 555 agree (73%; held-out 74%), 206 differ.
-- Reads well: caps, deaths, who goes back for the flag, fight numbers, NPCs. Reads badly: collapses (25 of 66), swaps (0 of 7), falling back, pushes, answers, a split's later joiners listed from the opening, pre-game flag events, a half run (hdm v Men 2:01).
+- Reads well: caps, deaths, who goes back for the flag, fight numbers, NPCs. Reads badly: collapses (25 of 66), swaps (0 of 5), falling back, pushes, answers, a split's later joiners listed from the opening, pre-game flag events, a half run (hdm v Men 2:01).
 - Denning ruled the scope (R-373): build flag route, pushing the flagger, flag lead, posture, timing; plans, options, reasons, micro calls and build labels stay out; what reads badly is fixed in the engine's rules (R-374).
 - Replays queued: 453bd7a0 (Men v OG), cc1e770d (NwAy v ohno, stored as 11:49; the comms run 28 minutes), ee3a719f.
 
