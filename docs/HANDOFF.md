@@ -26,10 +26,10 @@ model's structure: `knowledge/model.md` (generated).
 2. Check what is unchecked: "main team joined" endings (35%), the main team rule on more of his notes, giving
    ground. Then rebuild the old moments (triggers, scenarios, calls) on the records (R-351) and `golden.py score`
    against his marks (R-354).
-3. Line-up (`tools/golden/lineup.py` on the branch, statements in `data/lineup/` on main, R-368 to R-380): built on
-   the branch: `moves()`, `split_fights()` (516 matches: 711 split fights, 757 of 1,921 split attempts inside one),
-   answers, openings, retreats, flag at the gates. Agreement 76%, held-out 77% (gate 90%, R-380). Next: half runs,
-   pushes, R-367 (solo splits, his ruling), then R-373's words; golden set cut to 15; stories still draft 5.
+3. Line-up (`tools/golden/lineup.py` on the branch, statements in `data/lineup/` on main, R-368 to R-382): built on
+   the branch: `moves()`, `split_fights()` (swaps from each player's stay), `ground()` (main team falls back, pushes
+   up), solo split (R-381). Agreement 77%, held-out 79%; seen events 82%, comms calls 65% (gate 90%, R-380). Next:
+   joins, split-group moves, half runs, then R-373's words. Golden set is 15 (R-382); 90 new replays fetched.
 4. Stage D on the branch (consequence record at 90 s and about 3 min, similar cases, the job table, enemy
    execution, the five proposals of R-324, radius checks to `st.zone`), then stage E (side by side for one rebuild,
    SPEC.md and METHODS.md rewritten, readability test, merge, Train batch with `add_batch=no`). REDESIGN.md has both.
