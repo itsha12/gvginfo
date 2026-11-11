@@ -48,17 +48,17 @@ model's structure: `knowledge/model.md` (generated).
 - R-341 sets the direction: the engine should think as his golden notes do (the story so far); options, decisions
   and variables follow from that. Ruled from the notes: R-334 to R-340 (greater stand area, main team in a 4v4, flag
   position and stand holder both, pinned teams, one flag a team, the hand-off and double run forms).
-- R-342 to R-347 answered. He then wrote notes on eight more moments (four split answers, four numbers moments);
-  reviewed 2026-11-10 evening: the same reading carries over (REDESIGN "The story so far"). Drafted since:
-  `Hall.place` (doors, front and back footies, greater stand area), `Moments.fights`, `story.py`, and a Greater stand
-  area draft on the map page for 9 halls (no draft: Burning, Frozen, Warrior's, Wurms, Isle of the Dead: too few
-  counted replays; he draws those or the 3,500 walk stands in). Waiting on him: accept or redraw the drafts.
-- Next on the branch, in order: the "why" words in the story (match, mirror and on time by arrival against walked
-  distance, swap, threaten, fall out, under pressure from the place ladder, pinned R-337), routes (through mid,
-  through the pit), hand-off to hold, time to cap, quieter flag lines in a fast flag game; then the golden page in
-  two parts (R-345); then scenarios, calls and triggers rebuilt on the story. Questions put to him in chat (answers
-  pending): what "on time" means; what makes a fight "under pressure"; front or back footies where a hall's labels
-  split oddly (Warrior's, Meditation, Corrupted). Also open: discovery second run; 28 behaviour clusters.
+- Built 2026-11-10 night (branch, drafts): `Hall.place`, `Moments.fights`, `Moments.flag_lives`, `story.py` with the
+  why words (routes, on time R-348, swaps, falls back under pressure R-349, falls out; 12 s to count in a fight
+  R-350). On main: the golden page in two parts (R-345) with the engine's story of all 30 games
+  (`golden_stories.json`), and Greater stand area drafts for 9 halls (none for Burning, Frozen, Warrior's, Wurms,
+  Isle of the Dead: too few counted replays).
+- Waiting on Denning: mark the engine's stories on the 14 moments he has notes for (tick wrong lines, say what is
+  missing), then notes and marks on the other 16; accept or redraw the Greater stand area drafts.
+- Next on the branch: read his marks (`label.story` in golden_moments.json) and fix the story; then a threat or
+  posture, hand-off to hold, time to cap, quieter flag lines, monk energy proxy if he wants one (asked); regenerate
+  `golden.py stories`; then scenarios, calls and triggers rebuilt on the story (numbers advantage in every fight,
+  R-351), and `golden.py score` rewritten against his marks. Also open: discovery second run; behaviour clusters.
 
 ## Running it
 - Train batch: `gh api -X POST repos/itsha12/gvginfo/actions/workflows/train-batch.yml/dispatches -f ref=main

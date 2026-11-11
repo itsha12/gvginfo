@@ -196,6 +196,10 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   Also on the branch: `story.py <report id> [from] [to]` prints the story so far (R-341: the engine reads a match as
   Denning's notes do: flag forms, every fight with its place and numbers, deaths against the base res, NPCs), and
   `tools/maps/draft_greater_stand.py` drafts each hall's "Greater stand area" (R-334, R-342) into `data/maps/draft/`.
+  The golden page has two parts (R-345): his note first; then the engine's story of that game
+  (`data/model/golden_stories.json`, from `tools/golden/golden.py stories`), shown only after his note is saved, for
+  him to mark (`label.story`: lines ticked wrong with his reason, and what is missing). Regenerate the stories after
+  the story changes; his marks keep the text of the line they were made on.
 - Guild hall maps: `tools/maps/build_maps.py` builds the site's map data from the replays branch
   (`data/maps/index.json`, `outline/<map id>.json`, `auto/<map id>.json`); Denning's labels (points, areas, routes) are
   saved by the site's Model > Guild hall maps page to `data/maps/labels/<map id>.json` and override estimates. The

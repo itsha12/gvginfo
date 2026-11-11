@@ -303,3 +303,7 @@ This register is the model's constitution: every definition and decision Denning
 - R-345. The golden test has two parts: Denning writes his note first, with only a few drop-downs; then the engine's own story of the same moment is revealed and he marks each line right, wrong or missing.
 - R-346. Resurrection Signets count very little in what a boost is worth and are not measured: few are run, and a fully boosted team is unlikely to have used one.
 - R-347. gvg.report's packet window is a viewing setting and is ignored, on the footing that the replays hold every event.
+- R-348. "On time": an answer that arrives within about the time a player without a speed boost takes to run 1 to 1.5 cast ranges (a few seconds; 5 to 7 s at the engine's run speed). An answer 30 s behind is late.
+- R-349. Under pressure is about a team's health and energy more than its position: a team taking deaths, low on team health or low on monk energy is under pressure, and it retreats. Position is the result of pressure, not the measure of it.
+- R-350. A player counts in a fight after 12 s in it; less is support, not a player more.
+- R-351. A numbers advantage is read in every fight on the map, not only where the main groups meet; its calls are to retreat down the ladder or stay, and to push in or fall out.

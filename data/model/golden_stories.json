@@ -1,0 +1,5027 @@
+{
+"about": "The engine's story of each golden moment's game (tools/golden/golden.py stories; story.py on the bundle-4 branch). Shown on Model > Golden moments only after Denning has saved his own note for that moment.",
+"generated": "2026-11-10",
+"draft": 1,
+"stories": {
+"25a90723-1-1-425": [
+[
+19,
+"BcS's Dervish caps"
+],
+[
+21,
+"BcS's Mesmer picks up the flag"
+],
+[
+26,
+"hook's 8 Monk overcaps"
+],
+[
+37,
+"hook takes BcS's archer"
+],
+[
+64,
+"BcS takes hook's archer"
+],
+[
+67,
+"BcS takes hook's archer"
+],
+[
+75,
+"BcS's Mesmer caps"
+],
+[
+86,
+"hook's Monk 4 (WoC) picks up the flag"
+],
+[
+89,
+"BcS takes hook's archer"
+],
+[
+116,
+"hook's Monk 4 (WoC) overcaps"
+],
+[
+124,
+"BcS's Mesmer picks up the flag"
+],
+[
+165,
+"BcS's Mesmer caps; Air Ele is already back for the next flag (double run, each full running)"
+],
+[
+173,
+"BcS's Air Ele picks up the flag"
+],
+[
+174,
+"hook takes BcS's archer"
+],
+[
+197,
+"BcS's Air Ele hands the flag to Mesmer"
+],
+[
+205,
+"BcS loses Prot (34 s before the base res)"
+],
+[
+206,
+"A fight at BcS's front door: BcS 3 v 6 hook (BcS: 7 Monk, Dervish, Mesmer; hook: 7 Monk (WoC), Mesmer, Monk 2 (WoC), Monk 4 (WoC), Monk 5 (WoC), Prot (WoC))"
+],
+[
+208,
+"A fight at the greater stand area: BcS 1 v 1 hook (BcS: Ritualist; hook: 8 Monk)"
+],
+[
+214,
+"BcS's flag is dropped by Mesmer and goes back to the spawn"
+],
+[
+226,
+"hook takes BcS's archer"
+],
+[
+238,
+"The fight moves from the greater stand area to hook's back door (hook falls back, under pressure: team health 66%): BcS 1 v 1 hook becomes 4 v 1 (BcS's Fire Ele, Air Ele, 8 Monk join through the pit and by the front door)"
+],
+[
+238,
+"hook's Mesmer, Monk 2 (WoC), Monk 4 (WoC), Monk 5 (WoC), Prot (WoC), 7 Monk (WoC) fall out of BcS's front door"
+],
+[
+239,
+"BcS's Mesmer picks up the flag"
+],
+[
+261,
+"hook loses 8 Monk (99 s before the base res)"
+],
+[
+266,
+"A fight at the flag stand: BcS 4 v 2 hook (BcS: 7 Monk, Dervish, Mesmer, Prot; hook: Monk 2 (WoC), Monk 3 (WoC))"
+],
+[
+282,
+"hook loses Monk 2 (WoC) (78 s before the base res)"
+],
+[
+283,
+"hook's Mesmer picks up the flag"
+],
+[
+285,
+"BcS boosts"
+],
+[
+294,
+"A fight at hook's front door: BcS 8 v 7 hook (BcS: 7 Monk, 8 Monk, Air Ele, Dervish, Fire Ele, Mesmer, Prot, Ritualist; hook: 7 Monk (WoC), 8 Monk, Mesmer, Monk 3 (WoC), Monk 4 (WoC), Monk 5 (WoC), Prot (WoC))"
+],
+[
+298,
+"hook's Mesmer hands the flag to Monk 5 (WoC)"
+],
+[
+326,
+"BcS loses Prot (34 s before the base res)"
+],
+[
+329,
+"hook's Monk 5 (WoC) caps"
+],
+[
+333,
+"BcS's flag is dropped by Mesmer and goes back to the spawn"
+],
+[
+342,
+"The fight moves from hook's front door to BcS's front door (BcS falls back, under pressure: team health 95%, 1 death in the last 30 s): BcS 8 v 7 hook becomes 7 v 8 (BcS's Prot is dead; hook's Monk 2 (WoC) joins)"
+],
+[
+357,
+"BcS loses 7 Monk (3 s before the base res)"
+],
+[
+360,
+"The 7 v 8 fight moves from BcS's front door to BcS's base (BcS falls back, under pressure: team health 96%, 1 death in the last 30 s)"
+],
+[
+370,
+"hook's Mesmer, Monk 2 (WoC), Monk 3 (WoC), Monk 4 (WoC), Monk 5 (WoC), Prot (WoC), 7 Monk (WoC), 8 Monk fall out of BcS's base"
+],
+[
+388,
+"BcS's Mesmer picks up the flag"
+],
+[
+411,
+"hook's Monk 4 (WoC) picks up the flag"
+],
+[
+416,
+"hook's flag is dropped by Monk 4 (WoC) and goes back to the spawn"
+],
+[
+416,
+"BcS's Mesmer caps"
+],
+[
+425,
+"hook's 8 Monk picks up the flag"
+],
+[
+432,
+"A fight at the field on BcS's side: BcS 4 v 6 hook (BcS: 8 Monk, Air Ele, Fire Ele, Ritualist; hook: 7 Monk (WoC), Mesmer, Monk 2 (WoC), Monk 3 (WoC), Monk 5 (WoC), Prot (WoC))"
+],
+[
+456,
+"BcS's Mesmer picks up the flag"
+],
+[
+458,
+"hook's 8 Monk overcaps"
+]
+],
+"27d03c34-1-2-1324": [
+[
+21,
+"Apes's Warrior 2 hands the flag to Monk 4 (WoC)"
+],
+[
+22,
+"Book's Warrior hands the flag to Monk 3 (WoC)"
+],
+[
+50,
+"A fight at the greater stand area: Book 7 v 7 Apes (Book: 7 Monk, 8 Monk, Hammer, Mesmer, Monk 3 (WoC), Prot, Warrior; Apes: 7 Monk, 8 Monk, Mesmer, Monk 4 (WoC), Prot, Warrior 1, Warrior 2)"
+],
+[
+54,
+"A fight at Book's pit: Book 1 v 1 Apes (Book: Monk 4 (WoC); Apes: Dervish)"
+],
+[
+61,
+"Apes takes Book's archer"
+],
+[
+67,
+"Apes loses Dervish (53 s before the base res)"
+],
+[
+80,
+"Book's Monk 3 (WoC) caps; Monk 4 (WoC) is already back for the next flag (double run, each full running)"
+],
+[
+81,
+"Book's Monk 4 (WoC) picks up the flag"
+],
+[
+92,
+"The 7 v 7 fight moves from the greater stand area to the flag stand"
+],
+[
+110,
+"The flag stand: Book 7 v 7 Apes becomes 8 v 7 (Book's Monk 4 (WoC) joins through mid and through the pit)"
+],
+[
+110,
+"Book's Monk 4 (WoC) hands the flag to Monk 3 (WoC)"
+],
+[
+113,
+"Apes's Monk 4 (WoC) overcaps"
+],
+[
+125,
+"Apes's Dervish picks up the flag"
+],
+[
+145,
+"Book's Monk 3 (WoC) overcaps"
+],
+[
+150,
+"The flag stand: Book 8 v 7 Apes becomes 7 v 8 (Book's Monk 4 (WoC) leaves; Apes's Dervish joins by the front door and by the back door; Apes matches 36 s behind (late))"
+],
+[
+164,
+"Apes's Dervish overcaps"
+],
+[
+171,
+"Book's Monk 4 (WoC) picks up the flag"
+],
+[
+178,
+"The flag stand: Book 7 v 8 Apes becomes 8 v 7 (Book's Monk 4 (WoC) joins through mid and by the front door; Apes's Dervish leaves; Book matches 26 s behind)"
+],
+[
+179,
+"Book's Monk 4 (WoC) overcaps"
+],
+[
+202,
+"Book's Hammer picks up the flag"
+],
+[
+208,
+"The flag stand: Book 8 v 7 Apes becomes 6 v 7 (Book's Hammer, Monk 4 (WoC) leave; Apes swaps Dervish in for Warrior 2; Apes matches 36 s behind (late))"
+],
+[
+210,
+"Apes's Warrior 2 picks up the flag"
+],
+[
+227,
+"Book's Hammer hands the flag to Monk 3 (WoC)"
+],
+[
+247,
+"Apes's Warrior 2 caps"
+],
+[
+260,
+"Book's Monk 3 (WoC) overcaps; Monk 4 (WoC) is already back for the next flag (double run, each full running)"
+],
+[
+260,
+"Book's Monk 4 (WoC) picks up the flag"
+],
+[
+262,
+"The flag stand: Book 6 v 7 Apes becomes 7 v 8 (Book's Hammer joins through mid and by the front door; Apes's Warrior 2 joins through mid and by the front door; Apes matches 6 s behind (on time))"
+],
+[
+276,
+"The flag stand: Book 7 v 8 Apes becomes 6 v 6 (Book's Monk 3 (WoC) leaves; Apes's Dervish, Warrior 2 leave)"
+],
+[
+286,
+"Book's Monk 4 (WoC) hands the flag to Monk 3 (WoC) and goes back for the next flag (double run, each half running)"
+],
+[
+291,
+"Apes's Warrior 2 picks up the flag"
+],
+[
+298,
+"A fight at Book's front door: Book 1 v 1 Apes (Book: Monk 4 (WoC); Apes: Dervish)"
+],
+[
+324,
+"The fight moves from the flag stand to the greater stand area: Book 6 v 6 Apes becomes 7 v 8 (Book's Monk 3 (WoC) joins through mid; Apes's Warrior 2, Dervish join through mid and by the front door; Book matches 20 s behind)"
+],
+[
+334,
+"Apes's Warrior 2 caps"
+],
+[
+342,
+"Book's Monk 3 (WoC) overcaps"
+],
+[
+342,
+"The fight moves from the greater stand area to the flag stand: Book 7 v 8 Apes becomes 7 v 7 (Apes's Warrior 1 leaves)"
+],
+[
+343,
+"Book's Monk 4 (WoC) picks up the flag"
+],
+[
+350,
+"Apes's Warrior 1 picks up the flag"
+],
+[
+364,
+"Book's flag is dropped by Monk 4 (WoC) and goes back to the spawn"
+],
+[
+372,
+"The fight moves from the flag stand to the greater stand area: Book 7 v 7 Apes becomes 5 v 6 (Book's Monk 3 (WoC), 8 Monk leave; Apes's Warrior 1 joins through mid and by the front door; Apes's Dervish, Warrior 2 leave; Apes matches 46 s behind (late))"
+],
+[
+386,
+"A fight at Book's front door: Book 1 v 1 Apes (Book: Monk 4 (WoC); Apes: Dervish)"
+],
+[
+387,
+"Apes's Warrior 1 caps"
+],
+[
+392,
+"The fight moves from the greater stand area to the flag stand: Book 5 v 6 Apes becomes 6 v 7 (Book's Monk 3 (WoC) joins through mid; Apes's Warrior 2 joins through mid and by the front door; both arrive together)"
+],
+[
+406,
+"Book's Monk 4 (WoC) picks up the flag"
+],
+[
+429,
+"Apes loses Warrior 2 (50 s before the base res)"
+],
+[
+431,
+"Book's Monk 4 (WoC) hands the flag to Monk 3 (WoC) and goes back for the next flag (double run, each half running)"
+],
+[
+436,
+"The flag stand: Book 6 v 7 Apes becomes 7 v 6 (Book's 8 Monk joins through mid and by the front door; Apes's Warrior 2 is dead; Book matches 30 s behind (late))"
+],
+[
+444,
+"A fight at Book's front door: Book 1 v 1 Apes (Book: Monk 4 (WoC); Apes: Dervish)"
+],
+[
+445,
+"Book's Monk 3 (WoC) caps"
+],
+[
+470,
+"The fight moves from the flag stand to the greater stand area: Book 7 v 6 Apes becomes 6 v 6 (Book's 8 Monk leaves)"
+],
+[
+483,
+"Book's Monk 4 (WoC) picks up the flag"
+],
+[
+484,
+"Apes's Warrior 2 picks up the flag"
+],
+[
+488,
+"Apes loses Dervish (111 s before the base res)"
+],
+[
+516,
+"The greater stand area: Book 6 v 6 Apes becomes 8 v 7 (Book's 8 Monk, Monk 4 (WoC) join through mid and by the front door; Apes's Warrior 2 joins by the front door and by the back door; Book matches 12 s behind)"
+],
+[
+530,
+"Apes's Warrior 2 caps"
+],
+[
+540,
+"Book's Monk 4 (WoC) hands the flag to Monk 3 (WoC)"
+],
+[
+553,
+"Book's Monk 3 (WoC) overcaps"
+],
+[
+554,
+"The greater stand area: Book 8 v 7 Apes becomes 7 v 7 (Book's Monk 4 (WoC) leaves)"
+],
+[
+580,
+"Apes loses Dervish (20 s before the base res)"
+],
+[
+582,
+"The greater stand area: Book 7 v 7 Apes becomes 7 v 6 (Apes's Warrior 2 leaves)"
+],
+[
+586,
+"Apes's Warrior 2 picks up the flag"
+],
+[
+602,
+"The greater stand area: Book 7 v 6 Apes becomes 7 v 7 (Apes's Warrior 2 joins through mid and by the front door)"
+],
+[
+618,
+"The 7 v 7 fight moves from the greater stand area to the flag stand"
+],
+[
+618,
+"Apes's Warrior 2 caps; Dervish is already back for the next flag (double run, each full running)"
+],
+[
+621,
+"Apes's Dervish picks up the flag"
+],
+[
+646,
+"The fight moves from the flag stand to the greater stand area: Book 7 v 7 Apes becomes 7 v 8 (Book swaps Monk 4 (WoC) in for Monk 3 (WoC); Apes's Dervish joins by the front door and by the back door; Apes matches 14 s behind)"
+],
+[
+653,
+"Book's Monk 3 (WoC) picks up the flag"
+],
+[
+658,
+"The 7 v 8 fight moves from the greater stand area to the field on Apes's side"
+],
+[
+676,
+"Book's Monk 3 (WoC) caps"
+],
+[
+697,
+"Apes's Dervish overcaps"
+],
+[
+698,
+"Book's Monk 3 (WoC) picks up the flag"
+],
+[
+708,
+"The fight moves from the field on Apes's side to the greater stand area (Apes pushes out): Book 7 v 8 Apes becomes 6 v 7 (Book's Monk 4 (WoC) leaves; Apes's Dervish leaves)"
+],
+[
+726,
+"The fight moves from the greater stand area to the flag stand: Book 6 v 7 Apes becomes 8 v 7 (Book's Monk 3 (WoC), Monk 4 (WoC) join through mid and by the front door)"
+],
+[
+727,
+"Book's Monk 3 (WoC) overcaps"
+],
+[
+736,
+"Apes loses Monk 4 (WoC) (104 s before the base res)"
+],
+[
+739,
+"Apes's Dervish picks up the flag"
+],
+[
+763,
+"Apes loses Mesmer, Dervish (77 s before the base res)"
+],
+[
+771,
+"Apes's flag is dropped by Dervish and goes back to the spawn"
+],
+[
+774,
+"The fight moves from the flag stand to the greater stand area: Book 8 v 7 Apes becomes 8 v 6 (Apes's Mesmer is dead)"
+],
+[
+823,
+"Apes loses Monk 4 (WoC) (16 s before the base res)"
+],
+[
+826,
+"Book's 8 Monk picks up the flag"
+],
+[
+840,
+"A fight at Book's back door: Book 1 v 1 Apes (Book: 8 Monk; Apes: Warrior 2)"
+],
+[
+844,
+"The fight moves from the greater stand area to Apes's front door (Apes falls back, under pressure: team health 95%, 1 death in the last 30 s): Book 8 v 6 Apes becomes 6 v 7 (Book's Monk 3 (WoC), 8 Monk leave; Apes's Dervish, Mesmer join through mid and through the pit; Apes's Warrior 2 leaves)"
+],
+[
+847,
+"Book boosts"
+],
+[
+862,
+"Book's 8 Monk hands the flag to Monk 3 (WoC)"
+],
+[
+890,
+"A fight at the flag stand: Book 1 v 1 Apes (Book: Monk 3 (WoC); Apes: Warrior 2)"
+],
+[
+894,
+"Apes's front door: Book 6 v 7 Apes becomes 6 v 6 (Apes's Warrior 1 leaves)"
+],
+[
+909,
+"Apes loses Warrior 2 (50 s before the base res)"
+],
+[
+938,
+"Apes's Warrior 2 picks up the flag"
+],
+[
+965,
+"Apes's Warrior 2 caps"
+],
+[
+973,
+"Apes loses Dervish (106 s before the base res)"
+],
+[
+978,
+"The fight moves from Apes's front door to the greater stand area (Apes pushes out): Book 6 v 6 Apes becomes 8 v 7 (Book's 8 Monk, Monk 3 (WoC) join through mid and by the back door; Apes's Warrior 1, Warrior 2 join through mid and by the front door; Apes's Dervish is dead; both arrive together)"
+],
+[
+990,
+"The greater stand area: Book 8 v 7 Apes becomes 8 v 8 (Apes's Dervish joins)"
+],
+[
+994,
+"Book's Monk 3 (WoC) overcaps"
+],
+[
+1006,
+"Apes loses Dervish (73 s before the base res)"
+],
+[
+1008,
+"The greater stand area: Book 8 v 8 Apes becomes 8 v 7 (Apes's Dervish is dead)"
+],
+[
+1022,
+"The greater stand area: Book 8 v 7 Apes becomes 8 v 8 (Apes's Dervish joins)"
+],
+[
+1045,
+"Book takes Apes's archer"
+],
+[
+1045,
+"Apes loses Monk 4 (WoC) (34 s before the base res)"
+],
+[
+1050,
+"Apes's Dervish picks up the flag"
+],
+[
+1063,
+"Apes loses Mesmer (17 s before the base res)"
+],
+[
+1078,
+"The greater stand area: Book 8 v 8 Apes becomes 7 v 6 (Book's Monk 3 (WoC) leaves; Apes's Dervish leaves; Apes's Mesmer is dead)"
+],
+[
+1103,
+"Apes loses Monk 4 (WoC) (97 s before the base res)"
+],
+[
+1114,
+"Book boosts"
+],
+[
+1136,
+"The greater stand area: Book 7 v 6 Apes becomes 7 v 7 (Apes's Mesmer joins by the front door and by the back door)"
+],
+[
+1150,
+"The greater stand area: Book 7 v 7 Apes becomes 8 v 7 (Book's Monk 3 (WoC) joins through mid; Book matches 38 s behind (late))"
+],
+[
+1166,
+"Apes loses Mesmer (34 s before the base res)"
+],
+[
+1190,
+"Apes loses Warrior 1 (9 s before the base res)"
+],
+[
+1198,
+"The greater stand area: Book 8 v 7 Apes becomes 8 v 5 (Apes's Warrior 2 leaves; Apes's Warrior 1 is dead)"
+],
+[
+1234,
+"The fight moves from the greater stand area to the field on Apes's side: Book 8 v 5 Apes becomes 6 v 6 (Book's Monk 3 (WoC), 8 Monk leave; Apes's Warrior 1 joins by the front door)"
+],
+[
+1234,
+"Book boosts"
+],
+[
+1251,
+"Apes loses 8 Monk (69 s before the base res)"
+],
+[
+1272,
+"Apes loses Warrior 1, Mesmer, Dervish (47 s before the base res)"
+],
+[
+1280,
+"Apes's flag is dropped by Dervish and goes back to the spawn"
+],
+[
+1295,
+"Apes loses 7 Monk, Prot (25 s before the base res)"
+],
+[
+1317,
+"Book takes Apes's knight"
+],
+[
+1324,
+"Book takes Apes's archer"
+],
+[
+1354,
+"Book boosts"
+],
+[
+1364,
+"Apes loses Prot (76 s before the base res)"
+],
+[
+1375,
+"Book takes Apes's bodyguard"
+],
+[
+1383,
+"Book loses 8 Monk (57 s before the base res)"
+]
+],
+"29aad8d4-1-2-722": [
+[
+26,
+"ohno's AoB Derv hands the flag to Mesmer"
+],
+[
+42,
+"A fight at ohno's back footies: xxx 4 v 3 ohno (xxx: 8 Monk, Air Ele, Fire Ele, Ritualist; ohno: 8 Monk, Air Ele, Ritualist)"
+],
+[
+45,
+"ohno's Mesmer caps"
+],
+[
+46,
+"xxx's AoB Derv hands the flag to Mesmer"
+],
+[
+50,
+"A fight at xxx's front door: xxx 4 v 5 ohno (xxx: 7 Monk, AoB Derv, Mesmer, Prot; ohno: 7 Monk, AoB Derv, Hammer, Mesmer, Prot)"
+],
+[
+85,
+"xxx's flag is dropped by Mesmer and goes back to the spawn"
+],
+[
+86,
+"The 4 v 3 fight moves from ohno's back footies to ohno's pit (ohno falls back: team health 83%)"
+],
+[
+90,
+"xxx takes ohno's archer"
+],
+[
+104,
+"Xxx's front door: xxx 4 v 5 ohno becomes 4 v 4 (ohno's Hammer leaves)"
+],
+[
+122,
+"xxx's AoB Derv picks up the flag"
+],
+[
+124,
+"The fight moves from ohno's pit to ohno's back door (ohno pushes out): xxx 4 v 3 ohno becomes 4 v 4 (ohno's Hammer joins through mid and by the front door)"
+],
+[
+150,
+"The 4 v 4 fight moves from ohno's back door to the field on xxx's side (ohno pushes out)"
+],
+[
+165,
+"ohno boosts"
+],
+[
+169,
+"xxx's AoB Derv caps"
+],
+[
+176,
+"The fight moves from xxx's front door to the flag stand (xxx pushes out): xxx 4 v 4 ohno becomes 3 v 4 (xxx's Mesmer leaves)"
+],
+[
+193,
+"xxx's Mesmer picks up the flag"
+],
+[
+198,
+"A fight at the field on ohno's side: xxx 4 v 4 ohno (xxx: 8 Monk, Air Ele, Fire Ele, Ritualist; ohno: 8 Monk, Air Ele, Hammer, Ritualist)"
+],
+[
+207,
+"ohno's AoB Derv picks up the flag"
+],
+[
+222,
+"The 4 v 4 fight moves from the field on ohno's side to the field on xxx's side (ohno pushes out)"
+],
+[
+234,
+"The field on xxx's side: xxx 4 v 4 ohno becomes 4 v 5 (ohno's Mesmer joins through mid and by the front door)"
+],
+[
+242,
+"A fight at the flag stand: xxx 3 v 3 ohno (xxx: 7 Monk, AoB Derv, Mesmer; ohno: 7 Monk, AoB Derv, Prot)"
+],
+[
+248,
+"The 4 v 5 fight moves from the field on xxx's side to xxx's back door (xxx falls back: team health 94%)"
+],
+[
+249,
+"ohno's AoB Derv caps"
+],
+[
+249,
+"xxx's Mesmer overcaps"
+],
+[
+258,
+"The 3 v 3 fight moves from the flag stand to the greater stand area"
+],
+[
+270,
+"The fight moves from the greater stand area to ohno's front footies (ohno falls back: team health 86%): xxx 3 v 3 ohno becomes 3 v 2 (ohno's AoB Derv leaves)"
+],
+[
+279,
+"ohno's AoB Derv picks up the flag"
+],
+[
+298,
+"xxx's Mesmer picks up the flag"
+],
+[
+302,
+"The fight moves from xxx's back door to ohno's back door (ohno falls back: team health 92%): xxx 4 v 5 ohno becomes 4 v 4 (ohno's Mesmer leaves)"
+],
+[
+314,
+"The 4 v 4 fight moves from ohno's back door to ohno's back footies (ohno pushes out)"
+],
+[
+316,
+"ohno's AoB Derv caps"
+],
+[
+340,
+"xxx's Mesmer overcaps; AoB Derv is already back for the next flag (double run, each full running)"
+],
+[
+341,
+"xxx's AoB Derv picks up the flag"
+],
+[
+342,
+"xxx's Mesmer, 7 Monk, AoB Derv fall out of ohno's front footies"
+],
+[
+360,
+"xxx's AoB Derv hands the flag to Mesmer and goes back for the next flag (double run, each half running)"
+],
+[
+366,
+"The 4 v 4 fight moves from ohno's back footies to ohno's back door (ohno falls back: team health 90%)"
+],
+[
+378,
+"A fight at ohno's front footies: xxx 4 v 3 ohno (xxx: 7 Monk, AoB Derv, Mesmer, Prot; ohno: 7 Monk, Mesmer, Prot)"
+],
+[
+396,
+"Ohno's front footies: xxx 4 v 3 ohno becomes 3 v 3 (xxx's Prot leaves)"
+],
+[
+442,
+"Ohno's front footies: xxx 3 v 3 ohno becomes 3 v 2 (ohno's Mesmer leaves)"
+],
+[
+449,
+"ohno's AoB Derv picks up the flag"
+],
+[
+460,
+"xxx boosts"
+],
+[
+470,
+"xxx's Mesmer, 7 Monk, AoB Derv fall out of ohno's front footies"
+],
+[
+481,
+"ohno's AoB Derv caps; Air Ele is already back for the next flag (double run, each full running)"
+],
+[
+486,
+"ohno's Air Ele picks up the flag"
+],
+[
+486,
+"xxx's Mesmer overcaps"
+],
+[
+488,
+"xxx's AoB Derv picks up the flag"
+],
+[
+496,
+"A fight at xxx's back door: xxx 3 v 4 ohno (xxx: 8 Monk, Air Ele, Fire Ele; ohno: 8 Monk, Hammer, Mesmer, Ritualist)"
+],
+[
+506,
+"ohno's Air Ele hands the flag to AoB Derv and goes back for the next flag (double run, each half running)"
+],
+[
+506,
+"xxx's AoB Derv hands the flag to Mesmer"
+],
+[
+521,
+"ohno's AoB Derv overcaps"
+],
+[
+522,
+"Xxx's back door: xxx 3 v 4 ohno becomes 4 v 4 (xxx's Ritualist joins through the pit and by the front door)"
+],
+[
+522,
+"ohno's Air Ele picks up the flag"
+],
+[
+524,
+"A fight at the flag stand: xxx 3 v 3 ohno (xxx: 7 Monk, AoB Derv, Mesmer; ohno: 7 Monk, AoB Derv, Prot)"
+],
+[
+526,
+"xxx's Mesmer overcaps"
+],
+[
+556,
+"ohno's Air Ele overcaps"
+],
+[
+570,
+"The 4 v 4 fight moves from xxx's back door to the field on xxx's side (xxx pushes out)"
+],
+[
+570,
+"The fight moves from the flag stand to xxx's front door (xxx falls back: team health 100%): xxx 3 v 3 ohno becomes 3 v 4 (xxx swaps Prot in for Mesmer; ohno's Air Ele joins through mid and through the pit; ohno matches 14 s behind)"
+],
+[
+599,
+"xxx's AoB Derv picks up the flag"
+],
+[
+610,
+"The 4 v 4 fight moves from the field on xxx's side to xxx's back door (xxx falls back: team health 98%)"
+],
+[
+616,
+"The fight moves from xxx's front door to xxx's base (xxx falls back: team health 100%): xxx 3 v 4 ohno becomes 3 v 3 (xxx swaps Mesmer in for AoB Derv; ohno's Air Ele leaves; xxx matches 22 s behind)"
+],
+[
+620,
+"ohno's Air Ele picks up the flag"
+],
+[
+635,
+"xxx's AoB Derv caps; Mesmer is already back for the next flag (double run, each full running)"
+],
+[
+655,
+"ohno's Air Ele overcaps"
+],
+[
+658,
+"Xxx's base: xxx 3 v 3 ohno becomes 4 v 3 (xxx's AoB Derv joins through mid and through the pit)"
+],
+[
+670,
+"xxx's Mesmer picks up the flag"
+],
+[
+680,
+"The 4 v 4 fight moves from xxx's back door to xxx's base (xxx falls back: team health 99%)"
+],
+[
+694,
+"A fight at xxx's base: xxx 1 v 2 ohno (xxx: Prot; ohno: 7 Monk, AoB Derv)"
+],
+[
+697,
+"xxx's Mesmer hands the flag to AoB Derv and goes back for the next flag (double run, each half running)"
+],
+[
+706,
+"The fight moves from xxx's base to xxx's front door (xxx pushes out): xxx 1 v 2 ohno becomes 3 v 3 (xxx's Mesmer, 7 Monk join through the pit and by the front door; ohno's Prot joins through the pit; both arrive together)"
+],
+[
+712,
+"xxx's AoB Derv caps"
+],
+[
+722,
+"ohno's Air Ele picks up the flag"
+],
+[
+729,
+"xxx's Mesmer picks up the flag"
+],
+[
+736,
+"Xxx's front door: xxx 3 v 3 ohno becomes 4 v 3 (xxx's AoB Derv joins through mid and by the front door; xxx matches 20 s behind)"
+],
+[
+750,
+"The 4 v 3 fight moves from xxx's front door to xxx's base (xxx falls back: team health 91%)"
+],
+[
+756,
+"ohno's Air Ele overcaps"
+]
+],
+"2bd43b13-1-2-1044": [
+[
+26,
+"A fight at the flag stand: hdm 8 v 8 One (hdm: 7 Monk, 8 Monk, Mesmer, Prot, Ranger 1, Ranger 2, Ranger 3, Ritualist; One: 7 Monk, 8 Monk, Mesmer, Monk 4 (WoC), Paragon 1, Paragon 2, Prot, Warrior)"
+],
+[
+40,
+"hdm loses Ranger 1 (80 s before the base res)"
+],
+[
+70,
+"hdm loses Mesmer (50 s before the base res)"
+],
+[
+98,
+"One loses 8 Monk (22 s before the base res)"
+],
+[
+110,
+"One loses Paragon 2 (10 s before the base res)"
+],
+[
+112,
+"The flag stand: hdm 8 v 8 One becomes 8 v 7 (One's Paragon 2 is dead)"
+],
+[
+130,
+"The 8 v 7 fight moves from the flag stand to the greater stand area"
+],
+[
+152,
+"The fight moves from the greater stand area to the flag stand: hdm 8 v 7 One becomes 8 v 8 (One's Paragon 2 joins by the front door)"
+],
+[
+274,
+"The 8 v 8 fight moves from the flag stand to the greater stand area"
+],
+[
+328,
+"The 8 v 8 fight moves from the greater stand area to the flag stand"
+],
+[
+375,
+"One loses Paragon 2, Paragon 1 (104 s before the base res)"
+],
+[
+399,
+"One's flag is dropped by Monk 4 (WoC) and goes back to the spawn"
+],
+[
+399,
+"One loses Monk 4 (WoC) (81 s before the base res)"
+],
+[
+402,
+"hdm's Ritualist caps"
+],
+[
+430,
+"The fight moves from the flag stand to One's front footies (One falls back: team health 92%): hdm 8 v 8 One becomes 8 v 7 (One's Monk 4 (WoC) is dead)"
+],
+[
+482,
+"One's Monk 4 (WoC) picks up the flag"
+],
+[
+490,
+"One loses Paragon 2, Mesmer (110 s before the base res)"
+],
+[
+512,
+"One's flag is dropped by Monk 4 (WoC) and goes back to the spawn"
+],
+[
+514,
+"hdm's Ranger 1, Ranger 2, Ranger 3, Mesmer, Ritualist, Prot, 7 Monk, 8 Monk fall out of One's front footies"
+],
+[
+522,
+"hdm boosts"
+],
+[
+536,
+"hdm takes One's archer"
+],
+[
+537,
+"One's Monk 4 (WoC) picks up the flag"
+],
+[
+546,
+"hdm takes One's archer"
+],
+[
+584,
+"A fight at One's base: hdm 8 v 7 One (hdm: 7 Monk, 8 Monk, Mesmer, Prot, Ranger 1, Ranger 2, Ranger 3, Ritualist; One: 7 Monk, 8 Monk, Mesmer, Monk 4 (WoC), Paragon 1, Prot, Warrior)"
+],
+[
+627,
+"hdm takes One's archer"
+],
+[
+642,
+"hdm boosts"
+],
+[
+644,
+"One's base: hdm 8 v 7 One becomes 7 v 7 (hdm's Ritualist leaves; One swaps Paragon 2 in for Monk 4 (WoC))"
+],
+[
+672,
+"One's base: hdm 7 v 7 One becomes 8 v 7 (hdm's Ritualist joins by the back door; hdm matches 60 s behind (late))"
+],
+[
+716,
+"hdm's Ranger 1, Ranger 2, Ranger 3, Mesmer, Ritualist, Prot, 7 Monk, 8 Monk fall out of One's base"
+],
+[
+716,
+"One's flag is dropped by Monk 4 (WoC) and goes back to the spawn"
+],
+[
+762,
+"hdm boosts"
+],
+[
+770,
+"hdm's 8 Monk picks up the flag"
+],
+[
+786,
+"A fight at the greater stand area: hdm 8 v 1 One (hdm: 7 Monk, 8 Monk, Mesmer, Prot, Ranger 1, Ranger 2, Ranger 3, Ritualist; One: Prot)"
+],
+[
+799,
+"hdm's flag is dropped by 8 Monk and goes back to the spawn"
+],
+[
+872,
+"One loses Monk 4 (WoC) (88 s before the base res)"
+],
+[
+882,
+"hdm boosts"
+],
+[
+895,
+"One takes hdm's knight"
+],
+[
+898,
+"One loses Warrior, 7 Monk, Mesmer, 8 Monk, Paragon 1 (62 s before the base res)"
+],
+[
+900,
+"One's Paragon 2 picks up the flag"
+],
+[
+946,
+"A fight at One's base: hdm 8 v 1 One (hdm: 7 Monk, 8 Monk, Mesmer, Prot, Ranger 1, Ranger 2, Ranger 3, Ritualist; One: Prot)"
+],
+[
+951,
+"hdm takes One's knight"
+],
+[
+958,
+"hdm takes One's knight"
+],
+[
+962,
+"One's base: hdm 8 v 1 One becomes 8 v 8 (One's Warrior, Monk 4 (WoC), 8 Monk, Paragon 1, Mesmer, 7 Monk, Paragon 2 join)"
+],
+[
+991,
+"One loses Warrior (88 s before the base res)"
+],
+[
+998,
+"One's base: hdm 8 v 8 One becomes 8 v 7 (One's Monk 4 (WoC) leaves)"
+],
+[
+1001,
+"One's Paragon 2 hands the flag to Monk 4 (WoC)"
+],
+[
+1002,
+"hdm boosts"
+],
+[
+1021,
+"One's Monk 4 (WoC) caps"
+],
+[
+1024,
+"hdm's Ranger 1, Ranger 2, Ranger 3, Mesmer, Ritualist, Prot, 7 Monk, 8 Monk fall out of One's base"
+],
+[
+1047,
+"hdm's 8 Monk picks up the flag"
+],
+[
+1054,
+"One's Monk 4 (WoC) picks up the flag"
+],
+[
+1079,
+"hdm's 8 Monk caps"
+],
+[
+1102,
+"hdm's 8 Monk picks up the flag"
+]
+],
+"541e0951-1-2-97": [
+[
+22,
+"A fight at the greater stand area: Apes 5 v 6 hold (Apes: 7 Monk, AoB Derv, Mesmer, Monk 5 (WoC), Prot; hold: 7 Monk, Mesmer, Monk 4 (WoC), Paragon 1, Paragon 2, Warrior)"
+],
+[
+32,
+"A fight at hold's back footies: Apes 3 v 2 hold (Apes: 8 Monk, Hammer, Necromancer; hold: 8 Monk, Prot)"
+],
+[
+44,
+"Apes loses Prot (76 s before the base res)"
+],
+[
+52,
+"The 5 v 6 fight moves from the greater stand area to Apes's front door (Apes falls back, under pressure: team health 89%, 1 death in the last 30 s)"
+],
+[
+68,
+"Apes loses Mesmer (52 s before the base res)"
+],
+[
+70,
+"The fight moves from Apes's front door to Apes's base (Apes falls back, under pressure: team health 78%, 2 deaths in the last 30 s): Apes 5 v 6 hold becomes 4 v 6 (Apes's Mesmer is dead)"
+],
+[
+82,
+"The 3 v 2 fight moves from hold's back footies to hold's back door (hold falls back: team health 89%)"
+],
+[
+94,
+"Apes's base: Apes 4 v 6 hold becomes 2 v 5 (Apes's Monk 5 (WoC), AoB Derv leave; hold's Monk 4 (WoC) leaves)"
+],
+[
+104,
+"The 3 v 2 fight moves from hold's back door to hold's base (hold falls back: team health 100%)"
+],
+[
+120,
+"Apes loses Monk 5 (WoC) (120 s before the base res)"
+],
+[
+130,
+"Apes's base: Apes 2 v 5 hold becomes 3 v 5 (Apes's Mesmer joins)"
+],
+[
+151,
+"Apes takes hold's archer"
+],
+[
+154,
+"The 3 v 5 fight moves from Apes's base to Apes's pit (Apes falls back: team health 89%)"
+]
+],
+"7761aa5f-1-1-556": [
+[
+12,
+"A fight at the greater stand area: Book 7 v 7 One (Book: 7 Monk, 8 Monk, Dervish, Hammer, Mes/A, Prot, Stand Mes; One: 7 Monk, 8 Monk, AoB Derv, Hammer, Mesmer, Prot, Ranger)"
+],
+[
+12,
+"Book's Dervish hands the flag to Stand Mes"
+],
+[
+17,
+"One's Hammer hands the flag to Mesmer"
+],
+[
+36,
+"A fight at One's back footies: Book 1 v 1 One (Book: Ritualist; One: Ritualist)"
+],
+[
+56,
+"The 1 v 1 fight moves from One's back footies to the field on One's side (One pushes out)"
+],
+[
+74,
+"The 1 v 1 fight moves from the field on One's side to One's back footies (One falls back: team health 81%)"
+],
+[
+104,
+"The 1 v 1 fight moves from One's back footies to the field on One's side (One pushes out)"
+],
+[
+162,
+"The 7 v 7 fight moves from the greater stand area to the flag stand"
+],
+[
+182,
+"The 7 v 7 fight moves from the flag stand to the greater stand area"
+],
+[
+277,
+"Book loses 7 Monk (83 s before the base res)"
+],
+[
+283,
+"One's Mesmer caps"
+],
+[
+306,
+"Book's Stand Mes hands the flag to Hammer"
+],
+[
+325,
+"Book's Hammer overcaps"
+],
+[
+354,
+"The greater stand area: Book 7 v 7 One becomes 7 v 6 (One's Hammer leaves)"
+],
+[
+366,
+"The greater stand area: Book 7 v 6 One becomes 6 v 6 (Book's Mes/A leaves)"
+],
+[
+370,
+"One's Hammer picks up the flag"
+],
+[
+378,
+"Book's Mes/A picks up the flag"
+],
+[
+382,
+"The fight moves from the greater stand area to One's front door (One falls back: team health 93%): Book 6 v 6 One becomes 6 v 7 (One's Hammer joins through mid and by the front door)"
+],
+[
+404,
+"One's Hammer caps"
+],
+[
+415,
+"Book's Mes/A overcaps"
+],
+[
+428,
+"Book's Hammer picks up the flag"
+],
+[
+434,
+"One's Hammer picks up the flag"
+],
+[
+440,
+"A fight at Book's back door: Book 1 v 2 One (Book: Ritualist; One: Mesmer, Ritualist)"
+],
+[
+450,
+"The fight moves from One's front door to the greater stand area (One pushes out): Book 6 v 7 One becomes 7 v 6 (Book's Mes/A joins through mid and by the front door; One's Mesmer leaves; Book matches 22 s behind)"
+],
+[
+451,
+"Book's Hammer hands the flag to Mes/A"
+],
+[
+481,
+"One's Hammer caps; Mesmer is already back for the next flag (double run, each full running)"
+],
+[
+482,
+"Book's back door: Book 1 v 2 One becomes 1 v 1 (One's Mesmer leaves)"
+],
+[
+483,
+"Book's Mes/A overcaps; Ritualist is already back for the next flag (double run, each full running)"
+],
+[
+492,
+"One takes Book's archer"
+],
+[
+494,
+"One's Ritualist falls out of Book's back door"
+],
+[
+499,
+"One's Mesmer picks up the flag"
+],
+[
+512,
+"One's Mesmer hands the flag to Hammer"
+],
+[
+512,
+"Book's Ritualist picks up the flag"
+],
+[
+516,
+"The greater stand area: Book 7 v 6 One becomes 7 v 7 (One's Mesmer joins by the back door)"
+],
+[
+537,
+"One's Hammer caps; Ritualist is already back for the next flag (double run, each full running)"
+],
+[
+537,
+"One's Ritualist picks up the flag"
+],
+[
+541,
+"Book's Ritualist hands the flag to Hammer"
+],
+[
+550,
+"Book's Hammer hands the flag to Mes/A"
+],
+[
+552,
+"The greater stand area: Book 7 v 7 One becomes 7 v 8 (One's Ritualist joins by the back door)"
+],
+[
+556,
+"One's Ritualist hands the flag to Hammer and goes back for the next flag (double run, each half running)"
+],
+[
+576,
+"Book's Mes/A overcaps"
+],
+[
+578,
+"One's Hammer overcaps"
+],
+[
+590,
+"Book's Hammer picks up the flag"
+],
+[
+600,
+"One's Ritualist picks up the flag"
+],
+[
+605,
+"Book's Hammer hands the flag to Mes/A"
+],
+[
+607,
+"Book takes One's archer"
+],
+[
+610,
+"The fight moves from the greater stand area to Book's front door (Book falls back, under pressure: team health 70%): Book 7 v 8 One becomes 4 v 5 (Book's Prot, Dervish, Stand Mes leave; One's Hammer, Ritualist, 8 Monk leave)"
+]
+],
+"bb669b6f-1-1-342": [
+[
+18,
+"chic's Mes/A picks up the flag"
+],
+[
+18,
+"RACK's Mes/A picks up the flag"
+],
+[
+36,
+"A fight at the greater stand area: RACK 2 v 1 chic (RACK: 8 Monk, Mes/A; chic: Dervish)"
+],
+[
+52,
+"A fight at the flag stand: RACK 8 v 8 chic (RACK: 7 Monk, 8 Monk, Hammer A, Hammer B, Mes/A, Prot, Ranger, Stand Mes; chic: 7 Monk, 8 Monk, Assassin, Dervish, Mes/A, Prot, Stand Mes, Warrior)"
+],
+[
+72,
+"The flag stand: RACK 8 v 8 chic becomes 7 v 8 (RACK's Hammer B leaves)"
+],
+[
+89,
+"RACK takes chic's archer"
+],
+[
+102,
+"RACK's Mes/A caps"
+],
+[
+110,
+"chic's Mes/A overcaps"
+],
+[
+120,
+"RACK's Mes/A picks up the flag"
+],
+[
+130,
+"chic's Dervish picks up the flag"
+],
+[
+142,
+"RACK's Mes/A overcaps"
+],
+[
+152,
+"The fight moves from the flag stand to the greater stand area: RACK 7 v 8 chic becomes 7 v 7 (RACK swaps Hammer B in for Mes/A; chic's Dervish leaves)"
+],
+[
+152,
+"chic's Dervish overcaps"
+],
+[
+161,
+"RACK's Mes/A picks up the flag"
+],
+[
+164,
+"The greater stand area: RACK 7 v 7 chic becomes 6 v 7 (RACK's Hammer A leaves)"
+],
+[
+170,
+"RACK's Mes/A hands the flag to Hammer A"
+],
+[
+171,
+"chic's Dervish picks up the flag"
+],
+[
+182,
+"RACK's Hammer A overcaps"
+],
+[
+190,
+"The fight moves from the greater stand area to the flag stand: RACK 6 v 7 chic becomes 7 v 8 (RACK's Hammer A joins through mid; chic's Dervish joins through mid; RACK matches 2 s behind (on time))"
+],
+[
+194,
+"RACK's Mes/A picks up the flag"
+],
+[
+205,
+"chic's Dervish overcaps"
+],
+[
+214,
+"RACK's Mes/A overcaps"
+],
+[
+232,
+"The fight moves from the flag stand to the greater stand area: RACK 7 v 8 chic becomes 6 v 7 (RACK's Hammer B leaves; chic's Dervish leaves)"
+],
+[
+236,
+"RACK's Mes/A picks up the flag"
+],
+[
+241,
+"chic's Dervish picks up the flag"
+],
+[
+258,
+"RACK's flag is dropped by Mes/A and goes back to the spawn"
+],
+[
+260,
+"The fight moves from the greater stand area to chic's back door (chic falls back: team health 97%): RACK 6 v 7 chic becomes 6 v 6 (RACK swaps Hammer B in for Hammer A; chic's 7 Monk leaves)"
+],
+[
+263,
+"chic's Dervish caps"
+],
+[
+268,
+"A fight at the greater stand area: RACK 1 v 1 chic (RACK: Hammer A; chic: 7 Monk)"
+],
+[
+292,
+"The fight moves from chic's back door to the greater stand area (chic pushes out): RACK 6 v 6 chic becomes 8 v 7 (RACK's Hammer A, Mes/A join through mid; chic's 7 Monk joins through mid; both arrive together)"
+],
+[
+295,
+"chic's Dervish picks up the flag"
+],
+[
+332,
+"The greater stand area: RACK 8 v 7 chic becomes 6 v 7 (RACK's Hammer B, Mes/A leave; chic swaps Dervish in for Assassin; chic matches 22 s behind)"
+],
+[
+336,
+"chic's Dervish caps"
+],
+[
+342,
+"RACK's Mes/A picks up the flag"
+],
+[
+342,
+"RACK takes chic's knight"
+],
+[
+353,
+"RACK's Mes/A hands the flag to Hammer A and goes back for the next flag (double run, each half running)"
+],
+[
+364,
+"RACK's Hammer A overcaps"
+],
+[
+365,
+"chic's Dervish picks up the flag"
+],
+[
+368,
+"The greater stand area: RACK 6 v 7 chic becomes 7 v 7 (RACK's Hammer B joins through mid and through the pit; chic swaps Assassin in for Dervish; both arrive together)"
+],
+[
+370,
+"RACK's Mes/A picks up the flag"
+],
+[
+392,
+"The fight moves from the greater stand area to the flag stand: RACK 7 v 7 chic becomes 8 v 8 (RACK's Mes/A joins through mid; chic's Dervish joins through mid; both arrive together)"
+],
+[
+392,
+"chic's Dervish overcaps"
+],
+[
+400,
+"RACK's Mes/A overcaps"
+]
+],
+"d016987b-1-1-104": [
+[
+8,
+"OG's flag is dropped by Air Ele 3 and goes back to the spawn"
+],
+[
+14,
+"A fight at the flag stand: OG 8 v 8 hdm (OG: 7 Monk, Air Ele 1, Air Ele 2, Air Ele 3, Mesmer, Monk 4 (WoC), Prot, Rit/Para; hdm: 7 Monk, Air Ele, Mes/A, Necromancer 1, Necromancer 2, Prot, Ritualist, Stand Mes)"
+],
+[
+56,
+"The 8 v 8 fight moves from the flag stand to the greater stand area"
+],
+[
+104,
+"OG's Air Ele 3 picks up the flag"
+],
+[
+108,
+"hdm takes OG's archer"
+],
+[
+119,
+"hdm's Ritualist caps"
+],
+[
+130,
+"A fight at the field on OG's side: OG 8 v 8 hdm (OG: 7 Monk, Air Ele 1, Air Ele 2, Air Ele 3, Mesmer, Monk 4 (WoC), Prot, Rit/Para; hdm: 7 Monk, Air Ele, Mes/A, Necromancer 1, Necromancer 2, Prot, Ritualist, Stand Mes)"
+],
+[
+156,
+"The 8 v 8 fight moves from the field on OG's side to OG's front door (OG falls back, under pressure: team health 77%)"
+]
+],
+"28447c4a-2-1-1087": [
+[
+14,
+"A fight at the flag stand: hdm 6 v 7 HC (hdm: 7 Monk, 8 Monk, Hammer A, Hammer B, Prot, Stand Mes; HC: 7 Monk, 8 Monk, AoB Derv, Hammer, Prot, Ranger, Stand Mes)"
+],
+[
+17,
+"hdm's Mes/A picks up the flag"
+],
+[
+17,
+"HC's Mes/A picks up the flag"
+],
+[
+33,
+"HC's Mes/A hands the flag to Stand Mes"
+],
+[
+42,
+"The flag stand: hdm 6 v 7 HC becomes 8 v 8 (hdm's Mes/A, Ranger join by the front door; HC's Mes/A joins; both arrive together)"
+],
+[
+56,
+"HC's flag is dropped by Stand Mes and goes back to the spawn"
+],
+[
+58,
+"hdm's Mes/A hands the flag to Stand Mes"
+],
+[
+63,
+"hdm's Stand Mes caps"
+],
+[
+75,
+"hdm's Mes/A picks up the flag"
+],
+[
+83,
+"HC's Mes/A picks up the flag"
+],
+[
+93,
+"hdm takes HC's archer"
+],
+[
+96,
+"The flag stand: hdm 8 v 8 HC becomes 5 v 5 (hdm's Hammer B, Ranger, 8 Monk leave; HC's AoB Derv, Ranger, 8 Monk leave)"
+],
+[
+112,
+"hdm loses 8 Monk (8 s before the base res)"
+],
+[
+154,
+"The flag stand: hdm 5 v 5 HC becomes 8 v 7 (hdm's Hammer B, Ranger, 8 Monk join through mid and by the back door; HC's AoB Derv, Ranger, 8 Monk join through mid and by the back door; HC's Hammer leaves; both arrive together)"
+],
+[
+157,
+"HC's Mes/A caps; Hammer is already back for the next flag (double run, each full running)"
+],
+[
+157,
+"hdm's Mes/A overcaps"
+],
+[
+162,
+"HC's Hammer picks up the flag"
+],
+[
+194,
+"HC's Hammer overcaps"
+],
+[
+220,
+"HC's Mes/A picks up the flag"
+],
+[
+226,
+"HC loses Mes/A (13 s before the base res)"
+],
+[
+231,
+"hdm's Mes/A picks up the flag"
+],
+[
+249,
+"HC's flag is dropped by Mes/A and goes back to the spawn"
+],
+[
+249,
+"HC's AoB Derv picks up the flag"
+],
+[
+276,
+"The flag stand: hdm 8 v 7 HC becomes 7 v 6 (hdm's Ranger leaves; HC's Hammer joins through mid; HC's Ranger, Mes/A leave; HC matches 52 s behind (late))"
+],
+[
+278,
+"HC's AoB Derv caps; Mes/A is already back for the next flag (double run, each full running)"
+],
+[
+279,
+"hdm's Mes/A overcaps"
+],
+[
+281,
+"HC's Mes/A picks up the flag"
+],
+[
+307,
+"HC takes hdm's archer"
+],
+[
+314,
+"HC's Mes/A overcaps"
+],
+[
+319,
+"hdm takes HC's knight"
+],
+[
+325,
+"hdm's Hammer A picks up the flag"
+],
+[
+331,
+"hdm's flag is dropped by Hammer A and goes back to the spawn"
+],
+[
+332,
+"hdm takes HC's archer"
+],
+[
+333,
+"hdm loses 7 Monk (26 s before the base res)"
+],
+[
+343,
+"HC's Mes/A picks up the flag"
+],
+[
+353,
+"hdm loses 8 Monk (6 s before the base res)"
+],
+[
+355,
+"hdm takes HC's knight"
+],
+[
+369,
+"hdm takes HC's archer"
+],
+[
+372,
+"A fight at hdm's front door: hdm 7 v 8 HC (hdm: 7 Monk, 8 Monk, Hammer A, Hammer B, Mes/A, Prot, Stand Mes; HC: 7 Monk, 8 Monk, AoB Derv, Hammer, Mes/A, Prot, Ranger, Stand Mes)"
+],
+[
+383,
+"hdm takes HC's bodyguard"
+],
+[
+396,
+"The 7 v 8 fight moves from hdm's front door to the flag stand (hdm pushes out)"
+],
+[
+404,
+"HC's Mes/A caps"
+],
+[
+420,
+"The flag stand: hdm 7 v 8 HC becomes 6 v 7 (hdm's Mes/A leaves; HC's 8 Monk leaves)"
+],
+[
+428,
+"hdm's Mes/A picks up the flag"
+],
+[
+432,
+"A fight at HC's pit: hdm 1 v 1 HC (hdm: Ranger; HC: 8 Monk)"
+],
+[
+449,
+"hdm's Mes/A overcaps"
+],
+[
+472,
+"HC's Mes/A picks up the flag"
+],
+[
+486,
+"The 6 v 7 fight moves from the flag stand to the greater stand area"
+],
+[
+493,
+"hdm's Mes/A picks up the flag"
+],
+[
+512,
+"The fight moves from the greater stand area to the flag stand: hdm 6 v 7 HC becomes 7 v 7 (hdm's Mes/A joins through mid)"
+],
+[
+555,
+"HC's Mes/A caps"
+],
+[
+556,
+"hdm's Mes/A overcaps"
+],
+[
+562,
+"The 1 v 1 fight moves from HC's pit to HC's base (HC pushes out)"
+],
+[
+574,
+"The 7 v 7 fight moves from the flag stand to the greater stand area"
+],
+[
+576,
+"The 1 v 1 fight moves from HC's base to HC's pit (HC falls back: team health 99%)"
+],
+[
+596,
+"The fight moves from the greater stand area to the flag stand: hdm 7 v 7 HC becomes 7 v 6 (HC's Mes/A leaves)"
+],
+[
+602,
+"HC's Mes/A picks up the flag"
+],
+[
+616,
+"HC loses 7 Monk, Mes/A (104 s before the base res)"
+],
+[
+642,
+"A fight at HC's pit: hdm 1 v 1 HC (hdm: Ranger; HC: 8 Monk)"
+],
+[
+648,
+"HC loses Mes/A (72 s before the base res)"
+],
+[
+659,
+"HC loses AoB Derv, 7 Monk (61 s before the base res)"
+],
+[
+671,
+"HC loses Prot, Stand Mes (48 s before the base res)"
+],
+[
+676,
+"hdm boosts"
+],
+[
+687,
+"hdm loses Ranger (32 s before the base res)"
+],
+[
+706,
+"The fight moves from the flag stand to HC's base (HC falls back, under pressure: team health 98%, 1 death in the last 30 s): hdm 7 v 6 HC becomes 7 v 4 (HC's Mes/A, 8 Monk join; HC's Stand Mes, AoB Derv, Prot, 7 Monk are dead)"
+],
+[
+744,
+"The fight moves from HC's base to the flag stand (HC pushes out): hdm 7 v 4 HC becomes 6 v 6 (hdm's Mes/A leaves; HC's Stand Mes, AoB Derv, Prot, 7 Monk join; HC's Ranger, Mes/A leave)"
+],
+[
+752,
+"HC's flag is dropped by Mes/A and goes back to the spawn"
+],
+[
+752,
+"HC's Ranger picks up the flag"
+],
+[
+760,
+"hdm's Ranger picks up the flag"
+],
+[
+774,
+"The flag stand: hdm 6 v 6 HC becomes 7 v 6 (hdm's Ranger joins through mid and by the front door; HC swaps Ranger in for 8 Monk; hdm matches 16 s behind)"
+],
+[
+777,
+"HC's Ranger caps"
+],
+[
+783,
+"hdm's Ranger overcaps"
+],
+[
+791,
+"HC's Hammer picks up the flag"
+],
+[
+801,
+"hdm's Hammer A picks up the flag"
+],
+[
+819,
+"hdm's Hammer A hands the flag to Stand Mes"
+],
+[
+820,
+"HC's Hammer overcaps"
+],
+[
+825,
+"hdm's Stand Mes overcaps"
+],
+[
+838,
+"The flag stand: hdm 7 v 6 HC becomes 6 v 7 (hdm's Hammer A leaves; HC's 8 Monk, Mes/A join through mid and through the pit; HC's Ranger leaves; HC matches 14 s behind)"
+],
+[
+848,
+"hdm's Hammer A picks up the flag"
+],
+[
+863,
+"HC's Hammer picks up the flag"
+],
+[
+868,
+"hdm's Hammer A hands the flag to Stand Mes"
+],
+[
+872,
+"The flag stand: hdm 6 v 7 HC becomes 6 v 6 (hdm swaps Hammer A in for Ranger; HC's Mes/A leaves)"
+],
+[
+882,
+"hdm takes HC's archer"
+],
+[
+886,
+"The flag stand: hdm 6 v 6 HC becomes 7 v 7 (hdm's Mes/A joins through mid and through the pit; HC's Ranger joins through mid and by the back door; both arrive together)"
+],
+[
+895,
+"HC's Hammer hands the flag to Stand Mes"
+],
+[
+929,
+"HC's Stand Mes caps"
+],
+[
+930,
+"hdm's Stand Mes overcaps"
+],
+[
+944,
+"A fight at HC's pit: hdm 1 v 1 HC (hdm: Ranger; HC: Mes/A)"
+],
+[
+982,
+"A fight at HC's front door: hdm 1 v 1 HC (hdm: Ranger; HC: Mes/A)"
+],
+[
+996,
+"HC's Hammer picks up the flag"
+],
+[
+996,
+"HC loses Mes/A (83 s before the base res)"
+],
+[
+1014,
+"A fight at the flag stand: hdm 5 v 4 HC (hdm: 7 Monk, Hammer A, Mes/A, Prot, Stand Mes; HC: 7 Monk, Hammer, Prot, Ranger)"
+],
+[
+1015,
+"HC's Hammer caps"
+],
+[
+1026,
+"The flag stand: hdm 5 v 4 HC becomes 4 v 5 (hdm's Mes/A leaves; HC's Stand Mes joins through mid)"
+],
+[
+1037,
+"hdm's Mes/A picks up the flag"
+],
+[
+1040,
+"A fight at HC's pit: hdm 1 v 1 HC (hdm: Ranger; HC: Mes/A)"
+],
+[
+1040,
+"HC's AoB Derv picks up the flag"
+],
+[
+1066,
+"HC's AoB Derv hands the flag to Stand Mes"
+],
+[
+1069,
+"hdm's Mes/A caps"
+],
+[
+1085,
+"HC's Stand Mes overcaps; Mes/A is already back for the next flag (double run, each full running)"
+],
+[
+1088,
+"A fight at hdm's back door: hdm 4 v 3 HC (hdm: 7 Monk, Hammer A, Mes/A, Stand Mes; HC: 7 Monk, Prot, Ranger)"
+],
+[
+1088,
+"The flag stand: hdm 4 v 5 HC becomes 3 v 4 (hdm's Hammer B, 8 Monk join through mid and through the pit; hdm's Stand Mes, 7 Monk, Hammer A leave; HC's 8 Monk, AoB Derv join through mid and by the front door; HC's 7 Monk, Prot, Ranger leave; HC matches 12 s behind)"
+],
+[
+1100,
+"A fight at HC's pit: hdm 1 v 1 HC (hdm: Ranger; HC: Mes/A)"
+],
+[
+1112,
+"HC takes hdm's archer"
+]
+],
+"2c764dac-2-2-228": [
+[
+10,
+"Team's Hammer hands the flag to Mes/A"
+],
+[
+25,
+"Team's Mes/A caps; Prot is already back for the next flag (double run, each full running)"
+],
+[
+41,
+"BcS's Mesmer hands the flag to Water Ele"
+],
+[
+51,
+"BcS's Water Ele hands the flag to Mesmer"
+],
+[
+52,
+"Team's Prot picks up the flag"
+],
+[
+87,
+"BcS's Mesmer caps"
+],
+[
+94,
+"A fight at the field on Team's side: Team 4 v 7 BcS (Team: 8 Monk, AoB Derv, Ritualist, Stand Mes; BcS: 7 Monk, Air Ele, Dervish, Monk 5 (WoC), Paragon, Prot, Water Ele)"
+],
+[
+96,
+"Team's Prot hands the flag to Mes/A"
+],
+[
+120,
+"Team's Mes/A overcaps"
+],
+[
+132,
+"BcS's Mesmer picks up the flag"
+],
+[
+134,
+"The fight moves from the field on Team's side to Team's front footies (Team falls back: team health 96%): Team 4 v 7 BcS becomes 5 v 5 (Team's Prot, 7 Monk, Mes/A, Hammer join through the pit and by the front door; Team's Ritualist, Stand Mes, AoB Derv leave; BcS's Prot, Water Ele leave)"
+],
+[
+156,
+"Team loses Ritualist (84 s before the base res)"
+],
+[
+164,
+"BcS's Mesmer hands the flag to 7 Monk"
+],
+[
+166,
+"Team's Mes/A picks up the flag"
+],
+[
+176,
+"Team's front footies: Team 5 v 5 BcS becomes 3 v 6 (Team's Hammer, Mes/A leave; BcS's Mesmer joins through mid and through the pit; BcS matches 48 s behind (late))"
+],
+[
+191,
+"BcS's 7 Monk hands the flag to Monk 5 (WoC)"
+],
+[
+212,
+"BcS's Dervish, Paragon, Air Ele, Mesmer, Monk 5 (WoC), 7 Monk fall out of Team's front footies"
+],
+[
+223,
+"BcS's Monk 5 (WoC) caps"
+],
+[
+239,
+"Team's Mes/A overcaps"
+],
+[
+255,
+"Team takes BcS's knight"
+],
+[
+262,
+"Team takes BcS's archer"
+],
+[
+273,
+"BcS's Air Ele picks up the flag"
+]
+],
+"368cb5d2-2-2-565": [
+[
+19,
+"Men's AoB Derv hands the flag to Mesmer"
+],
+[
+26,
+"A fight at the flag stand: hdm 3 v 3 Men (hdm: 8 Monk, Dervish, Mesmer; Men: 7 Monk, AoB Derv, Mesmer)"
+],
+[
+30,
+"A fight at Men's back footies: hdm 4 v 4 Men (hdm: Air Ele, Fire Ele, Ritualist 1, Ritualist 2; Men: 8 Monk, Hammer, Ranger, Ritualist)"
+],
+[
+34,
+"hdm's Dervish caps; Ritualist 3 is already back for the next flag (double run, each full running)"
+],
+[
+35,
+"Men's Mesmer overcaps"
+],
+[
+39,
+"hdm's Ritualist 3 picks up the flag"
+],
+[
+57,
+"hdm's Ritualist 3 overcaps"
+],
+[
+76,
+"hdm takes Men's archer"
+],
+[
+83,
+"Men's AoB Derv picks up the flag"
+],
+[
+94,
+"The fight moves from the flag stand to Men's front footies (Men falls back: team health 100%): hdm 3 v 3 Men becomes 3 v 4 (Men's Ritualist joins through the pit and by the front door)"
+],
+[
+96,
+"A fight at Men's back footies: hdm 4 v 4 Men (hdm: Air Ele, Fire Ele, Ritualist 1, Ritualist 2; Men: 8 Monk, Hammer, Prot, Ranger)"
+],
+[
+105,
+"hdm's Ritualist 3 picks up the flag"
+],
+[
+108,
+"hdm's Dervish, Mesmer, 8 Monk fall out of Men's front footies"
+],
+[
+120,
+"hdm's Ritualist 3 hands the flag to Dervish"
+],
+[
+121,
+"Men's AoB Derv caps; Ritualist is already back for the next flag (double run, each full running)"
+],
+[
+125,
+"Men's Ritualist picks up the flag"
+],
+[
+131,
+"hdm's Dervish overcaps"
+],
+[
+132,
+"Men's flag is dropped by Ritualist and goes back to the spawn"
+],
+[
+138,
+"A fight at the flag stand: hdm 3 v 4 Men (hdm: 8 Monk, Dervish, Mesmer; Men: 7 Monk, AoB Derv, Mesmer, Ritualist)"
+],
+[
+151,
+"hdm's Ritualist 3 picks up the flag"
+],
+[
+180,
+"hdm's Ritualist 3 hands the flag to Dervish"
+],
+[
+204,
+"The 4 v 4 fight moves from Men's back footies to Men's base (Men falls back, under pressure: team health 79%)"
+],
+[
+206,
+"The flag stand: hdm 3 v 4 Men becomes 4 v 4 (hdm's Ritualist 3 joins through mid and through the pit)"
+],
+[
+214,
+"hdm's Dervish caps"
+],
+[
+238,
+"A fight at Men's back footies: hdm 4 v 4 Men (hdm: Air Ele, Fire Ele, Ritualist 1, Ritualist 2; Men: 8 Monk, Hammer, Prot, Ranger)"
+],
+[
+246,
+"hdm's Ritualist 3 picks up the flag"
+],
+[
+255,
+"Men's AoB Derv picks up the flag"
+],
+[
+278,
+"hdm's Ritualist 3 hands the flag to Mesmer"
+],
+[
+284,
+"The 4 v 4 fight moves from Men's back footies to Men's base (Men falls back: team health 80%)"
+],
+[
+286,
+"A fight at the flag stand: hdm 4 v 4 Men (hdm: 8 Monk, Dervish, Mesmer, Ritualist 3; Men: 7 Monk, AoB Derv, Mesmer, Ritualist)"
+],
+[
+296,
+"Men's AoB Derv caps"
+],
+[
+299,
+"hdm's Mesmer overcaps"
+],
+[
+314,
+"Men's AoB Derv picks up the flag"
+],
+[
+320,
+"The 4 v 4 fight moves from Men's base to Men's pit (Men falls back, under pressure: team health 78%)"
+],
+[
+328,
+"Men's AoB Derv overcaps; Ritualist is already back for the next flag (double run, each full running)"
+],
+[
+329,
+"hdm's Ritualist 3 picks up the flag"
+],
+[
+344,
+"A fight at the flag stand: hdm 4 v 3 Men (hdm: 8 Monk, Dervish, Mesmer, Ritualist 3; Men: 7 Monk, AoB Derv, Mesmer)"
+],
+[
+349,
+"hdm's Ritualist 3 overcaps"
+],
+[
+357,
+"Men's Ritualist picks up the flag"
+],
+[
+372,
+"Men's Ritualist hands the flag to AoB Derv and goes back for the next flag (double run, each half running)"
+],
+[
+396,
+"Men's AoB Derv caps"
+],
+[
+409,
+"hdm's Ritualist 3 picks up the flag"
+],
+[
+409,
+"Men's Ritualist picks up the flag"
+],
+[
+422,
+"Men's Ritualist hands the flag to AoB Derv and goes back for the next flag (double run, each half running)"
+],
+[
+428,
+"hdm's Ritualist 3 overcaps"
+],
+[
+444,
+"Men's AoB Derv overcaps"
+],
+[
+452,
+"Men's Ritualist picks up the flag"
+],
+[
+454,
+"A fight at the flag stand: hdm 3 v 4 Men (hdm: 8 Monk, Dervish, Mesmer; Men: 7 Monk, AoB Derv, Ranger, Ritualist)"
+],
+[
+456,
+"A fight at Men's pit: hdm 3 v 3 Men (hdm: Fire Ele, Ritualist 1, Ritualist 2; Men: 8 Monk, Hammer, Mesmer)"
+],
+[
+457,
+"hdm's Ritualist 3 picks up the flag"
+],
+[
+469,
+"hdm loses Mesmer (11 s before the base res)"
+],
+[
+503,
+"hdm's Ritualist 3 hands the flag to Dervish"
+],
+[
+516,
+"The 3 v 3 fight moves from Men's pit to Men's back footies (Men pushes out)"
+],
+[
+532,
+"The flag stand: hdm 3 v 4 Men becomes 1 v 1 (hdm's Mesmer, 8 Monk leave; Men's AoB Derv, Ranger, 7 Monk leave)"
+],
+[
+538,
+"hdm's Dervish caps"
+],
+[
+543,
+"Men's Ritualist overcaps; Prot is already back for the next flag (double run, each full running)"
+],
+[
+550,
+"Men's back footies: hdm 3 v 3 Men becomes 4 v 4 (hdm's Air Ele joins by the front door and by the back door; Men's Prot joins by the front door; Men matches 8 s behind)"
+],
+[
+554,
+"A fight at hdm's base: hdm 3 v 3 Men (hdm: 8 Monk, Mesmer, Ritualist 3; Men: 7 Monk, AoB Derv, Ranger)"
+],
+[
+575,
+"Men's Prot picks up the flag"
+],
+[
+582,
+"Men's back footies: hdm 4 v 4 Men becomes 3 v 3 (hdm's Air Ele leaves; Men's Prot leaves)"
+],
+[
+582,
+"hdm's Dervish picks up the flag"
+],
+[
+589,
+"Men's flag is dropped by Prot and goes back to the spawn"
+],
+[
+592,
+"Hdm's base: hdm 3 v 3 Men becomes 4 v 4 (hdm's Dervish joins through mid and by the front door; Men's Ritualist joins through mid; both arrive together)"
+],
+[
+624,
+"hdm's Dervish caps"
+]
+],
+"36a65ac6-2-2-174": [
+[
+16,
+"A fight at the flag stand: \uc637\uc637\uc637\uc637 8 v 8 Men (\uc637\uc637\uc637\uc637: 7 Monk, Air Ele, Mes/A, Necromancer 1, Necromancer 2, Prot, Ritualist, Stand Mes; Men: 7 Monk, 8 Monk, AoB Derv, Hammer, Mes/A, Prot, Stand Mes 1, Stand Mes 2)"
+],
+[
+71,
+"Men loses Stand Mes 1, AoB Derv (49 s before the base res)"
+],
+[
+72,
+"\uc637\uc637\uc637\uc637 loses Mes/A (47 s before the base res)"
+],
+[
+110,
+"Men loses 8 Monk (10 s before the base res)"
+],
+[
+113,
+"\uc637\uc637\uc637\uc637's Ritualist caps"
+],
+[
+133,
+"\uc637\uc637\uc637\uc637 takes Men's archer"
+],
+[
+143,
+"\uc637\uc637\uc637\uc637 takes Men's archer"
+],
+[
+156,
+"A fight at Men's front door: \uc637\uc637\uc637\uc637 8 v 7 Men (\uc637\uc637\uc637\uc637: 7 Monk, Air Ele, Mes/A, Necromancer 1, Necromancer 2, Prot, Ritualist, Stand Mes; Men: 7 Monk, AoB Derv, Hammer, Mes/A, Prot, Stand Mes 1, Stand Mes 2)"
+],
+[
+176,
+"The fight moves from Men's front door to Men's base (Men falls back, under pressure: team health 77%): \uc637\uc637\uc637\uc637 8 v 7 Men becomes 6 v 7 (\uc637\uc637\uc637\uc637's Air Ele, Ritualist leave)"
+],
+[
+198,
+"\uc637\uc637\uc637\uc637 loses Necromancer 2 (42 s before the base res)"
+],
+[
+212,
+"Men loses AoB Derv (27 s before the base res)"
+],
+[
+214,
+"Men's base: \uc637\uc637\uc637\uc637 6 v 7 Men becomes 8 v 6 (\uc637\uc637\uc637\uc637's Ritualist, Air Ele join through mid and by the front door; Men's AoB Derv is dead)"
+],
+[
+225,
+"\uc637\uc637\uc637\uc637 takes Men's archer"
+],
+[
+228,
+"Men's base: \uc637\uc637\uc637\uc637 8 v 6 Men becomes 8 v 8 (Men's AoB Derv, 8 Monk join; Men matches 38 s behind (late))"
+],
+[
+233,
+"\uc637\uc637\uc637\uc637 boosts"
+]
+],
+"39e9d728-2-1-431": [
+[
+34,
+"DUM's Ritualist caps"
+],
+[
+38,
+"A fight at ohno's front footies: DUM 6 v 5 ohno (DUM: 7 Monk, 8 Monk, Dervish 1, Dervish 2, Dervish 3, Prot; ohno: 7 Monk, 8 Monk, AoB Derv, Prot, Stand Mes)"
+],
+[
+46,
+"ohno takes DUM's archer"
+],
+[
+50,
+"A fight at DUM's pit: DUM 1 v 3 ohno (DUM: Water Ele; ohno: Air Ele, Mes/A, Water Ele)"
+],
+[
+58,
+"The 6 v 5 fight moves from ohno's front footies to ohno's front door (ohno falls back: team health 87%)"
+],
+[
+59,
+"ohno takes DUM's knight"
+],
+[
+64,
+"ohno takes DUM's knight"
+],
+[
+66,
+"DUM's pit: DUM 1 v 3 ohno becomes 2 v 3 (DUM's Ritualist joins through mid and by the front door)"
+],
+[
+75,
+"DUM takes ohno's archer"
+],
+[
+82,
+"DUM loses Ritualist (38 s before the base res)"
+],
+[
+94,
+"ohno's Water Ele, Air Ele, Mes/A fall out of DUM's pit"
+],
+[
+101,
+"ohno's AoB Derv caps"
+],
+[
+112,
+"Ohno's front door: DUM 6 v 5 ohno becomes 5 v 5 (DUM's 8 Monk leaves)"
+],
+[
+128,
+"ohno takes DUM's archer"
+],
+[
+129,
+"DUM's Ritualist picks up the flag"
+],
+[
+129,
+"ohno's Mes/A picks up the flag"
+],
+[
+146,
+"The fight moves from ohno's front door to ohno's base (ohno falls back: team health 82%): DUM 5 v 5 ohno becomes 5 v 6 (ohno's Mes/A joins through the pit and by the back door)"
+],
+[
+167,
+"DUM's Ritualist caps"
+],
+[
+176,
+"DUM takes ohno's archer"
+],
+[
+181,
+"ohno takes DUM's archer"
+],
+[
+188,
+"Ohno's base: DUM 5 v 6 ohno becomes 6 v 6 (DUM's Ritualist joins through mid and by the front door; DUM matches 46 s behind (late))"
+],
+[
+194,
+"A fight at the field on DUM's side: DUM 1 v 2 ohno (DUM: Water Ele; ohno: Air Ele, Water Ele)"
+],
+[
+216,
+"ohno takes DUM's bodyguard"
+],
+[
+218,
+"DUM takes ohno's knight"
+],
+[
+224,
+"The 6 v 6 fight moves from ohno's base to ohno's pit (ohno falls back: team health 84%)"
+],
+[
+224,
+"ohno takes DUM's archer"
+],
+[
+244,
+"A fight at the field on DUM's side: DUM 1 v 2 ohno (DUM: Water Ele; ohno: Air Ele, Water Ele)"
+],
+[
+250,
+"DUM takes ohno's archer"
+],
+[
+252,
+"DUM loses 7 Monk (108 s before the base res)"
+],
+[
+270,
+"ohno loses Stand Mes (90 s before the base res)"
+],
+[
+271,
+"DUM loses Ritualist (89 s before the base res)"
+],
+[
+273,
+"DUM takes ohno's knight"
+],
+[
+276,
+"The 1 v 2 fight moves from the field on DUM's side to the field on ohno's side (DUM pushes out)"
+],
+[
+287,
+"DUM boosts"
+],
+[
+300,
+"The field on ohno's side: DUM 1 v 2 ohno becomes 1 v 1 (ohno's Water Ele leaves)"
+],
+[
+306,
+"DUM's 8 Monk picks up the flag"
+],
+[
+320,
+"A fight at DUM's pit: DUM 1 v 1 ohno (DUM: 8 Monk; ohno: Water Ele)"
+],
+[
+335,
+"DUM loses 7 Monk (25 s before the base res)"
+],
+[
+346,
+"DUM takes ohno's bodyguard"
+],
+[
+350,
+"DUM loses Dervish 2 (10 s before the base res)"
+],
+[
+352,
+"Ohno's pit: DUM 6 v 6 ohno becomes 6 v 7 (DUM's Water Ele joins; DUM's Dervish 2 is dead; ohno's Air Ele joins; both arrive together)"
+],
+[
+374,
+"ohno's Water Ele falls out of DUM's pit"
+],
+[
+375,
+"DUM loses 7 Monk, Ritualist (104 s before the base res)"
+],
+[
+404,
+"The fight moves from ohno's pit to ohno's front door (ohno pushes out): DUM 6 v 7 ohno becomes 5 v 8 (DUM's 8 Monk joins through the pit; DUM's 7 Monk, Ritualist are dead; ohno's Water Ele joins through the pit; both arrive together)"
+],
+[
+407,
+"DUM boosts"
+],
+[
+421,
+"DUM loses 8 Monk, Prot (58 s before the base res)"
+],
+[
+423,
+"ohno's Mes/A caps"
+],
+[
+423,
+"DUM takes ohno's archer"
+],
+[
+436,
+"DUM takes ohno's archer"
+],
+[
+453,
+"DUM takes ohno's archer"
+],
+[
+466,
+"The fight moves from ohno's front door to DUM's pit (DUM falls back: team health 100%): DUM 5 v 8 ohno becomes 3 v 6 (DUM's Prot, 8 Monk are dead; ohno's Air Ele, Prot leave)"
+],
+[
+477,
+"ohno loses AoB Derv (2 s before the base res)"
+],
+[
+477,
+"DUM loses Dervish 2 (2 s before the base res)"
+],
+[
+480,
+"DUM's pit: DUM 3 v 6 ohno becomes 8 v 5 (DUM's Dervish 2, Ritualist, Prot, 7 Monk, 8 Monk join by the back door; ohno's AoB Derv leaves)"
+]
+],
+"457b3a21-2-1-890": [
+[
+13,
+"SKT's Hammer hands the flag to Mesmer"
+],
+[
+14,
+"A fight at the flag stand: NwAy 7 v 8 SKT (NwAy: 7 Monk, 8 Monk, AoB Derv, Hammer, Mes/A, Prot, Stand Mes; SKT: 7 Monk, AoB Derv, Hammer, Mesmer, Necromancer, Prot, Ranger, Ritualist)"
+],
+[
+19,
+"NwAy's Hammer caps"
+],
+[
+19,
+"NwAy's Dervish picks up the flag"
+],
+[
+32,
+"SKT's Mesmer overcaps"
+],
+[
+38,
+"NwAy's Dervish hands the flag to Hammer and goes back for the next flag (double run, each half running)"
+],
+[
+48,
+"The flag stand: NwAy 7 v 8 SKT becomes 7 v 7 (SKT's Necromancer leaves)"
+],
+[
+60,
+"NwAy's Hammer overcaps"
+],
+[
+61,
+"NwAy's Dervish picks up the flag"
+],
+[
+65,
+"SKT's Necromancer picks up the flag"
+],
+[
+84,
+"NwAy's Dervish hands the flag to Mes/A"
+],
+[
+102,
+"The flag stand: NwAy 7 v 7 SKT becomes 8 v 8 (NwAy's Dervish joins by the front door; SKT's Necromancer joins through mid and by the front door; SKT matches 20 s behind)"
+],
+[
+146,
+"The 8 v 8 fight moves from the flag stand to NwAy's front footies (NwAy falls back, under pressure: team health 68%)"
+],
+[
+157,
+"SKT's Necromancer caps"
+],
+[
+162,
+"NwAy's Mes/A hands the flag to Dervish"
+],
+[
+188,
+"The 8 v 8 fight moves from NwAy's front footies to the flag stand (NwAy pushes out)"
+],
+[
+189,
+"NwAy's Dervish overcaps"
+],
+[
+225,
+"SKT loses AoB Derv (15 s before the base res)"
+],
+[
+226,
+"The flag stand: NwAy 8 v 8 SKT becomes 8 v 7 (SKT's AoB Derv is dead)"
+],
+[
+240,
+"The 8 v 7 fight moves from the flag stand to SKT's front door (SKT falls back, under pressure: team health 76%, 1 death in the last 30 s)"
+],
+[
+241,
+"SKT's AoB Derv picks up the flag"
+],
+[
+262,
+"The fight moves from SKT's front door to the flag stand (SKT pushes out): NwAy 8 v 7 SKT becomes 8 v 8 (SKT's AoB Derv joins)"
+],
+[
+280,
+"SKT's AoB Derv caps"
+],
+[
+292,
+"The fight moves from the flag stand to NwAy's front door (NwAy falls back: team health 80%): NwAy 8 v 8 SKT becomes 7 v 7 (NwAy's Dervish leaves; SKT's Necromancer leaves)"
+],
+[
+295,
+"NwAy's Dervish picks up the flag"
+],
+[
+309,
+"SKT's Necromancer picks up the flag"
+],
+[
+317,
+"SKT takes NwAy's archer"
+],
+[
+334,
+"A fight at NwAy's base: NwAy 8 v 7 SKT (NwAy: 7 Monk, 8 Monk, AoB Derv, Dervish, Hammer, Mes/A, Prot, Stand Mes; SKT: 7 Monk, AoB Derv, Hammer, Mesmer, Prot, Ranger, Ritualist)"
+],
+[
+352,
+"The fight moves from NwAy's base to NwAy's front door (NwAy pushes out): NwAy 8 v 7 SKT becomes 8 v 8 (SKT's Necromancer joins through mid and by the front door)"
+],
+[
+380,
+"The 8 v 8 fight moves from NwAy's front door to NwAy's front footies (NwAy pushes out)"
+],
+[
+397,
+"NwAy's Dervish caps"
+],
+[
+403,
+"SKT's Necromancer overcaps"
+],
+[
+412,
+"NwAy loses Dervish (67 s before the base res)"
+],
+[
+416,
+"The fight moves from NwAy's front footies to NwAy's front door (NwAy falls back, under pressure: team health 66%, 1 death in the last 30 s): NwAy 8 v 8 SKT becomes 7 v 8 (NwAy's Dervish is dead)"
+],
+[
+428,
+"NwAy's Hammer picks up the flag"
+],
+[
+433,
+"NwAy loses Prot (47 s before the base res)"
+],
+[
+447,
+"SKT takes NwAy's archer"
+],
+[
+454,
+"The fight moves from NwAy's front door to NwAy's pit (NwAy falls back, under pressure: team health 67%, 1 death in the last 30 s): NwAy 7 v 8 SKT becomes 6 v 8 (NwAy's Prot is dead)"
+],
+[
+459,
+"SKT takes NwAy's knight"
+],
+[
+480,
+"NwAy's Hammer hands the flag to AoB Derv"
+],
+[
+482,
+"SKT takes NwAy's knight"
+],
+[
+510,
+"NwAy takes SKT's archer"
+],
+[
+511,
+"NwAy's AoB Derv hands the flag to Dervish"
+],
+[
+518,
+"A fight at NwAy's front door: NwAy 5 v 5 SKT (NwAy: 7 Monk, AoB Derv, Dervish, Prot, Stand Mes; SKT: AoB Derv, Mesmer, Necromancer, Prot, Ritualist)"
+],
+[
+522,
+"NwAy takes SKT's knight"
+],
+[
+523,
+"SKT boosts"
+],
+[
+532,
+"NwAy takes SKT's archer"
+],
+[
+538,
+"The 5 v 5 fight moves from NwAy's front door to NwAy's front footies (NwAy pushes out)"
+],
+[
+548,
+"NwAy's flag is dropped by Dervish and goes back to the spawn"
+],
+[
+558,
+"The 5 v 5 fight moves from NwAy's front footies to NwAy's front door (NwAy falls back, under pressure: team health 64%)"
+],
+[
+569,
+"SKT's Ranger picks up the flag"
+],
+[
+594,
+"NwAy's Dervish picks up the flag"
+],
+[
+626,
+"NwAy's flag is dropped by Dervish and goes back to the spawn"
+],
+[
+640,
+"A fight at NwAy's front door: NwAy 5 v 5 SKT (NwAy: 7 Monk, AoB Derv, Dervish, Prot, Stand Mes; SKT: AoB Derv, Mesmer, Necromancer, Prot, Ritualist)"
+],
+[
+643,
+"SKT boosts"
+],
+[
+652,
+"A fight at SKT's back door: NwAy 3 v 3 SKT (NwAy: 8 Monk, Hammer, Mes/A; SKT: 7 Monk, Hammer, Ranger)"
+],
+[
+680,
+"The 5 v 5 fight moves from NwAy's front door to NwAy's front footies (NwAy pushes out)"
+],
+[
+697,
+"SKT loses Ritualist (23 s before the base res)"
+],
+[
+714,
+"The fight moves from NwAy's front footies to SKT's front footies (SKT falls back, under pressure: team health 88%, 1 death in the last 30 s): NwAy 5 v 5 SKT becomes 8 v 8 (NwAy's Hammer, Mes/A, 8 Monk join by the back door; SKT's 7 Monk, Hammer, Ranger join through the pit and by the front door; SKT matches 6 s behind (on time))"
+],
+[
+726,
+"The 8 v 8 fight moves from SKT's front footies to NwAy's front footies (NwAy falls back: team health 90%)"
+],
+[
+750,
+"A fight at the field on NwAy's side: NwAy 3 v 3 SKT (NwAy: 8 Monk, Hammer, Mes/A; SKT: 7 Monk, Hammer, Necromancer)"
+],
+[
+756,
+"The fight moves from NwAy's front footies to NwAy's front door (NwAy falls back: team health 90%): NwAy 8 v 8 SKT becomes 5 v 5 (NwAy's Hammer, Mes/A, 8 Monk leave; SKT's Hammer, 7 Monk, Necromancer leave)"
+],
+[
+763,
+"SKT boosts"
+],
+[
+810,
+"The 5 v 5 fight moves from NwAy's front door to NwAy's base (NwAy falls back, under pressure: team health 73%)"
+],
+[
+818,
+"A fight at the field on NwAy's side: NwAy 3 v 3 SKT (NwAy: 8 Monk, Hammer, Mes/A; SKT: 7 Monk, Hammer, Necromancer)"
+],
+[
+842,
+"SKT's AoB Derv, Ranger, Mesmer, Prot, Ritualist fall out of NwAy's base"
+],
+[
+846,
+"SKT loses 7 Monk (113 s before the base res)"
+],
+[
+850,
+"NwAy's AoB Derv picks up the flag"
+],
+[
+877,
+"NwAy's flag is dropped by AoB Derv and goes back to the spawn"
+],
+[
+883,
+"SKT boosts"
+],
+[
+920,
+"A fight at NwAy's front door: NwAy 5 v 5 SKT (NwAy: 7 Monk, AoB Derv, Dervish, Prot, Stand Mes; SKT: AoB Derv, Mesmer, Necromancer, Prot, Ritualist)"
+],
+[
+928,
+"A fight at the field on NwAy's side: NwAy 3 v 3 SKT (NwAy: 8 Monk, Hammer, Mes/A; SKT: 7 Monk, Hammer, Ranger)"
+],
+[
+938,
+"The 5 v 5 fight moves from NwAy's front door to NwAy's base (NwAy falls back: team health 94%)"
+]
+],
+"5f9df5bb-2-1-420": [
+[
+5,
+"hold's Monk 4 (WoC) hands the flag to Mesmer"
+],
+[
+26,
+"hold's flag is dropped by Mesmer and goes back to the spawn"
+],
+[
+39,
+"OG's flag is dropped by AoB Derv and goes back to the spawn"
+],
+[
+40,
+"A fight at hold's base: hold 2 v 2 OG (hold: 8 Monk, Prot; OG: Hammer, Ranger)"
+],
+[
+46,
+"A fight at OG's front door: hold 6 v 5 OG (hold: 7 Monk, Mesmer, Monk 4 (WoC), Paragon 1, Paragon 2, Warrior; OG: 7 Monk, 8 Monk, AoB Derv, Mesmer, Prot)"
+],
+[
+52,
+"Hold's base: hold 2 v 2 OG becomes 2 v 3 (OG's Ritualist joins by the back door)"
+],
+[
+106,
+"OG loses AoB Derv (14 s before the base res)"
+],
+[
+108,
+"Hold's base: hold 2 v 3 OG becomes 1 v 2 (hold's Prot leaves; OG's Hammer leaves)"
+],
+[
+108,
+"OG takes hold's archer"
+],
+[
+110,
+"The fight moves from OG's front door to OG's front footies (OG pushes out): hold 6 v 5 OG becomes 6 v 4 (OG's AoB Derv is dead)"
+],
+[
+114,
+"OG takes hold's archer"
+],
+[
+124,
+"Hold's base: hold 1 v 2 OG becomes 2 v 3 (hold's Prot joins through the pit and by the front door; OG's Hammer joins; OG matches 4 s behind (on time))"
+],
+[
+128,
+"OG's front footies: hold 6 v 4 OG becomes 6 v 5 (OG's AoB Derv joins)"
+],
+[
+156,
+"hold takes OG's archer"
+],
+[
+162,
+"The fight moves from OG's front footies to OG's base (OG falls back: team health 97%): hold 6 v 5 OG becomes 5 v 4 (hold's Monk 4 (WoC) leaves; OG's AoB Derv leaves)"
+],
+[
+190,
+"OG's base: hold 5 v 4 OG becomes 5 v 3 (OG's 8 Monk leaves)"
+],
+[
+190,
+"Hold's base: hold 2 v 3 OG becomes 3 v 4 (hold's Monk 4 (WoC) joins through mid and by the front door; OG's AoB Derv joins by the back door; OG matches 2 s behind (on time))"
+],
+[
+218,
+"The fight moves from OG's base to OG's pit (OG falls back: team health 81%): hold 5 v 3 OG becomes 5 v 4 (OG's 8 Monk joins)"
+],
+[
+227,
+"OG takes hold's knight"
+],
+[
+230,
+"The 5 v 4 fight moves from OG's pit to OG's base (OG pushes out)"
+],
+[
+238,
+"The 3 v 4 fight moves from hold's base to hold's pit (hold falls back: team health 82%)"
+],
+[
+250,
+"OG takes hold's knight"
+],
+[
+268,
+"The 5 v 4 fight moves from OG's base to OG's front footies (OG pushes out)"
+],
+[
+278,
+"hold's Paragon 1, Paragon 2, Warrior, Mesmer, 7 Monk fall out of OG's front footies"
+],
+[
+282,
+"OG's Mesmer picks up the flag"
+],
+[
+302,
+"OG's Ritualist, Hammer, AoB Derv, Ranger fall out of hold's pit"
+],
+[
+309,
+"hold's Mesmer picks up the flag"
+],
+[
+324,
+"OG's Mesmer caps; Hammer is already back for the next flag (double run, each full running)"
+],
+[
+334,
+"OG's Hammer picks up the flag"
+],
+[
+339,
+"hold's Mesmer hands the flag to Warrior"
+],
+[
+347,
+"hold's Warrior overcaps"
+],
+[
+368,
+"OG's Hammer overcaps"
+],
+[
+378,
+"OG loses Ritualist (102 s before the base res)"
+],
+[
+435,
+"hold's Warrior picks up the flag"
+],
+[
+458,
+"OG takes hold's archer"
+],
+[
+464,
+"hold's Warrior caps"
+],
+[
+475,
+"OG's Hammer picks up the flag"
+]
+],
+"9b5cdf62-2-2-720": [
+[
+19,
+"Team's Monk 5 (WoC) picks up the flag"
+],
+[
+19,
+"HC's Mes/A picks up the flag"
+],
+[
+40,
+"A fight at the flag stand: HC 8 v 8 Team (HC: 7 Monk, 8 Monk, AoB Derv, Hammer, Mes/A, Prot, Ranger, Stand Mes; Team: 7 Monk, 8 Monk, Hammer, Mesmer, Monk 5 (WoC), Prot, Ranger, Warrior)"
+],
+[
+68,
+"The flag stand: HC 8 v 8 Team becomes 7 v 8 (HC's Ranger leaves)"
+],
+[
+86,
+"HC loses AoB Derv (33 s before the base res)"
+],
+[
+102,
+"The flag stand: HC 7 v 8 Team becomes 8 v 8 (HC's Ranger joins through mid and by the front door)"
+],
+[
+124,
+"The flag stand: HC 8 v 8 Team becomes 7 v 7 (HC's Ranger leaves; Team's 8 Monk leaves)"
+],
+[
+132,
+"A fight at Team's back door: HC 1 v 1 Team (HC: Ranger; Team: 8 Monk)"
+],
+[
+136,
+"HC's flag is dropped by Mes/A and goes back to the spawn"
+],
+[
+136,
+"HC loses Mes/A (103 s before the base res)"
+],
+[
+138,
+"The flag stand: HC 7 v 7 Team becomes 6 v 7 (HC's Mes/A is dead)"
+],
+[
+140,
+"Team's Monk 5 (WoC) caps"
+],
+[
+172,
+"The flag stand: HC 6 v 7 Team becomes 7 v 7 (HC's Mes/A joins)"
+],
+[
+189,
+"HC's Mes/A picks up the flag"
+],
+[
+215,
+"HC's Mes/A caps"
+],
+[
+224,
+"The flag stand: HC 7 v 7 Team becomes 7 v 6 (Team's Monk 5 (WoC) leaves)"
+],
+[
+242,
+"Team's Monk 5 (WoC) picks up the flag"
+],
+[
+247,
+"HC loses Ranger (112 s before the base res)"
+],
+[
+274,
+"Team's Monk 5 (WoC) caps"
+],
+[
+280,
+"A fight at Team's back door: HC 1 v 1 Team (HC: Ranger; Team: 8 Monk)"
+],
+[
+314,
+"Team's Monk 5 (WoC) picks up the flag"
+],
+[
+340,
+"HC loses Hammer (20 s before the base res)"
+],
+[
+346,
+"Team loses Hammer (13 s before the base res)"
+],
+[
+354,
+"HC's Mes/A picks up the flag"
+],
+[
+358,
+"Team's Monk 5 (WoC) caps"
+],
+[
+378,
+"The flag stand: HC 7 v 6 Team becomes 7 v 7 (Team's Monk 5 (WoC) joins through mid)"
+],
+[
+396,
+"HC's Mes/A overcaps"
+],
+[
+400,
+"The flag stand: HC 7 v 7 Team becomes 7 v 6 (Team's Monk 5 (WoC) leaves)"
+],
+[
+410,
+"Team's Monk 5 (WoC) picks up the flag"
+],
+[
+434,
+"Team loses Hammer (46 s before the base res)"
+],
+[
+450,
+"The 1 v 1 fight moves from Team's back door to Team's base (Team falls back, under pressure: team health 82%, 1 death in the last 30 s)"
+],
+[
+452,
+"HC's Mes/A picks up the flag"
+],
+[
+453,
+"Team's Monk 5 (WoC) caps"
+],
+[
+454,
+"The flag stand: HC 7 v 6 Team becomes 6 v 6 (HC's Mes/A leaves; Team swaps Monk 5 (WoC) in for Warrior)"
+],
+[
+462,
+"HC's flag is dropped by Mes/A and goes back to the spawn"
+],
+[
+462,
+"HC loses Mes/A, Prot (18 s before the base res)"
+],
+[
+468,
+"The flag stand: HC 6 v 6 Team becomes 5 v 7 (HC's Prot is dead; Team's Warrior joins through mid)"
+],
+[
+478,
+"The 1 v 1 fight moves from Team's base to the field on Team's side (Team pushes out)"
+],
+[
+503,
+"HC's Ranger picks up the flag"
+],
+[
+508,
+"The fight moves from the flag stand to the greater stand area: HC 5 v 7 Team becomes 8 v 8 (HC's Prot, Mes/A, Ranger join; Team's 8 Monk joins by the back door; Team matches 8 s behind)"
+],
+[
+532,
+"The 8 v 8 fight moves from the greater stand area to the flag stand"
+],
+[
+542,
+"HC's Ranger caps"
+],
+[
+553,
+"HC's Mes/A picks up the flag"
+],
+[
+557,
+"Team's Monk 5 (WoC) picks up the flag"
+],
+[
+560,
+"The flag stand: HC 8 v 8 Team becomes 8 v 7 (Team's Monk 5 (WoC) leaves)"
+],
+[
+576,
+"The flag stand: HC 8 v 7 Team becomes 8 v 8 (Team's Monk 5 (WoC) joins through mid)"
+],
+[
+588,
+"The flag stand: HC 8 v 8 Team becomes 7 v 8 (HC's Ranger leaves)"
+],
+[
+608,
+"HC takes Team's archer"
+],
+[
+611,
+"HC's Mes/A hands the flag to 8 Monk"
+],
+[
+622,
+"The flag stand: HC 7 v 8 Team becomes 4 v 4 (HC's Hammer, Prot, Mes/A leave; Team's Hammer, Ranger, 7 Monk, 8 Monk leave)"
+],
+[
+624,
+"HC takes Team's archer"
+],
+[
+624,
+"Team's Monk 5 (WoC) caps"
+],
+[
+627,
+"HC's 8 Monk overcaps"
+],
+[
+638,
+"A fight at Team's back door: HC 3 v 3 Team (HC: Hammer, Prot, Ranger; Team: 7 Monk, 8 Monk, Hammer)"
+],
+[
+657,
+"Team's Warrior picks up the flag"
+],
+[
+694,
+"The flag stand: HC 4 v 4 Team becomes 4 v 5 (Team's Ranger, 7 Monk join through mid; Team's Monk 5 (WoC) leaves)"
+],
+[
+695,
+"Team's Warrior caps; Monk 5 (WoC) is already back for the next flag (double run, each full running)"
+],
+[
+696,
+"A fight at Team's back door: HC 3 v 2 Team (HC: Hammer, Prot, Ranger; Team: 8 Monk, Hammer)"
+],
+[
+698,
+"Team's Monk 5 (WoC) picks up the flag"
+],
+[
+699,
+"HC's Mes/A picks up the flag"
+],
+[
+718,
+"Team loses 8 Monk (2 s before the base res)"
+],
+[
+720,
+"A fight at the greater stand area: HC 5 v 4 Team (HC: 7 Monk, 8 Monk, AoB Derv, Mes/A, Stand Mes; Team: Monk 5 (WoC), Prot, Ranger, Warrior)"
+],
+[
+722,
+"HC's Mes/A overcaps"
+],
+[
+736,
+"HC's Hammer, Prot, Ranger fall out of Team's back door"
+],
+[
+753,
+"Team's Monk 5 (WoC) overcaps"
+],
+[
+766,
+"The fight moves from the greater stand area to Team's pit (Team falls back: team health 81%): HC 5 v 4 Team becomes 2 v 1 (HC's Ranger, Hammer join through the pit and by the front door; HC's AoB Derv, Mes/A, Stand Mes, 7 Monk, 8 Monk leave; Team's 8 Monk joins through the pit and by the front door; Team's Monk 5 (WoC), Prot, Warrior, Ranger leave; both arrive together)"
+],
+[
+777,
+"Team loses 8 Monk (62 s before the base res)"
+]
+],
+"9c9f7436-2-2-394": [
+[
+38,
+"One's Hammer caps"
+],
+[
+50,
+"A fight at the flag stand: One 6 v 7 Men (One: 7 Monk, 8 Monk, AoB Derv, Mes/A, Prot, Stand Mes; Men: 7 Monk, Mesmer, Monk 4 (WoC), Paragon 1, Paragon 2, Prot, Warrior)"
+],
+[
+60,
+"One's Hammer picks up the flag"
+],
+[
+76,
+"The fight moves from the flag stand to the greater stand area: One 6 v 7 Men becomes 7 v 6 (One's Hammer joins through mid and by the front door; Men's Monk 4 (WoC) leaves)"
+],
+[
+92,
+"The greater stand area: One 7 v 6 Men becomes 6 v 5 (One's 8 Monk leaves; Men's Warrior leaves)"
+],
+[
+115,
+"Men's Mesmer caps; 8 Monk is already back for the next flag (double run, each full running)"
+],
+[
+133,
+"One loses 8 Monk (106 s before the base res)"
+],
+[
+146,
+"The fight moves from the greater stand area to the flag stand: One 6 v 5 Men becomes 7 v 6 (One's 8 Monk joins through mid; Men's Warrior joins through mid; both arrive together)"
+],
+[
+152,
+"One's Hammer overcaps"
+],
+[
+157,
+"Men's Monk 4 (WoC) picks up the flag"
+],
+[
+157,
+"One loses 7 Monk, Hammer, AoB Derv, Mes/A, 7 Monk (82 s before the base res)"
+],
+[
+159,
+"Men's Monk 4 (WoC) overcaps; 8 Monk is already back for the next flag (double run, each full running)"
+],
+[
+170,
+"A fight at Men's pit: One 1 v 1 Men (One: Dervish; Men: 8 Monk)"
+],
+[
+187,
+"One loses Prot, AoB Derv (52 s before the base res)"
+],
+[
+198,
+"One takes Men's knight"
+],
+[
+198,
+"Men takes One's archer"
+],
+[
+211,
+"Men takes One's knight"
+],
+[
+216,
+"The fight moves from the flag stand to One's pit (One falls back, under pressure: team health 98%, 2 deaths in the last 30 s): One 7 v 6 Men becomes 3 v 7 (One's AoB Derv, Prot, 7 Monk, Mes/A are dead; Men's Monk 4 (WoC) joins through mid and by the back door)"
+],
+[
+216,
+"Men takes One's knight"
+],
+[
+222,
+"One takes Men's knight"
+],
+[
+223,
+"Men takes One's archer"
+],
+[
+227,
+"Men takes One's archer"
+],
+[
+238,
+"One loses Hammer (2 s before the base res)"
+],
+[
+239,
+"Men takes One's bodyguard"
+],
+[
+240,
+"The fight moves from One's pit to One's base (One pushes out): One 3 v 7 Men becomes 7 v 7 (One's AoB Derv, Prot, 7 Monk, Mes/A join; One matches 24 s behind)"
+],
+[
+256,
+"One's Hammer picks up the flag"
+],
+[
+274,
+"Men's 8 Monk picks up the flag"
+],
+[
+276,
+"The fight moves from One's base to One's back door (One pushes out): One 7 v 7 Men becomes 6 v 6 (One's Hammer leaves; Men's Warrior leaves)"
+],
+[
+279,
+"Men boosts"
+],
+[
+282,
+"Men's flag is dropped by 8 Monk and goes back to the spawn"
+],
+[
+285,
+"One's Hammer caps; AoB Derv is already back for the next flag (double run, each full running)"
+],
+[
+286,
+"A fight at Men's back door: One 1 v 1 Men (One: Dervish; Men: 8 Monk)"
+],
+[
+315,
+"Men's Monk 4 (WoC) picks up the flag"
+],
+[
+318,
+"Men's Monk 4 (WoC) overcaps"
+],
+[
+318,
+"The 1 v 1 fight moves from Men's back door to the flag stand (Men pushes out)"
+],
+[
+323,
+"One loses Mes/A (36 s before the base res)"
+],
+[
+334,
+"One loses Stand Mes, Dervish (26 s before the base res)"
+],
+[
+346,
+"One's back door: One 6 v 6 Men becomes 5 v 7 (One's Hammer joins through mid and by the back door; One's Stand Mes, Mes/A are dead; Men's Warrior joins through mid and through the pit; One matches 22 s behind)"
+],
+[
+361,
+"One loses AoB Derv (118 s before the base res)"
+],
+[
+398,
+"The fight moves from One's back door to the greater stand area (One pushes out): One 5 v 7 Men becomes 6 v 8 (One's Stand Mes, Dervish join; One's AoB Derv is dead; Men's 8 Monk joins through mid and by the back door; Men matches 2 s behind (on time))"
+],
+[
+409,
+"One's AoB Derv picks up the flag"
+],
+[
+437,
+"One's AoB Derv caps"
+],
+[
+438,
+"The fight moves from the greater stand area to Men's back door (Men falls back: team health 94%): One 6 v 8 Men becomes 7 v 8 (One's Mes/A joins by the front door)"
+],
+[
+452,
+"Men's Monk 4 (WoC) picks up the flag"
+]
+],
+"ad75813a-2-2-141": [
+[
+12,
+"A fight at the flag stand: Men 7 v 8 hook (Men: 7 Monk, 8 Monk, Air Ele 1, Earth Ele, Fire Ele, Prot, Water Ele; hook: 7 Monk, 8 Monk, Air Ele, Mes/A, Necromancer 1, Necromancer 2, Prot, Stand Mes)"
+],
+[
+23,
+"Men's Air Ele 1 caps; Air Ele 2 is already back for the next flag (double run, each full running)"
+],
+[
+25,
+"Men's Air Ele 2 picks up the flag"
+],
+[
+38,
+"hook's Stand Mes overcaps"
+],
+[
+58,
+"Men takes hook's knight"
+],
+[
+59,
+"Men takes hook's knight"
+],
+[
+65,
+"Men's Air Ele 2 overcaps"
+],
+[
+72,
+"Men loses Air Ele 1 (48 s before the base res)"
+],
+[
+76,
+"The fight moves from the flag stand to hook's front door (hook falls back: team health 91%): Men 7 v 8 hook becomes 6 v 6 (Men swaps Air Ele 2 in for Fire Ele; Men's Air Ele 1 is dead; hook's Air Ele, 8 Monk leave)"
+],
+[
+83,
+"Men loses Fire Ele (36 s before the base res)"
+],
+[
+90,
+"hook's Air Ele picks up the flag"
+],
+[
+98,
+"The fight moves from hook's front door to the flag stand (hook pushes out): Men 6 v 6 hook becomes 6 v 8 (hook's Air Ele, 8 Monk join through mid and through the pit; hook matches 22 s behind)"
+],
+[
+111,
+"hook's Air Ele hands the flag to 8 Monk"
+],
+[
+126,
+"hook's 8 Monk caps"
+],
+[
+162,
+"Men's Air Ele 2 picks up the flag"
+]
+],
+"bd3aa6a4-2-2-121": [
+[
+29,
+"hdm's Ritualist picks up the flag"
+],
+[
+34,
+"A fight at Crew's back footies: hdm 3 v 2 Crew (hdm: 8 Monk, Air Ele, Fire Ele; Crew: 8 Monk, Mesmer)"
+],
+[
+36,
+"hdm's Ritualist hands the flag to Dervish"
+],
+[
+43,
+"hdm's Dervish caps"
+],
+[
+47,
+"Crew's Monk 1 overcaps"
+],
+[
+56,
+"A fight at the greater stand area: hdm 4 v 5 Crew (hdm: 7 Monk, Dervish, Mesmer, Prot; Crew: 7 Monk, Monk 1, Prot, Ritualist, Warrior)"
+],
+[
+65,
+"hdm's Ritualist picks up the flag"
+],
+[
+68,
+"The 3 v 2 fight moves from Crew's back footies to Crew's back door (Crew falls back: team health 90%)"
+],
+[
+74,
+"Crew's Necromancer picks up the flag"
+],
+[
+74,
+"hdm takes Crew's archer"
+],
+[
+90,
+"hdm's Air Ele, Fire Ele, 8 Monk fall out of Crew's back door"
+],
+[
+111,
+"hdm's Ritualist caps"
+],
+[
+131,
+"Crew's Necromancer overcaps"
+],
+[
+134,
+"A fight at Crew's back footies: hdm 3 v 3 Crew (hdm: 8 Monk, Air Ele, Fire Ele; Crew: 8 Monk, Mesmer, Monk 1)"
+],
+[
+143,
+"hdm's Ritualist picks up the flag"
+],
+[
+154,
+"The 3 v 3 fight moves from Crew's back footies to Crew's back door (Crew falls back: team health 82%)"
+],
+[
+167,
+"hdm's Ritualist overcaps"
+]
+],
+"e9a25309-2-2-76": [
+[
+17,
+"fM's Hammer caps"
+],
+[
+19,
+"Crew's Mesmer overcaps"
+],
+[
+35,
+"Crew takes fM's archer"
+],
+[
+41,
+"Crew takes fM's archer"
+],
+[
+42,
+"A fight at the flag stand: Crew 3 v 4 fM (Crew: 7 Monk, Prot, Warrior; fM: 7 Monk, Mes/A, Prot, Warrior)"
+],
+[
+48,
+"Crew's Mesmer picks up the flag"
+],
+[
+70,
+"A fight at fM's pit: Crew 4 v 4 fM (Crew: 8 Monk, Air Ele, Fire Ele, Ritualist; fM: 8 Monk, Hammer, Ritualist, Stand Mes)"
+],
+[
+74,
+"The flag stand: Crew 3 v 4 fM becomes 4 v 4 (Crew's Mesmer joins through mid and by the front door)"
+],
+[
+105,
+"fM's Hammer picks up the flag"
+],
+[
+124,
+"A fight at fM's front footies: Crew 4 v 4 fM (Crew: 7 Monk, Mesmer, Prot, Warrior; fM: 7 Monk, Hammer, Prot, Warrior)"
+],
+[
+136,
+"The 4 v 4 fight moves from fM's front footies to the flag stand (fM pushes out)"
+]
+],
+"ec92867f-2-2-453": [
+[
+20,
+"One's flag is dropped by 8 Monk and goes back to the spawn"
+],
+[
+56,
+"Dz's Mesmer hands the flag to Ritualist"
+],
+[
+67,
+"Dz's flag is dropped by Ritualist and goes back to the spawn"
+],
+[
+67,
+"One's Monk 4 (WoC) picks up the flag"
+],
+[
+68,
+"A fight at the field on One's side: Dz 3 v 4 One (Dz: 8 Monk, Air Ele, Fire Ele; One: 8 Monk, Mesmer, Prot, Warrior)"
+],
+[
+72,
+"A fight at the flag stand: Dz 4 v 4 One (Dz: 7 Monk, Hammer, Mesmer, Prot; One: 7 Monk, AoB Derv, Monk 3 (WoC), Monk 4 (WoC))"
+],
+[
+92,
+"One's Monk 4 (WoC) caps"
+],
+[
+116,
+"The fight moves from the field on One's side to the field on Dz's side (One pushes out): Dz 3 v 4 One becomes 4 v 5 (Dz's Ritualist joins through mid and through the pit; One's Monk 4 (WoC) joins through mid and by the front door; One matches 10 s behind)"
+],
+[
+120,
+"One loses 7 Monk (120 s before the base res)"
+],
+[
+153,
+"Dz's Mesmer picks up the flag"
+],
+[
+155,
+"Dz takes One's archer"
+],
+[
+164,
+"Dz takes One's archer"
+],
+[
+167,
+"Dz's Mesmer hands the flag to Hammer"
+],
+[
+176,
+"A fight at One's pit: Dz 2 v 1 One (Dz: Air Ele, Fire Ele; One: Monk 4 (WoC))"
+],
+[
+182,
+"Dz's Hammer caps; Ritualist is already back for the next flag (double run, each full running)"
+],
+[
+191,
+"Dz takes One's knight"
+],
+[
+193,
+"Dz's Ritualist picks up the flag"
+],
+[
+197,
+"Dz takes One's knight"
+],
+[
+202,
+"The fight moves from the field on Dz's side to the flag stand (Dz pushes out): Dz 4 v 5 One becomes 5 v 5 (Dz's Prot, 7 Monk, Hammer, Mesmer join; Dz's Fire Ele, Air Ele, 8 Monk leave; One swaps AoB Derv, Monk 3 (WoC), 7 Monk in for Warrior, 8 Monk, Monk 4 (WoC); both arrive together)"
+],
+[
+210,
+"Dz's Fire Ele falls out of One's pit"
+],
+[
+210,
+"Dz loses Air Ele (30 s before the base res)"
+],
+[
+214,
+"One's Monk 4 (WoC) picks up the flag"
+],
+[
+216,
+"Dz's flag is dropped by Ritualist and goes back to the spawn"
+],
+[
+238,
+"Dz's Ritualist picks up the flag"
+],
+[
+246,
+"One's Monk 4 (WoC) caps"
+],
+[
+276,
+"The fight moves from the flag stand to Dz's front footies (Dz falls back: team health 94%): Dz 5 v 5 One becomes 5 v 6 (One's Warrior joins through mid and through the pit)"
+],
+[
+280,
+"A fight at the greater stand area: Dz 1 v 1 One (Dz: 8 Monk; One: 8 Monk)"
+],
+[
+309,
+"Dz's Ritualist caps"
+],
+[
+309,
+"Dz takes One's archer"
+],
+[
+320,
+"Dz takes One's archer"
+],
+[
+324,
+"The fight moves from Dz's front footies to the flag stand (Dz pushes out): Dz 5 v 6 One becomes 4 v 5 (Dz's Ritualist leaves; One's Warrior leaves)"
+],
+[
+330,
+"A fight at One's base: Dz 3 v 3 One (Dz: 8 Monk, Air Ele, Fire Ele; One: 8 Monk, Monk 4 (WoC), Warrior)"
+],
+[
+337,
+"Dz's Ritualist picks up the flag"
+],
+[
+342,
+"One's AoB Derv picks up the flag"
+],
+[
+344,
+"The flag stand: Dz 4 v 5 One becomes 5 v 5 (Dz's Ritualist joins through mid and by the front door)"
+],
+[
+348,
+"Dz's Ritualist hands the flag to Mesmer"
+],
+[
+354,
+"Dz's Fire Ele, Air Ele, 8 Monk fall out of One's base"
+],
+[
+356,
+"The flag stand: Dz 5 v 5 One becomes 4 v 5 (Dz's Ritualist leaves)"
+],
+[
+360,
+"One's AoB Derv caps; Monk 4 (WoC) is already back for the next flag (double run, each full running)"
+],
+[
+363,
+"Dz's Mesmer overcaps"
+],
+[
+364,
+"One's Monk 4 (WoC) picks up the flag"
+],
+[
+372,
+"The flag stand: Dz 4 v 5 One becomes 3 v 5 (Dz's Mesmer leaves)"
+],
+[
+385,
+"Dz's Mesmer picks up the flag"
+],
+[
+392,
+"A fight at One's pit: Dz 2 v 2 One (Dz: Air Ele, Fire Ele; One: 8 Monk, Monk 4 (WoC))"
+],
+[
+392,
+"One's Monk 4 (WoC) hands the flag to Warrior and goes back for the next flag (double run, each half running)"
+],
+[
+393,
+"Dz takes One's bodyguard"
+],
+[
+398,
+"One's Warrior overcaps"
+],
+[
+403,
+"One's Monk 4 (WoC) picks up the flag"
+],
+[
+404,
+"The flag stand: Dz 3 v 5 One becomes 4 v 6 (Dz's Mesmer joins through mid and by the front door; One's Warrior joins through mid and through the pit; Dz matches 16 s behind)"
+],
+[
+413,
+"Dz's Mesmer overcaps"
+],
+[
+428,
+"The flag stand: Dz 4 v 6 One becomes 3 v 4 (Dz's Mesmer leaves; One's Warrior, Prot leave)"
+],
+[
+438,
+"Dz's Mesmer picks up the flag"
+],
+[
+440,
+"The fight moves from One's pit to One's base (One pushes out): Dz 2 v 2 One becomes 4 v 4 (Dz's Ritualist, 8 Monk join through mid and through the pit; One's Warrior, Prot join through mid and through the pit; One matches 24 s behind)"
+],
+[
+450,
+"The fight moves from the flag stand to Dz's front footies (Dz falls back: team health 90%): Dz 3 v 4 One becomes 4 v 4 (Dz's Mesmer joins through mid and by the front door)"
+],
+[
+454,
+"The 4 v 4 fight moves from One's base to One's back door (One pushes out)"
+],
+[
+459,
+"One takes Dz's archer"
+],
+[
+463,
+"One loses 7 Monk (16 s before the base res)"
+],
+[
+474,
+"The 4 v 4 fight moves from Dz's front footies to the flag stand (Dz pushes out)"
+],
+[
+484,
+"One loses AoB Derv, 7 Monk (116 s before the base res)"
+],
+[
+488,
+"The 4 v 4 fight moves from One's back door to One's pit (One falls back, under pressure: team health 81%, 3 deaths in the last 30 s)"
+],
+[
+505,
+"One loses Monk 3 (WoC) (95 s before the base res)"
+]
+],
+"0f1fd794-3-2-230": [
+[
+2,
+"hdm's Hammer B hands the flag to Hammer A"
+],
+[
+10,
+"A fight at the flag stand: hdm 8 v 7 Men (hdm: 7 Monk, 8 Monk, Hammer A, Hammer B, Mes/A, Paragon, Prot, Stand Mes; Men: 7 Monk, 8 Monk, Hammer A, Mesmer, Monk 4 (WoC), Prot, Ranger)"
+],
+[
+24,
+"hdm's Hammer A caps"
+],
+[
+29,
+"Men's Monk 4 (WoC) overcaps; Hammer B is already back for the next flag (double run, each full running)"
+],
+[
+32,
+"Men's Hammer B picks up the flag"
+],
+[
+34,
+"The flag stand: hdm 8 v 7 Men becomes 7 v 7 (hdm's Mes/A leaves)"
+],
+[
+39,
+"hdm's Mes/A picks up the flag"
+],
+[
+50,
+"The flag stand: hdm 7 v 7 Men becomes 8 v 8 (hdm's Mes/A joins through mid and by the front door; Men's Hammer B joins through the pit; Men matches 4 s behind (on time))"
+],
+[
+73,
+"Men's Hammer B hands the flag to Mesmer"
+],
+[
+97,
+"hdm's Mes/A caps; Hammer B is already back for the next flag (double run, each full running)"
+],
+[
+105,
+"hdm's Hammer B picks up the flag"
+],
+[
+107,
+"Men's Mesmer overcaps"
+],
+[
+120,
+"Men's Monk 4 (WoC) picks up the flag"
+],
+[
+123,
+"hdm's Hammer B hands the flag to Paragon"
+],
+[
+125,
+"Men takes hdm's archer"
+],
+[
+146,
+"A fight at the flag stand: hdm 8 v 8 Men (hdm: 7 Monk, 8 Monk, Hammer A, Hammer B, Mes/A, Paragon, Prot, Stand Mes; Men: 7 Monk, 8 Monk, Hammer A, Hammer B, Mesmer, Monk 4 (WoC), Prot, Ranger)"
+],
+[
+149,
+"Men's Monk 4 (WoC) hands the flag to Mesmer and goes back for the next flag (double run, each half running)"
+],
+[
+168,
+"The flag stand: hdm 8 v 8 Men becomes 7 v 8 (hdm's Mes/A leaves)"
+],
+[
+173,
+"hdm's Paragon caps; Mes/A is already back for the next flag (double run, each full running)"
+],
+[
+175,
+"hdm's Mes/A picks up the flag"
+],
+[
+186,
+"Men's Mesmer overcaps"
+],
+[
+190,
+"Men's Monk 4 (WoC) picks up the flag"
+],
+[
+212,
+"hdm loses Hammer A (27 s before the base res)"
+],
+[
+216,
+"hdm's Mes/A overcaps"
+],
+[
+234,
+"Men's Monk 4 (WoC) overcaps"
+],
+[
+246,
+"The flag stand: hdm 7 v 8 Men becomes 8 v 8 (hdm's Mes/A joins through mid and by the front door)"
+],
+[
+264,
+"The 8 v 8 fight moves from the flag stand to hdm's front door (hdm falls back: team health 96%)"
+],
+[
+268,
+"hdm's Mes/A picks up the flag"
+]
+],
+"26ba6a2d-3-1-331": [
+[
+0,
+"Crew's 7 Monk hands the flag to Air Ele 2"
+],
+[
+21,
+"hdm's Hammer caps; AoB Derv is already back for the next flag (double run, each full running)"
+],
+[
+22,
+"hdm's AoB Derv picks up the flag"
+],
+[
+38,
+"Crew's Air Ele 2 overcaps"
+],
+[
+44,
+"A fight at the greater stand area: Crew 8 v 8 hdm (Crew: 7 Monk, 8 Monk, Air Ele 1, Air Ele 2, Assassin 1, Assassin 2, Mesmer, Prot; hdm: 7 Monk, 8 Monk, AoB Derv, Hammer, Mes/A, Prot, Ranger, Stand Mes)"
+],
+[
+68,
+"hdm's AoB Derv overcaps"
+],
+[
+98,
+"Crew loses Assassin 1 (22 s before the base res)"
+],
+[
+104,
+"Crew's Air Ele 2 picks up the flag"
+],
+[
+114,
+"The fight moves from the greater stand area to Crew's front footies (Crew falls back, under pressure: team health 92%, 1 death in the last 30 s): Crew 8 v 8 hdm becomes 7 v 8 (Crew's Assassin 1 is dead)"
+],
+[
+126,
+"Crew's front footies: Crew 7 v 8 hdm becomes 8 v 8 (Crew's Assassin 1 joins)"
+],
+[
+182,
+"The 8 v 8 fight moves from Crew's front footies to Crew's front door (Crew falls back: team health 88%)"
+],
+[
+188,
+"hdm boosts"
+],
+[
+246,
+"The 8 v 8 fight moves from Crew's front door to the greater stand area (Crew pushes out)"
+],
+[
+284,
+"Crew's Air Ele 2 caps"
+],
+[
+332,
+"The greater stand area: Crew 8 v 8 hdm becomes 8 v 7 (hdm's Mes/A leaves)"
+],
+[
+347,
+"hdm's Mes/A picks up the flag"
+],
+[
+364,
+"The greater stand area: Crew 8 v 7 hdm becomes 8 v 8 (hdm's Mes/A joins through mid and by the front door)"
+],
+[
+388,
+"The greater stand area: Crew 8 v 8 hdm becomes 8 v 7 (hdm's Ranger leaves)"
+],
+[
+389,
+"hdm's Mes/A caps"
+]
+],
+"4629b08c-3-2-1203": [
+[
+20,
+"hold's Mes/A hands the flag to Air Ele"
+],
+[
+25,
+"hook's flag is dropped by Warrior and goes back to the spawn"
+],
+[
+25,
+"hook's Necromancer picks up the flag"
+],
+[
+36,
+"A fight at the flag stand: hook 8 v 7 hold (hook: 7 Monk, 8 Monk, AoB Derv, Mes/A, Necromancer, Prot, Stand Mes, Warrior; hold: 7 Monk, Mes/A, Necromancer 1, Necromancer 2, Prot, Ritualist, Stand Mes)"
+],
+[
+44,
+"hold's Air Ele caps"
+],
+[
+56,
+"The flag stand: hook 8 v 7 hold becomes 8 v 8 (hold's Air Ele joins through mid and by the front door)"
+],
+[
+91,
+"hook's Necromancer caps"
+],
+[
+102,
+"The flag stand: hook 8 v 8 hold becomes 8 v 7 (hold's Air Ele leaves)"
+],
+[
+113,
+"hold's Air Ele picks up the flag"
+],
+[
+120,
+"The flag stand: hook 8 v 7 hold becomes 7 v 7 (hook's Necromancer leaves)"
+],
+[
+127,
+"hook's Necromancer picks up the flag"
+],
+[
+142,
+"The flag stand: hook 7 v 7 hold becomes 8 v 7 (hook's Necromancer joins through mid and by the front door)"
+],
+[
+151,
+"hold's Air Ele caps"
+],
+[
+160,
+"The flag stand: hook 8 v 7 hold becomes 8 v 8 (hold's Air Ele joins through mid and by the front door; hold matches 22 s behind)"
+],
+[
+181,
+"hook loses Necromancer (59 s before the base res)"
+],
+[
+182,
+"hook's Necromancer hands the flag to Mes/A"
+],
+[
+185,
+"hook's Mes/A overcaps"
+],
+[
+200,
+"The flag stand: hook 8 v 8 hold becomes 8 v 7 (hold's Ritualist leaves)"
+],
+[
+214,
+"hold's Ritualist picks up the flag"
+],
+[
+222,
+"The flag stand: hook 8 v 7 hold becomes 8 v 6 (hold's Air Ele leaves)"
+],
+[
+232,
+"hold's Ritualist hands the flag to Air Ele"
+],
+[
+234,
+"The flag stand: hook 8 v 6 hold becomes 8 v 8 (hold's Air Ele, Ritualist join through mid)"
+],
+[
+256,
+"hold's Air Ele caps"
+],
+[
+264,
+"hook's Mes/A picks up the flag"
+],
+[
+278,
+"The flag stand: hook 8 v 8 hold becomes 8 v 7 (hold's Ritualist leaves)"
+],
+[
+279,
+"hold's Ritualist picks up the flag"
+],
+[
+291,
+"hook's flag is dropped by Mes/A and goes back to the spawn"
+],
+[
+295,
+"hook loses Stand Mes (65 s before the base res)"
+],
+[
+317,
+"hook's Mes/A picks up the flag"
+],
+[
+326,
+"The flag stand: hook 8 v 7 hold becomes 8 v 8 (hold's Ritualist joins through mid and by the front door)"
+],
+[
+342,
+"hold's Ritualist hands the flag to Air Ele"
+],
+[
+355,
+"hook's Mes/A caps"
+],
+[
+372,
+"The flag stand: hook 8 v 8 hold becomes 7 v 7 (hook's Warrior leaves; hold's Air Ele leaves)"
+],
+[
+372,
+"hold's Air Ele overcaps"
+],
+[
+396,
+"hook takes hold's archer"
+],
+[
+398,
+"The flag stand: hook 7 v 7 hold becomes 5 v 7 (hook's Necromancer, 8 Monk leave; hold swaps Air Ele in for Ritualist)"
+],
+[
+420,
+"hold loses Ritualist (59 s before the base res)"
+],
+[
+434,
+"A fight at hold's front door: hook 3 v 3 hold (hook: 8 Monk, Necromancer, Warrior; hold: Air Ele, Prot, Ritualist)"
+],
+[
+435,
+"hook's Mes/A picks up the flag"
+],
+[
+442,
+"The fight moves from the flag stand to hook's front door (hook falls back, under pressure: team health 44%): hook 5 v 7 hold becomes 5 v 5 (hold's Air Ele, Prot leave)"
+],
+[
+460,
+"hook's flag is dropped by Mes/A and goes back to the spawn"
+],
+[
+462,
+"Hook's front door: hook 5 v 5 hold becomes 5 v 6 (hold's Air Ele joins through mid and by the front door)"
+],
+[
+483,
+"hook loses 8 Monk (116 s before the base res)"
+],
+[
+492,
+"hold boosts"
+],
+[
+494,
+"Hook's front door: hook 5 v 6 hold becomes 6 v 6 (hook's 8 Monk joins by the front door and by the back door; hook matches 14 s behind)"
+],
+[
+498,
+"A fight at hold's front door: hook 2 v 2 hold (hook: Necromancer, Warrior; hold: Prot, Ritualist)"
+],
+[
+520,
+"hook's Necromancer, Warrior fall out of hold's front door"
+],
+[
+522,
+"The fight moves from hook's front door to the flag stand (hook pushes out): hook 6 v 6 hold becomes 7 v 8 (hook's Necromancer, Warrior join through mid and by the front door; hook's Mes/A leaves; hold's Prot, Ritualist join through mid and by the front door; both arrive together)"
+],
+[
+534,
+"hook's Mes/A picks up the flag"
+],
+[
+550,
+"The flag stand: hook 7 v 8 hold becomes 8 v 8 (hook's Mes/A joins through mid and by the front door; hook matches 32 s behind (late))"
+],
+[
+574,
+"hold's Ritualist picks up the flag"
+],
+[
+579,
+"hook's flag is dropped by Mes/A and goes back to the spawn"
+],
+[
+598,
+"The fight moves from the flag stand to hook's front door (hook falls back, under pressure: team health 65%): hook 8 v 8 hold becomes 5 v 6 (hook's Necromancer, Warrior, 8 Monk leave; hold's Prot, Ritualist leave)"
+],
+[
+612,
+"hold boosts"
+],
+[
+632,
+"The fight moves from hook's front door to the flag stand (hook pushes out): hook 5 v 6 hold becomes 7 v 7 (hook's Necromancer, 8 Monk join through mid; hold's Prot joins through mid and by the front door; both arrive together)"
+],
+[
+654,
+"The flag stand: hook 7 v 7 hold becomes 6 v 7 (hook's Necromancer leaves)"
+],
+[
+678,
+"The flag stand: hook 6 v 7 hold becomes 6 v 6 (hold's Prot leaves)"
+],
+[
+684,
+"hold loses Ritualist, 7 Monk (36 s before the base res)"
+],
+[
+710,
+"hold loses 7 Monk (9 s before the base res)"
+],
+[
+712,
+"hook's 8 Monk picks up the flag"
+],
+[
+714,
+"hold's Ritualist hands the flag to Air Ele"
+],
+[
+730,
+"The fight moves from the flag stand to hold's front door (hold falls back, under pressure: team health 82%, 1 death in the last 30 s): hook 6 v 6 hold becomes 5 v 8 (hook's 8 Monk leaves; hold's Prot, Ritualist join through mid and by the front door)"
+],
+[
+732,
+"hold boosts"
+],
+[
+748,
+"hook's 8 Monk caps"
+],
+[
+791,
+"hold's Air Ele overcaps"
+],
+[
+802,
+"The fight moves from hold's front door to the flag stand (hold pushes out): hook 5 v 8 hold becomes 7 v 8 (hook's 8 Monk, Warrior, Necromancer join through mid and by the front door; hook's Mes/A leaves; hook matches 48 s behind (late))"
+],
+[
+816,
+"hook's Mes/A picks up the flag"
+],
+[
+832,
+"The flag stand: hook 7 v 8 hold becomes 6 v 7 (hook's Mes/A joins through mid and by the front door; hook's Necromancer, Warrior leave; hold's Ritualist leaves)"
+],
+[
+864,
+"hold's Air Ele picks up the flag"
+],
+[
+870,
+"The flag stand: hook 6 v 7 hold becomes 7 v 8 (hook's Necromancer, Warrior join through mid and by the front door; hook's Mes/A leaves; hold's Ritualist joins through mid and by the front door; both arrive together)"
+],
+[
+870,
+"hook's Mes/A caps"
+],
+[
+875,
+"hold's Air Ele hands the flag to Prot"
+],
+[
+887,
+"hook loses Warrior, AoB Derv, Necromancer (73 s before the base res)"
+],
+[
+901,
+"hold's Prot overcaps; Ritualist is already back for the next flag (double run, each full running)"
+],
+[
+904,
+"The flag stand: hook 7 v 8 hold becomes 5 v 7 (hook's Mes/A joins through mid and by the front door; hook's AoB Derv, Necromancer, Warrior are dead; hold's Ritualist leaves; hook matches 12 s behind)"
+],
+[
+916,
+"hold's Ritualist picks up the flag"
+],
+[
+920,
+"The 5 v 7 fight moves from the flag stand to hook's front door (hook falls back, under pressure: team health 84%, 2 deaths in the last 30 s)"
+],
+[
+932,
+"The 5 v 7 fight moves from hook's front door to hook's base (hook falls back: team health 86%)"
+],
+[
+948,
+"Hook's base: hook 5 v 7 hold becomes 5 v 8 (hold's Ritualist joins by the front door and by the back door)"
+],
+[
+964,
+"Hook's base: hook 5 v 8 hold becomes 8 v 8 (hook's AoB Derv, Necromancer, Warrior join; hook matches 16 s behind)"
+],
+[
+967,
+"hold takes hook's archer"
+],
+[
+998,
+"The 8 v 8 fight moves from hook's base to hook's pit (hook falls back: team health 84%)"
+],
+[
+1016,
+"The 8 v 8 fight moves from hook's pit to hook's base (hook pushes out)"
+],
+[
+1021,
+"hold boosts"
+],
+[
+1042,
+"hold takes hook's knight"
+],
+[
+1070,
+"hold takes hook's knight"
+],
+[
+1140,
+"Hook's base: hook 8 v 8 hold becomes 5 v 6 (hook's AoB Derv, Necromancer, 8 Monk leave; hold's Air Ele, Ritualist leave)"
+],
+[
+1141,
+"hold boosts"
+],
+[
+1166,
+"Hook's base: hook 5 v 6 hold becomes 5 v 5 (hold's Prot leaves)"
+],
+[
+1166,
+"A fight at hold's front door: hook 3 v 2 hold (hook: 8 Monk, AoB Derv, Necromancer; hold: Air Ele, Ritualist)"
+],
+[
+1184,
+"hold loses 7 Monk (16 s before the base res)"
+],
+[
+1190,
+"The 5 v 5 fight moves from hook's base to hook's front door (hook pushes out)"
+],
+[
+1212,
+"The 3 v 2 fight moves from hold's front door to hold's base (hold falls back, under pressure: team health 100%, 1 death in the last 30 s)"
+],
+[
+1216,
+"hook loses Stand Mes (104 s before the base res)"
+],
+[
+1218,
+"Hook's front door: hook 5 v 5 hold becomes 4 v 6 (hook's Stand Mes is dead; hold's Air Ele joins through mid and by the front door)"
+],
+[
+1228,
+"The 3 v 2 fight moves from hold's base to hold's front door (hold pushes out)"
+],
+[
+1228,
+"hook loses Warrior, Mes/A, 7 Monk, Prot (91 s before the base res)"
+],
+[
+1255,
+"hold takes hook's bodyguard"
+],
+[
+1261,
+"hold boosts"
+]
+],
+"5eebef5f-3-2-134": [
+[
+43,
+"hold loses Monk 2 (WoC), 8 Monk, Mesmer, 8 Monk, Mesmer (76 s before the base res)"
+],
+[
+83,
+"hold loses Monk 5 (WoC) (37 s before the base res)"
+],
+[
+91,
+"\uc637\uc637\uc637\uc637 takes hold's archer"
+],
+[
+92,
+"A fight at hold's back door: \uc637\uc637\uc637\uc637 8 v 5 hold (\uc637\uc637\uc637\uc637: 7 Monk, 8 Monk, Assassin, Mesmer, Monk 4 (WoC), Paragon 1, Paragon 2, Prot; hold: 7 Monk (WoC), Monk 2 (WoC), Monk 3 (WoC), Monk 4 (WoC), Prot (WoC))"
+],
+[
+105,
+"\uc637\uc637\uc637\uc637 takes hold's knight"
+],
+[
+111,
+"\uc637\uc637\uc637\uc637 takes hold's knight"
+],
+[
+126,
+"hold loses Mesmer, Monk 5 (WoC), Mesmer, 8 Monk (113 s before the base res)"
+],
+[
+127,
+"\uc637\uc637\uc637\uc637 loses 7 Monk (113 s before the base res)"
+],
+[
+150,
+"The 8 v 5 fight moves from hold's back door to hold's pit (hold falls back, under pressure: team health 100%, 4 deaths in the last 30 s)"
+],
+[
+161,
+"hold loses Prot (WoC) (79 s before the base res)"
+],
+[
+162,
+"Hold's pit: \uc637\uc637\uc637\uc637 8 v 5 hold becomes 8 v 4 (hold's Prot (WoC) is dead)"
+],
+[
+177,
+"hold loses Monk 4 (WoC) (62 s before the base res)"
+],
+[
+178,
+"Hold's pit: \uc637\uc637\uc637\uc637 8 v 4 hold becomes 8 v 3 (hold's Monk 4 (WoC) is dead)"
+],
+[
+180,
+"\uc637\uc637\uc637\uc637 takes hold's bodyguard"
+],
+[
+188,
+"\uc637\uc637\uc637\uc637 takes hold's archer"
+]
+],
+"65f274b6-3-2-93": [
+[
+15,
+"Dz's Hammer hands the flag to Mes/A"
+],
+[
+18,
+"A fight at the flag stand: Men 8 v 8 Dz (Men: 7 Monk, AoB Derv, Hammer, Mesmer, Necromancer, Prot, Ranger, Ritualist; Dz: 7 Monk, 8 Monk, AoB Derv, Dervish, Hammer, Mes/A, Prot, Stand Mes)"
+],
+[
+38,
+"Dz's Mes/A caps"
+],
+[
+40,
+"Dz loses Hammer, 7 Monk, AoB Derv (79 s before the base res)"
+],
+[
+46,
+"The flag stand: Men 8 v 8 Dz becomes 8 v 5 (Dz's Hammer, AoB Derv, 7 Monk are dead)"
+],
+[
+64,
+"Dz loses Prot, Dervish (56 s before the base res)"
+],
+[
+76,
+"Men's Necromancer hands the flag to Ritualist"
+],
+[
+79,
+"Dz loses Mes/A (41 s before the base res)"
+],
+[
+92,
+"Men's Ritualist caps"
+],
+[
+106,
+"Men takes Dz's archer"
+],
+[
+109,
+"Men takes Dz's knight"
+],
+[
+134,
+"The fight moves from the flag stand to Dz's base (Dz falls back: team health 90%): Men 8 v 5 Dz becomes 8 v 8 (Dz's Hammer, AoB Derv, 7 Monk join)"
+],
+[
+136,
+"Men takes Dz's archer"
+],
+[
+148,
+"The 8 v 8 fight moves from Dz's base to Dz's front door (Dz pushes out)"
+]
+],
+"713d9cd0-3-2-312": [
+[
+9,
+"One loses AoB Derv (111 s before the base res)"
+],
+[
+26,
+"A fight at the flag stand: DUM 8 v 8 One (DUM: 7 Monk, 8 Monk, Air Ele, Dervish, Hammer, Prot, Ritualist, Warrior; One: 7 Monk, 8 Monk, AoB Derv, Dervish, Hammer, Mes/A, Prot, Stand Mes)"
+],
+[
+30,
+"DUM's Air Ele caps"
+],
+[
+46,
+"One's 8 Monk hands the flag to AoB Derv"
+],
+[
+48,
+"The 8 v 8 fight moves from the flag stand to the greater stand area"
+],
+[
+60,
+"The 8 v 8 fight moves from the greater stand area to the flag stand"
+],
+[
+61,
+"One's AoB Derv overcaps"
+],
+[
+75,
+"One loses AoB Derv, Stand Mes (45 s before the base res)"
+],
+[
+89,
+"One loses Dervish (31 s before the base res)"
+],
+[
+96,
+"The fight moves from the flag stand to the greater stand area: DUM 8 v 8 One becomes 7 v 5 (DUM's Air Ele leaves; One's Dervish, Stand Mes, AoB Derv are dead)"
+],
+[
+106,
+"DUM's Air Ele picks up the flag"
+],
+[
+136,
+"The fight moves from the greater stand area to One's front door (One falls back: team health 98%): DUM 7 v 5 One becomes 7 v 7 (One's Stand Mes, AoB Derv join)"
+],
+[
+137,
+"One's Dervish picks up the flag"
+],
+[
+148,
+"DUM's Air Ele caps"
+],
+[
+154,
+"The fight moves from One's front door to the greater stand area (One pushes out): DUM 7 v 7 One becomes 8 v 8 (DUM's Air Ele joins through mid and by the front door; One's Dervish joins by the front door; both arrive together)"
+],
+[
+174,
+"One's Dervish overcaps"
+],
+[
+195,
+"DUM loses Air Ele (45 s before the base res)"
+],
+[
+219,
+"DUM loses Ritualist (21 s before the base res)"
+],
+[
+226,
+"The greater stand area: DUM 8 v 8 One becomes 6 v 8 (DUM's Air Ele leaves; DUM's Ritualist is dead)"
+],
+[
+238,
+"DUM's Ritualist picks up the flag"
+],
+[
+244,
+"The greater stand area: DUM 6 v 8 One becomes 7 v 8 (DUM's Air Ele joins through mid and by the front door)"
+],
+[
+257,
+"DUM loses Air Ele, Dervish, 8 Monk (102 s before the base res)"
+],
+[
+268,
+"The fight moves from the greater stand area to DUM's front door (DUM falls back, under pressure: team health 75%, 3 deaths in the last 30 s): DUM 7 v 8 One becomes 4 v 8 (DUM's Dervish, Air Ele, 8 Monk are dead)"
+],
+[
+278,
+"DUM loses 7 Monk, Prot, Warrior (81 s before the base res)"
+],
+[
+288,
+"The fight moves from DUM's front door to DUM's base (DUM falls back, under pressure: team health 76%, 4 deaths in the last 30 s): DUM 4 v 8 One becomes 3 v 8 (DUM swaps Ritualist in for Warrior; DUM's 7 Monk is dead)"
+],
+[
+294,
+"One boosts"
+],
+[
+299,
+"DUM loses Hammer (60 s before the base res)"
+],
+[
+321,
+"DUM loses Ritualist, Prot (39 s before the base res)"
+],
+[
+321,
+"One takes DUM's bodyguard"
+],
+[
+322,
+"The fight moves from DUM's base to DUM's pit (DUM falls back, under pressure: team health 92%, 3 deaths in the last 30 s): DUM 3 v 8 One becomes 1 v 8 (DUM's 7 Monk joins; DUM's Prot, Hammer, Ritualist are dead)"
+],
+[
+351,
+"DUM loses Ritualist, 7 Monk, Dervish, Warrior, Hammer, Air Ele, Prot, 8 Monk (8 s before the base res)"
+],
+[
+352,
+"One takes DUM's archer"
+],
+[
+352,
+"One takes DUM's knight"
+],
+[
+352,
+"One takes DUM's knight"
+]
+],
+"75312515-3-2-482": [
+[
+18,
+"A fight at the flag stand: One 8 v 8 Crew (One: 7 Monk, 8 Monk, AoB Derv, Dervish, Hammer, Mes/A, Prot, Stand Mes; Crew: 7 Monk (WoC), 8 Monk, Monk 2 (WoC), Monk 3 (WoC), Monk 4 (WoC), Monk 5 (WoC), Paragon, Prot (WoC))"
+],
+[
+31,
+"One loses Stand Mes, Mes/A (89 s before the base res)"
+],
+[
+54,
+"One loses Dervish (65 s before the base res)"
+],
+[
+62,
+"The flag stand: One 8 v 8 Crew becomes 7 v 8 (One's Dervish is dead)"
+],
+[
+74,
+"One's Dervish hands the flag to AoB Derv"
+],
+[
+74,
+"Crew's Monk 2 (WoC) caps"
+],
+[
+82,
+"The 7 v 8 fight moves from the flag stand to the field on One's side"
+],
+[
+98,
+"Crew takes One's archer"
+],
+[
+194,
+"Crew boosts"
+],
+[
+313,
+"One loses Hammer (47 s before the base res)"
+],
+[
+314,
+"Crew boosts"
+],
+[
+397,
+"One's AoB Derv hands the flag to Mes/A"
+],
+[
+427,
+"One loses Mes/A, AoB Derv, Dervish (53 s before the base res)"
+],
+[
+434,
+"Crew boosts"
+],
+[
+480,
+"A fight at One's front door: One 8 v 7 Crew (One: 7 Monk, 8 Monk, AoB Derv, Dervish, Hammer, Mes/A, Prot, Stand Mes; Crew: 7 Monk (WoC), 8 Monk, Monk 3 (WoC), Monk 4 (WoC), Monk 5 (WoC), Paragon, Prot (WoC))"
+],
+[
+508,
+"The fight moves from One's front door to the field on One's side (One pushes out): One 8 v 7 Crew becomes 8 v 8 (Crew's Monk 2 (WoC) joins by the front door)"
+],
+[
+521,
+"One loses 7 Monk, Stand Mes (78 s before the base res)"
+],
+[
+536,
+"The fight moves from the field on One's side to the greater stand area (One pushes out): One 8 v 8 Crew becomes 7 v 8 (One's Stand Mes is dead)"
+]
+],
+"799ca1a5-3-2-57": [
+[
+22,
+"A fight at the greater stand area: Dz 8 v 8 DMG (Dz: 8 Monk, Mesmer, Monk 1 (WoC), Monk 2 (WoC), Monk 3 (WoC), Monk 4 (WoC), Monk 5 (WoC), Prot (WoC); DMG: 7 Monk, Fire Ele, Mes/A, Necromancer 1, Necromancer 2, Prot, Ritualist, Stand Mes)"
+],
+[
+39,
+"DMG loses Mes/A (80 s before the base res)"
+],
+[
+42,
+"DMG's Ritualist caps"
+],
+[
+47,
+"Dz loses Monk 5 (WoC), Monk 4 (WoC), Monk 1 (WoC), Monk 2 (WoC) (72 s before the base res)"
+],
+[
+62,
+"Dz's flag is dropped by Mesmer and goes back to the spawn"
+],
+[
+78,
+"Dz loses Prot (WoC) (42 s before the base res)"
+],
+[
+93,
+"Dz loses 8 Monk, Mesmer (27 s before the base res)"
+],
+[
+104,
+"DMG takes Dz's knight"
+],
+[
+105,
+"DMG takes Dz's knight"
+],
+[
+113,
+"Dz loses Monk 3 (WoC) (7 s before the base res)"
+]
+],
+"fca07aa2-3-1-112": [
+[
+26,
+"A fight at the flag stand: push 7 v 7 One (push: 7 Monk, 8 Monk, AoB Derv, Dervish, Fire Ele, Mesmer, Prot; One: 7 Monk, 8 Monk, AoB Derv, Hammer, Prot, Ranger, Stand Mes)"
+],
+[
+28,
+"One's AoB Derv hands the flag to Stand Mes"
+],
+[
+35,
+"push's AoB Derv caps; Water Ele is already back for the next flag (double run, each full running)"
+],
+[
+39,
+"push's Water Ele picks up the flag"
+],
+[
+40,
+"One's Stand Mes overcaps; Mes/A is already back for the next flag (double run, each full running)"
+],
+[
+45,
+"One's Mes/A picks up the flag"
+],
+[
+64,
+"The flag stand: push 7 v 7 One becomes 8 v 8 (push's Water Ele joins through the pit and by the back door; One's Mes/A joins by the back door; One matches 6 s behind (on time))"
+],
+[
+96,
+"push's Water Ele caps"
+],
+[
+97,
+"push loses Fire Ele (22 s before the base res)"
+],
+[
+100,
+"One's Mes/A overcaps"
+],
+[
+111,
+"push loses Mesmer (9 s before the base res)"
+],
+[
+121,
+"push's Mesmer picks up the flag"
+],
+[
+132,
+"The 8 v 8 fight moves from the flag stand to push's front footies (push falls back, under pressure: team health 50%, 1 death in the last 30 s)"
+],
+[
+164,
+"One takes push's archer"
+],
+[
+170,
+"push's Mesmer hands the flag to Fire Ele"
+]
+]
+}
+}
