@@ -1700,7 +1700,14 @@
     "Flag run",
     "Front door"
    ],
-   "label": null,
+   "label": {
+    "real": "yes",
+    "at": "2026-11-11",
+    "scenario": {},
+    "call": {},
+    "who": [],
+    "notes": "Both teams open pushing all 8 to stand, with crew bringing flag on a WoC and One bringing flag on a derv. \n\nTeams fight 8v8 with One taking 2 spike deaths before 50s. One's derv goes to solo split front door but is immediately collapsed and spiked by crew's mainteam. One collapses to their base before 1:40. \n\nBoth teams fight in One's front door with Crew boosting and One taking DP on spike deaths. \n\nCrew pushes in to One's base through one door while Crew's #2 WoC takes the other path into base leading to a 7v8. Crew fights 7v8 and retreats through One's front door to greater flag area. \n\nOne takes a number of spike deaths and base reses members. One resigns."
+   },
    "sealed": null,
    "picked_for": "scenario"
   },
