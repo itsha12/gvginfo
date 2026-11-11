@@ -94,6 +94,8 @@ class Hall:
             for c in a["cells"]:
                 self._spot.setdefault(c, i)
                 if a["type"] in TERRITORY: self._zone.setdefault(c, i)
+        # Denning's drawn greater stand area (R-334, R-342); until a hall has one, a walking distance stands in for it
+        self.greater = set().union(*[a["cells"] for a in self.areas if a["type"] == "Greater stand area"] or [set()])
         self.hops = self._teleporters()
         self._fwd, self._back = collections.defaultdict(list), collections.defaultdict(list)
         for a, b in self.hops:
@@ -223,7 +225,7 @@ class Hall:
                     if any(math.dist(p, f) <= r for f in self.footies[s][k]): return k + " footies", s
         if a and a["type"] == "Base": return "base", a["side"]
         c = self.snap(p)
-        if self.to(self.stand).get(c, 1e9) <= GREATER_STAND_WALK: return "greater stand", None
+        if (c in self.greater) if self.greater else (self.to(self.stand).get(c, 1e9) <= GREATER_STAND_WALK): return "greater stand", None
         return "field", ("A" if self.to(self.lord["A"]).get(c, 1e9) <= self.to(self.lord["B"]).get(c, 1e9) else "B")
 
     def spot(self, p):
