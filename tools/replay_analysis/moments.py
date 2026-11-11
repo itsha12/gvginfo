@@ -137,14 +137,20 @@ class Moments:
         out = []
         for g in gs:
             n = {tm: [a for a in g if m.team(a) == tm] for tm in st.teams}
-            z = collections.Counter(self.zone(a, t) for a in (n[1] or n[2]))
-            place = max(z, key=lambda k: (z[k], k)); own = 1 if n[1] else 2
-            words = {"stand": "the stand", "own pit": f"{m.tag[own]}'s pit", "own base": f"{m.tag[own]}'s base",
-                     "enemy pit": f"{m.tag[3 - own]}'s pit", "enemy base": f"{m.tag[3 - own]}'s base",
-                     "backside": f"{m.tag[own]}'s side of the field", "push side": f"{m.tag[3 - own]}'s side of the field"}[place]
-            out.append({"n": {tm: len(n[tm]) for tm in st.teams}, "who": {tm: sorted(m.roles[a] for a in n[tm]) for tm in st.teams},
-                        "place": words, "flag": [m.roles[a] for a in g if self.carrying(a, t)]})
+            z = collections.Counter(self.hall.place(self.P[a][t]) for a in g)
+            kind, side = max(z, key=lambda k: (z[k], str(k)))
+            out.append({"n": {tm: len(n[tm]) for tm in st.teams}, "ids": {tm: frozenset(n[tm]) for tm in st.teams},
+                        "who": {tm: sorted(m.roles[a] for a in n[tm]) for tm in st.teams},
+                        "kind": kind, "side": side, "place": self.place_words(kind, side),
+                        "flag": [a for a in g if self.carrying(a, t)]})
         return sorted(out, key=lambda x: -(x["n"][1] + x["n"][2]))
+
+    def place_words(self, kind, side):
+        tag = {v: self.m.tag[k] for k, v in self.st.side.items()}.get(side)
+        if kind == "stand": return "the flag stand"
+        if kind == "greater stand": return "the greater stand area"
+        if kind == "field": return f"the field on {tag}'s side"
+        return f"{tag}'s {kind}"
 
     # ---- the flag, one life at a time
     def flag_lives(self):
@@ -182,8 +188,8 @@ class Moments:
                 order = list(dict.fromkeys(L["serious"]))
                 L["form"] = None
                 if L["how"] != "captured": continue
-                nxt = lives[i + 1] if i + 1 < len(lives) else None
-                n = nxt["carries"][0][0] if nxt else None
+                nxt = next((x for x in lives[i + 1:] if any(c[2] is None or c[2] - c[1] >= SERIOUS_CARRY_S for c in x["carries"])), None)
+                n = next((c[0] for c in nxt["carries"] if c[2] is None or c[2] - c[1] >= SERIOUS_CARRY_S), None) if nxt else None
                 tc = min(int(L["end"]), self.T)
                 back = (n is not None and n != L["capper"] and self.P[n][tc] is not None and self.hall is not None
                         and (self.hall.walk(self.P[n][tc], self.spawn[tm]) or 1e9) < (self.hall.walk(self.P[n][tc], self.hall.stand) or 0))

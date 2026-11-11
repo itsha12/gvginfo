@@ -100,6 +100,24 @@ class Hall:
             self._fwd[a].append(b); self._back[b].append(a)
         self._fields, self._snap = {}, {}
         self.routes = self._routes()
+        # doors: where each labelled door route leaves its base; footmen by the door they stand nearer (front or back footies)
+        self.doors = {s: {"front": [], "back": []} for s in "AB"}
+        base = {s: set().union(*[a["cells"] for a in self.areas if a["type"] in ("Base", "Pit") and a["side"] == s] or [set()]) for s in "AB"}
+        for r in self.routes:
+            k = {"Front door": "front", "Back door": "back"}.get(r["type"])
+            if not k: continue
+            pt = r["pts"][-1]
+            for a, b in zip(r["pts"], r["pts"][1:]):
+                n = max(int(math.dist(a, b) // 50), 1)
+                out = next(((a[0] + (b[0] - a[0]) * i / n, a[1] + (b[1] - a[1]) * i / n) for i in range(n + 1)
+                            if cell((a[0] + (b[0] - a[0]) * i / n, a[1] + (b[1] - a[1]) * i / n)) not in base[r["side"]]), None)
+                if out: pt = out; break
+            self.doors[r["side"]][k].append(pt)
+        self.footies = {s: {"front": [], "back": []} for s in "AB"}
+        for s in "AB":
+            for f in self.footmen[s]:
+                near = lambda k: min((math.dist(f, q) for q in self.doors[s][k]), default=1e9)
+                self.footies[s]["front" if near("front") <= near("back") else "back"].append(f)
 
     def _stand(self, pts):
         """The flag stand that gives morale: the Flag stand label inside (or nearest) the Flag stand area (Isle of
@@ -186,6 +204,27 @@ class Hall:
             return ("own " if a["side"] == side else "enemy ") + a["type"].lower()
         c = self.snap(p); other = "B" if side == "A" else "A"
         return "backside" if self.to(self.lord[side]).get(c, 1e9) <= self.to(self.lord[other]).get(c, 1e9) else "push side"
+
+    def place(self, p):
+        """A point in Denning's words (his golden notes): (kind, side). kind is pit, front door, back door, front
+        footies, back footies, stand, base, greater stand or field; side is whose ground it is (None at the stand).
+        Smaller and more specific places first."""
+        from common import DOOR_R, GREATER_STAND_WALK
+        a = self.area_at(p, True)
+        if a and a["type"] == "Pit": return "pit", a["side"]
+        if a and a["type"] == "Flag stand area": return "stand", None
+        for s in "AB":
+            for k in ("front", "back"):
+                if any(math.dist(p, q) <= DOOR_R for q in self.doors[s][k]): return k + " door", s
+        r = self.reach()
+        if r:
+            for s in "AB":
+                for k in ("front", "back"):
+                    if any(math.dist(p, f) <= r for f in self.footies[s][k]): return k + " footies", s
+        if a and a["type"] == "Base": return "base", a["side"]
+        c = self.snap(p)
+        if self.to(self.stand).get(c, 1e9) <= GREATER_STAND_WALK: return "greater stand", None
+        return "field", ("A" if self.to(self.lord["A"]).get(c, 1e9) <= self.to(self.lord["B"]).get(c, 1e9) else "B")
 
     def spot(self, p):
         """The smallest labelled area of any type at the point, in words ("Choke point", "Bridge", "Lava", a name)."""

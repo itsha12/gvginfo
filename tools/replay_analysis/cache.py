@@ -55,7 +55,7 @@ NOT_ENGINE = {"cache.py", "status.py"}      # bookkeeping only: changing them ne
 #                       are in no key. A module that starts writing prepared data must be taken off this list.
 REPORT_LAYER = {"learning.py", "snapshot.py", "why.py", "report.py", "causalchain.py", "discover.py",
                 "discovery.py", "behaviour.py", "batch.py", "library.py", "timeline.py", "parallel.py", "modelpage.py",
-                "ask.py", "advice.py", "tq.py"}
+                "ask.py", "advice.py", "tq.py", "story.py"}
 # modules that key only their own kind (fitting from prepared rows, or a prepared kind nothing else reads)
 FIT_ONLY = {"learnednodes.py", "catalogue.py"}
 # tq.py is report layer for every kind but the two benchmarks it builds itself (power_bench, run_bench), which name it
