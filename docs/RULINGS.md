@@ -307,3 +307,6 @@ This register is the model's constitution: every definition and decision Denning
 - R-349. Under pressure is about a team's health and energy more than its position: a team taking deaths, low on team health or low on monk energy is under pressure, and it retreats. Position is the result of pressure, not the measure of it.
 - R-350. A player counts in a fight after 12 s in it; less is support, not a player more.
 - R-351. A numbers advantage is read in every fight on the map, not only where the main groups meet; its calls are to retreat down the ladder or stay, and to push in or fall out.
+- R-352. Low team health, for reading pressure (R-349), starts at under 85%, to be adjusted if needed.
+- R-353. Pressure is read from health and deaths for now. A monk energy estimate is noted as something to add if it turns out to be needed.
+- R-354. Golden moments, replacing the two parts of R-345: Denning reads the engine's story of the game, marks the lines that are wrong, and adds his own notes or corrections; he no longer writes his own note first. The 13 notes he wrote before seeing any engine story are kept as the fixed blind check (`blind_note`): each rewritten story is compared with them by Claude.

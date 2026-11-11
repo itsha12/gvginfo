@@ -49,16 +49,16 @@ model's structure: `knowledge/model.md` (generated).
   and variables follow from that. Ruled from the notes: R-334 to R-340 (greater stand area, main team in a 4v4, flag
   position and stand holder both, pinned teams, one flag a team, the hand-off and double run forms).
 - Built 2026-11-10 night (branch, drafts): `Hall.place`, `Moments.fights`, `Moments.flag_lives`, `story.py` with the
-  why words (routes, on time R-348, swaps, falls back under pressure R-349, falls out; 12 s to count in a fight
-  R-350). On main: the golden page in two parts (R-345) with the engine's story of all 30 games
-  (`golden_stories.json`), and Greater stand area drafts for 9 halls (none for Burning, Frozen, Warrior's, Wurms,
-  Isle of the Dead: too few counted replays).
-- Waiting on Denning: mark the engine's stories on the 14 moments he has notes for (tick wrong lines, say what is
-  missing), then notes and marks on the other 16; accept or redraw the Greater stand area drafts.
-- Next on the branch: read his marks (`label.story` in golden_moments.json) and fix the story; then a threat or
-  posture, hand-off to hold, time to cap, quieter flag lines, monk energy proxy if he wants one (asked); regenerate
-  `golden.py stories`; then scenarios, calls and triggers rebuilt on the story (numbers advantage in every fight,
-  R-351), and `golden.py score` rewritten against his marks. Also open: discovery second run; behaviour clusters.
+  why words (routes, on time R-348, swaps, falls back under pressure R-349 and R-352, falls out; 12 s to count in a
+  fight R-350). All 14 halls now have a Greater stand area label (9 accepted drafts, 5 drawn by him).
+- Golden moments (R-354, replacing R-345's two parts): the page shows the engine's story of each of the 30 games
+  (`golden_stories.json`, draft 2); he ticks wrong lines and adds notes or corrections. His 13 earlier notes are the
+  fixed blind check (`blind_note`). Waiting on him: mark the stories.
+- Next on the branch: read his marks (`label.story.wrong`, `label.notes`), fix the story, compare it with the 13
+  blind notes; add a threat or posture, hand-off to hold, time to cap, quieter flag lines; regenerate `golden.py
+  stories` (raise `draft`); then scenarios, calls and triggers rebuilt on the story (numbers advantage in every
+  fight, R-351) and `golden.py score` rewritten against his marks. A monk energy estimate only if needed (R-353).
+  Also open: discovery second run; 28 behaviour clusters to name.
 
 ## Running it
 - Train batch: `gh api -X POST repos/itsha12/gvginfo/actions/workflows/train-batch.yml/dispatches -f ref=main

@@ -1,14 +1,11 @@
 import { esc, readJson, writeJson, canSave, toast } from "../core.js";
 
-// Golden moments (docs/REDESIGN.md "Tests", R-303, R-341, R-345). Two parts for each moment:
-//   1. Denning writes his note: the game up to the decision and what the team did, in his own words, with a few
-//      drop-downs (is it a real decision, the time if the decision was earlier or later, forced or not) and an optional
-//      sealed view of what the team should have done.
-//   2. Only after his note is saved, the engine's own story of the same game is shown (data/model/golden_stories.json,
-//      written by tools/golden/golden.py stories on the engine branch). He ticks the lines that are wrong, says why,
-//      and writes what is missing. Lines he does not tick count as right once he saves his marks.
-// The labels file never holds the engine's reading. Earlier drop-down answers (scenario, call, shape) stay in the file
-// untouched; the page no longer asks for them. The sealed answer is stored encoded and never shown again here.
+// Golden moments (docs/REDESIGN.md "Tests", R-303, R-341, R-354). For each moment the engine's story of the game is shown
+// (data/model/golden_stories.json, written by tools/golden/golden.py stories on the engine branch). Denning reads it,
+// ticks the lines that are wrong and says why, and adds his own notes or corrections; lines he does not tick count as
+// right once he saves. Notes he wrote before any engine story was shown (blind_note in the file) are kept as they are:
+// they are the fixed blind check the story is compared with. The labels file holds only what he wrote. Earlier
+// drop-down answers stay in the file untouched. The sealed answer is stored encoded and never shown again here.
 
 const PATH = "data/model/golden_moments.json", STORIES = "data/model/golden_stories.json";
 const OTHER_FAMILY = ["Flag decision", "Answer to a split", "Numbers advantage", "Game plan", "Engage or wait"];
@@ -22,9 +19,8 @@ const field = (label, html, hint = "") => `<label class="gm-field"><span class="
 
 function storyHtml(g) {
   const lines = (stories?.stories || {})[g.id];
-  if (!g.label) return `<p class="muted small" style="margin:.6rem 0 0">The engine's story of this game is shown here once this note is saved.</p>`;
-  if (!lines) return `<p class="muted small" style="margin:.6rem 0 0">No engine story has been written for this moment yet.</p>`;
-  const mk = g.label.story || {}, wrong = new Map((mk.wrong || []).map((w) => [`${w.t}|${w.text}`, w.comment || ""]));
+  if (!lines) return `<p class="muted small" style="margin:.6rem 0">No engine story has been written for this moment yet.</p>`;
+  const mk = g.label?.story || {}, wrong = new Map((mk.wrong || []).map((w) => [`${w.t}|${w.text}`, w.comment || ""]));
   let cut = false;
   const rows = lines.map(([t, text], i) => {
     const k = `${t}|${text}`, on = wrong.has(k);
@@ -32,37 +28,35 @@ function storyHtml(g) {
     return `${divider}<tr data-line="${i}"><td class="gm-t">${clock(t)}</td><td>${esc(text)}</td>
       <td class="gm-mark"><label><input type="checkbox" data-wrong${on ? " checked" : ""}> wrong</label><input type="text" data-why placeholder="what is wrong" value="${esc(on ? wrong.get(k) : "")}"${on ? "" : " hidden"}></td></tr>`;
   }).join("");
-  return `<details class="gm-story"${mk.at ? "" : " open"}><summary><b>Part 2: the engine's story of this game</b> <span class="muted small">(${lines.length} lines${mk.at ? `; marked ${esc(mk.at)}, ${(mk.wrong || []).length} wrong` : "; not marked yet"})</span></summary>
-    <p class="small" style="margin:.4rem 0">Tick a line that is wrong and say why. Lines left alone count as right. Then write what is missing, or what you would say differently, and save.</p>
-    <div class="tablewrap"><table class="data gm-lines"><tbody>${rows}</tbody></table></div>
-    <textarea data-missing placeholder="What is missing from this story, or what you would say differently" style="min-height:70px;margin:.6rem 0">${esc(mk.missing || "")}</textarea>
-    <div class="row"><button class="btn small primary" data-save-marks>Save these marks</button></div></details>`;
+  const stale = mk.at && mk.draft !== stories.draft;
+  return `<details class="gm-story"${mk.at && !stale ? "" : " open"}><summary><b>The engine's story of this game</b> <span class="muted small">(${lines.length} lines${mk.at ? `; marked ${esc(mk.at)}, ${(mk.wrong || []).length} wrong${stale ? "; the story has been rewritten since" : ""}` : "; not marked yet"})</span></summary>
+    <div class="tablewrap"><table class="data gm-lines"><tbody>${rows}</tbody></table></div></details>`;
 }
 
 function momentHtml(g, i) {
   const fam = data.families[g.family], L = g.label || {};
   const shouldOptions = fam.call[fam.call.length - 1].options;
   return `<section class="gm" data-id="${esc(g.id)}">
-    <div class="row" style="justify-content:space-between"><b>${i + 1}. ${esc(fam.name)}</b>
-      <span class="muted small">${esc(g.team)} v ${esc(g.opponent)}, ${esc(g.map)}, at ${clock(g.t)} ${g.label ? `<span class="pill elite">Note saved ${esc(L.at || "")}</span>` : ""}${L.story?.at ? ` <span class="pill type">Story marked</span>` : ""}</span></div>
-    <p style="margin:.4rem 0">What the engine noticed: ${esc(g.trigger)}. <a href="https://gvg.report/report/${esc(g.match)}#map" target="_blank" rel="noopener">Open the replay on gvg.report</a>; the moment is at ${clock(g.t)}.</p>
-    <h4>Part 1: your note</h4>
-    <textarea data-f="notes" placeholder="The game up to this decision, as you would tell it: the opening, the flag exchange, splits and their numbers, who is under pressure, deaths and death penalty. Then what each team did at this moment, and anything you would want the model to notice." style="min-height:150px">${esc(L.notes || "")}</textarea>
-    <div class="gm-grid" style="margin-top:.5rem">
-      ${field("Is there a real decision here?", pick("real", [["yes", "Yes"], ["no", "No: nothing to decide here"], ["different", "Yes, but a different kind of decision"]], L.real))}
-      ${field("If a different kind, which?", pick("family_is", OTHER_FAMILY.map((n) => [n, n]), L.family_is, "not applicable"))}
-      ${field("The decision was actually at (m:ss), if not at the time shown", `<input type="text" data-f="actual_time" placeholder="for example 11:42" value="${esc(L.actual_time || "")}">`)}
-      ${field("Did a death on either team in the next 30 s force it?", pick("forced", [["no", "No"], ["yes", "Yes"]], L.forced === undefined ? "" : (L.forced ? "yes" : "no"), "not sure"))}
-    </div>
-    <details class="gm-should"><summary class="small">What should they have done? (optional; stored sealed from the model)</summary>
-      ${g.sealed ? `<p class="small">A sealed answer is saved. Fill the two fields below only to replace it.</p>` : ""}
+    <div class="row" style="justify-content:space-between"><b>${i + 1}. ${esc(g.team)} v ${esc(g.opponent)}, ${esc(g.map)}</b>
+      <span class="muted small">${esc(fam.name)} at ${clock(g.t)} ${L.story?.at ? `<span class="pill elite">Marked ${esc(L.story.at)}</span>` : ""}${L.blind_note ? ` <span class="pill type" title="written before the engine's story was shown">Blind note</span>` : ""}</span></div>
+    <p style="margin:.4rem 0">What the engine noticed at ${clock(g.t)}: ${esc(g.trigger)}. <a href="https://gvg.report/report/${esc(g.match)}#map" target="_blank" rel="noopener">Open the replay on gvg.report</a>.</p>
+    ${storyHtml(g)}
+    <h4>${L.blind_note ? "Your note (written before the story was shown) and any corrections" : "Your notes or corrections"}</h4>
+    <textarea data-f="notes" placeholder="What the story misses or gets wrong as a whole, and anything you would say differently: what a team was doing, why, what you would want the model to notice." style="min-height:${L.notes ? 150 : 90}px">${esc(L.notes || "")}</textarea>
+    <details class="gm-should"><summary class="small">More (optional): the time of the decision, whether it is a real one, what they should have done</summary>
+      <div class="gm-grid" style="margin-top:.4rem">
+        ${field("Is there a real decision at this moment?", pick("real", [["yes", "Yes"], ["no", "No: nothing to decide here"], ["different", "Yes, but a different kind of decision"]], L.real, "not said"))}
+        ${field("If a different kind, which?", pick("family_is", OTHER_FAMILY.map((n) => [n, n]), L.family_is, "not applicable"))}
+        ${field("The decision was actually at (m:ss)", `<input type="text" data-f="actual_time" placeholder="for example 11:42" value="${esc(L.actual_time || "")}">`)}
+        ${field("Did a death in the next 30 s force it?", pick("forced", [["no", "No"], ["yes", "Yes"]], L.forced === undefined ? "" : (L.forced ? "yes" : "no"), "not said"))}
+      </div>
+      <p class="small" style="margin:.6rem 0 .2rem"><b>What should they have done?</b> Stored sealed from the model.${g.sealed ? " A sealed answer is saved; fill these only to replace it." : ""}</p>
       <div class="gm-grid">
         ${field("The better call", `<select data-should><option value="">no view, or what they did was right</option>${shouldOptions.map(([v, t]) => opt(v, t, "")).join("")}<option value="other">Other (say what)</option></select>`)}
         ${field("Why, in a line", `<input type="text" data-should-text placeholder="Not shown again after saving">`)}
       </div></details>
-    <div class="row" style="margin-top:.6rem"><button class="btn small primary" data-save>${g.label ? "Save changes to this note" : "Save this note"}</button>
+    <div class="row" style="margin-top:.6rem"><button class="btn small primary" data-save>${L.story?.at ? "Save changes" : "Save marks and notes"}</button>
       ${g.label ? `<button class="btn small ghost" data-clear>Clear this moment</button>` : ""}</div>
-    ${storyHtml(g)}
   </section>`;
 }
 
@@ -73,16 +67,16 @@ export async function renderGolden(out, keep = false) {
     return;
   }
   if (!stories) stories = await fetch(STORIES, { cache: "no-cache" }).then((r) => (r.ok ? r.json() : null)).catch(() => null);
-  const M = data.moments, n = M.filter((g) => g.label).length, m = M.filter((g) => g.label?.story?.at).length;
+  const M = data.moments, m = M.filter((g) => g.label?.story?.at).length;
   out.innerHTML = `<h1>Golden moments</h1>
-  <p>${M.length} moments from stored matches. Each has two parts. First, write the game up to the decision in your own words. Then, once your note is saved, the engine's own story of the same game appears below it: tick what it gets wrong and write what it misses. Your notes and marks are what the engine is rebuilt from and tested against. ${canSave() ? "" : "<b>Add your GitHub key in Settings to save.</b>"}</p>
-  <p class="gm-note"><b>${n} of ${M.length} notes written; ${m} stories marked.</b> Each save stands on its own; stop and resume at any point. ${stories ? `The engine's stories are draft ${esc(stories.draft)} (${esc(stories.generated)}).` : ""}</p>
+  <p>${M.length} games from stored matches, each told by the engine up to a minute past one moment. Read the story against the replay, tick each line that is wrong and say why, and add your own notes or corrections underneath. Lines left alone count as right. Your marks and notes are what the engine is rebuilt from and tested against. ${canSave() ? "" : "<b>Add your GitHub key in Settings to save.</b>"}</p>
+  <p class="gm-note"><b>${m} of ${M.length} stories marked.</b> Each save stands on its own; stop and resume at any point. ${stories ? `The stories are draft ${esc(stories.draft)} (${esc(stories.generated)}).` : ""} What the story leaves out matters as much as what it gets wrong: say so in the notes.</p>
   <details class="gm-terms"><summary>How the engine's story reads</summary><ul class="small">
     <li><b>A fight</b> is a group of players of both teams close enough to fight, with its place and its numbers. A player counts in a fight after 12 seconds in it; less is support.</li>
-    <li><b>Places</b>: the flag stand, the greater stand area, front and back footies, front and back door, base, pit, each named for the team whose ground it is.</li>
+    <li><b>Places</b>: the flag stand, the greater stand area (as drawn on the map page), front and back footies, front and back door, base, pit, each named for the team whose ground it is.</li>
     <li><b>Flag lines</b>: picks up, hands the flag to, caps, overcaps (a cap within 45 seconds of the other team's), double run (each half running, or each full running), dropped and back to the spawn. A pickup dropped within 5 seconds is left out.</li>
     <li><b>Matches N s behind</b>: one team's player joined a fight N seconds after the other team's. On time is within about 7 seconds; 30 seconds or more is late.</li>
-    <li><b>Falls back, under pressure</b>: the fight moved down that team's side (footies, door, base, pit). Under pressure is read from team health and deaths; energy is not in the replays.</li>
+    <li><b>Falls back, under pressure</b>: the fight moved down that team's side (footies, door, base, pit). Under pressure means team health under 85% or a death in the last 30 seconds; energy is not in the replays.</li>
     <li><b>Before the base res</b>: seconds from a death to the next two-minute base resurrection.</li>
     <li>The story does not yet read a threat or a posture, and it does not judge a play.</li>
   </ul></details>
@@ -104,16 +98,21 @@ export async function renderGolden(out, keep = false) {
       return true;
     };
     el.querySelector("[data-save]").onclick = async () => {
-      if (!val("notes").trim()) { toast("Write the note first."); return; }
-      if (!val("real")) { toast("Say whether there is a real decision here."); return; }
       const before = { label: g.label, sealed: g.sealed };
-      const L = { ...(g.label || {}), real: val("real"), notes: val("notes").trim(), at: new Date().toISOString().slice(0, 10) };
-      for (const k of ["family_is", "actual_time"]) { if (val(k).trim()) L[k] = val(k).trim(); else delete L[k]; }
+      const L = { ...(g.label || {}), at: new Date().toISOString().slice(0, 10) };
+      if (val("notes").trim()) L.notes = val("notes").trim(); else delete L.notes;
+      for (const k of ["real", "family_is", "actual_time"]) { if (val(k).trim()) L[k] = val(k).trim(); else delete L[k]; }
       if (val("forced")) L.forced = val("forced") === "yes"; else delete L.forced;
+      const lines = (stories?.stories || {})[g.id];
+      if (lines) {
+        const wrong = [...el.querySelectorAll("tr[data-line]")].filter((tr) => tr.querySelector("[data-wrong]").checked)
+          .map((tr) => { const [t, text] = lines[+tr.dataset.line]; return { t, text, comment: tr.querySelector("[data-why]").value.trim() }; });
+        L.story = { at: L.at, draft: stories.draft, lines: lines.length, wrong };
+      }
       const should = el.querySelector("[data-should]").value, why = el.querySelector("[data-should-text]").value.trim();
       if (should || why) g.sealed = seal({ should, why });
       g.label = L;
-      if (await store(`Golden moments: ${g.id} note`, before)) await redraw();
+      if (await store(`Golden moments: ${g.id} marked`, before)) await redraw();
     };
     el.querySelector("[data-clear]")?.addEventListener("click", async () => {
       const before = { label: g.label, sealed: g.sealed };
@@ -121,12 +120,5 @@ export async function renderGolden(out, keep = false) {
       if (await store(`Golden moments: ${g.id} cleared`, before)) await redraw();
     });
     el.querySelectorAll("[data-wrong]").forEach((c) => c.onchange = () => { const w = c.closest("td").querySelector("[data-why]"); w.hidden = !c.checked; if (c.checked) w.focus(); });
-    el.querySelector("[data-save-marks]")?.addEventListener("click", async () => {
-      const lines = stories.stories[g.id], before = { label: g.label, sealed: g.sealed };
-      const wrong = [...el.querySelectorAll("tr[data-line]")].filter((tr) => tr.querySelector("[data-wrong]").checked)
-        .map((tr) => { const [t, text] = lines[+tr.dataset.line]; return { t, text, comment: tr.querySelector("[data-why]").value.trim() }; });
-      g.label = { ...g.label, story: { at: new Date().toISOString().slice(0, 10), draft: stories.draft, lines: lines.length, wrong, missing: el.querySelector("[data-missing]").value.trim() } };
-      if (await store(`Golden moments: ${g.id} story marked`, before)) await redraw();
-    });
   });
 }

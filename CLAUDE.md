@@ -190,16 +190,16 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
 - Redesign step 2 (bundle 4) is built on the branch `bundle-4`, never on main piecemeal (R-322): `hallmap.py` (zones
   and walked distances from the labelled halls), `moments.py` (departures, triggers, scenarios, calls) and
   `tools/golden/golden.py` (pick, score) live there until the bundle lands. Golden moments (R-303): Denning labels
-  them on Model > Golden moments (`data/model/golden_moments.json`, on main). That file never holds the engine's
-  reading; never show him the engine's reading of a moment he has not labelled, and never decode or print a
-  moment's `sealed` field in a chat.
+  them on Model > Golden moments (`data/model/golden_moments.json`, on main). That file holds only what he wrote;
+  never decode or print a moment's `sealed` field in a chat.
   Also on the branch: `story.py <report id> [from] [to]` prints the story so far (R-341: the engine reads a match as
   Denning's notes do: flag forms, every fight with its place and numbers, deaths against the base res, NPCs), and
   `tools/maps/draft_greater_stand.py` drafts each hall's "Greater stand area" (R-334, R-342) into `data/maps/draft/`.
-  The golden page has two parts (R-345): his note first; then the engine's story of that game
-  (`data/model/golden_stories.json`, from `tools/golden/golden.py stories`), shown only after his note is saved, for
-  him to mark (`label.story`: lines ticked wrong with his reason, and what is missing). Regenerate the stories after
-  the story changes; his marks keep the text of the line they were made on.
+  The golden page (R-354) shows the engine's story of each game (`data/model/golden_stories.json`, from
+  `tools/golden/golden.py stories`); he ticks the lines that are wrong with his reason and adds notes or corrections
+  (`label.story.wrong`, `label.notes`). The 13 notes marked `blind_note` were written before he saw any story: after
+  every change to `story.py`, regenerate the stories and compare them with those notes yourself (the blind check).
+  His marks keep the text of the line they were made on.
 - Guild hall maps: `tools/maps/build_maps.py` builds the site's map data from the replays branch
   (`data/maps/index.json`, `outline/<map id>.json`, `auto/<map id>.json`); Denning's labels (points, areas, routes) are
   saved by the site's Model > Guild hall maps page to `data/maps/labels/<map id>.json` and override estimates. The
