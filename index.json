@@ -1,6 +1,6 @@
 {
  "format": "gvginfo.replay.v1",
- "updated": "2026-11-09T20:12:45.146Z",
+ "updated": "2026-11-11T05:55:43.631Z",
  "matches": {
   "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65": {
    "file": "2026-11/eea5ba87-ac20-5ba3-a6c9-965f11ca8a65.json.gz",
@@ -7811,6 +7811,104 @@
    "winner": "Crew",
    "length_s": 919,
    "kb": 231,
+   "summary": true,
+   "trim": 3
+  },
+  "d1e4b578-92f2-5cc0-ad44-419ab8658768": {
+   "file": "2026-11/d1e4b578-92f2-5cc0-ad44-419ab8658768.json.gz",
+   "date": "2026-11-11T03:29:01.650Z",
+   "map": "Nomad's Isle",
+   "teams": [
+    "chic",
+    "戦戦戦戦"
+   ],
+   "winner": "chic",
+   "length_s": 734,
+   "kb": 187,
+   "summary": true,
+   "trim": 3
+  },
+  "a6d52f60-03a9-58c4-a687-3bcf77eca500": {
+   "file": "2026-11/a6d52f60-03a9-58c4-a687-3bcf77eca500.json.gz",
+   "date": "2026-11-11T03:25:00.464Z",
+   "map": "Nomad's Isle",
+   "teams": [
+    "DUM",
+    "RV"
+   ],
+   "winner": "DUM",
+   "length_s": 514,
+   "kb": 109,
+   "summary": true,
+   "trim": 3
+  },
+  "5f380eb5-7b0f-5b35-acbd-b82c08e02750": {
+   "file": "2026-09/5f380eb5-7b0f-5b35-acbd-b82c08e02750.json.gz",
+   "date": "2026-09-09T18:50:11.483Z",
+   "map": "Druid's Isle",
+   "teams": [
+    "cope",
+    "xxx"
+   ],
+   "winner": "xxx",
+   "length_s": 469,
+   "kb": 113,
+   "summary": true,
+   "trim": 3
+  },
+  "d70f3684-8f70-5513-a327-83e1a45013f1": {
+   "file": "2026-09/d70f3684-8f70-5513-a327-83e1a45013f1.json.gz",
+   "date": "2026-09-06T20:07:20.876Z",
+   "map": "Isle of Weeping Stone",
+   "teams": [
+    "xxx",
+    "ohno"
+   ],
+   "winner": "ohno",
+   "length_s": 1633,
+   "kb": 387,
+   "summary": true,
+   "trim": 3
+  },
+  "2615ca0c-12b4-5ae6-a73d-53c0f0fc627c": {
+   "file": "2026-09/2615ca0c-12b4-5ae6-a73d-53c0f0fc627c.json.gz",
+   "date": "2026-09-03T21:07:09.273Z",
+   "map": "Isle of Weeping Stone",
+   "teams": [
+    "Rudi",
+    "yM"
+   ],
+   "winner": "yM",
+   "length_s": 919,
+   "kb": 232,
+   "summary": true,
+   "trim": 3
+  },
+  "00cb0759-90c2-5d30-acf1-cae674b4cbae": {
+   "file": "2026-09/00cb0759-90c2-5d30-acf1-cae674b4cbae.json.gz",
+   "date": "2026-09-03T20:56:50.626Z",
+   "map": "Isle of Weeping Stone",
+   "teams": [
+    "xxx",
+    "Apes"
+   ],
+   "winner": "xxx",
+   "length_s": 319,
+   "kb": 74,
+   "summary": true,
+   "trim": 3
+  },
+  "62c3fad6-2ebb-5a65-ae51-186c08822dc4": {
+   "file": "2026-09/62c3fad6-2ebb-5a65-ae51-186c08822dc4.json.gz",
+   "date": "2026-09-03T20:31:44.790Z",
+   "map": "Corrupted Isle",
+   "teams": [
+    "xxx",
+    "NwAy"
+   ],
+   "winner": "NwAy",
+   "length_s": 1295,
+   "kb": 347,
    "summary": true,
    "trim": 3
   }
