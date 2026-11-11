@@ -75,7 +75,6 @@ model's structure: `knowledge/model.md` (generated).
   `python3 -m http.server` and playwright with `/usr/bin/google-chrome` (mock api.github.com for a save).
 
 ## Cautions
-- Never print or decode a sealed field (blind picks, golden moments) in a chat, and never show Denning the engine's
-  reading of a golden moment he has not labelled.
+- Never print or decode a sealed field (blind picks, golden moments) in a chat.
 - Don't merge `bundle-4` into main piecemeal (it would force a rebuild). No Train batch or Discovery run in progress.
-- Label files are saved whole by the site: after a change here, Denning reloads the page before labelling.
+- Label and golden files are saved whole by the site: after a change here, Denning reloads the page first.
