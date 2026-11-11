@@ -12,12 +12,8 @@ model's structure: `knowledge/model.md` (generated).
 - Main's engine is unchanged (still as SPEC.md describes; batch 17 readings in CHANGELOG 2026-11-09 night). Chunks
   can still run on main. Bundle 4 is built on the branch `bundle-4` and lands in one piece, then one rebuild (R-322).
 - On `bundle-4` so far (stages A and B of five; REDESIGN.md "Step 2: where it stands"):
-  - `hallmap.py`: zones from the labelled areas (R-306), walked distance with teleporter hops (R-316), footmen reach
-    around the Footman labels (R-320; `data/benchmarks/footmen_reach.json`). `state.zone` and the three map numbers
-    read it; labels, outlines and hall features are in the cache key (a saved label will rebuild prepared data).
-  - `moments.py` (draft): departures, triggers, scenarios, calls as allocations, forced reads for families 1 to 3.
-    `python3 moments.py <report id>` prints a match; `moments.py all /tmp/moments.json --jobs 4` then
-    `moments.py counts /tmp/moments.json` gives cases per scenario and call (70 s for 506 matches).
+  - `hallmap.py`: zones, walked distance with teleporter hops, footmen reach, places in his words (R-306, R-316, R-320).
+  - `moments.py`: the old draft moments (families 1 to 3: triggers, scenarios, calls) and, since 2026-11-11, the records.
   - `tools/golden/golden.py pick|score|stories` (outside the engine folder); it never reads the sealed field.
 - On main: Model > Golden moments (`assets/js/pages/golden.js`, `data/model/golden_moments.json`): 30 moments for
   Denning to label. The file never holds the engine's reading. Rulings R-318 to R-324 recorded.
