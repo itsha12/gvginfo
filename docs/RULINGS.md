@@ -340,3 +340,5 @@ This register is the model's constitution: every definition and decision Denning
 - R-380. The gate for the reading stage is 90% agreement on the four held-out games (R-370). Golden moments are limited to 15 for now: 30 is too many to mark.
 - R-381. A lone player is splitting when he is on the enemy's side of the stand, away from his main team, for 15 s or more, and is either hitting NPCs or trading damage with a defender. This replaces the parking in R-367.
 - R-382. The golden set is 15 games for now: the 14 he has labelled and RACK v chic. The other 15 are parked, not deleted.
+- R-383. The 90% gate of R-380 is read on statements of something seen happening. Calls on comms (what a team means to do, or says the enemy is doing) are reported beside it as carried out or not seen: a call that was not carried out is not the engine's miss.
+- R-384. A door stays the whole drawn route up to the edge of the labelled pit area. A long move along it is worded "falls back deeper along X's front door, toward its pit"; the place naming is not changed.
