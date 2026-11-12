@@ -12,7 +12,9 @@ called before the move, "s." a call about the enemy.
 Checked kinds are looked for in the engine's story and fight numbers within a window of the statement; the rest are
 things the story has no word for yet and are counted by kind, so the list of missing words comes from the data.
 
-Usage:  python3 tools/golden/lineup.py score [--data DIR] [--held] [--show] [report id ...]
+The four held-out games (R-370) are filed in data/lineup/held/ (R-397); --show prints their lines only with --gate.
+
+Usage:  python3 tools/golden/lineup.py score [--data DIR] [--held] [--show [--gate]] [report id ...]
         python3 tools/golden/lineup.py lines <report id> <from m:ss> <to m:ss> [word]
 A report tool: it is in no cache key and writes nothing but its own cache of stories (LINEUP_CACHE, default /tmp)."""
 import collections, glob, json, os, re, sys
@@ -217,18 +219,24 @@ def score(paths, show=False):
         print(f"  {k}: checked {n}, agrees {c['agrees']} ({round(100 * c['agrees'] / max(n, 1))}%)")
 
 
+def files(data):
+    """The statement files: the building games in the folder itself, the held-out games in its `held` subfolder (R-397)."""
+    return sorted(glob.glob(os.path.join(data, "*.txt")) + glob.glob(os.path.join(data, "held", "*.txt")))
+
+
 if __name__ == "__main__":
     av = sys.argv[1:]
     if not av: print(__doc__); sys.exit()
     data = os.path.join(HERE, "..", "..", "data", "lineup")
     if "--data" in av: i = av.index("--data"); data = av[i + 1]; del av[i:i + 2]
     if av[0] == "lines":
-        rec = record(next((os.path.basename(f).split(".")[0] for f in glob.glob(os.path.join(data, av[1] + "*"))), av[1]))
+        rec = record(next((os.path.basename(f).split(".")[0] for f in files(data) if os.path.basename(f).startswith(av[1])), av[1]))
         for t, s in rec["story"]:
             if secs(av[2]) <= t <= secs(av[3]) and (len(av) < 5 or re.search(av[4], s)): print(clock(t), s[:260])
     elif av[0] == "score":
         show = "--show" in av; held = "--held" in av
         ids = [x for x in av[1:] if not x.startswith("--")]
-        paths = [p for p in sorted(glob.glob(os.path.join(data, "*.txt"))) if not ids or any(os.path.basename(p).startswith(i) for i in ids)]
+        if held and show and "--gate" not in av: sys.exit("The held-out games' lines are read once, by Denning, at the gate (R-370, R-396): add --gate for that review.")
+        paths = [p for p in files(data) if not ids or any(os.path.basename(p).startswith(i) for i in ids)]
         paths = [p for p in paths if (load(p)[0].get("held_out", "no") == "yes") == held]
         score(paths, show)
