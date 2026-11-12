@@ -39,8 +39,7 @@ model's structure: `knowledge/model.md` (generated).
 - The seven kinds of reading step 2 are checked. Posture and timing statements that are not a true stand-off or a
   deliberate hold are set aside (R-414: 7 building, 15 held out). Seen events: building 422 of 426 (99%), held-out
   163 of 196 (83%). Comms calls: 108 of 157, 61 of 80. Stand-offs: 146 over 606 matches (0.24 a match).
-- Held-out misses by kind (33 seen, 19 calls): push 6, answer 5, join 5, fall 4, fight 4, go 3, npc 3, pushflag 3,
-  split 2, hold 2, lord 2, drop 2, wait 2, and one each of eight others. No held-out line has been read.
+- Held-out misses (33 seen, 19 calls): push 6, answer 5, join 5, fall 4, fight 4, others three or fewer. None read.
 - Reading step 3 so far: `golden_stories.json` is draft 6; the blind check against his 13 notes covered the opening
   and the last two to three minutes before each moment (fixed: a hand-off under a push told as a dropped flag).
 
