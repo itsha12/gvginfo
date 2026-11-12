@@ -58,8 +58,7 @@ model's structure: `knowledge/model.md` (generated).
   stand plus the share of its next flag run done (plus up to half for the following runner already back at the
   spawn); the lead is the difference. It reads his nine building statements as he said them (full = about 1.0,
   half = about 0.4; R-402's backup with nothing coming = 2). Needs his ruling and the names of the bands.
-- A flag left at the spawn (1.8 a match at 45 s): keep, tighten, or tell only while the enemy holds the stand.
-- Whether the two accepted hdm v HC statements (20:00, 22:20, R-403) are marked confirmed (`ok.`) or stay misses.
+- A flag left at the spawn (1.8 a match at 45 s): keep or tighten. The two accepted hdm v HC statements (R-403): `ok.` or misses.
 - From before: comms pass rate (R-394); game 1's story form (R-395); threat, hand-off to hold, time to cap, 983a47db.
 
 ## Running it
