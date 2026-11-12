@@ -59,8 +59,7 @@ model's structure: `knowledge/model.md` (generated).
 - Timing beyond the four of R-377 (not running a flag yet; keeping it in hand). Half a flag (R-375) is read as
   "picked up before the enemy's", so it stays once the enemy picks up later.
 - hdm v HC 20:00 (long way then short way; read as the short way), 22:20 (a runner killed before his pickup).
-- From before: the comms calls' pass rate in the decision gate (R-394); game 1's story form (R-395); threat,
-  hand-off to hold, time to cap, monk energy only if needed (R-353), discovery second run, behaviour clusters, 983a47db.
+- From before: comms pass rate (R-394); game 1's story form (R-395); threat, hand-off to hold, time to cap, 983a47db.
 
 ## Running it
 - Train batch: `gh api -X POST repos/itsha12/gvginfo/actions/workflows/train-batch.yml/dispatches -f ref=main
