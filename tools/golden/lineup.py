@@ -85,6 +85,7 @@ def _seg(line, tag):
 def check(r, rec):
     """(verdict, the engine line that agrees or the nearest lines of the kind)."""
     kind = r["kind"].split(".")[-1]
+    if r["kind"].startswith("ok."): return "agrees", "Denning confirmed the engine's reading of this moment"
     if kind in NO_WORD:
         return ("to build" if kind in TO_BUILD else "sealed" if kind in SEALED else "out of scope" if kind in OUT else "not ruled"), ""
     T = r["team"]; E = next((x for x in rec["teams"] if x != T), "")
@@ -135,6 +136,9 @@ def check(r, rec):
         fam = rf"^{te} (answers|does not answer|sends)"
         hit = find(rf"^{te} answers {ee}'s split with", need_who=True) or find(rf"^{te} sends .* back for {ee}'s split", need_who=True)
         if not hit: hit = next(((t, s) for t, s in state(near) if all(re.search(rf"{re.escape(w)}[^;]*(defending|against)", s) for w in who) and "defending" in s), None)
+        if not hit and who:                         # the same thing told another way: the defender in a fight, or joining one, on his own ground
+            w = re.escape(one)
+            hit = find(rf"^{te}'s [^:]*{w}[^:]* (?:joins?|(?:now )?defends?) [^:]*at {te}'s") or find(rf"^A fight at {te}'s [^:]*: .*{te}: [^;)]*{w}")
     elif kind == "noanswer": fam = rf"^{te} (answers|does not answer)"; hit = find(rf"^{te} does not answer {ee}'s split")
     elif kind == "fight":
         fam = None
@@ -148,7 +152,7 @@ def check(r, rec):
         if not hit:
             top = [f"{x}v{y} {p}" for (x, y, p), c in seen.most_common(4)]
             return "differs", "engine's numbers in the window: " + "; ".join(top)
-    elif kind == "death": fam = rf"^{te} loses"; hit = find(rf"^{te} loses [^(]*{re.escape(one)}")
+    elif kind == "death": fam = rf"^{te} loses"; hit = find(rf"^{te} loses (?:(?! at ).)*{re.escape(one)}")
     elif kind == "baseres": fam = rf"^Base res: {te}"; hit = find(rf"^Base res: {te}'s [^.]*{re.escape(one)}")
     elif kind == "res": fam = rf"^{te}'s .*resurrected"; hit = find(rf"{R}\S* is resurrected")
     elif kind == "npc": fam = rf"^{te} takes"; hit = find(rf"^{te} takes {ee}'s {arg}")

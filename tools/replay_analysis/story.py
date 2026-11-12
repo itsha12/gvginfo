@@ -22,6 +22,7 @@ import collections, re, sys
 from common import (JOIN_S, OVERCAP_S, RES_EVERY, BOOST_EVERY, ON_TIME_S, LATE_S, PRESSURE_HP, PRESSURE_DEATH_S, PRESSURE_MIN, GROUND_MIN, GROUND_MOVE,
                     SPAWN_R, FIGHT_LINK)
 from state import d
+from hallmap import _seg_dist as _seg
 
 STEP = 2
 LADDER = {"stand": 0, "greater stand": 0, "field": 0, "front footies": 1, "back footies": 1, "front door": 2, "back door": 2, "base": 3, "pit": 4}
@@ -47,7 +48,17 @@ def _passed(M, a, t0, t1):
 
 def _route_words(M, a, kinds, t0, t1):
     out, ks = [], [k for k, _ in kinds]
-    if "stand" in ks or "greater stand" in ks: out.append("through mid")
+    mid = "stand" in ks or "greater stand" in ks
+    cr = [r for r in M.hall.routes if r["type"] == "Collapse route"]
+    if cr:                                              # where Denning has drawn a collapse route, that is "through mid" (R-385): walked along it for half its length
+        from common import DOOR_R
+        pts = [M.P[a][u] for u in range(max(int(t0), 0), min(int(t1), M.T) + 1, 2) if M.AL[a][u] and M.P[a][u]]
+        def took(r):
+            ln = sum(d(u, v) for u, v in zip(r["pts"], r["pts"][1:]))
+            on = [min(_seg(p, u, v) for u, v in zip(r["pts"], r["pts"][1:])) <= DOOR_R for p in pts]
+            return sum(d(p, q) for (p, q), (x, y) in zip(zip(pts, pts[1:]), zip(on, on[1:])) if x and y) >= 0.5 * ln
+        mid = any(took(r) for r in cr)
+    if mid: out.append("through mid")
     if "pit" in ks: out.append("through the pit")
     for dr in ("front door", "back door"):
         if dr in ks: out.append("by the " + dr)

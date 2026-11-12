@@ -612,10 +612,10 @@ class Moments:
                     if abs(full) < GROUND_MOVE: continue
                     a = max(i for i in range(i0, i1 + 1) if abs(run[i][1] - run[i0][1]) <= 0.15 * abs(full))
                     b = min(i for i in range(a, i1 + 1) if abs(run[i][1] - run[i1][1]) <= 0.15 * abs(full))
-                    best = None                               # the fastest GROUND_MOVE inside it must fit in GROUND_S
+                    best, fast = None, a                      # the fastest GROUND_MOVE inside it must fit in GROUND_S; the move is told from there
                     for i in range(a, b + 1):
                         j = next((j for j in range(i + 1, b + 1) if abs(run[j][1] - run[i][1]) >= GROUND_MOVE), None)
-                        if j is not None and (best is None or run[j][0] - run[i][0] < best): best = run[j][0] - run[i][0]
+                        if j is not None and (best is None or run[j][0] - run[i][0] < best): best, fast = run[j][0] - run[i][0], i
                     if best is None or best > GROUND_S: continue
                     u0, u1, g0, g1 = run[a][0], run[b][0], run[a][2], run[b][2]
                     same = [x for x in g0 if x in g1]         # the same players must have made the move: a group that only gains or loses players has not moved
@@ -626,7 +626,7 @@ class Moments:
                         return max(z, key=lambda k: (z[k], str(k)))
                     near = lambda g, u: [e for e in st.players[foe] if self.AL[e][u] and self.P[e][u] and any(d(self.P[e][u], self.P[x][u]) < FIGHT_LINK for x in g)]
                     k0, k1 = where(g0, u0), where(g1, u1)
-                    out.append({"t": u0, "t1": u1, "team": m.tag[tm], "tm": tm, "group": group, "way": "up" if way > 0 else "back", "dist": round(abs(run[b][1] - run[a][1])),
+                    out.append({"t": run[fast][0], "t0": u0, "t1": u1, "team": m.tag[tm], "tm": tm, "group": group, "way": "up" if way > 0 else "back", "dist": round(abs(run[b][1] - run[a][1])),
                                 "from": self.place_words(*k0), "to": self.place_words(*k1), "from_kind": k0[0], "from_side": k0[1], "to_kind": k1[0], "to_side": k1[1],
                                 "ids": sorted(g0), "n": len(g0), "pressed": len(near(g0, u0)), "followed": len(near(g1, u1)),
                                 "fighting": self.contact(set(g0), set(st.players[foe]), max(u0 - 10, 0), u0)})
