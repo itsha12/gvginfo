@@ -236,6 +236,9 @@ def _record_events(M):
         for w in r["swaps"]:
             out.append((w["t"], f"{w['team']} swaps {w['in']} in for {w['out']} in the split fight"))
             swapped.add(("join", w["in_id"], w["t_in"])); swapped.add(("leave", w["out_id"], w["t_out"]))
+        for w in r["pulled"]:      # told here unless moves() already has him joining
+            if not any(x["kind"] == "join" and w["id"] in x["ids"] and abs(x["t"] - w["t"]) <= 20 for x in M.moves()):
+                out.append((w["t"], f"{w['team']}'s {w['role']} comes off the split and joins the main fight at {w['place']}: {t1} {w['n'][0]} v {w['n'][1]} {t2}"))
         g = r["ground_s"]
         took = "; ".join(f"{tg} takes {', '.join(r['npcs'][tg])}" for tg in (t1, t2) if r["npcs"][tg]) or "no NPC taken"
         died = "; ".join(f"{tg} loses {', '.join(r['deaths'][tg])}" for tg in (t1, t2) if r["deaths"][tg]) or "no deaths"

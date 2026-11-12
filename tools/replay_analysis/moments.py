@@ -57,13 +57,14 @@ class Moments:
             self.P[a], self.AL[a] = ps, al
         self.MAIN = {tm: [frozenset(st.main_group(tm, t)) for t in R] for tm in st.teams}
         self._z = {}
-        flags = m.o.get("flags", [])
-        self.pick = collections.defaultdict(list)
-        for t, typ, a, *_ in flags:
-            if typ == "flag_picked_up" and a in self.P: self.pick[a].append(t / 10)
+        self.spawn = {tm: (self.hall.spawn.get(st.side[tm]) if self.hall and tm in st.side else None) or st.geo.spawn.get(tm) for tm in st.teams}
         self.carry = collections.defaultdict(list)
         for c in st.carries: self.carry[c["a"]].append((c["s"], c["e"]))
-        self.spawn = {tm: (self.hall.spawn.get(st.side[tm]) if self.hall and tm in st.side else None) or st.geo.spawn.get(tm) for tm in st.teams}
+        self.flag_ev, self.missed_pickups = self._flag_ev()
+        for tp, a, tc in self.missed_pickups: self.carry[a].append((tp, tc))
+        self.pick = collections.defaultdict(list)
+        for t, typ, a in self.flag_ev:
+            if typ == "flag_picked_up": self.pick[a].append(t)
         self.foot_dead = collections.defaultdict(list)       # team -> times its footmen died
         for r in m.o["ev"]:
             if r[1] == "dt" and isinstance(r[2], int) and r[2] < len(m.A) and m.A[r[2]].get("npc") == "footman":
@@ -86,9 +87,39 @@ class Moments:
         self._pit = {}
         self._dp, self._ov, self._fp, self._att, self._last, self._mt, self._ln, self._fr = {}, {}, None, None, {}, {}, None, None
         self._fi, self._mv, self._sf, self._gr, self._und = None, None, None, None, None
+        self.side_cut = set()                                # seconds at which a side fight was cut off a bigger one (counted for the thresholds table)
         self.legs = self._departures()
         self.by_player = collections.defaultdict(list)
         for g in self.legs: self.by_player[g["a"]].append(g)
+
+    def _flag_ev(self):
+        """The flag events in seconds, players only: [(t, kind, player)], and the pickups the observer missed
+        [(pickup, player, capture)]. A capture by a player with no pickup recorded on him (about 1 capture in 40) is
+        given one, read from the capture as a missed return is read from the flag being back (R-389): where a team
+        mate last dropped the flag, the first second the capper stood on it; failing that at his own flag spawn, the
+        last second he stood there since his team's last flag event. No such second: the capture stays as recorded."""
+        m, out, missed = self.m, [], []
+        op, last = {}, {}                                    # open pickups by player; team -> its last flag event (t, kind, player)
+        for t, typ, a, *_ in m.o.get("flags", []):
+            if a not in self.P or typ not in ("flag_picked_up", "flag_dropped", "flagstand_captured"): continue
+            t, tm = t / 10, m.team(a)
+            if typ == "flag_picked_up": op[a] = t
+            elif typ == "flag_dropped": op.pop(a, None)
+            elif a not in op:
+                lt, lk, la = last.get(tm, (0, None, None))
+                u1, tp = min(int(t), self.T), None
+                if lk == "flag_dropped" and la != a:
+                    u0 = min(int(lt), self.T)                 # positions are by the second and a drop falls between two: either side of it,
+                    spots = [q for q in (self.P[la][u0], self.P[la][min(u0 + 1, self.T)]) if q]      # or the two meeting just after it
+                    tp = next((max(u, lt) for u in range(u0, u1 + 1) if self.P[a][u] and (any(d(self.P[a][u], q) < RETURN_R for q in spots)
+                               or (u <= u0 + 3 and self.P[la][u] and d(self.P[a][u], self.P[la][u]) < RETURN_R))), None)
+                if tp is None and self.spawn.get(tm):
+                    tp = next((u for u in range(u1, int(lt) - 1, -1) if self.P[a][u] and d(self.P[a][u], self.spawn[tm]) < SPAWN_R), None)
+                if tp is not None and tp < t:
+                    out.append((tp, "flag_picked_up", a)); missed.append((tp, a, t))
+            else: op.pop(a, None)
+            out.append((t, typ, a)); last[tm] = (t, typ, a)
+        return sorted(out, key=lambda x: x[0]), missed
 
     # ---- basics
     def zone(self, a, t):
@@ -176,7 +207,7 @@ class Moments:
             apart = lambda c: all(d(self.P[a][t], self.P[b][t]) >= 1000 for a in c for b in g if b not in c)      # and nobody else of the fight within an aggro bubble of them
             side = [c for c in comps if len({m.team(a) for a in c}) == 2 and len(c) <= SIDE_FIGHT_MAX and len(c) * 2 < len(g) and apart(c)]
             if side and len(g) - sum(len(c) for c in side) >= 2:
-                off = {a for c in side for a in c}
+                off = {a for c in side for a in c}; self.side_cut.add(int(t))
                 cut.append([a for a in g if a not in off]); cut += side
             else: cut.append(g)
         gs = cut
@@ -245,7 +276,7 @@ class Moments:
         the flag near the fight, R-340 form 2), and whether the next runner went back for the flag or was already
         home (back from a split, defending, resurrected): today both count as a double run."""
         st, m, out = self.st, self.m, []
-        ev = [(t / 10, typ, a) for t, typ, a, *_ in m.o.get("flags", []) if a in self.P and typ in ("flag_picked_up", "flag_dropped", "flagstand_captured")]
+        ev = self.flag_ev
         for tm in st.teams:
             cur, lives = None, []
             for t, typ, a in ev:
@@ -815,7 +846,7 @@ class Moments:
         wherever it drifts and whoever is pushing (out of contact for up to SPLIT_FIGHT_GAP_S is still the same fight).
         Each record: when, who on each side and from when to when, who started it (whose ground it opened on), the
         seconds on each team's ground and between them, the usual numbers and monks a side (R-378), the joins, leaves
-        and swaps inside it (moves), NPCs taken and deaths by side, what the main teams had meanwhile, and the split
+        and swaps inside it (moves), who was pulled off it onto the main fight (pulled), NPCs taken and deaths by side, what the main teams had meanwhile, and the split
         attempts it covers (those are told as this one fight, not as separate splits)."""
         if self._sf is not None: return self._sf
         st, m, T, S = self.st, self.m, self.T, SPLIT_STEP
@@ -877,6 +908,7 @@ class Moments:
             monks = {tm: collections.Counter(mk([a for a in mem[tm] if on(a, x[0])]) for x in r["track"]).most_common(1)[0][0] for tm in (1, 2)}
             everyone = set(mem[1]) | set(mem[2])
             inside = [x for x in self.moves() if t0 - 4 <= x["t"] <= t1 + 4 and len(x["with"] & everyone) * 2 >= len(x["with"])]
+            pulled = []
             swaps = []         # a swap (R-374): a new player comes into the fight within SWAP_S of one who had been in it leaving it
             for tm_ in (1, 2):
                 ins = [(s_, a) for a in mem[tm_] for i, (s_, e) in enumerate(span[a])
@@ -890,6 +922,16 @@ class Moments:
                     if c:
                         o = min(c, key=lambda o: (abs(o[0] - tj), -o[2])); gone.add((o[0], o[1]))
                         swaps.append({"t": max(tj, o[0]), "team": m.tag[tm_], "tm": tm_, "in": m.roles[a], "out": m.roles[o[1]], "in_id": a, "out_id": o[1], "t_in": tj, "t_out": o[0]})
+                # pulled off the split onto the main fight (Denning: "pulling the ele off the split"): a player who goes out of it
+                # as above and, within JOIN_LOOK_S, stands in his main team's fight and is still in it JOIN_S later. Told from
+                # here because a split fight that falls back into the main fight for a moment hides it from moves()
+                idx = self._fight_index()
+                for e, a, _ in outs:
+                    u = next((u for u in range(e + S, min(e + JOIN_LOOK_S, T - JOIN_S) + 1, S) if a in idx[u] and in_main(idx[u][a]["ids"][1] | idx[u][a]["ids"][2], tm_, u)), None)
+                    if u is None or not all(self.AL[a][x] for x in range(e, u + JOIN_S + 1)): continue
+                    v = u + JOIN_S - JOIN_S % S; f = idx[v].get(a)
+                    if f is None or not in_main(f["ids"][1] | f["ids"][2], tm_, v) or len(f["ids"][tm_] & set(mem[tm_])) * 2 > f["n"][tm_]: continue      # not when the split fight itself has become the main fight
+                    pulled.append({"t": u, "team": m.tag[tm_], "tm": tm_, "role": m.roles[a], "id": a, "t_out": e, "place": f["place"], "n": (f["n"][1], f["n"][2])})
             deaths = {tm: [m.roles[a] for td, a in sorted((td, a) for a in mem[tm] for td in st.death_times.get(a, []) if any(s_ - 1 <= td <= e + 4 for s_, e in span[a]))] for tm in (1, 2)}
             npcs = {1: [], 2: []}
             for x, td in st.npc_dead.items():
@@ -918,7 +960,7 @@ class Moments:
                         "members": {m.tag[tm]: [{"role": m.roles[a], "id": a, "from": span[a][0][0], "to": span[a][-1][1], "spans": span[a]} for a in mem[tm]] for tm in (1, 2)},
                         "ids": {tm: mem[tm] for tm in (1, 2)}, "n": max(nums, key=nums.get), "monks": {m.tag[tm]: monks[tm] for tm in (1, 2)},
                         "ground_s": {m.tag[1]: ground[1], m.tag[2]: ground[2], "between": ground[0]}, "linked_s": len(r["track"]) * S,
-                        "moves": [{"t": x["t"], "kind": x["kind"], "team": x["team"], "roles": x["roles"]} for x in inside], "swaps": swaps,
+                        "moves": [{"t": x["t"], "kind": x["kind"], "team": x["team"], "roles": x["roles"]} for x in inside], "swaps": swaps, "pulled": pulled,
                         "npcs": {m.tag[tm]: [k for _, k in sorted(npcs[tm])] for tm in (1, 2)}, "deaths": {m.tag[tm]: deaths[tm] for tm in (1, 2)},
                         "main": {"up_s": mm["up"], "even_s": mm["even"], "down_s": mm["down"]}, "attempts": cov})
         self._sf = out
