@@ -53,8 +53,7 @@ model's structure: `knowledge/model.md` (generated).
    Training chunks and Discovery resume after the merge; the decision card and the blind test follow.
 
 ## Open for Denning (set each out in the chat, R-329)
-- The 17 draft thresholds (JOIN_LOOK_S to SPLIT_FIGHT_MIN in `common.py`), set out with their all-match counts.
-- "Footies" when a team stands at its own living footmen and the enemy does not follow (the xxx line above).
+- The 17 draft thresholds (JOIN_LOOK_S to SPLIT_FIGHT_MIN in `common.py`). "Footies" at a team's own idle footmen.
 - A split whose main team is dead is renamed the main team and told as a new "main team push" (202 pushes in 155
   matches; Apes v hold 4:20; `main_team()` is R-355, left as ruled). The Shadow Step fault (R-324) with 19 cases.
 - Golden moments (R-354): his review of game 1's story form; his 13 `blind_note` notes are the blind check. Also
