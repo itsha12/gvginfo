@@ -28,7 +28,7 @@ Usage:  python3 moments.py <report id> [family]      the match's moments in orde
 In code: Moments(st, sb).records() -> list of dicts."""
 import collections, json, math, statistics, sys
 from common import (READ_FROM, READ_TO, AREA_SHARE, PURPOSE_S, LEAVE_MIN_S, HOME_WAIT_S, SPAWN_R, GROUP_LEAVE_S, MEET_R,
-                    NUMBERS_MIN_S, MERGE_S, BOOST_WARN_S, FLAGGER_R, SPLIT_FAR, BOOST_EVERY, SERIOUS_CARRY_S, FIGHT_LINK, GROUND_MOVE, GROUND_S, GROUND_BACK, GROUND_JUMP,
+                    NUMBERS_MIN_S, MERGE_S, BOOST_WARN_S, FLAGGER_R, SPLIT_FAR, BOOST_EVERY, SERIOUS_CARRY_S, FIGHT_LINK, GROUND_MOVE, GROUND_S, GROUND_BACK, GROUND_JUMP, GROUND_SPLIT_MOVE, PIT_S, SIDE_FIGHT_MAX, SIDE_FIGHT_S, UNDEFENDED_S,
                     RETURN_R, FOOT_ENGAGED_S, SPLIT_STEP, SPLIT_MIN_S, SPLIT_GAP_S, FORCED_OUT_S, AHEAD_LOOK_S, CAUGHT_S, NPC_NEAR,
                     JOIN_S, RES_EVERY, flux_at, JOIN_LOOK_S, JOIN_MOVE, JOIN_LEAD, SWAP_S, SWAP_STAY_S, SPLIT_FIGHT_GAP_S, SPLIT_FIGHT_MIN)
 from state import d
@@ -71,15 +71,21 @@ class Moments:
         self.foot_act = collections.defaultdict(list)        # team -> seconds its footmen dealt or took damage
         self.hits = collections.defaultdict(list)            # second -> [(actor, target)] damage between players
         self.npc_hits = collections.defaultdict(list)        # player -> seconds he damaged an enemy NPC
+        self.pit_kind = collections.defaultdict(lambda: collections.defaultdict(set))  # team -> second -> which of them (knight, bodyguard, guild_lord)
+        self.pit_act = collections.defaultdict(lambda: collections.defaultdict(set))   # team -> second -> enemy players trading damage with its knight, bodyguard or Guild Lord (R-387)
         for r in m.o["ev"]:
             if r[1] != "dm" or not isinstance(r[2], int) or not isinstance(r[3], int) or max(r[2], r[3]) >= len(m.A): continue
             for x in (r[2], r[3]):
                 if m.A[x].get("npc") == "footman": self.foot_act[m.A[x].get("team")].append(r[0] / 10)
             if r[2] in self.P and r[3] in self.P and m.team(r[2]) != m.team(r[3]): self.hits[int(r[0] / 10)].append((r[2], r[3]))
+            for x, y in ((r[2], r[3]), (r[3], r[2])):
+                if m.A[x].get("npc") in ("knight", "bodyguard", "guild_lord") and y in self.P and m.A[x].get("team") not in (None, m.team(y)):
+                    self.pit_act[m.A[x].get("team")][int(r[0] / 10)].add(y); self.pit_kind[m.A[x].get("team")][int(r[0] / 10)].add(m.A[x].get("npc"))
             if r[2] in self.P and r[3] not in self.P and m.A[r[3]].get("npc") and m.A[r[3]].get("team") not in (None, m.team(r[2])): self.npc_hits[r[2]].append(r[0] / 10)
         self._eng = {}
+        self._pit = {}
         self._dp, self._ov, self._fp, self._att, self._last, self._mt, self._ln, self._fr = {}, {}, None, None, {}, {}, None, None
-        self._fi, self._mv, self._sf, self._gr = None, None, None, None
+        self._fi, self._mv, self._sf, self._gr, self._und = None, None, None, None, None
         self.legs = self._departures()
         self.by_player = collections.defaultdict(list)
         for g in self.legs: self.by_player[g["a"]].append(g)
@@ -148,6 +154,32 @@ class Moments:
         for a in live:
             hit = [g for g in gs if any(d(self.P[a][t], self.P[b][t]) < FIGHT_LINK for b in g)]
             gs = [g for g in gs if g not in hit] + [[a] + [x for g in hit for x in g]]
+        cut = []
+        for g in gs:                                         # a small fight hanging off a bigger one (R-374: the opening ranger 1v1 is not part of the 8v8)
+            if len(g) < 6 or len({m.team(a) for a in g}) < 2: cut.append(g); continue
+            gset, link = set(g), collections.defaultdict(set)
+            for u in range(max(int(t) - SIDE_FIGHT_S, 0), min(int(t) + SIDE_FIGHT_S, self.T) + 1):
+                for x, y in self.hits.get(u, ()):
+                    if x in gset and y in gset: link[x].add(y); link[y].add(x)
+            for a in g:
+                for b in g:
+                    if a < b and m.team(a) == m.team(b) and d(self.P[a][t], self.P[b][t]) < 1000: link[a].add(b); link[b].add(a)
+            comps, seen = [], set()
+            for a in g:
+                if a in seen: continue
+                comp, todo = [], [a]
+                while todo:
+                    x = todo.pop()
+                    if x in seen: continue
+                    seen.add(x); comp.append(x); todo += [y for y in link[x] if y not in seen]
+                comps.append(comp)
+            apart = lambda c: all(d(self.P[a][t], self.P[b][t]) >= 1000 for a in c for b in g if b not in c)      # and nobody else of the fight within an aggro bubble of them
+            side = [c for c in comps if len({m.team(a) for a in c}) == 2 and len(c) <= SIDE_FIGHT_MAX and len(c) * 2 < len(g) and apart(c)]
+            if side and len(g) - sum(len(c) for c in side) >= 2:
+                off = {a for c in side for a in c}
+                cut.append([a for a in g if a not in off]); cut += side
+            else: cut.append(g)
+        gs = cut
         out = []
         for g in gs:
             n = {tm: [a for a in g if m.team(a) == tm] for tm in st.teams}
@@ -167,7 +199,26 @@ class Moments:
         return self._eng[t]
 
     def place_at(self, a, t):
-        return self.hall.place(self.P[a][t], self.engaged(t))
+        """Where a player stands, in Denning's words. The pit is wider than its drawn area (R-387): a player is at his
+        own pit when he stands within reach of his knights, bodyguard or Guild Lord, and at the enemy's pit when he, or
+        a team mate next to him, is trading damage with one of them."""
+        k, s = self.hall.place(self.P[a][t], self.engaged(t))
+        if s is None or k in ("pit", "stand", "greater stand"): return k, s
+        key = (a, t)
+        if key not in self._pit:
+            hall, tm_s = self.hall, next((tm for tm, sd in self.st.side.items() if sd == s), None)
+            v = False
+            if tm_s is not None:
+                if self.m.team(a) == tm_s:
+                    r, pts = hall.reach(), hall.npc[s]["Knight"] + hall.npc[s]["Bodyguard"] + [hall.lord[s]]
+                    v = bool(r) and min(math.dist(self.P[a][t], q) for q in pts) <= r
+                else:
+                    act = self.pit_act.get(tm_s)
+                    if act:
+                        on = set().union(*(act.get(u, ()) for u in range(int(t) - PIT_S, int(t) + 1)))
+                        v = a in on or any(self.AL[b][t] and self.P[b][t] and d(self.P[a][t], self.P[b][t]) < 1000 for b in on)
+            self._pit[key] = v
+        return ("pit", s) if self._pit[key] else (k, s)
 
     def contact(self, ids1, ids2, t0, t1):
         """Did these two groups trade damage between t0 and t1 (standing near each other is not a fight)."""
@@ -225,7 +276,13 @@ class Moments:
                         cur["end"], cur["how"], cur["capper"] = t, "captured", a; lives.append(cur); cur = None
             if cur is not None: lives.append(cur)
             for i, L in enumerate(lives):
-                L["serious"] = [c[0] for c in L["carries"] if (c[2] is None or c[2] - c[1] >= SERIOUS_CARRY_S or c[0] == L.get("capper"))]
+                sp = self.hall.spawn.get(self.st.side.get(L["team"])) if self.hall is not None else None
+                def gave(i):                                  # he gave it to a team mate out on the map: a hand-off, however briefly the pickup was seen on him
+                    cs = L["carries"]
+                    if i + 1 >= len(cs) or cs[i + 1][0] == cs[i][0] or sp is None: return False
+                    q = self.P[cs[i + 1][0]][min(max(int(cs[i + 1][1]), 0), self.T)]
+                    return bool(q) and d(q, sp) > 2 * SPAWN_R
+                L["serious"] = [c[0] for i, c in enumerate(L["carries"]) if (c[2] is None or c[2] - c[1] >= SERIOUS_CARRY_S or c[0] == L.get("capper") or gave(i))]
                 order = list(dict.fromkeys(L["serious"]))
                 L["form"] = None
                 if L["how"] != "captured": continue
@@ -573,6 +630,51 @@ class Moments:
                 self._fi[t] = row
         return self._fi
 
+    def on_pit(self):
+        """Who is on the pit NPCs (R-378, R-387): one record each stretch in which a team trades damage with the
+        enemy's knights, bodyguard or Guild Lord, a stretch ending after 30 s without any. Each record: when, the
+        attacking team, whose pit, the players on them, and which NPCs."""
+        out = []
+        for tm_s, act in self.pit_act.items():
+            cur = None
+            for u in sorted(act):
+                if cur is not None and u - cur["t1"] <= 30: cur["t1"] = u; cur["ids"] |= act[u]; cur["npcs"] |= self.pit_kind[tm_s][u]
+                else:
+                    cur = {"t": u, "t1": u, "tm": 3 - tm_s, "team": self.m.tag[3 - tm_s], "foe": self.m.tag[tm_s], "ids": set(act[u]), "npcs": set(self.pit_kind[tm_s][u])}
+                    out.append(cur)
+        for r in out: r["roles"] = sorted(self.m.roles[a] for a in r["ids"])
+        return sorted(out, key=lambda r: r["t"])
+
+    def undefended(self):
+        """When a split is left with nobody defending it (R-374: "hdm's ranger is undefended"). The answer in an
+        attempt's record is who met it; this follows it afterwards: each stretch of UNDEFENDED_S or longer, during an
+        attempt, with no living enemy within FIGHT_LINK of any of its players on the enemy's ground. One record a
+        stretch: when it starts and ends, the splitting team, who is on it, where, and whether it had been defended."""
+        if self._und is not None: return self._und
+        st, m, S, out = self.st, self.m, SPLIT_STEP, []
+        for x in self.attempts():
+            if x.get("kind") != "split" or x.get("solo") == "other": continue
+            tm = x["tm"]; foe = 3 - tm
+            ids = [a for a in st.players[tm] if m.roles[a] in {y["role"] for y in x["members"]}]
+            span = {a: next((y["from"], y["to"]) for y in x["members"] if y["role"] == m.roles[a]) for a in ids}
+            cur, had = None, False
+            for u in range(int(x["t_in"]) - int(x["t_in"]) % S, min(int(x["t1"]), self.T) + 1, S):
+                on = [a for a in ids if span[a][0] <= u <= span[a][1] and self.AL[a][u] and self.P[a][u]]
+                near = on and any(self.AL[e][u] and self.P[e][u] and d(self.P[e][u], self.P[a][u]) < FIGHT_LINK for e in st.players[foe] for a in on)
+                if on and not near:
+                    if cur is None: cur = {"t": u, "t1": u, "ids": on, "had": had}
+                    cur["t1"] = u
+                else:
+                    if cur and cur["t1"] - cur["t"] >= UNDEFENDED_S: out.append(cur)
+                    cur = None; had = had or bool(near)
+            if cur and cur["t1"] - cur["t"] >= UNDEFENDED_S: out.append(cur)
+            for r in out:
+                if "team" not in r:
+                    z = collections.Counter(self.place_at(a, u) for a in r["ids"] for u in range(r["t"], r["t1"] + 1, 6) if self.AL[a][u] and self.P[a][u])
+                    r.update(team=x["team"], foe=m.tag[foe], roles=[m.roles[a] for a in r["ids"]], place=self.place_words(*max(z, key=lambda k: (z[k], str(k)))))
+        self._und = sorted(out, key=lambda r: r["t"])
+        return self._und
+
     def ground(self):
         """Ground, one record each time a group moves up or back (R-374: "falls back to its footies", "pushes up to
         the front door", "the split is pushed toward its pit"). Read for each main team and for each side of a split
@@ -587,6 +689,7 @@ class Moments:
         out = []
         def read(tm, row, group):
             side, foe = st.side.get(tm), 3 - tm
+            MOVE = GROUND_MOVE if group == "main" else GROUND_SPLIT_MOVE; BACK = MOVE // 2
             fld = hall.to(hall.lord[side])
             dep = lambda x, u: fld.get(hall.snap(self.P[x][u]))
             row = [(u, (lambda ds: statistics.median(ds) if len(ds) >= 2 else None)(sorted(v for v in (dep(x, u) for x in g) if v is not None)), g) for u, g in row]
@@ -602,25 +705,25 @@ class Moments:
                 for i in range(1, len(run)):
                     dv = run[i][1] - run[ext][1]
                     if way == 0:
-                        if abs(run[i][1] - run[piv][1]) >= GROUND_BACK: way, ext = (1 if run[i][1] > run[piv][1] else -1), i
+                        if abs(run[i][1] - run[piv][1]) >= BACK: way, ext = (1 if run[i][1] > run[piv][1] else -1), i
                     elif dv * way > 0: ext = i
-                    elif -dv * way >= GROUND_BACK:
+                    elif -dv * way >= BACK:
                         segs.append((piv, ext, way)); piv, ext, way = ext, i, -way
                 if way: segs.append((piv, ext, way))
                 for i0, i1, way in segs:
                     full = run[i1][1] - run[i0][1]
-                    if abs(full) < GROUND_MOVE: continue
+                    if abs(full) < MOVE: continue
                     a = max(i for i in range(i0, i1 + 1) if abs(run[i][1] - run[i0][1]) <= 0.15 * abs(full))
                     b = min(i for i in range(a, i1 + 1) if abs(run[i][1] - run[i1][1]) <= 0.15 * abs(full))
                     best, fast = None, a                      # the fastest GROUND_MOVE inside it must fit in GROUND_S; the move is told from there
                     for i in range(a, b + 1):
-                        j = next((j for j in range(i + 1, b + 1) if abs(run[j][1] - run[i][1]) >= GROUND_MOVE), None)
+                        j = next((j for j in range(i + 1, b + 1) if abs(run[j][1] - run[i][1]) >= MOVE), None)
                         if j is not None and (best is None or run[j][0] - run[i][0] < best): best, fast = run[j][0] - run[i][0], i
                     if best is None or best > GROUND_S: continue
                     u0, u1, g0, g1 = run[a][0], run[b][0], run[a][2], run[b][2]
                     same = [x for x in g0 if x in g1]         # the same players must have made the move: a group that only gains or loses players has not moved
                     dd = [dep(x, u1) - dep(x, u0) for x in same if dep(x, u0) is not None and dep(x, u1) is not None]
-                    if len(dd) < 2 or len(dd) * 2 < len(g0) or statistics.median(dd) * way < GROUND_MOVE * 0.75: continue
+                    if len(dd) < 2 or len(dd) * 2 < len(g0) or statistics.median(dd) * way < MOVE * 0.75: continue
                     def where(g, u):
                         z = collections.Counter(self.place_at(x, u) for x in g)
                         return max(z, key=lambda k: (z[k], str(k)))

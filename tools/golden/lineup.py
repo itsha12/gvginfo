@@ -103,6 +103,12 @@ def check(r, rec):
             if s.startswith("STATE"): continue
             if re.search(pat, s) and (not need_who or has(s)): return t, s
     hit = None; fam = None
+    def small_fight(names, team=T):                 # a split or its answer told as a small fight away from the main one: these players named in a fight of four a side or fewer
+        for t_, s_ in near:
+            mf = re.match(rf"A (?:split )?fight at [^:]*: \S+ (\d) v (\d) \S+ \((.*)\)$", s_)
+            if not mf or max(int(mf.group(1)), int(mf.group(2))) > 4: continue
+            seg = next((x for x in mf.group(3).split("; ") if x.startswith(team + ":")), "")
+            if names and all(re.search(rf"(?<![\w]){re.escape(w)}(?![\w])", seg) for w in names): return t_, s_
     if kind == "go":
         fam = rf"{te}'s .*(go back for the flag|picks up the flag at the spawn|waits back|takes the next flag)"
         hit = find(rf"{R}\S* (leaves .*to go back for the flag|picks up the flag at the spawn|waits back at the flag spawn)") \
@@ -120,7 +126,7 @@ def check(r, rec):
         fam = rf"{te}'s .*hands the flag"
         hit = find(rf"{R}\S* hands the flag to {re.escape(arg)}") or find(rf"{R}\S* drops the flag.*{re.escape(arg)} picks it up")
     elif kind == "drop": fam = rf"{te}'s .*drops the flag"; hit = find(rf"{R}\S* drops the flag")
-    elif kind == "ret": fam = rf"{te}'s .*returns"; hit = find(rf"{R}\S* returns {ee}'s flag")
+    elif kind == "ret": fam = rf"{te}'s .*returns|flag is back"; hit = find(rf"{R}\S* returns {ee}'s flag") or find(rf"^{ee}'s flag is back at the spawn")      # a return the observer missed is read from the flag being back
     elif kind == "hold":
         fam = rf"{te}.*holding the flag"
         hit = next(((t, s) for t, s in state(near) if re.search(rf"{re.escape(one)} holding the flag", s) or (not who and "holding the flag" in s)), None)
@@ -132,14 +138,19 @@ def check(r, rec):
         n = NUM.get(int(arg)) if arg.isdigit() else None
         hit = find(rf"^{te} splits {n or ''}", need_who=True)
         if not hit: hit = next(((t, s) for t, s in state(near) if re.search(r"splitting", s) and all(re.search(rf"{re.escape(w)}[^;]*splitting", s) for w in who)), None)
+        if not hit: hit = small_fight(who)
     elif kind == "answer":
         fam = rf"^{te} (answers|does not answer|sends)"
         hit = find(rf"^{te} answers {ee}'s split with", need_who=True) or find(rf"^{te} sends .* back for {ee}'s split", need_who=True)
         if not hit: hit = next(((t, s) for t, s in state(near) if all(re.search(rf"{re.escape(w)}[^;]*(defending|against)", s) for w in who) and "defending" in s), None)
         if not hit and who:                         # the same thing told another way: the defender in a fight, or joining one, on his own ground
             w = re.escape(one)
-            hit = find(rf"^{te}'s [^:]*{w}[^:]* (?:joins?|(?:now )?defends?) [^:]*at {te}'s") or find(rf"^A fight at {te}'s [^:]*: .*{te}: [^;)]*{w}")
-    elif kind == "noanswer": fam = rf"^{te} (answers|does not answer)"; hit = find(rf"^{te} does not answer {ee}'s split")
+            hit = find(rf"^{te}'s [^:]*{w}[^:]* (?:joins?|(?:now )?defends?) [^:]*at {te}'s") or find(rf"^A fight at {te}'s [^:]*: .*{te}: [^;)]*{w}") or small_fight(who[:1])
+    elif kind == "noanswer":
+        fam = rf"^{te} (answers|does not answer|leaves)"; hit = find(rf"^{te} does not answer {ee}'s split") or find(rf"^{te} leaves {ee}'s split undefended")
+        if not hit:                                 # or the state of play says it: a player of theirs splitting with nobody against him
+            for t_, s_ in near:
+                if s_.startswith("STATE") and any("against" not in c for c in re.findall(r"splitting at [^;.]*", _seg(s_, E))): hit = (t_, s_); break
     elif kind == "fight":
         fam = None
         m = re.match(r"(\d)\s*v\s*(\d)(?:\s*@\s*(.*))?", arg); a, b, pl = int(m.group(1)), int(m.group(2)), (m.group(3) or "").lower()
@@ -157,12 +168,12 @@ def check(r, rec):
     elif kind == "res": fam = rf"^{te}'s .*resurrected"; hit = find(rf"{R}\S* is resurrected")
     elif kind == "npc": fam = rf"^{te} takes"; hit = find(rf"^{te} takes {ee}'s {arg}")
     elif kind == "fall":            # the story often tells a retreat from the pusher's side: both tellings count
-        fam = rf"^{te}(?:'s split)? (falls back|gives ground)|^The fight moves|^{ee} pushes"
-        hit = find(rf"^{te}(?:'s split)? (falls back|gives ground)[^(]*{re.escape(arg)}")
+        fam = rf"^{te}(?:'s split)? (falls back|gives ground|has fallen back)|^The fight moves|^{ee} pushes"
+        hit = find(rf"^{te}(?:'s split)? (falls back|gives ground|has fallen back)[^(]*{re.escape(arg)}")
         if not hit: hit = find(rf"^{ee} pushes {te} back[^(]*{re.escape(arg)}")
         if not hit and arg: hit = find(rf"^(?:{ee} pushes|The fight moves) [^(]*to {te}'s {re.escape(arg)}")
     elif kind == "push":
-        fam = rf"^{te}(?:'s main team|'s split)? pushes"; hit = find(rf"^{te}(?:'s main team|'s split)? pushes[^(]*{re.escape(arg)}")
+        fam = rf"^{te}(?:'s main team|'s split)? (pushes|has pushed)"; hit = find(rf"^{te}(?:'s main team|'s split)? (?:pushes|has pushed)[^(]*{re.escape(arg)}")
     elif kind == "join":
         fam = rf"{te}'s [^;)]*joins?"; hit = find(rf"{te}'s [^;)]*{re.escape(one)}[^;)]* joins?[^;)]*{re.escape(arg)}")
         if not hit and len(who) > 1:               # several players named: the line must name at least half of them

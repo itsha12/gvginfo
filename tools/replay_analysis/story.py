@@ -25,6 +25,7 @@ from state import d
 from hallmap import _seg_dist as _seg
 
 STEP = 2
+MID_WORDS = {357: "over the bridge"}        # Imperial Isle: the collapse route is called over the bridge, not through mid (R-388)
 LADDER = {"stand": 0, "greater stand": 0, "field": 0, "front footies": 1, "back footies": 1, "front door": 2, "back door": 2, "base": 3, "pit": 4}
 GROUND = ("front footies", "back footies", "front door", "back door", "base", "pit")
 RES_SKILL = re.compile(r"Resurrect|Rebirth|Restore Life|Flesh of My Flesh|Death Pact|We Shall Return|Renew Life|Unyielding Aura|Light of Dwayna|Vengeance|Lively Was Naomei", re.I)
@@ -58,7 +59,7 @@ def _route_words(M, a, kinds, t0, t1):
             on = [min(_seg(p, u, v) for u, v in zip(r["pts"], r["pts"][1:])) <= DOOR_R for p in pts]
             return sum(d(p, q) for (p, q), (x, y) in zip(zip(pts, pts[1:]), zip(on, on[1:])) if x and y) >= 0.5 * ln
         mid = any(took(r) for r in cr)
-    if mid: out.append("through mid")
+    if mid: out.append(MID_WORDS.get(M.hall.id, "through mid"))
     if "pit" in ks: out.append("through the pit")
     for dr in ("front door", "back door"):
         if dr in ks: out.append("by the " + dr)
@@ -220,12 +221,14 @@ def _record_events(M):
         who = {tg: ", ".join(r["start"][tg]) for tg in (t1, t2)}
         n0 = {tg: len(r["start"][tg]) for tg in (t1, t2)}
         op = " from the opening" if r["opening"] else ""
+        started = r["started"] or next((x["team"] for x in M.attempts() if x.get("kind") == "split" and r["t0"] - 30 <= x["t_in"] <= r["t0"] + 90
+                                        and {y["role"] for y in x["members"]} & set(r["start"][x["team"]])), None)      # met before reaching anyone's ground: whose split attempt it then is
         if r["both_opening"]:
-            a, b = (r["started"] or t1), (t2 if (r["started"] or t1) == t1 else t1)
+            a, b = (started or t1), (t2 if (started or t1) == t1 else t1)
             out.append((r["t_left"], f"{a} splits {NUM.get(n0[a], n0[a])}{op} ({who[a]}; {mk(r['monks'][a])})"))
             out.append((r["t_left"], f"{b} splits {NUM.get(n0[b], n0[b])}{op} ({who[b]}; {mk(r['monks'][b])}): the two meet at {r['place']}, a split fight"))
-        elif r["started"]:
-            a, b = r["started"], (t2 if r["started"] == t1 else t1)
+        elif started:
+            a, b = started, (t2 if started == t1 else t1)
             out.append((r["t_left"], f"{a} splits {NUM.get(n0[a], n0[a])}{op} ({who[a]}; {mk(r['monks'][a])})"))
             out.append((r["t0"], f"{b} answers {a}'s split with {NUM.get(n0[b], n0[b])} ({who[b]}; {mk(r['monks'][b])}) at {r['place']}: a split fight"))
         else:
@@ -247,7 +250,10 @@ def _record_events(M):
         nums = f"{t1} {b[0]} v {b[1]} {t2} becomes {a_[0]} v {a_[1]}"
         mine = b[0] if x["tm"] == 1 else b[1]
         if x["kind"] == "join":
-            out.append((x["t"], f"{tag}'s {names} join{_s(ids)}{_came(M, ids[0], x['t'])} at {x['place']}" + (", back from a res" if x.get("res") else "") + f": {nums}"))
+            way = _came(M, ids[0], x["t"])
+            also = [a for a in ids[1:] if any(w in _came(M, a, x["t"]) and w not in way for w in ("through mid", "over the bridge"))]      # a joiner who came the collapse route when the first did not
+            if also: way += f" ({_names(M, also)} {MID_WORDS.get(M.hall.id, 'through mid')})"
+            out.append((x["t"], f"{tag}'s {names} join{_s(ids)}{way} at {x['place']}" + (", back from a res" if x.get("res") else "") + f": {nums}"))
         elif len(x["ids"]) >= mine and mine >= 2:
             out.append((x["t"], f"{tag} falls back from {x['place']} to {x['to']} ({names}): {nums}"))
         else:
@@ -326,10 +332,19 @@ def _ground_told(M, g):
 
 
 def _ground_events(M):
-    out = []
+    out = [(r["t"], f"{r['foe']} leaves {r['team']}'s split undefended: {', '.join(r['roles'])} at {r['place']}, nobody on " + ("him" if len(r["roles"]) == 1 else "them")
+            + f" for {clock(r['t1'] - r['t'])}") for r in M.undefended() if r["had"]]
+    words = {"knight": "knights", "bodyguard": "bodyguard", "guild_lord": "Guild Lord"}
+    for r in M.on_pit():
+        if r["t1"] - r["t"] < 4: continue
+        npcs = ", ".join(words[k] for k in ("knight", "bodyguard", "guild_lord") if k in r["npcs"])
+        out.append((r["t"], f"{r['team']} pushes into {r['foe']}'s pit and is on its {npcs} for {clock(r['t1'] - r['t'])} ({', '.join(r['roles'])})"))
     for g in M.ground():
         k = _ground_told(M, g)
-        same = g["from"] == g["to"]                      # a door is the whole drawn route (R-307 wording), so a long move can begin and end "at the front door"
+        same = g["from"] == g["to"]
+        if k and not same and g["t1"] - g["t"] >= 30:           # a long move is told again when it gets there
+            grp_ = g["team"] if g["group"] == "main" and k != "push" else f"{g['team']}'s {'main team' if g['group'] == 'main' else 'split'}"
+            out.append((g["t1"], f"{grp_} has {'pushed up' if k == 'push' else 'fallen back'} to {g['to']} (the move that began at {clock(g['t'])})"))                      # a door is the whole drawn route (R-307 wording), so a long move can begin and end "at the front door"
         if not k or (same and k == "out"): continue
         tag, foe = g["team"], M.m.tag[3 - g["tm"]]
         grp = "main team" if g["group"] == "main" else "split"
