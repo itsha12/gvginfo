@@ -8,7 +8,7 @@ model's structure: `knowledge/model.md` (generated).
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/SPEC.md and docs/HANDOFF.md, check
 > out `bundle-4` in a second worktree, then carry on with "Next" item 1 and set out the items under "Open for Denning".
 
-## State (2026-11-12: redesign step 2 on branch `bundle-4`, last engine commit 4dc4347; batch 17, 506 matches trained)
+## State (2026-11-12: redesign step 2 on branch `bundle-4`, last engine commit b18eb1f; batch 17, 506 matches trained)
 - Main's engine is unchanged (as SPEC.md describes). Bundle 4 is built on `bundle-4` and lands in one piece, then
   one rebuild (R-322). 606 replays stored (90 random ones from 2 September on are not yet trained on). No Train
   batch, Discovery or fetch run in progress.
