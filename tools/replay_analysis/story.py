@@ -13,7 +13,7 @@ What it says, in his words:
   Deaths       where, against the base res clock; resurrections by a team-mate; base resurrections; NPCs and footmen
                taken; boosts.
   The words    (R-373, R-375 to R-378) pushing the flagger, the flag route (short way, long way, by the back door),
-               flag lead (a full flag, half a flag up), posture, the four timing choices, monk counts in the main
+               flag lead (a full flag, half a flag up), the stand-off (a disengage is not a fight), the timing choices, monk counts in the main
                fight, who is on the Guild Lord: each printed from its own record.
 A draft: it does not yet read a threat, and it judges no play.
 
@@ -23,7 +23,7 @@ Usage:  python3 story.py <report id> [from m:ss] [to m:ss]
 In code: story(Moments(st)) -> [(second, text)], in time order."""
 import collections, re, sys
 from common import (JOIN_S, OVERCAP_S, RES_EVERY, BOOST_EVERY, ON_TIME_S, LATE_S, PRESSURE_HP, PRESSURE_DEATH_S, PRESSURE_MIN, GROUND_MIN, GROUND_MOVE,
-                    SPAWN_R, FIGHT_LINK)
+                    SPAWN_R, FIGHT_LINK, STANDOFF_HITS)
 from state import d
 from hallmap import _seg_dist as _seg
 
@@ -106,7 +106,10 @@ def state_line(M, t):
             where = M.place_words(kind, sd)
             car = [a for a in g if M.carrying(a, t)]
             foes = [b for b in st.players[foe] if M.AL[b][t] and any(d(M.P[b][t], M.P[a][t]) < FIGHT_LINK for a in g)]
-            vs = f" against {len(foes)}" if foes else ""
+            vs = ""
+            if foes:                                        # standing with enemy players but trading little or no damage is not a fight (R-405)
+                hot = sum(1 for u in range(max(t - 9, 0), t + 1) for x, y in M.hits.get(u, ()) if (x in g and y in foes) or (y in g and x in foes)) > STANDOFF_HITS * (len(g) + len(foes))
+                vs = f" against {len(foes)}" if hot else f" facing {len(foes)}, no fight"
             flag = f", {m.roles[car[0]]} holding the flag" if car and len(g) > 1 else ""
             if g is main: bits.append(f"main team {len(g)} at {where}{vs}{flag} ({_names(M, sorted(g))})" if len(g) < len(live) or t < 60 else f"all {len(g)} at {where}{vs}{flag}")
             elif len(g) == 1 and car: bits.append(f"{m.roles[g[0]]} running the flag at {where}")
@@ -259,6 +262,8 @@ def _record_events(M):
         tag, names = x["team"], _names(M, ids)
         b, a_ = x["before"], x["after"]
         nums = f"{t1} {b[0]} v {b[1]} {t2} becomes {a_[0]} v {a_[1]}"
+        if M.standoff_at(x["with"], x["t"], 2):
+            nums = f"no fight there, {t1} {b[0]} and {t2} {b[1]} standing off become {a_[0]} and {a_[1]}"      # R-405
         mine = b[0] if x["tm"] == 1 else b[1]
         if x["kind"] == "join":
             way = _came(M, ids[0], x["t"])
@@ -406,6 +411,9 @@ def _fight_events(M):
             if tr["ppend"] is not None and canon(tr["ppend"]) == canon(p): tr["pcount"] += 1
             else: tr["ppend"], tr["pcount"], tr["psince"] = p, 1, t
             if not tr["hit"]: continue                       # no damage traded yet: not a fight
+            if M.standoff_at(ids, t):                        # a stand-off (R-405): told from its record, not as a fight or as fight numbers; the numbers start afresh when it resumes
+                if tr["n"] is not None: tr["n"], tr["key"] = n, key
+                continue
             home = side_tm.get(p[2])
             few = bool(home) and n[home - 1] <= 2 and n[2 - home] > n[home - 1] and p[1] in GROUND
             if tr["n"] is None:
@@ -538,7 +546,7 @@ def _death_events(M):
 
 def _word_events(M):
     """The words of R-373 and R-375 to R-378, as ruled on in R-399 to R-402, printed from their records
-    (moments.flag_pushes, flag_lead, posture, timing, monk_counts, on_lord, and a push's onto_flag): the story says
+    (moments.flag_pushes, flag_lead, standoffs, timing, monk_counts, on_lord, and a push's onto_flag): the story says
     what the record holds and nothing else (R-362)."""
     m, out = M.m, []
     mk = lambda n: "no monk" if not n else ("one monk" if n == 1 else f"{NUM.get(n, n)} monks")
@@ -558,11 +566,11 @@ def _word_events(M):
         else:
             mine = f"{r['backup']} has its next flag at {r['backup_at']}" if r["backup"] and r["backup_at"] else f"its next flag is {r['own_flag']}, a player on his way to it"
             out.append((r["t"], f"{r['team']} is half a flag up ({r['lead']} of a flag run ahead on the next flag): it holds the stand and {mine}; {theirs}"))
-    for r in M.posture():
-        grp = r["team"] if r["main"] else f"{r['team']}'s split" if r["ground"] == "enemy" else f"{r['team']}'s group"
-        wait = f", {', '.join(r['joined'])} joining it" + (" from the base res" if r["joined_from_res"] else "") if r["joined"] else ""
-        how = "without going in" if r["ground"] == "enemy" else "holding its ground"
-        out.append((r["t"], f"{grp} postures at {r['place']} for {clock(r['t1'] - r['t'])} {how}, little or no damage traded ({r['n']} of them, {r['facing'] or 'nobody'} of {r['foe']} facing it{wait}); then {r['end']}"))
+    for r in M.standoffs():                                 # the disengage (R-405): two groups standing together, little or no damage traded, are not a fight
+        t1_, t2_ = r["teams"]; n = r["n"]
+        head = f"The fight at {r['place']} stops" if r["fought"] else f"No fight at {r['place']}"
+        out.append((r["t"], f"{head}: {t1_} {n[0]} and {t2_} {n[1]} stand off there, little or no damage traded, for {clock(r['t1'] - r['t'])}; then {r['end']}"))
+        if r["resume"] and r["fought"]: out.append((r["resume"][0], f"The fight at {r['resume'][3]} resumes: {t1_} {r['resume'][1]} v {r['resume'][2]} {t2_}"))      # a first fight is told by its own line
     for r in M.timing():
         who = ", ".join(r["who"])
         if r["kind"] == "delayed pickup": out.append((r["t"], f"{r['team']}'s {who} waits {r['s']} s at the flag spawn before picking up, with {r['foe']}'s {', '.join(r['by'])} on him"))

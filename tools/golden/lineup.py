@@ -48,7 +48,7 @@ def record(rid):
     from state import GameState
     import moments, story
     st = GameState(Match.from_branch(rid)); M = moments.Moments(st); m = st.m
-    fights = [[t, [[f["n"][1], f["n"][2], f["place"], f["monks"][1], f["monks"][2]] for f in M.fights(t) if f["n"][1] and f["n"][2]]] for t in range(0, M.T + 1, 3)]
+    fights = [[t, [[f["n"][1], f["n"][2], f["place"], f["monks"][1], f["monks"][2], not M.quiet(f, t)] for f in M.fights(t) if f["n"][1] and f["n"][2]]] for t in range(0, M.T + 1, 3)]      # the last: damage is being traded (R-405)
     lv, lead = M._lead_levels(), []                    # the records that run over a stretch are checked as stretches: a line said in the middle of one agrees with it
     for tm in (1, 2):
         for t in sorted(lv[tm]):
@@ -57,7 +57,7 @@ def record(rid):
     spans = {"lead": lead,
              "pushflag": [[r["t"], r["t1"], r["team"], r["roles"], r["role"]] for r in M.flag_pushes()]        # and a main team push walked onto a flag held in its team (R-401)
                          + [[x["onto_flag"]["t"], x["onto_flag"]["t"] + x["onto_flag"]["s"], x["team"], [q["role"] for q in x["members"]], x["onto_flag"]["role"]] for x in M.attempts() if x.get("onto_flag")],
-             "posture": [[r["t"], r["t1"], r["team"], r["place"]] for r in M.posture()],
+             "posture": [[r["t"], r["t1"], tg, r["place"]] for r in M.standoffs() for tg in r["teams"]],        # a posture said of a team is checked against the stand-off it stands in (R-405)
              "lord": [[r["t"], r["t1"], r["team"], r["roles"]] for r in M.on_lord() if r["hits"] >= 3]}
     out = {"id": rid, "map": m.o["meta"]["map"], "teams": [m.tag[1], m.tag[2]], "T": M.T,
            "roster": {m.tag[tm]: {str(m.A[a].get("slot")): m.roles[a] for a in m.PL if m.team(a) == tm} for tm in (1, 2)},
@@ -170,7 +170,7 @@ def check(r, rec):
         seen = collections.Counter()
         for t, fs in rec["fights"]:
             if lo <= t <= hi:
-                for x, y, p, *_ in fs:
+                for x, y, p, *_ in fs:                      # numbers said of a place are who stands there, damage or not (the story words a stand-off apart, R-405)
                     seen[(x, y, p)] += 1
                     if (x, y) == (a, b) and pl in p.lower(): hit = (t, f"{rec['teams'][0]} {x} v {y} {rec['teams'][1]} at {p}")
         if not hit:
@@ -181,7 +181,7 @@ def check(r, rec):
         sp = [x for x in rec["spans"][kind] if x[2] == T and x[0] <= hi and x[1] >= lo]
         ok = [x for x in sp if kind == "posture" or named(x[3])]
         other = lambda tg: next((y for y in rec["teams"] if y != tg), "")
-        word = {"pushflag": lambda x: f"{x[2]}'s {', '.join(x[3])} on {other(x[2])}'s flagger ({x[4]})", "posture": lambda x: f"{x[2]} postures at {x[3]}", "lord": lambda x: f"{x[2]}'s {', '.join(x[3])} on {other(x[2])}'s Guild Lord"}[kind]
+        word = {"pushflag": lambda x: f"{x[2]}'s {', '.join(x[3])} on {other(x[2])}'s flagger ({x[4]})", "posture": lambda x: f"{x[2]} stands off at {x[3]}", "lord": lambda x: f"{x[2]}'s {', '.join(x[3])} on {other(x[2])}'s Guild Lord"}[kind]
         if ok: return "agrees", f"{clock(ok[0][0])} to {clock(ok[0][1])} {word(ok[0])}"
         wide_sp = [x for x in rec["spans"][kind] if x[0] <= hi + 60 and x[1] >= lo - 60]
         return "differs", " // ".join(f"{clock(x[0])} to {clock(x[1])} " + word(x) for x in wide_sp[:3]) or f"no {kind} record within two minutes"

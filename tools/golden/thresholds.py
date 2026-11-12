@@ -1,6 +1,7 @@
 """The thresholds behind joins, swaps, split fights, ground moves, side fights, the pit and undefended splits (common.py;
 confirmed, R-390) and the draft thresholds of reading step 2 (pushing the flagger, flag route, flag lead, posture, the
-timing choices, monk counts, who is on the Guild Lord; Claude's drafts, to confirm), with what each yields over every
+the stand-off, the
+timing choices, monk counts, who is on the Guild Lord; confirmed, R-404 to R-407), with what each yields over every
 counted match beside it.
 
 Usage:  python3 tools/golden/thresholds.py run /tmp/thresholds.json [--jobs 2] [--every N]     (every counted match, about 15 minutes)
@@ -49,7 +50,7 @@ def one(rid):
             "routes": [[fr["route"], fr["back_route"], fr["door"], fr["how"]] for fr in M.flags_record()],
             "lead": [[r["level"], r["t1"] - r["t"], r["lead"], r["own_flag"], r["enemy_flag"]] for r in M.flag_lead()],
             "lead_s": (lambda lv: [sum(1 for tm in lv for v in lv[tm].values() if v == k) * 2 for k in (1, 2, 3)])(M._lead_levels()),
-            "posture": [[r["t1"] - r["t"], r["n"], bool(r["main"]), r["kind"], r["end"], r["facing"], len(r["joined"]), r["ground"]] for r in M.posture()],
+            "standoffs": [[r["t1"] - r["t"], min(r["n"]), max(r["n"]), bool(r["fought"]), r["end"]] for r in M.standoffs()],
             "onto_flag": sum(1 for x in at if x.get("onto_flag")),
             "timing": [[r["kind"], r["s"], r.get("boost_in")] for r in M.timing()],
             "holds": [[fr["held_s"], fr["cap_boost_in"]] for fr in M.flags_record() if fr["how"] == "captured"],
@@ -120,10 +121,8 @@ def show(path):
         print(f"flag lead, {lv} a flag up: {len(xs)} stretches ({len(xs) / n:.1f} a match); length (s): {q([x[1] for x in xs])}; own next flag {dict(C(x[3] for x in xs))}; the enemy's {dict(C(x[4] for x in xs))}")
     ls = [sum(v["lead_s"][i] for v in D.values()) for i in range(3)]
     print(f"  of the seconds a team holds the stand: {100 * ls[2] // max(sum(ls), 1)}% a full flag up, {100 * ls[1] // max(sum(ls), 1)}% half a flag up, {100 * ls[0] // max(sum(ls), 1)}% even on the next flag or behind")
-    for gr in ("enemy", "own"):
-        X = [x for x in cat("posture") if x[7] == gr]
-        print(f"posture on {'the enemy' if gr == 'enemy' else 'its own'} ground: {len(X)} ({len(X) / n:.2f} a match); length (s): {q([x[0] for x in X])}; players: {q([x[1] for x in X], (25, 50, 75))}; main team {sum(x[2] for x in X)}; at {dict(C(x[3] for x in X))}")
-        print(f"  ended: {dict(C(x[4] for x in X))}; nobody facing it {sum(x[5] == 0 for x in X)}; a team mate joined while it waited {sum(x[6] > 0 for x in X)}")
+    X = cat("standoffs")
+    print(f"stand-offs (R-405): {len(X)} ({len(X) / n:.1f} a match); length (s): {q([x[0] for x in X])}; players on the smaller side: {q([x[1] for x in X], (25, 50, 75))}; after a fight {sum(x[3] for x in X)}, without one {sum(not x[3] for x in X)}; ended {dict(C(x[4] for x in X))}")
     print(f"main team pushes walked onto a flag held in its team (R-401): {sum(v['onto_flag'] for v in D.values())}")
     X = cat("timing")
     for k in ("delayed pickup", "held to the boost", "stayed to help", "left before res", "held back", "left at the spawn"):
@@ -148,7 +147,7 @@ def tally(path):
          "split attempts": sum(v["attempts"][0] for v in D.values()), "main team pushes": sum(v["attempts"][1] for v in D.values()),
          "flagger pushes": len(cat("pushes")), "pushes onto a held flag": sum(v["onto_flag"] for v in D.values()), "routes read": sum(1 for x in cat("routes") if x[0]),
          "full flag": sum(1 for x in cat("lead") if x[0] == "full"), "half flag": sum(1 for x in cat("lead") if x[0] == "half"),
-         "posture, enemy ground": sum(1 for x in cat("posture") if x[7] == "enemy"), "posture, own ground": sum(1 for x in cat("posture") if x[7] == "own"),
+         "stand-offs": len(cat("standoffs")),
          "monk changes": len(cat("monks")), "on the Lord": len(cat("lord")), "story lines": sum(v["story_lines"] for v in D.values())}
     for k in ("delayed pickup", "held to the boost", "stayed to help", "left before res", "held back", "left at the spawn"): t["timing, " + k] = sum(1 for x in cat("timing") if x[0] == k)
     return len(D), t
