@@ -2,7 +2,7 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
-## 2026-11-12: reading step 2, the words of R-373 and R-375 to R-378 as records, and rulings R-399 to R-404 (branch `bundle-4`, d59ea1a to c25f51c)
+## 2026-11-12: reading step 2, the words of R-373 and R-375 to R-378 as records, and rulings R-399 to R-412 (branch `bundle-4`, d59ea1a to c25f51c)
 - `moments.py`: `flag_pushes()` (R-371: players on a flagger who is on his own, with who helped, died, dropped, the pickup delayed), the flag route, door, hold and boost distance in `flags_record()`, `flag_lead()` (R-375), `pregame()`, `posture()` (R-376), `timing()` (R-377), `monk_counts()` and `on_lord()` (R-378). `story.py` prints each from its record.
 - 22 draft thresholds in `common.py` (PUSHFLAG_R to LORD_GAP_S), to confirm. Over 606 matches: 1,181 pushes on a flagger (1.9 a match), 1,324 flag routes read to the stand, 987 full-flag and 738 half-flag stretches, 1,006 postures, 293 timing choices (114 delayed pickups, 80 held to the boost, 35 stayed to help, 64 left before the res), 4,933 monk count changes, 1,061 stretches on a Guild Lord told. The story's median length is 164 lines a match.
 - The line-up now checks the seven kinds it used to set aside. Seen events: building 419 of 434 (97%), held-out 164 of 208 (79%); comms calls 106 of 157 and 60 of 83. The statements checked before are unchanged (365 of 365; 136 of 162).
