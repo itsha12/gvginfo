@@ -566,6 +566,10 @@ def _word_events(M):
         t1_, t2_ = r["teams"]; n = r["n"]
         where = f"at {r['places'][1]}" if r["places"][1] == r["places"][2] else f"{t1_} at {r['places'][1]}, {t2_} at {r['places'][2]}"
         away = "; ".join(f"{tg}'s {', '.join(role for role, _ in xs)} away" + (" for the flag" if any(w == "for the flag" for _, w in xs) else "") for tg, xs in ((t1_, r["away"][1]), (t2_, r["away"][2])) if xs)
+        if r["kind"] == "split":                            # a stand-off on a split (R-415): the two groups standing apart and still
+            out.append((r["t"], f"{'The split fight stops' if r['fought'] else 'No fight on the split'}: {t1_}'s {', '.join(r['who'][1])} and {t2_}'s {', '.join(r['who'][2])} stand off for {clock(r['t1'] - r['t'])} "
+                                f"({where}; {r['hits']} hits traded in that time, up to {r['apart']} apart); then {r['end']}"))
+            continue
         head = "The fight stops" if r["fought"] else "No fight"
         out.append((r["t"], f"{head}: {t1_} {n[0]} and {t2_} {n[1]} stand off for {clock(r['t1'] - r['t'])} ({where}; {r['hits']} hits traded in that time, up to {r['apart']} apart)" + (f"; {away}" if away else "") + f"; then {r['end']}"))
         if r["resume"] and r["fought"]: out.append((r["resume"][0], f"The fight resumes: {t1_} {r['resume'][1]} v {r['resume'][2]} {t2_}"))      # a first fight is told by its own line

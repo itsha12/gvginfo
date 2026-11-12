@@ -37,7 +37,7 @@ from common import (READ_FROM, READ_TO, AREA_SHARE, PURPOSE_S, LEAVE_MIN_S, HOME
                     RETURN_R, FOOT_ENGAGED_S, SPLIT_STEP, SPLIT_MIN_S, SPLIT_GAP_S, FORCED_OUT_S, AHEAD_LOOK_S, CAUGHT_S, NPC_NEAR,
                     JOIN_S, RES_EVERY, flux_at, JOIN_LOOK_S, JOIN_MOVE, JOIN_LEAD, SWAP_S, SWAP_STAY_S, SPLIT_FIGHT_GAP_S, SPLIT_FIGHT_MIN,
                     PUSHFLAG_R, PUSHFLAG_S, PUSHFLAG_GAP_S, PUSHFLAG_MATES, PUSHFLAG_AHEAD_S, ROUTE_ENDS, ROUTE_OFF, ROUTE_CLEAR, ROUTE_MIN_S, LEAD_S,
-                    STANDOFF_S, STANDOFF_HITS, STANDOFF_MIN, STANDOFF_R, LEAD_HALF, LEAD_ONE, LEAD_ONE_HALF, LEAD_TWO, HOLD_BACK_S, LEFT_AT_SPAWN_S, RUN_SPEED, PICKUP_DELAY_S, HOLD_S, BOOST_LATE_S, HELP_IN_S, HELP_BACK_S, LEAVE_RES_S, MONK_S, MONK_MIN, LORD_GAP_S)
+                    STANDOFF_S, STANDOFF_HITS, STANDOFF_MIN, STANDOFF_R, STANDOFF_SPLIT_MIN, STANDOFF_SPLIT_S, STANDOFF_STILL, STANDOFF_NEAR, LEAD_HALF, LEAD_ONE, LEAD_ONE_HALF, LEAD_TWO, HOLD_BACK_S, LEFT_AT_SPAWN_S, RUN_SPEED, PICKUP_DELAY_S, HOLD_S, BOOST_LATE_S, HELP_IN_S, HELP_BACK_S, LEAVE_RES_S, MONK_S, MONK_MIN, LORD_GAP_S)
 from state import d
 from hallmap import _seg_dist
 
@@ -1403,11 +1403,76 @@ class Moments:
                          for x in st.players[tm] if r["in"][x] * 2 < r["steps"] and sum(1 for u in range(t0, t1 + 1, 6) if self.AL[x][u]) * 2 >= len(range(t0, t1 + 1, 6))] for tm in (1, 2)}      # alive, and with his main team for under half of it
             place = {tm: self.place_words(*max(r["places"][tm], key=r["places"][tm].get)) if r["places"][tm] else None for tm in (1, 2)}
             keep.append({"t": t0, "t1": t1, "n": n, "ids": {tm: sorted(r["seen"][tm]) for tm in (1, 2)}, "teams": (m.tag[1], m.tag[2]), "places": place,
+                         "kind": "main", "who": {tm: [m.roles[x] for x in sorted(r["seen"][tm])] for tm in (1, 2)},
                          "place": place[1] if place[1] == place[2] else f"{place[2]} and {place[1]}", "hits": hits, "rate": round(hits * 10 / max((t1 - t0 + 1) * sum(n), 1), 2),
                          "apart": round(r["gap"]), "fought": self.contact(a, b, t0 - 30, t0 - 1), "away": away, "end": r["end"],
                          "resume": (r["t_end"],) + tuple(len([x for x in self.main_team(tm, r["t_end"]) if self.AL[x][r["t_end"]]]) for tm in (1, 2)) if r["end"] == "the fight resumes" else None})
+        keep += self._split_standoffs()
         self._so = sorted(keep, key=lambda r: r["t"])
         return self._so
+
+    def _split_standoffs(self):
+        """A stand-off on a split (R-415): two groups, at least one of them not its team's main team, STANDOFF_SPLIT_MIN
+        or more in each, standing STANDOFF_NEAR to STANDOFF_R apart (their middles), each staying within
+        STANDOFF_STILL of where it stood when the stand-off began, and neither trading more than STANDOFF_HITS hits a
+        player in any 10 s with the other nor hitting NPCs, for STANDOFF_SPLIT_S or longer. A split on its way
+        somewhere (a collapse through mid takes no damage either) is not one: it is not standing still. Once begun it
+        is followed on its own players, so a group that stands with its main team for a moment is still the group.
+        Records as standoffs(). Framed on NwAy v SKT (13:20 and 14:50: two groups of three, 2,200 to 3,000 apart,
+        still to within 400 to 800, one hit or none, for 26 to 35 s)."""
+        S, T, m, st, out, live = SPLIT_STEP, self.T, self.m, self.st, [], []
+        npc = collections.defaultdict(collections.Counter)
+        for a, xs in self.npc_hits.items():
+            for x in xs: npc[int(x)][a] += 1
+        def groups(tm, t):
+            ids = [x for x in st.players[tm] if self.AL[x][t] and self.P[x][t]]; gs = []
+            for a in ids:
+                hit = [g for g in gs if any(d(self.P[a][t], self.P[b][t]) < FIGHT_LINK for b in g)]
+                gs = [g for g in gs if g not in hit] + [[a] + [x for g in hit for x in g]]
+            main = [x for x in self.main_team(tm, t) if self.AL[x][t]]
+            return [(frozenset(g), bool(main) and sum(1 for x in g if x in main) * 2 >= len(main)) for g in gs if len(g) >= STANDOFF_SPLIT_MIN]
+        def read(A, B, t):                                      # (the two middles, how far apart, quiet) for these players, the living ones
+            A = frozenset(x for x in A if self.AL[x][t] and self.P[x][t]); B = frozenset(x for x in B if self.AL[x][t] and self.P[x][t])
+            if min(len(A), len(B)) < STANDOFF_SPLIT_MIN: return None
+            ca, cb = self.centre(A, t), self.centre(B, t)
+            if any(d(self.P[x][t], ca) > FIGHT_LINK for x in A) or any(d(self.P[x][t], cb) > FIGHT_LINK for x in B): return None      # the group has broken up
+            quiet = self._between(A, B, t) + sum(npc[u][x] for u in range(max(t - 9, 0), t + 1) if u in npc for x in A | B) <= STANDOFF_HITS * (len(A) + len(B))
+            return A, B, ca, cb, d(ca, cb), quiet
+        for t in range(0, T + 1, S):
+            for r in list(live):                               # a stand-off already begun: followed on its own players
+                v = read(r["first"][0], r["first"][1], t)
+                end = "a group breaks up" if v is None else "they fight" if not v[5] else "a group moves off" if d(v[2], r["c0"][0]) > STANDOFF_STILL or d(v[3], r["c0"][1]) > STANDOFF_STILL \
+                    else "they close or part" if not (STANDOFF_NEAR <= v[4] <= STANDOFF_R) else None
+                if end: r["end"] = end; live.remove(r); out.append(r); continue
+                r["t1"] = t; r["nums"][(len(v[0]), len(v[1]))] += 1; r["gap"] = max(r["gap"], v[4])
+                for tm, g in ((1, v[0]), (2, v[1])):
+                    z = collections.Counter(self.place_at(x, t) for x in g)
+                    r["places"][tm][max(z, key=lambda k: (z[k], str(k)))] += 1
+            busy = set().union(*(r["first"][0] | r["first"][1] for r in live)) if live else set()
+            for A, mainA in groups(1, t):
+                for B, mainB in groups(2, t):
+                    if (mainA and mainB) or (A | B) & busy: continue      # the two main teams are standoffs() itself
+                    v = read(A, B, t)
+                    if v is None or not v[5] or not (STANDOFF_NEAR <= v[4] <= STANDOFF_R): continue
+                    r = {"t": t, "t1": t, "c0": (v[2], v[3]), "first": (A, B), "seen": {1: set(A), 2: set(B)}, "nums": collections.Counter({(len(A), len(B)): 1}), "gap": v[4],
+                         "places": {1: collections.Counter(), 2: collections.Counter()}, "end": None}
+                    for tm, g in ((1, A), (2, B)):
+                        z = collections.Counter(self.place_at(x, t) for x in g)
+                        r["places"][tm][max(z, key=lambda k: (z[k], str(k)))] += 1
+                    live.append(r); busy |= A | B
+        for r in live: r["end"] = "the match ends"; out.append(r)
+        keep = []
+        for r in out:
+            t0, t1 = r["t"], r["t1"]
+            if t1 - t0 < STANDOFF_SPLIT_S: continue
+            A, B = r["first"]; n = max(r["nums"], key=r["nums"].get)
+            hits = sum(c for u in range(t0, t1 + 1) if self._hitc and u in self._hitc for (x, y), c in self._hitc[u].items() if x in r["seen"][1] and y in r["seen"][2])
+            place = {tm: self.place_words(*max(r["places"][tm], key=r["places"][tm].get)) for tm in (1, 2)}
+            keep.append({"t": t0, "t1": t1, "n": n, "ids": {tm: sorted(r["seen"][tm]) for tm in (1, 2)}, "teams": (m.tag[1], m.tag[2]), "places": place, "kind": "split",
+                         "who": {tm: [m.roles[x] for x in sorted(r["first"][tm - 1])] for tm in (1, 2)},
+                         "place": place[1] if place[1] == place[2] else f"{place[2]} and {place[1]}", "hits": hits, "rate": round(hits * 10 / max((t1 - t0 + 1) * sum(n), 1), 2),
+                         "apart": round(r["gap"]), "fought": self.contact(A, B, t0 - 30, t0 - 1), "away": {1: [], 2: []}, "end": r["end"], "resume": None})
+        return keep
 
     def monk_counts(self):
         """Monk counts in a fight (R-378: "solo monk", "on two monks"), one record each time the number of backline

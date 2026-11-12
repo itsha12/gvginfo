@@ -283,6 +283,10 @@ STANDOFF_S = 35           # a stand-off (R-405, framed on OG v hdm, R-411; 35 s 
 STANDOFF_HITS = 0.4       # ... trading no more than this many hits for each of their players in any 10 s (the example's tail: 0.2 to 0.6; the fight before and after it: 1.3 to 2.5)
 STANDOFF_MIN = 5          # ... with at least this many alive in each main team (the example: 8 and 7)
 STANDOFF_R = 4000         # ... and their middles no further apart than this (the example: 1,900 to 3,400; they need not be near enough to be one fight)
+STANDOFF_SPLIT_MIN = 2    # a stand-off on a split (R-415): two groups, at least one not its team's main team, this many or more in each ...
+STANDOFF_SPLIT_S = 25     # ... for this long (shorter than the main teams' 35 s: his example, NwAy v SKT, has two of 26 to 35 s) ...
+STANDOFF_STILL = 1000     # ... each staying this close to where it stood when the stand-off began (a split running to collapse covers this in 4 s; the example's groups moved 400 to 800)
+STANDOFF_NEAR = 1200      # ... and their middles at least this far apart (about a cast range: not on top of each other), and no more than STANDOFF_R
 PICKUP_DELAY_S = 10       # a pickup is delayed while pushed when the flagger stands at his spawn this long with an enemy on him (R-377; 12 s by R-404, 10 s by R-406 after the sweep)
 HOLD_S = 15               # a flag is held when it stands in hand at the stand this long before it is capped ...
 BOOST_LATE_S = 20         # ... and held until just before the boost when the cap lands this close to the enemy's boost (R-377)
@@ -323,7 +327,7 @@ SPLIT_FIGHT_MIN = 2       # a split fight opens with at least this many players 
 TRY_NAMES = ("JOIN_S", "JOIN_LOOK_S", "JOIN_MOVE", "JOIN_LEAD", "SWAP_S", "SWAP_STAY_S", "GROUND_MOVE", "GROUND_S", "GROUND_BACK", "GROUND_SPLIT_MOVE", "PIT_S",
              "SIDE_FIGHT_MAX", "SIDE_FIGHT_S", "UNDEFENDED_S", "GROUND_MIN", "GROUND_JUMP", "SPLIT_FIGHT_GAP_S", "SPLIT_FIGHT_MIN", "SPLIT_MIN_S", "SPLIT_GAP_S", "FIGHT_LINK",
              "PUSHFLAG_R", "PUSHFLAG_S", "PUSHFLAG_GAP_S", "PUSHFLAG_MATES", "PUSHFLAG_AHEAD_S", "ROUTE_ENDS", "ROUTE_OFF", "ROUTE_CLEAR", "ROUTE_MIN_S", "LEAD_S", "LEAD_HALF",
-             "LEAD_ONE", "LEAD_ONE_HALF", "LEAD_TWO", "STANDOFF_S", "STANDOFF_HITS", "STANDOFF_MIN", "STANDOFF_R", "PICKUP_DELAY_S", "HOLD_S", "BOOST_LATE_S",
+             "LEAD_ONE", "LEAD_ONE_HALF", "LEAD_TWO", "STANDOFF_S", "STANDOFF_HITS", "STANDOFF_MIN", "STANDOFF_R", "STANDOFF_SPLIT_MIN", "STANDOFF_SPLIT_S", "STANDOFF_STILL", "STANDOFF_NEAR", "PICKUP_DELAY_S", "HOLD_S", "BOOST_LATE_S",
              "HOLD_BACK_S", "LEFT_AT_SPAWN_S", "HELP_IN_S", "HELP_BACK_S", "LEAVE_RES_S", "MONK_S", "MONK_MIN", "LORD_GAP_S")
 for _kv in filter(None, (os.environ.get("GVG_TRY") or "").split(",")):
     _k, _v = _kv.split("=")

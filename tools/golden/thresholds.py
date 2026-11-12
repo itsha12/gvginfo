@@ -50,7 +50,7 @@ def one(rid):
             "routes": [[fr["route"], fr["back_route"], fr["door"], fr["how"]] for fr in M.flags_record()],
             "lead": [[r["level"], r["t1"] - r["t"], r["lead"], bool(r["holds"])] for r in M.flag_lead()],
             "lead_s": (lambda lv: [sum(1 for tm in lv for v in lv[tm].values() if v == k) * 2 for k in (0, 1, 2, 3, 4)])(M._lead_levels()),
-            "standoffs": [[r["t1"] - r["t"], min(r["n"]), max(r["n"]), bool(r["fought"]), r["end"], r["rate"], r["apart"], bool(r["away"][1] or r["away"][2])] for r in M.standoffs()],
+            "standoffs": [[r["t1"] - r["t"], min(r["n"]), max(r["n"]), bool(r["fought"]), r["end"], r["rate"], r["apart"], bool(r["away"][1] or r["away"][2]), r["kind"]] for r in M.standoffs()],
             "onto_flag": sum(1 for x in at if x.get("onto_flag")),
             "timing": [[r["kind"], r["s"], r.get("boost_in")] for r in M.timing()],
             "holds": [[fr["held_s"], fr["cap_boost_in"]] for fr in M.flags_record() if fr["how"] == "captured"],
@@ -121,7 +121,9 @@ def show(path):
         print(f"flag lead, {lv} up: {len(xs)} stretches ({len(xs) / n:.1f} a match); length (s): {q([x[1] for x in xs])}; by the team holding the stand {sum(x[3] for x in xs)}")
     ls = [sum(v["lead_s"][i] for v in D.values()) for i in range(5)]; tot = max(sum(D[k]["T"] for k in D), 1)
     print(f"  of the match time, a team is two flags up {100 * ls[4] // tot}%, a flag and a half {100 * ls[3] // tot}%, a flag {100 * ls[2] // tot}%, about half a flag {100 * ls[1] // tot}%; nobody leads by half a flag {100 * (2 * tot - sum(ls[1:])) // (2 * tot) * 2 - 100}%")
-    X = cat("standoffs")
+    Y = [x for x in cat("standoffs") if x[8] == "split"]
+    print(f"stand-offs on a split (R-415): {len(Y)} ({len(Y) / n:.2f} a match; matches with none {sum(not any(x[8] == 'split' for x in v['standoffs']) for v in D.values())}); length (s): {q([x[0] for x in Y])}; smaller group: {q([x[1] for x in Y], (25, 50, 75))}; furthest apart: {q([x[6] for x in Y], (25, 50, 75))}; after a fight {sum(x[3] for x in Y)}; ended {dict(C(x[4] for x in Y))}")
+    X = [x for x in cat("standoffs") if x[8] == "main"]
     print(f"stand-offs (R-405, R-411): {len(X)} ({len(X) / n:.2f} a match; matches with none {sum(not v['standoffs'] for v in D.values())}); length (s): {q([x[0] for x in X])}; hits a player in 10 s: {q([x[5] for x in X])}; furthest apart: {q([x[6] for x in X], (25, 50, 75))}")
     print(f"  smaller main team: {q([x[1] for x in X], (25, 50, 75))}; after a fight {sum(x[3] for x in X)}, without one {sum(not x[3] for x in X)}; a player away from a main team {sum(x[7] for x in X)}; ended {dict(C(x[4] for x in X))}")
     print(f"main team pushes walked onto a flag held in its team (R-401): {sum(v['onto_flag'] for v in D.values())}")
@@ -149,7 +151,7 @@ def tally(path):
          "flagger pushes": len(cat("pushes")), "pushes onto a held flag": sum(v["onto_flag"] for v in D.values()), "routes read": sum(1 for x in cat("routes") if x[0]),
          "lead, half a flag": sum(1 for x in cat("lead") if x[0] == "half a flag"), "lead, a flag": sum(1 for x in cat("lead") if x[0] == "a flag"),
          "lead, a flag and a half": sum(1 for x in cat("lead") if x[0] == "a flag and a half"), "lead, two flags": sum(1 for x in cat("lead") if x[0] == "two flags"),
-         "stand-offs": len(cat("standoffs")),
+         "stand-offs": sum(1 for x in cat("standoffs") if x[8] == "main"), "stand-offs on a split": sum(1 for x in cat("standoffs") if x[8] == "split"),
          "monk changes": len(cat("monks")), "on the Lord": len(cat("lord")), "story lines": sum(v["story_lines"] for v in D.values())}
     for k in ("delayed pickup", "held to the boost", "stayed to help", "left before res", "held back", "left at the spawn"): t["timing, " + k] = sum(1 for x in cat("timing") if x[0] == k)
     return len(D), t
