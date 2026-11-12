@@ -21,7 +21,8 @@ def one(rid):
         M = moments.Moments(st)
         mv, sf, gr, at = M.moves(), M.split_fights(), M.ground(), M.attempts()
         others = lambda x: sum(1 for a in st.players[x["tm"]] if a not in x["ids"] and M.AL[a][min(int(x["t_in"]), M.T)])      # team mates alive who are not in it
-        renamed = [x for x in at if x["kind"] == "push" and others(x) <= 2 and any(y["kind"] == "split" and y["tm"] == x["tm"] and 0 <= x["t_in"] - y["t1"] <= 20
+        dead = lambda x: sum(1 for a in st.players[x["tm"]] if not M.AL[a][min(int(x["t_in"]), M.T)])
+        renamed = [x for x in at if x["kind"] == "push" and others(x) <= 2 and dead(x) >= 2 and any(y["kind"] == "split" and y["tm"] == x["tm"] and 0 <= x["t_in"] - y["t1"] <= 20
                                                                                  and len(set(y["ids"]) & set(x["ids"])) * 2 >= len(x["ids"]) for y in at)]
         return rid, {
             "T": M.T,
@@ -78,7 +79,7 @@ def show(path):
     print(f"undefended stretches {len(U)} ({len(U) / n:.2f} a match), of which defended earlier {sum(x[1] for x in U)}; length (s): {q([x[0] for x in U])}")
     print(f"on the pit NPCs: {len(P)} stretches ({len(P) / n:.2f} a match); length (s): {q([x[0] for x in P])}; players on them: {q([x[1] for x in P], (25, 50, 75))}")
     at = [v["attempts"] for v in D.values()]
-    print(f"split attempts {sum(x[0] for x in at)}, main team pushes {sum(x[1] for x in at)}; pushes that are a split renamed the main team because two or fewer team mates are left alive elsewhere: {sum(x[2] for x in at)} (in {sum(1 for x in at if x[2])} matches)")
+    print(f"split attempts {sum(x[0] for x in at)}, main team pushes {sum(x[1] for x in at)}; pushes that are a split renamed the main team with two or more team mates dead and two or fewer alive elsewhere (R-392 keeps these splits): {sum(x[2] for x in at)} (in {sum(1 for x in at if x[2])} matches)")
     print(f"pulled off a split fight onto the main fight: {sum(v['pulled'] for v in D.values())} (in {sum(1 for v in D.values() if v['pulled'])} matches)")
     lone = collections.Counter(cat("lone"))
     print(f"lone attempts {sum(lone.values())}: splits by R-381 {lone['split']}, other {lone['other']}")

@@ -261,13 +261,14 @@ def flux_at(ms):
     t = datetime.datetime.fromtimestamp(ms / 1000, datetime.timezone.utc) - datetime.timedelta(hours=7)
     return FLUX[t.month - 1]
 
-# ---- joins, leaves, swaps and the split fight record (moments.py; R-365, R-374). Claude's drafts, to confirm.
+# ---- joins, leaves, swaps and the split fight record (moments.py; R-365, R-374). Confirmed by Denning as they stand (R-390),
+# from JOIN_LOOK_S to SPLIT_FIGHT_MIN, with their counts over 606 matches beside them (tools/golden/thresholds.py).
 JOIN_LOOK_S = 16          # a join or a leave is read over this long before or after it
 JOIN_MOVE = 800           # the player moved at least this far in that time ...
 JOIN_LEAD = 1.3           # ... and this many times further than the players he joined or left: otherwise the fight came to him
 SWAP_S = 40               # a leave and a join by one team at the same fight within this long is a swap
 SWAP_STAY_S = 30          # ... when the one going out had been in it this long, the one coming in stays this long, and the first does not come straight back
-GROUND_MOVE = 2000              # the main team has moved up or back when it covers this much walked distance toward a base (about a fifth of the walk from the stand to the pit; Claude's draft)
+GROUND_MOVE = 2000              # the main team has moved up or back when it covers this much walked distance toward a base (about a fifth of the walk from the stand to the pit)
 GROUND_S = 60                   # ... within this long (a fighting retreat is slow; a drift over minutes is not a move)
 GROUND_BACK = 1000              # ... and the move ends once the team has come this far back the other way
 GROUND_SPLIT_MOVE = 1000        # a split group's move is told from this much (a split fights over shorter ground: back to its footies is a move, R-374)

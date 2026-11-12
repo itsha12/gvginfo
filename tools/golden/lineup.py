@@ -184,7 +184,9 @@ def check(r, rec):
     elif kind == "boost": fam = rf"^{te} boosts"; hit = find(rf"^{te} boosts")
     elif kind == "caught": fam = rf"^{te} is in"; hit = find(rf"^{te} is in {ee}'s base")
     elif kind == "swap": fam = rf"{te} swaps"; hit = find(rf"{te} swaps")
-    elif kind == "end": fam = rf"^{te}'s (split|push) ends"; hit = find(rf"^{te}'s (split|push) ends[^;]*{re.escape(arg)}")
+    elif kind == "end":
+        fam = rf"^{te}'s (split|push) ends|^The split fight ends"; hit = find(rf"^{te}'s (split|push) ends[^;]*{re.escape(arg)}")
+        if not hit and not arg: hit = find(r"^The split fight ends")      # a split kept as one split fight (R-365) ends with that record
     else: return "unknown kind", kind
     if hit: return "agrees", f"{clock(hit[0])} {hit[1][:150]}"
     alt = [f"{clock(t)} {s[:110]}" for t, s in wide if fam and not s.startswith("STATE") and re.search(fam, s)][:3]

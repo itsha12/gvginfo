@@ -70,6 +70,7 @@ class Moments:
             if r[1] == "dt" and isinstance(r[2], int) and r[2] < len(m.A) and m.A[r[2]].get("npc") == "footman":
                 self.foot_dead[m.A[r[2]].get("team")].append(r[0] / 10)
         self.foot_act = collections.defaultdict(list)        # team -> seconds its footmen dealt or took damage
+        foot_hit = collections.defaultdict(list)             # footman -> [(second, the player who hit him)]: which group he stood in is read from where they stood
         self.hits = collections.defaultdict(list)            # second -> [(actor, target)] damage between players
         self.npc_hits = collections.defaultdict(list)        # player -> seconds he damaged an enemy NPC
         self.pit_kind = collections.defaultdict(lambda: collections.defaultdict(set))  # team -> second -> which of them (knight, bodyguard, guild_lord)
@@ -78,15 +79,29 @@ class Moments:
             if r[1] != "dm" or not isinstance(r[2], int) or not isinstance(r[3], int) or max(r[2], r[3]) >= len(m.A): continue
             for x in (r[2], r[3]):
                 if m.A[x].get("npc") == "footman": self.foot_act[m.A[x].get("team")].append(r[0] / 10)
+            if m.A[r[3]].get("npc") == "footman" and r[2] in self.P: foot_hit[r[3]].append((r[0] / 10, r[2]))
             if r[2] in self.P and r[3] in self.P and m.team(r[2]) != m.team(r[3]): self.hits[int(r[0] / 10)].append((r[2], r[3]))
             for x, y in ((r[2], r[3]), (r[3], r[2])):
                 if m.A[x].get("npc") in ("knight", "bodyguard", "guild_lord") and y in self.P and m.A[x].get("team") not in (None, m.team(y)):
                     self.pit_act[m.A[x].get("team")][int(r[0] / 10)].add(y); self.pit_kind[m.A[x].get("team")][int(r[0] / 10)].add(m.A[x].get("npc"))
             if r[2] in self.P and r[3] not in self.P and m.A[r[3]].get("npc") and m.A[r[3]].get("team") not in (None, m.team(r[2])): self.npc_hits[r[2]].append(r[0] / 10)
+        self.foot_gone = collections.defaultdict(lambda: collections.defaultdict(list))      # team -> "front" or "back" -> times a footman of that group died (the replays carry no footman positions)
+        if self.hall is not None:
+            for r in m.o["ev"]:
+                x = r[2]
+                if r[1] != "dt" or not isinstance(x, int) or x >= len(m.A) or m.A[x].get("npc") != "footman": continue
+                tm_, sd = m.A[x].get("team"), st.side.get(m.A[x].get("team"))
+                pts = [self.P[a][min(max(int(u), 0), self.T)] for u, a in foot_hit.get(x, ()) if r[0] / 10 - 15 <= u <= r[0] / 10]
+                pts = [q for q in pts if q]
+                if sd is None or not pts: continue
+                c = (statistics.fmean(q[0] for q in pts), statistics.fmean(q[1] for q in pts))
+                near = {k: min(math.dist(c, f) for f in self.hall.footies[sd][k]) for k in ("front", "back") if self.hall.footies[sd][k]}
+                if near: self.foot_gone[tm_][min(near, key=near.get)].append(r[0] / 10)
         self._eng = {}
         self._pit = {}
         self._dp, self._ov, self._fp, self._att, self._last, self._mt, self._ln, self._fr = {}, {}, None, None, {}, {}, None, None
         self._fi, self._mv, self._sf, self._gr, self._und = None, None, None, None, None
+        self._lost = {}
         self.side_cut = set()                                # seconds at which a side fight was cut off a bigger one (counted for the thresholds table)
         self.legs = self._departures()
         self.by_player = collections.defaultdict(list)
@@ -232,8 +247,15 @@ class Moments:
     def place_at(self, a, t):
         """Where a player stands, in Denning's words. The pit is wider than its drawn area (R-387): a player is at his
         own pit when he stands within reach of his knights, bodyguard or Guild Lord, and at the enemy's pit when he, or
-        a team mate next to him, is trading damage with one of them."""
+        a team mate next to him, is trading damage with one of them. Footies: the enemy's only while those footmen are
+        engaged (R-307); his own whenever he stands within reach of his own living footmen (R-391)."""
         k, s = self.hall.place(self.P[a][t], self.engaged(t))
+        if k not in ("pit", "stand") and not k.endswith("footies"):      # R-391: at his own footies whenever he stands within reach of his own living footmen, engaged or not
+            tm, own, r = self.m.team(a), self.st.side.get(self.m.team(a)), self.hall.reach()
+            if own is not None and r:
+                for g in ("front", "back"):
+                    F = self.hall.footies[own][g]
+                    if F and len(F) > sum(1 for x in self.foot_gone[tm][g] if x <= t) and any(math.dist(self.P[a][t], f) <= r for f in F): k, s = g + " footies", own; break
         if s is None or k in ("pit", "stand", "greater stand"): return k, s
         key = (a, t)
         if key not in self._pit:
@@ -383,7 +405,9 @@ class Moments:
         team's last three flags and next two), helped by which part stays while the other walks away over the next
         minute (in the first minute of the match, by which part is nearer the stand 30 s on). It then stays that group, following its players, until
         the team is together again; and whenever one part stands on the front lane (the stand and the front doors) while
-        the others have gone round the back, that part is the main team (see lane). Monks only break a tie."""
+        the others have gone round the back, that part is the main team (see lane). Monks only break a tie. A split
+        stays a split while its main team is dead (R-392): the main team is then its survivors, or nobody, until its
+        dead are back or the groups rejoin."""
         if self._mt.get(tm) is None:
             st, hall = self.st, self.hall
             to_stand = hall.to(hall.stand) if hall is not None else {}
@@ -394,14 +418,23 @@ class Moments:
                 i = sum(1 for s_, _ in lives if s_ <= u)
                 return sum(len(c & set(g)) for _, c in lives[max(i - 3, 0):i + 2])
             out, prev, together = {}, frozenset(), True
+            fallen, lost = set(), {}                          # main team players who died as main team and are still dead (R-392)
             for u in range(0, self.T + 1, SPLIT_STEP):
                 live = [a for a in st.players[tm] if self.AL[a][u]]
+                fallen = {a for a in fallen | set(prev) if not self.AL[a][u]}
+                lost[u] = len(fallen)
                 gs = []
                 for a in live:
                     hit = [g for g in gs if any(d(self.P[a][u], self.P[b][u]) < FIGHT_LINK for b in g)]
                     gs = [g for g in gs if g not in hit] + [[a] + [x for g in hit for x in g]]
                 gs.sort(key=len, reverse=True)
                 if not gs: out[u] = prev; continue
+                if fallen and not (prev & set(gs[0])) and len(gs[0]) < max(len(live) + len(fallen) - 2, 2):
+                    # R-392: the others are the bigger part of the living team only because the main team's players died.
+                    # They do not become the main team: it stays its survivors, or nobody, until its dead are back or the groups rejoin
+                    ov = max(gs, key=lambda g: (len(prev & set(g)), len(g)))
+                    if prev & set(ov): prev = frozenset(ov)
+                    out[u] = prev if any(self.AL[a][u] for a in prev) else frozenset(); continue
                 if len(gs[0]) >= max(len(live) - 2, 2) or len(gs) == 1: prev, together = frozenset(gs[0]), True
                 elif together:                                # the team divides here: judged 30 s on, once the parts have formed
                     v = min(u + 30, self.T)
@@ -434,8 +467,13 @@ class Moments:
                     fr = [g for g in cand if vote(g) > 0]
                     if len(fr) == 1 and len(cand) > 1 and all(vote(g) < 0 for g in cand if g is not fr[0]): prev = frozenset(fr[0])
                 out[u] = prev
-            self._mt[tm] = out
+            self._mt[tm] = out; self._lost[tm] = lost
         return self._mt[tm][t - t % SPLIT_STEP]
+
+    def main_lost(self, tm, t):
+        """How many of the main team's players are dead at second t, having died as main team (R-392)."""
+        self.main_team(tm, t)
+        return self._lost[tm][t - t % SPLIT_STEP]
 
     def _over(self, tm, t):
         """(players of tm on a split, players of its main team pushing, the rest alive) at second t. On the enemy's
@@ -451,7 +489,7 @@ class Moments:
             mc = self.centre([a for a in main if a in rest], t)   # out in the field counts only well away from the main team
             deep = [a for a in deep if a in main or self._deep(a, t) != "field" or mc is None or d(self.P[a][t], mc) >= MEET_R]
             push = [a for a in deep if a in main]
-            if len(live) - len(deep) < 3 and len(deep) > len(push): push = deep       # nobody left to be a main team
+            if len(live) + self.main_lost(tm, t) - len(deep) < 3 and len(deep) > len(push): push = deep       # nobody left to be a main team (a main team that is dead still counts, R-392: its split stays a split)
             split = [a for a in deep if a not in push]
             if push and split:
                 c0, v = self.centre(push, t), min(t + 6, self.T)
@@ -760,6 +798,9 @@ class Moments:
                         return max(z, key=lambda k: (z[k], str(k)))
                     near = lambda g, u: [e for e in st.players[foe] if self.AL[e][u] and self.P[e][u] and any(d(self.P[e][u], self.P[x][u]) < FIGHT_LINK for x in g)]
                     k0, k1 = where(g0, u0), where(g1, u1)
+                    if way < 0:                               # a fall back that comes to rest at the team's own footies is told as falling to them (R-307, R-391),
+                        ke = where([x for x in run[i1][2] if x in g0] or run[i1][2], run[i1][0])      # though most of the way was covered before reaching them
+                        if ke[0].endswith("footies") and ke[1] == side: k1 = ke
                     out.append({"t": run[fast][0], "t0": u0, "t1": u1, "team": m.tag[tm], "tm": tm, "group": group, "way": "up" if way > 0 else "back", "dist": round(abs(run[b][1] - run[a][1])),
                                 "from": self.place_words(*k0), "to": self.place_words(*k1), "from_kind": k0[0], "from_side": k0[1], "to_kind": k1[0], "to_side": k1[1],
                                 "ids": sorted(g0), "n": len(g0), "pressed": len(near(g0, u0)), "followed": len(near(g1, u1)),
