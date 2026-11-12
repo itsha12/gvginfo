@@ -1,5 +1,7 @@
-"""The draft thresholds behind joins, swaps, split fights, ground moves, side fights, the pit and undefended splits
-(common.py; Claude's drafts, to confirm), with what each yields over every counted match beside it.
+"""The thresholds behind joins, swaps, split fights, ground moves, side fights, the pit and undefended splits (common.py;
+confirmed, R-390) and the draft thresholds of reading step 2 (pushing the flagger, flag route, flag lead, posture, the
+timing choices, monk counts, who is on the Guild Lord; Claude's drafts, to confirm), with what each yields over every
+counted match beside it.
 
 Usage:  python3 tools/golden/thresholds.py run /tmp/thresholds.json [--jobs 2]     (every counted match, about 20 minutes)
         python3 tools/golden/thresholds.py show /tmp/thresholds.json
@@ -39,6 +41,17 @@ def one(rid):
             "side_cut_s": len(M.side_cut) * 2,
             "missed_pickups": len(M.missed_pickups),
             "captures": sum(1 for L in M.flag_lives() if L["how"] == "captured"),
+            # reading step 2 (R-371, R-373, R-375 to R-378)
+            "pushes": [[r["t1"] - r["t"], len(r["ids"]), r["acts"], bool(r["main"]), r["doing"], bool(r["died"]), bool(r["dropped"]), r["delay_s"], r["flag"]] for r in M.flag_pushes()],
+            "routes": [[fr["route"], fr["back_route"], fr["door"], fr["how"]] for fr in M.flags_record()],
+            "lead": [[r["level"], r["t1"] - r["t"]] for r in M.flag_lead()],
+            "posture": [[r["t1"] - r["t"], r["n"], bool(r["main"]), r["kind"], r["end"], r["facing"], len(r["joined"])] for r in M.posture()],
+            "timing": [[r["kind"], r["s"], r.get("boost_in")] for r in M.timing()],
+            "holds": [[fr["held_s"], fr["cap_boost_in"]] for fr in M.flags_record() if fr["how"] == "captured"],
+            "monks": [[r["n"], r["was"], r["of"]] for r in M.monk_counts()],
+            "lord": [[round(r["t1"] - r["t"]), len(r["ids"]), r["hits"], r["defenders"]] for r in M.on_lord()],
+            "pregame": [bool(v["holder"] is not None) for v in M.pregame().values()],
+            "story_lines": len(story.story(M, 0, None)),
         }
     except Exception as e:
         return rid, {"error": f"{type(e).__name__}: {e}"}
@@ -87,6 +100,34 @@ def show(path):
     print(f"side fights cut from a bigger fight: in {sum(1 for x in sc if x)} matches; seconds a match where it happens: {q(sc)}")
     mp, cp = sum(v["missed_pickups"] for v in D.values()), sum(v["captures"] for v in D.values())
     print(f"captures {cp}; pickups the observer missed, read from the capture {mp} (in {sum(1 for v in D.values() if v['missed_pickups'])} matches)")
+    if not all("pushes" in v for v in D.values()): return
+    C = collections.Counter
+    print(f"\nReading step 2 (drafts to confirm). Story lines a match: {q([v['story_lines'] for v in D.values()])}")
+    X = cat("pushes")
+    print(f"pushing the flagger: {len(X)} ({len(X) / n:.1f} a match; matches with none {sum(not v['pushes'] for v in D.values())}); length (s): {q([x[0] for x in X])}; players pushing: {q([x[1] for x in X], (25, 50, 75))}; by the main team {sum(x[3] for x in X)}")
+    print(f"  the flagger was: {dict(C(x[4] for x in X))}; he died {sum(x[5] for x in X)}, dropped the flag {sum(x[6] for x in X)}; shorter than PUSHFLAG_S (kept for the drop or the death) {sum(x[0] < 6 for x in X)}; one hit or skill only {sum(x[2] == 1 for x in X)}")
+    print(f"  what became of that flag: {dict(C(x[8] for x in X))}")
+    X = cat("routes")
+    print(f"flag routes: {len(X)} flags; way to the stand read {dict(C(x[0] for x in X if x[0]))}; way back read {dict(C(x[1] for x in X if x[1]))}; out by the own back door {sum(x[2] == 'back door' for x in X)}, front door {sum(x[2] == 'front door' for x in X)}")
+    X = cat("lead")
+    for lv in ("full", "half"):
+        xs = [x[1] for x in X if x[0] == lv]
+        print(f"flag lead, {lv} a flag up: {len(xs)} stretches ({len(xs) / n:.1f} a match); length (s): {q(xs)}")
+    X = cat("posture")
+    print(f"posture: {len(X)} ({len(X) / n:.2f} a match); length (s): {q([x[0] for x in X])}; players: {q([x[1] for x in X], (25, 50, 75))}; main team {sum(x[2] for x in X)}; at {dict(C(x[3] for x in X))}")
+    print(f"  ended: {dict(C(x[4] for x in X))}; nobody facing it {sum(x[5] == 0 for x in X)}; a team mate joined while it waited {sum(x[6] > 0 for x in X)}")
+    X = cat("timing")
+    for k in ("delayed pickup", "held to the boost", "stayed to help", "left before res"):
+        xs = [x[1] for x in X if x[0] == k]
+        print(f"timing, {k}: {len(xs)} ({len(xs) / n:.2f} a match); seconds: {q(xs)}")
+    H = cat("holds"); hb = [x for x in H if x[1] is not None]
+    print(f"  captures {len(H)}; in hand at the stand before the cap (s): {q([x[0] for x in H])}; held HOLD_S or longer {sum(x[0] >= 15 for x in H)}; of {len(hb)} capped against the enemy's stand, seconds to the enemy's boost: {q([x[1] for x in hb])}")
+    X = cat("monks")
+    print(f"monk count changes in the main fight: {len(X)} ({len(X) / n:.1f} a match); down {sum(x[1] is None or x[0] < x[1] for x in X)}, back up {sum(x[1] is not None and x[0] > x[1] for x in X)}; down to one {sum(x[0] == 1 and (x[1] is None or x[1] > 1) for x in X)}, to none {sum(x[0] == 0 for x in X)}")
+    X = cat("lord"); told = [x for x in X if x[2] >= 3 and x[0] >= 4]
+    print(f"on the Guild Lord: {len(X)} stretches, {len(told)} told ({len(told) / n:.1f} a match); length (s): {q([x[0] for x in told])}; players: {q([x[1] for x in told], (25, 50, 75))}; nobody of the defenders in the pit {sum(x[3] == 0 for x in told)}")
+    pg = cat("pregame")
+    print(f"pre-game flag: in hand at the gates for {sum(pg)} of {len(pg)} teams")
 
 
 if __name__ == "__main__":

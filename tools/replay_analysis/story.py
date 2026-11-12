@@ -12,7 +12,10 @@ What it says, in his words:
                falls back and whether under pressure (team health and deaths, R-349, R-352).
   Deaths       where, against the base res clock; resurrections by a team-mate; base resurrections; NPCs and footmen
                taken; boosts.
-A draft: it does not yet read a threat or a posture, and it judges no play.
+  The words    (R-373, R-375 to R-378) pushing the flagger, the flag route (short way, long way, by the back door),
+               flag lead (a full flag, half a flag up), posture, the four timing choices, monk counts in the main
+               fight, who is on the Guild Lord: each printed from its own record.
+A draft: it does not yet read a threat, and it judges no play.
 
 Report layer: reads the measurement layers (moments.py, hallmap.py) and writes text; it is in no cache key.
 
@@ -82,7 +85,8 @@ def _went(M, a, t0):
 def state_line(M, t):
     st, m, parts = M.st, M.m, []
     owner, since = st.stand_owner(t)
-    parts.append("Stand: " + (f"{m.tag[owner]}, boost in {round(BOOST_EVERY - (t - since) % BOOST_EVERY)} s" if owner else "nobody"))
+    lead = M.lead_at(owner, t) if owner else None
+    parts.append("Stand: " + (f"{m.tag[owner]}, boost in {round(BOOST_EVERY - (t - since) % BOOST_EVERY)} s" + (f", {lead} up" if lead and lead != "the stand" else "") if owner else "nobody"))
     for tm in st.teams:
         foe, side = 3 - tm, st.side.get(tm)
         live = [a for a in st.players[tm] if M.AL[a][t]]
@@ -139,9 +143,10 @@ def _run_starts(M):
 
 def _move_events(M):
     m, out = M.m, []
+    back = {(fr["runner_id"], min(int(fr["pickup"]), M.T)): fr["back_route"] for fr in M.flags_record() if fr["back_route"]}
     for (a, tp), (start, waited) in _run_starts(M).items():      # when a player goes to run, not only when he picks up
         tm = m.team(a)
-        if start is not None: out.append((start, f"{m.tag[tm]}'s {m.roles[a]} leaves {_where(M, a, start)} to go back for the flag"))
+        if start is not None: out.append((start, f"{m.tag[tm]}'s {m.roles[a]} leaves {_where(M, a, start)} to go back for the flag" + (f" the {back[(a, tp)]}" if (a, tp) in back else "")))
         if waited is not None: out.append((waited, f"{m.tag[tm]}'s {m.roles[a]} waits back at the flag spawn for the next flag"))
     return out + _attempt_events(M)
 
@@ -203,12 +208,15 @@ def _attempt_events(M):
 
 def _pregame(M):
     """Who holds each team's flag when the gates open (the replay keeps the flag events from before 0:00)."""
-    m, hold = M.m, {}
-    for t, typ, a, *_ in m.o.get("flags", []):
-        if t >= 0 or a not in M.P: continue
-        if typ == "flag_picked_up": hold[m.team(a)] = a
-        elif typ == "flag_dropped" and hold.get(m.team(a)) == a: hold[m.team(a)] = None
-    return [(0, f"At the gates {m.tag[tm]}'s {m.roles[hold[tm]]} has the flag" if hold.get(tm) is not None else f"At the gates nobody on {m.tag[tm]} has the flag") for tm in (1, 2)]
+    m, out = M.m, []
+    for tm, r in sorted(M.pregame().items()):                 # printed from the record (moments.pregame, R-362)
+        tag = m.tag[tm]
+        if r["holder"] is not None:
+            first = r["picked"][0][1]
+            out.append((0, f"At the gates {tag}'s {m.roles[r['holder']]} has the flag" + (f" ({m.roles[first]} picked it up first, before the gates opened)" if first != r["holder"] else " (picked up before the gates opened)")))
+        elif r["picked"]: out.append((0, f"At the gates nobody on {tag} has the flag ({m.roles[r['picked'][-1][1]]} picked it up before the gates opened and dropped it)"))
+        else: out.append((0, f"At the gates nobody on {tag} has the flag"))
+    return out
 
 
 def _record_events(M):
@@ -284,7 +292,9 @@ def _flag_events(M):
         ser = [c for c in L["carries"] if c[0] in L["serious"]]
         if not ser: continue
         nxt = L.get("next_runner")
-        out.append((ser[0][1], f"{tag}'s {role(ser[0][0])} picks up the flag at the spawn"))
+        fr0 = next((x for x in M.flags_record() if x["tm"] == L["team"] and x["pickup"] == ser[0][1]), None)
+        way = (f" and runs it the {fr0['route']}" if fr0 and fr0["route"] else "") + (" by the back door" if fr0 and fr0["door"] == "back door" else "")
+        out.append((ser[0][1], f"{tag}'s {role(ser[0][0])} picks up the flag at the spawn{way}"))
         for i, c in enumerate(ser):
             b = ser[i + 1] if i + 1 < len(ser) else None
             if b is not None and b[0] != c[0] and c[2] is not None and b[1] - c[2] <= 20:
@@ -454,7 +464,7 @@ def _fight_events(M):
             if side not in side_tm or LADDER[kind] < 1 or tr["seen"] - tr["start"] < 20: continue
             vis = 3 - side_tm[side]
             alive = [x for x in tr["key"][vis - 1] if M.AL[x][min(t, T)]]
-            gone = [x for x in alive if (lambda k: k[1] != side or LADDER[k[0]] < 1)(M.place_at(x, min(t + 10, T)))]
+            gone = [x for x in alive if M.AL[x][min(t + 10, T)] and (lambda k: k[1] != side or LADDER[k[0]] < 1)(M.place_at(x, min(t + 10, T)))]      # a player dead 10 s on has not fallen out
             if not alive or len(gone) * 2 <= len(alive): continue
             by = collections.defaultdict(list)
             for x in gone:
@@ -526,11 +536,53 @@ def _death_events(M):
     return out
 
 
+def _word_events(M):
+    """The words of R-373 and R-375 to R-378, printed from their records (moments.flag_pushes, flag_lead, posture,
+    timing, monk_counts, on_lord): the story says what the record holds and nothing else (R-362)."""
+    m, out = M.m, []
+    mk = lambda n: "no monk" if not n else ("one monk" if n == 1 else f"{NUM.get(n, n)} monks")
+    doing = {"carrying": "carrying the flag", "going back": "on his way back for the flag", "at the spawn": "about to pick the flag up"}
+    for r in M.flag_pushes():
+        who = f"{r['team']}'s main team ({', '.join(r['roles'])})" if r["main"] else f"{r['team']}'s {', '.join(r['roles'])}"
+        line = f"{who} push{'es' if r['main'] or len(r['roles']) == 1 else ''} {r['foe']}'s flagger ({r['role']}, {doing[r['doing']]}) at {r['place']} for {clock(r['t1'] - r['t'])}"
+        tail = ([f"{r['foe']}'s {', '.join(r['helped'])} come{_s(r['helped'])} to help"] if r["helped"] else []) + (["he dies"] if r["died"] else ["he drops the flag"] if r["dropped"] else [])
+        out.append((r["t"], line + ("; " + "; ".join(tail) if tail else "")))
+    last = {}
+    for r in M.flag_lead():
+        k = (r["tm"], r["level"])
+        if k in last and r["t"] - last[k] <= 30: last[k] = r["t1"]; continue      # the same lead after a flicker is not told again
+        last[k] = r["t1"]
+        if r["level"] == "full": out.append((r["t"], f"{r['team']} is a full flag up: it holds the stand and {r['backup']} has the backup flag at the stand"))
+        else: out.append((r["t"], f"{r['team']} is half a flag up: it holds the stand and {r['backup']} has its next flag, " + (f"{r['foe']}'s still at the spawn" if r["enemy_flag"] == "at the spawn" else f"picked up before {r['foe']}'s")))
+    for r in M.posture():
+        grp = r["team"] if r["main"] else f"{r['team']}'s split"
+        wait = f", {', '.join(r['joined'])} joining it" + (" from the base res" if r["joined_from_res"] else "") if r["joined"] else ""
+        out.append((r["t"], f"{grp} postures at {r['place']} for {clock(r['t1'] - r['t'])} without going in or trading damage ({r['n']} of them, {r['facing'] or 'nobody'} of {r['foe']} facing it{wait}); then {r['end']}"))
+    for r in M.timing():
+        who = ", ".join(r["who"])
+        if r["kind"] == "delayed pickup": out.append((r["t"], f"{r['team']}'s {who} waits {r['s']} s at the flag spawn before picking up, with {r['foe']}'s {', '.join(r['by'])} on him"))
+        elif r["kind"] == "held to the boost": out.append((r["t"], f"{r['team']} holds its flag at the stand for {r['s']} s and caps {r['boost_in']} s before {r['foe']}'s boost"))
+        elif r["kind"] == "stayed to help": out.append((r["t"], f"{r['team']}'s {who} stays {r['s']} s to help the flag in after handing it off, then goes back for the next flag at {clock(r['went_back'])}"))
+        else: out.append((r["t"], f"{r['team']}'s {'split' if r['what'] == 'split' else 'main team'} leaves {r['foe']}'s base {r['s']} s before {r['foe']}'s base res ({r['coming_back']} coming back)"))
+    for r in M.monk_counts():
+        f1, f2 = r["fight"]
+        if r["was"] is None or r["n"] < r["was"]:
+            why = "; ".join(f"{role} is dead" if w == "dead" else f"{role} has the flag" if w == "with the flag" else f"{role} is {w}" for role, w in r["gone"])
+            out.append((r["t"], f"{r['team']} is on {mk(r['n'])} at {r['place']} ({m.tag[1]} {f1} v {f2} {m.tag[2]})" + (f": {why}" if why else "")))
+        else: out.append((r["t"], f"{r['team']} is back on {mk(r['n'])} at {r['place']} ({m.tag[1]} {f1} v {f2} {m.tag[2]}): {', '.join(r['came'])} back in the fight"))
+    for r in M.on_lord():
+        if r["hits"] < 3 or r["t1"] - r["t"] < 4: continue
+        who = f"{r['team']}'s {', '.join(r['roles'])} {'is' if len(r['roles']) == 1 else 'are'}" if len(r["roles"]) <= 4 else f"{r['team']} is, with {NUM.get(len(r['roles']), len(r['roles']))} players,"
+        out.append((r["t"], f"{who} on {r['foe']}'s Guild Lord for {clock(r['t1'] - r['t'])}, "
+                            + (f"{r['defenders']} of {r['foe']} in its pit" if r["defenders"] else f"nobody of {r['foe']} in its pit")))
+    return out
+
+
 def story(M, t0=0, t1=None, states=True):
     lord = min((td for a, td in M.st.npc_dead.items() if (M.st.geo.npcs.get(a) or {}).get("kind") == "guild_lord"), default=None)
     t1 = M.T if t1 is None else t1
     if lord is not None: t1 = min(t1, lord)               # the game is over when a Lord dies; the replay runs on a few seconds
-    ev = _flag_events(M) + _move_events(M) + _fight_events(M) + _death_events(M) + _record_events(M) + _ground_events(M) + _pregame(M)
+    ev = _flag_events(M) + _move_events(M) + _fight_events(M) + _death_events(M) + _record_events(M) + _ground_events(M) + _pregame(M) + _word_events(M)
     if states: ev += [(u, state_line(M, u)) for u in [45] + list(range(120, M.T + 1, 60)) if u <= M.T]
     return sorted(((t, s) for t, s in ev if t0 <= t <= t1), key=lambda x: (x[0], not x[1].startswith("STATE")))
 

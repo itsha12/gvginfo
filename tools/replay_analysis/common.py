@@ -261,6 +261,32 @@ def flux_at(ms):
     t = datetime.datetime.fromtimestamp(ms / 1000, datetime.timezone.utc) - datetime.timedelta(hours=7)
     return FLUX[t.month - 1]
 
+# ---- reading step 2: the words of R-371, R-373 and R-375 to R-378 (moments.py). Claude's drafts, to confirm, except
+# POSTURE_S (R-376); each with its counts over every counted match in tools/golden/thresholds.py.
+PUSHFLAG_R = 1400         # an enemy player is on the flagger when he stands this close to him (a cast range and a little: a ranger pushes from range)
+PUSHFLAG_S = 6            # ... for this long, and has hit him or landed a skill on him at least once
+PUSHFLAG_GAP_S = 10       # a push broken for no longer than this is still the same push
+PUSHFLAG_MATES = 3        # the flagger is on his own with fewer than this many team mates around him (with more, it is the fight he stands in)
+PUSHFLAG_AHEAD_S = 45     # a player is his team's flagger from this long before his pickup, once he is on his way back or at the spawn
+ROUTE_ENDS = 1000         # a flag route is read away from the spawn and the stand, where the drawn flag runs lie apart
+ROUTE_OFF = 800           # the carrier followed a drawn flag run when he stayed this close to it on average ...
+ROUTE_CLEAR = 400         # ... and this much closer to it than to the other one
+ROUTE_MIN_S = 6           # ... over at least this many seconds of walking
+LEAD_S = 6                # a flag lead (a full flag, half a flag, R-375) counts once it has lasted this long
+POSTURE_S = 10            # posture: on the enemy's side at their footmen or a door, not going in and not trading damage, this long (R-376)
+POSTURE_IN = 800          # ... "not going in": the group has come no nearer the enemy's Guild Lord than this, walked, since it stopped
+POSTURE_GAP_S = 12        # ... and the same group stopping again within this long, no damage traded between, is still the one posture
+POSTURE_SHARE = 1 / 3     # ... with at least this share of the group (and two players) at the door or the footmen it is named by
+PICKUP_DELAY_S = 6        # a pickup is delayed while pushed when the flagger stands at his spawn this long with an enemy on him (R-377)
+HOLD_S = 15               # a flag is held when it stands in hand at the stand this long before it is capped ...
+BOOST_LATE_S = 20         # ... and held until just before the boost when the cap lands this close to the enemy's boost (R-377)
+HELP_IN_S = 8             # a player stays to help a flag in when he hands it off and is still with it this long later, at the cap (R-377)
+HELP_BACK_S = 45           # ... and picks the next flag up himself within this long of that cap (later than that he had not stayed for the flag)
+LEAVE_RES_S = 20          # leaving a base just before the base res: out of it within this long before the defenders' dead come back (R-377; as CAUGHT_S, R-359)
+MONK_S = 12               # a monk count in a fight is told once it has lasted this long (as JOIN_S, R-350)
+MONK_MIN = 4              # ... in the main team's fight, with at least this many of the team in it (a two or three player fight has its monks in its numbers)
+LORD_GAP_S = 30           # damage on the Guild Lord broken for no longer than this is one stretch on him (as on_pit)
+
 # ---- joins, leaves, swaps and the split fight record (moments.py; R-365, R-374). Confirmed by Denning as they stand (R-390),
 # from JOIN_LOOK_S to SPLIT_FIGHT_MIN, with their counts over 606 matches beside them (tools/golden/thresholds.py).
 JOIN_LOOK_S = 16          # a join or a leave is read over this long before or after it

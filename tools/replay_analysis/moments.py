@@ -21,6 +21,11 @@ Call (R-294): where the players stand READ_FROM to READ_TO seconds after the tri
   Never from damage or deaths. "At the footmen" is read from Denning's Footman labels and the measured reach
   (hallmap.py, R-307), only while a footman is alive and only on halls that have them (R-311).
 Forced (2.7): a player of the deciding team died inside the read window; kept apart.
+The records (R-362: the record is the work; story.py only prints them): attempts (splits and main team pushes), caught,
+  flags_record (with the flag route, the door, the hold before a cap and its distance from the enemy's boost),
+  main_team, lane, moves, split_fights, ground, undefended, on_pit, and the words of R-373 and R-375 to R-378, each its
+  own record: flag_pushes (pushing the flagger, R-371), flag_lead (a full flag and half a flag up, R-375), pregame
+  (the flag before the gates), posture (R-376), timing (the four timing choices, R-377), monk_counts and on_lord (R-378).
 
 Usage:  python3 moments.py <report id> [family]      the match's moments in order
         python3 moments.py all <out.json> [--jobs N]  every counted match, compact (for counts and golden picks)
@@ -30,8 +35,11 @@ import collections, json, math, statistics, sys
 from common import (READ_FROM, READ_TO, AREA_SHARE, PURPOSE_S, LEAVE_MIN_S, HOME_WAIT_S, SPAWN_R, GROUP_LEAVE_S, MEET_R,
                     NUMBERS_MIN_S, MERGE_S, BOOST_WARN_S, FLAGGER_R, SPLIT_FAR, BOOST_EVERY, SERIOUS_CARRY_S, FIGHT_LINK, GROUND_MOVE, GROUND_S, GROUND_BACK, GROUND_JUMP, GROUND_SPLIT_MOVE, PIT_S, SIDE_FIGHT_MAX, SIDE_FIGHT_S, UNDEFENDED_S,
                     RETURN_R, FOOT_ENGAGED_S, SPLIT_STEP, SPLIT_MIN_S, SPLIT_GAP_S, FORCED_OUT_S, AHEAD_LOOK_S, CAUGHT_S, NPC_NEAR,
-                    JOIN_S, RES_EVERY, flux_at, JOIN_LOOK_S, JOIN_MOVE, JOIN_LEAD, SWAP_S, SWAP_STAY_S, SPLIT_FIGHT_GAP_S, SPLIT_FIGHT_MIN)
+                    JOIN_S, RES_EVERY, flux_at, JOIN_LOOK_S, JOIN_MOVE, JOIN_LEAD, SWAP_S, SWAP_STAY_S, SPLIT_FIGHT_GAP_S, SPLIT_FIGHT_MIN,
+                    PUSHFLAG_R, PUSHFLAG_S, PUSHFLAG_GAP_S, PUSHFLAG_MATES, PUSHFLAG_AHEAD_S, ROUTE_ENDS, ROUTE_OFF, ROUTE_CLEAR, ROUTE_MIN_S, LEAD_S,
+                    POSTURE_S, POSTURE_IN, POSTURE_SHARE, POSTURE_GAP_S, PICKUP_DELAY_S, HOLD_S, BOOST_LATE_S, HELP_IN_S, HELP_BACK_S, LEAVE_RES_S, MONK_S, MONK_MIN, LORD_GAP_S)
 from state import d
+from hallmap import _seg_dist
 
 HOME, THEIRS = ("own pit", "own base"), ("enemy pit", "enemy base")
 FAMILY = {1: "Flag decision", 2: "Answer to a split", 3: "Numbers advantage"}
@@ -73,10 +81,15 @@ class Moments:
         foot_hit = collections.defaultdict(list)             # footman -> [(second, the player who hit him)]: which group he stood in is read from where they stood
         self.hits = collections.defaultdict(list)            # second -> [(actor, target)] damage between players
         self.npc_hits = collections.defaultdict(list)        # player -> seconds he damaged an enemy NPC
+        self.acts = collections.defaultdict(list)            # second -> [(actor, target)] damage dealt or a skill landed, between players of the two teams
+        self.lord_hits = collections.defaultdict(list)       # team -> [(second, the enemy player, amount)] damage on its Guild Lord
         self.pit_kind = collections.defaultdict(lambda: collections.defaultdict(set))  # team -> second -> which of them (knight, bodyguard, guild_lord)
         self.pit_act = collections.defaultdict(lambda: collections.defaultdict(set))   # team -> second -> enemy players trading damage with its knight, bodyguard or Guild Lord (R-387)
         for r in m.o["ev"]:
+            if r[1] in ("dm", "sa") and r[2] in self.P and r[3] in self.P and m.team(r[2]) != m.team(r[3]): self.acts[int(r[0] / 10)].append((r[2], r[3]))
             if r[1] != "dm" or not isinstance(r[2], int) or not isinstance(r[3], int) or max(r[2], r[3]) >= len(m.A): continue
+            if m.A[r[3]].get("npc") == "guild_lord" and r[2] in self.P and m.A[r[3]].get("team") not in (None, m.team(r[2])):
+                self.lord_hits[m.A[r[3]].get("team")].append((r[0] / 10, r[2], r[5] if len(r) > 5 and isinstance(r[5], (int, float)) else 0))
             for x in (r[2], r[3]):
                 if m.A[x].get("npc") == "footman": self.foot_act[m.A[x].get("team")].append(r[0] / 10)
             if m.A[r[3]].get("npc") == "footman" and r[2] in self.P: foot_hit[r[3]].append((r[0] / 10, r[2]))
@@ -102,6 +115,7 @@ class Moments:
         self._dp, self._ov, self._fp, self._att, self._last, self._mt, self._ln, self._fr = {}, {}, None, None, {}, {}, None, None
         self._fi, self._mv, self._sf, self._gr, self._und = None, None, None, None, None
         self._lost = {}
+        self._fpush, self._lead, self._lead_on, self._post, self._mc, self._tim = None, None, None, None, None, None
         self.side_cut = set()                                # seconds at which a side fight was cut off a bigger one (counted for the thresholds table)
         self.legs = self._departures()
         self.by_player = collections.defaultdict(list)
@@ -130,7 +144,8 @@ class Moments:
                                or (u <= u0 + 3 and self.P[la][u] and d(self.P[a][u], self.P[la][u]) < RETURN_R))), None)
                 if tp is None and self.spawn.get(tm):
                     tp = next((u for u in range(u1, int(lt) - 1, -1) if self.P[a][u] and d(self.P[a][u], self.spawn[tm]) < SPAWN_R), None)
-                if tp is not None and tp < t:
+                    if tp is not None: tp = max(tp, lt)       # never before the team's last flag event: a flag he dropped at the spawn and took again is picked up after the drop
+                if tp is not None and tp <= t:               # at the very second of the capture is still before it: the events keep their order
                     out.append((tp, "flag_picked_up", a)); missed.append((tp, a, t))
             else: op.pop(a, None)
             out.append((t, typ, a)); last[tm] = (t, typ, a)
@@ -232,7 +247,7 @@ class Moments:
             z = collections.Counter(self.place_at(a, t) for a in g)
             kind, side = max(z, key=lambda k: (z[k], str(k)))
             out.append({"n": {tm: len(n[tm]) for tm in st.teams}, "ids": {tm: frozenset(n[tm]) for tm in st.teams},
-                        "who": {tm: sorted(m.roles[a] for a in n[tm]) for tm in st.teams},
+                        "who": {tm: sorted(m.roles[a] for a in n[tm]) for tm in st.teams}, "monks": {tm: self._mk(n[tm]) for tm in st.teams},
                         "kind": kind, "side": side, "place": self.place_words(kind, side),
                         "flag": [a for a in g if self.carrying(a, t)]})
         return sorted(out, key=lambda x: -(x["n"][1] + x["n"][2]))
@@ -1067,13 +1082,380 @@ class Moments:
                 drop = self.place_words(*self.place_at(ser[-1][0], cl(ser[-1][2])))
             owner, since = st.stand_owner(tp)
             clock = round(BOOST_EVERY - (tp - since) % BOOST_EVERY) if owner == foe else None
+            # the way it was run (R-373): the drawn flag run followed to the stand and on the walk back for it, and the own door it went out by
+            trk = [self.P[c[0]][u] for c in ser for u in range(cl(c[1]), cl(c[2] if c[2] is not None else end) + 1) if self.AL[c[0]][u]]
+            route = self._flag_route(tm, trk)
+            back_route = None                                  # the walk back counts only when it began around the stand
+            if left is not None and self.hall is not None and self.AL[a][left] and self.place_at(a, left)[0] in ("stand", "greater stand"):
+                back_route = self._flag_route(tm, [self.P[a][u] for u in range(left, tp + 1) if self.AL[a][u]])
+            door = None
+            if self.hall is not None:
+                for c in ser:
+                    for u in range(cl(c[1]), cl(c[2] if c[2] is not None else end) + 1, SPLIT_STEP):
+                        if not self.AL[c[0]][u]: continue
+                        k_, sd_ = self.place_at(c[0], u)
+                        if sd_ == st.side.get(tm) and k_ in ("front door", "back door"): door = k_; break
+                        if k_ in ("stand", "greater stand"): break
+                    if door: break
+            # timing (R-377): how long it stood in hand in the flag stand area before the cap, and how close to the enemy's boost the cap landed
+            held, cap_boost = 0, None
+            if L["how"] == "captured" and self.hall is not None:
+                u = end
+                while u > tp and any(c[1] <= u <= (c[2] if c[2] is not None else end) and self.AL[c[0]][u] and self.place_at(c[0], u)[0] == "stand" for c in ser): u -= 1      # in the flag stand area itself: the walk across the greater stand area is not a hold
+                held = end - u
+                o2, s2 = st.stand_owner(max(L["end"] - 1, 0))
+                if o2 == foe: cap_boost = round(BOOST_EVERY - (L["end"] - s2) % BOOST_EVERY)
+            stayed = None                                      # he handed it off, stayed with it to the cap, then went back for the next himself
+            if L["how"] == "captured" and L["start"] >= 0 and L["form"] == "hand-off to cap" and n0 and n0[0] != L["capper"] and n0[0] in [c[0] for c in ser]:
+                x = n0[0]; th = max((c[2] for c in ser if c[0] == x and c[2] is not None), default=None)
+                cp = self.P[L["capper"]][end]
+                if th is not None and end - th >= HELP_IN_S and self.AL[x][end] and cp and d(self.P[x][end], cp) < FIGHT_LINK and n0[1] - end <= HELP_BACK_S:
+                    stayed = {"role": m.roles[x], "id": x, "s": round(end - th), "went_back": round(n0[1])}
             out.append({"team": m.tag[tm], "tm": tm, "start": tp, "end": end, "how": L["how"], "form": L["form"],
                         "runner": m.roles[a], "runner_prof": m.A[a].get("p"), "carriers": [m.roles[c[0]] for c in ser],
                         "set_off": left, "away_s": max(away, 0), "backup_waiting": backup, "back_cap": back_cap, "with_split": split,
-                        "dropped_at": drop, "died_carrying": died, "enemy_boost_in": clock,
+                        "dropped_at": drop, "died_carrying": died, "enemy_boost_in": clock, "pregame": L["start"] < 0,
+                        "capper": m.roles[L["capper"]] if L["how"] == "captured" else None, "runner_id": a, "pickup": ser[0][1],
+                        "route": route["name"] if route else None, "back_route": back_route["name"] if back_route else None, "door": door,
+                        "held_s": held, "cap_boost_in": cap_boost, "stayed": stayed,
                         "beat_boost": (L["how"] == "captured" and end - tp < clock) if clock is not None else None})
         self._fr = out
         return out
+
+    # ---- reading step 2: the words of R-371, R-373 and R-375 to R-378, each its own record
+    def _mk(self, ids):
+        """Backline monks among these players (a smiter is not one)."""
+        return sum(1 for a in ids if self.m.A[a].get("p") == "Monk" and not self.m.roles[a].startswith("Monk "))
+
+    def _flagger(self, b, tm, t):
+        """Is this player his team's flagger at second t: "carrying" its flag, or "going back" for it or "at the spawn"
+        within PUSHFLAG_AHEAD_S of picking it up. None otherwise."""
+        if not self.AL[b][t] or not self.P[b][t]: return None
+        if self.carrying(b, t): return "carrying"
+        if any(t < p <= t + PUSHFLAG_AHEAD_S for p in self.pick.get(b, ())):
+            if self.spawn.get(tm) and d(self.P[b][t], self.spawn[tm]) < 2 * SPAWN_R: return "at the spawn"
+            if self.on_leg(b, t, ("run",)): return "going back"
+        return None
+
+    def flag_pushes(self):
+        """Pushing the flagger, its own record apart from a split and a push (R-371). One record each stretch in which
+        players of one team stand on the other team's flagger (within PUSHFLAG_R of him for PUSHFLAG_S or longer,
+        having hit him or landed a skill on him) while he is on his own: carrying the flag, going back for it or at his
+        flag spawn about to pick it up, with fewer than PUSHFLAG_MATES team mates around him and fewer than half of his
+        main team, and not himself on a split or a push. Each record: when, who pushes (and whether it is their main team), the flagger and what he was
+        doing, where, who of his team came to help, and what came of it: he died, he dropped the flag, the flag was
+        returned or capped, and how long he waited at his spawn before picking up with an enemy on him (R-377)."""
+        if self._fpush is not None: return self._fpush
+        st, m, T, S, out = self.st, self.m, self.T, SPLIT_STEP, []
+        if self.hall is None: self._fpush = out; return out
+        lives = self.flag_lives()
+        for tm in st.teams:                                   # tm pushes; the flagger is one of the other team's players
+            foe = 3 - tm
+            if tm not in st.side or foe not in st.side: continue
+            for b in st.players[foe]:
+                runs, cur = [], None
+                for t in range(0, T + 1, S):
+                    state = self._flagger(b, foe, t)
+                    on = []
+                    if state:
+                        mates = sum(1 for x in st.players[foe] if x != b and self.AL[x][t] and d(self.P[x][t], self.P[b][t]) < FIGHT_LINK)
+                        sp, pu, _ = self._over(foe, t)
+                        rest = sum(1 for x in self.main_team(foe, t) if x != b and self.AL[x][t])      # on his own: with fewer than PUSHFLAG_MATES team mates and fewer than half his main team
+                        if mates < PUSHFLAG_MATES and mates * 2 < max(rest, 2) and b not in sp and b not in pu:
+                            on = [a for a in st.players[tm] if self.AL[a][t] and d(self.P[a][t], self.P[b][t]) < PUSHFLAG_R]
+                    if not on: continue
+                    if cur is None or t - cur["t1"] > PUSHFLAG_GAP_S:
+                        cur = {"t": t, "t1": t, "secs": collections.Counter(), "state": state, "states": set()}
+                        runs.append(cur)
+                    cur["t1"] = t; cur["states"].add(state)
+                    for a in on: cur["secs"][a] += S
+                for r in runs:
+                    t0, t1 = r["t"], r["t1"]
+                    acted = collections.Counter()
+                    for u in range(t0 - 1, min(t1 + 2, T) + 1):
+                        for x, y in self.acts.get(u, ()):
+                            if y == b and x in r["secs"]: acted[x] += 1
+                    ids = sorted((a for a in r["secs"] if acted[a] or r["secs"][a] >= PUSHFLAG_S), key=lambda a: (-acted[a], -r["secs"][a]))
+                    main = [a for a in self.main_team(tm, t0) if self.AL[a][t0]]
+                    helped = sorted({x for x in st.players[foe] if x != b for u in range(t0, t1 + 1, S)
+                                     if self.AL[x][u] and self.AL[b][u] and d(self.P[x][u], self.P[b][u]) < 1000}
+                                    - {x for x in st.players[foe] if x != b and self.AL[x][t0] and d(self.P[x][t0], self.P[b][t0]) < FIGHT_LINK})
+                    died = any(t0 <= td <= t1 + 4 for td in st.death_times.get(b, []))
+                    L = next((x for x in lives if x["team"] == foe and x["start"] <= t1 + PUSHFLAG_AHEAD_S and (x["end"] is None or x["end"] >= t0)
+                              and any(c[0] == b for c in x["carries"])), None)
+                    dropped = any(c[0] == b and c[2] is not None and t0 <= c[2] <= t1 + 4 and not (L["how"] == "captured" and L.get("capper") == b and abs(L["end"] - c[2]) < 1)
+                                  for c in (L["carries"] if L else ()))
+                    if not acted or not ids or (t1 - t0 < PUSHFLAG_S and not died and not dropped): continue      # a short push still counts when he drops the flag or dies under it
+                    delay, pk = None, None
+                    if r["state"] != "carrying" and self.spawn.get(foe):
+                        pk = next((p for p in self.pick.get(b, ()) if p > t0), None)
+                        if pk is not None and pk <= t1 + PUSHFLAG_AHEAD_S:
+                            prev = max((x["end"] for x in lives if x["team"] == foe and x["end"] is not None and x["end"] <= pk), default=0)
+                            there = next((u for u in range(t0, min(int(pk), T) + 1) if self.AL[b][u] and d(self.P[b][u], self.spawn[foe]) < SPAWN_R), None)
+                            pushed = [u for u in range(t0, min(int(pk), T) + 1, S) if self.AL[b][u] and any(self.AL[a][u] and d(self.P[a][u], self.P[b][u]) < PUSHFLAG_R for a in ids)]
+                            if there is not None and pushed: delay = max(round(pk - max(there, prev, pushed[0])), 0)
+                    at_spawn = bool(self.spawn.get(foe)) and d(self.P[b][t0], self.spawn[foe]) < 2 * SPAWN_R
+                    out.append({"t": t0, "t1": t1, "tm": tm, "team": m.tag[tm], "foe": m.tag[foe], "flagger": b, "role": m.roles[b], "doing": r["state"],
+                                "carried": "carrying" in r["states"], "ids": ids, "roles": [m.roles[a] for a in ids],
+                                "main": bool(main) and sum(1 for a in ids if a in main) * 2 >= len(main) and len(ids) >= 3,
+                                "place": f"{m.tag[foe]}'s flag spawn" if at_spawn else self.place_words(*self.place_at(b, t0)), "at_spawn": at_spawn,
+                                "acts": sum(acted.values()), "helped": [m.roles[x] for x in helped], "died": died, "dropped": dropped and not died,
+                                "flag": (L["how"] or "open") if L else None, "pickup": pk if delay is not None else None, "delay_s": delay})
+        self._fpush = sorted(out, key=lambda x: x["t"])
+        return self._fpush
+
+    def _flag_route(self, tm, pts):
+        """Which drawn flag run a walk followed, on a hall where Denning has drawn more than one a side: the short way
+        or the long way (by walked length). Read away from the spawn and the stand, where the runs lie apart: the walk
+        stayed within ROUTE_OFF of the run on average and ROUTE_CLEAR closer to it than to the next. None otherwise."""
+        hall, side = self.hall, self.st.side.get(tm)
+        if hall is None or side is None or not self.spawn.get(tm): return None
+        rs = [r for r in hall.routes if r["type"] == "Flag run" and r["side"] == side]
+        if len(rs) < 2: return None
+        pts = [p for p in pts if p and d(p, self.spawn[tm]) > ROUTE_ENDS and d(p, hall.stand) > ROUTE_ENDS]
+        if len(pts) < ROUTE_MIN_S: return None
+        sc = sorted((statistics.fmean(min(_seg_dist(p, u, v) for u, v in zip(r["pts"], r["pts"][1:])) for p in pts), r["walked"], r["id"]) for r in rs)
+        if sc[0][0] > ROUTE_OFF or sc[1][0] - sc[0][0] < ROUTE_CLEAR: return None
+        ws = sorted(r["walked"] for r in rs)
+        return {"name": "short way" if sc[0][1] == ws[0] else "long way" if sc[0][1] == ws[-1] else "middle way", "id": sc[0][2], "walked": sc[0][1], "off": round(sc[0][0])}
+
+    def pregame(self):
+        """The pre-game flag (R-374): for each team, who picked its flag up before the gates opened and who has it in
+        hand at 0:00 (the replay keeps the flag events from before 0:00). {team: {"picked": [(second, player)],
+        "holder": player or None, "dropped": second or None}}."""
+        m, out = self.m, {tm: {"picked": [], "holder": None, "dropped": None} for tm in self.st.teams}
+        for t, typ, a, *_ in m.o.get("flags", []):
+            if t >= 0 or a not in self.P: continue
+            r = out[m.team(a)]
+            if typ == "flag_picked_up": r["picked"].append((t / 10, a)); r["holder"], r["dropped"] = a, None
+            elif typ == "flag_dropped" and r["holder"] == a: r["holder"], r["dropped"] = None, t / 10
+        return out
+
+    def _lead_levels(self):
+        """{team: {second: level}} every SPLIT_STEP, in Denning's units (R-375). 3 = a full flag up: the stand held with
+        a backup flag in hand at the stand. 2 = half a flag up: the stand held and the team's next flag picked up
+        before the enemy picked up theirs (theirs still at the spawn, or picked up later). 1 = the stand held. 0 = not."""
+        if self._lead is not None: return self._lead
+        st, T, S = self.st, self.T, SPLIT_STEP
+        lives = self.flag_lives()
+        span = {tm: [] for tm in st.teams}                     # (from, to, pickup of the life, carrier or None while it lies on the ground)
+        for L in lives:
+            ser = [c for c in L["carries"] if c[0] in L["serious"]]
+            if not ser: continue
+            end = L["end"] if L["end"] is not None else T + 1
+            for i, c in enumerate(ser):
+                e = c[2] if c[2] is not None else end
+                span[L["team"]].append((c[1], e, ser[0][1], c[0]))
+                nxt = ser[i + 1][1] if i + 1 < len(ser) else end
+                if e < nxt: span[L["team"]].append((e, nxt, ser[0][1], None))
+        out = {tm: {} for tm in st.teams}
+        for t in range(0, T + 1, S):
+            owner, _ = st.stand_owner(t)
+            for tm in st.teams:
+                lv = 0
+                if owner == tm:
+                    lv = 1
+                    mine = next((x for x in span[tm] if x[0] <= t < x[1]), None)
+                    theirs = next((x for x in span[3 - tm] if x[0] <= t < x[1]), None)
+                    if mine and mine[3] is not None and self.AL[mine[3]][t]:
+                        if self.hall is not None and self.place_at(mine[3], t)[0] in ("stand", "greater stand"): lv = 3
+                        elif theirs is None or theirs[2] > mine[2]: lv = 2
+                out[tm][t] = lv
+        self._lead = out
+        self._lead_on = {tm: span[tm] for tm in st.teams}
+        return out
+
+    def flag_lead(self):
+        """Flag lead in Denning's units (R-375), one record each stretch of LEAD_S or longer in which a team is a full
+        flag or half a flag up (see _lead_levels). Each record: when, the team, "full" or "half", who has the backup
+        flag, and where the enemy's flag is (at the spawn, in hand, on the ground)."""
+        lv, S, out = self._lead_levels(), SPLIT_STEP, []
+        m = self.m
+        for tm in self.st.teams:
+            cur = None
+            for t in range(0, self.T + 1, S):
+                v = lv[tm][t]
+                if cur is not None and v == cur["lv"]: cur["t1"] = t; continue
+                if cur is not None and cur["lv"] >= 2 and cur["t1"] - cur["t"] >= LEAD_S: out.append(cur)
+                cur = {"t": t, "t1": t, "lv": v, "tm": tm}
+            if cur is not None and cur["lv"] >= 2 and cur["t1"] - cur["t"] >= LEAD_S: out.append(cur)
+        for r in out:
+            tm, t = r["tm"], r["t"]
+            mine = next((x for x in self._lead_on[tm] if x[0] <= t < x[1]), None)
+            theirs = next((x for x in self._lead_on[3 - tm] if x[0] <= t < x[1]), None)
+            r.update(team=m.tag[tm], foe=m.tag[3 - tm], level="full" if r["lv"] == 3 else "half", backup=m.roles[mine[3]] if mine and mine[3] is not None else None,
+                     enemy_flag="at the spawn" if theirs is None else ("in hand" if theirs[3] is not None else "on the ground"))
+        return sorted(out, key=lambda r: r["t"])
+
+    def lead_at(self, tm, t):
+        """The team's flag lead at second t: None, "the stand", "half a flag" or "a full flag" (R-375)."""
+        return (None, "the stand", "half a flag", "a full flag")[self._lead_levels()[tm][min(max(int(t), 0), self.T) // SPLIT_STEP * SPLIT_STEP]]
+
+    def posture(self):
+        """Posture (R-376), its own record (R-371): a group on the enemy's side of the stand, at their footmen or a
+        door, not going in and not trading damage for POSTURE_S or more. Read every SPLIT_STEP: the living players of a
+        team on the enemy's ground, grouped; a group of two or more is at a door or the footmen when POSTURE_SHARE of it
+        (two players at least) stands there (the footmen by their reach, engaged or not); it is quiet while none of it
+        trades damage with an enemy player or hits an NPC; it has not gone in while its middle player is no more than
+        POSTURE_IN nearer the enemy's Guild Lord, walked, than when it stopped. Each record: when, the team, who, main
+        team or split, where, the enemy players facing it, who joined it while it waited, and how it ended (the fight
+        starts, it goes in, it falls back, it moves on)."""
+        if self._post is not None: return self._post
+        st, m, hall, T, S, out = self.st, self.m, self.hall, self.T, SPLIT_STEP, []
+        if hall is None: self._post = out; return out
+        busy = collections.defaultdict(set)                    # second -> players trading damage with an enemy player or hitting an enemy NPC
+        for u, xs in self.hits.items():
+            for x, y in xs: busy[u].add(x); busy[u].add(y)
+        for a, xs in self.npc_hits.items():
+            for x in xs: busy[int(x)].add(a)
+        reach = hall.reach()
+        for tm in st.teams:
+            foe = 3 - tm; fs = st.side.get(foe)
+            if fs is None or tm not in st.side: continue
+            fld = hall.to(hall.lord[fs])
+            dep = lambda a, u: fld.get(hall.snap(self.P[a][u]))
+            def spot(a, t):                                    # the door or footmen of the enemy this player stands at, or None
+                k = self._deep(a, t)
+                if k in ("front door", "back door", "front footies", "back footies"): return k
+                if k is None or not reach: return None
+                for g in ("front", "back"):
+                    F = hall.footies[fs][g]
+                    if F and len(F) > sum(1 for x in self.foot_gone[foe][g] if x <= t) and any(math.dist(self.P[a][t], f) <= reach for f in F): return g + " footies"
+                return None
+            runs, cur = [], None
+            for t in range(0, T + 1, S):
+                over = [a for a in st.players[tm] if self.AL[a][t] and self._deep(a, t)]
+                g = self._cluster(over, t) if len(over) >= 2 else []
+                ok = False
+                if len(g) >= 2:
+                    spots = collections.Counter(k for k in (spot(a, t) for a in g) if k)
+                    quiet = not any(a in busy.get(u, ()) for a in g for u in (t - 1, t, t + 1))
+                    if spots and quiet:
+                        k, n = spots.most_common(1)[0]
+                        if n >= 2 and n >= POSTURE_SHARE * len(g):
+                            ds = sorted(v for v in (dep(a, t) for a in g) if v is not None)
+                            dm = ds[len(ds) // 2] if ds else None
+                            if cur is not None and t - cur["t1"] <= S and len(set(g) & set(cur["last"])) * 2 >= min(len(g), len(cur["last"])) \
+                                    and (dm is None or cur["d0"] is None or cur["d0"] - dm <= POSTURE_IN):
+                                cur["t1"], cur["last"] = t, g; cur["spots"][k] += 1; cur["seen"].update(g); ok = True
+                            elif cur is None or t - cur["t1"] > S or len(set(g) & set(cur["last"])) * 2 < min(len(g), len(cur["last"])):
+                                cur = {"t": t, "t1": t, "first": g, "last": g, "d0": dm, "spots": collections.Counter({k: 1}), "seen": set(g)}
+                                runs.append(cur); ok = True
+                if not ok: cur = None
+            merged = []                                        # the same group stopping again within POSTURE_GAP_S, no damage traded between, is one posture
+            for r in runs:
+                p = merged[-1] if merged else None
+                if p is not None and r["t"] - p["t1"] <= POSTURE_GAP_S and len(set(r["first"]) & p["seen"]) * 2 >= len(r["first"]) \
+                        and not any(a in busy.get(u, ()) for a in p["last"] for u in range(p["t1"], r["t"] + 1)):
+                    p["t1"], p["last"] = r["t1"], r["last"]; p["seen"] |= r["seen"]; p["spots"] += r["spots"]
+                else: merged.append(r)
+            for r in merged:
+                t0, t1 = r["t"], r["t1"]
+                if t1 - t0 < POSTURE_S: continue
+                g0, g1 = r["first"], r["last"]
+                main = [a for a in self.main_team(tm, t0) if self.AL[a][t0]]
+                is_main = bool(main) and sum(1 for a in g0 if a in main) * 2 >= len(main)
+                kind = r["spots"].most_common(1)[0][0]
+                facing = [b for b in st.players[foe] if self.AL[b][t0] and any(d(self.P[b][t0], self.P[a][t0]) < FIGHT_LINK for a in g0)]
+                joined = [a for a in g1 if a not in g0]
+                v = min(t1 + 10, T)
+                alive = [a for a in g1 if self.AL[a][v]]
+                fought = any(a in busy.get(u, ()) for a in g1 for u in range(t1 + 1, v + 1))
+                d1 = sorted(x for x in (dep(a, t1) for a in g1) if x is not None); d2 = sorted(x for x in (dep(a, v) for a in alive) if x is not None)
+                move = (d1[len(d1) // 2] - d2[len(d2) // 2]) if d1 and d2 else 0          # nearer the enemy's Lord by this much 10 s on
+                end = "the match ends" if t1 >= T - S else "it goes in" if move > POSTURE_IN / 2 and (fought or move > POSTURE_IN) else "the fight starts there" if fought \
+                    else "it falls back" if move < -POSTURE_IN else "it moves on"
+                out.append({"t": t0, "t1": t1, "tm": tm, "team": m.tag[tm], "foe": m.tag[foe], "ids": sorted(r["seen"]), "n": len(g0), "main": is_main,
+                            "kind": kind, "place": self.place_words(kind, fs), "facing": len(facing), "joined": [m.roles[a] for a in joined],
+                            "joined_from_res": [m.roles[a] for a in joined if any(t0 - RES_EVERY <= td <= t1 for td in st.death_times.get(a, []))], "end": end})
+        self._post = sorted(out, key=lambda x: x["t"])
+        return self._post
+
+    def monk_counts(self):
+        """Monk counts in a fight (R-378: "solo monk", "on two monks"), one record each time the number of backline
+        monks a team has in its main team's fight changes and stays changed for MONK_S. Each record: when, the team,
+        how many monks now and before (in a fight with MONK_MIN or more of the team in it), of how many on the team, where, the numbers in the fight, and what became of
+        each monk who is no longer in it (dead, or where he stands) or who came into it."""
+        if self._mc is not None: return self._mc
+        st, m, T, S, out = self.st, self.m, self.T, SPLIT_STEP, []
+        idx = self._fight_index()
+        for tm in st.teams:
+            total = self._mk(st.players[tm])
+            told, pend = None, None                          # told = (count, monks in it); pend = [count, since, monks, fight]
+            for t in range(0, T + 1, S):
+                main = [a for a in self.main_team(tm, t) if self.AL[a][t]]
+                fs = collections.Counter(id(idx[t][a]) for a in main if a in idx[t])
+                f = next((idx[t][a] for a in main if a in idx[t] and id(idx[t][a]) == fs.most_common(1)[0][0]), None) if fs else None
+                if f is None or fs.most_common(1)[0][1] * 2 < len(main) or f["n"][tm] < MONK_MIN: pend = None; continue
+                mk = frozenset(a for a in f["ids"][tm] if self.m.A[a].get("p") == "Monk" and not m.roles[a].startswith("Monk "))
+                n = len(mk)
+                if pend is None or pend[0] != n: pend = [n, t, mk, f]
+                if t - pend[1] < MONK_S or (told is not None and told[0] == n): continue
+                was = told
+                told = (n, pend[2])
+                if was is None and n >= total: continue      # the fight opens on all its monks: nothing to tell
+                t0 = pend[1]
+                gone = sorted((was[1] if was else frozenset(a for a in st.players[tm] if self.m.A[a].get("p") == "Monk" and not m.roles[a].startswith("Monk "))) - pend[2])
+                came = sorted(pend[2] - was[1]) if was else []
+                why = [(m.roles[a], "dead" if not self.AL[a][t0] else ("with the flag" if self._flagger(a, tm, t0) else "at " + self.place_words(*self.place_at(a, t0)))) for a in gone]
+                out.append({"t": t0, "tm": tm, "team": m.tag[tm], "n": n, "was": was[0] if was else None, "of": total, "place": pend[3]["place"],
+                            "fight": (pend[3]["n"][1], pend[3]["n"][2]), "gone": why, "came": [m.roles[a] for a in came]})
+        self._mc = sorted(out, key=lambda x: x["t"])
+        return self._mc
+
+    def on_lord(self):
+        """Who is on the Guild Lord (R-378), one record each stretch in which a team damages the enemy's Guild Lord, a
+        stretch ending after LORD_GAP_S without any. Each record: when, the team, whose Lord, the players on him, the
+        hits and the damage as recorded, and how many of the Lord's team stood in their pit when it began."""
+        out = []
+        for tm_l, xs in self.lord_hits.items():
+            cur = None
+            for t, a, n in sorted(xs):
+                if cur is not None and t - cur["t1"] <= LORD_GAP_S: cur["t1"] = t
+                else:
+                    u = min(max(int(t), 0), self.T)
+                    cur = {"t": t, "t1": t, "tm": 3 - tm_l, "team": self.m.tag[3 - tm_l], "foe": self.m.tag[tm_l], "ids": set(), "hits": 0, "dmg": 0,
+                           "defenders": sum(1 for b in self.st.players[tm_l] if self.AL[b][u] and self.hall is not None and self.place_at(b, u) == ("pit", self.st.side.get(tm_l)))}
+                    out.append(cur)
+                cur["ids"].add(a); cur["hits"] += 1; cur["dmg"] += n or 0
+        for r in out: r["ids"] = sorted(r["ids"]); r["roles"] = [self.m.roles[a] for a in r["ids"]]; r["dmg"] = round(r["dmg"])
+        return sorted(out, key=lambda r: r["t"])
+
+    def timing(self):
+        """The four timing choices the record keeps (R-377), one record each:
+          delayed pickup     the flagger stood at his spawn PICKUP_DELAY_S or longer with an enemy on him before picking up;
+          held to the boost  a flag stood in hand at the stand HOLD_S or longer and was capped BOOST_LATE_S or less
+                             before the enemy's boost;
+          stayed to help     a player handed the flag off, was still with it HELP_IN_S or more later at the cap, and
+                             then went back for the next flag himself;
+          left before res    a split or a main team push left the enemy's base LEAVE_RES_S or less before the base res
+                             that brought the defenders' dead back.
+        Each record: the second the choice shows, the team, the kind, who, and the seconds that measure it."""
+        if self._tim is not None: return self._tim
+        st, m, T, out = self.st, self.m, self.T, []
+        for p in self.flag_pushes():
+            if p["delay_s"] is not None and p["delay_s"] >= PICKUP_DELAY_S:
+                out.append({"t": p["pickup"], "tm": 3 - p["tm"], "team": p["foe"], "kind": "delayed pickup", "who": [p["role"]], "s": p["delay_s"], "by": p["roles"], "foe": p["team"]})
+        for fr in self.flags_record():
+            tag, foe = fr["team"], m.tag[3 - fr["tm"]]
+            if fr["how"] == "captured" and fr["held_s"] >= HOLD_S and fr["cap_boost_in"] is not None and fr["cap_boost_in"] <= BOOST_LATE_S:
+                out.append({"t": fr["end"], "tm": fr["tm"], "team": tag, "kind": "held to the boost", "who": [fr["capper"]], "s": fr["held_s"], "boost_in": fr["cap_boost_in"], "foe": foe})
+            if fr.get("stayed"):
+                out.append({"t": fr["end"], "tm": fr["tm"], "team": tag, "kind": "stayed to help", "who": [fr["stayed"]["role"]], "s": fr["stayed"]["s"], "went_back": fr["stayed"]["went_back"], "foe": foe})
+        inb = ("pit", "base", "front door", "back door", "front footies", "back footies")
+        for x in self.attempts():
+            if x.get("solo") == "other" or x["end"] in ("killed", "match ended"): continue
+            tm = x["tm"]; foe = 3 - tm
+            last = max((u for a in x["ids"] for u in range(int(x["t_in"]), min(int(x["t1"]), T) + 1, SPLIT_STEP) if self.AL[a][u] and self._deep(a, u) in inb), default=None)
+            if last is None: continue
+            B = (last // RES_EVERY + 1) * RES_EVERY
+            if B > T or B - last > LEAVE_RES_S: continue
+            res = [b for b in st.players[foe] if not self.AL[b][max(B - 6, 0)] and any(self.AL[b][u] for u in range(B - 3, min(B + 4, T) + 1))]
+            alive = [a for a in x["ids"] if self.AL[a][min(B, T)]]
+            if not res or len(alive) * 2 < len(x["ids"]) or any(self._deep(a, min(B + 2, T)) in inb for a in alive): continue
+            out.append({"t": last, "tm": tm, "team": x["team"], "kind": "left before res", "who": [y["role"] for y in x["members"]], "s": B - last, "coming_back": len(res), "what": x["kind"], "foe": m.tag[foe]})
+        self._tim = sorted(out, key=lambda r: r["t"])
+        return self._tim
 
     # ---- 2.3 departures
     def _departures(self):

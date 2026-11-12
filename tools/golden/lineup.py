@@ -24,10 +24,11 @@ ENGINE = os.path.join(HERE, "..", "replay_analysis")
 CACHE = os.environ.get("LINEUP_CACHE", "/tmp/lineup_cache")
 BEFORE, AFTER = 40, 40            # a spoken line trails or leads the event: seconds searched either side
 INTENT_AFTER = 75                 # an intent, or a call about the enemy, comes before the move
-TO_BUILD = ("route", "pushflag", "lead", "posture", "timing")      # words Denning ruled the record needs (R-373)
+TO_BUILD = ()                     # the words Denning ruled the record needs (R-373, R-378) are built and checked: route, pushflag, lead, posture, timing, monks, lord
 SEALED = ("judge", "cause")                                         # kept as tests of verdicts and of execution (R-372, R-373)
 OUT = ("plan", "option", "reason", "micro", "build", "question", "energy")   # outside what the engine reads (R-373, R-353)
-OPEN = ("lord", "pull", "support", "trade", "standoff", "monks", "unsure", "clock", "object")   # not ruled yet
+OPEN = ("pull", "support", "trade", "standoff", "unsure", "clock", "object")   # not ruled yet
+LEVEL = {0: "not holding the stand", 1: "holding the stand", 2: "half a flag up", 3: "a full flag up"}
 NO_WORD = TO_BUILD + SEALED + OUT + OPEN
 NUM = {1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six", 7: "seven", 8: "eight"}
 
@@ -47,10 +48,19 @@ def record(rid):
     from state import GameState
     import moments, story
     st = GameState(Match.from_branch(rid)); M = moments.Moments(st); m = st.m
-    fights = [[t, [[f["n"][1], f["n"][2], f["place"]] for f in M.fights(t) if f["n"][1] and f["n"][2]]] for t in range(0, M.T + 1, 3)]
+    fights = [[t, [[f["n"][1], f["n"][2], f["place"], f["monks"][1], f["monks"][2]] for f in M.fights(t) if f["n"][1] and f["n"][2]]] for t in range(0, M.T + 1, 3)]
+    lv, lead = M._lead_levels(), []                    # the records that run over a stretch are checked as stretches: a line said in the middle of one agrees with it
+    for tm in (1, 2):
+        for t in sorted(lv[tm]):
+            if lead and lead[-1][2] == m.tag[tm] and lead[-1][3] == lv[tm][t] and t - lead[-1][1] <= 2: lead[-1][1] = t
+            elif lv[tm][t]: lead.append([t, t, m.tag[tm], lv[tm][t]])
+    spans = {"lead": lead,
+             "pushflag": [[r["t"], r["t1"], r["team"], r["roles"], r["role"]] for r in M.flag_pushes()],
+             "posture": [[r["t"], r["t1"], r["team"], r["place"]] for r in M.posture()],
+             "lord": [[r["t"], r["t1"], r["team"], r["roles"]] for r in M.on_lord() if r["hits"] >= 3]}
     out = {"id": rid, "map": m.o["meta"]["map"], "teams": [m.tag[1], m.tag[2]], "T": M.T,
            "roster": {m.tag[tm]: {str(m.A[a].get("slot")): m.roles[a] for a in m.PL if m.team(a) == tm} for tm in (1, 2)},
-           "story": [[t, s] for t, s in story.story(M, 0, None)], "fights": fights}
+           "story": [[t, s] for t, s in story.story(M, 0, None)], "fights": fights, "spans": spans}
     os.chdir(cwd); json.dump(out, open(p, "w"), ensure_ascii=False)
     return out
 
@@ -159,12 +169,43 @@ def check(r, rec):
         seen = collections.Counter()
         for t, fs in rec["fights"]:
             if lo <= t <= hi:
-                for x, y, p in fs:
+                for x, y, p, *_ in fs:
                     seen[(x, y, p)] += 1
                     if (x, y) == (a, b) and pl in p.lower(): hit = (t, f"{rec['teams'][0]} {x} v {y} {rec['teams'][1]} at {p}")
         if not hit:
             top = [f"{x}v{y} {p}" for (x, y, p), c in seen.most_common(4)]
             return "differs", "engine's numbers in the window: " + "; ".join(top)
+    elif kind in ("pushflag", "posture", "lord"):      # records that run over a stretch: the team's stretch of that kind overlaps the window (who = the players pushing, or on the Lord)
+        named = lambda roles: all(any(x == w or x.startswith(w + " ") for x in roles) for w in who)
+        sp = [x for x in rec["spans"][kind] if x[2] == T and x[0] <= hi and x[1] >= lo]
+        ok = [x for x in sp if kind == "posture" or named(x[3])]
+        other = lambda tg: next((y for y in rec["teams"] if y != tg), "")
+        word = {"pushflag": lambda x: f"{x[2]}'s {', '.join(x[3])} on {other(x[2])}'s flagger ({x[4]})", "posture": lambda x: f"{x[2]} postures at {x[3]}", "lord": lambda x: f"{x[2]}'s {', '.join(x[3])} on {other(x[2])}'s Guild Lord"}[kind]
+        if ok: return "agrees", f"{clock(ok[0][0])} to {clock(ok[0][1])} {word(ok[0])}"
+        wide_sp = [x for x in rec["spans"][kind] if x[0] <= hi + 60 and x[1] >= lo - 60]
+        return "differs", " // ".join(f"{clock(x[0])} to {clock(x[1])} " + word(x) for x in wide_sp[:3]) or f"no {kind} record within two minutes"
+    elif kind == "lead":                                # R-375: the team named holds the stand; "a full flag" or "half a flag" in the statement asks for that much
+        need = {"full": 3, "half": 2, "up": 1}.get(arg) or (2 if "nearly a full" in r["say"] else 3 if re.search(r"\bfull flag", r["say"]) else 2 if re.search(r"\bhalf a flag", r["say"]) else 1)
+        best = max((x[3] for x in rec["spans"]["lead"] if x[2] == T and x[0] <= hi and x[1] >= lo), default=0)
+        return ("agrees" if best >= need else "differs"), f"in the window {T} is at most {LEVEL[best]}" + ("" if best >= need else f"; the statement asks for {LEVEL[need]}")
+    elif kind == "monks":                               # R-378: the team's biggest fight in the window has that many monks in it
+        n = int(arg) if arg.isdigit() else (0 if re.search(r"\bno monks?\b", r["say"]) else 1 if re.search(r"\b(solo|one) monk", r["say"]) else 2 if re.search(r"\btwo monks", r["say"]) else 3 if "three monks" in r["say"] else None)
+        if n is None: return "not ruled", ""
+        i = rec["teams"].index(T); seen = collections.Counter()
+        for t, fs in rec["fights"]:
+            if lo <= t <= hi and fs:
+                f = max(fs, key=lambda f: f[i])
+                if f[i] >= 2: seen[f[3 + i]] += 1
+                if f[i] >= 2 and f[3 + i] == n: hit = (t, f"{T} has {n} monk{'' if n == 1 else 's'} in its biggest fight ({rec['teams'][0]} {f[0]} v {f[1]} {rec['teams'][1]} at {f[2]})")
+        if not hit: return "differs", f"monks in {T}'s biggest fight in the window: " + ", ".join(f"{k} ({v * 3} s)" for k, v in seen.most_common())
+    elif kind == "route":
+        a_ = re.escape(arg)
+        fam = rf"{te}'s .*(runs it the|by the back door|go back for the flag the)|^{te} splits .* by the"
+        hit = find(rf"{R}\S* (?:picks up the flag at the spawn|leaves .*to go back for the flag)[^;]* (?:the|by the) {a_}") or ((find(rf"^{te} splits [^(]*by the {a_}") or find(rf"^{te}'s [^:]*by the {a_}", need_who=True)) if "door" in arg else None)      # a door: the split or the player told going by it
+    elif kind == "timing":                              # R-377: one of the four timing choices by that team; the statement's own words pick which
+        pats = {"pick": rf"^{te}'s .* waits \d+ s at the flag spawn before picking up", "boost": rf"^{te} holds its flag at the stand", "help": rf"^{te}'s .* stays \d+ s to help the flag in", "res": rf"^{te}'s .* leaves {ee}'s base \d+ s before"}
+        key = "pick" if "pick up" in r["say"] else "boost" if "boost" in r["say"] else "help" if "help the flag" in r["say"] else "res" if "base res" in r["say"] else None
+        fam = "|".join(pats.values()); hit = find(pats[key] if key else fam)
     elif kind == "death": fam = rf"^{te} loses"; hit = find(rf"^{te} loses (?:(?! at ).)*{re.escape(one)}")
     elif kind == "baseres": fam = rf"^Base res: {te}"; hit = find(rf"^Base res: {te}'s [^.]*{re.escape(one)}")
     elif kind == "res": fam = rf"^{te}'s .*resurrected"; hit = find(rf"{R}\S* is resurrected")
