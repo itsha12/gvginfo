@@ -6,8 +6,7 @@ model's structure: `knowledge/model.md` (generated).
 
 ## Start a new chat in one message
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/SPEC.md and docs/HANDOFF.md, check
-> out the branch `bundle-4` in a second worktree, then carry on with "Next" item 1 and tell me where the line-up
-> stands before anything else.
+> out `bundle-4` in a second worktree, then carry on with "Next" item 1 and tell me where the line-up stands.
 
 ## State (2026-11-11: redesign step 2 on branch `bundle-4`, last engine commit 4a88086; batch 17, 506 matches trained)
 - Main's engine is unchanged (as SPEC.md describes). Bundle 4 is built on `bundle-4` and lands in one piece, then
@@ -56,8 +55,7 @@ model's structure: `knowledge/model.md` (generated).
 
 ## Open for Denning (set each out in the chat, R-329)
 - The draft thresholds (item 1). Whether "footies" should also be named when the footmen are not engaged.
-- Golden moments (R-354): the page shows the engine's story of each game; he ticks wrong lines and adds notes. His
-  13 earlier notes are the fixed blind check (`blind_note`). Waiting on him: review game 1's story form.
+- Golden moments (R-354): waiting on him to review game 1's story form; his 13 `blind_note` notes are the blind check.
 - Also open: threat or posture, hand-off to hold, time to cap, a monk energy estimate only if needed (R-353),
   discovery second run, behaviour clusters, 983a47db (xxx v ohno, report d70f3684) of Nick's commentary.
 
