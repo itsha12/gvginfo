@@ -2,6 +2,14 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-11 (fifth): the reading's open items, and the thresholds counted (branch `bundle-4`, 9fca5f5)
+- Men's hand-off at 2:17 (hdm v Men): gvg.report recorded the dervish's capture with no pickup. `Moments.flag_ev` now gives such a capture its pickup (where a team mate dropped the flag, else at the spawn): 69 of 5,245 captures in 58 of 606 matches. The story had been missing that capture altogether.
+- The xxx air elementalist at 12:52: the split fight fell back into the main fight for a moment, so no join was seen. A split fight's record now keeps `pulled` (a player taken off it onto the main fight, 231 in 111 matches) and the story tells it. Reading every player's company against 16 s earlier was tried first and dropped: it added a third more joins, most of them a leave and a join two seconds apart.
+- Line-up: seen events 364 of 365 on the building games, 135 of 162 (83%) held out, unchanged; comms calls 104 of 152 and 59 of 76. The statement for 12:52 is retyped to the air elementalist alone (it had named both).
+- Shadow Step: 24 casts by a flag carrier in 658 replays; in all 19 where he steps the flag drops 0.3 s after the cast starts (first 20 August 2026), and none shows the flag kept. The change predates every stored case, so no date is needed.
+- `tools/golden/thresholds.py`: the all-match counts beside the 17 draft thresholds (606 matches: 10,699 joins, 887 split fights, 199 swaps, 24.8 ground moves a match of which 11.9 told, 1,546 undefended stretches, 2,581 stretches on pit NPCs).
+- Left for Denning: the thresholds; "footies" when the footmen are not fighting; a split renamed the main team when its main team is dead (202 pushes in 155 matches); the Shadow Step fault with 19 cases.
+
 ## 2026-11-11 (fourth): timestamped commentary and comms lined up with the record
 - Denning sent 17 timestamped transcripts (7 of his own on golden games, 10 of Maga's comms) and ruled R-368 to R-372.
 - `tools/golden/lineup.py` (branch `bundle-4`): paraphrased statements a line (`data/lineup/`, on main) checked against the story and the fight numbers; kinds the story has no word for are counted.

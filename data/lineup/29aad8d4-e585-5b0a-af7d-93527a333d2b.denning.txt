@@ -93,7 +93,7 @@
 12:50 | lead | xxx | | | xxx has the stand and a flag on its 5: a small flag advantage
 13:02 | judge | ohno | | | ohno's 1 goes for the footies again in a 4v3 at the front door: a little dangerous
 13:20 | answer | xxx | | | xxx defends its pit with three
-13:24 | join | xxx | Fire Ele, Air Ele |  | xxx's 2 ele collapses on the three in xxx's base: 4v3
+13:24 | join | xxx | Air Ele |  | xxx's 2 ele collapses on the three in xxx's base: 4v3
 13:33 | cap | ohno | Air Ele | | ohno's 3 ele caps and returns to xxx's front door
 13:40 | ok.fight |  |  | 5v4 @ front door | a 5v4 for xxx
 13:46 | death | ohno | 7 Monk | | ohno's 7 monk goes down

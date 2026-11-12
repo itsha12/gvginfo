@@ -8,18 +8,21 @@ model's structure: `knowledge/model.md` (generated).
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/SPEC.md and docs/HANDOFF.md, check
 > out `bundle-4` in a second worktree, then carry on with "Next" item 1 and tell me where the line-up stands.
 
-## State (2026-11-11: redesign step 2 on branch `bundle-4`, last engine commit 4a88086; batch 17, 506 matches trained)
+## State (2026-11-11: redesign step 2 on branch `bundle-4`, last engine commit 9fca5f5; batch 17, 506 matches trained)
 - Main's engine is unchanged (as SPEC.md describes). Bundle 4 is built on `bundle-4` and lands in one piece, then
   one rebuild (R-322). 606 replays stored (90 random ones from 2 September on were fetched 2026-11-11 and are not
   yet trained on). No Train batch, Discovery or fetch run in progress.
 - On `bundle-4`: `hallmap.py` (zones, walked distance, reach, places in his words), `moments.py` (the records),
   `story.py` (prints from the records, R-362), `tools/golden/golden.py pick|score|stories` (never reads the sealed
-  field), `tools/golden/lineup.py score|lines` (the line-up).
+  field), `tools/golden/lineup.py score|lines` (the line-up), `tools/golden/thresholds.py run|show` (the draft
+  thresholds' all-match counts, about 10 minutes).
 - The records in `moments.py`: `attempts()` (splits and main team pushes, solo split by R-381), `caught()`,
   `flags_record()`, `main_team()`, `lane()`, `moves()` (joins and leaves player by player), `split_fights()` (one
   record while two groups stay on each other, swaps from each stay), `ground()` (main team and each side of a
   split fight fall back or push up, by walked distance), `undefended()`, `on_pit()`; `fights(t)` cuts a small
-  fight off a bigger one; `place_at` names the pit by its NPCs (R-387).
+  fight off a bigger one; `place_at` names the pit by its NPCs (R-387). A split fight's record also keeps `pulled`
+  (a player taken off it onto the main fight); `flag_ev` gives a capture with no pickup recorded its pickup (69 of
+  5,245 captures: the observer missed it).
 - On main: `data/lineup/` (16 transcripts typed as paraphrased statements: 12 for building, 4 held out, R-370),
   Model > Golden moments (15 games, R-382; the other 15 under `parked`; `golden_stories.json` still draft 5),
   `data/commentary/nick.json` (9 games), rulings to R-389.
@@ -28,20 +31,19 @@ model's structure: `knowledge/model.md` (generated).
 - `lineup.py score --data <main>/data/lineup [--held] [--show]` with `LINEUP_CACHE` set (delete it after an engine
   change; about 10 minutes). The gate is 90% agreement on things seen happening in the four held-out games (R-380,
   R-383); calls on comms are reported beside it.
-- Seen events: building games 363 of 365 (99%), held-out 135 of 162 (83%). Comms calls: 68% and 78%.
+- Seen events: building games 364 of 365, held-out 135 of 162 (83%). Comms calls: 104 of 152 (68%), 59 of 76 (78%).
 - The building figure follows Denning's review of its 61 misses (R-386): 36 confirmed as the engine reading right
   (`ok.`), 5 calls withdrawn, the rest retyped as he corrected them; 12 were the engine's and 10 are fixed (R-389).
-  Still open there: xxx's split "falls to its back footies" (the engine says back door: footies are named only
-  when the footmen are engaged, R-307), and Men's hand-off at 2:17 in hdm v Men (no carrier seen after the drop).
+  The one left: xxx's split "falls to its back footies" (2:57; the four stand 600 to 1,050 from their back footmen,
+  which are alive and not fighting because ohno did not follow; the engine says back door, R-307). His ruling.
 - The held-out games have not been reviewed. He reviews their misses once, at the gate; only statement corrections
   follow from that review, never an engine change (R-370). Do not read their individual lines before then.
 
 ## Next (in order)
-1. Finish the reading (step 1): Apes's split at hold's pit and the two open items above; the xxx air elementalist
-   named in the 12:52 join; the Shadow Step change date read from the replays; then bring him the draft thresholds
-   in `common.py` (joins, swaps, split fights, ground moves, side fights, pit, undefended: about 17) with the
-   all-match counts beside each (606 matches: 887 split fights, 200 swaps, 13 joins per 10 minutes, 24.8 ground
-   moves a match of which 11.9 are told, 710 of 812 lone attempts count as splits).
+1. Step 1 is built; it closes on his rulings (all set out to him 2026-11-11, "Open for Denning" below). Apply them,
+   rescore, then step 2. The Shadow Step change cannot be dated from the replays: every stored case of a carrier
+   Shadow Stepping (19, the first on 20 August 2026) drops the flag 0.3 s after the cast starts, and no stored replay
+   shows a carrier keeping it, so every counted match is after the change (R-289 stands for all of them).
 2. Step 2, the words of R-373 and R-375 to R-378: flag route, pushing the flagger, flag lead (full and half a
    flag), posture, the four timing choices, monk counts in a fight, who is on the Guild Lord (`on_pit()` is a start).
 3. Step 3: regenerate the golden stories (`golden.py stories`, draft 6), the blind check against his 13 blind
@@ -54,7 +56,13 @@ model's structure: `knowledge/model.md` (generated).
    Training chunks and Discovery resume after the merge; the decision card and the blind test follow.
 
 ## Open for Denning (set each out in the chat, R-329)
-- The draft thresholds (item 1). Whether "footies" should also be named when the footmen are not engaged.
+- The 17 draft thresholds (JOIN_LOOK_S to SPLIT_FIGHT_MIN in `common.py`), set out with their all-match counts.
+- Whether a team that falls back to stand at its own living footmen is "at its footies" when the enemy does not
+  follow (the xxx line above).
+- Whether a split stays a split when its main team is dead: today the survivors are renamed the main team and the
+  story tells a new "main team push" (202 pushes in 155 of 606 matches; Apes v hold 4:20, where the split fight
+  record ends at 4:18). `main_team()` is R-355, so it was left as ruled.
+- Whether the "flag dropped by a Shadow Step" fault (R-324) stays in bundle 4 with only 19 cases stored.
 - Golden moments (R-354): waiting on him to review game 1's story form; his 13 `blind_note` notes are the blind check.
 - Also open: threat or posture, hand-off to hold, time to cap, a monk energy estimate only if needed (R-353),
   discovery second run, behaviour clusters, 983a47db (xxx v ohno, report d70f3684) of Nick's commentary.
@@ -72,6 +80,8 @@ model's structure: `knowledge/model.md` (generated).
 
 ## Cautions
 - Never print or decode a sealed field (blind picks, golden moments) in a chat.
+- The held-out files sit beside the others in `data/lineup/` (header `held_out: yes`): check the header before
+  printing any of one, and leave the four held-out ids out of any all-match listing of moves or story lines.
 - Don't merge `bundle-4` piecemeal (R-322). Label and golden files are saved whole by the site: after a change
   here, Denning reloads the page first. Hall labels are saved to main: copy changed `data/maps/labels/*.json` to the
   branch before reading a hall (174 and 542 were copied 2026-11-11).
