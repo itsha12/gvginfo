@@ -100,7 +100,7 @@ def check(r, rec):
     kind = r["kind"].split(".")[-1]
     if r["kind"].startswith("ok."): return "agrees", "Denning confirmed the engine's reading of this moment"
     if kind in NO_WORD:
-        return ("to build" if kind in TO_BUILD else "sealed" if kind in SEALED else "out of scope" if kind in OUT else "not ruled"), ""
+        return ("sealed" if kind in SEALED else "out of scope" if kind in OUT else "not ruled"), ""
     T = r["team"]; E = next((x for x in rec["teams"] if x != T), "")
     te, ee = re.escape(T), re.escape(E)
     who = r["who"]; arg = r["arg"]
@@ -183,6 +183,7 @@ def check(r, rec):
         other = lambda tg: next((y for y in rec["teams"] if y != tg), "")
         word = {"pushflag": lambda x: f"{x[2]}'s {', '.join(x[3])} on {other(x[2])}'s flagger ({x[4]})", "posture": lambda x: f"{x[2]} stands off ({x[3]})", "lord": lambda x: f"{x[2]}'s {', '.join(x[3])} on {other(x[2])}'s Guild Lord"}[kind]
         if ok: return "agrees", f"{clock(ok[0][0])} to {clock(ok[0][1])} {word(ok[0])}"
+        if kind == "posture": return "set aside", ""       # R-414: a posture that is not a true stand-off (R-405, R-411) is not something the engine is meant to tell
         wide_sp = [x for x in rec["spans"][kind] if x[0] <= hi + 60 and x[1] >= lo - 60]
         return "differs", " // ".join(f"{clock(x[0])} to {clock(x[1])} " + word(x) for x in wide_sp[:3]) or f"no {kind} record within two minutes"
     elif kind == "lead":                                # R-408: the team named leads on the flag tally in the window
@@ -210,6 +211,7 @@ def check(r, rec):
             else "hold" if re.search(r"not (try to )?run|keeps the flag|holds? (on to )?the flag", r["say"]) else None
         fam = "|".join(pats.values())
         hit = find(pats[key] if key else fam, [(t, s) for t, s in rec["story"] if lo - (60 if key == "hold" else 0) <= t <= hi])      # a flag held back is told when the hold began: a remark on it comes during it
+        if not hit and key in ("hold", None): return "set aside", ""      # R-414: a remark on a flag kept back that is not a deliberate hold (R-407, R-409), or on none of the timing choices
     elif kind == "death": fam = rf"^{te} loses"; hit = find(rf"^{te} loses (?:(?! at ).)*{re.escape(one)}")
     elif kind == "baseres": fam = rf"^Base res: {te}"; hit = find(rf"^Base res: {te}'s [^.]*{re.escape(one)}")
     elif kind == "res": fam = rf"^{te}'s .*resurrected"; hit = find(rf"{R}\S* is resurrected")
@@ -251,14 +253,14 @@ def score(paths, show=False):
             if show and v == "differs": print(f"  {name} {clock(r['at'])} (match {clock(max(r['t'], 0))}) {r['kind']} {r['team']} {','.join(r['who'])} {r['arg']}: {r['say']}\n      -> {why}")
             if v == "unknown kind": print("  UNKNOWN", r)
         per[name] = c
-    cols = ("agrees", "differs", "to build", "not ruled", "sealed", "out of scope")
+    cols = ("agrees", "differs", "set aside", "not ruled", "sealed", "out of scope")
     print(f"{'game':34}" + "".join(f"{c:>13}" for c in cols))
     for k, c in per.items(): print(f"{k:34}" + "".join(f"{c[x]:13}" for x in cols))
     print(f"\n{'kind':10}" + "".join(f"{c:>13}" for c in cols))
     for k, c in sorted(tot.items(), key=lambda kv: -sum(kv[1].values())): print(f"{k:10}" + "".join(f"{c[x]:13}" for x in cols))
     sm = {x: sum(c[x] for c in per.values()) for x in cols}; chk = sm["agrees"] + sm["differs"]
     print(f"\nall: {sum(sm.values())} statements; checked {chk}: agrees {sm['agrees']} ({round(100 * sm['agrees'] / max(chk, 1))}%), differs {sm['differs']}; "
-          f"to build {sm['to build']}, not ruled {sm['not ruled']}, sealed {sm['sealed']}, out of scope {sm['out of scope']}")
+          f"set aside {sm['set aside']} (R-414), not ruled {sm['not ruled']}, sealed {sm['sealed']}, out of scope {sm['out of scope']}")
     for k, c in said.items():
         n = c["agrees"] + c["differs"]
         print(f"  {k}: checked {n}, agrees {c['agrees']} ({round(100 * c['agrees'] / max(n, 1))}%)")

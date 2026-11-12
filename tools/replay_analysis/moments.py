@@ -1195,7 +1195,8 @@ class Moments:
                     died = any(t0 <= td <= t1 + 4 for td in st.death_times.get(b, []))
                     L = next((x for x in lives if x["team"] == foe and x["start"] <= t1 + PUSHFLAG_AHEAD_S and (x["end"] is None or x["end"] >= t0)
                               and any(c[0] == b for c in x["carries"])), None)
-                    dropped = any(c[0] == b and c[2] is not None and t0 <= c[2] <= t1 + 4 and not (L["how"] == "captured" and L.get("capper") == b and abs(L["end"] - c[2]) < 1)
+                    handed = lambda c: any(c2[0] != b and 0 <= c2[1] - c[2] <= 20 for c2 in L["carries"])      # a team mate has it within 20 s: a hand-off, not a drop (as the story tells it)
+                    dropped = any(c[0] == b and c[2] is not None and t0 <= c[2] <= t1 + 4 and not (L["how"] == "captured" and L.get("capper") == b and abs(L["end"] - c[2]) < 1) and not handed(c)
                                   for c in (L["carries"] if L else ()))
                     if not acted or not ids or (t1 - t0 < PUSHFLAG_S and not died and not dropped): continue      # a short push still counts when he drops the flag or dies under it
                     delay, pk = None, None

@@ -184,7 +184,7 @@ def stories():
         out[g["id"]] = [[int(t), s] for t, s in ST.story(M, 0, g["t"] + 60)]
     json.dump({"about": "The engine's story of each golden moment's game (tools/golden/golden.py stories; story.py on the bundle-4 "
                         "branch). Shown on Model > Golden moments for Denning to mark (R-354).",
-               "generated": datetime.date.today().isoformat(), "draft": 5, "stories": out},
+               "generated": datetime.date.today().isoformat(), "draft": 6, "stories": out},
               open(os.path.join(REPO, "data", "model", "golden_stories.json"), "w"), indent=0)
     print(len(out), "stories;", sum(len(v) for v in out.values()), "lines")
 
