@@ -34,8 +34,9 @@ model's structure: `knowledge/model.md` (generated).
   (`ok.`), 5 calls withdrawn, the rest retyped as he corrected them; 12 were the engine's and 10 are fixed (R-389).
   The one left: xxx's split "falls to its back footies" (2:57): it stands 600 to 1,050 from its back footmen, which
   are not fighting, so the engine says back door (R-307).
-- The held-out games have not been reviewed. He reviews their misses once, at the gate; only statement corrections
-  follow from that review, never an engine change (R-370). Do not read their individual lines before then.
+- The held-out games are not reviewed: he reviews their misses once, at the gate, and only statement corrections
+  follow, never an engine change (R-370). Do not read their lines before then: their files sit in `data/lineup/`
+  with the rest (header `held_out: yes`), so check the header before printing one.
 
 ## Next (in order)
 1. Step 1 is built and closes on his rulings (set out to him 2026-11-11; "Open for Denning" below): apply them and
@@ -56,9 +57,9 @@ model's structure: `knowledge/model.md` (generated).
 - "Footies" when a team stands at its own living footmen and the enemy does not follow (the xxx line above).
 - A split whose main team is dead is renamed the main team and told as a new "main team push" (202 pushes in 155
   matches; Apes v hold 4:20; `main_team()` is R-355, left as ruled). The Shadow Step fault (R-324) with 19 cases.
-- Golden moments (R-354): waiting on him to review game 1's story form; his 13 `blind_note` notes are the blind check.
-- Also open: threat or posture, hand-off to hold, time to cap, a monk energy estimate only if needed (R-353),
-  discovery second run, behaviour clusters, 983a47db (xxx v ohno, report d70f3684) of Nick's commentary.
+- Golden moments (R-354): his review of game 1's story form; his 13 `blind_note` notes are the blind check. Also
+  open: threat or posture, hand-off to hold, time to cap, a monk energy estimate only if needed (R-353), discovery
+  second run, behaviour clusters, 983a47db (xxx v ohno, report d70f3684) of Nick's commentary.
 
 ## Running it
 - Train batch: `gh api -X POST repos/itsha12/gvginfo/actions/workflows/train-batch.yml/dispatches -f ref=main
@@ -73,7 +74,6 @@ model's structure: `knowledge/model.md` (generated).
 
 ## Cautions
 - Never print or decode a sealed field (blind picks, golden moments) in a chat.
-- Held-out files sit in `data/lineup/` with the rest (header `held_out: yes`): check the header before printing one.
 - Don't merge `bundle-4` piecemeal (R-322). Label and golden files are saved whole by the site: after a change
   here, Denning reloads the page first. Hall labels are saved to main: copy changed `data/maps/labels/*.json` to the
   branch before reading a hall (174 and 542 were copied 2026-11-11).
