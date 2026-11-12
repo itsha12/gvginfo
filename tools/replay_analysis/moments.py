@@ -574,25 +574,22 @@ class Moments:
         return self._fi
 
     def ground(self):
-        """The main team's ground, one record each time it moves up or back (R-374: "falls back to its footies",
-        "pushes up to the front door"). The main team's depth is the walked distance of its middle player from its own
-        Guild Lord, read every 2 s; a move is GROUND_MOVE or more of it covered within GROUND_S, ended once the team
-        comes GROUND_BACK the other way. The reading starts again when the depth jumps (a wipe and a base res, or the
-        main team being a different group), so those are never told as moves. Each record: when it started and ended,
-        the team, back or up, where from and to, how far, who, the enemy next to it at the start (pressed) and at the
-        end (followed), and whether the two were trading damage as it began."""
+        """Ground, one record each time a group moves up or back (R-374: "falls back to its footies", "pushes up to
+        the front door", "the split is pushed toward its pit"). Read for each main team and for each side of a split
+        fight. A group's depth is the walked distance of its middle player from its own Guild Lord, read every 2 s; a
+        move is GROUND_MOVE or more of it covered within GROUND_S by the same players, ended once the group comes
+        GROUND_BACK the other way. The reading starts again when the depth jumps (a wipe and a base res, or the group
+        being different players), so those are never told as moves. Each record: when it started and ended, the team,
+        which group (main or split), back or up, where from and to, how far, who, the enemy next to it at the start
+        (pressed) and at the end (followed), and whether the two were trading damage as it began."""
         if self._gr is not None: return self._gr
         st, m, hall, T, S = self.st, self.m, self.hall, self.T, SPLIT_STEP
         out = []
-        for tm in (st.teams if hall is not None else ()):
-            side = st.side.get(tm)
-            if side is None: continue
-            fld, foe = hall.to(hall.lord[side]), 3 - tm
-            row = []
-            for u in range(0, T + 1, S):
-                g = [a for a in self.main_team(tm, u) if self.AL[a][u] and self.P[a][u]]
-                ds = sorted(v for v in (fld.get(hall.snap(self.P[a][u])) for a in g) if v is not None)
-                row.append((u, statistics.median(ds) if len(ds) >= 2 else None, g))
+        def read(tm, row, group):
+            side, foe = st.side.get(tm), 3 - tm
+            fld = hall.to(hall.lord[side])
+            dep = lambda x, u: fld.get(hall.snap(self.P[x][u]))
+            row = [(u, (lambda ds: statistics.median(ds) if len(ds) >= 2 else None)(sorted(v for v in (dep(x, u) for x in g) if v is not None)), g) for u, g in row]
             runs, cur = [], []
             for x in row:                                    # unbroken stretches of walking
                 if x[1] is None or (cur and abs(x[1] - cur[-1][1]) > GROUND_JUMP):
@@ -621,8 +618,7 @@ class Moments:
                         if j is not None and (best is None or run[j][0] - run[i][0] < best): best = run[j][0] - run[i][0]
                     if best is None or best > GROUND_S: continue
                     u0, u1, g0, g1 = run[a][0], run[b][0], run[a][2], run[b][2]
-                    same = [x for x in g0 if x in g1]         # the same players must have made the move: a main team that only gains or loses players has not moved
-                    dep = lambda x, u: fld.get(hall.snap(self.P[x][u]))
+                    same = [x for x in g0 if x in g1]         # the same players must have made the move: a group that only gains or loses players has not moved
                     dd = [dep(x, u1) - dep(x, u0) for x in same if dep(x, u0) is not None and dep(x, u1) is not None]
                     if len(dd) < 2 or len(dd) * 2 < len(g0) or statistics.median(dd) * way < GROUND_MOVE * 0.75: continue
                     def where(g, u):
@@ -630,10 +626,18 @@ class Moments:
                         return max(z, key=lambda k: (z[k], str(k)))
                     near = lambda g, u: [e for e in st.players[foe] if self.AL[e][u] and self.P[e][u] and any(d(self.P[e][u], self.P[x][u]) < FIGHT_LINK for x in g)]
                     k0, k1 = where(g0, u0), where(g1, u1)
-                    out.append({"t": u0, "t1": u1, "team": m.tag[tm], "tm": tm, "way": "up" if way > 0 else "back", "dist": round(abs(run[b][1] - run[a][1])),
+                    out.append({"t": u0, "t1": u1, "team": m.tag[tm], "tm": tm, "group": group, "way": "up" if way > 0 else "back", "dist": round(abs(run[b][1] - run[a][1])),
                                 "from": self.place_words(*k0), "to": self.place_words(*k1), "from_kind": k0[0], "from_side": k0[1], "to_kind": k1[0], "to_side": k1[1],
                                 "ids": sorted(g0), "n": len(g0), "pressed": len(near(g0, u0)), "followed": len(near(g1, u1)),
                                 "fighting": self.contact(set(g0), set(st.players[foe]), max(u0 - 10, 0), u0)})
+        if hall is not None:
+            for tm in st.teams:
+                if st.side.get(tm) is None: continue
+                read(tm, [(u, [x for x in self.main_team(tm, u) if self.AL[x][u] and self.P[x][u]]) for u in range(0, T + 1, S)], "main")
+                for r in self.split_fights():
+                    mem = [x for x in r["members"][m.tag[tm]]]
+                    read(tm, [(u, [x["id"] for x in mem if any(s_ <= u <= e for s_, e in x["spans"]) and self.AL[x["id"]][u] and self.P[x["id"]][u]])
+                              for u in range(int(r["t0"]) - int(r["t0"]) % S, int(r["t1"]) + 1, S)], "split")
         self._gr = sorted(out, key=lambda x: x["t"])
         return self._gr
 
@@ -658,7 +662,7 @@ class Moments:
             for t in range(0, T + 1, S):
                 c = comp(a, t)
                 if not c: continue
-                if cur is not None and t - cur["t1"] <= 6 and len(c & cur["last"]) * 2 >= min(len(c), len(cur["last"])): cur["t1"], cur["last"] = t, c
+                if cur is not None and t - cur["t1"] <= JOIN_S and len(c & cur["last"]) * 2 >= min(len(c), len(cur["last"])): cur["t1"], cur["last"] = t, c      # out of it for less than JOIN_S is not a leave (R-350)
                 else:
                     if cur: stays.append(cur)
                     cur = {"t0": t, "t1": t, "first": c, "last": c}
@@ -808,7 +812,7 @@ class Moments:
             away = lambda tm: all(a not in self.main_team(tm, min(20, T)) for a in start[tm])
             both = t0 <= 75 and away(1) and away(2)
             out.append({"t0": t0, "t1": t1, "t_left": min(left, t0), "opening": t0 <= 75, "both_opening": both, "start": {m.tag[tm]: [m.roles[a] for a in start[tm]] for tm in (1, 2)}, "place": p0, "started": m.tag[started] if started else None, "started_tm": started,
-                        "members": {m.tag[tm]: [{"role": m.roles[a], "from": span[a][0][0], "to": span[a][-1][1], "spans": span[a]} for a in mem[tm]] for tm in (1, 2)},
+                        "members": {m.tag[tm]: [{"role": m.roles[a], "id": a, "from": span[a][0][0], "to": span[a][-1][1], "spans": span[a]} for a in mem[tm]] for tm in (1, 2)},
                         "ids": {tm: mem[tm] for tm in (1, 2)}, "n": max(nums, key=nums.get), "monks": {m.tag[tm]: monks[tm] for tm in (1, 2)},
                         "ground_s": {m.tag[1]: ground[1], m.tag[2]: ground[2], "between": ground[0]}, "linked_s": len(r["track"]) * S,
                         "moves": [{"t": x["t"], "kind": x["kind"], "team": x["team"], "roles": x["roles"]} for x in inside], "swaps": swaps,

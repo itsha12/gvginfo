@@ -90,7 +90,7 @@ def check(r, rec):
     T = r["team"]; E = next((x for x in rec["teams"] if x != T), "")
     te, ee = re.escape(T), re.escape(E)
     who = r["who"]; arg = r["arg"]
-    lo, hi = r["t"] - BEFORE, r["t"] + (INTENT_AFTER if r["kind"][:2] in ("i.", "s.") else AFTER)
+    lo, hi = r["t"] - BEFORE, r["t"] + (INTENT_AFTER if r["kind"][:2] in ("i.", "s.") or kind == "join" else AFTER)      # a join is called as the player sets off and recorded when he arrives
     has = lambda s: all(re.search(rf"(?<![\w]){re.escape(w)}", s) for w in who)
     near = [(t, s) for t, s in rec["story"] if lo <= t <= hi]
     wide = [(t, s) for t, s in rec["story"] if lo - 60 <= t <= hi + 60]
@@ -153,14 +153,18 @@ def check(r, rec):
     elif kind == "res": fam = rf"^{te}'s .*resurrected"; hit = find(rf"{R}\S* is resurrected")
     elif kind == "npc": fam = rf"^{te} takes"; hit = find(rf"^{te} takes {ee}'s {arg}")
     elif kind == "fall":            # the story often tells a retreat from the pusher's side: both tellings count
-        fam = rf"^{te} (falls back|gives ground)|^The fight moves|^{ee} pushes"
-        hit = find(rf"^{te} (falls back|gives ground)[^(]*{re.escape(arg)}")
+        fam = rf"^{te}(?:'s split)? (falls back|gives ground)|^The fight moves|^{ee} pushes"
+        hit = find(rf"^{te}(?:'s split)? (falls back|gives ground)[^(]*{re.escape(arg)}")
         if not hit: hit = find(rf"^{ee} pushes {te} back[^(]*{re.escape(arg)}")
         if not hit and arg: hit = find(rf"^(?:{ee} pushes|The fight moves) [^(]*to {te}'s {re.escape(arg)}")
     elif kind == "push":
-        fam = rf"^{te}(?:'s main team)? pushes"; hit = find(rf"^{te}(?:'s main team)? pushes[^(]*{re.escape(arg)}")
+        fam = rf"^{te}(?:'s main team|'s split)? pushes"; hit = find(rf"^{te}(?:'s main team|'s split)? pushes[^(]*{re.escape(arg)}")
     elif kind == "join":
         fam = rf"{te}'s [^;)]*joins?"; hit = find(rf"{te}'s [^;)]*{re.escape(one)}[^;)]* joins?[^;)]*{re.escape(arg)}")
+        if not hit and len(who) > 1:               # several players named: the line must name at least half of them
+            for t_, s_ in near:
+                mj = re.search(rf"{te}'s ([^;)]*?) joins?[^;)]*{re.escape(arg)}", s_)
+                if mj and sum(1 for w in who if re.search(rf"(?<![\w]){re.escape(w)}", mj.group(1))) * 2 >= len(who): hit = (t_, s_); break
     elif kind == "leave": fam = rf"{te}'s [^;)]*leaves?"; hit = find(rf"{te}'s [^;)]*{re.escape(one)}[^;)]* leaves?")
     elif kind == "boost": fam = rf"^{te} boosts"; hit = find(rf"^{te} boosts")
     elif kind == "caught": fam = rf"^{te} is in"; hit = find(rf"^{te} is in {ee}'s base")

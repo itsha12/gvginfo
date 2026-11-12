@@ -306,7 +306,7 @@ def _ground_told(M, g):
     """Which main team moves the story tells (moments.ground): a fall back that ends on the team's own ground or
     leaves the enemy's, and a push up that ends on the enemy's ground. Moves about the stand are left to the fights."""
     own, foe = M.st.side.get(g["tm"]), M.st.side.get(3 - g["tm"])
-    if g["n"] < GROUND_MIN or own is None: return None
+    if g["n"] < (GROUND_MIN if g["group"] == "main" else 2) or own is None: return None
     if g["way"] == "back":
         if g["to_side"] == own and g["to_kind"] in GROUND: return "home"
         if g["from_side"] == foe and g["from_kind"] in GROUND and not (g["to_side"] == foe and g["to_kind"] in GROUND): return "out"
@@ -321,12 +321,14 @@ def _ground_events(M):
         same = g["from"] == g["to"]                      # a door is the whole drawn route (R-307 wording), so a long move can begin and end "at the front door"
         if not k or (same and k == "out"): continue
         tag, foe = g["team"], M.m.tag[3 - g["tm"]]
+        grp = "main team" if g["group"] == "main" else "split"
         if k == "push":
-            out.append((g["t"], (f"{tag}'s main team pushes deeper along {g['to']}, toward {foe}'s pit" if same else f"{tag}'s main team pushes up from {g['from']} to {g['to']}")
+            out.append((g["t"], (f"{tag}'s {grp} pushes deeper along {g['to']}, toward {foe}'s pit" if same else f"{tag}'s {grp} pushes up from {g['from']} to {g['to']}")
                         + f" ({g['n']} of them" + (f", {foe} in front of it" if g["followed"] else ", nobody in front of it") + ")"))
             continue
         hot, words = _pressure(M, g["tm"], set(g["ids"]), g["t"])
-        line = f"{tag} falls back deeper along {g['to']}, toward its pit" if same else f"{tag} falls back from {g['from']} to {g['to']}"
+        who = tag if g["group"] == "main" else f"{tag}'s split"
+        line = f"{who} falls back deeper along {g['to']}, toward its pit" if same else f"{who} falls back from {g['from']} to {g['to']}"
         if g["pressed"] and g["fighting"] and hot: line += f", under pressure ({words})"
         elif not g["pressed"]: line += ", nobody on it"
         if g["followed"] >= 2 and k == "home": line += f"; {foe} follows"
