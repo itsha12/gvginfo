@@ -149,9 +149,9 @@ a solo split or other uneven counts (27%). The rebuild on the records takes its 
    route and flag lead (a full flag and half a flag up, R-375); the pre-game flag; posture (R-376; family 5 itself
    stays in step 4), the four timing choices (R-377), monk counts in the main fight and who is on the Guild Lord
    (R-378). Ruled on in R-399 to R-412: posture gave way to the stand-off (R-405, R-411), flag lead is a tally that
-   counts the stand (R-408). Still open: how the posture and timing statements count in the line-up now.
-2. **Reading step 3: the check.** Regenerate the golden stories; Claude compares them with the 13 blind notes; rescore
-   the line-up; Denning reviews the held-out misses once, at the gate (R-396).
+   counts the stand (R-408); posture and timing statements outside those are set aside in the line-up (R-414).
+2. **Reading step 3: the check.** The golden stories are regenerated (draft 6), compared with the 13 blind notes, and
+   the line-up rescored; what remains is Denning's one review of the held-out misses, at the gate (R-396).
 3. **Denning approves the story's form** on golden game 1 (R-395).
 4. **Stage B rebuilt on the records**: triggers, scenarios and calls for families 1 to 3.
 5. **Stage C: the decision gate** (R-394).
@@ -211,9 +211,9 @@ team.
   held-out games (R-380, R-383). He reviews their misses once; after that review only the engine's own misses count,
   and if it still fails they are fixed, the four games become building games and two new timestamped games are needed
   (R-396). At 2026-11-12, with the words of reading step 2 checked instead of set aside and R-399 to R-404 built:
-  building 422 of 433 (97%), held-out 163 of 208 (78%), not yet reviewed. The statements checked before are unchanged
-  (365 of 365, 136 of 162); the weak kinds on the held-out games are timing (0 of 10) and posture (2 of 7), the two
-  his rulings narrowed (R-405, R-407, R-411).
+  building 422 of 426 (99%), held-out 163 of 196 (83%), not yet reviewed. The statements checked before are unchanged
+  (365 of 365, 136 of 162); posture and timing statements that are not a true stand-off or a deliberate hold are set
+  aside (R-414: 7 building, 15 held out).
 - **The blind check**: the 13 notes Denning wrote before seeing any engine story; Claude compares each rewritten
   story with them (R-354). He marks the story of game 1 only, for its form (R-395).
 - **The decision gate** (R-394, replacing how R-327 is scored): on the 15 golden moments (R-382), the scenario and

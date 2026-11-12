@@ -6,9 +6,9 @@ model's structure: `knowledge/model.md` (generated).
 
 ## Start a new chat in one message
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/SPEC.md and docs/HANDOFF.md, check
-> out `bundle-4` in a second worktree, then carry on with "Next" item 1 and set out the items under "Open for Denning".
+> out `bundle-4` in a second worktree, then set out the items under "Open for Denning" and carry on with "Next".
 
-## State (2026-11-12: redesign step 2 on branch `bundle-4`, last engine commit c25f51c; batch 17, 506 matches trained)
+## State (2026-11-12: redesign step 2 on branch `bundle-4`, last engine commit 02a4106; batch 17, 506 matches trained)
 - Main's engine is unchanged (as SPEC.md describes). Bundle 4 is built on `bundle-4` and lands in one piece, then
   one rebuild (R-322). 606 replays stored (90 random ones from 2 September on are not yet trained on). No Train
   batch, Discovery or fetch run in progress.
@@ -21,8 +21,8 @@ model's structure: `knowledge/model.md` (generated).
   a main team push keeps `onto_flag` (R-401); `flags_record()` keeps the flag route, the way back, the hold before a
   cap and its distance from the enemy's boost; `flag_lead()`, `lead_value()` and `lead_at()` read the flag tally
   (R-408: 1 for the stand, plus the share of the next flag run done, plus up to half for the following runner back
-  at the spawn; bands at 0.35, 0.8, 1.3, 1.7); `pregame()`; `standoffs()` (R-405, R-411: the main teams standing off,
-  framed on OG v hdm; it replaced `posture()`, and the story does not tell a stand-off as a fight); `timing()`
+  at the spawn; bands at 0.35, 0.8, 1.3, 1.7); `pregame()`; `standoffs()` (R-405, R-411, R-413: the main teams standing
+  off, 0.4 hits a player in 10 s for 35 s; it replaced `posture()`; a stand-off is not told as a fight); `timing()`
   (R-377's four; a flag held back 45 s around the stand, R-407; a flag left at the spawn, both only while the enemy
   holds the stand); `monk_counts()`; `on_lord()`. `story.py` prints each from its record.
 - Thresholds: confirmed (R-404), the delayed pickup at 10 s (R-406); those the later rulings added are Claude's.
@@ -31,22 +31,23 @@ model's structure: `knowledge/model.md` (generated).
 - Faults fixed: a flag dropped at the spawn and retaken was read as returned (captures 5,245 to 5,249); `story.py`
   stopped on 8 of 606 matches. Every count of reading step 1 is unchanged.
 - On main: `data/lineup/` (16 transcripts as paraphrased statements: 12 for building, 4 held out in `held/`),
-  Model > Golden moments (15 games, R-382; `golden_stories.json` still draft 5), rulings to R-412.
+  Model > Golden moments (15 games, R-382; `golden_stories.json` draft 6), rulings to R-414.
 
 ## The line-up (R-368 to R-397), the measure of the reading stage
 - `lineup.py score --data <main>/data/lineup [--held] [--show]` with `LINEUP_CACHE` set (delete it after an engine
   change). The gate is 90% agreement on things seen happening in the four held-out games (R-380, R-383).
-- The seven kinds of reading step 2 are checked, not set aside. Seen events: building 422 of 433 (97%), held-out
-  163 of 208 (78%). Comms calls: 108 of 157, 62 of 83. Statements checked before: unchanged (365 of 365; 136 of 162).
-- By word (building; held out, with calls): lead 14 of 14; 5 of 6. Pushflag 13 of 16; 7 of 10. Route 9 of 10; 6 of
-  7. Monks 10 of 11; 5 of 6. Lord 9 of 11; 5 of 7. Timing 3 of 5; 0 of 10. Posture (against stand-offs) 1 of 6; 2 of 7.
-- Posture and timing are the kinds his rulings narrowed (R-405, R-407, R-411); how they count at the gate is his
-  to rule (Open). Stand-offs: 273 over 606 matches (0.45 a match). No held-out line was read.
+- The seven kinds of reading step 2 are checked. Posture and timing statements that are not a true stand-off or a
+  deliberate hold are set aside (R-414: 7 building, 15 held out). Seen events: building 422 of 426 (99%), held-out
+  163 of 196 (83%). Comms calls: 108 of 157, 61 of 80. Stand-offs: 146 over 606 matches (0.24 a match).
+- Held-out misses by kind (33 seen, 19 calls): push 6, answer 5, join 5, fall 4, fight 4, go 3, npc 3, pushflag 3,
+  split 2, hold 2, lord 2, drop 2, wait 2, and one each of eight others. No held-out line has been read.
+- Reading step 3 so far: `golden_stories.json` is draft 6; the blind check against his 13 notes covered the opening
+  and the last two to three minutes before each moment (fixed: a hand-off under a push told as a dropped flag).
 
 ## Next (in order; the full build plan and both gates are in REDESIGN.md "Build plan from here" and "Tests")
-1. His ruling on how posture and timing statements count (Open); then nothing else stands before reading step 3.
-2. Reading step 3: regenerate the golden stories (`golden.py stories`, draft 6), the blind check against his 13 blind
-   notes, rescore the line-up, then his review of the held-out misses at the gate (R-396).
+1. His one review of the held-out misses at the gate (`lineup.py score --held --show --gate`, R-396), once he says
+   to open it: the review can be done only once.
+2. After it: only the engine's own misses count; fix them, rescore, `thresholds.py` beside it.
 3. His approval of the story's form on golden game 1 only (R-395); rebuild the decision moments (triggers,
    scenarios, calls) on the records (R-351); the decision gate (R-394).
 4. Stage D on the branch (consequence record, similar cases, the job table, enemy execution, the four proposals left
@@ -54,12 +55,12 @@ model's structure: `knowledge/model.md` (generated).
    rewritten, readability test, his list of R-398, merge, Train batch with `add_batch=no`).
 
 ## Open for Denning (set each out in the chat, R-329)
-- Posture and timing statements in the line-up (6 and 5 building, 7 and 10 held out) after R-405, R-407 and R-411:
-  keep them checked (they pull the held-out figure to 78%), or set aside those that are not a true stand-off or a
-  deliberate hold (he would do that at his one review of the held-out misses anyway, R-396).
-- The story tells a lead line only at a flag and a half or two flags (1.9 a match); half a flag would be 8 a match.
+- Whether to open the gate review now (33 seen misses, 83% against 90%), or have the blind check's gaps fixed first.
+- Gaps the blind check showed: a three-a-side split posturing at a back door is told as a 3 v 3 fight (NwAy v SKT
+  12:32 and 14:35; R-411 covers main teams only); a runner pushed while the fight converges on him, three or more
+  team mates near, is not a push on the flagger (hdm v HC 2:50); time to cap once at the fight (Crew v hdm 3:50).
 - Stage D: the consequence record sets flags given up beside numbers gained (R-412); 0.8 of a player to be measured.
-- From before: comms pass rate (R-394); game 1's story form (R-395); threat, hand-off to hold, time to cap, 983a47db.
+- From before: comms pass rate (R-394); game 1's story form (R-395); threat, hand-off to hold, 983a47db.
 
 ## Running it
 - Train batch: `gh api -X POST repos/itsha12/gvginfo/actions/workflows/train-batch.yml/dispatches -f ref=main
