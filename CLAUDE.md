@@ -204,7 +204,11 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   push, R-357, R-358, R-363, R-364), `caught()` (R-359), `flags_record()` (R-360), `main_team()` (R-335, R-355) and
   `common.flux_at` (R-356) hold what the engine keeps; `moments.py <report id> splits|flags` prints them, and `story.py`
   prints its split, push and cap lines from them, never from a second reading. Lessons from his marks, notes or
-  commentary go into these records first.
+  commentary go into these records first. The words of R-373 and R-375 to R-378 are records too: `flag_pushes()`
+  (pushing the flagger, R-371), the flag route, door, hold and boost distance in `flags_record()`, `flag_lead()` and
+  `lead_at()` (a full flag and half a flag up, R-375), `pregame()`, `posture()` (R-376), `timing()` (the four timing
+  choices, R-377), `monk_counts()` and `on_lord()` (R-378); their thresholds in `common.py` are drafts until he
+  confirms them.
   The line-up is the measure of the reading (R-368 to R-397): timestamped commentary and comms filed as paraphrased
   statements in `data/lineup/` (never transcripts), checked against the story by `tools/golden/lineup.py` on the
   branch. The four held-out games are in `data/lineup/held/`: never print or read their lines before Denning's one
