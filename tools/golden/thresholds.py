@@ -190,7 +190,7 @@ if __name__ == "__main__":
     a = sys.argv[1:]
     opt = lambda k, dflt: a[a.index(k) + 1] if k in a else dflt
     if len(a) >= 3 and a[0] == "sweep":
-        vals = [x for x in a[2:] if not x.startswith("--") and a[a.index(x) - 1] not in ("--every", "--data", "--jobs")]
+        vals = [x for i, x in enumerate(a) if i >= 2 and not x.startswith("--") and a[i - 1] not in ("--every", "--data", "--jobs")]
         sweep(a[1], vals, int(opt("--every", 4)), opt("--data", None), int(opt("--jobs", 2)))
     elif len(a) >= 2 and a[0] == "run": run(a[1], int(opt("--jobs", 2)), int(opt("--every", 1)))
     elif len(a) >= 2 and a[0] == "show": show(a[1])
