@@ -79,7 +79,7 @@
 24:06 | s.go | xxx | Mesmer | | their mesmer is running the flag
 25:26 | option | ohno | | | who holds the base: the 8 monk and the ritualist, or the 8 monk and the ele with the ele spear-bombing the bodyguard
 26:04 | plan | ohno | | | move into their base and out-damage their Lord: our melee can out-damage those eles
-26:26 | timing | ohno | | | we do not need to go now: go at about 27 minutes
+26:26 | plan | ohno | | | we do not need to go now: go at about 27 minutes
 26:40 | s.split | xxx | AoB Derv, Mesmer | | they are sending a dervish and a mesmer
 27:00 | i.answer | ohno | | | we have to defend; send the ritualist as well
 27:22 | clock | ohno | | | 27 minutes: we need more Lord damage or we lose

@@ -6,9 +6,9 @@ model's structure: `knowledge/model.md` (generated).
 
 ## Start a new chat in one message
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/SPEC.md and docs/HANDOFF.md, check
-> out `bundle-4` in a second worktree, then set out the items under "Open for Denning" for me to rule on.
+> out `bundle-4` in a second worktree, then carry on with "Next" item 1 and set out the items under "Open for Denning".
 
-## State (2026-11-12: redesign step 2 on branch `bundle-4`, last engine commit d59ea1a; batch 17, 506 matches trained)
+## State (2026-11-12: redesign step 2 on branch `bundle-4`, last engine commit 4dc4347; batch 17, 506 matches trained)
 - Main's engine is unchanged (as SPEC.md describes). Bundle 4 is built on `bundle-4` and lands in one piece, then
   one rebuild (R-322). 606 replays stored (90 random ones from 2 September on are not yet trained on). No Train
   batch, Discovery or fetch run in progress.
@@ -17,32 +17,35 @@ model's structure: `knowledge/model.md` (generated).
   field), `lineup.py score|lines` (the line-up), `thresholds.py run|show` (all-match counts, about 15 minutes).
 - The records in `moments.py`, reading step 1: `attempts()`, `caught()`, `flags_record()`, `main_team()`, `lane()`,
   `moves()`, `split_fights()`, `ground()`, `undefended()`, `on_pit()`, `fights(t)`, `place_at`.
-- Reading step 2, built this session (the words of R-373, R-375 to R-378): `flag_pushes()` (players on a flagger
-  who is on his own: carrying, going back or at his spawn; who came to help; died, dropped, the pickup delayed);
-  `flags_record()` now keeps the flag route (short way, long way on the four halls with two drawn flag runs a side;
-  the own back door elsewhere), the way back, the hold in the stand area before a cap and its distance from the
-  enemy's boost; `flag_lead()` and `lead_at()` (a full flag, half a flag, R-375); `pregame()`; `posture()` (R-376);
-  `timing()` (the four choices of R-377); `monk_counts()` (the main team's fight, four or more of the team in it);
-  `on_lord()`; every fight carries its monks a side. `story.py` prints each from its record (`_word_events`).
-- Two faults fixed on the way: a flag dropped at the spawn and taken again by the same player was read as returned
-  (captures 5,245 to 5,249); `story.py` stopped on 8 of 606 matches. Every other all-match count is unchanged.
+- Reading step 2 is built and ruled on (R-399 to R-404): `flag_pushes()` (players on a flagger who is on his own);
+  a main team push keeps `onto_flag` (its fight walked onto a flag held inside its team, R-401); `flags_record()`
+  keeps the flag route, the way back, the hold before a cap and its distance from the enemy's boost; `flag_lead()`
+  and `lead_at()` read flag lead as timing (R-402: how much of its run each team's next flag has done; a full flag
+  = the backup at the stand, half a flag = 0.3 of a run or more ahead of the enemy's); `pregame()`; `posture()` on
+  either side with a small damage allowance (R-399); `timing()` (the four choices of R-377 and the fifth of R-400:
+  a flag held back in hand, or left at the spawn); `monk_counts()`; `on_lord()`. `story.py` prints each from its record.
+- Thresholds: confirmed as they stand with the delayed pickup at 12 s (R-404); the eight his rulings added are
+  Claude's. `thresholds.py sweep NAME values [--data <main>/data/lineup]` shows what a looser or tighter value does
+  to the records and to the building games (common.py `GVG_TRY`; never set it in a training run).
+- Faults fixed: a flag dropped at the spawn and retaken was read as returned (captures 5,245 to 5,249); `story.py`
+  stopped on 8 of 606 matches. Every count of reading step 1 is unchanged.
 - On main: `data/lineup/` (16 transcripts as paraphrased statements: 12 for building, 4 held out in `held/`),
-  Model > Golden moments (15 games, R-382; `golden_stories.json` still draft 5), rulings to R-398.
+  Model > Golden moments (15 games, R-382; `golden_stories.json` still draft 5), rulings to R-404.
 
 ## The line-up (R-368 to R-397), the measure of the reading stage
 - `lineup.py score --data <main>/data/lineup [--held] [--show]` with `LINEUP_CACHE` set (delete it after an engine
   change). The gate is 90% agreement on things seen happening in the four held-out games (R-380, R-383).
-- The seven kinds of reading step 2 (pushflag, route, lead, posture, timing, monks, lord) are now checked, not set
-  aside. Seen events: building 419 of 434 (97%), held-out 164 of 208 (79%). Comms calls: 106 of 157, 60 of 83.
-- The statements checked before are unchanged: 365 of 365 and 136 of 162. Of the newly checked: building 54 of 69,
-  held-out 28 of 46 (lead 6 of 6, pushflag 7 of 10, route 6 of 7, monks 5 of 6, lord 5 of 7, posture 0 of 7,
-  timing 0 of 10; kinds counted with their calls).
-- The new checks: pushflag, posture and lord against the record's stretch overlapping the window; lead against the
-  level the statement's words ask for (full, half, else the stand held); monks against the team's biggest fight;
-  timing by the statement's words. The building games' 15 misses: `--show`. No held-out line was read.
+- The seven kinds of reading step 2 are checked, not set aside. Seen events: building 421 of 433 (97%), held-out
+  167 of 208 (80%). Comms calls: 109 of 157, 61 of 83. Statements checked before: unchanged (365 of 365; 136 of 162).
+- By word (building; held out, with calls): lead 13 of 14; 6 of 6. Pushflag 12 of 16; 7 of 10. Route 8 of 10; 6 of
+  7. Monks 10 of 11; 5 of 6. Lord 9 of 11; 5 of 7. Timing 4 of 5; 3 of 10. Posture 2 of 6; 1 of 7.
+- Posture is the weak word: widening it (R-399) took it from 1,006 to 3,205 records over 606 matches and gained one
+  statement in each set. The fifth timing choice yields 3,580 records (2,120 held back, 1,460 left at the spawn).
+  Both want a sweep or a tighter definition before the gate. Building misses: `--show`. No held-out line was read.
 
 ## Next (in order; the full build plan and both gates are in REDESIGN.md "Build plan from here" and "Tests")
-1. Denning's rulings on "Open for Denning" below; then the changes they ask for, with `thresholds.py` beside the rescore.
+1. Posture and the fifth timing choice: sweep POSTURE_HITS, POSTURE_FACE_R, HOLD_BACK_S and LEFT_AT_SPAWN_S, and put
+   the result to Denning with the building misses (`--show`); `thresholds.py` beside every rescore.
 2. Reading step 3: regenerate the golden stories (`golden.py stories`, draft 6), the blind check against his 13 blind
    notes, rescore the line-up, then his review of the held-out misses at the gate (R-396).
 3. His approval of the story's form on golden game 1 only (R-395); rebuild the decision moments (triggers,
@@ -52,13 +55,10 @@ model's structure: `knowledge/model.md` (generated).
    rewritten, readability test, his list of R-398, merge, Train batch with `add_batch=no`).
 
 ## Open for Denning (set each out in the chat, R-329)
-- The 22 draft thresholds of reading step 2 in `common.py` (PUSHFLAG_R to LORD_GAP_S), with their all-match counts.
-- Pushing a flag that is held inside its team (a main team walking its fight onto the enemy's flag): the engine
-  tells it as a fight there, not a push on the flagger (xxx v ohno 1:08, and the calls at 5:26 and 19:20).
-- Posture (R-376) on a team's own side, and posture while light damage is traded: four of six building statements.
-- Timing beyond the four of R-377 (not running a flag yet; keeping it in hand). Half a flag (R-375) is read as
-  "picked up before the enemy's", so it stays once the enemy picks up later.
-- hdm v HC 20:00 (long way then short way; read as the short way), 22:20 (a runner killed before his pickup).
+- Posture still reads badly after R-399: his posture statements against what the engine holds at those seconds.
+- Whether the two accepted hdm v HC statements (20:00, 22:20, R-403) are marked confirmed (`ok.`) or stay misses.
+- Flag lead: "a full flag up" is read from the team's own backup at the stand, wherever the enemy's flag is. Confirm.
+- The delayed pickup at 12 s loses his own example (hdm v HC 7:40, a 10 s wait); the sweep favours 10 s.
 - From before: comms pass rate (R-394); game 1's story form (R-395); threat, hand-off to hold, time to cap, 983a47db.
 
 ## Running it

@@ -5,8 +5,8 @@ and removed once SPEC.md describes the new structure. Its rulings are R-292 to R
 
 Status (2026-11-12): step 1 built. Step 2 under way on the branch `bundle-4`: the map foundation is built, and a reading
 stage was added before the decision moments (the records, the story and the line-up; see "Step 2: where it stands" and
-"Build plan from here"). Reading steps 1 and 2 are built; the thresholds of step 2 and four questions about its words
-wait for Denning. Steps 3 and 4 not started.
+"Build plan from here"). Reading steps 1 and 2 are built and step 2 is ruled on (R-399 to R-404); posture still reads
+badly and is the open item before reading step 3. Steps 3 and 4 not started.
 
 ## Why
 The two scored blind rounds showed the decision tier cannot say whether a call was right, whether it was executed, or
@@ -128,7 +128,7 @@ forensics stay as the mechanics evidence.
 | Stage | Items | State |
 |---|---|---|
 | A Map foundation | 2.1, 2.2 | built: `hallmap.py` (zones R-306, walked distance R-316, footmen reach R-320); `state.zone` and the three map numbers read it |
-| R The reading (added; R-341, R-362) | the records, the story, the line-up | reading step 1 built and its 17 thresholds confirmed (R-390): `moments.py` keeps split attempts and main team pushes, split fights, joins, leaves and swaps, ground moves, the flag record, who is on the pit NPCs, undefended splits; `story.py` prints from them. Reading step 2 built (the words of R-373, R-375 to R-378, each its own record: `flag_pushes`, the flag route in `flags_record`, `flag_lead`, `pregame`, `posture`, `timing`, `monk_counts`, `on_lord`); its 22 new thresholds are drafts to confirm. Reading step 3 (the check) is next |
+| R The reading (added; R-341, R-362) | the records, the story, the line-up | reading step 1 built and its 17 thresholds confirmed (R-390): `moments.py` keeps split attempts and main team pushes, split fights, joins, leaves and swaps, ground moves, the flag record, who is on the pit NPCs, undefended splits; `story.py` prints from them. Reading step 2 built (the words of R-373, R-375 to R-378, each its own record: `flag_pushes`, the flag route in `flags_record`, `flag_lead`, `pregame`, `posture`, `timing`, `monk_counts`, `on_lord`); ruled on in R-399 to R-404 (posture on either side, a fifth timing choice, `onto_flag` on a main team push, flag lead as timing, thresholds confirmed). Posture still misses most of his statements. Reading step 3 (the check) is next |
 | B Decision moments | 2.3 to 2.7 | drafted before the records (departures, triggers, scenarios, calls, forced; 23,041 moments in 506 matches); to be rebuilt on the records |
 | C The decision gate | test | not started: R-394 (the 15 golden moments from his notes; the calls on comms) |
 | D Depth | 2.8 to 2.13 | not started (shape, consequence record, similar cases, jobs, enemy execution, interaction rule, the four proposals left of R-324: the Shadow Step flag drop is out, R-393) |
@@ -148,8 +148,8 @@ a solo split or other uneven counts (27%). The rebuild on the records takes its 
 1. **Reading step 2: the words** (R-373, R-375 to R-378): built. Pushing the flagger (its own record, R-371); flag
    route and flag lead (a full flag and half a flag up, R-375); the pre-game flag; posture (R-376; family 5 itself
    stays in step 4), the four timing choices (R-377), monk counts in the main fight and who is on the Guild Lord
-   (R-378). Open with Denning: its draft thresholds, pushing a flag held inside its team, posture on a team's own side
-   or with light damage, and timing choices beyond the four.
+   (R-378). Ruled on in R-399 to R-404. Still open: posture (2 of 6 building statements, 1 of 7 held out, for 3,205
+   records over 606 matches), and how often a held flag is worth a line (3,580 records for the fifth timing choice).
 2. **Reading step 3: the check.** Regenerate the golden stories; Claude compares them with the 13 blind notes; rescore
    the line-up; Denning reviews the held-out misses once, at the gate (R-396).
 3. **Denning approves the story's form** on golden game 1 (R-395).
@@ -209,10 +209,9 @@ team.
   R-397) and never read line by line before the gate. The gate is 90% agreement on things seen happening in the
   held-out games (R-380, R-383). He reviews their misses once; after that review only the engine's own misses count,
   and if it still fails they are fixed, the four games become building games and two new timestamped games are needed
-  (R-396). At 2026-11-12, with the words of reading step 2 now checked instead of set aside: building 419 of 434 (97%),
-  held-out 164 of 208 (79%), not yet reviewed. The statements checked before are unchanged (365 of 365, 136 of 162); of
-  the newly checked words 54 of 69 agree on the building games and 28 of 46 on the held-out games (posture 0 of 7 and
-  timing 0 of 10 there).
+  (R-396). At 2026-11-12, with the words of reading step 2 checked instead of set aside and R-399 to R-404 built:
+  building 421 of 433 (97%), held-out 167 of 208 (80%), not yet reviewed. The statements checked before are unchanged
+  (365 of 365, 136 of 162); the weak words on the held-out games are posture (1 of 7) and timing (3 of 10).
 - **The blind check**: the 13 notes Denning wrote before seeing any engine story; Claude compares each rewritten
   story with them (R-354). He marks the story of game 1 only, for its form (R-395).
 - **The decision gate** (R-394, replacing how R-327 is scored): on the 15 golden moments (R-382), the scenario and
@@ -275,7 +274,8 @@ Thin cells at 506 matches (many cards will read "no clear difference"); intent i
 analysis but not the blind test's question; longer reads risk recording the fight's result (positions and commitments
 only, forced reads apart, the pre-trend check stays); the win model prices every decision (hard results do not depend on
 it); stronger teams choose differently (strength stays in the adjustment); the replays lack energy and line of sight.
-Added 2026-11-11: the line-up checks that what was said is in the story, not that the story is free of extra lines, so
+A threshold's effect can be tried without editing the engine: `thresholds.py sweep` (records added or removed over the
+matches, statements gained or lost on the building games). Added 2026-11-11: the line-up checks that what was said is in the story, not that the story is free of extra lines, so
 a change that adds lines can look like a gain (count the records over all matches beside every score:
 `tools/golden/thresholds.py`); the held-out set is four games, and once reviewed it is spent; the decision gate's
 golden part rests on 15 moments, so the comms calls carry most of its weight; main's engine is frozen at 506 of 606
