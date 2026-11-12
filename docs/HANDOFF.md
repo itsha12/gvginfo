@@ -8,7 +8,7 @@ model's structure: `knowledge/model.md` (generated).
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/SPEC.md and docs/HANDOFF.md, check
 > out `bundle-4` in a second worktree, then carry on with "Next" item 1 and tell me where the line-up stands.
 
-## State (2026-11-11: redesign step 2 on branch `bundle-4`, last engine commit 9fca5f5; batch 17, 506 matches trained)
+## State (2026-11-11: redesign step 2 on branch `bundle-4`, last engine commit aa39a29; batch 17, 506 matches trained)
 - Main's engine is unchanged (as SPEC.md describes). Bundle 4 is built on `bundle-4` and lands in one piece, then
   one rebuild (R-322). 606 replays stored (90 random ones from 2 September on were fetched 2026-11-11 and are not
   yet trained on). No Train batch, Discovery or fetch run in progress.
@@ -23,39 +23,36 @@ model's structure: `knowledge/model.md` (generated).
   off it onto the main fight); `flag_ev` gives a capture with no pickup recorded its pickup (69 of 5,245).
 - On main: `data/lineup/` (16 transcripts typed as paraphrased statements: 12 for building, 4 held out, R-370),
   Model > Golden moments (15 games, R-382; the other 15 under `parked`; `golden_stories.json` still draft 5),
-  `data/commentary/nick.json` (9 games), rulings to R-389.
+  `data/commentary/nick.json` (9 games), rulings to R-393.
 
-## The line-up (R-368 to R-389), the measure of the reading stage
+## The line-up (R-368 to R-392), the measure of the reading stage
 - `lineup.py score --data <main>/data/lineup [--held] [--show]` with `LINEUP_CACHE` set (delete it after an engine
   change; about 10 minutes). The gate is 90% agreement on things seen happening in the four held-out games (R-380,
   R-383); calls on comms are reported beside it.
-- Seen events: building games 364 of 365, held-out 135 of 162 (83%). Comms calls: 104 of 152 (68%), 59 of 76 (78%).
+- Seen events: building games 365 of 365, held-out 136 of 162 (84%). Comms calls: 106 of 152 (70%), 59 of 76 (78%).
 - The building figure follows Denning's review of its 61 misses (R-386): 36 confirmed as the engine reading right
-  (`ok.`), 5 calls withdrawn, the rest retyped as he corrected them; 12 were the engine's and 10 are fixed (R-389).
-  The one left: xxx's split "falls to its back footies" (2:57): it stands 600 to 1,050 from its back footmen, which
-  are not fighting, so the engine says back door (R-307).
+  (`ok.`), 5 calls withdrawn, the rest retyped as he corrected them; the engine's own misses are fixed (R-389 to R-392).
 - The held-out games are not reviewed: he reviews their misses once, at the gate, and only statement corrections
   follow, never an engine change (R-370). Do not read their lines before then: their files sit in `data/lineup/`
   with the rest (header `held_out: yes`), so check the header before printing one.
 
 ## Next (in order)
-1. Step 1 is built and closes on his rulings (set out to him 2026-11-11; "Open for Denning" below): apply them and
-   rescore. No Shadow Step date is needed: all 19 stored steps by a carrier (first 20 August 2026) drop the flag.
-2. Step 2, the words of R-373 and R-375 to R-378: flag route, pushing the flagger, flag lead (full and half a
-   flag), posture, the four timing choices, monk counts in a fight, who is on the Guild Lord (`on_pit()` is a start).
-3. Step 3: regenerate the golden stories (`golden.py stories`, draft 6), the blind check against his 13 blind
+1. Step 2, the words of R-373 and R-375 to R-378, into the records in his order: pushing the flagger, flag route
+   and flag lead (full and half a flag), the pre-game flag; then posture, the four timing choices, monk counts in a
+   fight, who is on the Guild Lord (`on_pit()` is a start). Step 1 is closed (thresholds confirmed, R-390).
+2. Step 3: regenerate the golden stories (`golden.py stories`, draft 6), the blind check against his 13 blind
    notes, rescore the line-up, then his review of the held-out misses at the gate.
-4. Then his review of game 1's story form; rebuild the decision moments (triggers, scenarios, calls) on the records
+3. Then his review of game 1's story form; rebuild the decision moments (triggers, scenarios, calls) on the records
    (R-351) and `golden.py score` against his marks (R-354).
-5. Stage D on the branch (consequence record at 90 s and about 3 min, similar cases, the job table, enemy
-   execution, the five proposals of R-324, radius checks to `st.zone`), then stage E (side by side for one rebuild,
-   SPEC.md and METHODS.md rewritten, readability test, merge, Train batch with `add_batch=no`). REDESIGN.md has both.
+4. Stage D on the branch (consequence record at 90 s and about 3 min, similar cases, the job table, enemy
+   execution, the four proposals left of R-324 (R-393), radius checks to `st.zone`), then stage E (side by side for
+   one rebuild, SPEC.md and METHODS.md rewritten, readability test, merge, Train batch with `add_batch=no`).
    Training chunks and Discovery resume after the merge; the decision card and the blind test follow.
 
-## Open for Denning (set each out in the chat, R-329)
-- The 17 draft thresholds (JOIN_LOOK_S to SPLIT_FIGHT_MIN in `common.py`). "Footies" at a team's own idle footmen.
-- A split whose main team is dead is renamed the main team and told as a new "main team push" (202 pushes in 155
-  matches; Apes v hold 4:20; `main_team()` is R-355, left as ruled). The Shadow Step fault (R-324) with 19 cases.
+## Open for Denning (set each out in the chat, R-329; asked 2026-11-11, not yet answered)
+- Held-out files into their own subfolder. What follows if the held-out games stay under 90% after his review.
+- The decision gate after R-341 and R-354: what "golden moments agree" (R-327) is scored on now; whether he marks
+  all 15 stories or only game 1's form. `docs/REDESIGN.md` ("where it stands", "Tests") is rewritten on his answers.
 - Golden moments (R-354): his review of game 1's story form; his 13 `blind_note` notes are the blind check. Also
   open: threat or posture, hand-off to hold, time to cap, a monk energy estimate only if needed (R-353), discovery
   second run, behaviour clusters, 983a47db (xxx v ohno, report d70f3684) of Nick's commentary.
