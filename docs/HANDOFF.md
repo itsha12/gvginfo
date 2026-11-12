@@ -43,14 +43,12 @@ model's structure: `knowledge/model.md` (generated).
 - The gate review was opened on 2026-11-12 at his direction (R-415): the 33 held-out misses on things seen were set
   out for him in the chat (BcS v hook 16, RACK v chic 11, OG v cope 3, ohno v Fun 3). His answers are awaited. The
   held-out lines have now been read: from here only the engine's own misses count (R-396).
-- Reading step 3 otherwise done: `golden_stories.json` is draft 6; the blind check against his 13 notes covered the
-  opening and the last two to three minutes before each moment (fixed: a hand-off under a push told as a drop).
+- Reading step 3 otherwise done: `golden_stories.json` draft 6; blind check run (opening and last minutes of each).
 
 ## Next (in order; the full build plan and both gates are in REDESIGN.md "Build plan from here" and "Tests")
 1. Apply his answers to the 33 held-out misses as on the building games (R-386: confirmed `ok.`, withdrawn, or
    retyped as he corrects), in `data/lineup/held/`; rescore; the gate is 90% of things seen (R-380, R-383).
-2. Fix the engine's own misses that remain; `thresholds.py` beside every rescore. If the gate still fails, the four
-   games become building games and two new timestamped games are needed (R-396).
+2. Fix the engine's own misses that remain (`thresholds.py` beside every rescore); if it still fails, R-396 applies.
 3. His approval of the story's form on golden game 1 only (R-395); rebuild the decision moments (triggers,
    scenarios, calls) on the records (R-351); the decision gate (R-394).
 4. Stage D on the branch (consequence record, similar cases, the job table, enemy execution, the four proposals left
@@ -59,8 +57,7 @@ model's structure: `knowledge/model.md` (generated).
 
 ## Open for Denning (set each out in the chat, R-329)
 - His review of the 33 held-out misses (set out in the chat on 2026-11-12; `lineup.py score --held --show --gate`).
-- Left from the blind check: a runner pushed while the fight converges on him, three or more team mates near, is
-  not a push on the flagger (hdm v HC 2:50); time to cap once at the fight (Crew v hdm 3:50).
+- Left from the blind check: a runner pushed as the fight converges on him (hdm v HC 2:50); time to cap.
 - Stage D: the consequence record sets flags given up beside numbers gained (R-412); 0.8 of a player to be measured.
 - From before: comms pass rate (R-394); game 1's story form (R-395); threat, hand-off to hold, 983a47db.
 
