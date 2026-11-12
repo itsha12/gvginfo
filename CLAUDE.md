@@ -205,6 +205,15 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   `common.flux_at` (R-356) hold what the engine keeps; `moments.py <report id> splits|flags` prints them, and `story.py`
   prints its split, push and cap lines from them, never from a second reading. Lessons from his marks, notes or
   commentary go into these records first.
+  The line-up is the measure of the reading (R-368 to R-397): timestamped commentary and comms filed as paraphrased
+  statements in `data/lineup/` (never transcripts), checked against the story by `tools/golden/lineup.py` on the
+  branch. The four held-out games are in `data/lineup/held/`: never print or read their lines before Denning's one
+  review at the gate (R-370, R-396), and never tune the engine on them. The line-up only checks that what was said is
+  in the story, so run `tools/golden/thresholds.py` beside every rescore to see what a change did to the records over
+  all matches. The gates and the build order are in `docs/REDESIGN.md` ("Tests", "Build plan from here").
+- Before the first training run after the engine is built, go through Denning's list with him (R-398; REDESIGN.md
+  "Before the next training run"): plan and spec, rulings, old files, the Templates and Meta tabs, skills from the
+  wiki, the model pages, anything outstanding.
 - Guild hall maps: `tools/maps/build_maps.py` builds the site's map data from the replays branch
   (`data/maps/index.json`, `outline/<map id>.json`, `auto/<map id>.json`); Denning's labels (points, areas, routes) are
   saved by the site's Model > Guild hall maps page to `data/maps/labels/<map id>.json` and override estimates. The
