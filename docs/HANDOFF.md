@@ -52,8 +52,9 @@ model's structure: `knowledge/model.md` (generated).
 
 ## Open for Denning (set each out in the chat, R-329)
 - The pass rate for the comms calls in the decision gate (R-394): to propose once it is first measured.
-- His review of game 1's story form (R-395), after reading step 3. Also open: threat or posture, hand-off to hold, time to cap, a monk energy estimate only if needed (R-353), discovery
-  second run, behaviour clusters, 983a47db (xxx v ohno, report d70f3684) of Nick's commentary.
+- His review of game 1's story form (R-395), after reading step 3. Also open: threat or posture, hand-off to hold,
+  time to cap, a monk energy estimate only if needed (R-353), discovery second run, behaviour clusters, 983a47db
+  (xxx v ohno, report d70f3684) of Nick's commentary.
 
 ## Running it
 - Train batch: `gh api -X POST repos/itsha12/gvginfo/actions/workflows/train-batch.yml/dispatches -f ref=main
