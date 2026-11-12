@@ -342,3 +342,5 @@ This register is the model's constitution: every definition and decision Denning
 - R-382. The golden set is 15 games for now: the 14 he has labelled and RACK v chic. The other 15 are parked, not deleted.
 - R-383. The 90% gate of R-380 is read on statements of something seen happening. Calls on comms (what a team means to do, or says the enemy is doing) are reported beside it as carried out or not seen: a call that was not carried out is not the engine's miss.
 - R-384. A door stays the whole drawn route up to the edge of the labelled pit area. A long move along it is worded "falls back deeper along X's front door, toward its pit"; the place naming is not changed.
+- R-385. "Through mid" on a hall where he has drawn a collapse route means along that route (his answer for Uncharted Isle); elsewhere it stays the flag stand and the greater stand area.
+- R-386. A statement in the line-up that he has reviewed and found the engine right on is marked confirmed (`ok.`) and counts as agreeing; a call he withdrew is removed; a call he corrected is retyped as he corrected it.

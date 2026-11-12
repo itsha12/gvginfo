@@ -23,13 +23,12 @@
 1:44 | go | Men | AoB Derv | | Men's 2 dervish runs the flag
 1:50 | go | hdm | Ritualist 3 | | hdm's 6 ritualist also runs
 1:57 | fight | | | 3v4 | soon a 4v3 for Men at hdm's footies
-2:03 | fall | hdm | | | hdm, with only the dervish for damage, falls back toward its flag carrier
 2:15 | fight | | | 4v4 @ back door | still a 4v4 at Men's back door
-2:17 | npc | hdm | | archer | hdm takes the outer archer
+2:17 | ok.npc | hdm |  | archer | hdm takes the outer archer
 2:30 | cap | Men | AoB Derv | | Men capped on the 2 dervish
 2:33 | go | Men | Ritualist | | and ran the backup on the 4 ritualist
-2:37 | hand | Men | Ritualist | AoB Derv | who dropped it to the dervish for the second part
-2:40 | form | Men | | half | a double run, half run
+2:25 | hand | Men | Ritualist | AoB Derv | who dropped it to the dervish for the second part
+2:40 | ok.form | Men |  | half | a double run, half run
 2:50 | go | hdm | Ritualist 3 | | hdm's ritualist goes back for the flag again
 3:02 | fight | | | 3v4 | hdm is 3v4 at main while he runs, taking pressure
 3:12 | fight | | | 4v4 | then 4v4
@@ -47,8 +46,8 @@
 5:17 | go | hdm | Ritualist 3 | | he goes to run it
 5:23 | go | Men | Ritualist | | Men's 4 ritualist also runs
 5:27 | judge | hdm | | | a little time wasted: hdm will not be as far up on flags
-5:36 | hand | Men | Ritualist | AoB Derv | Men's ritualist drops to the 2 dervish and runs straight back
-5:40 | form | Men | | half | a very quick double run
+5:23 | hand | Men | Ritualist | AoB Derv | Men's ritualist drops to the 2 dervish and runs straight back
+5:40 | ok.form | Men |  | half | a very quick double run
 5:50 | go | hdm | Ritualist 3 | | hdm's 6 ritualist goes back too
 6:03 | trade | Men | Ritualist | | Men's ritualist passes the flag by and runs through the pit to make a numbers advantage on the split
 6:10 | fight | | | 4v5 | a brief 5v4 on the split side; hdm disengages
@@ -62,25 +61,25 @@
 7:36 | overcap | Men | | | Men is about to overcap
 7:40 | go | Men | Ritualist | | Men's 4 ritualist goes back for the next flag
 7:44 | go | hdm | Ritualist 3 | | hdm's 6 ritualist too: a quick double run on both sides
-7:50 | hold | Men | Prot | | Men's prot carries the flag up for the ritualist while defending, not quite a half run
+7:50 | ok.hold | Men | Prot |  | Men's prot carries the flag up for the ritualist while defending, not quite a half run
 8:03 | lead | Men | | | Men is now a full flag up
 8:14 | join | hdm | Air Ele | | hdm's 1 ele pushes to main team
 8:20 | join | Men | Prot | | followed by Men's prot, a little late
-8:30 | join | hdm | Mesmer | | hdm's 7 joins from base
+8:30 | ok.join | hdm | Mesmer |  | hdm's 7 joins from base
 8:40 | fight | | | 4v4 @ front | a 4v4 in hdm's front footies and front door
 8:45 | npc | Men | AoB Derv | footman | Men's dervish takes a footman, then the second
 8:55 | go | hdm | Dervish | | hdm has to run the flag on the dervish through Men's four
 9:03 | join | hdm | Air Ele | through mid | the 1 ele rejoins the split through mid
-9:10 | join | Men | Prot | through the pit | mirrored by Men's prot, who waits at the front door and joins through the pit once he sees him
+9:10 | ok.join | Men | Prot | through the pit | mirrored by Men's prot, who waits at the front door and joins through the pit once he sees him
 9:32 | standoff | hdm | | | hdm's four have accomplished little for six minutes: no pit NPCs
 9:53 | join | hdm | Air Ele | through mid | the 1 ele pushes through mid to collapse on main again
 9:58 | join | Men | Prot | | Men's prot mirrors it and brings a flag with him
-10:06 | push | Men | | front door | Men's four have pushed through hdm's front door
+10:06 | ok.push | Men |  | front door | Men's four have pushed through hdm's front door
 10:14 | go | hdm | Dervish | | hdm tries to get the flag in on the dervish
 10:26 | fight | | | 3v3 | the split side has become a 3v3
 11:05 | fight | | | 5v3 @ front door | hdm's ele collapses through mid: 5v3 at hdm's front door
 11:15 | go | Men | Ritualist | | Men's 4 ritualist runs the flag
-11:24 | end | hdm | | | hdm collapses its whole split through mid, followed closely by Men
+11:24 | ok.end | hdm |  |  | hdm collapses its whole split through mid, followed closely by Men
 11:45 | fight | | | 4v3 | a very brief 4v3 as Men's prot arrives a little late
 11:53 | death | Men | Mesmer | | hdm kills the mesmer before the prot is in range
 11:57 | judge | hdm | | | a very good heads-up collapse through the middle

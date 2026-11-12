@@ -20,14 +20,14 @@
 1:46 | micro | ohno | 8 Monk | | ohno's 8 monk is under some pressure
 1:54 | npc | xxx | | footman | xxx's split takes both back footies
 2:07 | drop | xxx | Mesmer | | xxx's main, under pressure, drops the flag on the 5 without capping
-2:10 | fall | xxx | | front footies | and retreats to its front footies
+2:10 | fall | xxx |  | front footies | and retreats to its front footies
 2:19 | join | ohno | Hammer | through mid | ohno's 2 warrior collapses on the split through mid to make it 4v4
 2:36 | judge | ohno | Hammer | | he arrives, but xxx's split had already pulled back: the collapse gets nothing
 2:50 | pickup | xxx | AoB Derv | | xxx's 4 picks up the flag and tries to run it through the front door
 3:03 | fight | | | 4v4 @ back | a 4v4 in the back door
 3:08 | fight | | | 4v4 | and a 4v4 at main
 3:17 | boost | ohno | | | ohno boosts before xxx can cap
-3:27 | fall | xxx | | front footies | xxx did not like the 4v4 and falls to its footies
+3:27 | fall | xxx |  | back footies | xxx did not like the 4v4 and falls to its footies
 3:34 | fall | ohno | | | ohno's main and split both pull back: it has to run a flag
 3:47 | posture | xxx | | | xxx's split postures in the middle of the back door
 3:55 | go | ohno | AoB Derv | | ohno's 1 has gone to pick up the flag
@@ -47,10 +47,10 @@
 5:50 | hold | xxx | Mesmer | | xxx has a flag in hand on its 5
 5:58 | go | xxx | AoB Derv | | xxx sends the 4 back for the next flag
 6:00 | form | xxx | | full | a double run, each full running
-6:06 | push | xxx | | pit | xxx's split has pushed ohno toward its pit: a 4v4 in ohno's base
+6:06 | ok.push | xxx |  | pit | xxx's split has pushed ohno toward its pit: a 4v4 in ohno's base
 6:14 | cap | xxx | Mesmer | | xxx's 5 gets the flag in
 6:22 | fight | | | 3v4 | xxx is 3v4 at main but gets out
-6:28 | go | ohno | AoB Derv | | ohno's 1 goes to run
+6:28 | ok.go | ohno | AoB Derv |  | ohno's 1 goes to run
 6:32 | hold | xxx | AoB Derv | | xxx has a backup at the stand on its 4
 6:42 | micro | | | | the micro of the back side 4v4 was not watched
 6:50 | fight | | | 4v3 | xxx pushes ohno's footies 4v3
@@ -64,8 +64,8 @@
 8:12 | fight | | | 4v3 | a brief 4v3 for xxx at main
 8:18 | wait | ohno | Air Ele | | ohno's 3 ele waits back for the next flag: a double run
 8:26 | swap | ohno | Mesmer | | ohno changes its split: the 5 mesmer replaces the 3 ele (warrior, mesmer, ritualist, 8 monk)
-8:44 | join | xxx | Ritualist | through mid | xxx's 3 ritualist drops through mid to main: the split is now three
-8:55 | wait | xxx | AoB Derv | | xxx's 5 capped and the 4 was waiting back: a double run
+8:25 | join | xxx | Ritualist | through mid | xxx's 3 ritualist drops through mid to main: the split is now three
+8:55 | ok.wait | xxx | AoB Derv |  | xxx's 5 capped and the 4 was waiting back: a double run
 9:03 | hand | ohno | Air Ele | AoB Derv | ohno's 1 takes the flag from the 3 ele and caps while the ele goes back
 9:06 | form | ohno | | half | a double run, half run
 9:14 | overcap | xxx | | | xxx overcaps with nobody waiting back
@@ -93,9 +93,9 @@
 12:50 | lead | xxx | | | xxx has the stand and a flag on its 5: a small flag advantage
 13:02 | judge | ohno | | | ohno's 1 goes for the footies again in a 4v3 at the front door: a little dangerous
 13:20 | answer | xxx | | | xxx defends its pit with three
-13:24 | join | xxx | Air Ele | | xxx's 2 ele collapses on the three in xxx's base: 4v3
+13:24 | join | xxx | Fire Ele, Air Ele |  | xxx's 2 ele collapses on the three in xxx's base: 4v3
 13:33 | cap | ohno | Air Ele | | ohno's 3 ele caps and returns to xxx's front door
-13:40 | fight | | | 5v4 @ front door | a 5v4 for xxx
+13:40 | ok.fight |  |  | 5v4 @ front door | a 5v4 for xxx
 13:46 | death | ohno | 7 Monk | | ohno's 7 monk goes down
 13:48 | death | ohno | Prot | | and the prot
 13:52 | death | ohno | AoB Derv | | and the dervish
@@ -104,16 +104,15 @@
 14:22 | push | xxx | | front door | they push ohno's front door
 14:28 | npc | xxx | | knight | and take two knights
 14:32 | fall | xxx | | | then fall out by the front door as ohno base resses
-14:42 | go | xxx | Ritualist | | xxx's 3 runs the flag
+14:42 | go | ohno | Air Ele |  | xxx's 3 runs the flag
 14:45 | hold | ohno | Air Ele | | ohno's 3 has the backup: ohno is at a flag advantage
-14:50 | answer | xxx | 7 Monk, Prot | | ohno's three man split is defended by two monks
+14:50 | ok.answer | xxx | 7 Monk, Prot |  | ohno's three man split is defended by two monks
 14:56 | join | ohno | 8 Monk | | ohno's 8 monk runs through the back door to make the split four
 15:04 | cap | xxx | Ritualist | | xxx's 3 caps
 15:08 | overcap | ohno | Air Ele | | ohno's 3 overcaps
 15:12 | go | xxx | Mesmer | | xxx's 5 was double running and brings the backup
-15:26 | hand | xxx | Mesmer | Ritualist | xxx's 5 drops the flag to the ritualist
+15:26 | ok.hand | xxx | Mesmer | Ritualist | xxx's 5 drops the flag to the ritualist
 15:28 | form | xxx | | half | a double run, half run
-15:34 | push | ohno | | front door | ohno's three push xxx's front door
 15:42 | end | ohno | | | ohno's four have left xxx's back door
 16:12 | cap | ohno | Air Ele | | ohno's 3 ele caps
 16:15 | overcap | xxx | | | xxx overcaps
@@ -121,4 +120,4 @@
 16:22 | support | xxx | Prot | | xxx's prot hovers at mid
 16:26 | posture | xxx | | | xxx's four posture at the front door
 16:34 | go | xxx | AoB Derv | | xxx's 4 goes back for the next flag
-16:36 | go | ohno | Air Ele | | ohno's 3 ele has already picked up
+16:38 | hand | ohno | AoB Derv | Air Ele | ohno's 3 ele has already picked up

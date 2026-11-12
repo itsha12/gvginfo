@@ -27,7 +27,7 @@
 3:08 | option | OG | | | you need not play the main team side: play the middle
 3:16 | i.go | OG | | | come back and get us up on flags
 3:20 | object | OG | | | going to the portal
-3:25 | death | OG | 8 Monk | | it is going badly over there: why am I dying
+3:25 | ok.death | OG | 8 Monk |  | it is going badly over there: why am I dying
 3:49 | option | OG | | | we are dying at main: trade a monk and the ritualist
 4:01 | i.fall | OG | | base | you have to come back to our base: they are going to end it
 4:09 | i.npc | OG | | knight | I get the knight actually

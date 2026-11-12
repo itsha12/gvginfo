@@ -14,7 +14,7 @@
 1:57 | fall | OG | | front door | OG is under pressure and falls back to its front door
 2:15 | build | | | | a spike build that cannot kill is in danger on two monks; the hex build keeps pressure and shuts casting down
 2:44 | pickup | hdm | Ritualist | | hdm's 8 ritualist goes back for the flag dropped at main
-2:50 | ret | hdm | | | hdm returns OG's flag
+2:16 | ret | hdm |  |  | hdm returns OG's flag
 2:56 | cap | hdm | Ritualist | | and caps
 3:02 | posture | hdm | | | hdm's seven posture at OG's front door and will not push in 7v8 until the ritualist is back
 3:10 | hold | OG | Air Ele 3 | | OG comes out eight with the flag on the 8
@@ -24,13 +24,13 @@
 3:52 | reason | hdm | | | the chokes are dangerous against Invoke spikes if hdm balls up
 4:02 | npc | hdm | | archer | hdm takes an outside archer, then the second
 4:10 | fall | OG | | pit | OG pulls fully back to its pit
-4:38 | push | hdm | | pit | hdm pushes into the pit and engages both knights
+4:38 | push | hdm |  | pit | hdm pushes into the pit and engages both knights
 4:58 | death | hdm | Stand Mes | | OG gets a spike kill on hdm's 5
 5:04 | baseres | hdm | Stand Mes | | he base resses, rough timing for hdm: 8v7, and he brings no backup
 5:22 | fight | | | 8v7 | OG runs out its front door on the 8v7 with the flag on the 8
 5:35 | posture | hdm | | | hdm postures at the front door until its mesmer is back
 5:44 | fight | | | 8v8 | 8v8 again
-5:52 | fall | OG | | base | OG decides it cannot run the flag and retreats fully to base
+5:52 | ok.fall | OG |  | base | OG decides it cannot run the flag and retreats fully to base
 5:58 | drop | OG | Air Ele 3 | | the 8 drops the flag at the front door
 6:02 | reason | hdm | | | hdm does not return it: it pushes past the flag
 6:06 | death | OG | Air Ele 3 | | hdm kills OG's 8
@@ -40,9 +40,9 @@
 6:38 | npc | hdm | | knight | hdm takes a knight, probably both
 6:48 | unsure | OG | | | it looked like a four man split out the top; they were going to the shrine to base res
 6:55 | death | OG | Prot | | the 6 monk goes down
-7:02 | baseres | OG | | | they base res
+7:02 | ok.baseres | OG |  |  | they base res
 7:12 | lord | hdm | | | hdm goes for the Guild Lord; OG's monks arrive in time
 7:16 | fight | | | 8v8 @ pit | an 8v8 in OG's pit with no NPCs left but the Lord
 7:28 | reason | OG | | | OG is on a ton of DP, hdm has DP only on its 5
 7:44 | death | OG | Prot | | the 6 goes down
-8:02 | death | OG | 7 Monk | | OG wipes at 7:06
+8:02 | ok.death | OG | 7 Monk |  | OG wipes at 7:06

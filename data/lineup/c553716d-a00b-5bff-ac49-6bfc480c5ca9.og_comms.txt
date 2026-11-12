@@ -37,7 +37,7 @@
 7:17 | death | One | Warrior | | we just killed their warrior
 7:15 | s.join | One | | | they are collapsing on you
 7:53 | standoff | One | | | they are turtling, not sure why
-7:59 | npc | ohno | | knight | we got a knight earlier
+7:59 | ok.npc | ohno |  | knight | we got a knight earlier
 8:08 | judge | ohno | | | we have the good 28 with four monks
 8:33 | option | ohno | | | their warrior has 30 DP: maybe just fight them, or wait a minute for the boost
 9:38 | option | ohno | | | wait for 28 or make a play: they are turtling, so we have to make a play, and a kill may break the turtle
