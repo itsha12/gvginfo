@@ -29,7 +29,7 @@
 4:14 | npc | hold | | knight | the second knight
 4:20 | clock | Apes | | | Apes's 5 died about 30 s before the base res
 4:30 | npc | Apes | | knight | Apes's 4v3 takes a knight in hold's pit
-4:35 | answer | hold | Monk 4 (WoC), 7 Monk, 8 Monk |  | hold defends 3 against 4
+4:35 | ok.answer | hold | Monk 4 (WoC), 7 Monk, 8 Monk |  | hold defends 3 against 4
 4:52 | npc | hold | | archer | hold kills an archer, no deaths yet
 5:00 | baseres | Apes | Monk 5 (WoC) | | Apes's 5 base resses and the mesmer is back up
 5:08 | death | Apes | Mesmer | | Apes's 4 goes down
