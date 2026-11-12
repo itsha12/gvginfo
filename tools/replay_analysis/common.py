@@ -263,7 +263,7 @@ def flux_at(ms):
 
 # ---- reading step 2: the words of R-371, R-373 and R-375 to R-378 (moments.py). Confirmed by Denning as they stand
 # (R-404), with the delayed pickup at 10 s (R-406); the thresholds his later rulings added (R-400 to R-407: STANDOFF_S,
-# STANDOFF_HITS, STANDOFF_MIN, HOLD_BACK_S, LEFT_AT_SPAWN_S, LEAD_FULL, LEAD_HALF) are Claude's, left to its judgement. Their counts over
+# STANDOFF_HITS, STANDOFF_MIN, STANDOFF_R, HOLD_BACK_S, LEFT_AT_SPAWN_S) are Claude's, left to its judgement; the bands of the flag lead are his (R-408). Their counts over
 # every counted match: tools/golden/thresholds.py show; what a looser or tighter value would do: thresholds.py sweep.
 PUSHFLAG_R = 1400         # an enemy player is on the flagger when he stands this close to him (a cast range and a little: a ranger pushes from range)
 PUSHFLAG_S = 6            # ... for this long, and has hit him or landed a skill on him at least once
@@ -275,11 +275,14 @@ ROUTE_OFF = 800           # the carrier followed a drawn flag run when he stayed
 ROUTE_CLEAR = 400         # ... and this much closer to it than to the other one
 ROUTE_MIN_S = 6           # ... over at least this many seconds of walking
 LEAD_S = 6                # a flag lead counts once it has lasted this long
-LEAD_FULL = 0.9           # a full flag up: the team holding the stand has this share of its next flag run (stand to spawn and back) done: the backup is at the stand (R-402: 95%+; 0.9 is about 4 s from the stand)
-LEAD_HALF = 0.3           # half a flag up: its next flag is this share of a run or more ahead of the enemy's; under it the teams are even on the next flag (R-402)
-STANDOFF_S = 10           # a stand-off (R-405: the disengage; it replaces posture, R-376 and R-399): two groups standing together as a fight would, this long ...
-STANDOFF_HITS = 0.75      # ... with no more than this many hits between them for each player there in the last 10 s (a real 8 v 8 trades 25 or more in 10 s; a stand-off under 10)
-STANDOFF_MIN = 2          # ... and at least this many players on the smaller side
+LEAD_HALF = 0.35          # the flag lead (R-408): a team's tally (1 for the stand, plus the share of its next flag run done, plus up to half a run
+LEAD_ONE = 0.8            # for the following runner already back at the spawn) less the enemy's. The bands are Denning's: about half a flag up
+LEAD_ONE_HALF = 1.3       # from 0.35, a flag up from 0.8, a flag and a half from 1.3, two flags from 1.7; under 0.35 the teams are level
+LEAD_TWO = 1.7
+STANDOFF_S = 30           # a stand-off (R-405, framed on OG v hdm, R-411): the two main teams standing off this long (the classic example: about 60 s, 42 of them without a hit) ...
+STANDOFF_HITS = 0.6       # ... trading no more than this many hits for each of their players in any 10 s (the example's tail: 0.2 to 0.6; the fight before and after it: 1.3 to 2.5)
+STANDOFF_MIN = 5          # ... with at least this many alive in each main team (the example: 8 and 7)
+STANDOFF_R = 4000         # ... and their middles no further apart than this (the example: 1,900 to 3,400; they need not be near enough to be one fight)
 PICKUP_DELAY_S = 10       # a pickup is delayed while pushed when the flagger stands at his spawn this long with an enemy on him (R-377; 12 s by R-404, 10 s by R-406 after the sweep)
 HOLD_S = 15               # a flag is held when it stands in hand at the stand this long before it is capped ...
 BOOST_LATE_S = 20         # ... and held until just before the boost when the cap lands this close to the enemy's boost (R-377)
@@ -319,8 +322,8 @@ SPLIT_FIGHT_MIN = 2       # a split fight opens with at least this many players 
 # For the reading tools only (moments.py, story.py, the line-up, the thresholds table): never set it in a training run.
 TRY_NAMES = ("JOIN_S", "JOIN_LOOK_S", "JOIN_MOVE", "JOIN_LEAD", "SWAP_S", "SWAP_STAY_S", "GROUND_MOVE", "GROUND_S", "GROUND_BACK", "GROUND_SPLIT_MOVE", "PIT_S",
              "SIDE_FIGHT_MAX", "SIDE_FIGHT_S", "UNDEFENDED_S", "GROUND_MIN", "GROUND_JUMP", "SPLIT_FIGHT_GAP_S", "SPLIT_FIGHT_MIN", "SPLIT_MIN_S", "SPLIT_GAP_S", "FIGHT_LINK",
-             "PUSHFLAG_R", "PUSHFLAG_S", "PUSHFLAG_GAP_S", "PUSHFLAG_MATES", "PUSHFLAG_AHEAD_S", "ROUTE_ENDS", "ROUTE_OFF", "ROUTE_CLEAR", "ROUTE_MIN_S", "LEAD_S", "LEAD_FULL",
-             "LEAD_HALF", "STANDOFF_S", "STANDOFF_HITS", "STANDOFF_MIN", "PICKUP_DELAY_S", "HOLD_S", "BOOST_LATE_S",
+             "PUSHFLAG_R", "PUSHFLAG_S", "PUSHFLAG_GAP_S", "PUSHFLAG_MATES", "PUSHFLAG_AHEAD_S", "ROUTE_ENDS", "ROUTE_OFF", "ROUTE_CLEAR", "ROUTE_MIN_S", "LEAD_S", "LEAD_HALF",
+             "LEAD_ONE", "LEAD_ONE_HALF", "LEAD_TWO", "STANDOFF_S", "STANDOFF_HITS", "STANDOFF_MIN", "STANDOFF_R", "PICKUP_DELAY_S", "HOLD_S", "BOOST_LATE_S",
              "HOLD_BACK_S", "LEFT_AT_SPAWN_S", "HELP_IN_S", "HELP_BACK_S", "LEAVE_RES_S", "MONK_S", "MONK_MIN", "LORD_GAP_S")
 for _kv in filter(None, (os.environ.get("GVG_TRY") or "").split(",")):
     _k, _v = _kv.split("=")

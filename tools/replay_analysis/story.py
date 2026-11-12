@@ -85,8 +85,8 @@ def _went(M, a, t0):
 def state_line(M, t):
     st, m, parts = M.st, M.m, []
     owner, since = st.stand_owner(t)
-    lead = M.lead_at(owner, t) if owner else None
-    parts.append("Stand: " + (f"{m.tag[owner]}, boost in {round(BOOST_EVERY - (t - since) % BOOST_EVERY)} s" + (f", {lead} up" if lead and lead != "the stand" else "") if owner else "nobody"))
+    lead = next((f"; {m.tag[tm]} {M.lead_at(tm, t)} up" for tm in st.teams if M.lead_at(tm, t)), "; level on flags")      # the flag lead (R-408)
+    parts.append("Stand: " + (f"{m.tag[owner]}, boost in {round(BOOST_EVERY - (t - since) % BOOST_EVERY)} s" if owner else "nobody") + lead)
     for tm in st.teams:
         foe, side = 3 - tm, st.side.get(tm)
         live = [a for a in st.players[tm] if M.AL[a][t]]
@@ -108,8 +108,7 @@ def state_line(M, t):
             foes = [b for b in st.players[foe] if M.AL[b][t] and any(d(M.P[b][t], M.P[a][t]) < FIGHT_LINK for a in g)]
             vs = ""
             if foes:                                        # standing with enemy players but trading little or no damage is not a fight (R-405)
-                hot = sum(1 for u in range(max(t - 9, 0), t + 1) for x, y in M.hits.get(u, ()) if (x in g and y in foes) or (y in g and x in foes)) > STANDOFF_HITS * (len(g) + len(foes))
-                vs = f" against {len(foes)}" if hot else f" facing {len(foes)}, no fight"
+                vs = f" facing {len(foes)}, no fight" if M.standoff_at(g, t) else f" against {len(foes)}"
             flag = f", {m.roles[car[0]]} holding the flag" if car and len(g) > 1 else ""
             if g is main: bits.append(f"main team {len(g)} at {where}{vs}{flag} ({_names(M, sorted(g))})" if len(g) < len(live) or t < 60 else f"all {len(g)} at {where}{vs}{flag}")
             elif len(g) == 1 and car: bits.append(f"{m.roles[g[0]]} running the flag at {where}")
@@ -556,21 +555,20 @@ def _word_events(M):
         line = f"{who} push{'es' if r['main'] or len(r['roles']) == 1 else ''} {r['foe']}'s flagger ({r['role']}, {doing[r['doing']]}) at {r['place']} for {clock(r['t1'] - r['t'])}"
         tail = ([f"{r['foe']}'s {', '.join(r['helped'])} come{_s(r['helped'])} to help"] if r["helped"] else []) + (["he dies"] if r["died"] else ["he drops the flag"] if r["dropped"] else [])
         out.append((r["t"], line + ("; " + "; ".join(tail) if tail else "")))
+    part = lambda v: " + ".join(x for x in (("the stand" if v[0] else ""), (f"{round(100 * v[1])}% of its next flag run" if v[1] else ""), ("a runner back for the one after" if v[2] else "")) if x) or "nothing"
     last = {}
-    for r in M.flag_lead():
-        k = (r["tm"], r["level"])
-        if k in last and r["t"] - last[k] <= 30: last[k] = r["t1"]; continue      # the same lead after a flicker is not told again
-        last[k] = r["t1"]
-        theirs = f"{r['foe']}'s flag is {r['enemy_flag']}" + (f", {round(100 * r['enemy_done'])}% of its run done" if r["enemy_done"] else "")
-        if r["level"] == "full": out.append((r["t"], f"{r['team']} is a full flag up: it holds the stand and {r['backup'] or 'a player'} has the backup flag at {r['backup_at'] or 'the stand'}; {theirs}"))
-        else:
-            mine = f"{r['backup']} has its next flag at {r['backup_at']}" if r["backup"] and r["backup_at"] else f"its next flag is {r['own_flag']}, a player on his way to it"
-            out.append((r["t"], f"{r['team']} is half a flag up ({r['lead']} of a flag run ahead on the next flag): it holds the stand and {mine}; {theirs}"))
-    for r in M.standoffs():                                 # the disengage (R-405): two groups standing together, little or no damage traded, are not a fight
+    for r in M.flag_lead():                                   # the flag lead (R-408). The lead moves with every run, so a line is told only at a flag and a half or two flags;
+        k = (r["tm"], r["level"])                             # a flag up (the ordinary state of holding the stand level on flags) and half a flag are in the state lines and the record
+        again = k in last and r["t"] - last[k] <= 30; last[k] = r["t1"]
+        if again or r["level"] in ("a flag", "half a flag") or not r["own"] or not r["enemy"]: continue
+        out.append((r["t"], f"{r['team']} is {r['level']} up ({r['lead']:+.1f}): {r['team']} has {part(r['own'])}; {r['foe']} has {part(r['enemy'])}"))
+    for r in M.standoffs():                                 # the disengage (R-405, R-411): the main teams standing off, little or no damage traded, are not a fight
         t1_, t2_ = r["teams"]; n = r["n"]
-        head = f"The fight at {r['place']} stops" if r["fought"] else f"No fight at {r['place']}"
-        out.append((r["t"], f"{head}: {t1_} {n[0]} and {t2_} {n[1]} stand off there, little or no damage traded, for {clock(r['t1'] - r['t'])}; then {r['end']}"))
-        if r["resume"] and r["fought"]: out.append((r["resume"][0], f"The fight at {r['resume'][3]} resumes: {t1_} {r['resume'][1]} v {r['resume'][2]} {t2_}"))      # a first fight is told by its own line
+        where = f"at {r['places'][1]}" if r["places"][1] == r["places"][2] else f"{t1_} at {r['places'][1]}, {t2_} at {r['places'][2]}"
+        away = "; ".join(f"{tg}'s {', '.join(role for role, _ in xs)} away" + (" for the flag" if any(w == "for the flag" for _, w in xs) else "") for tg, xs in ((t1_, r["away"][1]), (t2_, r["away"][2])) if xs)
+        head = "The fight stops" if r["fought"] else "No fight"
+        out.append((r["t"], f"{head}: {t1_} {n[0]} and {t2_} {n[1]} stand off for {clock(r['t1'] - r['t'])} ({where}; {r['hits']} hits traded in that time, up to {r['apart']} apart)" + (f"; {away}" if away else "") + f"; then {r['end']}"))
+        if r["resume"] and r["fought"]: out.append((r["resume"][0], f"The fight resumes: {t1_} {r['resume'][1]} v {r['resume'][2]} {t2_}"))      # a first fight is told by its own line
     for r in M.timing():
         who = ", ".join(r["who"])
         if r["kind"] == "delayed pickup": out.append((r["t"], f"{r['team']}'s {who} waits {r['s']} s at the flag spawn before picking up, with {r['foe']}'s {', '.join(r['by'])} on him"))

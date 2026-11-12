@@ -28,7 +28,7 @@ TO_BUILD = ()                     # the words Denning ruled the record needs (R-
 SEALED = ("judge", "cause")                                         # kept as tests of verdicts and of execution (R-372, R-373)
 OUT = ("plan", "option", "reason", "micro", "build", "question", "energy")   # outside what the engine reads (R-373, R-353)
 OPEN = ("pull", "support", "trade", "standoff", "unsure", "clock", "object")   # not ruled yet
-LEVEL = {0: "not holding the stand", 1: "holding the stand", 2: "half a flag up", 3: "a full flag up"}
+LEVEL = {0: "level on flags or behind", 1: "about half a flag up", 2: "a flag up", 3: "a flag and a half up", 4: "two flags up"}      # the bands of the flag lead (R-408)
 NO_WORD = TO_BUILD + SEALED + OUT + OPEN
 NUM = {1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six", 7: "seven", 8: "eight"}
 
@@ -48,7 +48,7 @@ def record(rid):
     from state import GameState
     import moments, story
     st = GameState(Match.from_branch(rid)); M = moments.Moments(st); m = st.m
-    fights = [[t, [[f["n"][1], f["n"][2], f["place"], f["monks"][1], f["monks"][2], not M.quiet(f, t)] for f in M.fights(t) if f["n"][1] and f["n"][2]]] for t in range(0, M.T + 1, 3)]      # the last: damage is being traded (R-405)
+    fights = [[t, [[f["n"][1], f["n"][2], f["place"], f["monks"][1], f["monks"][2]] for f in M.fights(t) if f["n"][1] and f["n"][2]]] for t in range(0, M.T + 1, 3)]
     lv, lead = M._lead_levels(), []                    # the records that run over a stretch are checked as stretches: a line said in the middle of one agrees with it
     for tm in (1, 2):
         for t in sorted(lv[tm]):
@@ -181,12 +181,12 @@ def check(r, rec):
         sp = [x for x in rec["spans"][kind] if x[2] == T and x[0] <= hi and x[1] >= lo]
         ok = [x for x in sp if kind == "posture" or named(x[3])]
         other = lambda tg: next((y for y in rec["teams"] if y != tg), "")
-        word = {"pushflag": lambda x: f"{x[2]}'s {', '.join(x[3])} on {other(x[2])}'s flagger ({x[4]})", "posture": lambda x: f"{x[2]} stands off at {x[3]}", "lord": lambda x: f"{x[2]}'s {', '.join(x[3])} on {other(x[2])}'s Guild Lord"}[kind]
+        word = {"pushflag": lambda x: f"{x[2]}'s {', '.join(x[3])} on {other(x[2])}'s flagger ({x[4]})", "posture": lambda x: f"{x[2]} stands off ({x[3]})", "lord": lambda x: f"{x[2]}'s {', '.join(x[3])} on {other(x[2])}'s Guild Lord"}[kind]
         if ok: return "agrees", f"{clock(ok[0][0])} to {clock(ok[0][1])} {word(ok[0])}"
         wide_sp = [x for x in rec["spans"][kind] if x[0] <= hi + 60 and x[1] >= lo - 60]
         return "differs", " // ".join(f"{clock(x[0])} to {clock(x[1])} " + word(x) for x in wide_sp[:3]) or f"no {kind} record within two minutes"
-    elif kind == "lead":                                # R-402: the team named holds the stand; "a full flag" or "half a flag" in the statement asks for that much of a lead
-        need = {"full": 3, "half": 2, "up": 1}.get(arg) or (2 if "nearly a full" in r["say"] else 3 if re.search(r"\bfull flag", r["say"]) else 2 if re.search(r"\bhalf a flag", r["say"]) else 1)
+    elif kind == "lead":                                # R-408: the team named leads on the flag tally in the window
+        need = {"full": 2, "half": 1, "up": 1}.get(arg) or (1 if "nearly a full" in r["say"] else 2 if re.search(r"\bfull flag", r["say"]) else 1)      # "a full flag" asks for a flag up or more; any other lead for half a flag or more
         best = max((x[3] for x in rec["spans"]["lead"] if x[2] == T and x[0] <= hi and x[1] >= lo), default=0)
         return ("agrees" if best >= need else "differs"), f"in the window {T} is at most {LEVEL[best]}" + ("" if best >= need else f"; the statement asks for {LEVEL[need]}")
     elif kind == "monks":                               # R-378: the team's biggest fight in the window has that many monks in it
