@@ -140,7 +140,7 @@
 20:45 | question | | | | how did the flag disadvantage turn over
 20:52 | boost | HC | | | HC is going to boost from this
 21:00 | go | hdm | Mes/A | | hdm's mes/a tries to run the flag
-21:00 | route | hdm | Mes/A | long way | long way through the front door, then short way
+21:00 | ok.route | hdm | Mes/A | long way | long way through the front door, then short way
 21:05 | pushflag | HC | Hammer | | pushed by HC's warrior
 21:30 | fight | | | 6v6 @ back door | a 6v6 at hdm's back door with a knight in it
 21:35 | ok.npc | HC |  | archer | HC has taken an archer
@@ -153,7 +153,7 @@
 22:42 | death | HC | Stand Mes | | HC's stand mesmer also goes down
 23:00 | ok.join | hdm | 8 Monk |  | hdm's 8 monk, a warrior and the stand mesmer join through the back door: five against two monks
 23:08 | baseres | HC | Mes/A | | both HC mesmers base res
-23:20 | pushflag | hdm | Mes/A | | hdm's mes/a falls out over the bridge and pushes the warrior who is running, to stop the boost
+23:20 | ok.pushflag | hdm | Mes/A | | hdm's mes/a falls out over the bridge and pushes the warrior who is running, to stop the boost
 23:40 | death | HC | Hammer | | he solo kills the warrior; the 8 monk is not in time
 23:50 | go | HC | Mes/A | | HC's mes/a runs the flag
 23:57 | boost | hdm | | | hdm boosts

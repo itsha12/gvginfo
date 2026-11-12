@@ -5,8 +5,8 @@ and removed once SPEC.md describes the new structure. Its rulings are R-292 to R
 
 Status (2026-11-12): step 1 built. Step 2 under way on the branch `bundle-4`: the map foundation is built, and a reading
 stage was added before the decision moments (the records, the story and the line-up; see "Step 2: where it stands" and
-"Build plan from here"). Reading steps 1 and 2 are built and step 2 is ruled on (R-399 to R-407); how flag lead is
-measured is the open item before reading step 3. Steps 3 and 4 not started.
+"Build plan from here"). Reading steps 1 and 2 are built and step 2 is ruled on (R-399 to R-412: the flag tally, the
+stand-off, the held flag); reading step 3 is next. Steps 3 and 4 not started.
 
 ## Why
 The two scored blind rounds showed the decision tier cannot say whether a call was right, whether it was executed, or
@@ -128,7 +128,7 @@ forensics stay as the mechanics evidence.
 | Stage | Items | State |
 |---|---|---|
 | A Map foundation | 2.1, 2.2 | built: `hallmap.py` (zones R-306, walked distance R-316, footmen reach R-320); `state.zone` and the three map numbers read it |
-| R The reading (added; R-341, R-362) | the records, the story, the line-up | reading step 1 built and its 17 thresholds confirmed (R-390): `moments.py` keeps split attempts and main team pushes, split fights, joins, leaves and swaps, ground moves, the flag record, who is on the pit NPCs, undefended splits; `story.py` prints from them. Reading step 2 built (the words of R-373, R-375 to R-378, each its own record: `flag_pushes`, the flag route in `flags_record`, `flag_lead`, `pregame`, `posture`, `timing`, `monk_counts`, `on_lord`); ruled on in R-399 to R-407 (a fifth timing choice, `onto_flag` on a main team push, flag lead as timing, thresholds confirmed, and the stand-off record in place of posture, R-405). Flag lead is being rethought as a tally that counts the stand. Reading step 3 (the check) is next |
+| R The reading (added; R-341, R-362) | the records, the story, the line-up | reading step 1 built and its 17 thresholds confirmed (R-390): `moments.py` keeps split attempts and main team pushes, split fights, joins, leaves and swaps, ground moves, the flag record, who is on the pit NPCs, undefended splits; `story.py` prints from them. Reading step 2 built (the words of R-373, R-375 to R-378, each its own record: `flag_pushes`, the flag route in `flags_record`, `flag_lead`, `pregame`, `posture`, `timing`, `monk_counts`, `on_lord`); ruled on in R-399 to R-412 (a fifth timing choice, `onto_flag` on a main team push, thresholds confirmed, the stand-off record in place of posture, R-405 and R-411, and flag lead as a tally that counts the stand, R-408). Reading step 3 (the check) is next |
 | B Decision moments | 2.3 to 2.7 | drafted before the records (departures, triggers, scenarios, calls, forced; 23,041 moments in 506 matches); to be rebuilt on the records |
 | C The decision gate | test | not started: R-394 (the 15 golden moments from his notes; the calls on comms) |
 | D Depth | 2.8 to 2.13 | not started (shape, consequence record, similar cases, jobs, enemy execution, interaction rule, the four proposals left of R-324: the Shadow Step flag drop is out, R-393) |
@@ -148,14 +148,15 @@ a solo split or other uneven counts (27%). The rebuild on the records takes its 
 1. **Reading step 2: the words** (R-373, R-375 to R-378): built. Pushing the flagger (its own record, R-371); flag
    route and flag lead (a full flag and half a flag up, R-375); the pre-game flag; posture (R-376; family 5 itself
    stays in step 4), the four timing choices (R-377), monk counts in the main fight and who is on the Guild Lord
-   (R-378). Ruled on in R-399 to R-407; posture gave way to the stand-off, the disengage (R-405). Still open: how
-   flag lead is measured (a tally counting the stand is proposed), and whether a flag left at the spawn is worth a line.
+   (R-378). Ruled on in R-399 to R-412: posture gave way to the stand-off (R-405, R-411), flag lead is a tally that
+   counts the stand (R-408). Still open: how the posture and timing statements count in the line-up now.
 2. **Reading step 3: the check.** Regenerate the golden stories; Claude compares them with the 13 blind notes; rescore
    the line-up; Denning reviews the held-out misses once, at the gate (R-396).
 3. **Denning approves the story's form** on golden game 1 (R-395).
 4. **Stage B rebuilt on the records**: triggers, scenarios and calls for families 1 to 3.
 5. **Stage C: the decision gate** (R-394).
-6. **Stage D: depth**: shape (composition, route, timing), the consequence record at 90 s and about 3 min, similar
+6. **Stage D: depth**: shape (composition, route, timing), the consequence record at 90 s and about 3 min (it sets
+   what a team gave up in flags, on the tally of R-408, beside what it gained in numbers elsewhere, R-412), similar
    cases, the job table (Claude drafts, Denning rules), enemy execution, the interaction rule.
 7. **Stage E: close**: old and new decision kinds side by side, SPEC.md and METHODS.md rewritten, the readability
    test, the list below, the merge, then one rebuild.
@@ -210,8 +211,9 @@ team.
   held-out games (R-380, R-383). He reviews their misses once; after that review only the engine's own misses count,
   and if it still fails they are fixed, the four games become building games and two new timestamped games are needed
   (R-396). At 2026-11-12, with the words of reading step 2 checked instead of set aside and R-399 to R-404 built:
-  building 423 of 433 (98%), held-out 166 of 208 (80%), not yet reviewed. The statements checked before are unchanged
-  (365 of 365, 136 of 162); the weak words on the held-out games are timing (1 of 10) and posture (3 of 7).
+  building 422 of 433 (97%), held-out 163 of 208 (78%), not yet reviewed. The statements checked before are unchanged
+  (365 of 365, 136 of 162); the weak kinds on the held-out games are timing (0 of 10) and posture (2 of 7), the two
+  his rulings narrowed (R-405, R-407, R-411).
 - **The blind check**: the 13 notes Denning wrote before seeing any engine story; Claude compares each rewritten
   story with them (R-354). He marks the story of game 1 only, for its form (R-395).
 - **The decision gate** (R-394, replacing how R-327 is scored): on the 15 golden moments (R-382), the scenario and

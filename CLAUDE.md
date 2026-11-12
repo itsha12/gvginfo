@@ -206,10 +206,11 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   prints its split, push and cap lines from them, never from a second reading. Lessons from his marks, notes or
   commentary go into these records first. The words of R-373 and R-375 to R-378 are records too: `flag_pushes()`
   (pushing the flagger, R-371), the flag route, door, hold and boost distance in `flags_record()`, `flag_lead()` and
-  `lead_at()` (flag lead as timing, R-402), `pregame()`, `standoffs()` (the disengage, R-405, in place of posture: two
-  groups standing together with little or no damage traded are not a fight), `timing()` (the four choices of R-377,
-  the held flag of R-400 and R-407), `onto_flag` on a main team push (R-401), `monk_counts()` and `on_lord()`
-  (R-378); their thresholds in `common.py` are confirmed (R-404, R-406). To see what a looser or tighter threshold would do,
+  `lead_at()` (the flag tally, R-408: the stand counts as one flag; bands at 0.35, 0.8, 1.3 and 1.7), `pregame()`,
+  `standoffs()` (the disengage, R-405, framed on OG v hdm, R-411, in place of posture: main teams standing off with
+  little or no damage traded are not a fight), `timing()` (the four choices of R-377, the held flag of R-400 and
+  R-407), `onto_flag` on a main team push (R-401), `monk_counts()` and `on_lord()` (R-378); their thresholds in
+  `common.py` are confirmed (R-404, R-406). What the flag readings are for is R-412. To see what a looser or tighter threshold would do,
   use `tools/golden/thresholds.py sweep` (it sets `GVG_TRY`; never set that in a training run).
   The line-up is the measure of the reading (R-368 to R-397): timestamped commentary and comms filed as paraphrased
   statements in `data/lineup/` (never transcripts), checked against the story by `tools/golden/lineup.py` on the
