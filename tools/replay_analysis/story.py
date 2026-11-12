@@ -537,8 +537,9 @@ def _death_events(M):
 
 
 def _word_events(M):
-    """The words of R-373 and R-375 to R-378, printed from their records (moments.flag_pushes, flag_lead, posture,
-    timing, monk_counts, on_lord): the story says what the record holds and nothing else (R-362)."""
+    """The words of R-373 and R-375 to R-378, as ruled on in R-399 to R-402, printed from their records
+    (moments.flag_pushes, flag_lead, posture, timing, monk_counts, on_lord, and a push's onto_flag): the story says
+    what the record holds and nothing else (R-362)."""
     m, out = M.m, []
     mk = lambda n: "no monk" if not n else ("one monk" if n == 1 else f"{NUM.get(n, n)} monks")
     doing = {"carrying": "carrying the flag", "going back": "on his way back for the flag", "at the spawn": "about to pick the flag up"}
@@ -552,18 +553,28 @@ def _word_events(M):
         k = (r["tm"], r["level"])
         if k in last and r["t"] - last[k] <= 30: last[k] = r["t1"]; continue      # the same lead after a flicker is not told again
         last[k] = r["t1"]
-        if r["level"] == "full": out.append((r["t"], f"{r['team']} is a full flag up: it holds the stand and {r['backup']} has the backup flag at the stand"))
-        else: out.append((r["t"], f"{r['team']} is half a flag up: it holds the stand and {r['backup']} has its next flag, " + (f"{r['foe']}'s still at the spawn" if r["enemy_flag"] == "at the spawn" else f"picked up before {r['foe']}'s")))
+        theirs = f"{r['foe']}'s flag is {r['enemy_flag']}" + (f", {round(100 * r['enemy_done'])}% of its run done" if r["enemy_done"] else "")
+        if r["level"] == "full": out.append((r["t"], f"{r['team']} is a full flag up: it holds the stand and {r['backup'] or 'a player'} has the backup flag at {r['backup_at'] or 'the stand'}; {theirs}"))
+        else:
+            mine = f"{r['backup']} has its next flag at {r['backup_at']}" if r["backup"] and r["backup_at"] else f"its next flag is {r['own_flag']}, a player on his way to it"
+            out.append((r["t"], f"{r['team']} is half a flag up ({r['lead']} of a flag run ahead on the next flag): it holds the stand and {mine}; {theirs}"))
     for r in M.posture():
-        grp = r["team"] if r["main"] else f"{r['team']}'s split"
+        grp = r["team"] if r["main"] else f"{r['team']}'s split" if r["ground"] == "enemy" else f"{r['team']}'s group"
         wait = f", {', '.join(r['joined'])} joining it" + (" from the base res" if r["joined_from_res"] else "") if r["joined"] else ""
-        out.append((r["t"], f"{grp} postures at {r['place']} for {clock(r['t1'] - r['t'])} without going in or trading damage ({r['n']} of them, {r['facing'] or 'nobody'} of {r['foe']} facing it{wait}); then {r['end']}"))
+        how = "without going in" if r["ground"] == "enemy" else "holding its ground"
+        out.append((r["t"], f"{grp} postures at {r['place']} for {clock(r['t1'] - r['t'])} {how}, little or no damage traded ({r['n']} of them, {r['facing'] or 'nobody'} of {r['foe']} facing it{wait}); then {r['end']}"))
     for r in M.timing():
         who = ", ".join(r["who"])
         if r["kind"] == "delayed pickup": out.append((r["t"], f"{r['team']}'s {who} waits {r['s']} s at the flag spawn before picking up, with {r['foe']}'s {', '.join(r['by'])} on him"))
         elif r["kind"] == "held to the boost": out.append((r["t"], f"{r['team']} holds its flag at the stand for {r['s']} s and caps {r['boost_in']} s before {r['foe']}'s boost"))
         elif r["kind"] == "stayed to help": out.append((r["t"], f"{r['team']}'s {who} stays {r['s']} s to help the flag in after handing it off, then goes back for the next flag at {clock(r['went_back'])}"))
+        elif r["kind"] == "left at the spawn": out.append((r["t"], f"{r['team']} leaves its flag at the spawn, not run yet: {who} picks it up at {clock(r['pickup'])}, {r['s']} s later than the walk back needed"))
+        elif r["kind"] == "held back": out.append((r["t"], f"{r['team']}'s {who} holds the flag back at {r['place']} for {clock(r['s'])} without running or capping it" + ("; then caps" if r["capped"] else "")))
         else: out.append((r["t"], f"{r['team']}'s {'split' if r['what'] == 'split' else 'main team'} leaves {r['foe']}'s base {r['s']} s before {r['foe']}'s base res ({r['coming_back']} coming back)"))
+    for x in M.attempts():                                  # R-401: a main team push that walks its fight onto the enemy's flag (told here unless it is already a push on that flagger)
+        f = x.get("onto_flag")
+        if not f or any(p["tm"] == x["tm"] and p["flagger"] == f["id"] and p["t"] <= f["t"] + f["s"] and p["t1"] >= f["t"] - 10 for p in M.flag_pushes()): continue
+        out.append((f["t"], f"{x['team']}'s main team pushes onto {m.tag[3 - x['tm']]}'s flag at {f['place']}: {f['role']} holds it in his team ({f['s']} s with the push on him)"))
     for r in M.monk_counts():
         f1, f2 = r["fight"]
         if r["was"] is None or r["n"] < r["was"]:

@@ -55,7 +55,8 @@ def record(rid):
             if lead and lead[-1][2] == m.tag[tm] and lead[-1][3] == lv[tm][t] and t - lead[-1][1] <= 2: lead[-1][1] = t
             elif lv[tm][t]: lead.append([t, t, m.tag[tm], lv[tm][t]])
     spans = {"lead": lead,
-             "pushflag": [[r["t"], r["t1"], r["team"], r["roles"], r["role"]] for r in M.flag_pushes()],
+             "pushflag": [[r["t"], r["t1"], r["team"], r["roles"], r["role"]] for r in M.flag_pushes()]        # and a main team push walked onto a flag held in its team (R-401)
+                         + [[x["onto_flag"]["t"], x["onto_flag"]["t"] + x["onto_flag"]["s"], x["team"], [q["role"] for q in x["members"]], x["onto_flag"]["role"]] for x in M.attempts() if x.get("onto_flag")],
              "posture": [[r["t"], r["t1"], r["team"], r["place"]] for r in M.posture()],
              "lord": [[r["t"], r["t1"], r["team"], r["roles"]] for r in M.on_lord() if r["hits"] >= 3]}
     out = {"id": rid, "map": m.o["meta"]["map"], "teams": [m.tag[1], m.tag[2]], "T": M.T,
@@ -184,7 +185,7 @@ def check(r, rec):
         if ok: return "agrees", f"{clock(ok[0][0])} to {clock(ok[0][1])} {word(ok[0])}"
         wide_sp = [x for x in rec["spans"][kind] if x[0] <= hi + 60 and x[1] >= lo - 60]
         return "differs", " // ".join(f"{clock(x[0])} to {clock(x[1])} " + word(x) for x in wide_sp[:3]) or f"no {kind} record within two minutes"
-    elif kind == "lead":                                # R-375: the team named holds the stand; "a full flag" or "half a flag" in the statement asks for that much
+    elif kind == "lead":                                # R-402: the team named holds the stand; "a full flag" or "half a flag" in the statement asks for that much of a lead
         need = {"full": 3, "half": 2, "up": 1}.get(arg) or (2 if "nearly a full" in r["say"] else 3 if re.search(r"\bfull flag", r["say"]) else 2 if re.search(r"\bhalf a flag", r["say"]) else 1)
         best = max((x[3] for x in rec["spans"]["lead"] if x[2] == T and x[0] <= hi and x[1] >= lo), default=0)
         return ("agrees" if best >= need else "differs"), f"in the window {T} is at most {LEVEL[best]}" + ("" if best >= need else f"; the statement asks for {LEVEL[need]}")
@@ -203,9 +204,12 @@ def check(r, rec):
         fam = rf"{te}'s .*(runs it the|by the back door|go back for the flag the)|^{te} splits .* by the"
         hit = find(rf"{R}\S* (?:picks up the flag at the spawn|leaves .*to go back for the flag)[^;]* (?:the|by the) {a_}") or ((find(rf"^{te} splits [^(]*by the {a_}") or find(rf"^{te}'s [^:]*by the {a_}", need_who=True)) if "door" in arg else None)      # a door: the split or the player told going by it
     elif kind == "timing":                              # R-377: one of the four timing choices by that team; the statement's own words pick which
-        pats = {"pick": rf"^{te}'s .* waits \d+ s at the flag spawn before picking up", "boost": rf"^{te} holds its flag at the stand", "help": rf"^{te}'s .* stays \d+ s to help the flag in", "res": rf"^{te}'s .* leaves {ee}'s base \d+ s before"}
-        key = "pick" if "pick up" in r["say"] else "boost" if "boost" in r["say"] else "help" if "help the flag" in r["say"] else "res" if "base res" in r["say"] else None
-        fam = "|".join(pats.values()); hit = find(pats[key] if key else fam)
+        pats = {"pick": rf"^{te}'s .* waits \d+ s at the flag spawn before picking up", "boost": rf"^{te} holds its flag at the stand", "help": rf"^{te}'s .* stays \d+ s to help the flag in", "res": rf"^{te}'s .* leaves {ee}'s base \d+ s before",
+                "hold": rf"^{te}'s .* holds the flag back|^{te} leaves its flag at the spawn"}
+        key = "pick" if "pick up" in r["say"] and "push" not in arg else "boost" if "boost" in r["say"] else "help" if "help the flag" in r["say"] else "res" if "base res" in r["say"] \
+            else "hold" if re.search(r"not (try to )?run|keeps the flag|holds? (on to )?the flag", r["say"]) else None
+        fam = "|".join(pats.values())
+        hit = find(pats[key] if key else fam, [(t, s) for t, s in rec["story"] if lo - (60 if key == "hold" else 0) <= t <= hi])      # a flag held back is told when the hold began: a remark on it comes during it
     elif kind == "death": fam = rf"^{te} loses"; hit = find(rf"^{te} loses (?:(?! at ).)*{re.escape(one)}")
     elif kind == "baseres": fam = rf"^Base res: {te}"; hit = find(rf"^Base res: {te}'s [^.]*{re.escape(one)}")
     elif kind == "res": fam = rf"^{te}'s .*resurrected"; hit = find(rf"{R}\S* is resurrected")

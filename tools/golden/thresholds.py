@@ -3,8 +3,11 @@ confirmed, R-390) and the draft thresholds of reading step 2 (pushing the flagge
 timing choices, monk counts, who is on the Guild Lord; Claude's drafts, to confirm), with what each yields over every
 counted match beside it.
 
-Usage:  python3 tools/golden/thresholds.py run /tmp/thresholds.json [--jobs 2]     (every counted match, about 20 minutes)
+Usage:  python3 tools/golden/thresholds.py run /tmp/thresholds.json [--jobs 2] [--every N]     (every counted match, about 15 minutes)
         python3 tools/golden/thresholds.py show /tmp/thresholds.json
+        python3 tools/golden/thresholds.py sweep NAME value [value ...] [--every 4] [--data <main>/data/lineup]
+            what a looser or tighter threshold would do: the records it adds or removes, and the line-up statements
+            it gains or loses on the building games (common.py GVG_TRY; nothing is changed in the engine)
 A report tool (outside the engine folder, in no cache key). Where a record keeps the measured quantity, its spread is
 shown, so the effect of a stricter threshold can be read without another run; a looser one needs a run."""
 import collections, json, os, statistics, sys
@@ -44,8 +47,10 @@ def one(rid):
             # reading step 2 (R-371, R-373, R-375 to R-378)
             "pushes": [[r["t1"] - r["t"], len(r["ids"]), r["acts"], bool(r["main"]), r["doing"], bool(r["died"]), bool(r["dropped"]), r["delay_s"], r["flag"]] for r in M.flag_pushes()],
             "routes": [[fr["route"], fr["back_route"], fr["door"], fr["how"]] for fr in M.flags_record()],
-            "lead": [[r["level"], r["t1"] - r["t"]] for r in M.flag_lead()],
-            "posture": [[r["t1"] - r["t"], r["n"], bool(r["main"]), r["kind"], r["end"], r["facing"], len(r["joined"])] for r in M.posture()],
+            "lead": [[r["level"], r["t1"] - r["t"], r["lead"], r["own_flag"], r["enemy_flag"]] for r in M.flag_lead()],
+            "lead_s": (lambda lv: [sum(1 for tm in lv for v in lv[tm].values() if v == k) * 2 for k in (1, 2, 3)])(M._lead_levels()),
+            "posture": [[r["t1"] - r["t"], r["n"], bool(r["main"]), r["kind"], r["end"], r["facing"], len(r["joined"]), r["ground"]] for r in M.posture()],
+            "onto_flag": sum(1 for x in at if x.get("onto_flag")),
             "timing": [[r["kind"], r["s"], r.get("boost_in")] for r in M.timing()],
             "holds": [[fr["held_s"], fr["cap_boost_in"]] for fr in M.flags_record() if fr["how"] == "captured"],
             "monks": [[r["n"], r["was"], r["of"]] for r in M.monk_counts()],
@@ -57,13 +62,13 @@ def one(rid):
         return rid, {"error": f"{type(e).__name__}: {e}"}
 
 
-def run(path, jobs):
+def run(path, jobs, every=1):
     import multiprocessing
     sys.path.insert(0, ENGINE); os.chdir(ENGINE)
     import common
     out = {}
     with multiprocessing.Pool(jobs) as pool:
-        for rid, rec in pool.imap_unordered(one, common.replay_ids(), chunksize=4):
+        for rid, rec in pool.imap_unordered(one, sorted(common.replay_ids())[::every], chunksize=4):
             if rec is not None: out[rid] = rec
     json.dump(out, open(path, "w"))
     print(len(out), "matches;", sum("error" in v for v in out.values()), "errors", [(k[:8], v["error"]) for k, v in out.items() if "error" in v][:5])
@@ -111,13 +116,17 @@ def show(path):
     print(f"flag routes: {len(X)} flags; way to the stand read {dict(C(x[0] for x in X if x[0]))}; way back read {dict(C(x[1] for x in X if x[1]))}; out by the own back door {sum(x[2] == 'back door' for x in X)}, front door {sum(x[2] == 'front door' for x in X)}")
     X = cat("lead")
     for lv in ("full", "half"):
-        xs = [x[1] for x in X if x[0] == lv]
-        print(f"flag lead, {lv} a flag up: {len(xs)} stretches ({len(xs) / n:.1f} a match); length (s): {q(xs)}")
-    X = cat("posture")
-    print(f"posture: {len(X)} ({len(X) / n:.2f} a match); length (s): {q([x[0] for x in X])}; players: {q([x[1] for x in X], (25, 50, 75))}; main team {sum(x[2] for x in X)}; at {dict(C(x[3] for x in X))}")
-    print(f"  ended: {dict(C(x[4] for x in X))}; nobody facing it {sum(x[5] == 0 for x in X)}; a team mate joined while it waited {sum(x[6] > 0 for x in X)}")
+        xs = [x for x in X if x[0] == lv]
+        print(f"flag lead, {lv} a flag up: {len(xs)} stretches ({len(xs) / n:.1f} a match); length (s): {q([x[1] for x in xs])}; own next flag {dict(C(x[3] for x in xs))}; the enemy's {dict(C(x[4] for x in xs))}")
+    ls = [sum(v["lead_s"][i] for v in D.values()) for i in range(3)]
+    print(f"  of the seconds a team holds the stand: {100 * ls[2] // max(sum(ls), 1)}% a full flag up, {100 * ls[1] // max(sum(ls), 1)}% half a flag up, {100 * ls[0] // max(sum(ls), 1)}% even on the next flag or behind")
+    for gr in ("enemy", "own"):
+        X = [x for x in cat("posture") if x[7] == gr]
+        print(f"posture on {'the enemy' if gr == 'enemy' else 'its own'} ground: {len(X)} ({len(X) / n:.2f} a match); length (s): {q([x[0] for x in X])}; players: {q([x[1] for x in X], (25, 50, 75))}; main team {sum(x[2] for x in X)}; at {dict(C(x[3] for x in X))}")
+        print(f"  ended: {dict(C(x[4] for x in X))}; nobody facing it {sum(x[5] == 0 for x in X)}; a team mate joined while it waited {sum(x[6] > 0 for x in X)}")
+    print(f"main team pushes walked onto a flag held in its team (R-401): {sum(v['onto_flag'] for v in D.values())}")
     X = cat("timing")
-    for k in ("delayed pickup", "held to the boost", "stayed to help", "left before res"):
+    for k in ("delayed pickup", "held to the boost", "stayed to help", "left before res", "held back", "left at the spawn"):
         xs = [x[1] for x in X if x[0] == k]
         print(f"timing, {k}: {len(xs)} ({len(xs) / n:.2f} a match); seconds: {q(xs)}")
     H = cat("holds"); hb = [x for x in H if x[1] is not None]
@@ -130,8 +139,59 @@ def show(path):
     print(f"pre-game flag: in hand at the gates for {sum(pg)} of {len(pg)} teams")
 
 
+def tally(path):
+    """The count of every kind of record in a run, for comparing runs."""
+    D = {k: v for k, v in json.load(open(path)).items() if "error" not in v}
+    cat = lambda k: [x for v in D.values() for x in v[k]]
+    t = {"joins": len(cat("joins")), "leaves": len(cat("leaves")), "split fights": len(cat("split_fights")), "swaps": len(cat("swaps")),
+         "ground moves": len(cat("ground")), "ground moves told": sum(1 for x in cat("ground") if x[5]), "undefended": len(cat("undefended")), "on pit NPCs": len(cat("on_pit")),
+         "split attempts": sum(v["attempts"][0] for v in D.values()), "main team pushes": sum(v["attempts"][1] for v in D.values()),
+         "flagger pushes": len(cat("pushes")), "pushes onto a held flag": sum(v["onto_flag"] for v in D.values()), "routes read": sum(1 for x in cat("routes") if x[0]),
+         "full flag": sum(1 for x in cat("lead") if x[0] == "full"), "half flag": sum(1 for x in cat("lead") if x[0] == "half"),
+         "posture, enemy ground": sum(1 for x in cat("posture") if x[7] == "enemy"), "posture, own ground": sum(1 for x in cat("posture") if x[7] == "own"),
+         "monk changes": len(cat("monks")), "on the Lord": len(cat("lord")), "story lines": sum(v["story_lines"] for v in D.values())}
+    for k in ("delayed pickup", "held to the boost", "stayed to help", "left before res", "held back", "left at the spawn"): t["timing, " + k] = sum(1 for x in cat("timing") if x[0] == k)
+    return len(D), t
+
+
+def sweep(name, values, every, data, jobs):
+    """What a looser or tighter threshold would do (Denning: which thresholds cause problems). For each value of one
+    threshold of the reading, rerun the records over every `every`-th counted match with that value in place of the
+    one in common.py (GVG_TRY), and, with --data, rescore the building games of the line-up: the records it adds or
+    removes are shown beside the statements it gains or loses. A value that gains statements for few extra records
+    is a threshold to loosen; one that adds many records and gains none is not the cause of the misses."""
+    import subprocess, re
+    me, rows = os.path.abspath(__file__), []
+    for v in [None] + values:
+        tag = "now" if v is None else v
+        env = dict(os.environ, PYTHONDONTWRITEBYTECODE="1", **({} if v is None else {"GVG_TRY": f"{name}={v}"}))
+        p = f"/tmp/sweep_{name}_{tag}.json"
+        subprocess.run([sys.executable, me, "run", p, "--jobs", str(jobs), "--every", str(every)], env=env, check=True, stdout=subprocess.DEVNULL)
+        seen, kinds = None, {}
+        if data:
+            env["LINEUP_CACHE"] = f"/tmp/sweep_{name}_{tag}_lineup"
+            subprocess.run(["rm", "-rf", env["LINEUP_CACHE"]])
+            txt = subprocess.run([sys.executable, os.path.join(HERE, "lineup.py"), "score", "--data", data], env=env, capture_output=True, text=True).stdout
+            mm = re.search(r"something seen happening: checked (\d+), agrees (\d+)", txt); seen = (int(mm.group(2)), int(mm.group(1))) if mm else None
+            for ln in txt.splitlines():
+                c = ln.split()
+                if len(c) == 7 and c[0].isalpha() and all(x.isdigit() for x in c[1:]): kinds[c[0]] = (int(c[1]), int(c[2]))
+        rows.append((tag, tally(p), seen, kinds))
+    n0, base = rows[0][1]; k0 = rows[0][3]
+    print(f"{name}: every {every}{'th' if every > 1 else ''} counted match ({n0} matches)" + (f"; the line-up's building games: seen events {rows[0][2][0]} of {rows[0][2][1]}" if rows[0][2] else ""))
+    for tag, (_, t), seen, kinds in rows[1:]:
+        ch = [f"{k} {base[k]} -> {t[k]}" for k in base if t[k] != base[k]]
+        lk = [f"{k} {k0[k][0]} -> {kinds[k][0]} of {sum(kinds[k])}" for k in kinds if k in k0 and kinds[k] != k0[k]]
+        print(f"  {name} = {tag}: " + ("; ".join(ch) if ch else "no record changes"))
+        if seen: print(f"      line-up: seen events {seen[0]} of {seen[1]}" + (" (" + "; ".join(lk) + ")" if lk else " (no kind changes)"))
+
+
 if __name__ == "__main__":
     a = sys.argv[1:]
-    if len(a) >= 2 and a[0] == "run": run(a[1], int(a[a.index("--jobs") + 1]) if "--jobs" in a else 2)
+    opt = lambda k, dflt: a[a.index(k) + 1] if k in a else dflt
+    if len(a) >= 3 and a[0] == "sweep":
+        vals = [x for x in a[2:] if not x.startswith("--") and a[a.index(x) - 1] not in ("--every", "--data", "--jobs")]
+        sweep(a[1], vals, int(opt("--every", 4)), opt("--data", None), int(opt("--jobs", 2)))
+    elif len(a) >= 2 and a[0] == "run": run(a[1], int(opt("--jobs", 2)), int(opt("--every", 1)))
     elif len(a) >= 2 and a[0] == "show": show(a[1])
     else: print(__doc__)

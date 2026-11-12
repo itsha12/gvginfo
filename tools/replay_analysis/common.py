@@ -261,8 +261,10 @@ def flux_at(ms):
     t = datetime.datetime.fromtimestamp(ms / 1000, datetime.timezone.utc) - datetime.timedelta(hours=7)
     return FLUX[t.month - 1]
 
-# ---- reading step 2: the words of R-371, R-373 and R-375 to R-378 (moments.py). Claude's drafts, to confirm, except
-# POSTURE_S (R-376); each with its counts over every counted match in tools/golden/thresholds.py.
+# ---- reading step 2: the words of R-371, R-373 and R-375 to R-378 (moments.py). Confirmed by Denning as they stand
+# (R-404), with the delayed pickup at 12 s; the thresholds his later rulings added (R-399 to R-402: POSTURE_FACE_R,
+# POSTURE_HITS, HOLD_BACK_S, HOLD_BACK_MOVE, LEFT_AT_SPAWN_S, LEAD_FULL, LEAD_HALF) are Claude's, left to its judgement. Their counts over
+# every counted match: tools/golden/thresholds.py show; what a looser or tighter value would do: thresholds.py sweep.
 PUSHFLAG_R = 1400         # an enemy player is on the flagger when he stands this close to him (a cast range and a little: a ranger pushes from range)
 PUSHFLAG_S = 6            # ... for this long, and has hit him or landed a skill on him at least once
 PUSHFLAG_GAP_S = 10       # a push broken for no longer than this is still the same push
@@ -272,16 +274,23 @@ ROUTE_ENDS = 1000         # a flag route is read away from the spawn and the sta
 ROUTE_OFF = 800           # the carrier followed a drawn flag run when he stayed this close to it on average ...
 ROUTE_CLEAR = 400         # ... and this much closer to it than to the other one
 ROUTE_MIN_S = 6           # ... over at least this many seconds of walking
-LEAD_S = 6                # a flag lead (a full flag, half a flag, R-375) counts once it has lasted this long
-POSTURE_S = 10            # posture: on the enemy's side at their footmen or a door, not going in and not trading damage, this long (R-376)
-POSTURE_IN = 800          # ... "not going in": the group has come no nearer the enemy's Guild Lord than this, walked, since it stopped
-POSTURE_GAP_S = 12        # ... and the same group stopping again within this long, no damage traded between, is still the one posture
+LEAD_S = 6                # a flag lead counts once it has lasted this long
+LEAD_FULL = 0.9           # a full flag up: the team holding the stand has this share of its next flag run (stand to spawn and back) done: the backup is at the stand (R-402: 95%+; 0.9 is about 4 s from the stand)
+LEAD_HALF = 0.3           # half a flag up: its next flag is this share of a run or more ahead of the enemy's; under it the teams are even on the next flag (R-402)
+POSTURE_S = 10            # posture: at a door or the footmen, not going in, with no more than a little damage traded, this long (R-376, R-399)
+POSTURE_IN = 800          # ... "not going in": the group has come no nearer the enemy's Guild Lord than this, walked, since it stopped (on its own ground: has not moved this far either way)
+POSTURE_GAP_S = 12        # ... and the same group stopping again within this long, still quiet between, is the one posture
 POSTURE_SHARE = 1 / 3     # ... with at least this share of the group (and two players) at the door or the footmen it is named by
-PICKUP_DELAY_S = 6        # a pickup is delayed while pushed when the flagger stands at his spawn this long with an enemy on him (R-377)
+POSTURE_HITS = 1          # ... the small damage allowance (R-399): no more than this many hits given or taken for each player of the group in 10 s
+POSTURE_FACE_R = 2500     # ... on its own ground a group postures only with two or more enemy players standing this close to it (R-399)
+PICKUP_DELAY_S = 12       # a pickup is delayed while pushed when the flagger stands at his spawn this long with an enemy on him (R-377; 12 s by R-404)
 HOLD_S = 15               # a flag is held when it stands in hand at the stand this long before it is capped ...
 BOOST_LATE_S = 20         # ... and held until just before the boost when the cap lands this close to the enemy's boost (R-377)
+HOLD_BACK_S = 20          # a flag is held back, in hand without being run or capped, when its carrier ... (R-400)
+HOLD_BACK_MOVE = 800      # ... comes no nearer the stand than this, walked, for that long
+LEFT_AT_SPAWN_S = 30      # a flag is left at the spawn, not run yet, when it is picked up this much later than the walk back for it needed (R-400)
 HELP_IN_S = 8             # a player stays to help a flag in when he hands it off and is still with it this long later, at the cap (R-377)
-HELP_BACK_S = 45           # ... and picks the next flag up himself within this long of that cap (later than that he had not stayed for the flag)
+HELP_BACK_S = 45          # ... and picks the next flag up himself within this long of that cap (later than that he had not stayed for the flag)
 LEAVE_RES_S = 20          # leaving a base just before the base res: out of it within this long before the defenders' dead come back (R-377; as CAUGHT_S, R-359)
 MONK_S = 12               # a monk count in a fight is told once it has lasted this long (as JOIN_S, R-350)
 MONK_MIN = 4              # ... in the main team's fight, with at least this many of the team in it (a two or three player fight has its monks in its numbers)
@@ -306,3 +315,18 @@ GROUND_MIN = 3                  # a move of the main team is told when it is at 
 GROUND_JUMP = 1200              # more than this in one 2 s step is not walking (a wipe and a base res, the main team redefined): the reading starts again
 SPLIT_FIGHT_GAP_S = 60    # the same two groups out of contact no longer than this are still one split fight (R-365)
 SPLIT_FIGHT_MIN = 2       # a split fight opens with at least this many players a side
+
+
+
+# ---- trying a threshold (tools/golden/thresholds.py sweep): GVG_TRY="NAME=value,NAME=value" replaces thresholds of the
+# reading for one run, so their effect on the records and on the line-up can be seen without editing this file.
+# For the reading tools only (moments.py, story.py, the line-up, the thresholds table): never set it in a training run.
+TRY_NAMES = ("JOIN_S", "JOIN_LOOK_S", "JOIN_MOVE", "JOIN_LEAD", "SWAP_S", "SWAP_STAY_S", "GROUND_MOVE", "GROUND_S", "GROUND_BACK", "GROUND_SPLIT_MOVE", "PIT_S",
+             "SIDE_FIGHT_MAX", "SIDE_FIGHT_S", "UNDEFENDED_S", "GROUND_MIN", "GROUND_JUMP", "SPLIT_FIGHT_GAP_S", "SPLIT_FIGHT_MIN", "SPLIT_MIN_S", "SPLIT_GAP_S", "FIGHT_LINK",
+             "PUSHFLAG_R", "PUSHFLAG_S", "PUSHFLAG_GAP_S", "PUSHFLAG_MATES", "PUSHFLAG_AHEAD_S", "ROUTE_ENDS", "ROUTE_OFF", "ROUTE_CLEAR", "ROUTE_MIN_S", "LEAD_S", "LEAD_FULL",
+             "LEAD_HALF", "POSTURE_S", "POSTURE_IN", "POSTURE_GAP_S", "POSTURE_SHARE", "POSTURE_HITS", "POSTURE_FACE_R", "PICKUP_DELAY_S", "HOLD_S", "BOOST_LATE_S",
+             "HOLD_BACK_S", "HOLD_BACK_MOVE", "LEFT_AT_SPAWN_S", "HELP_IN_S", "HELP_BACK_S", "LEAVE_RES_S", "MONK_S", "MONK_MIN", "LORD_GAP_S")
+for _kv in filter(None, (os.environ.get("GVG_TRY") or "").split(",")):
+    _k, _v = _kv.split("=")
+    if _k not in TRY_NAMES: raise SystemExit(f"GVG_TRY: {_k} is not a threshold of the reading")
+    globals()[_k] = int(float(_v)) if isinstance(globals()[_k], int) else float(_v)
