@@ -268,6 +268,8 @@ def flux_at(ms):
 # every counted match: tools/golden/thresholds.py show; what a looser or tighter value would do: thresholds.py sweep.
 PUSHFLAG_R = 1400         # an enemy player is on the flagger when he stands this close to him (a cast range and a little: a ranger pushes from range)
 PUSHFLAG_S = 6            # ... for this long, and has hit him or landed a skill on him at least once
+PUSHFLAG_SHORT_S = 4      # ... or for this long when he reaches his team with them still on him (R-418)
+PUSHFLAG_LATE_S = 4       # ... the hit or skill then landing up to this long after he reaches it (R-418; Claude's draft)
 PUSHFLAG_GAP_S = 10       # a push broken for no longer than this is still the same push
 PUSHFLAG_MATES = 3        # the flagger is on his own with fewer than this many team mates around him (with more, it is the fight he stands in)
 PUSHFLAG_AHEAD_S = 45     # a player is his team's flagger from this long before his pickup, once he is on his way back or at the spawn
@@ -328,7 +330,7 @@ SPLIT_FIGHT_MIN = 2       # a split fight opens with at least this many players 
 # For the reading tools only (moments.py, story.py, the line-up, the thresholds table): never set it in a training run.
 TRY_NAMES = ("JOIN_S", "JOIN_LOOK_S", "JOIN_MOVE", "JOIN_LEAD", "SWAP_S", "SWAP_STAY_S", "GROUND_MOVE", "GROUND_S", "GROUND_BACK", "GROUND_SPLIT_MOVE", "PIT_S",
              "SIDE_FIGHT_MAX", "SIDE_FIGHT_S", "UNDEFENDED_S", "GROUND_MIN", "GROUND_JUMP", "SPLIT_FIGHT_GAP_S", "SPLIT_FIGHT_MIN", "SPLIT_MIN_S", "SPLIT_GAP_S", "FIGHT_LINK",
-             "PUSHFLAG_R", "PUSHFLAG_S", "PUSHFLAG_GAP_S", "PUSHFLAG_MATES", "PUSHFLAG_AHEAD_S", "ROUTE_ENDS", "ROUTE_OFF", "ROUTE_CLEAR", "ROUTE_MIN_S", "LEAD_S", "LEAD_HALF",
+             "PUSHFLAG_R", "PUSHFLAG_S", "PUSHFLAG_SHORT_S", "PUSHFLAG_LATE_S", "PUSHFLAG_GAP_S", "PUSHFLAG_MATES", "PUSHFLAG_AHEAD_S", "ROUTE_ENDS", "ROUTE_OFF", "ROUTE_CLEAR", "ROUTE_MIN_S", "LEAD_S", "LEAD_HALF",
              "LEAD_ONE", "LEAD_ONE_HALF", "LEAD_TWO", "STANDOFF_S", "STANDOFF_HITS", "STANDOFF_MIN", "STANDOFF_R", "STANDOFF_SPLIT_MIN", "STANDOFF_SPLIT_S", "STANDOFF_STILL", "STANDOFF_NEAR", "PICKUP_DELAY_S", "HOLD_S", "BOOST_LATE_S",
              "HOLD_BACK_S", "LEFT_AT_SPAWN_S", "HELP_IN_S", "HELP_BACK_S", "LEAVE_RES_S", "MONK_S", "MONK_MIN", "LORD_GAP_S")
 for _kv in filter(None, (os.environ.get("GVG_TRY") or "").split(",")):

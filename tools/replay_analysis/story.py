@@ -564,7 +564,7 @@ def _word_events(M):
     for r in M.flag_pushes():
         who = f"{r['team']}'s main team ({', '.join(r['roles'])})" if r["main"] else f"{r['team']}'s {', '.join(r['roles'])}"
         line = f"{who} push{'es' if r['main'] or len(r['roles']) == 1 else ''} {r['foe']}'s flagger ({r['role']}, {doing[r['doing']]}) at {r['place']} for {clock(r['t1'] - r['t'])}"
-        tail = ([f"{r['foe']}'s {', '.join(r['helped'])} come{_s(r['helped'])} to help"] if r["helped"] else []) + (["he dies"] if r["died"] else ["he drops the flag"] if r["dropped"] else [])
+        tail = ([f"{r['foe']}'s {', '.join(r['helped'])} come{_s(r['helped'])} to help"] if r["helped"] else []) + (["he dies"] if r["died"] else ["he drops the flag"] if r["dropped"] else ["he reaches his team with them on him"] if r.get("reached_team") and r["t1"] - r["t"] < 6 else [])      # said of the short ones only: why a push under PUSHFLAG_S is told (R-418)
         out.append((r["t"], line + ("; " + "; ".join(tail) if tail else "")))
     part = lambda v: " + ".join(x for x in (("the stand" if v[0] else ""), (f"{round(100 * v[1])}% of its next flag run" if v[1] else ""), ("a runner back for the one after" if v[2] else "")) if x) or "nothing"
     last = {}

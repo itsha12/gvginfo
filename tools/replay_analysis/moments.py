@@ -37,7 +37,7 @@ from common import (READ_FROM, READ_TO, AREA_SHARE, PURPOSE_S, LEAVE_MIN_S, HOME
                     NUMBERS_MIN_S, MERGE_S, BOOST_WARN_S, FLAGGER_R, SPLIT_FAR, BOOST_EVERY, SERIOUS_CARRY_S, FIGHT_LINK, GROUND_MOVE, GROUND_S, GROUND_BACK, GROUND_JUMP, GROUND_SPLIT_MOVE, PIT_S, SIDE_FIGHT_MAX, SIDE_FIGHT_S, UNDEFENDED_S,
                     RETURN_R, FOOT_ENGAGED_S, SPLIT_STEP, SPLIT_MIN_S, SPLIT_GAP_S, FORCED_OUT_S, AHEAD_LOOK_S, CAUGHT_S, NPC_NEAR,
                     JOIN_S, RES_EVERY, flux_at, JOIN_LOOK_S, JOIN_MOVE, JOIN_LEAD, SWAP_S, SWAP_STAY_S, SPLIT_FIGHT_GAP_S, SPLIT_FIGHT_MIN,
-                    PUSHFLAG_R, PUSHFLAG_S, PUSHFLAG_GAP_S, PUSHFLAG_MATES, PUSHFLAG_AHEAD_S, ROUTE_ENDS, ROUTE_OFF, ROUTE_CLEAR, ROUTE_MIN_S, LEAD_S,
+                    PUSHFLAG_R, PUSHFLAG_S, PUSHFLAG_SHORT_S, PUSHFLAG_LATE_S, PUSHFLAG_GAP_S, PUSHFLAG_MATES, PUSHFLAG_AHEAD_S, ROUTE_ENDS, ROUTE_OFF, ROUTE_CLEAR, ROUTE_MIN_S, LEAD_S,
                     WAY_OUT_GAP_S, STANDOFF_S, STANDOFF_HITS, STANDOFF_MIN, STANDOFF_R, STANDOFF_SPLIT_MIN, STANDOFF_SPLIT_S, STANDOFF_STILL, STANDOFF_NEAR, LEAD_HALF, LEAD_ONE, LEAD_ONE_HALF, LEAD_TWO, HOLD_BACK_S, LEFT_AT_SPAWN_S, RUN_SPEED, PICKUP_DELAY_S, HOLD_S, BOOST_LATE_S, HELP_IN_S, HELP_BACK_S, LEAVE_RES_S, MONK_S, MONK_MIN, LORD_GAP_S)
 from state import d
 from hallmap import _seg_dist
@@ -1262,8 +1262,12 @@ class Moments:
                     for a in on: cur["secs"][a] += S
                 for r in runs:
                     t0, t1 = r["t"], r["t1"]
+                    # R-418: he reaches his team with them still on him (the stretch ends only because he is no longer on his own): a hit or
+                    # skill that lands as he arrives counts, and the push needs only PUSHFLAG_SHORT_S on his own
+                    v = min(t1 + S, T)
+                    reached = self.AL[b][v] and bool(self._flagger(b, foe, v)) and any(self.AL[a][v] and d(self.P[a][v], self.P[b][v]) < PUSHFLAG_R for a in r["secs"])
                     acted = collections.Counter()
-                    for u in range(t0 - 1, min(t1 + 2, T) + 1):
+                    for u in range(t0 - 1, min(t1 + (PUSHFLAG_LATE_S if reached else 2), T) + 1):
                         for x, y in self.acts.get(u, ()):
                             if y == b and x in r["secs"]: acted[x] += 1
                     ids = sorted((a for a in r["secs"] if acted[a] or r["secs"][a] >= PUSHFLAG_S), key=lambda a: (-acted[a], -r["secs"][a]))
@@ -1277,7 +1281,7 @@ class Moments:
                     handed = lambda c: any(c2[0] != b and 0 <= c2[1] - c[2] <= 20 for c2 in L["carries"])      # a team mate has it within 20 s: a hand-off, not a drop (as the story tells it)
                     dropped = any(c[0] == b and c[2] is not None and t0 <= c[2] <= t1 + 4 and not (L["how"] == "captured" and L.get("capper") == b and abs(L["end"] - c[2]) < 1) and not handed(c)
                                   for c in (L["carries"] if L else ()))
-                    if not acted or not ids or (t1 - t0 < PUSHFLAG_S and not died and not dropped): continue      # a short push still counts when he drops the flag or dies under it
+                    if not acted or not ids or (t1 - t0 < PUSHFLAG_S and not died and not dropped and not (reached and t1 - t0 >= PUSHFLAG_SHORT_S)): continue      # a short push still counts when he drops the flag or dies under it, or reaches his team with them on him (R-418)
                     delay, pk = None, None
                     if r["state"] != "carrying" and self.spawn.get(foe):
                         pk = next((p for p in self.pick.get(b, ()) if p > t0), None)
@@ -1291,7 +1295,7 @@ class Moments:
                                 "carried": "carrying" in r["states"], "ids": ids, "roles": [m.roles[a] for a in ids],
                                 "main": bool(main) and sum(1 for a in ids if a in main) * 2 >= len(main) and len(ids) >= 3,
                                 "place": f"{m.tag[foe]}'s flag spawn" if at_spawn else self.place_words(*self.place_at(b, t0)), "at_spawn": at_spawn,
-                                "acts": sum(acted.values()), "helped": [m.roles[x] for x in helped], "died": died, "dropped": dropped and not died,
+                                "acts": sum(acted.values()), "helped": [m.roles[x] for x in helped], "died": died, "dropped": dropped and not died, "reached_team": bool(reached),
                                 "flag": (L["how"] or "open") if L else None, "pickup": pk if delay is not None else None, "delay_s": delay})
         self._fpush = sorted(out, key=lambda x: x["t"])
         return self._fpush
