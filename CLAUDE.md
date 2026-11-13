@@ -73,6 +73,9 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
     only; edits replace text, nothing is appended with a date.
   - `docs/RULINGS.md`: Denning's definitions and decisions, numbered R-nnn, never renumbered; new rulings are appended
     with the next number. A ruling overrides Claude's reasoning. Cite the number, don't re-litigate.
+  - `docs/DEFINITIONS.md`: the current definitions by topic (counting players, flags, splits, collapse, the Lord push
+    so far), each line citing its rulings (R-452). Read it instead of hunting through the register; when a ruling
+    changes a definition, replace the line here in the same session and mark the amended ruling where it stands.
   - `docs/HANDOFF.md`: under 80 lines: state, next step, open rulings. Rewritten, not appended.
   - `docs/CHANGELOG.md`: dated session log, newest first, at most ten lines per session.
   - `knowledge/model.md`: generated each run, the structural reference (every fitted node, rows, inputs by kind,
@@ -178,6 +181,18 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   the execution tier), kept apart, each with its evidence. Enemy response is described beside them.
 - Questions for Denning come from the catalogue and cluster mechanisms (name this cluster, approve this candidate),
   not a list of Claude's ideas after each batch.
+- Check the reading after every change (R-450, R-453), on the branch: `moments.py all <file> --dev` (the development
+  set, `data/model/dev_set.json`, under a minute) then `tools/golden/review.py score <file>` (the review key,
+  `data/model/review_key.json`: every row or call Denning has marked, his words, and Claude's reading of the mark as
+  checks). A failing row is fixed or put to him before anything else. Run every match (`moments.py all <file>`, about
+  10 minutes) only at a checkpoint: a new review set, a gate, a benchmark rebuild, or counts a question needs. A full
+  run applies the engine; it teaches it nothing.
+- His marks go into the review key the same session, with his words kept as he wrote them. An engine fault he points
+  out is a check in the key, not a ruling; only his definitions and his decisions on process are rulings (R-452). A
+  kind of play is used downstream only once it passes the mark he sets on whole-game review rows (R-450).
+- Reviews are by whole games (R-454): `tools/golden/review.py game <report id> <file>` prints every situation the
+  engine reads in a game, both sides' jobs and results, for him to mark while he watches it. The golden moments page
+  is retired: label nothing new there; the 15 golden moments and their key stay as part one of the decision gate.
 - Documents: SPEC.md and METHODS.md are replaced in place; the CHANGELOG gets at most ten lines per session; HANDOFF.md
   stays under 80 lines. Don't write session narrative into any other file.
 - Before an engine change ships, a fresh session that has not seen the build reads `knowledge/model.md` alone and must

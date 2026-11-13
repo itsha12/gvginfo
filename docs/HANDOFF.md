@@ -9,45 +9,54 @@ model's structure: `knowledge/model.md` (generated).
 > out `bundle-4` in a second worktree, then set out the items under "Open for Denning" and carry on with "Next".
 > (Add your rulings on the open items to the same message if you have them.)
 
-## State (2026-11-13 evening: redesign step 2 on branch `bundle-4`, stage D under way; batch 17, 506 matches trained)
+## State (2026-11-13 night: redesign step 2 on branch `bundle-4`, stage D under way; batch 17, 506 matches trained)
 - Main's engine is unchanged (SPEC.md). Bundle 4 is on `bundle-4` and lands in one piece, then one rebuild (R-322).
   606 replays stored (90 from 2 September on not yet trained on). No Train batch, Discovery or fetch run in progress.
 - On `bundle-4`: `hallmap.py`, `moments.py` (records, decision moments, shape, consequences), `jobs.py` (the plays
-  and their jobs), `story.py`, `tools/golden/golden.py pick|score|stories|gate`, `lineup.py`, `thresholds.py`.
+  and their jobs, R-423 to R-449), `story.py`, `tools/golden/golden.py`, `lineup.py`, `thresholds.py`, `review.py`.
 - Both gates pass (key v3): part one 12 of 12, part two 65 of 105 (61%). Line-up: building 422 of 426, held-out 186
-  of 186; comms 110 of 157 and 62 of 80. Golden stories draft 10 (unchanged by this session).
-- Stage D so far: `shape()` (2.8), `consequence()` (2.9), and `jobs.py` (2.11) to his rulings R-423 to R-449: a
-  call is an allocation of plays, each one record with its job, tests, its own clock and what it cost beside it.
-  Plays: flag (their run against ours), push flagger, flagger pushed, split, numbers, boost, pinned, base res, lord.
-- A split is read phase by phase (`split_plays`): who is on the enemy's ground and who defends, each counted after
-  12 s there (R-350), teleporter hops left out; from the first second it reaches a defender, footies, base or pit
-  (R-440); followed past the record's end and while chased out; a collapse needs the defence one up, from the main
-  fight, for 45 s or less (R-441); pit NPCs for the defence, any NPC for the split (R-443); damage and monks of
-  the split, the defence and both main fights kept beside every phase (R-444).
-- Shadow of Haste runs are marked (`soh`), out of `data/benchmarks/flag_arrival.json` and set aside in the flag
-  counts (R-438). Over 606 matches: 39,399 plays, 32,074 moments; rates from `jobs.py summary <file>`.
-- Run: `moments.py all <file>` (about 10 minutes, two jobs, the machine to itself), then `jobs.py summary <file>`.
+  of 186; comms 110 of 157 and 62 of 80. Golden stories draft 10. All unchanged by this session's last changes.
+- The method changed (R-450 to R-454), because his review of the first 35 cases found 7 of 24 marked rows right while
+  every gate passed: the gates check that what was said is in the story, not that what the engine says is true.
+  - The review key (`data/model/review_key.json`; `tools/golden/review.py score <file>`): his marks as checks. Set 1
+    = his 35 rows: 28 checked, all pass; three checks open (below). Run it after every change, on the development
+    set (`moments.py all <file> --dev`: 42 matches, under a minute). Every match only at a checkpoint.
+  - `docs/DEFINITIONS.md`: the current definitions by topic, citing their rulings. Faults are checks, not rulings.
+  - Reviews are by whole games (`review.py game <id> <file>`); the golden moments page is retired (the 15 moments
+    and their key stay as part one of the decision gate).
+  - The flag decision goes to the end first (R-451): similar cases, then the held-out advice test, on the branch.
+- A split is read phase by phase from when it reaches (R-438 to R-449); Shadow of Haste runs are marked and set
+  aside. Last full run (before the two fixes the key found): 39,399 plays, 32,074 moments over 606 matches.
 
-## Next (in order; REDESIGN.md "Build plan from here" and "Tests")
-1. His answers to the questions below, and his marks on rows 4 to 12 and the replacement rows; then a second
-   review set drawn from the rebuilt plays (no Shadow of Haste runs), since most split rows changed.
-2. R-449: count a player in a fight's numbers only after 12 s in it (`_numbers`); it moves the numbers moments, so
-   rerun the gate, the line-up and `thresholds.py` with it. R-440: move the split and flag moments later.
-3. Stage D, the rest: similar cases (2.10, with strength, R-432, and the hall, R-436); enemy execution (2.12); the
-   interaction rule (2.13); NPC damage by class of bar (R-433); the four proposals left of R-324; radius checks.
-4. Stage E (side by side for one rebuild, win points, SPEC.md and METHODS.md, readability, R-398, merge).
+## Next (in order; REDESIGN.md "Build plan from here", item 6, and "Tests")
+1. The whole-game review, set w1 (`dev_set.json`, `whole_game`): part 1 = TFS v 옷옷옷옷 (bdaa145f, 40 situations) and
+   Men v Apes (149fbdc6, 45); put each to him in the chat, one game a message, every situation with what the engine
+   reads and each side's job and result. File his marks in the review key, fix, rescore. Then part 2, which must not
+   be fixed against before he marks it: hdm v hook (8bf4ffae, 72), 옷옷옷옷 v RACK (a8ba43a8, 43), Men v Crew
+   (51683de9, 41, two Lord pushes). Part 2 gives the accuracy by kind of play; he sets the mark a kind must pass.
+   Top up rare plays (the Lord push, the part-run, leaving before a res) with about ten picked rows.
+2. R-449 (a player counts in fight numbers only after 12 s; moves the numbers moments: rerun the gate, the line-up
+   and `thresholds.py`) and R-440 (when the split and flag moments are named), once he has answered.
+3. The flag family to the end (R-451), once the flag plays pass the key and he has answered on Shadow of Haste:
+   similar cases for the flag plays (2.10, with strength R-432 and the hall R-436), then the advice test on unseen
+   matches. Read the result with him whatever it shows.
+4. The other kinds as each passes the key; then stage E (side by side, SPEC.md and METHODS.md, R-398, merge).
 
-## Open for Denning (set each out in the chat, R-329; all put to him 2026-11-13 evening)
-- Damage against monks (R-444): is "expected to kill at twice the monks facing it" right, and does the main team
-  get the kill job whenever the defence puts more monks on the split than the split brought? Who counts as a monk
-  (today: backline monks; a smiter and a ritualist healer count as damage)?
-- Shadow of Haste runs: leave them out of every flag count, and of the flag lead? When was the mechanic removed?
-- When is the moment (R-440)? A split is named at the leave, a median of 34 s before it reaches a defender or the
-  base (a tenth over 91 s). Options: when it crosses onto the enemy's side, or when it reaches.
-- Full collapse is now read 507 times (six or more defenders on the split for 12 s): too many? It may be a split
-  standing beside the enemy's main team.
-- Still drafts: numbers from kills (push, fall back, hold); a split with no answer; the thresholds marked
-  "Claude's draft" in `common.py`; the Lord push's aim; "in their base at the res" (met 91%, tells little).
+## Open for Denning (set each out in the chat, R-329)
+- Does he agree to the review in two parts (two games, fixes, then three), and one game a message in the chat?
+- Damage against monks (R-444): is "expected to kill at twice the monks facing it" right; does the main team get the
+  kill job whenever the defence puts more monks on the split than the split brought; who counts as a monk (today:
+  backline monks; a smiter and a ritualist healer count as damage)?
+- Shadow of Haste runs: out of every flag count, and of the flag lead? When was the mechanic removed?
+- When is a split's moment (R-440): the leave (now; a median 34 s before it reaches), the crossing, or the reach?
+- The 12 s rule for fight numbers (R-449; key s1-31). Full collapse read 507 times: too many?
+- Two of his own marks disagree with a later ruling (noted in the key): s1-26, hdm v 옷옷옷옷 4:06, approved as a
+  collapse (one player from the main fight for 16 s, one already defending, against two), but R-441 needs the
+  defence one more than the split; s1-23, 옷옷옷옷 v Men 6:22, approved as "not met" for footmen and an archer lost,
+  but R-443 counts only pit NPCs against the defence. Also s1-15: a defender on the split under 12 s at game end.
+- Remove the Golden moments page now, or with the Templates and Meta tabs at R-398 (as planned)?
+- Still drafts: numbers from kills; a split with no answer; "held by monks"; the thresholds marked "Claude's draft"
+  in `common.py`; the Lord push's aim. Proposed, not approved: a reading that fails must fail loudly (CLAUDE.md).
 - Not built: shadow with a snare; the two-monk spike build after a wipe; the race back (taken out, R-448).
 
 ## Running it

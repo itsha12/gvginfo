@@ -7,6 +7,10 @@ Status (2026-11-13): step 1 built. Step 2 under way on the branch `bundle-4`: th
 stage was added before the decision moments (the records, the story and the line-up; see "Step 2: where it stands" and
 "Build plan from here"). Reading steps 1 and 2 are built and step 2 is ruled on (R-399 to R-412: the flag tally, the
 stand-off, the held flag); the reading gate and the decision gate are passed, and stage D (depth) is under way. Steps 3 and 4 not started.
+The method changed on 2026-11-13 (R-450 to R-454, after his review of the first 35 cases found 7 of 24 read correctly):
+his marks are kept as a test (the review key), the reading is checked on a development set after every change, reviews
+are by whole games, the golden moments page is retired, and one family, the flag decision, is taken to the end goal's
+test before the others are finished (see "Steps", "Build plan from here" and "Tests").
 
 ## Why
 The two scored blind rounds showed the decision tier cannot say whether a call was right, whether it was executed, or
@@ -94,7 +98,8 @@ fix; no number without its cases.
 | Step | Rebuild | Delivers | Gate |
 |---|---|---|---|
 | 1 (done) | none | round 3 void, rounds paused, blind page fixes, the map page | Denning labels the most played halls |
-| 2 | one (bundle 4) | zones and path distance, the reading (records and story), families 1 to 3, calls read as allocations, the consequence record | the reading gate (R-380, R-383, R-396); the decision gate (R-394); advice test no worse |
+| 2 | one (bundle 4) | zones and path distance, the reading (records and story), families 1 to 3, calls read as allocations, the consequence record, the plays and their jobs | the reading gate (R-380, R-383, R-396); the decision gate (R-394); the review key, each kind of play at the mark he sets (R-450); advice test no worse |
+| 2, within it (R-451) | none (on the branch) | the flag decision taken to the end first: its plays through similar cases to the held-out advice test, before splits, numbers and the Lord push are finished | the flag plays pass the review key; the advice test on unseen matches is read with him, whatever it shows |
 | 3 | none | the decision card in the blind test, match review and query tool; TQs retired | readability test; Denning approves mock picks |
 | 4 | one (bundle 5) | families 4 and 5, win model stability, speed | as step 2 |
 
@@ -114,8 +119,10 @@ pairs today), rewrite SPEC.md.
 Items 2.3 to 2.7 were drafted before the records existed and are rebuilt on them (R-351, R-362): a trigger is any
 change the enemy makes to the map that the records hold, not only a leave or a numbers difference.
 
-Adoption: kept only if the reading gate and the decision gate pass (see "Tests"), the held-out advice test is no worse
-than before (6 of 13 kinds clear at 506 matches), and the readability test passes.
+Adoption: kept only if the reading gate and the decision gate pass (see "Tests"), each kind of play passes the review
+key at his mark (R-450), the held-out advice test is no worse than before (6 of 13 kinds clear at 506 matches), and the
+readability test passes. The end goal has not been measured since the redesign began; R-451 brings that test forward
+for one family so that the approach is checked before the whole of step 2 is built.
 
 ### Step 3
 `card.py` (report layer) builds the card. Blind test: five picks a round, at least three where the model differs from
@@ -131,7 +138,7 @@ forensics stay as the mechanics evidence.
 | R The reading (added; R-341, R-362) | the records, the story, the line-up | reading step 1 built and its 17 thresholds confirmed (R-390): `moments.py` keeps split attempts and main team pushes, split fights, joins, leaves and swaps, ground moves, the flag record, who is on the pit NPCs, undefended splits; `story.py` prints from them. Reading step 2 built (the words of R-373, R-375 to R-378, each its own record: `flag_pushes`, the flag route in `flags_record`, `flag_lead`, `pregame`, `posture`, `timing`, `monk_counts`, `on_lord`); ruled on in R-399 to R-412 (a fifth timing choice, `onto_flag` on a main team push, thresholds confirmed, the stand-off record in place of posture, R-405 and R-411, and flag lead as a tally that counts the stand, R-408). Reading step 3 (the check) is next |
 | B Decision moments | 2.3 to 2.7 | rebuilt on the records (R-351, R-362): family 1 from `run_starts` (when a runner goes to run, when the flag is under way, the boost), family 2 from `attempts` (a split sets out or grows; the call from its answer), family 3 from the numbers in the fight each main team stands in (R-351); the call read from the records in the window (runners, a split, a push in, pushing the flagger, `way_out`, `ground`), with every verb the team used kept beside it (`verbs`) |
 | C The decision gate | test | passed 2026-11-12 after R-421 (`golden.py gate`): part one on his notes (`data/model/golden_key.json`, Claude's reading of them, two moments not scored, one accepted miss and one accepted call, Crew v One 8:02, R-422): 12 of 12 found, every part of the scenario and the call passes; part two, comms: 65 of 105 read the same call (61%; his mark 60%) |
-| D Depth | 2.8 to 2.13 | under way. Built: the shape of the call (2.8: `shape()`); the consequence record (2.9: `consequence()` at 90 and 180 s, R-412); the plays and their jobs (2.11: `jobs.py`, R-423 to R-437: the call as an allocation, each play with its job, its test and its own clock; the flag grid, pushing the flagger, a split from both sides with collapse apart, numbers by strong and weak side, the boost, pinned, the base res, the Lord push). His review of the first 35 cases is built (R-438 to R-449: a split read phase by phase from when it reaches, the stricter collapse, pit NPCs, damage against monks, Shadow of Haste runs set aside); waiting on his answers and a second review set. Not started: similar cases (2.10, with the map and strength, R-436, R-432), enemy execution (2.12), the interaction rule (2.13), NPC damage by class of bar (R-433), win points in the record, the four proposals left of R-324 (the Shadow Step flag drop is out, R-393), the radius checks |
+| D Depth | 2.8 to 2.13 | under way. Built: the shape of the call (2.8: `shape()`); the consequence record (2.9: `consequence()` at 90 and 180 s, R-412); the plays and their jobs (2.11: `jobs.py`, R-423 to R-449: the call as an allocation, each play with its job, its test and its own clock; a split read phase by phase from when it reaches; Shadow of Haste runs set aside); the review key and its scorer (R-450: `data/model/review_key.json`, `tools/golden/review.py`; set 1 = his 35 rows, 28 checked, all passing, three checks open) and the development set (R-453: 37 matches, under a minute). Next: the whole-game review (R-454), then the flag family to the end (R-451: similar cases 2.10 for the flag plays, with strength R-432 and the hall R-436, then the advice test). After that, as each kind passes the key: similar cases for the other plays, enemy execution (2.12), the interaction rule (2.13), NPC damage by class of bar (R-433), win points in the record, the four proposals left of R-324, the radius checks |
 | E Close | 2.14 | not started (side by side for one rebuild R-323, retire, causal map, SPEC and METHODS, readability, the list of R-398, merge, rebuild on the same matches) |
 
 Scenarios as first drafted (the key the cases are grouped by; the rest of the state rides along for similar cases):
@@ -156,9 +163,22 @@ a solo split or other uneven counts (27%). The rebuild on the records takes its 
 3. **Denning approves the story's form** on golden game 1 (R-395).
 4. **Stage B rebuilt on the records**: triggers, scenarios and calls for families 1 to 3.
 5. **Stage C: the decision gate** (R-394).
-6. **Stage D: depth**: shape (composition, route, timing), the consequence record at 90 s and about 3 min (it sets
-   what a team gave up in flags, on the tally of R-408, beside what it gained in numbers elsewhere, R-412), similar
-   cases, the job table (Claude drafts, Denning rules), enemy execution, the interaction rule.
+6. **Stage D: depth**, in this order since R-450 to R-454:
+   a. Built: shape, the consequence record, the plays and their jobs (R-423 to R-449), the review key and the
+      development set.
+   b. **The whole-game review** (R-454): five recent games of top guilds, every call of each put to him with what the
+      engine reads; in two parts, so that he does not mark one fault thirty times: two games, the fixes, then three the
+      engine has not been fixed against, which give the accuracy by kind of play. He sets the mark a kind must pass.
+      Rare plays that five games cannot show (the Lord push, the part-run, leaving before a res) are topped up with
+      picked rows. His open answers (damage against monks, Shadow of Haste, when a split's moment is, the 12 s rule
+      for fight numbers, full collapse) are settled on these games.
+   c. **The flag family to the end** (R-451), once the flag plays pass: similar cases for the flag plays (2.10: the
+      same scenario first, then nearest on the continuous variables, with strength, R-432, and the hall, R-436), the
+      better call by the consequence record, and the held-out advice test on the branch (does a team that made the
+      better call do better on unseen matches). Read with him whatever it shows: it is the first evidence on the end
+      goal since the redesign began, and it decides whether the rest is built the same way.
+   d. The other kinds as each passes the key: similar cases, enemy execution (2.12), the interaction rule (2.13), NPC
+      damage by class of bar (R-433).
 7. **Stage E: close**: old and new decision kinds side by side, SPEC.md and METHODS.md rewritten, the readability
    test, the list below, the merge, then one rebuild.
 8. Training chunks and Discovery resume; then step 3 (the decision card, the blind test, the sealed judgement lines as
@@ -168,10 +188,12 @@ a solo split or other uneven counts (27%). The rebuild on the records takes its 
 After the engine is built and before the rebuild, Claude goes through this with Denning:
 1. Check that this file and SPEC.md are accurate or need updating.
 2. Review the rulings: condense what can be, move "rules" that belong elsewhere, drop those no longer needed, add or
-   amend.
+   amend. (Begun, R-452: `docs/DEFINITIONS.md` holds the current definitions for counting players, flags, splits,
+   collapse and the Lord push; the other topics remain.)
 3. Review the repository for old, outdated or unneeded files.
 4. Remove the Templates tab from the site (not used).
-5. Remove the Meta tab from the site (not used).
+5. Remove the Meta tab from the site (not used); and the Golden moments page (R-454), keeping
+   `golden_moments.json`, `golden_key.json` and the gate.
 6. See whether the skills need updating from the wiki.
 7. See whether the model pages (structure, results and the rest) need amending to match the approach taken.
 8. Any other outstanding items, questions or rulings he has not addressed.
@@ -216,9 +238,17 @@ team.
   building 422 of 426 (99%), held-out 163 of 196 (83%), not yet reviewed. The statements checked before are unchanged
   (365 of 365, 136 of 162); posture and timing statements that are not a true stand-off or a deliberate hold are set
   aside (R-414: 7 building, 15 held out).
+- **The review key** (R-450): every row or call he has marked, with his words and Claude's reading of the mark as
+  checks (`data/model/review_key.json`), scored by `tools/golden/review.py` on the development set (R-453) after every
+  change to the reading. It tests what the line-up cannot: that what the engine says on its own is true. A failing
+  row is fixed or put to him before anything else; a check for a fault not yet fixed is marked open and reported
+  apart. Set 1 (his 35 rows of 2026-11-13) is a regression test; the whole-game sets (R-454) give the accuracy by kind
+  of play, and a kind is used downstream only once it passes his mark. On its first run the key found two rows he had
+  approved that the rebuild had since lost (a split read as a chase, a part-run): both restored.
 - **The blind check**: the 13 notes Denning wrote before seeing any engine story; Claude compares each rewritten
   story with them (R-354). He marks the story of game 1 only, for its form (R-395).
-- **The decision gate** (R-394, replacing how R-327 is scored): on the 15 golden moments (R-382), the scenario and
+- **The decision gate** (R-394, replacing how R-327 is scored; the golden moments page is retired, R-454, and no
+  more moments are labelled there, but these 15 and their key stay as this gate): on the 15 golden moments (R-382), the scenario and
   the call read from his notes, not the drop-downs (R-341): the moment found in 9 of 10, each part of the scenario
   and the call in 8 of 10. And on the comms: where a team says what it means to do, the engine finds a decision there
   and reads the same call (228 such calls filed; the pass rate is set when first measured).
@@ -234,7 +264,9 @@ questions: the timing rule is right (R-297); a blind pick says what a leave beca
 R-341 (think as his notes do), R-354 and R-395 (the golden test), R-362 (the record is the work), R-368 to R-389 (the
 line-up), R-390 to R-393 (thresholds, own footies, a split whose main team is dead), R-394 to R-398 (the gates, the
 held-out folder, the list before the next training run), R-423 to R-449 (the jobs and his review of them: per-job clocks, the call as an
-allocation, the flag grid, both sides of a split, collapse, the nine added calls, the Lord push as a moment).
+allocation, the flag grid, both sides of a split, collapse, the nine added calls, the Lord push as a moment),
+R-450 to R-454 (the method: the review key, one family to the end first, the definitions page, the development set,
+reviews by whole games in place of the golden moments page). The current definitions are in `docs/DEFINITIONS.md`.
 
 ## Definitions
 Ruled 2026-11-10: at a place = more than half of the group's living players inside the labelled area (R-319); fell to
