@@ -32,8 +32,8 @@ Usage:  python3 jobs.py <report id>                     the plays of one match
         python3 jobs.py bench <file from moments.py all>     rebuild data/benchmarks/flag_arrival.json
 In code: plays(M, recs) -> list of plays; allocation(recs, plays) adds each moment's plays to it."""
 import collections, json, os, statistics, sys
-from common import (REPO, READ_TO, SPLIT_STEP, FIGHT_LINK, JOIN_LOOK_S, RES_EVERY, BOOST_EVERY, BOOST_WARN_S, BOOST_LATE_S, LEAD_HALF, LEAD_ONE, CARRY_SPEED, PIT_R,
-                    FLAG_GAIN, PART_RUN_GAIN, LATE_FLAG, ANSWER_CAP_S, COLLAPSE_VISIT_S, COLLAPSE_MIN_S, PINNED_S, LORD_PUSH_FROM, RACE_MIN_S, NUMBERS_TAIL_S, FLAG_JOB_MAX_S)
+from common import (REPO, READ_TO, SPLIT_STEP, SPLIT_GAP_S, FIGHT_LINK, JOIN_S, JOIN_LOOK_S, NPC_NEAR, KILL_RATIO, RUN_SPEED, GROUND_JUMP, RES_EVERY, BOOST_EVERY, BOOST_WARN_S, BOOST_LATE_S, LEAD_HALF, LEAD_ONE, CARRY_SPEED, PIT_R,
+                    FLAG_GAIN, PART_RUN_GAIN, LATE_FLAG, ANSWER_CAP_S, COLLAPSE_VISIT_S, PINNED_S, LORD_PUSH_FROM, LORD_BASE_R, AFTER_WIPE_MIN_S, NUMBERS_TAIL_S, FLAG_JOB_MAX_S)
 from state import d
 
 HOMEG = ("pit", "base", "front door", "back door", "front footies", "back footies")
@@ -84,11 +84,20 @@ def _play(M, play, side, tm, t0, t1, who, scenario, job, tests, beside=None, rul
 
 # ---- the flag: their run against ours (R-426)
 def _flag_rows(M):
-    out = []
+    """The flags that were run, each with when its runner went for it: the second he set off for his spawn
+    (run_starts: his walk there, not the last time he stood with his team, which can be a minute earlier), else the
+    pickup when he was already there. `soh`: a carrier has Shadow of Haste on his bar (the flag mechanic since
+    removed from the game: Denning sets those runs aside as examples)."""
+    if getattr(M, "_frows", None) is not None: return M._frows
+    out, m = [], M.m
+    rs = {(r["tm"], int(r["pickup"])): r for r in M.run_starts()}
     for f in M.flags_record():
         if f["pregame"]: continue
-        out.append(dict(f, s0=int(f["set_off"] if f["set_off"] is not None else f["start"]), pick=int(f["start"]), e=int(f["end"]),
-                        double=(f["form"] or "").startswith("double")))
+        r = next((rs[k] for k in ((f["tm"], int(f["start"]) + dt) for dt in (0, -1, 1)) if k in rs), None)
+        s0 = int(r["set_off"]) if r is not None and r["set_off"] is not None else int(f["start"])
+        soh = any(m.sk(b) == "Shadow of Haste" for a in f["ids"] for b in m.A[a].get("bar", []) if b)
+        out.append(dict(f, s0=min(s0, int(f["start"])), pick=int(f["start"]), e=int(f["end"]), double=(f["form"] or "").startswith("double"), soh=soh))
+    M._frows = out
     return out
 
 
@@ -117,7 +126,7 @@ def flag_plays(M, K, pinned_at):
         scen = f"They {theirs.replace(' run', '')} run ({M.m.tag[B]}'s {f['runner']}); {M.m.tag[A]}: {ours}"
         end = min(max(w1, g["e"] if g else w1), w0 + FLAG_JOB_MAX_S, T)
         bes = lambda t1: {"flag_lead": [K.lead(A, w0), K.lead(A, t1)], "deaths": [K.died(A, w0, t1), K.died(B, w0, t1)], "their_flag": f["how"], "their_form": f["form"], "our_form": g and g["form"]}
-        kw = dict(their=theirs, ours=ours)
+        kw = dict(their=theirs, ours=ours, soh=bool(f["soh"] or (g and g["soh"])))
         if ours == "a flag already in hand":
             t1 = min(w1 + ANSWER_CAP_S, T)
             caps_b = K.caps(B, w0, w1 + 1)
@@ -172,8 +181,9 @@ def push_plays(M, K):
         scen = f"{M.m.tag[tm]} pushes {M.m.tag[foe]}'s flagger ({p['role']}, {p['doing']}) with {'its main team' if p['main'] else 'one player' if n == 1 else str(n) + ' players'}"
         bes = {"arrival_s": arrive, "usual_s": usual and round(usual), "against_usual": arrive and usual and round(arrive / usual, 2), "flag": f["how"] if f else p["flag"],
                "carrier_died": bool(p["died"]), "pickup_delay_s": p["delay_s"], "flag_lead": [K.lead(tm, p["t"]), K.lead(tm, t1)], "helped": p["helped"]}
+        soh = bool(f and f["soh"])                                        # a Shadow of Haste run cannot be held against the usual run: set aside in the counts
         q = _play(M, "push flagger", "own", tm, p["t"], t1, p["roles"], scen, "Stop their flag, or make it 30% late", {},
-                  any_of={"their flag is stopped": bool(stopped), "it arrives 30% or more later than usual": bool(late)}, beside=bes, pushers=n, main=bool(p["main"]))
+                  any_of={"their flag is stopped": bool(stopped), "it arrives 30% or more later than usual": bool(late)}, beside=bes, pushers=n, main=bool(p["main"]), soh=soh)
         done[key] = q; out.append(q)
         helped = bool(p["helped"])                                        # the flagger's side: send help, or flag through it
         on_time = f is not None and f["how"] == "captured" and not late
@@ -181,127 +191,189 @@ def push_plays(M, K):
         if helped: tests["nobody else of ours dies meanwhile"] = K.died(foe, p["t"], t1, ids=set(M.st.players[foe]) - {p["flagger"]}) == 0
         out.append(_play(M, "flagger pushed", "own", foe, p["t"], t1, [p["role"]] + list(p["helped"]),
                          f"{M.m.tag[foe]}'s flagger ({p['role']}) is pushed by {n}; {M.m.tag[foe]} " + ("sends help (" + ", ".join(p["helped"]) + ")" if helped else "flags through it"),
-                         "Get the flag in on time" + (", without losing a player for the help sent" if helped else ""), tests, beside=bes, helped=helped))
+                         "Get the flag in on time" + (", without losing a player for the help sent" if helped else ""), tests, beside=bes, helped=helped, soh=soh))
     return out
 
 
-# ---- a split, from both sides (R-428, R-429, R-430), and the race back when it ends (gap 6)
+# ---- a split, from both sides, phase by phase (R-428 to R-430; Denning's review of 2026-11-13, R-438 to R-446)
+def _runs(vals, times, min_s):
+    """Runs of a constant value over the sampled seconds, runs shorter than min_s merged into the longer neighbour:
+    [(value, first second, last second)]."""
+    runs = []
+    for v, t in zip(vals, times):
+        if runs and runs[-1][0] == v: runs[-1][2] = t
+        else: runs.append([v, t, t])
+    while len(runs) > 1:
+        i = min(range(len(runs)), key=lambda i: runs[i][2] - runs[i][1])
+        if runs[i][2] - runs[i][1] + SPLIT_STEP >= min_s: break
+        j = i - 1 if i == len(runs) - 1 or (i > 0 and runs[i - 1][2] - runs[i - 1][1] >= runs[i + 1][2] - runs[i + 1][1]) else i + 1
+        lo, hi = min(i, j), max(i, j)
+        runs[lo:hi + 1] = [[runs[j][0], runs[lo][1], runs[hi][2]]]
+        k = 0
+        while k + 1 < len(runs):                                           # neighbours that are now the same value are one run
+            if runs[k][0] == runs[k + 1][0]: runs[k:k + 2] = [[runs[k][0], runs[k][1], runs[k + 1][2]]]
+            else: k += 1
+    return [tuple(r) for r in runs]
+
+
 def split_plays(M, K):
-    st, m, T, out, tl = M.st, M.m, M.T, [], M._tl()
-    role = m.roles
-    for x in M.attempts():
-        if x["kind"] != "split" or x.get("solo") == "other": continue
+    st, m, T, out, tl, S_ = M.st, M.m, M.T, [], M._tl(), SPLIT_STEP
+    role, hall = m.roles, M.hall
+    A = [x for x in M.attempts() if x["kind"] == "split" and x.get("solo") != "other"]
+    is_monk = lambda a: m.A[a].get("p") == "Monk" and not role[a].startswith("Monk ")      # a backline monk; a smiter is damage
+    for x in A:
         tm, foe, an = x["tm"], 3 - x["tm"], x["answer"]
-        t_in, t1 = int(x["t_in"]), int(x["t1"])
         own_d = st.side.get(foe)
-        span = {a: (q["from"], q["to"]) for a, q in zip(x["ids"], x["members"])}
-        near = lambda b, u: M.AL[b][u] and any(span[a][0] <= u <= span[a][1] and M.AL[a][u] and d(M.P[b][u], M.P[a][u]) < FIGHT_LINK for a in span)
-        home = lambda b, u: M.AL[b][u] and M.place_at(b, u)[1] == own_d and M.place_at(b, u)[0] in HOMEG
-        visits, coll = {}, []
-        for b in an["ids"]:
-            us = [u for u in range(t_in - t_in % 2, min(t1, T) + 1, SPLIT_STEP) if near(b, u)]
-            if us: visits[b] = (us[0], us[-1])
-        for b, (v0, v1) in visits.items():                               # a collapser comes from the main team after the split is on the ground, and goes back (R-429)
-            u0, u1 = max(v0 - JOIN_LOOK_S, 0), min(v1 + JOIN_LOOK_S, T)
-            u0 -= u0 % 2; u1 -= u1 % 2
-            from_main = M.AL[b][u0] and b in M.main_team(foe, u0) and not home(b, u0) and v0 > t_in
-            back = (M.AL[b][u1] and b in M.main_team(foe, u1) and not near(b, u1)) or v1 >= t1 - 4
-            killed = any(v0 <= td <= v1 + 5 for a in x["ids"] for td in st.death_times.get(a, []))
-            if from_main and back and (v1 - v0 >= COLLAPSE_MIN_S or killed) and v1 - v0 <= COLLAPSE_VISIT_S and b not in (an.get("went_back_ids") or []): coll.append(b)
-        alive_d = sum(M.AL[b][min(t_in + READ_TO, T)] for b in st.players[foe])
-        full = len(an.get("went_back") or []) >= 5 or an["n"] >= max(6, alive_d - 1)
-        stay = [b for b in an["ids"] if b not in coll]
-        k = max(x["size"], 1)
-        n = 0 if not stay else max(min(an["n"], len(stay)), 1) if an["n"] else 0
-        monk_def = any(m.A[b].get("p") == "Monk" and not role[b].startswith("Monk ") for b in stay[:max(n, 1)]) if stay else False
-        lost_t = sorted(td for a in x["ids"] for td in st.death_times.get(a, []) if t_in - 1 <= td <= t1 + SPLIT_STEP * 10)
-        n_lost, n_kill, n_npc = len(x["lost"]), len(x["kills"]), len(x["npcs"])
-        e1 = min(t1 + 4, T)
-        away_a, away_d = K.died(tm, t_in, e1) - n_lost, K.died(foe, t_in, e1) - n_kill      # deaths away from the split
-        gain_a = K.gain(tm, t_in, e1)
-        elsewhere = {"more of theirs die away from the split than of ours": away_d > away_a, f"flag lead better by {FLAG_GAIN} or more": gain_a is not None and gain_a >= FLAG_GAIN}
-        size = {1: "a solo split", 2: "a two-player split", 3: "a three-player split"}.get(k, f"a split of {k}")
-        if len(x["members"]) > k: size += f" at a time, {len(x['members'])} players in all"
-        whoA, whoD = [q["role"] for q in x["members"]], [role[b] for b in stay]
-        besA = {"npcs_taken": x["npcs"], "kills": x["kills"], "lost": x["lost"], "main": x["main"], "flag_lead": [K.lead(tm, t_in), K.lead(tm, e1)], "end": x["end"], "way": x["way"]}
-        besD = {"npcs_lost": x["npcs"], "lost": x["kills"], "split_killed": x["lost"], "flag_lead": [K.lead(foe, t_in), K.lead(foe, e1)], "behind_s": an["behind_s"], "end": x["end"],
-                "main_down_s": x["main"]["up_s"], "main_up_s": x["main"]["down_s"]}
-        base = f"{M.m.tag[tm]}: {size} ({', '.join(whoA)}) by the {x['way'] or 'door'}"
-        # the attacker's job, set by the answer it met
-        if full: sa, ja, ta, aa = "met by a full collapse", "Survive and gain an advantage elsewhere on the map", {"nobody on the split dies": n_lost == 0}, elsewhere
-        elif n == 0 and coll: sa, ja, ta, aa = None, None, None, None      # nobody stayed to defend it: the collapse below is the answer it met
-        elif n == 0: sa, ja, ta, aa = "undefended", "Take NPCs", {"an NPC taken": n_npc > 0}, None
-        elif k == 1 and n == 1 and monk_def: sa, ja, ta, aa = "1 v 1, defended by a monk", "Hold the monk there; the main team's job is to kill", {"the split player survives": n_lost == 0}, None
-        elif k == 1 and n == 1: sa, ja, ta, aa = "1 v 1, the defender not a monk", "Kill or take NPCs", {}, {"a defender killed": n_kill > 0, "an NPC taken": n_npc > 0}
-        elif k > n: sa, ja, ta, aa = f"a player or more up ({k} v {n})", "Kill or take NPCs", {}, {"a defender killed": n_kill > 0, "an NPC taken": n_npc > 0}
-        elif k == n: sa, ja, ta, aa = f"even ({k} v {n})", "Take NPCs or kills", {}, {"a defender killed": n_kill > 0, "an NPC taken": n_npc > 0}
-        else: sa, ja, ta, aa = f"a player or more down ({k} v {n})", "Survive and gain an advantage elsewhere on the map", {"nobody on the split dies": n_lost == 0}, elsewhere
-        if sa: out.append(_play(M, "split", "attacker", tm, t_in, e1, whoA, f"{base}; {sa}", ja, ta, any_of=aa, beside=besA, answer=sa, size=k, defenders=n))
-        if k == 1 and n == 1 and monk_def and not full:
-            out.append(_play(M, "split", "attacker's main team", tm, t_in, e1, [], f"{base}; a monk of theirs is held in its base", "Kill at the main fight while their monk is away",
-                             {"more of theirs die away from the split than of ours": away_d > away_a}, beside=besA, answer=sa, size=k, defenders=n))
-        # the defender's side
-        dbase = f"{M.m.tag[foe]} against {size} of {M.m.tag[tm]}"
-        if full:
-            out.append(_play(M, "split", "defender", foe, t_in, e1, an.get("went_back") or whoD, f"{dbase}: full collapse", "Kill the split or drive it out (the flags it costs are beside it)", {},
-                             any_of={"a split player dies": n_lost > 0, "the split is driven out as the defenders arrive": bool(x["forced_out"])}, beside=besD, call="full collapse", size=k, defenders=an["n"]))
-        else:
-            if n == 0 and not coll:
-                gd = K.gain(foe, t_in, e1)
-                out.append(_play(M, "split", "defender", foe, t_in, e1, [], f"{dbase}: no answer", "Win elsewhere before the split costs more than it gains", {},
-                                 any_of={"more of theirs die away from the split than of ours": away_a > away_d, f"flag lead better by {FLAG_GAIN} or more": gd is not None and gd >= FLAG_GAIN},
-                                 beside=besD, ruled=False, call="no answer", size=k, defenders=0))
-            elif n and n < k:
-                out.append(_play(M, "split", "defender", foe, t_in, e1, whoD[:n], f"{dbase}: {'one defender' if n == 1 else str(n) + ' defenders'}, a player or more down", "Delay: keep the split off the NPCs and stay alive",
-                                 {"no NPC lost": n_npc == 0, "no defender dies": n_kill == 0}, beside=besD, call="one defender" if n == 1 else "a player down", size=k, defenders=n))
-            elif n and n == k:
-                out.append(_play(M, "split", "defender", foe, t_in, e1, whoD[:n], f"{dbase}: mirror ({n} v {k})", "Hold it even: lose nothing at home and nothing for it",
-                                 {"no NPC lost": n_npc == 0, "no more defenders die than split players": n_kill <= n_lost}, beside=besD, call="mirror", size=k, defenders=n))
-            elif n:
-                out.append(_play(M, "split", "defender", foe, t_in, e1, whoD[:n], f"{dbase}: {'add one' if n == k + 1 else 'send ' + str(n)} ({n} v {k})", "Kill it or drive it out with the extra player, and lose nothing for it",
-                                 {"no NPC lost": n_npc == 0}, any_of={"a split player dies": n_lost > 0, "the split is driven out as the defenders arrive": bool(x["forced_out"])},
-                                 beside=besD, call="add one", size=k, defenders=n))
-            groups = []                                                   # one play a collapse: collapsers whose visits overlap came together
-            for b in sorted(coll, key=lambda b: visits[b][0]):
-                if groups and visits[b][0] <= groups[-1]["v1"] + 10: groups[-1]["ids"].append(b); groups[-1]["v1"] = max(groups[-1]["v1"], visits[b][1])
-                else: groups.append({"ids": [b], "v0": visits[b][0], "v1": visits[b][1]})
-            for gr in groups:                                             # who came, for how long, what it cost at the main fight
-                cl, v0, v1 = gr["ids"], gr["v0"], gr["v1"]
-                rows = [tl[u][foe]["main"] for u in range(v0 - v0 % 2, min(v1, T) + 1, SPLIT_STEP) if tl[u][foe]["main"]]
-                cost = {"visit_s": v1 - v0, "flag_lead": [K.lead(foe, v0), K.lead(foe, min(v1 + 10, T))], "main_net": sum(r[0] - r[1] for r in rows) * SPLIT_STEP,
-                        "deaths_away_from_the_split": K.died(foe, v0, v1 + 5) - sum(1 for td, a in K.deaths[foe] if v0 < td <= v1 + 5 and a in an["ids"]), "npcs_lost": x["npcs"]}
-                names = ", ".join(role[b] for b in cl)
-                whole = len(cl) >= 5 or len(cl) + n >= max(6, alive_d - 1)      # five or more coming together, or nearly everyone alive on it: a full collapse
-                if whole:
-                    out.append(_play(M, "split", "defender", foe, v0, min(v1 + 5, T), [role[b] for b in cl], f"{dbase}: full collapse ({len(cl)} from the main fight, {n} defending it)",
-                                     "Kill the split or drive it out (the flags it costs are beside it)", {},
-                                     any_of={"a split player dies": any(v0 <= td <= v1 + 5 for td in lost_t), "the split is driven out as the defenders arrive": any(v0 - 8 <= fo["left"] <= v1 + 15 for fo in x["forced_out"])},
-                                     beside=cost, call="full collapse", size=k, defenders=n + len(cl)))
-                else:
-                    out.append(_play(M, "split", "defender", foe, v0, min(v1 + 5, T), [role[b] for b in cl], f"{dbase}: collapse by {names} from the main fight ({n} defending it)",
-                                     "Kill a split player before going back (what it cost at the main fight and in flags is beside it)",
-                                     {"a split player dies during the collapse": any(v0 <= td <= v1 + 5 for td in lost_t)}, beside=cost, call="collapse", size=k, defenders=n))
-                ga = K.gain(tm, v0, min(v1 + 10, T))                # the attacker's side of the same collapse (R-429: as against a full collapse)
-                d_a, d_d = K.died(tm, v0, v1 + 5) - sum(1 for td in lost_t if v0 < td <= v1 + 5), K.died(foe, v0, v1 + 5) - sum(1 for td, a in K.deaths[foe] if v0 < td <= v1 + 5 and a in an["ids"])
-                out.append(_play(M, "split", "attacker", tm, v0, min(v1 + 5, T), whoA, f"{base}; " + ("met by a full collapse" if whole else f"collapsed on by {names}"), "Survive and gain an advantage elsewhere on the map",
-                                 {"nobody on the split dies": not any(v0 <= td <= v1 + 5 for td in lost_t)},
-                                 any_of={"more of theirs die away from the split than of ours": d_d > d_a, f"flag lead better by {FLAG_GAIN} or more": ga is not None and ga >= FLAG_GAIN},
-                                 beside=dict(besA, visit_s=v1 - v0), answer="met by a full collapse" if whole else "collapsed on", size=k, defenders=n))
-            if k == 1 and n == 1:                                         # a lone defender part-running his flag (R-430)
-                b = stay[0]
-                carried = sum(SPLIT_STEP for u in range(t_in - t_in % 2, min(t1, T) + 1, SPLIT_STEP) if M.carrying(b, u))
+        frm = {a: int(q["from"]) for a, q in zip(x["ids"], x["members"])}
+        to = {a: int(q["to"]) for a, q in zip(x["ids"], x["members"])}
+        deep = lambda a, u: M.AL[a][u] and M._deep(a, u - u % S_) is not None
+        # a chase is not a split: players following an enemy split out of their own base, who never reach a door (Denning, NwAy v hook 3:04: the split is hook's, chased out, and its Air Ele dies at 3:48)
+        chased = next((y for y in A if y["tm"] == foe and y["t_in"] <= x["t_in"] <= y["t1"] + 30 and x["where"] == "field"
+                       and len(set(x["ids"]) & (set(y["answer"]["ids"]) | set(y["answer"].get("went_back_ids") or []))) * 2 >= len(x["ids"])), None)
+        if chased is not None: continue
+        # follow its players for as long as they stay on the enemy's ground, past the record's own end (the label can change under them: a split that becomes the only players left, or is renamed a push)
+        ext = {}
+        for a in x["ids"]:
+            u, gap = to[a], 0
+            while u + S_ <= T and gap <= SPLIT_GAP_S:
+                u += S_
+                gap = 0 if deep(a, u) else gap + S_
+            ext[a] = u - gap
+        nxt = min((y["t_in"] for y in A if y["tm"] == tm and y["t_in"] > x["t_in"] and set(y["ids"]) & set(x["ids"])), default=T + 1)
+        t0, t9 = int(x["t_in"]) - int(x["t_in"]) % S_, min(max(ext.values()), nxt - S_, T)
+        times = list(range(t0, t9 + 1, S_))
+        if len(times) < 3: continue
+        hop = lambda a, u: any(0 <= v - S_ and v <= T and M.P[a][v] and M.P[a][v - S_] and d(M.P[a][v], M.P[a][v - S_]) > GROUND_JUMP for v in (u, u + S_))      # just through a teleporter
+        raw = lambda a, u: frm[a] <= u <= ext[a] and deep(a, u) and not hop(a, u)
+        def stays(flags, extra=()):                       # a player counts once he has been there JOIN_S (R-350: less is support, or passing by), one missed reading allowed; a death in it counts at once
+            keep, i = [False] * len(flags), 0
+            while i < len(flags):
+                if not flags[i]: i += 1; continue
+                j = i
+                while j + 1 < len(flags) and (flags[j + 1] or (j + 2 < len(flags) and flags[j + 2])): j += 1
+                if (j - i + 1) * S_ >= JOIN_S or any(times[i] - 2 <= td <= times[j] + 4 for td in extra):
+                    for q in range(i, j + 1): keep[q] = True
+                i = j + 1
+            return keep
+        s_on = {a: stays([raw(a, u) for u in times], st.death_times.get(a, [])) for a in x["ids"]}
+        on = lambda a, u: s_on[a][(u - t0) // S_] if t0 <= u <= t9 else False
+        Ss = [[a for a in x["ids"] if s_on[a][i]] for i in range(len(times))]
+        split_deaths = [td for a in x["ids"] for td in st.death_times.get(a, [])]
+        d_on = {b: stays([M.AL[b][u] and any(d(M.P[b][u], M.P[a][u]) < FIGHT_LINK for a in s) for u, s in zip(times, Ss)], list(st.death_times.get(b, [])) + split_deaths) for b in st.players[foe]}
+        Ds = [[b for b in st.players[foe] if d_on[b][i]] for i in range(len(times))]
+        smooth = lambda xs: [sorted(xs[max(i - 2, 0):i + 3])[len(xs[max(i - 2, 0):i + 3]) // 2] for i in range(len(xs))]
+        kn = list(zip(smooth([len(s) for s in Ss]), smooth([len(dn) for dn in Ds])))
+        # it counts from when it can do something: at their footies, in their base or pit, or met by a defender (Denning, Book v One 18:54: "when the split actually reaches base/NPCs")
+        reach = next((u for u, s, dn in zip(times, Ss, Ds) if dn or any(M.place_at(a, u)[0] in ("pit", "base", "front footies", "back footies") for a in s)), None)
+        if reach is None: continue
+        # the players chasing it out afterwards: a death on the way out with a defender still on him is the split's (R-363), for as long as the chase lasts
+        lastD = set(b for dn in Ds[-6:] for b in dn)
+        end_chase = t9
+        for u in range(t9 + S_, min(t9 + 60, T) + 1, S_):
+            if any(M.AL[a][u] and M.AL[b][u] and d(M.P[a][u], M.P[b][u]) < FIGHT_LINK for a in x["ids"] for b in lastD): end_chase = u
+            elif u - end_chase > 6: break
+        npc_ev = []                                                        # the NPCs it took, each with when and whether it was a pit NPC: only those its own players stood by (R-442)
+        for z, td in st.npc_dead.items():
+            v = st.geo.npcs.get(z)
+            if not v or v.get("team") != foe or v.get("kind") in ("guild_lord", "footman") or not (t0 <= td <= t9 + 4): continue
+            u = min(max(int(td), 0), T)
+            near = [a for a in x["ids"] if frm[a] <= u <= ext[a] + 4 and M.P[a][u] and (d(M.P[a][u], v["pos"]) < NPC_NEAR if v.get("pos") else M.place_at(a, u)[0] in ("pit", "base"))]
+            if near: npc_ev.append((td, v["kind"], bool(v.get("pit"))))
+        for td in M.foot_dead.get(foe, ()):
+            u = min(max(int(td), 0), T)
+            if t0 <= td <= t9 + 4 and any(frm[a] <= u <= ext[a] + 4 and M.AL[a][u] and str(M._deep(a, u - u % S_) or "").endswith("footies") for a in x["ids"]): npc_ev.append((td, "footman", False))
+        def there(a, td):                                 # he died on the split: on their ground just before, or on the way out with a defender still on him (not back at his own main fight: 옷옷옷옷 v Men 15:28)
+            u = min(max(int(td) - 1, 0), T)
+            return any(on(a, v // S_ * S_) for v in (u, max(u - 2, 0), max(u - 4, 0))) or (t9 < td <= end_chase + 2 and any(M.AL[b][u] and M.P[a][u] and d(M.P[a][u], M.P[b][u]) < FIGHT_LINK for b in lastD))
+        dA = sorted((td, a) for a in x["ids"] for td in st.death_times.get(a, []) if frm[a] - 1 <= td <= max(ext[a], end_chase) + 4 and there(a, td))
+        dD = sorted((td, b) for b in st.players[foe] for td in st.death_times.get(b, [])
+                    if t0 <= td <= t9 + 4 and M.P[b][min(max(int(td) - 1, 0), T)] and any(on(a, min(max(int(td) - 1, 0), T) // S_ * S_) and d(M.P[b][min(max(int(td) - 1, 0), T)], M.P[a][min(max(int(td) - 1, 0), T)]) < FIGHT_LINK for a in x["ids"]))
+        phases = [(v, max(a_, reach), b_) for v, a_, b_ in _runs(kn, times, JOIN_S) if v[0] > 0 and b_ >= reach and b_ - max(a_, reach) + S_ >= JOIN_S]
+        wb = set(an.get("went_back_ids") or [])
+        prevD, base = set(), f"{m.tag[tm]}'s split by the {x['way'] or 'door'}"
+        for pi, ((k, n), p0, p1) in enumerate(phases):
+            last = pi == len(phases) - 1
+            idx = [i for i, u in enumerate(times) if p0 <= u <= p1]
+            cs, cd = collections.Counter(a for i in idx for a in Ss[i]), collections.Counter(b for i in idx for b in Ds[i])
+            Sp, Dp = [a for a, _ in cs.most_common(k)], [b for b, _ in cd.most_common(n)]
+            e1 = min(p1 + 4, T)
+            lostp = [a for td, a in dA if p0 - 1 <= td <= (max(e1, end_chase + 2) if last else e1)]
+            killp = [b for td, b in dD if p0 - 1 <= td <= e1]
+            npcs = [(kind, pit) for td, kind, pit in npc_ev if p0 - 1 <= td <= e1]
+            n_lost, n_kill, n_npc, n_pit = len(lostp), len(killp), len(npcs), sum(1 for _, pit in npcs if pit)
+            away_a, away_d = K.died(tm, p0, e1) - sum(1 for td, a in dA if p0 < td <= e1), K.died(foe, p0, e1) - sum(1 for td, b in dD if p0 < td <= e1)
+            ga, gd = K.gain(tm, p0, e1), K.gain(foe, p0, e1)
+            ms, md = sum(map(is_monk, Sp)), sum(map(is_monk, Dp))          # monks the split brought, monks defending it
+            dmg_s, dmg_d = k - ms, n - md
+            mid = (p0 + p1) // 2 // S_ * S_
+            ma, mdn = set(tl[mid][tm]["ids"]) - set(Sp), set(tl[mid][foe]["ids"]) - set(Dp)
+            main = {"own": [len(ma) - sum(map(is_monk, ma)), sum(map(is_monk, ma))], "theirs": [len(mdn) - sum(map(is_monk, mdn)), sum(map(is_monk, mdn))]}      # [damage, monks] of each main team's fight, the split and its defenders left out
+            can_kill = md == 0 or dmg_s >= KILL_RATIO * md                 # damage to defending monks (Claude's draft from his rows 18 and 19, tactics S8: three damage are not expected to kill two monks)
+            main_kills = md > ms                                           # their main team is short of monks for it: the kill is the main team's job
+            # a collapse (R-429, R-441): players come from their main fight, the defence becomes at least one more than the split, and they go back
+            new = [b for b in Dp if b not in prevD]
+            def from_main(b):                             # he stood with his main team, away from home, in the 45 s before he arrived
+                for u in range(max(p0 - 45, 0) // S_ * S_, max(p0 - JOIN_S, 0) + 1, S_):
+                    if M.AL[b][u] and b in M.main_team(foe, u) and len(M.main_team(foe, u)) >= 3 and not (M.place_at(b, u)[1] == own_d and M.place_at(b, u)[0] in HOMEG): return True
+                return False
+            came = [b for b in new if from_main(b)]
+            short = p1 - p0 <= COLLAPSE_VISIT_S
+            alive_d = sum(M.AL[b][mid] for b in st.players[foe])
+            full = (n >= max(6, alive_d - 1) and k < n) or (len(wb) >= 5 and an.get("went_back_t") is not None and p0 - 10 <= an["went_back_t"] <= p1)
+            collapse = bool(came) and n >= k + 1 and short and pi > 0 and not full
+            whoA, whoD = [role[a] for a in Sp], [role[b] for b in Dp]
+            size = {1: "one player", 2: "two players", 3: "three players"}.get(k, f"{k} players")
+            scen_a = f"{base}: {size} ({', '.join(whoA)}) against {n} defending" + (f" ({', '.join(whoD)})" if n else "")
+            besA = {"npcs_taken": [kind for kind, _ in npcs], "kills": [role[b] for b in killp], "lost": [role[a] for a in lostp], "flag_lead": [K.lead(tm, p0), K.lead(tm, e1)], "deaths_away_from_the_split": [away_a, away_d],
+                    "split": [dmg_s, ms], "defence": [dmg_d, md], "main": main, "reached": reach, "phase": [pi + 1, len(phases)], "chased_until": end_chase if last and end_chase > t9 else None}
+            besD = {"pit_npcs_lost": [kind for kind, pit in npcs if pit], "other_npcs_lost": [kind for kind, pit in npcs if not pit], "lost": [role[b] for b in killp], "split_killed": [role[a] for a in lostp],
+                    "flag_lead": [K.lead(foe, p0), K.lead(foe, e1)], "deaths_away_from_the_split": [away_d, away_a], "split": [dmg_s, ms], "defence": [dmg_d, md], "main": {"own": main["theirs"], "theirs": main["own"]}, "phase": [pi + 1, len(phases)]}
+            elsewhere = {"more of theirs die away from the split than of ours": away_d > away_a, f"flag lead better by {FLAG_GAIN} or more": ga is not None and ga >= FLAG_GAIN}
+            kill_or_npc = {"a defender killed": n_kill > 0, "an NPC taken": n_npc > 0}
+            kw = dict(size=k, defenders=n)
+            # the attacker's job, set by the answer it meets (R-428)
+            if full or collapse:
+                ans = "met by a full collapse" if full else "collapsed on"
+                out.append(_play(M, "split", "attacker", tm, p0, e1, whoA, scen_a + ("; the whole team turns on it" if full else f"; {', '.join(role[b] for b in came)} collapse from the main fight"),
+                                 "Survive and gain an advantage elsewhere on the map", {"nobody on the split dies": n_lost == 0}, any_of=elsewhere, beside=besA, answer=ans, **kw))
+            elif n == 0: out.append(_play(M, "split", "attacker", tm, p0, e1, whoA, scen_a, "Take NPCs", {"an NPC taken": n_npc > 0}, beside=besA, answer="undefended", **kw))
+            elif k < n: out.append(_play(M, "split", "attacker", tm, p0, e1, whoA, scen_a, "Survive and gain an advantage elsewhere on the map", {"nobody on the split dies": n_lost == 0}, any_of=elsewhere, beside=besA, answer="a player or more down", **kw))
+            elif k == 1 and n == 1 and md == 1: out.append(_play(M, "split", "attacker", tm, p0, e1, whoA, scen_a, "Hold the monk there; the main team's job is to kill", {"the split player survives": n_lost == 0}, beside=besA, answer="1 v 1, defended by a monk", **kw))
+            elif can_kill: out.append(_play(M, "split", "attacker", tm, p0, e1, whoA, scen_a, "Kill or take NPCs" if k > n else "Take NPCs or kills", {}, any_of=kill_or_npc, beside=besA,
+                                            answer="1 v 1, the defender not a monk" if k == 1 else "a player or more up" if k > n else "even", **kw))
+            else: out.append(_play(M, "split", "attacker", tm, p0, e1, whoA, scen_a + f"; {dmg_s} damage against {md} monks", "Hold the monks there and lose nobody; NPCs are a bonus (a kill is not expected of it)",
+                                   {"nobody on the split dies": n_lost == 0}, beside=besA, ruled=False, answer="held by monks", **kw))
+            if not (full or collapse) and n and k >= n and main_kills:
+                out.append(_play(M, "split", "attacker's main team", tm, p0, e1, [], scen_a + f"; their main fight has {main['theirs'][1]} monk{'s' if main['theirs'][1] != 1 else ''} against {main['own'][0]} damage",
+                                 "Kill at the main fight while their monks are on the split", {"more of theirs die away from the split than of ours": away_d > away_a}, beside=besA, ruled=k == 1 and n == 1, answer="monks drawn to the split", **kw))
+            # the defender's side
+            scen_d = f"{m.tag[foe]} against {base}: {n} ({', '.join(whoD)}) against {size}" if n else f"{m.tag[foe]} against {base}: nobody against {size}"
+            pit_ok = {"no pit NPC lost": n_pit == 0}
+            if full:
+                out.append(_play(M, "split", "defender", foe, p0, e1, whoD, scen_d + ": full collapse", "Kill the split or drive it out (the flags it costs are beside it)", {},
+                                 any_of={"a split player dies": n_lost > 0, "the split is gone within the visit": last and short}, beside=besD, call="full collapse", **kw))
+            elif collapse:
+                rows = [tl[u][foe]["main"] for u in range(p0, p1 + 1, S_) if tl[u][foe]["main"]]
+                out.append(_play(M, "split", "defender", foe, p0, e1, [role[b] for b in came], scen_d + f": collapse by {', '.join(role[b] for b in came)} from the main fight",
+                                 "Kill a split player before going back (what it cost at the main fight and in flags is beside it)", {"a split player dies during the collapse": n_lost > 0},
+                                 beside=dict(besD, visit_s=p1 - p0, main_net=sum(r[0] - r[1] for r in rows) * S_), call="collapse", **kw))
+            elif n == 0:
+                out.append(_play(M, "split", "defender", foe, p0, e1, [], scen_d, "Win elsewhere before the split costs more than it gains", {},
+                                 any_of={"more of theirs die away from the split than of ours": away_a > away_d, f"flag lead better by {FLAG_GAIN} or more": gd is not None and gd >= FLAG_GAIN}, beside=besD, ruled=False, call="no answer", **kw))
+            elif n < k:
+                out.append(_play(M, "split", "defender", foe, p0, e1, whoD, scen_d, "Delay: keep the split off the pit NPCs and stay alive", dict(pit_ok, **{"no defender dies": n_kill == 0}), beside=besD, call="one defender" if n == 1 else "a player down", **kw))
+            elif n == k:
+                out.append(_play(M, "split", "defender", foe, p0, e1, whoD, scen_d, "Hold it even: lose no pit NPC and no more players than the split does", dict(pit_ok, **{"no more defenders die than split players": n_kill <= n_lost}), beside=besD, call="mirror", **kw))
+            else:
+                out.append(_play(M, "split", "defender", foe, p0, e1, whoD, scen_d, "Kill it or drive it out with the extra player, and lose no pit NPC for it", pit_ok,
+                                 any_of={"a split player dies": n_lost > 0, "the split is gone within the visit": last and short}, beside=besD, call="add one", **kw))
+            if k == 1 and n == 1 and not collapse:                         # a lone defender part-running his flag (R-430)
+                b = Dp[0]
+                carried = sum(S_ for u in range(p0, p1 + 1, S_) if M.carrying(b, u))
                 if carried >= 6:
-                    gd = K.gain(foe, t_in, e1)
-                    out.append(_play(M, "split", "defender", foe, t_in, e1, [role[b]], f"{dbase}: the lone defender ({role[b]}) carries his flag while defending", "Gain a slight flag advantage while losing no NPC and not dying",
-                                     {f"flag lead better by {PART_RUN_GAIN} or more": gd is not None and gd >= PART_RUN_GAIN, "no NPC lost": n_npc == 0, "the defender does not die": n_kill == 0},
-                                     beside=dict(besD, carried_s=carried), call="part-run", size=1, defenders=1))
-        ah = x.get("ahead")                                               # the race back (gap 6): the team back first has the seconds ahead
-        if ah and abs(ah["lead_s"]) >= RACE_MIN_S:
-            first = tm if ah["lead_s"] > 0 else foe
-            kf, ka = (ah["kills_for"], ah["kills_against"]) if first == tm else (ah["kills_against"], ah["kills_for"])
-            out.append(_play(M, "split", "race back", first, min(ah["split_back"], ah["defenders_back"]), max(ah["split_back"], ah["defenders_back"]) + 10, [],
-                             f"The split ends: {M.m.tag[first]}'s players are back at the main fight {abs(ah['lead_s'])} s before {M.m.tag[3 - first]}'s", "Use the seconds ahead for a kill at the main fight",
-                             {"more of theirs die than of ours in those seconds": kf > ka}, beside={"lead_s": abs(ah["lead_s"]), "kills": [kf, ka]}, call="race back"))
+                    out.append(_play(M, "split", "defender", foe, p0, e1, [role[b]], scen_d + f": the lone defender carries his flag for {carried} s", "Gain a slight flag advantage while losing no pit NPC and not dying",
+                                     dict(pit_ok, **{f"flag lead better by {PART_RUN_GAIN} or more": gd is not None and gd >= PART_RUN_GAIN, "the defender does not die": n_kill == 0}), beside=dict(besD, carried_s=carried), call="part-run", **kw))
+            prevD = set(Dp)
     return out
 
 
@@ -328,8 +400,17 @@ def numbers_plays(M, K, trig, recs, pinned_at):
         if src == "wipe" or (src == "kills" and side == "up" and x["scenario"]["parts"].get("step", 0) <= -2 and x["scenario"]["parts"]["short_because"].get("kills", 0) >= 3):
             if side != "up": continue                                     # gap 4: after a wipe, or kills at their base
             res = min(st.next_res(t) + 5, T)
-            out.append(_play(M, "numbers", "after a wipe", tm, t, res, [], scen, "Take pit NPCs before their base res", {"one of their pit NPCs dies before the res": K.npcs(foe, t, res, pit=True) > 0},
-                             beside=dict(bes(res), res_in=x["state"]["res_in"]), **kw))
+            c = M.centre([a for a in M.main_team(tm, t - t % SPLIT_STEP) if M.AL[a][t]], t)
+            walk = M.hall.walk(c, M.hall.lord[st.side.get(foe)]) if c else None
+            need = (walk / RUN_SPEED if walk else 0) + AFTER_WIPE_MIN_S        # the walk to their pit, and time to kill something there (R-445: "they can't really take NPCs from where they were in 12 s")
+            if x["state"]["res_in"] < need:
+                B = st.next_res(t)
+                out.append(_play(M, "numbers", "after a wipe", tm, t, min(B + 30, T), [], scen + f"; their base res is {x['state']['res_in']} s away and their pit about {round(need - AFTER_WIPE_MIN_S)} s",
+                                 "Too late for NPCs: be out, or set for the fight, when they res", {"nobody of ours dies in the 30 s after the res": K.died(tm, B, B + 30) == 0},
+                                 beside=dict(bes(min(B + 30, T)), res_in=x["state"]["res_in"], pit_walk_s=round(need - AFTER_WIPE_MIN_S)), call2="too late for NPCs", **kw))
+            else:
+                out.append(_play(M, "numbers", "after a wipe", tm, t, res, [], scen, "Take pit NPCs before their base res", {"one of their pit NPCs dies before the res": K.npcs(foe, t, res, pit=True) > 0},
+                                 beside=dict(bes(res), res_in=x["state"]["res_in"], pit_walk_s=round(need - AFTER_WIPE_MIN_S)), call2="time for NPCs", **kw))
         elif src == "split elsewhere":                                    # gap 7: judge each group by its job
             if side == "up": out.append(_play(M, "numbers", "strong side", tm, t, end, [], scen, "Kill with the numbers while their players are away", {"more of theirs die than of ours": dB(end) > dA(end)}, beside=bes(end), **kw))
             else: out.append(_play(M, "numbers", "weak side", tm, t, end, [], scen, "No deaths, keep them busy, do not chase", {"nobody of ours dies": dA(end) == 0}, beside=bes(end), **kw))
@@ -431,28 +512,32 @@ def lord_plays(M, K):
         if t1 < LORD_PUSH_FROM or t0 < LORD_PUSH_FROM - 30 or t1 - t0 < 6 or M.hall is None: continue
         t0 = max(t0, 0); fs = st.side.get(foe)
         lp = M.hall.lord[fs]
-        att, mk, dfn, dmk = [], [], [], []
-        for u in range(t0 - t0 % 2, min(t1, T) + 1, SPLIT_STEP):
-            A = [a for a in st.players[tm] if M.AL[a][u] and d(M.P[a][u], lp) <= PIT_R]
-            Dn = [b for b in st.players[foe] if M.AL[b][u] and M.place_at(b, u)[1] == fs and M.place_at(b, u)[0] in ("pit", "base")]
-            att.append(len(A)); mk.append(M._mk(A)); dfn.append(len(Dn)); dmk.append(M._mk(Dn))
-        med = lambda xs: sorted(xs)[len(xs) // 2] if xs else 0
-        n, monks = med(att), med(mk)
+        att, dfn = [], []                                # who is in their base: on their ground (not out in the field) within LORD_BASE_R of the Lord; the defenders in their own base or pit (R-446: he counts the players in the base, not only those next to the Lord)
+        for u in range(max(t0 - 6, 0) // SPLIT_STEP * SPLIT_STEP, min(t1, T) + 1, SPLIT_STEP):
+            att.append(frozenset(a for a in st.players[tm] if M.AL[a][u] and M.place_at(a, u)[1] == fs and M.place_at(a, u)[0] != "field" and d(M.P[a][u], lp) <= LORD_BASE_R))
+            dfn.append(frozenset(b for b in st.players[foe] if M.AL[b][u] and M.place_at(b, u)[1] == fs and M.place_at(b, u)[0] in ("pit", "base")))
+        def held(sets):                                  # the most that were there together for 8 s or more, who they were, and how many at the end
+            n = max((c for c in range(8, 0, -1) if sum(1 for g in sets if len(g) >= c) >= 4), default=max((len(g) for g in sets), default=0))
+            who = collections.Counter(a for g in sets if len(g) >= n for a in g)
+            return n, [a for a, _ in who.most_common(n)], len(sets[-1]) if sets else 0
+        (n, ids_a, n_end), (nd, ids_d, nd_end) = held(att), held(dfn)
+        monks, dmonks = M._mk(ids_a), M._mk(ids_d)
         pit = sum(1 for a, v in st.geo.npcs.items() if v["team"] == foe and v.get("pit") and v["kind"] != "guild_lord" and st.npc_dead.get(a, 1e9) > t0)
         rel = "more attackers than pit NPCs" if n > pit else "as many attackers as pit NPCs" if n == pit else "fewer attackers than pit NPCs"
         ids = set(r["ids"])
         on_lord = sum(1 for u, a, _ in M.lord_hits.get(foe, ()) if t0 <= u <= t1)
-        on_players = sum(1 for u in range(t0, min(t1, T) + 1) for a, b in M.hits.get(u, ()) if a in st.players[tm] and d(M.P[a][u], lp) <= 2 * PIT_R)
+        on_players = sum(1 for u in range(t0, min(t1, T) + 1) for a, b in M.hits.get(u, ()) if a in st.players[tm] and d(M.P[a][u], lp) <= LORD_BASE_R)
         aim = "Lord damage" if on_lord >= on_players else "killing the defenders"
         dmg = round(sum(v for u, _, v in M.lord_hits.get(foe, ()) if t0 <= u <= t1))
         own = round(sum(v for u, _, v in M.lord_hits.get(tm, ()) if t0 <= u <= t1))
-        bes = {"attackers": n, "pit_npcs": pit, "monks_with_the_push": monks, "aim": aim, "lord_damage": dmg, "own_lord_damage_meanwhile": own, "defenders": med(dfn), "defender_monks": med(dmk),
+        bes = {"attackers": n, "attackers_at_the_end": n_end, "pit_npcs": pit, "monks_with_the_push": monks, "aim": aim, "lord_damage": dmg, "own_lord_damage_meanwhile": own, "defenders": nd, "defenders_at_the_end": nd_end, "defender_monks": dmonks,
                "deaths": [K.died(tm, t0, t1 + 5), K.died(foe, t0, t1 + 5)], "match_decided_by": how, "match_lord_damage_gvg_report": [taken.get(foe), taken.get(tm)],
                "lord_killed_in_it": dead[foe] is not None and t0 <= dead[foe] <= t1 + 5}
-        out.append(_play(M, "lord", "attacker", tm, t0, t1, r["roles"], f"{M.m.tag[tm]} pushes {M.m.tag[foe]}'s Guild Lord with {n} ({monks} monk{'s' if monks != 1 else ''}) against {pit} pit NPCs: {rel}; playing for {aim}",
+        then = lambda a_, b_: "" if a_ == b_ else f", {b_} by the end"
+        out.append(_play(M, "lord", "attacker", tm, t0, t1, [m.roles[a] for a in ids_a], f"{M.m.tag[tm]} pushes {M.m.tag[foe]}'s Guild Lord with {n} in the base ({monks} monk{'s' if monks != 1 else ''}{then(n, n_end)}) against {pit} pit NPCs: {rel}; playing for {aim}",
                          "Most Lord damage, or the kill, while keeping the own Lord up (the result is the match)", {"the match is won": won == tm}, beside=bes, relation=rel, monks=monks, aim=aim, attackers=n, pit=pit))
-        out.append(_play(M, "lord", "defender", foe, t0, t1, [], f"{M.m.tag[foe]} defends its Guild Lord with {med(dfn)} ({med(dmk)} monk{'s' if med(dmk) != 1 else ''}) against {n}",
-                         "Do not die, keep Lord damage down, keep the Lord alive (the result is the match)", {"the match is won": won == foe}, beside=bes, defenders=med(dfn), monks=med(dmk)))
+        out.append(_play(M, "lord", "defender", foe, t0, t1, [m.roles[b] for b in ids_d], f"{M.m.tag[foe]} defends its Guild Lord with {nd} ({dmonks} monk{'s' if dmonks != 1 else ''}{then(nd, nd_end)}) against {n}{then(n, n_end)}",
+                         "Do not die, keep Lord damage down, keep the Lord alive (the result is the match)", {"the match is won": won == foe}, beside=bes, defenders=nd, monks=dmonks))
     return out
 
 
@@ -488,7 +573,7 @@ def bench_rows(M):
     """One row a flag that was run, for the usual arrival time by hall and side (bench): how it ended, its form, the
     side, whether it was pushed, and the seconds from the pickup to arriving at the stand."""
     pushed = [(3 - p["tm"], p["flagger"], p["t"], p["t1"]) for p in M.flag_pushes()]
-    return [{"how": f["how"], "form": f["form"], "side": M.st.side.get(f["tm"]), "arrive": (f["e"] - f["held_s"]) - f["pick"],
+    return [{"how": f["how"], "form": f["form"], "side": M.st.side.get(f["tm"]), "arrive": (f["e"] - f["held_s"]) - f["pick"], "soh": f["soh"],
              "pushed": any(tm == f["tm"] and a in f["ids"] and f["s0"] - 60 <= t <= f["e"] + 2 for tm, a, t, _ in pushed)} for f in _flag_rows(M)]
 
 
@@ -509,10 +594,13 @@ def summary(path):
         if p["play"] == "numbers": return f"{p['side']} ({p['source']}): {p['job']}"
         if p["play"] == "lord": return f"{p['side']}: {p.get('relation', '')}" + (f", {min(p['monks'], 3)} monk(s)" if p["side"] == "attacker" else "")
         if p["play"] == "push flagger": return "by its main team" if p["main"] else "by one player" if p["pushers"] == 1 else "by two or more"
+        if p["play"] == "numbers" and p["side"] == "after a wipe": return "after a wipe: " + p.get("call2", "")
         if p["play"] == "flagger pushed": return "sent help" if p["helped"] else "flagged through it"
         return p.get("call") or p["job"]
     rows = collections.defaultdict(list)
-    for p in P: rows[(p["play"], key(p), p["job"], p["ruled"])].append(p["met"])
+    print("set aside in the counts below: plays on a flag carried by a player with Shadow of Haste:", sum(1 for p in P if p.get("soh")))
+    for p in P:
+        if not p.get("soh"): rows[(p["play"], key(p), p["job"], p["ruled"])].append(p["met"])
     last = None
     for (play, k, job, ruled), v in sorted(rows.items(), key=lambda kv: (kv[0][0], -len(kv[1]))):
         if play != last: print(f"\n{play}"); last = play
@@ -523,7 +611,7 @@ def bench(path):
     D = json.load(open(path)); base = collections.defaultdict(list)
     for rid, v in D["flag_cost"].items():
         for f in (v or {}).get("flags", []):
-            if f["how"] == "captured" and not f["pushed"] and f["form"] == "single run": base[f"{D['matches'][rid]['map']}|{f['side']}"].append(f["arrive"])
+            if f["how"] == "captured" and not f["pushed"] and not f.get("soh") and f["form"] == "single run": base[f"{D['matches'][rid]['map']}|{f['side']}"].append(f["arrive"])
     old = json.load(open(os.path.join(REPO, "data", "benchmarks", "flag_arrival.json")))
     old.update(usual={k: statistics.median(v) for k, v in sorted(base.items()) if len(v) >= 5}, flags={k: len(v) for k, v in sorted(base.items())})
     json.dump(old, open(os.path.join(REPO, "data", "benchmarks", "flag_arrival.json"), "w"), indent=1)

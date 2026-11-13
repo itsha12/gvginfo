@@ -578,6 +578,10 @@ class Moments:
                 for g in groups:
                     if kind == "push" and len({a for _, _, a in g["iv"]}) < 3: continue
                     out.append(self._attempt(tm, foe, kind, g))
+        for x in out:                                         # left behind: the last one or two of a main team push that was routed or killed are not a split (Denning, 옷옷옷옷 v Men 5:10: "he just got left behind as the rest of his team wiped")
+            if x["kind"] == "split" and x["max"] <= 2 and any(y["kind"] == "push" and y["tm"] == x["tm"] and y["end"] in ("routed", "killed") and y["t1"] - 4 <= x["t_in"] <= y["t1"] + SPLIT_GAP_S
+                                                               and set(x["ids"]) <= set(y["ids"]) for y in out):
+                x["solo"] = "other"; x["left_behind"] = True
         self._att = sorted(out, key=lambda x: (x["t_in"], x["tm"]))
         return self._att
 
@@ -1674,7 +1678,7 @@ class Moments:
                 res = [b for b in st.players[foe] if not self.AL[b][max(B - 6, 0)] and any(self.AL[b][u] for u in range(B - 3, min(B + 4, T) + 1))]
                 alive = [a for a in x["ids"] if self.AL[a][min(B, T)]]
                 if not res or len(alive) * 2 < len(x["ids"]) or any(self._deep(a, min(B + 2, T)) in inb for a in alive): continue
-                out.append({"t": last, "tm": tm, "team": x["team"], "kind": "left before res", "who": [y["role"] for y in x["members"]], "s": B - last, "coming_back": len(res), "what": x["kind"], "foe": m.tag[foe]})
+                out.append({"t": last, "tm": tm, "team": x["team"], "kind": "left before res", "who": [y["role"] for y in x["members"] if y["from"] <= last <= y["to"] + SPLIT_STEP], "s": B - last, "coming_back": len(res), "what": x["kind"], "foe": m.tag[foe]})      # who was in it then, not everyone the attempt ever had (Denning, NwAy v SKT 23:50: three, not four)
         if self.hall is not None:                            # held back (R-400, R-407): in hand around the stand while the enemy holds it, HOLD_BACK_S without capping
             for L in self.flag_lives():
                 tm = L["team"]; end = min(int(L["end"] if L["end"] is not None else T), T)
