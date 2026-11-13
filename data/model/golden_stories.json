@@ -1,7 +1,7 @@
 {
 "about": "The engine's story of each golden moment's game (tools/golden/golden.py stories; story.py on the bundle-4 branch). Shown on Model > Golden moments for Denning to mark (R-354).",
 "generated": "2026-11-12",
-"draft": 7,
+"draft": 8,
 "stories": {
 "25a90723-1-1-425": [
 [
@@ -777,6 +777,10 @@
 [
 230,
 "Apes's Warrior 2 joins through mid and by the front door at the flag stand: Book 7 v 7 Apes becomes 7 v 8"
+],
+[
+230,
+"Book's Warrior pushes Apes's flagger (Warrior 2, carrying the flag) at the greater stand area for 0:04; he reaches his team with them on him"
 ],
 [
 240,
@@ -4055,6 +4059,10 @@
 "Book's Hammer hands the flag to Mes/A at Book's front footies"
 ],
 [
+606,
+"One's AoB Derv, Ranger push Book's flagger (Mes/A, carrying the flag) at Book's front footies for 0:04; he reaches his team with them on him"
+],
+[
 607,
 "Book takes One's archer"
 ],
@@ -4115,6 +4123,10 @@
 [
 26,
 "A fight at the greater stand area: RACK 1 v 1 chic (RACK: Stand Mes; chic: Mes/A)"
+],
+[
+28,
+"RACK's Stand Mes pushes chic's flagger (Mes/A, carrying the flag) at the field on RACK's side for 0:04; he reaches his team with them on him"
 ],
 [
 32,
@@ -5423,6 +5435,10 @@
 "hdm's Ranger joins through the pit at the flag stand: hdm 6 v 6 HC becomes 7 v 6"
 ],
 [
+776,
+"HC's AoB Derv pushes hdm's flagger (Ranger, carrying the flag) at the flag stand for 0:04; he reaches his team with them on him"
+],
+[
 777,
 "HC's Ranger caps (runner Ranger away 27 s)"
 ],
@@ -5573,6 +5589,10 @@
 [
 892,
 "HC gives ground in hdm's base as hdm's Mes/A arrives"
+],
+[
+894,
+"HC's main team (Hammer, Stand Mes, 7 Monk) pushes hdm's flagger (Stand Mes, carrying the flag) at the flag stand for 0:04; hdm's 7 Monk comes to help; he reaches his team with them on him"
 ],
 [
 895,
@@ -8053,6 +8073,10 @@
 [
 45,
 "STATE. Stand: Men, boost in 105 s; Men a flag up. hdm: main team 8 at the flag stand against 7, Mes/A holding the flag (Hammer A, Paragon, Hammer B, Mes/A, Stand Mes, Prot, 7 Monk, 8 Monk). Men: main team 7 at the flag stand against 8 (Hammer A, Ranger, Monk 4 (WoC), Mesmer, Prot, 7 Monk, 8 Monk); Hammer B running the flag at the greater stand area."
+],
+[
+46,
+"Men's Ranger pushes hdm's flagger (Mes/A, carrying the flag) at hdm's flag spawn for 0:04; hdm's 8 Monk comes to help; he reaches his team with them on him"
 ],
 [
 50,

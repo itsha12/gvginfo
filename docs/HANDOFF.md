@@ -8,7 +8,7 @@ model's structure: `knowledge/model.md` (generated).
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/SPEC.md and docs/HANDOFF.md, check
 > out `bundle-4` in a second worktree, then set out the items under "Open for Denning" and carry on with "Next".
 
-## State (2026-11-12: redesign step 2 on branch `bundle-4`, last engine commit 138f2e7; batch 17, 506 matches trained)
+## State (2026-11-12: redesign step 2 on branch `bundle-4`, last engine commit 7837d95; batch 17, 506 matches trained)
 - Main's engine is unchanged (SPEC.md). Bundle 4 is on `bundle-4` and lands in one piece, then one rebuild (R-322).
   606 replays stored (90 from 2 September on not yet trained on). No Train batch, Discovery or fetch run in progress.
 - On `bundle-4`: `hallmap.py` (zones, walked distance, reach, places in his words), `moments.py` (the records),
@@ -31,22 +31,22 @@ model's structure: `knowledge/model.md` (generated).
   on the stand was lost; the flag route read past the arrival at the stand; a team that left by the res read as
   caught. Captures 5,249 to 5,257; every other count of the reading moved by under 2%.
 - On main: `data/lineup/` (16 transcripts as paraphrased statements; the four in `held/` are spent, R-417),
-  Model > Golden moments (15 games; `golden_stories.json` draft 7), rulings to R-417.
+  Model > Golden moments (15 games; `golden_stories.json` draft 8), rulings to R-418.
 
 ## The line-up (R-368 to R-397), the measure of the reading stage
 - `lineup.py score --data <main>/data/lineup [--held] [--show]` with `LINEUP_CACHE` set (delete it after an engine
   change). Posture and timing statements that are not a true stand-off or a deliberate hold are set aside (R-414).
 - **The reading gate is passed (R-416).** His one review of the 33 held-out misses: 7 confirmed, 8 withdrawn, 18
   stand with his corrections. The engine as it stood at the review (5f43768) agrees with 171 of 188 things seen
-  (91%; the gate is 90%, R-380, R-383). After the fixes of R-417: held-out 185 of 188, building 422 of 426; comms
-  calls 62 of 80 and 109 of 157. The 185 is not a clean check: the fixes were made knowing those lines.
-- The three held-out misses left: BcS v hook 6:52 (he says not a push, BcS's four at the stand; the engine has three
-  there and the Dervish ahead), BcS v hook 8:21 (he has BcS's split running to hook's back door; the replay has it
-  1,200 out of its own back door and back by 8:40), RACK v chic 0:29 (the flagger pushed as he reaches his team).
-- Reading step 3 done: `golden_stories.json` draft 7; blind check rerun on the changed lines.
+  (91%; the gate is 90%, R-380, R-383). After the fixes of R-417 and his rulings of R-418 (two more withdrawn; a
+  push on a flagger from 4 s when he reaches his team with them on him): held-out 186 of 186, building 422 of 426;
+  comms calls 62 of 80 and 109 of 157. The 186 is not a clean check: the fixes were made knowing those lines.
+- Reading step 3 done: `golden_stories.json` draft 8; blind check rerun on the changed lines (none against a note).
+- All counts over 606 matches: `thresholds.py run` then `show`; pushes on a flagger 1,287 (2.1 a match), door
+  lines 1,607 (2.7 a match), captures 5,257, stand-offs 147 main and 60 split.
 
 ## Next (in order; the full build plan and both gates are in REDESIGN.md "Build plan from here" and "Tests")
-1. His rulings on the three items under "Open for Denning" that came out of the gate review.
+1. His answers to the three points under "Open for Denning" that came out of the gate review (none blocks step 3).
 2. No fresh held-out check is required by R-396 (the gate passed); two new timestamped games would give one.
 3. His approval of the story's form on golden game 1 only (R-395); rebuild the decision moments (triggers,
    scenarios, calls) on the records (R-351); the decision gate (R-394).
@@ -55,10 +55,9 @@ model's structure: `knowledge/model.md` (generated).
    rewritten, readability test, his list of R-398, merge, Train batch with `add_batch=no`).
 
 ## Open for Denning (set each out in the chat, R-329)
-- A runner pushed as the fight converges on him: RACK v chic 0:29 (on his own 4 s, the hit lands as he reaches
-  his team) and hdm v HC 2:50. Options: count a push of 4 s when a hit or skill lands; or leave it out. Time to cap.
-- BcS v hook 6:52 (withdraw as a push?) and 8:21 (does the tape show the split reaching hook's back door?).
-- WAY_OUT_GAP_S (10 s) and the 3 s that make a hand-off a drop are Claude's; 2.7 door lines a match: keep them?
+- Where a side's two drawn doors run together (within 300) the engine says "front door" (from his Isle of the
+  Dead words): right on every hall? WAY_OUT_GAP_S (10 s; three or more, half main team) and the 3 s that make a
+  hand-off a drop are Claude's: keep them? hdm v HC 2:56 (on his own 2 s) stays untold under R-418; time to cap.
 - Stage D: the consequence record sets flags given up beside numbers gained (R-412); 0.8 of a player to be measured.
 - From before: comms pass rate (R-394); game 1's story form (R-395); threat, hand-off to hold, 983a47db.
 

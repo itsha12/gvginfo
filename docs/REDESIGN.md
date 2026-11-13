@@ -152,7 +152,7 @@ a solo split or other uneven counts (27%). The rebuild on the records takes its 
    counts the stand (R-408); posture and timing statements outside those are set aside in the line-up (R-414).
 2. **Reading step 3: the check.** The golden stories are regenerated (draft 6), compared with the 13 blind notes, and
    the line-up rescored. Denning's one review of the held-out misses is done (R-416): the reading gate is passed
-   (171 of 188 things seen, 91%, on the engine as reviewed; 185 of 188 after the fixes of R-417, draft 7 of the stories).
+   (171 of 188 things seen, 91%, on the engine as reviewed; 186 of 186 after the fixes of R-417 and the rulings of R-418, draft 8 of the stories).
 3. **Denning approves the story's form** on golden game 1 (R-395).
 4. **Stage B rebuilt on the records**: triggers, scenarios and calls for families 1 to 3.
 5. **Stage C: the decision gate** (R-394).

@@ -213,7 +213,8 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   `common.py` are confirmed (R-404, R-406). What the flag readings are for is R-412. To see what a looser or tighter threshold would do,
   use `tools/golden/thresholds.py sweep` (it sets `GVG_TRY`; never set that in a training run). From the gate review
   (R-416, R-417): `way_out()` (a team going out of its base by a door), and in `attempts()` who set out together,
-  where a split fell back to, a main team that went home for a split, and swaps in the answer.
+  where a split fell back to, a main team that went home for a split, and swaps in the answer; a push on a flagger
+  counts from 4 s when he reaches his team with the pushers still on him (R-418).
   The line-up is the measure of the reading (R-368 to R-397): timestamped commentary and comms filed as paraphrased
   statements in `data/lineup/` (never transcripts), checked against the story by `tools/golden/lineup.py` on the
   branch. The four games in `data/lineup/held/` were the held-out check: Denning reviewed their misses
