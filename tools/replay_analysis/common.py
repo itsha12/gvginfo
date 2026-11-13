@@ -308,6 +308,7 @@ JOIN_LOOK_S = 16          # a join or a leave is read over this long before or a
 JOIN_MOVE = 800           # the player moved at least this far in that time ...
 JOIN_LEAD = 1.3           # ... and this many times further than the players he joined or left: otherwise the fight came to him
 JOIN_ENGAGE = 1000        # a join or a leave is at a fight only where the two sides stand this close (an aggro bubble) or trade damage within JOIN_ENGAGE_S: a team regrouping within linking range of one enemy is not joining a fight (golden game 1, 7:50; Claude's)
+MAIN_BIG = 5              # an uneven divide: a part this big, two more than any other and not round the back, is the main team (R-421; Claude's)
 JOIN_ENGAGE_S = 30        # ... damage or a skill between the two sides this close in time, either side (Claude's)
 SWAP_S = 40               # a leave and a join by one team at the same fight within this long is a swap
 SWAP_STAY_S = 30          # ... when the one going out had been in it this long, the one coming in stays this long, and the first does not come straight back

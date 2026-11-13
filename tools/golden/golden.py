@@ -180,8 +180,10 @@ def gate(recs_cache={}):
     K = json.load(open(os.path.join(REPO, "data", "model", "golden_key.json")))
     G = {g["id"]: g for g in json.load(open(PATH))["moments"]}
     tally = collections.defaultdict(lambda: [0, 0]); rows = []
+    accepted = []
     for gid, k in K["moments"].items():
         g = G[gid]
+        if k.get("accepted_miss"): accepted.append((gid, k["accepted_miss"])); continue
         if g["match"] not in recs_cache: recs_cache[g["match"]] = MO.match_records(g["match"]) or []
         recs = recs_cache[g["match"]]
         near = [x for x in recs if x["family"] == k["family"] and x["team"] == k["team"] and abs(x["t"] - k["t"]) <= NEAR_S]
@@ -207,7 +209,7 @@ def gate(recs_cache={}):
                 ok = bool(k["forced"]) == bool(x["forced"]); tally["forced"][0] += ok; tally["forced"][1] += 1
                 if not ok: miss.append(f"forced: his notes {k['forced']}, engine {x['forced']}")
         rows.append((gid, k["family"], clock(k["t"]), k["team"], x and clock(x["t"]), x and x["scenario"]["label"], x and x["call"]["label"], miss))
-    print(f"Decision gate, part one: {len(rows)} golden moments read from his notes ({', '.join(K.get('not_scored', {}))} not scored)")
+    print(f"Decision gate, part one: {len(rows)} golden moments read from his notes ({', '.join(K.get('not_scored', {}))} not scored; misses he accepted, not counted: {', '.join(a for a, _ in accepted) or 'none'})")
     for part, (a, b) in tally.items():
         need = 0.9 if part == "moment found" else 0.8
         print(f"  {part:30} {a}/{b}  {'pass' if b and a / b >= need else 'FAIL'} (needs {int(need * 100)}%)")
@@ -284,7 +286,7 @@ def stories():
         out[g["id"]] = [[int(t), s] for t, s in ST.story(M, 0, g["t"] + 60)]
     json.dump({"about": "The engine's story of each golden moment's game (tools/golden/golden.py stories; story.py on the bundle-4 "
                         "branch). Shown on Model > Golden moments for Denning to mark (R-354).",
-               "generated": datetime.date.today().isoformat(), "draft": 9, "stories": out},
+               "generated": datetime.date.today().isoformat(), "draft": 10, "stories": out},
               open(os.path.join(REPO, "data", "model", "golden_stories.json"), "w"), indent=0)
     print(len(out), "stories;", sum(len(v) for v in out.values()), "lines")
 

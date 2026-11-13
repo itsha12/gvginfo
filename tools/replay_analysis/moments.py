@@ -36,7 +36,7 @@ import collections, json, math, statistics, sys
 from common import (READ_FROM, READ_TO, AREA_SHARE, PURPOSE_S, LEAVE_MIN_S, HOME_WAIT_S, SPAWN_R, GROUP_LEAVE_S, MEET_R,
                     NUMBERS_MIN_S, MERGE_S, BOOST_WARN_S, FLAGGER_R, SPLIT_FAR, BOOST_EVERY, SERIOUS_CARRY_S, FIGHT_LINK, GROUND_MOVE, GROUND_S, GROUND_BACK, GROUND_JUMP, GROUND_SPLIT_MOVE, PIT_S, SIDE_FIGHT_MAX, SIDE_FIGHT_S, UNDEFENDED_S,
                     RETURN_R, FOOT_ENGAGED_S, SPLIT_STEP, SPLIT_MIN_S, SPLIT_GAP_S, FORCED_OUT_S, AHEAD_LOOK_S, CAUGHT_S, NPC_NEAR,
-                    JOIN_S, RES_EVERY, flux_at, JOIN_LOOK_S, JOIN_MOVE, JOIN_LEAD, JOIN_ENGAGE, JOIN_ENGAGE_S, SWAP_S, SWAP_STAY_S, SPLIT_FIGHT_GAP_S, SPLIT_FIGHT_MIN,
+                    JOIN_S, RES_EVERY, flux_at, JOIN_LOOK_S, JOIN_MOVE, JOIN_LEAD, JOIN_ENGAGE, JOIN_ENGAGE_S, MAIN_BIG, SWAP_S, SWAP_STAY_S, SPLIT_FIGHT_GAP_S, SPLIT_FIGHT_MIN,
                     PUSHFLAG_R, PUSHFLAG_S, PUSHFLAG_SHORT_S, PUSHFLAG_LATE_S, PUSHFLAG_GAP_S, PUSHFLAG_MATES, PUSHFLAG_AHEAD_S, ROUTE_ENDS, ROUTE_OFF, ROUTE_CLEAR, ROUTE_MIN_S, LEAD_S,
                     WAY_OUT_GAP_S, STANDOFF_S, STANDOFF_HITS, STANDOFF_MIN, STANDOFF_R, STANDOFF_SPLIT_MIN, STANDOFF_SPLIT_S, STANDOFF_STILL, STANDOFF_NEAR, LEAD_HALF, LEAD_ONE, LEAD_ONE_HALF, LEAD_TWO, HOLD_BACK_S, LEFT_AT_SPAWN_S, RUN_SPEED, PICKUP_DELAY_S, HOLD_S, BOOST_LATE_S, HELP_IN_S, HELP_BACK_S, LEAVE_RES_S, MONK_S, MONK_MIN, LORD_GAP_S)
 from state import d
@@ -487,6 +487,8 @@ class Moments:
                     vote = lambda g: sum((self.lane(a, u) == "front") - (self.lane(a, u) == "back") for a in g)
                     fr = [g for g in cand if vote(g) > 0]
                     if len(fr) == 1 and len(cand) > 1 and all(vote(g) < 0 for g in cand if g is not fr[0]): prev = frozenset(fr[0])
+                    big = [g for g in cand if len(g) >= MAIN_BIG and all(len(g) >= len(h) + 2 for h in gs if h is not g) and vote(g) >= 0]
+                    if big: prev = frozenset(big[0])          # an uneven divide: the part of five or more, two bigger than any other and not round the back, is the main team (R-421: NwAy v SKT 14:50, SKT's five pushing NwAy's front door; R-335 and R-355 keep the even 4 v 4)
                 out[u] = prev
             self._mt[tm] = out; self._lost[tm] = lost
         return self._mt[tm][t - t % SPLIT_STEP]
@@ -1843,17 +1845,48 @@ class Moments:
                 for q in x["members"]:                      # a player joining the split later is a moment of its own
                     if q["from"] > x["t0"] + JOIN_S and q["from"] < x["t1"]:
                         out.append({"family": 2, "tm": tm, "t": q["from"], "triggers": ["split grows"], "refs": [x]})
+                for t_, kind_ in self._split_shifts(x, tm):     # R-421: a split that changes door, or divides, is a new moment
+                    out.append({"family": 2, "tm": tm, "t": t_, "triggers": [kind_], "refs": [x]})
+            for r in self.standoffs():                      # two split groups standing off (R-415): a threat the defenders answer (R-421: NwAy v SKT 14:50)
+                if r["kind"] == "split": out.append({"family": 2, "tm": tm, "t": r["t"], "triggers": ["split stand-off"], "refs": [r]})
         for e in self._numbers():
             for tm in st.teams:
                 out.append({"family": 3, "tm": tm, "t": e["start"], "triggers": ["up" if tm == e["adv"] else "down"], "refs": [e]})
         seen, keep = set(), []
         for x in sorted(out, key=lambda x: (x["t"], x["family"], x["tm"])):
             if x["family"] == 2:                            # one moment for one split at one second
-                k = (x["tm"], x["t"], x["refs"][0]["t0"])
+                k = (x["tm"], x["t"], x["refs"][0].get("t0", -1))
                 if k in seen: continue
                 seen.add(k)
             if 0 < x["t"] < self.T - READ_TO: keep.append(x)
         return keep
+
+    def _split_shifts(self, x, tm):
+        """The seconds a split on tm's ground changes door (most of it now at the other door, JOIN_S or longer) or
+        divides (players at both doors, JOIN_S or longer, after being at one), each with its kind (R-421)."""
+        own, out = self.st.side.get(tm), []
+        def door(k, sd):                                 # which part of the map a split player is in: one of the defenders' doors, or out of their base (a player leaving the split through mid, golden Men v hdm 9:36); in their base or pit he is with the split
+            if sd == own and k in ("front door", "front footies"): return "front"
+            if sd == own and k in ("back door", "back footies"): return "back"
+            if sd == own and k in ("base", "pit"): return None
+            return "out"
+        cur, both, pend = None, False, None
+        for t in range(x["t0"] - x["t0"] % SPLIT_STEP, min(x["t1"], self.T) + 1, SPLIT_STEP):
+            ds = collections.Counter()
+            for a, q in zip(x["ids"], x["members"]):
+                if q["from"] <= t <= q["to"] and self.AL[a][t]:
+                    k, sd = self.place_at(a, t)
+                    if door(k, sd): ds[door(k, sd)] += 1
+            if ds and set(ds) == {"out"}: continue                  # all out of their base: the split is between visits, not moving
+            now = ("both" if len(ds) >= 2 else next(iter(ds))) if ds else None
+            if now is None: continue
+            if cur is None: cur = now if now != "both" else None; continue
+            if now != cur and (pend is None or pend[1] != now): pend = (t, now)
+            elif now == cur: pend = None
+            if pend and t - pend[0] >= JOIN_S:
+                out.append((pend[0], "split divides" if pend[1] == "both" else "split changes door"))
+                cur, pend = pend[1], None
+        return out
 
     def _numbers(self):
         """Numbers differences in the fight a main team stands in (R-351: every fight, not only where the mains meet):
@@ -1904,6 +1937,10 @@ class Moments:
             kind = next(k for k in ("enemy_run", "boost", "own_flag") if k in x["triggers"])
             return {"key": f"{kind}|{s['stand']}", "label": f"{TRIGGER_WORDS[kind].capitalize()}; {stand}",
                     "parts": {"trigger": kind, "stand": s["stand"], "lead": s.get("flag_lead")}}
+        if fam == 2 and "split stand-off" in x["triggers"]:
+            r = x["refs"][0]; n = len(r["who"][foe])
+            return {"key": f"{min(n, 4)}|home", "label": f"An enemy group of {n} stands off with {len(r['who'][tm])} of ours ({r['place']})",
+                    "parts": {"size": n, "home": len(r["who"][tm]), "split_has_monk": any("Monk" in w for w in r["who"][foe]), "split": r["who"][foe], "way": None, "grows": False}}
         if fam == 2:
             g = x["refs"][0]
             ids = [a for a, q in zip(g["ids"], g["members"]) if q["from"] <= t + SPLIT_STEP]
@@ -1913,8 +1950,9 @@ class Moments:
             healer = any(self.m.A[a].get("p") == "Monk" for a in ids)
             hk = "home" if home else "empty"
             grow = "split grows" in x["triggers"]
+            head = {"split grows": f"The enemy split grows to {n}", "split changes door": f"The enemy split ({n}) changes door", "split divides": f"The enemy split ({n}) divides between the doors"}.get(x["triggers"][0], f"{size.capitalize()} sets out")
             return {"key": f"{min(n, 4)}|{hk}",
-                    "label": (f"The enemy split grows to {n}" if grow else f"{size.capitalize()} sets out") + "; " + ({"home": f"{len(home)} at home", "empty": "nobody is home"}[hk]),
+                    "label": head + "; " + ({"home": f"{len(home)} at home", "empty": "nobody is home"}[hk]),
                     "parts": {"size": n, "home": len(home), "split_has_monk": healer, "split": [self.m.roles[a] for a in ids], "way": g.get("way"), "grows": grow}}
         e, side = x["refs"][0], x["triggers"][0]
         short = tm if side == "down" else foe
@@ -1974,6 +2012,12 @@ class Moments:
             if g: ps[collections.Counter(self.place_at(a, u) for a in g).most_common(1)[0][0]] += 1
         if not ps: return "nobody", None
         (k, sd), own = ps.most_common(1)[0][0], self.st.side.get(tm)
+        g0 = [a for a in self.main_team(tm, t) if self.AL[a][t] and a not in runners]      # where it stood at the moment: a step along the ladder by then is a push up or a fall back, however short (golden Men v hdm 3:50: from the stand to hdm's front door)
+        if g0:
+            k0, sd0 = collections.Counter(self.place_at(a, t) for a in g0).most_common(1)[0][0]
+            l0, l1 = self._ladder(tm, k0, sd0), self._ladder(tm, k, sd)
+            if l1 <= -2 and l1 < l0: return "push up to their " + (k if k in ("front door", "back door") else "base"), None
+            if l1 >= 2 and l1 > l0: return {"pit": "retreat to the pit", "front footies": "fall to footmen", "back footies": "fall to footmen"}.get(k, "fall back into the base"), None
         if k in ("stand", "greater stand"): return "stay at the stand", None
         if sd == own: return {"pit": "retreat to the pit", "base": "fall back into the base", "front door": "fall back into the base", "back door": "fall back into the base",
                               "front footies": "fall to footmen", "back footies": "fall to footmen"}.get(k, "stay on their side"), None
@@ -1990,6 +2034,33 @@ class Moments:
             lab = ("no runner", "one runner", "two runners")[n]
             return {"key": f"{n}|{rest}", "label": f"{lab.capitalize()}; the rest {rest}", "runners": n, "rest": rest,
                     "shape": {"runners": sorted(role(a) for a in runners), "from": rec and {k: rec.get(k) for k in ("t", "t_in", "t0", "way", "to", "from") if k in rec}}}
+        if fam == 2 and x["triggers"][0] not in ("split", "split grows"):       # a later moment of a split (it grows, changes door, divides) or a stand-off: the defenders are the own players on their own ground near the enemy's split READ_FROM to READ_TO on
+            if "split stand-off" in x["triggers"]:
+                r = x["refs"][0]; ene, k = set(), len(r["who"][foe])
+                n, defs = len(r["who"][tm]), list(r["who"][tm])
+            else:
+                g = x["refs"][0]; own = self.st.side.get(tm)
+                ene = [a for a, q in zip(g["ids"], g["members"]) if q["from"] <= t + READ_TO and q["to"] >= t]
+                cnt, who = collections.Counter(), collections.defaultdict(int)
+                for u in range(min(t + READ_FROM, self.T), min(t + READ_TO, self.T) + 1, 2):
+                    near = [b for b in self.st.players[tm] if self.AL[b][u] and self.place_at(b, u)[1] == own and any(self.AL[e][u] and d(self.P[b][u], self.P[e][u]) < FIGHT_LINK for e in ene)]
+                    cnt[len(near)] += 1
+                    for b in near: who[b] += 1
+                n = max(cnt, key=lambda c: (cnt[c], c)) if cnt else 0
+                defs = [role(b) for b, _ in sorted(who.items(), key=lambda kv: -kv[1])[:n]]
+                u0 = min(t + READ_FROM, self.T)                 # the split still on their ground: a player who left it through mid is answered elsewhere (golden Men v hdm 9:36: the Prot mirrors the Air Ele, 3 v 3 at the back door)
+                k = max(1, sum(1 for e in ene if self.AL[e][u0] and self.place_at(e, u0)[1] == own and self.place_at(e, u0)[0] != "field"))
+            monks = sum(1 for r_ in defs if "Monk" in r_ and "WoC" not in r_)
+            alive = sum(self.AL[a][min(t + READ_TO, self.T)] for a in self.st.players[tm])
+            if n >= max(6, alive - 1): c = "full collapse"
+            elif n == 0: c = "no answer"
+            elif n == 2 and monks == 2: c = "two monks"
+            elif n == 1 and k > 1: c = "one defender"
+            elif n == k: c = "mirror"
+            elif n == k + 1: c = "add one"
+            elif n < k: c = "defend a player down"
+            else: c = f"send {n} against {k}"
+            return {"key": c, "label": c.capitalize(), "defenders": n, "split": k, "monks": monks, "shape": {"defenders": defs}}
         if fam == 2:
             g = x["refs"][0]; an = g["answer"]
             k = max(1, len([q for q in g["members"] if q["from"] <= t + READ_TO]))
@@ -2057,7 +2128,7 @@ class Moments:
             if x["family"] == 1:
                 r = next((r for r in x["refs"] if isinstance(r, dict)), None)
                 who = [m.roles[r["a"]]] if r else None
-            elif x["family"] == 2: who = [q["role"] for q in ref["members"]]
+            elif x["family"] == 2: who = list(ref["who"][3 - tm]) if "split stand-off" in x["triggers"] else [q["role"] for q in ref["members"]]
             out.append({"id": f"{m.o['meta']['id'][:8]}-{x['family']}-{tm}-{t}", "rid": m.o["meta"]["id"], "family": x["family"],
                         "t": t, "team": m.tag[tm], "tm": tm, "triggers": x["triggers"], "who": who,
                         "scenario": self.scenario(x, s), "call": self.call(x, s), "verbs": self.verbs(tm, t), "forced": bool(died), "died": died, "state": s})
