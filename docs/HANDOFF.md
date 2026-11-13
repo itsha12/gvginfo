@@ -12,7 +12,7 @@ model's structure: `knowledge/model.md` (generated).
 ## State (2026-11-13 night: redesign step 2 on branch `bundle-4`, stage D under way; batch 17, 506 matches trained)
 - Main's engine is unchanged (SPEC.md). Bundle 4 is on `bundle-4` and lands in one piece, then one rebuild (R-322).
   606 replays stored (90 from 2 September on not yet trained on). No Train batch, Discovery or fetch run in progress.
-  Last commits: main, this handoff (after 3ab74d0); `bundle-4` 2c70ac9. Both pushed; nothing uncommitted.
+  Last commits: main, this handoff (after 0c980cb); `bundle-4` 2c70ac9. Both pushed; nothing uncommitted.
 - On `bundle-4`: `hallmap.py`, `moments.py` (records, decision moments, shape, consequences), `jobs.py` (the plays
   and their jobs, R-423 to R-449), `story.py`, `tools/golden/golden.py`, `lineup.py`, `thresholds.py`, `review.py`.
 - Both gates pass (key v3): part one 12 of 12, part two 65 of 105 (61%). Line-up: building 422 of 426, held-out 186
@@ -59,14 +59,13 @@ model's structure: `knowledge/model.md` (generated).
    s1-15, a defender on the split under 12 s at game end.
 6. Remove the Golden moments page now, or with the Templates and Meta tabs at R-398 (as planned)?
 7. Approve, or not, the proposed CLAUDE.md rule that a reading which fails must fail loudly.
-- Still drafts: numbers from kills; a split with no answer; "held by monks"; the Lord push's aim; the thresholds
-  marked "Claude's draft" in `common.py`. Not built: shadow with a snare; the two-monk spike build after a wipe.
+- Drafts: numbers from kills; a split with no answer; "held by monks"; the Lord push's aim; thresholds marked
+  "Claude's draft". Not built: shadow with a snare; the two-monk spike build after a wipe. Maps: `tools/maps/`.
 
 ## Running it
 - Train batch: `gh api -X POST repos/itsha12/gvginfo/actions/workflows/train-batch.yml/dispatches -f ref=main
   -f 'inputs[pick]=45' -f 'inputs[add_batch]=yes'` (rebuild only: `inputs[add_batch]=no`; TQs `inputs[tqs]=yes|no|auto`;
   blind round `inputs[blind]=no|yes|auto`, default no while rounds are paused). Never queue two runs at once.
-- Maps: `tools/maps/build_maps.py`, `audit_labels.py [--routes]`; branch: `hallmap.py numbers|routes|reach`, `moments.py flags`.
 - Local engine: `git fetch --depth 1 origin +replays:refs/remotes/origin/replays`; `pip install
   --break-system-packages -r .github/workflows/train-requirements.txt`. The records, the story, the line-up, the gate
   and the thresholds need no cache (`cache.py sync pull`, `warm` only for the fitted models). `PYTHONDONTWRITEBYTECODE=1`.
