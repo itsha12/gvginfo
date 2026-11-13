@@ -58,7 +58,7 @@ def record(rid):
              "pushflag": [[r["t"], r["t1"], r["team"], r["roles"], r["role"]] for r in M.flag_pushes()]        # and a main team push walked onto a flag held in its team (R-401)
                          + [[x["onto_flag"]["t"], x["onto_flag"]["t"] + x["onto_flag"]["s"], x["team"], [q["role"] for q in x["members"]], x["onto_flag"]["role"]] for x in M.attempts() if x.get("onto_flag")],
              "posture": [[r["t"], r["t1"], tg, r["place"]] for r in M.standoffs() for tg in r["teams"]],        # a posture said of a team is checked against the stand-off it stands in (R-405)
-             "lord": [[r["t"], r["t1"], r["team"], r["roles"]] for r in M.on_lord() if r["hits"] >= 3]}
+             "lord": [[r["t"], r["t1"], r["team"], r["roles"], r["dmg"]] for r in M.on_lord() if r["hits"] >= 3]}
     out = {"id": rid, "map": m.o["meta"]["map"], "teams": [m.tag[1], m.tag[2]], "T": M.T,
            "roster": {m.tag[tm]: {str(m.A[a].get("slot")): m.roles[a] for a in m.PL if m.team(a) == tm} for tm in (1, 2)},
            "story": [[t, s] for t, s in story.story(M, 0, None)], "fights": fights, "spans": spans}
@@ -128,6 +128,8 @@ def check(r, rec):
             or find(rf"^{te}'s .*; {re.escape(one)} (went back for it|was waiting back).*takes the next flag")
         if not hit:
             hit = next(((t, s) for t, s in state(near) if re.search(rf"{re.escape(one)} (going back for the flag|running the flag|waiting back)", s)), None)
+        if not hit and who:                         # or he takes the flag over from a team mate and runs it from there
+            hit = find(rf"^{te}'s .* hands the flag to {re.escape(one)}") or find(rf"^{te}'s .* drops the flag[^;]*; {re.escape(one)} picks it up")
     elif kind == "wait":
         fam = rf"{te}'s .*wait"
         hit = find(rf"{R}\S* waits back") or find(rf"^{te}'s .*; {re.escape(one)} was waiting back") \
@@ -176,6 +178,9 @@ def check(r, rec):
         if not hit:
             top = [f"{x}v{y} {p}" for (x, y, p), c in seen.most_common(4)]
             return "differs", "engine's numbers in the window: " + "; ".join(top)
+    elif kind == "lord" and re.search(r"\bmore Lord damage\b", r["say"]):      # a remark on the Lord damage done so far, not on who is on a Lord now: the totals as recorded
+        tot = lambda tg: sum(x[4] for x in rec["spans"]["lord"] if x[2] == tg and x[0] <= hi)
+        return ("agrees" if tot(T) > tot(E) else "differs"), f"Guild Lord damage by {clock(hi)}: {T} {tot(T):,}, {E} {tot(E):,}"
     elif kind in ("pushflag", "posture", "lord"):      # records that run over a stretch: the team's stretch of that kind overlaps the window (who = the players pushing, or on the Lord)
         named = lambda roles: all(any(x == w or x.startswith(w + " ") for x in roles) for w in who)
         sp = [x for x in rec["spans"][kind] if x[2] == T and x[0] <= hi and x[1] >= lo]
@@ -218,11 +223,13 @@ def check(r, rec):
     elif kind == "npc": fam = rf"^{te} takes"; hit = find(rf"^{te} takes {ee}'s {arg}")
     elif kind == "fall":            # the story often tells a retreat from the pusher's side: both tellings count
         fam = rf"^{te}(?:'s split)? (falls back|gives ground|has fallen back)|^The fight moves|^{ee} pushes"
-        hit = find(rf"^{te}(?:'s split)? (falls back|gives ground|has fallen back)[^(]*{re.escape(arg)}")
+        hit = find(rf"^{te}(?:'s split)? (falls back|gives ground|has fallen back)[^(]*{re.escape(arg)}") or find(rf"^{te}'s split ends after [\d:]+: it falls back to [^;]*{re.escape(arg)}")      # a split that leaves for its own ground
         if not hit: hit = find(rf"^{ee} pushes {te} back[^(]*{re.escape(arg)}")
         if not hit and arg: hit = find(rf"^(?:{ee} pushes|The fight moves) [^(]*to {te}'s {re.escape(arg)}")
     elif kind == "push":
-        fam = rf"^{te}(?:'s main team|'s split)? (pushes|has pushed)"; hit = find(rf"^{te}(?:'s main team|'s split)? (?:pushes|has pushed)[^(]*{re.escape(arg)}")
+        fam = rf"^{te}(?:'s main team|'s split)? (pushes|has pushed|goes out)|^{te} splits"; hit = find(rf"^{te}(?:'s main team|'s split)? (?:pushes|has pushed)[^(]*{re.escape(arg)}")
+        if not hit and "door" in arg:               # a door: the team told going out by it, or its split told going by it (as for a route)
+            hit = find(rf"^{te}'s main team goes out by the {re.escape(arg)}") or find(rf"^{te} splits [^(]*by the {re.escape(arg)}")
     elif kind == "join":
         fam = rf"{te}'s [^;)]*joins?"; hit = find(rf"{te}'s [^;)]*{re.escape(one)}[^;)]* joins?[^;)]*{re.escape(arg)}")
         if not hit and len(who) > 1:               # several players named: the line must name at least half of them

@@ -102,40 +102,33 @@ class Hall:
             self._fwd[a].append(b); self._back[b].append(a)
         self._fields, self._snap = {}, {}
         self.routes = self._routes()
-        # doors: where each labelled door route leaves its base; footmen by the door they stand nearer (front or back footies)
+        # doors: where each labelled door route leaves its base for the last time (a drawn route can cross a cell that is not
+        # walkable or a gap between the Base and Pit areas: that is not the door); footmen by the door they stand nearer
         self.doors = {s: {"front": [], "back": []} for s in "AB"}
         base = {s: set().union(*[a["cells"] for a in self.areas if a["type"] in ("Base", "Pit") and a["side"] == s] or [set()]) for s in "AB"}
         for r in self.routes:
             k = {"Front door": "front", "Back door": "back"}.get(r["type"])
             if not k: continue
-            pt = r["pts"][-1]
-            for a, b in zip(r["pts"], r["pts"][1:]):
-                n = max(int(math.dist(a, b) // 50), 1)
-                out = next(((a[0] + (b[0] - a[0]) * i / n, a[1] + (b[1] - a[1]) * i / n) for i in range(n + 1)
-                            if cell((a[0] + (b[0] - a[0]) * i / n, a[1] + (b[1] - a[1]) * i / n)) not in base[r["side"]]), None)
-                if out: pt = out; break
-            self.doors[r["side"]][k].append(pt)
+            S = self._samples(r["pts"])
+            last = max((i for i, q in enumerate(S) if cell(q) in base[r["side"]]), default=None)
+            self.doors[r["side"]][k].append(r["pts"][-1] if last is None or last + 1 >= len(S) else S[last + 1])
         self.door_routes = {s: {"front": [], "back": []} for s in "AB"}
         from common import DOOR_OUT
         for r in self.routes:
             k = {"Front door": "front", "Back door": "back"}.get(r["type"])
             if not k: continue
-            keep, out_len = [r["pts"][0]], None
-            for u, v in zip(r["pts"], r["pts"][1:]):
-                n = max(int(math.dist(u, v) // 50), 1)
-                for i in range(1, n + 1):
-                    q = (u[0] + (v[0] - u[0]) * i / n, u[1] + (v[1] - u[1]) * i / n)
-                    if out_len is None and cell(q) not in base[r["side"]]: out_len = 0.0
-                    elif out_len is not None: out_len += math.dist(keep[-1], q)
-                    keep.append(q)
-                    if out_len is not None and out_len >= DOOR_OUT: break
-                if out_len is not None and out_len >= DOOR_OUT: break
+            S = self._samples(r["pts"])
+            last = max((i for i, q in enumerate(S) if cell(q) in base[r["side"]]), default=-1)
+            keep, out_len = S[:last + 2], 0.0
+            for q in S[last + 2:]:
+                out_len += math.dist(keep[-1], q); keep.append(q)
+                if out_len >= DOOR_OUT: break
             self.door_routes[r["side"]][k].append(keep[::4] + [keep[-1]])
         self.gates = [tuple(l["pts"][0]) for l in self.labels if l["kind"] == "point" and l["type"] in ("Gate", "Gate lock", "Gate lever")]
         self.footies = {s: {"front": [], "back": []} for s in "AB"}
         for s in "AB":
             for f in self.footmen[s]:
-                near = lambda k: min((math.dist(f, q) for q in self.doors[s][k]), default=1e9)
+                near = lambda k: min((_seg_dist(f, u, v) for pts in self.door_routes[s][k] for u, v in zip(pts, pts[1:])), default=1e9)      # the nearer drawn door, along its length (not only where it leaves the base)
                 self.footies[s]["front" if near("front") <= near("back") else "back"].append(f)
 
     def _stand(self, pts):
@@ -224,13 +217,22 @@ class Hall:
         c = self.snap(p); other = "B" if side == "A" else "A"
         return "backside" if self.to(self.lord[side]).get(c, 1e9) <= self.to(self.lord[other]).get(c, 1e9) else "push side"
 
+    @staticmethod
+    def _samples(pts):
+        """A drawn route as points every 50 or so along it, its first point included."""
+        S = [tuple(pts[0])]
+        for u, v in zip(pts, pts[1:]):
+            n = max(int(math.dist(u, v) // 50), 1)
+            S += [(u[0] + (v[0] - u[0]) * i / n, u[1] + (v[1] - u[1]) * i / n) for i in range(1, n + 1)]
+        return S
+
     def place(self, p, engaged=None):
         """A point in Denning's words (his golden notes): (kind, side). kind is pit, stand, front footies, back
         footies, greater stand, front door, back door, base or field; side is whose ground it is (None at the stand).
         Footies are named only where that side's footmen are engaged (R-307; `engaged` = {side: bool}, None = not
         known, then their reach alone decides). A door is the drawn door route, inside the base and out to where the
         greater stand area begins ("in front of their front door")."""
-        from common import DOOR_R, GREATER_STAND_WALK
+        from common import DOOR_R, DOOR_CLEAR, GREATER_STAND_WALK
         a = self.area_at(p, True)
         if a and a["type"] == "Pit": return "pit", a["side"]
         if a and a["type"] == "Flag stand area": return "stand", None
@@ -242,13 +244,16 @@ class Hall:
                     if any(math.dist(p, f) <= r for f in self.footies[s][k]): return k + " footies", s
         c = self.snap(p)
         if (c in self.greater) if self.greater else (self.to(self.stand).get(c, 1e9) <= GREATER_STAND_WALK): return "greater stand", None
-        best = None
+        best, near = None, {}
         for s in "AB":
             for k in ("front", "back"):
                 for pts in self.door_routes[s][k]:
                     dd = min(_seg_dist(p, u, v) for u, v in zip(pts, pts[1:]))
-                    if dd <= DOOR_R and (best is None or dd < best[0]): best = (dd, k + " door", s)
-        if best: return best[1], best[2]
+                    near[(s, k)] = min(dd, near.get((s, k), 1e9))
+                    if dd <= DOOR_R and (best is None or dd < best[0]): best = (dd, k + " door", s, k)
+        if best:      # where a side's two drawn doors still run together (less than DOOR_CLEAR between them) it is the front door, which the back door's route leaves from
+            other = near.get((best[2], "back" if best[3] == "front" else "front"), 1e9)
+            return (best[1] if other - best[0] >= DOOR_CLEAR else "front door"), best[2]
         if a and a["type"] == "Base": return "base", a["side"]
         return "field", ("A" if self.to(self.lord["A"]).get(c, 1e9) <= self.to(self.lord["B"]).get(c, 1e9) else "B")
 

@@ -79,12 +79,15 @@ class Match:
             elif typ == "flag_dropped": open_c.pop(a, None)
             elif typ == "flagstand_captured":
                 if not self.team(a) and holder:
+                    def gap(b):
+                        s = self.snap(b, t)
+                        return math.dist((s["x"], s["y"]), self._stand_guess()) if s else 1e9
                     cand = [b for b in open_c if self.team(b) == 3 - holder]
-                    if cand:
-                        def gap(b):
-                            s = self.snap(b, t)
-                            return math.dist((s["x"], s["y"]), self._stand_guess()) if s else 1e9
-                        a = min(cand, key=gap); ev = [t, typ, a] + list(ev[3:]); fixed.append(t)
+                    if cand: a = min(cand, key=gap); ev = [t, typ, a] + list(ev[3:]); fixed.append(t)
+                    else:      # no carry open: a player of that team whose flag was recorded dropped in the last 15 s, standing on the stand, capped it (the drop was the capture)
+                        i = next((i for i in range(len(out) - 1, -1, -1) if out[i][1] == "flag_dropped" and self.team(out[i][2]) == 3 - holder), None)
+                        if i is not None and t - out[i][0] <= 150 and gap(out[i][2]) < 600 and not any(e[1] == "flag_picked_up" and self.team(e[2]) == 3 - holder for e in out[i + 1:]):
+                            a = out[i][2]; ev = [t, typ, a] + list(ev[3:]); fixed.append(t); del out[i]
                 if self.team(a):
                     holder = self.team(a); open_c.pop(a, None)
             out.append(ev)
@@ -97,9 +100,12 @@ class Match:
         return (statistics.median(c["x"] for c in caps), statistics.median(c["y"] for c in caps)) if caps else (0, 0)
 
     def _carries(self):
-        out, op = [], {}
+        out, op, lastp = [], {}, {}
         for t, typ, a in self.o.get("flags", []):
-            if typ == "flag_picked_up": op[a] = t
+            if typ == "flag_picked_up":
+                # a second pickup on a player with no drop between, he alive throughout, is the same carry (he put it down and took it again, or the observer said it twice)
+                if a in op and lastp.get(self.team(a)) == a and all(self.alive(self.snap(a, u)) for u in range(int(op[a]), int(t) + 1, 10)): continue      # (nobody of his team took it in between)
+                op[a] = t; lastp[self.team(a)] = a
             elif typ in ("flag_dropped", "flagstand_captured") and a in op:
                 out.append(dict(s=op.pop(a), e=t, a=a, how=typ))
         return out

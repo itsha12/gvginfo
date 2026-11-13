@@ -58,6 +58,10 @@ def one(rid):
             "lord": [[round(r["t1"] - r["t"]), len(r["ids"]), r["hits"], r["defenders"]] for r in M.on_lord()],
             "pregame": [bool(v["holder"] is not None) for v in M.pregame().values()],
             "story_lines": len(story.story(M, 0, None)),
+            "way_out": [[g["door"], g["n"]] for g in M.way_out()],
+            "answers": [("defended" if x["answer"]["defenders"] else "sent back" if x["answer"]["went_back"] else "none") for x in at if x["kind"] == "split" and x.get("solo") != "other"],
+            "answer_swaps": sum(len(x["answer"].get("swaps", ())) for x in at),
+            "caught": len(M.caught()),
         }
     except Exception as e:
         return rid, {"error": f"{type(e).__name__}: {e}"}
@@ -137,6 +141,8 @@ def show(path):
     print(f"monk count changes in the main fight: {len(X)} ({len(X) / n:.1f} a match); down {sum(x[1] is None or x[0] < x[1] for x in X)}, back up {sum(x[1] is not None and x[0] > x[1] for x in X)}; down to one {sum(x[0] == 1 and (x[1] is None or x[1] > 1) for x in X)}, to none {sum(x[0] == 0 for x in X)}")
     X = cat("lord"); told = [x for x in X if x[2] >= 3 and x[0] >= 4]
     print(f"on the Guild Lord: {len(X)} stretches, {len(told)} told ({len(told) / n:.1f} a match); length (s): {q([x[0] for x in told])}; players: {q([x[1] for x in told], (25, 50, 75))}; nobody of the defenders in the pit {sum(x[3] == 0 for x in told)}")
+    wo = [x for v in D.values() for x in v.get("way_out", ())]; an = collections.Counter(x for v in D.values() for x in v.get("answers", ()))
+    print(f"going out of the base by a door: {len(wo)} ({len(wo) / n:.1f} a match), by the back door {sum(1 for x in wo if x[0] == 'back door')}; split answers: {dict(an)}; swaps in an answer {sum(v.get('answer_swaps', 0) for v in D.values())}; caught at a base res {sum(v.get('caught', 0) for v in D.values())}")
     pg = cat("pregame")
     print(f"pre-game flag: in hand at the gates for {sum(pg)} of {len(pg)} teams")
 
@@ -153,6 +159,8 @@ def tally(path):
          "lead, a flag and a half": sum(1 for x in cat("lead") if x[0] == "a flag and a half"), "lead, two flags": sum(1 for x in cat("lead") if x[0] == "two flags"),
          "stand-offs": sum(1 for x in cat("standoffs") if x[8] == "main"), "stand-offs on a split": sum(1 for x in cat("standoffs") if x[8] == "split"),
          "monk changes": len(cat("monks")), "on the Lord": len(cat("lord")), "story lines": sum(v["story_lines"] for v in D.values())}
+    t.update({"going out by a door": sum(len(v.get("way_out", ())) for v in D.values()), "swaps in an answer": sum(v.get("answer_swaps", 0) for v in D.values()), "caught at a base res": sum(v.get("caught", 0) for v in D.values())})
+    for k in ("defended", "sent back", "none"): t["split answer, " + k] = sum(1 for v in D.values() for x in v.get("answers", ()) if x == k)
     for k in ("delayed pickup", "held to the boost", "stayed to help", "left before res", "held back", "left at the spawn"): t["timing, " + k] = sum(1 for x in cat("timing") if x[0] == k)
     return len(D), t
 

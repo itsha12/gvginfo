@@ -25,7 +25,8 @@ The records (R-362: the record is the work; story.py only prints them): attempts
   flags_record (with the flag route, the door, the hold before a cap and its distance from the enemy's boost),
   main_team, lane, moves, split_fights, ground, undefended, on_pit, and the words of R-373 and R-375 to R-378, each its
   own record: flag_pushes (pushing the flagger, R-371), flag_lead (a full flag and half a flag up, R-375), pregame
-  (the flag before the gates), standoffs (the disengage, R-405), timing (R-377, R-400, R-407), monk_counts and on_lord (R-378).
+  (the flag before the gates), standoffs (the disengage, R-405), timing (R-377, R-400, R-407), monk_counts and on_lord (R-378),
+  and way_out (a team going out of its base by a door, R-417).
 
 Usage:  python3 moments.py <report id> [family]      the match's moments in order
         python3 moments.py all <out.json> [--jobs N]  every counted match, compact (for counts and golden picks)
@@ -37,7 +38,7 @@ from common import (READ_FROM, READ_TO, AREA_SHARE, PURPOSE_S, LEAVE_MIN_S, HOME
                     RETURN_R, FOOT_ENGAGED_S, SPLIT_STEP, SPLIT_MIN_S, SPLIT_GAP_S, FORCED_OUT_S, AHEAD_LOOK_S, CAUGHT_S, NPC_NEAR,
                     JOIN_S, RES_EVERY, flux_at, JOIN_LOOK_S, JOIN_MOVE, JOIN_LEAD, SWAP_S, SWAP_STAY_S, SPLIT_FIGHT_GAP_S, SPLIT_FIGHT_MIN,
                     PUSHFLAG_R, PUSHFLAG_S, PUSHFLAG_GAP_S, PUSHFLAG_MATES, PUSHFLAG_AHEAD_S, ROUTE_ENDS, ROUTE_OFF, ROUTE_CLEAR, ROUTE_MIN_S, LEAD_S,
-                    STANDOFF_S, STANDOFF_HITS, STANDOFF_MIN, STANDOFF_R, STANDOFF_SPLIT_MIN, STANDOFF_SPLIT_S, STANDOFF_STILL, STANDOFF_NEAR, LEAD_HALF, LEAD_ONE, LEAD_ONE_HALF, LEAD_TWO, HOLD_BACK_S, LEFT_AT_SPAWN_S, RUN_SPEED, PICKUP_DELAY_S, HOLD_S, BOOST_LATE_S, HELP_IN_S, HELP_BACK_S, LEAVE_RES_S, MONK_S, MONK_MIN, LORD_GAP_S)
+                    WAY_OUT_GAP_S, STANDOFF_S, STANDOFF_HITS, STANDOFF_MIN, STANDOFF_R, STANDOFF_SPLIT_MIN, STANDOFF_SPLIT_S, STANDOFF_STILL, STANDOFF_NEAR, LEAD_HALF, LEAD_ONE, LEAD_ONE_HALF, LEAD_TWO, HOLD_BACK_S, LEFT_AT_SPAWN_S, RUN_SPEED, PICKUP_DELAY_S, HOLD_S, BOOST_LATE_S, HELP_IN_S, HELP_BACK_S, LEAVE_RES_S, MONK_S, MONK_MIN, LORD_GAP_S)
 from state import d
 from hallmap import _seg_dist
 
@@ -117,6 +118,7 @@ class Moments:
         self._fi, self._mv, self._sf, self._gr, self._und = None, None, None, None, None
         self._lost = {}
         self._fpush, self._lead, self._leadl, self._lead_on, self._so, self._hitc, self._mc, self._tim = None, None, None, None, None, None, None, None
+        self._wo = None
         self.side_cut = set()                                # seconds at which a side fight was cut off a bigger one (counted for the thresholds table)
         self.legs = self._departures()
         self.by_player = collections.defaultdict(list)
@@ -129,11 +131,13 @@ class Moments:
         mate last dropped the flag, the first second the capper stood on it; failing that at his own flag spawn, the
         last second he stood there since his team's last flag event. No such second: the capture stays as recorded."""
         m, out, missed = self.m, [], []
-        op, last = {}, {}                                    # open pickups by player; team -> its last flag event (t, kind, player)
+        op, last, lastp = {}, {}, {}                         # open pickups by player; team -> its last flag event (t, kind, player); team -> who last picked up
         for t, typ, a, *_ in m.o.get("flags", []):
             if a not in self.P or typ not in ("flag_picked_up", "flag_dropped", "flagstand_captured"): continue
             t, tm = t / 10, m.team(a)
-            if typ == "flag_picked_up": op[a] = t
+            if typ == "flag_picked_up":
+                if a in op and lastp.get(tm) == a and all(self.AL[a][u] for u in range(max(int(op[a]), 0), min(int(t), self.T) + 1)): continue      # a second pickup with no drop between, he alive throughout and nobody of his team taking it meanwhile: the same carry (replaylib._carries)
+                op[a] = t; lastp[tm] = a
             elif typ == "flag_dropped": op.pop(a, None)
             elif a not in op:
                 lt, lk, la = last.get(tm, (0, None, None))
@@ -273,6 +277,7 @@ class Moments:
                     F = self.hall.footies[own][g]
                     if F and len(F) > sum(1 for x in self.foot_gone[tm][g] if x <= t) and any(math.dist(self.P[a][t], f) <= r for f in F): k, s = g + " footies", own; break
         if s is None or k in ("pit", "stand", "greater stand"): return k, s
+        if k == "field" and self.st.side.get(self.m.team(a)) != s: return k, s      # out in the field he is not at the enemy's pit, whatever he hit a moment ago (a team that left by a teleporter)
         key = (a, t)
         if key not in self._pit:
             hall, tm_s = self.hall, next((tm for tm, sd in self.st.side.items() if sd == s), None)
@@ -571,11 +576,15 @@ class Moments:
         on = lambda a, t: any(s <= t <= e for s, e in span[a]) and self.AL[a][t]
         R = range(t_in, t1 + 1, SPLIT_STEP)
         # the leaving: back to the last second the first player stood with his team or at home
-        a0, t0 = members[0], t_in
-        for u in (range(t_in, max(t_in - 90, -1), -1) if kind == "split" else ()):
-            near = sum(1 for b in st.players[tm] if b != a0 and b not in span and self.AL[b][u] and self.P[a0][u] and d(self.P[a0][u], self.P[b][u]) < FIGHT_LINK)
-            if not self.P[a0][u] or near >= 3 or (self.at_home(a0, u, tm) and not self._deep(a0, u)): t0 = u; break
-            t0 = u
+        def left_at(a):                                   # each member's own leaving, read the same way: who set out together and who came later
+            s0 = span[a][0][0]; t_ = s0
+            for u in (range(s0, max(s0 - 90, -1), -1) if kind == "split" else ()):
+                near = sum(1 for b in st.players[tm] if b != a and b not in span and self.AL[b][u] and self.P[a][u] and d(self.P[a][u], self.P[b][u]) < FIGHT_LINK)
+                t_ = u
+                if not self.P[a][u] or near >= 3 or (self.at_home(a, u, tm) and not self._deep(a, u)): break
+            return t_
+        left = {a: left_at(a) for a in members}
+        a0, t0 = members[0], left[members[0]]
         ways = collections.Counter(self._deep(a, t) for a in members for t in range(span[a][0][0], min(span[a][0][0] + 40, t1) + 1, SPLIT_STEP) if self._deep(a, t) in ("front door", "back door"))
         places = collections.Counter(self._deep(a, t) for t in R for a in members if on(a, t) and self._deep(a, t))
         sizes = collections.Counter(sum(1 for a in members if on(a, t)) for t in R)
@@ -607,13 +616,36 @@ class Moments:
             k_, sd = self.place_at(b, u)
             return sd == st.side.get(foe) and k_ in homeg
         fm = self.main_team(foe, t_in)
-        covered = []
+        covered, away = [], []
         if kind == "split":
             for b in st.players[foe]:
                 if b in defenders or home(b, max(t0 - 2, 0)): continue
-                hs = [t for t in R if home(b, t) and b not in self.main_team(foe, t)]
+                hs = [t for t in R if home(b, t) and (b not in self.main_team(foe, t) or not self._over(tm, t)[1])]      # his whole main team going home counts too, unless the split's main team pushed it there
                 if len(hs) * SPLIT_STEP >= JOIN_S: covered.append((hs[0], b))
+                if sum(1 for t in hs if b not in self.main_team(foe, t)) * SPLIT_STEP >= JOIN_S: away.append(b)      # ... and those who left their main team to do it
+        covered_t = min((t for t, _ in covered), default=None)
         covered = [b for _, b in sorted(covered)]
+        swaps = []                                        # a swap in the answer (R-374): one player covering the split goes and another comes within SWAP_S, on it or standing off it at home
+        if kind == "split":
+            spells = {}
+            for b in set(defenders) | set(covered):
+                on_it = [t for t in R if self.AL[b][t] and (any(on(a, t) and d(self.P[b][t], self.P[a][t]) < FIGHT_LINK for a in members) or (home(b, t) and b not in self.main_team(foe, t)))]
+                cur = None
+                for t in on_it:
+                    if cur is not None and t - cur[1] <= SPLIT_GAP_S: cur[1] = t
+                    else:
+                        cur = [t, t]; spells.setdefault(b, []).append(cur)
+            def stood(b, u, v):                           # where he mostly stood over a spell (the middle of his positions)
+                ps = [self.P[b][t] for t in range(u, v + 1, SPLIT_STEP) if self.P[b][t]]
+                return (statistics.median(p[0] for p in ps), statistics.median(p[1] for p in ps))
+            for b1, xs in spells.items():
+                for s1, e1 in xs:
+                    if e1 - s1 < SWAP_STAY_S or e1 >= t1 - SPLIT_STEP or any(0 < s_ - e1 <= SWAP_STAY_S for s_, _ in xs): continue
+                    for b2, ys in spells.items():
+                        y = next(((s2, e2) for s2, e2 in ys if b2 != b1 and abs(s2 - e1) <= SWAP_S and s2 > s1 + SWAP_STAY_S and e2 - s2 >= SWAP_STAY_S and e2 > e1 + SWAP_STAY_S
+                                  and d(stood(b2, s2, e2), stood(b1, s1, e1)) < FIGHT_LINK), None)      # he comes to stand where the other stood
+                        if y and not any(w["in_id"] == b2 and w["t_in"] == y[0] for w in swaps): swaps.append({"t": max(y[0], e1), "in": m.roles[b2], "out": m.roles[b1], "in_id": b2, "out_id": b1, "t_in": y[0], "t_out": e1}); break
+            swaps.sort(key=lambda w: w["t"])
         t_met = min((first[b] for b in defenders), default=None)
         met = None
         if t_met is not None:
@@ -655,12 +687,16 @@ class Moments:
         elif kind == "split" and any(a in self._over(tm, u)[1] for a in alive_end): end = "main team joined"
         elif late: end = "routed"
         else: end = "left"
-        after = None
+        after = went = None
         if end in ("left", "routed") and alive_end:
             u = min(t1 + SPLIT_GAP_S, T)
             a = alive_end[0]
             with_team = sum(1 for b in st.players[tm] if b not in span and self.AL[b][u] and self.AL[a][u] and d(self.P[a][u], self.P[b][u]) < FIGHT_LINK)
             after = "rejoined the main team" if with_team >= 3 else ("went home" if self.AL[a][u] and self.at_home(a, u, tm) else "elsewhere")
+            ws = collections.Counter(self.place_at(b, u) for b in alive_end if self.AL[b][u])      # where it stood SPLIT_GAP_S after leaving: on its own ground it fell back there
+            if ws and after != "rejoined the main team":
+                (k_, sd_), n_ = ws.most_common(1)[0]
+                if sd_ == st.side.get(tm) and k_ != "field" and n_ * 2 >= len(alive_end): went = self.place_words(k_, sd_)
         # linked moves (R-358)
         depth = {"pit": 3, "base": 2, "front footies": 2, "back footies": 2, "front door": 1, "back door": 1, "field": 0}
         lvl = {}
@@ -675,7 +711,7 @@ class Moments:
             near = sorted([(ta, b) for ta, b in arrivals if b in defenders and -8 <= to - ta <= FORCED_OUT_S] + [(ta, b) for ta, b in came if -8 <= to - ta <= FORCED_OUT_S])
             if near: forced.append({"defender": m.roles[near[0][1]], "arrived": near[0][0], "left": to})
         ahead = None
-        back = defenders + covered
+        back = defenders + away                           # who has to come back from it: a main team that went home together is already together
         if kind == "split" and after == "rejoined the main team" and back:
             tj = next((u for u in range(t1, min(t1 + AHEAD_LOOK_S, T) + 1) if any(self.AL[a][u] and sum(1 for b in st.players[tm] if b not in span and self.AL[b][u] and d(self.P[a][u], self.P[b][u]) < FIGHT_LINK) >= 3 for a in alive_end)), None)
             others = [b for b in st.players[foe] if b not in back]
@@ -702,16 +738,55 @@ class Moments:
             busy = bool(npcs) or sum(traded.values()) >= 2 or any(t_in <= x <= t1 + 4 for a in members for x in self.npc_hits.get(a, ()))
             solo = "split" if busy else "other"
         return {"kind": kind, "tm": tm, "solo": solo, "team": m.tag[tm], "t0": t0, "t_in": t_in, "t1": t1, "opening": t_in <= 75,
-                "members": [{"role": m.roles[a], "prof": m.A[a].get("p"), "from": span[a][0][0], "to": span[a][-1][1]} for a in members],
+                "members": [{"role": m.roles[a], "prof": m.A[a].get("p"), "from": span[a][0][0], "to": span[a][-1][1], "left": left[a]} for a in members],
                 "ids": members, "size": max(sizes, key=lambda n: (sizes[n], n)), "max": max(sizes), "monks": mk(members),
                 "flag_player": self.flag_player(tm, t_in) in members,
                 "carried_flag": any(self.carrying(a, t) and on(a, t) for a in members for t in R),
                 "way": max(ways, key=ways.get) if ways else None, "where": max(places, key=places.get) if places else None,
                 "answer": {"defenders": [m.roles[b] for b in defenders], "ids": defenders, "n": usual, "max": max(ndef) if ndef else 0, "monks": mk(defenders),
-                           "behind_s": (t_met - t_in) if t_met is not None else None, "met": met, "arrivals": [(first[b], m.roles[b]) for b in defenders], "went_back": [m.roles[b] for b in covered], "went_back_ids": covered},
+                           "behind_s": (t_met - t_in) if t_met is not None else None, "met": met, "arrivals": [(first[b], m.roles[b]) for b in defenders], "went_back": [m.roles[b] for b in covered], "went_back_ids": covered,
+                           "went_back_t": covered_t, "swaps": swaps},
                 "main": {"contact_s": contact * SPLIT_STEP, "up_s": diffs["up"], "even_s": diffs["even"], "down_s": diffs["down"]},
-                "end": end, "after": after, "lost": [m.roles[a] for _, a in sorted(lost)], "kills": [m.roles[b] for _, b in sorted(kills)],
+                "end": end, "after": after, "went": went, "lost": [m.roles[a] for _, a in sorted(lost)], "kills": [m.roles[b] for _, b in sorted(kills)],
                 "npcs": [k for _, k in sorted(npcs)], "forced_out": forced, "ahead": ahead, "onto_flag": onto}
+
+    def way_out(self):
+        """A team going out of its base by a door (his commentary: "sends six out the back door"), one record each
+        time: three or more of a team, half of them or more its main team, pass out of their own base or pit along the
+        same drawn door (or past that door's footies) within WAY_OUT_GAP_S of each other and are still out of their
+        own ground WAY_OUT_GAP_S later. Each record: when the first of them reached the door, the team, the door, who."""
+        if self._wo is not None: return self._wo
+        st, m, T, ev = self.st, self.m, self.T, []
+        doorof = {"front door": "front door", "back door": "back door", "front footies": "front door", "back footies": "back door"}
+        for tm in st.teams:
+            own = st.side.get(tm)
+            if self.hall is None or own is None: continue
+            for a in st.players[tm]:
+                inside, door, t_door = True, None, None        # everyone starts in his base
+                for u in range(0, T + 1, SPLIT_STEP):
+                    if not self.AL[a][u]: inside, door = False, None; continue
+                    k, sd = self.place_at(a, u)
+                    if sd == own and k in ("pit", "base"): inside, door, t_door = True, None, None
+                    elif sd == own and k in doorof:
+                        if inside: door, t_door = doorof[k], (u if door is None else t_door)      # the last door he is on before he is out (two doors can leave by one corridor)
+                    else:
+                        if inside and door is not None and u - t_door <= 60: ev.append((tm, door, u, t_door, a))
+                        inside, door = False, None
+        ev.sort(key=lambda x: (x[0], x[1], x[2]))
+        groups = []
+        for tm, door, u, t_door, a in ev:
+            g = groups[-1] if groups else None
+            if g and g["tm"] == tm and g["door"] == door and u - g["t1"] <= WAY_OUT_GAP_S: g["ids"].append(a); g["t1"] = u; g["t"] = min(g["t"], t_door)
+            else: groups.append({"tm": tm, "door": door, "t": t_door, "t1": u, "ids": [a]})
+        out = []
+        for g in groups:
+            v = min(g["t1"] + WAY_OUT_GAP_S, T); own = st.side.get(g["tm"])
+            still = [a for a in g["ids"] if self.AL[a][v] and not (self.place_at(a, v)[1] == own and self.place_at(a, v)[0] in ("pit", "base") + tuple(doorof))]
+            main = self.main_team(g["tm"], min(g["t1"] + 4 - (g["t1"] + 4) % SPLIT_STEP, T))
+            if len(g["ids"]) < 3 or len(still) * 2 < len(g["ids"]) or sum(1 for a in g["ids"] if a in main) * 2 < len(g["ids"]): continue
+            out.append(dict(g, team=m.tag[g["tm"]], n=len(g["ids"]), roles=[m.roles[a] for a in g["ids"]]))
+        self._wo = sorted(out, key=lambda g: g["t"])
+        return self._wo
 
     # ---- joins, leaves and swaps; the split fight record (R-365, R-374)
     def _fight_index(self):
@@ -1051,6 +1126,7 @@ class Moments:
                 if not res: continue
                 dead = sorted({m.roles[a] for a in att for td in st.death_times.get(a, []) if B <= td <= B + 60})
                 stay = [a for a in att if self.AL[a][min(B + 6, self.T)] and self._deep(a, min(B + 6, self.T)) in inb]
+                if not any(self.AL[a][min(B + 2, self.T)] and self._deep(a, min(B + 2, self.T)) in inb for a in att) and all(self.AL[a][min(B + 2, self.T)] for a in att): continue      # all out, alive, by the res: it left before the res (timing), it was not caught
                 out.append({"t": B, "tm": tm, "team": m.tag[tm], "attackers": len(att), "defenders": len(home), "coming_back": len(res),
                             "outnumbered": len(att) < len(home) + len(res), "lead_lost": len(att) > len(home) and len(att) <= len(home) + len(res),
                             "went_in": (since + SPLIT_STEP) if since is not None else None, "stayed": len(stay), "lost_after": dead})
@@ -1096,6 +1172,9 @@ class Moments:
             clock = round(BOOST_EVERY - (tp - since) % BOOST_EVERY) if owner == foe else None
             # the way it was run (R-373): the drawn flag run followed to the stand and on the walk back for it, and the own door it went out by
             trk = [self.P[c[0]][u] for c in ser for u in range(cl(c[1]), cl(c[2] if c[2] is not None else end) + 1) if self.AL[c[0]][u]]
+            if self.hall is not None:                          # ... to his arrival at the stand: what he walks while he holds it there is not the route
+                i = next((i for i, p in enumerate(trk) if p and d(p, self.hall.stand) <= ROUTE_ENDS), None)
+                if i is not None: trk = trk[:i + 1]
             route = self._flag_route(tm, trk)
             back_route = None                                  # the walk back counts only when it began around the stand
             if left is not None and self.hall is not None and self.AL[a][left] and self.place_at(a, left)[0] in ("stand", "greater stand"):
@@ -1173,7 +1252,7 @@ class Moments:
                         mates = sum(1 for x in st.players[foe] if x != b and self.AL[x][t] and d(self.P[x][t], self.P[b][t]) < FIGHT_LINK)
                         sp, pu, _ = self._over(foe, t)
                         rest = sum(1 for x in self.main_team(foe, t) if x != b and self.AL[x][t])      # on his own: with fewer than PUSHFLAG_MATES team mates and fewer than half his main team
-                        if mates < PUSHFLAG_MATES and mates * 2 < max(rest, 2) and b not in sp and b not in pu:
+                        if mates < PUSHFLAG_MATES and mates * 2 < max(rest, 2) and ((b not in sp and b not in pu) or self._deep(b, t) == "field"):      # out in the field he is on his run, not on a split (a stand that lies on the enemy's half)
                             on = [a for a in st.players[tm] if self.AL[a][t] and d(self.P[a][t], self.P[b][t]) < PUSHFLAG_R]
                     if not on: continue
                     if cur is None or t - cur["t1"] > PUSHFLAG_GAP_S:
@@ -1555,14 +1634,13 @@ class Moments:
         for x in self.attempts():
             if x.get("solo") == "other" or x["end"] in ("killed", "match ended"): continue
             tm = x["tm"]; foe = 3 - tm
-            last = max((u for a in x["ids"] for u in range(int(x["t_in"]), min(int(x["t1"]), T) + 1, SPLIT_STEP) if self.AL[a][u] and self._deep(a, u) in inb), default=None)
-            if last is None: continue
-            B = (last // RES_EVERY + 1) * RES_EVERY
-            if B > T or B - last > LEAVE_RES_S: continue
-            res = [b for b in st.players[foe] if not self.AL[b][max(B - 6, 0)] and any(self.AL[b][u] for u in range(B - 3, min(B + 4, T) + 1))]
-            alive = [a for a in x["ids"] if self.AL[a][min(B, T)]]
-            if not res or len(alive) * 2 < len(x["ids"]) or any(self._deep(a, min(B + 2, T)) in inb for a in alive): continue
-            out.append({"t": last, "tm": tm, "team": x["team"], "kind": "left before res", "who": [y["role"] for y in x["members"]], "s": B - last, "coming_back": len(res), "what": x["kind"], "foe": m.tag[foe]})
+            for B in range((int(x["t_in"]) // RES_EVERY + 1) * RES_EVERY, min(int(x["t1"]) + LEAVE_RES_S, T) + 1, RES_EVERY):      # every base res the attempt ran up to: it may go back in afterwards
+                last = max((u for a in x["ids"] for u in range(max(B - LEAVE_RES_S, int(x["t_in"])), min(B, int(x["t1"])) + 1) if u % SPLIT_STEP == 0 and self.AL[a][u] and self._deep(a, u) in inb), default=None)
+                if last is None or last >= B: continue
+                res = [b for b in st.players[foe] if not self.AL[b][max(B - 6, 0)] and any(self.AL[b][u] for u in range(B - 3, min(B + 4, T) + 1))]
+                alive = [a for a in x["ids"] if self.AL[a][min(B, T)]]
+                if not res or len(alive) * 2 < len(x["ids"]) or any(self._deep(a, min(B + 2, T)) in inb for a in alive): continue
+                out.append({"t": last, "tm": tm, "team": x["team"], "kind": "left before res", "who": [y["role"] for y in x["members"]], "s": B - last, "coming_back": len(res), "what": x["kind"], "foe": m.tag[foe]})
         if self.hall is not None:                            # held back (R-400, R-407): in hand around the stand while the enemy holds it, HOLD_BACK_S without capping
             for L in self.flag_lives():
                 tm = L["team"]; end = min(int(L["end"] if L["end"] is not None else T), T)
