@@ -221,6 +221,10 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   once (R-416), the reading gate passed, and they are spent (building games from here, R-417). The line-up only checks that what was said is
   in the story, so run `tools/golden/thresholds.py` beside every rescore to see what a change did to the records over
   all matches. The gates and the build order are in `docs/REDESIGN.md` ("Tests", "Build plan from here").
+  The decision moments are read from the records (stage B: `run_starts()`, `attempts()`, the numbers in each main
+  team's fight, `verbs()`); the decision gate is `tools/golden/golden.py gate --data <main>/data/lineup` (part one
+  against `data/model/golden_key.json`, Claude's reading of his golden notes, R-341, which he corrects; part two the
+  comms calls of the line-up).
 - Before the first training run after the engine is built, go through Denning's list with him (R-398; REDESIGN.md
   "Before the next training run"): plan and spec, rulings, old files, the Templates and Meta tabs, skills from the
   wiki, the model pages, anything outstanding.

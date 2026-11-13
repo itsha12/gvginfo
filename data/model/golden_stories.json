@@ -1,7 +1,7 @@
 {
 "about": "The engine's story of each golden moment's game (tools/golden/golden.py stories; story.py on the bundle-4 branch). Shown on Model > Golden moments for Denning to mark (R-354).",
 "generated": "2026-11-12",
-"draft": 8,
+"draft": 9,
 "stories": {
 "25a90723-1-1-425": [
 [
@@ -19,10 +19,6 @@
 [
 1,
 "BcS's Mesmer waits back at the flag spawn for the next flag"
-],
-[
-18,
-"BcS's Dervish, Prot join through mid and by the front door at the flag stand: BcS 1 v 2 hook becomes 3 v 2"
 ],
 [
 19,
@@ -43,14 +39,6 @@
 [
 30,
 "BcS falls back from the flag stand to BcS's front door; hook does not follow (3 of them)"
-],
-[
-36,
-"BcS falls back from the flag stand to BcS's front door (Dervish, Prot, 7 Monk): BcS 3 v 8 hook becomes 0 v 8"
-],
-[
-36,
-"hook's 8 Monk leaves the flag stand through the pit and by the front door: BcS 3 v 8 hook becomes 3 v 7"
 ],
 [
 37,
@@ -146,7 +134,7 @@
 ],
 [
 156,
-"hook's main team pushes in by the back door, six against nobody"
+"hook's main team pushes in by the back door, eight against three"
 ],
 [
 156,
@@ -226,7 +214,7 @@
 ],
 [
 212,
-"hook's main team pushes in by the front door, seven against two"
+"hook's main team pushes in by the front door, six against three"
 ],
 [
 214,
@@ -526,10 +514,6 @@
 ],
 [
 444,
-"BcS's 8 Monk leaves the field on BcS's side by the back door: BcS 4 v 6 hook becomes 3 v 6"
-],
-[
-444,
 "hook's Monk 5 (WoC), Prot (WoC), 7 Monk (WoC) leave the field on BcS's side through mid and through the gate: BcS 4 v 6 hook becomes 4 v 3"
 ],
 [
@@ -541,16 +525,8 @@
 "hook's 8 Monk overcaps (runner Monk 4 (WoC) away 0 s)"
 ],
 [
-470,
-"BcS's Fire Ele, Air Ele, 8 Monk join by the back door at the field on BcS's side: BcS 1 v 1 hook becomes 4 v 1"
-],
-[
 480,
 "STATE. Stand: hook, boost in 99 s; level on flags. BcS: main team 4 at the greater stand area, Mesmer holding the flag (Dervish, Mesmer, Prot, 7 Monk); Ritualist, Fire Ele, Air Ele, 8 Monk defending at BcS's back door against 3. hook: main team 7 at the field on BcS's side against 3 (Mesmer, Monk 2 (WoC), Monk 3 (WoC), Monk 4 (WoC), Monk 5 (WoC), Prot (WoC), 8 Monk); 7 Monk (WoC) at the flag stand."
-],
-[
-482,
-"hook's 8 Monk leaves BcS's back door through mid and through the gate: BcS 4 v 7 hook becomes 4 v 6"
 ]
 ],
 "27d03c34-1-2-1324": [
@@ -1360,7 +1336,7 @@
 ],
 [
 818,
-"Book's main team pushes in by the front door, seven against seven"
+"Book's main team pushes in by the front door, seven against four"
 ],
 [
 823,
@@ -1661,10 +1637,6 @@
 [
 1103,
 "Apes loses Monk 4 (WoC) at the greater stand area (97 s before the base res)"
-],
-[
-1104,
-"Apes's Mesmer joins at Apes's front door, back from a res: Book 1 v 1 Apes becomes 1 v 2"
 ],
 [
 1113,
@@ -2018,7 +1990,7 @@
 ],
 [
 64,
-"ohno's main team pushes in, four against four"
+"ohno's main team pushes in, five against four"
 ],
 [
 64,
@@ -2398,7 +2370,7 @@
 ],
 [
 388,
-"xxx's main team pushes in by the back door, three against three"
+"xxx's main team pushes in by the back door, four against four"
 ],
 [
 392,
@@ -2622,7 +2594,7 @@
 ],
 [
 572,
-"ohno's main team pushes in by the back door, seven against seven"
+"ohno's main team pushes in by the back door, four against four"
 ],
 [
 572,
@@ -3092,7 +3064,7 @@
 ],
 [
 540,
-"hdm's main team pushes in by the back door, eight against six"
+"hdm's main team pushes in by the back door, eight against seven"
 ],
 [
 546,
@@ -3152,7 +3124,7 @@
 ],
 [
 708,
-"hdm falls back from One's back door to the greater stand area (Ranger 3, Mesmer, Ranger 1, Ranger 2, 7 Monk, 8 Monk, Prot, Ritualist): hdm 7 v 7 One becomes 0 v 7"
+"hdm falls back from One's back door to the greater stand area (Ranger 3, Mesmer, Ranger 1, Ranger 2, 7 Monk, 8 Monk, Prot): hdm 7 v 7 One becomes 0 v 7"
 ],
 [
 710,
@@ -3169,10 +3141,6 @@
 [
 716,
 "hdm's Ranger 3, Ritualist fall out of One's back door"
-],
-[
-716,
-"One's Prot leaves One's back door by the front door and by the back door: hdm 1 v 7 One becomes 1 v 6"
 ],
 [
 716,
@@ -3195,20 +3163,8 @@
 "hdm's 8 Monk picks up the flag at the spawn and runs it the short way"
 ],
 [
-778,
-"hdm's Ranger 1, Ranger 3, Prot join through mid and by the front door at the greater stand area: hdm 4 v 1 One becomes 7 v 1"
-],
-[
-778,
-"One's Prot joins through the pit and by the front door at the greater stand area: hdm 7 v 0 One becomes 7 v 1"
-],
-[
 780,
 "STATE. Stand: hdm, boost in 103 s; hdm half a flag up. hdm: main team 7 at the greater stand area against 1 (Ranger 1, Ranger 2, Ranger 3, Mesmer, Ritualist, Prot, 7 Monk); 8 Monk running the flag at hdm's back door. One: main team 7 at One's back door (Warrior, Paragon 1, Paragon 2, Monk 4 (WoC), Mesmer, 7 Monk, 8 Monk); Prot at the greater stand area against 7."
-],
-[
-786,
-"hdm's 8 Monk joins through mid and by the front door at the greater stand area: hdm 7 v 1 One becomes 8 v 1"
 ],
 [
 799,
@@ -3276,7 +3232,7 @@
 ],
 [
 882,
-"One's main team pushes in by the back door, four against eight"
+"One's main team pushes in by the back door, five against eight"
 ],
 [
 882,
@@ -3356,7 +3312,7 @@
 ],
 [
 934,
-"hdm's main team pushes in by the back door, eight against eight"
+"hdm's main team pushes in by the back door, eight against one"
 ],
 [
 946,
@@ -3542,7 +3498,7 @@
 ],
 [
 56,
-"hold's main team pushes in by the front door, five against three"
+"hold's main team pushes in by the front door, six against five"
 ],
 [
 56,
@@ -4948,7 +4904,7 @@
 ],
 [
 304,
-"HC's main team pushes in by the back door, four against seven"
+"HC's main team pushes in by the back door, seven against six"
 ],
 [
 305,
@@ -5292,7 +5248,7 @@
 ],
 [
 680,
-"hdm's main team pushes in by the front door, seven against four"
+"hdm's main team pushes in by the front door, eight against four"
 ],
 [
 680,
@@ -5852,7 +5808,7 @@
 ],
 [
 1104,
-"HC's main team pushes in by the back door, seven against six"
+"HC's main team pushes in by the back door, six against seven"
 ],
 [
 1104,
@@ -6026,7 +5982,7 @@
 ],
 [
 80,
-"hdm's main team pushes in, six against one"
+"hdm's main team pushes in, four against four"
 ],
 [
 83,
@@ -6546,7 +6502,7 @@
 ],
 [
 544,
-"Men's main team pushes in by the front door, four against three"
+"Men's main team pushes in by the front door, four against four"
 ],
 [
 544,
@@ -6864,7 +6820,7 @@
 ],
 [
 304,
-"SKT's main team pushes in by the front door, seven against eight"
+"SKT's main team pushes in by the front door, seven against seven"
 ],
 [
 309,
@@ -6960,7 +6916,7 @@
 ],
 [
 418,
-"SKT's main team pushes in by the front door, five against five"
+"SKT's main team pushes in by the front door, eight against seven"
 ],
 [
 418,
@@ -7156,7 +7112,7 @@
 ],
 [
 576,
-"NwAy's AoB Derv, 7 Monk leave NwAy's front door through the pit and by the front door: NwAy 5 v 5 SKT becomes 3 v 5"
+"NwAy's AoB Derv leaves NwAy's front door through the pit and by the front door: NwAy 5 v 5 SKT becomes 4 v 5"
 ],
 [
 576,
@@ -7252,7 +7208,7 @@
 ],
 [
 662,
-"SKT's Hammer, Ranger leave SKT's back door by the front door: NwAy 3 v 3 SKT becomes 3 v 1"
+"SKT's Ranger leaves SKT's back door through the pit and by the front door: NwAy 3 v 3 SKT becomes 3 v 2"
 ],
 [
 664,
@@ -7336,7 +7292,7 @@
 ],
 [
 732,
-"SKT's main team pushes in by the front door, eight against five"
+"SKT's main team pushes in by the front door, eight against eight"
 ],
 [
 738,
@@ -7730,7 +7686,7 @@
 ],
 [
 182,
-"Men's main team pushes in by the back door, seven against seven"
+"Men's main team pushes in by the back door, seven against five"
 ],
 [
 186,
@@ -8330,7 +8286,7 @@
 ],
 [
 106,
-"hdm's main team pushes in by the front door, eight against eight"
+"hdm's main team pushes in by the front door, eight against seven"
 ],
 [
 110,
@@ -8472,7 +8428,7 @@
 ],
 [
 24,
-"hold's main team pushes in by the back door, seven against eight"
+"hold's main team pushes in by the back door, eight against eight"
 ],
 [
 30,
@@ -8520,7 +8476,7 @@
 ],
 [
 64,
-"\uc637\uc637\uc637\uc637's main team pushes in by the front door, eight against three"
+"\uc637\uc637\uc637\uc637's main team pushes in by the front door, eight against seven"
 ],
 [
 64,
@@ -8730,7 +8686,7 @@
 ],
 [
 92,
-"Crew's main team pushes in by the front door, eight against eight"
+"Crew's main team pushes in by the front door, eight against seven"
 ],
 [
 98,
@@ -8751,10 +8707,6 @@
 [
 120,
 "One's Stand Mes, Prot, 7 Monk, 8 Monk leave One's front door through the pit and by the front door: no fight there, One 5 and Crew 8 standing off become 1 and 8"
-],
-[
-120,
-"Crew's 7 Monk (WoC) leaves One's front door by the front door and by the back door: no fight there, One 5 and Crew 8 standing off become 5 and 7"
 ],
 [
 120,
