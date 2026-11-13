@@ -1,6 +1,6 @@
 {
  "about": "The decision gate's answer key (R-394): the scenario and the call of each golden moment, read by Claude from Denning's notes, not from the drop-downs (R-341). Each part lists the engine words that agree with his notes; a part his notes leave open is not scored. t is when his notes put the decision (it can differ from the moment as first picked). Denning corrects any line here; his correction is filed as a ruling.",
- "version": 2,
+ "version": 3,
  "moments": {
   "25a90723-1-1-425": {
    "t": 425,
@@ -257,7 +257,10 @@
      "retreat down the ladder"
     ]
    },
-   "from_notes": "Crew pushes into One's base by one door while its #2 WoC takes the other path: 7 v 8; Crew retreats through One's front door to the greater flag area."
+   "from_notes": "Crew pushes into One's base by one door while its #2 WoC takes the other path: 7 v 8; Crew retreats through One's front door to the greater flag area.",
+   "accepted_parts": {
+    "call": "R-422: Crew stays in One's front door until 8:38 and falls out after the 30 s read window (R-294); the window stays as it is."
+   }
   }
  },
  "not_scored": {

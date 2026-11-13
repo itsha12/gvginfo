@@ -3,10 +3,10 @@
 A plan, not the current state: `docs/SPEC.md` still describes the engine as built. This file is replaced as steps land
 and removed once SPEC.md describes the new structure. Its rulings are R-292 to R-309 in `docs/RULINGS.md`.
 
-Status (2026-11-12): step 1 built. Step 2 under way on the branch `bundle-4`: the map foundation is built, and a reading
+Status (2026-11-13): step 1 built. Step 2 under way on the branch `bundle-4`: the map foundation is built, and a reading
 stage was added before the decision moments (the records, the story and the line-up; see "Step 2: where it stands" and
 "Build plan from here"). Reading steps 1 and 2 are built and step 2 is ruled on (R-399 to R-412: the flag tally, the
-stand-off, the held flag); reading step 3 is next. Steps 3 and 4 not started.
+stand-off, the held flag); the reading gate and the decision gate are passed, and stage D (depth) is under way. Steps 3 and 4 not started.
 
 ## Why
 The two scored blind rounds showed the decision tier cannot say whether a call was right, whether it was executed, or
@@ -130,8 +130,8 @@ forensics stay as the mechanics evidence.
 | A Map foundation | 2.1, 2.2 | built: `hallmap.py` (zones R-306, walked distance R-316, footmen reach R-320); `state.zone` and the three map numbers read it |
 | R The reading (added; R-341, R-362) | the records, the story, the line-up | reading step 1 built and its 17 thresholds confirmed (R-390): `moments.py` keeps split attempts and main team pushes, split fights, joins, leaves and swaps, ground moves, the flag record, who is on the pit NPCs, undefended splits; `story.py` prints from them. Reading step 2 built (the words of R-373, R-375 to R-378, each its own record: `flag_pushes`, the flag route in `flags_record`, `flag_lead`, `pregame`, `posture`, `timing`, `monk_counts`, `on_lord`); ruled on in R-399 to R-412 (a fifth timing choice, `onto_flag` on a main team push, thresholds confirmed, the stand-off record in place of posture, R-405 and R-411, and flag lead as a tally that counts the stand, R-408). Reading step 3 (the check) is next |
 | B Decision moments | 2.3 to 2.7 | rebuilt on the records (R-351, R-362): family 1 from `run_starts` (when a runner goes to run, when the flag is under way, the boost), family 2 from `attempts` (a split sets out or grows; the call from its answer), family 3 from the numbers in the fight each main team stands in (R-351); the call read from the records in the window (runners, a split, a push in, pushing the flagger, `way_out`, `ground`), with every verb the team used kept beside it (`verbs`) |
-| C The decision gate | test | passed 2026-11-12 after R-421 (`golden.py gate`): part one on his notes (`data/model/golden_key.json`, Claude's reading of them, two moments not scored and one accepted miss by his rulings): 12 of 12 found, every part of the scenario and the call 80% or better (the call 6 of 7; Crew v One 8:02 open); part two, comms: 65 of 105 read the same call (61%; his mark 60%) |
-| D Depth | 2.8 to 2.13 | not started (shape, consequence record, similar cases, jobs, enemy execution, interaction rule, the four proposals left of R-324: the Shadow Step flag drop is out, R-393) |
+| C The decision gate | test | passed 2026-11-12 after R-421 (`golden.py gate`): part one on his notes (`data/model/golden_key.json`, Claude's reading of them, two moments not scored, one accepted miss and one accepted call, Crew v One 8:02, R-422): 12 of 12 found, every part of the scenario and the call passes; part two, comms: 65 of 105 read the same call (61%; his mark 60%) |
+| D Depth | 2.8 to 2.13 | under way. Built: the shape of the call (2.8: `shape()`, who as properties, which way, when with the gain-elsewhere test of R-321) and the consequence record (2.9: `consequence()` at 90 and 180 s, the flag lead beside the numbers meanwhile, R-412); the runner's cost measured (`runner_cost()`). Drafted, to be ruled: the job table (2.11: `JOBS`). Not started: similar cases (2.10), enemy execution (2.12), the interaction rule (2.13), NPC damage as a composition property, win points in the record (they come with the rebuilt win model), the four proposals left of R-324 (the Shadow Step flag drop is out, R-393), the radius checks |
 | E Close | 2.14 | not started (side by side for one rebuild R-323, retire, causal map, SPEC and METHODS, readability, the list of R-398, merge, rebuild on the same matches) |
 
 Scenarios as first drafted (the key the cases are grouped by; the rest of the state rides along for similar cases):

@@ -225,6 +225,11 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   team's fight, `verbs()`); the decision gate is `tools/golden/golden.py gate --data <main>/data/lineup` (part one
   against `data/model/golden_key.json`, Claude's reading of his golden notes, R-341, which he corrects; part two the
   comms calls of the line-up).
+  Stage D (depth) on the branch so far: every moment carries the shape of its call (`shape()`, R-297: who as properties,
+  which way, when, with `gained_elsewhere()` for the timing rule of R-321) and what followed (`consequence()`, R-294 and
+  R-412: hard results over the whole map at 90 and 180 s, the flag lead set beside the numbers meanwhile); `moments.py
+  after|runner|jobs <file from moments.py all>` print the averages by call, the runner's cost and the draft job table
+  (`JOBS`: a draft of R-298's table, used by nothing until he rules).
 - Before the first training run after the engine is built, go through Denning's list with him (R-398; REDESIGN.md
   "Before the next training run"): plan and spec, rulings, old files, the Templates and Meta tabs, skills from the
   wiki, the model pages, anything outstanding.
