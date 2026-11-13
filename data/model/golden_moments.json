@@ -368,7 +368,7 @@
    ],
    "label": {
     "real": "yes",
-    "at": "2026-11-11",
+    "at": "2026-11-13",
     "became": "run",
     "scenario": {
      "trigger": "enemy_run",
@@ -386,44 +386,24 @@
     "forced": false,
     "notes": "Missed BcS taking hook's footmen just before 1:34. Engine should be measuring game state, like I do in some of my descriptions. How did hook start the game? Who was on split who was defending? hook collapsed through mid. BcS was waiting back on mesmer. BcS's mesmer running back for flag before 2:00. There is nothing about the split or defending or movement around the map. There needs to be some serious analysis on who moves where, just picking up the flag doesn't tell us much. We also need to understand WHEN PEOPLE GO TO RUN, not just when they pick up the flag. \n\n4:44 BcS's mainteam collapses on hook & kills 2 monk WoC. Hook reses 2 monk WoC around 5:19. Reses are very important. \n\n5:55 hook pushes BcS's front door. \n\n6:00 BcS's air ele is splitting backdoor.  Joined by 8 monk, rit, and fire ele for 4 man split through back door. Hook full team collapses. \n\n6:22-6:23 hook returns BcS's flag (so it goes back to flag spawn). \n\nBcS's mesmer goes back to run at 7:23. \n\nhooks mainteam collapses through gatelock and 8 monk caps flag.",
     "story": {
-     "at": "2026-11-11",
-     "draft": 2,
-     "lines": 45,
+     "at": "2026-11-13",
+     "draft": 8,
+     "lines": 137,
      "wrong": [
       {
-       "t": 165,
-       "text": "BcS's Mesmer caps; Air Ele is already back for the next flag (double run, each full running)",
-       "comment": "Aire ele runs from split through back door to front door and picks up flag on the way, was not waiting back for flag. Still a double run, still each full running."
+       "t": 212,
+       "text": "hook's main team pushes in by the front door, seven against two",
+       "comment": "6v3 (mesmer, derv, 7 monk)"
       },
       {
-       "t": 238,
-       "text": "The fight moves from the greater stand area to hook's back door (hook falls back, under pressure: team health 66%): BcS 1 v 1 hook becomes 4 v 1 (BcS's Fire Ele, Air Ele, 8 Monk join through the pit and by the front door)",
-       "comment": "this is wrong. I don't think team health was under 66%. Hook's mainteam was pushing BcS's base. Hook's 8 monk was defending 1v4 in his own backdoor."
+       "t": 444,
+       "text": "BcS's 8 Monk leaves the field on BcS's side by the back door: BcS 4 v 6 hook becomes 3 v 6",
+       "comment": "4v6, 8 monk DOES NOT leave the field."
       },
       {
-       "t": 238,
-       "text": "hook's Mesmer, Monk 2 (WoC), Monk 4 (WoC), Monk 5 (WoC), Prot (WoC), 7 Monk (WoC) fall out of BcS's front door",
-       "comment": "wrong. hook's 2 monk and 3 monk fall out of BcS's base through front door. Hook's mesmer, 4 monk, 5 monk, prot and 7 monk fall out of BcS's base through backdoor."
-      },
-      {
-       "t": 333,
-       "text": "BcS's flag is dropped by Mesmer and goes back to the spawn",
-       "comment": "BcS's flag does not go back to spawn. Flag is dropped by not returned by hook so it stays where it was dropped."
-      },
-      {
-       "t": 344,
-       "text": "The fight moves from hook's front door to BcS's front door (BcS falls back, under pressure: team health 95%, 1 death in the last 30 s): BcS 8 v 7 hook becomes 7 v 8 (BcS's Prot is dead; hook's Monk 2 (WoC) joins)",
-       "comment": "fight was at flag stand and goes to BcS's front door."
-      },
-      {
-       "t": 416,
-       "text": "hook's flag is dropped by Monk 4 (WoC) and goes back to the spawn",
-       "comment": "flag is dropped but DOES NOT go back to spawn."
-      },
-      {
-       "t": 432,
-       "text": "A fight at the field on BcS's side: BcS 4 v 6 hook (BcS: 8 Monk, Air Ele, Fire Ele, Ritualist; hook: 7 Monk (WoC), Mesmer, Monk 2 (WoC), Monk 3 (WoC), Monk 5 (WoC), Prot (WoC))",
-       "comment": "fight doesn't really start until around 7:22 and it is a 6v4 in BcS's backdoor (not at field on BcS's side)."
+       "t": 470,
+       "text": "BcS's Fire Ele, Air Ele, 8 Monk join by the back door at the field on BcS's side: BcS 1 v 1 hook becomes 4 v 1",
+       "comment": "It was never 1v1. No one was defending until 8 monk arrived when it there were 4 (1v4)"
       }
      ]
     }
