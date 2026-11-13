@@ -8,12 +8,11 @@
 0:42 | go | chic | Mes/A | | chic's 5 runs the flag
 0:46 | go | RACK | Mes/A | | RACK's 4 runs the flag
 0:58 | route | RACK | Mes/A | long way | long way
-1:02 | route | chic | Mes/A | short way | short way
+1:02 | route | chic | Mes/A | short way | he picks up at 0:18 and runs the short way (Denning)
 1:04 | pushflag | RACK | Stand Mes | | pushed by RACK's 5
 1:14 | posture | chic | Assassin | | the assassin has not gone to split: he sits at the back door
 1:20 | split | RACK | Ranger | 1 | RACK's 3 ranger pushes the footies in a solo split
 1:34 | hold | RACK | Mes/A | | RACK's 4 brings the flag to the stand
-1:36 | hold | chic | Mes/A | | chic's 5 holds near the stand: neither has capped
 1:40 | fight | | | 8v8 | an 8v8
 1:45 | join | chic | Assassin | | the assassin runs over the bridge to join main
 1:52 | split | RACK | Hammer B | 1 | RACK's 2 warrior runs to the back door to solo split
@@ -30,7 +29,7 @@
 2:58 | join | RACK | Hammer B | | RACK's 2 warrior collapses through the back door over the bridge to main
 3:04 | split | RACK | Ranger | 1 | the ranger pushes the front door
 3:10 | cap | chic | Dervish | | chic's 3 caps and goes back for the next
-3:15 | fight | | | 7v7 @ footies | 7v7 in chic's footies
+3:15 | ok.fight |  |  | 7v7 @ footies | 7v7 in chic's footies
 3:24 | hand | RACK | Mes/A | Hammer A | RACK half runs: the 4 hands the flag to the 1 warrior
 3:30 | unsure | RACK | | | not a double run after all: a single run with two players
 3:40 | pushflag | RACK | Mes/A | | the 4 goes through the portal and pushes chic's flagger
@@ -47,7 +46,7 @@
 4:35 | route | RACK | Mes/A | short way | short way both ways
 4:46 | lead | RACK | | | the long way cost chic time: RACK is nearly a full flag ahead with the backup at the stand
 5:00 | cap | chic | Dervish | | chic's 3 caps
-5:03 | overcap | RACK | Mes/A | | RACK's 4 overcaps
+5:00 | overcap | RACK | Mes/A |  | RACK's 4 overcaps again (Denning, 4:25)
 5:10 | support | RACK | Hammer A | | RACK's 1 warrior keeps chic's 7 monk knocked down away from main
 5:25 | fight | | | 8v7 | 8v7 for RACK as chic's 3 runs the long way
 5:35 | timing | RACK | | | nobody runs for RACK: it takes the 8v7 power play
@@ -70,7 +69,6 @@
 8:02 | pushflag | RACK | Mes/A, Ranger | | the 4 and the ranger push the dervish as he runs short way
 8:08 | go | RACK | Mes/A | | then the 4 goes back for the next flag
 8:14 | split | RACK | Hammer B | 1 | the 2 warrior solo splits the back door again
-8:20 | npc | RACK | Hammer B | knight | he has an outside archer and a knight
 8:26 | answer | chic | Assassin | | defended by the assassin
 8:34 | hand | RACK | Mes/A | Hammer A | another double run, half run
 8:46 | go | chic | Dervish | | chic's 3 runs again, long to the spawn and short to cap
@@ -90,8 +88,6 @@
 10:46 | fight | | | 7v7 | a 7v7 while chic's dervish tries to run the flag in
 11:10 | posture | RACK | | | RACK's seven sit in chic's footies
 11:15 | answer | chic | Assassin | | the ranger's solo split is defended by the assassin
-11:24 | join | RACK | Hammer B | | the 2 warrior joins the ranger on the split, then the 8 monk and the prot
-11:36 | fight | | | 4v3 | a 4v3 on the split
 11:48 | fight | | | 8v7 | it breaks down into an 8v7 for RACK as chic's main moves to it
 11:56 | go | chic | Dervish | | chic's dervish goes for the next flag
 12:06 | go | RACK | Mes/A | | RACK's 4 already has the next one
@@ -99,7 +95,7 @@
 12:20 | cap | chic | Dervish | | the dervish caps
 12:22 | overcap | RACK | Mes/A | | RACK's 4 overcaps at 11:50
 12:30 | split | RACK | Ranger | 1 | the ranger gets out, supported by the 6, and solo splits the back door
-12:40 | answer | chic | Assassin, Mes/A | | defended by the assassin and the 4 mesmer
+12:40 | ok.answer | chic | Assassin, Mes/A |  | defended by the assassin and the 4 mesmer
 12:52 | unsure | | | | it turns into a main team fight: the 4v4 never formed
 13:14 | hand | RACK | Mes/A | Hammer A | the 4 drops the flag to the 1 warrior
 13:24 | pushflag | RACK | Mes/A | | the 4 does not go back: he pushes chic's flag instead, an aggressive play
@@ -112,9 +108,9 @@
 15:06 | go | chic | Dervish | | chic's dervish runs long way and waits for his monks
 15:20 | split | RACK | Hammer B, Ranger | | the 2 warrior joins the ranger at the back door, the 8 monk supporting: a three man push
 15:38 | answer | chic | Mes/A, 8 Monk | | defended by the 5 mesmer and the 8 monk
-15:46 | fight | | | 3v2 @ base | 3v2 in chic's base
+15:46 | ok.fight |  |  | 3v2 @ base | 3v2 in chic's base
 16:00 | fight | | | 5v5 | RACK's main is short while its 4 runs
-16:14 | death | chic | Assassin | | the assassin had died
+16:14 | ok.death | chic | Assassin |  | the assassin had died
 16:20 | cap | chic | Dervish | | chic caps
 16:24 | overcap | RACK | Mes/A | | RACK overcaps
 16:36 | baseres | chic | Assassin | | the assassin base resses and goes straight to the split

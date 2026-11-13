@@ -211,11 +211,13 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   little or no damage traded are not a fight), `timing()` (the four choices of R-377, the held flag of R-400 and
   R-407), `onto_flag` on a main team push (R-401), `monk_counts()` and `on_lord()` (R-378); their thresholds in
   `common.py` are confirmed (R-404, R-406). What the flag readings are for is R-412. To see what a looser or tighter threshold would do,
-  use `tools/golden/thresholds.py sweep` (it sets `GVG_TRY`; never set that in a training run).
+  use `tools/golden/thresholds.py sweep` (it sets `GVG_TRY`; never set that in a training run). From the gate review
+  (R-416, R-417): `way_out()` (a team going out of its base by a door), and in `attempts()` who set out together,
+  where a split fell back to, a main team that went home for a split, and swaps in the answer.
   The line-up is the measure of the reading (R-368 to R-397): timestamped commentary and comms filed as paraphrased
   statements in `data/lineup/` (never transcripts), checked against the story by `tools/golden/lineup.py` on the
-  branch. The four held-out games are in `data/lineup/held/`: never print or read their lines before Denning's one
-  review at the gate (R-370, R-396), and never tune the engine on them. The line-up only checks that what was said is
+  branch. The four games in `data/lineup/held/` were the held-out check: Denning reviewed their misses
+  once (R-416), the reading gate passed, and they are spent (building games from here, R-417). The line-up only checks that what was said is
   in the story, so run `tools/golden/thresholds.py` beside every rescore to see what a change did to the records over
   all matches. The gates and the build order are in `docs/REDESIGN.md` ("Tests", "Build plan from here").
 - Before the first training run after the engine is built, go through Denning's list with him (R-398; REDESIGN.md

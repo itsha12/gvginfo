@@ -51,7 +51,7 @@
 17:44 | clock | Fun | | | they have two dead after time: push hard
 18:03 | option | ohno | | | is it worth pushing in: no
 18:36 | s.timing | Fun | | | the same at 26: he will try to wipe us on the stairs, so stand further back
-19:28 | monks | Fun | | | one monk in their base: I stay
+19:28 | monks | Fun |  | 2 | two monks in their base (Denning: the call said one; Fun has two monks in its base at 18:35)
 20:11 | s.join | Fun | | | their whole team is collapsing toward the back door
 20:17 | i.push | ohno | | | I am chasing
 20:25 | object | ohno | | | we port
@@ -60,7 +60,7 @@
 21:35 | death | Fun | Air Ele 1 | | good job
 21:38 | death | Fun | Air Ele 2 | | two eles dead after time
 21:52 | object | ohno | | | we jump in again
-22:01 | timing | ohno | | | everybody in the pit, and we leave by the portal right before they base res
+22:52 | timing | ohno |  |  | everybody in the pit, and we leave by the portal right before they base res (Denning: ohno leaves by the portal at about the 22:00 base res)
 23:10 | s.fall | Fun | | | they are going toward the back door: we do not chase
 24:24 | lord | ohno | | | we have far more Lord damage
 24:52 | option | ohno | | | if they defend with only monks, fake a push then collapse and kill, or just let them make the mistake

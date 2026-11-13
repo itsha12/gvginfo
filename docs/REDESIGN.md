@@ -151,7 +151,8 @@ a solo split or other uneven counts (27%). The rebuild on the records takes its 
    (R-378). Ruled on in R-399 to R-412: posture gave way to the stand-off (R-405, R-411), flag lead is a tally that
    counts the stand (R-408); posture and timing statements outside those are set aside in the line-up (R-414).
 2. **Reading step 3: the check.** The golden stories are regenerated (draft 6), compared with the 13 blind notes, and
-   the line-up rescored; what remains is Denning's one review of the held-out misses, at the gate (R-396).
+   the line-up rescored. Denning's one review of the held-out misses is done (R-416): the reading gate is passed
+   (171 of 188 things seen, 91%, on the engine as reviewed; 185 of 188 after the fixes of R-417, draft 7 of the stories).
 3. **Denning approves the story's form** on golden game 1 (R-395).
 4. **Stage B rebuilt on the records**: triggers, scenarios and calls for families 1 to 3.
 5. **Stage C: the decision gate** (R-394).
@@ -210,7 +211,8 @@ team.
   R-397) and never read line by line before the gate. The gate is 90% agreement on things seen happening in the
   held-out games (R-380, R-383). He reviews their misses once; after that review only the engine's own misses count,
   and if it still fails they are fixed, the four games become building games and two new timestamped games are needed
-  (R-396). At 2026-11-12, with the words of reading step 2 checked instead of set aside and R-399 to R-404 built:
+  (R-396). Reviewed on 2026-11-12 (R-416): 7 confirmed, 8 withdrawn, 18 stand; 171 of 188 (91%) on the engine as
+  it stood, so the gate is passed and the four games are spent. Before the review, with R-399 to R-404 built:
   building 422 of 426 (99%), held-out 163 of 196 (83%), not yet reviewed. The statements checked before are unchanged
   (365 of 365, 136 of 162); posture and timing statements that are not a true stand-off or a deliberate hold are set
   aside (R-414: 7 building, 15 held out).

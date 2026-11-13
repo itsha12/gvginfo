@@ -8,47 +8,46 @@ model's structure: `knowledge/model.md` (generated).
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/SPEC.md and docs/HANDOFF.md, check
 > out `bundle-4` in a second worktree, then set out the items under "Open for Denning" and carry on with "Next".
 
-## State (2026-11-12: redesign step 2 on branch `bundle-4`, last engine commit 5f43768; batch 17, 506 matches trained)
-- Main's engine is unchanged (as SPEC.md describes). Bundle 4 is built on `bundle-4` and lands in one piece, then
-  one rebuild (R-322). 606 replays stored (90 random ones from 2 September on are not yet trained on). No Train
-  batch, Discovery or fetch run in progress.
+## State (2026-11-12: redesign step 2 on branch `bundle-4`, last engine commit 138f2e7; batch 17, 506 matches trained)
+- Main's engine is unchanged (SPEC.md). Bundle 4 is on `bundle-4` and lands in one piece, then one rebuild (R-322).
+  606 replays stored (90 from 2 September on not yet trained on). No Train batch, Discovery or fetch run in progress.
 - On `bundle-4`: `hallmap.py` (zones, walked distance, reach, places in his words), `moments.py` (the records),
   `story.py` (prints from the records, R-362), `tools/golden/golden.py pick|score|stories` (never reads the sealed
   field), `lineup.py score|lines` (the line-up), `thresholds.py run|show` (all-match counts, about 15 minutes).
 - The records in `moments.py`, reading step 1: `attempts()`, `caught()`, `flags_record()`, `main_team()`, `lane()`,
   `moves()`, `split_fights()`, `ground()`, `undefended()`, `on_pit()`, `fights(t)`, `place_at`.
-- Reading step 2 is built and ruled on (R-399 to R-412): `flag_pushes()` (players on a flagger who is on his own);
-  a main team push keeps `onto_flag` (R-401); `flags_record()` keeps the flag route, the way back, the hold before a
-  cap and its distance from the enemy's boost; `flag_lead()`, `lead_value()` and `lead_at()` read the flag tally
-  (R-408: 1 for the stand, plus the share of the next flag run done, plus up to half for the following runner back
-  at the spawn; bands at 0.35, 0.8, 1.3, 1.7); `pregame()`; `standoffs()` (R-405, R-411, R-413: the main teams standing
-  off, 0.4 hits a player in 10 s for 35 s, and two split groups standing apart and still for 25 s, R-415; it replaced
-  `posture()`; a stand-off is not told as a fight); `timing()`
-  (R-377's four; a flag held back 45 s around the stand, R-407; a flag left at the spawn, both only while the enemy
-  holds the stand); `monk_counts()`; `on_lord()`. `story.py` prints each from its record.
-- Thresholds: confirmed (R-404), the delayed pickup at 10 s (R-406); those the later rulings added are Claude's.
-  `thresholds.py sweep NAME values [--data <main>/data/lineup]` shows what a looser or tighter value does to the
-  records and to the building games (common.py `GVG_TRY`; never set it in a training run).
-- Faults fixed: a flag dropped at the spawn and retaken was read as returned (captures 5,245 to 5,249); `story.py`
-  stopped on 8 of 606 matches. Every count of reading step 1 is unchanged.
-- On main: `data/lineup/` (16 transcripts as paraphrased statements: 12 for building, 4 held out in `held/`),
-  Model > Golden moments (15 games, R-382; `golden_stories.json` draft 6), rulings to R-415.
+- Reading step 2 (R-399 to R-415): `flag_pushes()`; `onto_flag` on a main team push (R-401); the flag route, way
+  back, hold and boost distance in `flags_record()`; `flag_lead()`, `lead_value()`, `lead_at()` (the flag tally,
+  R-408; bands at 0.35, 0.8, 1.3, 1.7); `pregame()`; `standoffs()` (R-411, R-413: main teams, 0.4 hits a player in
+  10 s for 35 s; split groups standing apart and still for 25 s, R-415; a stand-off is not told as a fight);
+  `timing()` (R-377's four, a flag held back, R-407, a flag left at the spawn); `monk_counts()`; `on_lord()`.
+- Thresholds: confirmed (R-404, R-406); those the later rulings added are Claude's. `thresholds.py sweep NAME
+  values [--data <main>/data/lineup]` tries a looser or tighter value (`GVG_TRY`; never in a training run).
+- Built from the gate review (R-417): `way_out()` (a team going out of its base by a door); a split told by who
+  set out together, falling back to its own ground, answered by a main team that goes home, with swaps in the
+  answer; a drop told where it lay; the Guild Lord damage so far in the state line.
+- Faults fixed (R-417): door routes were cut at the first cell off the walkable ground (13 doors on seven halls:
+  his Weeping Stone question); a repeated pickup lost the carry before it; a capture with no player after a drop
+  on the stand was lost; the flag route read past the arrival at the stand; a team that left by the res read as
+  caught. Captures 5,249 to 5,257; every other count of the reading moved by under 2%.
+- On main: `data/lineup/` (16 transcripts as paraphrased statements; the four in `held/` are spent, R-417),
+  Model > Golden moments (15 games; `golden_stories.json` draft 7), rulings to R-417.
 
 ## The line-up (R-368 to R-397), the measure of the reading stage
 - `lineup.py score --data <main>/data/lineup [--held] [--show]` with `LINEUP_CACHE` set (delete it after an engine
-  change). The gate is 90% agreement on things seen happening in the four held-out games (R-380, R-383).
-- The seven kinds of reading step 2 are checked. Posture and timing statements that are not a true stand-off or a
-  deliberate hold are set aside (R-414: 7 building, 15 held out). Seen events: building 422 of 426 (99%), held-out
-  163 of 196 (83%). Comms calls: 108 of 157, 61 of 80. Stand-offs: 146 over 606 matches (0.24 a match).
-- The gate review was opened on 2026-11-12 at his direction (R-415): the 33 held-out misses on things seen were set
-  out for him in the chat (BcS v hook 16, RACK v chic 11, OG v cope 3, ohno v Fun 3). His answers are awaited. The
-  held-out lines have now been read: from here only the engine's own misses count (R-396).
-- Reading step 3 otherwise done: `golden_stories.json` draft 6; blind check run (opening and last minutes of each).
+  change). Posture and timing statements that are not a true stand-off or a deliberate hold are set aside (R-414).
+- **The reading gate is passed (R-416).** His one review of the 33 held-out misses: 7 confirmed, 8 withdrawn, 18
+  stand with his corrections. The engine as it stood at the review (5f43768) agrees with 171 of 188 things seen
+  (91%; the gate is 90%, R-380, R-383). After the fixes of R-417: held-out 185 of 188, building 422 of 426; comms
+  calls 62 of 80 and 109 of 157. The 185 is not a clean check: the fixes were made knowing those lines.
+- The three held-out misses left: BcS v hook 6:52 (he says not a push, BcS's four at the stand; the engine has three
+  there and the Dervish ahead), BcS v hook 8:21 (he has BcS's split running to hook's back door; the replay has it
+  1,200 out of its own back door and back by 8:40), RACK v chic 0:29 (the flagger pushed as he reaches his team).
+- Reading step 3 done: `golden_stories.json` draft 7; blind check rerun on the changed lines.
 
 ## Next (in order; the full build plan and both gates are in REDESIGN.md "Build plan from here" and "Tests")
-1. Apply his answers to the 33 held-out misses as on the building games (R-386: confirmed `ok.`, withdrawn, or
-   retyped as he corrects), in `data/lineup/held/`; rescore; the gate is 90% of things seen (R-380, R-383).
-2. Fix the engine's own misses that remain (`thresholds.py` beside every rescore); if it still fails, R-396 applies.
+1. His rulings on the three items under "Open for Denning" that came out of the gate review.
+2. No fresh held-out check is required by R-396 (the gate passed); two new timestamped games would give one.
 3. His approval of the story's form on golden game 1 only (R-395); rebuild the decision moments (triggers,
    scenarios, calls) on the records (R-351); the decision gate (R-394).
 4. Stage D on the branch (consequence record, similar cases, the job table, enemy execution, the four proposals left
@@ -56,8 +55,10 @@ model's structure: `knowledge/model.md` (generated).
    rewritten, readability test, his list of R-398, merge, Train batch with `add_batch=no`).
 
 ## Open for Denning (set each out in the chat, R-329)
-- His review of the 33 held-out misses (set out in the chat on 2026-11-12; `lineup.py score --held --show --gate`).
-- Left from the blind check: a runner pushed as the fight converges on him (hdm v HC 2:50); time to cap.
+- A runner pushed as the fight converges on him: RACK v chic 0:29 (on his own 4 s, the hit lands as he reaches
+  his team) and hdm v HC 2:50. Options: count a push of 4 s when a hit or skill lands; or leave it out. Time to cap.
+- BcS v hook 6:52 (withdraw as a push?) and 8:21 (does the tape show the split reaching hook's back door?).
+- WAY_OUT_GAP_S (10 s) and the 3 s that make a hand-off a drop are Claude's; 2.7 door lines a match: keep them?
 - Stage D: the consequence record sets flags given up beside numbers gained (R-412); 0.8 of a player to be measured.
 - From before: comms pass rate (R-394); game 1's story form (R-395); threat, hand-off to hold, 983a47db.
 
@@ -71,8 +72,7 @@ model's structure: `knowledge/model.md` (generated).
   thresholds need no cache (`cache.py sync pull`, `warm` only for the fitted models). `PYTHONDONTWRITEBYTECODE=1`.
 
 ## Cautions
-- Never print or decode a sealed field (blind picks, golden moments) in a chat. The held-out games are scored as
-  counts only until his one review (`--held --show --gate`, R-370, R-396).
+- Never print or decode a sealed field (blind picks, golden moments) in a chat.
 - Don't merge `bundle-4` piecemeal (R-322). Label and golden files are saved whole by the site: after a change
   here, Denning reloads the page first. Hall labels are saved to main: copy changed `data/maps/labels/*.json` to the
   branch before reading a hall (all 14 matched main on 2026-11-12).

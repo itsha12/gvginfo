@@ -6,16 +6,14 @@
 # note: commentary ends at about 9:00 of 23:55
 0:05 | split | BcS | | 4 | BcS sends a four man split out the back door
 0:10 | push | hook | | back door | hook sends its six man main team out the back door as well
-0:17 | hold | hook | Monk 2 (WoC) | | hook's flag is on the 2
 0:22 | hold | BcS | Dervish | | BcS's flag is on the 4
 0:26 | wait | BcS | Mesmer | | the 5 mesmer waits back for the second flag
-0:44 | fight | | | 4v6 @ back door | BcS's split is 4v6 at the back door
 0:50 | fall | BcS | | | and disengages
 0:54 | cap | BcS | Dervish | | BcS caps on the dervish
 0:57 | go | BcS | Mesmer | | the mesmer runs the second flag
 1:01 | cap | hook | 8 Monk | | hook's 8 monk caps
 1:05 | object | hook | | | hook's main collapses through the gate locks to the flag stand
-1:10 | push | BcS | | back door | BcS's four push the back door again
+1:10 | push | BcS |  | back door | BcS's four man split is at its back door (Denning, 0:33)
 1:18 | npc | hook | | archer | hook's main spikes out archers and footies at the stand side
 1:24 | fall | BcS | | front door | BcS's main has fallen to its front door
 1:35 | npc | BcS | | archer | BcS's split takes archers at the back door
@@ -25,22 +23,20 @@
 2:00 | npc | BcS | | footman | BcS takes footies and archers at hook's front door, nobody running
 2:06 | go | hook | Monk 4 (WoC) | | hook's 4 picks up the flag and runs
 2:12 | end | BcS | | | hook's six push BcS's four out of the back door
-2:20 | fall | BcS | | | BcS's four man main falls back, wary of the collapse
+2:20 | fall | BcS |  | back door | BcS's four man split runs back to its back door (Denning, 1:45)
 2:28 | object | hook | | | hook opens the gate lever and collapses through the gate locks so the flag gets in
 2:40 | support | hook | 8 Monk | | the 8 monk hovers at the gate locks
 2:48 | go | BcS | Mesmer | | BcS's 5 runs the next flag, having gone back earlier
 2:56 | posture | BcS | | | BcS's split hovers at the back door
 3:02 | object | hook | | | hook holds the gate locks in the centre and can collapse either way
-3:08 | push | hook | | back door | hook sends six to the back door
 3:14 | cap | BcS | Mesmer | | BcS's four push the flag in against hook's two
 3:22 | npc | hook | | archer | hook kills archers at BcS's back door
 3:34 | pickup | BcS | Air Ele | | BcS's 3 picks up the flag as the split rotates to main
 3:40 | timing | hook | | | hook has no flag and has not sent anyone to run
 3:47 | drop | BcS | Air Ele | | BcS's 3 drops the flag
-3:50 | split | BcS | | 1 | one of BcS solo splits the back door
+3:50 | split | BcS |  | 1 | BcS has five by the greater stand area, two in its base and one on a solo split at the back door (Denning)
 3:57 | fight | | | 4v6 | hook's six engage BcS's four
 4:02 | pickup | BcS | Mesmer | | the mesmer picks up the dropped flag
-4:08 | fall | BcS | | front door | BcS retreats fully to its front door and base
 4:18 | death | BcS | Prot | | hook kills the prot
 4:26 | answer | hook | 8 Monk | | hook's 8 defends the back door alone against four: dangerous
 4:34 | fall | hook | | | hook retreats: five out the back door, two out the front
@@ -54,23 +50,23 @@
 6:08 | cap | hook | | | as hook caps
 6:12 | drop | BcS | | | BcS's flag lies at its footies
 6:16 | timing | hook | | | hook does not return it and pushes in the front door
-6:24 | fall | BcS | | base | BcS in full retreat to base
+6:24 | ok.fall | BcS |  | base | BcS in full retreat to base
 6:35 | split | BcS | Air Ele | 1 | BcS's 3 solo splits out the back door
 6:45 | push | hook | | | hook tries for spike kills in BcS's base
 6:54 | fall | hook | | | then retreats out the front door
 7:00 | split | BcS | | 4 | three more join: a four man split into hook's back door
 7:07 | ret | hook | | | hook has returned BcS's flag
 7:10 | go | BcS | Mesmer | | BcS runs the next flag on the mesmer
-7:18 | answer | hook | | | hook collapses its full team through its base to push the split out
+7:30 | answer | hook |  |  | hook collapses all eight to its base to answer the split (Denning, 6:52)
 7:30 | push | BcS | | | BcS's main pushes the flag stand
 7:40 | push | hook | | back door | hook again sends six out the back door
-7:44 | go | hook | 8 Monk | | hook's 8 runs the flag
-7:55 | fall | BcS | | | BcS's split is in full retreat
+7:44 | go | hook | 8 Monk |  | hook's 4 drops the flag and makes no attempt to run it; hook's 8 picks it up to run it (Denning, 7:06)
+7:55 | fall | BcS |  | back door | BcS's split falls back fully to its back door (Denning, 7:19)
 8:04 | go | BcS | Mesmer | | BcS sends the 5 for the next flag
 8:10 | cap | hook | 8 Monk | | hook caps on the 8, collapsing through the gate lock to get it in safely
 8:22 | hold | BcS | Mesmer | | BcS's flag waits at its front door on the 5
 8:28 | object | hook | | | hook's eight control the gate locks
 8:34 | fall | BcS | | | BcS's split retreats, wary of the collapse
 8:56 | unsure | BcS | | | BcS could not cap
-9:03 | split | BcS | | 4 | BcS's four push the back door again at about 8:30
+8:59 | split | BcS |  | 4 | BcS's four man split runs to hook's back door while BcS's four man main team retreats to its front door (Denning, 8:21)
 9:15 | posture | BcS | | | they sit in the back door without pushing hook's base

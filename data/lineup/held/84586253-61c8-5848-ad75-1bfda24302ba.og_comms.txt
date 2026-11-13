@@ -29,7 +29,7 @@
 4:16 | s.hold | cope | Hammer | | the warrior has the flag
 4:29 | s.join | cope | AoB Derv, Hammer | through mid | the dervish and the hammer are collapsing through the middle
 4:40 | i.go | OG | | | I am going to get a flag
-4:44 | swap | cope | Ritualist | | they swapped the 8 monk for the ritualist against me
+4:37 | swap | cope | Ritualist |  | cope's 8 monk had defended the solo split in the back footies from 2:43; cope swaps the 8 monk for the ritualist, who now defends it 1v1 (Denning, 3:23)
 5:22 | plan | OG | | | we do not want to 8v8: keep the split going
 5:32 | i.split | OG | | | go to the split side through the middle
 5:39 | judge | OG | | | that is a better three man
@@ -41,7 +41,7 @@
 7:20 | timing | OG | | | if they push this flag in, I go and ball the knights
 7:26 | swap | cope | Mes/A | | they have the mesmer, the warrior and the 8 on the split now, and the ritualist is going back
 7:31 | i.fall | OG | | | run away: they will turn and kill me
-8:04 | lead | OG | | | we are not ahead on flags right now
+8:04 | ok.lead | OG |  |  | we are not ahead on flags right now
 8:05 | i.fall | OG | | | fall back
 8:14 | i.go | OG | | | I will double run with you to get back up
 8:45 | s.join | cope | Hammer | | they have the warrior coming
@@ -87,7 +87,7 @@
 23:17 | clock | OG | | | this is 22 minutes
 23:38 | pull | OG | | | you have two knights on you here
 24:16 | death | OG | AoB Derv | | I hit the wrong hotkey
-24:35 | lord | cope | | | they can end the game here
+24:35 | ok.lord | cope |  |  | they can end the game here
 24:58 | death | cope | Ritualist | | we killed a ritualist
 25:39 | i.boost | OG | | | can we at least get the boost
 25:47 | option | OG | | | play for 28, or go with the power play
