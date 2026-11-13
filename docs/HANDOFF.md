@@ -12,7 +12,7 @@ model's structure: `knowledge/model.md` (generated).
 ## State (2026-11-13 night: redesign step 2 on branch `bundle-4`, stage D under way; batch 17, 506 matches trained)
 - Main's engine is unchanged (SPEC.md). Bundle 4 is on `bundle-4` and lands in one piece, then one rebuild (R-322).
   606 replays stored (90 from 2 September on not yet trained on). No Train batch, Discovery or fetch run in progress.
-  Last commits: main, this handoff (after 0c980cb); `bundle-4` 2c70ac9. Both pushed; nothing uncommitted.
+  Last commits: main, this handoff (after 98ba81c); `bundle-4` 2c70ac9. Both pushed; nothing uncommitted.
 - On `bundle-4`: `hallmap.py`, `moments.py` (records, decision moments, shape, consequences), `jobs.py` (the plays
   and their jobs, R-423 to R-449), `story.py`, `tools/golden/golden.py`, `lineup.py`, `thresholds.py`, `review.py`.
 - Both gates pass (key v3): part one 12 of 12, part two 65 of 105 (61%). Line-up: building 422 of 426, held-out 186
@@ -69,7 +69,7 @@ model's structure: `knowledge/model.md` (generated).
 - Local engine: `git fetch --depth 1 origin +replays:refs/remotes/origin/replays`; `pip install
   --break-system-packages -r .github/workflows/train-requirements.txt`. The records, the story, the line-up, the gate
   and the thresholds need no cache (`cache.py sync pull`, `warm` only for the fitted models). `PYTHONDONTWRITEBYTECODE=1`.
-- `thresholds.py run`: about 15 minutes, two jobs, the machine to itself; run old and new one after the other.
+  `thresholds.py run`: about 15 minutes, two jobs, the machine to itself; old and new one after the other.
 
 ## Cautions
 - Never print or decode a sealed field (blind picks, golden moments) in a chat.
