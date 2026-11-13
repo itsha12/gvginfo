@@ -2429,9 +2429,19 @@ def _one(rid):
     except Exception as e: return rid, {"error": f"{type(e).__name__}: {e}"}, None
 
 
-def run_all(path, jobs=2):
+def dev_ids():
+    """The development set (R-453): the matches Denning has reviewed, the golden and the line-up games. Run after every
+    change (`moments.py all <file> --dev`, under a minute); every match only at a checkpoint."""
+    import common, os
+    here = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    want = json.load(open(os.path.join(here, "data", "model", "dev_set.json")))["matches"]
+    have = set(common.replay_ids())
+    return [r for r in want if r in have]
+
+
+def run_all(path, jobs=2, ids=None):
     import multiprocessing, common
-    ids, out, bad, extra = common.replay_ids(), {}, {}, {}
+    ids, out, bad, extra = (ids if ids is not None else common.replay_ids()), {}, {}, {}
     idx = common.replay_index()
     with multiprocessing.Pool(jobs) as pool:
         for rid, rec, ex in pool.imap_unordered(_one, ids, chunksize=4):
@@ -2509,7 +2519,7 @@ def runner(path):
 
 if __name__ == "__main__":
     a = sys.argv[1:]
-    if a and a[0] == "all": run_all(a[1], int(a[a.index("--jobs") + 1]) if "--jobs" in a else 2)
+    if a and a[0] == "all": run_all(a[1], int(a[a.index("--jobs") + 1]) if "--jobs" in a else 2, dev_ids() if "--dev" in a else None)
     elif a and a[0] == "counts": counts(a[1])
     elif a and a[0] == "after": after(a[1])
     elif a and a[0] == "runner": runner(a[1])

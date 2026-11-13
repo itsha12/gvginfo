@@ -228,7 +228,8 @@ def split_plays(M, K):
         to = {a: int(q["to"]) for a, q in zip(x["ids"], x["members"])}
         deep = lambda a, u: M.AL[a][u] and M._deep(a, u - u % S_) is not None
         # a chase is not a split: players following an enemy split out of their own base, who never reach a door (Denning, NwAy v hook 3:04: the split is hook's, chased out, and its Air Ele dies at 3:48)
-        chased = next((y for y in A if y["tm"] == foe and y["t_in"] <= x["t_in"] <= y["t1"] + 30 and x["where"] == "field"
+        # (it sets off while that split is still out and takes no NPC: hdm v 옷옷옷옷 3:46 is a split of its own, after theirs had gone home, and takes an archer; review key s1-26)
+        chased = next((y for y in A if y["tm"] == foe and y["t_in"] <= x["t_in"] <= y["t1"] + 4 and x["where"] == "field" and not x["npcs"]
                        and len(set(x["ids"]) & (set(y["answer"]["ids"]) | set(y["answer"].get("went_back_ids") or []))) * 2 >= len(x["ids"])), None)
         if chased is not None: continue
         # follow its players for as long as they stay on the enemy's ground, past the record's own end (the label can change under them: a split that becomes the only players left, or is renamed a push)
@@ -369,7 +370,7 @@ def split_plays(M, K):
                                  any_of={"a split player dies": n_lost > 0, "the split is gone within the visit": last and short}, beside=besD, call="add one", **kw))
             if k == 1 and n == 1 and not collapse:                         # a lone defender part-running his flag (R-430)
                 b = Dp[0]
-                carried = sum(S_ for u in range(p0, p1 + 1, S_) if M.carrying(b, u))
+                carried = sum(S_ for u in range(max(p0 - JOIN_S, 0), p1 + 1, S_) if M.carrying(b, u))      # from when he got there: he counts as the defender only JOIN_S later (review key s1-28)
                 if carried >= 6:
                     out.append(_play(M, "split", "defender", foe, p0, e1, [role[b]], scen_d + f": the lone defender carries his flag for {carried} s", "Gain a slight flag advantage while losing no pit NPC and not dying",
                                      dict(pit_ok, **{f"flag lead better by {PART_RUN_GAIN} or more": gd is not None and gd >= PART_RUN_GAIN, "the defender does not die": n_kill == 0}), beside=dict(besD, carried_s=carried), call="part-run", **kw))

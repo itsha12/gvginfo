@@ -1,0 +1,1220 @@
+{
+ "about": "The review key (R-450). Every row Denning was shown of the engine's plays: what the engine said then (shown), his mark and his words (said), and checks: Claude's reading of his mark as things the plays must hold or must not hold, which he corrects. Scored by tools/golden/review.py on the branch after every change. Marks: right, partly, wrong, bad example (set aside), not marked. Set 1 is the 35 rows of 2026-11-13, picked one or more to a kind of play, so it is a regression test and not an accuracy figure; whole-game sets (R-454) give the accuracy by kind of play.",
+ "version": 1,
+ "rows": [
+  {
+   "id": "s1-1",
+   "set": 1,
+   "row": 1,
+   "rid": "453bd7a0-ec5b-5e03-a6a2-023431c7deaa",
+   "match": "Men v OG, Solitude",
+   "window": [
+    123,
+    172
+   ],
+   "type": "flag",
+   "call": "They single, we single",
+   "shown": "OG's Mesmer runs; Men answers with a single run (Ritualist) | Not met: Men's flag did not get in. Deaths 0 v 2",
+   "mark": "bad example",
+   "said": "Bad example because of Shadow of Haste; pick another one.",
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "Men",
+      "at": [
+       123,
+       172
+      ]
+     },
+     "want": {
+      "soh": true
+     }
+    }
+   ]
+  },
+  {
+   "id": "s1-2",
+   "set": 1,
+   "row": 2,
+   "rid": "d6ef0b00-a841-55ac-a976-4eca9f15c175",
+   "match": "NwAy v Men, Uncharted",
+   "window": [
+    1003,
+    1127
+   ],
+   "type": "flag",
+   "call": "They single, we double",
+   "shown": "Men's Ritualist runs; NwAy double runs (Mesmer, Dervish, half runs) | Met: flag lead −1.16 to +0.06, nobody died",
+   "mark": "bad example",
+   "said": "Bad example because of Shadow of Haste; pick another one.",
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "NwAy",
+      "at": [
+       1003,
+       1127
+      ]
+     },
+     "want": {
+      "soh": true
+     }
+    }
+   ]
+  },
+  {
+   "id": "s1-3",
+   "set": 1,
+   "row": 3,
+   "rid": "a0d60daa-0700-5a31-a1f5-495c0db986df",
+   "match": "ohno v NwAy, Weeping Stone",
+   "window": [
+    665,
+    744
+   ],
+   "type": "flag",
+   "call": "They single, we stay",
+   "shown": "ohno's Ritualist runs; NwAy does not run | Met: deaths 0 v 2. Flag lead 1.0 to −1.0 beside it",
+   "mark": "right",
+   "said": "Good example, correct identification and result.",
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "NwAy",
+      "at": [
+       664,
+       744
+      ]
+     },
+     "want": {
+      "their": "single run",
+      "ours": "stay",
+      "met": true,
+      "soh": false
+     }
+    }
+   ]
+  },
+  {
+   "id": "s1-4",
+   "set": 1,
+   "row": 4,
+   "rid": "506102ee-ef94-5ecf-a485-c1c836193322",
+   "match": "NwAy v Men, Weeping Stone",
+   "window": [
+    307,
+    366
+   ],
+   "type": "flag",
+   "call": "They single, flag in hand",
+   "shown": "Men's Ritualist runs; NwAy already holds a flag (Mesmer, Dervish) | Not met: Men capped and NwAy's cap did not follow within 15 s",
+   "mark": "not marked",
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "NwAy",
+      "at": [
+       307,
+       366
+      ]
+     },
+     "want": {
+      "soh": true
+     }
+    }
+   ],
+   "note": "Not his mark: the engine found afterwards that this is a Shadow of Haste run (R-438)."
+  },
+  {
+   "id": "s1-5",
+   "set": 1,
+   "row": 5,
+   "rid": "368cb5d2-f517-5137-ae27-0607789747a8",
+   "match": "hdm v Men, Uncharted",
+   "window": [
+    923,
+    983
+   ],
+   "type": "flag",
+   "call": "They double, we double",
+   "shown": "hdm double runs (Ritualist 3); Men double runs (Ritualist) | Met: capped, no deaths, flag lead −0.09 to +1.03",
+   "mark": "not marked",
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "Men",
+      "at": [
+       923,
+       983
+      ]
+     },
+     "want": {
+      "soh": true
+     }
+    }
+   ],
+   "note": "Not his mark: the engine found afterwards that this is a Shadow of Haste run (R-438)."
+  },
+  {
+   "id": "s1-6",
+   "set": 1,
+   "row": 6,
+   "rid": "9c9f7436-11d7-5283-a5aa-cbcc5f68bb77",
+   "match": "One v Men, Druid's",
+   "window": [
+    256,
+    315
+   ],
+   "type": "flag",
+   "call": "They double, we single",
+   "shown": "One double runs (Hammer); Men single runs on the 8 Monk | Not met: no kill, no ground, no NPC. Flag lead 0.52 to 0.0",
+   "mark": "not marked",
+   "checks": []
+  },
+  {
+   "id": "s1-7",
+   "set": 1,
+   "row": 7,
+   "rid": "28447c4a-7cc6-5db5-ac7c-aa2bcc23c62c",
+   "match": "hdm v HC, Imperial",
+   "window": [
+    233,
+    278
+   ],
+   "type": "flag",
+   "call": "They double, we stay",
+   "shown": "HC double runs (AoB Derv); hdm stays | Not met: no kill. Flag lead 1.36 to 0.57 beside it",
+   "mark": "not marked",
+   "checks": []
+  },
+  {
+   "id": "s1-8",
+   "set": 1,
+   "row": 8,
+   "rid": "29aad8d4-e585-5b0a-af7d-93527a333d2b",
+   "match": "xxx v ohno, Uncharted",
+   "window": [
+    858,
+    918
+   ],
+   "type": "flag",
+   "call": "They double, flag in hand",
+   "shown": "xxx double runs (Mesmer); ohno already holds a flag (Air Ele) | Not met: no answering cap. Flag lead 0.44 to −1.22",
+   "mark": "not marked",
+   "checks": [],
+   "note": "Withdrawn: the row no longer exists as it was shown (the 'flag already in hand' reading was narrowed)."
+  },
+  {
+   "id": "s1-9",
+   "set": 1,
+   "row": 9,
+   "rid": "0f1fd794-46cd-5fb1-a661-a7ec5f1cbadd",
+   "match": "hdm v Men, Nomad's",
+   "window": [
+    170,
+    186
+   ],
+   "type": "push flagger",
+   "call": "Push the flagger",
+   "shown": "hdm's main team (Stand Mes, Hammer A, Paragon, 7 Monk) pushes Men's Mesmer carrying | Not met: arrived in 26 s against a usual 23 (13% late)",
+   "mark": "not marked",
+   "checks": []
+  },
+  {
+   "id": "s1-10",
+   "set": 1,
+   "row": 10,
+   "rid": "457b3a21-b67f-5164-a70d-adfd73423fcf",
+   "match": "NwAy v SKT, Solitude",
+   "window": [
+    364,
+    397
+   ],
+   "type": "flagger pushed",
+   "call": "Our flagger pushed, help sent",
+   "shown": "NwAy's Dervish is pushed by five; NwAy sends the Prot & 7 Monk | Not met: arrived in 78 s against a usual 30. Nobody else died",
+   "mark": "not marked",
+   "checks": []
+  },
+  {
+   "id": "s1-11",
+   "set": 1,
+   "row": 11,
+   "rid": "0f1fd794-46cd-5fb1-a661-a7ec5f1cbadd",
+   "match": "hdm v Men, Nomad's",
+   "window": [
+    1304,
+    1339
+   ],
+   "type": "boost",
+   "call": "Their boost: deny",
+   "shown": "Men's boost is 30 s away; hdm has a flag in hand, the rest at the stand | Met: the boost did not land",
+   "mark": "not marked",
+   "checks": []
+  },
+  {
+   "id": "s1-12",
+   "set": 1,
+   "row": 12,
+   "rid": "368cb5d2-f517-5137-ae27-0607789747a8",
+   "match": "hdm v Men, Uncharted",
+   "window": [
+    1073,
+    1118
+   ],
+   "type": "boost",
+   "call": "Their boost: concede",
+   "shown": "Men's boost is 30 s away; hdm does not run and pushes up | Not met: deaths 1 v 0, and the boost landed",
+   "mark": "not marked",
+   "checks": []
+  },
+  {
+   "id": "s1-13",
+   "set": 1,
+   "row": 13,
+   "rid": "62c3fad6-2ebb-5a65-ae51-186c08822dc4",
+   "match": "xxx v NwAy, Corrupted",
+   "window": [
+    748,
+    840
+   ],
+   "type": "pinned",
+   "call": "Pinned",
+   "shown": "xxx is held in its base or pit by NwAy's main team (one knight, one archer, Bodyguard alive) | Met: no pit NPC lost and nobody died until the res",
+   "mark": "right",
+   "said": "Good example, correct identification and result.",
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "xxx",
+      "at": [
+       748,
+       840
+      ]
+     },
+     "want": {
+      "met": true
+     }
+    }
+   ]
+  },
+  {
+   "id": "s1-14",
+   "set": 1,
+   "row": 14,
+   "rid": "457b3a21-b67f-5164-a70d-adfd73423fcf",
+   "match": "NwAy v SKT, Solitude",
+   "window": [
+    1430,
+    1470
+   ],
+   "type": "base res",
+   "call": "Base res",
+   "shown": "NwAy's four leave SKT's base 10 s before the res, with three coming back | Met: nobody died in the 30 s after",
+   "mark": "wrong",
+   "said": "We need to make sure we are identifying split correctly. It is right in the sense of yes, this was a good leave before a base res, but it was only 3 from Nway in SKT's base, not 4.",
+   "checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "NwAy",
+      "at": [
+       1430,
+       1470
+      ]
+     },
+     "want": {
+      "call": "left before the res",
+      "who#": 3,
+      "met": true
+     }
+    }
+   ]
+  },
+  {
+   "id": "s1-15",
+   "set": 1,
+   "row": 15,
+   "rid": "7761aa5f-0ff1-5724-a537-f257af86b9a5",
+   "match": "Book v One, Corrupted",
+   "window": [
+    1134,
+    1160
+   ],
+   "type": "split attacker",
+   "call": "Undefended",
+   "shown": "Book's Hammer solo by the back door, nobody defending | Not met: no NPC taken",
+   "mark": "wrong",
+   "said": "We need to clean this up a bit to see when the split actually reaches base/NPCs/etc, and also the defense. Hammer only reaches near pit at 19:17, is defended by a rit at 19:28; and then they resign at 19:44. I think we also need to clean up when flags and splits happen, I know we can see retroactive moves (and that is a good approach) but I think when I was previously reviewing the golden moments there was identification of players going to flag/split much earlier than I ever would have called it.",
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "Book",
+      "start": [
+       1150,
+       1160
+      ]
+     },
+     "want": {
+      "answer": "undefended",
+      "size": 1
+     }
+    },
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "One",
+      "at": [
+       1166,
+       1184
+      ]
+     },
+     "want": {
+      "defenders": 1,
+      "who~": [
+       "Ritualist"
+      ]
+     },
+     "open": true,
+     "why": "Book v One 19:28: One's Ritualist defends the Hammer; he is on him under 12 s before the game ends, so he is not counted"
+    }
+   ]
+  },
+  {
+   "id": "s1-16",
+   "set": 1,
+   "row": 16,
+   "rid": "27d03c34-b283-5a83-a5dd-70a02424523d",
+   "match": "Book v Apes, Druid's",
+   "window": [
+    254,
+    324
+   ],
+   "type": "split attacker",
+   "call": "1 v 1, defender not a monk",
+   "shown": "Apes's Dervish solo by the back door | Not met: no kill, no NPC",
+   "mark": "right",
+   "said": "Good example, correct identification and result.",
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "Apes",
+      "at": [
+       254,
+       324
+      ]
+     },
+     "want": {
+      "answer": "1 v 1, the defender not a monk",
+      "size": 1,
+      "defenders": 1,
+      "met": false
+     }
+    }
+   ]
+  },
+  {
+   "id": "s1-17",
+   "set": 1,
+   "row": 17,
+   "rid": "25a90723-16b6-533d-a15d-570d9901c8a7",
+   "match": "BcS v hook, Weeping Stone",
+   "window": [
+    1292,
+    1346
+   ],
+   "type": "split attacker",
+   "call": "1 v 1, defended by a monk",
+   "shown": "BcS's Ritualist solo by the back door, held by a monk | Met: he survived. The main team's kill job is read apart",
+   "mark": "wrong",
+   "said": "Not accurate. Result is correct, but identification is not. He get's collapsed by a WoC at 22:10.",
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "BcS",
+      "at": [
+       1304,
+       1326
+      ]
+     },
+     "want": {
+      "answer": "1 v 1, defended by a monk",
+      "met": true
+     }
+    },
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "hook",
+      "at": [
+       1326,
+       1346
+      ]
+     },
+     "want": {
+      "call": "collapse",
+      "who~": [
+       "Monk 4 (WoC)"
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "s1-18",
+   "set": 1,
+   "row": 18,
+   "rid": "1cb73c20-1b06-5b7b-a728-25c7640f8a84",
+   "match": "ohno v Fun, Solitude",
+   "window": [
+    670,
+    714
+   ],
+   "type": "split attacker",
+   "call": "A player up",
+   "shown": "ohno's Water Ele, Fire Ele & Monk 5 by the front door, 3 v 2 | Not met: no kill, no NPC",
+   "mark": "partly",
+   "said": "This is kind of accurate but maybe we need more nuance. 3 dmg is not expected to kill 2 defending monks on split. In this situation, mainteam should have killed as Fun had 0 monks at main.",
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "ohno",
+      "at": [
+       680,
+       730
+      ]
+     },
+     "want": {
+      "answer": "held by monks",
+      "size": 3,
+      "defenders": 2,
+      "met": true
+     }
+    },
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker's main team",
+      "team": "ohno",
+      "at": [
+       680,
+       730
+      ]
+     },
+     "want": {
+      "met": false
+     }
+    }
+   ]
+  },
+  {
+   "id": "s1-19",
+   "set": 1,
+   "row": 19,
+   "rid": "c553716d-a00b-5bff-ac49-6bfc480c5ca9",
+   "match": "ohno v One, Solitude",
+   "window": [
+    326,
+    380
+   ],
+   "type": "split attacker",
+   "call": "Even",
+   "shown": "ohno's four by the back door, 4 v 4 | Not met: no kill, no NPC",
+   "mark": "partly",
+   "said": "Same again. This is good identification but 3 dmg is not expected to kill 2 defending monks on split in even fight. In this situation, mainteam should have killed as they were even with 2 dmg vs 1 monk (this dmg/monk math ratio is very important in a number of situations).",
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "ohno",
+      "at": [
+       344,
+       386
+      ]
+     },
+     "want": {
+      "answer": "held by monks",
+      "size": 4,
+      "defenders": 4
+     }
+    },
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker's main team",
+      "team": "ohno",
+      "at": [
+       344,
+       386
+      ]
+     },
+     "want": {
+      "met": true
+     }
+    }
+   ]
+  },
+  {
+   "id": "s1-20",
+   "set": 1,
+   "row": 20,
+   "rid": "dae60f33-00a0-5b98-ae10-69a8b5424269",
+   "match": "NwAy v hook, Corrupted",
+   "window": [
+    184,
+    234
+   ],
+   "type": "split attacker",
+   "call": "A player down",
+   "shown": "NwAy's split by the back door, one player at a time (four in all), 1 v 3 | Met: nobody died, flag lead −0.35 to +0.30",
+   "mark": "wrong",
+   "said": "Incorrect, this is not met. Correct identification of the situation but hook's number 1 dies at 3:50. Was this picked up?",
+   "checks": [
+    {
+     "none": {
+      "play": "split",
+      "side": "attacker",
+      "team": "NwAy",
+      "at": [
+       184,
+       234
+      ]
+     }
+    },
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hook",
+      "at": [
+       186,
+       232
+      ]
+     },
+     "want": {
+      "met": false
+     }
+    }
+   ],
+   "note": "Claude's reading of his mark, for him to correct: the split is hook's, chased out by NwAy's defenders, and hook's Air Ele dies at 3:48, so hook's job is not met."
+  },
+  {
+   "id": "s1-21",
+   "set": 1,
+   "row": 21,
+   "rid": "862d6629-38f3-5359-a885-0285354ce534",
+   "match": "NwAy v Men, Corrupted",
+   "window": [
+    710,
+    759
+   ],
+   "type": "split attacker",
+   "call": "Collapsed on",
+   "shown": "Men's three by the front door; NwAy's Monk 3 collapses for 44 s | Met: nobody on the split died in those 44 s, and the flag lead gained. Two died later in the same split",
+   "mark": "wrong",
+   "said": "Incorrect identification. This was a join of defense that lead to and even 4v4. Collapse on a split means the defending team becomes at least +1 compared to the split.",
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "Men",
+      "at": [
+       704,
+       756
+      ]
+     },
+     "want": {
+      "answer": "even",
+      "size": 4,
+      "defenders": 4
+     }
+    },
+    {
+     "none": {
+      "play": "split",
+      "side": "defender",
+      "team": "NwAy",
+      "at": [
+       700,
+       760
+      ],
+      "want": {
+       "call": [
+        "collapse",
+        "full collapse"
+       ]
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "s1-22",
+   "set": 1,
+   "row": 22,
+   "rid": "36a65ac6-e25a-5d66-a8ed-2bf1032f243a",
+   "match": "옷옷옷옷 v Men, Jade",
+   "window": [
+    310,
+    352
+   ],
+   "type": "split attacker",
+   "call": "Met by a full collapse",
+   "shown": "옷옷옷옷's Necromancer 2 solo by the front door | Not met: he died",
+   "mark": "wrong",
+   "said": "This is not terrible but not a great read. This is not really a solo split nor a collapse, the Danig necro just got stuck/left behind as the rest of his team wiped in an 8v7 fight at frontdoor.",
+   "checks": [
+    {
+     "none": {
+      "play": "split",
+      "side": "attacker",
+      "team": "옷옷옷옷",
+      "at": [
+       310,
+       352
+      ]
+     }
+    },
+    {
+     "none": {
+      "play": "split",
+      "side": "defender",
+      "team": "Men",
+      "at": [
+       310,
+       352
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "s1-23",
+   "set": 1,
+   "row": 23,
+   "rid": "39229b8c-24bc-5823-a4a7-9da747fe1189",
+   "match": "옷옷옷옷 v Men, Meditation",
+   "window": [
+    382,
+    446
+   ],
+   "type": "split defender",
+   "call": "A player down",
+   "shown": "Men's 8 Monk & Ritualist against a three-player split | Not met: an archer and two footmen lost. All three split players died",
+   "mark": "right",
+   "said": "Good example, correct identification and result.",
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "Men",
+      "at": [
+       410,
+       430
+      ]
+     },
+     "want": {
+      "call": "a player down",
+      "size": 3,
+      "defenders": 2
+     }
+    }
+   ],
+   "note": "He approved 'not met' (an archer and two footmen lost). Under R-443, from his row 24, only pit NPCs count against the defence, so the engine now says met. The result is left unchecked until he rules which stands."
+  },
+  {
+   "id": "s1-24",
+   "set": 1,
+   "row": 24,
+   "rid": "a921418b-c4d1-5872-aca9-18f9ad99bf40",
+   "match": "OG v Dz, Meditation",
+   "window": [
+    154,
+    202
+   ],
+   "type": "split defender",
+   "call": "Mirror",
+   "shown": "Dz's three against OG's three | Not met: two footmen and an archer lost",
+   "mark": "partly",
+   "said": "Fight is too messy to call this a 3v3 but it has raised two points. When defending on split, you just need to protect PIT NPCs. When attacking on split, taking footies/archers counts as an NPC take. Also, for these results on split, we are just measuring the actual split impact. So if a player or footies dies elsewhere on the map not related to the split, the split shouldn't get credit for that.",
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "OG",
+      "at": [
+       156,
+       202
+      ]
+     },
+     "want": {
+      "met": true
+     }
+    },
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "Dz",
+      "at": [
+       156,
+       202
+      ]
+     },
+     "want": {
+      "met": true
+     }
+    }
+   ],
+   "note": "'Too messy to call a 3 v 3' is not something the key can hold; the checks cover R-443 only (footmen and archers count for the attacker, pit NPCs only for the defence)."
+  },
+  {
+   "id": "s1-25",
+   "set": 1,
+   "row": 25,
+   "rid": "b31ffe18-07a9-589f-a516-8862f80ab668",
+   "match": "xxx v Men, Corrupted",
+   "window": [
+    156,
+    214
+   ],
+   "type": "split defender",
+   "call": "Add one",
+   "shown": "xxx's Monk 4 & 8 Monk against one | Not met: the Ranger was killed, but an archer was lost",
+   "mark": "wrong",
+   "said": "The thing re NPCs defending applies but also this is incorrect identification. Men have FOUR on split vs xxx's 2.",
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "Men",
+      "at": [
+       174,
+       204
+      ]
+     },
+     "want": {
+      "size": 4,
+      "defenders": 2
+     }
+    },
+    {
+     "none": {
+      "play": "split",
+      "side": "defender",
+      "team": "xxx",
+      "at": [
+       156,
+       214
+      ],
+      "want": {
+       "call": "add one"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "s1-26",
+   "set": 1,
+   "row": 26,
+   "rid": "7209c1a1-20ff-5f4f-a176-9cf92f7c594c",
+   "match": "hdm v 옷옷옷옷, Meditation",
+   "window": [
+    246,
+    267
+   ],
+   "type": "split defender",
+   "call": "Collapse",
+   "shown": "옷옷옷옷's Fire Ele leaves the main fight for 16 s onto hdm's two-player split, one already defending | Not met: no kill. Beside it: an archer lost, flag lead 1.15 to 0.95",
+   "mark": "right",
+   "said": "Good example, correct identification and result.",
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hdm",
+      "at": [
+       246,
+       267
+      ]
+     },
+     "want": {
+      "size": 2,
+      "who~": [
+       "Fire Ele",
+       "Air Ele"
+      ]
+     }
+    },
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "옷옷옷옷",
+      "at": [
+       246,
+       267
+      ]
+     },
+     "want": {
+      "call": "collapse",
+      "who~": [
+       "Fire Ele"
+      ],
+      "size": 2
+     },
+     "open": true,
+     "why": "hdm v 옷옷옷옷 4:06: he approved this as a collapse (one player comes from the main fight for 16 s, one already defending, against two), but R-441 from his row 21 says a collapse makes the defence at least one more than the split; the engine now reads one defender against two. For him to rule which stands"
+    }
+   ],
+   "note": "His approval and R-441 disagree here (see the open check). The split itself had been lost to the chase rule after the rebuild and was restored when this key first ran."
+  },
+  {
+   "id": "s1-27",
+   "set": 1,
+   "row": 27,
+   "rid": "26fe2851-0355-5e98-a698-eed9daf582a9",
+   "match": "옷옷옷옷 v Men, Jade",
+   "window": [
+    902,
+    929
+   ],
+   "type": "split defender",
+   "call": "Full collapse",
+   "shown": "Six of Men leave the main fight onto a solo split | Met: the splitter died. Flag lead unchanged",
+   "mark": "wrong",
+   "said": "Incorrect, there was no collapse. I think this may be confusion with the portal. The derv was just walking back and forth through portal and died at mainteam.",
+   "checks": [
+    {
+     "none": {
+      "play": "split",
+      "side": "defender",
+      "team": "Men",
+      "at": [
+       860,
+       935
+      ],
+      "want": {
+       "call": [
+        "collapse",
+        "full collapse"
+       ]
+      }
+     }
+    },
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "옷옷옷옷",
+      "at": [
+       866,
+       890
+      ]
+     },
+     "want": {
+      "answer": "1 v 1, defended by a monk",
+      "size": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": "s1-28",
+   "set": 1,
+   "row": 28,
+   "rid": "faec428a-5b92-54d1-a28c-b79c7f27cfcf",
+   "match": "Men v HC, Corrupted",
+   "window": [
+    740,
+    830
+   ],
+   "type": "split defender",
+   "call": "Part-run while defending",
+   "shown": "Men's Monk 4 defends 1 v 1 and carries his flag for 8 s | Not met: flag lead 0.66 to 0.12. No NPC lost, not dead",
+   "mark": "right",
+   "said": "Good identification and result. This was also a 1v1 defence so he should get credit if no NPCs died for the 1v1 defence call but I agree not for the part-run call.",
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "Men",
+      "at": [
+       756,
+       788
+      ]
+     },
+     "want": {
+      "call": "mirror",
+      "size": 1,
+      "defenders": 1,
+      "met": true
+     }
+    },
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "Men",
+      "at": [
+       740,
+       830
+      ]
+     },
+     "want": {
+      "call": "part-run",
+      "met": false
+     }
+    }
+   ],
+   "note": "The part-run play had been lost after the rebuild (the carry began in the 12 s before he counted as the defender) and was restored when this key first ran."
+  },
+  {
+   "id": "s1-29",
+   "set": 1,
+   "row": 29,
+   "rid": "c8e26dc9-8cfb-5a36-aa1a-38f8c416753d",
+   "match": "옷옷옷옷 v Team, Uncharted",
+   "window": [
+    947,
+    965
+   ],
+   "type": "split race back",
+   "call": "Race back",
+   "shown": "The split ends; 옷옷옷옷's players are back at main 8 s before Team's | Met: one kill to none in those seconds",
+   "mark": "wrong",
+   "said": "Incorrect. I don't see a split ending nor a race, nor players returning to mainteam. It's just a 2v2 in the backdoor on split, and someone dies mainteam from Team.",
+   "checks": [
+    {
+     "none": {
+      "play": "split",
+      "side": "race back"
+     }
+    }
+   ],
+   "note": "The race back play was taken out (R-448)."
+  },
+  {
+   "id": "s1-30",
+   "set": 1,
+   "row": 30,
+   "rid": "bb669b6f-5c52-589e-a4ed-1c621556c9a4",
+   "match": "RACK v chic, Imperial",
+   "window": [
+    1088,
+    1144
+   ],
+   "type": "numbers",
+   "call": "Strong side",
+   "shown": "chic is up 3 v 2 around the stand with players split elsewhere, and stays | Met: one kill",
+   "mark": "right",
+   "said": "Good example, correct identification and result.",
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "side": "strong side",
+      "team": "chic",
+      "at": [
+       1088,
+       1144
+      ]
+     },
+     "want": {
+      "call": "stay",
+      "met": true
+     }
+    }
+   ]
+  },
+  {
+   "id": "s1-31",
+   "set": 1,
+   "row": 31,
+   "rid": "26ba6a2d-768d-504d-ace8-19241884f21c",
+   "match": "Crew v hdm, Corrupted",
+   "window": [
+    436,
+    456
+   ],
+   "type": "numbers",
+   "call": "Weak side",
+   "shown": "hdm is down 7 v 8 at Crew's front door with a player split elsewhere, and stays | Met: nobody died",
+   "mark": "partly",
+   "said": "Sort of a good call, but it's really 7v7 from 6:58-7:22 (when the air ele of Crew rejoins mainteam) and 7v7 again after 7:28 (when 8 monk goes to defend split).",
+   "checks": [
+    {
+     "none": {
+      "play": "numbers",
+      "team": "hdm",
+      "start": [
+       420,
+       446
+      ]
+     },
+     "open": true,
+     "why": "Crew v hdm: 7 v 7 from 6:58 to 7:22 and again after 7:28; the six seconds between are not a numbers moment (R-449: count a player in fight numbers only after 12 s; not built)"
+    }
+   ]
+  },
+  {
+   "id": "s1-32",
+   "set": 1,
+   "row": 32,
+   "rid": "b5760ac4-e21a-54d0-a6ea-d6b5bb0d0e5d",
+   "match": "Men v NwAy, Weeping Stone",
+   "window": [
+    706,
+    725
+   ],
+   "type": "numbers",
+   "call": "After kills at their base",
+   "shown": "NwAy is up 5 v 2 at Men's front door, 14 s before the res | Not met: no pit NPC taken",
+   "mark": "wrong",
+   "said": "This is incorrect but I don't think it's the engine's fault. There probably should be some timing aspect. They can't really take NPCs from where they were in 12s, and they had to get out or be prepared to 8v8 when they base res.",
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "side": "after a wipe",
+      "team": "NwAy",
+      "at": [
+       706,
+       750
+      ]
+     },
+     "want": {
+      "call2": "too late for NPCs"
+     }
+    }
+   ],
+   "note": "R-445: time for NPCs after kills at their base."
+  },
+  {
+   "id": "s1-33",
+   "set": 1,
+   "row": 33,
+   "rid": "2bd43b13-b0d7-5fe4-ab0c-32897209152f",
+   "match": "hdm v One, Jade",
+   "window": [
+    1409,
+    1470
+   ],
+   "type": "lord push",
+   "call": "Lord push, enough attackers",
+   "shown": "hdm pushes with four (one monk) against one pit NPC; read as killing the defenders (three died), 342 Lord damage | Met: match won, by a Lord kill",
+   "mark": "wrong",
+   "said": "Incorrect. hdm had their whole team in base and some in pit.",
+   "checks": [
+    {
+     "has": {
+      "play": "lord",
+      "side": "attacker",
+      "team": "hdm",
+      "at": [
+       1409,
+       1470
+      ]
+     },
+     "want": {
+      "attackers": [
+       7,
+       8
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "s1-34",
+   "set": 1,
+   "row": 34,
+   "rid": "84586253-61c8-5848-ad75-1bfda24302ba",
+   "match": "OG v cope, Uncharted",
+   "window": [
+    1616,
+    1644
+   ],
+   "type": "lord push",
+   "call": "Lord push, too few",
+   "shown": "OG pushes with three (no monk) against four pit NPCs; 104 Lord damage, six of OG die, its own Lord takes 1,293 | Not met: match lost",
+   "mark": "wrong",
+   "said": "Incorrect, they push with 4 attackers against 4 pit NPCs and DO have a monk (OG members 2, 1, 4, and 8 are on the push).",
+   "checks": [
+    {
+     "has": {
+      "play": "lord",
+      "side": "attacker",
+      "team": "OG",
+      "at": [
+       1616,
+       1644
+      ]
+     },
+     "want": {
+      "attackers": 4,
+      "monks": 1,
+      "pit": 4
+     }
+    }
+   ]
+  },
+  {
+   "id": "s1-35",
+   "set": 1,
+   "row": 35,
+   "rid": "c71fdca0-91ef-5ef5-a344-5d9c3b6db05d",
+   "match": "hdm v 옷옷옷옷, Corrupted",
+   "window": [
+    1602,
+    1626
+   ],
+   "type": "lord push",
+   "call": "Lord defence",
+   "shown": "hdm defends with two (one monk) against two; 164 Lord damage taken, four attackers die | Met: match won",
+   "mark": "partly",
+   "said": "Sort of, but it's 3v2 (in favour of 옷옷옷옷) for some of that time before the 7 monk leaves.",
+   "checks": [
+    {
+     "has": {
+      "play": "lord",
+      "side": "defender",
+      "team": "hdm",
+      "at": [
+       1602,
+       1626
+      ]
+     },
+     "want": {
+      "defenders": 2,
+      "scenario~": "against 3"
+     }
+    }
+   ]
+  }
+ ]
+}
