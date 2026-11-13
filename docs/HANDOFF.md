@@ -7,11 +7,12 @@ model's structure: `knowledge/model.md` (generated).
 ## Start a new chat in one message
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/SPEC.md and docs/HANDOFF.md, check
 > out `bundle-4` in a second worktree, then set out the items under "Open for Denning" and carry on with "Next".
-> (Add your rulings on the open items to the same message if you have them.)
+> (Add your answers to the open items, by their numbers, to the same message if you have them.)
 
 ## State (2026-11-13 night: redesign step 2 on branch `bundle-4`, stage D under way; batch 17, 506 matches trained)
 - Main's engine is unchanged (SPEC.md). Bundle 4 is on `bundle-4` and lands in one piece, then one rebuild (R-322).
   606 replays stored (90 from 2 September on not yet trained on). No Train batch, Discovery or fetch run in progress.
+  Last commits: main, this handoff (after 3ab74d0); `bundle-4` 2c70ac9. Both pushed; nothing uncommitted.
 - On `bundle-4`: `hallmap.py`, `moments.py` (records, decision moments, shape, consequences), `jobs.py` (the plays
   and their jobs, R-423 to R-449), `story.py`, `tools/golden/golden.py`, `lineup.py`, `thresholds.py`, `review.py`.
 - Both gates pass (key v3): part one 12 of 12, part two 65 of 105 (61%). Line-up: building 422 of 426, held-out 186
@@ -26,7 +27,8 @@ model's structure: `knowledge/model.md` (generated).
     and their key stay as part one of the decision gate).
   - The flag decision goes to the end first (R-451): similar cases, then the held-out advice test, on the branch.
 - A split is read phase by phase from when it reaches (R-438 to R-449); Shadow of Haste runs are marked and set
-  aside. Last full run (before the two fixes the key found): 39,399 plays, 32,074 moments over 606 matches.
+  aside. Last full run (before the two fixes the key found): 39,399 plays, 32,074 moments over 606 matches. No
+  scratch file survives a session: start with `moments.py all /tmp/dev.json --dev`, then `review.py score`.
 
 ## Next (in order; REDESIGN.md "Build plan from here", item 6, and "Tests")
 1. The whole-game review, set w1 (`dev_set.json`, `whole_game`): part 1 = TFS v 옷옷옷옷 (bdaa145f, 40 situations) and
@@ -42,22 +44,23 @@ model's structure: `knowledge/model.md` (generated).
    matches. Read the result with him whatever it shows.
 4. The other kinds as each passes the key; then stage E (side by side, SPEC.md and METHODS.md, R-398, merge).
 
-## Open for Denning (set each out in the chat, R-329)
-- Does he agree to the review in two parts (two games, fixes, then three), and one game a message in the chat?
-- Damage against monks (R-444): is "expected to kill at twice the monks facing it" right; does the main team get the
-  kill job whenever the defence puts more monks on the split than the split brought; who counts as a monk (today:
-  backline monks; a smiter and a ritualist healer count as damage)?
-- Shadow of Haste runs: out of every flag count, and of the flag lead? When was the mechanic removed?
-- When is a split's moment (R-440): the leave (now; a median 34 s before it reaches), the crossing, or the reach?
-- The 12 s rule for fight numbers (R-449; key s1-31). Full collapse read 507 times: too many?
-- Two of his own marks disagree with a later ruling (noted in the key): s1-26, hdm v 옷옷옷옷 4:06, approved as a
-  collapse (one player from the main fight for 16 s, one already defending, against two), but R-441 needs the
-  defence one more than the split; s1-23, 옷옷옷옷 v Men 6:22, approved as "not met" for footmen and an archer lost,
-  but R-443 counts only pit NPCs against the defence. Also s1-15: a defender on the split under 12 s at game end.
-- Remove the Golden moments page now, or with the Templates and Meta tabs at R-398 (as planned)?
-- Still drafts: numbers from kills; a split with no answer; "held by monks"; the thresholds marked "Claude's draft"
-  in `common.py`; the Lord push's aim. Proposed, not approved: a reading that fails must fail loudly (CLAUDE.md).
-- Not built: shadow with a snare; the two-monk spike build after a wipe; the race back (taken out, R-448).
+## Open for Denning (put to him 2026-11-13; he answers next session. Set each out in the chat again, R-329)
+1. The whole-game review: does he agree to two parts (two games, the fixes, then three) and one game a message?
+2. Key s1-26, hdm v 옷옷옷옷 4:06: he approved as a collapse one player leaving the main fight for 16 s, one already
+   defending, against a split of two; R-441 (his row 21) needs the defence one more than the split, so the engine
+   now reads one defender. Which stands?
+3. Key s1-23, 옷옷옷옷 v Men 6:22: he approved "not met" where an archer and two footmen were lost; R-443 (his row 24)
+   counts only pit NPCs against the defence, so it now reads "met". Which stands?
+4. Shadow of Haste runs: out of every flag count and the flag lead? When was the mechanic removed? (Gates R-451.)
+5. To settle on the games: damage against monks (R-444: kill expected at twice the monks facing it? the main team's
+   job whenever the defence puts more monks on the split than it brought? who counts as a monk: today backline
+   monks only); when a split's moment is (R-440: the leave, now a median 34 s before it reaches; the crossing; or
+   the reach); the 12 s rule for fight numbers (R-449, key s1-31); full collapse read 507 times (too many?); key
+   s1-15, a defender on the split under 12 s at game end.
+6. Remove the Golden moments page now, or with the Templates and Meta tabs at R-398 (as planned)?
+7. Approve, or not, the proposed CLAUDE.md rule that a reading which fails must fail loudly.
+- Still drafts: numbers from kills; a split with no answer; "held by monks"; the Lord push's aim; the thresholds
+  marked "Claude's draft" in `common.py`. Not built: shadow with a snare; the two-monk spike build after a wipe.
 
 ## Running it
 - Train batch: `gh api -X POST repos/itsha12/gvginfo/actions/workflows/train-batch.yml/dispatches -f ref=main
@@ -67,7 +70,7 @@ model's structure: `knowledge/model.md` (generated).
 - Local engine: `git fetch --depth 1 origin +replays:refs/remotes/origin/replays`; `pip install
   --break-system-packages -r .github/workflows/train-requirements.txt`. The records, the story, the line-up, the gate
   and the thresholds need no cache (`cache.py sync pull`, `warm` only for the fitted models). `PYTHONDONTWRITEBYTECODE=1`.
-- `thresholds.py run` takes about 15 minutes with two jobs and the machine to itself; run old and new one after the other.
+- `thresholds.py run`: about 15 minutes, two jobs, the machine to itself; run old and new one after the other.
 
 ## Cautions
 - Never print or decode a sealed field (blind picks, golden moments) in a chat.
