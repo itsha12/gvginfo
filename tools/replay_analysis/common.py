@@ -179,6 +179,7 @@ def split_context(st, members, t, def_npc_value=None):
 # ---- decision moments (moments.py; docs/REDESIGN.md step 2). Definitions: Denning's where a ruling is cited, otherwise
 # Claude's draft to confirm (tested against the golden moments, R-303).
 READ_FROM, READ_TO = 20, 30     # a call is read from where players stand 20 to 30 s after the trigger (R-294)
+CONSEQ_S = (90, 180)            # what followed is read at 90 s and at about 3 minutes after the trigger, over the whole map (R-294)
 AREA_SHARE = 0.5                # a group is "at" a place when more than this share of its living players stand in it (R-319)
 PURPOSE_S = 60                  # a leave's purpose is fixed this long after it, earlier on a pickup or on entering the enemy base (R-325)
 LEAVE_MIN_S = 8                 # a player out of the main group for less than this never left (a flank, a kite)

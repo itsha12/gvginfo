@@ -202,6 +202,7 @@ def gate(recs_cache={}):
                    "size": str(min(int(sc["size"]), 4)) if "size" in sc else None, "home": ("home" if sc.get("home") else "empty") if "home" in sc else None,
                    "side": sc.get("side"), "source": sc.get("source"), "call": c.get("key")}
             for part, ok_words in k["parts"].items():
+                if part in (k.get("accepted_parts") or {}): accepted.append((f"{gid} ({part})", k["accepted_parts"][part])); continue      # one part he accepted as a miss: the rest of the moment is still scored
                 ok = eng.get(part) in ok_words
                 tally[part][0] += ok; tally[part][1] += 1
                 if not ok: miss.append(f"{part}: his notes {' / '.join(ok_words)}, engine {eng.get(part)}")

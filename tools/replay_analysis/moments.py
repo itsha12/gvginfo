@@ -21,6 +21,13 @@ Call (R-294): where the players stand READ_FROM to READ_TO seconds after the tri
   Never from damage or deaths. "At the footmen" is read from Denning's Footman labels and the measured reach
   (hallmap.py, R-307), only while a footman is alive and only on halls that have them (R-311).
 Forced (2.7): a player of the deciding team died inside the read window; kept apart.
+Shape (2.8, R-297): who the call was made with (as properties: monks, heals, prots, self-defence, snare and speed power,
+  escapes), which way (the drawn flag run and door, the door a defender came home by, the door or ground of a push or a
+  fall back) and when (seconds to the first move; a delay is a decision when something was being gained elsewhere as
+  the moment came, R-321, and execution otherwise).
+Consequence (2.9, R-294, R-412): what followed over the whole map at 90 s and about 3 min, hard results only, with the
+  flag lead then and now set beside the numbers meanwhile (the main team's fight, the other fights, players away for
+  the flag).
 The records (R-362: the record is the work; story.py only prints them): attempts (splits and main team pushes), caught,
   flags_record (with the flag route, the door, the hold before a cap and its distance from the enemy's boost),
   main_team, lane, moves, split_fights, ground, undefended, on_pit, and the words of R-373 and R-375 to R-378, each its
@@ -31,10 +38,13 @@ The records (R-362: the record is the work; story.py only prints them): attempts
 Usage:  python3 moments.py <report id> [family]      the match's moments in order
         python3 moments.py all <out.json> [--jobs N]  every counted match, compact (for counts and golden picks)
         python3 moments.py counts <out.json>          cases by family, scenario and call
+        python3 moments.py after <out.json>           what followed each call at 90 s, on average (stage D: the consequence record)
+        python3 moments.py runner <out.json>          what running a flag costs in players at the main fight (R-412)
+        python3 moments.py jobs <out.json>            how often each draft job's success test is met (R-298: a draft for Denning to rule)
 In code: Moments(st, sb).records() -> list of dicts."""
 import collections, json, math, statistics, sys
-from common import (READ_FROM, READ_TO, AREA_SHARE, PURPOSE_S, LEAVE_MIN_S, HOME_WAIT_S, SPAWN_R, GROUP_LEAVE_S, MEET_R,
-                    NUMBERS_MIN_S, MERGE_S, BOOST_WARN_S, FLAGGER_R, SPLIT_FAR, BOOST_EVERY, SERIOUS_CARRY_S, FIGHT_LINK, GROUND_MOVE, GROUND_S, GROUND_BACK, GROUND_JUMP, GROUND_SPLIT_MOVE, PIT_S, SIDE_FIGHT_MAX, SIDE_FIGHT_S, UNDEFENDED_S,
+from common import (READ_FROM, READ_TO, CONSEQ_S, ON_TIME_S, LATE_S, PIT_S, AREA_SHARE, PURPOSE_S, LEAVE_MIN_S, HOME_WAIT_S, SPAWN_R, GROUP_LEAVE_S, MEET_R,
+                    NUMBERS_MIN_S, MERGE_S, BOOST_WARN_S, FLAGGER_R, SPLIT_FAR, BOOST_EVERY, SERIOUS_CARRY_S, FIGHT_LINK, GROUND_MOVE, GROUND_S, GROUND_BACK, GROUND_JUMP, GROUND_SPLIT_MOVE, SIDE_FIGHT_MAX, SIDE_FIGHT_S, UNDEFENDED_S,
                     RETURN_R, FOOT_ENGAGED_S, SPLIT_STEP, SPLIT_MIN_S, SPLIT_GAP_S, FORCED_OUT_S, AHEAD_LOOK_S, CAUGHT_S, NPC_NEAR,
                     JOIN_S, RES_EVERY, flux_at, JOIN_LOOK_S, JOIN_MOVE, JOIN_LEAD, JOIN_ENGAGE, JOIN_ENGAGE_S, MAIN_BIG, SWAP_S, SWAP_STAY_S, SPLIT_FIGHT_GAP_S, SPLIT_FIGHT_MIN,
                     PUSHFLAG_R, PUSHFLAG_S, PUSHFLAG_SHORT_S, PUSHFLAG_LATE_S, PUSHFLAG_GAP_S, PUSHFLAG_MATES, PUSHFLAG_AHEAD_S, ROUTE_ENDS, ROUTE_OFF, ROUTE_CLEAR, ROUTE_MIN_S, LEAD_S,
@@ -119,6 +129,7 @@ class Moments:
         self._lost = {}
         self._fpush, self._lead, self._leadl, self._lead_on, self._so, self._hitc, self._mc, self._tim = None, None, None, None, None, None, None, None
         self._wo = None
+        self._fc, self._tl_, self._npcd, self._bst, self._lord = {}, None, None, None, None      # fights by second; the map's numbers every 2 s; NPC deaths; boosts landed
         self.side_cut = set()                                # seconds at which a side fight was cut off a bigger one (counted for the thresholds table)
         self.legs = self._departures()
         self.by_player = collections.defaultdict(list)
@@ -214,6 +225,7 @@ class Moments:
         """The groups on the map at second t: living players of both teams linked within FIGHT_LINK, each with its
         numbers by team and where it stands (the place of team 1's players, else team 2's, named by whose ground it
         is). Denning reads a match this way ("3v4 in the back door", "7v7 at the stand")."""
+        if t in self._fc: return self._fc[t]
         st, m = self.st, self.m
         live = [a for a in m.PL if self.AL[a][t]]
         gs = []
@@ -255,7 +267,8 @@ class Moments:
                         "who": {tm: sorted(m.roles[a] for a in n[tm]) for tm in st.teams}, "monks": {tm: self._mk(n[tm]) for tm in st.teams},
                         "kind": kind, "side": side, "place": self.place_words(kind, side),
                         "flag": [a for a in g if self.carrying(a, t)]})
-        return sorted(out, key=lambda x: -(x["n"][1] + x["n"][2]))
+        self._fc[t] = sorted(out, key=lambda x: -(x["n"][1] + x["n"][2]))
+        return self._fc[t]
 
     def engaged(self, t):
         """{side: are that side's footmen in a fight now} (R-307: fell to footmen means the footmen are engaged)."""
@@ -1220,7 +1233,7 @@ class Moments:
                 if th is not None and end - th >= HELP_IN_S and self.AL[x][end] and cp and d(self.P[x][end], cp) < FIGHT_LINK and n0[1] - end <= HELP_BACK_S:
                     stayed = {"role": m.roles[x], "id": x, "s": round(end - th), "went_back": round(n0[1])}
             out.append({"team": m.tag[tm], "tm": tm, "start": tp, "end": end, "how": L["how"], "form": L["form"],
-                        "runner": m.roles[a], "runner_prof": m.A[a].get("p"), "carriers": [m.roles[c[0]] for c in ser],
+                        "runner": m.roles[a], "runner_prof": m.A[a].get("p"), "carriers": [m.roles[c[0]] for c in ser], "ids": [c[0] for c in ser],
                         "set_off": left, "away_s": max(away, 0), "backup_waiting": backup, "back_cap": back_cap, "with_split": split,
                         "dropped_at": drop, "died_carrying": died, "enemy_boost_in": clock, "pregame": L["start"] < 0,
                         "capper": m.roles[L["capper"]] if L["how"] == "captured" else None, "runner_id": a, "pickup": ser[0][1],
@@ -1920,8 +1933,8 @@ class Moments:
              "enemy_flag": any(self.carrying(a, t) for a in st.players[foe]),
              "res_in": round(st.next_res(t) - t), "footmen": self.footmen_alive(tm, t),
              "enemy_boost": self.boost_worth(foe, t), "own_boost": self.boost_worth(tm, t)}
-        try: s["flag_lead"] = round(self.lead_at(tm, t), 2)
-        except Exception: s["flag_lead"] = None
+        s["flag_lead"] = self.lead_value(tm, t)          # in flags, the tally of R-408 (None on a hall whose walks cannot be read)
+        s["lead_band"] = self.lead_at(tm, t)             # his bands: None under half a flag, "half a flag", "a flag" ...
         return s
 
     def _ladder(self, tm, kind, side):
@@ -2033,8 +2046,9 @@ class Moments:
             n = min(len(runners), 2)
             lab = ("no runner", "one runner", "two runners")[n]
             return {"key": f"{n}|{rest}", "label": f"{lab.capitalize()}; the rest {rest}", "runners": n, "rest": rest,
-                    "shape": {"runners": sorted(role(a) for a in runners), "from": rec and {k: rec.get(k) for k in ("t", "t_in", "t0", "way", "to", "from") if k in rec}}}
+                    "shape": {"runners": sorted(role(a) for a in runners), "from": rec and {k: rec.get(k) for k in ("t", "t_in", "t0", "way", "to", "from", "door", "to_kind", "to_side") if k in rec}}}
         if fam == 2 and x["triggers"][0] not in ("split", "split grows"):       # a later moment of a split (it grows, changes door, divides) or a stand-off: the defenders are the own players on their own ground near the enemy's split READ_FROM to READ_TO on
+            dids = None
             if "split stand-off" in x["triggers"]:
                 r = x["refs"][0]; ene, k = set(), len(r["who"][foe])
                 n, defs = len(r["who"][tm]), list(r["who"][tm])
@@ -2047,7 +2061,8 @@ class Moments:
                     cnt[len(near)] += 1
                     for b in near: who[b] += 1
                 n = max(cnt, key=lambda c: (cnt[c], c)) if cnt else 0
-                defs = [role(b) for b, _ in sorted(who.items(), key=lambda kv: -kv[1])[:n]]
+                dids = [b for b, _ in sorted(who.items(), key=lambda kv: -kv[1])[:n]]
+                defs = [role(b) for b in dids]
                 u0 = min(t + READ_FROM, self.T)                 # the split still on their ground: a player who left it through mid is answered elsewhere (golden Men v hdm 9:36: the Prot mirrors the Air Ele, 3 v 3 at the back door)
                 k = max(1, sum(1 for e in ene if self.AL[e][u0] and self.place_at(e, u0)[1] == own and self.place_at(e, u0)[0] != "field"))
             monks = sum(1 for r_ in defs if "Monk" in r_ and "WoC" not in r_)
@@ -2060,7 +2075,7 @@ class Moments:
             elif n == k + 1: c = "add one"
             elif n < k: c = "defend a player down"
             else: c = f"send {n} against {k}"
-            return {"key": c, "label": c.capitalize(), "defenders": n, "split": k, "monks": monks, "shape": {"defenders": defs}}
+            return {"key": c, "label": c.capitalize(), "defenders": n, "split": k, "monks": monks, "shape": {"defenders": defs, "ids": dids}}
         if fam == 2:
             g = x["refs"][0]; an = g["answer"]
             k = max(1, len([q for q in g["members"] if q["from"] <= t + READ_TO]))
@@ -2086,7 +2101,7 @@ class Moments:
              "fall back": "retreat down the ladder", "push in": "push in", "push their flagger": "push their flagger"}.get(rest)
         if c is None: c = "push up" if rest.startswith(("push up", "go out")) else ("split" if rest.startswith("split") else "stay")
         return {"key": c, "label": c.capitalize() + ("" if c == rest else f" ({rest})"), "rest": rest,
-                "shape": {"from": rec and {k: rec.get(k) for k in ("t", "t_in", "t0", "way", "to", "from") if k in rec}}}
+                "shape": {"from": rec and {k: rec.get(k) for k in ("t", "t_in", "t0", "way", "to", "from", "door", "to_kind", "to_side") if k in rec}}}
 
     def verbs(self, tm, t):
         """Everything the team did in the call's window (t - 2 to t + READ_TO), as Denning's verbs (REDESIGN "his
@@ -2116,6 +2131,246 @@ class Moments:
                 out += [("answer", r) for ta, r in x["answer"]["arrivals"] if lo <= ta <= hi]
         return sorted(set(out))
 
+    # ---- stage D (2.8, 2.9): the shape of the call (R-297) and the consequence record (R-294, R-412)
+    def _tl(self):
+        """The map's numbers every SPLIT_STEP, read once from the fights: for each team, the fight its main team
+        stands in (its numbers, own first; who of it is in that fight; its place), the other fights on the map with
+        both teams in them (own players less the enemy's, summed: a power play on a split is a number above 0), and
+        its players away for the flag (carrying it, going back for it or at the spawn for it, and not in the main
+        team's fight)."""
+        if self._tl_ is not None: return self._tl_
+        st, out = self.st, {}
+        for t in range(0, self.T + 1, SPLIT_STEP):
+            fs = [g for g in self.fights(t) if g["n"][1] and g["n"][2]]
+            row = {}
+            for tm in st.teams:
+                foe = 3 - tm
+                mt = [a for a in self.main_team(tm, t) if self.AL[a][t]]
+                mine = [g for g in fs if mt and len(g["ids"][tm] & set(mt)) * 2 >= len(mt)]
+                f = max(mine, key=lambda g: g["n"][1] + g["n"][2]) if mine else None
+                inf = f["ids"][tm] if f else frozenset(mt)
+                row[tm] = {"main": (f["n"][tm], f["n"][foe]) if f else None, "ids": inf, "place": (f["kind"], f["side"]) if f else None,
+                           "side": sum(g["n"][tm] - g["n"][foe] for g in fs if g is not f),
+                           "side_n": sum(1 for g in fs if g is not f),
+                           "flag_away": [a for a in st.players[tm] if a not in inf and self._flagger(a, tm, t)]}
+            out[t] = row
+        self._tl_ = out
+        return out
+
+    def _npc_deaths(self):
+        """[(second, the team that lost it, kind)] for every knight, archer, bodyguard, footman and Guild Lord killed."""
+        if self._npcd is None:
+            m, seen, out = self.m, set(), []
+            for r in m.o["ev"]:
+                x = r[2]
+                if r[1] != "dt" or not isinstance(x, int) or x >= len(m.A) or x in seen: continue
+                k = m.A[x].get("npc")
+                if k in ("knight", "archer", "bodyguard", "footman", "guild_lord") and m.A[x].get("team") in self.st.teams:
+                    seen.add(x); out.append((r[0] / 10, m.A[x].get("team"), k))
+            self._npcd = sorted(out)
+        return self._npcd
+
+    def _boosts(self):
+        """[(second, team)] for every morale boost that landed: every BOOST_EVERY of holding the stand."""
+        if self._bst is None:
+            out, caps = [], self.st.caps + [(self.st.end + 1, None)]
+            for (c, h), (c2, _) in zip(caps, caps[1:]):
+                k = 1
+                while h in self.st.teams and c + BOOST_EVERY * k < c2: out.append((c + BOOST_EVERY * k, h)); k += 1
+            self._bst = out
+        return self._bst
+
+    def gained_elsewhere(self, tm, t, main=True):
+        """What the team was gaining elsewhere at second t (R-321, the timing rule of R-297): a live numbers
+        advantage in its main team's fight (not for a numbers moment, main=False: there the main fight is the moment
+        itself, and elsewhere is a fight away from it), NPC damage in progress (its players hit an enemy NPC within
+        PIT_S), or its own boost about to land (BOOST_WARN_S). Empty when nothing was."""
+        out, row = [], self._tl()[min(max(int(t), 0), self.T) // SPLIT_STEP * SPLIT_STEP][tm]
+        if main and row["main"] and row["main"][0] > row["main"][1]: out.append("numbers in the main fight (%d v %d)" % row["main"])
+        if not main and row["side"] > 0: out.append("numbers in a fight away from the main one")
+        if any(t - PIT_S <= u <= t for a in self.st.players[tm] for u in self.npc_hits.get(a, ())): out.append("NPC damage in progress")
+        owner, since = self.st.stand_owner(t)
+        if owner == tm and BOOST_EVERY - (t - since) % BOOST_EVERY <= BOOST_WARN_S: out.append("its boost about to land")
+        return out
+
+    def _props(self, ids):
+        """A group of players as properties, not class names (REDESIGN "Shape": the same call by a Mesmer and a
+        Ranger is compared on what the two can do): how many, backline monks, heals and prots on their bars (skills),
+        self-defence (skills), snares and speed (power, movepower.py) and escapes. NPC damage is not here yet: it
+        has to be measured per bar, not read from a skill list."""
+        from buildfeat import FEATURES, PLAYER_FLAGS, _skills
+        from movepower import player_power
+        S, m = _skills(), self.m
+        out = {"n": len(ids), "monks": self._mk(ids), "heals": 0, "prots": 0, "self_defence": 0, "snare": 0.0, "speed": 0.0, "escapes": 0}
+        for a in ids:
+            for b in m.A[a].get("bar", []):
+                s = S.get(m.sk(b)) if b else None
+                if not s: continue
+                out["heals"] += bool(FEATURES["heals"](s)); out["prots"] += bool(FEATURES["prots"](s)); out["self_defence"] += bool(PLAYER_FLAGS["self_defence"](s))
+            p = player_power(m, a)
+            out["snare"] += p["snare"]; out["speed"] += p["speed"]; out["escapes"] += p["escapes"]
+        out["snare"], out["speed"] = round(out["snare"], 1), round(out["speed"], 1)
+        return out
+
+    def _came_by(self, b, tm, t_from, t_to):
+        """The way a player came home between two seconds: "home already" (on his own ground at the start), else the
+        last of his own doors he stood on before the end ("front door", "back door"), "by a teleporter" when he
+        covered more than GROUND_JUMP in one step on the way, else "through the base" (in by neither drawn door)."""
+        own, T = self.st.side.get(tm), self.T
+        homeg = ("pit", "base", "front door", "back door", "front footies", "back footies")
+        u0, u1 = min(max(int(t_from), 0), T), min(max(int(t_to), 0), T)
+        if not self.AL[b][u0]: return "from the res shrine"
+        k, sd = self.place_at(b, u0)
+        if sd == own and k in homeg: return "home already"
+        door, tele = None, False
+        for u in range(u0 - u0 % SPLIT_STEP, u1 + 1, SPLIT_STEP):
+            if not self.AL[b][u]: continue
+            k, sd = self.place_at(b, u)
+            if sd == own and k in ("front door", "front footies"): door = "front door"
+            elif sd == own and k in ("back door", "back footies"): door = "back door"
+            v = u - SPLIT_STEP
+            if v >= 0 and self.AL[b][v] and d(self.P[b][u], self.P[b][v]) > GROUND_JUMP: tele = True
+        return "by a teleporter" if tele and door is None else (door or "through the base")
+
+    def shape(self, x, c):
+        """The shape of a call (R-297): who (the players it was made with, as properties), which way (the route:
+        the drawn flag run and door for a runner, the door a defender came home by, the door or the ground of a
+        push or a fall back) and when (seconds from the moment to the first of them moving). A delay is a decision
+        when something was being gained elsewhere as the moment came (R-321) and execution otherwise; nothing else
+        is read into it (intent is not in a replay). On time is within ON_TIME_S and late from LATE_S (R-348)."""
+        fam, tm, t, m = x["family"], x["tm"], x["t"], self.m
+        old = c.get("shape") or {}
+        rec, ids, when, way = old.get("from"), [], None, {}
+        if fam == 1:
+            ids = sorted(self._runners(tm, t))
+            gone = [self._went_to_run(r) for r in self.run_starts() if r["tm"] == tm and (r["runner"] in ids or r["a"] in ids) and t - 10 <= self._went_to_run(r) <= t + READ_TO]
+            when = min(gone) if gone else None
+            fr = next((f for f in self.flags_record() if f["tm"] == tm and set(f["ids"]) & set(ids) and f["end"] >= t - 10 and f["start"] <= t + READ_TO + PURPOSE_S), None)
+            if fr: way = {"flag_run": fr["route"], "door": fr["door"], "walk_back": fr["back_route"], "form": fr["form"]}
+        elif fam == 2:
+            g = x["refs"][0]
+            if "answer" in g:
+                an = g["answer"]
+                first = {b: ta for b, (ta, _) in zip(an["ids"], an["arrivals"])}
+                trig = x["triggers"][0]                      # the players the call was read from: the usual number of defenders, first to arrive first; for a split that grows, those there by the window; for a later moment, those near it in the window
+                ids = list(an["ids"][:c.get("defenders") or 0]) if trig == "split" else [b for b in an["ids"] if first[b] <= t + READ_TO + 10] if trig == "split grows" else list(old.get("ids") or [])
+                came = collections.Counter(self._came_by(b, tm, min(g["t0"], t), first.get(b, t + READ_TO)) for b in ids)
+                way = {"came_by": dict(came), "met": an.get("met")}
+                if trig == "split": when = (t + an["behind_s"]) if ids and an.get("behind_s") is not None else None      # how far behind the split its first defender was (R-348), from the split reaching their ground
+                else: when = min((first[b] for b in ids if b in first and first[b] >= t - 2), default=None)
+            else:                                           # a stand-off of split groups: the record keeps roles
+                ids = [a for a in self.st.players[tm] if m.roles[a] in (old.get("defenders") or ())]
+        else:
+            ids = sorted(x["refs"][0]["ids"][tm])
+            if rec: when = next((rec[k] for k in ("t_in", "t", "t0") if rec.get(k) is not None), None)
+        if rec and fam != 2:                                # where the rest went: the door of a push, a split or a way out, the ground a move came to rest on
+            door = rec.get("door") or (rec.get("way") if rec.get("way") in ("front door", "back door") else None)
+            if door: way["door"] = way.get("door") or door; way["rest_door"] = door
+            if rec.get("to_kind"): way["to"] = self.place_words(rec["to_kind"], rec.get("to_side"))
+        delay = None if when is None else int(round(when - t))
+        gained = self.gained_elsewhere(tm, t, main=fam != 3)
+        tim = {"delay_s": delay, "gained_elsewhere": gained, "kind": None, "words": None}
+        if delay is None and fam == 1 and ids: tim["words"] = "already under way"       # the runner had the flag, or was on his way for it, before the moment
+        if delay is not None:
+            if delay <= ON_TIME_S: tim["words"] = "on time"
+            else:
+                tim["words"] = (f"late, {delay} s" if delay >= LATE_S else f"after {delay} s")
+                tim["kind"] = "decision" if gained else "execution"
+        return dict(old, who=[m.roles[a] for a in ids], ids=list(ids), props=self._props(ids), way=way, timing=tim)
+
+    def _main_step(self, tm, t):
+        """Where the team's main team stands at second t as a step on its ladder (own pit 4 ... the stand 0 ... the
+        enemy's pit -4), and that place in words. None when it has nobody alive."""
+        g = [a for a in self.main_team(tm, t) if self.AL[a][t]]
+        if not g: return None, None
+        k, sd = collections.Counter(self.place_at(a, t) for a in g).most_common(1)[0][0]
+        return self._ladder(tm, k, sd), self.place_words(k, sd)
+
+    def consequence(self, tm, t):
+        """What followed a moment, over the whole map, at each of CONSEQ_S (90 s and about 3 min, R-294): hard
+        results only, each as [own, enemy] from the deciding team's side. Deaths; NPCs lost (by kind); each Guild
+        Lord's health then and now (rebuilt, lord.py; None where its damage was not observed); captures and boosts landed; morale (the eight players' morale summed, then and now);
+        the flag lead in flags then and now (R-408) and who holds the stand; and, so that what was given up in flags
+        can be set beside what was gained for it (R-412), the numbers meanwhile: seconds the main team's fight was a
+        player or more up, even and down, the player-seconds it adds up to (8 v 7 for 30 s is 30), the same for
+        every other fight on the map (a power play on a split), and the seconds each team had a player away for the
+        flag. Then where the main team stood at the end, as a step on its ladder. `ended` when the match ended inside
+        the window (with who won). Win points are added beside these when the win model is rebuilt (stage E)."""
+        st, T, foe, S = self.st, self.T, 3 - tm, SPLIT_STEP
+        tl, both = self._tl(), lambda f: [f(tm), f(foe)]
+        won = (st.m.o["meta"].get("result") or {}).get("winning_team_id")
+        ms = lambda k, u: sum(st.morale(a, u) for a in st.players[k])
+        if self._lord is None:
+            from lord import LordState
+            self._lord = LordState(st)
+        def lh(k, u):
+            v = self._lord.health(k, u)
+            return None if v is None else round(v, 2)
+        out = {}
+        for H in CONSEQ_S:
+            t1 = min(t + H, T)
+            R = range(t - t % S + S, t1 + 1, S)
+            npc = lambda k: [kd for u, k2, kd in self._npc_deaths() if k2 == k and t < u <= t1]
+            num = {"main_up_s": 0, "main_even_s": 0, "main_down_s": 0, "main_net": 0, "side_up_s": 0, "side_down_s": 0, "side_net": 0}
+            away = [0, 0]
+            for u in R:
+                row = tl[u][tm]
+                if row["main"]:
+                    dn = row["main"][0] - row["main"][1]
+                    num["main_up_s" if dn > 0 else "main_down_s" if dn < 0 else "main_even_s"] += S; num["main_net"] += dn * S
+                if row["side_n"]:
+                    num["side_net"] += row["side"] * S
+                    if row["side"] > 0: num["side_up_s"] += S
+                    elif row["side"] < 0: num["side_down_s"] += S
+                away[0] += S * bool(row["flag_away"]); away[1] += S * bool(tl[u][foe]["flag_away"])
+            owner, _ = st.stand_owner(t1)
+            l0, l1 = self.lead_value(tm, t), self.lead_value(tm, t1)
+            s0, s1 = self._main_step(tm, t), self._main_step(tm, t1)
+            out[str(H)] = {
+                "to": t1, "ended": t + H > T, "won": (won == tm) if (t + H > T and won in st.teams) else None,
+                "deaths": both(lambda k: sum(1 for a in st.players[k] for td in st.death_times.get(a, []) if t < td <= t1)),
+                "npcs": both(lambda k: len(npc(k))), "npc_kinds": both(lambda k: sorted(npc(k))),
+                "lord": both(lambda k: [lh(k, t), lh(k, t1)]),
+                "caps": both(lambda k: sum(1 for u, h in st.caps if h == k and t < u <= t1)),
+                "boosts": both(lambda k: sum(1 for u, h in self._boosts() if h == k and t < u <= t1)),
+                "morale": both(lambda k: [ms(k, t), ms(k, t1)]),
+                "lead": [l0, l1], "lead_change": None if l0 is None or l1 is None else round(l1 - l0, 2),
+                "stand": "own" if owner == tm else "enemy" if owner == foe else "nobody",
+                "numbers": num, "flag_away_s": away, "step": [s0[0], s1[0]], "place": s1[1]}
+        return out
+
+    def runner_cost(self):
+        """What running a flag costs in players at the main fight (R-412: "roughly 0.8 of a player down, to be
+        measured"). One row a flag life that was run (not the pre-game flag): its form; the run in seconds, from the
+        runner leaving his team for it (R-360) to its end; the seconds of that run in which his main team stood in a
+        fight; and the player-seconds of those in which a carrier of this flag, alive, was not in that fight. The
+        share missing over all runs is the measured number."""
+        tl, out = self._tl(), []
+        for f in self.flags_record():
+            if f["pregame"]: continue
+            tm, s0, e = f["tm"], int(f["set_off"] if f["set_off"] is not None else f["start"]), int(f["end"])
+            fight = miss = 0
+            by, own = {"stand": [0, 0], "own": [0, 0], "enemy": [0, 0]}, self.st.side.get(tm)      # the same by where the main fight stood: around the stand, on the runner's own ground, on the enemy's
+            for u in range(s0 - s0 % SPLIT_STEP, min(e, self.T) + 1, SPLIT_STEP):
+                row = tl[u][tm]
+                if not row["main"]: continue
+                gone = SPLIT_STEP * min(1, sum(1 for a in set(f["ids"]) if self.AL[a][u] and a not in row["ids"]))
+                fight += SPLIT_STEP; miss += gone
+                k, sd = row["place"]
+                w = by["stand" if k in ("stand", "greater stand") else "own" if sd == own else "enemy"]
+                w[0] += SPLIT_STEP; w[1] += gone
+            out.append({"form": f["form"] or f["how"] or "open", "how": f["how"], "run_s": e - s0, "away_s": f["away_s"], "fight_s": fight, "miss_s": miss, "by": by})
+        return out
+
+    def flag_duty(self):
+        """Over the whole match, for each team: the seconds its main team stood in a fight, and the player-seconds of
+        those in which one of its players was away for the flag (the average players down for the flag, R-412)."""
+        tl, out = self._tl(), {}
+        for tm in self.st.teams:
+            rows = [r[tm] for r in tl.values() if r[tm]["main"]]
+            out[tm] = (len(rows) * SPLIT_STEP, sum(len(r["flag_away"]) for r in rows) * SPLIT_STEP)
+        return out
+
     # ---- records
     def records(self):
         m, out = self.m, []
@@ -2129,9 +2384,12 @@ class Moments:
                 r = next((r for r in x["refs"] if isinstance(r, dict)), None)
                 who = [m.roles[r["a"]]] if r else None
             elif x["family"] == 2: who = list(ref["who"][3 - tm]) if "split stand-off" in x["triggers"] else [q["role"] for q in ref["members"]]
+            c = self.call(x, s)
+            c["shape"] = self.shape(x, c)                   # who, which way, when (R-297)
             out.append({"id": f"{m.o['meta']['id'][:8]}-{x['family']}-{tm}-{t}", "rid": m.o["meta"]["id"], "family": x["family"],
                         "t": t, "team": m.tag[tm], "tm": tm, "triggers": x["triggers"], "who": who,
-                        "scenario": self.scenario(x, s), "call": self.call(x, s), "verbs": self.verbs(tm, t), "forced": bool(died), "died": died, "state": s})
+                        "scenario": self.scenario(x, s), "call": c, "verbs": self.verbs(tm, t), "forced": bool(died), "died": died, "state": s,
+                        "after": self.consequence(tm, t)})
         return out
 
 
@@ -2141,7 +2399,13 @@ def match_records(rid):
     from scoreboard import Scoreboard
     st = GameState(Match.from_branch(rid))
     if not st.hall: return None
-    return Moments(st, Scoreboard(st)).records()
+    M = Moments(st, Scoreboard(st))
+    recs = M.records()
+    EXTRA[rid] = {"runs": M.runner_cost(), "duty": [M.flag_duty()[tm] for tm in (1, 2)]}
+    return recs
+
+
+EXTRA = {}       # report id -> the runner cost rows of the match last read (R-412), kept beside the records by `all`
 
 
 def _flag_forms(rid):
@@ -2156,20 +2420,20 @@ def _flag_forms(rid):
 
 
 def _one(rid):
-    try: return rid, match_records(rid)
-    except Exception as e: return rid, {"error": f"{type(e).__name__}: {e}"}
+    try: return rid, match_records(rid), EXTRA.pop(rid, None)
+    except Exception as e: return rid, {"error": f"{type(e).__name__}: {e}"}, None
 
 
 def run_all(path, jobs=2):
     import multiprocessing, common
-    ids, out, bad = common.replay_ids(), {}, {}
+    ids, out, bad, extra = common.replay_ids(), {}, {}, {}
     idx = common.replay_index()
     with multiprocessing.Pool(jobs) as pool:
-        for rid, rec in pool.imap_unordered(_one, ids, chunksize=4):
+        for rid, rec, ex in pool.imap_unordered(_one, ids, chunksize=4):
             if isinstance(rec, dict): bad[rid] = rec["error"]
-            elif rec is not None: out[rid] = rec
+            elif rec is not None: out[rid] = rec; extra[rid] = ex
     json.dump({"matches": {r: {"map": idx[r]["map"], "date": idx[r]["date"][:10], "teams": idx[r]["teams"]} for r in out},
-               "records": [x for r in sorted(out) for x in out[r]], "errors": bad}, open(path, "w"))
+               "records": [x for r in sorted(out) for x in out[r]], "flag_cost": extra, "errors": bad}, open(path, "w"), default=list)
     print(len(out), "matches,", sum(len(v) for v in out.values()), "moments,", len(bad), "errors", list(bad.items())[:3])
 
 
@@ -2187,10 +2451,129 @@ def counts(path):
             print("         " + "; ".join(f"{c} {v}" for c, v in calls.most_common(7)))
 
 
+# ---- 2.11 the job table: a DRAFT for Denning to rule (R-298: each call has a job with a success test read across the
+# whole map; playing for the wrong job is an execution fault of kind "objective"). Not used by anything until ruled.
+# Each test is read from the consequence record 90 s on, from the deciding team's side.
+JOB_TESTS = {
+    "a kill up": ("more of theirs die than of ours", lambda g: g["deaths"][1] > g["deaths"][0]),
+    "no death": ("nobody of ours dies", lambda g: g["deaths"][0] == 0),
+    "no worse on deaths": ("no more of ours die than of theirs", lambda g: g["deaths"][0] <= g["deaths"][1]),
+    "no NPC lost": ("none of our NPCs dies", lambda g: g["npcs"][0] == 0),
+    "an NPC taken": ("one of their NPCs dies", lambda g: g["npcs"][1] >= 1),
+    "flag in": ("our flag is capped", lambda g: g["caps"][0] >= 1),
+    "their flag kept out": ("they do not cap", lambda g: g["caps"][1] == 0),
+    "flag not lost": ("the flag lead falls by less than a flag", lambda g: g["lead_change"] is None or g["lead_change"] > -LEAD_ONE),
+}
+_BACK = ("fall back", "fall to footmen", "retreat to the pit", "retreat down the ladder", "fall out")
+_UP = ("push in", "push up", "go out by", "stay on the enemy's side")
+JOBS = [    # (family, side, runners, the call starts with, the job, all of these, and any one of these)
+    (1, None, None, ("push their flagger",), "Stop or delay their flag", ("their flag kept out",), ()),
+    (1, None, None, ("split",), "Trade: take something on their ground while the flag game goes on", (), ("an NPC taken", "a kill up")),
+    (1, None, None, _BACK, "Get to cover and lose nothing until the flag or the base res comes", ("no death", "no NPC lost"), ()),
+    (1, None, None, _UP, "Take something on their ground while the flag is run", (), ("an NPC taken", "a kill up")),
+    (1, None, 0, ("stay",), "Fight with the extra player while their runner is away", ("a kill up",), ()),
+    (1, None, 1, ("stay",), "Get the flag in and hold the fight a player short", ("flag in", "no worse on deaths"), ()),
+    (2, None, None, ("no answer",), "Win elsewhere before the split costs more than it gains", ("flag not lost",), ("a kill up", "an NPC taken")),
+    (2, None, None, ("one defender", "defend a player down"), "Delay: keep the split off the NPCs and stay alive", ("no NPC lost", "no death"), ()),
+    (2, None, None, ("mirror", "two monks"), "Hold it even: lose nothing at home and nothing at the main fight for it", ("no NPC lost", "no worse on deaths"), ()),
+    (2, None, None, ("add one", "send"), "Kill it or drive it out with the extra player, and lose nothing for it", ("no NPC lost",), ("a kill up",)),
+    (2, None, None, ("full collapse",), "Kill the split with everyone and be back before the flag is lost", ("a kill up", "flag not lost"), ()),
+    (3, "up", None, ("stay",), "Turn the extra player into a kill before the numbers are level", ("a kill up",), ()),
+    (3, "up", None, ("push",), "Take ground and NPCs with the numbers", ("no worse on deaths",), ("an NPC taken", "a kill up")),
+    (3, "up", None, ("split",), "Trade: take something on their ground", (), ("an NPC taken", "a kill up")),
+    (3, "up", None, _BACK, "Reset without giving anything back", ("no death", "no NPC lost"), ()),
+    (3, "down", None, ("stay",), "Hold the ground a player down and lose no more until it is level", ("no death",), ()),
+    (3, "down", None, _BACK, "Reach cover a player down without losing another", ("no death", "no NPC lost"), ()),
+    (3, "down", None, ("push", "split"), "Trade a player down: take something on their ground for it", (), ("an NPC taken", "a kill up")),
+]
+
+
+def job_of(x):
+    """The draft job of a moment's call: (job, tests that must all hold, tests of which one must hold), or None."""
+    fam, c = x["family"], x["call"]
+    word = c.get("rest") if fam == 1 else c["key"]
+    side = x["scenario"]["parts"].get("side")
+    for f, sd, run, starts, job, allof, anyof in JOBS:
+        if f != fam or (sd and sd != side) or not (word or "").startswith(starts): continue
+        if run is not None and min(c.get("runners") or 0, 1) != run: continue
+        return job, allof, anyof
+    return None
+
+
+def jobs(path):
+    """How often each draft job's success test is met 90 s on, over every counted match (forced reads left out). For
+    Denning's ruling on the table: a test met nearly always or nearly never tells nothing apart."""
+    D = json.load(open(path)); R = [x for x in D["records"] if not x["forced"] and not x["after"]["90"]["ended"]]
+    rows, none = collections.defaultdict(list), collections.Counter()
+    for x in R:
+        j = job_of(x)
+        if j is None: none[(x["family"], x["call"].get("rest") if x["family"] == 1 else x["call"]["key"])] += 1; continue
+        g = x["after"]["90"]
+        ok = all(JOB_TESTS[k][1](g) for k in j[1]) and (not j[2] or any(JOB_TESTS[k][1](g) for k in j[2]))
+        rows[(x["family"], x["scenario"]["parts"].get("side") or "", j[0], j[1], j[2])].append(ok)
+    for (fam, side, job, allof, anyof), v in sorted(rows.items(), key=lambda kv: (kv[0][0], kv[0][1], -len(kv[1]))):
+        test = "; ".join(JOB_TESTS[k][0] for k in allof) + ((("; and " if allof else "") + " or ".join(JOB_TESTS[k][0] for k in anyof)) if anyof else "")
+        print(f"F{fam} {side:4} {len(v):5}  met {100 * sum(v) / len(v):3.0f}%  {job}  [{test}]")
+    print("no job drafted:", sum(none.values()), none.most_common(6))
+
+
+def after(path):
+    """What followed each call, on average, at 90 s (the consequence record over every counted match). A description
+    for checking that the readings make sense, not a verdict: nothing here is adjusted for the situation, and a call
+    made from a losing position looks worse than it was. Forced reads are left out."""
+    D = json.load(open(path)); R = [x for x in D["records"] if not x["forced"] and not x["after"]["90"]["ended"]]
+    mean = lambda xs: (sum(xs) / len(xs)) if xs else 0.0
+    print(len(R), "moments not forced, the match still going 90 s on. Columns, all from the deciding team's side over the 90 s: deaths (own, enemy);")
+    print("NPCs lost (own, enemy); change in flag lead (flags); player-seconds up in the main team's fight; the same in other fights;")
+    print("seconds with a player away for the flag (own, enemy); steps moved on the ladder (+ is toward the own pit)")
+    for fam in (1, 2, 3):
+        F = [x for x in R if x["family"] == fam]
+        print(f"\nFamily {fam}: {FAMILY[fam]} ({len(F)})")
+        for k, n in collections.Counter(x["call"]["key"] for x in F).most_common(12):
+            G = [x["after"]["90"] for x in F if x["call"]["key"] == k]
+            L = [g["lead_change"] for g in G if g["lead_change"] is not None]
+            St = [g["step"][1] - g["step"][0] for g in G if None not in g["step"]]
+            print(f"  {n:5} {k[:44]:44} deaths {mean([g['deaths'][0] for g in G]):.2f} {mean([g['deaths'][1] for g in G]):.2f}  NPCs {mean([g['npcs'][0] for g in G]):.2f} {mean([g['npcs'][1] for g in G]):.2f}"
+                  f"  lead {mean(L):+.2f}  main {mean([g['numbers']['main_net'] for g in G]):+6.1f}  other {mean([g['numbers']['side_net'] for g in G]):+6.1f}"
+                  f"  away {mean([g['flag_away_s'][0] for g in G]):4.1f} {mean([g['flag_away_s'][1] for g in G]):4.1f}  ladder {mean(St):+.2f}")
+    T = [x["call"]["shape"]["timing"] for x in R]
+    dl = [t for t in T if t["kind"]]
+    print(f"\nTiming (R-297, R-321): {sum(1 for t in T if t['delay_s'] is not None)} calls with a first move read; {sum(1 for t in T if t['words'] == 'on time')} on time; "
+          f"{len(dl)} delayed, of which {sum(1 for t in dl if t['kind'] == 'decision')} with something being gained elsewhere (a decision) and {sum(1 for t in dl if t['kind'] == 'execution')} with nothing (execution)")
+    gl = collections.Counter(g.split(" (")[0] for t in dl for g in t["gained_elsewhere"])
+    print("  what was being gained: " + "; ".join(f"{k} {v}" for k, v in gl.most_common()))
+
+
+def runner(path):
+    """The cost of running a flag in players (R-412: "roughly 0.8 of a player down, to be measured"), three ways."""
+    D = json.load(open(path)); X = D["flag_cost"]
+    runs = [r for v in X.values() if v for r in v["runs"]]
+    med = lambda xs: statistics.median(xs) if xs else 0
+    cap = [r for r in runs if r["how"] == "captured"]
+    print(f"{len(runs)} flags run in {len(X)} matches ({len(cap)} captured)")
+    print("1. While a flag is being run (from the runner leaving his team for it to its end), in the seconds his main team stood in a fight:")
+    for name, rows in [("every flag", runs), ("captured", cap)] + [(f, [r for r in runs if r["form"] == f]) for f, _ in collections.Counter(r["form"] or "open" for r in runs).most_common(6)]:
+        fs, ms = sum(r["fight_s"] for r in rows), sum(r["miss_s"] for r in rows)
+        print(f"   {(name or 'open'):22} {len(rows):5} flags; run {med([r['run_s'] for r in rows]):5.0f} s (median); a fight for {100 * fs / max(sum(r['run_s'] for r in rows), 1):3.0f}% of it; a carrier missing from that fight {ms / max(fs, 1):.2f} of the time")
+    for k, words in (("stand", "around the stand"), ("own", "on the runner's own ground"), ("enemy", "on the enemy's ground")):
+        fs, ms = sum(r["by"][k][0] for r in runs if "by" in r), sum(r["by"][k][1] for r in runs if "by" in r)
+        print(f"   with the main fight {words:28} {fs:8} s of fight; a carrier missing {ms / max(fs, 1):.2f} of the time")
+    print("2. Seconds away from the fight per flag (R-360) over the run's length, captured flags: "
+          f"{sum(r['away_s'] for r in cap) / max(sum(r['run_s'] for r in cap), 1):.2f} (median away {med([r['away_s'] for r in cap]):.0f} s of {med([r['run_s'] for r in cap]):.0f} s)")
+    duty = [v["duty"][i] for v in X.values() if v for i in (0, 1) if v["duty"][i][0] >= 120]
+    sh = sorted(d_[1] / d_[0] for d_ in duty)
+    q = lambda p: sh[int(p * (len(sh) - 1))] if sh else 0
+    print(f"3. Over a whole match, players away for the flag while the main team stood in a fight: {sum(d_[1] for d_ in duty) / max(sum(d_[0] for d_ in duty), 1):.2f} of a player on average "
+          f"({len(duty)} team-matches; a quarter of them under {q(0.25):.2f}, half under {q(0.5):.2f}, a quarter over {q(0.75):.2f})")
+
+
 if __name__ == "__main__":
     a = sys.argv[1:]
     if a and a[0] == "all": run_all(a[1], int(a[a.index("--jobs") + 1]) if "--jobs" in a else 2)
     elif a and a[0] == "counts": counts(a[1])
+    elif a and a[0] == "after": after(a[1])
+    elif a and a[0] == "runner": runner(a[1])
+    elif a and a[0] == "jobs": jobs(a[1])
     elif a and a[0] == "flags":         # how every flag's life ended, over all counted matches
         import multiprocessing, common
         c, brief, bad = collections.Counter(), 0, 0
