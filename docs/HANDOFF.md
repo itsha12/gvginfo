@@ -8,7 +8,7 @@ model's structure: `knowledge/model.md` (generated).
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/SPEC.md and docs/HANDOFF.md, check
 > out `bundle-4` in a second worktree, then set out the items under "Open for Denning" and carry on with "Next".
 
-## State (2026-11-12 night: redesign step 2 on branch `bundle-4`; batch 17, 506 matches trained)
+## State (2026-11-12 late night: redesign step 2 on branch `bundle-4`; batch 17, 506 matches trained)
 - Main's engine is unchanged (SPEC.md). Bundle 4 is on `bundle-4` and lands in one piece, then one rebuild (R-322).
   606 replays stored (90 from 2 September on not yet trained on). No Train batch, Discovery or fetch run in progress.
 - On `bundle-4`: `hallmap.py`, `moments.py` (the records and the decision moments), `story.py` (prints from the
@@ -24,35 +24,30 @@ model's structure: `knowledge/model.md` (generated).
   grows) and the numbers in each main team's fight (R-351); calls from the records in the 30 s window (`_runners`,
   `_rest`: a split of the main team, a push in, pushing the flagger, `way_out` and a split within 60 s, `ground`
   moves off the stand area, else where the main team stood); `verbs()` keeps every verb the team used in the window.
-- The decision gate (R-394), first run (`golden.py gate --data <main>/data/lineup`):
-  part one against `data/model/golden_key.json` (Claude's reading of his notes, for him to correct): 11 of 14 found
-  (needs 9 in 10); trigger 5/5, stand 5/5, runners 5/5, rest 4/5, forced 6/6, home 2/2, side 4/4, source 4/4;
-  size 1/2 and call 3/6 fail. Part two: 91 of 105 comms calls have a decision of that team within 30 s; 64 of 105
-  read the same call; 30 more are calls the engine has no decision for (NPCs 14, plans, drops, boosts).
+- The decision gate (R-394) passes after his rulings (R-421; `golden.py gate --data <main>/data/lineup`): part one
+  against `data/model/golden_key.json` v2 (Claude's reading of his notes; Men v One 6:34 and RACK v chic not scored,
+  hold v Apes 1:37 an accepted miss): 12 of 12 found, every part 80% or better, the call 6 of 7 (Crew v One 8:02
+  open). Part two: 65 of 105 comms calls read the same (61%; his mark 60%), 93 with a decision there.
+- R-421 as built: split moments when a split changes door or divides and at a stand-off of split groups; the part
+  of five or more in an uneven divide is the main team (MAIN_BIG); a step along the ladder is a push up or fall back.
+  Counts after: split attempts 2,314 to 2,238, main team pushes 1,895 to 1,917; golden stories draft 10.
 
 ## Next (in order; REDESIGN.md "Build plan from here" and "Tests")
-1. His answers to "Open for Denning" (the gate's misses and the comms pass mark), then fix and rerun the gate
-   until it passes or each miss is ruled on (R-327).
-2. Stage D on the branch (consequence record with flags given up beside numbers gained, R-412, and 0.8 of a player
-   measured; similar cases; the job table; enemy execution; the four proposals left of R-324; radius checks to
-   `st.zone`), then stage E (side by side for one rebuild, SPEC.md and METHODS.md rewritten, readability test, his
-   list of R-398, merge, Train batch with `add_batch=no`).
-3. Proposal for the integrity layer (an engine change, so in the bundle): flag stretches where the replay has casts
-   but no damage (game 1 6:10 to 8:30; 7 of 606 replays have two or more whole minutes), so no fight is read there.
+1. Stage D on the branch: shape of the call (R-297); the consequence record at 90 s and about 3 min, flags given up
+   beside numbers gained (R-412), with 0.8 of a player measured; similar cases; the job table (Claude drafts,
+   Denning rules, R-298); enemy execution (R-299); the interaction rule; the four proposals left of R-324 (control by
+   distance to the stand, hex value with trigger damage, NPC healing by target and kind, teleporter hops); radius
+   checks to the labelled zones. Rerun the gate and the line-up after each change.
+2. Stage E (side by side for one rebuild, SPEC.md and METHODS.md rewritten, readability test, his list of R-398,
+   merge, Train batch with `add_batch=no`).
+3. Proposal for the integrity layer (in the bundle): flag stretches where the replay has casts but no damage (game 1
+   6:10 to 8:30; 7 of 606 replays have two or more whole minutes), so no fight is read there.
 
 ## Open for Denning (set each out in the chat, R-329)
-- Comms pass mark (R-394 part two): 64 of 105 (60%) read the same call; 91 of 105 (86%) find a decision there.
-- The gate's misses: hold v Apes 1:37 (the replay has no carry between the pre-gates pickup and 2:30); Men v hdm
-  9:25 (hdm's 4-4 split is one attempt from 0:06 to 11:06; a split moving door or dividing is not a moment yet);
-  Men v One 6:34 (his "not sure what this play is": One's main team out of its front door, not a split);
-  NwAy v SKT 14:50 (SKT's three waiting at their own front door, a threat; SKT's five pushing NwAy's front door read
-  as a split); Men v hdm 3:50 (push up to hdm's front door, engine stay: Men's main team stands on the stand area);
-  Crew v One 8:02 (the fall out is at 8:38, past the 30 s window of R-294); Apes v Book 22:04 (out by the front door,
-  the split into Book's back door at 22:48 was never long enough to be an attempt).
-- His answer key: correct any line of `golden_key.json` (set out in the chat, not by pointing to the file).
-- Game 1: his note has BcS's Mesmer going back to run at 7:23; the replay has him turning for home at 7:04 and at
-  full speed from 7:10 (picks up at 7:36).
-- From before: threat and the hand-off to hold (not records yet).
+- Crew v One 8:02: Crew stays in One's front door until 8:38 and falls out after the 30 s read window (R-294).
+  Claude's recommendation: keep 30 s and accept the miss.
+- The job table when stage D drafts it; whether the consequence readings make sense once built.
+- From before: threat and the hand-off to hold (not records yet; the split stand-off now stands in for a threat).
 
 ## Running it
 - Train batch: `gh api -X POST repos/itsha12/gvginfo/actions/workflows/train-batch.yml/dispatches -f ref=main

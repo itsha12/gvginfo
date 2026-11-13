@@ -1,7 +1,7 @@
 {
 "about": "The engine's story of each golden moment's game (tools/golden/golden.py stories; story.py on the bundle-4 branch). Shown on Model > Golden moments for Denning to mark (R-354).",
 "generated": "2026-11-12",
-"draft": 9,
+"draft": 10,
 "stories": {
 "25a90723-1-1-425": [
 [
@@ -1700,7 +1700,7 @@
 ],
 [
 1200,
-"STATE. Stand: Book, boost in 34 s; Book half a flag up. Book: main team 6 at the flag stand against 3 (Hammer, Monk 3 (WoC), Monk 4 (WoC), Mesmer, 7 Monk, 8 Monk); Warrior, Prot at the greater stand area against 4. Apes: main team 2 at Apes's front door, Dervish holding the flag (Warrior 2, Dervish); Mesmer, Monk 4 (WoC), Prot, 7 Monk, 8 Monk at the greater stand area against 8; Warrior 1 at Apes's base."
+"STATE. Stand: Book, boost in 34 s; Book half a flag up. Book: main team 6 at the flag stand against 3 (Hammer, Monk 3 (WoC), Monk 4 (WoC), Mesmer, 7 Monk, 8 Monk); Warrior, Prot at the greater stand area against 4. Apes: main team 5 at the greater stand area against 8 (Mesmer, Monk 4 (WoC), Prot, 7 Monk, 8 Monk); Warrior 2, Dervish at Apes's front door, Dervish holding the flag; Warrior 1 at Apes's base."
 ],
 [
 1200,
@@ -7287,8 +7287,8 @@
 "NwAy falls back from the field on SKT's side to NwAy's front door; SKT follows (8 of them)"
 ],
 [
-726,
-"SKT pushes out from the field on SKT's side to the field on NwAy's side (NwAy 8 v 8 SKT)"
+724,
+"SKT's main team pushes up from SKT's front footies to NwAy's front door (8 of them, NwAy in front of it)"
 ],
 [
 732,
@@ -7296,7 +7296,7 @@
 ],
 [
 738,
-"SKT splits two (Hammer, Necromancer; one monk)"
+"SKT splits three (Hammer, Necromancer, 7 Monk; one monk)"
 ],
 [
 738,
@@ -7319,8 +7319,16 @@
 "NwAy is on two monks at NwAy's front door (NwAy 5 v 5 SKT): 8 Monk is at the field on NwAy's side"
 ],
 [
+756,
+"SKT is on one monk at NwAy's front door (NwAy 5 v 5 SKT): 7 Monk is at the field on NwAy's side"
+],
+[
 763,
 "SKT boosts"
+],
+[
+764,
+"SKT's main team has pushed up to NwAy's front door (the move that began at 12:04)"
 ],
 [
 766,
@@ -7328,11 +7336,7 @@
 ],
 [
 780,
-"STATE. Stand: SKT, boost in 104 s; SKT half a flag up. NwAy: main team 5 at NwAy's front door against 5 (AoB Derv, Dervish, Stand Mes, Prot, 7 Monk); Hammer, Mes/A, 8 Monk at the field on NwAy's side against 3. SKT: main team 3 at the field on NwAy's side against 3 (Hammer, Necromancer, 7 Monk); AoB Derv, Ranger, Mesmer, Prot, Ritualist splitting at NwAy's front door against 5."
-],
-[
-786,
-"SKT is on one monk at NwAy's front door (NwAy 5 v 5 SKT): 7 Monk is at the field on NwAy's side"
+"STATE. Stand: SKT, boost in 104 s; SKT half a flag up. NwAy: main team 5 at NwAy's front door against 5 (AoB Derv, Dervish, Stand Mes, Prot, 7 Monk); Hammer, Mes/A, 8 Monk at the field on NwAy's side against 3. SKT: main team 5 at NwAy's front door against 5 (AoB Derv, Ranger, Mesmer, Prot, Ritualist); Hammer, Necromancer, 7 Monk at the field on NwAy's side against 3."
 ],
 [
 798,
@@ -7347,16 +7351,8 @@
 "SKT's main team pushes deeper along NwAy's front door, toward NwAy's pit (5 of them, NwAy in front of it)"
 ],
 [
-805,
-"SKT splits one (up to five) by the front door (AoB Derv; no monk)"
-],
-[
 818,
 "A fight at the field on NwAy's side: NwAy 3 v 3 SKT (NwAy: 8 Monk, Hammer, Mes/A; SKT: 7 Monk, Hammer, Necromancer)"
-],
-[
-838,
-"SKT falls back from NwAy's front door to the field on NwAy's side; NwAy does not follow (5 of them)"
 ],
 [
 840,
@@ -7396,11 +7392,15 @@
 ],
 [
 852,
-"The split fight ends after 1:54: 0 s on NwAy's ground, 0 s on SKT's, 58 s between them; no NPC taken; SKT loses 7 Monk; meanwhile at main NwAy was a player or more up for 0 s, even 42 s, down 6 s"
+"The split fight ends after 1:54: 0 s on NwAy's ground, 0 s on SKT's, 90 s between them; no NPC taken; SKT loses 7 Monk; meanwhile at main NwAy was a player or more up for 0 s, even 72 s, down 6 s"
 ],
 [
 860,
 "SKT's 7 Monk is resurrected at the field on SKT's side (13 s after dying)"
+],
+[
+872,
+"The fight stops: NwAy 5 and SKT 5 stand off for 0:50 (at NwAy's front door; 1 hits traded in that time, up to 3769 apart); NwAy's Hammer, Mes/A, 8 Monk away; SKT's Hammer, Ranger, 7 Monk away; then the fight resumes"
 ],
 [
 877,
@@ -7412,19 +7412,11 @@
 ],
 [
 892,
-"The split fight stops: NwAy's AoB Derv, Dervish, Stand Mes, Prot, 7 Monk and SKT's AoB Derv, Necromancer, Mesmer, Prot, Ritualist stand off for 0:30 (at NwAy's front door; 1 hits traded in that time, up to 2698 apart); then they fight"
-],
-[
-892,
 "No fight on the split: NwAy's Hammer, Mes/A, 8 Monk and SKT's Hammer, Ranger, 7 Monk stand off for 0:34 (at the field on NwAy's side; 0 hits traded in that time, up to 2953 apart); then a group moves off"
 ],
 [
 900,
-"STATE. Stand: SKT, boost in 104 s; SKT half a flag up. NwAy: main team 5 at NwAy's front door (AoB Derv, Dervish, Stand Mes, Prot, 7 Monk); Hammer, Mes/A, 8 Monk at the field on NwAy's side. SKT: main team 3 at the field on NwAy's side (Hammer, Ranger, 7 Monk); AoB Derv, Necromancer, Mesmer, Prot, Ritualist splitting at NwAy's front door."
-],
-[
-902,
-"NwAy answers SKT's split with three (Stand Mes, 7 Monk, AoB Derv; one monk), 8 s behind, at the front door"
+"STATE. Stand: SKT, boost in 104 s; SKT half a flag up. NwAy: main team 5 at NwAy's front door (AoB Derv, Dervish, Stand Mes, Prot, 7 Monk); Hammer, Mes/A, 8 Monk at the field on NwAy's side. SKT: main team 5 at NwAy's front door (AoB Derv, Necromancer, Mesmer, Prot, Ritualist); Hammer, Ranger, 7 Monk at the field on NwAy's side."
 ],
 [
 902,
@@ -7435,8 +7427,20 @@
 "A fight at NwAy's front door: NwAy 5 v 5 SKT (NwAy: 7 Monk, AoB Derv, Dervish, Prot, Stand Mes; SKT: AoB Derv, Mesmer, Necromancer, Prot, Ritualist)"
 ],
 [
+924,
+"The fight resumes: NwAy 5 v 5 SKT"
+],
+[
 928,
 "A fight at the field on NwAy's side: NwAy 3 v 3 SKT (NwAy: 8 Monk, Hammer, Mes/A; SKT: 7 Monk, Hammer, Ranger)"
+],
+[
+928,
+"SKT splits three (Hammer, Ranger, 7 Monk; one monk)"
+],
+[
+928,
+"NwAy answers SKT's split with three (Hammer, Mes/A, 8 Monk; one monk) at the field on NwAy's side: a split fight"
 ],
 [
 928,
@@ -7452,7 +7456,7 @@
 ],
 [
 930,
-"SKT's split ends after 0:36: its main team joins it; takes no NPC; no kills; no deaths; meanwhile its main team fought a player or more up for 2 s, even 2 s, down 0 s"
+"SKT's main team pushes deeper along NwAy's front door, toward NwAy's pit (5 of them, NwAy in front of it)"
 ]
 ],
 "9c9f7436-2-2-394": [
@@ -7984,6 +7988,14 @@
 ],
 [
 0,
+"hdm's main team goes out by the front door (eight)"
+],
+[
+0,
+"Men's main team goes out by the front door (seven)"
+],
+[
+0,
 "At the gates nobody on hdm has the flag (Hammer B picked it up before the gates opened and dropped it)"
 ],
 [
@@ -8000,11 +8012,11 @@
 ],
 [
 10,
-"hdm's Hammer A, Paragon, Hammer B, Mes/A, Stand Mes, Prot, 7 Monk, 8 Monk join at the flag stand: hdm 0 v 7 Men becomes 8 v 7"
+"hdm's Hammer A, Paragon, Hammer B, Mes/A, Stand Mes, Prot, 7 Monk, 8 Monk join at the greater stand area: hdm 0 v 7 Men becomes 8 v 7"
 ],
 [
 10,
-"Men's Hammer A, Ranger, Monk 4 (WoC), Mesmer, Prot, 7 Monk, 8 Monk join at the flag stand: hdm 8 v 0 Men becomes 8 v 7"
+"Men's Hammer A, Ranger, Monk 4 (WoC), Mesmer, Prot, 7 Monk, 8 Monk join by the front door at the greater stand area: hdm 8 v 0 Men becomes 8 v 7"
 ],
 [
 23,
@@ -8027,8 +8039,12 @@
 "hdm's Mes/A picks up the flag at the spawn"
 ],
 [
+40,
+"hdm falls back from the flag stand to hdm's front door; Men follows (5 of them)"
+],
+[
 45,
-"STATE. Stand: Men, boost in 105 s; Men a flag up. hdm: main team 8 at the flag stand against 7, Mes/A holding the flag (Hammer A, Paragon, Hammer B, Mes/A, Stand Mes, Prot, 7 Monk, 8 Monk). Men: main team 7 at the flag stand against 8 (Hammer A, Ranger, Monk 4 (WoC), Mesmer, Prot, 7 Monk, 8 Monk); Hammer B running the flag at the greater stand area."
+"STATE. Stand: Men, boost in 105 s; Men a flag up. hdm: main team 8 at the flag stand against 7, Mes/A holding the flag (Hammer A, Paragon, Hammer B, Mes/A, Stand Mes, Prot, 7 Monk, 8 Monk). Men: main team 7 at the flag stand against 8 (Hammer A, Ranger, Monk 4 (WoC), Mesmer, Prot, 7 Monk, 8 Monk); Hammer B running the flag at Men's front door."
 ],
 [
 46,
@@ -8036,31 +8052,51 @@
 ],
 [
 50,
-"The flag stand: hdm 8 v 7 Men becomes 8 v 8"
+"Hdm's front door: hdm 8 v 7 Men becomes 8 v 8"
 ],
 [
 50,
-"Men's Hammer B joins through the pit and by the front door at the flag stand: hdm 8 v 7 Men becomes 8 v 8"
+"Men's Hammer B joins through the pit at hdm's front door: hdm 8 v 7 Men becomes 8 v 8"
 ],
 [
 52,
-"hdm's Hammer A pushes Men's flagger (Hammer B, carrying the flag) at the flag stand for 0:20; Men's Mesmer comes to help"
+"hdm's Hammer A pushes Men's flagger (Hammer B, carrying the flag) at the greater stand area for 0:20; Men's Mesmer comes to help"
+],
+[
+54,
+"Men's main team pushes up from the flag stand to hdm's front door (5 of them, hdm in front of it)"
 ],
 [
 73,
-"Men's Hammer B hands the flag to Mesmer at the flag stand"
+"Men's Hammer B hands the flag to Mesmer at the greater stand area"
+],
+[
+78,
+"hdm pushes out from hdm's front door to the greater stand area (hdm 8 v 8 Men)"
 ],
 [
 87,
-"hdm's Hammer B leaves the flag stand to go back for the flag"
+"hdm's Hammer B leaves the greater stand area to go back for the flag"
+],
+[
+91,
+"Men splits three by the front door (Hammer A, Ranger, 7 Monk; one monk)"
 ],
 [
 97,
-"hdm's Mes/A caps (runner Mes/A away 28 s); Hammer B went back for it at 1:27 from the flag stand and takes the next flag (double run, each full running)"
+"hdm's Mes/A caps (runner Mes/A away 28 s); Hammer B went back for it at 1:27 from the greater stand area and takes the next flag (double run, each full running)"
+],
+[
+98,
+"Men pushes hdm back from the greater stand area to hdm's front door (hdm 7 v 8 Men)"
 ],
 [
 100,
 "Men's Monk 4 (WoC) leaves the flag stand to go back for the flag"
+],
+[
+102,
+"hdm answers Men's split with five (Paragon, Hammer B, Prot, 8 Monk, Mes/A; two monks), already there, at the front door"
 ],
 [
 105,
@@ -8071,20 +8107,28 @@
 "Men's Mesmer overcaps (runner Hammer B away 21 s)"
 ],
 [
+112,
+"hdm pushes out from hdm's front door to the flag stand (hdm 5 v 4 Men)"
+],
+[
+112,
+"Men's Hammer A, Ranger, 7 Monk push hdm's flagger (Hammer B, carrying the flag) at hdm's flag spawn for 0:08"
+],
+[
 120,
-"STATE. Stand: Men, boost in 108 s; Men half a flag up. hdm: main team 3 at hdm's front door against 3, Hammer B holding the flag (Paragon, Hammer B, 8 Monk); Hammer A, Mes/A, Stand Mes, Prot, 7 Monk at the flag stand against 5. Men: main team 4 at the flag stand against 5 (Hammer B, Mesmer, Prot, 8 Monk); Hammer A, Ranger, 7 Monk at the greater stand area against 4; Monk 4 (WoC) waiting back at the flag spawn."
+"STATE. Stand: Men, boost in 108 s; Men half a flag up. hdm: main team 5 at the greater stand area against 5 (Hammer A, Mes/A, Stand Mes, Prot, 7 Monk); Paragon, Hammer B, 8 Monk defending at hdm's front door against 3, Hammer B holding the flag. Men: main team 4 at the flag stand against 5 (Hammer B, Mesmer, Prot, 8 Monk); Hammer A, Ranger, 7 Monk splitting at hdm's front door against 4; Monk 4 (WoC) waiting back at the flag spawn."
 ],
 [
 120,
 "Men's Monk 4 (WoC) picks up the flag at the spawn"
 ],
 [
-123,
-"hdm's Hammer B hands the flag to Paragon at the greater stand area"
+122,
+"Men pushes hdm back from the flag stand to hdm's front door (hdm 5 v 3 Men)"
 ],
 [
-124,
-"hdm's Paragon holds the flag back at the greater stand area for 0:48 without running or capping it; then caps"
+123,
+"hdm's Hammer B hands the flag to Paragon at hdm's front door"
 ],
 [
 125,
@@ -8092,23 +8136,43 @@
 ],
 [
 126,
-"A fight at the greater stand area: hdm 3 v 4 Men (hdm: 7 Monk, Hammer A, Stand Mes; Men: 8 Monk, Hammer B, Mesmer, Monk 4 (WoC))"
+"A fight at Men's front door: hdm 3 v 4 Men (hdm: 7 Monk, Hammer A, Stand Mes; Men: 8 Monk, Hammer B, Mesmer, Monk 4 (WoC))"
 ],
 [
 142,
-"hdm's Prot joins through mid at the flag stand: hdm 3 v 5 Men becomes 4 v 5"
+"Men pushes out from Men's front door to the greater stand area (hdm 8 v 8 Men)"
+],
+[
+142,
+"hdm's Prot joins through mid and by the front door at the greater stand area: hdm 3 v 5 Men becomes 4 v 5"
+],
+[
+144,
+"Men's split ends after 0:42: it leaves (rejoined the main team); takes archer; no kills; no deaths; meanwhile its main team fought a player or more up for 32 s, even 2 s, down 2 s"
+],
+[
+144,
+"Men's Hammer A, Ranger, 7 Monk fall out of hdm's front door by the front door"
+],
+[
+144,
+"Men's Hammer B, Monk 4 (WoC), Mesmer, Prot, 8 Monk fall out of hdm's front door"
 ],
 [
 146,
-"The flag stand: hdm 3 v 4 Men becomes 8 v 8 (hdm matches 16 s behind)"
+"The greater stand area: hdm 3 v 4 Men becomes 8 v 8 (hdm matches 16 s behind)"
 ],
 [
 149,
 "Men's Monk 4 (WoC) hands the flag to Mesmer at the flag stand and goes back for the next flag (double run, each half running)"
 ],
 [
+156,
+"Men's split is back with its main team 12 s behind hdm's defenders: hdm has the numbers there for that long and gets no kill"
+],
+[
 159,
-"hdm's Mes/A leaves the flag stand to go back for the flag"
+"hdm's Mes/A leaves the greater stand area to go back for the flag"
 ],
 [
 160,
@@ -8128,7 +8192,7 @@
 ],
 [
 173,
-"hdm's Paragon caps (runner Hammer B away 25 s, next flag already waiting); Mes/A went back for it at 2:39 from the flag stand and takes the next flag (double run, each full running)"
+"hdm's Paragon caps (runner Hammer B away 25 s, next flag already waiting); Mes/A went back for it at 2:39 from the greater stand area and takes the next flag (double run, each full running)"
 ],
 [
 175,
@@ -8151,16 +8215,20 @@
 "hdm's Mes/A joins by the front door at the flag stand: hdm 7 v 7 Men becomes 8 v 7"
 ],
 [
-204,
-"Men's Monk 4 (WoC) joins by the front door at the flag stand: hdm 8 v 7 Men becomes 8 v 8"
+200,
+"Men's main team pushes in by the front door, eight against eight"
 ],
 [
 204,
-"hdm's Hammer A, Mes/A push Men's flagger (Monk 4 (WoC), carrying the flag) at the greater stand area for 0:24; Men's 8 Monk comes to help"
+"Men's Monk 4 (WoC) joins by the front door at hdm's front door: hdm 8 v 7 Men becomes 8 v 8"
+],
+[
+204,
+"hdm's Hammer A, Mes/A push Men's flagger (Monk 4 (WoC), carrying the flag) at Men's front door for 0:24; Men's 8 Monk comes to help"
 ],
 [
 212,
-"hdm loses Hammer A at the flag stand (27 s before the base res)"
+"hdm loses Hammer A at Men's front door (27 s before the base res)"
 ],
 [
 216,
@@ -8168,7 +8236,7 @@
 ],
 [
 222,
-"hdm's Hammer A is resurrected at the flag stand (9 s after dying)"
+"hdm's Hammer A is resurrected at the greater stand area (9 s after dying)"
 ],
 [
 228,
@@ -8179,16 +8247,20 @@
 "Men's Monk 4 (WoC) overcaps (runner Monk 4 (WoC) away 48 s)"
 ],
 [
+236,
+"hdm falls back from the greater stand area to hdm's front door, under pressure (team health 93%, 1 death in the last 30 s); Men follows (hdm 8 v 7 Men)"
+],
+[
 240,
-"STATE. Stand: Men, boost in 114 s; Men a flag up. hdm: main team 7 at the flag stand against 6 (Hammer A, Paragon, Mes/A, Stand Mes, Prot, 7 Monk, 8 Monk); Hammer B defending at hdm's front door against 1. Men: main team 6 at the flag stand against 7 (Hammer A, Hammer B, Mesmer, Prot, 7 Monk, 8 Monk); Ranger splitting at hdm's front door against 1; Monk 4 (WoC) going back for the flag."
+"STATE. Stand: Men, boost in 114 s; Men a flag up. hdm: main team 7 at hdm's front door against 6 (Hammer A, Paragon, Mes/A, Stand Mes, Prot, 7 Monk, 8 Monk); Hammer B defending at hdm's front door against 1. Men: main team 6 at hdm's front door against 7 (Hammer A, Hammer B, Mesmer, Prot, 7 Monk, 8 Monk); Ranger splitting at hdm's front door against 1; Monk 4 (WoC) going back for the flag."
 ],
 [
 244,
-"The flag stand: hdm 7 v 8 Men becomes 8 v 8"
+"Hdm's front door: hdm 7 v 8 Men becomes 8 v 8"
 ],
 [
 254,
-"hdm's Mes/A leaves the greater stand area to go back for the flag"
+"hdm's Mes/A leaves hdm's front door to go back for the flag"
 ],
 [
 264,
