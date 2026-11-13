@@ -180,6 +180,18 @@ def split_context(st, members, t, def_npc_value=None):
 # Claude's draft to confirm (tested against the golden moments, R-303).
 READ_FROM, READ_TO = 20, 30     # a call is read from where players stand 20 to 30 s after the trigger (R-294)
 CONSEQ_S = (90, 180)            # what followed is read at 90 s and at about 3 minutes after the trigger, over the whole map (R-294)
+# ---- the jobs (jobs.py; Denning's rulings of 2026-11-13). Each job runs on its own clock, to the event that ends it (R-424)
+FLAG_GAIN = 0.35                # flag advantage gained: the flag lead better by this much, his half-a-flag band; "less negative" counts (R-426)
+PART_RUN_GAIN = 0.15            # a lone defender part-running his flag: the slight flag advantage that counts (R-430)
+LATE_FLAG = 1.3                 # a pushed flag is delayed when it arrives this many times later than the hall's usual run (R-427)
+ANSWER_CAP_S = 15               # a cap is answered "at once" when the flag in hand is capped this soon after it (Claude's draft)
+COLLAPSE_VISIT_S = 45           # a collapse: a player from the main team on a split for no longer than this, then back (R-429; the length is Claude's draft)
+COLLAPSE_MIN_S = 8              # ... and no shorter than this unless a split player dies in it (a pass through is not a collapse; Claude's draft)
+PINNED_S = 20                   # pinned: a main team in its own base or pit with the enemy's main team on its ground this long (Claude's draft)
+LORD_PUSH_FROM = 23 * 60 + 30   # a push on the Guild Lord is its own moment from about 23:30 (R-435)
+RACE_MIN_S = 5                  # the race back when a split ends counts from this many seconds ahead (Claude's draft)
+NUMBERS_TAIL_S = 10             # a numbers job runs until the numbers are level, and this much longer (R-424: a short tail; Claude's draft)
+FLAG_JOB_MAX_S = 180            # a flag job runs to the cap or the return of the flag, and no longer than this
 AREA_SHARE = 0.5                # a group is "at" a place when more than this share of its living players stand in it (R-319)
 PURPOSE_S = 60                  # a leave's purpose is fixed this long after it, earlier on a pickup or on entering the enemy base (R-325)
 LEAVE_MIN_S = 8                 # a player out of the main group for less than this never left (a flank, a kite)

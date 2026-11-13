@@ -40,7 +40,7 @@ Usage:  python3 moments.py <report id> [family]      the match's moments in orde
         python3 moments.py counts <out.json>          cases by family, scenario and call
         python3 moments.py after <out.json>           what followed each call at 90 s, on average (stage D: the consequence record)
         python3 moments.py runner <out.json>          what running a flag costs in players at the main fight (R-412)
-        python3 moments.py jobs <out.json>            how often each draft job's success test is met (R-298: a draft for Denning to rule)
+        python3 jobs.py summary <out.json>            the plays and how often each job was met (jobs.py)
 In code: Moments(st, sb).records() -> list of dicts."""
 import collections, json, math, statistics, sys
 from common import (READ_FROM, READ_TO, CONSEQ_S, ON_TIME_S, LATE_S, PIT_S, AREA_SHARE, PURPOSE_S, LEAVE_MIN_S, HOME_WAIT_S, SPAWN_R, GROUP_LEAVE_S, MEET_R,
@@ -2401,7 +2401,8 @@ def match_records(rid):
     if not st.hall: return None
     M = Moments(st, Scoreboard(st))
     recs = M.records()
-    EXTRA[rid] = {"runs": M.runner_cost(), "duty": [M.flag_duty()[tm] for tm in (1, 2)]}
+    import jobs                                          # the plays and their jobs; each moment gets its allocation (R-425)
+    EXTRA[rid] = {"runs": M.runner_cost(), "duty": [M.flag_duty()[tm] for tm in (1, 2)], "plays": jobs.plays(M, recs), "flags": jobs.bench_rows(M)}
     return recs
 
 
@@ -2433,7 +2434,8 @@ def run_all(path, jobs=2):
             if isinstance(rec, dict): bad[rid] = rec["error"]
             elif rec is not None: out[rid] = rec; extra[rid] = ex
     json.dump({"matches": {r: {"map": idx[r]["map"], "date": idx[r]["date"][:10], "teams": idx[r]["teams"]} for r in out},
-               "records": [x for r in sorted(out) for x in out[r]], "flag_cost": extra, "errors": bad}, open(path, "w"), default=list)
+               "records": [x for r in sorted(out) for x in out[r]], "plays": [p for r in sorted(out) for p in (extra[r] or {}).get("plays", [])],
+               "flag_cost": {r: {k: v for k, v in (extra[r] or {}).items() if k != "plays"} for r in out}, "errors": bad}, open(path, "w"), default=list)
     print(len(out), "matches,", sum(len(v) for v in out.values()), "moments,", len(bad), "errors", list(bad.items())[:3])
 
 
@@ -2449,72 +2451,6 @@ def counts(path):
             lab = next(x["scenario"]["label"] for x in F if x["scenario"]["key"] == k)
             print(f"  {n:5}  {lab}")
             print("         " + "; ".join(f"{c} {v}" for c, v in calls.most_common(7)))
-
-
-# ---- 2.11 the job table: a DRAFT for Denning to rule (R-298: each call has a job with a success test read across the
-# whole map; playing for the wrong job is an execution fault of kind "objective"). Not used by anything until ruled.
-# Each test is read from the consequence record 90 s on, from the deciding team's side.
-JOB_TESTS = {
-    "a kill up": ("more of theirs die than of ours", lambda g: g["deaths"][1] > g["deaths"][0]),
-    "no death": ("nobody of ours dies", lambda g: g["deaths"][0] == 0),
-    "no worse on deaths": ("no more of ours die than of theirs", lambda g: g["deaths"][0] <= g["deaths"][1]),
-    "no NPC lost": ("none of our NPCs dies", lambda g: g["npcs"][0] == 0),
-    "an NPC taken": ("one of their NPCs dies", lambda g: g["npcs"][1] >= 1),
-    "flag in": ("our flag is capped", lambda g: g["caps"][0] >= 1),
-    "their flag kept out": ("they do not cap", lambda g: g["caps"][1] == 0),
-    "flag not lost": ("the flag lead falls by less than a flag", lambda g: g["lead_change"] is None or g["lead_change"] > -LEAD_ONE),
-}
-_BACK = ("fall back", "fall to footmen", "retreat to the pit", "retreat down the ladder", "fall out")
-_UP = ("push in", "push up", "go out by", "stay on the enemy's side")
-JOBS = [    # (family, side, runners, the call starts with, the job, all of these, and any one of these)
-    (1, None, None, ("push their flagger",), "Stop or delay their flag", ("their flag kept out",), ()),
-    (1, None, None, ("split",), "Trade: take something on their ground while the flag game goes on", (), ("an NPC taken", "a kill up")),
-    (1, None, None, _BACK, "Get to cover and lose nothing until the flag or the base res comes", ("no death", "no NPC lost"), ()),
-    (1, None, None, _UP, "Take something on their ground while the flag is run", (), ("an NPC taken", "a kill up")),
-    (1, None, 0, ("stay",), "Fight with the extra player while their runner is away", ("a kill up",), ()),
-    (1, None, 1, ("stay",), "Get the flag in and hold the fight a player short", ("flag in", "no worse on deaths"), ()),
-    (2, None, None, ("no answer",), "Win elsewhere before the split costs more than it gains", ("flag not lost",), ("a kill up", "an NPC taken")),
-    (2, None, None, ("one defender", "defend a player down"), "Delay: keep the split off the NPCs and stay alive", ("no NPC lost", "no death"), ()),
-    (2, None, None, ("mirror", "two monks"), "Hold it even: lose nothing at home and nothing at the main fight for it", ("no NPC lost", "no worse on deaths"), ()),
-    (2, None, None, ("add one", "send"), "Kill it or drive it out with the extra player, and lose nothing for it", ("no NPC lost",), ("a kill up",)),
-    (2, None, None, ("full collapse",), "Kill the split with everyone and be back before the flag is lost", ("a kill up", "flag not lost"), ()),
-    (3, "up", None, ("stay",), "Turn the extra player into a kill before the numbers are level", ("a kill up",), ()),
-    (3, "up", None, ("push",), "Take ground and NPCs with the numbers", ("no worse on deaths",), ("an NPC taken", "a kill up")),
-    (3, "up", None, ("split",), "Trade: take something on their ground", (), ("an NPC taken", "a kill up")),
-    (3, "up", None, _BACK, "Reset without giving anything back", ("no death", "no NPC lost"), ()),
-    (3, "down", None, ("stay",), "Hold the ground a player down and lose no more until it is level", ("no death",), ()),
-    (3, "down", None, _BACK, "Reach cover a player down without losing another", ("no death", "no NPC lost"), ()),
-    (3, "down", None, ("push", "split"), "Trade a player down: take something on their ground for it", (), ("an NPC taken", "a kill up")),
-]
-
-
-def job_of(x):
-    """The draft job of a moment's call: (job, tests that must all hold, tests of which one must hold), or None."""
-    fam, c = x["family"], x["call"]
-    word = c.get("rest") if fam == 1 else c["key"]
-    side = x["scenario"]["parts"].get("side")
-    for f, sd, run, starts, job, allof, anyof in JOBS:
-        if f != fam or (sd and sd != side) or not (word or "").startswith(starts): continue
-        if run is not None and min(c.get("runners") or 0, 1) != run: continue
-        return job, allof, anyof
-    return None
-
-
-def jobs(path):
-    """How often each draft job's success test is met 90 s on, over every counted match (forced reads left out). For
-    Denning's ruling on the table: a test met nearly always or nearly never tells nothing apart."""
-    D = json.load(open(path)); R = [x for x in D["records"] if not x["forced"] and not x["after"]["90"]["ended"]]
-    rows, none = collections.defaultdict(list), collections.Counter()
-    for x in R:
-        j = job_of(x)
-        if j is None: none[(x["family"], x["call"].get("rest") if x["family"] == 1 else x["call"]["key"])] += 1; continue
-        g = x["after"]["90"]
-        ok = all(JOB_TESTS[k][1](g) for k in j[1]) and (not j[2] or any(JOB_TESTS[k][1](g) for k in j[2]))
-        rows[(x["family"], x["scenario"]["parts"].get("side") or "", j[0], j[1], j[2])].append(ok)
-    for (fam, side, job, allof, anyof), v in sorted(rows.items(), key=lambda kv: (kv[0][0], kv[0][1], -len(kv[1]))):
-        test = "; ".join(JOB_TESTS[k][0] for k in allof) + ((("; and " if allof else "") + " or ".join(JOB_TESTS[k][0] for k in anyof)) if anyof else "")
-        print(f"F{fam} {side:4} {len(v):5}  met {100 * sum(v) / len(v):3.0f}%  {job}  [{test}]")
-    print("no job drafted:", sum(none.values()), none.most_common(6))
 
 
 def after(path):
@@ -2573,7 +2509,6 @@ if __name__ == "__main__":
     elif a and a[0] == "counts": counts(a[1])
     elif a and a[0] == "after": after(a[1])
     elif a and a[0] == "runner": runner(a[1])
-    elif a and a[0] == "jobs": jobs(a[1])
     elif a and a[0] == "flags":         # how every flag's life ended, over all counted matches
         import multiprocessing, common
         c, brief, bad = collections.Counter(), 0, 0
