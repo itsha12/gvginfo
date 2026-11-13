@@ -1,5 +1,5 @@
 {
- "about": "The review key (R-450). Every row Denning was shown of the engine's plays: what the engine said then (shown), his mark and his words (said), and checks: Claude's reading of his mark as things the plays must hold or must not hold, which he corrects. Scored by tools/golden/review.py on the branch after every change. Marks: right, partly, wrong, bad example (set aside), not marked. Set 1 is the 35 rows of 2026-11-13, picked one or more to a kind of play, so it is a regression test and not an accuracy figure; whole-game sets (R-454) give the accuracy by kind of play.",
+ "about": "The review key (R-450). Every row Denning was shown of the engine's plays: what the engine said then (shown), his mark and his words (said), and checks: Claude's reading of his mark as things the plays must hold or must not hold, which he corrects. Scored by tools/golden/review.py on the branch after every change. Marks: right, partly, wrong, bad example (set aside), not marked. Set 1 is the 35 rows of 2026-11-13, picked one or more to a kind of play, so it is a regression test and not an accuracy figure; whole-game sets (R-454) give the accuracy by kind of play. `answered` holds a later answer of his on a row (what was asked, his words, Claude's reading).",
  "version": 1,
  "rows": [
   {
@@ -387,7 +387,13 @@
      "open": true,
      "why": "Book v One 19:28: One's Ritualist defends the Hammer; he is on him under 12 s before the game ends, so he is not counted"
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-13",
+    "asked": "Does a defender still on the split when the game ends count, though under 12 s there?",
+    "said": "Sure.",
+    "reading": "R-459; the open check stays open until it is built."
+   }
   },
   {
    "id": "s1-16",
@@ -735,11 +741,18 @@
      "want": {
       "call": "a player down",
       "size": 3,
-      "defenders": 2
+      "defenders": 2,
+      "met": true
      }
     }
    ],
-   "note": "He approved 'not met' (an archer and two footmen lost). Under R-443, from his row 24, only pit NPCs count against the defence, so the engine now says met. The result is left unchecked until he rules which stands."
+   "note": "He first approved 'not met' (an archer and two footmen lost); asked which stands, he chose R-443 (see answered), so the result is checked as met.",
+   "answered": {
+    "on": "2026-11-13",
+    "asked": "His approval of 'not met' (an archer and two footmen lost), or R-443 (only pit NPCs count against the defence)?",
+    "said": "Option a.",
+    "reading": "R-443 stands: the defence met its job."
+   }
   },
   {
    "id": "s1-24",
@@ -870,6 +883,23 @@
      }
     },
     {
+     "none": {
+      "play": "split",
+      "side": "defender",
+      "team": "옷옷옷옷",
+      "at": [
+       246,
+       267
+      ],
+      "want": {
+       "call": [
+        "collapse",
+        "full collapse"
+       ]
+      }
+     }
+    },
+    {
      "has": {
       "play": "split",
       "side": "defender",
@@ -880,17 +910,20 @@
       ]
      },
      "want": {
-      "call": "collapse",
-      "who~": [
-       "Fire Ele"
-      ],
-      "size": 2
+      "call": "mirror",
+      "defenders": 2
      },
      "open": true,
-     "why": "hdm v 옷옷옷옷 4:06: he approved this as a collapse (one player comes from the main fight for 16 s, one already defending, against two), but R-441 from his row 21 says a collapse makes the defence at least one more than the split; the engine now reads one defender against two. For him to rule which stands"
+     "why": "hdm v 옷옷옷옷 4:06: he ruled it a join that makes it even (2 v 2); the engine reads one defender (the Fire Ele) against two, so the player already defending is not counted. To look at"
     }
    ],
-   "note": "His approval and R-441 disagree here (see the open check). The split itself had been lost to the chase rule after the rebuild and was restored when this key first ran."
+   "note": "He first approved this as a collapse; asked which stands, he chose R-441 (see answered). The split itself had been lost to the chase rule after the rebuild and was restored when this key first ran.",
+   "answered": {
+    "on": "2026-11-13",
+    "asked": "His approval of this row as a collapse, or R-441 (the defence must become one more than the split)?",
+    "said": "Go with option a.",
+    "reading": "R-441 stands: a join that makes it even, not a collapse."
+   }
   },
   {
    "id": "s1-27",
@@ -1079,7 +1112,13 @@
      "open": true,
      "why": "Crew v hdm: 7 v 7 from 6:58 to 7:22 and again after 7:28; the six seconds between are not a numbers moment (R-449: count a player in fight numbers only after 12 s; not built)"
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-13",
+    "asked": "The 12 s rule for the numbers of the main fight: from his arrival, or from the 12 s mark?",
+    "said": "From arrival.",
+    "reading": "R-459; the open check stays open until it is built."
+   }
   },
   {
    "id": "s1-32",

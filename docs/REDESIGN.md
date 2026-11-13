@@ -166,12 +166,12 @@ a solo split or other uneven counts (27%). The rebuild on the records takes its 
 6. **Stage D: depth**, in this order since R-450 to R-454:
    a. Built: shape, the consequence record, the plays and their jobs (R-423 to R-449), the review key and the
       development set.
-   b. **The whole-game review** (R-454): five recent games of top guilds, every call of each put to him with what the
-      engine reads; in two parts, so that he does not mark one fault thirty times: two games, the fixes, then three the
+   b. **The whole-game review** (R-454, R-455): four recent games of top guilds, every call of each put to him with what
+      the engine reads; in two parts, so that he does not mark one fault thirty times: two games, the fixes, then two the
       engine has not been fixed against, which give the accuracy by kind of play. He sets the mark a kind must pass.
-      Rare plays that five games cannot show (the Lord push, the part-run, leaving before a res) are topped up with
-      picked rows. His open answers (damage against monks, Shadow of Haste, when a split's moment is, the 12 s rule
-      for fight numbers, full collapse) are settled on these games.
+      Rare plays that four games cannot show (the Lord push, the part-run, leaving before a res) are topped up with
+      picked rows. His answers on damage against monks, Shadow of Haste, a split's moment and the 12 s rule
+      for fight numbers (R-456 to R-459) are built before the games are put to him.
    c. **The flag family to the end** (R-451), once the flag plays pass: similar cases for the flag plays (2.10: the
       same scenario first, then nearest on the continuous variables, with strength, R-432, and the hall, R-436), the
       better call by the consequence record, and the held-out advice test on the branch (does a team that made the
