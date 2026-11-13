@@ -36,7 +36,7 @@ import collections, json, math, statistics, sys
 from common import (READ_FROM, READ_TO, AREA_SHARE, PURPOSE_S, LEAVE_MIN_S, HOME_WAIT_S, SPAWN_R, GROUP_LEAVE_S, MEET_R,
                     NUMBERS_MIN_S, MERGE_S, BOOST_WARN_S, FLAGGER_R, SPLIT_FAR, BOOST_EVERY, SERIOUS_CARRY_S, FIGHT_LINK, GROUND_MOVE, GROUND_S, GROUND_BACK, GROUND_JUMP, GROUND_SPLIT_MOVE, PIT_S, SIDE_FIGHT_MAX, SIDE_FIGHT_S, UNDEFENDED_S,
                     RETURN_R, FOOT_ENGAGED_S, SPLIT_STEP, SPLIT_MIN_S, SPLIT_GAP_S, FORCED_OUT_S, AHEAD_LOOK_S, CAUGHT_S, NPC_NEAR,
-                    JOIN_S, RES_EVERY, flux_at, JOIN_LOOK_S, JOIN_MOVE, JOIN_LEAD, SWAP_S, SWAP_STAY_S, SPLIT_FIGHT_GAP_S, SPLIT_FIGHT_MIN,
+                    JOIN_S, RES_EVERY, flux_at, JOIN_LOOK_S, JOIN_MOVE, JOIN_LEAD, JOIN_ENGAGE, JOIN_ENGAGE_S, SWAP_S, SWAP_STAY_S, SPLIT_FIGHT_GAP_S, SPLIT_FIGHT_MIN,
                     PUSHFLAG_R, PUSHFLAG_S, PUSHFLAG_SHORT_S, PUSHFLAG_LATE_S, PUSHFLAG_GAP_S, PUSHFLAG_MATES, PUSHFLAG_AHEAD_S, ROUTE_ENDS, ROUTE_OFF, ROUTE_CLEAR, ROUTE_MIN_S, LEAD_S,
                     WAY_OUT_GAP_S, STANDOFF_S, STANDOFF_HITS, STANDOFF_MIN, STANDOFF_R, STANDOFF_SPLIT_MIN, STANDOFF_SPLIT_S, STANDOFF_STILL, STANDOFF_NEAR, LEAD_HALF, LEAD_ONE, LEAD_ONE_HALF, LEAD_TWO, HOLD_BACK_S, LEFT_AT_SPAWN_S, RUN_SPEED, PICKUP_DELAY_S, HOLD_S, BOOST_LATE_S, HELP_IN_S, HELP_BACK_S, LEAVE_RES_S, MONK_S, MONK_MIN, LORD_GAP_S)
 from state import d
@@ -46,7 +46,7 @@ HOME, THEIRS = ("own pit", "own base"), ("enemy pit", "enemy base")
 LEAD_WORDS = (None, "half a flag", "a flag", "a flag and a half", "two flags")      # the bands of the flag lead (R-408)
 FAMILY = {1: "Flag decision", 2: "Answer to a split", 3: "Numbers advantage"}
 TRIGGER_WORDS = {"enemy_run": "an enemy player leaves to run a flag", "boost": f"the enemy's boost is {BOOST_WARN_S} s away",
-                 "own_flag": "an own player picks up a fresh flag"}
+                 "own_flag": "an own player goes to run a fresh flag"}
 PLACE_WORDS = {"stand": "at the stand", "footmen": "at the footmen", "own pit": "in the own pit", "own base": "in the own base",
                "enemy pit": "in the enemy pit", "enemy base": "in the enemy base", "backside": "on the backside",
                "push side": "on the push side", "own half": "spread over the own half", "enemy half": "spread over the enemy half",
@@ -737,7 +737,17 @@ class Moments:
         if kind == "split" and max(sizes) == 1:
             busy = bool(npcs) or sum(traded.values()) >= 2 or any(t_in <= x <= t1 + 4 for a in members for x in self.npc_hits.get(a, ()))
             solo = "split" if busy else "other"
-        return {"kind": kind, "tm": tm, "solo": solo, "team": m.tag[tm], "t0": t0, "t_in": t_in, "t1": t1, "opening": t_in <= 75,
+        n_in = None                                       # the numbers as the push goes in, read as the fight lines read them: the usual numbers over its fight's first JOIN_S (R-350), not the push's usual size against the usual defenders over the whole push (golden game 1, 3:32: 6 v 3)
+        if kind == "push":
+            seen, f0 = collections.Counter(), None
+            for t in range(t_in - t_in % SPLIT_STEP, min(t_in + 3 * JOIN_S, T) + 1, SPLIT_STEP):
+                if f0 is not None and t > f0 + JOIN_S: break
+                fs = [f for f in self.fights(t) if f["n"][1] and f["n"][2] and len(f["ids"][tm] & set(members)) * 2 >= len([a for a in members if on(a, t)] or [0])]
+                if fs:
+                    f = max(fs, key=lambda f: len(f["ids"][tm] & set(members)))
+                    f0 = t if f0 is None else f0; seen[(f["n"][tm], f["n"][foe])] += 1
+            if seen: n_in = max(seen, key=lambda k: (seen[k], k))
+        return {"kind": kind, "tm": tm, "solo": solo, "team": m.tag[tm], "t0": t0, "t_in": t_in, "t1": t1, "opening": t_in <= 75, "n_in": n_in,
                 "members": [{"role": m.roles[a], "prof": m.A[a].get("p"), "from": span[a][0][0], "to": span[a][-1][1], "left": left[a]} for a in members],
                 "ids": members, "size": max(sizes, key=lambda n: (sizes[n], n)), "max": max(sizes), "monks": mk(members),
                 "flag_player": self.flag_player(tm, t_in) in members,
@@ -933,6 +943,10 @@ class Moments:
         def travel(ids, u, v):
             ids = [x for x in ids if self.AL[x][u] and self.AL[x][v]]
             return d(self.centre(ids, u), self.centre(ids, v)) if ids else None
+        def engaged(f, t):                                   # the two sides of that group trade damage or stand within an aggro bubble (JOIN_ENGAGE)
+            i1, i2 = f["ids"][1], f["ids"][2]
+            if any(d(self.P[x][t], self.P[y][t]) < JOIN_ENGAGE for x in i1 for y in i2 if self.AL[x][t] and self.AL[y][t]): return True
+            return any((x in i1 and y in i2) or (x in i2 and y in i1) for u in range(max(t - JOIN_ENGAGE_S, 0), min(t + JOIN_ENGAGE_S, T) + 1) for x, y in self.acts.get(u, ()))
         ev = []
         for a in m.PL:
             tm, stays, cur = m.team(a), [], None
@@ -953,7 +967,7 @@ class Moments:
                     theirs = travel(s_["first"], u, t0)
                     fresh = [x for x in s_["first"] if x not in comp(a, u - u % S)]
                     mine = d(self.P[a][ua], self.P[a][t0])
-                    if theirs is not None and len(fresh) * 2 >= len(s_["first"]) and mine >= JOIN_MOVE and mine >= JOIN_LEAD * theirs:
+                    if theirs is not None and len(fresh) * 2 >= len(s_["first"]) and mine >= JOIN_MOVE and mine >= JOIN_LEAD * theirs and engaged(idx[t0][a], t0):
                         f = idx[t0][a]
                         ev.append({"t": t0, "kind": "join", "tm": tm, "ids": [a], "with": s_["first"], "place": f["place"], "n": (f["n"][1], f["n"][2]),
                                    "res": any(t0 - 60 <= td <= t0 for td in self.st.death_times.get(a, [])), "stay_s": t1 - t0})
@@ -961,7 +975,8 @@ class Moments:
                 if t1 <= T - 6 and len(s_["last"]) >= 2 and all(self.AL[a][x] for x in range(t1, v + 1)):
                     theirs = travel(s_["last"], t1, v)
                     mine = d(self.P[a][t1], self.P[a][v])
-                    if theirs is not None and len(comp(a, v - v % S) & s_["last"]) * 2 < len(s_["last"]) and mine >= JOIN_MOVE and mine >= JOIN_LEAD * theirs:
+                    foes = travel([x for x in s_["last"] if m.team(x) != tm], t1, v)      # he went further than the enemy he faced: if the enemy walked off and he stayed, he did not leave (golden game 1, 7:24)
+                    if theirs is not None and len(comp(a, v - v % S) & s_["last"]) * 2 < len(s_["last"]) and mine >= JOIN_MOVE and mine >= JOIN_LEAD * theirs and (foes is None or mine > foes) and engaged(idx[t1][a], t1):
                         f = idx[t1][a]
                         ev.append({"t": t1, "kind": "leave", "tm": tm, "ids": [a], "with": s_["last"], "place": f["place"], "n": (f["n"][1], f["n"][2]),
                                    "flag": any(t1 <= p <= t1 + 60 for p in self.pick.get(a, ())), "stay_s": t1 - t0, "to": self.place_words(*self.place_at(a, v))})
@@ -1760,42 +1775,104 @@ class Moments:
     def on_leg(self, a, t, purposes):
         return next((g for g in self.by_player.get(a, ()) if g["t"] <= t <= g["end"] and g["purpose"] in purposes), None)
 
-    # ---- 2.4 triggers
+    # ---- 2.4 to 2.7, rebuilt on the records (R-351, R-362: the record is the work; Denning's golden game 1 note: when people go to run, not only when they pick up)
+    def run_starts(self):
+        """When each fresh flag's runner set off for his spawn, and since when he waited there. One record a fresh
+        pickup at the spawn: the runner, his team, the pickup, when he set off (walked more than 1,500 to get there; None
+        if he was already near it) and since when he waited there (10 s or more; else None). The story's "leaves ... to
+        go back for the flag" and "waits back at the flag spawn" lines print from this record."""
+        if getattr(self, "_rs", None) is not None: return self._rs
+        out = []
+        for L in self.flag_lives():
+            tm = L["team"]                                  # the life's first pickup at the spawn, serious or a short carry handed on (golden game 1, 6:51: hook's Monk 4 to the 8 Monk)
+            at_sp = [c for c in L["carries"] if d(self.P[c[0]][min(max(int(c[1]), 0), self.T)], self.spawn[tm]) < SPAWN_R or c[1] < 2]      # a flag picked up before the gates counts (golden hold v Apes: the WoC holds it from the start)
+            c = next((c for c in at_sp if c[0] in L["serious"]), at_sp[0] if at_sp else None)          # the first serious carrier to pick it up there; a brief pickup (R-339) only if nobody serious did
+            if not c or not L["serious"]: continue
+            a, tp = c[0], min(max(int(c[1]), 0), self.T)
+            dist = lambda u: self.hall.to(self.spawn[tm]).get(self.hall.snap(self.P[a][u]), 1e9) if self.AL[a][u] else None
+            u = tp
+            while u >= 2 and dist(u - 2) is not None and dist(u - 2) < SPAWN_R: u -= 2
+            waited = u
+            while u >= 4 and dist(u - 4) is not None and dist(u) is not None and dist(u - 4) > dist(u) + 40: u -= 2
+            runner = L["capper"] if L.get("capper") in L["serious"] else L["serious"][-1]     # who ran it in: the capper, else the last serious carrier (a brief pickup handed on is not a runner: golden hdm v One 17:24)
+            own, out_t = self.st.side.get(tm), None          # when the flag is under way: the runner first stands off his own base with it (Denning's golden game 1: "hook's 8 Monk leaves the base at 7:05")
+            for c2 in [c2 for c2 in L["carries"] if c2[0] == runner]:
+                for v in range(max(int(c2[1]), 0), min(int(c2[2] if c2[2] is not None else self.T), self.T) + 1, 2):
+                    k_, s_ = self.place_at(c2[0], v)
+                    if not (s_ == own and k_ in ("pit", "base")): out_t = v; break           # out of his base and pit: on his way out by a door
+                if out_t is not None: break
+            pre = c[1] < 2                                   # before the gates nobody set off or waited
+            out.append({"a": a, "runner": runner, "serious": list(L["serious"]), "carries": [tuple(c2[:3]) for c2 in L["carries"]], "tm": tm, "pickup": tp, "set_off": u if not pre and dist(u) is not None and dist(u) - SPAWN_R > 1500 else None,
+                        "waited": waited if not pre and tp - waited >= 10 else None, "under_way": out_t})
+        self._rs = out
+        return out
+
+    def _went_to_run(self, r): return min(x for x in (r["set_off"], r["waited"], r["pickup"]) if x is not None)
+
     def triggers(self):
-        st, out = self.st, []
+        """One record a moment (2.4), each read from a record:
+          family 1 (the flag)   the enemy's runner sets off for his flag (run_starts: when he goes to run, not only when he
+                                picks up), the enemy's boost BOOST_WARN_S away, an own fresh pickup at the spawn;
+          family 2 (a split)    an enemy split attempt sets out, or grows by a player (attempts);
+          family 3 (numbers)    a numbers difference in the fight a main team stands in, wherever it is (R-351), held
+                                NUMBERS_MIN_S or longer; read from both sides (R-301)."""
+        st, m, out = self.st, self.m, []
+        rs = self.run_starts()
         for tm in st.teams:
             foe, f1 = 3 - tm, []
-            for g in self.legs:
-                if g["purpose"] == "run" and g["team"] == foe: f1.append((g["t"], "enemy_run", g))
+            for r in rs:
+                if r["tm"] == foe:                         # when he goes to run, and again when the flag is under way (golden game 1: hook's flag leaves its base at 7:05, after he went back at 6:05)
+                    f1.append((self._went_to_run(r), "enemy_run", r))
+                    if r["under_way"] is not None and r["under_way"] - self._went_to_run(r) > MERGE_S: f1.append((r["under_way"], "enemy_run", r))
+                elif r["tm"] == tm:
+                    f1.append((self._went_to_run(r), "own_flag", r))
+                    if r["under_way"] is not None and r["under_way"] - r["pickup"] > MERGE_S: f1.append((r["under_way"], "own_flag", r))     # only a flag held a while before it is taken out     # a flag held, then taken out (golden hold v Apes 1:37: the WoC runs it out of the back door)      # the decision is going to run, not the pickup (golden ohno v xxx: "the decision to run was actually at around 11:42", the pickup at 12:02)
             caps = st.caps + [(st.end, None)]
             for (c, h), (c2, _) in zip(caps, caps[1:]):
                 k = 1
                 while h == foe and c + BOOST_EVERY * k - BOOST_WARN_S < c2:
                     f1.append((int(c + BOOST_EVERY * k - BOOST_WARN_S), "boost", None)); k += 1
-            for a in st.players[tm]:
-                for x in self.pick.get(a, ()):
-                    if d(self.P[a][min(int(x), self.T)], self.spawn[tm]) < SPAWN_R: f1.append((int(x), "own_flag", a))
             cur = None
             for t, kind, ref in sorted(f1, key=lambda x: x[0]):
                 if cur and t - cur["t"] <= MERGE_S: cur["triggers"].append(kind); cur["refs"].append(ref)
                 else:
                     cur = {"family": 1, "tm": tm, "t": t, "triggers": [kind], "refs": [ref]}; out.append(cur)
-            for g in self.groups("split"):
-                if g["team"] == foe: out.append({"family": 2, "tm": tm, "t": g["t"], "triggers": ["split"], "refs": [g]})
-        cur, eps = None, []
-        for t in range(self.T + 1):
-            a, b = self.MAIN[1][t], self.MAIN[2][t]
-            meet = d(self.centre(a, t), self.centre(b, t)) < MEET_R
-            adv = None if not meet or len(a) == len(b) else (1 if len(a) > len(b) else 2)
-            if adv and cur and cur["adv"] == adv and t - cur["last"] <= 2: cur["last"] = t
-            else:
-                if cur and cur["last"] - cur["start"] >= NUMBERS_MIN_S: eps.append(cur)
-                cur = {"adv": adv, "start": t, "last": t} if adv else None
-        if cur and cur["last"] - cur["start"] >= NUMBERS_MIN_S: eps.append(cur)
-        for e in eps:
+            for x in self.attempts():
+                if x["tm"] != foe or x["kind"] != "split" or x.get("solo") == "other": continue
+                out.append({"family": 2, "tm": tm, "t": x["t0"], "triggers": ["split"], "refs": [x]})
+                for q in x["members"]:                      # a player joining the split later is a moment of its own
+                    if q["from"] > x["t0"] + JOIN_S and q["from"] < x["t1"]:
+                        out.append({"family": 2, "tm": tm, "t": q["from"], "triggers": ["split grows"], "refs": [x]})
+        for e in self._numbers():
             for tm in st.teams:
                 out.append({"family": 3, "tm": tm, "t": e["start"], "triggers": ["up" if tm == e["adv"] else "down"], "refs": [e]})
-        return sorted((x for x in out if 0 < x["t"] < self.T - READ_TO), key=lambda x: (x["t"], x["family"], x["tm"]))
+        seen, keep = set(), []
+        for x in sorted(out, key=lambda x: (x["t"], x["family"], x["tm"])):
+            if x["family"] == 2:                            # one moment for one split at one second
+                k = (x["tm"], x["t"], x["refs"][0]["t0"])
+                if k in seen: continue
+                seen.add(k)
+            if 0 < x["t"] < self.T - READ_TO: keep.append(x)
+        return keep
+
+    def _numbers(self):
+        """Numbers differences in the fight a main team stands in (R-351: every fight, not only where the mains meet):
+        each a stretch of NUMBERS_MIN_S or more with the same side up, read every 2 s from the fight records."""
+        S, eps, cur = SPLIT_STEP, [], None
+        for t in range(0, self.T + 1, S):
+            f = None
+            for tm in self.st.teams:
+                mt = [a for a in self.main_team(tm, t) if self.AL[a][t]]
+                if not mt: continue
+                fs = [g for g in self.fights(t) if g["n"][1] and g["n"][2] and len(g["ids"][tm] & set(mt)) * 2 >= len(mt)]
+                if fs: f = max(fs, key=lambda g: g["n"][1] + g["n"][2]); break
+            adv = None if f is None or f["n"][1] == f["n"][2] else (1 if f["n"][1] > f["n"][2] else 2)
+            if adv and cur and cur["adv"] == adv and t - cur["last"] <= S: cur["last"] = t; cur["ns"].append((f["n"][1], f["n"][2]))
+            else:
+                if cur and cur["last"] - cur["start"] >= NUMBERS_MIN_S: eps.append(cur)
+                cur = {"adv": adv, "start": t, "last": t, "ns": [(f["n"][1], f["n"][2])], "place": (f["kind"], f["side"]), "ids": f["ids"]} if adv else None
+        if cur and cur["last"] - cur["start"] >= NUMBERS_MIN_S: eps.append(cur)
+        return eps
 
     # ---- 2.5 scenario
     def _state(self, tm, t):
@@ -1805,19 +1882,20 @@ class Moments:
         s = {"stand": "own" if owner == tm else "enemy" if owner == foe else "nobody",
              "boost_in": round(BOOST_EVERY - (t - since) % BOOST_EVERY) if owner else None,
              "alive": [sum(self.AL[a][t] for a in st.players[k]) for k in (tm, foe)],
-             "main": [len(self.MAIN[tm][t]), len(self.MAIN[foe][t])],
-             "own_main": self.where(self.MAIN[tm][t], t, tm), "enemy_main": self.where(self.MAIN[foe][t], t, foe),
+             "main": [len([a for a in self.main_team(k, t) if self.AL[a][t]]) for k in (tm, foe)],
              "own_flag": any(self.carrying(a, t) for a in st.players[tm]),
              "enemy_flag": any(self.carrying(a, t) for a in st.players[foe]),
              "res_in": round(st.next_res(t) - t), "footmen": self.footmen_alive(tm, t),
              "enemy_boost": self.boost_worth(foe, t), "own_boost": self.boost_worth(tm, t)}
-        s["enemy_main"] = {"own pit": "enemy pit", "own base": "enemy base", "enemy pit": "own pit", "enemy base": "own base",
-                           "backside": "push side", "push side": "backside", "own half": "enemy half",
-                           "enemy half": "own half", "footmen": "enemy footmen"}.get(s["enemy_main"], s["enemy_main"])
-        if self.sb:
-            b = self.sb.at(t)[self.m.tag[tm]]
-            s.update(flag_lead=b["flag_lead"], flag=b["flag"], morale_diff=b["morale_sum"] - self.sb.at(t)[self.m.tag[foe]]["morale_sum"])
+        try: s["flag_lead"] = round(self.lead_at(tm, t), 2)
+        except Exception: s["flag_lead"] = None
         return s
+
+    def _ladder(self, tm, kind, side):
+        """A place as a step on a team's ladder (R-341's places): own pit 4 ... the stand 0 ... enemy pit -4."""
+        own = self.st.side.get(tm)
+        k = {"pit": 4, "base": 3, "front door": 2, "back door": 2, "front footies": 1, "back footies": 1}.get(kind, 0)
+        return k if side == own else -k
 
     def scenario(self, x, s):
         fam, tm, t, foe = x["family"], x["tm"], x["t"], 3 - x["tm"]
@@ -1825,117 +1903,147 @@ class Moments:
         if fam == 1:
             kind = next(k for k in ("enemy_run", "boost", "own_flag") if k in x["triggers"])
             return {"key": f"{kind}|{s['stand']}", "label": f"{TRIGGER_WORDS[kind].capitalize()}; {stand}",
-                    "parts": {"trigger": kind, "stand": s["stand"]}}
+                    "parts": {"trigger": kind, "stand": s["stand"], "lead": s.get("flag_lead")}}
         if fam == 2:
-            g = x["refs"][0]; n = len(g["members"])
-            home = [a for a in self.st.players[tm] if self.AL[a][t] and self.zone(a, t) in HOME]
+            g = x["refs"][0]
+            ids = [a for a, q in zip(g["ids"], g["members"]) if q["from"] <= t + SPLIT_STEP]
+            n = len(ids) or 1
+            home = [a for a in self.st.players[tm] if self.AL[a][t] and self.place_at(a, t)[1] == self.st.side.get(tm) and self.place_at(a, t)[0] in ("pit", "base", "front door", "back door", "front footies", "back footies")]
             size = {1: "a solo split", 2: "a two-player split", 3: "a three-player split"}.get(n, "a split of four or more")
-            healer = any(self.m.A[a].get("p") == "Monk" for a in g["members"])
-            hk = "main" if s["own_main"] in HOME else ("home" if home else "empty")
+            healer = any(self.m.A[a].get("p") == "Monk" for a in ids)
+            hk = "home" if home else "empty"
+            grow = "split grows" in x["triggers"]
             return {"key": f"{min(n, 4)}|{hk}",
-                    "label": f"{size.capitalize()} leaves; " + {"main": "the main group is already home", "home": "a defender is home", "empty": "nobody is home"}[hk],
-                    "parts": {"size": n, "home": len(home), "split_has_monk": healer, "split": [self.m.roles[a] for a in g["members"]]}}
-        side = x["triggers"][0]
+                    "label": (f"The enemy split grows to {n}" if grow else f"{size.capitalize()} sets out") + "; " + ({"home": f"{len(home)} at home", "empty": "nobody is home"}[hk]),
+                    "parts": {"size": n, "home": len(home), "split_has_monk": healer, "split": [self.m.roles[a] for a in ids], "way": g.get("way"), "grows": grow}}
+        e, side = x["refs"][0], x["triggers"][0]
         short = tm if side == "down" else foe
         why = collections.Counter()
+        fight_ids = e["ids"][short]
         for a in self.st.players[short]:
-            if a in self.MAIN[short][t]: continue
+            if a in fight_ids: continue
             if not self.AL[a][t]: why["kills"] += 1
-            elif self.carrying(a, t) or self.on_leg(a, t, ("run",)) or d(self.P[a][t], self.spawn[short]) < SPAWN_R: why["runner away"] += 1
+            elif self.carrying(a, t) or any(r["a"] == a and self._went_to_run(r) - 5 <= t <= r["pickup"] + 60 for r in self.run_starts()) or d(self.P[a][t], self.spawn[short]) < SPAWN_R: why["runner away"] += 1
             else: why["split elsewhere"] += 1
-        up_missing = sum(1 for a in self.st.players[3 - short] if a not in self.MAIN[3 - short][t])
-        src = "wipe" if len(self.MAIN[short][t]) <= 2 and why["kills"] >= 5 else max(
-            ("kills", "runner away", "split elsewhere"), key=lambda k: (why[k], k == "kills", k == "runner away"))
-        n = s["main"]
+        src = "wipe" if len(fight_ids) <= 2 and why["kills"] >= 5 else max(("kills", "runner away", "split elsewhere"), key=lambda k: (why[k], k == "kills", k == "runner away"))
+        n = e["ns"][0] if tm == 1 else e["ns"][0][::-1]
         words = {"kills": "kills", "runner away": "a runner away", "split elsewhere": "players split elsewhere", "wipe": "a wipe"}[src]
-        return {"key": f"{side}|{src}", "label": f"{'Up' if side == 'up' else 'Down'} on numbers where the mains meet, from {words}",
-                "parts": {"side": side, "source": src, "numbers": f"{n[0]}v{n[1]}", "short_because": dict(why), "other_side_missing": up_missing}}
+        return {"key": f"{side}|{src}", "label": f"{'Up' if side == 'up' else 'Down'} on numbers in the main fight ({n[0]} v {n[1]}, {self.place_words(*e['place'])}), from {words}",
+                "parts": {"side": side, "source": src, "numbers": f"{n[0]}v{n[1]}", "short_because": dict(why), "place": self.place_words(*e["place"]), "step": self._ladder(tm, *e["place"])}}
 
-    # ---- 2.6 the call
-    def _samples(self, t): return range(min(t + READ_FROM, self.T), min(t + READ_TO, self.T) + 1, 2)
-
-    def _mode(self, xs):
-        c = collections.Counter(xs)
-        return max(c, key=lambda k: (c[k], k)) if c else None
-
+    # ---- 2.6 the call, read from the records in the window after the trigger (never from damage or deaths)
     def _runners(self, tm, t):
-        """Own players on flag duty in the read window: carrying, or on a leave that became a run."""
+        """Own players who go to run in the window: they set off for the spawn, wait there or pick up from t - 10 to
+        t + READ_TO, or carry the flag at READ_FROM to READ_TO (a hand-off counts the player who takes it on)."""
         out = set()
-        for u in self._samples(t):
-            for a in self.st.players[tm]:
-                if self.AL[a][u] and (self.carrying(a, u) or (self.away(a, u, tm) and self.on_leg(a, u, ("run",)))): out.add(a)
+        for r in self.run_starts():                      # the serious carriers of each flag carried in the window: a hand-off counts the player who takes it on (golden Book v One 9:16), a brief pickup handed on does not (hdm v One 17:24)
+            if r["tm"] != tm: continue
+            if t - 10 <= self._went_to_run(r) <= t + READ_TO: out.add(r["runner"])
+            out |= {a for a, s0, e0 in r["carries"] if a in r["serious"] and s0 <= t + READ_TO and (e0 is None or e0 >= t - 10) and (s0 >= t - 10 or self.carrying(a, min(t + READ_FROM, self.T)))}
         return out
 
-    def _on_flagger(self, tm, t, rest_of):
-        """Is the main group (less its own runners) on an enemy flag runner for more than half the read window?"""
-        foe, hit, n = 3 - tm, 0, 0
-        for u in self._samples(t):
-            n += 1
-            c = self.centre(rest_of(u), u)
-            fl = [b for b in self.st.players[foe] if self.AL[b][u] and (self.carrying(b, u) or (self.away(b, u, foe) and self.on_leg(b, u, ("run",))))]
-            if c and any(d(self.P[b][u], c) < FLAGGER_R for b in fl): hit += 1
-        return n and hit / n > 0.5
+    def _rest(self, tm, t, runners):
+        """Where the rest of the main team went, from the records: a split it sent (attempts), a push in (attempts), a
+        push on their flagger (flag_pushes), a move back or up (ground), else where it stood READ_FROM to READ_TO."""
+        T, foe = self.T, 3 - tm
+        main = [a for a in self.main_team(tm, t) if self.AL[a][t] and a not in runners]
+        def of_main(ids): return main and sum(1 for a in ids if a in main) * 2 >= len(main)
+        sp = [x for x in self.attempts() if x["tm"] == tm and x["kind"] == "split" and t - 2 <= x["t0"] <= t + READ_TO and x["max"] >= 2 and of_main(x["ids"])]      # a split by others is not where the rest went
+        if sp: return f"split by the {sp[0]['way'] or 'door'}", sp[0]
+        for w in self.way_out():                         # out by a door, and a split from it within PURPOSE_S, is a split by that door (R-325: a leave's purpose is fixed 60 s on; golden Apes v Book 22:04)
+            if w["tm"] != tm or not (t - 2 <= w["t"] <= t + READ_TO): continue
+            later = [x for x in self.attempts() if x["tm"] == tm and x["kind"] == "split" and w["t"] <= x["t0"] <= w["t"] + PURPOSE_S and x["max"] >= 2]
+            return (f"split by the {w['door']}" if later else f"go out by the {w['door']}"), w
+        pu = [x for x in self.attempts() if x["tm"] == tm and x["kind"] == "push" and t - 2 <= x["t_in"] <= t + READ_TO]
+        if pu: return "push in", pu[0]
+        fp = [x for x in self.flag_pushes() if x["tm"] == tm and x.get("main") and t - 2 <= x["t"] <= t + READ_TO]
+        if fp: return "push their flagger", fp[0]
+        gr = [x for x in self.ground() if x["tm"] == tm and x["group"] == "main" and t - 2 <= x["t"] <= t + READ_TO and x["to_kind"] not in ("stand", "greater stand", "field")]     # a move about the stand is not falling back or pushing up
+        if gr:
+            g = gr[0]; own = self.st.side.get(tm)
+            if g["way"] == "back":
+                if g["from_side"] != own and g["from_kind"] in ("pit", "base", "front door", "back door"): return "fall out", g
+                return {"pit": "retreat to the pit", "base": "fall back into the base", "front door": "fall back into the base", "back door": "fall back into the base",
+                        "front footies": "fall to footmen", "back footies": "fall to footmen"}.get(g["to_kind"] if g["to_side"] == own else "", "fall back"), g
+            if g["to_side"] == foe or (g["to_side"] not in (None, own) and g["to_kind"] in ("front door", "back door", "base", "pit", "front footies", "back footies")):
+                return "push up to their " + (g["to_kind"] if g["to_kind"] in ("front door", "back door") else "base"), g
+            return "push up", g
+        ps = collections.Counter()
+        for u in range(min(t + READ_FROM, T), min(t + READ_TO, T) + 1, 2):
+            g = [a for a in self.main_team(tm, u) if self.AL[a][u] and a not in runners]
+            if g: ps[collections.Counter(self.place_at(a, u) for a in g).most_common(1)[0][0]] += 1
+        if not ps: return "nobody", None
+        (k, sd), own = ps.most_common(1)[0][0], self.st.side.get(tm)
+        if k in ("stand", "greater stand"): return "stay at the stand", None
+        if sd == own: return {"pit": "retreat to the pit", "base": "fall back into the base", "front door": "fall back into the base", "back door": "fall back into the base",
+                              "front footies": "fall to footmen", "back footies": "fall to footmen"}.get(k, "stay on their side"), None
+        if sd is not None: return "stay on the enemy's side", None
+        return "stay at the stand", None
 
     def call(self, x, s):
         fam, tm, t, foe = x["family"], x["tm"], x["t"], 3 - x["tm"]
         role = lambda a: self.m.roles[a]
-        runners = self._runners(tm, t)
-        rest_of = lambda u: [a for a in self.MAIN[tm][u] if a not in runners or self.carrying(a, u)]
-        place = self._mode([self.where([a for a in self.MAIN[tm][u] if a not in runners], u, tm) for u in self._samples(t)])
-        meet = sum(d(self.centre(self.MAIN[tm][u], u), self.centre(self.MAIN[foe][u], u)) < MEET_R for u in self._samples(t)) / max(len(self._samples(t)), 1) > 0.5
-        shape = {"runners": sorted(role(a) for a in runners)}
-        # how far the rest are from the stand, walked (for the "mid" question: fighting around the stand but outside its labelled area)
-        cs = [self.centre([a for a in self.MAIN[tm][u] if a not in runners], u) for u in self._samples(t)]
-        ds = sorted(self.hall.walk(c, self.hall.stand) or 0 for c in cs if c)
-        shape["rest_to_stand"] = ds[len(ds) // 2] if ds else None
         if fam == 1:
-            with_team = [a for a in runners if sum(self.carrying(a, u) and a in self.MAIN[tm][u] for u in self._samples(t)) > len(self._samples(t)) / 2]
-            u0 = min(t + READ_FROM, self.T)
-            if with_team and any(self.zone(a, u0) != "stand" for a in with_team): rest = "push the flag through as a team"
-            elif place in ("push side", "enemy base", "enemy pit", "enemy half") and self._on_flagger(tm, t, rest_of): rest = "push their flagger"
-            else: rest = REST_CALL.get(place, "other: " + PLACE_WORDS.get(place, place))
+            runners = self._runners(tm, t)
+            rest, rec = self._rest(tm, t, runners)
             n = min(len(runners), 2)
             lab = ("no runner", "one runner", "two runners")[n]
-            return {"key": f"{n}|{rest}", "label": f"{lab.capitalize()}; the rest {rest}" if not rest.startswith("other") else f"{lab.capitalize()}; the rest {PLACE_WORDS.get(place, place)}",
-                    "runners": n, "rest": rest, "place": place, "shape": shape}
+            return {"key": f"{n}|{rest}", "label": f"{lab.capitalize()}; the rest {rest}", "runners": n, "rest": rest,
+                    "shape": {"runners": sorted(role(a) for a in runners), "from": rec and {k: rec.get(k) for k in ("t", "t_in", "t0", "way", "to", "from") if k in rec}}}
         if fam == 2:
-            g = x["refs"][0]; k = len(g["members"]); u = min(t + READ_TO, self.T)
-            defs = [a for a in self.st.players[tm] if self.AL[a][u] and (self.zone(a, u) in HOME or self.on_leg(a, u, ("collapse", "retreat")))]
-            alive = sum(self.AL[a][u] for a in self.st.players[tm]); n = len(defs)
-            monks = sum(self.m.A[a].get("p") == "Monk" for a in defs)
-            if n >= max(6, alive - 1): c = "full collapse"
+            g = x["refs"][0]; an = g["answer"]
+            k = max(1, len([q for q in g["members"] if q["from"] <= t + READ_TO]))
+            arrived = [(ta, r) for ta, r in an["arrivals"] if ta <= t + READ_TO + 10]
+            went_back = len(an.get("went_back") or []) if (an.get("went_back_t") is None or an["went_back_t"] <= t + 60) else 0
+            alive = sum(self.AL[a][min(t + READ_TO, self.T)] for a in self.st.players[tm])
+            ids = set(an["ids"]); defs = [r for _, r in arrived] if "split grows" in x["triggers"] else an["defenders"]
+            n = len(defs) if "split grows" in x["triggers"] else an["n"]
+            monks = sum(1 for r in defs if "Monk" in r and "WoC" not in r)
+            if went_back >= 5 or n >= max(6, alive - 1): c = "full collapse"
             elif n == 0: c = "no answer"
             elif n == 2 and monks == 2: c = "two monks"
-            elif n == 1: c = "one defender"
+            elif n == 1 and k > 1: c = "one defender"
             elif n == k: c = "mirror"
             elif n == k + 1: c = "add one"
-            else: c = f"other: {n} against {k}"
-            sent = [(role(l["a"]), l["t"] - t) for l in self.legs if l["team"] == tm and l["purpose"] in ("collapse", "retreat") and t <= l["t"] <= t + READ_TO]
-            late = [(role(l["a"]), l["t"] - t) for l in self.legs if l["team"] == tm and l["purpose"] == "collapse" and t + READ_TO < l["t"] <= t + PURPOSE_S]
-            shape.update(defenders=sorted(role(a) for a in defs), sent=sent, sent_later=late)
-            return {"key": c, "label": c.capitalize() if not c.startswith("other") else f"{n} defenders against a split of {k}",
-                    "defenders": n, "split": k, "monks": monks, "place": place, "shape": shape}
+            elif n < k: c = "defend a player down"
+            else: c = f"send {n} against {k}"
+            return {"key": c, "label": c.capitalize(), "defenders": n, "split": k, "monks": monks,
+                    "shape": {"defenders": defs, "behind_s": an["behind_s"], "met": an["met"], "went_back": an.get("went_back")}}
+        rest, rec = self._rest(tm, t, set())
         side = x["triggers"][0]
-        own_run = [l for l in self.legs if l["team"] == tm and l["purpose"] == "run" and t <= l["t"] <= t + READ_TO]
-        own_split = [l for l in self.legs if l["team"] == tm and l["purpose"] == "split" and t <= l["t"] <= t + READ_TO]
-        if side == "up":
-            if place in THEIRS: c = "push the pit for NPCs"
-            elif place in ("push side", "enemy half") and self._on_flagger(tm, t, rest_of): c = "push their flagger"
-            elif own_run and s["stand"] == "own": c = "run again for a backup"
-            elif meet: c = "stay and kill"
-            elif place in ("push side", "enemy half"): c = "chase DP"
-            elif own_run or runners: c = "take the flag and reset"
-            else: c = "other: " + PLACE_WORDS.get(place, place)
-        else:
-            if own_split: c = "trade with a split"
-            elif place == "footmen": c = "fall to footmen"
-            elif place == "own pit": c = "retreat to the pit"
-            elif place == "own base": c = "fall back into the base"
-            elif meet: c = "fight on"
-            else: c = "other: " + PLACE_WORDS.get(place, place)
-        shape.update(split=sorted(role(l["a"]) for l in own_split))
-        return {"key": c, "label": c.capitalize() if not c.startswith("other") else f"The main group is {PLACE_WORDS.get(place, place)}",
-                "place": place, "meet": bool(meet), "shape": shape}
+        c = {"fall out": "fall out", "retreat to the pit": "retreat down the ladder", "fall back into the base": "retreat down the ladder", "fall to footmen": "retreat down the ladder",
+             "fall back": "retreat down the ladder", "push in": "push in", "push their flagger": "push their flagger"}.get(rest)
+        if c is None: c = "push up" if rest.startswith(("push up", "go out")) else ("split" if rest.startswith("split") else "stay")
+        return {"key": c, "label": c.capitalize() + ("" if c == rest else f" ({rest})"), "rest": rest,
+                "shape": {"from": rec and {k: rec.get(k) for k in ("t", "t_in", "t0", "way", "to", "from") if k in rec}}}
+
+    def verbs(self, tm, t):
+        """Everything the team did in the call's window (t - 2 to t + READ_TO), as Denning's verbs (REDESIGN "his
+        vocabulary"), each read from its record: run (who went to run), split (who, by which door: attempts),
+        join (who came to a fight: moves, his "collapse"), push their flagger (flag_pushes), push in (attempts),
+        out by a door (way_out), fall back, fall out, push up (ground, the main team)."""
+        lo, hi, m, own, out = t - 2, t + READ_TO, self.m, self.st.side.get(tm), []
+        for a in self._runners(tm, t): out.append(("run", m.roles[a]))
+        for x in self.attempts():
+            if x["tm"] != tm: continue
+            if x["kind"] == "split" and lo <= x["t0"] <= hi: out.append(("split", x["way"] or "door"))
+            if x["kind"] == "split":
+                out += [("split", q["role"]) for q in x["members"] if lo <= q["from"] <= hi]
+            if x["kind"] == "push" and lo <= x["t_in"] <= hi: out.append(("push in", x["way"] or ""))
+        for x in self.moves():
+            if x["tm"] == tm and x["kind"] == "join" and lo <= x["t"] <= hi: out += [("join", r) for r in x["roles"]]
+        for x in self.flag_pushes():
+            if x["tm"] == tm and lo <= x["t"] <= hi: out += [("push their flagger", r) for r in x["roles"]]
+        for w in self.way_out():
+            if w["tm"] == tm and lo <= w["t"] <= hi: out.append(("out by", w["door"]))
+        for g in self.ground():
+            if g["tm"] == tm and lo <= g["t"] <= hi:
+                if g["way"] == "back": out.append(("fall out" if g["from_side"] not in (None, own) and g["from_kind"] in ("pit", "base", "front door", "back door") else "fall back", g["group"]))
+                else: out.append(("push up", g["group"]))
+        for x in self.attempts():                         # an answer to the enemy's split: defenders arriving in the window
+            if x["tm"] == 3 - tm and x["kind"] == "split":
+                out += [("answer", r) for ta, r in x["answer"]["arrivals"] if lo <= ta <= hi]
+        return sorted(set(out))
 
     # ---- records
     def records(self):
@@ -1948,12 +2056,11 @@ class Moments:
             who = None
             if x["family"] == 1:
                 r = next((r for r in x["refs"] if isinstance(r, dict)), None)
-                who = [m.roles[r["a"]]] if r else ([m.roles[r2] for r2 in x["refs"] if isinstance(r2, int)][:1] or None)
-            elif x["family"] == 2: who = [m.roles[a] for a in ref["members"]]
+                who = [m.roles[r["a"]]] if r else None
+            elif x["family"] == 2: who = [q["role"] for q in ref["members"]]
             out.append({"id": f"{m.o['meta']['id'][:8]}-{x['family']}-{tm}-{t}", "rid": m.o["meta"]["id"], "family": x["family"],
                         "t": t, "team": m.tag[tm], "tm": tm, "triggers": x["triggers"], "who": who,
-                        "origin": ref.get("origin") if x["family"] == 1 and isinstance(ref, dict) else (ref["legs"][0]["origin"] if x["family"] == 2 else None),
-                        "scenario": self.scenario(x, s), "call": self.call(x, s), "forced": bool(died), "died": died, "state": s})
+                        "scenario": self.scenario(x, s), "call": self.call(x, s), "verbs": self.verbs(tm, t), "forced": bool(died), "died": died, "state": s})
         return out
 
 

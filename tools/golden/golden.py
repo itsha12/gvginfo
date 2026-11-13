@@ -17,6 +17,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(os.path.dirname(HERE))
 sys.path.insert(0, os.path.join(REPO, "tools", "replay_analysis"))
 PATH = os.path.join(REPO, "data", "model", "golden_moments.json")
+COMMS_S = 30         # a decision within this many seconds of a call on comms is the decision it speaks of (the read window, R-294)
 NEAR_S = 20          # an engine moment within this many seconds of a golden one (same family, same team) is the same moment
 
 REST = ["stay at the stand", "fall to footmen", "retreat to the pit", "fall back into the base", "push their flagger",
@@ -171,6 +172,105 @@ def score():
         if r[4]: print(f"  {r[0]} F{r[1]} {r[2]} {r[3]}: " + "; ".join(r[4]))
 
 
+def gate(recs_cache={}):
+    """The decision gate, part one (R-394): each golden moment's scenario and call, read from Denning's notes
+    (data/model/golden_key.json, Claude's reading of them, R-341), against the engine's record of the same family and
+    team nearest the key's time (within NEAR_S). Rates of R-327: the moment found in 9 of 10, each part in 8 of 10."""
+    import moments as MO
+    K = json.load(open(os.path.join(REPO, "data", "model", "golden_key.json")))
+    G = {g["id"]: g for g in json.load(open(PATH))["moments"]}
+    tally = collections.defaultdict(lambda: [0, 0]); rows = []
+    for gid, k in K["moments"].items():
+        g = G[gid]
+        if g["match"] not in recs_cache: recs_cache[g["match"]] = MO.match_records(g["match"]) or []
+        recs = recs_cache[g["match"]]
+        near = [x for x in recs if x["family"] == k["family"] and x["team"] == k["team"] and abs(x["t"] - k["t"]) <= NEAR_S]
+        x = min(near, key=lambda x: abs(x["t"] - k["t"])) if near else None
+        tally["moment found"][0] += bool(x); tally["moment found"][1] += 1
+        miss = []
+        if k.get("not_at") is not None:
+            bad = [y for y in recs if y["family"] == k["family"] and y["team"] == k["team"] and abs(y["t"] - k["not_at"]) <= 5]
+            tally["no moment where he says none"][0] += not bad; tally["no moment where he says none"][1] += 1
+            if bad: miss.append(f"a moment at {clock(bad[0]['t'])}, where his notes put none")
+        if x is None:
+            miss.append("no engine moment of this family within %d s" % NEAR_S)
+        else:
+            sc, c = x["scenario"]["parts"], x["call"]
+            eng = {"trigger": sc.get("trigger"), "stand": sc.get("stand"), "runners": str(c.get("runners")), "rest": c.get("rest"),
+                   "size": str(min(int(sc["size"]), 4)) if "size" in sc else None, "home": ("home" if sc.get("home") else "empty") if "home" in sc else None,
+                   "side": sc.get("side"), "source": sc.get("source"), "call": c.get("key")}
+            for part, ok_words in k["parts"].items():
+                ok = eng.get(part) in ok_words
+                tally[part][0] += ok; tally[part][1] += 1
+                if not ok: miss.append(f"{part}: his notes {' / '.join(ok_words)}, engine {eng.get(part)}")
+            if "forced" in k:
+                ok = bool(k["forced"]) == bool(x["forced"]); tally["forced"][0] += ok; tally["forced"][1] += 1
+                if not ok: miss.append(f"forced: his notes {k['forced']}, engine {x['forced']}")
+        rows.append((gid, k["family"], clock(k["t"]), k["team"], x and clock(x["t"]), x and x["scenario"]["label"], x and x["call"]["label"], miss))
+    print(f"Decision gate, part one: {len(rows)} golden moments read from his notes ({', '.join(K.get('not_scored', {}))} not scored)")
+    for part, (a, b) in tally.items():
+        need = 0.9 if part == "moment found" else 0.8
+        print(f"  {part:30} {a}/{b}  {'pass' if b and a / b >= need else 'FAIL'} (needs {int(need * 100)}%)")
+    for r in rows:
+        print(f"  {r[0]} F{r[1]} {r[2]} {r[3]}: engine {r[4]}: {r[5]} | {r[6]}" + ("" if not r[7] else "\n      MISS " + "; ".join(r[7])))
+    return tally, rows
+
+
+COMMS_CALL = {           # a team's own call on comms (R-394 part two) and the engine calls that read the same
+    "fall": ("fall back into the base", "retreat to the pit", "fall to footmen", "fall back", "fall out", "retreat down the ladder"),
+    "push": ("push in", "push up", "push up to their front door", "push up to their back door", "push up to their base"),
+    "pushflag": ("push their flagger",),
+    "split": ("split",),
+    "join": ("answer",), "answer": ("answer",),
+    "go": ("run",), "wait": ("run",), "cap": ("run",)}
+
+
+def comms(data=None, recs_cache={}):
+    """The decision gate, part two (R-394): where a team says on comms what it means to do (the line-up's "i." calls),
+    does the engine find a decision of that team there (a moment within COMMS_S of the call) and read the same call?
+    Calls the engine has no decision for (NPCs, a plan, a boost, a swap, a drop) are counted apart. The pass rate is set
+    by Denning when this is first measured."""
+    import moments as MO
+    sys.path.insert(0, HERE); import lineup as LU, common
+    data = data or os.path.join(REPO, "data", "lineup")
+    tally, out, other = collections.Counter(), [], collections.Counter()
+    for f in LU.files(data):
+        head, rows = LU.load(f)
+        rid = os.path.basename(f).split(".")[0]
+        rid = next((r for r in common.replay_ids() if r.startswith(rid[:8])), rid)
+        calls = [r for r in rows if r["kind"].startswith("i.")]
+        if not calls: continue
+        if rid not in recs_cache: recs_cache[rid] = MO.match_records(rid) or []
+        recs = recs_cache[rid]
+        for r in calls:
+            k = r["kind"][2:]
+            if k not in COMMS_CALL: other[k] += 1; continue
+            mine = [x for x in recs if x["team"] == r["team"] and -COMMS_S <= x["t"] - r["t"] <= COMMS_S]
+            def reads(x):
+                c, v = x["call"], {k_ for k_, _ in x.get("verbs", [])}
+                who = lambda verb: {w for k_, w in x.get("verbs", []) if k_ == verb}
+                named = lambda verb: verb in v and (not r["who"] or any(w in who(verb) for w in r["who"]) or verb in ("fall back", "fall out", "push up", "push in"))
+                if k in ("go", "wait", "cap"): return named("run")
+                if k in ("join", "answer"): return named("join") or named("answer")
+                if k == "split": return named("split") or (c.get("rest") or "").startswith("split")
+                if k == "pushflag": return named("push their flagger") or c.get("rest") == "push their flagger"
+                if k == "fall": return bool(v & {"fall back", "fall out"}) or c.get("rest") in COMMS_CALL[k] or c.get("key") in COMMS_CALL[k]
+                if k == "push": return bool(v & {"push in", "push up"}) or c.get("rest") in COMMS_CALL[k] or c.get("key") in COMMS_CALL[k]
+                return False
+            tally["called"] += 1
+            if mine: tally["a decision found there"] += 1
+            ok = any(reads(x) for x in mine)
+            tally["the same call read"] += ok
+            if not ok: out.append((os.path.basename(f)[:8], LU.clock(r["t"]), r["team"], r["kind"], r["say"][:90], [(LU.clock(x["t"]), x["family"], x["call"]["label"]) for x in mine][:3]))
+    n = tally["called"] or 1
+    print(f"Decision gate, part two: {tally['called']} calls a team made on comms about what it means to do")
+    print(f"  a decision of that team found within {COMMS_S} s: {tally['a decision found there']} ({tally['a decision found there'] * 100 // n}%)")
+    print(f"  the same call read: {tally['the same call read']} ({tally['the same call read'] * 100 // n}%)")
+    print(f"  calls the engine has no decision for: {sum(other.values())} ({', '.join(f'{k} {v}' for k, v in other.most_common())})")
+    for row in out: print("  MISS", *row)
+    return tally, out
+
+
 def stories():
     """The engine's story of each golden moment's game, up to a minute after the moment. Denning reads it on the page,
     ticks the lines that are wrong and adds his own notes or corrections (R-354). Kept in its own file so the labels
@@ -184,7 +284,7 @@ def stories():
         out[g["id"]] = [[int(t), s] for t, s in ST.story(M, 0, g["t"] + 60)]
     json.dump({"about": "The engine's story of each golden moment's game (tools/golden/golden.py stories; story.py on the bundle-4 "
                         "branch). Shown on Model > Golden moments for Denning to mark (R-354).",
-               "generated": datetime.date.today().isoformat(), "draft": 8, "stories": out},
+               "generated": datetime.date.today().isoformat(), "draft": 9, "stories": out},
               open(os.path.join(REPO, "data", "model", "golden_stories.json"), "w"), indent=0)
     print(len(out), "stories;", sum(len(v) for v in out.values()), "lines")
 
@@ -193,5 +293,6 @@ if __name__ == "__main__":
     a = sys.argv[1:]
     if a and a[0] == "pick": pick(a[1], int(a[a.index("--n") + 1]) if "--n" in a else 30)
     elif a and a[0] == "score": score()
+    elif a and a[0] == "gate": gate(); print(); comms(a[a.index("--data") + 1] if "--data" in a else None)
     elif a and a[0] == "stories": stories()
     else: print(__doc__)

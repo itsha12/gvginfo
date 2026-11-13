@@ -200,6 +200,34 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   (`label.story.wrong`, `label.notes`). The 13 notes marked `blind_note` were written before he saw any story: after
   every change to `story.py`, regenerate the stories and compare them with those notes yourself (the blind check).
   His marks keep the text of the line they were made on.
+  The record is the work, not the description (R-362): `Moments.attempts()` (one record a split attempt or main team
+  push, R-357, R-358, R-363, R-364), `caught()` (R-359), `flags_record()` (R-360), `main_team()` (R-335, R-355) and
+  `common.flux_at` (R-356) hold what the engine keeps; `moments.py <report id> splits|flags` prints them, and `story.py`
+  prints its split, push and cap lines from them, never from a second reading. Lessons from his marks, notes or
+  commentary go into these records first. The words of R-373 and R-375 to R-378 are records too: `flag_pushes()`
+  (pushing the flagger, R-371), the flag route, door, hold and boost distance in `flags_record()`, `flag_lead()` and
+  `lead_at()` (the flag tally, R-408: the stand counts as one flag; bands at 0.35, 0.8, 1.3 and 1.7), `pregame()`,
+  `standoffs()` (the disengage, R-405, framed on OG v hdm, R-411, in place of posture: main teams standing off with
+  little or no damage traded are not a fight), `timing()` (the four choices of R-377, the held flag of R-400 and
+  R-407), `onto_flag` on a main team push (R-401), `monk_counts()` and `on_lord()` (R-378); their thresholds in
+  `common.py` are confirmed (R-404, R-406). What the flag readings are for is R-412. To see what a looser or tighter threshold would do,
+  use `tools/golden/thresholds.py sweep` (it sets `GVG_TRY`; never set that in a training run). From the gate review
+  (R-416, R-417): `way_out()` (a team going out of its base by a door), and in `attempts()` who set out together,
+  where a split fell back to, a main team that went home for a split, and swaps in the answer; a push on a flagger
+  counts from 4 s when he reaches his team with the pushers still on him (R-418).
+  The line-up is the measure of the reading (R-368 to R-397): timestamped commentary and comms filed as paraphrased
+  statements in `data/lineup/` (never transcripts), checked against the story by `tools/golden/lineup.py` on the
+  branch. The four games in `data/lineup/held/` were the held-out check: Denning reviewed their misses
+  once (R-416), the reading gate passed, and they are spent (building games from here, R-417). The line-up only checks that what was said is
+  in the story, so run `tools/golden/thresholds.py` beside every rescore to see what a change did to the records over
+  all matches. The gates and the build order are in `docs/REDESIGN.md` ("Tests", "Build plan from here").
+  The decision moments are read from the records (stage B: `run_starts()`, `attempts()`, the numbers in each main
+  team's fight, `verbs()`); the decision gate is `tools/golden/golden.py gate --data <main>/data/lineup` (part one
+  against `data/model/golden_key.json`, Claude's reading of his golden notes, R-341, which he corrects; part two the
+  comms calls of the line-up).
+- Before the first training run after the engine is built, go through Denning's list with him (R-398; REDESIGN.md
+  "Before the next training run"): plan and spec, rulings, old files, the Templates and Meta tabs, skills from the
+  wiki, the model pages, anything outstanding.
 - Guild hall maps: `tools/maps/build_maps.py` builds the site's map data from the replays branch
   (`data/maps/index.json`, `outline/<map id>.json`, `auto/<map id>.json`); Denning's labels (points, areas, routes) are
   saved by the site's Model > Guild hall maps page to `data/maps/labels/<map id>.json` and override estimates. The

@@ -126,23 +126,8 @@ def state_line(M, t):
 
 # ---- movement: who goes where
 def _run_starts(M):
-    """For each fresh pickup at the spawn: when its runner set off for the spawn (he walked more than 1,500 to get
-    there), and since when he waited there (10 s or more). {(player, pickup second): (set off, waited since)}."""
-    if getattr(M, "_runs", None) is not None: return M._runs
-    out = {}
-    for L in M.flag_lives():
-        c = next((c for c in L["carries"] if c[0] in L["serious"]), None)
-        if not c or c[1] < 2: continue
-        a, tp, tm = c[0], min(int(c[1]), M.T), L["team"]
-        if d(M.P[a][tp], M.spawn[tm]) >= SPAWN_R: continue
-        dist = lambda u: M.hall.to(M.spawn[tm]).get(M.hall.snap(M.P[a][u]), 1e9) if M.AL[a][u] else None
-        u = tp
-        while u >= 2 and dist(u - 2) is not None and dist(u - 2) < SPAWN_R: u -= 2
-        waited = u
-        while u >= 4 and dist(u - 4) is not None and dist(u) is not None and dist(u - 4) > dist(u) + 40: u -= 2
-        out[(a, tp)] = (u if dist(u) is not None and dist(u) - SPAWN_R > 1500 else None, waited if tp - waited >= 10 else None)
-    M._runs = out
-    return out
+    """{(player, pickup second): (set off, waited since)}, from the record (Moments.run_starts)."""
+    return {(r["a"], r["pickup"]): (r["set_off"], r["waited"]) for r in M.run_starts() if r["a"] in r["serious"]}      # a brief pickup handed on is not a player going to run (R-339)
 
 
 def _move_events(M):
@@ -203,7 +188,8 @@ def _attempt_events(M):
                 out.append((ah["split_back"], f"{tag}'s split is back with its main team {abs(ah['lead_s'])} s {'ahead of' if ah['lead_s'] > 0 else 'behind'} {foe}'s defenders: {first} has the numbers there for that long"
                             + (f" and kills {ah['kills_for'] if first == tag else ah['kills_against']}" if (ah['kills_for'] if first == tag else ah['kills_against']) else " and gets no kill")))
         else:
-            out.append((x["t_in"], f"{tag}'s main team pushes in{way}, {NUM.get(x['size'], x['size'])} against {NUM.get(an['n'], an['n']) if an['n'] else 'nobody'}"))
+            k_, f_ = x["n_in"] if x.get("n_in") else (x["size"], an["n"])      # as it goes in (golden game 1, 3:32)
+            out.append((x["t_in"], f"{tag}'s main team pushes in{way}, {NUM.get(k_, k_)} against {NUM.get(f_, f_) if f_ else 'nobody'}"))
             res = [f"takes {', '.join(x['npcs'])}" if x["npcs"] else "takes no NPC", f"kills {len(x['kills'])}" if x["kills"] else "no kills", f"loses {len(x['lost'])}" if x["lost"] else "no deaths"]
             if x["end"] != "match ended": out.append((x["t1"], f"{tag}'s push ends after {clock(x['t1'] - x['t_in'])}: {'; '.join(res)}"))
         for f in x["forced_out"]:
