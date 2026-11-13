@@ -1,8 +1,7 @@
 # GvG Info: handoff for a new chat
 
-Rewritten each session; under 80 lines. Read `CLAUDE.md`, `docs/SPEC.md`, then this, then `docs/REDESIGN.md` (the
-plan for the decision tier). History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.md` (cite R-numbers); every fitted
-model's structure: `knowledge/model.md` (generated).
+Rewritten each session; under 80 lines. Read `CLAUDE.md`, `docs/SPEC.md`, this, then `docs/REDESIGN.md` (the plan)
+and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.md`; models: `knowledge/model.md`.
 
 ## Start a new chat in one message
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/SPEC.md and docs/HANDOFF.md, check
@@ -12,7 +11,7 @@ model's structure: `knowledge/model.md` (generated).
 ## State (2026-11-13 night: redesign step 2 on branch `bundle-4`, stage D under way; batch 17, 506 matches trained)
 - Main's engine is unchanged (SPEC.md). Bundle 4 is on `bundle-4` and lands in one piece, then one rebuild (R-322).
   606 replays stored (90 from 2 September on not yet trained on). No Train batch, Discovery or fetch run in progress.
-  Last commits: main, this handoff (after 98ba81c); `bundle-4` 2c70ac9. Both pushed; nothing uncommitted.
+  Last commits: main, this handoff (after 04a93b7); `bundle-4` 2c70ac9. Both pushed; nothing uncommitted.
 - On `bundle-4`: `hallmap.py`, `moments.py` (records, decision moments, shape, consequences), `jobs.py` (the plays
   and their jobs, R-423 to R-449), `story.py`, `tools/golden/golden.py`, `lineup.py`, `thresholds.py`, `review.py`.
 - Both gates pass (key v3): part one 12 of 12, part two 65 of 105 (61%). Line-up: building 422 of 426, held-out 186
