@@ -34,10 +34,15 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   only where the damage can kill against the monks there; a flag never carried out of its base is no run; the flag
   decision told once, from the side that ran second; staying is met when their flag fails (R-468); a kill at a phase
   boundary credited to the phase it ended; the pinned clock with nobody dead; numbers rows grouped by their start.
-- Now (development set, 42 matches): review key 80 rows pass. Open checks: w1p2 13 of 20 (six are defender counts in
-  the long 4 v 4 split fight of hdm v hook; three numbers; two flags; a door; a missed solo split), w1p1 15, s1-15.
-  Gate: part one 12 of 12, part two 63 of 105 (60%, at his mark). Line-up: 421 of 426 and 185 of 186 seen; comms 108
-  of 157, 62 of 80. No run over every match and no `thresholds.py` since the rebuild (R-465).
+- A split fight is told once (R-469): split calls on the development set 1,726 to 1,161; hdm v hook 115 calls to 69.
+- Now (development set, 42 matches): review key 80 rows pass; 28 checks open (w1p1 16, w1p2 11, s1-15): numbers one
+  out, a defender missed at 6:46 of TFS v 옷옷옷옷 and 13:02 of hdm v hook, two flags, a door, a missed solo split.
+  Gate: 12 of 12, 63 of 105. Line-up: 421 of 426 and 185 of 186; comms 108 of 157, 62 of 80 (not rerun since the
+  split change, which is in `jobs.py` only). No run over every match, no `thresholds.py` (R-465).
+- The draft numbers, each tried at half and double against the 80 marked rows (R-470; rows that then fail): reach
+  1,600 (8 and 2), the 12 s of R-350 (5 and 4), hold time 6 s (5 and 1), acting distance 2,600 (6 and 0), hold
+  distance 2,100 (1, 0), joined 1,000 (1, 1), `FOUGHT` 0.7 (1, 1), flag kept at home 20 s (0, 1), double run 30 s (0,
+  0: the value does not matter between 15 and 60).
 - Tried and taken out (each broke his row 28 of TFS v 옷옷옷옷 or changed nothing): a full collapse counted from the
   main team closing on the split; a defender kept counted while he kites out of reach. At 9:30 of hdm v hook two of
   hook's four defenders stand 2,700 to 3,900 from the split for 16 s: his note on row 40, not his mark on row 42.
@@ -45,16 +50,16 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   better there than the session's first. Never claim progress across different games: compare on one marked game.
 
 ## Next (in order; REDESIGN.md "Build plan from here", item 6, and "Tests")
-1. His answer on how a long split fight is told (open item 1), then build it; then the remaining open checks.
+1. His answer on the baseline: mark the 54 calls only the session's first engine makes on hdm v hook, for a true
+   before and after? And on round 3 (how many games, the mark to reach).
 2. Round 3: pull two or three more games (October and November, top guilds, no earlier test, no Shadow of Haste,
-   halls and styles unlike the three marked), add them to `dev_set.json`, export them as their own part, and have
-   him mark them. Never export or look at Men v Crew or 옷옷옷옷 v RACK before the final measure.
+   halls and styles unlike the three marked), add them to `dev_set.json`, score the engine on each before any fix,
+   export, he marks. After the round: `review.py compare` on a marked game, and the numbers test (R-470). Never
+   export or look at Men v Crew or 옷옷옷옷 v RACK before the final measure.
 3. The flag family to the end (R-451) once the flag plays pass; the other kinds as each passes; then stage E.
 
 ## Open for Denning (put to him 2026-11-14; set each out in the chat again, R-329, with replay links)
-1. A long split fight (hdm v hook 5:56 to 11:48, https://gvg.report/report/8bf4ffae-780e-535e-aa7b-44027b0fa6cc#map):
-   the engine tells it as 15 phases with the defenders counted each time; he reads one 4 v 4 ("still the same
-   split"). Tell a split fight once, with its numbers and each change beside it, as a numbers moment is told?
+1. The baseline on hdm v hook: mark the 54 calls only the old engine makes, yes or no.
 2. The same stretch, 5:52 to 7:24: he reads hook's run as a double run and hdm's as a single. In the replay both
    second runners take the next flag 17 to 19 s after the cap. What tells them apart?
 3. Round 3: how many games, and the mark at which a fresh game reads well enough to go to the hidden games.

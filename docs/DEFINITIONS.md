@@ -84,8 +84,10 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   of their own base, who set off while it is still out and take no NPC (review key s1-20, s1-26).
 - It counts from when it can do something: at the enemy's footmen, base or pit, or met by a defender (R-440). Its decision
   moment is when it crosses to the enemy's side (R-458).
-- It is read phase by phase: so many split players against so many defenders, each counted as above; each phase has
-  its own job and result (R-439, R-441; his review of the first cases, R-438 to R-449).
+- It is told once while it is defended and nobody collapses on it, with each change of its numbers beside it, and cut
+  only where the kind of answer changes: nobody defending, defended, a collapse, the whole team (R-469, R-365; this
+  amends the phase by phase reading of R-439 to R-449). *As built:* headed by the numbers it had for longest before
+  anyone in it died.
 - The attacker's job is set by the answer it meets (R-428):
 
   | The answer | The split's job |
