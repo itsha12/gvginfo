@@ -5,6 +5,10 @@
   python3 tools/golden/review.py rows [--key <path>]                 the rows and their marks
   python3 tools/golden/review.py game <report id> <plays file>       one whole game, every situation the engine reads, as a
                                                                      table for him to mark while he watches it (R-454)
+  python3 tools/golden/review.py numbers [--steps 0.5,0.75,1.25,2] [--names FIGHT_LINK,JOIN_S]
+                                                                     the numbers test (R-470): each draft number of the fight reading
+                                                                     at those shares of its value, against every marked row (about a
+                                                                     minute a value, one at a time: a run already uses every core)
   python3 tools/golden/review.py compare <report id> <rows.json> <marks.json> <plays he marked> name=<plays> ...
                                                                      one marked game, several engines against his verdicts on
                                                                      it (the before-and-after test)
@@ -188,6 +192,56 @@ def compare(rid, rows_file, marks_file, shown_file, others):
         print(f"  {name}: {sum(res.values())} calls: " + ", ".join(f"{v} {k}" for k, v in res.most_common()) + f"; says {sum(1 for i in right if i in hit)} of his {len(right)} right calls")
 
 
+NUMBERS = ("FIGHT_LINK", "JOIN_S", "FIGHT_HOLD_S", "FIGHT_ACT", "FIGHT_HOLD", "FIGHT_CLOSE", "FOUGHT", "FLAG_TAKEN_OUT_S", "DOUBLE_NEXT_S")
+
+
+def numbers(steps=(0.5, 0.75, 1.25, 2.0), names=NUMBERS, jobs=1, key=KEY, work="/tmp/numbers"):
+    """The numbers test (R-470): each draft number of the fight reading tried at these shares of its value, one at a time,
+    over the development set, and scored against every row he has marked. For each value: the marked rows that then
+    fail, and the open checks that then hold. It shows where a number sits (a wide stretch where nothing changes, or an
+    edge where a small step breaks rows); it is not a way to pick a value (R-465, R-470)."""
+    import concurrent.futures, subprocess
+    sys.path.insert(0, os.path.join(REPO, "tools", "replay_analysis")); import common
+    os.makedirs(work, exist_ok=True); K = json.load(open(key))
+
+    def read(path):
+        by = collections.defaultdict(list)
+        for p in json.load(open(path))["plays"]: by[p["rid"]].append(p)
+        bad, held = [], []
+        for r in K["rows"]:
+            if not r.get("checks") or r["rid"] not in by: continue
+            if any(not check(by[r["rid"]], c) for c in r["checks"] if not c.get("open")): bad.append(r["id"])
+            held += [r["id"] for c in r["checks"] if c.get("open") and check(by[r["rid"]], c)]
+        return bad, held
+
+    def run(name, v):
+        out = os.path.join(work, f"{name}_{v}.json"); env = dict(os.environ, PYTHONDONTWRITEBYTECODE="1")
+        if name: env["GVG_TRY"] = f"{name}={v}"
+        r = subprocess.run([sys.executable, "moments.py", "all", out, "--dev"], cwd=os.path.join(REPO, "tools", "replay_analysis"), env=env, capture_output=True, text=True)
+        if not os.path.exists(out): return name, v, None, (r.stdout + r.stderr)[-300:]
+        res = read(out); os.remove(out); return name, v, res, ""
+
+    todo = [("", 0)]
+    for n in names:
+        base = getattr(common, n)
+        for k in steps:
+            v = base * k; v = int(round(v)) if isinstance(base, int) else round(v, 3)
+            if v != base and (n, v) not in todo: todo.append((n, v))
+    got = {}
+    with concurrent.futures.ThreadPoolExecutor(jobs) as ex:
+        for n, v, res, err in ex.map(lambda t: run(*t), todo):
+            got[(n, v)] = res; print(f"  ran {n or 'as it is'} {v if n else ''}" + (f" FAILED: {err}" if res is None else ""), file=sys.stderr, flush=True)
+    b0, h0 = got[("", 0)]
+    print(f"As it is: {len(b0)} marked rows fail {b0 or ''}; {len(h0)} open checks hold")
+    for n in names:
+        print(f"{n} = {getattr(common, n)}")
+        for (m, v), res in got.items():
+            if m != n: continue
+            if res is None: print(f"   {v}: the run failed"); continue
+            bad, held = res; new_bad = [x for x in bad if x not in b0]; new_held = [x for x in held if x not in h0]; lost = [x for x in h0 if x not in held]
+            print(f"   {v}: {len(new_bad)} marked rows fail" + (f" ({', '.join(new_bad)})" if new_bad else "") + (f"; open checks that then hold: {', '.join(new_held)}" if new_held else "") + (f"; open checks that no longer hold: {', '.join(lost)}" if lost else ""))
+
+
 def rows(key=KEY):
     for r in json.load(open(key))["rows"]:
         print(f"{r['id']:8} {r['mark']:12} {r['type']:34} {r['match']} {cl(r['window'][0])}-{cl(r['window'][1])} | {len(r.get('checks', []))} checks" + (" | " + r["note"] if r.get("note") else ""))
@@ -198,6 +252,7 @@ if __name__ == "__main__":
     key = a[a.index("--key") + 1] if "--key" in a else KEY
     if a and a[0] == "score": sys.exit(1 if score(a[1], key) else 0)
     elif a and a[0] == "rows": rows(key)
+    elif a and a[0] == "numbers": numbers(tuple(float(x) for x in a[a.index("--steps") + 1].split(",")) if "--steps" in a else (0.5, 0.75, 1.25, 2.0), tuple(a[a.index("--names") + 1].split(",")) if "--names" in a else NUMBERS, key=key)
     elif a and a[0] == "game": game(a[1], a[2])
     elif a and a[0] == "compare": compare(a[1], a[2], a[3], a[4], [x.split("=", 1) for x in a[5:]])
     elif a and a[0] == "export": export(a[1], a[2], int(a[a.index("--part") + 1]), a[a.index("--set") + 1] if "--set" in a else "w1", a[a.index("--label") + 1] if "--label" in a else None, a[a.index("--drop") + 1].split(",") if "--drop" in a else ())
