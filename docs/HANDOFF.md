@@ -41,10 +41,8 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   distance 2,100 (1, 0), joined 1,000 (1, 1), `FOUGHT` 0.7 (1, 1), flag kept at home 20 s (0, 1), double run 30 s (0,
   0: the value does not matter between 15 and 60).
 - Tried and taken out (each broke his row 28 of TFS v 옷옷옷옷 or changed nothing): a full collapse counted from the
-  main team closing on the split; a defender kept counted while he kites out of reach. At 9:30 of hdm v hook two of
-  hook's four defenders stand 2,700 to 3,900 from the split for 16 s: his note on row 40, not his mark on row 42.
-- Before and after on hdm v hook (`review.py compare`; CHANGELOG 2026-11-14): today's engine is not shown to be
-  better there than the session's first. Never claim progress across different games: compare on one marked game.
+  main team closing on the split; a defender kept counted while he kites out of reach.
+- Compare engines only on one marked game (`review.py compare`): on hdm v hook today's is not shown to be better.
 
 ## Next (in order; REDESIGN.md "Build plan from here", item 6, and "Tests")
 1. His answer on the baseline: mark the 54 calls only the session's first engine makes on hdm v hook, for a true
