@@ -2596,6 +2596,26 @@
      "mark": "right",
      "why": "",
      "text": "hook [concede]: Concede the boost for kills. Not met (no: more of theirs die than of ours)"
+    },
+    "s:4629b08c-flag-1-562-31": {
+     "mark": "right",
+     "why": "",
+     "text": "They single run (hold's Ritualist); hook: a flag already in hand"
+    },
+    "4629b08c-split-1-872-49": {
+     "mark": "repeat",
+     "why": "see note for engine read",
+     "text": "hook (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Not met (no: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)"
+    },
+    "4629b08c-split-2-872-51": {
+     "mark": "repeat",
+     "why": "see note for engine read",
+     "text": "hold (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Met (yes: no pit NPC lost; yes: a split player dies; yes: the split is gone within the visit)"
+    },
+    "4629b08c-split-1-872-50": {
+     "mark": "repeat",
+     "why": "see note for engine read",
+     "text": "hook (attacker's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Not met (no: more of theirs die away from the split than of ours)"
     }
    },
    "game": "hook v hold, Nomad's Isle",
