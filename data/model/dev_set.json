@@ -1,5 +1,5 @@
 {
- "about": "The development set (R-453): run after every change to the reading (`moments.py all <file> --dev`, then `tools/golden/review.py score <file>`); every match is run only at a checkpoint (a new review set, a gate, a benchmark rebuild). Holds the matches of the review key, the golden moments, the line-up games, and the games of each whole-game review. Whole-game set w1 (R-454), picked 2026-11-13 from October and November games of the top eight guilds that no earlier test had used and that hold no Shadow of Haste run: four games, two and two (R-455): part 1 (TFS v 옷옷옷옷, Men v Apes) is marked first and fixed against; part 2 (hdm v hook, Men v Crew) is not fixed against until he has marked it, so that it gives the accuracy by kind of play; 옷옷옷옷 v RACK is a spare, unmarked and not fixed against.",
+ "about": "The development set (R-453): run after every change to the reading (`moments.py all <file> --dev`, then `tools/golden/review.py score <file>`); every match is run only at a checkpoint (a new review set, a gate, a benchmark rebuild). Holds the matches of the review key, the golden moments, the line-up games, and the games of each whole-game review. Whole-game set w1 (R-454), picked 2026-11-13 from October and November games of the top eight guilds that no earlier test had used and that hold no Shadow of Haste run: four games, two and two (R-455): part 1 (TFS v 옷옷옷옷, Men v Apes) is marked first and fixed against; hdm v hook was marked on 2026-11-14 as the first measure of the rebuilt reading and is built from since (R-467); Men v Crew is the hidden game and 옷옷옷옷 v RACK the spare: neither is marked, looked at or fixed against.",
  "review_key": [
   "0f1fd794-46cd-5fb1-a661-a7ec5f1cbadd",
   "1cb73c20-1b06-5b7b-a728-25c7640f8a84",
@@ -90,7 +90,7 @@
   },
   {
    "set": "w1",
-   "part": 2,
+   "part": "hidden",
    "rid": "51683de9-4096-5833-ad4a-56a69c4759e4"
   }
  ],

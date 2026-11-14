@@ -43,7 +43,7 @@ Usage:  python3 moments.py <report id> [family]      the match's moments in orde
         python3 jobs.py summary <out.json>            the plays and how often each job was met (jobs.py)
 In code: Moments(st, sb).records() -> list of dicts."""
 import collections, json, math, statistics, sys
-from common import (DOUBLE_NEXT_S, FLAG_MOMENT_GREATER, FLAG_MOMENT_STAND, FIGHT_HOLD, FIGHT_HOLD_S, FIGHT_ACT, FIGHT_CLOSE, READ_FROM, READ_TO, CONSEQ_S, ON_TIME_S, LATE_S, PIT_S, AREA_SHARE, PURPOSE_S, LEAVE_MIN_S, HOME_WAIT_S, SPAWN_R, GROUP_LEAVE_S, MEET_R,
+from common import (FOUGHT, DOUBLE_NEXT_S, FLAG_MOMENT_GREATER, FLAG_MOMENT_STAND, FIGHT_HOLD, FIGHT_HOLD_S, FIGHT_ACT, FIGHT_CLOSE, READ_FROM, READ_TO, CONSEQ_S, ON_TIME_S, LATE_S, PIT_S, AREA_SHARE, PURPOSE_S, LEAVE_MIN_S, HOME_WAIT_S, SPAWN_R, GROUP_LEAVE_S, MEET_R,
                     NUMBERS_MIN_S, MERGE_S, BOOST_WARN_S, FLAGGER_R, SPLIT_FAR, BOOST_EVERY, SERIOUS_CARRY_S, FIGHT_LINK, GROUND_MOVE, GROUND_S, GROUND_BACK, GROUND_JUMP, GROUND_SPLIT_MOVE, SIDE_FIGHT_MAX, SIDE_FIGHT_S, UNDEFENDED_S,
                     RETURN_R, FOOT_ENGAGED_S, SPLIT_STEP, SPLIT_MIN_S, SPLIT_GAP_S, FORCED_OUT_S, AHEAD_LOOK_S, CAUGHT_S, NPC_NEAR,
                     JOIN_S, RES_EVERY, flux_at, JOIN_LOOK_S, JOIN_MOVE, JOIN_LEAD, JOIN_ENGAGE, JOIN_ENGAGE_S, MAIN_BIG, SWAP_S, SWAP_STAY_S, SPLIT_FIGHT_GAP_S, SPLIT_FIGHT_MIN,
@@ -97,6 +97,7 @@ class Moments:
         self.npc_hits = collections.defaultdict(list)        # player -> seconds he damaged an enemy NPC
         self.acts = collections.defaultdict(list)            # second -> [(actor, target)] damage dealt or a skill landed, between players of the two teams
         self.aid = collections.defaultdict(list)             # second -> [(actor, target)] a heal or a skill landed on a team mate
+        self.casts = collections.defaultdict(list)           # second -> [player] a cast or an attack started
         self._nr, self._ia = {}, {}
         self.lord_hits = collections.defaultdict(list)       # team -> [(second, the enemy player, amount)] damage on its Guild Lord
         self.pit_kind = collections.defaultdict(lambda: collections.defaultdict(set))  # team -> second -> which of them (knight, bodyguard, guild_lord)
@@ -104,6 +105,7 @@ class Moments:
         for r in m.o["ev"]:
             if r[1] in ("dm", "sa") and r[2] in self.P and r[3] in self.P and m.team(r[2]) != m.team(r[3]): self.acts[int(r[0] / 10)].append((r[2], r[3]))
             if r[1] in ("hl", "sa") and r[2] in self.P and r[3] in self.P and r[2] != r[3] and m.team(r[2]) == m.team(r[3]): self.aid[int(r[0] / 10)].append((r[2], r[3]))
+            if r[1] in ("cs", "at") and r[2] in self.P: self.casts[int(r[0] / 10)].append(r[2])
             if r[1] != "dm" or not isinstance(r[2], int) or not isinstance(r[3], int) or max(r[2], r[3]) >= len(m.A): continue
             if m.A[r[3]].get("npc") == "guild_lord" and r[2] in self.P and m.A[r[3]].get("team") not in (None, m.team(r[2])):
                 self.lord_hits[m.A[r[3]].get("team")].append((r[0] / 10, r[2], r[5] if len(r) > 5 and isinstance(r[5], (int, float)) else 0))
@@ -441,7 +443,7 @@ class Moments:
                 order = list(dict.fromkeys(L["serious"]))
                 L["form"] = None
                 if L["how"] != "captured": continue
-                nxt = next((x for x in lives[i + 1:] if any(c[2] is None or c[2] - c[1] >= SERIOUS_CARRY_S for c in x["carries"])), None)
+                nxt = next((x for x in lives[i + 1:] if any(c[2] is None or c[2] - c[1] >= SERIOUS_CARRY_S for c in x["carries"]) and (x["how"] == "captured" or self.travelled(tm, x["carries"]))), None)
                 n = next((c[0] for c in nxt["carries"] if c[2] is None or c[2] - c[1] >= SERIOUS_CARRY_S), None) if nxt else None
                 tc = min(int(L["end"]), self.T)
                 back = False
@@ -1905,6 +1907,18 @@ class Moments:
         self._rs = out
         return out
 
+    def travelled(self, tm, carries):
+        """Was this flag taken anywhere: carried out of its own base and pit. A flag picked up and put down again by a
+        player fighting in his own base is not a run (his mark, hdm v hook 8:46: "the runner never leaves the fight and
+        he never runs; the flag is dropped and returned")."""
+        own = self.st.side.get(tm)
+        for c in carries:
+            for u in range(max(int(c[1]), 0), min(int(c[2] if c[2] is not None else self.T), self.T) + 1, 2):
+                if not self.AL[c[0]][u]: continue
+                k_, s_ = self.place_at(c[0], u)
+                if not (s_ == own and k_ in ("pit", "base")): return True
+        return False
+
     def _went_to_run(self, r): return min(x for x in (r["moment"], r["waited"], r["pickup"]) if x is not None)      # the decision moment of a flag run (R-461); the story's "leaves to go back" line stays at set_off
 
     def triggers(self):
@@ -2004,15 +2018,18 @@ class Moments:
             tm_a = self.m.team(a)
             reach = [F[t] is not None and a in F[t]["ids"][tm_a] for t in times]
             counted[a] = self.visits(times, reach, [r and self.engaged_in(a, F[t]["ids"][1] | F[t]["ids"][2], t) for r, t in zip(reach, times)], self.st.death_times.get(a, []))
+        def fought(e):                                   # it is being fought: everyone who stood in it starts more than FOUGHT casts or attacks each in 10 s
+            c = sum(1 for u in range(int(e["start"]), int(e["last"]) + 1) for x in self.casts.get(u, ()) if x in e["all"])
+            return c > FOUGHT * len(e["all"]) * max(e["last"] - e["start"], 10) / 10
         for ti, t in enumerate(times):
             f = F[t]
             n = {tm: sum(1 for a in f["ids"][tm] if counted[a][ti]) for tm in self.st.teams} if f is not None else None
             adv = None if n is None or not n[1] or not n[2] or n[1] == n[2] else (1 if n[1] > n[2] else 2)
-            if adv and cur and cur["adv"] == adv and t - cur["last"] <= S: cur["last"] = t; cur["ns"].append((n[1], n[2]))
+            if adv and cur and cur["adv"] == adv and t - cur["last"] <= S: cur["last"] = t; cur["ns"].append((n[1], n[2])); cur["all"] |= set(f["ids"][1]) | set(f["ids"][2])
             else:
-                if cur and cur["last"] - cur["start"] >= NUMBERS_MIN_S: eps.append(cur)
-                cur = {"adv": adv, "start": t, "last": t, "ns": [(n[1], n[2])], "place": (f["kind"], f["side"]), "ids": {tm: frozenset(a for a in f["ids"][tm] if counted[a][ti]) for tm in self.st.teams}} if adv else None      # ids: the players counted in it
-        if cur and cur["last"] - cur["start"] >= NUMBERS_MIN_S: eps.append(cur)
+                if cur and cur["last"] - cur["start"] >= NUMBERS_MIN_S and fought(cur): eps.append(cur)
+                cur = {"adv": adv, "start": t, "last": t, "ns": [(n[1], n[2])], "place": (f["kind"], f["side"]), "ids": {tm: frozenset(a for a in f["ids"][tm] if counted[a][ti]) for tm in self.st.teams}, "all": set(f["ids"][1]) | set(f["ids"][2])} if adv else None      # ids: the players counted in it
+        if cur and cur["last"] - cur["start"] >= NUMBERS_MIN_S and fought(cur): eps.append(cur)
         return eps
 
     # ---- 2.5 scenario

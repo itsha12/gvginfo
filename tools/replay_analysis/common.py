@@ -233,6 +233,7 @@ FIGHT_HOLD = 2100               # ... and stay in it out to this far while they 
 FIGHT_HOLD_S = 6
 FIGHT_ACT = 2600                # players of the two teams this close, one hitting or casting on the other within FIGHT_HOLD_S, are in the same fight, though out of reach (Men v Apes 2:10: his 5 v 3; Claude's draft)
 FIGHT_CLOSE = 1000              # a player has joined a fight once he stands this close to someone in it (an aggro bubble) or acts in it, and has left once he no longer does (R-464: joining and leaving are read from movement, not reach)
+FOUGHT = 0.7                    # a numbers difference is a moment only where that fight is being fought: its players start more than this many casts or attacks each in 10 s (players running past one another through mid start about 0.25, a fight 1 to 3.5; casts, not hits: some replays record little damage; Claude's draft, from his marks on hdm v hook 6:10)
 SERIOUS_CARRY_S = 5              # a pickup dropped sooner than this, without capping, is not an attempt to run (Denning: "like 3 s")
 FLAGGER_R = 2500                # the main group is on the enemy flagger when its middle is this close to that player
 

@@ -109,6 +109,7 @@ def _flag_rows(M):
             if went: s0 = min(int(r["moment"]), s0)                       # when he goes to run, by the hall (R-461)
             elif r["under_way"] is not None and r["under_way"] - r["pickup"] > FLAG_TAKEN_OUT_S:
                 s0, runner = int(r["under_way"]), m.roles[r["runner"]]    # picked up at home and kept there: the run starts when its runner takes it out
+        if r is not None and f["how"] != "captured" and not M.travelled(f["tm"], r["carries"]): continue      # picked up and put down at home: not a run
         e, other = int(f["end"]), False
         if r is not None and f["how"] != "captured" and r["carries"] and r["carries"][-1][2] is not None and r["carries"][-1][2] < e:
             e = int(r["carries"][-1][2])                                  # put down for good: the run ends there, not when the flag goes back to the spawn
@@ -138,6 +139,7 @@ def flag_plays(M, K, pinned_at):
             c = next((a for a in inhand["ids"] if M.carrying(a, w0) and M.AL[a][w0]), None)
             held = c is not None and M.place_at(c, w0)[0] in ("stand", "greater stand")
             if not held: new, inhand = (inhand if inhand["how"] == "captured" or new is None else new), None
+        if new is not None and not inhand and new["s0"] < w0 - 2: continue      # we set off first: their run is the answer to ours and is told from their side (his mark, hdm v hook 7:07: "it's hdm's decision, hook starts running first")
         theirs = "double run" if f["double"] else "single run"
         ours = "a flag already in hand" if inhand else "stay" if not new else "double run" if new["double"] else "single run"
         g = inhand or new
@@ -158,7 +160,8 @@ def flag_plays(M, K, pinned_at):
         elif ours == "stay":
             t1 = min(w1 + 10, T) if not f["double"] else w1
             job = "Kill with the two extra players before their flag is in" if f["double"] else "Kill with the extra player while their runner is away"
-            out.append(_play(M, "flag", "own", A, w0, t1, [], scen, job, {"more of theirs die at the main fight than of ours": dB(t1) > dA(t1)}, beside=bes(t1), **kw))
+            out.append(_play(M, "flag", "own", A, w0, t1, [], scen, job + ", or their flag does not get in", {},
+                             any_of={"more of theirs die at the main fight than of ours": dB(t1) > dA(t1), "their flag does not get in": f["how"] != "captured"}, beside=bes(t1), **kw))      # R-467: staying costs nothing if their flag fails
         elif (ours == "double run") == f["double"]:                      # single against single, double against double
             lv = K.lead(A, end)
             out.append(_play(M, "flag", "own", A, w0, end, who, scen, "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
@@ -334,8 +337,9 @@ def split_plays(M, K):
             cs, cd = collections.Counter(a for i in idx for a in Ss[i]), collections.Counter(b for i in idx for b in Ds[i])
             Sp, Dp = [a for a, _ in cs.most_common(k)], [b for b, _ in cd.most_common(n)]
             e1 = min(p1 + 4, T)
-            lostp = [a for td, a in dA if p0 - 1 <= td <= (max(e1, end_chase + 2) if last else e1)]
-            killp = [b for td, b in dD if p0 - 1 <= td <= e1]
+            # a death that made the numbers of this phase belongs to the phase before it (his mark, hdm v hook 7:52: "they are only 4 v 3 because they killed a defender"): at its first seconds only the deaths of players counted in it are its own
+            lostp = [a for td, a in dA if p0 - 1 <= td <= (max(e1, end_chase + 2) if last else e1) and (pi == 0 or td > p0 + 4 or a in Sp)]
+            killp = [b for td, b in dD if p0 - 1 <= td <= e1 and (pi == 0 or td > p0 + 4 or b in Dp)]
             npcs = [(kind, pit) for td, kind, pit in npc_ev if p0 - 1 <= td <= e1]
             n_lost, n_kill, n_npc, n_pit = len(lostp), len(killp), len(npcs), sum(1 for _, pit in npcs if pit)
             away_a, away_d = K.died(tm, p0, e1) - sum(1 for td, a in dA if p0 < td <= e1), K.died(foe, p0, e1) - sum(1 for td, b in dD if p0 < td <= e1)
@@ -440,6 +444,9 @@ def numbers_plays(M, K, trig, recs, pinned_at):
         scen = x["scenario"]["label"] + f"; {x['team']}: {x['call']['label'].lower()}"
         bes = lambda b: {"deaths": [dA(b), dB(b)], "npcs": [K.npcs(tm, t, b), K.npcs(foe, t, b)], "flag_lead": [K.lead(tm, t), K.lead(tm, b)], "lasted_s": e["last"] - e["start"]}
         back, push = c in ("retreat down the ladder", "fall out"), c in ("push up", "push in", "push their flagger")
+        monk = lambda a: M.m.A[a].get("p") == "Monk" and not M.m.roles[a].startswith("Monk ") and "WoC" not in M.m.roles[a]
+        dmg_own, monks_their = sum(1 for a in e["ids"][tm] if not monk(a)), sum(1 for a in e["ids"][foe] if monk(a))
+        kill_on = can_kill(dmg_own, monks_their)                          # R-457 in the main fight too (his marks, hdm v hook 4:12, 6:52: "2 damage v 2 monks again")
         kw = dict(source=src, numbers_side=side, call=c, numbers=x["scenario"]["parts"]["numbers"])
         if src == "wipe" or (src == "kills" and side == "up" and x["scenario"]["parts"].get("step", 0) <= -2 and x["scenario"]["parts"]["short_because"].get("kills", 0) >= 3):
             if side != "up": continue                                     # gap 4: after a wipe, or kills at their base
@@ -455,6 +462,8 @@ def numbers_plays(M, K, trig, recs, pinned_at):
             else:
                 out.append(_play(M, "numbers", "after a wipe", tm, t, res, [], scen, "Take pit NPCs before their base res", {"one of their pit NPCs dies before the res": K.npcs(foe, t, res, pit=True) > 0},
                                  beside=dict(bes(res), res_in=x["state"]["res_in"], pit_walk_s=round(need - AFTER_WIPE_MIN_S)), call2="time for NPCs", **kw))
+        elif src == "split elsewhere" and side == "up" and not kill_on:
+            out.append(_play(M, "numbers", "strong side", tm, t, end, [], scen + f"; {dmg_own} damage against {monks_their} monk{'s' if monks_their != 1 else ''}", "Keep them busy and lose nobody (a kill is not expected of it)", {"nobody of ours dies": dA(end) == 0}, beside=bes(end), ruled=False, **kw))
         elif src == "split elsewhere":                                    # gap 7: judge each group by its job
             if side == "up": out.append(_play(M, "numbers", "strong side", tm, t, end, [], scen, "Kill with the numbers while their players are away", {"more of theirs die than of ours": dB(end) > dA(end)}, beside=bes(end), **kw))
             else: out.append(_play(M, "numbers", "weak side", tm, t, end, [], scen, "No deaths, keep them busy, do not chase", {"nobody of ours dies": dA(end) == 0}, beside=bes(end), **kw))
@@ -521,16 +530,17 @@ def pinned_plays(M, K):
     for tm, a, b in pinned(M):
         t = a
         while t < b:                                                      # one play to each base res while it lasts
-            t1 = min(st.next_res(t), b + 4, T)
+            dead = sum(1 for x in st.players[tm] if not M.AL[x][min(t, T)])
+            t1 = min(st.next_res(t), b + 4, T) if dead else min(b + 4, T)      # with nobody dead there is no res to hold out for: one play for as long as it is held in (his mark, hdm v hook 12:00)
             if t1 - t >= 10:
                 s1 = M._main_step(tm, min(t1 + 10, T))[0]
                 alive = sum(M.AL[x][min(t1 + 10, T)] for x in st.players[tm])
                 hold = {"no pit NPC lost and nobody dies until the base res": K.npcs(tm, t, t1, pit=True) == 0 and K.died(tm, t, t1) == 0,
                         "it breaks out (half its living players or more, four at least, out of its base and pit)": out_of_base(tm, t, min(t1 + 10, T))}      # by any door: four or five out by the back door is a break-out (his mark, TFS v 옷옷옷옷 0:36)
                 out.append(_play(M, "pinned", "own", tm, t, t1, [], f"{M.m.tag[tm]} is held in its own base or pit by {M.m.tag[3 - tm]}'s main team ({st.pit_npcs(tm, t)} alive; base res in {round(st.next_res(t) - t)} s)",
-                                 "Hold the NPCs and lose nobody until the base res, or break out", {}, any_of=hold,
+                                 "Hold the NPCs and lose nobody until the base res, or break out" if dead else "Lose no player and no NPC while held in, or break out", {}, any_of=hold,
                                  beside={"deaths": [K.died(tm, t, t1), K.died(3 - tm, t, t1)], "pit_npcs_lost": K.npcs(tm, t, t1, pit=True), "pinned_s": b - a}))
-            t = st.next_res(t)
+            t = st.next_res(t) if dead else b
     return out
 
 

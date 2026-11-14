@@ -89,7 +89,7 @@ def situations(plays):
     G = collections.OrderedDict()
     for p in sorted(plays, key=lambda p: (p["t0"], p["t1"])):
         kind = {"flagger pushed": "push flagger"}.get(p["play"], p["play"])
-        k = (kind, p["t0"], p["t1"]) if kind in ("numbers", "lord", "push flagger") else (kind, p["t0"], p.get("size"), p.get("defenders")) if kind == "split" else (kind, p["t0"], p["team"])
+        k = (kind, p["t0"]) if kind == "numbers" else (kind, p["t0"], p["t1"]) if kind in ("lord", "push flagger") else (kind, p["t0"], p.get("size"), p.get("defenders")) if kind == "split" else (kind, p["t0"], p["team"])
         if kind == "split":                               # the attacker's and the defender's play of a phase can end a few seconds apart
             k = next((q for q in G if q[0] == "split" and q[2:] == k[2:] and abs(q[1] - k[1]) <= 2), k)
         G.setdefault(k, []).append(p)
