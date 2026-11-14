@@ -1,5 +1,5 @@
 {
- "about": "The review key (R-450). Every row Denning was shown of the engine's plays: what the engine said then (shown), his mark and his words (said), and checks: Claude's reading of his mark as things the plays must hold or must not hold, which he corrects. Scored by tools/golden/review.py on the branch after every change. Marks: right, partly, wrong, bad example (set aside), not marked. Set 1 is the 35 rows of 2026-11-13, picked one or more to a kind of play, so it is a regression test and not an accuracy figure; whole-game sets (R-454) give the accuracy by kind of play. `answered` holds a later answer of his on a row (what was asked, his words, Claude's reading).",
+ "about": "The review key (R-450). Every row Denning was shown of the engine's plays: what the engine said then (shown), his mark and his words (said), and checks: Claude's reading of his mark as things the plays must hold or must not hold, which he corrects. Scored by tools/golden/review.py on the branch after every change. Marks: right, partly, wrong, bad example (set aside), not marked. Set 1 is the 35 rows of 2026-11-13, picked one or more to a kind of play, so it is a regression test and not an accuracy figure; whole-game sets (R-454) give the accuracy by kind of play. `answered` holds a later answer of his on a row (what was asked, his words, Claude's reading). Set w1p1 is part 1 of the whole-game review (R-455), marked by him on the site on 2026-11-13 against engine af952c6: one row a situation with his mark and words, its calls under `calls` with theirs, and one `missed` row a game for what the engine did not read; checks are written as each fault is fixed.",
  "version": 1,
  "rows": [
   {
@@ -393,6 +393,12 @@
     "asked": "Does a defender still on the split when the game ends count, though under 12 s there?",
     "said": "Sure.",
     "reading": "R-459; the open check stays open until it is built."
+   },
+   "answered2": {
+    "on": "2026-11-13",
+    "asked": "Count a defender who is on a split player when that player dies, however briefly?",
+    "said": "Yes.",
+    "reading": "R-464; not built."
    }
   },
   {
@@ -525,11 +531,15 @@
      },
      "want": {
       "met": false
-     },
-     "open": true,
-     "why": "ohno v Fun 11:10: he said ohno's main team should have killed, as Fun had no monk at its main fight. By R-457 as he confirmed it (the job goes only to a side that meets its ratio while the other does not) nobody has the job: ohno's three damage face no monk and Fun's six damage face ohno's two monks, so both meet a ratio. For him to rule"
+     }
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-13",
+    "asked": "Both main teams meet a ratio at ohno v Fun 11:10 (three damage against no monk, six against two): the rule stands, a side facing no monk always has the job, or both have it?",
+    "said": "b.",
+    "reading": "R-462: a side facing no monk always has the job to kill."
+   }
   },
   {
    "id": "s1-19",
@@ -805,7 +815,13 @@
      "why": "OG v Dz 2:34: on the Greater stand area he redrew on Isle of Meditation on 2026-11-13 the engine reads no split here at all (the players stand inside the area, so they are not on the enemy's ground). He had called the fight too messy to be a 3 v 3. For him to say whether no split is the right reading"
     }
    ],
-   "note": "'Too messy to call a 3 v 3' is not something the key can hold; the checks cover R-443 only (footmen and archers count for the attacker, pit NPCs only for the defence)."
+   "note": "'Too messy to call a 3 v 3' is not something the key can hold; the checks cover R-443 only (footmen and archers count for the attacker, pit NPCs only for the defence).",
+   "answered": {
+    "on": "2026-11-13",
+    "asked": "On his redrawn Greater stand area no split is read at OG v Dz 2:34: right?",
+    "said": "I need link.",
+    "reading": "Waiting on him; the replay link was sent."
+   }
   },
   {
    "id": "s1-25",
@@ -929,6 +945,12 @@
     "asked": "His approval of this row as a collapse, or R-441 (the defence must become one more than the split)?",
     "said": "Go with option a.",
     "reading": "R-441 stands: a join that makes it even, not a collapse."
+   },
+   "answered2": {
+    "on": "2026-11-13",
+    "asked": "By reach it is three against two for 10 s, then one against two: what does he see?",
+    "said": "I need the link to review.",
+    "reading": "Waiting on him; the replay link was sent."
    }
   },
   {
@@ -1124,6 +1146,12 @@
     "asked": "The 12 s rule for the numbers of the main fight: from his arrival, or from the 12 s mark?",
     "said": "From arrival.",
     "reading": "R-459; the open check stays open until it is built."
+   },
+   "answered2": {
+    "on": "2026-11-13",
+    "asked": "Should joining and leaving a fight be read from movement, not reach alone?",
+    "said": "Yes.",
+    "reading": "R-464; not built."
    }
   },
   {
@@ -1260,6 +1288,2359 @@
      }
     }
    ]
+  },
+  {
+   "id": "w1p1-bdaa-1",
+   "set": "w1p1",
+   "row": 1,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    16,
+    64
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (6 v 7, the greater stand area), from kills; TFS: split (split by the back door) | 옷옷옷옷: push in",
+   "mark": "partly",
+   "said": "This is a 7v5 at 0:43 once mesmer 3 leaves.",
+   "calls": [
+    {
+     "play": "bdaa145f-numbers-1-16-0",
+     "shown": "TFS (down) [split]: Trade a player down: take something on their ground for it. Not met (no: one of their NPCs dies; no: more of theirs die than of ours)",
+     "mark": "right"
+    },
+    {
+     "play": "bdaa145f-numbers-2-16-1",
+     "shown": "옷옷옷옷 (up) [push in]: Take ground and NPCs with the numbers. Met (yes: no more of ours die than of theirs; yes: one of their NPCs dies; yes: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-2",
+   "set": "w1p1",
+   "row": 2,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    27,
+    188
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (TFS's Prot); 옷옷옷옷: single run",
+   "mark": "wrong",
+   "said": "Run should start from 1:20 on 7 monk.",
+   "calls": [
+    {
+     "play": "bdaa145f-flag-2-27-2",
+     "shown": "옷옷옷옷 [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (yes: our flag is capped; yes: no more of ours die than of theirs; yes: no worse than half a flag behind at the end)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-3",
+   "set": "w1p1",
+   "row": 3,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    36,
+    76
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "TFS is held in its own base or pit by 옷옷옷옷's main team (K2 A2 B1 alive; base res in 84 s)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "bdaa145f-pinned-1-36-3",
+     "shown": "TFS: Hold the NPCs and lose nobody until the base res, or break out. Not met (no: no pit NPC lost and nobody dies until the base res; no: it breaks out (five or more, out of its base))",
+     "mark": "wrong",
+     "said": "It does break out. 5 or more is too harsh of a target when they have 4-5 out of back door already."
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-4",
+   "set": "w1p1",
+   "row": 4,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    58,
+    78
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Up on numbers in the main fight (6 v 4, TFS's front door), from players split elsewhere; 옷옷옷옷: stay (stay at the stand)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "bdaa145f-numbers-2-58-4",
+     "shown": "옷옷옷옷 (strong side) [stay]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-5",
+   "set": "w1p1",
+   "row": 5,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    68,
+    92
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "TFS's split by the back door: two players (Ritualist, AoB Derv) against 0 defending",
+   "mark": "wrong",
+   "said": "This is 2 players joining a 2 player split, which is already defended by 2, and the defense is a full team collapse. You are right that the first split should be separate (and was successful) but this join was unsuccessful.",
+   "calls": [
+    {
+     "play": "bdaa145f-split-1-68-5",
+     "shown": "TFS (attacker) [undefended]: Take NPCs. Met (yes: an NPC taken)",
+     "mark": "right"
+    },
+    {
+     "play": "bdaa145f-split-2-68-6",
+     "shown": "옷옷옷옷 (defender) [no answer]: Win elsewhere before the split costs more than it gains. Not met (no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "wrong"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-6",
+   "set": "w1p1",
+   "row": 6,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    90,
+    124
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "TFS's split by the back door: 4 players (Mes/A, AoB Derv, 8 Monk, Ritualist) against 6 defending (7 Monk (WoC), Mesmer, Monk 3 (WoC), Monk 4 (WoC), Monk 5 (WoC), Prot (WoC)); 7 Monk (WoC), Mesmer, Monk 3 (WoC), Monk 4 (WoC), Monk 5 (WoC), Prot (WoC) collapse from the main fight; 6 (7 Monk (WoC), Mesmer, Monk 3 (WoC), Monk 4 (WoC), Monk 5 (WoC), Prot (WoC)) against 4 players: collapse by 7 Monk (WoC), Mesmer, Monk 3 (WoC), Monk 4 (WoC), Monk 5 (WoC), Prot (WoC) from the main fight",
+   "mark": "wrong",
+   "said": "at 1:39, there is all 8 defending, this is a full collapse.",
+   "calls": [
+    {
+     "play": "bdaa145f-split-1-90-7",
+     "shown": "TFS (attacker) [collapsed on]: Survive and gain an advantage elsewhere on the map. Not met (no: nobody on the split dies; no: more of theirs die away from the split than of ours; yes: flag lead better by 0.35 or more)",
+     "mark": "right"
+    },
+    {
+     "play": "bdaa145f-split-2-90-8",
+     "shown": "옷옷옷옷 (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Met (yes: a split player dies during the collapse)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-7",
+   "set": "w1p1",
+   "row": 7,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    100,
+    203
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (옷옷옷옷's 8 Monk); TFS: a flag already in hand",
+   "mark": "wrong",
+   "said": "TFS did not have flag in hand.",
+   "calls": [
+    {
+     "play": "bdaa145f-flag-1-100-9",
+     "shown": "TFS [a flag already in hand]: Answer their cap at once, or cap just before their boost. Not met (no: their flag does not get in; no: our cap follows theirs within 15 s; no: our cap lands just before their boost)",
+     "mark": "wrong",
+     "said": "This is only possible when flag is within close proximity to flag stand."
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-8",
+   "set": "w1p1",
+   "row": 8,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    107,
+    142
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "옷옷옷옷's boost is 30 s away; TFS: one runner; the rest stay at the stand",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "bdaa145f-boost-1-107-10",
+     "shown": "TFS [run]: Deny their boost. Met (yes: their boost does not land)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-9",
+   "set": "w1p1",
+   "row": 9,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    129,
+    309
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (TFS's Ritualist); 옷옷옷옷: single run",
+   "mark": "wrong",
+   "said": "Read is okay, but single run ends at 2:54 when they cap the fire ball thing.",
+   "calls": [
+    {
+     "play": "bdaa145f-flag-2-129-11",
+     "shown": "옷옷옷옷 [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (yes: our flag is capped; yes: no more of ours die than of theirs; yes: no worse than half a flag behind at the end)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-10",
+   "set": "w1p1",
+   "row": 10,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    206,
+    329
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (옷옷옷옷's 7 Monk (WoC)); TFS: single run",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "bdaa145f-flag-1-206-12",
+     "shown": "TFS [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (no: our flag is capped; no: no more of ours die than of theirs; yes: no worse than half a flag behind at the end)",
+     "mark": "wrong",
+     "said": "What do you mean by our flag is capped? TFS was successful on this single run."
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-11",
+   "set": "w1p1",
+   "row": 11,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    220,
+    270
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "옷옷옷옷 has 6 in TFS's base at the base res (1 defending, 4 coming back): 6 stay",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "bdaa145f-base_res-2-220-13",
+     "shown": "옷옷옷옷 [stayed through the res]: Be out, or set for the fight, when they res. Met (yes: nobody of ours dies in the 30 s after the res)",
+     "mark": "wrong",
+     "said": "They didn't stay through, they were out of base by 4:08."
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-12",
+   "set": "w1p1",
+   "row": 12,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    242,
+    329
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They double run (TFS's Mes/A); 옷옷옷옷: single run",
+   "mark": "wrong",
+   "said": "this is a single run",
+   "calls": [
+    {
+     "play": "bdaa145f-flag-2-242-14",
+     "shown": "옷옷옷옷 [single run]: Kill or take ground with the extra player, and end no worse than a flag behind. Met (yes: no worse than a flag behind at the end; yes: more of theirs die than of ours; no: ground taken; no: one of their NPCs dies)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-13",
+   "set": "w1p1",
+   "row": 13,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    246,
+    290
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "TFS's split by the back door: three players (AoB Derv, Ritualist, 8 Monk) against 2 defending (7 Monk (WoC), 8 Monk); 2 damage against 2 monks",
+   "mark": "wrong",
+   "said": "this is 2 damage against 1 monk, we are only counting backline monks.",
+   "calls": [
+    {
+     "play": "bdaa145f-split-1-246-15",
+     "shown": "TFS (attacker) [held by monks]: Hold the monks there and lose nobody; NPCs are a bonus (a kill is not expected of it). Not met (no: nobody on the split dies)",
+     "mark": "right"
+    },
+    {
+     "play": "bdaa145f-split-2-246-16",
+     "shown": "옷옷옷옷 (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)",
+     "mark": "right"
+    },
+    {
+     "play": "bdaa145f-split-2-246-17",
+     "shown": "옷옷옷옷 (defender's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)",
+     "mark": "wrong",
+     "said": "they kill at 4:45 away from split with a collapse."
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-14",
+   "set": "w1p1",
+   "row": 14,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    272,
+    292
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (1 v 7, the field on 옷옷옷옷's side), from players split elsewhere; TFS: stay (stay on their side) | 옷옷옷옷: stay (stay on their side)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "bdaa145f-numbers-1-272-18",
+     "shown": "TFS (weak side) [stay]: No deaths, keep them busy, do not chase. Not met (no: nobody of ours dies)",
+     "mark": "right"
+    },
+    {
+     "play": "bdaa145f-numbers-2-272-19",
+     "shown": "옷옷옷옷 (strong side) [stay]: Kill with the numbers while their players are away. Met (yes: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-15",
+   "set": "w1p1",
+   "row": 15,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    278,
+    313
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "옷옷옷옷's boost is 30 s away; TFS: one runner; the rest fall to footmen",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "bdaa145f-boost-1-278-20",
+     "shown": "TFS [run]: Deny their boost. Met (yes: their boost does not land)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-16",
+   "set": "w1p1",
+   "row": 16,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    328,
+    348
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (1 v 7, TFS's front door), from kills; TFS: retreat down the ladder (retreat to the pit)",
+   "mark": "wrong",
+   "said": "3v7 not 1v7",
+   "calls": [
+    {
+     "play": "bdaa145f-numbers-1-328-21",
+     "shown": "TFS (down) [retreat down the ladder]: Reach cover a player down without losing another. Not met (no: nobody of ours dies; yes: no NPC lost)",
+     "mark": "wrong",
+     "said": "2 die."
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-17",
+   "set": "w1p1",
+   "row": 17,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    328,
+    390
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Up on numbers in the main fight (7 v 1, TFS's front door), from kills; 옷옷옷옷: push up (push up to their base); their base res is 32 s away and their pit about 19 s",
+   "mark": "wrong",
+   "said": "1v7 starts at 5:48 when 2nd player dies on TFS.",
+   "calls": [
+    {
+     "play": "bdaa145f-numbers-2-328-22",
+     "shown": "옷옷옷옷 (after a wipe) [push up]: Too late for NPCs: be out, or set for the fight, when they res. Met (yes: nobody of ours dies in the 30 s after the res)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-18",
+   "set": "w1p1",
+   "row": 18,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    332,
+    360
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "TFS is held in its own base or pit by 옷옷옷옷's main team (K2 A2 B1 alive; base res in 28 s)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "bdaa145f-pinned-1-332-23",
+     "shown": "TFS: Hold the NPCs and lose nobody until the base res, or break out. Not met (no: no pit NPC lost and nobody dies until the base res; no: it breaks out (five or more, out of its base))",
+     "mark": "right",
+     "said": "Just check to make sure you saw archer death at 5:57 in pit"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-19",
+   "set": "w1p1",
+   "row": 19,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    340,
+    390
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "옷옷옷옷 has 7 in TFS's base at the base res (1 defending, 6 coming back): 7 stay",
+   "mark": "wrong",
+   "said": "What do you mean by 1 defending, 6 coming back? only 5 players will base res.",
+   "calls": [
+    {
+     "play": "bdaa145f-base_res-2-340-24",
+     "shown": "옷옷옷옷 [stayed through the res]: Be out, or set for the fight, when they res. Met (yes: nobody of ours dies in the 30 s after the res)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-20",
+   "set": "w1p1",
+   "row": 20,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    342,
+    390
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Up on numbers in the main fight (7 v 2, TFS's front door), from a wipe; 옷옷옷옷: push up (push up to their base); their base res is 18 s away and their pit about 8 s",
+   "mark": "right",
+   "said": "Right, but this is a repeat.",
+   "calls": [
+    {
+     "play": "bdaa145f-numbers-2-342-25",
+     "shown": "옷옷옷옷 (after a wipe) [push up]: Too late for NPCs: be out, or set for the fight, when they res. Met (yes: nobody of ours dies in the 30 s after the res)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-21",
+   "set": "w1p1",
+   "row": 21,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    368,
+    436
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "TFS is held in its own base or pit by 옷옷옷옷's main team (K2 A0 B1 alive; base res in 112 s)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "bdaa145f-pinned-1-368-26",
+     "shown": "TFS: Hold the NPCs and lose nobody until the base res, or break out. Not met (no: no pit NPC lost and nobody dies until the base res; no: it breaks out (five or more, out of its base))",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-22",
+   "set": "w1p1",
+   "row": 22,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    380,
+    408
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "TFS's split by the back door: one player (Ritualist) against 1 defending (8 Monk); 1 (8 Monk) against one player: the lone defender carries his flag for 12 s",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "bdaa145f-split-1-380-28",
+     "shown": "TFS (attacker) [1 v 1, defended by a monk]: Hold the monk there; the main team's job is to kill. Met (yes: the split player survives)",
+     "mark": "right"
+    },
+    {
+     "play": "bdaa145f-split-2-380-30",
+     "shown": "옷옷옷옷 (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (yes: no pit NPC lost; yes: no more defenders die than split players)",
+     "mark": "right"
+    },
+    {
+     "play": "bdaa145f-split-2-380-32",
+     "shown": "옷옷옷옷 (defender) [part-run]: Gain a slight flag advantage while losing no pit NPC and not dying. Not met (yes: no pit NPC lost; no: flag lead better by 0.15 or more; yes: the defender does not die)",
+     "mark": "right"
+    },
+    {
+     "play": "bdaa145f-split-2-380-31",
+     "shown": "옷옷옷옷 (defender's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Met (yes: more of theirs die away from the split than of ours)",
+     "mark": "partly",
+     "said": "What can TPS not kill? If it's because mesmer is dead you are correct."
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-23",
+   "set": "w1p1",
+   "row": 23,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    380,
+    511
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "TFS pushes 옷옷옷옷's flagger (8 Monk, at the spawn) with one player",
+   "mark": "wrong",
+   "said": "this is a split with 8 monk defending and part running, not a flag push.",
+   "calls": [
+    {
+     "play": "bdaa145f-push_flagger-1-380-27",
+     "shown": "TFS: Stop their flag, or make it 30% late. Met (no: their flag is stopped; yes: it arrives 30% or more later than usual)",
+     "mark": "right"
+    },
+    {
+     "play": "bdaa145f-flagger_pushed-2-380-29",
+     "shown": "옷옷옷옷: Get the flag in on time. Not met (no: the flag gets in, less than 30% late)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-24",
+   "set": "w1p1",
+   "row": 24,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    382,
+    450
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Up on numbers in the main fight (7 v 5, TFS's pit), from players split elsewhere; 옷옷옷옷: push up (push up to their base)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "bdaa145f-numbers-2-382-33",
+     "shown": "옷옷옷옷 (strong side) [push up]: Kill with the numbers while their players are away. Met (yes: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-25",
+   "set": "w1p1",
+   "row": 25,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    406,
+    430
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "TFS's split by the back door: two players (Ritualist, AoB Derv) against 1 defending (8 Monk)",
+   "mark": "wrong",
+   "said": "7 is also defending when derv gets there",
+   "calls": [
+    {
+     "play": "bdaa145f-split-1-406-34",
+     "shown": "TFS (attacker) [a player or more up]: Kill or take NPCs. Not met (no: a defender killed; no: an NPC taken)",
+     "mark": "right"
+    },
+    {
+     "play": "bdaa145f-split-2-406-35",
+     "shown": "옷옷옷옷 (defender) [one defender]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-26",
+   "set": "w1p1",
+   "row": 26,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    428,
+    442
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "TFS's split by the back door: one player (Ritualist) against 2 defending (7 Monk (WoC), 8 Monk); 7 Monk (WoC) collapse from the main fight; 2 (7 Monk (WoC), 8 Monk) against one player: collapse by 7 Monk (WoC) from the main fight",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "bdaa145f-split-1-428-36",
+     "shown": "TFS (attacker) [collapsed on]: Survive and gain an advantage elsewhere on the map. Not met (no: nobody on the split dies; no: more of theirs die away from the split than of ours; yes: flag lead better by 0.35 or more)",
+     "mark": "right"
+    },
+    {
+     "play": "bdaa145f-split-2-428-37",
+     "shown": "옷옷옷옷 (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Met (yes: a split player dies during the collapse)",
+     "mark": "partly",
+     "said": "who dies?"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-27",
+   "set": "w1p1",
+   "row": 27,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    431,
+    511
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (TFS's Prot); 옷옷옷옷: single run",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "bdaa145f-flag-2-431-38",
+     "shown": "옷옷옷옷 [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (yes: our flag is capped; yes: no more of ours die than of theirs; no: no worse than half a flag behind at the end)",
+     "mark": "right",
+     "said": "very good read!"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-28",
+   "set": "w1p1",
+   "row": 28,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    440,
+    488
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "TFS's split by the back door: one player (Ritualist) against 1 defending (7 Monk (WoC))",
+   "mark": "partly",
+   "said": "the get's collapsed at 8:02",
+   "calls": [
+    {
+     "play": "bdaa145f-split-1-440-39",
+     "shown": "TFS (attacker) [1 v 1, defended by a monk]: Hold the monk there; the main team's job is to kill. Not met (no: the split player survives)",
+     "mark": "right"
+    },
+    {
+     "play": "bdaa145f-split-2-440-40",
+     "shown": "옷옷옷옷 (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (yes: no pit NPC lost; yes: no more defenders die than split players)",
+     "mark": "right"
+    },
+    {
+     "play": "bdaa145f-split-2-440-41",
+     "shown": "옷옷옷옷 (defender's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-29",
+   "set": "w1p1",
+   "row": 29,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    468,
+    494
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (1 v 6, 옷옷옷옷's back door), from players split elsewhere; TFS: retreat down the ladder (retreat to the pit) | 옷옷옷옷: push up (go out by the front door)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "bdaa145f-numbers-1-468-42",
+     "shown": "TFS (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Not met (no: nobody of ours dies)",
+     "mark": "right"
+    },
+    {
+     "play": "bdaa145f-numbers-2-468-43",
+     "shown": "옷옷옷옷 (strong side) [push up]: Kill with the numbers while their players are away. Met (yes: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-30",
+   "set": "w1p1",
+   "row": 30,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    516,
+    548
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "TFS is held in its own base or pit by 옷옷옷옷's main team (K1 A0 B1 alive; base res in 84 s)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "bdaa145f-pinned-1-516-44",
+     "shown": "TFS: Hold the NPCs and lose nobody until the base res, or break out. Not met (no: no pit NPC lost and nobody dies until the base res; no: it breaks out (five or more, out of its base))",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-31",
+   "set": "w1p1",
+   "row": 31,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    520,
+    544
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Up on numbers in the main fight (6 v 3, TFS's front door), from players split elsewhere; 옷옷옷옷: push their flagger",
+   "mark": "wrong",
+   "said": "4v6",
+   "calls": [
+    {
+     "play": "bdaa145f-numbers-2-520-45",
+     "shown": "옷옷옷옷 (strong side) [push their flagger]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)",
+     "mark": "wrong",
+     "said": "they kill flagger at 9:08, that is definitely part of the sam play"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-32",
+   "set": "w1p1",
+   "row": 32,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    542,
+    558
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "옷옷옷옷 pushes TFS's flagger (AoB Derv, carrying) with its main team",
+   "mark": "right",
+   "said": "this is a great read, but it's repeated elsewhere",
+   "calls": [
+    {
+     "play": "bdaa145f-push_flagger-2-542-47",
+     "shown": "옷옷옷옷: Stop their flag, or make it 30% late. Met (yes: their flag is stopped; no: it arrives 30% or more later than usual)",
+     "mark": "right"
+    },
+    {
+     "play": "bdaa145f-flagger_pushed-1-542-46",
+     "shown": "TFS: Get the flag in on time. Not met (no: the flag gets in, less than 30% late)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-33",
+   "set": "w1p1",
+   "row": 33,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    544,
+    550
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "옷옷옷옷 pushes TFS's flagger (Mes/A, going back) with its main team",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "bdaa145f-push_flagger-2-544-49",
+     "shown": "옷옷옷옷: Stop their flag, or make it 30% late. Met (yes: their flag is stopped; no: it arrives 30% or more later than usual)",
+     "mark": "right"
+    },
+    {
+     "play": "bdaa145f-flagger_pushed-1-544-48",
+     "shown": "TFS: Get the flag in on time. Not met (no: the flag gets in, less than 30% late)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-34",
+   "set": "w1p1",
+   "row": 34,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    552,
+    592
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "TFS's split by the door: two players (8 Monk, Warrior) against 1 defending (7 Monk (WoC)); 1 damage against 1 monks",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "bdaa145f-split-1-552-50",
+     "shown": "TFS (attacker) [held by monks]: Hold the monks there and lose nobody; NPCs are a bonus (a kill is not expected of it). Not met (no: nobody on the split dies)",
+     "mark": "right"
+    },
+    {
+     "play": "bdaa145f-split-2-552-51",
+     "shown": "옷옷옷옷 (defender) [one defender]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)",
+     "mark": "right"
+    },
+    {
+     "play": "bdaa145f-split-2-552-52",
+     "shown": "옷옷옷옷 (defender's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)",
+     "mark": "partly",
+     "said": "mainteam full collapses at 9:20 at gets the kill at 9:52ish"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-35",
+   "set": "w1p1",
+   "row": 35,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    558,
+    686
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (TFS's Stand Mes); 옷옷옷옷: single run",
+   "mark": "wrong",
+   "said": "single run should start at 11:01 at it's with a rit not stand mes.",
+   "calls": [
+    {
+     "play": "bdaa145f-flag-2-558-53",
+     "shown": "옷옷옷옷 [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (no: our flag is capped; yes: no more of ours die than of theirs; yes: no worse than half a flag behind at the end)",
+     "mark": "wrong",
+     "said": "flag is capped though..... 옷옷옷옷 stops their single run at 10:41 to try to kill main"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-36",
+   "set": "w1p1",
+   "row": 36,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    601,
+    636
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "옷옷옷옷's boost is 30 s away; TFS: one runner; the rest stay on their side",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "bdaa145f-boost-1-601-54",
+     "shown": "TFS [run]: Deny their boost. Not met (no: their boost does not land)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-37",
+   "set": "w1p1",
+   "row": 37,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    613,
+    654
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (옷옷옷옷's 8 Monk); TFS: a flag already in hand",
+   "mark": "wrong",
+   "said": "see above re single run",
+   "calls": [
+    {
+     "play": "bdaa145f-flag-1-613-55",
+     "shown": "TFS [a flag already in hand]: Answer their cap at once, or cap just before their boost. Met (yes: their flag does not get in; no: our cap follows theirs within 15 s; no: our cap lands just before their boost)",
+     "mark": "wrong",
+     "said": "see above re must be within range of flag stand"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-38",
+   "set": "w1p1",
+   "row": 38,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    650,
+    758
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (7 v 8, the greater stand area), from players split elsewhere; TFS: stay (stay at the stand) | 옷옷옷옷: stay (stay at the stand)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "bdaa145f-numbers-1-650-56",
+     "shown": "TFS (weak side) [stay]: No deaths, keep them busy, do not chase. Not met (no: nobody of ours dies)",
+     "mark": "right"
+    },
+    {
+     "play": "bdaa145f-numbers-2-650-57",
+     "shown": "옷옷옷옷 (strong side) [stay]: Kill with the numbers while their players are away. Met (yes: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-39",
+   "set": "w1p1",
+   "row": 39,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    700,
+    750
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "옷옷옷옷 has 7 in TFS's base at the base res (2 defending, 2 coming back): 7 stay",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "bdaa145f-base_res-2-700-58",
+     "shown": "옷옷옷옷 [stayed through the res]: Be out, or set for the fight, when they res. Met (yes: nobody of ours dies in the 30 s after the res)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-40",
+   "set": "w1p1",
+   "row": 40,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    721,
+    761
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "옷옷옷옷's boost is 30 s away; TFS: no runner; the rest nobody",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "bdaa145f-boost-1-721-59",
+     "shown": "TFS [concede]: Concede the boost for kills. Not met (no: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-bdaa-missed",
+   "set": "w1p1",
+   "row": 0,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "match": "TFS v 옷옷옷옷, Meditation",
+   "window": [
+    0,
+    0
+   ],
+   "type": "missed",
+   "call": "",
+   "shown": "(what the engine did not read in this game)",
+   "mark": "missed",
+   "said": "Missed full collapse at 1:16; again at 4:15ish; again at 9:30;",
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-1",
+   "set": "w1p1",
+   "row": 1,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    5,
+    38
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (Men's Mes/A); Apes: single run",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "149fbdc6-flag-2-5-0",
+     "shown": "Apes [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (yes: our flag is capped; yes: no more of ours die than of theirs; yes: no worse than half a flag behind at the end)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-2",
+   "set": "w1p1",
+   "row": 2,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    6,
+    38
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (Apes's Dervish); Men: single run",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "149fbdc6-flag-1-6-1",
+     "shown": "Men [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (yes: our flag is capped; yes: no more of ours die than of theirs; yes: no worse than half a flag behind at the end)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-3",
+   "set": "w1p1",
+   "row": 3,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    42,
+    84
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (Apes's Dervish); Men: stay",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "149fbdc6-flag-1-42-2",
+     "shown": "Men [stay]: Kill with the extra player while their runner is away. Not met (no: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-4",
+   "set": "w1p1",
+   "row": 4,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    54,
+    130
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (3 v 4, the flag stand), from players split elsewhere; Men: retreat down the ladder (fall back into the base) | Apes: stay (stay at the stand)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "149fbdc6-numbers-1-54-3",
+     "shown": "Men (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)",
+     "mark": "right"
+    },
+    {
+     "play": "149fbdc6-numbers-2-54-4",
+     "shown": "Apes (strong side) [stay]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-5",
+   "set": "w1p1",
+   "row": 5,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    62,
+    76
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Apes's split by the back door: three players (Warrior, Necromancer, Ritualist) against 1 defending (AoB Derv)",
+   "mark": "wrong",
+   "said": "this should be the same split as 1:14 split.",
+   "calls": [
+    {
+     "play": "149fbdc6-split-2-62-6",
+     "shown": "Apes (attacker) [a player or more up]: Kill or take NPCs. Not met (no: a defender killed; no: an NPC taken)",
+     "mark": "right"
+    },
+    {
+     "play": "149fbdc6-split-1-62-5",
+     "shown": "Men (defender) [one defender]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)",
+     "mark": "wrong",
+     "said": "it's 4 defendeers"
+    },
+    {
+     "play": "149fbdc6-split-2-62-7",
+     "shown": "Apes (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-6",
+   "set": "w1p1",
+   "row": 6,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    74,
+    114
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Apes's split by the back door: 4 players (Warrior, Necromancer, Ritualist, 8 Monk) against 4 defending (AoB Derv, Mes/A, Prot, 8 Monk); 3 damage against 2 monks",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "149fbdc6-split-2-74-9",
+     "shown": "Apes (attacker) [held by monks]: Hold the monks there and lose nobody; NPCs are a bonus (a kill is not expected of it). Met (yes: nobody on the split dies)",
+     "mark": "right"
+    },
+    {
+     "play": "149fbdc6-split-1-74-8",
+     "shown": "Men (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (yes: no pit NPC lost; yes: no more defenders die than split players)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-7",
+   "set": "w1p1",
+   "row": 7,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    77,
+    105
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They double run (Men's Hammer); Apes: stay",
+   "mark": "wrong",
+   "said": "this is a single run.",
+   "calls": [
+    {
+     "play": "149fbdc6-flag-2-77-10",
+     "shown": "Apes [stay]: Kill with the two extra players before their flag is in. Not met (no: more of theirs die than of ours)",
+     "mark": "partly",
+     "said": "unknown"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-8",
+   "set": "w1p1",
+   "row": 8,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    82,
+    114
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Men's split by the back door: one player (Ranger) against 0 defending",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "149fbdc6-split-1-82-11",
+     "shown": "Men (attacker) [undefended]: Take NPCs. Met (yes: an NPC taken)",
+     "mark": "right"
+    },
+    {
+     "play": "149fbdc6-split-2-82-12",
+     "shown": "Apes (defender) [no answer]: Win elsewhere before the split costs more than it gains. Not met (no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-9",
+   "set": "w1p1",
+   "row": 9,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    112,
+    128
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Men's split by the back door: three players (Ranger, 7 Monk, Stand Mes) against 4 defending (Dervish, Mesmer, Prot, 7 Monk); Dervish, Mesmer, Prot, 7 Monk collapse from the main fight; 4 (Dervish, Mesmer, Prot, 7 Monk) against three players: collapse by Dervish, Mesmer, Prot, 7 Monk from the main fight",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "149fbdc6-split-1-112-13",
+     "shown": "Men (attacker) [collapsed on]: Survive and gain an advantage elsewhere on the map. Met (yes: nobody on the split dies; yes: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "right"
+    },
+    {
+     "play": "149fbdc6-split-2-112-15",
+     "shown": "Apes (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Not met (no: a split player dies during the collapse)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-10",
+   "set": "w1p1",
+   "row": 10,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    112,
+    128
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Apes's split by the back door: 4 players (Necromancer, Ritualist, Warrior, 8 Monk) against 5 defending (Hammer, Mes/A, 8 Monk, Prot, AoB Derv); Hammer collapse from the main fight; 5 (Hammer, Mes/A, 8 Monk, Prot, AoB Derv) against 4 players: collapse by Hammer from the main fight",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "149fbdc6-split-2-112-16",
+     "shown": "Apes (attacker) [collapsed on]: Survive and gain an advantage elsewhere on the map. Not met (no: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "right"
+    },
+    {
+     "play": "149fbdc6-split-1-112-14",
+     "shown": "Men (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Met (yes: a split player dies during the collapse)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-11",
+   "set": "w1p1",
+   "row": 11,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    126,
+    152
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Men's split by the back door: two players (Ranger, 7 Monk) against 3 defending (Dervish, Mesmer, 7 Monk)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "149fbdc6-split-1-126-17",
+     "shown": "Men (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Met (yes: nobody on the split dies; yes: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "right"
+    },
+    {
+     "play": "149fbdc6-split-2-126-19",
+     "shown": "Apes (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Not met (no: no pit NPC lost; no: a split player dies; no: the split is gone within the visit)",
+     "mark": "right"
+    },
+    {
+     "play": "149fbdc6-split-1-126-18",
+     "shown": "Men (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Met (yes: more of theirs die away from the split than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-12",
+   "set": "w1p1",
+   "row": 12,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    130,
+    154
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Up on numbers in the main fight (4 v 2, the greater stand area), from players split elsewhere; Men: push in | Apes: stay (stay at the stand)",
+   "mark": "wrong",
+   "said": "5v3",
+   "calls": [
+    {
+     "play": "149fbdc6-numbers-1-130-20",
+     "shown": "Men (strong side) [push in]: Kill with the numbers while their players are away. Met (yes: more of theirs die than of ours)",
+     "mark": "right"
+    },
+    {
+     "play": "149fbdc6-numbers-2-130-21",
+     "shown": "Apes (weak side) [stay]: No deaths, keep them busy, do not chase. Not met (no: nobody of ours dies)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-13",
+   "set": "w1p1",
+   "row": 13,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    150,
+    178
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Men's split by the back door: two players (Ranger, Stand Mes) against 4 defending (Dervish, Mesmer, Prot, 7 Monk)",
+   "mark": "wrong",
+   "said": "only 3 defending at this time, prot comes at 2:57",
+   "calls": [
+    {
+     "play": "149fbdc6-split-1-150-23",
+     "shown": "Men (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Not met (no: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "right"
+    },
+    {
+     "play": "149fbdc6-split-2-150-26",
+     "shown": "Apes (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Met (yes: no pit NPC lost; yes: a split player dies; no: the split is gone within the visit)",
+     "mark": "right"
+    },
+    {
+     "play": "149fbdc6-split-1-150-24",
+     "shown": "Men (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-14",
+   "set": "w1p1",
+   "row": 14,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    150,
+    236
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Up on numbers in the main fight (3 v 2, the field on Apes's side), from kills; Men: push up (push up to their front door) | Apes: retreat down the ladder (fall back into the base)",
+   "mark": "wrong",
+   "said": "I don't see this",
+   "calls": [
+    {
+     "play": "149fbdc6-numbers-1-150-22",
+     "shown": "Men (up) [push up]: Take ground and NPCs with the numbers. Not met (no: no more of ours die than of theirs; yes: one of their NPCs dies; no: more of theirs die than of ours)",
+     "mark": "partly",
+     "said": "unknown"
+    },
+    {
+     "play": "149fbdc6-numbers-2-150-25",
+     "shown": "Apes (down) [retreat down the ladder]: Reach cover a player down without losing another. Not met (yes: nobody of ours dies; no: no NPC lost)",
+     "mark": "partly",
+     "said": "unknown"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-15",
+   "set": "w1p1",
+   "row": 15,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    176,
+    192
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Men's split by the back door: two players (Ranger, Stand Mes) against 5 defending (Dervish, Ritualist, Mesmer, Prot, 7 Monk)",
+   "mark": "wrong",
+   "said": "this siplit ends a while ago, no idea what you're talking about",
+   "calls": [
+    {
+     "play": "149fbdc6-split-1-176-27",
+     "shown": "Men (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Not met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "right"
+    },
+    {
+     "play": "149fbdc6-split-2-176-29",
+     "shown": "Apes (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Not met (no: no pit NPC lost; no: a split player dies; no: the split is gone within the visit)",
+     "mark": "right"
+    },
+    {
+     "play": "149fbdc6-split-1-176-28",
+     "shown": "Men (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)",
+     "mark": "wrong",
+     "said": "mainteam does kill I"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-16",
+   "set": "w1p1",
+   "row": 16,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    180,
+    240
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "Apes is held in its own base or pit by Men's main team (K0 A1 B0 alive; base res in 60 s)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "149fbdc6-pinned-2-180-30",
+     "shown": "Apes: Hold the NPCs and lose nobody until the base res, or break out. Not met (no: no pit NPC lost and nobody dies until the base res; no: it breaks out (five or more, out of its base))",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-17",
+   "set": "w1p1",
+   "row": 17,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    190,
+    242
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Men's split by the back door: two players (Ranger, Stand Mes) against 4 defending (Ritualist, Mesmer, Prot, 7 Monk)",
+   "mark": "wrong",
+   "said": "not a split",
+   "calls": [
+    {
+     "play": "149fbdc6-split-1-190-31",
+     "shown": "Men (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Not met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "partly",
+     "said": "unknown"
+    },
+    {
+     "play": "149fbdc6-split-2-190-33",
+     "shown": "Apes (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Not met (yes: no pit NPC lost; no: a split player dies; no: the split is gone within the visit)",
+     "mark": "partly",
+     "said": "unknown"
+    },
+    {
+     "play": "149fbdc6-split-1-190-32",
+     "shown": "Men (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)",
+     "mark": "partly",
+     "said": "unknown"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-18",
+   "set": "w1p1",
+   "row": 18,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    240,
+    266
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (6 v 7, Apes's pit), from players split elsewhere; Men: stay (stay on the enemy's side)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "149fbdc6-numbers-1-240-34",
+     "shown": "Men (weak side) [stay]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-19",
+   "set": "w1p1",
+   "row": 19,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    240,
+    270
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Men's split by the back door: two players (Ranger, Stand Mes) against 7 defending (Warrior, Necromancer, Ritualist, Mesmer, Prot, 7 Monk, Dervish); the whole team turns on it; 7 (Warrior, Necromancer, Ritualist, Mesmer, Prot, 7 Monk, Dervish) against two players: full collapse",
+   "mark": "wrong",
+   "said": "this split keeps coming up",
+   "calls": [
+    {
+     "play": "149fbdc6-split-1-240-35",
+     "shown": "Men (attacker) [met by a full collapse]: Survive and gain an advantage elsewhere on the map. Not met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "wrong"
+    },
+    {
+     "play": "149fbdc6-split-2-240-37",
+     "shown": "Apes (defender) [full collapse]: Kill the split or drive it out (the flags it costs are beside it). Not met (no: a split player dies; no: the split is gone within the visit)",
+     "mark": "wrong"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-20",
+   "set": "w1p1",
+   "row": 20,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    240,
+    304
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "Apes is held in its own base or pit by Men's main team (K0 A0 B0 alive; base res in 120 s)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "149fbdc6-pinned-2-240-36",
+     "shown": "Apes: Hold the NPCs and lose nobody until the base res, or break out. Not met (no: no pit NPC lost and nobody dies until the base res; no: it breaks out (five or more, out of its base))",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-21",
+   "set": "w1p1",
+   "row": 21,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    268,
+    286
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Men's split by the back door: two players (Ranger, Stand Mes) against 8 defending (Dervish, Ritualist, Mesmer, Prot, 7 Monk, 8 Monk, Warrior, Necromancer); the whole team turns on it; 8 (Dervish, Ritualist, Mesmer, Prot, 7 Monk, 8 Monk, Warrior, Necromancer) against two players: full collapse",
+   "mark": "wrong",
+   "said": "not a split",
+   "calls": [
+    {
+     "play": "149fbdc6-split-1-268-38",
+     "shown": "Men (attacker) [met by a full collapse]: Survive and gain an advantage elsewhere on the map. Not met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "wrong"
+    },
+    {
+     "play": "149fbdc6-split-2-268-39",
+     "shown": "Apes (defender) [full collapse]: Kill the split or drive it out (the flags it costs are beside it). Not met (no: a split player dies; no: the split is gone within the visit)",
+     "mark": "wrong"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-22",
+   "set": "w1p1",
+   "row": 22,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    277,
+    339
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (Apes's Warrior); Men: stay",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "149fbdc6-flag-1-277-40",
+     "shown": "Men [stay]: Kill with the extra player while their runner is away. Met (yes: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-23",
+   "set": "w1p1",
+   "row": 23,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    284,
+    420
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Men's split by the back door: two players (Ranger, Stand Mes) against 4 defending (Mesmer, 7 Monk, Ritualist, Prot)",
+   "mark": "wrong",
+   "said": "still not a split",
+   "calls": [
+    {
+     "play": "149fbdc6-split-1-284-41",
+     "shown": "Men (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Met (yes: nobody on the split dies; yes: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "wrong"
+    },
+    {
+     "play": "149fbdc6-split-2-284-42",
+     "shown": "Apes (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Not met (yes: no pit NPC lost; no: a split player dies; no: the split is gone within the visit)",
+     "mark": "wrong"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-24",
+   "set": "w1p1",
+   "row": 24,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    312,
+    352
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "Apes is held in its own base or pit by Men's main team (K0 A0 B0 alive; base res in 48 s)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "149fbdc6-pinned-2-312-43",
+     "shown": "Apes: Hold the NPCs and lose nobody until the base res, or break out. Not met (no: no pit NPC lost and nobody dies until the base res; no: it breaks out (five or more, out of its base))",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-25",
+   "set": "w1p1",
+   "row": 25,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    372,
+    394
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Up on numbers in the main fight (5 v 4, Apes's pit), from players split elsewhere; Men: stay (stay on the enemy's side) | Apes: stay (stay at the stand)",
+   "mark": "wrong",
+   "said": "this is a 5v5",
+   "calls": [
+    {
+     "play": "149fbdc6-numbers-1-372-44",
+     "shown": "Men (strong side) [stay]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)",
+     "mark": "wrong"
+    },
+    {
+     "play": "149fbdc6-numbers-2-372-45",
+     "shown": "Apes (weak side) [stay]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)",
+     "mark": "wrong"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-26",
+   "set": "w1p1",
+   "row": 26,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    377,
+    437
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (Men's AoB Derv); Apes: stay",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "149fbdc6-flag-2-377-46",
+     "shown": "Apes [stay]: Kill with the extra player while their runner is away. Not met (no: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-27",
+   "set": "w1p1",
+   "row": 27,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    412,
+    436
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (3 v 4, Apes's pit), from players split elsewhere; Men: stay (stay at the stand) | Apes: stay (stay at the stand)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "149fbdc6-numbers-1-412-47",
+     "shown": "Men (weak side) [stay]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)",
+     "mark": "right"
+    },
+    {
+     "play": "149fbdc6-numbers-2-412-48",
+     "shown": "Apes (strong side) [stay]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-28",
+   "set": "w1p1",
+   "row": 28,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    418,
+    432
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Men's split by the back door: one player (Ranger) against 2 defending (Mesmer, 7 Monk)",
+   "mark": "wrong",
+   "said": "this is not a solo split, this is 3v2 (7 monk hammer ranger v mesmer monk)",
+   "calls": [
+    {
+     "play": "149fbdc6-split-1-418-49",
+     "shown": "Men (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; yes: flag lead better by 0.35 or more)",
+     "mark": "wrong"
+    },
+    {
+     "play": "149fbdc6-split-2-418-50",
+     "shown": "Apes (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Met (yes: no pit NPC lost; no: a split player dies; yes: the split is gone within the visit)",
+     "mark": "wrong"
+    },
+    {
+     "play": "149fbdc6-split-2-418-51",
+     "shown": "Apes (defender's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)",
+     "mark": "wrong"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-29",
+   "set": "w1p1",
+   "row": 29,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    419,
+    454
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "Apes's boost is 30 s away; Men: no runner; the rest stay at the stand",
+   "mark": "wrong",
+   "said": "Men runs flag on derv",
+   "calls": [
+    {
+     "play": "149fbdc6-boost-1-419-52",
+     "shown": "Men [run]: Deny their boost. Met (yes: their boost does not land)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-30",
+   "set": "w1p1",
+   "row": 30,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    430,
+    470
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Men's split by the front door: three players (Hammer, Ranger, 7 Monk) against 3 defending (Mesmer, 7 Monk, Ritualist)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "149fbdc6-split-1-430-54",
+     "shown": "Men (attacker) [even]: Take NPCs or kills. Met (yes: a defender killed; no: an NPC taken)",
+     "mark": "right"
+    },
+    {
+     "play": "149fbdc6-split-2-430-57",
+     "shown": "Apes (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Not met (yes: no pit NPC lost; no: no more defenders die than split players)",
+     "mark": "right"
+    },
+    {
+     "play": "149fbdc6-split-1-430-55",
+     "shown": "Men (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Met (yes: more of theirs die away from the split than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-31",
+   "set": "w1p1",
+   "row": 31,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    430,
+    476
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Up on numbers in the main fight (5 v 3, the flag stand), from players split elsewhere; Men: stay (stay at the stand) | Apes: stay (stay at the stand)",
+   "mark": "wrong",
+   "said": "5v4",
+   "calls": [
+    {
+     "play": "149fbdc6-numbers-1-430-53",
+     "shown": "Men (strong side) [stay]: Kill with the numbers while their players are away. Met (yes: more of theirs die than of ours)",
+     "mark": "right"
+    },
+    {
+     "play": "149fbdc6-numbers-2-430-56",
+     "shown": "Apes (weak side) [stay]: No deaths, keep them busy, do not chase. Not met (no: nobody of ours dies)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-32",
+   "set": "w1p1",
+   "row": 32,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    468,
+    484
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Men's split by the front door: 4 players (Hammer, Ranger, 7 Monk, Prot) against 4 defending (Ritualist, Mesmer, 7 Monk, 8 Monk); 2 damage against 2 monks",
+   "mark": "wrong",
+   "said": "prot is not part of this split until 8:05",
+   "calls": [
+    {
+     "play": "149fbdc6-split-1-468-58",
+     "shown": "Men (attacker) [held by monks]: Hold the monks there and lose nobody; NPCs are a bonus (a kill is not expected of it). Met (yes: nobody on the split dies)",
+     "mark": "right"
+    },
+    {
+     "play": "149fbdc6-split-2-468-60",
+     "shown": "Apes (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (yes: no pit NPC lost; yes: no more defenders die than split players)",
+     "mark": "right"
+    },
+    {
+     "play": "149fbdc6-split-1-468-59",
+     "shown": "Men (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-33",
+   "set": "w1p1",
+   "row": 33,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    482,
+    510
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Men's split by the front door: 4 players (Hammer, Ranger, 7 Monk, Prot) against 7 defending (Warrior, Ritualist, Mesmer, 7 Monk, 8 Monk, Dervish, Prot); the whole team turns on it; 7 (Warrior, Ritualist, Mesmer, 7 Monk, 8 Monk, Dervish, Prot) against 4 players: full collapse",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "149fbdc6-split-1-482-61",
+     "shown": "Men (attacker) [met by a full collapse]: Survive and gain an advantage elsewhere on the map. Not met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "right"
+    },
+    {
+     "play": "149fbdc6-split-2-482-62",
+     "shown": "Apes (defender) [full collapse]: Kill the split or drive it out (the flags it costs are beside it). Not met (no: a split player dies; no: the split is gone within the visit)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-34",
+   "set": "w1p1",
+   "row": 34,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    492,
+    600
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "Apes is held in its own base or pit by Men's main team (K0 A0 B0 alive; base res in 108 s)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "149fbdc6-pinned-2-492-63",
+     "shown": "Apes: Hold the NPCs and lose nobody until the base res, or break out. Not met (no: no pit NPC lost and nobody dies until the base res; no: it breaks out (five or more, out of its base))",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-35",
+   "set": "w1p1",
+   "row": 35,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    496,
+    598
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Up on numbers in the main fight (8 v 7, Apes's pit), from kills; Men: stay (stay on the enemy's side)",
+   "mark": "wrong",
+   "said": "its 6v7 starting at 8:52",
+   "calls": [
+    {
+     "play": "149fbdc6-numbers-1-496-64",
+     "shown": "Men (up) [stay]: Turn the extra player into a kill before the numbers are level. Met (yes: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-36",
+   "set": "w1p1",
+   "row": 36,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    508,
+    536
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Men's split by the front door: 4 players (Hammer, Ranger, 7 Monk, Prot) against 6 defending (Warrior, Ritualist, Mesmer, Prot, 7 Monk, 8 Monk); the whole team turns on it; 6 (Warrior, Ritualist, Mesmer, Prot, 7 Monk, 8 Monk) against 4 players: full collapse",
+   "mark": "wrong",
+   "said": "not a split",
+   "calls": [
+    {
+     "play": "149fbdc6-split-1-508-65",
+     "shown": "Men (attacker) [met by a full collapse]: Survive and gain an advantage elsewhere on the map. Not met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "wrong"
+    },
+    {
+     "play": "149fbdc6-split-2-508-66",
+     "shown": "Apes (defender) [full collapse]: Kill the split or drive it out (the flags it costs are beside it). Not met (no: a split player dies; no: the split is gone within the visit)",
+     "mark": "wrong"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-37",
+   "set": "w1p1",
+   "row": 37,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    534,
+    594
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Men's split by the front door: 4 players (Hammer, Ranger, 7 Monk, Prot) against 5 defending (Mesmer, Prot, 7 Monk, 8 Monk, Ritualist)",
+   "mark": "wrong",
+   "said": "not a split",
+   "calls": [
+    {
+     "play": "149fbdc6-split-1-534-67",
+     "shown": "Men (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Met (yes: nobody on the split dies; yes: more of theirs die away from the split than of ours; yes: flag lead better by 0.35 or more)",
+     "mark": "wrong"
+    },
+    {
+     "play": "149fbdc6-split-2-534-69",
+     "shown": "Apes (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Not met (yes: no pit NPC lost; no: a split player dies; no: the split is gone within the visit)",
+     "mark": "wrong"
+    },
+    {
+     "play": "149fbdc6-split-1-534-68",
+     "shown": "Men (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Met (yes: more of theirs die away from the split than of ours)",
+     "mark": "wrong"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-38",
+   "set": "w1p1",
+   "row": 38,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    556,
+    570
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Apes's split by the door: one player (Dervish) against 1 defending (Mes/A)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "149fbdc6-split-2-556-71",
+     "shown": "Apes (attacker) [1 v 1, the defender not a monk]: Take NPCs or kills. Not met (no: a defender killed; no: an NPC taken)",
+     "mark": "right"
+    },
+    {
+     "play": "149fbdc6-split-1-556-70",
+     "shown": "Men (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (yes: no pit NPC lost; yes: no more defenders die than split players)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-39",
+   "set": "w1p1",
+   "row": 39,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    592,
+    608
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Men's split by the front door: 4 players (Hammer, Ranger, 7 Monk, Prot) against 7 defending (Dervish, Necromancer, Ritualist, Mesmer, Prot, 7 Monk, 8 Monk); the whole team turns on it; 7 (Dervish, Necromancer, Ritualist, Mesmer, Prot, 7 Monk, 8 Monk) against 4 players: full collapse",
+   "mark": "wrong",
+   "said": "not a split",
+   "calls": [
+    {
+     "play": "149fbdc6-split-1-592-72",
+     "shown": "Men (attacker) [met by a full collapse]: Survive and gain an advantage elsewhere on the map. Met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; yes: flag lead better by 0.35 or more)",
+     "mark": "wrong"
+    },
+    {
+     "play": "149fbdc6-split-2-592-73",
+     "shown": "Apes (defender) [full collapse]: Kill the split or drive it out (the flags it costs are beside it). Not met (no: a split player dies; no: the split is gone within the visit)",
+     "mark": "wrong"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-40",
+   "set": "w1p1",
+   "row": 40,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    600,
+    676
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "Apes is held in its own base or pit by Men's main team (K0 A0 B0 alive; base res in 120 s)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "149fbdc6-pinned-2-600-74",
+     "shown": "Apes: Hold the NPCs and lose nobody until the base res, or break out. Not met (no: no pit NPC lost and nobody dies until the base res; no: it breaks out (five or more, out of its base))",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-41",
+   "set": "w1p1",
+   "row": 41,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    606,
+    644
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Men's split by the front door: 4 players (Hammer, Ranger, 7 Monk, Prot) against 8 defending (Dervish, Warrior, Ritualist, Mesmer, Prot, 7 Monk, Necromancer, 8 Monk); the whole team turns on it; 8 (Dervish, Warrior, Ritualist, Mesmer, Prot, 7 Monk, Necromancer, 8 Monk) against 4 players: full collapse",
+   "mark": "wrong",
+   "said": "not a split",
+   "calls": [
+    {
+     "play": "149fbdc6-split-1-606-75",
+     "shown": "Men (attacker) [met by a full collapse]: Survive and gain an advantage elsewhere on the map. Not met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "wrong"
+    },
+    {
+     "play": "149fbdc6-split-2-606-76",
+     "shown": "Apes (defender) [full collapse]: Kill the split or drive it out (the flags it costs are beside it). Not met (no: a split player dies; no: the split is gone within the visit)",
+     "mark": "wrong"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-42",
+   "set": "w1p1",
+   "row": 42,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    634,
+    676
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (Apes's Warrior); Men: stay",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "149fbdc6-flag-1-634-77",
+     "shown": "Men [stay]: Kill with the extra player while their runner is away. Met (yes: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-43",
+   "set": "w1p1",
+   "row": 43,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    634,
+    676
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Up on numbers in the main fight (7 v 6, Apes's pit), from kills; Men: stay (stay on the enemy's side)",
+   "mark": "wrong",
+   "said": "it's 8v7 (for apes) starting at 10:28; 5v8 (for Men) starting at 10:57",
+   "calls": [
+    {
+     "play": "149fbdc6-numbers-1-634-78",
+     "shown": "Men (up) [stay]: Turn the extra player into a kill before the numbers are level. Met (yes: more of theirs die than of ours)",
+     "mark": "wrong"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-44",
+   "set": "w1p1",
+   "row": 44,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    642,
+    668
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Men's split by the front door: 4 players (Hammer, Ranger, 7 Monk, Prot) against 5 defending (Mesmer, 7 Monk, 8 Monk, Dervish, Ritualist)",
+   "mark": "wrong",
+   "said": "still not a split",
+   "calls": [
+    {
+     "play": "149fbdc6-split-1-642-79",
+     "shown": "Men (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Not met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "wrong"
+    },
+    {
+     "play": "149fbdc6-split-2-642-81",
+     "shown": "Apes (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Not met (yes: no pit NPC lost; no: a split player dies; no: the split is gone within the visit)",
+     "mark": "wrong"
+    },
+    {
+     "play": "149fbdc6-split-1-642-80",
+     "shown": "Men (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)",
+     "mark": "wrong"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-45",
+   "set": "w1p1",
+   "row": 45,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    666,
+    676
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Men's split by the front door: 4 players (Hammer, Ranger, 7 Monk, Prot) against 1 defending (Mesmer)",
+   "mark": "wrong",
+   "said": "still not a split",
+   "calls": [
+    {
+     "play": "149fbdc6-split-1-666-82",
+     "shown": "Men (attacker) [a player or more up]: Kill or take NPCs. Not met (no: a defender killed; no: an NPC taken)",
+     "mark": "wrong"
+    },
+    {
+     "play": "149fbdc6-split-2-666-84",
+     "shown": "Apes (defender) [one defender]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)",
+     "mark": "wrong"
+    },
+    {
+     "play": "149fbdc6-split-1-666-83",
+     "shown": "Men (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)",
+     "mark": "wrong"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p1-149f-missed",
+   "set": "w1p1",
+   "row": 0,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "match": "Men v Apes, Imperial",
+   "window": [
+    0,
+    0
+   ],
+   "type": "missed",
+   "call": "",
+   "shown": "(what the engine did not read in this game)",
+   "mark": "missed",
+   "said": "missed team flag push on Apes 3 running at 2:30; missed very clear 5v4 in Ape's pit at 5:31 and clear 3v3 fight in Apes' backdoor whilst Apes warrior running the flag (classic example of staying to fight with number advantage whilst they flag); missed 8 monk of men running flag at 10:10; missed 6v7 in Apes pit at 10:08",
+   "checks": []
   }
  ]
 }

@@ -14,8 +14,8 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   R-355). In an uneven divide, the part of five or more (R-421).
 - The same 12 s holds for the numbers of the main fight: a player who stays 12 s counts from when he arrived; one who
   goes sooner was never a player more (R-449, R-459; review key s1-31). A defender still on a split when the game ends
-  counts though under 12 s there (R-459). *Open:* the numbers follow reach, not the second a player commits to joining or
-  leaving (review key s1-31); a defender on a split player for under 12 s when that player dies is not read (s1-15).
+  counts though under 12 s there (R-459). Joining and leaving are read from movement, not reach alone, and a defender on a
+  split player when that player dies counts however briefly (R-464; review key s1-31, s1-15). *Not built.*
 - A monk, when monks and damage are counted, is a backline monk only; a smiter (the WoC monks) and a ritualist healer
   count as damage (R-457).
 
@@ -55,7 +55,7 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   skill is an ordinary runner (R-456). *As built:* a flag play is set aside when either run in it is such a run.
 - A flag run's moment (R-461): a runner setting off from inside the greater stand area goes to run when he leaves that
   area (Corrupted, Meditation, Weeping Stone, Nomad's, Frozen) or the flag stand area itself (Druid's, Jade, Solitude,
-  Imperial, Warrior's, Dead, Wurms, Burning); from anywhere else, when he sets off. *Open:* Uncharted, named in both.
+  Imperial, Warrior's, Dead, Wurms, Burning, Uncharted: R-463); from anywhere else, when he sets off.
 
 ## Splits
 - A solo split is one player through the back or an unusual route at the enemy's pit or NPCs; three or four go for the
@@ -89,8 +89,7 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - Damage against monks, from good play (R-457, with R-444, R-114 and R-120): two or more damage can kill against one
   monk, four or more against two, five or more against three; three are not expected to kill two. The job to kill at
   the main fight comes from the same ratios there, not from the monks the split brought, and goes only to a side that
-  meets its ratio while the other does not. *Open:* ohno v Fun 11:10 (review key s1-18): both meet a ratio, three
-  damage against no monk and six against two, and he said the side facing no monk should have killed.
+  meets its ratio while the other does not; a side facing no monk there always has it (R-462, ohno v Fun 11:10).
 - Timing: an answer within about 15 s is on time; 60 s is late (R-116). After kills at their base, the NPC job needs
   the time to reach the pit before their base res; otherwise the job is to be out, or set for the fight, when they res
   (R-445, R-147). *As built:* 20 s more than the walk (`AFTER_WIPE_MIN_S`, draft).

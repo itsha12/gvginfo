@@ -9,54 +9,55 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 > (Add your answers to the open items, by their numbers, to the same message if you have them.)
 
-## State (2026-11-13 late: redesign step 2 on branch `bundle-4`, stage D under way; batch 17, 506 matches trained)
+## State (2026-11-13 night: redesign step 2 on branch `bundle-4`, stage D under way; batch 17, 506 matches trained)
 - Main's engine is unchanged (SPEC.md). Bundle 4 is on `bundle-4` and lands in one piece, then one rebuild (R-322).
   606 replays stored (90 from 2 September on not yet trained on). No Train batch, Discovery or fetch run in progress.
   Both branches pushed; nothing uncommitted.
 - On `bundle-4`: `hallmap.py`, `moments.py` (records, decision moments, shape, consequences), `jobs.py` (the plays
   and their jobs, R-423 to R-449), `story.py`, `tools/golden/golden.py`, `lineup.py`, `thresholds.py`, `review.py`.
-- His answers of 2026-11-13 are built (R-455 to R-461): the ratios of damage against monks and the main fight's kill
-  job from them (`can_kill`); Shadow of Haste by date (22 October); a split's moment at the crossing (`t_in`); a flag
-  run's moment by hall (`moment` in `run_starts()`; Uncharted not ruled); 12 s for main-fight numbers, from arrival;
-  a defender there at game end; blanks counted and a field blank on every row stops `moments.py all` (`blanks`).
-- He redrew the Greater stand area on Meditation, Corrupted and Weeping Stone the same evening; the labels are copied
-  to the branch. On them, after the build: both gates pass (part one 12 of 12, part two 65 of 105, 61%); line-up:
-  building 422 of 426, held-out 186 of 186; comms 109 of 157, 62 of 80. `thresholds.py` not rerun: do it before the
-  next change to a record (the redrawn areas move the records on three halls). Full run: 606 matches, 30,490 moments
-  (32,074 before: a split is no longer read at the leave and again at the crossing), 40,866 plays, no errors, no field
-  blank on every row.
-- The review key (`data/model/review_key.json`; `tools/golden/review.py score <file>`): 28 rows pass, five rows
-  with checks open (below). Run it after every change on the development set (`moments.py all <file> --dev`, under a minute).
-- The whole-game review is on the site: Model > Game review (`assets/js/pages/review.js`, on main). Rows:
-  `data/model/game_reviews.json` (from `review.py export <file> <main>/data/model/game_reviews.json --part N`); his
-  marks: `data/model/game_review_marks.json` (saved by the page; absent until his first save). Part 1 is out: TFS v
-  옷옷옷옷 (bdaa145f, 40 situations, 100 rows) and Men v Apes (149fbdc6, 45, 130). The page has not had the
-  readability test by a fresh session.
+- Built from his answers (R-455 to R-463): the ratios of damage against monks and the main fight's kill job
+  (`can_kill`; a side facing no monk always has it); Shadow of Haste by date; a split's moment at the crossing; a flag
+  run's moment by hall (`moment` in `run_starts()`); 12 s for main-fight numbers from arrival; `blanks` (R-460).
+  Not built: R-464 (joining and leaving from movement; a defender on a split player who dies).
+- He redrew the Greater stand area on Meditation, Corrupted and Weeping Stone (copied to the branch). Gates pass
+  (part one 12 of 12, part two 65 of 105); line-up 422 of 426 and 186 of 186, comms 109 of 157 and 62 of 80.
+  `thresholds.py` not rerun since: do it before the next change to a record.
+- The whole-game review is on the site (Model > Game review; rows `data/model/game_reviews.json`, his marks
+  `data/model/game_review_marks.json`). He marked part 1 on 2026-11-13 (TFS v 옷옷옷옷 bdaa145f, Men v Apes 149fbdc6;
+  engine af952c6); every mark is in the review key as set w1p1 (85 situations, their calls, two `missed` rows; no
+  checks written yet). Situations right: 45 of 85. Pinned 9 of 9, boost 4 of 5, flag 8 of 15, numbers 9 of 19,
+  split 11 of 31. Calls right where the situation was right: 62 of 68: the jobs hold, the situations do not.
+- What his marks show, three faults under most wrong rows (put to him; he asked whether the rules are getting too
+  specific, and Claude's answer was yes for the engine patches, no for his definitions):
+  1. Who is in which fight is read from reach (1,600) each 2 s and patched by time rules: numbers are off by one or
+     two (4 v 2 for his 5 v 3), defenders miscounted, joins and leaves seconds out. One reading is needed, used by
+     numbers, splits and defenders alike (standing together, moving with, and who hits or casts on whom), R-464.
+  2. A split is kept as a split for minutes after the fight it belongs to has become the main fight on the enemy's
+     ground (Men v Apes 2:30 to 7:00 and 7:48 to 11:16: 12 situations "not a split"; he notes a 5 v 4 and a 6 v 7 in
+     Apes's pit that were missed), and full collapses are missed where they happen (TFS v 옷옷옷옷 1:16, 4:15, 9:30).
+  3. A flag run's window: it starts minutes early and ends minutes late (0:27 for his 1:20; to 5:09 for his 2:54),
+     "a flag in hand" is read far from the stand, single runs are read as double, and the wrong runner is named.
+- The review key (`tools/golden/review.py score <file>`): set 1, 28 rows pass; open checks on s1-15, s1-26, s1-31
+  (R-464, not built) and s1-24 (no split read on his redrawn Meditation). Run it after every change on the
+  development set (`moments.py all <file> --dev`, under a minute).
 
 ## Next (in order; REDESIGN.md "Build plan from here", item 6, and "Tests")
-1. When he has marked part 1: read `game_review_marks.json`, file every mark in the review key with his words, fix,
-   rescore on the development set. A fix that changes a record: rerun the gate, the line-up and `thresholds.py`.
-2. Then export part 2 from the fixed reading (`--part 2`: hdm v hook 8bf4ffae, Men v Crew 51683de9) and change nothing
-   in the reading until he has marked it; it gives the accuracy by kind of play, and he sets the mark a kind must
-   pass. 옷옷옷옷 v RACK (a8ba43a8) is the spare: never look at its rows. Top up rare plays (the Lord push, the
-   part-run, leaving before a res) with about ten picked rows.
-3. The flag family to the end (R-451), once the flag plays pass the key: similar cases for the flag plays (2.10, with
-   strength R-432 and the hall R-436), then the advice test on unseen matches. Read the result with him.
-4. The other kinds as each passes the key; then stage E (side by side, SPEC.md and METHODS.md, R-398, merge).
+1. His answer on the approach first. Proposed: no new rules or thresholds; rebuild the three readings above at the
+   root, one at a time (who is in which fight; split or main fight; the flag run's window), writing checks from the
+   w1p1 rows as each is rebuilt and rescoring on the development set; a change to a record: gate, line-up, thresholds.
+2. The page: under a situation he marks wrong, the calls are not asked for; rows that repeat one reading are shown
+   once; every row links to its second of the replay if gvg.report allows it.
+3. Then export part 2 from the fixed reading (`--part 2`: hdm v hook 8bf4ffae, Men v Crew 51683de9) and change nothing
+   until he has marked it: it gives the accuracy by kind of play, and he sets the mark a kind must pass. 옷옷옷옷 v
+   RACK (a8ba43a8) is the spare: never look at its rows.
+4. The flag family to the end (R-451) once the flag plays pass; the other kinds as each passes; then stage E.
 
-## Open for Denning (put to him 2026-11-13, late; set each out in the chat again, R-329)
-1. Key s1-18, ohno v Fun 11:10: he said ohno's main team should have killed, Fun having no monk at main. By R-457
-   as confirmed (only a side that meets its ratio while the other does not) neither has the job: ohno's three damage
-   face no monk, Fun's six face two. Over 606 matches both meet in 824 of 4,801 defended split phases, 252 of them
-   with one side facing no monk. Options: the rule stands; a side facing no monk always has the job; both have it.
-2. R-461: Uncharted is in both lists (leave the greater stand area, or the flag stand area?). 255 runs wait on it.
-3. Key s1-26, hdm v 옷옷옷옷 4:06: ruled an even join; by reach it is 3 v 2 for 10 s (8 Monk and Air Ele, each under
-   the 12 s) and then 1 v 2. What does he see there?
-4. Key s1-31, Crew v hdm: the 12 s rule does not give his 7:22 and 7:28: a player counts while within reach (1,600),
-   from 7:16 to about 7:36. Should joining and leaving a fight be read from movement, not reach alone?
-5. Key s1-15, Book v One: the Hammer dies with the Ritualist 8 s on him, 12 s before the game ends. Count a defender
-   who is on a split player when that player dies, however briefly?
-6. Key s1-24, OG v Dz 2:34 (Meditation): on his redrawn Greater stand area no split is read there at all. Right?
+## Open for Denning (put to him 2026-11-13, night; set each out in the chat again, R-329, with replay links)
+1. The approach in "Next" 1: agreed?
+2. Key s1-26, hdm v 옷옷옷옷 4:06 (https://gvg.report/report/7209c1a1-20ff-5f4f-a176-9cf92f7c594c#map): ruled an even
+   join; by reach it is 3 v 2 for 10 s (8 Monk and Air Ele) and then 1 v 2. What does he see?
+3. Key s1-24, OG v Dz 2:34 (https://gvg.report/report/a921418b-c4d1-5872-aca9-18f9ad99bf40#map): on his redrawn
+   Greater stand area no split is read there. Right?
 - Drafts: numbers from kills; a split with no answer; "held by monks"; the Lord push's aim; thresholds marked
   "Claude's draft". Not built: shadow with a snare; the two-monk spike build after a wipe. Maps: `tools/maps/`.
 
