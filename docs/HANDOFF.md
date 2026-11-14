@@ -38,10 +38,12 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   the long 4 v 4 split fight of hdm v hook; three numbers; two flags; a door; a missed solo split), w1p1 15, s1-15.
   Gate: part one 12 of 12, part two 63 of 105 (60%, at his mark). Line-up: 421 of 426 and 185 of 186 seen; comms 108
   of 157, 62 of 80. No run over every match and no `thresholds.py` since the rebuild (R-465).
-- Tried and taken out: a full collapse counted from the main team closing on the split (broke his row 28 of TFS v
-  옷옷옷옷); a defender kept counted while he kites out of reach (changed nothing in hdm v hook, broke that same row).
-  Traced: at 9:30 of hdm v hook two of hook's four defenders stand 2,700 to 3,900 from the split for 16 s, which is
-  his own note on row 40 ("4 v 2 back door") and not his mark on row 42 ("definitely 4 defending").
+- Tried and taken out (each broke his row 28 of TFS v 옷옷옷옷 or changed nothing): a full collapse counted from the
+  main team closing on the split; a defender kept counted while he kites out of reach. At 9:30 of hdm v hook two of
+  hook's four defenders stand 2,700 to 3,900 from the split for 16 s: his note on row 40, not his mark on row 42.
+- Before and after on hdm v hook (`review.py compare`; CHANGELOG 2026-11-14): the engine of the session's start is not
+  shown to be worse than today's there; 54 of its 125 calls he was never shown. Do not claim progress from scores on
+  different games: compare engines on the same marked game.
 
 ## Next (in order; REDESIGN.md "Build plan from here", item 6, and "Tests")
 1. His answer on how a long split fight is told (open item 1), then build it; then the remaining open checks.
