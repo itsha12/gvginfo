@@ -784,7 +784,9 @@
      },
      "want": {
       "met": true
-     }
+     },
+     "open": true,
+     "why": "OG v Dz 2:34: on the Greater stand area he redrew on Isle of Meditation on 2026-11-13 the engine reads no split here at all (the players stand inside the area, so they are not on the enemy's ground). He had called the fight too messy to be a 3 v 3. For him to say whether no split is the right reading"
     },
     {
      "has": {
@@ -798,7 +800,9 @@
      },
      "want": {
       "met": true
-     }
+     },
+     "open": true,
+     "why": "OG v Dz 2:34: on the Greater stand area he redrew on Isle of Meditation on 2026-11-13 the engine reads no split here at all (the players stand inside the area, so they are not on the enemy's ground). He had called the fight too messy to be a 3 v 3. For him to say whether no split is the right reading"
     }
    ],
    "note": "'Too messy to call a 3 v 3' is not something the key can hold; the checks cover R-443 only (footmen and archers count for the attacker, pit NPCs only for the defence)."
