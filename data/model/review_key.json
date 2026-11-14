@@ -1,5 +1,5 @@
 {
- "about": "The review key (R-450). Every row Denning was shown of the engine's plays: what the engine said then (shown), his mark and his words (said), and checks: Claude's reading of his mark as things the plays must hold or must not hold, which he corrects. Scored by tools/golden/review.py on the branch after every change. Marks: right, partly, wrong, bad example (set aside), not marked. Set 1 is the 35 rows of 2026-11-13, picked one or more to a kind of play, so it is a regression test and not an accuracy figure; whole-game sets (R-454) give the accuracy by kind of play. `answered` holds a later answer of his on a row (what was asked, his words, Claude's reading). Set w1p1 is part 1 of the whole-game review (R-455), marked by him on the site on 2026-11-13 against engine af952c6: one row a situation with his mark and words, its calls under `calls` with theirs, and one `missed` row a game for what the engine did not read; checks are written as each fault is fixed. Set w1p2 is hdm v hook, the first game of part 2, marked on 2026-11-14 against engine 67e87b8 as the first measure of the rebuilt reading; he then chose to build from it too, keeping Men v Crew unmarked as the hidden game.",
+ "about": "The review key (R-450). Every row Denning was shown of the engine's plays: what the engine said then (shown), his mark and his words (said), and checks: Claude's reading of his mark as things the plays must hold or must not hold, which he corrects. Scored by tools/golden/review.py on the branch after every change. Marks: right, partly, wrong, bad example (set aside), not marked. Set 1 is the 35 rows of 2026-11-13, picked one or more to a kind of play, so it is a regression test and not an accuracy figure; whole-game sets (R-454) give the accuracy by kind of play. `answered` holds a later answer of his on a row (what was asked, his words, Claude's reading). Set w1p1 is part 1 of the whole-game review (R-455), marked by him on the site on 2026-11-13 against engine af952c6: one row a situation with his mark and words, its calls under `calls` with theirs, and one `missed` row a game for what the engine did not read; checks are written as each fault is fixed. Set w1p2 is hdm v hook, the first game of part 2, marked on 2026-11-14 against engine 67e87b8 as the first measure of the rebuilt reading; he then chose to build from it too, keeping Men v Crew unmarked as the hidden game. Set w2 is round 3 (R-473): hook v hold and cope v Team, marked on 2026-11-14 against engine b025445 (24 of 41 and 15 of 24 situations right); chic v 戦戦戦戦 was set aside unmarked (a henchman game).",
  "version": 1,
  "rows": [
   {
@@ -1826,14 +1826,14 @@
       "play": "numbers",
       "team": "TFS",
       "at": [
-       328,
+       310,
        340
       ]
      },
      "want": {
-      "numbers": "3v7"
+      "scenario~": "3 v 7 from 5:"
      },
-     "was": "TFS v 옷옷옷옷 5:28: 3 v 7, not 1 v 7"
+     "was": "TFS v 옷옷옷옷 5:28: 3 v 7, not 1 v 7; reworded 2026-11-14: the row is now one situation with the one before it (4 v 7 from 5:04), and the 3 v 7 is told beside it"
     }
    ]
   },
@@ -6336,6 +6336,2417 @@
      "open": true
     }
    ]
+  },
+  {
+   "id": "w2-4629-1",
+   "set": "w2",
+   "row": 1,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    10,
+    46
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (7 v 8, the greater stand area; then 7 v 8 from 0:26), from a runner away; hook: retreat down the ladder (fall back into the base)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "4629b08c-numbers-1-10-0",
+     "shown": "hook (down) [retreat down the ladder]: Reach cover a player down without losing another. Met (yes: nobody of ours dies; yes: no NPC lost)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-4629-2",
+   "set": "w2",
+   "row": 2,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    25,
+    101
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (hook's Necromancer); hold: stay",
+   "mark": "wrong",
+   "said": "hold running flag starting at 0:17 so it's really a 6v7, then 7v7 starting at 0:33 when hook's warrior that was running returns, when 8v7 for hook when necro comes at 0:45, then 8v8 from 0:58",
+   "calls": [
+    {
+     "play": "4629b08c-flag-2-25-1",
+     "shown": "hold [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Not met (no: more of theirs die at the main fight than of ours; no: their flag does not get in)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "flag",
+      "team": "hold",
+      "start": [
+       20,
+       30
+      ],
+      "want": {
+       "scenario~": "hold: stay"
+      }
+     },
+     "why": "hook v hold 0:25: hold is running a flag from 0:17 (its opening flag), so hold is not staying; the opening flags are not read as runs",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w2-4629-3",
+   "set": "w2",
+   "row": 3,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    38,
+    62
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Up on numbers in the main fight (8 v 7, the greater stand area), from a runner away; hook: retreat down the ladder (fall back into the base)",
+   "mark": "partly",
+   "said": "hook is up in this fight, their goal should not be retreat.",
+   "calls": [
+    {
+     "play": "4629b08c-numbers-1-38-2",
+     "shown": "hook (up) [retreat down the ladder]: Reset without giving anything back. Met (yes: nobody of ours dies; yes: no NPC lost)",
+     "mark": "partly",
+     "said": "see above"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "numbers",
+      "team": "hook",
+      "start": [
+       36,
+       40
+      ],
+      "want": {
+       "call": "retreat down the ladder"
+      }
+     },
+     "why": "hook v hold 0:38: hook is up in this fight; its call is not a retreat",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w2-4629-4",
+   "set": "w2",
+   "row": 4,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    101,
+    185
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (hold's Air Ele); hook: single run",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "4629b08c-flag-1-101-3",
+     "shown": "hook [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (yes: our flag is capped; no: no more of ours die at the main fight than of theirs; yes: no worse than half a flag behind at the end, or no further behind than at the start)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-4629-5",
+   "set": "w2",
+   "row": 5,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    136,
+    166
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Up on numbers in the main fight (8 v 7, the greater stand area), from a runner away; hook: stay (stay at the stand) | hold: stay (stay at the stand)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "4629b08c-numbers-1-136-4",
+     "shown": "hook (up) [stay]: Turn the extra player into a kill before the numbers are level. Not met (no: more of theirs die than of ours)",
+     "mark": "right"
+    },
+    {
+     "play": "4629b08c-numbers-2-136-5",
+     "shown": "hold (down) [stay]: Hold the ground a player down and lose no more until it is level, or the base res. Met (yes: nobody of ours dies)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-4629-6",
+   "set": "w2",
+   "row": 6,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    162,
+    185
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "hold pushes hook's flagger (Necromancer, carrying) with one player",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "4629b08c-push_flagger-2-162-7",
+     "shown": "hold: Stop their flag, or make it 30% late. Met (no: their flag is stopped; yes: it arrives 30% or more later than usual)",
+     "mark": "right"
+    },
+    {
+     "play": "4629b08c-flagger_pushed-1-162-6",
+     "shown": "hook: Get the flag in on time, without losing a player for the help sent. Not met (no: the flag gets in, less than 30% late; yes: nobody else of ours dies meanwhile)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-4629-7",
+   "set": "w2",
+   "row": 7,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    170,
+    256
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "hook pushes hold's flagger (Ritualist, going back) with one player",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "4629b08c-push_flagger-1-170-8",
+     "shown": "hook: Stop their flag, or make it 30% late. Not met (no: their flag is stopped; no: it arrives 30% or more later than usual)",
+     "mark": "right"
+    },
+    {
+     "play": "4629b08c-flagger_pushed-2-170-9",
+     "shown": "hold: Get the flag in on time. Met (yes: the flag gets in, less than 30% late)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-4629-8",
+   "set": "w2",
+   "row": 8,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    192,
+    291
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (hold's Ritualist); hook: single run",
+   "mark": "partly",
+   "said": "I would call this an intentional delay, trying to use the power play. Hook does have 1 dead but to me it looks like they deliberately don't flat and try to 7v7 until 4:14. I think they next one (when you say mes/a single runs) is accurate and covers this flag exchange.",
+   "calls": [
+    {
+     "play": "4629b08c-flag-1-192-10",
+     "shown": "hook [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (no: our flag is capped; yes: no more of ours die at the main fight than of theirs; no: no worse than half a flag behind at the end, or no further behind than at the start)",
+     "mark": "partly",
+     "said": "see above"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "hook",
+      "start": [
+       188,
+       196
+      ]
+     },
+     "want": {
+      "scenario~": "held"
+     },
+     "why": "hook v hold 3:12: an intentional delay: hook holds its flag and plays 7 v 7 with the power play until 4:14; one flag exchange with the next row",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w2-4629-9",
+   "set": "w2",
+   "row": 9,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    250,
+    306
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (hook's Mes/A); hold: a flag already in hand",
+   "mark": "wrong",
+   "said": "hold does not have flag in hand. They send 8 back to run.",
+   "calls": [
+    {
+     "play": "4629b08c-flag-2-250-11",
+     "shown": "hold [a flag already in hand]: Answer their cap at once, or cap just before their boost. Met (yes: their flag does not get in; no: our cap follows theirs within 15 s; no: our cap lands just before their boost)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "flag",
+      "team": "hold",
+      "start": [
+       246,
+       254
+      ],
+      "want": {
+       "scenario~": "a flag already in hand"
+      }
+     },
+     "why": "hook v hold 4:10: hold has no flag in hand; it sends its 8 back to run",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w2-4629-10",
+   "set": "w2",
+   "row": 10,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    269,
+    355
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (hold's Ritualist); hook: single run",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "4629b08c-flag-1-269-12",
+     "shown": "hook [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (yes: our flag is capped; yes: no more of ours die at the main fight than of theirs; no: no worse than half a flag behind at the end, or no further behind than at the start)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-4629-11",
+   "set": "w2",
+   "row": 11,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    303,
+    370
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (hook's Mes/A); hold: a flag already in hand",
+   "mark": "repeat",
+   "calls": [
+    {
+     "play": "4629b08c-flag-2-303-13",
+     "shown": "hold [a flag already in hand]: Answer their cap at once, or cap just before their boost. Not met (no: their flag does not get in; no: our cap follows theirs within 15 s; no: our cap lands just before their boost)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-4629-12",
+   "set": "w2",
+   "row": 12,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    304,
+    336
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (7 v 8, the greater stand area; then 6 v 8 from 5:12; then 7 v 8 from 5:22), from kills; hook: retreat down the ladder (fall back into the base) | then 8 v 6 from 5:12; then 8 v 7 from 5:22), from kills; hold: stay (stay at the stand)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "4629b08c-numbers-1-304-14",
+     "shown": "hook (down) [retreat down the ladder]: Reach cover a player down without losing another. Met (yes: nobody of ours dies; yes: no NPC lost)",
+     "mark": "right"
+    },
+    {
+     "play": "4629b08c-numbers-2-304-15",
+     "shown": "hold (up) [stay]: Turn the extra player into a kill before the numbers are level. Not met (no: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-4629-13",
+   "set": "w2",
+   "row": 13,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    340,
+    372
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "hook pushes hold's flagger (Air Ele, going back) with 3 players",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "4629b08c-push_flagger-1-340-16",
+     "shown": "hook: Stop their flag, or make it 30% late. Met (no: their flag is stopped; yes: it arrives 30% or more later than usual)",
+     "mark": "wrong"
+    },
+    {
+     "play": "4629b08c-flagger_pushed-2-340-17",
+     "shown": "hold: Get the flag in on time. Not met (no: the flag gets in, less than 30% late)",
+     "mark": "wrong",
+     "said": "can we check this? It seems like a very very fast cap that the push didn't do much to but you can explain why your answer is true if you need."
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flagger pushed",
+      "team": "hold",
+      "start": [
+       336,
+       344
+      ]
+     },
+     "want": {
+      "met": true
+     },
+     "why": "hook v hold 5:40: a very fast cap that the push did little to; the engine measures 63 s from a pickup at 5:09 against a usual 21 s",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w2-4629-14",
+   "set": "w2",
+   "row": 14,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    342,
+    377
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "hold's boost is 30 s away; hook: no runner; the rest fall back into the base",
+   "mark": "wrong",
+   "said": "what do you mean by no runner? They ran on mesmer 3 to deny boost.",
+   "calls": [
+    {
+     "play": "4629b08c-boost-1-342-18",
+     "shown": "hook [run]: Deny their boost. Met (yes: their boost does not land)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "boost",
+      "team": "hook",
+      "start": [
+       342,
+       350
+      ]
+     },
+     "want": {
+      "scenario~": "a flag already on its way"
+     },
+     "was": "hook v hold 5:42: hook ran its Mesmer to deny the boost; the engine said no runner"
+    }
+   ]
+  },
+  {
+   "id": "w2-4629-15",
+   "set": "w2",
+   "row": 15,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    360,
+    382
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (7 v 8, the greater stand area), from players split elsewhere; hook: retreat down the ladder (fall back into the base) | hold: stay (stay at the stand)",
+   "mark": "repeat",
+   "calls": [
+    {
+     "play": "4629b08c-numbers-1-360-19",
+     "shown": "hook (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)",
+     "mark": "not judged"
+    },
+    {
+     "play": "4629b08c-numbers-2-360-20",
+     "shown": "hold (strong side) [stay]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-4629-16",
+   "set": "w2",
+   "row": 16,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    384,
+    430
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (6 v 8, hook's front door; then 5 v 7 from 6:38; then 5 v 6 from 6:56), from players split elsewhere; hook: stay (stay at the stand) | then 7 v 5 from 6:38; then 6 v 5 from 6:56), from players split elsewhere; hold: stay (stay at the stand)",
+   "mark": "partly",
+   "said": "missed the 5v4 starting at 7:01",
+   "calls": [
+    {
+     "play": "4629b08c-numbers-1-384-21",
+     "shown": "hook (weak side) [stay]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)",
+     "mark": "right"
+    },
+    {
+     "play": "4629b08c-numbers-2-384-22",
+     "shown": "hold (strong side) [stay]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "hook",
+      "at": [
+       400,
+       430
+      ]
+     },
+     "want": {
+      "scenario~": "5 v 4 from 7:0"
+     },
+     "why": "hook v hold: a 5 v 4 from 7:01 that the engine did not read",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w2-4629-17",
+   "set": "w2",
+   "row": 17,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    406,
+    512
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hook's split by the back door: three players (Warrior, Necromancer, 8 Monk) against 1 defending (Prot); numbers along the way: 3 v 1 from 6:46, 3 v 3 from 7:06, 3 v 2 from 7:40, 2 v 1 from 7:54, 2 v 2 from 8:18",
+   "mark": "partly",
+   "said": "I think 2v2 wstarts at 7:40 rather than 3v2. Everything else looks right.",
+   "calls": [
+    {
+     "play": "4629b08c-split-1-406-23",
+     "shown": "hook (attacker) [a player or more up]: Kill or take NPCs. Met (yes: a defender killed; no: an NPC taken)",
+     "mark": "right"
+    },
+    {
+     "play": "4629b08c-split-2-406-24",
+     "shown": "hold (defender) [one defender]: Delay: keep the split off the pit NPCs and stay alive. Not met (yes: no pit NPC lost; no: no defender dies)",
+     "mark": "right"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hook",
+      "at": [
+       410,
+       510
+      ]
+     },
+     "want": {
+      "scenario~": "2 v 2 from 7:4"
+     },
+     "why": "hook v hold: 2 v 2 from 7:40, where the engine reads 3 v 2",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w2-4629-18",
+   "set": "w2",
+   "row": 18,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    427,
+    470
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (hook's Mes/A); hold: stay",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "4629b08c-flag-2-427-25",
+     "shown": "hold [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Met (no: more of theirs die at the main fight than of ours; yes: their flag does not get in)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-4629-19",
+   "set": "w2",
+   "row": 19,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    462,
+    507
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "hold's boost is 30 s away; hook: no runner; the rest push up",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "4629b08c-boost-1-462-26",
+     "shown": "hook [concede]: Concede the boost for kills. Not met (no: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-4629-20",
+   "set": "w2",
+   "row": 20,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    510,
+    548
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hook's split by the back door: one player (Necromancer) against 3 defending (Prot, Ritualist, Air Ele); Air Ele collapse from the main fight; 3 (Prot, Ritualist, Air Ele) against one player: collapse by Air Ele from the main fight",
+   "mark": "wrong",
+   "said": "this is a 2 split (necro, warrior) v 2 defending (prot, 8 monk), that gets collapsed by air ele from main and a split join from 8 rit, turning it into a 3v3.",
+   "calls": [
+    {
+     "play": "4629b08c-split-1-510-27",
+     "shown": "hook (attacker) [collapsed on]: Survive and gain an advantage elsewhere on the map. Not met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "not judged"
+    },
+    {
+     "play": "4629b08c-split-2-510-28",
+     "shown": "hold (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Not met (no: a split player dies during the collapse)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hook",
+      "at": [
+       512,
+       546
+      ]
+     },
+     "want": {
+      "scenario~": "two players"
+     },
+     "why": "hook v hold 8:30: two on the split (Necromancer, Warrior) against two (Prot, hold's 8), then a collapse by the Air Ele and a join by hook's 8 make it 3 v 3; the engine read one against three",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w2-4629-21",
+   "set": "w2",
+   "row": 21,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    514,
+    694
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (hook's Mes/A); hold: single run",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "4629b08c-flag-2-514-29",
+     "shown": "hold [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (yes: our flag is capped; no: no more of ours die at the main fight than of theirs; yes: no worse than half a flag behind at the end, or no further behind than at the start)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-4629-22",
+   "set": "w2",
+   "row": 22,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    562,
+    597
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "hold's boost is 30 s away; hook: no runner; the rest fall back into the base",
+   "mark": "wrong",
+   "said": "this is incorrect. At 9:22 boost timer is 0:51s away, and hook does not manage to cap or deny boost (which lands at 10:13).",
+   "calls": [
+    {
+     "play": "4629b08c-boost-1-562-30",
+     "shown": "hook [run]: Deny their boost. Met (yes: their boost does not land)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "boost",
+      "team": "hook",
+      "start": [
+       578,
+       586
+      ]
+     },
+     "want": {
+      "met": false
+     },
+     "was": "hook v hold: the boost was 51 s away at 9:22 and landed at 10:13; hook did not cap or deny it"
+    },
+    {
+     "none": {
+      "play": "boost",
+      "team": "hook",
+      "start": [
+       556,
+       572
+      ]
+     },
+     "was": "hook v hold 9:22: no boost moment 51 s before the boost"
+    }
+   ]
+  },
+  {
+   "id": "w2-4629-23",
+   "set": "w2",
+   "row": 23,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    562,
+    806
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (hold's Ritualist); hook: a flag already in hand",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "4629b08c-flag-1-562-31",
+     "shown": "hook [a flag already in hand]: Answer their cap at once, or cap just before their boost. Not met (no: their flag does not get in; no: our cap follows theirs within 15 s; no: our cap lands just before their boost)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-4629-24",
+   "set": "w2",
+   "row": 24,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    598,
+    626
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (5 v 6, hook's front door), from players split elsewhere; hook: push up (push up to their front door) | hold: push in",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "4629b08c-numbers-1-598-32",
+     "shown": "hook (weak side) [push up]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)",
+     "mark": "right"
+    },
+    {
+     "play": "4629b08c-numbers-2-598-33",
+     "shown": "hold (strong side) [push in]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-4629-25",
+   "set": "w2",
+   "row": 25,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    638,
+    718
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hook's split by the back door: one player (Warrior) against 1 defending (Prot); numbers along the way: 1 v 1 from 10:38, 2 v 1 from 11:18",
+   "mark": "partly",
+   "said": "good call, except it's 8 rit defending, prot only starts defending at 11:29 (and you are right that's it's 2v1).",
+   "calls": [
+    {
+     "play": "4629b08c-split-1-638-34",
+     "shown": "hook (attacker) [1 v 1, defended by a monk]: Hold the monk there; the main team's job is to kill. Met (yes: the split player survives)",
+     "mark": "right"
+    },
+    {
+     "play": "4629b08c-split-2-638-35",
+     "shown": "hold (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Not met (yes: no pit NPC lost; no: no more defenders die than split players)",
+     "mark": "right"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hook",
+      "start": [
+       634,
+       642
+      ]
+     },
+     "want": {
+      "scenario~": "defending (Ritualist)"
+     },
+     "why": "hook v hold 10:38: the defender is hold's 8 Ritualist; the Prot only from 11:29",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w2-4629-26",
+   "set": "w2",
+   "row": 26,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    658,
+    684
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (6 v 7, the greater stand area), from players split elsewhere; hook: retreat down the ladder (fall back into the base) | hold: stay (stay at the stand)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "4629b08c-numbers-1-658-36",
+     "shown": "hook (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)",
+     "mark": "right"
+    },
+    {
+     "play": "4629b08c-numbers-2-658-37",
+     "shown": "hold (strong side) [stay]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-4629-27",
+   "set": "w2",
+   "row": 27,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    698,
+    733
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "hold's boost is 30 s away; hook: one runner; the rest push in",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "4629b08c-boost-1-698-38",
+     "shown": "hook [run]: Deny their boost. Not met (no: their boost does not land)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-4629-28",
+   "set": "w2",
+   "row": 28,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    714,
+    778
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (5 v 6, hold's front door; then 5 v 8 from 12:10; then 6 v 8 from 12:38), from players split elsewhere; hook: push in | then 8 v 5 from 12:10; then 8 v 6 from 12:38), from players split elsewhere; hold: retreat down the ladder (fall back into the base)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "4629b08c-numbers-1-714-39",
+     "shown": "hook (weak side) [push in]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)",
+     "mark": "right"
+    },
+    {
+     "play": "4629b08c-numbers-2-714-40",
+     "shown": "hold (strong side) [retreat down the ladder]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-4629-29",
+   "set": "w2",
+   "row": 29,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    716,
+    750
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "hook leaves hold's base 4 s before the base res (2 coming back)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "4629b08c-base_res-1-716-41",
+     "shown": "hook [left before the res]: Be out, or set for the fight, when they res. Met (yes: nobody of ours dies in the 30 s after the res)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-4629-30",
+   "set": "w2",
+   "row": 30,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    766,
+    804
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hook's split by the back door: two players (Warrior, Necromancer) against 4 defending (Ritualist, Mes/A, 7 Monk, Necromancer 1); numbers along the way: 2 v 4 from 12:46, 2 v 1 from 13:08",
+   "mark": "wrong",
+   "said": "I read this as split (necro) 1v1 from 12:47",
+   "calls": [
+    {
+     "play": "4629b08c-split-1-766-42",
+     "shown": "hook (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Not met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "not judged"
+    },
+    {
+     "play": "4629b08c-split-2-766-44",
+     "shown": "hold (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Met (yes: no pit NPC lost; no: a split player dies; yes: the split is gone within the visit)",
+     "mark": "not judged"
+    },
+    {
+     "play": "4629b08c-split-1-766-43",
+     "shown": "hook (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hook",
+      "at": [
+       768,
+       800
+      ]
+     },
+     "want": {
+      "scenario~": "1 v 1 from 12:4"
+     },
+     "was": "hook v hold: the Necromancer's split, 1 v 1 from 12:47; the engine read two against four"
+    },
+    {
+     "none": {
+      "play": "split",
+      "team": "hook",
+      "at": [
+       768,
+       800
+      ],
+      "want": {
+       "scenario~": "4 defending"
+      }
+     },
+     "was": "hook v hold 12:46: four of hold's main team were counted as defending while they stood in the main fight"
+    }
+   ]
+  },
+  {
+   "id": "w2-4629-31",
+   "set": "w2",
+   "row": 31,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    784,
+    804
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (7 v 8, the flag stand), from players split elsewhere; hook: stay (stay at the stand) | hold: stay (stay at the stand)",
+   "mark": "wrong",
+   "said": "I don't think this is a clear numbers advantage, fight is too messy. But this supports my point above about split necro. How could hold have 4 people defending and simultanously have 8 players main?",
+   "calls": [
+    {
+     "play": "4629b08c-numbers-1-784-45",
+     "shown": "hook (weak side) [stay]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)",
+     "mark": "not judged"
+    },
+    {
+     "play": "4629b08c-numbers-2-784-46",
+     "shown": "hold (strong side) [stay]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "numbers",
+      "team": "hold",
+      "start": [
+       780,
+       790
+      ]
+     },
+     "why": "hook v hold 13:04: not a clear numbers advantage, the fight is too messy",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w2-4629-32",
+   "set": "w2",
+   "row": 32,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    802,
+    890
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (hook's Mes/A); hold: double run",
+   "mark": "wrong",
+   "said": "hold single runs (half runs). air ele to prot in the window you are describing. rit goes back for next flag which is sort of a double run.",
+   "calls": [
+    {
+     "play": "4629b08c-flag-2-802-47",
+     "shown": "hold [double run]: Gain flag advantage through their next cap, and lose nobody while two are away. Not met (no: flag lead better by 0.35 or more; yes: nobody of ours dies at the main fight)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-4629-33",
+   "set": "w2",
+   "row": 33,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    852,
+    916
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They double run (hold's Air Ele); hook: a flag already in hand",
+   "mark": "repeat",
+   "calls": [
+    {
+     "play": "4629b08c-flag-1-852-48",
+     "shown": "hook [a flag already in hand]: Answer their cap at once, or cap just before their boost. Not met (no: their flag does not get in; no: our cap follows theirs within 15 s; no: our cap lands just before their boost)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-4629-34",
+   "set": "w2",
+   "row": 34,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    872,
+    898
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hook's split by the back door: two players (Necromancer, Warrior) against 4 defending (Air Ele, Ritualist, Prot, 7 Monk)",
+   "mark": "partly",
+   "said": "split starts at 14:09, they are defended by air ele and rit until they both die.",
+   "calls": [
+    {
+     "play": "4629b08c-split-1-872-49",
+     "shown": "hook (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Not met (no: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "repeat",
+     "said": "see note for engine read"
+    },
+    {
+     "play": "4629b08c-split-2-872-51",
+     "shown": "hold (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Met (yes: no pit NPC lost; yes: a split player dies; yes: the split is gone within the visit)",
+     "mark": "repeat",
+     "said": "see note for engine read"
+    },
+    {
+     "play": "4629b08c-split-1-872-50",
+     "shown": "hook (attacker's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Not met (no: more of theirs die away from the split than of ours)",
+     "mark": "repeat",
+     "said": "see note for engine read"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hook",
+      "at": [
+       852,
+       896
+      ]
+     },
+     "want": {
+      "scenario~": "2 defending (Air Ele, Ritualist)"
+     },
+     "was": "hook v hold: the split is defended by the Air Ele and the Ritualist; the engine read four defending"
+    },
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hook",
+      "start": [
+       844,
+       856
+      ]
+     },
+     "want": {},
+     "why": "hook v hold: the split starts at 14:09; the engine starts it at 14:32, when the fighting starts",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w2-4629-35",
+   "set": "w2",
+   "row": 35,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    890,
+    901
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "hook pushes hold's flagger (Prot, carrying) with its main team",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "4629b08c-push_flagger-1-890-52",
+     "shown": "hook: Stop their flag, or make it 30% late. Not met (no: their flag is stopped; no: it arrives 30% or more later than usual)",
+     "mark": "right"
+    },
+    {
+     "play": "4629b08c-flagger_pushed-2-890-53",
+     "shown": "hold: Get the flag in on time. Met (yes: the flag gets in, less than 30% late)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-4629-36",
+   "set": "w2",
+   "row": 36,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    896,
+    970
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (5 v 7, the flag stand; then 5 v 8 from 15:52), from kills; hook: retreat down the ladder (fall back into the base) | then 8 v 5 from 15:52), from kills; hold: push in",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "4629b08c-numbers-1-896-54",
+     "shown": "hook (down) [retreat down the ladder]: Reach cover a player down without losing another. Not met (no: nobody of ours dies; no: no NPC lost)",
+     "mark": "wrong"
+    },
+    {
+     "play": "4629b08c-numbers-2-896-55",
+     "shown": "hold (up) [push in]: Take ground and NPCs with the numbers. Met (yes: no more of ours die than of theirs; yes: one of their NPCs dies; yes: more of theirs die than of ours)",
+     "mark": "wrong",
+     "said": "same issue as before. Yes, they take an NPC but no, no other players die. Players die at 14:56 and 14:57 but that is what CAUSED the 5v7. You can't have the effect before the cause. (i.e. if it is 5v7 because 2 players died, the 5v7 didn't cause the 2 players to die)"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "hook",
+      "start": [
+       894,
+       900
+      ]
+     },
+     "want": {
+      "tests": {
+       "nobody of ours dies": true
+      }
+     },
+     "was": "hook v hold 14:56: the deaths at 14:56 and 14:57 caused the 5 v 7 and are not its result"
+    },
+    {
+     "has": {
+      "play": "numbers",
+      "team": "hold",
+      "start": [
+       894,
+       900
+      ]
+     },
+     "want": {
+      "tests": {
+       "more of theirs die than of ours": false
+      }
+     },
+     "was": "hook v hold 14:56: hold takes an NPC but kills nobody once it is 5 v 7"
+    }
+   ]
+  },
+  {
+   "id": "w2-4629-37",
+   "set": "w2",
+   "row": 37,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    906,
+    946
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (hold's Ritualist); hook: stay",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "4629b08c-flag-1-906-56",
+     "shown": "hook [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Met (no: more of theirs die at the main fight than of ours; yes: their flag does not get in)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-4629-38",
+   "set": "w2",
+   "row": 38,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    940,
+    990
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "hold has 8 in hook's base at the base res (5 defending, 3 coming back): 8 stay",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "4629b08c-base_res-2-940-57",
+     "shown": "hold [stayed through the res]: Be out, or set for the fight, when they res. Met (yes: nobody of ours dies in the 30 s after the res)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-4629-39",
+   "set": "w2",
+   "row": 39,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    988,
+    1024
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "hook is held in its own base or pit by hold's main team (K2 A1 B1 alive; base res in 92 s)",
+   "mark": "wrong",
+   "said": "Why does this end at 17:04? They are still stuck in their base at 17:04 in the exact same situation. Also your NPC count is wrong, they have K2A2B1 until 17:22 when they lose a knight.",
+   "calls": [
+    {
+     "play": "4629b08c-pinned-1-988-58",
+     "shown": "hook: Lose no player and no NPC while held in, or break out. Met (yes: no pit NPC lost and nobody dies until the base res; yes: it breaks out (half its living players or more, four at least, out of its base and pit))",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "hook",
+      "start": [
+       986,
+       992
+      ],
+      "end": [
+       1040,
+       1100
+      ]
+     },
+     "want": {
+      "scenario~": "K2 A2 B1"
+     },
+     "was": "hook v hold 16:28: K2 A2 B1 until 17:22, and still held in at 17:04; the engine read A1 and ended it at 17:04"
+    }
+   ]
+  },
+  {
+   "id": "w2-4629-40",
+   "set": "w2",
+   "row": 40,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    1111,
+    1156
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "hold's boost is 30 s away; hook: no runner; the rest fall back into the base",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "4629b08c-boost-1-1111-59",
+     "shown": "hook [concede]: Concede the boost for kills. Not met (no: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-4629-41",
+   "set": "w2",
+   "row": 41,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    1118,
+    1142
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (6 v 8, hook's front door; then 6 v 7 from 18:48), from players split elsewhere; hook: retreat down the ladder (fall back into the base) | then 7 v 6 from 18:48), from players split elsewhere; hold: stay (stay on the enemy's side)",
+   "mark": "wrong",
+   "said": "I see this as 6v6 until 18:58 when 8 monk of hook leaves. It stays as a very clear and good example of power play for hold until 19:25 when prot leaves to defend split.",
+   "calls": [
+    {
+     "play": "4629b08c-numbers-1-1118-60",
+     "shown": "hook (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)",
+     "mark": "not judged"
+    },
+    {
+     "play": "4629b08c-numbers-2-1118-61",
+     "shown": "hold (strong side) [stay]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "hold",
+      "start": [
+       1134,
+       1144
+      ]
+     },
+     "want": {},
+     "why": "hook v hold: 6 v 6 until 18:58, when hook's 8 Monk leaves; then a clear power play for hold until 19:25",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w2-4629-42",
+   "set": "w2",
+   "row": 42,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    1140,
+    1178
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (5 v 6, hook's front door), from players split elsewhere; hook: retreat down the ladder (fall back into the base) | hold: fall out",
+   "mark": "repeat",
+   "calls": [
+    {
+     "play": "4629b08c-numbers-1-1140-62",
+     "shown": "hook (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)",
+     "mark": "not judged"
+    },
+    {
+     "play": "4629b08c-numbers-2-1140-63",
+     "shown": "hold (strong side) [fall out]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-4629-43",
+   "set": "w2",
+   "row": 43,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    1148,
+    1248
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hook's split by the back door: three players (AoB Derv, Necromancer, 8 Monk) against 2 defending (Ritualist, Prot)",
+   "mark": "partly",
+   "said": "split starts at 18:44 as 2 man split, defended by air ele and rit; becomes 3v2 when 8 monk joins at 19:14; prot and air ele swap so still 3v2 at 19:47;",
+   "calls": [
+    {
+     "play": "4629b08c-split-1-1148-64",
+     "shown": "hook (attacker) [a player or more up]: Kill or take NPCs. Not met (no: a defender killed; no: an NPC taken)",
+     "mark": "right"
+    },
+    {
+     "play": "4629b08c-split-2-1148-65",
+     "shown": "hold (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)",
+     "mark": "right"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hook",
+      "start": [
+       1120,
+       1130
+      ]
+     },
+     "want": {
+      "scenario~": "two players"
+     },
+     "why": "hook v hold: the split starts at 18:44 with two, defended by the Air Ele and the Ritualist; 3 v 2 from 19:14 when the 8 Monk joins; the Prot and the Air Ele swap at 19:47",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w2-4629-44",
+   "set": "w2",
+   "row": 44,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    1200,
+    1244
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (5 v 6, hook's front door; then 4 v 6 from 20:18; then 1 v 6 from 20:30), from players split elsewhere; hook: retreat down the ladder (fall back into the base) | then 6 v 4 from 20:18; then 6 v 1 from 20:30), from players split elsewhere; hold: stay (stay on the enemy's side)",
+   "mark": "right",
+   "said": "this is right, I'm thinking if we should use other verbs though and it's not from players split elsewhere, it's a 5v6 fight where hook takes 5 deaths, making it eventually 6v0.",
+   "calls": [
+    {
+     "play": "4629b08c-numbers-1-1200-66",
+     "shown": "hook (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Not met (no: nobody of ours dies)",
+     "mark": "right"
+    },
+    {
+     "play": "4629b08c-numbers-2-1200-67",
+     "shown": "hold (strong side) [stay]: Kill with the numbers while their players are away. Met (yes: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-4629-45",
+   "set": "w2",
+   "row": 45,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    1231,
+    1276
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "hold's boost is 30 s away; hook: no runner; the rest nobody",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "4629b08c-boost-1-1231-68",
+     "shown": "hook [concede]: Concede the boost for kills. Not met (no: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-4629-missed",
+   "set": "w2",
+   "row": 0,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
+   "match": "hook v hold, Nomad's",
+   "window": [
+    0,
+    0
+   ],
+   "type": "missed",
+   "call": "",
+   "shown": "(his notes on the game: what the engine did not read, and his questions)",
+   "mark": "missed",
+   "said": "0:01 opening of the game missed hook leaving 1 back for the next flag; missed air ele (and maybe mainteam as a whole) pushing hook's flag at 1:18;",
+   "checks": [
+    {
+     "has": {
+      "play": "push flagger",
+      "team": "hold",
+      "at": [
+       70,
+       92
+      ]
+     },
+     "want": {
+      "who~": [
+       "Air Ele"
+      ]
+     },
+     "why": "hook v hold 1:18: hold's Air Ele (and maybe its main team) pushes hook's flag; not read. Also the opening: hook leaves one back for the next flag",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w2-427c-1",
+   "set": "w2",
+   "row": 1,
+   "rid": "427c825b-7e7f-54f4-aba9-7de41c9fcbaf",
+   "match": "cope v Team, Jade",
+   "window": [
+    34,
+    54
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (7 v 8, the flag stand), from kills; cope: stay (stay at the stand) | Team: stay (stay at the stand)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "427c825b-numbers-1-34-0",
+     "shown": "cope (down) [stay]: Hold the ground a player down and lose no more until it is level, or the base res. Met (yes: nobody of ours dies)",
+     "mark": "right"
+    },
+    {
+     "play": "427c825b-numbers-2-34-1",
+     "shown": "Team (up) [stay]: Turn the extra player into a kill before the numbers are level. Not met (no: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-427c-2",
+   "set": "w2",
+   "row": 2,
+   "rid": "427c825b-7e7f-54f4-aba9-7de41c9fcbaf",
+   "match": "cope v Team, Jade",
+   "window": [
+    104,
+    162
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (7 v 8, the flag stand; then 6 v 8 from 2:00; then 5 v 8 from 2:12; then 6 v 8 from 2:18), from kills; Team: stay (stay at the stand) | then 8 v 6 from 2:00; then 8 v 5 from 2:12; then 8 v 6 from 2:18), from kills; cope: stay (stay at the stand)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "427c825b-numbers-2-104-3",
+     "shown": "Team (down) [stay]: Hold the ground a player down and lose no more until it is level, or the base res. Not met (no: nobody of ours dies)",
+     "mark": "right"
+    },
+    {
+     "play": "427c825b-numbers-1-104-2",
+     "shown": "cope (up) [stay]: Turn the extra player into a kill before the numbers are level. Met (yes: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-427c-3",
+   "set": "w2",
+   "row": 3,
+   "rid": "427c825b-7e7f-54f4-aba9-7de41c9fcbaf",
+   "match": "cope v Team, Jade",
+   "window": [
+    163,
+    343
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (cope's AoB Derv); Team: single run",
+   "mark": "wrong",
+   "said": "double run; full run with derv 1 going back for next flag before 2 warrior has even capped (look around 3:16)",
+   "calls": [
+    {
+     "play": "427c825b-flag-2-163-4",
+     "shown": "Team [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (yes: our flag is capped; yes: no more of ours die at the main fight than of theirs; no: no worse than half a flag behind at the end, or no further behind than at the start)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "Team",
+      "start": [
+       160,
+       166
+      ]
+     },
+     "want": {
+      "their": "double run"
+     },
+     "was": "cope v Team 2:43: a double run, full run: the Dervish goes back for the next flag before the Warrior has capped (3:16)"
+    }
+   ]
+  },
+  {
+   "id": "w2-427c-4",
+   "set": "w2",
+   "row": 4,
+   "rid": "427c825b-7e7f-54f4-aba9-7de41c9fcbaf",
+   "match": "cope v Team, Jade",
+   "window": [
+    180,
+    204
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "cope's split by the back door: two players (Mes/A, Prot) against 1 defending (Air Ele 2)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "427c825b-split-1-180-5",
+     "shown": "cope (attacker) [a player or more up]: Kill or take NPCs. Not met (no: a defender killed; no: an NPC taken)",
+     "mark": "right"
+    },
+    {
+     "play": "427c825b-split-2-180-6",
+     "shown": "Team (defender) [one defender]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-427c-5",
+   "set": "w2",
+   "row": 5,
+   "rid": "427c825b-7e7f-54f4-aba9-7de41c9fcbaf",
+   "match": "cope v Team, Jade",
+   "window": [
+    186,
+    208
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (3 v 6, Team's front door; then 2 v 6 from 3:10), from players split elsewhere; cope: stay (stay at the stand) | then 6 v 2 from 3:10), from players split elsewhere; Team: retreat down the ladder (fall back into the base)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "427c825b-numbers-1-186-7",
+     "shown": "cope (weak side) [stay]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)",
+     "mark": "right"
+    },
+    {
+     "play": "427c825b-numbers-2-186-8",
+     "shown": "Team (strong side) [retreat down the ladder]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-427c-6",
+   "set": "w2",
+   "row": 6,
+   "rid": "427c825b-7e7f-54f4-aba9-7de41c9fcbaf",
+   "match": "cope v Team, Jade",
+   "window": [
+    202,
+    236
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "cope's split by the back door: 4 players (Mes/A, Prot, 7 Monk, Stand Mes 1) against 0 defending",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "427c825b-split-1-202-9",
+     "shown": "cope (attacker) [undefended]: Take NPCs. Not met (no: an NPC taken)",
+     "mark": "right"
+    },
+    {
+     "play": "427c825b-split-2-202-10",
+     "shown": "Team (defender) [no answer]: Win elsewhere before the split costs more than it gains. Not met (no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-427c-7",
+   "set": "w2",
+   "row": 7,
+   "rid": "427c825b-7e7f-54f4-aba9-7de41c9fcbaf",
+   "match": "cope v Team, Jade",
+   "window": [
+    220,
+    270
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "cope has 8 in Team's base at the base res (0 defending, 2 coming back): 8 stay",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "427c825b-base_res-1-220-11",
+     "shown": "cope [stayed through the res]: Be out, or set for the fight, when they res. Met (yes: nobody of ours dies in the 30 s after the res)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-427c-8",
+   "set": "w2",
+   "row": 8,
+   "rid": "427c825b-7e7f-54f4-aba9-7de41c9fcbaf",
+   "match": "cope v Team, Jade",
+   "window": [
+    286,
+    321
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "cope's boost is 30 s away; Team: no runner; the rest fall back into the base",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "427c825b-boost-2-286-12",
+     "shown": "Team [run]: Deny their boost. Not met (no: their boost does not land)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-427c-9",
+   "set": "w2",
+   "row": 9,
+   "rid": "427c825b-7e7f-54f4-aba9-7de41c9fcbaf",
+   "match": "cope v Team, Jade",
+   "window": [
+    292,
+    312
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Up on numbers in the main fight (8 v 7, Team's front door), from kills; cope: stay (stay on the enemy's side) | Team: retreat down the ladder (fall back into the base)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "427c825b-numbers-1-292-13",
+     "shown": "cope (up) [stay]: Turn the extra player into a kill before the numbers are level. Met (yes: more of theirs die than of ours)",
+     "mark": "right"
+    },
+    {
+     "play": "427c825b-numbers-2-292-14",
+     "shown": "Team (down) [retreat down the ladder]: Reach cover a player down without losing another. Not met (no: nobody of ours dies; yes: no NPC lost)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-427c-10",
+   "set": "w2",
+   "row": 10,
+   "rid": "427c825b-7e7f-54f4-aba9-7de41c9fcbaf",
+   "match": "cope v Team, Jade",
+   "window": [
+    318,
+    368
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Up on numbers in the main fight (8 v 7, Team's front door; then 8 v 6 from 5:34), from kills; cope: stay (stay on the enemy's side) | then 6 v 8 from 5:34), from kills; Team: retreat down the ladder (fall back into the base)",
+   "mark": "partly",
+   "said": "this is correct but why is it not merge with the previous one? same time period continuation, same situation",
+   "calls": [
+    {
+     "play": "427c825b-numbers-1-318-15",
+     "shown": "cope (up) [stay]: Turn the extra player into a kill before the numbers are level. Met (yes: more of theirs die than of ours)",
+     "mark": "right"
+    },
+    {
+     "play": "427c825b-numbers-2-318-16",
+     "shown": "Team (down) [retreat down the ladder]: Reach cover a player down without losing another. Not met (no: nobody of ours dies; no: no NPC lost)",
+     "mark": "right"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "numbers",
+      "team": "cope",
+      "start": [
+       314,
+       322
+      ]
+     },
+     "was": "cope v Team 5:18: the same situation as the row before it, a continuation: told once"
+    },
+    {
+     "has": {
+      "play": "numbers",
+      "team": "cope",
+      "start": [
+       290,
+       294
+      ],
+      "end": [
+       362,
+       372
+      ]
+     },
+     "want": {},
+     "was": "cope v Team: 8 v 7 from 4:52 and on through 8 v 6 to 6:08 is one situation"
+    }
+   ]
+  },
+  {
+   "id": "w2-427c-11",
+   "set": "w2",
+   "row": 11,
+   "rid": "427c825b-7e7f-54f4-aba9-7de41c9fcbaf",
+   "match": "cope v Team, Jade",
+   "window": [
+    340,
+    390
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "cope has 8 in Team's base at the base res (6 defending, 2 coming back): 1 stay",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "427c825b-base_res-1-340-17",
+     "shown": "cope [stayed through the res]: Be out, or set for the fight, when they res. Met (yes: nobody of ours dies in the 30 s after the res)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-427c-12",
+   "set": "w2",
+   "row": 12,
+   "rid": "427c825b-7e7f-54f4-aba9-7de41c9fcbaf",
+   "match": "cope v Team, Jade",
+   "window": [
+    364,
+    394
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (1 v 8, Team's back door; then 2 v 8 from 6:16), from players split elsewhere; cope: stay (stay on the enemy's side) | then 8 v 2 from 6:16), from players split elsewhere; Team: retreat down the ladder (retreat to the pit)",
+   "mark": "wrong",
+   "said": "not a 1v8, warrior was just the last one through portal",
+   "calls": [
+    {
+     "play": "427c825b-numbers-1-364-18",
+     "shown": "cope (weak side) [stay]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)",
+     "mark": "not judged"
+    },
+    {
+     "play": "427c825b-numbers-2-364-19",
+     "shown": "Team (strong side) [retreat down the ladder]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "numbers",
+      "team": "Team",
+      "start": [
+       362,
+       366
+      ]
+     },
+     "why": "cope v Team 6:04: not a 1 v 8, the Warrior was only the last one through the portal",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w2-427c-13",
+   "set": "w2",
+   "row": 13,
+   "rid": "427c825b-7e7f-54f4-aba9-7de41c9fcbaf",
+   "match": "cope v Team, Jade",
+   "window": [
+    406,
+    451
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "cope's boost is 30 s away; Team: no runner; the rest retreat to the pit",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "427c825b-boost-2-406-20",
+     "shown": "Team [concede]: Concede the boost for kills. Not met (no: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-427c-14",
+   "set": "w2",
+   "row": 14,
+   "rid": "427c825b-7e7f-54f4-aba9-7de41c9fcbaf",
+   "match": "cope v Team, Jade",
+   "window": [
+    412,
+    524
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "Team is held in its own base or pit by cope's main team (K2 A1 B1 alive; base res in 68 s)",
+   "mark": "partly",
+   "said": "They are K2A2B1 when cope pushes in at 7:56",
+   "calls": [
+    {
+     "play": "427c825b-pinned-2-412-21",
+     "shown": "Team: Lose no player and no NPC while held in, or break out. Met (no: no pit NPC lost and nobody dies until the base res; yes: it breaks out (half its living players or more, four at least, out of its base and pit))",
+     "mark": "partly"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "Team",
+      "start": [
+       410,
+       414
+      ]
+     },
+     "want": {
+      "scenario~": "K2 A2 B1"
+     },
+     "was": "cope v Team: K2 A2 B1 when cope pushes in at 7:56; the engine read A1"
+    }
+   ]
+  },
+  {
+   "id": "w2-427c-15",
+   "set": "w2",
+   "row": 15,
+   "rid": "427c825b-7e7f-54f4-aba9-7de41c9fcbaf",
+   "match": "cope v Team, Jade",
+   "window": [
+    520,
+    542
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Up on numbers in the main fight (8 v 7, Team's pit), from kills; cope: fall out",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "427c825b-numbers-1-520-22",
+     "shown": "cope (up) [fall out]: Reset without giving anything back. Met (yes: nobody of ours dies; yes: no NPC lost)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-427c-16",
+   "set": "w2",
+   "row": 16,
+   "rid": "427c825b-7e7f-54f4-aba9-7de41c9fcbaf",
+   "match": "cope v Team, Jade",
+   "window": [
+    526,
+    571
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "cope's boost is 30 s away; Team: no runner; the rest fall back into the base",
+   "mark": "repeat",
+   "calls": [
+    {
+     "play": "427c825b-boost-2-526-23",
+     "shown": "Team [concede]: Concede the boost for kills. Not met (no: more of theirs die than of ours)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-427c-17",
+   "set": "w2",
+   "row": 17,
+   "rid": "427c825b-7e7f-54f4-aba9-7de41c9fcbaf",
+   "match": "cope v Team, Jade",
+   "window": [
+    596,
+    660
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "Team is held in its own base or pit by cope's main team (K2 A0 B1 alive; base res in 4 s)",
+   "mark": "partly",
+   "said": "K2A2B1 when cope pushes in,",
+   "calls": [
+    {
+     "play": "427c825b-pinned-2-596-24",
+     "shown": "Team: Lose no player and no NPC while held in, or break out. Met (no: no pit NPC lost and nobody dies until the base res; yes: it breaks out (half its living players or more, four at least, out of its base and pit))",
+     "mark": "wrong",
+     "said": "they lose a knight a 10:42"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "Team",
+      "start": [
+       594,
+       598
+      ]
+     },
+     "want": {
+      "scenario~": "K2 A2 B1"
+     },
+     "was": "cope v Team 9:56: K2 A2 B1 when cope pushes in; the engine read A0"
+    },
+    {
+     "has": {
+      "play": "pinned",
+      "team": "Team",
+      "start": [
+       594,
+       598
+      ]
+     },
+     "want": {
+      "met": false
+     },
+     "why": "cope v Team: they lose a knight at 10:42, and the engine calls the job met because they break out afterwards (put to him: does a break-out after losing an NPC meet the job?)",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w2-427c-18",
+   "set": "w2",
+   "row": 18,
+   "rid": "427c825b-7e7f-54f4-aba9-7de41c9fcbaf",
+   "match": "cope v Team, Jade",
+   "window": [
+    700,
+    750
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "Team has 6 in cope's base at the base res (0 defending, 2 coming back): 6 stay",
+   "mark": "wrong",
+   "said": "Team has 7 in cope's base",
+   "calls": [
+    {
+     "play": "427c825b-base_res-2-700-25",
+     "shown": "Team [stayed through the res]: Be out, or set for the fight, when they res. Met (yes: nobody of ours dies in the 30 s after the res)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "Team",
+      "at": [
+       700,
+       750
+      ]
+     },
+     "want": {
+      "scenario~": "Team has 7"
+     },
+     "why": "cope v Team 11:40: Team has 7 in cope's base, where the engine read 6",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w2-427c-19",
+   "set": "w2",
+   "row": 19,
+   "rid": "427c825b-7e7f-54f4-aba9-7de41c9fcbaf",
+   "match": "cope v Team, Jade",
+   "window": [
+    716,
+    736
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Up on numbers in the main fight (6 v 5, cope's back door; then 8 v 7 from 12:02), from players split elsewhere; cope: push up; 3 damage against 2 monks | then 7 v 8 from 12:02), from players split elsewhere; Team: push up (push up to their back door)",
+   "mark": "wrong",
+   "said": "no real fight during this period",
+   "calls": [
+    {
+     "play": "427c825b-numbers-1-716-26",
+     "shown": "cope (strong side) [push up]: Keep them busy and lose nobody (a kill is not expected of it). Met (yes: nobody of ours dies)",
+     "mark": "not judged"
+    },
+    {
+     "play": "427c825b-numbers-2-716-27",
+     "shown": "Team (weak side) [push up]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "numbers",
+      "start": [
+       714,
+       718
+      ]
+     },
+     "why": "cope v Team 11:56: no real fight in this period",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w2-427c-20",
+   "set": "w2",
+   "row": 20,
+   "rid": "427c825b-7e7f-54f4-aba9-7de41c9fcbaf",
+   "match": "cope v Team, Jade",
+   "window": [
+    734,
+    780
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Up on numbers in the main fight (8 v 7, cope's front door), from a runner away; cope: retreat down the ladder (fall back into the base) | Team: stay (stay on the enemy's side)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "427c825b-numbers-1-734-28",
+     "shown": "cope (up) [retreat down the ladder]: Reset without giving anything back. Met (yes: nobody of ours dies; yes: no NPC lost)",
+     "mark": "right"
+    },
+    {
+     "play": "427c825b-numbers-2-734-29",
+     "shown": "Team (down) [stay]: Hold the ground a player down and lose no more until it is level, or the base res. Met (yes: nobody of ours dies)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-427c-21",
+   "set": "w2",
+   "row": 21,
+   "rid": "427c825b-7e7f-54f4-aba9-7de41c9fcbaf",
+   "match": "cope v Team, Jade",
+   "window": [
+    768,
+    829
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (cope's AoB Derv); Team: stay",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "427c825b-flag-2-768-30",
+     "shown": "Team [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Met (yes: more of theirs die at the main fight than of ours; yes: their flag does not get in)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-427c-22",
+   "set": "w2",
+   "row": 22,
+   "rid": "427c825b-7e7f-54f4-aba9-7de41c9fcbaf",
+   "match": "cope v Team, Jade",
+   "window": [
+    808,
+    843
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "Team's boost is 30 s away; cope: one runner; the rest stay at the stand",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "427c825b-boost-1-808-31",
+     "shown": "cope [run]: Deny their boost. Met (yes: their boost does not land)",
+     "mark": "wrong",
+     "said": "incorrect, boost lands at 14:10 and cope does not cap"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "boost",
+      "team": "cope",
+      "at": [
+       810,
+       850
+      ]
+     },
+     "want": {
+      "met": false
+     },
+     "was": "cope v Team: the boost lands at 14:10 and cope does not cap; the engine put it at 13:58 and called it denied"
+    }
+   ]
+  },
+  {
+   "id": "w2-427c-23",
+   "set": "w2",
+   "row": 23,
+   "rid": "427c825b-7e7f-54f4-aba9-7de41c9fcbaf",
+   "match": "cope v Team, Jade",
+   "window": [
+    814,
+    838
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (6 v 8, the flag stand), from players split elsewhere; cope: retreat down the ladder (fall back into the base) | Team: stay (stay at the stand)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "427c825b-numbers-1-814-32",
+     "shown": "cope (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Not met (no: nobody of ours dies)",
+     "mark": "right"
+    },
+    {
+     "play": "427c825b-numbers-2-814-33",
+     "shown": "Team (strong side) [stay]: Kill with the numbers while their players are away. Met (yes: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-427c-24",
+   "set": "w2",
+   "row": 24,
+   "rid": "427c825b-7e7f-54f4-aba9-7de41c9fcbaf",
+   "match": "cope v Team, Jade",
+   "window": [
+    832,
+    854
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (7 v 8, the greater stand area), from kills; cope: retreat down the ladder (fall back into the base) | Team: push in",
+   "mark": "partly",
+   "said": "this is a continuation of the above situation I think",
+   "calls": [
+    {
+     "play": "427c825b-numbers-1-832-34",
+     "shown": "cope (down) [retreat down the ladder]: Reach cover a player down without losing another. Not met (no: nobody of ours dies; yes: no NPC lost)",
+     "mark": "partly"
+    },
+    {
+     "play": "427c825b-numbers-2-832-35",
+     "shown": "Team (up) [push in]: Take ground and NPCs with the numbers. Met (yes: no more of ours die than of theirs; no: one of their NPCs dies; yes: more of theirs die than of ours)",
+     "mark": "partly"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "numbers",
+      "team": "cope",
+      "start": [
+       828,
+       836
+      ]
+     },
+     "was": "cope v Team 13:52: a continuation of the situation above: told once"
+    }
+   ]
+  },
+  {
+   "id": "w2-427c-25",
+   "set": "w2",
+   "row": 25,
+   "rid": "427c825b-7e7f-54f4-aba9-7de41c9fcbaf",
+   "match": "cope v Team, Jade",
+   "window": [
+    852,
+    886
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (5 v 8, cope's back door; then 3 v 8 from 14:20), from kills; cope: retreat down the ladder (fall back into the base) | then 8 v 3 from 14:20), from kills; Team: push in",
+   "mark": "partly",
+   "said": "this is a continuation of the above situation I think",
+   "calls": [
+    {
+     "play": "427c825b-numbers-1-852-36",
+     "shown": "cope (down) [retreat down the ladder]: Reach cover a player down without losing another. Not met (no: nobody of ours dies; no: no NPC lost)",
+     "mark": "partly"
+    },
+    {
+     "play": "427c825b-numbers-2-852-37",
+     "shown": "Team (up) [push in]: Take ground and NPCs with the numbers. Met (yes: no more of ours die than of theirs; yes: one of their NPCs dies; yes: more of theirs die than of ours)",
+     "mark": "partly"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "numbers",
+      "team": "cope",
+      "start": [
+       848,
+       856
+      ]
+     },
+     "was": "cope v Team 14:12: a continuation of the situation above: told once"
+    },
+    {
+     "has": {
+      "play": "numbers",
+      "team": "cope",
+      "start": [
+       812,
+       816
+      ],
+      "end": [
+       880,
+       890
+      ]
+     },
+     "want": {},
+     "was": "cope v Team: down on numbers from 13:34 to the end of it at 14:46 is one situation"
+    }
+   ]
+  },
+  {
+   "id": "w2-427c-missed",
+   "set": "w2",
+   "row": 0,
+   "rid": "427c825b-7e7f-54f4-aba9-7de41c9fcbaf",
+   "match": "cope v Team, Jade",
+   "window": [
+    0,
+    0
+   ],
+   "type": "missed",
+   "call": "",
+   "shown": "(his notes on the game: what the engine did not read, and his questions)",
+   "mark": "missed",
+   "said": "do we read/will it be reflected like a \"general\" 8v8 fight; it's not really a decision point but from 0:00 until the death on prot at 0:38, neither team really makes a decision, it's just an 8v8 fight but we should at some point be able to see micro/execution wise why cope died to the spike, if that make sense?",
+   "checks": []
   }
  ]
 }

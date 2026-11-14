@@ -1,7 +1,7 @@
 {
  "about": "The rows of Model > Game review (R-454, R-455): every situation the engine reads in each review game, written by tools/golden/review.py export on the engine branch. His marks are in game_review_marks.json, never here.",
  "generated": "2026-11-14",
- "engine": "b025445",
+ "engine": "7244f5b",
  "games": [
   {
    "set": "w1",
@@ -9208,51 +9208,39 @@
   },
   {
    "set": "w2",
-   "part": 1,
+   "part": 2,
    "label": "round 3",
-   "rid": "ba85aafc-0bd8-518d-a814-e5f7e9e01baf",
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
    "teams": [
-    "chic",
-    "戦戦戦戦"
+    "RJT",
+    "RACK"
    ],
-   "map": "Corrupted Isle",
-   "date": "2026-11-03",
+   "map": "Nomad's Isle",
+   "date": "2026-11-04",
    "situations": [
     {
      "n": 1,
-     "id": "s:ba85aafc-numbers-1-2-0",
-     "kind": "numbers",
-     "t0": 2,
-     "t1": 212,
-     "reads": "Up on numbers in the main fight (5 v 4, the greater stand area; then 5 v 4 from 1:24; then 5 v 3 from 1:42; then 5 v 3 from 2:42), from players split elsewhere; chic: split (split by the front door) | then 4 v 5 from 1:24; then 3 v 5 from 1:42; then 3 v 5 from 2:42), from players split elsewhere; 戦戦戦戦: push up (go out by the front door)",
+     "id": "s:eea5ba87-flag-2-24-0",
+     "kind": "flag",
+     "t0": 24,
+     "t1": 100,
+     "reads": "They single run (RJT's AoB Derv); RACK: double run",
      "calls": [
       {
-       "id": "ba85aafc-numbers-1-2-0",
-       "team": "chic",
-       "side": "strong side",
-       "label": "split",
-       "job": "Kill with the numbers while their players are away",
+       "id": "eea5ba87-flag-2-24-0",
+       "team": "RACK",
+       "side": "",
+       "label": "double run",
+       "job": "Gain flag advantage through their next cap, and lose nobody while two are away",
        "met": true,
        "tests": [
         [
          true,
-         "more of theirs die than of ours"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      },
-      {
-       "id": "ba85aafc-numbers-2-2-1",
-       "team": "戦戦戦戦",
-       "side": "weak side",
-       "label": "push up",
-       "job": "No deaths, keep them busy, do not chase",
-       "met": false,
-       "tests": [
+         "flag lead better by 0.35 or more"
+        ],
         [
-         false,
-         "nobody of ours dies"
+         true,
+         "nobody of ours dies at the main fight"
         ]
        ],
        "any": false,
@@ -9262,38 +9250,42 @@
     },
     {
      "n": 2,
-     "id": "s:ba85aafc-split-1-64-2",
+     "id": "s:eea5ba87-split-2-30-2",
      "kind": "split",
-     "t0": 64,
-     "t1": 120,
-     "reads": "chic's split by the back door: three players (Dervish, Ritualist, 7 Monk) against 3 defending (Fire Ele, Air Ele, Prot)",
+     "t0": 30,
+     "t1": 78,
+     "reads": "RACK's split by the front door: one player (Ranger) against 2 defending (8 Monk, AoB Derv); numbers along the way: 1 v 2 from 0:30, 1 v 1 from 0:56",
      "calls": [
       {
-       "id": "ba85aafc-split-1-64-2",
-       "team": "chic",
+       "id": "eea5ba87-split-2-30-2",
+       "team": "RACK",
        "side": "attacker",
-       "label": "even",
-       "job": "Take NPCs or kills",
-       "met": false,
+       "label": "a player or more down",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": true,
        "tests": [
         [
-         false,
-         "a defender killed"
+         true,
+         "nobody on the split dies"
         ],
         [
          false,
-         "an NPC taken"
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         true,
+         "flag lead better by 0.35 or more"
         ]
        ],
-       "any": true,
+       "any": false,
        "draft": false
       },
       {
-       "id": "ba85aafc-split-2-64-3",
-       "team": "戦戦戦戦",
+       "id": "eea5ba87-split-1-30-1",
+       "team": "RJT",
        "side": "defender",
-       "label": "mirror",
-       "job": "Hold it even: lose no pit NPC and no more players than the split does",
+       "label": "add one",
+       "job": "Kill it or drive it out with the extra player, and lose no pit NPC for it",
        "met": true,
        "tests": [
         [
@@ -9301,8 +9293,12 @@
          "no pit NPC lost"
         ],
         [
+         false,
+         "a split player dies"
+        ],
+        [
          true,
-         "no more defenders die than split players"
+         "the split is gone within the visit"
         ]
        ],
        "any": false,
@@ -9312,17 +9308,311 @@
     },
     {
      "n": 3,
-     "id": "s:ba85aafc-split-1-118-4",
-     "kind": "split",
-     "t0": 118,
-     "t1": 150,
-     "reads": "chic's split by the back door: three players (Dervish, Ritualist, 7 Monk) against 4 defending (Fire Ele, Air Ele, Mesmer, Prot); Mesmer collapse from the main fight; 4 (Fire Ele, Air Ele, Mesmer, Prot) against three players: collapse by Mesmer from the main fight",
+     "id": "s:eea5ba87-push_flagger-2-70-4",
+     "kind": "push flagger",
+     "t0": 70,
+     "t1": 80,
+     "reads": "RACK pushes RJT's flagger (AoB Derv, carrying) with its main team",
      "calls": [
       {
-       "id": "ba85aafc-split-1-118-4",
-       "team": "chic",
+       "id": "eea5ba87-push_flagger-2-70-4",
+       "team": "RACK",
+       "side": "",
+       "label": "",
+       "job": "Stop their flag, or make it 30% late",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "their flag is stopped"
+        ],
+        [
+         false,
+         "it arrives 30% or more later than usual"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "eea5ba87-flagger_pushed-1-70-3",
+       "team": "RJT",
+       "side": "",
+       "label": "",
+       "job": "Get the flag in on time",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "the flag gets in, less than 30% late"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 4,
+     "id": "s:eea5ba87-flag-2-101-5",
+     "kind": "flag",
+     "t0": 101,
+     "t1": 176,
+     "reads": "They double run (RJT's AoB Derv); RACK: single run",
+     "calls": [
+      {
+       "id": "eea5ba87-flag-2-101-5",
+       "team": "RACK",
+       "side": "",
+       "label": "single run",
+       "job": "Kill or take ground with the extra player, and end no worse than a flag behind",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "no worse than a flag behind at the end"
+        ],
+        [
+         false,
+         "more of theirs die at the main fight than of ours"
+        ],
+        [
+         false,
+         "ground taken"
+        ],
+        [
+         false,
+         "one of their NPCs dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 5,
+     "id": "s:eea5ba87-push_flagger-2-124-7",
+     "kind": "push flagger",
+     "t0": 124,
+     "t1": 150,
+     "reads": "RACK pushes RJT's flagger (AoB Derv, carrying) with one player",
+     "calls": [
+      {
+       "id": "eea5ba87-push_flagger-2-124-7",
+       "team": "RACK",
+       "side": "",
+       "label": "",
+       "job": "Stop their flag, or make it 30% late",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "their flag is stopped"
+        ],
+        [
+         false,
+         "it arrives 30% or more later than usual"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "eea5ba87-flagger_pushed-1-124-6",
+       "team": "RJT",
+       "side": "",
+       "label": "",
+       "job": "Get the flag in on time, without losing a player for the help sent",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "the flag gets in, less than 30% late"
+        ],
+        [
+         true,
+         "nobody else of ours dies meanwhile"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 6,
+     "id": "s:eea5ba87-flag-1-143-8",
+     "kind": "flag",
+     "t0": 143,
+     "t1": 191,
+     "reads": "They single run (RACK's Stand Mes); RJT: a flag already in hand",
+     "calls": [
+      {
+       "id": "eea5ba87-flag-1-143-8",
+       "team": "RJT",
+       "side": "",
+       "label": "a flag already in hand",
+       "job": "Answer their cap at once, or cap just before their boost",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "their flag does not get in"
+        ],
+        [
+         false,
+         "our cap follows theirs within 15 s"
+        ],
+        [
+         false,
+         "our cap lands just before their boost"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 7,
+     "id": "s:eea5ba87-flag-2-147-9",
+     "kind": "flag",
+     "t0": 147,
+     "t1": 218,
+     "reads": "They double run (RJT's Mes/A); RACK: a flag already in hand",
+     "calls": [
+      {
+       "id": "eea5ba87-flag-2-147-9",
+       "team": "RACK",
+       "side": "",
+       "label": "a flag already in hand",
+       "job": "Answer their cap at once, or cap just before their boost",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "their flag does not get in"
+        ],
+        [
+         false,
+         "our cap follows theirs within 15 s"
+        ],
+        [
+         false,
+         "our cap lands just before their boost"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 8,
+     "id": "s:eea5ba87-push_flagger-2-162-11",
+     "kind": "push flagger",
+     "t0": 162,
+     "t1": 203,
+     "reads": "RACK pushes RJT's flagger (Mes/A, at the spawn) with 3 players",
+     "calls": [
+      {
+       "id": "eea5ba87-push_flagger-2-162-11",
+       "team": "RACK",
+       "side": "",
+       "label": "",
+       "job": "Stop their flag, or make it 30% late",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "their flag is stopped"
+        ],
+        [
+         false,
+         "it arrives 30% or more later than usual"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "eea5ba87-flagger_pushed-1-162-10",
+       "team": "RJT",
+       "side": "",
+       "label": "",
+       "job": "Get the flag in on time",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "the flag gets in, less than 30% late"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 9,
+     "id": "s:eea5ba87-split-1-178-12",
+     "kind": "split",
+     "t0": 178,
+     "t1": 192,
+     "reads": "RJT's split by the front door: one player (Ranger) against 0 defending",
+     "calls": [
+      {
+       "id": "eea5ba87-split-1-178-12",
+       "team": "RJT",
        "side": "attacker",
-       "label": "collapsed on",
+       "label": "undefended",
+       "job": "Take NPCs",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "eea5ba87-split-2-178-13",
+       "team": "RACK",
+       "side": "defender",
+       "label": "no answer",
+       "job": "Win elsewhere before the split costs more than it gains",
+       "met": true,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         true,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": true,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 10,
+     "id": "s:eea5ba87-split-1-190-14",
+     "kind": "split",
+     "t0": 190,
+     "t1": 246,
+     "reads": "RJT's split by the front door: two players (Stand Mes, Ranger) against 3 defending (AoB Derv, 8 Monk, Mes/A)",
+     "calls": [
+      {
+       "id": "eea5ba87-split-1-190-14",
+       "team": "RJT",
+       "side": "attacker",
+       "label": "a player or more down",
        "job": "Survive and gain an advantage elsewhere on the map",
        "met": false,
        "tests": [
@@ -9343,150 +9633,24 @@
        "draft": false
       },
       {
-       "id": "ba85aafc-split-2-118-5",
-       "team": "戦戦戦戦",
+       "id": "eea5ba87-split-2-190-15",
+       "team": "RACK",
        "side": "defender",
-       "label": "collapse",
-       "job": "Kill a split player before going back (what it cost at the main fight and in flags is beside it)",
+       "label": "add one",
+       "job": "Kill it or drive it out with the extra player, and lose no pit NPC for it",
        "met": false,
-       "tests": [
-        [
-         false,
-         "a split player dies during the collapse"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      }
-     ]
-    },
-    {
-     "n": 4,
-     "id": "s:ba85aafc-split-2-150-8",
-     "kind": "split",
-     "t0": 150,
-     "t1": 252,
-     "reads": "戦戦戦戦's split by the back door: 4 players (Fire Ele, Prot, Air Ele, Mesmer) against 3 defending (Dervish, Ritualist, 7 Monk); numbers along the way: 4 v 3 from 2:30, 4 v 4 from 3:32",
-     "calls": [
-      {
-       "id": "ba85aafc-split-2-150-8",
-       "team": "戦戦戦戦",
-       "side": "attacker",
-       "label": "a player or more up",
-       "job": "Kill or take NPCs",
-       "met": false,
-       "tests": [
-        [
-         false,
-         "a defender killed"
-        ],
-        [
-         false,
-         "an NPC taken"
-        ]
-       ],
-       "any": true,
-       "draft": false
-      },
-      {
-       "id": "ba85aafc-split-1-150-6",
-       "team": "chic",
-       "side": "defender",
-       "label": "a player down",
-       "job": "Delay: keep the split off the pit NPCs and stay alive",
-       "met": true,
        "tests": [
         [
          true,
          "no pit NPC lost"
         ],
         [
-         true,
-         "no defender dies"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      },
-      {
-       "id": "ba85aafc-split-1-150-7",
-       "team": "chic",
-       "side": "defender's main team",
-       "label": "the main fight can kill",
-       "job": "Kill at the main fight: they have no monk there",
-       "met": true,
-       "tests": [
-        [
-         true,
-         "more of theirs die away from the split than of ours"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      }
-     ]
-    },
-    {
-     "n": 5,
-     "id": "s:ba85aafc-boost-1-172-9",
-     "kind": "boost",
-     "t0": 172,
-     "t1": 217,
-     "reads": "戦戦戦戦's boost is 30 s away; chic: no runner; the rest push in",
-     "calls": [
-      {
-       "id": "ba85aafc-boost-1-172-9",
-       "team": "chic",
-       "side": "",
-       "label": "concede",
-       "job": "Concede the boost for kills",
-       "met": true,
-       "tests": [
-        [
-         true,
-         "more of theirs die than of ours"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      }
-     ]
-    },
-    {
-     "n": 6,
-     "id": "s:ba85aafc-numbers-1-208-10",
-     "kind": "numbers",
-     "t0": 208,
-     "t1": 242,
-     "reads": "Up on numbers in the main fight (4 v 2, 戦戦戦戦's front footies; then 3 v 2 from 3:48), from players split elsewhere; chic: push up (push up to their front door) | then 2 v 3 from 3:48), from players split elsewhere; 戦戦戦戦: retreat down the ladder (fall back into the base)",
-     "calls": [
-      {
-       "id": "ba85aafc-numbers-1-208-10",
-       "team": "chic",
-       "side": "strong side",
-       "label": "push up",
-       "job": "Kill with the numbers while their players are away",
-       "met": false,
-       "tests": [
+         false,
+         "a split player dies"
+        ],
         [
          false,
-         "more of theirs die than of ours"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      },
-      {
-       "id": "ba85aafc-numbers-2-208-11",
-       "team": "戦戦戦戦",
-       "side": "weak side",
-       "label": "retreat down the ladder",
-       "job": "No deaths, keep them busy, do not chase",
-       "met": true,
-       "tests": [
-        [
-         true,
-         "nobody of ours dies"
+         "the split is gone within the visit"
         ]
        ],
        "any": false,
@@ -9495,149 +9659,23 @@
      ]
     },
     {
-     "n": 7,
-     "id": "s:ba85aafc-split-1-276-12",
+     "n": 11,
+     "id": "s:eea5ba87-split-2-204-17",
      "kind": "split",
-     "t0": 276,
-     "t1": 420,
-     "reads": "chic's split by the back door: two players (Dervish, Ritualist) against 1 defending (Prot); numbers along the way: 2 v 1 from 4:36, 2 v 2 from 5:54",
+     "t0": 204,
+     "t1": 226,
+     "reads": "RACK's split by the front door: one player (Ranger) against 0 defending",
      "calls": [
       {
-       "id": "ba85aafc-split-1-276-12",
-       "team": "chic",
-       "side": "attacker",
-       "label": "a player or more up",
-       "job": "Kill or take NPCs",
-       "met": true,
-       "tests": [
-        [
-         false,
-         "a defender killed"
-        ],
-        [
-         true,
-         "an NPC taken"
-        ]
-       ],
-       "any": true,
-       "draft": false
-      },
-      {
-       "id": "ba85aafc-split-2-276-13",
-       "team": "戦戦戦戦",
-       "side": "defender",
-       "label": "one defender",
-       "job": "Delay: keep the split off the pit NPCs and stay alive",
-       "met": false,
-       "tests": [
-        [
-         false,
-         "no pit NPC lost"
-        ],
-        [
-         true,
-         "no defender dies"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      }
-     ]
-    },
-    {
-     "n": 8,
-     "id": "s:ba85aafc-flag-1-306-14",
-     "kind": "flag",
-     "t0": 306,
-     "t1": 400,
-     "reads": "They single run (戦戦戦戦's Mesmer); chic: stay",
-     "calls": [
-      {
-       "id": "ba85aafc-flag-1-306-14",
-       "team": "chic",
-       "side": "",
-       "label": "stay",
-       "job": "Kill with the extra player while their runner is away, or their flag does not get in",
-       "met": false,
-       "tests": [
-        [
-         false,
-         "more of theirs die at the main fight than of ours"
-        ],
-        [
-         false,
-         "their flag does not get in"
-        ]
-       ],
-       "any": true,
-       "draft": false
-      }
-     ]
-    },
-    {
-     "n": 9,
-     "id": "s:ba85aafc-numbers-2-312-16",
-     "kind": "numbers",
-     "t0": 312,
-     "t1": 404,
-     "reads": "Down on numbers in the main fight (7 v 8, 戦戦戦戦's front door; then 4 v 5 from 5:36), from kills; 戦戦戦戦: retreat down the ladder (fall back into the base) | then 5 v 4 from 5:36), from kills; chic: stay (stay on the enemy's side)",
-     "calls": [
-      {
-       "id": "ba85aafc-numbers-2-312-16",
-       "team": "戦戦戦戦",
-       "side": "down",
-       "label": "retreat down the ladder",
-       "job": "Reach cover a player down without losing another",
-       "met": false,
-       "tests": [
-        [
-         true,
-         "nobody of ours dies"
-        ],
-        [
-         false,
-         "no NPC lost"
-        ]
-       ],
-       "any": false,
-       "draft": true
-      },
-      {
-       "id": "ba85aafc-numbers-1-312-15",
-       "team": "chic",
-       "side": "up",
-       "label": "stay",
-       "job": "Turn the extra player into a kill before the numbers are level",
-       "met": false,
-       "tests": [
-        [
-         false,
-         "more of theirs die than of ours"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      }
-     ]
-    },
-    {
-     "n": 10,
-     "id": "s:ba85aafc-split-2-364-18",
-     "kind": "split",
-     "t0": 364,
-     "t1": 392,
-     "reads": "戦戦戦戦's split by the back door: two players (Air Ele, Fire Ele) against 0 defending",
-     "calls": [
-      {
-       "id": "ba85aafc-split-2-364-18",
-       "team": "戦戦戦戦",
+       "id": "eea5ba87-split-2-204-17",
+       "team": "RACK",
        "side": "attacker",
        "label": "undefended",
        "job": "Take NPCs",
-       "met": true,
+       "met": false,
        "tests": [
         [
-         true,
+         false,
          "an NPC taken"
         ]
        ],
@@ -9645,8 +9683,8 @@
        "draft": false
       },
       {
-       "id": "ba85aafc-split-1-364-17",
-       "team": "chic",
+       "id": "eea5ba87-split-1-204-16",
+       "team": "RJT",
        "side": "defender",
        "label": "no answer",
        "job": "Win elsewhere before the split costs more than it gains",
@@ -9667,16 +9705,124 @@
      ]
     },
     {
-     "n": 11,
-     "id": "s:ba85aafc-boost-2-366-19",
-     "kind": "boost",
-     "t0": 366,
-     "t1": 401,
-     "reads": "chic's boost is 30 s away; 戦戦戦戦: one runner; the rest stay at the stand",
+     "n": 12,
+     "id": "s:eea5ba87-flag-2-228-18",
+     "kind": "flag",
+     "t0": 228,
+     "t1": 294,
+     "reads": "They single run (RJT's Mes/A); RACK: single run",
      "calls": [
       {
-       "id": "ba85aafc-boost-2-366-19",
-       "team": "戦戦戦戦",
+       "id": "eea5ba87-flag-2-228-18",
+       "team": "RACK",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         true,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 13,
+     "id": "s:eea5ba87-split-2-246-20",
+     "kind": "split",
+     "t0": 246,
+     "t1": 298,
+     "reads": "RACK's split by the front door: one player (Ranger) against 4 defending (Hammer, Mes/A, 8 Monk, AoB Derv); numbers along the way: 1 v 4 from 4:06, 4 v 3 from 4:40",
+     "calls": [
+      {
+       "id": "eea5ba87-split-2-246-20",
+       "team": "RACK",
+       "side": "attacker",
+       "label": "a player or more down",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "eea5ba87-split-1-246-19",
+       "team": "RJT",
+       "side": "defender",
+       "label": "add one",
+       "job": "Kill it or drive it out with the extra player, and lose no pit NPC for it",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         false,
+         "a split player dies"
+        ],
+        [
+         false,
+         "the split is gone within the visit"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "eea5ba87-split-2-246-21",
+       "team": "RACK",
+       "side": "attacker's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: its damage can kill against their monks there, and theirs cannot",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 14,
+     "id": "s:eea5ba87-boost-1-266-22",
+     "kind": "boost",
+     "t0": 266,
+     "t1": 301,
+     "reads": "RACK's boost is 30 s away; RJT: one runner; the rest fall back into the base",
+     "calls": [
+      {
+       "id": "eea5ba87-boost-1-266-22",
+       "team": "RJT",
        "side": "",
        "label": "run",
        "job": "Deny their boost",
@@ -9693,195 +9839,23 @@
      ]
     },
     {
-     "n": 12,
-     "id": "s:ba85aafc-split-2-390-21",
-     "kind": "split",
-     "t0": 390,
-     "t1": 418,
-     "reads": "戦戦戦戦's split by the back door: two players (Air Ele, Fire Ele) against 1 defending (Monk 5)",
-     "calls": [
-      {
-       "id": "ba85aafc-split-2-390-21",
-       "team": "戦戦戦戦",
-       "side": "attacker",
-       "label": "a player or more up",
-       "job": "Kill or take NPCs",
-       "met": true,
-       "tests": [
-        [
-         false,
-         "a defender killed"
-        ],
-        [
-         true,
-         "an NPC taken"
-        ]
-       ],
-       "any": true,
-       "draft": false
-      },
-      {
-       "id": "ba85aafc-split-1-390-20",
-       "team": "chic",
-       "side": "defender",
-       "label": "one defender",
-       "job": "Delay: keep the split off the pit NPCs and stay alive",
-       "met": true,
-       "tests": [
-        [
-         true,
-         "no pit NPC lost"
-        ],
-        [
-         true,
-         "no defender dies"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      }
-     ]
-    },
-    {
-     "n": 13,
-     "id": "s:ba85aafc-flag-2-400-22",
-     "kind": "flag",
-     "t0": 400,
-     "t1": 500,
-     "reads": "They single run (chic's Warrior 1); 戦戦戦戦: single run",
-     "calls": [
-      {
-       "id": "ba85aafc-flag-2-400-22",
-       "team": "戦戦戦戦",
-       "side": "",
-       "label": "single run",
-       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
-       "met": false,
-       "tests": [
-        [
-         true,
-         "our flag is capped"
-        ],
-        [
-         true,
-         "no more of ours die at the main fight than of theirs"
-        ],
-        [
-         false,
-         "no worse than half a flag behind at the end, or no further behind than at the start"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      }
-     ]
-    },
-    {
-     "n": 14,
-     "id": "s:ba85aafc-split-2-416-26",
-     "kind": "split",
-     "t0": 416,
-     "t1": 448,
-     "reads": "戦戦戦戦's split by the back door: one player (Fire Ele) against 0 defending",
-     "calls": [
-      {
-       "id": "ba85aafc-split-2-416-26",
-       "team": "戦戦戦戦",
-       "side": "attacker",
-       "label": "undefended",
-       "job": "Take NPCs",
-       "met": true,
-       "tests": [
-        [
-         true,
-         "an NPC taken"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      },
-      {
-       "id": "ba85aafc-split-1-416-24",
-       "team": "chic",
-       "side": "defender",
-       "label": "no answer",
-       "job": "Win elsewhere before the split costs more than it gains",
-       "met": true,
-       "tests": [
-        [
-         false,
-         "more of theirs die away from the split than of ours"
-        ],
-        [
-         true,
-         "flag lead better by 0.35 or more"
-        ]
-       ],
-       "any": true,
-       "draft": true
-      }
-     ]
-    },
-    {
      "n": 15,
-     "id": "s:ba85aafc-numbers-1-416-23",
-     "kind": "numbers",
-     "t0": 416,
-     "t1": 462,
-     "reads": "Down on numbers in the main fight (2 v 5, 戦戦戦戦's pit; then 4 v 6 from 7:06; then 4 v 7 from 7:26), from players split elsewhere; chic: push in | then 6 v 4 from 7:06; then 7 v 4 from 7:26), from players split elsewhere; 戦戦戦戦: push up (go out by the front door)",
+     "id": "s:eea5ba87-split-1-274-23",
+     "kind": "split",
+     "t0": 274,
+     "t1": 302,
+     "reads": "RJT's split by the front door: one player (Ranger) against 4 defending (AoB Derv, Mes/A, 8 Monk, Stand Mes); Stand Mes collapse from the main fight; 4 (AoB Derv, Mes/A, 8 Monk, Stand Mes) against one player: collapse by Stand Mes from the main fight",
      "calls": [
       {
-       "id": "ba85aafc-numbers-1-416-23",
-       "team": "chic",
-       "side": "weak side",
-       "label": "push in",
-       "job": "No deaths, keep them busy, do not chase",
-       "met": false,
-       "tests": [
-        [
-         false,
-         "nobody of ours dies"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      },
-      {
-       "id": "ba85aafc-numbers-2-416-25",
-       "team": "戦戦戦戦",
-       "side": "strong side",
-       "label": "push up",
-       "job": "Kill with the numbers while their players are away",
+       "id": "eea5ba87-split-1-274-23",
+       "team": "RJT",
+       "side": "attacker",
+       "label": "collapsed on",
+       "job": "Survive and gain an advantage elsewhere on the map",
        "met": true,
        "tests": [
         [
          true,
-         "more of theirs die than of ours"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      }
-     ]
-    },
-    {
-     "n": 16,
-     "id": "s:ba85aafc-split-1-418-27",
-     "kind": "split",
-     "t0": 418,
-     "t1": 460,
-     "reads": "chic's split by the back door: two players (Ritualist, Dervish) against 6 defending (Mesmer, Warrior, Monk 5, Prot, 7 Monk, Air Ele); the whole team turns on it; 6 (Mesmer, Warrior, Monk 5, Prot, 7 Monk, Air Ele) against two players: full collapse",
-     "calls": [
-      {
-       "id": "ba85aafc-split-1-418-27",
-       "team": "chic",
-       "side": "attacker",
-       "label": "met by a full collapse",
-       "job": "Survive and gain an advantage elsewhere on the map",
-       "met": false,
-       "tests": [
-        [
-         false,
          "nobody on the split dies"
         ],
         [
@@ -9897,20 +9871,50 @@
        "draft": false
       },
       {
-       "id": "ba85aafc-split-2-418-28",
-       "team": "戦戦戦戦",
+       "id": "eea5ba87-split-2-274-24",
+       "team": "RACK",
        "side": "defender",
-       "label": "full collapse",
-       "job": "Kill the split or drive it out (the flags it costs are beside it)",
+       "label": "collapse",
+       "job": "Kill a split player before going back (what it cost at the main fight and in flags is beside it)",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a split player dies during the collapse"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 16,
+     "id": "s:eea5ba87-flag-1-277-25",
+     "kind": "flag",
+     "t0": 277,
+     "t1": 309,
+     "reads": "They single run (RACK's AoB Derv); RJT: a flag already in hand",
+     "calls": [
+      {
+       "id": "eea5ba87-flag-1-277-25",
+       "team": "RJT",
+       "side": "",
+       "label": "a flag already in hand",
+       "job": "Answer their cap at once, or cap just before their boost",
        "met": true,
        "tests": [
         [
          true,
-         "a split player dies"
+         "their flag does not get in"
+        ],
+        [
+         false,
+         "our cap follows theirs within 15 s"
         ],
         [
          true,
-         "the split is gone within the visit"
+         "our cap lands just before their boost"
         ]
        ],
        "any": true,
@@ -9920,15 +9924,15 @@
     },
     {
      "n": 17,
-     "id": "s:ba85aafc-flag-1-447-29",
+     "id": "s:eea5ba87-flag-1-291-26",
      "kind": "flag",
-     "t0": 447,
-     "t1": 512,
-     "reads": "They single run (戦戦戦戦's Prot); chic: single run",
+     "t0": 291,
+     "t1": 409,
+     "reads": "They single run (RACK's Mes/A); RJT: single run",
      "calls": [
       {
-       "id": "ba85aafc-flag-1-447-29",
-       "team": "chic",
+       "id": "eea5ba87-flag-1-291-26",
+       "team": "RJT",
        "side": "",
        "label": "single run",
        "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
@@ -9954,39 +9958,47 @@
     },
     {
      "n": 18,
-     "id": "s:ba85aafc-numbers-1-476-30",
-     "kind": "numbers",
-     "t0": 476,
-     "t1": 502,
-     "reads": "Down on numbers in the main fight (4 v 6, 戦戦戦戦's front door; then 4 v 6 from 8:06), from players split elsewhere; chic: stay (stay at the stand) | then 6 v 4 from 8:06), from players split elsewhere; 戦戦戦戦: stay (stay at the stand)",
+     "id": "s:eea5ba87-split-2-296-28",
+     "kind": "split",
+     "t0": 296,
+     "t1": 330,
+     "reads": "RACK's split by the front door: three players (Ranger, Prot, Hammer) against 4 defending (Hammer, Mes/A, Prot, 8 Monk); Prot collapse from the main fight; 4 (Hammer, Mes/A, Prot, 8 Monk) against three players: collapse by Prot from the main fight",
      "calls": [
       {
-       "id": "ba85aafc-numbers-1-476-30",
-       "team": "chic",
-       "side": "weak side",
-       "label": "stay",
-       "job": "No deaths, keep them busy, do not chase",
-       "met": true,
+       "id": "eea5ba87-split-2-296-28",
+       "team": "RACK",
+       "side": "attacker",
+       "label": "collapsed on",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
        "tests": [
         [
          true,
-         "nobody of ours dies"
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
         ]
        ],
        "any": false,
        "draft": false
       },
       {
-       "id": "ba85aafc-numbers-2-476-31",
-       "team": "戦戦戦戦",
-       "side": "strong side",
-       "label": "stay",
-       "job": "Kill with the numbers while their players are away",
+       "id": "eea5ba87-split-1-296-27",
+       "team": "RJT",
+       "side": "defender",
+       "label": "collapse",
+       "job": "Kill a split player before going back (what it cost at the main fight and in flags is beside it)",
        "met": false,
        "tests": [
         [
          false,
-         "more of theirs die than of ours"
+         "a split player dies during the collapse"
         ]
        ],
        "any": false,
@@ -9996,39 +10008,71 @@
     },
     {
      "n": 19,
-     "id": "s:ba85aafc-numbers-1-500-32",
-     "kind": "numbers",
-     "t0": 500,
-     "t1": 524,
-     "reads": "Up on numbers in the main fight (6 v 5, the greater stand area), from players split elsewhere; chic: push in | 戦戦戦戦: retreat down the ladder (fall back into the base)",
+     "id": "s:eea5ba87-split-1-300-29",
+     "kind": "split",
+     "t0": 300,
+     "t1": 336,
+     "reads": "RJT's split by the front door: one player (Ranger) against 3 defending (AoB Derv, Stand Mes, 8 Monk)",
      "calls": [
       {
-       "id": "ba85aafc-numbers-1-500-32",
-       "team": "chic",
-       "side": "strong side",
-       "label": "push in",
-       "job": "Kill with the numbers while their players are away",
+       "id": "eea5ba87-split-1-300-29",
+       "team": "RJT",
+       "side": "attacker",
+       "label": "a player or more down",
+       "job": "Survive and gain an advantage elsewhere on the map",
        "met": false,
        "tests": [
         [
+         true,
+         "nobody on the split dies"
+        ],
+        [
          false,
-         "more of theirs die than of ours"
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
         ]
        ],
        "any": false,
        "draft": false
       },
       {
-       "id": "ba85aafc-numbers-2-500-33",
-       "team": "戦戦戦戦",
-       "side": "weak side",
-       "label": "retreat down the ladder",
-       "job": "No deaths, keep them busy, do not chase",
+       "id": "eea5ba87-split-2-300-31",
+       "team": "RACK",
+       "side": "defender",
+       "label": "add one",
+       "job": "Kill it or drive it out with the extra player, and lose no pit NPC for it",
        "met": true,
        "tests": [
         [
          true,
-         "nobody of ours dies"
+         "no pit NPC lost"
+        ],
+        [
+         false,
+         "a split player dies"
+        ],
+        [
+         true,
+         "the split is gone within the visit"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "eea5ba87-split-1-300-30",
+       "team": "RJT",
+       "side": "attacker's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: its damage can kill against their monks there, and theirs cannot",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
         ]
        ],
        "any": false,
@@ -10038,15 +10082,15 @@
     },
     {
      "n": 20,
-     "id": "s:ba85aafc-split-1-508-34",
+     "id": "s:eea5ba87-split-2-328-33",
      "kind": "split",
-     "t0": 508,
-     "t1": 540,
-     "reads": "chic's split by the back door: two players (Warrior 2, Ritualist) against 2 defending (Fire Ele, Air Ele)",
+     "t0": 328,
+     "t1": 372,
+     "reads": "RACK's split by the front door: three players (Ranger, Hammer, Prot) against 3 defending (AoB Derv, 8 Monk, Mes/A)",
      "calls": [
       {
-       "id": "ba85aafc-split-1-508-34",
-       "team": "chic",
+       "id": "eea5ba87-split-2-328-33",
+       "team": "RACK",
        "side": "attacker",
        "label": "even",
        "job": "Take NPCs or kills",
@@ -10065,8 +10109,8 @@
        "draft": false
       },
       {
-       "id": "ba85aafc-split-2-508-35",
-       "team": "戦戦戦戦",
+       "id": "eea5ba87-split-1-328-32",
+       "team": "RJT",
        "side": "defender",
        "label": "mirror",
        "job": "Hold it even: lose no pit NPC and no more players than the split does",
@@ -10088,26 +10132,26 @@
     },
     {
      "n": 21,
-     "id": "s:ba85aafc-flag-2-525-36",
+     "id": "s:eea5ba87-flag-2-351-34",
      "kind": "flag",
-     "t0": 525,
-     "t1": 606,
-     "reads": "They single run (chic's Warrior 1); 戦戦戦戦: single run",
+     "t0": 351,
+     "t1": 453,
+     "reads": "They single run (RJT's Mes/A); RACK: single run",
      "calls": [
       {
-       "id": "ba85aafc-flag-2-525-36",
-       "team": "戦戦戦戦",
+       "id": "eea5ba87-flag-2-351-34",
+       "team": "RACK",
        "side": "",
        "label": "single run",
        "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
-       "met": false,
+       "met": true,
        "tests": [
         [
-         false,
+         true,
          "our flag is capped"
         ],
         [
-         false,
+         true,
          "no more of ours die at the main fight than of theirs"
         ],
         [
@@ -10122,83 +10166,135 @@
     },
     {
      "n": 22,
-     "id": "s:ba85aafc-flag-1-544-37",
-     "kind": "flag",
-     "t0": 544,
-     "t1": 616,
-     "reads": "They single run (戦戦戦戦's Mesmer); chic: stay",
+     "id": "s:eea5ba87-split-1-360-35",
+     "kind": "split",
+     "t0": 360,
+     "t1": 374,
+     "reads": "RJT's split by the front door: one player (Ranger) against 0 defending",
      "calls": [
       {
-       "id": "ba85aafc-flag-1-544-37",
-       "team": "chic",
-       "side": "",
-       "label": "stay",
-       "job": "Kill with the extra player while their runner is away, or their flag does not get in",
-       "met": true,
+       "id": "eea5ba87-split-1-360-35",
+       "team": "RJT",
+       "side": "attacker",
+       "label": "undefended",
+       "job": "Take NPCs",
+       "met": false,
        "tests": [
         [
-         true,
-         "more of theirs die at the main fight than of ours"
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "eea5ba87-split-2-360-36",
+       "team": "RACK",
+       "side": "defender",
+       "label": "no answer",
+       "job": "Win elsewhere before the split costs more than it gains",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
         ],
         [
-         true,
-         "their flag does not get in"
+         false,
+         "flag lead better by 0.35 or more"
         ]
        ],
        "any": true,
-       "draft": false
+       "draft": true
       }
      ]
     },
     {
      "n": 23,
-     "id": "s:ba85aafc-pinned-2-580-38",
-     "kind": "pinned",
-     "t0": 580,
-     "t1": 632,
-     "reads": "戦戦戦戦 is held in its own base or pit by chic's main team (K0 A0 B1 alive; base res in 20 s)",
+     "id": "s:eea5ba87-split-2-370-40",
+     "kind": "split",
+     "t0": 370,
+     "t1": 386,
+     "reads": "RACK's split by the front door: three players (Ranger, Hammer, Prot) against 5 defending (AoB Derv, Hammer, Mes/A, Prot, 8 Monk); Hammer, Prot collapse from the main fight; 5 (AoB Derv, Hammer, Mes/A, Prot, 8 Monk) against three players: collapse by Hammer, Prot from the main fight",
      "calls": [
       {
-       "id": "ba85aafc-pinned-2-580-38",
-       "team": "戦戦戦戦",
-       "side": "",
-       "label": "",
-       "job": "Lose no player and no NPC while held in, or break out",
-       "met": true,
+       "id": "eea5ba87-split-2-370-40",
+       "team": "RACK",
+       "side": "attacker",
+       "label": "collapsed on",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "eea5ba87-split-1-370-38",
+       "team": "RJT",
+       "side": "defender",
+       "label": "collapse",
+       "job": "Kill a split player before going back (what it cost at the main fight and in flags is beside it)",
+       "met": false,
        "tests": [
         [
          false,
-         "no pit NPC lost and nobody dies until the base res"
-        ],
-        [
-         true,
-         "it breaks out (half its living players or more, four at least, out of its base and pit)"
+         "a split player dies during the collapse"
         ]
        ],
-       "any": true,
+       "any": false,
        "draft": false
       }
      ]
     },
     {
      "n": 24,
-     "id": "s:ba85aafc-numbers-1-600-39",
+     "id": "s:eea5ba87-numbers-1-370-37",
      "kind": "numbers",
-     "t0": 600,
-     "t1": 793,
-     "reads": "Up on numbers in the main fight (8 v 6, 戦戦戦戦's pit; then 7 v 5 from 10:36), from kills; chic: stay (stay on the enemy's side)",
+     "t0": 370,
+     "t1": 392,
+     "reads": "Up on numbers in the main fight (5 v 4, RJT's front door), from players split elsewhere; RJT: retreat down the ladder (fall back into the base); 3 damage against 2 monks | RACK: retreat down the ladder (retreat to the pit)",
      "calls": [
       {
-       "id": "ba85aafc-numbers-1-600-39",
-       "team": "chic",
-       "side": "up",
-       "label": "stay",
-       "job": "Turn the extra player into a kill before the numbers are level",
+       "id": "eea5ba87-numbers-1-370-37",
+       "team": "RJT",
+       "side": "strong side",
+       "label": "retreat down the ladder",
+       "job": "Keep them busy and lose nobody (a kill is not expected of it)",
        "met": true,
        "tests": [
         [
          true,
-         "more of theirs die than of ours"
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "eea5ba87-numbers-2-370-39",
+       "team": "RACK",
+       "side": "weak side",
+       "label": "retreat down the ladder",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
         ]
        ],
        "any": false,
@@ -10208,75 +10304,15 @@
     },
     {
      "n": 25,
-     "id": "s:ba85aafc-pinned-2-636-40",
-     "kind": "pinned",
-     "t0": 636,
-     "t1": 793,
-     "reads": "戦戦戦戦 is held in its own base or pit by chic's main team (K0 A0 B1 alive; base res in 84 s)",
-     "calls": [
-      {
-       "id": "ba85aafc-pinned-2-636-40",
-       "team": "戦戦戦戦",
-       "side": "",
-       "label": "",
-       "job": "Lose no player and no NPC while held in, or break out",
-       "met": true,
-       "tests": [
-        [
-         false,
-         "no pit NPC lost and nobody dies until the base res"
-        ],
-        [
-         true,
-         "it breaks out (half its living players or more, four at least, out of its base and pit)"
-        ]
-       ],
-       "any": true,
-       "draft": false
-      }
-     ]
-    },
-    {
-     "n": 26,
-     "id": "s:ba85aafc-flag-1-641-41",
-     "kind": "flag",
-     "t0": 641,
-     "t1": 687,
-     "reads": "They single run (戦戦戦戦's Mesmer); chic: stay",
-     "calls": [
-      {
-       "id": "ba85aafc-flag-1-641-41",
-       "team": "chic",
-       "side": "",
-       "label": "stay",
-       "job": "Kill with the extra player while their runner is away, or their flag does not get in",
-       "met": false,
-       "tests": [
-        [
-         false,
-         "more of theirs die at the main fight than of ours"
-        ],
-        [
-         false,
-         "their flag does not get in"
-        ]
-       ],
-       "any": true,
-       "draft": false
-      }
-     ]
-    },
-    {
-     "n": 27,
-     "id": "s:ba85aafc-split-2-646-43",
+     "id": "s:eea5ba87-split-1-372-41",
      "kind": "split",
-     "t0": 646,
-     "t1": 788,
-     "reads": "戦戦戦戦's split by the back door: two players (Air Ele, Fire Ele) against 1 defending (7 Monk); numbers along the way: 3 v 2 from 10:46, 3 v 3 from 11:08, 2 v 1 from 11:38, 1 v 1 from 12:32",
+     "t0": 372,
+     "t1": 418,
+     "reads": "RJT's split by the front door: three players (Stand Mes, 7 Monk, Ranger) against 2 defending (Stand Mes, Mes/A); numbers along the way: 3 v 2 from 6:12, 4 v 4 from 6:36",
      "calls": [
       {
-       "id": "ba85aafc-split-2-646-43",
-       "team": "戦戦戦戦",
+       "id": "eea5ba87-split-1-372-41",
+       "team": "RJT",
        "side": "attacker",
        "label": "a player or more up",
        "job": "Kill or take NPCs",
@@ -10295,10 +10331,10 @@
        "draft": false
       },
       {
-       "id": "ba85aafc-split-1-646-42",
-       "team": "chic",
+       "id": "eea5ba87-split-2-372-43",
+       "team": "RACK",
        "side": "defender",
-       "label": "one defender",
+       "label": "a player down",
        "job": "Delay: keep the split off the pit NPCs and stay alive",
        "met": true,
        "tests": [
@@ -10313,41 +10349,187 @@
        ],
        "any": false,
        "draft": false
-      }
-     ]
-    },
-    {
-     "n": 28,
-     "id": "s:ba85aafc-split-2-786-45",
-     "kind": "split",
-     "t0": 786,
-     "t1": 793,
-     "reads": "戦戦戦戦's split by the back door: one player (Air Ele) against 0 defending",
-     "calls": [
+      },
       {
-       "id": "ba85aafc-split-2-786-45",
-       "team": "戦戦戦戦",
-       "side": "attacker",
-       "label": "undefended",
-       "job": "Take NPCs",
+       "id": "eea5ba87-split-1-372-42",
+       "team": "RJT",
+       "side": "attacker's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: its damage can kill against their monks there, and theirs cannot",
        "met": false,
        "tests": [
         [
          false,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 26,
+     "id": "s:eea5ba87-split-2-384-45",
+     "kind": "split",
+     "t0": 384,
+     "t1": 462,
+     "reads": "RACK's split by the front door: three players (Hammer, Ranger, Prot) against 3 defending (8 Monk, Hammer, Mes/A); numbers along the way: 4 v 4 from 6:24, 4 v 3 from 6:36, 3 v 3 from 6:48, 3 v 2 from 7:18",
+     "calls": [
+      {
+       "id": "eea5ba87-split-2-384-45",
+       "team": "RACK",
+       "side": "attacker",
+       "label": "even",
+       "job": "Take NPCs or kills",
+       "met": true,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         true,
          "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "eea5ba87-split-1-384-44",
+       "team": "RJT",
+       "side": "defender",
+       "label": "mirror",
+       "job": "Hold it even: lose no pit NPC and no more players than the split does",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no more defenders die than split players"
         ]
        ],
        "any": false,
        "draft": false
       },
       {
-       "id": "ba85aafc-split-1-786-44",
-       "team": "chic",
-       "side": "defender",
-       "label": "no answer",
-       "job": "Win elsewhere before the split costs more than it gains",
+       "id": "eea5ba87-split-2-384-46",
+       "team": "RACK",
+       "side": "attacker's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: they have no monk there",
        "met": false,
        "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 27,
+     "id": "s:eea5ba87-flag-1-392-47",
+     "kind": "flag",
+     "t0": 392,
+     "t1": 468,
+     "reads": "They single run (RACK's Mes/A); RJT: a flag already in hand",
+     "calls": [
+      {
+       "id": "eea5ba87-flag-1-392-47",
+       "team": "RJT",
+       "side": "",
+       "label": "a flag already in hand",
+       "job": "Answer their cap at once, or cap just before their boost",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "their flag does not get in"
+        ],
+        [
+         false,
+         "our cap follows theirs within 15 s"
+        ],
+        [
+         false,
+         "our cap lands just before their boost"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 28,
+     "id": "s:eea5ba87-numbers-1-394-48",
+     "kind": "numbers",
+     "t0": 394,
+     "t1": 432,
+     "reads": "Down on numbers in the main fight (3 v 4, RJT's front door), from players split elsewhere; RJT: push in | RACK: retreat down the ladder (fall back into the base); 2 damage against 2 monks",
+     "calls": [
+      {
+       "id": "eea5ba87-numbers-1-394-48",
+       "team": "RJT",
+       "side": "weak side",
+       "label": "push in",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "eea5ba87-numbers-2-394-49",
+       "team": "RACK",
+       "side": "strong side",
+       "label": "retreat down the ladder",
+       "job": "Keep them busy and lose nobody (a kill is not expected of it)",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 29,
+     "id": "s:eea5ba87-split-1-416-50",
+     "kind": "split",
+     "t0": 416,
+     "t1": 436,
+     "reads": "RJT's split by the front door: 4 players (Ranger, Stand Mes, 7 Monk, AoB Derv) against 5 defending (AoB Derv, Mes/A, Stand Mes, 7 Monk, 8 Monk)",
+     "calls": [
+      {
+       "id": "eea5ba87-split-1-416-50",
+       "team": "RJT",
+       "side": "attacker",
+       "label": "a player or more down",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ],
         [
          false,
          "more of theirs die away from the split than of ours"
@@ -10357,8 +10539,1110 @@
          "flag lead better by 0.35 or more"
         ]
        ],
-       "any": true,
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "eea5ba87-split-2-416-51",
+       "team": "RACK",
+       "side": "defender",
+       "label": "add one",
+       "job": "Kill it or drive it out with the extra player, and lose no pit NPC for it",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         false,
+         "a split player dies"
+        ],
+        [
+         false,
+         "the split is gone within the visit"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 30,
+     "id": "s:eea5ba87-split-1-434-52",
+     "kind": "split",
+     "t0": 434,
+     "t1": 452,
+     "reads": "RJT's split by the front door: 4 players (Ranger, Stand Mes, 7 Monk, AoB Derv) against 4 defending (AoB Derv, Stand Mes, 7 Monk, 8 Monk); 3 damage against 2 monks",
+     "calls": [
+      {
+       "id": "eea5ba87-split-1-434-52",
+       "team": "RJT",
+       "side": "attacker",
+       "label": "held by monks",
+       "job": "Hold the monks there and lose nobody; NPCs are a bonus (a kill is not expected of it)",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ]
+       ],
+       "any": false,
        "draft": true
+      },
+      {
+       "id": "eea5ba87-split-2-434-53",
+       "team": "RACK",
+       "side": "defender",
+       "label": "mirror",
+       "job": "Hold it even: lose no pit NPC and no more players than the split does",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no more defenders die than split players"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 31,
+     "id": "s:eea5ba87-numbers-1-446-54",
+     "kind": "numbers",
+     "t0": 446,
+     "t1": 538,
+     "reads": "Down on numbers in the main fight (3 v 4, RACK's front door; then 7 v 8 from 7:46; then 3 v 4 from 8:00; then 7 v 8 from 8:16), from players split elsewhere; RJT: retreat down the ladder (fall back into the base) | then 8 v 7 from 7:46; then 4 v 3 from 8:00; then 8 v 7 from 8:16), from players split elsewhere; RACK: retreat down the ladder (fall back into the base)",
+     "calls": [
+      {
+       "id": "eea5ba87-numbers-1-446-54",
+       "team": "RJT",
+       "side": "weak side",
+       "label": "retreat down the ladder",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "eea5ba87-numbers-2-446-55",
+       "team": "RACK",
+       "side": "strong side",
+       "label": "retreat down the ladder",
+       "job": "Kill with the numbers while their players are away",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 32,
+     "id": "s:eea5ba87-split-1-450-56",
+     "kind": "split",
+     "t0": 450,
+     "t1": 464,
+     "reads": "RJT's split by the front door: three players (Stand Mes, 7 Monk, AoB Derv) against 4 defending (AoB Derv, Stand Mes, 7 Monk, 8 Monk)",
+     "calls": [
+      {
+       "id": "eea5ba87-split-1-450-56",
+       "team": "RJT",
+       "side": "attacker",
+       "label": "a player or more down",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "eea5ba87-split-2-450-57",
+       "team": "RACK",
+       "side": "defender",
+       "label": "add one",
+       "job": "Kill it or drive it out with the extra player, and lose no pit NPC for it",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "a split player dies"
+        ],
+        [
+         true,
+         "the split is gone within the visit"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 33,
+     "id": "s:eea5ba87-split-2-460-59",
+     "kind": "split",
+     "t0": 460,
+     "t1": 482,
+     "reads": "RACK's split by the front door: three players (Hammer, Ranger, Prot) against 4 defending (Hammer, Ranger, Mes/A, 8 Monk); Ranger collapse from the main fight; 4 (Hammer, Ranger, Mes/A, 8 Monk) against three players: collapse by Ranger from the main fight",
+     "calls": [
+      {
+       "id": "eea5ba87-split-2-460-59",
+       "team": "RACK",
+       "side": "attacker",
+       "label": "collapsed on",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ],
+        [
+         true,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "eea5ba87-split-1-460-58",
+       "team": "RJT",
+       "side": "defender",
+       "label": "collapse",
+       "job": "Kill a split player before going back (what it cost at the main fight and in flags is beside it)",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a split player dies during the collapse"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 34,
+     "id": "s:eea5ba87-split-1-462-60",
+     "kind": "split",
+     "t0": 462,
+     "t1": 476,
+     "reads": "RJT's split by the front door: one player (Stand Mes) against 3 defending (AoB Derv, Stand Mes, 8 Monk)",
+     "calls": [
+      {
+       "id": "eea5ba87-split-1-462-60",
+       "team": "RJT",
+       "side": "attacker",
+       "label": "a player or more down",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "eea5ba87-split-2-462-62",
+       "team": "RACK",
+       "side": "defender",
+       "label": "add one",
+       "job": "Kill it or drive it out with the extra player, and lose no pit NPC for it",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         false,
+         "a split player dies"
+        ],
+        [
+         false,
+         "the split is gone within the visit"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "eea5ba87-split-1-462-61",
+       "team": "RJT",
+       "side": "attacker's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: its damage can kill against their monks there, and theirs cannot",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 35,
+     "id": "s:eea5ba87-flag-2-472-63",
+     "kind": "flag",
+     "t0": 472,
+     "t1": 522,
+     "reads": "They single run (RJT's Hammer); RACK: stay",
+     "calls": [
+      {
+       "id": "eea5ba87-flag-2-472-63",
+       "team": "RACK",
+       "side": "",
+       "label": "stay",
+       "job": "Kill with the extra player while their runner is away, or their flag does not get in",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die at the main fight than of ours"
+        ],
+        [
+         true,
+         "their flag does not get in"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 36,
+     "id": "s:eea5ba87-split-1-474-64",
+     "kind": "split",
+     "t0": 474,
+     "t1": 492,
+     "reads": "RJT's split by the front door: one player (Stand Mes) against 4 defending (AoB Derv, Mes/A, Stand Mes, 8 Monk)",
+     "calls": [
+      {
+       "id": "eea5ba87-split-1-474-64",
+       "team": "RJT",
+       "side": "attacker",
+       "label": "a player or more down",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         true,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "eea5ba87-split-2-474-66",
+       "team": "RACK",
+       "side": "defender",
+       "label": "add one",
+       "job": "Kill it or drive it out with the extra player, and lose no pit NPC for it",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         false,
+         "a split player dies"
+        ],
+        [
+         true,
+         "the split is gone within the visit"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "eea5ba87-split-1-474-65",
+       "team": "RJT",
+       "side": "attacker's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: they have no monk there",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 37,
+     "id": "s:eea5ba87-split-2-480-68",
+     "kind": "split",
+     "t0": 480,
+     "t1": 504,
+     "reads": "RACK's split by the front door: three players (Hammer, Ranger, Prot) against 3 defending (Mes/A, 8 Monk, Ranger)",
+     "calls": [
+      {
+       "id": "eea5ba87-split-2-480-68",
+       "team": "RACK",
+       "side": "attacker",
+       "label": "even",
+       "job": "Take NPCs or kills",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "eea5ba87-split-1-480-67",
+       "team": "RJT",
+       "side": "defender",
+       "label": "mirror",
+       "job": "Hold it even: lose no pit NPC and no more players than the split does",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no more defenders die than split players"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "eea5ba87-split-2-480-69",
+       "team": "RACK",
+       "side": "attacker's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: they have no monk there",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 38,
+     "id": "s:eea5ba87-numbers-1-542-70",
+     "kind": "numbers",
+     "t0": 542,
+     "t1": 608,
+     "reads": "Down on numbers in the main fight (6 v 7, RJT's front door; then 5 v 6 from 9:22), from kills; RJT: retreat down the ladder (fall back into the base) | then 6 v 5 from 9:22), from kills; RACK: push up (push up to their front door)",
+     "calls": [
+      {
+       "id": "eea5ba87-numbers-1-542-70",
+       "team": "RJT",
+       "side": "down",
+       "label": "retreat down the ladder",
+       "job": "Reach cover a player down without losing another",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody of ours dies"
+        ],
+        [
+         true,
+         "no NPC lost"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "eea5ba87-numbers-2-542-71",
+       "team": "RACK",
+       "side": "up",
+       "label": "push up",
+       "job": "Take ground and NPCs with the numbers",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no more of ours die than of theirs"
+        ],
+        [
+         false,
+         "one of their NPCs dies"
+        ],
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 39,
+     "id": "s:eea5ba87-boost-1-543-72",
+     "kind": "boost",
+     "t0": 543,
+     "t1": 588,
+     "reads": "RACK's boost is 30 s away; RJT: no runner; the rest fall back into the base",
+     "calls": [
+      {
+       "id": "eea5ba87-boost-1-543-72",
+       "team": "RJT",
+       "side": "",
+       "label": "concede",
+       "job": "Concede the boost for kills",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 40,
+     "id": "s:eea5ba87-base_res-2-580-73",
+     "kind": "base res",
+     "t0": 580,
+     "t1": 630,
+     "reads": "RACK has 3 in RJT's base at the base res (4 defending, 2 coming back): 1 stay",
+     "calls": [
+      {
+       "id": "eea5ba87-base_res-2-580-73",
+       "team": "RACK",
+       "side": "",
+       "label": "stayed through the res",
+       "job": "Be out, or set for the fight, when they res",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies in the 30 s after the res"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 41,
+     "id": "s:eea5ba87-push_flagger-2-604-75",
+     "kind": "push flagger",
+     "t0": 604,
+     "t1": 649,
+     "reads": "RACK pushes RJT's flagger (Mes/A, carrying) with its main team",
+     "calls": [
+      {
+       "id": "eea5ba87-push_flagger-2-604-75",
+       "team": "RACK",
+       "side": "",
+       "label": "",
+       "job": "Stop their flag, or make it 30% late",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "their flag is stopped"
+        ],
+        [
+         false,
+         "it arrives 30% or more later than usual"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "eea5ba87-flagger_pushed-1-604-74",
+       "team": "RJT",
+       "side": "",
+       "label": "",
+       "job": "Get the flag in on time",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "the flag gets in, less than 30% late"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 42,
+     "id": "s:eea5ba87-flag-1-610-76",
+     "kind": "flag",
+     "t0": 610,
+     "t1": 649,
+     "reads": "They single run (RACK's Mes/A); RJT: single run",
+     "calls": [
+      {
+       "id": "eea5ba87-flag-1-610-76",
+       "team": "RJT",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         false,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 43,
+     "id": "s:eea5ba87-split-1-640-77",
+     "kind": "split",
+     "t0": 640,
+     "t1": 704,
+     "reads": "RJT's split by the front door: one player (Ranger) against 1 defending (Mes/A); numbers along the way: 1 v 1 from 10:40, 4 v 2 from 11:12, 3 v 2 from 11:28; 1 (Mes/A) against one player; numbers along the way: 1 v 1 from 10:40, 4 v 2 from 11:12, 3 v 2 from 11:28: the lone defender carries his flag for 20 s",
+     "calls": [
+      {
+       "id": "eea5ba87-split-1-640-77",
+       "team": "RJT",
+       "side": "attacker",
+       "label": "1 v 1, the defender not a monk",
+       "job": "Take NPCs or kills",
+       "met": true,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         true,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "eea5ba87-split-2-640-78",
+       "team": "RACK",
+       "side": "defender",
+       "label": "mirror",
+       "job": "Hold it even: lose no pit NPC and no more players than the split does",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no more defenders die than split players"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "eea5ba87-split-2-640-79",
+       "team": "RACK",
+       "side": "defender",
+       "label": "part-run",
+       "job": "Gain a slight flag advantage while losing no pit NPC and not dying",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "flag lead better by 0.15 or more"
+        ],
+        [
+         true,
+         "the defender does not die"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 44,
+     "id": "s:eea5ba87-push_flagger-1-662-80",
+     "kind": "push flagger",
+     "t0": 662,
+     "t1": 690,
+     "reads": "RJT pushes RACK's flagger (AoB Derv, carrying) with one player",
+     "calls": [
+      {
+       "id": "eea5ba87-push_flagger-1-662-80",
+       "team": "RJT",
+       "side": "",
+       "label": "",
+       "job": "Stop their flag, or make it 30% late",
+       "met": true,
+       "tests": [
+        [
+         false,
+         "their flag is stopped"
+        ],
+        [
+         true,
+         "it arrives 30% or more later than usual"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "eea5ba87-flagger_pushed-2-662-82",
+       "team": "RACK",
+       "side": "",
+       "label": "",
+       "job": "Get the flag in on time",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "the flag gets in, less than 30% late"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 45,
+     "id": "s:eea5ba87-split-2-662-83",
+     "kind": "split",
+     "t0": 662,
+     "t1": 748,
+     "reads": "RACK's split by the front door: three players (Hammer, Ranger, Prot) against 2 defending (Mes/A, 8 Monk); numbers along the way: 3 v 3 from 11:02, 3 v 2 from 11:26, 3 v 3 from 12:10",
+     "calls": [
+      {
+       "id": "eea5ba87-split-2-662-83",
+       "team": "RACK",
+       "side": "attacker",
+       "label": "a player or more up",
+       "job": "Kill or take NPCs",
+       "met": true,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         true,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "eea5ba87-split-1-662-81",
+       "team": "RJT",
+       "side": "defender",
+       "label": "a player down",
+       "job": "Delay: keep the split off the pit NPCs and stay alive",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no defender dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "eea5ba87-split-2-662-84",
+       "team": "RACK",
+       "side": "attacker's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: its damage can kill against their monks there, and theirs cannot",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 46,
+     "id": "s:eea5ba87-numbers-1-668-85",
+     "kind": "numbers",
+     "t0": 668,
+     "t1": 688,
+     "reads": "Down on numbers in the main fight (3 v 4, RJT's front door), from players split elsewhere; RJT: retreat down the ladder (fall back into the base) | RACK: stay (stay at the stand); 3 damage against 2 monks",
+     "calls": [
+      {
+       "id": "eea5ba87-numbers-1-668-85",
+       "team": "RJT",
+       "side": "weak side",
+       "label": "retreat down the ladder",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "eea5ba87-numbers-2-668-86",
+       "team": "RACK",
+       "side": "strong side",
+       "label": "stay",
+       "job": "Keep them busy and lose nobody (a kill is not expected of it)",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 47,
+     "id": "s:eea5ba87-base_res-2-700-87",
+     "kind": "base res",
+     "t0": 700,
+     "t1": 750,
+     "reads": "RACK has 3 in RJT's base at the base res (2 defending, 1 coming back): 3 stay",
+     "calls": [
+      {
+       "id": "eea5ba87-base_res-2-700-87",
+       "team": "RACK",
+       "side": "",
+       "label": "stayed through the res",
+       "job": "Be out, or set for the fight, when they res",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies in the 30 s after the res"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 48,
+     "id": "s:eea5ba87-split-1-702-88",
+     "kind": "split",
+     "t0": 702,
+     "t1": 732,
+     "reads": "RJT's split by the front door: 4 players (Ranger, Stand Mes, Hammer, 7 Monk) against 5 defending (Mes/A, Stand Mes, 7 Monk, 8 Monk, AoB Derv); Stand Mes, 7 Monk, 8 Monk, AoB Derv collapse from the main fight; 5 (Mes/A, Stand Mes, 7 Monk, 8 Monk, AoB Derv) against 4 players: collapse by Stand Mes, 7 Monk, 8 Monk, AoB Derv from the main fight",
+     "calls": [
+      {
+       "id": "eea5ba87-split-1-702-88",
+       "team": "RJT",
+       "side": "attacker",
+       "label": "collapsed on",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         true,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "eea5ba87-split-2-702-89",
+       "team": "RACK",
+       "side": "defender",
+       "label": "collapse",
+       "job": "Kill a split player before going back (what it cost at the main fight and in flags is beside it)",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "a split player dies during the collapse"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 49,
+     "id": "s:eea5ba87-numbers-1-714-90",
+     "kind": "numbers",
+     "t0": 714,
+     "t1": 818,
+     "reads": "Down on numbers in the main fight (4 v 5, RACK's front door; then 6 v 8 from 12:32; then 5 v 8 from 12:38; then 4 v 8 from 13:02; then 3 v 8 from 13:08; then 2 v 8 from 13:24), from players split elsewhere; RJT: stay (stay at the stand) | then 8 v 6 from 12:32; then 8 v 5 from 12:38; then 8 v 4 from 13:02; then 8 v 3 from 13:08; then 8 v 2 from 13:24), from players split elsewhere; RACK: push in",
+     "calls": [
+      {
+       "id": "eea5ba87-numbers-1-714-90",
+       "team": "RJT",
+       "side": "weak side",
+       "label": "stay",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "eea5ba87-numbers-2-714-91",
+       "team": "RACK",
+       "side": "strong side",
+       "label": "push in",
+       "job": "Kill with the numbers while their players are away",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 50,
+     "id": "s:eea5ba87-split-2-746-93",
+     "kind": "split",
+     "t0": 746,
+     "t1": 766,
+     "reads": "RACK's split by the front door: two players (Ranger, Prot) against 3 defending (Hammer, 8 Monk, Mes/A); Hammer collapse from the main fight; 3 (Hammer, 8 Monk, Mes/A) against two players: collapse by Hammer from the main fight",
+     "calls": [
+      {
+       "id": "eea5ba87-split-2-746-93",
+       "team": "RACK",
+       "side": "attacker",
+       "label": "collapsed on",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ],
+        [
+         true,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "eea5ba87-split-1-746-92",
+       "team": "RJT",
+       "side": "defender",
+       "label": "collapse",
+       "job": "Kill a split player before going back (what it cost at the main fight and in flags is beside it)",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a split player dies during the collapse"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 51,
+     "id": "s:eea5ba87-boost-1-780-94",
+     "kind": "boost",
+     "t0": 780,
+     "t1": 825,
+     "reads": "RACK's boost is 30 s away; RJT: no runner; the rest fall back into the base",
+     "calls": [
+      {
+       "id": "eea5ba87-boost-1-780-94",
+       "team": "RJT",
+       "side": "",
+       "label": "concede",
+       "job": "Concede the boost for kills",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 52,
+     "id": "s:eea5ba87-pinned-1-804-95",
+     "kind": "pinned",
+     "t0": 804,
+     "t1": 828,
+     "reads": "RJT is held in its own base or pit by RACK's main team (K0 A1 B1 alive; base res in 36 s)",
+     "calls": [
+      {
+       "id": "eea5ba87-pinned-1-804-95",
+       "team": "RJT",
+       "side": "",
+       "label": "",
+       "job": "Hold the NPCs and lose nobody until the base res, or break out",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         false,
+         "it breaks out (half its living players or more, four at least, out of its base and pit)"
+        ]
+       ],
+       "any": true,
+       "draft": false
       }
      ]
     }
