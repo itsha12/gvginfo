@@ -508,6 +508,664 @@
    "at": "2026-11-14",
    "engine": "af952c6",
    "notes": "Missed full collapse at 1:16; again at 4:15ish; again at 9:30;"
+  },
+  "149fbdc6-f703-5171-a24e-9165a20cecb6": {
+   "marks": {
+    "s:149fbdc6-flag-2-5-0": {
+     "mark": "right",
+     "why": "",
+     "text": "They single run (Men's Mes/A); Apes: single run"
+    },
+    "149fbdc6-flag-2-5-0": {
+     "mark": "right",
+     "why": "",
+     "text": "Apes [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (yes: our flag is capped; yes: no more of ours die than of theirs; yes: no worse than half a flag behind at the end)"
+    },
+    "s:149fbdc6-flag-1-6-1": {
+     "mark": "right",
+     "why": "",
+     "text": "They single run (Apes's Dervish); Men: single run"
+    },
+    "149fbdc6-flag-1-6-1": {
+     "mark": "right",
+     "why": "",
+     "text": "Men [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (yes: our flag is capped; yes: no more of ours die than of theirs; yes: no worse than half a flag behind at the end)"
+    },
+    "s:149fbdc6-flag-1-42-2": {
+     "mark": "right",
+     "why": "",
+     "text": "They single run (Apes's Dervish); Men: stay"
+    },
+    "149fbdc6-flag-1-42-2": {
+     "mark": "right",
+     "why": "",
+     "text": "Men [stay]: Kill with the extra player while their runner is away. Not met (no: more of theirs die than of ours)"
+    },
+    "s:149fbdc6-numbers-1-54-3": {
+     "mark": "right",
+     "why": "",
+     "text": "Down on numbers in the main fight (3 v 4, the flag stand), from players split elsewhere; Men: retreat down the ladder (fall back into the base) | Apes: stay (stay at the stand)"
+    },
+    "149fbdc6-numbers-1-54-3": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "149fbdc6-numbers-2-54-4": {
+     "mark": "right",
+     "why": "",
+     "text": "Apes (strong side) [stay]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)"
+    },
+    "s:149fbdc6-split-2-62-6": {
+     "mark": "wrong",
+     "why": "this should be the same split as 1:14 split.",
+     "text": "Apes's split by the back door: three players (Warrior, Necromancer, Ritualist) against 1 defending (AoB Derv)"
+    },
+    "149fbdc6-split-2-62-6": {
+     "mark": "right",
+     "why": "",
+     "text": "Apes (attacker) [a player or more up]: Kill or take NPCs. Not met (no: a defender killed; no: an NPC taken)"
+    },
+    "149fbdc6-split-1-62-5": {
+     "mark": "wrong",
+     "why": "it's 4 defendeers",
+     "text": "Men (defender) [one defender]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)"
+    },
+    "149fbdc6-split-2-62-7": {
+     "mark": "right",
+     "why": "",
+     "text": "Apes (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)"
+    },
+    "s:149fbdc6-split-2-74-9": {
+     "mark": "right",
+     "why": "",
+     "text": "Apes's split by the back door: 4 players (Warrior, Necromancer, Ritualist, 8 Monk) against 4 defending (AoB Derv, Mes/A, Prot, 8 Monk); 3 damage against 2 monks"
+    },
+    "149fbdc6-split-2-74-9": {
+     "mark": "right",
+     "why": "",
+     "text": "Apes (attacker) [held by monks]: Hold the monks there and lose nobody; NPCs are a bonus (a kill is not expected of it). Met (yes: nobody on the split dies)"
+    },
+    "149fbdc6-split-1-74-8": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (yes: no pit NPC lost; yes: no more defenders die than split players)"
+    },
+    "s:149fbdc6-flag-2-77-10": {
+     "mark": "wrong",
+     "why": "this is a single run.",
+     "text": "They double run (Men's Hammer); Apes: stay"
+    },
+    "149fbdc6-flag-2-77-10": {
+     "mark": "partly",
+     "why": "unknown",
+     "text": "Apes [stay]: Kill with the two extra players before their flag is in. Not met (no: more of theirs die than of ours)"
+    },
+    "s:149fbdc6-split-1-82-11": {
+     "mark": "right",
+     "why": "",
+     "text": "Men's split by the back door: one player (Ranger) against 0 defending"
+    },
+    "149fbdc6-split-1-82-11": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (attacker) [undefended]: Take NPCs. Met (yes: an NPC taken)"
+    },
+    "149fbdc6-split-2-82-12": {
+     "mark": "right",
+     "why": "",
+     "text": "Apes (defender) [no answer]: Win elsewhere before the split costs more than it gains. Not met (no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)"
+    },
+    "s:149fbdc6-split-1-112-13": {
+     "mark": "right",
+     "why": "",
+     "text": "Men's split by the back door: three players (Ranger, 7 Monk, Stand Mes) against 4 defending (Dervish, Mesmer, Prot, 7 Monk); Dervish, Mesmer, Prot, 7 Monk collapse from the main fight; 4 (Dervish, Mesmer, Prot, 7 Monk) against three players: collapse by Dervish, Mesmer, Prot, 7 Monk from the main fight"
+    },
+    "149fbdc6-split-1-112-13": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (attacker) [collapsed on]: Survive and gain an advantage elsewhere on the map. Met (yes: nobody on the split dies; yes: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)"
+    },
+    "149fbdc6-split-2-112-15": {
+     "mark": "right",
+     "why": "",
+     "text": "Apes (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Not met (no: a split player dies during the collapse)"
+    },
+    "s:149fbdc6-split-2-112-16": {
+     "mark": "right",
+     "why": "",
+     "text": "Apes's split by the back door: 4 players (Necromancer, Ritualist, Warrior, 8 Monk) against 5 defending (Hammer, Mes/A, 8 Monk, Prot, AoB Derv); Hammer collapse from the main fight; 5 (Hammer, Mes/A, 8 Monk, Prot, AoB Derv) against 4 players: collapse by Hammer from the main fight"
+    },
+    "149fbdc6-split-2-112-16": {
+     "mark": "right",
+     "why": "",
+     "text": "Apes (attacker) [collapsed on]: Survive and gain an advantage elsewhere on the map. Not met (no: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)"
+    },
+    "149fbdc6-split-1-112-14": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Met (yes: a split player dies during the collapse)"
+    },
+    "s:149fbdc6-split-1-126-17": {
+     "mark": "right",
+     "why": "",
+     "text": "Men's split by the back door: two players (Ranger, 7 Monk) against 3 defending (Dervish, Mesmer, 7 Monk)"
+    },
+    "149fbdc6-split-1-126-17": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Met (yes: nobody on the split dies; yes: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)"
+    },
+    "149fbdc6-split-2-126-19": {
+     "mark": "right",
+     "why": "",
+     "text": "Apes (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Not met (no: no pit NPC lost; no: a split player dies; no: the split is gone within the visit)"
+    },
+    "149fbdc6-split-1-126-18": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Met (yes: more of theirs die away from the split than of ours)"
+    },
+    "s:149fbdc6-numbers-1-130-20": {
+     "mark": "wrong",
+     "why": "5v3",
+     "text": "Up on numbers in the main fight (4 v 2, the greater stand area), from players split elsewhere; Men: push in | Apes: stay (stay at the stand)"
+    },
+    "149fbdc6-numbers-1-130-20": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (strong side) [push in]: Kill with the numbers while their players are away. Met (yes: more of theirs die than of ours)"
+    },
+    "149fbdc6-numbers-2-130-21": {
+     "mark": "right",
+     "why": "",
+     "text": "Apes (weak side) [stay]: No deaths, keep them busy, do not chase. Not met (no: nobody of ours dies)"
+    },
+    "s:149fbdc6-split-1-150-23": {
+     "mark": "wrong",
+     "why": "only 3 defending at this time, prot comes at 2:57",
+     "text": "Men's split by the back door: two players (Ranger, Stand Mes) against 4 defending (Dervish, Mesmer, Prot, 7 Monk)"
+    },
+    "149fbdc6-split-1-150-23": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Not met (no: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)"
+    },
+    "149fbdc6-split-2-150-26": {
+     "mark": "right",
+     "why": "",
+     "text": "Apes (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Met (yes: no pit NPC lost; yes: a split player dies; no: the split is gone within the visit)"
+    },
+    "149fbdc6-split-1-150-24": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)"
+    },
+    "s:149fbdc6-numbers-1-150-22": {
+     "mark": "wrong",
+     "why": "I don't see this",
+     "text": "Up on numbers in the main fight (3 v 2, the field on Apes's side), from kills; Men: push up (push up to their front door) | Apes: retreat down the ladder (fall back into the base)"
+    },
+    "149fbdc6-numbers-1-150-22": {
+     "mark": "partly",
+     "why": "unknown",
+     "text": "Men (up) [push up]: Take ground and NPCs with the numbers. Not met (no: no more of ours die than of theirs; yes: one of their NPCs dies; no: more of theirs die than of ours)"
+    },
+    "149fbdc6-numbers-2-150-25": {
+     "mark": "partly",
+     "why": "unknown",
+     "text": "Apes (down) [retreat down the ladder]: Reach cover a player down without losing another. Not met (yes: nobody of ours dies; no: no NPC lost)"
+    },
+    "s:149fbdc6-split-1-176-27": {
+     "mark": "wrong",
+     "why": "this siplit ends a while ago, no idea what you're talking about",
+     "text": "Men's split by the back door: two players (Ranger, Stand Mes) against 5 defending (Dervish, Ritualist, Mesmer, Prot, 7 Monk)"
+    },
+    "149fbdc6-split-1-176-27": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Not met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)"
+    },
+    "149fbdc6-split-2-176-29": {
+     "mark": "right",
+     "why": "",
+     "text": "Apes (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Not met (no: no pit NPC lost; no: a split player dies; no: the split is gone within the visit)"
+    },
+    "149fbdc6-split-1-176-28": {
+     "mark": "wrong",
+     "why": "mainteam does kill I",
+     "text": "Men (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)"
+    },
+    "s:149fbdc6-pinned-2-180-30": {
+     "mark": "right",
+     "why": "",
+     "text": "Apes is held in its own base or pit by Men's main team (K0 A1 B0 alive; base res in 60 s)"
+    },
+    "149fbdc6-pinned-2-180-30": {
+     "mark": "right",
+     "why": "",
+     "text": "Apes: Hold the NPCs and lose nobody until the base res, or break out. Not met (no: no pit NPC lost and nobody dies until the base res; no: it breaks out (five or more, out of its base))"
+    },
+    "s:149fbdc6-split-1-190-31": {
+     "mark": "wrong",
+     "why": "not a split",
+     "text": "Men's split by the back door: two players (Ranger, Stand Mes) against 4 defending (Ritualist, Mesmer, Prot, 7 Monk)"
+    },
+    "149fbdc6-split-1-190-31": {
+     "mark": "partly",
+     "why": "unknown",
+     "text": "Men (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Not met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)"
+    },
+    "149fbdc6-split-2-190-33": {
+     "mark": "partly",
+     "why": "unknown",
+     "text": "Apes (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Not met (yes: no pit NPC lost; no: a split player dies; no: the split is gone within the visit)"
+    },
+    "149fbdc6-split-1-190-32": {
+     "mark": "partly",
+     "why": "unknown",
+     "text": "Men (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)"
+    },
+    "s:149fbdc6-numbers-1-240-34": {
+     "mark": "right",
+     "why": "",
+     "text": "Down on numbers in the main fight (6 v 7, Apes's pit), from players split elsewhere; Men: stay (stay on the enemy's side)"
+    },
+    "149fbdc6-numbers-1-240-34": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (weak side) [stay]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "s:149fbdc6-split-1-240-35": {
+     "mark": "wrong",
+     "why": "this split keeps coming up",
+     "text": "Men's split by the back door: two players (Ranger, Stand Mes) against 7 defending (Warrior, Necromancer, Ritualist, Mesmer, Prot, 7 Monk, Dervish); the whole team turns on it; 7 (Warrior, Necromancer, Ritualist, Mesmer, Prot, 7 Monk, Dervish) against two players: full collapse"
+    },
+    "149fbdc6-split-1-240-35": {
+     "mark": "wrong",
+     "why": "",
+     "text": "Men (attacker) [met by a full collapse]: Survive and gain an advantage elsewhere on the map. Not met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)"
+    },
+    "149fbdc6-split-2-240-37": {
+     "mark": "wrong",
+     "why": "",
+     "text": "Apes (defender) [full collapse]: Kill the split or drive it out (the flags it costs are beside it). Not met (no: a split player dies; no: the split is gone within the visit)"
+    },
+    "s:149fbdc6-pinned-2-240-36": {
+     "mark": "right",
+     "why": "",
+     "text": "Apes is held in its own base or pit by Men's main team (K0 A0 B0 alive; base res in 120 s)"
+    },
+    "149fbdc6-pinned-2-240-36": {
+     "mark": "right",
+     "why": "",
+     "text": "Apes: Hold the NPCs and lose nobody until the base res, or break out. Not met (no: no pit NPC lost and nobody dies until the base res; no: it breaks out (five or more, out of its base))"
+    },
+    "s:149fbdc6-split-1-268-38": {
+     "mark": "wrong",
+     "why": "not a split",
+     "text": "Men's split by the back door: two players (Ranger, Stand Mes) against 8 defending (Dervish, Ritualist, Mesmer, Prot, 7 Monk, 8 Monk, Warrior, Necromancer); the whole team turns on it; 8 (Dervish, Ritualist, Mesmer, Prot, 7 Monk, 8 Monk, Warrior, Necromancer) against two players: full collapse"
+    },
+    "149fbdc6-split-1-268-38": {
+     "mark": "wrong",
+     "why": "",
+     "text": "Men (attacker) [met by a full collapse]: Survive and gain an advantage elsewhere on the map. Not met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)"
+    },
+    "149fbdc6-split-2-268-39": {
+     "mark": "wrong",
+     "why": "",
+     "text": "Apes (defender) [full collapse]: Kill the split or drive it out (the flags it costs are beside it). Not met (no: a split player dies; no: the split is gone within the visit)"
+    },
+    "s:149fbdc6-flag-1-277-40": {
+     "mark": "right",
+     "why": "",
+     "text": "They single run (Apes's Warrior); Men: stay"
+    },
+    "149fbdc6-flag-1-277-40": {
+     "mark": "right",
+     "why": "",
+     "text": "Men [stay]: Kill with the extra player while their runner is away. Met (yes: more of theirs die than of ours)"
+    },
+    "s:149fbdc6-split-1-284-41": {
+     "mark": "wrong",
+     "why": "still not a split",
+     "text": "Men's split by the back door: two players (Ranger, Stand Mes) against 4 defending (Mesmer, 7 Monk, Ritualist, Prot)"
+    },
+    "149fbdc6-split-1-284-41": {
+     "mark": "wrong",
+     "why": "",
+     "text": "Men (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Met (yes: nobody on the split dies; yes: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)"
+    },
+    "149fbdc6-split-2-284-42": {
+     "mark": "wrong",
+     "why": "",
+     "text": "Apes (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Not met (yes: no pit NPC lost; no: a split player dies; no: the split is gone within the visit)"
+    },
+    "s:149fbdc6-pinned-2-312-43": {
+     "mark": "right",
+     "why": "",
+     "text": "Apes is held in its own base or pit by Men's main team (K0 A0 B0 alive; base res in 48 s)"
+    },
+    "149fbdc6-pinned-2-312-43": {
+     "mark": "right",
+     "why": "",
+     "text": "Apes: Hold the NPCs and lose nobody until the base res, or break out. Not met (no: no pit NPC lost and nobody dies until the base res; no: it breaks out (five or more, out of its base))"
+    },
+    "s:149fbdc6-numbers-1-372-44": {
+     "mark": "wrong",
+     "why": "this is a 5v5",
+     "text": "Up on numbers in the main fight (5 v 4, Apes's pit), from players split elsewhere; Men: stay (stay on the enemy's side) | Apes: stay (stay at the stand)"
+    },
+    "149fbdc6-numbers-1-372-44": {
+     "mark": "wrong",
+     "why": "",
+     "text": "Men (strong side) [stay]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)"
+    },
+    "149fbdc6-numbers-2-372-45": {
+     "mark": "wrong",
+     "why": "",
+     "text": "Apes (weak side) [stay]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "s:149fbdc6-flag-2-377-46": {
+     "mark": "right",
+     "why": "",
+     "text": "They single run (Men's AoB Derv); Apes: stay"
+    },
+    "149fbdc6-flag-2-377-46": {
+     "mark": "right",
+     "why": "",
+     "text": "Apes [stay]: Kill with the extra player while their runner is away. Not met (no: more of theirs die than of ours)"
+    },
+    "s:149fbdc6-numbers-1-412-47": {
+     "mark": "right",
+     "why": "",
+     "text": "Down on numbers in the main fight (3 v 4, Apes's pit), from players split elsewhere; Men: stay (stay at the stand) | Apes: stay (stay at the stand)"
+    },
+    "149fbdc6-numbers-1-412-47": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (weak side) [stay]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "149fbdc6-numbers-2-412-48": {
+     "mark": "right",
+     "why": "",
+     "text": "Apes (strong side) [stay]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)"
+    },
+    "s:149fbdc6-split-1-418-49": {
+     "mark": "wrong",
+     "why": "this is not a solo split, this is 3v2 (7 monk hammer ranger v mesmer monk)",
+     "text": "Men's split by the back door: one player (Ranger) against 2 defending (Mesmer, 7 Monk)"
+    },
+    "149fbdc6-split-1-418-49": {
+     "mark": "wrong",
+     "why": "",
+     "text": "Men (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; yes: flag lead better by 0.35 or more)"
+    },
+    "149fbdc6-split-2-418-50": {
+     "mark": "wrong",
+     "why": "",
+     "text": "Apes (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Met (yes: no pit NPC lost; no: a split player dies; yes: the split is gone within the visit)"
+    },
+    "149fbdc6-split-2-418-51": {
+     "mark": "wrong",
+     "why": "",
+     "text": "Apes (defender's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)"
+    },
+    "s:149fbdc6-boost-1-419-52": {
+     "mark": "wrong",
+     "why": "Men runs flag on derv",
+     "text": "Apes's boost is 30 s away; Men: no runner; the rest stay at the stand"
+    },
+    "149fbdc6-boost-1-419-52": {
+     "mark": "right",
+     "why": "",
+     "text": "Men [run]: Deny their boost. Met (yes: their boost does not land)"
+    },
+    "s:149fbdc6-split-1-430-54": {
+     "mark": "right",
+     "why": "",
+     "text": "Men's split by the front door: three players (Hammer, Ranger, 7 Monk) against 3 defending (Mesmer, 7 Monk, Ritualist)"
+    },
+    "149fbdc6-split-1-430-54": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (attacker) [even]: Take NPCs or kills. Met (yes: a defender killed; no: an NPC taken)"
+    },
+    "149fbdc6-split-2-430-57": {
+     "mark": "right",
+     "why": "",
+     "text": "Apes (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Not met (yes: no pit NPC lost; no: no more defenders die than split players)"
+    },
+    "149fbdc6-split-1-430-55": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Met (yes: more of theirs die away from the split than of ours)"
+    },
+    "s:149fbdc6-numbers-1-430-53": {
+     "mark": "wrong",
+     "why": "5v4",
+     "text": "Up on numbers in the main fight (5 v 3, the flag stand), from players split elsewhere; Men: stay (stay at the stand) | Apes: stay (stay at the stand)"
+    },
+    "149fbdc6-numbers-1-430-53": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (strong side) [stay]: Kill with the numbers while their players are away. Met (yes: more of theirs die than of ours)"
+    },
+    "149fbdc6-numbers-2-430-56": {
+     "mark": "right",
+     "why": "",
+     "text": "Apes (weak side) [stay]: No deaths, keep them busy, do not chase. Not met (no: nobody of ours dies)"
+    },
+    "s:149fbdc6-split-1-468-58": {
+     "mark": "wrong",
+     "why": "prot is not part of this split until 8:05",
+     "text": "Men's split by the front door: 4 players (Hammer, Ranger, 7 Monk, Prot) against 4 defending (Ritualist, Mesmer, 7 Monk, 8 Monk); 2 damage against 2 monks"
+    },
+    "149fbdc6-split-1-468-58": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (attacker) [held by monks]: Hold the monks there and lose nobody; NPCs are a bonus (a kill is not expected of it). Met (yes: nobody on the split dies)"
+    },
+    "149fbdc6-split-2-468-60": {
+     "mark": "right",
+     "why": "",
+     "text": "Apes (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (yes: no pit NPC lost; yes: no more defenders die than split players)"
+    },
+    "149fbdc6-split-1-468-59": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)"
+    },
+    "s:149fbdc6-split-1-482-61": {
+     "mark": "right",
+     "why": "",
+     "text": "Men's split by the front door: 4 players (Hammer, Ranger, 7 Monk, Prot) against 7 defending (Warrior, Ritualist, Mesmer, 7 Monk, 8 Monk, Dervish, Prot); the whole team turns on it; 7 (Warrior, Ritualist, Mesmer, 7 Monk, 8 Monk, Dervish, Prot) against 4 players: full collapse"
+    },
+    "149fbdc6-split-1-482-61": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (attacker) [met by a full collapse]: Survive and gain an advantage elsewhere on the map. Not met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)"
+    },
+    "149fbdc6-split-2-482-62": {
+     "mark": "right",
+     "why": "",
+     "text": "Apes (defender) [full collapse]: Kill the split or drive it out (the flags it costs are beside it). Not met (no: a split player dies; no: the split is gone within the visit)"
+    },
+    "s:149fbdc6-pinned-2-492-63": {
+     "mark": "right",
+     "why": "",
+     "text": "Apes is held in its own base or pit by Men's main team (K0 A0 B0 alive; base res in 108 s)"
+    },
+    "149fbdc6-pinned-2-492-63": {
+     "mark": "right",
+     "why": "",
+     "text": "Apes: Hold the NPCs and lose nobody until the base res, or break out. Not met (no: no pit NPC lost and nobody dies until the base res; no: it breaks out (five or more, out of its base))"
+    },
+    "s:149fbdc6-numbers-1-496-64": {
+     "mark": "wrong",
+     "why": "its 6v7 starting at 8:52",
+     "text": "Up on numbers in the main fight (8 v 7, Apes's pit), from kills; Men: stay (stay on the enemy's side)"
+    },
+    "149fbdc6-numbers-1-496-64": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (up) [stay]: Turn the extra player into a kill before the numbers are level. Met (yes: more of theirs die than of ours)"
+    },
+    "s:149fbdc6-split-1-508-65": {
+     "mark": "wrong",
+     "why": "not a split",
+     "text": "Men's split by the front door: 4 players (Hammer, Ranger, 7 Monk, Prot) against 6 defending (Warrior, Ritualist, Mesmer, Prot, 7 Monk, 8 Monk); the whole team turns on it; 6 (Warrior, Ritualist, Mesmer, Prot, 7 Monk, 8 Monk) against 4 players: full collapse"
+    },
+    "149fbdc6-split-1-508-65": {
+     "mark": "wrong",
+     "why": "",
+     "text": "Men (attacker) [met by a full collapse]: Survive and gain an advantage elsewhere on the map. Not met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)"
+    },
+    "149fbdc6-split-2-508-66": {
+     "mark": "wrong",
+     "why": "",
+     "text": "Apes (defender) [full collapse]: Kill the split or drive it out (the flags it costs are beside it). Not met (no: a split player dies; no: the split is gone within the visit)"
+    },
+    "s:149fbdc6-split-1-534-67": {
+     "mark": "wrong",
+     "why": "not a split",
+     "text": "Men's split by the front door: 4 players (Hammer, Ranger, 7 Monk, Prot) against 5 defending (Mesmer, Prot, 7 Monk, 8 Monk, Ritualist)"
+    },
+    "149fbdc6-split-1-534-67": {
+     "mark": "wrong",
+     "why": "",
+     "text": "Men (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Met (yes: nobody on the split dies; yes: more of theirs die away from the split than of ours; yes: flag lead better by 0.35 or more)"
+    },
+    "149fbdc6-split-2-534-69": {
+     "mark": "wrong",
+     "why": "",
+     "text": "Apes (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Not met (yes: no pit NPC lost; no: a split player dies; no: the split is gone within the visit)"
+    },
+    "149fbdc6-split-1-534-68": {
+     "mark": "wrong",
+     "why": "",
+     "text": "Men (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Met (yes: more of theirs die away from the split than of ours)"
+    },
+    "s:149fbdc6-split-2-556-71": {
+     "mark": "right",
+     "why": "",
+     "text": "Apes's split by the door: one player (Dervish) against 1 defending (Mes/A)"
+    },
+    "149fbdc6-split-2-556-71": {
+     "mark": "right",
+     "why": "",
+     "text": "Apes (attacker) [1 v 1, the defender not a monk]: Take NPCs or kills. Not met (no: a defender killed; no: an NPC taken)"
+    },
+    "149fbdc6-split-1-556-70": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (yes: no pit NPC lost; yes: no more defenders die than split players)"
+    },
+    "s:149fbdc6-split-1-592-72": {
+     "mark": "wrong",
+     "why": "not a split",
+     "text": "Men's split by the front door: 4 players (Hammer, Ranger, 7 Monk, Prot) against 7 defending (Dervish, Necromancer, Ritualist, Mesmer, Prot, 7 Monk, 8 Monk); the whole team turns on it; 7 (Dervish, Necromancer, Ritualist, Mesmer, Prot, 7 Monk, 8 Monk) against 4 players: full collapse"
+    },
+    "149fbdc6-split-1-592-72": {
+     "mark": "wrong",
+     "why": "",
+     "text": "Men (attacker) [met by a full collapse]: Survive and gain an advantage elsewhere on the map. Met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; yes: flag lead better by 0.35 or more)"
+    },
+    "149fbdc6-split-2-592-73": {
+     "mark": "wrong",
+     "why": "",
+     "text": "Apes (defender) [full collapse]: Kill the split or drive it out (the flags it costs are beside it). Not met (no: a split player dies; no: the split is gone within the visit)"
+    },
+    "s:149fbdc6-pinned-2-600-74": {
+     "mark": "right",
+     "why": "",
+     "text": "Apes is held in its own base or pit by Men's main team (K0 A0 B0 alive; base res in 120 s)"
+    },
+    "149fbdc6-pinned-2-600-74": {
+     "mark": "right",
+     "why": "",
+     "text": "Apes: Hold the NPCs and lose nobody until the base res, or break out. Not met (no: no pit NPC lost and nobody dies until the base res; no: it breaks out (five or more, out of its base))"
+    },
+    "s:149fbdc6-split-1-606-75": {
+     "mark": "wrong",
+     "why": "not a split",
+     "text": "Men's split by the front door: 4 players (Hammer, Ranger, 7 Monk, Prot) against 8 defending (Dervish, Warrior, Ritualist, Mesmer, Prot, 7 Monk, Necromancer, 8 Monk); the whole team turns on it; 8 (Dervish, Warrior, Ritualist, Mesmer, Prot, 7 Monk, Necromancer, 8 Monk) against 4 players: full collapse"
+    },
+    "149fbdc6-split-1-606-75": {
+     "mark": "wrong",
+     "why": "",
+     "text": "Men (attacker) [met by a full collapse]: Survive and gain an advantage elsewhere on the map. Not met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)"
+    },
+    "149fbdc6-split-2-606-76": {
+     "mark": "wrong",
+     "why": "",
+     "text": "Apes (defender) [full collapse]: Kill the split or drive it out (the flags it costs are beside it). Not met (no: a split player dies; no: the split is gone within the visit)"
+    },
+    "s:149fbdc6-flag-1-634-77": {
+     "mark": "right",
+     "why": "",
+     "text": "They single run (Apes's Warrior); Men: stay"
+    },
+    "149fbdc6-flag-1-634-77": {
+     "mark": "right",
+     "why": "",
+     "text": "Men [stay]: Kill with the extra player while their runner is away. Met (yes: more of theirs die than of ours)"
+    },
+    "s:149fbdc6-numbers-1-634-78": {
+     "mark": "wrong",
+     "why": "it's 8v7 (for apes) starting at 10:28; 5v8 (for Men) starting at 10:57",
+     "text": "Up on numbers in the main fight (7 v 6, Apes's pit), from kills; Men: stay (stay on the enemy's side)"
+    },
+    "149fbdc6-numbers-1-634-78": {
+     "mark": "wrong",
+     "why": "",
+     "text": "Men (up) [stay]: Turn the extra player into a kill before the numbers are level. Met (yes: more of theirs die than of ours)"
+    },
+    "s:149fbdc6-split-1-642-79": {
+     "mark": "wrong",
+     "why": "still not a split",
+     "text": "Men's split by the front door: 4 players (Hammer, Ranger, 7 Monk, Prot) against 5 defending (Mesmer, 7 Monk, 8 Monk, Dervish, Ritualist)"
+    },
+    "149fbdc6-split-1-642-79": {
+     "mark": "wrong",
+     "why": "",
+     "text": "Men (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Not met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)"
+    },
+    "149fbdc6-split-2-642-81": {
+     "mark": "wrong",
+     "why": "",
+     "text": "Apes (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Not met (yes: no pit NPC lost; no: a split player dies; no: the split is gone within the visit)"
+    },
+    "149fbdc6-split-1-642-80": {
+     "mark": "wrong",
+     "why": "",
+     "text": "Men (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)"
+    },
+    "s:149fbdc6-split-1-666-82": {
+     "mark": "wrong",
+     "why": "still not a split",
+     "text": "Men's split by the front door: 4 players (Hammer, Ranger, 7 Monk, Prot) against 1 defending (Mesmer)"
+    },
+    "149fbdc6-split-1-666-82": {
+     "mark": "wrong",
+     "why": "",
+     "text": "Men (attacker) [a player or more up]: Kill or take NPCs. Not met (no: a defender killed; no: an NPC taken)"
+    },
+    "149fbdc6-split-2-666-84": {
+     "mark": "wrong",
+     "why": "",
+     "text": "Apes (defender) [one defender]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)"
+    },
+    "149fbdc6-split-1-666-83": {
+     "mark": "wrong",
+     "why": "",
+     "text": "Men (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)"
+    }
+   },
+   "game": "Men v Apes, Imperial Isle",
+   "at": "2026-11-14",
+   "engine": "af952c6",
+   "notes": "missed team flag push on Apes 3 running at 2:30; missed very clear 5v4 in Ape's pit at 5:31 and clear 3v3 fight in Apes' backdoor whilst Apes warrior running the flag (classic example of staying to fight with number advantage whilst they flag); missed 8 monk of men running flag at 10:10; missed 6v7 in Apes pit at 10:08"
   }
  }
 }
