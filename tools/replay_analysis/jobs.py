@@ -99,6 +99,7 @@ def _flag_rows(M):
     out, m = [], M.m
     rs = {(r["tm"], int(r["pickup"])): r for r in M.run_starts()}
     pin = lambda tm, t: any(k == tm and a <= t <= b for k, a, b in pinned(M))
+    splits = [x for x in M.attempts() if x["kind"] == "split"]
     others = [tuple(x["pts"][0]) for x in (M.hall.labels or []) if x.get("type") == "Flag stand" and x.get("pts") and d(tuple(x["pts"][0]), M.hall.stand) > 500]
     for f in M.flags_record():
         if f["pregame"]: continue
@@ -116,7 +117,12 @@ def _flag_rows(M):
             p = M.P[r["carries"][-1][0]][min(e, M.T)]
             other = bool(p) and any(d(p, o) < 400 for o in others)        # at the hall's other flag stand (his answer on TFS v 옷옷옷옷 2:54: the Obelisk flag stand)
         soh = M.day < SOH_REMOVED and any(m.sk(b) == "Shadow of Haste" for a in f["ids"] for b in m.A[a].get("bar", []) if b)      # R-456: only while the mechanic was in the game
-        out.append(dict(f, runner=runner, s0=min(s0, e), pick=int(f["start"]), e=e, other_stand=other, double=(f["form"] or "").startswith("double"), soh=soh))
+        dbl = (f["form"] or "").startswith("double")
+        if dbl:                                                           # a double run takes a second player who goes back to run the next flag (his account of hdm v hook 5:52 to 7:24: hook's Mesmer "already on the way"); a player who is home because he came back from a split is not one
+            r2 = min((q for q in M.run_starts() if q["tm"] == f["tm"] and q["pickup"] > int(f["end"]) - 2), key=lambda q: q["pickup"], default=None)
+            went_at = r2 and next((v for v in (r2["set_off"], r2["waited"], r2["pickup"]) if v is not None), None)
+            if r2 is None or any(x["tm"] == f["tm"] and a_ == r2["a"] and qm["from"] <= went_at and qm["to"] >= went_at - SPLIT_GAP_S for x in splits for a_, qm in zip(x["ids"], x["members"])): dbl = False
+        out.append(dict(f, runner=runner, s0=min(s0, e), pick=int(f["start"]), e=e, other_stand=other, double=dbl, soh=soh))
     M._frows = out
     return out
 
@@ -145,8 +151,11 @@ def flag_plays(M, K, pinned_at):
         g = inhand or new
         who = [role[a] for a in dict.fromkeys(g["ids"])] if g else []
         scen = f"They {theirs.replace(' run', '')} run ({M.m.tag[B]}'s {f['runner']}{', to the Obelisk flag stand' if f['other_stand'] else ''}); {M.m.tag[A]}: {ours}"
-        end = min(max(w1, g["e"] if g else w1), w0 + FLAG_JOB_MAX_S, T)
-        dA, dB = (lambda t1: K.died_main(A, w0, t1)), (lambda t1: K.died_main(B, w0, t1))      # deaths at the main fights only (R-466)
+        # our own run is judged from the decision to run to its cap; what follows the cap is another decision (R-471: TFS v 옷옷옷옷 3:26)
+        ran = g is not None and not inhand
+        end = min(g["e"], w0 + FLAG_JOB_MAX_S, T) if ran else min(w1, w0 + FLAG_JOB_MAX_S, T)
+        d0 = min(max(g["s0"], w0), end) if ran else w0
+        dA, dB = (lambda t1: K.died_main(A, d0, t1)), (lambda t1: K.died_main(B, d0, t1))      # deaths at the main fights only (R-466)
         bes = lambda t1: {"flag_lead": [K.lead(A, w0), K.lead(A, t1)], "deaths_at_the_main_fight": [dA(t1), dB(t1)], "deaths_anywhere": [K.died(A, w0, t1), K.died(B, w0, t1)], "their_flag": f["how"], "their_form": f["form"], "our_form": g and g["form"]}
         kw = dict(their=theirs, ours=ours, soh=bool(f["soh"] or (g and g["soh"])))
         if ours == "a flag already in hand":
@@ -166,7 +175,7 @@ def flag_plays(M, K, pinned_at):
             lv = K.lead(A, end)
             out.append(_play(M, "flag", "own", A, w0, end, who, scen, "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
                              {"our flag is capped": new["how"] == "captured", "no more of ours die at the main fight than of theirs": dA(end) <= dB(end),
-                              "no worse than half a flag behind at the end": lv is None or lv >= -LEAD_HALF}, beside=bes(end), **kw))
+                              "no worse than half a flag behind at the end, or no further behind than at the start": lv is None or lv >= -LEAD_HALF or (K.lead(A, w0) is not None and lv >= K.lead(A, w0))}, beside=bes(end), **kw))      # a run cannot answer for a deficit it started with (his mark, TFS v 옷옷옷옷 3:26; R-426: going less negative counts)
         elif ours == "double run":                                        # they single run, we double
             t1 = min(w1 + ANSWER_CAP_S + 5, T)                            # through their cap, and the answer to it
             gn = K.gain(A, w0, t1)

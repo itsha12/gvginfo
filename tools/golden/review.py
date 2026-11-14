@@ -8,7 +8,7 @@
   python3 tools/golden/review.py compare <report id> <rows.json> <marks.json> <plays he marked> name=<plays> ...
                                                                      one marked game, several engines against his verdicts on
                                                                      it (the before-and-after test)
-  python3 tools/golden/review.py export <plays file> <out.json> --part N [--set w1]
+  python3 tools/golden/review.py export <plays file> <out.json> --part N [--set w1] [--label "round 3"] [--drop <id>,<id>]
                                                                      the games of that part of a whole-game set (dev_set.json) as
                                                                      the rows of the site's Model > Game review page, where he
                                                                      marks the reading of each situation and each side's call
@@ -127,7 +127,7 @@ def _reads(g):
     return read
 
 
-def export(path, out, part, set_id="w1"):
+def export(path, out, part, set_id="w1", label=None, drop=()):
     """The games of one part of a whole-game set as the rows of the site's Game review page (R-455): for each situation
     what the engine reads, and under it each side's call with its job, the result and the tests behind the result. He
     marks the reading and every call on its own. Games already in the file from another part are kept."""
@@ -135,7 +135,7 @@ def export(path, out, part, set_id="w1"):
     D = json.load(open(path))
     want = [w["rid"] for w in json.load(open(os.path.join(REPO, "data", "model", "dev_set.json")))["whole_game"] if w["set"] == set_id and w.get("part") == part]
     old = json.load(open(out)) if os.path.exists(out) else {"games": []}
-    games = [g for g in old["games"] if g["rid"] not in want]
+    games = [g for g in old["games"] if g["rid"] not in want and not any(g["rid"].startswith(x) for x in drop)]      # drop: games taken off the page (a hidden game must not be shown)
     for rid in want:
         m = D["matches"][rid]; P = [p for p in D["plays"] if p["rid"] == rid]; sits = []
         for i, g in enumerate(situations(P), 1):
@@ -145,7 +145,7 @@ def export(path, out, part, set_id="w1"):
                 calls.append({"id": p["id"], "team": p["team"], "side": side, "label": p.get("call") or p.get("answer") or p.get("ours") or "", "job": p["job"], "met": bool(p["met"]),
                               "tests": [[bool(v), k] for k, v in list(p["tests"].items()) + list(p.get("any_of", {}).items())], "any": bool(p.get("any_of")) and bool(p["tests"]) is False, "draft": not p.get("ruled", True)})
             sits.append({"n": i, "id": "s:" + g[0]["id"], "kind": {"flagger pushed": "push flagger"}.get(g[0]["play"], g[0]["play"]), "t0": g[0]["t0"], "t1": max(p["t1"] for p in g), "reads": read, "calls": calls})
-        games.append({"set": set_id, "part": part, "rid": rid, "teams": m["teams"], "map": m["map"], "date": m["date"], "situations": sits})
+        games.append({"set": set_id, "part": part, "label": label or f"part {part}", "rid": rid, "teams": m["teams"], "map": m["map"], "date": m["date"], "situations": sits})
     commit = subprocess.run(["git", "-C", REPO, "rev-parse", "--short", "HEAD"], capture_output=True, text=True).stdout.strip()
     json.dump({"about": "The rows of Model > Game review (R-454, R-455): every situation the engine reads in each review game, written by tools/golden/review.py export on the engine branch. His marks are in game_review_marks.json, never here.",
                "generated": datetime.date.today().isoformat(), "engine": commit, "games": games}, open(out, "w"), ensure_ascii=False, indent=1)
@@ -194,5 +194,5 @@ if __name__ == "__main__":
     elif a and a[0] == "rows": rows(key)
     elif a and a[0] == "game": game(a[1], a[2])
     elif a and a[0] == "compare": compare(a[1], a[2], a[3], a[4], [x.split("=", 1) for x in a[5:]])
-    elif a and a[0] == "export": export(a[1], a[2], int(a[a.index("--part") + 1]), a[a.index("--set") + 1] if "--set" in a else "w1")
+    elif a and a[0] == "export": export(a[1], a[2], int(a[a.index("--part") + 1]), a[a.index("--set") + 1] if "--set" in a else "w1", a[a.index("--label") + 1] if "--label" in a else None, a[a.index("--drop") + 1].split(",") if "--drop" in a else ())
     else: print(__doc__)
