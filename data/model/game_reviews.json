@@ -1,7 +1,7 @@
 {
  "about": "The rows of Model > Game review (R-454, R-455): every situation the engine reads in each review game, written by tools/golden/review.py export on the engine branch. His marks are in game_review_marks.json, never here.",
  "generated": "2026-11-13",
- "engine": "160d1a4",
+ "engine": "af952c6",
  "games": [
   {
    "set": "w1",
@@ -514,7 +514,7 @@
      "kind": "numbers",
      "t0": 272,
      "t1": 292,
-     "reads": "Down on numbers in the main fight (1 v 7, the field on 옷옷옷옷's side), from players split elsewhere; TFS: stay (stay at the stand) | 옷옷옷옷: stay (stay on their side)",
+     "reads": "Down on numbers in the main fight (1 v 7, the field on 옷옷옷옷's side), from players split elsewhere; TFS: stay (stay on their side) | 옷옷옷옷: stay (stay on their side)",
      "calls": [
       {
        "id": "bdaa145f-numbers-1-272-18",
