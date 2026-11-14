@@ -2940,6 +2940,11 @@
      "mark": "partly",
      "why": "",
      "text": "Team (up) [push in]: Take ground and NPCs with the numbers. Met (yes: no more of ours die than of theirs; yes: one of their NPCs dies; yes: more of theirs die than of ours)"
+    },
+    "427c825b-pinned-2-412-21": {
+     "mark": "partly",
+     "why": "",
+     "text": "Team: Lose no player and no NPC while held in, or break out. Met (no: no pit NPC lost and nobody dies until the base res; yes: it breaks out (half its living players or more, four at least, out of its base and pit))"
     }
    },
    "game": "cope v Team, Isle of Jade",
