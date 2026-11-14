@@ -863,7 +863,26 @@
    "shown": "옷옷옷옷's Fire Ele leaves the main fight for 16 s onto hdm's two-player split, one already defending | Not met: no kill. Beside it: an archer lost, flag lead 1.15 to 0.95",
    "mark": "right",
    "said": "Good example, correct identification and result.",
-   "checks": [
+   "note": "He first approved this as a collapse; asked which stands, he chose R-441 (see answered). The split itself had been lost to the chase rule after the rebuild and was restored when this key first ran.",
+   "answered": {
+    "on": "2026-11-13",
+    "asked": "His approval of this row as a collapse, or R-441 (the defence must become one more than the split)?",
+    "said": "Go with option a.",
+    "reading": "R-441 stands: a join that makes it even, not a collapse."
+   },
+   "answered2": {
+    "on": "2026-11-13",
+    "asked": "By reach it is three against two for 10 s, then one against two: what does he see?",
+    "said": "I need the link to review.",
+    "reading": "Waiting on him; the replay link was sent."
+   },
+   "answered3": {
+    "on": "2026-11-13",
+    "asked": "2 v 2, 3 v 2 or 1 v 2 on the split?",
+    "said": "3v2 for hdm",
+    "reading": "Three of 옷옷옷옷 against hdm's two. With three it is one more than the split, so R-441 is met and his first approval of it as a collapse stands; his choice of a join was made on Claude's wrong account of it as 2 v 2."
+   },
+   "retired_checks": [
     {
      "has": {
       "play": "split",
@@ -898,25 +917,8 @@
      "was": "hdm v 옷옷옷옷 4:06: three defending against hdm's two (his answer: 3 v 2); the engine reads the 8 Monk and the Air Ele there for 10 s each, under the 12 s, so it counts one"
     }
    ],
-   "note": "He first approved this as a collapse; asked which stands, he chose R-441 (see answered). The split itself had been lost to the chase rule after the rebuild and was restored when this key first ran.",
-   "answered": {
-    "on": "2026-11-13",
-    "asked": "His approval of this row as a collapse, or R-441 (the defence must become one more than the split)?",
-    "said": "Go with option a.",
-    "reading": "R-441 stands: a join that makes it even, not a collapse."
-   },
-   "answered2": {
-    "on": "2026-11-13",
-    "asked": "By reach it is three against two for 10 s, then one against two: what does he see?",
-    "said": "I need the link to review.",
-    "reading": "Waiting on him; the replay link was sent."
-   },
-   "answered3": {
-    "on": "2026-11-13",
-    "asked": "2 v 2, 3 v 2 or 1 v 2 on the split?",
-    "said": "3v2 for hdm",
-    "reading": "Three of 옷옷옷옷 against hdm's two. With three it is one more than the split, so R-441 is met and his first approval of it as a collapse stands; his choice of a join was made on Claude's wrong account of it as 2 v 2."
-   }
+   "checks": [],
+   "set_aside": "hdm fields a henchman in this game (R-477, 2026-11-14): henchman games are out of every replay pool, so the row is no longer run. His mark and words stand as he gave them."
   },
   {
    "id": "s1-27",
@@ -1368,9 +1370,9 @@
       ]
      },
      "want": {
-      "met": true
+      "broke_out": true
      },
-     "was": "TFS v 옷옷옷옷 0:36: TFS does break out: five or more is too harsh with four or five already out of the back door"
+     "was": "TFS v 옷옷옷옷 0:36: TFS does break out: five or more is too harsh with four or five already out of the back door; reworded 2026-11-14 to what he said (it does break out): under R-478 the job is now not met, because TFS lost its Warrior at 0:41 and a pit NPC before it got out (put to him)"
     }
    ]
   },
@@ -6395,8 +6397,7 @@
        "scenario~": "hold: stay"
       }
      },
-     "why": "hook v hold 0:25: hold is running a flag from 0:17 (its opening flag), so hold is not staying; the opening flags are not read as runs",
-     "open": true
+     "was": "hook v hold 0:25: hold is running a flag from 0:17 (its opening flag), so hold is not staying; the opening flags are not read as runs; held from 2026-11-14 with the opening flags read as runs (R-479)"
     }
    ]
   },
@@ -7894,7 +7895,13 @@
      "why": "hook v hold 1:18: hold's Air Ele (and maybe its main team) pushes hook's flag; not read. Also the opening: hook leaves one back for the next flag",
      "open": true
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-14",
+    "asked": "Should each team's opening flag be read as a run, along with who is left back for the next one?",
+    "said": "Yes.",
+    "reading": "R-479."
+   }
   },
   {
    "id": "w2-427c-1",
@@ -8429,10 +8436,15 @@
      "want": {
       "met": false
      },
-     "why": "cope v Team: they lose a knight at 10:42, and the engine calls the job met because they break out afterwards (put to him: does a break-out after losing an NPC meet the job?)",
-     "open": true
+     "was": "cope v Team: they lose a knight at 10:42, and the engine calls the job met because they break out afterwards (put to him: does a break-out after losing an NPC meet the job?); held from 2026-11-14: a break-out meets the job only if nothing was lost first (R-478)"
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-14",
+    "asked": "Should a break-out count only if nothing was lost first?",
+    "said": "Yes.",
+    "reading": "R-478."
+   }
   },
   {
    "id": "w2-427c-18",

@@ -15,13 +15,33 @@ PICK_FROM = "2026-09-02"
 _INDEX = None
 
 
+_HENCH = None
+
+
+def henchman_games():
+    """Ids of the stored replays in which a team fields a henchman (R-476, R-477: not reviewed, not learned from),
+    from data/model/henchman_games.json (written by `integrity.py henchmen`). A stored replay that the scan has not
+    read is counted aloud, once (R-460): it would otherwise slip into the pools unchecked."""
+    global _HENCH
+    if _HENCH is None:
+        try: h = json.load(open(os.path.join(REPO, "data", "model", "henchman_games.json"), encoding="utf-8"))
+        except (OSError, ValueError): h = {"games": {}, "read": []}
+        _HENCH = set(h["games"])
+        unread = [k for k in (_INDEX or {}) if k not in set(h["read"])]
+        if unread: import sys; print(f"common: {len(unread)} stored replays have not been read for henchmen (run `python3 integrity.py henchmen`)", file=sys.stderr)
+    return _HENCH
+
+
 def replay_index(all_dates=False):
-    """{report id: index entry} of the stored replays, without those before TRAIN_FROM unless all_dates."""
+    """{report id: index entry} of the stored replays that count: without those before TRAIN_FROM and without the
+    games in which a team fields a henchman (R-477); every stored replay with all_dates."""
     global _INDEX
     if _INDEX is None:
         import subprocess
         _INDEX = json.loads(subprocess.check_output(["git", "-C", REPO, "show", "origin/replays:index.json"]))["matches"]
-    return dict(_INDEX) if all_dates else {k: v for k, v in _INDEX.items() if str(v.get("date", ""))[:10] >= TRAIN_FROM}
+    if all_dates: return dict(_INDEX)
+    hench = henchman_games()
+    return {k: v for k, v in _INDEX.items() if str(v.get("date", ""))[:10] >= TRAIN_FROM and k not in hench}
 
 
 def replay_ids():

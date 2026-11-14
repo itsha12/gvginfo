@@ -110,7 +110,6 @@ def _flag_rows(M):
         if r2 is not None and not any(x["tm"] == f["tm"] and a_ == r2["a"] and qm["from"] <= went_at and qm["to"] >= went_at - SPLIT_GAP_S for x in splits for a_, qm in zip(x["ids"], x["members"])):
             second.add((f["tm"], int(f["start"]))); second.add((f["tm"], int(r2["pickup"])))
     for f in M.flags_record():
-        if f["pregame"]: continue
         r = next((rs[k] for k in ((f["tm"], int(f["start"]) + dt) for dt in (0, -1, 1)) if k in rs), None)
         s0, runner = int(f["start"]), f["runner"]
         if r is not None:
@@ -155,6 +154,10 @@ def flag_plays(M, K, pinned_at):
         g = inhand or new
         who = [role[a] for a in dict.fromkeys(g["ids"])] if g else []
         scen = f"They {theirs.replace(' run', '')} run ({M.m.tag[B]}'s {f['runner']}{', to the Obelisk flag stand' if f['other_stand'] else ''}); {M.m.tag[A]}: {ours}"
+        if f["pregame"] or (g and g["pregame"]):                         # the opening (R-479): each team's first flag is a run, and a player left at the spawn for the next one is part of the call
+            back = lambda tm, x: [role[q["a"]] for q in M.run_starts() if q["tm"] == tm and q["pickup"] > 2 and q["set_off"] is None and q["waited"] is not None and q["waited"] < x["e"]]
+            left = [f"{M.m.tag[tm]}'s {', '.join(back(tm, x))}" for tm, x in ((B, f), (A, g)) if x and x["pregame"] and back(tm, x)]
+            scen = "The opening. " + scen + (f"; left back for the next flag: {' and '.join(left)}" if left else "")
         # our own run is judged from the decision to run to its cap; what follows the cap is another decision (R-471: TFS v 옷옷옷옷 3:26)
         ran = g is not None and not inhand
         end = min(g["e"], w0 + FLAG_JOB_MAX_S, T) if ran else min(w1, w0 + FLAG_JOB_MAX_S, T)
@@ -567,13 +570,13 @@ def pinned(M):
 
 def pinned_plays(M, K):
     out, T, st = [], M.T, M.st
-    def out_of_base(tm, a, b):
+    def out_of_base(tm, a, b):                                            # the second it breaks out, or None
         own = st.side.get(tm)
         for u in range(a - a % 2, b + 1, 2):
             live = [x for x in st.players[tm] if M.AL[x][u]]
-            away = [x for x in live if not (M.place_at(x, u)[1] == own and M.place_at(x, u)[0] in ("pit", "base"))]
-            if len(away) >= 4 and len(away) * 2 >= len(live): return True
-        return False
+            away = [x for x in live if not (M.place_at(x, u)[1] == own and M.place_at(x, u)[0] in ("pit", "base", "front door", "back door"))]      # out past its doors: a team standing in its own doorway is still held in, as `pinned` reads it (his mark, hook v hold 17:04)
+            if len(away) >= 4 and len(away) * 2 >= len(live): return u
+        return None
     for tm, a, b in pinned(M):
         t = a
         while t < b:                                                      # one play to each base res while it lasts
@@ -582,11 +585,14 @@ def pinned_plays(M, K):
             if t1 - t >= 10:
                 s1 = M._main_step(tm, min(t1 + 10, T))[0]
                 alive = sum(M.AL[x][min(t1 + 10, T)] for x in st.players[tm])
-                hold = {"no pit NPC lost and nobody dies until the base res": K.npcs(tm, t, t1, pit=True) == 0 and K.died(tm, t, t1) == 0,
-                        "it breaks out (half its living players or more, four at least, out of its base and pit)": out_of_base(tm, t, min(t1 + 10, T))}      # by any door: four or five out by the back door is a break-out (his mark, TFS v 옷옷옷옷 0:36)
+                bo = out_of_base(tm, max(t, b - 4), min(t1 + 10, T)) if t1 >= b else None      # it breaks out where being held in ends: while the stretch lasts it is held in, wherever some of its players stand
+                lost = bo is not None and (K.npcs(tm, t, bo, pit=True) > 0 or K.died(tm, t, bo) > 0)
+                said = "it does not break out" if bo is None else f"it breaks out at {int(bo) // 60}:{int(bo) % 60:02d}, {'after losing a player or a pit NPC' if lost else 'having lost nothing'}"
+                hold = {"no pit NPC lost and nobody dies until the base res": K.npcs(tm, t, t1, pit=True) == 0 and K.died(tm, t, t1) == 0,      # R-478: a break-out meets the job only if nothing was lost before it (cope v Team 10:42: a knight lost, then out)
+                        f"it breaks out having lost no player and no pit NPC first ({said}; a break-out is half its living players or more, four at least, out past its doors)": bo is not None and not lost}
                 out.append(_play(M, "pinned", "own", tm, t, t1, [], f"{M.m.tag[tm]} is held in its own base or pit by {M.m.tag[3 - tm]}'s main team ({st.pit_npcs(tm, t)} alive; base res in {round(st.next_res(t) - t)} s)",
                                  "Hold the NPCs and lose nobody until the base res, or break out" if dead else "Lose no player and no NPC while held in, or break out", {}, any_of=hold,
-                                 beside={"deaths": [K.died(tm, t, t1), K.died(3 - tm, t, t1)], "pit_npcs_lost": K.npcs(tm, t, t1, pit=True), "pinned_s": b - a}))
+                                 beside={"deaths": [K.died(tm, t, t1), K.died(3 - tm, t, t1)], "pit_npcs_lost": K.npcs(tm, t, t1, pit=True), "pinned_s": b - a}, broke_out=bo is not None))
             t = st.next_res(t) if dead else b
     return out
 

@@ -11,9 +11,16 @@ Checks (each recorded in m.o["integrity"]):
   "lost" their Bodyguard in 19 of 30 matches). Every pit starts with the standard roster (ROSTER; Denning) and the
   NPCs never seen are added as alive all match (state.MapGeo, counted in integrity.roster_added).
 - window: gvg.report's observed match clock window and joined-mid-match flag, for reference.
-- exclude: a match is left out of training when a problem can't be repaired (EXCLUDE_IF); none so far.
+- henchmen: a team that fields a henchman (an agent named "... Henchman]" that is not a player) is read as a team of
+  seven, so every count of players in such a game is wrong. Denning does not want these games reviewed, accounted for
+  or learned from (R-476, R-477): they are left out of every replay pool (`common.replay_index`, from
+  data/model/henchman_games.json) and out of training (EXCLUDE_IF). Their results still count for ratings.
+- exclude: a match is left out of training when a problem can't be repaired (EXCLUDE_IF).
 
-Usage:  python3 integrity.py        every replay: what was found and repaired; writes data/model/integrity.json"""
+Usage:  python3 integrity.py            every replay: what was found and repaired; writes data/model/integrity.json
+        python3 integrity.py henchmen   every replay read for henchmen only (a minute); writes data/model/henchman_games.json.
+                                        Run it after replays are fetched: `common.replay_index` says so when a stored replay
+                                        has not been read."""
 import json, os, subprocess, sys
 from common import REPO
 
@@ -49,16 +56,44 @@ def repair(o):
     q = o.get("quality") or {}
     out["window"] = {"observed": q.get("match_clock_window_observed"), "joined_mid_match": meta.get("joined_mid_match")}
     out["roster_added"] = {}            # filled by state.MapGeo
+    out["henchmen"] = henchmen(agents)
     out["exclude"] = EXCLUDE_IF(out)
     o["integrity"] = out
     return out
+
+
+def henchmen(agents):
+    """Names of the henchmen in a replay's agents: not players, named '<name> [<kind> Henchman]'."""
+    return sorted(str(a.get("n")) for a in agents if not a.get("player") and "Henchman]" in str(a.get("n", "")))
 
 
 def EXCLUDE_IF(chk):
     """Reasons a match can't be used for training (empty = usable)."""
     why = []
     if chk["window"].get("joined_mid_match"): why.append("observer joined mid match")
+    if chk.get("henchmen"): why.append("a team fields a henchman (" + ", ".join(chk["henchmen"]) + ")")      # R-477
     return why
+
+
+HENCH_OUT = os.path.join(REPO, "data", "model", "henchman_games.json")
+
+
+def scan_henchmen():
+    """Every stored replay read for henchmen, straight from the replays branch (no match is built): writes the list
+    `common.replay_index` leaves out, with every id that was read so that a replay fetched later is seen as unread."""
+    import gzip
+    idx = json.loads(subprocess.check_output(["git", "-C", REPO, "show", "origin/replays:index.json"]))["matches"]
+    p = subprocess.Popen(["git", "-C", REPO, "cat-file", "--batch"], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+    games = {}
+    for rid, e in idx.items():
+        p.stdin.write(f"origin/replays:{e['file']}\n".encode()); p.stdin.flush()
+        n = int(p.stdout.readline().split()[2]); raw = p.stdout.read(n); p.stdout.read(1)
+        h = henchmen(json.loads(gzip.decompress(raw)).get("agents", []))
+        if h: games[rid] = {"teams": e.get("teams"), "map": e.get("map"), "date": str(e.get("date", ""))[:10], "henchmen": h}
+    p.stdin.close()
+    json.dump({"about": "Stored replays in which a team fields a henchman (R-476, R-477): left out of every replay pool and of training; their results still count for ratings. Written by tools/replay_analysis/integrity.py henchmen; `read` is every replay id that was looked at.",
+               "games": dict(sorted(games.items(), key=lambda kv: kv[1]["date"])), "read": sorted(idx)}, open(HENCH_OUT, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    print(f"{len(games)} of {len(idx)} stored replays have a henchman; wrote {HENCH_OUT}")
 
 
 _USABLE = {}
@@ -81,6 +116,7 @@ def excluded(ids):
 
 
 if __name__ == "__main__":
+    if sys.argv[1:] == ["henchmen"]: scan_henchmen(); sys.exit(0)
     from replaylib import Match
     from state import GameState
     idx = json.loads(subprocess.check_output(["git", "-C", REPO, "show", "origin/replays:index.json"]))["matches"]
