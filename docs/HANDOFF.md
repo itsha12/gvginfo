@@ -43,8 +43,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   1,600 (8 and 2), the 12 s of R-350 (5 and 4), hold time 6 s (5 and 1), acting distance 2,600 (6 and 0), hold
   distance 2,100 (1, 0), joined 1,000 (1, 1), `FOUGHT` 0.7 (1, 1), flag kept at home 20 s (0, 1), double run 30 s (0,
   0: the value does not matter between 15 and 60).
-- Taken out: a full collapse read from the main team closing; a kiting defender kept counted. Compare engines only on
-  one marked game (`review.py compare`): today's is not shown better on hdm v hook.
+- Compare engines only on one marked game (`review.py compare`): today's is not shown better on hdm v hook.
 
 ## Next (in order; REDESIGN.md "Build plan from here", item 6, and "Tests")
 1. Round 3: he marks one game at a time (Model > Game review; `data/model/game_review_marks.json`). Score each
