@@ -6,8 +6,8 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 ## Start a new chat in one message
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/SPEC.md and docs/HANDOFF.md, check
 > out `bundle-4` in a second worktree, then set out the items under "Open for Denning" and carry on with "Next".
-> (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
-> (Add your answers to the open items, by their numbers, to the same message if you have them.)
+> (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it. Add your
+> answers to the open items, by their numbers, to the same message if you have them.)
 
 ## State (2026-11-14: redesign step 2 on branch `bundle-4`, stage D under way; batch 17, 506 matches trained)
 - Main's engine is unchanged (SPEC.md). Bundle 4 is on `bundle-4` and lands in one piece, then one rebuild (R-322).
@@ -43,8 +43,8 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   1,600 (8 and 2), the 12 s of R-350 (5 and 4), hold time 6 s (5 and 1), acting distance 2,600 (6 and 0), hold
   distance 2,100 (1, 0), joined 1,000 (1, 1), `FOUGHT` 0.7 (1, 1), flag kept at home 20 s (0, 1), double run 30 s (0,
   0: the value does not matter between 15 and 60).
-- Tried and taken out: a full collapse counted from the main team closing on the split; a defender kept counted while
-  he kites out of reach. Compare engines only on one marked game (`review.py compare`): not shown better on hdm v hook.
+- Taken out: a full collapse read from the main team closing; a kiting defender kept counted. Compare engines only on
+  one marked game (`review.py compare`): today's is not shown better on hdm v hook.
 
 ## Next (in order; REDESIGN.md "Build plan from here", item 6, and "Tests")
 1. Round 3: he marks one game at a time (Model > Game review; `data/model/game_review_marks.json`). Score each
