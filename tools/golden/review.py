@@ -5,6 +5,9 @@
   python3 tools/golden/review.py rows [--key <path>]                 the rows and their marks
   python3 tools/golden/review.py game <report id> <plays file>       one whole game, every situation the engine reads, as a
                                                                      table for him to mark while he watches it (R-454)
+  python3 tools/golden/review.py file <report id> <rows.json> <marks.json> --set w2
+                                                                     his marks on one game of the page into the key (rows, his words,
+                                                                     the text he saw; no checks), with the game's score
   python3 tools/golden/review.py numbers [--steps 0.5,0.75,1.25,2] [--names FIGHT_LINK,JOIN_S]
                                                                      the numbers test (R-470): each draft number of the fight reading
                                                                      at those shares of its value, against every marked row (about a
@@ -23,7 +26,7 @@ The key (`data/model/review_key.json`, on main; a copy rides on the branch) hold
 the window, what the engine said then (`shown`), his mark and his words (`said`), and `checks`: Claude's reading of his
 mark as things the plays must hold or must not hold, which he corrects. A check names plays by `play`, `side`, `team` and
 a window in seconds of match time (`at` = the play overlaps it, `start` = the play begins inside it, `end` = it ends inside it), and `want` gives the
-fields they must carry (`who~` = these roles among who, `who#` = how many, `scenario~` = these words in the scenario; a
+fields they must carry (`who~` = these roles among who, `who#` = how many, `scenario~` = these words in the scenario, `tests` = a test of the play by its words and whether it held; a
 list of values = any of them). `has` passes when one play fits, `none` when no play fits. A check marked `open` is a
 fault known and not yet fixed: it is reported apart and does not fail the row. Engine faults go here as checks, never
 into RULINGS.md (R-452). An accuracy figure by kind of play comes from the rows of a whole-game review (R-454), where
@@ -47,6 +50,11 @@ def fits(p, sel, want):
             if not all(any(w in r for r in p.get("who", [])) or w in p.get("scenario", "") for w in v): return False
         elif k == "who#":
             if len(p.get("who", [])) != v: return False
+        elif k == "tests":                                   # {words of a test: held or not}, among the play's tests
+            T = dict(p.get("tests", {}), **p.get("any_of", {}))
+            for w, val in v.items():
+                got = [x for q, x in T.items() if w in q]
+                if not got or bool(got[0]) != val: return False
         elif k == "scenario~":
             if not all(w in p.get("scenario", "") for w in ([v] if isinstance(v, str) else v)): return False
         elif isinstance(v, list):
@@ -192,6 +200,42 @@ def compare(rid, rows_file, marks_file, shown_file, others):
         print(f"  {name}: {sum(res.values())} calls: " + ", ".join(f"{v} {k}" for k, v in res.most_common()) + f"; says {sum(1 for i in right if i in hit)} of his {len(right)} right calls")
 
 
+def file_marks(rid, rows_file, marks_file, set_id, key=KEY):
+    """His marks on one game of the Game review page into the review key (the same session, his words as he wrote them):
+    one row a situation with his mark and words and the text he saw, its calls under `calls` with theirs, and one
+    `missed` row for his notes on the game. Checks are not written here: they are Claude's reading of his words, added
+    by hand to each row afterwards. A game filed before keeps the checks and answers already on its rows."""
+    R, Mk, K = json.load(open(rows_file)), json.load(open(marks_file)), json.load(open(key))
+    g = next(g for g in R["games"] if g["rid"].startswith(rid)); e = Mk["games"][g["rid"]]; mk = e["marks"]
+    hall = g["map"].replace("Isle of ", "").replace(" Isle", ""); match = f"{' v '.join(g['teams'])}, {hall}"; pre = f"{set_id}-{g['rid'][:4]}-"
+    old = {r["id"]: r for r in K["rows"] if r["id"].startswith(pre)}; new = []
+    for s_ in g["situations"]:
+        v = mk.get(s_["id"], {}); i = pre + str(s_["n"])
+        row = {"id": i, "set": set_id, "row": s_["n"], "rid": g["rid"], "match": match, "window": [s_["t0"], s_["t1"]], "type": s_["kind"], "call": "", "shown": v.get("text") or s_["reads"], "mark": v.get("mark") or "not marked"}
+        if v.get("why"): row["said"] = v["why"]
+        row["calls"] = []
+        for c in s_["calls"]:
+            cv = mk.get(c["id"], {}); d = {"play": c["id"], "shown": cv.get("text", ""), "mark": cv.get("mark") or "not marked"}
+            if cv.get("why"): d["said"] = cv["why"]
+            row["calls"].append(d)
+        row["checks"] = old.get(i, {}).get("checks", [])
+        for k_ in old.get(i, {}):
+            if k_.startswith("answered"): row[k_] = old[i][k_]
+        new.append(row)
+    i = pre + "missed"
+    new.append({"id": i, "set": set_id, "row": 0, "rid": g["rid"], "match": match, "window": [0, 0], "type": "missed", "call": "", "shown": "(his notes on the game: what the engine did not read, and his questions)", "mark": "missed", "said": e.get("notes") or "", "checks": old.get(i, {}).get("checks", [])})
+    K["rows"] = [r for r in K["rows"] if not r["id"].startswith(pre)] + new
+    open(key, "w", encoding="utf-8").write(json.dumps(K, ensure_ascii=False, indent=1) + "\n")
+    c = collections.Counter(r["mark"] for r in new if r["type"] != "missed"); j = c["right"] + c["partly"] + c["wrong"]
+    print(f"{match} (engine {e.get('engine')}): situations right {c['right']}, partly {c['partly']}, wrong {c['wrong']} of {j} judged ({100 * c['right'] // max(j, 1)}%, R-475); repeat {c['repeat']}, not marked {c['not marked']}")
+    by = collections.defaultdict(collections.Counter)
+    for r in new:
+        if r["type"] != "missed": by[r["type"]][r["mark"]] += 1
+    print("  by kind (right of judged): " + "; ".join(f"{k} {v['right']}/{v['right'] + v['partly'] + v['wrong']}" for k, v in sorted(by.items())))
+    cc = collections.Counter(d["mark"] for r in new if r["mark"] == "right" for d in r["calls"])
+    print(f"  calls where the situation was right: right {cc['right']} of {sum(cc.values())}")
+
+
 NUMBERS = ("FIGHT_LINK", "JOIN_S", "FIGHT_HOLD_S", "FIGHT_ACT", "FIGHT_HOLD", "FIGHT_CLOSE", "FOUGHT", "FLAG_TAKEN_OUT_S", "DOUBLE_NEXT_S")
 
 
@@ -252,6 +296,7 @@ if __name__ == "__main__":
     key = a[a.index("--key") + 1] if "--key" in a else KEY
     if a and a[0] == "score": sys.exit(1 if score(a[1], key) else 0)
     elif a and a[0] == "rows": rows(key)
+    elif a and a[0] == "file": file_marks(a[1], a[2], a[3], a[a.index("--set") + 1], key)
     elif a and a[0] == "numbers": numbers(tuple(float(x) for x in a[a.index("--steps") + 1].split(",")) if "--steps" in a else (0.5, 0.75, 1.25, 2.0), tuple(a[a.index("--names") + 1].split(",")) if "--names" in a else NUMBERS, key=key)
     elif a and a[0] == "game": game(a[1], a[2])
     elif a and a[0] == "compare": compare(a[1], a[2], a[3], a[4], [x.split("=", 1) for x in a[5:]])

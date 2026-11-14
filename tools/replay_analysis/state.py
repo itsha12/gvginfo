@@ -40,7 +40,31 @@ class MapGeo:
         for v in self.npcs.values():    # archers far from their Lord are outside archers
             v["pit"] = v["kind"] in ("guild_lord", "bodyguard", "knight") or (
                 v["pos"] is not None and d(v["pos"], self.pit.get(v["team"])) < 3000)
+        self._by_labels()
         self._fill_roster()
+
+    def _by_labels(self):
+        """Which archers are pit archers, from Denning's hall labels where the hall has them: every archer he has placed
+        is a point, and the pit is an area he drew, so an archer seen in the replay is the nearest archer he placed on
+        its side (each label taken once, nearest pairs first), and it is a pit archer when that label lies in the pit.
+        A position estimated from where its attackers stood can be a bow shot out, which put base archers inside the
+        3,000 of the Lord (his marks, cope v Team 7:56 and hook v hold 16:28: K2 A2 B1 where this read A1 and A0)."""
+        from hallmap import Hall, in_poly
+        hall = Hall.get(self.map_id)
+        sides = hall.team_sides(self.base) if hall else {}
+        for tm, side in sides.items():
+            pits = [a["pts"] for a in hall.areas if a["type"] == "Pit" and a["side"] == side]
+            labs = [(p, any(in_poly(p[0], p[1], q) for q in pits)) for p in hall.npc[side]["Archer"]]
+            if not pits or not any(pit for _, pit in labs): continue           # no pit drawn, or no archer placed in it: the estimate stands
+            seen = [a for a, v in self.npcs.items() if v["team"] == tm and v["kind"] == "archer" and v["pos"] is not None]
+            pairs = sorted((d(self.npcs[a]["pos"], p), a, i) for a in seen for i, (p, _) in enumerate(labs))
+            took_a, took_i = set(), set()
+            for dist, a, i in pairs:
+                if a in took_a or i in took_i: continue
+                took_a.add(a); took_i.add(i)
+                self.npcs[a]["pit"] = labs[i][1]; self.npcs[a]["label"] = labs[i][0]
+            for a in seen:
+                if a not in took_a: self.npcs[a]["pit"] = False               # more archers seen than he placed: not one of the pit's
 
     def _fill_roster(self):
         """Pit NPCs only appear in a replay once something touches them, so an untouched pit looked empty. Every pit

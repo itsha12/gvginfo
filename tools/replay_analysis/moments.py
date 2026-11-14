@@ -291,6 +291,15 @@ class Moments:
             i = j + 1
         return keep
 
+    def with_rest(self, a, others, t, need=3):
+        """A player stands with `need` or more of `others` at second t (each within FIGHT_LINK of him): a player is in
+        one fight at a time, so a split player standing with the rest of his team is not out on a split then, and an
+        enemy standing among the attackers' main team is not defending the split (his mark, hook v hold 13:04: "How
+        could hold have 4 people defending and simultaneously have 8 players main?"). Read from the players
+        themselves, not from `fights`: on a small hall a split's fight and the main fight chain into one group."""
+        p = self.P[a][t]
+        return bool(p) and sum(1 for b in others if self.AL[b][t] and self.P[b][t] and d(p, self.P[b][t]) < FIGHT_LINK) >= need
+
     def fights(self, t):
         """The groups on the map at second t: living players of both teams in the same fight (`linked`), each with its
         numbers by team and where it stands (the place of team 1's players, else team 2's, named by whose ground it
@@ -2001,7 +2010,7 @@ class Moments:
     def _numbers(self):
         """Numbers differences in the fight a main team stands in (R-351: every fight, not only where the mains meet):
         each a stretch of NUMBERS_MIN_S or more with the same side up, read every 2 s from the fight records."""
-        S, eps, cur, F = SPLIT_STEP, [], None, {}
+        S, eps, cur, F, raw = SPLIT_STEP, [], None, {}, []
         times = list(range(0, self.T + 1, S))
         for t in times:
             f = None
@@ -2027,9 +2036,24 @@ class Moments:
             adv = None if n is None or not n[1] or not n[2] or n[1] == n[2] else (1 if n[1] > n[2] else 2)
             if adv and cur and cur["adv"] == adv and t - cur["last"] <= S: cur["last"] = t; cur["ns"].append((n[1], n[2])); cur["all"] |= set(f["ids"][1]) | set(f["ids"][2])
             else:
-                if cur and cur["last"] - cur["start"] >= NUMBERS_MIN_S and fought(cur): eps.append(cur)
+                if cur: raw.append(cur)
                 cur = {"adv": adv, "start": t, "last": t, "ns": [(n[1], n[2])], "place": (f["kind"], f["side"]), "ids": {tm: frozenset(a for a in f["ids"][tm] if counted[a][ti]) for tm in self.st.teams}, "all": set(f["ids"][1]) | set(f["ids"][2])} if adv else None      # ids: the players counted in it
-        if cur and cur["last"] - cur["start"] >= NUMBERS_MIN_S and fought(cur): eps.append(cur)
+        if cur: raw.append(cur)
+        # a numbers difference is told once: stretches with the same side up and less than a moment's length (NUMBERS_MIN_S) between them are one situation (a player resurrected
+        # and killed again; his marks, cope v Team 5:18 and 13:52: "same situation, a continuation"). It runs from the first to the last stretch that is a moment in its own right
+        # (NUMBERS_MIN_S or longer, and fought): a quiet lead-in or tail is no part of it
+        groups, good = [], lambda e: e["last"] - e["start"] >= NUMBERS_MIN_S and fought(e)
+        for e in raw:
+            if groups and groups[-1][-1]["adv"] == e["adv"] and e["start"] - groups[-1][-1]["last"] <= NUMBERS_MIN_S: groups[-1].append(e)
+            elif groups and groups[-1][-1]["adv"] != e["adv"] and not good(e) and e["last"] - groups[-1][-1]["last"] < NUMBERS_MIN_S: continue      # the other side up for less than a moment's length is no break either
+            else: groups.append([e])
+        for g in groups:
+            ok = [k for k, e in enumerate(g) if good(e)]
+            if not ok: continue
+            g = g[ok[0]:ok[-1] + 1]; e = dict(g[0], all=set(g[0]["all"]), ns=list(g[0]["ns"]))
+            for x in g[1:]:
+                e["ns"] += [None] * ((x["start"] - e["last"]) // S - 1) + x["ns"]; e["last"] = x["last"]; e["all"] |= x["all"]
+            eps.append(e)
         return eps
 
     # ---- 2.5 scenario
@@ -2091,12 +2115,16 @@ class Moments:
         src = "wipe" if len(fight_ids) <= 2 and why["kills"] >= 5 else max(("kills", "runner away", "split elsewhere"), key=lambda k: (why[k], k == "kills", k == "runner away"))
         runs = []                                        # the numbers it starts with (the first held two readings or more), and each change after that (R-446: numbers that change are told)
         for i_, c in enumerate(e["ns"]):
+            if c is None: continue                       # a level reading inside the stretch (shorter than a moment)
             if runs and runs[-1][0] == c: runs[-1][2] += 1
             else: runs.append([c, e["start"] + i_ * SPLIT_STEP, 1])
         held = [r for r in runs if r[2] >= 2] or runs
         own = lambda c: c if tm == 1 else c[::-1]
         n = own(held[0][0])
-        then = "".join(f"; then {own(c)[0]} v {own(c)[1]} from {int(u) // 60}:{int(u) % 60:02d}" for c, u, k_ in held[1:4] if k_ >= 3)
+        told = [held[0]]
+        for r_ in held[1:]:
+            if r_[2] >= 3 and r_[0] != told[-1][0]: told.append(r_)      # a change is told once it has held 6 s, and not when the numbers come back to what was last told
+        then = "".join(f"; then {own(c)[0]} v {own(c)[1]} from {int(u) // 60}:{int(u) % 60:02d}" for c, u, k_ in told[1:])
         words = {"kills": "kills", "runner away": "a runner away", "split elsewhere": "players split elsewhere", "wipe": "a wipe"}[src]
         return {"key": f"{side}|{src}", "label": f"{'Up' if side == 'up' else 'Down'} on numbers in the main fight ({n[0]} v {n[1]}, {self.place_words(*e['place'])}{then}), from {words}",
                 "parts": {"side": side, "source": src, "numbers": f"{n[0]}v{n[1]}", "short_because": dict(why), "place": self.place_words(*e["place"]), "step": self._ladder(tm, *e["place"])}}
