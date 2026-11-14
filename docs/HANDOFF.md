@@ -76,5 +76,4 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 - Don't merge `bundle-4` piecemeal (R-322). Label and golden files are saved whole by the site: after a change
   here, Denning reloads the page first. Hall labels are saved to main: copy changed `data/maps/labels/*.json` to the
   branch before reading a hall (all 14 matched main on 2026-11-12).
-- Transcripts never go in the repo: paraphrased statements only. Party slots are in `data/matches/`, not the replays.
-- `golden_moments.json` on the branch is a copy of main's; refresh it from main before the gate.
+- Transcripts never go in the repo: paraphrased statements only. Party slots are in `data/matches/`, not the replays. Refresh the branch's `golden_moments.json` from main before the gate.
