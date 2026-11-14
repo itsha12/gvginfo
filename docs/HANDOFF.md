@@ -25,32 +25,32 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   (`Moments.linked`, `engaged_in`, `visits`), used by the numbers and a split's defenders; a split ends when the rest
   of its team is with it; the flag run's start, the flag in hand, the answer to a run, the double run; the break-out
   test; a part-run is no push on a flagger; the WoC monks are damage. Thresholds in `common.py` are drafts.
-- Now: w1p1 checks 18 of 36 hold; set 1: 28 rows pass, s1-31 holds, open s1-15, s1-24, s1-26. Gate: part one 12 of
-  12, part two 64 of 105 (61%). Line-up: 421 of 426 and 185 of 186 seen (one lost in each: look at them); comms 108
-  of 157, 62 of 80. Development set only (42 matches); no run over every match and no `thresholds.py` since the
-  rebuild: both are due before part 2 is written.
+- Now (development set, 42 matches): review key 60 rows pass; the checks from his words that held were made firm,
+  and 16 stay open (`review.py score` lists them): s1-15; w1p1: six numbers moments one out (Men v Apes 2:10, 7:10,
+  8:52, 10:28, 10:57; TFS v 옷옷옷옷 0:43, 8:40), a full collapse read from arrival and not from the turn (1:16 read
+  at 1:28; 9:20 not read: the split fled first), the 5 v 4 in Apes's pit with Men divided in Apes's base, Men's 8
+  Monk's flag at 10:10, the 3 v 2 at 6:58, a flag in hand at 10:13, TFS's run at 3:26.
+  Gate: part one 12 of 12, part two 64 of 105 (61%). Line-up: 421 of 426 and 185 of 186 seen (one lost in each: look
+  at them); comms 108 of 157, 62 of 80. No run over every match and no `thresholds.py` since the rebuild (R-465).
+- Tried and taken out: a full collapse counted from when the main team closes on the split (it read the lone
+  Ritualist at 7:30 of TFS v 옷옷옷옷 as collapsed on, against his row 28). It needs the team's own movement, not
+  the gap between the two.
 - The page: calls under a situation he marks wrong or a repeat are not asked for; Repeat is a mark.
 
 ## Next (in order; REDESIGN.md "Build plan from here", item 6, and "Tests")
-1. The 18 open checks of w1p1 (`review.py score` lists them), by the same method: the numbers still one out at five
-   moments of Men v Apes (who he counts: open item 2); a full collapse read from when the team turns to go, not from
-   when it arrives (his 1:16, 4:15, 9:30 against 1:28, 4:36, none); the 5 v 4 in Apes's pit while Men's team is divided
-   in Apes's base (no play covers a divided main team push); Men's 8 Monk's flag at 10:10.
-2. Then the line-up's two lost statements, a run over every match, `thresholds.py`, and part 2 (`review.py export
-   --part 2`: hdm v hook 8bf4ffae, Men v Crew 51683de9; change nothing until he has marked it). 옷옷옷옷 v RACK
-   (a8ba43a8) is the spare: never look at its rows.
+1. His answer on part 2: write it now (`review.py export <file> <main>/data/model/game_reviews.json --part 2`: hdm v
+   hook 8bf4ffae, Men v Crew 51683de9; change nothing in the reading until he has marked it), or work on the 16 open
+   checks first. 옷옷옷옷 v RACK (a8ba43a8) is the spare: never look at its rows.
+2. The open checks by the same method (R-465); the line-up's two lost statements.
 3. The flag family to the end (R-451) once the flag plays pass; the other kinds as each passes; then stage E.
 
 ## Open for Denning (put to him 2026-11-13, night; set each out in the chat again, R-329, with replay links)
-1. The flag job "lose no more players than they do" (R-426): TFS v 옷옷옷옷 3:26, he says TFS's single run succeeded;
-   the flag got in, but five TFS players died in the window, on the split that was collapsed on. Count only deaths
-   the run causes (at the main fight, short the runner), or none?
-2. Men v Apes 6:12 (https://gvg.report/report/149fbdc6-f703-5171-a24e-9165a20cecb6#map): he reads 5 v 5 in Apes's
-   pit; the engine has four Apes there (7 Monk, Prot, Mesmer, Ritualist). Who is the fifth?
-3. TFS v 옷옷옷옷 2:54 (https://gvg.report/report/bdaa145f-1471-57b3-ab2f-a04f090b7abb#map): "the single run ends
-   when they cap the fire ball thing": what is capped there?
-4. Key s1-26, hdm v 옷옷옷옷 4:06 (https://gvg.report/report/7209c1a1-20ff-5f4f-a176-9cf92f7c594c#map): 2 v 2, 3 v 2
-   or 1 v 2? Key s1-24, OG v Dz 2:34 (https://gvg.report/report/a921418b-c4d1-5872-aca9-18f9ad99bf40#map): no split?
+1. Part 2 now, or more fixing first? Claude recommends now: most of what is open needs his eyes anyway.
+2. TFS v 옷옷옷옷 3:26 (https://gvg.report/report/bdaa145f-1471-57b3-ab2f-a04f090b7abb#map): under R-466 TFS's run
+   is still not met: three TFS deaths at the main fight (7 Monk 3:46, Mes/A 5:09, Warrior 5:20) to none. Is "not met"
+   right, or is a run that gets in a success whatever it cost?
+3. The four draft numbers of the fight reading (1,600 reach, 2,100 hold, 2,600 acting, 1,000 joined) and the two
+   flag ones (20 s kept at home, 30 s for a double run): confirm, or say what looks wrong.
 - Drafts: numbers from kills; a split with no answer; "held by monks"; the Lord push's aim; thresholds marked
   "Claude's draft". Not built: shadow with a snare; the two-monk spike build after a wipe. Maps: `tools/maps/`.
 

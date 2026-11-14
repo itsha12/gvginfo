@@ -64,7 +64,9 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   marks on TFS v 옷옷옷옷 (drafts):* a flag picked up by a player already at home, or by a team held in its base, and kept
   there over 20 s starts its run when its runner takes it out; a flag is in hand only in the stand or the greater
   stand area; the answer to a run is the flag already on its way if it goes on to be capped, else the run set off for;
-  a double run needs the second runner to take the next flag within 30 s of the cap.
+  a double run needs the second runner to take the next flag within 30 s of the cap; a flag put down for good ends its
+  run there, and at a hall's second flag stand (the Obelisk flag stand on Meditation, his answer) that is a cap of it.
+- A flag run's job counts only deaths at the main fight: deaths out on a split are the split's own (R-466, R-443).
 
 ## Splits
 - A solo split is one player through the back or an unusual route at the enemy's pit or NPCs; three or four go for the
