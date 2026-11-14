@@ -25,15 +25,12 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   (`Moments.linked`, `engaged_in`, `visits`), used by the numbers and a split's defenders; a split ends when the rest
   of its team is with it; the flag run's start, the flag in hand, the answer to a run, the double run; the break-out
   test; a part-run is no push on a flagger; the WoC monks are damage. Thresholds in `common.py` are drafts.
-- hdm v hook (8bf4ffae), marked 2026-11-14 against engine 67e87b8, was the first measure of the rebuilt reading:
-  situations right 35, partly 7, wrong 16 of 58 judged (7 repeats, 2 unmarked); calls right 50 of 54 where the
-  situation was right. By kind, right of judged: pinned 6 of 6, push flagger 4 of 4, base res 4 of 4, boost 2 of 2,
-  flag 3 of 5, numbers 5 of 13, split 11 of 24. Filed as set w1p2 with 20 checks from his words. He then chose to
-  build from it (R-467): Men v Crew (51683de9) is the hidden game, 옷옷옷옷 v RACK (a8ba43a8) the spare.
-- Built from w1p2: a numbers moment needs a fight (casts and attacks, `FOUGHT`); the kill in the main fight asked
-  only where the damage can kill against the monks there; a flag never carried out of its base is no run; the flag
-  decision told once, from the side that ran second; staying is met when their flag fails (R-468); a kill at a phase
-  boundary credited to the phase it ended; the pinned clock with nobody dead; numbers rows grouped by their start.
+- hdm v hook (8bf4ffae), marked 2026-11-14 against engine 67e87b8: situations right 35, partly 7, wrong 16 of 58
+  judged; calls right 50 of 54 where the situation was right (pinned, push flagger, base res, boost all right; flag 3
+  of 5, numbers 5 of 13, split 11 of 24). Set w1p2, 20 checks. Built from since (R-467): Men v Crew (51683de9) is
+  the hidden game, 옷옷옷옷 v RACK (a8ba43a8) the spare. Built from it: `FOUGHT` (a numbers moment needs casts and
+  attacks), the monk ratio in the main fight's kill job, a flag never out of its base is no run, the flag decision
+  from the side that ran second, staying met when their flag fails (R-468), the pinned clock.
 - A split fight is told once (R-469): split calls on the development set 1,726 to 1,161; hdm v hook 115 calls to 69.
 - Now (development set, 42 matches): review key 80 rows pass; 28 checks open (w1p1 16, w1p2 11, s1-15): numbers one
   out, a defender missed at 6:46 of TFS v 옷옷옷옷 and 13:02 of hdm v hook, two flags, a door, a missed solo split.
