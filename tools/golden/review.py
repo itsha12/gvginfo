@@ -133,9 +133,15 @@ def export(path, out, part, set_id="w1", label=None, drop=()):
     marks the reading and every call on its own. Games already in the file from another part are kept."""
     import datetime, subprocess
     D = json.load(open(path))
-    want = [w["rid"] for w in json.load(open(os.path.join(REPO, "data", "model", "dev_set.json")))["whole_game"] if w["set"] == set_id and w.get("part") == part]
+    whole = json.load(open(os.path.join(REPO, "data", "model", "dev_set.json")))["whole_game"]
+    want = [w["rid"] for w in whole if w["set"] == set_id and w.get("part") == part]
+    kept_back = {w["rid"] for w in whole if w.get("part") in ("hidden", "spare")}                                    # R-467: never on the page, whatever is asked for
+    main_labels, own_labels = os.path.join(os.path.dirname(os.path.abspath(out)), "..", "maps", "labels"), os.path.join(REPO, "data", "maps", "labels")
+    if os.path.isdir(main_labels):                                                                                   # his hall labels are saved to main: rows read from older labels would be put to him as the engine's reading
+        differ = [f for f in sorted(os.listdir(main_labels)) if f.endswith(".json") and (not os.path.exists(os.path.join(own_labels, f)) or open(os.path.join(main_labels, f), "rb").read() != open(os.path.join(own_labels, f), "rb").read())]
+        if differ: sys.exit("export: hall labels on main differ from the branch (" + ", ".join(differ) + "): copy them over, run the development set again, then export")
     old = json.load(open(out)) if os.path.exists(out) else {"games": []}
-    games = [g for g in old["games"] if g["rid"] not in want and not any(g["rid"].startswith(x) for x in drop)]      # drop: games taken off the page (a hidden game must not be shown)
+    games = [g for g in old["games"] if g["rid"] not in want and g["rid"] not in kept_back and not any(g["rid"].startswith(x) for x in drop)]      # drop: games taken off the page
     for rid in want:
         m = D["matches"][rid]; P = [p for p in D["plays"] if p["rid"] == rid]; sits = []
         for i, g in enumerate(situations(P), 1):
