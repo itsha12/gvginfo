@@ -32,7 +32,7 @@ Usage:  python3 jobs.py <report id>                     the plays of one match
         python3 jobs.py bench <file from moments.py all>     rebuild data/benchmarks/flag_arrival.json
 In code: plays(M, recs) -> list of plays; allocation(recs, plays) adds each moment's plays to it."""
 import collections, json, os, statistics, sys
-from common import (REPO, READ_TO, SPLIT_STEP, SPLIT_GAP_S, FIGHT_LINK, JOIN_S, JOIN_LOOK_S, NPC_NEAR, can_kill, SOH_REMOVED, RUN_SPEED, GROUND_JUMP, RES_EVERY, BOOST_EVERY, BOOST_WARN_S, BOOST_LATE_S, LEAD_HALF, LEAD_ONE, CARRY_SPEED, PIT_R,
+from common import (FIGHT_ACT, FLAG_TAKEN_OUT_S, REPO, READ_TO, SPLIT_STEP, SPLIT_GAP_S, FIGHT_LINK, JOIN_S, JOIN_LOOK_S, NPC_NEAR, can_kill, SOH_REMOVED, RUN_SPEED, GROUND_JUMP, RES_EVERY, BOOST_EVERY, BOOST_WARN_S, BOOST_LATE_S, LEAD_HALF, LEAD_ONE, CARRY_SPEED, PIT_R,
                     FLAG_GAIN, PART_RUN_GAIN, LATE_FLAG, ANSWER_CAP_S, COLLAPSE_VISIT_S, PINNED_S, LORD_PUSH_FROM, LORD_BASE_R, AFTER_WIPE_MIN_S, NUMBERS_TAIL_S, FLAG_JOB_MAX_S)
 from state import d
 
@@ -91,12 +91,18 @@ def _flag_rows(M):
     if getattr(M, "_frows", None) is not None: return M._frows
     out, m = [], M.m
     rs = {(r["tm"], int(r["pickup"])): r for r in M.run_starts()}
+    pin = lambda tm, t: any(k == tm and a <= t <= b for k, a, b in pinned(M))
     for f in M.flags_record():
         if f["pregame"]: continue
         r = next((rs[k] for k in ((f["tm"], int(f["start"]) + dt) for dt in (0, -1, 1)) if k in rs), None)
-        s0 = int(r["moment"]) if r is not None and r["set_off"] is not None else int(f["start"])       # when he goes to run, by the hall (R-461)
+        s0, runner = int(f["start"]), f["runner"]
+        if r is not None:
+            went = r["set_off"] is not None and not pin(f["tm"], r["set_off"]) and not pin(f["tm"], r["pickup"])      # he walked back for it, his team not held in its base (a player falling back into his base with his team did not go to run)
+            if went: s0 = min(int(r["moment"]), s0)                       # when he goes to run, by the hall (R-461)
+            elif r["under_way"] is not None and r["under_way"] - r["pickup"] > FLAG_TAKEN_OUT_S:
+                s0, runner = int(r["under_way"]), m.roles[r["runner"]]    # picked up at home and kept there: the run starts when its runner takes it out
         soh = M.day < SOH_REMOVED and any(m.sk(b) == "Shadow of Haste" for a in f["ids"] for b in m.A[a].get("bar", []) if b)      # R-456: only while the mechanic was in the game
-        out.append(dict(f, s0=min(s0, int(f["start"])), pick=int(f["start"]), e=int(f["end"]), double=(f["form"] or "").startswith("double"), soh=soh))
+        out.append(dict(f, runner=runner, s0=s0, pick=int(f["start"]), e=int(f["end"]), double=(f["form"] or "").startswith("double"), soh=soh))
     M._frows = out
     return out
 
@@ -115,10 +121,10 @@ def flag_plays(M, K, pinned_at):
         mine = [g for g in FR if g["tm"] == A]
         inhand = next((g for g in mine if g["pick"] < w0 - 15 and g["e"] > w0 + 5), None)
         new = next((g for g in mine if w0 - 15 <= g["s0"] <= w1), None)
-        if inhand:                                                        # in hand means at the fight: standing in the stand area or with its main team. A flag still on its way is our run, begun first
+        if inhand:                                                        # in hand means close to the flag stand (his mark, TFS v 옷옷옷옷 1:40). A flag on its way that goes on to be capped is our run, begun first; one that never gets in (carried off on a split, dropped) is no answer, and the run set off for in the window is
             c = next((a for a in inhand["ids"] if M.carrying(a, w0) and M.AL[a][w0]), None)
-            held = c is not None and (M.place_at(c, w0)[0] in ("stand", "greater stand") or c in M.main_team(A, w0 - w0 % SPLIT_STEP))
-            if not held: new, inhand = inhand, None
+            held = c is not None and M.place_at(c, w0)[0] in ("stand", "greater stand")
+            if not held: new, inhand = (inhand if inhand["how"] == "captured" or new is None else new), None
         theirs = "double run" if f["double"] else "single run"
         ours = "a flag already in hand" if inhand else "stay" if not new else "double run" if new["double"] else "single run"
         g = inhand or new
@@ -162,8 +168,11 @@ def flag_plays(M, K, pinned_at):
 # ---- pushing the flagger (R-427), and the flagger's side (gap 8)
 def push_plays(M, K):
     FR, out, role, done = _flag_rows(M), [], M.m.roles, {}
+    splits = [x for x in M.attempts() if x["kind"] == "split"]
     for p in M.flag_pushes():
         tm, foe = p["tm"], 3 - p["tm"]
+        # a split player on a defender who carries his flag is a split with a part-run (R-430), not a push on a flagger (his mark, TFS v 옷옷옷옷 6:20)
+        if any(x["tm"] == tm and x["t_in"] <= p["t"] <= x["t1"] + 4 and set(p["roles"]) <= {q["role"] for q in x["members"]} for x in splits): continue
         f = next((f for f in FR if f["tm"] == foe and p["flagger"] in f["ids"] and f["s0"] - 60 <= p["t"] <= f["e"] + 2), None)
         key = (foe, f["pick"]) if f else (foe, p["t"])
         if key in done:                                                   # a second push on the same flag: one play, everyone who pushed
@@ -207,7 +216,8 @@ def _runs(vals, times, min_s, keep_last=False):
         cand = range(len(runs) - 1) if keep_last else range(len(runs))       # keep_last: the last run stands however short (the game ended in it)
         i = min(cand, key=lambda i: runs[i][2] - runs[i][1])
         if runs[i][2] - runs[i][1] + SPLIT_STEP >= min_s: break
-        j = i - 1 if i == len(runs) - 1 or (i > 0 and runs[i - 1][2] - runs[i - 1][1] >= runs[i + 1][2] - runs[i + 1][1]) else i + 1
+        near = lambda q: (sum(abs(x - y) for x, y in zip(runs[q][0], runs[i][0])) if isinstance(runs[i][0], tuple) else 0, -(runs[q][2] - runs[q][1]))     # a short stretch joins the neighbour whose numbers are nearest its own, then the longer one
+        j = i - 1 if i == len(runs) - 1 else i + 1 if i == 0 else min((i - 1, i + 1), key=near)
         lo, hi = min(i, j), max(i, j)
         runs[lo:hi + 1] = [[runs[j][0], runs[lo][1], runs[hi][2]]]
         k = 0
@@ -221,7 +231,7 @@ def split_plays(M, K):
     st, m, T, out, tl, S_ = M.st, M.m, M.T, [], M._tl(), SPLIT_STEP
     role, hall = m.roles, M.hall
     A = [x for x in M.attempts() if x["kind"] == "split" and x.get("solo") != "other"]
-    is_monk = lambda a: m.A[a].get("p") == "Monk" and not role[a].startswith("Monk ")      # a backline monk; a smiter is damage
+    is_monk = lambda a: m.A[a].get("p") == "Monk" and not role[a].startswith("Monk ") and "WoC" not in role[a]      # a backline monk; a smiter (the WoC monks, whatever their slot) is damage (R-457; TFS v 옷옷옷옷 4:06)
     for x in A:
         tm, foe, an = x["tm"], 3 - x["tm"], x["answer"]
         own_d = st.side.get(foe)
@@ -234,10 +244,13 @@ def split_plays(M, K):
                        and len(set(x["ids"]) & (set(y["answer"]["ids"]) | set(y["answer"].get("went_back_ids") or []))) * 2 >= len(x["ids"])), None)
         if chased is not None: continue
         # follow its players for as long as they stay on the enemy's ground, past the record's own end (the label can change under them: a split that becomes the only players left, or is renamed a push)
+        # ... but not once its main team has come to it: then it is a main team push, and the split is over (his marks on Men v Apes: "not a split" from 3:10 to 7:00 and from 8:28 to 11:16, where the record itself had ended "main team joined")
+        mates = [b for b in st.players[tm] if b not in x["ids"]]
+        joined = lambda a, u: sum(1 for b in mates if M.AL[b][u] and M.P[a][u] and d(M.P[a][u], M.P[b][u]) < FIGHT_LINK) >= 3      # three or more of the rest of his team are with him
         ext = {}
         for a in x["ids"]:
             u, gap = to[a], 0
-            while u + S_ <= T and gap <= SPLIT_GAP_S:
+            while u + S_ <= T and gap <= SPLIT_GAP_S and not joined(a, u + S_):
                 u += S_
                 gap = 0 if deep(a, u) else gap + S_
             ext[a] = u - gap
@@ -261,7 +274,14 @@ def split_plays(M, K):
         on = lambda a, u: s_on[a][(u - t0) // S_] if t0 <= u <= t9 else False
         Ss = [[a for a in x["ids"] if s_on[a][i]] for i in range(len(times))]
         split_deaths = [td for a in x["ids"] for td in st.death_times.get(a, [])]
-        d_on = {b: stays([M.AL[b][u] and any(d(M.P[b][u], M.P[a][u]) < FIGHT_LINK for a in s) for u, s in zip(times, Ss)], list(st.death_times.get(b, [])) + split_deaths, to_end=True) for b in st.players[foe]}
+        def defends(b):                                   # a defender is on the split: within reach of a split player, or further off with one of them hitting or casting on the other (Moments' reading of who is in a fight, without the hold: a player hovering at the edge of reach is not defending, 옷옷옷옷 v Men 6:50); for 12 s, or at a death (his own, or the split player's: R-464)
+            def on(a, u):
+                dist = d(M.P[b][u], M.P[a][u])
+                return dist < FIGHT_LINK or (dist < FIGHT_ACT and ((a, b) if a < b else (b, a)) in M._acting(u, aid=False))
+            reach = [bool(M.AL[b][u]) and any(M.AL[a][u] and on(a, u) for a in s) for u, s in zip(times, Ss)]
+            return M.visits(times, reach, reach, list(st.death_times.get(b, [])) + split_deaths, to_end=at_end0)      # a defender kites and heals at range: being on the split is enough
+        at_end0 = times[-1] >= T - S_ - 1
+        d_on = {b: defends(b) for b in st.players[foe]}
         Ds = [[b for b in st.players[foe] if d_on[b][i]] for i in range(len(times))]
         smooth = lambda xs: [sorted(xs[max(i - 2, 0):i + 3])[len(xs[max(i - 2, 0):i + 3]) // 2] for i in range(len(xs))]
         kn = list(zip(smooth([len(s) for s in Ss]), smooth([len(dn) for dn in Ds])))
@@ -336,7 +356,7 @@ def split_plays(M, K):
                     "flag_lead": [K.lead(foe, p0), K.lead(foe, e1)], "deaths_away_from_the_split": [away_d, away_a], "split": [dmg_s, ms], "defence": [dmg_d, md], "main": {"own": main["theirs"], "theirs": main["own"]}, "main_can_kill": main_can[::-1], "phase": [pi + 1, len(phases)]}
             elsewhere = {"more of theirs die away from the split than of ours": away_d > away_a, f"flag lead better by {FLAG_GAIN} or more": ga is not None and ga >= FLAG_GAIN}
             kill_or_npc = {"a defender killed": n_kill > 0, "an NPC taken": n_npc > 0}
-            kw = dict(size=k, defenders=n)
+            kw = dict(size=k, defenders=n, split_damage=dmg_s, defending_monks=md)
             # the attacker's job, set by the answer it meets (R-428)
             if full or collapse:
                 ans = "met by a full collapse" if full else "collapsed on"
@@ -406,7 +426,7 @@ def numbers_plays(M, K, trig, recs, pinned_at):
         scen = x["scenario"]["label"] + f"; {x['team']}: {x['call']['label'].lower()}"
         bes = lambda b: {"deaths": [dA(b), dB(b)], "npcs": [K.npcs(tm, t, b), K.npcs(foe, t, b)], "flag_lead": [K.lead(tm, t), K.lead(tm, b)], "lasted_s": e["last"] - e["start"]}
         back, push = c in ("retreat down the ladder", "fall out"), c in ("push up", "push in", "push their flagger")
-        kw = dict(source=src, numbers_side=side, call=c)
+        kw = dict(source=src, numbers_side=side, call=c, numbers=x["scenario"]["parts"]["numbers"])
         if src == "wipe" or (src == "kills" and side == "up" and x["scenario"]["parts"].get("step", 0) <= -2 and x["scenario"]["parts"]["short_because"].get("kills", 0) >= 3):
             if side != "up": continue                                     # gap 4: after a wipe, or kills at their base
             res = min(st.next_res(t) + 5, T)
@@ -485,7 +505,7 @@ def pinned_plays(M, K):
                 s1 = M._main_step(tm, min(t1 + 10, T))[0]
                 alive = sum(M.AL[x][min(t1 + 10, T)] for x in st.players[tm])
                 hold = {"no pit NPC lost and nobody dies until the base res": K.npcs(tm, t, t1, pit=True) == 0 and K.died(tm, t, t1) == 0,
-                        "it breaks out (five or more, out of its base)": s1 is not None and s1 <= 1 and alive >= 5 and t1 < st.next_res(t)}
+                        "it breaks out (its main team out of its base before the res)": s1 is not None and s1 <= 1 and t1 < st.next_res(t)}      # no count asked of it: with four or five already out by the back door, five more is too much to ask (his mark, TFS v 옷옷옷옷 0:36)
                 out.append(_play(M, "pinned", "own", tm, t, t1, [], f"{M.m.tag[tm]} is held in its own base or pit by {M.m.tag[3 - tm]}'s main team ({st.pit_npcs(tm, t)} alive; base res in {round(st.next_res(t) - t)} s)",
                                  "Hold the NPCs and lose nobody until the base res, or break out", {}, any_of=hold,
                                  beside={"deaths": [K.died(tm, t, t1), K.died(3 - tm, t, t1)], "pit_npcs_lost": K.npcs(tm, t, t1, pit=True), "pinned_s": b - a}))

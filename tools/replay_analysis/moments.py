@@ -43,7 +43,7 @@ Usage:  python3 moments.py <report id> [family]      the match's moments in orde
         python3 jobs.py summary <out.json>            the plays and how often each job was met (jobs.py)
 In code: Moments(st, sb).records() -> list of dicts."""
 import collections, json, math, statistics, sys
-from common import (FLAG_MOMENT_GREATER, FLAG_MOMENT_STAND, READ_FROM, READ_TO, CONSEQ_S, ON_TIME_S, LATE_S, PIT_S, AREA_SHARE, PURPOSE_S, LEAVE_MIN_S, HOME_WAIT_S, SPAWN_R, GROUP_LEAVE_S, MEET_R,
+from common import (DOUBLE_NEXT_S, FLAG_MOMENT_GREATER, FLAG_MOMENT_STAND, FIGHT_HOLD, FIGHT_HOLD_S, FIGHT_ACT, FIGHT_CLOSE, READ_FROM, READ_TO, CONSEQ_S, ON_TIME_S, LATE_S, PIT_S, AREA_SHARE, PURPOSE_S, LEAVE_MIN_S, HOME_WAIT_S, SPAWN_R, GROUP_LEAVE_S, MEET_R,
                     NUMBERS_MIN_S, MERGE_S, BOOST_WARN_S, FLAGGER_R, SPLIT_FAR, BOOST_EVERY, SERIOUS_CARRY_S, FIGHT_LINK, GROUND_MOVE, GROUND_S, GROUND_BACK, GROUND_JUMP, GROUND_SPLIT_MOVE, SIDE_FIGHT_MAX, SIDE_FIGHT_S, UNDEFENDED_S,
                     RETURN_R, FOOT_ENGAGED_S, SPLIT_STEP, SPLIT_MIN_S, SPLIT_GAP_S, FORCED_OUT_S, AHEAD_LOOK_S, CAUGHT_S, NPC_NEAR,
                     JOIN_S, RES_EVERY, flux_at, JOIN_LOOK_S, JOIN_MOVE, JOIN_LEAD, JOIN_ENGAGE, JOIN_ENGAGE_S, MAIN_BIG, SWAP_S, SWAP_STAY_S, SPLIT_FIGHT_GAP_S, SPLIT_FIGHT_MIN,
@@ -96,11 +96,14 @@ class Moments:
         self.hits = collections.defaultdict(list)            # second -> [(actor, target)] damage between players
         self.npc_hits = collections.defaultdict(list)        # player -> seconds he damaged an enemy NPC
         self.acts = collections.defaultdict(list)            # second -> [(actor, target)] damage dealt or a skill landed, between players of the two teams
+        self.aid = collections.defaultdict(list)             # second -> [(actor, target)] a heal or a skill landed on a team mate
+        self._nr, self._ia = {}, {}
         self.lord_hits = collections.defaultdict(list)       # team -> [(second, the enemy player, amount)] damage on its Guild Lord
         self.pit_kind = collections.defaultdict(lambda: collections.defaultdict(set))  # team -> second -> which of them (knight, bodyguard, guild_lord)
         self.pit_act = collections.defaultdict(lambda: collections.defaultdict(set))   # team -> second -> enemy players trading damage with its knight, bodyguard or Guild Lord (R-387)
         for r in m.o["ev"]:
             if r[1] in ("dm", "sa") and r[2] in self.P and r[3] in self.P and m.team(r[2]) != m.team(r[3]): self.acts[int(r[0] / 10)].append((r[2], r[3]))
+            if r[1] in ("hl", "sa") and r[2] in self.P and r[3] in self.P and r[2] != r[3] and m.team(r[2]) == m.team(r[3]): self.aid[int(r[0] / 10)].append((r[2], r[3]))
             if r[1] != "dm" or not isinstance(r[2], int) or not isinstance(r[3], int) or max(r[2], r[3]) >= len(m.A): continue
             if m.A[r[3]].get("npc") == "guild_lord" and r[2] in self.P and m.A[r[3]].get("team") not in (None, m.team(r[2])):
                 self.lord_hits[m.A[r[3]].get("team")].append((r[0] / 10, r[2], r[5] if len(r) > 5 and isinstance(r[5], (int, float)) else 0))
@@ -223,8 +226,71 @@ class Moments:
         return "spread"
 
     # ---- every fight on the map, with its own numbers (a draft of the theatre layer, R-341)
+    def _near(self, t):
+        """The pairs of living players within FIGHT_LINK of one another at second t."""
+        if t not in self._nr:
+            live = [a for a in self.m.PL if self.AL[a][t]]
+            self._nr[t] = {(a, b) for i, a in enumerate(live) for b in live[i + 1:] if d(self.P[a][t], self.P[b][t]) < FIGHT_LINK}
+        return self._nr[t]
+
+    def _acting(self, t, aid=True):
+        """The pairs of players who hit or cast on one another (and, with aid, who heal or protect one another) within
+        FIGHT_HOLD_S of second t."""
+        if (t, aid) not in self._ia:
+            s = set()
+            for u in range(max(t - FIGHT_HOLD_S, 0), min(t + FIGHT_HOLD_S, self.T) + 1):
+                for src in ((self.acts, self.aid) if aid else (self.acts,)):
+                    for x, y in src.get(u, ()): s.add((x, y) if x < y else (y, x))
+            self._ia[(t, aid)] = s
+        return self._ia[(t, aid)]
+
+    def linked(self, a, b, t):
+        """Are two living players in the same fight at second t (the one reading of it, used by the fights, the numbers
+        and a split's defenders alike): within reach; or just out of reach having been within it a few seconds either
+        side; or further apart and one hitting or casting on the other. A heal does not link two players: a monk
+        healing across from the main fight is not on the split (NwAy v Men 11:50, review key s1-21)."""
+        if a > b: a, b = b, a
+        if (a, b) in self._near(t): return True
+        dist = d(self.P[a][t], self.P[b][t])
+        if dist < FIGHT_ACT and (a, b) in self._acting(t, aid=False): return True
+        return dist < FIGHT_HOLD and any((a, b) in self._near(u) for u in range(max(t - FIGHT_HOLD_S, 0), min(t + FIGHT_HOLD_S, self.T) + 1, 2))
+
+    def engaged_in(self, a, members, t):
+        """Is a player who is within reach of a fight engaged in it at second t: standing FIGHT_CLOSE from someone in it,
+        acting in it, or standing where he is (a caster at range). A player walking in has not joined yet, and one
+        walking away has left (R-464)."""
+        if any(b != a and self.AL[b][t] and d(self.P[a][t], self.P[b][t]) < FIGHT_CLOSE for b in members): return True
+        if any((x == a and y in members) or (y == a and x in members) for x, y in self._acting(t)): return True
+        u = max(t - SPLIT_STEP, 0)
+        return bool(self.AL[a][u] and self.P[a][u]) and d(self.P[a][t], self.P[a][u]) < 150 * SPLIT_STEP      # under about half a run: standing, or shuffling
+
+    def visits(self, times, reach, engaged, deaths=(), min_s=None, to_end=True):
+        """When a player counts as one more in a fight, from the seconds he is within reach of it and the seconds he is
+        engaged in it (standing FIGHT_CLOSE from someone in it, or acting in it). He counts from when he first engages to
+        when he last does (R-464: he has joined when he reaches the fight, and has left when he walks away, not when he
+        comes into or goes out of reach), if that is JOIN_S or longer (R-350: less is support), or he dies in it, or the
+        match ends with him there (R-459). A gap of FIGHT_HOLD_S or less does not end a visit. Returns one flag a reading."""
+        n, keep, i, step = len(times), [False] * len(times), 0, (times[1] - times[0] if len(times) > 1 else SPLIT_STEP)
+        min_s = JOIN_S if min_s is None else min_s
+        while i < n:
+            if not reach[i]: i += 1; continue
+            j, gap = i, max(1, FIGHT_HOLD_S // step)
+            while True:
+                nxt = next((q for q in range(j + 1, min(j + gap + 1, n - 1) + 1) if reach[q]), None)
+                if nxt is None: break
+                j = nxt
+            died = any(times[i] - 2 <= td <= times[j] + 4 for td in deaths)
+            es = [q for q in range(i, j + 1) if engaged[q]]
+            if es or died:
+                a_, b_ = (es[0], es[-1]) if es else (i, j)
+                if died: b_ = j
+                if (b_ - a_ + 1) * step >= min_s or died or (to_end and j == n - 1):
+                    for q in range(a_, b_ + 1): keep[q] = True
+            i = j + 1
+        return keep
+
     def fights(self, t):
-        """The groups on the map at second t: living players of both teams linked within FIGHT_LINK, each with its
+        """The groups on the map at second t: living players of both teams in the same fight (`linked`), each with its
         numbers by team and where it stands (the place of team 1's players, else team 2's, named by whose ground it
         is). Denning reads a match this way ("3v4 in the back door", "7v7 at the stand")."""
         if t in self._fc: return self._fc[t]
@@ -232,7 +298,7 @@ class Moments:
         live = [a for a in m.PL if self.AL[a][t]]
         gs = []
         for a in live:
-            hit = [g for g in gs if any(d(self.P[a][t], self.P[b][t]) < FIGHT_LINK for b in g)]
+            hit = [g for g in gs if any(self.linked(a, b, t) for b in g)]
             gs = [g for g in gs if g not in hit] + [[a] + [x for g in hit for x in g]]
         cut = []
         for g in gs:                                         # a small fight hanging off a bigger one (R-374: the opening ranger 1v1 is not part of the 8v8)
@@ -379,7 +445,8 @@ class Moments:
                 n = next((c[0] for c in nxt["carries"] if c[2] is None or c[2] - c[1] >= SERIOUS_CARRY_S), None) if nxt else None
                 tc = min(int(L["end"]), self.T)
                 back = False
-                if n is not None and n != L["capper"] and self.P[n][tc] is not None and self.hall is not None:
+                soon = nxt is not None and nxt["start"] - L["end"] <= DOUBLE_NEXT_S       # he takes the next flag at once: that is what he was back there for
+                if n is not None and soon and n != L["capper"] and self.P[n][tc] is not None and self.hall is not None:
                     w1, w2 = self.hall.walk(self.P[n][tc], self.spawn[tm]), self.hall.walk(self.P[n][tc], self.hall.stand)
                     back = w1 is not None and w2 is not None and w1 < w2
                 if back: L["form"] = "double run, half" if n in order else "double run, full"
@@ -1934,17 +2001,9 @@ class Moments:
         # (R-350, R-459: Crew v hdm 7:22, six seconds of 8 v 7). One missed reading allowed; a death in it counts at once; so does the end of the match.
         counted = {}
         for a in self.m.PL:
-            tm_a, deaths = self.m.team(a), self.st.death_times.get(a, [])
-            flags = [F[t] is not None and a in F[t]["ids"][tm_a] for t in times]
-            keep, i = [False] * len(flags), 0
-            while i < len(flags):
-                if not flags[i]: i += 1; continue
-                j = i
-                while j + 1 < len(flags) and (flags[j + 1] or (j + 2 < len(flags) and flags[j + 2])): j += 1
-                if (j - i + 1) * S >= JOIN_S or j == len(flags) - 1 or any(times[i] - 2 <= td <= times[j] + 4 for td in deaths):
-                    for q in range(i, j + 1): keep[q] = flags[q]
-                i = j + 1
-            counted[a] = keep
+            tm_a = self.m.team(a)
+            reach = [F[t] is not None and a in F[t]["ids"][tm_a] for t in times]
+            counted[a] = self.visits(times, reach, [r and self.engaged_in(a, F[t]["ids"][1] | F[t]["ids"][2], t) for r, t in zip(reach, times)], self.st.death_times.get(a, []))
         for ti, t in enumerate(times):
             f = F[t]
             n = {tm: sum(1 for a in f["ids"][tm] if counted[a][ti]) for tm in self.st.teams} if f is not None else None
@@ -1952,7 +2011,7 @@ class Moments:
             if adv and cur and cur["adv"] == adv and t - cur["last"] <= S: cur["last"] = t; cur["ns"].append((n[1], n[2]))
             else:
                 if cur and cur["last"] - cur["start"] >= NUMBERS_MIN_S: eps.append(cur)
-                cur = {"adv": adv, "start": t, "last": t, "ns": [(n[1], n[2])], "place": (f["kind"], f["side"]), "ids": f["ids"]} if adv else None
+                cur = {"adv": adv, "start": t, "last": t, "ns": [(n[1], n[2])], "place": (f["kind"], f["side"]), "ids": {tm: frozenset(a for a in f["ids"][tm] if counted[a][ti]) for tm in self.st.teams}} if adv else None      # ids: the players counted in it
         if cur and cur["last"] - cur["start"] >= NUMBERS_MIN_S: eps.append(cur)
         return eps
 
@@ -2013,9 +2072,16 @@ class Moments:
             elif self.carrying(a, t) or any(r["a"] == a and self._went_to_run(r) - 5 <= t <= r["pickup"] + 60 for r in self.run_starts()) or d(self.P[a][t], self.spawn[short]) < SPAWN_R: why["runner away"] += 1
             else: why["split elsewhere"] += 1
         src = "wipe" if len(fight_ids) <= 2 and why["kills"] >= 5 else max(("kills", "runner away", "split elsewhere"), key=lambda k: (why[k], k == "kills", k == "runner away"))
-        n = e["ns"][0] if tm == 1 else e["ns"][0][::-1]
+        runs = []                                        # the numbers it starts with (the first held two readings or more), and each change after that (R-446: numbers that change are told)
+        for i_, c in enumerate(e["ns"]):
+            if runs and runs[-1][0] == c: runs[-1][2] += 1
+            else: runs.append([c, e["start"] + i_ * SPLIT_STEP, 1])
+        held = [r for r in runs if r[2] >= 2] or runs
+        own = lambda c: c if tm == 1 else c[::-1]
+        n = own(held[0][0])
+        then = "".join(f"; then {own(c)[0]} v {own(c)[1]} from {int(u) // 60}:{int(u) % 60:02d}" for c, u, k_ in held[1:4] if k_ >= 3)
         words = {"kills": "kills", "runner away": "a runner away", "split elsewhere": "players split elsewhere", "wipe": "a wipe"}[src]
-        return {"key": f"{side}|{src}", "label": f"{'Up' if side == 'up' else 'Down'} on numbers in the main fight ({n[0]} v {n[1]}, {self.place_words(*e['place'])}), from {words}",
+        return {"key": f"{side}|{src}", "label": f"{'Up' if side == 'up' else 'Down'} on numbers in the main fight ({n[0]} v {n[1]}, {self.place_words(*e['place'])}{then}), from {words}",
                 "parts": {"side": side, "source": src, "numbers": f"{n[0]}v{n[1]}", "short_because": dict(why), "place": self.place_words(*e["place"]), "step": self._ladder(tm, *e["place"])}}
 
     # ---- 2.6 the call, read from the records in the window after the trigger (never from damage or deaths)

@@ -15,7 +15,7 @@
 The key (`data/model/review_key.json`, on main; a copy rides on the branch) holds, for each row he was shown: the match,
 the window, what the engine said then (`shown`), his mark and his words (`said`), and `checks`: Claude's reading of his
 mark as things the plays must hold or must not hold, which he corrects. A check names plays by `play`, `side`, `team` and
-a window in seconds of match time (`at` = the play overlaps it, `start` = the play begins inside it), and `want` gives the
+a window in seconds of match time (`at` = the play overlaps it, `start` = the play begins inside it, `end` = it ends inside it), and `want` gives the
 fields they must carry (`who~` = these roles among who, `who#` = how many, `scenario~` = these words in the scenario; a
 list of values = any of them). `has` passes when one play fits, `none` when no play fits. A check marked `open` is a
 fault known and not yet fixed: it is reported apart and does not fail the row. Engine faults go here as checks, never
@@ -34,6 +34,7 @@ def fits(p, sel, want):
         if k in sel and p.get(k) != sel[k]: return False
     if "at" in sel and not (p["t1"] >= sel["at"][0] and p["t0"] <= sel["at"][1]): return False
     if "start" in sel and not (sel["start"][0] <= p["t0"] <= sel["start"][1]): return False
+    if "end" in sel and not (sel["end"][0] <= p["t1"] <= sel["end"][1]): return False
     for k, v in (want or {}).items():
         if k == "who~":
             if not all(any(w in r for r in p.get("who", [])) or w in p.get("scenario", "") for w in v): return False
@@ -59,12 +60,14 @@ def score(path, key=KEY):
     by = collections.defaultdict(list)
     for p in D["plays"]: by[p["rid"]].append(p)
     res, missing, by_type = collections.Counter(), [], collections.defaultdict(lambda: [0, 0])
+    opened = collections.defaultdict(lambda: [0, 0])          # set -> [open checks that now hold, open checks]
     for r in K["rows"]:
         if not r.get("checks"): res["no check (not marked, or nothing to test)"] += 1; continue
         if r["rid"] not in by: missing.append(r["id"]); continue
         firm = [c for c in r["checks"] if not c.get("open")]; opn = [c for c in r["checks"] if c.get("open")]
         bad = [c for c in firm if not check(by[r["rid"]], c)]
         still = [c for c in opn if not check(by[r["rid"]], c)]
+        opened[r.get("set")][0] += len(opn) - len(still); opened[r.get("set")][1] += len(opn)
         ok = not bad
         res["pass" if ok else "FAIL"] += 1
         by_type[r["type"]][0] += ok; by_type[r["type"]][1] += 1
@@ -75,6 +78,7 @@ def score(path, key=KEY):
         for c in opn:
             if c not in still: print(f"now passes, was open: {r['id']} ({r['type']}): {c.get('why', '')}")
     print("\nThe review key:", ", ".join(f"{v} {k}" for k, v in sorted(res.items())), (f"; matches not in the run: {missing}" if missing else ""))
+    print("Open checks that hold now, of the open checks, by set: " + "; ".join(f"{k}: {a} of {b}" for k, (a, b) in sorted(opened.items(), key=str) if b))
     print("By kind of play (rows passing of rows checked): " + "; ".join(f"{k} {a}/{b}" for k, (a, b) in sorted(by_type.items())))
     return res["FAIL"]
 

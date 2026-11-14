@@ -190,6 +190,8 @@ KILL_NEED = {0: 1, 1: 2, 2: 4, 3: 5}      # damage against monks, from good play
 def can_kill(damage, monks):
     """Is this much damage expected to kill against this many backline monks (R-457)? More than three monks: not expected."""
     return monks in KILL_NEED and damage >= KILL_NEED[monks]
+DOUBLE_NEXT_S = 30              # a double run: the player back toward the spawn at the capture takes the next flag within this long (a player who is merely at home, and runs a flag minutes later, was not double running: TFS v 옷옷옷옷 4:02, Men v Apes 1:17; Claude's draft)
+FLAG_TAKEN_OUT_S = 20           # a flag picked up by a player already at home, or by a team held in its base, and kept there longer than this: the run starts when its runner takes it out of the base (TFS v 옷옷옷옷 1:20 and 11:01; Claude's draft)
 SOH_REMOVED = "2026-10-22"       # the Shadow of Haste flag mechanic left the game on this day (R-456): a run before it is set aside, from it on a bar with the skill is an ordinary runner
 # when a flag run's moment is (R-461): a runner who sets off from inside the greater stand area goes to run when he leaves the greater stand area on these halls ...
 FLAG_MOMENT_GREATER = ("Corrupted Isle", "Isle of Meditation", "Isle of Weeping Stone", "Nomad's Isle", "Frozen Isle")
@@ -227,6 +229,10 @@ PRESSURE_DEATH_S = 30           # or a death in this many seconds. Under pressur
                                 # and is left out for now: a monk energy estimate is to be added only if needed (R-353)
 OVERCAP_S = 45                  # a capture this soon after the enemy's is an overcap (Claude's draft)
 FIGHT_LINK = 1600               # players of either team this close are in the same fight (Claude's draft: about a cast range and a bit)
+FIGHT_HOLD = 2100               # ... and stay in it out to this far while they were that close within FIGHT_HOLD_S either side: a player at the edge of reach does not flicker in and out (Claude's draft, from his marks on the whole-game review)
+FIGHT_HOLD_S = 6
+FIGHT_ACT = 2600                # players of the two teams this close, one hitting or casting on the other within FIGHT_HOLD_S, are in the same fight, though out of reach (Men v Apes 2:10: his 5 v 3; Claude's draft)
+FIGHT_CLOSE = 1000              # a player has joined a fight once he stands this close to someone in it (an aggro bubble) or acts in it, and has left once he no longer does (R-464: joining and leaving are read from movement, not reach)
 SERIOUS_CARRY_S = 5              # a pickup dropped sooner than this, without capping, is not an attempt to run (Denning: "like 3 s")
 FLAGGER_R = 2500                # the main group is on the enemy flagger when its middle is this close to that player
 
