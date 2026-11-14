@@ -5,6 +5,9 @@
   python3 tools/golden/review.py rows [--key <path>]                 the rows and their marks
   python3 tools/golden/review.py game <report id> <plays file>       one whole game, every situation the engine reads, as a
                                                                      table for him to mark while he watches it (R-454)
+  python3 tools/golden/review.py compare <report id> <rows.json> <marks.json> <plays he marked> name=<plays> ...
+                                                                     one marked game, several engines against his verdicts on
+                                                                     it (the before-and-after test)
   python3 tools/golden/review.py export <plays file> <out.json> --part N [--set w1]
                                                                      the games of that part of a whole-game set (dev_set.json) as
                                                                      the rows of the site's Model > Game review page, where he
@@ -149,6 +152,36 @@ def export(path, out, part, set_id="w1"):
     print("; ".join(f"{' v '.join(g['teams'])}: {len(g['situations'])} situations, {sum(len(s['calls']) for s in g['situations'])} calls" for g in games))
 
 
+def compare(rid, rows_file, marks_file, shown_file, others):
+    """One marked game, several engines side by side (the before-and-after test): each engine's calls for the game are
+    matched to the calls he was shown (same play, team, side, call, sizes and numbers, starting within 6 s) and take his
+    verdict on them; a call he was never shown is counted apart, since nobody has judged it. `shown_file` is the plays
+    file of the engine whose rows he marked; `others` are name=plays-file pairs. The test leans toward the engine he
+    marked for the calls he called right, and against it for the wrong ones, because only its calls were judged."""
+    import re
+    R, Mk = json.load(open(rows_file)), json.load(open(marks_file))
+    g = next(g for g in R["games"] if g["rid"].startswith(rid)); mk = Mk["games"][g["rid"]]["marks"]
+    num = lambda p: (re.search(r"\((\d+ v \d+)", p["scenario"]) or [None, None])[1] if p["play"] == "numbers" else None
+    sig = lambda p: (p["play"], p["team"], p.get("side"), p.get("call") or p.get("answer") or p.get("ours"), p.get("size"), p.get("defenders"), num(p))
+    load = lambda f: [p for p in json.load(open(f))["plays"] if p["rid"] == g["rid"]]
+    shown, verdict = load(shown_file), {}
+    for s_ in g["situations"]:
+        sm = mk.get(s_["id"], {}).get("mark")
+        for c in s_["calls"]:
+            cm = mk.get(c["id"], {}).get("mark")
+            verdict[c["id"]] = "repeat" if sm == "repeat" else "unmarked" if not sm else "wrong" if "wrong" in (sm, cm) else "partly" if "partly" in (sm, cm) else "right" if cm == "right" else "unmarked"
+    right = [i for i, v in verdict.items() if v == "right"]
+    print(f"{' v '.join(g['teams'])}: he was shown {len(verdict)} calls: " + ", ".join(f"{v} {k}" for k, v in collections.Counter(verdict.values()).most_common()))
+    for name, f in others:
+        res, hit = collections.Counter(), set()
+        for p in load(f):
+            m = [q for q in shown if q["id"] in verdict and sig(q) == sig(p) and abs(q["t0"] - p["t0"]) <= 6]
+            if not m: res["never shown to him"] += 1; continue
+            q = min(m, key=lambda q: abs(q["t0"] - p["t0"])); hit.add(q["id"])
+            res[verdict[q["id"]] if verdict[q["id"]] != "right" or bool(q["met"]) == bool(p["met"]) else "right reading, another result"] += 1
+        print(f"  {name}: {sum(res.values())} calls: " + ", ".join(f"{v} {k}" for k, v in res.most_common()) + f"; says {sum(1 for i in right if i in hit)} of his {len(right)} right calls")
+
+
 def rows(key=KEY):
     for r in json.load(open(key))["rows"]:
         print(f"{r['id']:8} {r['mark']:12} {r['type']:34} {r['match']} {cl(r['window'][0])}-{cl(r['window'][1])} | {len(r.get('checks', []))} checks" + (" | " + r["note"] if r.get("note") else ""))
@@ -160,5 +193,6 @@ if __name__ == "__main__":
     if a and a[0] == "score": sys.exit(1 if score(a[1], key) else 0)
     elif a and a[0] == "rows": rows(key)
     elif a and a[0] == "game": game(a[1], a[2])
+    elif a and a[0] == "compare": compare(a[1], a[2], a[3], a[4], [x.split("=", 1) for x in a[5:]])
     elif a and a[0] == "export": export(a[1], a[2], int(a[a.index("--part") + 1]), a[a.index("--set") + 1] if "--set" in a else "w1")
     else: print(__doc__)
