@@ -2044,6 +2044,564 @@
    "at": "2026-11-14",
    "engine": "67e87b8",
    "notes": "rit solo split from hook out back door around 12:40 (not sure when he crosses through); missed collapse from number 1 hook through front door around 14:48, brief 5v3 for hook"
+  },
+  "4629b08c-60ca-5b1b-a349-b241e5d2305a": {
+   "marks": {
+    "s:4629b08c-numbers-1-10-0": {
+     "mark": "right",
+     "why": "",
+     "text": "Down on numbers in the main fight (7 v 8, the greater stand area; then 7 v 8 from 0:26), from a runner away; hook: retreat down the ladder (fall back into the base)"
+    },
+    "4629b08c-numbers-1-10-0": {
+     "mark": "right",
+     "why": "",
+     "text": "hook (down) [retreat down the ladder]: Reach cover a player down without losing another. Met (yes: nobody of ours dies; yes: no NPC lost)"
+    },
+    "s:4629b08c-flag-2-25-1": {
+     "mark": "wrong",
+     "why": "hold running flag starting at 0:17 so it's really a 6v7, then 7v7 starting at 0:33 when hook's warrior that was running returns, when 8v7 for hook when necro comes at 0:45, then 8v8 from 0:58",
+     "text": "They single run (hook's Necromancer); hold: stay"
+    },
+    "4629b08c-flag-2-25-1": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hold [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Not met (no: more of theirs die at the main fight than of ours; no: their flag does not get in)"
+    },
+    "s:4629b08c-numbers-1-38-2": {
+     "mark": "partly",
+     "why": "hook is up in this fight, their goal should not be retreat.",
+     "text": "Up on numbers in the main fight (8 v 7, the greater stand area), from a runner away; hook: retreat down the ladder (fall back into the base)"
+    },
+    "4629b08c-numbers-1-38-2": {
+     "mark": "partly",
+     "why": "see above",
+     "text": "hook (up) [retreat down the ladder]: Reset without giving anything back. Met (yes: nobody of ours dies; yes: no NPC lost)"
+    },
+    "s:4629b08c-flag-1-101-3": {
+     "mark": "right",
+     "why": "",
+     "text": "They single run (hold's Air Ele); hook: single run"
+    },
+    "4629b08c-flag-1-101-3": {
+     "mark": "right",
+     "why": "",
+     "text": "hook [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (yes: our flag is capped; no: no more of ours die at the main fight than of theirs; yes: no worse than half a flag behind at the end, or no further behind than at the start)"
+    },
+    "s:4629b08c-numbers-1-136-4": {
+     "mark": "right",
+     "why": "",
+     "text": "Up on numbers in the main fight (8 v 7, the greater stand area), from a runner away; hook: stay (stay at the stand) | hold: stay (stay at the stand)"
+    },
+    "4629b08c-numbers-1-136-4": {
+     "mark": "right",
+     "why": "",
+     "text": "hook (up) [stay]: Turn the extra player into a kill before the numbers are level. Not met (no: more of theirs die than of ours)"
+    },
+    "4629b08c-numbers-2-136-5": {
+     "mark": "right",
+     "why": "",
+     "text": "hold (down) [stay]: Hold the ground a player down and lose no more until it is level, or the base res. Met (yes: nobody of ours dies)"
+    },
+    "s:4629b08c-push_flagger-2-162-7": {
+     "mark": "right",
+     "why": "",
+     "text": "hold pushes hook's flagger (Necromancer, carrying) with one player"
+    },
+    "4629b08c-push_flagger-2-162-7": {
+     "mark": "right",
+     "why": "",
+     "text": "hold: Stop their flag, or make it 30% late. Met (no: their flag is stopped; yes: it arrives 30% or more later than usual)"
+    },
+    "4629b08c-flagger_pushed-1-162-6": {
+     "mark": "right",
+     "why": "",
+     "text": "hook: Get the flag in on time, without losing a player for the help sent. Not met (no: the flag gets in, less than 30% late; yes: nobody else of ours dies meanwhile)"
+    },
+    "s:4629b08c-push_flagger-1-170-8": {
+     "mark": "right",
+     "why": "",
+     "text": "hook pushes hold's flagger (Ritualist, going back) with one player"
+    },
+    "4629b08c-push_flagger-1-170-8": {
+     "mark": "right",
+     "why": "",
+     "text": "hook: Stop their flag, or make it 30% late. Not met (no: their flag is stopped; no: it arrives 30% or more later than usual)"
+    },
+    "4629b08c-flagger_pushed-2-170-9": {
+     "mark": "right",
+     "why": "",
+     "text": "hold: Get the flag in on time. Met (yes: the flag gets in, less than 30% late)"
+    },
+    "s:4629b08c-flag-1-192-10": {
+     "mark": "partly",
+     "why": "I would call this an intentional delay, trying to use the power play. Hook does have 1 dead but to me it looks like they deliberately don't flat and try to 7v7 until 4:14. I think they next one (when you say mes/a single runs) is accurate and covers this flag exchange.",
+     "text": "They single run (hold's Ritualist); hook: single run"
+    },
+    "4629b08c-flag-1-192-10": {
+     "mark": "partly",
+     "why": "see above",
+     "text": "hook [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (no: our flag is capped; yes: no more of ours die at the main fight than of theirs; no: no worse than half a flag behind at the end, or no further behind than at the start)"
+    },
+    "s:4629b08c-flag-2-250-11": {
+     "mark": "wrong",
+     "why": "hold does not have flag in hand. They send 8 back to run.",
+     "text": "They single run (hook's Mes/A); hold: a flag already in hand"
+    },
+    "4629b08c-flag-2-250-11": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hold [a flag already in hand]: Answer their cap at once, or cap just before their boost. Met (yes: their flag does not get in; no: our cap follows theirs within 15 s; no: our cap lands just before their boost)"
+    },
+    "s:4629b08c-flag-1-269-12": {
+     "mark": "right",
+     "why": "",
+     "text": "They single run (hold's Ritualist); hook: single run"
+    },
+    "4629b08c-flag-1-269-12": {
+     "mark": "right",
+     "why": "",
+     "text": "hook [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (yes: our flag is capped; yes: no more of ours die at the main fight than of theirs; no: no worse than half a flag behind at the end, or no further behind than at the start)"
+    },
+    "s:4629b08c-flag-2-303-13": {
+     "mark": "repeat",
+     "why": "",
+     "text": "They single run (hook's Mes/A); hold: a flag already in hand"
+    },
+    "4629b08c-flag-2-303-13": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hold [a flag already in hand]: Answer their cap at once, or cap just before their boost. Not met (no: their flag does not get in; no: our cap follows theirs within 15 s; no: our cap lands just before their boost)"
+    },
+    "s:4629b08c-numbers-1-304-14": {
+     "mark": "right",
+     "why": "",
+     "text": "Down on numbers in the main fight (7 v 8, the greater stand area; then 6 v 8 from 5:12; then 7 v 8 from 5:22), from kills; hook: retreat down the ladder (fall back into the base) | then 8 v 6 from 5:12; then 8 v 7 from 5:22), from kills; hold: stay (stay at the stand)"
+    },
+    "4629b08c-numbers-1-304-14": {
+     "mark": "right",
+     "why": "",
+     "text": "hook (down) [retreat down the ladder]: Reach cover a player down without losing another. Met (yes: nobody of ours dies; yes: no NPC lost)"
+    },
+    "4629b08c-numbers-2-304-15": {
+     "mark": "right",
+     "why": "",
+     "text": "hold (up) [stay]: Turn the extra player into a kill before the numbers are level. Not met (no: more of theirs die than of ours)"
+    },
+    "s:4629b08c-push_flagger-1-340-16": {
+     "mark": "right",
+     "why": "",
+     "text": "hook pushes hold's flagger (Air Ele, going back) with 3 players"
+    },
+    "4629b08c-push_flagger-1-340-16": {
+     "mark": "wrong",
+     "why": "",
+     "text": "hook: Stop their flag, or make it 30% late. Met (no: their flag is stopped; yes: it arrives 30% or more later than usual)"
+    },
+    "4629b08c-flagger_pushed-2-340-17": {
+     "mark": "wrong",
+     "why": "can we check this? It seems like a very very fast cap that the push didn't do much to but you can explain why your answer is true if you need.",
+     "text": "hold: Get the flag in on time. Not met (no: the flag gets in, less than 30% late)"
+    },
+    "s:4629b08c-boost-1-342-18": {
+     "mark": "wrong",
+     "why": "what do you mean by no runner? They ran on mesmer 3 to deny boost.",
+     "text": "hold's boost is 30 s away; hook: no runner; the rest fall back into the base"
+    },
+    "4629b08c-boost-1-342-18": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hook [run]: Deny their boost. Met (yes: their boost does not land)"
+    },
+    "s:4629b08c-numbers-1-360-19": {
+     "mark": "repeat",
+     "why": "",
+     "text": "Down on numbers in the main fight (7 v 8, the greater stand area), from players split elsewhere; hook: retreat down the ladder (fall back into the base) | hold: stay (stay at the stand)"
+    },
+    "4629b08c-numbers-1-360-19": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hook (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "4629b08c-numbers-2-360-20": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hold (strong side) [stay]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)"
+    },
+    "s:4629b08c-numbers-1-384-21": {
+     "mark": "partly",
+     "why": "missed the 5v4 starting at 7:01",
+     "text": "Down on numbers in the main fight (6 v 8, hook's front door; then 5 v 7 from 6:38; then 5 v 6 from 6:56), from players split elsewhere; hook: stay (stay at the stand) | then 7 v 5 from 6:38; then 6 v 5 from 6:56), from players split elsewhere; hold: stay (stay at the stand)"
+    },
+    "4629b08c-numbers-1-384-21": {
+     "mark": "right",
+     "why": "",
+     "text": "hook (weak side) [stay]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "4629b08c-numbers-2-384-22": {
+     "mark": "right",
+     "why": "",
+     "text": "hold (strong side) [stay]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)"
+    },
+    "s:4629b08c-split-1-406-23": {
+     "mark": "partly",
+     "why": "I think 2v2 wstarts at 7:40 rather than 3v2. Everything else looks right.",
+     "text": "hook's split by the back door: three players (Warrior, Necromancer, 8 Monk) against 1 defending (Prot); numbers along the way: 3 v 1 from 6:46, 3 v 3 from 7:06, 3 v 2 from 7:40, 2 v 1 from 7:54, 2 v 2 from 8:18"
+    },
+    "4629b08c-split-1-406-23": {
+     "mark": "right",
+     "why": "",
+     "text": "hook (attacker) [a player or more up]: Kill or take NPCs. Met (yes: a defender killed; no: an NPC taken)"
+    },
+    "4629b08c-split-2-406-24": {
+     "mark": "right",
+     "why": "",
+     "text": "hold (defender) [one defender]: Delay: keep the split off the pit NPCs and stay alive. Not met (yes: no pit NPC lost; no: no defender dies)"
+    },
+    "s:4629b08c-flag-2-427-25": {
+     "mark": "right",
+     "why": "",
+     "text": "They single run (hook's Mes/A); hold: stay"
+    },
+    "4629b08c-flag-2-427-25": {
+     "mark": "right",
+     "why": "",
+     "text": "hold [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Met (no: more of theirs die at the main fight than of ours; yes: their flag does not get in)"
+    },
+    "s:4629b08c-boost-1-462-26": {
+     "mark": "right",
+     "why": "",
+     "text": "hold's boost is 30 s away; hook: no runner; the rest push up"
+    },
+    "4629b08c-boost-1-462-26": {
+     "mark": "right",
+     "why": "",
+     "text": "hook [concede]: Concede the boost for kills. Not met (no: more of theirs die than of ours)"
+    },
+    "s:4629b08c-split-1-510-27": {
+     "mark": "wrong",
+     "why": "this is a 2 split (necro, warrior) v 2 defending (prot, 8 monk), that gets collapsed by air ele from main and a split join from 8 rit, turning it into a 3v3.",
+     "text": "hook's split by the back door: one player (Necromancer) against 3 defending (Prot, Ritualist, Air Ele); Air Ele collapse from the main fight; 3 (Prot, Ritualist, Air Ele) against one player: collapse by Air Ele from the main fight"
+    },
+    "4629b08c-split-1-510-27": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hook (attacker) [collapsed on]: Survive and gain an advantage elsewhere on the map. Not met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)"
+    },
+    "4629b08c-split-2-510-28": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hold (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Not met (no: a split player dies during the collapse)"
+    },
+    "s:4629b08c-flag-2-514-29": {
+     "mark": "right",
+     "why": "",
+     "text": "They single run (hook's Mes/A); hold: single run"
+    },
+    "4629b08c-flag-2-514-29": {
+     "mark": "right",
+     "why": "",
+     "text": "hold [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (yes: our flag is capped; no: no more of ours die at the main fight than of theirs; yes: no worse than half a flag behind at the end, or no further behind than at the start)"
+    },
+    "s:4629b08c-boost-1-562-30": {
+     "mark": "wrong",
+     "why": "this is incorrect. At 9:22 boost timer is 0:51s away, and hook does not manage to cap or deny boost (which lands at 10:13).",
+     "text": "hold's boost is 30 s away; hook: no runner; the rest fall back into the base"
+    },
+    "4629b08c-boost-1-562-30": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hook [run]: Deny their boost. Met (yes: their boost does not land)"
+    },
+    "4629b08c-flag-1-562-31": {
+     "mark": "right",
+     "why": "",
+     "text": "hook [a flag already in hand]: Answer their cap at once, or cap just before their boost. Not met (no: their flag does not get in; no: our cap follows theirs within 15 s; no: our cap lands just before their boost)"
+    },
+    "s:4629b08c-numbers-1-598-32": {
+     "mark": "right",
+     "why": "",
+     "text": "Down on numbers in the main fight (5 v 6, hook's front door), from players split elsewhere; hook: push up (push up to their front door) | hold: push in"
+    },
+    "4629b08c-numbers-1-598-32": {
+     "mark": "right",
+     "why": "",
+     "text": "hook (weak side) [push up]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "4629b08c-numbers-2-598-33": {
+     "mark": "right",
+     "why": "",
+     "text": "hold (strong side) [push in]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)"
+    },
+    "s:4629b08c-split-1-638-34": {
+     "mark": "partly",
+     "why": "good call, except it's 8 rit defending, prot only starts defending at 11:29 (and you are right that's it's 2v1).",
+     "text": "hook's split by the back door: one player (Warrior) against 1 defending (Prot); numbers along the way: 1 v 1 from 10:38, 2 v 1 from 11:18"
+    },
+    "4629b08c-split-1-638-34": {
+     "mark": "right",
+     "why": "",
+     "text": "hook (attacker) [1 v 1, defended by a monk]: Hold the monk there; the main team's job is to kill. Met (yes: the split player survives)"
+    },
+    "4629b08c-split-2-638-35": {
+     "mark": "right",
+     "why": "",
+     "text": "hold (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Not met (yes: no pit NPC lost; no: no more defenders die than split players)"
+    },
+    "s:4629b08c-numbers-1-658-36": {
+     "mark": "right",
+     "why": "",
+     "text": "Down on numbers in the main fight (6 v 7, the greater stand area), from players split elsewhere; hook: retreat down the ladder (fall back into the base) | hold: stay (stay at the stand)"
+    },
+    "4629b08c-numbers-1-658-36": {
+     "mark": "right",
+     "why": "",
+     "text": "hook (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "4629b08c-numbers-2-658-37": {
+     "mark": "right",
+     "why": "",
+     "text": "hold (strong side) [stay]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)"
+    },
+    "s:4629b08c-boost-1-698-38": {
+     "mark": "right",
+     "why": "",
+     "text": "hold's boost is 30 s away; hook: one runner; the rest push in"
+    },
+    "4629b08c-boost-1-698-38": {
+     "mark": "right",
+     "why": "",
+     "text": "hook [run]: Deny their boost. Not met (no: their boost does not land)"
+    },
+    "s:4629b08c-numbers-1-714-39": {
+     "mark": "right",
+     "why": "",
+     "text": "Down on numbers in the main fight (5 v 6, hold's front door; then 5 v 8 from 12:10; then 6 v 8 from 12:38), from players split elsewhere; hook: push in | then 8 v 5 from 12:10; then 8 v 6 from 12:38), from players split elsewhere; hold: retreat down the ladder (fall back into the base)"
+    },
+    "4629b08c-numbers-1-714-39": {
+     "mark": "right",
+     "why": "",
+     "text": "hook (weak side) [push in]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "4629b08c-numbers-2-714-40": {
+     "mark": "right",
+     "why": "",
+     "text": "hold (strong side) [retreat down the ladder]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)"
+    },
+    "s:4629b08c-base_res-1-716-41": {
+     "mark": "right",
+     "why": "",
+     "text": "hook leaves hold's base 4 s before the base res (2 coming back)"
+    },
+    "4629b08c-base_res-1-716-41": {
+     "mark": "right",
+     "why": "",
+     "text": "hook [left before the res]: Be out, or set for the fight, when they res. Met (yes: nobody of ours dies in the 30 s after the res)"
+    },
+    "s:4629b08c-split-1-766-42": {
+     "mark": "wrong",
+     "why": "I read this as split (necro) 1v1 from 12:47",
+     "text": "hook's split by the back door: two players (Warrior, Necromancer) against 4 defending (Ritualist, Mes/A, 7 Monk, Necromancer 1); numbers along the way: 2 v 4 from 12:46, 2 v 1 from 13:08"
+    },
+    "4629b08c-split-1-766-42": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hook (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Not met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)"
+    },
+    "4629b08c-split-2-766-44": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hold (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Met (yes: no pit NPC lost; no: a split player dies; yes: the split is gone within the visit)"
+    },
+    "4629b08c-split-1-766-43": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hook (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)"
+    },
+    "s:4629b08c-numbers-1-784-45": {
+     "mark": "wrong",
+     "why": "I don't think this is a clear numbers advantage, fight is too messy. But this supports my point above about split necro. How could hold have 4 people defending and simultanously have 8 players main?",
+     "text": "Down on numbers in the main fight (7 v 8, the flag stand), from players split elsewhere; hook: stay (stay at the stand) | hold: stay (stay at the stand)"
+    },
+    "4629b08c-numbers-1-784-45": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hook (weak side) [stay]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "4629b08c-numbers-2-784-46": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hold (strong side) [stay]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)"
+    },
+    "s:4629b08c-flag-2-802-47": {
+     "mark": "wrong",
+     "why": "hold single runs (half runs). air ele to prot in the window you are describing. rit goes back for next flag which is sort of a double run.",
+     "text": "They single run (hook's Mes/A); hold: double run"
+    },
+    "4629b08c-flag-2-802-47": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hold [double run]: Gain flag advantage through their next cap, and lose nobody while two are away. Not met (no: flag lead better by 0.35 or more; yes: nobody of ours dies at the main fight)"
+    },
+    "s:4629b08c-flag-1-852-48": {
+     "mark": "repeat",
+     "why": "",
+     "text": "They double run (hold's Air Ele); hook: a flag already in hand"
+    },
+    "4629b08c-flag-1-852-48": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hook [a flag already in hand]: Answer their cap at once, or cap just before their boost. Not met (no: their flag does not get in; no: our cap follows theirs within 15 s; no: our cap lands just before their boost)"
+    },
+    "s:4629b08c-split-1-872-49": {
+     "mark": "partly",
+     "why": "split starts at 14:09, they are defended by air ele and rit until they both die.",
+     "text": "hook's split by the back door: two players (Necromancer, Warrior) against 4 defending (Air Ele, Ritualist, Prot, 7 Monk)"
+    },
+    "s:4629b08c-push_flagger-1-890-52": {
+     "mark": "right",
+     "why": "",
+     "text": "hook pushes hold's flagger (Prot, carrying) with its main team"
+    },
+    "4629b08c-push_flagger-1-890-52": {
+     "mark": "right",
+     "why": "",
+     "text": "hook: Stop their flag, or make it 30% late. Not met (no: their flag is stopped; no: it arrives 30% or more later than usual)"
+    },
+    "4629b08c-flagger_pushed-2-890-53": {
+     "mark": "right",
+     "why": "",
+     "text": "hold: Get the flag in on time. Met (yes: the flag gets in, less than 30% late)"
+    },
+    "s:4629b08c-numbers-1-896-54": {
+     "mark": "right",
+     "why": "",
+     "text": "Down on numbers in the main fight (5 v 7, the flag stand; then 5 v 8 from 15:52), from kills; hook: retreat down the ladder (fall back into the base) | then 8 v 5 from 15:52), from kills; hold: push in"
+    },
+    "4629b08c-numbers-1-896-54": {
+     "mark": "wrong",
+     "why": "",
+     "text": "hook (down) [retreat down the ladder]: Reach cover a player down without losing another. Not met (no: nobody of ours dies; no: no NPC lost)"
+    },
+    "4629b08c-numbers-2-896-55": {
+     "mark": "wrong",
+     "why": "same issue as before. Yes, they take an NPC but no, no other players die. Players die at 14:56 and 14:57 but that is what CAUSED the 5v7. You can't have the effect before the cause. (i.e. if it is 5v7 because 2 players died, the 5v7 didn't cause the 2 players to die)",
+     "text": "hold (up) [push in]: Take ground and NPCs with the numbers. Met (yes: no more of ours die than of theirs; yes: one of their NPCs dies; yes: more of theirs die than of ours)"
+    },
+    "s:4629b08c-flag-1-906-56": {
+     "mark": "right",
+     "why": "",
+     "text": "They single run (hold's Ritualist); hook: stay"
+    },
+    "4629b08c-flag-1-906-56": {
+     "mark": "right",
+     "why": "",
+     "text": "hook [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Met (no: more of theirs die at the main fight than of ours; yes: their flag does not get in)"
+    },
+    "s:4629b08c-base_res-2-940-57": {
+     "mark": "right",
+     "why": "",
+     "text": "hold has 8 in hook's base at the base res (5 defending, 3 coming back): 8 stay"
+    },
+    "4629b08c-base_res-2-940-57": {
+     "mark": "right",
+     "why": "",
+     "text": "hold [stayed through the res]: Be out, or set for the fight, when they res. Met (yes: nobody of ours dies in the 30 s after the res)"
+    },
+    "s:4629b08c-pinned-1-988-58": {
+     "mark": "wrong",
+     "why": "Why does this end at 17:04? They are still stuck in their base at 17:04 in the exact same situation. Also your NPC count is wrong, they have K2A2B1 until 17:22 when they lose a knight.",
+     "text": "hook is held in its own base or pit by hold's main team (K2 A1 B1 alive; base res in 92 s)"
+    },
+    "4629b08c-pinned-1-988-58": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hook: Lose no player and no NPC while held in, or break out. Met (yes: no pit NPC lost and nobody dies until the base res; yes: it breaks out (half its living players or more, four at least, out of its base and pit))"
+    },
+    "s:4629b08c-boost-1-1111-59": {
+     "mark": "right",
+     "why": "",
+     "text": "hold's boost is 30 s away; hook: no runner; the rest fall back into the base"
+    },
+    "4629b08c-boost-1-1111-59": {
+     "mark": "right",
+     "why": "",
+     "text": "hook [concede]: Concede the boost for kills. Not met (no: more of theirs die than of ours)"
+    },
+    "s:4629b08c-numbers-1-1118-60": {
+     "mark": "wrong",
+     "why": "I see this as 6v6 until 18:58 when 8 monk of hook leaves. It stays as a very clear and good example of power play for hold until 19:25 when prot leaves to defend split.",
+     "text": "Down on numbers in the main fight (6 v 8, hook's front door; then 6 v 7 from 18:48), from players split elsewhere; hook: retreat down the ladder (fall back into the base) | then 7 v 6 from 18:48), from players split elsewhere; hold: stay (stay on the enemy's side)"
+    },
+    "4629b08c-numbers-1-1118-60": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hook (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "4629b08c-numbers-2-1118-61": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hold (strong side) [stay]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)"
+    },
+    "s:4629b08c-numbers-1-1140-62": {
+     "mark": "repeat",
+     "why": "",
+     "text": "Down on numbers in the main fight (5 v 6, hook's front door), from players split elsewhere; hook: retreat down the ladder (fall back into the base) | hold: fall out"
+    },
+    "4629b08c-numbers-1-1140-62": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hook (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "4629b08c-numbers-2-1140-63": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hold (strong side) [fall out]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)"
+    },
+    "s:4629b08c-split-1-1148-64": {
+     "mark": "partly",
+     "why": "split starts at 18:44 as 2 man split, defended by air ele and rit; becomes 3v2 when 8 monk joins at 19:14; prot and air ele swap so still 3v2 at 19:47;",
+     "text": "hook's split by the back door: three players (AoB Derv, Necromancer, 8 Monk) against 2 defending (Ritualist, Prot)"
+    },
+    "4629b08c-split-1-1148-64": {
+     "mark": "right",
+     "why": "",
+     "text": "hook (attacker) [a player or more up]: Kill or take NPCs. Not met (no: a defender killed; no: an NPC taken)"
+    },
+    "4629b08c-split-2-1148-65": {
+     "mark": "right",
+     "why": "",
+     "text": "hold (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)"
+    },
+    "s:4629b08c-numbers-1-1200-66": {
+     "mark": "right",
+     "why": "this is right, I'm thinking if we should use other verbs though and it's not from players split elsewhere, it's a 5v6 fight where hook takes 5 deaths, making it eventually 6v0.",
+     "text": "Down on numbers in the main fight (5 v 6, hook's front door; then 4 v 6 from 20:18; then 1 v 6 from 20:30), from players split elsewhere; hook: retreat down the ladder (fall back into the base) | then 6 v 4 from 20:18; then 6 v 1 from 20:30), from players split elsewhere; hold: stay (stay on the enemy's side)"
+    },
+    "4629b08c-numbers-1-1200-66": {
+     "mark": "right",
+     "why": "",
+     "text": "hook (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Not met (no: nobody of ours dies)"
+    },
+    "4629b08c-numbers-2-1200-67": {
+     "mark": "right",
+     "why": "",
+     "text": "hold (strong side) [stay]: Kill with the numbers while their players are away. Met (yes: more of theirs die than of ours)"
+    },
+    "s:4629b08c-boost-1-1231-68": {
+     "mark": "right",
+     "why": "",
+     "text": "hold's boost is 30 s away; hook: no runner; the rest nobody"
+    },
+    "4629b08c-boost-1-1231-68": {
+     "mark": "right",
+     "why": "",
+     "text": "hook [concede]: Concede the boost for kills. Not met (no: more of theirs die than of ours)"
+    }
+   },
+   "game": "hook v hold, Nomad's Isle",
+   "at": "2026-11-14",
+   "engine": "b025445",
+   "notes": "0:01 opening of the game missed hook leaving 1 back for the next flag; missed air ele (and maybe mainteam as a whole) pushing hook's flag at 1:18;"
   }
  }
 }
