@@ -330,6 +330,31 @@ def split_plays(M, K):
         at_end = times[-1] >= T - S_ - 1                                   # the game ended with the split still out: its last phase stands however short (R-459)
         phases = [(v, max(a_, reach), b_) for v, a_, b_ in _runs(kn, times, JOIN_S, keep_last=at_end) if v[0] > 0 and b_ >= reach and (b_ - max(a_, reach) + S_ >= JOIN_S or (at_end and b_ == times[-1]))]
         wb = set(an.get("went_back_ids") or [])
+        # a split fight is told once (R-365; his marks on hdm v hook, "still the same split", and his agreement of 2026-11-14): neighbouring phases in which it is
+        # defended and nobody collapses on it are one situation, with the numbers it had for longest and each change of them told beside it. It is cut only where
+        # the kind of answer changes: nobody defending, defended, a collapse, the whole team
+        def kind_of(i_, ph):
+            (k_, n_), a_, b_ = ph
+            if n_ == 0: return "nobody"
+            if (n_ >= max(6, sum(M.AL[b][(a_ + b_) // 2 // S_ * S_] for b in st.players[foe]) - 1) and k_ < n_) or (len(wb) >= 5 and an.get("went_back_t") is not None and a_ - 10 <= an["went_back_t"] <= b_): return "whole team"
+            if i_ > 0 and n_ >= k_ + 1 and b_ - a_ <= COLLAPSE_VISIT_S: return "collapse"
+            return "defended"
+        told, parts_of = [], {}
+        for i_, ph in enumerate(phases):
+            kd = kind_of(i_, ph)
+            if told and kd == "defended" and told[-1][3] == "defended":
+                parts = parts_of[told[-1][1]]; parts.append(ph)
+                # its numbers are those it had for longest before anybody in it died: a death changes them by the fight's own result, not by how it was set up (옷옷옷옷 v Men 6:46: three against two, then two against two once a split player is dead)
+                first = min((td for td, _ in dA + dD if td >= parts[0][1]), default=T + 1)
+                w = collections.Counter()
+                for v_, a_, b_ in parts: w[v_] += max(min(b_ + S_, first) - a_, 0)
+                if not any(w.values()):
+                    for v_, a_, b_ in parts: w[v_] += b_ - a_ + S_
+                told[-1] = (w.most_common(1)[0][0], told[-1][1], ph[2], "defended")
+            else:
+                told.append((ph[0], ph[1], ph[2], kd)); parts_of[ph[1]] = [ph]
+        phases = [(v_, a_, b_) for v_, a_, b_, _ in told]
+        along = lambda p0: ("; numbers along the way: " + ", ".join(f"{k_} v {n_} from {int(a_) // 60}:{int(a_) % 60:02d}" for (k_, n_), a_, b_ in parts_of[p0])) if len(parts_of[p0]) > 1 else ""
         prevD, base = set(), f"{m.tag[tm]}'s split by the {x['way'] or 'door'}"
         for pi, ((k, n), p0, p1) in enumerate(phases):
             last = pi == len(phases) - 1
@@ -367,7 +392,7 @@ def split_plays(M, K):
             collapse = bool(came) and n >= k + 1 and short and pi > 0 and not full
             whoA, whoD = [role[a] for a in Sp], [role[b] for b in Dp]
             size = {1: "one player", 2: "two players", 3: "three players"}.get(k, f"{k} players")
-            scen_a = f"{base}: {size} ({', '.join(whoA)}) against {n} defending" + (f" ({', '.join(whoD)})" if n else "")
+            scen_a = f"{base}: {size} ({', '.join(whoA)}) against {n} defending" + (f" ({', '.join(whoD)})" if n else "") + along(p0)
             besA = {"npcs_taken": [kind for kind, _ in npcs], "kills": [role[b] for b in killp], "lost": [role[a] for a in lostp], "flag_lead": [K.lead(tm, p0), K.lead(tm, e1)], "deaths_away_from_the_split": [away_a, away_d],
                     "split": [dmg_s, ms], "defence": [dmg_d, md], "main": main, "main_can_kill": main_can, "reached": reach, "phase": [pi + 1, len(phases)], "chased_until": end_chase if last and end_chase > t9 else None}
             besD = {"pit_npcs_lost": [kind for kind, pit in npcs if pit], "other_npcs_lost": [kind for kind, pit in npcs if not pit], "lost": [role[b] for b in killp], "split_killed": [role[a] for a in lostp],
@@ -392,7 +417,7 @@ def split_plays(M, K):
                 out.append(_play(M, "split", "attacker's main team", tm, p0, e1, [], scen_a + at_main("own", "theirs"),
                                  "Kill at the main fight: " + ("they have no monk there" if no_monk[0] else "its damage can kill against their monks there, and theirs cannot"), {"more of theirs die away from the split than of ours": away_d > away_a}, beside=besA, answer="the main fight can kill", **kw))
             # the defender's side
-            scen_d = f"{m.tag[foe]} against {base}: {n} ({', '.join(whoD)}) against {size}" if n else f"{m.tag[foe]} against {base}: nobody against {size}"
+            scen_d = (f"{m.tag[foe]} against {base}: {n} ({', '.join(whoD)}) against {size}" if n else f"{m.tag[foe]} against {base}: nobody against {size}") + along(p0)
             pit_ok = {"no pit NPC lost": n_pit == 0}
             if full:
                 out.append(_play(M, "split", "defender", foe, p0, e1, whoD, scen_d + ": full collapse", "Kill the split or drive it out (the flags it costs are beside it)", {},

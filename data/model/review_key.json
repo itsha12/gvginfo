@@ -660,8 +660,7 @@
      },
      "want": {
       "answer": "even",
-      "size": 4,
-      "defenders": 4
+      "scenario~": "4 v 4 from 11:4"
      }
     },
     {
@@ -681,7 +680,8 @@
       }
      }
     }
-   ]
+   ],
+   "note": "With a split fight told once (2026-11-14) the check asks that it is read as even and that the 4 v 4 is told in it, not that a phase of its own says so."
   },
   {
    "id": "s1-22",
@@ -2108,9 +2108,10 @@
       ]
      },
      "want": {
-      "defenders": 2
+      "scenario~": "2 v 2 from 6:4"
      },
-     "was": "TFS v 옷옷옷옷 6:46: the 7 Monk is also defending when the Dervish gets there"
+     "open": true,
+     "why": "TFS v 옷옷옷옷 6:46: the 7 Monk is also defending when the Dervish gets there (it had held only because its window reached into the next phase; the fight is told once now and says 2 v 1 from 6:46)"
     }
    ]
   },
@@ -4972,8 +4973,7 @@
      "want": {
       "defenders": 4
      },
-     "why": "hdm v hook 6:24: the split is retreating and it is still 4 v 4",
-     "open": true
+     "was": "hdm v hook 6:24: the split is retreating and it is still 4 v 4"
     }
    ]
   },
@@ -5190,8 +5190,7 @@
      "want": {
       "defenders": 4
      },
-     "why": "hdm v hook 7:12: still defended by four",
-     "open": true
+     "was": "hdm v hook 7:12: still defended by four"
     }
    ]
   },
@@ -5316,9 +5315,9 @@
       ]
      },
      "want": {
-      "met": false
+      "scenario~": "4 v 3 from 7:5"
      },
-     "was": "hdm v hook 7:52: they are 4 v 3 only because they killed a defender; once 4 v 3 they kill nobody and take no NPC"
+     "was": "hdm v hook 7:52: they are 4 v 3 only because they killed a defender; once 4 v 3 they kill nobody and take no NPC (told now inside the one split fight: the check asks that the change to 4 v 3 is told there)"
     }
    ]
   },
@@ -5651,8 +5650,7 @@
      "want": {
       "defenders": 4
      },
-     "why": "hdm v hook 9:50: four defending, becoming 5 v 4 for hook at about 10:31",
-     "open": true
+     "was": "hdm v hook 9:50: four defending, becoming 5 v 4 for hook at about 10:31"
     }
    ]
   },
@@ -6054,7 +6052,8 @@
      "want": {
       "defenders": 1
      },
-     "was": "hdm v hook 13:02: defended by an ele"
+     "open": true,
+     "why": "hdm v hook 13:02: defended by an ele (it had held only because its window reached into the next phase)"
     }
    ]
   },
