@@ -1166,6 +1166,884 @@
    "at": "2026-11-14",
    "engine": "af952c6",
    "notes": "missed team flag push on Apes 3 running at 2:30; missed very clear 5v4 in Ape's pit at 5:31 and clear 3v3 fight in Apes' backdoor whilst Apes warrior running the flag (classic example of staying to fight with number advantage whilst they flag); missed 8 monk of men running flag at 10:10; missed 6v7 in Apes pit at 10:08"
+  },
+  "8bf4ffae-780e-535e-aa7b-44027b0fa6cc": {
+   "marks": {
+    "s:8bf4ffae-split-1-18-0": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm's split by the back door: 5 players (Ritualist, AoB Derv, Mesmer, Prot, 7 Monk) against 4 defending (Ritualist 1, Fire Ele, Air Ele, Monk 4)"
+    },
+    "8bf4ffae-split-1-18-0": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm (attacker) [a player or more up]: Kill or take NPCs. Not met (no: a defender killed; no: an NPC taken)"
+    },
+    "8bf4ffae-split-2-18-1": {
+     "mark": "right",
+     "why": "",
+     "text": "hook (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)"
+    },
+    "s:8bf4ffae-split-1-38-2": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm's split by the back door: 5 players (Ritualist, AoB Derv, Mesmer, Prot, 7 Monk) against 3 defending (Fire Ele, Ritualist 1, Monk 4)"
+    },
+    "8bf4ffae-split-1-38-2": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm (attacker) [a player or more up]: Kill or take NPCs. Met (no: a defender killed; yes: an NPC taken)"
+    },
+    "8bf4ffae-split-2-38-3": {
+     "mark": "right",
+     "why": "",
+     "text": "hook (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)"
+    },
+    "s:8bf4ffae-split-2-50-5": {
+     "mark": "right",
+     "why": "",
+     "text": "hook's split by the front door: one player (Dervish) against 0 defending"
+    },
+    "8bf4ffae-split-2-50-5": {
+     "mark": "right",
+     "why": "",
+     "text": "hook (attacker) [undefended]: Take NPCs. Met (yes: an NPC taken)"
+    },
+    "8bf4ffae-split-1-50-4": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm (defender) [no answer]: Win elsewhere before the split costs more than it gains. Not met (no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)"
+    },
+    "s:8bf4ffae-split-2-72-7": {
+     "mark": "right",
+     "why": "",
+     "text": "hook's split by the front door: two players (Dervish, Air Ele) against 0 defending"
+    },
+    "8bf4ffae-split-2-72-7": {
+     "mark": "right",
+     "why": "",
+     "text": "hook (attacker) [undefended]: Take NPCs. Met (yes: an NPC taken)"
+    },
+    "8bf4ffae-split-1-72-6": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm (defender) [no answer]: Win elsewhere before the split costs more than it gains. Not met (no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)"
+    },
+    "s:8bf4ffae-numbers-1-116-8": {
+     "mark": "right",
+     "why": "",
+     "text": "Down on numbers in the main fight (3 v 5, the greater stand area; then 3 v 4 from 2:12), from players split elsewhere; hdm: retreat down the ladder (retreat to the pit) | then 4 v 3 from 2:12), from players split elsewhere; hook: push in"
+    },
+    "8bf4ffae-numbers-1-116-8": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "8bf4ffae-numbers-2-116-9": {
+     "mark": "right",
+     "why": "",
+     "text": "hook (strong side) [push in]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)"
+    },
+    "s:8bf4ffae-split-1-120-10": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm's split by the back door: 4 players (Mesmer, 7 Monk, Prot, AoB Derv) against 3 defending (Ritualist 1, Monk 4, Fire Ele)"
+    },
+    "8bf4ffae-split-1-120-10": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm (attacker) [a player or more up]: Kill or take NPCs. Not met (no: a defender killed; no: an NPC taken)"
+    },
+    "8bf4ffae-split-2-120-11": {
+     "mark": "right",
+     "why": "",
+     "text": "hook (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)"
+    },
+    "s:8bf4ffae-pinned-1-124-12": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm is held in its own base or pit by hook's main team (K0 A1 B0 alive; base res in 116 s)"
+    },
+    "8bf4ffae-pinned-1-124-12": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm: Hold the NPCs and lose nobody until the base res, or break out. Met (yes: no pit NPC lost and nobody dies until the base res; yes: it breaks out (half its living players or more, four at least, out of its base and pit))"
+    },
+    "s:8bf4ffae-split-2-224-15": {
+     "mark": "wrong",
+     "why": "I don't see this at all; it's 3 split defended by 3, then 4 split defended by 3 once ele 1 of hook joins",
+     "text": "hook's split by the back door: 4 players (Fire Ele, Ritualist 1, Monk 4, Air Ele) against 1 defending (Air Ele)"
+    },
+    "8bf4ffae-split-2-224-15": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hook (attacker) [a player or more up]: Kill or take NPCs. Met (no: a defender killed; yes: an NPC taken)"
+    },
+    "8bf4ffae-split-1-224-14": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hdm (defender) [one defender]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)"
+    },
+    "8bf4ffae-split-2-224-16": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hook (attacker's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Not met (no: more of theirs die away from the split than of ours)"
+    },
+    "s:8bf4ffae-numbers-1-240-17": {
+     "mark": "right",
+     "why": "",
+     "text": "Down on numbers in the main fight (2 v 3, hook's front footies), from players split elsewhere; hdm: push up (go out by the front door) | hook: push in"
+    },
+    "8bf4ffae-numbers-1-240-17": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm (weak side) [push up]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "8bf4ffae-numbers-2-240-18": {
+     "mark": "right",
+     "why": "",
+     "text": "hook (strong side) [push in]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)"
+    },
+    "s:8bf4ffae-flag-2-258-25": {
+     "mark": "repeat",
+     "why": "",
+     "text": "They single run (hdm's AoB Derv); hook: single run"
+    },
+    "8bf4ffae-flag-2-258-25": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hook [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (yes: our flag is capped; yes: no more of ours die at the main fight than of theirs; yes: no worse than half a flag behind at the end)"
+    },
+    "s:8bf4ffae-flag-1-245-19": {
+     "mark": "right",
+     "why": "",
+     "text": "They single run (hook's Dervish); hdm: single run"
+    },
+    "8bf4ffae-flag-1-245-19": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (yes: our flag is capped; yes: no more of ours die at the main fight than of theirs; yes: no worse than half a flag behind at the end)"
+    },
+    "s:8bf4ffae-split-2-248-22": {
+     "mark": "wrong",
+     "why": "defended by 3 until 4:42, then defended by 4",
+     "text": "hook's split by the back door: 4 players (Air Ele, Fire Ele, Ritualist 1, Monk 4) against 2 defending (Fire Ele, 8 Monk)"
+    },
+    "8bf4ffae-split-2-248-22": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hook (attacker) [a player or more up]: Kill or take NPCs. Met (no: a defender killed; yes: an NPC taken)"
+    },
+    "8bf4ffae-split-1-248-20": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hdm (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)"
+    },
+    "8bf4ffae-split-1-248-21": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hdm (defender's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)"
+    },
+    "s:8bf4ffae-numbers-1-252-23": {
+     "mark": "wrong",
+     "why": "hdm is 3v2, does not retreat, and hook is only 2 dmg vs 2 monks so sould not be expected to kill",
+     "text": "Up on numbers in the main fight (4 v 3, hdm's front door; then 4 v 3 from 4:22), from players split elsewhere; hdm: retreat down the ladder (retreat to the pit) | then 3 v 4 from 4:22), from players split elsewhere; hook: push in"
+    },
+    "8bf4ffae-numbers-1-252-23": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hdm (strong side) [retreat down the ladder]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)"
+    },
+    "8bf4ffae-numbers-2-252-24": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hook (weak side) [push in]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "s:8bf4ffae-split-2-280-27": {
+     "mark": "right",
+     "why": "",
+     "text": "hook's split by the back door: 4 players (Air Ele, Fire Ele, Monk 4, Ritualist 1) against 4 defending (Fire Ele, 8 Monk, Air Ele, Mesmer)"
+    },
+    "8bf4ffae-split-2-280-27": {
+     "mark": "right",
+     "why": "",
+     "text": "hook (attacker) [even]: Take NPCs or kills. Not met (no: a defender killed; no: an NPC taken)"
+    },
+    "8bf4ffae-split-1-280-26": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (yes: no pit NPC lost; yes: no more defenders die than split players)"
+    },
+    "s:8bf4ffae-push_flagger-2-300-31": {
+     "mark": "right",
+     "why": "",
+     "text": "hook pushes hdm's flagger (AoB Derv, carrying) with one player"
+    },
+    "8bf4ffae-push_flagger-2-300-31": {
+     "mark": "right",
+     "why": "",
+     "text": "hook: Stop their flag, or make it 30% late. Not met (no: their flag is stopped; no: it arrives 30% or more later than usual)"
+    },
+    "8bf4ffae-flagger_pushed-1-300-30": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm: Get the flag in on time. Met (yes: the flag gets in, less than 30% late)"
+    },
+    "s:8bf4ffae-numbers-1-286-28": {
+     "mark": "wrong",
+     "why": "main team is a rough/messy 4v4",
+     "text": "Up on numbers in the main fight (4 v 3, hdm's front door), from players split elsewhere; hdm: split (split by the back door) | hook: stay (stay at the stand)"
+    },
+    "8bf4ffae-numbers-1-286-28": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hdm (strong side) [split]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)"
+    },
+    "8bf4ffae-numbers-2-286-29": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hook (weak side) [stay]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "s:8bf4ffae-split-1-326-32": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm's split by the back door: 4 players (Air Ele, Fire Ele, Mesmer, 8 Monk) against 4 defending (Air Ele, Fire Ele, Ritualist 1, Monk 4)"
+    },
+    "8bf4ffae-split-1-326-32": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm (attacker) [even]: Take NPCs or kills. Not met (no: a defender killed; no: an NPC taken)"
+    },
+    "8bf4ffae-split-2-326-34": {
+     "mark": "right",
+     "why": "",
+     "text": "hook (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (yes: no pit NPC lost; yes: no more defenders die than split players)"
+    },
+    "8bf4ffae-split-1-326-33": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)"
+    },
+    "s:8bf4ffae-flag-2-352-35": {
+     "mark": "wrong",
+     "why": "only 1 flag was run by hdm in this time and it's a single run",
+     "text": "They double run (hdm's AoB Derv); hook: double run"
+    },
+    "8bf4ffae-flag-2-352-35": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hook [double run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (yes: our flag is capped; yes: no more of ours die at the main fight than of theirs; yes: no worse than half a flag behind at the end)"
+    },
+    "s:8bf4ffae-split-1-356-36": {
+     "mark": "wrong",
+     "why": "I don't know who you dropped from split but it's still a 4v4 and hdm is pushing into hook's pit",
+     "text": "hdm's split by the back door: 4 players (Air Ele, Fire Ele, Mesmer, 8 Monk) against 3 defending (Air Ele, Fire Ele, Monk 4)"
+    },
+    "8bf4ffae-split-1-356-36": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hdm (attacker) [a player or more up]: Kill or take NPCs. Not met (no: a defender killed; no: an NPC taken)"
+    },
+    "8bf4ffae-split-2-356-38": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hook (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)"
+    },
+    "8bf4ffae-split-1-356-37": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hdm (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)"
+    },
+    "s:8bf4ffae-flag-1-359-39": {
+     "mark": "repeat",
+     "why": "",
+     "text": "They double run (hook's Ritualist 2); hdm: double run"
+    },
+    "8bf4ffae-flag-1-359-39": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hdm [double run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (yes: our flag is capped; yes: no more of ours die at the main fight than of theirs; yes: no worse than half a flag behind at the end)"
+    },
+    "s:8bf4ffae-split-1-368-40": {
+     "mark": "repeat",
+     "why": "still same split",
+     "text": "hdm's split by the back door: 4 players (Air Ele, Fire Ele, Mesmer, 8 Monk) against 4 defending (Air Ele, Fire Ele, Monk 4, Ritualist 1)"
+    },
+    "8bf4ffae-split-1-368-40": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hdm (attacker) [even]: Take NPCs or kills. Met (no: a defender killed; yes: an NPC taken)"
+    },
+    "8bf4ffae-split-2-368-41": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hook (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (yes: no pit NPC lost; yes: no more defenders die than split players)"
+    },
+    "s:8bf4ffae-numbers-1-370-42": {
+     "mark": "wrong",
+     "why": "I don't see this, there really is no main team and no fight; it's just individual players running through mid",
+     "text": "Up on numbers in the main fight (3 v 1, the field on hdm's side), from players split elsewhere; hdm: push in | hook: stay (stay on their side)"
+    },
+    "8bf4ffae-numbers-1-370-42": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hdm (strong side) [push in]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)"
+    },
+    "8bf4ffae-numbers-2-370-43": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hook (weak side) [stay]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "s:8bf4ffae-split-1-384-44": {
+     "mark": "wrong",
+     "why": "hdm split retreating and it's still 4v4",
+     "text": "hdm's split by the back door: 4 players (Air Ele, Fire Ele, Mesmer, 8 Monk) against 1 defending (Air Ele)"
+    },
+    "8bf4ffae-split-1-384-44": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hdm (attacker) [a player or more up]: Kill or take NPCs. Not met (no: a defender killed; no: an NPC taken)"
+    },
+    "8bf4ffae-split-2-384-45": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hook (defender) [one defender]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)"
+    },
+    "s:8bf4ffae-boost-2-405-46": {
+     "mark": "right",
+     "why": "double run full run I think",
+     "text": "hdm's boost is 30 s away; hook: two runners; the rest fall to footmen"
+    },
+    "8bf4ffae-boost-2-405-46": {
+     "mark": "right",
+     "why": "",
+     "text": "hook [run]: Deny their boost. Met (yes: their boost does not land)"
+    },
+    "s:8bf4ffae-numbers-1-412-47": {
+     "mark": "right",
+     "why": "",
+     "text": "Down on numbers in the main fight (2 v 3, the field on hook's side), from players split elsewhere; hdm: retreat down the ladder (fall back into the base) | hook: retreat down the ladder (fall to footmen)"
+    },
+    "8bf4ffae-numbers-1-412-47": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "8bf4ffae-numbers-2-412-49": {
+     "mark": "partly",
+     "why": "2 damage v 2 monks again",
+     "text": "hook (strong side) [retreat down the ladder]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)"
+    },
+    "s:8bf4ffae-split-1-412-48": {
+     "mark": "right",
+     "why": "great identification on this",
+     "text": "hdm's split by the back door: 5 players (Air Ele, Fire Ele, Mesmer, 8 Monk, Ritualist) against 4 defending (Air Ele, Fire Ele, Ritualist 1, Monk 4)"
+    },
+    "8bf4ffae-split-1-412-48": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm (attacker) [a player or more up]: Kill or take NPCs. Not met (no: a defender killed; no: an NPC taken)"
+    },
+    "8bf4ffae-split-2-412-50": {
+     "mark": "right",
+     "why": "",
+     "text": "hook (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)"
+    },
+    "s:8bf4ffae-flag-2-427-51": {
+     "mark": "repeat",
+     "why": "this is a repeat and it's hdm's decision (hook starts single running first)",
+     "text": "They single run (hdm's Ritualist); hook: single run"
+    },
+    "8bf4ffae-flag-2-427-51": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hook [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (yes: our flag is capped; no: no more of ours die at the main fight than of theirs; yes: no worse than half a flag behind at the end)"
+    },
+    "s:8bf4ffae-flag-1-428-52": {
+     "mark": "right",
+     "why": "",
+     "text": "They single run (hook's Mesmer); hdm: a flag already in hand"
+    },
+    "8bf4ffae-flag-1-428-52": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm [a flag already in hand]: Answer their cap at once, or cap just before their boost. Met (no: their flag does not get in; yes: our cap follows theirs within 15 s; no: our cap lands just before their boost)"
+    },
+    "s:8bf4ffae-push_flagger-2-430-54": {
+     "mark": "right",
+     "why": "",
+     "text": "hook pushes hdm's flagger (AoB Derv, carrying) with one player"
+    },
+    "8bf4ffae-push_flagger-2-430-54": {
+     "mark": "right",
+     "why": "",
+     "text": "hook: Stop their flag, or make it 30% late. Met (no: their flag is stopped; yes: it arrives 30% or more later than usual)"
+    },
+    "8bf4ffae-flagger_pushed-1-430-53": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm: Get the flag in on time. Not met (no: the flag gets in, less than 30% late)"
+    },
+    "s:8bf4ffae-split-1-432-55": {
+     "mark": "wrong",
+     "why": "still defended by 4",
+     "text": "hdm's split by the back door: 4 players (Air Ele, Fire Ele, Mesmer, 8 Monk) against 2 defending (Fire Ele, Monk 4)"
+    },
+    "8bf4ffae-split-1-432-55": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hdm (attacker) [a player or more up]: Kill or take NPCs. Not met (no: a defender killed; no: an NPC taken)"
+    },
+    "8bf4ffae-split-2-432-56": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hook (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)"
+    },
+    "s:8bf4ffae-numbers-1-450-57": {
+     "mark": "partly",
+     "why": "ends earlier than 7:50 and it's just 1 damage & 1 monk vs 1 monk",
+     "text": "Down on numbers in the main fight (1 v 2, the field on hdm's side), from players split elsewhere; hdm: push up (push up to their base) | hook: retreat down the ladder (fall to footmen)"
+    },
+    "8bf4ffae-numbers-1-450-57": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm (weak side) [push up]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "8bf4ffae-numbers-2-450-58": {
+     "mark": "right",
+     "why": "",
+     "text": "hook (strong side) [retreat down the ladder]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)"
+    },
+    "s:8bf4ffae-split-1-456-59": {
+     "mark": "right",
+     "why": "same split as before",
+     "text": "hdm's split by the back door: 4 players (Air Ele, Fire Ele, Mesmer, 8 Monk) against 4 defending (Air Ele, Fire Ele, Ritualist 1, Monk 4)"
+    },
+    "8bf4ffae-split-1-456-59": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm (attacker) [even]: Take NPCs or kills. Met (yes: a defender killed; no: an NPC taken)"
+    },
+    "8bf4ffae-split-2-456-60": {
+     "mark": "right",
+     "why": "",
+     "text": "hook (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Not met (yes: no pit NPC lost; no: no more defenders die than split players)"
+    },
+    "s:8bf4ffae-base_res-1-460-61": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm has 4 in hook's base at the base res (3 defending, 1 coming back): 4 stay"
+    },
+    "8bf4ffae-base_res-1-460-61": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm [stayed through the res]: Be out, or set for the fight, when they res. Met (yes: nobody of ours dies in the 30 s after the res)"
+    },
+    "s:8bf4ffae-split-1-472-62": {
+     "mark": "partly",
+     "why": "3 defending until 8:17ish when 3 rit joins after base res",
+     "text": "hdm's split by the back door: 4 players (Air Ele, Fire Ele, Mesmer, 8 Monk) against 3 defending (Fire Ele, Air Ele, Monk 4)"
+    },
+    "8bf4ffae-split-1-472-62": {
+     "mark": "wrong",
+     "why": "error but close one; they are only 4v3 BECAUSE they killed a defender; once they are actually 4v3, they don't kill any players or NPCs",
+     "text": "hdm (attacker) [a player or more up]: Kill or take NPCs. Met (yes: a defender killed; no: an NPC taken)"
+    },
+    "8bf4ffae-split-2-472-63": {
+     "mark": "wrong",
+     "why": "",
+     "text": "hook (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Not met (yes: no pit NPC lost; no: no defender dies)"
+    },
+    "s:8bf4ffae-numbers-1-488-64": {
+     "mark": "wrong",
+     "why": "I don't see the clear numbers advantage",
+     "text": "Up on numbers in the main fight (3 v 2, hook's front footies; then 2 v 1 from 8:18), from players split elsewhere; hdm: stay (stay at the stand) | then 1 v 2 from 8:18), from players split elsewhere; hook: retreat down the ladder (fall back into the base)"
+    },
+    "8bf4ffae-numbers-1-488-64": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hdm (strong side) [stay]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)"
+    },
+    "8bf4ffae-numbers-2-488-65": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hook (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "s:8bf4ffae-split-1-516-68": {
+     "mark": "partly",
+     "why": "the person they kill is a collapser; I think this should be measured some how; you're right that it's really a 4v4 fight, but hdm kills the 5th player collapsing before he is really in the fight",
+     "text": "hdm's split by the back door: 4 players (Air Ele, Fire Ele, Mesmer, 8 Monk) against 4 defending (Fire Ele, Ritualist 1, Monk 4, Air Ele)"
+    },
+    "s:8bf4ffae-push_flagger-2-492-67": {
+     "mark": "right",
+     "why": "",
+     "text": "hook pushes hdm's flagger (Ritualist, carrying) with 2 players"
+    },
+    "8bf4ffae-push_flagger-2-492-67": {
+     "mark": "right",
+     "why": "",
+     "text": "hook: Stop their flag, or make it 30% late. Not met (no: their flag is stopped; no: it arrives 30% or more later than usual)"
+    },
+    "8bf4ffae-flagger_pushed-1-492-66": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm: Get the flag in on time. Met (yes: the flag gets in, less than 30% late)"
+    },
+    "8bf4ffae-split-1-516-68": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm (attacker) [even]: Take NPCs or kills. Met (yes: a defender killed; yes: an NPC taken)"
+    },
+    "8bf4ffae-split-2-516-70": {
+     "mark": "right",
+     "why": "",
+     "text": "hook (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Not met (yes: no pit NPC lost; no: no more defenders die than split players)"
+    },
+    "8bf4ffae-split-1-516-69": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)"
+    },
+    "s:8bf4ffae-flag-1-526-71": {
+     "mark": "wrong",
+     "why": "runner never leaves fight and he never runs; flag is dropped and returned",
+     "text": "They single run (hook's Ritualist 2); hdm: stay"
+    },
+    "8bf4ffae-flag-1-526-71": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hdm [stay]: Kill with the extra player while their runner is away. Not met (no: more of theirs die at the main fight than of ours)"
+    },
+    "s:8bf4ffae-numbers-2-562-73": {
+     "mark": "partly",
+     "why": "I read this as a 4v4 front door; hook number 2 joins main fight making it 5v4 front door and 4v2 back door on split; then around 9:50 its back to a 4v4 on split and 4v3 front door",
+     "text": "Down on numbers in the main fight (7 v 8, hook's pit; then 3 v 4 from 9:50), from kills; hook: retreat down the ladder (fall back into the base)"
+    },
+    "s:8bf4ffae-numbers-1-562-72": {
+     "mark": "repeat",
+     "why": "",
+     "text": "Up on numbers in the main fight (8 v 7, hook's pit; then 4 v 3 from 9:50), from kills; hdm: push their flagger"
+    },
+    "8bf4ffae-numbers-1-562-72": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hdm (up) [push their flagger]: Take ground and NPCs with the numbers. Met (yes: no more of ours die than of theirs; yes: one of their NPCs dies; no: more of theirs die than of ours)"
+    },
+    "s:8bf4ffae-split-1-570-74": {
+     "mark": "wrong",
+     "why": "see above, there is definitely 4 defending before 9:51",
+     "text": "hdm's split by the back door: 4 players (Air Ele, Fire Ele, Mesmer, 8 Monk) against 2 defending (Ritualist 1, Monk 4)"
+    },
+    "8bf4ffae-split-1-570-74": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hdm (attacker) [a player or more up]: Kill or take NPCs. Met (no: a defender killed; yes: an NPC taken)"
+    },
+    "8bf4ffae-split-2-570-75": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hook (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Not met (no: no pit NPC lost; yes: no defender dies)"
+    },
+    "s:8bf4ffae-base_res-1-580-76": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm has 8 in hook's base at the base res (7 defending, 1 coming back): 8 stay"
+    },
+    "8bf4ffae-base_res-1-580-76": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm [stayed through the res]: Be out, or set for the fight, when they res. Met (yes: nobody of ours dies in the 30 s after the res)"
+    },
+    "s:8bf4ffae-push_flagger-1-582-77": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm pushes hook's flagger (Ritualist 2, carrying) with its main team"
+    },
+    "8bf4ffae-push_flagger-1-582-77": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm: Stop their flag, or make it 30% late. Met (yes: their flag is stopped; no: it arrives 30% or more later than usual)"
+    },
+    "8bf4ffae-flagger_pushed-2-582-78": {
+     "mark": "right",
+     "why": "",
+     "text": "hook: Get the flag in on time. Not met (no: the flag gets in, less than 30% late)"
+    },
+    "s:8bf4ffae-split-1-590-79": {
+     "mark": "wrong",
+     "why": "see above re defenders; becomes a 5v4 (for hook) on split at around 10:31",
+     "text": "hdm's split by the back door: 4 players (Air Ele, Fire Ele, Mesmer, 8 Monk) against 3 defending (Air Ele, Fire Ele, Ritualist 1)"
+    },
+    "8bf4ffae-split-1-590-79": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hdm (attacker) [a player or more up]: Kill or take NPCs. Not met (no: a defender killed; no: an NPC taken)"
+    },
+    "8bf4ffae-split-2-590-81": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hook (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)"
+    },
+    "8bf4ffae-split-1-590-80": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hdm (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)"
+    },
+    "s:8bf4ffae-boost-2-591-82": {
+     "mark": "right",
+     "why": "this is right, but I don't know if it's a separate measurement from just the regular flagging? not sure",
+     "text": "hdm's boost is 30 s away; hook: no runner; the rest fall back into the base"
+    },
+    "8bf4ffae-boost-2-591-82": {
+     "mark": "right",
+     "why": "",
+     "text": "hook [run]: Deny their boost. Not met (no: their boost does not land)"
+    },
+    "s:8bf4ffae-flag-1-623-83": {
+     "mark": "right",
+     "why": "",
+     "text": "They single run (hook's Ritualist 2); hdm: stay"
+    },
+    "8bf4ffae-flag-1-623-83": {
+     "mark": "partly",
+     "why": "maybe we have to add something if the flag actually doesn't get in; then hdm didn't lose anything so they don't have to kill if that makes sense",
+     "text": "hdm [stay]: Kill with the extra player while their runner is away. Not met (no: more of theirs die at the main fight than of ours)"
+    },
+    "s:8bf4ffae-split-1-628-84": {
+     "mark": "wrong",
+     "why": "5v5, hdm's prot joins split",
+     "text": "hdm's split by the back door: 4 players (Air Ele, Fire Ele, Mesmer, 8 Monk) against 5 defending (Air Ele, Fire Ele, Ritualist 1, Dervish, Monk 4)"
+    },
+    "8bf4ffae-split-1-628-84": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hdm (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Not met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)"
+    },
+    "8bf4ffae-split-2-628-85": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hook (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Not met (yes: no pit NPC lost; no: a split player dies; no: the split is gone within the visit)"
+    },
+    "8bf4ffae-split-1-668-86": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm (attacker) [even]: Take NPCs or kills. Met (yes: a defender killed; yes: an NPC taken)"
+    },
+    "8bf4ffae-split-2-668-88": {
+     "mark": "right",
+     "why": "",
+     "text": "hook (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Not met (no: no pit NPC lost; no: no more defenders die than split players)"
+    },
+    "8bf4ffae-split-1-668-87": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)"
+    },
+    "s:8bf4ffae-numbers-2-680-90": {
+     "mark": "right",
+     "why": "",
+     "text": "Down on numbers in the main fight (7 v 8, hook's pit; then 6 v 8 from 11:32; then 7 v 8 from 12:00), from kills; hook: retreat down the ladder (retreat to the pit)"
+    },
+    "8bf4ffae-numbers-2-680-90": {
+     "mark": "right",
+     "why": "",
+     "text": "hook (down) [retreat down the ladder]: Reach cover a player down without losing another. Not met (no: nobody of ours dies; no: no NPC lost)"
+    },
+    "8bf4ffae-numbers-1-680-89": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hdm (up) [push up]: Take ground and NPCs with the numbers. Met (yes: no more of ours die than of theirs; yes: one of their NPCs dies; yes: more of theirs die than of ours)"
+    },
+    "s:8bf4ffae-numbers-1-680-89": {
+     "mark": "repeat",
+     "why": "",
+     "text": "Up on numbers in the main fight (8 v 7, hook's pit; then 8 v 6 from 11:32; then 8 v 7 from 12:00), from kills; hdm: push up (push up to their front door)"
+    },
+    "s:8bf4ffae-pinned-2-688-91": {
+     "mark": "right",
+     "why": "",
+     "text": "hook is held in its own base or pit by hdm's main team (K2 A0 B1 alive; base res in 32 s)"
+    },
+    "s:8bf4ffae-base_res-1-700-92": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm has 8 in hook's base at the base res (6 defending, 2 coming back): 8 stay"
+    },
+    "8bf4ffae-base_res-1-700-92": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm [stayed through the res]: Be out, or set for the fight, when they res. Met (yes: nobody of ours dies in the 30 s after the res)"
+    },
+    "s:8bf4ffae-pinned-2-720-93": {
+     "mark": "right",
+     "why": "",
+     "text": "hook is held in its own base or pit by hdm's main team (K1 A0 B1 alive; base res in 120 s)"
+    },
+    "8bf4ffae-pinned-2-720-93": {
+     "mark": "partly",
+     "why": "\"lose no one until the base res\" only matters if you have people base resing, otherwise it's just \"don't lose people or NPCs\" or break out",
+     "text": "hook: Hold the NPCs and lose nobody until the base res, or break out. Met (no: no pit NPC lost and nobody dies until the base res; yes: it breaks out (half its living players or more, four at least, out of its base and pit))"
+    },
+    "s:8bf4ffae-numbers-1-756-94": {
+     "mark": "partly",
+     "why": "turns into a 4v4 at 13:15",
+     "text": "Up on numbers in the main fight (7 v 6, hook's front door; then 7 v 4 from 12:58; then 5 v 4 from 13:12), from players split elsewhere; hdm: push up (push up to their base) | then 4 v 7 from 12:58; then 4 v 5 from 13:12), from players split elsewhere; hook: retreat down the ladder (retreat to the pit)"
+    },
+    "8bf4ffae-numbers-1-756-94": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm (strong side) [push up]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)"
+    },
+    "8bf4ffae-numbers-2-756-95": {
+     "mark": "right",
+     "why": "",
+     "text": "hook (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "s:8bf4ffae-split-2-758-97": {
+     "mark": "wrong",
+     "why": "through front door",
+     "text": "hook's split by the back door: one player (Dervish) against 0 defending"
+    },
+    "8bf4ffae-split-2-758-97": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hook (attacker) [undefended]: Take NPCs. Not met (no: an NPC taken)"
+    },
+    "8bf4ffae-split-1-758-96": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hdm (defender) [no answer]: Win elsewhere before the split costs more than it gains. Not met (no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)"
+    },
+    "s:8bf4ffae-split-2-782-100": {
+     "mark": "wrong",
+     "why": "defended by ele",
+     "text": "hook's split by the back door: two players (Dervish, Ritualist 1) against 0 defending"
+    },
+    "8bf4ffae-split-2-782-100": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hook (attacker) [undefended]: Take NPCs. Not met (no: an NPC taken)"
+    },
+    "8bf4ffae-split-1-782-99": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hdm (defender) [no answer]: Win elsewhere before the split costs more than it gains. Not met (no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)"
+    },
+    "s:8bf4ffae-split-2-800-102": {
+     "mark": "right",
+     "why": "",
+     "text": "hook's split by the back door: 4 players (Dervish, Ritualist 1, Air Ele, Fire Ele) against 1 defending (Fire Ele)"
+    },
+    "8bf4ffae-split-2-800-102": {
+     "mark": "right",
+     "why": "",
+     "text": "hook (attacker) [a player or more up]: Kill or take NPCs. Not met (no: a defender killed; no: an NPC taken)"
+    },
+    "8bf4ffae-split-1-800-101": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm (defender) [one defender]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)"
+    },
+    "s:8bf4ffae-pinned-2-768-98": {
+     "mark": "right",
+     "why": "",
+     "text": "hook is held in its own base or pit by hdm's main team (K0 A0 B1 alive; base res in 72 s)"
+    },
+    "8bf4ffae-pinned-2-768-98": {
+     "mark": "right",
+     "why": "",
+     "text": "hook: Hold the NPCs and lose nobody until the base res, or break out. Met (yes: no pit NPC lost and nobody dies until the base res; yes: it breaks out (half its living players or more, four at least, out of its base and pit))"
+    },
+    "s:8bf4ffae-split-2-824-104": {
+     "mark": "right",
+     "why": "",
+     "text": "hook's split by the back door: 4 players (Ritualist 1, Dervish, Air Ele, Fire Ele) against 4 defending (Prot, 8 Monk, Fire Ele, Air Ele)"
+    },
+    "8bf4ffae-split-2-824-104": {
+     "mark": "right",
+     "why": "",
+     "text": "hook (attacker) [even]: Take NPCs or kills. Not met (no: a defender killed; no: an NPC taken)"
+    },
+    "8bf4ffae-split-1-824-103": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (yes: no pit NPC lost; yes: no more defenders die than split players)"
+    },
+    "s:8bf4ffae-pinned-2-840-105": {
+     "mark": "right",
+     "why": "",
+     "text": "hook is held in its own base or pit by hdm's main team (K0 A0 B1 alive; base res in 120 s)"
+    },
+    "8bf4ffae-pinned-2-840-105": {
+     "mark": "right",
+     "why": "",
+     "text": "hook: Hold the NPCs and lose nobody until the base res, or break out. Met (no: no pit NPC lost and nobody dies until the base res; yes: it breaks out (half its living players or more, four at least, out of its base and pit))"
+    },
+    "s:8bf4ffae-numbers-1-926-106": {
+     "mark": "partly",
+     "why": "this is basically just a messy/spread out 6v6 then 6v5",
+     "text": "Up on numbers in the main fight (8 v 7, hook's pit; then 6 v 5 from 15:42), from kills; hdm: stay (stay on the enemy's side)"
+    },
+    "s:8bf4ffae-base_res-1-940-107": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm has 6 in hook's base at the base res (5 defending, 1 coming back): 6 stay"
+    },
+    "8bf4ffae-base_res-1-940-107": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm [stayed through the res]: Be out, or set for the fight, when they res. Met (yes: nobody of ours dies in the 30 s after the res)"
+    },
+    "s:8bf4ffae-pinned-2-960-108": {
+     "mark": "right",
+     "why": "",
+     "text": "hook is held in its own base or pit by hdm's main team (K0 A0 B1 alive; base res in 120 s)"
+    },
+    "8bf4ffae-pinned-2-960-108": {
+     "mark": "right",
+     "why": "",
+     "text": "hook: Hold the NPCs and lose nobody until the base res, or break out. Met (no: no pit NPC lost and nobody dies until the base res; yes: it breaks out (half its living players or more, four at least, out of its base and pit))"
+    },
+    "s:8bf4ffae-split-2-980-110": {
+     "mark": "partly",
+     "why": "it looks to me like a 1v1 (derv vs ele 2 of hdm) and a 2v2 (hook # 1 and 3 vs hdm # 6 & 8) that end up merging at front door into a 3v3",
+     "text": "hook's split by the front door: three players (Dervish, Ritualist 1, Air Ele) against 2 defending (Prot, 8 Monk); 3 damage against 2 monks"
+    },
+    "s:8bf4ffae-numbers-1-984-111": {
+     "mark": "right",
+     "why": "",
+     "text": "Up on numbers in the main fight (5 v 4, hook's pit; then 5 v 3 from 16:34; then 5 v 2 from 16:44; then 5 v 1 from 17:04), from players split elsewhere; hdm: stay (stay on the enemy's side)"
+    },
+    "8bf4ffae-numbers-1-984-111": {
+     "mark": "right",
+     "why": "",
+     "text": "hdm (strong side) [stay]: Kill with the numbers while their players are away. Met (yes: more of theirs die than of ours)"
+    },
+    "s:8bf4ffae-split-2-994-114": {
+     "mark": "repeat",
+     "why": "",
+     "text": "hook's split by the front door: three players (Ritualist 1, Dervish, Air Ele) against 3 defending (Fire Ele, Prot, 8 Monk); 3 damage against 2 monks"
+    },
+    "8bf4ffae-split-2-994-114": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hook (attacker) [held by monks]: Hold the monks there and lose nobody; NPCs are a bonus (a kill is not expected of it). Not met (no: nobody on the split dies)"
+    },
+    "8bf4ffae-split-1-994-112": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hdm (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (yes: no pit NPC lost; yes: no more defenders die than split players)"
+    },
+    "8bf4ffae-split-1-994-113": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hdm (defender's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Met (yes: more of theirs die away from the split than of ours)"
+    }
+   },
+   "game": "hdm v hook, Uncharted Isle",
+   "at": "2026-11-14",
+   "engine": "67e87b8",
+   "notes": "rit solo split from hook out back door around 12:40 (not sure when he crosses through); missed collapse from number 1 hook through front door around 14:48, brief 5v3 for hook"
   }
  }
 }
