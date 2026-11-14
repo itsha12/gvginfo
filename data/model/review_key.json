@@ -1,5 +1,5 @@
 {
- "about": "The review key (R-450). Every row Denning was shown of the engine's plays: what the engine said then (shown), his mark and his words (said), and checks: Claude's reading of his mark as things the plays must hold or must not hold, which he corrects. Scored by tools/golden/review.py on the branch after every change. Marks: right, partly, wrong, bad example (set aside), not marked. Set 1 is the 35 rows of 2026-11-13, picked one or more to a kind of play, so it is a regression test and not an accuracy figure; whole-game sets (R-454) give the accuracy by kind of play. `answered` holds a later answer of his on a row (what was asked, his words, Claude's reading). Set w1p1 is part 1 of the whole-game review (R-455), marked by him on the site on 2026-11-13 against engine af952c6: one row a situation with his mark and words, its calls under `calls` with theirs, and one `missed` row a game for what the engine did not read; checks are written as each fault is fixed.",
+ "about": "The review key (R-450). Every row Denning was shown of the engine's plays: what the engine said then (shown), his mark and his words (said), and checks: Claude's reading of his mark as things the plays must hold or must not hold, which he corrects. Scored by tools/golden/review.py on the branch after every change. Marks: right, partly, wrong, bad example (set aside), not marked. Set 1 is the 35 rows of 2026-11-13, picked one or more to a kind of play, so it is a regression test and not an accuracy figure; whole-game sets (R-454) give the accuracy by kind of play. `answered` holds a later answer of his on a row (what was asked, his words, Claude's reading). Set w1p1 is part 1 of the whole-game review (R-455), marked by him on the site on 2026-11-13 against engine af952c6: one row a situation with his mark and words, its calls under `calls` with theirs, and one `missed` row a game for what the engine did not read; checks are written as each fault is fixed. Set w1p2 is hdm v hook, the first game of part 2, marked on 2026-11-14 against engine 67e87b8 as the first measure of the rebuilt reading; he then chose to build from it too, keeping Men v Crew unmarked as the hidden game.",
  "version": 1,
  "rows": [
   {
@@ -116,7 +116,6 @@
     {
      "has": {
       "play": "flag",
-      "team": "NwAy",
       "at": [
        307,
        366
@@ -127,7 +126,7 @@
      }
     }
    ],
-   "note": "Not his mark: the engine found afterwards that this is a Shadow of Haste run (R-438)."
+   "note": "Not his mark: the engine found afterwards that this is a Shadow of Haste run (R-438). The check no longer names the team: the flag decision is told from the side that ran second."
   },
   {
    "id": "s1-5",
@@ -1678,16 +1677,16 @@
     {
      "has": {
       "play": "flag",
-      "team": "옷옷옷옷",
+      "team": "TFS",
       "start": [
-       236,
-       248
+       200,
+       212
       ]
      },
      "want": {
-      "their": "single run"
+      "ours": "single run"
      },
-     "was": "TFS v 옷옷옷옷 4:02: TFS's run is a single run, read as a double"
+     "was": "TFS v 옷옷옷옷 4:02: TFS's run is a single run, read as a double (now told from TFS's side, as its answer to the run that set off first)"
     }
    ]
   },
@@ -4180,6 +4179,2152 @@
      },
      "open": true,
      "why": "Men v Apes 10:10: Men's 8 Monk running the flag was not read"
+    }
+   ]
+  },
+  {
+   "id": "w1p2-8bf4-1",
+   "set": "w1p2",
+   "row": 1,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    18,
+    40
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hdm's split by the back door: 5 players (Ritualist, AoB Derv, Mesmer, Prot, 7 Monk) against 4 defending (Ritualist 1, Fire Ele, Air Ele, Monk 4)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "8bf4ffae-split-1-18-0",
+     "shown": "hdm (attacker) [a player or more up]: Kill or take NPCs. Not met (no: a defender killed; no: an NPC taken)",
+     "mark": "right"
+    },
+    {
+     "play": "8bf4ffae-split-2-18-1",
+     "shown": "hook (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-2",
+   "set": "w1p2",
+   "row": 2,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    38,
+    122
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hdm's split by the back door: 5 players (Ritualist, AoB Derv, Mesmer, Prot, 7 Monk) against 3 defending (Fire Ele, Ritualist 1, Monk 4)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "8bf4ffae-split-1-38-2",
+     "shown": "hdm (attacker) [a player or more up]: Kill or take NPCs. Met (no: a defender killed; yes: an NPC taken)",
+     "mark": "right"
+    },
+    {
+     "play": "8bf4ffae-split-2-38-3",
+     "shown": "hook (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-3",
+   "set": "w1p2",
+   "row": 3,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    50,
+    74
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hook's split by the front door: one player (Dervish) against 0 defending",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "8bf4ffae-split-2-50-5",
+     "shown": "hook (attacker) [undefended]: Take NPCs. Met (yes: an NPC taken)",
+     "mark": "right"
+    },
+    {
+     "play": "8bf4ffae-split-1-50-4",
+     "shown": "hdm (defender) [no answer]: Win elsewhere before the split costs more than it gains. Not met (no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-4",
+   "set": "w1p2",
+   "row": 4,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    72,
+    134
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hook's split by the front door: two players (Dervish, Air Ele) against 0 defending",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "8bf4ffae-split-2-72-7",
+     "shown": "hook (attacker) [undefended]: Take NPCs. Met (yes: an NPC taken)",
+     "mark": "right"
+    },
+    {
+     "play": "8bf4ffae-split-1-72-6",
+     "shown": "hdm (defender) [no answer]: Win elsewhere before the split costs more than it gains. Not met (no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-5",
+   "set": "w1p2",
+   "row": 5,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    116,
+    150
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (3 v 5, the greater stand area; then 3 v 4 from 2:12), from players split elsewhere; hdm: retreat down the ladder (retreat to the pit) | then 4 v 3 from 2:12), from players split elsewhere; hook: push in",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "8bf4ffae-numbers-1-116-8",
+     "shown": "hdm (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)",
+     "mark": "right"
+    },
+    {
+     "play": "8bf4ffae-numbers-2-116-9",
+     "shown": "hook (strong side) [push in]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-6",
+   "set": "w1p2",
+   "row": 6,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    120,
+    186
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hdm's split by the back door: 4 players (Mesmer, 7 Monk, Prot, AoB Derv) against 3 defending (Ritualist 1, Monk 4, Fire Ele)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "8bf4ffae-split-1-120-10",
+     "shown": "hdm (attacker) [a player or more up]: Kill or take NPCs. Not met (no: a defender killed; no: an NPC taken)",
+     "mark": "right"
+    },
+    {
+     "play": "8bf4ffae-split-2-120-11",
+     "shown": "hook (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-7",
+   "set": "w1p2",
+   "row": 7,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    124,
+    212
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "hdm is held in its own base or pit by hook's main team (K0 A1 B0 alive; base res in 116 s)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "8bf4ffae-pinned-1-124-12",
+     "shown": "hdm: Hold the NPCs and lose nobody until the base res, or break out. Met (yes: no pit NPC lost and nobody dies until the base res; yes: it breaks out (half its living players or more, four at least, out of its base and pit))",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-8",
+   "set": "w1p2",
+   "row": 8,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    202,
+    224
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (4 v 6, hdm's pit), from players split elsewhere; hook: fall out",
+   "mark": "not marked",
+   "calls": [
+    {
+     "play": "8bf4ffae-numbers-2-202-13",
+     "shown": "",
+     "mark": "not marked"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-9",
+   "set": "w1p2",
+   "row": 9,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    224,
+    250
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hook's split by the back door: 4 players (Fire Ele, Ritualist 1, Monk 4, Air Ele) against 1 defending (Air Ele)",
+   "mark": "wrong",
+   "said": "I don't see this at all; it's 3 split defended by 3, then 4 split defended by 3 once ele 1 of hook joins",
+   "calls": [
+    {
+     "play": "8bf4ffae-split-2-224-15",
+     "shown": "hook (attacker) [a player or more up]: Kill or take NPCs. Met (no: a defender killed; yes: an NPC taken)",
+     "mark": "not judged"
+    },
+    {
+     "play": "8bf4ffae-split-1-224-14",
+     "shown": "hdm (defender) [one defender]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)",
+     "mark": "not judged"
+    },
+    {
+     "play": "8bf4ffae-split-2-224-16",
+     "shown": "hook (attacker's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Not met (no: more of theirs die away from the split than of ours)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hook",
+      "at": [
+       226,
+       246
+      ]
+     },
+     "want": {
+      "defenders": 3
+     },
+     "why": "hdm v hook 3:44: three on the split defended by three, then four defended by three; the engine read 4 v 1",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w1p2-8bf4-10",
+   "set": "w1p2",
+   "row": 10,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    240,
+    260
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (2 v 3, hook's front footies), from players split elsewhere; hdm: push up (go out by the front door) | hook: push in",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "8bf4ffae-numbers-1-240-17",
+     "shown": "hdm (weak side) [push up]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)",
+     "mark": "right"
+    },
+    {
+     "play": "8bf4ffae-numbers-2-240-18",
+     "shown": "hook (strong side) [push in]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-11",
+   "set": "w1p2",
+   "row": 11,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    245,
+    315
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (hook's Dervish); hdm: single run",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "8bf4ffae-flag-1-245-19",
+     "shown": "hdm [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (yes: our flag is capped; yes: no more of ours die at the main fight than of theirs; yes: no worse than half a flag behind at the end)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-12",
+   "set": "w1p2",
+   "row": 12,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    248,
+    282
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hook's split by the back door: 4 players (Air Ele, Fire Ele, Ritualist 1, Monk 4) against 2 defending (Fire Ele, 8 Monk)",
+   "mark": "wrong",
+   "said": "defended by 3 until 4:42, then defended by 4",
+   "calls": [
+    {
+     "play": "8bf4ffae-split-2-248-22",
+     "shown": "hook (attacker) [a player or more up]: Kill or take NPCs. Met (no: a defender killed; yes: an NPC taken)",
+     "mark": "not judged"
+    },
+    {
+     "play": "8bf4ffae-split-1-248-20",
+     "shown": "hdm (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)",
+     "mark": "not judged"
+    },
+    {
+     "play": "8bf4ffae-split-1-248-21",
+     "shown": "hdm (defender's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hook",
+      "at": [
+       250,
+       278
+      ]
+     },
+     "want": {
+      "defenders": 3
+     },
+     "why": "hdm v hook 4:08: defended by three until 4:42, then by four; the engine read two",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w1p2-8bf4-13",
+   "set": "w1p2",
+   "row": 13,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    252,
+    276
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Up on numbers in the main fight (4 v 3, hdm's front door; then 4 v 3 from 4:22), from players split elsewhere; hdm: retreat down the ladder (retreat to the pit) | then 3 v 4 from 4:22), from players split elsewhere; hook: push in",
+   "mark": "wrong",
+   "said": "hdm is 3v2, does not retreat, and hook is only 2 dmg vs 2 monks so sould not be expected to kill",
+   "calls": [
+    {
+     "play": "8bf4ffae-numbers-1-252-23",
+     "shown": "hdm (strong side) [retreat down the ladder]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)",
+     "mark": "not judged"
+    },
+    {
+     "play": "8bf4ffae-numbers-2-252-24",
+     "shown": "hook (weak side) [push in]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "hdm",
+      "at": [
+       252,
+       276
+      ]
+     },
+     "want": {
+      "numbers": "3v2"
+     },
+     "why": "hdm v hook 4:12: hdm is 3 v 2 and does not retreat; hook has two damage against two monks and is not expected to kill",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w1p2-8bf4-14",
+   "set": "w1p2",
+   "row": 14,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    258,
+    315
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (hdm's AoB Derv); hook: single run",
+   "mark": "repeat",
+   "calls": [
+    {
+     "play": "8bf4ffae-flag-2-258-25",
+     "shown": "hook [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (yes: our flag is capped; yes: no more of ours die at the main fight than of theirs; yes: no worse than half a flag behind at the end)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-15",
+   "set": "w1p2",
+   "row": 15,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    280,
+    322
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hook's split by the back door: 4 players (Air Ele, Fire Ele, Monk 4, Ritualist 1) against 4 defending (Fire Ele, 8 Monk, Air Ele, Mesmer)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "8bf4ffae-split-2-280-27",
+     "shown": "hook (attacker) [even]: Take NPCs or kills. Not met (no: a defender killed; no: an NPC taken)",
+     "mark": "right"
+    },
+    {
+     "play": "8bf4ffae-split-1-280-26",
+     "shown": "hdm (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (yes: no pit NPC lost; yes: no more defenders die than split players)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-16",
+   "set": "w1p2",
+   "row": 16,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    286,
+    306
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Up on numbers in the main fight (4 v 3, hdm's front door), from players split elsewhere; hdm: split (split by the back door) | hook: stay (stay at the stand)",
+   "mark": "wrong",
+   "said": "main team is a rough/messy 4v4",
+   "calls": [
+    {
+     "play": "8bf4ffae-numbers-1-286-28",
+     "shown": "hdm (strong side) [split]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)",
+     "mark": "not judged"
+    },
+    {
+     "play": "8bf4ffae-numbers-2-286-29",
+     "shown": "hook (weak side) [stay]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "numbers",
+      "team": "hdm",
+      "start": [
+       282,
+       292
+      ]
+     },
+     "why": "hdm v hook 4:46: the main teams are a rough 4 v 4, no numbers moment",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w1p2-8bf4-17",
+   "set": "w1p2",
+   "row": 17,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    300,
+    315
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "hook pushes hdm's flagger (AoB Derv, carrying) with one player",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "8bf4ffae-push_flagger-2-300-31",
+     "shown": "hook: Stop their flag, or make it 30% late. Not met (no: their flag is stopped; no: it arrives 30% or more later than usual)",
+     "mark": "right"
+    },
+    {
+     "play": "8bf4ffae-flagger_pushed-1-300-30",
+     "shown": "hdm: Get the flag in on time. Met (yes: the flag gets in, less than 30% late)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-18",
+   "set": "w1p2",
+   "row": 18,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    326,
+    358
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hdm's split by the back door: 4 players (Air Ele, Fire Ele, Mesmer, 8 Monk) against 4 defending (Air Ele, Fire Ele, Ritualist 1, Monk 4)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "8bf4ffae-split-1-326-32",
+     "shown": "hdm (attacker) [even]: Take NPCs or kills. Not met (no: a defender killed; no: an NPC taken)",
+     "mark": "right"
+    },
+    {
+     "play": "8bf4ffae-split-2-326-34",
+     "shown": "hook (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (yes: no pit NPC lost; yes: no more defenders die than split players)",
+     "mark": "right"
+    },
+    {
+     "play": "8bf4ffae-split-1-326-33",
+     "shown": "hdm (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-19",
+   "set": "w1p2",
+   "row": 19,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    352,
+    444
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They double run (hdm's AoB Derv); hook: double run",
+   "mark": "wrong",
+   "said": "only 1 flag was run by hdm in this time and it's a single run",
+   "calls": [
+    {
+     "play": "8bf4ffae-flag-2-352-35",
+     "shown": "hook [double run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (yes: our flag is capped; yes: no more of ours die at the main fight than of theirs; yes: no worse than half a flag behind at the end)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "flag",
+      "team": "hook",
+      "at": [
+       352,
+       444
+      ],
+      "want": {
+       "their": "double run"
+      }
+     },
+     "why": "hdm v hook 5:52: hdm ran one flag in this time, a single run",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w1p2-8bf4-20",
+   "set": "w1p2",
+   "row": 20,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    356,
+    370
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hdm's split by the back door: 4 players (Air Ele, Fire Ele, Mesmer, 8 Monk) against 3 defending (Air Ele, Fire Ele, Monk 4)",
+   "mark": "wrong",
+   "said": "I don't know who you dropped from split but it's still a 4v4 and hdm is pushing into hook's pit",
+   "calls": [
+    {
+     "play": "8bf4ffae-split-1-356-36",
+     "shown": "hdm (attacker) [a player or more up]: Kill or take NPCs. Not met (no: a defender killed; no: an NPC taken)",
+     "mark": "not judged"
+    },
+    {
+     "play": "8bf4ffae-split-2-356-38",
+     "shown": "hook (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)",
+     "mark": "not judged"
+    },
+    {
+     "play": "8bf4ffae-split-1-356-37",
+     "shown": "hdm (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hdm",
+      "at": [
+       358,
+       368
+      ]
+     },
+     "want": {
+      "size": 4,
+      "defenders": 4
+     },
+     "was": "hdm v hook 5:56: still a 4 v 4, hdm pushing into hook's pit"
+    }
+   ]
+  },
+  {
+   "id": "w1p2-8bf4-21",
+   "set": "w1p2",
+   "row": 21,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    359,
+    444
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They double run (hook's Ritualist 2); hdm: double run",
+   "mark": "repeat",
+   "calls": [
+    {
+     "play": "8bf4ffae-flag-1-359-39",
+     "shown": "hdm [double run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (yes: our flag is capped; yes: no more of ours die at the main fight than of theirs; yes: no worse than half a flag behind at the end)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-22",
+   "set": "w1p2",
+   "row": 22,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    368,
+    386
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hdm's split by the back door: 4 players (Air Ele, Fire Ele, Mesmer, 8 Monk) against 4 defending (Air Ele, Fire Ele, Monk 4, Ritualist 1)",
+   "mark": "repeat",
+   "said": "still same split",
+   "calls": [
+    {
+     "play": "8bf4ffae-split-1-368-40",
+     "shown": "hdm (attacker) [even]: Take NPCs or kills. Met (no: a defender killed; yes: an NPC taken)",
+     "mark": "not judged"
+    },
+    {
+     "play": "8bf4ffae-split-2-368-41",
+     "shown": "hook (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (yes: no pit NPC lost; yes: no more defenders die than split players)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-23",
+   "set": "w1p2",
+   "row": 23,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    370,
+    390
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Up on numbers in the main fight (3 v 1, the field on hdm's side), from players split elsewhere; hdm: push in | hook: stay (stay on their side)",
+   "mark": "wrong",
+   "said": "I don't see this, there really is no main team and no fight; it's just individual players running through mid",
+   "calls": [
+    {
+     "play": "8bf4ffae-numbers-1-370-42",
+     "shown": "hdm (strong side) [push in]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)",
+     "mark": "not judged"
+    },
+    {
+     "play": "8bf4ffae-numbers-2-370-43",
+     "shown": "hook (weak side) [stay]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "numbers",
+      "start": [
+       366,
+       376
+      ]
+     },
+     "was": "hdm v hook 6:10: no main team and no fight, players running through mid"
+    }
+   ]
+  },
+  {
+   "id": "w1p2-8bf4-24",
+   "set": "w1p2",
+   "row": 24,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    384,
+    414
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hdm's split by the back door: 4 players (Air Ele, Fire Ele, Mesmer, 8 Monk) against 1 defending (Air Ele)",
+   "mark": "wrong",
+   "said": "hdm split retreating and it's still 4v4",
+   "calls": [
+    {
+     "play": "8bf4ffae-split-1-384-44",
+     "shown": "hdm (attacker) [a player or more up]: Kill or take NPCs. Not met (no: a defender killed; no: an NPC taken)",
+     "mark": "not judged"
+    },
+    {
+     "play": "8bf4ffae-split-2-384-45",
+     "shown": "hook (defender) [one defender]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hdm",
+      "at": [
+       388,
+       410
+      ]
+     },
+     "want": {
+      "defenders": 4
+     },
+     "why": "hdm v hook 6:24: the split is retreating and it is still 4 v 4",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w1p2-8bf4-25",
+   "set": "w1p2",
+   "row": 25,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    405,
+    440
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "hdm's boost is 30 s away; hook: two runners; the rest fall to footmen",
+   "mark": "right",
+   "said": "double run full run I think",
+   "calls": [
+    {
+     "play": "8bf4ffae-boost-2-405-46",
+     "shown": "hook [run]: Deny their boost. Met (yes: their boost does not land)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-26",
+   "set": "w1p2",
+   "row": 26,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    412,
+    432
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (2 v 3, the field on hook's side), from players split elsewhere; hdm: retreat down the ladder (fall back into the base) | hook: retreat down the ladder (fall to footmen)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "8bf4ffae-numbers-1-412-47",
+     "shown": "hdm (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)",
+     "mark": "right"
+    },
+    {
+     "play": "8bf4ffae-numbers-2-412-49",
+     "shown": "hook (strong side) [retreat down the ladder]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)",
+     "mark": "partly",
+     "said": "2 damage v 2 monks again"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "hook",
+      "at": [
+       414,
+       430
+      ]
+     },
+     "want": {
+      "scenario~": "2 damage against 2 monks"
+     },
+     "was": "hdm v hook 6:52: two damage against two monks: a kill is not expected of hook"
+    }
+   ]
+  },
+  {
+   "id": "w1p2-8bf4-27",
+   "set": "w1p2",
+   "row": 27,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    412,
+    434
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hdm's split by the back door: 5 players (Air Ele, Fire Ele, Mesmer, 8 Monk, Ritualist) against 4 defending (Air Ele, Fire Ele, Ritualist 1, Monk 4)",
+   "mark": "right",
+   "said": "great identification on this",
+   "calls": [
+    {
+     "play": "8bf4ffae-split-1-412-48",
+     "shown": "hdm (attacker) [a player or more up]: Kill or take NPCs. Not met (no: a defender killed; no: an NPC taken)",
+     "mark": "right"
+    },
+    {
+     "play": "8bf4ffae-split-2-412-50",
+     "shown": "hook (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-28",
+   "set": "w1p2",
+   "row": 28,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    427,
+    501
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (hdm's Ritualist); hook: single run",
+   "mark": "repeat",
+   "said": "this is a repeat and it's hdm's decision (hook starts single running first)",
+   "calls": [
+    {
+     "play": "8bf4ffae-flag-2-427-51",
+     "shown": "hook [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (yes: our flag is capped; no: no more of ours die at the main fight than of theirs; yes: no worse than half a flag behind at the end)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-29",
+   "set": "w1p2",
+   "row": 29,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    428,
+    503
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (hook's Mesmer); hdm: a flag already in hand",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "8bf4ffae-flag-1-428-52",
+     "shown": "hdm [a flag already in hand]: Answer their cap at once, or cap just before their boost. Met (no: their flag does not get in; yes: our cap follows theirs within 15 s; no: our cap lands just before their boost)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-30",
+   "set": "w1p2",
+   "row": 30,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    430,
+    444
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "hook pushes hdm's flagger (AoB Derv, carrying) with one player",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "8bf4ffae-push_flagger-2-430-54",
+     "shown": "hook: Stop their flag, or make it 30% late. Met (no: their flag is stopped; yes: it arrives 30% or more later than usual)",
+     "mark": "right"
+    },
+    {
+     "play": "8bf4ffae-flagger_pushed-1-430-53",
+     "shown": "hdm: Get the flag in on time. Not met (no: the flag gets in, less than 30% late)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-31",
+   "set": "w1p2",
+   "row": 31,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    432,
+    458
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hdm's split by the back door: 4 players (Air Ele, Fire Ele, Mesmer, 8 Monk) against 2 defending (Fire Ele, Monk 4)",
+   "mark": "wrong",
+   "said": "still defended by 4",
+   "calls": [
+    {
+     "play": "8bf4ffae-split-1-432-55",
+     "shown": "hdm (attacker) [a player or more up]: Kill or take NPCs. Not met (no: a defender killed; no: an NPC taken)",
+     "mark": "not judged"
+    },
+    {
+     "play": "8bf4ffae-split-2-432-56",
+     "shown": "hook (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hdm",
+      "at": [
+       436,
+       454
+      ]
+     },
+     "want": {
+      "defenders": 4
+     },
+     "why": "hdm v hook 7:12: still defended by four",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w1p2-8bf4-32",
+   "set": "w1p2",
+   "row": 32,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    450,
+    470
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (1 v 2, the field on hdm's side), from players split elsewhere; hdm: push up (push up to their base) | hook: retreat down the ladder (fall to footmen)",
+   "mark": "partly",
+   "said": "ends earlier than 7:50 and it's just 1 damage & 1 monk vs 1 monk",
+   "calls": [
+    {
+     "play": "8bf4ffae-numbers-1-450-57",
+     "shown": "hdm (weak side) [push up]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)",
+     "mark": "right"
+    },
+    {
+     "play": "8bf4ffae-numbers-2-450-58",
+     "shown": "hook (strong side) [retreat down the ladder]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-33",
+   "set": "w1p2",
+   "row": 33,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    456,
+    474
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hdm's split by the back door: 4 players (Air Ele, Fire Ele, Mesmer, 8 Monk) against 4 defending (Air Ele, Fire Ele, Ritualist 1, Monk 4)",
+   "mark": "right",
+   "said": "same split as before",
+   "calls": [
+    {
+     "play": "8bf4ffae-split-1-456-59",
+     "shown": "hdm (attacker) [even]: Take NPCs or kills. Met (yes: a defender killed; no: an NPC taken)",
+     "mark": "right"
+    },
+    {
+     "play": "8bf4ffae-split-2-456-60",
+     "shown": "hook (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Not met (yes: no pit NPC lost; no: no more defenders die than split players)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-34",
+   "set": "w1p2",
+   "row": 34,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    460,
+    510
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "hdm has 4 in hook's base at the base res (3 defending, 1 coming back): 4 stay",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "8bf4ffae-base_res-1-460-61",
+     "shown": "hdm [stayed through the res]: Be out, or set for the fight, when they res. Met (yes: nobody of ours dies in the 30 s after the res)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-35",
+   "set": "w1p2",
+   "row": 35,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    472,
+    518
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hdm's split by the back door: 4 players (Air Ele, Fire Ele, Mesmer, 8 Monk) against 3 defending (Fire Ele, Air Ele, Monk 4)",
+   "mark": "partly",
+   "said": "3 defending until 8:17ish when 3 rit joins after base res",
+   "calls": [
+    {
+     "play": "8bf4ffae-split-1-472-62",
+     "shown": "hdm (attacker) [a player or more up]: Kill or take NPCs. Met (yes: a defender killed; no: an NPC taken)",
+     "mark": "wrong",
+     "said": "error but close one; they are only 4v3 BECAUSE they killed a defender; once they are actually 4v3, they don't kill any players or NPCs"
+    },
+    {
+     "play": "8bf4ffae-split-2-472-63",
+     "shown": "hook (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Not met (yes: no pit NPC lost; no: no defender dies)",
+     "mark": "wrong"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hdm",
+      "at": [
+       476,
+       514
+      ]
+     },
+     "want": {
+      "met": false
+     },
+     "was": "hdm v hook 7:52: they are 4 v 3 only because they killed a defender; once 4 v 3 they kill nobody and take no NPC"
+    }
+   ]
+  },
+  {
+   "id": "w1p2-8bf4-36",
+   "set": "w1p2",
+   "row": 36,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    488,
+    514
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Up on numbers in the main fight (3 v 2, hook's front footies; then 2 v 1 from 8:18), from players split elsewhere; hdm: stay (stay at the stand) | then 1 v 2 from 8:18), from players split elsewhere; hook: retreat down the ladder (fall back into the base)",
+   "mark": "wrong",
+   "said": "I don't see the clear numbers advantage",
+   "calls": [
+    {
+     "play": "8bf4ffae-numbers-1-488-64",
+     "shown": "hdm (strong side) [stay]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)",
+     "mark": "not judged"
+    },
+    {
+     "play": "8bf4ffae-numbers-2-488-65",
+     "shown": "hook (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "numbers",
+      "start": [
+       484,
+       494
+      ]
+     },
+     "why": "hdm v hook 8:08: no clear numbers advantage",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w1p2-8bf4-37",
+   "set": "w1p2",
+   "row": 37,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    492,
+    501
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "hook pushes hdm's flagger (Ritualist, carrying) with 2 players",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "8bf4ffae-push_flagger-2-492-67",
+     "shown": "hook: Stop their flag, or make it 30% late. Not met (no: their flag is stopped; no: it arrives 30% or more later than usual)",
+     "mark": "right"
+    },
+    {
+     "play": "8bf4ffae-flagger_pushed-1-492-66",
+     "shown": "hdm: Get the flag in on time. Met (yes: the flag gets in, less than 30% late)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-38",
+   "set": "w1p2",
+   "row": 38,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    516,
+    572
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hdm's split by the back door: 4 players (Air Ele, Fire Ele, Mesmer, 8 Monk) against 4 defending (Fire Ele, Ritualist 1, Monk 4, Air Ele)",
+   "mark": "partly",
+   "said": "the person they kill is a collapser; I think this should be measured some how; you're right that it's really a 4v4 fight, but hdm kills the 5th player collapsing before he is really in the fight",
+   "calls": [
+    {
+     "play": "8bf4ffae-split-1-516-68",
+     "shown": "hdm (attacker) [even]: Take NPCs or kills. Met (yes: a defender killed; yes: an NPC taken)",
+     "mark": "right"
+    },
+    {
+     "play": "8bf4ffae-split-2-516-70",
+     "shown": "hook (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Not met (yes: no pit NPC lost; no: no more defenders die than split players)",
+     "mark": "right"
+    },
+    {
+     "play": "8bf4ffae-split-1-516-69",
+     "shown": "hdm (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-39",
+   "set": "w1p2",
+   "row": 39,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    526,
+    609
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (hook's Ritualist 2); hdm: stay",
+   "mark": "wrong",
+   "said": "runner never leaves fight and he never runs; flag is dropped and returned",
+   "calls": [
+    {
+     "play": "8bf4ffae-flag-1-526-71",
+     "shown": "hdm [stay]: Kill with the extra player while their runner is away. Not met (no: more of theirs die at the main fight than of ours)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "flag",
+      "team": "hdm",
+      "start": [
+       520,
+       532
+      ]
+     },
+     "why": "hdm v hook 8:46: the runner never leaves the fight and never runs; the flag is dropped and returned",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w1p2-8bf4-40",
+   "set": "w1p2",
+   "row": 40,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    562,
+    610
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (7 v 8, hook's pit; then 3 v 4 from 9:50), from kills; hook: retreat down the ladder (fall back into the base)",
+   "mark": "partly",
+   "said": "I read this as a 4v4 front door; hook number 2 joins main fight making it 5v4 front door and 4v2 back door on split; then around 9:50 its back to a 4v4 on split and 4v3 front door",
+   "calls": [
+    {
+     "play": "8bf4ffae-numbers-2-562-73",
+     "shown": "",
+     "mark": "not marked"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-41",
+   "set": "w1p2",
+   "row": 41,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    562,
+    622
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Up on numbers in the main fight (8 v 7, hook's pit; then 4 v 3 from 9:50), from kills; hdm: push their flagger",
+   "mark": "repeat",
+   "calls": [
+    {
+     "play": "8bf4ffae-numbers-1-562-72",
+     "shown": "hdm (up) [push their flagger]: Take ground and NPCs with the numbers. Met (yes: no more of ours die than of theirs; yes: one of their NPCs dies; no: more of theirs die than of ours)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-42",
+   "set": "w1p2",
+   "row": 42,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    570,
+    592
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hdm's split by the back door: 4 players (Air Ele, Fire Ele, Mesmer, 8 Monk) against 2 defending (Ritualist 1, Monk 4)",
+   "mark": "wrong",
+   "said": "see above, there is definitely 4 defending before 9:51",
+   "calls": [
+    {
+     "play": "8bf4ffae-split-1-570-74",
+     "shown": "hdm (attacker) [a player or more up]: Kill or take NPCs. Met (no: a defender killed; yes: an NPC taken)",
+     "mark": "not judged"
+    },
+    {
+     "play": "8bf4ffae-split-2-570-75",
+     "shown": "hook (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Not met (no: no pit NPC lost; yes: no defender dies)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hdm",
+      "at": [
+       572,
+       588
+      ]
+     },
+     "want": {
+      "defenders": 4
+     },
+     "was": "hdm v hook 9:30: four defending before 9:51 (his note on row 40 reads two at the back door for part of it)"
+    }
+   ]
+  },
+  {
+   "id": "w1p2-8bf4-43",
+   "set": "w1p2",
+   "row": 43,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    580,
+    630
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "hdm has 8 in hook's base at the base res (7 defending, 1 coming back): 8 stay",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "8bf4ffae-base_res-1-580-76",
+     "shown": "hdm [stayed through the res]: Be out, or set for the fight, when they res. Met (yes: nobody of ours dies in the 30 s after the res)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-44",
+   "set": "w1p2",
+   "row": 44,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    582,
+    599
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "hdm pushes hook's flagger (Ritualist 2, carrying) with its main team",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "8bf4ffae-push_flagger-1-582-77",
+     "shown": "hdm: Stop their flag, or make it 30% late. Met (yes: their flag is stopped; no: it arrives 30% or more later than usual)",
+     "mark": "right"
+    },
+    {
+     "play": "8bf4ffae-flagger_pushed-2-582-78",
+     "shown": "hook: Get the flag in on time. Not met (no: the flag gets in, less than 30% late)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-45",
+   "set": "w1p2",
+   "row": 45,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    590,
+    630
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hdm's split by the back door: 4 players (Air Ele, Fire Ele, Mesmer, 8 Monk) against 3 defending (Air Ele, Fire Ele, Ritualist 1)",
+   "mark": "wrong",
+   "said": "see above re defenders; becomes a 5v4 (for hook) on split at around 10:31",
+   "calls": [
+    {
+     "play": "8bf4ffae-split-1-590-79",
+     "shown": "hdm (attacker) [a player or more up]: Kill or take NPCs. Not met (no: a defender killed; no: an NPC taken)",
+     "mark": "not judged"
+    },
+    {
+     "play": "8bf4ffae-split-2-590-81",
+     "shown": "hook (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)",
+     "mark": "not judged"
+    },
+    {
+     "play": "8bf4ffae-split-1-590-80",
+     "shown": "hdm (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hdm",
+      "at": [
+       594,
+       626
+      ]
+     },
+     "want": {
+      "defenders": 4
+     },
+     "why": "hdm v hook 9:50: four defending, becoming 5 v 4 for hook at about 10:31",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w1p2-8bf4-46",
+   "set": "w1p2",
+   "row": 46,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    591,
+    626
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "hdm's boost is 30 s away; hook: no runner; the rest fall back into the base",
+   "mark": "right",
+   "said": "this is right, but I don't know if it's a separate measurement from just the regular flagging? not sure",
+   "calls": [
+    {
+     "play": "8bf4ffae-boost-2-591-82",
+     "shown": "hook [run]: Deny their boost. Not met (no: their boost does not land)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-47",
+   "set": "w1p2",
+   "row": 47,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    623,
+    664
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (hook's Ritualist 2); hdm: stay",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "8bf4ffae-flag-1-623-83",
+     "shown": "hdm [stay]: Kill with the extra player while their runner is away. Not met (no: more of theirs die at the main fight than of ours)",
+     "mark": "partly",
+     "said": "maybe we have to add something if the flag actually doesn't get in; then hdm didn't lose anything so they don't have to kill if that makes sense"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "hdm",
+      "start": [
+       618,
+       628
+      ]
+     },
+     "want": {
+      "met": true
+     },
+     "was": "hdm v hook 10:23: the flag does not get in, so hdm lost nothing by staying and does not have to kill"
+    }
+   ]
+  },
+  {
+   "id": "w1p2-8bf4-48",
+   "set": "w1p2",
+   "row": 48,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    628,
+    670
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hdm's split by the back door: 4 players (Air Ele, Fire Ele, Mesmer, 8 Monk) against 5 defending (Air Ele, Fire Ele, Ritualist 1, Dervish, Monk 4)",
+   "mark": "wrong",
+   "said": "5v5, hdm's prot joins split",
+   "calls": [
+    {
+     "play": "8bf4ffae-split-1-628-84",
+     "shown": "hdm (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Not met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "not judged"
+    },
+    {
+     "play": "8bf4ffae-split-2-628-85",
+     "shown": "hook (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Not met (yes: no pit NPC lost; no: a split player dies; no: the split is gone within the visit)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hdm",
+      "at": [
+       634,
+       666
+      ]
+     },
+     "want": {
+      "size": 5,
+      "defenders": 5
+     },
+     "why": "hdm v hook 10:28: 5 v 5, hdm's Prot joins the split",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w1p2-8bf4-49",
+   "set": "w1p2",
+   "row": 49,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    668,
+    708
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hdm's split by the back door: 4 players (Air Ele, 8 Monk, Fire Ele, Mesmer) against 4 defending (Air Ele, Fire Ele, Ritualist 1, Monk 4)",
+   "mark": "not marked",
+   "calls": [
+    {
+     "play": "8bf4ffae-split-1-668-86",
+     "shown": "hdm (attacker) [even]: Take NPCs or kills. Met (yes: a defender killed; yes: an NPC taken)",
+     "mark": "right"
+    },
+    {
+     "play": "8bf4ffae-split-2-668-88",
+     "shown": "hook (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Not met (no: no pit NPC lost; no: no more defenders die than split players)",
+     "mark": "right"
+    },
+    {
+     "play": "8bf4ffae-split-1-668-87",
+     "shown": "hdm (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-50",
+   "set": "w1p2",
+   "row": 50,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    680,
+    730
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (7 v 8, hook's pit; then 6 v 8 from 11:32; then 7 v 8 from 12:00), from kills; hook: retreat down the ladder (retreat to the pit)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "8bf4ffae-numbers-2-680-90",
+     "shown": "hook (down) [retreat down the ladder]: Reach cover a player down without losing another. Not met (no: nobody of ours dies; no: no NPC lost)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-51",
+   "set": "w1p2",
+   "row": 51,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    680,
+    750
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Up on numbers in the main fight (8 v 7, hook's pit; then 8 v 6 from 11:32; then 8 v 7 from 12:00), from kills; hdm: push up (push up to their front door)",
+   "mark": "repeat",
+   "calls": [
+    {
+     "play": "8bf4ffae-numbers-1-680-89",
+     "shown": "hdm (up) [push up]: Take ground and NPCs with the numbers. Met (yes: no more of ours die than of theirs; yes: one of their NPCs dies; yes: more of theirs die than of ours)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-52",
+   "set": "w1p2",
+   "row": 52,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    688,
+    720
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "hook is held in its own base or pit by hdm's main team (K2 A0 B1 alive; base res in 32 s)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "8bf4ffae-pinned-2-688-91",
+     "shown": "",
+     "mark": "not marked"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-53",
+   "set": "w1p2",
+   "row": 53,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    700,
+    750
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "hdm has 8 in hook's base at the base res (6 defending, 2 coming back): 8 stay",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "8bf4ffae-base_res-1-700-92",
+     "shown": "hdm [stayed through the res]: Be out, or set for the fight, when they res. Met (yes: nobody of ours dies in the 30 s after the res)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-54",
+   "set": "w1p2",
+   "row": 54,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    720,
+    748
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "hook is held in its own base or pit by hdm's main team (K1 A0 B1 alive; base res in 120 s)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "8bf4ffae-pinned-2-720-93",
+     "shown": "hook: Hold the NPCs and lose nobody until the base res, or break out. Met (no: no pit NPC lost and nobody dies until the base res; yes: it breaks out (half its living players or more, four at least, out of its base and pit))",
+     "mark": "partly",
+     "said": "\"lose no one until the base res\" only matters if you have people base resing, otherwise it's just \"don't lose people or NPCs\" or break out"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-55",
+   "set": "w1p2",
+   "row": 55,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    756,
+    806
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Up on numbers in the main fight (7 v 6, hook's front door; then 7 v 4 from 12:58; then 5 v 4 from 13:12), from players split elsewhere; hdm: push up (push up to their base) | then 4 v 7 from 12:58; then 4 v 5 from 13:12), from players split elsewhere; hook: retreat down the ladder (retreat to the pit)",
+   "mark": "partly",
+   "said": "turns into a 4v4 at 13:15",
+   "calls": [
+    {
+     "play": "8bf4ffae-numbers-1-756-94",
+     "shown": "hdm (strong side) [push up]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)",
+     "mark": "right"
+    },
+    {
+     "play": "8bf4ffae-numbers-2-756-95",
+     "shown": "hook (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-56",
+   "set": "w1p2",
+   "row": 56,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    758,
+    784
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hook's split by the back door: one player (Dervish) against 0 defending",
+   "mark": "wrong",
+   "said": "through front door",
+   "calls": [
+    {
+     "play": "8bf4ffae-split-2-758-97",
+     "shown": "hook (attacker) [undefended]: Take NPCs. Not met (no: an NPC taken)",
+     "mark": "not judged"
+    },
+    {
+     "play": "8bf4ffae-split-1-758-96",
+     "shown": "hdm (defender) [no answer]: Win elsewhere before the split costs more than it gains. Not met (no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hook",
+      "at": [
+       760,
+       782
+      ]
+     },
+     "want": {
+      "scenario~": "front door"
+     },
+     "why": "hdm v hook 12:38: the Dervish goes by the front door",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w1p2-8bf4-57",
+   "set": "w1p2",
+   "row": 57,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    768,
+    840
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "hook is held in its own base or pit by hdm's main team (K0 A0 B1 alive; base res in 72 s)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "8bf4ffae-pinned-2-768-98",
+     "shown": "hook: Hold the NPCs and lose nobody until the base res, or break out. Met (yes: no pit NPC lost and nobody dies until the base res; yes: it breaks out (half its living players or more, four at least, out of its base and pit))",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-58",
+   "set": "w1p2",
+   "row": 58,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    782,
+    802
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hook's split by the back door: two players (Dervish, Ritualist 1) against 0 defending",
+   "mark": "wrong",
+   "said": "defended by ele",
+   "calls": [
+    {
+     "play": "8bf4ffae-split-2-782-100",
+     "shown": "hook (attacker) [undefended]: Take NPCs. Not met (no: an NPC taken)",
+     "mark": "not judged"
+    },
+    {
+     "play": "8bf4ffae-split-1-782-99",
+     "shown": "hdm (defender) [no answer]: Win elsewhere before the split costs more than it gains. Not met (no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hook",
+      "at": [
+       784,
+       800
+      ]
+     },
+     "want": {
+      "defenders": 1
+     },
+     "was": "hdm v hook 13:02: defended by an ele"
+    }
+   ]
+  },
+  {
+   "id": "w1p2-8bf4-59",
+   "set": "w1p2",
+   "row": 59,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    800,
+    826
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hook's split by the back door: 4 players (Dervish, Ritualist 1, Air Ele, Fire Ele) against 1 defending (Fire Ele)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "8bf4ffae-split-2-800-102",
+     "shown": "hook (attacker) [a player or more up]: Kill or take NPCs. Not met (no: a defender killed; no: an NPC taken)",
+     "mark": "right"
+    },
+    {
+     "play": "8bf4ffae-split-1-800-101",
+     "shown": "hdm (defender) [one defender]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-60",
+   "set": "w1p2",
+   "row": 60,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    824,
+    866
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hook's split by the back door: 4 players (Ritualist 1, Dervish, Air Ele, Fire Ele) against 4 defending (Prot, 8 Monk, Fire Ele, Air Ele)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "8bf4ffae-split-2-824-104",
+     "shown": "hook (attacker) [even]: Take NPCs or kills. Not met (no: a defender killed; no: an NPC taken)",
+     "mark": "right"
+    },
+    {
+     "play": "8bf4ffae-split-1-824-103",
+     "shown": "hdm (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (yes: no pit NPC lost; yes: no more defenders die than split players)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-61",
+   "set": "w1p2",
+   "row": 61,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    840,
+    960
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "hook is held in its own base or pit by hdm's main team (K0 A0 B1 alive; base res in 120 s)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "8bf4ffae-pinned-2-840-105",
+     "shown": "hook: Hold the NPCs and lose nobody until the base res, or break out. Met (no: no pit NPC lost and nobody dies until the base res; yes: it breaks out (half its living players or more, four at least, out of its base and pit))",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-62",
+   "set": "w1p2",
+   "row": 62,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    926,
+    968
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Up on numbers in the main fight (8 v 7, hook's pit; then 6 v 5 from 15:42), from kills; hdm: stay (stay on the enemy's side)",
+   "mark": "partly",
+   "said": "this is basically just a messy/spread out 6v6 then 6v5",
+   "calls": [
+    {
+     "play": "8bf4ffae-numbers-1-926-106",
+     "shown": "",
+     "mark": "not marked"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-63",
+   "set": "w1p2",
+   "row": 63,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    940,
+    990
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "hdm has 6 in hook's base at the base res (5 defending, 1 coming back): 6 stay",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "8bf4ffae-base_res-1-940-107",
+     "shown": "hdm [stayed through the res]: Be out, or set for the fight, when they res. Met (yes: nobody of ours dies in the 30 s after the res)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-64",
+   "set": "w1p2",
+   "row": 64,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    960,
+    1036
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "hook is held in its own base or pit by hdm's main team (K0 A0 B1 alive; base res in 120 s)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "8bf4ffae-pinned-2-960-108",
+     "shown": "hook: Hold the NPCs and lose nobody until the base res, or break out. Met (no: no pit NPC lost and nobody dies until the base res; yes: it breaks out (half its living players or more, four at least, out of its base and pit))",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-65",
+   "set": "w1p2",
+   "row": 65,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    980,
+    996
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hook's split by the front door: three players (Dervish, Ritualist 1, Air Ele) against 2 defending (Prot, 8 Monk); 3 damage against 2 monks",
+   "mark": "partly",
+   "said": "it looks to me like a 1v1 (derv vs ele 2 of hdm) and a 2v2 (hook # 1 and 3 vs hdm # 6 & 8) that end up merging at front door into a 3v3",
+   "calls": [
+    {
+     "play": "8bf4ffae-split-2-980-110",
+     "shown": "",
+     "mark": "not marked"
+    },
+    {
+     "play": "8bf4ffae-split-1-980-109",
+     "shown": "",
+     "mark": "not marked"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-66",
+   "set": "w1p2",
+   "row": 66,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    984,
+    1042
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Up on numbers in the main fight (5 v 4, hook's pit; then 5 v 3 from 16:34; then 5 v 2 from 16:44; then 5 v 1 from 17:04), from players split elsewhere; hdm: stay (stay on the enemy's side)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "8bf4ffae-numbers-1-984-111",
+     "shown": "hdm (strong side) [stay]: Kill with the numbers while their players are away. Met (yes: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-67",
+   "set": "w1p2",
+   "row": 67,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    994,
+    1038
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hook's split by the front door: three players (Ritualist 1, Dervish, Air Ele) against 3 defending (Fire Ele, Prot, 8 Monk); 3 damage against 2 monks",
+   "mark": "repeat",
+   "calls": [
+    {
+     "play": "8bf4ffae-split-2-994-114",
+     "shown": "hook (attacker) [held by monks]: Hold the monks there and lose nobody; NPCs are a bonus (a kill is not expected of it). Not met (no: nobody on the split dies)",
+     "mark": "not judged"
+    },
+    {
+     "play": "8bf4ffae-split-1-994-112",
+     "shown": "hdm (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (yes: no pit NPC lost; yes: no more defenders die than split players)",
+     "mark": "not judged"
+    },
+    {
+     "play": "8bf4ffae-split-1-994-113",
+     "shown": "hdm (defender's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Met (yes: more of theirs die away from the split than of ours)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w1p2-8bf4-missed",
+   "set": "w1p2",
+   "row": 0,
+   "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+   "match": "hdm v hook, Uncharted",
+   "window": [
+    0,
+    0
+   ],
+   "type": "missed",
+   "call": "",
+   "shown": "(what the engine did not read in this game)",
+   "mark": "missed",
+   "said": "rit solo split from hook out back door around 12:40 (not sure when he crosses through); missed collapse from number 1 hook through front door around 14:48, brief 5v3 for hook",
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hook",
+      "at": [
+       750,
+       775
+      ]
+     },
+     "want": {
+      "who~": [
+       "Ritualist"
+      ]
+     },
+     "why": "hdm v hook 12:40: a Ritualist of hook splits solo out of the back door",
+     "open": true
     }
    ]
   }

@@ -25,33 +25,41 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   (`Moments.linked`, `engaged_in`, `visits`), used by the numbers and a split's defenders; a split ends when the rest
   of its team is with it; the flag run's start, the flag in hand, the answer to a run, the double run; the break-out
   test; a part-run is no push on a flagger; the WoC monks are damage. Thresholds in `common.py` are drafts.
-- Now (development set, 42 matches): review key 60 rows pass; the checks from his words that held were made firm,
-  and 16 stay open (`review.py score` lists them): s1-15; w1p1: six numbers moments one out (Men v Apes 2:10, 7:10,
-  8:52, 10:28, 10:57; TFS v 옷옷옷옷 0:43, 8:40), a full collapse read from arrival and not from the turn (1:16 read
-  at 1:28; 9:20 not read: the split fled first), the 5 v 4 in Apes's pit with Men divided in Apes's base, Men's 8
-  Monk's flag at 10:10, the 3 v 2 at 6:58, a flag in hand at 10:13, TFS's run at 3:26.
-  Gate: part one 12 of 12, part two 64 of 105 (61%). Line-up: 421 of 426 and 185 of 186 seen (one lost in each: look
-  at them); comms 108 of 157, 62 of 80. No run over every match and no `thresholds.py` since the rebuild (R-465).
-- Tried and taken out: a full collapse counted from when the main team closes on the split (it read the lone
-  Ritualist at 7:30 of TFS v 옷옷옷옷 as collapsed on, against his row 28). It needs the team's own movement, not
-  the gap between the two.
+- hdm v hook (8bf4ffae), marked 2026-11-14 against engine 67e87b8, was the first measure of the rebuilt reading:
+  situations right 35, partly 7, wrong 16 of 58 judged (7 repeats, 2 unmarked); calls right 50 of 54 where the
+  situation was right. By kind, right of judged: pinned 6 of 6, push flagger 4 of 4, base res 4 of 4, boost 2 of 2,
+  flag 3 of 5, numbers 5 of 13, split 11 of 24. Filed as set w1p2 with 20 checks from his words. He then chose to
+  build from it (R-467): Men v Crew (51683de9) is the hidden game, 옷옷옷옷 v RACK (a8ba43a8) the spare.
+- Built from w1p2: a numbers moment needs a fight (casts and attacks, `FOUGHT`); the kill in the main fight asked
+  only where the damage can kill against the monks there; a flag never carried out of its base is no run; the flag
+  decision told once, from the side that ran second; staying is met when their flag fails (R-468); a kill at a phase
+  boundary credited to the phase it ended; the pinned clock with nobody dead; numbers rows grouped by their start.
+- Now (development set, 42 matches): review key 80 rows pass. Open checks: w1p2 13 of 20 (six are defender counts in
+  the long 4 v 4 split fight of hdm v hook; three numbers; two flags; a door; a missed solo split), w1p1 15, s1-15.
+  Gate: part one 12 of 12, part two 63 of 105 (60%, at his mark). Line-up: 421 of 426 and 185 of 186 seen; comms 108
+  of 157, 62 of 80. No run over every match and no `thresholds.py` since the rebuild (R-465).
+- Tried and taken out: a full collapse counted from the main team closing on the split (broke his row 28 of TFS v
+  옷옷옷옷); a defender kept counted while he kites out of reach (changed nothing in hdm v hook, broke that same row).
+  Traced: at 9:30 of hdm v hook two of hook's four defenders stand 2,700 to 3,900 from the split for 16 s, which is
+  his own note on row 40 ("4 v 2 back door") and not his mark on row 42 ("definitely 4 defending").
 - The page: calls under a situation he marks wrong or a repeat are not asked for; Repeat is a mark.
 
 ## Next (in order; REDESIGN.md "Build plan from here", item 6, and "Tests")
-1. Part 2 is out on the site (written 2026-11-13 from engine 67e87b8: hdm v hook 8bf4ffae, Men v Crew 51683de9).
-   Change nothing in the reading until he has marked it. Then read `game_review_marks.json`, file his marks in the
-   review key as set w1p2, and give him the accuracy by kind of play (situations, and calls where the situation was
-   right); he sets the mark a kind must pass. 옷옷옷옷 v RACK (a8ba43a8) is the spare: never look at its rows.
-2. The open checks by the same method (R-465); the line-up's two lost statements.
+1. His answer on how a long split fight is told (open item 1), then build it; then the remaining open checks.
+2. Round 3: pull two or three more games (October and November, top guilds, no earlier test, no Shadow of Haste,
+   halls and styles unlike the three marked), add them to `dev_set.json`, export them as their own part, and have
+   him mark them. Never export or look at Men v Crew or 옷옷옷옷 v RACK before the final measure.
 3. The flag family to the end (R-451) once the flag plays pass; the other kinds as each passes; then stage E.
 
-## Open for Denning (put to him 2026-11-13, night; set each out in the chat again, R-329, with replay links)
-1. Part 2 to mark on the site (he said to write it now).
-2. TFS v 옷옷옷옷 3:26 (https://gvg.report/report/bdaa145f-1471-57b3-ab2f-a04f090b7abb#map): under R-466 TFS's run
-   is still not met: three TFS deaths at the main fight (7 Monk 3:46, Mes/A 5:09, Warrior 5:20) to none. Is "not met"
-   right, or is a run that gets in a success whatever it cost?
-3. The four draft numbers of the fight reading (1,600 reach, 2,100 hold, 2,600 acting, 1,000 joined) and the two
-   flag ones (20 s kept at home, 30 s for a double run): confirm, or say what looks wrong.
+## Open for Denning (put to him 2026-11-14; set each out in the chat again, R-329, with replay links)
+1. A long split fight (hdm v hook 5:56 to 11:48, https://gvg.report/report/8bf4ffae-780e-535e-aa7b-44027b0fa6cc#map):
+   the engine tells it as 15 phases with the defenders counted each time; he reads one 4 v 4 ("still the same
+   split"). Tell a split fight once, with its numbers and each change beside it, as a numbers moment is told?
+2. The same stretch, 5:52 to 7:24: he reads hook's run as a double run and hdm's as a single. In the replay both
+   second runners take the next flag 17 to 19 s after the cap. What tells them apart?
+3. Round 3: how many games, and the mark at which a fresh game reads well enough to go to the hidden games.
+4. TFS v 옷옷옷옷 3:26 (https://gvg.report/report/bdaa145f-1471-57b3-ab2f-a04f090b7abb#map): still not met under
+   R-466 (three TFS deaths at the main fight to none). Right?
 - Drafts: numbers from kills; a split with no answer; "held by monks"; the Lord push's aim; thresholds marked
   "Claude's draft". Not built: shadow with a snare; the two-monk spike build after a wipe. Maps: `tools/maps/`.
 

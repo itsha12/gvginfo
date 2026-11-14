@@ -67,6 +67,11 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   a double run needs the second runner to take the next flag within 30 s of the cap; a flag put down for good ends its
   run there, and at a hall's second flag stand (the Obelisk flag stand on Meditation, his answer) that is a cap of it.
 - A flag run's job counts only deaths at the main fight: deaths out on a split are the split's own (R-466, R-443).
+  Staying against a run is also met when their flag does not get in (R-468). The flag decision is told once, from the
+  side that ran second (his mark, hdm v hook 7:07). A flag never carried out of its own base and pit is not a run.
+- A numbers difference is a moment only where that fight is being fought (*draft:* its players start more than 0.7
+  casts or attacks each in 10 s), and the kill is asked of the side up on numbers only where its damage can kill
+  against the monks there (R-457; his marks, hdm v hook 4:12, 6:52).
 
 ## Splits
 - A solo split is one player through the back or an unusual route at the enemy's pit or NPCs; three or four go for the
