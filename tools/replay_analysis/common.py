@@ -194,8 +194,8 @@ SOH_REMOVED = "2026-10-22"       # the Shadow of Haste flag mechanic left the ga
 # when a flag run's moment is (R-461): a runner who sets off from inside the greater stand area goes to run when he leaves the greater stand area on these halls ...
 FLAG_MOMENT_GREATER = ("Corrupted Isle", "Isle of Meditation", "Isle of Weeping Stone", "Nomad's Isle", "Frozen Isle")
 # ... and when he leaves the flag stand area itself on these; anywhere else, and on a hall in neither list, it is when he sets off
-FLAG_MOMENT_STAND = ("Druid's Isle", "Isle of Jade", "Isle of Solitude", "Imperial Isle", "Warrior's Isle", "Isle of the Dead", "Isle of Wurms", "Burning Isle")
-FLAG_MOMENT_OPEN = ("Uncharted Isle",)   # he named it in both lists: read as setting off until he says which (counted in the output of `moments.py all`)
+FLAG_MOMENT_STAND = ("Druid's Isle", "Isle of Jade", "Isle of Solitude", "Imperial Isle", "Warrior's Isle", "Isle of the Dead", "Isle of Wurms", "Burning Isle", "Uncharted Isle")
+FLAG_MOMENT_OPEN = ()                    # a hall in neither list is read as setting off and counted in the output of `moments.py all` (Uncharted, first named in both, is by the stand area: R-463)
 PINNED_S = 20                   # pinned: a main team in its own base or pit with the enemy's main team on its ground this long (Claude's draft)
 LORD_PUSH_FROM = 23 * 60 + 30   # a push on the Guild Lord is its own moment from about 23:30 (R-435)
 LORD_BASE_R = 2600              # a Lord push counts the players on the enemy's ground within this of the Lord: the base, not only next to him (R-446; the distance is Claude's draft)

@@ -313,8 +313,9 @@ def split_plays(M, K):
             main = {"own": [len(ma) - sum(map(is_monk, ma)), sum(map(is_monk, ma))], "theirs": [len(mdn) - sum(map(is_monk, mdn)), sum(map(is_monk, mdn))]}      # [damage, monks] of each main team's fight, the split and its defenders left out
             kills = can_kill(dmg_s, md)                                    # damage against the monks defending (R-457: 2+ against one, 4+ against two, 5+ against three; three are not expected to kill two)
             main_can = [can_kill(main["own"][0], main["theirs"][1]), can_kill(main["theirs"][0], main["own"][1])]      # at the main fight, each side's damage against the other's monks
-            main_kills = main_can[0] and not main_can[1]                   # the job to kill goes to a side that meets its ratio while the other does not (R-457)
-            main_killed = main_can[1] and not main_can[0]
+            no_monk = [main["theirs"][1] == 0, main["own"][1] == 0]         # the other side has no backline monk at the main fight
+            main_kills = main_can[0] and (not main_can[1] or no_monk[0])    # the job to kill goes to a side that meets its ratio while the other does not (R-457), and always to a side facing no monk (R-462: ohno v Fun 11:10)
+            main_killed = main_can[1] and (not main_can[0] or no_monk[1])
             # a collapse (R-429, R-441): players come from their main fight, the defence becomes at least one more than the split, and they go back
             new = [b for b in Dp if b not in prevD]
             def from_main(b):                             # he stood with his main team, away from home, in the 45 s before he arrived
@@ -351,7 +352,7 @@ def split_plays(M, K):
             at_main = lambda own, theirs: f"; at the main fight {main[own][0]} damage against {main[theirs][1]} monk{'s' if main[theirs][1] != 1 else ''}, and theirs {main[theirs][0]} against {main[own][1]}"
             if not (full or collapse) and n and main_kills:
                 out.append(_play(M, "split", "attacker's main team", tm, p0, e1, [], scen_a + at_main("own", "theirs"),
-                                 "Kill at the main fight: its damage can kill against their monks there, and theirs cannot", {"more of theirs die away from the split than of ours": away_d > away_a}, beside=besA, answer="the main fight can kill", **kw))
+                                 "Kill at the main fight: " + ("they have no monk there" if no_monk[0] else "its damage can kill against their monks there, and theirs cannot"), {"more of theirs die away from the split than of ours": away_d > away_a}, beside=besA, answer="the main fight can kill", **kw))
             # the defender's side
             scen_d = f"{m.tag[foe]} against {base}: {n} ({', '.join(whoD)}) against {size}" if n else f"{m.tag[foe]} against {base}: nobody against {size}"
             pit_ok = {"no pit NPC lost": n_pit == 0}
@@ -375,7 +376,7 @@ def split_plays(M, K):
                                  any_of={"a split player dies": n_lost > 0, "the split is gone within the visit": last and short}, beside=besD, call="add one", **kw))
             if not (full or collapse) and n and main_killed:               # the same job from the defenders' side (R-457)
                 out.append(_play(M, "split", "defender's main team", foe, p0, e1, [], scen_d + at_main("theirs", "own"),
-                                 "Kill at the main fight: its damage can kill against their monks there, and theirs cannot", {"more of theirs die away from the split than of ours": away_a > away_d}, beside=besD, call="the main fight can kill", **kw))
+                                 "Kill at the main fight: " + ("they have no monk there" if no_monk[1] else "its damage can kill against their monks there, and theirs cannot"), {"more of theirs die away from the split than of ours": away_a > away_d}, beside=besD, call="the main fight can kill", **kw))
             if k == 1 and n == 1 and not collapse:                         # a lone defender part-running his flag (R-430)
                 b = Dp[0]
                 carried = sum(S_ for u in range(max(p0 - JOIN_S, 0), p1 + 1, S_) if M.carrying(b, u))      # from when he got there: he counts as the defender only JOIN_S later (review key s1-28)
