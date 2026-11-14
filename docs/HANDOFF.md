@@ -38,14 +38,15 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 - The page: calls under a situation he marks wrong or a repeat are not asked for; Repeat is a mark.
 
 ## Next (in order; REDESIGN.md "Build plan from here", item 6, and "Tests")
-1. His answer on part 2: write it now (`review.py export <file> <main>/data/model/game_reviews.json --part 2`: hdm v
-   hook 8bf4ffae, Men v Crew 51683de9; change nothing in the reading until he has marked it), or work on the 16 open
-   checks first. 옷옷옷옷 v RACK (a8ba43a8) is the spare: never look at its rows.
+1. Part 2 is out on the site (written 2026-11-13 from engine 67e87b8: hdm v hook 8bf4ffae, Men v Crew 51683de9).
+   Change nothing in the reading until he has marked it. Then read `game_review_marks.json`, file his marks in the
+   review key as set w1p2, and give him the accuracy by kind of play (situations, and calls where the situation was
+   right); he sets the mark a kind must pass. 옷옷옷옷 v RACK (a8ba43a8) is the spare: never look at its rows.
 2. The open checks by the same method (R-465); the line-up's two lost statements.
 3. The flag family to the end (R-451) once the flag plays pass; the other kinds as each passes; then stage E.
 
 ## Open for Denning (put to him 2026-11-13, night; set each out in the chat again, R-329, with replay links)
-1. Part 2 now, or more fixing first? Claude recommends now: most of what is open needs his eyes anyway.
+1. Part 2 to mark on the site (he said to write it now).
 2. TFS v 옷옷옷옷 3:26 (https://gvg.report/report/bdaa145f-1471-57b3-ab2f-a04f090b7abb#map): under R-466 TFS's run
    is still not met: three TFS deaths at the main fight (7 Monk 3:46, Mes/A 5:09, Warrior 5:20) to none. Is "not met"
    right, or is a run that gets in a success whatever it cost?
