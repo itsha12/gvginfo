@@ -1616,8 +1616,7 @@
      "want": {
       "met": true
      },
-     "open": true,
-     "why": "TFS v 옷옷옷옷 3:26: TFS's single run succeeded; the engine said its flag was not capped"
+     "was": "TFS v 옷옷옷옷 3:26: TFS's single run succeeded; the engine said its flag was not capped; held from 2026-11-14 once a run is judged from the decision to run to its cap (R-471)"
     }
    ],
    "answered": {
@@ -1625,6 +1624,12 @@
     "asked": "The flag job's 'lose no more players than they do': count only deaths at the main fight, or none?",
     "said": "Go with your recommendation.",
     "reading": "R-466: only deaths at the main fight count."
+   },
+   "answered2": {
+    "on": "2026-11-14",
+    "asked": "Is \"not met\" right for a run that got in but cost three players at the main fight?",
+    "said": "In this timing, I don't associate the cap with the deaths. TFS's decision to run the flag, they pick up around 1:20, they cap the flag succesfully without taking any deaths. At this point, they have another decision to run another flag, retreat to base, etc. etc. They chose to run to front door whilst the number 5 rit picks up another flag to run to obelisk stand. Mainteam takes 3 deaths near flag stand. Essentially, I see this as a successful first cap, no pressure and no deaths, but then they made a bad decision to run front door after the cap. That is a different decision.",
+    "reading": "R-471: a run is judged from the decision to run to its cap; what follows the cap is another decision."
    }
   },
   {
@@ -4784,10 +4789,15 @@
        "their": "double run"
       }
      },
-     "why": "hdm v hook 5:52: hdm ran one flag in this time, a single run",
-     "open": true
+     "was": "hdm v hook 5:52: hdm ran one flag in this time, a single run; held from 2026-11-14 once a player home from a split who picks up the next flag is no second runner (R-472)"
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-14",
+    "asked": "What tells hook's double run from hdm's single run at 5:52 to 7:24?",
+    "said": "at 5:13, hdm derv caps a flag, and then on his own, runs all the way back to flag spawn, picks it up at 6:13, at caps at 7:25. This is a classic single run, no one else is involve. hooks #7 goes back for a flag around 6:07, caps flag at 7:11, and then mesmer of hook is ALREADY on the way to run the next flag, essentially being able to pick up the flag faster than hook's #7 ever could because he is going back towards the flag spawn right after #7 caps. those two flag plays from hook involve two people and gained flag time by sacrificing a bit of player time. I see this as a double run, full run though it's not the clearest example.",
+    "reading": "R-472: a double run takes a second player who goes back to run the next flag. hdm's next flag was picked up by its Ritualist, who was home from the split (on it from 6:52 to 7:10), not sent back to run: Claude's reading of why the engine had called hdm's a double."
+   }
   },
   {
    "id": "w1p2-8bf4-20",

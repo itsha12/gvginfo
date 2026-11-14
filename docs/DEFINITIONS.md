@@ -28,9 +28,11 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - Each team has one flag. A pickup held about 3 s is not a run (R-339). A hold is a flag kept in hand, or left at the
   spawn, rather than run or capped: 45 s in the stand or the greater stand area while the enemy holds the stand (R-400,
   R-407).
-- A double run is never two players sent to the spawn together; its three forms are in R-305. A hand-off and a double
-  run are told apart afterwards, by what the players go on to do (R-340); in the flag grid a hand-off counts as a
-  single run (R-426).
+- A double run is never two players sent to the spawn together; its three forms are in R-305. It takes a second player
+  who goes back to run the next flag while the first is still capping; a runner who caps and goes back himself is a
+  single run, and a player home from a split who picks up the next flag is no second runner (R-472). A hand-off and a
+  double run are told apart afterwards, by what the players go on to do (R-340); in the flag grid a hand-off counts
+  as a single run (R-426).
 - Flag lead is a tally in which the stand counts as one flag: about half a flag from 0.35, a flag from 0.8, a flag and
   a half from 1.3, two flags from 1.7 (R-408, in his units of R-375). Flag position is never judged from who holds the
   stand (R-045). A lead is something a team keeps or gives up for something else (R-412). The runner's cost is no fixed
@@ -66,6 +68,9 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   stand area; the answer to a run is the flag already on its way if it goes on to be capped, else the run set off for;
   a double run needs the second runner to take the next flag within 30 s of the cap; a flag put down for good ends its
   run there, and at a hall's second flag stand (the Obelisk flag stand on Meditation, his answer) that is a cap of it.
+- A flag run is judged from the decision to run to its cap: what the team does after the cap is another decision, and
+  its cost is not the run's (R-471; *as built, Claude's reading:* the flag test is no worse than half a flag behind at
+  the end, or no further behind than at the start).
 - A flag run's job counts only deaths at the main fight: deaths out on a split are the split's own (R-466, R-443).
   Staying against a run is also met when their flag does not get in (R-468). The flag decision is told once, from the
   side that ran second (his mark, hdm v hook 7:07). A flag never carried out of its own base and pit is not a run.

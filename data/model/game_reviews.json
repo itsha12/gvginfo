@@ -1,7 +1,7 @@
 {
  "about": "The rows of Model > Game review (R-454, R-455): every situation the engine reads in each review game, written by tools/golden/review.py export on the engine branch. His marks are in game_review_marks.json, never here.",
- "generated": "2026-11-13",
- "engine": "67e87b8",
+ "generated": "2026-11-14",
+ "engine": "b025445",
  "games": [
   {
    "set": "w1",
@@ -6507,27 +6507,168 @@
    ]
   },
   {
-   "set": "w1",
-   "part": 2,
-   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "set": "w2",
+   "part": 1,
+   "label": "round 3",
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a",
    "teams": [
-    "Men",
-    "Crew"
+    "hook",
+    "hold"
    ],
-   "map": "Isle of Jade",
-   "date": "2026-10-02",
+   "map": "Nomad's Isle",
+   "date": "2026-11-01",
    "situations": [
     {
      "n": 1,
-     "id": "s:51683de9-numbers-1-142-0",
+     "id": "s:4629b08c-numbers-1-10-0",
      "kind": "numbers",
-     "t0": 142,
-     "t1": 184,
-     "reads": "Down on numbers in the main fight (7 v 8, the greater stand area), from kills; Men: stay (stay at the stand) | Crew: stay (stay at the stand)",
+     "t0": 10,
+     "t1": 46,
+     "reads": "Down on numbers in the main fight (7 v 8, the greater stand area; then 7 v 8 from 0:26), from a runner away; hook: retreat down the ladder (fall back into the base)",
      "calls": [
       {
-       "id": "51683de9-numbers-1-142-0",
-       "team": "Men",
+       "id": "4629b08c-numbers-1-10-0",
+       "team": "hook",
+       "side": "down",
+       "label": "retreat down the ladder",
+       "job": "Reach cover a player down without losing another",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ],
+        [
+         true,
+         "no NPC lost"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "id": "s:4629b08c-flag-2-25-1",
+     "kind": "flag",
+     "t0": 25,
+     "t1": 101,
+     "reads": "They single run (hook's Necromancer); hold: stay",
+     "calls": [
+      {
+       "id": "4629b08c-flag-2-25-1",
+       "team": "hold",
+       "side": "",
+       "label": "stay",
+       "job": "Kill with the extra player while their runner is away, or their flag does not get in",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die at the main fight than of ours"
+        ],
+        [
+         false,
+         "their flag does not get in"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "id": "s:4629b08c-numbers-1-38-2",
+     "kind": "numbers",
+     "t0": 38,
+     "t1": 62,
+     "reads": "Up on numbers in the main fight (8 v 7, the greater stand area), from a runner away; hook: retreat down the ladder (fall back into the base)",
+     "calls": [
+      {
+       "id": "4629b08c-numbers-1-38-2",
+       "team": "hook",
+       "side": "up",
+       "label": "retreat down the ladder",
+       "job": "Reset without giving anything back",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ],
+        [
+         true,
+         "no NPC lost"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 4,
+     "id": "s:4629b08c-flag-1-101-3",
+     "kind": "flag",
+     "t0": 101,
+     "t1": 185,
+     "reads": "They single run (hold's Air Ele); hook: single run",
+     "calls": [
+      {
+       "id": "4629b08c-flag-1-101-3",
+       "team": "hook",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ],
+        [
+         false,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         true,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 5,
+     "id": "s:4629b08c-numbers-1-136-4",
+     "kind": "numbers",
+     "t0": 136,
+     "t1": 166,
+     "reads": "Up on numbers in the main fight (8 v 7, the greater stand area), from a runner away; hook: stay (stay at the stand) | hold: stay (stay at the stand)",
+     "calls": [
+      {
+       "id": "4629b08c-numbers-1-136-4",
+       "team": "hook",
+       "side": "up",
+       "label": "stay",
+       "job": "Turn the extra player into a kill before the numbers are level",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "4629b08c-numbers-2-136-5",
+       "team": "hold",
        "side": "down",
        "label": "stay",
        "job": "Hold the ground a player down and lose no more until it is level, or the base res",
@@ -6540,196 +6681,52 @@
        ],
        "any": false,
        "draft": true
-      },
-      {
-       "id": "51683de9-numbers-2-142-1",
-       "team": "Crew",
-       "side": "up",
-       "label": "stay",
-       "job": "Turn the extra player into a kill before the numbers are level",
-       "met": false,
-       "tests": [
-        [
-         false,
-         "more of theirs die than of ours"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      }
-     ]
-    },
-    {
-     "n": 2,
-     "id": "s:51683de9-numbers-1-218-2",
-     "kind": "numbers",
-     "t0": 218,
-     "t1": 280,
-     "reads": "Down on numbers in the main fight (7 v 8, the greater stand area; then 5 v 8 from 3:42; then 6 v 8 from 3:50; then 5 v 8 from 4:08), from players split elsewhere; Men: stay (stay at the stand) | then 8 v 5 from 3:42; then 8 v 6 from 3:50; then 8 v 5 from 4:08), from players split elsewhere; Crew: stay (stay at the stand)",
-     "calls": [
-      {
-       "id": "51683de9-numbers-1-218-2",
-       "team": "Men",
-       "side": "weak side",
-       "label": "stay",
-       "job": "No deaths, keep them busy, do not chase",
-       "met": false,
-       "tests": [
-        [
-         false,
-         "nobody of ours dies"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      },
-      {
-       "id": "51683de9-numbers-2-218-3",
-       "team": "Crew",
-       "side": "strong side",
-       "label": "stay",
-       "job": "Kill with the numbers while their players are away",
-       "met": true,
-       "tests": [
-        [
-         true,
-         "more of theirs die than of ours"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      }
-     ]
-    },
-    {
-     "n": 3,
-     "id": "s:51683de9-flag-2-241-4",
-     "kind": "flag",
-     "t0": 241,
-     "t1": 268,
-     "reads": "They single run (Men's AoB Derv); Crew: stay",
-     "calls": [
-      {
-       "id": "51683de9-flag-2-241-4",
-       "team": "Crew",
-       "side": "",
-       "label": "stay",
-       "job": "Kill with the extra player while their runner is away",
-       "met": true,
-       "tests": [
-        [
-         true,
-         "more of theirs die at the main fight than of ours"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      }
-     ]
-    },
-    {
-     "n": 4,
-     "id": "s:51683de9-boost-1-283-5",
-     "kind": "boost",
-     "t0": 283,
-     "t1": 318,
-     "reads": "Crew's boost is 30 s away; Men: two runners; the rest fall to footmen",
-     "calls": [
-      {
-       "id": "51683de9-boost-1-283-5",
-       "team": "Men",
-       "side": "",
-       "label": "run",
-       "job": "Deny their boost",
-       "met": false,
-       "tests": [
-        [
-         false,
-         "their boost does not land"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      }
-     ]
-    },
-    {
-     "n": 5,
-     "id": "s:51683de9-flag-2-293-6",
-     "kind": "flag",
-     "t0": 293,
-     "t1": 473,
-     "reads": "They double run (Men's Ranger); Crew: single run",
-     "calls": [
-      {
-       "id": "51683de9-flag-2-293-6",
-       "team": "Crew",
-       "side": "",
-       "label": "single run",
-       "job": "Kill or take ground with the extra player, and end no worse than a flag behind",
-       "met": true,
-       "tests": [
-        [
-         true,
-         "no worse than a flag behind at the end"
-        ],
-        [
-         false,
-         "more of theirs die at the main fight than of ours"
-        ],
-        [
-         false,
-         "ground taken"
-        ],
-        [
-         true,
-         "one of their NPCs dies"
-        ]
-       ],
-       "any": false,
-       "draft": false
       }
      ]
     },
     {
      "n": 6,
-     "id": "s:51683de9-numbers-1-330-7",
-     "kind": "numbers",
-     "t0": 330,
-     "t1": 368,
-     "reads": "Down on numbers in the main fight (6 v 8, the greater stand area), from kills; Men: retreat down the ladder (fall to footmen) | Crew: stay (stay at the stand)",
+     "id": "s:4629b08c-push_flagger-2-162-7",
+     "kind": "push flagger",
+     "t0": 162,
+     "t1": 185,
+     "reads": "hold pushes hook's flagger (Necromancer, carrying) with one player",
      "calls": [
       {
-       "id": "51683de9-numbers-1-330-7",
-       "team": "Men",
-       "side": "down",
-       "label": "retreat down the ladder",
-       "job": "Reach cover a player down without losing another",
-       "met": false,
+       "id": "4629b08c-push_flagger-2-162-7",
+       "team": "hold",
+       "side": "",
+       "label": "",
+       "job": "Stop their flag, or make it 30% late",
+       "met": true,
        "tests": [
         [
-         true,
-         "nobody of ours dies"
+         false,
+         "their flag is stopped"
         ],
         [
-         false,
-         "no NPC lost"
+         true,
+         "it arrives 30% or more later than usual"
         ]
        ],
-       "any": false,
-       "draft": true
+       "any": true,
+       "draft": false
       },
       {
-       "id": "51683de9-numbers-2-330-8",
-       "team": "Crew",
-       "side": "up",
-       "label": "stay",
-       "job": "Turn the extra player into a kill before the numbers are level",
+       "id": "4629b08c-flagger_pushed-1-162-6",
+       "team": "hook",
+       "side": "",
+       "label": "",
+       "job": "Get the flag in on time, without losing a player for the help sent",
        "met": false,
        "tests": [
         [
          false,
-         "more of theirs die than of ours"
+         "the flag gets in, less than 30% late"
+        ],
+        [
+         true,
+         "nobody else of ours dies meanwhile"
         ]
        ],
        "any": false,
@@ -6739,39 +6736,43 @@
     },
     {
      "n": 7,
-     "id": "s:51683de9-numbers-1-400-9",
-     "kind": "numbers",
-     "t0": 400,
-     "t1": 430,
-     "reads": "Down on numbers in the main fight (1 v 8, the flag stand; then 6 v 8 from 6:44), from players split elsewhere; Men: stay (stay at the stand) | then 8 v 6 from 6:44), from players split elsewhere; Crew: stay (stay at the stand)",
+     "id": "s:4629b08c-push_flagger-1-170-8",
+     "kind": "push flagger",
+     "t0": 170,
+     "t1": 256,
+     "reads": "hook pushes hold's flagger (Ritualist, going back) with one player",
      "calls": [
       {
-       "id": "51683de9-numbers-1-400-9",
-       "team": "Men",
-       "side": "weak side",
-       "label": "stay",
-       "job": "No deaths, keep them busy, do not chase",
-       "met": true,
-       "tests": [
-        [
-         true,
-         "nobody of ours dies"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      },
-      {
-       "id": "51683de9-numbers-2-400-10",
-       "team": "Crew",
-       "side": "strong side",
-       "label": "stay",
-       "job": "Kill with the numbers while their players are away",
+       "id": "4629b08c-push_flagger-1-170-8",
+       "team": "hook",
+       "side": "",
+       "label": "",
+       "job": "Stop their flag, or make it 30% late",
        "met": false,
        "tests": [
         [
          false,
-         "more of theirs die than of ours"
+         "their flag is stopped"
+        ],
+        [
+         false,
+         "it arrives 30% or more later than usual"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "4629b08c-flagger_pushed-2-170-9",
+       "team": "hold",
+       "side": "",
+       "label": "",
+       "job": "Get the flag in on time",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "the flag gets in, less than 30% late"
         ]
        ],
        "any": false,
@@ -6781,23 +6782,31 @@
     },
     {
      "n": 8,
-     "id": "s:51683de9-boost-1-403-11",
-     "kind": "boost",
-     "t0": 403,
-     "t1": 438,
-     "reads": "Crew's boost is 30 s away; Men: one runner; the rest stay at the stand",
+     "id": "s:4629b08c-flag-1-192-10",
+     "kind": "flag",
+     "t0": 192,
+     "t1": 291,
+     "reads": "They single run (hold's Ritualist); hook: single run",
      "calls": [
       {
-       "id": "51683de9-boost-1-403-11",
-       "team": "Men",
+       "id": "4629b08c-flag-1-192-10",
+       "team": "hook",
        "side": "",
-       "label": "run",
-       "job": "Deny their boost",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
        "met": false,
        "tests": [
         [
          false,
-         "their boost does not land"
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         false,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
         ]
        ],
        "any": false,
@@ -6807,303 +6816,15 @@
     },
     {
      "n": 9,
-     "id": "s:51683de9-numbers-1-498-12",
-     "kind": "numbers",
-     "t0": 498,
-     "t1": 522,
-     "reads": "Down on numbers in the main fight (6 v 7, the flag stand), from players split elsewhere; Men: stay (stay at the stand) | Crew: stay (stay at the stand)",
-     "calls": [
-      {
-       "id": "51683de9-numbers-1-498-12",
-       "team": "Men",
-       "side": "weak side",
-       "label": "stay",
-       "job": "No deaths, keep them busy, do not chase",
-       "met": true,
-       "tests": [
-        [
-         true,
-         "nobody of ours dies"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      },
-      {
-       "id": "51683de9-numbers-2-498-13",
-       "team": "Crew",
-       "side": "strong side",
-       "label": "stay",
-       "job": "Kill with the numbers while their players are away",
-       "met": false,
-       "tests": [
-        [
-         false,
-         "more of theirs die than of ours"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      }
-     ]
-    },
-    {
-     "n": 10,
-     "id": "s:51683de9-boost-1-523-14",
-     "kind": "boost",
-     "t0": 523,
-     "t1": 558,
-     "reads": "Crew's boost is 30 s away; Men: one runner; the rest stay at the stand",
-     "calls": [
-      {
-       "id": "51683de9-boost-1-523-14",
-       "team": "Men",
-       "side": "",
-       "label": "run",
-       "job": "Deny their boost",
-       "met": false,
-       "tests": [
-        [
-         false,
-         "their boost does not land"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      }
-     ]
-    },
-    {
-     "n": 11,
-     "id": "s:51683de9-numbers-1-538-15",
-     "kind": "numbers",
-     "t0": 538,
-     "t1": 560,
-     "reads": "Down on numbers in the main fight (1 v 8, the flag stand; then 2 v 8 from 9:02), from players split elsewhere; Men: stay (stay at the stand) | then 8 v 2 from 9:02), from players split elsewhere; Crew: stay (stay at the stand)",
-     "calls": [
-      {
-       "id": "51683de9-numbers-1-538-15",
-       "team": "Men",
-       "side": "weak side",
-       "label": "stay",
-       "job": "No deaths, keep them busy, do not chase",
-       "met": true,
-       "tests": [
-        [
-         true,
-         "nobody of ours dies"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      },
-      {
-       "id": "51683de9-numbers-2-538-16",
-       "team": "Crew",
-       "side": "strong side",
-       "label": "stay",
-       "job": "Kill with the numbers while their players are away",
-       "met": false,
-       "tests": [
-        [
-         false,
-         "more of theirs die than of ours"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      }
-     ]
-    },
-    {
-     "n": 12,
-     "id": "s:51683de9-numbers-1-574-17",
-     "kind": "numbers",
-     "t0": 574,
-     "t1": 600,
-     "reads": "Down on numbers in the main fight (7 v 8, the flag stand; then 7 v 8 from 9:44), from players split elsewhere; Men: retreat down the ladder (fall to footmen) | then 8 v 7 from 9:44), from players split elsewhere; Crew: stay (stay at the stand)",
-     "calls": [
-      {
-       "id": "51683de9-numbers-1-574-17",
-       "team": "Men",
-       "side": "weak side",
-       "label": "retreat down the ladder",
-       "job": "No deaths, keep them busy, do not chase",
-       "met": true,
-       "tests": [
-        [
-         true,
-         "nobody of ours dies"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      },
-      {
-       "id": "51683de9-numbers-2-574-18",
-       "team": "Crew",
-       "side": "strong side",
-       "label": "stay",
-       "job": "Kill with the numbers while their players are away",
-       "met": false,
-       "tests": [
-        [
-         false,
-         "more of theirs die than of ours"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      }
-     ]
-    },
-    {
-     "n": 13,
-     "id": "s:51683de9-numbers-1-616-19",
-     "kind": "numbers",
-     "t0": 616,
-     "t1": 644,
-     "reads": "Down on numbers in the main fight (1 v 8, the flag stand), from players split elsewhere; Men: stay (stay at the stand) | Crew: stay (stay at the stand)",
-     "calls": [
-      {
-       "id": "51683de9-numbers-1-616-19",
-       "team": "Men",
-       "side": "weak side",
-       "label": "stay",
-       "job": "No deaths, keep them busy, do not chase",
-       "met": true,
-       "tests": [
-        [
-         true,
-         "nobody of ours dies"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      },
-      {
-       "id": "51683de9-numbers-2-616-20",
-       "team": "Crew",
-       "side": "strong side",
-       "label": "stay",
-       "job": "Kill with the numbers while their players are away",
-       "met": false,
-       "tests": [
-        [
-         false,
-         "more of theirs die than of ours"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      }
-     ]
-    },
-    {
-     "n": 14,
-     "id": "s:51683de9-boost-1-643-21",
-     "kind": "boost",
-     "t0": 643,
-     "t1": 678,
-     "reads": "Crew's boost is 30 s away; Men: one runner; the rest fall to footmen",
-     "calls": [
-      {
-       "id": "51683de9-boost-1-643-21",
-       "team": "Men",
-       "side": "",
-       "label": "run",
-       "job": "Deny their boost",
-       "met": false,
-       "tests": [
-        [
-         false,
-         "their boost does not land"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      }
-     ]
-    },
-    {
-     "n": 15,
-     "id": "s:51683de9-flag-1-692-22",
+     "id": "s:4629b08c-flag-2-250-11",
      "kind": "flag",
-     "t0": 692,
-     "t1": 872,
-     "reads": "They single run (Crew's Water Ele); Men: single run",
+     "t0": 250,
+     "t1": 306,
+     "reads": "They single run (hook's Mes/A); hold: a flag already in hand",
      "calls": [
       {
-       "id": "51683de9-flag-1-692-22",
-       "team": "Men",
-       "side": "",
-       "label": "single run",
-       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
-       "met": false,
-       "tests": [
-        [
-         false,
-         "our flag is capped"
-        ],
-        [
-         true,
-         "no more of ours die at the main fight than of theirs"
-        ],
-        [
-         false,
-         "no worse than half a flag behind at the end"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      }
-     ]
-    },
-    {
-     "n": 16,
-     "id": "s:51683de9-flag-2-703-23",
-     "kind": "flag",
-     "t0": 703,
-     "t1": 883,
-     "reads": "They single run (Men's Ranger); Crew: single run",
-     "calls": [
-      {
-       "id": "51683de9-flag-2-703-23",
-       "team": "Crew",
-       "side": "",
-       "label": "single run",
-       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
-       "met": true,
-       "tests": [
-        [
-         true,
-         "our flag is capped"
-        ],
-        [
-         true,
-         "no more of ours die at the main fight than of theirs"
-        ],
-        [
-         true,
-         "no worse than half a flag behind at the end"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      }
-     ]
-    },
-    {
-     "n": 17,
-     "id": "s:51683de9-flag-1-797-24",
-     "kind": "flag",
-     "t0": 797,
-     "t1": 859,
-     "reads": "They single run (Crew's Water Ele); Men: a flag already in hand",
-     "calls": [
-      {
-       "id": "51683de9-flag-1-797-24",
-       "team": "Men",
+       "id": "4629b08c-flag-2-250-11",
+       "team": "hold",
        "side": "",
        "label": "a flag already in hand",
        "job": "Answer their cap at once, or cap just before their boost",
@@ -7128,35 +6849,107 @@
      ]
     },
     {
-     "n": 18,
-     "id": "s:51683de9-numbers-1-808-25",
-     "kind": "numbers",
-     "t0": 808,
-     "t1": 828,
-     "reads": "Down on numbers in the main fight (2 v 7, the flag stand), from players split elsewhere; Men: stay (stay at the stand) | Crew: stay (stay at the stand)",
+     "n": 10,
+     "id": "s:4629b08c-flag-1-269-12",
+     "kind": "flag",
+     "t0": 269,
+     "t1": 355,
+     "reads": "They single run (hold's Ritualist); hook: single run",
      "calls": [
       {
-       "id": "51683de9-numbers-1-808-25",
-       "team": "Men",
-       "side": "weak side",
-       "label": "stay",
-       "job": "No deaths, keep them busy, do not chase",
+       "id": "4629b08c-flag-1-269-12",
+       "team": "hook",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         false,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 11,
+     "id": "s:4629b08c-flag-2-303-13",
+     "kind": "flag",
+     "t0": 303,
+     "t1": 370,
+     "reads": "They single run (hook's Mes/A); hold: a flag already in hand",
+     "calls": [
+      {
+       "id": "4629b08c-flag-2-303-13",
+       "team": "hold",
+       "side": "",
+       "label": "a flag already in hand",
+       "job": "Answer their cap at once, or cap just before their boost",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "their flag does not get in"
+        ],
+        [
+         false,
+         "our cap follows theirs within 15 s"
+        ],
+        [
+         false,
+         "our cap lands just before their boost"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 12,
+     "id": "s:4629b08c-numbers-1-304-14",
+     "kind": "numbers",
+     "t0": 304,
+     "t1": 336,
+     "reads": "Down on numbers in the main fight (7 v 8, the greater stand area; then 6 v 8 from 5:12; then 7 v 8 from 5:22), from kills; hook: retreat down the ladder (fall back into the base) | then 8 v 6 from 5:12; then 8 v 7 from 5:22), from kills; hold: stay (stay at the stand)",
+     "calls": [
+      {
+       "id": "4629b08c-numbers-1-304-14",
+       "team": "hook",
+       "side": "down",
+       "label": "retreat down the ladder",
+       "job": "Reach cover a player down without losing another",
        "met": true,
        "tests": [
         [
          true,
          "nobody of ours dies"
+        ],
+        [
+         true,
+         "no NPC lost"
         ]
        ],
        "any": false,
-       "draft": false
+       "draft": true
       },
       {
-       "id": "51683de9-numbers-2-808-26",
-       "team": "Crew",
-       "side": "strong side",
+       "id": "4629b08c-numbers-2-304-15",
+       "team": "hold",
+       "side": "up",
        "label": "stay",
-       "job": "Kill with the numbers while their players are away",
+       "job": "Turn the extra player into a kill before the numbers are level",
        "met": false,
        "tests": [
         [
@@ -7170,23 +6963,69 @@
      ]
     },
     {
-     "n": 19,
-     "id": "s:51683de9-boost-1-833-27",
-     "kind": "boost",
-     "t0": 833,
-     "t1": 868,
-     "reads": "Crew's boost is 30 s away; Men: one runner; the rest stay at the stand",
+     "n": 13,
+     "id": "s:4629b08c-push_flagger-1-340-16",
+     "kind": "push flagger",
+     "t0": 340,
+     "t1": 372,
+     "reads": "hook pushes hold's flagger (Air Ele, going back) with 3 players",
      "calls": [
       {
-       "id": "51683de9-boost-1-833-27",
-       "team": "Men",
+       "id": "4629b08c-push_flagger-1-340-16",
+       "team": "hook",
        "side": "",
-       "label": "run",
-       "job": "Deny their boost",
+       "label": "",
+       "job": "Stop their flag, or make it 30% late",
+       "met": true,
+       "tests": [
+        [
+         false,
+         "their flag is stopped"
+        ],
+        [
+         true,
+         "it arrives 30% or more later than usual"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "4629b08c-flagger_pushed-2-340-17",
+       "team": "hold",
+       "side": "",
+       "label": "",
+       "job": "Get the flag in on time",
        "met": false,
        "tests": [
         [
          false,
+         "the flag gets in, less than 30% late"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 14,
+     "id": "s:4629b08c-boost-1-342-18",
+     "kind": "boost",
+     "t0": 342,
+     "t1": 377,
+     "reads": "hold's boost is 30 s away; hook: no runner; the rest fall back into the base",
+     "calls": [
+      {
+       "id": "4629b08c-boost-1-342-18",
+       "team": "hook",
+       "side": "",
+       "label": "run",
+       "job": "Deny their boost",
+       "met": true,
+       "tests": [
+        [
+         true,
          "their boost does not land"
         ]
        ],
@@ -7196,58 +7035,16 @@
      ]
     },
     {
-     "n": 20,
-     "id": "s:51683de9-numbers-1-864-28",
+     "n": 15,
+     "id": "s:4629b08c-numbers-1-360-19",
      "kind": "numbers",
-     "t0": 864,
-     "t1": 892,
-     "reads": "Down on numbers in the main fight (2 v 8, the flag stand), from players split elsewhere; Men: stay (stay at the stand) | Crew: stay (stay at the stand)",
+     "t0": 360,
+     "t1": 382,
+     "reads": "Down on numbers in the main fight (7 v 8, the greater stand area), from players split elsewhere; hook: retreat down the ladder (fall back into the base) | hold: stay (stay at the stand)",
      "calls": [
       {
-       "id": "51683de9-numbers-1-864-28",
-       "team": "Men",
-       "side": "weak side",
-       "label": "stay",
-       "job": "No deaths, keep them busy, do not chase",
-       "met": true,
-       "tests": [
-        [
-         true,
-         "nobody of ours dies"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      },
-      {
-       "id": "51683de9-numbers-2-864-29",
-       "team": "Crew",
-       "side": "strong side",
-       "label": "stay",
-       "job": "Kill with the numbers while their players are away",
-       "met": false,
-       "tests": [
-        [
-         false,
-         "more of theirs die than of ours"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      }
-     ]
-    },
-    {
-     "n": 21,
-     "id": "s:51683de9-numbers-1-910-30",
-     "kind": "numbers",
-     "t0": 910,
-     "t1": 936,
-     "reads": "Down on numbers in the main fight (2 v 8, the greater stand area), from players split elsewhere; Men: retreat down the ladder (fall to footmen) | Crew: stay (stay at the stand)",
-     "calls": [
-      {
-       "id": "51683de9-numbers-1-910-30",
-       "team": "Men",
+       "id": "4629b08c-numbers-1-360-19",
+       "team": "hook",
        "side": "weak side",
        "label": "retreat down the ladder",
        "job": "No deaths, keep them busy, do not chase",
@@ -7262,8 +7059,8 @@
        "draft": false
       },
       {
-       "id": "51683de9-numbers-2-910-31",
-       "team": "Crew",
+       "id": "4629b08c-numbers-2-360-20",
+       "team": "hold",
        "side": "strong side",
        "label": "stay",
        "job": "Kill with the numbers while their players are away",
@@ -7280,23 +7077,255 @@
      ]
     },
     {
-     "n": 22,
-     "id": "s:51683de9-boost-1-953-32",
-     "kind": "boost",
-     "t0": 953,
-     "t1": 988,
-     "reads": "Crew's boost is 30 s away; Men: one runner; the rest fall to footmen",
+     "n": 16,
+     "id": "s:4629b08c-numbers-1-384-21",
+     "kind": "numbers",
+     "t0": 384,
+     "t1": 430,
+     "reads": "Down on numbers in the main fight (6 v 8, hook's front door; then 5 v 7 from 6:38; then 5 v 6 from 6:56), from players split elsewhere; hook: stay (stay at the stand) | then 7 v 5 from 6:38; then 6 v 5 from 6:56), from players split elsewhere; hold: stay (stay at the stand)",
      "calls": [
       {
-       "id": "51683de9-boost-1-953-32",
-       "team": "Men",
-       "side": "",
-       "label": "run",
-       "job": "Deny their boost",
+       "id": "4629b08c-numbers-1-384-21",
+       "team": "hook",
+       "side": "weak side",
+       "label": "stay",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "4629b08c-numbers-2-384-22",
+       "team": "hold",
+       "side": "strong side",
+       "label": "stay",
+       "job": "Kill with the numbers while their players are away",
        "met": false,
        "tests": [
         [
          false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 17,
+     "id": "s:4629b08c-split-1-406-23",
+     "kind": "split",
+     "t0": 406,
+     "t1": 512,
+     "reads": "hook's split by the back door: three players (Warrior, Necromancer, 8 Monk) against 1 defending (Prot); numbers along the way: 3 v 1 from 6:46, 3 v 3 from 7:06, 3 v 2 from 7:40, 2 v 1 from 7:54, 2 v 2 from 8:18",
+     "calls": [
+      {
+       "id": "4629b08c-split-1-406-23",
+       "team": "hook",
+       "side": "attacker",
+       "label": "a player or more up",
+       "job": "Kill or take NPCs",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "a defender killed"
+        ],
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "4629b08c-split-2-406-24",
+       "team": "hold",
+       "side": "defender",
+       "label": "one defender",
+       "job": "Delay: keep the split off the pit NPCs and stay alive",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         false,
+         "no defender dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 18,
+     "id": "s:4629b08c-flag-2-427-25",
+     "kind": "flag",
+     "t0": 427,
+     "t1": 470,
+     "reads": "They single run (hook's Mes/A); hold: stay",
+     "calls": [
+      {
+       "id": "4629b08c-flag-2-427-25",
+       "team": "hold",
+       "side": "",
+       "label": "stay",
+       "job": "Kill with the extra player while their runner is away, or their flag does not get in",
+       "met": true,
+       "tests": [
+        [
+         false,
+         "more of theirs die at the main fight than of ours"
+        ],
+        [
+         true,
+         "their flag does not get in"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 19,
+     "id": "s:4629b08c-boost-1-462-26",
+     "kind": "boost",
+     "t0": 462,
+     "t1": 507,
+     "reads": "hold's boost is 30 s away; hook: no runner; the rest push up",
+     "calls": [
+      {
+       "id": "4629b08c-boost-1-462-26",
+       "team": "hook",
+       "side": "",
+       "label": "concede",
+       "job": "Concede the boost for kills",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 20,
+     "id": "s:4629b08c-split-1-510-27",
+     "kind": "split",
+     "t0": 510,
+     "t1": 548,
+     "reads": "hook's split by the back door: one player (Necromancer) against 3 defending (Prot, Ritualist, Air Ele); Air Ele collapse from the main fight; 3 (Prot, Ritualist, Air Ele) against one player: collapse by Air Ele from the main fight",
+     "calls": [
+      {
+       "id": "4629b08c-split-1-510-27",
+       "team": "hook",
+       "side": "attacker",
+       "label": "collapsed on",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "4629b08c-split-2-510-28",
+       "team": "hold",
+       "side": "defender",
+       "label": "collapse",
+       "job": "Kill a split player before going back (what it cost at the main fight and in flags is beside it)",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a split player dies during the collapse"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 21,
+     "id": "s:4629b08c-flag-2-514-29",
+     "kind": "flag",
+     "t0": 514,
+     "t1": 694,
+     "reads": "They single run (hook's Mes/A); hold: single run",
+     "calls": [
+      {
+       "id": "4629b08c-flag-2-514-29",
+       "team": "hold",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ],
+        [
+         false,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         true,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 22,
+     "id": "s:4629b08c-boost-1-562-30",
+     "kind": "boost",
+     "t0": 562,
+     "t1": 597,
+     "reads": "hold's boost is 30 s away; hook: no runner; the rest fall back into the base",
+     "calls": [
+      {
+       "id": "4629b08c-boost-1-562-30",
+       "team": "hook",
+       "side": "",
+       "label": "run",
+       "job": "Deny their boost",
+       "met": true,
+       "tests": [
+        [
+         true,
          "their boost does not land"
         ]
        ],
@@ -7307,109 +7336,49 @@
     },
     {
      "n": 23,
-     "id": "s:51683de9-boost-1-1073-33",
-     "kind": "boost",
-     "t0": 1073,
-     "t1": 1108,
-     "reads": "Crew's boost is 30 s away; Men: two runners; the rest fall back into the base",
+     "id": "s:4629b08c-flag-1-562-31",
+     "kind": "flag",
+     "t0": 562,
+     "t1": 806,
+     "reads": "They single run (hold's Ritualist); hook: a flag already in hand",
      "calls": [
       {
-       "id": "51683de9-boost-1-1073-33",
-       "team": "Men",
+       "id": "4629b08c-flag-1-562-31",
+       "team": "hook",
        "side": "",
-       "label": "run",
-       "job": "Deny their boost",
+       "label": "a flag already in hand",
+       "job": "Answer their cap at once, or cap just before their boost",
        "met": false,
        "tests": [
         [
          false,
-         "their boost does not land"
+         "their flag does not get in"
+        ],
+        [
+         false,
+         "our cap follows theirs within 15 s"
+        ],
+        [
+         false,
+         "our cap lands just before their boost"
         ]
        ],
-       "any": false,
+       "any": true,
        "draft": false
       }
      ]
     },
     {
      "n": 24,
-     "id": "s:51683de9-flag-2-1171-34",
-     "kind": "flag",
-     "t0": 1171,
-     "t1": 1326,
-     "reads": "They single run (Men's AoB Derv); Crew: stay",
-     "calls": [
-      {
-       "id": "51683de9-flag-2-1171-34",
-       "team": "Crew",
-       "side": "",
-       "label": "stay",
-       "job": "Kill with the extra player while their runner is away",
-       "met": false,
-       "tests": [
-        [
-         false,
-         "more of theirs die at the main fight than of ours"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      }
-     ]
-    },
-    {
-     "n": 25,
-     "id": "s:51683de9-boost-1-1193-35",
-     "kind": "boost",
-     "t0": 1193,
-     "t1": 1228,
-     "reads": "Crew's boost is 30 s away; Men: one runner; the rest fall back into the base",
-     "calls": [
-      {
-       "id": "51683de9-boost-1-1193-35",
-       "team": "Men",
-       "side": "",
-       "label": "run",
-       "job": "Deny their boost",
-       "met": false,
-       "tests": [
-        [
-         false,
-         "their boost does not land"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      }
-     ]
-    },
-    {
-     "n": 26,
-     "id": "s:51683de9-numbers-1-1210-36",
+     "id": "s:4629b08c-numbers-1-598-32",
      "kind": "numbers",
-     "t0": 1210,
-     "t1": 1232,
-     "reads": "Up on numbers in the main fight (8 v 7, Men's front door), from players split elsewhere; Men: retreat down the ladder (fall back into the base) | Crew: push up (push up to their back door)",
+     "t0": 598,
+     "t1": 626,
+     "reads": "Down on numbers in the main fight (5 v 6, hook's front door), from players split elsewhere; hook: push up (push up to their front door) | hold: push in",
      "calls": [
       {
-       "id": "51683de9-numbers-1-1210-36",
-       "team": "Men",
-       "side": "strong side",
-       "label": "retreat down the ladder",
-       "job": "Kill with the numbers while their players are away",
-       "met": false,
-       "tests": [
-        [
-         false,
-         "more of theirs die than of ours"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      },
-      {
-       "id": "51683de9-numbers-2-1210-37",
-       "team": "Crew",
+       "id": "4629b08c-numbers-1-598-32",
+       "team": "hook",
        "side": "weak side",
        "label": "push up",
        "job": "No deaths, keep them busy, do not chase",
@@ -7422,20 +7391,124 @@
        ],
        "any": false,
        "draft": false
+      },
+      {
+       "id": "4629b08c-numbers-2-598-33",
+       "team": "hold",
+       "side": "strong side",
+       "label": "push in",
+       "job": "Kill with the numbers while their players are away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 25,
+     "id": "s:4629b08c-split-1-638-34",
+     "kind": "split",
+     "t0": 638,
+     "t1": 718,
+     "reads": "hook's split by the back door: one player (Warrior) against 1 defending (Prot); numbers along the way: 1 v 1 from 10:38, 2 v 1 from 11:18",
+     "calls": [
+      {
+       "id": "4629b08c-split-1-638-34",
+       "team": "hook",
+       "side": "attacker",
+       "label": "1 v 1, defended by a monk",
+       "job": "Hold the monk there; the main team's job is to kill",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "the split player survives"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "4629b08c-split-2-638-35",
+       "team": "hold",
+       "side": "defender",
+       "label": "mirror",
+       "job": "Hold it even: lose no pit NPC and no more players than the split does",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         false,
+         "no more defenders die than split players"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 26,
+     "id": "s:4629b08c-numbers-1-658-36",
+     "kind": "numbers",
+     "t0": 658,
+     "t1": 684,
+     "reads": "Down on numbers in the main fight (6 v 7, the greater stand area), from players split elsewhere; hook: retreat down the ladder (fall back into the base) | hold: stay (stay at the stand)",
+     "calls": [
+      {
+       "id": "4629b08c-numbers-1-658-36",
+       "team": "hook",
+       "side": "weak side",
+       "label": "retreat down the ladder",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "4629b08c-numbers-2-658-37",
+       "team": "hold",
+       "side": "strong side",
+       "label": "stay",
+       "job": "Kill with the numbers while their players are away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
       }
      ]
     },
     {
      "n": 27,
-     "id": "s:51683de9-boost-1-1313-38",
+     "id": "s:4629b08c-boost-1-698-38",
      "kind": "boost",
-     "t0": 1313,
-     "t1": 1348,
-     "reads": "Crew's boost is 30 s away; Men: no runner; the rest fall back into the base",
+     "t0": 698,
+     "t1": 733,
+     "reads": "hold's boost is 30 s away; hook: one runner; the rest push in",
      "calls": [
       {
-       "id": "51683de9-boost-1-1313-38",
-       "team": "Men",
+       "id": "4629b08c-boost-1-698-38",
+       "team": "hook",
        "side": "",
        "label": "run",
        "job": "Deny their boost",
@@ -7453,17 +7526,17 @@
     },
     {
      "n": 28,
-     "id": "s:51683de9-numbers-1-1354-39",
+     "id": "s:4629b08c-numbers-1-714-39",
      "kind": "numbers",
-     "t0": 1354,
-     "t1": 1382,
-     "reads": "Down on numbers in the main fight (7 v 8, Men's back door), from players split elsewhere; Men: retreat down the ladder (fall back into the base) | Crew: stay (stay on the enemy's side)",
+     "t0": 714,
+     "t1": 778,
+     "reads": "Down on numbers in the main fight (5 v 6, hold's front door; then 5 v 8 from 12:10; then 6 v 8 from 12:38), from players split elsewhere; hook: push in | then 8 v 5 from 12:10; then 8 v 6 from 12:38), from players split elsewhere; hold: retreat down the ladder (fall back into the base)",
      "calls": [
       {
-       "id": "51683de9-numbers-1-1354-39",
-       "team": "Men",
+       "id": "4629b08c-numbers-1-714-39",
+       "team": "hook",
        "side": "weak side",
-       "label": "retreat down the ladder",
+       "label": "push in",
        "job": "No deaths, keep them busy, do not chase",
        "met": true,
        "tests": [
@@ -7476,10 +7549,10 @@
        "draft": false
       },
       {
-       "id": "51683de9-numbers-2-1354-40",
-       "team": "Crew",
+       "id": "4629b08c-numbers-2-714-40",
+       "team": "hold",
        "side": "strong side",
-       "label": "stay",
+       "label": "retreat down the ladder",
        "job": "Kill with the numbers while their players are away",
        "met": false,
        "tests": [
@@ -7495,23 +7568,23 @@
     },
     {
      "n": 29,
-     "id": "s:51683de9-flag-2-1355-41",
-     "kind": "flag",
-     "t0": 1355,
-     "t1": 1471,
-     "reads": "They single run (Men's Warrior); Crew: stay",
+     "id": "s:4629b08c-base_res-1-716-41",
+     "kind": "base res",
+     "t0": 716,
+     "t1": 750,
+     "reads": "hook leaves hold's base 4 s before the base res (2 coming back)",
      "calls": [
       {
-       "id": "51683de9-flag-2-1355-41",
-       "team": "Crew",
+       "id": "4629b08c-base_res-1-716-41",
+       "team": "hook",
        "side": "",
-       "label": "stay",
-       "job": "Kill with the extra player while their runner is away",
+       "label": "left before the res",
+       "job": "Be out, or set for the fight, when they res",
        "met": true,
        "tests": [
         [
          true,
-         "more of theirs die at the main fight than of ours"
+         "nobody of ours dies in the 30 s after the res"
         ]
        ],
        "any": false,
@@ -7521,17 +7594,91 @@
     },
     {
      "n": 30,
-     "id": "s:51683de9-numbers-1-1410-42",
-     "kind": "numbers",
-     "t0": 1410,
-     "t1": 1430,
-     "reads": "Down on numbers in the main fight (7 v 8, Men's back door), from players split elsewhere; Men: retreat down the ladder (fall back into the base) | Crew: stay (stay at the stand)",
+     "id": "s:4629b08c-split-1-766-42",
+     "kind": "split",
+     "t0": 766,
+     "t1": 804,
+     "reads": "hook's split by the back door: two players (Warrior, Necromancer) against 4 defending (Ritualist, Mes/A, 7 Monk, Necromancer 1); numbers along the way: 2 v 4 from 12:46, 2 v 1 from 13:08",
      "calls": [
       {
-       "id": "51683de9-numbers-1-1410-42",
-       "team": "Men",
+       "id": "4629b08c-split-1-766-42",
+       "team": "hook",
+       "side": "attacker",
+       "label": "a player or more down",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "4629b08c-split-2-766-44",
+       "team": "hold",
+       "side": "defender",
+       "label": "add one",
+       "job": "Kill it or drive it out with the extra player, and lose no pit NPC for it",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         false,
+         "a split player dies"
+        ],
+        [
+         true,
+         "the split is gone within the visit"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "4629b08c-split-1-766-43",
+       "team": "hook",
+       "side": "attacker's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: its damage can kill against their monks there, and theirs cannot",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 31,
+     "id": "s:4629b08c-numbers-1-784-45",
+     "kind": "numbers",
+     "t0": 784,
+     "t1": 804,
+     "reads": "Down on numbers in the main fight (7 v 8, the flag stand), from players split elsewhere; hook: stay (stay at the stand) | hold: stay (stay at the stand)",
+     "calls": [
+      {
+       "id": "4629b08c-numbers-1-784-45",
+       "team": "hook",
        "side": "weak side",
-       "label": "retreat down the ladder",
+       "label": "stay",
        "job": "No deaths, keep them busy, do not chase",
        "met": true,
        "tests": [
@@ -7544,8 +7691,8 @@
        "draft": false
       },
       {
-       "id": "51683de9-numbers-2-1410-43",
-       "team": "Crew",
+       "id": "4629b08c-numbers-2-784-46",
+       "team": "hold",
        "side": "strong side",
        "label": "stay",
        "job": "Kill with the numbers while their players are away",
@@ -7562,24 +7709,28 @@
      ]
     },
     {
-     "n": 31,
-     "id": "s:51683de9-boost-1-1433-44",
-     "kind": "boost",
-     "t0": 1433,
-     "t1": 1468,
-     "reads": "Crew's boost is 30 s away; Men: one runner; the rest fall back into the base",
+     "n": 32,
+     "id": "s:4629b08c-flag-2-802-47",
+     "kind": "flag",
+     "t0": 802,
+     "t1": 890,
+     "reads": "They single run (hook's Mes/A); hold: double run",
      "calls": [
       {
-       "id": "51683de9-boost-1-1433-44",
-       "team": "Men",
+       "id": "4629b08c-flag-2-802-47",
+       "team": "hold",
        "side": "",
-       "label": "run",
-       "job": "Deny their boost",
+       "label": "double run",
+       "job": "Gain flag advantage through their next cap, and lose nobody while two are away",
        "met": false,
        "tests": [
         [
          false,
-         "their boost does not land"
+         "flag lead better by 0.35 or more"
+        ],
+        [
+         true,
+         "nobody of ours dies at the main fight"
         ]
        ],
        "any": false,
@@ -7588,16 +7739,170 @@
      ]
     },
     {
-     "n": 32,
-     "id": "s:51683de9-numbers-1-1474-45",
-     "kind": "numbers",
-     "t0": 1474,
-     "t1": 1568,
-     "reads": "Down on numbers in the main fight (7 v 8, Men's back door; then 7 v 8 from 24:56; then 6 v 8 from 25:22), from kills; Men: retreat down the ladder (fall back into the base) | then 8 v 7 from 24:56; then 8 v 6 from 25:22), from kills; Crew: push up (push up to their base)",
+     "n": 33,
+     "id": "s:4629b08c-flag-1-852-48",
+     "kind": "flag",
+     "t0": 852,
+     "t1": 916,
+     "reads": "They double run (hold's Air Ele); hook: a flag already in hand",
      "calls": [
       {
-       "id": "51683de9-numbers-1-1474-45",
-       "team": "Men",
+       "id": "4629b08c-flag-1-852-48",
+       "team": "hook",
+       "side": "",
+       "label": "a flag already in hand",
+       "job": "Answer their cap at once, or cap just before their boost",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "their flag does not get in"
+        ],
+        [
+         false,
+         "our cap follows theirs within 15 s"
+        ],
+        [
+         false,
+         "our cap lands just before their boost"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 34,
+     "id": "s:4629b08c-split-1-872-49",
+     "kind": "split",
+     "t0": 872,
+     "t1": 898,
+     "reads": "hook's split by the back door: two players (Necromancer, Warrior) against 4 defending (Air Ele, Ritualist, Prot, 7 Monk)",
+     "calls": [
+      {
+       "id": "4629b08c-split-1-872-49",
+       "team": "hook",
+       "side": "attacker",
+       "label": "a player or more down",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "4629b08c-split-2-872-51",
+       "team": "hold",
+       "side": "defender",
+       "label": "add one",
+       "job": "Kill it or drive it out with the extra player, and lose no pit NPC for it",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "a split player dies"
+        ],
+        [
+         true,
+         "the split is gone within the visit"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "4629b08c-split-1-872-50",
+       "team": "hook",
+       "side": "attacker's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: they have no monk there",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 35,
+     "id": "s:4629b08c-push_flagger-1-890-52",
+     "kind": "push flagger",
+     "t0": 890,
+     "t1": 901,
+     "reads": "hook pushes hold's flagger (Prot, carrying) with its main team",
+     "calls": [
+      {
+       "id": "4629b08c-push_flagger-1-890-52",
+       "team": "hook",
+       "side": "",
+       "label": "",
+       "job": "Stop their flag, or make it 30% late",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "their flag is stopped"
+        ],
+        [
+         false,
+         "it arrives 30% or more later than usual"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "4629b08c-flagger_pushed-2-890-53",
+       "team": "hold",
+       "side": "",
+       "label": "",
+       "job": "Get the flag in on time",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "the flag gets in, less than 30% late"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 36,
+     "id": "s:4629b08c-numbers-1-896-54",
+     "kind": "numbers",
+     "t0": 896,
+     "t1": 970,
+     "reads": "Down on numbers in the main fight (5 v 7, the flag stand; then 5 v 8 from 15:52), from kills; hook: retreat down the ladder (fall back into the base) | then 8 v 5 from 15:52), from kills; hold: push in",
+     "calls": [
+      {
+       "id": "4629b08c-numbers-1-896-54",
+       "team": "hook",
        "side": "down",
        "label": "retreat down the ladder",
        "job": "Reach cover a player down without losing another",
@@ -7616,10 +7921,10 @@
        "draft": true
       },
       {
-       "id": "51683de9-numbers-2-1474-46",
-       "team": "Crew",
+       "id": "4629b08c-numbers-2-896-55",
+       "team": "hold",
        "side": "up",
-       "label": "push up",
+       "label": "push in",
        "job": "Take ground and NPCs with the numbers",
        "met": true,
        "tests": [
@@ -7642,16 +7947,46 @@
      ]
     },
     {
-     "n": 33,
-     "id": "s:51683de9-base_res-2-1540-47",
-     "kind": "base res",
-     "t0": 1540,
-     "t1": 1590,
-     "reads": "Crew has 8 in Men's base at the base res (6 defending, 2 coming back): 8 stay",
+     "n": 37,
+     "id": "s:4629b08c-flag-1-906-56",
+     "kind": "flag",
+     "t0": 906,
+     "t1": 946,
+     "reads": "They single run (hold's Ritualist); hook: stay",
      "calls": [
       {
-       "id": "51683de9-base_res-2-1540-47",
-       "team": "Crew",
+       "id": "4629b08c-flag-1-906-56",
+       "team": "hook",
+       "side": "",
+       "label": "stay",
+       "job": "Kill with the extra player while their runner is away, or their flag does not get in",
+       "met": true,
+       "tests": [
+        [
+         false,
+         "more of theirs die at the main fight than of ours"
+        ],
+        [
+         true,
+         "their flag does not get in"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 38,
+     "id": "s:4629b08c-base_res-2-940-57",
+     "kind": "base res",
+     "t0": 940,
+     "t1": 990,
+     "reads": "hold has 8 in hook's base at the base res (5 defending, 3 coming back): 8 stay",
+     "calls": [
+      {
+       "id": "4629b08c-base_res-2-940-57",
+       "team": "hold",
        "side": "",
        "label": "stayed through the res",
        "job": "Be out, or set for the fight, when they res",
@@ -7668,16 +8003,46 @@
      ]
     },
     {
-     "n": 34,
-     "id": "s:51683de9-boost-1-1553-48",
-     "kind": "boost",
-     "t0": 1553,
-     "t1": 1598,
-     "reads": "Crew's boost is 30 s away; Men: no runner; the rest fall back into the base",
+     "n": 39,
+     "id": "s:4629b08c-pinned-1-988-58",
+     "kind": "pinned",
+     "t0": 988,
+     "t1": 1024,
+     "reads": "hook is held in its own base or pit by hold's main team (K2 A1 B1 alive; base res in 92 s)",
      "calls": [
       {
-       "id": "51683de9-boost-1-1553-48",
-       "team": "Men",
+       "id": "4629b08c-pinned-1-988-58",
+       "team": "hook",
+       "side": "",
+       "label": "",
+       "job": "Lose no player and no NPC while held in, or break out",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         true,
+         "it breaks out (half its living players or more, four at least, out of its base and pit)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 40,
+     "id": "s:4629b08c-boost-1-1111-59",
+     "kind": "boost",
+     "t0": 1111,
+     "t1": 1156,
+     "reads": "hold's boost is 30 s away; hook: no runner; the rest fall back into the base",
+     "calls": [
+      {
+       "id": "4629b08c-boost-1-1111-59",
+       "team": "hook",
        "side": "",
        "label": "concede",
        "job": "Concede the boost for kills",
@@ -7694,23 +8059,23 @@
      ]
     },
     {
-     "n": 35,
-     "id": "s:51683de9-numbers-1-1590-49",
+     "n": 41,
+     "id": "s:4629b08c-numbers-1-1118-60",
      "kind": "numbers",
-     "t0": 1590,
-     "t1": 1620,
-     "reads": "Down on numbers in the main fight (5 v 8, the greater stand area; then 5 v 7 from 26:42), from players split elsewhere; Men: retreat down the ladder (retreat to the pit) | then 7 v 5 from 26:42), from players split elsewhere; Crew: push in",
+     "t0": 1118,
+     "t1": 1142,
+     "reads": "Down on numbers in the main fight (6 v 8, hook's front door; then 6 v 7 from 18:48), from players split elsewhere; hook: retreat down the ladder (fall back into the base) | then 7 v 6 from 18:48), from players split elsewhere; hold: stay (stay on the enemy's side)",
      "calls": [
       {
-       "id": "51683de9-numbers-1-1590-49",
-       "team": "Men",
+       "id": "4629b08c-numbers-1-1118-60",
+       "team": "hook",
        "side": "weak side",
        "label": "retreat down the ladder",
        "job": "No deaths, keep them busy, do not chase",
-       "met": false,
+       "met": true,
        "tests": [
         [
-         false,
+         true,
          "nobody of ours dies"
         ]
        ],
@@ -7718,15 +8083,15 @@
        "draft": false
       },
       {
-       "id": "51683de9-numbers-2-1590-50",
-       "team": "Crew",
+       "id": "4629b08c-numbers-2-1118-61",
+       "team": "hold",
        "side": "strong side",
-       "label": "push in",
+       "label": "stay",
        "job": "Kill with the numbers while their players are away",
-       "met": true,
+       "met": false,
        "tests": [
         [
-         true,
+         false,
          "more of theirs die than of ours"
         ]
        ],
@@ -7736,16 +8101,58 @@
      ]
     },
     {
-     "n": 36,
-     "id": "s:51683de9-split-1-1602-51",
-     "kind": "split",
-     "t0": 1602,
-     "t1": 1644,
-     "reads": "Men's split by the back door: three players (8 Monk, Paragon, AoB Derv) against 2 defending (Water Ele, Air Ele 2)",
+     "n": 42,
+     "id": "s:4629b08c-numbers-1-1140-62",
+     "kind": "numbers",
+     "t0": 1140,
+     "t1": 1178,
+     "reads": "Down on numbers in the main fight (5 v 6, hook's front door), from players split elsewhere; hook: retreat down the ladder (fall back into the base) | hold: fall out",
      "calls": [
       {
-       "id": "51683de9-split-1-1602-51",
-       "team": "Men",
+       "id": "4629b08c-numbers-1-1140-62",
+       "team": "hook",
+       "side": "weak side",
+       "label": "retreat down the ladder",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "4629b08c-numbers-2-1140-63",
+       "team": "hold",
+       "side": "strong side",
+       "label": "fall out",
+       "job": "Kill with the numbers while their players are away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 43,
+     "id": "s:4629b08c-split-1-1148-64",
+     "kind": "split",
+     "t0": 1148,
+     "t1": 1248,
+     "reads": "hook's split by the back door: three players (AoB Derv, Necromancer, 8 Monk) against 2 defending (Ritualist, Prot)",
+     "calls": [
+      {
+       "id": "4629b08c-split-1-1148-64",
+       "team": "hook",
        "side": "attacker",
        "label": "a player or more up",
        "job": "Kill or take NPCs",
@@ -7764,8 +8171,1226 @@
        "draft": false
       },
       {
-       "id": "51683de9-split-2-1602-52",
-       "team": "Crew",
+       "id": "4629b08c-split-2-1148-65",
+       "team": "hold",
+       "side": "defender",
+       "label": "a player down",
+       "job": "Delay: keep the split off the pit NPCs and stay alive",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no defender dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 44,
+     "id": "s:4629b08c-numbers-1-1200-66",
+     "kind": "numbers",
+     "t0": 1200,
+     "t1": 1244,
+     "reads": "Down on numbers in the main fight (5 v 6, hook's front door; then 4 v 6 from 20:18; then 1 v 6 from 20:30), from players split elsewhere; hook: retreat down the ladder (fall back into the base) | then 6 v 4 from 20:18; then 6 v 1 from 20:30), from players split elsewhere; hold: stay (stay on the enemy's side)",
+     "calls": [
+      {
+       "id": "4629b08c-numbers-1-1200-66",
+       "team": "hook",
+       "side": "weak side",
+       "label": "retreat down the ladder",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "4629b08c-numbers-2-1200-67",
+       "team": "hold",
+       "side": "strong side",
+       "label": "stay",
+       "job": "Kill with the numbers while their players are away",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 45,
+     "id": "s:4629b08c-boost-1-1231-68",
+     "kind": "boost",
+     "t0": 1231,
+     "t1": 1276,
+     "reads": "hold's boost is 30 s away; hook: no runner; the rest nobody",
+     "calls": [
+      {
+       "id": "4629b08c-boost-1-1231-68",
+       "team": "hook",
+       "side": "",
+       "label": "concede",
+       "job": "Concede the boost for kills",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set": "w2",
+   "part": 1,
+   "label": "round 3",
+   "rid": "427c825b-7e7f-54f4-aba9-7de41c9fcbaf",
+   "teams": [
+    "cope",
+    "Team"
+   ],
+   "map": "Isle of Jade",
+   "date": "2026-10-22",
+   "situations": [
+    {
+     "n": 1,
+     "id": "s:427c825b-numbers-1-34-0",
+     "kind": "numbers",
+     "t0": 34,
+     "t1": 54,
+     "reads": "Down on numbers in the main fight (7 v 8, the flag stand), from kills; cope: stay (stay at the stand) | Team: stay (stay at the stand)",
+     "calls": [
+      {
+       "id": "427c825b-numbers-1-34-0",
+       "team": "cope",
+       "side": "down",
+       "label": "stay",
+       "job": "Hold the ground a player down and lose no more until it is level, or the base res",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "427c825b-numbers-2-34-1",
+       "team": "Team",
+       "side": "up",
+       "label": "stay",
+       "job": "Turn the extra player into a kill before the numbers are level",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "id": "s:427c825b-numbers-2-104-3",
+     "kind": "numbers",
+     "t0": 104,
+     "t1": 162,
+     "reads": "Down on numbers in the main fight (7 v 8, the flag stand; then 6 v 8 from 2:00; then 5 v 8 from 2:12; then 6 v 8 from 2:18), from kills; Team: stay (stay at the stand) | then 8 v 6 from 2:00; then 8 v 5 from 2:12; then 8 v 6 from 2:18), from kills; cope: stay (stay at the stand)",
+     "calls": [
+      {
+       "id": "427c825b-numbers-2-104-3",
+       "team": "Team",
+       "side": "down",
+       "label": "stay",
+       "job": "Hold the ground a player down and lose no more until it is level, or the base res",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "427c825b-numbers-1-104-2",
+       "team": "cope",
+       "side": "up",
+       "label": "stay",
+       "job": "Turn the extra player into a kill before the numbers are level",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "id": "s:427c825b-flag-2-163-4",
+     "kind": "flag",
+     "t0": 163,
+     "t1": 343,
+     "reads": "They single run (cope's AoB Derv); Team: single run",
+     "calls": [
+      {
+       "id": "427c825b-flag-2-163-4",
+       "team": "Team",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         false,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 4,
+     "id": "s:427c825b-split-1-180-5",
+     "kind": "split",
+     "t0": 180,
+     "t1": 204,
+     "reads": "cope's split by the back door: two players (Mes/A, Prot) against 1 defending (Air Ele 2)",
+     "calls": [
+      {
+       "id": "427c825b-split-1-180-5",
+       "team": "cope",
+       "side": "attacker",
+       "label": "a player or more up",
+       "job": "Kill or take NPCs",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "427c825b-split-2-180-6",
+       "team": "Team",
+       "side": "defender",
+       "label": "one defender",
+       "job": "Delay: keep the split off the pit NPCs and stay alive",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no defender dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 5,
+     "id": "s:427c825b-numbers-1-186-7",
+     "kind": "numbers",
+     "t0": 186,
+     "t1": 208,
+     "reads": "Down on numbers in the main fight (3 v 6, Team's front door; then 2 v 6 from 3:10), from players split elsewhere; cope: stay (stay at the stand) | then 6 v 2 from 3:10), from players split elsewhere; Team: retreat down the ladder (fall back into the base)",
+     "calls": [
+      {
+       "id": "427c825b-numbers-1-186-7",
+       "team": "cope",
+       "side": "weak side",
+       "label": "stay",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "427c825b-numbers-2-186-8",
+       "team": "Team",
+       "side": "strong side",
+       "label": "retreat down the ladder",
+       "job": "Kill with the numbers while their players are away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 6,
+     "id": "s:427c825b-split-1-202-9",
+     "kind": "split",
+     "t0": 202,
+     "t1": 236,
+     "reads": "cope's split by the back door: 4 players (Mes/A, Prot, 7 Monk, Stand Mes 1) against 0 defending",
+     "calls": [
+      {
+       "id": "427c825b-split-1-202-9",
+       "team": "cope",
+       "side": "attacker",
+       "label": "undefended",
+       "job": "Take NPCs",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "427c825b-split-2-202-10",
+       "team": "Team",
+       "side": "defender",
+       "label": "no answer",
+       "job": "Win elsewhere before the split costs more than it gains",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": true,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 7,
+     "id": "s:427c825b-base_res-1-220-11",
+     "kind": "base res",
+     "t0": 220,
+     "t1": 270,
+     "reads": "cope has 8 in Team's base at the base res (0 defending, 2 coming back): 8 stay",
+     "calls": [
+      {
+       "id": "427c825b-base_res-1-220-11",
+       "team": "cope",
+       "side": "",
+       "label": "stayed through the res",
+       "job": "Be out, or set for the fight, when they res",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies in the 30 s after the res"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 8,
+     "id": "s:427c825b-boost-2-286-12",
+     "kind": "boost",
+     "t0": 286,
+     "t1": 321,
+     "reads": "cope's boost is 30 s away; Team: no runner; the rest fall back into the base",
+     "calls": [
+      {
+       "id": "427c825b-boost-2-286-12",
+       "team": "Team",
+       "side": "",
+       "label": "run",
+       "job": "Deny their boost",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "their boost does not land"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 9,
+     "id": "s:427c825b-numbers-1-292-13",
+     "kind": "numbers",
+     "t0": 292,
+     "t1": 312,
+     "reads": "Up on numbers in the main fight (8 v 7, Team's front door), from kills; cope: stay (stay on the enemy's side) | Team: retreat down the ladder (fall back into the base)",
+     "calls": [
+      {
+       "id": "427c825b-numbers-1-292-13",
+       "team": "cope",
+       "side": "up",
+       "label": "stay",
+       "job": "Turn the extra player into a kill before the numbers are level",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "427c825b-numbers-2-292-14",
+       "team": "Team",
+       "side": "down",
+       "label": "retreat down the ladder",
+       "job": "Reach cover a player down without losing another",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody of ours dies"
+        ],
+        [
+         true,
+         "no NPC lost"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 10,
+     "id": "s:427c825b-numbers-1-318-15",
+     "kind": "numbers",
+     "t0": 318,
+     "t1": 368,
+     "reads": "Up on numbers in the main fight (8 v 7, Team's front door; then 8 v 6 from 5:34), from kills; cope: stay (stay on the enemy's side) | then 6 v 8 from 5:34), from kills; Team: retreat down the ladder (fall back into the base)",
+     "calls": [
+      {
+       "id": "427c825b-numbers-1-318-15",
+       "team": "cope",
+       "side": "up",
+       "label": "stay",
+       "job": "Turn the extra player into a kill before the numbers are level",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "427c825b-numbers-2-318-16",
+       "team": "Team",
+       "side": "down",
+       "label": "retreat down the ladder",
+       "job": "Reach cover a player down without losing another",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody of ours dies"
+        ],
+        [
+         false,
+         "no NPC lost"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 11,
+     "id": "s:427c825b-base_res-1-340-17",
+     "kind": "base res",
+     "t0": 340,
+     "t1": 390,
+     "reads": "cope has 8 in Team's base at the base res (6 defending, 2 coming back): 1 stay",
+     "calls": [
+      {
+       "id": "427c825b-base_res-1-340-17",
+       "team": "cope",
+       "side": "",
+       "label": "stayed through the res",
+       "job": "Be out, or set for the fight, when they res",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies in the 30 s after the res"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 12,
+     "id": "s:427c825b-numbers-1-364-18",
+     "kind": "numbers",
+     "t0": 364,
+     "t1": 394,
+     "reads": "Down on numbers in the main fight (1 v 8, Team's back door; then 2 v 8 from 6:16), from players split elsewhere; cope: stay (stay on the enemy's side) | then 8 v 2 from 6:16), from players split elsewhere; Team: retreat down the ladder (retreat to the pit)",
+     "calls": [
+      {
+       "id": "427c825b-numbers-1-364-18",
+       "team": "cope",
+       "side": "weak side",
+       "label": "stay",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "427c825b-numbers-2-364-19",
+       "team": "Team",
+       "side": "strong side",
+       "label": "retreat down the ladder",
+       "job": "Kill with the numbers while their players are away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 13,
+     "id": "s:427c825b-boost-2-406-20",
+     "kind": "boost",
+     "t0": 406,
+     "t1": 451,
+     "reads": "cope's boost is 30 s away; Team: no runner; the rest retreat to the pit",
+     "calls": [
+      {
+       "id": "427c825b-boost-2-406-20",
+       "team": "Team",
+       "side": "",
+       "label": "concede",
+       "job": "Concede the boost for kills",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 14,
+     "id": "s:427c825b-pinned-2-412-21",
+     "kind": "pinned",
+     "t0": 412,
+     "t1": 524,
+     "reads": "Team is held in its own base or pit by cope's main team (K2 A1 B1 alive; base res in 68 s)",
+     "calls": [
+      {
+       "id": "427c825b-pinned-2-412-21",
+       "team": "Team",
+       "side": "",
+       "label": "",
+       "job": "Lose no player and no NPC while held in, or break out",
+       "met": true,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         true,
+         "it breaks out (half its living players or more, four at least, out of its base and pit)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 15,
+     "id": "s:427c825b-numbers-1-520-22",
+     "kind": "numbers",
+     "t0": 520,
+     "t1": 542,
+     "reads": "Up on numbers in the main fight (8 v 7, Team's pit), from kills; cope: fall out",
+     "calls": [
+      {
+       "id": "427c825b-numbers-1-520-22",
+       "team": "cope",
+       "side": "up",
+       "label": "fall out",
+       "job": "Reset without giving anything back",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ],
+        [
+         true,
+         "no NPC lost"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 16,
+     "id": "s:427c825b-boost-2-526-23",
+     "kind": "boost",
+     "t0": 526,
+     "t1": 571,
+     "reads": "cope's boost is 30 s away; Team: no runner; the rest fall back into the base",
+     "calls": [
+      {
+       "id": "427c825b-boost-2-526-23",
+       "team": "Team",
+       "side": "",
+       "label": "concede",
+       "job": "Concede the boost for kills",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 17,
+     "id": "s:427c825b-pinned-2-596-24",
+     "kind": "pinned",
+     "t0": 596,
+     "t1": 660,
+     "reads": "Team is held in its own base or pit by cope's main team (K2 A0 B1 alive; base res in 4 s)",
+     "calls": [
+      {
+       "id": "427c825b-pinned-2-596-24",
+       "team": "Team",
+       "side": "",
+       "label": "",
+       "job": "Lose no player and no NPC while held in, or break out",
+       "met": true,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         true,
+         "it breaks out (half its living players or more, four at least, out of its base and pit)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 18,
+     "id": "s:427c825b-base_res-2-700-25",
+     "kind": "base res",
+     "t0": 700,
+     "t1": 750,
+     "reads": "Team has 6 in cope's base at the base res (0 defending, 2 coming back): 6 stay",
+     "calls": [
+      {
+       "id": "427c825b-base_res-2-700-25",
+       "team": "Team",
+       "side": "",
+       "label": "stayed through the res",
+       "job": "Be out, or set for the fight, when they res",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies in the 30 s after the res"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 19,
+     "id": "s:427c825b-numbers-1-716-26",
+     "kind": "numbers",
+     "t0": 716,
+     "t1": 736,
+     "reads": "Up on numbers in the main fight (6 v 5, cope's back door; then 8 v 7 from 12:02), from players split elsewhere; cope: push up; 3 damage against 2 monks | then 7 v 8 from 12:02), from players split elsewhere; Team: push up (push up to their back door)",
+     "calls": [
+      {
+       "id": "427c825b-numbers-1-716-26",
+       "team": "cope",
+       "side": "strong side",
+       "label": "push up",
+       "job": "Keep them busy and lose nobody (a kill is not expected of it)",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "427c825b-numbers-2-716-27",
+       "team": "Team",
+       "side": "weak side",
+       "label": "push up",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 20,
+     "id": "s:427c825b-numbers-1-734-28",
+     "kind": "numbers",
+     "t0": 734,
+     "t1": 780,
+     "reads": "Up on numbers in the main fight (8 v 7, cope's front door), from a runner away; cope: retreat down the ladder (fall back into the base) | Team: stay (stay on the enemy's side)",
+     "calls": [
+      {
+       "id": "427c825b-numbers-1-734-28",
+       "team": "cope",
+       "side": "up",
+       "label": "retreat down the ladder",
+       "job": "Reset without giving anything back",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ],
+        [
+         true,
+         "no NPC lost"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "427c825b-numbers-2-734-29",
+       "team": "Team",
+       "side": "down",
+       "label": "stay",
+       "job": "Hold the ground a player down and lose no more until it is level, or the base res",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 21,
+     "id": "s:427c825b-flag-2-768-30",
+     "kind": "flag",
+     "t0": 768,
+     "t1": 829,
+     "reads": "They single run (cope's AoB Derv); Team: stay",
+     "calls": [
+      {
+       "id": "427c825b-flag-2-768-30",
+       "team": "Team",
+       "side": "",
+       "label": "stay",
+       "job": "Kill with the extra player while their runner is away, or their flag does not get in",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die at the main fight than of ours"
+        ],
+        [
+         true,
+         "their flag does not get in"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 22,
+     "id": "s:427c825b-boost-1-808-31",
+     "kind": "boost",
+     "t0": 808,
+     "t1": 843,
+     "reads": "Team's boost is 30 s away; cope: one runner; the rest stay at the stand",
+     "calls": [
+      {
+       "id": "427c825b-boost-1-808-31",
+       "team": "cope",
+       "side": "",
+       "label": "run",
+       "job": "Deny their boost",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "their boost does not land"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 23,
+     "id": "s:427c825b-numbers-1-814-32",
+     "kind": "numbers",
+     "t0": 814,
+     "t1": 838,
+     "reads": "Down on numbers in the main fight (6 v 8, the flag stand), from players split elsewhere; cope: retreat down the ladder (fall back into the base) | Team: stay (stay at the stand)",
+     "calls": [
+      {
+       "id": "427c825b-numbers-1-814-32",
+       "team": "cope",
+       "side": "weak side",
+       "label": "retreat down the ladder",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "427c825b-numbers-2-814-33",
+       "team": "Team",
+       "side": "strong side",
+       "label": "stay",
+       "job": "Kill with the numbers while their players are away",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 24,
+     "id": "s:427c825b-numbers-1-832-34",
+     "kind": "numbers",
+     "t0": 832,
+     "t1": 854,
+     "reads": "Down on numbers in the main fight (7 v 8, the greater stand area), from kills; cope: retreat down the ladder (fall back into the base) | Team: push in",
+     "calls": [
+      {
+       "id": "427c825b-numbers-1-832-34",
+       "team": "cope",
+       "side": "down",
+       "label": "retreat down the ladder",
+       "job": "Reach cover a player down without losing another",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody of ours dies"
+        ],
+        [
+         true,
+         "no NPC lost"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "427c825b-numbers-2-832-35",
+       "team": "Team",
+       "side": "up",
+       "label": "push in",
+       "job": "Take ground and NPCs with the numbers",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no more of ours die than of theirs"
+        ],
+        [
+         false,
+         "one of their NPCs dies"
+        ],
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 25,
+     "id": "s:427c825b-numbers-1-852-36",
+     "kind": "numbers",
+     "t0": 852,
+     "t1": 886,
+     "reads": "Down on numbers in the main fight (5 v 8, cope's back door; then 3 v 8 from 14:20), from kills; cope: retreat down the ladder (fall back into the base) | then 8 v 3 from 14:20), from kills; Team: push in",
+     "calls": [
+      {
+       "id": "427c825b-numbers-1-852-36",
+       "team": "cope",
+       "side": "down",
+       "label": "retreat down the ladder",
+       "job": "Reach cover a player down without losing another",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody of ours dies"
+        ],
+        [
+         false,
+         "no NPC lost"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "427c825b-numbers-2-852-37",
+       "team": "Team",
+       "side": "up",
+       "label": "push in",
+       "job": "Take ground and NPCs with the numbers",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no more of ours die than of theirs"
+        ],
+        [
+         true,
+         "one of their NPCs dies"
+        ],
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set": "w2",
+   "part": 1,
+   "label": "round 3",
+   "rid": "ba85aafc-0bd8-518d-a814-e5f7e9e01baf",
+   "teams": [
+    "chic",
+    "戦戦戦戦"
+   ],
+   "map": "Corrupted Isle",
+   "date": "2026-11-03",
+   "situations": [
+    {
+     "n": 1,
+     "id": "s:ba85aafc-numbers-1-2-0",
+     "kind": "numbers",
+     "t0": 2,
+     "t1": 212,
+     "reads": "Up on numbers in the main fight (5 v 4, the greater stand area; then 5 v 4 from 1:24; then 5 v 3 from 1:42; then 5 v 3 from 2:42), from players split elsewhere; chic: split (split by the front door) | then 4 v 5 from 1:24; then 3 v 5 from 1:42; then 3 v 5 from 2:42), from players split elsewhere; 戦戦戦戦: push up (go out by the front door)",
+     "calls": [
+      {
+       "id": "ba85aafc-numbers-1-2-0",
+       "team": "chic",
+       "side": "strong side",
+       "label": "split",
+       "job": "Kill with the numbers while their players are away",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "ba85aafc-numbers-2-2-1",
+       "team": "戦戦戦戦",
+       "side": "weak side",
+       "label": "push up",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "id": "s:ba85aafc-split-1-64-2",
+     "kind": "split",
+     "t0": 64,
+     "t1": 120,
+     "reads": "chic's split by the back door: three players (Dervish, Ritualist, 7 Monk) against 3 defending (Fire Ele, Air Ele, Prot)",
+     "calls": [
+      {
+       "id": "ba85aafc-split-1-64-2",
+       "team": "chic",
+       "side": "attacker",
+       "label": "even",
+       "job": "Take NPCs or kills",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "ba85aafc-split-2-64-3",
+       "team": "戦戦戦戦",
+       "side": "defender",
+       "label": "mirror",
+       "job": "Hold it even: lose no pit NPC and no more players than the split does",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no more defenders die than split players"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "id": "s:ba85aafc-split-1-118-4",
+     "kind": "split",
+     "t0": 118,
+     "t1": 150,
+     "reads": "chic's split by the back door: three players (Dervish, Ritualist, 7 Monk) against 4 defending (Fire Ele, Air Ele, Mesmer, Prot); Mesmer collapse from the main fight; 4 (Fire Ele, Air Ele, Mesmer, Prot) against three players: collapse by Mesmer from the main fight",
+     "calls": [
+      {
+       "id": "ba85aafc-split-1-118-4",
+       "team": "chic",
+       "side": "attacker",
+       "label": "collapsed on",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "ba85aafc-split-2-118-5",
+       "team": "戦戦戦戦",
+       "side": "defender",
+       "label": "collapse",
+       "job": "Kill a split player before going back (what it cost at the main fight and in flags is beside it)",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a split player dies during the collapse"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 4,
+     "id": "s:ba85aafc-split-2-150-8",
+     "kind": "split",
+     "t0": 150,
+     "t1": 252,
+     "reads": "戦戦戦戦's split by the back door: 4 players (Fire Ele, Prot, Air Ele, Mesmer) against 3 defending (Dervish, Ritualist, 7 Monk); numbers along the way: 4 v 3 from 2:30, 4 v 4 from 3:32",
+     "calls": [
+      {
+       "id": "ba85aafc-split-2-150-8",
+       "team": "戦戦戦戦",
+       "side": "attacker",
+       "label": "a player or more up",
+       "job": "Kill or take NPCs",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "ba85aafc-split-1-150-6",
+       "team": "chic",
        "side": "defender",
        "label": "a player down",
        "job": "Delay: keep the split off the pit NPCs and stay alive",
@@ -7784,11 +9409,11 @@
        "draft": false
       },
       {
-       "id": "51683de9-split-2-1602-53",
-       "team": "Crew",
+       "id": "ba85aafc-split-1-150-7",
+       "team": "chic",
        "side": "defender's main team",
        "label": "the main fight can kill",
-       "job": "Kill at the main fight: its damage can kill against their monks there, and theirs cannot",
+       "job": "Kill at the main fight: they have no monk there",
        "met": true,
        "tests": [
         [
@@ -7802,18 +9427,414 @@
      ]
     },
     {
-     "n": 37,
-     "id": "s:51683de9-numbers-1-1614-54",
-     "kind": "numbers",
-     "t0": 1614,
-     "t1": 1688,
-     "reads": "Down on numbers in the main fight (4 v 6, the greater stand area; then 4 v 8 from 27:46), from players split elsewhere; Men: retreat down the ladder (retreat to the pit) | then 8 v 4 from 27:46), from players split elsewhere; Crew: push in",
+     "n": 5,
+     "id": "s:ba85aafc-boost-1-172-9",
+     "kind": "boost",
+     "t0": 172,
+     "t1": 217,
+     "reads": "戦戦戦戦's boost is 30 s away; chic: no runner; the rest push in",
      "calls": [
       {
-       "id": "51683de9-numbers-1-1614-54",
-       "team": "Men",
+       "id": "ba85aafc-boost-1-172-9",
+       "team": "chic",
+       "side": "",
+       "label": "concede",
+       "job": "Concede the boost for kills",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 6,
+     "id": "s:ba85aafc-numbers-1-208-10",
+     "kind": "numbers",
+     "t0": 208,
+     "t1": 242,
+     "reads": "Up on numbers in the main fight (4 v 2, 戦戦戦戦's front footies; then 3 v 2 from 3:48), from players split elsewhere; chic: push up (push up to their front door) | then 2 v 3 from 3:48), from players split elsewhere; 戦戦戦戦: retreat down the ladder (fall back into the base)",
+     "calls": [
+      {
+       "id": "ba85aafc-numbers-1-208-10",
+       "team": "chic",
+       "side": "strong side",
+       "label": "push up",
+       "job": "Kill with the numbers while their players are away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "ba85aafc-numbers-2-208-11",
+       "team": "戦戦戦戦",
        "side": "weak side",
        "label": "retreat down the ladder",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 7,
+     "id": "s:ba85aafc-split-1-276-12",
+     "kind": "split",
+     "t0": 276,
+     "t1": 420,
+     "reads": "chic's split by the back door: two players (Dervish, Ritualist) against 1 defending (Prot); numbers along the way: 2 v 1 from 4:36, 2 v 2 from 5:54",
+     "calls": [
+      {
+       "id": "ba85aafc-split-1-276-12",
+       "team": "chic",
+       "side": "attacker",
+       "label": "a player or more up",
+       "job": "Kill or take NPCs",
+       "met": true,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         true,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "ba85aafc-split-2-276-13",
+       "team": "戦戦戦戦",
+       "side": "defender",
+       "label": "one defender",
+       "job": "Delay: keep the split off the pit NPCs and stay alive",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no defender dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 8,
+     "id": "s:ba85aafc-flag-1-306-14",
+     "kind": "flag",
+     "t0": 306,
+     "t1": 400,
+     "reads": "They single run (戦戦戦戦's Mesmer); chic: stay",
+     "calls": [
+      {
+       "id": "ba85aafc-flag-1-306-14",
+       "team": "chic",
+       "side": "",
+       "label": "stay",
+       "job": "Kill with the extra player while their runner is away, or their flag does not get in",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die at the main fight than of ours"
+        ],
+        [
+         false,
+         "their flag does not get in"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 9,
+     "id": "s:ba85aafc-numbers-2-312-16",
+     "kind": "numbers",
+     "t0": 312,
+     "t1": 404,
+     "reads": "Down on numbers in the main fight (7 v 8, 戦戦戦戦's front door; then 4 v 5 from 5:36), from kills; 戦戦戦戦: retreat down the ladder (fall back into the base) | then 5 v 4 from 5:36), from kills; chic: stay (stay on the enemy's side)",
+     "calls": [
+      {
+       "id": "ba85aafc-numbers-2-312-16",
+       "team": "戦戦戦戦",
+       "side": "down",
+       "label": "retreat down the ladder",
+       "job": "Reach cover a player down without losing another",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ],
+        [
+         false,
+         "no NPC lost"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "ba85aafc-numbers-1-312-15",
+       "team": "chic",
+       "side": "up",
+       "label": "stay",
+       "job": "Turn the extra player into a kill before the numbers are level",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 10,
+     "id": "s:ba85aafc-split-2-364-18",
+     "kind": "split",
+     "t0": 364,
+     "t1": 392,
+     "reads": "戦戦戦戦's split by the back door: two players (Air Ele, Fire Ele) against 0 defending",
+     "calls": [
+      {
+       "id": "ba85aafc-split-2-364-18",
+       "team": "戦戦戦戦",
+       "side": "attacker",
+       "label": "undefended",
+       "job": "Take NPCs",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "an NPC taken"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "ba85aafc-split-1-364-17",
+       "team": "chic",
+       "side": "defender",
+       "label": "no answer",
+       "job": "Win elsewhere before the split costs more than it gains",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": true,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 11,
+     "id": "s:ba85aafc-boost-2-366-19",
+     "kind": "boost",
+     "t0": 366,
+     "t1": 401,
+     "reads": "chic's boost is 30 s away; 戦戦戦戦: one runner; the rest stay at the stand",
+     "calls": [
+      {
+       "id": "ba85aafc-boost-2-366-19",
+       "team": "戦戦戦戦",
+       "side": "",
+       "label": "run",
+       "job": "Deny their boost",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "their boost does not land"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 12,
+     "id": "s:ba85aafc-split-2-390-21",
+     "kind": "split",
+     "t0": 390,
+     "t1": 418,
+     "reads": "戦戦戦戦's split by the back door: two players (Air Ele, Fire Ele) against 1 defending (Monk 5)",
+     "calls": [
+      {
+       "id": "ba85aafc-split-2-390-21",
+       "team": "戦戦戦戦",
+       "side": "attacker",
+       "label": "a player or more up",
+       "job": "Kill or take NPCs",
+       "met": true,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         true,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "ba85aafc-split-1-390-20",
+       "team": "chic",
+       "side": "defender",
+       "label": "one defender",
+       "job": "Delay: keep the split off the pit NPCs and stay alive",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no defender dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 13,
+     "id": "s:ba85aafc-flag-2-400-22",
+     "kind": "flag",
+     "t0": 400,
+     "t1": 500,
+     "reads": "They single run (chic's Warrior 1); 戦戦戦戦: single run",
+     "calls": [
+      {
+       "id": "ba85aafc-flag-2-400-22",
+       "team": "戦戦戦戦",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         false,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 14,
+     "id": "s:ba85aafc-split-2-416-26",
+     "kind": "split",
+     "t0": 416,
+     "t1": 448,
+     "reads": "戦戦戦戦's split by the back door: one player (Fire Ele) against 0 defending",
+     "calls": [
+      {
+       "id": "ba85aafc-split-2-416-26",
+       "team": "戦戦戦戦",
+       "side": "attacker",
+       "label": "undefended",
+       "job": "Take NPCs",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "an NPC taken"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "ba85aafc-split-1-416-24",
+       "team": "chic",
+       "side": "defender",
+       "label": "no answer",
+       "job": "Win elsewhere before the split costs more than it gains",
+       "met": true,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         true,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": true,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 15,
+     "id": "s:ba85aafc-numbers-1-416-23",
+     "kind": "numbers",
+     "t0": 416,
+     "t1": 462,
+     "reads": "Down on numbers in the main fight (2 v 5, 戦戦戦戦's pit; then 4 v 6 from 7:06; then 4 v 7 from 7:26), from players split elsewhere; chic: push in | then 6 v 4 from 7:06; then 7 v 4 from 7:26), from players split elsewhere; 戦戦戦戦: push up (go out by the front door)",
+     "calls": [
+      {
+       "id": "ba85aafc-numbers-1-416-23",
+       "team": "chic",
+       "side": "weak side",
+       "label": "push in",
        "job": "No deaths, keep them busy, do not chase",
        "met": false,
        "tests": [
@@ -7826,10 +9847,10 @@
        "draft": false
       },
       {
-       "id": "51683de9-numbers-2-1614-55",
-       "team": "Crew",
+       "id": "ba85aafc-numbers-2-416-25",
+       "team": "戦戦戦戦",
        "side": "strong side",
-       "label": "push in",
+       "label": "push up",
        "job": "Kill with the numbers while their players are away",
        "met": true,
        "tests": [
@@ -7844,40 +9865,86 @@
      ]
     },
     {
-     "n": 38,
-     "id": "s:51683de9-lord-1-1623-56",
-     "kind": "lord",
-     "t0": 1623,
-     "t1": 1632,
-     "reads": "Men pushes Crew's Guild Lord with 3 in the base (1 monk, 1 by the end) against 5 pit NPCs: fewer attackers than pit NPCs; playing for Lord damage",
+     "n": 16,
+     "id": "s:ba85aafc-split-1-418-27",
+     "kind": "split",
+     "t0": 418,
+     "t1": 460,
+     "reads": "chic's split by the back door: two players (Ritualist, Dervish) against 6 defending (Mesmer, Warrior, Monk 5, Prot, 7 Monk, Air Ele); the whole team turns on it; 6 (Mesmer, Warrior, Monk 5, Prot, 7 Monk, Air Ele) against two players: full collapse",
      "calls": [
       {
-       "id": "51683de9-lord-1-1623-56",
-       "team": "Men",
+       "id": "ba85aafc-split-1-418-27",
+       "team": "chic",
        "side": "attacker",
-       "label": "",
-       "job": "Most Lord damage, or the kill, while keeping the own Lord up (the result is the match)",
+       "label": "met by a full collapse",
+       "job": "Survive and gain an advantage elsewhere on the map",
        "met": false,
        "tests": [
         [
          false,
-         "the match is won"
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         true,
+         "flag lead better by 0.35 or more"
         ]
        ],
        "any": false,
        "draft": false
       },
       {
-       "id": "51683de9-lord-2-1623-57",
-       "team": "Crew",
+       "id": "ba85aafc-split-2-418-28",
+       "team": "戦戦戦戦",
        "side": "defender",
-       "label": "",
-       "job": "Do not die, keep Lord damage down, keep the Lord alive (the result is the match)",
+       "label": "full collapse",
+       "job": "Kill the split or drive it out (the flags it costs are beside it)",
        "met": true,
        "tests": [
         [
          true,
-         "the match is won"
+         "a split player dies"
+        ],
+        [
+         true,
+         "the split is gone within the visit"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 17,
+     "id": "s:ba85aafc-flag-1-447-29",
+     "kind": "flag",
+     "t0": 447,
+     "t1": 512,
+     "reads": "They single run (戦戦戦戦's Prot); chic: single run",
+     "calls": [
+      {
+       "id": "ba85aafc-flag-1-447-29",
+       "team": "chic",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         true,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
         ]
        ],
        "any": false,
@@ -7886,27 +9953,225 @@
      ]
     },
     {
-     "n": 39,
-     "id": "s:51683de9-pinned-1-1636-58",
-     "kind": "pinned",
-     "t0": 1636,
-     "t1": 1680,
-     "reads": "Men is held in its own base or pit by Crew's main team (K0 A1 B1 alive; base res in 44 s)",
+     "n": 18,
+     "id": "s:ba85aafc-numbers-1-476-30",
+     "kind": "numbers",
+     "t0": 476,
+     "t1": 502,
+     "reads": "Down on numbers in the main fight (4 v 6, 戦戦戦戦's front door; then 4 v 6 from 8:06), from players split elsewhere; chic: stay (stay at the stand) | then 6 v 4 from 8:06), from players split elsewhere; 戦戦戦戦: stay (stay at the stand)",
      "calls": [
       {
-       "id": "51683de9-pinned-1-1636-58",
-       "team": "Men",
+       "id": "ba85aafc-numbers-1-476-30",
+       "team": "chic",
+       "side": "weak side",
+       "label": "stay",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "ba85aafc-numbers-2-476-31",
+       "team": "戦戦戦戦",
+       "side": "strong side",
+       "label": "stay",
+       "job": "Kill with the numbers while their players are away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 19,
+     "id": "s:ba85aafc-numbers-1-500-32",
+     "kind": "numbers",
+     "t0": 500,
+     "t1": 524,
+     "reads": "Up on numbers in the main fight (6 v 5, the greater stand area), from players split elsewhere; chic: push in | 戦戦戦戦: retreat down the ladder (fall back into the base)",
+     "calls": [
+      {
+       "id": "ba85aafc-numbers-1-500-32",
+       "team": "chic",
+       "side": "strong side",
+       "label": "push in",
+       "job": "Kill with the numbers while their players are away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "ba85aafc-numbers-2-500-33",
+       "team": "戦戦戦戦",
+       "side": "weak side",
+       "label": "retreat down the ladder",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 20,
+     "id": "s:ba85aafc-split-1-508-34",
+     "kind": "split",
+     "t0": 508,
+     "t1": 540,
+     "reads": "chic's split by the back door: two players (Warrior 2, Ritualist) against 2 defending (Fire Ele, Air Ele)",
+     "calls": [
+      {
+       "id": "ba85aafc-split-1-508-34",
+       "team": "chic",
+       "side": "attacker",
+       "label": "even",
+       "job": "Take NPCs or kills",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "ba85aafc-split-2-508-35",
+       "team": "戦戦戦戦",
+       "side": "defender",
+       "label": "mirror",
+       "job": "Hold it even: lose no pit NPC and no more players than the split does",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no more defenders die than split players"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 21,
+     "id": "s:ba85aafc-flag-2-525-36",
+     "kind": "flag",
+     "t0": 525,
+     "t1": 606,
+     "reads": "They single run (chic's Warrior 1); 戦戦戦戦: single run",
+     "calls": [
+      {
+       "id": "ba85aafc-flag-2-525-36",
+       "team": "戦戦戦戦",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "our flag is capped"
+        ],
+        [
+         false,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         true,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 22,
+     "id": "s:ba85aafc-flag-1-544-37",
+     "kind": "flag",
+     "t0": 544,
+     "t1": 616,
+     "reads": "They single run (戦戦戦戦's Mesmer); chic: stay",
+     "calls": [
+      {
+       "id": "ba85aafc-flag-1-544-37",
+       "team": "chic",
+       "side": "",
+       "label": "stay",
+       "job": "Kill with the extra player while their runner is away, or their flag does not get in",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die at the main fight than of ours"
+        ],
+        [
+         true,
+         "their flag does not get in"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 23,
+     "id": "s:ba85aafc-pinned-2-580-38",
+     "kind": "pinned",
+     "t0": 580,
+     "t1": 632,
+     "reads": "戦戦戦戦 is held in its own base or pit by chic's main team (K0 A0 B1 alive; base res in 20 s)",
+     "calls": [
+      {
+       "id": "ba85aafc-pinned-2-580-38",
+       "team": "戦戦戦戦",
        "side": "",
        "label": "",
-       "job": "Hold the NPCs and lose nobody until the base res, or break out",
-       "met": false,
+       "job": "Lose no player and no NPC while held in, or break out",
+       "met": true,
        "tests": [
         [
          false,
          "no pit NPC lost and nobody dies until the base res"
         ],
         [
-         false,
+         true,
          "it breaks out (half its living players or more, four at least, out of its base and pit)"
         ]
        ],
@@ -7916,40 +10181,24 @@
      ]
     },
     {
-     "n": 40,
-     "id": "s:51683de9-lord-2-1640-60",
-     "kind": "lord",
-     "t0": 1640,
-     "t1": 1678,
-     "reads": "Crew pushes Men's Guild Lord with 8 in the base (2 monks) against 2 pit NPCs: more attackers than pit NPCs; playing for Lord damage",
+     "n": 24,
+     "id": "s:ba85aafc-numbers-1-600-39",
+     "kind": "numbers",
+     "t0": 600,
+     "t1": 793,
+     "reads": "Up on numbers in the main fight (8 v 6, 戦戦戦戦's pit; then 7 v 5 from 10:36), from kills; chic: stay (stay on the enemy's side)",
      "calls": [
       {
-       "id": "51683de9-lord-2-1640-60",
-       "team": "Crew",
-       "side": "attacker",
-       "label": "",
-       "job": "Most Lord damage, or the kill, while keeping the own Lord up (the result is the match)",
+       "id": "ba85aafc-numbers-1-600-39",
+       "team": "chic",
+       "side": "up",
+       "label": "stay",
+       "job": "Turn the extra player into a kill before the numbers are level",
        "met": true,
        "tests": [
         [
          true,
-         "the match is won"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      },
-      {
-       "id": "51683de9-lord-1-1640-59",
-       "team": "Men",
-       "side": "defender",
-       "label": "",
-       "job": "Do not die, keep Lord damage down, keep the Lord alive (the result is the match)",
-       "met": false,
-       "tests": [
-        [
-         false,
-         "the match is won"
+         "more of theirs die than of ours"
         ]
        ],
        "any": false,
@@ -7958,28 +10207,158 @@
      ]
     },
     {
-     "n": 41,
-     "id": "s:51683de9-base_res-2-1660-61",
-     "kind": "base res",
-     "t0": 1660,
-     "t1": 1694,
-     "reads": "Crew has 8 in Men's base at the base res (4 defending, 4 coming back): 8 stay",
+     "n": 25,
+     "id": "s:ba85aafc-pinned-2-636-40",
+     "kind": "pinned",
+     "t0": 636,
+     "t1": 793,
+     "reads": "戦戦戦戦 is held in its own base or pit by chic's main team (K0 A0 B1 alive; base res in 84 s)",
      "calls": [
       {
-       "id": "51683de9-base_res-2-1660-61",
-       "team": "Crew",
+       "id": "ba85aafc-pinned-2-636-40",
+       "team": "戦戦戦戦",
        "side": "",
-       "label": "stayed through the res",
-       "job": "Be out, or set for the fight, when they res",
+       "label": "",
+       "job": "Lose no player and no NPC while held in, or break out",
+       "met": true,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         true,
+         "it breaks out (half its living players or more, four at least, out of its base and pit)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 26,
+     "id": "s:ba85aafc-flag-1-641-41",
+     "kind": "flag",
+     "t0": 641,
+     "t1": 687,
+     "reads": "They single run (戦戦戦戦's Mesmer); chic: stay",
+     "calls": [
+      {
+       "id": "ba85aafc-flag-1-641-41",
+       "team": "chic",
+       "side": "",
+       "label": "stay",
+       "job": "Kill with the extra player while their runner is away, or their flag does not get in",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die at the main fight than of ours"
+        ],
+        [
+         false,
+         "their flag does not get in"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 27,
+     "id": "s:ba85aafc-split-2-646-43",
+     "kind": "split",
+     "t0": 646,
+     "t1": 788,
+     "reads": "戦戦戦戦's split by the back door: two players (Air Ele, Fire Ele) against 1 defending (7 Monk); numbers along the way: 3 v 2 from 10:46, 3 v 3 from 11:08, 2 v 1 from 11:38, 1 v 1 from 12:32",
+     "calls": [
+      {
+       "id": "ba85aafc-split-2-646-43",
+       "team": "戦戦戦戦",
+       "side": "attacker",
+       "label": "a player or more up",
+       "job": "Kill or take NPCs",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "ba85aafc-split-1-646-42",
+       "team": "chic",
+       "side": "defender",
+       "label": "one defender",
+       "job": "Delay: keep the split off the pit NPCs and stay alive",
        "met": true,
        "tests": [
         [
          true,
-         "nobody of ours dies in the 30 s after the res"
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no defender dies"
         ]
        ],
        "any": false,
        "draft": false
+      }
+     ]
+    },
+    {
+     "n": 28,
+     "id": "s:ba85aafc-split-2-786-45",
+     "kind": "split",
+     "t0": 786,
+     "t1": 793,
+     "reads": "戦戦戦戦's split by the back door: one player (Air Ele) against 0 defending",
+     "calls": [
+      {
+       "id": "ba85aafc-split-2-786-45",
+       "team": "戦戦戦戦",
+       "side": "attacker",
+       "label": "undefended",
+       "job": "Take NPCs",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "ba85aafc-split-1-786-44",
+       "team": "chic",
+       "side": "defender",
+       "label": "no answer",
+       "job": "Win elsewhere before the split costs more than it gains",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": true,
+       "draft": true
       }
      ]
     }

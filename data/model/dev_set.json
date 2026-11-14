@@ -1,5 +1,5 @@
 {
- "about": "The development set (R-453): run after every change to the reading (`moments.py all <file> --dev`, then `tools/golden/review.py score <file>`); every match is run only at a checkpoint (a new review set, a gate, a benchmark rebuild). Holds the matches of the review key, the golden moments, the line-up games, and the games of each whole-game review. Whole-game set w1 (R-454), picked 2026-11-13 from October and November games of the top eight guilds that no earlier test had used and that hold no Shadow of Haste run: four games, two and two (R-455): part 1 (TFS v 옷옷옷옷, Men v Apes) is marked first and fixed against; hdm v hook was marked on 2026-11-14 as the first measure of the rebuilt reading and is built from since (R-467); Men v Crew is the hidden game and 옷옷옷옷 v RACK the spare: neither is marked, looked at or fixed against.",
+ "about": "The development set (R-453): run after every change to the reading (`moments.py all <file> --dev`, then `tools/golden/review.py score <file>`); every match is run only at a checkpoint (a new review set, a gate, a benchmark rebuild). Holds the matches of the review key, the golden moments, the line-up games, and the games of each whole-game review. Whole-game set w1 (R-454), picked 2026-11-13 from October and November games of the top eight guilds that no earlier test had used and that hold no Shadow of Haste run: four games, two and two (R-455): part 1 (TFS v 옷옷옷옷, Men v Apes) is marked first and fixed against; hdm v hook was marked on 2026-11-14 as the first measure of the rebuilt reading and is built from since (R-467); Men v Crew is the hidden game and 옷옷옷옷 v RACK the spare: neither is marked, looked at or fixed against. Set w2 is round 3 (R-473), picked 2026-11-14 from unused games since 22 October on halls not yet marked or guilds not yet seen: hook v hold (Nomad's Isle), cope v Team (Isle of Jade), chic v 戦戦戦戦 (Corrupted Isle); each is scored from his marks before anything is fixed against it.",
  "review_key": [
   "0f1fd794-46cd-5fb1-a661-a7ec5f1cbadd",
   "1cb73c20-1b06-5b7b-a728-25c7640f8a84",
@@ -92,6 +92,21 @@
    "set": "w1",
    "part": "hidden",
    "rid": "51683de9-4096-5833-ad4a-56a69c4759e4"
+  },
+  {
+   "set": "w2",
+   "part": 1,
+   "rid": "4629b08c-60ca-5b1b-a349-b241e5d2305a"
+  },
+  {
+   "set": "w2",
+   "part": 1,
+   "rid": "427c825b-7e7f-54f4-aba9-7de41c9fcbaf"
+  },
+  {
+   "set": "w2",
+   "part": 1,
+   "rid": "ba85aafc-0bd8-518d-a814-e5f7e9e01baf"
   }
  ],
  "matches": [
@@ -136,6 +151,9 @@
   "d016987b-e5a0-5cd5-a23c-4c5b2d2415f8",
   "d6ef0b00-a841-55ac-a976-4eca9f15c175",
   "dae60f33-00a0-5b98-ae10-69a8b5424269",
-  "faec428a-5b92-54d1-a28c-b79c7f27cfcf"
+  "faec428a-5b92-54d1-a28c-b79c7f27cfcf",
+  "427c825b-7e7f-54f4-aba9-7de41c9fcbaf",
+  "ba85aafc-0bd8-518d-a814-e5f7e9e01baf",
+  "4629b08c-60ca-5b1b-a349-b241e5d2305a"
  ]
 }

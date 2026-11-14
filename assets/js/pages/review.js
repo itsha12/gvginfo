@@ -64,7 +64,7 @@ export async function renderReview(out, keep = false) {
   out.innerHTML = `<h1>Game review</h1>
   <p>The engine's reading of whole games. Watch the game and mark every row on its own: the situation (did the engine see what was happening: who, where, how many against how many) and, under it, each side's call (is that the job a team has in that situation, and is the result right). ${canSave() ? "" : "<b>Add your GitHub key in Settings to save.</b>"}</p>
   <details class="rv-terms"><summary>How to read a row</summary><ul class="small">
-    <li><b>A situation</b> is one thing the engine saw happening between the two times: a flag run and the answer to it, a push on a flagger, one phase of a split, a numbers difference in the main fight, a team pinned in its base, a boost coming, a base resurrection, a Lord push.</li>
+    <li><b>A situation</b> is one thing the engine saw happening between the two times: a flag run and the answer to it, a push on a flagger, a split and its defence (told once, with each change of its numbers beside it), a numbers difference in the main fight, a team pinned in its base, a boost coming, a base resurrection, a Lord push.</li>
     <li><b>A call</b> is what one team did about it. Its <b>job</b> is what a team is expected to achieve in that situation by your rulings; <b>Met</b> or <b>Not met</b> says only whether that happened, with the tests behind it (yes or no). It is a result, not a verdict on whether the call was right.</li>
     <li><b>Right</b>: the row is what you would say. <b>Partly</b>: the situation is there but something in it is off (the numbers, the time, who, the job or the result). <b>Wrong</b>: it did not happen, or it was something else. <b>Repeat</b>: the same thing is already told in another row. For Partly and Wrong, say what you see in your own words.</li>
     <li>When you mark a situation Wrong or a Repeat, the calls under it are not asked for.</li>
@@ -72,7 +72,7 @@ export async function renderReview(out, keep = false) {
     <li>Marks are kept in this browser as you go and reach the engine when you press Save. Stop and resume at any point.</li>
   </ul></details>
   <div class="row rv-games">${G.map((x) => { const a = asked(x, now(x)), d = a.filter((i) => now(x)[i.id]?.mark).length;
-    return `<button class="btn small ${x.rid === cur ? "primary" : "ghost"}" data-game="${esc(x.rid)}">${esc(x.teams.join(" v "))} <span class="small">(part ${esc(x.part)}; ${d} of ${a.length})</span></button>`; }).join("")}</div>
+    return `<button class="btn small ${x.rid === cur ? "primary" : "ghost"}" data-game="${esc(x.rid)}">${esc(x.teams.join(" v "))} <span class="small">(${esc(x.label || `part ${x.part}`)}; ${d} of ${a.length})</span></button>`; }).join("")}</div>
   <p class="muted small">Rows written ${esc(rows.generated)} from engine ${esc(rows.engine)}.</p>
   <section class="rv">${gameHtml(g)}</section>
   <style>.rv-rows{table-layout:fixed;width:100%}.doc table.rv-rows td,.rv-rows td{vertical-align:top;white-space:normal!important;overflow-wrap:anywhere;padding:.35rem .5rem;font-size:.9rem}
