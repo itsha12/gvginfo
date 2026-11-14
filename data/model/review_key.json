@@ -783,7 +783,7 @@
    "said": "Fight is too messy to call this a 3v3 but it has raised two points. When defending on split, you just need to protect PIT NPCs. When attacking on split, taking footies/archers counts as an NPC take. Also, for these results on split, we are just measuring the actual split impact. So if a player or footies dies elsewhere on the map not related to the split, the split shouldn't get credit for that.",
    "checks": [
     {
-     "has": {
+     "none": {
       "play": "split",
       "side": "attacker",
       "team": "OG",
@@ -791,36 +791,15 @@
        156,
        202
       ]
-     },
-     "want": {
-      "met": true
-     },
-     "open": true,
-     "why": "OG v Dz 2:34: on the Greater stand area he redrew on Isle of Meditation on 2026-11-13 the engine reads no split here at all (the players stand inside the area, so they are not on the enemy's ground). He had called the fight too messy to be a 3 v 3. For him to say whether no split is the right reading"
-    },
-    {
-     "has": {
-      "play": "split",
-      "side": "defender",
-      "team": "Dz",
-      "at": [
-       156,
-       202
-      ]
-     },
-     "want": {
-      "met": true
-     },
-     "open": true,
-     "why": "OG v Dz 2:34: on the Greater stand area he redrew on Isle of Meditation on 2026-11-13 the engine reads no split here at all (the players stand inside the area, so they are not on the enemy's ground). He had called the fight too messy to be a 3 v 3. For him to say whether no split is the right reading"
+     }
     }
    ],
    "note": "'Too messy to call a 3 v 3' is not something the key can hold; the checks cover R-443 only (footmen and archers count for the attacker, pit NPCs only for the defence).",
    "answered": {
     "on": "2026-11-13",
     "asked": "On his redrawn Greater stand area no split is read at OG v Dz 2:34: right?",
-    "said": "I need link.",
-    "reading": "Waiting on him; the replay link was sent."
+    "said": "2:34 no split, correct",
+    "reading": "No split there: the check now asks that none is read."
    }
   },
   {
@@ -905,23 +884,6 @@
      }
     },
     {
-     "none": {
-      "play": "split",
-      "side": "defender",
-      "team": "옷옷옷옷",
-      "at": [
-       246,
-       267
-      ],
-      "want": {
-       "call": [
-        "collapse",
-        "full collapse"
-       ]
-      }
-     }
-    },
-    {
      "has": {
       "play": "split",
       "side": "defender",
@@ -932,11 +894,9 @@
       ]
      },
      "want": {
-      "call": "mirror",
-      "defenders": 2
+      "defenders": 3
      },
-     "open": true,
-     "why": "hdm v 옷옷옷옷 4:06: he ruled it a join that makes it even (2 v 2). The engine reads one defender (the Fire Ele) against two: 옷옷옷옷's 8 Monk and Air Ele are each within reach of the split for 10 s (4:06 to 4:14), under the 12 s of R-350. By distance it is three against two for 10 s and then one against two, never a steady 2 v 2. For him to look at"
+     "was": "hdm v 옷옷옷옷 4:06: three defending against hdm's two (his answer: 3 v 2); the engine reads the 8 Monk and the Air Ele there for 10 s each, under the 12 s, so it counts one"
     }
    ],
    "note": "He first approved this as a collapse; asked which stands, he chose R-441 (see answered). The split itself had been lost to the chase rule after the rebuild and was restored when this key first ran.",
@@ -951,6 +911,12 @@
     "asked": "By reach it is three against two for 10 s, then one against two: what does he see?",
     "said": "I need the link to review.",
     "reading": "Waiting on him; the replay link was sent."
+   },
+   "answered3": {
+    "on": "2026-11-13",
+    "asked": "2 v 2, 3 v 2 or 1 v 2 on the split?",
+    "said": "3v2 for hdm",
+    "reading": "Three of 옷옷옷옷 against hdm's two. With three it is one more than the split, so R-441 is met and his first approval of it as a collapse stands; his choice of a join was made on Claude's wrong account of it as 2 v 2."
    }
   },
   {
@@ -1137,8 +1103,7 @@
        446
       ]
      },
-     "open": true,
-     "why": "Crew v hdm: he reads 7 v 7 until 7:22 and again after 7:28. R-459 is built and does not settle it: Crew's Air Ele comes within reach of the fight at 7:16 and stays, so he counts from 7:16, and the 8 Monk counts until he is out of reach at about 7:36. The numbers follow reach, not the second a player commits to joining or leaving"
+     "was": "Crew v hdm: he reads 7 v 7 until 7:22 and again after 7:28. R-459 is built and does not settle it: Crew's Air Ele comes within reach of the fight at 7:16 and stays, so he counts from 7:16, and the 8 Monk counts until he is out of reach at about 7:36. The numbers follow reach, not the second a player commits to joining or leaving"
     }
    ],
    "answered": {
@@ -1367,8 +1332,7 @@
       ]
      },
      "want": {},
-     "open": true,
-     "why": "TFS v 옷옷옷옷: the run starts at 1:20, on the 7 Monk, where the engine read 0:27"
+     "was": "TFS v 옷옷옷옷: the run starts at 1:20, on the 7 Monk, where the engine read 0:27"
     }
    ]
   },
@@ -1407,8 +1371,7 @@
      "want": {
       "met": true
      },
-     "open": true,
-     "why": "TFS v 옷옷옷옷 0:36: TFS does break out: five or more is too harsh with four or five already out of the back door"
+     "was": "TFS v 옷옷옷옷 0:36: TFS does break out: five or more is too harsh with four or five already out of the back door"
     }
    ]
   },
@@ -1505,8 +1468,7 @@
      "want": {
       "call": "full collapse"
      },
-     "open": true,
-     "why": "TFS v 옷옷옷옷 1:39: all eight defending: a full collapse"
+     "was": "TFS v 옷옷옷옷 1:39: all eight defending: a full collapse"
     }
    ]
   },
@@ -1546,8 +1508,7 @@
        "ours": "a flag already in hand"
       }
      },
-     "open": true,
-     "why": "TFS v 옷옷옷옷 1:40: TFS has no flag in hand: that is only so with the flag close to the stand"
+     "was": "TFS v 옷옷옷옷 1:40: TFS has no flag in hand: that is only so with the flag close to the stand"
     }
    ]
   },
@@ -1611,10 +1572,15 @@
       ]
      },
      "want": {},
-     "open": true,
-     "why": "TFS v 옷옷옷옷: the single run from 2:09 ends at 2:54 with the cap, where the engine ran it to 5:09"
+     "was": "TFS v 옷옷옷옷: the single run from 2:09 ends at 2:54 with the cap, where the engine ran it to 5:09"
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-13",
+    "asked": "\"The single run ends when they cap the fire ball thing\": what is capped at 2:54?",
+    "said": "It's the Obelisk Flag Stand.",
+    "reading": "A flag put down at the hall's other flag stand is a cap of it, and the run ends there."
+   }
   },
   {
    "id": "w1p1-bdaa-10",
@@ -1654,7 +1620,13 @@
      "open": true,
      "why": "TFS v 옷옷옷옷 3:26: TFS's single run succeeded; the engine said its flag was not capped"
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-13",
+    "asked": "The flag job's 'lose no more players than they do': count only deaths at the main fight, or none?",
+    "said": "Go with your recommendation.",
+    "reading": "R-466: only deaths at the main fight count."
+   }
   },
   {
    "id": "w1p1-bdaa-11",
@@ -1715,8 +1687,7 @@
      "want": {
       "their": "single run"
      },
-     "open": true,
-     "why": "TFS v 옷옷옷옷 4:02: TFS's run is a single run, read as a double"
+     "was": "TFS v 옷옷옷옷 4:02: TFS's run is a single run, read as a double"
     }
    ]
   },
@@ -1767,8 +1738,7 @@
      "want": {
       "defending_monks": 1
      },
-     "open": true,
-     "why": "TFS v 옷옷옷옷 4:06: two damage against one monk: only backline monks count, the 7 Monk is a smiter"
+     "was": "TFS v 옷옷옷옷 4:06: two damage against one monk: only backline monks count, the 7 Monk is a smiter"
     }
    ]
   },
@@ -1859,8 +1829,7 @@
      "want": {
       "numbers": "3v7"
      },
-     "open": true,
-     "why": "TFS v 옷옷옷옷 5:28: 3 v 7, not 1 v 7"
+     "was": "TFS v 옷옷옷옷 5:28: 3 v 7, not 1 v 7"
     }
    ]
   },
@@ -1899,8 +1868,7 @@
      "want": {
       "scenario~": "7 v 1 from 5:4"
      },
-     "open": true,
-     "why": "TFS v 옷옷옷옷: 7 v 1 starts at 5:48 when the second TFS player dies"
+     "was": "TFS v 옷옷옷옷: 7 v 1 starts at 5:48 when the second TFS player dies"
     }
    ]
   },
@@ -2075,8 +2043,7 @@
        406
       ]
      },
-     "open": true,
-     "why": "TFS v 옷옷옷옷 6:20: a split with the 8 Monk defending and part-running, not a push on a flagger"
+     "was": "TFS v 옷옷옷옷 6:20: a split with the 8 Monk defending and part-running, not a push on a flagger"
     }
    ]
   },
@@ -2144,8 +2111,7 @@
      "want": {
       "defenders": 2
      },
-     "open": true,
-     "why": "TFS v 옷옷옷옷 6:46: the 7 Monk is also defending when the Dervish gets there"
+     "was": "TFS v 옷옷옷옷 6:46: the 7 Monk is also defending when the Dervish gets there"
     }
    ]
   },
@@ -2251,8 +2217,7 @@
        "full collapse"
       ]
      },
-     "open": true,
-     "why": "TFS v 옷옷옷옷 7:20: the split gets collapsed on at 8:02"
+     "was": "TFS v 옷옷옷옷 7:20: the split gets collapsed on at 8:02"
     }
    ]
   },
@@ -2473,8 +2438,7 @@
       ]
      },
      "want": {},
-     "open": true,
-     "why": "TFS v 옷옷옷옷: the single run starts at 11:01, with the Ritualist, where the engine read 9:18 and the Stand Mes"
+     "was": "TFS v 옷옷옷옷: the single run starts at 11:01, with the Ritualist, where the engine read 9:18 and the Stand Mes"
     }
    ]
   },
@@ -2655,14 +2619,14 @@
       "team": "옷옷옷옷",
       "at": [
        250,
-       262
+       270
       ]
      },
      "want": {
       "call": "full collapse"
      },
      "open": true,
-     "why": "TFS v 옷옷옷옷: a full collapse at about 4:10 that the engine did not read"
+     "why": "TFS v 옷옷옷옷: a full collapse at about 4:15 (he wrote \"4:15ish\") that the engine did not read"
     },
     {
      "has": {
@@ -2826,8 +2790,7 @@
      "want": {
       "defenders": 4
      },
-     "open": true,
-     "why": "Men v Apes 1:02: four defenders, and one split with the phase from 1:14, where the engine read one defender"
+     "was": "Men v Apes 1:02: four defenders, and one split with the phase from 1:14, where the engine read one defender"
     }
    ]
   },
@@ -2895,8 +2858,7 @@
      "want": {
       "their": "single run"
      },
-     "open": true,
-     "why": "Men v Apes 1:17: Men's run is a single run, read as a double"
+     "was": "Men v Apes 1:17: Men's run is a single run, read as a double"
     }
    ]
   },
@@ -3108,8 +3070,7 @@
      "want": {
       "defenders": 3
      },
-     "open": true,
-     "why": "Men v Apes 2:30: three defending; the Prot comes at 2:57"
+     "was": "Men v Apes 2:30: three defending; the Prot comes at 2:57"
     }
    ]
   },
@@ -3155,8 +3116,7 @@
        "numbers": "3v2"
       }
      },
-     "open": true,
-     "why": "Men v Apes 2:30: a 3 v 2 on Apes's side from kills: he does not see it"
+     "was": "Men v Apes 2:30: a 3 v 2 on Apes's side from kills: he does not see it"
     }
    ]
   },
@@ -3264,8 +3224,7 @@
        410
       ]
      },
-     "open": true,
-     "why": "Men v Apes 3:10 to 7:00: not a split: Men's main fight is on Apes's ground (his rows 15 to 23)"
+     "was": "Men v Apes 3:10 to 7:00: not a split: Men's main fight is on Apes's ground (his rows 15 to 23)"
     }
    ]
   },
@@ -3477,18 +3436,25 @@
    ],
    "checks": [
     {
-     "none": {
+     "has": {
       "play": "numbers",
       "team": "Men",
-      "start": [
-       366,
-       380
+      "at": [
+       372,
+       384
       ]
      },
-     "open": true,
-     "why": "Men v Apes 6:12: he reads 5 v 5 in Apes's pit, so no numbers moment"
+     "want": {
+      "numbers": "5v4"
+     }
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-13",
+    "asked": "He read 5 v 5 in Apes's pit at 6:12; the engine has four Apes there. Who is the fifth?",
+    "said": "It's 4, you're right.",
+    "reading": "5 v 4 stands; his mark on this row is withdrawn."
+   }
   },
   {
    "id": "w1p1-149f-26",
@@ -3741,8 +3707,7 @@
      "want": {
       "size": 3
      },
-     "open": true,
-     "why": "Men v Apes 7:48: the Prot is not on this split until 8:05"
+     "was": "Men v Apes 7:48: the Prot is not on this split until 8:05"
     }
    ]
   },
@@ -3875,8 +3840,7 @@
        676
       ]
      },
-     "open": true,
-     "why": "Men v Apes 8:28 to 11:16: not a split: the main fight is in Apes's pit (his rows 36 to 45)"
+     "was": "Men v Apes 8:28 to 11:16: not a split: the main fight is in Apes's pit (his rows 36 to 45)"
     }
    ]
   },

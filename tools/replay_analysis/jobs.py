@@ -63,6 +63,13 @@ class _K:
     def died(self, tm, a, b, ids=None):
         return sum(1 for td, x in self.deaths[tm] if a < td <= b and (ids is None or x in ids))
 
+    def died_main(self, tm, a, b):
+        """Deaths of a team at its main fight: every death but those of players who were out on a split when they died
+        (R-466: a flag run is held to the deaths at the main fight, not to those of a split that was collapsed on)."""
+        sp = [x for x in self.M.attempts() if x["kind"] == "split" and x["tm"] == tm]
+        on_split = lambda x_, td: any(x_ in s["ids"] and q["from"] - 2 <= td <= q["to"] + 8 for s in sp for a_, q in zip(s["ids"], s["members"]) if a_ == x_)
+        return sum(1 for td, x in self.deaths[tm] if a < td <= b and not on_split(x, td))
+
     def npcs(self, tm, a, b, pit=False):
         return sum(1 for u, k, kind in self.npc if k == tm and a < u <= b and kind != "guild_lord" and (not pit or kind in ("knight", "archer", "bodyguard")))
 
@@ -92,6 +99,7 @@ def _flag_rows(M):
     out, m = [], M.m
     rs = {(r["tm"], int(r["pickup"])): r for r in M.run_starts()}
     pin = lambda tm, t: any(k == tm and a <= t <= b for k, a, b in pinned(M))
+    others = [tuple(x["pts"][0]) for x in (M.hall.labels or []) if x.get("type") == "Flag stand" and x.get("pts") and d(tuple(x["pts"][0]), M.hall.stand) > 500]
     for f in M.flags_record():
         if f["pregame"]: continue
         r = next((rs[k] for k in ((f["tm"], int(f["start"]) + dt) for dt in (0, -1, 1)) if k in rs), None)
@@ -101,8 +109,13 @@ def _flag_rows(M):
             if went: s0 = min(int(r["moment"]), s0)                       # when he goes to run, by the hall (R-461)
             elif r["under_way"] is not None and r["under_way"] - r["pickup"] > FLAG_TAKEN_OUT_S:
                 s0, runner = int(r["under_way"]), m.roles[r["runner"]]    # picked up at home and kept there: the run starts when its runner takes it out
+        e, other = int(f["end"]), False
+        if r is not None and f["how"] != "captured" and r["carries"] and r["carries"][-1][2] is not None and r["carries"][-1][2] < e:
+            e = int(r["carries"][-1][2])                                  # put down for good: the run ends there, not when the flag goes back to the spawn
+            p = M.P[r["carries"][-1][0]][min(e, M.T)]
+            other = bool(p) and any(d(p, o) < 400 for o in others)        # at the hall's other flag stand (his answer on TFS v 옷옷옷옷 2:54: the Obelisk flag stand)
         soh = M.day < SOH_REMOVED and any(m.sk(b) == "Shadow of Haste" for a in f["ids"] for b in m.A[a].get("bar", []) if b)      # R-456: only while the mechanic was in the game
-        out.append(dict(f, runner=runner, s0=s0, pick=int(f["start"]), e=int(f["end"]), double=(f["form"] or "").startswith("double"), soh=soh))
+        out.append(dict(f, runner=runner, s0=min(s0, e), pick=int(f["start"]), e=e, other_stand=other, double=(f["form"] or "").startswith("double"), soh=soh))
     M._frows = out
     return out
 
@@ -129,9 +142,10 @@ def flag_plays(M, K, pinned_at):
         ours = "a flag already in hand" if inhand else "stay" if not new else "double run" if new["double"] else "single run"
         g = inhand or new
         who = [role[a] for a in dict.fromkeys(g["ids"])] if g else []
-        scen = f"They {theirs.replace(' run', '')} run ({M.m.tag[B]}'s {f['runner']}); {M.m.tag[A]}: {ours}"
+        scen = f"They {theirs.replace(' run', '')} run ({M.m.tag[B]}'s {f['runner']}{', to the Obelisk flag stand' if f['other_stand'] else ''}); {M.m.tag[A]}: {ours}"
         end = min(max(w1, g["e"] if g else w1), w0 + FLAG_JOB_MAX_S, T)
-        bes = lambda t1: {"flag_lead": [K.lead(A, w0), K.lead(A, t1)], "deaths": [K.died(A, w0, t1), K.died(B, w0, t1)], "their_flag": f["how"], "their_form": f["form"], "our_form": g and g["form"]}
+        dA, dB = (lambda t1: K.died_main(A, w0, t1)), (lambda t1: K.died_main(B, w0, t1))      # deaths at the main fights only (R-466)
+        bes = lambda t1: {"flag_lead": [K.lead(A, w0), K.lead(A, t1)], "deaths_at_the_main_fight": [dA(t1), dB(t1)], "deaths_anywhere": [K.died(A, w0, t1), K.died(B, w0, t1)], "their_flag": f["how"], "their_form": f["form"], "our_form": g and g["form"]}
         kw = dict(their=theirs, ours=ours, soh=bool(f["soh"] or (g and g["soh"])))
         if ours == "a flag already in hand":
             t1 = min(w1 + ANSWER_CAP_S, T)
@@ -144,23 +158,23 @@ def flag_plays(M, K, pinned_at):
         elif ours == "stay":
             t1 = min(w1 + 10, T) if not f["double"] else w1
             job = "Kill with the two extra players before their flag is in" if f["double"] else "Kill with the extra player while their runner is away"
-            out.append(_play(M, "flag", "own", A, w0, t1, [], scen, job, {"more of theirs die than of ours": K.died(B, w0, t1) > K.died(A, w0, t1)}, beside=bes(t1), **kw))
+            out.append(_play(M, "flag", "own", A, w0, t1, [], scen, job, {"more of theirs die at the main fight than of ours": dB(t1) > dA(t1)}, beside=bes(t1), **kw))
         elif (ours == "double run") == f["double"]:                      # single against single, double against double
             lv = K.lead(A, end)
             out.append(_play(M, "flag", "own", A, w0, end, who, scen, "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
-                             {"our flag is capped": new["how"] == "captured", "no more of ours die than of theirs": K.died(A, w0, end) <= K.died(B, w0, end),
+                             {"our flag is capped": new["how"] == "captured", "no more of ours die at the main fight than of theirs": dA(end) <= dB(end),
                               "no worse than half a flag behind at the end": lv is None or lv >= -LEAD_HALF}, beside=bes(end), **kw))
         elif ours == "double run":                                        # they single run, we double
             t1 = min(w1 + ANSWER_CAP_S + 5, T)                            # through their cap, and the answer to it
             gn = K.gain(A, w0, t1)
             out.append(_play(M, "flag", "own", A, w0, t1, who, scen, "Gain flag advantage through their next cap, and lose nobody while two are away",
-                             {f"flag lead better by {FLAG_GAIN} or more": gn is not None and gn >= FLAG_GAIN, "nobody of ours dies": K.died(A, w0, t1) == 0}, beside=bes(t1), **kw))
+                             {f"flag lead better by {FLAG_GAIN} or more": gn is not None and gn >= FLAG_GAIN, "nobody of ours dies at the main fight": dA(t1) == 0}, beside=bes(t1), **kw))
         else:                                                             # they double run, we single
             lv = K.lead(A, end)
             s0, s1 = M._main_step(A, w0)[0], M._main_step(A, end)[0]
             out.append(_play(M, "flag", "own", A, w0, end, who, scen, "Kill or take ground with the extra player, and end no worse than a flag behind",
                              {"no worse than a flag behind at the end": lv is None or lv >= -LEAD_ONE},
-                             any_of={"more of theirs die than of ours": K.died(B, w0, end) > K.died(A, w0, end), "ground taken": s0 is not None and s1 is not None and s1 < s0,
+                             any_of={"more of theirs die at the main fight than of ours": dB(end) > dA(end), "ground taken": s0 is not None and s1 is not None and s1 < s0,
                                      "one of their NPCs dies": K.npcs(B, w0, end) > 0}, beside=bes(end), **kw))
     return out
 
@@ -497,6 +511,13 @@ def pinned(M):
 
 def pinned_plays(M, K):
     out, T, st = [], M.T, M.st
+    def out_of_base(tm, a, b):
+        own = st.side.get(tm)
+        for u in range(a - a % 2, b + 1, 2):
+            live = [x for x in st.players[tm] if M.AL[x][u]]
+            away = [x for x in live if not (M.place_at(x, u)[1] == own and M.place_at(x, u)[0] in ("pit", "base"))]
+            if len(away) >= 4 and len(away) * 2 >= len(live): return True
+        return False
     for tm, a, b in pinned(M):
         t = a
         while t < b:                                                      # one play to each base res while it lasts
@@ -505,7 +526,7 @@ def pinned_plays(M, K):
                 s1 = M._main_step(tm, min(t1 + 10, T))[0]
                 alive = sum(M.AL[x][min(t1 + 10, T)] for x in st.players[tm])
                 hold = {"no pit NPC lost and nobody dies until the base res": K.npcs(tm, t, t1, pit=True) == 0 and K.died(tm, t, t1) == 0,
-                        "it breaks out (its main team out of its base before the res)": s1 is not None and s1 <= 1 and t1 < st.next_res(t)}      # no count asked of it: with four or five already out by the back door, five more is too much to ask (his mark, TFS v 옷옷옷옷 0:36)
+                        "it breaks out (half its living players or more, four at least, out of its base and pit)": out_of_base(tm, t, min(t1 + 10, T))}      # by any door: four or five out by the back door is a break-out (his mark, TFS v 옷옷옷옷 0:36)
                 out.append(_play(M, "pinned", "own", tm, t, t1, [], f"{M.m.tag[tm]} is held in its own base or pit by {M.m.tag[3 - tm]}'s main team ({st.pit_npcs(tm, t)} alive; base res in {round(st.next_res(t) - t)} s)",
                                  "Hold the NPCs and lose nobody until the base res, or break out", {}, any_of=hold,
                                  beside={"deaths": [K.died(tm, t, t1), K.died(3 - tm, t, t1)], "pit_npcs_lost": K.npcs(tm, t, t1, pit=True), "pinned_s": b - a}))

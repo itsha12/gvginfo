@@ -30,7 +30,7 @@
     }
    ],
    "objects": {
-    "obelisk flag stand": "turns the beach statues' Fireballs on the team not holding it; almost never used (R-308), not modelled"
+    "obelisk flag stand": "turns the beach statues' Fireballs on the team not holding it; almost never used (R-308); a flag put down at it ends that flag's run and is told as a run to the Obelisk flag stand (jobs.py), nothing more is modelled"
    },
    "decisions": [],
    "wiki": "https://wiki.guildwars.com/wiki/Isle_of_Meditation"
