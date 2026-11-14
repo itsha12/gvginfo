@@ -34,15 +34,15 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 - A split fight is told once (R-469). His answers of 2026-11-14, built: a flag run is judged from the decision to run
   to its cap (R-471); a double run takes a second player going back for the next flag, never one home from a split (R-472).
 - Round 3 (R-473) is on the page from engine b025445, set w2, none marked yet: chic v 戦戦戦戦 (ba85aafc, Corrupted),
-  hook v hold (4629b08c, Nomad's), cope v Team (427c825b, Jade). The mark: 80% of a fresh game's situations right.
+  hook v hold (4629b08c, Nomad's), cope v Team (427c825b, Jade). The mark: 80% of the situations he judges, Repeats
+  out (R-475). Men v Crew's marks of that day were a misclick, taken out unread; it stays hidden.
 - Now (development set, 45 matches): review key 80 rows pass; 26 checks open (w1p1 15, w1p2 10, s1-15): numbers one
   out, a defender missed at 6:46 of TFS v 옷옷옷옷 and 13:02 of hdm v hook, two flags, a door, a missed solo split.
   Gate: 12 of 12, 63 of 105. Line-up: 421 of 426 and 185 of 186; comms 108 of 157, 62 of 80 (rerun 2026-11-14).
   No run over every match, no `thresholds.py` (R-465).
-- The draft numbers, each tried at half and double against the 80 marked rows (R-470; rows that then fail): reach
-  1,600 (8 and 2), the 12 s of R-350 (5 and 4), hold time 6 s (5 and 1), acting distance 2,600 (6 and 0), hold
-  distance 2,100 (1, 0), joined 1,000 (1, 1), `FOUGHT` 0.7 (1, 1), flag kept at home 20 s (0, 1), double run 30 s (0,
-  0: the value does not matter between 15 and 60).
+- The numbers test is `review.py numbers` (R-470; 85 s a value). Marked rows failing at 75% and 125% (2026-11-14):
+  reach 1,600 (12 and 1), hold time 6 s (8, 0), the 12 s (1, 2), acting distance 2,600 (2, 0), hold distance 2,100
+  (1, 0), joined 1,000 (1, 0); `FOUGHT`, flag kept at home and the double run's 30 s change nothing. No value moved.
 - Compare engines only on one marked game (`review.py compare`): today's is not shown better on hdm v hook.
 
 ## Next (in order; REDESIGN.md "Build plan from here", item 6, and "Tests")
@@ -56,10 +56,8 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 
 ## Open for Denning (put to him 2026-11-14; set each out in the chat again, R-329, with replay links)
 1. Round 3 is his to mark: chic v 戦戦戦戦 first (https://gvg.report/report/ba85aafc-0bd8-518d-a814-e5f7e9e01baf#map).
-2. Men v Crew (the hidden game; its rows were on the page by Claude's mistake until 2026-11-14) was saved that day
-   with all 103 rows Right and no words. A real review, or the "unmarked rows Right" button? Not read or scored.
-3. To confirm: under R-471 a run that starts behind on flags is not marked down for still being behind at its cap;
-   the 80% is Right of the situations he judges, Repeats aside (hdm v hook was 35 of 58, 60%).
+2. When a draft number may move (Claude's proposal, put to him): never from the marked rows alone; only when the
+   same step also reads a fresh game better, scored before any fix, and the reason can be said in GvG terms.
 - Drafts not ruled: numbers from kills, a split with no answer, "held by monks", the Lord push's aim, `common.py` drafts.
 
 ## Running it
