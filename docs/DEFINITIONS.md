@@ -69,8 +69,8 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   a double run needs the second runner to take the next flag within 30 s of the cap; a flag put down for good ends its
   run there, and at a hall's second flag stand (the Obelisk flag stand on Meditation, his answer) that is a cap of it.
 - A flag run is judged from the decision to run to its cap: what the team does after the cap is another decision, and
-  its cost is not the run's (R-471; *as built, Claude's reading:* the flag test is no worse than half a flag behind at
-  the end, or no further behind than at the start).
+  its cost is not the run's (R-471). A run is not blamed for a deficit already there: the flag test is no worse than
+  half a flag behind at the end, or no further behind than at the start (R-474).
 - A flag run's job counts only deaths at the main fight: deaths out on a split are the split's own (R-466, R-443).
   Staying against a run is also met when their flag does not get in (R-468). The flag decision is told once, from the
   side that ran second (his mark, hdm v hook 7:07). A flag never carried out of its own base and pit is not a run.
