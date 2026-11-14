@@ -2044,6 +2044,528 @@
    "at": "2026-11-14",
    "engine": "67e87b8",
    "notes": "rit solo split from hook out back door around 12:40 (not sure when he crosses through); missed collapse from number 1 hook through front door around 14:48, brief 5v3 for hook"
+  },
+  "51683de9-4096-5833-ad4a-56a69c4759e4": {
+   "marks": {
+    "s:51683de9-numbers-1-142-0": {
+     "mark": "right",
+     "why": "",
+     "text": "Down on numbers in the main fight (7 v 8, the greater stand area), from kills; Men: stay (stay at the stand) | Crew: stay (stay at the stand)"
+    },
+    "51683de9-numbers-1-142-0": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (down) [stay]: Hold the ground a player down and lose no more until it is level, or the base res. Met (yes: nobody of ours dies)"
+    },
+    "51683de9-numbers-2-142-1": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew (up) [stay]: Turn the extra player into a kill before the numbers are level. Not met (no: more of theirs die than of ours)"
+    },
+    "s:51683de9-numbers-1-218-2": {
+     "mark": "right",
+     "why": "",
+     "text": "Down on numbers in the main fight (7 v 8, the greater stand area; then 5 v 8 from 3:42; then 6 v 8 from 3:50; then 5 v 8 from 4:08), from players split elsewhere; Men: stay (stay at the stand) | then 8 v 5 from 3:42; then 8 v 6 from 3:50; then 8 v 5 from 4:08), from players split elsewhere; Crew: stay (stay at the stand)"
+    },
+    "51683de9-numbers-1-218-2": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (weak side) [stay]: No deaths, keep them busy, do not chase. Not met (no: nobody of ours dies)"
+    },
+    "51683de9-numbers-2-218-3": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew (strong side) [stay]: Kill with the numbers while their players are away. Met (yes: more of theirs die than of ours)"
+    },
+    "s:51683de9-flag-2-241-4": {
+     "mark": "right",
+     "why": "",
+     "text": "They single run (Men's AoB Derv); Crew: stay"
+    },
+    "51683de9-flag-2-241-4": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew [stay]: Kill with the extra player while their runner is away. Met (yes: more of theirs die at the main fight than of ours)"
+    },
+    "s:51683de9-boost-1-283-5": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew's boost is 30 s away; Men: two runners; the rest fall to footmen"
+    },
+    "51683de9-boost-1-283-5": {
+     "mark": "right",
+     "why": "",
+     "text": "Men [run]: Deny their boost. Not met (no: their boost does not land)"
+    },
+    "s:51683de9-flag-2-293-6": {
+     "mark": "right",
+     "why": "",
+     "text": "They double run (Men's Ranger); Crew: single run"
+    },
+    "51683de9-flag-2-293-6": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew [single run]: Kill or take ground with the extra player, and end no worse than a flag behind. Met (yes: no worse than a flag behind at the end; no: more of theirs die at the main fight than of ours; no: ground taken; yes: one of their NPCs dies)"
+    },
+    "s:51683de9-numbers-1-330-7": {
+     "mark": "right",
+     "why": "",
+     "text": "Down on numbers in the main fight (6 v 8, the greater stand area), from kills; Men: retreat down the ladder (fall to footmen) | Crew: stay (stay at the stand)"
+    },
+    "51683de9-numbers-1-330-7": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (down) [retreat down the ladder]: Reach cover a player down without losing another. Not met (yes: nobody of ours dies; no: no NPC lost)"
+    },
+    "51683de9-numbers-2-330-8": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew (up) [stay]: Turn the extra player into a kill before the numbers are level. Not met (no: more of theirs die than of ours)"
+    },
+    "s:51683de9-numbers-1-400-9": {
+     "mark": "right",
+     "why": "",
+     "text": "Down on numbers in the main fight (1 v 8, the flag stand; then 6 v 8 from 6:44), from players split elsewhere; Men: stay (stay at the stand) | then 8 v 6 from 6:44), from players split elsewhere; Crew: stay (stay at the stand)"
+    },
+    "51683de9-numbers-1-400-9": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (weak side) [stay]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "51683de9-numbers-2-400-10": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew (strong side) [stay]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)"
+    },
+    "s:51683de9-boost-1-403-11": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew's boost is 30 s away; Men: one runner; the rest stay at the stand"
+    },
+    "51683de9-boost-1-403-11": {
+     "mark": "right",
+     "why": "",
+     "text": "Men [run]: Deny their boost. Not met (no: their boost does not land)"
+    },
+    "s:51683de9-numbers-1-498-12": {
+     "mark": "right",
+     "why": "",
+     "text": "Down on numbers in the main fight (6 v 7, the flag stand), from players split elsewhere; Men: stay (stay at the stand) | Crew: stay (stay at the stand)"
+    },
+    "51683de9-numbers-1-498-12": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (weak side) [stay]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "51683de9-numbers-2-498-13": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew (strong side) [stay]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)"
+    },
+    "s:51683de9-boost-1-523-14": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew's boost is 30 s away; Men: one runner; the rest stay at the stand"
+    },
+    "51683de9-boost-1-523-14": {
+     "mark": "right",
+     "why": "",
+     "text": "Men [run]: Deny their boost. Not met (no: their boost does not land)"
+    },
+    "s:51683de9-numbers-1-538-15": {
+     "mark": "right",
+     "why": "",
+     "text": "Down on numbers in the main fight (1 v 8, the flag stand; then 2 v 8 from 9:02), from players split elsewhere; Men: stay (stay at the stand) | then 8 v 2 from 9:02), from players split elsewhere; Crew: stay (stay at the stand)"
+    },
+    "51683de9-numbers-1-538-15": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (weak side) [stay]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "51683de9-numbers-2-538-16": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew (strong side) [stay]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)"
+    },
+    "s:51683de9-numbers-1-574-17": {
+     "mark": "right",
+     "why": "",
+     "text": "Down on numbers in the main fight (7 v 8, the flag stand; then 7 v 8 from 9:44), from players split elsewhere; Men: retreat down the ladder (fall to footmen) | then 8 v 7 from 9:44), from players split elsewhere; Crew: stay (stay at the stand)"
+    },
+    "51683de9-numbers-1-574-17": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "51683de9-numbers-2-574-18": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew (strong side) [stay]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)"
+    },
+    "s:51683de9-numbers-1-616-19": {
+     "mark": "right",
+     "why": "",
+     "text": "Down on numbers in the main fight (1 v 8, the flag stand), from players split elsewhere; Men: stay (stay at the stand) | Crew: stay (stay at the stand)"
+    },
+    "51683de9-numbers-1-616-19": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (weak side) [stay]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "51683de9-numbers-2-616-20": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew (strong side) [stay]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)"
+    },
+    "s:51683de9-boost-1-643-21": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew's boost is 30 s away; Men: one runner; the rest fall to footmen"
+    },
+    "51683de9-boost-1-643-21": {
+     "mark": "right",
+     "why": "",
+     "text": "Men [run]: Deny their boost. Not met (no: their boost does not land)"
+    },
+    "s:51683de9-flag-1-692-22": {
+     "mark": "right",
+     "why": "",
+     "text": "They single run (Crew's Water Ele); Men: single run"
+    },
+    "51683de9-flag-1-692-22": {
+     "mark": "right",
+     "why": "",
+     "text": "Men [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (no: our flag is capped; yes: no more of ours die at the main fight than of theirs; no: no worse than half a flag behind at the end)"
+    },
+    "s:51683de9-flag-2-703-23": {
+     "mark": "right",
+     "why": "",
+     "text": "They single run (Men's Ranger); Crew: single run"
+    },
+    "51683de9-flag-2-703-23": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (yes: our flag is capped; yes: no more of ours die at the main fight than of theirs; yes: no worse than half a flag behind at the end)"
+    },
+    "s:51683de9-flag-1-797-24": {
+     "mark": "right",
+     "why": "",
+     "text": "They single run (Crew's Water Ele); Men: a flag already in hand"
+    },
+    "51683de9-flag-1-797-24": {
+     "mark": "right",
+     "why": "",
+     "text": "Men [a flag already in hand]: Answer their cap at once, or cap just before their boost. Met (yes: their flag does not get in; no: our cap follows theirs within 15 s; no: our cap lands just before their boost)"
+    },
+    "s:51683de9-numbers-1-808-25": {
+     "mark": "right",
+     "why": "",
+     "text": "Down on numbers in the main fight (2 v 7, the flag stand), from players split elsewhere; Men: stay (stay at the stand) | Crew: stay (stay at the stand)"
+    },
+    "51683de9-numbers-1-808-25": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (weak side) [stay]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "51683de9-numbers-2-808-26": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew (strong side) [stay]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)"
+    },
+    "s:51683de9-boost-1-833-27": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew's boost is 30 s away; Men: one runner; the rest stay at the stand"
+    },
+    "51683de9-boost-1-833-27": {
+     "mark": "right",
+     "why": "",
+     "text": "Men [run]: Deny their boost. Not met (no: their boost does not land)"
+    },
+    "s:51683de9-numbers-1-864-28": {
+     "mark": "right",
+     "why": "",
+     "text": "Down on numbers in the main fight (2 v 8, the flag stand), from players split elsewhere; Men: stay (stay at the stand) | Crew: stay (stay at the stand)"
+    },
+    "51683de9-numbers-1-864-28": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (weak side) [stay]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "51683de9-numbers-2-864-29": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew (strong side) [stay]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)"
+    },
+    "s:51683de9-numbers-1-910-30": {
+     "mark": "right",
+     "why": "",
+     "text": "Down on numbers in the main fight (2 v 8, the greater stand area), from players split elsewhere; Men: retreat down the ladder (fall to footmen) | Crew: stay (stay at the stand)"
+    },
+    "51683de9-numbers-1-910-30": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "51683de9-numbers-2-910-31": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew (strong side) [stay]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)"
+    },
+    "s:51683de9-boost-1-953-32": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew's boost is 30 s away; Men: one runner; the rest fall to footmen"
+    },
+    "51683de9-boost-1-953-32": {
+     "mark": "right",
+     "why": "",
+     "text": "Men [run]: Deny their boost. Not met (no: their boost does not land)"
+    },
+    "s:51683de9-boost-1-1073-33": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew's boost is 30 s away; Men: two runners; the rest fall back into the base"
+    },
+    "51683de9-boost-1-1073-33": {
+     "mark": "right",
+     "why": "",
+     "text": "Men [run]: Deny their boost. Not met (no: their boost does not land)"
+    },
+    "s:51683de9-flag-2-1171-34": {
+     "mark": "right",
+     "why": "",
+     "text": "They single run (Men's AoB Derv); Crew: stay"
+    },
+    "51683de9-flag-2-1171-34": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew [stay]: Kill with the extra player while their runner is away. Not met (no: more of theirs die at the main fight than of ours)"
+    },
+    "s:51683de9-boost-1-1193-35": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew's boost is 30 s away; Men: one runner; the rest fall back into the base"
+    },
+    "51683de9-boost-1-1193-35": {
+     "mark": "right",
+     "why": "",
+     "text": "Men [run]: Deny their boost. Not met (no: their boost does not land)"
+    },
+    "s:51683de9-numbers-1-1210-36": {
+     "mark": "right",
+     "why": "",
+     "text": "Up on numbers in the main fight (8 v 7, Men's front door), from players split elsewhere; Men: retreat down the ladder (fall back into the base) | Crew: push up (push up to their back door)"
+    },
+    "51683de9-numbers-1-1210-36": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (strong side) [retreat down the ladder]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)"
+    },
+    "51683de9-numbers-2-1210-37": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew (weak side) [push up]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "s:51683de9-boost-1-1313-38": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew's boost is 30 s away; Men: no runner; the rest fall back into the base"
+    },
+    "51683de9-boost-1-1313-38": {
+     "mark": "right",
+     "why": "",
+     "text": "Men [run]: Deny their boost. Not met (no: their boost does not land)"
+    },
+    "s:51683de9-numbers-1-1354-39": {
+     "mark": "right",
+     "why": "",
+     "text": "Down on numbers in the main fight (7 v 8, Men's back door), from players split elsewhere; Men: retreat down the ladder (fall back into the base) | Crew: stay (stay on the enemy's side)"
+    },
+    "51683de9-numbers-1-1354-39": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "51683de9-numbers-2-1354-40": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew (strong side) [stay]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)"
+    },
+    "s:51683de9-flag-2-1355-41": {
+     "mark": "right",
+     "why": "",
+     "text": "They single run (Men's Warrior); Crew: stay"
+    },
+    "51683de9-flag-2-1355-41": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew [stay]: Kill with the extra player while their runner is away. Met (yes: more of theirs die at the main fight than of ours)"
+    },
+    "s:51683de9-numbers-1-1410-42": {
+     "mark": "right",
+     "why": "",
+     "text": "Down on numbers in the main fight (7 v 8, Men's back door), from players split elsewhere; Men: retreat down the ladder (fall back into the base) | Crew: stay (stay at the stand)"
+    },
+    "51683de9-numbers-1-1410-42": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "51683de9-numbers-2-1410-43": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew (strong side) [stay]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)"
+    },
+    "s:51683de9-boost-1-1433-44": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew's boost is 30 s away; Men: one runner; the rest fall back into the base"
+    },
+    "51683de9-boost-1-1433-44": {
+     "mark": "right",
+     "why": "",
+     "text": "Men [run]: Deny their boost. Not met (no: their boost does not land)"
+    },
+    "s:51683de9-numbers-1-1474-45": {
+     "mark": "right",
+     "why": "",
+     "text": "Down on numbers in the main fight (7 v 8, Men's back door; then 7 v 8 from 24:56; then 6 v 8 from 25:22), from kills; Men: retreat down the ladder (fall back into the base) | then 8 v 7 from 24:56; then 8 v 6 from 25:22), from kills; Crew: push up (push up to their base)"
+    },
+    "51683de9-numbers-1-1474-45": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (down) [retreat down the ladder]: Reach cover a player down without losing another. Not met (no: nobody of ours dies; no: no NPC lost)"
+    },
+    "51683de9-numbers-2-1474-46": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew (up) [push up]: Take ground and NPCs with the numbers. Met (yes: no more of ours die than of theirs; yes: one of their NPCs dies; yes: more of theirs die than of ours)"
+    },
+    "s:51683de9-base_res-2-1540-47": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew has 8 in Men's base at the base res (6 defending, 2 coming back): 8 stay"
+    },
+    "51683de9-base_res-2-1540-47": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew [stayed through the res]: Be out, or set for the fight, when they res. Met (yes: nobody of ours dies in the 30 s after the res)"
+    },
+    "s:51683de9-boost-1-1553-48": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew's boost is 30 s away; Men: no runner; the rest fall back into the base"
+    },
+    "51683de9-boost-1-1553-48": {
+     "mark": "right",
+     "why": "",
+     "text": "Men [concede]: Concede the boost for kills. Not met (no: more of theirs die than of ours)"
+    },
+    "s:51683de9-numbers-1-1590-49": {
+     "mark": "right",
+     "why": "",
+     "text": "Down on numbers in the main fight (5 v 8, the greater stand area; then 5 v 7 from 26:42), from players split elsewhere; Men: retreat down the ladder (retreat to the pit) | then 7 v 5 from 26:42), from players split elsewhere; Crew: push in"
+    },
+    "51683de9-numbers-1-1590-49": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Not met (no: nobody of ours dies)"
+    },
+    "51683de9-numbers-2-1590-50": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew (strong side) [push in]: Kill with the numbers while their players are away. Met (yes: more of theirs die than of ours)"
+    },
+    "s:51683de9-split-1-1602-51": {
+     "mark": "right",
+     "why": "",
+     "text": "Men's split by the back door: three players (8 Monk, Paragon, AoB Derv) against 2 defending (Water Ele, Air Ele 2)"
+    },
+    "51683de9-split-1-1602-51": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (attacker) [a player or more up]: Kill or take NPCs. Not met (no: a defender killed; no: an NPC taken)"
+    },
+    "51683de9-split-2-1602-52": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)"
+    },
+    "51683de9-split-2-1602-53": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew (defender's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Met (yes: more of theirs die away from the split than of ours)"
+    },
+    "s:51683de9-numbers-1-1614-54": {
+     "mark": "right",
+     "why": "",
+     "text": "Down on numbers in the main fight (4 v 6, the greater stand area; then 4 v 8 from 27:46), from players split elsewhere; Men: retreat down the ladder (retreat to the pit) | then 8 v 4 from 27:46), from players split elsewhere; Crew: push in"
+    },
+    "51683de9-numbers-1-1614-54": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Not met (no: nobody of ours dies)"
+    },
+    "51683de9-numbers-2-1614-55": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew (strong side) [push in]: Kill with the numbers while their players are away. Met (yes: more of theirs die than of ours)"
+    },
+    "s:51683de9-lord-1-1623-56": {
+     "mark": "right",
+     "why": "",
+     "text": "Men pushes Crew's Guild Lord with 3 in the base (1 monk, 1 by the end) against 5 pit NPCs: fewer attackers than pit NPCs; playing for Lord damage"
+    },
+    "51683de9-lord-1-1623-56": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (attacker): Most Lord damage, or the kill, while keeping the own Lord up (the result is the match). Not met (no: the match is won)"
+    },
+    "51683de9-lord-2-1623-57": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew (defender): Do not die, keep Lord damage down, keep the Lord alive (the result is the match). Met (yes: the match is won)"
+    },
+    "s:51683de9-pinned-1-1636-58": {
+     "mark": "right",
+     "why": "",
+     "text": "Men is held in its own base or pit by Crew's main team (K0 A1 B1 alive; base res in 44 s)"
+    },
+    "51683de9-pinned-1-1636-58": {
+     "mark": "right",
+     "why": "",
+     "text": "Men: Hold the NPCs and lose nobody until the base res, or break out. Not met (no: no pit NPC lost and nobody dies until the base res; no: it breaks out (half its living players or more, four at least, out of its base and pit))"
+    },
+    "s:51683de9-lord-2-1640-60": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew pushes Men's Guild Lord with 8 in the base (2 monks) against 2 pit NPCs: more attackers than pit NPCs; playing for Lord damage"
+    },
+    "51683de9-lord-2-1640-60": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew (attacker): Most Lord damage, or the kill, while keeping the own Lord up (the result is the match). Met (yes: the match is won)"
+    },
+    "51683de9-lord-1-1640-59": {
+     "mark": "right",
+     "why": "",
+     "text": "Men (defender): Do not die, keep Lord damage down, keep the Lord alive (the result is the match). Not met (no: the match is won)"
+    },
+    "s:51683de9-base_res-2-1660-61": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew has 8 in Men's base at the base res (4 defending, 4 coming back): 8 stay"
+    },
+    "51683de9-base_res-2-1660-61": {
+     "mark": "right",
+     "why": "",
+     "text": "Crew [stayed through the res]: Be out, or set for the fight, when they res. Met (yes: nobody of ours dies in the 30 s after the res)"
+    }
+   },
+   "game": "Men v Crew, Isle of Jade",
+   "at": "2026-11-14",
+   "engine": "67e87b8"
   }
  }
 }
