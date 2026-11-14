@@ -68,6 +68,8 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   stand area; the answer to a run is the flag already on its way if it goes on to be capped, else the run set off for;
   a double run needs the second runner to take the next flag within 30 s of the cap; a flag put down for good ends its
   run there, and at a hall's second flag stand (the Obelisk flag stand on Meditation, his answer) that is a cap of it.
+- The opening is read (R-479): each team's first flag is a run, and a player left at the spawn for the next flag is
+  part of the call.
 - A flag run is judged from the decision to run to its cap: what the team does after the cap is another decision, and
   its cost is not the run's (R-471). A run is not blamed for a deficit already there: the flag test is no worse than
   half a flag behind at the end, or no further behind than at the start (R-474).
@@ -77,6 +79,11 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   split player, or a defender, standing with three or more of the attackers' other players is at the main fight);
   pit archers are the archers his hall labels place in the pit; a coming boost is timed from the stand's capture,
   never from another trigger of the same moment; a double run is the pair of runs, the second flag included.
+- Held in its base (pinned): a break-out meets the job only if no player and no pit NPC was lost before it (R-478).
+  *As built:* held in is the main team on its own ground no further out than its doors with the enemy's main team on
+  that ground; a break-out is half the living players, four at least, out past the doors where being held in ends.
+- Which games count: from 1 September 2026, and never a game in which a team fields a henchman (R-476, R-477); a team
+  of seven with no henchman counts. A draft number moves only on a fresh game's evidence and a GvG reason (R-480).
 - A flag run's job counts only deaths at the main fight: deaths out on a split are the split's own (R-466, R-443).
   Staying against a run is also met when their flag does not get in (R-468). The flag decision is told once, from the
   side that ran second (his mark, hdm v hook 7:07). A flag never carried out of its own base and pit is not a run.

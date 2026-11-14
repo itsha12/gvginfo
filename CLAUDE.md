@@ -123,7 +123,9 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   `modelpage.py` -> `knowledge/model.md`.
 - Matches count from 1 September 2026 (Denning): replays before `common.TRAIN_FROM` are left out of training and of
   replay benchmarks, and new picks start at `common.PICK_FROM` (2 September); strength and lineup ratings still use
-  every result (METHODS.md "Which matches count"). Use `common.replay_ids()` for any new replay pool.
+  every result (METHODS.md "Which matches count"). Games in which a team fields a henchman are out the same way
+  (R-476, R-477: `data/model/henchman_games.json`; run `integrity.py henchmen` on the branch after replays are
+  fetched). Use `common.replay_ids()` for any new replay pool.
 - Data integrity first (`integrity.py`, inside `Match()`): match length repaired, pit NPCs never seen in a replay added
   from the standard roster (2 knights, 2 archers, Bodyguard, Lord; 3 archers on Isle of Solitude), unobserved Lord damage
   left blank. Strength is the measured blend of the guild's fitted rating and the lineup who played (`strength.py`,

@@ -11,7 +11,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 
 ## State (2026-11-14: redesign step 2 on branch `bundle-4`, stage D under way; batch 17, 506 matches trained)
 - Main's engine is unchanged (SPEC.md). Bundle 4 is on `bundle-4` and lands in one piece, then one rebuild (R-322).
-  606 replays stored (90 from 2 September on not yet trained on). No Train batch, Discovery or fetch run in progress.
+  658 replays stored; 564 count (from 1 September, no henchman game: R-477); the trained batches still hold some. No Train batch, Discovery or fetch run in progress.
   Both branches pushed; nothing uncommitted.
 - On `bundle-4`: `hallmap.py`, `moments.py` (records, decision moments, shape, consequences), `jobs.py` (the plays
   and their jobs, R-423 to R-449), `story.py`, `tools/golden/golden.py`, `lineup.py`, `thresholds.py`, `review.py`.
@@ -28,13 +28,17 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   numbers difference is told once (a level spell or a reversal shorter than a moment is no break); a player is in one
   fight at a time (`Moments.with_rest`: a split player, or a defender, standing with three of the main team is at the
   main fight); a double run is a pair of runs; held in also at its own door with the enemy deeper in.
-- Round 3's third game is on the page, not yet marked: RJT v RACK on Nomad's (eea5ba87; 52 situations, splits and
-  flags). chic v 戦戦戦戦 was set aside: a henchman game (R-476). Men v Crew stays hidden; its misclicked marks are out.
-- Now (development set, 45 matches): review key 109 rows pass; 44 checks open (w1p1 15, w1p2 10, w2 18, s1-15).
-  Open in w2: the opening flags are not read as runs; a split's start when it stands off before fighting (14:09 and
-  18:44 of hook v hold); defenders named or counted one out; a flag held on purpose; a 1 v 8 on a straggler through
-  the Jade portal; "no real fight" moments. Gate: 12 of 12, 62 of 105. Line-up: 421 of 426 and 185 of 186; comms 108
-  of 157, 62 of 80. No run over every match, no `thresholds.py` (R-465).
+- Built from his rulings of 2026-11-14 (engine b09a26a): henchman games out of every pool and of training (R-477;
+  `integrity.py henchmen` after any fetch, `data/model/henchman_games.json` on both branches); a break-out meets the
+  pinned job only if nothing was lost first, read where being held in ends, out past the doors (R-478); the opening
+  flags are runs, with who is left back (R-479); a draft number moves only on a fresh game's evidence (R-480).
+- Round 3's third game is on the page from b09a26a, not yet marked: RJT v RACK on Nomad's (eea5ba87; 54 situations,
+  24 splits, 13 flags). chic v 戦戦戦戦 was set aside (a henchman game). Men v Crew stays hidden.
+- Now (development set, 44 matches): review key 108 rows pass; 42 checks open (w1p1 15, w1p2 10, w2 16, s1-15).
+  Open in w2: a split's start when it stands off before fighting (14:09 and 18:44 of hook v hold); defenders named
+  or counted one out; a flag held on purpose; the push at 5:40 of hook v hold measured from a pickup at 5:09; a 1 v 8
+  on a straggler through the Jade portal; "no real fight" moments. Gate: 12 of 12, 62 of 105. Line-up: 421 of 426
+  and 185 of 186; comms 108 of 157, 62 of 80. No run over every match, no `thresholds.py` (R-465).
 - The numbers test is `review.py numbers` (R-470; 85 s a value, the whole development set each time). At 75% and
   125% (before round 3's changes): reach 1,600 (12 and 1 rows fail), hold time 6 s (8, 0), the 12 s (1, 2), acting
   distance 2,600 (2, 0), hold distance 2,100 (1, 0), joined 1,000 (1, 0); three numbers change nothing.
@@ -50,12 +54,8 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 
 ## Open for Denning (put to him 2026-11-14; set each out in the chat again, R-329, with replay links)
 1. RJT v RACK is his to mark (https://gvg.report/report/eea5ba87-ac20-5ba3-a6c9-965f11ca8a65#map).
-2. Henchman games out of the dataset (R-476 leaves it open): 42 of the 606 that count have one. Recommended: out of
-   training, benchmarks and review picks; results still count for ratings. Two more games have a team of seven.
-3. Held in (pinned): Team loses a knight at 10:42 of cope v Team and breaks out after. Is the job met?
-4. The opening: read each team's opening flag as a run (hold's from 0:17 of hook v hold), and who is left back?
-5. When a draft number may move (Claude's proposal): never from the marked rows alone; only when the same step
-   also reads a fresh game better, scored before any fix, and the reason can be said in GvG terms.
+2. TFS v 옷옷옷옷 0:36 (https://gvg.report/report/bdaa145f-1471-57b3-ab2f-a04f090b7abb#map): he marked "it does
+   break out". Under R-478 the job is now not met (the Warrior died at 0:41 and a pit NPC went first). Right?
 - Drafts not ruled: numbers from kills, a split with no answer, "held by monks", the Lord push's aim, `common.py` drafts.
 
 ## Running it
