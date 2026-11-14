@@ -2628,6 +2628,324 @@
    "game": "chic v 戦戦戦戦, Corrupted Isle",
    "at": "2026-11-14",
    "engine": "b025445"
+  },
+  "427c825b-7e7f-54f4-aba9-7de41c9fcbaf": {
+   "marks": {
+    "s:427c825b-numbers-1-34-0": {
+     "mark": "right",
+     "why": "",
+     "text": "Down on numbers in the main fight (7 v 8, the flag stand), from kills; cope: stay (stay at the stand) | Team: stay (stay at the stand)"
+    },
+    "427c825b-numbers-1-34-0": {
+     "mark": "right",
+     "why": "",
+     "text": "cope (down) [stay]: Hold the ground a player down and lose no more until it is level, or the base res. Met (yes: nobody of ours dies)"
+    },
+    "427c825b-numbers-2-34-1": {
+     "mark": "right",
+     "why": "",
+     "text": "Team (up) [stay]: Turn the extra player into a kill before the numbers are level. Not met (no: more of theirs die than of ours)"
+    },
+    "s:427c825b-numbers-2-104-3": {
+     "mark": "right",
+     "why": "",
+     "text": "Down on numbers in the main fight (7 v 8, the flag stand; then 6 v 8 from 2:00; then 5 v 8 from 2:12; then 6 v 8 from 2:18), from kills; Team: stay (stay at the stand) | then 8 v 6 from 2:00; then 8 v 5 from 2:12; then 8 v 6 from 2:18), from kills; cope: stay (stay at the stand)"
+    },
+    "427c825b-numbers-2-104-3": {
+     "mark": "right",
+     "why": "",
+     "text": "Team (down) [stay]: Hold the ground a player down and lose no more until it is level, or the base res. Not met (no: nobody of ours dies)"
+    },
+    "427c825b-numbers-1-104-2": {
+     "mark": "right",
+     "why": "",
+     "text": "cope (up) [stay]: Turn the extra player into a kill before the numbers are level. Met (yes: more of theirs die than of ours)"
+    },
+    "s:427c825b-flag-2-163-4": {
+     "mark": "wrong",
+     "why": "double run; full run with derv 1 going back for next flag before 2 warrior has even capped (look around 3:16)",
+     "text": "They single run (cope's AoB Derv); Team: single run"
+    },
+    "427c825b-flag-2-163-4": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Team [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (yes: our flag is capped; yes: no more of ours die at the main fight than of theirs; no: no worse than half a flag behind at the end, or no further behind than at the start)"
+    },
+    "s:427c825b-split-1-180-5": {
+     "mark": "right",
+     "why": "",
+     "text": "cope's split by the back door: two players (Mes/A, Prot) against 1 defending (Air Ele 2)"
+    },
+    "427c825b-split-1-180-5": {
+     "mark": "right",
+     "why": "",
+     "text": "cope (attacker) [a player or more up]: Kill or take NPCs. Not met (no: a defender killed; no: an NPC taken)"
+    },
+    "427c825b-split-2-180-6": {
+     "mark": "right",
+     "why": "",
+     "text": "Team (defender) [one defender]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)"
+    },
+    "s:427c825b-numbers-1-186-7": {
+     "mark": "right",
+     "why": "",
+     "text": "Down on numbers in the main fight (3 v 6, Team's front door; then 2 v 6 from 3:10), from players split elsewhere; cope: stay (stay at the stand) | then 6 v 2 from 3:10), from players split elsewhere; Team: retreat down the ladder (fall back into the base)"
+    },
+    "427c825b-numbers-1-186-7": {
+     "mark": "right",
+     "why": "",
+     "text": "cope (weak side) [stay]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "427c825b-numbers-2-186-8": {
+     "mark": "right",
+     "why": "",
+     "text": "Team (strong side) [retreat down the ladder]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)"
+    },
+    "s:427c825b-split-1-202-9": {
+     "mark": "right",
+     "why": "",
+     "text": "cope's split by the back door: 4 players (Mes/A, Prot, 7 Monk, Stand Mes 1) against 0 defending"
+    },
+    "427c825b-split-1-202-9": {
+     "mark": "right",
+     "why": "",
+     "text": "cope (attacker) [undefended]: Take NPCs. Not met (no: an NPC taken)"
+    },
+    "427c825b-split-2-202-10": {
+     "mark": "right",
+     "why": "",
+     "text": "Team (defender) [no answer]: Win elsewhere before the split costs more than it gains. Not met (no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)"
+    },
+    "s:427c825b-base_res-1-220-11": {
+     "mark": "right",
+     "why": "",
+     "text": "cope has 8 in Team's base at the base res (0 defending, 2 coming back): 8 stay"
+    },
+    "427c825b-base_res-1-220-11": {
+     "mark": "right",
+     "why": "",
+     "text": "cope [stayed through the res]: Be out, or set for the fight, when they res. Met (yes: nobody of ours dies in the 30 s after the res)"
+    },
+    "s:427c825b-boost-2-286-12": {
+     "mark": "right",
+     "why": "",
+     "text": "cope's boost is 30 s away; Team: no runner; the rest fall back into the base"
+    },
+    "427c825b-boost-2-286-12": {
+     "mark": "right",
+     "why": "",
+     "text": "Team [run]: Deny their boost. Not met (no: their boost does not land)"
+    },
+    "s:427c825b-numbers-1-292-13": {
+     "mark": "right",
+     "why": "",
+     "text": "Up on numbers in the main fight (8 v 7, Team's front door), from kills; cope: stay (stay on the enemy's side) | Team: retreat down the ladder (fall back into the base)"
+    },
+    "427c825b-numbers-1-292-13": {
+     "mark": "right",
+     "why": "",
+     "text": "cope (up) [stay]: Turn the extra player into a kill before the numbers are level. Met (yes: more of theirs die than of ours)"
+    },
+    "427c825b-numbers-2-292-14": {
+     "mark": "right",
+     "why": "",
+     "text": "Team (down) [retreat down the ladder]: Reach cover a player down without losing another. Not met (no: nobody of ours dies; yes: no NPC lost)"
+    },
+    "s:427c825b-numbers-1-318-15": {
+     "mark": "partly",
+     "why": "this is correct but why is it not merge with the previous one? same time period continuation, same situation",
+     "text": "Up on numbers in the main fight (8 v 7, Team's front door; then 8 v 6 from 5:34), from kills; cope: stay (stay on the enemy's side) | then 6 v 8 from 5:34), from kills; Team: retreat down the ladder (fall back into the base)"
+    },
+    "427c825b-numbers-1-318-15": {
+     "mark": "right",
+     "why": "",
+     "text": "cope (up) [stay]: Turn the extra player into a kill before the numbers are level. Met (yes: more of theirs die than of ours)"
+    },
+    "427c825b-numbers-2-318-16": {
+     "mark": "right",
+     "why": "",
+     "text": "Team (down) [retreat down the ladder]: Reach cover a player down without losing another. Not met (no: nobody of ours dies; no: no NPC lost)"
+    },
+    "s:427c825b-base_res-1-340-17": {
+     "mark": "right",
+     "why": "",
+     "text": "cope has 8 in Team's base at the base res (6 defending, 2 coming back): 1 stay"
+    },
+    "427c825b-base_res-1-340-17": {
+     "mark": "right",
+     "why": "",
+     "text": "cope [stayed through the res]: Be out, or set for the fight, when they res. Met (yes: nobody of ours dies in the 30 s after the res)"
+    },
+    "s:427c825b-numbers-1-364-18": {
+     "mark": "wrong",
+     "why": "not a 1v8, warrior was just the last one through portal",
+     "text": "Down on numbers in the main fight (1 v 8, Team's back door; then 2 v 8 from 6:16), from players split elsewhere; cope: stay (stay on the enemy's side) | then 8 v 2 from 6:16), from players split elsewhere; Team: retreat down the ladder (retreat to the pit)"
+    },
+    "427c825b-numbers-1-364-18": {
+     "mark": "not judged",
+     "why": "",
+     "text": "cope (weak side) [stay]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "427c825b-numbers-2-364-19": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Team (strong side) [retreat down the ladder]: Kill with the numbers while their players are away. Not met (no: more of theirs die than of ours)"
+    },
+    "s:427c825b-boost-2-406-20": {
+     "mark": "right",
+     "why": "",
+     "text": "cope's boost is 30 s away; Team: no runner; the rest retreat to the pit"
+    },
+    "427c825b-boost-2-406-20": {
+     "mark": "right",
+     "why": "",
+     "text": "Team [concede]: Concede the boost for kills. Not met (no: more of theirs die than of ours)"
+    },
+    "s:427c825b-pinned-2-412-21": {
+     "mark": "partly",
+     "why": "They are K2A2B1 when cope pushes in at 7:56",
+     "text": "Team is held in its own base or pit by cope's main team (K2 A1 B1 alive; base res in 68 s)"
+    },
+    "s:427c825b-numbers-1-520-22": {
+     "mark": "right",
+     "why": "",
+     "text": "Up on numbers in the main fight (8 v 7, Team's pit), from kills; cope: fall out"
+    },
+    "427c825b-numbers-1-520-22": {
+     "mark": "right",
+     "why": "",
+     "text": "cope (up) [fall out]: Reset without giving anything back. Met (yes: nobody of ours dies; yes: no NPC lost)"
+    },
+    "s:427c825b-boost-2-526-23": {
+     "mark": "repeat",
+     "why": "",
+     "text": "cope's boost is 30 s away; Team: no runner; the rest fall back into the base"
+    },
+    "427c825b-boost-2-526-23": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Team [concede]: Concede the boost for kills. Not met (no: more of theirs die than of ours)"
+    },
+    "s:427c825b-pinned-2-596-24": {
+     "mark": "partly",
+     "why": "K2A2B1 when cope pushes in,",
+     "text": "Team is held in its own base or pit by cope's main team (K2 A0 B1 alive; base res in 4 s)"
+    },
+    "427c825b-pinned-2-596-24": {
+     "mark": "wrong",
+     "why": "they lose a knight a 10:42",
+     "text": "Team: Lose no player and no NPC while held in, or break out. Met (no: no pit NPC lost and nobody dies until the base res; yes: it breaks out (half its living players or more, four at least, out of its base and pit))"
+    },
+    "s:427c825b-base_res-2-700-25": {
+     "mark": "wrong",
+     "why": "Team has 7 in cope's base",
+     "text": "Team has 6 in cope's base at the base res (0 defending, 2 coming back): 6 stay"
+    },
+    "427c825b-base_res-2-700-25": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Team [stayed through the res]: Be out, or set for the fight, when they res. Met (yes: nobody of ours dies in the 30 s after the res)"
+    },
+    "s:427c825b-numbers-1-716-26": {
+     "mark": "wrong",
+     "why": "no real fight during this period",
+     "text": "Up on numbers in the main fight (6 v 5, cope's back door; then 8 v 7 from 12:02), from players split elsewhere; cope: push up; 3 damage against 2 monks | then 7 v 8 from 12:02), from players split elsewhere; Team: push up (push up to their back door)"
+    },
+    "427c825b-numbers-1-716-26": {
+     "mark": "not judged",
+     "why": "",
+     "text": "cope (strong side) [push up]: Keep them busy and lose nobody (a kill is not expected of it). Met (yes: nobody of ours dies)"
+    },
+    "427c825b-numbers-2-716-27": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Team (weak side) [push up]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)"
+    },
+    "s:427c825b-numbers-1-734-28": {
+     "mark": "right",
+     "why": "",
+     "text": "Up on numbers in the main fight (8 v 7, cope's front door), from a runner away; cope: retreat down the ladder (fall back into the base) | Team: stay (stay on the enemy's side)"
+    },
+    "427c825b-numbers-1-734-28": {
+     "mark": "right",
+     "why": "",
+     "text": "cope (up) [retreat down the ladder]: Reset without giving anything back. Met (yes: nobody of ours dies; yes: no NPC lost)"
+    },
+    "427c825b-numbers-2-734-29": {
+     "mark": "right",
+     "why": "",
+     "text": "Team (down) [stay]: Hold the ground a player down and lose no more until it is level, or the base res. Met (yes: nobody of ours dies)"
+    },
+    "s:427c825b-flag-2-768-30": {
+     "mark": "right",
+     "why": "",
+     "text": "They single run (cope's AoB Derv); Team: stay"
+    },
+    "427c825b-flag-2-768-30": {
+     "mark": "right",
+     "why": "",
+     "text": "Team [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Met (yes: more of theirs die at the main fight than of ours; yes: their flag does not get in)"
+    },
+    "s:427c825b-boost-1-808-31": {
+     "mark": "right",
+     "why": "",
+     "text": "Team's boost is 30 s away; cope: one runner; the rest stay at the stand"
+    },
+    "427c825b-boost-1-808-31": {
+     "mark": "wrong",
+     "why": "incorrect, boost lands at 14:10 and cope does not cap",
+     "text": "cope [run]: Deny their boost. Met (yes: their boost does not land)"
+    },
+    "s:427c825b-numbers-1-814-32": {
+     "mark": "right",
+     "why": "",
+     "text": "Down on numbers in the main fight (6 v 8, the flag stand), from players split elsewhere; cope: retreat down the ladder (fall back into the base) | Team: stay (stay at the stand)"
+    },
+    "427c825b-numbers-1-814-32": {
+     "mark": "right",
+     "why": "",
+     "text": "cope (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Not met (no: nobody of ours dies)"
+    },
+    "427c825b-numbers-2-814-33": {
+     "mark": "right",
+     "why": "",
+     "text": "Team (strong side) [stay]: Kill with the numbers while their players are away. Met (yes: more of theirs die than of ours)"
+    },
+    "s:427c825b-numbers-1-832-34": {
+     "mark": "partly",
+     "why": "this is a continuation of the above situation I think",
+     "text": "Down on numbers in the main fight (7 v 8, the greater stand area), from kills; cope: retreat down the ladder (fall back into the base) | Team: push in"
+    },
+    "427c825b-numbers-1-832-34": {
+     "mark": "partly",
+     "why": "",
+     "text": "cope (down) [retreat down the ladder]: Reach cover a player down without losing another. Not met (no: nobody of ours dies; yes: no NPC lost)"
+    },
+    "427c825b-numbers-2-832-35": {
+     "mark": "partly",
+     "why": "",
+     "text": "Team (up) [push in]: Take ground and NPCs with the numbers. Met (yes: no more of ours die than of theirs; no: one of their NPCs dies; yes: more of theirs die than of ours)"
+    },
+    "s:427c825b-numbers-1-852-36": {
+     "mark": "partly",
+     "why": "this is a continuation of the above situation I think",
+     "text": "Down on numbers in the main fight (5 v 8, cope's back door; then 3 v 8 from 14:20), from kills; cope: retreat down the ladder (fall back into the base) | then 8 v 3 from 14:20), from kills; Team: push in"
+    },
+    "427c825b-numbers-1-852-36": {
+     "mark": "partly",
+     "why": "",
+     "text": "cope (down) [retreat down the ladder]: Reach cover a player down without losing another. Not met (no: nobody of ours dies; no: no NPC lost)"
+    },
+    "427c825b-numbers-2-852-37": {
+     "mark": "partly",
+     "why": "",
+     "text": "Team (up) [push in]: Take ground and NPCs with the numbers. Met (yes: no more of ours die than of theirs; yes: one of their NPCs dies; yes: more of theirs die than of ours)"
+    }
+   },
+   "game": "cope v Team, Isle of Jade",
+   "at": "2026-11-14",
+   "engine": "b025445",
+   "notes": "do we read/will it be reflected like a \"general\" 8v8 fight; it's not really a decision point but from 0:00 until the death on prot at 0:38, neither team really makes a decision, it's just an 8v8 fight but we should at some point be able to see micro/execution wise why cope died to the spike, if that make sense?"
   }
  }
 }
