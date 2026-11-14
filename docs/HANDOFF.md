@@ -17,7 +17,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   and their jobs, R-423 to R-449), `story.py`, `tools/golden/golden.py`, `lineup.py`, `thresholds.py`, `review.py`.
 - Built from his answers (R-455 to R-464): the ratios of damage against monks and the main fight's kill job
   (`can_kill`; a side facing no monk always has it); Shadow of Haste by date; a split's moment at the crossing; a flag
-  run's moment by hall; `blanks` (R-460).
+  run's moment by hall; `blanks` (R-460). The page: Repeat is a mark; calls under a wrong situation are not asked.
 - He marked part 1 of the whole-game review on the site (Model > Game review; TFS v 옷옷옷옷 bdaa145f, Men v Apes
   149fbdc6; engine af952c6): situations right 45 of 85, calls right 62 of 68 where the situation was right. His
   marks are in the review key as set w1p1 with 36 checks written from his words (open until they hold).
@@ -42,7 +42,6 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   옷옷옷옷); a defender kept counted while he kites out of reach (changed nothing in hdm v hook, broke that same row).
   Traced: at 9:30 of hdm v hook two of hook's four defenders stand 2,700 to 3,900 from the split for 16 s, which is
   his own note on row 40 ("4 v 2 back door") and not his mark on row 42 ("definitely 4 defending").
-- The page: calls under a situation he marks wrong or a repeat are not asked for; Repeat is a mark.
 
 ## Next (in order; REDESIGN.md "Build plan from here", item 6, and "Tests")
 1. His answer on how a long split fight is told (open item 1), then build it; then the remaining open checks.
@@ -60,8 +59,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 3. Round 3: how many games, and the mark at which a fresh game reads well enough to go to the hidden games.
 4. TFS v 옷옷옷옷 3:26 (https://gvg.report/report/bdaa145f-1471-57b3-ab2f-a04f090b7abb#map): still not met under
    R-466 (three TFS deaths at the main fight to none). Right?
-- Drafts: numbers from kills; a split with no answer; "held by monks"; the Lord push's aim; thresholds marked
-  "Claude's draft". Not built: shadow with a snare; the two-monk spike build after a wipe. Maps: `tools/maps/`.
+- Drafts not ruled: numbers from kills, a split with no answer, "held by monks", the Lord push's aim, `common.py` drafts.
 
 ## Running it
 - Train batch: `gh api -X POST repos/itsha12/gvginfo/actions/workflows/train-batch.yml/dispatches -f ref=main
