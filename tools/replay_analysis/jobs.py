@@ -32,7 +32,7 @@ Usage:  python3 jobs.py <report id>                     the plays of one match
         python3 jobs.py bench <file from moments.py all>     rebuild data/benchmarks/flag_arrival.json
 In code: plays(M, recs) -> list of plays; allocation(recs, plays) adds each moment's plays to it."""
 import collections, json, os, statistics, sys
-from common import (REPO, READ_TO, SPLIT_STEP, SPLIT_GAP_S, FIGHT_LINK, JOIN_S, JOIN_LOOK_S, NPC_NEAR, KILL_RATIO, RUN_SPEED, GROUND_JUMP, RES_EVERY, BOOST_EVERY, BOOST_WARN_S, BOOST_LATE_S, LEAD_HALF, LEAD_ONE, CARRY_SPEED, PIT_R,
+from common import (REPO, READ_TO, SPLIT_STEP, SPLIT_GAP_S, FIGHT_LINK, JOIN_S, JOIN_LOOK_S, NPC_NEAR, can_kill, SOH_REMOVED, RUN_SPEED, GROUND_JUMP, RES_EVERY, BOOST_EVERY, BOOST_WARN_S, BOOST_LATE_S, LEAD_HALF, LEAD_ONE, CARRY_SPEED, PIT_R,
                     FLAG_GAIN, PART_RUN_GAIN, LATE_FLAG, ANSWER_CAP_S, COLLAPSE_VISIT_S, PINNED_S, LORD_PUSH_FROM, LORD_BASE_R, AFTER_WIPE_MIN_S, NUMBERS_TAIL_S, FLAG_JOB_MAX_S)
 from state import d
 
@@ -94,8 +94,8 @@ def _flag_rows(M):
     for f in M.flags_record():
         if f["pregame"]: continue
         r = next((rs[k] for k in ((f["tm"], int(f["start"]) + dt) for dt in (0, -1, 1)) if k in rs), None)
-        s0 = int(r["set_off"]) if r is not None and r["set_off"] is not None else int(f["start"])
-        soh = any(m.sk(b) == "Shadow of Haste" for a in f["ids"] for b in m.A[a].get("bar", []) if b)
+        s0 = int(r["moment"]) if r is not None and r["set_off"] is not None else int(f["start"])       # when he goes to run, by the hall (R-461)
+        soh = M.day < SOH_REMOVED and any(m.sk(b) == "Shadow of Haste" for a in f["ids"] for b in m.A[a].get("bar", []) if b)      # R-456: only while the mechanic was in the game
         out.append(dict(f, s0=min(s0, int(f["start"])), pick=int(f["start"]), e=int(f["end"]), double=(f["form"] or "").startswith("double"), soh=soh))
     M._frows = out
     return out
@@ -196,7 +196,7 @@ def push_plays(M, K):
 
 
 # ---- a split, from both sides, phase by phase (R-428 to R-430; Denning's review of 2026-11-13, R-438 to R-446)
-def _runs(vals, times, min_s):
+def _runs(vals, times, min_s, keep_last=False):
     """Runs of a constant value over the sampled seconds, runs shorter than min_s merged into the longer neighbour:
     [(value, first second, last second)]."""
     runs = []
@@ -204,7 +204,8 @@ def _runs(vals, times, min_s):
         if runs and runs[-1][0] == v: runs[-1][2] = t
         else: runs.append([v, t, t])
     while len(runs) > 1:
-        i = min(range(len(runs)), key=lambda i: runs[i][2] - runs[i][1])
+        cand = range(len(runs) - 1) if keep_last else range(len(runs))       # keep_last: the last run stands however short (the game ended in it)
+        i = min(cand, key=lambda i: runs[i][2] - runs[i][1])
         if runs[i][2] - runs[i][1] + SPLIT_STEP >= min_s: break
         j = i - 1 if i == len(runs) - 1 or (i > 0 and runs[i - 1][2] - runs[i - 1][1] >= runs[i + 1][2] - runs[i + 1][1]) else i + 1
         lo, hi = min(i, j), max(i, j)
@@ -246,13 +247,13 @@ def split_plays(M, K):
         if len(times) < 3: continue
         hop = lambda a, u: any(0 <= v - S_ and v <= T and M.P[a][v] and M.P[a][v - S_] and d(M.P[a][v], M.P[a][v - S_]) > GROUND_JUMP for v in (u, u + S_))      # just through a teleporter
         raw = lambda a, u: frm[a] <= u <= ext[a] and deep(a, u) and not hop(a, u)
-        def stays(flags, extra=()):                       # a player counts once he has been there JOIN_S (R-350: less is support, or passing by), one missed reading allowed; a death in it counts at once
+        def stays(flags, extra=(), to_end=False):         # a player counts once he has been there JOIN_S (R-350: less is support, or passing by), one missed reading allowed; a death in it counts at once; and, for a defender, being there when the game ends (R-459, Book v One 19:28)
             keep, i = [False] * len(flags), 0
             while i < len(flags):
                 if not flags[i]: i += 1; continue
                 j = i
                 while j + 1 < len(flags) and (flags[j + 1] or (j + 2 < len(flags) and flags[j + 2])): j += 1
-                if (j - i + 1) * S_ >= JOIN_S or any(times[i] - 2 <= td <= times[j] + 4 for td in extra):
+                if (j - i + 1) * S_ >= JOIN_S or any(times[i] - 2 <= td <= times[j] + 4 for td in extra) or (to_end and j == len(flags) - 1 and times[j] >= T - S_ - 1):
                     for q in range(i, j + 1): keep[q] = True
                 i = j + 1
             return keep
@@ -260,7 +261,7 @@ def split_plays(M, K):
         on = lambda a, u: s_on[a][(u - t0) // S_] if t0 <= u <= t9 else False
         Ss = [[a for a in x["ids"] if s_on[a][i]] for i in range(len(times))]
         split_deaths = [td for a in x["ids"] for td in st.death_times.get(a, [])]
-        d_on = {b: stays([M.AL[b][u] and any(d(M.P[b][u], M.P[a][u]) < FIGHT_LINK for a in s) for u, s in zip(times, Ss)], list(st.death_times.get(b, [])) + split_deaths) for b in st.players[foe]}
+        d_on = {b: stays([M.AL[b][u] and any(d(M.P[b][u], M.P[a][u]) < FIGHT_LINK for a in s) for u, s in zip(times, Ss)], list(st.death_times.get(b, [])) + split_deaths, to_end=True) for b in st.players[foe]}
         Ds = [[b for b in st.players[foe] if d_on[b][i]] for i in range(len(times))]
         smooth = lambda xs: [sorted(xs[max(i - 2, 0):i + 3])[len(xs[max(i - 2, 0):i + 3]) // 2] for i in range(len(xs))]
         kn = list(zip(smooth([len(s) for s in Ss]), smooth([len(dn) for dn in Ds])))
@@ -289,7 +290,8 @@ def split_plays(M, K):
         dA = sorted((td, a) for a in x["ids"] for td in st.death_times.get(a, []) if frm[a] - 1 <= td <= max(ext[a], end_chase) + 4 and there(a, td))
         dD = sorted((td, b) for b in st.players[foe] for td in st.death_times.get(b, [])
                     if t0 <= td <= t9 + 4 and M.P[b][min(max(int(td) - 1, 0), T)] and any(on(a, min(max(int(td) - 1, 0), T) // S_ * S_) and d(M.P[b][min(max(int(td) - 1, 0), T)], M.P[a][min(max(int(td) - 1, 0), T)]) < FIGHT_LINK for a in x["ids"]))
-        phases = [(v, max(a_, reach), b_) for v, a_, b_ in _runs(kn, times, JOIN_S) if v[0] > 0 and b_ >= reach and b_ - max(a_, reach) + S_ >= JOIN_S]
+        at_end = times[-1] >= T - S_ - 1                                   # the game ended with the split still out: its last phase stands however short (R-459)
+        phases = [(v, max(a_, reach), b_) for v, a_, b_ in _runs(kn, times, JOIN_S, keep_last=at_end) if v[0] > 0 and b_ >= reach and (b_ - max(a_, reach) + S_ >= JOIN_S or (at_end and b_ == times[-1]))]
         wb = set(an.get("went_back_ids") or [])
         prevD, base = set(), f"{m.tag[tm]}'s split by the {x['way'] or 'door'}"
         for pi, ((k, n), p0, p1) in enumerate(phases):
@@ -309,8 +311,10 @@ def split_plays(M, K):
             mid = (p0 + p1) // 2 // S_ * S_
             ma, mdn = set(tl[mid][tm]["ids"]) - set(Sp), set(tl[mid][foe]["ids"]) - set(Dp)
             main = {"own": [len(ma) - sum(map(is_monk, ma)), sum(map(is_monk, ma))], "theirs": [len(mdn) - sum(map(is_monk, mdn)), sum(map(is_monk, mdn))]}      # [damage, monks] of each main team's fight, the split and its defenders left out
-            can_kill = md == 0 or dmg_s >= KILL_RATIO * md                 # damage to defending monks (Claude's draft from his rows 18 and 19, tactics S8: three damage are not expected to kill two monks)
-            main_kills = md > ms                                           # their main team is short of monks for it: the kill is the main team's job
+            kills = can_kill(dmg_s, md)                                    # damage against the monks defending (R-457: 2+ against one, 4+ against two, 5+ against three; three are not expected to kill two)
+            main_can = [can_kill(main["own"][0], main["theirs"][1]), can_kill(main["theirs"][0], main["own"][1])]      # at the main fight, each side's damage against the other's monks
+            main_kills = main_can[0] and not main_can[1]                   # the job to kill goes to a side that meets its ratio while the other does not (R-457)
+            main_killed = main_can[1] and not main_can[0]
             # a collapse (R-429, R-441): players come from their main fight, the defence becomes at least one more than the split, and they go back
             new = [b for b in Dp if b not in prevD]
             def from_main(b):                             # he stood with his main team, away from home, in the 45 s before he arrived
@@ -326,9 +330,9 @@ def split_plays(M, K):
             size = {1: "one player", 2: "two players", 3: "three players"}.get(k, f"{k} players")
             scen_a = f"{base}: {size} ({', '.join(whoA)}) against {n} defending" + (f" ({', '.join(whoD)})" if n else "")
             besA = {"npcs_taken": [kind for kind, _ in npcs], "kills": [role[b] for b in killp], "lost": [role[a] for a in lostp], "flag_lead": [K.lead(tm, p0), K.lead(tm, e1)], "deaths_away_from_the_split": [away_a, away_d],
-                    "split": [dmg_s, ms], "defence": [dmg_d, md], "main": main, "reached": reach, "phase": [pi + 1, len(phases)], "chased_until": end_chase if last and end_chase > t9 else None}
+                    "split": [dmg_s, ms], "defence": [dmg_d, md], "main": main, "main_can_kill": main_can, "reached": reach, "phase": [pi + 1, len(phases)], "chased_until": end_chase if last and end_chase > t9 else None}
             besD = {"pit_npcs_lost": [kind for kind, pit in npcs if pit], "other_npcs_lost": [kind for kind, pit in npcs if not pit], "lost": [role[b] for b in killp], "split_killed": [role[a] for a in lostp],
-                    "flag_lead": [K.lead(foe, p0), K.lead(foe, e1)], "deaths_away_from_the_split": [away_d, away_a], "split": [dmg_s, ms], "defence": [dmg_d, md], "main": {"own": main["theirs"], "theirs": main["own"]}, "phase": [pi + 1, len(phases)]}
+                    "flag_lead": [K.lead(foe, p0), K.lead(foe, e1)], "deaths_away_from_the_split": [away_d, away_a], "split": [dmg_s, ms], "defence": [dmg_d, md], "main": {"own": main["theirs"], "theirs": main["own"]}, "main_can_kill": main_can[::-1], "phase": [pi + 1, len(phases)]}
             elsewhere = {"more of theirs die away from the split than of ours": away_d > away_a, f"flag lead better by {FLAG_GAIN} or more": ga is not None and ga >= FLAG_GAIN}
             kill_or_npc = {"a defender killed": n_kill > 0, "an NPC taken": n_npc > 0}
             kw = dict(size=k, defenders=n)
@@ -340,13 +344,14 @@ def split_plays(M, K):
             elif n == 0: out.append(_play(M, "split", "attacker", tm, p0, e1, whoA, scen_a, "Take NPCs", {"an NPC taken": n_npc > 0}, beside=besA, answer="undefended", **kw))
             elif k < n: out.append(_play(M, "split", "attacker", tm, p0, e1, whoA, scen_a, "Survive and gain an advantage elsewhere on the map", {"nobody on the split dies": n_lost == 0}, any_of=elsewhere, beside=besA, answer="a player or more down", **kw))
             elif k == 1 and n == 1 and md == 1: out.append(_play(M, "split", "attacker", tm, p0, e1, whoA, scen_a, "Hold the monk there; the main team's job is to kill", {"the split player survives": n_lost == 0}, beside=besA, answer="1 v 1, defended by a monk", **kw))
-            elif can_kill: out.append(_play(M, "split", "attacker", tm, p0, e1, whoA, scen_a, "Kill or take NPCs" if k > n else "Take NPCs or kills", {}, any_of=kill_or_npc, beside=besA,
+            elif kills: out.append(_play(M, "split", "attacker", tm, p0, e1, whoA, scen_a, "Kill or take NPCs" if k > n else "Take NPCs or kills", {}, any_of=kill_or_npc, beside=besA,
                                             answer="1 v 1, the defender not a monk" if k == 1 else "a player or more up" if k > n else "even", **kw))
             else: out.append(_play(M, "split", "attacker", tm, p0, e1, whoA, scen_a + f"; {dmg_s} damage against {md} monks", "Hold the monks there and lose nobody; NPCs are a bonus (a kill is not expected of it)",
                                    {"nobody on the split dies": n_lost == 0}, beside=besA, ruled=False, answer="held by monks", **kw))
-            if not (full or collapse) and n and k >= n and main_kills:
-                out.append(_play(M, "split", "attacker's main team", tm, p0, e1, [], scen_a + f"; their main fight has {main['theirs'][1]} monk{'s' if main['theirs'][1] != 1 else ''} against {main['own'][0]} damage",
-                                 "Kill at the main fight while their monks are on the split", {"more of theirs die away from the split than of ours": away_d > away_a}, beside=besA, ruled=k == 1 and n == 1, answer="monks drawn to the split", **kw))
+            at_main = lambda own, theirs: f"; at the main fight {main[own][0]} damage against {main[theirs][1]} monk{'s' if main[theirs][1] != 1 else ''}, and theirs {main[theirs][0]} against {main[own][1]}"
+            if not (full or collapse) and n and main_kills:
+                out.append(_play(M, "split", "attacker's main team", tm, p0, e1, [], scen_a + at_main("own", "theirs"),
+                                 "Kill at the main fight: its damage can kill against their monks there, and theirs cannot", {"more of theirs die away from the split than of ours": away_d > away_a}, beside=besA, answer="the main fight can kill", **kw))
             # the defender's side
             scen_d = f"{m.tag[foe]} against {base}: {n} ({', '.join(whoD)}) against {size}" if n else f"{m.tag[foe]} against {base}: nobody against {size}"
             pit_ok = {"no pit NPC lost": n_pit == 0}
@@ -368,6 +373,9 @@ def split_plays(M, K):
             else:
                 out.append(_play(M, "split", "defender", foe, p0, e1, whoD, scen_d, "Kill it or drive it out with the extra player, and lose no pit NPC for it", pit_ok,
                                  any_of={"a split player dies": n_lost > 0, "the split is gone within the visit": last and short}, beside=besD, call="add one", **kw))
+            if not (full or collapse) and n and main_killed:               # the same job from the defenders' side (R-457)
+                out.append(_play(M, "split", "defender's main team", foe, p0, e1, [], scen_d + at_main("theirs", "own"),
+                                 "Kill at the main fight: its damage can kill against their monks there, and theirs cannot", {"more of theirs die away from the split than of ours": away_a > away_d}, beside=besD, call="the main fight can kill", **kw))
             if k == 1 and n == 1 and not collapse:                         # a lone defender part-running his flag (R-430)
                 b = Dp[0]
                 carried = sum(S_ for u in range(max(p0 - JOIN_S, 0), p1 + 1, S_) if M.carrying(b, u))      # from when he got there: he counts as the defender only JOIN_S later (review key s1-28)

@@ -385,7 +385,7 @@
       ]
      },
      "open": true,
-     "why": "Book v One 19:28: One's Ritualist defends the Hammer; he is on him under 12 s before the game ends, so he is not counted"
+     "why": "Book v One: the Hammer dies at 19:31 with One's Ritualist within reach of him for 8 s, and the game ends 12 s later, so the game-end rule of R-459 (built) does not reach this row; a defender on a split player for under 12 s when that player dies is still not read as a phase. To put to him"
     }
    ],
    "answered": {
@@ -525,7 +525,9 @@
      },
      "want": {
       "met": false
-     }
+     },
+     "open": true,
+     "why": "ohno v Fun 11:10: he said ohno's main team should have killed, as Fun had no monk at its main fight. By R-457 as he confirmed it (the job goes only to a side that meets its ratio while the other does not) nobody has the job: ohno's three damage face no monk and Fun's six damage face ohno's two monks, so both meet a ratio. For him to rule"
     }
    ]
   },
@@ -914,7 +916,7 @@
       "defenders": 2
      },
      "open": true,
-     "why": "hdm v 옷옷옷옷 4:06: he ruled it a join that makes it even (2 v 2); the engine reads one defender (the Fire Ele) against two, so the player already defending is not counted. To look at"
+     "why": "hdm v 옷옷옷옷 4:06: he ruled it a join that makes it even (2 v 2). The engine reads one defender (the Fire Ele) against two: 옷옷옷옷's 8 Monk and Air Ele are each within reach of the split for 10 s (4:06 to 4:14), under the 12 s of R-350. By distance it is three against two for 10 s and then one against two, never a steady 2 v 2. For him to look at"
     }
    ],
    "note": "He first approved this as a collapse; asked which stands, he chose R-441 (see answered). The split itself had been lost to the chase rule after the rebuild and was restored when this key first ran.",
@@ -1110,7 +1112,7 @@
       ]
      },
      "open": true,
-     "why": "Crew v hdm: 7 v 7 from 6:58 to 7:22 and again after 7:28; the six seconds between are not a numbers moment (R-449: count a player in fight numbers only after 12 s; not built)"
+     "why": "Crew v hdm: he reads 7 v 7 until 7:22 and again after 7:28. R-459 is built and does not settle it: Crew's Air Ele comes within reach of the fight at 7:16 and stays, so he counts from 7:16, and the 8 Monk counts until he is out of reach at about 7:36. The numbers follow reach, not the second a player commits to joining or leaving"
     }
    ],
    "answered": {

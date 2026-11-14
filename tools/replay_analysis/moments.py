@@ -43,7 +43,7 @@ Usage:  python3 moments.py <report id> [family]      the match's moments in orde
         python3 jobs.py summary <out.json>            the plays and how often each job was met (jobs.py)
 In code: Moments(st, sb).records() -> list of dicts."""
 import collections, json, math, statistics, sys
-from common import (READ_FROM, READ_TO, CONSEQ_S, ON_TIME_S, LATE_S, PIT_S, AREA_SHARE, PURPOSE_S, LEAVE_MIN_S, HOME_WAIT_S, SPAWN_R, GROUP_LEAVE_S, MEET_R,
+from common import (FLAG_MOMENT_GREATER, FLAG_MOMENT_STAND, READ_FROM, READ_TO, CONSEQ_S, ON_TIME_S, LATE_S, PIT_S, AREA_SHARE, PURPOSE_S, LEAVE_MIN_S, HOME_WAIT_S, SPAWN_R, GROUP_LEAVE_S, MEET_R,
                     NUMBERS_MIN_S, MERGE_S, BOOST_WARN_S, FLAGGER_R, SPLIT_FAR, BOOST_EVERY, SERIOUS_CARRY_S, FIGHT_LINK, GROUND_MOVE, GROUND_S, GROUND_BACK, GROUND_JUMP, GROUND_SPLIT_MOVE, SIDE_FIGHT_MAX, SIDE_FIGHT_S, UNDEFENDED_S,
                     RETURN_R, FOOT_ENGAGED_S, SPLIT_STEP, SPLIT_MIN_S, SPLIT_GAP_S, FORCED_OUT_S, AHEAD_LOOK_S, CAUGHT_S, NPC_NEAR,
                     JOIN_S, RES_EVERY, flux_at, JOIN_LOOK_S, JOIN_MOVE, JOIN_LEAD, JOIN_ENGAGE, JOIN_ENGAGE_S, MAIN_BIG, SWAP_S, SWAP_STAY_S, SPLIT_FIGHT_GAP_S, SPLIT_FIGHT_MIN,
@@ -68,6 +68,8 @@ REST_CALL = {"stand": "stay at the stand", "footmen": "fall to footmen", "own pi
 class Moments:
     def __init__(self, st, sb=None):
         self.st, self.m, self.hall, self.sb, self.T = st, st.m, st.hall, sb, st.end
+        import datetime
+        self.day = datetime.datetime.fromtimestamp(st.m.o["meta"]["started"] / 1000, datetime.timezone.utc).strftime("%Y-%m-%d")      # the day it was played (UTC); a match with no start time stops here, loudly (R-460)
         m, R = st.m, range(st.end + 1)
         self.P, self.AL = {}, {}
         for a in m.PL:
@@ -1821,12 +1823,22 @@ class Moments:
                     if not (s_ == own and k_ in ("pit", "base")): out_t = v; break           # out of his base and pit: on his way out by a door
                 if out_t is not None: break
             pre = c[1] < 2                                   # before the gates nobody set off or waited
-            out.append({"a": a, "runner": runner, "serious": list(L["serious"]), "carries": [tuple(c2[:3]) for c2 in L["carries"]], "tm": tm, "pickup": tp, "set_off": u if not pre and dist(u) is not None and dist(u) - SPAWN_R > 1500 else None,
+            set_off = u if not pre and dist(u) is not None and dist(u) - SPAWN_R > 1500 else None
+            # when he goes to run (R-461): setting off from inside the greater stand area, it is when he leaves that area, or the flag stand area itself, by the hall; anywhere else, when he sets off
+            moment, rule = set_off, "sets off"
+            if set_off is not None and self.place_at(a, set_off)[0] in ("stand", "greater stand"):
+                name = self.hall.name
+                inside = ("stand", "greater stand") if name in FLAG_MOMENT_GREATER else ("stand",) if name in FLAG_MOMENT_STAND else None
+                if inside is None: rule = "sets off (hall not ruled)"
+                elif self.place_at(a, set_off)[0] in inside:
+                    moment = next((v for v in range(set_off, tp + 1, 2) if self.place_at(a, v)[0] not in inside), tp)
+                    rule = "leaves the greater stand area" if len(inside) == 2 else "leaves the stand area"
+            out.append({"a": a, "runner": runner, "serious": list(L["serious"]), "carries": [tuple(c2[:3]) for c2 in L["carries"]], "tm": tm, "pickup": tp, "set_off": set_off, "moment": moment, "moment_rule": rule,
                         "waited": waited if not pre and tp - waited >= 10 else None, "under_way": out_t})
         self._rs = out
         return out
 
-    def _went_to_run(self, r): return min(x for x in (r["set_off"], r["waited"], r["pickup"]) if x is not None)
+    def _went_to_run(self, r): return min(x for x in (r["moment"], r["waited"], r["pickup"]) if x is not None)      # the decision moment of a flag run (R-461); the story's "leaves to go back" line stays at set_off
 
     def triggers(self):
         """One record a moment (2.4), each read from a record:
@@ -1858,9 +1870,9 @@ class Moments:
                     cur = {"family": 1, "tm": tm, "t": t, "triggers": [kind], "refs": [ref]}; out.append(cur)
             for x in self.attempts():
                 if x["tm"] != foe or x["kind"] != "split" or x.get("solo") == "other": continue
-                out.append({"family": 2, "tm": tm, "t": x["t0"], "triggers": ["split"], "refs": [x]})
+                out.append({"family": 2, "tm": tm, "t": x["t_in"], "triggers": ["split"], "refs": [x]})      # the moment is the crossing to the enemy's side, not the leave (R-458)
                 for q in x["members"]:                      # a player joining the split later is a moment of its own
-                    if q["from"] > x["t0"] + JOIN_S and q["from"] < x["t1"]:
+                    if q["from"] > x["t_in"] + JOIN_S and q["from"] < x["t1"]:
                         out.append({"family": 2, "tm": tm, "t": q["from"], "triggers": ["split grows"], "refs": [x]})
                 for t_, kind_ in self._split_shifts(x, tm):     # R-421: a split that changes door, or divides, is a new moment
                     out.append({"family": 2, "tm": tm, "t": t_, "triggers": [kind_], "refs": [x]})
@@ -1908,19 +1920,39 @@ class Moments:
     def _numbers(self):
         """Numbers differences in the fight a main team stands in (R-351: every fight, not only where the mains meet):
         each a stretch of NUMBERS_MIN_S or more with the same side up, read every 2 s from the fight records."""
-        S, eps, cur = SPLIT_STEP, [], None
-        for t in range(0, self.T + 1, S):
+        S, eps, cur, F = SPLIT_STEP, [], None, {}
+        times = list(range(0, self.T + 1, S))
+        for t in times:
             f = None
             for tm in self.st.teams:
                 mt = [a for a in self.main_team(tm, t) if self.AL[a][t]]
                 if not mt: continue
                 fs = [g for g in self.fights(t) if g["n"][1] and g["n"][2] and len(g["ids"][tm] & set(mt)) * 2 >= len(mt)]
                 if fs: f = max(fs, key=lambda g: g["n"][1] + g["n"][2]); break
-            adv = None if f is None or f["n"][1] == f["n"][2] else (1 if f["n"][1] > f["n"][2] else 2)
-            if adv and cur and cur["adv"] == adv and t - cur["last"] <= S: cur["last"] = t; cur["ns"].append((f["n"][1], f["n"][2]))
+            F[t] = f
+        # a player counts in the fight's numbers only if he stays JOIN_S, and then from when he arrived; one who goes sooner was never a player more
+        # (R-350, R-459: Crew v hdm 7:22, six seconds of 8 v 7). One missed reading allowed; a death in it counts at once; so does the end of the match.
+        counted = {}
+        for a in self.m.PL:
+            tm_a, deaths = self.m.team(a), self.st.death_times.get(a, [])
+            flags = [F[t] is not None and a in F[t]["ids"][tm_a] for t in times]
+            keep, i = [False] * len(flags), 0
+            while i < len(flags):
+                if not flags[i]: i += 1; continue
+                j = i
+                while j + 1 < len(flags) and (flags[j + 1] or (j + 2 < len(flags) and flags[j + 2])): j += 1
+                if (j - i + 1) * S >= JOIN_S or j == len(flags) - 1 or any(times[i] - 2 <= td <= times[j] + 4 for td in deaths):
+                    for q in range(i, j + 1): keep[q] = flags[q]
+                i = j + 1
+            counted[a] = keep
+        for ti, t in enumerate(times):
+            f = F[t]
+            n = {tm: sum(1 for a in f["ids"][tm] if counted[a][ti]) for tm in self.st.teams} if f is not None else None
+            adv = None if n is None or not n[1] or not n[2] or n[1] == n[2] else (1 if n[1] > n[2] else 2)
+            if adv and cur and cur["adv"] == adv and t - cur["last"] <= S: cur["last"] = t; cur["ns"].append((n[1], n[2]))
             else:
                 if cur and cur["last"] - cur["start"] >= NUMBERS_MIN_S: eps.append(cur)
-                cur = {"adv": adv, "start": t, "last": t, "ns": [(f["n"][1], f["n"][2])], "place": (f["kind"], f["side"]), "ids": f["ids"]} if adv else None
+                cur = {"adv": adv, "start": t, "last": t, "ns": [(n[1], n[2])], "place": (f["kind"], f["side"]), "ids": f["ids"]} if adv else None
         if cur and cur["last"] - cur["start"] >= NUMBERS_MIN_S: eps.append(cur)
         return eps
 
@@ -2406,7 +2438,8 @@ def match_records(rid):
     M = Moments(st, Scoreboard(st))
     recs = M.records()
     import jobs                                          # the plays and their jobs; each moment gets its allocation (R-425)
-    EXTRA[rid] = {"runs": M.runner_cost(), "duty": [M.flag_duty()[tm] for tm in (1, 2)], "plays": jobs.plays(M, recs), "flags": jobs.bench_rows(M)}
+    EXTRA[rid] = {"runs": M.runner_cost(), "duty": [M.flag_duty()[tm] for tm in (1, 2)], "plays": jobs.plays(M, recs), "flags": jobs.bench_rows(M),
+                  "flag_moments": dict(collections.Counter(r["moment_rule"] for r in M.run_starts() if r["set_off"] is not None))}
     return recs
 
 
@@ -2451,6 +2484,31 @@ def run_all(path, jobs=2, ids=None):
                "records": [x for r in sorted(out) for x in out[r]], "plays": [p for r in sorted(out) for p in (extra[r] or {}).get("plays", [])],
                "flag_cost": {r: {k: v for k, v in (extra[r] or {}).items() if k != "plays"} for r in out}, "errors": bad}, open(path, "w"), default=list)
     print(len(out), "matches,", sum(len(v) for v in out.values()), "moments,", len(bad), "errors", list(bad.items())[:3])
+    fm = collections.Counter()
+    for r in out:
+        for k, v in ((extra[r] or {}).get("flag_moments") or {}).items(): fm[k] += v
+    print("flag runs set off for, by how the moment is read (R-461):", dict(fm))
+    if blanks([x for r in sorted(out) for x in out[r]], [p for r in sorted(out) for p in (extra[r] or {}).get("plays", [])]): sys.exit(1)
+
+
+def blanks(records, plays):
+    """A reading which fails must fail loudly (R-460). Counts the blanks of every field of the moments' state and of the
+    plays; a field blank on every row is a fault, printed as one and returned (the run then ends with an error). A
+    blank that only means "not in the replay", or "does not apply here", shows as a share and is no fault."""
+    rows = collections.defaultdict(lambda: [0, 0])
+    def see(name, v): rows[name][0] += 1; rows[name][1] += v is None
+    for x in records:
+        for k, v in x["state"].items(): see("state." + k, v)
+        for k in ("who", "scenario", "call", "verbs", "after"): see("moment." + k, x.get(k))
+    for p in plays:
+        for k in ("team", "scenario", "job", "met", "moment"):
+            if k in p: see("play." + k, p[k])
+        for k, v in (p.get("beside") or {}).items(): see(f"play[{p['play']}].beside." + k, v)
+    some = sorted(((b / n, k) for k, (n, b) in rows.items() if b and b < n), reverse=True)
+    fault = sorted(k for k, (n, b) in rows.items() if n >= 20 and b == n)
+    print("blank in part (share of rows):", ", ".join(f"{k} {s:.0%}" for s, k in some) or "none")
+    if fault: print("FAULT, blank on every row:", ", ".join(fault))
+    return fault
 
 
 def counts(path):

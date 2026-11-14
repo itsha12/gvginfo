@@ -186,7 +186,16 @@ PART_RUN_GAIN = 0.15            # a lone defender part-running his flag: the sli
 LATE_FLAG = 1.3                 # a pushed flag is delayed when it arrives this many times later than the hall's usual run (R-427)
 ANSWER_CAP_S = 15               # a cap is answered "at once" when the flag in hand is capped this soon after it (Claude's draft)
 COLLAPSE_VISIT_S = 45           # a collapse: a player from the main team on a split for no longer than this, then back (R-429; the length is Claude's draft)
-KILL_RATIO = 2.0                # a group is expected to kill when its damage dealers are at least this many times the monks facing it (Claude's draft from his review: three damage are not expected to kill two monks; tactics S8)
+KILL_NEED = {0: 1, 1: 2, 2: 4, 3: 5}      # damage against monks, from good play (R-457, his ratios): two or more damage can kill against one backline monk, four or more against two, five or more against three; any damage against none
+def can_kill(damage, monks):
+    """Is this much damage expected to kill against this many backline monks (R-457)? More than three monks: not expected."""
+    return monks in KILL_NEED and damage >= KILL_NEED[monks]
+SOH_REMOVED = "2026-10-22"       # the Shadow of Haste flag mechanic left the game on this day (R-456): a run before it is set aside, from it on a bar with the skill is an ordinary runner
+# when a flag run's moment is (R-461): a runner who sets off from inside the greater stand area goes to run when he leaves the greater stand area on these halls ...
+FLAG_MOMENT_GREATER = ("Corrupted Isle", "Isle of Meditation", "Isle of Weeping Stone", "Nomad's Isle", "Frozen Isle")
+# ... and when he leaves the flag stand area itself on these; anywhere else, and on a hall in neither list, it is when he sets off
+FLAG_MOMENT_STAND = ("Druid's Isle", "Isle of Jade", "Isle of Solitude", "Imperial Isle", "Warrior's Isle", "Isle of the Dead", "Isle of Wurms", "Burning Isle")
+FLAG_MOMENT_OPEN = ("Uncharted Isle",)   # he named it in both lists: read as setting off until he says which (counted in the output of `moments.py all`)
 PINNED_S = 20                   # pinned: a main team in its own base or pit with the enemy's main team on its ground this long (Claude's draft)
 LORD_PUSH_FROM = 23 * 60 + 30   # a push on the Guild Lord is its own moment from about 23:30 (R-435)
 LORD_BASE_R = 2600              # a Lord push counts the players on the enemy's ground within this of the Lord: the base, not only next to him (R-446; the distance is Claude's draft)
