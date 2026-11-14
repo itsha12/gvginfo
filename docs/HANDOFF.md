@@ -41,9 +41,8 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 - Tried and taken out (each broke his row 28 of TFS v 옷옷옷옷 or changed nothing): a full collapse counted from the
   main team closing on the split; a defender kept counted while he kites out of reach. At 9:30 of hdm v hook two of
   hook's four defenders stand 2,700 to 3,900 from the split for 16 s: his note on row 40, not his mark on row 42.
-- Before and after on hdm v hook (`review.py compare`; CHANGELOG 2026-11-14): the engine of the session's start is not
-  shown to be worse than today's there; 54 of its 125 calls he was never shown. Do not claim progress from scores on
-  different games: compare engines on the same marked game.
+- Before and after on hdm v hook (`review.py compare`; CHANGELOG 2026-11-14): today's engine is not shown to be
+  better there than the session's first. Never claim progress across different games: compare on one marked game.
 
 ## Next (in order; REDESIGN.md "Build plan from here", item 6, and "Tests")
 1. His answer on how a long split fight is told (open item 1), then build it; then the remaining open checks.
