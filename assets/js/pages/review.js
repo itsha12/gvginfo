@@ -8,7 +8,8 @@ import { esc, readJson, writeJson, canSave, toast } from "../core.js";
 // Claude files the marks in the review key (data/model/review_key.json), where they become checks the reading must pass.
 
 const ROWS = "data/model/game_reviews.json", MARKS = "data/model/game_review_marks.json", DRAFT = "gvginfo.review.draft";
-const MARK = [["right", "Right"], ["partly", "Partly"], ["wrong", "Wrong"]];
+const MARK = [["right", "Right"], ["partly", "Partly"], ["wrong", "Wrong"], ["repeat", "Repeat"]];
+const SKIP = "not judged";      // a call under a situation he marked wrong or a repeat: nothing to judge, and not asked for
 let rows = null, marks = null, cur = null, draft = {};
 
 const clock = (t) => `${Math.floor(t / 60)}:${String(Math.round(t % 60)).padStart(2, "0")}`;
@@ -16,7 +17,9 @@ const loadDraft = () => { try { draft = JSON.parse(localStorage.getItem(DRAFT) |
 const keepDraft = () => { try { localStorage.setItem(DRAFT, JSON.stringify(draft)); } catch { /* the marks stay on the page until saved */ } };
 const callText = (c) => `${c.team}${c.side ? ` (${c.side})` : ""}${c.label ? ` [${c.label}]` : ""}: ${c.job}. ${c.met ? "Met" : "Not met"}` +
   (c.tests.length ? ` (${c.tests.map(([ok, t]) => `${ok ? "yes" : "no"}: ${t}`).join("; ")})` : "");
-const items = (g) => g.situations.flatMap((s) => [{ id: s.id, text: s.reads }, ...s.calls.map((c) => ({ id: c.id, text: callText(c) }))]);
+const items = (g) => g.situations.flatMap((s) => [{ id: s.id, text: s.reads }, ...s.calls.map((c) => ({ id: c.id, text: callText(c), under: s.id }))]);
+const off = (M, sid) => ["wrong", "repeat"].includes(M[sid]?.mark);
+const asked = (g, M) => items(g).filter((x) => !x.under || !off(M, x.under));
 const saved = (g) => marks.games?.[g.rid]?.marks || {};
 const now = (g) => ({ ...saved(g), ...(draft[g.rid]?.marks || {}) });
 const unsaved = (g) => Object.keys(draft[g.rid]?.marks || {}).length + (draft[g.rid]?.notes !== undefined ? 1 : 0);
@@ -29,14 +32,15 @@ function control(id, m) {
 function gameHtml(g) {
   const M = now(g);
   const body = g.situations.map((s) => {
-    const calls = s.calls.map((c) => `<tr class="rv-call${M[c.id]?.mark ? " rv-done" : ""}"><td></td><td></td>
+    const skip = off(M, s.id);
+    const calls = s.calls.map((c) => `<tr class="rv-call${M[c.id]?.mark || skip ? " rv-done" : ""}${skip ? " rv-skip" : ""}"><td></td><td></td>
       <td><b>${esc(c.team)}</b>${c.side ? ` <span class="muted">(${esc(c.side)})</span>` : ""}${c.label ? ` <span class="pill type">${esc(c.label)}</span>` : ""}: ${esc(c.job)}.
         <b class="${c.met ? "rv-met" : "rv-not"}">${c.met ? "Met" : "Not met"}</b>${c.draft ? ` <span class="muted small">(this job is Claude's draft, not yet ruled)</span>` : ""}
-        ${c.tests.length ? `<div class="muted small">${c.tests.map(([ok, t]) => `${ok ? "yes" : "no"}: ${esc(t)}`).join("; ")}</div>` : ""}</td>${control(c.id, M[c.id])}</tr>`).join("");
+        ${c.tests.length ? `<div class="muted small">${c.tests.map(([ok, t]) => `${ok ? "yes" : "no"}: ${esc(t)}`).join("; ")}</div>` : ""}</td>${skip ? `<td class="muted small">Not asked: you marked the situation ${esc(M[s.id].mark === "repeat" ? "a repeat" : "wrong")}.</td>` : control(c.id, M[c.id])}</tr>`).join("");
     return `<tr class="rv-sit${M[s.id]?.mark ? " rv-done" : ""}"><td class="rv-n">${s.n}</td><td class="rv-t">${clock(s.t0)}–${clock(s.t1)}</td>
       <td><span class="muted small">What the engine reads</span><br>${esc(s.reads)}</td>${control(s.id, M[s.id])}</tr>${calls}`;
   }).join("");
-  const all = items(g), done = all.filter((x) => M[x.id]?.mark).length, n = unsaved(g);
+  const all = asked(g, M), done = all.filter((x) => M[x.id]?.mark).length, n = unsaved(g);
   const notes = draft[g.rid]?.notes ?? marks.games?.[g.rid]?.notes ?? "";
   return `<h3 style="margin:.8rem 0 .2rem">${esc(g.teams.join(" v "))}, ${esc(g.map)}, ${esc(g.date)}</h3>
     <p style="margin:.2rem 0"><a href="https://gvg.report/report/${esc(g.rid)}#map" target="_blank" rel="noopener">Open the replay on gvg.report</a>. ${g.situations.length} situations, ${all.length} rows to mark; <b>${done} marked</b>${n ? `, <b class="rv-not">${n} not saved yet</b>` : ""}.</p>
@@ -62,11 +66,12 @@ export async function renderReview(out, keep = false) {
   <details class="rv-terms"><summary>How to read a row</summary><ul class="small">
     <li><b>A situation</b> is one thing the engine saw happening between the two times: a flag run and the answer to it, a push on a flagger, one phase of a split, a numbers difference in the main fight, a team pinned in its base, a boost coming, a base resurrection, a Lord push.</li>
     <li><b>A call</b> is what one team did about it. Its <b>job</b> is what a team is expected to achieve in that situation by your rulings; <b>Met</b> or <b>Not met</b> says only whether that happened, with the tests behind it (yes or no). It is a result, not a verdict on whether the call was right.</li>
-    <li><b>Right</b>: the row is what you would say. <b>Partly</b>: the situation is there but something in it is off (the numbers, the time, who, the job or the result). <b>Wrong</b>: it did not happen, or it was something else. For Partly and Wrong, say what you see in your own words.</li>
+    <li><b>Right</b>: the row is what you would say. <b>Partly</b>: the situation is there but something in it is off (the numbers, the time, who, the job or the result). <b>Wrong</b>: it did not happen, or it was something else. <b>Repeat</b>: the same thing is already told in another row. For Partly and Wrong, say what you see in your own words.</li>
+    <li>When you mark a situation Wrong or a Repeat, the calls under it are not asked for.</li>
     <li>A player counts in a fight, on a split or on its defence after 12 seconds there. Flag lead is in flags: the stand counts as one flag.</li>
     <li>Marks are kept in this browser as you go and reach the engine when you press Save. Stop and resume at any point.</li>
   </ul></details>
-  <div class="row rv-games">${G.map((x) => { const a = items(x), d = a.filter((i) => now(x)[i.id]?.mark).length;
+  <div class="row rv-games">${G.map((x) => { const a = asked(x, now(x)), d = a.filter((i) => now(x)[i.id]?.mark).length;
     return `<button class="btn small ${x.rid === cur ? "primary" : "ghost"}" data-game="${esc(x.rid)}">${esc(x.teams.join(" v "))} <span class="small">(part ${esc(x.part)}; ${d} of ${a.length})</span></button>`; }).join("")}</div>
   <p class="muted small">Rows written ${esc(rows.generated)} from engine ${esc(rows.engine)}.</p>
   <section class="rv">${gameHtml(g)}</section>
@@ -74,7 +79,7 @@ export async function renderReview(out, keep = false) {
   .rv-rows th:nth-child(1),.rv-n{width:2.4rem}.rv-rows th:nth-child(2),.rv-t{width:6.2rem;font-family:var(--mono);white-space:nowrap}.rv-rows th:nth-child(4),.rv-mark{width:17rem}
   .rv-sit td{border-top:2px solid var(--line);background:var(--accent-soft)}.rv-call td:nth-child(3){padding-left:1.4rem}.rv-done td:first-child{box-shadow:inset 3px 0 0 var(--accent)}
   .rv-mark label{margin-right:.6rem;white-space:nowrap;font-size:.86rem}.rv-mark input[type=text]{display:block;width:100%;height:1.9rem;margin-top:.3rem;font-size:.84rem}
-  .rv-met{color:#1c7c3c}.rv-not{color:#b3261e}.rv-bar{margin:.6rem 0;gap:.5rem}.rv-games{flex-wrap:wrap;gap:.4rem;margin:.6rem 0}.rv-terms{margin:.6rem 0}.rv-terms summary{cursor:pointer}.small{font-size:.86rem}</style>`;
+  .rv-skip td:nth-child(3){opacity:.45}.rv-met{color:#1c7c3c}.rv-not{color:#b3261e}.rv-bar{margin:.6rem 0;gap:.5rem}.rv-games{flex-wrap:wrap;gap:.4rem;margin:.6rem 0}.rv-terms{margin:.6rem 0}.rv-terms summary{cursor:pointer}.small{font-size:.86rem}</style>`;
 
   const redraw = async () => { const y = scrollY; await renderReview(out, true); scrollTo({ top: y }); };
   const text = Object.fromEntries(items(g).map((x) => [x.id, x.text]));
@@ -86,16 +91,24 @@ export async function renderReview(out, keep = false) {
   out.querySelectorAll("[data-game]").forEach((b) => b.onclick = () => { cur = b.dataset.game; redraw(); });
   out.querySelectorAll(".rv-mark").forEach((td) => {
     const id = td.dataset.id, why = td.querySelector("[data-why]");
-    td.querySelectorAll("input[type=radio]").forEach((r) => r.onchange = () => { put(id, { mark: r.value, why: why.value.trim() }); td.closest("tr").classList.add("rv-done"); if (r.value !== "right") why.focus(); });
+    td.querySelectorAll("input[type=radio]").forEach((r) => r.onchange = () => {
+      const was = off(now(g), id);
+      put(id, { mark: r.value, why: why.value.trim() }); td.closest("tr").classList.add("rv-done");
+      if (id.startsWith("s:") && was !== off(now(g), id)) {     // the calls under it are no longer asked for, or are asked for again
+        items(g).filter((x) => x.under === id).forEach((x) => { if (off(now(g), id)) put(x.id, { mark: SKIP, why: "" }); else if (now(g)[x.id]?.mark === SKIP) put(x.id, { mark: "", why: "" }); });
+        redraw().then(() => out.querySelector(`.rv-mark[data-id="${CSS.escape(id)}"] [data-why]`)?.focus()); return;
+      }
+      if (r.value !== "right") why.focus();
+    });
     why.onchange = () => { const m = td.querySelector("input[type=radio]:checked"); if (m) put(id, { mark: m.value, why: why.value.trim() }); };
   });
   out.querySelector("[data-notes]").onchange = (e) => { (draft[g.rid] ||= { marks: {} }).notes = e.target.value.trim(); keepDraft(); };
-  out.querySelector("[data-rest]").onclick = () => { const M = now(g); items(g).forEach((x) => { if (!M[x.id]?.mark) put(x.id, { mark: "right", why: "" }); }); redraw(); };
+  out.querySelector("[data-rest]").onclick = () => { const M = now(g); asked(g, M).forEach((x) => { if (!M[x.id]?.mark) put(x.id, { mark: "right", why: "" }); }); redraw(); };
   out.querySelectorAll("[data-save]").forEach((b) => b.onclick = async () => {
     const before = JSON.stringify(marks), d = draft[g.rid] || { marks: {} };
     const G0 = (marks.games ||= {}), e = (G0[g.rid] ||= { marks: {} });
     e.game = `${g.teams.join(" v ")}, ${g.map}`; e.at = new Date().toISOString().slice(0, 10); e.engine = rows.engine;
-    e.marks = { ...e.marks, ...(d.marks || {}) };
+    e.marks = Object.fromEntries(Object.entries({ ...e.marks, ...(d.marks || {}) }).filter(([, v]) => v.mark));
     if (d.notes !== undefined) { if (d.notes) e.notes = d.notes; else delete e.notes; }
     try { await writeJson(MARKS, marks, `Game review: ${e.game} marked (${Object.keys(e.marks).length} rows)`); }
     catch (err) { marks = JSON.parse(before); toast(err.message); return; }

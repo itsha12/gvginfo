@@ -187,6 +187,11 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   checks). A failing row is fixed or put to him before anything else. Run every match (`moments.py all <file>`, about
   10 minutes) only at a checkpoint: a new review set, a gate, a benchmark rebuild, or counts a question needs. A full
   run applies the engine; it teaches it nothing.
+- No new rule or threshold to answer a wrong row (R-465): rebuild the reading under it at the root, with his marked
+  rows as the test. Who is in which fight is one reading on the branch (`Moments.linked`, `engaged_in`, `visits`; R-464),
+  used by the numbers of the main fight and by a split's defenders: change it there, never beside it. His words on a
+  row become checks in the review key, open until they hold; `review.py score` counts the open checks that hold now.
+  Every match moment put to him carries its replay link and time.
 - A reading which fails must fail loudly, never be turned into a blank (R-460). A blank that means "not in the replay"
   (unobserved Lord damage) stays a blank; a blank from a fault stops the run or is counted in the output, so that a
   field blank on every row is seen the same day.

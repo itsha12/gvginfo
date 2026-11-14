@@ -364,7 +364,6 @@
       ]
      },
      "want": {
-      "answer": "undefended",
       "size": 1
      }
     },
@@ -399,7 +398,8 @@
     "asked": "Count a defender who is on a split player when that player dies, however briefly?",
     "said": "Yes.",
     "reading": "R-464; not built."
-   }
+   },
+   "note": "The first check no longer asks for an undefended phase by name (his words were that the split counts from when it reaches, and that the Ritualist defends it): Claude's reading of the mark was narrower than the mark."
   },
   {
    "id": "s1-16",
@@ -1316,7 +1316,23 @@
      "mark": "right"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "옷옷옷옷",
+      "at": [
+       43,
+       50
+      ]
+     },
+     "want": {
+      "numbers": "7v5"
+     },
+     "open": true,
+     "why": "TFS v 옷옷옷옷 0:43: 7 v 5 once a Mesmer leaves, where the engine read 7 v 6"
+    }
+   ]
   },
   {
    "id": "w1p1-bdaa-2",
@@ -1340,7 +1356,21 @@
      "mark": "right"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "옷옷옷옷",
+      "start": [
+       74,
+       86
+      ]
+     },
+     "want": {},
+     "open": true,
+     "why": "TFS v 옷옷옷옷: the run starts at 1:20, on the 7 Monk, where the engine read 0:27"
+    }
+   ]
   },
   {
    "id": "w1p1-bdaa-3",
@@ -1364,7 +1394,23 @@
      "said": "It does break out. 5 or more is too harsh of a target when they have 4-5 out of back door already."
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "TFS",
+      "at": [
+       36,
+       76
+      ]
+     },
+     "want": {
+      "met": true
+     },
+     "open": true,
+     "why": "TFS v 옷옷옷옷 0:36: TFS does break out: five or more is too harsh with four or five already out of the back door"
+    }
+   ]
   },
   {
    "id": "w1p1-bdaa-4",
@@ -1445,7 +1491,24 @@
      "mark": "right"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "옷옷옷옷",
+      "at": [
+       98,
+       102
+      ]
+     },
+     "want": {
+      "call": "full collapse"
+     },
+     "open": true,
+     "why": "TFS v 옷옷옷옷 1:39: all eight defending: a full collapse"
+    }
+   ]
   },
   {
    "id": "w1p1-bdaa-7",
@@ -1470,7 +1533,23 @@
      "said": "This is only possible when flag is within close proximity to flag stand."
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "none": {
+      "play": "flag",
+      "team": "TFS",
+      "at": [
+       100,
+       203
+      ],
+      "want": {
+       "ours": "a flag already in hand"
+      }
+     },
+     "open": true,
+     "why": "TFS v 옷옷옷옷 1:40: TFS has no flag in hand: that is only so with the flag close to the stand"
+    }
+   ]
   },
   {
    "id": "w1p1-bdaa-8",
@@ -1517,7 +1596,25 @@
      "mark": "right"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "옷옷옷옷",
+      "start": [
+       120,
+       140
+      ],
+      "end": [
+       168,
+       182
+      ]
+     },
+     "want": {},
+     "open": true,
+     "why": "TFS v 옷옷옷옷: the single run from 2:09 ends at 2:54 with the cap, where the engine ran it to 5:09"
+    }
+   ]
   },
   {
    "id": "w1p1-bdaa-10",
@@ -1541,7 +1638,23 @@
      "said": "What do you mean by our flag is capped? TFS was successful on this single run."
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "TFS",
+      "start": [
+       200,
+       214
+      ]
+     },
+     "want": {
+      "met": true
+     },
+     "open": true,
+     "why": "TFS v 옷옷옷옷 3:26: TFS's single run succeeded; the engine said its flag was not capped"
+    }
+   ]
   },
   {
    "id": "w1p1-bdaa-11",
@@ -1589,7 +1702,23 @@
      "mark": "right"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "옷옷옷옷",
+      "start": [
+       236,
+       248
+      ]
+     },
+     "want": {
+      "their": "single run"
+     },
+     "open": true,
+     "why": "TFS v 옷옷옷옷 4:02: TFS's run is a single run, read as a double"
+    }
+   ]
   },
   {
    "id": "w1p1-bdaa-13",
@@ -1624,7 +1753,24 @@
      "said": "they kill at 4:45 away from split with a collapse."
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "TFS",
+      "at": [
+       250,
+       280
+      ]
+     },
+     "want": {
+      "defending_monks": 1
+     },
+     "open": true,
+     "why": "TFS v 옷옷옷옷 4:06: two damage against one monk: only backline monks count, the 7 Monk is a smiter"
+    }
+   ]
   },
   {
    "id": "w1p1-bdaa-14",
@@ -1700,7 +1846,23 @@
      "said": "2 die."
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "TFS",
+      "at": [
+       328,
+       340
+      ]
+     },
+     "want": {
+      "numbers": "3v7"
+     },
+     "open": true,
+     "why": "TFS v 옷옷옷옷 5:28: 3 v 7, not 1 v 7"
+    }
+   ]
   },
   {
    "id": "w1p1-bdaa-17",
@@ -1724,7 +1886,23 @@
      "mark": "right"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "옷옷옷옷",
+      "at": [
+       330,
+       350
+      ]
+     },
+     "want": {
+      "scenario~": "7 v 1 from 5:4"
+     },
+     "open": true,
+     "why": "TFS v 옷옷옷옷: 7 v 1 starts at 5:48 when the second TFS player dies"
+    }
+   ]
   },
   {
    "id": "w1p1-bdaa-18",
@@ -1887,7 +2065,20 @@
      "mark": "right"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "none": {
+      "play": "push flagger",
+      "team": "TFS",
+      "at": [
+       380,
+       406
+      ]
+     },
+     "open": true,
+     "why": "TFS v 옷옷옷옷 6:20: a split with the 8 Monk defending and part-running, not a push on a flagger"
+    }
+   ]
   },
   {
    "id": "w1p1-bdaa-24",
@@ -1939,7 +2130,24 @@
      "mark": "right"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "옷옷옷옷",
+      "at": [
+       410,
+       426
+      ]
+     },
+     "want": {
+      "defenders": 2
+     },
+     "open": true,
+     "why": "TFS v 옷옷옷옷 6:46: the 7 Monk is also defending when the Dervish gets there"
+    }
+   ]
   },
   {
    "id": "w1p1-bdaa-26",
@@ -2026,7 +2234,27 @@
      "mark": "right"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "옷옷옷옷",
+      "at": [
+       480,
+       488
+      ]
+     },
+     "want": {
+      "call": [
+       "collapse",
+       "full collapse"
+      ]
+     },
+     "open": true,
+     "why": "TFS v 옷옷옷옷 7:20: the split gets collapsed on at 8:02"
+    }
+   ]
   },
   {
    "id": "w1p1-bdaa-29",
@@ -2102,7 +2330,23 @@
      "said": "they kill flagger at 9:08, that is definitely part of the sam play"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "옷옷옷옷",
+      "at": [
+       520,
+       540
+      ]
+     },
+     "want": {
+      "numbers": "6v4"
+     },
+     "open": true,
+     "why": "TFS v 옷옷옷옷 8:40: 4 v 6, where the engine read 3 v 6"
+    }
+   ]
   },
   {
    "id": "w1p1-bdaa-32",
@@ -2218,7 +2462,21 @@
      "said": "flag is capped though..... 옷옷옷옷 stops their single run at 10:41 to try to kill main"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "옷옷옷옷",
+      "start": [
+       656,
+       666
+      ]
+     },
+     "want": {},
+     "open": true,
+     "why": "TFS v 옷옷옷옷: the single run starts at 11:01, with the Ritualist, where the engine read 9:18 and the Stand Mes"
+    }
+   ]
   },
   {
    "id": "w1p1-bdaa-36",
@@ -2266,7 +2524,23 @@
      "said": "see above re must be within range of flag stand"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "none": {
+      "play": "flag",
+      "team": "TFS",
+      "at": [
+       613,
+       654
+      ],
+      "want": {
+       "ours": "a flag already in hand"
+      }
+     },
+     "open": true,
+     "why": "TFS v 옷옷옷옷 10:13: again no flag in hand"
+    }
+   ]
   },
   {
    "id": "w1p1-bdaa-38",
@@ -2357,7 +2631,56 @@
    "shown": "(what the engine did not read in this game)",
    "mark": "missed",
    "said": "Missed full collapse at 1:16; again at 4:15ish; again at 9:30;",
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "옷옷옷옷",
+      "at": [
+       74,
+       80
+      ]
+     },
+     "want": {
+      "call": "full collapse"
+     },
+     "open": true,
+     "why": "TFS v 옷옷옷옷: a full collapse at about 1:14 that the engine did not read"
+    },
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "옷옷옷옷",
+      "at": [
+       250,
+       262
+      ]
+     },
+     "want": {
+      "call": "full collapse"
+     },
+     "open": true,
+     "why": "TFS v 옷옷옷옷: a full collapse at about 4:10 that the engine did not read"
+    },
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "옷옷옷옷",
+      "at": [
+       566,
+       576
+      ]
+     },
+     "want": {
+      "call": "full collapse"
+     },
+     "open": true,
+     "why": "TFS v 옷옷옷옷: a full collapse at about 9:26 that the engine did not read"
+    }
+   ]
   },
   {
    "id": "w1p1-149f-1",
@@ -2489,7 +2812,24 @@
      "mark": "right"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "Men",
+      "at": [
+       64,
+       74
+      ]
+     },
+     "want": {
+      "defenders": 4
+     },
+     "open": true,
+     "why": "Men v Apes 1:02: four defenders, and one split with the phase from 1:14, where the engine read one defender"
+    }
+   ]
   },
   {
    "id": "w1p1-149f-6",
@@ -2542,7 +2882,23 @@
      "said": "unknown"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "Apes",
+      "start": [
+       70,
+       84
+      ]
+     },
+     "want": {
+      "their": "single run"
+     },
+     "open": true,
+     "why": "Men v Apes 1:17: Men's run is a single run, read as a double"
+    }
+   ]
   },
   {
    "id": "w1p1-149f-8",
@@ -2688,7 +3044,23 @@
      "mark": "right"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Men",
+      "at": [
+       132,
+       150
+      ]
+     },
+     "want": {
+      "numbers": "5v3"
+     },
+     "open": true,
+     "why": "Men v Apes 2:10: he reads 5 v 3 where the engine read 4 v 2"
+    }
+   ]
   },
   {
    "id": "w1p1-149f-13",
@@ -2722,7 +3094,24 @@
      "mark": "right"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "Apes",
+      "at": [
+       152,
+       174
+      ]
+     },
+     "want": {
+      "defenders": 3
+     },
+     "open": true,
+     "why": "Men v Apes 2:30: three defending; the Prot comes at 2:57"
+    }
+   ]
   },
   {
    "id": "w1p1-149f-14",
@@ -2753,7 +3142,23 @@
      "said": "unknown"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "none": {
+      "play": "numbers",
+      "team": "Men",
+      "start": [
+       146,
+       156
+      ],
+      "want": {
+       "numbers": "3v2"
+      }
+     },
+     "open": true,
+     "why": "Men v Apes 2:30: a 3 v 2 on Apes's side from kills: he does not see it"
+    }
+   ]
   },
   {
    "id": "w1p1-149f-15",
@@ -2848,7 +3253,21 @@
      "said": "unknown"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "none": {
+      "play": "split",
+      "side": "attacker",
+      "team": "Men",
+      "at": [
+       194,
+       410
+      ]
+     },
+     "open": true,
+     "why": "Men v Apes 3:10 to 7:00: not a split: Men's main fight is on Apes's ground (his rows 15 to 23)"
+    }
+   ]
   },
   {
    "id": "w1p1-149f-18",
@@ -3056,7 +3475,20 @@
      "mark": "wrong"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "none": {
+      "play": "numbers",
+      "team": "Men",
+      "start": [
+       366,
+       380
+      ]
+     },
+     "open": true,
+     "why": "Men v Apes 6:12: he reads 5 v 5 in Apes's pit, so no numbers moment"
+    }
+   ]
   },
   {
    "id": "w1p1-149f-26",
@@ -3141,7 +3573,25 @@
      "mark": "wrong"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "Men",
+      "at": [
+       420,
+       430
+      ]
+     },
+     "want": {
+      "size": 3,
+      "defenders": 2
+     },
+     "open": true,
+     "why": "Men v Apes 6:58: not a solo split: 7 Monk, Hammer and Ranger against the Mesmer and a monk"
+    }
+   ]
   },
   {
    "id": "w1p1-149f-29",
@@ -3227,7 +3677,23 @@
      "mark": "right"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Men",
+      "at": [
+       430,
+       450
+      ]
+     },
+     "want": {
+      "numbers": "5v4"
+     },
+     "open": true,
+     "why": "Men v Apes 7:10: he reads 5 v 4 where the engine read 5 v 3"
+    }
+   ]
   },
   {
    "id": "w1p1-149f-32",
@@ -3261,7 +3727,24 @@
      "mark": "right"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "Men",
+      "at": [
+       470,
+       482
+      ]
+     },
+     "want": {
+      "size": 3
+     },
+     "open": true,
+     "why": "Men v Apes 7:48: the Prot is not on this split until 8:05"
+    }
+   ]
   },
   {
    "id": "w1p1-149f-33",
@@ -3336,7 +3819,23 @@
      "mark": "right"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Men",
+      "at": [
+       534,
+       570
+      ]
+     },
+     "want": {
+      "numbers": "6v7"
+     },
+     "open": true,
+     "why": "Men v Apes: he reads 6 v 7 from 8:52 where the engine read 8 v 7 for Men from 8:16"
+    }
+   ]
   },
   {
    "id": "w1p1-149f-36",
@@ -3365,7 +3864,21 @@
      "mark": "wrong"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "none": {
+      "play": "split",
+      "side": "attacker",
+      "team": "Men",
+      "at": [
+       510,
+       676
+      ]
+     },
+     "open": true,
+     "why": "Men v Apes 8:28 to 11:16: not a split: the main fight is in Apes's pit (his rows 36 to 45)"
+    }
+   ]
   },
   {
    "id": "w1p1-149f-37",
@@ -3555,7 +4068,38 @@
      "mark": "wrong"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Apes",
+      "at": [
+       630,
+       650
+      ]
+     },
+     "want": {
+      "numbers": "8v7"
+     },
+     "open": true,
+     "why": "Men v Apes: he reads 8 v 7 for Apes from 10:28"
+    },
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Men",
+      "at": [
+       658,
+       670
+      ]
+     },
+     "want": {
+      "numbers": "5v8"
+     },
+     "open": true,
+     "why": "Men v Apes: he reads 5 v 8 for Men from 10:57"
+    }
+   ]
   },
   {
    "id": "w1p1-149f-44",
@@ -3640,7 +4184,40 @@
    "shown": "(what the engine did not read in this game)",
    "mark": "missed",
    "said": "missed team flag push on Apes 3 running at 2:30; missed very clear 5v4 in Ape's pit at 5:31 and clear 3v3 fight in Apes' backdoor whilst Apes warrior running the flag (classic example of staying to fight with number advantage whilst they flag); missed 8 monk of men running flag at 10:10; missed 6v7 in Apes pit at 10:08",
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Men",
+      "at": [
+       331,
+       340
+      ]
+     },
+     "want": {
+      "numbers": "5v4"
+     },
+     "open": true,
+     "why": "Men v Apes 5:31: a clear 5 v 4 in Apes's pit that the engine did not read"
+    },
+    {
+     "has": {
+      "play": "flag",
+      "team": "Apes",
+      "at": [
+       608,
+       620
+      ]
+     },
+     "want": {
+      "who~": [
+       "8 Monk"
+      ]
+     },
+     "open": true,
+     "why": "Men v Apes 10:10: Men's 8 Monk running the flag was not read"
+    }
+   ]
   }
  ]
 }

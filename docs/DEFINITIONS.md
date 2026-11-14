@@ -15,7 +15,12 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - The same 12 s holds for the numbers of the main fight: a player who stays 12 s counts from when he arrived; one who
   goes sooner was never a player more (R-449, R-459; review key s1-31). A defender still on a split when the game ends
   counts though under 12 s there (R-459). Joining and leaving are read from movement, not reach alone, and a defender on a
-  split player when that player dies counts however briefly (R-464; review key s1-31, s1-15). *Not built.*
+  split player when that player dies counts however briefly (R-464; review key s1-31, s1-15).
+- *As built (one reading, `Moments.linked`, `engaged_in`, `visits`; Claude's draft thresholds):* two players are in the
+  same fight within 1,600; or within 2,100 having been within 1,600 in the 6 s either side; or within 2,600 with one
+  hitting or casting on the other (a heal does not link them). A player counts from when he first stands 1,000 from
+  someone in the fight, acts in it or stands still in reach, to when he last does; a gap of 6 s does not end it. A
+  split's defenders are read the same way, without the hold.
 - A monk, when monks and damage are counted, is a backline monk only; a smiter (the WoC monks) and a ritualist healer
   count as damage (R-457).
 
@@ -55,14 +60,19 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   skill is an ordinary runner (R-456). *As built:* a flag play is set aside when either run in it is such a run.
 - A flag run's moment (R-461): a runner setting off from inside the greater stand area goes to run when he leaves that
   area (Corrupted, Meditation, Weeping Stone, Nomad's, Frozen) or the flag stand area itself (Druid's, Jade, Solitude,
-  Imperial, Warrior's, Dead, Wurms, Burning, Uncharted: R-463); from anywhere else, when he sets off.
+  Imperial, Warrior's, Dead, Wurms, Burning, Uncharted: R-463); from anywhere else, when he sets off. *As built, from his
+  marks on TFS v 옷옷옷옷 (drafts):* a flag picked up by a player already at home, or by a team held in its base, and kept
+  there over 20 s starts its run when its runner takes it out; a flag is in hand only in the stand or the greater
+  stand area; the answer to a run is the flag already on its way if it goes on to be capped, else the run set off for;
+  a double run needs the second runner to take the next flag within 30 s of the cap.
 
 ## Splits
 - A solo split is one player through the back or an unusual route at the enemy's pit or NPCs; three or four go for the
   NPCs by the back door; four is a 4-4 (R-110). A split from 0:00 is a split (R-357). A main team pushing into a base
   held by a passive defence is a main team push, not a split (R-364). An even split fight is one record while the same
   two groups stay engaged, wherever it drifts (R-365). An attempt ends when its players are back with their main team,
-  dead, or 20 s on their own side of the stand (R-363).
+  dead, or 20 s on their own side of the stand (R-363), and when three or more of the rest of their team are standing
+  with them on the enemy's ground: it is then a main team push (his marks on Men v Apes).
 - Not a split: the last one or two of a main team that wiped, left behind (R-442); defenders chasing an enemy split out
   of their own base, who set off while it is still out and take no NPC (review key s1-20, s1-26).
 - It counts from when it can do something: at the enemy's footmen, base or pit, or met by a defender (R-440). Its decision
