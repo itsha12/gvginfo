@@ -57,9 +57,10 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 
 ## Open for Denning (put to him 2026-11-14; set each out in the chat again, R-329, with replay links)
 1. Round 3 is his to mark: chic v 戦戦戦戦 first (https://gvg.report/report/ba85aafc-0bd8-518d-a814-e5f7e9e01baf#map).
-2. Claude's reading under R-471, to confirm: a run that starts behind on flags is not marked down for still being
-   behind when it caps ("no further behind than at the start").
-3. How the 80% is counted: Right of the situations he judges, Repeats aside (hdm v hook was 35 of 58, 60%).
+2. Men v Crew (the hidden game; its rows were on the page by Claude's mistake until 2026-11-14) was saved that day
+   with all 103 rows Right and no words. A real review, or the "unmarked rows Right" button? Not read or scored.
+3. To confirm: under R-471 a run that starts behind on flags is not marked down for still being behind at its cap;
+   the 80% is Right of the situations he judges, Repeats aside (hdm v hook was 35 of 58, 60%).
 - Drafts not ruled: numbers from kills, a split with no answer, "held by monks", the Lord push's aim, `common.py` drafts.
 
 ## Running it
@@ -75,5 +76,5 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 - Never print or decode a sealed field (blind picks, golden moments) in a chat.
 - Don't merge `bundle-4` piecemeal (R-322). Label and golden files are saved whole by the site: after a change
   here, Denning reloads the page first. Hall labels are saved to main: copy changed `data/maps/labels/*.json` to the
-  branch before reading a hall (all 14 matched main on 2026-11-12).
+  branch before reading a hall (the export refuses otherwise, and never shows a hidden or spare game).
 - Transcripts never go in the repo: paraphrased statements only. Party slots are in `data/matches/`, not the replays. Refresh the branch's `golden_moments.json` from main before the gate.
