@@ -15,49 +15,47 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   Both branches pushed; nothing uncommitted.
 - On `bundle-4`: `hallmap.py`, `moments.py` (records, decision moments, shape, consequences), `jobs.py` (the plays
   and their jobs, R-423 to R-449), `story.py`, `tools/golden/golden.py`, `lineup.py`, `thresholds.py`, `review.py`.
-- Built from his answers (R-455 to R-464): the ratios of damage against monks and the main fight's kill job
-  (`can_kill`; a side facing no monk always has it); Shadow of Haste by date; a split's moment at the crossing; a flag
-  run's moment by hall; `blanks` (R-460). The page: Repeat is a mark; calls under a wrong situation are not asked.
-- He marked part 1 of the whole-game review on the site (Model > Game review; TFS v 옷옷옷옷 bdaa145f, Men v Apes
-  149fbdc6; engine af952c6): situations right 45 of 85, calls right 62 of 68 where the situation was right. His
-  marks are in the review key as set w1p1 with 36 checks written from his words (open until they hold).
-- Rebuilt at the root since (R-465, no new rules for single rows): one reading of who is in which fight
-  (`Moments.linked`, `engaged_in`, `visits`), used by the numbers and a split's defenders; a split ends when the rest
-  of its team is with it; the flag run's start, the flag in hand, the answer to a run, the double run; the break-out
-  test; a part-run is no push on a flagger; the WoC monks are damage. Thresholds in `common.py` are drafts.
-- hdm v hook (8bf4ffae), marked 2026-11-14 against engine 67e87b8: situations right 35, partly 7, wrong 16 of 58
-  judged; calls right 50 of 54 where the situation was right (pinned, push flagger, base res, boost all right; flag 3
-  of 5, numbers 5 of 13, split 11 of 24). Set w1p2, 20 checks. Built from since (R-467): Men v Crew (51683de9) is
-  the hidden game, 옷옷옷옷 v RACK (a8ba43a8) the spare. Built from it: `FOUGHT` (a numbers moment needs casts and
-  attacks), the monk ratio in the main fight's kill job, a flag never out of its base is no run, the flag decision
-  from the side that ran second, staying met when their flag fails (R-468), the pinned clock.
-- A split fight is told once (R-469). His answers of 2026-11-14, built: a flag run is judged from the decision to run
-  to its cap (R-471); a double run takes a second player going back for the next flag, never one home from a split (R-472).
-- Round 3 (R-473) is on the page from engine b025445, set w2, none marked yet: chic v 戦戦戦戦 (ba85aafc, Corrupted),
-  hook v hold (4629b08c, Nomad's), cope v Team (427c825b, Jade). The mark: 80% of the situations he judges, Repeats
-  out (R-475). Men v Crew's marks of that day were a misclick, taken out unread; it stays hidden.
-- Now (development set, 45 matches): review key 80 rows pass; 26 checks open (w1p1 15, w1p2 10, s1-15): numbers one
-  out, a defender missed at 6:46 of TFS v 옷옷옷옷 and 13:02 of hdm v hook, two flags, a door, a missed solo split.
-  Gate: 12 of 12, 63 of 105. Line-up: 421 of 426 and 185 of 186; comms 108 of 157, 62 of 80 (rerun 2026-11-14).
-  No run over every match, no `thresholds.py` (R-465).
-- The numbers test is `review.py numbers` (R-470; 85 s a value). Marked rows failing at 75% and 125% (2026-11-14):
-  reach 1,600 (12 and 1), hold time 6 s (8, 0), the 12 s (1, 2), acting distance 2,600 (2, 0), hold distance 2,100
-  (1, 0), joined 1,000 (1, 0); `FOUGHT`, flag kept at home and the double run's 30 s change nothing. No value moved.
+- Built from his answers (R-455 to R-475) and the first four marked games, at the root (R-465): the ratios of
+  damage against monks (`can_kill`); one reading of who is in which fight (`Moments.linked`, `engaged_in`, `visits`);
+  a split told once (R-469); a flag run judged to its cap (R-471); the double run (R-472). Detail: CHANGELOG.
+- Whole-game scores, situations right of those he judged (R-475), each a fresh game for the engine it was marked
+  against: part 1 (TFS v 옷옷옷옷, Men v Apes) 45 of 85; hdm v hook 35 of 58 (60%); round 3 (set w2, engine
+  b025445): hook v hold 24 of 41 (59%), cope v Team 15 of 24 (62%). Calls right where the situation was right: 31 of
+  35 and 22 of 23. The rebuilds since hdm v hook did not move the fresh-game figure: the mark is 80% (R-473).
+- Built from round 3 (engine 7244f5b): pit archers are the ones his hall labels place in the pit (`MapGeo._by_labels`;
+  the estimate had base archers in the pit on Jade and Nomad's); the boost keeps its own clock and says a flag
+  already on its way; a result counts only the players of the fight (deaths that made the numbers are its cause); a
+  numbers difference is told once (a level spell or a reversal shorter than a moment is no break); a player is in one
+  fight at a time (`Moments.with_rest`: a split player, or a defender, standing with three of the main team is at the
+  main fight); a double run is a pair of runs; held in also at its own door with the enemy deeper in.
+- Round 3's third game is on the page, not yet marked: RJT v RACK on Nomad's (eea5ba87; 52 situations, splits and
+  flags). chic v 戦戦戦戦 was set aside: a henchman game (R-476). Men v Crew stays hidden; its misclicked marks are out.
+- Now (development set, 45 matches): review key 109 rows pass; 44 checks open (w1p1 15, w1p2 10, w2 18, s1-15).
+  Open in w2: the opening flags are not read as runs; a split's start when it stands off before fighting (14:09 and
+  18:44 of hook v hold); defenders named or counted one out; a flag held on purpose; a 1 v 8 on a straggler through
+  the Jade portal; "no real fight" moments. Gate: 12 of 12, 62 of 105. Line-up: 421 of 426 and 185 of 186; comms 108
+  of 157, 62 of 80. No run over every match, no `thresholds.py` (R-465).
+- The numbers test is `review.py numbers` (R-470; 85 s a value, the whole development set each time). At 75% and
+  125% (before round 3's changes): reach 1,600 (12 and 1 rows fail), hold time 6 s (8, 0), the 12 s (1, 2), acting
+  distance 2,600 (2, 0), hold distance 2,100 (1, 0), joined 1,000 (1, 0); three numbers change nothing.
 - Compare engines only on one marked game (`review.py compare`): today's is not shown better on hdm v hook.
 
 ## Next (in order; REDESIGN.md "Build plan from here", item 6, and "Tests")
-1. Round 3: he marks one game at a time (Model > Game review; `data/model/game_review_marks.json`). Score each
-   from his marks before any fix, file his words in the review key as set w2, fix at the root (R-465), then export
-   the games he has not marked again (`review.py export /tmp/dev.json <main>/data/model/game_reviews.json --part 1
-   --set w2 --label "round 3"`), never a game he has marked. Check the branch's hall labels against main first.
-2. After the round: `review.py compare` on a marked game, and the numbers test (R-470). At 80% of situations right
-   on a fresh game, the hidden games. Never export or look at Men v Crew or 옷옷옷옷 v RACK before that.
+1. He marks RJT v RACK (Model > Game review). `review.py file <id> <rows> <marks> --set w2` files his marks and
+   prints the score; write checks from his words; fix at the root (R-465). Never re-export a game he has marked
+   (a new game goes in as a new part of its set). The export checks the hall labels against main itself.
+2. Then `review.py compare`, and the numbers test on the marked rows (R-470). At 80% of situations right on a
+   fresh game, the hidden games. Never export or look at Men v Crew or 옷옷옷옷 v RACK before that.
 3. The flag family to the end (R-451) once the flag plays pass; the other kinds as each passes; then stage E.
 
 ## Open for Denning (put to him 2026-11-14; set each out in the chat again, R-329, with replay links)
-1. Round 3 is his to mark: chic v 戦戦戦戦 first (https://gvg.report/report/ba85aafc-0bd8-518d-a814-e5f7e9e01baf#map).
-2. When a draft number may move (Claude's proposal, put to him): never from the marked rows alone; only when the
-   same step also reads a fresh game better, scored before any fix, and the reason can be said in GvG terms.
+1. RJT v RACK is his to mark (https://gvg.report/report/eea5ba87-ac20-5ba3-a6c9-965f11ca8a65#map).
+2. Henchman games out of the dataset (R-476 leaves it open): 42 of the 606 that count have one. Recommended: out of
+   training, benchmarks and review picks; results still count for ratings. Two more games have a team of seven.
+3. Held in (pinned): Team loses a knight at 10:42 of cope v Team and breaks out after. Is the job met?
+4. The opening: read each team's opening flag as a run (hold's from 0:17 of hook v hold), and who is left back?
+5. When a draft number may move (Claude's proposal): never from the marked rows alone; only when the same step
+   also reads a fresh game better, scored before any fix, and the reason can be said in GvG terms.
 - Drafts not ruled: numbers from kills, a split with no answer, "held by monks", the Lord push's aim, `common.py` drafts.
 
 ## Running it

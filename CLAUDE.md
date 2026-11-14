@@ -202,7 +202,9 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   (`assets/js/pages/review.js`): `tools/golden/review.py export <file> <main>/data/model/game_reviews.json --part N`
   (on the branch) writes the rows, every situation the engine reads and under it each side's call; he marks each row
   on its own (right, partly, wrong, his words), saved to `data/model/game_review_marks.json` on main, which holds only
-  his marks and the text of each row as he saw it. Read his marks from that file and file them in the review key.
+  his marks and the text of each row as he saw it. Read his marks from that file and file them in the review key
+  (`review.py file <id> <rows> <marks> --set <set>`, which prints the game's score; then write the checks by hand).
+  Henchman games are never picked for review (R-476).
   Never export part 2 before part 1's fixes are done, and never fix against a game he has not marked. The golden
   moments page is retired: label nothing new there; the 15 golden moments and their key stay as part one of the gate.
 - Documents: SPEC.md and METHODS.md are replaced in place; the CHANGELOG gets at most ten lines per session; HANDOFF.md

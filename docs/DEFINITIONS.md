@@ -71,6 +71,12 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - A flag run is judged from the decision to run to its cap: what the team does after the cap is another decision, and
   its cost is not the run's (R-471). A run is not blamed for a deficit already there: the flag test is no worse than
   half a flag behind at the end, or no further behind than at the start (R-474).
+- *As built from his marks on round 3 (checks in the review key, not rulings):* a result counts only the players of
+  the situation (the deaths that made the numbers are its cause, not its result); a numbers difference is told once (a
+  level spell or a reversal shorter than a numbers moment is no break in it); a player is in one fight at a time (a
+  split player, or a defender, standing with three or more of the attackers' other players is at the main fight);
+  pit archers are the archers his hall labels place in the pit; a coming boost is timed from the stand's capture,
+  never from another trigger of the same moment; a double run is the pair of runs, the second flag included.
 - A flag run's job counts only deaths at the main fight: deaths out on a split are the split's own (R-466, R-443).
   Staying against a run is also met when their flag does not get in (R-468). The flag decision is told once, from the
   side that ran second (his mark, hdm v hook 7:07). A flag never carried out of its own base and pit is not a run.
