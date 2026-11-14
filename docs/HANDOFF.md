@@ -6,55 +6,54 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 ## Start a new chat in one message
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/SPEC.md and docs/HANDOFF.md, check
 > out `bundle-4` in a second worktree, then set out the items under "Open for Denning" and carry on with "Next".
+> (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 > (Add your answers to the open items, by their numbers, to the same message if you have them.)
 
 ## State (2026-11-13 late: redesign step 2 on branch `bundle-4`, stage D under way; batch 17, 506 matches trained)
 - Main's engine is unchanged (SPEC.md). Bundle 4 is on `bundle-4` and lands in one piece, then one rebuild (R-322).
   606 replays stored (90 from 2 September on not yet trained on). No Train batch, Discovery or fetch run in progress.
-  Last commits: main, this handoff; `bundle-4`, the review key copy (after 2c70ac9). Both pushed; nothing uncommitted.
+  Both branches pushed; nothing uncommitted.
 - On `bundle-4`: `hallmap.py`, `moments.py` (records, decision moments, shape, consequences), `jobs.py` (the plays
   and their jobs, R-423 to R-449), `story.py`, `tools/golden/golden.py`, `lineup.py`, `thresholds.py`, `review.py`.
-- Both gates pass (key v3): part one 12 of 12, part two 65 of 105 (61%). Line-up: building 422 of 426, held-out 186
-  of 186; comms 110 of 157 and 62 of 80. Golden stories draft 10. All unchanged by this session's last changes.
-- The method changed (R-450 to R-454), because his review of the first 35 cases found 7 of 24 marked rows right while
-  every gate passed: the gates check that what was said is in the story, not that what the engine says is true.
-  - The review key (`data/model/review_key.json`; `tools/golden/review.py score <file>`): his marks as checks. Set 1
-    = his 35 rows: 28 checked, all pass; three checks open (s1-15, s1-26, s1-31). Run it after every change, on the development
-    set (`moments.py all <file> --dev`: 42 matches, under a minute). Every match only at a checkpoint.
-  - `docs/DEFINITIONS.md`: the current definitions by topic, citing their rulings. Faults are checks, not rulings.
-  - Reviews are by whole games (`review.py game <id> <file>`); the golden moments page is retired (the 15 moments
-    and their key stay as part one of the decision gate).
-  - The flag decision goes to the end first (R-451): similar cases, then the held-out advice test, on the branch.
-- A split is read phase by phase from when it reaches (R-438 to R-449); Shadow of Haste runs are marked and set
-  aside. Last full run (before the two fixes the key found): 39,399 plays, 32,074 moments over 606 matches. No
-  scratch file survives a session: start with `moments.py all /tmp/dev.json --dev`, then `review.py score`.
+- His answers of 2026-11-13 are built (R-455 to R-461): the ratios of damage against monks and the main fight's kill
+  job from them (`can_kill`); Shadow of Haste by date (22 October); a split's moment at the crossing (`t_in`); a flag
+  run's moment by hall (`moment` in `run_starts()`; Uncharted not ruled); 12 s for main-fight numbers, from arrival;
+  a defender there at game end; blanks counted and a field blank on every row stops `moments.py all` (`blanks`).
+- After the build: both gates pass (part one 12 of 12, part two 66 of 105, 62%); line-up unchanged (building 422 of
+  426, held-out 186 of 186; comms 110 of 157, 62 of 80); `thresholds.py` not rerun (no record function changed).
+  Full run: 606 matches, 30,465 moments (was 32,074: a split is no longer read at the leave and again at the
+  crossing), 40,777 plays, no errors, no field blank on every row.
+- The review key (`data/model/review_key.json`; `tools/golden/review.py score <file>`): 28 rows pass, four checks
+  open (below). Run it after every change on the development set (`moments.py all <file> --dev`, under a minute).
+- The whole-game review is on the site: Model > Game review (`assets/js/pages/review.js`, on main). Rows:
+  `data/model/game_reviews.json` (from `review.py export <file> <main>/data/model/game_reviews.json --part N`); his
+  marks: `data/model/game_review_marks.json` (saved by the page; absent until his first save). Part 1 is out: TFS v
+  옷옷옷옷 (bdaa145f, 40 situations, 100 rows) and Men v Apes (149fbdc6, 45, 130). The page has not had the
+  readability test by a fresh session.
 
 ## Next (in order; REDESIGN.md "Build plan from here", item 6, and "Tests")
-1. Build his answers on the branch before any game is put to him (R-456 to R-460; none is built): Shadow of Haste by
-   date (22 October) with the other team's answers set aside; the ratios of R-457 in place of `KILL_RATIO` (the main
-   team's kill job waits on open item 2); the split moment at the crossing; the 12 s rule for main-fight numbers from
-   arrival, and a defender there at game end; the loud-failure check (blanks by field in the development run). Then
-   the review key, the gate, the line-up and `thresholds.py` (R-459 moves the numbers moments). Look at s1-26's open
-   check: 옷옷옷옷's player already defending at 4:06 is not counted, so the join reads 1 v 2 and not 2 v 2.
-2. The whole-game review, set w1, four games (R-455): part 1 = TFS v 옷옷옷옷 (bdaa145f, 40 situations) and Men v Apes
-   (149fbdc6, 45): every situation with what the engine reads and each side's job and result. File his marks in the
-   review key, fix, rescore. Then part 2 (open item 1), which must not be fixed against before he marks it; it gives
-   the accuracy by kind of play, and he sets the mark a kind must pass. Top up rare plays (the Lord push, the
+1. When he has marked part 1: read `game_review_marks.json`, file every mark in the review key with his words, fix,
+   rescore on the development set. A fix that changes a record: rerun the gate, the line-up and `thresholds.py`.
+2. Then export part 2 from the fixed reading (`--part 2`: hdm v hook 8bf4ffae, Men v Crew 51683de9) and change nothing
+   in the reading until he has marked it; it gives the accuracy by kind of play, and he sets the mark a kind must
+   pass. 옷옷옷옷 v RACK (a8ba43a8) is the spare: never look at its rows. Top up rare plays (the Lord push, the
    part-run, leaving before a res) with about ten picked rows.
-3. The flag family to the end (R-451; it no longer waits on Shadow of Haste), once the flag plays pass the key:
-   similar cases for the flag plays (2.10, with strength R-432 and the hall R-436), then the advice test on unseen
-   matches. Read the result with him whatever it shows.
+3. The flag family to the end (R-451), once the flag plays pass the key: similar cases for the flag plays (2.10, with
+   strength R-432 and the hall R-436), then the advice test on unseen matches. Read the result with him.
 4. The other kinds as each passes the key; then stage E (side by side, SPEC.md and METHODS.md, R-398, merge).
 
 ## Open for Denning (put to him 2026-11-13, late; set each out in the chat again, R-329)
-1. The review: marked on a page of the site (the retired golden page adapted: rows from a file, his marks saved to
-   the repo) or in the chat, one game a message? Claude recommends the page. Part 2: Claude recommends hdm v hook
-   (8bf4ffae, 72 situations, 41 split phases a side) and Men v Crew (51683de9, 41, two Lord pushes), with 옷옷옷옷 v
-   RACK (a8ba43a8, 43) kept unmarked as a spare.
-2. R-457: "5+ damage against 3 damage" was read as three monks: confirm. In an ordinary 8 v 8 both main teams meet a
-   ratio (five damage against two monks): who has the job to kill? Claude proposes only a side that meets its ratio
-   while the other does not.
-3. R-458 names the split's moment (the crossing). Does a flag run's moment stay at the runner setting off?
+1. Key s1-18, ohno v Fun 11:10: he said ohno's main team should have killed, Fun having no monk at main. By R-457
+   as confirmed (only a side that meets its ratio while the other does not) neither has the job: ohno's three damage
+   face no monk, Fun's six face two. Over 606 matches both meet in 825 of 4,762 defended split phases, 247 of them
+   with one side facing no monk. Options: the rule stands; a side facing no monk always has the job; both have it.
+2. R-461: Uncharted is in both lists (leave the greater stand area, or the flag stand area?). 255 runs wait on it.
+3. Key s1-26, hdm v 옷옷옷옷 4:06: ruled an even join; by reach it is 3 v 2 for 10 s (8 Monk and Air Ele, each under
+   the 12 s) and then 1 v 2. What does he see there?
+4. Key s1-31, Crew v hdm: the 12 s rule does not give his 7:22 and 7:28: a player counts while within reach (1,600),
+   from 7:16 to about 7:36. Should joining and leaving a fight be read from movement, not reach alone?
+5. Key s1-15, Book v One: the Hammer dies with the Ritualist 8 s on him, 12 s before the game ends. Count a defender
+   who is on a split player when that player dies, however briefly?
 - Drafts: numbers from kills; a split with no answer; "held by monks"; the Lord push's aim; thresholds marked
   "Claude's draft". Not built: shadow with a snare; the two-monk spike build after a wipe. Maps: `tools/maps/`.
 

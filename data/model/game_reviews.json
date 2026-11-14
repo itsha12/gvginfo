@@ -1,0 +1,3675 @@
+{
+ "about": "The rows of Model > Game review (R-454, R-455): every situation the engine reads in each review game, written by tools/golden/review.py export on the engine branch. His marks are in game_review_marks.json, never here.",
+ "generated": "2026-11-13",
+ "engine": "160d1a4",
+ "games": [
+  {
+   "set": "w1",
+   "part": 1,
+   "rid": "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
+   "teams": [
+    "TFS",
+    "옷옷옷옷"
+   ],
+   "map": "Isle of Meditation",
+   "date": "2026-10-09",
+   "situations": [
+    {
+     "n": 1,
+     "id": "s:bdaa145f-numbers-1-16-0",
+     "kind": "numbers",
+     "t0": 16,
+     "t1": 64,
+     "reads": "Down on numbers in the main fight (6 v 7, the greater stand area), from kills; TFS: split (split by the back door) | 옷옷옷옷: push in",
+     "calls": [
+      {
+       "id": "bdaa145f-numbers-1-16-0",
+       "team": "TFS",
+       "side": "down",
+       "label": "split",
+       "job": "Trade a player down: take something on their ground for it",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "one of their NPCs dies"
+        ],
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": true,
+       "draft": true
+      },
+      {
+       "id": "bdaa145f-numbers-2-16-1",
+       "team": "옷옷옷옷",
+       "side": "up",
+       "label": "push in",
+       "job": "Take ground and NPCs with the numbers",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no more of ours die than of theirs"
+        ],
+        [
+         true,
+         "one of their NPCs dies"
+        ],
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "id": "s:bdaa145f-flag-2-27-2",
+     "kind": "flag",
+     "t0": 27,
+     "t1": 188,
+     "reads": "They single run (TFS's Prot); 옷옷옷옷: single run",
+     "calls": [
+      {
+       "id": "bdaa145f-flag-2-27-2",
+       "team": "옷옷옷옷",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die than of theirs"
+        ],
+        [
+         true,
+         "no worse than half a flag behind at the end"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "id": "s:bdaa145f-pinned-1-36-3",
+     "kind": "pinned",
+     "t0": 36,
+     "t1": 76,
+     "reads": "TFS is held in its own base or pit by 옷옷옷옷's main team (K2 A2 B1 alive; base res in 84 s)",
+     "calls": [
+      {
+       "id": "bdaa145f-pinned-1-36-3",
+       "team": "TFS",
+       "side": "",
+       "label": "",
+       "job": "Hold the NPCs and lose nobody until the base res, or break out",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         false,
+         "it breaks out (five or more, out of its base)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 4,
+     "id": "s:bdaa145f-numbers-2-58-4",
+     "kind": "numbers",
+     "t0": 58,
+     "t1": 78,
+     "reads": "Up on numbers in the main fight (6 v 4, TFS's front door), from players split elsewhere; 옷옷옷옷: stay (stay at the stand)",
+     "calls": [
+      {
+       "id": "bdaa145f-numbers-2-58-4",
+       "team": "옷옷옷옷",
+       "side": "strong side",
+       "label": "stay",
+       "job": "Kill with the numbers while their players are away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 5,
+     "id": "s:bdaa145f-split-1-68-5",
+     "kind": "split",
+     "t0": 68,
+     "t1": 92,
+     "reads": "TFS's split by the back door: two players (Ritualist, AoB Derv) against 0 defending",
+     "calls": [
+      {
+       "id": "bdaa145f-split-1-68-5",
+       "team": "TFS",
+       "side": "attacker",
+       "label": "undefended",
+       "job": "Take NPCs",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "an NPC taken"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "bdaa145f-split-2-68-6",
+       "team": "옷옷옷옷",
+       "side": "defender",
+       "label": "no answer",
+       "job": "Win elsewhere before the split costs more than it gains",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": true,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 6,
+     "id": "s:bdaa145f-split-1-90-7",
+     "kind": "split",
+     "t0": 90,
+     "t1": 124,
+     "reads": "TFS's split by the back door: 4 players (Mes/A, AoB Derv, 8 Monk, Ritualist) against 6 defending (7 Monk (WoC), Mesmer, Monk 3 (WoC), Monk 4 (WoC), Monk 5 (WoC), Prot (WoC)); 7 Monk (WoC), Mesmer, Monk 3 (WoC), Monk 4 (WoC), Monk 5 (WoC), Prot (WoC) collapse from the main fight; 6 (7 Monk (WoC), Mesmer, Monk 3 (WoC), Monk 4 (WoC), Monk 5 (WoC), Prot (WoC)) against 4 players: collapse by 7 Monk (WoC), Mesmer, Monk 3 (WoC), Monk 4 (WoC), Monk 5 (WoC), Prot (WoC) from the main fight",
+     "calls": [
+      {
+       "id": "bdaa145f-split-1-90-7",
+       "team": "TFS",
+       "side": "attacker",
+       "label": "collapsed on",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         true,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "bdaa145f-split-2-90-8",
+       "team": "옷옷옷옷",
+       "side": "defender",
+       "label": "collapse",
+       "job": "Kill a split player before going back (what it cost at the main fight and in flags is beside it)",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "a split player dies during the collapse"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 7,
+     "id": "s:bdaa145f-flag-1-100-9",
+     "kind": "flag",
+     "t0": 100,
+     "t1": 203,
+     "reads": "They single run (옷옷옷옷's 8 Monk); TFS: a flag already in hand",
+     "calls": [
+      {
+       "id": "bdaa145f-flag-1-100-9",
+       "team": "TFS",
+       "side": "",
+       "label": "a flag already in hand",
+       "job": "Answer their cap at once, or cap just before their boost",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "their flag does not get in"
+        ],
+        [
+         false,
+         "our cap follows theirs within 15 s"
+        ],
+        [
+         false,
+         "our cap lands just before their boost"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 8,
+     "id": "s:bdaa145f-boost-1-107-10",
+     "kind": "boost",
+     "t0": 107,
+     "t1": 142,
+     "reads": "옷옷옷옷's boost is 30 s away; TFS: one runner; the rest stay at the stand",
+     "calls": [
+      {
+       "id": "bdaa145f-boost-1-107-10",
+       "team": "TFS",
+       "side": "",
+       "label": "run",
+       "job": "Deny their boost",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "their boost does not land"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 9,
+     "id": "s:bdaa145f-flag-2-129-11",
+     "kind": "flag",
+     "t0": 129,
+     "t1": 309,
+     "reads": "They single run (TFS's Ritualist); 옷옷옷옷: single run",
+     "calls": [
+      {
+       "id": "bdaa145f-flag-2-129-11",
+       "team": "옷옷옷옷",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die than of theirs"
+        ],
+        [
+         true,
+         "no worse than half a flag behind at the end"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 10,
+     "id": "s:bdaa145f-flag-1-206-12",
+     "kind": "flag",
+     "t0": 206,
+     "t1": 329,
+     "reads": "They single run (옷옷옷옷's 7 Monk (WoC)); TFS: single run",
+     "calls": [
+      {
+       "id": "bdaa145f-flag-1-206-12",
+       "team": "TFS",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "our flag is capped"
+        ],
+        [
+         false,
+         "no more of ours die than of theirs"
+        ],
+        [
+         true,
+         "no worse than half a flag behind at the end"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 11,
+     "id": "s:bdaa145f-base_res-2-220-13",
+     "kind": "base res",
+     "t0": 220,
+     "t1": 270,
+     "reads": "옷옷옷옷 has 6 in TFS's base at the base res (1 defending, 4 coming back): 6 stay",
+     "calls": [
+      {
+       "id": "bdaa145f-base_res-2-220-13",
+       "team": "옷옷옷옷",
+       "side": "",
+       "label": "stayed through the res",
+       "job": "Be out, or set for the fight, when they res",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies in the 30 s after the res"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 12,
+     "id": "s:bdaa145f-flag-2-242-14",
+     "kind": "flag",
+     "t0": 242,
+     "t1": 329,
+     "reads": "They double run (TFS's Mes/A); 옷옷옷옷: single run",
+     "calls": [
+      {
+       "id": "bdaa145f-flag-2-242-14",
+       "team": "옷옷옷옷",
+       "side": "",
+       "label": "single run",
+       "job": "Kill or take ground with the extra player, and end no worse than a flag behind",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no worse than a flag behind at the end"
+        ],
+        [
+         true,
+         "more of theirs die than of ours"
+        ],
+        [
+         false,
+         "ground taken"
+        ],
+        [
+         false,
+         "one of their NPCs dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 13,
+     "id": "s:bdaa145f-split-1-246-15",
+     "kind": "split",
+     "t0": 246,
+     "t1": 290,
+     "reads": "TFS's split by the back door: three players (AoB Derv, Ritualist, 8 Monk) against 2 defending (7 Monk (WoC), 8 Monk); 2 damage against 2 monks",
+     "calls": [
+      {
+       "id": "bdaa145f-split-1-246-15",
+       "team": "TFS",
+       "side": "attacker",
+       "label": "held by monks",
+       "job": "Hold the monks there and lose nobody; NPCs are a bonus (a kill is not expected of it)",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody on the split dies"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "bdaa145f-split-2-246-16",
+       "team": "옷옷옷옷",
+       "side": "defender",
+       "label": "a player down",
+       "job": "Delay: keep the split off the pit NPCs and stay alive",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no defender dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "bdaa145f-split-2-246-17",
+       "team": "옷옷옷옷",
+       "side": "defender's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: its damage can kill against their monks there, and theirs cannot",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 14,
+     "id": "s:bdaa145f-numbers-1-272-18",
+     "kind": "numbers",
+     "t0": 272,
+     "t1": 292,
+     "reads": "Down on numbers in the main fight (1 v 7, the field on 옷옷옷옷's side), from players split elsewhere; TFS: stay (stay at the stand) | 옷옷옷옷: stay (stay on their side)",
+     "calls": [
+      {
+       "id": "bdaa145f-numbers-1-272-18",
+       "team": "TFS",
+       "side": "weak side",
+       "label": "stay",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "bdaa145f-numbers-2-272-19",
+       "team": "옷옷옷옷",
+       "side": "strong side",
+       "label": "stay",
+       "job": "Kill with the numbers while their players are away",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 15,
+     "id": "s:bdaa145f-boost-1-278-20",
+     "kind": "boost",
+     "t0": 278,
+     "t1": 313,
+     "reads": "옷옷옷옷's boost is 30 s away; TFS: one runner; the rest fall to footmen",
+     "calls": [
+      {
+       "id": "bdaa145f-boost-1-278-20",
+       "team": "TFS",
+       "side": "",
+       "label": "run",
+       "job": "Deny their boost",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "their boost does not land"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 16,
+     "id": "s:bdaa145f-numbers-1-328-21",
+     "kind": "numbers",
+     "t0": 328,
+     "t1": 348,
+     "reads": "Down on numbers in the main fight (1 v 7, TFS's front door), from kills; TFS: retreat down the ladder (retreat to the pit)",
+     "calls": [
+      {
+       "id": "bdaa145f-numbers-1-328-21",
+       "team": "TFS",
+       "side": "down",
+       "label": "retreat down the ladder",
+       "job": "Reach cover a player down without losing another",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody of ours dies"
+        ],
+        [
+         true,
+         "no NPC lost"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 17,
+     "id": "s:bdaa145f-numbers-2-328-22",
+     "kind": "numbers",
+     "t0": 328,
+     "t1": 390,
+     "reads": "Up on numbers in the main fight (7 v 1, TFS's front door), from kills; 옷옷옷옷: push up (push up to their base); their base res is 32 s away and their pit about 19 s",
+     "calls": [
+      {
+       "id": "bdaa145f-numbers-2-328-22",
+       "team": "옷옷옷옷",
+       "side": "after a wipe",
+       "label": "push up",
+       "job": "Too late for NPCs: be out, or set for the fight, when they res",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies in the 30 s after the res"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 18,
+     "id": "s:bdaa145f-pinned-1-332-23",
+     "kind": "pinned",
+     "t0": 332,
+     "t1": 360,
+     "reads": "TFS is held in its own base or pit by 옷옷옷옷's main team (K2 A2 B1 alive; base res in 28 s)",
+     "calls": [
+      {
+       "id": "bdaa145f-pinned-1-332-23",
+       "team": "TFS",
+       "side": "",
+       "label": "",
+       "job": "Hold the NPCs and lose nobody until the base res, or break out",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         false,
+         "it breaks out (five or more, out of its base)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 19,
+     "id": "s:bdaa145f-base_res-2-340-24",
+     "kind": "base res",
+     "t0": 340,
+     "t1": 390,
+     "reads": "옷옷옷옷 has 7 in TFS's base at the base res (1 defending, 6 coming back): 7 stay",
+     "calls": [
+      {
+       "id": "bdaa145f-base_res-2-340-24",
+       "team": "옷옷옷옷",
+       "side": "",
+       "label": "stayed through the res",
+       "job": "Be out, or set for the fight, when they res",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies in the 30 s after the res"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 20,
+     "id": "s:bdaa145f-numbers-2-342-25",
+     "kind": "numbers",
+     "t0": 342,
+     "t1": 390,
+     "reads": "Up on numbers in the main fight (7 v 2, TFS's front door), from a wipe; 옷옷옷옷: push up (push up to their base); their base res is 18 s away and their pit about 8 s",
+     "calls": [
+      {
+       "id": "bdaa145f-numbers-2-342-25",
+       "team": "옷옷옷옷",
+       "side": "after a wipe",
+       "label": "push up",
+       "job": "Too late for NPCs: be out, or set for the fight, when they res",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies in the 30 s after the res"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 21,
+     "id": "s:bdaa145f-pinned-1-368-26",
+     "kind": "pinned",
+     "t0": 368,
+     "t1": 436,
+     "reads": "TFS is held in its own base or pit by 옷옷옷옷's main team (K2 A0 B1 alive; base res in 112 s)",
+     "calls": [
+      {
+       "id": "bdaa145f-pinned-1-368-26",
+       "team": "TFS",
+       "side": "",
+       "label": "",
+       "job": "Hold the NPCs and lose nobody until the base res, or break out",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         false,
+         "it breaks out (five or more, out of its base)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 22,
+     "id": "s:bdaa145f-split-1-380-28",
+     "kind": "split",
+     "t0": 380,
+     "t1": 408,
+     "reads": "TFS's split by the back door: one player (Ritualist) against 1 defending (8 Monk); 1 (8 Monk) against one player: the lone defender carries his flag for 12 s",
+     "calls": [
+      {
+       "id": "bdaa145f-split-1-380-28",
+       "team": "TFS",
+       "side": "attacker",
+       "label": "1 v 1, defended by a monk",
+       "job": "Hold the monk there; the main team's job is to kill",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "the split player survives"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "bdaa145f-split-2-380-30",
+       "team": "옷옷옷옷",
+       "side": "defender",
+       "label": "mirror",
+       "job": "Hold it even: lose no pit NPC and no more players than the split does",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no more defenders die than split players"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "bdaa145f-split-2-380-32",
+       "team": "옷옷옷옷",
+       "side": "defender",
+       "label": "part-run",
+       "job": "Gain a slight flag advantage while losing no pit NPC and not dying",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         false,
+         "flag lead better by 0.15 or more"
+        ],
+        [
+         true,
+         "the defender does not die"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "bdaa145f-split-2-380-31",
+       "team": "옷옷옷옷",
+       "side": "defender's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: its damage can kill against their monks there, and theirs cannot",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 23,
+     "id": "s:bdaa145f-push_flagger-1-380-27",
+     "kind": "push flagger",
+     "t0": 380,
+     "t1": 511,
+     "reads": "TFS pushes 옷옷옷옷's flagger (8 Monk, at the spawn) with one player",
+     "calls": [
+      {
+       "id": "bdaa145f-push_flagger-1-380-27",
+       "team": "TFS",
+       "side": "",
+       "label": "",
+       "job": "Stop their flag, or make it 30% late",
+       "met": true,
+       "tests": [
+        [
+         false,
+         "their flag is stopped"
+        ],
+        [
+         true,
+         "it arrives 30% or more later than usual"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "bdaa145f-flagger_pushed-2-380-29",
+       "team": "옷옷옷옷",
+       "side": "",
+       "label": "",
+       "job": "Get the flag in on time",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "the flag gets in, less than 30% late"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 24,
+     "id": "s:bdaa145f-numbers-2-382-33",
+     "kind": "numbers",
+     "t0": 382,
+     "t1": 450,
+     "reads": "Up on numbers in the main fight (7 v 5, TFS's pit), from players split elsewhere; 옷옷옷옷: push up (push up to their base)",
+     "calls": [
+      {
+       "id": "bdaa145f-numbers-2-382-33",
+       "team": "옷옷옷옷",
+       "side": "strong side",
+       "label": "push up",
+       "job": "Kill with the numbers while their players are away",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 25,
+     "id": "s:bdaa145f-split-1-406-34",
+     "kind": "split",
+     "t0": 406,
+     "t1": 430,
+     "reads": "TFS's split by the back door: two players (Ritualist, AoB Derv) against 1 defending (8 Monk)",
+     "calls": [
+      {
+       "id": "bdaa145f-split-1-406-34",
+       "team": "TFS",
+       "side": "attacker",
+       "label": "a player or more up",
+       "job": "Kill or take NPCs",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "bdaa145f-split-2-406-35",
+       "team": "옷옷옷옷",
+       "side": "defender",
+       "label": "one defender",
+       "job": "Delay: keep the split off the pit NPCs and stay alive",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no defender dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 26,
+     "id": "s:bdaa145f-split-1-428-36",
+     "kind": "split",
+     "t0": 428,
+     "t1": 442,
+     "reads": "TFS's split by the back door: one player (Ritualist) against 2 defending (7 Monk (WoC), 8 Monk); 7 Monk (WoC) collapse from the main fight; 2 (7 Monk (WoC), 8 Monk) against one player: collapse by 7 Monk (WoC) from the main fight",
+     "calls": [
+      {
+       "id": "bdaa145f-split-1-428-36",
+       "team": "TFS",
+       "side": "attacker",
+       "label": "collapsed on",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         true,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "bdaa145f-split-2-428-37",
+       "team": "옷옷옷옷",
+       "side": "defender",
+       "label": "collapse",
+       "job": "Kill a split player before going back (what it cost at the main fight and in flags is beside it)",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "a split player dies during the collapse"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 27,
+     "id": "s:bdaa145f-flag-2-431-38",
+     "kind": "flag",
+     "t0": 431,
+     "t1": 511,
+     "reads": "They single run (TFS's Prot); 옷옷옷옷: single run",
+     "calls": [
+      {
+       "id": "bdaa145f-flag-2-431-38",
+       "team": "옷옷옷옷",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die than of theirs"
+        ],
+        [
+         false,
+         "no worse than half a flag behind at the end"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 28,
+     "id": "s:bdaa145f-split-1-440-39",
+     "kind": "split",
+     "t0": 440,
+     "t1": 488,
+     "reads": "TFS's split by the back door: one player (Ritualist) against 1 defending (7 Monk (WoC))",
+     "calls": [
+      {
+       "id": "bdaa145f-split-1-440-39",
+       "team": "TFS",
+       "side": "attacker",
+       "label": "1 v 1, defended by a monk",
+       "job": "Hold the monk there; the main team's job is to kill",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "the split player survives"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "bdaa145f-split-2-440-40",
+       "team": "옷옷옷옷",
+       "side": "defender",
+       "label": "mirror",
+       "job": "Hold it even: lose no pit NPC and no more players than the split does",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no more defenders die than split players"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "bdaa145f-split-2-440-41",
+       "team": "옷옷옷옷",
+       "side": "defender's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: its damage can kill against their monks there, and theirs cannot",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 29,
+     "id": "s:bdaa145f-numbers-1-468-42",
+     "kind": "numbers",
+     "t0": 468,
+     "t1": 494,
+     "reads": "Down on numbers in the main fight (1 v 6, 옷옷옷옷's back door), from players split elsewhere; TFS: retreat down the ladder (retreat to the pit) | 옷옷옷옷: push up (go out by the front door)",
+     "calls": [
+      {
+       "id": "bdaa145f-numbers-1-468-42",
+       "team": "TFS",
+       "side": "weak side",
+       "label": "retreat down the ladder",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "bdaa145f-numbers-2-468-43",
+       "team": "옷옷옷옷",
+       "side": "strong side",
+       "label": "push up",
+       "job": "Kill with the numbers while their players are away",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 30,
+     "id": "s:bdaa145f-pinned-1-516-44",
+     "kind": "pinned",
+     "t0": 516,
+     "t1": 548,
+     "reads": "TFS is held in its own base or pit by 옷옷옷옷's main team (K1 A0 B1 alive; base res in 84 s)",
+     "calls": [
+      {
+       "id": "bdaa145f-pinned-1-516-44",
+       "team": "TFS",
+       "side": "",
+       "label": "",
+       "job": "Hold the NPCs and lose nobody until the base res, or break out",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         false,
+         "it breaks out (five or more, out of its base)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 31,
+     "id": "s:bdaa145f-numbers-2-520-45",
+     "kind": "numbers",
+     "t0": 520,
+     "t1": 544,
+     "reads": "Up on numbers in the main fight (6 v 3, TFS's front door), from players split elsewhere; 옷옷옷옷: push their flagger",
+     "calls": [
+      {
+       "id": "bdaa145f-numbers-2-520-45",
+       "team": "옷옷옷옷",
+       "side": "strong side",
+       "label": "push their flagger",
+       "job": "Kill with the numbers while their players are away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 32,
+     "id": "s:bdaa145f-push_flagger-2-542-47",
+     "kind": "push flagger",
+     "t0": 542,
+     "t1": 558,
+     "reads": "옷옷옷옷 pushes TFS's flagger (AoB Derv, carrying) with its main team",
+     "calls": [
+      {
+       "id": "bdaa145f-push_flagger-2-542-47",
+       "team": "옷옷옷옷",
+       "side": "",
+       "label": "",
+       "job": "Stop their flag, or make it 30% late",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "their flag is stopped"
+        ],
+        [
+         false,
+         "it arrives 30% or more later than usual"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "bdaa145f-flagger_pushed-1-542-46",
+       "team": "TFS",
+       "side": "",
+       "label": "",
+       "job": "Get the flag in on time",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "the flag gets in, less than 30% late"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 33,
+     "id": "s:bdaa145f-push_flagger-2-544-49",
+     "kind": "push flagger",
+     "t0": 544,
+     "t1": 550,
+     "reads": "옷옷옷옷 pushes TFS's flagger (Mes/A, going back) with its main team",
+     "calls": [
+      {
+       "id": "bdaa145f-push_flagger-2-544-49",
+       "team": "옷옷옷옷",
+       "side": "",
+       "label": "",
+       "job": "Stop their flag, or make it 30% late",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "their flag is stopped"
+        ],
+        [
+         false,
+         "it arrives 30% or more later than usual"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "bdaa145f-flagger_pushed-1-544-48",
+       "team": "TFS",
+       "side": "",
+       "label": "",
+       "job": "Get the flag in on time",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "the flag gets in, less than 30% late"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 34,
+     "id": "s:bdaa145f-split-1-552-50",
+     "kind": "split",
+     "t0": 552,
+     "t1": 592,
+     "reads": "TFS's split by the door: two players (8 Monk, Warrior) against 1 defending (7 Monk (WoC)); 1 damage against 1 monks",
+     "calls": [
+      {
+       "id": "bdaa145f-split-1-552-50",
+       "team": "TFS",
+       "side": "attacker",
+       "label": "held by monks",
+       "job": "Hold the monks there and lose nobody; NPCs are a bonus (a kill is not expected of it)",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody on the split dies"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "bdaa145f-split-2-552-51",
+       "team": "옷옷옷옷",
+       "side": "defender",
+       "label": "one defender",
+       "job": "Delay: keep the split off the pit NPCs and stay alive",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no defender dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "bdaa145f-split-2-552-52",
+       "team": "옷옷옷옷",
+       "side": "defender's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: its damage can kill against their monks there, and theirs cannot",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 35,
+     "id": "s:bdaa145f-flag-2-558-53",
+     "kind": "flag",
+     "t0": 558,
+     "t1": 686,
+     "reads": "They single run (TFS's Stand Mes); 옷옷옷옷: single run",
+     "calls": [
+      {
+       "id": "bdaa145f-flag-2-558-53",
+       "team": "옷옷옷옷",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die than of theirs"
+        ],
+        [
+         true,
+         "no worse than half a flag behind at the end"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 36,
+     "id": "s:bdaa145f-boost-1-601-54",
+     "kind": "boost",
+     "t0": 601,
+     "t1": 636,
+     "reads": "옷옷옷옷's boost is 30 s away; TFS: one runner; the rest stay on their side",
+     "calls": [
+      {
+       "id": "bdaa145f-boost-1-601-54",
+       "team": "TFS",
+       "side": "",
+       "label": "run",
+       "job": "Deny their boost",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "their boost does not land"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 37,
+     "id": "s:bdaa145f-flag-1-613-55",
+     "kind": "flag",
+     "t0": 613,
+     "t1": 654,
+     "reads": "They single run (옷옷옷옷's 8 Monk); TFS: a flag already in hand",
+     "calls": [
+      {
+       "id": "bdaa145f-flag-1-613-55",
+       "team": "TFS",
+       "side": "",
+       "label": "a flag already in hand",
+       "job": "Answer their cap at once, or cap just before their boost",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "their flag does not get in"
+        ],
+        [
+         false,
+         "our cap follows theirs within 15 s"
+        ],
+        [
+         false,
+         "our cap lands just before their boost"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 38,
+     "id": "s:bdaa145f-numbers-1-650-56",
+     "kind": "numbers",
+     "t0": 650,
+     "t1": 758,
+     "reads": "Down on numbers in the main fight (7 v 8, the greater stand area), from players split elsewhere; TFS: stay (stay at the stand) | 옷옷옷옷: stay (stay at the stand)",
+     "calls": [
+      {
+       "id": "bdaa145f-numbers-1-650-56",
+       "team": "TFS",
+       "side": "weak side",
+       "label": "stay",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "bdaa145f-numbers-2-650-57",
+       "team": "옷옷옷옷",
+       "side": "strong side",
+       "label": "stay",
+       "job": "Kill with the numbers while their players are away",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 39,
+     "id": "s:bdaa145f-base_res-2-700-58",
+     "kind": "base res",
+     "t0": 700,
+     "t1": 750,
+     "reads": "옷옷옷옷 has 7 in TFS's base at the base res (2 defending, 2 coming back): 7 stay",
+     "calls": [
+      {
+       "id": "bdaa145f-base_res-2-700-58",
+       "team": "옷옷옷옷",
+       "side": "",
+       "label": "stayed through the res",
+       "job": "Be out, or set for the fight, when they res",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies in the 30 s after the res"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 40,
+     "id": "s:bdaa145f-boost-1-721-59",
+     "kind": "boost",
+     "t0": 721,
+     "t1": 761,
+     "reads": "옷옷옷옷's boost is 30 s away; TFS: no runner; the rest nobody",
+     "calls": [
+      {
+       "id": "bdaa145f-boost-1-721-59",
+       "team": "TFS",
+       "side": "",
+       "label": "concede",
+       "job": "Concede the boost for kills",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "set": "w1",
+   "part": 1,
+   "rid": "149fbdc6-f703-5171-a24e-9165a20cecb6",
+   "teams": [
+    "Men",
+    "Apes"
+   ],
+   "map": "Imperial Isle",
+   "date": "2026-11-06",
+   "situations": [
+    {
+     "n": 1,
+     "id": "s:149fbdc6-flag-2-5-0",
+     "kind": "flag",
+     "t0": 5,
+     "t1": 38,
+     "reads": "They single run (Men's Mes/A); Apes: single run",
+     "calls": [
+      {
+       "id": "149fbdc6-flag-2-5-0",
+       "team": "Apes",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die than of theirs"
+        ],
+        [
+         true,
+         "no worse than half a flag behind at the end"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "id": "s:149fbdc6-flag-1-6-1",
+     "kind": "flag",
+     "t0": 6,
+     "t1": 38,
+     "reads": "They single run (Apes's Dervish); Men: single run",
+     "calls": [
+      {
+       "id": "149fbdc6-flag-1-6-1",
+       "team": "Men",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die than of theirs"
+        ],
+        [
+         true,
+         "no worse than half a flag behind at the end"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "id": "s:149fbdc6-flag-1-42-2",
+     "kind": "flag",
+     "t0": 42,
+     "t1": 84,
+     "reads": "They single run (Apes's Dervish); Men: stay",
+     "calls": [
+      {
+       "id": "149fbdc6-flag-1-42-2",
+       "team": "Men",
+       "side": "",
+       "label": "stay",
+       "job": "Kill with the extra player while their runner is away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 4,
+     "id": "s:149fbdc6-numbers-1-54-3",
+     "kind": "numbers",
+     "t0": 54,
+     "t1": 130,
+     "reads": "Down on numbers in the main fight (3 v 4, the flag stand), from players split elsewhere; Men: retreat down the ladder (fall back into the base) | Apes: stay (stay at the stand)",
+     "calls": [
+      {
+       "id": "149fbdc6-numbers-1-54-3",
+       "team": "Men",
+       "side": "weak side",
+       "label": "retreat down the ladder",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-numbers-2-54-4",
+       "team": "Apes",
+       "side": "strong side",
+       "label": "stay",
+       "job": "Kill with the numbers while their players are away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 5,
+     "id": "s:149fbdc6-split-2-62-6",
+     "kind": "split",
+     "t0": 62,
+     "t1": 76,
+     "reads": "Apes's split by the back door: three players (Warrior, Necromancer, Ritualist) against 1 defending (AoB Derv)",
+     "calls": [
+      {
+       "id": "149fbdc6-split-2-62-6",
+       "team": "Apes",
+       "side": "attacker",
+       "label": "a player or more up",
+       "job": "Kill or take NPCs",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-split-1-62-5",
+       "team": "Men",
+       "side": "defender",
+       "label": "one defender",
+       "job": "Delay: keep the split off the pit NPCs and stay alive",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no defender dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-split-2-62-7",
+       "team": "Apes",
+       "side": "attacker's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: its damage can kill against their monks there, and theirs cannot",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 6,
+     "id": "s:149fbdc6-split-2-74-9",
+     "kind": "split",
+     "t0": 74,
+     "t1": 114,
+     "reads": "Apes's split by the back door: 4 players (Warrior, Necromancer, Ritualist, 8 Monk) against 4 defending (AoB Derv, Mes/A, Prot, 8 Monk); 3 damage against 2 monks",
+     "calls": [
+      {
+       "id": "149fbdc6-split-2-74-9",
+       "team": "Apes",
+       "side": "attacker",
+       "label": "held by monks",
+       "job": "Hold the monks there and lose nobody; NPCs are a bonus (a kill is not expected of it)",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "149fbdc6-split-1-74-8",
+       "team": "Men",
+       "side": "defender",
+       "label": "mirror",
+       "job": "Hold it even: lose no pit NPC and no more players than the split does",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no more defenders die than split players"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 7,
+     "id": "s:149fbdc6-flag-2-77-10",
+     "kind": "flag",
+     "t0": 77,
+     "t1": 105,
+     "reads": "They double run (Men's Hammer); Apes: stay",
+     "calls": [
+      {
+       "id": "149fbdc6-flag-2-77-10",
+       "team": "Apes",
+       "side": "",
+       "label": "stay",
+       "job": "Kill with the two extra players before their flag is in",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 8,
+     "id": "s:149fbdc6-split-1-82-11",
+     "kind": "split",
+     "t0": 82,
+     "t1": 114,
+     "reads": "Men's split by the back door: one player (Ranger) against 0 defending",
+     "calls": [
+      {
+       "id": "149fbdc6-split-1-82-11",
+       "team": "Men",
+       "side": "attacker",
+       "label": "undefended",
+       "job": "Take NPCs",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "an NPC taken"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-split-2-82-12",
+       "team": "Apes",
+       "side": "defender",
+       "label": "no answer",
+       "job": "Win elsewhere before the split costs more than it gains",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": true,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 9,
+     "id": "s:149fbdc6-split-1-112-13",
+     "kind": "split",
+     "t0": 112,
+     "t1": 128,
+     "reads": "Men's split by the back door: three players (Ranger, 7 Monk, Stand Mes) against 4 defending (Dervish, Mesmer, Prot, 7 Monk); Dervish, Mesmer, Prot, 7 Monk collapse from the main fight; 4 (Dervish, Mesmer, Prot, 7 Monk) against three players: collapse by Dervish, Mesmer, Prot, 7 Monk from the main fight",
+     "calls": [
+      {
+       "id": "149fbdc6-split-1-112-13",
+       "team": "Men",
+       "side": "attacker",
+       "label": "collapsed on",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ],
+        [
+         true,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-split-2-112-15",
+       "team": "Apes",
+       "side": "defender",
+       "label": "collapse",
+       "job": "Kill a split player before going back (what it cost at the main fight and in flags is beside it)",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a split player dies during the collapse"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 10,
+     "id": "s:149fbdc6-split-2-112-16",
+     "kind": "split",
+     "t0": 112,
+     "t1": 128,
+     "reads": "Apes's split by the back door: 4 players (Necromancer, Ritualist, Warrior, 8 Monk) against 5 defending (Hammer, Mes/A, 8 Monk, Prot, AoB Derv); Hammer collapse from the main fight; 5 (Hammer, Mes/A, 8 Monk, Prot, AoB Derv) against 4 players: collapse by Hammer from the main fight",
+     "calls": [
+      {
+       "id": "149fbdc6-split-2-112-16",
+       "team": "Apes",
+       "side": "attacker",
+       "label": "collapsed on",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-split-1-112-14",
+       "team": "Men",
+       "side": "defender",
+       "label": "collapse",
+       "job": "Kill a split player before going back (what it cost at the main fight and in flags is beside it)",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "a split player dies during the collapse"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 11,
+     "id": "s:149fbdc6-split-1-126-17",
+     "kind": "split",
+     "t0": 126,
+     "t1": 152,
+     "reads": "Men's split by the back door: two players (Ranger, 7 Monk) against 3 defending (Dervish, Mesmer, 7 Monk)",
+     "calls": [
+      {
+       "id": "149fbdc6-split-1-126-17",
+       "team": "Men",
+       "side": "attacker",
+       "label": "a player or more down",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ],
+        [
+         true,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-split-2-126-19",
+       "team": "Apes",
+       "side": "defender",
+       "label": "add one",
+       "job": "Kill it or drive it out with the extra player, and lose no pit NPC for it",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost"
+        ],
+        [
+         false,
+         "a split player dies"
+        ],
+        [
+         false,
+         "the split is gone within the visit"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-split-1-126-18",
+       "team": "Men",
+       "side": "attacker's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: its damage can kill against their monks there, and theirs cannot",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 12,
+     "id": "s:149fbdc6-numbers-1-130-20",
+     "kind": "numbers",
+     "t0": 130,
+     "t1": 154,
+     "reads": "Up on numbers in the main fight (4 v 2, the greater stand area), from players split elsewhere; Men: push in | Apes: stay (stay at the stand)",
+     "calls": [
+      {
+       "id": "149fbdc6-numbers-1-130-20",
+       "team": "Men",
+       "side": "strong side",
+       "label": "push in",
+       "job": "Kill with the numbers while their players are away",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-numbers-2-130-21",
+       "team": "Apes",
+       "side": "weak side",
+       "label": "stay",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 13,
+     "id": "s:149fbdc6-split-1-150-23",
+     "kind": "split",
+     "t0": 150,
+     "t1": 178,
+     "reads": "Men's split by the back door: two players (Ranger, Stand Mes) against 4 defending (Dervish, Mesmer, Prot, 7 Monk)",
+     "calls": [
+      {
+       "id": "149fbdc6-split-1-150-23",
+       "team": "Men",
+       "side": "attacker",
+       "label": "a player or more down",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-split-2-150-26",
+       "team": "Apes",
+       "side": "defender",
+       "label": "add one",
+       "job": "Kill it or drive it out with the extra player, and lose no pit NPC for it",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "a split player dies"
+        ],
+        [
+         false,
+         "the split is gone within the visit"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-split-1-150-24",
+       "team": "Men",
+       "side": "attacker's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: its damage can kill against their monks there, and theirs cannot",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 14,
+     "id": "s:149fbdc6-numbers-1-150-22",
+     "kind": "numbers",
+     "t0": 150,
+     "t1": 236,
+     "reads": "Up on numbers in the main fight (3 v 2, the field on Apes's side), from kills; Men: push up (push up to their front door) | Apes: retreat down the ladder (fall back into the base)",
+     "calls": [
+      {
+       "id": "149fbdc6-numbers-1-150-22",
+       "team": "Men",
+       "side": "up",
+       "label": "push up",
+       "job": "Take ground and NPCs with the numbers",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no more of ours die than of theirs"
+        ],
+        [
+         true,
+         "one of their NPCs dies"
+        ],
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "149fbdc6-numbers-2-150-25",
+       "team": "Apes",
+       "side": "down",
+       "label": "retreat down the ladder",
+       "job": "Reach cover a player down without losing another",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ],
+        [
+         false,
+         "no NPC lost"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 15,
+     "id": "s:149fbdc6-split-1-176-27",
+     "kind": "split",
+     "t0": 176,
+     "t1": 192,
+     "reads": "Men's split by the back door: two players (Ranger, Stand Mes) against 5 defending (Dervish, Ritualist, Mesmer, Prot, 7 Monk)",
+     "calls": [
+      {
+       "id": "149fbdc6-split-1-176-27",
+       "team": "Men",
+       "side": "attacker",
+       "label": "a player or more down",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-split-2-176-29",
+       "team": "Apes",
+       "side": "defender",
+       "label": "add one",
+       "job": "Kill it or drive it out with the extra player, and lose no pit NPC for it",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost"
+        ],
+        [
+         false,
+         "a split player dies"
+        ],
+        [
+         false,
+         "the split is gone within the visit"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-split-1-176-28",
+       "team": "Men",
+       "side": "attacker's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: its damage can kill against their monks there, and theirs cannot",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 16,
+     "id": "s:149fbdc6-pinned-2-180-30",
+     "kind": "pinned",
+     "t0": 180,
+     "t1": 240,
+     "reads": "Apes is held in its own base or pit by Men's main team (K0 A1 B0 alive; base res in 60 s)",
+     "calls": [
+      {
+       "id": "149fbdc6-pinned-2-180-30",
+       "team": "Apes",
+       "side": "",
+       "label": "",
+       "job": "Hold the NPCs and lose nobody until the base res, or break out",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         false,
+         "it breaks out (five or more, out of its base)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 17,
+     "id": "s:149fbdc6-split-1-190-31",
+     "kind": "split",
+     "t0": 190,
+     "t1": 242,
+     "reads": "Men's split by the back door: two players (Ranger, Stand Mes) against 4 defending (Ritualist, Mesmer, Prot, 7 Monk)",
+     "calls": [
+      {
+       "id": "149fbdc6-split-1-190-31",
+       "team": "Men",
+       "side": "attacker",
+       "label": "a player or more down",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-split-2-190-33",
+       "team": "Apes",
+       "side": "defender",
+       "label": "add one",
+       "job": "Kill it or drive it out with the extra player, and lose no pit NPC for it",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         false,
+         "a split player dies"
+        ],
+        [
+         false,
+         "the split is gone within the visit"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-split-1-190-32",
+       "team": "Men",
+       "side": "attacker's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: its damage can kill against their monks there, and theirs cannot",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 18,
+     "id": "s:149fbdc6-numbers-1-240-34",
+     "kind": "numbers",
+     "t0": 240,
+     "t1": 266,
+     "reads": "Down on numbers in the main fight (6 v 7, Apes's pit), from players split elsewhere; Men: stay (stay on the enemy's side)",
+     "calls": [
+      {
+       "id": "149fbdc6-numbers-1-240-34",
+       "team": "Men",
+       "side": "weak side",
+       "label": "stay",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 19,
+     "id": "s:149fbdc6-split-1-240-35",
+     "kind": "split",
+     "t0": 240,
+     "t1": 270,
+     "reads": "Men's split by the back door: two players (Ranger, Stand Mes) against 7 defending (Warrior, Necromancer, Ritualist, Mesmer, Prot, 7 Monk, Dervish); the whole team turns on it; 7 (Warrior, Necromancer, Ritualist, Mesmer, Prot, 7 Monk, Dervish) against two players: full collapse",
+     "calls": [
+      {
+       "id": "149fbdc6-split-1-240-35",
+       "team": "Men",
+       "side": "attacker",
+       "label": "met by a full collapse",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-split-2-240-37",
+       "team": "Apes",
+       "side": "defender",
+       "label": "full collapse",
+       "job": "Kill the split or drive it out (the flags it costs are beside it)",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a split player dies"
+        ],
+        [
+         false,
+         "the split is gone within the visit"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 20,
+     "id": "s:149fbdc6-pinned-2-240-36",
+     "kind": "pinned",
+     "t0": 240,
+     "t1": 304,
+     "reads": "Apes is held in its own base or pit by Men's main team (K0 A0 B0 alive; base res in 120 s)",
+     "calls": [
+      {
+       "id": "149fbdc6-pinned-2-240-36",
+       "team": "Apes",
+       "side": "",
+       "label": "",
+       "job": "Hold the NPCs and lose nobody until the base res, or break out",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         false,
+         "it breaks out (five or more, out of its base)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 21,
+     "id": "s:149fbdc6-split-1-268-38",
+     "kind": "split",
+     "t0": 268,
+     "t1": 286,
+     "reads": "Men's split by the back door: two players (Ranger, Stand Mes) against 8 defending (Dervish, Ritualist, Mesmer, Prot, 7 Monk, 8 Monk, Warrior, Necromancer); the whole team turns on it; 8 (Dervish, Ritualist, Mesmer, Prot, 7 Monk, 8 Monk, Warrior, Necromancer) against two players: full collapse",
+     "calls": [
+      {
+       "id": "149fbdc6-split-1-268-38",
+       "team": "Men",
+       "side": "attacker",
+       "label": "met by a full collapse",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-split-2-268-39",
+       "team": "Apes",
+       "side": "defender",
+       "label": "full collapse",
+       "job": "Kill the split or drive it out (the flags it costs are beside it)",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a split player dies"
+        ],
+        [
+         false,
+         "the split is gone within the visit"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 22,
+     "id": "s:149fbdc6-flag-1-277-40",
+     "kind": "flag",
+     "t0": 277,
+     "t1": 339,
+     "reads": "They single run (Apes's Warrior); Men: stay",
+     "calls": [
+      {
+       "id": "149fbdc6-flag-1-277-40",
+       "team": "Men",
+       "side": "",
+       "label": "stay",
+       "job": "Kill with the extra player while their runner is away",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 23,
+     "id": "s:149fbdc6-split-1-284-41",
+     "kind": "split",
+     "t0": 284,
+     "t1": 420,
+     "reads": "Men's split by the back door: two players (Ranger, Stand Mes) against 4 defending (Mesmer, 7 Monk, Ritualist, Prot)",
+     "calls": [
+      {
+       "id": "149fbdc6-split-1-284-41",
+       "team": "Men",
+       "side": "attacker",
+       "label": "a player or more down",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ],
+        [
+         true,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-split-2-284-42",
+       "team": "Apes",
+       "side": "defender",
+       "label": "add one",
+       "job": "Kill it or drive it out with the extra player, and lose no pit NPC for it",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         false,
+         "a split player dies"
+        ],
+        [
+         false,
+         "the split is gone within the visit"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 24,
+     "id": "s:149fbdc6-pinned-2-312-43",
+     "kind": "pinned",
+     "t0": 312,
+     "t1": 352,
+     "reads": "Apes is held in its own base or pit by Men's main team (K0 A0 B0 alive; base res in 48 s)",
+     "calls": [
+      {
+       "id": "149fbdc6-pinned-2-312-43",
+       "team": "Apes",
+       "side": "",
+       "label": "",
+       "job": "Hold the NPCs and lose nobody until the base res, or break out",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         false,
+         "it breaks out (five or more, out of its base)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 25,
+     "id": "s:149fbdc6-numbers-1-372-44",
+     "kind": "numbers",
+     "t0": 372,
+     "t1": 394,
+     "reads": "Up on numbers in the main fight (5 v 4, Apes's pit), from players split elsewhere; Men: stay (stay on the enemy's side) | Apes: stay (stay at the stand)",
+     "calls": [
+      {
+       "id": "149fbdc6-numbers-1-372-44",
+       "team": "Men",
+       "side": "strong side",
+       "label": "stay",
+       "job": "Kill with the numbers while their players are away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-numbers-2-372-45",
+       "team": "Apes",
+       "side": "weak side",
+       "label": "stay",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 26,
+     "id": "s:149fbdc6-flag-2-377-46",
+     "kind": "flag",
+     "t0": 377,
+     "t1": 437,
+     "reads": "They single run (Men's AoB Derv); Apes: stay",
+     "calls": [
+      {
+       "id": "149fbdc6-flag-2-377-46",
+       "team": "Apes",
+       "side": "",
+       "label": "stay",
+       "job": "Kill with the extra player while their runner is away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 27,
+     "id": "s:149fbdc6-numbers-1-412-47",
+     "kind": "numbers",
+     "t0": 412,
+     "t1": 436,
+     "reads": "Down on numbers in the main fight (3 v 4, Apes's pit), from players split elsewhere; Men: stay (stay at the stand) | Apes: stay (stay at the stand)",
+     "calls": [
+      {
+       "id": "149fbdc6-numbers-1-412-47",
+       "team": "Men",
+       "side": "weak side",
+       "label": "stay",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-numbers-2-412-48",
+       "team": "Apes",
+       "side": "strong side",
+       "label": "stay",
+       "job": "Kill with the numbers while their players are away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 28,
+     "id": "s:149fbdc6-split-1-418-49",
+     "kind": "split",
+     "t0": 418,
+     "t1": 432,
+     "reads": "Men's split by the back door: one player (Ranger) against 2 defending (Mesmer, 7 Monk)",
+     "calls": [
+      {
+       "id": "149fbdc6-split-1-418-49",
+       "team": "Men",
+       "side": "attacker",
+       "label": "a player or more down",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         true,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-split-2-418-50",
+       "team": "Apes",
+       "side": "defender",
+       "label": "add one",
+       "job": "Kill it or drive it out with the extra player, and lose no pit NPC for it",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         false,
+         "a split player dies"
+        ],
+        [
+         true,
+         "the split is gone within the visit"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-split-2-418-51",
+       "team": "Apes",
+       "side": "defender's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: its damage can kill against their monks there, and theirs cannot",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 29,
+     "id": "s:149fbdc6-boost-1-419-52",
+     "kind": "boost",
+     "t0": 419,
+     "t1": 454,
+     "reads": "Apes's boost is 30 s away; Men: no runner; the rest stay at the stand",
+     "calls": [
+      {
+       "id": "149fbdc6-boost-1-419-52",
+       "team": "Men",
+       "side": "",
+       "label": "run",
+       "job": "Deny their boost",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "their boost does not land"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 30,
+     "id": "s:149fbdc6-split-1-430-54",
+     "kind": "split",
+     "t0": 430,
+     "t1": 470,
+     "reads": "Men's split by the front door: three players (Hammer, Ranger, 7 Monk) against 3 defending (Mesmer, 7 Monk, Ritualist)",
+     "calls": [
+      {
+       "id": "149fbdc6-split-1-430-54",
+       "team": "Men",
+       "side": "attacker",
+       "label": "even",
+       "job": "Take NPCs or kills",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "a defender killed"
+        ],
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-split-2-430-57",
+       "team": "Apes",
+       "side": "defender",
+       "label": "mirror",
+       "job": "Hold it even: lose no pit NPC and no more players than the split does",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         false,
+         "no more defenders die than split players"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-split-1-430-55",
+       "team": "Men",
+       "side": "attacker's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: its damage can kill against their monks there, and theirs cannot",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 31,
+     "id": "s:149fbdc6-numbers-1-430-53",
+     "kind": "numbers",
+     "t0": 430,
+     "t1": 476,
+     "reads": "Up on numbers in the main fight (5 v 3, the flag stand), from players split elsewhere; Men: stay (stay at the stand) | Apes: stay (stay at the stand)",
+     "calls": [
+      {
+       "id": "149fbdc6-numbers-1-430-53",
+       "team": "Men",
+       "side": "strong side",
+       "label": "stay",
+       "job": "Kill with the numbers while their players are away",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-numbers-2-430-56",
+       "team": "Apes",
+       "side": "weak side",
+       "label": "stay",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 32,
+     "id": "s:149fbdc6-split-1-468-58",
+     "kind": "split",
+     "t0": 468,
+     "t1": 484,
+     "reads": "Men's split by the front door: 4 players (Hammer, Ranger, 7 Monk, Prot) against 4 defending (Ritualist, Mesmer, 7 Monk, 8 Monk); 2 damage against 2 monks",
+     "calls": [
+      {
+       "id": "149fbdc6-split-1-468-58",
+       "team": "Men",
+       "side": "attacker",
+       "label": "held by monks",
+       "job": "Hold the monks there and lose nobody; NPCs are a bonus (a kill is not expected of it)",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "149fbdc6-split-2-468-60",
+       "team": "Apes",
+       "side": "defender",
+       "label": "mirror",
+       "job": "Hold it even: lose no pit NPC and no more players than the split does",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no more defenders die than split players"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-split-1-468-59",
+       "team": "Men",
+       "side": "attacker's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: its damage can kill against their monks there, and theirs cannot",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 33,
+     "id": "s:149fbdc6-split-1-482-61",
+     "kind": "split",
+     "t0": 482,
+     "t1": 510,
+     "reads": "Men's split by the front door: 4 players (Hammer, Ranger, 7 Monk, Prot) against 7 defending (Warrior, Ritualist, Mesmer, 7 Monk, 8 Monk, Dervish, Prot); the whole team turns on it; 7 (Warrior, Ritualist, Mesmer, 7 Monk, 8 Monk, Dervish, Prot) against 4 players: full collapse",
+     "calls": [
+      {
+       "id": "149fbdc6-split-1-482-61",
+       "team": "Men",
+       "side": "attacker",
+       "label": "met by a full collapse",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-split-2-482-62",
+       "team": "Apes",
+       "side": "defender",
+       "label": "full collapse",
+       "job": "Kill the split or drive it out (the flags it costs are beside it)",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a split player dies"
+        ],
+        [
+         false,
+         "the split is gone within the visit"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 34,
+     "id": "s:149fbdc6-pinned-2-492-63",
+     "kind": "pinned",
+     "t0": 492,
+     "t1": 600,
+     "reads": "Apes is held in its own base or pit by Men's main team (K0 A0 B0 alive; base res in 108 s)",
+     "calls": [
+      {
+       "id": "149fbdc6-pinned-2-492-63",
+       "team": "Apes",
+       "side": "",
+       "label": "",
+       "job": "Hold the NPCs and lose nobody until the base res, or break out",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         false,
+         "it breaks out (five or more, out of its base)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 35,
+     "id": "s:149fbdc6-numbers-1-496-64",
+     "kind": "numbers",
+     "t0": 496,
+     "t1": 598,
+     "reads": "Up on numbers in the main fight (8 v 7, Apes's pit), from kills; Men: stay (stay on the enemy's side)",
+     "calls": [
+      {
+       "id": "149fbdc6-numbers-1-496-64",
+       "team": "Men",
+       "side": "up",
+       "label": "stay",
+       "job": "Turn the extra player into a kill before the numbers are level",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 36,
+     "id": "s:149fbdc6-split-1-508-65",
+     "kind": "split",
+     "t0": 508,
+     "t1": 536,
+     "reads": "Men's split by the front door: 4 players (Hammer, Ranger, 7 Monk, Prot) against 6 defending (Warrior, Ritualist, Mesmer, Prot, 7 Monk, 8 Monk); the whole team turns on it; 6 (Warrior, Ritualist, Mesmer, Prot, 7 Monk, 8 Monk) against 4 players: full collapse",
+     "calls": [
+      {
+       "id": "149fbdc6-split-1-508-65",
+       "team": "Men",
+       "side": "attacker",
+       "label": "met by a full collapse",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-split-2-508-66",
+       "team": "Apes",
+       "side": "defender",
+       "label": "full collapse",
+       "job": "Kill the split or drive it out (the flags it costs are beside it)",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a split player dies"
+        ],
+        [
+         false,
+         "the split is gone within the visit"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 37,
+     "id": "s:149fbdc6-split-1-534-67",
+     "kind": "split",
+     "t0": 534,
+     "t1": 594,
+     "reads": "Men's split by the front door: 4 players (Hammer, Ranger, 7 Monk, Prot) against 5 defending (Mesmer, Prot, 7 Monk, 8 Monk, Ritualist)",
+     "calls": [
+      {
+       "id": "149fbdc6-split-1-534-67",
+       "team": "Men",
+       "side": "attacker",
+       "label": "a player or more down",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ],
+        [
+         true,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         true,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-split-2-534-69",
+       "team": "Apes",
+       "side": "defender",
+       "label": "add one",
+       "job": "Kill it or drive it out with the extra player, and lose no pit NPC for it",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         false,
+         "a split player dies"
+        ],
+        [
+         false,
+         "the split is gone within the visit"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-split-1-534-68",
+       "team": "Men",
+       "side": "attacker's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: its damage can kill against their monks there, and theirs cannot",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 38,
+     "id": "s:149fbdc6-split-2-556-71",
+     "kind": "split",
+     "t0": 556,
+     "t1": 570,
+     "reads": "Apes's split by the door: one player (Dervish) against 1 defending (Mes/A)",
+     "calls": [
+      {
+       "id": "149fbdc6-split-2-556-71",
+       "team": "Apes",
+       "side": "attacker",
+       "label": "1 v 1, the defender not a monk",
+       "job": "Take NPCs or kills",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-split-1-556-70",
+       "team": "Men",
+       "side": "defender",
+       "label": "mirror",
+       "job": "Hold it even: lose no pit NPC and no more players than the split does",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no more defenders die than split players"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 39,
+     "id": "s:149fbdc6-split-1-592-72",
+     "kind": "split",
+     "t0": 592,
+     "t1": 608,
+     "reads": "Men's split by the front door: 4 players (Hammer, Ranger, 7 Monk, Prot) against 7 defending (Dervish, Necromancer, Ritualist, Mesmer, Prot, 7 Monk, 8 Monk); the whole team turns on it; 7 (Dervish, Necromancer, Ritualist, Mesmer, Prot, 7 Monk, 8 Monk) against 4 players: full collapse",
+     "calls": [
+      {
+       "id": "149fbdc6-split-1-592-72",
+       "team": "Men",
+       "side": "attacker",
+       "label": "met by a full collapse",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         true,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-split-2-592-73",
+       "team": "Apes",
+       "side": "defender",
+       "label": "full collapse",
+       "job": "Kill the split or drive it out (the flags it costs are beside it)",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a split player dies"
+        ],
+        [
+         false,
+         "the split is gone within the visit"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 40,
+     "id": "s:149fbdc6-pinned-2-600-74",
+     "kind": "pinned",
+     "t0": 600,
+     "t1": 676,
+     "reads": "Apes is held in its own base or pit by Men's main team (K0 A0 B0 alive; base res in 120 s)",
+     "calls": [
+      {
+       "id": "149fbdc6-pinned-2-600-74",
+       "team": "Apes",
+       "side": "",
+       "label": "",
+       "job": "Hold the NPCs and lose nobody until the base res, or break out",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         false,
+         "it breaks out (five or more, out of its base)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 41,
+     "id": "s:149fbdc6-split-1-606-75",
+     "kind": "split",
+     "t0": 606,
+     "t1": 644,
+     "reads": "Men's split by the front door: 4 players (Hammer, Ranger, 7 Monk, Prot) against 8 defending (Dervish, Warrior, Ritualist, Mesmer, Prot, 7 Monk, Necromancer, 8 Monk); the whole team turns on it; 8 (Dervish, Warrior, Ritualist, Mesmer, Prot, 7 Monk, Necromancer, 8 Monk) against 4 players: full collapse",
+     "calls": [
+      {
+       "id": "149fbdc6-split-1-606-75",
+       "team": "Men",
+       "side": "attacker",
+       "label": "met by a full collapse",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-split-2-606-76",
+       "team": "Apes",
+       "side": "defender",
+       "label": "full collapse",
+       "job": "Kill the split or drive it out (the flags it costs are beside it)",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a split player dies"
+        ],
+        [
+         false,
+         "the split is gone within the visit"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 42,
+     "id": "s:149fbdc6-flag-1-634-77",
+     "kind": "flag",
+     "t0": 634,
+     "t1": 676,
+     "reads": "They single run (Apes's Warrior); Men: stay",
+     "calls": [
+      {
+       "id": "149fbdc6-flag-1-634-77",
+       "team": "Men",
+       "side": "",
+       "label": "stay",
+       "job": "Kill with the extra player while their runner is away",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 43,
+     "id": "s:149fbdc6-numbers-1-634-78",
+     "kind": "numbers",
+     "t0": 634,
+     "t1": 676,
+     "reads": "Up on numbers in the main fight (7 v 6, Apes's pit), from kills; Men: stay (stay on the enemy's side)",
+     "calls": [
+      {
+       "id": "149fbdc6-numbers-1-634-78",
+       "team": "Men",
+       "side": "up",
+       "label": "stay",
+       "job": "Turn the extra player into a kill before the numbers are level",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 44,
+     "id": "s:149fbdc6-split-1-642-79",
+     "kind": "split",
+     "t0": 642,
+     "t1": 668,
+     "reads": "Men's split by the front door: 4 players (Hammer, Ranger, 7 Monk, Prot) against 5 defending (Mesmer, 7 Monk, 8 Monk, Dervish, Ritualist)",
+     "calls": [
+      {
+       "id": "149fbdc6-split-1-642-79",
+       "team": "Men",
+       "side": "attacker",
+       "label": "a player or more down",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-split-2-642-81",
+       "team": "Apes",
+       "side": "defender",
+       "label": "add one",
+       "job": "Kill it or drive it out with the extra player, and lose no pit NPC for it",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         false,
+         "a split player dies"
+        ],
+        [
+         false,
+         "the split is gone within the visit"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-split-1-642-80",
+       "team": "Men",
+       "side": "attacker's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: its damage can kill against their monks there, and theirs cannot",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 45,
+     "id": "s:149fbdc6-split-1-666-82",
+     "kind": "split",
+     "t0": 666,
+     "t1": 676,
+     "reads": "Men's split by the front door: 4 players (Hammer, Ranger, 7 Monk, Prot) against 1 defending (Mesmer)",
+     "calls": [
+      {
+       "id": "149fbdc6-split-1-666-82",
+       "team": "Men",
+       "side": "attacker",
+       "label": "a player or more up",
+       "job": "Kill or take NPCs",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-split-2-666-84",
+       "team": "Apes",
+       "side": "defender",
+       "label": "one defender",
+       "job": "Delay: keep the split off the pit NPCs and stay alive",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no defender dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "149fbdc6-split-1-666-83",
+       "team": "Men",
+       "side": "attacker's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: its damage can kill against their monks there, and theirs cannot",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

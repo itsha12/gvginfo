@@ -14,7 +14,8 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   R-355). In an uneven divide, the part of five or more (R-421).
 - The same 12 s holds for the numbers of the main fight: a player who stays 12 s counts from when he arrived; one who
   goes sooner was never a player more (R-449, R-459; review key s1-31). A defender still on a split when the game ends
-  counts though under 12 s there (R-459; review key s1-15). *Not built.*
+  counts though under 12 s there (R-459). *Open:* the numbers follow reach, not the second a player commits to joining or
+  leaving (review key s1-31); a defender on a split player for under 12 s when that player dies is not read (s1-15).
 - A monk, when monks and damage are counted, is a backline monk only; a smiter (the WoC monks) and a ritualist healer
   count as damage (R-457).
 
@@ -51,8 +52,10 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - Shadow of Haste runs are bad examples (R-438, which corrects the premise of R-393): the mechanic was removed on 22
   October 2026. Before that date they stay in the flag lead (the state of those games) and are left out of everything
   that teaches or scores the flag decision, with the other team's answers to them; from that date a bar carrying the
-  skill is an ordinary runner (R-456). *As built:* marked by the bar at any date, out of the usual arrival times and
-  set aside in the flag counts; the date and the other team's answers are not built.
+  skill is an ordinary runner (R-456). *As built:* a flag play is set aside when either run in it is such a run.
+- A flag run's moment (R-461): a runner setting off from inside the greater stand area goes to run when he leaves that
+  area (Corrupted, Meditation, Weeping Stone, Nomad's, Frozen) or the flag stand area itself (Druid's, Jade, Solitude,
+  Imperial, Warrior's, Dead, Wurms, Burning); from anywhere else, when he sets off. *Open:* Uncharted, named in both.
 
 ## Splits
 - A solo split is one player through the back or an unusual route at the enemy's pit or NPCs; three or four go for the
@@ -63,7 +66,7 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - Not a split: the last one or two of a main team that wiped, left behind (R-442); defenders chasing an enemy split out
   of their own base, who set off while it is still out and take no NPC (review key s1-20, s1-26).
 - It counts from when it can do something: at the enemy's footmen, base or pit, or met by a defender (R-440). Its decision
-  moment is when it crosses to the enemy's side (R-458). *As built:* at the leave, a median 34 s before it reaches.
+  moment is when it crosses to the enemy's side (R-458).
 - It is read phase by phase: so many split players against so many defenders, each counted as above; each phase has
   its own job and result (R-439, R-441; his review of the first cases, R-438 to R-449).
 - The attacker's job is set by the answer it meets (R-428):
@@ -85,9 +88,9 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   taken. A split is credited only with what its own players did: a death or an NPC elsewhere on the map is not its.
 - Damage against monks, from good play (R-457, with R-444, R-114 and R-120): two or more damage can kill against one
   monk, four or more against two, five or more against three; three are not expected to kill two. The job to kill at
-  the main fight comes from the same ratios there, not from the monks the split brought. *Open:* which side has the
-  job when both main teams meet a ratio. *As built:* twice the monks (`KILL_RATIO`), and the main team's job whenever
-  the defence put more monks on the split than the split brought.
+  the main fight comes from the same ratios there, not from the monks the split brought, and goes only to a side that
+  meets its ratio while the other does not. *Open:* ohno v Fun 11:10 (review key s1-18): both meet a ratio, three
+  damage against no monk and six against two, and he said the side facing no monk should have killed.
 - Timing: an answer within about 15 s is on time; 60 s is late (R-116). After kills at their base, the NPC job needs
   the time to reach the pit before their base res; otherwise the job is to be out, or set for the fight, when they res
   (R-445, R-147). *As built:* 20 s more than the walk (`AFTER_WIPE_MIN_S`, draft).
@@ -104,7 +107,8 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   over 606 matches, which he takes as fine for now.
 - Not collapsed on: a player left behind after a wipe, or one walking back and forth through a teleporter (R-442).
 - hdm v 옷옷옷옷 4:06 (review key s1-26): one player coming from the main fight for 16 s, with one already defending,
-  against a split of two, is a join that makes it even, not a collapse; R-441 stands over his earlier approval.
+  against a split of two, is a join that makes it even, not a collapse; R-441 stands over his earlier approval. *Open:*
+  the engine reads one defender there: two more are within reach for 10 s each, under the 12 s.
 - Whether to collapse has no fixed line (R-122); a quick collapse that does not kill fails twice (R-123). Not built:
   the snare on the defender (R-121) and the shadow with a snare (R-125; R-434, item 9).
 

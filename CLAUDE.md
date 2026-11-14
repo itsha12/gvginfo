@@ -193,9 +193,13 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
 - His marks go into the review key the same session, with his words kept as he wrote them. An engine fault he points
   out is a check in the key, not a ruling; only his definitions and his decisions on process are rulings (R-452). A
   kind of play is used downstream only once it passes the mark he sets on whole-game review rows (R-450).
-- Reviews are by whole games (R-454): `tools/golden/review.py game <report id> <file>` prints every situation the
-  engine reads in a game, both sides' jobs and results, for him to mark while he watches it. The golden moments page
-  is retired: label nothing new there; the 15 golden moments and their key stay as part one of the decision gate.
+- Reviews are by whole games (R-454, R-455: four games, two and two), marked on the site, Model > Game review
+  (`assets/js/pages/review.js`): `tools/golden/review.py export <file> <main>/data/model/game_reviews.json --part N`
+  (on the branch) writes the rows, every situation the engine reads and under it each side's call; he marks each row
+  on its own (right, partly, wrong, his words), saved to `data/model/game_review_marks.json` on main, which holds only
+  his marks and the text of each row as he saw it. Read his marks from that file and file them in the review key.
+  Never export part 2 before part 1's fixes are done, and never fix against a game he has not marked. The golden
+  moments page is retired: label nothing new there; the 15 golden moments and their key stay as part one of the gate.
 - Documents: SPEC.md and METHODS.md are replaced in place; the CHANGELOG gets at most ten lines per session; HANDOFF.md
   stays under 80 lines. Don't write session narrative into any other file.
 - Before an engine change ships, a fresh session that has not seen the build reads `knowledge/model.md` alone and must
