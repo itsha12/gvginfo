@@ -55,13 +55,13 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 1. HC v Team is his to mark (https://gvg.report/report/9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96#map).
 2. His answers of 2026-11-15 (R-486 to R-489, none built): the flag in hand is a timing choice; the main team is
    usually the larger group, with push team and defence team at 4 and 4 on the flag paths; fluid numbers, players
-   in neither fight, "no clear decision" as an answer. Put to him: which group is the push team; how long a change
-   must last; and his process question (marked games as a test without overfitting): Claude's proposal is in the chat.
+   in neither fight, "no clear decision" as an answer. Put to him: which group is the push team, how long a change
+   must last, and a proposal on his process question (borderline rows must not steer the engine): CHANGELOG.
 3. TFS v 옷옷옷옷 2:09: now told from TFS's side (옷옷옷옷's 8 Monk set off first, 1:40; TFS's Ritualist answers).
 4. RJT v RACK 4:06, "now the mainteam fight": the engine still tells RACK's split through the 8 v 8 of 4:18 to 4:36.
-5. Rows he marked right on RJT v RACK that now read otherwise: 11 and 24 (the Ranger's solo trips, now inside the
+5. (Also not ruled: numbers from kills, a split with no answer, "held by monks", the Lord push's aim.) Rows he
+   marked right on RJT v RACK that now read otherwise: 11 and 24 (the Ranger's solo trips, now inside the
    three-person split), 26 and 30 (numbers, now inside the split), 4 (one defender in the headline), 47 (from 10:42).
-- Drafts not ruled: numbers from kills, a split with no answer, "held by monks", the Lord push's aim, `common.py` drafts.
 
 ## Running it
 - Train batch: `gh api -X POST repos/itsha12/gvginfo/actions/workflows/train-batch.yml/dispatches -f ref=main
