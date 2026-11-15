@@ -183,17 +183,23 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   the execution tier), kept apart, each with its evidence. Enemy response is described beside them.
 - Questions for Denning come from the catalogue and cluster mechanisms (name this cluster, approve this candidate),
   not a list of Claude's ideas after each batch.
-- Check the reading after every change (R-450, R-453), on the branch: `moments.py all <file> --dev` (the development
-  set, `data/model/dev_set.json`, under a minute) then `tools/golden/review.py score <file>` (the review key,
-  `data/model/review_key.json`: every row or call Denning has marked, his words, and Claude's reading of the mark as
-  checks). A failing row is fixed or put to him before anything else. Run every match (`moments.py all <file>`, about
-  10 minutes) only at a checkpoint: a new review set, a gate, a benchmark rebuild, or counts a question needs. A full
-  run applies the engine; it teaches it nothing.
-- The marked games are a test in two tiers (R-490): a clear row of the review key must keep passing; a borderline row
-  (`tier`: a row he marked No clear decision, or one he confirmed as borderline) is reported and never blocks a change.
-  A fault is built from only when it shows in two games or is plainly a bug, never from one row; accuracy is read
-  only from a fresh game. The engine checks itself (`jobs.selfcheck`: a player counted in two fights at once) and
-  tells a situation with no clear decision as context, with no call (R-488).
+- Check the reading after every change (R-453), on the branch: `moments.py all <file> --dev` (the development
+  set, `data/model/dev_set.json`, about a minute) then `tools/golden/review.py score <file> --key <main>/data/model/review_key.json`
+  (the review key: every row Denning has marked, his words, and the checks read from them). Only a row he graded
+  Classic is binding (R-494): a failing Classic row is fixed before anything else. Everything else is a report which
+  Claude reads and tells him of only where it matters: the rows marked before 2026-11-15 (history, R-491), the Visible,
+  Weak and No decision rows, the gate (`golden.py gate`) and the line-up (`lineup.py score`). Run every match
+  (`moments.py all <file>`, about 10 minutes) only at a checkpoint: a benchmark rebuild, or counts a question needs. A
+  full run applies the engine; it teaches it nothing.
+- A fresh start from 2026-11-15 (R-491 to R-497). The engine of that day is the starting point (`bundle-4` at fd2b30b, kept as
+  the branch `baseline-2026-11-15`; its reading and figures in `data/model/baseline/`), and the engine does not have to fit the
+  rows marked before. His grades on a fresh game say what each row is for: Classic, the engine must identify it and
+  read it exactly as he does, and one such row is enough to build from; Visible, a rate to watch; Weak, the engine
+  should trend towards not identifying it (it teaches the confidence to read low); No decision, it should stop being
+  identified. For Visible, Weak and No decision a fault is built from only when it shows in two games or is plainly a
+  bug (R-495). There is no pass mark (R-496): show him the marks after each game, and he says when the system is ready
+  for bulk training. The engine checks itself (`jobs.selfcheck`: a player counted in two fights at once) and tells a
+  situation with no clear decision as context, with no call (R-488).
 - No new rule or threshold to answer a wrong row (R-465): rebuild the reading under it at the root, with his marked
   rows as the test. Who is in which fight is one reading on the branch (`Moments.linked`, `engaged_in`, `visits`; R-464),
   used by the numbers of the main fight and by a split's defenders: change it there, never beside it. His words on a
@@ -204,15 +210,24 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   field blank on every row is seen the same day.
 - His marks go into the review key the same session, with his words kept as he wrote them. An engine fault he points
   out is a check in the key, not a ruling; only his definitions and his decisions on process are rulings (R-452). A
-  kind of play is used downstream only once it passes the mark he sets on whole-game review rows (R-450).
-- Reviews are by whole games (R-454, R-455: four games, two and two), marked on the site, Model > Game review
-  (`assets/js/pages/review.js`): `tools/golden/review.py export <file> <main>/data/model/game_reviews.json --part N`
-  (on the branch) writes the rows, every situation the engine reads and under it each side's call; he marks each row
-  on its own (right, partly, wrong, no clear decision, his words), saved to `data/model/game_review_marks.json` on main, which holds only
-  his marks and the text of each row as he saw it. Read his marks from that file and file them in the review key
-  (`review.py file <id> <rows> <marks> --set <set>`, which prints the game's score; then write the checks by hand).
-  Henchman games are never picked for review (R-476).
-  Never export part 2 before part 1's fixes are done, and never fix against a game he has not marked. The golden
+  kind of play is used downstream only once he says the system is ready (R-496).
+- Reviews are by whole games, one at a time (R-454, R-492), marked on the site, Model > Game review
+  (`assets/js/pages/review.js`). On the branch: `tools/golden/confidence.py run <conf.json> <report id>` (the engine's
+  confidence, R-497: the game read again with every draft number of the reading moved a quarter and to half and
+  double, about six minutes a game; bands high, medium, low are Claude's draft, to be fitted to his grades once about
+  three games are marked), then `tools/golden/review.py export <plays file> <main>/data/model/game_reviews.json --set f1
+  --part N --confidence <conf.json>` writes the rows: every situation the engine reads with its confidence, and under
+  it each side's call. He grades each situation (Classic, Visible, Weak, No decision, Repeat), says whether the engine
+  read a decision Correct, Partly or Incorrect with ticks for what is off and his words, marks the calls where they are
+  asked for, and adds the decisions the engine did not read; saved to `data/model/game_review_marks.json` on main, which
+  holds only his marks and the text of each row as he saw it. Read his marks from that file and file them in the
+  review key the same session (`review.py file <id> <rows> <marks> --set f1 --key <main key>`, which prints his grades
+  against the engine's confidence and the Classic rows to fix first, and writes the plain checks; then write by hand
+  the checks for what a Partly or an Incorrect means). Set every result out for him in the chat (R-329). The queue is
+  set f1 in `dev_set.json` (HC v Team, Men v Crew, 옷옷옷옷 v RACK; no game is kept hidden, R-497); pick further games
+  from unused October and November games of top guilds, never a henchman game (R-476). Never export the next game
+  before the last one is marked and its Classic faults are fixed, never fix against a game he has not marked, and
+  never re-export a game he has marked. Games without `scheme` 2 are history, shown read only. The golden
   moments page is retired: label nothing new there; the 15 golden moments and their key stay as part one of the gate.
 - Documents: SPEC.md and METHODS.md are replaced in place; the CHANGELOG gets at most ten lines per session; HANDOFF.md
   stays under 80 lines. Don't write session narrative into any other file.

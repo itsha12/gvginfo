@@ -119,8 +119,8 @@ pairs today), rewrite SPEC.md.
 Items 2.3 to 2.7 were drafted before the records existed and are rebuilt on them (R-351, R-362): a trigger is any
 change the enemy makes to the map that the records hold, not only a leave or a numbers difference.
 
-Adoption: kept only if the reading gate and the decision gate pass (see "Tests"), each kind of play passes the review
-key at his mark (R-450), the held-out advice test is no worse than before (6 of 13 kinds clear at 506 matches), and the
+Adoption: kept only if the reading gate and the decision gate pass (see "Tests"), every Classic decision he has graded is read as he reads it and he says
+the reading is ready (R-494, R-496), the held-out advice test is no worse than before (6 of 13 kinds clear at 506 matches), and the
 readability test passes. The end goal has not been measured since the redesign began; R-451 brings that test forward
 for one family so that the approach is checked before the whole of step 2 is built.
 
@@ -166,18 +166,20 @@ a solo split or other uneven counts (27%). The rebuild on the records takes its 
 6. **Stage D: depth**, in this order since R-450 to R-454:
    a. Built: shape, the consequence record, the plays and their jobs (R-423 to R-449), the review key and the
       development set.
-   b. **The whole-game review** (R-454, R-455): four recent games of top guilds, every call of each put to him with what
-      the engine reads; in two parts, so that he does not mark one fault thirty times: two games, the fixes, then two the
-      engine has not been fixed against, which give the accuracy by kind of play. He sets the mark a kind must pass.
-      Rare plays that four games cannot show (the Lord push, the part-run, leaving before a res) are topped up with
-      picked rows. His answers on damage against monks, Shadow of Haste, a split's moment and the 12 s rule
-      for fight numbers (R-456 to R-459) are built before the games are put to him.
-   c. **The flag family to the end** (R-451), once the flag plays pass: similar cases for the flag plays (2.10: the
+   b. **The whole-game review** (R-454, R-491 to R-497): one fresh game at a time, every situation put to him with
+      the engine's confidence that it is a decision; he grades it (Classic, Visible, Weak, No decision), says whether
+      the engine read it as he does, marks the calls and adds what the engine missed. A Classic decision not read as he
+      reads it is fixed first, at the root (R-465); the other grades are watched and built from only when a fault shows
+      in two games. The games marked before 2026-11-15 are history and the engine of that day is the baseline. After
+      about three games the confidence bands are fitted to his grades. There is no pass mark: he says when the reading
+      is ready (R-496). Rare plays that a few games cannot show (the Lord push, the part-run, leaving before a res)
+      are topped up with picked rows.
+   c. **The flag family to the end** (R-451), once he says the flag plays are ready (R-496): similar cases for the flag plays (2.10: the
       same scenario first, then nearest on the continuous variables, with strength, R-432, and the hall, R-436), the
       better call by the consequence record, and the held-out advice test on the branch (does a team that made the
       better call do better on unseen matches). Read with him whatever it shows: it is the first evidence on the end
       goal since the redesign began, and it decides whether the rest is built the same way.
-   d. The other kinds as each passes the key: similar cases, enemy execution (2.12), the interaction rule (2.13), NPC
+   d. The other kinds as he says each is ready: similar cases, enemy execution (2.12), the interaction rule (2.13), NPC
       damage by class of bar (R-433).
 7. **Stage E: close**: old and new decision kinds side by side, SPEC.md and METHODS.md rewritten, the readability
    test, the list below, the merge, then one rebuild.
@@ -238,13 +240,17 @@ team.
   building 422 of 426 (99%), held-out 163 of 196 (83%), not yet reviewed. The statements checked before are unchanged
   (365 of 365, 136 of 162); posture and timing statements that are not a true stand-off or a deliberate hold are set
   aside (R-414: 7 building, 15 held out).
-- **The review key** (R-450): every row or call he has marked, with his words and Claude's reading of the mark as
-  checks (`data/model/review_key.json`), scored by `tools/golden/review.py` on the development set (R-453) after every
-  change to the reading. It tests what the line-up cannot: that what the engine says on its own is true. A failing
-  row is fixed or put to him before anything else; a check for a fault not yet fixed is marked open and reported
-  apart. Set 1 (his 35 rows of 2026-11-13) is a regression test; the whole-game sets (R-454) give the accuracy by kind
-  of play, and a kind is used downstream only once it passes his mark. On its first run the key found two rows he had
-  approved that the rebuild had since lost (a split read as a chase, a part-run): both restored.
+- **The review key and his grades** (R-450, R-491 to R-497): every row he has marked, with his words and the checks
+  read from them (`data/model/review_key.json`), scored by `tools/golden/review.py` on the development set (R-453)
+  after every change to the reading. From 2026-11-15 a game is graded his new way on Model > Game review: each
+  situation is shown with the engine's confidence that it is a decision (`tools/golden/confidence.py`: how steady the
+  reading is when every draft number is moved a quarter and to half and double), he grades it Classic, Visible, Weak
+  or No decision, says whether a decision was read Correct, Partly or Incorrect, marks the calls, and adds what the
+  engine did not read. Only a Classic row binds: the engine must read it exactly as he does, and it is fixed first.
+  Visible is a rate to watch, Weak teaches the confidence to read low, No decision should stop being read; for these
+  a fault is built from only when it shows in two games. The rows marked before that day (317, of which 120 carry
+  passing checks) are history: reported, never blocking. There is no pass mark: he sees the marks after each game and
+  says when the system is ready for bulk training. The baseline engine is the branch `baseline-2026-11-15`.
 - **The blind check**: the 13 notes Denning wrote before seeing any engine story; Claude compares each rewritten
   story with them (R-354). He marks the story of game 1 only, for its form (R-395).
 - **The decision gate** (R-394, replacing how R-327 is scored; the golden moments page is retired, R-454, and no

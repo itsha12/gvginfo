@@ -5,75 +5,75 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 
 ## Start a new chat in one message
 > Attach my repo itsha12/gvginfo with push access, clone it, read CLAUDE.md, docs/SPEC.md and docs/HANDOFF.md, check
-> out `bundle-4` in a second worktree, then set out the items under "Open for Denning" and carry on with "Next".
-> (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it. Add your
-> answers to the open items, by their numbers, to the same message if you have them.)
+> out `bundle-4` in a second worktree, then carry on with "Next".
+> (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-15: redesign step 2 on branch `bundle-4`, stage D under way; batch 17, 506 matches trained)
-- Main's engine is unchanged (SPEC.md). Bundle 4 is on `bundle-4` and lands in one piece, then one rebuild (R-322).
-  658 replays stored; 564 count (R-477); the trained batches still hold some. No Train batch, Discovery or fetch run
-  in progress. Both branches pushed, nothing uncommitted: `bundle-4` at fd2b30b (the engine); `main` holds the docs,
-  the review key and the page. The files on `bundle-4` are listed in CLAUDE.md.
-- Whole-game scores, situations right of those judged (R-475), each on a fresh game: part 1 45 of 85; hdm v hook
-  35 of 58; hook v hold 24 of 41; cope v Team 15 of 24; RJT v RACK 33 of 45 (73%). The mark is 80% (R-473).
-- Built 2026-11-15, at the root (R-465), in two steps. From his marks on RJT v RACK (engine 9d3a679; R-482 to
-  R-485): who is on a split (its back line counts, brief support does not: `_over`, `split_plays`); whose flag
-  decision (`run_starts`: set-off, `out_by`, `chain`; a double run from its second player; each run answered in turn).
-  From his answers on how to read a game (engine fd2b30b; R-486 to R-490):
-  - The flag in hand is a timing choice: overcap at once, in position and hold, or hold not in position (further
-    from the stand than `STAND_R`); a hold has its own clock and a draft job (`flag_plays`, field `hand`).
-  - A flag picked up at home is a run from when it leaves the base (`FLAG_TAKEN_OUT_S` is no longer read).
-  - Numbers are told only when they last 12 s (`scenario`); no smoothing of a split's counts. Telling each numbers
-    only from its first true second was tried and failed two firm rows (Men v Apes 1:02, hook v hold 12:47): the
-    seconds in which a fight forms stay with that fight.
-  - `moving` (in neither fight) gives a numbers difference the source "on the way" (39 plays). Partly built: an even
-    divide forward by the front door is named a push team (`group`): a name only, on 5 plays.
-  - `jobs.selfcheck`: 222 times on the development set a player is counted in a main fight's numbers and on a split
-    for 12 s. A numbers stretch that is mostly a split's fight folds into the split; one the check faults, or whose
-    numbers never held 12 s, is told as context with no call (`clear`, `unclear`): 165 of 848 numbers plays. The
-    check is a count, not a cure: the two readings still disagree underneath (one reading of who is in which fight
-    is the "divided games as one picture" work). No measure yet of a messy, spread out fight.
-  - Two tiers in the review key (`tier`; six rows `tier_proposed`); the page's fourth mark, No clear decision.
-- Now (development set, 45 matches): review key 120 rows pass, 40 checks open. Gate 12 of 12, 63 of 105. Line-up
-  421 of 426 and 185 of 186; comms 110 of 157, 62 of 80. No run over every match, no `thresholds.py`, no numbers
-  test (R-470) since. All unchanged by the second step; whether it reads better is known only from HC v Team.
-- Round 4 is on the page (set w3, engine fd2b30b), not yet marked: HC v Team on Imperial Isle (9b5cdf62; 54
-  situations, 2 of them context, 87 calls). Men v Crew stays hidden.
+## State (2026-11-15, evening: a fresh start, R-491 to R-497; batch 17, 506 matches trained)
+- Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` and lands in one piece,
+  then one rebuild (R-322). 658 replays stored; 564 count (R-477). No Train batch, Discovery or fetch run in progress.
+- The engine itself did not change this session: `tools/replay_analysis/` on `bundle-4` is as at fd2b30b, kept as
+  the branch `baseline-2026-11-15`. That engine is the starting point (R-491). Its reading of the 45 development games and its
+  figures are in `data/model/baseline/` on main (3,524 plays; review key 120 rows passing, 40 checks open; gate 12 of
+  12 and 63 of 105; line-up 421 of 426 and 185 of 186; comms 110 of 157 and 62 of 80).
+- His decision (R-491): the games marked before are history. The engine no longer has to fit their rows; they are
+  scored after every change and what moves is reported, like the gate and the line-up: checks, binding nothing. The
+  five items that were open are dropped, to be answered when a new game raises them (the job of a held flag and "in
+  position to overcap" stay Claude's drafts in `flag_plays`).
+- The new marking (R-492; Model > Game review, `assets/js/pages/review.js`; driven in a browser with a mocked save,
+  and read by a fresh session, whose findings on the wording were built):
+  each situation shows the engine's confidence up front; he grades it Classic (green), Visible (orange), Weak (red),
+  No decision (blue) or Repeat; for a decision, Correct, Partly or Incorrect with ticks (numbers, who, when, where,
+  kind of play) and his words; calls are asked only under a Classic or Visible decision read Correct or Partly;
+  moments the engine reads as no decision are folded rows he can open; under the rows he adds missed decisions.
+  Games marked the earlier way are shown read only.
+- What the grades are for (R-494, R-495): Classic binds (read exactly as he does; fixed first; one row is enough);
+  Visible is a rate to watch; Weak teaches the confidence to read low; No decision should stop being read; for the
+  last three a fault is built from only when it shows in two games. No pass mark (R-496): he says when it is ready.
+- The engine's confidence (R-497; `tools/golden/confidence.py` on the branch, outside the engine folder): the game
+  read again with each of the 62 draft numbers of the reading a quarter lower and higher and at half and double (246
+  readings, about six minutes a game); high = the same in all, medium = moved only at half or double, low = moved at
+  a quarter (the number is named in a player's words). Claude's draft bands. HC v Team: 54 situations: 20 high, 10
+  medium, 22 low, 2 no decision; the low ones are mostly splits and pushes on a flagger, and hang mostly on how close
+  players must stand to be in one fight (`FIGHT_LINK`) and the 12 s a player needs to count (`JOIN_S`).
+- On the page now, unmarked (set f1, game 1, engine fd2b30b): HC v Team on Imperial Isle (9b5cdf62; 54 situations,
+  87 calls). Queue after it: Men v Crew (51683de9), 옷옷옷옷 v RACK (a8ba43a8); none is hidden any more.
+
+## Next (in order)
+1. He grades HC v Team (https://gvg.report/report/9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96#map). Then, the same session:
+   `review.py file 9b5cdf62 <main>/data/model/game_reviews.json <main>/data/model/game_review_marks.json --set f1 --key
+   <main>/data/model/review_key.json`; copy the key to the branch; set out for him in the chat his grades against the
+   confidence, the Classic rows to fix first, and what his words say; write by hand the checks for Partly and Incorrect.
+2. Fix the Classic faults at the root (R-465), checking after each change (CLAUDE.md). Then export the next game:
+   `moments.py all <plays> --dev`, `confidence.py run <conf> 51683de9`, `review.py export <plays> <main rows> --set f1
+   --part 2 --label "game 2" --confidence <conf>`. Never re-export a game he has marked.
+3. After about three graded games: fit the confidence bands to his grades (which numbers, at which move, separate his
+   Weak and No decision rows from his Classic ones), put the result to him, and only then move the bands. Then decide
+   with him whether the confidence goes into the engine itself so that the decision tier reads only steady moments.
+4. When he says the flag plays are ready: the flag family to the end (R-451); the other kinds after; then stage E.
+
+## Open for Denning
+- Nothing waits on a ruling. His to correct: 옷옷옷옷 v RACK, the spare, queued with Men v Crew (R-497); the draft bands.
+- Noted, not put to him (R-491): TFS v 옷옷옷옷 1:54, a flag put on the Obelisk stand reads "our flag is capped: no".
 
 ## Data looked at on 2026-11-14 (nothing built; nothing from GW Observer in the repo)
 - gvg.report's replay payload holds `report.objectives.object_transitions` (each appearance of a flag object, with
   its position); `replay_trim.mjs` drops it. R-481: keep it in the trim and read flag returns from it at the next
-  rebuild, not before (the engine's inferred returns were 3 to 69 s late on RJT v RACK; a new TRIM_VERSION fetches
-  every stored replay again). The Lord damage page adds nothing the stored casts and deaths do not give. GW
-  Observer's match cache is the same recording kept fuller; its licence limits the code and the data: his call.
-  The `full` payload is not probed (he said no).
-
-## Next (in order; REDESIGN.md "Build plan from here", item 6, and "Tests")
-1. He marks HC v Team (Model > Game review). `review.py file <id> <rows> <marks> --set w3` files his marks and
-   prints the score; write checks from his words; fix at the root (R-465). Never re-export a game he has marked.
-2. The numbers test on the marked rows (R-470). At 80% of situations right on a fresh game, the hidden games.
-   Never export or look at Men v Crew or 옷옷옷옷 v RACK before that.
-3. The flag family to the end (R-451) once the flag plays pass; the other kinds as each passes; then stage E.
-
-## Open for Denning (put to him 2026-11-15; set each out in the chat again, R-329, with replay links)
-1. HC v Team is his to mark (https://gvg.report/report/9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96#map).
-2. Six rows proposed as borderline from his own words (review key, `tier_proposed`; clear until he says yes, then
-   set `tier`): OG v Dz 2:34 ("too messy to call this a 3v3"), hdm v hook 4:46 ("a rough/messy 4v4"), hook v hold
-   13:04 ("not a clear numbers advantage"), 옷옷옷옷 v Men 5:10 ("not really a solo split nor a collapse"), Men v NwAy
-   11:46 ("not the engine's fault"), RJT v RACK 4:06 (he revised half of it).
-3. The job of a held flag, Claude's draft: give up no boost, and lose no more players than they do while it is held.
-4. "In position to overcap" as within `STAND_R` (1,500) of the stand: RACK's Stand Mes was about 2,500 away at 2:30.
-5. From before: TFS v 옷옷옷옷 2:09 told from TFS's side; RJT v RACK rows 11, 24, 26, 30 now inside the split.
+  rebuild, not before (a new TRIM_VERSION fetches every stored replay again; the baseline plays file is kept for
+  that reason). GW Observer's licence limits the code and the data: his call. The `full` payload is not probed.
 
 ## Running it
 - Train batch: the "Train batch" workflow (METHODS.md "Train batch on GitHub"; `blind` stays no). Never queue two runs.
-- Local engine: `git fetch --depth 1 origin +replays:refs/remotes/origin/replays`; `pip install
-  --break-system-packages -r .github/workflows/train-requirements.txt`. The records, the story, the line-up, the gate
-  and the thresholds need no cache (`cache.py sync pull`, `warm` only for the fitted models). `PYTHONDONTWRITEBYTECODE=1`.
+- Local engine: `git fetch --depth 1 --filter=blob:none origin +replays:refs/remotes/origin/replays` (the blobs come
+  as they are read). `jobs.py`, `moments.py`, the gate, the line-up and `confidence.py` need no cache and no packages
+  beyond Python (`cache.py sync pull`, `warm` and the pinned requirements only for the fitted models).
+  `PYTHONDONTWRITEBYTECODE=1`. The review key, `dev_set.json` and `game_reviews.json` are written on main: pass
+  `--key <main>/data/model/review_key.json`, and copy the key and `dev_set.json` to the branch after changing them.
+- Site check: `python3 -m http.server`, then playwright with `/usr/bin/google-chrome`, api.github.com mocked.
 
 ## Cautions
 - Never print or decode a sealed field (blind picks, golden moments) in a chat.
-- Don't merge `bundle-4` piecemeal (R-322). Label and golden files are saved whole by the site: after a change
-  here, Denning reloads the page first. Hall labels are saved to main: copy changed `data/maps/labels/*.json` to the
-  branch before reading a hall (the export refuses otherwise, and never shows a hidden or spare game).
-- Transcripts never go in the repo: paraphrased statements only. Party slots are in `data/matches/`, not the replays. Refresh the branch's `golden_moments.json` from main before the gate.
+- Don't merge `bundle-4` piecemeal (R-322). Label, golden and review mark files are saved whole by the site: after a
+  change here, he reloads the page first. Hall labels are saved to main: copy changed `data/maps/labels/*.json` to
+  the branch before reading a hall (the export refuses otherwise).
+- Transcripts never go in the repo: paraphrased statements only. Party slots are in `data/matches/`, not the replays.
+  Refresh the branch's `golden_moments.json` from main before the gate.

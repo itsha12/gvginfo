@@ -1,0 +1,45 @@
+{
+ "about": "The engine as it stood on 2026-11-15, kept as the starting point (R-491): his earlier marks are history and the engine is no longer held to them, so this is what later engines are compared with. The engine is kept as the branch baseline-2026-11-15 (commit fd2b30b of bundle-4). The file 2026-11-15-plays.json.gz beside this one is that engine's full output on the development set (`moments.py all <file> --dev`): every moment, every play with its job and result. To compare a later engine: run the same command, then set the two files side by side (plays by kind below; `tools/golden/review.py compare` for one game).",
+ "engine": "fd2b30b",
+ "branch": "baseline-2026-11-15",
+ "date": "2026-11-15",
+ "development_set": {
+  "matches": 45,
+  "moments": 3094,
+  "plays": 3524,
+  "plays_by_kind": {
+   "base res": 119,
+   "boost": 172,
+   "flag": 654,
+   "flagger pushed": 144,
+   "lord": 76,
+   "numbers": 848,
+   "pinned": 135,
+   "push flagger": 144,
+   "split": 1232
+  },
+  "numbers_plays_told_as_context": 165,
+  "self_check": "222 times a player is counted in two fights at once for 12 s or longer, in 22 matches"
+ },
+ "earlier_review_key": {
+  "rows": 317,
+  "rows_with_checks_passing": 120,
+  "open_checks": 40,
+  "note": "history from here on: scored and reported, never blocking"
+ },
+ "decision_gate": {
+  "part_one_golden_moments": "12 of 12",
+  "part_two_comms_calls": "a decision found within 30 s for 94 of 105; the same call read for 63 of 105"
+ },
+ "line_up": {
+  "building_games": "something seen happening 421 of 426; a call on comms 110 of 157",
+  "spent_held_out_games": "something seen happening 185 of 186; a call on comms 62 of 80"
+ },
+ "whole_game_scores_the_earlier_way": {
+  "part 1 (TFS v 옷옷옷옷, Men v Apes)": "45 of 85 situations right",
+  "hdm v hook": "35 of 58",
+  "hook v hold": "24 of 41",
+  "cope v Team": "15 of 24",
+  "RJT v RACK": "33 of 45"
+ }
+}
