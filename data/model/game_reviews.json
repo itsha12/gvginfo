@@ -1,7 +1,7 @@
 {
  "about": "The rows of Model > Game review (R-454, R-455): every situation the engine reads in each review game, written by tools/golden/review.py export on the engine branch. His marks are in game_review_marks.json, never here.",
  "generated": "2026-11-15",
- "engine": "9d3a679",
+ "engine": "fd2b30b",
  "games": [
   {
    "set": "w1",
@@ -12170,41 +12170,9 @@
      "kind": "numbers",
      "t0": 262,
      "t1": 304,
-     "reads": "Down on numbers in the main fight (6 v 7, the flag stand; then 5 v 6 from 4:26; then 6 v 7 from 4:42), from kills; HC: stay (stay at the stand) | then 6 v 5 from 4:26; then 7 v 6 from 4:42), from kills; Team: stay (stay at the stand)",
-     "calls": [
-      {
-       "id": "9b5cdf62-numbers-1-262-17",
-       "team": "HC",
-       "side": "down",
-       "label": "stay",
-       "job": "Hold the ground a player down and lose no more until it is level, or the base res",
-       "met": true,
-       "tests": [
-        [
-         true,
-         "nobody of ours dies"
-        ]
-       ],
-       "any": false,
-       "draft": true
-      },
-      {
-       "id": "9b5cdf62-numbers-2-262-18",
-       "team": "Team",
-       "side": "up",
-       "label": "stay",
-       "job": "Turn the extra player into a kill before the numbers are level",
-       "met": false,
-       "tests": [
-        [
-         false,
-         "more of theirs die than of ours"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      }
-     ]
+     "reads": "Down on numbers in the main fight (5 v 6, the flag stand; then 6 v 7 from 4:42), from kills; HC: stay (stay at the stand) | Team: stay (stay at the stand)",
+     "calls": [],
+     "unclear": "8 Monk, Hammer, Ranger also counted on a split in the same seconds"
     },
     {
      "n": 12,
@@ -12426,7 +12394,7 @@
      "kind": "numbers",
      "t0": 350,
      "t1": 384,
-     "reads": "Down on numbers in the main fight (5 v 6, the flag stand; then 5 v 7 from 5:54; then 6 v 7 from 6:02), from kills; HC: stay (stay at the stand) | then 7 v 5 from 5:54; then 7 v 6 from 6:02), from kills; Team: stay (stay at the stand)",
+     "reads": "Down on numbers in the main fight (5 v 7, the flag stand; then 6 v 7 from 6:02), from kills; HC: stay (stay at the stand) | Team: stay (stay at the stand)",
      "calls": [
       {
        "id": "9b5cdf62-numbers-1-350-27",
@@ -12838,7 +12806,7 @@
      "kind": "numbers",
      "t0": 588,
      "t1": 618,
-     "reads": "Down on numbers in the main fight (7 v 8, the flag stand; then 6 v 7 from 10:02), from players split elsewhere; HC: stay (stay at the stand) | then 7 v 6 from 10:02), from players split elsewhere; Team: stay (stay at the stand)",
+     "reads": "Down on numbers in the main fight (7 v 8, the flag stand), from players split elsewhere; HC: stay (stay at the stand) | Team: stay (stay at the stand)",
      "calls": [
       {
        "id": "9b5cdf62-numbers-1-588-43",
@@ -13300,7 +13268,7 @@
      "kind": "split",
      "t0": 752,
      "t1": 802,
-     "reads": "HC's split by the back door: three players (Ranger, Prot, Hammer) against 2 defending (Hammer, 8 Monk); numbers along the way: 3 v 2 from 12:32, 4 v 3 from 12:58",
+     "reads": "HC's split by the back door: three players (Ranger, Prot, Hammer) against 2 defending (Hammer, 8 Monk); numbers along the way: 3 v 2 from 12:32, 4 v 3 from 12:56",
      "calls": [
       {
        "id": "9b5cdf62-split-1-752-62",
@@ -13396,68 +13364,14 @@
     },
     {
      "n": 40,
-     "id": "s:9b5cdf62-numbers-1-792-66",
-     "kind": "numbers",
-     "t0": 792,
-     "t1": 814,
-     "reads": "Up on numbers in the main fight (6 v 5, Team's pit), from kills; HC: push in | Team: retreat down the ladder (fall back into the base)",
-     "calls": [
-      {
-       "id": "9b5cdf62-numbers-1-792-66",
-       "team": "HC",
-       "side": "up",
-       "label": "push in",
-       "job": "Take ground and NPCs with the numbers",
-       "met": false,
-       "tests": [
-        [
-         true,
-         "no more of ours die than of theirs"
-        ],
-        [
-         false,
-         "one of their NPCs dies"
-        ],
-        [
-         false,
-         "more of theirs die than of ours"
-        ]
-       ],
-       "any": false,
-       "draft": true
-      },
-      {
-       "id": "9b5cdf62-numbers-2-792-67",
-       "team": "Team",
-       "side": "down",
-       "label": "retreat down the ladder",
-       "job": "Reach cover a player down without losing another",
-       "met": true,
-       "tests": [
-        [
-         true,
-         "nobody of ours dies"
-        ],
-        [
-         true,
-         "no NPC lost"
-        ]
-       ],
-       "any": false,
-       "draft": true
-      }
-     ]
-    },
-    {
-     "n": 41,
-     "id": "s:9b5cdf62-split-1-800-68",
+     "id": "s:9b5cdf62-split-1-800-66",
      "kind": "split",
      "t0": 800,
      "t1": 820,
      "reads": "HC's split by the back door: 4 players (Ranger, Hammer, Prot, 7 Monk) against 6 defending (Hammer, Warrior, Mesmer, Prot, 7 Monk, 8 Monk); Warrior, Mesmer, Prot, 7 Monk collapse from the main fight; 6 (Hammer, Warrior, Mesmer, Prot, 7 Monk, 8 Monk) against 4 players: collapse by Warrior, Mesmer, Prot, 7 Monk from the main fight",
      "calls": [
       {
-       "id": "9b5cdf62-split-1-800-68",
+       "id": "9b5cdf62-split-1-800-66",
        "team": "HC",
        "side": "attacker",
        "label": "collapsed on",
@@ -13481,7 +13395,7 @@
        "draft": false
       },
       {
-       "id": "9b5cdf62-split-2-800-69",
+       "id": "9b5cdf62-split-2-800-67",
        "team": "Team",
        "side": "defender",
        "label": "collapse",
@@ -13499,15 +13413,15 @@
      ]
     },
     {
-     "n": 42,
-     "id": "s:9b5cdf62-split-1-818-70",
+     "n": 41,
+     "id": "s:9b5cdf62-split-1-818-68",
      "kind": "split",
      "t0": 818,
      "t1": 860,
      "reads": "HC's split by the back door: 5 players (Ranger, Hammer, Prot, 7 Monk, Stand Mes) against 6 defending (Hammer, Prot, 7 Monk, 8 Monk, Warrior, Mesmer)",
      "calls": [
       {
-       "id": "9b5cdf62-split-1-818-70",
+       "id": "9b5cdf62-split-1-818-68",
        "team": "HC",
        "side": "attacker",
        "label": "a player or more down",
@@ -13531,7 +13445,7 @@
        "draft": false
       },
       {
-       "id": "9b5cdf62-split-2-818-72",
+       "id": "9b5cdf62-split-2-818-70",
        "team": "Team",
        "side": "defender",
        "label": "add one",
@@ -13555,7 +13469,7 @@
        "draft": false
       },
       {
-       "id": "9b5cdf62-split-1-818-71",
+       "id": "9b5cdf62-split-1-818-69",
        "team": "HC",
        "side": "attacker's main team",
        "label": "the main fight can kill",
@@ -13573,15 +13487,15 @@
      ]
     },
     {
-     "n": 43,
-     "id": "s:9b5cdf62-split-1-858-73",
+     "n": 42,
+     "id": "s:9b5cdf62-split-1-858-71",
      "kind": "split",
      "t0": 858,
      "t1": 874,
      "reads": "HC's split by the back door: two players (Ranger, Hammer) against 1 defending (8 Monk)",
      "calls": [
       {
-       "id": "9b5cdf62-split-1-858-73",
+       "id": "9b5cdf62-split-1-858-71",
        "team": "HC",
        "side": "attacker",
        "label": "a player or more up",
@@ -13601,7 +13515,7 @@
        "draft": false
       },
       {
-       "id": "9b5cdf62-split-2-858-74",
+       "id": "9b5cdf62-split-2-858-72",
        "team": "Team",
        "side": "defender",
        "label": "one defender",
@@ -13623,15 +13537,15 @@
      ]
     },
     {
-     "n": 44,
-     "id": "s:9b5cdf62-flag-2-866-75",
+     "n": 43,
+     "id": "s:9b5cdf62-flag-2-866-73",
      "kind": "flag",
      "t0": 866,
      "t1": 907,
      "reads": "They single run (HC's Mes/A); Team: stay",
      "calls": [
       {
-       "id": "9b5cdf62-flag-2-866-75",
+       "id": "9b5cdf62-flag-2-866-73",
        "team": "Team",
        "side": "",
        "label": "stay",
@@ -13653,15 +13567,15 @@
      ]
     },
     {
-     "n": 45,
-     "id": "s:9b5cdf62-split-1-872-76",
+     "n": 44,
+     "id": "s:9b5cdf62-split-1-872-74",
      "kind": "split",
      "t0": 872,
      "t1": 898,
      "reads": "HC's split by the back door: two players (Ranger, Hammer) against 0 defending",
      "calls": [
       {
-       "id": "9b5cdf62-split-1-872-76",
+       "id": "9b5cdf62-split-1-872-74",
        "team": "HC",
        "side": "attacker",
        "label": "undefended",
@@ -13677,7 +13591,7 @@
        "draft": false
       },
       {
-       "id": "9b5cdf62-split-2-872-77",
+       "id": "9b5cdf62-split-2-872-75",
        "team": "Team",
        "side": "defender",
        "label": "no answer",
@@ -13699,61 +13613,25 @@
      ]
     },
     {
-     "n": 46,
-     "id": "s:9b5cdf62-numbers-1-896-78",
+     "n": 45,
+     "id": "s:9b5cdf62-numbers-1-896-76",
      "kind": "numbers",
      "t0": 896,
      "t1": 968,
-     "reads": "Up on numbers in the main fight (7 v 5, Team's front door; then 8 v 5 from 15:44), from kills; HC: stay (stay on the enemy's side) | then 5 v 8 from 15:44), from kills; Team: retreat down the ladder (retreat to the pit)",
-     "calls": [
-      {
-       "id": "9b5cdf62-numbers-1-896-78",
-       "team": "HC",
-       "side": "after a wipe",
-       "label": "stay",
-       "job": "Take pit NPCs before their base res",
-       "met": true,
-       "tests": [
-        [
-         true,
-         "one of their pit NPCs dies before the res"
-        ]
-       ],
-       "any": false,
-       "draft": false
-      },
-      {
-       "id": "9b5cdf62-numbers-2-896-81",
-       "team": "Team",
-       "side": "down",
-       "label": "retreat down the ladder",
-       "job": "Reach cover a player down without losing another",
-       "met": false,
-       "tests": [
-        [
-         true,
-         "nobody of ours dies"
-        ],
-        [
-         false,
-         "no NPC lost"
-        ]
-       ],
-       "any": false,
-       "draft": true
-      }
-     ]
+     "reads": "Up on numbers in the main fight (7 v 5, Team's front door; then 8 v 5 from 15:44), from kills; HC: stay (stay on the enemy's side) | Team: retreat down the ladder (retreat to the pit)",
+     "calls": [],
+     "unclear": "7 Monk, Hammer, Hammer, Mesmer, Prot, Ranger, Ranger also counted on a split in the same seconds"
     },
     {
-     "n": 47,
-     "id": "s:9b5cdf62-split-1-896-79",
+     "n": 46,
+     "id": "s:9b5cdf62-split-1-896-77",
      "kind": "split",
      "t0": 896,
      "t1": 968,
      "reads": "HC's split by the back door: two players (Hammer, Ranger) against 5 defending (Mesmer, Prot, 7 Monk, Ranger, Hammer); numbers along the way: 2 v 1 from 14:56, 2 v 5 from 15:10",
      "calls": [
       {
-       "id": "9b5cdf62-split-1-896-79",
+       "id": "9b5cdf62-split-1-896-77",
        "team": "HC",
        "side": "attacker",
        "label": "a player or more down",
@@ -13777,7 +13655,7 @@
        "draft": false
       },
       {
-       "id": "9b5cdf62-split-2-896-82",
+       "id": "9b5cdf62-split-2-896-80",
        "team": "Team",
        "side": "defender",
        "label": "add one",
@@ -13801,7 +13679,7 @@
        "draft": false
       },
       {
-       "id": "9b5cdf62-split-1-896-80",
+       "id": "9b5cdf62-split-1-896-78",
        "team": "HC",
        "side": "attacker's main team",
        "label": "the main fight can kill",
@@ -13819,15 +13697,15 @@
      ]
     },
     {
-     "n": 48,
-     "id": "s:9b5cdf62-pinned-2-916-83",
+     "n": 47,
+     "id": "s:9b5cdf62-pinned-2-916-81",
      "kind": "pinned",
      "t0": 916,
      "t1": 960,
      "reads": "Team is held in its own base or pit by HC's main team (K0 A0 B1 alive; base res in 44 s)",
      "calls": [
       {
-       "id": "9b5cdf62-pinned-2-916-83",
+       "id": "9b5cdf62-pinned-2-916-81",
        "team": "Team",
        "side": "",
        "label": "",
@@ -13849,15 +13727,15 @@
      ]
     },
     {
-     "n": 49,
-     "id": "s:9b5cdf62-base_res-1-940-84",
+     "n": 48,
+     "id": "s:9b5cdf62-base_res-1-940-82",
      "kind": "base res",
      "t0": 940,
      "t1": 990,
      "reads": "HC has 8 in Team's base at the base res (5 defending, 3 coming back): 8 stay",
      "calls": [
       {
-       "id": "9b5cdf62-base_res-1-940-84",
+       "id": "9b5cdf62-base_res-1-940-82",
        "team": "HC",
        "side": "",
        "label": "stayed through the res",
@@ -13875,15 +13753,15 @@
      ]
     },
     {
-     "n": 50,
-     "id": "s:9b5cdf62-pinned-2-960-85",
+     "n": 49,
+     "id": "s:9b5cdf62-pinned-2-960-83",
      "kind": "pinned",
      "t0": 960,
      "t1": 1016,
      "reads": "Team is held in its own base or pit by HC's main team (K0 A0 B1 alive; base res in 120 s)",
      "calls": [
       {
-       "id": "9b5cdf62-pinned-2-960-85",
+       "id": "9b5cdf62-pinned-2-960-83",
        "team": "Team",
        "side": "",
        "label": "",
@@ -13905,15 +13783,15 @@
      ]
     },
     {
-     "n": 51,
-     "id": "s:9b5cdf62-split-1-966-86",
+     "n": 50,
+     "id": "s:9b5cdf62-split-1-966-84",
      "kind": "split",
      "t0": 966,
      "t1": 984,
      "reads": "HC's split by the back door: one player (Hammer) against 4 defending (Mesmer, Prot, Ranger, 7 Monk)",
      "calls": [
       {
-       "id": "9b5cdf62-split-1-966-86",
+       "id": "9b5cdf62-split-1-966-84",
        "team": "HC",
        "side": "attacker",
        "label": "a player or more down",
@@ -13937,7 +13815,7 @@
        "draft": false
       },
       {
-       "id": "9b5cdf62-split-2-966-88",
+       "id": "9b5cdf62-split-2-966-86",
        "team": "Team",
        "side": "defender",
        "label": "add one",
@@ -13961,7 +13839,7 @@
        "draft": false
       },
       {
-       "id": "9b5cdf62-split-1-966-87",
+       "id": "9b5cdf62-split-1-966-85",
        "team": "HC",
        "side": "attacker's main team",
        "label": "the main fight can kill",
@@ -13979,15 +13857,15 @@
      ]
     },
     {
-     "n": 52,
-     "id": "s:9b5cdf62-pinned-2-1020-89",
+     "n": 51,
+     "id": "s:9b5cdf62-pinned-2-1020-87",
      "kind": "pinned",
      "t0": 1020,
      "t1": 1212,
      "reads": "Team is held in its own base or pit by HC's main team (K0 A0 B1 alive; base res in 60 s)",
      "calls": [
       {
-       "id": "9b5cdf62-pinned-2-1020-89",
+       "id": "9b5cdf62-pinned-2-1020-87",
        "team": "Team",
        "side": "",
        "label": "",
@@ -14009,15 +13887,15 @@
      ]
     },
     {
-     "n": 53,
-     "id": "s:9b5cdf62-base_res-1-1060-90",
+     "n": 52,
+     "id": "s:9b5cdf62-base_res-1-1060-88",
      "kind": "base res",
      "t0": 1060,
      "t1": 1110,
      "reads": "HC has 8 in Team's base at the base res (7 defending, 1 coming back): 8 stay",
      "calls": [
       {
-       "id": "9b5cdf62-base_res-1-1060-90",
+       "id": "9b5cdf62-base_res-1-1060-88",
        "team": "HC",
        "side": "",
        "label": "stayed through the res",
@@ -14035,15 +13913,15 @@
      ]
     },
     {
-     "n": 54,
-     "id": "s:9b5cdf62-numbers-1-1158-91",
+     "n": 53,
+     "id": "s:9b5cdf62-numbers-1-1158-89",
      "kind": "numbers",
      "t0": 1158,
      "t1": 1218,
      "reads": "Up on numbers in the main fight (8 v 7, Team's pit; then 8 v 6 from 19:32; then 8 v 5 from 19:50), from kills; HC: stay (stay on the enemy's side)",
      "calls": [
       {
-       "id": "9b5cdf62-numbers-1-1158-91",
+       "id": "9b5cdf62-numbers-1-1158-89",
        "team": "HC",
        "side": "up",
        "label": "stay",
@@ -14061,15 +13939,15 @@
      ]
     },
     {
-     "n": 55,
-     "id": "s:9b5cdf62-base_res-1-1180-92",
+     "n": 54,
+     "id": "s:9b5cdf62-base_res-1-1180-90",
      "kind": "base res",
      "t0": 1180,
      "t1": 1220,
      "reads": "HC has 8 in Team's base at the base res (5 defending, 2 coming back): 8 stay",
      "calls": [
       {
-       "id": "9b5cdf62-base_res-1-1180-92",
+       "id": "9b5cdf62-base_res-1-1180-90",
        "team": "HC",
        "side": "",
        "label": "stayed through the res",
@@ -14086,6 +13964,18 @@
       }
      ]
     }
+   ],
+   "selfcheck": [
+    "HC's 8 Monk 4:24 to 4:54: Team's split from 4:24 and the main fight's numbers from 4:22",
+    "Team's Hammer 4:42 to 4:54: Team's split from 4:24 and the main fight's numbers from 4:22",
+    "Team's Ranger 4:42 to 4:54: Team's split from 4:24 and the main fight's numbers from 4:22",
+    "HC's Hammer 14:56 to 15:58: HC's split from 14:56 and the main fight's numbers from 14:56",
+    "HC's Ranger 14:56 to 15:58: HC's split from 14:56 and the main fight's numbers from 14:56",
+    "Team's Mesmer 14:56 to 15:58: HC's split from 14:56 and the main fight's numbers from 14:56",
+    "Team's Prot 15:10 to 15:58: HC's split from 14:56 and the main fight's numbers from 14:56",
+    "Team's 7 Monk 15:10 to 15:58: HC's split from 14:56 and the main fight's numbers from 14:56",
+    "Team's Ranger 15:14 to 15:58: HC's split from 14:56 and the main fight's numbers from 14:56",
+    "Team's Hammer 15:16 to 15:58: HC's split from 14:56 and the main fight's numbers from 14:56"
    ]
   }
  ]

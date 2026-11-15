@@ -11,8 +11,11 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   R-439). A death there counts at once. A walk through a teleporter and straight back is not being there (R-442).
 - Who is on a split is who is there at that time, not everyone it ever held (R-439).
 - The main team: in an even split, the group on the stand side, responsible for flags; monks only break a tie (R-335,
-  R-355). In an uneven divide, the part of five or more (R-421); R-483, "the flag group at any size", is not built
-  there (it conflicts with his marks on Men v Apes: put to him).
+  R-355). In an uneven divide, the larger part (R-421, R-487). An even divide with both groups on the main flag
+  path is a push team (forward, at the enemy's door) and a defence team (at its own), not a main team and a split
+  (R-487).
+- A player cannot be in two fights at once, and some are in neither: moving to position with no output (R-488).
+  Numbers are told only when they last 12 s; "no clear decision" is an answer (R-488).
 - On a split: the players who came with it and stand with it, its back line included; brief support is not one more
   (R-484). A fight between a split and its defenders is told once, in the split (R-483).
 - The same 12 s holds for the numbers of the main fight: a player who stays 12 s counts from when he arrived; one who
@@ -29,7 +32,11 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 
 ## Flags
 - A team cannot capture its flag while it holds the stand: it waits for the other team to cap. A flag at the stand
-  of the team that holds the stand is in hand, and that team is about a flag and a half ahead (R-482).
+  of the team that holds the stand is in hand, and that team is about a flag and a half ahead (R-482). What it does
+  with it is a timing choice: get in position to overcap or keep the player in the fight; in position, cap at once
+  or hold and play on with eight without giving up a boost (R-486).
+- A flag picked up is not a run to answer until its carrier commits to flagging (R-488; built: it leaves the base).
+- When a team leaves to flag, the other team decides: flag again, stay, or double run (R-489).
 - Each team has one flag. A pickup held about 3 s is not a run (R-339). A hold is a flag kept in hand, or left at the
   spawn, rather than run or capped: 45 s in the stand or the greater stand area while the enemy holds the stand (R-400,
   R-407).

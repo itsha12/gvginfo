@@ -8,8 +8,10 @@ import { esc, readJson, writeJson, canSave, toast } from "../core.js";
 // Claude files the marks in the review key (data/model/review_key.json), where they become checks the reading must pass.
 
 const ROWS = "data/model/game_reviews.json", MARKS = "data/model/game_review_marks.json", DRAFT = "gvginfo.review.draft";
-const MARK = [["right", "Right"], ["partly", "Partly"], ["wrong", "Wrong"], ["repeat", "Repeat"]];
-const SKIP = "not judged";      // a call under a situation he marked wrong or a repeat: nothing to judge, and not asked for
+// "unclear" (R-490): no clear decision here, a borderline or messy case. It is neither right nor wrong: left out of the score, and never a row the engine is rebuilt to match.
+const MARK = [["right", "Right"], ["partly", "Partly"], ["wrong", "Wrong"], ["unclear", "No clear decision"], ["repeat", "Repeat"]];
+const OFF = { wrong: "wrong", repeat: "a repeat", unclear: "no clear decision" };
+const SKIP = "not judged";      // a call under a situation he marked wrong, a repeat or no clear decision: nothing to judge, and not asked for
 let rows = null, marks = null, cur = null, draft = {};
 
 const clock = (t) => `${Math.floor(t / 60)}:${String(Math.round(t % 60)).padStart(2, "0")}`;
@@ -18,7 +20,7 @@ const keepDraft = () => { try { localStorage.setItem(DRAFT, JSON.stringify(draft
 const callText = (c) => `${c.team}${c.side ? ` (${c.side})` : ""}${c.label ? ` [${c.label}]` : ""}: ${c.job}. ${c.met ? "Met" : "Not met"}` +
   (c.tests.length ? ` (${c.tests.map(([ok, t]) => `${ok ? "yes" : "no"}: ${t}`).join("; ")})` : "");
 const items = (g) => g.situations.flatMap((s) => [{ id: s.id, text: s.reads }, ...s.calls.map((c) => ({ id: c.id, text: callText(c), under: s.id }))]);
-const off = (M, sid) => ["wrong", "repeat"].includes(M[sid]?.mark);
+const off = (M, sid) => M[sid]?.mark in OFF;
 const asked = (g, M) => items(g).filter((x) => !x.under || !off(M, x.under));
 const saved = (g) => marks.games?.[g.rid]?.marks || {};
 const now = (g) => ({ ...saved(g), ...(draft[g.rid]?.marks || {}) });
@@ -36,14 +38,15 @@ function gameHtml(g) {
     const calls = s.calls.map((c) => `<tr class="rv-call${M[c.id]?.mark || skip ? " rv-done" : ""}${skip ? " rv-skip" : ""}"><td></td><td></td>
       <td><b>${esc(c.team)}</b>${c.side ? ` <span class="muted">(${esc(c.side)})</span>` : ""}${c.label ? ` <span class="pill type">${esc(c.label)}</span>` : ""}: ${esc(c.job)}.
         <b class="${c.met ? "rv-met" : "rv-not"}">${c.met ? "Met" : "Not met"}</b>${c.draft ? ` <span class="muted small">(this job is Claude's draft, not yet ruled)</span>` : ""}
-        ${c.tests.length ? `<div class="muted small">${c.tests.map(([ok, t]) => `${ok ? "yes" : "no"}: ${esc(t)}`).join("; ")}</div>` : ""}</td>${skip ? `<td class="muted small">Not asked: you marked the situation ${esc(M[s.id].mark === "repeat" ? "a repeat" : "wrong")}.</td>` : control(c.id, M[c.id])}</tr>`).join("");
+        ${c.tests.length ? `<div class="muted small">${c.tests.map(([ok, t]) => `${ok ? "yes" : "no"}: ${esc(t)}`).join("; ")}</div>` : ""}</td>${skip ? `<td class="muted small">Not asked: you marked the situation ${esc(OFF[M[s.id].mark])}.</td>` : control(c.id, M[c.id])}</tr>`).join("");
     return `<tr class="rv-sit${M[s.id]?.mark ? " rv-done" : ""}"><td class="rv-n">${s.n}</td><td class="rv-t">${clock(s.t0)}–${clock(s.t1)}</td>
-      <td><span class="muted small">What the engine reads</span><br>${esc(s.reads)}</td>${control(s.id, M[s.id])}</tr>${calls}`;
+      <td><span class="muted small">${s.unclear ? "Context: the engine reads no clear decision here" : "What the engine reads"}</span><br>${esc(s.reads)}${s.unclear ? `<div class="muted small">Why: ${esc(s.unclear)}. No call is set out under it; mark it Right if you agree there was nothing to decide.</div>` : ""}</td>${control(s.id, M[s.id])}</tr>${calls}`;
   }).join("");
   const all = asked(g, M), done = all.filter((x) => M[x.id]?.mark).length, n = unsaved(g);
   const notes = draft[g.rid]?.notes ?? marks.games?.[g.rid]?.notes ?? "";
   return `<h3 style="margin:.8rem 0 .2rem">${esc(g.teams.join(" v "))}, ${esc(g.map)}, ${esc(g.date)}</h3>
     <p style="margin:.2rem 0"><a href="https://gvg.report/report/${esc(g.rid)}#map" target="_blank" rel="noopener">Open the replay on gvg.report</a>. ${g.situations.length} situations, ${all.length} rows to mark; <b>${done} marked</b>${n ? `, <b class="rv-not">${n} not saved yet</b>` : ""}.</p>
+    ${(g.selfcheck || []).length ? `<details class="rv-terms"><summary>The engine's own check: ${g.selfcheck.length} time${g.selfcheck.length === 1 ? "" : "s"} it counts a player in two fights at once (the numbers rows it touches are told as context)</summary><ul class="small">${g.selfcheck.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></details>` : ""}
     <div class="row rv-bar"><button class="btn small primary" data-save>Save this game's marks</button>
       <button class="btn small ghost" data-rest title="Every row you have not marked is marked Right. Use it after marking the rows that are partly right or wrong.">Mark the unmarked rows Right</button></div>
     <div class="tablewrap"><table class="data rv-rows"><thead><tr><th>#</th><th>Time</th><th>The situation, then each side's call</th><th>Your mark</th></tr></thead><tbody>${body}</tbody></table></div>
@@ -55,7 +58,7 @@ function gameHtml(g) {
 export async function renderReview(out, keep = false) {
   if (!keep || !rows) {
     rows = await readJson(ROWS, null);
-    marks = (await readJson(MARKS, null)) || { about: "Denning's marks on the rows of Model > Game review (R-450, R-455): for each game, each row he marked (right, partly or wrong), his words, and the text of the row as it was shown to him. Saved by the page; Claude files them in the review key.", games: {} };
+    marks = (await readJson(MARKS, null)) || { about: "Denning's marks on the rows of Model > Game review (R-450, R-455): for each game, each row he marked (right, partly, wrong, no clear decision or repeat), his words, and the text of the row as it was shown to him. Saved by the page; Claude files them in the review key.", games: {} };
     loadDraft();
   }
   if (!rows || !(rows.games || []).length) { out.innerHTML = `<h1>Game review</h1><div class="empty-state">No game has been set out for review yet.</div>`; return; }
@@ -66,8 +69,9 @@ export async function renderReview(out, keep = false) {
   <details class="rv-terms"><summary>How to read a row</summary><ul class="small">
     <li><b>A situation</b> is one thing the engine saw happening between the two times: a flag run and the answer to it, a push on a flagger, a split and its defence (told once, with each change of its numbers beside it), a numbers difference in the main fight, a team pinned in its base, a boost coming, a base resurrection, a Lord push.</li>
     <li><b>A call</b> is what one team did about it. Its <b>job</b> is what a team is expected to achieve in that situation by your rulings; <b>Met</b> or <b>Not met</b> says only whether that happened, with the tests behind it (yes or no). It is a result, not a verdict on whether the call was right.</li>
-    <li><b>Right</b>: the row is what you would say. <b>Partly</b>: the situation is there but something in it is off (the numbers, the time, who, the job or the result). <b>Wrong</b>: it did not happen, or it was something else. <b>Repeat</b>: the same thing is already told in another row. For Partly and Wrong, say what you see in your own words.</li>
-    <li>When you mark a situation Wrong or a Repeat, the calls under it are not asked for.</li>
+    <li><b>Right</b>: the row is what you would say. <b>Partly</b>: the situation is there but something in it is off (the numbers, the time, who, the job or the result). <b>Wrong</b>: it did not happen, or it was something else. <b>No clear decision</b>: a borderline or messy case (a spread out fight, a flag picked up that is not yet a run, numbers too brief to use) where there is nothing a team clearly had to decide; it is left out of the score, and the engine is not rebuilt to match it. <b>Repeat</b>: the same thing is already told in another row. For Partly and Wrong, say what you see in your own words.</li>
+    <li>When you mark a situation Wrong, No clear decision or a Repeat, the calls under it are not asked for.</li>
+    <li><b>Context</b> rows are situations in which the engine reads no clear decision (numbers that never held 12 seconds, or a player it counts in two fights at once). They carry no call. Numbers are told only when they last 12 seconds; a flag picked up at home is a run from when it leaves the base.</li>
     <li>A player counts in a fight, on a split or on its defence after 12 seconds there. Flag lead is in flags: the stand counts as one flag.</li>
     <li>Marks are kept in this browser as you go and reach the engine when you press Save. Stop and resume at any point.</li>
   </ul></details>
@@ -76,7 +80,7 @@ export async function renderReview(out, keep = false) {
   <p class="muted small">Rows written ${esc(rows.generated)} from engine ${esc(rows.engine)}.</p>
   <section class="rv">${gameHtml(g)}</section>
   <style>.rv-rows{table-layout:fixed;width:100%}.doc table.rv-rows td,.rv-rows td{vertical-align:top;white-space:normal!important;overflow-wrap:anywhere;padding:.35rem .5rem;font-size:.9rem}
-  .rv-rows th:nth-child(1),.rv-n{width:2.4rem}.rv-rows th:nth-child(2),.rv-t{width:6.2rem;font-family:var(--mono);white-space:nowrap}.rv-rows th:nth-child(4),.rv-mark{width:17rem}
+  .rv-rows th:nth-child(1),.rv-n{width:2.4rem}.rv-rows th:nth-child(2),.rv-t{width:6.2rem;font-family:var(--mono);white-space:nowrap}.rv-rows th:nth-child(4),.rv-mark{width:19rem}
   .rv-sit td{border-top:2px solid var(--line);background:var(--accent-soft)}.rv-call td:nth-child(3){padding-left:1.4rem}.rv-done td:first-child{box-shadow:inset 3px 0 0 var(--accent)}
   .rv-mark label{margin-right:.6rem;white-space:nowrap;font-size:.86rem}.rv-mark input[type=text]{display:block;width:100%;height:1.9rem;margin-top:.3rem;font-size:.84rem}
   .rv-skip td:nth-child(3){opacity:.45}.rv-met{color:#1c7c3c}.rv-not{color:#b3261e}.rv-bar{margin:.6rem 0;gap:.5rem}.rv-games{flex-wrap:wrap;gap:.4rem;margin:.6rem 0}.rv-terms{margin:.6rem 0}.rv-terms summary{cursor:pointer}.small{font-size:.86rem}</style>`;

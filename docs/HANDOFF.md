@@ -16,23 +16,27 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 - Whole-game scores, situations right of those he judged (R-475), each a fresh game for the engine it was marked
   against: part 1 (TFS v 옷옷옷옷, Men v Apes) 45 of 85; hdm v hook 35 of 58 (60%); round 3 (set w2): hook v hold
   24 of 41 (59%), cope v Team 15 of 24 (62%), RJT v RACK 33 of 45 (73%, engine b09a26a). The mark is 80% (R-473).
-- Built from his marks and answers on RJT v RACK (engine 9d3a679; R-482 to R-485), at the root (R-465):
-  - Who is on a split: on the enemy's ground, or standing with a split player who is (its back line); only main
-    team players off the enemy's ground take a player off it (`_over`, `split_plays`). A split's fight is told once:
-    a numbers moment that is a split's fight from first reading to last folds into the split (`numbers_plays`).
-  - Whose flag decision: the runner's set-off passes over jumps in the walked distance; the flag is under way from
-    its last unbroken chain of carries (`run_starts`: `out_by`, `chain`); a flag that lay on the ground is two runs;
-    in hand by the cap rule (R-482); a double run from its second player (R-485); each run is answered in turn (a
-    team whose flag is in, with theirs still coming, runs again or stays): `_flag_rows`, `flag_plays`.
-  - On the development set (44 matches): flag plays 513 to 640 (stay 149 to 227, in hand 77 to 61, double 100 to
-    36), split plays of one player 189 to 158, numbers plays 878 to 867. `review.py compare` on RJT v RACK: 87
-    calls now, 39 of them calls he marked right, 35 never shown to him; it says 41 of his 52 right calls.
-- Now (development set, 45 matches): review key 120 rows pass; 40 checks open (w1p1 14, w1p2 9, w2 16, s1-15); 18
-  were made firm on 2026-11-15 (13 of RJT v RACK's, and hook v hold 8:30, hdm v hook 8:46, TFS v 옷옷옷옷 10:13 with
-  them). Gate: 12 of 12, 63 of 105. Line-up: 421 of 426 and 185 of 186; comms 110 of 157, 62 of 80. No run over
-  every match, no `thresholds.py`, no numbers test (R-470) since the change.
-- Round 4 is on the page (set w3, engine 9d3a679), not yet marked: HC v Team on Imperial Isle (9b5cdf62; 55
-  situations: 14 flags, 12 splits, 12 pushes on a flagger, 11 numbers). Men v Crew stays hidden.
+- Built 2026-11-15, at the root (R-465), in two steps. From his marks on RJT v RACK (engine 9d3a679; R-482 to
+  R-485): who is on a split (its back line counts, brief support does not: `_over`, `split_plays`); whose flag
+  decision (`run_starts`: set-off, `out_by`, `chain`; a double run from its second player; each run answered in turn).
+  From his answers on how to read a game (engine fd2b30b; R-486 to R-490):
+  - The flag in hand is a timing choice: overcap at once, in position and hold, or hold not in position (further
+    from the stand than `STAND_R`); a hold has its own clock and a draft job (`flag_plays`, field `hand`).
+  - A flag picked up at home is a run from when it leaves the base (`FLAG_TAKEN_OUT_S` is no longer read).
+  - Numbers are told only when they last 12 s (`scenario`); no smoothing of a split's counts. Telling each numbers
+    only from its first true second was tried and failed two firm rows (Men v Apes 1:02, hook v hold 12:47): the
+    seconds in which a fight forms stay with that fight.
+  - `moving` (in neither fight) gives a numbers difference the source "on the way"; an even divide forward by the
+    front door is named a push team (`group`).
+  - `jobs.selfcheck`: 222 times on the development set a player is counted in a main fight's numbers and on a split
+    for 12 s. A numbers stretch that is mostly a split's fight folds into the split; one the check faults, or whose
+    numbers never held 12 s, is told as context with no call (`clear`, `unclear`): 165 of 848 numbers plays.
+  - Two tiers in the review key (`tier`; six rows `tier_proposed`); the page's fourth mark, No clear decision.
+- Now (development set, 45 matches): review key 120 rows pass, 40 checks open. Gate 12 of 12, 63 of 105. Line-up
+  421 of 426 and 185 of 186; comms 110 of 157, 62 of 80. No run over every match, no `thresholds.py`, no numbers
+  test (R-470) since. Not built: a measure of how spread out a fight is; the self-check's 222 at their root.
+- Round 4 is on the page (set w3, engine fd2b30b), not yet marked: HC v Team on Imperial Isle (9b5cdf62; 54
+  situations, 2 of them context, 87 calls). Men v Crew stays hidden.
 
 ## Data looked at on 2026-11-14 (nothing built; nothing from GW Observer in the repo)
 - gvg.report's replay payload holds `report.objectives.object_transitions` (each appearance of a flag object, with
@@ -53,14 +57,10 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 
 ## Open for Denning (put to him 2026-11-15; set each out in the chat again, R-329, with replay links)
 1. HC v Team is his to mark (https://gvg.report/report/9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96#map).
-2. His answers of 2026-11-15 (R-486 to R-489, none built): the flag in hand is a timing choice; the main team is
-   usually the larger group, with push team and defence team at 4 and 4 on the flag paths; fluid numbers, players
-   in neither fight, "no clear decision" as an answer. Put to him: which group is the push team, how long a change
-   must last, and a proposal on his process question (borderline rows must not steer the engine): CHANGELOG.
-3. TFS v 옷옷옷옷 2:09: now told from TFS's side (옷옷옷옷's 8 Monk set off first, 1:40; TFS's Ritualist answers).
-4. RJT v RACK 4:06, "now the mainteam fight": the engine still tells RACK's split through the 8 v 8 of 4:18 to 4:36.
-5. Rows he marked right on RJT v RACK that now read otherwise: 11, 24 (the Ranger's solo trips, inside the split),
-   26, 30 (numbers, inside the split), 4, 47. Drafts not ruled: numbers from kills, a split with no answer.
+2. The six rows proposed as borderline (review key, `tier_proposed`): OG v Dz 2:34, 옷옷옷옷 v Men 5:10, Men v NwAy
+   11:46, hdm v hook 4:46, hook v hold 13:04, RJT v RACK 4:06. On his yes, set `tier` to borderline.
+3. Drafts: a held flag's job; "in position" as within `STAND_R`; the push team named by the front door only.
+4. From before: TFS v 옷옷옷옷 2:09 told from TFS's side; RJT v RACK rows 11, 24, 26, 30 now inside the split.
 
 ## Running it
 - Train batch: `gh api -X POST repos/itsha12/gvginfo/actions/workflows/train-batch.yml/dispatches -f ref=main

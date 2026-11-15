@@ -334,6 +334,11 @@ against general principles rather than past games. Match-by-match evidence lives
 - `F38` **Denning:** A team cannot cap its flag while its flag is already capped: it has to wait for the other team to
   cap. That is why teams sometimes hold a flag at the stand. A team holding the stand with its next flag beside it is
   about a flag and a half ahead; the holder still has to be in position to overcap. [RJT v RACK]
+- `F39` **Denning:** A flag in hand is a timing choice: get in position to overcap, or use the 8 v 7 or 8 v 8 time
+  holding the flag; and once in position, cap at once or hold. Holding lets a team play with eight for about two
+  minutes without giving up a boost; if it caps and the other team runs, it has to run and gets no 8 v 8 time.
+  [RJT v RACK]
+- `F40` **Denning:** When a team leaves to flag, the decision for the other team is: flag again, stay, or double run.
 - `F3` **Denning:** A defender who can carry its flag partway while holding off a solo pusher (losing nothing: no
   death, no NPCs) shortens its team's Y, while the pusher accomplishes nothing.
 - `F4` **Claude:** Flag position is measured on the next capture exchange: how long the team not holding the stand

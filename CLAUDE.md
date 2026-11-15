@@ -189,6 +189,11 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   checks). A failing row is fixed or put to him before anything else. Run every match (`moments.py all <file>`, about
   10 minutes) only at a checkpoint: a new review set, a gate, a benchmark rebuild, or counts a question needs. A full
   run applies the engine; it teaches it nothing.
+- The marked games are a test in two tiers (R-490): a clear row of the review key must keep passing; a borderline row
+  (`tier`: a row he marked No clear decision, or one he confirmed as borderline) is reported and never blocks a change.
+  A fault is built from only when it shows in two games or is plainly a bug, never from one row; accuracy is read
+  only from a fresh game. The engine checks itself (`jobs.selfcheck`: a player counted in two fights at once) and
+  tells a situation with no clear decision as context, with no call (R-488).
 - No new rule or threshold to answer a wrong row (R-465): rebuild the reading under it at the root, with his marked
   rows as the test. Who is in which fight is one reading on the branch (`Moments.linked`, `engaged_in`, `visits`; R-464),
   used by the numbers of the main fight and by a split's defenders: change it there, never beside it. His words on a
@@ -203,7 +208,7 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
 - Reviews are by whole games (R-454, R-455: four games, two and two), marked on the site, Model > Game review
   (`assets/js/pages/review.js`): `tools/golden/review.py export <file> <main>/data/model/game_reviews.json --part N`
   (on the branch) writes the rows, every situation the engine reads and under it each side's call; he marks each row
-  on its own (right, partly, wrong, his words), saved to `data/model/game_review_marks.json` on main, which holds only
+  on its own (right, partly, wrong, no clear decision, his words), saved to `data/model/game_review_marks.json` on main, which holds only
   his marks and the text of each row as he saw it. Read his marks from that file and file them in the review key
   (`review.py file <id> <rows> <marks> --set <set>`, which prints the game's score; then write the checks by hand).
   Henchman games are never picked for review (R-476).
