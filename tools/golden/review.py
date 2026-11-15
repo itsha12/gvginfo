@@ -138,7 +138,9 @@ def _reads(g):
     """What the engine reads in a situation, in one line; sorts its plays (the attacker first, then the defender)."""
     g.sort(key=lambda p: (FIRST.get(p["play"], ()).index(p["side"]) if p["side"] in FIRST.get(p["play"], ()) else 0, p["play"] != "push flagger"))
     read = g[0]["scenario"] + ("; ".join([""] + [p["scenario"].split(": ", 1)[-1] for p in g[1:] if p["play"] == "split" and p["side"] == "defender" and p.get("call") in ("collapse", "full collapse", "part-run")]))
-    if g[0]["play"] == "numbers" and len(g) > 1: read += " | " + g[1]["scenario"].split("; ", 1)[-1]
+    if g[0]["play"] == "numbers" and len(g) > 1:
+        o = g[1]["scenario"]; k = o.find("), from ")                    # the other side's call: what follows the numbers and their source (the numbers themselves can hold "; then ...")
+        read += " | " + o[max(k, 0):].split("; ", 1)[-1]
     if g[0].get("soh"): read += " (Shadow of Haste run: set aside)"
     return read
 
