@@ -2951,6 +2951,323 @@
    "at": "2026-11-14",
    "engine": "b025445",
    "notes": "do we read/will it be reflected like a \"general\" 8v8 fight; it's not really a decision point but from 0:00 until the death on prot at 0:38, neither team really makes a decision, it's just an 8v8 fight but we should at some point be able to see micro/execution wise why cope died to the spike, if that make sense?"
+  },
+  "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65": {
+   "marks": {
+    "s:eea5ba87-flag-2-0-1": {
+     "mark": "right",
+     "why": "",
+     "text": "The opening. They single run (RJT's AoB Derv); RACK: double run; left back for the next flag: RACK's Mes/A"
+    },
+    "eea5ba87-flag-2-0-1": {
+     "mark": "right",
+     "why": "",
+     "text": "RACK [double run]: Gain flag advantage through their next cap, and lose nobody while two are away. Not met (no: flag lead better by 0.35 or more; yes: nobody of ours dies at the main fight)"
+    },
+    "eea5ba87-flag-1-0-0": {
+     "mark": "not judged",
+     "why": "",
+     "text": "RJT [single run]: Kill or take ground with the extra player, and end no worse than a flag behind. Met (yes: no worse than a flag behind at the end; no: more of theirs die at the main fight than of ours; yes: ground taken; no: one of their NPCs dies)"
+    },
+    "s:eea5ba87-flag-1-0-0": {
+     "mark": "repeat",
+     "why": "",
+     "text": "The opening. They double run (RACK's Ranger); RJT: single run; left back for the next flag: RACK's Mes/A"
+    },
+    "s:eea5ba87-flag-2-24-2": {
+     "mark": "repeat",
+     "why": "",
+     "text": "The opening. They single run (RJT's AoB Derv); RACK: a flag already in hand; left back for the next flag: RACK's Mes/A"
+    },
+    "eea5ba87-flag-2-24-2": {
+     "mark": "not judged",
+     "why": "",
+     "text": "RACK [a flag already in hand]: Answer their cap at once, or cap just before their boost. Met (no: their flag does not get in; yes: our cap follows theirs within 15 s; no: our cap lands just before their boost)"
+    },
+    "s:eea5ba87-split-2-30-4": {
+     "mark": "right",
+     "why": "",
+     "text": "RACK's split by the front door: one player (Ranger) against 2 defending (8 Monk, AoB Derv); numbers along the way: 1 v 2 from 0:30, 1 v 1 from 0:56"
+    },
+    "eea5ba87-split-2-30-4": {
+     "mark": "right",
+     "why": "",
+     "text": "RACK (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; yes: flag lead better by 0.35 or more)"
+    },
+    "eea5ba87-split-1-30-3": {
+     "mark": "right",
+     "why": "",
+     "text": "RJT (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Met (yes: no pit NPC lost; no: a split player dies; yes: the split is gone within the visit)"
+    },
+    "s:eea5ba87-push_flagger-2-70-6": {
+     "mark": "right",
+     "why": "",
+     "text": "RACK pushes RJT's flagger (AoB Derv, carrying) with its main team"
+    },
+    "eea5ba87-push_flagger-2-70-6": {
+     "mark": "right",
+     "why": "",
+     "text": "RACK: Stop their flag, or make it 30% late. Not met (no: their flag is stopped; no: it arrives 30% or more later than usual)"
+    },
+    "eea5ba87-flagger_pushed-1-70-5": {
+     "mark": "right",
+     "why": "",
+     "text": "RJT: Get the flag in on time. Met (yes: the flag gets in, less than 30% late)"
+    },
+    "s:eea5ba87-flag-2-101-7": {
+     "mark": "wrong",
+     "why": "derv single runs twice; flag is returned at 00:18 which is important (but I think probably just important for micro)",
+     "text": "They double run (RJT's AoB Derv); RACK: single run"
+    },
+    "eea5ba87-flag-2-101-7": {
+     "mark": "not judged",
+     "why": "",
+     "text": "RACK [single run]: Kill or take ground with the extra player, and end no worse than a flag behind. Not met (yes: no worse than a flag behind at the end; no: more of theirs die at the main fight than of ours; no: ground taken; no: one of their NPCs dies)"
+    },
+    "s:eea5ba87-push_flagger-2-124-9": {
+     "mark": "right",
+     "why": "",
+     "text": "RACK pushes RJT's flagger (AoB Derv, carrying) with one player"
+    },
+    "eea5ba87-push_flagger-2-124-9": {
+     "mark": "right",
+     "why": "",
+     "text": "RACK: Stop their flag, or make it 30% late. Not met (no: their flag is stopped; no: it arrives 30% or more later than usual)"
+    },
+    "eea5ba87-flagger_pushed-1-124-8": {
+     "mark": "right",
+     "why": "",
+     "text": "RJT: Get the flag in on time, without losing a player for the help sent. Met (yes: the flag gets in, less than 30% late; yes: nobody else of ours dies meanwhile)"
+    },
+    "s:eea5ba87-flag-1-143-10": {
+     "mark": "wrong",
+     "why": "",
+     "text": "They single run (RACK's Stand Mes); RJT: a flag already in hand"
+    },
+    "eea5ba87-flag-1-143-10": {
+     "mark": "not judged",
+     "why": "",
+     "text": "RJT [a flag already in hand]: Answer their cap at once, or cap just before their boost. Not met (no: their flag does not get in; no: our cap follows theirs within 15 s; no: our cap lands just before their boost)"
+    },
+    "s:eea5ba87-flag-2-147-11": {
+     "mark": "right",
+     "why": "",
+     "text": "They double run (RJT's Mes/A); RACK: a flag already in hand"
+    },
+    "eea5ba87-flag-2-147-11": {
+     "mark": "right",
+     "why": "",
+     "text": "RACK [a flag already in hand]: Answer their cap at once, or cap just before their boost. Not met (no: their flag does not get in; no: our cap follows theirs within 15 s; no: our cap lands just before their boost)"
+    },
+    "s:eea5ba87-push_flagger-2-162-13": {
+     "mark": "right",
+     "why": "",
+     "text": "RACK pushes RJT's flagger (Mes/A, at the spawn) with 3 players"
+    },
+    "eea5ba87-push_flagger-2-162-13": {
+     "mark": "right",
+     "why": "",
+     "text": "RACK: Stop their flag, or make it 30% late. Met (yes: their flag is stopped; no: it arrives 30% or more later than usual)"
+    },
+    "eea5ba87-flagger_pushed-1-162-12": {
+     "mark": "right",
+     "why": "",
+     "text": "RJT: Get the flag in on time. Not met (no: the flag gets in, less than 30% late)"
+    },
+    "s:eea5ba87-split-1-178-14": {
+     "mark": "right",
+     "why": "",
+     "text": "RJT's split by the front door: one player (Ranger) against 0 defending"
+    },
+    "eea5ba87-split-1-178-14": {
+     "mark": "right",
+     "why": "",
+     "text": "RJT (attacker) [undefended]: Take NPCs. Not met (no: an NPC taken)"
+    },
+    "eea5ba87-split-2-178-15": {
+     "mark": "right",
+     "why": "",
+     "text": "RACK (defender) [no answer]: Win elsewhere before the split costs more than it gains. Met (no: more of theirs die away from the split than of ours; yes: flag lead better by 0.35 or more)"
+    },
+    "s:eea5ba87-split-1-190-16": {
+     "mark": "wrong",
+     "why": "this is a 3 person split (with ranger)",
+     "text": "RJT's split by the front door: two players (Stand Mes, Ranger) against 3 defending (AoB Derv, 8 Monk, Mes/A)"
+    },
+    "eea5ba87-split-1-190-16": {
+     "mark": "not judged",
+     "why": "",
+     "text": "RJT (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Not met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)"
+    },
+    "eea5ba87-split-2-190-17": {
+     "mark": "not judged",
+     "why": "",
+     "text": "RACK (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Not met (yes: no pit NPC lost; no: a split player dies; no: the split is gone within the visit)"
+    },
+    "s:eea5ba87-split-2-204-19": {
+     "mark": "wrong",
+     "why": "this is a 3 person split (with 7 monk and mesmer))",
+     "text": "RACK's split by the front door: one player (Ranger) against 0 defending"
+    },
+    "eea5ba87-split-2-204-19": {
+     "mark": "not judged",
+     "why": "",
+     "text": "RACK (attacker) [undefended]: Take NPCs. Not met (no: an NPC taken)"
+    },
+    "eea5ba87-split-1-204-18": {
+     "mark": "not judged",
+     "why": "",
+     "text": "RJT (defender) [no answer]: Win elsewhere before the split costs more than it gains. Not met (no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)"
+    },
+    "s:eea5ba87-flag-2-228-20": {
+     "mark": "right",
+     "why": "",
+     "text": "They single run (RJT's Mes/A); RACK: single run"
+    },
+    "eea5ba87-flag-2-228-20": {
+     "mark": "right",
+     "why": "",
+     "text": "RACK [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (no: our flag is capped; yes: no more of ours die at the main fight than of theirs; yes: no worse than half a flag behind at the end, or no further behind than at the start)"
+    },
+    "s:eea5ba87-split-2-246-22": {
+     "mark": "wrong",
+     "why": "this is now the mainteam fight I think; look at 4v3 for RACK at 5:30",
+     "text": "RACK's split by the front door: one player (Ranger) against 4 defending (Hammer, Mes/A, 8 Monk, AoB Derv); numbers along the way: 1 v 4 from 4:06, 4 v 3 from 4:40"
+    },
+    "eea5ba87-split-2-246-22": {
+     "mark": "not judged",
+     "why": "",
+     "text": "RACK (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Not met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)"
+    },
+    "eea5ba87-split-1-246-21": {
+     "mark": "not judged",
+     "why": "",
+     "text": "RJT (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Not met (yes: no pit NPC lost; no: a split player dies; no: the split is gone within the visit)"
+    },
+    "eea5ba87-split-2-246-23": {
+     "mark": "not judged",
+     "why": "",
+     "text": "RACK (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)"
+    },
+    "s:eea5ba87-boost-1-266-24": {
+     "mark": "right",
+     "why": "",
+     "text": "RACK's boost is 30 s away; RJT: one runner; the rest fall back into the base"
+    },
+    "s:eea5ba87-split-1-274-25": {
+     "mark": "repeat",
+     "why": "",
+     "text": "RJT's split by the front door: one player (Ranger) against 4 defending (AoB Derv, Mes/A, 8 Monk, Stand Mes); Stand Mes collapse from the main fight; 4 (AoB Derv, Mes/A, 8 Monk, Stand Mes) against one player: collapse by Stand Mes from the main fight"
+    },
+    "eea5ba87-split-1-274-25": {
+     "mark": "not judged",
+     "why": "",
+     "text": "RJT (attacker) [collapsed on]: Survive and gain an advantage elsewhere on the map. Met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; yes: flag lead better by 0.35 or more)"
+    },
+    "eea5ba87-split-2-274-26": {
+     "mark": "not judged",
+     "why": "",
+     "text": "RACK (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Not met (no: a split player dies during the collapse)"
+    },
+    "s:eea5ba87-flag-1-277-27": {
+     "mark": "right",
+     "why": "",
+     "text": "They single run (RACK's AoB Derv); RJT: a flag already in hand"
+    },
+    "eea5ba87-flag-1-277-27": {
+     "mark": "right",
+     "why": "",
+     "text": "RJT [a flag already in hand]: Answer their cap at once, or cap just before their boost. Met (yes: their flag does not get in; no: our cap follows theirs within 15 s; yes: our cap lands just before their boost)"
+    },
+    "s:eea5ba87-flag-1-291-28": {
+     "mark": "repeat",
+     "why": "",
+     "text": "They single run (RACK's Mes/A); RJT: single run"
+    },
+    "eea5ba87-flag-1-291-28": {
+     "mark": "not judged",
+     "why": "",
+     "text": "RJT [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (yes: our flag is capped; yes: no more of ours die at the main fight than of theirs; yes: no worse than half a flag behind at the end, or no further behind than at the start)"
+    },
+    "s:eea5ba87-split-1-300-31": {
+     "mark": "wrong",
+     "why": "see above",
+     "text": "RJT's split by the front door: one player (Ranger) against 3 defending (AoB Derv, Stand Mes, 8 Monk)"
+    },
+    "eea5ba87-split-1-300-31": {
+     "mark": "not judged",
+     "why": "",
+     "text": "RJT (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Not met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)"
+    },
+    "eea5ba87-split-2-300-33": {
+     "mark": "not judged",
+     "why": "",
+     "text": "RACK (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Met (yes: no pit NPC lost; no: a split player dies; yes: the split is gone within the visit)"
+    },
+    "eea5ba87-split-1-300-32": {
+     "mark": "not judged",
+     "why": "",
+     "text": "RJT (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)"
+    },
+    "s:eea5ba87-split-2-328-35": {
+     "mark": "right",
+     "why": "",
+     "text": "RACK's split by the front door: three players (Ranger, Hammer, Prot) against 3 defending (AoB Derv, 8 Monk, Mes/A)"
+    },
+    "eea5ba87-split-2-328-35": {
+     "mark": "right",
+     "why": "",
+     "text": "RACK (attacker) [even]: Take NPCs or kills. Not met (no: a defender killed; no: an NPC taken)"
+    },
+    "eea5ba87-split-1-328-34": {
+     "mark": "right",
+     "why": "",
+     "text": "RJT (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (yes: no pit NPC lost; yes: no more defenders die than split players)"
+    },
+    "s:eea5ba87-flag-2-351-36": {
+     "mark": "right",
+     "why": "",
+     "text": "They single run (RJT's Mes/A); RACK: single run"
+    },
+    "eea5ba87-flag-2-351-36": {
+     "mark": "right",
+     "why": "",
+     "text": "RACK [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (yes: our flag is capped; yes: no more of ours die at the main fight than of theirs; yes: no worse than half a flag behind at the end, or no further behind than at the start)"
+    },
+    "s:eea5ba87-split-1-360-37": {
+     "mark": "right",
+     "why": "",
+     "text": "RJT's split by the front door: one player (Ranger) against 0 defending"
+    },
+    "eea5ba87-split-1-360-37": {
+     "mark": "right",
+     "why": "",
+     "text": "RJT (attacker) [undefended]: Take NPCs. Not met (no: an NPC taken)"
+    },
+    "eea5ba87-split-2-360-38": {
+     "mark": "right",
+     "why": "",
+     "text": "RACK (defender) [no answer]: Win elsewhere before the split costs more than it gains. Not met (no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)"
+    },
+    "s:eea5ba87-split-2-370-42": {
+     "mark": "partly",
+     "why": "RACK 7 monk I would say also involve in the split, but it's close",
+     "text": "RACK's split by the front door: three players (Ranger, Hammer, Prot) against 5 defending (AoB Derv, Hammer, Mes/A, Prot, 8 Monk); Hammer, Prot collapse from the main fight; 5 (AoB Derv, Hammer, Mes/A, Prot, 8 Monk) against three players: collapse by Hammer, Prot from the main fight"
+    },
+    "eea5ba87-split-2-370-42": {
+     "mark": "right",
+     "why": "",
+     "text": "RACK (attacker) [collapsed on]: Survive and gain an advantage elsewhere on the map. Not met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)"
+    },
+    "eea5ba87-split-1-370-40": {
+     "mark": "right",
+     "why": "",
+     "text": "RJT (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Not met (no: a split player dies during the collapse)"
+    }
+   },
+   "game": "RJT v RACK, Nomad's Isle",
+   "at": "2026-11-15",
+   "engine": "b09a26a"
   }
  }
 }
