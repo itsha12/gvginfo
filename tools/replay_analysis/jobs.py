@@ -32,7 +32,7 @@ Usage:  python3 jobs.py <report id>                     the plays of one match
         python3 jobs.py bench <file from moments.py all>     rebuild data/benchmarks/flag_arrival.json
 In code: plays(M, recs) -> list of plays; allocation(recs, plays) adds each moment's plays to it."""
 import collections, json, os, statistics, sys
-from common import (MERGE_S, FIGHT_ACT, FLAG_TAKEN_OUT_S, REPO, READ_TO, SPLIT_STEP, SPLIT_GAP_S, FIGHT_LINK, JOIN_S, JOIN_LOOK_S, NPC_NEAR, can_kill, SOH_REMOVED, RUN_SPEED, GROUND_JUMP, RES_EVERY, BOOST_EVERY, BOOST_WARN_S, BOOST_LATE_S, LEAD_HALF, LEAD_ONE, CARRY_SPEED, PIT_R,
+from common import (MERGE_S, FIGHT_ACT, FIGHT_CLOSE, FIGHT_HOLD_S, HOLD_S, HANDOFF_GAP_S, FLAG_TAKEN_OUT_S, REPO, READ_TO, SPLIT_STEP, SPLIT_GAP_S, FIGHT_LINK, JOIN_S, JOIN_LOOK_S, NPC_NEAR, can_kill, SOH_REMOVED, RUN_SPEED, GROUND_JUMP, RES_EVERY, BOOST_EVERY, BOOST_WARN_S, BOOST_LATE_S, LEAD_HALF, LEAD_ONE, CARRY_SPEED, PIT_R,
                     FLAG_GAIN, PART_RUN_GAIN, LATE_FLAG, ANSWER_CAP_S, COLLAPSE_VISIT_S, PINNED_S, LORD_PUSH_FROM, LORD_BASE_R, AFTER_WIPE_MIN_S, NUMBERS_TAIL_S, FLAG_JOB_MAX_S)
 from state import d
 
@@ -108,24 +108,34 @@ def _flag_rows(M):
         went_at = r2 and next((v for v in (r2["set_off"], r2["waited"], r2["pickup"]) if v is not None), None)
         # ... a second player who goes back to run the next flag (his account of hdm v hook 5:52 to 7:24: hook's Mesmer "already on the way"); a player who is home because he came back from a split is not one (R-472)
         if r2 is not None and not any(x["tm"] == f["tm"] and a_ == r2["a"] and qm["from"] <= went_at and qm["to"] >= went_at - SPLIT_GAP_S for x in splits for a_, qm in zip(x["ids"], x["members"])):
-            second.add((f["tm"], int(f["start"]))); second.add((f["tm"], int(r2["pickup"])))
+            if went_at <= int(f["start"]) + SPLIT_STEP: second.add((f["tm"], int(f["start"])))      # the second player was back before the first flag was picked up (left at the spawn at the opening): a double run from its start
+            second.add((f["tm"], int(r2["pickup"])))                     # ... and it is a double run only from then (R-484; his mark, RJT v RACK 1:41: "derv single runs twice"): the first run of the pair is a single run when the other team decides against it
     for f in M.flags_record():
         r = next((rs[k] for k in ((f["tm"], int(f["start"]) + dt) for dt in (0, -1, 1)) if k in rs), None)
-        s0, runner = int(f["start"]), f["runner"]
-        if r is not None:
-            went = r["set_off"] is not None and not pin(f["tm"], r["set_off"]) and not pin(f["tm"], r["pickup"])      # he walked back for it, his team not held in its base (a player falling back into his base with his team did not go to run)
-            if went: s0 = min(int(r["moment"]), s0)                       # when he goes to run, by the hall (R-461)
-            elif r["under_way"] is not None and r["under_way"] - r["pickup"] > FLAG_TAKEN_OUT_S:
-                s0, runner = int(r["under_way"]), m.roles[r["runner"]]    # picked up at home and kept there: the run starts when its runner takes it out
-        if r is not None and f["how"] != "captured" and not M.travelled(f["tm"], r["carries"]): continue      # picked up and put down at home: not a run
-        e, other = int(f["end"]), False
-        if r is not None and f["how"] != "captured" and r["carries"] and r["carries"][-1][2] is not None and r["carries"][-1][2] < e:
-            e = int(r["carries"][-1][2])                                  # put down for good: the run ends there, not when the flag goes back to the spawn
-            p = M.P[r["carries"][-1][0]][min(e, M.T)]
-            other = bool(p) and any(d(p, o) < 400 for o in others)        # at the hall's other flag stand (his answer on TFS v 옷옷옷옷 2:54: the Obelisk flag stand)
+        s0, runner, pick, ids, carries = int(f["start"]), f["runner"], int(f["start"]), f["ids"], (r["carries"] if r is not None else [])
         soh = M.day < SOH_REMOVED and any(m.sk(b) == "Shadow of Haste" for a in f["ids"] for b in m.A[a].get("bar", []) if b)      # R-456: only while the mechanic was in the game
         dbl = any((f["tm"], int(f["start"]) + dt) in second for dt in (0, -1, 1))
-        out.append(dict(f, runner=runner, s0=min(s0, e), pick=int(f["start"]), e=e, other_stand=other, double=dbl, soh=soh))
+        if r is not None:
+            went = r["set_off"] is not None and not pin(f["tm"], r["set_off"]) and not pin(f["tm"], r["pickup"])      # he walked back for it, his team not held in its base (a player falling back into his base with his team did not go to run)
+            if r["chain"] is not None and r["under_way"] is not None:
+                # the flag lay on the ground and was taken up again: two runs. The first, to where it was put down, is a run if its runner went back for it (cope v Team
+                # 2:43, his mark: "derv 1 going back for next flag"; a flag picked up at home and put down again is none: TFS v 옷옷옷옷 1:20 and 11:01); the second starts
+                # where it was taken up, with that player (RJT v RACK 4:37)
+                first = [c for c in r["carries"] if c[2] is not None and c[2] <= r["first_end"]]
+                if went and M.travelled(f["tm"], first):
+                    out.append(dict(f, runner=runner, s0=min(int(r["moment"]), s0, int(r["first_end"])), pick=pick, e=int(r["first_end"]), how="put down", form=None, ids=r["first_ids"], held_s=0, other_stand=False, double=dbl, soh=soh))
+                s0, runner, pick, ids, dbl = int(r["under_way"]), m.roles[r["out_by"]], int(r["chain"]), r["chain_ids"], False
+                carries = [c for c in r["carries"] if c[1] >= r["chain"] - 1]
+            elif went: s0 = min(int(r["moment"]), s0)                     # when he goes to run, by the hall (R-461)
+            elif r["under_way"] is not None and r["under_way"] - r["pickup"] > FLAG_TAKEN_OUT_S:
+                s0, runner = int(r["under_way"]), m.roles[r["out_by"]]    # picked up at home and kept there: the run starts when it is taken out, by whoever carries it then
+        if r is not None and f["how"] != "captured" and not M.travelled(f["tm"], carries): continue      # picked up and put down at home: not a run
+        e, other = int(f["end"]), False
+        if r is not None and f["how"] != "captured" and carries and carries[-1][2] is not None and carries[-1][2] < e:
+            e = int(carries[-1][2])                                       # put down for good: the run ends there, not when the flag goes back to the spawn
+            p = M.P[carries[-1][0]][min(e, M.T)]
+            other = bool(p) and any(d(p, o) < 400 for o in others)        # at the hall's other flag stand (his answer on TFS v 옷옷옷옷 2:54: the Obelisk flag stand)
+        out.append(dict(f, runner=runner, s0=min(s0, e), pick=pick, e=e, ids=ids, other_stand=other, double=dbl, soh=soh))
     M._frows = out
     return out
 
@@ -142,13 +152,28 @@ def flag_plays(M, K, pinned_at):
         w0, w1 = f["s0"], min(f["e"], T)
         if w1 - w0 < 10 or pinned_at(A, w0): continue
         mine = [g for g in FR if g["tm"] == A]
-        inhand = next((g for g in mine if g["pick"] < w0 - 15 and g["e"] > w0 + 5), None)
-        new = next((g for g in mine if w0 - 15 <= g["s0"] <= w1), None)
-        if inhand:                                                        # in hand means close to the flag stand (his mark, TFS v 옷옷옷옷 1:40). A flag on its way that goes on to be capped is our run, begun first; one that never gets in (carried off on a split, dropped) is no answer, and the run set off for in the window is
-            c = next((a for a in inhand["ids"] if M.carrying(a, w0) and M.AL[a][w0]), None)
+        earlier = next((g for g in mine if g["s0"] < w0 - 2 and g["e"] > w0 + 5), None)      # our flag already under way when theirs sets off
+        new = next((g for g in mine if w0 - 2 <= g["s0"] <= w1), None)                        # a run of ours set off for while theirs is out
+        inhand = None
+        if earlier:
+            # in hand means close to the flag stand (his mark, TFS v 옷옷옷옷 1:40), and waiting there. A team that holds the stand cannot cap its flag until the other team
+            # caps (R-483), so its flag at the stand is in hand; a team that does not hold the stand can cap on arrival, so its flag is in hand only if it is still uncapped
+            # when theirs gets in, or the flag record reads it as held at the stand (R-400, R-407), or it is capped just before their boost (his mark, RJT v RACK 4:37).
+            # A runner walking through the stand area to cap is a run begun first (his mark, RJT v RACK 6:32: "this is backwards; RJT is running, RACK responds")
+            c = next((a for a in earlier["ids"] if M.carrying(a, w0) and M.AL[a][w0]), None)
             held = c is not None and M.place_at(c, w0)[0] in ("stand", "greater stand")
-            if not held: new, inhand = (inhand if inhand["how"] == "captured" or new is None else new), None
-        if new is not None and not inhand and new["s0"] < w0 - 2: continue      # we set off first: their run is the answer to ours and is told from their side (his mark, hdm v hook 7:07: "it's hdm's decision, hook starts running first")
+            to_boost = earlier["how"] == "captured" and earlier.get("cap_boost_in") is not None and earlier["cap_boost_in"] <= BOOST_LATE_S      # kept until just before their boost
+            held = held and (M.st.stand_owner(w0)[0] == A or earlier["how"] != "captured" or earlier["e"] >= w1 or (earlier.get("held_s") or 0) >= HOLD_S or to_boost)
+            if held: inhand = earlier
+            elif earlier["how"] == "captured" or new is None:
+                # we set off first: their run is the answer to ours and is told from their side (his mark, hdm v hook 7:07: "it's hdm's decision, hook starts running first").
+                # Once ours is in, with theirs still on its way, we answer theirs in turn: we run again before it gets in, or we stay (his mark, RJT v RACK 6:32:
+                # "RJT does not run again and does not answer run"); that decision is ours from our cap. A flag of ours still out when theirs gets in left us none
+                if not (earlier["how"] == "captured" and earlier["e"] < w1): continue
+                new = next((g for g in mine if g is not earlier and earlier["e"] - 2 <= g["s0"] <= w1), None)
+                w0 = max(w0, earlier["e"])
+                if w1 - w0 < 10: continue
+            # else ours never gets in (carried off on a split, put down) and we set off again while theirs is out: that run is our answer
         theirs = "double run" if f["double"] else "single run"
         ours = "a flag already in hand" if inhand else "stay" if not new else "double run" if new["double"] else "single run"
         g = inhand or new
@@ -270,7 +295,13 @@ def split_plays(M, K):
         own_d = st.side.get(foe)
         frm = {a: int(q["from"]) for a, q in zip(x["ids"], x["members"])}
         to = {a: int(q["to"]) for a, q in zip(x["ids"], x["members"])}
-        deep = lambda a, u: M.AL[a][u] and M._deep(a, u - u % S_) is not None
+        on_ground = lambda a, u: M.AL[a][u] and M._deep(a, u - u % S_) is not None
+        held = lambda a, u: any(on_ground(a, v) for v in range(max(u - FIGHT_HOLD_S, 0), min(u + FIGHT_HOLD_S, T) + 1, S_))      # on the enemy's ground a few seconds either side
+        # on the split: on the enemy's ground, or standing with a player of the split who is, or was a few seconds either side: its back line (a monk or a mesmer a
+        # little behind the players he came with; his marks, RJT v RACK 3:10 and 8:00), and a split that steps back off the ground together for a moment. A player on
+        # his own gets no such hold (Men v Apes 2:30: a Mesmer crossing the field alone is not on the split, and the Prot who follows him is not defending it).
+        # The 12 s of R-350 below still decides who is a player more and who was brief support (RJT v RACK 5:30: "really a 3v3")
+        deep = lambda a, u: bool(M.AL[a][u] and M.P[a][u]) and (on_ground(a, u) or any(b != a and M.AL[b][u] and held(b, u) and d(M.P[a][u], M.P[b][u]) < FIGHT_CLOSE for b in x["ids"]))
         # a chase is not a split: players following an enemy split out of their own base, who never reach a door (Denning, NwAy v hook 3:04: the split is hook's, chased out, and its Air Ele dies at 3:48)
         # (it sets off while that split is still out and takes no NPC: hdm v 옷옷옷옷 3:46 is a split of its own, after theirs had gone home, and takes an archer; review key s1-26)
         chased = next((y for y in A if y["tm"] == foe and y["t_in"] <= x["t_in"] <= y["t1"] + 4 and x["where"] == "field" and not x["npcs"]
@@ -481,6 +512,12 @@ def numbers_plays(M, K, trig, recs, pinned_at):
             x["merged"] = "the flag decision"                             # R-431: the consequence of the flag decision, not a second one
             continue
         if pinned_at(tm, t): continue
+        # a fight is told once: where the players of one side in this fight are a split, from its first reading to its last, it is that split's fight and is told there,
+        # with its numbers along the way (his mark, RJT v RACK 11:08: "sort of true, but you called this fight and period a split already")
+        on_split = lambda u: any(ids and sum(1 for a in ids if a in M._over(k, u - u % SPLIT_STEP)[0]) * 2 >= len(ids) for k, ids in e["ids"].items())
+        if on_split(int(e["start"])) and on_split(int(e["last"])):
+            x["merged"] = "the split"
+            continue
         end = min(e["last"] + NUMBERS_TAIL_S, T)
         inf = set(e["all"])                                               # the players of this fight: a death is its result only if it is one of theirs. The deaths that made the numbers are its cause
         dA, dB = (lambda b: K.died(tm, t, b, inf)), (lambda b: K.died(foe, t, b, inf))      # (his marks, hook v hold 14:56: "if it is 5 v 7 because 2 players died, the 5 v 7 didn't cause the 2 players to die"; hdm v hook 7:52 for a split)

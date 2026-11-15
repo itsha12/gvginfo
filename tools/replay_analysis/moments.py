@@ -43,7 +43,7 @@ Usage:  python3 moments.py <report id> [family]      the match's moments in orde
         python3 jobs.py summary <out.json>            the plays and how often each job was met (jobs.py)
 In code: Moments(st, sb).records() -> list of dicts."""
 import collections, json, math, statistics, sys
-from common import (FOUGHT, DOUBLE_NEXT_S, FLAG_MOMENT_GREATER, FLAG_MOMENT_STAND, FIGHT_HOLD, FIGHT_HOLD_S, FIGHT_ACT, FIGHT_CLOSE, READ_FROM, READ_TO, CONSEQ_S, ON_TIME_S, LATE_S, PIT_S, AREA_SHARE, PURPOSE_S, LEAVE_MIN_S, HOME_WAIT_S, SPAWN_R, GROUP_LEAVE_S, MEET_R,
+from common import (FOUGHT, DOUBLE_NEXT_S, FLAG_MOMENT_GREATER, FLAG_MOMENT_STAND, HANDOFF_GAP_S, FIGHT_HOLD, FIGHT_HOLD_S, FIGHT_ACT, FIGHT_CLOSE, READ_FROM, READ_TO, CONSEQ_S, ON_TIME_S, LATE_S, PIT_S, AREA_SHARE, PURPOSE_S, LEAVE_MIN_S, HOME_WAIT_S, SPAWN_R, GROUP_LEAVE_S, MEET_R,
                     NUMBERS_MIN_S, MERGE_S, BOOST_WARN_S, FLAGGER_R, SPLIT_FAR, BOOST_EVERY, SERIOUS_CARRY_S, FIGHT_LINK, GROUND_MOVE, GROUND_S, GROUND_BACK, GROUND_JUMP, GROUND_SPLIT_MOVE, SIDE_FIGHT_MAX, SIDE_FIGHT_S, UNDEFENDED_S,
                     RETURN_R, FOOT_ENGAGED_S, SPLIT_STEP, SPLIT_MIN_S, SPLIT_GAP_S, FORCED_OUT_S, AHEAD_LOOK_S, CAUGHT_S, NPC_NEAR,
                     JOIN_S, RES_EVERY, flux_at, JOIN_LOOK_S, JOIN_MOVE, JOIN_LEAD, JOIN_ENGAGE, JOIN_ENGAGE_S, MAIN_BIG, SWAP_S, SWAP_STAY_S, SPLIT_FIGHT_GAP_S, SPLIT_FIGHT_MIN,
@@ -581,7 +581,7 @@ class Moments:
                     fr = [g for g in cand if vote(g) > 0]
                     if len(fr) == 1 and len(cand) > 1 and all(vote(g) < 0 for g in cand if g is not fr[0]): prev = frozenset(fr[0])
                     big = [g for g in cand if len(g) >= MAIN_BIG and all(len(g) >= len(h) + 2 for h in gs if h is not g) and vote(g) >= 0]
-                    if big: prev = frozenset(big[0])          # an uneven divide: the part of five or more, two bigger than any other and not round the back, is the main team (R-421: NwAy v SKT 14:50, SKT's five pushing NwAy's front door; R-335 and R-355 keep the even 4 v 4)
+                    if big: prev = frozenset(big[0])          # an uneven divide: the part of five or more, two bigger than any other and not round the back, is the main team (R-421: NwAy v SKT 14:50, SKT's five pushing NwAy's front door; his marks on Men v Apes 3:10 to 7:00; R-335 and R-355 keep the even 4 v 4)
                 out[u] = prev
             self._mt[tm] = out; self._lost[tm] = lost
         return self._mt[tm][t - t % SPLIT_STEP]
@@ -599,11 +599,18 @@ class Moments:
         if k not in self._ov:
             live = [a for a in self.st.players[tm] if self.AL[a][t]]
             deep = [a for a in live if self._deep(a, t)]
-            rest = [a for a in live if a not in deep]
-            deep = [a for a in deep if not any(d(self.P[a][t], self.P[b][t]) < FIGHT_LINK for b in rest)]
             main = self.main_team(tm, t)
-            mc = self.centre([a for a in main if a in rest], t)   # out in the field counts only well away from the main team
+            # a player on the enemy's ground who stands with main team players who are not there is with them, not there. The split's own back line does not
+            # take him off it: a monk or a mesmer of the split standing just short of the enemy's ground, behind the players he came with (his marks, RJT v RACK
+            # 3:10, 5:00, 8:00: "a 3 person split", "RACK has 4 on split (ranger, warrior, 2 monks)"), is on the split with them
+            home = [a for a in live if a not in deep and (a in main or not main)]
+            deep = [a for a in deep if not any(d(self.P[a][t], self.P[b][t]) < FIGHT_LINK for b in home)]
+            mc = self.centre([a for a in main if a in live and a not in deep], t)   # out in the field counts only well away from the main team
             deep = [a for a in deep if a in main or self._deep(a, t) != "field" or mc is None or d(self.P[a][t], mc) >= MEET_R]
+            off = [a for a in deep if a not in main]
+            back = [a for a in live if a not in deep and a not in main and main and any(d(self.P[a][t], self.P[b][t]) < FIGHT_CLOSE for b in off)
+                    and not any(d(self.P[a][t], self.P[b][t]) < FIGHT_LINK for b in home)]
+            deep = deep + back
             push = [a for a in deep if a in main]
             if len(live) + self.main_lost(tm, t) - len(deep) < 3 and len(deep) > len(push): push = deep       # nobody left to be a main team (a main team that is dead still counts, R-392: its split stays a split)
             split = [a for a in deep if a not in push]
@@ -1892,13 +1899,27 @@ class Moments:
             u = tp
             while u >= 2 and dist(u - 2) is not None and dist(u - 2) < SPAWN_R: u -= 2
             waited = u
-            while u >= 4 and dist(u - 4) is not None and dist(u) is not None and dist(u - 4) > dist(u) + 40: u -= 2
+            # he walks back for it: nearer the spawn than 4 s before, reading by reading. A reading at which he was nearer 4 s before is the measure jumping (the walked
+            # distance at a ledge or a corner of the base), not the player: it is passed over while the walk holds just before it (RJT v RACK 1:20: RACK's Mes/A walks back
+            # from the stand for 30 s, with two such readings at 1:44, and was read as not having set off at all). A pause is no jump: a player who stood, or fell back
+            # with his team, before he went has not set off yet
+            nearer = lambda v: v >= 4 and dist(v - 4) is not None and dist(v) is not None and dist(v - 4) > dist(v) + 40
+            jump = lambda v: v >= 8 and dist(v - 4) is not None and dist(v) is not None and dist(v - 4) + 40 < dist(v) and (nearer(v - 2) or nearer(v - 4))
+            while nearer(u) or jump(u): u -= 2
             runner = L["capper"] if L.get("capper") in L["serious"] else L["serious"][-1]     # who ran it in: the capper, else the last serious carrier (a brief pickup handed on is not a runner: golden hdm v One 17:24)
-            own, out_t = self.st.side.get(tm), None          # when the flag is under way: the runner first stands off his own base with it (Denning's golden game 1: "hook's 8 Monk leaves the base at 7:05")
-            for c2 in [c2 for c2 in L["carries"] if c2[0] == runner]:
+            # when the flag is under way: it first stands off its own base and pit in the carry that takes it in, counting the carries before that one from which it was
+            # handed on (put down and taken up by a team mate within HANDOFF_GAP_S). Read from the flag, not from who capped it: a flag carried out at once and handed on
+            # before its cap was under way from the start (his marks, RJT v RACK 2:23 and 10:10); a flag that lay on the ground and was taken up later is under way from
+            # then, with that player (Denning's golden game 1: "hook's 8 Monk leaves the base at 7:05"; TFS v 옷옷옷옷 1:20 and 11:01)
+            own, out_t, out_by = self.st.side.get(tm), None, None
+            ser = [c2 for c2 in L["carries"] if c2[0] in L["serious"]]
+            i0 = len(ser) - 1
+            while i0 > 0 and ser[i0 - 1][2] is not None and (ser[i0][1] - ser[i0 - 1][2] <= HANDOFF_GAP_S or ser[i0 - 1][2] < 0): i0 -= 1      # (what was put down before the gates opened was not put down in the match)
+            for c2 in ser[max(i0, 0):]:
                 for v in range(max(int(c2[1]), 0), min(int(c2[2] if c2[2] is not None else self.T), self.T) + 1, 2):
+                    if not (self.AL[c2[0]][v] and self.P[c2[0]][v]): continue
                     k_, s_ = self.place_at(c2[0], v)
-                    if not (s_ == own and k_ in ("pit", "base")): out_t = v; break           # out of his base and pit: on his way out by a door
+                    if not (s_ == own and k_ in ("pit", "base")): out_t, out_by = v, c2[0]; break           # out of its base and pit: on its way out by a door
                 if out_t is not None: break
             pre = c[1] < 2                                   # before the gates nobody set off or waited
             set_off = u if not pre and dist(u) is not None and dist(u) - SPAWN_R > 1500 else None
@@ -1912,7 +1933,9 @@ class Moments:
                     moment = next((v for v in range(set_off, tp + 1, 2) if self.place_at(a, v)[0] not in inside), tp)
                     rule = "leaves the greater stand area" if len(inside) == 2 else "leaves the stand area"
             out.append({"a": a, "runner": runner, "serious": list(L["serious"]), "carries": [tuple(c2[:3]) for c2 in L["carries"]], "tm": tm, "pickup": tp, "set_off": set_off, "moment": moment, "moment_rule": rule,
-                        "waited": waited if not pre and tp - waited >= 10 else None, "under_way": out_t})
+                        "waited": waited if not pre and tp - waited >= 10 else None, "under_way": out_t, "out_by": out_by,
+                        "chain": min(max(int(ser[i0][1]), 0), self.T) if ser and i0 > 0 and ser[i0 - 1][2] is not None else None, "first_end": ser[i0 - 1][2] if ser and i0 > 0 else None,      # the flag lay on the ground and was taken up again: when, and until when it had been carried before
+                        "first_ids": [c2[0] for c2 in ser[:max(i0, 0)]], "chain_ids": [c2[0] for c2 in ser[max(i0, 0):]]})
         self._rs = out
         return out
 

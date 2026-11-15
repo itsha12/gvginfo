@@ -255,6 +255,7 @@ FIGHT_ACT = 2600                # players of the two teams this close, one hitti
 FIGHT_CLOSE = 1000              # a player has joined a fight once he stands this close to someone in it (an aggro bubble) or acts in it, and has left once he no longer does (R-464: joining and leaving are read from movement, not reach)
 FOUGHT = 0.7                    # a numbers difference is a moment only where that fight is being fought: its players start more than this many casts or attacks each in 10 s (players running past one another through mid start about 0.25, a fight 1 to 3.5; casts, not hits: some replays record little damage; Claude's draft, from his marks on hdm v hook 6:10)
 SERIOUS_CARRY_S = 5              # a pickup dropped sooner than this, without capping, is not an attempt to run (Denning: "like 3 s")
+HANDOFF_GAP_S = 3                # a flag is handed on when a team mate takes it up within this long of its being put down; longer, it lay on the ground (the story's own line between "hands the flag to" and "drops the flag"; Claude's draft)
 FLAGGER_R = 2500                # the main group is on the enemy flagger when its middle is this close to that player
 
 HOLD_MIN_S = 10          # a carry this long that closed under HOLD_PROGRESS of the way to the stand is a hold

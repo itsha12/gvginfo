@@ -1569,6 +1569,30 @@
     {
      "has": {
       "play": "flag",
+      "team": "TFS",
+      "start": [
+       108,
+       140
+      ],
+      "end": [
+       168,
+       182
+      ]
+     },
+     "want": {},
+     "was": "TFS v 옷옷옷옷: the single run from 2:09 ends at 2:54 with the cap at the Obelisk flag stand, where the engine ran it to 5:09. From 2026-11-15 the exchange is told from TFS's side (옷옷옷옷's 8 Monk set off first, at 1:40; TFS's Ritualist is the answer, from TFS's cap at 1:54): put to him"
+    }
+   ],
+   "answered": {
+    "on": "2026-11-13",
+    "asked": "\"The single run ends when they cap the fire ball thing\": what is capped at 2:54?",
+    "said": "It's the Obelisk Flag Stand.",
+    "reading": "A flag put down at the hall's other flag stand is a cap of it, and the run ends there."
+   },
+   "retired_checks": [
+    {
+     "has": {
+      "play": "flag",
       "team": "옷옷옷옷",
       "start": [
        120,
@@ -1582,13 +1606,7 @@
      "want": {},
      "was": "TFS v 옷옷옷옷: the single run from 2:09 ends at 2:54 with the cap, where the engine ran it to 5:09"
     }
-   ],
-   "answered": {
-    "on": "2026-11-13",
-    "asked": "\"The single run ends when they cap the fire ball thing\": what is capped at 2:54?",
-    "said": "It's the Obelisk Flag Stand.",
-    "reading": "A flag put down at the hall's other flag stand is a cap of it, and the run ends there."
-   }
+   ]
   },
   {
    "id": "w1p1-bdaa-10",
@@ -2515,8 +2533,7 @@
        "ours": "a flag already in hand"
       }
      },
-     "open": true,
-     "why": "TFS v 옷옷옷옷 10:13: again no flag in hand"
+     "was": "TFS v 옷옷옷옷 10:13: again no flag in hand; held from 2026-11-15"
     }
    ]
   },
@@ -5475,8 +5492,7 @@
        532
       ]
      },
-     "why": "hdm v hook 8:46: the runner never leaves the fight and never runs; the flag is dropped and returned",
-     "open": true
+     "was": "hdm v hook 8:46: the runner never leaves the fight and never runs; the flag is dropped and returned; held from 2026-11-15"
     }
    ]
   },
@@ -7001,8 +7017,7 @@
      "want": {
       "scenario~": "two players"
      },
-     "why": "hook v hold 8:30: two on the split (Necromancer, Warrior) against two (Prot, hold's 8), then a collapse by the Air Ele and a join by hook's 8 make it 3 v 3; the engine read one against three",
-     "open": true
+     "was": "hook v hold 8:30: two on the split (Necromancer, Warrior) against two (Prot, hold's 8), then a collapse by the Air Ele and a join by hook's 8 make it 3 v 3; the engine read one against three; held from 2026-11-15"
     }
    ]
   },
@@ -8927,11 +8942,32 @@
        "scenario~": "They double run"
       }
      },
-     "why": "RJT v RACK 1:41: RJT's Dervish single runs twice (0:20 to 1:20, then 1:21 to 2:30); the engine read the second run as a double run, the Mes/A having gone back 3 s before its cap",
-     "open": true
+     "was": "RJT v RACK 1:41: RJT's Dervish single runs twice (0:20 to 1:20, then 1:21 to 2:30); the engine read the second run as a double run, the Mes/A having gone back 3 s before its cap; held from 2026-11-15"
+    },
+    {
+     "has": {
+      "play": "flag",
+      "team": "RJT",
+      "start": [
+       80,
+       107
+      ]
+     },
+     "want": {
+      "their": "single run",
+      "ours": "single run",
+      "scenario~": "RACK's Mes/A"
+     },
+     "was": "RJT v RACK 1:41: RACK's Mes/A goes back for the flag and RJT's Dervish matches with a single run: RJT's decision, one exchange; held from 2026-11-15"
     }
    ],
-   "note": "His words also say the flag is returned at 0:18, 'important (but I think probably just important for micro)'. The replay agrees with him: RACK's AoB Derv stands 200 units from RJT's dropped flag at 0:18 and RJT's Dervish turns for home at 0:20; the engine's flag record puts the return at 0:34, by RACK's Prot. No play carries the return, so no check holds it yet."
+   "note": "His words also say the flag is returned at 0:18, 'important (but I think probably just important for micro)'. The replay agrees with him: RACK's AoB Derv stands 200 units from RJT's dropped flag at 0:18 and RJT's Dervish turns for home at 0:20; the engine's flag record puts the return at 0:34, by RACK's Prot. No play carries the return, so no check holds it yet.",
+   "answered": {
+    "on": "2026-11-15",
+    "asked": "Row 6 (1:41): is the Dervish's run a single run because a double starts only when the second player goes back (2:27, row 9), or because 3 s before the cap is too late to be a second runner at all?",
+    "said": "Yes, exactly. The second player doesn't start going back until well after he caps.",
+    "reading": "A double run is told from when its second player goes back; the first run of the pair is a single run when the other team decides against it (R-485)."
+   }
   },
   {
    "id": "w2-eea5-7",
@@ -8995,10 +9031,31 @@
        "scenario~": "RACK's Stand Mes"
       }
      },
-     "why": "RJT v RACK 2:23: marked wrong without words. Claude's reading, put to him: RACK's flag is run by its Mes/A from 1:50 and walked up inside the team; the Stand Mes only takes it at the stand at 2:23 and caps at 2:56, so no run starts at 2:23 and the Stand Mes is not its runner; this is the flag exchange of row 6 told a second time",
-     "open": true
+     "was": "RJT v RACK 2:23: no run starts here: RACK's Mes/A ran this flag from 1:50 and handed it to the Stand Mes at the stand (his answer); held from 2026-11-15"
+    },
+    {
+     "has": {
+      "play": "flag",
+      "team": "RJT",
+      "start": [
+       80,
+       107
+      ]
+     },
+     "want": {
+      "their": "single run",
+      "ours": "single run",
+      "scenario~": "RACK's Mes/A"
+     },
+     "was": "RJT v RACK 1:41: RACK's Mes/A goes back for the flag and RJT's Dervish matches with a single run: RJT's decision, one exchange; held from 2026-11-15"
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-15",
+    "asked": "Row 8 (2:23), marked wrong without words: is it that no run starts there (the Mes/A ran it from 1:50)?",
+    "said": "Yes, exactly. The run starts around 1:41 when mes/a goes back for flag and derv matches with a single run. Mes/a picks up flag at 1:50, and then hands off to stand mes who holds for a bit and is not in position to overcap. I don't know if I've already told you this but it's very important, you cannot cap a flag when your flag is already capped. You have to wait for the other team to cap. So even if RACK got the flag there before the derv, they cannot cap. The reason teams hold like that sometimes is because they have to wait for the other team to cap. RACK was essentially 1.5 flags ahead in this circumstance.",
+    "reading": "One flag exchange, RJT's decision: RACK's Mes/A goes back first (he leaves the stand about 1:20 and the greater stand area about 1:28), RJT's Dervish matches with a single run. The cap rule is R-482."
+   }
   },
   {
    "id": "w2-eea5-9",
@@ -9123,10 +9180,15 @@
        "7 Monk"
       ]
      },
-     "why": "RJT v RACK 3:10: a three person split (Ranger, Stand Mes, 7 Monk); the engine read two, the 7 Monk standing a few hundred units behind them in the greater stand area",
-     "open": true
+     "was": "RJT v RACK 3:10: a three person split (Ranger, Stand Mes, 7 Monk); the engine read two, the 7 Monk standing a few hundred units behind them in the greater stand area; held from 2026-11-15"
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-15",
+    "asked": "The main team when a team is in two groups of 4 and 4 or 5 and 3 away from the stand: always the flag group (R-335 at any size)? Then each front-door fight is told once, as a split with its defenders.",
+    "said": "Agreed.",
+    "reading": "R-483. Built for the even divide (as before) and for telling a split's fight once; the uneven divide stays with R-421, because his marks on Men v Apes 3:10 to 7:00 make the five on the enemy's ground the main team: put to him."
+   }
   },
   {
    "id": "w2-eea5-13",
@@ -9155,7 +9217,14 @@
      "mark": "not judged"
     }
    ],
-   "checks": [
+   "checks": [],
+   "answered": {
+    "on": "2026-11-15",
+    "asked": "Row 13 (3:24), 'a 3 person split (with 7 monk and mesmer)': RJT's three at RACK's door, or RACK's players?",
+    "said": "I meant RJT.",
+    "reading": "His words describe RJT's split of row 12 (Ranger, Stand Mes, 7 Monk), not this row. This row itself (RACK's Ranger going alone into RJT's pit from RACK's five at RJT's front door) is not judged; its check is retired."
+   },
+   "retired_checks": [
     {
      "none": {
       "play": "split",
@@ -9243,10 +9312,28 @@
        "size": 1
       }
      },
-     "why": "RJT v RACK 4:06: 'this is now the mainteam fight I think': the teams are back together (8 v 8 at 4:24), not a split of one against four. His 'look at 4v3 for RACK at 5:30' is put to him: row 22, which he marked right, reads 3 v 3 from 5:28",
-     "open": true
+     "was": "RJT v RACK 4:06: 'this is now the mainteam fight I think': the teams are back together (8 v 8 at 4:24), not a split of one against four. His 'look at 4v3 for RACK at 5:30' is put to him: row 22, which he marked right, reads 3 v 3 from 5:28; held from 2026-11-15"
+    },
+    {
+     "none": {
+      "play": "split",
+      "side": "attacker",
+      "team": "RACK",
+      "at": [
+       258,
+       270
+      ]
+     },
+     "open": true,
+     "why": "RJT v RACK 4:06: 'this is now the mainteam fight I think'. Claude's reading: from about 4:18 to 4:36 the teams stand together (8 v 8 at 4:24), which the engine still tells inside RACK's split of 4:06 to 4:58"
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-15",
+    "asked": "Row 15, 'look at 4v3 for RACK at 5:30': should row 22 (5:28, marked right as 3 v 3) read 4 v 3 with the 7 Monk?",
+    "said": "Sorry, you're right. The 7 monk offered some brief support but it's really a 3v3.",
+    "reading": "Row 22 stands as 3 v 3: support under 12 s is not a player more (R-350, R-484)."
+   }
   },
   {
    "id": "w2-eea5-16",
@@ -9407,22 +9494,28 @@
    ],
    "checks": [
     {
-     "none": {
+     "has": {
       "play": "split",
       "side": "attacker",
       "team": "RJT",
-      "start": [
-       294,
-       306
-      ],
-      "want": {
-       "size": 1
-      }
+      "at": [
+       300,
+       336
+      ]
      },
-     "why": "RJT v RACK 5:00: 'see above': not a split of one. RJT's Ranger, Stand Mes and 7 Monk are at RACK's front door; the engine counted the Ranger only",
-     "open": true
+     "want": {
+      "size": 3,
+      "defenders": 3
+     },
+     "was": "RJT v RACK 5:00: 3 v 3 (RJT's Ranger, Stand Mes and 7 Monk at RACK's front door), where the engine read a split of one; held from 2026-11-15"
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-15",
+    "asked": "Row 21, 'see above': read as RJT's Ranger, Stand Mes and 7 Monk, not a split of one. Right?",
+    "said": "Yes, correct. It's 3v3 here.",
+    "reading": "Three against three."
+   }
   },
   {
    "id": "w2-eea5-22",
@@ -9450,7 +9543,24 @@
      "mark": "right"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "RACK",
+      "at": [
+       336,
+       360
+      ]
+     },
+     "want": {
+      "size": 3,
+      "defenders": 3
+     },
+     "was": "RJT v RACK 5:30: 'really a 3v3': RACK's 7 Monk gave brief support and is not a fourth on the split (his answer on row 15)"
+    }
+   ]
   },
   {
    "id": "w2-eea5-23",
@@ -9544,8 +9654,7 @@
      "want": {
       "size": 4
      },
-     "why": "RJT v RACK 6:10: RACK's 7 Monk is also on the split ('but it's close'); the engine read three",
-     "open": true
+     "was": "RJT v RACK 6:10: RACK's 7 Monk is also on the split ('but it's close'); the engine read three; held from 2026-11-15"
     }
    ]
   },
@@ -9678,8 +9787,7 @@
        "scenario~": "a flag already in hand"
       }
      },
-     "why": "RJT v RACK 6:32: backwards: RJT is running (set off 5:51, cap 6:49) and RACK responds; RJT's flag on its way to the cap is not a flag in hand",
-     "open": true
+     "was": "RJT v RACK 6:32: backwards: RJT is running (set off 5:51, cap 6:49) and RACK responds; RJT's flag on its way to the cap is not a flag in hand; held from 2026-11-15"
     },
     {
      "has": {
@@ -9693,8 +9801,7 @@
      "want": {
       "ours": "stay"
      },
-     "why": "RJT v RACK 6:32 to 7:48: RJT does not run again and does not answer RACK's run (cap 7:33; RJT's next runner sets off at 7:52)",
-     "open": true
+     "was": "RJT v RACK 6:32 to 7:48: RJT does not run again and does not answer RACK's run (cap 7:33; RJT's next runner sets off at 7:52); held from 2026-11-15"
     }
    ]
   },
@@ -9912,8 +10019,7 @@
        "size": 1
       }
      },
-     "why": "RJT v RACK 7:42: the Mesmer joins the split (RJT's AoB Derv and 7 Monk are at RACK's front door already); not a solo split",
-     "open": true
+     "was": "RJT v RACK 7:42: the Mesmer joins the split (RJT's AoB Derv and 7 Monk are at RACK's front door already); not a solo split; held from 2026-11-15"
     }
    ]
   },
@@ -10020,8 +10126,7 @@
       "size": 4,
       "defenders": 3
      },
-     "why": "RJT v RACK 8:00 to 8:17: RACK has four on the split (Ranger, Hammer, two monks) against three defending; the engine read three, the 7 Monk standing just inside the greater stand area",
-     "open": true
+     "was": "RJT v RACK 8:00 to 8:17: RACK has four on the split (Ranger, Hammer, two monks) against three defending; the engine read three, the 7 Monk standing just inside the greater stand area; held from 2026-11-15"
     }
    ]
   },
@@ -10053,7 +10158,12 @@
     }
    ],
    "checks": [],
-   "note": "His words on this row stop mid-sentence ('they are only down until'); he is asked for the rest. Marked right as it stands."
+   "answered": {
+    "on": "2026-11-15",
+    "asked": "Row 40 (9:02): his words stop at 'they are only down until'.",
+    "said": "Ignore sorry, I meant to clear that.",
+    "reading": "No note on this row."
+   }
   },
   {
    "id": "w2-eea5-41",
@@ -10164,8 +10274,7 @@
        "scenario~": "They single run (RACK"
       }
      },
-     "why": "RJT v RACK 10:10: RACK's decision, not RJT's: RJT single runs (pickup 9:52) and RACK responds with a single run. The engine started RJT's run at 10:18, when the Dervish took the flag from the Mes/A",
-     "open": true
+     "was": "RJT v RACK 10:10: RACK's decision, not RJT's: RJT single runs (pickup 9:52) and RACK responds with a single run. The engine started RJT's run at 10:18, when the Dervish took the flag from the Mes/A; held from 2026-11-15"
     },
     {
      "has": {
@@ -10180,8 +10289,7 @@
       "their": "single run",
       "ours": "single run"
      },
-     "why": "RJT v RACK 9:52 to 10:10: told from RACK's side: they (RJT) single run, RACK single runs in answer",
-     "open": true
+     "was": "RJT v RACK 9:52 to 10:10: told from RACK's side: they (RJT) single run, RACK single runs in answer; held from 2026-11-15"
     }
    ]
   },
@@ -10318,8 +10426,7 @@
        "scenario~": "RJT's front door"
       }
      },
-     "why": "RJT v RACK 11:08: 'sort of true, but you called this fight and period a split already' (row 47): one fight told twice, as RACK's split and as a numbers moment",
-     "open": true
+     "was": "RJT v RACK 11:08: 'sort of true, but you called this fight and period a split already' (row 47): one fight told twice, as RACK's split and as a numbers moment; held from 2026-11-15"
     }
    ]
   },
