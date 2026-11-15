@@ -13,30 +13,30 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 - Main's engine is unchanged (SPEC.md). Bundle 4 is on `bundle-4` and lands in one piece, then one rebuild (R-322).
   658 replays stored; 564 count (R-477); the trained batches still hold some. No Train batch, Discovery or fetch run
   in progress. Both branches committed; this session's commits are pushed only once he says so.
-- On `bundle-4`: `hallmap.py`, `moments.py` (records, decision moments, shape, consequences), `jobs.py` (the plays
-  and their jobs, R-423 to R-449), `story.py`, `tools/golden/golden.py`, `lineup.py`, `thresholds.py`, `review.py`.
-- Built at the root (R-465) from his answers (R-455 to R-480) and the six games marked before this one (detail:
-  CHANGELOG): damage against monks (`can_kill`); who is in which fight (`Moments.linked`, `engaged_in`, `visits`,
-  `with_rest`: one fight at a time); a split told once (R-469); a flag run judged to its cap (R-471); the double
-  run as a pair (R-472); pit archers by his hall labels; the boost's own clock; a numbers difference told once;
-  henchman games out (R-477; `integrity.py henchmen` after any fetch); a break-out only if nothing was lost first
-  (R-478); the opening flags as runs (R-479); a draft number moves only on a fresh game's evidence (R-480).
+- Built at the root (R-465) from his answers (R-455 to R-480) and the six games marked before this one: detail in
+  CHANGELOG; the files on `bundle-4` are listed in CLAUDE.md. `integrity.py henchmen` after any fetch (R-477).
 - Whole-game scores, situations right of those he judged (R-475), each a fresh game for the engine it was marked
   against: part 1 (TFS v 옷옷옷옷, Men v Apes) 45 of 85; hdm v hook 35 of 58 (60%); round 3 (set w2): hook v hold
-  24 of 41 (59%) and cope v Team 15 of 24 (62%) on b025445, RJT v RACK 33 of 45 (73%) on b09a26a. The mark is 80%
-  (R-473).
-- RJT v RACK on Nomad's (eea5ba87) is marked and filed: flag 6 of 10, split 12 of 19, numbers 4 of 5, the other
-  kinds all right; all 52 calls he judged under a right situation right. Under the mark: the hidden games stay
-  hidden. Nothing is built from it yet (his go-ahead first): 14 checks from his words, all open.
+  24 of 41 (59%), cope v Team 15 of 24 (62%), RJT v RACK 33 of 45 (73%, engine b09a26a). The mark is 80% (R-473).
+- RJT v RACK (eea5ba87) is filed: flag 6 of 10, split 12 of 19, numbers 4 of 5, the other kinds all right; all 52
+  calls judged under a right situation right. Nothing built from it yet (his go-ahead first): 14 checks, all open.
 - Now (development set, 44 matches): review key 120 rows pass; 56 checks open (w1p1 15, w1p2 10, w2 30, s1-15).
-  Open in w2 before this game: a split's start when it stands off first; defenders named or counted one out; a flag
-  held on purpose; "no real fight" moments. Gate: 12 of 12, 62 of 105. Line-up: 421 of 426 and 185 of 186; comms
-  108 of 157, 62 of 80. No run over every match, no `thresholds.py` (R-465).
+  Gate: 12 of 12, 62 of 105. Line-up: 421 of 426 and 185 of 186; comms 108 of 157, 62 of 80. No run over every
+  match, no `thresholds.py` (R-465).
 - `review.py numbers` (R-470): reach, hold time and the 12 s matter. `review.py compare`: only on one marked game.
 
+## Data looked at on 2026-11-14 (he paused the review to ask; nothing built; nothing from GW Observer in the repo)
+- gvg.report's replay payload, already downloaded, holds `report.objectives.object_transitions` (each appearance of a
+  flag object, with its position); `replay_trim.mjs` drops it. A flag appearing at its spawn with no cap just before
+  is a return: on RJT v RACK within 0.5 s of the game's four return messages, where the engine's inferred returns
+  were 16, 17, 3 and 69 s late. Proposal, not built: keep it in the trim (a new TRIM_VERSION fetches every stored
+  replay again, about 90 MB a match: the development set first), then read returns and dropped flags from it.
+- The Lord damage page (`summary.objectives.guild_lord_damage`) adds nothing stored casts and deaths do not give. GW
+  Observer's match cache is the same recording kept fuller (NPC positions and health, returns, gates); no probed
+  payload serves NPC tracks (`full` not probed). Its licence limits the code and the data: his call before any use.
+
 ## Next (in order; REDESIGN.md "Build plan from here", item 6, and "Tests")
-1. On his go-ahead, rebuild at the root from RJT v RACK (R-465), its 14 open checks as the test. Two faults sit
-   under 11 of its 12 rows not right:
+1. On his go-ahead, rebuild at the root from RJT v RACK (R-465), its 14 open checks the test. Two faults, 11 rows:
    - Who is on a split (rows 12, 13, 15, 21, 25, 36, 39; 48 is the same fight told twice). `split_plays` counts a
      split player only while he stands on the enemy's ground (`_deep`): a monk or mesmer a few hundred units behind,
      in the greater stand area, drops out. And `attempts()` hangs a split on the bigger group as the main team: with
