@@ -59,9 +59,8 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
    must last, and a proposal on his process question (borderline rows must not steer the engine): CHANGELOG.
 3. TFS v 옷옷옷옷 2:09: now told from TFS's side (옷옷옷옷's 8 Monk set off first, 1:40; TFS's Ritualist answers).
 4. RJT v RACK 4:06, "now the mainteam fight": the engine still tells RACK's split through the 8 v 8 of 4:18 to 4:36.
-5. (Also not ruled: numbers from kills, a split with no answer, "held by monks", the Lord push's aim.) Rows he
-   marked right on RJT v RACK that now read otherwise: 11 and 24 (the Ranger's solo trips, now inside the
-   three-person split), 26 and 30 (numbers, now inside the split), 4 (one defender in the headline), 47 (from 10:42).
+5. Rows he marked right on RJT v RACK that now read otherwise: 11, 24 (the Ranger's solo trips, inside the split),
+   26, 30 (numbers, inside the split), 4, 47. Drafts not ruled: numbers from kills, a split with no answer.
 
 ## Running it
 - Train batch: `gh api -X POST repos/itsha12/gvginfo/actions/workflows/train-batch.yml/dispatches -f ref=main
