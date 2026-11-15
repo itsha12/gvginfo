@@ -53,8 +53,10 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 
 ## Open for Denning (put to him 2026-11-15; set each out in the chat again, R-329, with replay links)
 1. HC v Team is his to mark (https://gvg.report/report/9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96#map).
-2. The main team in an uneven divide: his "agreed" to the flag group at any size (R-483) against his marks on Men v
-   Apes 3:10 to 7:00 and R-421 (five on the enemy's ground are the main team, the flag run from the smaller part).
+2. His answers of 2026-11-15 (R-486 to R-489, none built): the flag in hand is a timing choice; the main team is
+   usually the larger group, with push team and defence team at 4 and 4 on the flag paths; fluid numbers, players
+   in neither fight, "no clear decision" as an answer. Put to him: which group is the push team; how long a change
+   must last; and his process question (marked games as a test without overfitting): Claude's proposal is in the chat.
 3. TFS v 옷옷옷옷 2:09: now told from TFS's side (옷옷옷옷's 8 Monk set off first, 1:40; TFS's Ritualist answers).
 4. RJT v RACK 4:06, "now the mainteam fight": the engine still tells RACK's split through the 8 v 8 of 4:18 to 4:36.
 5. Rows he marked right on RJT v RACK that now read otherwise: 11 and 24 (the Ranger's solo trips, now inside the
