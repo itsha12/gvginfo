@@ -26,6 +26,8 @@ The wiki page is tagged as outdated — verify.
 - Life stealing and Health degeneration are not damage, so they add nothing.
 
 ## Flag stand and morale
+- A team cannot capture its flag while it already holds the stand; it has to wait for the other team to capture first
+  (Denning).
 - Holding the tower flag stand with your flag for 2 minutes: +10% morale boost for the team (max +10%), which cancels
   death penalty first. Each boost also adds 1% to your Guild Lord's max Health (1,680, up to 1,848; Denning). Carrying a flag slows you by 25%.
 - Morale boost raises base Health and energy (including Energy Storage energy), not armor or weapon bonuses. It

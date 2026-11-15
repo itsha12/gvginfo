@@ -331,6 +331,9 @@ against general principles rather than past games. Match-by-match evidence lives
   for the next flag. It is up on flags, and the 1Y it saves is essentially a 1-player power play.
 - `F2` **Denning:** Holding a flag near the stand while your team already holds it is a **backup flag**, and a big
   advantage: the enemy's capture is answered at once.
+- `F38` **Denning:** A team cannot cap its flag while its flag is already capped: it has to wait for the other team to
+  cap. That is why teams sometimes hold a flag at the stand. A team holding the stand with its next flag beside it is
+  about a flag and a half ahead; the holder still has to be in position to overcap. [RJT v RACK]
 - `F3` **Denning:** A defender who can carry its flag partway while holding off a solo pusher (losing nothing: no
   death, no NPCs) shortens its team's Y, while the pusher accomplishes nothing.
 - `F4` **Claude:** Flag position is measured on the next capture exchange: how long the team not holding the stand

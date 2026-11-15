@@ -9,57 +9,56 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it. Add your
 > answers to the open items, by their numbers, to the same message if you have them.)
 
-## State (2026-11-14, late: redesign step 2 on branch `bundle-4`, stage D under way; batch 17, 506 matches trained)
+## State (2026-11-15: redesign step 2 on branch `bundle-4`, stage D under way; batch 17, 506 matches trained)
 - Main's engine is unchanged (SPEC.md). Bundle 4 is on `bundle-4` and lands in one piece, then one rebuild (R-322).
   658 replays stored; 564 count (R-477); the trained batches still hold some. No Train batch, Discovery or fetch run
-  in progress. Both branches pushed; nothing uncommitted.
-- Built at the root (R-465) from his answers (R-455 to R-480) and the six games marked before this one: detail in
-  CHANGELOG; the files on `bundle-4` are listed in CLAUDE.md. `integrity.py henchmen` after any fetch (R-477).
+  in progress. Both branches pushed; nothing uncommitted. The files on `bundle-4` are listed in CLAUDE.md.
 - Whole-game scores, situations right of those he judged (R-475), each a fresh game for the engine it was marked
   against: part 1 (TFS v 옷옷옷옷, Men v Apes) 45 of 85; hdm v hook 35 of 58 (60%); round 3 (set w2): hook v hold
   24 of 41 (59%), cope v Team 15 of 24 (62%), RJT v RACK 33 of 45 (73%, engine b09a26a). The mark is 80% (R-473).
-- RJT v RACK (eea5ba87) is filed: flag 6 of 10, split 12 of 19, numbers 4 of 5, the other kinds all right; all 52
-  calls judged under a right situation right. Nothing built from it yet (his go-ahead first): 14 checks, all open.
-- Now (development set, 44 matches): review key 120 rows pass; 56 checks open (w1p1 15, w1p2 10, w2 30, s1-15).
-  Gate: 12 of 12, 62 of 105. Line-up: 421 of 426 and 185 of 186; comms 108 of 157, 62 of 80. No run over every
-  match, no `thresholds.py` (R-465).
-- `review.py numbers` (R-470): reach, hold time and the 12 s matter. `review.py compare`: only on one marked game.
+- Built from his marks and answers on RJT v RACK (engine 9d3a679; R-482 to R-485), at the root (R-465):
+  - Who is on a split: on the enemy's ground, or standing with a split player who is (its back line); only main
+    team players off the enemy's ground take a player off it (`_over`, `split_plays`). A split's fight is told once:
+    a numbers moment that is a split's fight from first reading to last folds into the split (`numbers_plays`).
+  - Whose flag decision: the runner's set-off passes over jumps in the walked distance; the flag is under way from
+    its last unbroken chain of carries (`run_starts`: `out_by`, `chain`); a flag that lay on the ground is two runs;
+    in hand by the cap rule (R-482); a double run from its second player (R-485); each run is answered in turn (a
+    team whose flag is in, with theirs still coming, runs again or stays): `_flag_rows`, `flag_plays`.
+  - On the development set (44 matches): flag plays 513 to 640 (stay 149 to 227, in hand 77 to 61, double 100 to
+    36), split plays of one player 189 to 158, numbers plays 878 to 867. `review.py compare` on RJT v RACK: 87
+    calls now, 39 of them calls he marked right, 35 never shown to him; it says 41 of his 52 right calls.
+- Now (development set, 45 matches): review key 120 rows pass; 40 checks open (w1p1 14, w1p2 9, w2 16, s1-15); 18
+  were made firm on 2026-11-15 (13 of RJT v RACK's, and hook v hold 8:30, hdm v hook 8:46, TFS v 옷옷옷옷 10:13 with
+  them). Gate: 12 of 12, 63 of 105. Line-up: 421 of 426 and 185 of 186; comms 110 of 157, 62 of 80. No run over
+  every match, no `thresholds.py`, no numbers test (R-470) since the change.
+- Round 4 is on the page (set w3, engine 9d3a679), not yet marked: HC v Team on Imperial Isle (9b5cdf62; 55
+  situations: 14 flags, 12 splits, 12 pushes on a flagger, 11 numbers). Men v Crew stays hidden.
 
-## Data looked at on 2026-11-14 (he paused the review to ask; nothing built; nothing from GW Observer in the repo)
-- gvg.report's replay payload, already downloaded, holds `report.objectives.object_transitions` (each appearance of a
-  flag object, with its position); `replay_trim.mjs` drops it. A flag appearing at its spawn with no cap just before
-  is a return: on RJT v RACK within 0.5 s of the game's four return messages, where the engine's inferred returns
-  were 16, 17, 3 and 69 s late. He agreed (R-481): keep it in the trim and read returns from it, but only with the
-  next rebuild (a new TRIM_VERSION fetches every stored replay again, about 90 MB a match); readings come first.
+## Data looked at on 2026-11-14 (nothing built; nothing from GW Observer in the repo)
+- gvg.report's replay payload holds `report.objectives.object_transitions` (each appearance of a flag object, with
+  its position); `replay_trim.mjs` drops it. A flag appearing at its spawn with no cap just before is a return (on
+  RJT v RACK within 0.5 s of the game's four return messages; the engine's inferred returns were 3 to 69 s late).
+  R-481: keep it in the trim and read returns from it at the next rebuild, not before (a new TRIM_VERSION fetches
+  every stored replay again, about 90 MB a match).
 - The Lord damage page (`summary.objectives.guild_lord_damage`) adds nothing stored casts and deaths do not give. GW
   Observer's match cache is the same recording kept fuller (NPC positions and health, returns, gates); no probed
-  payload serves NPC tracks (`full` not probed: he said no). Its licence limits the code and the data: his call before any use.
+  payload serves NPC tracks (`full` not probed: he said no). Its licence limits the code and the data: his call.
 
 ## Next (in order; REDESIGN.md "Build plan from here", item 6, and "Tests")
-1. On his go-ahead, rebuild at the root from RJT v RACK (R-465), its 14 open checks the test. Two faults, 11 rows:
-   - Who is on a split (rows 12, 13, 15, 21, 25, 36, 39; 48 is the same fight told twice). `split_plays` counts a
-     split player only while he stands on the enemy's ground (`_deep`): a monk or mesmer a few hundred units behind,
-     in the greater stand area, drops out. And `attempts()` hangs a split on the bigger group as the main team: with
-     each team in two groups for minutes (4 and 4, 5 and 3) that label flips and the record loses players already
-     there. Read it from who is in that fight (`linked`, `engaged_in`), with the main team by R-335 once he rules.
-   - Whose flag decision, and from when (rows 8, 29, 44; 6): `run_starts` reads `runner` and `under_way` from the
-     capper, so a flag handed on before its cap starts at the hand-off; a runner walking through the greater stand
-     area to cap is read as a flag in hand; a double run is labelled from the first run of the pair; a return is
-     timed from the next pickup (0:34 for 0:18 at the opening).
-2. Then `review.py compare`, the numbers test (R-470), a fresh game as round 4; at 80% right, the hidden games
-   (never export or look at Men v Crew or 옷옷옷옷 v RACK before). Then the flag family to the end (R-451), stage E.
+1. He marks HC v Team (Model > Game review). `review.py file <id> <rows> <marks> --set w3` files his marks and
+   prints the score; write checks from his words; fix at the root (R-465). Never re-export a game he has marked.
+2. The numbers test on the marked rows (R-470). At 80% of situations right on a fresh game, the hidden games.
+   Never export or look at Men v Crew or 옷옷옷옷 v RACK before that.
+3. The flag family to the end (R-451) once the flag plays pass; the other kinds as each passes; then stage E.
 
-## Open for Denning (put to him 2026-11-14; set each out in the chat again, R-329, with replay links)
-RJT v RACK: https://gvg.report/report/eea5ba87-ac20-5ba3-a6c9-965f11ca8a65#map
-1. The main team when a team is in two groups of 4 and 4 or 5 and 3 away from the stand: always the flag group
-   (R-335 at any size)? Then each front-door fight is told once, as a split with its defenders.
-2. Row 13 (3:24), "a 3 person split (with 7 monk and mesmer)": RJT's three at RACK's door, or RACK's players?
-3. Row 15, "look at 4v3 for RACK at 5:30": should row 22 (5:28, marked right as 3 v 3) read 4 v 3 with the 7 Monk?
-4. Row 21, "see above": read as RJT's Ranger, Stand Mes and 7 Monk, not a split of one. Right?
-5. Row 6 (1:41): is the Dervish's run a single run because a double starts only when the second player goes back
-   (2:27, row 9), or because 3 s before the cap is too late to be a second runner at all?
-6. Row 8 (2:23), marked wrong without words: is it that no run starts there (the Mes/A ran it from 1:50)?
-7. Row 40 (9:02): his words stop at "they are only down until".
+## Open for Denning (put to him 2026-11-15; set each out in the chat again, R-329, with replay links)
+1. HC v Team is his to mark (https://gvg.report/report/9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96#map).
+2. The main team in an uneven divide: his "agreed" to the flag group at any size (R-483) against his marks on Men v
+   Apes 3:10 to 7:00 and R-421 (five on the enemy's ground are the main team, the flag run from the smaller part).
+3. TFS v 옷옷옷옷 2:09: now told from TFS's side (옷옷옷옷's 8 Monk set off first, 1:40; TFS's Ritualist answers).
+4. RJT v RACK 4:06, "now the mainteam fight": the engine still tells RACK's split through the 8 v 8 of 4:18 to 4:36.
+5. Rows he marked right on RJT v RACK that now read otherwise: 11 and 24 (the Ranger's solo trips, now inside the
+   three-person split), 26 and 30 (numbers, now inside the split), 4 (one defender in the headline), 47 (from 10:42).
 - Drafts not ruled: numbers from kills, a split with no answer, "held by monks", the Lord push's aim, `common.py` drafts.
 
 ## Running it

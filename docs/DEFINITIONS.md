@@ -11,7 +11,10 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   R-439). A death there counts at once. A walk through a teleporter and straight back is not being there (R-442).
 - Who is on a split is who is there at that time, not everyone it ever held (R-439).
 - The main team: in an even split, the group on the stand side, responsible for flags; monks only break a tie (R-335,
-  R-355). In an uneven divide, the part of five or more (R-421).
+  R-355). In an uneven divide, the part of five or more (R-421); R-483, "the flag group at any size", is not built
+  there (it conflicts with his marks on Men v Apes: put to him).
+- On a split: the players who came with it and stand with it, its back line included; brief support is not one more
+  (R-484). A fight between a split and its defenders is told once, in the split (R-483).
 - The same 12 s holds for the numbers of the main fight: a player who stays 12 s counts from when he arrived; one who
   goes sooner was never a player more (R-449, R-459; review key s1-31). A defender still on a split when the game ends
   counts though under 12 s there (R-459). Joining and leaving are read from movement, not reach alone, and a defender on a
@@ -25,12 +28,15 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   count as damage (R-457).
 
 ## Flags
+- A team cannot capture its flag while it holds the stand: it waits for the other team to cap. A flag at the stand
+  of the team that holds the stand is in hand, and that team is about a flag and a half ahead (R-482).
 - Each team has one flag. A pickup held about 3 s is not a run (R-339). A hold is a flag kept in hand, or left at the
   spawn, rather than run or capped: 45 s in the stand or the greater stand area while the enemy holds the stand (R-400,
   R-407).
 - A double run is never two players sent to the spawn together; its three forms are in R-305. It takes a second player
   who goes back to run the next flag while the first is still capping; a runner who caps and goes back himself is a
-  single run, and a player home from a split who picks up the next flag is no second runner (R-472). A hand-off and a
+  single run, and a player home from a split who picks up the next flag is no second runner (R-472). It is told from
+  when the second player goes back: until then the first run of the pair is a single run (R-485). A hand-off and a
   double run are told apart afterwards, by what the players go on to do (R-340); in the flag grid a hand-off counts
   as a single run (R-426).
 - Flag lead is a tally in which the stand counts as one flag: about half a flag from 0.35, a flag from 0.8, a flag and
