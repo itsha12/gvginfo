@@ -12,7 +12,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 ## State (2026-11-14, late: redesign step 2 on branch `bundle-4`, stage D under way; batch 17, 506 matches trained)
 - Main's engine is unchanged (SPEC.md). Bundle 4 is on `bundle-4` and lands in one piece, then one rebuild (R-322).
   658 replays stored; 564 count (R-477); the trained batches still hold some. No Train batch, Discovery or fetch run
-  in progress. Both branches committed; this session's commits are pushed only once he says so.
+  in progress. Both branches pushed; nothing uncommitted.
 - Built at the root (R-465) from his answers (R-455 to R-480) and the six games marked before this one: detail in
   CHANGELOG; the files on `bundle-4` are listed in CLAUDE.md. `integrity.py henchmen` after any fetch (R-477).
 - Whole-game scores, situations right of those he judged (R-475), each a fresh game for the engine it was marked
