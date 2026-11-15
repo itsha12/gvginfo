@@ -1,5 +1,5 @@
 {
- "about": "The review key (R-450). Every row Denning was shown of the engine's plays: what the engine said then (shown), his mark and his words (said), and checks: Claude's reading of his mark as things the plays must hold or must not hold, which he corrects. Scored by tools/golden/review.py on the branch after every change. Marks: right, partly, wrong, bad example (set aside), not marked. Set 1 is the 35 rows of 2026-11-13, picked one or more to a kind of play, so it is a regression test and not an accuracy figure; whole-game sets (R-454) give the accuracy by kind of play. `answered` holds a later answer of his on a row (what was asked, his words, Claude's reading). Set w1p1 is part 1 of the whole-game review (R-455), marked by him on the site on 2026-11-13 against engine af952c6: one row a situation with his mark and words, its calls under `calls` with theirs, and one `missed` row a game for what the engine did not read; checks are written as each fault is fixed. Set w1p2 is hdm v hook, the first game of part 2, marked on 2026-11-14 against engine 67e87b8 as the first measure of the rebuilt reading; he then chose to build from it too, keeping Men v Crew unmarked as the hidden game. Set w2 is round 3 (R-473): hook v hold and cope v Team, marked on 2026-11-14 against engine b025445 (24 of 41 and 15 of 24 situations right); chic v 戦戦戦戦 was set aside unmarked (a henchman game).",
+ "about": "The review key (R-450). Every row Denning was shown of the engine's plays: what the engine said then (shown), his mark and his words (said), and checks: Claude's reading of his mark as things the plays must hold or must not hold, which he corrects. Scored by tools/golden/review.py on the branch after every change. Marks: right, partly, wrong, bad example (set aside), not marked. Set 1 is the 35 rows of 2026-11-13, picked one or more to a kind of play, so it is a regression test and not an accuracy figure; whole-game sets (R-454) give the accuracy by kind of play. `answered` holds a later answer of his on a row (what was asked, his words, Claude's reading). Set w1p1 is part 1 of the whole-game review (R-455), marked by him on the site on 2026-11-13 against engine af952c6: one row a situation with his mark and words, its calls under `calls` with theirs, and one `missed` row a game for what the engine did not read; checks are written as each fault is fixed. Set w1p2 is hdm v hook, the first game of part 2, marked on 2026-11-14 against engine 67e87b8 as the first measure of the rebuilt reading; he then chose to build from it too, keeping Men v Crew unmarked as the hidden game. Set w2 is round 3 (R-473): hook v hold and cope v Team, marked on 2026-11-14 against engine b025445 (24 of 41 and 15 of 24 situations right); chic v 戦戦戦戦 was set aside unmarked (a henchman game). RJT v RACK (eea5ba87) is round 3's third game, marked on 2026-11-14 against engine b09a26a (33 of 45 situations right); its checks are written from his words and are open until the reading under them is rebuilt.",
  "version": 1,
  "rows": [
   {
@@ -1370,11 +1370,18 @@
       ]
      },
      "want": {
-      "broke_out": true
+      "broke_out": true,
+      "met": false
      },
-     "was": "TFS v 옷옷옷옷 0:36: TFS does break out: five or more is too harsh with four or five already out of the back door; reworded 2026-11-14 to what he said (it does break out): under R-478 the job is now not met, because TFS lost its Warrior at 0:41 and a pit NPC before it got out (put to him)"
+     "was": "TFS v 옷옷옷옷 0:36: TFS does break out (his mark: five or more was too harsh with four or five already out of the back door), and under R-478 the job is not met, because TFS lost its Warrior at 0:41 and a pit NPC before it got out; he confirmed this on 2026-11-14 (see answered)"
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-14",
+    "asked": "Under R-478 this is now a break-out with the job not met (the Warrior died at 0:41 and a pit NPC went first). Right?",
+    "said": "Broke out but job not met is correct. If they break out of base but die along the way that's not really successful in terms of winning.",
+    "reading": "R-478 stands as built: it breaks out, and the job is not met. The call's mark of wrong was on the engine's 'it does not break out'; that part is fixed."
+   }
   },
   {
    "id": "w1p1-bdaa-4",
@@ -8758,6 +8765,1732 @@
    "shown": "(his notes on the game: what the engine did not read, and his questions)",
    "mark": "missed",
    "said": "do we read/will it be reflected like a \"general\" 8v8 fight; it's not really a decision point but from 0:00 until the death on prot at 0:38, neither team really makes a decision, it's just an 8v8 fight but we should at some point be able to see micro/execution wise why cope died to the spike, if that make sense?",
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-1",
+   "set": "w2",
+   "row": 1,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    0,
+    14
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "The opening. They double run (RACK's Ranger); RJT: single run; left back for the next flag: RACK's Mes/A",
+   "mark": "repeat",
+   "calls": [
+    {
+     "play": "eea5ba87-flag-1-0-0",
+     "shown": "RJT [single run]: Kill or take ground with the extra player, and end no worse than a flag behind. Met (yes: no worse than a flag behind at the end; no: more of theirs die at the main fight than of ours; yes: ground taken; no: one of their NPCs dies)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-2",
+   "set": "w2",
+   "row": 2,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    0,
+    34
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "The opening. They single run (RJT's AoB Derv); RACK: double run; left back for the next flag: RACK's Mes/A",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "eea5ba87-flag-2-0-1",
+     "shown": "RACK [double run]: Gain flag advantage through their next cap, and lose nobody while two are away. Not met (no: flag lead better by 0.35 or more; yes: nobody of ours dies at the main fight)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-3",
+   "set": "w2",
+   "row": 3,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    24,
+    95
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "The opening. They single run (RJT's AoB Derv); RACK: a flag already in hand; left back for the next flag: RACK's Mes/A",
+   "mark": "repeat",
+   "calls": [
+    {
+     "play": "eea5ba87-flag-2-24-2",
+     "shown": "RACK [a flag already in hand]: Answer their cap at once, or cap just before their boost. Met (no: their flag does not get in; yes: our cap follows theirs within 15 s; no: our cap lands just before their boost)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-4",
+   "set": "w2",
+   "row": 4,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    30,
+    78
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RACK's split by the front door: one player (Ranger) against 2 defending (8 Monk, AoB Derv); numbers along the way: 1 v 2 from 0:30, 1 v 1 from 0:56",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "eea5ba87-split-2-30-4",
+     "shown": "RACK (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; yes: flag lead better by 0.35 or more)",
+     "mark": "right"
+    },
+    {
+     "play": "eea5ba87-split-1-30-3",
+     "shown": "RJT (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Met (yes: no pit NPC lost; no: a split player dies; yes: the split is gone within the visit)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-5",
+   "set": "w2",
+   "row": 5,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    70,
+    80
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "RACK pushes RJT's flagger (AoB Derv, carrying) with its main team",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "eea5ba87-push_flagger-2-70-6",
+     "shown": "RACK: Stop their flag, or make it 30% late. Not met (no: their flag is stopped; no: it arrives 30% or more later than usual)",
+     "mark": "right"
+    },
+    {
+     "play": "eea5ba87-flagger_pushed-1-70-5",
+     "shown": "RJT: Get the flag in on time. Met (yes: the flag gets in, less than 30% late)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-6",
+   "set": "w2",
+   "row": 6,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    101,
+    176
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They double run (RJT's AoB Derv); RACK: single run",
+   "mark": "wrong",
+   "said": "derv single runs twice; flag is returned at 00:18 which is important (but I think probably just important for micro)",
+   "calls": [
+    {
+     "play": "eea5ba87-flag-2-101-7",
+     "shown": "RACK [single run]: Kill or take ground with the extra player, and end no worse than a flag behind. Not met (yes: no worse than a flag behind at the end; no: more of theirs die at the main fight than of ours; no: ground taken; no: one of their NPCs dies)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "flag",
+      "team": "RACK",
+      "start": [
+       95,
+       107
+      ],
+      "want": {
+       "scenario~": "They double run"
+      }
+     },
+     "why": "RJT v RACK 1:41: RJT's Dervish single runs twice (0:20 to 1:20, then 1:21 to 2:30); the engine read the second run as a double run, the Mes/A having gone back 3 s before its cap",
+     "open": true
+    }
+   ],
+   "note": "His words also say the flag is returned at 0:18, 'important (but I think probably just important for micro)'. The replay agrees with him: RACK's AoB Derv stands 200 units from RJT's dropped flag at 0:18 and RJT's Dervish turns for home at 0:20; the engine's flag record puts the return at 0:34, by RACK's Prot. No play carries the return, so no check holds it yet."
+  },
+  {
+   "id": "w2-eea5-7",
+   "set": "w2",
+   "row": 7,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    124,
+    150
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "RACK pushes RJT's flagger (AoB Derv, carrying) with one player",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "eea5ba87-push_flagger-2-124-9",
+     "shown": "RACK: Stop their flag, or make it 30% late. Not met (no: their flag is stopped; no: it arrives 30% or more later than usual)",
+     "mark": "right"
+    },
+    {
+     "play": "eea5ba87-flagger_pushed-1-124-8",
+     "shown": "RJT: Get the flag in on time, without losing a player for the help sent. Met (yes: the flag gets in, less than 30% late; yes: nobody else of ours dies meanwhile)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-8",
+   "set": "w2",
+   "row": 8,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    143,
+    191
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (RACK's Stand Mes); RJT: a flag already in hand",
+   "mark": "wrong",
+   "calls": [
+    {
+     "play": "eea5ba87-flag-1-143-10",
+     "shown": "RJT [a flag already in hand]: Answer their cap at once, or cap just before their boost. Not met (no: their flag does not get in; no: our cap follows theirs within 15 s; no: our cap lands just before their boost)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "flag",
+      "team": "RJT",
+      "start": [
+       137,
+       149
+      ],
+      "want": {
+       "scenario~": "RACK's Stand Mes"
+      }
+     },
+     "why": "RJT v RACK 2:23: marked wrong without words. Claude's reading, put to him: RACK's flag is run by its Mes/A from 1:50 and walked up inside the team; the Stand Mes only takes it at the stand at 2:23 and caps at 2:56, so no run starts at 2:23 and the Stand Mes is not its runner; this is the flag exchange of row 6 told a second time",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w2-eea5-9",
+   "set": "w2",
+   "row": 9,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    147,
+    218
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They double run (RJT's Mes/A); RACK: a flag already in hand",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "eea5ba87-flag-2-147-11",
+     "shown": "RACK [a flag already in hand]: Answer their cap at once, or cap just before their boost. Not met (no: their flag does not get in; no: our cap follows theirs within 15 s; no: our cap lands just before their boost)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-10",
+   "set": "w2",
+   "row": 10,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    162,
+    203
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "RACK pushes RJT's flagger (Mes/A, at the spawn) with 3 players",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "eea5ba87-push_flagger-2-162-13",
+     "shown": "RACK: Stop their flag, or make it 30% late. Met (yes: their flag is stopped; no: it arrives 30% or more later than usual)",
+     "mark": "right"
+    },
+    {
+     "play": "eea5ba87-flagger_pushed-1-162-12",
+     "shown": "RJT: Get the flag in on time. Not met (no: the flag gets in, less than 30% late)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-11",
+   "set": "w2",
+   "row": 11,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    178,
+    192
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RJT's split by the front door: one player (Ranger) against 0 defending",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "eea5ba87-split-1-178-14",
+     "shown": "RJT (attacker) [undefended]: Take NPCs. Not met (no: an NPC taken)",
+     "mark": "right"
+    },
+    {
+     "play": "eea5ba87-split-2-178-15",
+     "shown": "RACK (defender) [no answer]: Win elsewhere before the split costs more than it gains. Met (no: more of theirs die away from the split than of ours; yes: flag lead better by 0.35 or more)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-12",
+   "set": "w2",
+   "row": 12,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    190,
+    246
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RJT's split by the front door: two players (Stand Mes, Ranger) against 3 defending (AoB Derv, 8 Monk, Mes/A)",
+   "mark": "wrong",
+   "said": "this is a 3 person split (with ranger)",
+   "calls": [
+    {
+     "play": "eea5ba87-split-1-190-16",
+     "shown": "RJT (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Not met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "not judged"
+    },
+    {
+     "play": "eea5ba87-split-2-190-17",
+     "shown": "RACK (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Not met (yes: no pit NPC lost; no: a split player dies; no: the split is gone within the visit)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "RJT",
+      "at": [
+       190,
+       246
+      ]
+     },
+     "want": {
+      "size": 3,
+      "who~": [
+       "7 Monk"
+      ]
+     },
+     "why": "RJT v RACK 3:10: a three person split (Ranger, Stand Mes, 7 Monk); the engine read two, the 7 Monk standing a few hundred units behind them in the greater stand area",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w2-eea5-13",
+   "set": "w2",
+   "row": 13,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    204,
+    226
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RACK's split by the front door: one player (Ranger) against 0 defending",
+   "mark": "wrong",
+   "said": "this is a 3 person split (with 7 monk and mesmer))",
+   "calls": [
+    {
+     "play": "eea5ba87-split-2-204-19",
+     "shown": "RACK (attacker) [undefended]: Take NPCs. Not met (no: an NPC taken)",
+     "mark": "not judged"
+    },
+    {
+     "play": "eea5ba87-split-1-204-18",
+     "shown": "RJT (defender) [no answer]: Win elsewhere before the split costs more than it gains. Not met (no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "split",
+      "side": "attacker",
+      "team": "RACK",
+      "start": [
+       198,
+       210
+      ],
+      "want": {
+       "size": 1
+      }
+     },
+     "why": "RJT v RACK 3:24: 'a 3 person split (with 7 monk and mesmer)', where the engine read RACK's Ranger alone against nobody. Both teams field a Ranger, a 7 Monk and a Stand Mes: whether he means RJT's three at RACK's front door or RACK's players at RJT's is put to him",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w2-eea5-14",
+   "set": "w2",
+   "row": 14,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    228,
+    294
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (RJT's Mes/A); RACK: single run",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "eea5ba87-flag-2-228-20",
+     "shown": "RACK [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (no: our flag is capped; yes: no more of ours die at the main fight than of theirs; yes: no worse than half a flag behind at the end, or no further behind than at the start)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-15",
+   "set": "w2",
+   "row": 15,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    246,
+    298
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RACK's split by the front door: one player (Ranger) against 4 defending (Hammer, Mes/A, 8 Monk, AoB Derv); numbers along the way: 1 v 4 from 4:06, 4 v 3 from 4:40",
+   "mark": "wrong",
+   "said": "this is now the mainteam fight I think; look at 4v3 for RACK at 5:30",
+   "calls": [
+    {
+     "play": "eea5ba87-split-2-246-22",
+     "shown": "RACK (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Not met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "not judged"
+    },
+    {
+     "play": "eea5ba87-split-1-246-21",
+     "shown": "RJT (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Not met (yes: no pit NPC lost; no: a split player dies; no: the split is gone within the visit)",
+     "mark": "not judged"
+    },
+    {
+     "play": "eea5ba87-split-2-246-23",
+     "shown": "RACK (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "split",
+      "side": "attacker",
+      "team": "RACK",
+      "start": [
+       240,
+       252
+      ],
+      "want": {
+       "size": 1
+      }
+     },
+     "why": "RJT v RACK 4:06: 'this is now the mainteam fight I think': the teams are back together (8 v 8 at 4:24), not a split of one against four. His 'look at 4v3 for RACK at 5:30' is put to him: row 22, which he marked right, reads 3 v 3 from 5:28",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w2-eea5-16",
+   "set": "w2",
+   "row": 16,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    266,
+    301
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "RACK's boost is 30 s away; RJT: one runner; the rest fall back into the base",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "eea5ba87-boost-1-266-24",
+     "shown": "",
+     "mark": "not marked"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-17",
+   "set": "w2",
+   "row": 17,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    274,
+    302
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RJT's split by the front door: one player (Ranger) against 4 defending (AoB Derv, Mes/A, 8 Monk, Stand Mes); Stand Mes collapse from the main fight; 4 (AoB Derv, Mes/A, 8 Monk, Stand Mes) against one player: collapse by Stand Mes from the main fight",
+   "mark": "repeat",
+   "calls": [
+    {
+     "play": "eea5ba87-split-1-274-25",
+     "shown": "RJT (attacker) [collapsed on]: Survive and gain an advantage elsewhere on the map. Met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; yes: flag lead better by 0.35 or more)",
+     "mark": "not judged"
+    },
+    {
+     "play": "eea5ba87-split-2-274-26",
+     "shown": "RACK (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Not met (no: a split player dies during the collapse)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-18",
+   "set": "w2",
+   "row": 18,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    277,
+    309
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (RACK's AoB Derv); RJT: a flag already in hand",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "eea5ba87-flag-1-277-27",
+     "shown": "RJT [a flag already in hand]: Answer their cap at once, or cap just before their boost. Met (yes: their flag does not get in; no: our cap follows theirs within 15 s; yes: our cap lands just before their boost)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-19",
+   "set": "w2",
+   "row": 19,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    291,
+    409
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (RACK's Mes/A); RJT: single run",
+   "mark": "repeat",
+   "calls": [
+    {
+     "play": "eea5ba87-flag-1-291-28",
+     "shown": "RJT [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (yes: our flag is capped; yes: no more of ours die at the main fight than of theirs; yes: no worse than half a flag behind at the end, or no further behind than at the start)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-20",
+   "set": "w2",
+   "row": 20,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    296,
+    330
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RACK's split by the front door: three players (Ranger, Prot, Hammer) against 4 defending (Hammer, Mes/A, Prot, 8 Monk); Prot collapse from the main fight; 4 (Hammer, Mes/A, Prot, 8 Monk) against three players: collapse by Prot from the main fight",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "eea5ba87-split-2-296-30",
+     "shown": "RACK (attacker) [collapsed on]: Survive and gain an advantage elsewhere on the map. Not met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "right"
+    },
+    {
+     "play": "eea5ba87-split-1-296-29",
+     "shown": "RJT (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Not met (no: a split player dies during the collapse)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-21",
+   "set": "w2",
+   "row": 21,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    300,
+    336
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RJT's split by the front door: one player (Ranger) against 3 defending (AoB Derv, Stand Mes, 8 Monk)",
+   "mark": "wrong",
+   "said": "see above",
+   "calls": [
+    {
+     "play": "eea5ba87-split-1-300-31",
+     "shown": "RJT (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Not met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "not judged"
+    },
+    {
+     "play": "eea5ba87-split-2-300-33",
+     "shown": "RACK (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Met (yes: no pit NPC lost; no: a split player dies; yes: the split is gone within the visit)",
+     "mark": "not judged"
+    },
+    {
+     "play": "eea5ba87-split-1-300-32",
+     "shown": "RJT (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "split",
+      "side": "attacker",
+      "team": "RJT",
+      "start": [
+       294,
+       306
+      ],
+      "want": {
+       "size": 1
+      }
+     },
+     "why": "RJT v RACK 5:00: 'see above': not a split of one. RJT's Ranger, Stand Mes and 7 Monk are at RACK's front door; the engine counted the Ranger only",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w2-eea5-22",
+   "set": "w2",
+   "row": 22,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    328,
+    372
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RACK's split by the front door: three players (Ranger, Hammer, Prot) against 3 defending (AoB Derv, 8 Monk, Mes/A)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "eea5ba87-split-2-328-35",
+     "shown": "RACK (attacker) [even]: Take NPCs or kills. Not met (no: a defender killed; no: an NPC taken)",
+     "mark": "right"
+    },
+    {
+     "play": "eea5ba87-split-1-328-34",
+     "shown": "RJT (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (yes: no pit NPC lost; yes: no more defenders die than split players)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-23",
+   "set": "w2",
+   "row": 23,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    351,
+    453
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (RJT's Mes/A); RACK: single run",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "eea5ba87-flag-2-351-36",
+     "shown": "RACK [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (yes: our flag is capped; yes: no more of ours die at the main fight than of theirs; yes: no worse than half a flag behind at the end, or no further behind than at the start)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-24",
+   "set": "w2",
+   "row": 24,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    360,
+    374
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RJT's split by the front door: one player (Ranger) against 0 defending",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "eea5ba87-split-1-360-37",
+     "shown": "RJT (attacker) [undefended]: Take NPCs. Not met (no: an NPC taken)",
+     "mark": "right"
+    },
+    {
+     "play": "eea5ba87-split-2-360-38",
+     "shown": "RACK (defender) [no answer]: Win elsewhere before the split costs more than it gains. Not met (no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-25",
+   "set": "w2",
+   "row": 25,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    370,
+    386
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RACK's split by the front door: three players (Ranger, Hammer, Prot) against 5 defending (AoB Derv, Hammer, Mes/A, Prot, 8 Monk); Hammer, Prot collapse from the main fight; 5 (AoB Derv, Hammer, Mes/A, Prot, 8 Monk) against three players: collapse by Hammer, Prot from the main fight",
+   "mark": "partly",
+   "said": "RACK 7 monk I would say also involve in the split, but it's close",
+   "calls": [
+    {
+     "play": "eea5ba87-split-2-370-42",
+     "shown": "RACK (attacker) [collapsed on]: Survive and gain an advantage elsewhere on the map. Not met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "right"
+    },
+    {
+     "play": "eea5ba87-split-1-370-40",
+     "shown": "RJT (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Not met (no: a split player dies during the collapse)",
+     "mark": "right"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "RACK",
+      "at": [
+       370,
+       386
+      ]
+     },
+     "want": {
+      "size": 4
+     },
+     "why": "RJT v RACK 6:10: RACK's 7 Monk is also on the split ('but it's close'); the engine read three",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w2-eea5-26",
+   "set": "w2",
+   "row": 26,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    370,
+    392
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Up on numbers in the main fight (5 v 4, RJT's front door), from players split elsewhere; RJT: retreat down the ladder (fall back into the base); 3 damage against 2 monks | RACK: retreat down the ladder (retreat to the pit)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "eea5ba87-numbers-1-370-39",
+     "shown": "RJT (strong side) [retreat down the ladder]: Keep them busy and lose nobody (a kill is not expected of it). Met (yes: nobody of ours dies)",
+     "mark": "right"
+    },
+    {
+     "play": "eea5ba87-numbers-2-370-41",
+     "shown": "RACK (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-27",
+   "set": "w2",
+   "row": 27,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    372,
+    418
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RJT's split by the front door: three players (Stand Mes, 7 Monk, Ranger) against 2 defending (Stand Mes, Mes/A); numbers along the way: 3 v 2 from 6:12, 4 v 4 from 6:36",
+   "mark": "repeat",
+   "calls": [
+    {
+     "play": "eea5ba87-split-1-372-43",
+     "shown": "RJT (attacker) [a player or more up]: Kill or take NPCs. Not met (no: a defender killed; no: an NPC taken)",
+     "mark": "not judged"
+    },
+    {
+     "play": "eea5ba87-split-2-372-45",
+     "shown": "RACK (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Met (yes: no pit NPC lost; yes: no defender dies)",
+     "mark": "not judged"
+    },
+    {
+     "play": "eea5ba87-split-1-372-44",
+     "shown": "RJT (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-28",
+   "set": "w2",
+   "row": 28,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    384,
+    462
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RACK's split by the front door: three players (Hammer, Ranger, Prot) against 3 defending (8 Monk, Hammer, Mes/A); numbers along the way: 4 v 4 from 6:24, 4 v 3 from 6:36, 3 v 3 from 6:48, 3 v 2 from 7:18",
+   "mark": "repeat",
+   "calls": [
+    {
+     "play": "eea5ba87-split-2-384-47",
+     "shown": "RACK (attacker) [even]: Take NPCs or kills. Met (no: a defender killed; yes: an NPC taken)",
+     "mark": "not judged"
+    },
+    {
+     "play": "eea5ba87-split-1-384-46",
+     "shown": "RJT (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Not met (no: no pit NPC lost; yes: no more defenders die than split players)",
+     "mark": "not judged"
+    },
+    {
+     "play": "eea5ba87-split-2-384-48",
+     "shown": "RACK (attacker's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Not met (no: more of theirs die away from the split than of ours)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-29",
+   "set": "w2",
+   "row": 29,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    392,
+    468
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (RACK's Mes/A); RJT: a flag already in hand",
+   "mark": "wrong",
+   "said": "this is backwards; RJT is running rack responds; RJT does not run again and does not answer run",
+   "calls": [
+    {
+     "play": "eea5ba87-flag-1-392-49",
+     "shown": "RJT [a flag already in hand]: Answer their cap at once, or cap just before their boost. Not met (no: their flag does not get in; no: our cap follows theirs within 15 s; no: our cap lands just before their boost)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "flag",
+      "team": "RJT",
+      "start": [
+       386,
+       398
+      ],
+      "want": {
+       "scenario~": "a flag already in hand"
+      }
+     },
+     "why": "RJT v RACK 6:32: backwards: RJT is running (set off 5:51, cap 6:49) and RACK responds; RJT's flag on its way to the cap is not a flag in hand",
+     "open": true
+    },
+    {
+     "has": {
+      "play": "flag",
+      "team": "RJT",
+      "at": [
+       392,
+       468
+      ]
+     },
+     "want": {
+      "ours": "stay"
+     },
+     "why": "RJT v RACK 6:32 to 7:48: RJT does not run again and does not answer RACK's run (cap 7:33; RJT's next runner sets off at 7:52)",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w2-eea5-30",
+   "set": "w2",
+   "row": 30,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    394,
+    432
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (3 v 4, RJT's front door), from players split elsewhere; RJT: push in | RACK: retreat down the ladder (fall back into the base); 2 damage against 2 monks",
+   "mark": "repeat",
+   "calls": [
+    {
+     "play": "eea5ba87-numbers-1-394-50",
+     "shown": "RJT (weak side) [push in]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)",
+     "mark": "not judged"
+    },
+    {
+     "play": "eea5ba87-numbers-2-394-51",
+     "shown": "RACK (strong side) [retreat down the ladder]: Keep them busy and lose nobody (a kill is not expected of it). Met (yes: nobody of ours dies)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-31",
+   "set": "w2",
+   "row": 31,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    416,
+    436
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RJT's split by the front door: 4 players (Ranger, Stand Mes, 7 Monk, AoB Derv) against 5 defending (AoB Derv, Mes/A, Stand Mes, 7 Monk, 8 Monk)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "eea5ba87-split-1-416-52",
+     "shown": "RJT (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Not met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "right"
+    },
+    {
+     "play": "eea5ba87-split-2-416-53",
+     "shown": "RACK (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Not met (yes: no pit NPC lost; no: a split player dies; no: the split is gone within the visit)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-32",
+   "set": "w2",
+   "row": 32,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    434,
+    452
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RJT's split by the front door: 4 players (Ranger, Stand Mes, 7 Monk, AoB Derv) against 4 defending (AoB Derv, Stand Mes, 7 Monk, 8 Monk); 3 damage against 2 monks",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "eea5ba87-split-1-434-54",
+     "shown": "RJT (attacker) [held by monks]: Hold the monks there and lose nobody; NPCs are a bonus (a kill is not expected of it). Met (yes: nobody on the split dies)",
+     "mark": "right"
+    },
+    {
+     "play": "eea5ba87-split-2-434-55",
+     "shown": "RACK (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (yes: no pit NPC lost; yes: no more defenders die than split players)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-33",
+   "set": "w2",
+   "row": 33,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    446,
+    538
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (3 v 4, RACK's front door; then 7 v 8 from 7:46; then 3 v 4 from 8:00; then 7 v 8 from 8:16), from players split elsewhere; RJT: retreat down the ladder (fall back into the base) | then 8 v 7 from 7:46; then 4 v 3 from 8:00; then 8 v 7 from 8:16), from players split elsewhere; RACK: retreat down the ladder (fall back into the base)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "eea5ba87-numbers-1-446-56",
+     "shown": "RJT (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Not met (no: nobody of ours dies)",
+     "mark": "right"
+    },
+    {
+     "play": "eea5ba87-numbers-2-446-57",
+     "shown": "RACK (strong side) [retreat down the ladder]: Kill with the numbers while their players are away. Met (yes: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-34",
+   "set": "w2",
+   "row": 34,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    450,
+    464
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RJT's split by the front door: three players (Stand Mes, 7 Monk, AoB Derv) against 4 defending (AoB Derv, Stand Mes, 7 Monk, 8 Monk)",
+   "mark": "repeat",
+   "calls": [
+    {
+     "play": "eea5ba87-split-1-450-58",
+     "shown": "RJT (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Not met (no: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "not judged"
+    },
+    {
+     "play": "eea5ba87-split-2-450-59",
+     "shown": "RACK (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Met (yes: no pit NPC lost; yes: a split player dies; yes: the split is gone within the visit)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-35",
+   "set": "w2",
+   "row": 35,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    460,
+    482
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RACK's split by the front door: three players (Hammer, Ranger, Prot) against 4 defending (Hammer, Ranger, Mes/A, 8 Monk); Ranger collapse from the main fight; 4 (Hammer, Ranger, Mes/A, 8 Monk) against three players: collapse by Ranger from the main fight",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "eea5ba87-split-2-460-61",
+     "shown": "",
+     "mark": "not marked"
+    },
+    {
+     "play": "eea5ba87-split-1-460-60",
+     "shown": "",
+     "mark": "not marked"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-36",
+   "set": "w2",
+   "row": 36,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    462,
+    476
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RJT's split by the front door: one player (Stand Mes) against 3 defending (AoB Derv, Stand Mes, 8 Monk)",
+   "mark": "wrong",
+   "said": "mesmer joins split, it is not a solo split",
+   "calls": [
+    {
+     "play": "eea5ba87-split-1-462-62",
+     "shown": "RJT (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Not met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "not judged"
+    },
+    {
+     "play": "eea5ba87-split-2-462-64",
+     "shown": "RACK (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Not met (yes: no pit NPC lost; no: a split player dies; no: the split is gone within the visit)",
+     "mark": "not judged"
+    },
+    {
+     "play": "eea5ba87-split-1-462-63",
+     "shown": "RJT (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (no: more of theirs die away from the split than of ours)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "split",
+      "side": "attacker",
+      "team": "RJT",
+      "start": [
+       456,
+       468
+      ],
+      "want": {
+       "size": 1
+      }
+     },
+     "why": "RJT v RACK 7:42: the Mesmer joins the split (RJT's AoB Derv and 7 Monk are at RACK's front door already); not a solo split",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w2-eea5-37",
+   "set": "w2",
+   "row": 37,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    472,
+    522
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (RJT's Hammer); RACK: stay",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "eea5ba87-flag-2-472-65",
+     "shown": "RACK [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Met (yes: more of theirs die at the main fight than of ours; yes: their flag does not get in)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-38",
+   "set": "w2",
+   "row": 38,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    474,
+    492
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RJT's split by the front door: one player (Stand Mes) against 4 defending (AoB Derv, Mes/A, Stand Mes, 8 Monk)",
+   "mark": "repeat",
+   "calls": [
+    {
+     "play": "eea5ba87-split-1-474-66",
+     "shown": "RJT (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Met (yes: nobody on the split dies; no: more of theirs die away from the split than of ours; yes: flag lead better by 0.35 or more)",
+     "mark": "not judged"
+    },
+    {
+     "play": "eea5ba87-split-2-474-68",
+     "shown": "RACK (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Met (yes: no pit NPC lost; no: a split player dies; yes: the split is gone within the visit)",
+     "mark": "not judged"
+    },
+    {
+     "play": "eea5ba87-split-1-474-67",
+     "shown": "RJT (attacker's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Not met (no: more of theirs die away from the split than of ours)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-39",
+   "set": "w2",
+   "row": 39,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    480,
+    504
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RACK's split by the front door: three players (Hammer, Ranger, Prot) against 3 defending (Mes/A, 8 Monk, Ranger)",
+   "mark": "wrong",
+   "said": "RACK has 4 on split (ranger,warrior, 2 monks) vs 3 defending from 8:00 to 8:17",
+   "calls": [
+    {
+     "play": "eea5ba87-split-2-480-70",
+     "shown": "RACK (attacker) [even]: Take NPCs or kills. Not met (no: a defender killed; no: an NPC taken)",
+     "mark": "not judged"
+    },
+    {
+     "play": "eea5ba87-split-1-480-69",
+     "shown": "RJT (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (yes: no pit NPC lost; yes: no more defenders die than split players)",
+     "mark": "not judged"
+    },
+    {
+     "play": "eea5ba87-split-2-480-71",
+     "shown": "RACK (attacker's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Met (yes: more of theirs die away from the split than of ours)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "RACK",
+      "at": [
+       482,
+       496
+      ]
+     },
+     "want": {
+      "size": 4,
+      "defenders": 3
+     },
+     "why": "RJT v RACK 8:00 to 8:17: RACK has four on the split (Ranger, Hammer, two monks) against three defending; the engine read three, the 7 Monk standing just inside the greater stand area",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w2-eea5-40",
+   "set": "w2",
+   "row": 40,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    542,
+    608
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (6 v 7, RJT's front door; then 5 v 6 from 9:22), from kills; RJT: retreat down the ladder (fall back into the base) | then 6 v 5 from 9:22), from kills; RACK: push up (push up to their front door)",
+   "mark": "right",
+   "said": "they are only down until",
+   "calls": [
+    {
+     "play": "eea5ba87-numbers-1-542-72",
+     "shown": "RJT (down) [retreat down the ladder]: Reach cover a player down without losing another. Not met (no: nobody of ours dies; yes: no NPC lost)",
+     "mark": "right"
+    },
+    {
+     "play": "eea5ba87-numbers-2-542-73",
+     "shown": "RACK (up) [push up]: Take ground and NPCs with the numbers. Met (yes: no more of ours die than of theirs; no: one of their NPCs dies; yes: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": [],
+   "note": "His words on this row stop mid-sentence ('they are only down until'); he is asked for the rest. Marked right as it stands."
+  },
+  {
+   "id": "w2-eea5-41",
+   "set": "w2",
+   "row": 41,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    543,
+    588
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "RACK's boost is 30 s away; RJT: no runner; the rest fall back into the base",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "eea5ba87-boost-1-543-74",
+     "shown": "RJT [concede]: Concede the boost for kills. Not met (no: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-42",
+   "set": "w2",
+   "row": 42,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    580,
+    630
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "RACK has 3 in RJT's base at the base res (4 defending, 2 coming back): 1 stay",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "eea5ba87-base_res-2-580-75",
+     "shown": "RACK [stayed through the res]: Be out, or set for the fight, when they res. Met (yes: nobody of ours dies in the 30 s after the res)",
+     "mark": "repeat"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-43",
+   "set": "w2",
+   "row": 43,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    604,
+    649
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "RACK pushes RJT's flagger (Mes/A, carrying) with its main team",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "eea5ba87-push_flagger-2-604-77",
+     "shown": "RACK: Stop their flag, or make it 30% late. Not met (no: their flag is stopped; no: it arrives 30% or more later than usual)",
+     "mark": "right"
+    },
+    {
+     "play": "eea5ba87-flagger_pushed-1-604-76",
+     "shown": "RJT: Get the flag in on time. Met (yes: the flag gets in, less than 30% late)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-44",
+   "set": "w2",
+   "row": 44,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    610,
+    649
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (RACK's Mes/A); RJT: single run",
+   "mark": "wrong",
+   "said": "this is RACK's decision. RJT single runs, RACK responds with a single run",
+   "calls": [
+    {
+     "play": "eea5ba87-flag-1-610-78",
+     "shown": "RJT [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (yes: our flag is capped; yes: no more of ours die at the main fight than of theirs; no: no worse than half a flag behind at the end, or no further behind than at the start)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "flag",
+      "team": "RJT",
+      "start": [
+       604,
+       616
+      ],
+      "want": {
+       "scenario~": "They single run (RACK"
+      }
+     },
+     "why": "RJT v RACK 10:10: RACK's decision, not RJT's: RJT single runs (pickup 9:52) and RACK responds with a single run. The engine started RJT's run at 10:18, when the Dervish took the flag from the Mes/A",
+     "open": true
+    },
+    {
+     "has": {
+      "play": "flag",
+      "team": "RACK",
+      "start": [
+       586,
+       616
+      ]
+     },
+     "want": {
+      "their": "single run",
+      "ours": "single run"
+     },
+     "why": "RJT v RACK 9:52 to 10:10: told from RACK's side: they (RJT) single run, RACK single runs in answer",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w2-eea5-45",
+   "set": "w2",
+   "row": 45,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    640,
+    704
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RJT's split by the front door: one player (Ranger) against 1 defending (Mes/A); numbers along the way: 1 v 1 from 10:40, 4 v 2 from 11:12, 3 v 2 from 11:28; 1 (Mes/A) against one player; numbers along the way: 1 v 1 from 10:40, 4 v 2 from 11:12, 3 v 2 from 11:28: the lone defender carries his flag for 20 s",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "eea5ba87-split-1-640-79",
+     "shown": "RJT (attacker) [1 v 1, the defender not a monk]: Take NPCs or kills. Met (no: a defender killed; yes: an NPC taken)",
+     "mark": "right"
+    },
+    {
+     "play": "eea5ba87-split-2-640-80",
+     "shown": "RACK (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (yes: no pit NPC lost; yes: no more defenders die than split players)",
+     "mark": "right"
+    },
+    {
+     "play": "eea5ba87-split-2-640-81",
+     "shown": "RACK (defender) [part-run]: Gain a slight flag advantage while losing no pit NPC and not dying. Met (yes: no pit NPC lost; yes: flag lead better by 0.15 or more; yes: the defender does not die)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-46",
+   "set": "w2",
+   "row": 46,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    662,
+    690
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "RJT pushes RACK's flagger (AoB Derv, carrying) with one player",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "eea5ba87-push_flagger-1-662-82",
+     "shown": "RJT: Stop their flag, or make it 30% late. Met (no: their flag is stopped; yes: it arrives 30% or more later than usual)",
+     "mark": "right"
+    },
+    {
+     "play": "eea5ba87-flagger_pushed-2-662-84",
+     "shown": "RACK: Get the flag in on time. Not met (no: the flag gets in, less than 30% late)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-47",
+   "set": "w2",
+   "row": 47,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    662,
+    748
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RACK's split by the front door: three players (Hammer, Ranger, Prot) against 2 defending (Mes/A, 8 Monk); numbers along the way: 3 v 3 from 11:02, 3 v 2 from 11:26, 3 v 3 from 12:10",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "eea5ba87-split-2-662-85",
+     "shown": "RACK (attacker) [a player or more up]: Kill or take NPCs. Met (no: a defender killed; yes: an NPC taken)",
+     "mark": "right"
+    },
+    {
+     "play": "eea5ba87-split-1-662-83",
+     "shown": "RJT (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Not met (no: no pit NPC lost; yes: no defender dies)",
+     "mark": "right"
+    },
+    {
+     "play": "eea5ba87-split-2-662-86",
+     "shown": "RACK (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Met (yes: more of theirs die away from the split than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-48",
+   "set": "w2",
+   "row": 48,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    668,
+    688
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (3 v 4, RJT's front door), from players split elsewhere; RJT: retreat down the ladder (fall back into the base) | RACK: stay (stay at the stand); 3 damage against 2 monks",
+   "mark": "partly",
+   "said": "sort of true, but you called this fight and period a split already",
+   "calls": [
+    {
+     "play": "eea5ba87-numbers-1-668-87",
+     "shown": "RJT (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (yes: nobody of ours dies)",
+     "mark": "right"
+    },
+    {
+     "play": "eea5ba87-numbers-2-668-88",
+     "shown": "RACK (strong side) [stay]: Keep them busy and lose nobody (a kill is not expected of it). Met (yes: nobody of ours dies)",
+     "mark": "right"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "numbers",
+      "start": [
+       662,
+       674
+      ],
+      "want": {
+       "scenario~": "RJT's front door"
+      }
+     },
+     "why": "RJT v RACK 11:08: 'sort of true, but you called this fight and period a split already' (row 47): one fight told twice, as RACK's split and as a numbers moment",
+     "open": true
+    }
+   ]
+  },
+  {
+   "id": "w2-eea5-49",
+   "set": "w2",
+   "row": 49,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    700,
+    750
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "RACK has 3 in RJT's base at the base res (2 defending, 1 coming back): 3 stay",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "eea5ba87-base_res-2-700-89",
+     "shown": "RACK [stayed through the res]: Be out, or set for the fight, when they res. Met (yes: nobody of ours dies in the 30 s after the res)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-50",
+   "set": "w2",
+   "row": 50,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    702,
+    732
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RJT's split by the front door: 4 players (Ranger, Stand Mes, Hammer, 7 Monk) against 5 defending (Mes/A, Stand Mes, 7 Monk, 8 Monk, AoB Derv); Stand Mes, 7 Monk, 8 Monk, AoB Derv collapse from the main fight; 5 (Mes/A, Stand Mes, 7 Monk, 8 Monk, AoB Derv) against 4 players: collapse by Stand Mes, 7 Monk, 8 Monk, AoB Derv from the main fight",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "eea5ba87-split-1-702-90",
+     "shown": "RJT (attacker) [collapsed on]: Survive and gain an advantage elsewhere on the map. Not met (no: nobody on the split dies; no: more of theirs die away from the split than of ours; yes: flag lead better by 0.35 or more)",
+     "mark": "right"
+    },
+    {
+     "play": "eea5ba87-split-2-702-91",
+     "shown": "RACK (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Met (yes: a split player dies during the collapse)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-51",
+   "set": "w2",
+   "row": 51,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    714,
+    818
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (4 v 5, RACK's front door; then 6 v 8 from 12:32; then 5 v 8 from 12:38; then 4 v 8 from 13:02; then 3 v 8 from 13:08; then 2 v 8 from 13:24), from players split elsewhere; RJT: stay (stay at the stand) | then 8 v 6 from 12:32; then 8 v 5 from 12:38; then 8 v 4 from 13:02; then 8 v 3 from 13:08; then 8 v 2 from 13:24), from players split elsewhere; RACK: push in",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "eea5ba87-numbers-1-714-92",
+     "shown": "RJT (weak side) [stay]: No deaths, keep them busy, do not chase. Not met (no: nobody of ours dies)",
+     "mark": "right"
+    },
+    {
+     "play": "eea5ba87-numbers-2-714-93",
+     "shown": "RACK (strong side) [push in]: Kill with the numbers while their players are away. Met (yes: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-52",
+   "set": "w2",
+   "row": 52,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    746,
+    766
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RACK's split by the front door: two players (Ranger, Prot) against 3 defending (Hammer, 8 Monk, Mes/A); Hammer collapse from the main fight; 3 (Hammer, 8 Monk, Mes/A) against two players: collapse by Hammer from the main fight",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "eea5ba87-split-2-746-95",
+     "shown": "RACK (attacker) [collapsed on]: Survive and gain an advantage elsewhere on the map. Met (yes: nobody on the split dies; yes: more of theirs die away from the split than of ours; no: flag lead better by 0.35 or more)",
+     "mark": "right"
+    },
+    {
+     "play": "eea5ba87-split-1-746-94",
+     "shown": "RJT (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Not met (no: a split player dies during the collapse)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-53",
+   "set": "w2",
+   "row": 53,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    780,
+    825
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "RACK's boost is 30 s away; RJT: no runner; the rest fall back into the base",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "eea5ba87-boost-1-780-96",
+     "shown": "RJT [concede]: Concede the boost for kills. Not met (no: more of theirs die than of ours)",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-54",
+   "set": "w2",
+   "row": 54,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    804,
+    828
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "RJT is held in its own base or pit by RACK's main team (K0 A1 B1 alive; base res in 36 s)",
+   "mark": "right",
+   "calls": [
+    {
+     "play": "eea5ba87-pinned-1-804-97",
+     "shown": "RJT: Hold the NPCs and lose nobody until the base res, or break out. Not met (no: no pit NPC lost and nobody dies until the base res; no: it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors))",
+     "mark": "right"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "w2-eea5-missed",
+   "set": "w2",
+   "row": 0,
+   "rid": "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",
+   "match": "RJT v RACK, Nomad's",
+   "window": [
+    0,
+    0
+   ],
+   "type": "missed",
+   "call": "",
+   "shown": "(his notes on the game: what the engine did not read, and his questions)",
+   "mark": "missed",
+   "said": "",
    "checks": []
   }
  ]
