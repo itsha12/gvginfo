@@ -29,11 +29,11 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 - gvg.report's replay payload, already downloaded, holds `report.objectives.object_transitions` (each appearance of a
   flag object, with its position); `replay_trim.mjs` drops it. A flag appearing at its spawn with no cap just before
   is a return: on RJT v RACK within 0.5 s of the game's four return messages, where the engine's inferred returns
-  were 16, 17, 3 and 69 s late. Proposal, not built: keep it in the trim (a new TRIM_VERSION fetches every stored
-  replay again, about 90 MB a match: the development set first), then read returns and dropped flags from it.
+  were 16, 17, 3 and 69 s late. He agreed (R-481): keep it in the trim and read returns from it, but only with the
+  next rebuild (a new TRIM_VERSION fetches every stored replay again, about 90 MB a match); readings come first.
 - The Lord damage page (`summary.objectives.guild_lord_damage`) adds nothing stored casts and deaths do not give. GW
   Observer's match cache is the same recording kept fuller (NPC positions and health, returns, gates); no probed
-  payload serves NPC tracks (`full` not probed). Its licence limits the code and the data: his call before any use.
+  payload serves NPC tracks (`full` not probed: he said no). Its licence limits the code and the data: his call before any use.
 
 ## Next (in order; REDESIGN.md "Build plan from here", item 6, and "Tests")
 1. On his go-ahead, rebuild at the root from RJT v RACK (R-465), its 14 open checks the test. Two faults, 11 rows:
