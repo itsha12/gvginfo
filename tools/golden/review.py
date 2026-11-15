@@ -84,6 +84,10 @@ def score(path, key=KEY):
         still = [c for c in opn if not check(by[r["rid"]], c)]
         opened[r.get("set")][0] += len(opn) - len(still); opened[r.get("set")][1] += len(opn)
         ok = not bad
+        if r.get("tier") == "borderline":       # R-490: a borderline row is reported and never blocks a change
+            res["borderline, holds" if ok else "borderline, does not hold (reported; blocks nothing)"] += 1
+            if bad: print(f"borderline {r['id']} ({r['type']}; his mark: {r['mark']}) {r['match']} {cl(r['window'][0])}-{cl(r['window'][1])}: no longer holds")
+            continue
         res["pass" if ok else "FAIL"] += 1
         by_type[r["type"]][0] += ok; by_type[r["type"]][1] += 1
         if bad:
@@ -158,12 +162,15 @@ def export(path, out, part, set_id="w1", label=None, drop=()):
         m = D["matches"][rid]; P = [p for p in D["plays"] if p["rid"] == rid]; sits = []
         for i, g in enumerate(situations(P), 1):
             read = _reads(g); calls = []
-            for p in g:
+            unclear = g[0].get("unclear") if all(p.get("clear") is False for p in g) else None      # R-488: nothing a team clearly had to decide: told as context, with no call under it
+            for p in ([] if unclear else g):
                 side = p["side"] if p["side"] not in ("own",) and p["play"] in ("split", "lord", "numbers") else ""
-                calls.append({"id": p["id"], "team": p["team"], "side": side, "label": p.get("call") or p.get("answer") or p.get("ours") or "", "job": p["job"], "met": bool(p["met"]),
+                calls.append({"id": p["id"], "team": p["team"], "side": side, "label": (p.get("call") or p.get("answer") or p.get("ours") or "") + (f": {p['hand']}" if p.get("hand") else ""), "job": p["job"], "met": bool(p["met"]),
                               "tests": [[bool(v), k] for k, v in list(p["tests"].items()) + list(p.get("any_of", {}).items())], "any": bool(p.get("any_of")) and bool(p["tests"]) is False, "draft": not p.get("ruled", True)})
-            sits.append({"n": i, "id": "s:" + g[0]["id"], "kind": {"flagger pushed": "push flagger"}.get(g[0]["play"], g[0]["play"]), "t0": g[0]["t0"], "t1": max(p["t1"] for p in g), "reads": read, "calls": calls})
-        games.append({"set": set_id, "part": part, "label": label or f"part {part}", "rid": rid, "teams": m["teams"], "map": m["map"], "date": m["date"], "situations": sits})
+            sits.append({"n": i, "id": "s:" + g[0]["id"], "kind": {"flagger pushed": "push flagger"}.get(g[0]["play"], g[0]["play"]), "t0": g[0]["t0"], "t1": max(p["t1"] for p in g), "reads": read, "calls": calls, **({"unclear": unclear} if unclear else {})})
+        twice = (D.get("flag_cost", {}).get(rid) or {}).get("selfcheck") or []
+        games.append({"set": set_id, "part": part, "label": label or f"part {part}", "rid": rid, "teams": m["teams"], "map": m["map"], "date": m["date"], "situations": sits,
+                      "selfcheck": [f"{c['who']} {cl(c['from'])} to {cl(c['to'])}: {c['in'][0]} and {c['in'][1]}" for c in twice]})
     commit = subprocess.run(["git", "-C", REPO, "rev-parse", "--short", "HEAD"], capture_output=True, text=True).stdout.strip()
     json.dump({"about": "The rows of Model > Game review (R-454, R-455): every situation the engine reads in each review game, written by tools/golden/review.py export on the engine branch. His marks are in game_review_marks.json, never here.",
                "generated": datetime.date.today().isoformat(), "engine": commit, "games": games}, open(out, "w"), ensure_ascii=False, indent=1)
@@ -187,7 +194,7 @@ def compare(rid, rows_file, marks_file, shown_file, others):
         sm = mk.get(s_["id"], {}).get("mark")
         for c in s_["calls"]:
             cm = mk.get(c["id"], {}).get("mark")
-            verdict[c["id"]] = "repeat" if sm == "repeat" else "unmarked" if not sm else "wrong" if "wrong" in (sm, cm) else "partly" if "partly" in (sm, cm) else "right" if cm == "right" else "unmarked"
+            verdict[c["id"]] = sm if sm in ("repeat", "unclear") else "unmarked" if not sm else "wrong" if "wrong" in (sm, cm) else "partly" if "partly" in (sm, cm) else "right" if cm == "right" else "unmarked"
     right = [i for i, v in verdict.items() if v == "right"]
     print(f"{' v '.join(g['teams'])}: he was shown {len(verdict)} calls: " + ", ".join(f"{v} {k}" for k, v in collections.Counter(verdict.values()).most_common()))
     for name, f in others:
@@ -219,15 +226,16 @@ def file_marks(rid, rows_file, marks_file, set_id, key=KEY):
             if cv.get("why"): d["said"] = cv["why"]
             row["calls"].append(d)
         row["checks"] = old.get(i, {}).get("checks", [])
+        if row["mark"] == "unclear": row["tier"] = "borderline"      # R-490: no clear decision; never a row to build from
         for k_ in old.get(i, {}):
-            if k_.startswith("answered"): row[k_] = old[i][k_]
+            if k_.startswith("answered") or k_ in ("tier", "tier_why", "retired_checks"): row[k_] = old[i][k_]
         new.append(row)
     i = pre + "missed"
     new.append({"id": i, "set": set_id, "row": 0, "rid": g["rid"], "match": match, "window": [0, 0], "type": "missed", "call": "", "shown": "(his notes on the game: what the engine did not read, and his questions)", "mark": "missed", "said": e.get("notes") or "", "checks": old.get(i, {}).get("checks", [])})
     K["rows"] = [r for r in K["rows"] if not r["id"].startswith(pre)] + new
     open(key, "w", encoding="utf-8").write(json.dumps(K, ensure_ascii=False, indent=1) + "\n")
     c = collections.Counter(r["mark"] for r in new if r["type"] != "missed"); j = c["right"] + c["partly"] + c["wrong"]
-    print(f"{match} (engine {e.get('engine')}): situations right {c['right']}, partly {c['partly']}, wrong {c['wrong']} of {j} judged ({100 * c['right'] // max(j, 1)}%, R-475); repeat {c['repeat']}, not marked {c['not marked']}")
+    print(f"{match} (engine {e.get('engine')}): situations right {c['right']}, partly {c['partly']}, wrong {c['wrong']} of {j} judged ({100 * c['right'] // max(j, 1)}%, R-475); no clear decision {c['unclear']}, repeat {c['repeat']}, not marked {c['not marked']}")
     by = collections.defaultdict(collections.Counter)
     for r in new:
         if r["type"] != "missed": by[r["type"]][r["mark"]] += 1
@@ -236,7 +244,7 @@ def file_marks(rid, rows_file, marks_file, set_id, key=KEY):
     print(f"  calls where the situation was right: right {cc['right']} of {sum(cc.values())}")
 
 
-NUMBERS = ("FIGHT_LINK", "JOIN_S", "FIGHT_HOLD_S", "FIGHT_ACT", "FIGHT_HOLD", "FIGHT_CLOSE", "FOUGHT", "FLAG_TAKEN_OUT_S", "DOUBLE_NEXT_S")
+NUMBERS = ("FIGHT_LINK", "JOIN_S", "FIGHT_HOLD_S", "FIGHT_ACT", "FIGHT_HOLD", "FIGHT_CLOSE", "FOUGHT", "DOUBLE_NEXT_S")
 
 
 def numbers(steps=(0.5, 0.75, 1.25, 2.0), names=NUMBERS, jobs=1, key=KEY, work="/tmp/numbers"):
@@ -254,7 +262,7 @@ def numbers(steps=(0.5, 0.75, 1.25, 2.0), names=NUMBERS, jobs=1, key=KEY, work="
         bad, held = [], []
         for r in K["rows"]:
             if not r.get("checks") or r["rid"] not in by: continue
-            if any(not check(by[r["rid"]], c) for c in r["checks"] if not c.get("open")): bad.append(r["id"])
+            if r.get("tier") != "borderline" and any(not check(by[r["rid"]], c) for c in r["checks"] if not c.get("open")): bad.append(r["id"])
             held += [r["id"] for c in r["checks"] if c.get("open") and check(by[r["rid"]], c)]
         return bad, held
 

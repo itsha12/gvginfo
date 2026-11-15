@@ -300,6 +300,15 @@ class Moments:
         p = self.P[a][t]
         return bool(p) and sum(1 for b in others if self.AL[b][t] and self.P[b][t] and d(p, self.P[b][t]) < FIGHT_LINK) >= need
 
+    def moving(self, a, t):
+        """A player in neither fight who is only changing his position (R-488: "players are part of neither fight and are just like moving to position and
+        essentially providing no output except for changing their position"): alive, in no group that holds an enemy (`fights`), not carrying a flag, and starting
+        no cast or attack from JOIN_S before t to JOIN_S after it."""
+        t = int(t); u = t - t % SPLIT_STEP
+        if not (self.AL[a][t] and self.P[a][t]) or self.carrying(a, t): return False
+        if any(a in g["ids"][1] | g["ids"][2] for g in self.fights(u) if g["n"][1] and g["n"][2]): return False
+        return not any(x == a for v in range(max(t - JOIN_S, 0), min(t + JOIN_S, self.T) + 1) for x in self.casts.get(v, ()))
+
     def fights(self, t):
         """The groups on the map at second t: living players of both teams in the same fight (`linked`), each with its
         numbers by team and where it stands (the place of team 1's players, else team 2's, named by whose ground it
@@ -2057,10 +2066,11 @@ class Moments:
             f = F[t]
             n = {tm: sum(1 for a in f["ids"][tm] if counted[a][ti]) for tm in self.st.teams} if f is not None else None
             adv = None if n is None or not n[1] or not n[2] or n[1] == n[2] else (1 if n[1] > n[2] else 2)
-            if adv and cur and cur["adv"] == adv and t - cur["last"] <= S: cur["last"] = t; cur["ns"].append((n[1], n[2])); cur["all"] |= set(f["ids"][1]) | set(f["ids"][2])
+            now = frozenset(a for tm in self.st.teams for a in f["ids"][tm] if counted[a][ti]) if f is not None else frozenset()
+            if adv and cur and cur["adv"] == adv and t - cur["last"] <= S: cur["last"] = t; cur["ns"].append((n[1], n[2])); cur["all"] |= set(f["ids"][1]) | set(f["ids"][2]); cur["at"][t] = now
             else:
                 if cur: raw.append(cur)
-                cur = {"adv": adv, "start": t, "last": t, "ns": [(n[1], n[2])], "place": (f["kind"], f["side"]), "ids": {tm: frozenset(a for a in f["ids"][tm] if counted[a][ti]) for tm in self.st.teams}, "all": set(f["ids"][1]) | set(f["ids"][2])} if adv else None      # ids: the players counted in it
+                cur = {"adv": adv, "start": t, "last": t, "ns": [(n[1], n[2])], "place": (f["kind"], f["side"]), "ids": {tm: frozenset(a for a in f["ids"][tm] if counted[a][ti]) for tm in self.st.teams}, "all": set(f["ids"][1]) | set(f["ids"][2]), "at": {t: now}} if adv else None      # ids: the players counted in it
         if cur: raw.append(cur)
         # a numbers difference is told once: stretches with the same side up and less than a moment's length (NUMBERS_MIN_S) between them are one situation (a player resurrected
         # and killed again; his marks, cope v Team 5:18 and 13:52: "same situation, a continuation"). It runs from the first to the last stretch that is a moment in its own right
@@ -2073,8 +2083,9 @@ class Moments:
         for g in groups:
             ok = [k for k, e in enumerate(g) if good(e)]
             if not ok: continue
-            g = g[ok[0]:ok[-1] + 1]; e = dict(g[0], all=set(g[0]["all"]), ns=list(g[0]["ns"]))
+            g = g[ok[0]:ok[-1] + 1]; e = dict(g[0], all=set(g[0]["all"]), ns=list(g[0]["ns"]), at=dict(g[0]["at"]))
             for x in g[1:]:
+                e["at"].update(x["at"])
                 e["ns"] += [None] * ((x["start"] - e["last"]) // S - 1) + x["ns"]; e["last"] = x["last"]; e["all"] |= x["all"]
             eps.append(e)
         return eps
@@ -2134,23 +2145,38 @@ class Moments:
             if a in fight_ids: continue
             if not self.AL[a][t]: why["kills"] += 1
             elif self.carrying(a, t) or any(r["a"] == a and self._went_to_run(r) - 5 <= t <= r["pickup"] + 60 for r in self.run_starts()) or d(self.P[a][t], self.spawn[short]) < SPAWN_R: why["runner away"] += 1
+            elif self._deep(a, t - t % SPLIT_STEP) is None and self.moving(a, t): why["on the way"] += 1                 # R-488: in neither fight, changing position (walking back from the base res, crossing the map)
             else: why["split elsewhere"] += 1
-        src = "wipe" if len(fight_ids) <= 2 and why["kills"] >= 5 else max(("kills", "runner away", "split elsewhere"), key=lambda k: (why[k], k == "kills", k == "runner away"))
+        src = "wipe" if len(fight_ids) <= 2 and why["kills"] >= 5 else max(("kills", "runner away", "split elsewhere", "on the way"), key=lambda k: (why[k], k == "kills", k == "runner away", k == "split elsewhere"))
         runs = []                                        # the numbers it starts with (the first held two readings or more), and each change after that (R-446: numbers that change are told)
         for i_, c in enumerate(e["ns"]):
             if c is None: continue                       # a level reading inside the stretch (shorter than a moment)
             if runs and runs[-1][0] == c: runs[-1][2] += 1
             else: runs.append([c, e["start"] + i_ * SPLIT_STEP, 1])
-        held = [r for r in runs if r[2] >= 2] or runs
+        # numbers are read fluidly (R-488): the numbers a stretch is told with are the first that lasted JOIN_S (else those it had for longest), and a change is told
+        # only if it lasted JOIN_S too ("the team that is up for 3 s doesn't have time to do anything with that player advantage anyway"), and not when the
+        # numbers come back to what was last told
+        lasting = JOIN_S // SPLIT_STEP
+        clear = any(r[2] >= lasting for r in runs)                         # numbers that never held JOIN_S gave nobody anything to decide
+        while len(runs) > 1:                                               # a stretch shorter than that is not told: the numbers before it stand through it (a 3 s dip inside a 4 v 4 is a 4 v 4)
+            i = min(range(len(runs)), key=lambda i: runs[i][2])
+            if runs[i][2] >= lasting: break
+            if i: runs[i - 1][2] += runs[i][2]; del runs[i]
+            else: runs[1][1], runs[1][2] = runs[0][1], runs[1][2] + runs[0][2]; del runs[0]
+            k_ = 0
+            while k_ + 1 < len(runs):
+                if runs[k_][0] == runs[k_ + 1][0]: runs[k_][2] += runs[k_ + 1][2]; del runs[k_ + 1]
+                else: k_ += 1
+        held = runs
         own = lambda c: c if tm == 1 else c[::-1]
         n = own(held[0][0])
         told = [held[0]]
         for r_ in held[1:]:
-            if r_[2] >= 3 and r_[0] != told[-1][0]: told.append(r_)      # a change is told once it has held 6 s, and not when the numbers come back to what was last told
+            if r_[0] != told[-1][0]: told.append(r_)
         then = "".join(f"; then {own(c)[0]} v {own(c)[1]} from {int(u) // 60}:{int(u) % 60:02d}" for c, u, k_ in told[1:])
-        words = {"kills": "kills", "runner away": "a runner away", "split elsewhere": "players split elsewhere", "wipe": "a wipe"}[src]
+        words = {"kills": "kills", "runner away": "a runner away", "split elsewhere": "players split elsewhere", "wipe": "a wipe", "on the way": "players on their way to it (in neither fight)"}[src]
         return {"key": f"{side}|{src}", "label": f"{'Up' if side == 'up' else 'Down'} on numbers in the main fight ({n[0]} v {n[1]}, {self.place_words(*e['place'])}{then}), from {words}",
-                "parts": {"side": side, "source": src, "numbers": f"{n[0]}v{n[1]}", "short_because": dict(why), "place": self.place_words(*e["place"]), "step": self._ladder(tm, *e["place"])}}
+                "parts": {"side": side, "source": src, "numbers": f"{n[0]}v{n[1]}", "short_because": dict(why), "place": self.place_words(*e["place"]), "step": self._ladder(tm, *e["place"]), "clear": clear}}
 
     # ---- 2.6 the call, read from the records in the window after the trigger (never from damage or deaths)
     def _runners(self, tm, t):
@@ -2572,7 +2598,7 @@ def match_records(rid):
     M = Moments(st, Scoreboard(st))
     recs = M.records()
     import jobs                                          # the plays and their jobs; each moment gets its allocation (R-425)
-    EXTRA[rid] = {"runs": M.runner_cost(), "duty": [M.flag_duty()[tm] for tm in (1, 2)], "plays": jobs.plays(M, recs), "flags": jobs.bench_rows(M),
+    EXTRA[rid] = {"runs": M.runner_cost(), "duty": [M.flag_duty()[tm] for tm in (1, 2)], "plays": jobs.plays(M, recs), "selfcheck": jobs.selfcheck(M), "flags": jobs.bench_rows(M),
                   "flag_moments": dict(collections.Counter(r["moment_rule"] for r in M.run_starts() if r["set_off"] is not None))}
     return recs
 
@@ -2622,6 +2648,8 @@ def run_all(path, jobs=2, ids=None):
     for r in out:
         for k, v in ((extra[r] or {}).get("flag_moments") or {}).items(): fm[k] += v
     print("flag runs set off for, by how the moment is read (R-461):", dict(fm))
+    sc = [(r, c) for r in sorted(out) for c in (extra[r] or {}).get("selfcheck") or []]
+    print(f"self-check (R-488): {len(sc)} times a player is counted in two fights at once for {JOIN_S} s or longer, in {len({r for r, _ in sc})} matches")
     if blanks([x for r in sorted(out) for x in out[r]], [p for r in sorted(out) for p in (extra[r] or {}).get("plays", [])]): sys.exit(1)
 
 

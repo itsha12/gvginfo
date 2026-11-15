@@ -211,7 +211,7 @@ def can_kill(damage, monks):
     """Is this much damage expected to kill against this many backline monks (R-457)? More than three monks: not expected."""
     return monks in KILL_NEED and damage >= KILL_NEED[monks]
 DOUBLE_NEXT_S = 30              # a double run: the player back toward the spawn at the capture takes the next flag within this long (a player who is merely at home, and runs a flag minutes later, was not double running: TFS v 옷옷옷옷 4:02, Men v Apes 1:17; Claude's draft)
-FLAG_TAKEN_OUT_S = 20           # a flag picked up by a player already at home, or by a team held in its base, and kept there longer than this: the run starts when its runner takes it out of the base (TFS v 옷옷옷옷 1:20 and 11:01; Claude's draft)
+FLAG_TAKEN_OUT_S = 20           # no longer read (R-488, 2026-11-15): a flag picked up at home by a player who did not go back for it is a run from the second it leaves the base, however long it was kept
 SOH_REMOVED = "2026-10-22"       # the Shadow of Haste flag mechanic left the game on this day (R-456): a run before it is set aside, from it on a bar with the skill is an ordinary runner
 # when a flag run's moment is (R-461): a runner who sets off from inside the greater stand area goes to run when he leaves the greater stand area on these halls ...
 FLAG_MOMENT_GREATER = ("Corrupted Isle", "Isle of Meditation", "Isle of Weeping Stone", "Nomad's Isle", "Frozen Isle")

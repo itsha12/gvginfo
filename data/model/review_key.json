@@ -721,7 +721,9 @@
       ]
      }
     }
-   ]
+   ],
+   "tier_proposed": "borderline",
+   "tier_why": "his words: not really a solo split nor a collapse; a player left behind (Claude's proposal of 2026-11-15, R-490: his to confirm; until then the row is clear and must pass)"
   },
   {
    "id": "s1-23",
@@ -799,7 +801,9 @@
     "asked": "On his redrawn Greater stand area no split is read at OG v Dz 2:34: right?",
     "said": "2:34 no split, correct",
     "reading": "No split there: the check now asks that none is read."
-   }
+   },
+   "tier_proposed": "borderline",
+   "tier_why": "his words: the fight is too messy to call a 3 v 3 (Claude's proposal of 2026-11-15, R-490: his to confirm; until then the row is clear and must pass)"
   },
   {
    "id": "s1-25",
@@ -1151,7 +1155,9 @@
      }
     }
    ],
-   "note": "R-445: time for NPCs after kills at their base."
+   "note": "R-445: time for NPCs after kills at their base.",
+   "tier_proposed": "borderline",
+   "tier_why": "his words: incorrect, but not the engine's fault (Claude's proposal of 2026-11-15, R-490: his to confirm; until then the row is clear and must pass)"
   },
   {
    "id": "s1-33",
@@ -1848,6 +1854,22 @@
     }
    ],
    "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "TFS",
+      "at": [
+       310,
+       340
+      ]
+     },
+     "want": {
+      "scenario~": "(3 v 7"
+     },
+     "was": "TFS v 옷옷옷옷 5:28: 3 v 7, not 1 v 7. Reworded 2026-11-15: with numbers read fluidly (R-488) the 6 s of 4 v 7 before it are no longer told, and the stretch is told as 3 v 7 from its start"
+    }
+   ],
+   "retired_checks": [
     {
      "has": {
       "play": "numbers",
@@ -4717,7 +4739,9 @@
      "why": "hdm v hook 4:46: the main teams are a rough 4 v 4, no numbers moment",
      "open": true
     }
-   ]
+   ],
+   "tier_proposed": "borderline",
+   "tier_why": "his words: the main team is a rough, messy 4 v 4 (Claude's proposal of 2026-11-15, R-490: his to confirm; until then the row is clear and must pass)"
   },
   {
    "id": "w1p2-8bf4-17",
@@ -7397,7 +7421,9 @@
      "why": "hook v hold 13:04: not a clear numbers advantage, the fight is too messy",
      "open": true
     }
-   ]
+   ],
+   "tier_proposed": "borderline",
+   "tier_why": "his words: not a clear numbers advantage, the fight is too messy (Claude's proposal of 2026-11-15, R-490: his to confirm; until then the row is clear and must pass)"
   },
   {
    "id": "w2-4629-32",
@@ -9333,7 +9359,9 @@
     "asked": "Row 15, 'look at 4v3 for RACK at 5:30': should row 22 (5:28, marked right as 3 v 3) read 4 v 3 with the 7 Monk?",
     "said": "Sorry, you're right. The 7 monk offered some brief support but it's really a 3v3.",
     "reading": "Row 22 stands as 3 v 3: support under 12 s is not a player more (R-350, R-484)."
-   }
+   },
+   "tier_proposed": "borderline",
+   "tier_why": "his words hedge (\"I think\"), and he revised half of the row on 2026-11-15 (Claude's proposal of 2026-11-15, R-490: his to confirm; until then the row is clear and must pass)"
   },
   {
    "id": "w2-eea5-16",
@@ -10600,5 +10628,6 @@
    "said": "",
    "checks": []
   }
- ]
+ ],
+ "about_tiers": "R-490: a row with \"tier\": \"borderline\" is reported by `review.py score` and never blocks a change; every other row with a check is clear and must pass. A row he marks No clear decision is borderline when it is filed. \"tier_proposed\" is Claude's proposal, not yet his."
 }
