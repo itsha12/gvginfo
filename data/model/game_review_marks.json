@@ -3925,10 +3925,12 @@
      "grade": "classic",
      "why": "",
      "text": "They single run (Team's Monk 5 (WoC)); HC: single run",
-     "band": "high"
+     "band": "high",
+     "mark": "correct",
+     "off": []
     },
     "9b5cdf62-flag-1-308-24": {
-     "mark": "not judged",
+     "mark": "correct",
      "why": "",
      "text": "HC [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (our flag is capped: yes; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: yes)"
     },
@@ -4562,6 +4564,21 @@
      "mark": "correct",
      "why": "",
      "text": "HC [stayed through the res]: Be out, or set for the fight, when they res. Met (nobody of ours dies in the 30 s after the res: yes)"
+    },
+    "9b5cdf62-flag-2-274-23": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (our flag is capped: yes; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: no)"
+    },
+    "9b5cdf62-flag-1-400-32": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (our flag is capped: no; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: yes)"
+    },
+    "9b5cdf62-pinned-2-916-81": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team: Hold the NPCs and lose nobody until the base res, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)"
     }
    },
    "scheme": 2,
