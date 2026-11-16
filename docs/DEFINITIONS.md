@@ -88,6 +88,8 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - The opening is read (R-479): each team's first flag is a run, and a player left at the spawn for the next flag is
   part of the call. While nobody has a flag capped nobody is behind on flags: a first run, single against single,
   carries only "get the first flag in" (R-500).
+- A flag handed on is one runner: a half run is a single run (R-504). A double run needs a second player who has
+  gone back for the next flag by the time the first caps (R-472, R-485).
 - A run is the answer to theirs when its runner turned for home before their flag went in, though the run's own
   moment falls just after their cap (R-498). A stay ends when their flag is in (R-501).
 - A flag run is judged from the decision to run to its cap: what the team does after the cap is another decision, and

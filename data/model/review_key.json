@@ -7712,7 +7712,7 @@
       ]
      },
      "want": {
-      "scenario~": "K2 A2 B1"
+      "scenario~": "2 of 2 knights, 2 of 2 pit archers, the Bodyguard alive"
      },
      "was": "hook v hold 16:28: K2 A2 B1 until 17:22, and still held in at 17:04; the engine read A1 and ended it at 17:04"
     }
@@ -8382,7 +8382,7 @@
       ]
      },
      "want": {
-      "scenario~": "K2 A2 B1"
+      "scenario~": "2 of 2 knights, 2 of 2 pit archers, the Bodyguard alive"
      },
      "was": "cope v Team: K2 A2 B1 when cope pushes in at 7:56; the engine read A1"
     }
@@ -8468,7 +8468,7 @@
       ]
      },
      "want": {
-      "scenario~": "K2 A2 B1"
+      "scenario~": "2 of 2 knights, 2 of 2 pit archers, the Bodyguard alive"
      },
      "was": "cope v Team 9:56: K2 A2 B1 when cope pushes in; the engine read A0"
     },
@@ -12978,6 +12978,3355 @@
    "row": 0,
    "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
    "match": "HC v Team, Imperial",
+   "window": [
+    0,
+    0
+   ],
+   "type": "notes",
+   "call": "",
+   "shown": "(his notes on the game)",
+   "band": "",
+   "grade": "",
+   "mark": "notes",
+   "said": "",
+   "checks": []
+  },
+  {
+   "id": "f1-5168-1",
+   "set": "f1",
+   "scheme": 2,
+   "row": 1,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    0,
+    107
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "The opening. Crew single run (Water Ele); Men single run (8 Monk) (Shadow of Haste run: set aside)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "51683de9-flag-1-0-0",
+     "shown": "Men [single run]: Get the first flag in. Met (our flag is capped: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "Men",
+      "start": [
+       -6,
+       6
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-5168-2",
+   "set": "f1",
+   "scheme": 2,
+   "row": 2,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    83,
+    193
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "The opening. Men single run (8 Monk); Crew has a flag already in hand (Water Ele), held, its carrier not in position to overcap (capped 85 s after theirs) (Shadow of Haste run: set aside)",
+   "band": "high",
+   "grade": "none",
+   "mark": "",
+   "said": "this is the same single run as before. Men and Crew both bring up the first flag. Men holds for 1:47ish before deciding to cap.",
+   "calls": [
+    {
+     "play": "51683de9-flag-2-83-1",
+     "shown": "Crew [a flag already in hand: hold, not in position to overcap]: Hold the flag and play on with eight: give up no boost, and lose no more players than they do while it is held. Met (our flag is capped before their boost lands: yes; no more of ours die at the main fight than of theirs while it is held: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "flag",
+      "team": "Crew",
+      "start": [
+       77,
+       89
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "Men v Crew, Jade 1:23: he graded it No decision: this is the same single run as before. Men and Crew both bring up the first flag. Men holds for 1:47ish before deciding to cap."
+    }
+   ]
+  },
+  {
+   "id": "f1-5168-3",
+   "set": "f1",
+   "scheme": 2,
+   "row": 3,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    142,
+    184
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men down on numbers in the main fight (7 v 8, the greater stand area), from kills; Men: stay (stay at the stand) | Crew: stay (stay at the stand)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "51683de9-numbers-1-142-2",
+     "shown": "Men (down) [stay]: Hold the ground a player down and lose no more until it is level, or the base res. Met (nobody of ours dies: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "51683de9-numbers-2-142-3",
+     "shown": "Crew (up) [stay]: Turn the extra player into a kill before the numbers are level. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Men",
+      "start": [
+       136,
+       148
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Crew",
+      "start": [
+       136,
+       148
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-5168-4",
+   "set": "f1",
+   "scheme": 2,
+   "row": 4,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    218,
+    280
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men down on numbers in the main fight (5 v 8, the greater stand area; then 6 v 8 from 3:50; then 4 v 8 from 4:14), from players split elsewhere; Men: stay (stay at the stand) | Crew: stay (stay at the stand)",
+   "band": "low",
+   "grade": "visible",
+   "mark": "partly",
+   "said": "Visible decision, but men did not stay at the stand, it fell back to own footies",
+   "calls": [
+    {
+     "play": "51683de9-numbers-1-218-4",
+     "shown": "Men (weak side) [stay]: No deaths, keep them busy, do not chase. Not met (nobody of ours dies: no)",
+     "mark": "incorrect"
+    },
+    {
+     "play": "51683de9-numbers-2-218-5",
+     "shown": "Crew (strong side) [stay]: Kill with the numbers while their players are away. Met (more of theirs die than of ours: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Men",
+      "start": [
+       212,
+       224
+      ]
+     },
+     "want": {
+      "call": "retreat down the ladder"
+     },
+     "open": true,
+     "why": "Men v Crew 3:38 (Visible, partly): 'men did not stay at the stand, it fell back to own footies'"
+    }
+   ]
+  },
+  {
+   "id": "f1-5168-5",
+   "set": "f1",
+   "scheme": 2,
+   "row": 5,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    241,
+    258
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "Men single run (AoB Derv); Crew stays",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "51683de9-flag-2-241-6",
+     "shown": "Crew [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Met (more of theirs die at the main fight than of ours: yes; their flag does not get in: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "Crew",
+      "start": [
+       235,
+       247
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-5168-6",
+   "set": "f1",
+   "scheme": 2,
+   "row": 6,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    283,
+    318
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "Crew's boost is 30 s away; Men: two runners; the rest fall to footmen",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "51683de9-boost-1-283-7",
+     "shown": "Men [run]: Deny their boost. Not met (their boost does not land: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "boost",
+      "team": "Men",
+      "start": [
+       277,
+       289
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-5168-7",
+   "set": "f1",
+   "scheme": 2,
+   "row": 7,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    293,
+    346
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "Men single run (Ranger); Crew stays",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "51683de9-flag-2-293-8",
+     "shown": "Crew [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Met (more of theirs die at the main fight than of ours: no; their flag does not get in: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "Crew",
+      "start": [
+       287,
+       299
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-5168-8",
+   "set": "f1",
+   "scheme": 2,
+   "row": 8,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    330,
+    368
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men down on numbers in the main fight (6 v 8, the greater stand area), from kills; Men: retreat down the ladder (fall to footmen) | Crew: stay (stay at the stand)",
+   "band": "low",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "51683de9-numbers-1-330-9",
+     "shown": "Men (down) [retreat down the ladder]: Reach cover a player down without losing another. Not met (nobody of ours dies: yes; no NPC lost: no)",
+     "mark": "incorrect",
+     "said": "Are footies suppose to count for this? Genuinely can't remember. Men only loses a footie."
+    },
+    {
+     "play": "51683de9-numbers-2-330-10",
+     "shown": "Crew (up) [stay]: Turn the extra player into a kill before the numbers are level. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-5168-9",
+   "set": "f1",
+   "scheme": 2,
+   "row": 9,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    352,
+    532
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "Men single run (AoB Derv); Crew single run (Water Ele)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "incorrect",
+   "off": [
+    "who",
+    "kind"
+   ],
+   "said": "crew does not run a flag.",
+   "calls": [
+    {
+     "play": "51683de9-flag-2-352-11",
+     "shown": "Crew [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (our flag is capped: yes; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "flag",
+      "team": "Crew",
+      "start": [
+       346,
+       358
+      ],
+      "want": {
+       "ours": "single run"
+      }
+     },
+     "open": true,
+     "why": "Men v Crew 5:52 (Classic, incorrect, who and kind): 'crew does not run a flag': the engine reads Crew's Water Ele answering Men's run with a single run"
+    }
+   ]
+  },
+  {
+   "id": "f1-5168-10",
+   "set": "f1",
+   "scheme": 2,
+   "row": 10,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    400,
+    430
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men down on numbers in the main fight (6 v 8, the flag stand), from players split elsewhere; Men: stay (stay at the stand) | Crew: stay (stay at the stand)",
+   "band": "low",
+   "grade": "weak",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "51683de9-numbers-1-400-12",
+     "shown": "Men (weak side) [stay]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)",
+     "mark": "not judged"
+    },
+    {
+     "play": "51683de9-numbers-2-400-13",
+     "shown": "Crew (strong side) [stay]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-5168-11",
+   "set": "f1",
+   "scheme": 2,
+   "row": 11,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    403,
+    438
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "Crew's boost is 30 s away; Men: one runner; the rest stay at the stand",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "51683de9-boost-1-403-14",
+     "shown": "Men [run]: Deny their boost. Not met (their boost does not land: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "boost",
+      "team": "Men",
+      "start": [
+       397,
+       409
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-5168-12",
+   "set": "f1",
+   "scheme": 2,
+   "row": 12,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    498,
+    522
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men down on numbers in the main fight (6 v 7, the flag stand), from players split elsewhere; Men: stay (stay at the stand) | Crew: stay (stay at the stand)",
+   "band": "medium",
+   "grade": "none",
+   "mark": "",
+   "said": "there isn't really a fight here and a very brief time of player advantage, only because people are walking back and forth through the portal",
+   "calls": [
+    {
+     "play": "51683de9-numbers-1-498-15",
+     "shown": "Men (weak side) [stay]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)",
+     "mark": "not judged"
+    },
+    {
+     "play": "51683de9-numbers-2-498-16",
+     "shown": "Crew (strong side) [stay]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "numbers",
+      "team": "Men",
+      "start": [
+       492,
+       504
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "Men v Crew, Jade 8:18: he graded it No decision: there isn't really a fight here and a very brief time of player advantage, only because people are walking back and forth through the portal"
+    },
+    {
+     "none": {
+      "play": "numbers",
+      "team": "Crew",
+      "start": [
+       492,
+       504
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "Men v Crew, Jade 8:18: he graded it No decision: there isn't really a fight here and a very brief time of player advantage, only because people are walking back and forth through the portal"
+    }
+   ]
+  },
+  {
+   "id": "f1-5168-13",
+   "set": "f1",
+   "scheme": 2,
+   "row": 13,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    523,
+    558
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "Crew's boost is 30 s away; Men: one runner; the rest stay at the stand",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "51683de9-boost-1-523-17",
+     "shown": "Men [run]: Deny their boost. Not met (their boost does not land: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "boost",
+      "team": "Men",
+      "start": [
+       517,
+       529
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-5168-14",
+   "set": "f1",
+   "scheme": 2,
+   "row": 14,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    643,
+    678
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "Crew's boost is 30 s away; Men: one runner; the rest fall to footmen",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "51683de9-boost-1-643-18",
+     "shown": "Men [run]: Deny their boost. Not met (their boost does not land: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "boost",
+      "team": "Men",
+      "start": [
+       637,
+       649
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-5168-15",
+   "set": "f1",
+   "scheme": 2,
+   "row": 15,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    692,
+    763
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "Crew single run (Water Ele); Men double run (Ranger)",
+   "band": "low",
+   "grade": "visible",
+   "mark": "incorrect",
+   "off": [
+    "numbers"
+   ],
+   "said": "this is a single run half run for Men",
+   "calls": [
+    {
+     "play": "51683de9-flag-1-692-19",
+     "shown": "Men [double run]: Gain flag advantage through their next cap, and lose nobody while two are away. Not met (flag lead better by 0.35 or more: no; nobody of ours dies at the main fight: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "flag",
+      "team": "Men",
+      "start": [
+       686,
+       698
+      ],
+      "want": {
+       "ours": "double run"
+      }
+     },
+     "open": true,
+     "why": "Men v Crew 11:32 (Visible, incorrect): 'this is a single run half run for Men': the engine reads a double run (the AoB Derv capping the flag before, the Ranger back for this one, who then hands it to the AoB Derv)"
+    }
+   ]
+  },
+  {
+   "id": "f1-5168-16",
+   "set": "f1",
+   "scheme": 2,
+   "row": 16,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    746,
+    844
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "Men single run (AoB Derv); Crew single run (Water Ele)",
+   "band": "high",
+   "grade": "visible",
+   "mark": "incorrect",
+   "said": "the Crew run is the same run as the one starting at 11:32.",
+   "calls": [
+    {
+     "play": "51683de9-flag-2-746-20",
+     "shown": "Crew [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (our flag is capped: no; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "flag",
+      "team": "Crew",
+      "start": [
+       740,
+       752
+      ]
+     },
+     "open": true,
+     "why": "Men v Crew 12:26 (Visible, incorrect): 'the Crew run is the same run as the one starting at 11:32'"
+    }
+   ]
+  },
+  {
+   "id": "f1-5168-17",
+   "set": "f1",
+   "scheme": 2,
+   "row": 17,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    797,
+    859
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "Crew single run (Water Ele); Men has a flag already in hand (AoB Derv)",
+   "band": "high",
+   "grade": "repeat",
+   "mark": "",
+   "said": "same as above.",
+   "calls": [
+    {
+     "play": "51683de9-flag-1-797-21",
+     "shown": "Men [a flag already in hand]: Answer their cap at once. Met (their flag does not get in: yes; our cap follows theirs within 15 s: no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-5168-18",
+   "set": "f1",
+   "scheme": 2,
+   "row": 18,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    833,
+    868
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "Crew's boost is 30 s away; Men: one runner; the rest stay at the stand",
+   "band": "high",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "51683de9-boost-1-833-22",
+     "shown": "Men [run]: Deny their boost. Not met (their boost does not land: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-5168-19",
+   "set": "f1",
+   "scheme": 2,
+   "row": 19,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    864,
+    892
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men down on numbers in the main fight (2 v 8, the flag stand), from players on their way to it (in neither fight); Men: stay (stay at the stand) | Crew: stay (stay at the stand)",
+   "band": "low",
+   "grade": "none",
+   "mark": "",
+   "said": "no numbers disadvantage, it's just people walking back and forth through the portal with basically no fighting",
+   "calls": [
+    {
+     "play": "51683de9-numbers-1-864-23",
+     "shown": "Men (down) [stay]: Hold the ground a player down and lose no more until it is level, or the base res. Met (nobody of ours dies: yes)",
+     "mark": "not judged"
+    },
+    {
+     "play": "51683de9-numbers-2-864-24",
+     "shown": "Crew (up) [stay]: Turn the extra player into a kill before the numbers are level. Not met (more of theirs die than of ours: no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "numbers",
+      "team": "Men",
+      "start": [
+       858,
+       870
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "Men v Crew, Jade 14:24: he graded it No decision: no numbers disadvantage, it's just people walking back and forth through the portal with basically no fighting"
+    },
+    {
+     "none": {
+      "play": "numbers",
+      "team": "Crew",
+      "start": [
+       858,
+       870
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "Men v Crew, Jade 14:24: he graded it No decision: no numbers disadvantage, it's just people walking back and forth through the portal with basically no fighting"
+    }
+   ]
+  },
+  {
+   "id": "f1-5168-20",
+   "set": "f1",
+   "scheme": 2,
+   "row": 20,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    910,
+    936
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men down on numbers in the main fight (2 v 8, the greater stand area), from players split elsewhere; Men: retreat down the ladder (fall to footmen) | Crew: stay (stay at the stand)",
+   "band": "low",
+   "grade": "none",
+   "mark": "",
+   "said": "same as before, no numbers disadvantage, it's just people walking back and forth through the portal with basically no fighting",
+   "calls": [
+    {
+     "play": "51683de9-numbers-1-910-25",
+     "shown": "Men (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)",
+     "mark": "not judged"
+    },
+    {
+     "play": "51683de9-numbers-2-910-26",
+     "shown": "Crew (strong side) [stay]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "numbers",
+      "team": "Men",
+      "start": [
+       904,
+       916
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "Men v Crew, Jade 15:10: he graded it No decision: same as before, no numbers disadvantage, it's just people walking back and forth through the portal with basically no fighting"
+    },
+    {
+     "none": {
+      "play": "numbers",
+      "team": "Crew",
+      "start": [
+       904,
+       916
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "Men v Crew, Jade 15:10: he graded it No decision: same as before, no numbers disadvantage, it's just people walking back and forth through the portal with basically no fighting"
+    }
+   ]
+  },
+  {
+   "id": "f1-5168-21",
+   "set": "f1",
+   "scheme": 2,
+   "row": 21,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    953,
+    988
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "Crew's boost is 30 s away; Men: one runner; the rest fall to footmen",
+   "band": "high",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "51683de9-boost-1-953-27",
+     "shown": "Men [run]: Deny their boost. Not met (their boost does not land: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-5168-22",
+   "set": "f1",
+   "scheme": 2,
+   "row": 22,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    1073,
+    1108
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "Crew's boost is 30 s away; Men: two runners; the rest fall back into the base",
+   "band": "high",
+   "grade": "visible",
+   "mark": "incorrect",
+   "said": "Need more clarification on this. It looks incorrect to me but I could be wrong. Men does not actually send a runner, they run back to their base with flag. Also, I don't see two runners for Men, only Derv with flag.",
+   "calls": [
+    {
+     "play": "51683de9-boost-1-1073-28",
+     "shown": "Men [run]: Deny their boost. Not met (their boost does not land: no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "boost",
+      "team": "Men",
+      "start": [
+       1067,
+       1079
+      ],
+      "want": {
+       "call": "run"
+      }
+     },
+     "open": true,
+     "why": "Men v Crew 17:53 (Visible, incorrect): 'Men does not actually send a runner, they run back to their base with flag ... only Derv with flag'. The engine's runner: the AoB Derv carrying, and the Warrior's pickup at 18:21 (now told as one runner, named)"
+    }
+   ]
+  },
+  {
+   "id": "f1-5168-23",
+   "set": "f1",
+   "scheme": 2,
+   "row": 23,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    1193,
+    1228
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "Crew's boost is 30 s away; Men: one runner; the rest fall back into the base",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "51683de9-boost-1-1193-29",
+     "shown": "Men [run]: Deny their boost. Not met (their boost does not land: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "boost",
+      "team": "Men",
+      "start": [
+       1187,
+       1199
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-5168-24",
+   "set": "f1",
+   "scheme": 2,
+   "row": 24,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    1210,
+    1232
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men up on numbers in the main fight (8 v 7, Men's front door), from players split elsewhere; Men: retreat down the ladder (fall back into the base) | Crew: push up (push up to their back door)",
+   "band": "low",
+   "grade": "none",
+   "mark": "",
+   "said": "This is a 7v7 with like a very very brief time of 8v7 when derv is back at mainteam and water ele is not yet at mainteam",
+   "calls": [
+    {
+     "play": "51683de9-numbers-1-1210-30",
+     "shown": "Men (strong side) [retreat down the ladder]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)",
+     "mark": "not judged"
+    },
+    {
+     "play": "51683de9-numbers-2-1210-31",
+     "shown": "Crew (weak side) [push up]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "numbers",
+      "team": "Men",
+      "start": [
+       1204,
+       1216
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "Men v Crew, Jade 20:10: he graded it No decision: This is a 7v7 with like a very very brief time of 8v7 when derv is back at mainteam and water ele is not yet at mainteam"
+    },
+    {
+     "none": {
+      "play": "numbers",
+      "team": "Crew",
+      "start": [
+       1204,
+       1216
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "Men v Crew, Jade 20:10: he graded it No decision: This is a 7v7 with like a very very brief time of 8v7 when derv is back at mainteam and water ele is not yet at mainteam"
+    }
+   ]
+  },
+  {
+   "id": "f1-5168-25",
+   "set": "f1",
+   "scheme": 2,
+   "row": 25,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    1248,
+    1316
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "Men single run (AoB Derv); Crew stays",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "51683de9-flag-2-1248-32",
+     "shown": "Crew [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Met (more of theirs die at the main fight than of ours: no; their flag does not get in: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "Crew",
+      "start": [
+       1242,
+       1254
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-5168-26",
+   "set": "f1",
+   "scheme": 2,
+   "row": 26,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    1313,
+    1358
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "Crew's boost is 30 s away; Men: no runner; the rest fall back into the base",
+   "band": "high",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "51683de9-boost-1-1313-33",
+     "shown": "Men [concede]: Concede the boost for kills. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-5168-27",
+   "set": "f1",
+   "scheme": 2,
+   "row": 27,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    1354,
+    1382
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men down on numbers in the main fight (7 v 8, Men's back door), from players split elsewhere; Men: retreat down the ladder (fall back into the base) | Crew: stay (stay on the enemy's side)",
+   "band": "low",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "51683de9-numbers-1-1354-34",
+     "shown": "Men (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "51683de9-numbers-2-1354-35",
+     "shown": "Crew (strong side) [stay]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-5168-28",
+   "set": "f1",
+   "scheme": 2,
+   "row": 28,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    1410,
+    1430
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men down on numbers in the main fight (7 v 8, Men's back door), from players split elsewhere; Men: retreat down the ladder (fall back into the base) | Crew: stay (stay at the stand)",
+   "band": "low",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "51683de9-numbers-1-1410-36",
+     "shown": "Men (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "51683de9-numbers-2-1410-37",
+     "shown": "Crew (strong side) [stay]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-5168-29",
+   "set": "f1",
+   "scheme": 2,
+   "row": 29,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    1433,
+    1468
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "Crew's boost is 30 s away; Men: one runner; the rest fall back into the base",
+   "band": "high",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "51683de9-boost-1-1433-38",
+     "shown": "Men [run]: Deny their boost. Not met (their boost does not land: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-5168-30",
+   "set": "f1",
+   "scheme": 2,
+   "row": 30,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    1436,
+    1461
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "Men single run (Warrior); Crew stays",
+   "band": "high",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "51683de9-flag-2-1436-39",
+     "shown": "Crew [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Met (more of theirs die at the main fight than of ours: yes; their flag does not get in: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-5168-31",
+   "set": "f1",
+   "scheme": 2,
+   "row": 31,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    1474,
+    1568
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men down on numbers in the main fight (7 v 8, Men's back door; then 6 v 8 from 25:22), from kills; Men: retreat down the ladder (fall back into the base) | Crew: push up (push up to their base)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "51683de9-numbers-1-1474-40",
+     "shown": "Men (down) [retreat down the ladder]: Reach cover a player down without losing another. Not met (nobody of ours dies: no; no NPC lost: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "51683de9-numbers-2-1474-41",
+     "shown": "Crew (up) [push up]: Take ground and NPCs with the numbers. Met (no more of ours die than of theirs: yes; one of their NPCs dies: yes; more of theirs die than of ours: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Men",
+      "start": [
+       1468,
+       1480
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Crew",
+      "start": [
+       1468,
+       1480
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-5168-32",
+   "set": "f1",
+   "scheme": 2,
+   "row": 32,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    1488,
+    1552
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "Men is held in its own base or pit by Crew's main team (K2 A2 B1 alive; base res in 72 s)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "incorrect",
+   "off": [
+    "numbers"
+   ],
+   "said": "I think there is at least 1 knight dead?",
+   "calls": [
+    {
+     "play": "51683de9-pinned-1-1488-42",
+     "shown": "Men: Hold the NPCs and lose nobody until the base res, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [],
+   "note": "'I think there is at least 1 knight dead?': by the replay both knights are alive at 24:48 and die at 24:57 and 25:40, inside the row. The row now gives the count at its start and what was lost while held (2026-11-16)."
+  },
+  {
+   "id": "f1-5168-33",
+   "set": "f1",
+   "scheme": 2,
+   "row": 33,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    1540,
+    1590
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "Crew has 8 in Men's base at the base res (6 defending, 2 coming back): 8 stay",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "51683de9-base_res-2-1540-43",
+     "shown": "Crew [stayed through the res]: Be out, or set for the fight, when they res. Met (nobody of ours dies in the 30 s after the res: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "Crew",
+      "start": [
+       1534,
+       1546
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-5168-34",
+   "set": "f1",
+   "scheme": 2,
+   "row": 34,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    1553,
+    1598
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "Crew's boost is 30 s away; Men: no runner; the rest fall back into the base",
+   "band": "medium",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "51683de9-boost-1-1553-44",
+     "shown": "Men [concede]: Concede the boost for kills. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-5168-35",
+   "set": "f1",
+   "scheme": 2,
+   "row": 35,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    1590,
+    1688
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men down on numbers in the main fight (5 v 8, the greater stand area; then 5 v 7 from 26:42; then 4 v 6 from 26:58; then 4 v 8 from 27:46), from players split elsewhere; Men: retreat down the ladder (retreat to the pit) | Crew: push in",
+   "band": "low",
+   "grade": "weak",
+   "mark": "partly",
+   "calls": [
+    {
+     "play": "51683de9-numbers-1-1590-45",
+     "shown": "Men (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Not met (nobody of ours dies: no)",
+     "mark": "not judged"
+    },
+    {
+     "play": "51683de9-numbers-2-1590-46",
+     "shown": "Crew (strong side) [push in]: Kill with the numbers while their players are away. Met (more of theirs die than of ours: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-5168-36",
+   "set": "f1",
+   "scheme": 2,
+   "row": 36,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    1602,
+    1644
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Men's split by the back door: three players (8 Monk, Paragon, AoB Derv) against 2 defending (Water Ele, Air Ele 2)",
+   "band": "low",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "51683de9-split-1-1602-47",
+     "shown": "Men (attacker) [a player or more up]: Kill or take NPCs. Not met (a defender killed: no; an NPC taken: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "51683de9-split-2-1602-48",
+     "shown": "Crew (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Met (no pit NPC lost: yes; no defender dies: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "51683de9-split-2-1602-49",
+     "shown": "Crew (defender's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Met (more of theirs die away from the split than of ours: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-5168-37",
+   "set": "f1",
+   "scheme": 2,
+   "row": 37,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    1623,
+    1632
+   ],
+   "type": "lord",
+   "call": "",
+   "shown": "Men pushes Crew's Guild Lord with 3 in the base (1 monk, 1 by the end) against 5 pit NPCs: fewer attackers than pit NPCs; playing for Lord damage",
+   "band": "high",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "51683de9-lord-1-1623-50",
+     "shown": "Men (attacker): Most Lord damage, or the kill, while keeping the own Lord up (the result is the match). Not met (the match is won: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "51683de9-lord-2-1623-51",
+     "shown": "Crew (defender): Do not die, keep Lord damage down, keep the Lord alive (the result is the match). Met (the match is won: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-5168-38",
+   "set": "f1",
+   "scheme": 2,
+   "row": 38,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    1636,
+    1680
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "Men is held in its own base or pit by Crew's main team (K0 A2 B1 alive; base res in 44 s)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "partly",
+   "off": [
+    "numbers"
+   ],
+   "said": "I think there are archers dead too? I could be wrong though",
+   "calls": [
+    {
+     "play": "51683de9-pinned-1-1636-52",
+     "shown": "Men: Hold the NPCs and lose nobody until the base res, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [],
+   "note": "'I think there are archers dead too? I could be wrong though': the replay holds five archers on Men's side, two of them in the pit by his labels; the three that died (18:38, 18:52, 21:34) are read as the ones outside the pit. Put to him 2026-11-16."
+  },
+  {
+   "id": "f1-5168-39",
+   "set": "f1",
+   "scheme": 2,
+   "row": 39,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    1640,
+    1678
+   ],
+   "type": "lord",
+   "call": "",
+   "shown": "Crew pushes Men's Guild Lord with 8 in the base (2 monks) against 3 pit NPCs: more attackers than pit NPCs; playing for Lord damage",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "51683de9-lord-2-1640-54",
+     "shown": "Crew (attacker): Most Lord damage, or the kill, while keeping the own Lord up (the result is the match). Met (the match is won: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "51683de9-lord-1-1640-53",
+     "shown": "Men (defender): Do not die, keep Lord damage down, keep the Lord alive (the result is the match). Not met (the match is won: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "lord",
+      "team": "Crew",
+      "start": [
+       1634,
+       1646
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "lord",
+      "team": "Men",
+      "start": [
+       1634,
+       1646
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-5168-40",
+   "set": "f1",
+   "scheme": 2,
+   "row": 40,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    1660,
+    1694
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "Crew has 8 in Men's base at the base res (4 defending, 4 coming back): 8 stay",
+   "band": "high",
+   "grade": "none",
+   "mark": "",
+   "said": "base res at 28 minutes doesn't matter as the match ends at 28 min no matter what",
+   "calls": [
+    {
+     "play": "51683de9-base_res-2-1660-55",
+     "shown": "Crew [stayed through the res]: Be out, or set for the fight, when they res. Met (nobody of ours dies in the 30 s after the res: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "base res",
+      "team": "Crew",
+      "start": [
+       1654,
+       1666
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "Men v Crew, Jade 27:40: he graded it No decision: base res at 28 minutes doesn't matter as the match ends at 28 min no matter what"
+    }
+   ]
+  },
+  {
+   "id": "f1-5168-notes",
+   "set": "f1",
+   "scheme": 2,
+   "row": 0,
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "match": "Men v Crew, Jade",
+   "window": [
+    0,
+    0
+   ],
+   "type": "notes",
+   "call": "",
+   "shown": "(his notes on the game)",
+   "band": "",
+   "grade": "",
+   "mark": "notes",
+   "said": "",
+   "checks": []
+  },
+  {
+   "id": "f1-a8ba-1",
+   "set": "f1",
+   "scheme": 2,
+   "row": 1,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    0,
+    23
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "The opening. RACK single run (Dervish); 옷옷옷옷 stays",
+   "band": "high",
+   "grade": "classic",
+   "mark": "incorrect",
+   "off": [
+    "who",
+    "where",
+    "kind"
+   ],
+   "said": "this is the opening run. RACK brings flag up on Warrior, but DOES NOT run the flag. 옷옷옷옷 does not \"stay\" they just don't run the flag (they don't bring it up on anyone).",
+   "calls": [
+    {
+     "play": "a8ba43a8-flag-1-0-0",
+     "shown": "옷옷옷옷 [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Met (more of theirs die at the main fight than of ours: no; their flag does not get in: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "flag",
+      "team": "옷옷옷옷",
+      "start": [
+       -3,
+       9
+      ]
+     },
+     "open": true,
+     "why": "옷옷옷옷 v RACK 0:00 (Classic, incorrect): 'RACK brings flag up on Warrior, but DOES NOT run the flag. 옷옷옷옷 does not stay, they just don't run the flag': a flag brought up with the team at the opening is read as a run. Put to him 2026-11-16"
+    }
+   ]
+  },
+  {
+   "id": "f1-a8ba-2",
+   "set": "f1",
+   "scheme": 2,
+   "row": 2,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    84,
+    108
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "RACK is held in its own base or pit by 옷옷옷옷's main team (K2 A2 B1 alive; base res in 36 s)",
+   "band": "high",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "a8ba43a8-pinned-2-84-1",
+     "shown": "RACK: Lose no player and no NPC while held in, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it breaks out at 1:40, having lost nothing; a break-out is half its living players or more, four at least, out past its doors): yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-a8ba-3",
+   "set": "f1",
+   "scheme": 2,
+   "row": 3,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    94,
+    128
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RACK's split by the back door: 4 players (Ritualist, AoB Derv, 8 Monk, Dervish) against 2 defending (7 Monk (WoC), 8 Monk)",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "a8ba43a8-split-2-94-3",
+     "shown": "RACK (attacker) [a player or more up]: Kill or take NPCs. Met (a defender killed: no; an NPC taken: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "a8ba43a8-split-1-94-2",
+     "shown": "옷옷옷옷 (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Not met (no pit NPC lost: no; no defender dies: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "a8ba43a8-split-2-94-4",
+     "shown": "RACK (attacker's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Not met (more of theirs die away from the split than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "RACK",
+      "start": [
+       88,
+       100
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "옷옷옷옷",
+      "start": [
+       88,
+       100
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "RACK",
+      "start": [
+       88,
+       100
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-a8ba-4",
+   "set": "f1",
+   "scheme": 2,
+   "row": 4,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    101,
+    183
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "RACK single run (Hammer); 옷옷옷옷 single run (8 Monk)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "a8ba43a8-flag-1-101-5",
+     "shown": "옷옷옷옷 [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (our flag is capped: yes; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "옷옷옷옷",
+      "start": [
+       95,
+       107
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-a8ba-5",
+   "set": "f1",
+   "scheme": 2,
+   "row": 5,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    126,
+    144
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RACK's split by the back door: one player (Dervish) against 7 defending (Mesmer, Monk 3 (WoC), Monk 4 (WoC), Monk 5 (WoC), Prot (WoC), 7 Monk (WoC), Monk 2 (WoC)); the whole team turns on it; 7 (Mesmer, Monk 3 (WoC), Monk 4 (WoC), Monk 5 (WoC), Prot (WoC), 7 Monk (WoC), Monk 2 (WoC)) against one player: full collapse",
+   "band": "low",
+   "grade": "none",
+   "mark": "",
+   "said": "this is not a split. the 4 man split leaves by portal after 2 die and runs to base.",
+   "calls": [
+    {
+     "play": "a8ba43a8-split-2-126-7",
+     "shown": "RACK (attacker) [met by a full collapse]: Survive and gain an advantage elsewhere on the map. Not met (nobody on the split dies: no; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: yes)",
+     "mark": "not judged"
+    },
+    {
+     "play": "a8ba43a8-split-1-126-6",
+     "shown": "옷옷옷옷 (defender) [full collapse]: Kill the split or drive it out (the flags it costs are beside it). Met (a split player dies: yes; the split is gone within the visit: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "split",
+      "team": "RACK",
+      "start": [
+       120,
+       132
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "옷옷옷옷 v RACK, Solitude 2:06: he graded it No decision: this is not a split. the 4 man split leaves by portal after 2 die and runs to base."
+    },
+    {
+     "none": {
+      "play": "split",
+      "team": "옷옷옷옷",
+      "start": [
+       120,
+       132
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "옷옷옷옷 v RACK, Solitude 2:06: he graded it No decision: this is not a split. the 4 man split leaves by portal after 2 die and runs to base."
+    }
+   ]
+  },
+  {
+   "id": "f1-a8ba-6",
+   "set": "f1",
+   "scheme": 2,
+   "row": 6,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    133,
+    281
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "옷옷옷옷 single run (8 Monk); RACK single run (Hammer, Prot)",
+   "band": "high",
+   "grade": "repeat",
+   "mark": "",
+   "said": "repeat AND incorrect. 옷옷옷옷 single run already covered and RACK DOES NOT run the flag.",
+   "calls": [
+    {
+     "play": "a8ba43a8-flag-2-133-8",
+     "shown": "RACK [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (our flag is capped: no; no more of ours die at the main fight than of theirs: no; no worse than half a flag behind at the end, or no further behind than at the start: no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-a8ba-7",
+   "set": "f1",
+   "scheme": 2,
+   "row": 7,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    172,
+    220
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "RACK is held in its own base or pit by 옷옷옷옷's main team (K2 A2 B1 alive; base res in 68 s)",
+   "band": "high",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "a8ba43a8-pinned-2-172-9",
+     "shown": "RACK: Hold the NPCs and lose nobody until the base res, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-a8ba-8",
+   "set": "f1",
+   "scheme": 2,
+   "row": 8,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    182,
+    245
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "옷옷옷옷 up on numbers in the main fight (6 v 5, RACK's front door; then 7 v 5 from 3:26; then 8 v 5 from 3:48), from kills; 옷옷옷옷: push up (push up to their base)",
+   "band": "low",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "a8ba43a8-numbers-1-182-10",
+     "shown": "옷옷옷옷 (after a wipe) [push up]: Take pit NPCs before their base res. Met (one of their pit NPCs dies before the res: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "옷옷옷옷",
+      "start": [
+       176,
+       188
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-a8ba-9",
+   "set": "f1",
+   "scheme": 2,
+   "row": 9,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    183,
+    317
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "RACK single run (Hammer); 옷옷옷옷 single run (8 Monk)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "incorrect",
+   "off": [
+    "who",
+    "when",
+    "kind"
+   ],
+   "said": "옷옷옷옷's 8 monk single runs at 4:32 to get a backup flag. RACK DOES NOT run.",
+   "calls": [
+    {
+     "play": "a8ba43a8-flag-1-183-11",
+     "shown": "옷옷옷옷 [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (our flag is capped: no; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "flag",
+      "team": "옷옷옷옷",
+      "start": [
+       177,
+       189
+      ],
+      "want": {
+       "their": "single run"
+      }
+     },
+     "open": true,
+     "why": "옷옷옷옷 v RACK 3:03 (Classic, incorrect): '옷옷옷옷's 8 monk single runs at 4:32 to get a backup flag. RACK DOES NOT run': the Hammer holding RACK's flag is read as a run. Put to him 2026-11-16"
+    }
+   ]
+  },
+  {
+   "id": "f1-a8ba-10",
+   "set": "f1",
+   "scheme": 2,
+   "row": 10,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    220,
+    270
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "옷옷옷옷 has 8 in RACK's base at the base res (4 defending, 3 coming back): 8 stay",
+   "band": "high",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "a8ba43a8-base_res-1-220-12",
+     "shown": "옷옷옷옷 [stayed through the res]: Be out, or set for the fight, when they res. Met (nobody of ours dies in the 30 s after the res: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-a8ba-11",
+   "set": "f1",
+   "scheme": 2,
+   "row": 11,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    224,
+    240
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "RACK is held in its own base or pit by 옷옷옷옷's main team (K1 A2 B1 alive; base res in 16 s)",
+   "band": "high",
+   "grade": "visible",
+   "mark": "partly",
+   "said": "check NPC numbers, I think 1k and 1 archer are dead.",
+   "calls": [
+    {
+     "play": "a8ba43a8-pinned-2-224-13",
+     "shown": "RACK: Hold the NPCs and lose nobody until the base res, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "partly"
+    }
+   ],
+   "checks": [],
+   "note": "'check NPC numbers, I think 1k and 1 archer are dead': the replay agrees (a pit archer at 1:16, a knight at 3:17); Isle of Solitude has three pit archers, so two are alive. The row now writes the count out (2026-11-16)."
+  },
+  {
+   "id": "f1-a8ba-12",
+   "set": "f1",
+   "scheme": 2,
+   "row": 12,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    240,
+    260
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "RACK is held in its own base or pit by 옷옷옷옷's main team (K1 A2 B1 alive; base res in 120 s)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "a8ba43a8-pinned-2-240-14",
+     "shown": "RACK: Lose no player and no NPC while held in, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it breaks out at 4:20, having lost nothing; a break-out is half its living players or more, four at least, out past its doors): yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "RACK",
+      "start": [
+       234,
+       246
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-a8ba-13",
+   "set": "f1",
+   "scheme": 2,
+   "row": 13,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    273,
+    308
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "옷옷옷옷's boost is 30 s away; RACK: one runner; the rest stay on their side",
+   "band": "high",
+   "grade": "weak",
+   "mark": "incorrect",
+   "said": "RACK does not send a runner",
+   "calls": [
+    {
+     "play": "a8ba43a8-boost-2-273-15",
+     "shown": "RACK [run]: Deny their boost. Not met (their boost does not land: no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "boost",
+      "team": "RACK",
+      "start": [
+       267,
+       279
+      ],
+      "want": {
+       "call": "run"
+      }
+     },
+     "open": true,
+     "why": "옷옷옷옷 v RACK 4:33 (Weak, incorrect): 'RACK does not send a runner': the engine's runner is the Prot"
+    }
+   ]
+  },
+  {
+   "id": "f1-a8ba-14",
+   "set": "f1",
+   "scheme": 2,
+   "row": 14,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    346,
+    370
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "옷옷옷옷 up on numbers in the main fight (6 v 3, RACK's pit), from players split elsewhere; 옷옷옷옷: stay (stay on the enemy's side) | RACK: retreat down the ladder (retreat to the pit)",
+   "band": "low",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "a8ba43a8-numbers-1-346-16",
+     "shown": "옷옷옷옷 (strong side) [stay]: Kill with the numbers while their players are away. Met (more of theirs die than of ours: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "a8ba43a8-numbers-2-346-17",
+     "shown": "RACK (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Not met (nobody of ours dies: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-a8ba-15",
+   "set": "f1",
+   "scheme": 2,
+   "row": 15,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    360,
+    390
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RACK's split by the back door: 5 players (Ritualist, AoB Derv, 8 Monk, Hammer, Dervish) against 2 defending (7 Monk (WoC), 8 Monk)",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "a8ba43a8-split-2-360-19",
+     "shown": "RACK (attacker) [a player or more up]: Kill or take NPCs. Met (a defender killed: no; an NPC taken: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "a8ba43a8-split-1-360-18",
+     "shown": "옷옷옷옷 (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Not met (no pit NPC lost: no; no defender dies: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "a8ba43a8-split-2-360-20",
+     "shown": "RACK (attacker's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Not met (more of theirs die away from the split than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "RACK",
+      "start": [
+       354,
+       366
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "옷옷옷옷",
+      "start": [
+       354,
+       366
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "RACK",
+      "start": [
+       354,
+       366
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-a8ba-16",
+   "set": "f1",
+   "scheme": 2,
+   "row": 16,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    375,
+    425
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "RACK single run (Prot); 옷옷옷옷 stays",
+   "band": "high",
+   "grade": "visible",
+   "mark": "partly",
+   "said": "single run half run to stand mes (number 5)",
+   "calls": [
+    {
+     "play": "a8ba43a8-flag-1-375-21",
+     "shown": "옷옷옷옷 [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Met (more of theirs die at the main fight than of ours: no; their flag does not get in: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "옷옷옷옷",
+      "start": [
+       369,
+       381
+      ]
+     },
+     "want": {
+      "scenario~": "handing it to"
+     },
+     "was": "옷옷옷옷 v RACK 6:15 (Visible, partly): 'single run half run to stand mes (number 5)': the hand-off is named, held from 2026-11-16"
+    }
+   ]
+  },
+  {
+   "id": "f1-a8ba-17",
+   "set": "f1",
+   "scheme": 2,
+   "row": 17,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    388,
+    432
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RACK's split by the back door: three players (Dervish, Hammer, 8 Monk) against 7 defending (Mesmer, Monk 2 (WoC), Monk 4 (WoC), 7 Monk (WoC), Monk 3 (WoC), Monk 5 (WoC), 8 Monk); the whole team turns on it; 7 (Mesmer, Monk 2 (WoC), Monk 4 (WoC), 7 Monk (WoC), Monk 3 (WoC), Monk 5 (WoC), 8 Monk) against three players: full collapse",
+   "band": "low",
+   "grade": "none",
+   "mark": "",
+   "said": "NOT a split, just RACK split team that was already split leaving portal/dying",
+   "calls": [
+    {
+     "play": "a8ba43a8-split-2-388-23",
+     "shown": "RACK (attacker) [met by a full collapse]: Survive and gain an advantage elsewhere on the map. Not met (nobody on the split dies: no; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)",
+     "mark": "not judged"
+    },
+    {
+     "play": "a8ba43a8-split-1-388-22",
+     "shown": "옷옷옷옷 (defender) [full collapse]: Kill the split or drive it out (the flags it costs are beside it). Met (a split player dies: yes; the split is gone within the visit: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "split",
+      "team": "RACK",
+      "start": [
+       382,
+       394
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "옷옷옷옷 v RACK, Solitude 6:28: he graded it No decision: NOT a split, just RACK split team that was already split leaving portal/dying"
+    },
+    {
+     "none": {
+      "play": "split",
+      "team": "옷옷옷옷",
+      "start": [
+       382,
+       394
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "옷옷옷옷 v RACK, Solitude 6:28: he graded it No decision: NOT a split, just RACK split team that was already split leaving portal/dying"
+    }
+   ]
+  },
+  {
+   "id": "f1-a8ba-18",
+   "set": "f1",
+   "scheme": 2,
+   "row": 18,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    393,
+    428
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "옷옷옷옷's boost is 30 s away; RACK: two runners; the rest go out by the front door",
+   "band": "high",
+   "grade": "classic",
+   "mark": "incorrect",
+   "said": "this is single runner on Stand Mes. (please confirm or explain your reasoning)",
+   "calls": [
+    {
+     "play": "a8ba43a8-boost-2-393-24",
+     "shown": "RACK [run]: Deny their boost. Not met (their boost does not land: no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "boost",
+      "team": "RACK",
+      "start": [
+       387,
+       399
+      ]
+     },
+     "want": {
+      "scenario~": "one runner (Prot, handing it to Mesmer)"
+     },
+     "was": "옷옷옷옷 v RACK 6:33 (Classic, incorrect): 'this is single runner on Stand Mes': the engine counted the Prot, who brought the flag, and the Mesmer he handed it to as two runners; a flag handed on is one runner, held from 2026-11-16"
+    }
+   ]
+  },
+  {
+   "id": "f1-a8ba-19",
+   "set": "f1",
+   "scheme": 2,
+   "row": 19,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    460,
+    510
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "옷옷옷옷 has 7 in RACK's base at the base res (0 defending, 4 coming back): 7 stay",
+   "band": "high",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "a8ba43a8-base_res-1-460-25",
+     "shown": "옷옷옷옷 [stayed through the res]: Be out, or set for the fight, when they res. Met (nobody of ours dies in the 30 s after the res: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-a8ba-20",
+   "set": "f1",
+   "scheme": 2,
+   "row": 20,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    502,
+    526
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "옷옷옷옷 up on numbers in the main fight (8 v 4, the field on RACK's side), from kills; 옷옷옷옷: stay (stay on the enemy's side) | RACK: retreat down the ladder (retreat to the pit)",
+   "band": "none",
+   "grade": "none",
+   "mark": "",
+   "calls": [],
+   "checks": []
+  },
+  {
+   "id": "f1-a8ba-21",
+   "set": "f1",
+   "scheme": 2,
+   "row": 21,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    513,
+    558
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "옷옷옷옷's boost is 30 s away; RACK: no runner; the rest retreat to the pit",
+   "band": "high",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "a8ba43a8-boost-2-513-28",
+     "shown": "RACK [concede]: Concede the boost for kills. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-a8ba-22",
+   "set": "f1",
+   "scheme": 2,
+   "row": 22,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    540,
+    576
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "RACK is held in its own base or pit by 옷옷옷옷's main team (K1 A1 B1 alive; base res in 60 s)",
+   "band": "low",
+   "grade": "visible",
+   "mark": "partly",
+   "said": "check NPC counts",
+   "calls": [
+    {
+     "play": "a8ba43a8-pinned-2-540-29",
+     "shown": "RACK: Hold the NPCs and lose nobody until the base res, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it breaks out at 9:34, after losing a player or a pit NPC; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "partly"
+    }
+   ],
+   "checks": [],
+   "note": "'check NPC counts': by the replay one knight and one of three pit archers are alive at 9:00, and the second knight dies at 9:34. The row now writes that out (2026-11-16)."
+  },
+  {
+   "id": "f1-a8ba-23",
+   "set": "f1",
+   "scheme": 2,
+   "row": 23,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    550,
+    605
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "옷옷옷옷 up on numbers in the main fight (6 v 3, RACK's front door), from kills; 옷옷옷옷: push up (push up to their base)",
+   "band": "low",
+   "grade": "weak",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "a8ba43a8-numbers-1-550-30",
+     "shown": "옷옷옷옷 (after a wipe) [push up]: Take pit NPCs before their base res. Met (one of their pit NPCs dies before the res: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-a8ba-24",
+   "set": "f1",
+   "scheme": 2,
+   "row": 24,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    580,
+    630
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "옷옷옷옷 has 5 in RACK's base at the base res (0 defending, 1 coming back): 5 stay",
+   "band": "high",
+   "grade": "classic",
+   "mark": "incorrect",
+   "off": [
+    "numbers",
+    "kind"
+   ],
+   "said": "옷옷옷옷 DOES NOT stay in base. All members of 옷옷옷옷 leave base before base res.",
+   "calls": [
+    {
+     "play": "a8ba43a8-base_res-1-580-31",
+     "shown": "옷옷옷옷 [stayed through the res]: Be out, or set for the fight, when they res. Met (nobody of ours dies in the 30 s after the res: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "base res",
+      "team": "옷옷옷옷",
+      "start": [
+       574,
+       586
+      ],
+      "want": {
+       "call": "stayed through the res"
+      }
+     },
+     "open": true,
+     "why": "옷옷옷옷 v RACK 9:40 (Classic, incorrect): '옷옷옷옷 DOES NOT stay in base. All members leave base before base res': by the replay they stand in the field at 9:40 and in front of RACK's front door at 10:00, which the engine counts as in the base"
+    }
+   ]
+  },
+  {
+   "id": "f1-a8ba-25",
+   "set": "f1",
+   "scheme": 2,
+   "row": 25,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    608,
+    632
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "옷옷옷옷 up on numbers in the main fight (6 v 3, RACK's front door), from players on their way to it (in neither fight); 옷옷옷옷: fall out | RACK: push in",
+   "band": "none",
+   "grade": "none",
+   "mark": "",
+   "calls": [],
+   "checks": []
+  },
+  {
+   "id": "f1-a8ba-26",
+   "set": "f1",
+   "scheme": 2,
+   "row": 26,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    633,
+    678
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "옷옷옷옷's boost is 30 s away; RACK: no runner; the rest fall out",
+   "band": "high",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "a8ba43a8-boost-2-633-34",
+     "shown": "RACK [concede]: Concede the boost for kills. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-a8ba-27",
+   "set": "f1",
+   "scheme": 2,
+   "row": 27,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    656,
+    718
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "옷옷옷옷 up on numbers in the main fight (8 v 4, 옷옷옷옷's pit; then 8 v 3 from 11:10; then 6 v 3 from 11:26), from kills; 옷옷옷옷: push in | RACK: retreat down the ladder (retreat to the pit)",
+   "band": "low",
+   "grade": "visible",
+   "mark": "partly",
+   "off": [
+    "kind"
+   ],
+   "said": "this is a player advantage but also a collapse play that you missed",
+   "calls": [
+    {
+     "play": "a8ba43a8-numbers-1-656-35",
+     "shown": "옷옷옷옷 (up) [push in]: Take ground and NPCs with the numbers. Met (no more of ours die than of theirs: yes; one of their NPCs dies: yes; more of theirs die than of ours: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "a8ba43a8-numbers-2-656-36",
+     "shown": "RACK (down) [retreat down the ladder]: Reach cover a player down without losing another. Not met (nobody of ours dies: no; no NPC lost: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [],
+   "note": "'this is a player advantage but also a collapse play that you missed'."
+  },
+  {
+   "id": "f1-a8ba-28",
+   "set": "f1",
+   "scheme": 2,
+   "row": 28,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    728,
+    800
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "RACK is held in its own base or pit by 옷옷옷옷's main team (K0 A1 B1 alive; base res in 112 s)",
+   "band": "low",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "a8ba43a8-pinned-2-728-37",
+     "shown": "RACK: Lose no player and no NPC while held in, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it breaks out at 13:12, having lost nothing; a break-out is half its living players or more, four at least, out past its doors): yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-a8ba-29",
+   "set": "f1",
+   "scheme": 2,
+   "row": 29,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    810,
+    856
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "옷옷옷옷 up on numbers in the main fight (6 v 4, the field on RACK's side; then 7 v 3 from 13:44), from players on their way to it (in neither fight); 옷옷옷옷: stay (stay on the enemy's side) | RACK: retreat down the ladder (retreat to the pit)",
+   "band": "low",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "a8ba43a8-numbers-1-810-38",
+     "shown": "옷옷옷옷 (up) [stay]: Turn the extra player into a kill before the numbers are level. Met (more of theirs die than of ours: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "a8ba43a8-numbers-2-810-39",
+     "shown": "RACK (down) [retreat down the ladder]: Reach cover a player down without losing another. Not met (nobody of ours dies: no; no NPC lost: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-a8ba-30",
+   "set": "f1",
+   "scheme": 2,
+   "row": 30,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    844,
+    868
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "RACK is held in its own base or pit by 옷옷옷옷's main team (K0 A1 B1 alive; base res in 116 s)",
+   "band": "high",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "a8ba43a8-pinned-2-844-40",
+     "shown": "RACK: Hold the NPCs and lose nobody until the base res, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it breaks out at 14:32, after losing a player or a pit NPC; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-a8ba-31",
+   "set": "f1",
+   "scheme": 2,
+   "row": 31,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    848,
+    874
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "옷옷옷옷 down on numbers in the main fight (5 v 6, RACK's pit), from players split elsewhere; 옷옷옷옷: stay (stay on the enemy's side)",
+   "band": "medium",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "a8ba43a8-numbers-1-848-41",
+     "shown": "옷옷옷옷 (weak side) [stay]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-a8ba-32",
+   "set": "f1",
+   "scheme": 2,
+   "row": 32,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    866,
+    930
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "옷옷옷옷 up on numbers in the main fight (7 v 5, RACK's pit; then 7 v 4 from 14:54), from kills; 옷옷옷옷: stay (stay on the enemy's side) | RACK: stay (stay on their side)",
+   "band": "low",
+   "grade": "visible",
+   "mark": "partly",
+   "off": [
+    "numbers"
+   ],
+   "said": "I see this as 6v7",
+   "calls": [
+    {
+     "play": "a8ba43a8-numbers-1-866-42",
+     "shown": "옷옷옷옷 (up) [stay]: Turn the extra player into a kill before the numbers are level. Met (more of theirs die than of ours: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "a8ba43a8-numbers-2-866-43",
+     "shown": "RACK (down) [stay]: Hold the ground a player down and lose no more until it is level, or the base res. Not met (nobody of ours dies: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [],
+   "note": "'I see this as 6v7' (the engine: 7 v 5, then 7 v 4)."
+  },
+  {
+   "id": "f1-a8ba-33",
+   "set": "f1",
+   "scheme": 2,
+   "row": 33,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    873,
+    918
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "옷옷옷옷's boost is 30 s away; RACK: no runner; the rest stay on their side",
+   "band": "high",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "a8ba43a8-boost-2-873-44",
+     "shown": "RACK [concede]: Concede the boost for kills. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-a8ba-34",
+   "set": "f1",
+   "scheme": 2,
+   "row": 34,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    888,
+    972
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RACK's split by the front door: one player (Dervish) against 1 defending (7 Monk (WoC)); numbers along the way: 1 v 1 from 14:48, 2 v 1 from 15:04, 1 v 1 from 15:20",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "a8ba43a8-split-2-888-47",
+     "shown": "RACK (attacker) [1 v 1, the defender not a monk]: Take NPCs or kills. Not met (a defender killed: no; an NPC taken: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "a8ba43a8-split-1-888-45",
+     "shown": "옷옷옷옷 (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (no pit NPC lost: yes; no more defenders die than split players: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "a8ba43a8-split-1-888-46",
+     "shown": "옷옷옷옷 (defender's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Met (more of theirs die away from the split than of ours: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "RACK",
+      "start": [
+       882,
+       894
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "옷옷옷옷",
+      "start": [
+       882,
+       894
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "옷옷옷옷",
+      "start": [
+       882,
+       894
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-a8ba-35",
+   "set": "f1",
+   "scheme": 2,
+   "row": 35,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    940,
+    990
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "옷옷옷옷 has 7 in RACK's base at the base res (1 defending, 4 coming back): 1 stay",
+   "band": "high",
+   "grade": "classic",
+   "mark": "incorrect",
+   "off": [
+    "numbers"
+   ],
+   "said": "none stay",
+   "calls": [
+    {
+     "play": "a8ba43a8-base_res-1-940-48",
+     "shown": "옷옷옷옷 [stayed through the res]: Be out, or set for the fight, when they res. Met (nobody of ours dies in the 30 s after the res: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "base res",
+      "team": "옷옷옷옷",
+      "start": [
+       934,
+       946
+      ],
+      "want": {
+       "call": "stayed through the res"
+      }
+     },
+     "open": true,
+     "why": "옷옷옷옷 v RACK 15:40 (Classic, incorrect): 'none stay': six are in RACK's pit until 15:56 and out in the field by 16:06"
+    }
+   ]
+  },
+  {
+   "id": "f1-a8ba-36",
+   "set": "f1",
+   "scheme": 2,
+   "row": 36,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    976,
+    1052
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "RACK is held in its own base or pit by 옷옷옷옷's main team (K0 A1 B0 alive; base res in 104 s)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "a8ba43a8-pinned-2-976-49",
+     "shown": "RACK: Hold the NPCs and lose nobody until the base res, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "RACK",
+      "start": [
+       970,
+       982
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-a8ba-37",
+   "set": "f1",
+   "scheme": 2,
+   "row": 37,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    998,
+    1064
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "옷옷옷옷 up on numbers in the main fight (8 v 4, RACK's pit; then 8 v 2 from 17:12), from kills; 옷옷옷옷: stay (stay on the enemy's side)",
+   "band": "low",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "a8ba43a8-numbers-1-998-50",
+     "shown": "옷옷옷옷 (after a wipe) [stay]: Take pit NPCs before their base res. Not met (one of their pit NPCs dies before the res: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-a8ba-missed-1",
+   "set": "f1",
+   "scheme": 2,
+   "row": 0,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    111,
+    141
+   ],
+   "type": "collapse",
+   "call": "",
+   "shown": "(a decision the engine did not read, added by him)",
+   "band": "not read",
+   "grade": "classic",
+   "mark": "missed",
+   "at": "1:51",
+   "said": "옷옷옷옷 full team collapses through front door on RACK's split and kills rit and derv.",
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "옷옷옷옷",
+      "start": [
+       96,
+       121
+      ]
+     },
+     "want": {
+      "call": "full collapse"
+     },
+     "open": true,
+     "why": "옷옷옷옷 v RACK 1:51 (Classic, missed): 옷옷옷옷 full team collapses through front door on RACK's split and kills rit and derv."
+    }
+   ]
+  },
+  {
+   "id": "f1-a8ba-missed-2",
+   "set": "f1",
+   "scheme": 2,
+   "row": 0,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    270,
+    300
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "(a decision the engine did not read, added by him)",
+   "band": "not read",
+   "grade": "classic",
+   "mark": "missed",
+   "at": "4:30",
+   "said": "clear split of 5 out backdoor for RACK",
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "RACK",
+      "start": [
+       255,
+       280
+      ]
+     },
+     "want": {
+      "size": 5
+     },
+     "open": true,
+     "why": "옷옷옷옷 v RACK 4:30 (Classic, missed): clear split of 5 out backdoor for RACK"
+    }
+   ]
+  },
+  {
+   "id": "f1-a8ba-missed-3",
+   "set": "f1",
+   "scheme": 2,
+   "row": 0,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    279,
+    309
+   ],
+   "type": "collapse",
+   "call": "",
+   "shown": "(a decision the engine did not read, added by him)",
+   "band": "not read",
+   "grade": "classic",
+   "mark": "missed",
+   "at": "4:39",
+   "said": "clear fullteam collapse out of frontdoor to backdoor to try to catch RACK split",
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "옷옷옷옷",
+      "start": [
+       264,
+       289
+      ]
+     },
+     "want": {
+      "call": "full collapse"
+     },
+     "open": true,
+     "why": "옷옷옷옷 v RACK 4:39 (Classic, missed): clear fullteam collapse out of frontdoor to backdoor to try to catch RACK split"
+    }
+   ]
+  },
+  {
+   "id": "f1-a8ba-missed-4",
+   "set": "f1",
+   "scheme": 2,
+   "row": 0,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    361,
+    391
+   ],
+   "type": "collapse",
+   "call": "",
+   "shown": "(a decision the engine did not read, added by him)",
+   "band": "not read",
+   "grade": "classic",
+   "mark": "missed",
+   "at": "6:01",
+   "said": "clear fullteam collapse out of portal to try to catch RACK split",
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "옷옷옷옷",
+      "start": [
+       346,
+       371
+      ]
+     },
+     "want": {
+      "call": "full collapse"
+     },
+     "open": true,
+     "why": "옷옷옷옷 v RACK 6:01 (Classic, missed): clear fullteam collapse out of portal to try to catch RACK split"
+    }
+   ]
+  },
+  {
+   "id": "f1-a8ba-missed-5",
+   "set": "f1",
+   "scheme": 2,
+   "row": 0,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    491,
+    521
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "(a decision the engine did not read, added by him)",
+   "band": "not read",
+   "grade": "classic",
+   "mark": "missed",
+   "at": "8:11",
+   "said": "5 man split for RACK out backdoor",
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "RACK",
+      "start": [
+       476,
+       501
+      ]
+     },
+     "want": {
+      "size": 5
+     },
+     "open": true,
+     "why": "옷옷옷옷 v RACK 8:11 (Classic, missed): 5 man split for RACK out backdoor"
+    }
+   ]
+  },
+  {
+   "id": "f1-a8ba-missed-6",
+   "set": "f1",
+   "scheme": 2,
+   "row": 0,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    496,
+    526
+   ],
+   "type": "collapse",
+   "call": "",
+   "shown": "(a decision the engine did not read, added by him)",
+   "band": "not read",
+   "grade": "classic",
+   "mark": "missed",
+   "at": "8:16",
+   "said": "full team collapse by 옷옷옷옷 through portal on RACK split",
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "옷옷옷옷",
+      "start": [
+       481,
+       506
+      ]
+     },
+     "want": {
+      "call": "full collapse"
+     },
+     "open": true,
+     "why": "옷옷옷옷 v RACK 8:16 (Classic, missed): full team collapse by 옷옷옷옷 through portal on RACK split"
+    }
+   ]
+  },
+  {
+   "id": "f1-a8ba-missed-7",
+   "set": "f1",
+   "scheme": 2,
+   "row": 0,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    592,
+    622
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "(a decision the engine did not read, added by him)",
+   "band": "not read",
+   "grade": "classic",
+   "mark": "missed",
+   "at": "9:52",
+   "said": "5 man split out backdoor by RACK",
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "RACK",
+      "start": [
+       577,
+       602
+      ]
+     },
+     "want": {
+      "size": 5
+     },
+     "open": true,
+     "why": "옷옷옷옷 v RACK 9:52 (Classic, missed): 5 man split out backdoor by RACK"
+    }
+   ]
+  },
+  {
+   "id": "f1-a8ba-notes",
+   "set": "f1",
+   "scheme": 2,
+   "row": 0,
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "match": "옷옷옷옷 v RACK, Solitude",
    "window": [
     0,
     0
