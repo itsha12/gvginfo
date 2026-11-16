@@ -2,6 +2,16 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-15 (night): HC v Team graded (set f1, game 1); his wording; one Classic fix (`bundle-4`)
+- His marks filed: 52 situations graded and 2 folded rows left as they are. Classic 22 (engine's confidence high 19, medium 2, low 1), Visible 19 (1, 6, 12), Weak 6 (0, 1, 5), No decision 5 (0, 1, 4). Read correct: Classic 20 of 22, Visible 15 of 19, Weak 3 of 6; calls correct 53 of 56, partly 3. No missed decision added.
+- The draft bands against his grades: every high row is Classic or Visible; Low holds 12 Visible, 5 Weak, 4 No decision and 1 Classic, so it does not yet tell Visible from Weak. One game, and he saw the band first: nothing is fitted.
+- His wording, built in `jobs.py` and `moments.py`: a flag row names each side and its runner ("Team single run (Monk 5 (WoC)); HC single run (Mes/A)", "Team stays", "RACK has a flag already in hand (...)"); a numbers row names the team ("HC down on numbers in the main fight"); a split names a door only where one is read. 1,561 play texts change on the development set and nothing else; five history checks that quoted the old words reworded.
+- Classic row 7 (2:57, "should end when they cap"): a stay ran 10 s past their cap, Claude's tail; it ends at the cap. 202 stay plays end sooner, 4 results go from met to not met; the check is firm.
+- Classic row 18 (5:58, "Team response with single run classic at 6:33"): not built. The runner sets off at 6:34, their cap is 6:36, R-461's moment (leaving the stand area on Imperial) is 6:40. On the development set 20 of 232 stays are this case. Put to him.
+- Found from his call comments, put to him: a split defender's death counted at the main fight in a flag job (R-466 names only the attackers); the flag job at the opening.
+- Checks written by hand for 9 rows (2 Classic, 7 Visible or Weak), 11 plain ones by `review.py file`. Review key: 22 Classic pass, 120 history hold. Gate 12 of 12 and 63 of 105; line-up 421 of 426; comms 110 of 157: unchanged.
+- Not done: the next game's export (a Classic fault is open); the faults seen in one game only (main team by the back door read as a split; who pushes a flagger).
+
 ## 2026-11-15 (evening): a fresh start (R-491 to R-497); the engine itself unchanged (fd2b30b)
 - His proposal, agreed with six changes of Claude's: the games marked so far are history and the engine as it stands is the starting point; each situation of a fresh game is graded Classic, Visible, Weak or No decision (and Repeat), then Correct, Partly or Incorrect; the engine shows its confidence first; no pass mark; no hidden game. The five open items are dropped until a new game raises them.
 - Baseline: `bundle-4` at fd2b30b, kept as the branch `baseline-2026-11-15`; `data/model/baseline/` on main holds its reading of the development set (45 matches, 3,094 moments, 3,524 plays) and its figures (review key 120 passing, 40 open; gate 12 of 12 and 63 of 105; line-up 421 of 426, 185 of 186; comms 110 of 157, 62 of 80).
