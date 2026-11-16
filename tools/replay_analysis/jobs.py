@@ -33,7 +33,7 @@ Usage:  python3 jobs.py <report id>                     the plays of one match
 In code: plays(M, recs) -> list of plays; allocation(recs, plays) adds each moment's plays to it."""
 import collections, json, os, statistics, sys
 from common import (STAND_R, MERGE_S, FIGHT_ACT, FIGHT_CLOSE, FIGHT_HOLD_S, HOLD_S, HANDOFF_GAP_S, REPO, READ_TO, SPLIT_STEP, SPLIT_GAP_S, FIGHT_LINK, JOIN_S, JOIN_LOOK_S, NPC_NEAR, can_kill, SOH_REMOVED, RUN_SPEED, GROUND_JUMP, RES_EVERY, BOOST_EVERY, BOOST_WARN_S, BOOST_LATE_S, LEAD_HALF, LEAD_ONE, CARRY_SPEED, PIT_R,
-                    FLAG_GAIN, PART_RUN_GAIN, LATE_FLAG, ANSWER_CAP_S, COLLAPSE_VISIT_S, PINNED_S, LORD_PUSH_FROM, LORD_BASE_R, AFTER_WIPE_MIN_S, NUMBERS_TAIL_S, FLAG_JOB_MAX_S)
+                    FLAG_GAIN, PART_RUN_GAIN, LATE_FLAG, ANSWER_CAP_S, COLLAPSE_VISIT_S, PINNED_S, LORD_PUSH_FROM, LORD_BASE_R, AFTER_WIPE_MIN_S, NUMBERS_TAIL_S, FLAG_JOB_MAX_S, MAIN_BIG)
 from state import d
 
 HOMEG = ("pit", "base", "front door", "back door", "front footies", "back footies")
@@ -65,10 +65,18 @@ class _K:
 
     def died_main(self, tm, a, b):
         """Deaths of a team at its main fight: every death but those of players who were out on a split when they died
-        (R-466: a flag run is held to the deaths at the main fight, not to those of a split that was collapsed on)."""
-        sp = [x for x in self.M.attempts() if x["kind"] == "split" and x["tm"] == tm]
+        (R-466: a flag run is held to the deaths at the main fight, not to those of a split that was collapsed on), and
+        those of players who died defending an enemy split (R-499: his words on HC v Team 11:58, Team's 8 Monk at its
+        own back door, "it happened on split (the flag decision didn't really affect this death at all)")."""
+        M = self.M
+        sp = [x for x in M.attempts() if x["kind"] == "split" and x["tm"] == tm]
+        theirs = [x for x in M.attempts() if x["kind"] == "split" and x["tm"] != tm]
         on_split = lambda x_, td: any(x_ in s["ids"] and q["from"] - 2 <= td <= q["to"] + 8 for s in sp for a_, q in zip(s["ids"], s["members"]) if a_ == x_)
-        return sum(1 for td, x in self.deaths[tm] if a < td <= b and not on_split(x, td))
+        def defending(x_, td):                             # within reach of an enemy split player who is out on his split just before the death
+            u = min(max(int(td) - 1, 0), self.T)
+            return bool(M.P[x_][u]) and any(q["from"] - 2 <= td <= q["to"] + 8 and M.AL[a_][u] and M.P[a_][u] and d(M.P[x_][u], M.P[a_][u]) < FIGHT_LINK
+                                             for s in theirs for a_, q in zip(s["ids"], s["members"]))
+        return sum(1 for td, x in self.deaths[tm] if a < td <= b and not on_split(x, td) and not defending(x, td))
 
     def npcs(self, tm, a, b, pit=False):
         return sum(1 for u, k, kind in self.npc if k == tm and a < u <= b and kind != "guild_lord" and (not pit or kind in ("knight", "archer", "bodyguard")))
@@ -113,6 +121,7 @@ def _flag_rows(M):
     for f in M.flags_record():
         r = next((rs[k] for k in ((f["tm"], int(f["start"]) + dt) for dt in (0, -1, 1)) if k in rs), None)
         s0, runner, pick, ids, carries = int(f["start"]), f["runner"], int(f["start"]), f["ids"], (r["carries"] if r is not None else [])
+        off = None                                                        # the second its runner turned for home, when he went back for it (R-498)
         soh = M.day < SOH_REMOVED and any(m.sk(b) == "Shadow of Haste" for a in f["ids"] for b in m.A[a].get("bar", []) if b)      # R-456: only while the mechanic was in the game
         dbl = any((f["tm"], int(f["start"]) + dt) in second for dt in (0, -1, 1))
         if r is not None:
@@ -126,7 +135,7 @@ def _flag_rows(M):
                     out.append(dict(f, runner=runner, s0=min(int(r["moment"]), s0, int(r["first_end"])), pick=pick, e=int(r["first_end"]), how="put down", form=None, ids=r["first_ids"], held_s=0, other_stand=False, double=dbl, soh=soh))
                 s0, runner, pick, ids, dbl = int(r["under_way"]), m.roles[r["out_by"]], int(r["chain"]), r["chain_ids"], False
                 carries = [c for c in r["carries"] if c[1] >= r["chain"] - 1]
-            elif went: s0 = min(int(r["moment"]), s0)                     # when he goes to run, by the hall (R-461)
+            elif went: s0, off = min(int(r["moment"]), s0), int(r["set_off"])      # when he goes to run, by the hall (R-461); and when he set off
             elif r["under_way"] is not None and r["under_way"] > r["pickup"] + SPLIT_STEP:
                 # picked up by a player who was already at home and did not go back for it: it is a run only from when he commits to it, the second the flag is taken out of
                 # the base, by whoever carries it then (R-488: "yes, they picked up the flag, but it doesn't really look like a flag run. It's not something the team would
@@ -138,7 +147,7 @@ def _flag_rows(M):
             e = int(carries[-1][2])                                       # put down for good: the run ends there, not when the flag goes back to the spawn
             p = M.P[carries[-1][0]][min(e, M.T)]
             other = bool(p) and any(d(p, o) < 400 for o in others)        # at the hall's other flag stand (his answer on TFS v 옷옷옷옷 2:54: the Obelisk flag stand)
-        out.append(dict(f, runner=runner, s0=min(s0, e), pick=pick, e=e, ids=ids, other_stand=other, double=dbl, soh=soh))
+        out.append(dict(f, runner=runner, s0=min(s0, e), off=min(off if off is not None else s0, s0, e), pick=pick, e=e, ids=ids, other_stand=other, double=dbl, soh=soh))
     M._frows = out
     return out
 
@@ -156,7 +165,10 @@ def flag_plays(M, K, pinned_at):
         if w1 - w0 < 10 or pinned_at(A, w0): continue
         mine = [g for g in FR if g["tm"] == A]
         earlier = next((g for g in mine if g["s0"] < w0 - 2 and g["e"] > w0 + 5), None)      # our flag already under way when theirs sets off
-        new = next((g for g in mine if w0 - 2 <= g["s0"] <= w1), None)                        # a run of ours set off for while theirs is out
+        # a run of ours set off for while theirs is out: it is the answer to theirs when its runner turned for home before their flag went in, though the hall's rule
+        # (R-461) reads the run itself a few seconds later (R-498: his mark on HC v Team 5:58, Classic: HC caps at 6:36, Team's Monk 5 sets off at 6:34 and leaves the
+        # stand area at 6:40, "Team response with single run classic at 6:33")
+        new = next((g for g in mine if w0 - 2 <= g["s0"] and g.get("off", g["s0"]) <= w1), None)
         inhand = None
         if earlier:
             # in hand means close to the flag stand (his mark, TFS v 옷옷옷옷 1:40), and waiting there. A team that holds the stand cannot cap its flag until the other team
@@ -173,7 +185,7 @@ def flag_plays(M, K, pinned_at):
                 # Once ours is in, with theirs still on its way, we answer theirs in turn: we run again before it gets in, or we stay (his mark, RJT v RACK 6:32:
                 # "RJT does not run again and does not answer run"); that decision is ours from our cap. A flag of ours still out when theirs gets in left us none
                 if not (earlier["how"] == "captured" and earlier["e"] < w1): continue
-                new = next((g for g in mine if g is not earlier and earlier["e"] - 2 <= g["s0"] <= w1), None)
+                new = next((g for g in mine if g is not earlier and earlier["e"] - 2 <= g["s0"] and g.get("off", g["s0"]) <= w1), None)
                 w0 = max(w0, earlier["e"])
                 if w1 - w0 < 10: continue
             # else ours never gets in (carried off on a split, put down) and we set off again while theirs is out: that run is our answer
@@ -185,6 +197,8 @@ def flag_plays(M, K, pinned_at):
         mine_ = f" ({', '.join(who)})" if who else ""
         scen = (f"{M.m.tag[B]} {theirs} ({f['runner']}{', to the Obelisk flag stand' if f['other_stand'] else ''}); "
                 + (f"{M.m.tag[A]} has a flag already in hand{mine_}" if inhand else f"{M.m.tag[A]} stays" if not new else f"{M.m.tag[A]} {ours}{mine_}"))
+        first_flags = not any(u < w0 + 1 for u, _ in M.st.caps)          # nobody has capped yet: each team's first flag (R-500)
+        if not (f["pregame"] or (g and g["pregame"])) and first_flags: scen = "The opening. " + scen
         if f["pregame"] or (g and g["pregame"]):                         # the opening (R-479): each team's first flag is a run, and a player left at the spawn for the next one is part of the call
             back = lambda tm, x: [role[q["a"]] for q in M.run_starts() if q["tm"] == tm and q["pickup"] > 2 and q["set_off"] is None and q["waited"] is not None and q["waited"] < x["e"]]
             left = [f"{M.m.tag[tm]}'s {', '.join(back(tm, x))}" for tm, x in ((B, f), (A, g)) if x and x["pregame"] and back(tm, x)]
@@ -241,6 +255,9 @@ def flag_plays(M, K, pinned_at):
                              any_of={"more of theirs die at the main fight than of ours": dB(t1) > dA(t1), "their flag does not get in": f["how"] != "captured"}, beside=bes(t1), **kw))      # R-467: staying costs nothing if their flag fails
         elif (ours == "double run") == f["double"]:                      # single against single, double against double
             lv = K.lead(A, end)
+            if first_flags and not f["double"]:      # R-500: at the opening nobody has a flag capped and nobody is behind on flags (his words on HC v Team 0:03): the job is the first flag, with no test of the flag lead or of deaths
+                out.append(_play(M, "flag", "own", A, w0, end, who, scen, "Get the first flag in", {"our flag is capped": new["how"] == "captured"}, beside=bes(end), **kw))
+                continue
             out.append(_play(M, "flag", "own", A, w0, end, who, scen, "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
                              {"our flag is capped": new["how"] == "captured", "no more of ours die at the main fight than of theirs": dA(end) <= dB(end),
                               "no worse than half a flag behind at the end, or no further behind than at the start": lv is None or lv >= -LEAD_HALF or (K.lead(A, w0) is not None and lv >= K.lead(A, w0))}, beside=bes(end), **kw))      # a run cannot answer for a deficit it started with (his mark, TFS v 옷옷옷옷 3:26; R-426: going less negative counts)
@@ -350,7 +367,11 @@ def split_plays(M, K):
         # follow its players for as long as they stay on the enemy's ground, past the record's own end (the label can change under them: a split that becomes the only players left, or is renamed a push)
         # ... but not once its main team has come to it: then it is a main team push, and the split is over (his marks on Men v Apes: "not a split" from 3:10 to 7:00 and from 8:28 to 11:16, where the record itself had ended "main team joined")
         mates = [b for b in st.players[tm] if b not in x["ids"]]
-        joined = lambda a, u: M.with_rest(a, mates, u)                    # three or more of the rest of his team are with him
+        # three or more of the rest of his team are with him; or two of them are, and with them he stands in a group of five or more of his team: the larger part of
+        # the team is at the split, and it is the main team's push from there (R-487; his marks on HC v Team 13:20 to 14:06, "this is mainteam pushing backdoor": two more
+        # of HC join the four at Team's back door). The engine's own main team label is not asked: where it is wrong a split would end with it (xxx v Men 2:36)
+        team_ = [b for b in st.players[tm]]
+        joined = lambda a, u: M.with_rest(a, mates, u) or (M.with_rest(a, mates, u, need=2) and M.with_rest(a, [b for b in team_ if b != a], u, need=MAIN_BIG - 1))
         ext = {}
         for a in x["ids"]:
             u, gap = to[a], 0

@@ -566,6 +566,12 @@ class Moments:
                         hit = [g for g in later if any(d(self.P[a][v], self.P[b][v]) < FIGHT_LINK for b in g)]
                         later = [g for g in later if g not in hit] + [[a] + [x for g in hit for x in g]]
                     cand = [g for g in later if len(g) >= 2] or later or gs
+                    # the main team that stood together divides: it is one of the parts it divides into. Players who were away from it all along (a runner and the
+                    # player with him at the stand) do not become the main team because the others spread out (his marks on HC v Team 13:20 to 14:06: six of HC stand
+                    # together at Team's back door at 13:24, and when two of them step back the two at the stand were read as HC's main team, by their flags)
+                    # ("away all along" is one or two players: three at home, resurrected there or left there, are a part of the team: xxx v Men 2:36, his "Men have FOUR on split")
+                    of_it = [g for g in cand if 2 * len(prev & set(g)) >= len(g)]
+                    if of_it and len(prev) >= max(len(live) - 2, 2) and sum(len(g) for g in cand if g not in of_it) <= 2: cand = of_it
                     if u < 60: key = {id(g): far(g, v) for g in cand}
                     else:                                     # who walks away is read a minute on: a split takes time to get going
                         w = min(u + 60, self.T)
@@ -588,9 +594,16 @@ class Moments:
                     cand = [g for g in gs if len(g) >= 2]
                     vote = lambda g: sum((self.lane(a, u) == "front") - (self.lane(a, u) == "back") for a in g)
                     fr = [g for g in cand if vote(g) > 0]
-                    if len(fr) == 1 and len(cand) > 1 and all(vote(g) < 0 for g in cand if g is not fr[0]): prev = frozenset(fr[0])
+                    if len(fr) == 1 and len(cand) > 1 and all(vote(g) < 0 for g in cand if g is not fr[0]):
+                        # ... unless the main team itself is what went round the back: five or more of its players are there, two more than the part on the front lane
+                        # (R-487; his marks on HC v Team 13:20 to 14:20, "this is mainteam pushing backdoor": six of HC stood together at Team's back door, and the
+                        # two or three at the stand, the runner among them, were read as its main team). A split of four with a fifth player near it has not been
+                        # the main team and stays a split (hdm v hook 7:12 to 10:30)
+                        was = out.get(u - SPLIT_STEP, frozenset())
+                        rear = [a for a in live if a in was and a not in fr[0] and self.lane(a, u) == "back" and self._deep(a, u)]      # on the enemy's ground: a monk trailing at his own back footies is not there (xxx v Men 2:36)
+                        prev = frozenset(rear) if len(rear) >= MAIN_BIG and len(rear) >= len(fr[0]) + 2 else frozenset(fr[0])
                     big = [g for g in cand if len(g) >= MAIN_BIG and all(len(g) >= len(h) + 2 for h in gs if h is not g) and vote(g) >= 0]
-                    if big: prev = frozenset(big[0])          # an uneven divide: the part of five or more, two bigger than any other and not round the back, is the main team (R-421: NwAy v SKT 14:50, SKT's five pushing NwAy's front door; his marks on Men v Apes 3:10 to 7:00; R-335 and R-355 keep the even 4 v 4)
+                    if big: prev = frozenset(big[0])          # an uneven divide: the part of five or more, two bigger than any other and not round the back, is the main team (R-421: NwAy v SKT 14:50, SKT's five pushing NwAy's front door; his marks on Men v Apes 3:10 to 7:00; R-335 and R-355 keep the even 4 v 4). "Not round the back" was taken out on 2026-11-15 and put back: without it hdm's four-player split of hdm v hook 7:12 to 10:30, with a fifth player near it, was read as hdm's main team
                 out[u] = prev
             self._mt[tm] = out; self._lost[tm] = lost
         return self._mt[tm][t - t % SPLIT_STEP]
