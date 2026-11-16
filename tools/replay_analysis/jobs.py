@@ -181,7 +181,10 @@ def flag_plays(M, K, pinned_at):
         ours = "a flag already in hand" if inhand else "stay" if not new else "double run" if new["double"] else "single run"
         g = inhand or new
         who = [role[a] for a in dict.fromkeys(g["ids"])] if g else []
-        scen = f"They {theirs.replace(' run', '')} run ({M.m.tag[B]}'s {f['runner']}{', to the Obelisk flag stand' if f['other_stand'] else ''}); {M.m.tag[A]}: {ours}"
+        # each side is named with what it does and who does it (his words on HC v Team: "Team single run (Monk 5 (WoC)); HC single run (Mes/A)", not "They ...")
+        mine_ = f" ({', '.join(who)})" if who else ""
+        scen = (f"{M.m.tag[B]} {theirs} ({f['runner']}{', to the Obelisk flag stand' if f['other_stand'] else ''}); "
+                + (f"{M.m.tag[A]} has a flag already in hand{mine_}" if inhand else f"{M.m.tag[A]} stays" if not new else f"{M.m.tag[A]} {ours}{mine_}"))
         if f["pregame"] or (g and g["pregame"]):                         # the opening (R-479): each team's first flag is a run, and a player left at the spawn for the next one is part of the call
             back = lambda tm, x: [role[q["a"]] for q in M.run_starts() if q["tm"] == tm and q["pickup"] > 2 and q["set_off"] is None and q["waited"] is not None and q["waited"] < x["e"]]
             left = [f"{M.m.tag[tm]}'s {', '.join(back(tm, x))}" for tm, x in ((B, f), (A, g)) if x and x["pregame"] and back(tm, x)]
@@ -232,7 +235,7 @@ def flag_plays(M, K, pinned_at):
                                  {"our flag is capped before their boost lands": ours_cap is not None and (their_boost is None or ours_cap <= their_boost), "no more of ours die at the main fight than of theirs while it is held": hA <= hB},
                                  beside=b_, ruled=False, **kw))
         elif ours == "stay":
-            t1 = min(w1 + 10, T) if not f["double"] else w1
+            t1 = w1                                                       # the decision to stay ends when their flag is in (his mark, HC v Team 2:57, Classic: "should end when they cap"); the 10 s tail was Claude's
             job = "Kill with the two extra players before their flag is in" if f["double"] else "Kill with the extra player while their runner is away"
             out.append(_play(M, "flag", "own", A, w0, t1, [], scen, job + ", or their flag does not get in", {},
                              any_of={"more of theirs die at the main fight than of ours": dB(t1) > dA(t1), "their flag does not get in": f["how"] != "captured"}, beside=bes(t1), **kw))      # R-467: staying costs nothing if their flag fails
@@ -441,7 +444,7 @@ def split_plays(M, K):
                 told.append((ph[0], ph[1], ph[2], kd)); parts_of[ph[1]] = [ph]
         phases = [(v_, a_, b_) for v_, a_, b_, _ in told]
         along = lambda p0: ("; numbers along the way: " + ", ".join(f"{k_} v {n_} from {int(a_) // 60}:{int(a_) % 60:02d}" for (k_, n_), a_, b_ in parts_of[p0])) if len(parts_of[p0]) > 1 else ""
-        prevD, base0 = set(), f"{m.tag[tm]}'s split by the {x['way'] or 'door'}"
+        prevD, base0 = set(), f"{m.tag[tm]}'s split" + (f" by the {x['way']}" if x["way"] else "")      # no door is named where none is read (his words, HC v Team 4:24: '"by the door" means nothing')
         for pi, ((k, n), p0, p1) in enumerate(phases):
             last = pi == len(phases) - 1
             idx = [i for i, u in enumerate(times) if p0 <= u <= p1]

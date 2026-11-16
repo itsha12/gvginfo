@@ -2175,7 +2175,7 @@ class Moments:
             if r_[0] != told[-1][0]: told.append(r_)
         then = "".join(f"; then {own(c)[0]} v {own(c)[1]} from {int(u) // 60}:{int(u) % 60:02d}" for c, u, k_ in told[1:])
         words = {"kills": "kills", "runner away": "a runner away", "split elsewhere": "players split elsewhere", "wipe": "a wipe", "on the way": "players on their way to it (in neither fight)"}[src]
-        return {"key": f"{side}|{src}", "label": f"{'Up' if side == 'up' else 'Down'} on numbers in the main fight ({n[0]} v {n[1]}, {self.place_words(*e['place'])}{then}), from {words}",
+        return {"key": f"{side}|{src}", "label": f"{self.m.tag[tm]} {'up' if side == 'up' else 'down'} on numbers in the main fight ({n[0]} v {n[1]}, {self.place_words(*e['place'])}{then}), from {words}",
                 "parts": {"side": side, "source": src, "numbers": f"{n[0]}v{n[1]}", "short_because": dict(why), "place": self.place_words(*e["place"]), "step": self._ladder(tm, *e["place"]), "clear": clear}}
 
     # ---- 2.6 the call, read from the records in the window after the trigger (never from damage or deaths)

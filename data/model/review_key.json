@@ -8965,7 +8965,7 @@
        107
       ],
       "want": {
-       "scenario~": "They double run"
+       "scenario~": "RJT double run"
       }
      },
      "was": "RJT v RACK 1:41: RJT's Dervish single runs twice (0:20 to 1:20, then 1:21 to 2:30); the engine read the second run as a double run, the Mes/A having gone back 3 s before its cap; held from 2026-11-15"
@@ -8982,7 +8982,7 @@
      "want": {
       "their": "single run",
       "ours": "single run",
-      "scenario~": "RACK's Mes/A"
+      "scenario~": "RACK single run (Mes/A"
      },
      "was": "RJT v RACK 1:41: RACK's Mes/A goes back for the flag and RJT's Dervish matches with a single run: RJT's decision, one exchange; held from 2026-11-15"
     }
@@ -9054,7 +9054,21 @@
        149
       ],
       "want": {
-       "scenario~": "RACK's Stand Mes"
+       "scenario~": "RACK double run (Stand Mes"
+      }
+     },
+     "was": "RJT v RACK 2:23: no run starts here: RACK's Mes/A ran this flag from 1:50 and handed it to the Stand Mes at the stand (his answer); held from 2026-11-15"
+    },
+    {
+     "none": {
+      "play": "flag",
+      "team": "RJT",
+      "start": [
+       137,
+       149
+      ],
+      "want": {
+       "scenario~": "RACK single run (Stand Mes"
       }
      },
      "was": "RJT v RACK 2:23: no run starts here: RACK's Mes/A ran this flag from 1:50 and handed it to the Stand Mes at the stand (his answer); held from 2026-11-15"
@@ -9071,7 +9085,7 @@
      "want": {
       "their": "single run",
       "ours": "single run",
-      "scenario~": "RACK's Mes/A"
+      "scenario~": "RACK single run (Mes/A"
      },
      "was": "RJT v RACK 1:41: RACK's Mes/A goes back for the flag and RJT's Dervish matches with a single run: RJT's decision, one exchange; held from 2026-11-15"
     }
@@ -10299,7 +10313,7 @@
        616
       ],
       "want": {
-       "scenario~": "They single run (RACK"
+       "scenario~": "RACK single run ("
       }
      },
      "was": "RJT v RACK 10:10: RACK's decision, not RJT's: RJT single runs (pickup 9:52) and RACK responds with a single run. The engine started RJT's run at 10:18, when the Dervish took the flag from the Mes/A; held from 2026-11-15"
@@ -10625,6 +10639,2356 @@
    "call": "",
    "shown": "(his notes on the game: what the engine did not read, and his questions)",
    "mark": "missed",
+   "said": "",
+   "checks": []
+  },
+  {
+   "id": "f1-9b5c-1",
+   "set": "f1",
+   "scheme": 2,
+   "row": 1,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    3,
+    136
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (Team's Monk 5 (WoC)); HC: single run",
+   "band": "high",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-flag-1-3-0",
+     "shown": "HC [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (our flag is capped: no; no more of ours die at the main fight than of theirs: no; no worse than half a flag behind at the end, or no further behind than at the start: yes)",
+     "mark": "partly",
+     "said": "this is first flag with no one having the flag capped so it's a bit of a unique situation. Both were at the flag stand ready to cap (HC was actually faster) but it's really no one is behind on flags."
+    }
+   ],
+   "checks": [],
+   "note": "His words on HC's call (partly): at the opening nobody has a flag capped, both were at the stand ready to cap, 'it's really no one is behind on flags': the flag job's flag-lead test does not fit the opening. Put to him 2026-11-15."
+  },
+  {
+   "id": "f1-9b5c-2",
+   "set": "f1",
+   "scheme": 2,
+   "row": 2,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    40,
+    140
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "HC pushes Team's flagger (Monk 5 (WoC), carrying) with 3 players",
+   "band": "medium",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-push_flagger-1-40-1",
+     "shown": "HC: Stop their flag, or make it 30% late. Met (their flag is stopped: no; it arrives 30% or more later than usual: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "9b5cdf62-flagger_pushed-2-40-2",
+     "shown": "Team: Get the flag in on time, without losing a player for the help sent. Not met (the flag gets in, less than 30% late: no; nobody else of ours dies meanwhile: yes)",
+     "mark": "partly",
+     "said": "same as above"
+    }
+   ],
+   "checks": [],
+   "note": "His words on Team's call (partly): 'same as above' (the opening, row 1)."
+  },
+  {
+   "id": "f1-9b5c-3",
+   "set": "f1",
+   "scheme": 2,
+   "row": 3,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    88,
+    110
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (7 v 8, the flag stand), from kills; HC: stay (stay at the stand) | Team: push their flagger",
+   "band": "low",
+   "grade": "weak",
+   "mark": "partly",
+   "off": [
+    "kind"
+   ],
+   "said": "team is not pushing their flagger in this period",
+   "calls": [
+    {
+     "play": "9b5cdf62-numbers-1-88-3",
+     "shown": "HC (down) [stay]: Hold the ground a player down and lose no more until it is level, or the base res. Met (nobody of ours dies: yes)",
+     "mark": "not judged"
+    },
+    {
+     "play": "9b5cdf62-numbers-2-88-4",
+     "shown": "Team (up) [push their flagger]: Take ground and NPCs with the numbers. Not met (no more of ours die than of theirs: yes; one of their NPCs dies: no; more of theirs die than of ours: no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "numbers",
+      "team": "Team",
+      "start": [
+       82,
+       94
+      ],
+      "want": {
+       "call": "push their flagger"
+      }
+     },
+     "open": true,
+     "why": "HC v Team 1:28 (Weak, partly, kind): 'team is not pushing their flagger in this period'"
+    }
+   ]
+  },
+  {
+   "id": "f1-9b5c-4",
+   "set": "f1",
+   "scheme": 2,
+   "row": 4,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    90,
+    136
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "Team pushes HC's flagger (Mes/A, carrying) with its main team",
+   "band": "low",
+   "grade": "weak",
+   "mark": "incorrect",
+   "off": [
+    "kind"
+   ],
+   "said": "Team not pushing flagger",
+   "calls": [
+    {
+     "play": "9b5cdf62-push_flagger-2-90-6",
+     "shown": "Team: Stop their flag, or make it 30% late. Met (their flag is stopped: yes; it arrives 30% or more later than usual: no)",
+     "mark": "not judged"
+    },
+    {
+     "play": "9b5cdf62-flagger_pushed-1-90-5",
+     "shown": "HC: Get the flag in on time, without losing a player for the help sent. Not met (the flag gets in, less than 30% late: no; nobody else of ours dies meanwhile: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "push flagger",
+      "team": "Team",
+      "start": [
+       84,
+       96
+      ]
+     },
+     "open": true,
+     "why": "HC v Team 1:30 (Weak, incorrect, kind): 'Team not pushing flagger'"
+    }
+   ]
+  },
+  {
+   "id": "f1-9b5c-5",
+   "set": "f1",
+   "scheme": 2,
+   "row": 5,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    132,
+    252
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "HC's split by the back door: one player (Ranger) against 1 defending (8 Monk)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-split-1-132-7",
+     "shown": "HC (attacker) [1 v 1, defended by a monk]: Hold the monk there; the main team's job is to kill. Not met (the split player survives: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "9b5cdf62-split-2-132-8",
+     "shown": "Team (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (no pit NPC lost: yes; no more defenders die than split players: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "HC",
+      "start": [
+       126,
+       138
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Team",
+      "start": [
+       126,
+       138
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-9b5c-6",
+   "set": "f1",
+   "scheme": 2,
+   "row": 6,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    138,
+    180
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (6 v 7, the flag stand), from kills; HC: stay (stay at the stand) | Team: stay (stay at the stand)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-numbers-1-138-9",
+     "shown": "HC (down) [stay]: Hold the ground a player down and lose no more until it is level, or the base res. Met (nobody of ours dies: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "9b5cdf62-numbers-2-138-10",
+     "shown": "Team (up) [stay]: Turn the extra player into a kill before the numbers are level. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "HC",
+      "start": [
+       132,
+       144
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Team",
+      "start": [
+       132,
+       144
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-9b5c-7",
+   "set": "f1",
+   "scheme": 2,
+   "row": 7,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    177,
+    225
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (HC's Mes/A); Team: stay",
+   "band": "high",
+   "grade": "classic",
+   "mark": "partly",
+   "off": [
+    "when"
+   ],
+   "said": "Decision is great, but should end when they cap (3:36ish)",
+   "calls": [
+    {
+     "play": "9b5cdf62-flag-2-177-11",
+     "shown": "Team [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Not met (more of theirs die at the main fight than of ours: no; their flag does not get in: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "Team",
+      "start": [
+       171,
+       183
+      ],
+      "end": [
+       210,
+       222
+      ]
+     },
+     "was": "HC v Team 2:57 (Classic, partly, when): 'Decision is great, but should end when they cap (3:36ish)': the engine runs Team's stay to 3:45; ends at the cap from 2026-11-15 (the 10 s tail taken out), held"
+    }
+   ]
+  },
+  {
+   "id": "f1-9b5c-8",
+   "set": "f1",
+   "scheme": 2,
+   "row": 8,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    182,
+    215
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "Team pushes HC's flagger (Mes/A, at the spawn) with one player",
+   "band": "low",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-push_flagger-2-182-13",
+     "shown": "Team: Stop their flag, or make it 30% late. Not met (their flag is stopped: no; it arrives 30% or more later than usual: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "9b5cdf62-flagger_pushed-1-182-12",
+     "shown": "HC: Get the flag in on time, without losing a player for the help sent. Met (the flag gets in, less than 30% late: yes; nobody else of ours dies meanwhile: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-9b5c-9",
+   "set": "f1",
+   "scheme": 2,
+   "row": 9,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    226,
+    308
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (Team's Monk 5 (WoC)); HC: single run",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-flag-1-226-14",
+     "shown": "HC [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (our flag is capped: yes; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "HC",
+      "start": [
+       220,
+       232
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-9b5c-10",
+   "set": "f1",
+   "scheme": 2,
+   "row": 10,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    258,
+    308
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "Team pushes HC's flagger (Mes/A, going back) with 2 players",
+   "band": "low",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-push_flagger-2-258-16",
+     "shown": "Team: Stop their flag, or make it 30% late. Met (their flag is stopped: no; it arrives 30% or more later than usual: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "9b5cdf62-flagger_pushed-1-258-15",
+     "shown": "HC: Get the flag in on time. Not met (the flag gets in, less than 30% late: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-9b5c-11",
+   "set": "f1",
+   "scheme": 2,
+   "row": 11,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    262,
+    304
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (5 v 6, the flag stand; then 6 v 7 from 4:42), from kills; HC: stay (stay at the stand) | Team: stay (stay at the stand)",
+   "band": "none",
+   "grade": "none",
+   "mark": "",
+   "calls": [],
+   "checks": []
+  },
+  {
+   "id": "f1-9b5c-12",
+   "set": "f1",
+   "scheme": 2,
+   "row": 12,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    264,
+    304
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Team's split by the door: two players (Hammer, Ranger) against 2 defending (8 Monk, Mes/A)",
+   "band": "medium",
+   "grade": "none",
+   "mark": "",
+   "said": "this is a flag push, not a split. It's already covered in your flag push for this time period. Also \"by the door\" means nothing.",
+   "calls": [
+    {
+     "play": "9b5cdf62-split-2-264-20",
+     "shown": "Team (attacker) [even]: Take NPCs or kills. Not met (a defender killed: no; an NPC taken: no)",
+     "mark": "not judged"
+    },
+    {
+     "play": "9b5cdf62-split-1-264-19",
+     "shown": "HC (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (no pit NPC lost: yes; no more defenders die than split players: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "split",
+      "team": "Team",
+      "start": [
+       258,
+       270
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "HC v Team, Imperial 4:24: he graded it No decision: this is a flag push, not a split. It's already covered in your flag push for this time period. Also \"by the door\" means nothing."
+    },
+    {
+     "none": {
+      "play": "split",
+      "team": "HC",
+      "start": [
+       258,
+       270
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "HC v Team, Imperial 4:24: he graded it No decision: this is a flag push, not a split. It's already covered in your flag push for this time period. Also \"by the door\" means nothing."
+    }
+   ],
+   "note": "'this is a flag push, not a split. It's already covered in your flag push for this time period. Also \"by the door\" means nothing': the wording is taken out (jobs.py); the split read on top of a push on the flagger stands as an open check."
+  },
+  {
+   "id": "f1-9b5c-13",
+   "set": "f1",
+   "scheme": 2,
+   "row": 13,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    272,
+    498
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "HC's split by the back door: one player (Ranger) against 1 defending (8 Monk)",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-split-1-272-21",
+     "shown": "HC (attacker) [1 v 1, defended by a monk]: Hold the monk there; the main team's job is to kill. Met (the split player survives: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "9b5cdf62-split-2-272-22",
+     "shown": "Team (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (no pit NPC lost: yes; no more defenders die than split players: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "HC",
+      "start": [
+       266,
+       278
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Team",
+      "start": [
+       266,
+       278
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-9b5c-14",
+   "set": "f1",
+   "scheme": 2,
+   "row": 14,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    274,
+    358
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (HC's Mes/A); Team: single run",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-flag-2-274-23",
+     "shown": "Team [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (our flag is capped: yes; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "Team",
+      "start": [
+       268,
+       280
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-9b5c-15",
+   "set": "f1",
+   "scheme": 2,
+   "row": 15,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    308,
+    396
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (Team's Monk 5 (WoC)); HC: single run",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-flag-1-308-24",
+     "shown": "HC [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (our flag is capped: yes; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "HC",
+      "start": [
+       302,
+       314
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-9b5c-16",
+   "set": "f1",
+   "scheme": 2,
+   "row": 16,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    326,
+    358
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "HC pushes Team's flagger (Monk 5 (WoC), carrying) with one player",
+   "band": "medium",
+   "grade": "visible",
+   "mark": "partly",
+   "off": [
+    "who"
+   ],
+   "said": "push with 2 players (warrior and stand mes)",
+   "calls": [
+    {
+     "play": "9b5cdf62-push_flagger-1-326-25",
+     "shown": "HC: Stop their flag, or make it 30% late. Met (their flag is stopped: no; it arrives 30% or more later than usual: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "9b5cdf62-flagger_pushed-2-326-26",
+     "shown": "Team: Get the flag in on time, without losing a player for the help sent. Not met (the flag gets in, less than 30% late: no; nobody else of ours dies meanwhile: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "push flagger",
+      "team": "HC",
+      "start": [
+       318,
+       334
+      ]
+     },
+     "want": {
+      "scenario~": "with 2 players"
+     },
+     "open": true,
+     "why": "HC v Team 5:26 (Visible, partly, who): 'push with 2 players (warrior and stand mes)': the engine reads one player"
+    }
+   ]
+  },
+  {
+   "id": "f1-9b5c-17",
+   "set": "f1",
+   "scheme": 2,
+   "row": 17,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    350,
+    384
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (5 v 7, the flag stand; then 6 v 7 from 6:02), from kills; HC: stay (stay at the stand) | Team: stay (stay at the stand)",
+   "band": "low",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-numbers-1-350-27",
+     "shown": "HC (down) [stay]: Hold the ground a player down and lose no more until it is level, or the base res. Met (nobody of ours dies: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "9b5cdf62-numbers-2-350-28",
+     "shown": "Team (up) [stay]: Turn the extra player into a kill before the numbers are level. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-9b5c-18",
+   "set": "f1",
+   "scheme": 2,
+   "row": 18,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    358,
+    406
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (HC's Mes/A); Team: stay",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "incorrect",
+   "off": [
+    "when",
+    "kind"
+   ],
+   "said": "Team response with single run classic at 6:33.",
+   "calls": [
+    {
+     "play": "9b5cdf62-flag-2-358-29",
+     "shown": "Team [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Not met (more of theirs die at the main fight than of ours: no; their flag does not get in: no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "Team",
+      "start": [
+       385,
+       401
+      ]
+     },
+     "want": {
+      "ours": "single run"
+     },
+     "open": true,
+     "why": "HC v Team 5:58 (Classic, incorrect, when and kind): 'Team response with single run classic at 6:33': the engine reads Team stays from 5:58 to 6:46"
+    }
+   ]
+  },
+  {
+   "id": "f1-9b5c-19",
+   "set": "f1",
+   "scheme": 2,
+   "row": 19,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    364,
+    396
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "Team pushes HC's flagger (Mes/A, carrying) with one player",
+   "band": "low",
+   "grade": "visible",
+   "mark": "partly",
+   "off": [
+    "who",
+    "when"
+   ],
+   "said": "the push starts at 5:25ish and it's with 3 players",
+   "calls": [
+    {
+     "play": "9b5cdf62-push_flagger-2-364-31",
+     "shown": "Team: Stop their flag, or make it 30% late. Met (their flag is stopped: no; it arrives 30% or more later than usual: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "9b5cdf62-flagger_pushed-1-364-30",
+     "shown": "HC: Get the flag in on time, without losing a player for the help sent. Not met (the flag gets in, less than 30% late: no; nobody else of ours dies meanwhile: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "push flagger",
+      "team": "Team",
+      "start": [
+       317,
+       333
+      ]
+     },
+     "want": {
+      "scenario~": "with 3 players"
+     },
+     "open": true,
+     "why": "HC v Team 6:04 (Visible, partly, who and when): 'the push starts at 5:25ish and it's with 3 players': the engine reads one player from 6:04"
+    }
+   ]
+  },
+  {
+   "id": "f1-9b5c-20",
+   "set": "f1",
+   "scheme": 2,
+   "row": 20,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    400,
+    462
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (Team's Monk 5 (WoC)); HC: single run",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-flag-1-400-32",
+     "shown": "HC [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (our flag is capped: no; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "HC",
+      "start": [
+       394,
+       406
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-9b5c-21",
+   "set": "f1",
+   "scheme": 2,
+   "row": 21,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    456,
+    462
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "Team pushes HC's flagger (Mes/A, carrying) with one player",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-push_flagger-2-456-34",
+     "shown": "Team: Stop their flag, or make it 30% late. Met (their flag is stopped: yes; it arrives 30% or more later than usual: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "9b5cdf62-flagger_pushed-1-456-33",
+     "shown": "HC: Get the flag in on time. Not met (the flag gets in, less than 30% late: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "push flagger",
+      "team": "Team",
+      "start": [
+       450,
+       462
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "flagger pushed",
+      "team": "HC",
+      "start": [
+       450,
+       462
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-9b5c-22",
+   "set": "f1",
+   "scheme": 2,
+   "row": 22,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    471,
+    552
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (HC's Ranger); Team: stay",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-flag-2-471-35",
+     "shown": "Team [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Not met (more of theirs die at the main fight than of ours: no; their flag does not get in: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "Team",
+      "start": [
+       465,
+       477
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-9b5c-23",
+   "set": "f1",
+   "scheme": 2,
+   "row": 23,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    498,
+    542
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "Team pushes HC's flagger (Ranger, at the spawn) with 4 players",
+   "band": "low",
+   "grade": "weak",
+   "mark": "partly",
+   "off": [
+    "numbers"
+   ],
+   "said": "they really only push with warrior and monk",
+   "calls": [
+    {
+     "play": "9b5cdf62-push_flagger-2-498-37",
+     "shown": "Team: Stop their flag, or make it 30% late. Met (their flag is stopped: no; it arrives 30% or more later than usual: yes)",
+     "mark": "not judged"
+    },
+    {
+     "play": "9b5cdf62-flagger_pushed-1-498-36",
+     "shown": "HC: Get the flag in on time, without losing a player for the help sent. Not met (the flag gets in, less than 30% late: no; nobody else of ours dies meanwhile: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "push flagger",
+      "team": "Team",
+      "start": [
+       490,
+       506
+      ]
+     },
+     "want": {
+      "scenario~": "with 2 players"
+     },
+     "open": true,
+     "why": "HC v Team 8:18 (Weak, partly, numbers): 'they really only push with warrior and monk': the engine reads 4 players"
+    }
+   ]
+  },
+  {
+   "id": "f1-9b5c-24",
+   "set": "f1",
+   "scheme": 2,
+   "row": 24,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    542,
+    624
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "HC pushes Team's flagger (Monk 5 (WoC), going back) with 2 players",
+   "band": "low",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-push_flagger-1-542-38",
+     "shown": "HC: Stop their flag, or make it 30% late. Met (their flag is stopped: no; it arrives 30% or more later than usual: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "9b5cdf62-flagger_pushed-2-542-39",
+     "shown": "Team: Get the flag in on time. Not met (the flag gets in, less than 30% late: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "push flagger",
+      "team": "HC",
+      "start": [
+       536,
+       548
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "flagger pushed",
+      "team": "Team",
+      "start": [
+       536,
+       548
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-9b5c-25",
+   "set": "f1",
+   "scheme": 2,
+   "row": 25,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    543,
+    624
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (HC's Mes/A); Team: single run",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-flag-2-543-40",
+     "shown": "Team [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (our flag is capped: yes; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "Team",
+      "start": [
+       537,
+       549
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-9b5c-26",
+   "set": "f1",
+   "scheme": 2,
+   "row": 26,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    560,
+    627
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "Team pushes HC's flagger (Mes/A, carrying) with one player",
+   "band": "medium",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-push_flagger-2-560-42",
+     "shown": "Team: Stop their flag, or make it 30% late. Met (their flag is stopped: no; it arrives 30% or more later than usual: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "9b5cdf62-flagger_pushed-1-560-41",
+     "shown": "HC: Get the flag in on time, without losing a player for the help sent. Not met (the flag gets in, less than 30% late: no; nobody else of ours dies meanwhile: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-9b5c-27",
+   "set": "f1",
+   "scheme": 2,
+   "row": 27,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    588,
+    618
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (7 v 8, the flag stand), from players split elsewhere; HC: stay (stay at the stand) | Team: stay (stay at the stand)",
+   "band": "medium",
+   "grade": "weak",
+   "mark": "correct",
+   "said": "8 monk leaves to defend at 9:58; not really a player advantage window that would make any difference",
+   "calls": [
+    {
+     "play": "9b5cdf62-numbers-1-588-43",
+     "shown": "HC (weak side) [stay]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)",
+     "mark": "not judged"
+    },
+    {
+     "play": "9b5cdf62-numbers-2-588-44",
+     "shown": "Team (strong side) [stay]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-9b5c-28",
+   "set": "f1",
+   "scheme": 2,
+   "row": 28,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    606,
+    738
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "HC's split by the back door: three players (Ranger, Hammer, Prot) against 3 defending (8 Monk, Hammer, 7 Monk); numbers along the way: 2 v 1 from 10:06, 3 v 3 from 10:26, 1 v 1 from 11:18, 3 v 2 from 11:34, 3 v 3 from 12:04; 2 damage against 2 monks",
+   "band": "low",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-split-1-606-45",
+     "shown": "HC (attacker) [held by monks]: Hold the monks there and lose nobody; NPCs are a bonus (a kill is not expected of it). Met (nobody on the split dies: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "9b5cdf62-split-2-606-46",
+     "shown": "Team (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Not met (no pit NPC lost: no; no more defenders die than split players: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-9b5c-29",
+   "set": "f1",
+   "scheme": 2,
+   "row": 29,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    641,
+    722
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (Team's Warrior); HC: single run",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-flag-1-641-47",
+     "shown": "HC [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (our flag is capped: yes; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "HC",
+      "start": [
+       635,
+       647
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-9b5c-30",
+   "set": "f1",
+   "scheme": 2,
+   "row": 30,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    646,
+    670
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Up on numbers in the main fight (4 v 3, the flag stand), from players split elsewhere; HC: stay (stay on the enemy's side) | Team: retreat down the ladder (fall to footmen)",
+   "band": "low",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-numbers-1-646-48",
+     "shown": "HC (strong side) [stay]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "9b5cdf62-numbers-2-646-49",
+     "shown": "Team (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-9b5c-31",
+   "set": "f1",
+   "scheme": 2,
+   "row": 31,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    678,
+    722
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They double run (Team's Monk 5 (WoC)); HC: single run",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-flag-1-678-50",
+     "shown": "HC [single run]: Kill or take ground with the extra player, and end no worse than a flag behind. Met (no worse than a flag behind at the end: yes; more of theirs die at the main fight than of ours: yes; ground taken: no; one of their NPCs dies: no)",
+     "mark": "partly",
+     "said": "This is correct, but not sure what to do with it as it happened on split (the flag decision didn't really affect this death at all)"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "HC",
+      "start": [
+       672,
+       684
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ],
+   "note": "His words on HC's call (partly): correct, 'but not sure what to do with it as it happened on split (the flag decision didn't really affect this death at all)': a death on a split counted against the flag run, against R-466. Put to him 2026-11-15."
+  },
+  {
+   "id": "f1-9b5c-32",
+   "set": "f1",
+   "scheme": 2,
+   "row": 32,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    694,
+    716
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Down on numbers in the main fight (4 v 5, the flag stand), from players split elsewhere; HC: stay (stay at the stand) | Team: stay (stay at the stand); 3 damage against 2 monks",
+   "band": "low",
+   "grade": "weak",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-numbers-1-694-51",
+     "shown": "HC (weak side) [stay]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)",
+     "mark": "not judged"
+    },
+    {
+     "play": "9b5cdf62-numbers-2-694-52",
+     "shown": "Team (strong side) [stay]: Keep them busy and lose nobody (a kill is not expected of it). Met (nobody of ours dies: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-9b5c-33",
+   "set": "f1",
+   "scheme": 2,
+   "row": 33,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    695,
+    732
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (HC's Mes/A); Team: stay",
+   "band": "medium",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-flag-2-695-53",
+     "shown": "Team [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Not met (more of theirs die at the main fight than of ours: no; their flag does not get in: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-9b5c-34",
+   "set": "f1",
+   "scheme": 2,
+   "row": 34,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    712,
+    722
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "Team pushes HC's flagger (Mes/A, carrying) with one player",
+   "band": "low",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-push_flagger-2-712-55",
+     "shown": "Team: Stop their flag, or make it 30% late. Not met (their flag is stopped: no; it arrives 30% or more later than usual: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "9b5cdf62-flagger_pushed-1-712-54",
+     "shown": "HC: Get the flag in on time. Met (the flag gets in, less than 30% late: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-9b5c-35",
+   "set": "f1",
+   "scheme": 2,
+   "row": 35,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    720,
+    744
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Up on numbers in the main fight (5 v 4, the greater stand area), from players split elsewhere; HC: push their flagger | Team: stay (stay at the stand)",
+   "band": "low",
+   "grade": "weak",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-numbers-1-720-56",
+     "shown": "HC (strong side) [push their flagger]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)",
+     "mark": "not judged"
+    },
+    {
+     "play": "9b5cdf62-numbers-2-720-57",
+     "shown": "Team (weak side) [stay]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-9b5c-36",
+   "set": "f1",
+   "scheme": 2,
+   "row": 36,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    730,
+    753
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "HC pushes Team's flagger (Monk 5 (WoC), carrying) with its main team",
+   "band": "low",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-push_flagger-1-730-58",
+     "shown": "HC: Stop their flag, or make it 30% late. Met (their flag is stopped: no; it arrives 30% or more later than usual: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "9b5cdf62-flagger_pushed-2-730-59",
+     "shown": "Team: Get the flag in on time, without losing a player for the help sent. Not met (the flag gets in, less than 30% late: no; nobody else of ours dies meanwhile: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-9b5c-37",
+   "set": "f1",
+   "scheme": 2,
+   "row": 37,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    736,
+    754
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "HC's split by the back door: three players (Ranger, Prot, Hammer) against 4 defending (Hammer, 7 Monk, 8 Monk, Mesmer); Mesmer collapse from the main fight; 4 (Hammer, 7 Monk, 8 Monk, Mesmer) against three players: collapse by Mesmer from the main fight",
+   "band": "low",
+   "grade": "none",
+   "mark": "",
+   "said": "This is the exact same split (continuation) of the split you read at 10:06–12:18.",
+   "calls": [
+    {
+     "play": "9b5cdf62-split-1-736-60",
+     "shown": "HC (attacker) [collapsed on]: Survive and gain an advantage elsewhere on the map. Not met (nobody on the split dies: yes; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)",
+     "mark": "not judged"
+    },
+    {
+     "play": "9b5cdf62-split-2-736-61",
+     "shown": "Team (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Not met (a split player dies during the collapse: no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "split",
+      "team": "HC",
+      "start": [
+       730,
+       742
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "HC v Team, Imperial 12:16: he graded it No decision: This is the exact same split (continuation) of the split you read at 10:06–12:18."
+    },
+    {
+     "none": {
+      "play": "split",
+      "team": "Team",
+      "start": [
+       730,
+       742
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "HC v Team, Imperial 12:16: he graded it No decision: This is the exact same split (continuation) of the split you read at 10:06–12:18."
+    }
+   ],
+   "note": "'This is the exact same split (continuation) of the split you read at 10:06 to 12:18': a repeat in substance, graded No decision."
+  },
+  {
+   "id": "f1-9b5c-38",
+   "set": "f1",
+   "scheme": 2,
+   "row": 38,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    752,
+    802
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "HC's split by the back door: three players (Ranger, Prot, Hammer) against 2 defending (Hammer, 8 Monk); numbers along the way: 3 v 2 from 12:32, 4 v 3 from 12:56",
+   "band": "low",
+   "grade": "visible",
+   "mark": "incorrect",
+   "off": [
+    "numbers",
+    "kind"
+   ],
+   "said": "this is a full mainteam push backdoor of 6 players of HC",
+   "calls": [
+    {
+     "play": "9b5cdf62-split-1-752-62",
+     "shown": "HC (attacker) [a player or more up]: Kill or take NPCs. Met (a defender killed: yes; an NPC taken: no)",
+     "mark": "not judged"
+    },
+    {
+     "play": "9b5cdf62-split-2-752-63",
+     "shown": "Team (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Not met (no pit NPC lost: yes; no defender dies: no)",
+     "mark": "not judged"
+    },
+    {
+     "play": "9b5cdf62-split-2-752-64",
+     "shown": "Team (defender's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (more of theirs die away from the split than of ours: no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "split",
+      "side": "attacker",
+      "team": "HC",
+      "at": [
+       752,
+       802
+      ]
+     },
+     "open": true,
+     "why": "HC v Team 12:32 (Visible, incorrect, numbers and kind): 'this is a full mainteam push backdoor of 6 players of HC', not a split of three"
+    }
+   ]
+  },
+  {
+   "id": "f1-9b5c-39",
+   "set": "f1",
+   "scheme": 2,
+   "row": 39,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    769,
+    814
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (Team's Monk 5 (WoC)); HC: single run",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-flag-1-769-65",
+     "shown": "HC [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (our flag is capped: yes; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "HC",
+      "start": [
+       763,
+       775
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-9b5c-40",
+   "set": "f1",
+   "scheme": 2,
+   "row": 40,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    800,
+    820
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "HC's split by the back door: 4 players (Ranger, Hammer, Prot, 7 Monk) against 6 defending (Hammer, Warrior, Mesmer, Prot, 7 Monk, 8 Monk); Warrior, Mesmer, Prot, 7 Monk collapse from the main fight; 6 (Hammer, Warrior, Mesmer, Prot, 7 Monk, 8 Monk) against 4 players: collapse by Warrior, Mesmer, Prot, 7 Monk from the main fight",
+   "band": "low",
+   "grade": "none",
+   "mark": "",
+   "said": "same as before, this is mainteam pushing backdoor",
+   "calls": [
+    {
+     "play": "9b5cdf62-split-1-800-66",
+     "shown": "HC (attacker) [collapsed on]: Survive and gain an advantage elsewhere on the map. Met (nobody on the split dies: yes; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: yes)",
+     "mark": "not judged"
+    },
+    {
+     "play": "9b5cdf62-split-2-800-67",
+     "shown": "Team (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Not met (a split player dies during the collapse: no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "split",
+      "team": "HC",
+      "start": [
+       794,
+       806
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "HC v Team, Imperial 13:20: he graded it No decision: same as before, this is mainteam pushing backdoor"
+    },
+    {
+     "none": {
+      "play": "split",
+      "team": "Team",
+      "start": [
+       794,
+       806
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "HC v Team, Imperial 13:20: he graded it No decision: same as before, this is mainteam pushing backdoor"
+    }
+   ]
+  },
+  {
+   "id": "f1-9b5c-41",
+   "set": "f1",
+   "scheme": 2,
+   "row": 41,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    818,
+    860
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "HC's split by the back door: 5 players (Ranger, Hammer, Prot, 7 Monk, Stand Mes) against 6 defending (Hammer, Prot, 7 Monk, 8 Monk, Warrior, Mesmer)",
+   "band": "low",
+   "grade": "none",
+   "mark": "",
+   "said": "same as before, this is mainteam pushing backdoor",
+   "calls": [
+    {
+     "play": "9b5cdf62-split-1-818-68",
+     "shown": "HC (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Met (nobody on the split dies: yes; more of theirs die away from the split than of ours: yes; flag lead better by 0.35 or more: no)",
+     "mark": "not judged"
+    },
+    {
+     "play": "9b5cdf62-split-2-818-70",
+     "shown": "Team (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Not met (no pit NPC lost: yes; a split player dies: no; the split is gone within the visit: no)",
+     "mark": "not judged"
+    },
+    {
+     "play": "9b5cdf62-split-1-818-69",
+     "shown": "HC (attacker's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Met (more of theirs die away from the split than of ours: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "split",
+      "team": "HC",
+      "start": [
+       812,
+       824
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "HC v Team, Imperial 13:38: he graded it No decision: same as before, this is mainteam pushing backdoor"
+    },
+    {
+     "none": {
+      "play": "split",
+      "team": "Team",
+      "start": [
+       812,
+       824
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "HC v Team, Imperial 13:38: he graded it No decision: same as before, this is mainteam pushing backdoor"
+    },
+    {
+     "none": {
+      "play": "split",
+      "team": "HC",
+      "start": [
+       812,
+       824
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "HC v Team, Imperial 13:38: he graded it No decision: same as before, this is mainteam pushing backdoor"
+    }
+   ]
+  },
+  {
+   "id": "f1-9b5c-42",
+   "set": "f1",
+   "scheme": 2,
+   "row": 42,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    858,
+    874
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "HC's split by the back door: two players (Ranger, Hammer) against 1 defending (8 Monk)",
+   "band": "low",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-split-1-858-71",
+     "shown": "HC (attacker) [a player or more up]: Kill or take NPCs. Met (a defender killed: yes; an NPC taken: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "9b5cdf62-split-2-858-72",
+     "shown": "Team (defender) [one defender]: Delay: keep the split off the pit NPCs and stay alive. Not met (no pit NPC lost: yes; no defender dies: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-9b5c-43",
+   "set": "f1",
+   "scheme": 2,
+   "row": 43,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    866,
+    907
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "They single run (HC's Mes/A); Team: stay",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-flag-2-866-73",
+     "shown": "Team [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Not met (more of theirs die at the main fight than of ours: no; their flag does not get in: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "Team",
+      "start": [
+       860,
+       872
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-9b5c-44",
+   "set": "f1",
+   "scheme": 2,
+   "row": 44,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    872,
+    898
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "HC's split by the back door: two players (Ranger, Hammer) against 0 defending",
+   "band": "low",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-split-1-872-74",
+     "shown": "HC (attacker) [undefended]: Take NPCs. Met (an NPC taken: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "9b5cdf62-split-2-872-75",
+     "shown": "Team (defender) [no answer]: Win elsewhere before the split costs more than it gains. Not met (more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-9b5c-45",
+   "set": "f1",
+   "scheme": 2,
+   "row": 45,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    896,
+    968
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Up on numbers in the main fight (7 v 5, Team's front door; then 8 v 5 from 15:44), from kills; HC: stay (stay on the enemy's side) | Team: retreat down the ladder (retreat to the pit)",
+   "band": "none",
+   "grade": "none",
+   "mark": "",
+   "calls": [],
+   "checks": []
+  },
+  {
+   "id": "f1-9b5c-46",
+   "set": "f1",
+   "scheme": 2,
+   "row": 46,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    896,
+    968
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "HC's split by the back door: two players (Hammer, Ranger) against 5 defending (Mesmer, Prot, 7 Monk, Ranger, Hammer); numbers along the way: 2 v 1 from 14:56, 2 v 5 from 15:10",
+   "band": "low",
+   "grade": "visible",
+   "mark": "incorrect",
+   "off": [
+    "numbers",
+    "who",
+    "kind"
+   ],
+   "said": "this split ends and they join mainteam (who is pushing in through frontdoor) at around 15:10.",
+   "calls": [
+    {
+     "play": "9b5cdf62-split-1-896-77",
+     "shown": "HC (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Met (nobody on the split dies: yes; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: yes)",
+     "mark": "not judged"
+    },
+    {
+     "play": "9b5cdf62-split-2-896-80",
+     "shown": "Team (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Not met (no pit NPC lost: no; a split player dies: no; the split is gone within the visit: no)",
+     "mark": "not judged"
+    },
+    {
+     "play": "9b5cdf62-split-1-896-78",
+     "shown": "HC (attacker's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Not met (more of theirs die away from the split than of ours: no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "HC",
+      "start": [
+       890,
+       902
+      ],
+      "end": [
+       902,
+       918
+      ]
+     },
+     "open": true,
+     "why": "HC v Team 14:56 (Visible, incorrect, numbers, who and kind): 'this split ends and they join mainteam (who is pushing in through frontdoor) at around 15:10': the engine runs it to 16:08"
+    }
+   ]
+  },
+  {
+   "id": "f1-9b5c-47",
+   "set": "f1",
+   "scheme": 2,
+   "row": 47,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    916,
+    960
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "Team is held in its own base or pit by HC's main team (K0 A0 B1 alive; base res in 44 s)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-pinned-2-916-81",
+     "shown": "Team: Hold the NPCs and lose nobody until the base res, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "Team",
+      "start": [
+       910,
+       922
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-9b5c-48",
+   "set": "f1",
+   "scheme": 2,
+   "row": 48,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    940,
+    990
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "HC has 8 in Team's base at the base res (5 defending, 3 coming back): 8 stay",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-base_res-1-940-82",
+     "shown": "HC [stayed through the res]: Be out, or set for the fight, when they res. Met (nobody of ours dies in the 30 s after the res: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "HC",
+      "start": [
+       934,
+       946
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-9b5c-49",
+   "set": "f1",
+   "scheme": 2,
+   "row": 49,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    960,
+    1016
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "Team is held in its own base or pit by HC's main team (K0 A0 B1 alive; base res in 120 s)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-pinned-2-960-83",
+     "shown": "Team: Lose no player and no NPC while held in, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "Team",
+      "start": [
+       954,
+       966
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-9b5c-50",
+   "set": "f1",
+   "scheme": 2,
+   "row": 50,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    966,
+    984
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "HC's split by the back door: one player (Hammer) against 4 defending (Mesmer, Prot, Ranger, 7 Monk)",
+   "band": "low",
+   "grade": "none",
+   "mark": "",
+   "said": "this is just a straightup mainteam fight",
+   "calls": [
+    {
+     "play": "9b5cdf62-split-1-966-84",
+     "shown": "HC (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Not met (nobody on the split dies: yes; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)",
+     "mark": "not judged"
+    },
+    {
+     "play": "9b5cdf62-split-2-966-86",
+     "shown": "Team (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Met (no pit NPC lost: yes; a split player dies: no; the split is gone within the visit: yes)",
+     "mark": "not judged"
+    },
+    {
+     "play": "9b5cdf62-split-1-966-85",
+     "shown": "HC (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (more of theirs die away from the split than of ours: no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "split",
+      "team": "HC",
+      "start": [
+       960,
+       972
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "HC v Team, Imperial 16:06: he graded it No decision: this is just a straightup mainteam fight"
+    },
+    {
+     "none": {
+      "play": "split",
+      "team": "Team",
+      "start": [
+       960,
+       972
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "HC v Team, Imperial 16:06: he graded it No decision: this is just a straightup mainteam fight"
+    },
+    {
+     "none": {
+      "play": "split",
+      "team": "HC",
+      "start": [
+       960,
+       972
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "HC v Team, Imperial 16:06: he graded it No decision: this is just a straightup mainteam fight"
+    }
+   ]
+  },
+  {
+   "id": "f1-9b5c-51",
+   "set": "f1",
+   "scheme": 2,
+   "row": 51,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    1020,
+    1212
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "Team is held in its own base or pit by HC's main team (K0 A0 B1 alive; base res in 60 s)",
+   "band": "medium",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-pinned-2-1020-87",
+     "shown": "Team: Lose no player and no NPC while held in, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-9b5c-52",
+   "set": "f1",
+   "scheme": 2,
+   "row": 52,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    1060,
+    1110
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "HC has 8 in Team's base at the base res (7 defending, 1 coming back): 8 stay",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-base_res-1-1060-88",
+     "shown": "HC [stayed through the res]: Be out, or set for the fight, when they res. Met (nobody of ours dies in the 30 s after the res: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "HC",
+      "start": [
+       1054,
+       1066
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-9b5c-53",
+   "set": "f1",
+   "scheme": 2,
+   "row": 53,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    1158,
+    1218
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Up on numbers in the main fight (8 v 7, Team's pit; then 8 v 6 from 19:32; then 8 v 5 from 19:50), from kills; HC: stay (stay on the enemy's side)",
+   "band": "medium",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-numbers-1-1158-89",
+     "shown": "HC (up) [stay]: Turn the extra player into a kill before the numbers are level. Met (more of theirs die than of ours: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-9b5c-54",
+   "set": "f1",
+   "scheme": 2,
+   "row": 54,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    1180,
+    1220
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "HC has 8 in Team's base at the base res (5 defending, 2 coming back): 8 stay",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "9b5cdf62-base_res-1-1180-90",
+     "shown": "HC [stayed through the res]: Be out, or set for the fight, when they res. Met (nobody of ours dies in the 30 s after the res: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "HC",
+      "start": [
+       1174,
+       1186
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-9b5c-notes",
+   "set": "f1",
+   "scheme": 2,
+   "row": 0,
+   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
+   "match": "HC v Team, Imperial",
+   "window": [
+    0,
+    0
+   ],
+   "type": "notes",
+   "call": "",
+   "shown": "(his notes on the game)",
+   "band": "",
+   "grade": "",
+   "mark": "notes",
    "said": "",
    "checks": []
   }
