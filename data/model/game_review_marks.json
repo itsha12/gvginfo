@@ -4225,6 +4225,343 @@
      "mark": "correct",
      "why": "",
      "text": "Team [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Not met (more of theirs die at the main fight than of ours: no; their flag does not get in: no)"
+    },
+    "s:9b5cdf62-push_flagger-2-712-55": {
+     "grade": "visible",
+     "why": "",
+     "text": "Team pushes HC's flagger (Mes/A, carrying) with one player",
+     "band": "low",
+     "mark": "correct",
+     "off": []
+    },
+    "9b5cdf62-push_flagger-2-712-55": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team: Stop their flag, or make it 30% late. Not met (their flag is stopped: no; it arrives 30% or more later than usual: no)"
+    },
+    "9b5cdf62-flagger_pushed-1-712-54": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC: Get the flag in on time. Met (the flag gets in, less than 30% late: yes)"
+    },
+    "s:9b5cdf62-numbers-1-720-56": {
+     "grade": "weak",
+     "why": "",
+     "text": "Up on numbers in the main fight (5 v 4, the greater stand area), from players split elsewhere; HC: push their flagger | Team: stay (stay at the stand)",
+     "band": "low",
+     "mark": "correct",
+     "off": []
+    },
+    "9b5cdf62-numbers-1-720-56": {
+     "mark": "not judged",
+     "why": "",
+     "text": "HC (strong side) [push their flagger]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)"
+    },
+    "9b5cdf62-numbers-2-720-57": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Team (weak side) [stay]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)"
+    },
+    "s:9b5cdf62-push_flagger-1-730-58": {
+     "grade": "visible",
+     "why": "",
+     "text": "HC pushes Team's flagger (Monk 5 (WoC), carrying) with its main team",
+     "band": "low",
+     "mark": "correct",
+     "off": []
+    },
+    "9b5cdf62-push_flagger-1-730-58": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC: Stop their flag, or make it 30% late. Met (their flag is stopped: no; it arrives 30% or more later than usual: yes)"
+    },
+    "9b5cdf62-flagger_pushed-2-730-59": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team: Get the flag in on time, without losing a player for the help sent. Not met (the flag gets in, less than 30% late: no; nobody else of ours dies meanwhile: yes)"
+    },
+    "s:9b5cdf62-split-1-736-60": {
+     "grade": "none",
+     "why": "This is the exact same split (continuation) of the split you read at 10:06–12:18.",
+     "mark": "",
+     "off": [],
+     "text": "HC's split by the back door: three players (Ranger, Prot, Hammer) against 4 defending (Hammer, 7 Monk, 8 Monk, Mesmer); Mesmer collapse from the main fight; 4 (Hammer, 7 Monk, 8 Monk, Mesmer) against three players: collapse by Mesmer from the main fight",
+     "band": "low"
+    },
+    "9b5cdf62-split-1-736-60": {
+     "mark": "not judged",
+     "why": "",
+     "text": "HC (attacker) [collapsed on]: Survive and gain an advantage elsewhere on the map. Not met (nobody on the split dies: yes; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)"
+    },
+    "9b5cdf62-split-2-736-61": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Team (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Not met (a split player dies during the collapse: no)"
+    },
+    "s:9b5cdf62-split-1-752-62": {
+     "grade": "visible",
+     "why": "this is a full mainteam push backdoor of 6 players of HC",
+     "text": "HC's split by the back door: three players (Ranger, Prot, Hammer) against 2 defending (Hammer, 8 Monk); numbers along the way: 3 v 2 from 12:32, 4 v 3 from 12:56",
+     "band": "low",
+     "mark": "incorrect",
+     "off": [
+      "numbers",
+      "kind"
+     ]
+    },
+    "9b5cdf62-split-1-752-62": {
+     "mark": "not judged",
+     "why": "",
+     "text": "HC (attacker) [a player or more up]: Kill or take NPCs. Met (a defender killed: yes; an NPC taken: no)"
+    },
+    "9b5cdf62-split-2-752-63": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Team (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Not met (no pit NPC lost: yes; no defender dies: no)"
+    },
+    "9b5cdf62-split-2-752-64": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Team (defender's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (more of theirs die away from the split than of ours: no)"
+    },
+    "s:9b5cdf62-flag-1-769-65": {
+     "grade": "classic",
+     "why": "",
+     "text": "They single run (Team's Monk 5 (WoC)); HC: single run",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "9b5cdf62-flag-1-769-65": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (our flag is capped: yes; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: yes)"
+    },
+    "s:9b5cdf62-split-1-800-66": {
+     "grade": "none",
+     "why": "same as before, this is mainteam pushing backdoor",
+     "mark": "",
+     "off": [],
+     "text": "HC's split by the back door: 4 players (Ranger, Hammer, Prot, 7 Monk) against 6 defending (Hammer, Warrior, Mesmer, Prot, 7 Monk, 8 Monk); Warrior, Mesmer, Prot, 7 Monk collapse from the main fight; 6 (Hammer, Warrior, Mesmer, Prot, 7 Monk, 8 Monk) against 4 players: collapse by Warrior, Mesmer, Prot, 7 Monk from the main fight",
+     "band": "low"
+    },
+    "9b5cdf62-split-1-800-66": {
+     "mark": "not judged",
+     "why": "",
+     "text": "HC (attacker) [collapsed on]: Survive and gain an advantage elsewhere on the map. Met (nobody on the split dies: yes; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: yes)"
+    },
+    "9b5cdf62-split-2-800-67": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Team (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Not met (a split player dies during the collapse: no)"
+    },
+    "s:9b5cdf62-split-1-818-68": {
+     "grade": "none",
+     "why": "same as before, this is mainteam pushing backdoor",
+     "mark": "",
+     "off": [],
+     "text": "HC's split by the back door: 5 players (Ranger, Hammer, Prot, 7 Monk, Stand Mes) against 6 defending (Hammer, Prot, 7 Monk, 8 Monk, Warrior, Mesmer)",
+     "band": "low"
+    },
+    "9b5cdf62-split-1-818-68": {
+     "mark": "not judged",
+     "why": "",
+     "text": "HC (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Met (nobody on the split dies: yes; more of theirs die away from the split than of ours: yes; flag lead better by 0.35 or more: no)"
+    },
+    "9b5cdf62-split-2-818-70": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Team (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Not met (no pit NPC lost: yes; a split player dies: no; the split is gone within the visit: no)"
+    },
+    "9b5cdf62-split-1-818-69": {
+     "mark": "not judged",
+     "why": "",
+     "text": "HC (attacker's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Met (more of theirs die away from the split than of ours: yes)"
+    },
+    "s:9b5cdf62-split-1-858-71": {
+     "grade": "visible",
+     "why": "",
+     "text": "HC's split by the back door: two players (Ranger, Hammer) against 1 defending (8 Monk)",
+     "band": "low",
+     "mark": "correct",
+     "off": []
+    },
+    "9b5cdf62-split-1-858-71": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC (attacker) [a player or more up]: Kill or take NPCs. Met (a defender killed: yes; an NPC taken: no)"
+    },
+    "9b5cdf62-split-2-858-72": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team (defender) [one defender]: Delay: keep the split off the pit NPCs and stay alive. Not met (no pit NPC lost: yes; no defender dies: no)"
+    },
+    "s:9b5cdf62-flag-2-866-73": {
+     "grade": "classic",
+     "why": "",
+     "text": "They single run (HC's Mes/A); Team: stay",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "9b5cdf62-flag-2-866-73": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Not met (more of theirs die at the main fight than of ours: no; their flag does not get in: no)"
+    },
+    "s:9b5cdf62-split-1-872-74": {
+     "grade": "visible",
+     "why": "",
+     "text": "HC's split by the back door: two players (Ranger, Hammer) against 0 defending",
+     "band": "low",
+     "mark": "correct",
+     "off": []
+    },
+    "9b5cdf62-split-1-872-74": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC (attacker) [undefended]: Take NPCs. Met (an NPC taken: yes)"
+    },
+    "9b5cdf62-split-2-872-75": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team (defender) [no answer]: Win elsewhere before the split costs more than it gains. Not met (more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)"
+    },
+    "s:9b5cdf62-split-1-896-77": {
+     "grade": "visible",
+     "why": "this split ends and they join mainteam (who is pushing in through frontdoor) at around 15:10.",
+     "mark": "incorrect",
+     "off": [
+      "numbers",
+      "who",
+      "kind"
+     ],
+     "text": "HC's split by the back door: two players (Hammer, Ranger) against 5 defending (Mesmer, Prot, 7 Monk, Ranger, Hammer); numbers along the way: 2 v 1 from 14:56, 2 v 5 from 15:10",
+     "band": "low"
+    },
+    "9b5cdf62-split-1-896-77": {
+     "mark": "not judged",
+     "why": "",
+     "text": "HC (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Met (nobody on the split dies: yes; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: yes)"
+    },
+    "9b5cdf62-split-2-896-80": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Team (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Not met (no pit NPC lost: no; a split player dies: no; the split is gone within the visit: no)"
+    },
+    "9b5cdf62-split-1-896-78": {
+     "mark": "not judged",
+     "why": "",
+     "text": "HC (attacker's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Not met (more of theirs die away from the split than of ours: no)"
+    },
+    "s:9b5cdf62-pinned-2-916-81": {
+     "grade": "classic",
+     "why": "",
+     "text": "Team is held in its own base or pit by HC's main team (K0 A0 B1 alive; base res in 44 s)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "s:9b5cdf62-base_res-1-940-82": {
+     "grade": "classic",
+     "why": "",
+     "text": "HC has 8 in Team's base at the base res (5 defending, 3 coming back): 8 stay",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "9b5cdf62-base_res-1-940-82": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC [stayed through the res]: Be out, or set for the fight, when they res. Met (nobody of ours dies in the 30 s after the res: yes)"
+    },
+    "s:9b5cdf62-pinned-2-960-83": {
+     "grade": "classic",
+     "why": "",
+     "text": "Team is held in its own base or pit by HC's main team (K0 A0 B1 alive; base res in 120 s)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "9b5cdf62-pinned-2-960-83": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team: Lose no player and no NPC while held in, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)"
+    },
+    "s:9b5cdf62-split-1-966-84": {
+     "grade": "none",
+     "why": "this is just a straightup mainteam fight",
+     "mark": "",
+     "off": [],
+     "text": "HC's split by the back door: one player (Hammer) against 4 defending (Mesmer, Prot, Ranger, 7 Monk)",
+     "band": "low"
+    },
+    "9b5cdf62-split-1-966-84": {
+     "mark": "not judged",
+     "why": "",
+     "text": "HC (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Not met (nobody on the split dies: yes; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)"
+    },
+    "9b5cdf62-split-2-966-86": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Team (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Met (no pit NPC lost: yes; a split player dies: no; the split is gone within the visit: yes)"
+    },
+    "9b5cdf62-split-1-966-85": {
+     "mark": "not judged",
+     "why": "",
+     "text": "HC (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (more of theirs die away from the split than of ours: no)"
+    },
+    "s:9b5cdf62-pinned-2-1020-87": {
+     "grade": "visible",
+     "why": "",
+     "text": "Team is held in its own base or pit by HC's main team (K0 A0 B1 alive; base res in 60 s)",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "9b5cdf62-pinned-2-1020-87": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team: Lose no player and no NPC while held in, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)"
+    },
+    "s:9b5cdf62-base_res-1-1060-88": {
+     "grade": "classic",
+     "why": "",
+     "text": "HC has 8 in Team's base at the base res (7 defending, 1 coming back): 8 stay",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "9b5cdf62-base_res-1-1060-88": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC [stayed through the res]: Be out, or set for the fight, when they res. Met (nobody of ours dies in the 30 s after the res: yes)"
+    },
+    "s:9b5cdf62-numbers-1-1158-89": {
+     "grade": "visible",
+     "why": "",
+     "text": "Up on numbers in the main fight (8 v 7, Team's pit; then 8 v 6 from 19:32; then 8 v 5 from 19:50), from kills; HC: stay (stay on the enemy's side)",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "9b5cdf62-numbers-1-1158-89": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC (up) [stay]: Turn the extra player into a kill before the numbers are level. Met (more of theirs die than of ours: yes)"
+    },
+    "s:9b5cdf62-base_res-1-1180-90": {
+     "grade": "classic",
+     "why": "",
+     "text": "HC has 8 in Team's base at the base res (5 defending, 2 coming back): 8 stay",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "9b5cdf62-base_res-1-1180-90": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC [stayed through the res]: Be out, or set for the fight, when they res. Met (nobody of ours dies in the 30 s after the res: yes)"
     }
    },
    "scheme": 2,
