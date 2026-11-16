@@ -1,5 +1,5 @@
 {
- "about": "Denning's marks on the rows of Model > Game review (R-450, R-455): for each game, each row he marked (right, partly or wrong), his words, and the text of the row as it was shown to him. Saved by the page; Claude files them in the review key.",
+ "about": "Denning's marks on the rows of Model > Game review. Games with scheme 2 (R-492): for each situation his grade (classic, visible, weak, none = no decision, repeat), whether the engine read a decision correct, partly or incorrect, what he ticked as off, his words, the engine's confidence band and the text of the row as he saw them; for each call his mark and words; `missed` holds the decisions he added that the engine did not read. Games without a scheme were marked the earlier way (right, partly, wrong, no clear decision, repeat) and are history (R-491). Saved by the page; Claude files them in the review key.",
  "games": {
   "bdaa145f-1471-57b3-ab2f-a04f090b7abb": {
    "marks": {
@@ -3703,6 +3703,534 @@
    "game": "RJT v RACK, Nomad's Isle",
    "at": "2026-11-15",
    "engine": "b09a26a"
+  },
+  "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96": {
+   "marks": {
+    "s:9b5cdf62-flag-1-3-0": {
+     "grade": "visible",
+     "why": "",
+     "text": "They single run (Team's Monk 5 (WoC)); HC: single run",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "9b5cdf62-flag-1-3-0": {
+     "mark": "partly",
+     "why": "this is first flag with no one having the flag capped so it's a bit of a unique situation. Both were at the flag stand ready to cap (HC was actually faster) but it's really no one is behind on flags.",
+     "text": "HC [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (our flag is capped: no; no more of ours die at the main fight than of theirs: no; no worse than half a flag behind at the end, or no further behind than at the start: yes)"
+    },
+    "s:9b5cdf62-push_flagger-1-40-1": {
+     "grade": "visible",
+     "why": "",
+     "text": "HC pushes Team's flagger (Monk 5 (WoC), carrying) with 3 players",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "9b5cdf62-push_flagger-1-40-1": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC: Stop their flag, or make it 30% late. Met (their flag is stopped: no; it arrives 30% or more later than usual: yes)"
+    },
+    "9b5cdf62-flagger_pushed-2-40-2": {
+     "mark": "partly",
+     "why": "same as above",
+     "text": "Team: Get the flag in on time, without losing a player for the help sent. Not met (the flag gets in, less than 30% late: no; nobody else of ours dies meanwhile: yes)"
+    },
+    "s:9b5cdf62-numbers-1-88-3": {
+     "grade": "weak",
+     "why": "team is not pushing their flagger in this period",
+     "text": "Down on numbers in the main fight (7 v 8, the flag stand), from kills; HC: stay (stay at the stand) | Team: push their flagger",
+     "band": "low",
+     "mark": "partly",
+     "off": [
+      "kind"
+     ]
+    },
+    "9b5cdf62-numbers-1-88-3": {
+     "mark": "not judged",
+     "why": "",
+     "text": "HC (down) [stay]: Hold the ground a player down and lose no more until it is level, or the base res. Met (nobody of ours dies: yes)"
+    },
+    "9b5cdf62-numbers-2-88-4": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Team (up) [push their flagger]: Take ground and NPCs with the numbers. Not met (no more of ours die than of theirs: yes; one of their NPCs dies: no; more of theirs die than of ours: no)"
+    },
+    "s:9b5cdf62-push_flagger-2-90-6": {
+     "grade": "weak",
+     "why": "Team not pushing flagger",
+     "text": "Team pushes HC's flagger (Mes/A, carrying) with its main team",
+     "band": "low",
+     "mark": "incorrect",
+     "off": [
+      "kind"
+     ]
+    },
+    "9b5cdf62-push_flagger-2-90-6": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Team: Stop their flag, or make it 30% late. Met (their flag is stopped: yes; it arrives 30% or more later than usual: no)"
+    },
+    "9b5cdf62-flagger_pushed-1-90-5": {
+     "mark": "not judged",
+     "why": "",
+     "text": "HC: Get the flag in on time, without losing a player for the help sent. Not met (the flag gets in, less than 30% late: no; nobody else of ours dies meanwhile: yes)"
+    },
+    "s:9b5cdf62-split-1-132-7": {
+     "grade": "classic",
+     "why": "",
+     "text": "HC's split by the back door: one player (Ranger) against 1 defending (8 Monk)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "9b5cdf62-split-1-132-7": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC (attacker) [1 v 1, defended by a monk]: Hold the monk there; the main team's job is to kill. Not met (the split player survives: no)"
+    },
+    "9b5cdf62-split-2-132-8": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (no pit NPC lost: yes; no more defenders die than split players: yes)"
+    },
+    "s:9b5cdf62-numbers-1-138-9": {
+     "grade": "classic",
+     "why": "",
+     "text": "Down on numbers in the main fight (6 v 7, the flag stand), from kills; HC: stay (stay at the stand) | Team: stay (stay at the stand)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "9b5cdf62-numbers-1-138-9": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC (down) [stay]: Hold the ground a player down and lose no more until it is level, or the base res. Met (nobody of ours dies: yes)"
+    },
+    "9b5cdf62-numbers-2-138-10": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team (up) [stay]: Turn the extra player into a kill before the numbers are level. Not met (more of theirs die than of ours: no)"
+    },
+    "s:9b5cdf62-flag-2-177-11": {
+     "grade": "classic",
+     "why": "Decision is great, but should end when they cap (3:36ish)",
+     "text": "They single run (HC's Mes/A); Team: stay",
+     "band": "high",
+     "mark": "partly",
+     "off": [
+      "when"
+     ]
+    },
+    "9b5cdf62-flag-2-177-11": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Not met (more of theirs die at the main fight than of ours: no; their flag does not get in: no)"
+    },
+    "s:9b5cdf62-push_flagger-2-182-13": {
+     "grade": "visible",
+     "why": "",
+     "text": "Team pushes HC's flagger (Mes/A, at the spawn) with one player",
+     "band": "low",
+     "mark": "correct",
+     "off": []
+    },
+    "9b5cdf62-push_flagger-2-182-13": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team: Stop their flag, or make it 30% late. Not met (their flag is stopped: no; it arrives 30% or more later than usual: no)"
+    },
+    "9b5cdf62-flagger_pushed-1-182-12": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC: Get the flag in on time, without losing a player for the help sent. Met (the flag gets in, less than 30% late: yes; nobody else of ours dies meanwhile: yes)"
+    },
+    "s:9b5cdf62-flag-1-226-14": {
+     "grade": "classic",
+     "why": "",
+     "text": "They single run (Team's Monk 5 (WoC)); HC: single run",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "9b5cdf62-flag-1-226-14": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (our flag is capped: yes; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: yes)"
+    },
+    "s:9b5cdf62-push_flagger-2-258-16": {
+     "grade": "visible",
+     "why": "",
+     "text": "Team pushes HC's flagger (Mes/A, going back) with 2 players",
+     "band": "low",
+     "mark": "correct",
+     "off": []
+    },
+    "9b5cdf62-push_flagger-2-258-16": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team: Stop their flag, or make it 30% late. Met (their flag is stopped: no; it arrives 30% or more later than usual: yes)"
+    },
+    "9b5cdf62-flagger_pushed-1-258-15": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC: Get the flag in on time. Not met (the flag gets in, less than 30% late: no)"
+    },
+    "s:9b5cdf62-split-2-264-20": {
+     "grade": "none",
+     "why": "this is a flag push, not a split. It's already covered in your flag push for this time period. Also \"by the door\" means nothing.",
+     "mark": "",
+     "off": [],
+     "text": "Team's split by the door: two players (Hammer, Ranger) against 2 defending (8 Monk, Mes/A)",
+     "band": "medium"
+    },
+    "9b5cdf62-split-2-264-20": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Team (attacker) [even]: Take NPCs or kills. Not met (a defender killed: no; an NPC taken: no)"
+    },
+    "9b5cdf62-split-1-264-19": {
+     "mark": "not judged",
+     "why": "",
+     "text": "HC (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (no pit NPC lost: yes; no more defenders die than split players: yes)"
+    },
+    "s:9b5cdf62-split-1-272-21": {
+     "grade": "classic",
+     "why": "",
+     "text": "HC's split by the back door: one player (Ranger) against 1 defending (8 Monk)",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "9b5cdf62-split-1-272-21": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC (attacker) [1 v 1, defended by a monk]: Hold the monk there; the main team's job is to kill. Met (the split player survives: yes)"
+    },
+    "9b5cdf62-split-2-272-22": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (no pit NPC lost: yes; no more defenders die than split players: yes)"
+    },
+    "s:9b5cdf62-flag-2-274-23": {
+     "grade": "classic",
+     "why": "",
+     "text": "They single run (HC's Mes/A); Team: single run",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "s:9b5cdf62-flag-1-308-24": {
+     "grade": "classic",
+     "why": "",
+     "text": "They single run (Team's Monk 5 (WoC)); HC: single run",
+     "band": "high"
+    },
+    "9b5cdf62-flag-1-308-24": {
+     "mark": "not judged",
+     "why": "",
+     "text": "HC [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (our flag is capped: yes; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: yes)"
+    },
+    "s:9b5cdf62-push_flagger-2-364-31": {
+     "grade": "visible",
+     "why": "the push starts at 5:25ish and it's with 3 players",
+     "text": "Team pushes HC's flagger (Mes/A, carrying) with one player",
+     "band": "low",
+     "mark": "partly",
+     "off": [
+      "who",
+      "when"
+     ]
+    },
+    "9b5cdf62-push_flagger-2-364-31": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team: Stop their flag, or make it 30% late. Met (their flag is stopped: no; it arrives 30% or more later than usual: yes)"
+    },
+    "9b5cdf62-flagger_pushed-1-364-30": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC: Get the flag in on time, without losing a player for the help sent. Not met (the flag gets in, less than 30% late: no; nobody else of ours dies meanwhile: yes)"
+    },
+    "s:9b5cdf62-flag-2-358-29": {
+     "grade": "classic",
+     "why": "Team response with single run classic at 6:33.",
+     "text": "They single run (HC's Mes/A); Team: stay",
+     "band": "medium",
+     "mark": "incorrect",
+     "off": [
+      "when",
+      "kind"
+     ]
+    },
+    "9b5cdf62-flag-2-358-29": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Team [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Not met (more of theirs die at the main fight than of ours: no; their flag does not get in: no)"
+    },
+    "s:9b5cdf62-push_flagger-1-326-25": {
+     "grade": "visible",
+     "why": "push with 2 players (warrior and stand mes)",
+     "text": "HC pushes Team's flagger (Monk 5 (WoC), carrying) with one player",
+     "band": "medium",
+     "mark": "partly",
+     "off": [
+      "who"
+     ]
+    },
+    "9b5cdf62-push_flagger-1-326-25": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC: Stop their flag, or make it 30% late. Met (their flag is stopped: no; it arrives 30% or more later than usual: yes)"
+    },
+    "9b5cdf62-flagger_pushed-2-326-26": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team: Get the flag in on time, without losing a player for the help sent. Not met (the flag gets in, less than 30% late: no; nobody else of ours dies meanwhile: no)"
+    },
+    "s:9b5cdf62-numbers-1-350-27": {
+     "grade": "visible",
+     "why": "",
+     "text": "Down on numbers in the main fight (5 v 7, the flag stand; then 6 v 7 from 6:02), from kills; HC: stay (stay at the stand) | Team: stay (stay at the stand)",
+     "band": "low",
+     "mark": "correct",
+     "off": []
+    },
+    "9b5cdf62-numbers-1-350-27": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC (down) [stay]: Hold the ground a player down and lose no more until it is level, or the base res. Met (nobody of ours dies: yes)"
+    },
+    "9b5cdf62-numbers-2-350-28": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team (up) [stay]: Turn the extra player into a kill before the numbers are level. Not met (more of theirs die than of ours: no)"
+    },
+    "s:9b5cdf62-flag-1-400-32": {
+     "grade": "classic",
+     "why": "",
+     "text": "They single run (Team's Monk 5 (WoC)); HC: single run",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "s:9b5cdf62-push_flagger-2-456-34": {
+     "grade": "classic",
+     "why": "",
+     "text": "Team pushes HC's flagger (Mes/A, carrying) with one player",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "9b5cdf62-push_flagger-2-456-34": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team: Stop their flag, or make it 30% late. Met (their flag is stopped: yes; it arrives 30% or more later than usual: no)"
+    },
+    "9b5cdf62-flagger_pushed-1-456-33": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC: Get the flag in on time. Not met (the flag gets in, less than 30% late: no)"
+    },
+    "s:9b5cdf62-flag-2-471-35": {
+     "grade": "classic",
+     "why": "",
+     "text": "They single run (HC's Ranger); Team: stay",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "9b5cdf62-flag-2-471-35": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Not met (more of theirs die at the main fight than of ours: no; their flag does not get in: no)"
+    },
+    "s:9b5cdf62-push_flagger-2-498-37": {
+     "grade": "weak",
+     "why": "they really only push with warrior and monk",
+     "text": "Team pushes HC's flagger (Ranger, at the spawn) with 4 players",
+     "band": "low",
+     "mark": "partly",
+     "off": [
+      "numbers"
+     ]
+    },
+    "9b5cdf62-push_flagger-2-498-37": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Team: Stop their flag, or make it 30% late. Met (their flag is stopped: no; it arrives 30% or more later than usual: yes)"
+    },
+    "9b5cdf62-flagger_pushed-1-498-36": {
+     "mark": "not judged",
+     "why": "",
+     "text": "HC: Get the flag in on time, without losing a player for the help sent. Not met (the flag gets in, less than 30% late: no; nobody else of ours dies meanwhile: yes)"
+    },
+    "s:9b5cdf62-push_flagger-1-542-38": {
+     "grade": "classic",
+     "why": "",
+     "text": "HC pushes Team's flagger (Monk 5 (WoC), going back) with 2 players",
+     "band": "low",
+     "mark": "correct",
+     "off": []
+    },
+    "9b5cdf62-push_flagger-1-542-38": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC: Stop their flag, or make it 30% late. Met (their flag is stopped: no; it arrives 30% or more later than usual: yes)"
+    },
+    "9b5cdf62-flagger_pushed-2-542-39": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team: Get the flag in on time. Not met (the flag gets in, less than 30% late: no)"
+    },
+    "s:9b5cdf62-flag-2-543-40": {
+     "grade": "classic",
+     "why": "",
+     "text": "They single run (HC's Mes/A); Team: single run",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "9b5cdf62-flag-2-543-40": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (our flag is capped: yes; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: no)"
+    },
+    "s:9b5cdf62-push_flagger-2-560-42": {
+     "grade": "visible",
+     "why": "",
+     "text": "Team pushes HC's flagger (Mes/A, carrying) with one player",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "9b5cdf62-push_flagger-2-560-42": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team: Stop their flag, or make it 30% late. Met (their flag is stopped: no; it arrives 30% or more later than usual: yes)"
+    },
+    "9b5cdf62-flagger_pushed-1-560-41": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC: Get the flag in on time, without losing a player for the help sent. Not met (the flag gets in, less than 30% late: no; nobody else of ours dies meanwhile: yes)"
+    },
+    "s:9b5cdf62-numbers-1-588-43": {
+     "grade": "weak",
+     "why": "8 monk leaves to defend at 9:58; not really a player advantage window that would make any difference",
+     "mark": "correct",
+     "off": [],
+     "text": "Down on numbers in the main fight (7 v 8, the flag stand), from players split elsewhere; HC: stay (stay at the stand) | Team: stay (stay at the stand)",
+     "band": "medium"
+    },
+    "9b5cdf62-numbers-1-588-43": {
+     "mark": "not judged",
+     "why": "",
+     "text": "HC (weak side) [stay]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)"
+    },
+    "9b5cdf62-numbers-2-588-44": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Team (strong side) [stay]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)"
+    },
+    "s:9b5cdf62-split-1-606-45": {
+     "grade": "visible",
+     "why": "",
+     "text": "HC's split by the back door: three players (Ranger, Hammer, Prot) against 3 defending (8 Monk, Hammer, 7 Monk); numbers along the way: 2 v 1 from 10:06, 3 v 3 from 10:26, 1 v 1 from 11:18, 3 v 2 from 11:34, 3 v 3 from 12:04; 2 damage against 2 monks",
+     "band": "low",
+     "mark": "correct",
+     "off": []
+    },
+    "9b5cdf62-split-1-606-45": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC (attacker) [held by monks]: Hold the monks there and lose nobody; NPCs are a bonus (a kill is not expected of it). Met (nobody on the split dies: yes)"
+    },
+    "9b5cdf62-split-2-606-46": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Not met (no pit NPC lost: no; no more defenders die than split players: no)"
+    },
+    "s:9b5cdf62-flag-1-641-47": {
+     "grade": "classic",
+     "why": "",
+     "text": "They single run (Team's Warrior); HC: single run",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "9b5cdf62-flag-1-641-47": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (our flag is capped: yes; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: no)"
+    },
+    "s:9b5cdf62-numbers-1-646-48": {
+     "grade": "visible",
+     "why": "",
+     "text": "Up on numbers in the main fight (4 v 3, the flag stand), from players split elsewhere; HC: stay (stay on the enemy's side) | Team: retreat down the ladder (fall to footmen)",
+     "band": "low",
+     "mark": "correct",
+     "off": []
+    },
+    "9b5cdf62-numbers-1-646-48": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC (strong side) [stay]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)"
+    },
+    "9b5cdf62-numbers-2-646-49": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)"
+    },
+    "s:9b5cdf62-flag-1-678-50": {
+     "grade": "classic",
+     "why": "",
+     "text": "They double run (Team's Monk 5 (WoC)); HC: single run",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "9b5cdf62-flag-1-678-50": {
+     "mark": "partly",
+     "why": "This is correct, but not sure what to do with it as it happened on split (the flag decision didn't really affect this death at all)",
+     "text": "HC [single run]: Kill or take ground with the extra player, and end no worse than a flag behind. Met (no worse than a flag behind at the end: yes; more of theirs die at the main fight than of ours: yes; ground taken: no; one of their NPCs dies: no)"
+    },
+    "s:9b5cdf62-numbers-1-694-51": {
+     "grade": "weak",
+     "why": "",
+     "text": "Down on numbers in the main fight (4 v 5, the flag stand), from players split elsewhere; HC: stay (stay at the stand) | Team: stay (stay at the stand); 3 damage against 2 monks",
+     "band": "low",
+     "mark": "correct",
+     "off": []
+    },
+    "9b5cdf62-numbers-1-694-51": {
+     "mark": "not judged",
+     "why": "",
+     "text": "HC (weak side) [stay]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)"
+    },
+    "9b5cdf62-numbers-2-694-52": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Team (strong side) [stay]: Keep them busy and lose nobody (a kill is not expected of it). Met (nobody of ours dies: yes)"
+    },
+    "s:9b5cdf62-flag-2-695-53": {
+     "grade": "visible",
+     "why": "",
+     "text": "They single run (HC's Mes/A); Team: stay",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "9b5cdf62-flag-2-695-53": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Not met (more of theirs die at the main fight than of ours: no; their flag does not get in: no)"
+    }
+   },
+   "scheme": 2,
+   "game": "HC v Team, Imperial Isle",
+   "at": "2026-11-16",
+   "engine": "fd2b30b"
   }
  }
 }
