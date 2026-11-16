@@ -2202,6 +2202,21 @@ class Moments:
             out |= {a for a, s0, e0 in r["carries"] if a in r["serious"] and s0 <= t + READ_TO and (e0 is None or e0 >= t - 10) and (s0 >= t - 10 or self.carrying(a, min(t + READ_FROM, self.T)))}
         return out
 
+    def _runner_runs(self, tm, t):
+        """The same players as `_runners`, kept by the flag they run: one list a run, in the order they carried it. A flag handed on (a half run: one player
+        brings it part of the way and another caps it) is one run with two carriers, not two runners (his marks, 옷옷옷옷 v RACK 6:33, Classic: "this is
+        single runner on Stand Mes", the Prot having brought the flag to him; Men v Crew 11:32: "a single run half run for Men")."""
+        out = []
+        for r in self.run_starts():
+            if r["tm"] != tm: continue
+            went = t - 10 <= self._went_to_run(r) <= t + READ_TO
+            who = [a for a, s0, e0 in sorted(r["carries"], key=lambda c: c[1]) if a in r["serious"] and s0 <= t + READ_TO and (e0 is None or e0 >= t - 10) and (s0 >= t - 10 or self.carrying(a, min(t + READ_FROM, self.T)))]
+            if went:                                          # the player who went back for it comes first, then whoever carried it after him, in order
+                first = r["a"] if r["a"] in [c[0] for c in r["carries"]] else r["runner"]
+                who = [first] + [a for a in who if a != first] + ([r["runner"]] if r["runner"] not in who and r["runner"] != first else [])
+            if who: out.append(list(dict.fromkeys(who)))
+        return out
+
     def _rest(self, tm, t, runners):
         """Where the rest of the main team went, from the records: a split it sent (attempts), a push in (attempts), a
         push on their flagger (flag_pushes), a move back or up (ground), else where it stood READ_FROM to READ_TO."""
@@ -2251,11 +2266,12 @@ class Moments:
         role = lambda a: self.m.roles[a]
         if fam == 1:
             runners = self._runners(tm, t)
+            runs = self._runner_runs(tm, t)
             rest, rec = self._rest(tm, t, runners)
-            n = min(len(runners), 2)
+            n = min(len(runs), 2)                            # runners are counted by the flags they run: a flag handed on is one runner
             lab = ("no runner", "one runner", "two runners")[n]
             return {"key": f"{n}|{rest}", "label": f"{lab.capitalize()}; the rest {rest}", "runners": n, "rest": rest,
-                    "shape": {"runners": sorted(role(a) for a in runners), "from": rec and {k: rec.get(k) for k in ("t", "t_in", "t0", "way", "to", "from", "door", "to_kind", "to_side") if k in rec}}}
+                    "shape": {"runners": sorted(role(a) for a in runners), "runs": [[role(a) for a in r] for r in runs], "from": rec and {k: rec.get(k) for k in ("t", "t_in", "t0", "way", "to", "from", "door", "to_kind", "to_side") if k in rec}}}
         if fam == 2 and x["triggers"][0] not in ("split", "split grows"):       # a later moment of a split (it grows, changes door, divides) or a stand-off: the defenders are the own players on their own ground near the enemy's split READ_FROM to READ_TO on
             dids = None
             if "split stand-off" in x["triggers"]:

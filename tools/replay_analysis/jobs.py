@@ -117,7 +117,7 @@ def _flag_rows(M):
         # ... a second player who goes back to run the next flag (his account of hdm v hook 5:52 to 7:24: hook's Mesmer "already on the way"); a player who is home because he came back from a split is not one (R-472)
         if r2 is not None and not any(x["tm"] == f["tm"] and a_ == r2["a"] and qm["from"] <= went_at and qm["to"] >= went_at - SPLIT_GAP_S for x in splits for a_, qm in zip(x["ids"], x["members"])):
             if went_at <= int(f["start"]) + SPLIT_STEP: second.add((f["tm"], int(f["start"])))      # the second player was back before the first flag was picked up (left at the spawn at the opening): a double run from its start
-            second.add((f["tm"], int(r2["pickup"])))                     # ... and it is a double run only from then (R-484; his mark, RJT v RACK 1:41: "derv single runs twice"): the first run of the pair is a single run when the other team decides against it
+            if went_at <= int(f["end"]) + SPLIT_STEP: second.add((f["tm"], int(r2["pickup"])))                     # ... and it is a double run only from then (R-484; his mark, RJT v RACK 1:41: "derv single runs twice"): the first run of the pair is a single run when the other team decides against it. The second player has to have gone back by the cap (R-472: "while the first is still capping"; his mark, Men v Crew 11:32, "a single run half run for Men": the AoB Derv caps at 11:36 and the Ranger sets off at 11:43)
     for f in M.flags_record():
         r = next((rs[k] for k in ((f["tm"], int(f["start"]) + dt) for dt in (0, -1, 1)) if k in rs), None)
         s0, runner, pick, ids, carries = int(f["start"]), f["runner"], int(f["start"]), f["ids"], (r["carries"] if r is not None else [])
@@ -194,8 +194,18 @@ def flag_plays(M, K, pinned_at):
         g = inhand or new
         who = [role[a] for a in dict.fromkeys(g["ids"])] if g else []
         # each side is named with what it does and who does it (his words on HC v Team: "Team single run (Monk 5 (WoC)); HC single run (Mes/A)", not "They ...")
-        mine_ = f" ({', '.join(who)})" if who else ""
-        scen = (f"{M.m.tag[B]} {theirs} ({f['runner']}{', to the Obelisk flag stand' if f['other_stand'] else ''}); "
+        def both(x_, names):                                              # a double run is two players (R-472, R-485): one caps a flag while the other is already back for the next. Both are named (his words)
+            if not x_["double"]: return names
+            prev = max((y for y in FR if y["tm"] == x_["tm"] and y is not x_ and y["s0"] < x_["s0"] and (y.get("form") or "").startswith("double")), key=lambda y: y["s0"], default=None)
+            if prev is not None and x_["s0"] - prev["e"] <= 60: return f"first runner {prev.get('capper') or prev['runner']}, capping the flag before; second runner {names}, back for this one"
+            nxt = min((y for y in FR if y["tm"] == x_["tm"] and y is not x_ and y["s0"] >= x_["s0"]), key=lambda y: y["s0"], default=None)
+            if nxt is not None: return f"first runner {names}; second runner {nxt['runner']}, back for the next flag"
+            return names + "; no second runner found"
+        def carried(x_):                                                  # who ran it, and who it was handed on to (a half run: "single run half run to stand mes", his words on 옷옷옷옷 v RACK 6:15)
+            c = list(dict.fromkeys([x_["runner"]] + [role[a] for a in x_["ids"]]))
+            return c[0] + (", handing it to " + " and ".join(c[1:]) if len(c) > 1 else "")
+        mine_ = f" ({both(g, carried(g))})" if g else ""
+        scen = (f"{M.m.tag[B]} {theirs} ({both(f, carried(f))}{', to the Obelisk flag stand' if f['other_stand'] else ''}); "
                 + (f"{M.m.tag[A]} has a flag already in hand{mine_}" if inhand else f"{M.m.tag[A]} stays" if not new else f"{M.m.tag[A]} {ours}{mine_}"))
         first_flags = not any(u < w0 + 1 for u, _ in M.st.caps)          # nobody has capped yet: each team's first flag (R-500)
         if not (f["pregame"] or (g and g["pregame"])) and first_flags: scen = "The opening. " + scen
@@ -661,7 +671,11 @@ def boost_plays(M, K, recs, pinned_at):
         t1 = min(lands + 5, T)
         denied = not any(h == foe and t < u <= t1 for u, h in M._boosts())
         bes = {"boost_worth": x["state"]["enemy_boost"], "denied": denied, "deaths": [K.died(tm, t, t1 + 10), K.died(foe, t, t1 + 10)], "flag_lead": [K.lead(tm, t), K.lead(tm, t1)]}
-        scen = f"{M.m.tag[foe]}'s boost is {BOOST_WARN_S} s away; {x['team']}: " + (x["call"]["label"].lower() if runners or not carr else f"a flag already on its way ({', '.join(M.m.role(a).split(' ', 1)[1] for a in carr)})")
+        # the runners are named, each flag's carriers in order (his words on Men v Crew and 옷옷옷옷 v RACK: "one runner" does not say who)
+        named = "; ".join(r[0] + (", handing it to " + " and ".join(r[1:]) if len(r) > 1 else "") for r in x["call"]["shape"].get("runs") or [])
+        lab_ = x["call"]["label"].lower()
+        if named: lab_ = lab_.replace("one runner", f"one runner ({named})", 1).replace("two runners", f"two runners ({named})", 1)
+        scen = f"{M.m.tag[foe]}'s boost is {BOOST_WARN_S} s away; {x['team']}: " + (lab_ if runners or not carr else f"a flag already on its way ({', '.join(M.m.role(a).split(' ', 1)[1] for a in carr)})")
         if ran: out.append(_play(M, "boost", "own", tm, t, t1, x["call"]["shape"]["who"], scen, "Deny their boost", {"their boost does not land": denied}, beside=bes, call="run"))
         else: out.append(_play(M, "boost", "own", tm, t, min(t1 + 10, T), [], scen, "Concede the boost for kills", {"more of theirs die than of ours": bes["deaths"][1] > bes["deaths"][0]}, beside=bes, call="concede"))
     return out
@@ -709,7 +723,7 @@ def pinned_plays(M, K):
                 said = "it does not break out" if bo is None else f"it breaks out at {int(bo) // 60}:{int(bo) % 60:02d}, {'after losing a player or a pit NPC' if lost else 'having lost nothing'}"
                 hold = {"no pit NPC lost and nobody dies until the base res": K.npcs(tm, t, t1, pit=True) == 0 and K.died(tm, t, t1) == 0,      # R-478: a break-out meets the job only if nothing was lost before it (cope v Team 10:42: a knight lost, then out)
                         f"it breaks out having lost no player and no pit NPC first ({said}; a break-out is half its living players or more, four at least, out past its doors)": bo is not None and not lost}
-                out.append(_play(M, "pinned", "own", tm, t, t1, [], f"{M.m.tag[tm]} is held in its own base or pit by {M.m.tag[3 - tm]}'s main team ({st.pit_npcs(tm, t)} alive; base res in {round(st.next_res(t) - t)} s)",
+                out.append(_play(M, "pinned", "own", tm, t, t1, [], f"{M.m.tag[tm]} is held in its own base or pit by {M.m.tag[3 - tm]}'s main team ({_pit_words(M, tm, t, t1)}; base res in {round(st.next_res(t) - t)} s)",
                                  "Hold the NPCs and lose nobody until the base res, or break out" if dead else "Lose no player and no NPC while held in, or break out", {}, any_of=hold,
                                  beside={"deaths": [K.died(tm, t, t1), K.died(3 - tm, t, t1)], "pit_npcs_lost": K.npcs(tm, t, t1, pit=True), "pinned_s": b - a}, broke_out=bo is not None))
             t = st.next_res(t) if dead else b
@@ -729,6 +743,17 @@ def res_plays(M, K):
         out.append(_play(M, "base res", "own", tm, r["t"], B + 30, r["who"], f"{r['team']} leaves {r['foe']}'s base {r['s']} s before the base res ({r['coming_back']} coming back)",
                          "Be out, or set for the fight, when they res", {"nobody of ours dies in the 30 s after the res": K.died(tm, B, B + 30) == 0}, beside={"deaths_after": K.died(tm, B, B + 30)}, call="left before the res"))
     return out
+
+
+def _pit_words(M, tm, t, t1):
+    """The pit NPCs alive at the start of a stretch, written out with the hall's own roster (three pit archers on Isle of Solitude), and those lost in it
+    (his words on Men v Crew 24:48 and 옷옷옷옷 v RACK 9:00: "check NPC counts": "K2 A2 B1" was the count at the start, with a knight dying 9 s later)."""
+    st = M.st
+    N = [(z, v["kind"]) for z, v in st.geo.npcs.items() if v["team"] == tm and v.get("pit") and v["kind"] != "guild_lord"]
+    tot = collections.Counter(k for _, k in N); live = collections.Counter(k for z, k in N if st.npc_dead.get(z, 1e9) > t)
+    lost = sorted((st.npc_dead[z], k) for z, k in N if t < st.npc_dead.get(z, 1e9) <= t1)
+    words = f"pit NPCs alive at {clock(t)}: {live['knight']} of {tot['knight']} knights, {live['archer']} of {tot['archer']} pit archers, the Bodyguard {'alive' if live['bodyguard'] else 'dead'}"
+    return words + ("; lost while held: " + ", ".join(f"{'the Bodyguard' if k == 'bodyguard' else 'a pit archer' if k == 'archer' else 'a ' + k} at {clock(td)}" for td, k in lost) if lost else "")
 
 
 # ---- the Lord push, from LORD_PUSH_FROM (R-435)
