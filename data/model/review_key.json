@@ -10668,7 +10668,7 @@
     }
    ],
    "checks": [],
-   "note": "His words on HC's call (partly): at the opening nobody has a flag capped, both were at the stand ready to cap, 'it's really no one is behind on flags': the flag job's flag-lead test does not fit the opening. Put to him 2026-11-15."
+   "note": "His words on HC's call (partly): at the opening nobody has a flag capped, both were at the stand ready to cap, 'it's really no one is behind on flags': the flag job's flag-lead test does not fit the opening. Ruled: R-500; the job at the opening is the first flag only."
   },
   {
    "id": "f1-9b5c-2",
@@ -11415,16 +11415,15 @@
      "has": {
       "play": "flag",
       "team": "Team",
-      "start": [
-       385,
-       401
+      "at": [
+       358,
+       400
       ]
      },
      "want": {
       "ours": "single run"
      },
-     "open": true,
-     "why": "HC v Team 5:58 (Classic, incorrect, when and kind): 'Team response with single run classic at 6:33': the engine reads Team stays from 5:58 to 6:46"
+     "was": "HC v Team 5:58 (Classic, incorrect, when and kind): 'Team response with single run classic at 6:33': the engine read Team stays, because the Monk 5 left the stand area 4 s after HC's cap; a run answers theirs when its runner set off before their cap (R-498), held from 2026-11-15"
     }
    ]
   },
@@ -11981,7 +11980,7 @@
      "auto": true
     }
    ],
-   "note": "His words on HC's call (partly): correct, 'but not sure what to do with it as it happened on split (the flag decision didn't really affect this death at all)': a death on a split counted against the flag run, against R-466. Put to him 2026-11-15."
+   "note": "His words on HC's call (partly): correct, 'but not sure what to do with it as it happened on split (the flag decision didn't really affect this death at all)': a death on a split counted against the flag run, against R-466. Ruled: R-499; the death is no longer counted and HC's job reads not met."
   },
   {
    "id": "f1-9b5c-32",

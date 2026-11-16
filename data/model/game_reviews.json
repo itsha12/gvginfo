@@ -1,7 +1,7 @@
 {
  "about": "The rows of Model > Game review (R-454, R-455, R-492): every situation the engine reads in each review game, with the engine's confidence that it is a decision, written by tools/golden/review.py export on the engine branch. Games with scheme 2 are graded his new way; the others are history (R-491). His marks are in game_review_marks.json, never here.",
  "generated": "2026-11-15",
- "engine": "fd2b30b",
+ "engine": "e2197e4",
  "games": [
   {
    "set": "w1",
@@ -14757,6 +14757,3657 @@
     "Team's Ranger 15:14 to 15:58: HC's split from 14:56 and the main fight's numbers from 14:56",
     "Team's Hammer 15:16 to 15:58: HC's split from 14:56 and the main fight's numbers from 14:56"
    ]
+  },
+  {
+   "scheme": 2,
+   "set": "f1",
+   "part": 2,
+   "label": "game 2",
+   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
+   "teams": [
+    "Men",
+    "Crew"
+   ],
+   "map": "Isle of Jade",
+   "date": "2026-10-02",
+   "situations": [
+    {
+     "n": 1,
+     "id": "s:51683de9-flag-1-0-0",
+     "kind": "flag",
+     "t0": 0,
+     "t1": 107,
+     "reads": "The opening. Crew single run (Water Ele); Men single run (8 Monk) (Shadow of Haste run: set aside)",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "Men",
+       "t0": 0
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-flag-1-0-0",
+       "team": "Men",
+       "side": "",
+       "label": "single run",
+       "job": "Get the first flag in",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "id": "s:51683de9-flag-2-83-1",
+     "kind": "flag",
+     "t0": 83,
+     "t1": 193,
+     "reads": "The opening. Men single run (8 Monk); Crew has a flag already in hand (Water Ele), held, its carrier not in position to overcap (capped 85 s after theirs) (Shadow of Haste run: set aside)",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "Crew",
+       "t0": 83
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-flag-2-83-1",
+       "team": "Crew",
+       "side": "",
+       "label": "a flag already in hand: hold, not in position to overcap",
+       "job": "Hold the flag and play on with eight: give up no boost, and lose no more players than they do while it is held",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "our flag is capped before their boost lands"
+        ],
+        [
+         true,
+         "no more of ours die at the main fight than of theirs while it is held"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "id": "s:51683de9-numbers-1-142-2",
+     "kind": "numbers",
+     "t0": 142,
+     "t1": 184,
+     "reads": "Men down on numbers in the main fight (7 v 8, the greater stand area), from kills; Men: stay (stay at the stand) | Crew: stay (stay at the stand)",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 142
+      },
+      {
+       "play": "numbers",
+       "team": "Crew",
+       "t0": 142
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-numbers-1-142-2",
+       "team": "Men",
+       "side": "down",
+       "label": "stay",
+       "job": "Hold the ground a player down and lose no more until it is level, or the base res",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "51683de9-numbers-2-142-3",
+       "team": "Crew",
+       "side": "up",
+       "label": "stay",
+       "job": "Turn the extra player into a kill before the numbers are level",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 4,
+     "id": "s:51683de9-numbers-1-218-4",
+     "kind": "numbers",
+     "t0": 218,
+     "t1": 280,
+     "reads": "Men down on numbers in the main fight (5 v 8, the greater stand area; then 6 v 8 from 3:50; then 4 v 8 from 4:14), from players split elsewhere; Men: stay (stay at the stand) | Crew: stay (stay at the stand)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of one of the engine's settings changes this reading. It hangs on: how long a player must be in a fight before he counts in it (moved, the engine reads something else here: other players counted, or another call); how far a player may drift and still be in the fight he was in (moved, the engine reads something else here: other players counted, or another call); and 1 more of its settings."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 218
+      },
+      {
+       "play": "numbers",
+       "team": "Crew",
+       "t0": 218
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-numbers-1-218-4",
+       "team": "Men",
+       "side": "weak side",
+       "label": "stay",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "51683de9-numbers-2-218-5",
+       "team": "Crew",
+       "side": "strong side",
+       "label": "stay",
+       "job": "Kill with the numbers while their players are away",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 5,
+     "id": "s:51683de9-flag-2-241-6",
+     "kind": "flag",
+     "t0": 241,
+     "t1": 258,
+     "reads": "Men single run (AoB Derv); Crew stays",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "Crew",
+       "t0": 241
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-flag-2-241-6",
+       "team": "Crew",
+       "side": "",
+       "label": "stay",
+       "job": "Kill with the extra player while their runner is away, or their flag does not get in",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die at the main fight than of ours"
+        ],
+        [
+         true,
+         "their flag does not get in"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 6,
+     "id": "s:51683de9-boost-1-283-7",
+     "kind": "boost",
+     "t0": 283,
+     "t1": 318,
+     "reads": "Crew's boost is 30 s away; Men: two runners; the rest fall to footmen",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "boost",
+       "team": "Men",
+       "t0": 283
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-boost-1-283-7",
+       "team": "Men",
+       "side": "",
+       "label": "run",
+       "job": "Deny their boost",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "their boost does not land"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 7,
+     "id": "s:51683de9-flag-2-293-8",
+     "kind": "flag",
+     "t0": 293,
+     "t1": 346,
+     "reads": "Men single run (Ranger); Crew stays",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "Crew",
+       "t0": 293
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-flag-2-293-8",
+       "team": "Crew",
+       "side": "",
+       "label": "stay",
+       "job": "Kill with the extra player while their runner is away, or their flag does not get in",
+       "met": true,
+       "tests": [
+        [
+         false,
+         "more of theirs die at the main fight than of ours"
+        ],
+        [
+         true,
+         "their flag does not get in"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 8,
+     "id": "s:51683de9-numbers-1-330-9",
+     "kind": "numbers",
+     "t0": 330,
+     "t1": 368,
+     "reads": "Men down on numbers in the main fight (6 v 8, the greater stand area), from kills; Men: retreat down the ladder (fall to footmen) | Crew: stay (stay at the stand)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of one of the engine's settings changes this reading. It hangs on: how close players must stand to be in the same fight (moved, the engine reads nothing here); how far a player may drift and still be in the fight he was in (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 330
+      },
+      {
+       "play": "numbers",
+       "team": "Crew",
+       "t0": 330
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-numbers-1-330-9",
+       "team": "Men",
+       "side": "down",
+       "label": "retreat down the ladder",
+       "job": "Reach cover a player down without losing another",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ],
+        [
+         false,
+         "no NPC lost"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "51683de9-numbers-2-330-10",
+       "team": "Crew",
+       "side": "up",
+       "label": "stay",
+       "job": "Turn the extra player into a kill before the numbers are level",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 9,
+     "id": "s:51683de9-flag-2-352-11",
+     "kind": "flag",
+     "t0": 352,
+     "t1": 532,
+     "reads": "Men single run (AoB Derv); Crew single run (Water Ele)",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "Crew",
+       "t0": 352
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-flag-2-352-11",
+       "team": "Crew",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         true,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 10,
+     "id": "s:51683de9-numbers-1-400-12",
+     "kind": "numbers",
+     "t0": 400,
+     "t1": 430,
+     "reads": "Men down on numbers in the main fight (6 v 8, the flag stand), from players split elsewhere; Men: stay (stay at the stand) | Crew: stay (stay at the stand)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of one of the engine's settings changes this reading. It hangs on: how long a player must be in a fight before he counts in it (moved, the engine reads something else here: other players counted, or another call); how far a player may drift and still be in the fight he was in (moved, the engine reads nothing here); and 3 more of its settings."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 400
+      },
+      {
+       "play": "numbers",
+       "team": "Crew",
+       "t0": 400
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-numbers-1-400-12",
+       "team": "Men",
+       "side": "weak side",
+       "label": "stay",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "51683de9-numbers-2-400-13",
+       "team": "Crew",
+       "side": "strong side",
+       "label": "stay",
+       "job": "Kill with the numbers while their players are away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 11,
+     "id": "s:51683de9-boost-1-403-14",
+     "kind": "boost",
+     "t0": 403,
+     "t1": 438,
+     "reads": "Crew's boost is 30 s away; Men: one runner; the rest stay at the stand",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "boost",
+       "team": "Men",
+       "t0": 403
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-boost-1-403-14",
+       "team": "Men",
+       "side": "",
+       "label": "run",
+       "job": "Deny their boost",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "their boost does not land"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 12,
+     "id": "s:51683de9-numbers-1-498-15",
+     "kind": "numbers",
+     "t0": 498,
+     "t1": 522,
+     "reads": "Men down on numbers in the main fight (6 v 7, the flag stand), from players split elsewhere; Men: stay (stay at the stand) | Crew: stay (stay at the stand)",
+     "confidence": {
+      "band": "medium",
+      "why": "Steady when the engine's settings are moved a quarter either way. At half or double it hangs on: how large a fight away from the main fight may be (moved, the engine reads nothing here); how long a fight away from the main fight must last (moved, the engine reads nothing here)."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 498
+      },
+      {
+       "play": "numbers",
+       "team": "Crew",
+       "t0": 498
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-numbers-1-498-15",
+       "team": "Men",
+       "side": "weak side",
+       "label": "stay",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "51683de9-numbers-2-498-16",
+       "team": "Crew",
+       "side": "strong side",
+       "label": "stay",
+       "job": "Kill with the numbers while their players are away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 13,
+     "id": "s:51683de9-boost-1-523-17",
+     "kind": "boost",
+     "t0": 523,
+     "t1": 558,
+     "reads": "Crew's boost is 30 s away; Men: one runner; the rest stay at the stand",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "boost",
+       "team": "Men",
+       "t0": 523
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-boost-1-523-17",
+       "team": "Men",
+       "side": "",
+       "label": "run",
+       "job": "Deny their boost",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "their boost does not land"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 14,
+     "id": "s:51683de9-boost-1-643-18",
+     "kind": "boost",
+     "t0": 643,
+     "t1": 678,
+     "reads": "Crew's boost is 30 s away; Men: one runner; the rest fall to footmen",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "boost",
+       "team": "Men",
+       "t0": 643
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-boost-1-643-18",
+       "team": "Men",
+       "side": "",
+       "label": "run",
+       "job": "Deny their boost",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "their boost does not land"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 15,
+     "id": "s:51683de9-flag-1-692-19",
+     "kind": "flag",
+     "t0": 692,
+     "t1": 763,
+     "reads": "Crew single run (Water Ele); Men double run (Ranger)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of one of the engine's settings changes this reading. It hangs on: how soon the second player must go back for it to be a double run (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "Men",
+       "t0": 692
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-flag-1-692-19",
+       "team": "Men",
+       "side": "",
+       "label": "double run",
+       "job": "Gain flag advantage through their next cap, and lose nobody while two are away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ],
+        [
+         true,
+         "nobody of ours dies at the main fight"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 16,
+     "id": "s:51683de9-flag-2-746-20",
+     "kind": "flag",
+     "t0": 746,
+     "t1": 844,
+     "reads": "Men single run (AoB Derv); Crew single run (Water Ele)",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "Crew",
+       "t0": 746
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-flag-2-746-20",
+       "team": "Crew",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         true,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 17,
+     "id": "s:51683de9-flag-1-797-21",
+     "kind": "flag",
+     "t0": 797,
+     "t1": 859,
+     "reads": "Crew single run (Water Ele); Men has a flag already in hand (AoB Derv)",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "Men",
+       "t0": 797
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-flag-1-797-21",
+       "team": "Men",
+       "side": "",
+       "label": "a flag already in hand",
+       "job": "Answer their cap at once",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "their flag does not get in"
+        ],
+        [
+         false,
+         "our cap follows theirs within 15 s"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 18,
+     "id": "s:51683de9-boost-1-833-22",
+     "kind": "boost",
+     "t0": 833,
+     "t1": 868,
+     "reads": "Crew's boost is 30 s away; Men: one runner; the rest stay at the stand",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "boost",
+       "team": "Men",
+       "t0": 833
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-boost-1-833-22",
+       "team": "Men",
+       "side": "",
+       "label": "run",
+       "job": "Deny their boost",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "their boost does not land"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 19,
+     "id": "s:51683de9-numbers-1-864-23",
+     "kind": "numbers",
+     "t0": 864,
+     "t1": 892,
+     "reads": "Men down on numbers in the main fight (2 v 8, the flag stand), from players on their way to it (in neither fight); Men: stay (stay at the stand) | Crew: stay (stay at the stand)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of one of the engine's settings changes this reading. It hangs on: how close players must stand to be in the same fight (moved, the engine reads nothing here); how far a player may drift and still be in the fight he was in (moved, the engine reads something else here: other players counted, or another call); and 1 more of its settings."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 864
+      },
+      {
+       "play": "numbers",
+       "team": "Crew",
+       "t0": 864
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-numbers-1-864-23",
+       "team": "Men",
+       "side": "down",
+       "label": "stay",
+       "job": "Hold the ground a player down and lose no more until it is level, or the base res",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "51683de9-numbers-2-864-24",
+       "team": "Crew",
+       "side": "up",
+       "label": "stay",
+       "job": "Turn the extra player into a kill before the numbers are level",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 20,
+     "id": "s:51683de9-numbers-1-910-25",
+     "kind": "numbers",
+     "t0": 910,
+     "t1": 936,
+     "reads": "Men down on numbers in the main fight (2 v 8, the greater stand area), from players split elsewhere; Men: retreat down the ladder (fall to footmen) | Crew: stay (stay at the stand)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of one of the engine's settings changes this reading. It hangs on: how close players must stand to be in the same fight (moved, the engine reads nothing here)."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 910
+      },
+      {
+       "play": "numbers",
+       "team": "Crew",
+       "t0": 910
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-numbers-1-910-25",
+       "team": "Men",
+       "side": "weak side",
+       "label": "retreat down the ladder",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "51683de9-numbers-2-910-26",
+       "team": "Crew",
+       "side": "strong side",
+       "label": "stay",
+       "job": "Kill with the numbers while their players are away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 21,
+     "id": "s:51683de9-boost-1-953-27",
+     "kind": "boost",
+     "t0": 953,
+     "t1": 988,
+     "reads": "Crew's boost is 30 s away; Men: one runner; the rest fall to footmen",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "boost",
+       "team": "Men",
+       "t0": 953
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-boost-1-953-27",
+       "team": "Men",
+       "side": "",
+       "label": "run",
+       "job": "Deny their boost",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "their boost does not land"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 22,
+     "id": "s:51683de9-boost-1-1073-28",
+     "kind": "boost",
+     "t0": 1073,
+     "t1": 1108,
+     "reads": "Crew's boost is 30 s away; Men: two runners; the rest fall back into the base",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "boost",
+       "team": "Men",
+       "t0": 1073
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-boost-1-1073-28",
+       "team": "Men",
+       "side": "",
+       "label": "run",
+       "job": "Deny their boost",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "their boost does not land"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 23,
+     "id": "s:51683de9-boost-1-1193-29",
+     "kind": "boost",
+     "t0": 1193,
+     "t1": 1228,
+     "reads": "Crew's boost is 30 s away; Men: one runner; the rest fall back into the base",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "boost",
+       "team": "Men",
+       "t0": 1193
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-boost-1-1193-29",
+       "team": "Men",
+       "side": "",
+       "label": "run",
+       "job": "Deny their boost",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "their boost does not land"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 24,
+     "id": "s:51683de9-numbers-1-1210-30",
+     "kind": "numbers",
+     "t0": 1210,
+     "t1": 1232,
+     "reads": "Men up on numbers in the main fight (8 v 7, Men's front door), from players split elsewhere; Men: retreat down the ladder (fall back into the base) | Crew: push up (push up to their back door)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of one of the engine's settings changes this reading. It hangs on: how close players must stand to be in the same fight (moved, the engine reads nothing here); how far a player may drift and still be in the fight he was in (moved, the engine reads nothing here); and 2 more of its settings."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 1210
+      },
+      {
+       "play": "numbers",
+       "team": "Crew",
+       "t0": 1210
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-numbers-1-1210-30",
+       "team": "Men",
+       "side": "strong side",
+       "label": "retreat down the ladder",
+       "job": "Kill with the numbers while their players are away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "51683de9-numbers-2-1210-31",
+       "team": "Crew",
+       "side": "weak side",
+       "label": "push up",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 25,
+     "id": "s:51683de9-flag-2-1248-32",
+     "kind": "flag",
+     "t0": 1248,
+     "t1": 1316,
+     "reads": "Men single run (AoB Derv); Crew stays",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "Crew",
+       "t0": 1248
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-flag-2-1248-32",
+       "team": "Crew",
+       "side": "",
+       "label": "stay",
+       "job": "Kill with the extra player while their runner is away, or their flag does not get in",
+       "met": true,
+       "tests": [
+        [
+         false,
+         "more of theirs die at the main fight than of ours"
+        ],
+        [
+         true,
+         "their flag does not get in"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 26,
+     "id": "s:51683de9-boost-1-1313-33",
+     "kind": "boost",
+     "t0": 1313,
+     "t1": 1358,
+     "reads": "Crew's boost is 30 s away; Men: no runner; the rest fall back into the base",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "boost",
+       "team": "Men",
+       "t0": 1313
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-boost-1-1313-33",
+       "team": "Men",
+       "side": "",
+       "label": "concede",
+       "job": "Concede the boost for kills",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 27,
+     "id": "s:51683de9-numbers-1-1354-34",
+     "kind": "numbers",
+     "t0": 1354,
+     "t1": 1382,
+     "reads": "Men down on numbers in the main fight (7 v 8, Men's back door), from players split elsewhere; Men: retreat down the ladder (fall back into the base) | Crew: stay (stay on the enemy's side)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of one of the engine's settings changes this reading. It hangs on: how far a player may drift and still be in the fight he was in (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 1354
+      },
+      {
+       "play": "numbers",
+       "team": "Crew",
+       "t0": 1354
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-numbers-1-1354-34",
+       "team": "Men",
+       "side": "weak side",
+       "label": "retreat down the ladder",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "51683de9-numbers-2-1354-35",
+       "team": "Crew",
+       "side": "strong side",
+       "label": "stay",
+       "job": "Kill with the numbers while their players are away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 28,
+     "id": "s:51683de9-numbers-1-1410-36",
+     "kind": "numbers",
+     "t0": 1410,
+     "t1": 1430,
+     "reads": "Men down on numbers in the main fight (7 v 8, Men's back door), from players split elsewhere; Men: retreat down the ladder (fall back into the base) | Crew: stay (stay at the stand)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of one of the engine's settings changes this reading. It hangs on: how far a team must move for it to have taken or given ground (moved, the engine reads something else here: other players counted, or another call); how big a jump in position starts the reading again (a wipe and a base res) (moved, the engine reads something else here: other players counted, or another call); and 3 more of its settings."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 1410
+      },
+      {
+       "play": "numbers",
+       "team": "Crew",
+       "t0": 1410
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-numbers-1-1410-36",
+       "team": "Men",
+       "side": "weak side",
+       "label": "retreat down the ladder",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "51683de9-numbers-2-1410-37",
+       "team": "Crew",
+       "side": "strong side",
+       "label": "stay",
+       "job": "Kill with the numbers while their players are away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 29,
+     "id": "s:51683de9-boost-1-1433-38",
+     "kind": "boost",
+     "t0": 1433,
+     "t1": 1468,
+     "reads": "Crew's boost is 30 s away; Men: one runner; the rest fall back into the base",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "boost",
+       "team": "Men",
+       "t0": 1433
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-boost-1-1433-38",
+       "team": "Men",
+       "side": "",
+       "label": "run",
+       "job": "Deny their boost",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "their boost does not land"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 30,
+     "id": "s:51683de9-flag-2-1436-39",
+     "kind": "flag",
+     "t0": 1436,
+     "t1": 1461,
+     "reads": "Men single run (Warrior); Crew stays",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "Crew",
+       "t0": 1436
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-flag-2-1436-39",
+       "team": "Crew",
+       "side": "",
+       "label": "stay",
+       "job": "Kill with the extra player while their runner is away, or their flag does not get in",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die at the main fight than of ours"
+        ],
+        [
+         true,
+         "their flag does not get in"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 31,
+     "id": "s:51683de9-numbers-1-1474-40",
+     "kind": "numbers",
+     "t0": 1474,
+     "t1": 1568,
+     "reads": "Men down on numbers in the main fight (7 v 8, Men's back door; then 6 v 8 from 25:22), from kills; Men: retreat down the ladder (fall back into the base) | Crew: push up (push up to their base)",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 1474
+      },
+      {
+       "play": "numbers",
+       "team": "Crew",
+       "t0": 1474
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-numbers-1-1474-40",
+       "team": "Men",
+       "side": "down",
+       "label": "retreat down the ladder",
+       "job": "Reach cover a player down without losing another",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody of ours dies"
+        ],
+        [
+         false,
+         "no NPC lost"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "51683de9-numbers-2-1474-41",
+       "team": "Crew",
+       "side": "up",
+       "label": "push up",
+       "job": "Take ground and NPCs with the numbers",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no more of ours die than of theirs"
+        ],
+        [
+         true,
+         "one of their NPCs dies"
+        ],
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 32,
+     "id": "s:51683de9-pinned-1-1488-42",
+     "kind": "pinned",
+     "t0": 1488,
+     "t1": 1552,
+     "reads": "Men is held in its own base or pit by Crew's main team (K2 A2 B1 alive; base res in 72 s)",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "pinned",
+       "team": "Men",
+       "t0": 1488
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-pinned-1-1488-42",
+       "team": "Men",
+       "side": "",
+       "label": "",
+       "job": "Hold the NPCs and lose nobody until the base res, or break out",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         false,
+         "it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 33,
+     "id": "s:51683de9-base_res-2-1540-43",
+     "kind": "base res",
+     "t0": 1540,
+     "t1": 1590,
+     "reads": "Crew has 8 in Men's base at the base res (6 defending, 2 coming back): 8 stay",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "base res",
+       "team": "Crew",
+       "t0": 1540
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-base_res-2-1540-43",
+       "team": "Crew",
+       "side": "",
+       "label": "stayed through the res",
+       "job": "Be out, or set for the fight, when they res",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies in the 30 s after the res"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 34,
+     "id": "s:51683de9-boost-1-1553-44",
+     "kind": "boost",
+     "t0": 1553,
+     "t1": 1598,
+     "reads": "Crew's boost is 30 s away; Men: no runner; the rest fall back into the base",
+     "confidence": {
+      "band": "medium",
+      "why": "Steady when the engine's settings are moved a quarter either way. At half or double it hangs on: how long in the pit counts as being in the pit (moved, the engine reads nothing here)."
+     },
+     "plays": [
+      {
+       "play": "boost",
+       "team": "Men",
+       "t0": 1553
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-boost-1-1553-44",
+       "team": "Men",
+       "side": "",
+       "label": "concede",
+       "job": "Concede the boost for kills",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 35,
+     "id": "s:51683de9-numbers-1-1590-45",
+     "kind": "numbers",
+     "t0": 1590,
+     "t1": 1688,
+     "reads": "Men down on numbers in the main fight (5 v 8, the greater stand area; then 5 v 7 from 26:42; then 4 v 6 from 26:58; then 4 v 8 from 27:46), from players split elsewhere; Men: retreat down the ladder (retreat to the pit) | Crew: push in",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of one of the engine's settings changes this reading. It hangs on: how long a player must be in a fight before he counts in it (moved, the engine reads something else here: other players counted, or another call); how long a player at the edge of a fight is kept in it (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 1590
+      },
+      {
+       "play": "numbers",
+       "team": "Crew",
+       "t0": 1590
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-numbers-1-1590-45",
+       "team": "Men",
+       "side": "weak side",
+       "label": "retreat down the ladder",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "51683de9-numbers-2-1590-46",
+       "team": "Crew",
+       "side": "strong side",
+       "label": "push in",
+       "job": "Kill with the numbers while their players are away",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 36,
+     "id": "s:51683de9-split-1-1602-47",
+     "kind": "split",
+     "t0": 1602,
+     "t1": 1644,
+     "reads": "Men's split by the back door: three players (8 Monk, Paragon, AoB Derv) against 2 defending (Water Ele, Air Ele 2)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of one of the engine's settings changes this reading. It hangs on: how long a player at the edge of a fight is kept in it (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 1602
+      },
+      {
+       "play": "split",
+       "team": "Crew",
+       "t0": 1602
+      },
+      {
+       "play": "split",
+       "team": "Crew",
+       "t0": 1602
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-split-1-1602-47",
+       "team": "Men",
+       "side": "attacker",
+       "label": "a player or more up",
+       "job": "Kill or take NPCs",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "51683de9-split-2-1602-48",
+       "team": "Crew",
+       "side": "defender",
+       "label": "a player down",
+       "job": "Delay: keep the split off the pit NPCs and stay alive",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no defender dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "51683de9-split-2-1602-49",
+       "team": "Crew",
+       "side": "defender's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: its damage can kill against their monks there, and theirs cannot",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 37,
+     "id": "s:51683de9-lord-1-1623-50",
+     "kind": "lord",
+     "t0": 1623,
+     "t1": 1632,
+     "reads": "Men pushes Crew's Guild Lord with 3 in the base (1 monk, 1 by the end) against 5 pit NPCs: fewer attackers than pit NPCs; playing for Lord damage",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "lord",
+       "team": "Men",
+       "t0": 1623
+      },
+      {
+       "play": "lord",
+       "team": "Crew",
+       "t0": 1623
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-lord-1-1623-50",
+       "team": "Men",
+       "side": "attacker",
+       "label": "",
+       "job": "Most Lord damage, or the kill, while keeping the own Lord up (the result is the match)",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "the match is won"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "51683de9-lord-2-1623-51",
+       "team": "Crew",
+       "side": "defender",
+       "label": "",
+       "job": "Do not die, keep Lord damage down, keep the Lord alive (the result is the match)",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "the match is won"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 38,
+     "id": "s:51683de9-pinned-1-1636-52",
+     "kind": "pinned",
+     "t0": 1636,
+     "t1": 1680,
+     "reads": "Men is held in its own base or pit by Crew's main team (K0 A2 B1 alive; base res in 44 s)",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "pinned",
+       "team": "Men",
+       "t0": 1636
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-pinned-1-1636-52",
+       "team": "Men",
+       "side": "",
+       "label": "",
+       "job": "Hold the NPCs and lose nobody until the base res, or break out",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         false,
+         "it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 39,
+     "id": "s:51683de9-lord-2-1640-54",
+     "kind": "lord",
+     "t0": 1640,
+     "t1": 1678,
+     "reads": "Crew pushes Men's Guild Lord with 8 in the base (2 monks) against 3 pit NPCs: more attackers than pit NPCs; playing for Lord damage",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "lord",
+       "team": "Crew",
+       "t0": 1640
+      },
+      {
+       "play": "lord",
+       "team": "Men",
+       "t0": 1640
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-lord-2-1640-54",
+       "team": "Crew",
+       "side": "attacker",
+       "label": "",
+       "job": "Most Lord damage, or the kill, while keeping the own Lord up (the result is the match)",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "the match is won"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "51683de9-lord-1-1640-53",
+       "team": "Men",
+       "side": "defender",
+       "label": "",
+       "job": "Do not die, keep Lord damage down, keep the Lord alive (the result is the match)",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "the match is won"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 40,
+     "id": "s:51683de9-base_res-2-1660-55",
+     "kind": "base res",
+     "t0": 1660,
+     "t1": 1694,
+     "reads": "Crew has 8 in Men's base at the base res (4 defending, 4 coming back): 8 stay",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "base res",
+       "team": "Crew",
+       "t0": 1660
+      }
+     ],
+     "calls": [
+      {
+       "id": "51683de9-base_res-2-1660-55",
+       "team": "Crew",
+       "side": "",
+       "label": "stayed through the res",
+       "job": "Be out, or set for the fight, when they res",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies in the 30 s after the res"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    }
+   ],
+   "selfcheck": []
+  },
+  {
+   "scheme": 2,
+   "set": "f1",
+   "part": 3,
+   "label": "game 3",
+   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
+   "teams": [
+    "옷옷옷옷",
+    "RACK"
+   ],
+   "map": "Isle of Solitude",
+   "date": "2026-10-17",
+   "situations": [
+    {
+     "n": 1,
+     "id": "s:a8ba43a8-flag-1-0-0",
+     "kind": "flag",
+     "t0": 0,
+     "t1": 23,
+     "reads": "The opening. RACK single run (Dervish); 옷옷옷옷 stays",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "옷옷옷옷",
+       "t0": 0
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-flag-1-0-0",
+       "team": "옷옷옷옷",
+       "side": "",
+       "label": "stay",
+       "job": "Kill with the extra player while their runner is away, or their flag does not get in",
+       "met": true,
+       "tests": [
+        [
+         false,
+         "more of theirs die at the main fight than of ours"
+        ],
+        [
+         true,
+         "their flag does not get in"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "id": "s:a8ba43a8-pinned-2-84-1",
+     "kind": "pinned",
+     "t0": 84,
+     "t1": 108,
+     "reads": "RACK is held in its own base or pit by 옷옷옷옷's main team (K2 A2 B1 alive; base res in 36 s)",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "pinned",
+       "team": "RACK",
+       "t0": 84
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-pinned-2-84-1",
+       "team": "RACK",
+       "side": "",
+       "label": "",
+       "job": "Lose no player and no NPC while held in, or break out",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         true,
+         "it breaks out having lost no player and no pit NPC first (it breaks out at 1:40, having lost nothing; a break-out is half its living players or more, four at least, out past its doors)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "id": "s:a8ba43a8-split-2-94-3",
+     "kind": "split",
+     "t0": 94,
+     "t1": 128,
+     "reads": "RACK's split by the back door: 4 players (Ritualist, AoB Derv, 8 Monk, Dervish) against 2 defending (7 Monk (WoC), 8 Monk)",
+     "confidence": {
+      "band": "medium",
+      "why": "Steady when the engine's settings are moved a quarter either way. At half or double it hangs on: how close players must stand to be in the same fight (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "RACK",
+       "t0": 94
+      },
+      {
+       "play": "split",
+       "team": "옷옷옷옷",
+       "t0": 94
+      },
+      {
+       "play": "split",
+       "team": "RACK",
+       "t0": 94
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-split-2-94-3",
+       "team": "RACK",
+       "side": "attacker",
+       "label": "a player or more up",
+       "job": "Kill or take NPCs",
+       "met": true,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         true,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "a8ba43a8-split-1-94-2",
+       "team": "옷옷옷옷",
+       "side": "defender",
+       "label": "a player down",
+       "job": "Delay: keep the split off the pit NPCs and stay alive",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no defender dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "a8ba43a8-split-2-94-4",
+       "team": "RACK",
+       "side": "attacker's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: they have no monk there",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 4,
+     "id": "s:a8ba43a8-flag-1-101-5",
+     "kind": "flag",
+     "t0": 101,
+     "t1": 183,
+     "reads": "RACK single run (Hammer); 옷옷옷옷 single run (8 Monk)",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "옷옷옷옷",
+       "t0": 101
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-flag-1-101-5",
+       "team": "옷옷옷옷",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         false,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 5,
+     "id": "s:a8ba43a8-split-2-126-7",
+     "kind": "split",
+     "t0": 126,
+     "t1": 144,
+     "reads": "RACK's split by the back door: one player (Dervish) against 7 defending (Mesmer, Monk 3 (WoC), Monk 4 (WoC), Monk 5 (WoC), Prot (WoC), 7 Monk (WoC), Monk 2 (WoC)); the whole team turns on it; 7 (Mesmer, Monk 3 (WoC), Monk 4 (WoC), Monk 5 (WoC), Prot (WoC), 7 Monk (WoC), Monk 2 (WoC)) against one player: full collapse",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of one of the engine's settings changes this reading. It hangs on: how long a player must be in a fight before he counts in it (moved, the engine reads something else here: other players counted, or another call); how long a player at the edge of a fight is kept in it (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "RACK",
+       "t0": 126
+      },
+      {
+       "play": "split",
+       "team": "옷옷옷옷",
+       "t0": 126
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-split-2-126-7",
+       "team": "RACK",
+       "side": "attacker",
+       "label": "met by a full collapse",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         true,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "a8ba43a8-split-1-126-6",
+       "team": "옷옷옷옷",
+       "side": "defender",
+       "label": "full collapse",
+       "job": "Kill the split or drive it out (the flags it costs are beside it)",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "a split player dies"
+        ],
+        [
+         true,
+         "the split is gone within the visit"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 6,
+     "id": "s:a8ba43a8-flag-2-133-8",
+     "kind": "flag",
+     "t0": 133,
+     "t1": 281,
+     "reads": "옷옷옷옷 single run (8 Monk); RACK single run (Hammer, Prot)",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "RACK",
+       "t0": 133
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-flag-2-133-8",
+       "team": "RACK",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "our flag is capped"
+        ],
+        [
+         false,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         false,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 7,
+     "id": "s:a8ba43a8-pinned-2-172-9",
+     "kind": "pinned",
+     "t0": 172,
+     "t1": 220,
+     "reads": "RACK is held in its own base or pit by 옷옷옷옷's main team (K2 A2 B1 alive; base res in 68 s)",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "pinned",
+       "team": "RACK",
+       "t0": 172
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-pinned-2-172-9",
+       "team": "RACK",
+       "side": "",
+       "label": "",
+       "job": "Hold the NPCs and lose nobody until the base res, or break out",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         false,
+         "it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 8,
+     "id": "s:a8ba43a8-numbers-1-182-10",
+     "kind": "numbers",
+     "t0": 182,
+     "t1": 245,
+     "reads": "옷옷옷옷 up on numbers in the main fight (6 v 5, RACK's front door; then 7 v 5 from 3:26; then 8 v 5 from 3:48), from kills; 옷옷옷옷: push up (push up to their base)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of one of the engine's settings changes this reading. It hangs on: how long in the pit counts as being in the pit (moved, the engine reads something else here: other players counted, or another call); how far a player may drift and still be in the fight he was in (moved, the engine reads something else here: other players counted, or another call); and 1 more of its settings."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "옷옷옷옷",
+       "t0": 182
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-numbers-1-182-10",
+       "team": "옷옷옷옷",
+       "side": "after a wipe",
+       "label": "push up",
+       "job": "Take pit NPCs before their base res",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "one of their pit NPCs dies before the res"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 9,
+     "id": "s:a8ba43a8-flag-1-183-11",
+     "kind": "flag",
+     "t0": 183,
+     "t1": 317,
+     "reads": "RACK single run (Hammer); 옷옷옷옷 single run (8 Monk)",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "옷옷옷옷",
+       "t0": 183
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-flag-1-183-11",
+       "team": "옷옷옷옷",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         true,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 10,
+     "id": "s:a8ba43a8-base_res-1-220-12",
+     "kind": "base res",
+     "t0": 220,
+     "t1": 270,
+     "reads": "옷옷옷옷 has 8 in RACK's base at the base res (4 defending, 3 coming back): 8 stay",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "base res",
+       "team": "옷옷옷옷",
+       "t0": 220
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-base_res-1-220-12",
+       "team": "옷옷옷옷",
+       "side": "",
+       "label": "stayed through the res",
+       "job": "Be out, or set for the fight, when they res",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies in the 30 s after the res"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 11,
+     "id": "s:a8ba43a8-pinned-2-224-13",
+     "kind": "pinned",
+     "t0": 224,
+     "t1": 240,
+     "reads": "RACK is held in its own base or pit by 옷옷옷옷's main team (K1 A2 B1 alive; base res in 16 s)",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "pinned",
+       "team": "RACK",
+       "t0": 224
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-pinned-2-224-13",
+       "team": "RACK",
+       "side": "",
+       "label": "",
+       "job": "Hold the NPCs and lose nobody until the base res, or break out",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         false,
+         "it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 12,
+     "id": "s:a8ba43a8-pinned-2-240-14",
+     "kind": "pinned",
+     "t0": 240,
+     "t1": 260,
+     "reads": "RACK is held in its own base or pit by 옷옷옷옷's main team (K1 A2 B1 alive; base res in 120 s)",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "pinned",
+       "team": "RACK",
+       "t0": 240
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-pinned-2-240-14",
+       "team": "RACK",
+       "side": "",
+       "label": "",
+       "job": "Lose no player and no NPC while held in, or break out",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         true,
+         "it breaks out having lost no player and no pit NPC first (it breaks out at 4:20, having lost nothing; a break-out is half its living players or more, four at least, out past its doors)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 13,
+     "id": "s:a8ba43a8-boost-2-273-15",
+     "kind": "boost",
+     "t0": 273,
+     "t1": 308,
+     "reads": "옷옷옷옷's boost is 30 s away; RACK: one runner; the rest stay on their side",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "boost",
+       "team": "RACK",
+       "t0": 273
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-boost-2-273-15",
+       "team": "RACK",
+       "side": "",
+       "label": "run",
+       "job": "Deny their boost",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "their boost does not land"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 14,
+     "id": "s:a8ba43a8-numbers-1-346-16",
+     "kind": "numbers",
+     "t0": 346,
+     "t1": 370,
+     "reads": "옷옷옷옷 up on numbers in the main fight (6 v 3, RACK's pit), from players split elsewhere; 옷옷옷옷: stay (stay on the enemy's side) | RACK: retreat down the ladder (retreat to the pit)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of one of the engine's settings changes this reading. It hangs on: how far a team must move for it to have taken or given ground (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "옷옷옷옷",
+       "t0": 346
+      },
+      {
+       "play": "numbers",
+       "team": "RACK",
+       "t0": 346
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-numbers-1-346-16",
+       "team": "옷옷옷옷",
+       "side": "strong side",
+       "label": "stay",
+       "job": "Kill with the numbers while their players are away",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "a8ba43a8-numbers-2-346-17",
+       "team": "RACK",
+       "side": "weak side",
+       "label": "retreat down the ladder",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 15,
+     "id": "s:a8ba43a8-split-2-360-19",
+     "kind": "split",
+     "t0": 360,
+     "t1": 390,
+     "reads": "RACK's split by the back door: 5 players (Ritualist, AoB Derv, 8 Monk, Hammer, Dervish) against 2 defending (7 Monk (WoC), 8 Monk)",
+     "confidence": {
+      "band": "medium",
+      "why": "Steady when the engine's settings are moved a quarter either way. At half or double it hangs on: how close players must stand to be in the same fight (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "RACK",
+       "t0": 360
+      },
+      {
+       "play": "split",
+       "team": "옷옷옷옷",
+       "t0": 360
+      },
+      {
+       "play": "split",
+       "team": "RACK",
+       "t0": 360
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-split-2-360-19",
+       "team": "RACK",
+       "side": "attacker",
+       "label": "a player or more up",
+       "job": "Kill or take NPCs",
+       "met": true,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         true,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "a8ba43a8-split-1-360-18",
+       "team": "옷옷옷옷",
+       "side": "defender",
+       "label": "a player down",
+       "job": "Delay: keep the split off the pit NPCs and stay alive",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no defender dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "a8ba43a8-split-2-360-20",
+       "team": "RACK",
+       "side": "attacker's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: they have no monk there",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 16,
+     "id": "s:a8ba43a8-flag-1-375-21",
+     "kind": "flag",
+     "t0": 375,
+     "t1": 425,
+     "reads": "RACK single run (Prot); 옷옷옷옷 stays",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "옷옷옷옷",
+       "t0": 375
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-flag-1-375-21",
+       "team": "옷옷옷옷",
+       "side": "",
+       "label": "stay",
+       "job": "Kill with the extra player while their runner is away, or their flag does not get in",
+       "met": true,
+       "tests": [
+        [
+         false,
+         "more of theirs die at the main fight than of ours"
+        ],
+        [
+         true,
+         "their flag does not get in"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 17,
+     "id": "s:a8ba43a8-split-2-388-23",
+     "kind": "split",
+     "t0": 388,
+     "t1": 432,
+     "reads": "RACK's split by the back door: three players (Dervish, Hammer, 8 Monk) against 7 defending (Mesmer, Monk 2 (WoC), Monk 4 (WoC), 7 Monk (WoC), Monk 3 (WoC), Monk 5 (WoC), 8 Monk); the whole team turns on it; 7 (Mesmer, Monk 2 (WoC), Monk 4 (WoC), 7 Monk (WoC), Monk 3 (WoC), Monk 5 (WoC), 8 Monk) against three players: full collapse",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of one of the engine's settings changes this reading. It hangs on: how long a player must be in a fight before he counts in it (moved, the engine reads something else here: other players counted, or another call); how long a player at the edge of a fight is kept in it (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "RACK",
+       "t0": 388
+      },
+      {
+       "play": "split",
+       "team": "옷옷옷옷",
+       "t0": 388
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-split-2-388-23",
+       "team": "RACK",
+       "side": "attacker",
+       "label": "met by a full collapse",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "a8ba43a8-split-1-388-22",
+       "team": "옷옷옷옷",
+       "side": "defender",
+       "label": "full collapse",
+       "job": "Kill the split or drive it out (the flags it costs are beside it)",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "a split player dies"
+        ],
+        [
+         true,
+         "the split is gone within the visit"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 18,
+     "id": "s:a8ba43a8-boost-2-393-24",
+     "kind": "boost",
+     "t0": 393,
+     "t1": 428,
+     "reads": "옷옷옷옷's boost is 30 s away; RACK: two runners; the rest go out by the front door",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "boost",
+       "team": "RACK",
+       "t0": 393
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-boost-2-393-24",
+       "team": "RACK",
+       "side": "",
+       "label": "run",
+       "job": "Deny their boost",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "their boost does not land"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 19,
+     "id": "s:a8ba43a8-base_res-1-460-25",
+     "kind": "base res",
+     "t0": 460,
+     "t1": 510,
+     "reads": "옷옷옷옷 has 7 in RACK's base at the base res (0 defending, 4 coming back): 7 stay",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "base res",
+       "team": "옷옷옷옷",
+       "t0": 460
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-base_res-1-460-25",
+       "team": "옷옷옷옷",
+       "side": "",
+       "label": "stayed through the res",
+       "job": "Be out, or set for the fight, when they res",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies in the 30 s after the res"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 20,
+     "id": "s:a8ba43a8-numbers-1-502-26",
+     "kind": "numbers",
+     "t0": 502,
+     "t1": 526,
+     "reads": "옷옷옷옷 up on numbers in the main fight (8 v 4, the field on RACK's side), from kills; 옷옷옷옷: stay (stay on the enemy's side) | RACK: retreat down the ladder (retreat to the pit)",
+     "confidence": {
+      "band": "none",
+      "why": "The numbers never held for 12 s."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "옷옷옷옷",
+       "t0": 502
+      },
+      {
+       "play": "numbers",
+       "team": "RACK",
+       "t0": 502
+      }
+     ],
+     "calls": [],
+     "unclear": "the numbers never held for 12 s"
+    },
+    {
+     "n": 21,
+     "id": "s:a8ba43a8-boost-2-513-28",
+     "kind": "boost",
+     "t0": 513,
+     "t1": 558,
+     "reads": "옷옷옷옷's boost is 30 s away; RACK: no runner; the rest retreat to the pit",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "boost",
+       "team": "RACK",
+       "t0": 513
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-boost-2-513-28",
+       "team": "RACK",
+       "side": "",
+       "label": "concede",
+       "job": "Concede the boost for kills",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 22,
+     "id": "s:a8ba43a8-pinned-2-540-29",
+     "kind": "pinned",
+     "t0": 540,
+     "t1": 576,
+     "reads": "RACK is held in its own base or pit by 옷옷옷옷's main team (K1 A1 B1 alive; base res in 60 s)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of one of the engine's settings changes this reading. It hangs on: how close players must stand to be in the same fight (moved, the engine reads nothing here)."
+     },
+     "plays": [
+      {
+       "play": "pinned",
+       "team": "RACK",
+       "t0": 540
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-pinned-2-540-29",
+       "team": "RACK",
+       "side": "",
+       "label": "",
+       "job": "Hold the NPCs and lose nobody until the base res, or break out",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         false,
+         "it breaks out having lost no player and no pit NPC first (it breaks out at 9:34, after losing a player or a pit NPC; a break-out is half its living players or more, four at least, out past its doors)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 23,
+     "id": "s:a8ba43a8-numbers-1-550-30",
+     "kind": "numbers",
+     "t0": 550,
+     "t1": 605,
+     "reads": "옷옷옷옷 up on numbers in the main fight (6 v 3, RACK's front door), from kills; 옷옷옷옷: push up (push up to their base)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of one of the engine's settings changes this reading. It hangs on: how close players must stand to be in the same fight (moved, the engine reads something else here: other players counted, or another call); how far a player may drift and still be in the fight he was in (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "옷옷옷옷",
+       "t0": 550
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-numbers-1-550-30",
+       "team": "옷옷옷옷",
+       "side": "after a wipe",
+       "label": "push up",
+       "job": "Take pit NPCs before their base res",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "one of their pit NPCs dies before the res"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 24,
+     "id": "s:a8ba43a8-base_res-1-580-31",
+     "kind": "base res",
+     "t0": 580,
+     "t1": 630,
+     "reads": "옷옷옷옷 has 5 in RACK's base at the base res (0 defending, 1 coming back): 5 stay",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "base res",
+       "team": "옷옷옷옷",
+       "t0": 580
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-base_res-1-580-31",
+       "team": "옷옷옷옷",
+       "side": "",
+       "label": "stayed through the res",
+       "job": "Be out, or set for the fight, when they res",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies in the 30 s after the res"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 25,
+     "id": "s:a8ba43a8-numbers-1-608-32",
+     "kind": "numbers",
+     "t0": 608,
+     "t1": 632,
+     "reads": "옷옷옷옷 up on numbers in the main fight (6 v 3, RACK's front door), from players on their way to it (in neither fight); 옷옷옷옷: fall out | RACK: push in",
+     "confidence": {
+      "band": "none",
+      "why": "The numbers never held for 12 s."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "옷옷옷옷",
+       "t0": 608
+      },
+      {
+       "play": "numbers",
+       "team": "RACK",
+       "t0": 608
+      }
+     ],
+     "calls": [],
+     "unclear": "the numbers never held for 12 s"
+    },
+    {
+     "n": 26,
+     "id": "s:a8ba43a8-boost-2-633-34",
+     "kind": "boost",
+     "t0": 633,
+     "t1": 678,
+     "reads": "옷옷옷옷's boost is 30 s away; RACK: no runner; the rest fall out",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "boost",
+       "team": "RACK",
+       "t0": 633
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-boost-2-633-34",
+       "team": "RACK",
+       "side": "",
+       "label": "concede",
+       "job": "Concede the boost for kills",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 27,
+     "id": "s:a8ba43a8-numbers-1-656-35",
+     "kind": "numbers",
+     "t0": 656,
+     "t1": 718,
+     "reads": "옷옷옷옷 up on numbers in the main fight (8 v 4, 옷옷옷옷's pit; then 8 v 3 from 11:10; then 6 v 3 from 11:26), from kills; 옷옷옷옷: push in | RACK: retreat down the ladder (retreat to the pit)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of one of the engine's settings changes this reading. It hangs on: how far a player may drift and still be in the fight he was in (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "옷옷옷옷",
+       "t0": 656
+      },
+      {
+       "play": "numbers",
+       "team": "RACK",
+       "t0": 656
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-numbers-1-656-35",
+       "team": "옷옷옷옷",
+       "side": "up",
+       "label": "push in",
+       "job": "Take ground and NPCs with the numbers",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no more of ours die than of theirs"
+        ],
+        [
+         true,
+         "one of their NPCs dies"
+        ],
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "a8ba43a8-numbers-2-656-36",
+       "team": "RACK",
+       "side": "down",
+       "label": "retreat down the ladder",
+       "job": "Reach cover a player down without losing another",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody of ours dies"
+        ],
+        [
+         false,
+         "no NPC lost"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 28,
+     "id": "s:a8ba43a8-pinned-2-728-37",
+     "kind": "pinned",
+     "t0": 728,
+     "t1": 800,
+     "reads": "RACK is held in its own base or pit by 옷옷옷옷's main team (K0 A1 B1 alive; base res in 112 s)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of one of the engine's settings changes this reading. It hangs on: how close players must stand to be in the same fight (moved, the engine reads nothing here)."
+     },
+     "plays": [
+      {
+       "play": "pinned",
+       "team": "RACK",
+       "t0": 728
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-pinned-2-728-37",
+       "team": "RACK",
+       "side": "",
+       "label": "",
+       "job": "Lose no player and no NPC while held in, or break out",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         true,
+         "it breaks out having lost no player and no pit NPC first (it breaks out at 13:12, having lost nothing; a break-out is half its living players or more, four at least, out past its doors)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 29,
+     "id": "s:a8ba43a8-numbers-1-810-38",
+     "kind": "numbers",
+     "t0": 810,
+     "t1": 856,
+     "reads": "옷옷옷옷 up on numbers in the main fight (6 v 4, the field on RACK's side; then 7 v 3 from 13:44), from players on their way to it (in neither fight); 옷옷옷옷: stay (stay on the enemy's side) | RACK: retreat down the ladder (retreat to the pit)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of one of the engine's settings changes this reading. It hangs on: how long a player must be in a fight before he counts in it (moved, the engine reads something else here: other players counted, or another call); how far a player may drift and still be in the fight he was in (moved, the engine reads something else here: other players counted, or another call); and 2 more of its settings."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "옷옷옷옷",
+       "t0": 810
+      },
+      {
+       "play": "numbers",
+       "team": "RACK",
+       "t0": 810
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-numbers-1-810-38",
+       "team": "옷옷옷옷",
+       "side": "up",
+       "label": "stay",
+       "job": "Turn the extra player into a kill before the numbers are level",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "a8ba43a8-numbers-2-810-39",
+       "team": "RACK",
+       "side": "down",
+       "label": "retreat down the ladder",
+       "job": "Reach cover a player down without losing another",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody of ours dies"
+        ],
+        [
+         false,
+         "no NPC lost"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 30,
+     "id": "s:a8ba43a8-pinned-2-844-40",
+     "kind": "pinned",
+     "t0": 844,
+     "t1": 868,
+     "reads": "RACK is held in its own base or pit by 옷옷옷옷's main team (K0 A1 B1 alive; base res in 116 s)",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "pinned",
+       "team": "RACK",
+       "t0": 844
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-pinned-2-844-40",
+       "team": "RACK",
+       "side": "",
+       "label": "",
+       "job": "Hold the NPCs and lose nobody until the base res, or break out",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         false,
+         "it breaks out having lost no player and no pit NPC first (it breaks out at 14:32, after losing a player or a pit NPC; a break-out is half its living players or more, four at least, out past its doors)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 31,
+     "id": "s:a8ba43a8-numbers-1-848-41",
+     "kind": "numbers",
+     "t0": 848,
+     "t1": 874,
+     "reads": "옷옷옷옷 down on numbers in the main fight (5 v 6, RACK's pit), from players split elsewhere; 옷옷옷옷: stay (stay on the enemy's side)",
+     "confidence": {
+      "band": "medium",
+      "why": "Steady when the engine's settings are moved a quarter either way. At half or double it hangs on: how close players must stand to be in the same fight (moved, the engine reads something else here: other players counted, or another call); how far a player may drift and still be in the fight he was in (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "옷옷옷옷",
+       "t0": 848
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-numbers-1-848-41",
+       "team": "옷옷옷옷",
+       "side": "weak side",
+       "label": "stay",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 32,
+     "id": "s:a8ba43a8-numbers-1-866-42",
+     "kind": "numbers",
+     "t0": 866,
+     "t1": 930,
+     "reads": "옷옷옷옷 up on numbers in the main fight (7 v 5, RACK's pit; then 7 v 4 from 14:54), from kills; 옷옷옷옷: stay (stay on the enemy's side) | RACK: stay (stay on their side)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of one of the engine's settings changes this reading. It hangs on: how long a player must be in a fight before he counts in it (moved, the engine reads something else here: other players counted, or another call); how long a fight away from the main fight must last (moved, the engine reads something else here: other players counted, or another call); and 3 more of its settings."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "옷옷옷옷",
+       "t0": 866
+      },
+      {
+       "play": "numbers",
+       "team": "RACK",
+       "t0": 866
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-numbers-1-866-42",
+       "team": "옷옷옷옷",
+       "side": "up",
+       "label": "stay",
+       "job": "Turn the extra player into a kill before the numbers are level",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "a8ba43a8-numbers-2-866-43",
+       "team": "RACK",
+       "side": "down",
+       "label": "stay",
+       "job": "Hold the ground a player down and lose no more until it is level, or the base res",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 33,
+     "id": "s:a8ba43a8-boost-2-873-44",
+     "kind": "boost",
+     "t0": 873,
+     "t1": 918,
+     "reads": "옷옷옷옷's boost is 30 s away; RACK: no runner; the rest stay on their side",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "boost",
+       "team": "RACK",
+       "t0": 873
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-boost-2-873-44",
+       "team": "RACK",
+       "side": "",
+       "label": "concede",
+       "job": "Concede the boost for kills",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 34,
+     "id": "s:a8ba43a8-split-2-888-47",
+     "kind": "split",
+     "t0": 888,
+     "t1": 972,
+     "reads": "RACK's split by the front door: one player (Dervish) against 1 defending (7 Monk (WoC)); numbers along the way: 1 v 1 from 14:48, 2 v 1 from 15:04, 1 v 1 from 15:20",
+     "confidence": {
+      "band": "medium",
+      "why": "Steady when the engine's settings are moved a quarter either way. At half or double it hangs on: how big a jump in position starts the reading again (a wipe and a base res) (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "RACK",
+       "t0": 888
+      },
+      {
+       "play": "split",
+       "team": "옷옷옷옷",
+       "t0": 888
+      },
+      {
+       "play": "split",
+       "team": "옷옷옷옷",
+       "t0": 888
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-split-2-888-47",
+       "team": "RACK",
+       "side": "attacker",
+       "label": "1 v 1, the defender not a monk",
+       "job": "Take NPCs or kills",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "a8ba43a8-split-1-888-45",
+       "team": "옷옷옷옷",
+       "side": "defender",
+       "label": "mirror",
+       "job": "Hold it even: lose no pit NPC and no more players than the split does",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no more defenders die than split players"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "a8ba43a8-split-1-888-46",
+       "team": "옷옷옷옷",
+       "side": "defender's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: they have no monk there",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 35,
+     "id": "s:a8ba43a8-base_res-1-940-48",
+     "kind": "base res",
+     "t0": 940,
+     "t1": 990,
+     "reads": "옷옷옷옷 has 7 in RACK's base at the base res (1 defending, 4 coming back): 1 stay",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "base res",
+       "team": "옷옷옷옷",
+       "t0": 940
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-base_res-1-940-48",
+       "team": "옷옷옷옷",
+       "side": "",
+       "label": "stayed through the res",
+       "job": "Be out, or set for the fight, when they res",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies in the 30 s after the res"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 36,
+     "id": "s:a8ba43a8-pinned-2-976-49",
+     "kind": "pinned",
+     "t0": 976,
+     "t1": 1052,
+     "reads": "RACK is held in its own base or pit by 옷옷옷옷's main team (K0 A1 B0 alive; base res in 104 s)",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "pinned",
+       "team": "RACK",
+       "t0": 976
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-pinned-2-976-49",
+       "team": "RACK",
+       "side": "",
+       "label": "",
+       "job": "Hold the NPCs and lose nobody until the base res, or break out",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         false,
+         "it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 37,
+     "id": "s:a8ba43a8-numbers-1-998-50",
+     "kind": "numbers",
+     "t0": 998,
+     "t1": 1064,
+     "reads": "옷옷옷옷 up on numbers in the main fight (8 v 4, RACK's pit; then 8 v 2 from 17:12), from kills; 옷옷옷옷: stay (stay on the enemy's side)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of one of the engine's settings changes this reading. It hangs on: how long a player must be in a fight before he counts in it (moved, the engine reads something else here: other players counted, or another call); how far a player may drift and still be in the fight he was in (moved, the engine reads something else here: other players counted, or another call); and 1 more of its settings."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "옷옷옷옷",
+       "t0": 998
+      }
+     ],
+     "calls": [
+      {
+       "id": "a8ba43a8-numbers-1-998-50",
+       "team": "옷옷옷옷",
+       "side": "after a wipe",
+       "label": "stay",
+       "job": "Take pit NPCs before their base res",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "one of their pit NPCs dies before the res"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    }
+   ],
+   "selfcheck": []
   }
  ]
 }

@@ -8,14 +8,16 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 > out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-15, night: HC v Team graded and filed; batch 17, 506 matches trained)
+## State (2026-11-15, late night: HC v Team graded, his rulings built, games 2 and 3 on the page; 506 matches trained)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` and lands in one piece,
   then one rebuild (R-322). 658 replays stored; 564 count (R-477). No Train batch, Discovery or fetch run in progress.
 - The baseline (R-491) is the branch `baseline-2026-11-15` (`bundle-4` at fd2b30b); its reading of the 45 development
-  games and its figures are in `data/model/baseline/` on main. Since then on `bundle-4` (`jobs.py`, `moments.py`): his
-  wording (a flag row names both sides and their runners, "Team single run (Monk 5 (WoC)); HC single run (Mes/A)"; a
-  numbers row names the team, "HC down on numbers ..."; no "by the door" where no door is read) and one fix: a stay
-  ends at their cap (202 stay plays on the development set end 10 s sooner; 4 results change). Nothing else moved.
+  games and its figures are in `data/model/baseline/` on main. Since then on `bundle-4` (now e2197e4; `jobs.py`,
+  `moments.py`, `common.py`), all from HC v Team: his wording of flag, numbers and split rows (R-501); a stay ends at
+  their cap; a run answers theirs when its runner set off before their cap (R-498); a split defender's death is the
+  split's own (R-499); the first flags carry only "get the first flag in" (R-500); a main team round the back stays
+  the main team and a split ends when the larger part of its team stands with it (R-502: read it, and what was tried
+  and not kept, before touching `main_team`).
 - The fresh start (R-491 to R-497; all in CLAUDE.md): the games marked before 2026-11-15 are history, scored and
   reported like the gate and the line-up, binding nothing. He grades each situation of a fresh game on Model > Game
   review (Classic, Visible, Weak, No decision, Repeat; then Correct, Partly, Incorrect with ticks and his words; calls
@@ -25,33 +27,30 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   the 62 draft numbers a quarter either way and at half and double; high = the same in all, medium = moved only at
   half or double, low = moved at a quarter. Claude's draft bands. On HC v Team the low rows are mostly splits and
   pushes on a flagger, hanging on `FIGHT_LINK` (how close players stand to be in one fight) and `JOIN_S` (the 12 s).
-- HC v Team (set f1, game 1; 9b5cdf62) is graded and filed in the review key. His grades against the confidence, by
-  situation: Classic 22 (19 high, 2 medium, 1 low); Visible 19 (1, 6, 12); Weak 6 (0, 1, 5); No decision 5 (0, 1, 4)
-  and the 2 folded rows left as they are. Read correct: Classic 20 of 22, Visible 15 of 19, Weak 3 of 6; calls 53 of
-  56. All 20 high-confidence rows are Classic or Visible; Low does not tell Visible from Weak (one game; he saw the
-  band first). Review key now: 22 Classic rows pass, 120 history rows hold, 20 of f1's 21 open checks still open.
-- Queue after it: Men v Crew (51683de9), 옷옷옷옷 v RACK (a8ba43a8). Not exported: a Classic fault is still open.
+- HC v Team (set f1, game 1; 9b5cdf62) is graded and filed. His grades against the confidence, by situation: Classic
+  22 (19 high, 2 medium, 1 low); Visible 19 (1, 6, 12); Weak 6 (0, 1, 5); No decision 5 (0, 1, 4). Read correct:
+  Classic 20 of 22 (both faults now fixed and firm), Visible 15 of 19, Weak 3 of 6; calls 53 of 56.
+- Now (development set, 45 matches): 22 Classic rows pass, all 120 history rows hold, 9 of HC v Team's 19 open checks
+  hold. Gate 12 of 12, 63 of 105. Line-up 421 of 426; comms 110 of 157. Self-check 212. Splits 1,203, numbers 863.
+- On the page, unmarked (engine e2197e4): Men v Crew on Isle of Jade (51683de9; game 2; 40 situations, 56 calls) and
+  옷옷옷옷 v RACK on Isle of Solitude (a8ba43a8; game 3; 37 situations, 47 calls), both at once at his word.
 
 ## Next (in order)
-1. His answers to the three items below; build them at the root (R-465); check after each change (CLAUDE.md).
-2. Then export the next game: `moments.py all <plays> --dev`, `confidence.py run <conf> 51683de9`, `review.py export
-   <plays> <main rows> --set f1 --part 2 --label "game 2" --confidence <conf>`. Never re-export a game he has marked.
-3. After he grades it: `review.py file <id> <main rows> <main marks> --set f1 --key <main key>`, copy the key to the
-   branch, set out the results in the chat, write the checks for Partly and Incorrect by hand.
-4. After about three graded games: fit the confidence bands to his grades, put the result to him, then move them.
-   Faults seen in one game so far, to build only if a second game shows them (R-495): HC's main team pushing by the
-   back door read as a split (rows 38, 40, 41, 46, 50); who and how many push a flagger (rows 3, 4, 16, 19, 23); a
-   split read on top of a push on the flagger (12); a split's continuation read as a new split (37).
+1. He grades games 2 and 3. For each: `review.py file <id> <main rows> <main marks> --set f1 --key <main key>`, copy
+   the key to the branch, set out the results in the chat (R-329), write the checks for Partly and Incorrect by hand.
+2. Fix the Classic faults at the root (R-465), checking after each change (CLAUDE.md). A fault that now shows in two
+   games is built (R-495). Seen in HC v Team only so far: who and how many push a flagger (rows 3, 4, 16, 19, 23); a
+   split read on top of a push on the flagger (12); a split's continuation read as a new split (37); the three-player
+   split of 12:28 to 13:22 that he reads as part of the main team's push (38).
+3. With three graded games: fit the confidence bands to his grades, put the result to him, then move them.
+4. Next games: pick from unused October and November games of top guilds (no henchman game); `moments.py all <plays>
+   --dev` after adding them to `dev_set.json`, `confidence.py run <conf> <id>` (6 to 8 minutes a game: run it in the
+   background), `review.py export <plays> <main rows> --set f1 --part N --label "game N" --confidence <conf>`.
 5. When he says the flag plays are ready: the flag family to the end (R-451); the other kinds after; then stage E.
 
-## Open for Denning (put to him 2026-11-15, night; set each out again, R-329, with the replay link)
-1. Classic, open (row 18, 5:58): HC's flag is capped at 6:36; Team's Monk 5 turns for home at 6:34 and leaves the
-   stand area at 6:40, which is the run's moment by R-461, so the engine reads "Team stays". He reads Team's single
-   run as the answer. Proposed: a run is the answer to theirs when its runner set off before their cap (20 of 232
-   stays on the development set, 11 matches, are this case). His to rule: it touches R-461.
-2. A death of a split's defender counted "at the main fight" in a flag job (row 31: Team's 8 Monk, 11:58, at Team's
-   back door). Proposed: R-466 covers a split's defenders as it does its attackers.
-3. The opening flag (rows 1, 2): nobody has a flag capped, "no one is behind on flags". Does the flag job apply?
+## Open for Denning
+- Nothing waits on a ruling. His to correct when he looks: R-502 as built (Claude's reading of "fix back door"); a
+  double run at the opening keeps its own job (R-500 covers single against single); the draft confidence bands.
 - Noted, not put to him (R-491): TFS v 옷옷옷옷 1:54, a flag put on the Obelisk stand reads "our flag is capped: no".
 
 ## Data looked at on 2026-11-14 (nothing built; nothing from GW Observer in the repo)

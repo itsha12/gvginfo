@@ -14,6 +14,10 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   R-355). In an uneven divide, the larger part (R-421, R-487). An even divide with both groups on the main flag
   path is a push team (forward, at the enemy's door) and a defence team (at its own), not a main team and a split
   (R-487).
+- A main team that goes round the back is still the main team (R-502): when all but two of a team stood together
+  and then spread out, the main team is one of its own parts, not the runner and the player with him; five or more
+  of its players on the enemy's ground round the back, two more than the part on the front lane, are the main team
+  there; and a split is over once two or more of the rest of its team stand with it in a group of five or more.
 - A player cannot be in two fights at once, and some are in neither: moving to position with no output (R-488).
   Numbers are told only when they last 12 s; "no clear decision" is an answer (R-488).
 - On a split: the players who came with it and stand with it, its back line included; brief support is not one more
@@ -82,7 +86,10 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   a double run needs the second runner to take the next flag within 30 s of the cap; a flag put down for good ends its
   run there, and at a hall's second flag stand (the Obelisk flag stand on Meditation, his answer) that is a cap of it.
 - The opening is read (R-479): each team's first flag is a run, and a player left at the spawn for the next flag is
-  part of the call.
+  part of the call. While nobody has a flag capped nobody is behind on flags: a first run, single against single,
+  carries only "get the first flag in" (R-500).
+- A run is the answer to theirs when its runner turned for home before their flag went in, though the run's own
+  moment falls just after their cap (R-498). A stay ends when their flag is in (R-501).
 - A flag run is judged from the decision to run to its cap: what the team does after the cap is another decision, and
   its cost is not the run's (R-471). A run is not blamed for a deficit already there: the flag test is no worse than
   half a flag behind at the end, or no further behind than at the start (R-474).
@@ -97,7 +104,8 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   that ground; a break-out is half the living players, four at least, out past the doors where being held in ends.
 - Which games count: from 1 September 2026, and never a game in which a team fields a henchman (R-476, R-477); a team
   of seven with no henchman counts. A draft number moves only on a fresh game's evidence and a GvG reason (R-480).
-- A flag run's job counts only deaths at the main fight: deaths out on a split are the split's own (R-466, R-443).
+- A flag run's job counts only deaths at the main fight: deaths out on a split, and deaths defending an enemy
+  split, are the split's own (R-466, R-443, R-499).
   Staying against a run is also met when their flag does not get in (R-468). The flag decision is told once, from the
   side that ran second (his mark, hdm v hook 7:07). A flag never carried out of its own base and pit is not a run.
 - A numbers difference is a moment only where that fight is being fought (*draft:* its players start more than 0.7
