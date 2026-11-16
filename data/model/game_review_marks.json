@@ -5198,6 +5198,585 @@
    "game": "Men v Crew, Isle of Jade",
    "at": "2026-11-16",
    "engine": "e2197e4"
+  },
+  "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4": {
+   "marks": {
+    "s:a8ba43a8-flag-1-0-0": {
+     "grade": "classic",
+     "why": "this is the opening run. RACK brings flag up on Warrior, but DOES NOT run the flag. 옷옷옷옷 does not \"stay\" they just don't run the flag (they don't bring it up on anyone).",
+     "text": "The opening. RACK single run (Dervish); 옷옷옷옷 stays",
+     "band": "high",
+     "mark": "incorrect",
+     "off": [
+      "who",
+      "where",
+      "kind"
+     ]
+    },
+    "a8ba43a8-flag-1-0-0": {
+     "mark": "not judged",
+     "why": "",
+     "text": "옷옷옷옷 [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Met (more of theirs die at the main fight than of ours: no; their flag does not get in: yes)"
+    },
+    "s:a8ba43a8-split-2-94-3": {
+     "grade": "classic",
+     "why": "",
+     "text": "RACK's split by the back door: 4 players (Ritualist, AoB Derv, 8 Monk, Dervish) against 2 defending (7 Monk (WoC), 8 Monk)",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "a8ba43a8-split-2-94-3": {
+     "mark": "correct",
+     "why": "",
+     "text": "RACK (attacker) [a player or more up]: Kill or take NPCs. Met (a defender killed: no; an NPC taken: yes)"
+    },
+    "a8ba43a8-split-1-94-2": {
+     "mark": "correct",
+     "why": "",
+     "text": "옷옷옷옷 (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Not met (no pit NPC lost: no; no defender dies: yes)"
+    },
+    "a8ba43a8-split-2-94-4": {
+     "mark": "correct",
+     "why": "",
+     "text": "RACK (attacker's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Not met (more of theirs die away from the split than of ours: no)"
+    },
+    "s:a8ba43a8-flag-1-101-5": {
+     "grade": "classic",
+     "why": "",
+     "text": "RACK single run (Hammer); 옷옷옷옷 single run (8 Monk)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "a8ba43a8-flag-1-101-5": {
+     "mark": "correct",
+     "why": "",
+     "text": "옷옷옷옷 [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (our flag is capped: yes; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: no)"
+    },
+    "s:a8ba43a8-pinned-2-84-1": {
+     "grade": "visible",
+     "why": "",
+     "text": "RACK is held in its own base or pit by 옷옷옷옷's main team (K2 A2 B1 alive; base res in 36 s)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "a8ba43a8-pinned-2-84-1": {
+     "mark": "correct",
+     "why": "",
+     "text": "RACK: Lose no player and no NPC while held in, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it breaks out at 1:40, having lost nothing; a break-out is half its living players or more, four at least, out past its doors): yes)"
+    },
+    "s:a8ba43a8-split-2-126-7": {
+     "grade": "none",
+     "why": "this is not a split. the 4 man split leaves by portal after 2 die and runs to base.",
+     "mark": "",
+     "off": [],
+     "text": "RACK's split by the back door: one player (Dervish) against 7 defending (Mesmer, Monk 3 (WoC), Monk 4 (WoC), Monk 5 (WoC), Prot (WoC), 7 Monk (WoC), Monk 2 (WoC)); the whole team turns on it; 7 (Mesmer, Monk 3 (WoC), Monk 4 (WoC), Monk 5 (WoC), Prot (WoC), 7 Monk (WoC), Monk 2 (WoC)) against one player: full collapse",
+     "band": "low"
+    },
+    "a8ba43a8-split-2-126-7": {
+     "mark": "not judged",
+     "why": "",
+     "text": "RACK (attacker) [met by a full collapse]: Survive and gain an advantage elsewhere on the map. Not met (nobody on the split dies: no; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: yes)"
+    },
+    "a8ba43a8-split-1-126-6": {
+     "mark": "not judged",
+     "why": "",
+     "text": "옷옷옷옷 (defender) [full collapse]: Kill the split or drive it out (the flags it costs are beside it). Met (a split player dies: yes; the split is gone within the visit: yes)"
+    },
+    "s:a8ba43a8-flag-2-133-8": {
+     "grade": "repeat",
+     "why": "repeat AND incorrect. 옷옷옷옷 single run already covered and RACK DOES NOT run the flag.",
+     "mark": "",
+     "off": [],
+     "text": "옷옷옷옷 single run (8 Monk); RACK single run (Hammer, Prot)",
+     "band": "high"
+    },
+    "a8ba43a8-flag-2-133-8": {
+     "mark": "not judged",
+     "why": "",
+     "text": "RACK [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (our flag is capped: no; no more of ours die at the main fight than of theirs: no; no worse than half a flag behind at the end, or no further behind than at the start: no)"
+    },
+    "s:a8ba43a8-pinned-2-172-9": {
+     "grade": "visible",
+     "why": "",
+     "text": "RACK is held in its own base or pit by 옷옷옷옷's main team (K2 A2 B1 alive; base res in 68 s)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "a8ba43a8-pinned-2-172-9": {
+     "mark": "correct",
+     "why": "",
+     "text": "RACK: Hold the NPCs and lose nobody until the base res, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)"
+    },
+    "s:a8ba43a8-numbers-1-182-10": {
+     "grade": "classic",
+     "why": "",
+     "text": "옷옷옷옷 up on numbers in the main fight (6 v 5, RACK's front door; then 7 v 5 from 3:26; then 8 v 5 from 3:48), from kills; 옷옷옷옷: push up (push up to their base)",
+     "band": "low",
+     "mark": "correct",
+     "off": []
+    },
+    "a8ba43a8-numbers-1-182-10": {
+     "mark": "correct",
+     "why": "",
+     "text": "옷옷옷옷 (after a wipe) [push up]: Take pit NPCs before their base res. Met (one of their pit NPCs dies before the res: yes)"
+    },
+    "s:a8ba43a8-flag-1-183-11": {
+     "grade": "classic",
+     "why": "옷옷옷옷's 8 monk single runs at 4:32 to get a backup flag. RACK DOES NOT run.",
+     "text": "RACK single run (Hammer); 옷옷옷옷 single run (8 Monk)",
+     "band": "high",
+     "mark": "incorrect",
+     "off": [
+      "who",
+      "when",
+      "kind"
+     ]
+    },
+    "a8ba43a8-flag-1-183-11": {
+     "mark": "not judged",
+     "why": "",
+     "text": "옷옷옷옷 [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (our flag is capped: no; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: yes)"
+    },
+    "s:a8ba43a8-base_res-1-220-12": {
+     "grade": "visible",
+     "why": "",
+     "text": "옷옷옷옷 has 8 in RACK's base at the base res (4 defending, 3 coming back): 8 stay",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "a8ba43a8-base_res-1-220-12": {
+     "mark": "correct",
+     "why": "",
+     "text": "옷옷옷옷 [stayed through the res]: Be out, or set for the fight, when they res. Met (nobody of ours dies in the 30 s after the res: yes)"
+    },
+    "s:a8ba43a8-pinned-2-224-13": {
+     "grade": "visible",
+     "why": "check NPC numbers, I think 1k and 1 archer are dead.",
+     "text": "RACK is held in its own base or pit by 옷옷옷옷's main team (K1 A2 B1 alive; base res in 16 s)",
+     "band": "high",
+     "mark": "partly"
+    },
+    "a8ba43a8-pinned-2-224-13": {
+     "mark": "partly",
+     "why": "",
+     "text": "RACK: Hold the NPCs and lose nobody until the base res, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)"
+    },
+    "s:a8ba43a8-pinned-2-240-14": {
+     "grade": "classic",
+     "why": "",
+     "text": "RACK is held in its own base or pit by 옷옷옷옷's main team (K1 A2 B1 alive; base res in 120 s)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "a8ba43a8-pinned-2-240-14": {
+     "mark": "correct",
+     "why": "",
+     "text": "RACK: Lose no player and no NPC while held in, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it breaks out at 4:20, having lost nothing; a break-out is half its living players or more, four at least, out past its doors): yes)"
+    },
+    "s:a8ba43a8-boost-2-273-15": {
+     "grade": "weak",
+     "why": "RACK does not send a runner",
+     "text": "옷옷옷옷's boost is 30 s away; RACK: one runner; the rest stay on their side",
+     "band": "high",
+     "mark": "incorrect"
+    },
+    "a8ba43a8-boost-2-273-15": {
+     "mark": "not judged",
+     "why": "",
+     "text": "RACK [run]: Deny their boost. Not met (their boost does not land: no)"
+    },
+    "s:a8ba43a8-numbers-1-346-16": {
+     "grade": "visible",
+     "why": "",
+     "text": "옷옷옷옷 up on numbers in the main fight (6 v 3, RACK's pit), from players split elsewhere; 옷옷옷옷: stay (stay on the enemy's side) | RACK: retreat down the ladder (retreat to the pit)",
+     "band": "low",
+     "mark": "correct",
+     "off": []
+    },
+    "a8ba43a8-numbers-1-346-16": {
+     "mark": "correct",
+     "why": "",
+     "text": "옷옷옷옷 (strong side) [stay]: Kill with the numbers while their players are away. Met (more of theirs die than of ours: yes)"
+    },
+    "a8ba43a8-numbers-2-346-17": {
+     "mark": "correct",
+     "why": "",
+     "text": "RACK (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Not met (nobody of ours dies: no)"
+    },
+    "s:a8ba43a8-split-2-360-19": {
+     "grade": "classic",
+     "why": "",
+     "text": "RACK's split by the back door: 5 players (Ritualist, AoB Derv, 8 Monk, Hammer, Dervish) against 2 defending (7 Monk (WoC), 8 Monk)",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "a8ba43a8-split-2-360-19": {
+     "mark": "correct",
+     "why": "",
+     "text": "RACK (attacker) [a player or more up]: Kill or take NPCs. Met (a defender killed: no; an NPC taken: yes)"
+    },
+    "a8ba43a8-split-1-360-18": {
+     "mark": "correct",
+     "why": "",
+     "text": "옷옷옷옷 (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Not met (no pit NPC lost: no; no defender dies: yes)"
+    },
+    "a8ba43a8-split-2-360-20": {
+     "mark": "correct",
+     "why": "",
+     "text": "RACK (attacker's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Not met (more of theirs die away from the split than of ours: no)"
+    },
+    "s:a8ba43a8-split-2-388-23": {
+     "grade": "none",
+     "why": "NOT a split, just RACK split team that was already split leaving portal/dying",
+     "mark": "",
+     "off": [],
+     "text": "RACK's split by the back door: three players (Dervish, Hammer, 8 Monk) against 7 defending (Mesmer, Monk 2 (WoC), Monk 4 (WoC), 7 Monk (WoC), Monk 3 (WoC), Monk 5 (WoC), 8 Monk); the whole team turns on it; 7 (Mesmer, Monk 2 (WoC), Monk 4 (WoC), 7 Monk (WoC), Monk 3 (WoC), Monk 5 (WoC), 8 Monk) against three players: full collapse",
+     "band": "low"
+    },
+    "a8ba43a8-split-2-388-23": {
+     "mark": "not judged",
+     "why": "",
+     "text": "RACK (attacker) [met by a full collapse]: Survive and gain an advantage elsewhere on the map. Not met (nobody on the split dies: no; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)"
+    },
+    "a8ba43a8-split-1-388-22": {
+     "mark": "not judged",
+     "why": "",
+     "text": "옷옷옷옷 (defender) [full collapse]: Kill the split or drive it out (the flags it costs are beside it). Met (a split player dies: yes; the split is gone within the visit: yes)"
+    },
+    "s:a8ba43a8-boost-2-393-24": {
+     "grade": "classic",
+     "why": "this is single runner on Stand Mes. (please confirm or explain your reasoning)",
+     "text": "옷옷옷옷's boost is 30 s away; RACK: two runners; the rest go out by the front door",
+     "band": "high",
+     "mark": "incorrect"
+    },
+    "a8ba43a8-boost-2-393-24": {
+     "mark": "not judged",
+     "why": "",
+     "text": "RACK [run]: Deny their boost. Not met (their boost does not land: no)"
+    },
+    "s:a8ba43a8-base_res-1-460-25": {
+     "grade": "visible",
+     "why": "",
+     "text": "옷옷옷옷 has 7 in RACK's base at the base res (0 defending, 4 coming back): 7 stay",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "a8ba43a8-base_res-1-460-25": {
+     "mark": "correct",
+     "why": "",
+     "text": "옷옷옷옷 [stayed through the res]: Be out, or set for the fight, when they res. Met (nobody of ours dies in the 30 s after the res: yes)"
+    },
+    "s:a8ba43a8-boost-2-513-28": {
+     "grade": "visible",
+     "why": "",
+     "text": "옷옷옷옷's boost is 30 s away; RACK: no runner; the rest retreat to the pit",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "a8ba43a8-boost-2-513-28": {
+     "mark": "correct",
+     "why": "",
+     "text": "RACK [concede]: Concede the boost for kills. Not met (more of theirs die than of ours: no)"
+    },
+    "s:a8ba43a8-pinned-2-540-29": {
+     "grade": "visible",
+     "why": "check NPC counts",
+     "text": "RACK is held in its own base or pit by 옷옷옷옷's main team (K1 A1 B1 alive; base res in 60 s)",
+     "band": "low",
+     "mark": "partly"
+    },
+    "a8ba43a8-pinned-2-540-29": {
+     "mark": "partly",
+     "why": "",
+     "text": "RACK: Hold the NPCs and lose nobody until the base res, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it breaks out at 9:34, after losing a player or a pit NPC; a break-out is half its living players or more, four at least, out past its doors): no)"
+    },
+    "s:a8ba43a8-numbers-1-550-30": {
+     "grade": "weak",
+     "why": "",
+     "text": "옷옷옷옷 up on numbers in the main fight (6 v 3, RACK's front door), from kills; 옷옷옷옷: push up (push up to their base)",
+     "band": "low",
+     "mark": "correct",
+     "off": []
+    },
+    "a8ba43a8-numbers-1-550-30": {
+     "mark": "not judged",
+     "why": "",
+     "text": "옷옷옷옷 (after a wipe) [push up]: Take pit NPCs before their base res. Met (one of their pit NPCs dies before the res: yes)"
+    },
+    "s:a8ba43a8-base_res-1-580-31": {
+     "grade": "classic",
+     "why": "옷옷옷옷 DOES NOT stay in base. All members of 옷옷옷옷 leave base before base res.",
+     "text": "옷옷옷옷 has 5 in RACK's base at the base res (0 defending, 1 coming back): 5 stay",
+     "band": "high",
+     "mark": "incorrect",
+     "off": [
+      "numbers",
+      "kind"
+     ]
+    },
+    "a8ba43a8-base_res-1-580-31": {
+     "mark": "not judged",
+     "why": "",
+     "text": "옷옷옷옷 [stayed through the res]: Be out, or set for the fight, when they res. Met (nobody of ours dies in the 30 s after the res: yes)"
+    },
+    "s:a8ba43a8-boost-2-633-34": {
+     "grade": "visible",
+     "why": "",
+     "text": "옷옷옷옷's boost is 30 s away; RACK: no runner; the rest fall out",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "a8ba43a8-boost-2-633-34": {
+     "mark": "correct",
+     "why": "",
+     "text": "RACK [concede]: Concede the boost for kills. Not met (more of theirs die than of ours: no)"
+    },
+    "s:a8ba43a8-numbers-1-656-35": {
+     "grade": "visible",
+     "why": "this is a player advantage but also a collapse play that you missed",
+     "text": "옷옷옷옷 up on numbers in the main fight (8 v 4, 옷옷옷옷's pit; then 8 v 3 from 11:10; then 6 v 3 from 11:26), from kills; 옷옷옷옷: push in | RACK: retreat down the ladder (retreat to the pit)",
+     "band": "low",
+     "mark": "partly",
+     "off": [
+      "kind"
+     ]
+    },
+    "a8ba43a8-numbers-1-656-35": {
+     "mark": "correct",
+     "why": "",
+     "text": "옷옷옷옷 (up) [push in]: Take ground and NPCs with the numbers. Met (no more of ours die than of theirs: yes; one of their NPCs dies: yes; more of theirs die than of ours: yes)"
+    },
+    "a8ba43a8-numbers-2-656-36": {
+     "mark": "correct",
+     "why": "",
+     "text": "RACK (down) [retreat down the ladder]: Reach cover a player down without losing another. Not met (nobody of ours dies: no; no NPC lost: no)"
+    },
+    "s:a8ba43a8-pinned-2-728-37": {
+     "grade": "visible",
+     "why": "",
+     "text": "RACK is held in its own base or pit by 옷옷옷옷's main team (K0 A1 B1 alive; base res in 112 s)",
+     "band": "low",
+     "mark": "correct",
+     "off": []
+    },
+    "a8ba43a8-pinned-2-728-37": {
+     "mark": "correct",
+     "why": "",
+     "text": "RACK: Lose no player and no NPC while held in, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it breaks out at 13:12, having lost nothing; a break-out is half its living players or more, four at least, out past its doors): yes)"
+    },
+    "s:a8ba43a8-numbers-1-810-38": {
+     "grade": "visible",
+     "why": "",
+     "text": "옷옷옷옷 up on numbers in the main fight (6 v 4, the field on RACK's side; then 7 v 3 from 13:44), from players on their way to it (in neither fight); 옷옷옷옷: stay (stay on the enemy's side) | RACK: retreat down the ladder (retreat to the pit)",
+     "band": "low",
+     "mark": "correct",
+     "off": []
+    },
+    "a8ba43a8-numbers-1-810-38": {
+     "mark": "correct",
+     "why": "",
+     "text": "옷옷옷옷 (up) [stay]: Turn the extra player into a kill before the numbers are level. Met (more of theirs die than of ours: yes)"
+    },
+    "a8ba43a8-numbers-2-810-39": {
+     "mark": "correct",
+     "why": "",
+     "text": "RACK (down) [retreat down the ladder]: Reach cover a player down without losing another. Not met (nobody of ours dies: no; no NPC lost: no)"
+    },
+    "s:a8ba43a8-pinned-2-844-40": {
+     "grade": "visible",
+     "why": "",
+     "text": "RACK is held in its own base or pit by 옷옷옷옷's main team (K0 A1 B1 alive; base res in 116 s)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "a8ba43a8-pinned-2-844-40": {
+     "mark": "correct",
+     "why": "",
+     "text": "RACK: Hold the NPCs and lose nobody until the base res, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it breaks out at 14:32, after losing a player or a pit NPC; a break-out is half its living players or more, four at least, out past its doors): no)"
+    },
+    "s:a8ba43a8-numbers-1-848-41": {
+     "grade": "visible",
+     "why": "",
+     "text": "옷옷옷옷 down on numbers in the main fight (5 v 6, RACK's pit), from players split elsewhere; 옷옷옷옷: stay (stay on the enemy's side)",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "a8ba43a8-numbers-1-848-41": {
+     "mark": "correct",
+     "why": "",
+     "text": "옷옷옷옷 (weak side) [stay]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)"
+    },
+    "s:a8ba43a8-numbers-1-866-42": {
+     "grade": "visible",
+     "why": "I see this as 6v7",
+     "text": "옷옷옷옷 up on numbers in the main fight (7 v 5, RACK's pit; then 7 v 4 from 14:54), from kills; 옷옷옷옷: stay (stay on the enemy's side) | RACK: stay (stay on their side)",
+     "band": "low",
+     "mark": "partly",
+     "off": [
+      "numbers"
+     ]
+    },
+    "a8ba43a8-numbers-1-866-42": {
+     "mark": "correct",
+     "why": "",
+     "text": "옷옷옷옷 (up) [stay]: Turn the extra player into a kill before the numbers are level. Met (more of theirs die than of ours: yes)"
+    },
+    "a8ba43a8-numbers-2-866-43": {
+     "mark": "correct",
+     "why": "",
+     "text": "RACK (down) [stay]: Hold the ground a player down and lose no more until it is level, or the base res. Not met (nobody of ours dies: no)"
+    },
+    "s:a8ba43a8-boost-2-873-44": {
+     "grade": "visible",
+     "why": "",
+     "text": "옷옷옷옷's boost is 30 s away; RACK: no runner; the rest stay on their side",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "a8ba43a8-boost-2-873-44": {
+     "mark": "correct",
+     "why": "",
+     "text": "RACK [concede]: Concede the boost for kills. Not met (more of theirs die than of ours: no)"
+    },
+    "s:a8ba43a8-split-2-888-47": {
+     "grade": "classic",
+     "why": "",
+     "text": "RACK's split by the front door: one player (Dervish) against 1 defending (7 Monk (WoC)); numbers along the way: 1 v 1 from 14:48, 2 v 1 from 15:04, 1 v 1 from 15:20",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "a8ba43a8-split-2-888-47": {
+     "mark": "correct",
+     "why": "",
+     "text": "RACK (attacker) [1 v 1, the defender not a monk]: Take NPCs or kills. Not met (a defender killed: no; an NPC taken: no)"
+    },
+    "a8ba43a8-split-1-888-45": {
+     "mark": "correct",
+     "why": "",
+     "text": "옷옷옷옷 (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (no pit NPC lost: yes; no more defenders die than split players: yes)"
+    },
+    "a8ba43a8-split-1-888-46": {
+     "mark": "correct",
+     "why": "",
+     "text": "옷옷옷옷 (defender's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Met (more of theirs die away from the split than of ours: yes)"
+    },
+    "s:a8ba43a8-base_res-1-940-48": {
+     "grade": "classic",
+     "why": "none stay",
+     "text": "옷옷옷옷 has 7 in RACK's base at the base res (1 defending, 4 coming back): 1 stay",
+     "band": "high",
+     "mark": "incorrect",
+     "off": [
+      "numbers"
+     ]
+    },
+    "a8ba43a8-base_res-1-940-48": {
+     "mark": "not judged",
+     "why": "",
+     "text": "옷옷옷옷 [stayed through the res]: Be out, or set for the fight, when they res. Met (nobody of ours dies in the 30 s after the res: yes)"
+    },
+    "s:a8ba43a8-pinned-2-976-49": {
+     "grade": "classic",
+     "why": "",
+     "text": "RACK is held in its own base or pit by 옷옷옷옷's main team (K0 A1 B0 alive; base res in 104 s)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "a8ba43a8-pinned-2-976-49": {
+     "mark": "correct",
+     "why": "",
+     "text": "RACK: Hold the NPCs and lose nobody until the base res, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)"
+    },
+    "s:a8ba43a8-numbers-1-998-50": {
+     "grade": "visible",
+     "why": "",
+     "text": "옷옷옷옷 up on numbers in the main fight (8 v 4, RACK's pit; then 8 v 2 from 17:12), from kills; 옷옷옷옷: stay (stay on the enemy's side)",
+     "band": "low",
+     "mark": "correct",
+     "off": []
+    },
+    "a8ba43a8-numbers-1-998-50": {
+     "mark": "correct",
+     "why": "",
+     "text": "옷옷옷옷 (after a wipe) [stay]: Take pit NPCs before their base res. Not met (one of their pit NPCs dies before the res: no)"
+    },
+    "s:a8ba43a8-flag-1-375-21": {
+     "grade": "visible",
+     "why": "single run half run to stand mes (number 5)",
+     "text": "RACK single run (Prot); 옷옷옷옷 stays",
+     "band": "high",
+     "mark": "partly"
+    },
+    "a8ba43a8-flag-1-375-21": {
+     "mark": "correct",
+     "why": "",
+     "text": "옷옷옷옷 [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Met (more of theirs die at the main fight than of ours: no; their flag does not get in: yes)"
+    }
+   },
+   "scheme": 2,
+   "game": "옷옷옷옷 v RACK, Isle of Solitude",
+   "at": "2026-11-16",
+   "engine": "e2197e4",
+   "missed": [
+    {
+     "t": "1:51",
+     "kind": "collapse",
+     "grade": "classic",
+     "why": "옷옷옷옷 full team collapses through front door on RACK's split and kills rit and derv."
+    },
+    {
+     "t": "4:30",
+     "kind": "split",
+     "grade": "classic",
+     "why": "clear split of 5 out backdoor for RACK"
+    },
+    {
+     "t": "4:39",
+     "kind": "collapse",
+     "grade": "classic",
+     "why": "clear fullteam collapse out of frontdoor to backdoor to try to catch RACK split"
+    },
+    {
+     "t": "6:01",
+     "kind": "collapse",
+     "grade": "classic",
+     "why": "clear fullteam collapse out of portal to try to catch RACK split"
+    },
+    {
+     "t": "8:11",
+     "kind": "split",
+     "grade": "classic",
+     "why": "5 man split for RACK out backdoor"
+    },
+    {
+     "t": "8:16",
+     "kind": "collapse",
+     "grade": "classic",
+     "why": "full team collapse by 옷옷옷옷 through portal on RACK split"
+    },
+    {
+     "t": "9:52",
+     "kind": "split",
+     "grade": "classic",
+     "why": "5 man split out backdoor by RACK"
+    }
+   ]
   }
  }
 }
