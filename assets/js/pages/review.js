@@ -22,6 +22,8 @@ const BAND = { high: "High", medium: "Medium", low: "Low", none: "No decision" }
 const KINDS = ["flag", "push on a flagger", "split", "collapse", "numbers", "boost", "pinned in base", "base res", "Lord push", "other"];
 const SKIP = "not judged";      // a call that is not asked for
 let rows = null, marks = null, cur = null, draft = {};
+let showTodo = false;           // rows not yet marked are shown in red (his request, 2026-11-17: "which rows I haven't marked yet")
+try { showTodo = localStorage.getItem("gvginfo.review.todo") === "1"; } catch { /* off */ }
 
 const clock = (t) => `${Math.floor(t / 60)}:${String(Math.round(t % 60)).padStart(2, "0")}`;
 const loadDraft = () => { try { draft = JSON.parse(localStorage.getItem(DRAFT) || "{}"); } catch { draft = {}; } };
@@ -76,7 +78,7 @@ function gameHtml(g) {
   const M = now(g);
   const body = g.situations.map((s) => {
     const m = M[s.id], b = band(s), asked = callsAsked(m) && b !== "none", not = whyNot(s, m);
-    const calls = s.calls.map((c) => `<tr class="rv-call${asked && M[c.id]?.mark && M[c.id].mark !== SKIP ? " rv-done" : ""}${asked ? "" : " rv-skip"}"><td></td><td></td>
+    const calls = s.calls.map((c) => `<tr class="rv-call${asked && M[c.id]?.mark && M[c.id].mark !== SKIP ? " rv-done" : asked ? " rv-todo" : ""}${asked ? "" : " rv-skip"}"><td></td><td></td>
       <td><b>${esc(c.team)}</b>${c.side ? ` <span class="muted">(${esc(c.side)})</span>` : ""}${c.label ? ` <span class="pill type">${esc(c.label)}</span>` : ""}: ${esc(c.job)}.
         <b class="${c.met ? "rv-met" : "rv-not"}">${c.met ? "Met" : "Not met"}</b>${c.draft ? ` <span class="muted small">(this job is Claude's draft, not yet ruled)</span>` : ""}
         ${c.tests.length ? `<div class="muted small">${c.tests.map(([ok, t]) => `${esc(t)}: ${ok ? "yes" : "no"}`).join("; ")}</div>` : ""}</td>${asked ? callControl(c, M[c.id]) : `<td class="muted small">${esc(not)}</td>`}</tr>`).join("");
@@ -87,7 +89,7 @@ function gameHtml(g) {
         <div class="muted small">Why the engine reads no decision: ${esc(s.confidence?.why || s.unclear || "")} Leave it as it is if you agree. If it was a decision, grade it and say what it was:</div>
         ${gradeBoxes(s.id, m, ["classic", "visible", "weak"])}${words(m, "your words: what the decision was")}${open ? ` <button class="btn small ghost" data-clear="${esc(s.id)}">Not a decision after all</button>` : ""}</details></td></tr>`;
     }
-    return `<tr class="rv-sit${sitDone(s, m) ? " rv-done" : ""}"><td class="rv-n">${s.n}</td><td class="rv-t">${clock(s.t0)}–${clock(s.t1)}</td>
+    return `<tr class="rv-sit${sitDone(s, m) ? " rv-done" : " rv-todo"}"><td class="rv-n">${s.n}</td><td class="rv-t">${clock(s.t0)}–${clock(s.t1)}</td>
       <td><span class="rv-conf rv-c-${b}" title="${esc(s.confidence?.why || "")}">Engine's confidence that this is a decision: ${BAND[b] || "not given"}</span><br>${esc(s.reads)}
         <div class="muted small">${esc(s.confidence?.why || "")}</div></td>${sitControl(s, m)}</tr>${calls}`;
   }).join("");
@@ -103,8 +105,10 @@ function gameHtml(g) {
     ${summary(g, M)}
     ${(g.selfcheck || []).length ? `<details class="rv-terms"><summary>The engine's own check: ${g.selfcheck.length} time${g.selfcheck.length === 1 ? "" : "s"} it counts a player in two fights at once (the numbers rows it touches are read as no decision)</summary><ul class="small">${g.selfcheck.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></details>` : ""}
     <div class="row rv-bar"><button class="btn small primary" data-save>Save this game's marks</button>
-      <button class="btn small ghost" data-rest title="Every call that is asked for and not yet marked is marked Correct. Use it after marking the calls that are partly right or incorrect.">Mark the unmarked calls Correct</button></div>
-    <div class="tablewrap"><table class="data rv-rows"><thead><tr><th>#</th><th>Time</th><th>The situation, then each side's call</th><th>Your grade and mark</th></tr></thead><tbody>${body}</tbody></table></div>
+      <button class="btn small ghost" data-rest title="Every call that is asked for and not yet marked is marked Correct. Use it after marking the calls that are partly right or incorrect.">Mark the unmarked calls Correct</button>
+      <button class="btn small ${showTodo ? "primary" : "ghost"}" data-todo title="Rows you have not marked yet are shown in red. Press again to hide the red.">${showTodo ? "Hide" : "Show"} the rows not marked yet (${T.length - done})</button>
+      ${showTodo && T.length - done ? `<button class="btn small ghost" data-nexttodo>Go to the next one</button>` : ""}</div>
+    <div class="tablewrap"><table class="data rv-rows${showTodo ? " rv-showtodo" : ""}"><thead><tr><th>#</th><th>Time</th><th>The situation, then each side's call</th><th>Your grade and mark</th></tr></thead><tbody>${body}</tbody></table></div>
     <h4 style="margin:.9rem 0 .3rem">Decisions the engine did not read</h4>
     <p class="muted small" style="margin:.2rem 0">A decision you see in the game that has no row above, not even a folded one. Give its time, the kind of play, whether it is Classic or Visible, and what it was. A Classic one the engine must learn to read.</p>
     <div class="tablewrap"><table class="data rv-missed"><thead><tr><th>Time</th><th>Kind of play</th><th>Grade</th><th>Your words</th><th></th></tr></thead><tbody>${missed}</tbody></table></div>
@@ -149,6 +153,7 @@ export async function renderReview(out, keep = false) {
     <li><b>A call</b> is what one team did about the situation. Its <b>job</b> is what a team is expected to achieve there by your rulings; <b>Met</b> or <b>Not met</b> says only whether that happened, and the small line under it lists each test with yes or no. Calls are asked for only under a Classic or Visible decision that the engine read Correct or Partly. For a call, <b>Correct</b> means that is the team's job there and the result is right; <b>Partly</b> means the job or the result is off; <b>Incorrect</b> means that is not what the team was doing.</li>
     <li><b>Folded rows</b> are moments the engine reads as no decision (numbers that never held 12 seconds, or a player it counts in two fights at once). Leave one alone if you agree; it is not counted among the rows to mark. Open it to say it was a decision.</li>
     <li><b>Decisions the engine did not read</b>, under the table: anything you see that has no row at all.</li>
+    <li><b>Show the rows not marked yet</b>, beside the Save button, puts every row you still have to mark in red, with a count; press it again to hide the red. <b>Go to the next one</b> scrolls to the next red row.</li>
     <li>Marks are kept in this browser as you go and reach the engine when you press Save. Stop and resume at any point.</li>
   </ul></details>
   <div class="row rv-games">${fresh.map(button).join("")}</div>
@@ -169,6 +174,7 @@ export async function renderReview(out, keep = false) {
   .rv-conf{display:inline-block;font-size:.74rem;font-weight:600;letter-spacing:.03em;border:1px solid var(--ink);padding:.05rem .4rem;margin-bottom:.2rem}.rv-c-high{background:var(--ink);color:#fff}.rv-c-low{border-style:dashed}.rv-c-none{border-style:dotted;color:var(--muted);border-color:var(--muted)}
   .rv-dot{display:inline-block;width:.7rem;height:.7rem;padding:0;margin-right:.4rem;vertical-align:baseline;background:var(--c,#bbb)}.rv-sum{width:auto}.rv-sum td,.rv-sum th{padding:.2rem .7rem;font-size:.86rem;text-align:center}.rv-sum td:first-child{text-align:left}
   .rv-missed td{vertical-align:middle;padding:.3rem .4rem}.rv-missed th:nth-child(4){width:55%}
+  .rv-showtodo tr.rv-todo td{background:#fdecea}.rv-showtodo tr.rv-todo td:first-child{box-shadow:inset 5px 0 0 #b3261e}.rv-showtodo tr.rv-todo td.rv-mark{outline:2px solid #b3261e;outline-offset:-2px}
   .rv-skip td:nth-child(3){opacity:.5}.rv-met{color:#1c7c3c}.rv-not{color:#b3261e}.rv-bar{margin:.6rem 0;gap:.5rem}.rv-games{flex-wrap:wrap;gap:.4rem;margin:.6rem 0}.rv-terms{margin:.6rem 0}.rv-terms summary{cursor:pointer}.small{font-size:.86rem}</style>`;
 
   const redraw = async (focus) => { const y = scrollY; await renderReview(out, true); scrollTo({ top: y }); if (focus) out.querySelector(`.rv-mark[data-id="${CSS.escape(focus)}"] [data-why]`)?.focus({ preventScroll: true }); };
@@ -193,12 +199,16 @@ export async function renderReview(out, keep = false) {
     });
     td.querySelectorAll("[data-read]").forEach((r) => r.onchange = () => {
       put(id, { mark: r.value, why: why.value.trim(), ...(s && r.value === "correct" ? { off: [] } : {}) });
-      if (s) { settle(s); redraw(id); } else { td.closest("tr").classList.add("rv-done"); td.querySelectorAll(".rv-r").forEach((l) => l.classList.toggle("on", l.querySelector("input").checked)); if (r.value !== "correct") why.focus(); }
+      if (s) { settle(s); redraw(id); } else { td.closest("tr").classList.add("rv-done"); td.closest("tr").classList.remove("rv-todo"); td.querySelectorAll(".rv-r").forEach((l) => l.classList.toggle("on", l.querySelector("input").checked)); if (r.value !== "correct") why.focus(); }
     });
     td.querySelectorAll("[data-off]").forEach((c) => c.onchange = () => put(id, { off: [...td.querySelectorAll("[data-off]:checked")].map((x) => x.value) }));
     td.querySelectorAll("[data-reason]").forEach((c) => c.onchange = () => put(id, { reason: [...td.querySelectorAll("[data-reason]:checked")].map((x) => x.value) }));
     why.onchange = () => { if (now(g)[id]?.grade || now(g)[id]?.mark) put(id, { why: why.value.trim() }); };
   });
+  out.querySelectorAll("[data-todo]").forEach((b) => b.onclick = () => { showTodo = !showTodo; try { localStorage.setItem("gvginfo.review.todo", showTodo ? "1" : "0"); } catch { /* kept for this visit only */ } redraw(); });
+  out.querySelectorAll("[data-nexttodo]").forEach((b) => b.onclick = () => {      // the first row not yet marked below the top of the window, else the first of all
+    const T0 = [...out.querySelectorAll(".rv-rows tr.rv-todo")]; const tr = T0.find((r) => r.getBoundingClientRect().top > 90) || T0[0];
+    tr?.scrollIntoView({ block: "center" }); });
   out.querySelectorAll("[data-clear]").forEach((b) => b.onclick = () => { put(b.dataset.clear, { grade: "", mark: "", off: [], reason: [], why: "" }); redraw(); });
   const miss = () => { const d = (draft[g.rid] ||= { marks: {} }); d.missed ??= JSON.parse(JSON.stringify(missedOf(g))); return d.missed; };
   out.querySelector("[data-addmiss]").onclick = () => { miss().push({ t: "", kind: "split", grade: "classic", why: "" }); keepDraft(); redraw().then(() => [...out.querySelectorAll('[data-m="t"]')].pop()?.focus()); };
