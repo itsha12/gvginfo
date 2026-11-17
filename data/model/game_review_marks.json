@@ -7601,6 +7601,20 @@
      "mark": "correct",
      "why": "",
      "text": "Men (defender) [no answer]: Win elsewhere before the split costs more than it gains. Met (more of theirs die away from the split than of ours: yes; flag lead better by 0.35 or more: yes)"
+    },
+    "s:572c2f95-flag-1-612-62": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "hold single run (Earth Ele); Men single run (Ritualist 2)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-flag-1-612-62": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (our flag is capped: no; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: yes)"
     }
    },
    "scheme": 2,
