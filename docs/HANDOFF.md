@@ -8,7 +8,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 > out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-16, evening: three games graded; his rulings to R-507 built; games 4 and 5 on the page; 506 matches trained)
+## State (2026-11-16, evening: three games graded; his rulings to R-507 built, R-508 not yet; games 4 and 5 on the page; 506 matches trained)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` and lands in one piece,
   then one rebuild (R-322). 658 replays stored; 564 count (R-477). No Train batch, Discovery or fetch run in progress.
 - The baseline (R-491) is the branch `baseline-2026-11-15` (`bundle-4` at fd2b30b); its reading and figures are in
@@ -39,18 +39,16 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 
 ## Next (in order)
 1. His marks on games 4 and 5: `review.py file`, checks by hand, Classic faults first; refit the bands with five games.
-2. His answer on the full collapse (below), then build it at the root in `split_plays` (R-465).
+2. Build R-508 at the root in `split_plays` (R-465): a full collapse counts from the turn, a few seconds on, reached
+   or not (옷옷옷옷 v RACK 1:51, 4:39, 6:01, 8:16; today it is read at arrival, 2:06 and 6:28, or not at all).
 3. Held for a second game (R-495): who and how many push a flagger (HC v Team); numbers read through the portal on
    Isle of Jade; Men v Crew 17:53, a pickup 2 s before the boost read as a runner; a base res that lands at the
    last second of a match (Men v Crew 27:40).
 4. When he says the flag plays are ready: the flag family to the end (R-451); the other kinds after; then stage E.
 
 ## Open for Denning (put to him 2026-11-16; set each out again, R-329, with the replay link)
-1. The full collapse (옷옷옷옷 v RACK 1:51, 4:39, 6:01, 8:16, all Classic, added by him as missed). The engine reads
-   one when six or more defenders are on the split or five or more have gone home for it: so at arrival (2:06 and
-   6:28, 15 and 27 s after his times), and not at all when the team chases and does not reach it (4:39, 8:16, where
-   옷옷옷옷 leaves RACK's base to go after RACK's five). Proposed: it counts from when the team turns for the split,
-   reached or not. His to confirm, with what marks the turn (through its door or teleporter?).
+1. Nothing waits on a ruling. Put to him 2026-11-16, his to answer: reason ticks on Weak and No decision rows (too
+   brief, edge too small, no real fight, misread, already covered), and length as a second part of the confidence.
 2. Men v Crew 23:56 (Visible, correct) stays a run under R-505 only because Crew's main team was in Men's base
    until 23:50; told to him. 19:53 (Classic, correct, "one runner") stays for the same reason.
 - Noted, not put to him (R-491): TFS v 옷옷옷옷 1:54, a flag put on the Obelisk stand reads "our flag is capped: no".
