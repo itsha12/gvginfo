@@ -7591,6 +7591,16 @@
      "mark": "correct",
      "why": "",
      "text": "Men (defender's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Not met (more of theirs die away from the split than of ours: no)"
+    },
+    "572c2f95-split-2-1220-111": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold (attacker) [undefended]: Take NPCs. Not met (an NPC taken: no)"
+    },
+    "572c2f95-split-1-1220-110": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (defender) [no answer]: Win elsewhere before the split costs more than it gains. Met (more of theirs die away from the split than of ours: yes; flag lead better by 0.35 or more: yes)"
     }
    },
    "scheme": 2,
