@@ -57,7 +57,12 @@ class MapGeo:
             labs = [(p, any(in_poly(p[0], p[1], q) for q in pits)) for p in hall.npc[side]["Archer"]]
             if not pits or not any(pit for _, pit in labs): continue           # no pit drawn, or no archer placed in it: the estimate stands
             seen = [a for a, v in self.npcs.items() if v["team"] == tm and v["kind"] == "archer" and v["pos"] is not None]
-            pairs = sorted((d(self.npcs[a]["pos"], p), a, i) for a in seen for i, (p, _) in enumerate(labs))
+            # how far an archer is from a label is read from where its attackers stood at each hit (the middle of those distances), not from the one estimated position:
+            # that position is pulled a quarter of the way to the base, which put an archer killed at RACK's front door on Nomad's Isle nearer a label it was never hit
+            # from, left its own label to another archer, and so made it a pit archer 2,700 from anyone who hit it (his marks, Men v RACK 6:00 to 8:24: "both archers
+            # are alive")
+            far = lambda a, p: statistics.median(d(q, p) for q in self.npcs[a]["hits"]) if self.npcs[a].get("hits") else d(self.npcs[a]["pos"], p)
+            pairs = sorted((far(a, p), a, i) for a in seen for i, (p, _) in enumerate(labs))
             took_a, took_i = set(), set()
             for dist, a, i in pairs:
                 if a in took_a or i in took_i: continue
@@ -137,7 +142,7 @@ class MapGeo:
             pos = (statistics.median(p[0] for p in use), statistics.median(p[1] for p in use)) if use else None
             if conf == "ranged" and pos and ag.get("team") in self.base:   # ranged attackers stand off: pull toward own base
                 b = self.base[ag["team"]]; pos = (pos[0] + (b[0] - pos[0]) * 0.25, pos[1] + (b[1] - pos[1]) * 0.25)
-            out[a] = dict(kind=ag["npc"], team=ag.get("team"), pos=pos, n=len(use), conf=conf if use else "none")
+            out[a] = dict(kind=ag["npc"], team=ag.get("team"), pos=pos, n=len(use), conf=conf if use else "none", hits=use)      # hits: where its attackers stood at each hit, before the pull
         return out
 
     def _merge_store(self, save=False):

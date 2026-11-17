@@ -43,7 +43,7 @@ Usage:  python3 moments.py <report id> [family]      the match's moments in orde
         python3 jobs.py summary <out.json>            the plays and how often each job was met (jobs.py)
 In code: Moments(st, sb).records() -> list of dicts."""
 import collections, json, math, statistics, sys
-from common import (FOUGHT, DOUBLE_NEXT_S, FLAG_MOMENT_GREATER, FLAG_MOMENT_STAND, HANDOFF_GAP_S, FIGHT_HOLD, FIGHT_HOLD_S, FIGHT_ACT, FIGHT_CLOSE, READ_FROM, READ_TO, CONSEQ_S, ON_TIME_S, LATE_S, PIT_S, AREA_SHARE, PURPOSE_S, LEAVE_MIN_S, HOME_WAIT_S, SPAWN_R, GROUP_LEAVE_S, MEET_R,
+from common import (STAND_R, FOUGHT, DOUBLE_NEXT_S, FLAG_MOMENT_GREATER, FLAG_MOMENT_STAND, HANDOFF_GAP_S, FIGHT_HOLD, FIGHT_HOLD_S, FIGHT_ACT, FIGHT_CLOSE, READ_FROM, READ_TO, CONSEQ_S, ON_TIME_S, LATE_S, PIT_S, AREA_SHARE, PURPOSE_S, LEAVE_MIN_S, HOME_WAIT_S, SPAWN_R, GROUP_LEAVE_S, MEET_R,
                     NUMBERS_MIN_S, MERGE_S, BOOST_WARN_S, FLAGGER_R, SPLIT_FAR, BOOST_EVERY, SERIOUS_CARRY_S, FIGHT_LINK, GROUND_MOVE, GROUND_S, GROUND_BACK, GROUND_JUMP, GROUND_SPLIT_MOVE, SIDE_FIGHT_MAX, SIDE_FIGHT_S, UNDEFENDED_S,
                     RETURN_R, FOOT_ENGAGED_S, SPLIT_STEP, SPLIT_MIN_S, SPLIT_GAP_S, FORCED_OUT_S, AHEAD_LOOK_S, CAUGHT_S, NPC_NEAR,
                     JOIN_S, RES_EVERY, flux_at, JOIN_LOOK_S, JOIN_MOVE, JOIN_LEAD, JOIN_ENGAGE, JOIN_ENGAGE_S, MAIN_BIG, SWAP_S, SWAP_STAY_S, SPLIT_FIGHT_GAP_S, SPLIT_FIGHT_MIN,
@@ -83,6 +83,7 @@ class Moments:
         self.spawn = {tm: (self.hall.spawn.get(st.side[tm]) if self.hall and tm in st.side else None) or st.geo.spawn.get(tm) for tm in st.teams}
         self.carry = collections.defaultdict(list)
         for c in st.carries: self.carry[c["a"]].append((c["s"], c["e"]))
+        self.recapped = []                                    # captures the observer recorded on the wrong player: (second, as recorded, the carrier at the stand)
         self.flag_ev, self.missed_pickups = self._flag_ev()
         for tp, a, tc in self.missed_pickups: self.carry[a].append((tp, tc))
         self.pick = collections.defaultdict(list)
@@ -145,6 +146,13 @@ class Moments:
         self.by_player = collections.defaultdict(list)
         for g in self.legs: self.by_player[g["a"]].append(g)
 
+    def _true_capper(self, a, t, op):
+        """The team mate who really capped, when a capture is recorded on a player with no pickup who is not at the stand: the one with an open pickup standing at it."""
+        u, tm = min(int(t), self.T), self.m.team(a)
+        at = lambda b: self.AL[b][u] and self.P[b][u] and d(self.P[b][u], self.st.geo.stand) < STAND_R
+        if at(a): return None
+        return next((b for b in op if b != a and self.m.team(b) == tm and at(b)), None)
+
     def _flag_ev(self):
         """The flag events in seconds, players only: [(t, kind, player)], and the pickups the observer missed
         [(pickup, player, capture)]. A capture by a player with no pickup recorded on him (about 1 capture in 40) is
@@ -160,6 +168,11 @@ class Moments:
                 if a in op and lastp.get(tm) == a and all(self.AL[a][u] for u in range(max(int(op[a]), 0), min(int(t), self.T) + 1)): continue      # a second pickup with no drop between, he alive throughout and nobody of his team taking it meanwhile: the same carry (replaylib._carries)
                 op[a] = t; lastp[tm] = a
             elif typ == "flag_dropped": op.pop(a, None)
+            elif a not in op and (other := self._true_capper(a, t, op)) is not None:
+                # the observer names the wrong player for a capture now and then: a player who is nowhere near the stand, with no pickup on him, while the team mate
+                # who has carried the flag stands at it. The capture is the carrier's (his marks, Men v hold 17:36 and 17:33, Classic: "hold's prot does not run":
+                # the Earth Ele carries the flag from 17:15 and is at the stand at 17:53, the capture is recorded on the Prot, who stands in his pit)
+                self.recapped.append((t, a, other)); a = other; op.pop(a, None)
             elif a not in op:
                 lt, lk, la = last.get(tm, (0, None, None))
                 u1, tp = min(int(t), self.T), None
@@ -743,7 +756,14 @@ class Moments:
             return t_
         left = {a: left_at(a) for a in members}
         a0, t0 = members[0], left[members[0]]
-        ways = collections.Counter(self._deep(a, t) for a in members for t in range(span[a][0][0], min(span[a][0][0] + 40, t1) + 1, SPLIT_STEP) if self._deep(a, t) in ("front door", "back door"))
+        # the door a split goes by is the enemy's door it comes to: where the players who set out on it first stand at a door of the enemy's, or at the footmen in
+        # front of it, however long the walk there (his marks, Men v hold 0:48 and 10:40, Classic: "split is by backdoor", "a split through the backdoor not front":
+        # hold's three stood in the field for 40 s before they came to Men's back footmen, and the door was read from a fourth player who joined them six minutes
+        # later at the front door)
+        door_of = {"front door": "front door", "front footies": "front door", "back door": "back door", "back footies": "back door"}
+        founders = [a for a in members if span[a][0][0] <= t_in + JOIN_S] or members
+        at_door = min((t for a in founders for t in range(span[a][0][0], t1 + 1, SPLIT_STEP) if self._deep(a, t) in door_of), default=None)
+        ways = collections.Counter(door_of[self._deep(a, t)] for a in founders for t in range(at_door, min(at_door + JOIN_S, t1) + 1, SPLIT_STEP) if self._deep(a, t) in door_of) if at_door is not None else collections.Counter()      # the door it comes to first (its first JOIN_S there): a lone player who then moves round to the other door still split by the first (Men v RACK 11:00: "ranger solo split frontdoor")
         places = collections.Counter(self._deep(a, t) for t in R for a in members if on(a, t) and self._deep(a, t))
         sizes = collections.Counter(sum(1 for a in members if on(a, t)) for t in R)
         # the answer
@@ -2243,7 +2263,7 @@ class Moments:
             if r["tm"] != tm: continue
             if self.not_run(r): continue                      # only brought up with the team (R-505)
             if t - 10 <= self._went_to_run(r) <= t + READ_TO: out.add(r["runner"])
-            out |= {a for a, s0, e0 in r["carries"] if a in r["serious"] and s0 <= t + READ_TO and (e0 is None or e0 >= t - 10) and (s0 >= t - 10 or self.carrying(a, min(t + READ_FROM, self.T)))}
+            out |= {a for a, s0, e0 in r["carries"] if a in r["serious"] and s0 <= t + READ_TO and (e0 is None or e0 >= t - 10) and (s0 >= t - 10 or self.carrying(a, min(t + READ_FROM, self.T)) or (r.get("how") == "captured" and a == r["runner"] and e0 is not None and e0 >= t))}
         return out
 
     def brought_up(self, r):
@@ -2302,7 +2322,7 @@ class Moments:
             if r["tm"] != tm: continue
             if self.not_run(r): continue                      # only brought up with the team: nobody is running it (R-505)
             went = t - 10 <= self._went_to_run(r) <= t + READ_TO
-            who = [a for a, s0, e0 in sorted(r["carries"], key=lambda c: c[1]) if a in r["serious"] and s0 <= t + READ_TO and (e0 is None or e0 >= t - 10) and (s0 >= t - 10 or self.carrying(a, min(t + READ_FROM, self.T)))]
+            who = [a for a, s0, e0 in sorted(r["carries"], key=lambda c: c[1]) if a in r["serious"] and s0 <= t + READ_TO and (e0 is None or e0 >= t - 10) and (s0 >= t - 10 or self.carrying(a, min(t + READ_FROM, self.T)) or (r.get("how") == "captured" and a == r["runner"] and e0 is not None and e0 >= t))]
             if went:                                          # the player who went back for it comes first, then whoever carried it after him, in order
                 first = r["a"] if r["a"] in [c[0] for c in r["carries"]] else r["runner"]
                 who = [first] + [a for a in who if a != first] + ([r["runner"]] if r["runner"] not in who and r["runner"] != first else [])

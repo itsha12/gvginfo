@@ -398,7 +398,7 @@
     "said": "Yes.",
     "reading": "R-464; not built."
    },
-   "note": "The first check no longer asks for an undefended phase by name (his words were that the split counts from when it reaches, and that the Ritualist defends it): Claude's reading of the mark was narrower than the mark."
+   "note": "The first check no longer asks for an undefended phase by name (his words were that the split counts from when it reaches, and that the Ritualist defends it): Claude's reading of the mark was narrower than the mark. Since R-510 (2026-11-17) the row starts at the crossing again (18:54), which is what this mark objected to; the row now says when the split reaches their base. Put to him."
   },
   {
    "id": "s1-16",
@@ -6830,9 +6830,9 @@
       ]
      },
      "want": {
-      "scenario~": "a flag already on its way"
+      "scenario~": "one runner (Mes/A)"
      },
-     "was": "hook v hold 5:42: hook ran its Mesmer to deny the boost; the engine said no runner"
+     "was": "hook v hold 5:42: hook ran its Mesmer to deny the boost; the engine said no runner (then 'a flag already on its way'; since 2026-11-17 a carrier who caps inside the window is named as the runner)"
     }
    ]
   },
@@ -10836,30 +10836,34 @@
     {
      "has": {
       "play": "split",
+      "side": "attacker",
       "team": "HC",
-      "start": [
-       126,
-       138
+      "at": [
+       132,
+       252
       ]
      },
      "want": {
-      "clear": null
+      "size": 1,
+      "defenders": 1
      },
-     "auto": true
+     "was": "His mark: correct. The check asked for a row starting within 6 s of the one he saw; since R-510 the same split is told from when it sets out (10 s earlier), so the check now asks for the split and its numbers over the same stretch."
     },
     {
      "has": {
       "play": "split",
+      "side": "defender",
       "team": "Team",
-      "start": [
-       126,
-       138
+      "at": [
+       132,
+       252
       ]
      },
      "want": {
-      "clear": null
+      "size": 1,
+      "defenders": 1
      },
-     "auto": true
+     "was": "His mark: correct. The check asked for a row starting within 6 s of the one he saw; since R-510 the same split is told from when it sets out (10 s earlier), so the check now asks for the split and its numbers over the same stretch."
     }
    ]
   },
@@ -15932,44 +15936,34 @@
     {
      "has": {
       "play": "split",
+      "side": "attacker",
       "team": "RACK",
-      "start": [
-       882,
-       894
+      "at": [
+       888,
+       972
       ]
      },
      "want": {
-      "clear": null
+      "size": 1,
+      "defenders": 1
      },
-     "auto": true
+     "was": "His mark: correct. The check asked for a row starting within 6 s of the one he saw; since R-510 the same split is told from when it sets out (10 s earlier), so the check now asks for the split and its numbers over the same stretch."
     },
     {
      "has": {
       "play": "split",
+      "side": "defender",
       "team": "옷옷옷옷",
-      "start": [
-       882,
-       894
+      "at": [
+       888,
+       972
       ]
      },
      "want": {
-      "clear": null
+      "size": 1,
+      "defenders": 1
      },
-     "auto": true
-    },
-    {
-     "has": {
-      "play": "split",
-      "team": "옷옷옷옷",
-      "start": [
-       882,
-       894
-      ]
-     },
-     "want": {
-      "clear": null
-     },
-     "auto": true
+     "was": "His mark: correct. The check asked for a row starting within 6 s of the one he saw; since R-510 the same split is told from when it sets out (10 s earlier), so the check now asks for the split and its numbers over the same stretch."
     }
    ]
   },
@@ -16364,6 +16358,5394 @@
    "row": 0,
    "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
    "match": "옷옷옷옷 v RACK, Solitude",
+   "window": [
+    0,
+    0
+   ],
+   "type": "notes",
+   "call": "",
+   "shown": "(his notes on the game)",
+   "band": "",
+   "grade": "",
+   "mark": "notes",
+   "said": "",
+   "checks": []
+  },
+  {
+   "id": "f1-45cf-1",
+   "set": "f1",
+   "scheme": 2,
+   "row": 1,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    0,
+    30
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "The opening. RACK single run (Hammer, handing it to Stand Mes); Men single run (Mes/A, handing it to Hammer A and Hammer B)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "incorrect",
+   "said": "Men double ran with warrior waiting back",
+   "calls": [
+    {
+     "play": "45cf6756-flag-1-0-0",
+     "shown": "Men [single run]: Get the first flag in. Met (our flag is capped: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "start": [
+       -3,
+       9
+      ]
+     },
+     "want": {
+      "scenario~": "Men double run"
+     },
+     "was": "Men v RACK 0:00 (Classic, incorrect): 'Men double ran with warrior waiting back'"
+    }
+   ]
+  },
+  {
+   "id": "f1-45cf-2",
+   "set": "f1",
+   "scheme": 2,
+   "row": 2,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    8,
+    40
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men down on numbers in the main fight (7 v 8, the greater stand area), from a runner away; Men: stay (stay at the stand)",
+   "band": "medium",
+   "grade": "visible",
+   "mark": "correct",
+   "reason": [
+    "brief"
+   ],
+   "calls": [
+    {
+     "play": "45cf6756-numbers-1-8-1",
+     "shown": "Men (down) [stay]: Hold the ground a player down and lose no more until it is level, or the base res. Met (nobody of ours dies: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-45cf-3",
+   "set": "f1",
+   "scheme": 2,
+   "row": 3,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    36,
+    68
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RACK's split by the front door: two players (Ranger, 7 Monk) against 3 defending (Mes/A, Hammer A, 8 Monk)",
+   "band": "low",
+   "grade": "visible",
+   "mark": "incorrect",
+   "off": [
+    "kind"
+   ],
+   "said": "this is a flag push",
+   "calls": [
+    {
+     "play": "45cf6756-split-2-36-3",
+     "shown": "RACK (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Met (nobody on the split dies: yes; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: yes)",
+     "mark": "not judged"
+    },
+    {
+     "play": "45cf6756-split-1-36-2",
+     "shown": "Men (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Met (no pit NPC lost: yes; a split player dies: no; the split is gone within the visit: yes)",
+     "mark": "not judged"
+    },
+    {
+     "play": "45cf6756-split-2-36-4",
+     "shown": "RACK (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (more of theirs die away from the split than of ours: no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "split",
+      "team": "RACK",
+      "start": [
+       30,
+       42
+      ]
+     },
+     "open": true,
+     "why": "Men v RACK 0:36 (Visible, incorrect, kind): 'this is a flag push'"
+    }
+   ]
+  },
+  {
+   "id": "f1-45cf-4",
+   "set": "f1",
+   "scheme": 2,
+   "row": 4,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    51,
+    231
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "Men double run (first runner Hammer B, capping the flag before; second runner Hammer A, handing it to Mes/A, back for this one); RACK single run (Mes/A)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "45cf6756-flag-2-51-5",
+     "shown": "RACK [single run]: Kill or take ground with the extra player, and end no worse than a flag behind. Not met (no worse than a flag behind at the end: no; more of theirs die at the main fight than of ours: no; ground taken: no; one of their NPCs dies: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "RACK",
+      "start": [
+       45,
+       57
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-45cf-5",
+   "set": "f1",
+   "scheme": 2,
+   "row": 5,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    68,
+    233
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "Men pushes RACK's flagger (Mes/A, carrying) with one player",
+   "band": "low",
+   "grade": "visible",
+   "mark": "incorrect",
+   "off": [
+    "numbers"
+   ],
+   "said": "whole team pushes flagger",
+   "calls": [
+    {
+     "play": "45cf6756-push_flagger-1-68-6",
+     "shown": "Men: Stop their flag, or make it 30% late. Met (their flag is stopped: yes; it arrives 30% or more later than usual: no)",
+     "mark": "not judged"
+    },
+    {
+     "play": "45cf6756-flagger_pushed-2-68-7",
+     "shown": "RACK: Get the flag in on time. Not met (the flag gets in, less than 30% late: no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "push flagger",
+      "team": "Men",
+      "start": [
+       62,
+       74
+      ]
+     },
+     "want": {
+      "main": true
+     },
+     "open": true,
+     "why": "Men v RACK 1:08 (Visible, incorrect, numbers): 'whole team pushes flagger'"
+    }
+   ]
+  },
+  {
+   "id": "f1-45cf-6",
+   "set": "f1",
+   "scheme": 2,
+   "row": 6,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    87,
+    232
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "RACK single run (Mes/A); Men single run (Mes/A)",
+   "band": "high",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "45cf6756-flag-1-87-8",
+     "shown": "Men [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (our flag is capped: no; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-45cf-7",
+   "set": "f1",
+   "scheme": 2,
+   "row": 7,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    92,
+    122
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RACK's split by the front door: one player (Ranger) against 2 defending (Hammer A, Mes/A)",
+   "band": "low",
+   "grade": "visible",
+   "mark": "incorrect",
+   "reason": [
+    "brief"
+   ],
+   "said": "this is a flag push",
+   "calls": [
+    {
+     "play": "45cf6756-split-2-92-10",
+     "shown": "RACK (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Not met (nobody on the split dies: yes; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)",
+     "mark": "not judged"
+    },
+    {
+     "play": "45cf6756-split-1-92-9",
+     "shown": "Men (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Met (no pit NPC lost: yes; a split player dies: no; the split is gone within the visit: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "split",
+      "team": "RACK",
+      "start": [
+       82,
+       98
+      ]
+     },
+     "open": true,
+     "why": "Men v RACK 1:32 (Visible, incorrect): 'this is a flag push'"
+    }
+   ]
+  },
+  {
+   "id": "f1-45cf-8",
+   "set": "f1",
+   "scheme": 2,
+   "row": 8,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    177,
+    212
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "Men's boost is 30 s away; RACK: one runner (Mes/A); the rest fall back into the base",
+   "band": "high",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "45cf6756-boost-2-177-11",
+     "shown": "RACK [run]: Deny their boost. Not met (their boost does not land: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-45cf-9",
+   "set": "f1",
+   "scheme": 2,
+   "row": 9,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    198,
+    224
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RACK's split by the front door: two players (Ranger, Hammer) against 2 defending (Mes/A, 8 Monk)",
+   "band": "low",
+   "grade": "weak",
+   "mark": "partly",
+   "reason": [
+    "brief",
+    "small"
+   ],
+   "said": "small push by ranger with warrior and 8 following; messy fight though, I also thing warrior mes/a and 8 monk were defending",
+   "calls": [
+    {
+     "play": "45cf6756-split-2-198-15",
+     "shown": "RACK (attacker) [even]: Take NPCs or kills. Met (a defender killed: no; an NPC taken: yes)",
+     "mark": "not judged"
+    },
+    {
+     "play": "45cf6756-split-1-198-13",
+     "shown": "Men (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (no pit NPC lost: yes; no more defenders die than split players: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-45cf-10",
+   "set": "f1",
+   "scheme": 2,
+   "row": 10,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    198,
+    232
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "RACK pushes Men's flagger (Mes/A, carrying) with 3 players",
+   "band": "low",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "45cf6756-push_flagger-2-198-14",
+     "shown": "RACK: Stop their flag, or make it 30% late. Met (their flag is stopped: yes; it arrives 30% or more later than usual: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "45cf6756-flagger_pushed-1-198-12",
+     "shown": "Men: Get the flag in on time, without losing a player for the help sent. Not met (the flag gets in, less than 30% late: no; nobody else of ours dies meanwhile: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "push flagger",
+      "team": "RACK",
+      "start": [
+       192,
+       204
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "flagger pushed",
+      "team": "Men",
+      "start": [
+       192,
+       204
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-45cf-11",
+   "set": "f1",
+   "scheme": 2,
+   "row": 11,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    222,
+    250
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RACK's split by the front door: one player (Ranger) against 2 defending (Hammer B, Mes/A); Hammer B collapse from the main fight; 2 (Hammer B, Mes/A) against one player: collapse by Hammer B from the main fight",
+   "band": "low",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "45cf6756-split-2-222-17",
+     "shown": "RACK (attacker) [collapsed on]: Survive and gain an advantage elsewhere on the map. Not met (nobody on the split dies: no; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "45cf6756-split-1-222-16",
+     "shown": "Men (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Met (a split player dies during the collapse: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "RACK",
+      "start": [
+       216,
+       228
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       216,
+       228
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-45cf-12",
+   "set": "f1",
+   "scheme": 2,
+   "row": 12,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    224,
+    266
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men down on numbers in the main fight (5 v 7, RACK's front door; then 3 v 4 from 4:00), from players split elsewhere; Men: push in | RACK: retreat down the ladder (fall back into the base)",
+   "band": "low",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "45cf6756-numbers-1-224-18",
+     "shown": "Men (weak side) [push in]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "45cf6756-numbers-2-224-19",
+     "shown": "RACK (strong side) [retreat down the ladder]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-45cf-13",
+   "set": "f1",
+   "scheme": 2,
+   "row": 13,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    268,
+    372
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "RACK down on numbers in the main fight (7 v 8, RACK's front door), from kills; RACK: retreat down the ladder (fall back into the base) | Men: stay (stay on the enemy's side)",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "45cf6756-numbers-2-268-21",
+     "shown": "RACK (down) [retreat down the ladder]: Reach cover a player down without losing another. Met (nobody of ours dies: yes; no NPC lost: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "45cf6756-numbers-1-268-20",
+     "shown": "Men (up) [stay]: Turn the extra player into a kill before the numbers are level. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "RACK",
+      "start": [
+       262,
+       274
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Men",
+      "start": [
+       262,
+       274
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-45cf-14",
+   "set": "f1",
+   "scheme": 2,
+   "row": 14,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    297,
+    342
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "Men's boost is 30 s away; RACK: no runner; the rest fall back into the base",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "45cf6756-boost-2-297-22",
+     "shown": "RACK [concede]: Concede the boost for kills. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "boost",
+      "team": "RACK",
+      "start": [
+       291,
+       303
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-45cf-15",
+   "set": "f1",
+   "scheme": 2,
+   "row": 15,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    340,
+    390
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "Men has 8 in RACK's base at the base res (7 defending, 1 coming back): 8 stay",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "45cf6756-base_res-1-340-23",
+     "shown": "Men [stayed through the res]: Be out, or set for the fight, when they res. Met (nobody of ours dies in the 30 s after the res: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "Men",
+      "start": [
+       334,
+       346
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-45cf-16",
+   "set": "f1",
+   "scheme": 2,
+   "row": 16,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    360,
+    400
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "RACK is held in its own base or pit by Men's main team (pit NPCs alive at 6:00: 2 of 2 knights, 1 of 2 pit archers, the Bodyguard alive; base res in 120 s)",
+   "band": "medium",
+   "grade": "visible",
+   "mark": "incorrect",
+   "said": "both archers are alive",
+   "calls": [
+    {
+     "play": "45cf6756-pinned-2-360-24",
+     "shown": "RACK: Lose no player and no NPC while held in, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "RACK",
+      "start": [
+       354,
+       366
+      ]
+     },
+     "want": {
+      "scenario~": "2 of 2 pit archers"
+     },
+     "was": "Men v RACK 6:00: 'both archers are alive'"
+    }
+   ]
+  },
+  {
+   "id": "f1-45cf-17",
+   "set": "f1",
+   "scheme": 2,
+   "row": 17,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    404,
+    440
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "RACK is held in its own base or pit by Men's main team (pit NPCs alive at 6:44: 2 of 2 knights, 1 of 2 pit archers, the Bodyguard alive; lost while held: a knight at 7:06; base res in 76 s)",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "incorrect",
+   "said": "both archers are alive",
+   "calls": [
+    {
+     "play": "45cf6756-pinned-2-404-25",
+     "shown": "RACK: Lose no player and no NPC while held in, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "RACK",
+      "start": [
+       398,
+       410
+      ]
+     },
+     "want": {
+      "scenario~": "2 of 2 pit archers"
+     },
+     "was": "Men v RACK 6:44: 'both archers are alive'"
+    }
+   ]
+  },
+  {
+   "id": "f1-45cf-18",
+   "set": "f1",
+   "scheme": 2,
+   "row": 18,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    460,
+    500
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "RACK is held in its own base or pit by Men's main team (pit NPCs alive at 7:40: 1 of 2 knights, 1 of 2 pit archers, the Bodyguard alive; lost while held: a knight at 7:54; base res in 20 s)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "incorrect",
+   "said": "both archers are alive",
+   "calls": [
+    {
+     "play": "45cf6756-pinned-2-460-26",
+     "shown": "RACK: Lose no player and no NPC while held in, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "RACK",
+      "start": [
+       454,
+       466
+      ]
+     },
+     "want": {
+      "scenario~": "2 of 2 pit archers"
+     },
+     "was": "Men v RACK 7:40: 'both archers are alive'"
+    }
+   ]
+  },
+  {
+   "id": "f1-45cf-19",
+   "set": "f1",
+   "scheme": 2,
+   "row": 19,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    504,
+    652
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "RACK is held in its own base or pit by Men's main team (pit NPCs alive at 8:24: 0 of 2 knights, 1 of 2 pit archers, the Bodyguard alive; lost while held: a pit archer at 10:40; base res in 96 s)",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "incorrect",
+   "said": "only 1 archer is dead",
+   "calls": [
+    {
+     "play": "45cf6756-pinned-2-504-27",
+     "shown": "RACK: Lose no player and no NPC while held in, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "RACK",
+      "start": [
+       498,
+       510
+      ]
+     },
+     "want": {
+      "scenario~": [
+       "2 of 2 pit archers",
+       "a pit archer at 10:40"
+      ]
+     },
+     "was": "Men v RACK 8:24 (Classic, incorrect): 'only 1 archer is dead': one pit archer, lost at 10:40; the archer killed at 4:03 stood outside the pit"
+    }
+   ]
+  },
+  {
+   "id": "f1-45cf-20",
+   "set": "f1",
+   "scheme": 2,
+   "row": 20,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    642,
+    700
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men up on numbers in the main fight (8 v 7, RACK's pit), from players split elsewhere; Men: fall out",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "45cf6756-numbers-1-642-28",
+     "shown": "Men (strong side) [fall out]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Men",
+      "start": [
+       636,
+       648
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-45cf-21",
+   "set": "f1",
+   "scheme": 2,
+   "row": 21,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    657,
+    702
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "Men's boost is 30 s away; RACK: no runner; the rest fall back into the base",
+   "band": "high",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "45cf6756-boost-2-657-29",
+     "shown": "RACK [concede]: Concede the boost for kills. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-45cf-22",
+   "set": "f1",
+   "scheme": 2,
+   "row": 22,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    714,
+    734
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RACK's split by the front door: one player (Ranger) against 1 defending (Mes/A)",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "45cf6756-split-2-714-31",
+     "shown": "RACK (attacker) [1 v 1, the defender not a monk]: Take NPCs or kills. Not met (a defender killed: no; an NPC taken: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "45cf6756-split-1-714-30",
+     "shown": "Men (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (no pit NPC lost: yes; no more defenders die than split players: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "RACK",
+      "start": [
+       708,
+       720
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       708,
+       720
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-45cf-23",
+   "set": "f1",
+   "scheme": 2,
+   "row": 23,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    726,
+    746
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men down on numbers in the main fight (6 v 7, RACK's front door), from players split elsewhere; Men: stay (stay on the enemy's side) | RACK: retreat down the ladder (retreat to the pit); 4 damage against 3 monks",
+   "band": "low",
+   "grade": "visible",
+   "mark": "incorrect",
+   "reason": [
+    "small",
+    "unclear"
+   ],
+   "said": "this is 7v7",
+   "calls": [
+    {
+     "play": "45cf6756-numbers-1-726-32",
+     "shown": "Men (weak side) [stay]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)",
+     "mark": "not judged"
+    },
+    {
+     "play": "45cf6756-numbers-2-726-33",
+     "shown": "RACK (strong side) [retreat down the ladder]: Keep them busy and lose nobody (a kill is not expected of it). Met (nobody of ours dies: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "numbers",
+      "start": [
+       720,
+       732
+      ]
+     },
+     "open": true,
+     "why": "Men v RACK 12:06 (Visible, incorrect): 'this is 7v7'"
+    }
+   ]
+  },
+  {
+   "id": "f1-45cf-24",
+   "set": "f1",
+   "scheme": 2,
+   "row": 24,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    732,
+    748
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RACK's split by the front door: one player (Ranger) against 0 defending",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "said": "same split as before",
+   "calls": [
+    {
+     "play": "45cf6756-split-2-732-35",
+     "shown": "RACK (attacker) [undefended]: Take NPCs. Not met (an NPC taken: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "45cf6756-split-1-732-34",
+     "shown": "Men (defender) [no answer]: Win elsewhere before the split costs more than it gains. Not met (more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "RACK",
+      "start": [
+       726,
+       738
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       726,
+       738
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-45cf-25",
+   "set": "f1",
+   "scheme": 2,
+   "row": 25,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    746,
+    792
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RACK's split by the front door: one player (Ranger) against 1 defending (Mes/A); numbers along the way: 1 v 1 from 12:26, 3 v 3 from 12:48",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "45cf6756-split-2-746-37",
+     "shown": "RACK (attacker) [1 v 1, the defender not a monk]: Take NPCs or kills. Not met (a defender killed: no; an NPC taken: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "45cf6756-split-1-746-36",
+     "shown": "Men (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (no pit NPC lost: yes; no more defenders die than split players: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "RACK",
+      "start": [
+       740,
+       752
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       740,
+       752
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-45cf-26",
+   "set": "f1",
+   "scheme": 2,
+   "row": 26,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    777,
+    822
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "Men's boost is 30 s away; RACK: no runner; the rest fall back into the base",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "45cf6756-boost-2-777-38",
+     "shown": "RACK [concede]: Concede the boost for kills. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "boost",
+      "team": "RACK",
+      "start": [
+       771,
+       783
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-45cf-27",
+   "set": "f1",
+   "scheme": 2,
+   "row": 27,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    790,
+    806
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RACK's split by the front door: two players (Hammer, Ranger) against 4 defending (Hammer B, Mes/A, Stand Mes, 8 Monk); Hammer B, Stand Mes, 8 Monk collapse from the main fight; 4 (Hammer B, Mes/A, Stand Mes, 8 Monk) against two players: collapse by Hammer B, Stand Mes, 8 Monk from the main fight",
+   "band": "medium",
+   "grade": "visible",
+   "mark": "partly",
+   "reason": [
+    "unclear"
+   ],
+   "said": "prot monk joins eventually, but it's not a super clear split or push",
+   "calls": [
+    {
+     "play": "45cf6756-split-2-790-40",
+     "shown": "RACK (attacker) [collapsed on]: Survive and gain an advantage elsewhere on the map. Not met (nobody on the split dies: yes; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "45cf6756-split-1-790-39",
+     "shown": "Men (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Not met (a split player dies during the collapse: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-45cf-28",
+   "set": "f1",
+   "scheme": 2,
+   "row": 28,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    806,
+    852
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "RACK down on numbers in the main fight (7 v 8, RACK's front door; then 6 v 8 from 13:46), from kills; RACK: retreat down the ladder (fall back into the base) | Men: stay (stay on the enemy's side)",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "45cf6756-numbers-2-806-42",
+     "shown": "RACK (down) [retreat down the ladder]: Reach cover a player down without losing another. Not met (nobody of ours dies: no; no NPC lost: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "45cf6756-numbers-1-806-41",
+     "shown": "Men (up) [stay]: Turn the extra player into a kill before the numbers are level. Met (more of theirs die than of ours: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "RACK",
+      "start": [
+       800,
+       812
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Men",
+      "start": [
+       800,
+       812
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-45cf-29",
+   "set": "f1",
+   "scheme": 2,
+   "row": 29,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    820,
+    870
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "Men has 8 in RACK's base at the base res (6 defending, 1 coming back): 7 stay, 1 leave as the res lands or die",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "45cf6756-base_res-1-820-43",
+     "shown": "Men [stayed through the res]: Be out, or set for the fight, when they res. Met (nobody of ours dies in the 30 s after the res: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "Men",
+      "start": [
+       814,
+       826
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-45cf-30",
+   "set": "f1",
+   "scheme": 2,
+   "row": 30,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    878,
+    920
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RACK's split by the front door: one player (Ranger) against 1 defending (Mes/A)",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "partly",
+   "off": [
+    "when"
+   ],
+   "said": "split starts at 13:52, that's when Men would see and have to respond",
+   "calls": [
+    {
+     "play": "45cf6756-split-2-878-45",
+     "shown": "RACK (attacker) [1 v 1, the defender not a monk]: Take NPCs or kills. Not met (a defender killed: no; an NPC taken: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "45cf6756-split-1-878-44",
+     "shown": "Men (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (no pit NPC lost: yes; no more defenders die than split players: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "RACK",
+      "start": [
+       822,
+       842
+      ]
+     },
+     "want": {
+      "size": 1
+     },
+     "was": "Men v RACK 14:38 (Classic, partly, when): 'split starts at 13:52, that's when Men would see and have to respond'"
+    }
+   ]
+  },
+  {
+   "id": "f1-45cf-31",
+   "set": "f1",
+   "scheme": 2,
+   "row": 31,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    897,
+    942
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "Men's boost is 30 s away; RACK: no runner; the rest fall back into the base",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "45cf6756-boost-2-897-46",
+     "shown": "RACK [concede]: Concede the boost for kills. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "boost",
+      "team": "RACK",
+      "start": [
+       891,
+       903
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-45cf-32",
+   "set": "f1",
+   "scheme": 2,
+   "row": 32,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    920,
+    970
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men up on numbers in the main fight (8 v 6, RACK's front door), from kills; Men: stay (stay on the enemy's side) | RACK: retreat down the ladder (fall back into the base)",
+   "band": "low",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "45cf6756-numbers-1-920-47",
+     "shown": "Men (up) [stay]: Turn the extra player into a kill before the numbers are level. Met (more of theirs die than of ours: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "45cf6756-numbers-2-920-48",
+     "shown": "RACK (down) [retreat down the ladder]: Reach cover a player down without losing another. Not met (nobody of ours dies: no; no NPC lost: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Men",
+      "start": [
+       914,
+       926
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "numbers",
+      "team": "RACK",
+      "start": [
+       914,
+       926
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-45cf-33",
+   "set": "f1",
+   "scheme": 2,
+   "row": 33,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    940,
+    990
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "Men has 8 in RACK's base at the base res (6 defending, 2 coming back): 8 stay",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "45cf6756-base_res-1-940-49",
+     "shown": "Men [stayed through the res]: Be out, or set for the fight, when they res. Met (nobody of ours dies in the 30 s after the res: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "Men",
+      "start": [
+       934,
+       946
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-45cf-34",
+   "set": "f1",
+   "scheme": 2,
+   "row": 34,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    1010,
+    1050
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men up on numbers in the main fight (8 v 6, RACK's pit; then 7 v 6 from 17:08), from players on their way to it (in neither fight); Men: fall out | RACK: retreat down the ladder (fall back into the base)",
+   "band": "low",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "45cf6756-numbers-1-1010-50",
+     "shown": "Men (up) [fall out]: Reset without giving anything back. Met (nobody of ours dies: yes; no NPC lost: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "45cf6756-numbers-2-1010-51",
+     "shown": "RACK (down) [retreat down the ladder]: Reach cover a player down without losing another. Not met (nobody of ours dies: no; no NPC lost: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Men",
+      "start": [
+       1004,
+       1016
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "numbers",
+      "team": "RACK",
+      "start": [
+       1004,
+       1016
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-45cf-35",
+   "set": "f1",
+   "scheme": 2,
+   "row": 35,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    1017,
+    1062
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "Men's boost is 30 s away; RACK: no runner; the rest push up",
+   "band": "medium",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "45cf6756-boost-2-1017-52",
+     "shown": "RACK [concede]: Concede the boost for kills. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-45cf-36",
+   "set": "f1",
+   "scheme": 2,
+   "row": 36,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    1084,
+    1130
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men up on numbers in the main fight (6 v 5, RACK's front door; then 5 v 4 from 18:20), from players split elsewhere; Men: stay (stay on the enemy's side) | RACK: retreat down the ladder (fall back into the base)",
+   "band": "low",
+   "grade": "visible",
+   "mark": "correct",
+   "reason": [
+    "unclear"
+   ],
+   "calls": [
+    {
+     "play": "45cf6756-numbers-1-1084-53",
+     "shown": "Men (strong side) [stay]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "45cf6756-numbers-2-1084-54",
+     "shown": "RACK (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-45cf-37",
+   "set": "f1",
+   "scheme": 2,
+   "row": 37,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    1086,
+    1130
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RACK's split by the back door: three players (Mes/A, 8 Monk, Hammer) against 2 defending (Mes/A, 8 Monk); numbers along the way: 3 v 2 from 18:06, 4 v 3 from 18:28",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "45cf6756-split-2-1086-56",
+     "shown": "RACK (attacker) [a player or more up]: Kill or take NPCs. Not met (a defender killed: no; an NPC taken: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "45cf6756-split-1-1086-55",
+     "shown": "Men (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Met (no pit NPC lost: yes; no defender dies: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "RACK",
+      "start": [
+       1080,
+       1092
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       1080,
+       1092
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-45cf-38",
+   "set": "f1",
+   "scheme": 2,
+   "row": 38,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    1128,
+    1148
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RACK's split by the back door: three players (Mes/A, Ranger, 8 Monk) against 5 defending (Hammer A, Hammer B, Ranger, Mes/A, 8 Monk); Hammer A, Hammer B, Ranger collapse from the main fight; 5 (Hammer A, Hammer B, Ranger, Mes/A, 8 Monk) against three players: collapse by Hammer A, Hammer B, Ranger from the main fight",
+   "band": "medium",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "45cf6756-split-2-1128-58",
+     "shown": "RACK (attacker) [collapsed on]: Survive and gain an advantage elsewhere on the map. Not met (nobody on the split dies: no; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "45cf6756-split-1-1128-57",
+     "shown": "Men (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Met (a split player dies during the collapse: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-45cf-39",
+   "set": "f1",
+   "scheme": 2,
+   "row": 39,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    1132,
+    1148
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Men's split by the front door: two players (Stand Mes, 7 Monk) against 2 defending (Stand Mes, 7 Monk); 1 damage against 1 monks",
+   "band": "low",
+   "grade": "visible",
+   "mark": "correct",
+   "reason": [
+    "nofight"
+   ],
+   "calls": [
+    {
+     "play": "45cf6756-split-1-1132-59",
+     "shown": "Men (attacker) [held by monks]: Hold the monks there and lose nobody; NPCs are a bonus (a kill is not expected of it). Met (nobody on the split dies: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "45cf6756-split-2-1132-61",
+     "shown": "RACK (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Not met (no pit NPC lost: yes; no more defenders die than split players: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "45cf6756-split-1-1132-60",
+     "shown": "Men (attacker's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Met (more of theirs die away from the split than of ours: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-45cf-40",
+   "set": "f1",
+   "scheme": 2,
+   "row": 40,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    1146,
+    1156
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Men's split by the front door: two players (Stand Mes, 7 Monk) against 0 defending",
+   "band": "medium",
+   "grade": "none",
+   "mark": "",
+   "said": "the game ends at 19:05",
+   "calls": [
+    {
+     "play": "45cf6756-split-1-1146-62",
+     "shown": "Men (attacker) [undefended]: Take NPCs. Met (an NPC taken: yes)",
+     "mark": "not judged"
+    },
+    {
+     "play": "45cf6756-split-2-1146-63",
+     "shown": "RACK (defender) [no answer]: Win elsewhere before the split costs more than it gains. Not met (more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       1140,
+       1152
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "Men v RACK, Nomad's 19:06: he graded it No decision: the game ends at 19:05"
+    },
+    {
+     "none": {
+      "play": "split",
+      "team": "RACK",
+      "start": [
+       1140,
+       1152
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "Men v RACK, Nomad's 19:06: he graded it No decision: the game ends at 19:05"
+    },
+    {
+     "none": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       1140,
+       1152
+      ]
+     },
+     "open": true,
+     "why": "Men v RACK 19:06: 'the game ends at 19:05': a split row told after the Lord is dead"
+    }
+   ]
+  },
+  {
+   "id": "f1-45cf-missed-1",
+   "set": "f1",
+   "scheme": 2,
+   "row": 0,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    644,
+    674
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "(a decision the engine did not read, added by him)",
+   "band": "not read",
+   "grade": "classic",
+   "mark": "missed",
+   "at": "10:44",
+   "said": "ranger solo split frontdoor; very classic easy to identify example",
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "RACK",
+      "start": [
+       629,
+       654
+      ]
+     },
+     "want": {
+      "size": 1,
+      "scenario~": "front door"
+     },
+     "was": "Men v RACK 10:44 (Classic, missed): 'ranger solo split frontdoor; very classic easy to identify example'"
+    }
+   ]
+  },
+  {
+   "id": "f1-45cf-missed-2",
+   "set": "f1",
+   "scheme": 2,
+   "row": 0,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    768,
+    798
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "(a decision the engine did not read, added by him)",
+   "band": "not read",
+   "grade": "classic",
+   "mark": "missed",
+   "at": "12:48",
+   "said": "MISSED very clear and important collapse (8 monk hammer) on RACK's split; and rack's simultaneous split join (7 monk, hammer)",
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "Men",
+      "start": [
+       753,
+       778
+      ]
+     },
+     "want": {
+      "change": true,
+      "call": [
+       "collapse",
+       "join"
+      ],
+      "who~": [
+       "Hammer B",
+       "8 Monk"
+      ]
+     },
+     "was": "Men v RACK 12:48 (Classic, missed): 'very clear and important collapse (8 monk hammer) on RACK's split'"
+    },
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "RACK",
+      "start": [
+       753,
+       778
+      ]
+     },
+     "want": {
+      "change": true,
+      "who~": [
+       "7 Monk",
+       "Hammer"
+      ]
+     },
+     "was": "Men v RACK 12:48: 'and rack's simultaneous split join (7 monk, hammer)'"
+    }
+   ]
+  },
+  {
+   "id": "f1-45cf-missed-3",
+   "set": "f1",
+   "scheme": 2,
+   "row": 0,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    1011,
+    1041
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "(a decision the engine did not read, added by him)",
+   "band": "not read",
+   "grade": "classic",
+   "mark": "missed",
+   "at": "16:51",
+   "said": "mes/a of RACK solosplit through backdoor",
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "RACK",
+      "start": [
+       996,
+       1021
+      ]
+     },
+     "want": {
+      "size": 1,
+      "scenario~": [
+       "Mes/A",
+       "back door"
+      ]
+     },
+     "was": "Men v RACK 16:51 (Classic, missed): 'mes/a of RACK solosplit through backdoor'"
+    }
+   ]
+  },
+  {
+   "id": "f1-45cf-missed-4",
+   "set": "f1",
+   "scheme": 2,
+   "row": 0,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    1105,
+    1135
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "(a decision the engine did not read, added by him)",
+   "band": "not read",
+   "grade": "classic",
+   "mark": "missed",
+   "at": "18:25",
+   "said": "missed important collapse by Men's hammer and prot; and important join by Ranger. The players are correctly identified in the split, but the collapse and join itself are decision points for the respective teams.",
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "Men",
+      "start": [
+       1090,
+       1115
+      ]
+     },
+     "want": {
+      "change": true,
+      "who~": [
+       "Hammer"
+      ]
+     },
+     "was": "Men v RACK 18:25 (Classic, missed): 'missed important collapse by Men's hammer and prot'"
+    },
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "Men",
+      "start": [
+       1090,
+       1115
+      ]
+     },
+     "want": {
+      "change": true,
+      "who~": [
+       "Prot"
+      ]
+     },
+     "open": true,
+     "why": "Men v RACK 18:25: the Prot is not read as coming with the Hammer"
+    },
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "RACK",
+      "start": [
+       1090,
+       1115
+      ]
+     },
+     "want": {
+      "change": true,
+      "who~": [
+       "Ranger"
+      ]
+     },
+     "was": "Men v RACK 18:25: 'and important join by Ranger ... the collapse and join itself are decision points for the respective teams'"
+    }
+   ]
+  },
+  {
+   "id": "f1-45cf-notes",
+   "set": "f1",
+   "scheme": 2,
+   "row": 0,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    0,
+    0
+   ],
+   "type": "notes",
+   "call": "",
+   "shown": "(his notes on the game)",
+   "band": "",
+   "grade": "",
+   "mark": "notes",
+   "said": "",
+   "checks": []
+  },
+  {
+   "id": "f1-572c-1",
+   "set": "f1",
+   "scheme": 2,
+   "row": 1,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    0,
+    87
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "The opening. Men double run (first runner AoB Derv, handing it to Hammer; second runner Ritualist 1, back for the next flag); hold single run (Earth Ele); left back for the next flag: Men's AoB Derv",
+   "band": "high",
+   "grade": "classic",
+   "mark": "partly",
+   "said": "important to note that hold did not bring the first flag and had to send ele back for it. wasting over a minute of player time.",
+   "calls": [
+    {
+     "play": "572c2f95-flag-2-0-0",
+     "shown": "hold [single run]: Kill or take ground with the extra player, and end no worse than a flag behind. Not met (no worse than a flag behind at the end: no; more of theirs die at the main fight than of ours: no; ground taken: no; one of their NPCs dies: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "start": [
+       -3,
+       9
+      ]
+     },
+     "want": {
+      "scenario~": "hold brought no flag up at the opening"
+     },
+     "was": "Men v hold 0:00 (Classic, partly): 'hold did not bring the first flag and had to send ele back for it'"
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-2",
+   "set": "f1",
+   "scheme": 2,
+   "row": 2,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    15,
+    87
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "The opening. hold single run (Earth Ele); Men stays",
+   "band": "high",
+   "grade": "repeat",
+   "mark": "",
+   "calls": [
+    {
+     "play": "572c2f95-flag-1-15-1",
+     "shown": "Men [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Met (more of theirs die at the main fight than of ours: no; their flag does not get in: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-572c-3",
+   "set": "f1",
+   "scheme": 2,
+   "row": 3,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    24,
+    46
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men down on numbers in the main fight (4 v 5, the greater stand area), from players split elsewhere; Men: stay (stay at the stand) | hold: stay (stay at the stand); 3 damage against 2 monks",
+   "band": "low",
+   "grade": "weak",
+   "mark": "incorrect",
+   "off": [
+    "numbers"
+   ],
+   "reason": [
+    "brief"
+   ],
+   "said": "was only 5v4 for around 4s; 4v4 starting at 0:29",
+   "calls": [
+    {
+     "play": "572c2f95-numbers-1-24-2",
+     "shown": "Men (weak side) [stay]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)",
+     "mark": "not judged"
+    },
+    {
+     "play": "572c2f95-numbers-2-24-3",
+     "shown": "hold (strong side) [stay]: Keep them busy and lose nobody (a kill is not expected of it). Met (nobody of ours dies: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-572c-4",
+   "set": "f1",
+   "scheme": 2,
+   "row": 4,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    48,
+    78
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men up on numbers in the main fight (5 v 4, the greater stand area), from players split elsewhere; Men: push in; 3 damage against 2 monks | hold: stay (stay on their side)",
+   "band": "low",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "572c2f95-numbers-1-48-4",
+     "shown": "Men (strong side) [push in]: Keep them busy and lose nobody (a kill is not expected of it). Met (nobody of ours dies: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "572c2f95-numbers-2-48-7",
+     "shown": "hold (weak side) [stay]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Men",
+      "start": [
+       42,
+       54
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "numbers",
+      "team": "hold",
+      "start": [
+       42,
+       54
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-5",
+   "set": "f1",
+   "scheme": 2,
+   "row": 5,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    48,
+    168
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hold's split by the front door: three players (Fire Ele, Air Ele, 8 Monk) against 1 defending (Ranger); numbers along the way: 3 v 1 from 0:48, 3 v 2 from 1:40, 3 v 3 from 2:26",
+   "band": "low",
+   "grade": "classic",
+   "mark": "incorrect",
+   "off": [
+    "numbers",
+    "where"
+   ],
+   "said": "split is by backdoor; starts with 3 defending; 2 defending from 1:11 to 2:27",
+   "calls": [
+    {
+     "play": "572c2f95-split-2-48-8",
+     "shown": "hold (attacker) [a player or more up]: Kill or take NPCs. Met (a defender killed: no; an NPC taken: yes)",
+     "mark": "not judged"
+    },
+    {
+     "play": "572c2f95-split-1-48-5",
+     "shown": "Men (defender) [one defender]: Delay: keep the split off the pit NPCs and stay alive. Met (no pit NPC lost: yes; no defender dies: yes)",
+     "mark": "not judged"
+    },
+    {
+     "play": "572c2f95-split-1-48-6",
+     "shown": "Men (defender's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (more of theirs die away from the split than of ours: no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hold",
+      "at": [
+       48,
+       160
+      ]
+     },
+     "want": {
+      "scenario~": "by the back door"
+     },
+     "was": "Men v hold 0:48 (Classic, incorrect, where): 'split is by backdoor'"
+    },
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hold",
+      "at": [
+       40,
+       66
+      ]
+     },
+     "want": {
+      "defenders": 3
+     },
+     "open": true,
+     "why": "Men v hold 0:48 (Classic, incorrect, numbers): 'starts with 3 defending; 2 defending from 1:11 to 2:27': Men's Hammer, Ranger and Ritualist 2 stand at their back footmen 1,600 to 2,300 from the split, further than the engine counts a defender. Put to him 2026-11-17"
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-6",
+   "set": "f1",
+   "scheme": 2,
+   "row": 6,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    86,
+    128
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men up on numbers in the main fight (6 v 5, hold's front door), from players split elsewhere; Men: stay (stay on the enemy's side) | hold: retreat down the ladder (retreat to the pit)",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "572c2f95-numbers-1-86-9",
+     "shown": "Men (strong side) [stay]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "572c2f95-numbers-2-86-10",
+     "shown": "hold (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Men",
+      "start": [
+       80,
+       92
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "numbers",
+      "team": "hold",
+      "start": [
+       80,
+       92
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-7",
+   "set": "f1",
+   "scheme": 2,
+   "row": 7,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    106,
+    141
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "Men's boost is 30 s away; hold: one runner (Earth Ele); the rest retreat to the pit",
+   "band": "high",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "572c2f95-boost-2-106-11",
+     "shown": "hold [run]: Deny their boost. Not met (their boost does not land: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-572c-8",
+   "set": "f1",
+   "scheme": 2,
+   "row": 8,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    108,
+    140
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 1:48: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard alive; base res in 12 s)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "572c2f95-pinned-2-108-12",
+     "shown": "hold: Lose no player and no NPC while held in, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it breaks out at 2:20, having lost nothing; a break-out is half its living players or more, four at least, out past its doors): yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "hold",
+      "start": [
+       102,
+       114
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-9",
+   "set": "f1",
+   "scheme": 2,
+   "row": 9,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    127,
+    189
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "hold single run (Earth Ele); Men stays",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "572c2f95-flag-1-127-13",
+     "shown": "Men [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Met (more of theirs die at the main fight than of ours: no; their flag does not get in: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "Men",
+      "start": [
+       121,
+       133
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-10",
+   "set": "f1",
+   "scheme": 2,
+   "row": 10,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    150,
+    182
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men down on numbers in the main fight (4 v 5, hold's front door), from players split elsewhere; Men: stay (stay at the stand) | hold: stay (stay at the stand)",
+   "band": "medium",
+   "grade": "visible",
+   "mark": "correct",
+   "reason": [
+    "brief"
+   ],
+   "calls": [
+    {
+     "play": "572c2f95-numbers-1-150-14",
+     "shown": "Men (weak side) [stay]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "572c2f95-numbers-2-150-15",
+     "shown": "hold (strong side) [stay]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-572c-11",
+   "set": "f1",
+   "scheme": 2,
+   "row": 11,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    166,
+    238
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hold's split by the front door: three players (Fire Ele, 8 Monk, Air Ele) against 0 defending",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "incorrect",
+   "off": [
+    "numbers",
+    "who"
+   ],
+   "said": "ranger and 8 monk defending",
+   "calls": [
+    {
+     "play": "572c2f95-split-2-166-17",
+     "shown": "hold (attacker) [undefended]: Take NPCs. Met (an NPC taken: yes)",
+     "mark": "not judged"
+    },
+    {
+     "play": "572c2f95-split-1-166-16",
+     "shown": "Men (defender) [no answer]: Win elsewhere before the split costs more than it gains. Met (more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hold",
+      "at": [
+       170,
+       200
+      ]
+     },
+     "want": {
+      "defenders": 2
+     },
+     "open": true,
+     "why": "Men v hold 2:46 (Classic, incorrect): 'ranger and 8 monk defending': they stand in their pit, up to 3,400 from the split at the back door. Put to him 2026-11-17"
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-12",
+   "set": "f1",
+   "scheme": 2,
+   "row": 12,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    184,
+    189
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "Men pushes hold's flagger (Earth Ele, carrying) with its main team",
+   "band": "medium",
+   "grade": "weak",
+   "mark": "correct",
+   "reason": [
+    "brief"
+   ],
+   "calls": [
+    {
+     "play": "572c2f95-push_flagger-1-184-19",
+     "shown": "Men: Stop their flag, or make it 30% late. Met (their flag is stopped: yes; it arrives 30% or more later than usual: no)",
+     "mark": "not judged"
+    },
+    {
+     "play": "572c2f95-flagger_pushed-2-184-20",
+     "shown": "hold: Get the flag in on time. Not met (the flag gets in, less than 30% late: no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-572c-13",
+   "set": "f1",
+   "scheme": 2,
+   "row": 13,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    184,
+    210
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men up on numbers in the main fight (6 v 5, the greater stand area), from players split elsewhere; Men: push in | hold: retreat down the ladder (fall back into the base)",
+   "band": "low",
+   "grade": "visible",
+   "mark": "correct",
+   "reason": [
+    "brief"
+   ],
+   "calls": [
+    {
+     "play": "572c2f95-numbers-1-184-18",
+     "shown": "Men (strong side) [push in]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "572c2f95-numbers-2-184-21",
+     "shown": "hold (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-572c-14",
+   "set": "f1",
+   "scheme": 2,
+   "row": 14,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    192,
+    194
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "hold pushes Men's flagger (Ritualist 1, carrying) with one player",
+   "band": "low",
+   "grade": "none",
+   "mark": "",
+   "reason": [
+    "brief",
+    "small",
+    "nofight",
+    "unclear"
+   ],
+   "calls": [
+    {
+     "play": "572c2f95-push_flagger-2-192-23",
+     "shown": "hold: Stop their flag, or make it 30% late. Met (their flag is stopped: yes; it arrives 30% or more later than usual: no)",
+     "mark": "not judged"
+    },
+    {
+     "play": "572c2f95-flagger_pushed-1-192-22",
+     "shown": "Men: Get the flag in on time. Not met (the flag gets in, less than 30% late: no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "push flagger",
+      "team": "hold",
+      "start": [
+       186,
+       198
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "Men v hold, Meditation 3:12: he graded it No decision"
+    },
+    {
+     "none": {
+      "play": "flagger pushed",
+      "team": "Men",
+      "start": [
+       186,
+       198
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "Men v hold, Meditation 3:12: he graded it No decision"
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-15",
+   "set": "f1",
+   "scheme": 2,
+   "row": 15,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    220,
+    244
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 3:40: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard alive; lost while held: a knight at 3:41, a knight at 3:41; base res in 20 s)",
+   "band": "medium",
+   "grade": "visible",
+   "mark": "correct",
+   "reason": [
+    "small"
+   ],
+   "calls": [
+    {
+     "play": "572c2f95-pinned-2-220-24",
+     "shown": "hold: Lose no player and no NPC while held in, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-572c-16",
+   "set": "f1",
+   "scheme": 2,
+   "row": 16,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    226,
+    261
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "Men's boost is 30 s away; hold: one runner (Mesmer, handing it to Earth Ele); the rest fall back into the base",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "said": "good identification. They brought this flag from base but it really was a run; they were trying to cap but took too much pressure and couldn't cap.",
+   "calls": [
+    {
+     "play": "572c2f95-boost-2-226-25",
+     "shown": "hold [run]: Deny their boost. Not met (their boost does not land: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "boost",
+      "team": "hold",
+      "start": [
+       220,
+       232
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-17",
+   "set": "f1",
+   "scheme": 2,
+   "row": 17,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    234,
+    414
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "hold single run (Earth Ele); Men single run (Ritualist 1)",
+   "band": "high",
+   "grade": "weak",
+   "mark": "partly",
+   "off": [
+    "kind"
+   ],
+   "reason": [
+    "nofight"
+   ],
+   "said": "Rit doesn't full run, he has a backup flag waiting at stand already",
+   "calls": [
+    {
+     "play": "572c2f95-flag-1-234-26",
+     "shown": "Men [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (our flag is capped: yes; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-572c-18",
+   "set": "f1",
+   "scheme": 2,
+   "row": 18,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    236,
+    262
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hold's split by the front door: three players (Fire Ele, 8 Monk, Air Ele) against 2 defending (Ranger, Ritualist 2)",
+   "band": "low",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "572c2f95-split-2-236-29",
+     "shown": "hold (attacker) [a player or more up]: Kill or take NPCs. Not met (a defender killed: no; an NPC taken: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "572c2f95-split-1-236-27",
+     "shown": "Men (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Met (no pit NPC lost: yes; no defender dies: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "572c2f95-split-1-236-28",
+     "shown": "Men (defender's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (more of theirs die away from the split than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "hold",
+      "start": [
+       230,
+       242
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       230,
+       242
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       230,
+       242
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-19",
+   "set": "f1",
+   "scheme": 2,
+   "row": 19,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    248,
+    288
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men down on numbers in the main fight (4 v 5, hold's front door), from players split elsewhere; Men: stay (stay on the enemy's side) | hold: retreat down the ladder (fall back into the base); 3 damage against 2 monks",
+   "band": "low",
+   "grade": "visible",
+   "mark": "correct",
+   "reason": [
+    "brief"
+   ],
+   "calls": [
+    {
+     "play": "572c2f95-numbers-1-248-30",
+     "shown": "Men (weak side) [stay]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "572c2f95-numbers-2-248-31",
+     "shown": "hold (strong side) [retreat down the ladder]: Keep them busy and lose nobody (a kill is not expected of it). Met (nobody of ours dies: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-572c-20",
+   "set": "f1",
+   "scheme": 2,
+   "row": 20,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    256,
+    286
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Men's split by the back door: one player (AoB Derv) against 0 defending",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "said": "excellent catch",
+   "calls": [
+    {
+     "play": "572c2f95-split-1-256-32",
+     "shown": "Men (attacker) [undefended]: Take NPCs. Met (an NPC taken: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "572c2f95-split-2-256-33",
+     "shown": "hold (defender) [no answer]: Win elsewhere before the split costs more than it gains. Not met (more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       250,
+       262
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "hold",
+      "start": [
+       250,
+       262
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-21",
+   "set": "f1",
+   "scheme": 2,
+   "row": 21,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    260,
+    300
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hold's split by the front door: three players (Fire Ele, 8 Monk, Air Ele) against 0 defending",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "incorrect",
+   "off": [
+    "numbers",
+    "when"
+   ],
+   "said": "same split as before, and 3 are defending still (8 monk and ranger)",
+   "calls": [
+    {
+     "play": "572c2f95-split-2-260-35",
+     "shown": "hold (attacker) [undefended]: Take NPCs. Not met (an NPC taken: no)",
+     "mark": "not judged"
+    },
+    {
+     "play": "572c2f95-split-1-260-34",
+     "shown": "Men (defender) [no answer]: Win elsewhere before the split costs more than it gains. Not met (more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hold",
+      "start": [
+       254,
+       266
+      ],
+      "want": {
+       "defenders": 0
+      }
+     },
+     "open": true,
+     "why": "Men v hold 4:20 (Classic, incorrect): 'same split as before, and 3 are defending still (8 monk and ranger)'"
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-22",
+   "set": "f1",
+   "scheme": 2,
+   "row": 22,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    284,
+    318
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men up on numbers in the main fight (6 v 5, hold's front door), from players split elsewhere; Men: push in | hold: retreat down the ladder (fall back into the base)",
+   "band": "low",
+   "grade": "visible",
+   "mark": "correct",
+   "reason": [
+    "brief"
+   ],
+   "calls": [
+    {
+     "play": "572c2f95-numbers-1-284-36",
+     "shown": "Men (strong side) [push in]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "572c2f95-numbers-2-284-37",
+     "shown": "hold (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-572c-23",
+   "set": "f1",
+   "scheme": 2,
+   "row": 23,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    298,
+    434
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hold's split by the front door: three players (Fire Ele, Air Ele, 8 Monk) against 2 defending (Ranger, Hammer); numbers along the way: 3 v 2 from 4:58, 3 v 3 from 6:22",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "572c2f95-split-2-298-39",
+     "shown": "hold (attacker) [a player or more up]: Kill or take NPCs. Met (a defender killed: yes; an NPC taken: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "572c2f95-split-1-298-38",
+     "shown": "Men (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Not met (no pit NPC lost: no; no defender dies: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "hold",
+      "start": [
+       292,
+       304
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       292,
+       304
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-24",
+   "set": "f1",
+   "scheme": 2,
+   "row": 24,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    346,
+    391
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "Men's boost is 30 s away; hold: no runner; the rest stay at the stand",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "572c2f95-boost-2-346-40",
+     "shown": "hold [concede]: Concede the boost for kills. Met (more of theirs die than of ours: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "boost",
+      "team": "hold",
+      "start": [
+       340,
+       352
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-25",
+   "set": "f1",
+   "scheme": 2,
+   "row": 25,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    378,
+    441
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "Men single run (Ritualist 1); hold single run (Earth Ele)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "572c2f95-flag-2-378-41",
+     "shown": "hold [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (our flag is capped: yes; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "hold",
+      "start": [
+       372,
+       384
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-26",
+   "set": "f1",
+   "scheme": 2,
+   "row": 26,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    408,
+    486
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "hold pushes Men's flagger (Ritualist 1, carrying) with its main team",
+   "band": "low",
+   "grade": "none",
+   "mark": "",
+   "reason": [
+    "nofight",
+    "unclear"
+   ],
+   "said": "this I think was collapse rather than flagpush",
+   "calls": [
+    {
+     "play": "572c2f95-push_flagger-2-408-43",
+     "shown": "hold: Stop their flag, or make it 30% late. Met (their flag is stopped: no; it arrives 30% or more later than usual: yes)",
+     "mark": "not judged"
+    },
+    {
+     "play": "572c2f95-flagger_pushed-1-408-42",
+     "shown": "Men: Get the flag in on time. Not met (the flag gets in, less than 30% late: no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "push flagger",
+      "team": "hold",
+      "start": [
+       402,
+       414
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "Men v hold, Meditation 6:48: he graded it No decision: this I think was collapse rather than flagpush"
+    },
+    {
+     "none": {
+      "play": "flagger pushed",
+      "team": "Men",
+      "start": [
+       402,
+       414
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "Men v hold, Meditation 6:48: he graded it No decision: this I think was collapse rather than flagpush"
+    },
+    {
+     "none": {
+      "play": "push flagger",
+      "team": "hold",
+      "start": [
+       402,
+       414
+      ]
+     },
+     "open": true,
+     "why": "Men v hold 6:48: 'this I think was collapse rather than flagpush'"
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-27",
+   "set": "f1",
+   "scheme": 2,
+   "row": 27,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    432,
+    470
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hold's split by the front door: 4 players (Fire Ele, 8 Monk, Air Ele, Prot) against 8 defending (Hammer, Ranger, Prot, AoB Derv, Ritualist 2, 7 Monk, Mesmer, Ritualist 1); the whole team turns on it; 8 (Hammer, Ranger, Prot, AoB Derv, Ritualist 2, 7 Monk, Mesmer, Ritualist 1) against 4 players: full collapse",
+   "band": "low",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "572c2f95-split-2-432-45",
+     "shown": "hold (attacker) [met by a full collapse]: Survive and gain an advantage elsewhere on the map. Not met (nobody on the split dies: no; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "572c2f95-split-1-432-44",
+     "shown": "Men (defender) [full collapse]: Kill the split or drive it out (the flags it costs are beside it). Met (a split player dies: yes; the split is gone within the visit: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-572c-28",
+   "set": "f1",
+   "scheme": 2,
+   "row": 28,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    476,
+    538
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men down on numbers in the main fight (4 v 5, the field on hold's side; then 6 v 7 from 8:08; then 7 v 8 from 8:20), from players on their way to it (in neither fight); Men: push in | hold: stay (stay on their side)",
+   "band": "none",
+   "grade": "none",
+   "mark": "",
+   "calls": [],
+   "checks": []
+  },
+  {
+   "id": "f1-572c-29",
+   "set": "f1",
+   "scheme": 2,
+   "row": 29,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    552,
+    588
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hold's split by the back door: three players (8 Monk, Fire Ele, Air Ele) against 2 defending (Mesmer, 7 Monk)",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "572c2f95-split-2-552-49",
+     "shown": "hold (attacker) [a player or more up]: Kill or take NPCs. Met (a defender killed: no; an NPC taken: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "572c2f95-split-1-552-48",
+     "shown": "Men (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Not met (no pit NPC lost: no; no defender dies: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "572c2f95-split-2-552-50",
+     "shown": "hold (attacker's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Not met (more of theirs die away from the split than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "hold",
+      "start": [
+       546,
+       558
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       546,
+       558
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "hold",
+      "start": [
+       546,
+       558
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-30",
+   "set": "f1",
+   "scheme": 2,
+   "row": 30,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    558,
+    598
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Men's split by the front door: two players (Hammer, Ranger) against 5 defending (Earth Ele, 7 Monk, Water Ele, Mesmer, Prot)",
+   "band": "medium",
+   "grade": "visible",
+   "mark": "correct",
+   "said": "this is very clear (so close to classic) it's just not a typical example of a split by frontdoor or defence",
+   "calls": [
+    {
+     "play": "572c2f95-split-1-558-51",
+     "shown": "Men (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Not met (nobody on the split dies: no; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "572c2f95-split-2-558-53",
+     "shown": "hold (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Not met (no pit NPC lost: no; a split player dies: yes; the split is gone within the visit: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "572c2f95-split-1-558-52",
+     "shown": "Men (attacker's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Not met (more of theirs die away from the split than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-572c-31",
+   "set": "f1",
+   "scheme": 2,
+   "row": 31,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    576,
+    611
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "Men's boost is 30 s away; hold: one runner (Earth Ele); the rest push up",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "572c2f95-boost-2-576-54",
+     "shown": "hold [run]: Deny their boost. Not met (their boost does not land: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "boost",
+      "team": "hold",
+      "start": [
+       570,
+       582
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-32",
+   "set": "f1",
+   "scheme": 2,
+   "row": 32,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    586,
+    604
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hold's split by the back door: three players (8 Monk, Fire Ele, Air Ele) against 4 defending (AoB Derv, Ritualist 1, Mesmer, 7 Monk); AoB Derv, Ritualist 1 collapse from the main fight; 4 (AoB Derv, Ritualist 1, Mesmer, 7 Monk) against three players: collapse by AoB Derv, Ritualist 1 from the main fight",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "572c2f95-split-2-586-56",
+     "shown": "hold (attacker) [collapsed on]: Survive and gain an advantage elsewhere on the map. Not met (nobody on the split dies: no; more of theirs die away from the split than of ours: yes; flag lead better by 0.35 or more: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "572c2f95-split-1-586-55",
+     "shown": "Men (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Met (a split player dies during the collapse: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "hold",
+      "start": [
+       580,
+       592
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       580,
+       592
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-33",
+   "set": "f1",
+   "scheme": 2,
+   "row": 33,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    596,
+    626
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Men's split by the front door: one player (Hammer) against 0 defending",
+   "band": "medium",
+   "grade": "none",
+   "mark": "",
+   "reason": [
+    "nofight"
+   ],
+   "said": "he is running away from a previous split to join mainteam; he is not splitting",
+   "calls": [
+    {
+     "play": "572c2f95-split-1-596-57",
+     "shown": "Men (attacker) [undefended]: Take NPCs. Not met (an NPC taken: no)",
+     "mark": "not judged"
+    },
+    {
+     "play": "572c2f95-split-2-596-58",
+     "shown": "hold (defender) [no answer]: Win elsewhere before the split costs more than it gains. Not met (more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       590,
+       602
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "Men v hold, Meditation 9:56: he graded it No decision: he is running away from a previous split to join mainteam; he is not splitting"
+    },
+    {
+     "none": {
+      "play": "split",
+      "team": "hold",
+      "start": [
+       590,
+       602
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "Men v hold, Meditation 9:56: he graded it No decision: he is running away from a previous split to join mainteam; he is not splitting"
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-34",
+   "set": "f1",
+   "scheme": 2,
+   "row": 34,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    602,
+    618
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hold's split by the back door: two players (Fire Ele, Air Ele) against 4 defending (AoB Derv, Mesmer, 7 Monk, Ritualist 1)",
+   "band": "medium",
+   "grade": "visible",
+   "mark": "partly",
+   "said": "it's continuation of previous split",
+   "calls": [
+    {
+     "play": "572c2f95-split-2-602-61",
+     "shown": "hold (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Not met (nobody on the split dies: no; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "572c2f95-split-1-602-59",
+     "shown": "Men (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Met (no pit NPC lost: yes; a split player dies: yes; the split is gone within the visit: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "572c2f95-split-1-602-60",
+     "shown": "Men (defender's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Not met (more of theirs die away from the split than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-572c-35",
+   "set": "f1",
+   "scheme": 2,
+   "row": 35,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    612,
+    636
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "hold single run (Earth Ele); Men single run (Ritualist 2)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "572c2f95-flag-1-612-62",
+     "shown": "Men [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (our flag is capped: no; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "Men",
+      "start": [
+       606,
+       618
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-36",
+   "set": "f1",
+   "scheme": 2,
+   "row": 36,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    624,
+    642
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Men's split by the front door: 5 players (Hammer, AoB Derv, 7 Monk, Mesmer, Ritualist 1) against 0 defending",
+   "band": "low",
+   "grade": "none",
+   "mark": "",
+   "reason": [
+    "nofight"
+   ],
+   "said": "they are just running into backdoor, no split yet",
+   "calls": [
+    {
+     "play": "572c2f95-split-1-624-63",
+     "shown": "Men (attacker) [undefended]: Take NPCs. Not met (an NPC taken: no)",
+     "mark": "not judged"
+    },
+    {
+     "play": "572c2f95-split-2-624-64",
+     "shown": "hold (defender) [no answer]: Win elsewhere before the split costs more than it gains. Not met (more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       618,
+       630
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "Men v hold, Meditation 10:24: he graded it No decision: they are just running into backdoor, no split yet"
+    },
+    {
+     "none": {
+      "play": "split",
+      "team": "hold",
+      "start": [
+       618,
+       630
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "Men v hold, Meditation 10:24: he graded it No decision: they are just running into backdoor, no split yet"
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-37",
+   "set": "f1",
+   "scheme": 2,
+   "row": 37,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    640,
+    672
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Men's split by the front door: 5 players (Hammer, AoB Derv, 7 Monk, Mesmer, Ritualist 1) against 2 defending (7 Monk, Water Ele); numbers along the way: 5 v 2 from 10:40, 5 v 5 from 10:58",
+   "band": "low",
+   "grade": "classic",
+   "mark": "partly",
+   "off": [
+    "numbers"
+   ],
+   "said": "5 players defending and it's a split through the backdoor not front",
+   "calls": [
+    {
+     "play": "572c2f95-split-1-640-65",
+     "shown": "Men (attacker) [a player or more up]: Kill or take NPCs. Not met (a defender killed: no; an NPC taken: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "572c2f95-split-2-640-66",
+     "shown": "hold (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Met (no pit NPC lost: yes; no defender dies: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "Men",
+      "at": [
+       640,
+       672
+      ]
+     },
+     "want": {
+      "scenario~": "by the back door"
+     },
+     "open": true,
+     "why": "Men v hold 10:40 (Classic, partly): 'it's a split through the backdoor not front'"
+    },
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "Men",
+      "at": [
+       640,
+       660
+      ]
+     },
+     "want": {
+      "defenders": 5
+     },
+     "open": true,
+     "why": "Men v hold 10:40: '5 players defending' (the engine reads 2, then 5 from 10:58)"
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-38",
+   "set": "f1",
+   "scheme": 2,
+   "row": 38,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    652,
+    720
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 10:52: 0 of 2 knights, 2 of 2 pit archers, the Bodyguard dead; lost while held: a pit archer at 11:48; base res in 68 s)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "572c2f95-pinned-2-652-67",
+     "shown": "hold: Hold the NPCs and lose nobody until the base res, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "hold",
+      "start": [
+       646,
+       658
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-39",
+   "set": "f1",
+   "scheme": 2,
+   "row": 39,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    670,
+    714
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Men's split by the front door: one player (Hammer) against 5 defending (Water Ele, Earth Ele, Prot, Mesmer, 7 Monk); Prot collapse from the main fight; 5 (Water Ele, Earth Ele, Prot, Mesmer, 7 Monk) against one player: collapse by Prot from the main fight",
+   "band": "low",
+   "grade": "none",
+   "mark": "",
+   "said": "incorrect; warrior is just jointing the mainteam fight that is now in pit.",
+   "calls": [
+    {
+     "play": "572c2f95-split-1-670-68",
+     "shown": "Men (attacker) [collapsed on]: Survive and gain an advantage elsewhere on the map. Not met (nobody on the split dies: yes; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)",
+     "mark": "not judged"
+    },
+    {
+     "play": "572c2f95-split-2-670-69",
+     "shown": "hold (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Not met (a split player dies during the collapse: no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       664,
+       676
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "Men v hold, Meditation 11:10: he graded it No decision: incorrect; warrior is just jointing the mainteam fight that is now in pit."
+    },
+    {
+     "none": {
+      "play": "split",
+      "team": "hold",
+      "start": [
+       664,
+       676
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "Men v hold, Meditation 11:10: he graded it No decision: incorrect; warrior is just jointing the mainteam fight that is now in pit."
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-40",
+   "set": "f1",
+   "scheme": 2,
+   "row": 40,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    700,
+    750
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "Men has 8 in hold's base at the base res (4 defending, 4 coming back): 8 stay",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "572c2f95-base_res-1-700-70",
+     "shown": "Men [stayed through the res]: Be out, or set for the fight, when they res. Met (nobody of ours dies in the 30 s after the res: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "Men",
+      "start": [
+       694,
+       706
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-41",
+   "set": "f1",
+   "scheme": 2,
+   "row": 41,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    712,
+    726
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Men's split by the front door: one player (Hammer) against 3 defending (Water Ele, Prot, 7 Monk)",
+   "band": "low",
+   "grade": "repeat",
+   "mark": "",
+   "said": "no decision; incorrect",
+   "calls": [
+    {
+     "play": "572c2f95-split-1-712-71",
+     "shown": "Men (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Not met (nobody on the split dies: yes; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)",
+     "mark": "not judged"
+    },
+    {
+     "play": "572c2f95-split-2-712-73",
+     "shown": "hold (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Met (no pit NPC lost: yes; a split player dies: no; the split is gone within the visit: yes)",
+     "mark": "not judged"
+    },
+    {
+     "play": "572c2f95-split-1-712-72",
+     "shown": "Men (attacker's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Not met (more of theirs die away from the split than of ours: no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-572c-42",
+   "set": "f1",
+   "scheme": 2,
+   "row": 42,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    720,
+    760
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 12:00: 0 of 2 knights, 1 of 2 pit archers, the Bodyguard dead; base res in 120 s)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "572c2f95-pinned-2-720-74",
+     "shown": "hold: Lose no player and no NPC while held in, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "hold",
+      "start": [
+       714,
+       726
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-43",
+   "set": "f1",
+   "scheme": 2,
+   "row": 43,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    766,
+    788
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men up on numbers in the main fight (8 v 7, hold's back door), from players split elsewhere; Men: stay (stay on the enemy's side) | hold: retreat down the ladder (fall back into the base)",
+   "band": "medium",
+   "grade": "visible",
+   "mark": "correct",
+   "reason": [
+    "brief",
+    "unclear"
+   ],
+   "calls": [
+    {
+     "play": "572c2f95-numbers-1-766-75",
+     "shown": "Men (strong side) [stay]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "572c2f95-numbers-2-766-76",
+     "shown": "hold (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-572c-44",
+   "set": "f1",
+   "scheme": 2,
+   "row": 44,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    788,
+    854
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men down on numbers in the main fight (5 v 7, hold's back door; then 6 v 7 from 13:24; then 6 v 8 from 13:46), from players split elsewhere; Men: stay (stay on the enemy's side) | hold: retreat down the ladder (retreat to the pit)",
+   "band": "low",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "572c2f95-numbers-1-788-77",
+     "shown": "Men (weak side) [stay]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "572c2f95-numbers-2-788-78",
+     "shown": "hold (strong side) [retreat down the ladder]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Men",
+      "start": [
+       782,
+       794
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "numbers",
+      "team": "hold",
+      "start": [
+       782,
+       794
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-45",
+   "set": "f1",
+   "scheme": 2,
+   "row": 45,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    816,
+    861
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "Men's boost is 30 s away; hold: no runner; the rest fall back into the base",
+   "band": "high",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "572c2f95-boost-2-816-79",
+     "shown": "hold [concede]: Concede the boost for kills. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-572c-46",
+   "set": "f1",
+   "scheme": 2,
+   "row": 46,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    866,
+    904
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "Men pushes hold's flagger (Earth Ele, at the spawn) with 2 players",
+   "band": "medium",
+   "grade": "visible",
+   "mark": "correct",
+   "reason": [
+    "brief"
+   ],
+   "calls": [
+    {
+     "play": "572c2f95-push_flagger-1-866-80",
+     "shown": "Men: Stop their flag, or make it 30% late. Not met (their flag is stopped: no; it arrives 30% or more later than usual: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "572c2f95-flagger_pushed-2-866-81",
+     "shown": "hold: Get the flag in on time, without losing a player for the help sent. Not met (the flag gets in, less than 30% late: no; nobody else of ours dies meanwhile: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-572c-47",
+   "set": "f1",
+   "scheme": 2,
+   "row": 47,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    916,
+    960
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 15:16: 0 of 2 knights, 1 of 2 pit archers, the Bodyguard dead; base res in 44 s)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "572c2f95-pinned-2-916-82",
+     "shown": "hold: Hold the NPCs and lose nobody until the base res, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "hold",
+      "start": [
+       910,
+       922
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-48",
+   "set": "f1",
+   "scheme": 2,
+   "row": 48,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    922,
+    986
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men up on numbers in the main fight (8 v 7, hold's pit), from kills; Men: stay (stay on the enemy's side)",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "572c2f95-numbers-1-922-83",
+     "shown": "Men (up) [stay]: Turn the extra player into a kill before the numbers are level. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Men",
+      "start": [
+       916,
+       928
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-49",
+   "set": "f1",
+   "scheme": 2,
+   "row": 49,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    940,
+    990
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "Men has 8 in hold's base at the base res (7 defending, 1 coming back): 8 stay",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "572c2f95-base_res-1-940-84",
+     "shown": "Men [stayed through the res]: Be out, or set for the fight, when they res. Met (nobody of ours dies in the 30 s after the res: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "Men",
+      "start": [
+       934,
+       946
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-50",
+   "set": "f1",
+   "scheme": 2,
+   "row": 50,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    960,
+    980
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 16:00: 0 of 2 knights, 1 of 2 pit archers, the Bodyguard dead; base res in 120 s)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "572c2f95-pinned-2-960-85",
+     "shown": "hold: Lose no player and no NPC while held in, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "hold",
+      "start": [
+       954,
+       966
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-51",
+   "set": "f1",
+   "scheme": 2,
+   "row": 51,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    988,
+    1028
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 16:28: 0 of 2 knights, 1 of 2 pit archers, the Bodyguard dead; base res in 92 s)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "572c2f95-pinned-2-988-86",
+     "shown": "hold: Lose no player and no NPC while held in, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "hold",
+      "start": [
+       982,
+       994
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-52",
+   "set": "f1",
+   "scheme": 2,
+   "row": 52,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    994,
+    1014
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men up on numbers in the main fight (8 v 7, hold's pit), from players split elsewhere; Men: stay (stay on the enemy's side)",
+   "band": "low",
+   "grade": "visible",
+   "mark": "correct",
+   "reason": [
+    "brief"
+   ],
+   "calls": [
+    {
+     "play": "572c2f95-numbers-1-994-87",
+     "shown": "Men (strong side) [stay]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-572c-53",
+   "set": "f1",
+   "scheme": 2,
+   "row": 53,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    1045,
+    1186
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "hold single run (Earth Ele); Men single run (Ranger, handing it to Ritualist 1)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "572c2f95-flag-1-1045-88",
+     "shown": "Men [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (our flag is capped: yes; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "Men",
+      "start": [
+       1039,
+       1051
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-54",
+   "set": "f1",
+   "scheme": 2,
+   "row": 54,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    1053,
+    1073
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "Men single run (Ranger, handing it to Ritualist 1); hold single run (Prot)",
+   "band": "high",
+   "grade": "none",
+   "mark": "",
+   "said": "single run is already described; and hold's prot does not run",
+   "calls": [
+    {
+     "play": "572c2f95-flag-2-1053-89",
+     "shown": "hold [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (our flag is capped: yes; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "flag",
+      "team": "hold",
+      "start": [
+       1047,
+       1059
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "Men v hold, Meditation 17:33: he graded it No decision: single run is already described; and hold's prot does not run"
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-55",
+   "set": "f1",
+   "scheme": 2,
+   "row": 55,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    1056,
+    1091
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "Men's boost is 30 s away; hold: one runner (Prot); the rest retreat to the pit",
+   "band": "high",
+   "grade": "classic",
+   "mark": "incorrect",
+   "said": "hold's prot does not run",
+   "calls": [
+    {
+     "play": "572c2f95-boost-2-1056-90",
+     "shown": "hold [run]: Deny their boost. Met (their boost does not land: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "boost",
+      "team": "hold",
+      "start": [
+       1050,
+       1062
+      ]
+     },
+     "want": {
+      "scenario~": "one runner (Earth Ele)"
+     },
+     "was": "Men v hold 17:36 (Classic, incorrect): 'hold's prot does not run': the capture was recorded on the Prot; the Earth Ele carried it"
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-56",
+   "set": "f1",
+   "scheme": 2,
+   "row": 56,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    1064,
+    1088
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 17:44: 0 of 2 knights, 1 of 2 pit archers, the Bodyguard dead; base res in 16 s)",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "572c2f95-pinned-2-1064-91",
+     "shown": "hold: Lose no player and no NPC while held in, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "hold",
+      "start": [
+       1058,
+       1070
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-57",
+   "set": "f1",
+   "scheme": 2,
+   "row": 57,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    1086,
+    1128
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Men's split by the front door: two players (Ritualist 2, AoB Derv) against 1 defending (Air Ele)",
+   "band": "low",
+   "grade": "visible",
+   "mark": "incorrect",
+   "off": [
+    "kind"
+   ],
+   "said": "this is a collapse, not a split",
+   "calls": [
+    {
+     "play": "572c2f95-split-1-1086-92",
+     "shown": "Men (attacker) [a player or more up]: Kill or take NPCs. Met (a defender killed: yes; an NPC taken: no)",
+     "mark": "not judged"
+    },
+    {
+     "play": "572c2f95-split-2-1086-94",
+     "shown": "hold (defender) [one defender]: Delay: keep the split off the pit NPCs and stay alive. Not met (no pit NPC lost: yes; no defender dies: no)",
+     "mark": "not judged"
+    },
+    {
+     "play": "572c2f95-split-1-1086-93",
+     "shown": "Men (attacker's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Not met (more of theirs die away from the split than of ours: no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "split",
+      "side": "attacker",
+      "team": "Men",
+      "start": [
+       1080,
+       1092
+      ]
+     },
+     "open": true,
+     "why": "Men v hold 18:06 (Visible, incorrect, kind): 'this is a collapse, not a split'"
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-58",
+   "set": "f1",
+   "scheme": 2,
+   "row": 58,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    1098,
+    1118
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men down on numbers in the main fight (3 v 4, hold's pit), from players split elsewhere; Men: stay (stay on the enemy's side) | hold: push in",
+   "band": "medium",
+   "grade": "visible",
+   "mark": "correct",
+   "reason": [
+    "brief"
+   ],
+   "calls": [
+    {
+     "play": "572c2f95-numbers-1-1098-95",
+     "shown": "Men (weak side) [stay]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "572c2f95-numbers-2-1098-96",
+     "shown": "hold (strong side) [push in]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-572c-59",
+   "set": "f1",
+   "scheme": 2,
+   "row": 59,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    1100,
+    1138
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hold's split by the front door: one player (Fire Ele) against 3 defending (Ritualist 1, Prot, Ranger)",
+   "band": "low",
+   "grade": "classic",
+   "mark": "incorrect",
+   "off": [
+    "numbers",
+    "who"
+   ],
+   "said": "earth ele is part of split",
+   "calls": [
+    {
+     "play": "572c2f95-split-2-1100-99",
+     "shown": "hold (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Not met (nobody on the split dies: yes; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)",
+     "mark": "not judged"
+    },
+    {
+     "play": "572c2f95-split-1-1100-97",
+     "shown": "Men (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Not met (no pit NPC lost: yes; a split player dies: no; the split is gone within the visit: no)",
+     "mark": "not judged"
+    },
+    {
+     "play": "572c2f95-split-1-1100-98",
+     "shown": "Men (defender's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Met (more of theirs die away from the split than of ours: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hold",
+      "at": [
+       1100,
+       1138
+      ]
+     },
+     "want": {
+      "scenario~": "Earth Ele"
+     },
+     "open": true,
+     "why": "Men v hold 18:20 (Classic, incorrect, numbers and who): 'earth ele is part of split'"
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-60",
+   "set": "f1",
+   "scheme": 2,
+   "row": 60,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    1136,
+    1180
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hold's split by the front door: one player (Fire Ele) against 4 defending (Ranger, Prot, AoB Derv, Ritualist 1); AoB Derv collapse from the main fight; 4 (Ranger, Prot, AoB Derv, Ritualist 1) against one player: collapse by AoB Derv from the main fight",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "incorrect",
+   "off": [
+    "numbers",
+    "who"
+   ],
+   "said": "3 man split (earth ele, fire ele, 8 monk) defended by ranger, prot, rit, with eventual collapse by derv",
+   "calls": [
+    {
+     "play": "572c2f95-split-2-1136-101",
+     "shown": "hold (attacker) [collapsed on]: Survive and gain an advantage elsewhere on the map. Not met (nobody on the split dies: yes; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)",
+     "mark": "not judged"
+    },
+    {
+     "play": "572c2f95-split-1-1136-100",
+     "shown": "Men (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Not met (a split player dies during the collapse: no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hold",
+      "at": [
+       1136,
+       1180
+      ]
+     },
+     "want": {
+      "size": 3
+     },
+     "open": true,
+     "why": "Men v hold 18:56 (Classic, incorrect): '3 man split (earth ele, fire ele, 8 monk) defended by ranger, prot, rit, with eventual collapse by derv': the engine reads the three as a push by hold's main team, and one player on the split"
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-61",
+   "set": "f1",
+   "scheme": 2,
+   "row": 61,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    1163,
+    1198
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "hold's boost is 30 s away; Men: one runner (Ritualist 1); the rest stay on the enemy's side",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "572c2f95-boost-1-1163-102",
+     "shown": "Men [run]: Deny their boost. Met (their boost does not land: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "boost",
+      "team": "Men",
+      "start": [
+       1157,
+       1169
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-62",
+   "set": "f1",
+   "scheme": 2,
+   "row": 62,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    1176,
+    1250
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men up on numbers in the main fight (5 v 4, hold's front door; then 5 v 2 from 20:10), from players split elsewhere; Men: push up (push up to their front door) | hold: stay (stay at the stand)",
+   "band": "none",
+   "grade": "visible",
+   "mark": "",
+   "said": "5v4 men has player advantage",
+   "calls": [],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Men",
+      "start": [
+       1170,
+       1182
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "open": true,
+     "auto": true,
+     "why": "Men v hold, Meditation 19:36: told as context; he graded it a visible decision: 5v4 men has player advantage"
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-63",
+   "set": "f1",
+   "scheme": 2,
+   "row": 63,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    1178,
+    1232
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Men's split by the front door: three players (Hammer, Mesmer, 7 Monk) against 2 defending (7 Monk, Mesmer); numbers along the way: 3 v 2 from 19:38, 3 v 3 from 20:00",
+   "band": "medium",
+   "grade": "none",
+   "mark": "",
+   "said": "this is not a split, this is just players joining mainteam",
+   "calls": [
+    {
+     "play": "572c2f95-split-1-1178-105",
+     "shown": "Men (attacker) [a player or more up]: Kill or take NPCs. Met (a defender killed: yes; an NPC taken: no)",
+     "mark": "not judged"
+    },
+    {
+     "play": "572c2f95-split-2-1178-107",
+     "shown": "hold (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Not met (no pit NPC lost: yes; no defender dies: no)",
+     "mark": "not judged"
+    },
+    {
+     "play": "572c2f95-split-1-1178-106",
+     "shown": "Men (attacker's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Met (more of theirs die away from the split than of ours: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       1172,
+       1184
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "Men v hold, Meditation 19:38: he graded it No decision: this is not a split, this is just players joining mainteam"
+    },
+    {
+     "none": {
+      "play": "split",
+      "team": "hold",
+      "start": [
+       1172,
+       1184
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "Men v hold, Meditation 19:38: he graded it No decision: this is not a split, this is just players joining mainteam"
+    },
+    {
+     "none": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       1172,
+       1184
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "Men v hold, Meditation 19:38: he graded it No decision: this is not a split, this is just players joining mainteam"
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-64",
+   "set": "f1",
+   "scheme": 2,
+   "row": 64,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    1180,
+    1230
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "Men has 3 in hold's base at the base res (2 defending, 2 coming back): 3 stay",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "572c2f95-base_res-1-1180-108",
+     "shown": "Men [stayed through the res]: Be out, or set for the fight, when they res. Not met (nobody of ours dies in the 30 s after the res: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "Men",
+      "start": [
+       1174,
+       1186
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-65",
+   "set": "f1",
+   "scheme": 2,
+   "row": 65,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    1212,
+    1244
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 20:12: 0 of 2 knights, 1 of 2 pit archers, the Bodyguard dead; base res in 108 s)",
+   "band": "medium",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "572c2f95-pinned-2-1212-109",
+     "shown": "hold: Hold the NPCs and lose nobody until the base res, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-572c-66",
+   "set": "f1",
+   "scheme": 2,
+   "row": 66,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    1220,
+    1250
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hold's split by the back door: two players (Fire Ele, Earth Ele) against 0 defending",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "572c2f95-split-2-1220-111",
+     "shown": "hold (attacker) [undefended]: Take NPCs. Not met (an NPC taken: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "572c2f95-split-1-1220-110",
+     "shown": "Men (defender) [no answer]: Win elsewhere before the split costs more than it gains. Met (more of theirs die away from the split than of ours: yes; flag lead better by 0.35 or more: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "hold",
+      "start": [
+       1214,
+       1226
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       1214,
+       1226
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-67",
+   "set": "f1",
+   "scheme": 2,
+   "row": 67,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    1248,
+    1264
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hold's split by the back door: two players (Fire Ele, Earth Ele) against 2 defending (Ranger, Ritualist 2)",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "572c2f95-split-2-1248-114",
+     "shown": "hold (attacker) [even]: Take NPCs or kills. Not met (a defender killed: no; an NPC taken: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "572c2f95-split-1-1248-112",
+     "shown": "Men (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (no pit NPC lost: yes; no more defenders die than split players: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "572c2f95-split-1-1248-113",
+     "shown": "Men (defender's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Not met (more of theirs die away from the split than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "hold",
+      "start": [
+       1242,
+       1254
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       1242,
+       1254
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       1242,
+       1254
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-missed-1",
+   "set": "f1",
+   "scheme": 2,
+   "row": 0,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    69,
+    99
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "(a decision the engine did not read, added by him)",
+   "band": "not read",
+   "grade": "classic",
+   "mark": "missed",
+   "at": "1:09",
+   "said": "missed two very important and classic movements from Men's hammer; he leaves defence at 1:09 to rejoin mainteam (giving them player advantage) and then leaves mainteam to collapse/rejoin split at 1:59.",
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "Men",
+      "start": [
+       54,
+       79
+      ]
+     },
+     "want": {
+      "change": true,
+      "call": "leave",
+      "who~": [
+       "Hammer"
+      ]
+     },
+     "open": true,
+     "why": "Men v hold 1:09 (Classic, missed): 'he leaves defence at 1:09 to rejoin mainteam (giving them player advantage) and then leaves mainteam to collapse/rejoin split at 1:59': the Hammer is not read as a defender while he stands off the split, so his leaving is not read. Put to him 2026-11-17"
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-missed-2",
+   "set": "f1",
+   "scheme": 2,
+   "row": 0,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    318,
+    348
+   ],
+   "type": "collapse",
+   "call": "",
+   "shown": "(a decision the engine did not read, added by him)",
+   "band": "not read",
+   "grade": "classic",
+   "mark": "missed",
+   "at": "5:18",
+   "said": "missed important collapse by warrior on split through mid/collapse path",
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "Men",
+      "start": [
+       303,
+       330
+      ]
+     },
+     "want": {
+      "change": true,
+      "who~": [
+       "Hammer"
+      ]
+     },
+     "open": true,
+     "why": "Men v hold 5:18 (Classic, missed): 'missed important collapse by warrior on split through mid/collapse path'"
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-missed-3",
+   "set": "f1",
+   "scheme": 2,
+   "row": 0,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    371,
+    401
+   ],
+   "type": "collapse",
+   "call": "",
+   "shown": "(a decision the engine did not read, added by him)",
+   "band": "not read",
+   "grade": "classic",
+   "mark": "missed",
+   "at": "6:11",
+   "said": "missed important collapse by derv on split through frontdoor",
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "Men",
+      "start": [
+       356,
+       386
+      ]
+     },
+     "want": {
+      "change": true,
+      "who~": [
+       "AoB Derv"
+      ]
+     },
+     "was": "Men v hold 6:11 (Classic, missed): 'missed important collapse by derv on split through frontdoor'"
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-missed-4",
+   "set": "f1",
+   "scheme": 2,
+   "row": 0,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    1079,
+    1109
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "(a decision the engine did not read, added by him)",
+   "band": "not read",
+   "grade": "classic",
+   "mark": "missed",
+   "at": "17:59",
+   "said": "earth ele splits frontdoor after capping flag",
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hold",
+      "start": [
+       1064,
+       1089
+      ]
+     },
+     "want": {
+      "scenario~": "Earth Ele"
+     },
+     "open": true,
+     "why": "Men v hold 17:59 (Classic, missed): 'earth ele splits frontdoor after capping flag'"
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-missed-5",
+   "set": "f1",
+   "scheme": 2,
+   "row": 0,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    1021,
+    1051
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "(a decision the engine did not read, added by him)",
+   "band": "not read",
+   "grade": "classic",
+   "mark": "missed",
+   "at": "17:01",
+   "said": "fire ele splits front door",
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hold",
+      "start": [
+       1006,
+       1031
+      ]
+     },
+     "want": {
+      "scenario~": "Fire Ele"
+     },
+     "open": true,
+     "why": "Men v hold 17:01 (Classic, missed): 'fire ele splits front door'"
+    }
+   ]
+  },
+  {
+   "id": "f1-572c-notes",
+   "set": "f1",
+   "scheme": 2,
+   "row": 0,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
    "window": [
     0,
     0

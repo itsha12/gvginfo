@@ -116,7 +116,9 @@ def _flag_rows(M):
         went_at = r2 and next((v for v in (r2["set_off"], r2["waited"], r2["pickup"]) if v is not None), None)
         # ... a second player who goes back to run the next flag (his account of hdm v hook 5:52 to 7:24: hook's Mesmer "already on the way"); a player who is home because he came back from a split is not one (R-472)
         if r2 is not None and not any(x["tm"] == f["tm"] and a_ == r2["a"] and qm["from"] <= went_at and qm["to"] >= went_at - SPLIT_GAP_S for x in splits for a_, qm in zip(x["ids"], x["members"])):
-            if went_at <= int(f["start"]) + SPLIT_STEP: second.add((f["tm"], int(f["start"])))      # the second player was back before the first flag was picked up (left at the spawn at the opening): a double run from its start
+            # ... and at the opening, where the first flag is one decision from the gates to its cap (R-479), a second player who turns back for the next flag before that
+            # cap makes it a double run (his mark, Men v RACK 0:00, Classic: "Men double ran with warrior waiting back": Hammer A turns back at 0:04 and waits at the spawn from 0:12, the first flag capped at 0:30)
+            if went_at <= int(f["start"]) + SPLIT_STEP or (f["pregame"] and went_at <= int(f["end"]) + SPLIT_STEP): second.add((f["tm"], int(f["start"])))      # the second player was back before the first flag was picked up (left at the spawn at the opening): a double run from its start
             if went_at <= int(f["end"]) + SPLIT_STEP: second.add((f["tm"], int(r2["pickup"])))                     # ... and it is a double run only from then (R-484; his mark, RJT v RACK 1:41: "derv single runs twice"): the first run of the pair is a single run when the other team decides against it. The second player has to have gone back by the cap (R-472: "while the first is still capping"; his mark, Men v Crew 11:32, "a single run half run for Men": the AoB Derv caps at 11:36 and the Ranger sets off at 11:43)
     for f in M.flags_record():
         r = next((rs[k] for k in ((f["tm"], int(f["start"]) + dt) for dt in (0, -1, 1)) if k in rs), None)
@@ -124,6 +126,8 @@ def _flag_rows(M):
         off = None                                                        # the second its runner turned for home, when he went back for it (R-498)
         soh = M.day < SOH_REMOVED and any(m.sk(b) == "Shadow of Haste" for a in f["ids"] for b in m.A[a].get("bar", []) if b)      # R-456: only while the mechanic was in the game
         dbl = any((f["tm"], int(f["start"]) + dt) in second for dt in (0, -1, 1))
+        if r is not None and f["pregame"]:                               # who held the flag before the gates opened did not carry it in the match (Men v RACK 0:00: Hammer A, who then waits back for the next one)
+            ids = [a for a in ids if any(c[0] == a and (c[2] is None or c[2] > 0) for c in r["carries"])] or ids
         if r is not None and M.not_run(r): continue                      # only brought up with the team, never capped or pushed for the stand: no run (R-505; 옷옷옷옷 v RACK 0:00, his mark: "RACK brings flag up on Warrior, but DOES NOT run the flag")
         if r is not None:
             went = r["set_off"] is not None and not pin(f["tm"], r["set_off"]) and not pin(f["tm"], r["pickup"])      # he walked back for it, his team not held in its base (a player falling back into his base with his team did not go to run)
@@ -223,7 +227,11 @@ def flag_plays(M, K, pinned_at):
         if f["pregame"] or (g and g["pregame"]):                         # the opening (R-479): each team's first flag is a run, and a player left at the spawn for the next one is part of the call
             back = lambda tm, x: [role[q["a"]] for q in M.run_starts() if q["tm"] == tm and q["pickup"] > 2 and q["set_off"] is None and q["waited"] is not None and q["waited"] < x["e"]]
             left = [f"{M.m.tag[tm]}'s {', '.join(back(tm, x))}" for tm, x in ((B, f), (A, g)) if x and x["pregame"] and back(tm, x)]
-            scen = "The opening. " + scen + (f"; left back for the next flag: {' and '.join(left)}" if left else "")
+            # a team that brought no flag up at the opening and had to send a player back for its first one is said (his words, Men v hold 0:00: "hold did not bring
+            # the first flag and had to send ele back for it. wasting over a minute of player time"); a second runner already named is not said again as left back
+            late = [f"{M.m.tag[tm]} brought no flag up at the opening and sent {x['runner']} back for it" for tm, x in ((B, f), (A, g)) if x and not x["pregame"] and x is not inhand]
+            left = [l for l in left if not any(f"second runner {nm}" in scen for nm in l.split("'s ", 1)[1].split(", "))]
+            scen = "The opening. " + scen + (f"; left back for the next flag: {' and '.join(left)}" if left else "") + ("".join("; " + l for l in late))
         # our own run is judged from the decision to run to its cap; what follows the cap is another decision (R-471: TFS v 옷옷옷옷 3:26)
         ran = g is not None and not inhand
         end = min(g["e"], w0 + FLAG_JOB_MAX_S, T) if ran else min(w1, w0 + FLAG_JOB_MAX_S, T)
@@ -435,6 +443,11 @@ def split_plays(M, K):
         kn = [(len(s), len(dn)) for s, dn in zip(Ss, Ds)]
         # it counts from when it can do something: at their footies, in their base or pit, or met by a defender (Denning, Book v One 18:54: "when the split actually reaches base/NPCs")
         reach = next((u for u, s, dn in zip(times, Ss, Ds) if dn or any(M.place_at(a, u)[0] in ("pit", "base", "front footies", "back footies") for a in s)), None)
+        # ... but the decision is the crossing (R-458), and that is when the other team sees it and has to answer (his marks on Men v RACK, Classic: the Ranger's
+        # solo splits at 10:44 and 13:52, "split starts at 13:52, that's when Men would see and have to respond", and the Mes/A's at 16:51; the rows began at 11:54,
+        # 14:38 and 18:06, when a defender met them): a split is told from the second it stands on the enemy's side
+        reach0 = reach                                    # when it can do something: said in the row, so that a split still on its way is not read as one that took nothing (his note on Book v One 18:54: "see when the split actually reaches base/NPCs")
+        reach = next((u for u, s_ in zip(times, Ss) if s_), reach)
         out0 = next((u for u, s_ in zip(times, Ss) if any(M.held_out(tm, a, u) for a in s_)), None)      # a split out of a held base counts from when it leaves: the enemy has to deal with it at once (R-506)
         if out0 is not None and (reach is None or out0 < reach): reach = out0
         if reach is None: continue
@@ -538,6 +551,15 @@ def split_plays(M, K):
         turn_of = {t0_: tn for t0_, tn in turn_of.items() if t0_ in parts_of}
         told.sort(key=lambda ph: (ph[1], ph[1] in turn_of))
         phases = [(v_, a_, b_) for v_, a_, b_, _ in told]
+        # When a split is told from (R-458, R-510): the second it crosses to the enemy's side; and where its players went straight across, crossing within SPLIT_GAP_S
+        # of leaving their team, from TURN_S after they left, as a collapse is told from its turn (R-508): "that's when Men would see and have to respond" (Men v
+        # RACK: the Ranger leaves at 10:42 and 13:45 and crosses at 11:00 and 14:00, the Mes/A leaves at 16:41 and crosses at 16:56; he times them 10:44, 13:52, 16:51)
+        if phases and phases[0][1] not in turn_of and phases[0][1] - times[0] <= SPLIT_GAP_S:
+            seen = int(x["t_in"]) if not (0 < x["t_in"] - x["t0"] <= SPLIT_GAP_S) else int(x["t0"]) + TURN_S
+            seen = min(seen - seen % S_, phases[0][1])
+            if seen < phases[0][1]:
+                parts_of[seen] = parts_of.pop(phases[0][1])      # its parts keep their own times: the numbers it had are told from when it had them
+                phases[0] = (phases[0][0], seen, phases[0][2])
         along = lambda p0: ("; numbers along the way: " + ", ".join(f"{k_} v {n_} from {int(a_) // 60}:{int(a_) % 60:02d}" for (k_, n_), a_, b_ in parts_of[p0])) if len(parts_of[p0]) > 1 else ""
         prevD, base0 = set(), f"{m.tag[tm]}'s split" + (f" by the {x['way']}" if x["way"] else "")      # no door is named where none is read (his words, HC v Team 4:24: '"by the door" means nothing')
         for pi, ((k, n), p0, p1) in enumerate(phases):
@@ -587,6 +609,8 @@ def split_plays(M, K):
             push_team = k >= 3 and k == len(rest) and x["way"] == "front door" and sum(1 for a in rest if M.place_at(a, mid)[1] == st.side.get(tm) and M.place_at(a, mid)[0] in HOMEG) * 2 > len(rest)
             base = f"{m.tag[tm]}'s push team at the front door (its defence team at home)" if push_team else base0
             scen_a = f"{base}: {size} ({', '.join(whoA)}) against {n} defending" + (f" ({', '.join(whoD)})" if n else "") + along(p0)
+            way_in = "" if tn is not None or pi > 0 or (reach0 is not None and reach0 <= x["t_in"] + S_) else (f"; it crosses at {clock(x['t_in'])} and reaches their base, their footmen or a defender at {clock(reach0)}" if reach0 is not None and reach0 <= p1 else f"; it crosses at {clock(x['t_in'])} and has not reached their base, their footmen or a defender by {clock(p1)}")
+            scen_a += way_in
             if tn is not None: scen_a = f"{base}: {size} ({', '.join(whoA)}); {m.tag[foe]} turns on it from {clock(tn['t0'])} with {n} ({', '.join(whoD)})" + ("" if tn["reached"] else ", and does not reach it")
             besA = {"npcs_taken": [kind for kind, _ in npcs], "kills": [role[b] for b in killp], "lost": [role[a] for a in lostp], "flag_lead": [K.lead(tm, p0), K.lead(tm, e1)], "deaths_away_from_the_split": [away_a, away_d],
                     "split": [dmg_s, ms], "defence": [dmg_d, md], "main": main, "main_can_kill": main_can, "reached": reach, "phase": [pi + 1, len(phases)], "chased_until": end_chase if last and end_chase > t9 else None}
@@ -595,6 +619,51 @@ def split_plays(M, K):
             elsewhere = {"more of theirs die away from the split than of ours": away_d > away_a, f"flag lead better by {FLAG_GAIN} or more": ga is not None and ga >= FLAG_GAIN}
             kill_or_npc = {"a defender killed": n_kill > 0, "an NPC taken": n_npc > 0}
             kw = dict(size=k, defenders=n, split_damage=dmg_s, defending_monks=md, group="push team" if push_team else "split")
+            # R-511: who comes to a split fight and who leaves it are decisions of their own, told beside the fight (his marks on Men v RACK 12:48 and 18:25 and Men v
+            # hold 1:09, 5:18 and 6:11, all Classic: "very clear and important collapse (8 monk hammer) on RACK's split; and rack's simultaneous split join (7 monk,
+            # hammer)"; "The players are correctly identified in the split, but the collapse and join itself are decision points for the respective teams"; "he
+            # leaves defence at 1:09 to rejoin mainteam (giving them player advantage)"). One row a side at each change of the numbers inside a fight that is told
+            # once (R-365): defenders who come are a collapse when they make the defence one more than the split was (R-441), else a join; a player who dies has not left
+            if tn is None and len(parts_of[p0]) > 1:
+                parts = parts_of[p0]
+                who_in = lambda L, lo, hi, n_: [z for z, _ in collections.Counter(z for i, u in enumerate(times) if lo <= u <= hi for z in L[i]).most_common(n_)]
+                for q in range(1, len(parts)):
+                    (k0, n0), a0, b0 = parts[q - 1]; (k1, n1), a1, b1 = parts[q]
+                    S0, S1, D0, D1 = who_in(Ss, a0, b0, k0), who_in(Ss, a1, b1, k1), who_in(Ds, a0, b0, n0), who_in(Ds, a1, b1, n1)
+                    died = lambda z: any(a1 - JOIN_S <= td <= a1 + S_ for td in st.death_times.get(z, []))
+                    came_s, came_d = [z for z in S1 if z not in S0], [z for z in D1 if z not in D0]
+                    left_s, left_d = [z for z in S0 if z not in S1 and not died(z)], [z for z in D0 if z not in D1 and not died(z)]
+                    c1 = min(b1 + 4, T)
+                    lost_c, kill_c = sum(1 for td, _ in dA if a1 <= td <= c1), sum(1 for td, _ in dD if a1 <= td <= c1)
+                    pit_c = sum(1 for td, _, pit in npc_ev if pit and a1 <= td <= c1)
+                    npc_c = sum(1 for td, _, _ in npc_ev if a1 <= td <= c1)
+                    nums = f"{k0} v {n0} becomes {k1} v {n1}"
+                    names = lambda L: ", ".join(role[z] for z in L)
+                    kwc = dict(size=k1, defenders=n1, group="split", change=True)
+                    if came_d:
+                        col = n1 >= k1 + 1                  # one more than the split as it then stands (R-441, NwAy v Men 11:50: a defender who comes as a split player joins, 3 v 3 to 4 v 4, has joined)
+                        out.append(_play(M, "split", "defender", foe, a1, c1, [role[z] for z in came_d],
+                                         f"{m.tag[foe]}: {names(came_d)} {('collapses on' if len(came_d) == 1 else 'collapse on') if col else ('joins the defence against' if len(came_d) == 1 else 'join the defence against')} {base} at {clock(a1)}: {nums}" + (f", as {names(came_s)} {'joins' if len(came_s) == 1 else 'join'} the split" if came_s else ""),
+                                         "Kill a split player before going back (what it cost at the main fight and in flags is beside it)" if col else "Hold it even or better: lose no pit NPC and no more players than the split does",
+                                         {"a split player dies after they come": lost_c > 0} if col else {"no pit NPC lost": pit_c == 0, "no more defenders die than split players": kill_c <= lost_c},
+                                         beside={"flag_lead": [K.lead(foe, a1), K.lead(foe, c1)]}, ruled=col, call="collapse" if col else "join", **kwc))
+                    if came_s:
+                        out.append(_play(M, "split", "attacker", tm, a1, c1, [role[z] for z in came_s],
+                                         f"{m.tag[tm]}: {names(came_s)} {'joins' if len(came_s) == 1 else 'join'} {base} at {clock(a1)}: {nums}" + (f", as {names(came_d)} {'comes' if len(came_d) == 1 else 'come'} to defend it" if came_d else ""),
+                                         "Kill or take NPCs with the players added", {}, any_of={"a defender killed": kill_c > 0, "an NPC taken": npc_c > 0},
+                                         beside={"flag_lead": [K.lead(tm, a1), K.lead(tm, c1)]}, ruled=False, answer="join", **kwc))
+                    if left_d:
+                        out.append(_play(M, "split", "defender", foe, a1, c1, [role[z] for z in left_d],
+                                         f"{m.tag[foe]}: {names(left_d)} {'leaves' if len(left_d) == 1 else 'leave'} the defence against {base} at {clock(a1)}: {nums}",
+                                         "Gain at the main fight with the player back, and lose no pit NPC for it", {"no pit NPC lost": pit_c == 0},
+                                         any_of={"more of theirs die away from the split than of ours": K.died(tm, a1, c1) - lost_c > K.died(foe, a1, c1) - kill_c, f"flag lead better by {FLAG_GAIN} or more": (K.gain(foe, a1, c1) or 0) >= FLAG_GAIN},
+                                         beside={"flag_lead": [K.lead(foe, a1), K.lead(foe, c1)]}, ruled=False, call="leave", **kwc))
+                    if left_s:
+                        out.append(_play(M, "split", "attacker", tm, a1, c1, [role[z] for z in left_s],
+                                         f"{m.tag[tm]}: {names(left_s)} {'leaves' if len(left_s) == 1 else 'leave'} {base} at {clock(a1)}: {nums}",
+                                         "Gain at the main fight with the player back", {},
+                                         any_of={"more of theirs die away from the split than of ours": K.died(foe, a1, c1) - kill_c > K.died(tm, a1, c1) - lost_c, f"flag lead better by {FLAG_GAIN} or more": (K.gain(tm, a1, c1) or 0) >= FLAG_GAIN},
+                                         beside={"flag_lead": [K.lead(tm, a1), K.lead(tm, c1)]}, ruled=False, answer="leave", **kwc))
             # the attacker's job, set by the answer it meets (R-428)
             if full or collapse:
                 ans = "met by a full collapse" if full else "collapsed on"
@@ -613,6 +682,7 @@ def split_plays(M, K):
                                  "Kill at the main fight: " + ("they have no monk there" if no_monk[0] else "its damage can kill against their monks there, and theirs cannot"), {"more of theirs die away from the split than of ours": away_d > away_a}, beside=besA, answer="the main fight can kill", **kw))
             # the defender's side
             scen_d = (f"{m.tag[foe]} against {base}: {n} ({', '.join(whoD)}) against {size}" if n else f"{m.tag[foe]} against {base}: nobody against {size}") + along(p0)
+            scen_d += way_in
             if tn is not None: scen_d = f"{m.tag[foe]} against {base}: {n} turn for it from {clock(tn['t0'])} ({', '.join(whoD)}) against {size}" + ("" if tn["reached"] else "; they do not reach it")
             pit_ok = {"no pit NPC lost": n_pit == 0}
             if full:
