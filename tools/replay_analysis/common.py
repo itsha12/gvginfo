@@ -206,6 +206,8 @@ PART_RUN_GAIN = 0.15            # a lone defender part-running his flag: the sli
 LATE_FLAG = 1.3                 # a pushed flag is delayed when it arrives this many times later than the hall's usual run (R-427)
 ANSWER_CAP_S = 15               # a cap is answered "at once" when the flag in hand is capped this soon after it (Claude's draft)
 COLLAPSE_VISIT_S = 45           # a collapse: a player from the main team on a split for no longer than this, then back (R-429; the length is Claude's draft)
+TURN_S = 4                      # a full collapse is told this long after the team turns for the split: "when I (in a game) would be able to recognize they are going to collapse so likely a few seconds after the turn" (R-508; the length is Claude's draft)
+TURN_CLOSE = 400                # a defender is making for a split when he is this much nearer, over 4 s, to where it stood 4 s before: 100 a second, a good third of a free run (R-508; Claude's draft)
 KILL_NEED = {0: 1, 1: 2, 2: 4, 3: 5}      # damage against monks, from good play (R-457, his ratios): two or more damage can kill against one backline monk, four or more against two, five or more against three; any damage against none
 def can_kill(damage, monks):
     """Is this much damage expected to kill against this many backline monks (R-457)? More than three monks: not expected."""
@@ -387,7 +389,7 @@ TRY_NAMES = ("JOIN_S", "JOIN_LOOK_S", "JOIN_MOVE", "JOIN_LEAD", "SWAP_S", "SWAP_
              "PUSHFLAG_R", "PUSHFLAG_S", "PUSHFLAG_SHORT_S", "PUSHFLAG_LATE_S", "PUSHFLAG_GAP_S", "PUSHFLAG_MATES", "PUSHFLAG_AHEAD_S", "ROUTE_ENDS", "ROUTE_OFF", "ROUTE_CLEAR", "ROUTE_MIN_S", "LEAD_S", "LEAD_HALF",
              "LEAD_ONE", "LEAD_ONE_HALF", "LEAD_TWO", "STANDOFF_S", "STANDOFF_HITS", "STANDOFF_MIN", "STANDOFF_R", "STANDOFF_SPLIT_MIN", "STANDOFF_SPLIT_S", "STANDOFF_STILL", "STANDOFF_NEAR", "PICKUP_DELAY_S", "HOLD_S", "BOOST_LATE_S",
              "HOLD_BACK_S", "LEFT_AT_SPAWN_S", "HELP_IN_S", "HELP_BACK_S", "LEAVE_RES_S", "MONK_S", "MONK_MIN", "LORD_GAP_S",
-             "FIGHT_HOLD", "FIGHT_HOLD_S", "FIGHT_ACT", "FIGHT_CLOSE", "FOUGHT", "DOUBLE_NEXT_S", "FLAG_TAKEN_OUT_S")
+             "FIGHT_HOLD", "FIGHT_HOLD_S", "FIGHT_ACT", "FIGHT_CLOSE", "FOUGHT", "DOUBLE_NEXT_S", "FLAG_TAKEN_OUT_S", "TURN_S", "TURN_CLOSE")
 for _kv in filter(None, (os.environ.get("GVG_TRY") or "").split(",")):
     _k, _v = _kv.split("=")
     if _k not in TRY_NAMES: raise SystemExit(f"GVG_TRY: {_k} is not a threshold of the reading")

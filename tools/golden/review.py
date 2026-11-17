@@ -158,6 +158,7 @@ def _reads(g):
 
 
 BANDS = ("none", "low", "medium", "high")
+REASONS = {"brief": "too brief", "small": "impact too small to make a difference", "nofight": "no real fight, nothing at stake", "unclear": "weak or unclear small edge in a real game"}      # his four reasons for a Weak or No decision grade (2026-11-16), ticked on the page
 
 
 import confidence as bands_of                              # tools/golden/confidence.py: the band of a reading
@@ -295,6 +296,7 @@ def file_graded(g, e, set_id, K):
         row = {"id": i, "set": set_id, "scheme": 2, "row": s_["n"], "rid": g["rid"], "match": match, "window": [s_["t0"], s_["t1"]], "type": s_["kind"], "call": "", "shown": v.get("text") or s_["reads"],
                "band": band, "grade": grade, "mark": v.get("mark") or ("" if grade in ("none", "repeat", "not marked") or band == "none" else "not marked")}
         if v.get("off"): row["off"] = v["off"]
+        if v.get("reason"): row["reason"] = v["reason"]        # why it is Weak or No decision, or not Classic (his ticks: brief, small, nofight, unclear)
         if v.get("why"): row["said"] = v["why"]
         row["calls"] = []
         for c in s_["calls"]:
@@ -325,6 +327,8 @@ def file_graded(g, e, set_id, K):
         if not R: continue
         c = collections.Counter(r["mark"] for r in R)
         print(f"   {({'none': 'no decision'}.get(gr, gr)):14} " + "".join(f"{sum(1 for r in R if r['band'] == b):8}" for b in ("high", "medium", "low", "none")) + (f"   {c['correct']} / {c['partly']} / {c['incorrect']}" if gr in ("classic", "visible", "weak") else ""))
+    why = collections.Counter((r["grade"], x) for r in S for x in r.get("reason", []))
+    if why: print("   his reasons (ticks), by grade: " + "; ".join(f"{({'none': 'no decision'}.get(gr, gr))}: " + ", ".join(f"{REASONS[x]} {why[(gr, x)]}" for x in REASONS if why[(gr, x)]) for gr in ("visible", "weak", "none") if any(why[(gr, x)] for x in REASONS)))
     M = [r for r in new if r["mark"] == "missed"]
     print(f"   decisions he added as missed: {len(M)}" + ("".join(f"\n      {r['at']} {r['type']} ({r['grade']}): {r.get('said', '')}" for r in M)))
     first = [r for r in new if r["grade"] == "classic" and r["mark"] in ("partly", "incorrect", "missed")] + [r for r in S if r["band"] == "none" and r["grade"] == "classic"]

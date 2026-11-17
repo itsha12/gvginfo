@@ -43,6 +43,8 @@ cl = lambda t: f"{int(t) // 60}:{int(t) % 60:02d}"
 # listed here is said by its name (and should then be added).
 WORDS = {
     "JOIN_S": "how long a player must be in a fight before he counts in it",
+    "TURN_S": "how long a team must be making for a split before its collapse is told",
+    "TURN_CLOSE": "how fast a player must close on a split to be making for it",
     "JOIN_LOOK_S": "how far ahead the engine looks for a player joining a fight",
     "FIGHT_LINK": "how close players must stand to be in the same fight",
     "FIGHT_HOLD": "how far a player may drift and still be in the fight he was in",

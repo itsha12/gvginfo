@@ -33,7 +33,7 @@ Usage:  python3 jobs.py <report id>                     the plays of one match
 In code: plays(M, recs) -> list of plays; allocation(recs, plays) adds each moment's plays to it."""
 import collections, json, os, statistics, sys
 from common import (STAND_R, MERGE_S, FIGHT_ACT, FIGHT_CLOSE, FIGHT_HOLD_S, HOLD_S, HANDOFF_GAP_S, REPO, READ_TO, SPLIT_STEP, SPLIT_GAP_S, FIGHT_LINK, JOIN_S, JOIN_LOOK_S, NPC_NEAR, can_kill, SOH_REMOVED, RUN_SPEED, GROUND_JUMP, RES_EVERY, BOOST_EVERY, BOOST_WARN_S, BOOST_LATE_S, LEAD_HALF, LEAD_ONE, CARRY_SPEED, PIT_R,
-                    FLAG_GAIN, PART_RUN_GAIN, LATE_FLAG, ANSWER_CAP_S, COLLAPSE_VISIT_S, PINNED_S, LORD_PUSH_FROM, LORD_BASE_R, AFTER_WIPE_MIN_S, NUMBERS_TAIL_S, FLAG_JOB_MAX_S, MAIN_BIG)
+                    FLAG_GAIN, PART_RUN_GAIN, LATE_FLAG, ANSWER_CAP_S, COLLAPSE_VISIT_S, PINNED_S, LORD_PUSH_FROM, LORD_BASE_R, AFTER_WIPE_MIN_S, NUMBERS_TAIL_S, FLAG_JOB_MAX_S, MAIN_BIG, TURN_S, TURN_CLOSE)
 from state import d
 
 HOMEG = ("pit", "base", "front door", "back door", "front footies", "back footies")
@@ -462,6 +462,34 @@ def split_plays(M, K):
                     if t0 <= td <= t9 + 4 and M.P[b][min(max(int(td) - 1, 0), T)] and any(on(a, min(max(int(td) - 1, 0), T) // S_ * S_) and d(M.P[b][min(max(int(td) - 1, 0), T)], M.P[a][min(max(int(td) - 1, 0), T)]) < FIGHT_LINK for a in x["ids"]))
         at_end = times[-1] >= T - S_ - 1                                   # the game ended with the split still out: its last phase stands however short (R-459)
         phases = [(v, max(a_, reach), b_) for v, a_, b_ in _runs(kn, times, JOIN_S, keep_last=at_end) if v[0] > 0 and b_ >= reach and (b_ - max(a_, reach) + S_ >= JOIN_S or (at_end and b_ == times[-1]))]
+        # R-508: a full collapse counts from the turn, whether or not the team reaches the split ("it's the turn that matters ... when I (in a game) would be able to
+        # recognize they are going to collapse so likely a few seconds after the turn"; his four rows of 옷옷옷옷 v RACK: the engine read 1:51 and 6:01 at arrival, 15 and
+        # 27 s late, and not at all 4:39 and 8:16, where the team leaves RACK's base after RACK's five and does not reach them). A defender is making for the split when
+        # he is TURN_CLOSE nearer, over 4 s, to where it stood 4 s before (his own move: a split running toward him is not his turn; a walk through a teleporter is). The
+        # team has turned when five or more make for it (as "five or more gone back for it"), or all the team but one are on it or making for it, for TURN_S; the full
+        # collapse is told from TURN_S after the turn began. A team driven home by the split's own main team has not turned (R-358, as for those who went back).
+        heads = []
+        for u, s_ in zip(times, Ss):
+            near, closing = [], []
+            if s_ and u >= 4:
+                was = [M.P[a][u - 4] for a in s_ if M.AL[a][u - 4] and M.P[a][u - 4]]
+                driven = bool(M._over(tm, u)[1])
+                for b in st.players[foe]:
+                    if not (M.AL[b][u] and M.P[b][u]) or at_main(b, u): continue
+                    if any(M.AL[a][u] and M.P[a][u] and d(M.P[b][u], M.P[a][u]) < FIGHT_LINK for a in s_): near.append(b)
+                    elif was and not driven and M.AL[b][u - 4] and M.P[b][u - 4] and min(d(M.P[b][u - 4], q) for q in was) - min(d(M.P[b][u], q) for q in was) >= TURN_CLOSE: closing.append(b)
+            heads.append((near, closing))
+        alive_at = lambda u: sum(1 for b in st.players[foe] if M.AL[b][u])
+        turned = [len(c_) >= 5 or (bool(c_) and len(n_) + len(c_) >= max(6, alive_at(u) - 1)) for u, (n_, c_) in zip(times, heads)]
+        turns, i_ = [], 0
+        while i_ < len(times):
+            if not turned[i_]: i_ += 1; continue
+            j_ = i_
+            while j_ + 1 < len(times) and (turned[j_ + 1] or (j_ + 2 < len(times) and turned[j_ + 2])): j_ += 1
+            if times[j_] - times[i_] >= TURN_S and times[i_] + TURN_S >= reach:
+                q1 = next(q for q in range(i_, j_ + 1) if times[q] >= times[i_] + TURN_S)      # who turned: those making for it, and those on it, up to the second it is told
+                turns.append({"t0": times[i_], "told": times[i_] + TURN_S, "t1": times[j_], "ids": list(dict.fromkeys(b for q in range(i_, q1 + 1) for b in heads[q][1] + heads[q][0]))})
+            i_ = j_ + 1
         wb = set(an.get("went_back_ids") or [])
         # a split fight is told once (R-365; his marks on hdm v hook, "still the same split", and his agreement of 2026-11-14): neighbouring phases in which it is
         # defended and nobody collapses on it are one situation, with the numbers it had for longest and each change of them told beside it. It is cut only where
@@ -486,6 +514,29 @@ def split_plays(M, K):
                 told[-1] = (w.most_common(1)[0][0], told[-1][1], ph[2], "defended")
             else:
                 told.append((ph[0], ph[1], ph[2], kd)); parts_of[ph[1]] = [ph]
+        # the collapse is a situation of its own beside what the split met meanwhile (his marks on 옷옷옷옷 v RACK 1:34 and 6:00, Classic and correct: the split against
+        # the two who defend it, and at 1:51 and 6:01 the full team collapsing on it); the team arriving is the same collapse, so the phases in which the whole team is
+        # on the split, from the turn on, are told with it and not again (his marks on 2:06 and 6:28: "NOT a split, just RACK split team ... leaving portal/dying")
+        turn_of, cur = {}, None
+        def absorb(tn):                                   # the phases in which the whole team is on the split, from the turn on, belong to the collapse
+            for ph in sorted(told, key=lambda ph: ph[1]):
+                if ph[3] == "whole team" and tn["told"] - JOIN_S <= ph[1] <= tn["end"] + S_:
+                    tn["end"] = max(tn["end"], ph[2]); told.remove(ph); tn.setdefault("took", []).append(ph)
+        for tn in turns:
+            if cur is not None and tn["told"] <= cur["end"] + JOIN_S:      # the team stalls and comes on again, or is on it already: still the collapse it began
+                cur["end"] = max(cur["end"], min(tn["t1"] + JOIN_S, times[-1])); cur["t1"] = tn["t1"]; absorb(cur); continue
+            cur = tn; cur["end"] = min(tn["t1"] + JOIN_S, times[-1]); absorb(cur); turn_of[cur["told"]] = cur
+        for tn in turn_of.values():
+            idx_ = [q for q, u in enumerate(times) if tn["told"] <= u <= tn["end"]]
+            tn["reached"] = any(len(heads[q][0]) >= 5 for q in idx_)
+            # a team that does not reach the split has collapsed on it only if it made for it for JOIN_S: a few seconds toward a split and away again is passing by
+            # (R-350; 옷옷옷옷 v RACK 9:36 and 15:58: 옷옷옷옷 leaving RACK's base before a base res moves toward a split for 4 s, and he reads no collapse there)
+            if not tn["reached"] and tn["t1"] - tn["t0"] < JOIN_S:
+                told.extend(tn.get("took", [])); continue
+            v_ = collections.Counter(kn[q] for q in idx_ if kn[q][0] > 0).most_common(1)
+            if v_: told.append((v_[0][0], tn["told"], tn["end"], "whole team")); parts_of[tn["told"]] = [(v_[0][0], tn["told"], tn["end"])]
+        turn_of = {t0_: tn for t0_, tn in turn_of.items() if t0_ in parts_of}
+        told.sort(key=lambda ph: (ph[1], ph[1] in turn_of))
         phases = [(v_, a_, b_) for v_, a_, b_, _ in told]
         along = lambda p0: ("; numbers along the way: " + ", ".join(f"{k_} v {n_} from {int(a_) // 60}:{int(a_) % 60:02d}" for (k_, n_), a_, b_ in parts_of[p0])) if len(parts_of[p0]) > 1 else ""
         prevD, base0 = set(), f"{m.tag[tm]}'s split" + (f" by the {x['way']}" if x["way"] else "")      # no door is named where none is read (his words, HC v Team 4:24: '"by the door" means nothing')
@@ -494,6 +545,9 @@ def split_plays(M, K):
             idx = [i for i, u in enumerate(times) if p0 <= u <= p1]
             cs, cd = collections.Counter(a for i in idx for a in Ss[i]), collections.Counter(b for i in idx for b in Ds[i])
             Sp, Dp = [a for a, _ in cs.most_common(k)], [b for b, _ in cd.most_common(n)]
+            tn = turn_of.get(p0) if (k, n) == parts_of[p0][0][0] and p1 == parts_of[p0][0][2] else None
+            if tn is not None:                             # a collapse from the turn (R-508): those on the split and those making for it
+                Dp = Dp + [b for b in tn["ids"] if b not in Dp]; n = len(Dp)
             e1 = min(p1 + 4, T)
             # a death that made the numbers of this phase belongs to the phase before it (his mark, hdm v hook 7:52: "they are only 4 v 3 because they killed a defender"): at its first seconds only the deaths of players counted in it are its own
             lostp = [a for td, a in dA if p0 - 1 <= td <= (max(e1, end_chase + 2) if last else e1) and (pi == 0 or td > p0 + 4 or a in Sp)]
@@ -522,16 +576,18 @@ def split_plays(M, K):
             short = p1 - p0 <= COLLAPSE_VISIT_S
             alive_d = sum(M.AL[b][mid] for b in st.players[foe])
             full = (n >= max(6, alive_d - 1) and k < n) or (len(wb) >= 5 and an.get("went_back_t") is not None and p0 - 10 <= an["went_back_t"] <= p1)
+            full = full or tn is not None
             collapse = bool(came) and n >= k + 1 and short and pi > 0 and not full
             whoA, whoD = [role[a] for a in Sp], [role[b] for b in Dp]
             size = {1: "one player", 2: "two players", 3: "three players"}.get(k, f"{k} players")
-            M._split_at.append({"tm": tm, "name": f"{m.tag[tm]}'s split from {clock(p0)}", "at": {times[i]: (frozenset(Ss[i]), frozenset(Ds[i])) for i in idx}})
+            if tn is None: M._split_at.append({"tm": tm, "name": f"{m.tag[tm]}'s split from {clock(p0)}", "at": {times[i]: (frozenset(Ss[i]), frozenset(Ds[i])) for i in idx}})
             # R-487: a team in two even groups, both along the main flag path (this one forward at the enemy's front door, the other at home), is a push team and a
             # defence team, not a main team and a split ("frontside" and "backside"); in two different areas of the map the non-flag side is the split
             rest = [a for a in st.players[tm] if a not in Sp and M.AL[a][mid] and M.P[a][mid]]
             push_team = k >= 3 and k == len(rest) and x["way"] == "front door" and sum(1 for a in rest if M.place_at(a, mid)[1] == st.side.get(tm) and M.place_at(a, mid)[0] in HOMEG) * 2 > len(rest)
             base = f"{m.tag[tm]}'s push team at the front door (its defence team at home)" if push_team else base0
             scen_a = f"{base}: {size} ({', '.join(whoA)}) against {n} defending" + (f" ({', '.join(whoD)})" if n else "") + along(p0)
+            if tn is not None: scen_a = f"{base}: {size} ({', '.join(whoA)}); {m.tag[foe]} turns on it from {clock(tn['t0'])} with {n} ({', '.join(whoD)})" + ("" if tn["reached"] else ", and does not reach it")
             besA = {"npcs_taken": [kind for kind, _ in npcs], "kills": [role[b] for b in killp], "lost": [role[a] for a in lostp], "flag_lead": [K.lead(tm, p0), K.lead(tm, e1)], "deaths_away_from_the_split": [away_a, away_d],
                     "split": [dmg_s, ms], "defence": [dmg_d, md], "main": main, "main_can_kill": main_can, "reached": reach, "phase": [pi + 1, len(phases)], "chased_until": end_chase if last and end_chase > t9 else None}
             besD = {"pit_npcs_lost": [kind for kind, pit in npcs if pit], "other_npcs_lost": [kind for kind, pit in npcs if not pit], "lost": [role[b] for b in killp], "split_killed": [role[a] for a in lostp],
@@ -542,7 +598,7 @@ def split_plays(M, K):
             # the attacker's job, set by the answer it meets (R-428)
             if full or collapse:
                 ans = "met by a full collapse" if full else "collapsed on"
-                out.append(_play(M, "split", "attacker", tm, p0, e1, whoA, scen_a + ("; the whole team turns on it" if full else f"; {', '.join(role[b] for b in came)} collapse from the main fight"),
+                out.append(_play(M, "split", "attacker", tm, p0, e1, whoA, scen_a + ("" if tn is not None else "; the whole team turns on it" if full else f"; {', '.join(role[b] for b in came)} collapse from the main fight"),
                                  "Survive and gain an advantage elsewhere on the map", {"nobody on the split dies": n_lost == 0}, any_of=elsewhere, beside=besA, answer=ans, **kw))
             elif n == 0: out.append(_play(M, "split", "attacker", tm, p0, e1, whoA, scen_a, "Take NPCs", {"an NPC taken": n_npc > 0}, beside=besA, answer="undefended", **kw))
             elif k < n: out.append(_play(M, "split", "attacker", tm, p0, e1, whoA, scen_a, "Survive and gain an advantage elsewhere on the map", {"nobody on the split dies": n_lost == 0}, any_of=elsewhere, beside=besA, answer="a player or more down", **kw))
@@ -557,6 +613,7 @@ def split_plays(M, K):
                                  "Kill at the main fight: " + ("they have no monk there" if no_monk[0] else "its damage can kill against their monks there, and theirs cannot"), {"more of theirs die away from the split than of ours": away_d > away_a}, beside=besA, answer="the main fight can kill", **kw))
             # the defender's side
             scen_d = (f"{m.tag[foe]} against {base}: {n} ({', '.join(whoD)}) against {size}" if n else f"{m.tag[foe]} against {base}: nobody against {size}") + along(p0)
+            if tn is not None: scen_d = f"{m.tag[foe]} against {base}: {n} turn for it from {clock(tn['t0'])} ({', '.join(whoD)}) against {size}" + ("" if tn["reached"] else "; they do not reach it")
             pit_ok = {"no pit NPC lost": n_pit == 0}
             if full:
                 out.append(_play(M, "split", "defender", foe, p0, e1, whoD, scen_d + ": full collapse", "Kill the split or drive it out (the flags it costs are beside it)", {},
@@ -585,7 +642,7 @@ def split_plays(M, K):
                 if carried >= 6:
                     out.append(_play(M, "split", "defender", foe, p0, e1, [role[b]], scen_d + f": the lone defender carries his flag for {carried} s", "Gain a slight flag advantage while losing no pit NPC and not dying",
                                      dict(pit_ok, **{f"flag lead better by {PART_RUN_GAIN} or more": gd is not None and gd >= PART_RUN_GAIN, "the defender does not die": n_kill == 0}), beside=dict(besD, carried_s=carried), call="part-run", **kw))
-            prevD = set(Dp)
+            if tn is None: prevD = set(Dp)
     return out
 
 
