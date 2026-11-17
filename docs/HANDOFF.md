@@ -20,8 +20,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
     bigger than all at home makes that part the main team; each after 12 s. Ten games changed (hdm v Men 13:04 to
     15:28: Men's three in hdm's base are a split against three, where hdm was read as held in). No key row moved.
     Not touched: the 4 and 3 divide with one player away, the even divide (R-335), the held base (R-506).
-- The fresh start (R-491 to R-497; in CLAUDE.md): only Classic rows bind; the other grades are built from when a
-  fault shows in two games. He grades on Model > Game review (reason ticks, R-509; a button shows unmarked rows).
+- The fresh start (R-491 to R-497; CLAUDE.md): only Classic rows bind; other grades build from a fault in two games.
 - Confidence on his five games (228 graded; R-515, figures at the top of `confidence.py`): the band is his grade on
   128, far off on 10. Steadiness cannot tell Visible from Weak or No decision; what would is a measure of what is at
   stake (his four reasons, R-509). Not built; 35 Weak and No decision rows so far.
