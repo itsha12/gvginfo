@@ -8,7 +8,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 > out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-17, third session: R-516; his guide on splits v main team built; games 6 and 7 on the page, unmarked)
+## State (2026-11-17, third session: R-516 to R-519; his guide and his answers built; games 6 and 7 being marked)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` and lands in one piece,
   then one rebuild (R-322). 658 replays stored; 564 count (R-477); 506 matches trained. No workflow run in progress.
 - The baseline (R-491) is the branch `baseline-2026-11-15` (`bundle-4` at fd2b30b; figures in `data/model/baseline/`).
@@ -20,19 +20,23 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
     bigger than all at home makes that part the main team; each after 12 s. Ten games changed (hdm v Men 13:04 to
     15:28: Men's three in hdm's base are a split against three, where hdm was read as held in). No key row moved.
     Not touched: the 4 and 3 divide with one player away, the even divide (R-335), the held base (R-506).
+  - R-517, `split_plays`: a split holding more defenders than its number meets its job by losing nobody; what the
+    team gained elsewhere is beside it. R-518: no push on a flagger by position alone; he adds the missed ones.
+  - R-519, `_numbers` and `fight_side`: one fight a player, by whom he trades with (DEFINITIONS "Counting players").
+    The split's reading runs once beforehand (`_split_candidates`). `side.py`-style check: `M._side_log`.
 - The fresh start (R-491 to R-497; CLAUDE.md): only Classic rows bind; other grades build from a fault in two games.
 - Confidence on his five games (228 graded; R-515, figures at the top of `confidence.py`): the band is his grade on
   128, far off on 10. Steadiness cannot tell Visible from Weak or No decision; what would is a measure of what is at
   stake (his four reasons, R-509). Not built; 35 Weak and No decision rows so far.
 - Graded and filed (set f1): HC v Team (9b5cdf62), Men v Crew (51683de9), 옷옷옷옷 v RACK (a8ba43a8), Men v RACK
   (45cf6756), Men v hold (572c2f95). Three Classic faults of the last two are open (Next, 2).
-- Now (development set, 49 matches, 4,275 plays): 124 Classic rows pass, none fail; 118 of 120 history rows hold
-  (hdm v hook 10:23, a flag row; hook v hold 12:46, the Warrior counted on the Necromancer's split for 14 s). Set f1
-  has 49 open checks. Gate 12 of 12, 63 of 105. Line-up 421 of 426; comms 110 of 157. Self-check 205.
-- On the page, not marked (engine a8b77a7): game 6, hdm v HC on Imperial Isle (bbef1904; 35 situations, 55 calls; high
-  17, medium 14, low 4; six pushes on a flagger), and game 7, hold v Men on Uncharted Isle (b870f84e; 21 situations,
-  38 calls; high 15, medium 4, low 1, one told as context). Never export them again, and fix nothing against them
-  until he has marked them. Next in the queue: HC v hdm on Isle of Jade (af831111), for numbers through the portal.
+- Now (development set, 49 matches, 4,328 plays): 124 Classic rows pass, none fail; 118 of 120 history rows hold
+  (hdm v hook 10:23, a flag row; hook v hold 12:46). Set f1 has 49 open checks. Gate 12 of 12, 63 of 105. Line-up
+  421 of 426; comms 110 of 157. Self-check 1 (HC v Team 12:16, where a continuation is told as a second row).
+- On the page, being marked (rows from engine a8b77a7, before R-517 and R-519: file his marks against those rows):
+  game 6, hdm v HC on Imperial Isle (bbef1904; 35 situations, 55 calls; high 17, medium 14, low 4; six pushes on a
+  flagger), and game 7, hold v Men on Uncharted Isle (b870f84e; 21 situations, 38 calls; high 15, medium 4, low 1,
+  one told as context). Never export them again. Next in the queue: HC v hdm on Isle of Jade (af831111).
 
 ## Next (in order)
 1. When he has marked games 6 and 7: `review.py file` for each, his results set out in the chat, Classic faults first.
@@ -47,15 +51,9 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
    17:53; a base res or a split told at or after the last second of a match (Men v Crew 27:40, Men v RACK 19:06).
 4. When he says the flag plays are ready: the flag family to the end (R-451); the other kinds after; then stage E.
 
-## Open for Denning (set out in full in the chat on 2026-11-17, third session, at his asking; awaiting his answer)
-1. Where else to apply his principle (R-512), each with the data put to him: (a) a split's job when it holds more
-   defenders than its own number: met by holding them and losing nobody, with what the main team made of the extra
-   player told beside it? Today it also needs kills or flags elsewhere: 54 of 93 such rows survive and are "not met".
-   (b) Pushing a flagger by standing on his route without hitting him: a rough count finds 396 stretches not read as
-   a push against 147 that are, so it cannot be taken whole; proposed: he adds the clear ones as missed decisions on
-   games 6 and 7. (c) Who counts in the main fight when it is near a split's fight: all 205 self-check cases are a
-   player counted in both; proposed: he counts in the fight whose players he acts on or who act on him.
-2. Closed: a defender from the main fight who makes a split fight even stays a join (R-516).
+## Open for Denning
+- Nothing awaiting his ruling. He asked what "measures of what is at stake" for the confidence means: explained in the
+  chat on 2026-11-17 (nothing to build until more Weak and No decision rows are graded; 35 so far).
 
 ## Data looked at on 2026-11-14 (nothing built; nothing from GW Observer in the repo)
 - gvg.report's payload holds flag objects with positions (`report.objectives.object_transitions`), which

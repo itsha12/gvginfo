@@ -10,6 +10,14 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - A player counts in a fight, on a split or on its defence after 12 s there; less is support, or passing by (R-350,
   R-439). A death there counts at once. A walk through a teleporter and straight back is not being there (R-442).
 - Who is on a split is who is there at that time, not everyone it ever held (R-439).
+- A player counts in one fight only (R-488, R-519). Where the main fight and a split's fight stand within reach of one
+  another he is in the one whose players he is hitting or casting on, or who are acting on him; if neither, the one he
+  is moving to. *As built:* asked of every player the main fight's numbers and a split's reading both count for 12 s;
+  a defender by his trades with the split's players against his trades with the others who stand two or more together
+  (one enemy coming alone draws nobody off the defence); a split player by whether the enemies he trades with are
+  trading with his own main team; with no trades, by whom he heals or protects, then the players of his side he
+  stands with, then the fight he closes on, and failing all that he stays on the split or its defence. Read second by
+  second, so that his fight can change; a turn of under 12 s is no turn.
 - A split is a decision from when the other team would see it and have to respond (R-510). *As built:* told from the
   crossing to the enemy's side, or from 4 s after its players left their team when they go straight across; the row
   says when it reaches their base, their footmen or a defender. Its door is the enemy's door it first comes to.
@@ -173,7 +181,7 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   | 1 v 1, defended by a monk | hold him there; the main team's job is to kill (R-114) |
   | a player or more up | kill or take NPCs |
   | even | take NPCs or kills (the split made the move, so it should seek the advantage) |
-  | a player or more down | survive, and gain an advantage elsewhere on the map |
+  | a player or more down | hold more defenders there than its own number and lose nobody; what the team made of the extra player is beside it (R-517) |
   | collapsed on, or a full collapse | survive, and gain an advantage elsewhere on the map |
 
 - The defender's job (R-428): one defender, or a player down: delay and stay alive. A mirror: hold it even. One more

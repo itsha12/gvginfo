@@ -204,6 +204,11 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   2026-11-17 is built there (`HOME_GUIDE`): a split is almost never in its own base, and a small group at home with
   its main team elsewhere is most likely a defence. It is a guide, not a ruling, and not to be applied strictly: it
   gives way to his marks, to an even divide (R-335) and to a held base (R-506), and it is never cited as a ruling.
+- A player counts in one fight only (R-519): where the main fight and a split's fight stand within reach of one
+  another, `Moments._numbers` gives each player both readings count to one of them (by whom he trades with, then whom
+  he heals, then whom he stands with, then where he is moving), and `split_plays` asks through `fight_side`. Change it
+  there, never in one reading alone; `M._side_log` says who was given to which fight and on what; the self-check
+  (`jobs.selfcheck`) should stay near nothing. A split a player or more down meets its job by losing nobody (R-517).
 - No new rule or threshold to answer a wrong row (R-465): rebuild the reading under it at the root, with his marked
   rows as the test. Who is in which fight is one reading on the branch (`Moments.linked`, `engaged_in`, `visits`; R-464),
   used by the numbers of the main fight and by a split's defenders: change it there, never beside it. His words on a
