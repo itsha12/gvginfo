@@ -7615,6 +7615,16 @@
      "mark": "correct",
      "why": "",
      "text": "Men [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (our flag is capped: no; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: yes)"
+    },
+    "572c2f95-numbers-1-766-75": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (strong side) [stay]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)"
+    },
+    "572c2f95-numbers-2-766-76": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)"
     }
    },
    "scheme": 2,
