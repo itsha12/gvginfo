@@ -10,6 +10,12 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - A player counts in a fight, on a split or on its defence after 12 s there; less is support, or passing by (R-350,
   R-439). A death there counts at once. A walk through a teleporter and straight back is not being there (R-442).
 - Who is on a split is who is there at that time, not everyone it ever held (R-439).
+- A split is a decision from when the other team would see it and have to respond (R-510). *As built:* told from the
+  crossing to the enemy's side, or from 4 s after its players left their team when they go straight across; the row
+  says when it reaches their base, their footmen or a defender. Its door is the enemy's door it first comes to.
+- Who comes to a split fight and who leaves it are decisions of their own, told beside the fight (R-511): a collapse
+  when the defence becomes one more than the split as it then stands, else a join (R-441); a leave when the player
+  goes alive. The jobs of a join and a leave are drafts.
 - The main team: in an even split, the group on the stand side, responsible for flags; monks only break a tie (R-335,
   R-355). In an uneven divide, the larger part (R-421, R-487). An even divide with both groups on the main flag
   path is a push team (forward, at the enemy's door) and a defence team (at its own), not a main team and a split

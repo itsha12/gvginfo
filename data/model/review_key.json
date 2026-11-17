@@ -398,7 +398,7 @@
     "said": "Yes.",
     "reading": "R-464; not built."
    },
-   "note": "The first check no longer asks for an undefended phase by name (his words were that the split counts from when it reaches, and that the Ritualist defends it): Claude's reading of the mark was narrower than the mark."
+   "note": "The first check no longer asks for an undefended phase by name (his words were that the split counts from when it reaches, and that the Ritualist defends it): Claude's reading of the mark was narrower than the mark. Since R-510 (2026-11-17) the row starts at the crossing again (18:54), which is what this mark objected to; the row now says when the split reaches their base. Put to him."
   },
   {
    "id": "s1-16",
@@ -6830,9 +6830,9 @@
       ]
      },
      "want": {
-      "scenario~": "a flag already on its way"
+      "scenario~": "one runner (Mes/A)"
      },
-     "was": "hook v hold 5:42: hook ran its Mesmer to deny the boost; the engine said no runner"
+     "was": "hook v hold 5:42: hook ran its Mesmer to deny the boost; the engine said no runner (then 'a flag already on its way'; since 2026-11-17 a carrier who caps inside the window is named as the runner)"
     }
    ]
   },
@@ -10836,30 +10836,34 @@
     {
      "has": {
       "play": "split",
+      "side": "attacker",
       "team": "HC",
-      "start": [
-       126,
-       138
+      "at": [
+       132,
+       252
       ]
      },
      "want": {
-      "clear": null
+      "size": 1,
+      "defenders": 1
      },
-     "auto": true
+     "was": "His mark: correct. The check asked for a row starting within 6 s of the one he saw; since R-510 the same split is told from when it sets out (10 s earlier), so the check now asks for the split and its numbers over the same stretch."
     },
     {
      "has": {
       "play": "split",
+      "side": "defender",
       "team": "Team",
-      "start": [
-       126,
-       138
+      "at": [
+       132,
+       252
       ]
      },
      "want": {
-      "clear": null
+      "size": 1,
+      "defenders": 1
      },
-     "auto": true
+     "was": "His mark: correct. The check asked for a row starting within 6 s of the one he saw; since R-510 the same split is told from when it sets out (10 s earlier), so the check now asks for the split and its numbers over the same stretch."
     }
    ]
   },
@@ -15932,44 +15936,34 @@
     {
      "has": {
       "play": "split",
+      "side": "attacker",
       "team": "RACK",
-      "start": [
-       882,
-       894
+      "at": [
+       888,
+       972
       ]
      },
      "want": {
-      "clear": null
+      "size": 1,
+      "defenders": 1
      },
-     "auto": true
+     "was": "His mark: correct. The check asked for a row starting within 6 s of the one he saw; since R-510 the same split is told from when it sets out (10 s earlier), so the check now asks for the split and its numbers over the same stretch."
     },
     {
      "has": {
       "play": "split",
+      "side": "defender",
       "team": "옷옷옷옷",
-      "start": [
-       882,
-       894
+      "at": [
+       888,
+       972
       ]
      },
      "want": {
-      "clear": null
+      "size": 1,
+      "defenders": 1
      },
-     "auto": true
-    },
-    {
-     "has": {
-      "play": "split",
-      "team": "옷옷옷옷",
-      "start": [
-       882,
-       894
-      ]
-     },
-     "want": {
-      "clear": null
-     },
-     "auto": true
+     "was": "His mark: correct. The check asked for a row starting within 6 s of the one he saw; since R-510 the same split is told from when it sets out (10 s earlier), so the check now asks for the split and its numbers over the same stretch."
     }
    ]
   },
@@ -16402,7 +16396,21 @@
      "mark": "not judged"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "start": [
+       -3,
+       9
+      ]
+     },
+     "want": {
+      "scenario~": "Men double run"
+     },
+     "was": "Men v RACK 0:00 (Classic, incorrect): 'Men double ran with warrior waiting back'"
+    }
+   ]
   },
   {
    "id": "f1-45cf-2",
@@ -16471,7 +16479,20 @@
      "mark": "not judged"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "none": {
+      "play": "split",
+      "team": "RACK",
+      "start": [
+       30,
+       42
+      ]
+     },
+     "open": true,
+     "why": "Men v RACK 0:36 (Visible, incorrect, kind): 'this is a flag push'"
+    }
+   ]
   },
   {
    "id": "f1-45cf-4",
@@ -16547,7 +16568,23 @@
      "mark": "not judged"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "push flagger",
+      "team": "Men",
+      "start": [
+       62,
+       74
+      ]
+     },
+     "want": {
+      "main": true
+     },
+     "open": true,
+     "why": "Men v RACK 1:08 (Visible, incorrect, numbers): 'whole team pushes flagger'"
+    }
+   ]
   },
   {
    "id": "f1-45cf-6",
@@ -16608,7 +16645,20 @@
      "mark": "not judged"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "none": {
+      "play": "split",
+      "team": "RACK",
+      "start": [
+       82,
+       98
+      ]
+     },
+     "open": true,
+     "why": "Men v RACK 1:32 (Visible, incorrect): 'this is a flag push'"
+    }
+   ]
   },
   {
    "id": "f1-45cf-8",
@@ -16990,7 +17040,22 @@
      "mark": "not judged"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "RACK",
+      "start": [
+       354,
+       366
+      ]
+     },
+     "want": {
+      "scenario~": "2 of 2 pit archers"
+     },
+     "was": "Men v RACK 6:00: 'both archers are alive'"
+    }
+   ]
   },
   {
    "id": "f1-45cf-17",
@@ -17017,7 +17082,22 @@
      "mark": "not judged"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "RACK",
+      "start": [
+       398,
+       410
+      ]
+     },
+     "want": {
+      "scenario~": "2 of 2 pit archers"
+     },
+     "was": "Men v RACK 6:44: 'both archers are alive'"
+    }
+   ]
   },
   {
    "id": "f1-45cf-18",
@@ -17044,7 +17124,22 @@
      "mark": "not judged"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "RACK",
+      "start": [
+       454,
+       466
+      ]
+     },
+     "want": {
+      "scenario~": "2 of 2 pit archers"
+     },
+     "was": "Men v RACK 7:40: 'both archers are alive'"
+    }
+   ]
   },
   {
    "id": "f1-45cf-19",
@@ -17071,7 +17166,25 @@
      "mark": "not judged"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "RACK",
+      "start": [
+       498,
+       510
+      ]
+     },
+     "want": {
+      "scenario~": [
+       "2 of 2 pit archers",
+       "a pit archer at 10:40"
+      ]
+     },
+     "was": "Men v RACK 8:24 (Classic, incorrect): 'only 1 archer is dead': one pit archer, lost at 10:40; the archer killed at 4:03 stood outside the pit"
+    }
+   ]
   },
   {
    "id": "f1-45cf-20",
@@ -17234,7 +17347,19 @@
      "mark": "not judged"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "none": {
+      "play": "numbers",
+      "start": [
+       720,
+       732
+      ]
+     },
+     "open": true,
+     "why": "Men v RACK 12:06 (Visible, incorrect): 'this is 7v7'"
+    }
+   ]
   },
   {
    "id": "f1-45cf-24",
@@ -17567,7 +17692,23 @@
      "mark": "correct"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "RACK",
+      "start": [
+       822,
+       842
+      ]
+     },
+     "want": {
+      "size": 1
+     },
+     "was": "Men v RACK 14:38 (Classic, partly, when): 'split starts at 13:52, that's when Men would see and have to respond'"
+    }
+   ]
   },
   {
    "id": "f1-45cf-31",
@@ -18023,6 +18164,18 @@
      "open": true,
      "auto": true,
      "why": "Men v RACK, Nomad's 19:06: he graded it No decision: the game ends at 19:05"
+    },
+    {
+     "none": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       1140,
+       1152
+      ]
+     },
+     "open": true,
+     "why": "Men v RACK 19:06: 'the game ends at 19:05': a split row told after the Lord is dead"
     }
    ]
   },
@@ -18045,7 +18198,24 @@
    "mark": "missed",
    "at": "10:44",
    "said": "ranger solo split frontdoor; very classic easy to identify example",
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "RACK",
+      "start": [
+       629,
+       654
+      ]
+     },
+     "want": {
+      "size": 1,
+      "scenario~": "front door"
+     },
+     "was": "Men v RACK 10:44 (Classic, missed): 'ranger solo split frontdoor; very classic easy to identify example'"
+    }
+   ]
   },
   {
    "id": "f1-45cf-missed-2",
@@ -18066,7 +18236,50 @@
    "mark": "missed",
    "at": "12:48",
    "said": "MISSED very clear and important collapse (8 monk hammer) on RACK's split; and rack's simultaneous split join (7 monk, hammer)",
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "Men",
+      "start": [
+       753,
+       778
+      ]
+     },
+     "want": {
+      "change": true,
+      "call": [
+       "collapse",
+       "join"
+      ],
+      "who~": [
+       "Hammer B",
+       "8 Monk"
+      ]
+     },
+     "was": "Men v RACK 12:48 (Classic, missed): 'very clear and important collapse (8 monk hammer) on RACK's split'"
+    },
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "RACK",
+      "start": [
+       753,
+       778
+      ]
+     },
+     "want": {
+      "change": true,
+      "who~": [
+       "7 Monk",
+       "Hammer"
+      ]
+     },
+     "was": "Men v RACK 12:48: 'and rack's simultaneous split join (7 monk, hammer)'"
+    }
+   ]
   },
   {
    "id": "f1-45cf-missed-3",
@@ -18087,7 +18300,27 @@
    "mark": "missed",
    "at": "16:51",
    "said": "mes/a of RACK solosplit through backdoor",
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "RACK",
+      "start": [
+       996,
+       1021
+      ]
+     },
+     "want": {
+      "size": 1,
+      "scenario~": [
+       "Mes/A",
+       "back door"
+      ]
+     },
+     "was": "Men v RACK 16:51 (Classic, missed): 'mes/a of RACK solosplit through backdoor'"
+    }
+   ]
   },
   {
    "id": "f1-45cf-missed-4",
@@ -18108,7 +18341,63 @@
    "mark": "missed",
    "at": "18:25",
    "said": "missed important collapse by Men's hammer and prot; and important join by Ranger. The players are correctly identified in the split, but the collapse and join itself are decision points for the respective teams.",
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "Men",
+      "start": [
+       1090,
+       1115
+      ]
+     },
+     "want": {
+      "change": true,
+      "who~": [
+       "Hammer"
+      ]
+     },
+     "was": "Men v RACK 18:25 (Classic, missed): 'missed important collapse by Men's hammer and prot'"
+    },
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "Men",
+      "start": [
+       1090,
+       1115
+      ]
+     },
+     "want": {
+      "change": true,
+      "who~": [
+       "Prot"
+      ]
+     },
+     "open": true,
+     "why": "Men v RACK 18:25: the Prot is not read as coming with the Hammer"
+    },
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "RACK",
+      "start": [
+       1090,
+       1115
+      ]
+     },
+     "want": {
+      "change": true,
+      "who~": [
+       "Ranger"
+      ]
+     },
+     "was": "Men v RACK 18:25: 'and important join by Ranger ... the collapse and join itself are decision points for the respective teams'"
+    }
+   ]
   },
   {
    "id": "f1-45cf-notes",
@@ -18155,7 +18444,21 @@
      "mark": "correct"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "start": [
+       -3,
+       9
+      ]
+     },
+     "want": {
+      "scenario~": "hold brought no flag up at the opening"
+     },
+     "was": "Men v hold 0:00 (Classic, partly): 'hold did not bring the first flag and had to send ele back for it'"
+    }
+   ]
   },
   {
    "id": "f1-572c-2",
@@ -18320,7 +18623,39 @@
      "mark": "not judged"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hold",
+      "at": [
+       48,
+       160
+      ]
+     },
+     "want": {
+      "scenario~": "by the back door"
+     },
+     "was": "Men v hold 0:48 (Classic, incorrect, where): 'split is by backdoor'"
+    },
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hold",
+      "at": [
+       40,
+       66
+      ]
+     },
+     "want": {
+      "defenders": 3
+     },
+     "open": true,
+     "why": "Men v hold 0:48 (Classic, incorrect, numbers): 'starts with 3 defending; 2 defending from 1:11 to 2:27': Men's Hammer, Ranger and Ritualist 2 stand at their back footmen 1,600 to 2,300 from the split, further than the engine counts a defender. Put to him 2026-11-17"
+    }
+   ]
   },
   {
    "id": "f1-572c-6",
@@ -18558,7 +18893,24 @@
      "mark": "not judged"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hold",
+      "at": [
+       170,
+       200
+      ]
+     },
+     "want": {
+      "defenders": 2
+     },
+     "open": true,
+     "why": "Men v hold 2:46 (Classic, incorrect): 'ranger and 8 monk defending': they stand in their pit, up to 3,400 from the split at the back door. Put to him 2026-11-17"
+    }
+   ]
   },
   {
    "id": "f1-572c-12",
@@ -19010,7 +19362,24 @@
      "mark": "not judged"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "none": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hold",
+      "start": [
+       254,
+       266
+      ],
+      "want": {
+       "defenders": 0
+      }
+     },
+     "open": true,
+     "why": "Men v hold 4:20 (Classic, incorrect): 'same split as before, and 3 are defending still (8 monk and ranger)'"
+    }
+   ]
   },
   {
    "id": "f1-572c-22",
@@ -19254,6 +19623,18 @@
      "open": true,
      "auto": true,
      "why": "Men v hold, Meditation 6:48: he graded it No decision: this I think was collapse rather than flagpush"
+    },
+    {
+     "none": {
+      "play": "push flagger",
+      "team": "hold",
+      "start": [
+       402,
+       414
+      ]
+     },
+     "open": true,
+     "why": "Men v hold 6:48: 'this I think was collapse rather than flagpush'"
     }
    ]
   },
@@ -19772,7 +20153,40 @@
      "mark": "correct"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "Men",
+      "at": [
+       640,
+       672
+      ]
+     },
+     "want": {
+      "scenario~": "by the back door"
+     },
+     "open": true,
+     "why": "Men v hold 10:40 (Classic, partly): 'it's a split through the backdoor not front'"
+    },
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "Men",
+      "at": [
+       640,
+       660
+      ]
+     },
+     "want": {
+      "defenders": 5
+     },
+     "open": true,
+     "why": "Men v hold 10:40: '5 players defending' (the engine reads 2, then 5 from 10:58)"
+    }
+   ]
   },
   {
    "id": "f1-572c-38",
@@ -20498,7 +20912,22 @@
      "mark": "not judged"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "boost",
+      "team": "hold",
+      "start": [
+       1050,
+       1062
+      ]
+     },
+     "want": {
+      "scenario~": "one runner (Earth Ele)"
+     },
+     "was": "Men v hold 17:36 (Classic, incorrect): 'hold's prot does not run': the capture was recorded on the Prot; the Earth Ele carried it"
+    }
+   ]
   },
   {
    "id": "f1-572c-56",
@@ -20579,7 +21008,21 @@
      "mark": "not judged"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "none": {
+      "play": "split",
+      "side": "attacker",
+      "team": "Men",
+      "start": [
+       1080,
+       1092
+      ]
+     },
+     "open": true,
+     "why": "Men v hold 18:06 (Visible, incorrect, kind): 'this is a collapse, not a split'"
+    }
+   ]
   },
   {
    "id": "f1-572c-58",
@@ -20654,7 +21097,24 @@
      "mark": "not judged"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hold",
+      "at": [
+       1100,
+       1138
+      ]
+     },
+     "want": {
+      "scenario~": "Earth Ele"
+     },
+     "open": true,
+     "why": "Men v hold 18:20 (Classic, incorrect, numbers and who): 'earth ele is part of split'"
+    }
+   ]
   },
   {
    "id": "f1-572c-60",
@@ -20690,7 +21150,24 @@
      "mark": "not judged"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hold",
+      "at": [
+       1136,
+       1180
+      ]
+     },
+     "want": {
+      "size": 3
+     },
+     "open": true,
+     "why": "Men v hold 18:56 (Classic, incorrect): '3 man split (earth ele, fire ele, 8 monk) defended by ranger, prot, rit, with eventual collapse by derv': the engine reads the three as a push by hold's main team, and one player on the split"
+    }
+   ]
   },
   {
    "id": "f1-572c-61",
@@ -21082,7 +21559,28 @@
    "mark": "missed",
    "at": "1:09",
    "said": "missed two very important and classic movements from Men's hammer; he leaves defence at 1:09 to rejoin mainteam (giving them player advantage) and then leaves mainteam to collapse/rejoin split at 1:59.",
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "Men",
+      "start": [
+       54,
+       79
+      ]
+     },
+     "want": {
+      "change": true,
+      "call": "leave",
+      "who~": [
+       "Hammer"
+      ]
+     },
+     "open": true,
+     "why": "Men v hold 1:09 (Classic, missed): 'he leaves defence at 1:09 to rejoin mainteam (giving them player advantage) and then leaves mainteam to collapse/rejoin split at 1:59': the Hammer is not read as a defender while he stands off the split, so his leaving is not read. Put to him 2026-11-17"
+    }
+   ]
   },
   {
    "id": "f1-572c-missed-2",
@@ -21103,7 +21601,27 @@
    "mark": "missed",
    "at": "5:18",
    "said": "missed important collapse by warrior on split through mid/collapse path",
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "Men",
+      "start": [
+       303,
+       330
+      ]
+     },
+     "want": {
+      "change": true,
+      "who~": [
+       "Hammer"
+      ]
+     },
+     "open": true,
+     "why": "Men v hold 5:18 (Classic, missed): 'missed important collapse by warrior on split through mid/collapse path'"
+    }
+   ]
   },
   {
    "id": "f1-572c-missed-3",
@@ -21124,7 +21642,26 @@
    "mark": "missed",
    "at": "6:11",
    "said": "missed important collapse by derv on split through frontdoor",
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "Men",
+      "start": [
+       356,
+       386
+      ]
+     },
+     "want": {
+      "change": true,
+      "who~": [
+       "AoB Derv"
+      ]
+     },
+     "was": "Men v hold 6:11 (Classic, missed): 'missed important collapse by derv on split through frontdoor'"
+    }
+   ]
   },
   {
    "id": "f1-572c-missed-4",
@@ -21145,7 +21682,24 @@
    "mark": "missed",
    "at": "17:59",
    "said": "earth ele splits frontdoor after capping flag",
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hold",
+      "start": [
+       1064,
+       1089
+      ]
+     },
+     "want": {
+      "scenario~": "Earth Ele"
+     },
+     "open": true,
+     "why": "Men v hold 17:59 (Classic, missed): 'earth ele splits frontdoor after capping flag'"
+    }
+   ]
   },
   {
    "id": "f1-572c-missed-5",
@@ -21166,7 +21720,24 @@
    "mark": "missed",
    "at": "17:01",
    "said": "fire ele splits front door",
-   "checks": []
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hold",
+      "start": [
+       1006,
+       1031
+      ]
+     },
+     "want": {
+      "scenario~": "Fire Ele"
+     },
+     "open": true,
+     "why": "Men v hold 17:01 (Classic, missed): 'fire ele splits front door'"
+    }
+   ]
   },
   {
    "id": "f1-572c-notes",
