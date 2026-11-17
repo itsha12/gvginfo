@@ -21923,7 +21923,13 @@
      "why": "Men v hold 5:18 (Classic, missed): 'missed important collapse by warrior on split through mid/collapse path'",
      "held": "2026-11-17"
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-17",
+    "asked": "A defender who comes from the main fight and makes a split fight even is told as a join (R-441); he called this move a collapse. Does coming from the main fight make it a collapse?",
+    "said": "Let's just keep these as joins for now.",
+    "reading": "R-516: R-441 stands; the check asks only that the move is read, with who made it."
+   }
   },
   {
    "id": "f1-572c-missed-3",
@@ -21963,7 +21969,13 @@
      },
      "was": "Men v hold 6:11 (Classic, missed): 'missed important collapse by derv on split through frontdoor'"
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-17",
+    "asked": "A defender who comes from the main fight and makes a split fight even is told as a join (R-441); he called this move a collapse. Does coming from the main fight make it a collapse?",
+    "said": "Let's just keep these as joins for now.",
+    "reading": "R-516: R-441 stands; the check asks only that the move is read, with who made it."
+   }
   },
   {
    "id": "f1-572c-missed-4",

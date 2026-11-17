@@ -46,7 +46,7 @@ import collections, json, math, statistics, sys
 from common import (STAND_R, FOUGHT, DOUBLE_NEXT_S, FLAG_MOMENT_GREATER, FLAG_MOMENT_STAND, HANDOFF_GAP_S, FIGHT_HOLD, FIGHT_HOLD_S, FIGHT_ACT, FIGHT_CLOSE, READ_FROM, READ_TO, CONSEQ_S, ON_TIME_S, LATE_S, PIT_S, AREA_SHARE, PURPOSE_S, LEAVE_MIN_S, HOME_WAIT_S, SPAWN_R, GROUP_LEAVE_S, MEET_R,
                     NUMBERS_MIN_S, MERGE_S, BOOST_WARN_S, FLAGGER_R, SPLIT_FAR, BOOST_EVERY, SERIOUS_CARRY_S, FIGHT_LINK, GROUND_MOVE, GROUND_S, GROUND_BACK, GROUND_JUMP, GROUND_SPLIT_MOVE, SIDE_FIGHT_MAX, SIDE_FIGHT_S, UNDEFENDED_S,
                     RETURN_R, FOOT_ENGAGED_S, SPLIT_STEP, SPLIT_MIN_S, SPLIT_GAP_S, FORCED_OUT_S, AHEAD_LOOK_S, CAUGHT_S, NPC_NEAR,
-                    JOIN_S, RES_EVERY, flux_at, JOIN_LOOK_S, JOIN_MOVE, JOIN_LEAD, JOIN_ENGAGE, JOIN_ENGAGE_S, MAIN_BIG, SWAP_S, SWAP_STAY_S, SPLIT_FIGHT_GAP_S, SPLIT_FIGHT_MIN,
+                    JOIN_S, RES_EVERY, flux_at, JOIN_LOOK_S, JOIN_MOVE, JOIN_LEAD, JOIN_ENGAGE, JOIN_ENGAGE_S, MAIN_BIG, HOME_GUIDE, SWAP_S, SWAP_STAY_S, SPLIT_FIGHT_GAP_S, SPLIT_FIGHT_MIN,
                     PUSHFLAG_R, PUSHFLAG_S, PUSHFLAG_SHORT_S, PUSHFLAG_LATE_S, PUSHFLAG_GAP_S, PUSHFLAG_MATES, PUSHFLAG_AHEAD_S, ROUTE_ENDS, ROUTE_OFF, ROUTE_CLEAR, ROUTE_MIN_S, LEAD_S,
                     WAY_OUT_GAP_S, STANDOFF_S, STANDOFF_HITS, STANDOFF_MIN, STANDOFF_R, STANDOFF_SPLIT_MIN, STANDOFF_SPLIT_S, STANDOFF_STILL, STANDOFF_NEAR, LEAD_HALF, LEAD_ONE, LEAD_ONE_HALF, LEAD_TWO, HOLD_BACK_S, LEFT_AT_SPAWN_S, RUN_SPEED, PICKUP_DELAY_S, HOLD_S, BOOST_LATE_S, HELP_IN_S, HELP_BACK_S, LEAVE_RES_S, MONK_S, MONK_MIN, LORD_GAP_S)
 from state import d
@@ -557,6 +557,7 @@ class Moments:
                 i = sum(1 for s_, _ in lives if s_ <= u)
                 return sum(len(c & set(g)) for _, c in lives[max(i - 3, 0):i + 2])
             out, prev, together, held = {}, frozenset(), True, frozenset()
+            guide = (0, 0)                                    # for how many readings running a part at home has been the larger part with the main team away, and the main team the smaller part at home (see below)
             fallen, lost = set(), {}                          # main team players who died as main team and are still dead (R-392)
             for u in range(0, self.T + 1, SPLIT_STEP):
                 live = [a for a in st.players[tm] if self.AL[a][u]]
@@ -626,6 +627,26 @@ class Moments:
                         if hm: prev = frozenset(max(hm, key=len))
                     big = [g for g in cand if len(g) >= MAIN_BIG and all(len(g) >= len(h) + 2 for h in gs if h is not g) and vote(g) >= 0]
                     if big: prev = frozenset(big[0])          # an uneven divide: the part of five or more, two bigger than any other and not round the back, is the main team (R-421: NwAy v SKT 14:50, SKT's five pushing NwAy's front door; his marks on Men v Apes 3:10 to 7:00; R-335 and R-355 keep the even 4 v 4). "Not round the back" was taken out on 2026-11-15 and put back: without it hdm's four-player split of hdm v hook 7:12 to 10:30, with a fifth player near it, was read as hdm's main team
+                    # Where the parts stand against their own base (Denning, 2026-11-17: a guide to the reading, not a ruling, and not to be applied strictly). "Splits are
+                    # almost never going to be in their own base. Mainteams can end up basically anywhere on the map. A small group of players in their own base when
+                    # their mainteam is elsewhere is most likely going to be a defense. A split will basically never be in their own base except when they are leaving
+                    # or returning." So a part at home is the main team or a defence, never the split. Read as: where more of the team stand at home than in any part
+                    # away from home, and the engine's main team is a part away, the part at home is the main team (R-513, read until now only against a part on the front
+                    # lane; R-487); and where the engine's main team is a part at home and a part away is bigger than all the players at home together, that part is the
+                    # main team and those at home are defending. Either must have stood for JOIN_S (a player a step outside his base, or a step apart from his group, for
+                    # a few seconds turns nothing over: RJT v RACK 6:16, the push team and the defence team of R-487). Not strict: an even divide is left to the flags and
+                    # the stand side (R-335), and a base that is held in to R-506 below (five who leave a held base are a split to deal with at once)
+                    if HOME_GUIDE:
+                        mine = [a for a in prev if a in live]
+                        at_h = [a for a in live if self.at_home(a, u, tm)]
+                        aw = max((g for g in cand if not any(a in at_h for a in g)), key=len, default=[])
+                        hm_ = max((g for g in gs if all(a in at_h for a in g)), key=len, default=[])
+                        g1 = bool(mine) and bool(hm_) and not any(a in at_h for a in mine) and len(at_h) > len(aw) and len(at_h) >= 3
+                        g2 = bool(mine) and bool(aw) and all(a in at_h for a in mine) and len(aw) > len(at_h) and len(self.in_base_of(tm, u)) < MAIN_BIG and not held
+                        guide = (guide[0] + 1 if g1 else 0, guide[1] + 1 if g2 else 0)
+                        if guide[0] * SPLIT_STEP >= JOIN_S: prev, guide = frozenset(hm_), (0, 0)
+                        elif guide[1] * SPLIT_STEP >= JOIN_S: prev, guide = frozenset(aw), (0, 0)
+                else: guide = (0, 0)
                 # R-506 (asked whether or not the engine reads the team as divided: five of seven leaving are most of the team, 옷옷옷옷 v RACK 8:11): players who go out round the back while three or more of their team stay at home are a split, whatever their number, and the part at home is the main team (옷옷옷옷 v RACK 4:30, 8:11, 9:52: five of RACK out of the back door, three in the pit: "clear split of 5")
                 # (the base is held in: the enemy's main team, five or more of them, stands in it; three of theirs there are a split of theirs that is being defended. Which way they left is not asked: on Isle of Solitude they go out by the teleporter)
                 homes = [g for g in gs if len(g) >= 2 and all(self.at_home(a, u, tm) for a in g)]
