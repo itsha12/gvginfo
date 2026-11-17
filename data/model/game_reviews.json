@@ -1,7 +1,7 @@
 {
  "about": "The rows of Model > Game review (R-454, R-455, R-492): every situation the engine reads in each review game, with the engine's confidence that it is a decision, written by tools/golden/review.py export on the engine branch. Games with scheme 2 are graded his new way; the others are history (R-491). His marks are in game_review_marks.json, never here.",
- "generated": "2026-11-16",
- "engine": "8e8e9ea",
+ "generated": "2026-11-17",
+ "engine": "a8b77a7",
  "games": [
   {
    "set": "w1",
@@ -24332,6 +24332,3241 @@
     "hold's Mesmer 20:16 to 20:28: Men's split from 19:38 and the main fight's numbers from 19:36",
     "Men's Mesmer 20:16 to 20:28: Men's split from 19:38 and the main fight's numbers from 19:36"
    ]
+  },
+  {
+   "scheme": 2,
+   "set": "f1",
+   "part": 6,
+   "label": "game 6",
+   "rid": "bbef1904-cc55-54a4-aea4-ec0367e0d00b",
+   "teams": [
+    "hdm",
+    "HC"
+   ],
+   "map": "Imperial Isle",
+   "date": "2026-11-02",
+   "situations": [
+    {
+     "n": 1,
+     "id": "s:bbef1904-flag-2-2-0",
+     "kind": "flag",
+     "t0": 2,
+     "t1": 51,
+     "reads": "The opening. hdm single run (Hammer A); HC single run (Mes/A)",
+     "confidence": {
+      "band": "high",
+      "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "HC",
+       "t0": 2
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-flag-2-2-0",
+       "team": "HC",
+       "side": "",
+       "label": "single run",
+       "job": "Get the first flag in",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "id": "s:bbef1904-flag-1-3-1",
+     "kind": "flag",
+     "t0": 3,
+     "t1": 39,
+     "reads": "The opening. HC single run (Mes/A); hdm single run (Hammer A)",
+     "confidence": {
+      "band": "high",
+      "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "hdm",
+       "t0": 3
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-flag-1-3-1",
+       "team": "hdm",
+       "side": "",
+       "label": "single run",
+       "job": "Get the first flag in",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "id": "s:bbef1904-split-1-30-2",
+     "kind": "split",
+     "t0": 30,
+     "t1": 58,
+     "reads": "hdm's split by the back door: one player (Ranger) against 0 defending; it crosses at 0:42 and has not reached their base, their footmen or a defender by 0:54",
+     "confidence": {
+      "band": "medium",
+      "why": "Read as a situation wherever the engine's settings sit, but who is counted in it or the call changes when one is moved a quarter: how long a player must be in a fight before he counts in it."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "hdm",
+       "t0": 30
+      },
+      {
+       "play": "split",
+       "team": "HC",
+       "t0": 30
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-split-1-30-2",
+       "team": "hdm",
+       "side": "attacker",
+       "label": "undefended",
+       "job": "Take NPCs",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "bbef1904-split-2-30-3",
+       "team": "HC",
+       "side": "defender",
+       "label": "no answer",
+       "job": "Win elsewhere before the split costs more than it gains",
+       "met": true,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         true,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": true,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 4,
+     "id": "s:bbef1904-numbers-1-34-4",
+     "kind": "numbers",
+     "t0": 34,
+     "t1": 94,
+     "reads": "hdm down on numbers in the main fight (7 v 8, the flag stand; then 6 v 7 from 0:54), from players split elsewhere; hdm: stay (stay at the stand) | HC: stay (stay at the stand)",
+     "confidence": {
+      "band": "high",
+      "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "hdm",
+       "t0": 34
+      },
+      {
+       "play": "numbers",
+       "team": "HC",
+       "t0": 34
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-numbers-1-34-4",
+       "team": "hdm",
+       "side": "weak side",
+       "label": "stay",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "bbef1904-numbers-2-34-5",
+       "team": "HC",
+       "side": "strong side",
+       "label": "stay",
+       "job": "Kill with the numbers while their players are away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 5,
+     "id": "s:bbef1904-flag-2-49-6",
+     "kind": "flag",
+     "t0": 49,
+     "t1": 113,
+     "reads": "hdm single run (Hammer A); HC single run (Mes/A)",
+     "confidence": {
+      "band": "high",
+      "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "HC",
+       "t0": 49
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-flag-2-49-6",
+       "team": "HC",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         false,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 6,
+     "id": "s:bbef1904-split-1-56-7",
+     "kind": "split",
+     "t0": 56,
+     "t1": 84,
+     "reads": "hdm's split by the back door: one player (Ranger) against 1 defending (Ranger)",
+     "confidence": {
+      "band": "medium",
+      "why": "Read as a situation wherever the engine's settings sit, but who is counted in it or the call changes when one is moved a quarter: how long a player must be in a fight before he counts in it."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "hdm",
+       "t0": 56
+      },
+      {
+       "play": "split",
+       "team": "HC",
+       "t0": 56
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-split-1-56-7",
+       "team": "hdm",
+       "side": "attacker",
+       "label": "1 v 1, the defender not a monk",
+       "job": "Take NPCs or kills",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "bbef1904-split-2-56-8",
+       "team": "HC",
+       "side": "defender",
+       "label": "mirror",
+       "job": "Hold it even: lose no pit NPC and no more players than the split does",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no more defenders die than split players"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 7,
+     "id": "s:bbef1904-flag-1-92-9",
+     "kind": "flag",
+     "t0": 92,
+     "t1": 113,
+     "reads": "HC single run (Mes/A); hdm stays",
+     "confidence": {
+      "band": "high",
+      "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "hdm",
+       "t0": 92
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-flag-1-92-9",
+       "team": "hdm",
+       "side": "",
+       "label": "stay",
+       "job": "Kill with the extra player while their runner is away, or their flag does not get in",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die at the main fight than of ours"
+        ],
+        [
+         false,
+         "their flag does not get in"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 8,
+     "id": "s:bbef1904-push_flagger-1-96-10",
+     "kind": "push flagger",
+     "t0": 96,
+     "t1": 113,
+     "reads": "hdm pushes HC's flagger (Mes/A, carrying) with 3 players",
+     "confidence": {
+      "band": "low",
+      "why": "The engine stops reading this when one of its settings is moved a quarter: how many team mates around the flagger make it a fight and not a push on him."
+     },
+     "plays": [
+      {
+       "play": "push flagger",
+       "team": "hdm",
+       "t0": 96
+      },
+      {
+       "play": "flagger pushed",
+       "team": "HC",
+       "t0": 96
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-push_flagger-1-96-10",
+       "team": "hdm",
+       "side": "",
+       "label": "",
+       "job": "Stop their flag, or make it 30% late",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "their flag is stopped"
+        ],
+        [
+         false,
+         "it arrives 30% or more later than usual"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "bbef1904-flagger_pushed-2-96-11",
+       "team": "HC",
+       "side": "",
+       "label": "",
+       "job": "Get the flag in on time, without losing a player for the help sent",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "the flag gets in, less than 30% late"
+        ],
+        [
+         true,
+         "nobody else of ours dies meanwhile"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 9,
+     "id": "s:bbef1904-flag-2-113-12",
+     "kind": "flag",
+     "t0": 113,
+     "t1": 189,
+     "reads": "hdm single run (Hammer B); HC single run (Mes/A)",
+     "confidence": {
+      "band": "high",
+      "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "HC",
+       "t0": 113
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-flag-2-113-12",
+       "team": "HC",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         false,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 10,
+     "id": "s:bbef1904-push_flagger-1-134-13",
+     "kind": "push flagger",
+     "t0": 134,
+     "t1": 189,
+     "reads": "hdm pushes HC's flagger (Mes/A, carrying) with one player",
+     "confidence": {
+      "band": "medium",
+      "why": "Still read when the engine's settings are moved a quarter either way. At half or double it is no longer read; it hangs on: how close players must stand to be in the same fight."
+     },
+     "plays": [
+      {
+       "play": "push flagger",
+       "team": "hdm",
+       "t0": 134
+      },
+      {
+       "play": "flagger pushed",
+       "team": "HC",
+       "t0": 134
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-push_flagger-1-134-13",
+       "team": "hdm",
+       "side": "",
+       "label": "",
+       "job": "Stop their flag, or make it 30% late",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "their flag is stopped"
+        ],
+        [
+         false,
+         "it arrives 30% or more later than usual"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "bbef1904-flagger_pushed-2-134-14",
+       "team": "HC",
+       "side": "",
+       "label": "",
+       "job": "Get the flag in on time, without losing a player for the help sent",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "the flag gets in, less than 30% late"
+        ],
+        [
+         true,
+         "nobody else of ours dies meanwhile"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 11,
+     "id": "s:bbef1904-flag-1-136-15",
+     "kind": "flag",
+     "t0": 136,
+     "t1": 184,
+     "reads": "HC single run (Mes/A); hdm single run (Hammer B)",
+     "confidence": {
+      "band": "high",
+      "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "hdm",
+       "t0": 136
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-flag-1-136-15",
+       "team": "hdm",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         true,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 12,
+     "id": "s:bbef1904-flag-2-148-16",
+     "kind": "flag",
+     "t0": 148,
+     "t1": 199,
+     "reads": "hdm single run (Hammer B); HC has a flag already in hand (Mes/A)",
+     "confidence": {
+      "band": "high",
+      "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "HC",
+       "t0": 148
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-flag-2-148-16",
+       "team": "HC",
+       "side": "",
+       "label": "a flag already in hand",
+       "job": "Answer their cap at once",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "their flag does not get in"
+        ],
+        [
+         false,
+         "our cap follows theirs within 15 s"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 13,
+     "id": "s:bbef1904-split-1-164-17",
+     "kind": "split",
+     "t0": 164,
+     "t1": 188,
+     "reads": "hdm's split by the back door: one player (Ranger) against 0 defending; it crosses at 2:54 and has not reached their base, their footmen or a defender by 3:04",
+     "confidence": {
+      "band": "medium",
+      "why": "Still read when the engine's settings are moved a quarter either way. At half or double it is no longer read; it hangs on: how long a player must be on the enemy's ground to be on a split."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "hdm",
+       "t0": 164
+      },
+      {
+       "play": "split",
+       "team": "HC",
+       "t0": 164
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-split-1-164-17",
+       "team": "hdm",
+       "side": "attacker",
+       "label": "undefended",
+       "job": "Take NPCs",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "bbef1904-split-2-164-18",
+       "team": "HC",
+       "side": "defender",
+       "label": "no answer",
+       "job": "Win elsewhere before the split costs more than it gains",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": true,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 14,
+     "id": "s:bbef1904-push_flagger-2-168-20",
+     "kind": "push flagger",
+     "t0": 168,
+     "t1": 184,
+     "reads": "HC pushes hdm's flagger (Hammer B, carrying) with 2 players",
+     "confidence": {
+      "band": "medium",
+      "why": "Still read when the engine's settings are moved a quarter either way. At half or double it is no longer read; it hangs on: how close players must stand to be in the same fight."
+     },
+     "plays": [
+      {
+       "play": "push flagger",
+       "team": "HC",
+       "t0": 168
+      },
+      {
+       "play": "flagger pushed",
+       "team": "hdm",
+       "t0": 168
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-push_flagger-2-168-20",
+       "team": "HC",
+       "side": "",
+       "label": "",
+       "job": "Stop their flag, or make it 30% late",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "their flag is stopped"
+        ],
+        [
+         false,
+         "it arrives 30% or more later than usual"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "bbef1904-flagger_pushed-1-168-19",
+       "team": "hdm",
+       "side": "",
+       "label": "",
+       "job": "Get the flag in on time, without losing a player for the help sent",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "the flag gets in, less than 30% late"
+        ],
+        [
+         true,
+         "nobody else of ours dies meanwhile"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 15,
+     "id": "s:bbef1904-split-1-186-21",
+     "kind": "split",
+     "t0": 186,
+     "t1": 204,
+     "reads": "hdm's split by the back door: one player (Ranger) against 1 defending (Ranger)",
+     "confidence": {
+      "band": "medium",
+      "why": "Still read when the engine's settings are moved a quarter either way. At half or double it is no longer read; it hangs on: how long a player must be on the enemy's ground to be on a split."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "hdm",
+       "t0": 186
+      },
+      {
+       "play": "split",
+       "team": "HC",
+       "t0": 186
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-split-1-186-21",
+       "team": "hdm",
+       "side": "attacker",
+       "label": "1 v 1, the defender not a monk",
+       "job": "Take NPCs or kills",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "bbef1904-split-2-186-22",
+       "team": "HC",
+       "side": "defender",
+       "label": "mirror",
+       "job": "Hold it even: lose no pit NPC and no more players than the split does",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no more defenders die than split players"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 16,
+     "id": "s:bbef1904-flag-2-192-23",
+     "kind": "flag",
+     "t0": 192,
+     "t1": 236,
+     "reads": "hdm single run (Hammer B); HC single run (Mes/A)",
+     "confidence": {
+      "band": "high",
+      "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "HC",
+       "t0": 192
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-flag-2-192-23",
+       "team": "HC",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         true,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 17,
+     "id": "s:bbef1904-push_flagger-2-208-25",
+     "kind": "push flagger",
+     "t0": 208,
+     "t1": 231,
+     "reads": "HC pushes hdm's flagger (Hammer B, carrying) with one player",
+     "confidence": {
+      "band": "medium",
+      "why": "Still read when the engine's settings are moved a quarter either way. At half or double it is no longer read; it hangs on: how close players must stand to be in the same fight."
+     },
+     "plays": [
+      {
+       "play": "push flagger",
+       "team": "HC",
+       "t0": 208
+      },
+      {
+       "play": "flagger pushed",
+       "team": "hdm",
+       "t0": 208
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-push_flagger-2-208-25",
+       "team": "HC",
+       "side": "",
+       "label": "",
+       "job": "Stop their flag, or make it 30% late",
+       "met": true,
+       "tests": [
+        [
+         false,
+         "their flag is stopped"
+        ],
+        [
+         true,
+         "it arrives 30% or more later than usual"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "bbef1904-flagger_pushed-1-208-24",
+       "team": "hdm",
+       "side": "",
+       "label": "",
+       "job": "Get the flag in on time, without losing a player for the help sent",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "the flag gets in, less than 30% late"
+        ],
+        [
+         false,
+         "nobody else of ours dies meanwhile"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 18,
+     "id": "s:bbef1904-numbers-1-220-26",
+     "kind": "numbers",
+     "t0": 220,
+     "t1": 262,
+     "reads": "hdm down on numbers in the main fight (7 v 8, the greater stand area), from kills; hdm: stay (stay at the stand) | HC: stay (stay at the stand)",
+     "confidence": {
+      "band": "high",
+      "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "hdm",
+       "t0": 220
+      },
+      {
+       "play": "numbers",
+       "team": "HC",
+       "t0": 220
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-numbers-1-220-26",
+       "team": "hdm",
+       "side": "down",
+       "label": "stay",
+       "job": "Hold the ground a player down and lose no more until it is level, or the base res",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "bbef1904-numbers-2-220-27",
+       "team": "HC",
+       "side": "up",
+       "label": "stay",
+       "job": "Turn the extra player into a kill before the numbers are level",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 19,
+     "id": "s:bbef1904-flag-2-240-28",
+     "kind": "flag",
+     "t0": 240,
+     "t1": 304,
+     "reads": "hdm single run (Hammer B); HC single run (Mes/A, handing it to 8 Monk)",
+     "confidence": {
+      "band": "high",
+      "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "HC",
+       "t0": 240
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-flag-2-240-28",
+       "team": "HC",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         false,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 20,
+     "id": "s:bbef1904-push_flagger-1-262-29",
+     "kind": "push flagger",
+     "t0": 262,
+     "t1": 304,
+     "reads": "hdm pushes HC's flagger (Mes/A, going back) with 3 players",
+     "confidence": {
+      "band": "medium",
+      "why": "Still read when the engine's settings are moved a quarter either way. At half or double it is no longer read; it hangs on: how close players must stand to be in the same fight."
+     },
+     "plays": [
+      {
+       "play": "push flagger",
+       "team": "hdm",
+       "t0": 262
+      },
+      {
+       "play": "flagger pushed",
+       "team": "HC",
+       "t0": 262
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-push_flagger-1-262-29",
+       "team": "hdm",
+       "side": "",
+       "label": "",
+       "job": "Stop their flag, or make it 30% late",
+       "met": true,
+       "tests": [
+        [
+         false,
+         "their flag is stopped"
+        ],
+        [
+         true,
+         "it arrives 30% or more later than usual"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "bbef1904-flagger_pushed-2-262-30",
+       "team": "HC",
+       "side": "",
+       "label": "",
+       "job": "Get the flag in on time",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "the flag gets in, less than 30% late"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 21,
+     "id": "s:bbef1904-flag-1-268-31",
+     "kind": "flag",
+     "t0": 268,
+     "t1": 319,
+     "reads": "HC single run (Mes/A, handing it to 8 Monk); hdm single run (Mes/A)",
+     "confidence": {
+      "band": "high",
+      "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "hdm",
+       "t0": 268
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-flag-1-268-31",
+       "team": "hdm",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         false,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 22,
+     "id": "s:bbef1904-flag-2-304-32",
+     "kind": "flag",
+     "t0": 304,
+     "t1": 340,
+     "reads": "hdm single run (Mes/A); HC single run (Mes/A)",
+     "confidence": {
+      "band": "high",
+      "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "HC",
+       "t0": 304
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-flag-2-304-32",
+       "team": "HC",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         true,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 23,
+     "id": "s:bbef1904-flag-1-319-33",
+     "kind": "flag",
+     "t0": 319,
+     "t1": 389,
+     "reads": "HC single run (Mes/A); hdm single run (Mes/A)",
+     "confidence": {
+      "band": "medium",
+      "why": "Read as a situation wherever the engine's settings sit, but who is counted in it or the call changes when one is moved a quarter: how long a flag must be kept near the stand to be a held flag."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "hdm",
+       "t0": 319
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-flag-1-319-33",
+       "team": "hdm",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         false,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 24,
+     "id": "s:bbef1904-flag-2-337-34",
+     "kind": "flag",
+     "t0": 337,
+     "t1": 390,
+     "reads": "hdm single run (Mes/A); HC single run (Mes/A)",
+     "confidence": {
+      "band": "high",
+      "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "HC",
+       "t0": 337
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-flag-2-337-34",
+       "team": "HC",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         true,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 25,
+     "id": "s:bbef1904-split-2-340-37",
+     "kind": "split",
+     "t0": 340,
+     "t1": 376,
+     "reads": "HC's split by the front door: one player (Ranger) against 1 defending (Mes/A); it crosses at 5:38 and reaches their base, their footmen or a defender at 5:44; 1 (Mes/A) against one player; it crosses at 5:38 and reaches their base, their footmen or a defender at 5:44: the lone defender carries his flag for 28 s",
+     "confidence": {
+      "band": "medium",
+      "why": "Still read when the engine's settings are moved a quarter either way. At half or double it is no longer read; it hangs on: how close players must stand to be in the same fight."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "HC",
+       "t0": 340
+      },
+      {
+       "play": "split",
+       "team": "hdm",
+       "t0": 340
+      },
+      {
+       "play": "split",
+       "team": "hdm",
+       "t0": 340
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-split-2-340-37",
+       "team": "HC",
+       "side": "attacker",
+       "label": "1 v 1, the defender not a monk",
+       "job": "Take NPCs or kills",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "bbef1904-split-1-340-35",
+       "team": "hdm",
+       "side": "defender",
+       "label": "mirror",
+       "job": "Hold it even: lose no pit NPC and no more players than the split does",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no more defenders die than split players"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "bbef1904-split-1-340-36",
+       "team": "hdm",
+       "side": "defender",
+       "label": "part-run",
+       "job": "Gain a slight flag advantage while losing no pit NPC and not dying",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         false,
+         "flag lead better by 0.15 or more"
+        ],
+        [
+         true,
+         "the defender does not die"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 26,
+     "id": "s:bbef1904-push_flagger-2-342-39",
+     "kind": "push flagger",
+     "t0": 342,
+     "t1": 389,
+     "reads": "HC pushes hdm's flagger (Mes/A, at the spawn) with 3 players",
+     "confidence": {
+      "band": "low",
+      "why": "The engine stops reading this when one of its settings is moved a quarter: how many team mates around the flagger make it a fight and not a push on him."
+     },
+     "plays": [
+      {
+       "play": "push flagger",
+       "team": "HC",
+       "t0": 342
+      },
+      {
+       "play": "flagger pushed",
+       "team": "hdm",
+       "t0": 342
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-push_flagger-2-342-39",
+       "team": "HC",
+       "side": "",
+       "label": "",
+       "job": "Stop their flag, or make it 30% late",
+       "met": true,
+       "tests": [
+        [
+         false,
+         "their flag is stopped"
+        ],
+        [
+         true,
+         "it arrives 30% or more later than usual"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "bbef1904-flagger_pushed-1-342-38",
+       "team": "hdm",
+       "side": "",
+       "label": "",
+       "job": "Get the flag in on time, without losing a player for the help sent",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "the flag gets in, less than 30% late"
+        ],
+        [
+         true,
+         "nobody else of ours dies meanwhile"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 27,
+     "id": "s:bbef1904-numbers-1-366-40",
+     "kind": "numbers",
+     "t0": 366,
+     "t1": 402,
+     "reads": "hdm up on numbers in the main fight (8 v 7, the greater stand area), from players split elsewhere; hdm: stay (stay at the stand) | HC: stay (stay at the stand)",
+     "confidence": {
+      "band": "low",
+      "why": "The engine stops reading this when one of its settings is moved a quarter: how close players must stand to be in the same fight."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "hdm",
+       "t0": 366
+      },
+      {
+       "play": "numbers",
+       "team": "HC",
+       "t0": 366
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-numbers-1-366-40",
+       "team": "hdm",
+       "side": "strong side",
+       "label": "stay",
+       "job": "Kill with the numbers while their players are away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "bbef1904-numbers-2-366-41",
+       "team": "HC",
+       "side": "weak side",
+       "label": "stay",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 28,
+     "id": "s:bbef1904-split-2-374-43",
+     "kind": "split",
+     "t0": 374,
+     "t1": 398,
+     "reads": "HC's split by the front door: one player (Ranger) against 0 defending",
+     "confidence": {
+      "band": "medium",
+      "why": "Read as a situation wherever the engine's settings sit, but who is counted in it or the call changes when one is moved a quarter: how close players must stand to be in the same fight."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "HC",
+       "t0": 374
+      },
+      {
+       "play": "split",
+       "team": "hdm",
+       "t0": 374
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-split-2-374-43",
+       "team": "HC",
+       "side": "attacker",
+       "label": "undefended",
+       "job": "Take NPCs",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "bbef1904-split-1-374-42",
+       "team": "hdm",
+       "side": "defender",
+       "label": "no answer",
+       "job": "Win elsewhere before the split costs more than it gains",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": true,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 29,
+     "id": "s:bbef1904-split-2-396-45",
+     "kind": "split",
+     "t0": 396,
+     "t1": 414,
+     "reads": "HC's split by the front door: one player (Ranger) against 2 defending (Ranger, 8 Monk); Ranger, 8 Monk collapse from the main fight; 2 (Ranger, 8 Monk) against one player: collapse by Ranger, 8 Monk from the main fight",
+     "confidence": {
+      "band": "medium",
+      "why": "Still read when the engine's settings are moved a quarter either way. At half or double it is no longer read; it hangs on: how big a jump in position starts the reading again (a wipe and a base res)."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "HC",
+       "t0": 396
+      },
+      {
+       "play": "split",
+       "team": "hdm",
+       "t0": 396
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-split-2-396-45",
+       "team": "HC",
+       "side": "attacker",
+       "label": "collapsed on",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "bbef1904-split-1-396-44",
+       "team": "hdm",
+       "side": "defender",
+       "label": "collapse",
+       "job": "Kill a split player before going back (what it cost at the main fight and in flags is beside it)",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a split player dies during the collapse"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 30,
+     "id": "s:bbef1904-flag-2-406-46",
+     "kind": "flag",
+     "t0": 406,
+     "t1": 496,
+     "reads": "hdm single run (Mes/A); HC single run (Mes/A)",
+     "confidence": {
+      "band": "high",
+      "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "HC",
+       "t0": 406
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-flag-2-406-46",
+       "team": "HC",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ],
+        [
+         false,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         true,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 31,
+     "id": "s:bbef1904-boost-1-480-47",
+     "kind": "boost",
+     "t0": 480,
+     "t1": 515,
+     "reads": "HC's boost is 30 s away; hdm: one runner (Mes/A); the rest stay at the stand",
+     "confidence": {
+      "band": "high",
+      "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
+     },
+     "plays": [
+      {
+       "play": "boost",
+       "team": "hdm",
+       "t0": 480
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-boost-1-480-47",
+       "team": "hdm",
+       "side": "",
+       "label": "run",
+       "job": "Deny their boost",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "their boost does not land"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 32,
+     "id": "s:bbef1904-numbers-1-492-48",
+     "kind": "numbers",
+     "t0": 492,
+     "t1": 599,
+     "reads": "hdm up on numbers in the main fight (8 v 6, the flag stand; then 7 v 5 from 8:36; then 4 v 2 from 8:50; then 6 v 3 from 9:18), from kills; hdm: stay (stay at the stand) | HC: stay (stay at the stand)",
+     "confidence": {
+      "band": "medium",
+      "why": "Read as a situation wherever the engine's settings sit, but who is counted in it or the call changes when one is moved a quarter: how close players must stand to be in the same fight."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "hdm",
+       "t0": 492
+      },
+      {
+       "play": "numbers",
+       "team": "HC",
+       "t0": 492
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-numbers-1-492-48",
+       "team": "hdm",
+       "side": "up",
+       "label": "stay",
+       "job": "Turn the extra player into a kill before the numbers are level",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "bbef1904-numbers-2-492-49",
+       "team": "HC",
+       "side": "down",
+       "label": "stay",
+       "job": "Hold the ground a player down and lose no more until it is level, or the base res",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 33,
+     "id": "s:bbef1904-flag-2-514-50",
+     "kind": "flag",
+     "t0": 514,
+     "t1": 550,
+     "reads": "hdm single run (8 Monk); HC stays",
+     "confidence": {
+      "band": "high",
+      "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "HC",
+       "t0": 514
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-flag-2-514-50",
+       "team": "HC",
+       "side": "",
+       "label": "stay",
+       "job": "Kill with the extra player while their runner is away, or their flag does not get in",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die at the main fight than of ours"
+        ],
+        [
+         false,
+         "their flag does not get in"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 34,
+     "id": "s:bbef1904-split-2-552-53",
+     "kind": "split",
+     "t0": 552,
+     "t1": 578,
+     "reads": "HC's split by the back door: two players (Hammer, Stand Mes) against 2 defending (Ranger, 8 Monk); it crosses at 8:48 and reaches their base, their footmen or a defender at 9:12",
+     "confidence": {
+      "band": "low",
+      "why": "The engine stops reading this when one of its settings is moved a quarter: how close players must stand to be in the same fight."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "HC",
+       "t0": 552
+      },
+      {
+       "play": "split",
+       "team": "hdm",
+       "t0": 552
+      },
+      {
+       "play": "split",
+       "team": "hdm",
+       "t0": 552
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-split-2-552-53",
+       "team": "HC",
+       "side": "attacker",
+       "label": "even",
+       "job": "Take NPCs or kills",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "bbef1904-split-1-552-51",
+       "team": "hdm",
+       "side": "defender",
+       "label": "mirror",
+       "job": "Hold it even: lose no pit NPC and no more players than the split does",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no more defenders die than split players"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "bbef1904-split-1-552-52",
+       "team": "hdm",
+       "side": "defender's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: they have no monk there",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 35,
+     "id": "s:bbef1904-pinned-2-564-54",
+     "kind": "pinned",
+     "t0": 564,
+     "t1": 599,
+     "reads": "HC is held in its own base or pit by hdm's main team (pit NPCs alive at 9:24: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard alive; lost while held: the Bodyguard at 9:27, a knight at 9:58, a knight at 9:58; base res in 36 s)",
+     "confidence": {
+      "band": "medium",
+      "why": "Read as a situation wherever the engine's settings sit, but who is counted in it or the call changes when one is moved a quarter: how close players must stand to be in the same fight."
+     },
+     "plays": [
+      {
+       "play": "pinned",
+       "team": "HC",
+       "t0": 564
+      }
+     ],
+     "calls": [
+      {
+       "id": "bbef1904-pinned-2-564-54",
+       "team": "HC",
+       "side": "",
+       "label": "",
+       "job": "Hold the NPCs and lose nobody until the base res, or break out",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         false,
+         "it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    }
+   ],
+   "selfcheck": []
+  },
+  {
+   "scheme": 2,
+   "set": "f1",
+   "part": 7,
+   "label": "game 7",
+   "rid": "b870f84e-b838-5f2a-ae83-b1e25499d9ee",
+   "teams": [
+    "hold",
+    "Men"
+   ],
+   "map": "Uncharted Isle",
+   "date": "2026-10-31",
+   "situations": [
+    {
+     "n": 1,
+     "id": "s:b870f84e-flag-2-0-1",
+     "kind": "flag",
+     "t0": 0,
+     "t1": 27,
+     "reads": "The opening. hold single run (Ritualist, handing it to Hammer); Men single run (Ranger, handing it to AoB Derv)",
+     "confidence": {
+      "band": "high",
+      "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "Men",
+       "t0": 0
+      }
+     ],
+     "calls": [
+      {
+       "id": "b870f84e-flag-2-0-1",
+       "team": "Men",
+       "side": "",
+       "label": "single run",
+       "job": "Get the first flag in",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "id": "s:b870f84e-flag-1-0-0",
+     "kind": "flag",
+     "t0": 0,
+     "t1": 66,
+     "reads": "The opening. Men single run (Ranger, handing it to AoB Derv); hold single run (Ritualist, handing it to Hammer)",
+     "confidence": {
+      "band": "high",
+      "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "hold",
+       "t0": 0
+      }
+     ],
+     "calls": [
+      {
+       "id": "b870f84e-flag-1-0-0",
+       "team": "hold",
+       "side": "",
+       "label": "single run",
+       "job": "Get the first flag in",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "id": "s:b870f84e-split-1-10-2",
+     "kind": "split",
+     "t0": 10,
+     "t1": 326,
+     "reads": "hold's split by the back door: three players (AoB Derv, Ranger, 8 Monk) against 2 defending (Ritualist 2, Ranger); numbers along the way: 3 v 2 from 0:24, 3 v 3 from 1:00, 3 v 2 from 1:12, 3 v 3 from 1:28, 3 v 2 from 1:58, 2 v 2 from 3:48, 3 v 2 from 4:14, 3 v 1 from 4:28. Who came and went, each a decision of its own: Hammer (Men) joins the defence at 1:00; Hammer (Men) leaves the defence at 1:12; Hammer (Men) joins the defence at 1:28; Hammer (Men) leaves the defence at 1:58; 8 Monk (hold) leaves the split at 3:48; Ritualist (hold) joins the split at 4:14",
+     "confidence": {
+      "band": "medium",
+      "why": "Read as a situation wherever the engine's settings sit, but who is counted in it or the call changes when one is moved a quarter: how long a player at the edge of a fight is kept in it; how close players must stand to be in the same fight; and 3 more of its settings."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "hold",
+       "t0": 10
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 10
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 10
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 60
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 72
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 88
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 118
+      },
+      {
+       "play": "split",
+       "team": "hold",
+       "t0": 228
+      },
+      {
+       "play": "split",
+       "team": "hold",
+       "t0": 254
+      }
+     ],
+     "calls": [
+      {
+       "id": "b870f84e-split-1-10-2",
+       "team": "hold",
+       "side": "attacker",
+       "label": "a player or more up",
+       "job": "Kill or take NPCs",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "a defender killed"
+        ],
+        [
+         true,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "b870f84e-split-2-10-3",
+       "team": "Men",
+       "side": "defender",
+       "label": "a player down",
+       "job": "Delay: keep the split off the pit NPCs and stay alive",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost"
+        ],
+        [
+         false,
+         "no defender dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "b870f84e-split-2-10-4",
+       "team": "Men",
+       "side": "defender's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: its damage can kill against their monks there, and theirs cannot",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "b870f84e-split-2-60-7",
+       "team": "Men",
+       "side": "defender",
+       "label": "join: Hammer at 1:00",
+       "job": "Hold it even or better: lose no pit NPC and no more players than the split does",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no more defenders die than split players"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "b870f84e-split-2-72-10",
+       "team": "Men",
+       "side": "defender",
+       "label": "leave: Hammer at 1:12",
+       "job": "Gain at the main fight with the player back, and lose no pit NPC for it",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "b870f84e-split-2-88-11",
+       "team": "Men",
+       "side": "defender",
+       "label": "join: Hammer at 1:28",
+       "job": "Hold it even or better: lose no pit NPC and no more players than the split does",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no more defenders die than split players"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "b870f84e-split-2-118-14",
+       "team": "Men",
+       "side": "defender",
+       "label": "leave: Hammer at 1:58",
+       "job": "Gain at the main fight with the player back, and lose no pit NPC for it",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         true,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "b870f84e-split-1-228-21",
+       "team": "hold",
+       "side": "attacker",
+       "label": "leave: 8 Monk at 3:48",
+       "job": "Gain at the main fight with the player back",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": true,
+       "draft": true
+      },
+      {
+       "id": "b870f84e-split-1-254-23",
+       "team": "hold",
+       "side": "attacker",
+       "label": "join: Ritualist at 4:14",
+       "job": "Kill or take NPCs with the players added",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "a defender killed"
+        ],
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 4,
+     "id": "s:b870f84e-numbers-1-24-5",
+     "kind": "numbers",
+     "t0": 24,
+     "t1": 46,
+     "reads": "hold down on numbers in the main fight (5 v 6, the flag stand), from players split elsewhere; hold: retreat down the ladder (fall to footmen) | Men: stay (stay at the stand)",
+     "confidence": {
+      "band": "none",
+      "why": "The numbers never held for 12 s."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "hold",
+       "t0": 24
+      },
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 24
+      }
+     ],
+     "calls": [],
+     "unclear": "the numbers never held for 12 s"
+    },
+    {
+     "n": 5,
+     "id": "s:b870f84e-flag-1-66-8",
+     "kind": "flag",
+     "t0": 66,
+     "t1": 140,
+     "reads": "Men single run (Hammer); hold single run (Ritualist)",
+     "confidence": {
+      "band": "high",
+      "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "hold",
+       "t0": 66
+      }
+     ],
+     "calls": [
+      {
+       "id": "b870f84e-flag-1-66-8",
+       "team": "hold",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         false,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 6,
+     "id": "s:b870f84e-flag-2-70-9",
+     "kind": "flag",
+     "t0": 70,
+     "t1": 123,
+     "reads": "hold single run (Ritualist); Men single run (Ritualist 1, handing it to AoB Derv)",
+     "confidence": {
+      "band": "high",
+      "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "Men",
+       "t0": 70
+      }
+     ],
+     "calls": [
+      {
+       "id": "b870f84e-flag-2-70-9",
+       "team": "Men",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         true,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 7,
+     "id": "s:b870f84e-numbers-1-110-12",
+     "kind": "numbers",
+     "t0": 110,
+     "t1": 138,
+     "reads": "hold down on numbers in the main fight (4 v 5, the flag stand), from players split elsewhere; hold: stay (stay at the stand) | Men: stay (stay at the stand); 3 damage against 2 monks",
+     "confidence": {
+      "band": "high",
+      "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "hold",
+       "t0": 110
+      },
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 110
+      }
+     ],
+     "calls": [
+      {
+       "id": "b870f84e-numbers-1-110-12",
+       "team": "hold",
+       "side": "weak side",
+       "label": "stay",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "b870f84e-numbers-2-110-13",
+       "team": "Men",
+       "side": "strong side",
+       "label": "stay",
+       "job": "Keep them busy and lose nobody (a kill is not expected of it)",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 8,
+     "id": "s:b870f84e-flag-1-140-15",
+     "kind": "flag",
+     "t0": 140,
+     "t1": 191,
+     "reads": "Men double run (first runner Hammer; second runner Ritualist 1, back for the next flag); hold single run (Hammer)",
+     "confidence": {
+      "band": "high",
+      "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "hold",
+       "t0": 140
+      }
+     ],
+     "calls": [
+      {
+       "id": "b870f84e-flag-1-140-15",
+       "team": "hold",
+       "side": "",
+       "label": "single run",
+       "job": "Kill or take ground with the extra player, and end no worse than a flag behind",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no worse than a flag behind at the end"
+        ],
+        [
+         false,
+         "more of theirs die at the main fight than of ours"
+        ],
+        [
+         false,
+         "ground taken"
+        ],
+        [
+         true,
+         "one of their NPCs dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 9,
+     "id": "s:b870f84e-numbers-1-148-16",
+     "kind": "numbers",
+     "t0": 148,
+     "t1": 278,
+     "reads": "hold down on numbers in the main fight (4 v 6, the flag stand; then 3 v 6 from 2:58; then 4 v 6 from 3:10; then 3 v 6 from 3:42; then 4 v 6 from 4:00; then 5 v 6 from 4:12), from players split elsewhere; hold: stay (stay at the stand) | Men: stay (stay at the stand)",
+     "confidence": {
+      "band": "high",
+      "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "hold",
+       "t0": 148
+      },
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 148
+      }
+     ],
+     "calls": [
+      {
+       "id": "b870f84e-numbers-1-148-16",
+       "team": "hold",
+       "side": "weak side",
+       "label": "stay",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "b870f84e-numbers-2-148-17",
+       "team": "Men",
+       "side": "strong side",
+       "label": "stay",
+       "job": "Kill with the numbers while their players are away",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 10,
+     "id": "s:b870f84e-flag-2-154-18",
+     "kind": "flag",
+     "t0": 154,
+     "t1": 197,
+     "reads": "hold single run (Hammer); Men single run (Ranger)",
+     "confidence": {
+      "band": "high",
+      "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "Men",
+       "t0": 154
+      }
+     ],
+     "calls": [
+      {
+       "id": "b870f84e-flag-2-154-18",
+       "team": "Men",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         true,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 11,
+     "id": "s:b870f84e-base_res-2-220-19",
+     "kind": "base res",
+     "t0": 220,
+     "t1": 270,
+     "reads": "Men has 6 in hold's base at the base res (3 defending, 1 coming back): 6 stay",
+     "confidence": {
+      "band": "high",
+      "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
+     },
+     "plays": [
+      {
+       "play": "base res",
+       "team": "Men",
+       "t0": 220
+      }
+     ],
+     "calls": [
+      {
+       "id": "b870f84e-base_res-2-220-19",
+       "team": "Men",
+       "side": "",
+       "label": "stayed through the res",
+       "job": "Be out, or set for the fight, when they res",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody of ours dies in the 30 s after the res"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 12,
+     "id": "s:b870f84e-pinned-1-228-20",
+     "kind": "pinned",
+     "t0": 228,
+     "t1": 240,
+     "reads": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 3:48: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard alive; base res in 12 s)",
+     "confidence": {
+      "band": "high",
+      "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
+     },
+     "plays": [
+      {
+       "play": "pinned",
+       "team": "hold",
+       "t0": 228
+      }
+     ],
+     "calls": [
+      {
+       "id": "b870f84e-pinned-1-228-20",
+       "team": "hold",
+       "side": "",
+       "label": "",
+       "job": "Hold the NPCs and lose nobody until the base res, or break out",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         false,
+         "it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 13,
+     "id": "s:b870f84e-pinned-1-240-22",
+     "kind": "pinned",
+     "t0": 240,
+     "t1": 284,
+     "reads": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 4:00: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard alive; base res in 120 s)",
+     "confidence": {
+      "band": "high",
+      "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
+     },
+     "plays": [
+      {
+       "play": "pinned",
+       "team": "hold",
+       "t0": 240
+      }
+     ],
+     "calls": [
+      {
+       "id": "b870f84e-pinned-1-240-22",
+       "team": "hold",
+       "side": "",
+       "label": "",
+       "job": "Lose no player and no NPC while held in, or break out",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         false,
+         "it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 14,
+     "id": "s:b870f84e-numbers-1-292-24",
+     "kind": "numbers",
+     "t0": 292,
+     "t1": 330,
+     "reads": "hold up on numbers in the main fight (4 v 3, hold's front door), from players split elsewhere; hold: retreat down the ladder (fall back into the base); 2 damage against 2 monks | Men: stay (stay on the enemy's side)",
+     "confidence": {
+      "band": "low",
+      "why": "The engine stops reading this when one of its settings is moved a quarter: how close players must stand to be in the same fight; how long a player must be on the enemy's ground to be on a split."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "hold",
+       "t0": 292
+      },
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 292
+      }
+     ],
+     "calls": [
+      {
+       "id": "b870f84e-numbers-1-292-24",
+       "team": "hold",
+       "side": "strong side",
+       "label": "retreat down the ladder",
+       "job": "Keep them busy and lose nobody (a kill is not expected of it)",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "b870f84e-numbers-2-292-25",
+       "team": "Men",
+       "side": "weak side",
+       "label": "stay",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 15,
+     "id": "s:b870f84e-flag-2-315-26",
+     "kind": "flag",
+     "t0": 315,
+     "t1": 381,
+     "reads": "hold single run (Hammer); Men single run (Ritualist 1)",
+     "confidence": {
+      "band": "high",
+      "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "Men",
+       "t0": 315
+      }
+     ],
+     "calls": [
+      {
+       "id": "b870f84e-flag-2-315-26",
+       "team": "Men",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         true,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 16,
+     "id": "s:b870f84e-split-1-324-27",
+     "kind": "split",
+     "t0": 324,
+     "t1": 348,
+     "reads": "hold's split by the back door: two players (Ranger, Ritualist) against 4 defending (Hammer, Ranger, Ritualist 2, Ritualist 1); Hammer, Ritualist 1 collapse from the main fight; 4 (Hammer, Ranger, Ritualist 2, Ritualist 1) against two players: collapse by Hammer, Ritualist 1 from the main fight",
+     "confidence": {
+      "band": "medium",
+      "why": "Read as a situation wherever the engine's settings sit, but who is counted in it or the call changes when one is moved a quarter: how far away a player hitting or casting into a fight still counts in it; how close players must stand to be in the same fight."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "hold",
+       "t0": 324
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 324
+      }
+     ],
+     "calls": [
+      {
+       "id": "b870f84e-split-1-324-27",
+       "team": "hold",
+       "side": "attacker",
+       "label": "collapsed on",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "b870f84e-split-2-324-28",
+       "team": "Men",
+       "side": "defender",
+       "label": "collapse",
+       "job": "Kill a split player before going back (what it cost at the main fight and in flags is beside it)",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "a split player dies during the collapse"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 17,
+     "id": "s:b870f84e-numbers-1-342-29",
+     "kind": "numbers",
+     "t0": 342,
+     "t1": 384,
+     "reads": "hold down on numbers in the main fight (5 v 8, Men's pit), from kills; hold: retreat down the ladder (fall back into the base) | Men: push up (go out by the front door)",
+     "confidence": {
+      "band": "medium",
+      "why": "Read as a situation wherever the engine's settings sit, but who is counted in it or the call changes when one is moved a quarter: how far a player may drift and still be in the fight he was in."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "hold",
+       "t0": 342
+      },
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 342
+      }
+     ],
+     "calls": [
+      {
+       "id": "b870f84e-numbers-1-342-29",
+       "team": "hold",
+       "side": "down",
+       "label": "retreat down the ladder",
+       "job": "Reach cover a player down without losing another",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ],
+        [
+         true,
+         "no NPC lost"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "b870f84e-numbers-2-342-30",
+       "team": "Men",
+       "side": "up",
+       "label": "push up",
+       "job": "Take ground and NPCs with the numbers",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "no more of ours die than of theirs"
+        ],
+        [
+         false,
+         "one of their NPCs dies"
+        ],
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 18,
+     "id": "s:b870f84e-flag-1-365-31",
+     "kind": "flag",
+     "t0": 365,
+     "t1": 381,
+     "reads": "Men single run (Ritualist 1); hold stays",
+     "confidence": {
+      "band": "high",
+      "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "hold",
+       "t0": 365
+      }
+     ],
+     "calls": [
+      {
+       "id": "b870f84e-flag-1-365-31",
+       "team": "hold",
+       "side": "",
+       "label": "stay",
+       "job": "Kill with the extra player while their runner is away, or their flag does not get in",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die at the main fight than of ours"
+        ],
+        [
+         false,
+         "their flag does not get in"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 19,
+     "id": "s:b870f84e-numbers-1-388-32",
+     "kind": "numbers",
+     "t0": 388,
+     "t1": 536,
+     "reads": "hold down on numbers in the main fight (5 v 7, hold's front door; then 5 v 6 from 6:52; then 1 v 6 from 8:30), from players on their way to it (in neither fight); hold: retreat down the ladder (retreat to the pit) | Men: stay (stay on the enemy's side)",
+     "confidence": {
+      "band": "medium",
+      "why": "Read as a situation wherever the engine's settings sit, but who is counted in it or the call changes when one is moved a quarter: how long a player at the edge of a fight is kept in it; how long a player must be in a fight before he counts in it."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "hold",
+       "t0": 388
+      },
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 388
+      }
+     ],
+     "calls": [
+      {
+       "id": "b870f84e-numbers-1-388-32",
+       "team": "hold",
+       "side": "down",
+       "label": "retreat down the ladder",
+       "job": "Reach cover a player down without losing another",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody of ours dies"
+        ],
+        [
+         false,
+         "no NPC lost"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "b870f84e-numbers-2-388-33",
+       "team": "Men",
+       "side": "up",
+       "label": "stay",
+       "job": "Turn the extra player into a kill before the numbers are level",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 20,
+     "id": "s:b870f84e-split-1-390-34",
+     "kind": "split",
+     "t0": 390,
+     "t1": 530,
+     "reads": "hold's split by the back door: three players (AoB Derv, Ritualist, Ranger) against 2 defending (Ritualist 2, Prot); numbers along the way: 2 v 1 from 6:36, 3 v 1 from 7:02, 3 v 2 from 7:26, 2 v 2 from 8:12. Who came and went, each a decision of its own: Ranger (hold) joins the split at 7:02; Prot (Men) joins the defence at 7:26; Ranger (hold) leaves the split at 8:12",
+     "confidence": {
+      "band": "high",
+      "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "hold",
+       "t0": 390
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 390
+      },
+      {
+       "play": "split",
+       "team": "hold",
+       "t0": 422
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 446
+      },
+      {
+       "play": "split",
+       "team": "hold",
+       "t0": 492
+      }
+     ],
+     "calls": [
+      {
+       "id": "b870f84e-split-1-390-34",
+       "team": "hold",
+       "side": "attacker",
+       "label": "a player or more up",
+       "job": "Kill or take NPCs",
+       "met": true,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         true,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "b870f84e-split-2-390-35",
+       "team": "Men",
+       "side": "defender",
+       "label": "a player down",
+       "job": "Delay: keep the split off the pit NPCs and stay alive",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no defender dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "b870f84e-split-1-422-37",
+       "team": "hold",
+       "side": "attacker",
+       "label": "join: Ranger at 7:02",
+       "job": "Kill or take NPCs with the players added",
+       "met": true,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         true,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": true
+      },
+      {
+       "id": "b870f84e-split-2-446-38",
+       "team": "Men",
+       "side": "defender",
+       "label": "join: Prot at 7:26",
+       "job": "Hold it even or better: lose no pit NPC and no more players than the split does",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no more defenders die than split players"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "b870f84e-split-1-492-39",
+       "team": "hold",
+       "side": "attacker",
+       "label": "leave: Ranger at 8:12",
+       "job": "Gain at the main fight with the player back",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": true,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 21,
+     "id": "s:b870f84e-pinned-1-408-36",
+     "kind": "pinned",
+     "t0": 408,
+     "t1": 528,
+     "reads": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 6:48: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard alive; lost while held: a knight at 7:49, the Bodyguard at 8:35, a pit archer at 8:47, a pit archer at 8:47, a knight at 8:47; base res in 72 s)",
+     "confidence": {
+      "band": "high",
+      "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
+     },
+     "plays": [
+      {
+       "play": "pinned",
+       "team": "hold",
+       "t0": 408
+      }
+     ],
+     "calls": [
+      {
+       "id": "b870f84e-pinned-1-408-36",
+       "team": "hold",
+       "side": "",
+       "label": "",
+       "job": "Lose no player and no NPC while held in, or break out",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         false,
+         "it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    }
+   ],
+   "selfcheck": []
   }
  ]
 }

@@ -8,38 +8,37 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 > out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-17, second session: five games graded; his rulings to R-515 built; nothing on the page unmarked)
+## State (2026-11-17, third session: R-516; his guide on splits v main team built; games 6 and 7 on the page, unmarked)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` and lands in one piece,
   then one rebuild (R-322). 658 replays stored; 564 count (R-477); 506 matches trained. No workflow run in progress.
 - The baseline (R-491) is the branch `baseline-2026-11-15` (`bundle-4` at fd2b30b; figures in `data/model/baseline/`).
-  Built on `bundle-4` since, all from his marks: R-498 to R-511 (CHANGELOG, DEFINITIONS), and in this session:
-  - R-512, `split_plays` `defends` (`blocks`): defending a split is keeping it from its objective. A player on his
-    own ground between the split and his pit counts though nobody fights, unless a group of the attackers' other
-    players is nearer to him than the split is. Undefended split rows fell from 261 of 714 to 110 of 614.
-  - R-513, `main_team`: at an uneven divide a larger part at home is the main team (R-487); the stand side decides
-    the even divide only. A team in its own pit had been read as gone round the back (Men v hold 18:20).
-  - R-514, `split_plays` and `review.py situations`: each join, collapse and leave stays its own play (`change`,
-    `of`, `at`) and is shown in the row of its split, with a call under it.
-  - R-515, `confidence.py band_of`: one band a situation. Low: a quarter's move of one setting and the engine stops
-    reading it. Medium: still read there but details move, or gone at half or double. High: otherwise.
-- The fresh start (R-491 to R-497; all in CLAUDE.md): only Classic rows bind; earlier games are history; the other
-  grades are built from when a fault shows in two games. He grades on Model > Game review, which has his reason
-  ticks (R-509) and a button that shows the rows not marked yet in red.
-- Confidence on his five games (228 graded situations; Classic, Visible, Weak, No decision): high 84, 35, 2, 5;
-  medium 23, 34, 8, 10; low 3, 14, 4, 6. The band is his grade on 128 (56%), far off on 10 (before: 123 and 16).
-  Steadiness cannot tell Visible from Weak or No decision; length and kind of play did not help out of sample. What
-  would: measures of what is at stake (his four reasons, R-509). Not built; 35 Weak and No decision rows so far.
-  The five marked games keep the bands he saw; the new band shows from the next export.
+  Built on `bundle-4` since, all from his marks: R-498 to R-515 (CHANGELOG, DEFINITIONS), and in this session:
+  - His guide of 2026-11-17, not a ruling and not strict (DEFINITIONS "Counting players"): a split is almost never in
+    its own base; a small group at home with its main team elsewhere is most likely a defence. Built in `main_team`
+    (switch `HOME_GUIDE`, off with GVG_HOME_GUIDE=0): more of a team at home than in any part away, with the engine's
+    main team a part away, makes the part at home the main team; the engine's main team a part at home and a part away
+    bigger than all at home makes that part the main team; each after 12 s. Ten games changed (hdm v Men 13:04 to
+    15:28: Men's three in hdm's base are a split against three, where hdm was read as held in). No key row moved.
+    Not touched: the 4 and 3 divide with one player away, the even divide (R-335), the held base (R-506).
+- The fresh start (R-491 to R-497; in CLAUDE.md): only Classic rows bind; the other grades are built from when a
+  fault shows in two games. He grades on Model > Game review (reason ticks, R-509; a button shows unmarked rows).
+- Confidence on his five games (228 graded; R-515, figures at the top of `confidence.py`): the band is his grade on
+  128, far off on 10. Steadiness cannot tell Visible from Weak or No decision; what would is a measure of what is at
+  stake (his four reasons, R-509). Not built; 35 Weak and No decision rows so far.
 - Graded and filed (set f1): HC v Team (9b5cdf62), Men v Crew (51683de9), 옷옷옷옷 v RACK (a8ba43a8), Men v RACK
-  (45cf6756), Men v hold (572c2f95). Of the 22 Classic faults in the last two, 19 hold now; the 3 open are below.
-- Now (development set, 47 matches, 4,146 plays): 124 Classic rows pass, none fail; 118 of 120 history rows hold
+  (45cf6756), Men v hold (572c2f95). Three Classic faults of the last two are open (Next, 2).
+- Now (development set, 49 matches, 4,275 plays): 124 Classic rows pass, none fail; 118 of 120 history rows hold
   (hdm v hook 10:23, a flag row; hook v hold 12:46, the Warrior counted on the Necromancer's split for 14 s). Set f1
   has 49 open checks. Gate 12 of 12, 63 of 105. Line-up 421 of 426; comms 110 of 157. Self-check 205.
+- On the page, not marked (engine a8b77a7): game 6, hdm v HC on Imperial Isle (bbef1904; 35 situations, 55 calls; high
+  17, medium 14, low 4; six pushes on a flagger), and game 7, hold v Men on Uncharted Isle (b870f84e; 21 situations,
+  38 calls; high 15, medium 4, low 1, one told as context). Never export them again, and fix nothing against them
+  until he has marked them. Next in the queue: HC v hdm on Isle of Jade (af831111), for numbers through the portal.
 
 ## Next (in order)
-1. Next games when he asks: pick as before; `moments.py all --dev`, `confidence.py run` (about 12 minutes a game),
-   `review.py export` (the first export with change rows inside the split's row and the new band: look at the page
-   before he does). The moment calls in `moments.py` still read a full collapse and a split's start the old way.
+1. When he has marked games 6 and 7: `review.py file` for each, his results set out in the chat, Classic faults first.
+   Further games when he asks: `moments.py all --dev`, `confidence.py run` (about 12 minutes a game), `review.py export
+   --label "game N"`. The moment calls in `moments.py` still read a full collapse and a split's start the old way.
 2. Open Classic items in Men v hold and Men v RACK, each needing a root reading, not a rule: the door of Men's
    five-player split at 10:40 (he says back door; the engine says front); hold's Fire Ele solo split from 17:01 (read
    from 17:38); the Prot coming with the Hammer at 18:25 in Men v RACK. And an 18 s gap at 2:46 in Men v hold where
@@ -49,17 +48,19 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
    17:53; a base res or a split told at or after the last second of a match (Men v Crew 27:40, Men v RACK 19:06).
 4. When he says the flag plays are ready: the flag family to the end (R-451); the other kinds after; then stage E.
 
-## Open for Denning (put to him 2026-11-17; set each out again, R-329, with the replay link)
-1. Where else to apply his principle (R-512). Put to him: (a) a split's job when it holds more defenders than its
-   own number without fighting (it is doing its job; the test today asks for a kill or an NPC when it is a player
-   up); (b) pushing a flagger by standing on his route without hitting him; (c) who counts in the main fight when
-   two fights are near each other (whom a player faces, not only whom he is near).
-2. A defender who comes from the main fight and makes a split fight even is told as a join (R-441); he called two
-   such moves collapses (Men v hold 5:18 and 6:11). His to say whether coming from the main fight makes it a collapse.
+## Open for Denning (set out in full in the chat on 2026-11-17, third session, at his asking; awaiting his answer)
+1. Where else to apply his principle (R-512), each with the data put to him: (a) a split's job when it holds more
+   defenders than its own number: met by holding them and losing nobody, with what the main team made of the extra
+   player told beside it? Today it also needs kills or flags elsewhere: 54 of 93 such rows survive and are "not met".
+   (b) Pushing a flagger by standing on his route without hitting him: a rough count finds 396 stretches not read as
+   a push against 147 that are, so it cannot be taken whole; proposed: he adds the clear ones as missed decisions on
+   games 6 and 7. (c) Who counts in the main fight when it is near a split's fight: all 205 self-check cases are a
+   player counted in both; proposed: he counts in the fight whose players he acts on or who act on him.
+2. Closed: a defender from the main fight who makes a split fight even stays a join (R-516).
 
 ## Data looked at on 2026-11-14 (nothing built; nothing from GW Observer in the repo)
-- gvg.report's replay payload holds `report.objectives.object_transitions` (flag objects with positions), which
-  `replay_trim.mjs` drops. R-481: keep it at the next rebuild only (a new TRIM_VERSION fetches every replay again).
+- gvg.report's payload holds flag objects with positions (`report.objectives.object_transitions`), which
+  `replay_trim.mjs` drops. R-481: keep them at the next rebuild only (a new TRIM_VERSION fetches every replay again).
 
 ## Running it
 - Train batch: the "Train batch" workflow (METHODS.md "Train batch on GitHub"; `blind` stays no). Never queue two runs.

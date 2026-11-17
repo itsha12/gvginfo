@@ -200,6 +200,10 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   bug (R-495). There is no pass mark (R-496): show him the marks after each game, and he says when the system is ready
   for bulk training. The engine checks itself (`jobs.selfcheck`: a player counted in two fights at once) and tells a
   situation with no clear decision as context, with no call (R-488).
+- Which part of a divided team is its main team is read in one place, `Moments.main_team` on the branch. His guide of
+  2026-11-17 is built there (`HOME_GUIDE`): a split is almost never in its own base, and a small group at home with
+  its main team elsewhere is most likely a defence. It is a guide, not a ruling, and not to be applied strictly: it
+  gives way to his marks, to an even divide (R-335) and to a held base (R-506), and it is never cited as a ruling.
 - No new rule or threshold to answer a wrong row (R-465): rebuild the reading under it at the root, with his marked
   rows as the test. Who is in which fight is one reading on the branch (`Moments.linked`, `engaged_in`, `visits`; R-464),
   used by the numbers of the main fight and by a split's defenders: change it there, never beside it. His words on a
@@ -224,7 +228,7 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   review key the same session (`review.py file <id> <rows> <marks> --set f1 --key <main key>`, which prints his grades
   against the engine's confidence and the Classic rows to fix first, and writes the plain checks; then write by hand
   the checks for what a Partly or an Incorrect means). Set every result out for him in the chat (R-329). The queue is
-  set f1 in `dev_set.json` (five games graded: HC v Team, Men v Crew, 옷옷옷옷 v RACK, Men v RACK and Men v hold; no game
+  set f1 in `dev_set.json` (five games graded: HC v Team, Men v Crew, 옷옷옷옷 v RACK, Men v RACK and Men v hold; games 6 and 7, hdm v HC and hold v Men, exported 2026-11-17 and not yet marked; no game
   is kept hidden, R-497); pick further games from unused October and November games of top guilds, never a henchman
   game (R-476). Export the next game only when the last one is marked and its Classic faults are fixed, unless he asks
   for more at once; never fix against a game he has not marked, and never re-export a game he has marked. Games without `scheme` 2 are history, shown read only. The golden

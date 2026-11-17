@@ -15,14 +15,24 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   says when it reaches their base, their footmen or a defender. Its door is the enemy's door it first comes to.
 - Who comes to a split fight and who leaves it are decisions of their own, each kept as its own record and shown in the
   split's row (R-511, R-514): a collapse
-  when the defence becomes one more than the split as it then stands, else a join (R-441); a leave when the player
-  goes alive. The jobs of a join and a leave are drafts.
+  when the defence becomes one more than the split as it then stands, else a join (R-441), also when the player comes
+  from the main fight and only makes it even (R-516, "for now"); a leave when the player goes alive. The jobs of a join
+  and a leave are drafts.
 - The main team: in an even split, the group on the stand side, responsible for flags; monks only break a tie (R-335,
   R-355). In an uneven divide, the larger part (R-421, R-487). An even divide with both groups on the main flag
   path is a push team (forward, at the enemy's door) and a defence team (at its own), not a main team and a split
   (R-487).
 - At an uneven divide the larger part at home is the main team and those who go out are a split (R-487, R-513); a
   team standing in its own pit has not gone round the back.
+- A guide to telling a split from a main team, his of 2026-11-17, not a ruling and not to be applied strictly:
+  "Splits are almost never going to be in their own base. Mainteams can end up basically anywhere on the map. A small
+  group of players in their own base when their mainteam is elsewhere is most likely going to be a defense. A split
+  will basically never be in their own base except when they are leaving or returning." *As built* (`main_team`,
+  switch `HOME_GUIDE`): a part at home is the main team or a defence, never the split. Where more of a team stand at
+  home than in any part away, and the engine's main team is a part away, the part at home becomes the main team;
+  where the engine's main team is a part at home and a part away is bigger than all the players at home together,
+  that part becomes the main team and those at home are defending; either only after it has stood for 12 s. An even
+  divide stays with the flags and the stand side (R-335), and a base that is held in with R-506.
 - A main team that goes round the back is still the main team (R-502): when all but two of a team stood together
   and then spread out, the main team is one of its own parts, not the runner and the player with him; five or more
   of its players on the enemy's ground round the back, two more than the part on the front lane, are the main team
