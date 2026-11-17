@@ -6406,6 +6406,66 @@
      "reason": [
       "nofight"
      ]
+    },
+    "45cf6756-boost-2-177-11": {
+     "mark": "correct",
+     "why": "",
+     "text": "RACK [run]: Deny their boost. Not met (their boost does not land: no)"
+    },
+    "45cf6756-base_res-1-340-23": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men [stayed through the res]: Be out, or set for the fight, when they res. Met (nobody of ours dies in the 30 s after the res: yes)"
+    },
+    "45cf6756-split-2-714-31": {
+     "mark": "correct",
+     "why": "",
+     "text": "RACK (attacker) [1 v 1, the defender not a monk]: Take NPCs or kills. Not met (a defender killed: no; an NPC taken: no)"
+    },
+    "45cf6756-split-1-714-30": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (no pit NPC lost: yes; no more defenders die than split players: yes)"
+    },
+    "45cf6756-boost-2-777-38": {
+     "mark": "correct",
+     "why": "",
+     "text": "RACK [concede]: Concede the boost for kills. Not met (more of theirs die than of ours: no)"
+    },
+    "45cf6756-base_res-1-820-43": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men [stayed through the res]: Be out, or set for the fight, when they res. Met (nobody of ours dies in the 30 s after the res: yes)"
+    },
+    "45cf6756-boost-2-897-46": {
+     "mark": "correct",
+     "why": "",
+     "text": "RACK [concede]: Concede the boost for kills. Not met (more of theirs die than of ours: no)"
+    },
+    "45cf6756-numbers-1-1084-53": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (strong side) [stay]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)"
+    },
+    "45cf6756-numbers-2-1084-54": {
+     "mark": "correct",
+     "why": "",
+     "text": "RACK (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)"
+    },
+    "45cf6756-split-1-1132-59": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (attacker) [held by monks]: Hold the monks there and lose nobody; NPCs are a bonus (a kill is not expected of it). Met (nobody on the split dies: yes)"
+    },
+    "45cf6756-split-2-1132-61": {
+     "mark": "correct",
+     "why": "",
+     "text": "RACK (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Not met (no pit NPC lost: yes; no more defenders die than split players: no)"
+    },
+    "45cf6756-split-1-1132-60": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (attacker's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Met (more of theirs die away from the split than of ours: yes)"
     }
    },
    "scheme": 2,
