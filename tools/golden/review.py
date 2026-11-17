@@ -160,6 +160,9 @@ def _reads(g):
 BANDS = ("none", "low", "medium", "high")
 
 
+import confidence as bands_of                              # tools/golden/confidence.py: the band of a reading
+
+
 def export(path, out, part, set_id="f1", label=None, drop=(), confidence=None):
     """The games of one part of a whole-game set as the rows of the site's Game review page (R-455): for each situation
     what the engine reads, and under it each side's call with its job, the result and the tests behind the result. He
@@ -187,8 +190,9 @@ def export(path, out, part, set_id="f1", label=None, drop=(), confidence=None):
                 side = p["side"] if p["side"] not in ("own",) and p["play"] in ("split", "lord", "numbers") else ""
                 calls.append({"id": p["id"], "team": p["team"], "side": side, "label": (p.get("call") or p.get("answer") or p.get("ours") or "") + (f": {p['hand']}" if p.get("hand") else ""), "job": p["job"], "met": bool(p["met"]),
                               "tests": [[bool(v), k] for k, v in list(p["tests"].items()) + list(p.get("any_of", {}).items())], "any": bool(p.get("any_of")) and bool(p["tests"]) is False, "draft": not p.get("ruled", True)})
-            weakest = min(g, key=lambda p: BANDS.index(C[rid][p["id"]]["band"]))          # a situation is as steady as the least steady of its plays
-            conf = {"band": "none", "why": unclear[0].upper() + unclear[1:] + "."} if unclear else {"band": C[rid][weakest["id"]]["band"], "why": C[rid][weakest["id"]]["why"]}
+            # a situation is as steady as its plays together: a setting that moves any one of them moves the situation (the bands were fitted to his grades that way, confidence.py)
+            both = bands_of.band({k_: [x for p in g for x in C[rid][p["id"]][k_]] for k_ in ("other", "gone")})
+            conf = {"band": "none", "why": unclear[0].upper() + unclear[1:] + "."} if unclear else {"band": both["band"], "why": both["why"]}
             sits.append({"n": i, "id": "s:" + g[0]["id"], "kind": {"flagger pushed": "push flagger"}.get(g[0]["play"], g[0]["play"]), "t0": g[0]["t0"], "t1": max(p["t1"] for p in g), "reads": read, "confidence": conf,
                          "plays": [{"play": p["play"], "team": p["team"], "t0": p["t0"]} for p in g], "calls": calls, **({"unclear": unclear} if unclear else {})})
         twice = (D.get("flag_cost", {}).get(rid) or {}).get("selfcheck") or []

@@ -53,6 +53,7 @@ from state import d
 from hallmap import _seg_dist
 
 HOME, THEIRS = ("own pit", "own base"), ("enemy pit", "enemy base")
+HOME_GROUND = ("pit", "base", "front door", "back door", "front footies", "back footies")      # a team's own ground, out to its doors and footmen (place_at kinds on its own side)
 LEAD_WORDS = (None, "half a flag", "a flag", "a flag and a half", "two flags")      # the bands of the flag lead (R-408)
 FAMILY = {1: "Flag decision", 2: "Answer to a split", 3: "Numbers advantage"}
 TRIGGER_WORDS = {"enemy_run": "an enemy player leaves to run a flag", "boost": f"the enemy's boost is {BOOST_WARN_S} s away",
@@ -132,6 +133,8 @@ class Moments:
         self._eng = {}
         self._pit = {}
         self._dp, self._ov, self._fp, self._att, self._last, self._mt, self._ln, self._fr = {}, {}, None, None, {}, {}, None, None
+        self._bu = {}                                         # run record -> (brought up with the team, when it first stands at the stand) (R-505)
+        self._heldout = {}                                    # (team, second) -> the players out of their own base while it is held in (R-506)
         self._fi, self._mv, self._sf, self._gr, self._und = None, None, None, None, None
         self._lost = {}
         self._fpush, self._lead, self._leadl, self._lead_on, self._so, self._hitc, self._mc, self._tim = None, None, None, None, None, None, None, None
@@ -540,7 +543,7 @@ class Moments:
             def flags(g, u):
                 i = sum(1 for s_, _ in lives if s_ <= u)
                 return sum(len(c & set(g)) for _, c in lives[max(i - 3, 0):i + 2])
-            out, prev, together = {}, frozenset(), True
+            out, prev, together, held = {}, frozenset(), True, frozenset()
             fallen, lost = set(), {}                          # main team players who died as main team and are still dead (R-392)
             for u in range(0, self.T + 1, SPLIT_STEP):
                 live = [a for a in st.players[tm] if self.AL[a][u]]
@@ -604,6 +607,16 @@ class Moments:
                         prev = frozenset(rear) if len(rear) >= MAIN_BIG and len(rear) >= len(fr[0]) + 2 else frozenset(fr[0])
                     big = [g for g in cand if len(g) >= MAIN_BIG and all(len(g) >= len(h) + 2 for h in gs if h is not g) and vote(g) >= 0]
                     if big: prev = frozenset(big[0])          # an uneven divide: the part of five or more, two bigger than any other and not round the back, is the main team (R-421: NwAy v SKT 14:50, SKT's five pushing NwAy's front door; his marks on Men v Apes 3:10 to 7:00; R-335 and R-355 keep the even 4 v 4). "Not round the back" was taken out on 2026-11-15 and put back: without it hdm's four-player split of hdm v hook 7:12 to 10:30, with a fifth player near it, was read as hdm's main team
+                # R-506 (asked whether or not the engine reads the team as divided: five of seven leaving are most of the team, 옷옷옷옷 v RACK 8:11): players who go out round the back while three or more of their team stay at home are a split, whatever their number, and the part at home is the main team (옷옷옷옷 v RACK 4:30, 8:11, 9:52: five of RACK out of the back door, three in the pit: "clear split of 5")
+                # (the base is held in: the enemy's main team, five or more of them, stands in it; three of theirs there are a split of theirs that is being defended. Which way they left is not asked: on Isle of Solitude they go out by the teleporter)
+                homes = [g for g in gs if len(g) >= 2 and all(self.at_home(a, u, tm) for a in g)]
+                rest_ = [g for g in gs if len(g) >= 2 and g not in homes]
+                if len(homes) == 1 and rest_ and len(self.in_base_of(tm, u)) >= MAIN_BIG and all(not any(self.at_home(a, u, tm) for a in g) for g in rest_): prev = held = frozenset(homes[0])
+                elif held:                                # ... and they stay a split when the enemy leaves the base to go after them: until they are home again, or the part at home is gone
+                    hg = max((g for g in gs if held & set(g)), key=lambda g: len(held & set(g)), default=None)
+                    away = [a for a in live if a not in held and not self.at_home(a, u, tm)]
+                    if hg is not None and len(away) >= 2 and sum(self.at_home(a, u, tm) for a in hg) >= 2: prev = frozenset(hg)
+                    else: held = frozenset()
                 out[u] = prev
             self._mt[tm] = out; self._lost[tm] = lost
         return self._mt[tm][t - t % SPLIT_STEP]
@@ -629,6 +642,14 @@ class Moments:
             deep = [a for a in deep if not any(d(self.P[a][t], self.P[b][t]) < FIGHT_LINK for b in home)]
             mc = self.centre([a for a in main if a in live and a not in deep], t)   # out in the field counts only well away from the main team
             deep = [a for a in deep if a in main or self._deep(a, t) != "field" or mc is None or d(self.P[a][t], mc) >= MEET_R]
+            # R-506: out of a base that is held in. While the main team stands at home with three or more of the enemy in its base, a player of the team who has left the
+            # base is on a split, though he stands on his own side of the field: the fight is in his base, and he has left it (옷옷옷옷 v RACK 4:30, 8:11, 9:52)
+            mh = [b for b in main if b in live]
+            if len(mh) >= 2 and all(self.at_home(b, t, tm) for b in mh) and (len(self.in_base_of(tm, t)) >= MAIN_BIG or self._held_out(tm, t)):
+                out_ = [a for a in live if a not in main and a not in deep and not self.at_home(a, t, tm)]
+                if len(out_) >= len(mh):                      # the part that leaves is as big as the part that stays, or bigger ("5 players out the backdoor ... 3 players in their pit"): one or two players slipping out of a held base are a split from when they reach the enemy's ground, as before (Book v One 18:54)
+                    self._heldout[k] = frozenset(out_)
+                    deep = deep + out_
             off = [a for a in deep if a not in main]
             back = [a for a in live if a not in deep and a not in main and main and any(d(self.P[a][t], self.P[b][t]) < FIGHT_CLOSE for b in off)
                     and not any(d(self.P[a][t], self.P[b][t]) < FIGHT_LINK for b in home)]
@@ -642,6 +663,15 @@ class Moments:
                 split = [a for a in split if not (self.AL[a][v] and d(self.P[a][v], c1) < d(self.P[a][t], c0) - 600)]
             self._ov[k] = (split, push, [a for a in live if a not in deep])
         return self._ov[k]
+
+    def held_out(self, tm, a, t):
+        """He is out of his own base while it is held in (R-506): on a split though he stands on his own side of the field."""
+        self._over(tm, t)
+        return a in self._heldout.get((tm, t), ())
+
+    def _held_out(self, tm, t):
+        """The split out of a held base is still out: it was read a moment ago, and the enemy has left the base to go after it."""
+        return any(self._heldout.get((tm, t - k)) for k in (SPLIT_STEP, 2 * SPLIT_STEP))
 
     def _cluster(self, ids, t):
         gs = []
@@ -1267,9 +1297,21 @@ class Moments:
                 home = [b for b in st.players[foe] if self.AL[b][u] and any(d(self.P[b][u], self.P[a][u]) < FIGHT_LINK for a in att)]
                 since = next((x for x in range(u, max(B - 90, 0), -SPLIT_STEP) if not any(self.AL[a][x] and self._deep(a, x) in inb for a in att)), None)
                 if not res: continue
+                # R-507: a team that had left the base before the res has left, though it stands at the door again as the res lands (옷옷옷옷 v RACK 9:40: all of it is out in
+                # the field at 9:40 and back in front of RACK's front door at 9:50, "DOES NOT stay in base. All members leave base before base res"): it was in, then all out,
+                # within the 30 s before the res. Tried first and not kept: counting a door as outside the base, which lost two rows he graded Classic and correct (HC v Team
+                # 17:40, Men v Crew 25:40: teams that never left stand at the door, which is inside the labelled base)
+                was_in = lambda x: any(self.AL[a][x] and self._deep(a, x) in inb for a in att)
+                outs = [x for x in range(max(B - 30, 0), u, SPLIT_STEP) if not was_in(x)]
+                if outs and any(was_in(x) for x in range(max(B - 90, 0), outs[0], SPLIT_STEP)): continue
                 dead = sorted({m.roles[a] for a in att for td in st.death_times.get(a, []) if B <= td <= B + 60})
-                stay = [a for a in att if self.AL[a][min(B + 6, self.T)] and self._deep(a, min(B + 6, self.T)) in inb]
+                v = min(B + 6, self.T)
+                stay = [a for a in att if self.AL[a][v] and self._deep(a, v) in inb]
+                # a player left at a door on his own, his team gone from the base, has not stayed in it (R-507: 옷옷옷옷 v RACK 16:00, "none stay": six leave the pit as the res
+                # lands and the 8 Monk, who never went further in than the front door, still stands at it). A team standing at a door together has stayed (HC v Team 17:40)
+                stay = [a for a in stay if self._deep(a, v) in ("pit", "base") or any(b != a and d(self.P[a][v], self.P[b][v]) < FIGHT_LINK for b in stay)]
                 if not any(self.AL[a][min(B + 2, self.T)] and self._deep(a, min(B + 2, self.T)) in inb for a in att) and all(self.AL[a][min(B + 2, self.T)] for a in att): continue      # all out, alive, by the res: it left before the res (timing), it was not caught
+                if not stay and all(self.AL[a][min(B + 6, self.T)] for a in att): continue      # ... and a team on its way out as the res lands, all out and alive 6 s on, has left (R-507: 옷옷옷옷 v RACK 15:40, "none stay")
                 out.append({"t": B, "tm": tm, "team": m.tag[tm], "attackers": len(att), "defenders": len(home), "coming_back": len(res),
                             "outnumbered": len(att) < len(home) + len(res), "lead_lost": len(att) > len(home) and len(att) <= len(home) + len(res),
                             "went_in": (since + SPLIT_STEP) if since is not None else None, "stayed": len(stay), "lost_after": dead})
@@ -1954,7 +1996,7 @@ class Moments:
                 elif self.place_at(a, set_off)[0] in inside:
                     moment = next((v for v in range(set_off, tp + 1, 2) if self.place_at(a, v)[0] not in inside), tp)
                     rule = "leaves the greater stand area" if len(inside) == 2 else "leaves the stand area"
-            out.append({"a": a, "runner": runner, "serious": list(L["serious"]), "carries": [tuple(c2[:3]) for c2 in L["carries"]], "tm": tm, "pickup": tp, "set_off": set_off, "moment": moment, "moment_rule": rule,
+            out.append({"a": a, "runner": runner, "how": L["how"], "serious": list(L["serious"]), "carries": [tuple(c2[:3]) for c2 in L["carries"]], "tm": tm, "pickup": tp, "set_off": set_off, "moment": moment, "moment_rule": rule,
                         "waited": waited if not pre and tp - waited >= 10 else None, "under_way": out_t, "out_by": out_by,
                         "chain": min(max(int(ser[i0][1]), 0), self.T) if ser and i0 > 0 and ser[i0 - 1][2] is not None else None, "first_end": ser[i0 - 1][2] if ser and i0 > 0 else None,      # the flag lay on the ground and was taken up again: when, and until when it had been carried before
                         "first_ids": [c2[0] for c2 in ser[:max(i0, 0)]], "chain_ids": [c2[0] for c2 in ser[max(i0, 0):]]})
@@ -1987,6 +2029,7 @@ class Moments:
         for tm in st.teams:
             foe, f1 = 3 - tm, []
             for r in rs:
+                if self.not_run(r): continue                # a flag only brought up with the team is no moment for either side (R-505)
                 if r["tm"] == foe:                         # when he goes to run, and again when the flag is under way (golden game 1: hook's flag leaves its base at 7:05, after he went back at 6:05)
                     f1.append((self._went_to_run(r), "enemy_run", r))
                     if r["under_way"] is not None and r["under_way"] - self._went_to_run(r) > MERGE_S: f1.append((r["under_way"], "enemy_run", r))
@@ -2198,9 +2241,57 @@ class Moments:
         out = set()
         for r in self.run_starts():                      # the serious carriers of each flag carried in the window: a hand-off counts the player who takes it on (golden Book v One 9:16), a brief pickup handed on does not (hdm v One 17:24)
             if r["tm"] != tm: continue
+            if self.not_run(r): continue                      # only brought up with the team (R-505)
             if t - 10 <= self._went_to_run(r) <= t + READ_TO: out.add(r["runner"])
             out |= {a for a, s0, e0 in r["carries"] if a in r["serious"] and s0 <= t + READ_TO and (e0 is None or e0 >= t - 10) and (s0 >= t - 10 or self.carrying(a, min(t + READ_FROM, self.T)))}
         return out
+
+    def brought_up(self, r):
+        """Is this flag only brought up with the team (R-505)? Denning: "someone from mainteam (when they are already in base) bringing up a flag part way to
+        frontdoor with no intention of capping the flag. Mainteam is going to go frontdoor anyway, so they may as well bring a flag up a bit ... They don't send
+        anyone back for flag and the mainteam is not in any fight. So they don't lose anything". Nobody is missing from anywhere for it, so it is no flag run and
+        the enemy has nothing to answer, unless the flag is capped or pushed for the stand. Read from the flag's carries until it first stands in the stand or
+        greater stand area:
+          at its pickup the carrier and his team, all but one of it at most, stand on their own ground (base, pit, doors, footmen): a team with players out
+            on the map, or half of it at the stand, has left a player back for the flag (BcS v hook 2:53, a double run);
+          while it is carried, the carrier is never without his team for JOIN_S or longer (R-350): he stands with three or more of it, or he is on his own ground
+            with his main team on it too. A carrier whose team has gone out ahead of him, or who is out ahead of it, is a player the team is without: a run;
+          and the enemy's main team (MAIN_BIG or more) is not in his base for JOIN_S or longer meanwhile: a team held in its base is in a fight, and a player
+            taking the flag out through it is a decision (Men v Crew 19:31, his mark on the boost at 19:53: one runner).
+        A player who runs a flag on his way back from defending, from a base res or from a split, or who was left back for it, has his main team elsewhere: a run.
+        Returns (brought up, the second it first stands in the stand or greater stand area, or None)."""
+        k = id(r)
+        if k not in self._bu:
+            tm, T, own = r["tm"], self.T, self.st.side.get(r["tm"])
+            def hg(a, u):
+                if not (self.AL[a][u] and self.P[a][u]): return False
+                kind, side = self.place_at(a, u)
+                return (side == own and kind in HOME_GROUND) or self.at_home(a, u, tm)
+            def team_home(a, u):
+                main = [b for b in self.main_team(tm, u) if b != a and self.AL[b][u]]
+                return len(main) >= 2 and sum(hg(b, u) for b in main) >= len(main) - 1
+            mates = lambda a: [b for b in self.st.players[tm] if b != a]
+            cs = sorted((c for c in r["carries"] if c[0] in r["serious"]), key=lambda c: c[1])
+            ok, lost, held, worst, reach, first = True, 0, 0, 0, None, True
+            for a, s0, e0 in cs:
+                if reach is not None: break
+                for u in range(max(int(s0), 0) // SPLIT_STEP * SPLIT_STEP, min(int(e0 if e0 is not None else T), T) + 1, SPLIT_STEP):
+                    if not self.AL[a][u] or not self.P[a][u]: continue
+                    if self.hall is not None and self.place_at(a, u)[0] in ("stand", "greater stand"): reach = u; break
+                    home = hg(a, u) and team_home(a, u)
+                    if first:                                 # "when they are already in base": the whole team bar one, not only the part the engine calls its main team
+                        live = [b for b in self.st.players[tm] if b != a and self.AL[b][u]]
+                        first, ok = False, home and sum(hg(b, u) for b in live) >= len(live) - 1
+                    lost = 0 if home or self.with_rest(a, mates(a), u) else lost + SPLIT_STEP
+                    held = held + SPLIT_STEP if len(self.in_base_of(tm, u)) >= MAIN_BIG else 0
+                    worst = max(worst, lost, held)
+            self._bu[k] = (bool(cs) and not first and ok and worst < JOIN_S, reach)
+        return self._bu[k]
+
+    def not_run(self, r):
+        """A flag that was only brought up with the team and never capped or pushed for the stand: no run, no runner, nothing for the enemy to answer (R-505)."""
+        bu, reach = self.brought_up(r)
+        return bu and reach is None and r.get("how") != "captured"
 
     def _runner_runs(self, tm, t):
         """The same players as `_runners`, kept by the flag they run: one list a run, in the order they carried it. A flag handed on (a half run: one player
@@ -2209,6 +2300,7 @@ class Moments:
         out = []
         for r in self.run_starts():
             if r["tm"] != tm: continue
+            if self.not_run(r): continue                      # only brought up with the team: nobody is running it (R-505)
             went = t - 10 <= self._went_to_run(r) <= t + READ_TO
             who = [a for a, s0, e0 in sorted(r["carries"], key=lambda c: c[1]) if a in r["serious"] and s0 <= t + READ_TO and (e0 is None or e0 >= t - 10) and (s0 >= t - 10 or self.carrying(a, min(t + READ_FROM, self.T)))]
             if went:                                          # the player who went back for it comes first, then whoever carried it after him, in order
