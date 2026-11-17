@@ -46,7 +46,7 @@ import collections, json, math, statistics, sys
 from common import (STAND_R, FOUGHT, DOUBLE_NEXT_S, FLAG_MOMENT_GREATER, FLAG_MOMENT_STAND, HANDOFF_GAP_S, FIGHT_HOLD, FIGHT_HOLD_S, FIGHT_ACT, FIGHT_CLOSE, READ_FROM, READ_TO, CONSEQ_S, ON_TIME_S, LATE_S, PIT_S, AREA_SHARE, PURPOSE_S, LEAVE_MIN_S, HOME_WAIT_S, SPAWN_R, GROUP_LEAVE_S, MEET_R,
                     NUMBERS_MIN_S, MERGE_S, BOOST_WARN_S, FLAGGER_R, SPLIT_FAR, BOOST_EVERY, SERIOUS_CARRY_S, FIGHT_LINK, GROUND_MOVE, GROUND_S, GROUND_BACK, GROUND_JUMP, GROUND_SPLIT_MOVE, SIDE_FIGHT_MAX, SIDE_FIGHT_S, UNDEFENDED_S,
                     RETURN_R, FOOT_ENGAGED_S, SPLIT_STEP, SPLIT_MIN_S, SPLIT_GAP_S, FORCED_OUT_S, AHEAD_LOOK_S, CAUGHT_S, NPC_NEAR,
-                    JOIN_S, RES_EVERY, flux_at, JOIN_LOOK_S, JOIN_MOVE, JOIN_LEAD, JOIN_ENGAGE, JOIN_ENGAGE_S, MAIN_BIG, HOME_GUIDE, SWAP_S, SWAP_STAY_S, SPLIT_FIGHT_GAP_S, SPLIT_FIGHT_MIN,
+                    JOIN_S, RES_EVERY, flux_at, JOIN_LOOK_S, JOIN_MOVE, JOIN_LEAD, JOIN_ENGAGE, JOIN_ENGAGE_S, MAIN_BIG, HOME_GUIDE, SIDE_MOVE, SWAP_S, SWAP_STAY_S, SPLIT_FIGHT_GAP_S, SPLIT_FIGHT_MIN,
                     PUSHFLAG_R, PUSHFLAG_S, PUSHFLAG_SHORT_S, PUSHFLAG_LATE_S, PUSHFLAG_GAP_S, PUSHFLAG_MATES, PUSHFLAG_AHEAD_S, ROUTE_ENDS, ROUTE_OFF, ROUTE_CLEAR, ROUTE_MIN_S, LEAD_S,
                     WAY_OUT_GAP_S, STANDOFF_S, STANDOFF_HITS, STANDOFF_MIN, STANDOFF_R, STANDOFF_SPLIT_MIN, STANDOFF_SPLIT_S, STANDOFF_STILL, STANDOFF_NEAR, LEAD_HALF, LEAD_ONE, LEAD_ONE_HALF, LEAD_TWO, HOLD_BACK_S, LEFT_AT_SPAWN_S, RUN_SPEED, PICKUP_DELAY_S, HOLD_S, BOOST_LATE_S, HELP_IN_S, HELP_BACK_S, LEAVE_RES_S, MONK_S, MONK_MIN, LORD_GAP_S)
 from state import d
@@ -2145,6 +2145,7 @@ class Moments:
     def _numbers(self):
         """Numbers differences in the fight a main team stands in (R-351: every fight, not only where the mains meet):
         each a stretch of NUMBERS_MIN_S or more with the same side up, read every 2 s from the fight records."""
+        if getattr(self, "_nums", None) is not None: return self._nums
         S, eps, cur, F, raw = SPLIT_STEP, [], None, {}, []
         times = list(range(0, self.T + 1, S))
         for t in times:
@@ -2162,6 +2163,133 @@ class Moments:
             tm_a = self.m.team(a)
             reach = [F[t] is not None and a in F[t]["ids"][tm_a] for t in times]
             counted[a] = self.visits(times, reach, [r and self.engaged_in(a, F[t]["ids"][1] | F[t]["ids"][2], t) for r, t in zip(reach, times)], self.st.death_times.get(a, []))
+        # R-519 (his answer of 2026-11-17, from R-488 "a player cannot be part of 2 fights at once" and R-512 "position is not just absolute"): where the main fight and a
+        # split's fight stand within reach of one another, a player counts in one of them only: "the one whose players he is hitting or casting on, or who are acting on
+        # him. If neither, the one he is moving to." Read here, once, and asked for by the split's reading (`fight_side`): a player counted in these numbers who is also
+        # on a split by where he stands (`_over`), or within reach of an enemy split or trading with it, for JOIN_S or longer, is given to one fight for that stretch.
+        # A split player is in the main fight when the enemies he trades with are the ones his own main team is trading with, and on the split when they are not; a
+        # defender is on the split when he trades with its players, and in the main fight when he trades with the others. Trades equal, or none: whom he heals or
+        # protects and who heals or protects him; then the fight he closes on over the stretch; failing that the one his place puts him in. Given to the split, he
+        # leaves these numbers
+        self._side, self._side_log = {}, []
+        gap = max(1, FIGHT_HOLD_S // S)
+        told = self._split_candidates()
+        team_of, other = self.m.team, lambda k: next(x for x in self.st.teams if x != k)
+        on_split = lambda k, t: {x for x in self.st.players[k] if self.AL[x][t] and self.P[x][t] and (told.get((x, t)) == "split" or x in self._over(k, t)[0])}
+        pair = lambda x, y: (x, y) if x < y else (y, x)
+        def near_split(b, t, sp): return any(d(self.P[b][t], self.P[x][t]) < FIGHT_LINK or pair(b, x) in self._acting(t, aid=False) for x in sp)
+        runs = {"defence": [], "split": []}
+        for a in self.m.PL:
+            tm_a, foe_a, cand = team_of(a), other(team_of(a)), []
+            for ti, t in enumerate(times):
+                c = None
+                if counted[a][ti] and self.AL[a][t] and self.P[a][t]:
+                    if (a, t) in told: c = told[(a, t)]
+                    elif a in self._over(tm_a, t)[0]: c = "split"
+                    else:
+                        sp = on_split(foe_a, t)
+                        if sp and near_split(a, t, sp): c = "defence"
+                cand.append(c)
+            for kind in runs:
+                i = 0
+                while i < len(times):
+                    if cand[i] != kind: i += 1; continue
+                    j = i
+                    while True:
+                        nxt = next((q for q in range(j + 1, min(j + gap, len(times) - 1) + 1) if cand[q] == kind), None)
+                        if nxt is None: break
+                        j = nxt
+                    idx = [q for q in range(i, j + 1) if cand[q] == kind]
+                    if len(idx) * S >= JOIN_S: runs[kind].append((a, i, j, idx))
+                    i = j + 1
+        given = {}                                       # (player, reading) -> "main" or "split", for the players the question arose for
+        for kind in ("defence", "split"):                # the defenders first: a split player who trades with a man defending his split is on his split
+            ev, trades = {}, {}
+            for a, i, j, idx in runs[kind]:
+                tm_a, foe_a, tr, hp = team_of(a), other(team_of(a)), {}, {}
+                for q in idx:                            # read second by second, so that a player's fight can change inside one stretch (Men v hold 10:40 to 11:50: hold's five defend a split of five until Men's main team comes in at 10:56, and are in the main fight from then: "5 players defending")
+                    t = times[q]; act = self._acting(t, aid=False)
+                    opp = {y if x == a else x for x, y in act if a in (x, y)}
+                    helped = {y if x == a else x for x, y in self._acting(t) if a in (x, y)} & set(self.st.players[tm_a])
+                    if kind == "split":
+                        mates = {b for b in self.main_team(tm_a, t) if b != a and self.AL[b][t]}
+                        theirs = {y if x in mates else x for x, y in act if (x in mates) != (y in mates)}
+                        m_ = sum(1 for e in opp if given.get((e, q)) == "main" or (given.get((e, q)) is None and e in theirs))
+                        tr[q] = (m_, len(opp) - m_)
+                        there = on_split(tm_a, t) - {a}
+                    else:
+                        sp = on_split(foe_a, t)
+                        rest = [x for x in self.st.players[foe_a] if x not in sp and self.AL[x][t] and self.P[x][t]]
+                        grouped = {x for x in rest if any(n is not x and d(self.P[x][t], self.P[n][t]) < FIGHT_LINK for n in rest)}      # one enemy walking up alone draws nobody off the defence (as in `blocks`, R-512; Men v hold 10:42: hold's Earth Ele trades with Men's Ranger, who comes alone, while five of Men stand at his back door: "5 players defending")
+                        tr[q] = (len(opp & grouped), len(opp & sp))
+                        there = {b for b in self.st.players[tm_a] if b != a and self.AL[b][t] and self.P[b][t] and (told.get((b, t)) == "defence" or near_split(b, t, sp))}
+                    hp[q] = (len(helped - there), len(helped & there))
+                near = lambda q: [k for k in idx if abs(times[k] - times[q]) <= JOIN_S // 2]
+                res = {}
+                for q in idx:
+                    m_, s_ = sum(tr[k][0] for k in near(q)), sum(tr[k][1] for k in near(q))
+                    if m_ == s_: m_, s_ = sum(hp[k][0] for k in near(q)), sum(hp[k][1] for k in near(q))      # he trades with neither, or as much with both: whom he heals or protects, and who heals or protects him (a monk on a split casts on the players he came with)
+                    res[q] = None if m_ == s_ else ("main" if m_ > s_ else "split")
+                last, at = None, None                    # a lull of up to JOIN_S goes with the seconds before it
+                for q in idx:
+                    if res[q] is not None: last, at = res[q], times[q]
+                    elif last is not None and times[q] - at <= JOIN_S: res[q] = last
+                ev[a, i] = res; trades[a, i] = tr
+            for a, i, j, idx in runs[kind]:               # nothing either way: he goes with the players of his side he stands with, where they are trading; failing that the fight he is moving to; failing that he stays where his place puts him, on the split or its defence (R-512: a defender who stands in the way and hits nobody is defending)
+                res, tm_a, foe_a = dict(ev[a, i]), team_of(a), other(team_of(a))
+                for q in idx:
+                    if res[q] is not None: continue
+                    t = times[q]
+                    with_ = [ev[b, i2][q] for b, i2, j2, idx2 in runs[kind] if b != a and team_of(b) == tm_a and q in ev[b, i2] and ev[b, i2][q] is not None and d(self.P[a][t], self.P[b][t]) < FIGHT_LINK]
+                    if with_ and with_.count("main") != with_.count("split"): res[q] = "main" if with_.count("main") > with_.count("split") else "split"
+                if all(v is None for v in res.values()):
+                    def gaps(q):                          # how far he stands from his own main team, and from the split's players (a defender's question only)
+                        t = times[q]
+                        mates = [b for b in self.main_team(tm_a, t) if b != a and self.AL[b][t] and self.P[b][t]]
+                        sp = on_split(foe_a, t) if kind == "defence" else []
+                        cm = self.centre(mates, t)
+                        return (d(self.P[a][t], cm) if cm else None, min((d(self.P[a][t], self.P[x][t]) for x in sp), default=None))
+                    (m0, s0), (m1, s1) = gaps(idx[0]), gaps(idx[-1])
+                    to_main = (m0 - m1) if m0 is not None and m1 is not None else 0
+                    to_split = (s0 - s1) if s0 is not None and s1 is not None else 0
+                    if kind == "split":                   # a split player is on his split unless he is walking back to his main team, and not with the players he split with (옷옷옷옷 v RACK 8:16: one of five running out together, hitting nobody)
+                        t_ = times[idx[-1]]
+                        with_split = any(b != a and d(self.P[a][t_], self.P[b][t_]) < FIGHT_LINK for b in on_split(tm_a, t_))
+                        one = "main" if to_main > SIDE_MOVE and not with_split else "split"
+                    else: one = "main" if to_main - to_split > SIDE_MOVE else "split"
+                    res = {q: one for q in idx}
+                else:
+                    last, at = None, None
+                    for q in idx:
+                        if res[q] is not None: last, at = res[q], times[q]
+                        else: res[q] = last if last is not None and times[q] - at <= JOIN_S else "split"
+                    segs = []                             # a turn to the other fight for less than JOIN_S is not a turn (R-350)
+                    for q in idx:
+                        if segs and segs[-1][0] == res[q]: segs[-1][1].append(q)
+                        else: segs.append([res[q], [q]])
+                    k = 0
+                    while len(segs) > 1 and k < len(segs):
+                        if len(segs[k][1]) * S < JOIN_S:
+                            into = k - 1 if k > 0 else 1
+                            segs[into][1] = sorted(segs[into][1] + segs[k][1]); del segs[k]
+                            merged = []
+                            for v, qs in segs:
+                                if merged and merged[-1][0] == v: merged[-1][1] += qs
+                                else: merged.append([v, list(qs)])
+                            segs, k = merged, 0
+                        else: k += 1
+                    res = {q: v for v, qs in segs for q in qs}
+                tr = trades[a, i]
+                for v in sorted(set(res.values())):
+                    qs = [q for q in idx if res[q] == v]
+                    self._side_log.append({"who": a, "from": times[qs[0]], "to": times[qs[-1]], "as": kind, "side": v, "trades": [sum(tr[q][0] for q in qs), sum(tr[q][1] for q in qs)]})      # kept for the report: who was given to which fight, and on what
+                last = res[idx[0]]
+                for q in range(i, j + 1):
+                    last = res.get(q, last)
+                    given[a, q] = last
+            for (a, q), v in given.items():
+                self._side[(a, times[q])] = v
+                if v == "split": counted[a][q] = False
         def fought(e):                                   # it is being fought: everyone who stood in it starts more than FOUGHT casts or attacks each in 10 s
             c = sum(1 for u in range(int(e["start"]), int(e["last"]) + 1) for x in self.casts.get(u, ()) if x in e["all"])
             return c > FOUGHT * len(e["all"]) * max(e["last"] - e["start"], 10) / 10
@@ -2191,7 +2319,33 @@ class Moments:
                 e["at"].update(x["at"])
                 e["ns"] += [None] * ((x["start"] - e["last"]) // S - 1) + x["ns"]; e["last"] = x["last"]; e["all"] |= x["all"]
             eps.append(e)
+        self._nums = eps
         return eps
+
+    def _split_candidates(self):
+        """{(player, second): "split" or "defence"}: who the split's own reading (`jobs.split_plays`) counts on each split and its defence before anybody is given
+        to one fight (R-519). Read once, with `fight_side` silent, so that the numbers of the main fight and the splits are asked the same question about the
+        same players."""
+        if getattr(self, "_cands", None) is None:
+            self._cands = {}
+            if self.hall is not None:
+                import jobs
+                self._side_off = True
+                try: jobs.split_plays(self, jobs._K(self))
+                finally: self._side_off = False
+                for sp in getattr(self, "_split_at", None) or []:
+                    for t, (s_, d_) in sp["at"].items():
+                        for a in s_: self._cands[(a, t)] = "split"
+                        for b in d_: self._cands.setdefault((b, t), "defence")
+                self._split_at = []
+        return self._cands
+
+    def fight_side(self, a, t):
+        """Which fight a player was given to at second t where the main fight and a split's fight stood within reach of one another (R-519; read in `_numbers`):
+        "main", "split", or None where the question did not arise."""
+        if getattr(self, "_side_off", False): return None
+        self._numbers()
+        return self._side.get((a, int(t) - int(t) % SPLIT_STEP))
 
     # ---- 2.5 scenario
     def _state(self, tm, t):

@@ -413,7 +413,7 @@ def split_plays(M, K):
         times = list(range(t0, t9 + 1, S_))
         if len(times) < 3: continue
         hop = lambda a, u: any(0 <= v - S_ and v <= T and M.P[a][v] and M.P[a][v - S_] and d(M.P[a][v], M.P[a][v - S_]) > GROUND_JUMP for v in (u, u + S_))      # just through a teleporter
-        raw = lambda a, u: frm[a] <= u <= ext[a] and deep(a, u) and not hop(a, u) and not M.with_rest(a, mates, u)      # not while he stands in the fight the rest of his team is in
+        raw = lambda a, u: frm[a] <= u <= ext[a] and deep(a, u) and not hop(a, u) and not M.with_rest(a, mates, u) and M.fight_side(a, u) != "main"      # not while he stands in the fight the rest of his team is in, nor while he is in the main fight by whom he trades with (R-519)
         def stays(flags, extra=(), to_end=False):         # a player counts once he has been there JOIN_S (R-350: less is support, or passing by), one missed reading allowed; a death in it counts at once; and, for a defender, being there when the game ends (R-459, Book v One 19:28)
             keep, i = [False] * len(flags), 0
             while i < len(flags):
@@ -450,7 +450,7 @@ def split_plays(M, K):
                 up = [m for m in mates if M.AL[m][u] and M.P[m][u]]
                 front = [m for m in up if any(n is not m and d(M.P[m][u], M.P[n][u]) < FIGHT_LINK for n in up)]
                 return min(d(M.P[b][u], M.P[a][u]) for a in there) <= min((d(M.P[b][u], M.P[m][u]) for m in front), default=1e9)
-            reach = [bool(M.AL[b][u]) and bool(M.P[b][u]) and (any(M.AL[a][u] and on(a, u) for a in s) or blocks(u, s)) and not at_main(b, u) for u, s in zip(times, Ss)]
+            reach = [bool(M.AL[b][u]) and bool(M.P[b][u]) and (any(M.AL[a][u] and on(a, u) for a in s) or blocks(u, s)) and not at_main(b, u) and M.fight_side(b, u) != "main" for u, s in zip(times, Ss)]
             return M.visits(times, reach, reach, list(st.death_times.get(b, [])) + split_deaths, to_end=at_end0)      # a defender kites and heals at range: being on the split is enough
         at_end0 = times[-1] >= T - S_ - 1
         d_on = {b: defends(b) for b in st.players[foe]}
@@ -687,7 +687,11 @@ def split_plays(M, K):
                 out.append(_play(M, "split", "attacker", tm, p0, e1, whoA, scen_a + ("" if tn is not None else "; the whole team turns on it" if full else f"; {', '.join(role[b] for b in came)} collapse from the main fight"),
                                  "Survive and gain an advantage elsewhere on the map", {"nobody on the split dies": n_lost == 0}, any_of=elsewhere, beside=besA, answer=ans, **kw))
             elif n == 0: out.append(_play(M, "split", "attacker", tm, p0, e1, whoA, scen_a, "Take NPCs", {"an NPC taken": n_npc > 0}, beside=besA, answer="undefended", **kw))
-            elif k < n: out.append(_play(M, "split", "attacker", tm, p0, e1, whoA, scen_a, "Survive and gain an advantage elsewhere on the map", {"nobody on the split dies": n_lost == 0}, any_of=elsewhere, beside=besA, answer="a player or more down", **kw))
+            # R-517 (his answer of 2026-11-17, from R-512: a split holding more defenders than its own number "is ALREADY ACCOMPLISHING THEIR GOAL. They are keeping 4 people occupied
+            # without dying, providing a player advantage elsewhere on the map"): its job is met by holding them there and losing nobody. What its team made of the extra player
+            # elsewhere is the main team's to answer for (its numbers row), and is kept beside this one, not in its test: a test covers only what the players of the play control
+            elif k < n: out.append(_play(M, "split", "attacker", tm, p0, e1, whoA, scen_a, "Hold more defenders there than its own number and lose nobody (what the team made of the extra player elsewhere is beside it)",
+                                         {"nobody on the split dies": n_lost == 0}, beside=dict(besA, gained_elsewhere=elsewhere), answer="a player or more down", **kw))
             elif k == 1 and n == 1 and md == 1: out.append(_play(M, "split", "attacker", tm, p0, e1, whoA, scen_a, "Hold the monk there; the main team's job is to kill", {"the split player survives": n_lost == 0}, beside=besA, answer="1 v 1, defended by a monk", **kw))
             elif kills: out.append(_play(M, "split", "attacker", tm, p0, e1, whoA, scen_a, "Kill or take NPCs" if k > n else "Take NPCs or kills", {}, any_of=kill_or_npc, beside=besA,
                                             answer="1 v 1, the defender not a monk" if k == 1 else "a player or more up" if k > n else "even", **kw))
