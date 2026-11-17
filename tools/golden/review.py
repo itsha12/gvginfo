@@ -121,8 +121,10 @@ def situations(plays):
     for p in sorted(plays, key=lambda p: (p["t0"], p["t1"])):
         kind = {"flagger pushed": "push flagger"}.get(p["play"], p["play"])
         k = (kind, p["t0"]) if kind == "numbers" else (kind, p["t0"], p["t1"]) if kind in ("lord", "push flagger") else (kind, p["t0"], p.get("size"), p.get("defenders")) if kind == "split" else (kind, p["t0"], p["team"])
-        if kind == "split":                               # the attacker's and the defender's play of a phase can end a few seconds apart
-            k = next((q for q in G if q[0] == "split" and q[2:] == k[2:] and abs(q[1] - k[1]) <= 2), k)
+        if kind == "split" and p.get("change") and p.get("of"):       # R-514: who joins, collapses on or leaves a split fight is a decision of its own in the data, shown in the row of the split it belongs to
+            k = next((q for q in G if q[0] == "split" and abs(q[1] - p["of"][1]) <= 2 and any(x["side"] == "attacker" and x["tm"] == p["of"][0] and not x.get("change") for x in G[q])), k)
+        elif kind == "split":                             # the attacker's and the defender's play of a phase can end a few seconds apart
+            k = next((q for q in G if q[0] == "split" and q[2:] == k[2:] and abs(q[1] - k[1]) <= 2 and not all(x.get("change") for x in G[q])), k)
         G.setdefault(k, []).append(p)
     return list(G.values())
 
@@ -148,8 +150,14 @@ FIRST = {"split": ("attacker", "defender", "attacker's main team", "defender's m
 
 def _reads(g):
     """What the engine reads in a situation, in one line; sorts its plays (the attacker first, then the defender)."""
-    g.sort(key=lambda p: (FIRST.get(p["play"], ()).index(p["side"]) if p["side"] in FIRST.get(p["play"], ()) else 0, p["play"] != "push flagger"))
-    read = g[0]["scenario"] + ("; ".join([""] + [p["scenario"].split(": ", 1)[-1] for p in g[1:] if p["play"] == "split" and p["side"] == "defender" and p.get("call") in ("collapse", "full collapse", "part-run")]))
+    g.sort(key=lambda p: (bool(p.get("change")), p.get("at", 0) if p.get("change") else 0, FIRST.get(p["play"], ()).index(p["side"]) if p["side"] in FIRST.get(p["play"], ()) else 0, p["play"] != "push flagger"))
+    read = g[0]["scenario"] + ("; ".join([""] + [p["scenario"].split(": ", 1)[-1] for p in g[1:] if p["play"] == "split" and not p.get("change") and p["side"] == "defender" and p.get("call") in ("collapse", "full collapse", "part-run")]))
+    def move(p):                                          # "Ranger joins the split at 18:28"; "Hammer B, 8 Monk join the defence at 12:48"
+        one, what = len(p["who"]) == 1, p.get("call") or p.get("answer")
+        verb = {"join": "joins" if one else "join", "leave": "leaves" if one else "leave", "collapse": "collapses on it" if one else "collapse on it"}.get(what, what)
+        return f"{', '.join(p['who'])} ({p['team']}) {verb}" + ("" if what == "collapse" else " the split" if p["side"] == "attacker" else " the defence") + f" at {cl(p.get('at', p['t0']))}"
+    moves = [move(p) for p in g if p.get("change")]
+    if moves and not g[0].get("change"): read += ". Who came and went, each a decision of its own: " + "; ".join(dict.fromkeys(moves))
     if g[0]["play"] == "numbers" and len(g) > 1:
         o = g[1]["scenario"]; k = o.find("), from ")                    # the other side's call: what follows the numbers and their source (the numbers themselves can hold "; then ...")
         read += " | " + o[max(k, 0):].split("; ", 1)[-1]
@@ -189,10 +197,11 @@ def export(path, out, part, set_id="f1", label=None, drop=(), confidence=None):
             unclear = g[0].get("unclear") if all(p.get("clear") is False for p in g) else None      # R-488: nothing a team clearly had to decide: told as context, with no call under it
             for p in ([] if unclear else g):
                 side = p["side"] if p["side"] not in ("own",) and p["play"] in ("split", "lord", "numbers") else ""
-                calls.append({"id": p["id"], "team": p["team"], "side": side, "label": (p.get("call") or p.get("answer") or p.get("ours") or "") + (f": {p['hand']}" if p.get("hand") else ""), "job": p["job"], "met": bool(p["met"]),
+                moved = f": {', '.join(p['who'])} at {cl(p['at'])}" if p.get("change") and p.get("at") is not None else ""
+                calls.append({"id": p["id"], "team": p["team"], "side": side, "label": (p.get("call") or p.get("answer") or p.get("ours") or "") + moved + (f": {p['hand']}" if p.get("hand") else ""), "job": p["job"], "met": bool(p["met"]),
                               "tests": [[bool(v), k] for k, v in list(p["tests"].items()) + list(p.get("any_of", {}).items())], "any": bool(p.get("any_of")) and bool(p["tests"]) is False, "draft": not p.get("ruled", True)})
-            # a situation is as steady as its plays together: a setting that moves any one of them moves the situation (the bands were fitted to his grades that way, confidence.py)
-            both = bands_of.band({k_: [x for p in g for x in C[rid][p["id"]][k_]] for k_ in ("other", "gone")})
+            # one band a situation (R-515): low when a quarter's move makes the engine stop reading it, medium when it is still read but its details move, or it goes at half or double (confidence.py, fitted to his grades of five games)
+            both = bands_of.band_of([C[rid][p["id"]] for p in g if not p.get("change")] or [C[rid][p["id"]] for p in g], [C[rid][p["id"]] for p in g if p.get("change")] if not all(p.get("change") for p in g) else ())
             conf = {"band": "none", "why": unclear[0].upper() + unclear[1:] + "."} if unclear else {"band": both["band"], "why": both["why"]}
             sits.append({"n": i, "id": "s:" + g[0]["id"], "kind": {"flagger pushed": "push flagger"}.get(g[0]["play"], g[0]["play"]), "t0": g[0]["t0"], "t1": max(p["t1"] for p in g), "reads": read, "confidence": conf,
                          "plays": [{"play": p["play"], "team": p["team"], "t0": p["t0"]} for p in g], "calls": calls, **({"unclear": unclear} if unclear else {})})

@@ -618,6 +618,12 @@ class Moments:
                         was = out.get(u - SPLIT_STEP, frozenset())
                         rear = [a for a in live if a in was and a not in fr[0] and self.lane(a, u) == "back" and self._deep(a, u)]      # on the enemy's ground: a monk trailing at his own back footies is not there (xxx v Men 2:36)
                         prev = frozenset(rear) if len(rear) >= MAIN_BIG and len(rear) >= len(fr[0]) + 2 else frozenset(fr[0])
+                        # ... and unless a larger part of the team is at home: R-335's stand side decides an even divide only, and the main team is usually the larger
+                        # group (R-487). A team standing in its own pit has not gone round the back (R-513; his words on Men v hold 18:20, where four and then five of
+                        # hold stood in their pit against Men's main team at their doors and two, then three, went out by the front: "Hold very clearly has a 5 man
+                        # mainteam defending it's base", the engine having read the two at Men's front door as hold's main team)
+                        hm = [g for g in cand if g is not fr[0] and len(g) > len(fr[0]) and all(self.at_home(a, u, tm) for a in g)]
+                        if hm: prev = frozenset(max(hm, key=len))
                     big = [g for g in cand if len(g) >= MAIN_BIG and all(len(g) >= len(h) + 2 for h in gs if h is not g) and vote(g) >= 0]
                     if big: prev = frozenset(big[0])          # an uneven divide: the part of five or more, two bigger than any other and not round the back, is the main team (R-421: NwAy v SKT 14:50, SKT's five pushing NwAy's front door; his marks on Men v Apes 3:10 to 7:00; R-335 and R-355 keep the even 4 v 4). "Not round the back" was taken out on 2026-11-15 and put back: without it hdm's four-player split of hdm v hook 7:12 to 10:30, with a fifth player near it, was read as hdm's main team
                 # R-506 (asked whether or not the engine reads the team as divided: five of seven leaving are most of the team, 옷옷옷옷 v RACK 8:11): players who go out round the back while three or more of their team stay at home are a split, whatever their number, and the part at home is the main team (옷옷옷옷 v RACK 4:30, 8:11, 9:52: five of RACK out of the back door, three in the pit: "clear split of 5")

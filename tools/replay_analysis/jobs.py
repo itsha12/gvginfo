@@ -429,11 +429,28 @@ def split_plays(M, K):
         Ss = [[a for a in x["ids"] if s_on[a][i]] for i in range(len(times))]
         split_deaths = [td for a in x["ids"] for td in st.death_times.get(a, [])]
         at_main = lambda b, u: M.with_rest(b, mates, u)   # an enemy standing among three or more of the attackers' other players is at the main fight, not on the split's defence
+        pit_way = M.hall.to(M.hall.lord[own_d]) if M.hall is not None and own_d in M.hall.lord else {}
+        to_pit = lambda p: pit_way.get(M.hall.snap(p), 1e9)
         def defends(b):                                   # a defender is on the split: within reach of a split player, or further off with one of them hitting or casting on the other (Moments' reading of who is in a fight, without the hold: a player hovering at the edge of reach is not defending, 옷옷옷옷 v Men 6:50); for 12 s, or at a death (his own, or the split player's: R-464)
             def on(a, u):
                 dist = d(M.P[b][u], M.P[a][u])
                 return dist < FIGHT_LINK or (dist < FIGHT_ACT and ((a, b) if a < b else (b, a)) in M._acting(u, aid=False))
-            reach = [bool(M.AL[b][u]) and any(M.AL[a][u] and on(a, u) for a in s) and not at_main(b, u) for u, s in zip(times, Ss)]
+            # R-512: defending a split is keeping it from what it came for. A player on his own ground who stands in his pit, or between the split and his pit NPCs, is
+            # defending it though nobody has hit anybody: the split cannot take NPCs past him, and it is holding him there ("they are PREVENTING THE SPLIT FROM
+            # ACCOMPLISHING THEIR OBJECTIVE. They are standing sometimes in pit, sometimes fighting with NPCs, sometimes just standing (without fighting) between the
+            # split and their goal"; Men v hold 0:48 to 5:30). Read as: he is on his own ground, the split stands on his side of the hall, his walk to his own Lord
+            # is no longer than the walk of the nearest split player to it, and it is the split he faces: no group of the attackers' other players (two or more of them
+            # together) is nearer to him than the split is ("Position is not just absolute": a player fallen back to his own footmen in front of the enemy's main team
+            # is at home and near his pit, but he is there for the main team, hdm v hook 7:12, hook's Mesmer; one enemy walking up alone draws nobody off the defence,
+            # Men v hold 10:48, "5 players defending")
+            def blocks(u, s):
+                if not (M.place_at(b, u)[1] == own_d and M.place_at(b, u)[0] in HOMEG): return False
+                there = [a for a in s if M.AL[a][u] and M.P[a][u] and M.place_at(a, u)[1] == own_d]
+                if not there or to_pit(M.P[b][u]) > min(to_pit(M.P[a][u]) for a in there): return False
+                up = [m for m in mates if M.AL[m][u] and M.P[m][u]]
+                front = [m for m in up if any(n is not m and d(M.P[m][u], M.P[n][u]) < FIGHT_LINK for n in up)]
+                return min(d(M.P[b][u], M.P[a][u]) for a in there) <= min((d(M.P[b][u], M.P[m][u]) for m in front), default=1e9)
+            reach = [bool(M.AL[b][u]) and bool(M.P[b][u]) and (any(M.AL[a][u] and on(a, u) for a in s) or blocks(u, s)) and not at_main(b, u) for u, s in zip(times, Ss)]
             return M.visits(times, reach, reach, list(st.death_times.get(b, [])) + split_deaths, to_end=at_end0)      # a defender kites and heals at range: being on the split is enough
         at_end0 = times[-1] >= T - S_ - 1
         d_on = {b: defends(b) for b in st.players[foe]}
@@ -639,7 +656,7 @@ def split_plays(M, K):
                     npc_c = sum(1 for td, _, _ in npc_ev if a1 <= td <= c1)
                     nums = f"{k0} v {n0} becomes {k1} v {n1}"
                     names = lambda L: ", ".join(role[z] for z in L)
-                    kwc = dict(size=k1, defenders=n1, group="split", change=True)
+                    kwc = dict(size=k1, defenders=n1, group="split", change=True, of=[tm, int(p0)], at=int(a1))      # of: the split it belongs to (its team, and the start of the fight as told): each change is a decision of its own in the data (R-514), shown in the split's row
                     if came_d:
                         col = n1 >= k1 + 1                  # one more than the split as it then stands (R-441, NwAy v Men 11:50: a defender who comes as a split player joins, 3 v 3 to 4 v 4, has joined)
                         out.append(_play(M, "split", "defender", foe, a1, c1, [role[z] for z in came_d],

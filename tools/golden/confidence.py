@@ -11,18 +11,23 @@ the engine is changed), and each play is looked for in every one of those readin
   other    the kind of play is still read there for that team, but as something else (other numbers, another call)
   gone     nothing of that kind is read there
 
-The confidence of a play is told in three bands, fitted on 2026-11-16 to his grades of the first three games graded his new way (HC v Team, Men v Crew,
-옷옷옷옷 v RACK: 125 graded situations; R-492, R-497). What the grades showed: a situation he grades Classic almost never moves (48 of 50 are read the same at a
-quarter either way of every number, 43 of 50 at half and double too); one number moving it at a quarter is still mostly Visible (11 of 15); two or more
-numbers moving it at a quarter is where Weak and No decision gather (14 of 29, against 3 of 67 where nothing moves).
+The confidence of a situation is told in three bands, fitted on 2026-11-17 to his grades of the five games graded his new way (HC v Team, Men v Crew,
+옷옷옷옷 v RACK, Men v RACK, Men v hold: 228 graded situations; R-492, R-497, R-515). Two things can happen to a situation when a number moves: the engine
+stops reading it at all (every play of it is gone), or it still reads it with other details (other players counted, another call). What his grades showed:
+a situation that never disappears and whose details hold at a quarter is Classic two times in three (84 of 126); one that disappears at a quarter's move
+is almost never Classic (3 of 27) and holds the largest share of Weak and No decision (10 of 27).
 
-  high     read the same at a quarter either way and at half and double of every number
-  medium   moved only at half or double, or by one single number at a quarter
-  low      two or more numbers move it at a quarter
+  high     still read at every move, and its details hold at a quarter either way
+  medium   still read at a quarter either way, but its details move there, or it disappears at half or double
+  low      a quarter's move of one number makes it disappear
 
-His grades by band on those three games (Classic, Visible, Weak, No decision): high 43, 19, 1, 2; medium 6, 19, 2, 4; low 1, 14, 7, 7. Steadiness tells
-Classic from the rest; it does not tell Visible from Weak or No decision well, and nothing else has been fitted to do so (never guessed further). Fit again
-when more games are graded: `confidence.py reband <file>` writes the bands again from the stored readings without running the engine.
+His grades by band on those five games (Classic, Visible, Weak, No decision): high 84, 35, 2, 5; medium 23, 34, 8, 10; low 3, 14, 4, 6. Taking high as
+Classic, medium as Visible and low as Weak or No decision, the band is his grade on 128 of 228 (56%), and far off (high on a Weak or No decision, low on a
+Classic) on 10; the bands before (high: nothing moves at all; low: two numbers move anything at a quarter) were his grade on 123 and far off on 16. Tried on
+the same grades and not kept, because each game banded from the other four did no better: the length of the situation, and a table by kind of play. What
+steadiness cannot do is tell Visible from Weak or No decision (his four reasons for those, R-509, are about what is at stake: too brief, too small, no real
+fight, an unclear edge), and nothing has been fitted for that yet (never guessed). Fit again when more games are graded: `confidence.py reband <file>`
+writes the bands again from the stored readings without running the engine.
 
 A situation the engine itself tells as context (`clear` false, R-488) has no band: it is "none".
 
@@ -161,26 +166,32 @@ def run(out, ids, jobs=2):
     failed = sorted({(n, k) for r in ids for e in res[r].values() for n, k in e["failed"]})
     if failed: print(f"confidence: {len(failed)} readings failed and are left out of every count: {failed}", file=sys.stderr)
     commit = subprocess.run(["git", "-C", REPO, "rev-parse", "--short", "HEAD"], capture_output=True, text=True).stdout.strip()
-    json.dump({"about": "How steady each play's reading is when the draft numbers of the reading are moved (tools/golden/confidence.py; R-492). Bands fitted to his grades of three games, 2026-11-16.",
+    json.dump({"about": "How steady each play's reading is when the draft numbers of the reading are moved (tools/golden/confidence.py; R-492). Bands fitted to his grades of five games, 2026-11-17.",
                "engine": commit, "tests": len(T), "failed": [list(f) for f in failed], "plays": {r: {i: dict(e, **band(e)) for i, e in res[r].items()} for r in ids},
                "base": {r: [{k_: p.get(k_) for k_ in ("id", "play", "team", "side", "t0", "t1", "scenario", "clear")} for p in base[r]] for r in ids}}, open(out, "w"), ensure_ascii=False)
     show(out)
 
 
-def band(e):
-    """The band of one play and the reason in a player's words (fitted to his grades of three games, 2026-11-16: the module's own text)."""
-    moved = lambda steps: [x for x in e["other"] + e["gone"] if x[1] in steps]
-    names = lambda L: list(dict.fromkeys(n for n, _ in L))
-    q, far = moved(QUARTER), moved(FAR)
-    gone = {n for n, k in e["gone"]}
+def band_of(es, extra=()):
+    """The band of a situation and the reason in a player's words (fitted to his grades of five games, 2026-11-17: the module's own text). `es`: the stored
+    readings of its plays (the two sides of a split, of a numbers moment); `extra`: those of the joins, collapses and leaves told in its row (R-514), which
+    count as its details and never as the situation itself."""
+    es, every = list(es), list(es) + list(extra)
+    keys = sorted({(n, k) for e in every for t in ("same", "other", "gone") for n, k in e[t]})
+    names = lambda L: list(dict.fromkeys(L))
+    gone = lambda steps: names(n for n, k in keys if k in steps and es and all([n, k] in e["gone"] for e in es))
+    moved = lambda steps: names(n for n, k in keys if k in steps and any([n, k] in e["other"] or [n, k] in e["gone"] for e in every))
+    say = lambda N, n=2: "; ".join(WORDS.get(x, x) for x in N[:n]) + (f"; and {len(N) - n} more of its settings" if len(N) > n else "")
+    vq, vf, mq = gone(QUARTER), gone(FAR), moved(QUARTER)
+    if vq: return {"band": "low", "why": "The engine stops reading this when one of its settings is moved a quarter: " + say(vq) + ".", "moved_by": vq}
+    if vf: return {"band": "medium", "why": "Still read when the engine's settings are moved a quarter either way. At half or double it is no longer read; it hangs on: " + say(vf) + ".", "moved_by": vf}
+    if mq: return {"band": "medium", "why": "Read as a situation wherever the engine's settings sit, but who is counted in it or the call changes when one is moved a quarter: " + say(mq) + ".", "moved_by": mq}
+    return {"band": "high", "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way.", "moved_by": []}
 
-    def say(L, n=2):
-        N = names(L)
-        return "; ".join(WORDS.get(x, x) + (" (moved, the engine reads nothing here)" if x in gone else " (moved, the engine reads something else here: other players counted, or another call)") for x in N[:n]) + (f"; and {len(N) - n} more of its settings" if len(N) > n else "")
-    if len(names(q)) >= 2: return {"band": "low", "why": "A quarter's move of two or more of the engine's settings changes this reading. It hangs on: " + say(q) + ".", "moved_by": names(q)}
-    if q: return {"band": "medium", "why": "One of the engine's settings changes this reading when it is moved a quarter: " + say(q) + ".", "moved_by": names(q)}
-    if far: return {"band": "medium", "why": "Steady when the engine's settings are moved a quarter either way. At half or double it hangs on: " + say(far) + ".", "moved_by": names(far)}
-    return {"band": "high", "why": "Read the same wherever the engine's settings sit, down to half and up to double.", "moved_by": []}
+
+def band(e):
+    """The band of one play on its own."""
+    return band_of([e])
 
 
 def reband(path):
@@ -188,7 +199,7 @@ def reband(path):
     D = json.load(open(path))
     for P in D["plays"].values():
         for e in P.values(): e.update(band(e))
-    D["about"] = "How steady each play's reading is when the draft numbers of the reading are moved (tools/golden/confidence.py; R-492). Bands fitted to his grades of three games, 2026-11-16."
+    D["about"] = "How steady each play's reading is when the draft numbers of the reading are moved (tools/golden/confidence.py; R-492). Bands fitted to his grades of five games, 2026-11-17."
     json.dump(D, open(path, "w"), ensure_ascii=False)
     show(path)
 

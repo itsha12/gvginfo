@@ -358,13 +358,14 @@
       "side": "attacker",
       "team": "Book",
       "start": [
-       1150,
-       1160
+       1120,
+       1141
       ]
      },
      "want": {
       "size": 1
-     }
+     },
+     "was": "Book v One: a split 'from around 18:55' (his words of 2026-11-17, which replace the reading of his first mark that it counts from when it reaches the base)"
     },
     {
      "has": {
@@ -382,7 +383,6 @@
        "Ritualist"
       ]
      },
-     "open": true,
      "why": "Book v One: the Hammer dies at 19:31 with One's Ritualist within reach of him for 8 s, and the game ends 12 s later, so the game-end rule of R-459 (built) does not reach this row; a defender on a split player for under 12 s when that player dies is still not read as a phase. To put to him"
     }
    ],
@@ -398,7 +398,13 @@
     "said": "Yes.",
     "reading": "R-464; not built."
    },
-   "note": "The first check no longer asks for an undefended phase by name (his words were that the split counts from when it reaches, and that the Ritualist defends it): Claude's reading of the mark was narrower than the mark. Since R-510 (2026-11-17) the row starts at the crossing again (18:54), which is what this mark objected to; the row now says when the split reaches their base. Put to him."
+   "note": "His words of 2026-11-17 settle the start (around 18:55, R-510). The Ritualist's defence from 19:20 is read since R-512.",
+   "answered3": {
+    "on": "2026-11-17",
+    "asked": "Is Book's Hammer a split from when he crosses (18:54, R-510) or from when he reaches the base (19:12, his mark of the first review)?",
+    "said": "I would call that hammer warrior a split from around 18:55.",
+    "reading": "R-510 stands. The row starts at 18:46, crosses at 18:54, and is defended by One's Ritualist from 19:20."
+   }
   },
   {
    "id": "s1-16",
@@ -765,6 +771,12 @@
     "asked": "His approval of 'not met' (an archer and two footmen lost), or R-443 (only pit NPCs count against the defence)?",
     "said": "Option a.",
     "reading": "R-443 stands: the defence met its job."
+   },
+   "answered2": {
+    "on": "2026-11-17",
+    "asked": "What counts as defending a split?",
+    "said": "I need specifics for High Council v Men, as at 7:20, I read 2 players defending the split for Men.",
+    "reading": "R-512. The game is 옷옷옷옷 v Men; his mark of the first review was 'Good example, correct identification and result' on a row of two defenders. The engine reads 3 v 2 from 6:18 and 2 v 2 from 7:04."
    }
   },
   {
@@ -5252,7 +5264,13 @@
      },
      "was": "hdm v hook 7:12: still defended by four"
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-17",
+    "asked": "What counts as defending a split?",
+    "said": "for hdm v hook, what did I say? I may have mispoken because at 7:12 and 7:52, there are definitely 4 players from hook defending hdm's split.",
+    "reading": "R-512. His words of the first review on this row were 'still defended by 4', the same as now; Claude's summary of them to him on 2026-11-17 ('a player hovering near is not defending') was wrong. The engine reads four defending at 7:12."
+   }
   },
   {
    "id": "w1p2-8bf4-32",
@@ -5379,7 +5397,13 @@
      },
      "was": "hdm v hook 7:52: they are 4 v 3 only because they killed a defender; once 4 v 3 they kill nobody and take no NPC (told now inside the one split fight: the check asks that the change to 4 v 3 is told there)"
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-17",
+    "asked": "What counts as defending a split?",
+    "said": "at 7:12 and 7:52, there are definitely 4 players from hook defending hdm's split.",
+    "reading": "R-512. His words of the first review were '3 defending until 8:17ish when 3 rit joins after base res'. The engine reads four until 7:52, three from 7:52 (a defender dies) and four again from 8:04."
+   }
   },
   {
    "id": "w1p2-8bf4-36",
@@ -7520,7 +7544,8 @@
       ]
      },
      "want": {
-      "scenario~": "2 defending (Air Ele, Ritualist)"
+      "defenders": 2,
+      "scenario~": "Air Ele"
      },
      "was": "hook v hold: the split is defended by the Air Ele and the Ritualist; the engine read four defending"
     },
@@ -10167,11 +10192,17 @@
      },
      "want": {
       "size": 4,
-      "defenders": 3
+      "defenders": 4
      },
      "was": "RJT v RACK 8:00 to 8:17: RACK has four on the split (Ranger, Hammer, two monks) against three defending; the engine read three, the 7 Monk standing just inside the greater stand area; held from 2026-11-15"
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-17",
+    "asked": "What counts as defending a split (the rows where he had counted a defender in or out)?",
+    "said": "what did I say about RACK v RJT? at 8:00 it also looks to me like there are 4 players defending split.",
+    "reading": "R-512. His words of the first review were '4 on split ... vs 3 defending from 8:00 to 8:17'; he now reads four defending at 8:00, and the engine reads 4 v 4 from 7:52 to 8:24. The check asks for four and four."
+   }
   },
   {
    "id": "w2-eea5-40",
@@ -14770,6 +14801,40 @@
     {
      "has": {
       "play": "split",
+      "side": "attacker",
+      "team": "RACK",
+      "at": [
+       94,
+       128
+      ]
+     },
+     "want": {
+      "size": 4,
+      "defenders": 2
+     },
+     "was": "His mark: correct. The check asked for a row starting within 6 s of the one he saw; the same split is now told in one row from when it sets out or is first defended (R-510, R-512), so the check asks for the split and its numbers in the window he saw."
+    },
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "옷옷옷옷",
+      "at": [
+       94,
+       128
+      ]
+     },
+     "want": {
+      "size": 4,
+      "defenders": 2
+     },
+     "was": "His mark: correct. The check asked for a row starting within 6 s of the one he saw; the same split is now told in one row from when it sets out or is first defended (R-510, R-512), so the check asks for the split and its numbers in the window he saw."
+    }
+   ],
+   "retired_checks": [
+    {
+     "has": {
+      "play": "split",
       "team": "RACK",
       "start": [
        88,
@@ -17286,6 +17351,43 @@
     {
      "has": {
       "play": "split",
+      "side": "attacker",
+      "team": "RACK",
+      "at": [
+       714,
+       730
+      ]
+     },
+     "want": {
+      "size": 1,
+      "defenders": 1,
+      "who~": [
+       "Ranger"
+      ]
+     },
+     "was": "His mark: correct. The check asked for a row starting within 6 s of the one he saw; the same split is now told in one row from when it sets out or is first defended (R-510, R-512), so the check asks for the split and its numbers in the window he saw."
+    },
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "Men",
+      "at": [
+       714,
+       730
+      ]
+     },
+     "want": {
+      "size": 1,
+      "defenders": 1
+     },
+     "was": "His mark: correct. The check asked for a row starting within 6 s of the one he saw; the same split is now told in one row from when it sets out or is first defended (R-510, R-512), so the check asks for the split and its numbers in the window he saw."
+    }
+   ],
+   "retired_checks": [
+    {
+     "has": {
+      "play": "split",
       "team": "RACK",
       "start": [
        708,
@@ -18005,6 +18107,53 @@
     {
      "has": {
       "play": "split",
+      "side": "attacker",
+      "team": "RACK",
+      "at": [
+       1096,
+       1130
+      ]
+     },
+     "want": {
+      "scenario~": "3 v 2 from 18:1"
+     },
+     "was": "His mark: correct. The check asked for a row starting within 6 s of the one he saw; the same split is now told in one row from when it sets out or is first defended (R-510, R-512), so the check asks for the split and its numbers in the window he saw. He saw 3 v 2 from 18:06; it is told from 18:14 now, the first eight seconds being the end of the row before (RACK's Mes/A alone against Men's Mes/A and 8 Monk, who stand between him and the pit)."
+    },
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "RACK",
+      "at": [
+       1096,
+       1130
+      ]
+     },
+     "want": {
+      "scenario~": "4 v 3 from 18:28"
+     },
+     "was": "His mark: correct. The check asked for a row starting within 6 s of the one he saw; the same split is now told in one row from when it sets out or is first defended (R-510, R-512), so the check asks for the split and its numbers in the window he saw."
+    },
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "Men",
+      "at": [
+       1096,
+       1130
+      ]
+     },
+     "want": {
+      "scenario~": "4 v 3 from 18:28"
+     },
+     "was": "His mark: correct. The check asked for a row starting within 6 s of the one he saw; the same split is now told in one row from when it sets out or is first defended (R-510, R-512), so the check asks for the split and its numbers in the window he saw."
+    }
+   ],
+   "retired_checks": [
+    {
+     "has": {
+      "play": "split",
       "team": "RACK",
       "start": [
        1080,
@@ -18645,6 +18794,53 @@
       "side": "attacker",
       "team": "hold",
       "at": [
+       48,
+       168
+      ]
+     },
+     "want": {
+      "scenario~": "3 v 3 from 0:3"
+     },
+     "was": "Men v hold 0:48: 'starts with 3 defending' (R-512: Men's Hammer, Ranger and Ritualist 2 stand between the split and their pit); held from 2026-11-17"
+    },
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hold",
+      "at": [
+       48,
+       168
+      ]
+     },
+     "want": {
+      "scenario~": "3 v 2 from 1:1"
+     },
+     "was": "Men v hold: '2 defending from 1:11' (the Hammer leaves for the main team); held from 2026-11-17"
+    },
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hold",
+      "at": [
+       48,
+       168
+      ]
+     },
+     "want": {
+      "scenario~": "3 v 3 from 2:2"
+     },
+     "was": "Men v hold: '... to 2:27' (the Hammer comes back); held from 2026-11-17"
+    }
+   ],
+   "retired_checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hold",
+      "at": [
        40,
        66
       ]
@@ -18907,8 +19103,8 @@
      "want": {
       "defenders": 2
      },
-     "open": true,
-     "why": "Men v hold 2:46 (Classic, incorrect): 'ranger and 8 monk defending': they stand in their pit, up to 3,400 from the split at the back door. Put to him 2026-11-17"
+     "why": "Men v hold 2:46 (Classic, incorrect): 'ranger and 8 monk defending': they stand in their pit, up to 3,400 from the split at the back door. Put to him 2026-11-17",
+     "held": "2026-11-17"
     }
    ]
   },
@@ -19192,6 +19388,41 @@
     {
      "has": {
       "play": "split",
+      "side": "attacker",
+      "team": "hold",
+      "at": [
+       236,
+       262
+      ]
+     },
+     "want": {
+      "size": 3,
+      "defenders": 2,
+      "scenario~": "(Ranger, Ritualist 2)"
+     },
+     "was": "His mark: correct. The check asked for a row starting within 6 s of the one he saw; the same split is now told in one row from when it sets out or is first defended (R-510, R-512), so the check asks for the split and its numbers in the window he saw."
+    },
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "Men",
+      "at": [
+       236,
+       262
+      ]
+     },
+     "want": {
+      "size": 3,
+      "defenders": 2
+     },
+     "was": "His mark: correct. The check asked for a row starting within 6 s of the one he saw; the same split is now told in one row from when it sets out or is first defended (R-510, R-512), so the check asks for the split and its numbers in the window he saw."
+    }
+   ],
+   "retired_checks": [
+    {
+     "has": {
+      "play": "split",
       "team": "hold",
       "start": [
        230,
@@ -19301,6 +19532,43 @@
     {
      "has": {
       "play": "split",
+      "side": "attacker",
+      "team": "Men",
+      "at": [
+       256,
+       286
+      ]
+     },
+     "want": {
+      "size": 1,
+      "defenders": 0,
+      "who~": [
+       "AoB Derv"
+      ]
+     },
+     "was": "His mark: correct. The check asked for a row starting within 6 s of the one he saw; the same split is now told in one row from when it sets out or is first defended (R-510, R-512), so the check asks for the split and its numbers in the window he saw."
+    },
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "hold",
+      "at": [
+       256,
+       286
+      ]
+     },
+     "want": {
+      "size": 1,
+      "defenders": 0
+     },
+     "was": "His mark: correct. The check asked for a row starting within 6 s of the one he saw; the same split is now told in one row from when it sets out or is first defended (R-510, R-512), so the check asks for the split and its numbers in the window he saw."
+    }
+   ],
+   "retired_checks": [
+    {
+     "has": {
+      "play": "split",
       "team": "Men",
       "start": [
        250,
@@ -19376,8 +19644,8 @@
        "defenders": 0
       }
      },
-     "open": true,
-     "why": "Men v hold 4:20 (Classic, incorrect): 'same split as before, and 3 are defending still (8 monk and ranger)'"
+     "why": "Men v hold 4:20 (Classic, incorrect): 'same split as before, and 3 are defending still (8 monk and ranger)'",
+     "held": "2026-11-17"
     }
    ]
   },
@@ -19445,6 +19713,40 @@
     }
    ],
    "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "hold",
+      "at": [
+       298,
+       400
+      ]
+     },
+     "want": {
+      "size": 3,
+      "scenario~": "3 v 3 from 6:22"
+     },
+     "was": "His mark: correct. The check asked for a row starting within 6 s of the one he saw; the same split is now told in one row from when it sets out or is first defended (R-510, R-512), so the check asks for the split and its numbers in the window he saw."
+    },
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "Men",
+      "at": [
+       298,
+       400
+      ]
+     },
+     "want": {
+      "size": 3,
+      "scenario~": "3 v 3 from 6:22"
+     },
+     "was": "His mark: correct. The check asked for a row starting within 6 s of the one he saw; the same split is now told in one row from when it sets out or is first defended (R-510, R-512), so the check asks for the split and its numbers in the window he saw."
+    }
+   ],
+   "retired_checks": [
     {
      "has": {
       "play": "split",
@@ -20183,8 +20485,8 @@
      "want": {
       "defenders": 5
      },
-     "open": true,
-     "why": "Men v hold 10:40: '5 players defending' (the engine reads 2, then 5 from 10:58)"
+     "why": "Men v hold 10:40: '5 players defending' (the engine reads 2, then 5 from 10:58)",
+     "held": "2026-11-17"
     }
    ]
   },
@@ -21111,8 +21413,8 @@
      "want": {
       "scenario~": "Earth Ele"
      },
-     "open": true,
-     "why": "Men v hold 18:20 (Classic, incorrect, numbers and who): 'earth ele is part of split'"
+     "why": "Men v hold 18:20 (Classic, incorrect, numbers and who): 'earth ele is part of split'",
+     "held": "2026-11-17"
     }
    ]
   },
@@ -21164,8 +21466,8 @@
      "want": {
       "size": 3
      },
-     "open": true,
-     "why": "Men v hold 18:56 (Classic, incorrect): '3 man split (earth ele, fire ele, 8 monk) defended by ranger, prot, rit, with eventual collapse by derv': the engine reads the three as a push by hold's main team, and one player on the split"
+     "why": "Men v hold 18:56 (Classic, incorrect): '3 man split (earth ele, fire ele, 8 monk) defended by ranger, prot, rit, with eventual collapse by derv': the engine reads the three as a push by hold's main team, and one player on the split",
+     "held": "2026-11-17"
     }
    ]
   },
@@ -21577,8 +21879,8 @@
        "Hammer"
       ]
      },
-     "open": true,
-     "why": "Men v hold 1:09 (Classic, missed): 'he leaves defence at 1:09 to rejoin mainteam (giving them player advantage) and then leaves mainteam to collapse/rejoin split at 1:59': the Hammer is not read as a defender while he stands off the split, so his leaving is not read. Put to him 2026-11-17"
+     "why": "Men v hold 1:09 (Classic, missed): 'he leaves defence at 1:09 to rejoin mainteam (giving them player advantage) and then leaves mainteam to collapse/rejoin split at 1:59': the Hammer is not read as a defender while he stands off the split, so his leaving is not read. Put to him 2026-11-17",
+     "held": "2026-11-17"
     }
    ]
   },
@@ -21618,8 +21920,8 @@
        "Hammer"
       ]
      },
-     "open": true,
-     "why": "Men v hold 5:18 (Classic, missed): 'missed important collapse by warrior on split through mid/collapse path'"
+     "why": "Men v hold 5:18 (Classic, missed): 'missed important collapse by warrior on split through mid/collapse path'",
+     "held": "2026-11-17"
     }
    ]
   },
@@ -21696,8 +21998,8 @@
      "want": {
       "scenario~": "Earth Ele"
      },
-     "open": true,
-     "why": "Men v hold 17:59 (Classic, missed): 'earth ele splits frontdoor after capping flag'"
+     "why": "Men v hold 17:59 (Classic, missed): 'earth ele splits frontdoor after capping flag'",
+     "held": "2026-11-17"
     }
    ]
   },
