@@ -1,7 +1,7 @@
 {
  "about": "The rows of Model > Game review (R-454, R-455, R-492): every situation the engine reads in each review game, with the engine's confidence that it is a decision, written by tools/golden/review.py export on the engine branch. Games with scheme 2 are graded his new way; the others are history (R-491). His marks are in game_review_marks.json, never here.",
- "generated": "2026-11-15",
- "engine": "e2197e4",
+ "generated": "2026-11-16",
+ "engine": "8e8e9ea",
  "games": [
   {
    "set": "w1",
@@ -18408,6 +18408,5930 @@
     }
    ],
    "selfcheck": []
+  },
+  {
+   "scheme": 2,
+   "set": "f1",
+   "part": 4,
+   "label": "game 4",
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "teams": [
+    "Men",
+    "RACK"
+   ],
+   "map": "Nomad's Isle",
+   "date": "2026-11-01",
+   "situations": [
+    {
+     "n": 1,
+     "id": "s:45cf6756-flag-1-0-0",
+     "kind": "flag",
+     "t0": 0,
+     "t1": 30,
+     "reads": "The opening. RACK single run (Hammer, handing it to Stand Mes); Men single run (Mes/A, handing it to Hammer A and Hammer B)",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "Men",
+       "t0": 0
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-flag-1-0-0",
+       "team": "Men",
+       "side": "",
+       "label": "single run",
+       "job": "Get the first flag in",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "id": "s:45cf6756-numbers-1-8-1",
+     "kind": "numbers",
+     "t0": 8,
+     "t1": 40,
+     "reads": "Men down on numbers in the main fight (7 v 8, the greater stand area), from a runner away; Men: stay (stay at the stand)",
+     "confidence": {
+      "band": "medium",
+      "why": "Steady when the engine's settings are moved a quarter either way. At half or double it hangs on: how close an enemy must be to the flagger to be pushing him (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 8
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-numbers-1-8-1",
+       "team": "Men",
+       "side": "down",
+       "label": "stay",
+       "job": "Hold the ground a player down and lose no more until it is level, or the base res",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "id": "s:45cf6756-split-2-36-3",
+     "kind": "split",
+     "t0": 36,
+     "t1": 68,
+     "reads": "RACK's split by the front door: two players (Ranger, 7 Monk) against 3 defending (Mes/A, Hammer A, 8 Monk)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of two or more of the engine's settings changes this reading. It hangs on: how long a player must be on the enemy's ground to be on a split (moved, the engine reads nothing here); how close players must stand to be in the same fight (moved, the engine reads nothing here); and 3 more of its settings."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "RACK",
+       "t0": 36
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 36
+      },
+      {
+       "play": "split",
+       "team": "RACK",
+       "t0": 36
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-split-2-36-3",
+       "team": "RACK",
+       "side": "attacker",
+       "label": "a player or more down",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         true,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "45cf6756-split-1-36-2",
+       "team": "Men",
+       "side": "defender",
+       "label": "add one",
+       "job": "Kill it or drive it out with the extra player, and lose no pit NPC for it",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         false,
+         "a split player dies"
+        ],
+        [
+         true,
+         "the split is gone within the visit"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "45cf6756-split-2-36-4",
+       "team": "RACK",
+       "side": "attacker's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: its damage can kill against their monks there, and theirs cannot",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 4,
+     "id": "s:45cf6756-flag-2-51-5",
+     "kind": "flag",
+     "t0": 51,
+     "t1": 231,
+     "reads": "Men double run (first runner Hammer B, capping the flag before; second runner Hammer A, handing it to Mes/A, back for this one); RACK single run (Mes/A)",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "RACK",
+       "t0": 51
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-flag-2-51-5",
+       "team": "RACK",
+       "side": "",
+       "label": "single run",
+       "job": "Kill or take ground with the extra player, and end no worse than a flag behind",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no worse than a flag behind at the end"
+        ],
+        [
+         false,
+         "more of theirs die at the main fight than of ours"
+        ],
+        [
+         false,
+         "ground taken"
+        ],
+        [
+         true,
+         "one of their NPCs dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 5,
+     "id": "s:45cf6756-push_flagger-1-68-6",
+     "kind": "push flagger",
+     "t0": 68,
+     "t1": 233,
+     "reads": "Men pushes RACK's flagger (Mes/A, carrying) with one player",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of two or more of the engine's settings changes this reading. It hangs on: how close players must stand to be in the same fight (moved, the engine reads something else here: other players counted, or another call); how long a push that follows the flagger into his team must last (moved, the engine reads something else here: other players counted, or another call); and 2 more of its settings."
+     },
+     "plays": [
+      {
+       "play": "push flagger",
+       "team": "Men",
+       "t0": 68
+      },
+      {
+       "play": "flagger pushed",
+       "team": "RACK",
+       "t0": 68
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-push_flagger-1-68-6",
+       "team": "Men",
+       "side": "",
+       "label": "",
+       "job": "Stop their flag, or make it 30% late",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "their flag is stopped"
+        ],
+        [
+         false,
+         "it arrives 30% or more later than usual"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "45cf6756-flagger_pushed-2-68-7",
+       "team": "RACK",
+       "side": "",
+       "label": "",
+       "job": "Get the flag in on time",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "the flag gets in, less than 30% late"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 6,
+     "id": "s:45cf6756-flag-1-87-8",
+     "kind": "flag",
+     "t0": 87,
+     "t1": 232,
+     "reads": "RACK single run (Mes/A); Men single run (Mes/A)",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "Men",
+       "t0": 87
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-flag-1-87-8",
+       "team": "Men",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         true,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 7,
+     "id": "s:45cf6756-split-2-92-10",
+     "kind": "split",
+     "t0": 92,
+     "t1": 122,
+     "reads": "RACK's split by the front door: one player (Ranger) against 2 defending (Hammer A, Mes/A)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of two or more of the engine's settings changes this reading. It hangs on: how long a player must be on the enemy's ground to be on a split (moved, the engine reads something else here: other players counted, or another call); how long a player at the edge of a fight is kept in it (moved, the engine reads something else here: other players counted, or another call); and 1 more of its settings."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "RACK",
+       "t0": 92
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 92
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-split-2-92-10",
+       "team": "RACK",
+       "side": "attacker",
+       "label": "a player or more down",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "45cf6756-split-1-92-9",
+       "team": "Men",
+       "side": "defender",
+       "label": "add one",
+       "job": "Kill it or drive it out with the extra player, and lose no pit NPC for it",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         false,
+         "a split player dies"
+        ],
+        [
+         true,
+         "the split is gone within the visit"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 8,
+     "id": "s:45cf6756-boost-2-177-11",
+     "kind": "boost",
+     "t0": 177,
+     "t1": 212,
+     "reads": "Men's boost is 30 s away; RACK: one runner (Mes/A); the rest fall back into the base",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "boost",
+       "team": "RACK",
+       "t0": 177
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-boost-2-177-11",
+       "team": "RACK",
+       "side": "",
+       "label": "run",
+       "job": "Deny their boost",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "their boost does not land"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 9,
+     "id": "s:45cf6756-split-2-198-15",
+     "kind": "split",
+     "t0": 198,
+     "t1": 224,
+     "reads": "RACK's split by the front door: two players (Ranger, Hammer) against 2 defending (Mes/A, 8 Monk)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of two or more of the engine's settings changes this reading. It hangs on: how long a player must be on the enemy's ground to be on a split (moved, the engine reads something else here: other players counted, or another call); how close players must stand to be in the same fight (moved, the engine reads something else here: other players counted, or another call); and 1 more of its settings."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "RACK",
+       "t0": 198
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 198
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-split-2-198-15",
+       "team": "RACK",
+       "side": "attacker",
+       "label": "even",
+       "job": "Take NPCs or kills",
+       "met": true,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         true,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "45cf6756-split-1-198-13",
+       "team": "Men",
+       "side": "defender",
+       "label": "mirror",
+       "job": "Hold it even: lose no pit NPC and no more players than the split does",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no more defenders die than split players"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 10,
+     "id": "s:45cf6756-push_flagger-2-198-14",
+     "kind": "push flagger",
+     "t0": 198,
+     "t1": 232,
+     "reads": "RACK pushes Men's flagger (Mes/A, carrying) with 3 players",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of two or more of the engine's settings changes this reading. It hangs on: how long a player must be on the enemy's ground to be on a split (moved, the engine reads something else here: other players counted, or another call); how close players must stand to be in the same fight (moved, the engine reads something else here: other players counted, or another call); and 2 more of its settings."
+     },
+     "plays": [
+      {
+       "play": "push flagger",
+       "team": "RACK",
+       "t0": 198
+      },
+      {
+       "play": "flagger pushed",
+       "team": "Men",
+       "t0": 198
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-push_flagger-2-198-14",
+       "team": "RACK",
+       "side": "",
+       "label": "",
+       "job": "Stop their flag, or make it 30% late",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "their flag is stopped"
+        ],
+        [
+         false,
+         "it arrives 30% or more later than usual"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "45cf6756-flagger_pushed-1-198-12",
+       "team": "Men",
+       "side": "",
+       "label": "",
+       "job": "Get the flag in on time, without losing a player for the help sent",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "the flag gets in, less than 30% late"
+        ],
+        [
+         true,
+         "nobody else of ours dies meanwhile"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 11,
+     "id": "s:45cf6756-split-2-222-17",
+     "kind": "split",
+     "t0": 222,
+     "t1": 250,
+     "reads": "RACK's split by the front door: one player (Ranger) against 2 defending (Hammer B, Mes/A); Hammer B collapse from the main fight; 2 (Hammer B, Mes/A) against one player: collapse by Hammer B from the main fight",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of two or more of the engine's settings changes this reading. It hangs on: how long a player must be in a fight before he counts in it (moved, the engine reads something else here: other players counted, or another call); how long a player must be on the enemy's ground to be on a split (moved, the engine reads something else here: other players counted, or another call); and 2 more of its settings."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "RACK",
+       "t0": 222
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 222
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-split-2-222-17",
+       "team": "RACK",
+       "side": "attacker",
+       "label": "collapsed on",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "45cf6756-split-1-222-16",
+       "team": "Men",
+       "side": "defender",
+       "label": "collapse",
+       "job": "Kill a split player before going back (what it cost at the main fight and in flags is beside it)",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "a split player dies during the collapse"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 12,
+     "id": "s:45cf6756-numbers-1-224-18",
+     "kind": "numbers",
+     "t0": 224,
+     "t1": 266,
+     "reads": "Men down on numbers in the main fight (5 v 7, RACK's front door; then 3 v 4 from 4:00), from players split elsewhere; Men: push in | RACK: retreat down the ladder (fall back into the base)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of two or more of the engine's settings changes this reading. It hangs on: how long a player must be in a fight before he counts in it (moved, the engine reads something else here: other players counted, or another call); how close players must stand to be in the same fight (moved, the engine reads something else here: other players counted, or another call); and 1 more of its settings."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 224
+      },
+      {
+       "play": "numbers",
+       "team": "RACK",
+       "t0": 224
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-numbers-1-224-18",
+       "team": "Men",
+       "side": "weak side",
+       "label": "push in",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "45cf6756-numbers-2-224-19",
+       "team": "RACK",
+       "side": "strong side",
+       "label": "retreat down the ladder",
+       "job": "Kill with the numbers while their players are away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 13,
+     "id": "s:45cf6756-numbers-2-268-21",
+     "kind": "numbers",
+     "t0": 268,
+     "t1": 372,
+     "reads": "RACK down on numbers in the main fight (7 v 8, RACK's front door), from kills; RACK: retreat down the ladder (fall back into the base) | Men: stay (stay on the enemy's side)",
+     "confidence": {
+      "band": "medium",
+      "why": "One of the engine's settings changes this reading when it is moved a quarter: how close a player must come to have joined a fight (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "RACK",
+       "t0": 268
+      },
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 268
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-numbers-2-268-21",
+       "team": "RACK",
+       "side": "down",
+       "label": "retreat down the ladder",
+       "job": "Reach cover a player down without losing another",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ],
+        [
+         true,
+         "no NPC lost"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "45cf6756-numbers-1-268-20",
+       "team": "Men",
+       "side": "up",
+       "label": "stay",
+       "job": "Turn the extra player into a kill before the numbers are level",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 14,
+     "id": "s:45cf6756-boost-2-297-22",
+     "kind": "boost",
+     "t0": 297,
+     "t1": 342,
+     "reads": "Men's boost is 30 s away; RACK: no runner; the rest fall back into the base",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "boost",
+       "team": "RACK",
+       "t0": 297
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-boost-2-297-22",
+       "team": "RACK",
+       "side": "",
+       "label": "concede",
+       "job": "Concede the boost for kills",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 15,
+     "id": "s:45cf6756-base_res-1-340-23",
+     "kind": "base res",
+     "t0": 340,
+     "t1": 390,
+     "reads": "Men has 8 in RACK's base at the base res (7 defending, 1 coming back): 8 stay",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "base res",
+       "team": "Men",
+       "t0": 340
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-base_res-1-340-23",
+       "team": "Men",
+       "side": "",
+       "label": "stayed through the res",
+       "job": "Be out, or set for the fight, when they res",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies in the 30 s after the res"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 16,
+     "id": "s:45cf6756-pinned-2-360-24",
+     "kind": "pinned",
+     "t0": 360,
+     "t1": 400,
+     "reads": "RACK is held in its own base or pit by Men's main team (pit NPCs alive at 6:00: 2 of 2 knights, 1 of 2 pit archers, the Bodyguard alive; base res in 120 s)",
+     "confidence": {
+      "band": "medium",
+      "why": "Steady when the engine's settings are moved a quarter either way. At half or double it hangs on: how long in the pit counts as being in the pit (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "pinned",
+       "team": "RACK",
+       "t0": 360
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-pinned-2-360-24",
+       "team": "RACK",
+       "side": "",
+       "label": "",
+       "job": "Lose no player and no NPC while held in, or break out",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         false,
+         "it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 17,
+     "id": "s:45cf6756-pinned-2-404-25",
+     "kind": "pinned",
+     "t0": 404,
+     "t1": 440,
+     "reads": "RACK is held in its own base or pit by Men's main team (pit NPCs alive at 6:44: 2 of 2 knights, 1 of 2 pit archers, the Bodyguard alive; lost while held: a knight at 7:06; base res in 76 s)",
+     "confidence": {
+      "band": "medium",
+      "why": "One of the engine's settings changes this reading when it is moved a quarter: how long in the pit counts as being in the pit (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "pinned",
+       "team": "RACK",
+       "t0": 404
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-pinned-2-404-25",
+       "team": "RACK",
+       "side": "",
+       "label": "",
+       "job": "Lose no player and no NPC while held in, or break out",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         false,
+         "it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 18,
+     "id": "s:45cf6756-pinned-2-460-26",
+     "kind": "pinned",
+     "t0": 460,
+     "t1": 500,
+     "reads": "RACK is held in its own base or pit by Men's main team (pit NPCs alive at 7:40: 1 of 2 knights, 1 of 2 pit archers, the Bodyguard alive; lost while held: a knight at 7:54; base res in 20 s)",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "pinned",
+       "team": "RACK",
+       "t0": 460
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-pinned-2-460-26",
+       "team": "RACK",
+       "side": "",
+       "label": "",
+       "job": "Lose no player and no NPC while held in, or break out",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         false,
+         "it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 19,
+     "id": "s:45cf6756-pinned-2-504-27",
+     "kind": "pinned",
+     "t0": 504,
+     "t1": 652,
+     "reads": "RACK is held in its own base or pit by Men's main team (pit NPCs alive at 8:24: 0 of 2 knights, 1 of 2 pit archers, the Bodyguard alive; lost while held: a pit archer at 10:40; base res in 96 s)",
+     "confidence": {
+      "band": "medium",
+      "why": "One of the engine's settings changes this reading when it is moved a quarter: how long in the pit counts as being in the pit (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "pinned",
+       "team": "RACK",
+       "t0": 504
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-pinned-2-504-27",
+       "team": "RACK",
+       "side": "",
+       "label": "",
+       "job": "Lose no player and no NPC while held in, or break out",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         false,
+         "it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 20,
+     "id": "s:45cf6756-numbers-1-642-28",
+     "kind": "numbers",
+     "t0": 642,
+     "t1": 700,
+     "reads": "Men up on numbers in the main fight (8 v 7, RACK's pit), from players split elsewhere; Men: fall out",
+     "confidence": {
+      "band": "medium",
+      "why": "Steady when the engine's settings are moved a quarter either way. At half or double it hangs on: how long a player must be in a fight before he counts in it (moved, the engine reads something else here: other players counted, or another call); how far a team must move for it to have taken or given ground (moved, the engine reads something else here: other players counted, or another call); and 1 more of its settings."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 642
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-numbers-1-642-28",
+       "team": "Men",
+       "side": "strong side",
+       "label": "fall out",
+       "job": "Kill with the numbers while their players are away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 21,
+     "id": "s:45cf6756-boost-2-657-29",
+     "kind": "boost",
+     "t0": 657,
+     "t1": 702,
+     "reads": "Men's boost is 30 s away; RACK: no runner; the rest fall back into the base",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "boost",
+       "team": "RACK",
+       "t0": 657
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-boost-2-657-29",
+       "team": "RACK",
+       "side": "",
+       "label": "concede",
+       "job": "Concede the boost for kills",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 22,
+     "id": "s:45cf6756-split-2-714-31",
+     "kind": "split",
+     "t0": 714,
+     "t1": 734,
+     "reads": "RACK's split by the front door: one player (Ranger) against 1 defending (Mes/A)",
+     "confidence": {
+      "band": "medium",
+      "why": "Steady when the engine's settings are moved a quarter either way. At half or double it hangs on: how close players must stand to be in the same fight (moved, the engine reads something else here: other players counted, or another call); how long a player at the edge of a fight is kept in it (moved, the engine reads something else here: other players counted, or another call); and 2 more of its settings."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "RACK",
+       "t0": 714
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 714
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-split-2-714-31",
+       "team": "RACK",
+       "side": "attacker",
+       "label": "1 v 1, the defender not a monk",
+       "job": "Take NPCs or kills",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "45cf6756-split-1-714-30",
+       "team": "Men",
+       "side": "defender",
+       "label": "mirror",
+       "job": "Hold it even: lose no pit NPC and no more players than the split does",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no more defenders die than split players"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 23,
+     "id": "s:45cf6756-numbers-1-726-32",
+     "kind": "numbers",
+     "t0": 726,
+     "t1": 746,
+     "reads": "Men down on numbers in the main fight (6 v 7, RACK's front door), from players split elsewhere; Men: stay (stay on the enemy's side) | RACK: retreat down the ladder (retreat to the pit); 4 damage against 3 monks",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of two or more of the engine's settings changes this reading. It hangs on: how far a player may drift and still be in the fight he was in (moved, the engine reads nothing here); how long a player at the edge of a fight is kept in it (moved, the engine reads nothing here); and 1 more of its settings."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 726
+      },
+      {
+       "play": "numbers",
+       "team": "RACK",
+       "t0": 726
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-numbers-1-726-32",
+       "team": "Men",
+       "side": "weak side",
+       "label": "stay",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "45cf6756-numbers-2-726-33",
+       "team": "RACK",
+       "side": "strong side",
+       "label": "retreat down the ladder",
+       "job": "Keep them busy and lose nobody (a kill is not expected of it)",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 24,
+     "id": "s:45cf6756-split-2-732-35",
+     "kind": "split",
+     "t0": 732,
+     "t1": 748,
+     "reads": "RACK's split by the front door: one player (Ranger) against 0 defending",
+     "confidence": {
+      "band": "medium",
+      "why": "One of the engine's settings changes this reading when it is moved a quarter: how long a player must be in a fight before he counts in it (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "RACK",
+       "t0": 732
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 732
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-split-2-732-35",
+       "team": "RACK",
+       "side": "attacker",
+       "label": "undefended",
+       "job": "Take NPCs",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "45cf6756-split-1-732-34",
+       "team": "Men",
+       "side": "defender",
+       "label": "no answer",
+       "job": "Win elsewhere before the split costs more than it gains",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": true,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 25,
+     "id": "s:45cf6756-split-2-746-37",
+     "kind": "split",
+     "t0": 746,
+     "t1": 792,
+     "reads": "RACK's split by the front door: one player (Ranger) against 1 defending (Mes/A); numbers along the way: 1 v 1 from 12:26, 3 v 3 from 12:48",
+     "confidence": {
+      "band": "medium",
+      "why": "One of the engine's settings changes this reading when it is moved a quarter: how long a player must be in a fight before he counts in it (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "RACK",
+       "t0": 746
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 746
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-split-2-746-37",
+       "team": "RACK",
+       "side": "attacker",
+       "label": "1 v 1, the defender not a monk",
+       "job": "Take NPCs or kills",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "45cf6756-split-1-746-36",
+       "team": "Men",
+       "side": "defender",
+       "label": "mirror",
+       "job": "Hold it even: lose no pit NPC and no more players than the split does",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no more defenders die than split players"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 26,
+     "id": "s:45cf6756-boost-2-777-38",
+     "kind": "boost",
+     "t0": 777,
+     "t1": 822,
+     "reads": "Men's boost is 30 s away; RACK: no runner; the rest fall back into the base",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "boost",
+       "team": "RACK",
+       "t0": 777
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-boost-2-777-38",
+       "team": "RACK",
+       "side": "",
+       "label": "concede",
+       "job": "Concede the boost for kills",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 27,
+     "id": "s:45cf6756-split-2-790-40",
+     "kind": "split",
+     "t0": 790,
+     "t1": 806,
+     "reads": "RACK's split by the front door: two players (Hammer, Ranger) against 4 defending (Hammer B, Mes/A, Stand Mes, 8 Monk); Hammer B, Stand Mes, 8 Monk collapse from the main fight; 4 (Hammer B, Mes/A, Stand Mes, 8 Monk) against two players: collapse by Hammer B, Stand Mes, 8 Monk from the main fight",
+     "confidence": {
+      "band": "medium",
+      "why": "One of the engine's settings changes this reading when it is moved a quarter: how long a player must be in a fight before he counts in it (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "RACK",
+       "t0": 790
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 790
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-split-2-790-40",
+       "team": "RACK",
+       "side": "attacker",
+       "label": "collapsed on",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "45cf6756-split-1-790-39",
+       "team": "Men",
+       "side": "defender",
+       "label": "collapse",
+       "job": "Kill a split player before going back (what it cost at the main fight and in flags is beside it)",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a split player dies during the collapse"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 28,
+     "id": "s:45cf6756-numbers-2-806-42",
+     "kind": "numbers",
+     "t0": 806,
+     "t1": 852,
+     "reads": "RACK down on numbers in the main fight (7 v 8, RACK's front door; then 6 v 8 from 13:46), from kills; RACK: retreat down the ladder (fall back into the base) | Men: stay (stay on the enemy's side)",
+     "confidence": {
+      "band": "medium",
+      "why": "One of the engine's settings changes this reading when it is moved a quarter: how close players must stand to be in the same fight (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "RACK",
+       "t0": 806
+      },
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 806
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-numbers-2-806-42",
+       "team": "RACK",
+       "side": "down",
+       "label": "retreat down the ladder",
+       "job": "Reach cover a player down without losing another",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody of ours dies"
+        ],
+        [
+         true,
+         "no NPC lost"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "45cf6756-numbers-1-806-41",
+       "team": "Men",
+       "side": "up",
+       "label": "stay",
+       "job": "Turn the extra player into a kill before the numbers are level",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 29,
+     "id": "s:45cf6756-base_res-1-820-43",
+     "kind": "base res",
+     "t0": 820,
+     "t1": 870,
+     "reads": "Men has 8 in RACK's base at the base res (6 defending, 1 coming back): 7 stay, 1 leave as the res lands or die",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "base res",
+       "team": "Men",
+       "t0": 820
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-base_res-1-820-43",
+       "team": "Men",
+       "side": "",
+       "label": "stayed through the res",
+       "job": "Be out, or set for the fight, when they res",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies in the 30 s after the res"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 30,
+     "id": "s:45cf6756-split-2-878-45",
+     "kind": "split",
+     "t0": 878,
+     "t1": 920,
+     "reads": "RACK's split by the front door: one player (Ranger) against 1 defending (Mes/A)",
+     "confidence": {
+      "band": "medium",
+      "why": "Steady when the engine's settings are moved a quarter either way. At half or double it hangs on: how close players must stand to be in the same fight (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "RACK",
+       "t0": 878
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 878
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-split-2-878-45",
+       "team": "RACK",
+       "side": "attacker",
+       "label": "1 v 1, the defender not a monk",
+       "job": "Take NPCs or kills",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "45cf6756-split-1-878-44",
+       "team": "Men",
+       "side": "defender",
+       "label": "mirror",
+       "job": "Hold it even: lose no pit NPC and no more players than the split does",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no more defenders die than split players"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 31,
+     "id": "s:45cf6756-boost-2-897-46",
+     "kind": "boost",
+     "t0": 897,
+     "t1": 942,
+     "reads": "Men's boost is 30 s away; RACK: no runner; the rest fall back into the base",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "boost",
+       "team": "RACK",
+       "t0": 897
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-boost-2-897-46",
+       "team": "RACK",
+       "side": "",
+       "label": "concede",
+       "job": "Concede the boost for kills",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 32,
+     "id": "s:45cf6756-numbers-1-920-47",
+     "kind": "numbers",
+     "t0": 920,
+     "t1": 970,
+     "reads": "Men up on numbers in the main fight (8 v 6, RACK's front door), from kills; Men: stay (stay on the enemy's side) | RACK: retreat down the ladder (fall back into the base)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of two or more of the engine's settings changes this reading. It hangs on: how long a player must be in a fight before he counts in it (moved, the engine reads something else here: other players counted, or another call); how close players must stand to be in the same fight (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 920
+      },
+      {
+       "play": "numbers",
+       "team": "RACK",
+       "t0": 920
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-numbers-1-920-47",
+       "team": "Men",
+       "side": "up",
+       "label": "stay",
+       "job": "Turn the extra player into a kill before the numbers are level",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "45cf6756-numbers-2-920-48",
+       "team": "RACK",
+       "side": "down",
+       "label": "retreat down the ladder",
+       "job": "Reach cover a player down without losing another",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody of ours dies"
+        ],
+        [
+         true,
+         "no NPC lost"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 33,
+     "id": "s:45cf6756-base_res-1-940-49",
+     "kind": "base res",
+     "t0": 940,
+     "t1": 990,
+     "reads": "Men has 8 in RACK's base at the base res (6 defending, 2 coming back): 8 stay",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "base res",
+       "team": "Men",
+       "t0": 940
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-base_res-1-940-49",
+       "team": "Men",
+       "side": "",
+       "label": "stayed through the res",
+       "job": "Be out, or set for the fight, when they res",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies in the 30 s after the res"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 34,
+     "id": "s:45cf6756-numbers-1-1010-50",
+     "kind": "numbers",
+     "t0": 1010,
+     "t1": 1050,
+     "reads": "Men up on numbers in the main fight (8 v 6, RACK's pit; then 7 v 6 from 17:08), from players on their way to it (in neither fight); Men: fall out | RACK: retreat down the ladder (fall back into the base)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of two or more of the engine's settings changes this reading. It hangs on: how far a team must move for it to have taken or given ground (moved, the engine reads something else here: other players counted, or another call); how long a fight away from the main fight must last (moved, the engine reads something else here: other players counted, or another call); and 3 more of its settings."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 1010
+      },
+      {
+       "play": "numbers",
+       "team": "RACK",
+       "t0": 1010
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-numbers-1-1010-50",
+       "team": "Men",
+       "side": "up",
+       "label": "fall out",
+       "job": "Reset without giving anything back",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ],
+        [
+         true,
+         "no NPC lost"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "45cf6756-numbers-2-1010-51",
+       "team": "RACK",
+       "side": "down",
+       "label": "retreat down the ladder",
+       "job": "Reach cover a player down without losing another",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody of ours dies"
+        ],
+        [
+         true,
+         "no NPC lost"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 35,
+     "id": "s:45cf6756-boost-2-1017-52",
+     "kind": "boost",
+     "t0": 1017,
+     "t1": 1062,
+     "reads": "Men's boost is 30 s away; RACK: no runner; the rest push up",
+     "confidence": {
+      "band": "medium",
+      "why": "Steady when the engine's settings are moved a quarter either way. At half or double it hangs on: how long in the pit counts as being in the pit (moved, the engine reads nothing here)."
+     },
+     "plays": [
+      {
+       "play": "boost",
+       "team": "RACK",
+       "t0": 1017
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-boost-2-1017-52",
+       "team": "RACK",
+       "side": "",
+       "label": "concede",
+       "job": "Concede the boost for kills",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 36,
+     "id": "s:45cf6756-numbers-1-1084-53",
+     "kind": "numbers",
+     "t0": 1084,
+     "t1": 1130,
+     "reads": "Men up on numbers in the main fight (6 v 5, RACK's front door; then 5 v 4 from 18:20), from players split elsewhere; Men: stay (stay on the enemy's side) | RACK: retreat down the ladder (fall back into the base)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of two or more of the engine's settings changes this reading. It hangs on: how long a player must be on the enemy's ground to be on a split (moved, the engine reads something else here: other players counted, or another call); how far a team must move for it to have taken or given ground (moved, the engine reads something else here: other players counted, or another call); and 1 more of its settings."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 1084
+      },
+      {
+       "play": "numbers",
+       "team": "RACK",
+       "t0": 1084
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-numbers-1-1084-53",
+       "team": "Men",
+       "side": "strong side",
+       "label": "stay",
+       "job": "Kill with the numbers while their players are away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "45cf6756-numbers-2-1084-54",
+       "team": "RACK",
+       "side": "weak side",
+       "label": "retreat down the ladder",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 37,
+     "id": "s:45cf6756-split-2-1086-56",
+     "kind": "split",
+     "t0": 1086,
+     "t1": 1130,
+     "reads": "RACK's split by the back door: three players (Mes/A, 8 Monk, Hammer) against 2 defending (Mes/A, 8 Monk); numbers along the way: 3 v 2 from 18:06, 4 v 3 from 18:28",
+     "confidence": {
+      "band": "medium",
+      "why": "One of the engine's settings changes this reading when it is moved a quarter: how far away a player hitting or casting into a fight still counts in it (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "RACK",
+       "t0": 1086
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 1086
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-split-2-1086-56",
+       "team": "RACK",
+       "side": "attacker",
+       "label": "a player or more up",
+       "job": "Kill or take NPCs",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "45cf6756-split-1-1086-55",
+       "team": "Men",
+       "side": "defender",
+       "label": "a player down",
+       "job": "Delay: keep the split off the pit NPCs and stay alive",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no defender dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 38,
+     "id": "s:45cf6756-split-2-1128-58",
+     "kind": "split",
+     "t0": 1128,
+     "t1": 1148,
+     "reads": "RACK's split by the back door: three players (Mes/A, Ranger, 8 Monk) against 5 defending (Hammer A, Hammer B, Ranger, Mes/A, 8 Monk); Hammer A, Hammer B, Ranger collapse from the main fight; 5 (Hammer A, Hammer B, Ranger, Mes/A, 8 Monk) against three players: collapse by Hammer A, Hammer B, Ranger from the main fight",
+     "confidence": {
+      "band": "medium",
+      "why": "Steady when the engine's settings are moved a quarter either way. At half or double it hangs on: how long a player must be in a fight before he counts in it (moved, the engine reads something else here: other players counted, or another call); how close players must stand to be in the same fight (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "RACK",
+       "t0": 1128
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 1128
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-split-2-1128-58",
+       "team": "RACK",
+       "side": "attacker",
+       "label": "collapsed on",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "45cf6756-split-1-1128-57",
+       "team": "Men",
+       "side": "defender",
+       "label": "collapse",
+       "job": "Kill a split player before going back (what it cost at the main fight and in flags is beside it)",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "a split player dies during the collapse"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 39,
+     "id": "s:45cf6756-split-1-1132-59",
+     "kind": "split",
+     "t0": 1132,
+     "t1": 1148,
+     "reads": "Men's split by the front door: two players (Stand Mes, 7 Monk) against 2 defending (Stand Mes, 7 Monk); 1 damage against 1 monks",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of two or more of the engine's settings changes this reading. It hangs on: how long a player must be in a fight before he counts in it (moved, the engine reads something else here: other players counted, or another call); how long a player must be on the enemy's ground to be on a split (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 1132
+      },
+      {
+       "play": "split",
+       "team": "RACK",
+       "t0": 1132
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 1132
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-split-1-1132-59",
+       "team": "Men",
+       "side": "attacker",
+       "label": "held by monks",
+       "job": "Hold the monks there and lose nobody; NPCs are a bonus (a kill is not expected of it)",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "45cf6756-split-2-1132-61",
+       "team": "RACK",
+       "side": "defender",
+       "label": "mirror",
+       "job": "Hold it even: lose no pit NPC and no more players than the split does",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         false,
+         "no more defenders die than split players"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "45cf6756-split-1-1132-60",
+       "team": "Men",
+       "side": "attacker's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: they have no monk there",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 40,
+     "id": "s:45cf6756-split-1-1146-62",
+     "kind": "split",
+     "t0": 1146,
+     "t1": 1156,
+     "reads": "Men's split by the front door: two players (Stand Mes, 7 Monk) against 0 defending",
+     "confidence": {
+      "band": "medium",
+      "why": "One of the engine's settings changes this reading when it is moved a quarter: how long a player must be in a fight before he counts in it (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 1146
+      },
+      {
+       "play": "split",
+       "team": "RACK",
+       "t0": 1146
+      }
+     ],
+     "calls": [
+      {
+       "id": "45cf6756-split-1-1146-62",
+       "team": "Men",
+       "side": "attacker",
+       "label": "undefended",
+       "job": "Take NPCs",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "an NPC taken"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "45cf6756-split-2-1146-63",
+       "team": "RACK",
+       "side": "defender",
+       "label": "no answer",
+       "job": "Win elsewhere before the split costs more than it gains",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": true,
+       "draft": true
+      }
+     ]
+    }
+   ],
+   "selfcheck": []
+  },
+  {
+   "scheme": 2,
+   "set": "f1",
+   "part": 5,
+   "label": "game 5",
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "teams": [
+    "Men",
+    "hold"
+   ],
+   "map": "Isle of Meditation",
+   "date": "2026-11-01",
+   "situations": [
+    {
+     "n": 1,
+     "id": "s:572c2f95-flag-2-0-0",
+     "kind": "flag",
+     "t0": 0,
+     "t1": 87,
+     "reads": "The opening. Men double run (first runner AoB Derv, handing it to Hammer; second runner Ritualist 1, back for the next flag); hold single run (Earth Ele); left back for the next flag: Men's AoB Derv",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "hold",
+       "t0": 0
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-flag-2-0-0",
+       "team": "hold",
+       "side": "",
+       "label": "single run",
+       "job": "Kill or take ground with the extra player, and end no worse than a flag behind",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no worse than a flag behind at the end"
+        ],
+        [
+         false,
+         "more of theirs die at the main fight than of ours"
+        ],
+        [
+         false,
+         "ground taken"
+        ],
+        [
+         true,
+         "one of their NPCs dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 2,
+     "id": "s:572c2f95-flag-1-15-1",
+     "kind": "flag",
+     "t0": 15,
+     "t1": 87,
+     "reads": "The opening. hold single run (Earth Ele); Men stays",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "Men",
+       "t0": 15
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-flag-1-15-1",
+       "team": "Men",
+       "side": "",
+       "label": "stay",
+       "job": "Kill with the extra player while their runner is away, or their flag does not get in",
+       "met": true,
+       "tests": [
+        [
+         false,
+         "more of theirs die at the main fight than of ours"
+        ],
+        [
+         true,
+         "their flag does not get in"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 3,
+     "id": "s:572c2f95-numbers-1-24-2",
+     "kind": "numbers",
+     "t0": 24,
+     "t1": 46,
+     "reads": "Men down on numbers in the main fight (4 v 5, the greater stand area), from players split elsewhere; Men: stay (stay at the stand) | hold: stay (stay at the stand); 3 damage against 2 monks",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of two or more of the engine's settings changes this reading. It hangs on: how close players must stand to be in the same fight (moved, the engine reads nothing here); how far a player may drift and still be in the fight he was in (moved, the engine reads nothing here)."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 24
+      },
+      {
+       "play": "numbers",
+       "team": "hold",
+       "t0": 24
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-numbers-1-24-2",
+       "team": "Men",
+       "side": "weak side",
+       "label": "stay",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-numbers-2-24-3",
+       "team": "hold",
+       "side": "strong side",
+       "label": "stay",
+       "job": "Keep them busy and lose nobody (a kill is not expected of it)",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 4,
+     "id": "s:572c2f95-numbers-1-48-4",
+     "kind": "numbers",
+     "t0": 48,
+     "t1": 78,
+     "reads": "Men up on numbers in the main fight (5 v 4, the greater stand area), from players split elsewhere; Men: push in; 3 damage against 2 monks | hold: stay (stay on their side)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of two or more of the engine's settings changes this reading. It hangs on: how close players must stand to be in the same fight (moved, the engine reads something else here: other players counted, or another call); how far a player may drift and still be in the fight he was in (moved, the engine reads something else here: other players counted, or another call); and 2 more of its settings."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 48
+      },
+      {
+       "play": "numbers",
+       "team": "hold",
+       "t0": 48
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-numbers-1-48-4",
+       "team": "Men",
+       "side": "strong side",
+       "label": "push in",
+       "job": "Keep them busy and lose nobody (a kill is not expected of it)",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "572c2f95-numbers-2-48-7",
+       "team": "hold",
+       "side": "weak side",
+       "label": "stay",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 5,
+     "id": "s:572c2f95-split-2-48-8",
+     "kind": "split",
+     "t0": 48,
+     "t1": 168,
+     "reads": "hold's split by the front door: three players (Fire Ele, Air Ele, 8 Monk) against 1 defending (Ranger); numbers along the way: 3 v 1 from 0:48, 3 v 2 from 1:40, 3 v 3 from 2:26",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of two or more of the engine's settings changes this reading. It hangs on: how close players must stand to be in the same fight (moved, the engine reads something else here: other players counted, or another call); how long a player must be in a fight before he counts in it (moved, the engine reads something else here: other players counted, or another call); and 1 more of its settings."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "hold",
+       "t0": 48
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 48
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 48
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-split-2-48-8",
+       "team": "hold",
+       "side": "attacker",
+       "label": "a player or more up",
+       "job": "Kill or take NPCs",
+       "met": true,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         true,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-split-1-48-5",
+       "team": "Men",
+       "side": "defender",
+       "label": "one defender",
+       "job": "Delay: keep the split off the pit NPCs and stay alive",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no defender dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-split-1-48-6",
+       "team": "Men",
+       "side": "defender's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: its damage can kill against their monks there, and theirs cannot",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 6,
+     "id": "s:572c2f95-numbers-1-86-9",
+     "kind": "numbers",
+     "t0": 86,
+     "t1": 128,
+     "reads": "Men up on numbers in the main fight (6 v 5, hold's front door), from players split elsewhere; Men: stay (stay on the enemy's side) | hold: retreat down the ladder (retreat to the pit)",
+     "confidence": {
+      "band": "medium",
+      "why": "One of the engine's settings changes this reading when it is moved a quarter: how close players must stand to be in the same fight (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 86
+      },
+      {
+       "play": "numbers",
+       "team": "hold",
+       "t0": 86
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-numbers-1-86-9",
+       "team": "Men",
+       "side": "strong side",
+       "label": "stay",
+       "job": "Kill with the numbers while their players are away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-numbers-2-86-10",
+       "team": "hold",
+       "side": "weak side",
+       "label": "retreat down the ladder",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 7,
+     "id": "s:572c2f95-boost-2-106-11",
+     "kind": "boost",
+     "t0": 106,
+     "t1": 141,
+     "reads": "Men's boost is 30 s away; hold: one runner (Earth Ele); the rest retreat to the pit",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "boost",
+       "team": "hold",
+       "t0": 106
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-boost-2-106-11",
+       "team": "hold",
+       "side": "",
+       "label": "run",
+       "job": "Deny their boost",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "their boost does not land"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 8,
+     "id": "s:572c2f95-pinned-2-108-12",
+     "kind": "pinned",
+     "t0": 108,
+     "t1": 140,
+     "reads": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 1:48: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard alive; base res in 12 s)",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "pinned",
+       "team": "hold",
+       "t0": 108
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-pinned-2-108-12",
+       "team": "hold",
+       "side": "",
+       "label": "",
+       "job": "Lose no player and no NPC while held in, or break out",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         true,
+         "it breaks out having lost no player and no pit NPC first (it breaks out at 2:20, having lost nothing; a break-out is half its living players or more, four at least, out past its doors)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 9,
+     "id": "s:572c2f95-flag-1-127-13",
+     "kind": "flag",
+     "t0": 127,
+     "t1": 189,
+     "reads": "hold single run (Earth Ele); Men stays",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "Men",
+       "t0": 127
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-flag-1-127-13",
+       "team": "Men",
+       "side": "",
+       "label": "stay",
+       "job": "Kill with the extra player while their runner is away, or their flag does not get in",
+       "met": true,
+       "tests": [
+        [
+         false,
+         "more of theirs die at the main fight than of ours"
+        ],
+        [
+         true,
+         "their flag does not get in"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 10,
+     "id": "s:572c2f95-numbers-1-150-14",
+     "kind": "numbers",
+     "t0": 150,
+     "t1": 182,
+     "reads": "Men down on numbers in the main fight (4 v 5, hold's front door), from players split elsewhere; Men: stay (stay at the stand) | hold: stay (stay at the stand)",
+     "confidence": {
+      "band": "medium",
+      "why": "Steady when the engine's settings are moved a quarter either way. At half or double it hangs on: how close players must stand to be in the same fight (moved, the engine reads nothing here)."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 150
+      },
+      {
+       "play": "numbers",
+       "team": "hold",
+       "t0": 150
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-numbers-1-150-14",
+       "team": "Men",
+       "side": "weak side",
+       "label": "stay",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-numbers-2-150-15",
+       "team": "hold",
+       "side": "strong side",
+       "label": "stay",
+       "job": "Kill with the numbers while their players are away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 11,
+     "id": "s:572c2f95-split-2-166-17",
+     "kind": "split",
+     "t0": 166,
+     "t1": 238,
+     "reads": "hold's split by the front door: three players (Fire Ele, 8 Monk, Air Ele) against 0 defending",
+     "confidence": {
+      "band": "medium",
+      "why": "Steady when the engine's settings are moved a quarter either way. At half or double it hangs on: how big a jump in position starts the reading again (a wipe and a base res) (moved, the engine reads something else here: other players counted, or another call); how close players must stand to be in the same fight (moved, the engine reads something else here: other players counted, or another call); and 1 more of its settings."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "hold",
+       "t0": 166
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 166
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-split-2-166-17",
+       "team": "hold",
+       "side": "attacker",
+       "label": "undefended",
+       "job": "Take NPCs",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "an NPC taken"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-split-1-166-16",
+       "team": "Men",
+       "side": "defender",
+       "label": "no answer",
+       "job": "Win elsewhere before the split costs more than it gains",
+       "met": true,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         true,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": true,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 12,
+     "id": "s:572c2f95-push_flagger-1-184-19",
+     "kind": "push flagger",
+     "t0": 184,
+     "t1": 189,
+     "reads": "Men pushes hold's flagger (Earth Ele, carrying) with its main team",
+     "confidence": {
+      "band": "medium",
+      "why": "Steady when the engine's settings are moved a quarter either way. At half or double it hangs on: how close an enemy must be to the flagger to be pushing him (moved, the engine reads something else here: other players counted, or another call); how close players must stand to be in the same fight (moved, the engine reads nothing here)."
+     },
+     "plays": [
+      {
+       "play": "push flagger",
+       "team": "Men",
+       "t0": 184
+      },
+      {
+       "play": "flagger pushed",
+       "team": "hold",
+       "t0": 184
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-push_flagger-1-184-19",
+       "team": "Men",
+       "side": "",
+       "label": "",
+       "job": "Stop their flag, or make it 30% late",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "their flag is stopped"
+        ],
+        [
+         false,
+         "it arrives 30% or more later than usual"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-flagger_pushed-2-184-20",
+       "team": "hold",
+       "side": "",
+       "label": "",
+       "job": "Get the flag in on time",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "the flag gets in, less than 30% late"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 13,
+     "id": "s:572c2f95-numbers-1-184-18",
+     "kind": "numbers",
+     "t0": 184,
+     "t1": 210,
+     "reads": "Men up on numbers in the main fight (6 v 5, the greater stand area), from players split elsewhere; Men: push in | hold: retreat down the ladder (fall back into the base)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of two or more of the engine's settings changes this reading. It hangs on: how far a player may drift and still be in the fight he was in (moved, the engine reads something else here: other players counted, or another call); how far away a player hitting or casting into a fight still counts in it (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 184
+      },
+      {
+       "play": "numbers",
+       "team": "hold",
+       "t0": 184
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-numbers-1-184-18",
+       "team": "Men",
+       "side": "strong side",
+       "label": "push in",
+       "job": "Kill with the numbers while their players are away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-numbers-2-184-21",
+       "team": "hold",
+       "side": "weak side",
+       "label": "retreat down the ladder",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 14,
+     "id": "s:572c2f95-push_flagger-2-192-23",
+     "kind": "push flagger",
+     "t0": 192,
+     "t1": 194,
+     "reads": "hold pushes Men's flagger (Ritualist 1, carrying) with one player",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of two or more of the engine's settings changes this reading. It hangs on: how close players must stand to be in the same fight (moved, the engine reads nothing here); how many team mates around the flagger make it a fight and not a push on him (moved, the engine reads nothing here)."
+     },
+     "plays": [
+      {
+       "play": "push flagger",
+       "team": "hold",
+       "t0": 192
+      },
+      {
+       "play": "flagger pushed",
+       "team": "Men",
+       "t0": 192
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-push_flagger-2-192-23",
+       "team": "hold",
+       "side": "",
+       "label": "",
+       "job": "Stop their flag, or make it 30% late",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "their flag is stopped"
+        ],
+        [
+         false,
+         "it arrives 30% or more later than usual"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-flagger_pushed-1-192-22",
+       "team": "Men",
+       "side": "",
+       "label": "",
+       "job": "Get the flag in on time",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "the flag gets in, less than 30% late"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 15,
+     "id": "s:572c2f95-pinned-2-220-24",
+     "kind": "pinned",
+     "t0": 220,
+     "t1": 244,
+     "reads": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 3:40: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard alive; lost while held: a knight at 3:41, a knight at 3:41; base res in 20 s)",
+     "confidence": {
+      "band": "medium",
+      "why": "Steady when the engine's settings are moved a quarter either way. At half or double it hangs on: how long in the pit counts as being in the pit (moved, the engine reads nothing here)."
+     },
+     "plays": [
+      {
+       "play": "pinned",
+       "team": "hold",
+       "t0": 220
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-pinned-2-220-24",
+       "team": "hold",
+       "side": "",
+       "label": "",
+       "job": "Lose no player and no NPC while held in, or break out",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         false,
+         "it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 16,
+     "id": "s:572c2f95-boost-2-226-25",
+     "kind": "boost",
+     "t0": 226,
+     "t1": 261,
+     "reads": "Men's boost is 30 s away; hold: one runner (Mesmer, handing it to Earth Ele); the rest fall back into the base",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "boost",
+       "team": "hold",
+       "t0": 226
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-boost-2-226-25",
+       "team": "hold",
+       "side": "",
+       "label": "run",
+       "job": "Deny their boost",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "their boost does not land"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 17,
+     "id": "s:572c2f95-flag-1-234-26",
+     "kind": "flag",
+     "t0": 234,
+     "t1": 414,
+     "reads": "hold single run (Earth Ele); Men single run (Ritualist 1)",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "Men",
+       "t0": 234
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-flag-1-234-26",
+       "team": "Men",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         true,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 18,
+     "id": "s:572c2f95-split-2-236-29",
+     "kind": "split",
+     "t0": 236,
+     "t1": 262,
+     "reads": "hold's split by the front door: three players (Fire Ele, 8 Monk, Air Ele) against 2 defending (Ranger, Ritualist 2)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of two or more of the engine's settings changes this reading. It hangs on: how long a player must be in a fight before he counts in it (moved, the engine reads something else here: other players counted, or another call); how long a player at the edge of a fight is kept in it (moved, the engine reads something else here: other players counted, or another call); and 2 more of its settings."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "hold",
+       "t0": 236
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 236
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 236
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-split-2-236-29",
+       "team": "hold",
+       "side": "attacker",
+       "label": "a player or more up",
+       "job": "Kill or take NPCs",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-split-1-236-27",
+       "team": "Men",
+       "side": "defender",
+       "label": "a player down",
+       "job": "Delay: keep the split off the pit NPCs and stay alive",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no defender dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-split-1-236-28",
+       "team": "Men",
+       "side": "defender's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: its damage can kill against their monks there, and theirs cannot",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 19,
+     "id": "s:572c2f95-numbers-1-248-30",
+     "kind": "numbers",
+     "t0": 248,
+     "t1": 288,
+     "reads": "Men down on numbers in the main fight (4 v 5, hold's front door), from players split elsewhere; Men: stay (stay on the enemy's side) | hold: retreat down the ladder (fall back into the base); 3 damage against 2 monks",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of two or more of the engine's settings changes this reading. It hangs on: how far a player may drift and still be in the fight he was in (moved, the engine reads nothing here); how long a player at the edge of a fight is kept in it (moved, the engine reads nothing here)."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 248
+      },
+      {
+       "play": "numbers",
+       "team": "hold",
+       "t0": 248
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-numbers-1-248-30",
+       "team": "Men",
+       "side": "weak side",
+       "label": "stay",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-numbers-2-248-31",
+       "team": "hold",
+       "side": "strong side",
+       "label": "retreat down the ladder",
+       "job": "Keep them busy and lose nobody (a kill is not expected of it)",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 20,
+     "id": "s:572c2f95-split-1-256-32",
+     "kind": "split",
+     "t0": 256,
+     "t1": 286,
+     "reads": "Men's split by the back door: one player (AoB Derv) against 0 defending",
+     "confidence": {
+      "band": "medium",
+      "why": "Steady when the engine's settings are moved a quarter either way. At half or double it hangs on: how long a player must be on the enemy's ground to be on a split (moved, the engine reads something else here: other players counted, or another call); how long back on the own side ends a split (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 256
+      },
+      {
+       "play": "split",
+       "team": "hold",
+       "t0": 256
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-split-1-256-32",
+       "team": "Men",
+       "side": "attacker",
+       "label": "undefended",
+       "job": "Take NPCs",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "an NPC taken"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-split-2-256-33",
+       "team": "hold",
+       "side": "defender",
+       "label": "no answer",
+       "job": "Win elsewhere before the split costs more than it gains",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": true,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 21,
+     "id": "s:572c2f95-split-2-260-35",
+     "kind": "split",
+     "t0": 260,
+     "t1": 300,
+     "reads": "hold's split by the front door: three players (Fire Ele, 8 Monk, Air Ele) against 0 defending",
+     "confidence": {
+      "band": "medium",
+      "why": "Steady when the engine's settings are moved a quarter either way. At half or double it hangs on: how long a player must be in a fight before he counts in it (moved, the engine reads something else here: other players counted, or another call); how big a jump in position starts the reading again (a wipe and a base res) (moved, the engine reads something else here: other players counted, or another call); and 2 more of its settings."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "hold",
+       "t0": 260
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 260
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-split-2-260-35",
+       "team": "hold",
+       "side": "attacker",
+       "label": "undefended",
+       "job": "Take NPCs",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-split-1-260-34",
+       "team": "Men",
+       "side": "defender",
+       "label": "no answer",
+       "job": "Win elsewhere before the split costs more than it gains",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": true,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 22,
+     "id": "s:572c2f95-numbers-1-284-36",
+     "kind": "numbers",
+     "t0": 284,
+     "t1": 318,
+     "reads": "Men up on numbers in the main fight (6 v 5, hold's front door), from players split elsewhere; Men: push in | hold: retreat down the ladder (fall back into the base)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of two or more of the engine's settings changes this reading. It hangs on: how long back on the own side ends a split (moved, the engine reads something else here: other players counted, or another call); how close players must stand to be in the same fight (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 284
+      },
+      {
+       "play": "numbers",
+       "team": "hold",
+       "t0": 284
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-numbers-1-284-36",
+       "team": "Men",
+       "side": "strong side",
+       "label": "push in",
+       "job": "Kill with the numbers while their players are away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-numbers-2-284-37",
+       "team": "hold",
+       "side": "weak side",
+       "label": "retreat down the ladder",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 23,
+     "id": "s:572c2f95-split-2-298-39",
+     "kind": "split",
+     "t0": 298,
+     "t1": 434,
+     "reads": "hold's split by the front door: three players (Fire Ele, Air Ele, 8 Monk) against 2 defending (Ranger, Hammer); numbers along the way: 3 v 2 from 4:58, 3 v 3 from 6:22",
+     "confidence": {
+      "band": "medium",
+      "why": "Steady when the engine's settings are moved a quarter either way. At half or double it hangs on: how big a jump in position starts the reading again (a wipe and a base res) (moved, the engine reads something else here: other players counted, or another call); how close players must stand to be in the same fight (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "hold",
+       "t0": 298
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 298
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-split-2-298-39",
+       "team": "hold",
+       "side": "attacker",
+       "label": "a player or more up",
+       "job": "Kill or take NPCs",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "a defender killed"
+        ],
+        [
+         true,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-split-1-298-38",
+       "team": "Men",
+       "side": "defender",
+       "label": "a player down",
+       "job": "Delay: keep the split off the pit NPCs and stay alive",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost"
+        ],
+        [
+         false,
+         "no defender dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 24,
+     "id": "s:572c2f95-boost-2-346-40",
+     "kind": "boost",
+     "t0": 346,
+     "t1": 391,
+     "reads": "Men's boost is 30 s away; hold: no runner; the rest stay at the stand",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "boost",
+       "team": "hold",
+       "t0": 346
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-boost-2-346-40",
+       "team": "hold",
+       "side": "",
+       "label": "concede",
+       "job": "Concede the boost for kills",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 25,
+     "id": "s:572c2f95-flag-2-378-41",
+     "kind": "flag",
+     "t0": 378,
+     "t1": 441,
+     "reads": "Men single run (Ritualist 1); hold single run (Earth Ele)",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "hold",
+       "t0": 378
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-flag-2-378-41",
+       "team": "hold",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         true,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 26,
+     "id": "s:572c2f95-push_flagger-2-408-43",
+     "kind": "push flagger",
+     "t0": 408,
+     "t1": 486,
+     "reads": "hold pushes Men's flagger (Ritualist 1, carrying) with its main team",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of two or more of the engine's settings changes this reading. It hangs on: how close players must stand to be in the same fight (moved, the engine reads nothing here); how many team mates around the flagger make it a fight and not a push on him (moved, the engine reads nothing here)."
+     },
+     "plays": [
+      {
+       "play": "push flagger",
+       "team": "hold",
+       "t0": 408
+      },
+      {
+       "play": "flagger pushed",
+       "team": "Men",
+       "t0": 408
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-push_flagger-2-408-43",
+       "team": "hold",
+       "side": "",
+       "label": "",
+       "job": "Stop their flag, or make it 30% late",
+       "met": true,
+       "tests": [
+        [
+         false,
+         "their flag is stopped"
+        ],
+        [
+         true,
+         "it arrives 30% or more later than usual"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-flagger_pushed-1-408-42",
+       "team": "Men",
+       "side": "",
+       "label": "",
+       "job": "Get the flag in on time",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "the flag gets in, less than 30% late"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 27,
+     "id": "s:572c2f95-split-2-432-45",
+     "kind": "split",
+     "t0": 432,
+     "t1": 470,
+     "reads": "hold's split by the front door: 4 players (Fire Ele, 8 Monk, Air Ele, Prot) against 8 defending (Hammer, Ranger, Prot, AoB Derv, Ritualist 2, 7 Monk, Mesmer, Ritualist 1); the whole team turns on it; 8 (Hammer, Ranger, Prot, AoB Derv, Ritualist 2, 7 Monk, Mesmer, Ritualist 1) against 4 players: full collapse",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of two or more of the engine's settings changes this reading. It hangs on: how long a player must be on the enemy's ground to be on a split (moved, the engine reads something else here: other players counted, or another call); how close players must stand to be in the same fight (moved, the engine reads something else here: other players counted, or another call); and 1 more of its settings."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "hold",
+       "t0": 432
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 432
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-split-2-432-45",
+       "team": "hold",
+       "side": "attacker",
+       "label": "met by a full collapse",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         true,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-split-1-432-44",
+       "team": "Men",
+       "side": "defender",
+       "label": "full collapse",
+       "job": "Kill the split or drive it out (the flags it costs are beside it)",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "a split player dies"
+        ],
+        [
+         true,
+         "the split is gone within the visit"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 28,
+     "id": "s:572c2f95-numbers-1-476-46",
+     "kind": "numbers",
+     "t0": 476,
+     "t1": 538,
+     "reads": "Men down on numbers in the main fight (4 v 5, the field on hold's side; then 6 v 7 from 8:08; then 7 v 8 from 8:20), from players on their way to it (in neither fight); Men: push in | hold: stay (stay on their side)",
+     "confidence": {
+      "band": "none",
+      "why": "The numbers never held for 12 s."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 476
+      },
+      {
+       "play": "numbers",
+       "team": "hold",
+       "t0": 476
+      }
+     ],
+     "calls": [],
+     "unclear": "the numbers never held for 12 s"
+    },
+    {
+     "n": 29,
+     "id": "s:572c2f95-split-2-552-49",
+     "kind": "split",
+     "t0": 552,
+     "t1": 588,
+     "reads": "hold's split by the back door: three players (8 Monk, Fire Ele, Air Ele) against 2 defending (Mesmer, 7 Monk)",
+     "confidence": {
+      "band": "medium",
+      "why": "One of the engine's settings changes this reading when it is moved a quarter: how close players must stand to be in the same fight (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "hold",
+       "t0": 552
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 552
+      },
+      {
+       "play": "split",
+       "team": "hold",
+       "t0": 552
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-split-2-552-49",
+       "team": "hold",
+       "side": "attacker",
+       "label": "a player or more up",
+       "job": "Kill or take NPCs",
+       "met": true,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         true,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-split-1-552-48",
+       "team": "Men",
+       "side": "defender",
+       "label": "a player down",
+       "job": "Delay: keep the split off the pit NPCs and stay alive",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no defender dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-split-2-552-50",
+       "team": "hold",
+       "side": "attacker's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: they have no monk there",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 30,
+     "id": "s:572c2f95-split-1-558-51",
+     "kind": "split",
+     "t0": 558,
+     "t1": 598,
+     "reads": "Men's split by the front door: two players (Hammer, Ranger) against 5 defending (Earth Ele, 7 Monk, Water Ele, Mesmer, Prot)",
+     "confidence": {
+      "band": "medium",
+      "why": "Steady when the engine's settings are moved a quarter either way. At half or double it hangs on: how long a player must be in a fight before he counts in it (moved, the engine reads something else here: other players counted, or another call); how close players must stand to be in the same fight (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 558
+      },
+      {
+       "play": "split",
+       "team": "hold",
+       "t0": 558
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 558
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-split-1-558-51",
+       "team": "Men",
+       "side": "attacker",
+       "label": "a player or more down",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-split-2-558-53",
+       "team": "hold",
+       "side": "defender",
+       "label": "add one",
+       "job": "Kill it or drive it out with the extra player, and lose no pit NPC for it",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "a split player dies"
+        ],
+        [
+         false,
+         "the split is gone within the visit"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-split-1-558-52",
+       "team": "Men",
+       "side": "attacker's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: they have no monk there",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 31,
+     "id": "s:572c2f95-boost-2-576-54",
+     "kind": "boost",
+     "t0": 576,
+     "t1": 611,
+     "reads": "Men's boost is 30 s away; hold: one runner (Earth Ele); the rest push up",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "boost",
+       "team": "hold",
+       "t0": 576
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-boost-2-576-54",
+       "team": "hold",
+       "side": "",
+       "label": "run",
+       "job": "Deny their boost",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "their boost does not land"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 32,
+     "id": "s:572c2f95-split-2-586-56",
+     "kind": "split",
+     "t0": 586,
+     "t1": 604,
+     "reads": "hold's split by the back door: three players (8 Monk, Fire Ele, Air Ele) against 4 defending (AoB Derv, Ritualist 1, Mesmer, 7 Monk); AoB Derv, Ritualist 1 collapse from the main fight; 4 (AoB Derv, Ritualist 1, Mesmer, 7 Monk) against three players: collapse by AoB Derv, Ritualist 1 from the main fight",
+     "confidence": {
+      "band": "medium",
+      "why": "One of the engine's settings changes this reading when it is moved a quarter: how close players must stand to be in the same fight (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "hold",
+       "t0": 586
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 586
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-split-2-586-56",
+       "team": "hold",
+       "side": "attacker",
+       "label": "collapsed on",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody on the split dies"
+        ],
+        [
+         true,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-split-1-586-55",
+       "team": "Men",
+       "side": "defender",
+       "label": "collapse",
+       "job": "Kill a split player before going back (what it cost at the main fight and in flags is beside it)",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "a split player dies during the collapse"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 33,
+     "id": "s:572c2f95-split-1-596-57",
+     "kind": "split",
+     "t0": 596,
+     "t1": 626,
+     "reads": "Men's split by the front door: one player (Hammer) against 0 defending",
+     "confidence": {
+      "band": "medium",
+      "why": "Steady when the engine's settings are moved a quarter either way. At half or double it hangs on: how big a jump in position starts the reading again (a wipe and a base res) (moved, the engine reads something else here: other players counted, or another call); how close players must stand to be in the same fight (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 596
+      },
+      {
+       "play": "split",
+       "team": "hold",
+       "t0": 596
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-split-1-596-57",
+       "team": "Men",
+       "side": "attacker",
+       "label": "undefended",
+       "job": "Take NPCs",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-split-2-596-58",
+       "team": "hold",
+       "side": "defender",
+       "label": "no answer",
+       "job": "Win elsewhere before the split costs more than it gains",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": true,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 34,
+     "id": "s:572c2f95-split-2-602-61",
+     "kind": "split",
+     "t0": 602,
+     "t1": 618,
+     "reads": "hold's split by the back door: two players (Fire Ele, Air Ele) against 4 defending (AoB Derv, Mesmer, 7 Monk, Ritualist 1)",
+     "confidence": {
+      "band": "medium",
+      "why": "One of the engine's settings changes this reading when it is moved a quarter: how long a player must be in a fight before he counts in it (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "hold",
+       "t0": 602
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 602
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 602
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-split-2-602-61",
+       "team": "hold",
+       "side": "attacker",
+       "label": "a player or more down",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-split-1-602-59",
+       "team": "Men",
+       "side": "defender",
+       "label": "add one",
+       "job": "Kill it or drive it out with the extra player, and lose no pit NPC for it",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "a split player dies"
+        ],
+        [
+         true,
+         "the split is gone within the visit"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-split-1-602-60",
+       "team": "Men",
+       "side": "defender's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: they have no monk there",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 35,
+     "id": "s:572c2f95-flag-1-612-62",
+     "kind": "flag",
+     "t0": 612,
+     "t1": 636,
+     "reads": "hold single run (Earth Ele); Men single run (Ritualist 2)",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "Men",
+       "t0": 612
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-flag-1-612-62",
+       "team": "Men",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         true,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 36,
+     "id": "s:572c2f95-split-1-624-63",
+     "kind": "split",
+     "t0": 624,
+     "t1": 642,
+     "reads": "Men's split by the front door: 5 players (Hammer, AoB Derv, 7 Monk, Mesmer, Ritualist 1) against 0 defending",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of two or more of the engine's settings changes this reading. It hangs on: how long a player must be on the enemy's ground to be on a split (moved, the engine reads something else here: other players counted, or another call); how close players must stand to be in the same fight (moved, the engine reads nothing here)."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 624
+      },
+      {
+       "play": "split",
+       "team": "hold",
+       "t0": 624
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-split-1-624-63",
+       "team": "Men",
+       "side": "attacker",
+       "label": "undefended",
+       "job": "Take NPCs",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-split-2-624-64",
+       "team": "hold",
+       "side": "defender",
+       "label": "no answer",
+       "job": "Win elsewhere before the split costs more than it gains",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": true,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 37,
+     "id": "s:572c2f95-split-1-640-65",
+     "kind": "split",
+     "t0": 640,
+     "t1": 672,
+     "reads": "Men's split by the front door: 5 players (Hammer, AoB Derv, 7 Monk, Mesmer, Ritualist 1) against 2 defending (7 Monk, Water Ele); numbers along the way: 5 v 2 from 10:40, 5 v 5 from 10:58",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of two or more of the engine's settings changes this reading. It hangs on: how long a player must be on the enemy's ground to be on a split (moved, the engine reads something else here: other players counted, or another call); how close players must stand to be in the same fight (moved, the engine reads nothing here)."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 640
+      },
+      {
+       "play": "split",
+       "team": "hold",
+       "t0": 640
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-split-1-640-65",
+       "team": "Men",
+       "side": "attacker",
+       "label": "a player or more up",
+       "job": "Kill or take NPCs",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-split-2-640-66",
+       "team": "hold",
+       "side": "defender",
+       "label": "a player down",
+       "job": "Delay: keep the split off the pit NPCs and stay alive",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no defender dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 38,
+     "id": "s:572c2f95-pinned-2-652-67",
+     "kind": "pinned",
+     "t0": 652,
+     "t1": 720,
+     "reads": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 10:52: 0 of 2 knights, 2 of 2 pit archers, the Bodyguard dead; lost while held: a pit archer at 11:48; base res in 68 s)",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "pinned",
+       "team": "hold",
+       "t0": 652
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-pinned-2-652-67",
+       "team": "hold",
+       "side": "",
+       "label": "",
+       "job": "Hold the NPCs and lose nobody until the base res, or break out",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         false,
+         "it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 39,
+     "id": "s:572c2f95-split-1-670-68",
+     "kind": "split",
+     "t0": 670,
+     "t1": 714,
+     "reads": "Men's split by the front door: one player (Hammer) against 5 defending (Water Ele, Earth Ele, Prot, Mesmer, 7 Monk); Prot collapse from the main fight; 5 (Water Ele, Earth Ele, Prot, Mesmer, 7 Monk) against one player: collapse by Prot from the main fight",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of two or more of the engine's settings changes this reading. It hangs on: how long a player must be in a fight before he counts in it (moved, the engine reads something else here: other players counted, or another call); how big a jump in position starts the reading again (a wipe and a base res) (moved, the engine reads something else here: other players counted, or another call); and 2 more of its settings."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 670
+      },
+      {
+       "play": "split",
+       "team": "hold",
+       "t0": 670
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-split-1-670-68",
+       "team": "Men",
+       "side": "attacker",
+       "label": "collapsed on",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-split-2-670-69",
+       "team": "hold",
+       "side": "defender",
+       "label": "collapse",
+       "job": "Kill a split player before going back (what it cost at the main fight and in flags is beside it)",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a split player dies during the collapse"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 40,
+     "id": "s:572c2f95-base_res-1-700-70",
+     "kind": "base res",
+     "t0": 700,
+     "t1": 750,
+     "reads": "Men has 8 in hold's base at the base res (4 defending, 4 coming back): 8 stay",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "base res",
+       "team": "Men",
+       "t0": 700
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-base_res-1-700-70",
+       "team": "Men",
+       "side": "",
+       "label": "stayed through the res",
+       "job": "Be out, or set for the fight, when they res",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies in the 30 s after the res"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 41,
+     "id": "s:572c2f95-split-1-712-71",
+     "kind": "split",
+     "t0": 712,
+     "t1": 726,
+     "reads": "Men's split by the front door: one player (Hammer) against 3 defending (Water Ele, Prot, 7 Monk)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of two or more of the engine's settings changes this reading. It hangs on: how long a player must be in a fight before he counts in it (moved, the engine reads something else here: other players counted, or another call); how close players must stand to be in the same fight (moved, the engine reads nothing here); and 2 more of its settings."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 712
+      },
+      {
+       "play": "split",
+       "team": "hold",
+       "t0": 712
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 712
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-split-1-712-71",
+       "team": "Men",
+       "side": "attacker",
+       "label": "a player or more down",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-split-2-712-73",
+       "team": "hold",
+       "side": "defender",
+       "label": "add one",
+       "job": "Kill it or drive it out with the extra player, and lose no pit NPC for it",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         false,
+         "a split player dies"
+        ],
+        [
+         true,
+         "the split is gone within the visit"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-split-1-712-72",
+       "team": "Men",
+       "side": "attacker's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: they have no monk there",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 42,
+     "id": "s:572c2f95-pinned-2-720-74",
+     "kind": "pinned",
+     "t0": 720,
+     "t1": 760,
+     "reads": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 12:00: 0 of 2 knights, 1 of 2 pit archers, the Bodyguard dead; base res in 120 s)",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "pinned",
+       "team": "hold",
+       "t0": 720
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-pinned-2-720-74",
+       "team": "hold",
+       "side": "",
+       "label": "",
+       "job": "Lose no player and no NPC while held in, or break out",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         false,
+         "it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 43,
+     "id": "s:572c2f95-numbers-1-766-75",
+     "kind": "numbers",
+     "t0": 766,
+     "t1": 788,
+     "reads": "Men up on numbers in the main fight (8 v 7, hold's back door), from players split elsewhere; Men: stay (stay on the enemy's side) | hold: retreat down the ladder (fall back into the base)",
+     "confidence": {
+      "band": "medium",
+      "why": "One of the engine's settings changes this reading when it is moved a quarter: how close players must stand to be in the same fight (moved, the engine reads nothing here)."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 766
+      },
+      {
+       "play": "numbers",
+       "team": "hold",
+       "t0": 766
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-numbers-1-766-75",
+       "team": "Men",
+       "side": "strong side",
+       "label": "stay",
+       "job": "Kill with the numbers while their players are away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-numbers-2-766-76",
+       "team": "hold",
+       "side": "weak side",
+       "label": "retreat down the ladder",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 44,
+     "id": "s:572c2f95-numbers-1-788-77",
+     "kind": "numbers",
+     "t0": 788,
+     "t1": 854,
+     "reads": "Men down on numbers in the main fight (5 v 7, hold's back door; then 6 v 7 from 13:24; then 6 v 8 from 13:46), from players split elsewhere; Men: stay (stay on the enemy's side) | hold: retreat down the ladder (retreat to the pit)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of two or more of the engine's settings changes this reading. It hangs on: how long a fight away from the main fight must last (moved, the engine reads something else here: other players counted, or another call); how close players must stand to be in the same fight (moved, the engine reads something else here: other players counted, or another call); and 2 more of its settings."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 788
+      },
+      {
+       "play": "numbers",
+       "team": "hold",
+       "t0": 788
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-numbers-1-788-77",
+       "team": "Men",
+       "side": "weak side",
+       "label": "stay",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-numbers-2-788-78",
+       "team": "hold",
+       "side": "strong side",
+       "label": "retreat down the ladder",
+       "job": "Kill with the numbers while their players are away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 45,
+     "id": "s:572c2f95-boost-2-816-79",
+     "kind": "boost",
+     "t0": 816,
+     "t1": 861,
+     "reads": "Men's boost is 30 s away; hold: no runner; the rest fall back into the base",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "boost",
+       "team": "hold",
+       "t0": 816
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-boost-2-816-79",
+       "team": "hold",
+       "side": "",
+       "label": "concede",
+       "job": "Concede the boost for kills",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 46,
+     "id": "s:572c2f95-push_flagger-1-866-80",
+     "kind": "push flagger",
+     "t0": 866,
+     "t1": 904,
+     "reads": "Men pushes hold's flagger (Earth Ele, at the spawn) with 2 players",
+     "confidence": {
+      "band": "medium",
+      "why": "Steady when the engine's settings are moved a quarter either way. At half or double it hangs on: how close players must stand to be in the same fight (moved, the engine reads nothing here)."
+     },
+     "plays": [
+      {
+       "play": "push flagger",
+       "team": "Men",
+       "t0": 866
+      },
+      {
+       "play": "flagger pushed",
+       "team": "hold",
+       "t0": 866
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-push_flagger-1-866-80",
+       "team": "Men",
+       "side": "",
+       "label": "",
+       "job": "Stop their flag, or make it 30% late",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "their flag is stopped"
+        ],
+        [
+         false,
+         "it arrives 30% or more later than usual"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-flagger_pushed-2-866-81",
+       "team": "hold",
+       "side": "",
+       "label": "",
+       "job": "Get the flag in on time, without losing a player for the help sent",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "the flag gets in, less than 30% late"
+        ],
+        [
+         false,
+         "nobody else of ours dies meanwhile"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 47,
+     "id": "s:572c2f95-pinned-2-916-82",
+     "kind": "pinned",
+     "t0": 916,
+     "t1": 960,
+     "reads": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 15:16: 0 of 2 knights, 1 of 2 pit archers, the Bodyguard dead; base res in 44 s)",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "pinned",
+       "team": "hold",
+       "t0": 916
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-pinned-2-916-82",
+       "team": "hold",
+       "side": "",
+       "label": "",
+       "job": "Hold the NPCs and lose nobody until the base res, or break out",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         false,
+         "it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 48,
+     "id": "s:572c2f95-numbers-1-922-83",
+     "kind": "numbers",
+     "t0": 922,
+     "t1": 986,
+     "reads": "Men up on numbers in the main fight (8 v 7, hold's pit), from kills; Men: stay (stay on the enemy's side)",
+     "confidence": {
+      "band": "medium",
+      "why": "Steady when the engine's settings are moved a quarter either way. At half or double it hangs on: how close players must stand to be in the same fight (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 922
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-numbers-1-922-83",
+       "team": "Men",
+       "side": "up",
+       "label": "stay",
+       "job": "Turn the extra player into a kill before the numbers are level",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 49,
+     "id": "s:572c2f95-base_res-1-940-84",
+     "kind": "base res",
+     "t0": 940,
+     "t1": 990,
+     "reads": "Men has 8 in hold's base at the base res (7 defending, 1 coming back): 8 stay",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "base res",
+       "team": "Men",
+       "t0": 940
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-base_res-1-940-84",
+       "team": "Men",
+       "side": "",
+       "label": "stayed through the res",
+       "job": "Be out, or set for the fight, when they res",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies in the 30 s after the res"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 50,
+     "id": "s:572c2f95-pinned-2-960-85",
+     "kind": "pinned",
+     "t0": 960,
+     "t1": 980,
+     "reads": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 16:00: 0 of 2 knights, 1 of 2 pit archers, the Bodyguard dead; base res in 120 s)",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "pinned",
+       "team": "hold",
+       "t0": 960
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-pinned-2-960-85",
+       "team": "hold",
+       "side": "",
+       "label": "",
+       "job": "Lose no player and no NPC while held in, or break out",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         false,
+         "it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 51,
+     "id": "s:572c2f95-pinned-2-988-86",
+     "kind": "pinned",
+     "t0": 988,
+     "t1": 1028,
+     "reads": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 16:28: 0 of 2 knights, 1 of 2 pit archers, the Bodyguard dead; base res in 92 s)",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "pinned",
+       "team": "hold",
+       "t0": 988
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-pinned-2-988-86",
+       "team": "hold",
+       "side": "",
+       "label": "",
+       "job": "Lose no player and no NPC while held in, or break out",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         false,
+         "it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 52,
+     "id": "s:572c2f95-numbers-1-994-87",
+     "kind": "numbers",
+     "t0": 994,
+     "t1": 1014,
+     "reads": "Men up on numbers in the main fight (8 v 7, hold's pit), from players split elsewhere; Men: stay (stay on the enemy's side)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of two or more of the engine's settings changes this reading. It hangs on: how close players must stand to be in the same fight (moved, the engine reads nothing here); how far a player may drift and still be in the fight he was in (moved, the engine reads nothing here); and 2 more of its settings."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 994
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-numbers-1-994-87",
+       "team": "Men",
+       "side": "strong side",
+       "label": "stay",
+       "job": "Kill with the numbers while their players are away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 53,
+     "id": "s:572c2f95-flag-1-1045-88",
+     "kind": "flag",
+     "t0": 1045,
+     "t1": 1186,
+     "reads": "hold single run (Earth Ele); Men single run (Ranger, handing it to Ritualist 1)",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "Men",
+       "t0": 1045
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-flag-1-1045-88",
+       "team": "Men",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         false,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 54,
+     "id": "s:572c2f95-flag-2-1053-89",
+     "kind": "flag",
+     "t0": 1053,
+     "t1": 1073,
+     "reads": "Men single run (Ranger, handing it to Ritualist 1); hold single run (Prot)",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "hold",
+       "t0": 1053
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-flag-2-1053-89",
+       "team": "hold",
+       "side": "",
+       "label": "single run",
+       "job": "Get the flag in, lose no more players than they do, and end no worse than half a flag behind",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "our flag is capped"
+        ],
+        [
+         true,
+         "no more of ours die at the main fight than of theirs"
+        ],
+        [
+         true,
+         "no worse than half a flag behind at the end, or no further behind than at the start"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 55,
+     "id": "s:572c2f95-boost-2-1056-90",
+     "kind": "boost",
+     "t0": 1056,
+     "t1": 1091,
+     "reads": "Men's boost is 30 s away; hold: one runner (Prot); the rest retreat to the pit",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "boost",
+       "team": "hold",
+       "t0": 1056
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-boost-2-1056-90",
+       "team": "hold",
+       "side": "",
+       "label": "run",
+       "job": "Deny their boost",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "their boost does not land"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 56,
+     "id": "s:572c2f95-pinned-2-1064-91",
+     "kind": "pinned",
+     "t0": 1064,
+     "t1": 1088,
+     "reads": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 17:44: 0 of 2 knights, 1 of 2 pit archers, the Bodyguard dead; base res in 16 s)",
+     "confidence": {
+      "band": "medium",
+      "why": "One of the engine's settings changes this reading when it is moved a quarter: how close players must stand to be in the same fight (moved, the engine reads nothing here)."
+     },
+     "plays": [
+      {
+       "play": "pinned",
+       "team": "hold",
+       "t0": 1064
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-pinned-2-1064-91",
+       "team": "hold",
+       "side": "",
+       "label": "",
+       "job": "Lose no player and no NPC while held in, or break out",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         false,
+         "it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 57,
+     "id": "s:572c2f95-split-1-1086-92",
+     "kind": "split",
+     "t0": 1086,
+     "t1": 1128,
+     "reads": "Men's split by the front door: two players (Ritualist 2, AoB Derv) against 1 defending (Air Ele)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of two or more of the engine's settings changes this reading. It hangs on: how long a player must be on the enemy's ground to be on a split (moved, the engine reads something else here: other players counted, or another call); how close players must stand to be in the same fight (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 1086
+      },
+      {
+       "play": "split",
+       "team": "hold",
+       "t0": 1086
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 1086
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-split-1-1086-92",
+       "team": "Men",
+       "side": "attacker",
+       "label": "a player or more up",
+       "job": "Kill or take NPCs",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "a defender killed"
+        ],
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-split-2-1086-94",
+       "team": "hold",
+       "side": "defender",
+       "label": "one defender",
+       "job": "Delay: keep the split off the pit NPCs and stay alive",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         false,
+         "no defender dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-split-1-1086-93",
+       "team": "Men",
+       "side": "attacker's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: they have no monk there",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 58,
+     "id": "s:572c2f95-numbers-1-1098-95",
+     "kind": "numbers",
+     "t0": 1098,
+     "t1": 1118,
+     "reads": "Men down on numbers in the main fight (3 v 4, hold's pit), from players split elsewhere; Men: stay (stay on the enemy's side) | hold: push in",
+     "confidence": {
+      "band": "medium",
+      "why": "One of the engine's settings changes this reading when it is moved a quarter: how close players must stand to be in the same fight (moved, the engine reads nothing here)."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 1098
+      },
+      {
+       "play": "numbers",
+       "team": "hold",
+       "t0": 1098
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-numbers-1-1098-95",
+       "team": "Men",
+       "side": "weak side",
+       "label": "stay",
+       "job": "No deaths, keep them busy, do not chase",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "nobody of ours dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-numbers-2-1098-96",
+       "team": "hold",
+       "side": "strong side",
+       "label": "push in",
+       "job": "Kill with the numbers while their players are away",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 59,
+     "id": "s:572c2f95-split-2-1100-99",
+     "kind": "split",
+     "t0": 1100,
+     "t1": 1138,
+     "reads": "hold's split by the front door: one player (Fire Ele) against 3 defending (Ritualist 1, Prot, Ranger)",
+     "confidence": {
+      "band": "low",
+      "why": "A quarter's move of two or more of the engine's settings changes this reading. It hangs on: how long a player must be in a fight before he counts in it (moved, the engine reads something else here: other players counted, or another call); how long a player must be on the enemy's ground to be on a split (moved, the engine reads something else here: other players counted, or another call); and 3 more of its settings."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "hold",
+       "t0": 1100
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 1100
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 1100
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-split-2-1100-99",
+       "team": "hold",
+       "side": "attacker",
+       "label": "a player or more down",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-split-1-1100-97",
+       "team": "Men",
+       "side": "defender",
+       "label": "add one",
+       "job": "Kill it or drive it out with the extra player, and lose no pit NPC for it",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         false,
+         "a split player dies"
+        ],
+        [
+         false,
+         "the split is gone within the visit"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-split-1-1100-98",
+       "team": "Men",
+       "side": "defender's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: its damage can kill against their monks there, and theirs cannot",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 60,
+     "id": "s:572c2f95-split-2-1136-101",
+     "kind": "split",
+     "t0": 1136,
+     "t1": 1180,
+     "reads": "hold's split by the front door: one player (Fire Ele) against 4 defending (Ranger, Prot, AoB Derv, Ritualist 1); AoB Derv collapse from the main fight; 4 (Ranger, Prot, AoB Derv, Ritualist 1) against one player: collapse by AoB Derv from the main fight",
+     "confidence": {
+      "band": "medium",
+      "why": "One of the engine's settings changes this reading when it is moved a quarter: how long a player must be on the enemy's ground to be on a split (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "hold",
+       "t0": 1136
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 1136
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-split-2-1136-101",
+       "team": "hold",
+       "side": "attacker",
+       "label": "collapsed on",
+       "job": "Survive and gain an advantage elsewhere on the map",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "nobody on the split dies"
+        ],
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         false,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-split-1-1136-100",
+       "team": "Men",
+       "side": "defender",
+       "label": "collapse",
+       "job": "Kill a split player before going back (what it cost at the main fight and in flags is beside it)",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a split player dies during the collapse"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 61,
+     "id": "s:572c2f95-boost-1-1163-102",
+     "kind": "boost",
+     "t0": 1163,
+     "t1": 1198,
+     "reads": "hold's boost is 30 s away; Men: one runner (Ritualist 1); the rest stay on the enemy's side",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "boost",
+       "team": "Men",
+       "t0": 1163
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-boost-1-1163-102",
+       "team": "Men",
+       "side": "",
+       "label": "run",
+       "job": "Deny their boost",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "their boost does not land"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 62,
+     "id": "s:572c2f95-numbers-1-1176-103",
+     "kind": "numbers",
+     "t0": 1176,
+     "t1": 1250,
+     "reads": "Men up on numbers in the main fight (5 v 4, hold's front door; then 5 v 2 from 20:10), from players split elsewhere; Men: push up (push up to their front door) | hold: stay (stay at the stand)",
+     "confidence": {
+      "band": "none",
+      "why": "Air Ele, Hammer, Mesmer, Mesmer also counted on a split in the same seconds."
+     },
+     "plays": [
+      {
+       "play": "numbers",
+       "team": "Men",
+       "t0": 1176
+      },
+      {
+       "play": "numbers",
+       "team": "hold",
+       "t0": 1176
+      }
+     ],
+     "calls": [],
+     "unclear": "Air Ele, Hammer, Mesmer, Mesmer also counted on a split in the same seconds"
+    },
+    {
+     "n": 63,
+     "id": "s:572c2f95-split-1-1178-105",
+     "kind": "split",
+     "t0": 1178,
+     "t1": 1232,
+     "reads": "Men's split by the front door: three players (Hammer, Mesmer, 7 Monk) against 2 defending (7 Monk, Mesmer); numbers along the way: 3 v 2 from 19:38, 3 v 3 from 20:00",
+     "confidence": {
+      "band": "medium",
+      "why": "One of the engine's settings changes this reading when it is moved a quarter: how close players must stand to be in the same fight (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 1178
+      },
+      {
+       "play": "split",
+       "team": "hold",
+       "t0": 1178
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 1178
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-split-1-1178-105",
+       "team": "Men",
+       "side": "attacker",
+       "label": "a player or more up",
+       "job": "Kill or take NPCs",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "a defender killed"
+        ],
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-split-2-1178-107",
+       "team": "hold",
+       "side": "defender",
+       "label": "a player down",
+       "job": "Delay: keep the split off the pit NPCs and stay alive",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         false,
+         "no defender dies"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-split-1-1178-106",
+       "team": "Men",
+       "side": "attacker's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: they have no monk there",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 64,
+     "id": "s:572c2f95-base_res-1-1180-108",
+     "kind": "base res",
+     "t0": 1180,
+     "t1": 1230,
+     "reads": "Men has 3 in hold's base at the base res (2 defending, 2 coming back): 3 stay",
+     "confidence": {
+      "band": "high",
+      "why": "Read the same wherever the engine's settings sit, down to half and up to double."
+     },
+     "plays": [
+      {
+       "play": "base res",
+       "team": "Men",
+       "t0": 1180
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-base_res-1-1180-108",
+       "team": "Men",
+       "side": "",
+       "label": "stayed through the res",
+       "job": "Be out, or set for the fight, when they res",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "nobody of ours dies in the 30 s after the res"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 65,
+     "id": "s:572c2f95-pinned-2-1212-109",
+     "kind": "pinned",
+     "t0": 1212,
+     "t1": 1244,
+     "reads": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 20:12: 0 of 2 knights, 1 of 2 pit archers, the Bodyguard dead; base res in 108 s)",
+     "confidence": {
+      "band": "medium",
+      "why": "Steady when the engine's settings are moved a quarter either way. At half or double it hangs on: how close players must stand to be in the same fight (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "pinned",
+       "team": "hold",
+       "t0": 1212
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-pinned-2-1212-109",
+       "team": "hold",
+       "side": "",
+       "label": "",
+       "job": "Hold the NPCs and lose nobody until the base res, or break out",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost and nobody dies until the base res"
+        ],
+        [
+         false,
+         "it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors)"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 66,
+     "id": "s:572c2f95-split-2-1220-111",
+     "kind": "split",
+     "t0": 1220,
+     "t1": 1250,
+     "reads": "hold's split by the back door: two players (Fire Ele, Earth Ele) against 0 defending",
+     "confidence": {
+      "band": "medium",
+      "why": "Steady when the engine's settings are moved a quarter either way. At half or double it hangs on: how long a player must be in a fight before he counts in it (moved, the engine reads something else here: other players counted, or another call); how big a jump in position starts the reading again (a wipe and a base res) (moved, the engine reads something else here: other players counted, or another call)."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "hold",
+       "t0": 1220
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 1220
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-split-2-1220-111",
+       "team": "hold",
+       "side": "attacker",
+       "label": "undefended",
+       "job": "Take NPCs",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-split-1-1220-110",
+       "team": "Men",
+       "side": "defender",
+       "label": "no answer",
+       "job": "Win elsewhere before the split costs more than it gains",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "more of theirs die away from the split than of ours"
+        ],
+        [
+         true,
+         "flag lead better by 0.35 or more"
+        ]
+       ],
+       "any": true,
+       "draft": true
+      }
+     ]
+    },
+    {
+     "n": 67,
+     "id": "s:572c2f95-split-2-1248-114",
+     "kind": "split",
+     "t0": 1248,
+     "t1": 1264,
+     "reads": "hold's split by the back door: two players (Fire Ele, Earth Ele) against 2 defending (Ranger, Ritualist 2)",
+     "confidence": {
+      "band": "medium",
+      "why": "One of the engine's settings changes this reading when it is moved a quarter: how long a player must be in a fight before he counts in it (moved, the engine reads nothing here)."
+     },
+     "plays": [
+      {
+       "play": "split",
+       "team": "hold",
+       "t0": 1248
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 1248
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 1248
+      }
+     ],
+     "calls": [
+      {
+       "id": "572c2f95-split-2-1248-114",
+       "team": "hold",
+       "side": "attacker",
+       "label": "even",
+       "job": "Take NPCs or kills",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "a defender killed"
+        ],
+        [
+         false,
+         "an NPC taken"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-split-1-1248-112",
+       "team": "Men",
+       "side": "defender",
+       "label": "mirror",
+       "job": "Hold it even: lose no pit NPC and no more players than the split does",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "no more defenders die than split players"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      },
+      {
+       "id": "572c2f95-split-1-1248-113",
+       "team": "Men",
+       "side": "defender's main team",
+       "label": "the main fight can kill",
+       "job": "Kill at the main fight: they have no monk there",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die away from the split than of ours"
+        ]
+       ],
+       "any": false,
+       "draft": false
+      }
+     ]
+    }
+   ],
+   "selfcheck": [
+    "hold's Air Ele 20:16 to 20:28: Men's split from 19:38 and the main fight's numbers from 19:36",
+    "Men's Hammer 20:16 to 20:28: Men's split from 19:38 and the main fight's numbers from 19:36",
+    "hold's Mesmer 20:16 to 20:28: Men's split from 19:38 and the main fight's numbers from 19:36",
+    "Men's Mesmer 20:16 to 20:28: Men's split from 19:38 and the main fight's numbers from 19:36"
+   ]
   }
  ]
 }

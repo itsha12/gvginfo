@@ -214,8 +214,8 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
 - Reviews are by whole games, one at a time (R-454, R-492), marked on the site, Model > Game review
   (`assets/js/pages/review.js`). On the branch: `tools/golden/confidence.py run <conf.json> <report id>` (the engine's
   confidence, R-497: the game read again with every draft number of the reading moved a quarter and to half and
-  double, about six minutes a game; bands high, medium, low are Claude's draft, to be fitted to his grades once about
-  three games are marked), then `tools/golden/review.py export <plays file> <main>/data/model/game_reviews.json --set f1
+  double, about twelve minutes a game; bands high, medium, low fitted to his grades of the first three games on
+  2026-11-16, the fit written at the top of `confidence.py`; `confidence.py reband <file>` after a new fit), then `tools/golden/review.py export <plays file> <main>/data/model/game_reviews.json --set f1
   --part N --confidence <conf.json>` writes the rows: every situation the engine reads with its confidence, and under
   it each side's call. He grades each situation (Classic, Visible, Weak, No decision, Repeat), says whether the engine
   read a decision Correct, Partly or Incorrect with ticks for what is off and his words, marks the calls where they are
@@ -224,7 +224,7 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   review key the same session (`review.py file <id> <rows> <marks> --set f1 --key <main key>`, which prints his grades
   against the engine's confidence and the Classic rows to fix first, and writes the plain checks; then write by hand
   the checks for what a Partly or an Incorrect means). Set every result out for him in the chat (R-329). The queue is
-  set f1 in `dev_set.json` (HC v Team, graded; Men v Crew and 옷옷옷옷 v RACK, exported together at his word; no game
+  set f1 in `dev_set.json` (HC v Team, Men v Crew and 옷옷옷옷 v RACK, graded; Men v RACK and Men v hold, games 4 and 5, exported together at his word; no game
   is kept hidden, R-497); pick further games from unused October and November games of top guilds, never a henchman
   game (R-476). Export the next game only when the last one is marked and its Classic faults are fixed, unless he asks
   for more at once; never fix against a game he has not marked, and never re-export a game he has marked. Games without `scheme` 2 are history, shown read only. The golden

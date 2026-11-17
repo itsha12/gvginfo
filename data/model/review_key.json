@@ -5774,7 +5774,8 @@
      },
      "was": "hdm v hook 10:23: the flag does not get in, so hdm lost nothing by staying and does not have to kill"
     }
-   ]
+   ],
+   "note": "No longer read since R-505 (2026-11-16): hook's Ritualist 2 picks the flag up with his team on its own ground, walks it out at the front door and drops it at 10:54 as hdm comes in; it is never capped or taken to the stand, so it is a flag brought up with the team, not a run. His own note on the call says the same of it ('hdm didn't lose anything'). Reported to him."
   },
   {
    "id": "w1p2-8bf4-48",
@@ -12337,9 +12338,9 @@
        "clear": null
       }
      },
-     "open": true,
      "auto": true,
-     "why": "HC v Team, Imperial 13:20: he graded it No decision: same as before, this is mainteam pushing backdoor"
+     "why": "HC v Team, Imperial 13:20: he graded it No decision: same as before, this is mainteam pushing backdoor",
+     "closed": "2026-11-16"
     },
     {
      "none": {
@@ -12353,9 +12354,9 @@
        "clear": null
       }
      },
-     "open": true,
      "auto": true,
-     "why": "HC v Team, Imperial 13:20: he graded it No decision: same as before, this is mainteam pushing backdoor"
+     "why": "HC v Team, Imperial 13:20: he graded it No decision: same as before, this is mainteam pushing backdoor",
+     "closed": "2026-11-16"
     }
    ]
   },
@@ -12407,9 +12408,9 @@
        "clear": null
       }
      },
-     "open": true,
      "auto": true,
-     "why": "HC v Team, Imperial 13:38: he graded it No decision: same as before, this is mainteam pushing backdoor"
+     "why": "HC v Team, Imperial 13:38: he graded it No decision: same as before, this is mainteam pushing backdoor",
+     "closed": "2026-11-16"
     },
     {
      "none": {
@@ -12423,9 +12424,9 @@
        "clear": null
       }
      },
-     "open": true,
      "auto": true,
-     "why": "HC v Team, Imperial 13:38: he graded it No decision: same as before, this is mainteam pushing backdoor"
+     "why": "HC v Team, Imperial 13:38: he graded it No decision: same as before, this is mainteam pushing backdoor",
+     "closed": "2026-11-16"
     },
     {
      "none": {
@@ -12439,9 +12440,9 @@
        "clear": null
       }
      },
-     "open": true,
      "auto": true,
-     "why": "HC v Team, Imperial 13:38: he graded it No decision: same as before, this is mainteam pushing backdoor"
+     "why": "HC v Team, Imperial 13:38: he graded it No decision: same as before, this is mainteam pushing backdoor",
+     "closed": "2026-11-16"
     }
    ]
   },
@@ -12623,8 +12624,8 @@
        918
       ]
      },
-     "open": true,
-     "why": "HC v Team 14:56 (Visible, incorrect, numbers, who and kind): 'this split ends and they join mainteam (who is pushing in through frontdoor) at around 15:10': the engine runs it to 16:08"
+     "why": "HC v Team 14:56 (Visible, incorrect, numbers, who and kind): 'this split ends and they join mainteam (who is pushing in through frontdoor) at around 15:10': the engine runs it to 16:08",
+     "closed": "2026-11-16"
     }
    ]
   },
@@ -12799,9 +12800,9 @@
        "clear": null
       }
      },
-     "open": true,
      "auto": true,
-     "why": "HC v Team, Imperial 16:06: he graded it No decision: this is just a straightup mainteam fight"
+     "why": "HC v Team, Imperial 16:06: he graded it No decision: this is just a straightup mainteam fight",
+     "closed": "2026-11-16"
     },
     {
      "none": {
@@ -12815,9 +12816,9 @@
        "clear": null
       }
      },
-     "open": true,
      "auto": true,
-     "why": "HC v Team, Imperial 16:06: he graded it No decision: this is just a straightup mainteam fight"
+     "why": "HC v Team, Imperial 16:06: he graded it No decision: this is just a straightup mainteam fight",
+     "closed": "2026-11-16"
     },
     {
      "none": {
@@ -12831,9 +12832,9 @@
        "clear": null
       }
      },
-     "open": true,
      "auto": true,
-     "why": "HC v Team, Imperial 16:06: he graded it No decision: this is just a straightup mainteam fight"
+     "why": "HC v Team, Imperial 16:06: he graded it No decision: this is just a straightup mainteam fight",
+     "closed": "2026-11-16"
     }
    ]
   },
@@ -13070,9 +13071,9 @@
        "clear": null
       }
      },
-     "open": true,
      "auto": true,
-     "why": "Men v Crew, Jade 1:23: he graded it No decision: this is the same single run as before. Men and Crew both bring up the first flag. Men holds for 1:47ish before deciding to cap."
+     "why": "Men v Crew, Jade 1:23: he graded it No decision: this is the same single run as before. Men and Crew both bring up the first flag. Men holds for 1:47ish before deciding to cap.",
+     "closed": "2026-11-16"
     }
    ]
   },
@@ -13381,8 +13382,8 @@
        "ours": "single run"
       }
      },
-     "open": true,
-     "why": "Men v Crew 5:52 (Classic, incorrect, who and kind): 'crew does not run a flag': the engine reads Crew's Water Ele answering Men's run with a single run"
+     "why": "Men v Crew 5:52 (Classic, incorrect, who and kind): 'crew does not run a flag': the engine reads Crew's Water Ele answering Men's run with a single run",
+     "closed": "2026-11-16"
     }
    ]
   },
@@ -13646,8 +13647,8 @@
        "ours": "double run"
       }
      },
-     "open": true,
-     "why": "Men v Crew 11:32 (Visible, incorrect): 'this is a single run half run for Men': the engine reads a double run (the AoB Derv capping the flag before, the Ranger back for this one, who then hands it to the AoB Derv)"
+     "why": "Men v Crew 11:32 (Visible, incorrect): 'this is a single run half run for Men': the engine reads a double run (the AoB Derv capping the flag before, the Ranger back for this one, who then hands it to the AoB Derv)",
+     "closed": "2026-11-16"
     }
    ]
   },
@@ -14515,7 +14516,7 @@
     }
    ],
    "checks": [],
-   "note": "'I think there are archers dead too? I could be wrong though': the replay holds five archers on Men's side, two of them in the pit by his labels; the three that died (18:38, 18:52, 21:34) are read as the ones outside the pit. Put to him 2026-11-16."
+   "note": "'I think there are archers dead too? I could be wrong though': the replay holds five archers on Men's side, two of them in the pit by his labels; the three that died (18:38, 18:52, 21:34) are the ones outside the pit. He checked the replay (2026-11-16): all three are outside archers, so the count of pit NPCs stands."
   },
   {
    "id": "f1-5168-39",
@@ -14681,8 +14682,23 @@
        9
       ]
      },
-     "open": true,
-     "why": "옷옷옷옷 v RACK 0:00 (Classic, incorrect): 'RACK brings flag up on Warrior, but DOES NOT run the flag. 옷옷옷옷 does not stay, they just don't run the flag': a flag brought up with the team at the opening is read as a run. Put to him 2026-11-16"
+     "why": "옷옷옷옷 v RACK 0:00 (Classic, incorrect): 'RACK brings flag up on Warrior, but DOES NOT run the flag. 옷옷옷옷 does not stay, they just don't run the flag': a flag brought up with the team at the opening is read as a run. Put to him 2026-11-16",
+     "closed": "2026-11-16"
+    },
+    {
+     "has": {
+      "play": "flag",
+      "team": "RACK",
+      "start": [
+       -3,
+       9
+      ]
+     },
+     "want": {
+      "their": "single run",
+      "scenario~": "brings a flag up"
+     },
+     "was": "옷옷옷옷 v RACK 0:00: the opening run is 옷옷옷옷's (the 8 Monk, capped at 0:45); RACK brings a flag up with its team and does not run it (R-505)"
     }
    ]
   },
@@ -15034,8 +15050,22 @@
        "their": "single run"
       }
      },
-     "open": true,
-     "why": "옷옷옷옷 v RACK 3:03 (Classic, incorrect): '옷옷옷옷's 8 monk single runs at 4:32 to get a backup flag. RACK DOES NOT run': the Hammer holding RACK's flag is read as a run. Put to him 2026-11-16"
+     "why": "옷옷옷옷 v RACK 3:03 (Classic, incorrect): '옷옷옷옷's 8 monk single runs at 4:32 to get a backup flag. RACK DOES NOT run': the Hammer holding RACK's flag is read as a run. Put to him 2026-11-16",
+     "closed": "2026-11-16"
+    },
+    {
+     "has": {
+      "play": "flag",
+      "team": "RACK",
+      "start": [
+       127,
+       139
+      ]
+     },
+     "want": {
+      "scenario~": "brings a flag up"
+     },
+     "was": "옷옷옷옷 v RACK 2:13 to 5:13: RACK's Hammer and Prot hold the flag at their own front door; it is no run (R-505)"
     }
    ]
   },
@@ -15172,8 +15202,8 @@
        "call": "run"
       }
      },
-     "open": true,
-     "why": "옷옷옷옷 v RACK 4:33 (Weak, incorrect): 'RACK does not send a runner': the engine's runner is the Prot"
+     "why": "옷옷옷옷 v RACK 4:33 (Weak, incorrect): 'RACK does not send a runner': the engine's runner is the Prot",
+     "closed": "2026-11-16"
     }
    ]
   },
@@ -15604,8 +15634,8 @@
        "call": "stayed through the res"
       }
      },
-     "open": true,
-     "why": "옷옷옷옷 v RACK 9:40 (Classic, incorrect): '옷옷옷옷 DOES NOT stay in base. All members leave base before base res': by the replay they stand in the field at 9:40 and in front of RACK's front door at 10:00, which the engine counts as in the base"
+     "why": "옷옷옷옷 v RACK 9:40 (Classic, incorrect): '옷옷옷옷 DOES NOT stay in base. All members leave base before base res': by the replay they stand in the field at 9:40 and in front of RACK's front door at 10:00, which the engine counts as in the base",
+     "closed": "2026-11-16"
     }
    ]
   },
@@ -15982,10 +16012,11 @@
        "call": "stayed through the res"
       }
      },
-     "open": true,
-     "why": "옷옷옷옷 v RACK 15:40 (Classic, incorrect): 'none stay': six are in RACK's pit until 15:56 and out in the field by 16:06"
+     "why": "옷옷옷옷 v RACK 15:40 (Classic, incorrect): 'none stay': six are in RACK's pit until 15:56 and out in the field by 16:06",
+     "closed": "2026-11-16"
     }
-   ]
+   ],
+   "note": "By the replay the res lands at 16:00: six stand in RACK's pit until 15:58 and are out in the field by 16:02; the 8 Monk never goes further in than the front door and still stands at it at 16:06. Built (R-507): a team on its way out as the res lands has not stayed, and a player left at a door on his own has not stayed; no base res row is read here now."
   },
   {
    "id": "f1-a8ba-36",
@@ -16090,7 +16121,8 @@
      "open": true,
      "why": "옷옷옷옷 v RACK 1:51 (Classic, missed): 옷옷옷옷 full team collapses through front door on RACK's split and kills rit and derv."
     }
-   ]
+   ],
+   "note": "Not built. The engine reads a full collapse when six or more defenders are on the split or five or more have gone home for it: at 2:06 and 6:28 here, when the team arrives (15 and 27 s after his times), and not at all at 4:39 and 8:16, where 옷옷옷옷 leaves RACK's base to chase the split and does not reach it. Put to him 2026-11-16: a full collapse counts from when the team turns for the split, whether or not it gets there?"
   },
   {
    "id": "f1-a8ba-missed-2",
@@ -16125,8 +16157,8 @@
      "want": {
       "size": 5
      },
-     "open": true,
-     "why": "옷옷옷옷 v RACK 4:30 (Classic, missed): clear split of 5 out backdoor for RACK"
+     "why": "옷옷옷옷 v RACK 4:30 (Classic, missed): clear split of 5 out backdoor for RACK",
+     "closed": "2026-11-16"
     }
    ]
   },
@@ -16166,7 +16198,8 @@
      "open": true,
      "why": "옷옷옷옷 v RACK 4:39 (Classic, missed): clear fullteam collapse out of frontdoor to backdoor to try to catch RACK split"
     }
-   ]
+   ],
+   "note": "Not built. The engine reads a full collapse when six or more defenders are on the split or five or more have gone home for it: at 2:06 and 6:28 here, when the team arrives (15 and 27 s after his times), and not at all at 4:39 and 8:16, where 옷옷옷옷 leaves RACK's base to chase the split and does not reach it. Put to him 2026-11-16: a full collapse counts from when the team turns for the split, whether or not it gets there?"
   },
   {
    "id": "f1-a8ba-missed-4",
@@ -16204,7 +16237,8 @@
      "open": true,
      "why": "옷옷옷옷 v RACK 6:01 (Classic, missed): clear fullteam collapse out of portal to try to catch RACK split"
     }
-   ]
+   ],
+   "note": "Not built. The engine reads a full collapse when six or more defenders are on the split or five or more have gone home for it: at 2:06 and 6:28 here, when the team arrives (15 and 27 s after his times), and not at all at 4:39 and 8:16, where 옷옷옷옷 leaves RACK's base to chase the split and does not reach it. Put to him 2026-11-16: a full collapse counts from when the team turns for the split, whether or not it gets there?"
   },
   {
    "id": "f1-a8ba-missed-5",
@@ -16239,8 +16273,8 @@
      "want": {
       "size": 5
      },
-     "open": true,
-     "why": "옷옷옷옷 v RACK 8:11 (Classic, missed): 5 man split for RACK out backdoor"
+     "why": "옷옷옷옷 v RACK 8:11 (Classic, missed): 5 man split for RACK out backdoor",
+     "closed": "2026-11-16"
     }
    ]
   },
@@ -16280,7 +16314,8 @@
      "open": true,
      "why": "옷옷옷옷 v RACK 8:16 (Classic, missed): full team collapse by 옷옷옷옷 through portal on RACK split"
     }
-   ]
+   ],
+   "note": "Not built. The engine reads a full collapse when six or more defenders are on the split or five or more have gone home for it: at 2:06 and 6:28 here, when the team arrives (15 and 27 s after his times), and not at all at 4:39 and 8:16, where 옷옷옷옷 leaves RACK's base to chase the split and does not reach it. Put to him 2026-11-16: a full collapse counts from when the team turns for the split, whether or not it gets there?"
   },
   {
    "id": "f1-a8ba-missed-7",
@@ -16315,8 +16350,8 @@
      "want": {
       "size": 5
      },
-     "open": true,
-     "why": "옷옷옷옷 v RACK 9:52 (Classic, missed): 5 man split out backdoor by RACK"
+     "why": "옷옷옷옷 v RACK 9:52 (Classic, missed): 5 man split out backdoor by RACK",
+     "closed": "2026-11-16"
     }
    ]
   },

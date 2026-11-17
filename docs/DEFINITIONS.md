@@ -18,6 +18,10 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   and then spread out, the main team is one of its own parts, not the runner and the player with him; five or more
   of its players on the enemy's ground round the back, two more than the part on the front lane, are the main team
   there; and a split is over once two or more of the rest of its team stand with it in a group of five or more.
+- Players who leave a base that is held in are a decision for the enemy at once, whether they are called the split
+  or the main team (R-506, his to revisit). *As built:* with the enemy's main team (five or more) in the base, the part
+  at home is the main team and those who left are a split from the second they leave, when they are as many as those
+  who stay or more.
 - A player cannot be in two fights at once, and some are in neither: moving to position with no output (R-488).
   Numbers are told only when they last 12 s; "no clear decision" is an answer (R-488).
 - On a split: the players who came with it and stand with it, its back line included; brief support is not one more
@@ -40,6 +44,13 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   with it is a timing choice: get in position to overcap or keep the player in the fight; in position, cap at once
   or hold and play on with eight without giving up a boost (R-486).
 - A flag picked up is not a run to answer until its carrier commits to flagging (R-488; built: it leaves the base).
+- A flag brought up with the team is not a run (R-505): a team already in its base, with no fight on, walks a flag part
+  of the way to its front door, sends nobody back for it, makes no serious attempt to cap and drops it at any
+  resistance; it loses nothing, and the enemy has nothing to answer until the flag is capped or pushed for the stand.
+  A run needs no player going back: a defender, a resurrected player or a split player on his way home, or a player
+  left back for it, runs a flag, because he could be doing something else. *As built:* the carrier and all his team but
+  one on their own ground at the pickup, never 12 s without his team or with the enemy's main team in his base, and
+  the flag never capped or in the stand or greater stand area.
 - When a team leaves to flag, the other team decides: flag again, stay, or double run (R-489).
 - Each team has one flag. A pickup held about 3 s is not a run (R-339). A hold is a flag kept in hand, or left at the
   spawn, rather than run or capped: 45 s in the stand or the greater stand area while the enemy holds the stand (R-400,
@@ -153,6 +164,9 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - Timing: an answer within about 15 s is on time; 60 s is late (R-116). After kills at their base, the NPC job needs
   the time to reach the pit before their base res; otherwise the job is to be out, or set for the fight, when they res
   (R-445, R-147). *As built:* 20 s more than the walk (`AFTER_WIPE_MIN_S`, draft).
+- At a base res (R-507): a team that left the base before the res has left, though it stands in front of the door
+  again as the res lands; a team on its way out as the res lands has not stayed; a player left at a door on his own
+  has not stayed. A team standing at a door together is in the base.
 - Taken out: the race back when a split ends (R-448; it was item 6 of R-434).
 
 ## Collapse

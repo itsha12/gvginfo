@@ -8,51 +8,51 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 > out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-16: three games graded on the new marking; his rulings to R-504 built; 506 matches trained)
+## State (2026-11-16, evening: three games graded; his rulings to R-507 built; games 4 and 5 on the page; 506 matches trained)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` and lands in one piece,
   then one rebuild (R-322). 658 replays stored; 564 count (R-477). No Train batch, Discovery or fetch run in progress.
-- The baseline (R-491) is the branch `baseline-2026-11-15` (`bundle-4` at fd2b30b); its reading of the 45 development
-  games and its figures are in `data/model/baseline/` on main. Since then on `bundle-4` (now e2197e4; `jobs.py`,
-  `moments.py`, `common.py`), all from HC v Team: his wording of flag, numbers and split rows (R-501); a stay ends at
-  their cap; a run answers theirs when its runner set off before their cap (R-498); a split defender's death is the
-  split's own (R-499); the first flags carry only "get the first flag in" (R-500); a main team round the back stays
-  the main team and a split ends when the larger part of its team stands with it (R-502: read it, and what was tried
-  and not kept, before touching `main_team`); runners named on boost and double-run rows, pit NPCs written out
-  (R-503); a flag handed on is one runner, and a double run needs its second player gone back by the cap (R-504).
-- The fresh start (R-491 to R-497; all in CLAUDE.md): the games marked before 2026-11-15 are history, scored and
-  reported like the gate and the line-up, binding nothing. He grades each situation of a fresh game on Model > Game
-  review (Classic, Visible, Weak, No decision, Repeat; then Correct, Partly, Incorrect with ticks and his words; calls
-  only under a Classic or Visible decision read Correct or Partly; folded rows for the engine's no decision; missed
-  decisions under the table). Only Classic binds; the other grades are built from when a fault shows in two games.
-- The engine's confidence (`tools/golden/confidence.py`, outside the engine folder): the game read again with each of
-  the 62 draft numbers a quarter either way and at half and double; high = the same in all, medium = moved only at
-  half or double, low = moved at a quarter. Claude's draft bands. On HC v Team the low rows are mostly splits and
-  pushes on a flagger, hanging on `FIGHT_LINK` (how close players stand to be in one fight) and `JOIN_S` (the 12 s).
-- Graded and filed (set f1): HC v Team (9b5cdf62), Men v Crew (51683de9), 옷옷옷옷 v RACK (a8ba43a8). Read correct:
-  Classic 20 of 22, 13 of 16, 7 of 12; Visible 15 of 19, 11 of 15, 13 of 18. His grades against the confidence, three
-  games: high 43 Classic, 19 Visible, 1 Weak, 2 No decision; medium 5, 8, 1, 2; low 2, 25, 8, 9. Nothing fitted yet.
-- Now (development set, 45 matches): 55 Classic rows pass, all 120 history rows hold, 10 of set f1's 50 open checks
-  hold. Gate 12 of 12, 63 of 105. Line-up 421 of 426; comms 110 of 157. Nothing is on the page unmarked.
+- The baseline (R-491) is the branch `baseline-2026-11-15` (`bundle-4` at fd2b30b); its reading and figures are in
+  `data/model/baseline/` on main. Built on `bundle-4` since, all from his marks on the three games: R-498 to R-504
+  (CHANGELOG), and on 2026-11-16 from his four answers:
+  - R-505, `Moments.brought_up` and `not_run`: a flag brought up with the team (team on its own ground at the pickup,
+    carrier never 12 s without it, enemy's main team not in the base, never capped or at the stand) is no run, no
+    runner, no moment; the other side's row says "brings a flag up with its team (who) but does not run it".
+  - The opening's first flag is one run from 0:00 though put down on the way; a flag answer is read inside the
+    play's own clock (180 s), not from a run minutes later.
+  - R-506, in `main_team` and `_over` (`held_out`): players who leave a base held in by the enemy's main team are a
+    split from the second they leave, when as many as those who stay. A 12 s look-back on "held in" was tried and
+    not kept (36 doubtful splits on the development set).
+  - R-507, `caught`: no base res row for a team that left before the res or is leaving as it lands; a lone player at
+    a door has not stayed.
+- The fresh start (R-491 to R-497; all in CLAUDE.md): only Classic rows bind; earlier games are history; the other
+  grades are built from when a fault shows in two games. He grades on Model > Game review.
+- The confidence bands are fitted to his grades of the three games (top of `tools/golden/confidence.py`): high = the
+  same under every move; medium = moved only at half or double, or by one setting at a quarter; low = two or more
+  settings move it at a quarter. His grades (Classic, Visible, Weak, No decision): high 43, 19, 1, 2; medium 6, 19, 2,
+  4; low 1, 14, 7, 7. Steadiness tells Classic from the rest, not Visible from Weak; nothing else is fitted.
+- Graded and filed (set f1): HC v Team (9b5cdf62), Men v Crew (51683de9), 옷옷옷옷 v RACK (a8ba43a8). On the page,
+  unmarked: game 4, Men v RACK on Nomad's Isle (45cf6756; 40 situations), and game 5, Men v hold on Isle of
+  Meditation (572c2f95; 67 situations, 2 folded), both exported at 8e8e9ea with the fitted bands.
+- Now (development set, 47 matches, 3,725 plays): 55 Classic rows pass; 119 of 120 history rows hold (hdm v hook
+  10:23 is a flag brought up, R-505); set f1 has 30 open checks, none holding. Gate 12 of 12, 63 of 105. Line-up 421
+  of 426; comms 110 of 157. Self-check 229.
 
 ## Next (in order)
-1. His answers to the items below; build them at the root (R-465); check after each change (CLAUDE.md).
-2. Fit the confidence bands to his grades on the three games (which settings, at which move, separate his Weak and
-   No decision rows from his Visible ones), put the result to him, and only then move the bands.
-3. Next games: pick from unused October and November games of top guilds (no henchman game), add them to
-   `dev_set.json`, `moments.py all <plays> --dev`, `confidence.py run <conf> <id>` (6 to 8 minutes a game: run it in
-   the background), `review.py export <plays> <main rows> --set f1 --part N --label "game N" --confidence <conf>`.
-4. Held for a second game (R-495): who and how many push a flagger (HC v Team); numbers read through the portal on
-   Isle of Jade and a carrier falling back with his team read as a runner (Men v Crew).
-5. When he says the flag plays are ready: the flag family to the end (R-451); the other kinds after; then stage E.
+1. His marks on games 4 and 5: `review.py file`, checks by hand, Classic faults first; refit the bands with five games.
+2. His answer on the full collapse (below), then build it at the root in `split_plays` (R-465).
+3. Held for a second game (R-495): who and how many push a flagger (HC v Team); numbers read through the portal on
+   Isle of Jade; Men v Crew 17:53, a pickup 2 s before the boost read as a runner; a base res that lands at the
+   last second of a match (Men v Crew 27:40).
+4. When he says the flag plays are ready: the flag family to the end (R-451); the other kinds after; then stage E.
 
-## Open for Denning (put to him 2026-11-16; set each out again, R-329, with the replay link; all Classic)
-1. A flag carried is not always a run: 옷옷옷옷 v RACK 0:00 ("RACK brings flag up on Warrior, but DOES NOT run the
-   flag"), 3:03 (the Hammer holds it; "RACK DOES NOT run"); Men v Crew 5:52. What makes a carry a run?
-2. Five of RACK leave their base by the back door while it is held in (옷옷옷옷 v RACK 4:30, 8:11, 9:52): he sees a
-   split of five and a full-team collapse on it (1:51, 4:39, 6:01, 8:16); the engine reads the five as RACK's main
-   team (R-487, R-502). Proposed: players who leave a base that is held in, while the rest stay, are a split.
-3. "Stays" at the base res (9:40, 15:40): in front of the door at the res, or leaving as it comes, is out?
-4. Isle of Jade: which of the five archers a side are pit archers (Men v Crew 27:16)?
+## Open for Denning (put to him 2026-11-16; set each out again, R-329, with the replay link)
+1. The full collapse (옷옷옷옷 v RACK 1:51, 4:39, 6:01, 8:16, all Classic, added by him as missed). The engine reads
+   one when six or more defenders are on the split or five or more have gone home for it: so at arrival (2:06 and
+   6:28, 15 and 27 s after his times), and not at all when the team chases and does not reach it (4:39, 8:16, where
+   옷옷옷옷 leaves RACK's base to go after RACK's five). Proposed: it counts from when the team turns for the split,
+   reached or not. His to confirm, with what marks the turn (through its door or teleporter?).
+2. Men v Crew 23:56 (Visible, correct) stays a run under R-505 only because Crew's main team was in Men's base
+   until 23:50; told to him. 19:53 (Classic, correct, "one runner") stays for the same reason.
 - Noted, not put to him (R-491): TFS v 옷옷옷옷 1:54, a flag put on the Obelisk stand reads "our flag is capped: no".
 
 ## Data looked at on 2026-11-14 (nothing built; nothing from GW Observer in the repo)
