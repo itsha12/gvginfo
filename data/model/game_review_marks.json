@@ -6075,7 +6075,8 @@
      "why": "only 1 archer is dead",
      "reason": [],
      "text": "RACK is held in its own base or pit by Men's main team (pit NPCs alive at 8:24: 0 of 2 knights, 1 of 2 pit archers, the Bodyguard alive; lost while held: a pit archer at 10:40; base res in 96 s)",
-     "band": "medium"
+     "band": "medium",
+     "mark": "incorrect"
     },
     "45cf6756-pinned-2-504-27": {
      "mark": "not judged",
