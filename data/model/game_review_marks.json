@@ -7625,6 +7625,11 @@
      "mark": "correct",
      "why": "",
      "text": "hold (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)"
+    },
+    "572c2f95-flag-2-0-0": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold [single run]: Kill or take ground with the extra player, and end no worse than a flag behind. Not met (no worse than a flag behind at the end: no; more of theirs die at the main fight than of ours: no; ground taken: no; one of their NPCs dies: yes)"
     }
    },
    "scheme": 2,
