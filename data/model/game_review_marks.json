@@ -6438,6 +6438,1197 @@
      "why": "missed important collapse by Men's hammer and prot; and important join by Ranger. The players are correctly identified in the split, but the collapse and join itself are decision points for the respective teams."
     }
    ]
+  },
+  "572c2f95-b108-5dea-a98d-e7f39ae64514": {
+   "marks": {
+    "s:572c2f95-flag-2-0-0": {
+     "grade": "classic",
+     "why": "important to note that hold did not bring the first flag and had to send ele back for it. wasting over a minute of player time.",
+     "reason": [],
+     "text": "The opening. Men double run (first runner AoB Derv, handing it to Hammer; second runner Ritualist 1, back for the next flag); hold single run (Earth Ele); left back for the next flag: Men's AoB Derv",
+     "band": "high",
+     "mark": "partly"
+    },
+    "s:572c2f95-flag-1-15-1": {
+     "grade": "repeat",
+     "why": "",
+     "mark": "",
+     "off": [],
+     "reason": [],
+     "text": "The opening. hold single run (Earth Ele); Men stays",
+     "band": "high"
+    },
+    "572c2f95-flag-1-15-1": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Men [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Met (more of theirs die at the main fight than of ours: no; their flag does not get in: yes)"
+    },
+    "s:572c2f95-numbers-1-24-2": {
+     "grade": "weak",
+     "why": "was only 5v4 for around 4s; 4v4 starting at 0:29",
+     "text": "Men down on numbers in the main fight (4 v 5, the greater stand area), from players split elsewhere; Men: stay (stay at the stand) | hold: stay (stay at the stand); 3 damage against 2 monks",
+     "band": "low",
+     "mark": "incorrect",
+     "reason": [
+      "brief"
+     ],
+     "off": [
+      "numbers"
+     ]
+    },
+    "572c2f95-numbers-1-24-2": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Men (weak side) [stay]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)"
+    },
+    "572c2f95-numbers-2-24-3": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hold (strong side) [stay]: Keep them busy and lose nobody (a kill is not expected of it). Met (nobody of ours dies: yes)"
+    },
+    "s:572c2f95-numbers-1-48-4": {
+     "grade": "classic",
+     "why": "",
+     "text": "Men up on numbers in the main fight (5 v 4, the greater stand area), from players split elsewhere; Men: push in; 3 damage against 2 monks | hold: stay (stay on their side)",
+     "band": "low",
+     "mark": "correct",
+     "off": [],
+     "reason": []
+    },
+    "572c2f95-numbers-1-48-4": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (strong side) [push in]: Keep them busy and lose nobody (a kill is not expected of it). Met (nobody of ours dies: yes)"
+    },
+    "572c2f95-numbers-2-48-7": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold (weak side) [stay]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)"
+    },
+    "s:572c2f95-split-2-48-8": {
+     "grade": "classic",
+     "why": "split is by backdoor; starts with 3 defending; 2 defending from 1:11 to 2:27",
+     "reason": [],
+     "text": "hold's split by the front door: three players (Fire Ele, Air Ele, 8 Monk) against 1 defending (Ranger); numbers along the way: 3 v 1 from 0:48, 3 v 2 from 1:40, 3 v 3 from 2:26",
+     "band": "low",
+     "mark": "incorrect",
+     "off": [
+      "numbers",
+      "where"
+     ]
+    },
+    "572c2f95-split-2-48-8": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hold (attacker) [a player or more up]: Kill or take NPCs. Met (a defender killed: no; an NPC taken: yes)"
+    },
+    "572c2f95-split-1-48-5": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Men (defender) [one defender]: Delay: keep the split off the pit NPCs and stay alive. Met (no pit NPC lost: yes; no defender dies: yes)"
+    },
+    "572c2f95-split-1-48-6": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Men (defender's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (more of theirs die away from the split than of ours: no)"
+    },
+    "s:572c2f95-numbers-1-86-9": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Men up on numbers in the main fight (6 v 5, hold's front door), from players split elsewhere; Men: stay (stay on the enemy's side) | hold: retreat down the ladder (retreat to the pit)",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-numbers-1-86-9": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (strong side) [stay]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)"
+    },
+    "572c2f95-numbers-2-86-10": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)"
+    },
+    "s:572c2f95-boost-2-106-11": {
+     "grade": "visible",
+     "why": "",
+     "text": "Men's boost is 30 s away; hold: one runner (Earth Ele); the rest retreat to the pit",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-boost-2-106-11": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold [run]: Deny their boost. Not met (their boost does not land: no)"
+    },
+    "s:572c2f95-pinned-2-108-12": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 1:48: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard alive; base res in 12 s)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-pinned-2-108-12": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold: Lose no player and no NPC while held in, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it breaks out at 2:20, having lost nothing; a break-out is half its living players or more, four at least, out past its doors): yes)"
+    },
+    "s:572c2f95-flag-1-127-13": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "hold single run (Earth Ele); Men stays",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-flag-1-127-13": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Met (more of theirs die at the main fight than of ours: no; their flag does not get in: yes)"
+    },
+    "s:572c2f95-numbers-1-150-14": {
+     "grade": "visible",
+     "why": "",
+     "text": "Men down on numbers in the main fight (4 v 5, hold's front door), from players split elsewhere; Men: stay (stay at the stand) | hold: stay (stay at the stand)",
+     "band": "medium",
+     "reason": [
+      "brief"
+     ],
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-numbers-1-150-14": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (weak side) [stay]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)"
+    },
+    "572c2f95-numbers-2-150-15": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold (strong side) [stay]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)"
+    },
+    "s:572c2f95-split-2-166-17": {
+     "grade": "classic",
+     "why": "ranger and 8 monk defending",
+     "reason": [],
+     "text": "hold's split by the front door: three players (Fire Ele, 8 Monk, Air Ele) against 0 defending",
+     "band": "medium",
+     "mark": "incorrect",
+     "off": [
+      "numbers",
+      "who"
+     ]
+    },
+    "572c2f95-split-2-166-17": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hold (attacker) [undefended]: Take NPCs. Met (an NPC taken: yes)"
+    },
+    "572c2f95-split-1-166-16": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Men (defender) [no answer]: Win elsewhere before the split costs more than it gains. Met (more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: yes)"
+    },
+    "s:572c2f95-push_flagger-1-184-19": {
+     "grade": "weak",
+     "why": "",
+     "text": "Men pushes hold's flagger (Earth Ele, carrying) with its main team",
+     "band": "medium",
+     "reason": [
+      "brief"
+     ],
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-push_flagger-1-184-19": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Men: Stop their flag, or make it 30% late. Met (their flag is stopped: yes; it arrives 30% or more later than usual: no)"
+    },
+    "572c2f95-flagger_pushed-2-184-20": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hold: Get the flag in on time. Not met (the flag gets in, less than 30% late: no)"
+    },
+    "s:572c2f95-numbers-1-184-18": {
+     "grade": "visible",
+     "why": "",
+     "text": "Men up on numbers in the main fight (6 v 5, the greater stand area), from players split elsewhere; Men: push in | hold: retreat down the ladder (fall back into the base)",
+     "band": "low",
+     "mark": "correct",
+     "off": [],
+     "reason": [
+      "brief"
+     ]
+    },
+    "572c2f95-numbers-1-184-18": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (strong side) [push in]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)"
+    },
+    "572c2f95-numbers-2-184-21": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)"
+    },
+    "s:572c2f95-push_flagger-2-192-23": {
+     "grade": "none",
+     "why": "",
+     "mark": "",
+     "off": [],
+     "text": "hold pushes Men's flagger (Ritualist 1, carrying) with one player",
+     "band": "low",
+     "reason": [
+      "brief",
+      "small",
+      "nofight",
+      "unclear"
+     ]
+    },
+    "572c2f95-push_flagger-2-192-23": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hold: Stop their flag, or make it 30% late. Met (their flag is stopped: yes; it arrives 30% or more later than usual: no)"
+    },
+    "572c2f95-flagger_pushed-1-192-22": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Men: Get the flag in on time. Not met (the flag gets in, less than 30% late: no)"
+    },
+    "s:572c2f95-pinned-2-220-24": {
+     "grade": "visible",
+     "why": "",
+     "text": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 3:40: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard alive; lost while held: a knight at 3:41, a knight at 3:41; base res in 20 s)",
+     "band": "medium",
+     "mark": "correct",
+     "off": [],
+     "reason": [
+      "small"
+     ]
+    },
+    "572c2f95-pinned-2-220-24": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold: Lose no player and no NPC while held in, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)"
+    },
+    "s:572c2f95-boost-2-226-25": {
+     "grade": "classic",
+     "why": "good identification. They brought this flag from base but it really was a run; they were trying to cap but took too much pressure and couldn't cap.",
+     "reason": [],
+     "text": "Men's boost is 30 s away; hold: one runner (Mesmer, handing it to Earth Ele); the rest fall back into the base",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-boost-2-226-25": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold [run]: Deny their boost. Not met (their boost does not land: no)"
+    },
+    "s:572c2f95-flag-1-234-26": {
+     "grade": "weak",
+     "why": "Rit doesn't full run, he has a backup flag waiting at stand already",
+     "mark": "partly",
+     "off": [
+      "kind"
+     ],
+     "text": "hold single run (Earth Ele); Men single run (Ritualist 1)",
+     "band": "high",
+     "reason": [
+      "nofight"
+     ]
+    },
+    "572c2f95-flag-1-234-26": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Men [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (our flag is capped: yes; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: yes)"
+    },
+    "s:572c2f95-split-2-236-29": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "hold's split by the front door: three players (Fire Ele, 8 Monk, Air Ele) against 2 defending (Ranger, Ritualist 2)",
+     "band": "low",
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-split-2-236-29": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold (attacker) [a player or more up]: Kill or take NPCs. Not met (a defender killed: no; an NPC taken: no)"
+    },
+    "572c2f95-split-1-236-27": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Met (no pit NPC lost: yes; no defender dies: yes)"
+    },
+    "572c2f95-split-1-236-28": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (defender's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (more of theirs die away from the split than of ours: no)"
+    },
+    "s:572c2f95-split-2-260-35": {
+     "grade": "classic",
+     "why": "same split as before, and 3 are defending still (8 monk and ranger)",
+     "reason": [],
+     "text": "hold's split by the front door: three players (Fire Ele, 8 Monk, Air Ele) against 0 defending",
+     "band": "medium",
+     "mark": "incorrect",
+     "off": [
+      "numbers",
+      "when"
+     ]
+    },
+    "572c2f95-split-2-260-35": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hold (attacker) [undefended]: Take NPCs. Not met (an NPC taken: no)"
+    },
+    "572c2f95-split-1-260-34": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Men (defender) [no answer]: Win elsewhere before the split costs more than it gains. Not met (more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)"
+    },
+    "s:572c2f95-split-2-298-39": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "hold's split by the front door: three players (Fire Ele, Air Ele, 8 Monk) against 2 defending (Ranger, Hammer); numbers along the way: 3 v 2 from 4:58, 3 v 3 from 6:22",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-split-2-298-39": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold (attacker) [a player or more up]: Kill or take NPCs. Met (a defender killed: yes; an NPC taken: yes)"
+    },
+    "572c2f95-split-1-298-38": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Not met (no pit NPC lost: no; no defender dies: no)"
+    },
+    "s:572c2f95-split-2-432-45": {
+     "grade": "visible",
+     "why": "",
+     "text": "hold's split by the front door: 4 players (Fire Ele, 8 Monk, Air Ele, Prot) against 8 defending (Hammer, Ranger, Prot, AoB Derv, Ritualist 2, 7 Monk, Mesmer, Ritualist 1); the whole team turns on it; 8 (Hammer, Ranger, Prot, AoB Derv, Ritualist 2, 7 Monk, Mesmer, Ritualist 1) against 4 players: full collapse",
+     "band": "low",
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-split-2-432-45": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold (attacker) [met by a full collapse]: Survive and gain an advantage elsewhere on the map. Not met (nobody on the split dies: no; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: yes)"
+    },
+    "572c2f95-split-1-432-44": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (defender) [full collapse]: Kill the split or drive it out (the flags it costs are beside it). Met (a split player dies: yes; the split is gone within the visit: yes)"
+    },
+    "s:572c2f95-push_flagger-2-408-43": {
+     "grade": "none",
+     "why": "this I think was collapse rather than flagpush",
+     "mark": "",
+     "off": [],
+     "text": "hold pushes Men's flagger (Ritualist 1, carrying) with its main team",
+     "band": "low",
+     "reason": [
+      "nofight",
+      "unclear"
+     ]
+    },
+    "572c2f95-push_flagger-2-408-43": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hold: Stop their flag, or make it 30% late. Met (their flag is stopped: no; it arrives 30% or more later than usual: yes)"
+    },
+    "572c2f95-flagger_pushed-1-408-42": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Men: Get the flag in on time. Not met (the flag gets in, less than 30% late: no)"
+    },
+    "s:572c2f95-flag-2-378-41": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Men single run (Ritualist 1); hold single run (Earth Ele)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-flag-2-378-41": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (our flag is capped: yes; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: yes)"
+    },
+    "s:572c2f95-boost-2-346-40": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Men's boost is 30 s away; hold: no runner; the rest stay at the stand",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-boost-2-346-40": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold [concede]: Concede the boost for kills. Met (more of theirs die than of ours: yes)"
+    },
+    "s:572c2f95-split-2-552-49": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "hold's split by the back door: three players (8 Monk, Fire Ele, Air Ele) against 2 defending (Mesmer, 7 Monk)",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-split-2-552-49": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold (attacker) [a player or more up]: Kill or take NPCs. Met (a defender killed: no; an NPC taken: yes)"
+    },
+    "572c2f95-split-1-552-48": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Not met (no pit NPC lost: no; no defender dies: yes)"
+    },
+    "572c2f95-split-2-552-50": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold (attacker's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Not met (more of theirs die away from the split than of ours: no)"
+    },
+    "s:572c2f95-split-1-558-51": {
+     "grade": "visible",
+     "why": "this is very clear (so close to classic) it's just not a typical example of a split by frontdoor or defence",
+     "text": "Men's split by the front door: two players (Hammer, Ranger) against 5 defending (Earth Ele, 7 Monk, Water Ele, Mesmer, Prot)",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-split-1-558-51": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Not met (nobody on the split dies: no; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)"
+    },
+    "572c2f95-split-2-558-53": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Not met (no pit NPC lost: no; a split player dies: yes; the split is gone within the visit: no)"
+    },
+    "572c2f95-split-1-558-52": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (attacker's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Not met (more of theirs die away from the split than of ours: no)"
+    },
+    "s:572c2f95-boost-2-576-54": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Men's boost is 30 s away; hold: one runner (Earth Ele); the rest push up",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-boost-2-576-54": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold [run]: Deny their boost. Not met (their boost does not land: no)"
+    },
+    "s:572c2f95-split-2-586-56": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "hold's split by the back door: three players (8 Monk, Fire Ele, Air Ele) against 4 defending (AoB Derv, Ritualist 1, Mesmer, 7 Monk); AoB Derv, Ritualist 1 collapse from the main fight; 4 (AoB Derv, Ritualist 1, Mesmer, 7 Monk) against three players: collapse by AoB Derv, Ritualist 1 from the main fight",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-split-2-586-56": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold (attacker) [collapsed on]: Survive and gain an advantage elsewhere on the map. Not met (nobody on the split dies: no; more of theirs die away from the split than of ours: yes; flag lead better by 0.35 or more: no)"
+    },
+    "572c2f95-split-1-586-55": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Met (a split player dies during the collapse: yes)"
+    },
+    "s:572c2f95-split-1-596-57": {
+     "grade": "none",
+     "why": "he is running away from a previous split to join mainteam; he is not splitting",
+     "mark": "",
+     "off": [],
+     "text": "Men's split by the front door: one player (Hammer) against 0 defending",
+     "band": "medium",
+     "reason": [
+      "nofight"
+     ]
+    },
+    "572c2f95-split-1-596-57": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Men (attacker) [undefended]: Take NPCs. Not met (an NPC taken: no)"
+    },
+    "572c2f95-split-2-596-58": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hold (defender) [no answer]: Win elsewhere before the split costs more than it gains. Not met (more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)"
+    },
+    "s:572c2f95-split-2-602-61": {
+     "grade": "visible",
+     "why": "it's continuation of previous split",
+     "text": "hold's split by the back door: two players (Fire Ele, Air Ele) against 4 defending (AoB Derv, Mesmer, 7 Monk, Ritualist 1)",
+     "band": "medium",
+     "mark": "partly",
+     "off": []
+    },
+    "572c2f95-split-2-602-61": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Not met (nobody on the split dies: no; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)"
+    },
+    "572c2f95-split-1-602-59": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Met (no pit NPC lost: yes; a split player dies: yes; the split is gone within the visit: yes)"
+    },
+    "572c2f95-split-1-602-60": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (defender's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Not met (more of theirs die away from the split than of ours: no)"
+    },
+    "s:572c2f95-numbers-1-284-36": {
+     "grade": "visible",
+     "why": "",
+     "text": "Men up on numbers in the main fight (6 v 5, hold's front door), from players split elsewhere; Men: push in | hold: retreat down the ladder (fall back into the base)",
+     "band": "low",
+     "mark": "correct",
+     "off": [],
+     "reason": [
+      "brief"
+     ]
+    },
+    "572c2f95-numbers-1-284-36": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (strong side) [push in]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)"
+    },
+    "572c2f95-numbers-2-284-37": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)"
+    },
+    "s:572c2f95-numbers-1-248-30": {
+     "grade": "visible",
+     "why": "",
+     "reason": [
+      "brief"
+     ],
+     "text": "Men down on numbers in the main fight (4 v 5, hold's front door), from players split elsewhere; Men: stay (stay on the enemy's side) | hold: retreat down the ladder (fall back into the base); 3 damage against 2 monks",
+     "band": "low",
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-numbers-1-248-30": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (weak side) [stay]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)"
+    },
+    "572c2f95-numbers-2-248-31": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold (strong side) [retreat down the ladder]: Keep them busy and lose nobody (a kill is not expected of it). Met (nobody of ours dies: yes)"
+    },
+    "s:572c2f95-split-1-256-32": {
+     "grade": "classic",
+     "why": "excellent catch",
+     "reason": [],
+     "text": "Men's split by the back door: one player (AoB Derv) against 0 defending",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-split-1-256-32": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (attacker) [undefended]: Take NPCs. Met (an NPC taken: yes)"
+    },
+    "572c2f95-split-2-256-33": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold (defender) [no answer]: Win elsewhere before the split costs more than it gains. Not met (more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)"
+    },
+    "s:572c2f95-split-1-624-63": {
+     "grade": "none",
+     "why": "they are just running into backdoor, no split yet",
+     "mark": "",
+     "off": [],
+     "text": "Men's split by the front door: 5 players (Hammer, AoB Derv, 7 Monk, Mesmer, Ritualist 1) against 0 defending",
+     "band": "low",
+     "reason": [
+      "nofight"
+     ]
+    },
+    "572c2f95-split-1-624-63": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Men (attacker) [undefended]: Take NPCs. Not met (an NPC taken: no)"
+    },
+    "572c2f95-split-2-624-64": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hold (defender) [no answer]: Win elsewhere before the split costs more than it gains. Not met (more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)"
+    },
+    "s:572c2f95-split-1-640-65": {
+     "grade": "classic",
+     "why": "5 players defending and it's a split through the backdoor not front",
+     "reason": [],
+     "text": "Men's split by the front door: 5 players (Hammer, AoB Derv, 7 Monk, Mesmer, Ritualist 1) against 2 defending (7 Monk, Water Ele); numbers along the way: 5 v 2 from 10:40, 5 v 5 from 10:58",
+     "band": "low",
+     "mark": "partly",
+     "off": [
+      "numbers"
+     ]
+    },
+    "572c2f95-split-1-640-65": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (attacker) [a player or more up]: Kill or take NPCs. Not met (a defender killed: no; an NPC taken: no)"
+    },
+    "572c2f95-split-2-640-66": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Met (no pit NPC lost: yes; no defender dies: yes)"
+    },
+    "s:572c2f95-pinned-2-652-67": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 10:52: 0 of 2 knights, 2 of 2 pit archers, the Bodyguard dead; lost while held: a pit archer at 11:48; base res in 68 s)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-pinned-2-652-67": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold: Hold the NPCs and lose nobody until the base res, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)"
+    },
+    "s:572c2f95-split-1-670-68": {
+     "grade": "none",
+     "why": "incorrect; warrior is just jointing the mainteam fight that is now in pit.",
+     "mark": "",
+     "off": [],
+     "text": "Men's split by the front door: one player (Hammer) against 5 defending (Water Ele, Earth Ele, Prot, Mesmer, 7 Monk); Prot collapse from the main fight; 5 (Water Ele, Earth Ele, Prot, Mesmer, 7 Monk) against one player: collapse by Prot from the main fight",
+     "band": "low"
+    },
+    "572c2f95-split-1-670-68": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Men (attacker) [collapsed on]: Survive and gain an advantage elsewhere on the map. Not met (nobody on the split dies: yes; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)"
+    },
+    "572c2f95-split-2-670-69": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hold (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Not met (a split player dies during the collapse: no)"
+    },
+    "s:572c2f95-base_res-1-700-70": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Men has 8 in hold's base at the base res (4 defending, 4 coming back): 8 stay",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-base_res-1-700-70": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men [stayed through the res]: Be out, or set for the fight, when they res. Met (nobody of ours dies in the 30 s after the res: yes)"
+    },
+    "s:572c2f95-split-1-712-71": {
+     "grade": "repeat",
+     "why": "no decision; incorrect",
+     "mark": "",
+     "off": [],
+     "reason": [],
+     "text": "Men's split by the front door: one player (Hammer) against 3 defending (Water Ele, Prot, 7 Monk)",
+     "band": "low"
+    },
+    "572c2f95-split-1-712-71": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Men (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Not met (nobody on the split dies: yes; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)"
+    },
+    "572c2f95-split-2-712-73": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hold (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Met (no pit NPC lost: yes; a split player dies: no; the split is gone within the visit: yes)"
+    },
+    "572c2f95-split-1-712-72": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Men (attacker's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Not met (more of theirs die away from the split than of ours: no)"
+    },
+    "s:572c2f95-pinned-2-720-74": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 12:00: 0 of 2 knights, 1 of 2 pit archers, the Bodyguard dead; base res in 120 s)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-pinned-2-720-74": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold: Lose no player and no NPC while held in, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)"
+    },
+    "s:572c2f95-numbers-1-766-75": {
+     "grade": "visible",
+     "why": "",
+     "text": "Men up on numbers in the main fight (8 v 7, hold's back door), from players split elsewhere; Men: stay (stay on the enemy's side) | hold: retreat down the ladder (fall back into the base)",
+     "band": "medium",
+     "reason": [
+      "brief",
+      "unclear"
+     ],
+     "mark": "correct",
+     "off": []
+    },
+    "s:572c2f95-numbers-1-788-77": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Men down on numbers in the main fight (5 v 7, hold's back door; then 6 v 7 from 13:24; then 6 v 8 from 13:46), from players split elsewhere; Men: stay (stay on the enemy's side) | hold: retreat down the ladder (retreat to the pit)",
+     "band": "low",
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-numbers-1-788-77": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (weak side) [stay]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)"
+    },
+    "572c2f95-numbers-2-788-78": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold (strong side) [retreat down the ladder]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)"
+    },
+    "s:572c2f95-boost-2-816-79": {
+     "grade": "visible",
+     "why": "",
+     "text": "Men's boost is 30 s away; hold: no runner; the rest fall back into the base",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-boost-2-816-79": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold [concede]: Concede the boost for kills. Not met (more of theirs die than of ours: no)"
+    },
+    "s:572c2f95-push_flagger-1-866-80": {
+     "grade": "visible",
+     "why": "",
+     "text": "Men pushes hold's flagger (Earth Ele, at the spawn) with 2 players",
+     "band": "medium",
+     "mark": "correct",
+     "off": [],
+     "reason": [
+      "brief"
+     ]
+    },
+    "572c2f95-push_flagger-1-866-80": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men: Stop their flag, or make it 30% late. Not met (their flag is stopped: no; it arrives 30% or more later than usual: no)"
+    },
+    "572c2f95-flagger_pushed-2-866-81": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold: Get the flag in on time, without losing a player for the help sent. Not met (the flag gets in, less than 30% late: no; nobody else of ours dies meanwhile: no)"
+    },
+    "s:572c2f95-pinned-2-916-82": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 15:16: 0 of 2 knights, 1 of 2 pit archers, the Bodyguard dead; base res in 44 s)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-pinned-2-916-82": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold: Hold the NPCs and lose nobody until the base res, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)"
+    },
+    "s:572c2f95-numbers-1-922-83": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Men up on numbers in the main fight (8 v 7, hold's pit), from kills; Men: stay (stay on the enemy's side)",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-numbers-1-922-83": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (up) [stay]: Turn the extra player into a kill before the numbers are level. Not met (more of theirs die than of ours: no)"
+    },
+    "s:572c2f95-base_res-1-940-84": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Men has 8 in hold's base at the base res (7 defending, 1 coming back): 8 stay",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "s:572c2f95-pinned-2-960-85": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 16:00: 0 of 2 knights, 1 of 2 pit archers, the Bodyguard dead; base res in 120 s)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-pinned-2-960-85": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold: Lose no player and no NPC while held in, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)"
+    },
+    "s:572c2f95-pinned-2-988-86": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 16:28: 0 of 2 knights, 1 of 2 pit archers, the Bodyguard dead; base res in 92 s)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-pinned-2-988-86": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold: Lose no player and no NPC while held in, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)"
+    },
+    "s:572c2f95-numbers-1-994-87": {
+     "grade": "visible",
+     "why": "",
+     "text": "Men up on numbers in the main fight (8 v 7, hold's pit), from players split elsewhere; Men: stay (stay on the enemy's side)",
+     "band": "low",
+     "mark": "correct",
+     "off": [],
+     "reason": [
+      "brief"
+     ]
+    },
+    "572c2f95-numbers-1-994-87": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (strong side) [stay]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)"
+    },
+    "s:572c2f95-flag-1-1045-88": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "hold single run (Earth Ele); Men single run (Ranger, handing it to Ritualist 1)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-flag-1-1045-88": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (our flag is capped: yes; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: no)"
+    },
+    "s:572c2f95-flag-2-1053-89": {
+     "grade": "none",
+     "why": "single run is already described; and hold's prot does not run",
+     "mark": "",
+     "off": [],
+     "text": "Men single run (Ranger, handing it to Ritualist 1); hold single run (Prot)",
+     "band": "high"
+    },
+    "572c2f95-flag-2-1053-89": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hold [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (our flag is capped: yes; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: yes)"
+    },
+    "s:572c2f95-boost-2-1056-90": {
+     "grade": "classic",
+     "why": "hold's prot does not run",
+     "mark": "incorrect",
+     "off": [],
+     "text": "Men's boost is 30 s away; hold: one runner (Prot); the rest retreat to the pit",
+     "band": "high",
+     "reason": []
+    },
+    "572c2f95-boost-2-1056-90": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hold [run]: Deny their boost. Met (their boost does not land: yes)"
+    },
+    "s:572c2f95-pinned-2-1064-91": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 17:44: 0 of 2 knights, 1 of 2 pit archers, the Bodyguard dead; base res in 16 s)",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-pinned-2-1064-91": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold: Lose no player and no NPC while held in, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)"
+    },
+    "s:572c2f95-split-2-1100-99": {
+     "grade": "classic",
+     "why": "earth ele is part of split",
+     "reason": [],
+     "text": "hold's split by the front door: one player (Fire Ele) against 3 defending (Ritualist 1, Prot, Ranger)",
+     "band": "low",
+     "mark": "incorrect",
+     "off": [
+      "numbers",
+      "who"
+     ]
+    },
+    "572c2f95-split-2-1100-99": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hold (attacker) [a player or more down]: Survive and gain an advantage elsewhere on the map. Not met (nobody on the split dies: yes; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)"
+    },
+    "572c2f95-split-1-1100-97": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Men (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Not met (no pit NPC lost: yes; a split player dies: no; the split is gone within the visit: no)"
+    },
+    "572c2f95-split-1-1100-98": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Men (defender's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Met (more of theirs die away from the split than of ours: yes)"
+    },
+    "s:572c2f95-numbers-1-1098-95": {
+     "grade": "visible",
+     "why": "",
+     "text": "Men down on numbers in the main fight (3 v 4, hold's pit), from players split elsewhere; Men: stay (stay on the enemy's side) | hold: push in",
+     "band": "medium",
+     "reason": [
+      "brief"
+     ],
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-numbers-1-1098-95": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (weak side) [stay]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)"
+    },
+    "572c2f95-numbers-2-1098-96": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold (strong side) [push in]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)"
+    },
+    "s:572c2f95-split-1-1086-92": {
+     "grade": "visible",
+     "why": "this is a collapse, not a split",
+     "text": "Men's split by the front door: two players (Ritualist 2, AoB Derv) against 1 defending (Air Ele)",
+     "band": "low",
+     "mark": "incorrect",
+     "off": [
+      "kind"
+     ]
+    },
+    "572c2f95-split-1-1086-92": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Men (attacker) [a player or more up]: Kill or take NPCs. Met (a defender killed: yes; an NPC taken: no)"
+    },
+    "572c2f95-split-2-1086-94": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hold (defender) [one defender]: Delay: keep the split off the pit NPCs and stay alive. Not met (no pit NPC lost: yes; no defender dies: no)"
+    },
+    "572c2f95-split-1-1086-93": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Men (attacker's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Not met (more of theirs die away from the split than of ours: no)"
+    },
+    "s:572c2f95-split-2-1136-101": {
+     "grade": "classic",
+     "why": "3 man split (earth ele, fire ele, 8 monk) defended by ranger, prot, rit, with eventual collapse by derv",
+     "reason": [],
+     "text": "hold's split by the front door: one player (Fire Ele) against 4 defending (Ranger, Prot, AoB Derv, Ritualist 1); AoB Derv collapse from the main fight; 4 (Ranger, Prot, AoB Derv, Ritualist 1) against one player: collapse by AoB Derv from the main fight",
+     "band": "medium",
+     "mark": "incorrect",
+     "off": [
+      "numbers",
+      "who"
+     ]
+    },
+    "572c2f95-split-2-1136-101": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hold (attacker) [collapsed on]: Survive and gain an advantage elsewhere on the map. Not met (nobody on the split dies: yes; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)"
+    },
+    "572c2f95-split-1-1136-100": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Men (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Not met (a split player dies during the collapse: no)"
+    },
+    "s:572c2f95-boost-1-1163-102": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "hold's boost is 30 s away; Men: one runner (Ritualist 1); the rest stay on the enemy's side",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-boost-1-1163-102": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men [run]: Deny their boost. Met (their boost does not land: yes)"
+    },
+    "s:572c2f95-numbers-1-1176-103": {
+     "grade": "visible",
+     "why": "5v4 men has player advantage",
+     "text": "Men up on numbers in the main fight (5 v 4, hold's front door; then 5 v 2 from 20:10), from players split elsewhere; Men: push up (push up to their front door) | hold: stay (stay at the stand)",
+     "band": "none"
+    },
+    "s:572c2f95-split-1-1178-105": {
+     "grade": "none",
+     "why": "this is not a split, this is just players joining mainteam",
+     "text": "Men's split by the front door: three players (Hammer, Mesmer, 7 Monk) against 2 defending (7 Monk, Mesmer); numbers along the way: 3 v 2 from 19:38, 3 v 3 from 20:00",
+     "band": "medium",
+     "mark": "",
+     "off": []
+    },
+    "572c2f95-split-1-1178-105": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Men (attacker) [a player or more up]: Kill or take NPCs. Met (a defender killed: yes; an NPC taken: no)"
+    },
+    "572c2f95-split-2-1178-107": {
+     "mark": "not judged",
+     "why": "",
+     "text": "hold (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Not met (no pit NPC lost: yes; no defender dies: no)"
+    },
+    "572c2f95-split-1-1178-106": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Men (attacker's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Met (more of theirs die away from the split than of ours: yes)"
+    },
+    "s:572c2f95-base_res-1-1180-108": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Men has 3 in hold's base at the base res (2 defending, 2 coming back): 3 stay",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-base_res-1-1180-108": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men [stayed through the res]: Be out, or set for the fight, when they res. Not met (nobody of ours dies in the 30 s after the res: no)"
+    },
+    "s:572c2f95-pinned-2-1212-109": {
+     "grade": "visible",
+     "why": "",
+     "text": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 20:12: 0 of 2 knights, 1 of 2 pit archers, the Bodyguard dead; base res in 108 s)",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-pinned-2-1212-109": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold: Hold the NPCs and lose nobody until the base res, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)"
+    },
+    "s:572c2f95-split-2-1220-111": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "hold's split by the back door: two players (Fire Ele, Earth Ele) against 0 defending",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "s:572c2f95-split-2-1248-114": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "hold's split by the back door: two players (Fire Ele, Earth Ele) against 2 defending (Ranger, Ritualist 2)",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "572c2f95-split-2-1248-114": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold (attacker) [even]: Take NPCs or kills. Not met (a defender killed: no; an NPC taken: no)"
+    },
+    "572c2f95-split-1-1248-112": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (no pit NPC lost: yes; no more defenders die than split players: yes)"
+    },
+    "572c2f95-split-1-1248-113": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (defender's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Not met (more of theirs die away from the split than of ours: no)"
+    }
+   },
+   "scheme": 2,
+   "game": "Men v hold, Isle of Meditation",
+   "at": "2026-11-17",
+   "engine": "8e8e9ea",
+   "missed": [
+    {
+     "t": "1:09",
+     "kind": "split",
+     "grade": "classic",
+     "why": "missed two very important and classic movements from Men's hammer; he leaves defence at 1:09 to rejoin mainteam (giving them player advantage) and then leaves mainteam to collapse/rejoin split at 1:59."
+    },
+    {
+     "t": "5:18",
+     "kind": "collapse",
+     "grade": "classic",
+     "why": "missed important collapse by warrior on split through mid/collapse path"
+    },
+    {
+     "t": "6:11",
+     "kind": "collapse",
+     "grade": "classic",
+     "why": "missed important collapse by derv on split through frontdoor"
+    },
+    {
+     "t": "17:59",
+     "kind": "split",
+     "grade": "classic",
+     "why": "earth ele splits frontdoor after capping flag"
+    },
+    {
+     "t": "17:01",
+     "kind": "split",
+     "grade": "classic",
+     "why": "fire ele splits front door"
+    }
+   ]
   }
  }
 }
