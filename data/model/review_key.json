@@ -2662,8 +2662,8 @@
      "want": {
       "call": "full collapse"
      },
-     "open": true,
-     "why": "TFS v 옷옷옷옷: a full collapse at about 1:14 that the engine did not read"
+     "why": "TFS v 옷옷옷옷: a full collapse at about 1:14 that the engine did not read",
+     "closed": "2026-11-16"
     },
     {
      "has": {
@@ -2678,8 +2678,8 @@
      "want": {
       "call": "full collapse"
      },
-     "open": true,
-     "why": "TFS v 옷옷옷옷: a full collapse at about 4:15 (he wrote \"4:15ish\") that the engine did not read"
+     "why": "TFS v 옷옷옷옷: a full collapse at about 4:15 (he wrote \"4:15ish\") that the engine did not read",
+     "closed": "2026-11-16"
     },
     {
      "has": {
@@ -2694,8 +2694,8 @@
      "want": {
       "call": "full collapse"
      },
-     "open": true,
-     "why": "TFS v 옷옷옷옷: a full collapse at about 9:26 that the engine did not read"
+     "why": "TFS v 옷옷옷옷: a full collapse at about 9:26 that the engine did not read",
+     "closed": "2026-11-16"
     }
    ]
   },
@@ -14891,9 +14891,9 @@
        "clear": null
       }
      },
-     "open": true,
      "auto": true,
-     "why": "옷옷옷옷 v RACK, Solitude 2:06: he graded it No decision: this is not a split. the 4 man split leaves by portal after 2 die and runs to base."
+     "why": "옷옷옷옷 v RACK, Solitude 2:06: he graded it No decision: this is not a split. the 4 man split leaves by portal after 2 die and runs to base.",
+     "closed": "2026-11-16"
     },
     {
      "none": {
@@ -14907,11 +14907,12 @@
        "clear": null
       }
      },
-     "open": true,
      "auto": true,
-     "why": "옷옷옷옷 v RACK, Solitude 2:06: he graded it No decision: this is not a split. the 4 man split leaves by portal after 2 die and runs to base."
+     "why": "옷옷옷옷 v RACK, Solitude 2:06: he graded it No decision: this is not a split. the 4 man split leaves by portal after 2 die and runs to base.",
+     "closed": "2026-11-16"
     }
-   ]
+   ],
+   "note": "Since R-508 the team arriving on the split is told with the collapse it began (from 1:44, from 6:06), not as a split row of its own."
   },
   {
    "id": "f1-a8ba-6",
@@ -15402,9 +15403,9 @@
        "clear": null
       }
      },
-     "open": true,
      "auto": true,
-     "why": "옷옷옷옷 v RACK, Solitude 6:28: he graded it No decision: NOT a split, just RACK split team that was already split leaving portal/dying"
+     "why": "옷옷옷옷 v RACK, Solitude 6:28: he graded it No decision: NOT a split, just RACK split team that was already split leaving portal/dying",
+     "closed": "2026-11-16"
     },
     {
      "none": {
@@ -15418,11 +15419,12 @@
        "clear": null
       }
      },
-     "open": true,
      "auto": true,
-     "why": "옷옷옷옷 v RACK, Solitude 6:28: he graded it No decision: NOT a split, just RACK split team that was already split leaving portal/dying"
+     "why": "옷옷옷옷 v RACK, Solitude 6:28: he graded it No decision: NOT a split, just RACK split team that was already split leaving portal/dying",
+     "closed": "2026-11-16"
     }
-   ]
+   ],
+   "note": "Since R-508 the team arriving on the split is told with the collapse it began (from 1:44, from 6:06), not as a split row of its own."
   },
   {
    "id": "f1-a8ba-18",
@@ -16118,11 +16120,11 @@
      "want": {
       "call": "full collapse"
      },
-     "open": true,
-     "why": "옷옷옷옷 v RACK 1:51 (Classic, missed): 옷옷옷옷 full team collapses through front door on RACK's split and kills rit and derv."
+     "why": "옷옷옷옷 v RACK 1:51 (Classic, missed): 옷옷옷옷 full team collapses through front door on RACK's split and kills rit and derv.",
+     "closed": "2026-11-16"
     }
    ],
-   "note": "Not built. The engine reads a full collapse when six or more defenders are on the split or five or more have gone home for it: at 2:06 and 6:28 here, when the team arrives (15 and 27 s after his times), and not at all at 4:39 and 8:16, where 옷옷옷옷 leaves RACK's base to chase the split and does not reach it. Put to him 2026-11-16: a full collapse counts from when the team turns for the split, whether or not it gets there?"
+   "note": "Built 2026-11-16 (R-508): a full collapse is told from the turn, 4 s on, reached or not. The engine now reads 옷옷옷옷 turning for RACK's split from 1:40 (told 1:44), 4:26 (told 4:30, not reaching it), 6:02 (told 6:06) and 8:14 (told 8:18)."
   },
   {
    "id": "f1-a8ba-missed-2",
@@ -16195,11 +16197,11 @@
      "want": {
       "call": "full collapse"
      },
-     "open": true,
-     "why": "옷옷옷옷 v RACK 4:39 (Classic, missed): clear fullteam collapse out of frontdoor to backdoor to try to catch RACK split"
+     "why": "옷옷옷옷 v RACK 4:39 (Classic, missed): clear fullteam collapse out of frontdoor to backdoor to try to catch RACK split",
+     "closed": "2026-11-16"
     }
    ],
-   "note": "Not built. The engine reads a full collapse when six or more defenders are on the split or five or more have gone home for it: at 2:06 and 6:28 here, when the team arrives (15 and 27 s after his times), and not at all at 4:39 and 8:16, where 옷옷옷옷 leaves RACK's base to chase the split and does not reach it. Put to him 2026-11-16: a full collapse counts from when the team turns for the split, whether or not it gets there?"
+   "note": "Built 2026-11-16 (R-508): a full collapse is told from the turn, 4 s on, reached or not. The engine now reads 옷옷옷옷 turning for RACK's split from 1:40 (told 1:44), 4:26 (told 4:30, not reaching it), 6:02 (told 6:06) and 8:14 (told 8:18)."
   },
   {
    "id": "f1-a8ba-missed-4",
@@ -16234,11 +16236,11 @@
      "want": {
       "call": "full collapse"
      },
-     "open": true,
-     "why": "옷옷옷옷 v RACK 6:01 (Classic, missed): clear fullteam collapse out of portal to try to catch RACK split"
+     "why": "옷옷옷옷 v RACK 6:01 (Classic, missed): clear fullteam collapse out of portal to try to catch RACK split",
+     "closed": "2026-11-16"
     }
    ],
-   "note": "Not built. The engine reads a full collapse when six or more defenders are on the split or five or more have gone home for it: at 2:06 and 6:28 here, when the team arrives (15 and 27 s after his times), and not at all at 4:39 and 8:16, where 옷옷옷옷 leaves RACK's base to chase the split and does not reach it. Put to him 2026-11-16: a full collapse counts from when the team turns for the split, whether or not it gets there?"
+   "note": "Built 2026-11-16 (R-508): a full collapse is told from the turn, 4 s on, reached or not. The engine now reads 옷옷옷옷 turning for RACK's split from 1:40 (told 1:44), 4:26 (told 4:30, not reaching it), 6:02 (told 6:06) and 8:14 (told 8:18)."
   },
   {
    "id": "f1-a8ba-missed-5",
@@ -16311,11 +16313,11 @@
      "want": {
       "call": "full collapse"
      },
-     "open": true,
-     "why": "옷옷옷옷 v RACK 8:16 (Classic, missed): full team collapse by 옷옷옷옷 through portal on RACK split"
+     "why": "옷옷옷옷 v RACK 8:16 (Classic, missed): full team collapse by 옷옷옷옷 through portal on RACK split",
+     "closed": "2026-11-16"
     }
    ],
-   "note": "Not built. The engine reads a full collapse when six or more defenders are on the split or five or more have gone home for it: at 2:06 and 6:28 here, when the team arrives (15 and 27 s after his times), and not at all at 4:39 and 8:16, where 옷옷옷옷 leaves RACK's base to chase the split and does not reach it. Put to him 2026-11-16: a full collapse counts from when the team turns for the split, whether or not it gets there?"
+   "note": "Built 2026-11-16 (R-508): a full collapse is told from the turn, 4 s on, reached or not. The engine now reads 옷옷옷옷 turning for RACK's split from 1:40 (told 1:44), 4:26 (told 4:30, not reaching it), 6:02 (told 6:06) and 8:14 (told 8:18)."
   },
   {
    "id": "f1-a8ba-missed-7",

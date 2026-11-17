@@ -15,6 +15,9 @@ const ROWS = "data/model/game_reviews.json", MARKS = "data/model/game_review_mar
 const GRADE = [["classic", "Classic"], ["visible", "Visible"], ["weak", "Weak"], ["none", "No decision"]];
 const READ = [["correct", "Correct"], ["partly", "Partly"], ["incorrect", "Incorrect"]];
 const OFFS = [["numbers", "Numbers"], ["who", "Who"], ["when", "When"], ["where", "Where"], ["kind", "Kind of play"]];
+// Why a situation is Weak or No decision (his four reasons, 2026-11-16): ticks, so that they can be counted. A repeat is its own grade and a misreading is "Incorrect".
+const REASONS = [["brief", "Too brief", ""], ["small", "Impact too small to make a difference", ""], ["nofight", "No real fight, nothing at stake", ""],
+  ["unclear", "Weak or unclear small edge in real game", "It may have been a borderline decision, but it is too unclear or weak ever to be read as a decision in a real game."]];
 const BAND = { high: "High", medium: "Medium", low: "Low", none: "No decision" };
 const KINDS = ["flag", "push on a flagger", "split", "collapse", "numbers", "boost", "pinned in base", "base res", "Lord push", "other"];
 const SKIP = "not judged";      // a call that is not asked for
@@ -47,12 +50,14 @@ function gradeBoxes(id, m, only) {
 }
 const readBoxes = (id, m) => `<div class="rv-reads">${READ.map(([v, t]) => `<label class="rv-r${m?.mark === v ? " on" : ""}"><input type="radio" name="r-${esc(id)}" data-read value="${v}"${m?.mark === v ? " checked" : ""}>${t}</label>`).join("")}</div>`;
 const offBoxes = (m) => `<div class="rv-offs"><span class="muted small">What is off:</span> ${OFFS.map(([v, t]) => `<label><input type="checkbox" data-off value="${v}"${(m?.off || []).includes(v) ? " checked" : ""}> ${t}</label>`).join("")}</div>`;
+const reasonBoxes = (m) => !["visible", "weak", "none"].includes(m?.grade) ? "" : `<div class="rv-offs rv-reasons"><span class="muted small">${m.grade === "visible" ? "What keeps it from Classic (optional):" : "Why:"}</span> ${REASONS.map(([v, t, tip]) => `<label${tip ? ` title="${esc(tip)}"` : ""}><input type="checkbox" data-reason value="${v}"${(m?.reason || []).includes(v) ? " checked" : ""}> ${t}</label>`).join("")}</div>`;
 const words = (m, ph) => `<input type="text" data-why placeholder="${esc(ph)}" value="${esc(m?.why || "")}">`;
 
 function sitControl(s, m) {
   const dec = isDecision(m);
   return `<td class="rv-mark" data-id="${esc(s.id)}" data-sit>${gradeBoxes(s.id, m)}
     ${dec ? `<div class="muted small rv-q">Did the engine read it correctly?</div>${readBoxes(s.id, m)}${["partly", "incorrect"].includes(m?.mark) ? offBoxes(m) : ""}` : ""}
+    ${reasonBoxes(m)}
     ${words(m, dec ? "your words: what you see here" : m?.grade === "none" ? "your words: why this is not a decision" : "your words")}</td>`;
 }
 const callControl = (c, m) => `<td class="rv-mark" data-id="${esc(c.id)}">${readBoxes(c.id, m)}${words(m, "your words: is this the job, and is the result right")}</td>`;
@@ -137,9 +142,10 @@ export async function renderReview(out, keep = false) {
   <p>The engine's reading of whole games. Watch the game and grade every situation: first whether it is a decision at all and how clear a one, then whether the engine read it as you do, then each side's job and result. ${canSave() ? "" : "<b>Add your GitHub key in Settings to save.</b>"}</p>
   <details class="rv-terms"><summary>How to mark a row</summary><ul class="small">
     <li><b>A situation</b> is one thing the engine saw happening between the two times: a flag run and the answer to it, a push on a flagger, a split and its defence, a numbers difference in the main fight, a team pinned in its base, a boost coming, a base resurrection, a Lord push.</li>
-    <li><b>The engine's confidence</b> is shown first: how sure it is that this is a decision. It is measured by reading the game again with each of the engine's settings (its distances and times: how close players must stand to be in one fight, how long a player must be there to count) moved. <b>High</b>: it reads the same thing wherever they are set, down to half and up to double. <b>Medium</b>: the same when they are moved a quarter either way, but not at half or double. <b>Low</b>: a quarter's move of one setting changes or removes it; the line under it says which setting. <b>No decision</b>: the engine saw something and set it aside; these are the folded rows. The bands are Claude's draft and will be fitted to your grades.</li>
+    <li><b>The engine's confidence</b> is shown first: how sure it is that this is a decision. It is measured by reading the game again with each of the engine's settings (its distances and times: how close players must stand to be in one fight, how long a player must be there to count) moved. <b>High</b>: it reads the same thing wherever they are set, down to half and up to double. <b>Medium</b>: it moves only at half or double, or one single setting moves it at a quarter. <b>Low</b>: two or more settings move it at a quarter; the line under it says which. These bands were fitted to your grades on the first three games, which still show the earlier draft bands (Low there: any one setting at a quarter). <b>No decision</b>: the engine saw something and set it aside; these are the folded rows. The bands are Claude's draft and will be fitted to your grades.</li>
     <li><b>Grade the moment as you see it in the game</b>, not the engine's wording of it. <span class="rv-g rv-g-classic on">Classic</span> a textbook example of this decision: the engine must read it exactly as you do. <span class="rv-g rv-g-visible on">Visible</span> a real decision a team would see in game, but messier or not the textbook case. <span class="rv-g rv-g-weak on">Weak</span> technically there, but not something a team would act on (a player up for a few seconds). <span class="rv-g rv-g-none on">No decision</span> nothing of this kind is happening (a player who passes near a split and never joins it). <span class="rv-g rv-g-repeat on">Repeat</span> the same thing is already told in another row: grade the row that tells it best, and mark the others Repeat.</li>
     <li>For a Classic, Visible or Weak decision, say whether the engine read it. <b>Correct</b>: it is what you would say. <b>Partly</b>: the engine has the right decision but a detail is off; tick which (the numbers, who, when, where). <b>Incorrect</b>: a decision is there, but a different one from what the engine says; tick Kind of play, and anything else that is off. Then say what you see in your own words.</li>
+    <li>For a <b>Weak</b> or <b>No decision</b> grade, tick why: <b>Too brief</b>; <b>Impact too small to make a difference</b>; <b>No real fight, nothing at stake</b>; <b>Weak or unclear small edge in real game</b> (it may have been a borderline decision, but it is too unclear or weak ever to be read as a decision in a real game). More than one can be ticked. Under a Visible grade the same ticks are offered for what keeps it from Classic, and can be left empty. A row already told elsewhere is a Repeat; a decision the engine misread is Incorrect.</li>
     <li><b>A call</b> is what one team did about the situation. Its <b>job</b> is what a team is expected to achieve there by your rulings; <b>Met</b> or <b>Not met</b> says only whether that happened, and the small line under it lists each test with yes or no. Calls are asked for only under a Classic or Visible decision that the engine read Correct or Partly. For a call, <b>Correct</b> means that is the team's job there and the result is right; <b>Partly</b> means the job or the result is off; <b>Incorrect</b> means that is not what the team was doing.</li>
     <li><b>Folded rows</b> are moments the engine reads as no decision (numbers that never held 12 seconds, or a player it counts in two fights at once). Leave one alone if you agree; it is not counted among the rows to mark. Open it to say it was a decision.</li>
     <li><b>Decisions the engine did not read</b>, under the table: anything you see that has no row at all.</li>
@@ -183,16 +189,17 @@ export async function renderReview(out, keep = false) {
     const id = td.dataset.id, why = td.querySelector("[data-why]"), s = td.hasAttribute("data-sit") ? g.situations.find((x) => x.id === id) : null;
     td.querySelectorAll("[data-grade]").forEach((r) => r.onchange = () => {
       const dec = ["classic", "visible", "weak"].includes(r.value);
-      put(id, { grade: r.value, why: why.value.trim(), ...(dec ? {} : { mark: "", off: [] }) }); settle(s); redraw(id);
+      put(id, { grade: r.value, why: why.value.trim(), ...(dec ? {} : { mark: "", off: [] }), ...(["visible", "weak", "none"].includes(r.value) ? {} : { reason: [] }) }); settle(s); redraw(id);
     });
     td.querySelectorAll("[data-read]").forEach((r) => r.onchange = () => {
       put(id, { mark: r.value, why: why.value.trim(), ...(s && r.value === "correct" ? { off: [] } : {}) });
       if (s) { settle(s); redraw(id); } else { td.closest("tr").classList.add("rv-done"); td.querySelectorAll(".rv-r").forEach((l) => l.classList.toggle("on", l.querySelector("input").checked)); if (r.value !== "correct") why.focus(); }
     });
     td.querySelectorAll("[data-off]").forEach((c) => c.onchange = () => put(id, { off: [...td.querySelectorAll("[data-off]:checked")].map((x) => x.value) }));
+    td.querySelectorAll("[data-reason]").forEach((c) => c.onchange = () => put(id, { reason: [...td.querySelectorAll("[data-reason]:checked")].map((x) => x.value) }));
     why.onchange = () => { if (now(g)[id]?.grade || now(g)[id]?.mark) put(id, { why: why.value.trim() }); };
   });
-  out.querySelectorAll("[data-clear]").forEach((b) => b.onclick = () => { put(b.dataset.clear, { grade: "", mark: "", off: [], why: "" }); redraw(); });
+  out.querySelectorAll("[data-clear]").forEach((b) => b.onclick = () => { put(b.dataset.clear, { grade: "", mark: "", off: [], reason: [], why: "" }); redraw(); });
   const miss = () => { const d = (draft[g.rid] ||= { marks: {} }); d.missed ??= JSON.parse(JSON.stringify(missedOf(g))); return d.missed; };
   out.querySelector("[data-addmiss]").onclick = () => { miss().push({ t: "", kind: "split", grade: "classic", why: "" }); keepDraft(); redraw().then(() => [...out.querySelectorAll('[data-m="t"]')].pop()?.focus()); };
   out.querySelectorAll("[data-unmiss]").forEach((b) => b.onclick = () => { miss().splice(+b.dataset.unmiss, 1); keepDraft(); redraw(); });

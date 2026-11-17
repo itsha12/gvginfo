@@ -177,8 +177,10 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - A full collapse is the whole team turning on the split. The split's job: survive and gain elsewhere. The defence's
   job: kill it or drive it out, at the cost of flags (R-428, R-429; this amends R-111, which did not count it as an
   answer to a split). It counts from the turn, a few seconds on, when a player in the game could tell the team is
-  going to collapse, whether or not it reaches the split (R-508). *As built, still the earlier reading:* six or more
-  defenders on it, or five or more gone back for it, so it is read at arrival (R-508 is to be built).
+  going to collapse, whether or not it reaches the split (R-508). *As built:* five or more making for the split
+  (400 nearer in 4 s to where it stood), or all the team but one on it or making for it, for 4 s; told 4 s after the
+  turn began; 12 s of making for it when the team does not reach it; the team arriving is the same collapse. A whole
+  team found on a split with no turn read before it is still a full collapse (six or more on it, five gone home).
 - Not collapsed on: a player left behind after a wipe, or one walking back and forth through a teleporter (R-442).
 - hdm v 옷옷옷옷 4:06 (review key s1-26): one player coming from the main fight for 16 s, with one already defending,
   against a split of two, is a join that makes it even, not a collapse; R-441 stands over his earlier approval. *Open:*
