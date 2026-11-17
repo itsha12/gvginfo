@@ -13,13 +13,16 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - A split is a decision from when the other team would see it and have to respond (R-510). *As built:* told from the
   crossing to the enemy's side, or from 4 s after its players left their team when they go straight across; the row
   says when it reaches their base, their footmen or a defender. Its door is the enemy's door it first comes to.
-- Who comes to a split fight and who leaves it are decisions of their own, told beside the fight (R-511): a collapse
+- Who comes to a split fight and who leaves it are decisions of their own, each kept as its own record and shown in the
+  split's row (R-511, R-514): a collapse
   when the defence becomes one more than the split as it then stands, else a join (R-441); a leave when the player
   goes alive. The jobs of a join and a leave are drafts.
 - The main team: in an even split, the group on the stand side, responsible for flags; monks only break a tie (R-335,
   R-355). In an uneven divide, the larger part (R-421, R-487). An even divide with both groups on the main flag
   path is a push team (forward, at the enemy's door) and a defence team (at its own), not a main team and a split
   (R-487).
+- At an uneven divide the larger part at home is the main team and those who go out are a split (R-487, R-513); a
+  team standing in its own pit has not gone round the back.
 - A main team that goes round the back is still the main team (R-502): when all but two of a team stood together
   and then spread out, the main team is one of its own parts, not the runner and the player with him; five or more
   of its players on the enemy's ground round the back, two more than the part on the front lane, are the main team
@@ -41,6 +44,11 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   hitting or casting on the other (a heal does not link them). A player counts from when he first stands 1,000 from
   someone in the fight, acts in it or stands still in reach, to when he last does; a gap of 6 s does not end it. A
   split's defenders are read the same way, without the hold.
+- Defending a split is keeping it from what it came for (R-512): a player within reach of it, or one who stands in his
+  pit or between the split and his pit NPCs without fighting. A split that holds defenders without dying is doing its
+  job. *As built (`split_plays`, `defends`):* on his own ground, the split on his side of the hall, his walk to his own
+  Lord no longer than the nearest split player's, and nearer to the split than to any group of two or more of the
+  attackers' other players. Positions are read against the enemy's positions and aims, not alone (R-512).
 - A monk, when monks and damage are counted, is a backline monk only; a smiter (the WoC monks) and a ritualist healer
   count as damage (R-457).
 
@@ -205,3 +213,6 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   28:00 or playing for Lord damage (*draft reading*); Lord damage from gvg.report's totals, as a value, not per player
   (R-435, R-141).
 - The defence's job is always the same: do not die, keep the Lord alive, and keep Lord damage down (R-435).
+- The engine's confidence that a situation is a decision is one band (R-492, R-515): low when a quarter's move of one
+  setting makes the engine stop reading it; medium when it is still read there but its details move, or it goes at
+  half or double; high otherwise. Fitted to his grades of five games (top of `tools/golden/confidence.py`).

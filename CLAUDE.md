@@ -214,8 +214,8 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
 - Reviews are by whole games, one at a time (R-454, R-492), marked on the site, Model > Game review
   (`assets/js/pages/review.js`). On the branch: `tools/golden/confidence.py run <conf.json> <report id>` (the engine's
   confidence, R-497: the game read again with every draft number of the reading moved a quarter and to half and
-  double, about twelve minutes a game; bands high, medium, low fitted to his grades of the first three games on
-  2026-11-16, the fit written at the top of `confidence.py`; `confidence.py reband <file>` after a new fit), then `tools/golden/review.py export <plays file> <main>/data/model/game_reviews.json --set f1
+  double, about twelve minutes a game; one band a situation, high, medium or low, fitted to his grades of the first five games on
+  2026-11-17 (R-515), the fit written at the top of `confidence.py`; `confidence.py reband <file>` after a new fit), then `tools/golden/review.py export <plays file> <main>/data/model/game_reviews.json --set f1
   --part N --confidence <conf.json>` writes the rows: every situation the engine reads with its confidence, and under
   it each side's call. He grades each situation (Classic, Visible, Weak, No decision, Repeat), says whether the engine
   read a decision Correct, Partly or Incorrect with ticks for what is off and his words, marks the calls where they are
