@@ -8,27 +8,31 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 > out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-18, evening: eleven games graded and filed; nothing on the page unmarked but six rows of game 12)
-- Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` and lands in one piece,
-  then one rebuild (R-322). 658 replays stored; 564 count (R-477); 506 matches trained. No workflow run in progress.
+## State (2026-11-18, 16:45: eleven games graded and filed; his answers recorded; nothing waiting to be built)
+- Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` (engine at 8882861)
+  and lands in one piece, then one rebuild (R-322). 658 replays stored; 564 count (R-477); 506 matches trained. No
+  workflow run in progress. Rulings run to R-529. The only rows on the page not marked are six of game 12.
 - The baseline (R-491) is the branch `baseline-2026-11-15` (`bundle-4` at fd2b30b; figures in `data/model/baseline/`).
-  Built on `bundle-4` since, all from his marks: R-498 to R-523 (CHANGELOG, DEFINITIONS). In short: his guide of
+  Built on `bundle-4` since, all from his marks: R-498 to R-529 (CHANGELOG, DEFINITIONS). In short: his guide of
   2026-11-17 on splits and main teams (a guide, never a ruling; `main_team`, switch `HOME_GUIDE`); one fight a player
   (R-519); the opening as one description (R-520); every flag run told once (R-521); the match over
   (`Moments.over`); a split a player down, or collapsed on, meets its job by losing nobody (R-517, R-523); two
-  flaggers on one another are one push (`flag_pushes`); a split's door read phase by phase and a split out of a held
-  base told from when its player goes out (`split_plays`); players who came for a flagger on his run and left when
-  the flag had gone are the push and no split (`jobs._push_not_split`, built last, from four rows in three games).
+  flaggers on one another are one push (R-528, `flag_pushes`); a split's door read phase by phase and a split out
+  of a held base told from when its player goes out (`split_plays`); players who came for a flagger on his run and left when
+  the flag had gone are the push and no split (`jobs._push_not_split`, built last, from four rows in three games;
+  Claude's reading of his marks, not yet confirmed by him: item 3 under "Open for Denning").
 - Confidence (R-515, fitted to five games, figures at the top of `confidence.py`): it cannot tell Visible from Weak
   or No decision; what would is a measure of what is at stake (his four reasons, R-509). Not built.
 - Graded and filed (set f1), decisions read correct and decisions he had to add: HC v Team 85%, 0; Men v Crew 77%,
   0; 옷옷옷옷 v RACK 67%, 7; Men v RACK 71%, 4; Men v hold 80%, 5; hold v Men 95%, 0; HC v hdm 90%, 0; RACK v hdm
   100%, 0; hold v RACK (game 10, 25 minutes, 27 split rows all read correct) 95%, 0; HC v cope (game 11) 96%, 0;
-  옷옷옷옷 v hdm (game 12, graded to 9:40) 80%, 0. hdm v HC (bbef1904) is out (R-522); never pick it again.
+  옷옷옷옷 v hdm (game 12, graded to 9:40) 80%, 0. hdm v HC (bbef1904) is out (R-522); never pick it again. He has
+  since withdrawn two marks (hold v RACK 4:40, game 12 at 9:40: the engine was right) and confirmed hold v RACK 9:19
+  as a single run (R-529); the key holds his words and those readings now bind.
 - Game 12 and the clock (R-527): the replay page's clock ran about 6% ahead of the game (base res at 4:14 on it; the
   replay has every base res at the two-minute mark). He withdrew his mark on 9:40; 9:00 and 9:32 are still held.
 - Now (development set, 53 matches, 4,597 plays): 259 Classic rows pass, none fail; 117 of 120 history rows hold.
-  Set f1: 19 of 58 open checks hold. Gate 12 of 12, 63 of 105. Line-up 420 of 426; comms 110 of 157. Self-check 0.
+  Set f1: 15 of 54 open checks hold. Gate 12 of 12, 63 of 105. Line-up 420 of 426; comms 110 of 157. Self-check 0.
 
 ## Next (in order)
 1. His answers to "Open for Denning" below. Then further games if he wants them (told him: splits now look proven;
