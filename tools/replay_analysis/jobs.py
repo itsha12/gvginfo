@@ -676,12 +676,25 @@ def split_plays(M, K):
         # RACK: the Ranger leaves at 10:42 and 13:45 and crosses at 11:00 and 14:00, the Mes/A leaves at 16:41 and crosses at 16:56; he times them 10:44, 13:52, 16:51)
         if phases and phases[0][1] not in turn_of and phases[0][1] - times[0] <= SPLIT_GAP_S:
             seen = int(x["t_in"]) if not (0 < x["t_in"] - x["t0"] <= SPLIT_GAP_S) else int(x["t0"]) + TURN_S
+            # A team held in its base (`pinned`): a player who goes out of the base and on to the split has left for it when he goes out, however long he is in
+            # crossing, for his team is in the base and he can be going nowhere else (his mark, Men v hold 17:01, Classic, missed: "fire ele splits front door": he
+            # is out past hold's back door at 16:58, walks round by its front door and crosses at 17:38, where the row began; his guide: a split is in its own
+            # base only when leaving or returning). Out is past his own doors, after the last time he stood in his pit or base.
+            own_, tin_ = st.side.get(tm), int(x["t_in"]) - int(x["t_in"]) % S_
+            inside = lambda a, u, kinds: bool(M.AL[a][u]) and bool(M.P[a][u]) and M.place_at(a, u)[1] == own_ and M.place_at(a, u)[0] in kinds
+            def out_at(a):
+                u = next((v for v in range(tin_, max(tin_ - 90, 0) - 1, -S_) if inside(a, v, ("pit", "base")) or not M.AL[a][v]), None)
+                if u is None or not M.AL[a][u]: return None
+                return next((v for v in range(u + S_, tin_ + 1, S_) if not inside(a, v, ("pit", "base", "front door", "back door"))), None)
+            outs = [out_at(a) for a in x["ids"] if frm[a] <= x["t_in"] + S_]
+            if outs and None not in outs and any(p_[0] == tm and p_[1] - 4 <= max(outs) <= p_[2] + 4 for p_ in pinned(M)): seen = min(seen, max(outs) + TURN_S)
             seen = min(seen - seen % S_, phases[0][1])
             if seen < phases[0][1]:
                 parts_of[seen] = parts_of.pop(phases[0][1])      # its parts keep their own times: the numbers it had are told from when it had them
                 phases[0] = (phases[0][0], seen, phases[0][2])
         along = lambda p0: ("; numbers along the way: " + ", ".join(f"{k_} v {n_} from {int(a_) // 60}:{int(a_) % 60:02d}" for (k_, n_), a_, b_ in parts_of[p0])) if len(parts_of[p0]) > 1 else ""
-        prevD, base0 = set(), f"{m.tag[tm]}'s split" + (f" by the {x['way']}" if x["way"] else "")      # no door is named where none is read (his words, HC v Team 4:24: '"by the door" means nothing')
+        prevD, way = set(), x["way"]
+        DOOR_OF = {"front door": "front door", "front footies": "front door", "back door": "back door", "back footies": "back door"}
         for pi, ((k, n), p0, p1) in enumerate(phases):
             last = pi == len(phases) - 1
             idx = [i for i, u in enumerate(times) if p0 <= u <= p1]
@@ -725,8 +738,17 @@ def split_plays(M, K):
             if tn is None: M._split_at.append({"tm": tm, "name": f"{m.tag[tm]}'s split from {clock(p0)}", "at": {times[i]: (frozenset(Ss[i]), frozenset(Ds[i])) for i in idx}})
             # R-487: a team in two even groups, both along the main flag path (this one forward at the enemy's front door, the other at home), is a push team and a
             # defence team, not a main team and a split ("frontside" and "backside"); in two different areas of the map the non-flag side is the split
+            # The door is read phase by phase (his mark, Men v hold 10:40, Classic: "a split through the backdoor not front": the record's door was the front door
+            # two of its players had come to minutes before): the enemy's door, or the footmen in front of it, the players of the phase come to first in it, as the
+            # record reads its own. Only a phase whose players all start it out in the field comes to a door anew: one that starts with a player already on the
+            # enemy's ground (a door, the footmen, the pit or the base) keeps the door it came in by, as does one that comes to no door.
+            if all(M._deep(a, int(p0)) in (None, "field") for a in Sp):
+                atd = min((u for a in Sp for u in range(int(p0), int(p1) + 1, S_) if M._deep(a, u) in DOOR_OF), default=None)
+                if atd is not None:
+                    way = collections.Counter(DOOR_OF[M._deep(a, u)] for a in Sp for u in range(atd, min(atd + JOIN_S, int(p1)) + 1, S_) if M._deep(a, u) in DOOR_OF).most_common(1)[0][0]
+            base0 = f"{m.tag[tm]}'s split" + (f" by the {way}" if way else "")      # no door is named where none is read (his words, HC v Team 4:24: '"by the door" means nothing')
             rest = [a for a in st.players[tm] if a not in Sp and M.AL[a][mid] and M.P[a][mid]]
-            push_team = k >= 3 and k == len(rest) and x["way"] == "front door" and sum(1 for a in rest if M.place_at(a, mid)[1] == st.side.get(tm) and M.place_at(a, mid)[0] in HOMEG) * 2 > len(rest)
+            push_team = k >= 3 and k == len(rest) and way == "front door" and sum(1 for a in rest if M.place_at(a, mid)[1] == st.side.get(tm) and M.place_at(a, mid)[0] in HOMEG) * 2 > len(rest)
             base = f"{m.tag[tm]}'s push team at the front door (its defence team at home)" if push_team else base0
             scen_a = f"{base}: {size} ({', '.join(whoA)}) against {n} defending" + (f" ({', '.join(whoD)})" if n else "") + along(p0)
             way_in = "" if tn is not None or pi > 0 or (reach0 is not None and reach0 <= x["t_in"] + S_) else (f"; it crosses at {clock(x['t_in'])} and reaches their base, their footmen or a defender at {clock(reach0)}" if reach0 is not None and reach0 <= p1 else f"; it crosses at {clock(x['t_in'])} and has not reached their base, their footmen or a defender by {clock(p1)}")

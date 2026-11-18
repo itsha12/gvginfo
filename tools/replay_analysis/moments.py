@@ -1541,7 +1541,30 @@ class Moments:
                                 "main": bool(main) and sum(1 for a in ids if a in main) * 2 >= len(main) and len(ids) >= 3,
                                 "place": f"{m.tag[foe]}'s flag spawn" if at_spawn else self.place_words(*self.place_at(b, t0)), "at_spawn": at_spawn,
                                 "acts": sum(acted.values()), "helped": [m.roles[x] for x in helped], "died": died, "dropped": dropped and not died, "reached_team": bool(reached),
-                                "flag": (L["how"] or "open") if L else None, "pickup": pk if delay is not None else None, "delay_s": delay})
+                                "flag": (L["how"] or "open") if L else None, "pickup": pk if delay is not None else None, "delay_s": delay,
+                                "_by": {a: acted[a] for a in ids}, "_n": len(ids), "_main": main})
+        # Two flaggers on one another: the one who lands more on the other is the pusher and the other is the flagger pushed, who
+        # is not counted among the players pushing (what he lands back is his answer; landing the same, the one who was on the
+        # other first is the pusher). A push left with nobody who landed anything on the flagger is no push.
+        for r1 in out:
+            for r2 in out:
+                b1, b2 = r1["flagger"], r2["flagger"]
+                if r1["tm"] == r2["tm"] or b2 not in r1["_by"] or b1 not in r2["_by"]: continue
+                if r2["t"] > r1["t1"] + PUSHFLAG_GAP_S or r1["t"] > r2["t1"] + PUSHFLAG_GAP_S: continue
+                if (r2["_by"][b1], -r2["t"]) < (r1["_by"][b2], -r1["t"]): r2["_answer"] = r2.get("_answer", ()) + (b1,)
+        kept, self._fpush_answers = [], []
+        for r in out:
+            for a in r.pop("_answer", ()):
+                r["ids"] = [x for x in r["ids"] if x != a]; r["_by"].pop(a, None)
+            by = r.pop("_by")
+            if len(by) < r["_n"]:
+                main = r.pop("_main")
+                r.update(roles=[m.roles[a] for a in r["ids"]], acts=sum(by.values()),
+                         main=bool(main) and sum(1 for a in r["ids"] if a in main) * 2 >= len(main) and len(r["ids"]) >= 3)
+            r.pop("_main", None); n = r.pop("_n")
+            if not r["acts"] or not r["ids"]: self._fpush_answers.append(r); continue
+            kept.append(r)
+        out = kept
         self._fpush = sorted(out, key=lambda x: x["t"])
         return self._fpush
 
