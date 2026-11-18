@@ -10,6 +10,13 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - A player counts in a fight, on a split or on its defence after 12 s there; less is support, or passing by (R-350,
   R-439). A death there counts at once. A walk through a teleporter and straight back is not being there (R-442).
 - Who is on a split is who is there at that time, not everyone it ever held (R-439).
+- The match is over when the losing team is recorded dying all at once (its Guild Lord dead, or the 28 minutes up),
+  some 12 s before the replay stops: those are not deaths, and nothing is told from that second on, nor a base res
+  that falls on it (his marks on RACK v hdm 0:22, Men v RACK 19:06 and Men v Crew 27:40). *As built* (`Moments.over`):
+  five or more of one team dead within 2 s in the replay's last 20 s.
+- A numbers difference is answered for as long as it lasts: a team that stands at first and falls back later has
+  fallen back (his marks on HC v hdm 1:00 and Men v Crew 3:38). Its row ends when the numbers do; its job is judged
+  a short tail longer (R-424).
 - A player counts in one fight only (R-488, R-519). Where the main fight and a split's fight stand within reach of one
   another he is in the one whose players he is hitting or casting on, or who are acting on him; if neither, the one he
   is moving to. *As built:* asked of every player the main fight's numbers and a split's reading both count for 12 s;
@@ -189,7 +196,7 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   | a player or more up | kill or take NPCs |
   | even | take NPCs or kills (the split made the move, so it should seek the advantage) |
   | a player or more down | hold more defenders there than its own number and lose nobody; what the team made of the extra player is beside it (R-517) |
-  | collapsed on, or a full collapse | survive, and gain an advantage elsewhere on the map |
+  | collapsed on, or a full collapse | survive it and lose nobody; what the team gained elsewhere meanwhile is beside it (R-523) |
 
 - The defender's job (R-428): one defender, or a player down: delay and stay alive. A mirror: hold it even. One more
   than the split: kill it or drive it out. A lone defender is credited with the 1 v 1 defence whether or not his

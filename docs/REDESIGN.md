@@ -193,12 +193,14 @@ After the engine is built and before the rebuild, Claude goes through this with 
    amend. (Begun, R-452: `docs/DEFINITIONS.md` holds the current definitions for counting players, flags, splits,
    collapse and the Lord push; the other topics remain.)
 3. Review the repository for old, outdated or unneeded files.
-4. Remove the Templates tab from the site (not used).
+4. Remove the Templates tab from the site (not used). (Ask him first: he saved a template and added a folder there on
+   2026-11-18.)
 5. Remove the Meta tab from the site (not used); and the Golden moments page (R-454), keeping
    `golden_moments.json`, `golden_key.json` and the gate.
 6. See whether the skills need updating from the wiki.
 7. See whether the model pages (structure, results and the rest) need amending to match the approach taken.
 8. Any other outstanding items, questions or rulings he has not addressed.
+9. Cut the repository's README down to a link to the site and the Data sources section (R-524).
 
 ### The story so far (R-341; from Denning's notes on 14 golden moments)
 His notes tell a match as a chain, and the engine is being rebuilt to read it the same way. What the notes use:
