@@ -16556,8 +16556,7 @@
        42
       ]
      },
-     "open": true,
-     "why": "Men v RACK 0:36 (Visible, incorrect, kind): 'this is a flag push'"
+     "was": "Men v RACK 0:36 (Visible, incorrect, kind): 'this is a flag push' (built 2026-11-18: `_push_not_split`)"
     }
    ]
   },
@@ -16722,8 +16721,7 @@
        98
       ]
      },
-     "open": true,
-     "why": "Men v RACK 1:32 (Visible, incorrect): 'this is a flag push'"
+     "was": "Men v RACK 1:32 (Visible, incorrect): 'this is a flag push' (built 2026-11-18: `_push_not_split`)"
     }
    ]
   },
@@ -25695,21 +25693,23 @@
    ],
    "checks": [
     {
-     "none": {
+     "has": {
       "play": "flag",
       "start": [
        270,
        290
-      ],
-      "want": {
-       "scenario~": "RACK double run"
-      }
+      ]
      },
-     "open": true,
-     "held": "2026-11-18",
-     "why": "hold v RACK 4:40 (Classic, incorrect): 'I don't see the double run on RACK. Are you sure this is a double run? Am I missing something?' Put to him with the times: Air Ele 2 hands the 4:14 flag to Air Ele 3, turns back at 4:43 while Air Ele 3 still carries it (capped 4:56), takes the next at 5:00 and caps it at 5:30; the same shape as 7:28, which he graded Classic and correct. Nothing built until he answers"
+     "want": {
+      "scenario~": "RACK double run"
+     },
+     "was": "hold v RACK 4:40: marked Classic, incorrect ('I don't see the double run on RACK. Are you sure this is a double run? Am I missing something?'), and withdrawn by him on 2026-11-18 once the times were set out: 'I was wrong, you are correct.' The engine's reading stands and binds"
     }
-   ]
+   ],
+   "later": {
+    "at": "2026-11-18",
+    "said": "I was wrong, you are correct."
+   }
   },
   {
    "id": "f1-d492-14",
@@ -26294,13 +26294,15 @@
       ]
      },
      "want": {
-      "scenario~": "RACK double run"
+      "scenario~": "RACK single run"
      },
-     "open": true,
-     "held": "2026-11-18",
-     "why": "hold v RACK 9:19 (Classic, partly): 'this is also a borderline double run': Air Ele 2 hands the flag to Rit/Para (capped 10:48), sets off back 12 s after the cap and takes the next flag about 30 s after it, at the limit of DOUBLE_NEXT_S and not on his way back at the cap. Put to him; no number moved to answer a row (R-465)"
+     "was": "hold v RACK 9:19: marked Classic, partly ('this is also a borderline double run'); on 2026-11-18, the times set out, 'The way you have it is fine' (R-529). The single run stands and binds"
     }
-   ]
+   ],
+   "later": {
+    "at": "2026-11-18",
+    "said": "The way you have it is fine."
+   }
   },
   {
    "id": "f1-d492-26",
@@ -26551,13 +26553,15 @@
       ]
      },
      "want": {
-      "scenario~": "RACK double run"
+      "scenario~": "RACK single run"
      },
-     "open": true,
-     "held": "2026-11-18",
-     "why": "hold v RACK 11:00 (Visible, partly): 'this is a borderline double run but I dont think this read is incorrect': the second leg of the 9:19 row"
+     "was": "hold v RACK 11:00 (Visible, partly: 'this is a borderline double run but I dont think this read is incorrect'): the second leg of the 9:19 row; 'The way you have it is fine' (R-529)"
     }
-   ]
+   ],
+   "later": {
+    "at": "2026-11-18",
+    "said": "The way you have it is fine."
+   }
   },
   {
    "id": "f1-d492-30",
@@ -29539,9 +29543,7 @@
        210
       ]
      },
-     "open": true,
-     "held": "2026-11-18",
-     "why": "HC v cope 3:24 (Visible, incorrect, kind): 'this is a flag push rather than a split in this circumstance, but it looks very similar; we don't need to break anything to fix this if it is going to ruin other readings'. With Men v RACK 0:36 and 1:32 and HC v Team 4:24 that is three games. A build that told a split which comes to a flagger already on his run as the push took out HC v cope 0:20 and 0:32 (Classic, correct: a split with the lone defender carrying his flag, R-430) and was dropped; put to him what tells the two apart"
+     "was": "HC v cope 3:24 (Visible, incorrect, kind): 'this is a flag push rather than a split in this circumstance, but it looks very similar; we don't need to break anything to fix this if it is going to ruin other readings'. With Men v RACK 0:36 and 1:32 and HC v Team 4:24 that is three games. A build that told a split which comes to a flagger already on his run as the push took out HC v cope 0:20 and 0:32 (Classic, correct: a split with the lone defender carrying his flag, R-430) and was dropped; put to him what tells the two apart (built 2026-11-18: `_push_not_split`)"
     },
     {
      "has": {
@@ -29557,9 +29559,7 @@
        "Hammer"
       ]
      },
-     "open": true,
-     "held": "2026-11-18",
-     "why": "HC v cope 3:24: the push is in the record (HC's Hammer, Ranger and Prot on cope's Hammer A, carrying, 3:38 to 3:52, 12 skills or hits) and is left off the page because its players are in a split record (the R-430 rule in `push_plays`)"
+     "was": "HC v cope 3:24: the push is in the record (HC's Hammer, Ranger and Prot on cope's Hammer A, carrying, 3:38 to 3:52, 12 skills or hits) and is left off the page because its players are in a split record (the R-430 rule in `push_plays`) (built 2026-11-18: `_push_not_split`)"
     }
    ]
   },
@@ -30628,7 +30628,7 @@
    ],
    "checks": [
     {
-     "none": {
+     "has": {
       "play": "base res",
       "team": "hdm",
       "start": [
@@ -30636,11 +30636,13 @@
        600
       ]
      },
-     "open": true,
-     "held": "2026-11-18",
-     "why": "옷옷옷옷 v hdm 9:40 (Classic, incorrect): 'hdm does not have anyone in base during base res (at least not deep enough to matter). hdm is safe by portal when base res happens.' In the replay the res is at 9:59 (about 10:34 on his clock, R-527): hdm's eight stand in what his labels call 옷옷옷옷's pit from 9:44, and are out by the back door at 10:08. With HC v hdm 1:40 (No decision: 'I wouldn't count this as in base on this map') this is the second Jade game. Put to him: which res he read, and whether the portal side of the pit is in the base. Held"
+     "was": "옷옷옷옷 v hdm 9:40: marked Classic, incorrect ('hdm does not have anyone in base during base res'), and withdrawn by him on 2026-11-18: 'It was a problem with the clock, not the reading. They DO have team in pit at base res' (R-527). The engine's reading stands and binds"
     }
-   ]
+   ],
+   "later": {
+    "at": "2026-11-18",
+    "said": "You are right! It was a problem with the clock, not the reading. They DO have team in pit at base res, it just didn't happen at the time I was expecting."
+   }
   },
   {
    "id": "f1-5317-16",

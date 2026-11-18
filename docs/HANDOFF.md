@@ -17,7 +17,8 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   (R-519); the opening as one description (R-520); every flag run told once (R-521); the match over
   (`Moments.over`); a split a player down, or collapsed on, meets its job by losing nobody (R-517, R-523); two
   flaggers on one another are one push (`flag_pushes`); a split's door read phase by phase and a split out of a held
-  base told from when its player goes out (`split_plays`). Engine a552659; the branch tip adds only the key.
+  base told from when its player goes out (`split_plays`); players who came for a flagger on his run and left when
+  the flag had gone are the push and no split (`jobs._push_not_split`, built last, from four rows in three games).
 - Confidence (R-515, fitted to five games, figures at the top of `confidence.py`): it cannot tell Visible from Weak
   or No decision; what would is a measure of what is at stake (his four reasons, R-509). Not built.
 - Graded and filed (set f1), decisions read correct and decisions he had to add: HC v Team 85%, 0; Men v Crew 77%,
@@ -25,34 +26,28 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   100%, 0; hold v RACK (game 10, 25 minutes, 27 split rows all read correct) 95%, 0; HC v cope (game 11) 96%, 0;
   옷옷옷옷 v hdm (game 12, graded to 9:40) 80%, 0. hdm v HC (bbef1904) is out (R-522); never pick it again.
 - Game 12 and the clock (R-527): the replay page's clock ran about 6% ahead of the game (base res at 4:14 on it; the
-  replay has every base res at the two-minute mark). His three Incorrect rows there are held, not built against.
-- Now (development set, 53 matches, 4,611 plays): 259 Classic rows pass, none fail; 118 of 120 history rows hold.
-  Set f1: 15 of 62 open checks hold. Gate 12 of 12, 63 of 105. Line-up 420 of 426; comms 110 of 157. Self-check 0.
+  replay has every base res at the two-minute mark). He withdrew his mark on 9:40; 9:00 and 9:32 are still held.
+- Now (development set, 53 matches, 4,597 plays): 259 Classic rows pass, none fail; 117 of 120 history rows hold.
+  Set f1: 19 of 58 open checks hold. Gate 12 of 12, 63 of 105. Line-up 420 of 426; comms 110 of 157. Self-check 0.
 
 ## Next (in order)
-1. His answers to "Open for Denning" below; each one unlocks a build. Then further games if he wants them (told him:
-   splits now look proven; pushes on a flagger and Isle of Jade are the thin parts).
-2. Three games, not yet built (R-495): a split read where he sees a push on a flagger (Men v RACK 0:36, 1:32; HC v
-   Team 4:24; HC v cope 3:24). The push is in `flag_pushes` each time; `push_plays` leaves it off because its players
-   are in a split record (R-430). Telling every split that comes to a flagger already on his run as the push failed
-   four Classic rows (HC v cope 0:20, 0:32: a split with the lone defender carrying his flag). Needs his distinction.
-3. Two Jade games: a base res counted with the attackers not deep in the base (HC v hdm 1:40; 옷옷옷옷 v hdm 9:40).
-4. Held for a second game (R-495): Men v hold 6:48, hold following Men's three with the flag told as a push on the
-   flagger (HC v Team 1:30 may be the same); who and how many push a flagger (HC v Team, Men v RACK 1:08); numbers
-   through the portal on Isle of Jade (Men v Crew; game 12 showed no new case); Men v Crew 17:53; a defender's few
-   seconds with a flag read as a run (hold v Men 2:34); the 18 s gap at 2:46 in Men v hold.
-5. When he says the flag plays are ready: the flag family to the end (R-451); the other kinds after; then stage E.
-6. The clean-up (R-398; REDESIGN.md "Before the next training run", nine items: R-524 the README, R-526 the
+1. His answers to "Open for Denning" below. Then further games if he wants them (told him: splits now look proven;
+   pushes on a flagger and Isle of Jade are the thin parts).
+2. Held for a second game (R-495): a base res counted with the attackers at the footmen, not in the base (HC v hdm
+   1:40; game 12 at 9:40 turned out to be the clock); Men v hold 6:48, hold following Men's three with the flag told
+   as a push on the flagger (HC v Team 1:30 may be the same); who and how many push a flagger (HC v Team, Men v RACK
+   1:08); numbers through the portal on Isle of Jade (Men v Crew); Men v Crew 17:53; a defender's few seconds with a
+   flag read as a run (hold v Men 2:34); the 18 s gap at 2:46 in Men v hold.
+3. When he says the flag plays are ready: the flag family to the end (R-451); the other kinds after; then stage E.
+4. The clean-up (R-398; REDESIGN.md "Before the next training run", nine items: R-524 the README, R-526 the
    Templates tab) comes after the games. A boost row that repeats a single run stays its own row (R-525).
 
 ## Open for Denning (all set out in the chat on 2026-11-18; he will answer later)
-1. Two flaggers on one another: one push told from the side that lands more (as built), or both?
-2. Men v RACK 18:25: the Prot turns toward the split for 8 s and goes back. Part of the collapse, or another monk?
-3. Men v hold 17:01: the Fire Ele's split is now told from 17:02 (out past his doors at 16:58). Right time?
-4. hold v RACK 4:40: is Air Ele 2 turning back at 4:43, with the flag before still carried, a double run (as 7:28)?
-5. hold v RACK 9:19: second runner sets off 12 s after the cap, next flag 30 s after it: double run or single?
-6. What makes HC v cope 3:24 a push on a flagger and 0:20 a split with the defender carrying his flag?
-7. Game 12, 9:40: which base res he read (9:59 in the replay is about 10:34 on his clock), and where the base ends.
+1. Men v RACK 18:25: the Prot turns toward the split for 8 s and goes back. Part of the collapse, or another monk?
+2. Men v hold 17:01: the Fire Ele's split is now told from 17:02 (out past his doors at 16:58). Right time?
+3. A push on a flagger or a split: built as "they all came for the flagger and left when the flag had gone". Is that
+   his distinction between HC v cope 3:24 (push) and 0:20 (split, the defender carrying his flag)?
+4. Game 12, 9:00 (numbers) and 9:32 (held in base): also the clock, as 9:40 was?
 
 ## Data looked at on 2026-11-14 (nothing built; nothing from GW Observer in the repo)
 - gvg.report's payload holds flag objects with positions (`report.objectives.object_transitions`), which
