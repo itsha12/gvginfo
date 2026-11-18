@@ -9898,6 +9898,490 @@
    "game": "hold v RACK, Imperial Isle",
    "at": "2026-11-18",
    "engine": "a552659"
+  },
+  "3d0f3fc5-d078-50f8-adfa-ba7becc95a8a": {
+   "marks": {
+    "s:3d0f3fc5-opening-2-0-2": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "The opening. cope: 6 to the stand, 1 on a split by the front door (Ranger), Mes/A waits back at the flag spawn for the next flag; its first flag brought up by Hammer A, held at the stand for 17 s and capped at 0:26. HC: 6 to the stand, 1 on a split by the front door (Ranger), Mes/A waits back at the flag spawn for the next flag; its first flag brought up by AoB Derv and capped at 0:30. cope caps first at 0:26; HC caps over it at 0:30",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "3d0f3fc5-opening-2-0-2": {
+     "mark": "correct",
+     "why": "",
+     "text": "cope [the first flag]: Get the first flag in. Met (our flag is capped: yes)"
+    },
+    "3d0f3fc5-opening-1-0-0": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC [the first flag]: Get the first flag in. Met (our flag is capped: yes)"
+    },
+    "3d0f3fc5-flag-2-0-1": {
+     "mark": "correct",
+     "why": "",
+     "text": "cope [the first flag: double run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (our flag is capped: yes; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: yes)"
+    },
+    "3d0f3fc5-flag-2-20-5": {
+     "mark": "correct",
+     "why": "",
+     "text": "cope [the first flag: a flag already in hand: capped before theirs got in]: Cap just before their boost, or keep the flag for their cap. Not met (our cap lands just before their boost: no)"
+    },
+    "s:3d0f3fc5-numbers-2-8-3": {
+     "grade": "visible",
+     "why": "",
+     "text": "cope down on numbers in the main fight (7 v 8, the greater stand area), from a runner away; cope: stay (stay at the stand)",
+     "band": "high",
+     "mark": "correct",
+     "off": [],
+     "reason": [
+      "brief",
+      "unclear"
+     ]
+    },
+    "3d0f3fc5-numbers-2-8-3": {
+     "mark": "correct",
+     "why": "",
+     "text": "cope (down) [stay]: Hold the ground a player down and lose no more until it is level, or the base res. Met (nobody of ours dies: yes)"
+    },
+    "s:3d0f3fc5-split-1-20-4": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "HC's split by the front door: one player (Ranger) against 1 defending (Mes/A); 1 (Mes/A) against one player: the lone defender carries his flag for 16 s",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "3d0f3fc5-split-1-20-4": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC (attacker) [1 v 1, the defender not a monk]: Take NPCs or kills. Not met (a defender killed: no; an NPC taken: no)"
+    },
+    "3d0f3fc5-split-2-20-6": {
+     "mark": "correct",
+     "why": "",
+     "text": "cope (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (no pit NPC lost: yes; no more defenders die than split players: yes)"
+    },
+    "3d0f3fc5-split-2-20-7": {
+     "mark": "correct",
+     "why": "",
+     "text": "cope (defender) [part-run]: Gain a slight flag advantage while losing no pit NPC and not dying. Not met (no pit NPC lost: yes; flag lead better by 0.15 or more: no; the defender does not die: yes)"
+    },
+    "s:3d0f3fc5-flag-1-30-8": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "cope double run (first runner Hammer A, capping the flag before; second runner Mes/A, back for this one); HC stays",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "3d0f3fc5-flag-1-30-8": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC [stay]: Kill with the two extra players before their flag is in, or their flag does not get in. Not met (more of theirs die at the main fight than of ours: no; their flag does not get in: no)"
+    },
+    "s:3d0f3fc5-split-2-32-11": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "cope's split by the front door: one player (Ranger) against 1 defending (Mes/A); it crosses at 0:32 and reaches their base, their footmen or a defender at 0:36; 1 (Mes/A) against one player; it crosses at 0:32 and reaches their base, their footmen or a defender at 0:36: the lone defender carries his flag for 26 s",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "3d0f3fc5-split-2-32-11": {
+     "mark": "correct",
+     "why": "",
+     "text": "cope (attacker) [1 v 1, the defender not a monk]: Take NPCs or kills. Not met (a defender killed: no; an NPC taken: no)"
+    },
+    "3d0f3fc5-split-1-32-9": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (no pit NPC lost: yes; no more defenders die than split players: yes)"
+    },
+    "3d0f3fc5-split-1-32-10": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC (defender) [part-run]: Gain a slight flag advantage while losing no pit NPC and not dying. Not met (no pit NPC lost: yes; flag lead better by 0.15 or more: no; the defender does not die: yes)"
+    },
+    "s:3d0f3fc5-split-1-46-13": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "HC's split by the front door: one player (Ranger) against 2 defending (Hammer A, 7 Monk); Hammer A, 7 Monk collapse from the main fight; 2 (Hammer A, 7 Monk) against one player: collapse by Hammer A, 7 Monk from the main fight",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "3d0f3fc5-split-1-46-13": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC (attacker) [collapsed on]: Survive the collapse and lose nobody (what the team gained elsewhere meanwhile is beside it). Met (nobody on the split dies: yes)"
+    },
+    "3d0f3fc5-split-2-46-15": {
+     "mark": "correct",
+     "why": "",
+     "text": "cope (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Not met (a split player dies during the collapse: no)"
+    },
+    "s:3d0f3fc5-split-1-58-16": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "HC's split by the front door: one player (Ranger) against 0 defending",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "3d0f3fc5-split-1-58-16": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC (attacker) [undefended]: Take NPCs. Met (an NPC taken: yes)"
+    },
+    "3d0f3fc5-split-2-58-17": {
+     "mark": "correct",
+     "why": "",
+     "text": "cope (defender) [no answer]: Win elsewhere before the split costs more than it gains. Not met (more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)"
+    },
+    "s:3d0f3fc5-numbers-1-90-18": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "HC down on numbers in the main fight (7 v 8, the flag stand), from players split elsewhere; HC: push in | cope: retreat down the ladder (fall back into the base)",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "3d0f3fc5-numbers-1-90-18": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC (weak side) [push in]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)"
+    },
+    "3d0f3fc5-numbers-2-90-19": {
+     "mark": "correct",
+     "why": "",
+     "text": "cope (strong side) [retreat down the ladder]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)"
+    },
+    "s:3d0f3fc5-push_flagger-2-94-21": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "cope pushes HC's flagger (Mes/A, carrying) with one player",
+     "band": "low",
+     "mark": "correct",
+     "off": []
+    },
+    "3d0f3fc5-push_flagger-2-94-21": {
+     "mark": "correct",
+     "why": "",
+     "text": "cope: Stop their flag, or make it 30% late. Met (their flag is stopped: no; it arrives 30% or more later than usual: yes)"
+    },
+    "3d0f3fc5-flagger_pushed-1-94-20": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC: Get the flag in on time. Not met (the flag gets in, less than 30% late: no)"
+    },
+    "s:3d0f3fc5-split-2-100-23": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "cope's split by the front door: one player (Ranger) against 0 defending; it crosses at 1:46 and reaches their base, their footmen or a defender at 1:56",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "3d0f3fc5-split-2-100-23": {
+     "mark": "correct",
+     "why": "",
+     "text": "cope (attacker) [undefended]: Take NPCs. Not met (an NPC taken: no)"
+    },
+    "3d0f3fc5-split-1-100-22": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC (defender) [no answer]: Win elsewhere before the split costs more than it gains. Met (more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: yes)"
+    },
+    "s:3d0f3fc5-flag-2-118-25": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "HC single run (Mes/A); cope single run (Hammer A); HC then stays",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "3d0f3fc5-flag-2-118-25": {
+     "mark": "correct",
+     "why": "",
+     "text": "cope [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (our flag is capped: no; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: yes)"
+    },
+    "3d0f3fc5-flag-1-153-34": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Met (more of theirs die at the main fight than of ours: no; their flag does not get in: yes)"
+    },
+    "s:3d0f3fc5-split-2-118-26": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "cope's split by the front door: three players (Hammer B, Ranger, Prot) against 3 defending (Mes/A, 8 Monk, AoB Derv); numbers along the way: 3 v 3 from 1:58, 2 v 2 from 3:08. Who came and went, each a decision of its own: Prot (cope) leaves the split at 3:08",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "3d0f3fc5-split-2-118-26": {
+     "mark": "correct",
+     "why": "",
+     "text": "cope (attacker) [even]: Take NPCs or kills. Met (a defender killed: yes; an NPC taken: yes)"
+    },
+    "3d0f3fc5-split-1-118-24": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Not met (no pit NPC lost: yes; no more defenders die than split players: no)"
+    },
+    "3d0f3fc5-split-2-118-27": {
+     "mark": "correct",
+     "why": "",
+     "text": "cope (attacker's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Not met (more of theirs die away from the split than of ours: no)"
+    },
+    "3d0f3fc5-split-2-188-35": {
+     "mark": "correct",
+     "why": "",
+     "text": "cope (attacker) [leave: Prot at 3:08]: Gain at the main fight with the player back. Not met (more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)"
+    },
+    "s:3d0f3fc5-split-1-128-30": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "HC's split by the front door: two players (Ranger, Hammer) against 0 defending",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "3d0f3fc5-split-1-128-30": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC (attacker) [undefended]: Take NPCs. Met (an NPC taken: yes)"
+    },
+    "3d0f3fc5-split-2-128-31": {
+     "mark": "correct",
+     "why": "",
+     "text": "cope (defender) [no answer]: Win elsewhere before the split costs more than it gains. Not met (more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)"
+    },
+    "s:3d0f3fc5-split-1-140-32": {
+     "grade": "visible",
+     "why": "",
+     "text": "HC's split by the front door: 5 players (Hammer, Ranger, Prot, 7 Monk, Stand Mes) against 5 defending (Hammer A, Mes/A, 8 Monk, Stand Mes, 7 Monk); 3 damage against 2 monks",
+     "band": "medium",
+     "mark": "correct",
+     "off": [],
+     "reason": []
+    },
+    "3d0f3fc5-split-1-140-32": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC (attacker) [held by monks]: Hold the monks there and lose nobody; NPCs are a bonus (a kill is not expected of it). Met (nobody on the split dies: yes)"
+    },
+    "3d0f3fc5-split-2-140-33": {
+     "mark": "correct",
+     "why": "",
+     "text": "cope (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Not met (no pit NPC lost: no; no more defenders die than split players: yes)"
+    },
+    "s:3d0f3fc5-boost-2-192-36": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "HC's boost is 30 s away; cope: two runners (Hammer A; Hammer A); the rest stay at the stand",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "3d0f3fc5-boost-2-192-36": {
+     "mark": "correct",
+     "why": "",
+     "text": "cope [run]: Deny their boost. Not met (their boost does not land: no)"
+    },
+    "s:3d0f3fc5-flag-1-203-37": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "cope single run (Hammer A); HC stays",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "3d0f3fc5-flag-1-203-37": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Met (more of theirs die at the main fight than of ours: no; their flag does not get in: yes)"
+    },
+    "s:3d0f3fc5-split-1-204-38": {
+     "grade": "visible",
+     "why": "this is a flag push rather than a split in this circumstance, but it looks very similar; we don't need to break anything to fix this if it is going to ruin other readings",
+     "reason": [],
+     "text": "HC's split by the front door: one player (Hammer) against 2 defending (Hammer A, 8 Monk); numbers along the way: 1 v 2 from 3:24, 3 v 3 from 3:46. Who came and went, each a decision of its own: Prot, Ranger (HC) join the split at 3:46; Mes/A (cope) joins the defence at 3:46",
+     "band": "medium",
+     "mark": "incorrect",
+     "off": [
+      "kind"
+     ]
+    },
+    "3d0f3fc5-split-1-204-38": {
+     "mark": "not judged",
+     "why": "",
+     "text": "HC (attacker) [a player or more down]: Hold more defenders there than its own number and lose nobody (what the team made of the extra player elsewhere is beside it). Met (nobody on the split dies: yes)"
+    },
+    "3d0f3fc5-split-2-204-40": {
+     "mark": "not judged",
+     "why": "",
+     "text": "cope (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Met (no pit NPC lost: yes; a split player dies: no; the split is gone within the visit: yes)"
+    },
+    "3d0f3fc5-split-1-204-39": {
+     "mark": "not judged",
+     "why": "",
+     "text": "HC (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (more of theirs die away from the split than of ours: no)"
+    },
+    "3d0f3fc5-split-1-226-41": {
+     "mark": "not judged",
+     "why": "",
+     "text": "HC (attacker) [join: Prot, Ranger at 3:46]: Kill or take NPCs with the players added. Not met (a defender killed: no; an NPC taken: no)"
+    },
+    "3d0f3fc5-split-2-226-42": {
+     "mark": "not judged",
+     "why": "",
+     "text": "cope (defender) [join: Mes/A at 3:46]: Hold it even or better: lose no pit NPC and no more players than the split does. Met (no pit NPC lost: yes; no more defenders die than split players: yes)"
+    },
+    "s:3d0f3fc5-split-1-268-43": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "HC's split by the front door: three players (Ranger, Hammer, Prot) against 3 defending (Mes/A, Hammer A, 8 Monk); numbers along the way: 3 v 3 from 4:28, 2 v 1 from 5:08. Who came and went, each a decision of its own: Prot (HC) leaves the split at 5:08",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "3d0f3fc5-split-1-268-43": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC (attacker) [even]: Take NPCs or kills. Met (a defender killed: yes; an NPC taken: no)"
+    },
+    "3d0f3fc5-split-2-268-44": {
+     "mark": "correct",
+     "why": "",
+     "text": "cope (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Not met (no pit NPC lost: yes; no more defenders die than split players: no)"
+    },
+    "3d0f3fc5-split-1-308-45": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC (attacker) [leave: Prot at 5:08]: Gain at the main fight with the player back. Not met (more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)"
+    },
+    "s:3d0f3fc5-boost-2-312-46": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "HC's boost is 30 s away; cope: no runner; the rest fall back into the base",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "3d0f3fc5-boost-2-312-46": {
+     "mark": "correct",
+     "why": "",
+     "text": "cope [concede]: Concede the boost for kills. Not met (more of theirs die than of ours: no)"
+    },
+    "s:3d0f3fc5-numbers-2-314-48": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "cope down on numbers in the main fight (5 v 6, the greater stand area; then 4 v 6 from 5:30; then 7 v 8 from 6:06; then 5 v 8 from 6:26; then 4 v 6 from 6:38; then 2 v 7 from 6:52), from kills; cope: retreat down the ladder (fall back into the base) | HC: push in",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "3d0f3fc5-numbers-2-314-48": {
+     "mark": "correct",
+     "why": "",
+     "text": "cope (down) [retreat down the ladder]: Reach cover a player down without losing another. Not met (nobody of ours dies: no; no NPC lost: yes)"
+    },
+    "3d0f3fc5-numbers-1-314-47": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC (up) [push in]: Take ground and NPCs with the numbers. Met (no more of ours die than of theirs: yes; one of their NPCs dies: no; more of theirs die than of ours: yes)"
+    },
+    "s:3d0f3fc5-base_res-1-340-49": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "HC has 8 in cope's base at the base res (5 defending, 3 coming back): 8 stay",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "3d0f3fc5-base_res-1-340-49": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC [stayed through the res]: Be out, or set for the fight, when they res. Met (none of the players in their base dies in the 30 s after the res: yes)"
+    },
+    "s:3d0f3fc5-flag-1-381-50": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "cope single run (Hammer B); HC stays",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "3d0f3fc5-flag-1-381-50": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Met (more of theirs die at the main fight than of ours: yes; their flag does not get in: yes)"
+    },
+    "s:3d0f3fc5-split-2-384-53": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "cope's split by the back door: one player (Ranger) against 1 defending (Mes/A); it crosses at 6:36 and reaches their base, their footmen or a defender at 6:50",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "3d0f3fc5-split-2-384-53": {
+     "mark": "correct",
+     "why": "",
+     "text": "cope (attacker) [1 v 1, the defender not a monk]: Take NPCs or kills. Met (a defender killed: no; an NPC taken: yes)"
+    },
+    "3d0f3fc5-split-1-384-51": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (no pit NPC lost: yes; no more defenders die than split players: yes)"
+    },
+    "3d0f3fc5-split-1-384-52": {
+     "mark": "correct",
+     "why": "",
+     "text": "HC (defender's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Met (more of theirs die away from the split than of ours: yes)"
+    },
+    "s:3d0f3fc5-pinned-2-396-54": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "cope is held in its own base or pit by HC's main team (pit NPCs alive at 6:36: 0 of 2 knights, 0 of 2 pit archers, the Bodyguard dead; base res in 84 s)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "3d0f3fc5-pinned-2-396-54": {
+     "mark": "correct",
+     "why": "",
+     "text": "cope: Hold the NPCs and lose nobody until the base res, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)"
+    }
+   },
+   "scheme": 2,
+   "game": "HC v cope, Nomad's Isle",
+   "at": "2026-11-18",
+   "engine": "a552659"
   }
  }
 }
