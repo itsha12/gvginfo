@@ -11,7 +11,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 ## State (2026-11-18, evening: eleven games graded and filed; all four open questions answered; nothing waiting to be built)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` and lands in one piece,
   then one rebuild (R-322). 658 replays stored; 564 count (R-477); 506 matches trained. No workflow run in progress.
-  Rulings run to R-530. The only rows on the page not marked are six of game 12. The baseline (R-491) is the branch
+  Rulings run to R-532. The six rows of game 12 after 9:40 stay unmarked (R-532). The baseline (R-491) is the branch
   `baseline-2026-11-15` (figures in `data/model/baseline/`); built since, all from his marks: R-498 to R-530.
 - His answers of 2026-11-18, evening, all filed in the key (`later`, `answered`), none needing an engine change: Men v
   RACK 18:25, the Prot is no part of the collapse (his word withdrawn; the Hammer alone binds); Men v hold 17:01, the
@@ -38,25 +38,25 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 - Now (development set, 53 matches, 4,597 plays): 259 Classic rows pass, none fail; 117 of 120 history rows hold.
   Set f1: 15 of 51 open checks hold. Gate 12 of 12, 63 of 105. Line-up 420 of 426; comms 110 of 157. Self-check 0.
 
-## Next (in order; put to him on 2026-11-18, his word awaited)
-1. Claude's advice to him: no more whole games before going on. He says whether the flag plays are ready (R-496);
-   then the flag family to the end (R-451; REDESIGN.md, stage D, c): similar cases for the flag plays, the better
-   call by the consequence record, the held-out advice test on the branch, read with him whatever it shows. One game
-   each on Corrupted and Druid's is worth grading beside that work, not before it (halls he has never graded).
-2. Held for a second game (R-495): a base res counted with the attackers at the footmen, not in the base (HC v hdm
-   1:40, Jade; asked of him: where the base ends on the portal side); Men v hold 6:48, hold following Men's three
-   with the flag told as a push on the flagger (HC v Team 1:30 may be the same); who and how many push a flagger (HC
-   v Team, Men v RACK 1:08); numbers through the portal on Isle of Jade (Men v Crew); Men v Crew 17:53; a defender's
-   few seconds with a flag read as a run (hold v Men 2:34); the 18 s gap at 2:46 in Men v hold.
-3. The other kinds after the flag family, as he says each is ready; rare plays (the Lord push, leaving before a res,
-   the part-run) topped up with picked rows, not whole games; then stage E.
-4. The clean-up (R-398; REDESIGN.md "Before the next training run", nine items: R-524 the README, R-526 the
-   Templates tab) comes after the games. A boost row that repeats a single run stays its own row (R-525).
+## Next (in order; R-531 and R-532, his answers of 2026-11-18)
+1. The flag family to the end (R-451, R-531: the flag plays are ready; REDESIGN.md, stage D, c): similar cases for
+   the flag plays, the better call by the consequence record at 90 and 180 s (never by a play's own end: a stay row
+   ends at their cap, a run row at ours), the held-out advice test on the branch, read with him whatever it shows.
+   First, put to him and awaiting his word: a "known truths" report (obvious directions over every match, to fail
+   loudly) and, for each held item below, a count of its shape and a leave-out test of the family's result.
+2. One game each on Corrupted and Druid's to be prepared for grading beside that work (R-532).
+3. Held for a second game (R-495): a base res counted with the attackers at the footmen, not in the base (HC v hdm
+   1:40, Jade: held open for his review, R-532); Men v hold 6:48, hold following Men's three with the flag told as a
+   push on the flagger (HC v Team 1:30 may be the same); who and how many push a flagger (HC v Team, Men v RACK
+   1:08); numbers through the portal on Isle of Jade (Men v Crew); Men v Crew 17:53; a defender's few seconds with
+   a flag read as a run (hold v Men 2:34); the defenders standing in their pit at 2:46 in Men v hold.
+4. The other kinds after the flag family, as he says each is ready; rare plays topped up with picked rows; then
+   stage E. The clean-up (R-398; REDESIGN.md "Before the next training run", nine items) comes after the games.
 
 ## Open for Denning
-1. Are the flag plays ready (R-496), so that the flag family is taken to the end?
-2. Isle of Jade: does a team at the footmen on the portal side count as in the base at a base res (HC v hdm 1:40)?
-3. The six rows of game 12 after 9:40, if he wants to finish it.
+1. Isle of Jade: is a team at the footmen on the portal side in the base at a base res (HC v hdm 1:40)? His to review.
+2. The known truths he wants tested, beyond Claude's first seven (set out in the chat on 2026-11-18).
+
 ## Data looked at on 2026-11-14 (nothing built; nothing from GW Observer in the repo)
 - gvg.report's payload holds flag objects with positions (`report.objectives.object_transitions`), which
   `replay_trim.mjs` drops. R-481: keep them at the next rebuild only (a new TRIM_VERSION fetches every replay again).
