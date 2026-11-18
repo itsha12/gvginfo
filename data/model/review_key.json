@@ -22072,6 +22072,1063 @@
    "mark": "notes",
    "said": "",
    "checks": []
+  },
+  {
+   "id": "f1-b870-1",
+   "set": "f1",
+   "scheme": 2,
+   "row": 1,
+   "rid": "b870f84e-b838-5f2a-ae83-b1e25499d9ee",
+   "match": "hold v Men, Uncharted",
+   "window": [
+    0,
+    27
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "The opening. hold single run (Ritualist, handing it to Hammer); Men single run (Ranger, handing it to AoB Derv)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "b870f84e-flag-2-0-1",
+     "shown": "Men [single run]: Get the first flag in. Met (our flag is capped: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "Men",
+      "start": [
+       -6,
+       6
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-b870-2",
+   "set": "f1",
+   "scheme": 2,
+   "row": 2,
+   "rid": "b870f84e-b838-5f2a-ae83-b1e25499d9ee",
+   "match": "hold v Men, Uncharted",
+   "window": [
+    0,
+    66
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "The opening. Men single run (Ranger, handing it to AoB Derv); hold single run (Ritualist, handing it to Hammer)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "b870f84e-flag-1-0-0",
+     "shown": "hold [single run]: Get the first flag in. Met (our flag is capped: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "hold",
+      "start": [
+       -6,
+       6
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-b870-3",
+   "set": "f1",
+   "scheme": 2,
+   "row": 3,
+   "rid": "b870f84e-b838-5f2a-ae83-b1e25499d9ee",
+   "match": "hold v Men, Uncharted",
+   "window": [
+    10,
+    326
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hold's split by the back door: three players (AoB Derv, Ranger, 8 Monk) against 2 defending (Ritualist 2, Ranger); numbers along the way: 3 v 2 from 0:24, 3 v 3 from 1:00, 3 v 2 from 1:12, 3 v 3 from 1:28, 3 v 2 from 1:58, 2 v 2 from 3:48, 3 v 2 from 4:14, 3 v 1 from 4:28. Who came and went, each a decision of its own: Hammer (Men) joins the defence at 1:00; Hammer (Men) leaves the defence at 1:12; Hammer (Men) joins the defence at 1:28; Hammer (Men) leaves the defence at 1:58; 8 Monk (hold) leaves the split at 3:48; Ritualist (hold) joins the split at 4:14",
+   "band": "medium",
+   "grade": "visible",
+   "mark": "correct",
+   "reason": [
+    "unclear"
+   ],
+   "said": "just a bit unclear about warrior but I agree he was there at points for defence",
+   "calls": [
+    {
+     "play": "b870f84e-split-1-10-2",
+     "shown": "hold (attacker) [a player or more up]: Kill or take NPCs. Met (a defender killed: yes; an NPC taken: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "b870f84e-split-2-10-3",
+     "shown": "Men (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Not met (no pit NPC lost: no; no defender dies: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "b870f84e-split-2-10-4",
+     "shown": "Men (defender's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Met (more of theirs die away from the split than of ours: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "b870f84e-split-2-60-7",
+     "shown": "Men (defender) [join: Hammer at 1:00]: Hold it even or better: lose no pit NPC and no more players than the split does. Met (no pit NPC lost: yes; no more defenders die than split players: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "b870f84e-split-2-72-10",
+     "shown": "Men (defender) [leave: Hammer at 1:12]: Gain at the main fight with the player back, and lose no pit NPC for it. Not met (no pit NPC lost: yes; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "b870f84e-split-2-88-11",
+     "shown": "Men (defender) [join: Hammer at 1:28]: Hold it even or better: lose no pit NPC and no more players than the split does. Met (no pit NPC lost: yes; no more defenders die than split players: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "b870f84e-split-2-118-14",
+     "shown": "Men (defender) [leave: Hammer at 1:58]: Gain at the main fight with the player back, and lose no pit NPC for it. Met (no pit NPC lost: yes; more of theirs die away from the split than of ours: yes; flag lead better by 0.35 or more: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "b870f84e-split-1-228-21",
+     "shown": "hold (attacker) [leave: 8 Monk at 3:48]: Gain at the main fight with the player back. Not met (more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "b870f84e-split-1-254-23",
+     "shown": "hold (attacker) [join: Ritualist at 4:14]: Kill or take NPCs with the players added. Met (a defender killed: yes; an NPC taken: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-b870-4",
+   "set": "f1",
+   "scheme": 2,
+   "row": 4,
+   "rid": "b870f84e-b838-5f2a-ae83-b1e25499d9ee",
+   "match": "hold v Men, Uncharted",
+   "window": [
+    24,
+    46
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "hold down on numbers in the main fight (5 v 6, the flag stand), from players split elsewhere; hold: retreat down the ladder (fall to footmen) | Men: stay (stay at the stand)",
+   "band": "none",
+   "grade": "none",
+   "mark": "",
+   "calls": [],
+   "checks": []
+  },
+  {
+   "id": "f1-b870-5",
+   "set": "f1",
+   "scheme": 2,
+   "row": 5,
+   "rid": "b870f84e-b838-5f2a-ae83-b1e25499d9ee",
+   "match": "hold v Men, Uncharted",
+   "window": [
+    66,
+    140
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "Men single run (Hammer); hold single run (Ritualist)",
+   "band": "high",
+   "grade": "visible",
+   "mark": "correct",
+   "said": "this is a borderline doublerun but I agree with you because the warrior was sort of back for split defence",
+   "calls": [
+    {
+     "play": "b870f84e-flag-1-66-8",
+     "shown": "hold [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (our flag is capped: yes; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-b870-6",
+   "set": "f1",
+   "scheme": 2,
+   "row": 6,
+   "rid": "b870f84e-b838-5f2a-ae83-b1e25499d9ee",
+   "match": "hold v Men, Uncharted",
+   "window": [
+    70,
+    123
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "hold single run (Ritualist); Men single run (Ritualist 1, handing it to AoB Derv)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "b870f84e-flag-2-70-9",
+     "shown": "Men [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (our flag is capped: yes; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "Men",
+      "start": [
+       64,
+       76
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-b870-7",
+   "set": "f1",
+   "scheme": 2,
+   "row": 7,
+   "rid": "b870f84e-b838-5f2a-ae83-b1e25499d9ee",
+   "match": "hold v Men, Uncharted",
+   "window": [
+    110,
+    138
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "hold down on numbers in the main fight (4 v 5, the flag stand), from players split elsewhere; hold: stay (stay at the stand) | Men: stay (stay at the stand); 3 damage against 2 monks",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "b870f84e-numbers-1-110-12",
+     "shown": "hold (weak side) [stay]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "b870f84e-numbers-2-110-13",
+     "shown": "Men (strong side) [stay]: Keep them busy and lose nobody (a kill is not expected of it). Met (nobody of ours dies: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "hold",
+      "start": [
+       104,
+       116
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Men",
+      "start": [
+       104,
+       116
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-b870-8",
+   "set": "f1",
+   "scheme": 2,
+   "row": 8,
+   "rid": "b870f84e-b838-5f2a-ae83-b1e25499d9ee",
+   "match": "hold v Men, Uncharted",
+   "window": [
+    140,
+    191
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "Men double run (first runner Hammer; second runner Ritualist 1, back for the next flag); hold single run (Hammer)",
+   "band": "high",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "b870f84e-flag-1-140-15",
+     "shown": "hold [single run]: Kill or take ground with the extra player, and end no worse than a flag behind. Met (no worse than a flag behind at the end: yes; more of theirs die at the main fight than of ours: no; ground taken: no; one of their NPCs dies: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-b870-9",
+   "set": "f1",
+   "scheme": 2,
+   "row": 9,
+   "rid": "b870f84e-b838-5f2a-ae83-b1e25499d9ee",
+   "match": "hold v Men, Uncharted",
+   "window": [
+    148,
+    278
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "hold down on numbers in the main fight (4 v 6, the flag stand; then 3 v 6 from 2:58; then 4 v 6 from 3:10; then 3 v 6 from 3:42; then 4 v 6 from 4:00; then 5 v 6 from 4:12), from players split elsewhere; hold: stay (stay at the stand) | Men: stay (stay at the stand)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "b870f84e-numbers-1-148-16",
+     "shown": "hold (weak side) [stay]: No deaths, keep them busy, do not chase. Not met (nobody of ours dies: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "b870f84e-numbers-2-148-17",
+     "shown": "Men (strong side) [stay]: Kill with the numbers while their players are away. Met (more of theirs die than of ours: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "hold",
+      "start": [
+       142,
+       154
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Men",
+      "start": [
+       142,
+       154
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-b870-10",
+   "set": "f1",
+   "scheme": 2,
+   "row": 10,
+   "rid": "b870f84e-b838-5f2a-ae83-b1e25499d9ee",
+   "match": "hold v Men, Uncharted",
+   "window": [
+    154,
+    197
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "hold single run (Hammer); Men single run (Ranger)",
+   "band": "high",
+   "grade": "visible",
+   "mark": "incorrect",
+   "off": [
+    "who",
+    "kind"
+   ],
+   "said": "ranger does not single run, just brings the flag up (similar to how solo defenders partrun flags)",
+   "calls": [
+    {
+     "play": "b870f84e-flag-2-154-18",
+     "shown": "Men [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (our flag is capped: no; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "Men",
+      "start": [
+       148,
+       160
+      ]
+     },
+     "want": {
+      "scenario~": "brings a flag up"
+     },
+     "open": true,
+     "why": "hold v Men 2:34 (Visible, incorrect, who and kind): 'ranger does not single run, just brings the flag up (similar to how solo defenders partrun flags)': Men's Ranger, defending a split at home, carries a flag from 3:10 to 3:17 and puts it down. Held for a second game (R-495)"
+    }
+   ]
+  },
+  {
+   "id": "f1-b870-11",
+   "set": "f1",
+   "scheme": 2,
+   "row": 11,
+   "rid": "b870f84e-b838-5f2a-ae83-b1e25499d9ee",
+   "match": "hold v Men, Uncharted",
+   "window": [
+    220,
+    270
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "Men has 6 in hold's base at the base res (3 defending, 1 coming back): 6 stay",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "b870f84e-base_res-2-220-19",
+     "shown": "Men [stayed through the res]: Be out, or set for the fight, when they res. Not met (nobody of ours dies in the 30 s after the res: no)",
+     "mark": "incorrect",
+     "said": "ranger dies on split, not because of base res"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "Men",
+      "start": [
+       214,
+       226
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "base res",
+      "team": "Men",
+      "start": [
+       214,
+       226
+      ]
+     },
+     "want": {
+      "met": true
+     },
+     "why": "hold v Men 4:00 (Classic; the call marked incorrect): 'ranger dies on split, not because of base res': the test counted a death of a player who was at home defending a split, not in hold's base. The test now covers the players in the base at the res",
+     "held": "2026-11-18"
+    }
+   ]
+  },
+  {
+   "id": "f1-b870-12",
+   "set": "f1",
+   "scheme": 2,
+   "row": 12,
+   "rid": "b870f84e-b838-5f2a-ae83-b1e25499d9ee",
+   "match": "hold v Men, Uncharted",
+   "window": [
+    228,
+    240
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 3:48: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard alive; base res in 12 s)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "b870f84e-pinned-1-228-20",
+     "shown": "hold: Hold the NPCs and lose nobody until the base res, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "hold",
+      "start": [
+       222,
+       234
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-b870-13",
+   "set": "f1",
+   "scheme": 2,
+   "row": 13,
+   "rid": "b870f84e-b838-5f2a-ae83-b1e25499d9ee",
+   "match": "hold v Men, Uncharted",
+   "window": [
+    240,
+    284
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 4:00: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard alive; base res in 120 s)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "b870f84e-pinned-1-240-22",
+     "shown": "hold: Lose no player and no NPC while held in, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "hold",
+      "start": [
+       234,
+       246
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-b870-14",
+   "set": "f1",
+   "scheme": 2,
+   "row": 14,
+   "rid": "b870f84e-b838-5f2a-ae83-b1e25499d9ee",
+   "match": "hold v Men, Uncharted",
+   "window": [
+    292,
+    330
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "hold up on numbers in the main fight (4 v 3, hold's front door), from players split elsewhere; hold: retreat down the ladder (fall back into the base); 2 damage against 2 monks | Men: stay (stay on the enemy's side)",
+   "band": "low",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "b870f84e-numbers-1-292-24",
+     "shown": "hold (strong side) [retreat down the ladder]: Keep them busy and lose nobody (a kill is not expected of it). Met (nobody of ours dies: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "b870f84e-numbers-2-292-25",
+     "shown": "Men (weak side) [stay]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "hold",
+      "start": [
+       286,
+       298
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Men",
+      "start": [
+       286,
+       298
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-b870-15",
+   "set": "f1",
+   "scheme": 2,
+   "row": 15,
+   "rid": "b870f84e-b838-5f2a-ae83-b1e25499d9ee",
+   "match": "hold v Men, Uncharted",
+   "window": [
+    315,
+    381
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "hold single run (Hammer); Men single run (Ritualist 1)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "b870f84e-flag-2-315-26",
+     "shown": "Men [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (our flag is capped: yes; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "Men",
+      "start": [
+       309,
+       321
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-b870-16",
+   "set": "f1",
+   "scheme": 2,
+   "row": 16,
+   "rid": "b870f84e-b838-5f2a-ae83-b1e25499d9ee",
+   "match": "hold v Men, Uncharted",
+   "window": [
+    324,
+    348
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hold's split by the back door: two players (Ranger, Ritualist) against 4 defending (Hammer, Ranger, Ritualist 2, Ritualist 1); Hammer, Ritualist 1 collapse from the main fight; 4 (Hammer, Ranger, Ritualist 2, Ritualist 1) against two players: collapse by Hammer, Ritualist 1 from the main fight",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "b870f84e-split-1-324-27",
+     "shown": "hold (attacker) [collapsed on]: Survive and gain an advantage elsewhere on the map. Not met (nobody on the split dies: no; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "b870f84e-split-2-324-28",
+     "shown": "Men (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Met (a split player dies during the collapse: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "hold",
+      "start": [
+       318,
+       330
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       318,
+       330
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-b870-17",
+   "set": "f1",
+   "scheme": 2,
+   "row": 17,
+   "rid": "b870f84e-b838-5f2a-ae83-b1e25499d9ee",
+   "match": "hold v Men, Uncharted",
+   "window": [
+    342,
+    384
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "hold down on numbers in the main fight (5 v 8, Men's pit), from kills; hold: retreat down the ladder (fall back into the base) | Men: push up (go out by the front door)",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "b870f84e-numbers-1-342-29",
+     "shown": "hold (down) [retreat down the ladder]: Reach cover a player down without losing another. Met (nobody of ours dies: yes; no NPC lost: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "b870f84e-numbers-2-342-30",
+     "shown": "Men (up) [push up]: Take ground and NPCs with the numbers. Not met (no more of ours die than of theirs: yes; one of their NPCs dies: no; more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "hold",
+      "start": [
+       336,
+       348
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Men",
+      "start": [
+       336,
+       348
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-b870-18",
+   "set": "f1",
+   "scheme": 2,
+   "row": 18,
+   "rid": "b870f84e-b838-5f2a-ae83-b1e25499d9ee",
+   "match": "hold v Men, Uncharted",
+   "window": [
+    365,
+    381
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "Men single run (Ritualist 1); hold stays",
+   "band": "high",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "b870f84e-flag-1-365-31",
+     "shown": "hold [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Not met (more of theirs die at the main fight than of ours: no; their flag does not get in: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-b870-19",
+   "set": "f1",
+   "scheme": 2,
+   "row": 19,
+   "rid": "b870f84e-b838-5f2a-ae83-b1e25499d9ee",
+   "match": "hold v Men, Uncharted",
+   "window": [
+    388,
+    536
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "hold down on numbers in the main fight (5 v 7, hold's front door; then 5 v 6 from 6:52; then 1 v 6 from 8:30), from players on their way to it (in neither fight); hold: retreat down the ladder (retreat to the pit) | Men: stay (stay on the enemy's side)",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "b870f84e-numbers-1-388-32",
+     "shown": "hold (down) [retreat down the ladder]: Reach cover a player down without losing another. Not met (nobody of ours dies: no; no NPC lost: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "b870f84e-numbers-2-388-33",
+     "shown": "Men (up) [stay]: Turn the extra player into a kill before the numbers are level. Met (more of theirs die than of ours: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "hold",
+      "start": [
+       382,
+       394
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Men",
+      "start": [
+       382,
+       394
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-b870-20",
+   "set": "f1",
+   "scheme": 2,
+   "row": 20,
+   "rid": "b870f84e-b838-5f2a-ae83-b1e25499d9ee",
+   "match": "hold v Men, Uncharted",
+   "window": [
+    390,
+    530
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "hold's split by the back door: three players (AoB Derv, Ritualist, Ranger) against 2 defending (Ritualist 2, Prot); numbers along the way: 2 v 1 from 6:36, 3 v 1 from 7:02, 3 v 2 from 7:26, 2 v 2 from 8:12. Who came and went, each a decision of its own: Ranger (hold) joins the split at 7:02; Prot (Men) joins the defence at 7:26; Ranger (hold) leaves the split at 8:12",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "b870f84e-split-1-390-34",
+     "shown": "hold (attacker) [a player or more up]: Kill or take NPCs. Met (a defender killed: no; an NPC taken: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "b870f84e-split-2-390-35",
+     "shown": "Men (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Not met (no pit NPC lost: no; no defender dies: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "b870f84e-split-1-422-37",
+     "shown": "hold (attacker) [join: Ranger at 7:02]: Kill or take NPCs with the players added. Met (a defender killed: no; an NPC taken: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "b870f84e-split-2-446-38",
+     "shown": "Men (defender) [join: Prot at 7:26]: Hold it even or better: lose no pit NPC and no more players than the split does. Not met (no pit NPC lost: no; no more defenders die than split players: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "b870f84e-split-1-492-39",
+     "shown": "hold (attacker) [leave: Ranger at 8:12]: Gain at the main fight with the player back. Not met (more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "hold",
+      "start": [
+       384,
+       396
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       384,
+       396
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "hold",
+      "start": [
+       416,
+       428
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       440,
+       452
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "hold",
+      "start": [
+       486,
+       498
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-b870-21",
+   "set": "f1",
+   "scheme": 2,
+   "row": 21,
+   "rid": "b870f84e-b838-5f2a-ae83-b1e25499d9ee",
+   "match": "hold v Men, Uncharted",
+   "window": [
+    408,
+    528
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 6:48: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard alive; lost while held: a knight at 7:49, the Bodyguard at 8:35, a pit archer at 8:47, a pit archer at 8:47, a knight at 8:47; base res in 72 s)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "b870f84e-pinned-1-408-36",
+     "shown": "hold: Lose no player and no NPC while held in, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "hold",
+      "start": [
+       402,
+       414
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-b870-notes",
+   "set": "f1",
+   "scheme": 2,
+   "row": 0,
+   "rid": "b870f84e-b838-5f2a-ae83-b1e25499d9ee",
+   "match": "hold v Men, Uncharted",
+   "window": [
+    0,
+    0
+   ],
+   "type": "notes",
+   "call": "",
+   "shown": "(his notes on the game)",
+   "band": "",
+   "grade": "",
+   "mark": "notes",
+   "said": "",
+   "checks": []
   }
  ],
  "about_tiers": "R-490: a row with \"tier\": \"borderline\" is reported by `review.py score` and never blocks a change; every other row with a check is clear and must pass. A row he marks No clear decision is borderline when it is filed. \"tier_proposed\" is Claude's proposal, not yet his."

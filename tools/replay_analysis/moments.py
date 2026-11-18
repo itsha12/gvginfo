@@ -1361,7 +1361,7 @@ class Moments:
                 if not stay and all(self.AL[a][min(B + 6, self.T)] for a in att): continue      # ... and a team on its way out as the res lands, all out and alive 6 s on, has left (R-507: 옷옷옷옷 v RACK 15:40, "none stay")
                 out.append({"t": B, "tm": tm, "team": m.tag[tm], "attackers": len(att), "defenders": len(home), "coming_back": len(res),
                             "outnumbered": len(att) < len(home) + len(res), "lead_lost": len(att) > len(home) and len(att) <= len(home) + len(res),
-                            "went_in": (since + SPLIT_STEP) if since is not None else None, "stayed": len(stay), "lost_after": dead})
+                            "went_in": (since + SPLIT_STEP) if since is not None else None, "stayed": len(stay), "lost_after": dead, "ids": att})
         return sorted(out, key=lambda x: x["t"])
 
     # ---- the flag record: what each flag cost and how it was used (R-360, R-362)
@@ -2175,7 +2175,7 @@ class Moments:
         gap = max(1, FIGHT_HOLD_S // S)
         told = self._split_candidates()
         team_of, other = self.m.team, lambda k: next(x for x in self.st.teams if x != k)
-        on_split = lambda k, t: {x for x in self.st.players[k] if self.AL[x][t] and self.P[x][t] and (told.get((x, t)) == "split" or x in self._over(k, t)[0])}
+        on_split = lambda k, t: {x for x in self.st.players[k] if self.AL[x][t] and self.P[x][t] and told.get((x, t)) == "split"}
         pair = lambda x, y: (x, y) if x < y else (y, x)
         def near_split(b, t, sp): return any(d(self.P[b][t], self.P[x][t]) < FIGHT_LINK or pair(b, x) in self._acting(t, aid=False) for x in sp)
         runs = {"defence": [], "split": []}
@@ -2183,12 +2183,9 @@ class Moments:
             tm_a, foe_a, cand = team_of(a), other(team_of(a)), []
             for ti, t in enumerate(times):
                 c = None
-                if counted[a][ti] and self.AL[a][t] and self.P[a][t]:
-                    if (a, t) in told: c = told[(a, t)]
-                    elif a in self._over(tm_a, t)[0]: c = "split"
-                    else:
-                        sp = on_split(foe_a, t)
-                        if sp and near_split(a, t, sp): c = "defence"
+                # the question arises only for a player both readings count: one the split's reading does not count stays in these numbers, whatever his place
+                # (hold v Men 4:52, his Classic row: three of Men left at hold's front door when the rest go home are the main fight there, 4 v 3, and no split)
+                if counted[a][ti] and self.AL[a][t] and self.P[a][t] and (a, t) in told: c = told[(a, t)]
                 cand.append(c)
             for kind in runs:
                 i = 0
@@ -2920,7 +2917,7 @@ def match_records(rid):
     M = Moments(st, Scoreboard(st))
     recs = M.records()
     import jobs                                          # the plays and their jobs; each moment gets its allocation (R-425)
-    EXTRA[rid] = {"runs": M.runner_cost(), "duty": [M.flag_duty()[tm] for tm in (1, 2)], "plays": jobs.plays(M, recs), "selfcheck": jobs.selfcheck(M), "flags": jobs.bench_rows(M),
+    EXTRA[rid] = {"runs": M.runner_cost(), "duty": [M.flag_duty()[tm] for tm in (1, 2)], "plays": jobs.plays(M, recs), "selfcheck": jobs.selfcheck(M), "flags": jobs.bench_rows(M), "opening": jobs.opening(M)["words"],
                   "flag_moments": dict(collections.Counter(r["moment_rule"] for r in M.run_starts() if r["set_off"] is not None))}
     return recs
 

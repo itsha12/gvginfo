@@ -118,7 +118,8 @@ def situations(plays):
     """A game's plays grouped into situations: the two sides of one split phase, of one numbers moment, of one push on
     a flagger or of one Lord push are one situation, read once and judged from each side."""
     G = collections.OrderedDict()
-    for p in sorted(plays, key=lambda p: (p["t0"], p["t1"])):
+    flags = [p for p in plays if p["play"] == "flag" and p.get("run_id")]
+    for p in sorted([p for p in plays if p not in flags], key=lambda p: (p["t0"], p["t1"])):
         kind = {"flagger pushed": "push flagger"}.get(p["play"], p["play"])
         k = (kind, p["t0"]) if kind == "numbers" else (kind, p["t0"], p["t1"]) if kind in ("lord", "push flagger") else (kind, p["t0"], p.get("size"), p.get("defenders")) if kind == "split" else (kind, p["t0"], p["team"])
         if kind == "split" and p.get("change") and p.get("of"):       # R-514: who joins, collapses on or leaves a split fight is a decision of its own in the data, shown in the row of the split it belongs to
@@ -126,7 +127,51 @@ def situations(plays):
         elif kind == "split":                             # the attacker's and the defender's play of a phase can end a few seconds apart
             k = next((q for q in G if q[0] == "split" and q[2:] == k[2:] and abs(q[1] - k[1]) <= 2 and not all(x.get("change") for x in G[q])), k)
         G.setdefault(k, []).append(p)
-    return list(G.values())
+    return sorted(list(G.values()) + flag_rows(flags), key=lambda g: (min(p["t0"] for p in g), max(p["t1"] for p in g)))
+
+
+def flag_rows(flags):
+    """The flag plays of a game as rows in which every run is told once (R-521, his words: "We have many runs being counted or explained twice ... the opening
+    is described twice, single runs are described from both players sides even though one is really responding to the other and it's duplicated"). A flag play
+    is one team's answer to the other's run, and the run it answers with is in turn answered, so each run stood in two rows. Here the opening is one row (R-520),
+    and after it a row is a run and the run that answers it: the play that judges each of the two is under it, a stay or a flag in hand that follows the answer
+    is said in the same row, and the two legs of a double run are one run. A run that only answers one already told gets a row of its own, said as an answer."""
+    rows, P = [], sorted(flags, key=lambda p: (p["t0"], p["t1"]))
+    op = [p for p in P if p.get("opening")]
+    if op:
+        for p in op: p["_row"] = op[0]["opening"]
+        rows.append(op)
+    P = [p for p in P if not p.get("opening")]
+    told = {x for p in op for x in (p["run_id"], p.get("answer_id")) if x}
+    when = lambda r: int(r.split("-", 1)[1])
+    by_trigger, by_answer = {}, collections.defaultdict(list)
+    for p in P:
+        by_trigger.setdefault(p["run_id"], p)
+        if p.get("answer_id"): by_answer[p["answer_id"]].append(p)
+    for r in sorted({x for p in P for x in (p["run_id"], p.get("answer_id")) if x}, key=lambda r: (when(r), r)):
+        if r in told: continue
+        told.add(r)
+        lead = by_trigger.get(r)
+        ans = lead.get("answer_id") if lead is not None else None
+        pair = [r] + ([ans] if ans and ans not in told else [])
+        told.update(pair)
+        row = [p for x in pair for p in by_answer.get(x, [])]
+        row += [p for x in pair for p in [by_trigger.get(x)] if p is not None and not p.get("answer_id") and p not in row]      # they stay, or have a flag in hand: said with the run it answers
+        if lead is not None and lead not in row and (ans is None or ans in told) and not any(lead is q for g in rows for q in g): row.append(lead)      # its answer was told already, as the answer to an earlier run
+        row = [p for i, p in enumerate(row) if not any(p is q for q in row[:i]) and not any(p is q for g in rows for q in g)]
+        if not row: continue
+        if lead is not None:
+            text = lead["said"][0] + "; " + lead["said"][1]
+            after = by_trigger.get(ans) if len(pair) > 1 else None
+            if after is not None and not after.get("answer_id") and after in row: text += "; " + after["said"][1].replace(" stays", " then stays", 1)
+        else:
+            q = by_answer[r][0]
+            text = q["said"][1] + ", in answer to " + q["said"][0]
+        for p in row: p["_row"] = text
+        rows.append(sorted(row, key=lambda p: (p["t0"], p["t1"])))
+    left = [p for p in P if not any(p is q for g in rows for q in g)]      # nothing is dropped: a play no row took is a row of its own
+    for p in left: p["_row"] = p["scenario"]
+    return rows + [[p] for p in left]
 
 
 def game(rid, path, set_id="w"):
@@ -140,7 +185,7 @@ def game(rid, path, set_id="w"):
         res = []
         for p in g:
             tests = [("yes: " if v else "no: ") + k for k, v in list(p["tests"].items()) + list(p.get("any_of", {}).items())]
-            lab = p.get("call") or p.get("answer") or p.get("ours") or ""
+            lab = label_of(p)
             res.append(f"**{p['team']}**" + (f" ({p['side']})" if p["side"] not in ("own",) and p["play"] in ("split", "lord") else "") + (f" [{lab}]" if lab else "") + f": {p['job']}. **{'Met' if p['met'] else 'Not met'}**" + (" (" + "; ".join(tests) + ")" if tests else "") + ("" if p.get("ruled", True) else " *(job is a draft)*"))
         print(f"| {i} | {cl(g[0]['t0'])}–{cl(max(p['t1'] for p in g))} | {read} | " + "<br>".join(res) + " |")
 
@@ -148,9 +193,16 @@ def game(rid, path, set_id="w"):
 FIRST = {"split": ("attacker", "defender", "attacker's main team", "defender's main team"), "lord": ("attacker", "defender")}
 
 
+def label_of(p):
+    """The call of a play in a word or two. At the opening a team's first flag is not called a run (R-520)."""
+    if p.get("opening"): return "the first flag" + ("" if p.get("ours") == "single run" else f": {p.get('ours')}")
+    return p.get("call") or p.get("answer") or p.get("ours") or ""
+
+
 def _reads(g):
     """What the engine reads in a situation, in one line; sorts its plays (the attacker first, then the defender)."""
     g.sort(key=lambda p: (bool(p.get("change")), p.get("at", 0) if p.get("change") else 0, FIRST.get(p["play"], ()).index(p["side"]) if p["side"] in FIRST.get(p["play"], ()) else 0, p["play"] != "push flagger"))
+    if g[0].get("_row"): return g[0]["_row"] + (" (Shadow of Haste run: set aside)" if any(p.get("soh") for p in g) else "")      # a flag row: every run told once (R-521), the opening as one description (R-520)
     read = g[0]["scenario"] + ("; ".join([""] + [p["scenario"].split(": ", 1)[-1] for p in g[1:] if p["play"] == "split" and not p.get("change") and p["side"] == "defender" and p.get("call") in ("collapse", "full collapse", "part-run")]))
     def move(p):                                          # "Ranger joins the split at 18:28"; "Hammer B, 8 Monk join the defence at 12:48"
         one, what = len(p["who"]) == 1, p.get("call") or p.get("answer")
@@ -198,12 +250,12 @@ def export(path, out, part, set_id="f1", label=None, drop=(), confidence=None):
             for p in ([] if unclear else g):
                 side = p["side"] if p["side"] not in ("own",) and p["play"] in ("split", "lord", "numbers") else ""
                 moved = f": {', '.join(p['who'])} at {cl(p['at'])}" if p.get("change") and p.get("at") is not None else ""
-                calls.append({"id": p["id"], "team": p["team"], "side": side, "label": (p.get("call") or p.get("answer") or p.get("ours") or "") + moved + (f": {p['hand']}" if p.get("hand") else ""), "job": p["job"], "met": bool(p["met"]),
+                calls.append({"id": p["id"], "team": p["team"], "side": side, "label": label_of(p) + moved + (f": {p['hand']}" if p.get("hand") else ""), "job": p["job"], "met": bool(p["met"]),
                               "tests": [[bool(v), k] for k, v in list(p["tests"].items()) + list(p.get("any_of", {}).items())], "any": bool(p.get("any_of")) and bool(p["tests"]) is False, "draft": not p.get("ruled", True)})
             # one band a situation (R-515): low when a quarter's move makes the engine stop reading it, medium when it is still read but its details move, or it goes at half or double (confidence.py, fitted to his grades of five games)
             both = bands_of.band_of([C[rid][p["id"]] for p in g if not p.get("change")] or [C[rid][p["id"]] for p in g], [C[rid][p["id"]] for p in g if p.get("change")] if not all(p.get("change") for p in g) else ())
             conf = {"band": "none", "why": unclear[0].upper() + unclear[1:] + "."} if unclear else {"band": both["band"], "why": both["why"]}
-            sits.append({"n": i, "id": "s:" + g[0]["id"], "kind": {"flagger pushed": "push flagger"}.get(g[0]["play"], g[0]["play"]), "t0": g[0]["t0"], "t1": max(p["t1"] for p in g), "reads": read, "confidence": conf,
+            sits.append({"n": i, "id": "s:" + g[0]["id"], "kind": "opening" if g[0].get("opening") else {"flagger pushed": "push flagger"}.get(g[0]["play"], g[0]["play"]), "t0": g[0]["t0"], "t1": max(p["t1"] for p in g), "reads": read, "confidence": conf,
                          "plays": [{"play": p["play"], "team": p["team"], "t0": p["t0"]} for p in g], "calls": calls, **({"unclear": unclear} if unclear else {})})
         twice = (D.get("flag_cost", {}).get(rid) or {}).get("selfcheck") or []
         games.append({"scheme": 2, "set": set_id, "part": part, "label": label or f"part {part}", "rid": rid, "teams": m["teams"], "map": m["map"], "date": m["date"], "situations": sits,

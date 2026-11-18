@@ -32,7 +32,7 @@ Usage:  python3 jobs.py <report id>                     the plays of one match
         python3 jobs.py bench <file from moments.py all>     rebuild data/benchmarks/flag_arrival.json
 In code: plays(M, recs) -> list of plays; allocation(recs, plays) adds each moment's plays to it."""
 import collections, json, os, statistics, sys
-from common import (STAND_R, MERGE_S, FIGHT_ACT, FIGHT_CLOSE, FIGHT_HOLD_S, HOLD_S, HANDOFF_GAP_S, REPO, READ_TO, SPLIT_STEP, SPLIT_GAP_S, FIGHT_LINK, JOIN_S, JOIN_LOOK_S, NPC_NEAR, can_kill, SOH_REMOVED, RUN_SPEED, GROUND_JUMP, RES_EVERY, BOOST_EVERY, BOOST_WARN_S, BOOST_LATE_S, LEAD_HALF, LEAD_ONE, CARRY_SPEED, PIT_R,
+from common import (MEET_R, OPEN_FROM_S, OPEN_BY_S, OPEN_S, STAND_R, MERGE_S, FIGHT_ACT, FIGHT_CLOSE, FIGHT_HOLD_S, HOLD_S, HANDOFF_GAP_S, REPO, READ_TO, SPLIT_STEP, SPLIT_GAP_S, FIGHT_LINK, JOIN_S, JOIN_LOOK_S, NPC_NEAR, can_kill, SOH_REMOVED, RUN_SPEED, GROUND_JUMP, RES_EVERY, BOOST_EVERY, BOOST_WARN_S, BOOST_LATE_S, LEAD_HALF, LEAD_ONE, CARRY_SPEED, PIT_R,
                     FLAG_GAIN, PART_RUN_GAIN, LATE_FLAG, ANSWER_CAP_S, COLLAPSE_VISIT_S, PINNED_S, LORD_PUSH_FROM, LORD_BASE_R, AFTER_WIPE_MIN_S, NUMBERS_TAIL_S, FLAG_JOB_MAX_S, MAIN_BIG, TURN_S, TURN_CLOSE)
 from state import d
 
@@ -161,6 +161,77 @@ def _flag_rows(M):
     return out
 
 
+def opening(M):
+    """How the game starts (R-520, his words: "The beginning of the game is very important ... We need to know a) who went where (e.g. 8 to stand for each team or
+    7 to stand with 1 waiting back, etc.) b) who brought up the flag; c) who captures and when (e.g. HC caps first at 0:12 and RACK overcaps at 0:24) and THEN the
+    first run decision (or e.g. both teams hold the flag, no one captures for the first 1:32; or e.g. hold brings up first flag on rit, retreats before capping).
+    We shouldn't be describing these as single runs for the opening"). One record a match: for each team where its players went from the gates (to the stand with
+    the team, out on a split and by which door, or back at home), who waits at the flag spawn for the next flag, who brought the first flag up and what became of
+    it; then who capped first and who capped over it, and when. `words` says it in one line."""
+    if getattr(M, "_opening", None) is not None: return M._opening
+    st, m, T, S, role = M.st, M.m, M.T, SPLIT_STEP, M.m.roles
+    def met(t):
+        c1, c2 = (M.centre([a for a in M.main_team(tm, t) if M.AL[a][t]], t) for tm in st.teams)
+        return c1 is not None and c2 is not None and d(c1, c2) < MEET_R
+    t_o = next((t for t in range(OPEN_FROM_S, min(OPEN_BY_S, T) + 1, S) if met(t)), min(OPEN_BY_S, T - T % S))
+    win = list(range(t_o, min(t_o + OPEN_S, T) + 1, S))
+    FR, splits = _flag_rows(M), [x for x in M.attempts() if x["kind"] == "split" and x["t0"] <= t_o + OPEN_S]      # a split from the gates: it set out by then
+    names = lambda ids: ", ".join(role[a] for a in ids)
+    count = lambda n, word: f"{n} {word}"
+    out = {"t": t_o, "teams": {}}
+    first_cap = {tm: next((int(u) for u, h in st.caps if h == tm), None) for tm in st.teams}
+    for tm in st.teams:
+        spl, back, stand, way = [], [], [], None
+        for a in st.players[tm]:
+            x = next((x for x in splits if x["tm"] == tm and any(q["role"] == role[a] and q["from"] <= t_o + 2 * OPEN_S for q in x["members"])), None)
+            if x is not None: spl.append(a); way = way or x.get("way")
+            elif sum(1 for t in win if M.AL[a][t] and M.P[a][t] and M.at_home(a, t, tm)) * 2 > len(win): back.append(a)
+            else: stand.append(a)
+        # who waits at the flag spawn for the next flag (a double run from the gates), among those at home
+        went_back = lambda q: min(v for v in (q["set_off"], q["waited"]) if v is not None) if (q["set_off"] is not None or q["waited"] is not None) else None      # left at the spawn from the gates, or turned back for it in the first seconds (Men v RACK 0:04: "Men double ran with warrior waiting back")
+        waits = list(dict.fromkeys(q["a"] for q in M.run_starts() if q["tm"] == tm and q["pickup"] > 2 and went_back(q) is not None and went_back(q) <= t_o and q["a"] in back))
+        rows = sorted((x for x in FR if x["tm"] == tm), key=lambda x: x["s0"])
+        pre = next((x for x in rows if x["pregame"]), None)
+        up = next((q for q in M.run_starts() if q["tm"] == tm and q["pickup"] <= 2 and M.not_run(q)), None)      # brought up with the team and not run (R-505)
+        flag = {"brought": None, "by": [], "how": None, "at": None, "held_s": 0, "sent_back": None}
+        if pre is not None:
+            by = list(dict.fromkeys(role[a] for a in pre["ids"])) or [pre["runner"]]      # who carried it once the gates were open: the player who held it before them and stays back is not one
+            flag.update(brought=True, by=by, how=pre["how"], at=int(pre["e"]), held_s=int(pre.get("held_s") or 0))
+        elif rows and rows[0].get("off", rows[0]["s0"]) <= OPEN_BY_S * 2:      # no flag came up with the team and a player went back for the first one (his words on Men v hold 0:00: "hold did not bring the first flag and had to send ele back for it"), though a flag was carried a few steps and put down
+            nxt = rows[0]
+            flag.update(brought=False, sent_back={"who": nxt["runner"], "at": int(nxt.get("off", nxt["s0"])), "how": nxt["how"], "end": int(nxt["e"])})
+        elif up is not None:
+            flag.update(brought=True, by=list(dict.fromkeys(role[c[0]] for c in sorted(up["carries"], key=lambda c: c[1]) if c[0] in up["serious"])), how="not run")
+        else: flag["brought"] = False
+        out["teams"][tm] = {"stand": stand, "split": spl, "way": way, "back": back, "waits": waits, "flag": flag, "first_cap": first_cap[tm]}
+    caps = sorted((u, tm) for tm, u in first_cap.items() if u is not None)
+    out["caps"] = caps
+    def team_words(tm):
+        x = out["teams"][tm]; f = x["flag"]
+        w = [count(len(x["stand"]), "to the stand")]
+        if x["split"]: w.append((f"{len(x['split'])} out" if len(x["split"]) >= 4 else f"{len(x['split'])} on a split") + (f" by the {x['way']}" if x["way"] else "") + f" ({names(x['split'])})")
+        rest = [a for a in x["back"] if a not in x["waits"]]
+        if x["waits"]: w.append(f"{names(x['waits'])} {'waits' if len(x['waits']) == 1 else 'wait'} back at the flag spawn for the next flag")
+        if rest: w.append(f"{names(rest)} {'stays' if len(rest) == 1 else 'stay'} back at home" + (" to defend" if out["teams"].get(3 - tm, {}).get("split") or any(x["tm"] != tm for x in splits) else ""))
+        if f["brought"] and f["how"] == "not run": fw = f"its first flag brought part of the way with the team ({', '.join(f['by'])}) and not run"
+        elif f["brought"]:
+            fw = f"its first flag brought up by {f['by'][0]}" + (f", handed to {' and '.join(f['by'][1:])}" if len(f["by"]) > 1 else "")
+            if f["how"] == "captured": fw += (f", held at the stand for {f['held_s']} s" if f["held_s"] >= HOLD_S else "") + f" and capped at {clock(f['at'])}"
+            else: fw += f", {f['how']} at {clock(f['at'])} without a cap"
+        else:
+            sb = f["sent_back"]
+            fw = "no flag brought up" + ("" if sb is None else f"; {sb['who']} goes back for its first at {clock(sb['at'])}" + (f", capped at {clock(sb['end'])}" if sb["how"] == "captured" else f", {sb['how']} at {clock(sb['end'])} without a cap"))
+        return f"{m.tag[tm]}: " + ", ".join(w) + "; " + fw
+    if not caps: cw = "Nobody has capped a flag" + (f" by {clock(min(T, 180))}" if T >= 180 else " in the game")
+    elif len(caps) == 1: cw = f"{m.tag[caps[0][1]]} caps first at {clock(caps[0][0])}; {m.tag[3 - caps[0][1]]} never caps"
+    else: cw = f"{m.tag[caps[0][1]]} caps first at {clock(caps[0][0])}; {m.tag[caps[1][1]]} caps over it at {clock(caps[1][0])}"
+    if caps and caps[0][0] >= 60: cw = f"Nobody caps for the first {clock(caps[0][0])}. " + cw
+    order = [tm for _, tm in caps] + [tm for tm in st.teams if tm not in [k for _, k in caps]]
+    out["words"] = "The opening. " + ". ".join(team_words(tm) for tm in order) + ". " + cw
+    M._opening = out
+    return out
+
+
 def flag_plays(M, K, pinned_at):
     FR, out, T, role = _flag_rows(M), [], M.T, M.m.roles
     runs = []                                                             # their runs: a flag dropped or returned and taken again at once is one run, the one that got further
@@ -168,6 +239,12 @@ def flag_plays(M, K, pinned_at):
         if runs and runs[-1]["tm"] == f["tm"] and f["s0"] - runs[-1]["s0"] <= 10:
             if (f["how"] == "captured", f["e"]) > (runs[-1]["how"] == "captured", runs[-1]["e"]): runs[-1] = f
         else: runs.append(f)
+    canon = {}                                                            # two flags of one team set off for within 10 s of one another are one decision (the two legs of a double run): one name for both
+    for tm_ in M.st.teams:
+        last = None
+        for x_ in sorted((x_ for x_ in FR if x_["tm"] == tm_), key=lambda x_: x_["s0"]):
+            if last is not None and x_["s0"] - last[1] <= 10: canon[(tm_, x_["s0"])] = last[0]; last = (last[0], x_["s0"])
+            else: canon[(tm_, x_["s0"])] = x_["s0"]; last = (x_["s0"], x_["s0"])
     for f in sorted(runs, key=lambda f: f["s0"]):
         B, A = f["tm"], 3 - f["tm"]
         w0, w1 = f["s0"], min(f["e"], T)
@@ -210,6 +287,8 @@ def flag_plays(M, K, pinned_at):
             prev = max((y for y in FR if y["tm"] == x_["tm"] and y is not x_ and y["s0"] < x_["s0"] and (y.get("form") or "").startswith("double")), key=lambda y: y["s0"], default=None)
             if prev is not None and x_["s0"] - prev["e"] <= 60: return f"first runner {prev.get('capper') or prev['runner']}, capping the flag before; second runner {names}, back for this one"
             nxt = min((y for y in FR if y["tm"] == x_["tm"] and y is not x_ and y["s0"] >= x_["s0"]), key=lambda y: y["s0"], default=None)
+            if nxt is not None and nxt["s0"] - x_["s0"] <= 10 and nxt["how"] == "captured" and nxt["e"] < x_["e"]:      # the two flags set off for together: the one capped first is the first runner's, and the player named here went back for the next (hold v Men 1:38: the Ritualist 1 and the AoB Derv cap at 2:03, the Hammer, back at the spawn, at 2:36)
+                return f"first runner {carried(nxt)}; second runner {names}, back for the next flag"
             if nxt is not None: return f"first runner {names}; second runner {nxt['runner']}, back for the next flag"
             return names + "; no second runner found"
         def carried(x_):                                                  # who ran it, and who it was handed on to (a half run: "single run half run to stand mes", his words on 옷옷옷옷 v RACK 6:15)
@@ -220,8 +299,9 @@ def flag_plays(M, K, pinned_at):
         # brings flag up on Warrior, but DOES NOT run the flag")
         bu = next((q for q in M.run_starts() if q["tm"] == A and M.not_run(q) and q["pickup"] <= w1 and any((c[2] is None or c[2] >= w0) and c[1] <= w1 for c in q["carries"] if c[0] in q["serious"])), None)
         up = bu and f"brings a flag up with its team ({', '.join(dict.fromkeys(role[c[0]] for c in sorted(bu['carries'], key=lambda c: c[1]) if c[0] in bu['serious'] and (c[2] is None or c[2] >= w0) and c[1] <= w1))}) but does not run it"
-        scen = (f"{M.m.tag[B]} {theirs} ({both(f, carried(f))}{', to the Obelisk flag stand' if f['other_stand'] else ''}); "
-                + (f"{M.m.tag[A]} has a flag already in hand{mine_}" if inhand else f"{M.m.tag[A]} {up or 'stays'}" if not new else f"{M.m.tag[A]} {ours}{mine_}"))
+        said0 = f"{M.m.tag[B]} {theirs} ({both(f, carried(f))}{', to the Obelisk flag stand' if f['other_stand'] else ''})"
+        said1 = f"{M.m.tag[A]} has a flag already in hand{mine_}" if inhand else f"{M.m.tag[A]} {up or 'stays'}" if not new else f"{M.m.tag[A]} {ours}{mine_}"
+        scen = said0 + "; " + said1
         first_flags = not any(u < w0 + 1 for u, _ in M.st.caps)          # nobody has capped yet: each team's first flag (R-500)
         if not (f["pregame"] or (g and g["pregame"])) and first_flags: scen = "The opening. " + scen
         if f["pregame"] or (g and g["pregame"]):                         # the opening (R-479): each team's first flag is a run, and a player left at the spawn for the next one is part of the call
@@ -238,7 +318,12 @@ def flag_plays(M, K, pinned_at):
         d0 = min(max(g["s0"], w0), end) if ran else w0
         dA, dB = (lambda t1: K.died_main(A, d0, t1)), (lambda t1: K.died_main(B, d0, t1))      # deaths at the main fights only (R-466)
         bes = lambda t1: {"flag_lead": [K.lead(A, w0), K.lead(A, t1)], "deaths_at_the_main_fight": [dA(t1), dB(t1)], "deaths_anywhere": [K.died(A, w0, t1), K.died(B, w0, t1)], "their_flag": f["how"], "their_form": f["form"], "our_form": g and g["form"]}
-        kw = dict(their=theirs, ours=ours, soh=bool(f["soh"] or (g and g["soh"])))
+        rid_ = lambda x_: f"{x_['tm']}-{canon[(x_['tm'], x_['s0'])]}"
+        is_open = scen.startswith("The opening.")
+        kw = dict(their=theirs, ours=ours, soh=bool(f["soh"] or (g and g["soh"])),
+                  run_id=rid_(f), answer_id=rid_(new) if (new is not None and not inhand) else None,      # R-521: the run this play answers and the run it answers with, so that every run is told once on the page
+                  said=[said0, said1],
+                  **({"opening": opening(M)["words"]} if is_open else {}))
         if ours == "a flag already in hand":
             # R-486: the flag in hand is a timing choice. When their flag gets in, the team with a flag in hand overcaps at once, or holds it and plays on with eight
             # (in position at the stand, or with the carrier kept in the fight: "do we GET in position to overcap or do we use the 8v7/8v8 time to hold the flag; and
@@ -251,7 +336,7 @@ def flag_plays(M, K, pinned_at):
             c = next((a for a in g["ids"] if M.AL[a][u] and M.carrying(a, u)), None) if tc is not None else None
             if tc is None or ans:
                 t1 = min(w1 + ANSWER_CAP_S, T)
-                if tc is not None: kw["hand"] = "overcap at once"; scen += ", capped at once"
+                if tc is not None: kw["hand"] = "overcap at once"; scen += ", capped at once"; kw["said"][1] += ", capped at once"
                 out.append(_play(M, "flag", "own", A, w0, t1, who, scen, "Answer their cap at once", {},
                                  any_of={"their flag does not get in": not caps_b, f"our cap follows theirs within {ANSWER_CAP_S} s": ans}, beside=bes(t1), **kw))
             elif c is None:
@@ -263,6 +348,7 @@ def flag_plays(M, K, pinned_at):
                 pre = first and owner == B and (BOOST_EVERY - (g["e"] - since) % BOOST_EVERY) <= BOOST_LATE_S
                 kw["hand"] = "capped before theirs got in" if first else "put down before theirs got in"
                 scen += ", capped before theirs got in" if first else ", put down before theirs got in"
+                kw["said"][1] += ", capped before theirs got in" if first else ", put down before theirs got in"
                 out.append(_play(M, "flag", "own", A, w0, t1, who, scen, "Cap just before their boost, or keep the flag for their cap", {"our cap lands just before their boost": bool(pre)}, beside=bes(t1), ruled=False, **kw))
             else:
                 placed = d(M.P[c][u], M.hall.stand) < STAND_R          # in position to overcap: at the stand itself, not somewhere in the stand area (RJT v RACK 2:30: RACK's Stand Mes, a long way from it, "is not in position to overcap")
@@ -272,6 +358,7 @@ def flag_plays(M, K, pinned_at):
                 kw["hand"] = "in position, hold" if placed else "hold, not in position to overcap"
                 held_for = (ours_cap or t1) - tc
                 scen += (", held in position at the stand" if placed else ", held, its carrier not in position to overcap") + (f" (capped {int(held_for)} s after theirs)" if ours_cap else " (not capped)")
+                kw["said"][1] += (", held in position at the stand" if placed else ", held, its carrier not in position to overcap") + (f" (capped {int(held_for)} s after theirs)" if ours_cap else " (not capped)")
                 hA, hB = K.died_main(A, tc, t1), K.died_main(B, tc, t1)
                 b_ = dict(bes(t1), held_s=int(held_for), in_position=bool(placed), deaths_while_held=[hA, hB], their_boost_landed=bool(their_boost is not None and their_boost <= t1 and (ours_cap is None or their_boost < ours_cap)))
                 out.append(_play(M, "flag", "own", A, w0, t1, who, scen, "Hold the flag and play on with eight: give up no boost, and lose no more players than they do while it is held",
@@ -897,7 +984,8 @@ def res_plays(M, K):
     for r in M.caught():
         B, tm = r["t"], r["tm"]
         out.append(_play(M, "base res", "own", tm, B - 20, B + 30, [], f"{r['team']} has {r['attackers']} in {M.m.tag[3 - tm]}'s base at the base res ({r['defenders']} defending, {r['coming_back']} coming back): {r['stayed']} stay" + (f", {r['attackers'] - r['stayed']} leave as the res lands or die" if r['stayed'] < r['attackers'] else ""),
-                         "Be out, or set for the fight, when they res", {"nobody of ours dies in the 30 s after the res": K.died(tm, B, B + 30) == 0}, beside={"deaths_after": K.died(tm, B, B + 30), "outnumbered": r["outnumbered"]}, call="stayed through the res"))
+                         "Be out, or set for the fight, when they res", {"none of the players in their base dies in the 30 s after the res": K.died(tm, B, B + 30, set(r["ids"])) == 0},      # the test covers the players of the play: a team mate who dies elsewhere, defending a split at home, did not die of the base res (his mark on hold v Men 4:00, Classic: "ranger dies on split, not because of base res")
+                         beside={"deaths_after": K.died(tm, B, B + 30, set(r["ids"])), "deaths_elsewhere": K.died(tm, B, B + 30) - K.died(tm, B, B + 30, set(r["ids"])), "outnumbered": r["outnumbered"]}, call="stayed through the res"))
     for r in M.timing():
         if r["kind"] != "left before res": continue
         B, tm = r["t"] + r["s"], r["tm"]
