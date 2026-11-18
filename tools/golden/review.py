@@ -373,12 +373,13 @@ def file_graded(g, e, set_id, K):
         elif band == "none" and grade in ("classic", "visible", "weak"): auto = [{"has": x, "want": {"clear": None}, "open": True, "auto": True, "why": f"{match} {cl(s_['t0'])}: told as context; he graded it a {grade} decision" + (f": {v['why']}" if v.get("why") else "")} for x in sel[:1]]
         row["checks"] = auto + [c for c in old.get(i, {}).get("checks", []) if not c.get("auto")]
         for k_ in old.get(i, {}):
-            if k_.startswith("answered") or k_ in ("retired_checks",): row[k_] = old[i][k_]
+            if k_.startswith("answered") or k_ in ("retired_checks", "later"): row[k_] = old[i][k_]      # `later`: a mark he withdrew or confirmed afterwards, in his words
         new.append(row)
     for n, x in enumerate(e.get("missed") or [], 1):
         i = pre + f"missed-{n}"; t = SEC(x.get("t", ""))
-        new.append({"id": i, "set": set_id, "scheme": 2, "row": 0, "rid": g["rid"], "match": match, "window": [t if t is not None else 0, (t if t is not None else 0) + 30], "type": x.get("kind") or "missed", "call": "",
-                    "shown": "(a decision the engine did not read, added by him)", "band": "not read", "grade": x.get("grade") or "classic", "mark": "missed", "at": x.get("t", ""), "said": x.get("why", ""), "checks": [c for c in old.get(i, {}).get("checks", []) if not c.get("auto")]})
+        new.append({**{k_: v_ for k_, v_ in old.get(i, {}).items() if k_.startswith("answered") or k_ in ("retired_checks", "later")},
+                    **{"id": i, "set": set_id, "scheme": 2, "row": 0, "rid": g["rid"], "match": match, "window": [t if t is not None else 0, (t if t is not None else 0) + 30], "type": x.get("kind") or "missed", "call": "",
+                    "shown": "(a decision the engine did not read, added by him)", "band": "not read", "grade": x.get("grade") or "classic", "mark": "missed", "at": x.get("t", ""), "said": x.get("why", ""), "checks": [c for c in old.get(i, {}).get("checks", []) if not c.get("auto")]}})
     i = pre + "notes"
     new.append({"id": i, "set": set_id, "scheme": 2, "row": 0, "rid": g["rid"], "match": match, "window": [0, 0], "type": "notes", "call": "", "shown": "(his notes on the game)", "band": "", "grade": "", "mark": "notes", "said": e.get("notes") or "", "checks": old.get(i, {}).get("checks", [])})
     K["rows"] = [r for r in K["rows"] if not r["id"].startswith(pre)] + new
@@ -395,6 +396,8 @@ def file_graded(g, e, set_id, K):
     M = [r for r in new if r["mark"] == "missed"]
     print(f"   decisions he added as missed: {len(M)}" + ("".join(f"\n      {r['at']} {r['type']} ({r['grade']}): {r.get('said', '')}" for r in M)))
     first = [r for r in new if r["grade"] == "classic" and r["mark"] in ("partly", "incorrect", "missed")] + [r for r in S if r["band"] == "none" and r["grade"] == "classic"]
+    later = [r for r in first if r.get("later")]; first = [r for r in first if not r.get("later")]      # a mark he withdrew, or a reading he confirmed afterwards, is nothing to fix
+    if later: print(f"   answered by him afterwards (the engine's reading stands, or the check on the row says what holds): {len(later)}" + "".join(f"\n      {cl(r['window'][0])} {r['type']} ({r['later'].get('at', '')}): {r['later'].get('said', '')}" for r in later))
     print(f"   to fix first (R-494: a Classic decision not read as he reads it): {len(first)}" + "".join(f"\n      {cl(r['window'][0])} {r['type']} [{r['mark']}{', off: ' + ', '.join(r['off']) if r.get('off') else ''}]: {r.get('said', '')}" for r in first))
     cc = collections.Counter(d["mark"] for r in S if r["grade"] in ("classic", "visible") and r["mark"] in ("correct", "partly") for d in r["calls"])
     print(f"   calls under a Classic or Visible situation read correct or partly: correct {cc['correct']}, partly {cc['partly']}, incorrect {cc['incorrect']} of {sum(cc.values())}")
