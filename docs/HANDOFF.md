@@ -18,9 +18,9 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   (R-519); the opening as one description (R-520); every flag run told once (R-521); the match over
   (`Moments.over`); a split a player down, or collapsed on, meets its job by losing nobody (R-517, R-523); two
   flaggers on one another are one push (R-528, `flag_pushes`); a split's door read phase by phase and a split out
-  of a held base told from when its player goes out (`split_plays`); players who came for a flagger on his run and left when
-  the flag had gone are the push and no split (`jobs._push_not_split`, built last, from four rows in three games;
-  Claude's reading of his marks, not yet confirmed by him: item 3 under "Open for Denning").
+  of a held base told from when its player goes out (`split_plays`); players who came for a flagger on his run and
+  left when the flag had gone are the push and no split (`jobs._push_not_split`, built last, from four rows in three
+  games; Claude's reading of his marks, not yet confirmed by him: item 3 under "Open for Denning").
 - Confidence (R-515, fitted to five games, figures at the top of `confidence.py`): it cannot tell Visible from Weak
   or No decision; what would is a measure of what is at stake (his four reasons, R-509). Not built.
 - Graded and filed (set f1), decisions read correct and decisions he had to add: HC v Team 85%, 0; Men v Crew 77%,
