@@ -3,7 +3,20 @@
   {
    "id": "ne9b8x18",
    "name": "Temp",
-   "templates": []
+   "templates": [
+    {
+     "id": "eh71hppp",
+     "variations": [],
+     "name": "SW Illusion Lord Dmg",
+     "code": "OQZCAcwEQ0KQeGCYBoIAzHQF",
+     "notes": "",
+     "bonus": {
+      "Fast Casting": 1,
+      "Illusion Magic": 3
+     },
+     "equipment": []
+    }
+   ]
   }
  ]
 }
