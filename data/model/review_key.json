@@ -20471,8 +20471,7 @@
      "want": {
       "scenario~": "by the back door"
      },
-     "open": true,
-     "why": "Men v hold 10:40 (Classic, partly): 'it's a split through the backdoor not front'"
+     "was": "Men v hold 10:40 (Classic, partly): 'it's a split through the backdoor not front' (built 2026-11-18)"
     },
     {
      "has": {
@@ -22050,8 +22049,7 @@
      "want": {
       "scenario~": "Fire Ele"
      },
-     "open": true,
-     "why": "Men v hold 17:01 (Classic, missed): 'fire ele splits front door'"
+     "was": "Men v hold 17:01 (Classic, missed): 'fire ele splits front door' (built 2026-11-18)"
     }
    ]
   },
