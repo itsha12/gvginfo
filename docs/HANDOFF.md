@@ -17,7 +17,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   (R-519); the opening as one description (R-520); every flag run told once (R-521); the match over
   (`Moments.over`); a split a player down, or collapsed on, meets its job by losing nobody (R-517, R-523); two
   flaggers on one another are one push (`flag_pushes`); a split's door read phase by phase and a split out of a held
-  base told from when its player goes out (`split_plays`). `bundle-4` is at a552659; nothing built since.
+  base told from when its player goes out (`split_plays`). Engine a552659; the branch tip adds only the key.
 - Confidence (R-515, fitted to five games, figures at the top of `confidence.py`): it cannot tell Visible from Weak
   or No decision; what would is a measure of what is at stake (his four reasons, R-509). Not built.
 - Graded and filed (set f1), decisions read correct and decisions he had to add: HC v Team 85%, 0; Men v Crew 77%,
