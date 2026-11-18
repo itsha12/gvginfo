@@ -8,55 +8,55 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 > out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-18, evening: eleven games graded and filed; all four open questions answered; nothing waiting to be built)
+## State (2026-11-18, night: eleven games graded; games 13 and 14 exported and not yet marked; the flag family is next)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` and lands in one piece,
   then one rebuild (R-322). 658 replays stored; 564 count (R-477); 506 matches trained. No workflow run in progress.
-  Rulings run to R-532. The six rows of game 12 after 9:40 stay unmarked (R-532). The baseline (R-491) is the branch
-  `baseline-2026-11-15` (figures in `data/model/baseline/`); built since, all from his marks: R-498 to R-530.
-- His answers of 2026-11-18, evening, all filed in the key (`later`, `answered`), none needing an engine change: Men v
-  RACK 18:25, the Prot is no part of the collapse (his word withdrawn; the Hammer alone binds); Men v hold 17:01, the
-  Fire Ele's split from 17:02 is right (binds); a push on a flagger or a split is R-530 (`jobs._push_not_split` as
-  built); game 12 at 9:00 and 9:32 were the clock (R-527), both readings correct (9:00, Classic, binds).
-  `review.py file` now keeps `later` on refiling and lists such rows apart from "to fix first".
-- Graded and filed (set f1), decisions read correct and decisions he had to add: HC v Team 85%, 0; Men v Crew 77%,
-  0; 옷옷옷옷 v RACK 67%, 7; Men v RACK 71%, 4; Men v hold 80%, 5; hold v Men 95%, 0; HC v hdm 90%, 0; RACK v hdm
-  100%, 0; hold v RACK 95%, 0; HC v cope 96%, 0; 옷옷옷옷 v hdm (game 12, to 9:40) 80%, 0 as marked. hdm v HC
-  (bbef1904) is out (R-522); never pick it again. In the six games since the fifth, 153 Classic and Visible rows:
-  143 read correct as marked, 152 with his withdrawals and what was fixed (open: hold v Men 2:34); of the No
-  decision rows, HC v hdm 1:40 and hold v RACK 2:42 (no words) are still read.
-- Confidence (R-515, fitted to five games, figures at the top of `confidence.py`): on the six games since, Classic is
-  high 82, medium 49, low 4 and Visible high 10, medium 7, low 1, with no Weak row and three No decision rows that
-  were not already context: it does not tell Classic from Visible, and more games give it nothing to learn from. What
-  would is a measure of what is at stake (R-509), which the similar cases of the flag family supply. Not built.
-- Checkpoint run of 2026-11-18 (every counted match, engine 8882861): 564 matches, 34,698 plays, no errors; self-check
-  7 in 5 matches (0 on the development set). Flag plays 5,575; 1,517 set aside for Shadow of Haste (R-456); 4,058
-  usable: a single run answered by a single 1,637, a stay 1,412, a double 177, a flag in hand 155; a double run
-  answered by a single 339, a stay 166, a double 96, a flag in hand 76. By hall 683 (Corrupted) down to 147
-  (Nomad's) and 13 (Isle of the Dead). Boost 1,470 (run 948, concede 522).
-- Halls graded his new way: Jade 3, Imperial 2, Nomad's 2, Meditation 2, Uncharted 1, Solitude 1. Never: Corrupted
-  (87 of the 564), Druid's (85), Weeping Stone (52), Isle of the Dead (6): 230 matches, 41%.
-- Now (development set, 53 matches, 4,597 plays): 259 Classic rows pass, none fail; 117 of 120 history rows hold.
-  Set f1: 15 of 51 open checks hold. Gate 12 of 12, 63 of 105. Line-up 420 of 426; comms 110 of 157. Self-check 0.
+  Rulings run to R-533. The baseline (R-491) is the branch `baseline-2026-11-15`; built since, from his marks: R-498
+  to R-530. His answers of 2026-11-18 are in the key (`later`, `answered`). R-531: the flag plays are ready. R-532:
+  game 12 stays graded to 9:40.
+- Graded and filed (set f1): eleven games (the last, 옷옷옷옷 v hdm, to 9:40); per game in CHANGELOG. hdm v HC
+  (bbef1904) is out (R-522). In the six games since the fifth, 153 Classic and Visible rows: 143 read correct as
+  marked, 152 with his withdrawals and what was fixed (open: hold v Men 2:34); no decision he had to add.
+- Exported 2026-11-18 (engine 9223e30), not marked: game 13, Men v NwAy on Corrupted Isle (c19f13e3; 35 situations,
+  68 calls; high 25, medium 10), and game 14, Dz v Team on Druid's Isle (15a20f7a; 25 situations, 48 calls; high 8,
+  medium 14, low 2, one context: its splits all read medium or low). Halls he has never graded (R-532).
+- The known truths (R-533; `tools/golden/truths.py` on the branch, at every checkpoint): 9 of 11 hold, none fails.
+  Not clear: T6 (leaving before a base res: 75 rows) and T11, his own (a solo split defended by a monk dies less
+  often than one defended by a damage player: 18% against 15% of phases). Looked into, in `NOTES` there: killed by
+  the one defender, 6% with a damage player and 3% with a monk, as he expects; the rest are the pit NPCs, and 19
+  phases in which two to five players not counted as defenders kill him in the last seconds and no phase follows:
+  a collapse that kills at once is never told as a collapse (put to him; split family; not built). Claude's
+  proposals P1 to P6 are his to approve (five hold, P6 not clear).
+- The two held flag shapes, counted over every match (detectors from one example each: upper bounds): a single run
+  in answer that never caps, by a player defending a split when it starts (hold v Men 2:34): 50 of 1,976 single
+  runs in answer, 13% of those that fail; a boost "run" not denied while the rest fall back or retreat to the pit
+  (Men v Crew 17:53): 207 of 948. Both are too many to ignore: flagged for the leave-out test, examples put to him.
+- Confidence (R-515): on the six games since the fit it does not tell Classic from Visible (high on 61% and 56%).
+  What would is a measure of what is at stake (R-509), from the similar cases. Not built.
+- Checkpoint run (every counted match): 564 matches, 34,698 plays, no errors; self-check 7 in 5 matches. Flag plays
+  5,575; 1,517 set aside for Shadow of Haste (R-456); 4,058 usable: a single run answered by a single 1,637, a stay
+  1,412, a double 177, a flag in hand 155; a double run answered by a single 339, a stay 166, a double 96, a flag
+  in hand 76. At 90 s a single run in answer is 0.31 of a flag better than a stay (T7).
+- Now (development set, 55 matches): 259 Classic rows pass, none fail; 117 of 120 history rows hold. Set f1: 15 of
+  51 open checks hold. Gate 12 of 12, 63 of 105. Line-up 420 of 426; comms 110 of 157. Self-check 0.
 
-## Next (in order; R-531 and R-532, his answers of 2026-11-18)
-1. The flag family to the end (R-451, R-531: the flag plays are ready; REDESIGN.md, stage D, c): similar cases for
-   the flag plays, the better call by the consequence record at 90 and 180 s (never by a play's own end: a stay row
-   ends at their cap, a run row at ours), the held-out advice test on the branch, read with him whatever it shows.
-   First, put to him and awaiting his word: a "known truths" report (obvious directions over every match, to fail
-   loudly) and, for each held item below, a count of its shape and a leave-out test of the family's result.
-2. One game each on Corrupted and Druid's to be prepared for grading beside that work (R-532).
-3. Held for a second game (R-495): a base res counted with the attackers at the footmen, not in the base (HC v hdm
-   1:40, Jade: held open for his review, R-532); Men v hold 6:48, hold following Men's three with the flag told as a
-   push on the flagger (HC v Team 1:30 may be the same); who and how many push a flagger (HC v Team, Men v RACK
-   1:08); numbers through the portal on Isle of Jade (Men v Crew); Men v Crew 17:53; a defender's few seconds with
-   a flag read as a run (hold v Men 2:34); the defenders standing in their pit at 2:46 in Men v hold.
+## Next (in order)
+1. The flag family to the end (R-451, R-531; REDESIGN.md, stage D, c): similar cases for the flag plays, the better
+   call by the fixed 90 and 180 s record (never a play's own end), the held-out advice test on the branch, read with
+   him whatever it shows. Run every result with and without the two held flag shapes (the leave-out test).
+2. His marks on games 13 and 14 when he has graded them: file them the same session (`review.py file`).
+3. Held for a second game (R-495): a base res counted with the attackers at the footmen (HC v hdm 1:40, Jade: held
+   open for his review); Men v hold 6:48, a collapse told as a push on the flagger; who and how many push a flagger
+   (HC v Team, Men v RACK 1:08); numbers through the portal on Jade (Men v Crew); Men v hold 2:46, defenders standing
+   in their pit. Each is counted and put to him when its kind of play is next.
 4. The other kinds after the flag family, as he says each is ready; rare plays topped up with picked rows; then
    stage E. The clean-up (R-398; REDESIGN.md "Before the next training run", nine items) comes after the games.
 
-## Open for Denning
-1. Isle of Jade: is a team at the footmen on the portal side in the base at a base res (HC v hdm 1:40)? His to review.
-2. The known truths he wants tested, beyond Claude's first seven (set out in the chat on 2026-11-18).
-
+## Open for Denning (all set out in the chat on 2026-11-18)
+1. Isle of Jade: is a team at the footmen on the portal side in the base at a base res (HC v hdm 1:40)?
+2. T11: with the pit NPCs doing the killing, does his truth stand as "killed by the defender"? And is a split
+   player killed within seconds by players arriving a collapse (Team v BcS 18:11, QenK v Fun 6:37, NwAy v ohno 5:24)?
+3. The examples of the two held flag shapes: a run, or not a run? 4. Claude's proposed truths P1 to P6.
 ## Data looked at on 2026-11-14 (nothing built; nothing from GW Observer in the repo)
 - gvg.report's payload holds flag objects with positions (`report.objectives.object_transitions`), which
   `replay_trim.mjs` drops. R-481: keep them at the next rebuild only (a new TRIM_VERSION fetches every replay again).

@@ -223,6 +223,14 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   on the flagger and no split (R-530): one test, `jobs._push_not_split`, asked by `push_plays` and by `split_plays`.
 - The match is over at `Moments.over`: the second the losing team is recorded dying all at once, some 12 s before the
   replay stops. Those deaths are taken out of the deaths the reading counts, and no play starts from that second on.
+- The known truths (R-533), on the branch: `tools/golden/truths.py <plays file from moments.py all>` at every checkpoint
+  (a run over every match; the development set is too small for most). A short list of things any player knows (an
+  undefended split takes more NPCs than a defended one; answering a run with a run is better in flags than staying),
+  each a comparison of two groups of plays with a 90% range over whole matches: HOLDS, FAILS (the run exits 1), NOT
+  CLEAR, TOO FEW. A truth that does not hold is looked into the same session and what was found is written in `NOTES`
+  there; it is a reason to look, never proof. The truths are tests only and feed nothing in the engine. Only his
+  truths and those he has approved can fail a run; Claude's proposals are reported apart. Compare calls on the fixed
+  90 and 180 s record (`after` on a moment), never on a play's own end: a stay row ends at their cap, a run row at ours.
 - No new rule or threshold to answer a wrong row (R-465): rebuild the reading under it at the root, with his marked
   rows as the test. Who is in which fight is one reading on the branch (`Moments.linked`, `engaged_in`, `visits`; R-464),
   used by the numbers of the main fight and by a split's defenders: change it there, never beside it. His words on a
@@ -247,7 +255,7 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   review key the same session (`review.py file <id> <rows> <marks> --set f1 --key <main key>`, which prints his grades
   against the engine's confidence and the Classic rows to fix first, and writes the plain checks; then write by hand
   the checks for what a Partly or an Incorrect means). Set every result out for him in the chat (R-329). The queue is
-  set f1 in `dev_set.json` (eleven games graded: HC v Team, Men v Crew, 옷옷옷옷 v RACK, Men v RACK, Men v hold, hold v Men, HC v hdm, RACK v hdm, hold v RACK, HC v cope and, as far as 9:40, 옷옷옷옷 v hdm, whose clock on the replay page runs ahead, R-527; game 6, hdm v HC, taken out unmarked, R-522; no game
+  set f1 in `dev_set.json` (eleven games graded: HC v Team, Men v Crew, 옷옷옷옷 v RACK, Men v RACK, Men v hold, hold v Men, HC v hdm, RACK v hdm, hold v RACK, HC v cope and, as far as 9:40 and no further (R-532), 옷옷옷옷 v hdm, whose clock on the replay page runs ahead, R-527; game 6, hdm v HC, taken out unmarked, R-522; games 13 and 14, Men v NwAy on Corrupted Isle and Dz v Team on Druid's Isle, exported 2026-11-18 for him to grade beside the flag work, R-532; no game
   is kept hidden, R-497); pick further games from unused October and November games of top guilds, never a henchman
   game (R-476). Export the next game only when the last one is marked and its Classic faults are fixed, unless he asks
   for more at once; never fix against a game he has not marked, and never re-export a game he has marked. Games without `scheme` 2 are history, shown read only. The golden
