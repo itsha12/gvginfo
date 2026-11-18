@@ -8057,6 +8057,56 @@
      "mark": "correct",
      "why": "",
      "text": "hold: Lose no player and no NPC while held in, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)"
+    },
+    "b870f84e-split-1-10-2": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold (attacker) [a player or more up]: Kill or take NPCs. Met (a defender killed: yes; an NPC taken: yes)"
+    },
+    "b870f84e-split-2-10-3": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Not met (no pit NPC lost: no; no defender dies: no)"
+    },
+    "b870f84e-split-2-10-4": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (defender's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Met (more of theirs die away from the split than of ours: yes)"
+    },
+    "b870f84e-split-2-60-7": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (defender) [join: Hammer at 1:00]: Hold it even or better: lose no pit NPC and no more players than the split does. Met (no pit NPC lost: yes; no more defenders die than split players: yes)"
+    },
+    "b870f84e-split-2-72-10": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (defender) [leave: Hammer at 1:12]: Gain at the main fight with the player back, and lose no pit NPC for it. Not met (no pit NPC lost: yes; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)"
+    },
+    "b870f84e-split-2-88-11": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (defender) [join: Hammer at 1:28]: Hold it even or better: lose no pit NPC and no more players than the split does. Met (no pit NPC lost: yes; no more defenders die than split players: yes)"
+    },
+    "b870f84e-split-2-118-14": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (defender) [leave: Hammer at 1:58]: Gain at the main fight with the player back, and lose no pit NPC for it. Met (no pit NPC lost: yes; more of theirs die away from the split than of ours: yes; flag lead better by 0.35 or more: yes)"
+    },
+    "b870f84e-split-1-228-21": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold (attacker) [leave: 8 Monk at 3:48]: Gain at the main fight with the player back. Not met (more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)"
+    },
+    "b870f84e-split-1-254-23": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold (attacker) [join: Ritualist at 4:14]: Kill or take NPCs with the players added. Met (a defender killed: yes; an NPC taken: no)"
+    },
+    "b870f84e-flag-1-66-8": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (our flag is capped: yes; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: no)"
     }
    },
    "scheme": 2,
