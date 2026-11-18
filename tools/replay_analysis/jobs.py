@@ -409,13 +409,27 @@ def flag_plays(M, K, pinned_at):
 
 
 # ---- pushing the flagger (R-427), and the flagger's side (gap 8)
+def _push_not_split(M, x, p):
+    """Whether a split attempt x is the push p on a flagger and no split (his marks, Men v RACK 0:36 and 1:32, HC v Team 4:24,
+    HC v cope 3:24: "this is a flag push rather than a split"): its players came to a flagger already on his run (going back,
+    at his spawn or carrying), were on him within SPLIT_GAP_S of crossing, and left the enemy's ground within SPLIT_GAP_S of the
+    push ending: they were there for the flag. Players who stay on after the flag has gone, or who die there, are a split whose defender carries his flag (R-430;
+    HC v cope 0:20 and 0:32, Classic: "the lone defender carries his flag"; TFS v 옷옷옷옷 6:20)."""
+    if x["tm"] != p["tm"] or set(p["ids"]) != set(x["ids"]) or x.get("end") != "left": return False      # every player who went is on the flagger
+    if not (x["t_in"] - JOIN_S <= p["t"] <= x["t_in"] + SPLIT_GAP_S and x["t1"] <= p["t1"] + SPLIT_GAP_S): return False      # on him within SPLIT_GAP_S of crossing, gone within SPLIT_GAP_S of the push ending
+    b, u = p["flagger"], int(p["t"]) - int(p["t"]) % SPLIT_STEP
+    near = lambda v: bool(M.AL[b][v]) and any(M.AL[a][v] and M.P[a][v] and d(M.P[a][v], M.P[b][v]) < FIGHT_LINK for a in p["ids"])
+    while u - SPLIT_STEP >= 0 and near(u - SPLIT_STEP): u -= SPLIT_STEP
+    return bool(M._flagger(b, 3 - p["tm"], u))
+
+
 def push_plays(M, K):
     FR, out, role, done = _flag_rows(M), [], M.m.roles, {}
     splits = [x for x in M.attempts() if x["kind"] == "split"]
     for p in M.flag_pushes():
         tm, foe = p["tm"], 3 - p["tm"]
         # a split player on a defender who carries his flag is a split with a part-run (R-430), not a push on a flagger (his mark, TFS v 옷옷옷옷 6:20)
-        if any(x["tm"] == tm and x["t_in"] <= p["t"] <= x["t1"] + 4 and set(p["roles"]) <= {q["role"] for q in x["members"]} for x in splits): continue
+        if any(x["tm"] == tm and x["t_in"] <= p["t"] <= x["t1"] + 4 and set(p["roles"]) <= {q["role"] for q in x["members"]} for x in splits) and not any(_push_not_split(M, x, p) for x in splits): continue
         f = next((f for f in FR if f["tm"] == foe and p["flagger"] in f["ids"] and f["s0"] - 60 <= p["t"] <= f["e"] + 2), None)
         key = (foe, f["pick"]) if f else (foe, p["t"])
         if key in done:                                                   # a second push on the same flag: one play, everyone who pushed
@@ -478,8 +492,10 @@ def split_plays(M, K):
     M._split_at = []                                                     # who each told phase counts, second by second (the self-check, R-488)
     role, hall = m.roles, M.hall
     A = [x for x in M.attempts() if x["kind"] == "split" and x.get("solo") != "other"]
+    pushed = {id(x) for x in A if any(_push_not_split(M, x, p) for p in M.flag_pushes())}      # players who came for a flagger on his run and left when the flag had gone: the push on the flagger, told there (the record still ends the attempt before it)
     is_monk = lambda a: m.A[a].get("p") == "Monk" and not role[a].startswith("Monk ") and "WoC" not in role[a]      # a backline monk; a smiter (the WoC monks, whatever their slot) is damage (R-457; TFS v 옷옷옷옷 4:06)
     for x in A:
+        if id(x) in pushed: continue
         tm, foe, an = x["tm"], 3 - x["tm"], x["answer"]
         own_d = st.side.get(foe)
         frm = {a: int(q["from"]) for a, q in zip(x["ids"], x["members"])}
