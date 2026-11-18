@@ -193,8 +193,7 @@ After the engine is built and before the rebuild, Claude goes through this with 
    amend. (Begun, R-452: `docs/DEFINITIONS.md` holds the current definitions for counting players, flags, splits,
    collapse and the Lord push; the other topics remain.)
 3. Review the repository for old, outdated or unneeded files.
-4. Remove the Templates tab from the site (not used). (Ask him first: he saved a template and added a folder there on
-   2026-11-18.)
+4. Remove the Templates tab from the site (R-526: "No, remove", asked because he had saved a template there).
 5. Remove the Meta tab from the site (not used); and the Golden moments page (R-454), keeping
    `golden_moments.json`, `golden_key.json` and the gate.
 6. See whether the skills need updating from the wiki.

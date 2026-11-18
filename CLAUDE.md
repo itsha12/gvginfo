@@ -214,6 +214,11 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   under it; after it every run is told once, a run and the run that answers it in one row (`review.py flag_rows`,
   from `run_id`, `answer_id` and `said` on the flag plays). The flag plays themselves, their jobs and their tests
   are as before: change what a row says in `flag_rows`, and what a play is in `flag_plays`.
+- A push on a flagger is one reading, `Moments.flag_pushes` on the branch: two flaggers on one another are one push,
+  the one who lands more on the other the pusher, and the flagger pushed is never counted among the players pushing
+  (`M._fpush_answers` keeps what was set aside). A split's door is read phase by phase in `split_plays` (only a phase
+  whose players all start it in the field takes a new door), and a split out of a base its team is held in is told
+  from when its player goes out past his doors (`out_at`). All three are from his marks (DEFINITIONS), not rulings.
 - The match is over at `Moments.over`: the second the losing team is recorded dying all at once, some 12 s before the
   replay stops. Those deaths are taken out of the deaths the reading counts, and no play starts from that second on.
 - No new rule or threshold to answer a wrong row (R-465): rebuild the reading under it at the root, with his marked
@@ -240,7 +245,7 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   review key the same session (`review.py file <id> <rows> <marks> --set f1 --key <main key>`, which prints his grades
   against the engine's confidence and the Classic rows to fix first, and writes the plain checks; then write by hand
   the checks for what a Partly or an Incorrect means). Set every result out for him in the chat (R-329). The queue is
-  set f1 in `dev_set.json` (eight games graded: HC v Team, Men v Crew, 옷옷옷옷 v RACK, Men v RACK, Men v hold, hold v Men, HC v hdm and RACK v hdm; game 6, hdm v HC, taken out unmarked, R-522; no game
+  set f1 in `dev_set.json` (eight games graded: HC v Team, Men v Crew, 옷옷옷옷 v RACK, Men v RACK, Men v hold, hold v Men, HC v hdm and RACK v hdm; games 10 to 12, hold v RACK, HC v cope and 옷옷옷옷 v hdm, exported 2026-11-18 for him to mark; game 6, hdm v HC, taken out unmarked, R-522; no game
   is kept hidden, R-497); pick further games from unused October and November games of top guilds, never a henchman
   game (R-476). Export the next game only when the last one is marked and its Classic faults are fixed, unless he asks
   for more at once; never fix against a game he has not marked, and never re-export a game he has marked. Games without `scheme` 2 are history, shown read only. The golden
