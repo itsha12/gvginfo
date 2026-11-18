@@ -7734,6 +7734,335 @@
      "why": "fire ele splits front door"
     }
    ]
+  },
+  "b870f84e-b838-5f2a-ae83-b1e25499d9ee": {
+   "marks": {
+    "s:b870f84e-flag-1-66-8": {
+     "grade": "visible",
+     "why": "this is a borderline doublerun but I agree with you because the warrior was sort of back for split defence",
+     "text": "Men single run (Hammer); hold single run (Ritualist)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "s:b870f84e-split-1-10-2": {
+     "grade": "visible",
+     "why": "just a bit unclear about warrior but I agree he was there at points for defence",
+     "reason": [
+      "unclear"
+     ],
+     "text": "hold's split by the back door: three players (AoB Derv, Ranger, 8 Monk) against 2 defending (Ritualist 2, Ranger); numbers along the way: 3 v 2 from 0:24, 3 v 3 from 1:00, 3 v 2 from 1:12, 3 v 3 from 1:28, 3 v 2 from 1:58, 2 v 2 from 3:48, 3 v 2 from 4:14, 3 v 1 from 4:28. Who came and went, each a decision of its own: Hammer (Men) joins the defence at 1:00; Hammer (Men) leaves the defence at 1:12; Hammer (Men) joins the defence at 1:28; Hammer (Men) leaves the defence at 1:58; 8 Monk (hold) leaves the split at 3:48; Ritualist (hold) joins the split at 4:14",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "s:b870f84e-flag-2-0-1": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "The opening. hold single run (Ritualist, handing it to Hammer); Men single run (Ranger, handing it to AoB Derv)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "b870f84e-flag-2-0-1": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men [single run]: Get the first flag in. Met (our flag is capped: yes)"
+    },
+    "s:b870f84e-flag-1-0-0": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "The opening. Men single run (Ranger, handing it to AoB Derv); hold single run (Ritualist, handing it to Hammer)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "b870f84e-flag-1-0-0": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold [single run]: Get the first flag in. Met (our flag is capped: yes)"
+    },
+    "s:b870f84e-flag-2-70-9": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "hold single run (Ritualist); Men single run (Ritualist 1, handing it to AoB Derv)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "b870f84e-flag-2-70-9": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (our flag is capped: yes; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: yes)"
+    },
+    "s:b870f84e-numbers-1-110-12": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "hold down on numbers in the main fight (4 v 5, the flag stand), from players split elsewhere; hold: stay (stay at the stand) | Men: stay (stay at the stand); 3 damage against 2 monks",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "b870f84e-numbers-1-110-12": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold (weak side) [stay]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)"
+    },
+    "b870f84e-numbers-2-110-13": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (strong side) [stay]: Keep them busy and lose nobody (a kill is not expected of it). Met (nobody of ours dies: yes)"
+    },
+    "s:b870f84e-flag-1-140-15": {
+     "grade": "visible",
+     "why": "",
+     "text": "Men double run (first runner Hammer; second runner Ritualist 1, back for the next flag); hold single run (Hammer)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "b870f84e-flag-1-140-15": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold [single run]: Kill or take ground with the extra player, and end no worse than a flag behind. Met (no worse than a flag behind at the end: yes; more of theirs die at the main fight than of ours: no; ground taken: no; one of their NPCs dies: yes)"
+    },
+    "s:b870f84e-numbers-1-148-16": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "hold down on numbers in the main fight (4 v 6, the flag stand; then 3 v 6 from 2:58; then 4 v 6 from 3:10; then 3 v 6 from 3:42; then 4 v 6 from 4:00; then 5 v 6 from 4:12), from players split elsewhere; hold: stay (stay at the stand) | Men: stay (stay at the stand)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "b870f84e-numbers-1-148-16": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold (weak side) [stay]: No deaths, keep them busy, do not chase. Not met (nobody of ours dies: no)"
+    },
+    "b870f84e-numbers-2-148-17": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (strong side) [stay]: Kill with the numbers while their players are away. Met (more of theirs die than of ours: yes)"
+    },
+    "s:b870f84e-flag-2-154-18": {
+     "grade": "visible",
+     "why": "ranger does not single run, just brings the flag up (similar to how solo defenders partrun flags)",
+     "text": "hold single run (Hammer); Men single run (Ranger)",
+     "band": "high",
+     "mark": "incorrect",
+     "off": [
+      "who",
+      "kind"
+     ]
+    },
+    "b870f84e-flag-2-154-18": {
+     "mark": "not judged",
+     "why": "",
+     "text": "Men [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (our flag is capped: no; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: yes)"
+    },
+    "s:b870f84e-base_res-2-220-19": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Men has 6 in hold's base at the base res (3 defending, 1 coming back): 6 stay",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "b870f84e-base_res-2-220-19": {
+     "mark": "incorrect",
+     "why": "ranger dies on split, not because of base res",
+     "text": "Men [stayed through the res]: Be out, or set for the fight, when they res. Not met (nobody of ours dies in the 30 s after the res: no)"
+    },
+    "s:b870f84e-pinned-1-228-20": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 3:48: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard alive; base res in 12 s)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "b870f84e-pinned-1-228-20": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold: Hold the NPCs and lose nobody until the base res, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)"
+    },
+    "s:b870f84e-pinned-1-240-22": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 4:00: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard alive; base res in 120 s)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "b870f84e-pinned-1-240-22": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold: Lose no player and no NPC while held in, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)"
+    },
+    "s:b870f84e-numbers-1-292-24": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "hold up on numbers in the main fight (4 v 3, hold's front door), from players split elsewhere; hold: retreat down the ladder (fall back into the base); 2 damage against 2 monks | Men: stay (stay on the enemy's side)",
+     "band": "low",
+     "mark": "correct",
+     "off": []
+    },
+    "b870f84e-numbers-1-292-24": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold (strong side) [retreat down the ladder]: Keep them busy and lose nobody (a kill is not expected of it). Met (nobody of ours dies: yes)"
+    },
+    "b870f84e-numbers-2-292-25": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (weak side) [stay]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)"
+    },
+    "s:b870f84e-flag-2-315-26": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "hold single run (Hammer); Men single run (Ritualist 1)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "b870f84e-flag-2-315-26": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (our flag is capped: yes; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: yes)"
+    },
+    "s:b870f84e-split-1-324-27": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "hold's split by the back door: two players (Ranger, Ritualist) against 4 defending (Hammer, Ranger, Ritualist 2, Ritualist 1); Hammer, Ritualist 1 collapse from the main fight; 4 (Hammer, Ranger, Ritualist 2, Ritualist 1) against two players: collapse by Hammer, Ritualist 1 from the main fight",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "b870f84e-split-1-324-27": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold (attacker) [collapsed on]: Survive and gain an advantage elsewhere on the map. Not met (nobody on the split dies: no; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)"
+    },
+    "b870f84e-split-2-324-28": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Met (a split player dies during the collapse: yes)"
+    },
+    "s:b870f84e-numbers-1-342-29": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "hold down on numbers in the main fight (5 v 8, Men's pit), from kills; hold: retreat down the ladder (fall back into the base) | Men: push up (go out by the front door)",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "b870f84e-numbers-1-342-29": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold (down) [retreat down the ladder]: Reach cover a player down without losing another. Met (nobody of ours dies: yes; no NPC lost: yes)"
+    },
+    "b870f84e-numbers-2-342-30": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (up) [push up]: Take ground and NPCs with the numbers. Not met (no more of ours die than of theirs: yes; one of their NPCs dies: no; more of theirs die than of ours: no)"
+    },
+    "s:b870f84e-flag-1-365-31": {
+     "grade": "visible",
+     "why": "",
+     "text": "Men single run (Ritualist 1); hold stays",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "b870f84e-flag-1-365-31": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Not met (more of theirs die at the main fight than of ours: no; their flag does not get in: no)"
+    },
+    "s:b870f84e-numbers-1-388-32": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "hold down on numbers in the main fight (5 v 7, hold's front door; then 5 v 6 from 6:52; then 1 v 6 from 8:30), from players on their way to it (in neither fight); hold: retreat down the ladder (retreat to the pit) | Men: stay (stay on the enemy's side)",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "b870f84e-numbers-1-388-32": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold (down) [retreat down the ladder]: Reach cover a player down without losing another. Not met (nobody of ours dies: no; no NPC lost: no)"
+    },
+    "b870f84e-numbers-2-388-33": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (up) [stay]: Turn the extra player into a kill before the numbers are level. Met (more of theirs die than of ours: yes)"
+    },
+    "s:b870f84e-split-1-390-34": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "hold's split by the back door: three players (AoB Derv, Ritualist, Ranger) against 2 defending (Ritualist 2, Prot); numbers along the way: 2 v 1 from 6:36, 3 v 1 from 7:02, 3 v 2 from 7:26, 2 v 2 from 8:12. Who came and went, each a decision of its own: Ranger (hold) joins the split at 7:02; Prot (Men) joins the defence at 7:26; Ranger (hold) leaves the split at 8:12",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "b870f84e-split-1-390-34": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold (attacker) [a player or more up]: Kill or take NPCs. Met (a defender killed: no; an NPC taken: yes)"
+    },
+    "b870f84e-split-2-390-35": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Not met (no pit NPC lost: no; no defender dies: yes)"
+    },
+    "b870f84e-split-1-422-37": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold (attacker) [join: Ranger at 7:02]: Kill or take NPCs with the players added. Met (a defender killed: no; an NPC taken: yes)"
+    },
+    "b870f84e-split-2-446-38": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (defender) [join: Prot at 7:26]: Hold it even or better: lose no pit NPC and no more players than the split does. Not met (no pit NPC lost: no; no more defenders die than split players: yes)"
+    },
+    "b870f84e-split-1-492-39": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold (attacker) [leave: Ranger at 8:12]: Gain at the main fight with the player back. Not met (more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)"
+    },
+    "s:b870f84e-pinned-1-408-36": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "hold is held in its own base or pit by Men's main team (pit NPCs alive at 6:48: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard alive; lost while held: a knight at 7:49, the Bodyguard at 8:35, a pit archer at 8:47, a pit archer at 8:47, a knight at 8:47; base res in 72 s)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "b870f84e-pinned-1-408-36": {
+     "mark": "correct",
+     "why": "",
+     "text": "hold: Lose no player and no NPC while held in, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)"
+    }
+   },
+   "scheme": 2,
+   "game": "hold v Men, Uncharted Isle",
+   "at": "2026-11-18",
+   "engine": "a8b77a7"
   }
  }
 }
