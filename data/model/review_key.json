@@ -8278,12 +8278,13 @@
        294
       ],
       "end": [
-       362,
+       352,
        372
       ]
      },
      "want": {},
-     "was": "cope v Team: 8 v 7 from 4:52 and on through 8 v 6 to 6:08 is one situation"
+     "was": "cope v Team: 8 v 7 from 4:52 and on through 8 v 6 to 6:08 is one situation",
+     "note": "end widened 2026-11-18: a numbers row now ends with the numbers, not 10 s on"
     }
    ]
   },
@@ -8808,12 +8809,13 @@
        816
       ],
       "end": [
-       880,
+       870,
        890
       ]
      },
      "want": {},
-     "was": "cope v Team: down on numbers from 13:34 to the end of it at 14:46 is one situation"
+     "was": "cope v Team: down on numbers from 13:34 to the end of it at 14:46 is one situation",
+     "note": "end widened 2026-11-18: a numbers row now ends with the numbers, not 10 s on"
     }
    ]
   },
@@ -23117,6 +23119,1878 @@
    "row": 0,
    "rid": "b870f84e-b838-5f2a-ae83-b1e25499d9ee",
    "match": "hold v Men, Uncharted",
+   "window": [
+    0,
+    0
+   ],
+   "type": "notes",
+   "call": "",
+   "shown": "(his notes on the game)",
+   "band": "",
+   "grade": "",
+   "mark": "notes",
+   "said": "",
+   "checks": []
+  },
+  {
+   "id": "f1-af83-1",
+   "set": "f1",
+   "scheme": 2,
+   "row": 1,
+   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
+   "match": "HC v hdm, Jade",
+   "window": [
+    0,
+    49
+   ],
+   "type": "opening",
+   "call": "",
+   "shown": "The opening. hdm: 8 to the stand; its first flag brought up by Water Ele and capped at 6:17. HC: 8 to the stand; its first flag brought up by Monk 4 (WoC), returned at 0:49 without a cap. Nobody caps for the first 6:17. hdm caps first at 6:17; HC caps over it at 8:42",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "af831111-flag-1-0-0",
+     "shown": "HC [the first flag]: Get the first flag in. Not met (our flag is capped: no)",
+     "mark": "partly",
+     "said": "this should be the same goal for both teams, no?"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "HC",
+      "start": [
+       -6,
+       6
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "opening",
+      "team": "hdm",
+      "start": [
+       -3,
+       3
+      ]
+     },
+     "want": {
+      "job": "Get the first flag in"
+     },
+     "why": "HC v hdm 0:00 (Classic; the call marked partly): 'this should be the same goal for both teams, no?': only HC had been given the first flag as a job. Each team has it now (`opening_plays`)",
+     "held": "2026-11-18"
+    },
+    {
+     "has": {
+      "play": "opening",
+      "team": "HC",
+      "start": [
+       -3,
+       3
+      ]
+     },
+     "want": {
+      "job": "Get the first flag in"
+     },
+     "held": "2026-11-18"
+    }
+   ]
+  },
+  {
+   "id": "f1-af83-2",
+   "set": "f1",
+   "scheme": 2,
+   "row": 2,
+   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
+   "match": "HC v hdm, Jade",
+   "window": [
+    60,
+    140
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "hdm down on numbers in the main fight (7 v 8, the flag stand), from kills; hdm: stay (stay at the stand) | HC: stay (stay at the stand)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "partly",
+   "said": "hdm retreats to footies",
+   "calls": [
+    {
+     "play": "af831111-numbers-2-60-2",
+     "shown": "hdm (down) [stay]: Hold the ground a player down and lose no more until it is level, or the base res. Met (nobody of ours dies: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "af831111-numbers-1-60-1",
+     "shown": "HC (up) [stay]: Turn the extra player into a kill before the numbers are level. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "hdm",
+      "start": [
+       54,
+       66
+      ]
+     },
+     "want": {
+      "scenario~": "hdm: retreat down the ladder (fall to footmen)"
+     },
+     "why": "HC v hdm 1:00 (Classic, partly): 'hdm retreats to footies': hdm falls to its front footmen from 1:32, later than the first 30 s the call was read in. A numbers call is read for as long as the numbers last",
+     "held": "2026-11-18"
+    }
+   ]
+  },
+  {
+   "id": "f1-af83-3",
+   "set": "f1",
+   "scheme": 2,
+   "row": 3,
+   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
+   "match": "HC v hdm, Jade",
+   "window": [
+    100,
+    150
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "HC has 8 in hdm's base at the base res (7 defending, 1 coming back): 8 stay",
+   "band": "high",
+   "grade": "none",
+   "mark": "",
+   "reason": [
+    "unclear"
+   ],
+   "said": "I wouldn't count this as in base on this map. They are near footies and in no danger of the base res person joining fight.",
+   "calls": [
+    {
+     "play": "af831111-base_res-1-100-3",
+     "shown": "HC [stayed through the res]: Be out, or set for the fight, when they res. Met (none of the players in their base dies in the 30 s after the res: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "base res",
+      "team": "HC",
+      "start": [
+       94,
+       106
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "HC v hdm, Jade 1:40: he graded it No decision: I wouldn't count this as in base on this map. They are near footies and in no danger of the base res person joining fight."
+    }
+   ]
+  },
+  {
+   "id": "f1-af83-4",
+   "set": "f1",
+   "scheme": 2,
+   "row": 4,
+   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
+   "match": "HC v hdm, Jade",
+   "window": [
+    196,
+    388
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "hdm is held in its own base or pit by HC's main team (pit NPCs alive at 3:16: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard alive; lost while held: a knight at 4:42, a pit archer at 4:58, a knight at 5:27; base res in 44 s)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "af831111-pinned-2-196-4",
+     "shown": "hdm: Lose no player and no NPC while held in, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "hdm",
+      "start": [
+       190,
+       202
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-af83-5",
+   "set": "f1",
+   "scheme": 2,
+   "row": 5,
+   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
+   "match": "HC v hdm, Jade",
+   "window": [
+    346,
+    372
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "HC up on numbers in the main fight (8 v 7, hdm's pit), from players split elsewhere; HC: stay (stay on the enemy's side)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "partly",
+   "off": [
+    "when"
+   ],
+   "said": "I think they lose player advantage a bit sooner (around 6:03) when WoC 4 leaves through portal",
+   "calls": [
+    {
+     "play": "af831111-numbers-1-346-5",
+     "shown": "HC (strong side) [stay]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "HC",
+      "start": [
+       340,
+       352
+      ],
+      "end": [
+       356,
+       368
+      ]
+     },
+     "why": "HC v hdm 5:46 (Classic, partly, when): 'they lose player advantage a bit sooner (around 6:03) when WoC 4 leaves through portal': the numbers ended at 6:02; the row ran on through the 10 s the job is judged for. The row now ends with the numbers",
+     "held": "2026-11-18"
+    }
+   ]
+  },
+  {
+   "id": "f1-af83-6",
+   "set": "f1",
+   "scheme": 2,
+   "row": 6,
+   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
+   "match": "HC v hdm, Jade",
+   "window": [
+    406,
+    486
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "HC down on numbers in the main fight (5 v 7, the greater stand area; then 5 v 8 from 7:26), from kills; HC: retreat down the ladder (fall back into the base) | hdm: push in",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "af831111-numbers-1-406-6",
+     "shown": "HC (down) [retreat down the ladder]: Reach cover a player down without losing another. Not met (nobody of ours dies: no; no NPC lost: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "af831111-numbers-2-406-7",
+     "shown": "hdm (up) [push in]: Take ground and NPCs with the numbers. Met (no more of ours die than of theirs: yes; one of their NPCs dies: yes; more of theirs die than of ours: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "HC",
+      "start": [
+       400,
+       412
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "numbers",
+      "team": "hdm",
+      "start": [
+       400,
+       412
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-af83-7",
+   "set": "f1",
+   "scheme": 2,
+   "row": 7,
+   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
+   "match": "HC v hdm, Jade",
+   "window": [
+    444,
+    480
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "HC is held in its own base or pit by hdm's main team (pit NPCs alive at 7:24: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard alive; lost while held: the Bodyguard at 7:28; base res in 36 s)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "af831111-pinned-1-444-8",
+     "shown": "HC: Hold the NPCs and lose nobody until the base res, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "HC",
+      "start": [
+       438,
+       450
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-af83-8",
+   "set": "f1",
+   "scheme": 2,
+   "row": 8,
+   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
+   "match": "HC v hdm, Jade",
+   "window": [
+    460,
+    510
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "hdm has 7 in HC's base at the base res (4 defending, 4 coming back): 7 stay",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "af831111-base_res-2-460-9",
+     "shown": "hdm [stayed through the res]: Be out, or set for the fight, when they res. Met (none of the players in their base dies in the 30 s after the res: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "hdm",
+      "start": [
+       454,
+       466
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-af83-9",
+   "set": "f1",
+   "scheme": 2,
+   "row": 9,
+   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
+   "match": "HC v hdm, Jade",
+   "window": [
+    478,
+    490
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "hdm down on numbers in the main fight (7 v 8, HC's pit), from kills; hdm: stay (stay at the stand)",
+   "band": "none",
+   "grade": "none",
+   "mark": "",
+   "calls": [],
+   "checks": []
+  },
+  {
+   "id": "f1-af83-10",
+   "set": "f1",
+   "scheme": 2,
+   "row": 10,
+   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
+   "match": "HC v hdm, Jade",
+   "window": [
+    480,
+    492
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "HC is held in its own base or pit by hdm's main team (pit NPCs alive at 8:00: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard dead; base res in 120 s)",
+   "band": "high",
+   "grade": "visible",
+   "mark": "correct",
+   "reason": [
+    "brief"
+   ],
+   "calls": [
+    {
+     "play": "af831111-pinned-1-480-11",
+     "shown": "HC: Lose no player and no NPC while held in, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it breaks out at 8:18, having lost nothing; a break-out is half its living players or more, four at least, out past its doors): yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-af83-11",
+   "set": "f1",
+   "scheme": 2,
+   "row": 11,
+   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
+   "match": "HC v hdm, Jade",
+   "window": [
+    481,
+    561
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "HC single run (Monk 4 (WoC)); hdm single run (Water Ele)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "af831111-flag-2-481-12",
+     "shown": "hdm [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Met (our flag is capped: yes; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "hdm",
+      "start": [
+       475,
+       487
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-af83-12",
+   "set": "f1",
+   "scheme": 2,
+   "row": 12,
+   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
+   "match": "HC v hdm, Jade",
+   "window": [
+    508,
+    522
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "hdm pushes HC's flagger (Monk 4 (WoC), carrying) with one player",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "af831111-push_flagger-2-508-14",
+     "shown": "hdm: Stop their flag, or make it 30% late. Met (their flag is stopped: no; it arrives 30% or more later than usual: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "af831111-flagger_pushed-1-508-13",
+     "shown": "HC: Get the flag in on time. Not met (the flag gets in, less than 30% late: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "push flagger",
+      "team": "hdm",
+      "start": [
+       502,
+       514
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "flagger pushed",
+      "team": "HC",
+      "start": [
+       502,
+       514
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-af83-13",
+   "set": "f1",
+   "scheme": 2,
+   "row": 13,
+   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
+   "match": "HC v hdm, Jade",
+   "window": [
+    514,
+    561
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "HC pushes hdm's flagger (Water Ele, carrying) with 2 players",
+   "band": "medium",
+   "grade": "none",
+   "mark": "",
+   "reason": [
+    "nofight",
+    "unclear"
+   ],
+   "said": "I don't see any flag push here",
+   "calls": [
+    {
+     "play": "af831111-push_flagger-1-514-15",
+     "shown": "HC: Stop their flag, or make it 30% late. Not met (their flag is stopped: no; it arrives 30% or more later than usual: no)",
+     "mark": "not judged"
+    },
+    {
+     "play": "af831111-flagger_pushed-2-514-16",
+     "shown": "hdm: Get the flag in on time. Met (the flag gets in, less than 30% late: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": [
+    {
+     "none": {
+      "play": "push flagger",
+      "team": "HC",
+      "start": [
+       508,
+       520
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "HC v hdm, Jade 8:34: he graded it No decision: I don't see any flag push here"
+    },
+    {
+     "none": {
+      "play": "flagger pushed",
+      "team": "hdm",
+      "start": [
+       508,
+       520
+      ],
+      "want": {
+       "clear": null
+      }
+     },
+     "open": true,
+     "auto": true,
+     "why": "HC v hdm, Jade 8:34: he graded it No decision: I don't see any flag push here"
+    }
+   ]
+  },
+  {
+   "id": "f1-af83-14",
+   "set": "f1",
+   "scheme": 2,
+   "row": 14,
+   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
+   "match": "HC v hdm, Jade",
+   "window": [
+    538,
+    614
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "HC down on numbers in the main fight (6 v 8, the greater stand area; then 2 v 6 from 9:22; then 2 v 8 from 9:38), from kills; HC: retreat down the ladder (fall back into the base) | hdm: push in",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "af831111-numbers-1-538-17",
+     "shown": "HC (down) [retreat down the ladder]: Reach cover a player down without losing another. Not met (nobody of ours dies: no; no NPC lost: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "af831111-numbers-2-538-18",
+     "shown": "hdm (up) [push in]: Take ground and NPCs with the numbers. Met (no more of ours die than of theirs: yes; one of their NPCs dies: no; more of theirs die than of ours: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "HC",
+      "start": [
+       532,
+       544
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "numbers",
+      "team": "hdm",
+      "start": [
+       532,
+       544
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-af83-15",
+   "set": "f1",
+   "scheme": 2,
+   "row": 15,
+   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
+   "match": "HC v hdm, Jade",
+   "window": [
+    572,
+    600
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "HC is held in its own base or pit by hdm's main team (pit NPCs alive at 9:32: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard dead; base res in 28 s)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "af831111-pinned-1-572-19",
+     "shown": "HC: Hold the NPCs and lose nobody until the base res, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "HC",
+      "start": [
+       566,
+       578
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-af83-16",
+   "set": "f1",
+   "scheme": 2,
+   "row": 16,
+   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
+   "match": "HC v hdm, Jade",
+   "window": [
+    580,
+    630
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "hdm has 8 in HC's base at the base res (2 defending, 6 coming back): 3 stay, 5 leave as the res lands or die",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "af831111-base_res-2-580-20",
+     "shown": "hdm [stayed through the res]: Be out, or set for the fight, when they res. Met (none of the players in their base dies in the 30 s after the res: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "hdm",
+      "start": [
+       574,
+       586
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-af83-17",
+   "set": "f1",
+   "scheme": 2,
+   "row": 17,
+   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
+   "match": "HC v hdm, Jade",
+   "window": [
+    604,
+    673
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "HC single run (Monk 4 (WoC)); hdm stays",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "af831111-flag-2-604-21",
+     "shown": "hdm [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Not met (more of theirs die at the main fight than of ours: no; their flag does not get in: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "hdm",
+      "start": [
+       598,
+       610
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-af83-18",
+   "set": "f1",
+   "scheme": 2,
+   "row": 18,
+   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
+   "match": "HC v hdm, Jade",
+   "window": [
+    651,
+    686
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "hdm's boost is 30 s away; HC: one runner (Monk 4 (WoC)); the rest stay at the stand",
+   "band": "high",
+   "grade": "repeat",
+   "mark": "",
+   "said": "I think this is already covered by the single run. But if we have been repeating it in other games, this is correct and classic.",
+   "calls": [
+    {
+     "play": "af831111-boost-1-651-22",
+     "shown": "HC [run]: Deny their boost. Met (their boost does not land: yes)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-af83-19",
+   "set": "f1",
+   "scheme": 2,
+   "row": 19,
+   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
+   "match": "HC v hdm, Jade",
+   "window": [
+    706,
+    763
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "hdm single run (Water Ele); HC stays",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "af831111-flag-1-706-23",
+     "shown": "HC [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Not met (more of theirs die at the main fight than of ours: no; their flag does not get in: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "HC",
+      "start": [
+       700,
+       712
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-af83-20",
+   "set": "f1",
+   "scheme": 2,
+   "row": 20,
+   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
+   "match": "HC v hdm, Jade",
+   "window": [
+    777,
+    884
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "hdm single run (Water Ele); HC single run (Monk 4 (WoC))",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "af831111-flag-1-777-24",
+     "shown": "HC [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (our flag is capped: yes; no more of ours die at the main fight than of theirs: no; no worse than half a flag behind at the end, or no further behind than at the start: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "HC",
+      "start": [
+       771,
+       783
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-af83-21",
+   "set": "f1",
+   "scheme": 2,
+   "row": 21,
+   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
+   "match": "HC v hdm, Jade",
+   "window": [
+    853,
+    888
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "hdm's boost is 30 s away; HC: one runner (Monk 4 (WoC)); the rest push their flagger",
+   "band": "high",
+   "grade": "repeat",
+   "mark": "",
+   "said": "I think this is already covered by the single run. But if we have been repeating it in other games, this is correct and classic.",
+   "calls": [
+    {
+     "play": "af831111-boost-1-853-25",
+     "shown": "HC [run]: Deny their boost. Not met (their boost does not land: no)",
+     "mark": "not judged"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-af83-22",
+   "set": "f1",
+   "scheme": 2,
+   "row": 22,
+   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
+   "match": "HC v hdm, Jade",
+   "window": [
+    864,
+    894
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "HC pushes hdm's flagger (Water Ele, carrying) with its main team",
+   "band": "medium",
+   "grade": "visible",
+   "mark": "correct",
+   "reason": [
+    "brief",
+    "unclear"
+   ],
+   "calls": [
+    {
+     "play": "af831111-push_flagger-1-864-26",
+     "shown": "HC: Stop their flag, or make it 30% late. Met (their flag is stopped: no; it arrives 30% or more later than usual: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "af831111-flagger_pushed-2-864-27",
+     "shown": "hdm: Get the flag in on time. Not met (the flag gets in, less than 30% late: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-af83-23",
+   "set": "f1",
+   "scheme": 2,
+   "row": 23,
+   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
+   "match": "HC v hdm, Jade",
+   "window": [
+    868,
+    884
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "hdm pushes HC's flagger (Monk 4 (WoC), carrying) with one player",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "af831111-push_flagger-2-868-29",
+     "shown": "hdm: Stop their flag, or make it 30% late. Met (their flag is stopped: no; it arrives 30% or more later than usual: yes)",
+     "mark": "partly",
+     "said": "is this 30% from when he left to pick up? It feels like the flag wasn't that slow."
+    },
+    {
+     "play": "af831111-flagger_pushed-1-868-28",
+     "shown": "HC: Get the flag in on time, without losing a player for the help sent. Not met (the flag gets in, less than 30% late: no; nobody else of ours dies meanwhile: no)",
+     "mark": "partly",
+     "said": "is this 30% from when he left to pick up? It feels like the flag wasn't that slow."
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "push flagger",
+      "team": "hdm",
+      "start": [
+       862,
+       874
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "flagger pushed",
+      "team": "HC",
+      "start": [
+       862,
+       874
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-af83-24",
+   "set": "f1",
+   "scheme": 2,
+   "row": 24,
+   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
+   "match": "HC v hdm, Jade",
+   "window": [
+    912,
+    932
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "HC down on numbers in the main fight (7 v 8, the greater stand area), from kills; HC: stay (stay at the stand) | hdm: stay (stay at the stand)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "af831111-numbers-1-912-30",
+     "shown": "HC (down) [stay]: Hold the ground a player down and lose no more until it is level, or the base res. Not met (nobody of ours dies: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "af831111-numbers-2-912-31",
+     "shown": "hdm (up) [stay]: Turn the extra player into a kill before the numbers are level. Met (more of theirs die than of ours: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "HC",
+      "start": [
+       906,
+       918
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "numbers",
+      "team": "hdm",
+      "start": [
+       906,
+       918
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-af83-25",
+   "set": "f1",
+   "scheme": 2,
+   "row": 25,
+   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
+   "match": "HC v hdm, Jade",
+   "window": [
+    954,
+    1012
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "HC down on numbers in the main fight (6 v 8, the flag stand; then 4 v 6 from 16:24), from kills; HC: retreat down the ladder (fall to footmen) | hdm: stay (stay at the stand)",
+   "band": "none",
+   "grade": "none",
+   "mark": "",
+   "calls": [],
+   "checks": []
+  },
+  {
+   "id": "f1-af83-26",
+   "set": "f1",
+   "scheme": 2,
+   "row": 26,
+   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
+   "match": "HC v hdm, Jade",
+   "window": [
+    965,
+    984
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "HC single run (Paragon 1); hdm stays",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "af831111-flag-2-965-34",
+     "shown": "hdm [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Met (more of theirs die at the main fight than of ours: yes; their flag does not get in: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "hdm",
+      "start": [
+       959,
+       971
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-af83-27",
+   "set": "f1",
+   "scheme": 2,
+   "row": 27,
+   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
+   "match": "HC v hdm, Jade",
+   "window": [
+    984,
+    1029
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "hdm's boost is 30 s away; HC: no runner; the rest fall back into the base",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "af831111-boost-1-984-35",
+     "shown": "HC [concede]: Concede the boost for kills. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "boost",
+      "team": "HC",
+      "start": [
+       978,
+       990
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-af83-notes",
+   "set": "f1",
+   "scheme": 2,
+   "row": 0,
+   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
+   "match": "HC v hdm, Jade",
+   "window": [
+    0,
+    0
+   ],
+   "type": "notes",
+   "call": "",
+   "shown": "(his notes on the game)",
+   "band": "",
+   "grade": "",
+   "mark": "notes",
+   "said": "",
+   "checks": []
+  },
+  {
+   "id": "f1-d06e-1",
+   "set": "f1",
+   "scheme": 2,
+   "row": 1,
+   "rid": "d06ef3c7-521d-5de4-a453-5fdb82c7c467",
+   "match": "RACK v hdm, Meditation",
+   "window": [
+    0,
+    35
+   ],
+   "type": "opening",
+   "call": "",
+   "shown": "The opening. hdm: 8 to the stand; its first flag brought up by Mesmer and capped at 0:35. RACK: 3 to the stand, 1 on a split by the back door (Dervish), Hammer, Mesmer, Prot, 7 Monk stay back at home; its first flag brought part of the way with the team (Dervish, Mesmer, AoB Derv) and not run. hdm caps first at 0:35; RACK never caps",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "d06ef3c7-flag-1-0-0",
+     "shown": "RACK [the first flag: stay]: Kill with the extra player while their runner is away, or their flag does not get in. Not met (more of theirs die at the main fight than of ours: no; their flag does not get in: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "RACK",
+      "start": [
+       -6,
+       6
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-d06e-2",
+   "set": "f1",
+   "scheme": 2,
+   "row": 2,
+   "rid": "d06ef3c7-521d-5de4-a453-5fdb82c7c467",
+   "match": "RACK v hdm, Meditation",
+   "window": [
+    22,
+    488
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "RACK's split by the back door: two players (Dervish, Ritualist) against 2 defending (8 Monk, Prot); numbers along the way: 4 v 2 from 0:38, 4 v 3 from 1:12, 4 v 2 from 3:14, 1 v 1 from 3:42, 3 v 1 from 3:54, 2 v 2 from 4:16; 2 damage against 2 monks. Who came and went, each a decision of its own: Prot (hdm) joins the defence at 1:12; Monk 4 (WoC) (hdm) leaves the defence at 3:14; AoB Derv, 8 Monk, Ritualist (RACK) leave the split at 3:42; Prot (hdm) leaves the defence at 3:42; Ritualist, AoB Derv (RACK) join the split at 3:54; AoB Derv (RACK) leaves the split at 4:16; Prot (hdm) joins the defence at 4:16",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "d06ef3c7-split-1-22-1",
+     "shown": "RACK (attacker) [held by monks]: Hold the monks there and lose nobody; NPCs are a bonus (a kill is not expected of it). Not met (nobody on the split dies: no)",
+     "mark": "incorrect",
+     "said": "no one dies whilst they are part of split"
+    },
+    {
+     "play": "d06ef3c7-split-2-22-2",
+     "shown": "hdm (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Not met (no pit NPC lost: no; no more defenders die than split players: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "d06ef3c7-split-2-72-5",
+     "shown": "hdm (defender) [join: Prot at 1:12]: Hold it even or better: lose no pit NPC and no more players than the split does. Not met (no pit NPC lost: no; no more defenders die than split players: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "d06ef3c7-split-2-194-6",
+     "shown": "hdm (defender) [leave: Monk 4 (WoC) at 3:14]: Gain at the main fight with the player back, and lose no pit NPC for it. Not met (no pit NPC lost: yes; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "d06ef3c7-split-1-222-8",
+     "shown": "RACK (attacker) [leave: AoB Derv, 8 Monk, Ritualist at 3:42]: Gain at the main fight with the player back. Not met (more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "d06ef3c7-split-2-222-9",
+     "shown": "hdm (defender) [leave: Prot at 3:42]: Gain at the main fight with the player back, and lose no pit NPC for it. Not met (no pit NPC lost: yes; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "d06ef3c7-split-1-234-10",
+     "shown": "RACK (attacker) [join: Ritualist, AoB Derv at 3:54]: Kill or take NPCs with the players added. Not met (a defender killed: no; an NPC taken: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "d06ef3c7-split-1-256-11",
+     "shown": "RACK (attacker) [leave: AoB Derv at 4:16]: Gain at the main fight with the player back. Not met (more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "d06ef3c7-split-2-256-12",
+     "shown": "hdm (defender) [join: Prot at 4:16]: Hold it even or better: lose no pit NPC and no more players than the split does. Met (no pit NPC lost: yes; no more defenders die than split players: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "RACK",
+      "start": [
+       16,
+       28
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "hdm",
+      "start": [
+       16,
+       28
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "hdm",
+      "start": [
+       66,
+       78
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "hdm",
+      "start": [
+       188,
+       200
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "RACK",
+      "start": [
+       216,
+       228
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "hdm",
+      "start": [
+       216,
+       228
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "RACK",
+      "start": [
+       228,
+       240
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "RACK",
+      "start": [
+       250,
+       262
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "hdm",
+      "start": [
+       250,
+       262
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "RACK",
+      "start": [
+       16,
+       28
+      ]
+     },
+     "want": {
+      "met": true
+     },
+     "why": "RACK v hdm 0:22 (Classic; the call marked incorrect): 'no one dies whilst they are part of split': the two split players were counted dead at 8:04, when all of RACK is recorded dying as the game is decided. Those are not deaths (Moments.over)",
+     "held": "2026-11-18"
+    }
+   ]
+  },
+  {
+   "id": "f1-d06e-3",
+   "set": "f1",
+   "scheme": 2,
+   "row": 3,
+   "rid": "d06ef3c7-521d-5de4-a453-5fdb82c7c467",
+   "match": "RACK v hdm, Meditation",
+   "window": [
+    52,
+    208
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "RACK is held in its own base or pit by hdm's main team (pit NPCs alive at 0:52: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard alive; lost while held: a knight at 2:33, a knight at 2:59; base res in 68 s)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "d06ef3c7-pinned-1-52-3",
+     "shown": "RACK: Lose no player and no NPC while held in, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it breaks out at 3:20, after losing a player or a pit NPC; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "RACK",
+      "start": [
+       46,
+       58
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-d06e-4",
+   "set": "f1",
+   "scheme": 2,
+   "row": 4,
+   "rid": "d06ef3c7-521d-5de4-a453-5fdb82c7c467",
+   "match": "RACK v hdm, Meditation",
+   "window": [
+    56,
+    290
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "hdm up on numbers in the main fight (5 v 4, RACK's front door; then 5 v 3 from 2:14; then 5 v 4 from 2:46; then 6 v 4 from 3:40; then 5 v 4 from 4:24), from players split elsewhere; hdm: push up (push up to their base)",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "d06ef3c7-numbers-2-56-4",
+     "shown": "hdm (strong side) [push up]: Kill with the numbers while their players are away. Met (more of theirs die than of ours: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "hdm",
+      "start": [
+       50,
+       62
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-d06e-5",
+   "set": "f1",
+   "scheme": 2,
+   "row": 5,
+   "rid": "d06ef3c7-521d-5de4-a453-5fdb82c7c467",
+   "match": "RACK v hdm, Meditation",
+   "window": [
+    216,
+    300
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "RACK is held in its own base or pit by hdm's main team (pit NPCs alive at 3:36: 0 of 2 knights, 2 of 2 pit archers, the Bodyguard alive; lost while held: a pit archer at 4:12; base res in 24 s)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "d06ef3c7-pinned-1-216-7",
+     "shown": "RACK: Lose no player and no NPC while held in, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "RACK",
+      "start": [
+       210,
+       222
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-d06e-6",
+   "set": "f1",
+   "scheme": 2,
+   "row": 6,
+   "rid": "d06ef3c7-521d-5de4-a453-5fdb82c7c467",
+   "match": "RACK v hdm, Meditation",
+   "window": [
+    322,
+    368
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "RACK down on numbers in the main fight (5 v 6, RACK's front door), from players split elsewhere; RACK: retreat down the ladder (retreat to the pit) | hdm: stay (stay on the enemy's side)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "d06ef3c7-numbers-1-322-13",
+     "shown": "RACK (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "d06ef3c7-numbers-2-322-14",
+     "shown": "hdm (strong side) [stay]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "RACK",
+      "start": [
+       316,
+       328
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "numbers",
+      "team": "hdm",
+      "start": [
+       316,
+       328
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-d06e-7",
+   "set": "f1",
+   "scheme": 2,
+   "row": 7,
+   "rid": "d06ef3c7-521d-5de4-a453-5fdb82c7c467",
+   "match": "RACK v hdm, Meditation",
+   "window": [
+    340,
+    360
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "RACK is held in its own base or pit by hdm's main team (pit NPCs alive at 5:40: 0 of 2 knights, 1 of 2 pit archers, the Bodyguard alive; base res in 20 s)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "d06ef3c7-pinned-1-340-15",
+     "shown": "RACK: Hold the NPCs and lose nobody until the base res, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "RACK",
+      "start": [
+       334,
+       346
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-d06e-8",
+   "set": "f1",
+   "scheme": 2,
+   "row": 8,
+   "rid": "d06ef3c7-521d-5de4-a453-5fdb82c7c467",
+   "match": "RACK v hdm, Meditation",
+   "window": [
+    340,
+    390
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "hdm has 6 in RACK's base at the base res (5 defending, 1 coming back): 6 stay",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "d06ef3c7-base_res-2-340-16",
+     "shown": "hdm [stayed through the res]: Be out, or set for the fight, when they res. Met (none of the players in their base dies in the 30 s after the res: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "hdm",
+      "start": [
+       334,
+       346
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-d06e-9",
+   "set": "f1",
+   "scheme": 2,
+   "row": 9,
+   "rid": "d06ef3c7-521d-5de4-a453-5fdb82c7c467",
+   "match": "RACK v hdm, Meditation",
+   "window": [
+    360,
+    468
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "RACK is held in its own base or pit by hdm's main team (pit NPCs alive at 6:00: 0 of 2 knights, 1 of 2 pit archers, the Bodyguard alive; base res in 120 s)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "d06ef3c7-pinned-1-360-17",
+     "shown": "RACK: Lose no player and no NPC while held in, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "RACK",
+      "start": [
+       354,
+       366
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-d06e-10",
+   "set": "f1",
+   "scheme": 2,
+   "row": 10,
+   "rid": "d06ef3c7-521d-5de4-a453-5fdb82c7c467",
+   "match": "RACK v hdm, Meditation",
+   "window": [
+    390,
+    474
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "hdm up on numbers in the main fight (6 v 5, RACK's pit; then 6 v 2 from 7:34), from players split elsewhere; hdm: push up (push up to their base)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "d06ef3c7-numbers-2-390-18",
+     "shown": "hdm (strong side) [push up]: Kill with the numbers while their players are away. Met (more of theirs die than of ours: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "hdm",
+      "start": [
+       384,
+       396
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-d06e-11",
+   "set": "f1",
+   "scheme": 2,
+   "row": 11,
+   "rid": "d06ef3c7-521d-5de4-a453-5fdb82c7c467",
+   "match": "RACK v hdm, Meditation",
+   "window": [
+    460,
+    497
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "hdm has 6 in RACK's base at the base res (0 defending, 6 coming back): 6 stay",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "d06ef3c7-base_res-2-460-19",
+     "shown": "hdm [stayed through the res]: Be out, or set for the fight, when they res. Met (none of the players in their base dies in the 30 s after the res: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "hdm",
+      "start": [
+       454,
+       466
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-d06e-notes",
+   "set": "f1",
+   "scheme": 2,
+   "row": 0,
+   "rid": "d06ef3c7-521d-5de4-a453-5fdb82c7c467",
+   "match": "RACK v hdm, Meditation",
    "window": [
     0,
     0

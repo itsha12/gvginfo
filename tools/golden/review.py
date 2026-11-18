@@ -118,7 +118,7 @@ def situations(plays):
     """A game's plays grouped into situations: the two sides of one split phase, of one numbers moment, of one push on
     a flagger or of one Lord push are one situation, read once and judged from each side."""
     G = collections.OrderedDict()
-    flags = [p for p in plays if p["play"] == "flag" and p.get("run_id")]
+    flags = [p for p in plays if (p["play"] == "flag" and p.get("run_id")) or p["play"] == "opening"]
     for p in sorted([p for p in plays if p not in flags], key=lambda p: (p["t0"], p["t1"])):
         kind = {"flagger pushed": "push flagger"}.get(p["play"], p["play"])
         k = (kind, p["t0"]) if kind == "numbers" else (kind, p["t0"], p["t1"]) if kind in ("lord", "push flagger") else (kind, p["t0"], p.get("size"), p.get("defenders")) if kind == "split" else (kind, p["t0"], p["team"])
@@ -138,11 +138,13 @@ def flag_rows(flags):
     is said in the same row, and the two legs of a double run are one run. A run that only answers one already told gets a row of its own, said as an answer."""
     rows, P = [], sorted(flags, key=lambda p: (p["t0"], p["t1"]))
     op = [p for p in P if p.get("opening")]
+    told = {x for p in op for x in (p.get("run_id"), p.get("answer_id")) if x}
     if op:
+        own = [p for p in op if p["play"] == "opening"]      # each team's first flag, the same job for both (R-520); a first flag that was more than that (a double run from the gates, a flag held in hand) keeps its own call beside them
+        op = (own + [p for p in op if p["play"] != "opening" and p["job"] != "Get the first flag in"]) if own else op
         for p in op: p["_row"] = op[0]["opening"]
         rows.append(op)
     P = [p for p in P if not p.get("opening")]
-    told = {x for p in op for x in (p["run_id"], p.get("answer_id")) if x}
     when = lambda r: int(r.split("-", 1)[1])
     by_trigger, by_answer = {}, collections.defaultdict(list)
     for p in P:
@@ -195,7 +197,7 @@ FIRST = {"split": ("attacker", "defender", "attacker's main team", "defender's m
 
 def label_of(p):
     """The call of a play in a word or two. At the opening a team's first flag is not called a run (R-520)."""
-    if p.get("opening"): return "the first flag" + ("" if p.get("ours") == "single run" else f": {p.get('ours')}")
+    if p.get("opening"): return "the first flag" + ("" if p.get("ours") in (None, "single run") else f": {p.get('ours')}")
     return p.get("call") or p.get("answer") or p.get("ours") or ""
 
 

@@ -69,6 +69,19 @@ REST_CALL = {"stand": "stay at the stand", "footmen": "fall to footmen", "own pi
 class Moments:
     def __init__(self, st, sb=None):
         self.st, self.m, self.hall, self.sb, self.T = st, st.m, st.hall, sb, st.end
+        # When the match is over: the replay records the losing team dying all at once as the game is decided (its Guild Lord dies, or the 28 minutes are up), some
+        # 12 s before the recording stops. Those are not deaths of the game, and nothing told from that second on is a decision (his marks: RACK v hdm 0:22, Classic,
+        # "no one dies whilst they are part of split", the split's two players "dying" at 8:04 with all of RACK; Men v RACK 19:06, "the game ends at 19:05"; Men v Crew
+        # 27:40, "base res at 28 minutes doesn't matter as the match ends at 28 min"). Read as: five or more of one team dead within 2 s in the last 20 s of the replay
+        self.over = self.T
+        for tm_ in st.teams:
+            c_ = collections.Counter(int(td) for a_ in st.players[tm_] for td in st.death_times.get(a_, []) if td >= self.T - 20)
+            hit = next((t_ for t_ in sorted(c_) if c_[t_] + c_.get(t_ + 1, 0) >= 5), None)
+            if hit is not None: self.over = min(self.over, hit)
+        if self.over < self.T and not getattr(st, "_end_cut", False):
+            kept = collections.defaultdict(list)
+            for a_, v in st.death_times.items(): kept[a_] = [td for td in v if td < self.over]
+            st.death_times, st._end_cut = kept, True
         import datetime
         self.day = datetime.datetime.fromtimestamp(st.m.o["meta"]["started"] / 1000, datetime.timezone.utc).strftime("%Y-%m-%d")      # the day it was played (UTC); a match with no start time stops here, loudly (R-460)
         m, R = st.m, range(st.end + 1)
@@ -2507,7 +2520,7 @@ class Moments:
             if who: out.append(list(dict.fromkeys(who)))
         return out
 
-    def _rest(self, tm, t, runners):
+    def _rest(self, tm, t, runners, until=None):
         """Where the rest of the main team went, from the records: a split it sent (attempts), a push in (attempts), a
         push on their flagger (flag_pushes), a move back or up (ground), else where it stood READ_FROM to READ_TO."""
         T, foe = self.T, 3 - tm
@@ -2523,7 +2536,9 @@ class Moments:
         if pu: return "push in", pu[0]
         fp = [x for x in self.flag_pushes() if x["tm"] == tm and x.get("main") and t - 2 <= x["t"] <= t + READ_TO]
         if fp: return "push their flagger", fp[0]
-        gr = [x for x in self.ground() if x["tm"] == tm and x["group"] == "main" and t - 2 <= x["t"] <= t + READ_TO and x["to_kind"] not in ("stand", "greater stand", "field")]     # a move about the stand is not falling back or pushing up
+        # (until: a numbers difference is answered for as long as it lasts, not only in its first seconds: his mark on HC v hdm 1:00, Classic, "hdm retreats to footies": a
+        # player down from 1:00, hdm falls to its footmen at 1:32, read as "stay" by the first READ_TO alone. A play has its own clock, to the event that ends it)
+        gr = [x for x in self.ground() if x["tm"] == tm and x["group"] == "main" and t - 2 <= x["t"] <= max(t + READ_TO, until or 0) and x["to_kind"] not in ("stand", "greater stand", "field")]     # a move about the stand is not falling back or pushing up
         if gr:
             g = gr[0]; own = self.st.side.get(tm)
             if g["way"] == "back":
@@ -2545,6 +2560,17 @@ class Moments:
             l0, l1 = self._ladder(tm, k0, sd0), self._ladder(tm, k, sd)
             if l1 <= -2 and l1 < l0: return "push up to their " + (k if k in ("front door", "back door") else "base"), None
             if l1 >= 2 and l1 > l0: return {"pit": "retreat to the pit", "front footies": "fall to footmen", "back footies": "fall to footmen"}.get(k, "fall back into the base"), None
+        if until and until > t + READ_TO and g0:          # it stood where it was at first: did it step down or up the ladder later, while the numbers lasted (HC v hdm 1:00: at the stand until 1:28, at its front footmen from 1:36)
+            back = {"pit": "retreat to the pit", "base": "fall back into the base", "front door": "fall back into the base", "back door": "fall back into the base", "front footies": "fall to footmen", "back footies": "fall to footmen"}
+            for lo in range(t + READ_TO, int(min(until, T)), READ_TO - READ_FROM):
+                q = collections.Counter()
+                for u in range(lo, min(lo + READ_TO - READ_FROM, T) + 1, 2):
+                    g = [a for a in self.main_team(tm, u) if self.AL[a][u] and a not in runners]
+                    if g: q[collections.Counter(self.place_at(a, u) for a in g).most_common(1)[0][0]] += 1
+                if not q: continue
+                k2, sd2 = q.most_common(1)[0][0]; l2 = self._ladder(tm, k2, sd2)
+                if l2 > l0 and sd2 == own and k2 in back: return back[k2], None
+                if l2 < l0 and sd2 not in (None, own) and k2 in ("front door", "back door", "base", "pit", "front footies", "back footies"): return "push up to their " + (k2 if k2 in ("front door", "back door") else "base"), None
         if k in ("stand", "greater stand"): return "stay at the stand", None
         if sd == own: return {"pit": "retreat to the pit", "base": "fall back into the base", "front door": "fall back into the base", "back door": "fall back into the base",
                               "front footies": "fall to footmen", "back footies": "fall to footmen"}.get(k, "stay on their side"), None
@@ -2610,7 +2636,7 @@ class Moments:
             else: c = f"send {n} against {k}"
             return {"key": c, "label": c.capitalize(), "defenders": n, "split": k, "monks": monks,
                     "shape": {"defenders": defs, "behind_s": an["behind_s"], "met": an["met"], "went_back": an.get("went_back")}}
-        rest, rec = self._rest(tm, t, set())
+        rest, rec = self._rest(tm, t, set(), until=(x["refs"][0].get("last") if x.get("refs") and isinstance(x["refs"][0], dict) else None))
         side = x["triggers"][0]
         c = {"fall out": "fall out", "retreat to the pit": "retreat down the ladder", "fall back into the base": "retreat down the ladder", "fall to footmen": "retreat down the ladder",
              "fall back": "retreat down the ladder", "push in": "push in", "push their flagger": "push their flagger"}.get(rest)

@@ -232,6 +232,22 @@ def opening(M):
     return out
 
 
+def opening_plays(M, K):
+    """Each team's first flag as a job under the opening (R-520, R-500), the same for both teams (his mark on HC v hdm 0:00, Classic: "this should be the same goal
+    for both teams, no?": only the team whose first flag answered the other's had been given it). One play a team: get the first flag in, on its own clock, from the
+    gates to where that flag was capped or lost."""
+    o, out = opening(M), []
+    for tm in M.st.teams:
+        f = o["teams"][tm]["flag"]
+        sb = f.get("sent_back")
+        capped = (f["how"] == "captured") if f["brought"] else bool(sb and sb["how"] == "captured")
+        end = f["at"] if (f["brought"] and f["at"] is not None) else (sb["end"] if sb else o["t"])
+        who = f["by"] if f["brought"] else ([sb["who"]] if sb else [])
+        out.append(_play(M, "opening", "own", tm, 0, max(int(end), o["t"]), who, o["words"], "Get the first flag in", {"our flag is capped": capped},
+                         beside={"first_cap": o["teams"][tm]["first_cap"], "flag": dict(f)}, call="the first flag", opening=o["words"]))
+    return out
+
+
 def flag_plays(M, K, pinned_at):
     FR, out, T, role = _flag_rows(M), [], M.T, M.m.roles
     runs = []                                                             # their runs: a flag dropped or returned and taken again at once is one run, the one that got further
@@ -771,8 +787,10 @@ def split_plays(M, K):
             # the attacker's job, set by the answer it meets (R-428)
             if full or collapse:
                 ans = "met by a full collapse" if full else "collapsed on"
+                # R-523 (his answer of 2026-11-18, "Yes", as R-517 for a split a player down): a split that is collapsed on has drawn players off the main fight, and has done its
+                # job when it loses nobody; what its team gained elsewhere meanwhile is the main team's to answer for, and is kept beside the row
                 out.append(_play(M, "split", "attacker", tm, p0, e1, whoA, scen_a + ("" if tn is not None else "; the whole team turns on it" if full else f"; {', '.join(role[b] for b in came)} collapse from the main fight"),
-                                 "Survive and gain an advantage elsewhere on the map", {"nobody on the split dies": n_lost == 0}, any_of=elsewhere, beside=besA, answer=ans, **kw))
+                                 "Survive the collapse and lose nobody (what the team gained elsewhere meanwhile is beside it)", {"nobody on the split dies": n_lost == 0}, beside=dict(besA, gained_elsewhere=elsewhere), answer=ans, **kw))
             elif n == 0: out.append(_play(M, "split", "attacker", tm, p0, e1, whoA, scen_a, "Take NPCs", {"an NPC taken": n_npc > 0}, beside=besA, answer="undefended", **kw))
             # R-517 (his answer of 2026-11-17, from R-512: a split holding more defenders than its own number "is ALREADY ACCOMPLISHING THEIR GOAL. They are keeping 4 people occupied
             # without dying, providing a player advantage elsewhere on the map"): its job is met by holding them there and losing nobody. What its team made of the extra player
@@ -865,7 +883,7 @@ def numbers_plays(M, K, trig, recs, pinned_at):
         monk = lambda a: M.m.A[a].get("p") == "Monk" and not M.m.roles[a].startswith("Monk ") and "WoC" not in M.m.roles[a]
         dmg_own, monks_their = sum(1 for a in e["ids"][tm] if not monk(a)), sum(1 for a in e["ids"][foe] if monk(a))
         kill_on = can_kill(dmg_own, monks_their)                          # R-457 in the main fight too (his marks, hdm v hook 4:12, 6:52: "2 damage v 2 monks again")
-        kw = dict(source=src, numbers_side=side, call=c, numbers=x["scenario"]["parts"]["numbers"])
+        kw = dict(source=src, numbers_side=side, call=c, numbers=x["scenario"]["parts"]["numbers"], numbers_end=int(e["last"]))
         if not x["scenario"]["parts"].get("clear", True): kw.update(clear=False, unclear="the numbers never held for 12 s")
         elif twice: kw.update(clear=False, unclear=f"{', '.join(twice)} also counted on a split in the same seconds")
         if src == "wipe" or (src == "kills" and side == "up" and x["scenario"]["parts"].get("step", 0) <= -2 and x["scenario"]["parts"]["short_because"].get("kills", 0) >= 3):
@@ -898,6 +916,11 @@ def numbers_plays(M, K, trig, recs, pinned_at):
             elif push or c == "split": out.append(_play(M, "numbers", "down", tm, t, end, [], scen, "Trade a player down: take something on their ground for it", {},
                                                         any_of={"one of their NPCs dies": K.npcs(foe, t, end) > 0, "more of theirs die than of ours": dB(end) > dA(end)}, beside=bes(end), ruled=False, **kw))
             else: out.append(_play(M, "numbers", "down", tm, t, end, [], scen, "Hold the ground a player down and lose no more until it is level, or the base res", {"nobody of ours dies": dA(end) == 0}, beside=bes(end), ruled=False, **kw))
+    # the row ends when the numbers do: the job is judged a short tail longer (R-424), kept as `judged_to`, but the time told is the time of the numbers (his mark on
+    # HC v hdm 5:46, Classic: "they lose player advantage a bit sooner (around 6:03) when WoC 4 leaves through portal": the numbers ended at 6:02 and the row said 6:12)
+    for p in out:
+        if p.get("numbers_end") is not None and p["side"] != "after a wipe" and p["t1"] > p["numbers_end"] + SPLIT_STEP:
+            p["judged_to"], p["t1"] = p["t1"], max(p["numbers_end"] + SPLIT_STEP, p["t0"] + SPLIT_STEP)
     return out
 
 
@@ -1055,7 +1078,8 @@ def plays(M, recs=None):
     K = _K(M)
     P = pinned(M)
     pinned_at = lambda tm, t: any(k == tm and a <= t <= b for k, a, b in P)
-    out = flag_plays(M, K, pinned_at) + push_plays(M, K) + split_plays(M, K) + numbers_plays(M, K, M.triggers(), recs, pinned_at) + boost_plays(M, K, recs, pinned_at) + pinned_plays(M, K) + res_plays(M, K) + lord_plays(M, K)
+    out = opening_plays(M, K) + flag_plays(M, K, pinned_at) + push_plays(M, K) + split_plays(M, K) + numbers_plays(M, K, M.triggers(), recs, pinned_at) + boost_plays(M, K, recs, pinned_at) + pinned_plays(M, K) + res_plays(M, K) + lord_plays(M, K)
+    out = [p for p in out if p["t0"] < M.over - SPLIT_STEP and not (p["play"] == "base res" and p["t0"] + 20 >= M.over - SPLIT_STEP)]      # nothing is told from the second the match is over, and a base res that falls on it is none (Moments.over)
     out.sort(key=lambda p: (p["t0"], p["tm"], p["play"]))
     rid = M.m.o["meta"]["id"]
     for i, p in enumerate(out): p["rid"], p["id"] = rid, f"{rid[:8]}-{p['play'].replace(' ', '_')}-{p['tm']}-{p['t0']}-{i}"
