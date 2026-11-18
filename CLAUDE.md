@@ -220,7 +220,7 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   whose players all start it in the field takes a new door), and a split out of a base its team is held in is told
   from when its player goes out past his doors (`out_at`). The first is R-528; the other two are from his marks.
   A split record whose players all came for a flagger already on his run and left when the flag had gone is the push
-  on the flagger and no split: one test, `jobs._push_not_split`, asked by `push_plays` and by `split_plays`.
+  on the flagger and no split (R-530): one test, `jobs._push_not_split`, asked by `push_plays` and by `split_plays`.
 - The match is over at `Moments.over`: the second the losing team is recorded dying all at once, some 12 s before the
   replay stops. Those deaths are taken out of the deaths the reading counts, and no play starts from that second on.
 - No new rule or threshold to answer a wrong row (R-465): rebuild the reading under it at the root, with his marked

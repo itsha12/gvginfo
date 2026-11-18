@@ -11193,7 +11193,13 @@
      "why": "HC v Team, Imperial 4:24: he graded it No decision: this is a flag push, not a split. It's already covered in your flag push for this time period. Also \"by the door\" means nothing."
     }
    ],
-   "note": "'this is a flag push, not a split. It's already covered in your flag push for this time period. Also \"by the door\" means nothing': the wording is taken out (jobs.py); the split read on top of a push on the flagger stands as an open check."
+   "note": "'this is a flag push, not a split. It's already covered in your flag push for this time period. Also \"by the door\" means nothing': the wording is taken out (jobs.py); the split read on top of a push on the flagger stands as an open check.",
+   "answered": {
+    "on": "2026-11-18",
+    "asked": "A push on a flagger or a split: built as 'they all came for the flagger and left when the flag had gone'. Is that his distinction between HC v cope 3:24 (push) and 0:20 (split, the defender carrying his flag)?",
+    "said": "Yes, that's how I see it. We can't know their intent, but if they all come to hit the flagger and then leave with the flagger/once the flagger leaves, it looks to me like they are flag pushing rather than splitting. If it was a true split, they would likely stay and try to take NPCs once the flagger leaves.",
+    "reading": "R-530: the test as built (`jobs._push_not_split`) is his distinction."
+   }
   },
   {
    "id": "f1-9b5c-13",
@@ -16558,7 +16564,13 @@
      },
      "was": "Men v RACK 0:36 (Visible, incorrect, kind): 'this is a flag push' (built 2026-11-18: `_push_not_split`)"
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-18",
+    "asked": "A push on a flagger or a split: built as 'they all came for the flagger and left when the flag had gone'. Is that his distinction between HC v cope 3:24 (push) and 0:20 (split, the defender carrying his flag)?",
+    "said": "Yes, that's how I see it. We can't know their intent, but if they all come to hit the flagger and then leave with the flagger/once the flagger leaves, it looks to me like they are flag pushing rather than splitting. If it was a true split, they would likely stay and try to take NPCs once the flagger leaves.",
+    "reading": "R-530: the test as built (`jobs._push_not_split`) is his distinction."
+   }
   },
   {
    "id": "f1-45cf-4",
@@ -16723,7 +16735,13 @@
      },
      "was": "Men v RACK 1:32 (Visible, incorrect): 'this is a flag push' (built 2026-11-18: `_push_not_split`)"
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-18",
+    "asked": "A push on a flagger or a split: built as 'they all came for the flagger and left when the flag had gone'. Is that his distinction between HC v cope 3:24 (push) and 0:20 (split, the defender carrying his flag)?",
+    "said": "Yes, that's how I see it. We can't know their intent, but if they all come to hit the flagger and then leave with the flagger/once the flagger leaves, it looks to me like they are flag pushing rather than splitting. If it was a true split, they would likely stay and try to take NPCs once the flagger leaves.",
+    "reading": "R-530: the test as built (`jobs._push_not_split`) is his distinction."
+   }
   },
   {
    "id": "f1-45cf-8",
@@ -18512,25 +18530,6 @@
     {
      "has": {
       "play": "split",
-      "side": "defender",
-      "team": "Men",
-      "start": [
-       1090,
-       1115
-      ]
-     },
-     "want": {
-      "change": true,
-      "who~": [
-       "Prot"
-      ]
-     },
-     "open": true,
-     "why": "Men v RACK 18:25: the Prot is not read as coming with the Hammer"
-    },
-    {
-     "has": {
-      "play": "split",
       "side": "attacker",
       "team": "RACK",
       "start": [
@@ -18545,8 +18544,53 @@
       ]
      },
      "was": "Men v RACK 18:25: 'and important join by Ranger ... the collapse and join itself are decision points for the respective teams'"
+    },
+    {
+     "none": {
+      "play": "split",
+      "side": "defender",
+      "team": "Men",
+      "start": [
+       1090,
+       1115
+      ],
+      "want": {
+       "change": true,
+       "who~": [
+        "Prot"
+       ]
+      }
+     },
+     "was": "Men v RACK 18:25 (Classic, missed): he wrote 'collapse by Men's hammer and prot'; the engine read the Hammer coming alone, the Prot turning toward the split for 8 s and going back. Asked, he withdrew the Prot on 2026-11-18: 'I was wrong, prot is actually not part of the collapse at all.' The engine's reading (the Hammer, without the Prot) stands and binds"
     }
-   ]
+   ],
+   "retired_checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "Men",
+      "start": [
+       1090,
+       1115
+      ]
+     },
+     "want": {
+      "change": true,
+      "who~": [
+       "Prot"
+      ]
+     },
+     "open": true,
+     "why": "Men v RACK 18:25: the Prot is not read as coming with the Hammer",
+     "retired": "2026-11-18",
+     "why_retired": "he withdrew the Prot from the collapse"
+    }
+   ],
+   "later": {
+    "at": "2026-11-18",
+    "said": "I was wrong, prot is actually not part of the collapse at all."
+   }
   },
   {
    "id": "f1-45cf-notes",
@@ -22047,9 +22091,13 @@
      "want": {
       "scenario~": "Fire Ele"
      },
-     "was": "Men v hold 17:01 (Classic, missed): 'fire ele splits front door' (built 2026-11-18)"
+     "was": "Men v hold 17:01 (Classic, missed): 'fire ele splits front door' (built 2026-11-18: a split out of a base its team is held in is told from 4 s after its player goes out past his doors, 17:02 here). Confirmed by him on 2026-11-18: 'Yes, that timing looks about right for the fire ele split.' It binds"
     }
-   ]
+   ],
+   "later": {
+    "at": "2026-11-18",
+    "said": "Yes, that timing looks about right for the fire ele split."
+   }
   },
   {
    "id": "f1-572c-notes",
@@ -29561,7 +29609,13 @@
      },
      "was": "HC v cope 3:24: the push is in the record (HC's Hammer, Ranger and Prot on cope's Hammer A, carrying, 3:38 to 3:52, 12 skills or hits) and is left off the page because its players are in a split record (the R-430 rule in `push_plays`) (built 2026-11-18: `_push_not_split`)"
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-18",
+    "asked": "A push on a flagger or a split: built as 'they all came for the flagger and left when the flag had gone'. Is that his distinction between HC v cope 3:24 (push) and 0:20 (split, the defender carrying his flag)?",
+    "said": "Yes, that's how I see it. We can't know their intent, but if they all come to hit the flagger and then leave with the flagger/once the flagger leaves, it looks to me like they are flag pushing rather than splitting. If it was a true split, they would likely stay and try to take NPCs once the flagger leaves.",
+    "reading": "R-530: the test as built (`jobs._push_not_split`) is his distinction."
+   }
   },
   {
    "id": "f1-3d0f-20",
@@ -30537,6 +30591,25 @@
    ],
    "checks": [
     {
+     "has": {
+      "play": "numbers",
+      "team": "옷옷옷옷",
+      "start": [
+       534,
+       546
+      ]
+     },
+     "want": {
+      "scenario~": [
+       "6 v 8",
+       "1 v 8 from 9:2"
+      ]
+     },
+     "was": "옷옷옷옷 v hdm 9:00: marked Classic, incorrect, when ('only down on numbers from around 9:26; is never 1v8; 6v8 from 9:48; and then 2v8 from 10:01'), and withdrawn by him on 2026-11-18 once the two clocks were set out: 'these are actually both just artifacts with the clock and both are correct' (R-527). The engine's reading stands and binds"
+    }
+   ],
+   "retired_checks": [
+    {
      "none": {
       "play": "numbers",
       "team": "옷옷옷옷",
@@ -30550,9 +30623,15 @@
      },
      "open": true,
      "held": "2026-11-18",
-     "why": "옷옷옷옷 v hdm 9:00 (Classic, incorrect, when): 'only down on numbers from around 9:26; is never 1v8; 6v8 from 9:48; and then 2v8 from 10:01'. His clock for this game runs ahead of the replay's (R-527: base res at 4:14 on his clock; the replay has the base reses at 3:59, 5:59, 7:59, 9:59 and 11:59): his 9:26, 9:48 and 10:01 are about 8:55, 9:16 and 9:28 in the replay, where 옷옷옷옷 has 7 alive from 8:52, 6 from 9:08, 2 from 9:24 and 1 from 9:32. The row is coarse (6 v 8 from 9:00, 1 v 8 from 9:28) but not as far off as the clock made it look. Held until he has seen that"
+     "why": "옷옷옷옷 v hdm 9:00 (Classic, incorrect, when): 'only down on numbers from around 9:26; is never 1v8; 6v8 from 9:48; and then 2v8 from 10:01'. His clock for this game runs ahead of the replay's (R-527: base res at 4:14 on his clock; the replay has the base reses at 3:59, 5:59, 7:59, 9:59 and 11:59): his 9:26, 9:48 and 10:01 are about 8:55, 9:16 and 9:28 in the replay, where 옷옷옷옷 has 7 alive from 8:52, 6 from 9:08, 2 from 9:24 and 1 from 9:32. The row is coarse (6 v 8 from 9:00, 1 v 8 from 9:28) but not as far off as the clock made it look. Held until he has seen that",
+     "retired": "2026-11-18",
+     "why_retired": "his mark withdrawn: the clock (R-527)"
     }
-   ]
+   ],
+   "later": {
+    "at": "2026-11-18",
+    "said": "Yes, these are actually both just artifacts with the clock and both are correct."
+   }
   },
   {
    "id": "f1-5317-14",
@@ -30587,6 +30666,19 @@
    ],
    "checks": [
     {
+     "has": {
+      "play": "pinned",
+      "team": "옷옷옷옷",
+      "start": [
+       566,
+       578
+      ]
+     },
+     "was": "옷옷옷옷 v hdm 9:32: marked Visible, incorrect, who ('옷옷옷옷 is in hdm's base during this period, not it's own.'), and withdrawn by him on 2026-11-18: 'these are actually both just artifacts with the clock and both are correct' (R-527). The engine's reading stands (Visible: reported, R-494)"
+    }
+   ],
+   "retired_checks": [
+    {
      "none": {
       "play": "pinned",
       "team": "옷옷옷옷",
@@ -30597,9 +30689,15 @@
      },
      "open": true,
      "held": "2026-11-18",
-     "why": "옷옷옷옷 v hdm 9:32 (Visible, incorrect, who): '옷옷옷옷 is in hdm's base during this period, not it's own.' On the replay's clock 옷옷옷옷 is at hdm's back door until 9:12 and has one player alive, in its own pit, from 9:32, with hdm's eight in that pit from 9:44 (the Bodyguard dies at 9:46); his 9:32 to 10:00 is about 9:01 to 9:27 in the replay (R-527). Held"
+     "why": "옷옷옷옷 v hdm 9:32 (Visible, incorrect, who): '옷옷옷옷 is in hdm's base during this period, not it's own.' On the replay's clock 옷옷옷옷 is at hdm's back door until 9:12 and has one player alive, in its own pit, from 9:32, with hdm's eight in that pit from 9:44 (the Bodyguard dies at 9:46); his 9:32 to 10:00 is about 9:01 to 9:27 in the replay (R-527). Held",
+     "retired": "2026-11-18",
+     "why_retired": "his mark withdrawn: the clock (R-527)"
     }
-   ]
+   ],
+   "later": {
+    "at": "2026-11-18",
+    "said": "Yes, these are actually both just artifacts with the clock and both are correct."
+   }
   },
   {
    "id": "f1-5317-15",

@@ -129,10 +129,12 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   Two flaggers on one another (R-528): the one who lands more on the other is the pusher (the same, the one who was
   on the other first); the flagger pushed is not counted among the players pushing, and a push left with nobody who
   landed anything on the flagger is no push (his marks, Men v hold 3:12 and HC v hdm 8:34, both No decision).
-  Players who cross for a flagger already on his run (going back, at his spawn or carrying), are all on him within
-  20 s of crossing and leave the enemy's ground within 20 s of the push ending are the push on the flagger and no
-  split (his marks: Men v RACK 0:36, 1:32; HC v Team 4:24; HC v cope 3:24). Players who stay on after the flag has
-  gone, or die there, are a split whose defender carries his flag (R-430; HC v cope 0:20, 0:32, Classic).
+  A push on a flagger or a split (R-530; intent is not read, only what the players did): players who cross for a
+  flagger already on his run (going back, at his spawn or carrying), are all on him within 20 s of crossing and leave
+  the enemy's ground with him or within 20 s of the push ending are the push on the flagger and no split (Men v RACK
+  0:36, 1:32; HC v Team 4:24; HC v cope 3:24). Players who stay on after the flag has gone ("a true split would
+  likely stay and try to take NPCs"), or die there, are a split whose defender carries his flag (R-430; HC v cope
+  0:20, 0:32, Classic).
 - Shadow of Haste runs are bad examples (R-438, which corrects the premise of R-393): the mechanic was removed on 22
   October 2026. Before that date they stay in the flag lead (the state of those games) and are left out of everything
   that teaches or scores the flag decision, with the other team's answers to them; from that date a bar carrying the
