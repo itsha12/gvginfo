@@ -1,5 +1,5 @@
 {
- "about": "The development set (R-453): run after every change to the reading (`moments.py all <file> --dev`, then `tools/golden/review.py score <file>`); every match is run only at a checkpoint (a new review set, a gate, a benchmark rebuild). Holds the matches of the review key, the golden moments, the line-up games, and the games of each whole-game review. Whole-game set w1 (R-454), picked 2026-11-13 from October and November games of the top eight guilds that no earlier test had used and that hold no Shadow of Haste run: four games, two and two (R-455): part 1 (TFS v 옷옷옷옷, Men v Apes) is marked first and fixed against; hdm v hook was marked on 2026-11-14 as the first measure of the rebuilt reading and is built from since (R-467); Men v Crew is the hidden game and 옷옷옷옷 v RACK the spare: neither is marked, looked at or fixed against. Set w2 is round 3 (R-473), picked 2026-11-14 from unused games since 22 October on halls not yet marked or guilds not yet seen: hook v hold (Nomad's Isle), cope v Team (Isle of Jade), chic v 戦戦戦戦 (Corrupted Isle); each is scored from his marks before anything is fixed against it. chic v 戦戦戦戦 was set aside unmarked on 2026-11-14 (a henchman game) and RJT v RACK on Nomad's Isle (eea5ba87) put in its place as part 2 of set w2 (a game with splits and flags on the hall where the splits read worst). hdm v 옷옷옷옷 (7209c1a1) left the set on 2026-11-14: a henchman game (R-477). Set w3 is round 4, picked 2026-11-15 after the rebuild from RJT v RACK (who is on a split; whose flag decision): HC v Team on Imperial Isle (9b5cdf62, 5 November), the unused game of two top ten guilds since 22 October in which the engine reads the most varied calls (flags, splits, numbers, pushes on the flagger); scored from his marks before anything is fixed against it. From 2026-11-15 (R-491, R-492, R-497) the games are graded his new way and start afresh as set f1: HC v Team is part 1; Men v Crew and 옷옷옷옷 v RACK are no longer kept back and wait as parts 2 and 3, each exported only when the game before it is marked and its Classic faults are fixed. Set f1 games 4 and 5, picked 2026-11-16 at his word (\"prepare the next 2 games\"): Men v RACK on Nomad's Isle and Men v hold on Isle of Meditation, both of 2026-11-01: the only unused games since 1 October between top-fourteen guilds, one of them top eight, on a hall other than the three already graded, with no Shadow of Haste bar and no henchman. Set f1 games 6 and 7, picked 2026-11-17 at his word (\"proceed with the next two games\"), from the unused games since 1 October between top-fourteen guilds, one of them top eight, with no Shadow of Haste bar and no henchman, eight minutes or longer: hdm v HC on Imperial Isle (bbef1904, 2 November), the one in which the engine reads the most varied calls (flags, splits, numbers, six pushes on a flagger: the pushes are held for a second game, R-495), and hold v Men on Uncharted Isle (b870f84e, 31 October), a hall not yet graded his new way. Left for later: HC v hdm on Isle of Jade (af831111), for the numbers through the portal.",
+ "about": "The development set (R-453): run after every change to the reading (`moments.py all <file> --dev`, then `tools/golden/review.py score <file>`); every match is run only at a checkpoint (a new review set, a gate, a benchmark rebuild). Holds the matches of the review key, the golden moments, the line-up games, and the games of each whole-game review. Whole-game set w1 (R-454), picked 2026-11-13 from October and November games of the top eight guilds that no earlier test had used and that hold no Shadow of Haste run: four games, two and two (R-455): part 1 (TFS v 옷옷옷옷, Men v Apes) is marked first and fixed against; hdm v hook was marked on 2026-11-14 as the first measure of the rebuilt reading and is built from since (R-467); Men v Crew is the hidden game and 옷옷옷옷 v RACK the spare: neither is marked, looked at or fixed against. Set w2 is round 3 (R-473), picked 2026-11-14 from unused games since 22 October on halls not yet marked or guilds not yet seen: hook v hold (Nomad's Isle), cope v Team (Isle of Jade), chic v 戦戦戦戦 (Corrupted Isle); each is scored from his marks before anything is fixed against it. chic v 戦戦戦戦 was set aside unmarked on 2026-11-14 (a henchman game) and RJT v RACK on Nomad's Isle (eea5ba87) put in its place as part 2 of set w2 (a game with splits and flags on the hall where the splits read worst). hdm v 옷옷옷옷 (7209c1a1) left the set on 2026-11-14: a henchman game (R-477). Set w3 is round 4, picked 2026-11-15 after the rebuild from RJT v RACK (who is on a split; whose flag decision): HC v Team on Imperial Isle (9b5cdf62, 5 November), the unused game of two top ten guilds since 22 October in which the engine reads the most varied calls (flags, splits, numbers, pushes on the flagger); scored from his marks before anything is fixed against it. From 2026-11-15 (R-491, R-492, R-497) the games are graded his new way and start afresh as set f1: HC v Team is part 1; Men v Crew and 옷옷옷옷 v RACK are no longer kept back and wait as parts 2 and 3, each exported only when the game before it is marked and its Classic faults are fixed. Set f1 games 4 and 5, picked 2026-11-16 at his word (\"prepare the next 2 games\"): Men v RACK on Nomad's Isle and Men v hold on Isle of Meditation, both of 2026-11-01: the only unused games since 1 October between top-fourteen guilds, one of them top eight, on a hall other than the three already graded, with no Shadow of Haste bar and no henchman. Set f1 games 6 and 7, picked 2026-11-17 at his word (\"proceed with the next two games\"), from the unused games since 1 October between top-fourteen guilds, one of them top eight, with no Shadow of Haste bar and no henchman, eight minutes or longer: hdm v HC on Imperial Isle (bbef1904, 2 November), the one in which the engine reads the most varied calls (flags, splits, numbers, six pushes on a flagger: the pushes are held for a second game, R-495), and hold v Men on Uncharted Isle (b870f84e, 31 October), a hall not yet graded his new way. Left for later: HC v hdm on Isle of Jade (af831111), for the numbers through the portal. Game 6, hdm v HC (bbef1904), was taken out on 2026-11-18 unmarked, at his word: its replay on gvg.report is not adequate to review; it is in no set and is not to be picked again. Set f1 games 8 and 9, picked 2026-11-18 at his word from the same pool: HC v hdm on Isle of Jade (af831111, 25 October), for the numbers through the portal and the pushes on a flagger that are held for a second game (R-495), and RACK v hdm on Isle of Meditation (d06ef3c7, 17 October), a short game of splits and a held base.",
  "review_key": [
   "0f1fd794-46cd-5fb1-a661-a7ec5f1cbadd",
   "1cb73c20-1b06-5b7b-a728-25c7640f8a84",
@@ -125,13 +125,18 @@
   },
   {
    "set": "f1",
-   "part": 6,
-   "rid": "bbef1904-cc55-54a4-aea4-ec0367e0d00b"
+   "part": 7,
+   "rid": "b870f84e-b838-5f2a-ae83-b1e25499d9ee"
   },
   {
    "set": "f1",
-   "part": 7,
-   "rid": "b870f84e-b838-5f2a-ae83-b1e25499d9ee"
+   "part": 8,
+   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e"
+  },
+  {
+   "set": "f1",
+   "part": 9,
+   "rid": "d06ef3c7-521d-5de4-a453-5fdb82c7c467"
   }
  ],
  "matches": [
@@ -170,16 +175,17 @@
   "a0d60daa-0700-5a31-a1f5-495c0db986df",
   "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
   "a921418b-c4d1-5872-aca9-18f9ad99bf40",
+  "af831111-a724-5a33-ad1d-e01bebeaac6e",
   "b31ffe18-07a9-589f-a516-8862f80ab668",
   "b5760ac4-e21a-54d0-a6ea-d6b5bb0d0e5d",
   "b870f84e-b838-5f2a-ae83-b1e25499d9ee",
   "bb669b6f-5c52-589e-a4ed-1c621556c9a4",
-  "bbef1904-cc55-54a4-aea4-ec0367e0d00b",
   "bdaa145f-1471-57b3-ab2f-a04f090b7abb",
   "c553716d-a00b-5bff-ac49-6bfc480c5ca9",
   "c71fdca0-91ef-5ef5-a344-5d9c3b6db05d",
   "c8e26dc9-8cfb-5a36-aa1a-38f8c416753d",
   "d016987b-e5a0-5cd5-a23c-4c5b2d2415f8",
+  "d06ef3c7-521d-5de4-a453-5fdb82c7c467",
   "d6ef0b00-a841-55ac-a976-4eca9f15c175",
   "dae60f33-00a0-5b98-ae10-69a8b5424269",
   "eea5ba87-ac20-5ba3-a6c9-965f11ca8a65",

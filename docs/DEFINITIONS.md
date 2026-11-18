@@ -128,6 +128,13 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   stand area; the answer to a run is the flag already on its way if it goes on to be capped, else the run set off for;
   a double run needs the second runner to take the next flag within 30 s of the cap; a flag put down for good ends its
   run there, and at a hall's second flag stand (the Obelisk flag stand on Meditation, his answer) that is a cap of it.
+- The opening is told as one description (R-520): where each team's players went from the gates (to the stand, out on
+  a split and by which door, back at home, or waiting at the flag spawn for the next flag), who brought the first flag
+  up and what became of it, and who capped first and who capped over it, with the times. *As built* (`jobs.opening`):
+  read when the main teams first stand within 2,500 of one another, between 0:20 and 0:46. The first run decision is
+  the row after it.
+- On the page every flag run is told once (R-521): a row is a run and the run that answers it; a stay that follows is
+  said in the same row; the two legs of a double run are one run.
 - The opening is read (R-479): each team's first flag is a run, and a player left at the spawn for the next flag is
   part of the call. While nobody has a flag capped nobody is behind on flags: a first run, single against single,
   carries only "get the first flag in" (R-500).
