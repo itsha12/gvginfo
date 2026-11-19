@@ -283,6 +283,15 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   under way and nobody of ours sent by the read before: a runner sent by now, a double run started, or none yet;
   what followed is read 60, 90 and 180 s on (R-543, R-544). It is never read to the end of their run: a "stay" so
   read takes in every run of theirs that came to nothing (R-542). The opening is a different decision (R-541).
+- One clock (R-546): the reads, the windows and the position matched on are all counted from their runner's
+  set-off, the second he turned for home (R-498). The page tells a run by the hall's rule (R-461), which can be
+  later; that is the play's own time, not the decision's clock.
+- A team whose own runner was already out when theirs set off does not answer a run. From its cap, with their flag
+  still on its way, it decides whether to run again: another decision, counted from its own cap (R-546).
+- The stand at a second is its holder once a cap recorded within that second has landed (R-546).
+- The readings are checked by the timing ladder before anything is read from the advice (R-545): a runner sent
+  sooner should be better off in flags, in the engine's tally and in the replay's own caps and boosts. A report,
+  never a verdict; the 45 s read is kept there only.
 - The better call is the one whose hard results at 90 and 180 s, priced by how much each moves the chance of winning
   the match, come out ahead among the nearest cases of other matches (R-538, R-294). A call is read only from 30
   plays or more out of 15 matches or more; under that, and where the range includes no difference, the verdict is

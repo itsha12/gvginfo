@@ -251,7 +251,18 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   answer to their run is read at fixed seconds, 15 and 30 s after their runner set off, and judged 60, 90 and 180 s on
   (R-543, R-544), never to the end of their run, which takes in every run of theirs that came to nothing (R-542); his
   given is printed as a check (its half on flags is T12). Dropped at his word, not to be brought back without it:
-  measured weights, the short list of six variables, the 45 s read, the 120 s window. The report also says what the
+  measured weights, the short list of six variables, the 45 s read (kept in the ladder only, R-545), the 120 s window.
+  One clock (R-546): reads, windows (`after`) and position (`state`) of a flag play are counted from `clock.anchor`,
+  their runner's set-off; the play's own `t0` stays the second the page tells the run (R-461). Where our runner was
+  already out when theirs set off (`clock.from_cap`) the decision is another one, run again or not, counted from our
+  cap, with scenarios of its own: never fold it back into the answer to a run. `Moments._state` reads the stand with
+  the cap of its own second (caps are kept to the tenth of a second; `st.stand_owner` on a whole second misses one
+  recorded within it, and the other readers of it are not yet changed: for the clean-up, R-398).
+  The timing ladder (R-545): `cases.py ladder <plays file>` at every checkpoint, before the advice is read (a report,
+  kept in `data/model/flag_ladder.json`; it can fail no run). It checks the readings themselves: is a runner sent
+  sooner better off in flags, in the engine's tally and, apart, in the replay's own caps and boosts (the tally counts
+  a flag on its way, so it rises with a runner by its own making); are the windows on the one clock; is the stand
+  read right; is the tally flag advantage (whose boost lands next). Its raw record is `track` on every flag play. The report also says what the
   advice was (section 5: the spots where it says hold off or send, with moments to look at; show him this whenever
   a test result is put to him, never the counts alone), what a team that holds off goes on to do (6), and the run in
   answer by who was sent and their snares (7: as it fell, where to look, never who to send). Every flag and boost play

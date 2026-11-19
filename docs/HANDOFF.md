@@ -8,54 +8,54 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 > out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-19, 07:30: twelve games graded; the flag family's answer read at fixed seconds (R-544))
+## State (2026-11-19, late morning: twelve games graded; the flag readings checked and put on one clock (R-545, R-546))
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` and lands in one piece,
   then one rebuild (R-322). 658 replays stored; 564 count (R-477); 506 matches trained. No workflow run in progress.
-  Rulings run to R-544. The baseline (R-491) is the branch `baseline-2026-11-15`. R-531: the flag plays are ready.
+  Rulings run to R-546. The baseline (R-491) is the branch `baseline-2026-11-15`. R-531: the flag plays are ready.
 - Graded and filed (set f1): twelve games (옷옷옷옷 v hdm to 9:40, R-532), the last game 14, Dz v Team on Druid's
-  Isle (22 Classic, 2 Visible, all read correct, 48 of 48 calls). Out unmarked: hdm v HC (R-522), Men v NwAy
-  (R-537). No game waits for him. Not graded his new way: Corrupted, Weeping Stone, Isle of the Dead.
+  Isle. Out unmarked: hdm v HC (R-522), Men v NwAy (R-537). No game waits for him. Not graded his new way:
+  Corrupted, Weeping Stone, Isle of the Dead.
 - His marks on nine picked rows (set p2 in the key; none binds). Part-runs are built (R-535, R-536). Held: cope v
   hold 14:33, a flag held at his door read as a boost runner (with Men v Crew 17:53); QenK v Fun 6:37 and NwAy v
   ohno 5:24, main team collapses whose deaths are also left on the 1 v 1 row (for the split family). Confidence
   (R-515) does not tell Classic from Visible; a measure of what is at stake (R-509) would: not built.
-- Checkpoint run (every counted match, engine bf84adb; the report from b8d6dd9): 564 matches, 34,913 plays, no
-  errors, self-check 7 in 5 matches; every play the same as before the flag work, new fields apart. The fourteen
-  truths hold (T12 is his given on flags); 281 Classic rows pass, none fail; 129 history rows hold, 3 do not. Gate
-  12 of 12 and 63 of 105, line-up and comms 530 of 583 (last run 2026-11-18).
-- The similar cases (R-538 to R-544; `cases.py test <plays file>` on the branch, about a minute; the report is
-  `data/model/flag_cases.json`), 4,332 cases; 1,606 Shadow of Haste plays and the opening (868, R-541) set aside:
-  - Prices, win points from an even position: a flag of lead 6.8, a death's penalty 6.0, a morale boost 11.1, a pit
-    NPC 4.7, 10% of Lord health 9.5; who wins foretold 82% on unseen matches. A footman is not priced. K 90.
-  - Their boost 30 s away (1,316): "run a flag" clearly better in 31%. Held out: +9.1 win points 180 s on (4.8 to
-    13.8), +11.2 without the 203 flags only held at home; in how the match ended +4.6 (-5.8 to +13.8), not clear.
-  - Their run, our answer: read 15 and 30 s after their runner set off (their run still under way; a runner sent,
-    a double run started, or none yet), judged 60, 90 and 180 s on (R-543, R-544); never to the end of their run
-    (R-542). Held out, read at 15 s (2,808): better at 60 s (+2.9) and 180 s (+4.8, 1.9 to 7.7; in how the match
-    ended +8.5, 2.1 to 16.4), not clear at 90 s; read at 30 s nothing clear. Ten tests: a lead, not a finding.
-  - What the advice is (sections 5, 6). Us holding the stand: hold off in 650 of 1,417, where we are winning the
-    fight (up on numbers 46% against 35% where nothing is clear; on their side of the stand 41% against 18%; their
-    morale -40 against -9). Holding off less sending +3.6 (0.9 to 6.4); +1.9 (-1.2 to +4.9) where their flag got
-    in (it got in after 69% of holds, 94% of sends: part of it is their run failing). Them holding the stand:
-    send in 81 (their boost near, us behind in morale); only 10 did.
-  - His given (R-542): flags hold (T12, +0.29). "No kill, no gain, so worse off": with no boost landing either,
-    +1.0 (-0.1 to +2.0) us holding the stand, +0.7 (-0.2 to +1.6) them holding it: his way, not clear.
-  - The run in answer (section 7; 1,416 runs, as it fell): our flag in 81%, 1.26 times a clean run; their snares
-    slow it (1.19 times with the fewest third, 1.35 with the most). An 8 Monk sent +3.2 win points 180 s on, a
-    frontline player -1.4 (who runs follows the spot). Under the floor: the double run, a flag in hand.
+- Checkpoint run (every counted match, engine b3ecdc8): 564 matches, 34,913 plays, no errors, self-check 7 in 5
+  matches. The fourteen truths hold; 281 Classic rows pass, none fail; 129 history rows hold, 3 do not. Gate 12 of
+  12 and 63 of 105; line-up and comms 530 of 583 (last run 2026-11-18, not run again).
+- The timing ladder (R-545; `cases.py ladder <plays file>`, report `data/model/flag_ladder.json`): the readings go
+  with flag advantage. Us holding the stand, their flag in: the tally 90 s on -0.42, -0.59, -0.60, -1.00, -1.29 down
+  the rungs (within 15 s, 15 to 30, 30 to 45, 45 to 90, later or never); their flag holds the stand 50, 54, 55, 64,
+  108 of the next 180 s; their boost 16 to 20% for an answer within 90 s, 53% after. It found three faults, fixed
+  at his word (R-546): the stand read a moment before our own cap (839 positions); 793 cases with our runner
+  already out read as "no runner yet" (now their own decision, run again or not, from our cap); reads and windows
+  on two clocks (now one, their runner's set-off: `clock.anchor`).
+- The similar cases on the corrected reads (`cases.py test`, `data/model/flag_cases.json`), 4,333 cases:
+  - Prices as before (a flag of lead 6.8, a death's penalty 6.0, a boost 11.1; who wins foretold 82%).
+  - Their boost 30 s away (1,316): held out +7.6 win points 180 s on (2.9 to 12.4), +9.8 without the flags only
+    held at home; in how the match ended not clear.
+  - Their run, our answer, read at 15 s (2,021): better at 60 s (+2.2) and 180 s (+2.2, 0.3 to 4.2; in how the
+    match ended +4.4, 0.1 to 9.3), not clear at 90 s; read at 30 s nothing clear. Run again or not (709): too few
+    clear cases to call. Sixteen tests: still a lead, not a finding, and about half what it read before the fixes.
+  - What the advice is. Us holding the stand: hold off in 862 of 1,308, where we are winning the fight; holding
+    off less sending +3.3 (1.4 to 5.2), +1.3 (-0.9 to +3.4) where their flag got in. Them holding the stand (540):
+    send in 113; 28 did.
+  - His given (R-542) holds in both halves: flags +0.58; no kill, no boost: +1.1 win points (0.0 to 2.2), +2.6.
 
 ## Next (in order)
-1. The flag family (R-540), at his word: his reading of the advice and of the moments put to him (Open, 0);
-   who to send set against the same spot (similar cases among the runs); the push on their flagger as a call
-   when it clears the floor.
+1. The flag family (R-540), at his word: his reading of the ladder and of the corrected advice (Open, 0); who to
+   send set against the same spot; the push on their flagger as a call when it clears the floor.
 2. Held for a second game (R-495): a base res with the attackers at the footmen (HC v hdm 1:40, Jade); Men v hold
    6:48, a collapse told as a push on the flagger; who and how many push a flagger; numbers through Jade's portal.
 3. The other kinds after the flag family, as he says each is ready; rare plays topped up with picked rows; then
-   stage E. The clean-up (R-398; REDESIGN.md "Before the next training run", nine items) comes after the games.
+   stage E. The clean-up (R-398; REDESIGN.md "Before the next training run", nine items, and `st.stand_owner` read
+   on a whole second by the other readings) comes after the games.
 
 ## Open for Denning
-0. Put to him 2026-11-19: does "hold off while winning the fight with us holding the stand" read right to him,
-   on the three moments in games he graded (Dz v Team 4:37, 옷옷옷옷 v RACK 1:41, Men v Crew 5:52); what next.
+0. Put to him 2026-11-19: the corrected ladder and advice. From the ladder, his to rule: (a) in 163 cases filed
+   under "we hold the stand" their flag before goes in within 15 s of their runner turning for home (he sets off
+   as it caps): we hold it, or they do? (b) the 60 s window counted from the set-off is arithmetic for the 30 s
+   read: count the windows from the read, or leave them; (c) how long their flag should take is foretold within
+   10 s in 44%: good enough to match on? Still open from before: "hold off while winning the fight".
 1. Isle of Jade: is a team at the footmen on the portal side in the base at a base res (HC v hdm 1:40)?
 2. Tolkano: no build (his word). Match pages are tolkano.com/match/<id>, the id neither gvg.report's nor the start
    time: give him date, guilds, hall and length with every example so he can find it there.
@@ -66,6 +66,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 - Local engine: `git fetch --depth 1 --filter=blob:none origin +replays:refs/remotes/origin/replays` (the blobs come
   as they are read). `jobs.py`, `moments.py`, the gate, the line-up and `confidence.py` need no cache and no packages
   beyond Python; `cases.py` needs numpy and scikit-learn (`cache.py sync pull`, `warm` only for the fitted models).
+  A full run (`moments.py all`) takes about 13 minutes here; `cases.py ladder` before `cases.py test` (R-545).
   `PYTHONDONTWRITEBYTECODE=1`. The review key, `dev_set.json` and `game_reviews.json` are written on main: pass
   `--key <main>/data/model/review_key.json`, and copy the key and `dev_set.json` to the branch after changing them.
 - Site check: `python3 -m http.server`, then playwright with `/usr/bin/google-chrome`, api.github.com mocked.
