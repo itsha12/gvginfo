@@ -262,7 +262,14 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   kept in `data/model/flag_ladder.json`; it can fail no run). It checks the readings themselves: is a runner sent
   sooner better off in flags, in the engine's tally and, apart, in the replay's own caps and boosts (the tally counts
   a flag on its way, so it rises with a runner by its own making); are the windows on the one clock; is the stand
-  read right; is the tally flag advantage (whose boost lands next). Its raw record is `track` on every flag play. The report also says what the
+  read right; is the tally flag advantage (whose boost lands next). Its raw record is `track` on every flag play. What
+  followed an answer is put to him as section 8 of `cases.py test`, "as it fell" (by how soon our runner set off, and
+  for no runner by whether their flag got in, with the chance of winning each row started from): the form he reads;
+  never the test's counts alone, and never a mean over "no runner" without that split (2026-11-19: +1.1 was -4.4
+  where their flag got in and +7.0 where it did not, teams already at 76%). The nearest cases are set level with the
+  case read (`Scenario.level`; the chance of winning is matched on), and each scenario prints `level_check`: the two
+  answers in the 60 s before the decision (`before` on the flag plays). Not level there means the answer marks the
+  situation (SPEC 5, rule 4): say so and give no advice from it. The report also says what the
   advice was (section 5: the spots where it says hold off or send, with moments to look at; show him this whenever
   a test result is put to him, never the counts alone), what a team that holds off goes on to do (6), and the run in
   answer by who was sent and their snares (7: as it fell, where to look, never who to send). Every flag and boost play
