@@ -251,7 +251,10 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   answer to their run is read at fixed seconds, 15 and 30 s after their runner set off, and judged 60, 90 and 180 s on
   (R-543, R-544), never to the end of their run, which takes in every run of theirs that came to nothing (R-542); his
   given is printed as a check (its half on flags is T12). Dropped at his word, not to be brought back without it:
-  measured weights, the short list of six variables, the 45 s read, the 120 s window. Every flag and boost play
+  measured weights, the short list of six variables, the 45 s read, the 120 s window. The report also says what the
+  advice was (section 5: the spots where it says hold off or send, with moments to look at; show him this whenever
+  a test result is put to him, never the counts alone), what a team that holds off goes on to do (6), and the run in
+  answer by who was sent and their snares (7: as it fell, where to look, never who to send). Every flag and boost play
   carries `state` and `after`, the position and the fixed 90 and 180 s record at the second the decision arises: judge
   calls from those, never from a play's own end. `cases.py case <plays file> <report id> <m:ss>` prints one decision
   with its nearest cases and their replay links. A verdict is a reading, not advice, until the held-out test shows a

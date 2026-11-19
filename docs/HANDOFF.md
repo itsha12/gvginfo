@@ -20,7 +20,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   hold 14:33, a flag held at his door read as a boost runner (with Men v Crew 17:53); QenK v Fun 6:37 and NwAy v
   ohno 5:24, main team collapses whose deaths are also left on the 1 v 1 row (for the split family).
 - Confidence (R-515) does not tell Classic from Visible; a measure of what is at stake (R-509) would. Not built.
-- Checkpoint run (every counted match, engine bf84adb): 564 matches, 34,913 plays, no errors, self-check 7 in 5
+- Checkpoint run (every counted match, engine bf84adb; the report from b8d6dd9): 564 matches, 34,913 plays, no errors, self-check 7 in 5
   matches; every play the same as before the flag work, new fields apart. The fourteen truths hold (T12 is his
   given on flags, R-542); 281 Classic rows pass, none fail; 129 history rows hold, 3 do not; set f1 15 of 50 open
   checks hold, p2 0 of 3. Gate 12 of 12 and 63 of 105, line-up and comms 530 of 583 (last run 2026-11-18).
@@ -36,8 +36,17 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
     In flags a runner sent is ahead at every window (15 s read, us holding the stand: +0.24, +0.39, +0.19).
     Held out, read at 15 s (2,808 cases): matching the advice is better at 60 s (+2.9, 1.9 to 4.2) and at 180 s
     (+4.8, 1.9 to 7.7; the advice "no runner yet" in 654 of 756; in how the match ended +8.5, 2.1 to 16.4), not
-    clear at 90 s. Read at 30 s (2,015): nothing clear. Ten tests in all: a lead, not yet a finding, and held-out
-    is not cause (a team may hold off because it sees their run failing).
+    clear at 90 s. Read at 30 s (2,015): nothing clear. Ten tests in all: a lead, not yet a finding.
+  - What the advice is (report sections 5 and 6). With us holding the stand it says hold off in 650 of 1,417: we
+    are winning the fight (up on numbers 46% against 35% where nothing is clear, on their side of the stand 41%
+    against 18%, their morale -40 against -9, their runner a monk 2% against 16%). 570 held off (+1.9 win points
+    180 s on), 80 sent (-1.8): +3.6 (0.9 to 6.4); where their flag got in +1.9 (-1.2 to +4.9), not clear: their
+    flag got in after 69% of the holds and 94% of the sends, so part of it is their run failing. With them holding
+    the stand it says send in 81 (their boost near, us behind in morale); only 10 did. Of teams with no runner at
+    15 s and us holding the stand, 41% send none in 90 s (their flag in 50%, a kill within 60 s 44%).
+  - The run in answer (section 7; 1,416 runs, as it fell): our flag in 81%, 1.26 times a clean run. Their snares
+    slow it: 1.19 times with the fewest third, 1.35 with the most (flag in 87% against 77%, them holding the
+    stand). An 8 Monk sent: +3.2 win points 180 s on; a frontline player -1.4 (who runs follows the spot).
   - His given (R-542). Flags: holds (+0.29 of a flag 90 s on for a runner sent by 30 s). "No kill, no other gain,
     so worse off": with nobody dying and no boost landing, a runner sent is +1.0 win points ahead with us holding
     the stand (-0.1 to +2.0) and +0.7 with them holding it (-0.2 to +1.6): his way, not clear. With boosts let in
@@ -45,17 +54,17 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   - Under the floor: the double run (theirs as a scenario, ours as a call: kept, R-544) and a flag in hand.
 
 ## Next (in order)
-1. The flag family (R-540), at his word: the run in answer judged on whether it held even (the flag in, at what
-   cost; who to send; their snares); why holding off at 15 s reads better (what those teams do next: a later
-   run, a push on their flagger, a kill). The push on their flagger as a call when it clears the floor.
+1. The flag family (R-540), at his word: his reading of the advice and of the moments put to him (Open, 0);
+   who to send set against the same spot (similar cases among the runs); the push on their flagger as a call
+   when it clears the floor.
 2. Held for a second game (R-495): a base res with the attackers at the footmen (HC v hdm 1:40, Jade); Men v hold
    6:48, a collapse told as a push on the flagger; who and how many push a flagger; numbers through Jade's portal.
 3. The other kinds after the flag family, as he says each is ready; rare plays topped up with picked rows; then
    stage E. The clean-up (R-398; REDESIGN.md "Before the next training run", nine items) comes after the games.
 
 ## Open for Denning
-0. Put to him 2026-11-19: whether to look next at what teams that hold off at 15 s go on to do, or at the run
-   in answer (who to send, their snares); and whether the flag plays' reading is settled enough to start splits.
+0. Put to him 2026-11-19: does "hold off while winning the fight with us holding the stand" read right to him,
+   on the three moments in games he graded (Dz v Team 4:37, 옷옷옷옷 v RACK 1:41, Men v Crew 5:52); what next.
 1. Isle of Jade: is a team at the footmen on the portal side in the base at a base res (HC v hdm 1:40)?
 2. Tolkano: no build (his word). Match pages are tolkano.com/match/<id>, the id neither gvg.report's nor the start
    time: give him date, guilds, hall and length with every example so he can find it there.
