@@ -108,6 +108,7 @@ def _runner_by_30(D):
     for p in D["plays"]:
         c = p.get("clock")
         if p["play"] != "flag" or p.get("soh") or p.get("opening") or not c or p.get("ours") == "a flag already in hand" or c["their_end"] <= c["their_off"] + 30: continue
+        if c["from_cap"]: continue                                        # our runner was already out when theirs set off: run again or not is another decision (R-546)
         lc = p["after"]["90"].get("lead_change")
         if lc is None or p["state"]["stand"] not in ("own", "enemy"): continue
         sent = c["our_off"] is not None and c["our_off"] <= c["their_off"] + 30

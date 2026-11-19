@@ -2436,9 +2436,11 @@ class Moments:
     def _state(self, tm, t):
         """The continuous state that rides along with a scenario (for similar cases, 2.10)."""
         st, foe = self.st, 3 - tm
-        owner, since = st.stand_owner(t)
+        # a cap is recorded to the tenth of a second and a position is read on the whole second: the stand at second t is its holder once a cap recorded within that
+        # second has landed (2026-11-19, the timing ladder: read at our own cap, 717 positions said they held the stand we had just taken, with their boost clock)
+        owner, since = st.stand_owner(t + 0.999)
         s = {"stand": "own" if owner == tm else "enemy" if owner == foe else "nobody",
-             "boost_in": round(BOOST_EVERY - (t - since) % BOOST_EVERY) if owner else None,
+             "boost_in": round(BOOST_EVERY - max(t - since, 0) % BOOST_EVERY) if owner else None,
              "alive": [sum(self.AL[a][t] for a in st.players[k]) for k in (tm, foe)],
              "main": [len([a for a in self.main_team(k, t) if self.AL[a][t]]) for k in (tm, foe)],
              "own_flag": any(self.carrying(a, t) for a in st.players[tm]),

@@ -347,26 +347,33 @@ def flag_plays(M, K, pinned_at):
                   **({"opening": opening(M)["words"]} if is_open else {}))
         # the position the answer is chosen from and what followed it on the fixed 90 and 180 s record (R-294), both read at the second the decision arises: what the
         # similar cases match on and are judged by (cases.py). The play's own clock ends at a cap, theirs for a stay and ours for a run, so it cannot be compared across calls
-        kw["state"], kw["after"] = M._state(A, int(w0)), M.consequence(A, int(w0), FLAG_AFTER_S)
+        # One clock (2026-11-19, the timing ladder; his word on the three faults it found): the reads of an answer (cases.py), the windows of `after` and the position
+        # in `state` are all counted from one second, `anchor`. It is their runner's set-off (the second he turned for home, R-498), not the second the hall's rule
+        # tells the run (R-461; that stays the play's own t0, the time on the page). Where our own runner was already out when theirs set off (`from_cap`), the
+        # decision is ours only from our cap and is another decision, run again or not (R-546): its clock is our cap
+        o_ = int(f.get("off", f["s0"]))
+        from_cap = int(w0) > int(f["s0"]) + 2
+        anc = int(w0) if from_cap else min(o_, int(w0))
+        kw["state"], kw["after"] = M._state(A, anc), M.consequence(A, anc, FLAG_AFTER_S)
         # ... and the clock of the two runs, so that an answer can be read at a fixed second after theirs set off (his word, 2026-11-19: a run within 15 s of theirs is
         # not a run 45 s after it; and a "stay" read from having sent nobody before their run ended takes in every run of theirs that came to nothing): when their runner
         # set off and when their run ended; when our next runner set off, whenever that was; and how long their flag should take from here (to his spawn at a run, then
         # the usual carry for the hall and side; from where he stands when he already carries it)
         lead_ = lambda x_: list(dict.fromkeys(x_["ids"]))[:1]                # the player who sets off with it
         nxt_ = min((x_ for x_ in mine if x_["s0"] >= w0 - 2), key=lambda x_: x_["s0"], default=None)
-        a_ = next(iter(lead_(f)), None); u_ = min(int(w0), T); eta = None
+        a_ = next(iter(lead_(f)), None); u_ = min(anc, T); eta = None
         if a_ is not None and M.hall is not None and M.P[a_][u_]:
             if M.carrying(a_, u_): w_ = M.hall.walk(M.P[a_][u_], M.hall.stand); eta = w_ / CARRY_SPEED if w_ else None
             else:
                 w_ = M.hall.walk(M.P[a_][u_], M.spawn[B]) if M.spawn.get(B) else None; us_ = _usual_arrival(M, B)
                 eta = (w_ / RUN_SPEED + us_) if (w_ is not None and us_) else None
         kw["clock"] = {"their_off": int(f.get("off", f["s0"])), "their_end": int(f["e"]), "their_eta_s": eta and round(eta), "our_off": nxt_ and int(nxt_.get("off", nxt_["s0"])), "our_s0": nxt_ and int(nxt_["s0"]), "our_double": bool(nxt_ and nxt_["double"]),
-                       "our_end": nxt_ and int(nxt_["e"]), "our_how": nxt_ and nxt_["how"]}
+                       "our_end": nxt_ and int(nxt_["e"]), "our_how": nxt_ and nxt_["how"], "anchor": anc, "from_cap": from_cap}
         # ... and the raw record on one clock, their runner's set-off, for the check of the readings themselves (his word, 2026-11-19: do the run, stay and timing
         # readings go with flag advantage; `cases.py ladder`): the flag lead (R-408) and the holder of the stand at fixed seconds from it, and the second of every cap
-        # and every morale boost in the FLAG_TRACK_FOR that follow, by side. The reads are counted from that second and the windows of `after` from w0, the second the
-        # run is told (the hall's rule, R-461, or our own cap when we ran first): `told_after` is the seconds between the two, and `run_told_after` the part of it that is the hall's rule. Nothing here is matched on or judged by
-        o_ = kw["clock"]["their_off"]; side_ = lambda h: "own" if h == A else "theirs"
+        # and every morale boost in the FLAG_TRACK_FOR that follow, by side. `told_after` is the seconds from it to the play's own t0 (the second the run is told by the
+        # hall's rule, R-461, or our own cap when we ran first), and `run_told_after` the part of it that is the hall's rule. Nothing here is matched on or judged by
+        side_ = lambda h: "own" if h == A else "theirs"
         kw["track"] = {"told_after": int(w0) - o_, "run_told_after": int(f["s0"]) - o_, "left_s": int(T) - o_, "at": list(FLAG_TRACK_S),
                        "lead": [M.lead_value(A, o_ + h) if o_ + h <= T else None for h in FLAG_TRACK_S],
                        "stand": [(lambda h_: "own" if h_ == A else "theirs" if h_ == B else "nobody")(M.st.stand_owner(o_ + h)[0]) if o_ + h <= T else None for h in FLAG_TRACK_S],
