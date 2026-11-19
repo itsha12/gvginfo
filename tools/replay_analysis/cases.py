@@ -51,6 +51,7 @@ among teams in a similar spot, and does a team that made the better call do bett
 
 Usage:  python3 cases.py test <plays file from `moments.py all`> [--json <out.json>]     the whole report
         python3 cases.py case <plays file> <report id> <m:ss>                          one decision, its calls and cases
+        python3 cases.py ladder <plays file> [--json <out.json>]                         the timing ladder: a check of the flag readings (no prices, no advice)
 A reading tool over the plays file: it writes no prepared data and is in no cache key (cache.REPORT_LAYER)."""
 import collections, json, math, os, sys
 import numpy as np
@@ -662,8 +663,250 @@ def case(path, rid, at):
     print(f"  the better call in similar spots: {r['advice']}" + (f", ahead of the next by {r['margin']:.1f} win points (90% range {r['range'][0]:+.1f} to {r['range'][1]:+.1f})" if r["advice"] else "") + f"; the call made: {r['verdict']}")
 
 
+# ---- the timing ladder: a check of the flag readings themselves (2026-11-19, his ask; a report, never a verdict)
+LADDER_READS = (15, 30, 45)                      # the 45 s read is back for this check only (his word, 2026-11-19); the advice is still read at 15 and 30 s (R-544)
+RUNGS = ("ours set off before theirs", "within 15 s of theirs", "15 to 30 s after", "30 to 45 s after", "45 to 90 s after", "later than 90 s, or never")
+_rung = lambda d: 5 if d is None or d > 90 else 0 if d < 0 else 1 if d <= 15 else 2 if d <= 30 else 3 if d <= 45 else 4
+LEAD_BANDS = ((-9, -1.0, "a flag or more behind"), (-1.0, -0.35, "about half a flag behind"), (-0.35, 0.35, "level"), (0.35, 1.0, "about half a flag ahead"), (1.0, 9, "a flag or more ahead"))
+
+
+def _held(tr, a, b, side="own"):
+    """Seconds of (a, b] from their runner's set-off in which `side` holds the stand, from the caps themselves."""
+    own, t, n = tr["stand"][0], 0, 0
+    for u, h in sorted(tr["caps"]) + [[10 ** 6, None]]:
+        lo, hi = max(t, a), min(u, b)
+        if hi > lo and own == side: n += hi - lo
+        own, t = h, u
+    return n
+
+
+def _this_flag(c, H=180):
+    """Seconds of the H from their runner's set-off in which this flag of theirs holds the stand: from its cap to our
+    next cap. 0 when it never got in."""
+    if c["their_in"] is None or c["their_in"] >= H: return 0
+    nx = min([u for u, h in c["tr"]["caps"] if h == "own" and u > c["their_in"]] or [10 ** 6])
+    return min(nx, H) - c["their_in"]
+
+
+def ladder_cases(D, M):
+    """One case a run of theirs that we had to answer (the opening, Shadow of Haste runs and a flag of ours already in
+    hand set aside, as in the similar cases), on one clock: their runner's set-off (the second he turned for home,
+    R-498). `delay` is our next runner's set-off less theirs, by the same reading of a set-off; None when we never
+    ran again. `stand` is the holder of the stand as the engine reads it for the case, at the decision second.
+    `from_cap`: our own flag was still on its way when their run was told, so the decision is ours only from our cap."""
+    out, skipped = [], collections.Counter()
+    for p in D["plays"]:
+        if p["play"] != "flag" or "clock" not in p: continue
+        if "track" not in p: sys.exit("this plays file has no `track` on its flag plays: run `moments.py all` again with this engine")
+        if p.get("soh") or p.get("runner_soh"): skipped["Shadow of Haste run (R-456)"] += 1; continue
+        if p.get("opening"): skipped["the opening (R-541)"] += 1; continue
+        if p["ours"] == "a flag already in hand": skipped["our flag already in hand"] += 1; continue
+        tr, k, st = p["track"], p["clock"], p["state"]
+        if st["stand"] not in ("own", "enemy"): skipped["nobody holds the stand"] += 1; continue
+        if tr["lead"][0] is None: skipped["flag lead not read (no labelled hall)"] += 1; continue
+        delay = None if k["our_off"] is None else k["our_off"] - k["their_off"]
+        in_ = lambda how, end: (end - k["their_off"]) if (how == "captured" and end is not None) else None
+        af = {H: p["after"][H] for H in HORIZONS if H in p["after"] and not p["after"][H]["ended"]}
+        out.append({"id": p["id"], "rid": p["rid"], "team": p["team"], "off": k["their_off"], "delay": delay, "rung": _rung(delay), "call": RUNGS[_rung(delay)], "stand": st["stand"], "stand_off": tr["stand"][0], "their": p["their"],
+                    "their_len": k["their_end"] - k["their_off"], "their_in": in_(p["beside"].get("their_flag"), k["their_end"]), "our_in": in_(k.get("our_how"), k.get("our_end")),
+                    "eta": k["their_eta_s"], "told": tr["told_after"], "from_cap": tr["told_after"] > tr["run_told_after"] + 2, "left": tr["left_s"], "tr": tr, "run_s": M[p["rid"]]["run_s"], "said": p["scenario"],
+                    "after": {H: v["lead_change"] for H, v in af.items()}})
+    return out, skipped
+
+
+def _lead(c, a, b):
+    """The change in flag lead (the engine's tally, R-408) from a to b seconds after their runner's set-off; None when the match is over by then."""
+    tr = c["tr"]; i, j = tr["at"].index(a), tr["at"].index(b)
+    return None if tr["lead"][i] is None or tr["lead"][j] is None else tr["lead"][j] - tr["lead"][i]
+
+
+def _slope(rows, fx, fy):
+    """The straight-line slope of fy on fx with a 90% range from drawing whole matches again; None under the floor."""
+    import random
+    R = [(c["rid"], fx(c), fy(c)) for c in rows if fx(c) is not None and fy(c) is not None]
+    if len(R) < MIN_PLAYS or len({r for r, _, _ in R}) < MIN_MATCHES: return None
+    fit = lambda Q: float(np.polyfit([x for _, x, _ in Q], [y for _, _, y in Q], 1)[0])
+    by = collections.defaultdict(list)
+    for r in R: by[r[0]].append(r)
+    ids, rnd, dr = sorted(by), random.Random(7), []
+    for _ in range(DRAWS):
+        Q = [r for k in (rnd.choice(ids) for _ in ids) for r in by[k]]
+        if len({x for _, x, _ in Q}) > 1: dr.append(fit(Q))
+    dr.sort()
+    return fit(R), dr[int(0.05 * len(dr))], dr[int(0.95 * len(dr)) - 1], len(R)
+
+
+def ladder(path, out_json=None):
+    """Do the run, stay and timing readings go with flag advantage (his ask, 2026-11-19)? A check of the readings,
+    before anything more is built on them: no prices, no similar cases, no advice. Flags are the interim result.
+    Two measures of it are kept apart: the engine's own flag tally (R-408), which counts a flag on its way and so
+    rises with a runner sent by its own making, and the events the replay records (who capped and when, how long a
+    flag holds the stand, the boosts that land), which owe nothing to the tally."""
+    D, M = load(path); pr = print
+    C, skipped = ladder_cases(D, M)
+    res = {"cases": len(C), "skipped": dict(skipped)}
+    pr(f"The timing ladder: do the run, stay and timing readings go with flag advantage? {len(C)} runs of theirs that we had to answer, in {len({c['rid'] for c in C})} matches" + "".join(f"; set aside, {k}: {v}" for k, v in skipped.items()))
+    pr("Counted from one second, their runner's set-off (the second he turned for home, R-498). A check of the readings: no prices, no advice, no verdict.")
+    med = lambda v: float(np.median(v)) if len(v) else float("nan")
+    share = lambda v: 100 * float(np.mean(v)) if len(v) else float("nan")
+    mean = lambda v: float(np.mean(v)) if len(v) else float("nan")
+    word = lambda g: "too few" if not g else "HOLDS" if g[1] > 0 else "AGAINST" if g[2] < 0 else "not clear"
+
+    # A. the two clocks
+    n = len(C); cut = ((0, 5, "under 5 s"), (5, 10, "5 to 9 s"), (10, 20, "10 to 19 s"), (20, 30, "20 to 29 s"), (30, 10 ** 6, "30 s or more"))
+    pr("\nA. The two clocks. The reads (15, 30, 45 s) are counted from their runner's set-off; the windows (60, 90, 180 s) and the position a case is matched on are read")
+    pr("   from the decision second. That second is later than the set-off by: " + "; ".join(f"{w} {sum(a <= c['told'] < b for c in C)} ({100 * sum(a <= c['told'] < b for c in C) / n:.0f}%)" for a, b, w in cut))
+    late = [c for c in C if c["told"] >= 5]; cap_ = [c for c in C if c["from_cap"]]; hall_ = [c for c in late if not c["from_cap"]]
+    pr(f"   Two causes. In {len(hall_)} the hall's rule tells the run later than its runner turned for home (R-461 against R-498; middle {med([c['told'] for c in hall_]):.0f} s).")
+    pr(f"   In {len(cap_)} our own runner was already out when theirs set off, and the decision (run again, or not) is ours only from our cap, a middle {med([c['told'] for c in cap_]):.0f} s after their set-off.")
+    res["clocks"] = {"told_after": {w: sum(a <= c["told"] < b for c in C) for a, b, w in cut}, "by the hall's rule": len(hall_), "from our own cap": len(cap_), "reads": {}}
+    for R in LADDER_READS:
+        at = [c for c in C if c["their_len"] > R]                                   # their run still under way at the read
+        none = [c for c in at if c["delay"] is None or c["delay"] > R]
+        early = [c for c in none if c["told"] > R]; fc = [c for c in early if c["from_cap"]]
+        res["clocks"]["reads"][R] = {"no runner yet": len(none), "read before the decision second": len(early), "of them our runner already out": len(fc)}
+        pr(f"   Read at {R} s: of the {len(none)} cases read as \"no runner yet\", in {len(early)} ({100 * len(early) / max(len(none), 1):.0f}%) the read falls before the decision second; in {len(fc)} of those our runner was already out with the flag before.")
+    both = [(c["after"]["90"], _lead(c, 0, 90)) for c in C if c["after"].get("90") is not None and _lead(c, 0, 90) is not None]
+    far = [abs(a - b) for a, b in both]
+    pr(f"   The 90 s window on the two clocks ({len(both)} cases): the change in flag lead differs by a quarter of a flag or more in {share([x >= 0.25 for x in far]):.0f}%, by half a flag or more in {share([x >= 0.5 for x in far]):.0f}%.")
+    sw = [c for c in C if not c["from_cap"]]
+    flip = [c for c in sw if (c["stand_off"] == "own") != (c["stand"] == "own")]
+    soon = [c for c in sw if any(u <= 15 and h == "theirs" for u, h in c["tr"]["caps"]) and c["stand_off"] == "own"]
+    pr(f"   Who holds the stand: at their set-off against at the decision second, {len(flip)} of {len(sw)} differ; in {len(soon)} their flag before goes in within 15 s of their runner turning for home (he sets off as it caps).")
+    # the stand at the decision second against the stand 3 s on, from the caps: a cap recorded a fraction of a second after the decision second is not yet read
+    now_ = lambda c: "own" if _held(c["tr"], c["told"] + 3, c["told"] + 4) else "enemy"
+    ok_ = [c for c in C if c["told"] >= 0 and c["left"] > c["told"] + 5]
+    wrong = [c for c in ok_ if c["stand"] == "enemy" and now_(c) == "own"]; wrong2 = [c for c in ok_ if c["stand"] == "own" and now_(c) == "enemy"]
+    wc = [c for c in wrong if c["from_cap"]]
+    pr(f"   The stand read a second early: in {len(wrong)} cases the engine says they hold the stand at the decision second and 3 s on we hold it ({len(wc)} of them the cases whose decision second is our own cap:")
+    pr(f"   the cap is recorded a fraction of a second after the second it is read at). They are {100 * len(wrong) / max(sum(c['stand'] == 'enemy' for c in C), 1):.0f}% of every case filed under \"they hold the stand\". The other way round: {len(wrong2)}.")
+    res["clocks"].update({"90 s window differs by 0.25+": share([x >= 0.25 for x in far]), "90 s window differs by 0.5+": share([x >= 0.5 for x in far]), "stand differs": len(flip), "their flag before in within 15 s": len(soon),
+                          "read as theirs, ours 3 s on": len(wrong), "of them at our own cap": len(wc), "read as ours, theirs 3 s on": len(wrong2), "filed under they hold the stand": sum(c["stand"] == "enemy" for c in C)})
+
+    # B. the ladder
+    main = [c for c in C if not c["from_cap"]]
+    pr(f"\nB. The ladder: by how long after their runner ours set off ({len(main)} cases; the {len(cap_)} where our runner was already out are in B2).")
+    pr("   If the readings are right, each rung down should be worse in flags than the one above it.")
+    pr("   tally = change in the engine's flag lead from their set-off (R-408; it counts a flag on its way). From the replay's own events: their flag holds = seconds of the next 180")
+    pr("   in which this flag of theirs holds the stand (its cap to our next cap; 0 if it never got in); stand = seconds of the next 180 in which we hold the stand; boost = lands within 300 s.")
+    res["ladder"] = {}
+    def table(rows, T):
+        pr(f"     {'our runner':27} {'cases':>5}  {'their flag in':>13}  {'ours in':>9}  {'tally +60':>9} {'+90':>6} {'+180':>6}  {'their flag holds':>16}  {'stand':>6}  {'their boost':>11}  {'own boost':>9}")
+        for i, name in enumerate(RUNGS):
+            R = [c for c in rows if c["rung"] == i]
+            if not R: continue
+            full = [c for c in R if c["left"] >= 180]; long_ = [c for c in R if c["left"] >= 300]
+            ld = {H: [x for x in (_lead(c, 0, H) for c in R) if x is not None] for H in (60, 90, 180)}
+            row = {"cases": len(R), "their flag in": share([c["their_in"] is not None for c in R]), "their flag in, s": med([c["their_in"] for c in R if c["their_in"] is not None]),
+                   "our flag in": share([c["our_in"] is not None for c in R]), "our flag in, s": med([c["our_in"] for c in R if c["our_in"] is not None]),
+                   "tally": {H: mean(v) for H, v in ld.items()}, "their flag holds, s": mean([_this_flag(c) for c in full]), "stand_s": mean([_held(c["tr"], 0, 180) for c in full]),
+                   "their boost": share([any(h == "theirs" for _, h in c["tr"]["boosts"]) for c in long_]), "own boost": share([any(h == "own" for _, h in c["tr"]["boosts"]) for c in long_])}
+            T[name] = row
+            pr(f"     {name:27} {len(R):5}  {row['their flag in']:5.0f}% {row['their flag in, s']:4.0f} s  {row['our flag in']:3.0f}% {row['our flag in, s']:3.0f} s  {row['tally'][60]:+9.2f} {row['tally'][90]:+6.2f} {row['tally'][180]:+6.2f}"
+               f"  {row['their flag holds, s']:14.0f} s  {row['stand_s']:4.0f} s  {row['their boost']:10.0f}%  {row['own boost']:8.0f}%" + ("   (under the floor)" if len(R) < MIN_PLAYS else ""))
+        pr("     each rung against the next one down (+ = the sooner runner is better off, as it should be):")
+        T["steps"] = {}
+        full = [c for c in rows if c["left"] >= 180]
+        for a, b, wa, wb in [((RUNGS[i],), (RUNGS[i + 1],), RUNGS[i], RUNGS[i + 1]) for i in range(1, len(RUNGS) - 1)] + [(RUNGS[1:3], RUNGS[4:], "within 30 s", "later than 45 s, or never")]:
+            g1 = _two(rows, lambda c: _lead(c, 0, 90), a, b); g2 = _two(full, _this_flag, b, a)
+            T["steps"][f"{wa} against {wb}"] = {"tally 90 s": g1, "their flag holds, s fewer": g2}
+            pr(f"       {wa:22} against {wb:26}: tally 90 s on {_fmt(g1, True):24} {word(g1):9}; their flag holds {_fmt(g2):22} s fewer {word(g2)}")
+    for stand, words in (("own", "We hold the stand"), ("enemy", "They hold the stand")):
+        for label, rows in ((f"{words}: every case", [c for c in main if c["stand"] == stand]), (f"{words}: where their flag got in", [c for c in main if c["stand"] == stand and c["their_in"] is not None])):
+            pr(f"\n   {label} ({len(rows)})")
+            table(rows, res["ladder"].setdefault(label, {}))
+    # B2. our runner already out: the decision is ours from our cap, so its clock is our cap
+    pr(f"\n   B2. Our runner already out when theirs set off ({len(cap_)}): from our cap, with their flag still on its way, how soon our next runner set off. Counted from our cap (the windows of the plays).")
+    pr(f"     {'our next runner':27} {'cases':>5}  {'their flag in':>13}  {'tally +60':>9} {'+90':>6} {'+180':>6}")
+    res["from our cap"] = {}
+    for i, name in enumerate(("before our cap", "within 15 s of our cap", "15 to 30 s after", "30 to 45 s after", "45 to 90 s after", "later than 90 s, or never")):
+        R = [c for c in cap_ if _rung(None if c["delay"] is None else c["delay"] - c["told"]) == i]
+        if not R: continue
+        t_ = {H: mean([c["after"][H] for c in R if c["after"].get(H) is not None]) for H in HORIZONS}
+        res["from our cap"][name] = {"cases": len(R), "their flag in": share([c["their_in"] is not None for c in R]), "tally": t_}
+        pr(f"     {name:27} {len(R):5}  {share([c['their_in'] is not None for c in R]):12.0f}%  {t_['60']:+9.2f} {t_['90']:+6.2f} {t_['180']:+6.2f}" + ("   (under the floor)" if len(R) < MIN_PLAYS else ""))
+
+    # C. the clocks against the caps
+    pr("\nC. The clocks against the caps. Where their flag got in and our next flag got in (the answers within 120 s):")
+    res["caps"] = {}
+    for stand, words in (("own", "we hold the stand"), ("enemy", "they hold the stand")):
+        R = [c for c in main if c["stand"] == stand and c["their_in"] is not None and c["our_in"] is not None and c["delay"] is not None and 0 <= c["delay"] <= 120]
+        sl = _slope(R, lambda c: c["delay"], lambda c: c["our_in"])
+        res["caps"][words] = {"cases": len(R), "our cap from their set-off, s per s of delay": sl}
+        pr(f"   {words} ({len(R)}): each second later our runner sets off, our flag goes in {sl[0]:.2f} s later ({sl[1]:.2f} to {sl[2]:.2f}); 1.00 is a set-off that reads right" if sl else f"   {words}: too few")
+        for i in range(1, 5):
+            Q = [c for c in R if c["rung"] == i]
+            if Q: pr(f"     {RUNGS[i]:22} {len(Q):4}: their flag in {med([c['their_in'] for c in Q]):3.0f} s after their set-off, ours {med([c['our_in'] for c in Q]):3.0f} s; ours after theirs by {med([c['our_in'] - c['their_in'] for c in Q]):+4.0f} s (middle); our run took {med([c['our_in'] - c['delay'] for c in Q]):3.0f} s")
+    E = [(c["their_in"] - c["told"], c["eta"]) for c in main if c["their_in"] is not None and c["eta"] and c["their"] == "single run" and c["stand"] == "own"]
+    if E:
+        err = [a - b for a, b in E]
+        pr(f"   How long their flag should take, as the engine foretells it at the decision second, against how long it took (single runs that got in, we hold the stand, {len(E)}): foretold {med([b for _, b in E]):.0f} s, took {med([a for a, _ in E]):.0f} s (middle);")
+        pr(f"   took less foretold: middle {med(err):+.0f} s; a quarter of them {float(np.percentile(err, 25)):+.0f} s or under, a quarter {float(np.percentile(err, 75)):+.0f} s or over; within 10 s in {share([abs(x) <= 10 for x in err]):.0f}%.")
+        res["caps"]["their flag: took less foretold, s"] = [float(np.percentile(err, q)) for q in (25, 50, 75)]; res["caps"]["foretold within 10 s"] = share([abs(x) <= 10 for x in err])
+
+    # D. the grid: the reads against the windows
+    pr("\nD. The grid: each read against each window. At a read their run is still under way and we had sent nobody by the read before; a runner sent by now, less none yet (+ = the runner is ahead).")
+    pr("   `could be in`: the share of the runners sent whose flag had time to reach the stand inside the window (the hall's full run from the stand). Where it is low the cell is arithmetic, not play.")
+    res["grid"] = {}
+    def grid(pop, key):
+        for stand, words in (("own", "We hold the stand"), ("enemy", "They hold the stand")):
+            for anchor in ("their set-off", "the read"):
+                pr(f"   {words}; windows counted from {anchor}:")
+                for n_, R in enumerate(LADDER_READS):
+                    prev = LADDER_READS[n_ - 1] if n_ else None
+                    rows = [dict(c, call=SENT if (c["delay"] is not None and c["delay"] <= R) else NONE) for c in pop if c["stand"] == stand and c["their_len"] > R and not (prev is not None and c["delay"] is not None and c["delay"] <= prev)]
+                    ns, nn = sum(c["call"] == SENT for c in rows), sum(c["call"] == NONE for c in rows)
+                    line = f"     read at {R} s ({ns} sent, {nn} not):"
+                    for H in (60, 90, 180):
+                        a, b = (0, H) if anchor == "their set-off" else (R, R + H)
+                        g = _two(rows, lambda c: _lead(c, a, b), (SENT,), (NONE,)); gs = _two([c for c in rows if c["left"] >= 180], _this_flag, (NONE,), (SENT,)) if anchor == "their set-off" and H == 180 else None
+                        can = share([c["delay"] + BACK_AND_RUN * c["run_s"] <= b for c in rows if c["call"] == SENT]) if ns else float("nan")
+                        res["grid"][f"{key}{words}; from {anchor}; read {R}; window {H}"] = {"sent": ns, "not": nn, "tally": g, "their flag holds, s fewer": gs, "could be in %": can}
+                        line += f"  | {H:>3} s: tally {_fmt(g, True)} {word(g)}, could be in {can:.0f}%" + (f", their flag holds {_fmt(gs)} s fewer" if gs else "")
+                    pr(line)
+    grid(main, "")
+    pr(f"\n   The same grid with the {len(cap_)} cases left in where our runner was already out (as the advice test has them: nearly all fall to \"no runner yet\"):")
+    grid(C, "with our runner already out; ")
+
+    # E. is the tally flag advantage? The tally at their set-off against who gets the next morale boost
+    pr("\nE. Is the tally flag advantage? The engine's flag lead at their runner's set-off (every case), against whose morale boost lands next, inside 300 s:")
+    res["tally"] = {}
+    L = [c for c in C if c["left"] >= 300]
+    for lo, hi, name in LEAD_BANDS:
+        R = [c for c in L if lo <= c["tr"]["lead"][0] < hi]
+        if not R: continue
+        fb = [min(c["tr"]["boosts"])[1] if c["tr"]["boosts"] else None for c in R]
+        row = res["tally"][name] = {"cases": len(R), "own next": share([x == "own" for x in fb]), "theirs next": share([x == "theirs" for x in fb]), "none": share([x is None for x in fb])}
+        pr(f"     {name:26} {len(R):5}: ours {row['own next']:3.0f}%, theirs {row['theirs next']:3.0f}%, none {row['none']:3.0f}%")
+    sl = _slope(L, lambda c: c["tr"]["lead"][0], lambda c: sum(1 if h == "own" else -1 for _, h in c["tr"]["boosts"]))
+    if sl: pr(f"     a flag of lead is worth {sl[0]:+.2f} boosts (ours less theirs) in the next 300 s ({sl[1]:+.2f} to {sl[2]:+.2f})" + ("   HOLDS" if sl[1] > 0 else "   AGAINST" if sl[2] < 0 else "   NOT CLEAR"))
+    res["tally"]["boosts per flag of lead"] = sl
+
+    # F. moments to look at
+    def show(c, why=""):
+        m = M[c["rid"]]; t = lambda s_: "none" if s_ is None else cl(c["off"] + s_)
+        ld = _lead(c, 0, 90)
+        pr(f"     {' v '.join(m['teams'])}, {m['map']}, {m['date']}, {int(m['length_s'] or 0) // 60} min: {c['said']}. Their runner sets off {cl(c['off'])}, ours {t(c['delay'])}; their flag in {t(c['their_in'])}, ours {t(c['our_in'])}; "
+           f"tally 90 s on {'not read' if ld is None else format(ld, '+.2f')}; their flag holds the stand {_this_flag(c)} of the next 180 s. {why}https://gvg.report/report/{c['rid']}#map")
+    pr("\nF. Moments to look at (go to the second their runner sets off)")
+    own = [c for c in main if c["stand"] == "own" and c["their_in"] is not None and c["left"] >= 180 and _lead(c, 0, 90) is not None and c["their"] == "single run" and c["told"] < 5]
+    pr("   The ladder as it should read. A runner within 15 s, both flags in:")
+    for c in sorted([c for c in own if c["rung"] == 1 and c["our_in"] is not None and c["our_in"] > c["their_in"] and _this_flag(c) <= 15 and c["their_in"] >= 40], key=lambda c: (abs(c["delay"] - 8), c["rid"]))[:2]: show(c)
+    pr("   ... and no runner for 90 s or at all, their flag in:")
+    for c in sorted([c for c in own if c["rung"] == 5 and _this_flag(c) >= 100], key=lambda c: (abs(c["their_in"] - 55), c["rid"]))[:2]: show(c)
+    pr("   To check the set-off itself. A runner read as setting off within 15 s whose flag took longest to get in (is his set-off read too early?):")
+    for c in sorted([c for c in own if c["rung"] == 1 and c["our_in"] is not None and c["their_in"] >= 40], key=lambda c: (-(c["our_in"] - c["delay"]), c["rid"]))[:3]: show(c, f"Our run took {c['our_in'] - c['delay']} s. ")
+    pr("   The two clocks furthest apart by the hall's rule (the run told long after its runner turned for home):")
+    for c in sorted(hall_, key=lambda c: (-c["told"], c["rid"]))[:3]: show(c, f"Told as a run {c['told']} s after he turned for home. ")
+    pr("   Our runner already out, read as \"no runner yet\" 15 s after theirs set off:")
+    for c in sorted([c for c in cap_ if c["their_len"] > 15 and (c["delay"] is None or c["delay"] > 15) and 20 <= c["told"] <= 40], key=lambda c: c["rid"])[:3]: show(c, f"Our flag before went in {c['told']} s after their runner set off. ")
+    if out_json: json.dump(res, open(out_json, "w"), ensure_ascii=False, indent=1, default=float)
+    return res
+
+
 if __name__ == "__main__":
     a = sys.argv[1:]
     if len(a) >= 2 and a[0] == "test": report(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 4 and a[0] == "case": case(a[1], a[2], a[3])
+    elif len(a) >= 2 and a[0] == "ladder": ladder(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     else: print(__doc__)

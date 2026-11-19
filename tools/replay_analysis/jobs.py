@@ -98,6 +98,8 @@ def _play(M, play, side, tm, t0, t1, who, scenario, job, tests, beside=None, rul
 
 
 FLAG_AFTER_S = (60, 90, 180)           # what followed a flag decision, read at three seconds so that the effect can be followed as it grows and fades (R-543; 90 and 180 s are R-294's; 120 s was read too and dropped, R-544: it sat between the two and changed no verdict)
+FLAG_TRACK_S = tuple(range(0, 241, 15))  # the seconds from their runner's set-off at which the flag lead and the holder of the stand are kept on a flag play (`track`)
+FLAG_TRACK_FOR = 300                   # ... and for how long after it every cap and morale boost is kept, by its second
 
 
 # ---- the flag: their run against ours (R-426)
@@ -358,7 +360,18 @@ def flag_plays(M, K, pinned_at):
             else:
                 w_ = M.hall.walk(M.P[a_][u_], M.spawn[B]) if M.spawn.get(B) else None; us_ = _usual_arrival(M, B)
                 eta = (w_ / RUN_SPEED + us_) if (w_ is not None and us_) else None
-        kw["clock"] = {"their_off": int(f.get("off", f["s0"])), "their_end": int(f["e"]), "their_eta_s": eta and round(eta), "our_off": nxt_ and int(nxt_.get("off", nxt_["s0"])), "our_s0": nxt_ and int(nxt_["s0"]), "our_double": bool(nxt_ and nxt_["double"])}
+        kw["clock"] = {"their_off": int(f.get("off", f["s0"])), "their_end": int(f["e"]), "their_eta_s": eta and round(eta), "our_off": nxt_ and int(nxt_.get("off", nxt_["s0"])), "our_s0": nxt_ and int(nxt_["s0"]), "our_double": bool(nxt_ and nxt_["double"]),
+                       "our_end": nxt_ and int(nxt_["e"]), "our_how": nxt_ and nxt_["how"]}
+        # ... and the raw record on one clock, their runner's set-off, for the check of the readings themselves (his word, 2026-11-19: do the run, stay and timing
+        # readings go with flag advantage; `cases.py ladder`): the flag lead (R-408) and the holder of the stand at fixed seconds from it, and the second of every cap
+        # and every morale boost in the FLAG_TRACK_FOR that follow, by side. The reads are counted from that second and the windows of `after` from w0, the second the
+        # run is told (the hall's rule, R-461, or our own cap when we ran first): `told_after` is the seconds between the two, and `run_told_after` the part of it that is the hall's rule. Nothing here is matched on or judged by
+        o_ = kw["clock"]["their_off"]; side_ = lambda h: "own" if h == A else "theirs"
+        kw["track"] = {"told_after": int(w0) - o_, "run_told_after": int(f["s0"]) - o_, "left_s": int(T) - o_, "at": list(FLAG_TRACK_S),
+                       "lead": [M.lead_value(A, o_ + h) if o_ + h <= T else None for h in FLAG_TRACK_S],
+                       "stand": [(lambda h_: "own" if h_ == A else "theirs" if h_ == B else "nobody")(M.st.stand_owner(o_ + h)[0]) if o_ + h <= T else None for h in FLAG_TRACK_S],
+                       "caps": [[int(u) - o_, side_(h)] for u, h in M.st.caps if o_ < u <= o_ + FLAG_TRACK_FOR],
+                       "boosts": [[int(u) - o_, side_(h)] for u, h in M._boosts() if o_ < u <= o_ + FLAG_TRACK_FOR]}
         # ... and what else a team can see at that second (R-539: a build is a fixed state, never a call, but it bears on which call is right): who their runner is and who
         # ours is, as properties (a backline monk away is not a warrior away); where each main team stands, as a step on its ladder; each whole team's snares and speed
         if getattr(M, "_team_props", None) is None: M._team_props = {k: M._props(list(M.st.players[k])) for k in M.st.teams}

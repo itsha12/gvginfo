@@ -1,0 +1,1862 @@
+{
+ "cases": 2934,
+ "skipped": {
+  "Shadow of Haste run (R-456)": 1491,
+  "the opening (R-541)": 868,
+  "our flag already in hand": 164,
+  "nobody holds the stand": 16,
+  "flag lead not read (no labelled hall)": 1
+ },
+ "clocks": {
+  "told_after": {
+   "under 5 s": 1742,
+   "5 to 9 s": 196,
+   "10 to 19 s": 360,
+   "20 to 29 s": 236,
+   "30 s or more": 400
+  },
+  "by the hall's rule": 399,
+  "from our own cap": 793,
+  "reads": {
+   "15": {
+    "no runner yet": 2342,
+    "read before the decision second": 757,
+    "of them our runner already out": 649
+   },
+   "30": {
+    "no runner yet": 1763,
+    "read before the decision second": 382,
+    "of them our runner already out": 374
+   },
+   "45": {
+    "no runner yet": 1182,
+    "read before the decision second": 169,
+    "of them our runner already out": 168
+   }
+  },
+  "90 s window differs by 0.25+": 28.85361552028219,
+  "90 s window differs by 0.5+": 21.41093474426808,
+  "stand differs": 126,
+  "their flag before in within 15 s": 173,
+  "read as theirs, ours 3 s on": 839,
+  "of them at our own cap": 713,
+  "read as ours, theirs 3 s on": 33,
+  "filed under they hold the stand": 1269
+ },
+ "ladder": {
+  "We hold the stand: every case": {
+   "ours set off before theirs": {
+    "cases": 84,
+    "their flag in": 84.52380952380952,
+    "their flag in, s": 50.0,
+    "our flag in": 79.76190476190477,
+    "our flag in, s": 67.0,
+    "tally": {
+     "60": -0.4521428571428571,
+     "90": -0.5206024096385542,
+     "180": -0.4380722891566265
+    },
+    "their flag holds, s": 44.78313253012048,
+    "stand_s": 88.92771084337349,
+    "their boost": 22.07792207792208,
+    "own boost": 19.480519480519483
+   },
+   "within 15 s of theirs": {
+    "cases": 218,
+    "their flag in": 88.9908256880734,
+    "their flag in, s": 57.0,
+    "our flag in": 78.89908256880734,
+    "our flag in, s": 70.5,
+    "tally": {
+     "60": -0.42862385321100915,
+     "90": -0.33224770642201834,
+     "180": -0.3733962264150944
+    },
+    "their flag holds, s": 41.43396226415094,
+    "stand_s": 105.94339622641509,
+    "their boost": 18.229166666666664,
+    "own boost": 27.604166666666668
+   },
+   "15 to 30 s after": {
+    "cases": 185,
+    "their flag in": 81.62162162162161,
+    "their flag in, s": 50.0,
+    "our flag in": 75.67567567567568,
+    "our flag in, s": 84.0,
+    "tally": {
+     "60": -0.5723243243243243,
+     "90": -0.5055737704918033,
+     "180": -0.4717816091954023
+    },
+    "their flag holds, s": 42.39204545454545,
+    "stand_s": 106.1534090909091,
+    "their boost": 17.763157894736842,
+    "own boost": 30.92105263157895
+   },
+   "30 to 45 s after": {
+    "cases": 170,
+    "their flag in": 88.8235294117647,
+    "their flag in, s": 47.0,
+    "our flag in": 83.52941176470588,
+    "our flag in, s": 89.5,
+    "tally": {
+     "60": -0.7373529411764705,
+     "90": -0.5740588235294117,
+     "180": -0.4617073170731707
+    },
+    "their flag holds, s": 48.68674698795181,
+    "stand_s": 101.77710843373494,
+    "their boost": 16.778523489932887,
+    "own boost": 38.25503355704698
+   },
+   "45 to 90 s after": {
+    "cases": 344,
+    "their flag in": 88.37209302325581,
+    "their flag in, s": 57.0,
+    "our flag in": 81.1046511627907,
+    "our flag in, s": 111.0,
+    "tally": {
+     "60": -0.8267441860465116,
+     "90": -0.9507288629737608,
+     "180": -0.544578313253012
+    },
+    "their flag holds, s": 56.17365269461078,
+    "stand_s": 104.09580838323353,
+    "their boost": 16.842105263157894,
+    "own boost": 40.70175438596491
+   },
+   "later than 90 s, or never": {
+    "cases": 588,
+    "their flag in": 50.0,
+    "their flag in, s": 56.5,
+    "our flag in": 38.095238095238095,
+    "our flag in, s": 188.0,
+    "tally": {
+     "60": -0.5325547445255475,
+     "90": -0.7263883495145632,
+     "180": -0.5504481132075472
+    },
+    "their flag holds, s": 54.08837209302325,
+    "stand_s": 116.9186046511628,
+    "their boost": 31.378299120234605,
+    "own boost": 63.63636363636363
+   },
+   "steps": {
+    "within 15 s of theirs against 15 to 30 s after": {
+     "tally 90 s": [
+      0.17332606406978496,
+      0.022937417857585046,
+      0.32371471028198484,
+      218,
+      183
+     ],
+     "their flag holds, s fewer": [
+      0.9580831903945111,
+      -6.050331668132467,
+      7.966498048921489,
+      176,
+      212
+     ]
+    },
+    "15 to 30 s after against 30 to 45 s after": {
+     "tally 90 s": [
+      0.06848505303760843,
+      -0.06774120011464818,
+      0.20471130618986505,
+      183,
+      170
+     ],
+     "their flag holds, s fewer": [
+      6.294701533406354,
+      -0.9279109506105438,
+      13.517314017423251,
+      166,
+      176
+     ]
+    },
+    "30 to 45 s after against 45 to 90 s after": {
+     "tally 90 s": [
+      0.37667003944434907,
+      0.2649048530161583,
+      0.48843522587253985,
+      170,
+      343
+     ],
+     "their flag holds, s fewer": [
+      7.486905706658973,
+      1.6046735511591868,
+      13.369137862158759,
+      334,
+      166
+     ]
+    },
+    "45 to 90 s after against later than 90 s, or never": {
+     "tally 90 s": [
+      -0.2243405134591976,
+      -0.319579065831418,
+      -0.1291019610869772,
+      343,
+      515
+     ],
+     "their flag holds, s fewer": [
+      -2.0852806015875274,
+      -8.158210593542254,
+      3.9876493903672,
+      430,
+      334
+     ]
+    },
+    "within 30 s against later than 45 s, or never": {
+     "tally 90 s": [
+      0.40472562765580233,
+      0.31342901961952174,
+      0.4960222356920829,
+      401,
+      858
+     ],
+     "their flag holds, s fewer": [
+      13.131443298969074,
+      8.515972547773899,
+      17.74691405016425,
+      764,
+      388
+     ]
+    }
+   }
+  },
+  "We hold the stand: where their flag got in": {
+   "ours set off before theirs": {
+    "cases": 71,
+    "their flag in": 100.0,
+    "their flag in, s": 50.0,
+    "our flag in": 81.69014084507043,
+    "our flag in, s": 67.0,
+    "tally": {
+     "60": -0.4319718309859154,
+     "90": -0.5867142857142859,
+     "180": -0.4724285714285714
+    },
+    "their flag holds, s": 53.1,
+    "stand_s": 88.67142857142858,
+    "their boost": 20.0,
+    "own boost": 13.846153846153847
+   },
+   "within 15 s of theirs": {
+    "cases": 194,
+    "their flag in": 100.0,
+    "their flag in, s": 57.0,
+    "our flag in": 82.4742268041237,
+    "our flag in, s": 70.5,
+    "tally": {
+     "60": -0.39618556701030927,
+     "90": -0.3272680412371134,
+     "180": -0.3900531914893618
+    },
+    "their flag holds, s": 46.723404255319146,
+    "stand_s": 106.15957446808511,
+    "their boost": 18.71345029239766,
+    "own boost": 25.146198830409354
+   },
+   "15 to 30 s after": {
+    "cases": 151,
+    "their flag in": 100.0,
+    "their flag in, s": 50.0,
+    "our flag in": 84.76821192052981,
+    "our flag in, s": 84.0,
+    "tally": {
+     "60": -0.603112582781457,
+     "90": -0.5233557046979866,
+     "180": -0.5041666666666667
+    },
+    "their flag holds, s": 51.4551724137931,
+    "stand_s": 102.39310344827587,
+    "their boost": 18.548387096774192,
+    "own boost": 24.193548387096776
+   },
+   "30 to 45 s after": {
+    "cases": 151,
+    "their flag in": 100.0,
+    "their flag in, s": 47.0,
+    "our flag in": 85.43046357615894,
+    "our flag in, s": 88.0,
+    "tally": {
+     "60": -0.6893377483443709,
+     "90": -0.5313907284768212,
+     "180": -0.4412925170068028
+    },
+    "their flag holds, s": 54.241610738255034,
+    "stand_s": 103.35570469798658,
+    "their boost": 15.909090909090908,
+    "own boost": 38.63636363636363
+   },
+   "45 to 90 s after": {
+    "cases": 304,
+    "their flag in": 100.0,
+    "their flag in, s": 57.0,
+    "our flag in": 83.22368421052632,
+    "our flag in, s": 110.0,
+    "tally": {
+     "60": -0.8395723684210527,
+     "90": -0.9854785478547854,
+     "180": -0.5863013698630136
+    },
+    "their flag holds, s": 63.816326530612244,
+    "stand_s": 103.16326530612245,
+    "their boost": 18.326693227091635,
+    "own boost": 37.05179282868526
+   },
+   "later than 90 s, or never": {
+    "cases": 294,
+    "their flag in": 100.0,
+    "their flag in, s": 56.5,
+    "our flag in": 47.61904761904761,
+    "our flag in, s": 175.0,
+    "tally": {
+     "60": -0.846950354609929,
+     "90": -1.1922348484848484,
+     "180": -0.7859360730593608
+    },
+    "their flag holds, s": 105.23981900452489,
+    "stand_s": 72.31221719457014,
+    "their boost": 53.10734463276836,
+    "own boost": 36.72316384180791
+   },
+   "steps": {
+    "within 15 s of theirs against 15 to 30 s after": {
+     "tally 90 s": [
+      0.19608766346087325,
+      0.03729510916239895,
+      0.3548802177593475,
+      194,
+      149
+     ],
+     "their flag holds, s fewer": [
+      4.731768158473955,
+      -2.735980392264513,
+      12.199516709212421,
+      145,
+      188
+     ]
+    },
+    "15 to 30 s after against 30 to 45 s after": {
+     "tally 90 s": [
+      0.008035023778834582,
+      -0.13746601540976833,
+      0.1535360629674375,
+      149,
+      151
+     ],
+     "their flag holds, s fewer": [
+      2.7864383244619333,
+      -4.621496818773207,
+      10.194373467697073,
+      149,
+      145
+     ]
+    },
+    "30 to 45 s after against 45 to 90 s after": {
+     "tally 90 s": [
+      0.45408781937796416,
+      0.3369352607009952,
+      0.5712403780549331,
+      151,
+      303
+     ],
+     "their flag holds, s fewer": [
+      9.57471579235721,
+      3.840732900354361,
+      15.30869868436006,
+      294,
+      149
+     ]
+    },
+    "45 to 90 s after against later than 90 s, or never": {
+     "tally 90 s": [
+      0.206756300630063,
+      0.10818375895829477,
+      0.3053288423018312,
+      303,
+      264
+     ],
+     "their flag holds, s fewer": [
+      41.423492473912646,
+      36.1883878371896,
+      46.65859711063569,
+      221,
+      294
+     ]
+    },
+    "within 30 s against later than 45 s, or never": {
+     "tally 90 s": [
+      0.669297052154195,
+      0.5742126440154124,
+      0.7643814602929776,
+      343,
+      567
+     ],
+     "their flag holds, s fewer": [
+      32.80844922592495,
+      28.02516923428422,
+      37.591729217565685,
+      515,
+      333
+     ]
+    }
+   }
+  },
+  "They hold the stand: every case": {
+   "ours set off before theirs": {
+    "cases": 46,
+    "their flag in": 73.91304347826086,
+    "their flag in, s": 66.0,
+    "our flag in": 93.47826086956522,
+    "our flag in, s": 59.0,
+    "tally": {
+     "60": 0.3780434782608696,
+     "90": 0.3589130434782609,
+     "180": 0.46577777777777774
+    },
+    "their flag holds, s": 54.13333333333333,
+    "stand_s": 40.422222222222224,
+    "their boost": 50.0,
+    "own boost": 7.142857142857142
+   },
+   "within 15 s of theirs": {
+    "cases": 166,
+    "their flag in": 66.86746987951807,
+    "their flag in, s": 74.0,
+    "our flag in": 87.34939759036145,
+    "our flag in, s": 63.0,
+    "tally": {
+     "60": 0.32024096385542167,
+     "90": 0.34162650602409644,
+     "180": 0.44875776397515527
+    },
+    "their flag holds, s": 38.70552147239264,
+    "stand_s": 67.31901840490798,
+    "their boost": 25.694444444444443,
+    "own boost": 13.194444444444445
+   },
+   "15 to 30 s after": {
+    "cases": 96,
+    "their flag in": 62.5,
+    "their flag in, s": 76.5,
+    "our flag in": 89.58333333333334,
+    "our flag in, s": 76.5,
+    "tally": {
+     "60": 0.2791666666666666,
+     "90": 0.451875,
+     "180": 0.436195652173913
+    },
+    "their flag holds, s": 34.30107526881721,
+    "stand_s": 63.17204301075269,
+    "their boost": 28.915662650602407,
+    "own boost": 18.072289156626507
+   },
+   "30 to 45 s after": {
+    "cases": 55,
+    "their flag in": 49.09090909090909,
+    "their flag in, s": 76.0,
+    "our flag in": 78.18181818181819,
+    "our flag in, s": 85.0,
+    "tally": {
+     "60": -0.1654545454545454,
+     "90": 0.004629629629629642,
+     "180": 0.27259259259259255
+    },
+    "their flag holds, s": 32.98148148148148,
+    "stand_s": 50.24074074074074,
+    "their boost": 40.42553191489361,
+    "own boost": 27.659574468085108
+   },
+   "45 to 90 s after": {
+    "cases": 89,
+    "their flag in": 55.0561797752809,
+    "their flag in, s": 71.0,
+    "our flag in": 77.52808988764045,
+    "our flag in, s": 116.0,
+    "tally": {
+     "60": -0.21224719101123596,
+     "90": -0.16136363636363635,
+     "180": 0.3138372093023256
+    },
+    "their flag holds, s": 32.43023255813954,
+    "stand_s": 62.02325581395349,
+    "their boost": 44.15584415584416,
+    "own boost": 10.38961038961039
+   },
+   "later than 90 s, or never": {
+    "cases": 100,
+    "their flag in": 24.0,
+    "their flag in, s": 61.5,
+    "our flag in": 44.0,
+    "our flag in, s": 195.5,
+    "tally": {
+     "60": -0.05440860215053765,
+     "90": -0.1571111111111111,
+     "180": 0.09589743589743589
+    },
+    "their flag holds, s": 26.936708860759495,
+    "stand_s": 57.265822784810126,
+    "their boost": 61.76470588235294,
+    "own boost": 27.941176470588236
+   },
+   "steps": {
+    "within 15 s of theirs against 15 to 30 s after": {
+     "tally 90 s": [
+      -0.11024849397590358,
+      -0.2818108744564099,
+      0.06131388650460273,
+      166,
+      96
+     ],
+     "their flag holds, s fewer": [
+      -4.404446203575432,
+      -12.406043977591603,
+      3.5971515704407384,
+      93,
+      163
+     ]
+    },
+    "15 to 30 s after against 30 to 45 s after": {
+     "tally 90 s": [
+      0.4472453703703704,
+      0.2380886209397436,
+      0.6564021198009972,
+      96,
+      54
+     ],
+     "their flag holds, s fewer": [
+      -1.3195937873357266,
+      -11.98791857828264,
+      9.348731003611187,
+      54,
+      93
+     ]
+    },
+    "30 to 45 s after against 45 to 90 s after": {
+     "tally 90 s": [
+      0.165993265993266,
+      -0.033332080691504534,
+      0.36531861267803656,
+      54,
+      88
+     ],
+     "their flag holds, s fewer": [
+      -0.5512489233419444,
+      -11.605326363417602,
+      10.502828516733713,
+      86,
+      54
+     ]
+    },
+    "45 to 90 s after against later than 90 s, or never": {
+     "tally 90 s": [
+      -0.004252525252525258,
+      -0.18690221460933334,
+      0.17839716410428283,
+      88,
+      90
+     ],
+     "their flag holds, s fewer": [
+      -5.493523697380041,
+      -16.522121416339186,
+      5.535074021579103,
+      79,
+      86
+     ]
+    },
+    "within 30 s against later than 45 s, or never": {
+     "tally 90 s": [
+      0.5412363839094263,
+      0.42226536340340337,
+      0.6602074044154492,
+      262,
+      178
+     ],
+     "their flag holds, s fewer": [
+      -7.305468749999999,
+      -14.198298560925632,
+      -0.4126389390743652,
+      165,
+      256
+     ]
+    }
+   }
+  },
+  "They hold the stand: where their flag got in": {
+   "ours set off before theirs": {
+    "cases": 34,
+    "their flag in": 100.0,
+    "their flag in, s": 66.0,
+    "our flag in": 97.05882352941177,
+    "our flag in, s": 59.0,
+    "tally": {
+     "60": 0.28088235294117647,
+     "90": 0.20735294117647055,
+     "180": 0.4024242424242424
+    },
+    "their flag holds, s": 73.81818181818181,
+    "stand_s": 33.57575757575758,
+    "their boost": 48.38709677419355,
+    "own boost": 3.225806451612903
+   },
+   "within 15 s of theirs": {
+    "cases": 111,
+    "their flag in": 100.0,
+    "their flag in, s": 74.0,
+    "our flag in": 93.69369369369369,
+    "our flag in, s": 66.0,
+    "tally": {
+     "60": 0.22036036036036033,
+     "90": 0.1754954954954955,
+     "180": 0.3879816513761467
+    },
+    "their flag holds, s": 57.35454545454545,
+    "stand_s": 66.04545454545455,
+    "their boost": 20.588235294117645,
+    "own boost": 11.76470588235294
+   },
+   "15 to 30 s after": {
+    "cases": 60,
+    "their flag in": 100.0,
+    "their flag in, s": 76.5,
+    "our flag in": 98.33333333333333,
+    "our flag in, s": 72.0,
+    "tally": {
+     "60": 0.37583333333333335,
+     "90": 0.4678333333333333,
+     "180": 0.5072881355932204
+    },
+    "their flag holds, s": 54.067796610169495,
+    "stand_s": 64.83050847457628,
+    "their boost": 21.818181818181817,
+    "own boost": 16.363636363636363
+   },
+   "30 to 45 s after": {
+    "cases": 27,
+    "their flag in": 100.0,
+    "their flag in, s": 76.0,
+    "our flag in": 96.29629629629629,
+    "our flag in, s": 84.0,
+    "tally": {
+     "60": -0.13370370370370369,
+     "90": -0.1251851851851852,
+     "180": 0.22518518518518518
+    },
+    "their flag holds, s": 65.96296296296296,
+    "stand_s": 58.925925925925924,
+    "their boost": 16.666666666666664,
+    "own boost": 33.33333333333333
+   },
+   "45 to 90 s after": {
+    "cases": 49,
+    "their flag in": 100.0,
+    "their flag in, s": 71.0,
+    "our flag in": 89.79591836734694,
+    "our flag in, s": 115.0,
+    "tally": {
+     "60": 0.014489795918367358,
+     "90": -0.15714285714285714,
+     "180": 0.2953061224489796
+    },
+    "their flag holds, s": 56.91836734693877,
+    "stand_s": 79.3061224489796,
+    "their boost": 31.11111111111111,
+    "own boost": 8.88888888888889
+   },
+   "later than 90 s, or never": {
+    "cases": 24,
+    "their flag in": 100.0,
+    "their flag in, s": 61.5,
+    "our flag in": 70.83333333333334,
+    "our flag in, s": 169.0,
+    "tally": {
+     "60": -0.0016666666666666496,
+     "90": -0.48260869565217396,
+     "180": 0.03318181818181817
+    },
+    "their flag holds, s": 96.72727272727273,
+    "stand_s": 66.68181818181819,
+    "their boost": 45.0,
+    "own boost": 15.0
+   },
+   "steps": {
+    "within 15 s of theirs against 15 to 30 s after": {
+     "tally 90 s": [
+      -0.29233783783783784,
+      -0.5109666694253865,
+      -0.07370900625028923,
+      111,
+      60
+     ],
+     "their flag holds, s fewer": [
+      -3.286748844375957,
+      -12.738897254622906,
+      6.165399565870992,
+      59,
+      110
+     ]
+    },
+    "15 to 30 s after against 30 to 45 s after": {
+     "tally 90 s": null,
+     "their flag holds, s fewer": null
+    },
+    "30 to 45 s after against 45 to 90 s after": {
+     "tally 90 s": null,
+     "their flag holds, s fewer": null
+    },
+    "45 to 90 s after against later than 90 s, or never": {
+     "tally 90 s": null,
+     "their flag holds, s fewer": null
+    },
+    "within 30 s against later than 45 s, or never": {
+     "tally 90 s": [
+      0.5391812865497075,
+      0.37414646028321447,
+      0.7042161128162006,
+      171,
+      72
+     ],
+     "their flag holds, s fewer": [
+      13.046420535044582,
+      3.944665931878431,
+      22.148175138210732,
+      71,
+      169
+     ]
+    }
+   }
+  }
+ },
+ "from our cap": {
+  "before our cap": {
+   "cases": 32,
+   "their flag in": 96.875,
+   "tally": {
+    "60": 0.5440625,
+    "90": 0.639375,
+    "180": 0.5025806451612903
+   }
+  },
+  "within 15 s of our cap": {
+   "cases": 176,
+   "their flag in": 94.31818181818183,
+   "tally": {
+    "60": 0.2848295454545454,
+    "90": 0.537159090909091,
+    "180": 0.40203488372093027
+   }
+  },
+  "15 to 30 s after": {
+   "cases": 106,
+   "their flag in": 94.33962264150944,
+   "tally": {
+    "60": 0.34235849056603773,
+    "90": 0.5116037735849057,
+    "180": 0.3129411764705881
+   }
+  },
+  "30 to 45 s after": {
+   "cases": 105,
+   "their flag in": 92.38095238095238,
+   "tally": {
+    "60": 0.2764761904761905,
+    "90": 0.3758095238095238,
+    "180": 0.4294
+   }
+  },
+  "45 to 90 s after": {
+   "cases": 183,
+   "their flag in": 90.7103825136612,
+   "tally": {
+    "60": 0.0533879781420765,
+    "90": 0.11355191256830602,
+    "180": 0.4690285714285715
+   }
+  },
+  "later than 90 s, or never": {
+   "cases": 191,
+   "their flag in": 71.20418848167539,
+   "tally": {
+    "60": 0.2624867724867725,
+    "90": 0.14494623655913977,
+    "180": 0.2564331210191083
+   }
+  }
+ },
+ "caps": {
+  "we hold the stand": {
+   "cases": 745,
+   "our cap from their set-off, s per s of delay": [
+    0.8031885552176944,
+    0.7486417615988143,
+    0.8529851876027571,
+    745
+   ]
+  },
+  "they hold the stand": {
+   "cases": 243,
+   "our cap from their set-off, s per s of delay": [
+    0.9184661370071632,
+    0.8070867438219528,
+    1.028595068781145,
+    243
+   ]
+  },
+  "their flag: took less foretold, s": [
+   -4.0,
+   5.0,
+   18.0
+  ],
+  "foretold within 10 s": 46.494464944649444
+ },
+ "grid": {
+  "We hold the stand; from their set-off; read 15; window 60": {
+   "sent": 294,
+   "not": 1242,
+   "tally": [
+    0.23879787647068756,
+    0.14634958141623045,
+    0.3312461715251447,
+    294,
+    1209
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 69.04761904761905
+  },
+  "We hold the stand; from their set-off; read 15; window 90": {
+   "sent": 294,
+   "not": 1242,
+   "tally": [
+    0.36995796964635824,
+    0.2641973596313334,
+    0.4757185796613831,
+    293,
+    1175
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 100.0
+  },
+  "We hold the stand; from their set-off; read 15; window 180": {
+   "sent": 294,
+   "not": 1242,
+   "tally": [
+    0.14426025194317876,
+    0.04348307874297398,
+    0.24503742514338356,
+    287,
+    1066
+   ],
+   "their flag holds, s fewer": [
+    10.548508982306892,
+    6.028110095486987,
+    15.068907869126797,
+    1078,
+    287
+   ],
+   "could be in %": 100.0
+  },
+  "We hold the stand; from their set-off; read 30; window 60": {
+   "sent": 144,
+   "not": 871,
+   "tally": [
+    0.0791656885758999,
+    -0.05349616191467718,
+    0.21182753906647697,
+    144,
+    852
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 9.027777777777777
+  },
+  "We hold the stand; from their set-off; read 30; window 90": {
+   "sent": 144,
+   "not": 871,
+   "tally": [
+    0.2896040537555852,
+    0.16063491100643607,
+    0.4185731965047343,
+    142,
+    829
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 99.30555555555556
+  },
+  "We hold the stand; from their set-off; read 30; window 180": {
+   "sent": 144,
+   "not": 871,
+   "tally": [
+    0.08797312856041567,
+    -0.06676484001190769,
+    0.24271109713273903,
+    133,
+    751
+   ],
+   "their flag holds, s fewer": [
+    13.684380032206114,
+    7.250895544719175,
+    20.117864519693054,
+    759,
+    135
+   ],
+   "could be in %": 100.0
+  },
+  "We hold the stand; from their set-off; read 45; window 60": {
+   "sent": 90,
+   "not": 519,
+   "tally": [
+    -0.0009869791666665684,
+    -0.1587579907297822,
+    0.15678403239644906,
+    90,
+    512
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 0.0
+  },
+  "We hold the stand; from their set-off; read 45; window 90": {
+   "sent": 90,
+   "not": 519,
+   "tally": [
+    0.4138815701929474,
+    0.2758897411910158,
+    0.551873399194879,
+    90,
+    501
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 53.333333333333336
+  },
+  "We hold the stand; from their set-off; read 45; window 180": {
+   "sent": 90,
+   "not": 519,
+   "tally": [
+    0.12686462450592884,
+    -0.06633932616308491,
+    0.3200685751749426,
+    88,
+    460
+   ],
+   "their flag holds, s fewer": [
+    11.547171638899655,
+    4.827159494203522,
+    18.26718378359579,
+    464,
+    89
+   ],
+   "could be in %": 100.0
+  },
+  "We hold the stand; from the read; read 15; window 60": {
+   "sent": 294,
+   "not": 1242,
+   "tally": [
+    0.4571929478267337,
+    0.37275620290853817,
+    0.5416296927449292,
+    294,
+    1189
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 97.27891156462584
+  },
+  "We hold the stand; from the read; read 15; window 90": {
+   "sent": 294,
+   "not": 1242,
+   "tally": [
+    0.4018706654170572,
+    0.30524297904040715,
+    0.4984983517937072,
+    291,
+    1155
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 100.0
+  },
+  "We hold the stand; from the read; read 15; window 180": {
+   "sent": 294,
+   "not": 1242,
+   "tally": [
+    0.22902849217677002,
+    0.12318053551481507,
+    0.33487644883872497,
+    284,
+    1046
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 100.0
+  },
+  "We hold the stand; from the read; read 30; window 60": {
+   "sent": 144,
+   "not": 871,
+   "tally": [
+    0.4685324249477565,
+    0.3332201041853845,
+    0.6038447457101285,
+    142,
+    829
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 99.30555555555556
+  },
+  "We hold the stand; from the read; read 30; window 90": {
+   "sent": 144,
+   "not": 871,
+   "tally": [
+    0.5441398277356254,
+    0.41217736459393073,
+    0.6761022908773201,
+    141,
+    802
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 100.0
+  },
+  "We hold the stand; from the read; read 30; window 180": {
+   "sent": 144,
+   "not": 871,
+   "tally": [
+    0.20146763930503642,
+    0.058293114075054164,
+    0.34464216453501867,
+    131,
+    721
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 100.0
+  },
+  "We hold the stand; from the read; read 45; window 60": {
+   "sent": 90,
+   "not": 519,
+   "tally": [
+    0.35108412055780486,
+    0.1969363863502162,
+    0.5052318547653936,
+    90,
+    494
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 94.44444444444444
+  },
+  "We hold the stand; from the read; read 45; window 90": {
+   "sent": 90,
+   "not": 519,
+   "tally": [
+    0.26293443754313317,
+    0.09355036413689832,
+    0.432318510949368,
+    90,
+    483
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 100.0
+  },
+  "We hold the stand; from the read; read 45; window 180": {
+   "sent": 90,
+   "not": 519,
+   "tally": [
+    -0.060687848018342594,
+    -0.26048430689408214,
+    0.13910861085739695,
+    86,
+    426
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 100.0
+  },
+  "They hold the stand; from their set-off; read 15; window 60": {
+   "sent": 206,
+   "not": 332,
+   "tally": [
+    0.3596235630472333,
+    0.26018655750216435,
+    0.45906056859230226,
+    206,
+    326
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 65.53398058252428
+  },
+  "They hold the stand; from their set-off; read 15; window 90": {
+   "sent": 206,
+   "not": 332,
+   "tally": [
+    0.305328649822107,
+    0.1901445456773886,
+    0.4205127539668254,
+    206,
+    322
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 100.0
+  },
+  "They hold the stand; from their set-off; read 15; window 180": {
+   "sent": 206,
+   "not": 332,
+   "tally": [
+    0.1791305766250713,
+    0.05354126067052742,
+    0.3047198925796152,
+    201,
+    305
+   ],
+   "their flag holds, s fewer": [
+    -10.448060115457803,
+    -16.273741814020042,
+    -4.622378416895565,
+    307,
+    202
+   ],
+   "could be in %": 100.0
+  },
+  "They hold the stand; from their set-off; read 30; window 60": {
+   "sent": 85,
+   "not": 209,
+   "tally": [
+    0.4588834951456311,
+    0.31630601794353097,
+    0.6014609723477312,
+    85,
+    206
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 7.0588235294117645
+  },
+  "They hold the stand; from their set-off; read 30; window 90": {
+   "sent": 85,
+   "not": 209,
+   "tally": [
+    0.603156862745098,
+    0.4375804103050538,
+    0.7687333151851423,
+    85,
+    204
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 97.6470588235294
+  },
+  "They hold the stand; from their set-off; read 30; window 180": {
+   "sent": 85,
+   "not": 209,
+   "tally": [
+    0.3093922616774851,
+    0.13546823432204713,
+    0.4833162890329231,
+    81,
+    194
+   ],
+   "their flag holds, s fewer": [
+    -3.6098186366479013,
+    -11.720382993549974,
+    4.500745720254171,
+    195,
+    82
+   ],
+   "could be in %": 100.0
+  },
+  "They hold the stand; from their set-off; read 45; window 60": {
+   "sent": 44,
+   "not": 128,
+   "tally": [
+    -0.09257158196134566,
+    -0.2960467979139596,
+    0.11090363399126826,
+    44,
+    127
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 0.0
+  },
+  "They hold the stand; from their set-off; read 45; window 90": {
+   "sent": 44,
+   "not": 128,
+   "tally": [
+    0.1547140762463343,
+    -0.052511260223946615,
+    0.3619394127166152,
+    44,
+    124
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 56.81818181818182
+  },
+  "They hold the stand; from their set-off; read 45; window 180": {
+   "sent": 44,
+   "not": 128,
+   "tally": [
+    0.08040752351097175,
+    -0.17949291250620464,
+    0.34030795952814813,
+    44,
+    116
+   ],
+   "their flag holds, s fewer": [
+    -7.250777000776999,
+    -19.01516434103096,
+    4.513610339476964,
+    117,
+    44
+   ],
+   "could be in %": 100.0
+  },
+  "They hold the stand; from the read; read 15; window 60": {
+   "sent": 206,
+   "not": 332,
+   "tally": [
+    0.4377086187384597,
+    0.3271346485176508,
+    0.5482825889592686,
+    206,
+    326
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 96.11650485436894
+  },
+  "They hold the stand; from the read; read 15; window 90": {
+   "sent": 206,
+   "not": 332,
+   "tally": [
+    0.4031763543803663,
+    0.2800891400752479,
+    0.5262635686854847,
+    205,
+    321
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 100.0
+  },
+  "They hold the stand; from the read; read 15; window 180": {
+   "sent": 206,
+   "not": 332,
+   "tally": [
+    0.29335025380710666,
+    0.15774453074789055,
+    0.4289559768663228,
+    197,
+    300
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 100.0
+  },
+  "They hold the stand; from the read; read 30; window 60": {
+   "sent": 85,
+   "not": 209,
+   "tally": [
+    0.6799999999999999,
+    0.5049891440036198,
+    0.85501085599638,
+    85,
+    204
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 97.6470588235294
+  },
+  "They hold the stand; from the read; read 30; window 90": {
+   "sent": 85,
+   "not": 209,
+   "tally": [
+    0.3992057569296374,
+    0.21967607029484248,
+    0.5787354435644323,
+    84,
+    201
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 100.0
+  },
+  "They hold the stand; from the read; read 30; window 180": {
+   "sent": 85,
+   "not": 209,
+   "tally": [
+    0.3938684615899806,
+    0.19127903263889806,
+    0.5964578905410631,
+    79,
+    189
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 100.0
+  },
+  "They hold the stand; from the read; read 45; window 60": {
+   "sent": 44,
+   "not": 128,
+   "tally": [
+    0.5904765395894429,
+    0.339042044994898,
+    0.8419110341839878,
+    44,
+    124
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 100.0
+  },
+  "They hold the stand; from the read; read 45; window 90": {
+   "sent": 44,
+   "not": 128,
+   "tally": [
+    0.4213838170286374,
+    0.19390821686089696,
+    0.6488594171963779,
+    43,
+    121
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 100.0
+  },
+  "They hold the stand; from the read; read 45; window 180": {
+   "sent": 44,
+   "not": 128,
+   "tally": [
+    0.5400498338870431,
+    0.27764661429083964,
+    0.8024530534832466,
+    43,
+    112
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 100.0
+  },
+  "with our runner already out; We hold the stand; from their set-off; read 15; window 60": {
+   "sent": 295,
+   "not": 1317,
+   "tally": [
+    0.18324417867891662,
+    0.09120501324535532,
+    0.2752833441124779,
+    295,
+    1284
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 69.15254237288136
+  },
+  "with our runner already out; We hold the stand; from their set-off; read 15; window 90": {
+   "sent": 295,
+   "not": 1317,
+   "tally": [
+    0.3281363594276781,
+    0.2232065120195102,
+    0.433066206835846,
+    294,
+    1249
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 100.0
+  },
+  "with our runner already out; We hold the stand; from their set-off; read 15; window 180": {
+   "sent": 295,
+   "not": 1317,
+   "tally": [
+    0.09657541776605089,
+    -0.004013301491420873,
+    0.19716413702352265,
+    288,
+    1137
+   ],
+   "their flag holds, s fewer": [
+    10.333142950391647,
+    5.859342351658773,
+    14.80694354912452,
+    1149,
+    288
+   ],
+   "could be in %": 100.0
+  },
+  "with our runner already out; We hold the stand; from their set-off; read 30; window 60": {
+   "sent": 150,
+   "not": 939,
+   "tally": [
+    0.07490797101449276,
+    -0.05710427960629372,
+    0.20692022163527923,
+    150,
+    920
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 8.666666666666668
+  },
+  "with our runner already out; We hold the stand; from their set-off; read 30; window 90": {
+   "sent": 150,
+   "not": 939,
+   "tally": [
+    0.27240347490347494,
+    0.14148644859345605,
+    0.40332050121349383,
+    148,
+    896
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 98.66666666666667
+  },
+  "with our runner already out; We hold the stand; from their set-off; read 30; window 180": {
+   "sent": 150,
+   "not": 939,
+   "tally": [
+    0.07801641876682697,
+    -0.07529760281330014,
+    0.23133044034695407,
+    139,
+    815
+   ],
+   "their flag holds, s fewer": [
+    14.55950811337177,
+    8.311514816708105,
+    20.807501410035435,
+    823,
+    141
+   ],
+   "could be in %": 100.0
+  },
+  "with our runner already out; We hold the stand; from their set-off; read 45; window 60": {
+   "sent": 104,
+   "not": 568,
+   "tally": [
+    0.001194981489099134,
+    -0.1582384291620399,
+    0.16062839214023816,
+    104,
+    561
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 0.0
+  },
+  "with our runner already out; We hold the stand; from their set-off; read 45; window 90": {
+   "sent": 104,
+   "not": 568,
+   "tally": [
+    0.38468719349866876,
+    0.25165168571821717,
+    0.5177227012791203,
+    104,
+    549
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 53.84615384615385
+  },
+  "with our runner already out; We hold the stand; from their set-off; read 45; window 180": {
+   "sent": 104,
+   "not": 568,
+   "tally": [
+    0.12125435945129043,
+    -0.06131772509636374,
+    0.3038264439989446,
+    102,
+    506
+   ],
+   "their flag holds, s fewer": [
+    9.37449076718066,
+    2.943198644495756,
+    15.805782889865565,
+    510,
+    103
+   ],
+   "could be in %": 100.0
+  },
+  "with our runner already out; We hold the stand; from the read; read 15; window 60": {
+   "sent": 295,
+   "not": 1317,
+   "tally": [
+    0.40988359703154986,
+    0.32565935896771875,
+    0.494107835095381,
+    295,
+    1263
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 97.28813559322033
+  },
+  "with our runner already out; We hold the stand; from the read; read 15; window 90": {
+   "sent": 295,
+   "not": 1317,
+   "tally": [
+    0.35940616048240576,
+    0.2627867202615258,
+    0.45602560070328574,
+    292,
+    1229
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 100.0
+  },
+  "with our runner already out; We hold the stand; from the read; read 15; window 180": {
+   "sent": 295,
+   "not": 1317,
+   "tally": [
+    0.18813446092790323,
+    0.08276082761966562,
+    0.2935080942361408,
+    285,
+    1114
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 100.0
+  },
+  "with our runner already out; We hold the stand; from the read; read 30; window 60": {
+   "sent": 150,
+   "not": 939,
+   "tally": [
+    0.42722249034749027,
+    0.29316186798911126,
+    0.5612831127058693,
+    148,
+    896
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 98.66666666666667
+  },
+  "with our runner already out; We hold the stand; from the read; read 30; window 90": {
+   "sent": 150,
+   "not": 939,
+   "tally": [
+    0.5072692045748104,
+    0.37923853689896525,
+    0.6352998722506555,
+    147,
+    869
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 100.0
+  },
+  "with our runner already out; We hold the stand; from the read; read 30; window 180": {
+   "sent": 150,
+   "not": 939,
+   "tally": [
+    0.15986461550048958,
+    0.02199632088562789,
+    0.2977329101153513,
+    136,
+    781
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 100.0
+  },
+  "with our runner already out; We hold the stand; from the read; read 45; window 60": {
+   "sent": 104,
+   "not": 568,
+   "tally": [
+    0.3126138944081748,
+    0.1687625956000078,
+    0.4564651932163417,
+    104,
+    542
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 94.23076923076923
+  },
+  "with our runner already out; We hold the stand; from the read; read 45; window 90": {
+   "sent": 104,
+   "not": 568,
+   "tally": [
+    0.24301680428799072,
+    0.09105646768860667,
+    0.3949771408873748,
+    104,
+    531
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 100.0
+  },
+  "with our runner already out; We hold the stand; from the read; read 45; window 180": {
+   "sent": 104,
+   "not": 568,
+   "tally": [
+    -0.0741577825159915,
+    -0.25270777329304017,
+    0.10439220826105719,
+    98,
+    469
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 100.0
+  },
+  "with our runner already out; They hold the stand; from their set-off; read 15; window 60": {
+   "sent": 230,
+   "not": 1025,
+   "tally": [
+    0.13974852652259323,
+    0.05884667377008236,
+    0.2206503792751041,
+    230,
+    1018
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 61.73913043478261
+  },
+  "with our runner already out; They hold the stand; from their set-off; read 15; window 90": {
+   "sent": 230,
+   "not": 1025,
+   "tally": [
+    0.2802074337954419,
+    0.18408391979268535,
+    0.3763309477981984,
+    230,
+    1013
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 100.0
+  },
+  "with our runner already out; They hold the stand; from their set-off; read 15; window 180": {
+   "sent": 230,
+   "not": 1025,
+   "tally": [
+    0.257219341563786,
+    0.15224181204381163,
+    0.3621968710837604,
+    225,
+    972
+   ],
+   "their flag holds, s fewer": [
+    3.1629271613342382,
+    -1.4492242622784088,
+    7.775078584946885,
+    975,
+    226
+   ],
+   "could be in %": 100.0
+  },
+  "with our runner already out; They hold the stand; from their set-off; read 30; window 60": {
+   "sent": 144,
+   "not": 824,
+   "tally": [
+    0.1660630081300813,
+    0.06949727285338683,
+    0.2626287434067758,
+    144,
+    820
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 8.333333333333332
+  },
+  "with our runner already out; They hold the stand; from their set-off; read 30; window 90": {
+   "sent": 144,
+   "not": 824,
+   "tally": [
+    0.43727007683938535,
+    0.3256655369183473,
+    0.5488746167604234,
+    144,
+    817
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 96.52777777777779
+  },
+  "with our runner already out; They hold the stand; from their set-off; read 30; window 180": {
+   "sent": 144,
+   "not": 824,
+   "tally": [
+    0.17618411767401365,
+    0.03888178570458936,
+    0.31348644964343797,
+    139,
+    785
+   ],
+   "their flag holds, s fewer": [
+    11.801533853693954,
+    6.543200000505507,
+    17.0598677068824,
+    787,
+    140
+   ],
+   "could be in %": 100.0
+  },
+  "with our runner already out; They hold the stand; from their set-off; read 45; window 60": {
+   "sent": 119,
+   "not": 614,
+   "tally": [
+    -0.06672735760971053,
+    -0.2029152944307216,
+    0.06946057921130054,
+    119,
+    612
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 0.0
+  },
+  "with our runner already out; They hold the stand; from their set-off; read 45; window 90": {
+   "sent": 119,
+   "not": 614,
+   "tally": [
+    0.055907466434849826,
+    -0.07664269660389521,
+    0.18845762947359485,
+    119,
+    609
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 50.42016806722689
+  },
+  "with our runner already out; They hold the stand; from their set-off; read 45; window 180": {
+   "sent": 119,
+   "not": 614,
+   "tally": [
+    0.01206837606837606,
+    -0.133133366823121,
+    0.15727011895987308,
+    119,
+    585
+   ],
+   "their flag holds, s fewer": [
+    8.498618527479138,
+    2.701490328986779,
+    14.295746725971497,
+    587,
+    119
+   ],
+   "could be in %": 100.0
+  },
+  "with our runner already out; They hold the stand; from the read; read 15; window 60": {
+   "sent": 230,
+   "not": 1025,
+   "tally": [
+    0.17581378662338767,
+    0.08071587761823279,
+    0.27091169562854256,
+    230,
+    1018
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 96.08695652173913
+  },
+  "with our runner already out; They hold the stand; from the read; read 15; window 90": {
+   "sent": 230,
+   "not": 1025,
+   "tally": [
+    0.25245093808792307,
+    0.15029560831414207,
+    0.35460626786170407,
+    229,
+    1012
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 100.0
+  },
+  "with our runner already out; They hold the stand; from the read; read 15; window 180": {
+   "sent": 230,
+   "not": 1025,
+   "tally": [
+    0.19172967450007306,
+    0.0810400512761427,
+    0.30241929772400344,
+    221,
+    961
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 100.0
+  },
+  "with our runner already out; They hold the stand; from the read; read 30; window 60": {
+   "sent": 144,
+   "not": 824,
+   "tally": [
+    0.2917327961376309,
+    0.1583054230866911,
+    0.42516016918857075,
+    144,
+    817
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 96.52777777777779
+  },
+  "with our runner already out; They hold the stand; from the read; read 30; window 90": {
+   "sent": 144,
+   "not": 824,
+   "tally": [
+    0.16997614454511006,
+    0.042353521630021373,
+    0.29759876746019875,
+    143,
+    812
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 100.0
+  },
+  "with our runner already out; They hold the stand; from the read; read 30; window 180": {
+   "sent": 144,
+   "not": 824,
+   "tally": [
+    0.031385814482437005,
+    -0.11997885539304105,
+    0.18275048435791508,
+    137,
+    767
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 100.0
+  },
+  "with our runner already out; They hold the stand; from the read; read 45; window 60": {
+   "sent": 119,
+   "not": 614,
+   "tally": [
+    0.20568530860620107,
+    0.05765958134492474,
+    0.35371103586747743,
+    119,
+    609
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 97.47899159663865
+  },
+  "with our runner already out; They hold the stand; from the read; read 45; window 90": {
+   "sent": 119,
+   "not": 614,
+   "tally": [
+    0.15292302494509827,
+    0.0011468167364015458,
+    0.304699233153795,
+    118,
+    602
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 100.0
+  },
+  "with our runner already out; They hold the stand; from the read; read 45; window 180": {
+   "sent": 119,
+   "not": 614,
+   "tally": [
+    0.12261523334089706,
+    -0.038054185616650485,
+    0.28328465229844463,
+    117,
+    565
+   ],
+   "their flag holds, s fewer": null,
+   "could be in %": 100.0
+  }
+ },
+ "tally": {
+  "a flag or more behind": {
+   "cases": 120,
+   "own next": 9.166666666666666,
+   "theirs next": 44.166666666666664,
+   "none": 46.666666666666664
+  },
+  "about half a flag behind": {
+   "cases": 480,
+   "own next": 14.791666666666666,
+   "theirs next": 31.458333333333332,
+   "none": 53.75
+  },
+  "level": {
+   "cases": 817,
+   "own next": 25.82619339045288,
+   "theirs next": 23.133414932680537,
+   "none": 51.040391676866584
+  },
+  "about half a flag ahead": {
+   "cases": 541,
+   "own next": 41.58964879852125,
+   "theirs next": 17.375231053604438,
+   "none": 41.0351201478743
+  },
+  "a flag or more ahead": {
+   "cases": 382,
+   "own next": 46.596858638743456,
+   "theirs next": 14.921465968586386,
+   "none": 38.481675392670155
+  },
+  "boosts per flag of lead": [
+   0.41298719425346736,
+   0.34768471579136784,
+   0.47718248768968335,
+   2340
+  ]
+ }
+}
