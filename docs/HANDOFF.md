@@ -54,10 +54,9 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 
 ## Open for Denning
 0. Put to him 2026-11-19: the sentences for his twelve games, on Model > Game review > Flag advice (61 cards; his
-   marks in `data/model/flag_card_marks.json`: read them first). Asked: a runner who turns for home, comes back to
-   the fight and then goes (hold v RACK 10:52 to 11:06): is his set-off the first turn, or when he goes for good?
-   Told: the 9:19 row of that game now starts at 9:34 (its locator in the key moved). Known weak: a verdict's range
-   leaves out the levelling's own doubt. Parked: the 60 s window at the 30 s read; `LEVEL_MIN`.
+   marks in `flag_card_marks.json`: read them first). Asked: a runner who turns for home, comes back to the fight,
+   then goes (hold v RACK 10:52 to 11:06): is his set-off the first turn, or when he goes for good? Told: that
+   game's 9:19 row now starts at 9:34 (its locator in the key moved). Parked: the 60 s window at the 30 s read.
 1. Isle of Jade: is a team at the footmen on the portal side in the base at a base res (HC v hdm 1:40)?
 2. Tolkano: no build (his word). Match pages are tolkano.com/match/<id>, the id neither gvg.report's nor the start
    time: give him date, guilds, hall and length with every example so he can find it there.
