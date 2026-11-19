@@ -43,19 +43,20 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
     +5.9 (2.5 to 9.9). With the stand held, do not rush the answer; which spots, not yet. His given (R-542) holds.
 
 ## Next (in order)
-1. The flag family (R-540), at his word: his reading of the ladder and of the corrected advice (Open, 0); who to
-   send set against the same spot; the push on their flagger as a call when it clears the floor.
+1. The flag family in his four stages (2026-11-19): readings (done, the ladder), the general table (done, section
+   8), the other factors (first reading, section 9 of `cases.py test`), the sentence for one moment (first draft,
+   `cases.py cards <plays file> f1`: 60 decisions in the twelve graded games). He reads the sentences as a game
+   review and says where they are wrong; then flags are done for now and the next family takes the same stages.
+   Settle the technical choices yourself and bring him GvG questions only (his word).
 2. Held for a second game (R-495): a base res with the attackers at the footmen (HC v hdm 1:40, Jade); Men v hold
    6:48, a collapse told as a push on the flagger; who and how many push a flagger; numbers through Jade's portal.
-3. The other kinds after the flag family, as he says each is ready; rare plays topped up with picked rows; then
-   stage E. The clean-up (R-398; REDESIGN.md "Before the next training run", nine items, and `st.stand_owner` read
-   on a whole second by the other readings) comes after the games.
+3. Then stage E. The clean-up (R-398, nine items, and `st.stand_owner` on a whole second) comes after the games.
 
 ## Open for Denning
-0. Put to him 2026-11-19: what followed each answer (section 8) and the level check. Open from the ladder: (a) 163
-   cases filed "we hold the stand" where their flag before goes in within 15 s of their runner turning for home;
-   (b) the 60 s window is arithmetic for the 30 s read; (c) their flag's time foretold within 10 s in 44%.
-   `LEVEL_MIN` and `RIDGE` in `cases.py` are Claude's drafts. Cause is not shown: a team may see their run failing.
+0. Put to him 2026-11-19: the sentences for his twelve games (the file of cards). Known weak: a verdict's range
+   leaves out the levelling's own doubt (옷옷옷옷 v RACK 6:15, second look, reads too sure). Parked from the ladder:
+   163 cases "we hold the stand" where their flag before goes in within 15 s; the 60 s window for the 30 s read;
+   their flag's time foretold within 10 s in 44%. `LEVEL_MIN`, `RIDGE` in `cases.py` are Claude's drafts.
 1. Isle of Jade: is a team at the footmen on the portal side in the base at a base res (HC v hdm 1:40)?
 2. Tolkano: no build (his word). Match pages are tolkano.com/match/<id>, the id neither gvg.report's nor the start
    time: give him date, guilds, hall and length with every example so he can find it there.

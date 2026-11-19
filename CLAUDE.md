@@ -269,7 +269,12 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   where their flag got in and +7.0 where it did not, teams already at 76%). The nearest cases are set level with the
   case read (`Scenario.level`; the chance of winning is matched on), and each scenario prints `level_check`: the two
   answers in the 60 s before the decision (`before` on the flag plays). Not level there means the answer marks the
-  situation (SPEC 5, rule 4): say so and give no advice from it. The report also says what the
+  situation (SPEC 5, rule 4): say so and give no advice from it. The flag family goes through his four stages
+  (2026-11-19): the readings (the ladder), the general table (section 8), the other factors (section 9, `factors`:
+  what holding off is worth by what a team can see, where to look and never advice), and the sentence for one moment
+  (`cases.py cards <plays file> [f1 | <report id>]`: the spot, the answer, what followed, what similar spots got; a
+  verdict only where like cases stand round the case). Each later family takes the same stages. Settle the
+  technical choices yourself; bring him GvG questions only. The report also says what the
   advice was (section 5: the spots where it says hold off or send, with moments to look at; show him this whenever
   a test result is put to him, never the counts alone), what a team that holds off goes on to do (6), and the run in
   answer by who was sent and their snares (7: as it fell, where to look, never who to send). Every flag and boost play
