@@ -89,11 +89,11 @@
  },
  "K": 120,
  "k_error": {
-  "30": 207.81404031783907,
-  "45": 206.79350615556874,
-  "60": 206.15512285717787,
-  "90": 206.0969501824734,
-  "120": 206.08441321682406
+  "30": 218.87947388864777,
+  "45": 217.69073599358606,
+  "60": 216.7189633834669,
+  "90": 216.45931991125025,
+  "120": 216.37895109857507
  },
  "scenarios": {
   "Their single run; we hold the stand": {
@@ -157,44 +157,6 @@
    "best_not_clear": {
     "stay": 709,
     "single run": 177
-   }
-  },
-  "The opening (no flag capped yet): their single run; nobody holds the stand": {
-   "cases": 572,
-   "calls": {
-    "stay": 72,
-    "single run": 364,
-    "double run": 136
-   },
-   "verdicts": {
-    "wrong": 88,
-    "no clear difference": 477,
-    "right": 7
-   },
-   "clear_advice": {
-    "double run": 26,
-    "single run": 6
-   },
-   "best_not_clear": {
-    "double run": 267,
-    "single run": 273
-   }
-  },
-  "The opening (no flag capped yet): their double run; nobody holds the stand": {
-   "cases": 213,
-   "calls": {
-    "single run": 132,
-    "double run": 68,
-    "stay": 13
-   },
-   "verdicts": {
-    "no clear difference": 200,
-    "too few cases of this call": 13
-   },
-   "clear_advice": {},
-   "best_not_clear": {
-    "double run": 210,
-    "single run": 3
    }
   },
   "Their double run; they hold the stand": {
@@ -263,19 +225,6 @@
    "clear_advice": {},
    "best_not_clear": {}
   },
-  "The opening (no flag capped yet): their single run; we hold the stand": {
-   "cases": 13,
-   "calls": {
-    "stay": 10,
-    "double run": 1,
-    "single run": 2
-   },
-   "verdicts": {
-    "too few cases": 13
-   },
-   "clear_advice": {},
-   "best_not_clear": {}
-  },
   "Their single run; nobody holds the stand": {
    "cases": 11,
    "calls": {
@@ -285,17 +234,6 @@
    },
    "verdicts": {
     "too few cases": 11
-   },
-   "clear_advice": {},
-   "best_not_clear": {}
-  },
-  "The opening (no flag capped yet): their single run; they hold the stand": {
-   "cases": 6,
-   "calls": {
-    "single run": 6
-   },
-   "verdicts": {
-    "too few cases": 6
    },
    "clear_advice": {},
    "best_not_clear": {}
@@ -315,6 +253,7 @@
  },
  "skipped": {
   "Shadow of Haste run (R-456)": 1606,
+  "the opening: a different decision (R-541)": 804,
   "flag lead not read": 78,
   "a flag in hand and their flag never got in: nothing to answer": 43,
   "no winner recorded": 22
@@ -597,60 +536,59 @@
  "advice_test": {
   "every flag and boost scenario": {
    "tally": {
-    "cases": 5195,
-    "no clear advice": 3630,
-    "clear advice": 1367,
-    "too few cases": 198
+    "cases": 4391,
+    "no clear advice": 2873,
+    "clear advice": 1339,
+    "too few cases": 179
    },
-   "rows": 1367,
+   "rows": 1339,
    "v180": {
-    "effect": 3.1491262051268163,
+    "effect": 3.0849277080735527,
     "range": [
-     1.3819462201082597,
-     5.034671409914727
+     1.4573630008966405,
+     4.998771489432143
     ],
-    "matched_mean": 0.25360596240720484,
-    "unmatched_mean": -2.404525666431918,
+    "matched_mean": 0.16359953361450597,
+    "unmatched_mean": -2.486245822570468,
     "verdict": "better"
    },
    "v90": {
-    "effect": 2.0528633022679394,
+    "effect": 2.121029016905941,
     "range": [
-     1.0365219784596542,
-     3.1553625987967457
+     1.178425833260883,
+     3.2483890051168127
     ],
-    "matched_mean": -0.7435711957947726,
-    "unmatched_mean": -2.483825943907999,
+    "matched_mean": -0.7505040184671338,
+    "unmatched_mean": -2.4934722772516316,
     "verdict": "better"
    },
    "end": {
-    "effect": 1.5095820338728982,
+    "effect": 1.4605818429165645,
     "range": [
-     -2.550547214671116,
-     4.894586879465836
+     -2.1893776392929474,
+     5.35386031879451
     ],
-    "matched_mean": -0.9720553626795234,
-    "unmatched_mean": -2.462373734489153,
+    "matched_mean": -1.1408393143288813,
+    "unmatched_mean": -2.6869741035763717,
     "verdict": "no clear difference"
    },
-   "matched": 803,
-   "matches": 398,
+   "matched": 795,
+   "matches": 385,
    "advice": {
     "stay": 884,
-    "single run": 19,
+    "single run": 9,
     "run a flag": 444,
-    "send no flag": 2,
-    "double run": 18
+    "send no flag": 2
    },
    "calls": {
-    "stay": 480,
-    "single run": 427,
-    "double run": 14,
+    "stay": 475,
+    "single run": 408,
+    "double run": 10,
     "run a flag": 323,
     "send no flag": 123
    }
   },
-  "their run, our answer (not the boost, not the opening)": {
+  "their run, our answer": {
    "tally": {
     "cases": 2898,
     "no clear advice": 1989,
@@ -699,17 +637,6 @@
     "single run": 408,
     "double run": 10
    }
-  },
-  "the opening": {
-   "tally": {
-    "cases": 804,
-    "no clear advice": 757,
-    "clear advice": 28,
-    "too few cases": 19
-   },
-   "rows": 28,
-   "verdict": "too few to call",
-   "matched": 8
   },
   "their boost 30 s away, every case": {
    "tally": {
@@ -855,6 +782,405 @@
     "stay": 303,
     "single run": 234,
     "double run": 4
+   }
+  },
+  "variants": {
+   "every case: the first eight, equal weight": {
+    "tally": {
+     "cases": 2898,
+     "no clear advice": 2341,
+     "clear advice": 541,
+     "too few cases": 16
+    },
+    "rows": 541,
+    "v180": {
+     "effect": -0.11088375064644099,
+     "range": [
+      -2.1276209163144433,
+      2.0560829424397835
+     ],
+     "matched_mean": 0.7593760774895453,
+     "unmatched_mean": -0.14008415405187666,
+     "verdict": "no clear difference"
+    },
+    "v90": {
+     "effect": -0.5223621677498838,
+     "range": [
+      -1.9720649843047593,
+      0.988285714452606
+     ],
+     "matched_mean": 0.3845064389348593,
+     "unmatched_mean": -0.0978943734017373,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": 0.6209865187224269,
+     "range": [
+      -4.771595231091473,
+      6.286098711874397
+     ],
+     "matched_mean": -0.3945398882213356,
+     "unmatched_mean": -0.7494217831560774,
+     "verdict": "no clear difference"
+    },
+    "matched": 304,
+    "matches": 266,
+    "advice": {
+     "stay": 536,
+     "single run": 5
+    },
+    "calls": {
+     "stay": 303,
+     "single run": 234,
+     "double run": 4
+    }
+   },
+   "every case: all fifteen, equal weight": {
+    "tally": {
+     "cases": 2898,
+     "no clear advice": 1989,
+     "clear advice": 893,
+     "too few cases": 16
+    },
+    "rows": 893,
+    "v180": {
+     "effect": 1.030982368181382,
+     "range": [
+      -0.691445231533577,
+      2.7268060004765475
+     ],
+     "matched_mean": 1.2927959466978787,
+     "unmatched_mean": -0.5219146853541268,
+     "verdict": "no clear difference"
+    },
+    "v90": {
+     "effect": -0.0138041129547215,
+     "range": [
+      -0.9391498239023577,
+      0.9620589045864931
+     ],
+     "matched_mean": 0.11944231879609132,
+     "unmatched_mean": -0.7060042914395377,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": 1.425913158646407,
+     "range": [
+      -2.642934828434978,
+      5.403505380843306
+     ],
+     "matched_mean": 0.6827469592946288,
+     "unmatched_mean": -1.1990088247626995,
+     "verdict": "no clear difference"
+    },
+    "matched": 470,
+    "matches": 326,
+    "advice": {
+     "stay": 884,
+     "single run": 9
+    },
+    "calls": {
+     "stay": 475,
+     "single run": 408,
+     "double run": 10
+    }
+   },
+   "every case: all fifteen, measured weights": {
+    "tally": {
+     "cases": 2898,
+     "no clear advice": 2086,
+     "clear advice": 796,
+     "too few cases": 16
+    },
+    "rows": 796,
+    "v180": {
+     "effect": 0.8277314729752056,
+     "range": [
+      -0.6577310109986044,
+      2.4901883381812997
+     ],
+     "matched_mean": 1.9364588092788382,
+     "unmatched_mean": 0.44700534664374125,
+     "verdict": "no clear difference"
+    },
+    "v90": {
+     "effect": 0.21813914284194105,
+     "range": [
+      -0.8581924497998773,
+      1.4080665104516248
+     ],
+     "matched_mean": 0.4698403585110071,
+     "unmatched_mean": -0.5204664782356135,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": 0.6084262350251464,
+     "range": [
+      -4.189172996215857,
+      4.919253154242947
+     ],
+     "matched_mean": 1.355801648283517,
+     "unmatched_mean": -0.4354649745236097,
+     "verdict": "no clear difference"
+    },
+    "matched": 453,
+    "matches": 327,
+    "advice": {
+     "stay": 786,
+     "single run": 10
+    },
+    "calls": {
+     "stay": 457,
+     "single run": 333,
+     "double run": 6
+    }
+   },
+   "every case: six chosen, equal weight": {
+    "tally": {
+     "cases": 2898,
+     "no clear advice": 2270,
+     "clear advice": 612,
+     "too few cases": 16
+    },
+    "rows": 612,
+    "v180": {
+     "effect": 0.671361734555513,
+     "range": [
+      -1.336340375287252,
+      2.5847594739192097
+     ],
+     "matched_mean": 0.307160070601303,
+     "unmatched_mean": -0.4278033405988998,
+     "verdict": "no clear difference"
+    },
+    "v90": {
+     "effect": 0.9218457753655455,
+     "range": [
+      -0.3488684801646756,
+      2.2900669730404646
+     ],
+     "matched_mean": 0.5018021961241427,
+     "unmatched_mean": -0.33234377615034083,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": 2.82407169676477,
+     "range": [
+      -2.551410938648965,
+      8.240115916048026
+     ],
+     "matched_mean": 1.1735128730637663,
+     "unmatched_mean": -1.7463526186706746,
+     "verdict": "no clear difference"
+    },
+    "matched": 342,
+    "matches": 291,
+    "advice": {
+     "stay": 583,
+     "single run": 29
+    },
+    "calls": {
+     "stay": 345,
+     "single run": 262,
+     "double run": 5
+    }
+   },
+   "only where their flag got in: the first eight, equal weight": {
+    "tally": {
+     "cases": 2146,
+     "no clear advice": 1827,
+     "clear advice": 209,
+     "too few cases": 110
+    },
+    "rows": 209,
+    "v180": {
+     "effect": -1.2910435507392075,
+     "range": [
+      -5.165424867905797,
+      2.240817870976574
+     ],
+     "matched_mean": -1.4934347168906454,
+     "unmatched_mean": -0.09810699391199325,
+     "verdict": "no clear difference"
+    },
+    "v90": {
+     "effect": -0.48406129176608115,
+     "range": [
+      -2.70299386823735,
+      1.5413094726460022
+     ],
+     "matched_mean": -1.6369302715024416,
+     "unmatched_mean": -0.07180516225231737,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": -3.8021702140659546,
+     "range": [
+      -14.060110069648951,
+      6.149335754119607
+     ],
+     "matched_mean": 1.261266781007207,
+     "unmatched_mean": 5.418751649969097,
+     "verdict": "no clear difference"
+    },
+    "matched": 109,
+    "matches": 127,
+    "advice": {
+     "single run": 173,
+     "stay": 36
+    },
+    "calls": {
+     "stay": 90,
+     "single run": 119
+    }
+   },
+   "only where their flag got in: all fifteen, equal weight": {
+    "tally": {
+     "cases": 2146,
+     "no clear advice": 1933,
+     "clear advice": 103,
+     "too few cases": 110
+    },
+    "rows": 103,
+    "v180": {
+     "effect": 2.2519383207141996,
+     "range": [
+      -3.1005962598072245,
+      7.9821126994182245
+     ],
+     "matched_mean": -4.764246156723589,
+     "unmatched_mean": -7.823443041055119,
+     "verdict": "no clear difference"
+    },
+    "v90": {
+     "effect": 2.426485953752511,
+     "range": [
+      -0.6378465155145256,
+      6.005138333558367
+     ],
+     "matched_mean": -3.1044610670282413,
+     "unmatched_mean": -5.609665066131659,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": 7.047970078966728,
+     "range": [
+      -8.36665141105601,
+      23.192744938213572
+     ],
+     "matched_mean": -4.735681547606736,
+     "unmatched_mean": -7.977364824183556,
+     "verdict": "no clear difference"
+    },
+    "matched": 52,
+    "matches": 82,
+    "advice": {
+     "single run": 94,
+     "stay": 9
+    },
+    "calls": {
+     "stay": 56,
+     "single run": 47
+    }
+   },
+   "only where their flag got in: all fifteen, measured weights": {
+    "tally": {
+     "cases": 2146,
+     "no clear advice": 1931,
+     "clear advice": 105,
+     "too few cases": 110
+    },
+    "rows": 105,
+    "v180": {
+     "effect": 2.826745678395808,
+     "range": [
+      -1.60052161003051,
+      8.754701986592247
+     ],
+     "matched_mean": -3.080723880451574,
+     "unmatched_mean": -7.501573282512876,
+     "verdict": "no clear difference"
+    },
+    "v90": {
+     "effect": 3.2666151584475434,
+     "range": [
+      -0.9778576622167228,
+      7.651033430954941
+     ],
+     "matched_mean": -1.1684501763248378,
+     "unmatched_mean": -5.409185541104959,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": 1.941550786045595,
+     "range": [
+      -11.06583173204772,
+      14.61384551304579
+     ],
+     "matched_mean": -6.669799809662943,
+     "unmatched_mean": -7.584271701718389,
+     "verdict": "no clear difference"
+    },
+    "matched": 47,
+    "matches": 85,
+    "advice": {
+     "single run": 96,
+     "stay": 9
+    },
+    "calls": {
+     "stay": 59,
+     "single run": 46
+    }
+   },
+   "only where their flag got in: six chosen, equal weight": {
+    "tally": {
+     "cases": 2146,
+     "no clear advice": 1896,
+     "clear advice": 140,
+     "too few cases": 110
+    },
+    "rows": 140,
+    "v180": {
+     "effect": -4.750687943235474,
+     "range": [
+      -9.57003162750102,
+      -0.3104248333954927
+     ],
+     "matched_mean": -4.178593113919358,
+     "unmatched_mean": 1.0814245567623928,
+     "verdict": "worse"
+    },
+    "v90": {
+     "effect": -1.65060139739109,
+     "range": [
+      -4.487995934835183,
+      1.6022410793851432
+     ],
+     "matched_mean": -2.8885510124978238,
+     "unmatched_mean": -0.7283938442470345,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": -9.33925993880047,
+     "range": [
+      -18.075943012204856,
+      1.281330501051132
+     ],
+     "matched_mean": -6.128748585019098,
+     "unmatched_mean": 4.90291472783754,
+     "verdict": "no clear difference"
+    },
+    "matched": 67,
+    "matches": 98,
+    "advice": {
+     "single run": 124,
+     "stay": 16
+    },
+    "calls": {
+     "stay": 71,
+     "single run": 67,
+     "double run": 2
+    }
    }
   }
  }

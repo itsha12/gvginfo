@@ -56,6 +56,7 @@ VARS = ("flag lead", "seconds to the boost", "own players at the main fight", "t
 # what the first test left out, added for the answer to their run (R-539, R-540): the res clock, where each main team stands, who their runner is, each team's snares
 MORE = ("seconds to the base res", "own main team's place (steps toward own pit)", "their main team's place (steps toward their pit)", "their runner is a backline monk", "their runner's speed",
         "their team's snares", "own team's snares")
+FEW = ("flag lead", "own players at the main fight", "their players at the main fight", "seconds to the base res", "own main team's place (steps toward own pit)", "their main team's place (steps toward their pit)")
 FRONT = ("Warrior", "Hammer", "Derv", "Ranger", "Assassin", "Paragon", "Axe", "Sword")
 PIT = ("knight", "archer", "bodyguard")
 HELD_REST = ("fall back into the base", "retreat to the pit", "fall to footmen")
@@ -170,8 +171,9 @@ def cases(D, M, B):
             if not p.get("hand"): skipped["a flag in hand and their flag never got in: nothing to answer"] += 1; continue
             scen, call = f"Their {p['their']}; our flag already in hand", p["hand"]
         else:
+            if p.get("opening"): skipped["the opening: a different decision (R-541)"] += 1; continue
             stand = {"own": "we hold the stand", "enemy": "they hold the stand", "nobody": "nobody holds the stand"}[st["stand"]]
-            scen, call = ("The opening (no flag capped yet): their" if p.get("opening") else "Their") + f" {p['their']}; {stand}", {"stay": "stay", "single run": "single run", "double run": "double run"}[p["ours"]]
+            scen, call = f"Their {p['their']}; {stand}", {"stay": "stay", "single run": "single run", "double run": "double run"}[p["ours"]]
         beta, won = B[m["fold"]], float(m["winner"] == p["team"])
         p0 = chance(beta, position(st, af["90"], gap, False))
         v = {H: 100 * ((won if af[H]["ended"] else chance(beta, ends[H])) - p0) for H in ("90", "180")}
@@ -188,7 +190,7 @@ def cases(D, M, B):
                    "the flag lead": "we are behind" if st["flag_lead"] <= -0.35 else "we are ahead" if st["flag_lead"] >= 0.35 else "about level",
                    "the hall's flag run": "short (under 27 s)" if m["run_s"] < 27 else "long (27 s or more)",
                    "their team's snares": tms["snare"][1], "our team's snares": tms["snare"][0], "the strength gap": gap}
-        out.append({"more": more, "tip": tip, "id": p["id"], "rid": p["rid"], "fold": m["fold"], "team": p["team"], "t": p["t0"], "kind": p["play"], "scenario": scen, "call": call, "x": x, "v": v, "p0": p0, "won": won,
+        out.append({"more": more, "tip": tip, "their_flag": (p.get("beside") or {}).get("their_flag"), "id": p["id"], "rid": p["rid"], "fold": m["fold"], "team": p["team"], "t": p["t0"], "kind": p["play"], "scenario": scen, "call": call, "x": x, "v": v, "p0": p0, "won": won,
                     "held": held, "said": p["scenario"],
                     "hard": {H: {"deaths": af[H]["deaths"], "npcs": af[H]["npcs"], "lead_change": af[H]["lead_change"], "boosts": af[H]["boosts"]} for H in ("90", "180")}})
     return out, skipped
@@ -196,14 +198,17 @@ def cases(D, M, B):
 
 class Scenario:
     """The cases of one scenario, laid out for finding the nearest."""
-    def __init__(self, C, extended=True):
-        self.C = C
+    def __init__(self, C, extended=True, mode="equal"):
+        self.C, self.mode, self._w = C, mode, {}
         self.extended = extended and all(c["more"] is not None for c in C)          # the added variables, where every case of the scenario has them (the flag plays)
         X = np.array([[np.nan if v is None else v for v in (c["x"] + c["more"] if self.extended else c["x"])] for c in C], float)
         med = np.nanmedian(X, axis=0); med = np.where(np.isnan(med), 0.0, med)
         X = np.where(np.isnan(X), med, X)                       # seconds to the boost where nobody holds the stand: the scenario's middle (the stand is part of the scenario)
         sd = X.std(axis=0); sd[sd == 0] = 1.0
         self.Z = (X - X.mean(axis=0)) / sd
+        self.names = list(VARS + MORE) if self.extended else list(VARS)
+        if mode == "few" and self.extended:                     # the few that looked to matter on the first table of what tips a stay (Claude's reading, chosen after seeing every match)
+            keep = [self.names.index(n) for n in FEW]; self.Z, self.names = self.Z[:, keep], [self.names[k] for k in keep]
         self.rid = np.array([c["rid"] for c in C]); self.fold = np.array([c["fold"] for c in C]); self.call = np.array([c["call"] for c in C])
         self.calls = [k for k, _ in collections.Counter(self.call.tolist()).most_common()]
         self.v = {H: np.array([c["v"][H] for c in C]) for H in ("90", "180")}
@@ -213,8 +218,25 @@ class Scenario:
         ok = (self.call == call) & ((self.fold != self.fold[i]) if heldout else (self.rid != self.rid[i]))
         j = np.flatnonzero(ok)
         if len(j) == 0: return j
-        d = ((self.Z[j] - self.Z[i]) ** 2).sum(axis=1)
+        d = (((self.Z[j] - self.Z[i]) ** 2) * self.weights(self.fold[i] if heldout else None)).sum(axis=1)
         return j[np.argsort(d, kind="stable")[:K]]
+
+    def weights(self, fold):
+        """How much each matching variable counts. Equal: one each. Measured: by how far the variable moves what
+        follows a call (the priced result 180 s on, a straight fit for each of the two commonest calls, the mean size
+        of its slope), from the other groups of matches only when a held-out case is read, scaled to a mean of one."""
+        if self.mode != "measured": return np.ones(self.Z.shape[1])
+        if fold not in self._w:
+            use = np.ones(len(self.C), bool) if fold is None else (self.fold != fold)
+            sl = []
+            for a in self.calls[:2]:
+                sel = use & (self.call == a)
+                if sel.sum() < 3 * self.Z.shape[1]: continue
+                A = np.column_stack([np.ones(sel.sum()), self.Z[sel]])
+                sl.append(np.abs(np.linalg.lstsq(A, self.v["180"][sel], rcond=None)[0][1:]))
+            w = np.mean(sl, axis=0) if sl else np.ones(self.Z.shape[1])
+            self._w[fold] = w / w.mean() if w.mean() > 0 else np.ones(self.Z.shape[1])
+        return self._w[fold]
 
     def worth(self, j, H):
         """The mean priced result of those cases, and its spread with the plays of one match taken as one draw."""
@@ -401,8 +423,7 @@ def report(path, out_json=None):
     pr("\n2b. What tips a stay (as it fell; a description, not a verdict)")
     res["tips"] = tips(S, pr)
     pr("\n3. The held-out advice test: where the advice is clear, did teams that matched it do better? (advice and prices from the other nine groups of matches)")
-    tests = [("every flag and boost scenario", dict()), ("their run, our answer (not the boost, not the opening)", dict(only=lambda n: n.startswith("Their") and "boost" not in n and "in hand" not in n)),
-             ("the opening", dict(only=lambda n: n.startswith("The opening"))),
+    tests = [("every flag and boost scenario", dict()), ("their run, our answer", dict(only=lambda n: n.startswith("Their") and "boost" not in n and "in hand" not in n)),
              ("their boost 30 s away, every case", dict(only=lambda n: "boost" in n)), ("their boost 30 s away, without the flag only held at home", dict(only=lambda n: "boost" in n, drop_held=True))]
     res["advice_test"] = {}
     for label, kw in tests:
@@ -420,6 +441,21 @@ def report(path, out_json=None):
         e = t0["v180"]
         pr(f"\n   their run, our answer, matched on the first eight variables only (without: {', '.join(MORE)}): clear advice in {t0['tally'].get('clear advice', 0)}; matched {t0['matched']} of {t0['rows']}; "
            f"priced result 180 s on, set against the same scenario and position: {e['effect']:+.1f} win points (90% range {e['range'][0]:+.1f} to {e['range'][1]:+.1f}): {e['verdict']}")
+    # the same test with the matching weighted otherwise, and on the cases where their flag got in: a "stay" is read from having sent nobody before their run ended, so their
+    # runs that came to nothing fall to it (2026-11-19: their flag does not get in after 35% of stays with us holding the stand, and after 9% of runs in answer)
+    ans = [c for c in C if c["kind"] == "flag" and "in hand" not in c["scenario"]]
+    def variant(cs, ext, mode):
+        by = collections.defaultdict(list)
+        for c in cs: by[c["scenario"]].append(c)
+        return advice_test({k: Scenario(v, ext, mode) for k, v in by.items()}, K)[0]
+    res["advice_test"]["variants"] = {}
+    for sub, cs in (("every case", ans), ("only where their flag got in", [c for c in ans if c["their_flag"] == "captured"])):
+        pr(f"\n   their run, our answer, {sub} ({len(cs)}), by how the matching variables count:")
+        for name, ext, mode in (("the first eight, equal weight", False, "equal"), ("all fifteen, equal weight", True, "equal"), ("all fifteen, measured weights", True, "measured"), ("six chosen, equal weight", True, "few")):
+            t = variant(cs, ext, mode); res["advice_test"]["variants"][f"{sub}: {name}"] = t
+            if "v180" not in t: pr(f"     {name:32} too few to call"); continue
+            e = t["v180"]
+            pr(f"     {name:32} clear advice in {t['rows']:4} ({'; '.join(f'{k} {v}' for k, v in sorted(t['advice'].items(), key=lambda kv: -kv[1]))}); matched {t['matched']:4}; 180 s on {e['effect']:+.1f} win points ({e['range'][0]:+.1f} to {e['range'][1]:+.1f}): {e['verdict']}")
     held = sum(1 for c in C if c["held"])
     pr(f"\n   The flag only held at home at a boost (a boost run that denies nothing while the rest fall back): {held} of {sum(1 for c in C if c['kind'] == 'boost')} boost cases.")
     if out_json: json.dump(res, open(out_json, "w"), ensure_ascii=False, indent=1, default=float)
