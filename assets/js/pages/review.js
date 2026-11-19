@@ -30,7 +30,8 @@ const SKIP = "not judged";      // a call that is not asked for
 let rows = null, marks = null, cur = null, draft = {};
 const CARDS = "data/model/flag_cards.json", CARD_MARKS = "data/model/flag_card_marks.json", CDRAFT = "gvginfo.review.cards1";
 const SENSE = [["agree", "Makes sense"], ["disagree", "Does not"], ["unsure", "No view"]];
-const OWN = [["send", "Send a runner at once"], ["hold", "Hold off"], ["either", "No clear answer"]];
+// His own call. "No clear answer" was two answers (his word, 2026-11-19): that it makes no difference what the team does, and that he does not know what he would do
+const OWN = [["send", "Send a runner at once"], ["hold", "Hold off"], ["nodiff", "It makes no difference here"], ["unknown", "I don't know"]];
 let view = "games", cards = null, cmarks = null, ccur = null, cdraft = {};
 try { view = localStorage.getItem("gvginfo.review.view") === "flags" ? "flags" : "games"; } catch { /* the games view */ }
 let showTodo = false;           // rows not yet marked are shown in red (his request, 2026-11-17: "which rows I haven't marked yet")
@@ -285,7 +286,8 @@ async function renderFlags(out, keep = false) {
     <li><b>The first lines are what happened</b>: who set off for a flag and who holds the stand; the spot (numbers at the main fight, where the team stands, each side's morale, the flag lead, the base res, the team's chance of winning); what the team did; and what followed over the next 180 seconds. The time is the second to go to in the replay. Mark them <b>Correct</b>, <b>Partly</b> or <b>Incorrect</b>, and say what is off.</li>
     <li><b>The similar-spots line is a reading, not advice.</b> It compares the two answers (a runner out by 15 s, or holding off) among teams in a like position, in win points 180 seconds on. It has not yet been shown to hold on matches the engine has not seen. Say whether it <b>makes sense</b> to you as a player.</li>
     <li><b>A second look</b>, where there is one, is the same question 30 seconds in, for a team that had still sent nobody.</li>
-    <li><b>What would you have done</b> is optional, and the most useful mark of the three: it is your call set against the engine's.</li>
+    <li><b>What would you have done</b> is optional, and the most useful mark of the three: it is your call set against the engine's. <b>It makes no difference here</b> means either answer is as good as the other in this spot; <b>I don't know</b> means you cannot say what you would do.</li>
+    <li><b>Every number is said with whose it is</b>: "main fight Team 7 v HC 6 (Team up by 1)", each main team's place, each side's morale, and who is ahead on flags.</li>
     <li><b>Win points</b> are points of the chance of winning the match: +4 is a team going from 50% to 54%. A death is -15 morale on one player; the morale shown is the eight players summed.</li>
     <li>Marks are kept in this browser as you go and reach the engine when you press Save.</li>
   </ul></details>
@@ -320,7 +322,7 @@ async function renderFlags(out, keep = false) {
   out.querySelector("[data-cnotes]").onchange = (e) => { (cdraft[g.rid] ||= { marks: {} }).notes = e.target.value.trim(); keepC(); };
   out.querySelectorAll("[data-csave]").forEach((b) => b.onclick = async () => {
     const before = JSON.stringify(cmarks), d = cdraft[g.rid] || { marks: {} };
-    cmarks.about = "Denning's marks on the cards of Model > Game review > Flag advice. For each card: facts (is what happened told correctly: correct, partly, incorrect), sense (does the similar-spots reading make sense to him: agree, disagree, unsure), own (what he would have done: send, hold, either), his words, and the text of the card as he saw it. Only what he marked.";
+    cmarks.about = "Denning's marks on the cards of Model > Game review > Flag advice. For each card: facts (is what happened told correctly: correct, partly, incorrect), sense (does the similar-spots reading make sense to him: agree, disagree, unsure), own (what he would have done: send, hold, nodiff = it makes no difference here, unknown = he does not know), his words, and the text of the card as he saw it. Only what he marked.";
     const G0 = (cmarks.games ||= {}), e = (G0[g.rid] ||= { marks: {} });
     e.game = `${g.teams.join(" v ")}, ${g.map}`; e.at = new Date().toISOString().slice(0, 10); e.engine = cards.engine;
     e.marks = Object.fromEntries(Object.entries({ ...e.marks, ...(d.marks || {}) }).filter(([, v]) => v.facts || v.sense || v.own || v.why));

@@ -36,16 +36,16 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   whether their flag got in, with the chance of winning each row started from. Show him that, never the test alone.
   - Us holding the stand (1,308): a runner within 15 s -2.8 win points 180 s on (their flag in 92%); 15 to 90 s
     -1.4; none for 90 s +1.1, which is -4.4 where their flag got in (258) and +7.0 where it did not (241, teams
-    that started at 76%). At the same position, no runner at 15 s less a runner: +2.1 (0.4 to 3.8).
+    that started at 76%). At the same position, no runner at 15 s less a runner: +1.8 (0.2 to 3.2).
   - Them holding it (540): a runner within 15 s +2.0 (flags +0.52), none for 90 s -0.1 (their boost 0.51 against
-    0.16); at the same position not clear (-0.8, -2.7 to +0.8). At 30 s, and for run again or not: nothing clear.
-  - Held out, spot by spot: better at 60 s (+1.2), not clear at 180 s (+1.2, -0.2 to +2.7). Their boost 30 s away:
+    0.16); at the same position not clear (-1.2, -2.9 to +0.3). At 30 s, and for run again or not: nothing clear.
+  - Held out, spot by spot: better at 60 s (+1.2), not clear at 180 s (+1.5, -0.2 to +3.5). Their boost 30 s away:
     +5.9 (2.5 to 9.9). With the stand held, do not rush the answer; which spots, not yet. His given (R-542) holds.
 
 ## Next (in order)
 1. The flag family in his four stages (2026-11-19): readings (done, the ladder), the general table (done, section
    8), the other factors (first reading, section 9 of `cases.py test`), the sentence for one moment (first draft,
-   `cases.py cards <plays file> f1`: 60 decisions in the twelve graded games). He reads the sentences as a game
+   `cases.py cards <plays file> f1`: 61 decisions in the twelve graded games). He reads the sentences as a game
    review and says where they are wrong; then flags are done for now and the next family takes the same stages.
    Settle the technical choices yourself and bring him GvG questions only (his word).
 2. Held for a second game (R-495): a base res with the attackers at the footmen (HC v hdm 1:40, Jade); Men v hold
@@ -53,7 +53,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
    Then stage E; the clean-up (R-398, nine items, and `st.stand_owner` on a whole second) after the games.
 
 ## Open for Denning
-0. Put to him 2026-11-19: the sentences for his twelve games, on Model > Game review > Flag advice (60 cards; his
+0. Put to him 2026-11-19: the sentences for his twelve games, on Model > Game review > Flag advice (61 cards; his
    marks in `data/model/flag_card_marks.json`: read them first). Known weak: a verdict's range leaves out the
    levelling's own doubt (옷옷옷옷 v RACK 6:15, second look). Parked: the 163 "we hold the stand" cases; `LEVEL_MIN`.
 1. Isle of Jade: is a team at the footmen on the portal side in the base at a base res (HC v hdm 1:40)?

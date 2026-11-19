@@ -289,6 +289,9 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - A team whose own runner was already out when theirs set off does not answer a run. From its cap, with their flag
   still on its way, it decides whether to run again: another decision, counted from its own cap (R-546).
 - The stand at a second is its holder once a cap recorded within that second has landed (R-546).
+- Who ran first is read on the same clock: the runner who turned for home first. A run is the answer to theirs only
+  when its runner turned for home no earlier than theirs did (R-546, R-498; his words on hold v RACK 11:00,
+  2026-11-19: hold sending an Earth Ele and RACK responding 11 s later, not hold deciding whether to run).
 - The readings are checked by the timing ladder before anything is read from the advice (R-545): a runner sent
   sooner should be better off in flags, in the engine's tally and in the replay's own caps and boosts. A report,
   never a verdict; the 45 s read is kept there only.
