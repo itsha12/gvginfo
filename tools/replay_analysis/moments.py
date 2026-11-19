@@ -148,6 +148,7 @@ class Moments:
         self._pit = {}
         self._dp, self._ov, self._fp, self._att, self._last, self._mt, self._ln, self._fr = {}, {}, None, None, {}, {}, None, None
         self._bu = {}                                         # run record -> (brought up with the team, when it first stands at the stand) (R-505)
+        self._pr = None                                       # (player, second): a defender carries his flag about on his own ground: a part-run, not a run (R-535); built by run_starts
         self._heldout = {}                                    # (team, second) -> the players out of their own base while it is held in (R-506)
         self._fi, self._mv, self._sf, self._gr, self._und = None, None, None, None, None
         self._lost = {}
@@ -490,7 +491,7 @@ class Moments:
                 order = list(dict.fromkeys(L["serious"]))
                 L["form"] = None
                 if L["how"] != "captured": continue
-                nxt = next((x for x in lives[i + 1:] if any(c[2] is None or c[2] - c[1] >= SERIOUS_CARRY_S for c in x["carries"]) and (x["how"] == "captured" or self.travelled(tm, x["carries"]))), None)
+                nxt = next((x for x in lives[i + 1:] if any(c[2] is None or c[2] - c[1] >= SERIOUS_CARRY_S for c in x["carries"]) and (x["how"] == "captured" or self.travelled(tm, x["carries"], part=False))), None)
                 n = next((c[0] for c in nxt["carries"] if c[2] is None or c[2] - c[1] >= SERIOUS_CARRY_S), None) if nxt else None
                 tc = min(int(L["end"]), self.T)
                 back = False
@@ -2035,7 +2036,7 @@ class Moments:
         if he was already near it) and since when he waited there (10 s or more; else None). The story's "leaves ... to
         go back for the flag" and "waits back at the flag spawn" lines print from this record."""
         if getattr(self, "_rs", None) is not None: return self._rs
-        out = []
+        out, pr = [], set()
         for L in self.flag_lives():
             tm = L["team"]                                  # the life's first pickup at the spawn, serious or a short carry handed on (golden game 1, 6:51: hook's Monk 4 to the 8 Monk)
             at_sp = [c for c in L["carries"] if d(self.P[c[0]][min(max(int(c[1]), 0), self.T)], self.spawn[tm]) < SPAWN_R or c[1] < 2]      # a flag picked up before the gates counts (golden hold v Apes: the WoC holds it from the start)
@@ -2058,6 +2059,10 @@ class Moments:
             # handed on (put down and taken up by a team mate within HANDOFF_GAP_S). Read from the flag, not from who capped it: a flag carried out at once and handed on
             # before its cap was under way from the start (his marks, RJT v RACK 2:23 and 10:10); a flag that lay on the ground and was taken up later is under way from
             # then, with that player (Denning's golden game 1: "hook's 8 Monk leaves the base at 7:05"; TFS v 옷옷옷옷 1:20 and 11:01)
+            pre = c[1] < 2                                   # before the gates nobody set off or waited
+            set_off = u if not pre and dist(u) is not None and dist(u) - SPAWN_R > 1500 else None
+            part = self._part_carries(L)                     # R-535: a defender's part-run is on its way nowhere
+            pr |= part
             own, out_t, out_by = self.st.side.get(tm), None, None
             ser = [c2 for c2 in L["carries"] if c2[0] in L["serious"]]
             i0 = len(ser) - 1
@@ -2066,10 +2071,8 @@ class Moments:
                 for v in range(max(int(c2[1]), 0), min(int(c2[2] if c2[2] is not None else self.T), self.T) + 1, 2):
                     if not (self.AL[c2[0]][v] and self.P[c2[0]][v]): continue
                     k_, s_ = self.place_at(c2[0], v)
-                    if not (s_ == own and k_ in ("pit", "base")): out_t, out_by = v, c2[0]; break           # out of its base and pit: on its way out by a door
+                    if not (s_ == own and k_ in ("pit", "base")) and (c2[0], v - v % SPLIT_STEP) not in part: out_t, out_by = v, c2[0]; break           # out of its base and pit: on its way out by a door
                 if out_t is not None: break
-            pre = c[1] < 2                                   # before the gates nobody set off or waited
-            set_off = u if not pre and dist(u) is not None and dist(u) - SPAWN_R > 1500 else None
             # when he goes to run (R-461): setting off from inside the greater stand area, it is when he leaves that area, or the flag stand area itself, by the hall; anywhere else, when he sets off
             moment, rule = set_off, "sets off"
             if set_off is not None and self.place_at(a, set_off)[0] in ("stand", "greater stand"):
@@ -2083,19 +2086,63 @@ class Moments:
                         "waited": waited if not pre and tp - waited >= 10 else None, "under_way": out_t, "out_by": out_by,
                         "chain": min(max(int(ser[i0][1]), 0), self.T) if ser and i0 > 0 and ser[i0 - 1][2] is not None else None, "first_end": ser[i0 - 1][2] if ser and i0 > 0 else None,      # the flag lay on the ground and was taken up again: when, and until when it had been carried before
                         "first_ids": [c2[0] for c2 in ser[:max(i0, 0)]], "chain_ids": [c2[0] for c2 in ser[max(i0, 0):]]})
-        self._rs = out
+        self._rs, self._pr = out, pr
         return out
 
-    def travelled(self, tm, carries):
+    def _part_carries(self, L):
+        """The seconds of this flag's carries that are a part-run (R-535): a player back at home for a split who carries his flag about on his own ground
+        and puts it down, whether or not a team mate takes it on afterwards. His rulings of 2026-11-18, seven carries: hold v Men 3:10 (Men's Ranger:
+        "ranger does not single run, just brings the flag up (similar to how solo defenders partrun flags)") and 1:05 (Men's Hammer, "sort of back for
+        split defence"); cope v One 10:56 and 11:51 (cope's Dervish; the 8 Monk takes the flag on and caps it); meow v One 7:03 (the 8 Monk); HC v cope
+        2:20 (HC's Mes/A: "100% ... part-runs, not single runs"); True v One 1:48 (One's Ritualist: "definitely a part-run"). A carry at a time:
+          he never leaves his own ground with the flag (base, pit, doors, footmen), so he does not cap it;
+          he is counted in a split's defence at some second from JOIN_S before he picks it up until he puts it down, by the split's own reading of who
+            defends it (`_split_candidates`: one reading of who is in which fight, R-464), never by a second one;
+          on half or more of its seconds he does not stand with three or more of his team (`with_rest`): a carrier in the middle of his team is a
+            runner being stopped, an unsuccessful run (his words on Men v hold 8:12, hold's Air Ele 3, seven of his team round him);
+          the flag was not in his hand before the gates opened;
+          and nobody pushes him as a flagger while he carries it (a push the page tells, R-371 and R-530: HC v cope 3:38, cope's Hammer A, a run).
+        The run begins when a player who is not part-running takes the flag out. A player who waits at home for the next flag (the second player of
+        a double run) and is counted in a defence meanwhile reads the same way when he only brings it part of the way: his own words on hold v Men
+        1:05, "a borderline doublerun ... the warrior was sort of back for split defence", then "100% ... part-runs". Standing by the spawn cannot
+        tell the two apart (a defender stands by it too: a form that left out whoever had waited there read none of his seven carries). Three forms
+        built earlier the same day failed rows he then corrected."""
+        tm, S, T, out = L["team"], SPLIT_STEP, self.T, set()
+        if self.hall is None: return out
+        import jobs
+        own, C = self.st.side.get(tm), self._split_candidates()
+        if getattr(self, "_told_pushes", None) is None:
+            splits = [x for x in self.attempts() if x["kind"] == "split"]
+            self._told_pushes = [q for q in self.flag_pushes() if not jobs._split_on_carrier(self, q, splits)]
+        for c in L["carries"]:
+            b = c[0]
+            if c[1] < 2: continue
+            e0 = c[2] if c[2] is not None else T
+            us = [u for u in range(max(int(c[1]), 0) // S * S, min(int(e0), T) + 1, S) if self.AL[b][u] and self.P[b][u]]
+            if not us or not all((lambda k_, s_: s_ == own and k_ in HOME_GROUND)(*self.place_at(b, u)) for u in us): continue
+            if not any(C.get((b, u)) == "defence" for u in range(max(us[0] - JOIN_S, 0) // S * S, us[-1] + 1, S)): continue
+            if any(q["flagger"] == b and q["t"] <= e0 and q["t1"] >= c[1] for q in self._told_pushes): continue
+            mates = [x for x in self.st.players[tm] if x != b]
+            if 2 * sum(not self.with_rest(b, mates, u) for u in us) >= len(us): out.update((b, u) for u in us)
+        return out
+
+    def part_run_at(self, a, t):
+        """Is this player part-running his flag at second t (R-535; `_part_carries`). Silent while the split's own reading is being taken (`_split_candidates`)."""
+        if getattr(self, "_side_off", False): return False
+        if self._pr is None: self.run_starts()
+        return (a, int(t) - int(t) % SPLIT_STEP) in (self._pr or ())
+
+    def travelled(self, tm, carries, part=True):
         """Was this flag taken anywhere: carried out of its own base and pit. A flag picked up and put down again by a
         player fighting in his own base is not a run (his mark, hdm v hook 8:46: "the runner never leaves the fight and
-        he never runs; the flag is dropped and returned")."""
+        he never runs; the flag is dropped and returned"); nor is a defender's part-run (R-535, `part_run_at`). `part`
+        False asks only where the flag went (the flag's own record, `flag_lives`)."""
         own = self.st.side.get(tm)
         for c in carries:
             for u in range(max(int(c[1]), 0), min(int(c[2] if c[2] is not None else self.T), self.T) + 1, 2):
                 if not self.AL[c[0]][u]: continue
                 k_, s_ = self.place_at(c[0], u)
-                if not (s_ == own and k_ in ("pit", "base")): return True
+                if not (s_ == own and k_ in ("pit", "base")) and not (part and self.part_run_at(c[0], u)): return True
         return False
 
     def _went_to_run(self, r): return min(x for x in (r["moment"], r["waited"], r["pickup"]) if x is not None)      # the decision moment of a flag run (R-461); the story's "leaves to go back" line stays at set_off

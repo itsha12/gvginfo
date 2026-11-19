@@ -423,13 +423,20 @@ def _push_not_split(M, x, p):
     return bool(M._flagger(b, 3 - p["tm"], u))
 
 
+def _split_on_carrier(M, p, splits):
+    """A split player on a defender who carries his flag is a split with a part-run (R-430), not a push on a flagger (his mark, TFS v 옷옷옷옷 6:20),
+    unless its players came for the flagger and left when the flag had gone (R-530)."""
+    tm = p["tm"]
+    return any(x["tm"] == tm and x["t_in"] <= p["t"] <= x["t1"] + 4 and set(p["roles"]) <= {q["role"] for q in x["members"]} for x in splits) and not any(_push_not_split(M, x, p) for x in splits)
+
+
 def push_plays(M, K):
     FR, out, role, done = _flag_rows(M), [], M.m.roles, {}
     splits = [x for x in M.attempts() if x["kind"] == "split"]
     for p in M.flag_pushes():
         tm, foe = p["tm"], 3 - p["tm"]
         # a split player on a defender who carries his flag is a split with a part-run (R-430), not a push on a flagger (his mark, TFS v 옷옷옷옷 6:20)
-        if any(x["tm"] == tm and x["t_in"] <= p["t"] <= x["t1"] + 4 and set(p["roles"]) <= {q["role"] for q in x["members"]} for x in splits) and not any(_push_not_split(M, x, p) for x in splits): continue
+        if _split_on_carrier(M, p, splits): continue
         f = next((f for f in FR if f["tm"] == foe and p["flagger"] in f["ids"] and f["s0"] - 60 <= p["t"] <= f["e"] + 2), None)
         key = (foe, f["pick"]) if f else (foe, p["t"])
         if key in done:                                                   # a second push on the same flag: one play, everyone who pushed
@@ -870,12 +877,13 @@ def split_plays(M, K):
             if not (full or collapse) and n and main_killed:               # the same job from the defenders' side (R-457)
                 out.append(_play(M, "split", "defender's main team", foe, p0, e1, [], scen_d + at_main("theirs", "own"),
                                  "Kill at the main fight: " + ("they have no monk there" if no_monk[1] else "its damage can kill against their monks there, and theirs cannot"), {"more of theirs die away from the split than of ours": away_a > away_d}, beside=besD, call="the main fight can kill", **kw))
-            if k == 1 and n == 1 and not collapse:                         # a lone defender part-running his flag (R-430)
-                b = Dp[0]
-                carried = sum(S_ for u in range(max(p0 - JOIN_S, 0), p1 + 1, S_) if M.carrying(b, u))      # from when he got there: he counts as the defender only JOIN_S later (review key s1-28)
-                if carried >= 6:
-                    out.append(_play(M, "split", "defender", foe, p0, e1, [role[b]], scen_d + f": the lone defender carries his flag for {carried} s", "Gain a slight flag advantage while losing no pit NPC and not dying",
-                                     dict(pit_ok, **{f"flag lead better by {PART_RUN_GAIN} or more": gd is not None and gd >= PART_RUN_GAIN, "the defender does not die": n_kill == 0}), beside=dict(besD, carried_s=carried), call="part-run", **kw))
+            if n >= 1 and not collapse:                                    # a defender part-running his flag: the lone defender of R-430, and one of several (R-535: meow v One 7:03, the 8 Monk, one of three; the job is R-430's, Claude's reading for more than one defender, his to confirm)
+                lone = k == 1 and n == 1
+                for b in Dp:
+                    carried = sum(S_ for u in range(max(p0 - JOIN_S, 0), p1 + 1, S_) if (M.carrying(b, u) if lone else M.part_run_at(b, u)))      # from when he got there: he counts as the defender only JOIN_S later (review key s1-28); one of several defenders, only a part-run carry (`part_run_at`)
+                    if carried >= 6:
+                        out.append(_play(M, "split", "defender", foe, p0, e1, [role[b]], scen_d + (f": the lone defender carries his flag for {carried} s" if lone else f": {role[b]} carries his flag for {carried} s while defending"), "Gain a slight flag advantage while losing no pit NPC and not dying",
+                                         dict(pit_ok, **{f"flag lead better by {PART_RUN_GAIN} or more": gd is not None and gd >= PART_RUN_GAIN, "the defender does not die": n_kill == 0}), beside=dict(besD, carried_s=carried), ruled=lone, call="part-run", **kw))
             if tn is None: prevD = set(Dp)
     return out
 
