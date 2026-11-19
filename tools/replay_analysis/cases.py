@@ -22,7 +22,10 @@ Three parts, each readable on its own:
    run, who holds the stand, the opening apart, a flag in hand apart), and within it by nearness on what he agreed
    (R-538): the flag lead, seconds to the next boost, players at the main fight on each side, each team's morale, the
    strength gap, and the hall as the usual length of its flag run in seconds (so halls alike in that pool), each in
-   standard units of its scenario, equal weight. For a case and a call, the K nearest cases of other matches that
+   standard units of its scenario, equal weight. For their run and our answer the first test showed no better call,
+   so what the position left out is matched on too (R-539, R-540): the res clock, where each main team stands, who
+   their runner is (as what he can do), and each team's snares. A build is a fixed state, never a call, but it
+   bears on which call is right; it comes in as properties, never as a label. For a case and a call, the K nearest cases of other matches that
    made that call give the call's worth there, with a 90% range that treats the plays of one match as one draw. K is
    chosen by the data: the K that best foretells a case's own result from its neighbours.
    Floor (R-538): a call is read only from 30 plays or more out of 15 matches or more; under it, no verdict.
@@ -50,6 +53,10 @@ DRAWS = 300
 PRICE = ("strength gap (per 100 points of rating)", "a flag of lead", "death penalty (per 15%, one death's worth)", "morale boost (+10% on all eight)", "a pit NPC", "Lord health (per 10%)")
 SCALE = (100.0, 1.0, 15.0, 80.0, 1.0, 0.1)       # the unit each price is quoted in
 VARS = ("flag lead", "seconds to the boost", "own players at the main fight", "their players at the main fight", "own morale", "their morale", "strength gap", "the hall's flag run, s")
+# what the first test left out, added for the answer to their run (R-539, R-540): the res clock, where each main team stands, who their runner is, each team's snares
+MORE = ("seconds to the base res", "own main team's place (steps toward own pit)", "their main team's place (steps toward their pit)", "their runner is a backline monk", "their runner's speed",
+        "their team's snares", "own team's snares")
+FRONT = ("Warrior", "Hammer", "Derv", "Ranger", "Assassin", "Paragon", "Axe", "Sword")
 PIT = ("knight", "archer", "bodyguard")
 HELD_REST = ("fall back into the base", "retreat to the pit", "fall to footmen")
 cl = lambda t: f"{int(t) // 60}:{int(t) % 60:02d}"
@@ -169,7 +176,19 @@ def cases(D, M, B):
         p0 = chance(beta, position(st, af["90"], gap, False))
         v = {H: 100 * ((won if af[H]["ended"] else chance(beta, ends[H])) - p0) for H in ("90", "180")}
         x = [st["flag_lead"], st["boost_in"], st["main"][0], st["main"][1], af["90"]["morale"][0][0], af["90"]["morale"][1][0], gap, m["run_s"]]
-        out.append({"id": p["id"], "rid": p["rid"], "fold": m["fold"], "team": p["team"], "t": p["t0"], "kind": p["play"], "scenario": scen, "call": call, "x": x, "v": v, "p0": p0, "won": won,
+        more = tip = None
+        if "their_runner" in p:                                 # a flag play: what else can be seen at that second
+            tr, tms, stp = p["their_runner"], p["teams"], p["steps"]
+            more = [st["res_in"], stp[0], stp[1], float(tr["monks"] > 0), tr["speed"], tms["snare"][1], tms["snare"][0]]
+            dn = st["main"][0] - st["main"][1]
+            tip = {"their runner": "a backline monk" if tr["monks"] else "a frontline player" if any(w in tr["role"] for w in FRONT) else "a midline player",
+                   "the base res": "under 40 s away" if st["res_in"] < 40 else "40 to 80 s away" if st["res_in"] < 80 else "over 80 s away",
+                   "where we stand": None if stp[0] is None else "on their side of the stand" if stp[0] < 0 else "at the stand" if stp[0] == 0 else "on our side of the stand",
+                   "numbers at the main fight": "we are up" if dn > 0 else "we are down" if dn < 0 else "even",
+                   "the flag lead": "we are behind" if st["flag_lead"] <= -0.35 else "we are ahead" if st["flag_lead"] >= 0.35 else "about level",
+                   "the hall's flag run": "short (under 27 s)" if m["run_s"] < 27 else "long (27 s or more)",
+                   "their team's snares": tms["snare"][1], "our team's snares": tms["snare"][0], "the strength gap": gap}
+        out.append({"more": more, "tip": tip, "id": p["id"], "rid": p["rid"], "fold": m["fold"], "team": p["team"], "t": p["t0"], "kind": p["play"], "scenario": scen, "call": call, "x": x, "v": v, "p0": p0, "won": won,
                     "held": held, "said": p["scenario"],
                     "hard": {H: {"deaths": af[H]["deaths"], "npcs": af[H]["npcs"], "lead_change": af[H]["lead_change"], "boosts": af[H]["boosts"]} for H in ("90", "180")}})
     return out, skipped
@@ -177,9 +196,10 @@ def cases(D, M, B):
 
 class Scenario:
     """The cases of one scenario, laid out for finding the nearest."""
-    def __init__(self, C):
+    def __init__(self, C, extended=True):
         self.C = C
-        X = np.array([[np.nan if v is None else v for v in c["x"]] for c in C], float)
+        self.extended = extended and all(c["more"] is not None for c in C)          # the added variables, where every case of the scenario has them (the flag plays)
+        X = np.array([[np.nan if v is None else v for v in (c["x"] + c["more"] if self.extended else c["x"])] for c in C], float)
         med = np.nanmedian(X, axis=0); med = np.where(np.isnan(med), 0.0, med)
         X = np.where(np.isnan(X), med, X)                       # seconds to the boost where nobody holds the stand: the scenario's middle (the stand is part of the scenario)
         sd = X.std(axis=0); sd[sd == 0] = 1.0
@@ -246,7 +266,8 @@ def _effect(rows, col):
     """The difference between matched and unmatched in `col`, set against the same scenario and position: a straight
     fit on a matched flag, the scenario, the chance of winning at the start and the matching variables."""
     scen = sorted({r["scenario"] for r in rows})
-    A = np.array([[1.0, float(r["matched"]), r["p0"]] + [float(r["scenario"] == s) for s in scen[1:]] + list(r["z"]) for r in rows])
+    w = max(len(r["z"]) for r in rows)                           # scenarios matched on fewer variables: nothing in the columns they do not have
+    A = np.array([[1.0, float(r["matched"]), r["p0"]] + [float(r["scenario"] == s) for s in scen[1:]] + list(r["z"]) + [0.0] * (w - len(r["z"])) for r in rows])
     yv = np.array([r[col] for r in rows])
     return float(np.linalg.lstsq(A, yv, rcond=None)[0][1])
 
@@ -288,14 +309,55 @@ def advice_test(S, K, drop_held=False, only=None):
 
 
 # ---- the report
-def build(path):
+def build(path, extended=True):
     D, M = load(path)
     B, P = prices(D, M)
     C, skipped = cases(D, M, B)
     by = collections.defaultdict(list)
     for c in C: by[c["scenario"]].append(c)
-    S = {k: Scenario(v) for k, v in sorted(by.items(), key=lambda kv: -len(kv[1]))}
+    S = {k: Scenario(v, extended) for k, v in sorted(by.items(), key=lambda kv: -len(kv[1]))}
     return D, M, B, P, C, skipped, S
+
+
+def _gap(rows, a, b, H="180"):
+    """Call a's mean priced result less call b's among `rows`, with a 90% range that takes the plays of one match as one draw."""
+    out = []
+    for call in (a, b):
+        R = [c for c in rows if c["call"] == call]
+        if len(R) < MIN_PLAYS or len({c["rid"] for c in R}) < MIN_MATCHES: return None, len([c for c in rows if c["call"] == a]), len([c for c in rows if c["call"] == b])
+        v = np.array([c["v"][H] for c in R]); mu = float(v.mean()); res = collections.defaultdict(float)
+        for c, e in zip(R, v - mu): res[c["rid"]] += e
+        G = len(res); out.append((mu, math.sqrt(sum(e * e for e in res.values()) * G / (G - 1)) / len(v), len(v)))
+    d, se = out[0][0] - out[1][0], math.hypot(out[0][1], out[1][1])
+    return (d, d - Z * se, d + Z * se), out[0][2], out[1][2]
+
+
+def tips(S, pr):
+    """What tips a stay: in each large scenario of their single run, a stay's priced result 180 s on less a single
+    run's, among the cases on each side of one thing a team can see at that second. As it fell, set against nothing
+    else: a description of where to look, never a verdict (the held-out test is the verdict)."""
+    out = {}
+    for name, s in S.items():
+        if not name.startswith("Their single run") or "in hand" in name: continue
+        rows = [c for c in s.C if c["tip"]]
+        g, a, b = _gap(rows, "stay", "single run")
+        if not g: continue                                         # a scenario too small to read at all
+        pr(f"\n   {name}: a stay less a single run in answer, 180 s on, in win points (90% range)")
+        pr(f"     {'every case':52} {'%+5.1f (%+.1f to %+.1f)' % g if g else 'too few'}   [{a} stays, {b} runs]")
+        out[name] = {"every case": g}
+        for key in ("their runner", "the base res", "where we stand", "numbers at the main fight", "the flag lead", "the hall's flag run", "their team's snares", "our team's snares", "the strength gap"):
+            vals = [c["tip"][key] for c in rows if c["tip"][key] is not None]
+            if isinstance(vals[0], str): groups = [(v, [c for c in rows if c["tip"][key] == v]) for v, _ in collections.Counter(vals).most_common()]
+            else:
+                lo, hi = np.percentile(vals, [33.3, 66.7])
+                groups = [("the lowest third", [c for c in rows if c["tip"][key] is not None and c["tip"][key] <= lo]), ("the middle third", [c for c in rows if c["tip"][key] is not None and lo < c["tip"][key] <= hi]),
+                          ("the highest third", [c for c in rows if c["tip"][key] is not None and c["tip"][key] > hi])]
+            for label, R in groups:
+                g, a, b = _gap(R, "stay", "single run")
+                mark = "" if not g else "   <- a stay ahead" if g[1] > 0 else "   <- a run ahead" if g[2] < 0 else ""
+                pr(f"     {key + ': ' + label:52} {('%+5.1f (%+.1f to %+.1f)' % g) if g else 'too few to read'}   [{a} stays, {b} runs]{mark}")
+                out[name][f"{key}: {label}"] = g
+    return out
 
 
 def report(path, out_json=None):
@@ -313,7 +375,7 @@ def report(path, out_json=None):
     pr(f"   Who wins, foretold on matches the prices never saw: {100 * P['accuracy']:.0f}% right; log loss {P['logloss']} against {P['logloss_strength_only']} from the strength gap alone")
     pr("   Foretold chance against what happened: " + "; ".join(f"{100 * a:.0f}% said, {100 * b:.0f}% won ({n:,})" for _, n, a, b in P["calibration"]))
     K, err = choose_k(S)
-    pr(f"\n2. Similar cases. Matched on: {', '.join(VARS)}.")
+    pr(f"\n2. Similar cases. Matched on: {', '.join(VARS)}; and for their run and our answer also: {', '.join(MORE)}.")
     pr("   K (how many nearest cases a call is read from), by how well it foretells a case's own result: " + "; ".join(f"K {k}: miss {math.sqrt(e):.2f} win points ({n:,} cases)" for k, (e, n) in err.items()) + f". Chosen: {K}.")
     res = {"prices": P, "K": K, "k_error": {k: e for k, (e, n) in err.items()}, "scenarios": {}, "skipped": dict(skipped), "notes": D["_notes"]}
     for name, s in S.items():
@@ -336,6 +398,8 @@ def report(path, out_json=None):
         mg = [r["margin"] for r in R if r["clear"]]
         if mg: pr(f"     where it is clear, the better call is ahead by {np.median(mg):.1f} win points (middle case; {min(mg):.1f} to {max(mg):.1f}); the usual play here is {usual}, and the advice differs from it in {sum(1 for r in R if r['clear'] and r['advice'] != usual)} cases")
         pr("     the calls teams made: " + "; ".join(f"{k} {v}" for k, v in ver.most_common()))
+    pr("\n2b. What tips a stay (as it fell; a description, not a verdict)")
+    res["tips"] = tips(S, pr)
     pr("\n3. The held-out advice test: where the advice is clear, did teams that matched it do better? (advice and prices from the other nine groups of matches)")
     tests = [("every flag and boost scenario", dict()), ("their run, our answer (not the boost, not the opening)", dict(only=lambda n: n.startswith("Their") and "boost" not in n and "in hand" not in n)),
              ("the opening", dict(only=lambda n: n.startswith("The opening"))),
@@ -350,6 +414,12 @@ def report(path, out_json=None):
         for col, words in (("v180", "priced result 180 s on"), ("v90", "priced result 90 s on"), ("end", "how the match ended against the position")):
             e = t[col]
             pr(f"     {words:42} matched {e['matched_mean']:+5.1f}, not matched {e['unmatched_mean']:+5.1f}; set against the same scenario and position: {e['effect']:+.1f} win points (90% range {e['range'][0]:+.1f} to {e['range'][1]:+.1f}): {e['verdict']}")
+    S0 = {k: Scenario(s.C, False) for k, s in S.items()}
+    t0, _ = advice_test(S0, K, only=tests[1][1]["only"]); res["advice_test"]["their run, our answer: matched on the first eight variables only"] = t0
+    if "v180" in t0:
+        e = t0["v180"]
+        pr(f"\n   their run, our answer, matched on the first eight variables only (without: {', '.join(MORE)}): clear advice in {t0['tally'].get('clear advice', 0)}; matched {t0['matched']} of {t0['rows']}; "
+           f"priced result 180 s on, set against the same scenario and position: {e['effect']:+.1f} win points (90% range {e['range'][0]:+.1f} to {e['range'][1]:+.1f}): {e['verdict']}")
     held = sum(1 for c in C if c["held"])
     pr(f"\n   The flag only held at home at a boost (a boost run that denies nothing while the rest fall back): {held} of {sum(1 for c in C if c['kind'] == 'boost')} boost cases.")
     if out_json: json.dump(res, open(out_json, "w"), ensure_ascii=False, indent=1, default=float)
@@ -368,7 +438,7 @@ def case(path, rid, at):
     m = M[c["rid"]]; r = s.read(i, K, False)
     print(f"{' v '.join(m['teams'])}, {m['map']}, {m['date']}, {cl(c['t'])}: https://gvg.report/report/{c['rid']}#map")
     print(f"  {c['said']}\n  scenario: {c['scenario']}; {c['team']}'s call: {c['call']}; chance of winning at that second {100 * c['p0']:.0f}%")
-    print("  matched on: " + "; ".join(f"{n} {v:.0f}" if isinstance(v, (int, float)) and abs(v) >= 10 else f"{n} {v}" for n, v in zip(VARS, c["x"])))
+    print("  matched on: " + "; ".join(f"{n} {v:.0f}" if isinstance(v, (int, float)) and abs(v) >= 10 else f"{n} {v}" for n, v in zip(VARS + MORE, c["x"] + (c["more"] or []))))
     print(f"  what followed: {c['v']['90']:+.1f} win points at 90 s, {c['v']['180']:+.1f} at 180 s; at 180 s deaths {c['hard']['180']['deaths']}, NPCs lost {c['hard']['180']['npcs']}, flag lead {c['hard']['180']['lead_change']}")
     for a, w in sorted(r["calls"].items(), key=lambda kv: -kv[1]["worth"]):
         print(f"  {a:34} worth {w['worth']:+5.1f} win points (90% range {w['worth'] - Z * w['se']:+.1f} to {w['worth'] + Z * w['se']:+.1f}), from {w['plays']} plays in {w['matches']} matches")

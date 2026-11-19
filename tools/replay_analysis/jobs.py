@@ -343,6 +343,14 @@ def flag_plays(M, K, pinned_at):
         # the position the answer is chosen from and what followed it on the fixed 90 and 180 s record (R-294), both read at the second the decision arises: what the
         # similar cases match on and are judged by (cases.py). The play's own clock ends at a cap, theirs for a stay and ours for a run, so it cannot be compared across calls
         kw["state"], kw["after"] = M._state(A, int(w0)), M.consequence(A, int(w0))
+        # ... and what else a team can see at that second (R-539: a build is a fixed state, never a call, but it bears on which call is right): who their runner is and who
+        # ours is, as properties (a backline monk away is not a warrior away); where each main team stands, as a step on its ladder; each whole team's snares and speed
+        if getattr(M, "_team_props", None) is None: M._team_props = {k: M._props(list(M.st.players[k])) for k in M.st.teams}
+        first = lambda x_: list(dict.fromkeys(x_["ids"]))[:1]
+        kw["their_runner"] = dict(M._props(first(f)), role=f["runner"])
+        kw["our_runner"] = dict(M._props(first(g)), role=g["runner"]) if (g is not None and not inhand) else None
+        kw["steps"] = [M._main_step(A, int(w0))[0], M._main_step(B, int(w0))[0]]
+        kw["teams"] = {k: [M._team_props[A][k], M._team_props[B][k]] for k in ("snare", "speed", "self_defence")}
         if ours == "a flag already in hand":
             # R-486: the flag in hand is a timing choice. When their flag gets in, the team with a flag in hand overcaps at once, or holds it and plays on with eight
             # (in position at the stand, or with the carrier kept in the fight: "do we GET in position to overcap or do we use the 8v7/8v8 time to hold the flag; and
