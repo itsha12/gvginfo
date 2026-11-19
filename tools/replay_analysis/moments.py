@@ -2101,12 +2101,16 @@ class Moments:
           on half or more of its seconds he does not stand with three or more of his team (`with_rest`): a carrier in the middle of his team is a
             runner being stopped, an unsuccessful run (his words on Men v hold 8:12, hold's Air Ele 3, seven of his team round him);
           the flag was not in his hand before the gates opened;
-          and nobody pushes him as a flagger while he carries it (a push the page tells, R-371 and R-530: HC v cope 3:38, cope's Hammer A, a run).
-        The run begins when a player who is not part-running takes the flag out. A player who waits at home for the next flag (the second player of
-        a double run) and is counted in a defence meanwhile reads the same way when he only brings it part of the way: his own words on hold v Men
-        1:05, "a borderline doublerun ... the warrior was sort of back for split defence", then "100% ... part-runs". Standing by the spawn cannot
-        tell the two apart (a defender stands by it too: a form that left out whoever had waited there read none of his seven carries). Three forms
-        built earlier the same day failed rows he then corrected."""
+          nobody pushes him as a flagger while he carries it (a push the page tells, R-371 and R-530: HC v cope 3:38, cope's Hammer A, a run);
+          and, the mark of a part-run (R-536, "always true"): when he has put it down he goes back to his base, "because they have a BIT of time to
+            run the flag some of the way, but CANNOT run the flag all the way because they have to be back in base to do something (e.g. defend
+            split)". Read as: for JOIN_S after the carry (R-350) he is still on his own ground. A player who puts the flag in a team mate's hands and
+            goes on to his main team has handed it on in a run (Men v HC 0:25: Men's Hammer B gives it to the Mesmer and is at the stand with his
+            team 2 s later: "NOT a part-run"). Of the ten carries he has ruled part-runs, eight are counted in a split's defence again within 10 s
+            and the other two stand at their own front door for the next 40 s.
+        The run begins when a player who is not part-running takes the flag out. Usually, not always, nobody is handed a part-run's flag: it is put
+        down and taken up by another player more than 5 s later (R-536; not used as a test). Standing by the spawn cannot tell a defender from a
+        player left back for the next flag (a form that left out whoever had waited there read none of his carries)."""
         tm, S, T, out = L["team"], SPLIT_STEP, self.T, set()
         if self.hall is None: return out
         import jobs
@@ -2122,6 +2126,7 @@ class Moments:
             if not us or not all((lambda k_, s_: s_ == own and k_ in HOME_GROUND)(*self.place_at(b, u)) for u in us): continue
             if not any(C.get((b, u)) == "defence" for u in range(max(us[0] - JOIN_S, 0) // S * S, us[-1] + 1, S)): continue
             if any(q["flagger"] == b and q["t"] <= e0 and q["t1"] >= c[1] for q in self._told_pushes): continue
+            if not all((lambda k_, s_: s_ == own and k_ in HOME_GROUND)(*self.place_at(b, u)) for u in range(us[-1] + S, min(us[-1] + JOIN_S, T) + 1, S) if self.AL[b][u] and self.P[b][u]): continue      # R-536: he goes back to his base, he does not go on to his main team
             mates = [x for x in self.st.players[tm] if x != b]
             if 2 * sum(not self.with_rest(b, mates, u) for u in us) >= len(us): out.update((b, u) for u in us)
         return out
