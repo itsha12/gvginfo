@@ -40,8 +40,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   - Them holding it (540): a runner within 15 s +2.0 (flags +0.52), none for 90 s -0.1 (their boost 0.51 against
     0.16); at the same position not clear (-0.8, -2.7 to +0.8). At 30 s, and for run again or not: nothing clear.
   - Held out, spot by spot: better at 60 s (+1.2), not clear at 180 s (+1.2, -0.2 to +2.7). Their boost 30 s away:
-    +5.9 (2.5 to 9.9). So: with the stand held, do not rush the answer; which spots, the engine cannot yet say.
-  - His given (R-542) holds in both halves; prices as before (a flag of lead 6.8, a death 6.0, a boost 11.1).
+    +5.9 (2.5 to 9.9). With the stand held, do not rush the answer; which spots, not yet. His given (R-542) holds.
 
 ## Next (in order)
 1. The flag family (R-540), at his word: his reading of the ladder and of the corrected advice (Open, 0); who to
