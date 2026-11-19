@@ -185,6 +185,10 @@ a solo split or other uneven counts (27%). The rebuild on the records takes its 
       run no call is clearly better in four cases of five, and following the advice shows no gain on unseen matches;
       at their boost, running a flag is clearly better in a third of cases and holds on unseen matches in the priced
       result, not yet in how matches end. Read with him; what follows from it is his to say.
+      Since (R-539 to R-544): the answer to their run is read at fixed seconds after their runner set off (15 and
+      30 s) and judged 60, 90 and 180 s on, the reading to the end of their run having taken in every run of theirs
+      that came to nothing; builds come in as properties; the opening is a different decision. Read at 15 s the
+      advice (mostly "no runner yet") holds on unseen matches at 180 s and in how matches end: a lead to follow.
    d. The other kinds as he says each is ready: similar cases, enemy execution (2.12), the interaction rule (2.13), NPC
       damage by class of bar (R-433).
 7. **Stage E: close**: old and new decision kinds side by side, SPEC.md and METHODS.md rewritten, the readability

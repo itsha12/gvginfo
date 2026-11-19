@@ -245,12 +245,13 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   flag lead, death penalty, morale boost, pit NPCs, Lord health; a stand-in for the win model until stage E; footmen are
   not priced, their price runs backwards, and each run prints that check), the nearest cases (the same scenario, then
   the variables of R-538 in standard units, equal weight, and for the answer to their run also the res clock, each main
-  team's place, their runner and each team's snares, R-539 and R-540: a build comes in as properties, never as a label;
-  K chosen by the data; the floor of 30 plays and 15 matches), what tips a stay (as it fell: a description, not a verdict),
-  and the held-out advice test (the boost read with and without the flag only held at home). The answer to their run is
-  judged from section 4 of the report, never from the reading to the end of their run, which takes in every run of
-  theirs that came to nothing (R-542): our answer read 15, 30 and 45 s after their runner set off, what followed at 60,
-  90, 120 and 180 s (R-543), and his given printed as a check (its half on flags is T12). Every flag and boost play
+  team's place, their runner, each team's snares, how long their flag should take and whether the flag can beat the
+  boost, R-539, R-540 and R-544: a build comes in as properties, never as a label; K chosen by the data; the floor of 30
+  plays and 15 matches), and the held-out advice test (the boost read with and without the flag only held at home). The
+  answer to their run is read at fixed seconds, 15 and 30 s after their runner set off, and judged 60, 90 and 180 s on
+  (R-543, R-544), never to the end of their run, which takes in every run of theirs that came to nothing (R-542); his
+  given is printed as a check (its half on flags is T12). Dropped at his word, not to be brought back without it:
+  measured weights, the short list of six variables, the 45 s read, the 120 s window. Every flag and boost play
   carries `state` and `after`, the position and the fixed 90 and 180 s record at the second the decision arises: judge
   calls from those, never from a play's own end. `cases.py case <plays file> <report id> <m:ss>` prints one decision
   with its nearest cases and their replay links. A verdict is a reading, not advice, until the held-out test shows a

@@ -8,54 +8,54 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 > out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-19, 01:15: twelve games graded; the answer to their run read at fixed seconds (R-543))
+## State (2026-11-19, 07:30: twelve games graded; the flag family's answer read at fixed seconds (R-544))
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` and lands in one piece,
   then one rebuild (R-322). 658 replays stored; 564 count (R-477); 506 matches trained. No workflow run in progress.
-  Rulings run to R-543. The baseline (R-491) is the branch `baseline-2026-11-15`. R-531: the flag plays are ready.
-- Graded and filed (set f1): twelve games (옷옷옷옷 v hdm to 9:40, R-532); per game in CHANGELOG. In the six games
-  after the fifth, 153 Classic and Visible rows: 152 read as he reads them with his withdrawals and what was fixed
-  (open: hold v Men 2:34). Game 14, Dz v Team on Druid's Isle: 22 Classic and 2 Visible, all read correct, 48 of
-  48 calls. Out unmarked: hdm v HC (R-522) and game 13, Men v NwAy on Corrupted Isle (R-537). No game waits for
-  him. Not graded his new way: Corrupted, Weeping Stone, Isle of the Dead.
-- His marks on nine picked rows (set p2 in the key; none binds). Part-runs are built (R-535, R-536). Held:
-  - Boost: cope v hold 14:33 is no run (held at his door): held, with Men v Crew 17:53, for a measure of ground made.
-  - Solo splits: QenK v Fun 6:37 and NwAy v ohno 5:24 are main team collapses (the second not told: it kills before
-    R-508's 4 s); each death is also left on the 1 v 1 row. Held for the split family.
+  Rulings run to R-544. The baseline (R-491) is the branch `baseline-2026-11-15`. R-531: the flag plays are ready.
+- Graded and filed (set f1): twelve games (옷옷옷옷 v hdm to 9:40, R-532); per game in CHANGELOG. The last, game
+  14, Dz v Team on Druid's Isle: 22 Classic and 2 Visible, all read correct, 48 of 48 calls. Out unmarked: hdm v
+  HC (R-522) and game 13, Men v NwAy (R-537). No game waits for him. Not graded his new way: Corrupted, Weeping
+  Stone, Isle of the Dead.
+- His marks on nine picked rows (set p2 in the key; none binds). Part-runs are built (R-535, R-536). Held: cope v
+  hold 14:33, a flag held at his door read as a boost runner (with Men v Crew 17:53); QenK v Fun 6:37 and NwAy v
+  ohno 5:24, main team collapses whose deaths are also left on the 1 v 1 row (for the split family).
 - Confidence (R-515) does not tell Classic from Visible; a measure of what is at stake (R-509) would. Not built.
-- Checkpoint run (every counted match, engine f1ac7f4): 564 matches, 34,913 plays, no errors, self-check 7 in 5
-  matches; flag plays 5,474, 1,491 set aside for Shadow of Haste (R-456). The reading is unchanged by the new
-  fields (every play the same). The fourteen truths hold (T12 is his given, R-542); 281 Classic rows pass, none fail;
-  129 history rows hold,
-  3 do not; set f1 15 of 50 open checks hold, p2 0 of 3; gate 12 of 12 and 63 of 105; line-up and comms 530 of 583.
-- The similar cases (R-538; `cases.py` on the branch, report in `data/model/flag_cases.json`), 5,195 cases:
+- Checkpoint run (every counted match, engine bf84adb): 564 matches, 34,913 plays, no errors, self-check 7 in 5
+  matches; every play the same as before the flag work, new fields apart. The fourteen truths hold (T12 is his
+  given on flags, R-542); 281 Classic rows pass, none fail; 129 history rows hold, 3 do not; set f1 15 of 50 open
+  checks hold, p2 0 of 3. Gate 12 of 12 and 63 of 105, line-up and comms 530 of 583 (last run 2026-11-18).
+- The similar cases (R-538 to R-544; `cases.py test <plays file>` on the branch, about a minute; the report is
+  `data/model/flag_cases.json`), 4,332 cases; 1,606 Shadow of Haste plays and the opening (868, R-541) set aside:
   - Prices, win points from an even position: a flag of lead 6.8, a death's penalty 6.0, a morale boost 11.1, a pit
-    NPC 4.7, 10% of Lord health 9.5; who wins foretold 82% on unseen matches. A footman is not priced. K 120.
-  - Their run, our answer (2,898 cases), read to the end of their run: no gain held out on any weighting (-0.1 to
-    +1.0 win points, none clear). The fault (R-542): a "stay" so read takes in their runs that came to nothing
-    (their flag fails after 35% of stays, 9% of runs). That reading is superseded by the fixed reads below.
-  - Read at 15, 30 and 45 s after their runner set off, judged at 60, 90, 120 and 180 s (R-543; section 4 of the
-    report). His given holds (T12): a runner sent by 30 s is 0.28 of a flag ahead 90 s on. In win points the two
-    are level (+0.1 at 90 s, 0.0 at 180 s); with nobody dying, not clear (-0.1): the flag part is as he says (2.2
-    points) and is offset by own boosts, which land more where nobody was sent (0.23 against 0.04 in 90 s).
-    Held out: read at 15 s, better at 60 s (+3.1) and 180 s (+4.6, advice mostly "no runner yet"), not clear at
-    90 and 120; at 30 s better at 60 s only; at 45 s nothing clear. The three weightings agree nearly everywhere.
-  - Their boost 30 s away (1,316): run a flag clearly better in 34%, never "send no flag". Held out: +8.4 win
-    points 180 s on (3.6 to 13.0), +10.5 without the 203 flags only held at home; in how the match ended +4.5
-    (-4.8 to +13.8), not clear. The opening (804 cases) is out: a different decision (R-541).
+    NPC 4.7, 10% of Lord health 9.5; who wins foretold 82% on unseen matches. A footman is not priced. K 90.
+  - Their boost 30 s away (1,316): "run a flag" clearly better in 31%. Held out: +9.1 win points 180 s on (4.8 to
+    13.8), +11.2 without the 203 flags only held at home; in how the match ended +4.6 (-5.8 to +13.8), not clear.
+  - Their run, our answer: read 15 and 30 s after their runner set off (their run still under way, nobody sent by
+    the read before; a runner sent, a double run started, or none yet), judged 60, 90 and 180 s on (R-543, R-544).
+    Never read to the end of their run (R-542: such a "stay" takes in their runs that came to nothing).
+    In flags a runner sent is ahead at every window (15 s read, us holding the stand: +0.24, +0.39, +0.19).
+    Held out, read at 15 s (2,808 cases): matching the advice is better at 60 s (+2.9, 1.9 to 4.2) and at 180 s
+    (+4.8, 1.9 to 7.7; the advice "no runner yet" in 654 of 756; in how the match ended +8.5, 2.1 to 16.4), not
+    clear at 90 s. Read at 30 s (2,015): nothing clear. Ten tests in all: a lead, not yet a finding, and held-out
+    is not cause (a team may hold off because it sees their run failing).
+  - His given (R-542). Flags: holds (+0.29 of a flag 90 s on for a runner sent by 30 s). "No kill, no other gain,
+    so worse off": with nobody dying and no boost landing, a runner sent is +1.0 win points ahead with us holding
+    the stand (-0.1 to +2.0) and +0.7 with them holding it (-0.2 to +1.6): his way, not clear. With boosts let in
+    it is level, own boosts landing more where nobody was sent (the flag-beats-boost variable halves that gap).
+  - Under the floor: the double run (theirs as a scenario, ours as a call: kept, R-544) and a flag in hand.
 
 ## Next (in order)
-1. The flag family (R-540): his answers under Open, 0 (what to drop), then "will their flag beat our boost" as
-   a matching variable, then the run in answer judged on whether it held even (who to send, their snares). The
-   push on their flagger and the double run get no verdict until they clear the floor.
-2. Held for a second game (R-495): a base res with the attackers at the footmen (HC v hdm 1:40, Jade: held open
-   for his review); Men v hold 6:48, a collapse told as a push on the flagger; who and how many push a flagger (HC v
-   Team, Men v RACK 1:08); numbers through the portal on Jade; Men v hold 2:46, defenders standing in their pit.
+1. The flag family (R-540), at his word: the run in answer judged on whether it held even (the flag in, at what
+   cost; who to send; their snares); why holding off at 15 s reads better (what those teams do next: a later
+   run, a push on their flagger, a kill). The push on their flagger as a call when it clears the floor.
+2. Held for a second game (R-495): a base res with the attackers at the footmen (HC v hdm 1:40, Jade); Men v hold
+   6:48, a collapse told as a push on the flagger; who and how many push a flagger; numbers through Jade's portal.
 3. The other kinds after the flag family, as he says each is ready; rare plays topped up with picked rows; then
    stage E. The clean-up (R-398; REDESIGN.md "Before the next training run", nine items) comes after the games.
 
 ## Open for Denning
-0. Put to him 2026-11-19, what to drop on this decision (R-543): the measured and six-variable weightings, the
-   45 s read, the 120 s window, their double run, and the old reading to the end of their run.
+0. Put to him 2026-11-19: whether to look next at what teams that hold off at 15 s go on to do, or at the run
+   in answer (who to send, their snares); and whether the flag plays' reading is settled enough to start splits.
 1. Isle of Jade: is a team at the footmen on the portal side in the base at a base res (HC v hdm 1:40)?
 2. Tolkano: no build (his word). Match pages are tolkano.com/match/<id>, the id neither gvg.report's nor the start
    time: give him date, guilds, hall and length with every example so he can find it there.

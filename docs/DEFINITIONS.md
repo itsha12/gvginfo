@@ -279,6 +279,10 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   the builds can do is matched on as properties, never as labels (R-539, amending "builds stay out" in R-538; R-374).
   For the answer to their run: each team's snares, who their runner is, and with them the res clock and where each
   main team stands (R-540).
+- The answer to their run is read at fixed seconds after their runner set off, 15 and 30 s, with their run still
+  under way and nobody of ours sent by the read before: a runner sent by now, a double run started, or none yet;
+  what followed is read 60, 90 and 180 s on (R-543, R-544). It is never read to the end of their run: a "stay" so
+  read takes in every run of theirs that came to nothing (R-542). The opening is a different decision (R-541).
 - The better call is the one whose hard results at 90 and 180 s, priced by how much each moves the chance of winning
   the match, come out ahead among the nearest cases of other matches (R-538, R-294). A call is read only from 30
   plays or more out of 15 matches or more; under that, and where the range includes no difference, the verdict is
