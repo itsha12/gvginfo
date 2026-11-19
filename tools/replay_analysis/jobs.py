@@ -98,6 +98,7 @@ def _play(M, play, side, tm, t0, t1, who, scenario, job, tests, beside=None, rul
 
 
 FLAG_AFTER_S = (60, 90, 180)           # what followed a flag decision, read at three seconds so that the effect can be followed as it grows and fades (R-543; 90 and 180 s are R-294's; 120 s was read too and dropped, R-544: it sat between the two and changed no verdict)
+FLAG_BEFORE_S = 60                     # how long before a flag decision the position is read again, for the test of a call against what came before it
 FLAG_TRACK_S = tuple(range(0, 241, 15))  # the seconds from their runner's set-off at which the flag lead and the holder of the stand are kept on a flag play (`track`)
 FLAG_TRACK_FOR = 300                   # ... and for how long after it every cap and morale boost is kept, by its second
 
@@ -355,6 +356,10 @@ def flag_plays(M, K, pinned_at):
         from_cap = int(w0) > int(f["s0"]) + 2
         anc = int(w0) if from_cap else min(o_, int(w0))
         kw["state"], kw["after"] = M._state(A, anc), M.consequence(A, anc, FLAG_AFTER_S)
+        # ... and the position FLAG_BEFORE_S before that second, read the same way, so that a call can be tested against what came before it (SPEC 5, rule 4: a call
+        # that goes with the team's fortunes before it was made marks the situation and is no advice; 2026-11-19, the teams that sent nobody were already winning)
+        b_ = anc - FLAG_BEFORE_S
+        kw["before"] = None if b_ < 0 else {"state": M._state(A, b_), "after": M.consequence(A, b_, (FLAG_BEFORE_S,))[str(FLAG_BEFORE_S)]}
         # ... and the clock of the two runs, so that an answer can be read at a fixed second after theirs set off (his word, 2026-11-19: a run within 15 s of theirs is
         # not a run 45 s after it; and a "stay" read from having sent nobody before their run ended takes in every run of theirs that came to nothing): when their runner
         # set off and when their run ended; when our next runner set off, whenever that was; and how long their flag should take from here (to his spawn at a run, then
