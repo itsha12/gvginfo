@@ -24,7 +24,8 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 - Confidence (R-515) does not tell Classic from Visible; a measure of what is at stake (R-509) would. Not built.
 - Checkpoint run (every counted match, engine f1ac7f4): 564 matches, 34,913 plays, no errors, self-check 7 in 5
   matches; flag plays 5,474, 1,491 set aside for Shadow of Haste (R-456). The reading is unchanged by the new
-  fields (every play the same). The fourteen truths hold (T12 is his given, R-542); 281 Classic rows pass, none fail; 129 history rows hold,
+  fields (every play the same). The fourteen truths hold (T12 is his given, R-542); 281 Classic rows pass, none fail;
+  129 history rows hold,
   3 do not; set f1 15 of 50 open checks hold, p2 0 of 3; gate 12 of 12 and 63 of 105; line-up and comms 530 of 583.
 - The similar cases (R-538; `cases.py` on the branch, report in `data/model/flag_cases.json`), 5,195 cases:
   - Prices, win points from an even position: a flag of lead 6.8, a death's penalty 6.0, a morale boost 11.1, a pit
