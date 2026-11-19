@@ -12,8 +12,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` and lands in one piece,
   then one rebuild (R-322). 658 replays stored; 564 count (R-477); 506 matches trained. No workflow run in progress.
   Rulings run to R-534. The baseline (R-491) is the branch `baseline-2026-11-15`; built since, from his marks: R-498
-  to R-530. His answers of 2026-11-18 are in the key (`later`, `answered`). R-531: the flag plays are ready. R-532:
-  game 12 stays graded to 9:40.
+  to R-530. His answers are in the key. R-531: the flag plays are ready. R-532: game 12 stays graded to 9:40.
 - Graded and filed (set f1): eleven games (the last, 옷옷옷옷 v hdm, to 9:40); per game in CHANGELOG. hdm v HC
   (bbef1904) is out (R-522). In the six games since the fifth, 153 Classic and Visible rows: 143 read correct as
   marked, 152 with his withdrawals and what was fixed (open: hold v Men 2:34); no decision he had to add.
@@ -46,10 +45,9 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
    call by the fixed 90 and 180 s record, the held-out advice test on the branch, read with him whatever it shows.
    Every result with and without the flag shapes still misread (a defender's carry; a flag held at home at a boost).
 2. His marks on games 13 and 14 when he has graded them: file them the same session (`review.py file`).
-3. Held for a second game (R-495): a base res counted with the attackers at the footmen (HC v hdm 1:40, Jade: held
-   open for his review); Men v hold 6:48, a collapse told as a push on the flagger; who and how many push a flagger
-   (HC v Team, Men v RACK 1:08); numbers through the portal on Jade (Men v Crew); Men v hold 2:46, defenders standing
-   in their pit. Each is counted and put to him when its kind of play is next.
+3. Held for a second game (R-495): a base res with the attackers at the footmen (HC v hdm 1:40, Jade: held open
+   for his review); Men v hold 6:48, a collapse told as a push on the flagger; who and how many push a flagger (HC v
+   Team, Men v RACK 1:08); numbers through the portal on Jade; Men v hold 2:46, defenders standing in their pit.
 4. The other kinds after the flag family, as he says each is ready; rare plays topped up with picked rows; then
    stage E. The clean-up (R-398; REDESIGN.md "Before the next training run", nine items) comes after the games.
 
