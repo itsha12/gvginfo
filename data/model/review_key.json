@@ -31551,6 +31551,1408 @@
      "was": "옷옷옷옷 v Team 12:41 (picked row): 'a part run' (R-535): no run by 옷옷옷옷's Mesmer is told"
     }
    ]
+  },
+  {
+   "id": "f1-15a2-1",
+   "set": "f1",
+   "scheme": 2,
+   "row": 1,
+   "rid": "15a20f7a-0112-519a-a5f9-797a6822bf1b",
+   "match": "Dz v Team, Druid's",
+   "window": [
+    0,
+    97
+   ],
+   "type": "opening",
+   "call": "",
+   "shown": "The opening. Team: 8 to the stand; its first flag brought up by Ritualist and capped at 0:32. Dz: 8 to the stand; its first flag brought up by Mesmer, held at the stand for 69 s and capped at 1:37. Team caps first at 0:32; Dz caps over it at 1:37",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "15a20f7a-opening-2-0-3",
+     "shown": "Team [the first flag]: Get the first flag in. Met (our flag is capped: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "15a20f7a-opening-1-0-1",
+     "shown": "Dz [the first flag]: Get the first flag in. Met (our flag is capped: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "opening",
+      "team": "Team",
+      "start": [
+       -6,
+       6
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "opening",
+      "team": "Dz",
+      "start": [
+       -6,
+       6
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-15a2-2",
+   "set": "f1",
+   "scheme": 2,
+   "row": 2,
+   "rid": "15a20f7a-0112-519a-a5f9-797a6822bf1b",
+   "match": "Dz v Team, Druid's",
+   "window": [
+    80,
+    174
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Dz up on numbers in the main fight (8 v 6, the flag stand; then 8 v 5 from 1:46; then 8 v 6 from 2:16; then 7 v 3 from 2:38), from players split elsewhere; Dz: retreat down the ladder (fall back into the base) | Team: retreat down the ladder (fall back into the base)",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "15a20f7a-numbers-1-80-4",
+     "shown": "Dz (strong side) [retreat down the ladder]: Kill with the numbers while their players are away. Met (more of theirs die than of ours: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "15a20f7a-numbers-2-80-5",
+     "shown": "Team (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Not met (nobody of ours dies: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Dz",
+      "start": [
+       74,
+       86
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Team",
+      "start": [
+       74,
+       86
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-15a2-3",
+   "set": "f1",
+   "scheme": 2,
+   "row": 3,
+   "rid": "15a20f7a-0112-519a-a5f9-797a6822bf1b",
+   "match": "Dz v Team, Druid's",
+   "window": [
+    129,
+    186
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "Team single run (Mes/A); Dz stays",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "15a20f7a-flag-1-129-6",
+     "shown": "Dz [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Not met (more of theirs die at the main fight than of ours: no; their flag does not get in: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "Dz",
+      "start": [
+       123,
+       135
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-15a2-4",
+   "set": "f1",
+   "scheme": 2,
+   "row": 4,
+   "rid": "15a20f7a-0112-519a-a5f9-797a6822bf1b",
+   "match": "Dz v Team, Druid's",
+   "window": [
+    187,
+    241
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "Dz single run (Mesmer); Team stays",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "15a20f7a-flag-2-187-7",
+     "shown": "Team [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Not met (more of theirs die at the main fight than of ours: no; their flag does not get in: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "Team",
+      "start": [
+       181,
+       193
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-15a2-5",
+   "set": "f1",
+   "scheme": 2,
+   "row": 5,
+   "rid": "15a20f7a-0112-519a-a5f9-797a6822bf1b",
+   "match": "Dz v Team, Druid's",
+   "window": [
+    200,
+    250
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Team's split by the back door: two players (Hammer, Ritualist) against 5 defending (Prot (WoC), Monk 5 (WoC), Monk 3 (WoC), Monk 1 (WoC), Monk 4 (WoC)); numbers along the way: 2 v 5 from 3:32, 2 v 2 from 3:50. Who came and went, each a decision of its own: Monk 1 (WoC), Monk 3 (WoC), Monk 4 (WoC) (Dz) leave the defence at 3:50",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "15a20f7a-split-2-200-9",
+     "shown": "Team (attacker) [a player or more down]: Hold more defenders there than its own number and lose nobody (what the team made of the extra player elsewhere is beside it). Met (nobody on the split dies: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "15a20f7a-split-1-200-8",
+     "shown": "Dz (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Not met (no pit NPC lost: yes; a split player dies: no; the split is gone within the visit: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "15a20f7a-split-2-200-10",
+     "shown": "Team (attacker's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Not met (more of theirs die away from the split than of ours: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "15a20f7a-split-1-230-11",
+     "shown": "Dz (defender) [leave: Monk 1 (WoC), Monk 3 (WoC), Monk 4 (WoC) at 3:50]: Gain at the main fight with the player back, and lose no pit NPC for it. Met (no pit NPC lost: yes; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "Team",
+      "start": [
+       194,
+       206
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Dz",
+      "start": [
+       194,
+       206
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Team",
+      "start": [
+       194,
+       206
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Dz",
+      "start": [
+       224,
+       236
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-15a2-6",
+   "set": "f1",
+   "scheme": 2,
+   "row": 6,
+   "rid": "15a20f7a-0112-519a-a5f9-797a6822bf1b",
+   "match": "Dz v Team, Druid's",
+   "window": [
+    238,
+    250
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Team's split by the back door: two players (Hammer, Ritualist); Dz turns on it from 3:54 with 7 (Monk 5 (WoC), Prot (WoC), Monk 1 (WoC), Monk 2 (WoC), Monk 3 (WoC), Monk 4 (WoC), 8 Monk); 7 turn for it from 3:54 (Monk 5 (WoC), Prot (WoC), Monk 1 (WoC), Monk 2 (WoC), Monk 3 (WoC), Monk 4 (WoC), 8 Monk) against two players: full collapse",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "15a20f7a-split-2-238-13",
+     "shown": "Team (attacker) [met by a full collapse]: Survive the collapse and lose nobody (what the team gained elsewhere meanwhile is beside it). Not met (nobody on the split dies: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "15a20f7a-split-1-238-12",
+     "shown": "Dz (defender) [full collapse]: Kill the split or drive it out (the flags it costs are beside it). Met (a split player dies: yes; the split is gone within the visit: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "Team",
+      "start": [
+       232,
+       244
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Dz",
+      "start": [
+       232,
+       244
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-15a2-7",
+   "set": "f1",
+   "scheme": 2,
+   "row": 7,
+   "rid": "15a20f7a-0112-519a-a5f9-797a6822bf1b",
+   "match": "Dz v Team, Druid's",
+   "window": [
+    244,
+    284
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Dz up on numbers in the main fight (8 v 4, the greater stand area; then 8 v 5 from 4:16), from players split elsewhere; Dz: stay (stay at the stand) | Team: retreat down the ladder (fall back into the base)",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "15a20f7a-numbers-1-244-14",
+     "shown": "Dz (strong side) [stay]: Kill with the numbers while their players are away. Met (more of theirs die than of ours: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "15a20f7a-numbers-2-244-15",
+     "shown": "Team (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Not met (nobody of ours dies: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Dz",
+      "start": [
+       238,
+       250
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Team",
+      "start": [
+       238,
+       250
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-15a2-8",
+   "set": "f1",
+   "scheme": 2,
+   "row": 8,
+   "rid": "15a20f7a-0112-519a-a5f9-797a6822bf1b",
+   "match": "Dz v Team, Druid's",
+   "window": [
+    245,
+    281
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "Team single run (7 Monk); Dz stays",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "15a20f7a-flag-1-245-16",
+     "shown": "Dz [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Met (more of theirs die at the main fight than of ours: yes; their flag does not get in: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "Dz",
+      "start": [
+       239,
+       251
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-15a2-9",
+   "set": "f1",
+   "scheme": 2,
+   "row": 9,
+   "rid": "15a20f7a-0112-519a-a5f9-797a6822bf1b",
+   "match": "Dz v Team, Druid's",
+   "window": [
+    252,
+    284
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Team's split by the back door: two players (Mes/A, Warrior) against 0 defending; it crosses at 4:22 and has not reached their base, their footmen or a defender by 4:40",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "15a20f7a-split-2-252-18",
+     "shown": "Team (attacker) [undefended]: Take NPCs. Not met (an NPC taken: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "15a20f7a-split-1-252-17",
+     "shown": "Dz (defender) [no answer]: Win elsewhere before the split costs more than it gains. Met (more of theirs die away from the split than of ours: yes; flag lead better by 0.35 or more: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "Team",
+      "start": [
+       246,
+       258
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Dz",
+      "start": [
+       246,
+       258
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-15a2-10",
+   "set": "f1",
+   "scheme": 2,
+   "row": 10,
+   "rid": "15a20f7a-0112-519a-a5f9-797a6822bf1b",
+   "match": "Dz v Team, Druid's",
+   "window": [
+    277,
+    324
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "Team single run (Ritualist); Dz single run (8 Monk)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "15a20f7a-flag-1-277-19",
+     "shown": "Dz [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (our flag is capped: no; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "Dz",
+      "start": [
+       271,
+       283
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-15a2-11",
+   "set": "f1",
+   "scheme": 2,
+   "row": 11,
+   "rid": "15a20f7a-0112-519a-a5f9-797a6822bf1b",
+   "match": "Dz v Team, Druid's",
+   "window": [
+    282,
+    298
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Team's split by the front door: two players (Mes/A, Warrior) against 1 defending (Mesmer)",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "15a20f7a-split-2-282-22",
+     "shown": "Team (attacker) [a player or more up]: Kill or take NPCs. Met (a defender killed: yes; an NPC taken: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "15a20f7a-split-1-282-20",
+     "shown": "Dz (defender) [one defender]: Delay: keep the split off the pit NPCs and stay alive. Not met (no pit NPC lost: yes; no defender dies: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "15a20f7a-split-1-282-21",
+     "shown": "Dz (defender's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (more of theirs die away from the split than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "Team",
+      "start": [
+       276,
+       288
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Dz",
+      "start": [
+       276,
+       288
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Dz",
+      "start": [
+       276,
+       288
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-15a2-12",
+   "set": "f1",
+   "scheme": 2,
+   "row": 12,
+   "rid": "15a20f7a-0112-519a-a5f9-797a6822bf1b",
+   "match": "Dz v Team, Druid's",
+   "window": [
+    296,
+    310
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Team's split by the front door: two players (Mes/A, Warrior) against 4 defending (Monk 1 (WoC), Prot (WoC), Monk 4 (WoC), Monk 3 (WoC)); Monk 1 (WoC), Prot (WoC), Monk 4 (WoC), Monk 3 (WoC) collapse from the main fight; 4 (Monk 1 (WoC), Prot (WoC), Monk 4 (WoC), Monk 3 (WoC)) against two players: collapse by Monk 1 (WoC), Prot (WoC), Monk 4 (WoC), Monk 3 (WoC) from the main fight",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "15a20f7a-split-2-296-24",
+     "shown": "Team (attacker) [collapsed on]: Survive the collapse and lose nobody (what the team gained elsewhere meanwhile is beside it). Not met (nobody on the split dies: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "15a20f7a-split-1-296-23",
+     "shown": "Dz (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Met (a split player dies during the collapse: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "Team",
+      "start": [
+       290,
+       302
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Dz",
+      "start": [
+       290,
+       302
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-15a2-13",
+   "set": "f1",
+   "scheme": 2,
+   "row": 13,
+   "rid": "15a20f7a-0112-519a-a5f9-797a6822bf1b",
+   "match": "Dz v Team, Druid's",
+   "window": [
+    308,
+    386
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Team's split by the front door: two players (Warrior, 7 Monk) against 1 defending (8 Monk); numbers along the way: 1 v 1 from 5:08, 2 v 1 from 5:26; 1 damage against 1 monks. Who came and went, each a decision of its own: 7 Monk (Team) joins the split at 5:26",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "15a20f7a-split-2-308-26",
+     "shown": "Team (attacker) [held by monks]: Hold the monks there and lose nobody; NPCs are a bonus (a kill is not expected of it). Not met (nobody on the split dies: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "15a20f7a-split-1-308-25",
+     "shown": "Dz (defender) [one defender]: Delay: keep the split off the pit NPCs and stay alive. Met (no pit NPC lost: yes; no defender dies: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "15a20f7a-split-2-308-27",
+     "shown": "Team (attacker's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Not met (more of theirs die away from the split than of ours: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "15a20f7a-split-2-326-28",
+     "shown": "Team (attacker) [join: 7 Monk at 5:26]: Kill or take NPCs with the players added. Not met (a defender killed: no; an NPC taken: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "Team",
+      "start": [
+       302,
+       314
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Dz",
+      "start": [
+       302,
+       314
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Team",
+      "start": [
+       302,
+       314
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Team",
+      "start": [
+       320,
+       332
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-15a2-14",
+   "set": "f1",
+   "scheme": 2,
+   "row": 14,
+   "rid": "15a20f7a-0112-519a-a5f9-797a6822bf1b",
+   "match": "Dz v Team, Druid's",
+   "window": [
+    368,
+    462
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "Dz double run (first runner Mesmer, capping the flag before; second runner 8 Monk, back for this one); Team has a flag already in hand (Ritualist), capped at once",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "15a20f7a-flag-2-368-29",
+     "shown": "Team [a flag already in hand: overcap at once]: Answer their cap at once. Met (their flag does not get in: no; our cap follows theirs within 15 s: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "Team",
+      "start": [
+       362,
+       374
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-15a2-15",
+   "set": "f1",
+   "scheme": 2,
+   "row": 15,
+   "rid": "15a20f7a-0112-519a-a5f9-797a6822bf1b",
+   "match": "Dz v Team, Druid's",
+   "window": [
+    382,
+    416
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Team's split by the back door: two players (Hammer, Ritualist) against 0 defending; it crosses at 6:38 and reaches their base, their footmen or a defender at 6:52",
+   "band": "medium",
+   "grade": "visible",
+   "mark": "correct",
+   "reason": [
+    "nofight",
+    "unclear"
+   ],
+   "calls": [
+    {
+     "play": "15a20f7a-split-2-382-31",
+     "shown": "Team (attacker) [undefended]: Take NPCs. Not met (an NPC taken: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "15a20f7a-split-1-382-30",
+     "shown": "Dz (defender) [no answer]: Win elsewhere before the split costs more than it gains. Met (more of theirs die away from the split than of ours: yes; flag lead better by 0.35 or more: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-15a2-16",
+   "set": "f1",
+   "scheme": 2,
+   "row": 16,
+   "rid": "15a20f7a-0112-519a-a5f9-797a6822bf1b",
+   "match": "Dz v Team, Druid's",
+   "window": [
+    388,
+    420
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Dz up on numbers in the main fight (7 v 5, the greater stand area; then 7 v 4 from 6:48), from kills; Dz: retreat down the ladder (fall back into the base) | Team: push up (push up to their back door)",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "15a20f7a-numbers-1-388-32",
+     "shown": "Dz (up) [retreat down the ladder]: Reset without giving anything back. Met (nobody of ours dies: yes; no NPC lost: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "15a20f7a-numbers-2-388-33",
+     "shown": "Team (down) [push up]: Trade a player down: take something on their ground for it. Not met (one of their NPCs dies: no; more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Dz",
+      "start": [
+       382,
+       394
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Team",
+      "start": [
+       382,
+       394
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-15a2-17",
+   "set": "f1",
+   "scheme": 2,
+   "row": 17,
+   "rid": "15a20f7a-0112-519a-a5f9-797a6822bf1b",
+   "match": "Dz v Team, Druid's",
+   "window": [
+    404,
+    452
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Team's split by the back door: two players (Hammer, Ritualist); Dz turns on it from 6:40 with 7 (Monk 1 (WoC), Monk 2 (WoC), Monk 3 (WoC), Monk 4 (WoC), Monk 5 (WoC), Prot (WoC), Mesmer); 7 turn for it from 6:40 (Monk 1 (WoC), Monk 2 (WoC), Monk 3 (WoC), Monk 4 (WoC), Monk 5 (WoC), Prot (WoC), Mesmer) against two players: full collapse",
+   "band": "low",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "15a20f7a-split-2-404-35",
+     "shown": "Team (attacker) [met by a full collapse]: Survive the collapse and lose nobody (what the team gained elsewhere meanwhile is beside it). Not met (nobody on the split dies: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "15a20f7a-split-1-404-34",
+     "shown": "Dz (defender) [full collapse]: Kill the split or drive it out (the flags it costs are beside it). Met (a split player dies: yes; the split is gone within the visit: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "Team",
+      "start": [
+       398,
+       410
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Dz",
+      "start": [
+       398,
+       410
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-15a2-18",
+   "set": "f1",
+   "scheme": 2,
+   "row": 18,
+   "rid": "15a20f7a-0112-519a-a5f9-797a6822bf1b",
+   "match": "Dz v Team, Druid's",
+   "window": [
+    414,
+    438
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Team's split by the back door: 4 players (Hammer, Ritualist, Stand Mes, Warrior) against 5 defending (Monk 1 (WoC), Prot (WoC), Monk 4 (WoC), Monk 5 (WoC), Monk 3 (WoC)); Monk 1 (WoC), Prot (WoC), Monk 4 (WoC), Monk 5 (WoC), Monk 3 (WoC) collapse from the main fight; 5 (Monk 1 (WoC), Prot (WoC), Monk 4 (WoC), Monk 5 (WoC), Monk 3 (WoC)) against 4 players: collapse by Monk 1 (WoC), Prot (WoC), Monk 4 (WoC), Monk 5 (WoC), Monk 3 (WoC) from the main fight",
+   "band": "low",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "15a20f7a-split-2-414-37",
+     "shown": "Team (attacker) [collapsed on]: Survive the collapse and lose nobody (what the team gained elsewhere meanwhile is beside it). Not met (nobody on the split dies: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "15a20f7a-split-1-414-36",
+     "shown": "Dz (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Met (a split player dies during the collapse: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "Team",
+      "start": [
+       408,
+       420
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Dz",
+      "start": [
+       408,
+       420
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-15a2-19",
+   "set": "f1",
+   "scheme": 2,
+   "row": 19,
+   "rid": "15a20f7a-0112-519a-a5f9-797a6822bf1b",
+   "match": "Dz v Team, Druid's",
+   "window": [
+    434,
+    447
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "Team pushes Dz's flagger (8 Monk, carrying) with its main team",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "15a20f7a-push_flagger-2-434-39",
+     "shown": "Team: Stop their flag, or make it 30% late. Met (their flag is stopped: no; it arrives 30% or more later than usual: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "15a20f7a-flagger_pushed-1-434-38",
+     "shown": "Dz: Get the flag in on time. Not met (the flag gets in, less than 30% late: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "push flagger",
+      "team": "Team",
+      "start": [
+       428,
+       440
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "flagger pushed",
+      "team": "Dz",
+      "start": [
+       428,
+       440
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-15a2-20",
+   "set": "f1",
+   "scheme": 2,
+   "row": 20,
+   "rid": "15a20f7a-0112-519a-a5f9-797a6822bf1b",
+   "match": "Dz v Team, Druid's",
+   "window": [
+    436,
+    466
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Dz up on numbers in the main fight (7 v 1, the field on Dz's side; then 7 v 3 from 7:28), from kills; Dz: retreat down the ladder (fall back into the base) | Team: push their flagger",
+   "band": "none",
+   "grade": "none",
+   "mark": "",
+   "calls": [],
+   "checks": []
+  },
+  {
+   "id": "f1-15a2-21",
+   "set": "f1",
+   "scheme": 2,
+   "row": 21,
+   "rid": "15a20f7a-0112-519a-a5f9-797a6822bf1b",
+   "match": "Dz v Team, Druid's",
+   "window": [
+    438,
+    518
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "Dz double run (first runner 8 Monk, capping the flag before; second runner Mesmer, back for this one); Team has a flag already in hand (Mes/A), capped before theirs got in",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "15a20f7a-flag-2-438-42",
+     "shown": "Team [a flag already in hand: capped before theirs got in]: Cap just before their boost, or keep the flag for their cap. Not met (our cap lands just before their boost: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "Team",
+      "start": [
+       432,
+       444
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-15a2-22",
+   "set": "f1",
+   "scheme": 2,
+   "row": 22,
+   "rid": "15a20f7a-0112-519a-a5f9-797a6822bf1b",
+   "match": "Dz v Team, Druid's",
+   "window": [
+    458,
+    472
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Team's split by the back door: one player (Warrior) against 1 defending (Mesmer); 1 (Mesmer) against one player: the lone defender carries his flag for 14 s",
+   "band": "medium",
+   "grade": "visible",
+   "mark": "correct",
+   "reason": [
+    "brief",
+    "unclear"
+   ],
+   "calls": [
+    {
+     "play": "15a20f7a-split-2-458-45",
+     "shown": "Team (attacker) [1 v 1, the defender not a monk]: Take NPCs or kills. Not met (a defender killed: no; an NPC taken: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "15a20f7a-split-1-458-43",
+     "shown": "Dz (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (no pit NPC lost: yes; no more defenders die than split players: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "15a20f7a-split-1-458-44",
+     "shown": "Dz (defender) [part-run]: Gain a slight flag advantage while losing no pit NPC and not dying. Met (no pit NPC lost: yes; flag lead better by 0.15 or more: yes; the defender does not die: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "15a20f7a-split-2-458-46",
+     "shown": "Team (attacker's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Not met (more of theirs die away from the split than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-15a2-23",
+   "set": "f1",
+   "scheme": 2,
+   "row": 23,
+   "rid": "15a20f7a-0112-519a-a5f9-797a6822bf1b",
+   "match": "Dz v Team, Druid's",
+   "window": [
+    462,
+    484
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Team's split by the back door: one player (Warrior); Dz turns on it from 7:38 with 7 (Mesmer, Monk 1 (WoC), Monk 2 (WoC), Monk 3 (WoC), Monk 4 (WoC), Monk 5 (WoC), Prot (WoC)), and does not reach it; 7 turn for it from 7:38 (Mesmer, Monk 1 (WoC), Monk 2 (WoC), Monk 3 (WoC), Monk 4 (WoC), Monk 5 (WoC), Prot (WoC)) against one player; they do not reach it: full collapse",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "15a20f7a-split-2-462-48",
+     "shown": "Team (attacker) [met by a full collapse]: Survive the collapse and lose nobody (what the team gained elsewhere meanwhile is beside it). Not met (nobody on the split dies: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "15a20f7a-split-1-462-47",
+     "shown": "Dz (defender) [full collapse]: Kill the split or drive it out (the flags it costs are beside it). Met (a split player dies: yes; the split is gone within the visit: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "Team",
+      "start": [
+       456,
+       468
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Dz",
+      "start": [
+       456,
+       468
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-15a2-24",
+   "set": "f1",
+   "scheme": 2,
+   "row": 24,
+   "rid": "15a20f7a-0112-519a-a5f9-797a6822bf1b",
+   "match": "Dz v Team, Druid's",
+   "window": [
+    470,
+    484
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Team's split by the back door: one player (Warrior) against 6 defending (Monk 1 (WoC), Prot (WoC), Mesmer, 8 Monk, Monk 2 (WoC), Monk 5 (WoC)); Monk 1 (WoC), Prot (WoC), 8 Monk, Monk 2 (WoC), Monk 5 (WoC) collapse from the main fight; 6 (Monk 1 (WoC), Prot (WoC), Mesmer, 8 Monk, Monk 2 (WoC), Monk 5 (WoC)) against one player: collapse by Monk 1 (WoC), Prot (WoC), 8 Monk, Monk 2 (WoC), Monk 5 (WoC) from the main fight",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "15a20f7a-split-2-470-50",
+     "shown": "Team (attacker) [collapsed on]: Survive the collapse and lose nobody (what the team gained elsewhere meanwhile is beside it). Not met (nobody on the split dies: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "15a20f7a-split-1-470-49",
+     "shown": "Dz (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Met (a split player dies during the collapse: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "Team",
+      "start": [
+       464,
+       476
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Dz",
+      "start": [
+       464,
+       476
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-15a2-25",
+   "set": "f1",
+   "scheme": 2,
+   "row": 25,
+   "rid": "15a20f7a-0112-519a-a5f9-797a6822bf1b",
+   "match": "Dz v Team, Druid's",
+   "window": [
+    476,
+    541
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "Dz double run (first runner Mesmer, capping the flag before; second runner 8 Monk, back for this one); Team brings a flag up with its team (7 Monk) but does not run it",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "15a20f7a-flag-2-476-51",
+     "shown": "Team [stay]: Kill with the two extra players before their flag is in, or their flag does not get in. Met (more of theirs die at the main fight than of ours: no; their flag does not get in: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "Team",
+      "start": [
+       470,
+       482
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-15a2-notes",
+   "set": "f1",
+   "scheme": 2,
+   "row": 0,
+   "rid": "15a20f7a-0112-519a-a5f9-797a6822bf1b",
+   "match": "Dz v Team, Druid's",
+   "window": [
+    0,
+    0
+   ],
+   "type": "notes",
+   "call": "",
+   "shown": "(his notes on the game)",
+   "band": "",
+   "grade": "",
+   "mark": "notes",
+   "said": "",
+   "checks": []
   }
  ],
  "about_tiers": "R-490: a row with \"tier\": \"borderline\" is reported by `review.py score` and never blocks a change; every other row with a check is clear and must pass. A row he marks No clear decision is borderline when it is filed. \"tier_proposed\" is Claude's proposal, not yet his."
