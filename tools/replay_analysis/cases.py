@@ -225,7 +225,7 @@ def cases(D, M, B):
                     "their_flag": (p.get("beside") or {}).get("their_flag"), "boosts": {H: af[H]["boosts"] for H in HS},
                     "their_runner": p.get("their_runner"), "our_runner": p.get("our_runner"), "snares": (p.get("teams") or {}).get("snare"), "t1": p["t1"],
                     "our_capped": p["tests"].get("our flag is capped"), "main_deaths": (p.get("beside") or {}).get("deaths_at_the_main_fight"),
-                    "from_cap": bool((p.get("clock") or {}).get("from_cap")), "pre": pre, "lead": {H: af[H]["lead_change"] for H in HS}, "quiet": {H: af[H]["deaths"] == [0, 0] and af[H]["npcs"] == [0, 0] for H in HS},
+                    "from_cap": bool((p.get("clock") or {}).get("from_cap")), "pre": pre, "track": p.get("track"), "lead": {H: af[H]["lead_change"] for H in HS}, "quiet": {H: af[H]["deaths"] == [0, 0] and af[H]["npcs"] == [0, 0] for H in HS},
                     "hard": {H: {"deaths": af[H]["deaths"], "npcs": af[H]["npcs"], "lead_change": af[H]["lead_change"], "boosts": af[H]["boosts"]} for H in HS}})
     return out, skipped
 
@@ -764,7 +764,7 @@ def factors(S, pr):
     return out
 
 
-PLACE = {0: "at the stand", 1: "at its own footmen", 2: "at its own door", 3: "in its own base", 4: "in its own pit", -1: "at their footmen", -2: "at their door", -3: "in their base", -4: "in their pit"}
+PLACE = {0: "at the stand", 1: "at {own}'s footmen", 2: "at {own}'s door", 3: "in {own}'s base", 4: "in {own}'s pit", -1: "at {foe}'s footmen", -2: "at {foe}'s door", -3: "in {foe}'s base", -4: "in {foe}'s pit"}
 CALL_WORDS = {NONE: "holding off (no runner out at {R} s)", SENT: "a runner out by {R} s", DOUBLE: "a double run started by {R} s"}
 DID_WORDS = {NONE: "held off", SENT: "had a runner out", DOUBLE: "had started a double run"}
 VERDICT_WORDS = {"right": "the answer the data favours", "wrong": "against what the data favours", "no clear difference": "no clear difference either way", "an unusual spot: no like cases round it": "an unusual spot, no reading"}
@@ -774,12 +774,22 @@ def card(s, i, K, M):
     advice (the held-out test does not yet show a gain spot by spot)."""
     c = s.C[i]; m = M[c["rid"]]; k = c["clock"]; us = c["team"]; them = next(t for t in m["teams"] if t != us); R = c["read"]
     x, mo = c["x"], c["more"]; tr = c["their_runner"]["role"]; at = lambda sec: cl(sec)
-    place = lambda st_: PLACE.get(int(st_), "elsewhere") if st_ is not None else "place not read"
+    # every number is said with whose it is (his word, 2026-11-19: "I need to know clearly WHO the numbers favour (7v6 in favour of Team, fight at stand)")
+    place = lambda st_, own, foe: PLACE.get(int(st_), "elsewhere").format(own=own, foe=foe) if st_ is not None else "place not read"
+    up = f"{us} up by {x[2] - x[3]:.0f}" if x[2] > x[3] else f"{them} up by {x[3] - x[2]:.0f}" if x[3] > x[2] else "even"
+    flags_ = f"{us} ahead on flags by {x[0]:.1f}" if x[0] >= 0.35 else f"{them} ahead on flags by {-x[0]:.1f}" if x[0] <= -0.35 else "flags level"
+    morale_ = lambda v: "no death penalty or boost" if v == 0 else f"{v:+.0f}"
     hold = f"{us} holds the stand" if c["stand"] == "own" else f"{them} holds the stand"
+    # a cap that lands in the seconds after is said with it: who holds the stand at that second can be about to change (hold v RACK 10:49: RACK's flag has just
+    # gone in and hold caps over it 3 s later)
+    soon = [(u - (k["anchor"] - k["their_off"]), us if h == "own" else them) for u, h in ((c.get("track") or {}).get("caps") or [])]
+    soon = [f"{who} caps {rel} s later" for rel, who in soon if 0 < rel <= 15]
+    if soon: hold += " (" + ", ".join(soon) + ")"
     boost = "" if x[1] is None else f", boost in {x[1]:.0f} s"
     if c["from_cap"]: L = [f"{at(k['anchor'])}  {us}'s flag goes in while {them}'s {tr} is still on his way with theirs (he set off at {at(k['their_off'])}). Run again, or not?"]
     else: L = [f"{at(k['anchor'])}  {them}'s {tr} sets off for a flag ({c['their']}). {hold}{boost}."]
-    L.append(f"    The spot: main fight {x[2]:.0f} v {x[3]:.0f}, {us} {place(mo[1])}; morale {us} {x[4]:+.0f}, {them} {x[5]:+.0f} (a death is -15); flag lead {x[0]:+.2f}; base res in {mo[0]:.0f} s; {us}'s chance of winning {100 * c['p0']:.0f}%.")
+    L.append(f"    The spot: main fight {us} {x[2]:.0f} v {them} {x[3]:.0f} ({up}); {us}'s main team {place(mo[1], us, them)}, {them}'s {place(mo[2], them, us)}; morale {us} {morale_(x[4])}, {them} {morale_(x[5])} (the eight summed; a death is -15); "
+             f"{flags_}; base res in {mo[0]:.0f} s; {us}'s chance of winning {100 * c['p0']:.0f}%.")
     d = _delay(c); who = (c.get("our_runner") or {}).get("role")
     if d is None or d > 180: did = f"{us} sends nobody in the next three minutes."
     elif d < 0: did = f"{us}'s {who or 'runner'} had already set off {-d} s before."
@@ -789,7 +799,7 @@ def card(s, i, K, M):
     theirs = f"{them}'s flag in at {at(k['their_end'])}" if tf == "captured" else f"{them}'s flag does not get in ({tf or 'not capped'}, {at(k['their_end'])})"
     ours = "" if d is None or d > 180 else (f"; {us}'s in at {at(k['our_end'])}" if k.get("our_how") == "captured" else f"; {us}'s does not get in")
     lc = h["lead_change"]
-    L.append(f"    What followed, 180 s on: {theirs}{ours}; flag lead {'not read' if lc is None else format(lc, '+.2f')}; deaths {us} {h['deaths'][0]}, {them} {h['deaths'][1]}; boosts {us} {h['boosts'][0]}, {them} {h['boosts'][1]}; "
+    L.append(f"    What followed, 180 s on: {theirs}{ours}; flag lead {'not read' if lc is None else format(lc, '+.2f') + ' for ' + us}; deaths {us} {h['deaths'][0]}, {them} {h['deaths'][1]}; boosts {us} {h['boosts'][0]}, {them} {h['boosts'][1]}; "
              f"{us}'s chance of winning {100 * c['p0']:.0f}% to {100 * c['p0'] + c['v']['180']:.0f}% ({c['v']['180']:+.1f}).")
     r = s.read(i, K, False, "180"); W = r["calls"]
     if len(W) < 2: L.append("    Similar spots: too few to compare the answers.")

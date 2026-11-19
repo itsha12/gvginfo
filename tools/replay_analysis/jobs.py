@@ -272,13 +272,18 @@ def flag_plays(M, K, pinned_at):
         w0, w1 = f["s0"], min(f["e"], T)
         if w1 - w0 < 10 or pinned_at(A, w0): continue
         mine = [g for g in FR if g["tm"] == A]
-        earlier = next((g for g in mine if g["s0"] < w0 - 2 and g["e"] > w0 + 5), None)      # our flag already under way when theirs sets off
+        # Who set off first is read on the one clock of R-546, the second a runner turned for home (`off`, R-498), not the second the hall's rule tells his run (`s0`,
+        # R-461): a runner who turned for home 11 s before theirs ran first, and theirs is the answer, though the hall's rule tells his run after theirs (his words on
+        # hold v RACK 11:00, 2026-11-19: "How can hold have a decision point of whether to run or not when they already sent their earth ele 11s before? Wouldn't this
+        # rather be described as hold sending an earth ele and RACK responding with air ele 11s later?")
+        go = lambda g_: g_.get("off", g_["s0"]); fo = go(f)
+        earlier = next((g for g in mine if go(g) < fo - 2 and g["e"] > w0 + 5), None)      # our flag already set off for when theirs sets off
         # a run of ours set off for while theirs is out: it is the answer to theirs when its runner turned for home before their flag went in, though the hall's rule
         # (R-461) reads the run itself a few seconds later (R-498: his mark on HC v Team 5:58, Classic: HC caps at 6:36, Team's Monk 5 sets off at 6:34 and leaves the
         # stand area at 6:40, "Team response with single run classic at 6:33")
         # ... and within this play's own clock: a flag of theirs that is held for minutes is answered by what we do in the FLAG_JOB_MAX_S the play runs, not by a run of
         # ours five minutes on (his mark on Men v Crew 5:52, Classic: Men's AoB Derv holds the flag until 11:36 and Crew's Water Ele sets off at 11:32: "crew does not run a flag")
-        new = next((g for g in mine if w0 - 2 <= g["s0"] and g.get("off", g["s0"]) <= min(w1, w0 + FLAG_JOB_MAX_S)), None)
+        new = next((g for g in mine if fo - 2 <= go(g) and go(g) <= min(w1, w0 + FLAG_JOB_MAX_S)), None)
         inhand = None
         if earlier:
             # in hand means close to the flag stand (his mark, TFS v 옷옷옷옷 1:40), and waiting there. A team that holds the stand cannot cap its flag until the other team
@@ -365,7 +370,7 @@ def flag_plays(M, K, pinned_at):
         # set off and when their run ended; when our next runner set off, whenever that was; and how long their flag should take from here (to his spawn at a run, then
         # the usual carry for the hall and side; from where he stands when he already carries it)
         lead_ = lambda x_: list(dict.fromkeys(x_["ids"]))[:1]                # the player who sets off with it
-        nxt_ = min((x_ for x_ in mine if x_["s0"] >= w0 - 2), key=lambda x_: x_["s0"], default=None)
+        nxt_ = min((x_ for x_ in mine if (x_["s0"] >= w0 - 2 if from_cap else go(x_) >= fo - 2)), key=go, default=None)
         a_ = next(iter(lead_(f)), None); u_ = min(anc, T); eta = None
         if a_ is not None and M.hall is not None and M.P[a_][u_]:
             if M.carrying(a_, u_): w_ = M.hall.walk(M.P[a_][u_], M.hall.stand); eta = w_ / CARRY_SPEED if w_ else None
