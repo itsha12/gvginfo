@@ -28,8 +28,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   3 do not; set f1 15 of 50 open checks hold, p2 0 of 3; gate 12 of 12 and 63 of 105; line-up and comms 530 of 583.
 - The similar cases (R-538; `cases.py` on the branch, report in `data/model/flag_cases.json`), 5,195 cases:
   - Prices, win points from an even position: a flag of lead 6.8, a death's penalty 6.0, a morale boost 11.1, a pit
-    NPC 4.7, 10% of Lord health 9.5, 100 points of strength 8.7; who wins foretold 82% on unseen matches. A footman
-    is not priced (worth 0.1 alone, backwards beside the pit NPCs). K 120, chosen by the data (the miss is flat).
+    NPC 4.7, 10% of Lord health 9.5; who wins foretold 82% on unseen matches. A footman is not priced. K 120.
   - Their run, our answer (2,898 cases). First, on the eight variables of R-538: held out, matched against not
     matched -0.1 win points 180 s on (90% range -2.1 to +2.1). Then with the res clock, each main team's place,
     their runner and each team's snares (R-539, R-540): clear advice in 893, "stay" in 884; held out +1.0 (-0.7
@@ -42,8 +41,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
     median 17 s after theirs (71% within 30 s); 38% of their runs we "stayed" for were over within 30 s.
   - Their boost 30 s away (1,316): run a flag clearly better in 34%, never "send no flag". Held out: +8.4 win
     points 180 s on (3.6 to 13.0), +10.5 without the 203 flags only held at home; in how the match ended +4.5
-    (-4.8 to +13.8), not clear. The opening (804, kept apart): not clear at 180 s; "stay" there mixes in a flag
-    brought up with the team.
+    (-4.8 to +13.8), not clear. The opening (804 cases) is out: a different decision (R-541).
 
 ## Next (in order)
 1. The flag family (R-540): his answers under Open, 0, then read the call at a fixed second, add how long their
