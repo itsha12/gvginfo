@@ -8,16 +8,17 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 > out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-18, late: eleven games graded; the part-run built (R-535); games 13 and 14 exported again, unmarked)
+## State (2026-11-18, night: twelve games graded; game 13 taken out (R-537); the checkpoint run with the part-run)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` and lands in one piece,
   then one rebuild (R-322). 658 replays stored; 564 count (R-477); 506 matches trained. No workflow run in progress.
-  Rulings run to R-536. The baseline (R-491) is the branch `baseline-2026-11-15`; built since, from his marks: R-498
+  Rulings run to R-537. The baseline (R-491) is the branch `baseline-2026-11-15`; built since, from his marks: R-498
   to R-530. His answers are in the key. R-531: the flag plays are ready. R-532: game 12 stays graded to 9:40.
-- Graded and filed (set f1): eleven games (the last, 옷옷옷옷 v hdm, to 9:40); per game in CHANGELOG. hdm v HC
-  (bbef1904) is out (R-522). In the six games since the fifth, 153 Classic and Visible rows: 143 read correct as
-  marked, 152 with his withdrawals and what was fixed (open: hold v Men 2:34); no decision he had to add.
-- Exported again 2026-11-18 with the part-run reading (game 13 on engine b7e6d00, game 14 on 5dd5a09; he had marked neither): game 13, Men v NwAy on
-  Corrupted Isle (c19f13e3), and game 14, Dz v Team on Druid's Isle (15a20f7a; its splits read medium or low).
+- Graded and filed (set f1): twelve games (옷옷옷옷 v hdm to 9:40); per game in CHANGELOG. hdm v HC (bbef1904) is
+  out (R-522). In the six games since the fifth, 153 Classic and Visible rows: 143 read correct as marked, 152 with
+  his withdrawals and what was fixed (open: hold v Men 2:34); no decision he had to add.
+- Game 14, Dz v Team on Druid's Isle (15a20f7a), filed: 22 Classic and 2 Visible, all 24 read correct, 48 of 48
+  calls, nothing to fix. Game 13, Men v NwAy on Corrupted Isle (c19f13e3), is out unmarked (R-537), off the page and
+  the development set. No game waits for him. Not graded his new way: Corrupted, Weeping Stone, Isle of the Dead.
 - The known truths (R-533, amended R-534; `tools/golden/truths.py` on the branch, at every checkpoint): thirteen,
   all hold. Compare calls on the fixed 90 and 180 s record, never a play's own end (T7 holds only there).
 - His marks on nine picked rows (set p2 in the key; their games are in the development set; none binds):
@@ -32,21 +33,23 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
     second (it kills before R-508's 4 s), and leaves each death on the 1 v 1 row as well. Held for the split family.
 - Confidence (R-515) does not tell Classic from Visible on the six games since its fit; what would is a measure of
   what is at stake (R-509), from the similar cases. Not built.
-- Checkpoint run (every counted match, engine 8882861, before the part-run): 564 matches, 34,698 plays; flag plays
-  5,575, 1,517 set aside for Shadow of Haste (R-456), 4,058 usable. Run it again, with the truths, before the
-  similar cases: the part-run changes the flag plays.
-- Now (development set, 64 matches): 259 Classic rows pass, none fail; 126 of 129 history rows hold. Set f1: 15 of
-  50 open checks hold; p2: 0 of 3. Self-check 0. Gate and line-up not run since the part-run (run them next).
+- Checkpoint run (every counted match, engine 5dd5a09, with the part-run): 564 matches, 34,913 plays, no errors,
+  self-check 7 in 5 matches; flag plays 5,474, 1,491 set aside for Shadow of Haste (R-456), 3,983 usable (their
+  single run answered by a single 1,564 of which 366 the first flag, a stay 1,445, a double 172, a flag in hand
+  153; their double run by a single 329, a stay 158, a double 93, a flag in hand 69). The thirteen truths hold.
+- Now (development set, 63 matches): 281 Classic rows pass, none fail; 129 history rows hold, 3 do not (as before).
+  Set f1: 15 of 50 open checks hold; p2: 0 of 3. Self-check 0. Gate 12 of 12 and 63 of 105; line-up and comms 530
+  of 583: all as before the part-run.
 
 ## Next (in order)
 1. The flag family to the end (R-451, R-531; REDESIGN.md, stage D, c): similar cases for the flag plays, the better
    call by the fixed 90 and 180 s record, the held-out advice test on the branch, read with him whatever it shows.
-   Every result with and without the flag held at home at a boost (cope v hold 14:33, held).
-2. His marks on games 13 and 14 when he has graded them: file them the same session (`review.py file`).
-3. Held for a second game (R-495): a base res with the attackers at the footmen (HC v hdm 1:40, Jade: held open
+   Put the design to him first (how cases are matched, how few are too few). Every result with and without the
+   flag held at home at a boost (cope v hold 14:33, held).
+2. Held for a second game (R-495): a base res with the attackers at the footmen (HC v hdm 1:40, Jade: held open
    for his review); Men v hold 6:48, a collapse told as a push on the flagger; who and how many push a flagger (HC v
    Team, Men v RACK 1:08); numbers through the portal on Jade; Men v hold 2:46, defenders standing in their pit.
-4. The other kinds after the flag family, as he says each is ready; rare plays topped up with picked rows; then
+3. The other kinds after the flag family, as he says each is ready; rare plays topped up with picked rows; then
    stage E. The clean-up (R-398; REDESIGN.md "Before the next training run", nine items) comes after the games.
 
 ## Open for Denning
