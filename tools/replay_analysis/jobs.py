@@ -340,6 +340,9 @@ def flag_plays(M, K, pinned_at):
                   run_id=rid_(f), answer_id=rid_(new) if (new is not None and not inhand) else None,      # R-521: the run this play answers and the run it answers with, so that every run is told once on the page
                   said=[said0, said1],
                   **({"opening": opening(M)["words"]} if is_open else {}))
+        # the position the answer is chosen from and what followed it on the fixed 90 and 180 s record (R-294), both read at the second the decision arises: what the
+        # similar cases match on and are judged by (cases.py). The play's own clock ends at a cap, theirs for a stay and ours for a run, so it cannot be compared across calls
+        kw["state"], kw["after"] = M._state(A, int(w0)), M.consequence(A, int(w0))
         if ours == "a flag already in hand":
             # R-486: the flag in hand is a timing choice. When their flag gets in, the team with a flag in hand overcaps at once, or holds it and plays on with eight
             # (in position at the stand, or with the carrier kept in the fight: "do we GET in position to overcap or do we use the 8v7/8v8 time to hold the flag; and
@@ -993,8 +996,13 @@ def boost_plays(M, K, recs, pinned_at):
         lab_ = x["call"]["label"].lower()
         if named: lab_ = lab_.replace("one runner", f"one runner ({named})", 1).replace("two runners", f"two runners ({named})", 1)
         scen = f"{M.m.tag[foe]}'s boost is {BOOST_WARN_S} s away; {x['team']}: " + (lab_ if runners or not carr else f"a flag already on its way ({', '.join(M.m.role(a).split(' ', 1)[1] for a in carr)})")
-        if ran: out.append(_play(M, "boost", "own", tm, t, t1, x["call"]["shape"]["who"], scen, "Deny their boost", {"their boost does not land": denied}, beside=bes, call="run"))
-        else: out.append(_play(M, "boost", "own", tm, t, min(t1 + 10, T), [], scen, "Concede the boost for kills", {"more of theirs die than of ours": bes["deaths"][1] > bes["deaths"][0]}, beside=bes, call="concede"))
+        # the position and the fixed 90 and 180 s record at the second the boost decision is read, and where the rest of the team went, for the similar cases (cases.py)
+        # (`runner_soh`: the flag is on a Shadow of Haste runner while the mechanic was in the game, R-456; kept apart from `soh` so that the row told on the page does not change)
+        ids_ = list(x["call"]["shape"].get("ids") or []) + carr
+        at = dict(state=M._state(tm, min(t, T)), after=M.consequence(tm, min(t, T)), rest=x["call"].get("rest"),
+                  runner_soh=bool(M.day < SOH_REMOVED and any(M.m.sk(b) == "Shadow of Haste" for a in ids_ for b in M.m.A[a].get("bar", []) if b)))
+        if ran: out.append(_play(M, "boost", "own", tm, t, t1, x["call"]["shape"]["who"], scen, "Deny their boost", {"their boost does not land": denied}, beside=bes, call="run", **at))
+        else: out.append(_play(M, "boost", "own", tm, t, min(t1 + 10, T), [], scen, "Concede the boost for kills", {"more of theirs die than of ours": bes["deaths"][1] > bes["deaths"][0]}, beside=bes, call="concede", **at))
     return out
 
 

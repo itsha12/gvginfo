@@ -2445,6 +2445,8 @@ class Moments:
              "enemy_flag": any(self.carrying(a, t) for a in st.players[foe]),
              "res_in": round(st.next_res(t) - t), "footmen": self.footmen_alive(tm, t),
              "enemy_boost": self.boost_worth(foe, t), "own_boost": self.boost_worth(tm, t)}
+        nd = self._npc_deaths()                          # the NPCs each team has lost so far, [pit NPCs, footmen], own then enemy: part of the position a call is made from (similar cases, and the price of a result)
+        s["npcs_lost"] = [[sum(1 for u, k2, kd in nd if k2 == k and u <= t and kd in ("knight", "archer", "bodyguard")), sum(1 for u, k2, kd in nd if k2 == k and u <= t and kd == "footman")] for k in (tm, foe)]
         s["flag_lead"] = self.lead_value(tm, t)          # in flags, the tally of R-408 (None on a hall whose walks cannot be read)
         s["lead_band"] = self.lead_at(tm, t)             # his bands: None under half a flag, "half a flag", "a flag" ...
         return s
@@ -2950,6 +2952,7 @@ class Moments:
                 "caps": both(lambda k: sum(1 for u, h in st.caps if h == k and t < u <= t1)),
                 "boosts": both(lambda k: sum(1 for u, h in self._boosts() if h == k and t < u <= t1)),
                 "morale": both(lambda k: [ms(k, t), ms(k, t1)]),
+                "morale_parts": both(lambda k: [[sum(min(st.morale(a, u), 0) for a in st.players[k]), sum(max(st.morale(a, u), 0) for a in st.players[k])] for u in (t, t1)]),      # the same, as death penalty and as morale boost: a boost on a team with no DP is not a death undone (cases.py prices them apart)
                 "lead": [l0, l1], "lead_change": None if l0 is None or l1 is None else round(l1 - l0, 2),
                 "stand": "own" if owner == tm else "enemy" if owner == foe else "nobody",
                 "numbers": num, "flag_away_s": away, "step": [s0[0], s1[0]], "place": s1[1]}

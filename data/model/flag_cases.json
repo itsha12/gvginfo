@@ -1,0 +1,582 @@
+{
+ "prices": {
+  "footman_check": [
+   0.13888806586841024,
+   -6.471345592586456
+  ],
+  "rows": 95024,
+  "beta": [
+   0.34725429887829873,
+   0.2731649350809508,
+   0.24133304243644194,
+   0.4435111586863925,
+   0.18861470771349906,
+   0.37825860731888106
+  ],
+  "spread": [
+   0.012569940702936572,
+   0.031083541932088173,
+   0.008156472953753251,
+   0.0492786508389183,
+   0.024747784711016903,
+   0.04264087908806475
+  ],
+  "logloss": 0.4098,
+  "logloss_strength_only": 0.5196,
+  "accuracy": 0.815,
+  "calibration": [
+   [
+    0.0,
+    19085,
+    0.036,
+    0.048
+   ],
+   [
+    0.1,
+    9354,
+    0.148,
+    0.158
+   ],
+   [
+    0.2,
+    7681,
+    0.248,
+    0.249
+   ],
+   [
+    0.3,
+    6937,
+    0.349,
+    0.304
+   ],
+   [
+    0.4,
+    5830,
+    0.449,
+    0.45
+   ],
+   [
+    0.5,
+    5905,
+    0.551,
+    0.55
+   ],
+   [
+    0.6,
+    6808,
+    0.651,
+    0.694
+   ],
+   [
+    0.7,
+    7478,
+    0.752,
+    0.764
+   ],
+   [
+    0.8,
+    8976,
+    0.852,
+    0.858
+   ],
+   [
+    0.9,
+    16970,
+    0.962,
+    0.954
+   ]
+  ]
+ },
+ "K": 120,
+ "k_error": {
+  "30": 208.20964605430612,
+  "45": 206.35284199799332,
+  "60": 205.90145327730784,
+  "90": 206.00747557800958,
+  "120": 205.8658859887443
+ },
+ "scenarios": {
+  "Their single run; we hold the stand": {
+   "cases": 1474,
+   "calls": {
+    "stay": 863,
+    "single run": 599,
+    "double run": 12
+   },
+   "verdicts": {
+    "no clear difference": 1104,
+    "right": 216,
+    "wrong": 142,
+    "too few cases of this call": 12
+   },
+   "clear_advice": {
+    "stay": 356,
+    "single run": 3
+   },
+   "best_not_clear": {
+    "stay": 916,
+    "single run": 199
+   }
+  },
+  "Their boost is 30 s away": {
+   "cases": 1316,
+   "calls": {
+    "run a flag": 815,
+    "send no flag": 501
+   },
+   "verdicts": {
+    "no clear difference": 857,
+    "right": 336,
+    "wrong": 123
+   },
+   "clear_advice": {
+    "run a flag": 459
+   },
+   "best_not_clear": {
+    "run a flag": 664,
+    "send no flag": 193
+   }
+  },
+  "Their single run; they hold the stand": {
+   "cases": 1052,
+   "calls": {
+    "stay": 460,
+    "single run": 570,
+    "double run": 22
+   },
+   "verdicts": {
+    "right": 81,
+    "no clear difference": 832,
+    "wrong": 117,
+    "too few cases of this call": 22
+   },
+   "clear_advice": {
+    "stay": 197,
+    "single run": 4
+   },
+   "best_not_clear": {
+    "single run": 196,
+    "stay": 655
+   }
+  },
+  "The opening (no flag capped yet): their single run; nobody holds the stand": {
+   "cases": 572,
+   "calls": {
+    "stay": 72,
+    "single run": 364,
+    "double run": 136
+   },
+   "verdicts": {
+    "wrong": 171,
+    "no clear difference": 350,
+    "right": 51
+   },
+   "clear_advice": {
+    "double run": 149,
+    "single run": 28
+   },
+   "best_not_clear": {
+    "double run": 264,
+    "single run": 131
+   }
+  },
+  "The opening (no flag capped yet): their double run; nobody holds the stand": {
+   "cases": 213,
+   "calls": {
+    "single run": 132,
+    "double run": 68,
+    "stay": 13
+   },
+   "verdicts": {
+    "no clear difference": 200,
+    "too few cases of this call": 13
+   },
+   "clear_advice": {},
+   "best_not_clear": {
+    "double run": 168,
+    "single run": 45
+   }
+  },
+  "Their double run; they hold the stand": {
+   "cases": 196,
+   "calls": {
+    "stay": 101,
+    "single run": 79,
+    "double run": 16
+   },
+   "verdicts": {
+    "no clear difference": 180,
+    "too few cases of this call": 16
+   },
+   "clear_advice": {},
+   "best_not_clear": {
+    "single run": 177,
+    "stay": 19
+   }
+  },
+  "Their double run; we hold the stand": {
+   "cases": 160,
+   "calls": {
+    "single run": 113,
+    "stay": 41,
+    "double run": 6
+   },
+   "verdicts": {
+    "no clear difference": 154,
+    "too few cases of this call": 6
+   },
+   "clear_advice": {},
+   "best_not_clear": {
+    "stay": 160
+   }
+  },
+  "Their single run; our flag already in hand": {
+   "cases": 111,
+   "calls": {
+    "capped before theirs got in": 55,
+    "hold, not in position to overcap": 19,
+    "overcap at once": 31,
+    "in position, hold": 1,
+    "put down before theirs got in": 5
+   },
+   "verdicts": {
+    "no clear difference": 84,
+    "too few cases of this call": 25,
+    "too few cases": 2
+   },
+   "clear_advice": {},
+   "best_not_clear": {
+    "overcap at once": 109
+   }
+  },
+  "Their double run; our flag already in hand": {
+   "cases": 66,
+   "calls": {
+    "hold, not in position to overcap": 12,
+    "capped before theirs got in": 37,
+    "overcap at once": 14,
+    "put down before theirs got in": 3
+   },
+   "verdicts": {
+    "too few cases": 66
+   },
+   "clear_advice": {},
+   "best_not_clear": {}
+  },
+  "The opening (no flag capped yet): their single run; we hold the stand": {
+   "cases": 13,
+   "calls": {
+    "stay": 10,
+    "double run": 1,
+    "single run": 2
+   },
+   "verdicts": {
+    "too few cases": 13
+   },
+   "clear_advice": {},
+   "best_not_clear": {}
+  },
+  "Their single run; nobody holds the stand": {
+   "cases": 11,
+   "calls": {
+    "stay": 7,
+    "single run": 3,
+    "double run": 1
+   },
+   "verdicts": {
+    "too few cases": 11
+   },
+   "clear_advice": {},
+   "best_not_clear": {}
+  },
+  "The opening (no flag capped yet): their single run; they hold the stand": {
+   "cases": 6,
+   "calls": {
+    "single run": 6
+   },
+   "verdicts": {
+    "too few cases": 6
+   },
+   "clear_advice": {},
+   "best_not_clear": {}
+  },
+  "Their double run; nobody holds the stand": {
+   "cases": 5,
+   "calls": {
+    "double run": 3,
+    "single run": 2
+   },
+   "verdicts": {
+    "too few cases": 5
+   },
+   "clear_advice": {},
+   "best_not_clear": {}
+  }
+ },
+ "skipped": {
+  "Shadow of Haste run (R-456)": 1606,
+  "flag lead not read": 78,
+  "a flag in hand and their flag never got in: nothing to answer": 43,
+  "no winner recorded": 22
+ },
+ "notes": {
+  "no strength gap": 3,
+  "halls with no measured flag run": [
+   "Isle of the Dead"
+  ],
+  "no winner": 1
+ },
+ "advice_test": {
+  "every flag and boost scenario": {
+   "tally": {
+    "cases": 5195,
+    "no clear advice": 3854,
+    "clear advice": 1143,
+    "too few cases": 198
+   },
+   "rows": 1143,
+   "v180": {
+    "effect": 2.767701675372514,
+    "range": [
+     1.12061027190559,
+     4.822449856898678
+    ],
+    "matched_mean": -0.6458281215774984,
+    "unmatched_mean": -3.402712323619372,
+    "verdict": "better"
+   },
+   "v90": {
+    "effect": 2.704660512131248,
+    "range": [
+     1.573521159745828,
+     4.0370068916181925
+    ],
+    "matched_mean": -0.7665412301498765,
+    "unmatched_mean": -2.6590327078365497,
+    "verdict": "better"
+   },
+   "end": {
+    "effect": 0.19982111148795817,
+    "range": [
+     -4.321867461699252,
+     5.10916402703283
+    ],
+    "matched_mean": -2.5364054028783545,
+    "unmatched_mean": -3.800970522944398,
+    "verdict": "no clear difference"
+   },
+   "matched": 671,
+   "matches": 405,
+   "advice": {
+    "stay": 536,
+    "single run": 21,
+    "run a flag": 444,
+    "send no flag": 2,
+    "double run": 140
+   },
+   "calls": {
+    "stay": 326,
+    "single run": 330,
+    "double run": 41,
+    "run a flag": 323,
+    "send no flag": 123
+   }
+  },
+  "their run, our answer (not the boost, not the opening)": {
+   "tally": {
+    "cases": 2898,
+    "no clear advice": 2341,
+    "clear advice": 541,
+    "too few cases": 16
+   },
+   "rows": 541,
+   "v180": {
+    "effect": -0.11088375064644099,
+    "range": [
+     -2.1276209163144433,
+     2.0560829424397835
+    ],
+    "matched_mean": 0.7593760774895453,
+    "unmatched_mean": -0.14008415405187666,
+    "verdict": "no clear difference"
+   },
+   "v90": {
+    "effect": -0.5223621677498838,
+    "range": [
+     -1.9720649843047593,
+     0.988285714452606
+    ],
+    "matched_mean": 0.3845064389348593,
+    "unmatched_mean": -0.0978943734017373,
+    "verdict": "no clear difference"
+   },
+   "end": {
+    "effect": 0.6209865187224269,
+    "range": [
+     -4.771595231091473,
+     6.286098711874397
+    ],
+    "matched_mean": -0.3945398882213356,
+    "unmatched_mean": -0.7494217831560774,
+    "verdict": "no clear difference"
+   },
+   "matched": 304,
+   "matches": 266,
+   "advice": {
+    "stay": 536,
+    "single run": 5
+   },
+   "calls": {
+    "stay": 303,
+    "single run": 234,
+    "double run": 4
+   }
+  },
+  "the opening": {
+   "tally": {
+    "cases": 804,
+    "no clear advice": 629,
+    "clear advice": 156,
+    "too few cases": 19
+   },
+   "rows": 156,
+   "v180": {
+    "effect": -0.02971061101740769,
+    "range": [
+     -3.348662467082332,
+     2.8367490012688616
+    ],
+    "matched_mean": -4.444012652639342,
+    "unmatched_mean": -3.869582953197454,
+    "verdict": "no clear difference"
+   },
+   "v90": {
+    "effect": 2.7793595308840877,
+    "range": [
+     1.0775910270394236,
+     4.863372300758931
+    ],
+    "matched_mean": 0.5130824202088059,
+    "unmatched_mean": -1.526783930321723,
+    "verdict": "better"
+   },
+   "end": {
+    "effect": -2.0549806158003316,
+    "range": [
+     -11.476743781721847,
+     6.891029158665762
+    ],
+    "matched_mean": -8.43165651314651,
+    "unmatched_mean": -5.806245129393344,
+    "verdict": "no clear difference"
+   },
+   "matched": 42,
+   "matches": 148,
+   "advice": {
+    "double run": 140,
+    "single run": 16
+   },
+   "calls": {
+    "single run": 96,
+    "double run": 37,
+    "stay": 23
+   }
+  },
+  "their boost 30 s away, every case": {
+   "tally": {
+    "cases": 1316,
+    "no clear advice": 870,
+    "clear advice": 446
+   },
+   "rows": 446,
+   "v180": {
+    "effect": 8.412971884823802,
+    "range": [
+     3.556019849080644,
+     13.009403674546475
+    ],
+    "matched_mean": -1.4693922022291406,
+    "unmatched_mean": -9.353287732012719,
+    "verdict": "better"
+   },
+   "v90": {
+    "effect": 7.37580375437553,
+    "range": [
+     4.3593986440776815,
+     10.429124439777404
+    ],
+    "matched_mean": -2.0085802600477978,
+    "unmatched_mean": -8.742223996247631,
+    "verdict": "better"
+   },
+   "end": {
+    "effect": 4.46460597985163,
+    "range": [
+     -4.805944981113244,
+     13.805372712231446
+    ],
+    "matched_mean": -3.7780256177228813,
+    "unmatched_mean": -7.888703962569623,
+    "verdict": "no clear difference"
+   },
+   "matched": 325,
+   "matches": 231,
+   "advice": {
+    "run a flag": 444,
+    "send no flag": 2
+   },
+   "calls": {
+    "run a flag": 323,
+    "send no flag": 123
+   }
+  },
+  "their boost 30 s away, without the flag only held at home": {
+   "tally": {
+    "cases": 1113,
+    "no clear advice": 725,
+    "clear advice": 388
+   },
+   "rows": 388,
+   "v180": {
+    "effect": 10.45388421410914,
+    "range": [
+     5.712454908519099,
+     15.590025568650896
+    ],
+    "matched_mean": 0.6193495266829093,
+    "unmatched_mean": -9.353287732012719,
+    "verdict": "better"
+   },
+   "v90": {
+    "effect": 8.8502759839218,
+    "range": [
+     6.0601106442224415,
+     12.437218384294853
+    ],
+    "matched_mean": -0.17936231514493695,
+    "unmatched_mean": -8.742223996247631,
+    "verdict": "better"
+   },
+   "end": {
+    "effect": 5.52694489868156,
+    "range": [
+     -4.988176271058091,
+     12.998754510800472
+    ],
+    "matched_mean": -2.7813047122206513,
+    "unmatched_mean": -7.888703962569623,
+    "verdict": "no clear difference"
+   },
+   "matched": 267,
+   "matches": 217,
+   "advice": {
+    "run a flag": 386,
+    "send no flag": 2
+   },
+   "calls": {
+    "run a flag": 265,
+    "send no flag": 123
+   }
+  }
+ }
+}
