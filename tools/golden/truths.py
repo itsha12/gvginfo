@@ -15,7 +15,8 @@ Rules (his, 2026-11-18):
   - The truths are tests only. Nothing here feeds the engine's values, its similar cases or its advice.
   - Only near-certain truths go on the list. Contested wisdom (heal an archer over a knight) is a question for the
     data, never a truth. A truth is his, or Claude's once he has approved it; Claude's proposals not yet approved are
-    reported apart and never fail the run.
+    reported apart and never fail the run. Ids are never used again: T5, T6, T11 and P6 were taken off on 2026-11-18,
+    and P1 to P5 are approved under the ids they were proposed with.
 
 Each truth compares two groups of plays on one measure, says which should be higher, and is given a 90% range by
 drawing whole matches again 400 times (plays of one match are not independent). HOLDS: the range lies wholly on the
@@ -86,24 +87,6 @@ def _pinned(D):
             if s >= 60 or s < 30: yield ("held 60 s or longer" if s >= 60 else "held under 30 s"), p["rid"], int(p["beside"].get("pit_npcs_lost", 0) > 0), 1
 
 
-def _boost(D):
-    for p in D["plays"]:
-        if p["play"] == "boost" and p.get("call") in ("run", "concede"):
-            yield ("a runner sent" if p["call"] == "run" else "the boost conceded"), p["rid"], int(bool(p["beside"].get("denied"))), 1
-
-
-def _base_res(D):
-    for p in D["plays"]:
-        if p["play"] == "base res" and p.get("call"):
-            yield ("stayed through the res" if p["call"].startswith("stayed") else "left before the res"), p["rid"], int(p["beside"].get("deaths_after", 0) > 0), 1
-
-
-def _base_res_numbers(D):
-    for p in D["plays"]:
-        if p["play"] == "base res" and str(p.get("call", "")).startswith("stayed"):
-            yield ("stayed, outnumbered" if p["beside"].get("outnumbered") else "stayed, not outnumbered"), p["rid"], int(p["beside"].get("deaths_after", 0) > 0), 1
-
-
 def _flag_answer(D):
     """Their single run, answered by a single run or a stay: the change in flag lead at the fixed 90 s record (never at the
     play's own end: a stay row ends when their flag is in, a run row when ours is), within the same start: behind, level
@@ -132,13 +115,6 @@ def _collapse_or_mirror(D):
             yield ("collapsed on" if a != "even" else "mirrored"), p["rid"], int(bool(p["beside"].get("lost"))), 1
 
 
-def _solo_defender(D):
-    for p in att(D["plays"]):
-        a = p.get("answer")
-        if p["size"] == 1 and a in ("1 v 1, the defender not a monk", "1 v 1, defended by a monk"):
-            yield ("defended by a damage player" if a.endswith("not a monk") else "defended by a monk"), p["rid"], int(bool(p["beside"].get("lost"))), 1
-
-
 def _split_up_down(D):
     for p in att(D["plays"]):
         if p["defenders"] and p["defenders"] != p["size"]:
@@ -157,33 +133,28 @@ TRUTHS = [
     ("T2", "Claude, approved", True, "The side up on numbers at the main fight kills more than it loses.", "deaths a minute while the numbers last", "kills", "losses", _numbers_kills),
     ("T3", "Claude, approved", True, "A main team pushing a flagger stops the flag more often than one player does.", "share of pushes that stop the flag", "the main team", "one player", _push_size),
     ("T4", "Claude, approved", True, "The longer a team is held in its base, the more often it loses a pit NPC.", "share that lose a pit NPC", "held 60 s or longer", "held under 30 s", _pinned),
-    ("T5", "Claude, approved", True, "Sending a runner denies their boost; conceding it does not.", "share of boosts denied", "a runner sent", "the boost conceded", _boost),
-    ("T6", "Claude, approved", True, "Staying in their base through a base res costs deaths more often than leaving before it.", "share with a death in the 30 s after the res", "stayed through the res", "left before the res", _base_res),
     ("T7", "Claude, approved", True, "Answering their run with a run leaves a team better off in flags than staying (same start: behind, level or ahead).", "change in flag lead 90 s on, in flags", "a single run in answer", "a stay", _flag_answer),
     ("T8", "Claude, approved", True, "A team that wipes loses NPCs.", "share that lose an NPC within 3 minutes", "six or more of its players die within 90 s", "two or fewer die", _wipe),
     ("T9", "Claude, approved", True, "A flag whose carrier dies under a push gets in less often than one whose carrier lives.", "share of pushed flags that are capped", "the carrier lives", "the carrier dies", _carrier_died),
     ("T10", "Claude, approved", True, "A split that is collapsed on loses a player more often than one that is mirrored.", "share of split phases that lose a split player", "collapsed on", "mirrored", _collapse_or_mirror),
-    ("T11", "Denning", True, "If not collapsed on, a solo split defended by a monk dies less often than one defended by a damage player.", "share of solo split phases in which the split player dies", "defended by a damage player", "defended by a monk", _solo_defender),
-    ("P1", "Claude, proposed", False, "A split with more players than defenders kills a defender more often than one with fewer.", "share of split phases that kill a defender", "more split players than defenders", "more defenders than split players", _split_up_down),
-    ("P2", "Claude, proposed", False, "An undefended split of two or more damage players takes NPCs faster than a solo one.", "NPCs taken a minute", "two or more damage players", "one damage player", _split_damage),
-    ("P3", "Claude, proposed", False, "Up by two or more at the main fight kills faster than up by one.", "kills a minute while the numbers last", "up by two or more", "up by one", _numbers_margin),
-    ("P4", "Claude, proposed", False, "The longer a numbers advantage lasts, the more often it gets a kill.", "share with a kill", "30 s or longer", "under 15 s", _numbers_length),
-    ("P5", "Claude, proposed", False, "A flag that is pushed and still caps arrives later than the usual run for that hall and side.", "arrival against the usual run (1 = on time)", "a pushed flag that still caps", "the usual run", _push_late),
-    ("P6", "Claude, proposed", False, "Staying through a base res outnumbered costs deaths more often than staying with the numbers.", "share with a death in the 30 s after the res", "stayed, outnumbered", "stayed, not outnumbered", _base_res_numbers),
+    ("P1", "Claude, approved", True, "A split with more players than defenders kills a defender more often than one with fewer.", "share of split phases that kill a defender", "more split players than defenders", "more defenders than split players", _split_up_down),
+    ("P2", "Claude, approved", True, "An undefended split of two or more damage players takes NPCs faster than a solo one.", "NPCs taken a minute", "two or more damage players", "one damage player", _split_damage),
+    ("P3", "Claude, approved", True, "Up by two or more at the main fight kills faster than up by one.", "kills a minute while the numbers last", "up by two or more", "up by one", _numbers_margin),
+    ("P4", "Claude, approved", True, "The longer a numbers advantage lasts, the more often it gets a kill.", "share with a kill", "30 s or longer", "under 15 s", _numbers_length),
+    ("P5", "Claude, approved", True, "A flag that is pushed and still caps arrives later than the usual run for that hall and side.", "arrival against the usual run (1 = on time)", "a pushed flag that still caps", "the usual run", _push_late),
 ]
 
 
 # What looking into a truth found (the date, what was measured, what it means): printed under the truth every run, so that a
 # truth that does not hold is never read without its reason. Replace a note when the plays change what it says.
-NOTES = {
-    "T6": "2026-11-18: only 75 rows of leaving before a res; the direction is as expected and the difference too small to call.",
-    "T11": "2026-11-18, looked into (the damage on each dead split player in his last 15 s, from the replays): with a damage player defending, 27 of 468 phases end "
-           "with the split player killed by that one defender (6%); with a monk, 7 of 244 (3%): that part is as he expects. The rest of the deaths are the pit NPCs "
-           "(15 of the 30 deaths with a monk defending that have damage recorded: the monk holds him among the Lord, knights and archers) and, in 19 phases of both "
-           "kinds, two to five players who are not counted among the defenders killing him in the phase's last seconds, after which no phase follows: a collapse that "
-           "kills at once is never told as a collapse and its death is left with the 1 v 1 (put to him; for the split family, not built). A split play does not yet "
-           "say who killed its players, so the truth cannot be asked as \"killed by the defender\" from the plays alone.",
-}
+NOTES = {}
+
+# Taken off the list by him on 2026-11-18 (R-533, amended): "a runner denies the boost; conceding does not" (true by how the
+# two are told apart), "staying through a base res costs more deaths than leaving" (75 rows of leaving: not clear), and his own
+# "a solo split defended by a monk dies less often than one defended by a damage player" (not clear: 18% against 15% of
+# phases; the pit NPCs do the killing where a monk holds him, and a main team collapse that killed at once was left with
+# the 1 v 1: his marks on QenK v Fun 6:37 and NwAy v ohno 5:24, in the review key). Not added: "staying through a base res
+# outnumbered costs deaths more often than staying with the numbers".
 
 
 def measure(rows, hi, lo, rng):

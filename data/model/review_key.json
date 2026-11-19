@@ -1,5 +1,5 @@
 {
- "about": "The review key (R-450). Every row Denning was shown of the engine's plays: what the engine said then (shown), his mark and his words (said), and checks: Claude's reading of his mark as things the plays must hold or must not hold, which he corrects. Scored by tools/golden/review.py on the branch after every change. Marks: right, partly, wrong, bad example (set aside), not marked. Set 1 is the 35 rows of 2026-11-13, picked one or more to a kind of play, so it is a regression test and not an accuracy figure; whole-game sets (R-454) give the accuracy by kind of play. `answered` holds a later answer of his on a row (what was asked, his words, Claude's reading). Set w1p1 is part 1 of the whole-game review (R-455), marked by him on the site on 2026-11-13 against engine af952c6: one row a situation with his mark and words, its calls under `calls` with theirs, and one `missed` row a game for what the engine did not read; checks are written as each fault is fixed. Set w1p2 is hdm v hook, the first game of part 2, marked on 2026-11-14 against engine 67e87b8 as the first measure of the rebuilt reading; he then chose to build from it too, keeping Men v Crew unmarked as the hidden game. Set w2 is round 3 (R-473): hook v hold and cope v Team, marked on 2026-11-14 against engine b025445 (24 of 41 and 15 of 24 situations right); chic v 戦戦戦戦 was set aside unmarked (a henchman game). RJT v RACK (eea5ba87) is round 3's third game, marked on 2026-11-14 against engine b09a26a (33 of 45 situations right); its checks are written from his words and are open until the reading under them is rebuilt.",
+ "about": "The review key (R-450). Every row Denning was shown of the engine's plays: what the engine said then (shown), his mark and his words (said), and checks: Claude's reading of his mark as things the plays must hold or must not hold, which he corrects. Scored by tools/golden/review.py on the branch after every change. Marks: right, partly, wrong, bad example (set aside), not marked. Set 1 is the 35 rows of 2026-11-13, picked one or more to a kind of play, so it is a regression test and not an accuracy figure; whole-game sets (R-454) give the accuracy by kind of play. `answered` holds a later answer of his on a row (what was asked, his words, Claude's reading). Set w1p1 is part 1 of the whole-game review (R-455), marked by him on the site on 2026-11-13 against engine af952c6: one row a situation with his mark and words, its calls under `calls` with theirs, and one `missed` row a game for what the engine did not read; checks are written as each fault is fixed. Set w1p2 is hdm v hook, the first game of part 2, marked on 2026-11-14 against engine 67e87b8 as the first measure of the rebuilt reading; he then chose to build from it too, keeping Men v Crew unmarked as the hidden game. Set w2 is round 3 (R-473): hook v hold and cope v Team, marked on 2026-11-14 against engine b025445 (24 of 41 and 15 of 24 situations right); chic v 戦戦戦戦 was set aside unmarked (a henchman game). RJT v RACK (eea5ba87) is round 3's third game, marked on 2026-11-14 against engine b09a26a (33 of 45 situations right); its checks are written from his words and are open until the reading under them is rebuilt. Set p2 is nine picked rows of 2026-11-18 (R-495: examples found by search for a fault seen once, put to him in the chat with their replay links): six of the two held flag shapes and three sudden deaths of a solo split player. They carry no grade, so none binds; their games are in the development set.",
  "version": 1,
  "rows": [
   {
@@ -30942,6 +30942,347 @@
    "mark": "notes",
    "said": "",
    "checks": []
+  },
+  {
+   "id": "p2-1",
+   "set": "p2",
+   "row": 1,
+   "rid": "78c5bf08-c63a-50cd-a41e-ef7311995938",
+   "match": "cope v One, Solitude",
+   "window": [
+    699,
+    732
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "cope single run (Dervish), while he defends One's split by the back door",
+   "mark": "wrong",
+   "said": "not a flag run; this is a \"part-run\" that we have worked on before and should be read as such.",
+   "checks": [
+    {
+     "none": {
+      "play": "flag",
+      "team": "cope",
+      "start": [
+       693,
+       705
+      ],
+      "want": {
+       "scenario~": "cope single run (Dervish)"
+      }
+     },
+     "open": true,
+     "held": "2026-11-18",
+     "why": "cope v One 11:39 (picked row): 'not a flag run; this is a \"part-run\"'. cope's Dervish, defending One's split, carries the flag from his pit to his front footmen (11:51 to 12:12; and 10:56 to 11:05 before it); the 8 Monk takes it at 12:19 and caps at 12:43. Three forms of a part-run reading were built and dropped the same day, each for breaking a run he had marked correct (in `part_run` of HANDOFF); the difference is put to him"
+    }
+   ]
+  },
+  {
+   "id": "p2-2",
+   "set": "p2",
+   "row": 2,
+   "rid": "df4b3126-a073-5a2b-a5a7-a25b92fec2e3",
+   "match": "meow v One, Uncharted",
+   "window": [
+    427,
+    437
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "meow single run (8 Monk), while defending One's three-player split",
+   "mark": "wrong",
+   "said": "not a flag run; this is a \"part-run\" that we have worked on before and should be read as such.",
+   "checks": [
+    {
+     "none": {
+      "play": "flag",
+      "team": "meow",
+      "start": [
+       421,
+       433
+      ],
+      "want": {
+       "scenario~": "meow single run (8 Monk)"
+      }
+     },
+     "open": true,
+     "held": "2026-11-18",
+     "why": "meow v One 7:07 (picked row): 'not a flag run; this is a \"part-run\"'. meow's 8 Monk, one of three defenders, carries the flag from his pit to his front door (7:03 to 7:17) and puts it down; nobody takes it on and it is returned. In what is measured it is the twin of HC v cope 2:20, HC's Mes/A, in a row he graded Classic and correct as a single run: put to him"
+    }
+   ]
+  },
+  {
+   "id": "p2-3",
+   "set": "p2",
+   "row": 3,
+   "rid": "f34cb3a9-98c7-53d0-a980-60aa7dd5bc8d",
+   "match": "True v One, Meditation",
+   "window": [
+    45,
+    136
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "One single run (Ritualist), while he defends True's solo split",
+   "mark": "wrong",
+   "said": "not a flag run; I don't even see him pick up flag, must have been very brief.",
+   "checks": [
+    {
+     "none": {
+      "play": "flag",
+      "team": "One",
+      "start": [
+       39,
+       51
+      ],
+      "want": {
+       "scenario~": "One single run (Ritualist)"
+      }
+     },
+     "open": true,
+     "held": "2026-11-18",
+     "why": "True v One 0:45 (picked row): 'not a flag run; I don't even see him pick up flag'. The time given him was the row's start (True's run); One's Ritualist carries the flag from 1:48 to 2:16, pit to back door to back footmen, and it is returned; the split's reading does not count him in a defence while he carries it. Put to him again with 1:48"
+    }
+   ]
+  },
+  {
+   "id": "p2-4",
+   "set": "p2",
+   "row": 4,
+   "rid": "febccb6c-2397-5d46-abe2-e1c3bcfbeaef",
+   "match": "Men v hold, Nomad's",
+   "window": [
+    486,
+    521
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "Men's boost is 30 s away; hold: one runner (Air Ele 3); the rest fall back into the base",
+   "mark": "right",
+   "said": "this is an unsuccessful flag run.",
+   "checks": [
+    {
+     "has": {
+      "play": "boost",
+      "team": "hold",
+      "start": [
+       480,
+       492
+      ]
+     },
+     "want": {
+      "call": "run"
+     },
+     "was": "Men v hold 8:06 (picked row): 'this is an unsuccessful flag run': the engine's reading stands"
+    }
+   ]
+  },
+  {
+   "id": "p2-5",
+   "set": "p2",
+   "row": 5,
+   "rid": "5aa871bd-42b5-56f6-a193-2c6c4dea3fee",
+   "match": "옷옷옷옷 v cope, Solitude",
+   "window": [
+    169,
+    204
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "옷옷옷옷's boost is 30 s away; cope: one runner (Hammer); the rest retreat to the pit",
+   "mark": "right",
+   "said": "this is also an unsuccessful flag run.",
+   "checks": [
+    {
+     "has": {
+      "play": "boost",
+      "team": "cope",
+      "start": [
+       163,
+       175
+      ]
+     },
+     "want": {
+      "call": "run"
+     },
+     "was": "옷옷옷옷 v cope 2:49 (picked row): 'this is also an unsuccessful flag run': the engine's reading stands"
+    }
+   ]
+  },
+  {
+   "id": "p2-6",
+   "set": "p2",
+   "row": 6,
+   "rid": "0ab1d6cd-09aa-503b-ad34-cdfc570a52b0",
+   "match": "cope v hold, Jade",
+   "window": [
+    873,
+    908
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "hold's boost is 30 s away; cope: one runner (Monk 4 (WoC)); the rest retreat to the pit",
+   "mark": "wrong",
+   "said": "definitely not a flag run; he just holds the flag for a bit whilst he and his team wait in base and never attempts to run the flag.",
+   "checks": [
+    {
+     "none": {
+      "play": "boost",
+      "team": "cope",
+      "start": [
+       867,
+       879
+      ],
+      "want": {
+       "call": "run"
+      }
+     },
+     "open": true,
+     "held": "2026-11-18",
+     "why": "cope v hold 14:33 (picked row): 'definitely not a flag run; he just holds the flag for a bit whilst he and his team wait in base'. Monk 4 (WoC) holds it at his front door from 14:09 to 14:40, six or seven of his team round him, no nearer the stand at any second. With Men v Crew 17:53 (a team going home with its flag) that is two games of a flag in hand read as a runner at the boost, of two shapes: held for the measure (ground made toward the stand)"
+    }
+   ]
+  },
+  {
+   "id": "p2-7",
+   "set": "p2",
+   "row": 7,
+   "rid": "7ff01864-64ea-5d6a-a396-a959c9673701",
+   "match": "QenK v Fun, Corrupted",
+   "window": [
+    370,
+    400
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "QenK's split by the back door: one player (Hammer) against 1 defending (8 Monk); he dies at 6:37 to five of Fun's elementalists",
+   "mark": "partly",
+   "said": "Qenk v Fun and NwAy v ohno are both mainteam collapses and should be read as such.",
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "Fun",
+      "at": [
+       384,
+       400
+      ]
+     },
+     "want": {
+      "call": "full collapse"
+     },
+     "was": "QenK v Fun 6:37 (picked row): 'mainteam collapse': the engine tells it (Fun turns on the split from 6:24 with six, told from 6:28)"
+    },
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "QenK",
+      "start": [
+       364,
+       376
+      ]
+     },
+     "want": {
+      "answer": "1 v 1, defended by a monk",
+      "tests": {
+       "the split player survives": true
+      }
+     },
+     "open": true,
+     "held": "2026-11-18",
+     "why": "QenK v Fun 6:37: the Hammer's death is the collapse's; it is also left on the 1 v 1 row beside it (6:10 to 6:40, 'the split player survives: no'). A death after the turn belongs to the collapse alone: held for the split family"
+    }
+   ]
+  },
+  {
+   "id": "p2-8",
+   "set": "p2",
+   "row": 8,
+   "rid": "cc1e770d-8fbc-5a0f-ac5f-1d27864fdf37",
+   "match": "NwAy v ohno, Druid's",
+   "window": [
+    226,
+    326
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "NwAy's split by the front door: one player (Dervish) against 1 defending (8 Monk); he dies at 5:24 to ohno's two Paragons, Monk 4 (WoC) and Mesmer",
+   "mark": "wrong",
+   "said": "Qenk v Fun and NwAy v ohno are both mainteam collapses and should be read as such.",
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "ohno",
+      "at": [
+       300,
+       330
+      ]
+     },
+     "want": {
+      "call": [
+       "full collapse",
+       "collapse"
+      ]
+     },
+     "open": true,
+     "held": "2026-11-18",
+     "why": "NwAy v ohno 5:24 (picked row): 'mainteam collapse'. No collapse is told: the row is 1 v 1 against the 8 Monk from 3:46 to 5:26 and the Dervish's death is left on it. A collapse that kills within seconds of the turn ends the split before the collapse is told (R-508: told from 4 s after the turn). Held for the split family"
+    }
+   ]
+  },
+  {
+   "id": "p2-9",
+   "set": "p2",
+   "row": 9,
+   "rid": "2c764dac-d2cb-50e3-a072-6b5b3bb9b633",
+   "match": "Team v BcS, Solitude",
+   "window": [
+    1006,
+    1094
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "Team's split by the back door: one player (Ritualist) against 1 defending (Water Ele); he dies at 18:11 to BcS's Air Ele, Mesmer, Dervish and Water Ele",
+   "mark": "right",
+   "said": "The Team v BcS death is actually not a collapse, the split just had a bunch of people base res on him and he died.",
+   "checks": [
+    {
+     "none": {
+      "play": "split",
+      "side": "defender",
+      "team": "BcS",
+      "at": [
+       1070,
+       1094
+      ],
+      "want": {
+       "call": [
+        "full collapse",
+        "collapse"
+       ]
+      }
+     },
+     "was": "Team v BcS 18:11 (picked row): 'not a collapse, the split just had a bunch of people base res on him': no collapse is to be told here"
+    },
+    {
+     "has": {
+      "play": "base res",
+      "team": "Team",
+      "start": [
+       1054,
+       1066
+      ]
+     },
+     "want": {
+      "met": false
+     },
+     "was": "Team v BcS 18:11: the base res at 18:00 with Team's one player in BcS's base is told, and its job not met (he dies within 30 s of it)"
+    }
+   ]
   }
  ],
  "about_tiers": "R-490: a row with \"tier\": \"borderline\" is reported by `review.py score` and never blocks a change; every other row with a check is clear and must pass. A row he marks No clear decision is borderline when it is filed. \"tier_proposed\" is Claude's proposal, not yet his."
