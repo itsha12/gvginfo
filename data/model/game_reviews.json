@@ -1,7 +1,7 @@
 {
  "about": "The rows of Model > Game review (R-454, R-455, R-492): every situation the engine reads in each review game, with the engine's confidence that it is a decision, written by tools/golden/review.py export on the engine branch. Games with scheme 2 are graded his new way; the others are history (R-491). His marks are in game_review_marks.json, never here.",
  "generated": "2026-11-18",
- "engine": "b7e6d00",
+ "engine": "5dd5a09",
  "games": [
   {
    "set": "w1",
@@ -36869,8 +36869,8 @@
      "id": "s:15a20f7a-flag-1-277-19",
      "kind": "flag",
      "t0": 277,
-     "t1": 370,
-     "reads": "Team single run (Ritualist); Dz single run (8 Monk, handing it to Mesmer)",
+     "t1": 324,
+     "reads": "Team single run (Ritualist); Dz single run (8 Monk)",
      "confidence": {
       "band": "high",
       "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
@@ -36892,7 +36892,7 @@
        "met": false,
        "tests": [
         [
-         true,
+         false,
          "our flag is capped"
         ],
         [
@@ -37056,11 +37056,11 @@
     },
     {
      "n": 13,
-     "id": "s:15a20f7a-split-2-308-27",
+     "id": "s:15a20f7a-split-2-308-26",
      "kind": "split",
      "t0": 308,
      "t1": 386,
-     "reads": "Team's split by the front door: two players (Warrior, 7 Monk) against 1 defending (8 Monk); numbers along the way: 1 v 1 from 5:08, 2 v 1 from 5:26; 1 damage against 1 monks; 1 (8 Monk) against two players; numbers along the way: 1 v 1 from 5:08, 2 v 1 from 5:26: 8 Monk carries his flag for 12 s while defending. Who came and went, each a decision of its own: 7 Monk (Team) joins the split at 5:26",
+     "reads": "Team's split by the front door: two players (Warrior, 7 Monk) against 1 defending (8 Monk); numbers along the way: 1 v 1 from 5:08, 2 v 1 from 5:26; 1 damage against 1 monks. Who came and went, each a decision of its own: 7 Monk (Team) joins the split at 5:26",
      "confidence": {
       "band": "medium",
       "why": "Read as a situation wherever the engine's settings sit, but who is counted in it or the call changes when one is moved a quarter: how far away a player hitting or casting into a fight still counts in it; how long a player at the edge of a fight is kept in it; and 2 more of its settings."
@@ -37069,11 +37069,6 @@
       {
        "play": "split",
        "team": "Team",
-       "t0": 308
-      },
-      {
-       "play": "split",
-       "team": "Dz",
        "t0": 308
       },
       {
@@ -37094,7 +37089,7 @@
      ],
      "calls": [
       {
-       "id": "15a20f7a-split-2-308-27",
+       "id": "15a20f7a-split-2-308-26",
        "team": "Team",
        "side": "attacker",
        "label": "held by monks",
@@ -37130,31 +37125,7 @@
        "draft": false
       },
       {
-       "id": "15a20f7a-split-1-308-26",
-       "team": "Dz",
-       "side": "defender",
-       "label": "part-run",
-       "job": "Gain a slight flag advantage while losing no pit NPC and not dying",
-       "met": true,
-       "tests": [
-        [
-         true,
-         "no pit NPC lost"
-        ],
-        [
-         true,
-         "flag lead better by 0.15 or more"
-        ],
-        [
-         true,
-         "the defender does not die"
-        ]
-       ],
-       "any": false,
-       "draft": true
-      },
-      {
-       "id": "15a20f7a-split-2-308-28",
+       "id": "15a20f7a-split-2-308-27",
        "team": "Team",
        "side": "attacker's main team",
        "label": "the main fight can kill",
@@ -37170,7 +37141,7 @@
        "draft": false
       },
       {
-       "id": "15a20f7a-split-2-326-29",
+       "id": "15a20f7a-split-2-326-28",
        "team": "Team",
        "side": "attacker",
        "label": "join: 7 Monk at 5:26",
@@ -37193,7 +37164,7 @@
     },
     {
      "n": 14,
-     "id": "s:15a20f7a-flag-2-368-30",
+     "id": "s:15a20f7a-flag-2-368-29",
      "kind": "flag",
      "t0": 368,
      "t1": 462,
@@ -37211,7 +37182,7 @@
      ],
      "calls": [
       {
-       "id": "15a20f7a-flag-2-368-30",
+       "id": "15a20f7a-flag-2-368-29",
        "team": "Team",
        "side": "",
        "label": "a flag already in hand: overcap at once",
@@ -37234,7 +37205,7 @@
     },
     {
      "n": 15,
-     "id": "s:15a20f7a-split-2-382-32",
+     "id": "s:15a20f7a-split-2-382-31",
      "kind": "split",
      "t0": 382,
      "t1": 416,
@@ -37257,7 +37228,7 @@
      ],
      "calls": [
       {
-       "id": "15a20f7a-split-2-382-32",
+       "id": "15a20f7a-split-2-382-31",
        "team": "Team",
        "side": "attacker",
        "label": "undefended",
@@ -37273,7 +37244,7 @@
        "draft": false
       },
       {
-       "id": "15a20f7a-split-1-382-31",
+       "id": "15a20f7a-split-1-382-30",
        "team": "Dz",
        "side": "defender",
        "label": "no answer",
@@ -37296,7 +37267,7 @@
     },
     {
      "n": 16,
-     "id": "s:15a20f7a-numbers-1-388-33",
+     "id": "s:15a20f7a-numbers-1-388-32",
      "kind": "numbers",
      "t0": 388,
      "t1": 420,
@@ -37319,7 +37290,7 @@
      ],
      "calls": [
       {
-       "id": "15a20f7a-numbers-1-388-33",
+       "id": "15a20f7a-numbers-1-388-32",
        "team": "Dz",
        "side": "up",
        "label": "retreat down the ladder",
@@ -37339,7 +37310,7 @@
        "draft": true
       },
       {
-       "id": "15a20f7a-numbers-2-388-34",
+       "id": "15a20f7a-numbers-2-388-33",
        "team": "Team",
        "side": "down",
        "label": "push up",
@@ -37362,7 +37333,7 @@
     },
     {
      "n": 17,
-     "id": "s:15a20f7a-split-2-404-36",
+     "id": "s:15a20f7a-split-2-404-35",
      "kind": "split",
      "t0": 404,
      "t1": 452,
@@ -37385,7 +37356,7 @@
      ],
      "calls": [
       {
-       "id": "15a20f7a-split-2-404-36",
+       "id": "15a20f7a-split-2-404-35",
        "team": "Team",
        "side": "attacker",
        "label": "met by a full collapse",
@@ -37401,7 +37372,7 @@
        "draft": false
       },
       {
-       "id": "15a20f7a-split-1-404-35",
+       "id": "15a20f7a-split-1-404-34",
        "team": "Dz",
        "side": "defender",
        "label": "full collapse",
@@ -37424,7 +37395,7 @@
     },
     {
      "n": 18,
-     "id": "s:15a20f7a-split-2-414-38",
+     "id": "s:15a20f7a-split-2-414-37",
      "kind": "split",
      "t0": 414,
      "t1": 438,
@@ -37447,7 +37418,7 @@
      ],
      "calls": [
       {
-       "id": "15a20f7a-split-2-414-38",
+       "id": "15a20f7a-split-2-414-37",
        "team": "Team",
        "side": "attacker",
        "label": "collapsed on",
@@ -37463,7 +37434,7 @@
        "draft": false
       },
       {
-       "id": "15a20f7a-split-1-414-37",
+       "id": "15a20f7a-split-1-414-36",
        "team": "Dz",
        "side": "defender",
        "label": "collapse",
@@ -37482,7 +37453,7 @@
     },
     {
      "n": 19,
-     "id": "s:15a20f7a-push_flagger-2-434-40",
+     "id": "s:15a20f7a-push_flagger-2-434-39",
      "kind": "push flagger",
      "t0": 434,
      "t1": 447,
@@ -37505,7 +37476,7 @@
      ],
      "calls": [
       {
-       "id": "15a20f7a-push_flagger-2-434-40",
+       "id": "15a20f7a-push_flagger-2-434-39",
        "team": "Team",
        "side": "",
        "label": "",
@@ -37525,7 +37496,7 @@
        "draft": false
       },
       {
-       "id": "15a20f7a-flagger_pushed-1-434-39",
+       "id": "15a20f7a-flagger_pushed-1-434-38",
        "team": "Dz",
        "side": "",
        "label": "",
@@ -37544,7 +37515,7 @@
     },
     {
      "n": 20,
-     "id": "s:15a20f7a-numbers-1-436-41",
+     "id": "s:15a20f7a-numbers-1-436-40",
      "kind": "numbers",
      "t0": 436,
      "t1": 466,
@@ -37570,7 +37541,7 @@
     },
     {
      "n": 21,
-     "id": "s:15a20f7a-flag-2-438-43",
+     "id": "s:15a20f7a-flag-2-438-42",
      "kind": "flag",
      "t0": 438,
      "t1": 518,
@@ -37588,7 +37559,7 @@
      ],
      "calls": [
       {
-       "id": "15a20f7a-flag-2-438-43",
+       "id": "15a20f7a-flag-2-438-42",
        "team": "Team",
        "side": "",
        "label": "a flag already in hand: capped before theirs got in",
@@ -37607,7 +37578,7 @@
     },
     {
      "n": 22,
-     "id": "s:15a20f7a-split-2-458-46",
+     "id": "s:15a20f7a-split-2-458-45",
      "kind": "split",
      "t0": 458,
      "t1": 472,
@@ -37640,7 +37611,7 @@
      ],
      "calls": [
       {
-       "id": "15a20f7a-split-2-458-46",
+       "id": "15a20f7a-split-2-458-45",
        "team": "Team",
        "side": "attacker",
        "label": "1 v 1, the defender not a monk",
@@ -37660,7 +37631,7 @@
        "draft": false
       },
       {
-       "id": "15a20f7a-split-1-458-44",
+       "id": "15a20f7a-split-1-458-43",
        "team": "Dz",
        "side": "defender",
        "label": "mirror",
@@ -37680,7 +37651,7 @@
        "draft": false
       },
       {
-       "id": "15a20f7a-split-1-458-45",
+       "id": "15a20f7a-split-1-458-44",
        "team": "Dz",
        "side": "defender",
        "label": "part-run",
@@ -37704,7 +37675,7 @@
        "draft": false
       },
       {
-       "id": "15a20f7a-split-2-458-47",
+       "id": "15a20f7a-split-2-458-46",
        "team": "Team",
        "side": "attacker's main team",
        "label": "the main fight can kill",
@@ -37723,7 +37694,7 @@
     },
     {
      "n": 23,
-     "id": "s:15a20f7a-split-2-462-49",
+     "id": "s:15a20f7a-split-2-462-48",
      "kind": "split",
      "t0": 462,
      "t1": 484,
@@ -37746,7 +37717,7 @@
      ],
      "calls": [
       {
-       "id": "15a20f7a-split-2-462-49",
+       "id": "15a20f7a-split-2-462-48",
        "team": "Team",
        "side": "attacker",
        "label": "met by a full collapse",
@@ -37762,7 +37733,7 @@
        "draft": false
       },
       {
-       "id": "15a20f7a-split-1-462-48",
+       "id": "15a20f7a-split-1-462-47",
        "team": "Dz",
        "side": "defender",
        "label": "full collapse",
@@ -37785,7 +37756,7 @@
     },
     {
      "n": 24,
-     "id": "s:15a20f7a-split-2-470-51",
+     "id": "s:15a20f7a-split-2-470-50",
      "kind": "split",
      "t0": 470,
      "t1": 484,
@@ -37808,7 +37779,7 @@
      ],
      "calls": [
       {
-       "id": "15a20f7a-split-2-470-51",
+       "id": "15a20f7a-split-2-470-50",
        "team": "Team",
        "side": "attacker",
        "label": "collapsed on",
@@ -37824,7 +37795,7 @@
        "draft": false
       },
       {
-       "id": "15a20f7a-split-1-470-50",
+       "id": "15a20f7a-split-1-470-49",
        "team": "Dz",
        "side": "defender",
        "label": "collapse",
@@ -37843,7 +37814,7 @@
     },
     {
      "n": 25,
-     "id": "s:15a20f7a-flag-2-476-52",
+     "id": "s:15a20f7a-flag-2-476-51",
      "kind": "flag",
      "t0": 476,
      "t1": 541,
@@ -37861,7 +37832,7 @@
      ],
      "calls": [
       {
-       "id": "15a20f7a-flag-2-476-52",
+       "id": "15a20f7a-flag-2-476-51",
        "team": "Team",
        "side": "",
        "label": "stay",

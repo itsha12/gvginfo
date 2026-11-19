@@ -1,5 +1,5 @@
 {
- "about": "The review key (R-450). Every row Denning was shown of the engine's plays: what the engine said then (shown), his mark and his words (said), and checks: Claude's reading of his mark as things the plays must hold or must not hold, which he corrects. Scored by tools/golden/review.py on the branch after every change. Marks: right, partly, wrong, bad example (set aside), not marked. Set 1 is the 35 rows of 2026-11-13, picked one or more to a kind of play, so it is a regression test and not an accuracy figure; whole-game sets (R-454) give the accuracy by kind of play. `answered` holds a later answer of his on a row (what was asked, his words, Claude's reading). Set w1p1 is part 1 of the whole-game review (R-455), marked by him on the site on 2026-11-13 against engine af952c6: one row a situation with his mark and words, its calls under `calls` with theirs, and one `missed` row a game for what the engine did not read; checks are written as each fault is fixed. Set w1p2 is hdm v hook, the first game of part 2, marked on 2026-11-14 against engine 67e87b8 as the first measure of the rebuilt reading; he then chose to build from it too, keeping Men v Crew unmarked as the hidden game. Set w2 is round 3 (R-473): hook v hold and cope v Team, marked on 2026-11-14 against engine b025445 (24 of 41 and 15 of 24 situations right); chic v 戦戦戦戦 was set aside unmarked (a henchman game). RJT v RACK (eea5ba87) is round 3's third game, marked on 2026-11-14 against engine b09a26a (33 of 45 situations right); its checks are written from his words and are open until the reading under them is rebuilt. Set p2 is nine picked rows of 2026-11-18 (R-495: examples found by search for a fault seen once, put to him in the chat with their replay links): six of the two held flag shapes and three sudden deaths of a solo split player. They carry no grade, so none binds; their games are in the development set.",
+ "about": "The review key (R-450). Every row Denning was shown of the engine's plays: what the engine said then (shown), his mark and his words (said), and checks: Claude's reading of his mark as things the plays must hold or must not hold, which he corrects. Scored by tools/golden/review.py on the branch after every change. Marks: right, partly, wrong, bad example (set aside), not marked. Set 1 is the 35 rows of 2026-11-13, picked one or more to a kind of play, so it is a regression test and not an accuracy figure; whole-game sets (R-454) give the accuracy by kind of play. `answered` holds a later answer of his on a row (what was asked, his words, Claude's reading). Set w1p1 is part 1 of the whole-game review (R-455), marked by him on the site on 2026-11-13 against engine af952c6: one row a situation with his mark and words, its calls under `calls` with theirs, and one `missed` row a game for what the engine did not read; checks are written as each fault is fixed. Set w1p2 is hdm v hook, the first game of part 2, marked on 2026-11-14 against engine 67e87b8 as the first measure of the rebuilt reading; he then chose to build from it too, keeping Men v Crew unmarked as the hidden game. Set w2 is round 3 (R-473): hook v hold and cope v Team, marked on 2026-11-14 against engine b025445 (24 of 41 and 15 of 24 situations right); chic v 戦戦戦戦 was set aside unmarked (a henchman game). RJT v RACK (eea5ba87) is round 3's third game, marked on 2026-11-14 against engine b09a26a (33 of 45 situations right); its checks are written from his words and are open until the reading under them is rebuilt. Set p2 is twelve picked rows of 2026-11-18 (R-495: examples found by search for a fault seen once, put to him in the chat with their replay links): six of the two held flag shapes and three sudden deaths of a solo split player. They carry no grade, so none binds; their games are in the development set.",
  "version": 1,
  "rows": [
   {
@@ -1674,7 +1674,7 @@
        "scenario~": "옷옷옷옷 single run (7 Monk (WoC))"
       }
      },
-     "was": "TFS v 옷옷옷옷 3:46: the 7 Monk (WoC)'s carry is a part-run, no run (R-535; Claude's reading from his seven rulings, put to him)"
+     "was": "TFS v 옷옷옷옷 3:46: the 7 Monk (WoC)'s carry is a part-run, no run (R-535). Confirmed by him on 2026-11-18: 'Yes, that is a part run.'"
     }
    ],
    "answered": {
@@ -1706,7 +1706,12 @@
      "retired": "2026-11-18",
      "why_retired": "옷옷옷옷's 7 Monk (WoC) part-runs at 3:46 (R-535): TFS's run is told from 옷옷옷옷's side, the run it answered being none"
     }
-   ]
+   ],
+   "later": {
+    "at": "2026-11-18",
+    "asked": "Is 옷옷옷옷's 7 Monk (WoC) at 3:46 a part-run, as the engine now reads it?",
+    "said": "Yes, that is a part run."
+   }
   },
   {
    "id": "w1p1-bdaa-11",
@@ -31433,6 +31438,117 @@
       "met": false
      },
      "was": "Team v BcS 18:11: the base res at 18:00 with Team's one player in BcS's base is told, and its job not met (he dies within 30 s of it)"
+    }
+   ]
+  },
+  {
+   "id": "p2-10",
+   "set": "p2",
+   "row": 10,
+   "rid": "faec428a-5b92-54d1-a28c-b79c7f27cfcf",
+   "match": "Men v HC, Corrupted",
+   "window": [
+    25,
+    46
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "Men's Hammer B, left back at the opening, carries the flag from his pit to his front footmen (0:25 to 0:46) and the Mesmer runs it: read as a part-run",
+   "mark": "wrong",
+   "said": "Men v HC is NOT a part-run. The reason Men v HC is not a part-run is two fold. 1. The warrior is only briefly defending split, he switches with rit. 2. Most importantly, he hands the flag to a mesmer and then JOINS MAINTEAM.",
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "start": [
+       -6,
+       90
+      ]
+     },
+     "want": {
+      "scenario~": "second runner Hammer B, handing it to Mesmer"
+     },
+     "was": "Men v HC 0:25 (picked row): 'NOT a part-run ... he hands the flag to a mesmer and then JOINS MAINTEAM' (R-536): Hammer B is the second runner of Men's double run, handing the flag on"
+    },
+    {
+     "none": {
+      "play": "split",
+      "side": "defender",
+      "team": "Men",
+      "at": [
+       0,
+       90
+      ],
+      "want": {
+       "call": "part-run",
+       "who~": [
+        "Hammer B"
+       ]
+      }
+     },
+     "was": "Men v HC 0:25: no part-run is told for Hammer B (R-536)"
+    }
+   ]
+  },
+  {
+   "id": "p2-11",
+   "set": "p2",
+   "row": 11,
+   "rid": "368cb5d2-f517-5137-ae27-0607789747a8",
+   "match": "hdm v Men, Uncharted",
+   "window": [
+    1113,
+    1127
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "Men's Prot carries the flag alone from his pit to his front footmen (18:33 to 18:47) and puts it down: read as a part-run",
+   "mark": "right",
+   "said": "hdm v Men is a part run",
+   "checks": [
+    {
+     "none": {
+      "play": "flag",
+      "at": [
+       1095,
+       1135
+      ],
+      "want": {
+       "scenario~": "Men single run (Prot)"
+      }
+     },
+     "was": "hdm v Men 18:33 (picked row): 'a part run' (R-535): no run by Men's Prot is told"
+    }
+   ]
+  },
+  {
+   "id": "p2-12",
+   "set": "p2",
+   "row": 12,
+   "rid": "c8e26dc9-8cfb-5a36-aa1a-38f8c416753d",
+   "match": "옷옷옷옷 v Team, Uncharted",
+   "window": [
+    761,
+    832
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "옷옷옷옷's Mesmer carries the flag for 71 s round his own front door and footmen (12:41 to 13:52): read as a part-run",
+   "mark": "right",
+   "said": "hdm v Men is a part run, as is 옷옷옷옷 v Team",
+   "checks": [
+    {
+     "none": {
+      "play": "flag",
+      "at": [
+       725,
+       835
+      ],
+      "want": {
+       "scenario~": "옷옷옷옷 single run (Mesmer)"
+      }
+     },
+     "was": "옷옷옷옷 v Team 12:41 (picked row): 'a part run' (R-535): no run by 옷옷옷옷's Mesmer is told"
     }
    ]
   }

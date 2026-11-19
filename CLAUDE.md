@@ -221,12 +221,13 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   from when its player goes out past his doors (`out_at`). The first is R-528; the other two are from his marks.
   A split record whose players all came for a flagger already on his run and left when the flag had gone is the push
   on the flagger and no split (R-530): one test, `jobs._push_not_split`, asked by `push_plays` and by `split_plays`.
-- A part-run is not a flag run (R-535): a player back at home for a split who carries his flag about on his own
-  ground and puts it down. One reading, `Moments._part_carries` on the branch (built by `run_starts`, asked through
+- A part-run is not a flag run (R-535, R-536): a player back at home for a split who carries his flag some of the
+  way on his own ground, puts it down and goes back to his base (always: it is what tells it from a run or a hand-off;
+  the player who hands it on and joins his main team has run it). One reading, `Moments._part_carries` on the branch (built by `run_starts`, asked through
   `part_run_at`): such a carry is not under way and has not travelled, so `flag_rows`, the runners of a call, the
   boost and the moments all leave it out, and `split_plays` tells it on the split he defends. It is read from the
-  split's own candidates (`_split_candidates`), so it is silent while those are being taken. Five forms were built on
-  2026-11-18 before this one held his seven carries and every Classic row: change it against the set p2 rows and the
+  split's own candidates (`_split_candidates`), so it is silent while those are being taken. Six forms were built on
+  2026-11-18 before this one held his eleven rulings and every Classic row: change it against the set p2 rows and the
   HC v cope and hold v Men rows of the key, never by a new exception.
 - The match is over at `Moments.over`: the second the losing team is recorded dying all at once, some 12 s before the
   replay stops. Those deaths are taken out of the deaths the reading counts, and no play starts from that second on.

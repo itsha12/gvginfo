@@ -135,13 +135,16 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   0:36, 1:32; HC v Team 4:24; HC v cope 3:24). Players who stay on after the flag has gone ("a true split would
   likely stay and try to take NPCs"), or die there, are a split whose defender carries his flag (R-430; HC v cope
   0:20, 0:32, Classic).
-- A part-run is not a flag run (R-535): a player back at home for a split who carries his flag about on his own
-  ground and puts it down, whether or not a team mate takes it on. It is told on the split he defends (the job of
+- A part-run is not a flag run (R-535, R-536): a player back at home for a split who carries his flag some of the
+  way on his own ground and puts it down, because he has to be back in his base; he always goes back to it (the
+  player who hands the flag on and joins his main team has run it, R-504, R-505), and usually nobody is handed the
+  flag: it is taken up by another player more than 5 s later. It is told on the split he defends (the job of
   R-430: a slight flag advantage, no pit NPC lost, not dying), it has no runner, and the enemy has nothing to answer;
   the run begins when a player who is not part-running takes the flag out. As built (`Moments._part_carries`): he
   never leaves his own ground with it; he is counted in a split's defence at some second from 12 s before the pickup
   to the end of the carry; he is without three of his team on half or more of it (a carrier in the middle of his team
-  is a runner being stopped); the flag was not in his hand before the gates; nobody pushes him as a flagger meanwhile.
+  is a runner being stopped); the flag was not in his hand before the gates; nobody pushes him as a flagger meanwhile;
+  and for 12 s after he puts it down he is still on his own ground (R-536).
 - Shadow of Haste runs are bad examples (R-438, which corrects the premise of R-393): the mechanic was removed on 22
   October 2026. Before that date they stay in the flag lead (the state of those games) and are left out of everything
   that teaches or scores the flag decision, with the other team's answers to them; from that date a bar carrying the
