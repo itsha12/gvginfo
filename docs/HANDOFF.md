@@ -12,10 +12,9 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` and lands in one piece,
   then one rebuild (R-322). 658 replays stored; 564 count (R-477); 506 matches trained. No workflow run in progress.
   Rulings run to R-544. The baseline (R-491) is the branch `baseline-2026-11-15`. R-531: the flag plays are ready.
-- Graded and filed (set f1): twelve games (옷옷옷옷 v hdm to 9:40, R-532); per game in CHANGELOG. The last, game
-  14, Dz v Team on Druid's Isle: 22 Classic and 2 Visible, all read correct, 48 of 48 calls. Out unmarked: hdm v
-  HC (R-522) and game 13, Men v NwAy (R-537). No game waits for him. Not graded his new way: Corrupted, Weeping
-  Stone, Isle of the Dead.
+- Graded and filed (set f1): twelve games (옷옷옷옷 v hdm to 9:40, R-532), the last game 14, Dz v Team on Druid's
+  Isle (22 Classic, 2 Visible, all read correct, 48 of 48 calls). Out unmarked: hdm v HC (R-522), Men v NwAy
+  (R-537). No game waits for him. Not graded his new way: Corrupted, Weeping Stone, Isle of the Dead.
 - His marks on nine picked rows (set p2 in the key; none binds). Part-runs are built (R-535, R-536). Held: cope v
   hold 14:33, a flag held at his door read as a boost runner (with Men v Crew 17:53); QenK v Fun 6:37 and NwAy v
   ohno 5:24, main team collapses whose deaths are also left on the 1 v 1 row (for the split family). Confidence
