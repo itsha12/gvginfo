@@ -2904,7 +2904,7 @@ class Moments:
         k, sd = collections.Counter(self.place_at(a, t) for a in g).most_common(1)[0][0]
         return self._ladder(tm, k, sd), self.place_words(k, sd)
 
-    def consequence(self, tm, t):
+    def consequence(self, tm, t, horizons=CONSEQ_S):
         """What followed a moment, over the whole map, at each of CONSEQ_S (90 s and about 3 min, R-294): hard
         results only, each as [own, enemy] from the deciding team's side. Deaths; NPCs lost (by kind); each Guild
         Lord's health then and now (rebuilt, lord.py; None where its damage was not observed); captures and boosts landed; morale (the eight players' morale summed, then and now);
@@ -2925,7 +2925,7 @@ class Moments:
             v = self._lord.health(k, u)
             return None if v is None else round(v, 2)
         out = {}
-        for H in CONSEQ_S:
+        for H in horizons:
             t1 = min(t + H, T)
             R = range(t - t % S + S, t1 + 1, S)
             npc = lambda k: [kd for u, k2, kd in self._npc_deaths() if k2 == k and t < u <= t1]

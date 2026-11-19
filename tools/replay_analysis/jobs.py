@@ -97,6 +97,9 @@ def _play(M, play, side, tm, t0, t1, who, scenario, job, tests, beside=None, rul
                  "tests": dict(tests), "any_of": dict(any_of or {}), "met": bool(met), "beside": beside or {}, "ruled": ruled}, **more)
 
 
+FLAG_AFTER_S = (60, 90, 120, 180)      # what followed a flag decision, read at four seconds so that the effect can be followed as it grows and fades (his word, 2026-11-19; 90 and 180 s are R-294's)
+
+
 # ---- the flag: their run against ours (R-426)
 def _flag_rows(M):
     """The flags that were run, each with when its runner went for it: the second he set off for his spawn
@@ -342,13 +345,25 @@ def flag_plays(M, K, pinned_at):
                   **({"opening": opening(M)["words"]} if is_open else {}))
         # the position the answer is chosen from and what followed it on the fixed 90 and 180 s record (R-294), both read at the second the decision arises: what the
         # similar cases match on and are judged by (cases.py). The play's own clock ends at a cap, theirs for a stay and ours for a run, so it cannot be compared across calls
-        kw["state"], kw["after"] = M._state(A, int(w0)), M.consequence(A, int(w0))
+        kw["state"], kw["after"] = M._state(A, int(w0)), M.consequence(A, int(w0), FLAG_AFTER_S)
+        # ... and the clock of the two runs, so that an answer can be read at a fixed second after theirs set off (his word, 2026-11-19: a run within 15 s of theirs is
+        # not a run 45 s after it; and a "stay" read from having sent nobody before their run ended takes in every run of theirs that came to nothing): when their runner
+        # set off and when their run ended; when our next runner set off, whenever that was; and how long their flag should take from here (to his spawn at a run, then
+        # the usual carry for the hall and side; from where he stands when he already carries it)
+        lead_ = lambda x_: list(dict.fromkeys(x_["ids"]))[:1]                # the player who sets off with it
+        nxt_ = min((x_ for x_ in mine if x_["s0"] >= w0 - 2), key=lambda x_: x_["s0"], default=None)
+        a_ = next(iter(lead_(f)), None); u_ = min(int(w0), T); eta = None
+        if a_ is not None and M.hall is not None and M.P[a_][u_]:
+            if M.carrying(a_, u_): w_ = M.hall.walk(M.P[a_][u_], M.hall.stand); eta = w_ / CARRY_SPEED if w_ else None
+            else:
+                w_ = M.hall.walk(M.P[a_][u_], M.spawn[B]) if M.spawn.get(B) else None; us_ = _usual_arrival(M, B)
+                eta = (w_ / RUN_SPEED + us_) if (w_ is not None and us_) else None
+        kw["clock"] = {"their_off": int(f.get("off", f["s0"])), "their_end": int(f["e"]), "their_eta_s": eta and round(eta), "our_off": nxt_ and int(nxt_.get("off", nxt_["s0"])), "our_s0": nxt_ and int(nxt_["s0"]), "our_double": bool(nxt_ and nxt_["double"])}
         # ... and what else a team can see at that second (R-539: a build is a fixed state, never a call, but it bears on which call is right): who their runner is and who
         # ours is, as properties (a backline monk away is not a warrior away); where each main team stands, as a step on its ladder; each whole team's snares and speed
         if getattr(M, "_team_props", None) is None: M._team_props = {k: M._props(list(M.st.players[k])) for k in M.st.teams}
-        first = lambda x_: list(dict.fromkeys(x_["ids"]))[:1]
-        kw["their_runner"] = dict(M._props(first(f)), role=f["runner"])
-        kw["our_runner"] = dict(M._props(first(g)), role=g["runner"]) if (g is not None and not inhand) else None
+        kw["their_runner"] = dict(M._props(lead_(f)), role=f["runner"])
+        kw["our_runner"] = dict(M._props(lead_(g)), role=g["runner"]) if (g is not None and not inhand) else None
         kw["steps"] = [M._main_step(A, int(w0))[0], M._main_step(B, int(w0))[0]]
         kw["teams"] = {k: [M._team_props[A][k], M._team_props[B][k]] for k in ("snare", "speed", "self_defence")}
         if ours == "a flag already in hand":

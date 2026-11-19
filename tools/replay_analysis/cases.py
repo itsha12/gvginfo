@@ -55,7 +55,9 @@ SCALE = (100.0, 1.0, 15.0, 80.0, 1.0, 0.1)       # the unit each price is quoted
 VARS = ("flag lead", "seconds to the boost", "own players at the main fight", "their players at the main fight", "own morale", "their morale", "strength gap", "the hall's flag run, s")
 # what the first test left out, added for the answer to their run (R-539, R-540): the res clock, where each main team stands, who their runner is, each team's snares
 MORE = ("seconds to the base res", "own main team's place (steps toward own pit)", "their main team's place (steps toward their pit)", "their runner is a backline monk", "their runner's speed",
-        "their team's snares", "own team's snares")
+        "their team's snares", "own team's snares", "seconds their flag should take to the stand")
+READS = (15, 30, 45)                             # the seconds after their runner set off at which our answer is read (his word, 2026-11-19: a run within 15 s of theirs is not a run 45 s after it)
+HORIZONS = ("60", "90", "120", "180")            # what followed, read at four seconds from the decision, to follow the effect as it grows and fades
 FEW = ("flag lead", "own players at the main fight", "their players at the main fight", "seconds to the base res", "own main team's place (steps toward own pit)", "their main team's place (steps toward their pit)")
 FRONT = ("Warrior", "Hammer", "Derv", "Ranger", "Assassin", "Paragon", "Axe", "Sword")
 PIT = ("knight", "archer", "bodyguard")
@@ -161,7 +163,8 @@ def cases(D, M, B):
         m, st, af = M[p["rid"]], p["state"], p["after"]
         if not m["winner"]: skipped["no winner recorded"] += 1; continue
         gap = m["gap"][p["team"]]
-        ends = {H: None if af[H]["ended"] else position(st, af[H], gap, True) for H in ("90", "180")}
+        HS = [H for H in HORIZONS if H in af]
+        ends = {H: None if af[H]["ended"] else position(st, af[H], gap, True) for H in HS}
         if st["flag_lead"] is None or af["90"]["lead"][0] is None or any(ends[H] is None and not af[H]["ended"] for H in ends): skipped["flag lead not read"] += 1; continue
         held = False
         if p["play"] == "boost":
@@ -176,12 +179,12 @@ def cases(D, M, B):
             scen, call = f"Their {p['their']}; {stand}", {"stay": "stay", "single run": "single run", "double run": "double run"}[p["ours"]]
         beta, won = B[m["fold"]], float(m["winner"] == p["team"])
         p0 = chance(beta, position(st, af["90"], gap, False))
-        v = {H: 100 * ((won if af[H]["ended"] else chance(beta, ends[H])) - p0) for H in ("90", "180")}
+        v = {H: 100 * ((won if af[H]["ended"] else chance(beta, ends[H])) - p0) for H in HS}
         x = [st["flag_lead"], st["boost_in"], st["main"][0], st["main"][1], af["90"]["morale"][0][0], af["90"]["morale"][1][0], gap, m["run_s"]]
         more = tip = None
         if "their_runner" in p:                                 # a flag play: what else can be seen at that second
             tr, tms, stp = p["their_runner"], p["teams"], p["steps"]
-            more = [st["res_in"], stp[0], stp[1], float(tr["monks"] > 0), tr["speed"], tms["snare"][1], tms["snare"][0]]
+            more = [st["res_in"], stp[0], stp[1], float(tr["monks"] > 0), tr["speed"], tms["snare"][1], tms["snare"][0], (p.get("clock") or {}).get("their_eta_s")]
             dn = st["main"][0] - st["main"][1]
             tip = {"their runner": "a backline monk" if tr["monks"] else "a frontline player" if any(w in tr["role"] for w in FRONT) else "a midline player",
                    "the base res": "under 40 s away" if st["res_in"] < 40 else "40 to 80 s away" if st["res_in"] < 80 else "over 80 s away",
@@ -190,9 +193,10 @@ def cases(D, M, B):
                    "the flag lead": "we are behind" if st["flag_lead"] <= -0.35 else "we are ahead" if st["flag_lead"] >= 0.35 else "about level",
                    "the hall's flag run": "short (under 27 s)" if m["run_s"] < 27 else "long (27 s or more)",
                    "their team's snares": tms["snare"][1], "our team's snares": tms["snare"][0], "the strength gap": gap}
-        out.append({"more": more, "tip": tip, "their_flag": (p.get("beside") or {}).get("their_flag"), "id": p["id"], "rid": p["rid"], "fold": m["fold"], "team": p["team"], "t": p["t0"], "kind": p["play"], "scenario": scen, "call": call, "x": x, "v": v, "p0": p0, "won": won,
+        out.append({"more": more, "tip": tip, "their_flag": (p.get("beside") or {}).get("their_flag"), "clock": p.get("clock"), "stand": st["stand"], "their": p.get("their"), "in_hand": p.get("ours") == "a flag already in hand",
+                    "lead": {H: af[H]["lead_change"] for H in HS}, "quiet": {H: af[H]["deaths"] == [0, 0] and af[H]["npcs"] == [0, 0] for H in HS}, "id": p["id"], "rid": p["rid"], "fold": m["fold"], "team": p["team"], "t": p["t0"], "kind": p["play"], "scenario": scen, "call": call, "x": x, "v": v, "p0": p0, "won": won,
                     "held": held, "said": p["scenario"],
-                    "hard": {H: {"deaths": af[H]["deaths"], "npcs": af[H]["npcs"], "lead_change": af[H]["lead_change"], "boosts": af[H]["boosts"]} for H in ("90", "180")}})
+                    "hard": {H: {"deaths": af[H]["deaths"], "npcs": af[H]["npcs"], "lead_change": af[H]["lead_change"], "boosts": af[H]["boosts"]} for H in HS}})
     return out, skipped
 
 
@@ -211,7 +215,7 @@ class Scenario:
             keep = [self.names.index(n) for n in FEW]; self.Z, self.names = self.Z[:, keep], [self.names[k] for k in keep]
         self.rid = np.array([c["rid"] for c in C]); self.fold = np.array([c["fold"] for c in C]); self.call = np.array([c["call"] for c in C])
         self.calls = [k for k, _ in collections.Counter(self.call.tolist()).most_common()]
-        self.v = {H: np.array([c["v"][H] for c in C]) for H in ("90", "180")}
+        self.v = {H: np.array([c["v"][H] for c in C]) for H in HORIZONS if all(H in c["v"] for c in C)}
 
     def near(self, i, call, K, heldout):
         """The K nearest cases that made `call`, from other matches (heldout: from other groups of matches)."""
@@ -294,7 +298,7 @@ def _effect(rows, col):
     return float(np.linalg.lstsq(A, yv, rcond=None)[0][1])
 
 
-def advice_test(S, K, drop_held=False, only=None):
+def advice_test(S, K, drop_held=False, only=None, H="180"):
     """Held out: the advice for every case from the other nine groups of matches. Among cases with clear advice, the
     teams that matched it against those that did not."""
     import random
@@ -303,13 +307,13 @@ def advice_test(S, K, drop_held=False, only=None):
         if only and not only(name): continue
         for i, c in enumerate(s.C):
             if drop_held and c["held"]: continue
-            r = s.read(i, K, True)
+            r = s.read(i, K, True, H)
             tally["cases"] += 1
             if r["advice"] is None: tally["too few cases"] += 1; continue
             if not r["clear"]: tally["no clear advice"] += 1; continue
             tally["clear advice"] += 1
             rows.append({"rid": c["rid"], "scenario": name, "matched": c["call"] == r["advice"], "advice": r["advice"], "call": c["call"], "p0": c["p0"], "z": s.Z[i].tolist(),
-                         "v180": c["v"]["180"], "v90": c["v"]["90"], "end": 100 * (c["won"] - c["p0"]), "margin": r["margin"]})
+                         "v180": c["v"][H], "v90": c["v"]["90"], "end": 100 * (c["won"] - c["p0"]), "margin": r["margin"]})
     out = {"tally": dict(tally), "rows": len(rows)}
     n1 = sum(r["matched"] for r in rows)
     if n1 < MIN_PLAYS or len(rows) - n1 < MIN_PLAYS: out["verdict"] = "too few to call"; out["matched"] = n1; return out, rows
@@ -328,6 +332,83 @@ def advice_test(S, K, drop_held=False, only=None):
     out["matched"], out["matches"] = n1, len(ids)
     out["advice"] = dict(collections.Counter(r["advice"] for r in rows)); out["calls"] = dict(collections.Counter(r["call"] for r in rows))
     return out, rows
+
+
+# ---- the answer read at fixed seconds
+def read_cases(C):
+    """Our answer to their run as it stands 15, 30 and 45 s after their runner set off (R-542: a "stay" read from having
+    sent nobody before their run ended takes in every run of theirs that came to nothing, and a late run is not an
+    early one). At each read: their run is still under way, and we had sent nobody by the read before; the call is
+    whether a runner of ours has set off by now. A team still to send one at 45 s may send one later or never: what
+    is judged is the decision as it stands at that second, send now or keep waiting."""
+    out = []
+    for c in C:
+        k = c["clock"]
+        if c["kind"] != "flag" or c["in_hand"] or not k or c["stand"] not in ("own", "enemy"): continue
+        delay = None if k["our_off"] is None else k["our_off"] - k["their_off"]
+        for n, R in enumerate(READS):
+            if k["their_end"] <= k["their_off"] + R: break                          # their run is over: nothing left to answer
+            if n and delay is not None and delay <= READS[n - 1]: break             # we had already sent a runner by the read before
+            stand = "we hold the stand" if c["stand"] == "own" else "they hold the stand"
+            out.append(dict(c, read=R, scenario=f"Their {c['their']}; {stand}; {R} s after their runner set off" + (f", nobody sent by {READS[n - 1]} s" if n else ""),
+                            call="a runner sent by now" if (delay is not None and delay <= R) else "no runner yet"))
+    return out
+
+
+def _two(rows, f, a="a runner sent by now", b="no runner yet"):
+    """Call a's mean of f less call b's, with a 90% range that takes the plays of one match as one draw."""
+    out = []
+    for call in (a, b):
+        R = [(c, f(c)) for c in rows if c["call"] == call and f(c) is not None]
+        if len(R) < MIN_PLAYS or len({c["rid"] for c, _ in R}) < MIN_MATCHES: return None
+        v = np.array([x for _, x in R]); mu = float(v.mean()); res = collections.defaultdict(float)
+        for (c, _), e in zip(R, v - mu): res[c["rid"]] += e
+        G = len(res); out.append((mu, math.sqrt(sum(e * e for e in res.values()) * G / (G - 1)) / len(v), len(v)))
+    d, se = out[0][0] - out[1][0], math.hypot(out[0][1], out[1][1])
+    return d, d - Z * se, d + Z * se, out[0][2], out[1][2]
+
+
+def reads_report(C, pr, K=120):
+    """The answer at each read: how many cases, what followed a runner sent against none yet at 60, 90, 120 and 180 s
+    (flags, and win points), and the held-out advice test at each of those seconds. Then his given (R-542) as a check."""
+    L = read_cases(C); res = {"cases": len(L), "progress": {}, "tests": {}, "check": {}}
+    by = collections.defaultdict(list)
+    for c in L: by[c["scenario"]].append(c)
+    fmt = lambda g, u: "too few" if not g else f"{g[0]:+.2f} ({g[1]:+.2f} to {g[2]:+.2f})" if u == "flags" else f"{g[0]:+.1f} ({g[1]:+.1f} to {g[2]:+.1f})"
+    pr("\n   What followed a runner sent by the read, less no runner yet (as it fell; + is the runner ahead):")
+    for name in sorted(by, key=lambda n: (n.split(";")[1], int(n.split("; ")[2].split(" s")[0]), n)):
+        rows = by[name]; cnt = collections.Counter(c["call"] for c in rows)
+        pr(f"\n   {name}: {cnt['a runner sent by now']} sent, {cnt['no runner yet']} not yet")
+        res["progress"][name] = {"sent": cnt["a runner sent by now"], "not yet": cnt["no runner yet"]}
+        for H in HORIZONS:
+            fl, wp = _two(rows, lambda c: c["lead"][H]), _two(rows, lambda c: c["v"][H])
+            res["progress"][name][H] = {"flags": fl, "win points": wp}
+            pr(f"     {H:>3} s on: flag lead {fmt(fl, 'flags')}; win points {fmt(wp, 'points')}")
+    pr("\n   The held-out advice test at each read and each second (matched against not matched, win points, set against the same scenario and position):")
+    for R in READS:
+        cs = [c for c in L if c["read"] == R]
+        for mode in ("equal", "measured", "few"):
+            Sx = {k: Scenario([c for c in cs if c["scenario"] == k], True, mode) for k in sorted({c["scenario"] for c in cs})}
+            line = []
+            for H in HORIZONS:
+                t, _ = advice_test(Sx, K, H=H); res["tests"][f"{R} s, {mode}, {H} s"] = t
+                if "v180" not in t: line.append(f"{H} s: too few ({t['rows']} clear)"); continue
+                e = t["v180"]; adv = "; ".join(f"{k} {v}" for k, v in sorted(t["advice"].items(), key=lambda kv: -kv[1]))
+                line.append(f"{H} s: {e['effect']:+.1f} ({e['range'][0]:+.1f} to {e['range'][1]:+.1f}) {e['verdict']} [{t['rows']} clear: {adv}]")
+            pr(f"     read at {R} s ({len(cs)} cases), {({'equal': 'every variable equal', 'measured': 'measured weights', 'few': 'six chosen variables'})[mode]}:\n        " + "\n        ".join(line))
+    # his given (R-542), read at 30 s with their run still under way, whatever we had done by 15 s
+    open30 = [dict(c, call="a runner sent by now" if (c["clock"]["our_off"] is not None and c["clock"]["our_off"] - c["clock"]["their_off"] <= 30) else "no runner yet")
+              for c in C if c["kind"] == "flag" and not c["in_hand"] and c["clock"] and c["stand"] in ("own", "enemy") and c["clock"]["their_end"] > c["clock"]["their_off"] + 30]
+    pr(f"\n   His given (R-542), their runner 30 s into a run still under way ({len(open30)} cases): a runner sent by then, less none")
+    for label, rows, f, unit, want in (("in flags, 90 s on: a stay is further behind", open30, lambda c: c["lead"]["90"], "flags", 1),
+                                       ("in win points, 90 s on, where nobody and no NPC dies meanwhile: a stay with no kill is worse off", [c for c in open30 if c["quiet"]["90"]], lambda c: c["v"]["90"], "points", 1),
+                                       ("in win points, 90 s on, every case", open30, lambda c: c["v"]["90"], "points", 0),
+                                       ("in win points, 180 s on, every case", open30, lambda c: c["v"]["180"], "points", 0)):
+        g = _two(rows, f)
+        word = "" if not want else ("   HOLDS" if g and g[1] > 0 else "   FAILS" if g and g[2] < 0 else "   NOT CLEAR")
+        res["check"][label] = g
+        pr(f"     {label}: {fmt(g, unit)}" + (f" [{g[3]} sent, {g[4]} not]" if g else "") + word)
+    return res
 
 
 # ---- the report
@@ -456,6 +537,8 @@ def report(path, out_json=None):
             if "v180" not in t: pr(f"     {name:32} too few to call"); continue
             e = t["v180"]
             pr(f"     {name:32} clear advice in {t['rows']:4} ({'; '.join(f'{k} {v}' for k, v in sorted(t['advice'].items(), key=lambda kv: -kv[1]))}); matched {t['matched']:4}; 180 s on {e['effect']:+.1f} win points ({e['range'][0]:+.1f} to {e['range'][1]:+.1f}): {e['verdict']}")
+    pr("\n4. Their run and our answer, read at fixed seconds after their runner set off")
+    res["reads"] = reads_report(C, pr, K)
     held = sum(1 for c in C if c["held"])
     pr(f"\n   The flag only held at home at a boost (a boost run that denies nothing while the rest fall back): {held} of {sum(1 for c in C if c['kind'] == 'boost')} boost cases.")
     if out_json: json.dump(res, open(out_json, "w"), ensure_ascii=False, indent=1, default=float)

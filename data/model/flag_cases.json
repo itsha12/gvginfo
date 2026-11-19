@@ -87,35 +87,35 @@
    ]
   ]
  },
- "K": 120,
+ "K": 90,
  "k_error": {
-  "30": 218.87947388864777,
-  "45": 217.69073599358606,
-  "60": 216.7189633834669,
-  "90": 216.45931991125025,
-  "120": 216.37895109857507
+  "30": 214.9196830418082,
+  "45": 213.2621184108253,
+  "60": 212.86072848391782,
+  "90": 212.394320980338,
+  "120": 212.57932062255088
  },
  "scenarios": {
   "Their single run; we hold the stand": {
-   "cases": 1474,
+   "cases": 1460,
    "calls": {
-    "stay": 863,
+    "stay": 849,
     "single run": 599,
     "double run": 12
    },
    "verdicts": {
-    "right": 422,
-    "no clear difference": 722,
-    "wrong": 318,
+    "no clear difference": 863,
+    "right": 315,
+    "wrong": 270,
     "too few cases of this call": 12
    },
    "clear_advice": {
-    "stay": 743,
-    "single run": 3
+    "stay": 574,
+    "single run": 18
    },
    "best_not_clear": {
-    "single run": 127,
-    "stay": 601
+    "stay": 677,
+    "single run": 191
    }
   },
   "Their boost is 30 s away": {
@@ -125,71 +125,72 @@
     "send no flag": 501
    },
    "verdicts": {
-    "no clear difference": 857,
-    "right": 336,
-    "wrong": 123
+    "no clear difference": 898,
+    "right": 312,
+    "wrong": 106
    },
    "clear_advice": {
-    "run a flag": 459
+    "run a flag": 417,
+    "send no flag": 1
    },
    "best_not_clear": {
-    "run a flag": 664,
-    "send no flag": 193
+    "run a flag": 650,
+    "send no flag": 248
    }
   },
   "Their single run; they hold the stand": {
-   "cases": 1052,
+   "cases": 1042,
    "calls": {
-    "stay": 460,
-    "single run": 570,
+    "stay": 451,
+    "single run": 569,
     "double run": 22
    },
    "verdicts": {
-    "no clear difference": 871,
-    "wrong": 97,
-    "right": 62,
+    "right": 53,
+    "no clear difference": 868,
+    "wrong": 99,
     "too few cases of this call": 22
    },
    "clear_advice": {
-    "stay": 160,
-    "single run": 6
+    "stay": 155,
+    "single run": 3
    },
    "best_not_clear": {
-    "stay": 709,
-    "single run": 177
+    "single run": 206,
+    "stay": 678
    }
   },
   "Their double run; they hold the stand": {
-   "cases": 196,
+   "cases": 195,
    "calls": {
-    "stay": 101,
+    "stay": 100,
     "single run": 79,
     "double run": 16
    },
    "verdicts": {
-    "no clear difference": 180,
+    "no clear difference": 179,
     "too few cases of this call": 16
    },
    "clear_advice": {},
    "best_not_clear": {
-    "single run": 177,
-    "stay": 19
+    "single run": 159,
+    "stay": 36
    }
   },
   "Their double run; we hold the stand": {
-   "cases": 160,
+   "cases": 159,
    "calls": {
     "single run": 113,
-    "stay": 41,
+    "stay": 40,
     "double run": 6
    },
    "verdicts": {
-    "no clear difference": 154,
+    "no clear difference": 153,
     "too few cases of this call": 6
    },
    "clear_advice": {},
    "best_not_clear": {
-    "stay": 160
+    "stay": 159
    }
   },
   "Their single run; our flag already in hand": {
@@ -254,7 +255,7 @@
  "skipped": {
   "Shadow of Haste run (R-456)": 1606,
   "the opening: a different decision (R-541)": 804,
-  "flag lead not read": 78,
+  "flag lead not read": 104,
   "a flag in hand and their flag never got in: nothing to answer": 43,
   "no winner recorded": 22
  },
@@ -268,49 +269,49 @@
  "tips": {
   "Their single run; we hold the stand": {
    "every case": [
-    1.9060178903350402,
-    0.7023381620054936,
-    3.109697618664587
+    1.670440699208617,
+    0.46810885081451836,
+    2.8727725476027155
    ],
    "their runner: a midline player": [
-    2.6259919734360837,
-    0.7523576461501942,
-    4.499626300721973
+    2.5949057998910616,
+    0.7165609152501793,
+    4.473250684531944
    ],
    "their runner: a frontline player": [
-    2.3232080817568934,
-    0.6539270506409243,
-    3.9924891128728626
+    2.0777285833917487,
+    0.43679893522959934,
+    3.7186582315538983
    ],
    "their runner: a backline monk": [
-    -1.4318008753374851,
-    -5.595011824564855,
-    2.7314100738898848
+    -2.248168855372013,
+    -6.276001517192295,
+    1.7796638064482693
    ],
    "the base res: over 80 s away": [
-    0.48424374976819673,
-    -1.5886205887377507,
-    2.557108088274144
+    0.4628151389747286,
+    -1.6291803157628864,
+    2.5548105937123435
    ],
    "the base res: 40 to 80 s away": [
-    3.077417656260777,
-    0.9259600489807616,
-    5.228875263540792
+    2.657180751665635,
+    0.5693008658153764,
+    4.745060637515893
    ],
    "the base res: under 40 s away": [
-    2.4208202838317736,
-    0.07497813232486683,
-    4.766662435338681
+    2.0573052040994426,
+    -0.22617690304981108,
+    4.340787311248697
    ],
    "where we stand: at the stand": [
-    2.2180678456362437,
-    0.5134546612069149,
-    3.9226810300655726
+    2.1658654014126757,
+    0.44913715734566817,
+    3.882593645479683
    ],
    "where we stand: on their side of the stand": [
-    1.5754515380547045,
-    -0.8027576570596469,
-    3.953660733169056
+    1.035176917675417,
+    -1.2791432873482214,
+    3.3494971226990558
    ],
    "where we stand: on our side of the stand": [
     -0.8289390846087117,
@@ -318,870 +319,3208 @@
     2.1171444567614337
    ],
    "numbers at the main fight: we are up": [
-    3.6954677426156746,
-    1.86125706507941,
-    5.529678420151939
+    3.446209168525782,
+    1.624978284685702,
+    5.2674400523658615
    ],
    "numbers at the main fight: we are down": [
-    -0.8141603285795016,
-    -3.3585561414443803,
-    1.730235484285377
+    -1.235998559373595,
+    -3.7036962552745014,
+    1.2316991365273116
    ],
    "numbers at the main fight: even": [
-    1.7636946905239246,
-    -0.3434093663531883,
-    3.8707987474010377
+    1.762532601543993,
+    -0.35661698179254575,
+    3.881682184880532
    ],
    "the flag lead: we are ahead": [
-    1.5354694473953323,
-    0.08458492555632668,
-    2.986353969234338
+    1.3615435610128521,
+    -0.10968976309205902,
+    2.832776885117763
    ],
    "the flag lead: about level": [
-    3.625643855250723,
-    1.3680703037088655,
-    5.88321740679258
+    3.226043143815985,
+    1.0422487123381718,
+    5.409837575293798
    ],
    "the flag lead: we are behind": null,
    "the hall's flag run: long (27 s or more)": [
-    2.185292518867024,
-    0.8276428513829905,
-    3.5429421863510573
+    1.9026099359526192,
+    0.5490726323911321,
+    3.2561472395141062
    ],
    "the hall's flag run: short (under 27 s)": [
-    0.571165432297857,
-    -2.0697024956415726,
-    3.212033360237287
+    0.5366392826867203,
+    -2.1217201552767997,
+    3.1949987206502404
    ],
    "their team's snares: the lowest third": [
-    1.6279906489592681,
-    -0.5848175673856857,
-    3.840798865304222
+    1.576770615593237,
+    -0.6450541896312263,
+    3.7985954208177004
    ],
    "their team's snares: the middle third": [
-    2.38016132887371,
-    0.4678430749471194,
-    4.292479582800301
+    1.8615145349775735,
+    0.023392329847916393,
+    3.6996367401072305
    ],
    "their team's snares: the highest third": [
-    1.1744349416188324,
-    -1.3968367229479375,
-    3.7457066061856024
+    1.1325502408780777,
+    -1.4594978730699326,
+    3.724598354826088
    ],
    "our team's snares: the lowest third": [
-    0.6849781302680802,
-    -1.2615625811607567,
-    2.6315188416969173
+    0.6279473780094671,
+    -1.3410271887197769,
+    2.5969219447387113
    ],
    "our team's snares: the middle third": [
-    2.8029541035974144,
-    0.5379609536512677,
-    5.0679472535435615
+    2.777386675811814,
+    0.5033573274622554,
+    5.051416024161373
    ],
    "our team's snares: the highest third": [
-    2.709068310842638,
-    0.2828792882147222,
-    5.135257333470554
+    1.9617137454902356,
+    -0.3253512786964736,
+    4.248778769676945
    ],
    "the strength gap: the lowest third": [
-    3.323717095359858,
-    1.0105210507405986,
-    5.636913139979118
+    3.0176436514329827,
+    0.7258374561944549,
+    5.3094498466715105
    ],
    "the strength gap: the middle third": [
-    0.6978312344203952,
-    -1.8447068736764545,
-    3.240369342517245
+    0.39871920263443594,
+    -2.0962054214029795,
+    2.893643826671852
    ],
    "the strength gap: the highest third": [
-    1.2950193925658864,
-    -0.17770520605103624,
-    2.767743991182809
+    1.2575965950781502,
+    -0.22257981106224078,
+    2.7377730012185415
    ]
   },
   "Their single run; they hold the stand": {
    "every case": [
-    0.39648015824545535,
-    -0.8801353908640503,
-    1.673095707354961
+    0.08395589638958956,
+    -1.1823310027216198,
+    1.3502427955007992
    ],
    "their runner: a midline player": [
-    1.2142669882927652,
-    -0.6392016268680438,
-    3.067735603453574
+    0.9295633347601538,
+    -0.9237797119922778,
+    2.7829063815125856
    ],
    "their runner: a frontline player": [
-    -0.7948886145881839,
-    -3.0008278330232336,
-    1.4110506038468655
+    -1.264148569962064,
+    -3.4144676181968103,
+    0.886170478272682
    ],
    "their runner: a backline monk": [
-    1.0864597021265106,
-    -2.8502335355389548,
-    5.023152939791976
+    1.170211035022339,
+    -2.8392761582473565,
+    5.179698228292034
    ],
    "the base res: over 80 s away": [
-    0.15932886968748772,
-    -2.033853360303009,
-    2.3525110996779843
+    -0.47545942478116726,
+    -2.6085732410059603,
+    1.6576543914436257
    ],
    "the base res: 40 to 80 s away": [
-    -0.9065734071891478,
-    -3.156628373836341,
-    1.3434815594580456
+    -1.033186585796553,
+    -3.292776675193866,
+    1.22640350360076
    ],
    "the base res: under 40 s away": [
-    2.2771963323580438,
-    -0.19189759124477135,
-    4.746290255960859
+    2.197652492973592,
+    -0.2946364127068857,
+    4.689941398654069
    ],
    "where we stand: at the stand": [
-    1.4068054753680852,
-    -0.22373091920456734,
-    3.0373418699407377
+    0.9979995654733871,
+    -0.6129650700321836,
+    2.6089642009789578
    ],
    "where we stand: on our side of the stand": [
-    -2.7265117764104847,
-    -5.273211691911609,
-    -0.17981186090936063
+    -2.704309601510584,
+    -5.2645551704078155,
+    -0.14406403261335177
    ],
    "where we stand: on their side of the stand": [
-    0.44643159305360314,
-    -4.043711145836401,
-    4.936574331943607
+    0.007562148403378988,
+    -4.550938410295862,
+    4.5660627071026205
    ],
    "numbers at the main fight: we are up": [
-    0.0020504341877709553,
-    -2.212752250960384,
-    2.2168531193359264
+    -0.8016003195573163,
+    -2.9673763706443643,
+    1.3641757315297318
    ],
    "numbers at the main fight: we are down": [
-    -1.3537591432758593,
-    -3.7109267049468095,
-    1.0034084183950909
+    -1.3480020311512804,
+    -3.7185933260853745,
+    1.0225892637828138
    ],
    "numbers at the main fight: even": [
-    3.1338745741779794,
-    0.8339312700025423,
-    5.433817878353416
+    3.1738996848634984,
+    0.86336549530946,
+    5.484433874417537
    ],
    "the flag lead: we are behind": [
-    -0.223167980983614,
-    -1.8559745380928467,
-    1.4096385761256187
+    -0.6454083445922068,
+    -2.2562597412135164,
+    0.9654430520291031
    ],
    "the flag lead: about level": [
-    2.1991363217270505,
-    -0.08410411464941348,
-    4.4823767581035145
+    2.1000144911440284,
+    -0.18909365077912854,
+    4.389122633067185
    ],
    "the flag lead: we are ahead": null,
    "the hall's flag run: long (27 s or more)": [
-    0.9465647658616005,
-    -0.4972054776395616,
-    2.3903350093627624
+    0.7096763289545753,
+    -0.7394252846674727,
+    2.1587779425766236
    ],
    "the hall's flag run: short (under 27 s)": [
-    -1.3586584408336067,
-    -4.134226670325832,
-    1.4169097886586184
+    -1.934293621538328,
+    -4.564657186716697,
+    0.696069943640041
    ],
    "their team's snares: the lowest third": [
-    -1.165660112485809,
-    -3.362474917894831,
-    1.031154692923213
+    -1.1527536848733642,
+    -3.3556353787822912,
+    1.0501280090355631
    ],
    "their team's snares: the middle third": [
-    2.7358801828110133,
-    0.4256124171191358,
-    5.046147948502891
+    1.9863837871434056,
+    -0.2874190447058145,
+    4.260186618992625
    ],
    "their team's snares: the highest third": [
-    -1.5611580850967572,
-    -3.9652339733054687,
-    0.842917803111954
+    -1.6188107148938913,
+    -4.036231700426295,
+    0.7986102706385119
    ],
    "our team's snares: the lowest third": [
-    0.24040689572409063,
-    -1.8667531625908218,
-    2.347566954039003
+    -0.1872411681684759,
+    -2.230018912245697,
+    1.8555365759087454
    ],
    "our team's snares: the middle third": [
-    -0.14855112253345726,
-    -2.3937216342217917,
-    2.0966193891548777
+    -0.1509667082520214,
+    -2.414406181222069,
+    2.112472764718026
    ],
    "our team's snares: the highest third": [
-    0.9699498365746891,
-    -1.5966182145589523,
-    3.5365178877083308
+    0.5091834210660154,
+    -2.0495528000185526,
+    3.0679196421505837
    ],
    "the strength gap: the lowest third": [
-    -0.15037422499669195,
-    -2.102366585913875,
-    1.8016181359204912
+    -0.1335239089115754,
+    -2.0921950368888957,
+    1.825147219065745
    ],
    "the strength gap: the middle third": [
-    -0.9103812877728621,
-    -3.356951475853474,
-    1.5361889003077498
+    -1.1888218899596135,
+    -3.641031596147518,
+    1.263387816228291
    ],
    "the strength gap: the highest third": [
-    2.6839268210390377,
-    0.02284499714004795,
-    5.345008644938027
+    2.0233391399053415,
+    -0.6034394750046732,
+    4.650117754815357
    ]
   }
  },
  "advice_test": {
   "every flag and boost scenario": {
    "tally": {
-    "cases": 4391,
-    "no clear advice": 2873,
-    "clear advice": 1339,
+    "cases": 4365,
+    "no clear advice": 3027,
+    "clear advice": 1159,
     "too few cases": 179
    },
-   "rows": 1339,
+   "rows": 1159,
    "v180": {
-    "effect": 3.0849277080735527,
+    "effect": 3.355818104351481,
     "range": [
-     1.4573630008966405,
-     4.998771489432143
+     1.4897770446043,
+     5.309263260627056
     ],
-    "matched_mean": 0.16359953361450597,
-    "unmatched_mean": -2.486245822570468,
+    "matched_mean": 0.051668867261871476,
+    "unmatched_mean": -2.293278742405233,
     "verdict": "better"
    },
    "v90": {
-    "effect": 2.121029016905941,
+    "effect": 1.806630917211986,
     "range": [
-     1.178425833260883,
-     3.2483890051168127
+     0.805808631844562,
+     3.0372559192665847
     ],
-    "matched_mean": -0.7505040184671338,
-    "unmatched_mean": -2.4934722772516316,
+    "matched_mean": -1.226040028366336,
+    "unmatched_mean": -2.239286200921548,
     "verdict": "better"
    },
    "end": {
-    "effect": 1.4605818429165645,
+    "effect": 0.7169000649549937,
     "range": [
-     -2.1893776392929474,
-     5.35386031879451
+     -4.198069228113726,
+     5.190562521783662
     ],
-    "matched_mean": -1.1408393143288813,
-    "unmatched_mean": -2.6869741035763717,
+    "matched_mean": -1.2962377312355364,
+    "unmatched_mean": -0.918641713065932,
     "verdict": "no clear difference"
    },
-   "matched": 795,
-   "matches": 385,
+   "matched": 666,
+   "matches": 363,
    "advice": {
-    "stay": 884,
-    "single run": 9,
-    "run a flag": 444,
-    "send no flag": 2
+    "stay": 717,
+    "single run": 19,
+    "run a flag": 420,
+    "send no flag": 3
    },
    "calls": {
-    "stay": 475,
-    "single run": 408,
-    "double run": 10,
-    "run a flag": 323,
-    "send no flag": 123
+    "stay": 362,
+    "single run": 362,
+    "double run": 12,
+    "run a flag": 310,
+    "send no flag": 113
    }
   },
   "their run, our answer": {
    "tally": {
-    "cases": 2898,
-    "no clear advice": 1989,
-    "clear advice": 893,
+    "cases": 2872,
+    "no clear advice": 2120,
+    "clear advice": 736,
     "too few cases": 16
    },
-   "rows": 893,
+   "rows": 736,
    "v180": {
-    "effect": 1.030982368181382,
+    "effect": 0.7979259524712454,
     "range": [
-     -0.691445231533577,
-     2.7268060004765475
+     -0.8564810482691388,
+     2.5047803276216265
     ],
-    "matched_mean": 1.2927959466978787,
-    "unmatched_mean": -0.5219146853541268,
+    "matched_mean": 0.9355230260802317,
+    "unmatched_mean": -0.20625473013490256,
     "verdict": "no clear difference"
    },
    "v90": {
-    "effect": -0.0138041129547215,
+    "effect": -0.4143292238257962,
     "range": [
-     -0.9391498239023577,
-     0.9620589045864931
+     -1.3419328009084632,
+     0.47156138240175977
     ],
-    "matched_mean": 0.11944231879609132,
-    "unmatched_mean": -0.7060042914395377,
+    "matched_mean": -0.7053729206442017,
+    "unmatched_mean": -0.556287791425261,
     "verdict": "no clear difference"
    },
    "end": {
-    "effect": 1.425913158646407,
+    "effect": 0.13740068399530322,
     "range": [
-     -2.642934828434978,
-     5.403505380843306
+     -3.9954550995780846,
+     4.689767607310252
     ],
-    "matched_mean": 0.6827469592946288,
-    "unmatched_mean": -1.1990088247626995,
+    "matched_mean": 0.9237701691120649,
+    "unmatched_mean": 0.9399009584452628,
     "verdict": "no clear difference"
    },
-   "matched": 470,
-   "matches": 326,
+   "matched": 355,
+   "matches": 297,
    "advice": {
-    "stay": 884,
-    "single run": 9
+    "stay": 717,
+    "single run": 19
    },
    "calls": {
-    "stay": 475,
-    "single run": 408,
-    "double run": 10
+    "stay": 362,
+    "single run": 362,
+    "double run": 12
    }
   },
   "their boost 30 s away, every case": {
    "tally": {
     "cases": 1316,
-    "no clear advice": 870,
-    "clear advice": 446
+    "no clear advice": 893,
+    "clear advice": 423
    },
-   "rows": 446,
+   "rows": 423,
    "v180": {
-    "effect": 8.412971884823802,
+    "effect": 9.092224218997785,
     "range": [
-     3.556019849080644,
-     13.009403674546475
+     4.806895038024655,
+     13.779114531051604
     ],
-    "matched_mean": -1.4693922022291406,
-    "unmatched_mean": -9.353287732012719,
+    "matched_mean": -0.9572321821931702,
+    "unmatched_mean": -9.392887212717698,
     "verdict": "better"
    },
    "v90": {
-    "effect": 7.37580375437553,
+    "effect": 6.699757529742586,
     "range": [
-     4.3593986440776815,
-     10.429124439777404
+     4.038231205464193,
+     9.569585332244655
     ],
-    "matched_mean": -2.0085802600477978,
-    "unmatched_mean": -8.742223996247631,
+    "matched_mean": -1.8203706497211836,
+    "unmatched_mean": -7.964486147511595,
     "verdict": "better"
    },
    "end": {
-    "effect": 4.46460597985163,
+    "effect": 4.565667306253858,
     "range": [
-     -4.805944981113244,
-     13.805372712231446
+     -4.67639614208736,
+     13.688997649018498
     ],
-    "matched_mean": -3.7780256177228813,
-    "unmatched_mean": -7.888703962569623,
+    "matched_mean": -3.830330350603376,
+    "unmatched_mean": -7.241005622403123,
     "verdict": "no clear difference"
    },
-   "matched": 325,
-   "matches": 231,
+   "matched": 311,
+   "matches": 225,
    "advice": {
-    "run a flag": 444,
-    "send no flag": 2
+    "run a flag": 420,
+    "send no flag": 3
    },
    "calls": {
-    "run a flag": 323,
-    "send no flag": 123
+    "run a flag": 310,
+    "send no flag": 113
    }
   },
   "their boost 30 s away, without the flag only held at home": {
    "tally": {
     "cases": 1113,
-    "no clear advice": 725,
-    "clear advice": 388
+    "no clear advice": 747,
+    "clear advice": 366
    },
-   "rows": 388,
+   "rows": 366,
    "v180": {
-    "effect": 10.45388421410914,
+    "effect": 11.238395946886502,
     "range": [
-     5.712454908519099,
-     15.590025568650896
+     6.731991064625152,
+     15.723945968606282
     ],
-    "matched_mean": 0.6193495266829093,
-    "unmatched_mean": -9.353287732012719,
+    "matched_mean": 0.879356563536784,
+    "unmatched_mean": -9.438964444032257,
     "verdict": "better"
    },
    "v90": {
-    "effect": 8.8502759839218,
+    "effect": 7.995068959710674,
     "range": [
-     6.0601106442224415,
-     12.437218384294853
+     5.415672129295847,
+     11.035194178037427
     ],
-    "matched_mean": -0.17936231514493695,
-    "unmatched_mean": -8.742223996247631,
+    "matched_mean": -0.40753844758029345,
+    "unmatched_mean": -7.997694900761232,
     "verdict": "better"
    },
    "end": {
-    "effect": 5.52694489868156,
+    "effect": 6.060660727425168,
     "range": [
-     -4.988176271058091,
-     12.998754510800472
+     -4.236766964046859,
+     15.426467874850314
     ],
-    "matched_mean": -2.7813047122206513,
-    "unmatched_mean": -7.888703962569623,
+    "matched_mean": -2.499255205782839,
+    "unmatched_mean": -7.267696533084218,
     "verdict": "no clear difference"
    },
-   "matched": 267,
-   "matches": 217,
+   "matched": 255,
+   "matches": 212,
    "advice": {
-    "run a flag": 386,
+    "run a flag": 364,
     "send no flag": 2
    },
    "calls": {
-    "run a flag": 265,
-    "send no flag": 123
+    "run a flag": 253,
+    "send no flag": 113
    }
   },
   "their run, our answer: matched on the first eight variables only": {
    "tally": {
-    "cases": 2898,
-    "no clear advice": 2341,
-    "clear advice": 541,
+    "cases": 2872,
+    "no clear advice": 2406,
+    "clear advice": 450,
     "too few cases": 16
    },
-   "rows": 541,
+   "rows": 450,
    "v180": {
-    "effect": -0.11088375064644099,
+    "effect": 0.00824419084493187,
     "range": [
-     -2.1276209163144433,
-     2.0560829424397835
+     -2.3863871156375125,
+     2.364634269160458
     ],
-    "matched_mean": 0.7593760774895453,
-    "unmatched_mean": -0.14008415405187666,
+    "matched_mean": 0.08572399769891974,
+    "unmatched_mean": -0.3773985072916266,
     "verdict": "no clear difference"
    },
    "v90": {
-    "effect": -0.5223621677498838,
+    "effect": 0.36976781335923664,
     "range": [
-     -1.9720649843047593,
-     0.988285714452606
+     -0.9568181140203591,
+     1.5213432107702838
     ],
-    "matched_mean": 0.3845064389348593,
-    "unmatched_mean": -0.0978943734017373,
+    "matched_mean": -0.16734504980990964,
+    "unmatched_mean": -0.591587253629584,
     "verdict": "no clear difference"
    },
    "end": {
-    "effect": 0.6209865187224269,
+    "effect": 0.6788389576819157,
     "range": [
-     -4.771595231091473,
-     6.286098711874397
+     -5.010945279892131,
+     6.66103955833733
     ],
-    "matched_mean": -0.3945398882213356,
-    "unmatched_mean": -0.7494217831560774,
+    "matched_mean": -1.9630680140710035,
+    "unmatched_mean": -3.4736354636398628,
     "verdict": "no clear difference"
    },
-   "matched": 304,
-   "matches": 266,
+   "matched": 235,
+   "matches": 236,
    "advice": {
-    "stay": 536,
-    "single run": 5
+    "stay": 433,
+    "single run": 17
    },
    "calls": {
-    "stay": 303,
-    "single run": 234,
-    "double run": 4
+    "stay": 234,
+    "single run": 211,
+    "double run": 5
    }
   },
   "variants": {
    "every case: the first eight, equal weight": {
     "tally": {
-     "cases": 2898,
-     "no clear advice": 2341,
-     "clear advice": 541,
+     "cases": 2872,
+     "no clear advice": 2406,
+     "clear advice": 450,
      "too few cases": 16
     },
-    "rows": 541,
+    "rows": 450,
     "v180": {
-     "effect": -0.11088375064644099,
+     "effect": 0.00824419084493187,
      "range": [
-      -2.1276209163144433,
-      2.0560829424397835
+      -2.3863871156375125,
+      2.364634269160458
      ],
-     "matched_mean": 0.7593760774895453,
-     "unmatched_mean": -0.14008415405187666,
+     "matched_mean": 0.08572399769891974,
+     "unmatched_mean": -0.3773985072916266,
      "verdict": "no clear difference"
     },
     "v90": {
-     "effect": -0.5223621677498838,
+     "effect": 0.36976781335923664,
      "range": [
-      -1.9720649843047593,
-      0.988285714452606
+      -0.9568181140203591,
+      1.5213432107702838
      ],
-     "matched_mean": 0.3845064389348593,
-     "unmatched_mean": -0.0978943734017373,
+     "matched_mean": -0.16734504980990964,
+     "unmatched_mean": -0.591587253629584,
      "verdict": "no clear difference"
     },
     "end": {
-     "effect": 0.6209865187224269,
+     "effect": 0.6788389576819157,
      "range": [
-      -4.771595231091473,
-      6.286098711874397
+      -5.010945279892131,
+      6.66103955833733
      ],
-     "matched_mean": -0.3945398882213356,
-     "unmatched_mean": -0.7494217831560774,
+     "matched_mean": -1.9630680140710035,
+     "unmatched_mean": -3.4736354636398628,
      "verdict": "no clear difference"
     },
-    "matched": 304,
-    "matches": 266,
+    "matched": 235,
+    "matches": 236,
     "advice": {
-     "stay": 536,
-     "single run": 5
+     "stay": 433,
+     "single run": 17
     },
     "calls": {
-     "stay": 303,
-     "single run": 234,
-     "double run": 4
+     "stay": 234,
+     "single run": 211,
+     "double run": 5
     }
    },
    "every case: all fifteen, equal weight": {
     "tally": {
-     "cases": 2898,
-     "no clear advice": 1989,
-     "clear advice": 893,
+     "cases": 2872,
+     "no clear advice": 2120,
+     "clear advice": 736,
      "too few cases": 16
     },
-    "rows": 893,
+    "rows": 736,
     "v180": {
-     "effect": 1.030982368181382,
+     "effect": 0.7979259524712454,
      "range": [
-      -0.691445231533577,
-      2.7268060004765475
+      -0.8564810482691388,
+      2.5047803276216265
      ],
-     "matched_mean": 1.2927959466978787,
-     "unmatched_mean": -0.5219146853541268,
+     "matched_mean": 0.9355230260802317,
+     "unmatched_mean": -0.20625473013490256,
      "verdict": "no clear difference"
     },
     "v90": {
-     "effect": -0.0138041129547215,
+     "effect": -0.4143292238257962,
      "range": [
-      -0.9391498239023577,
-      0.9620589045864931
+      -1.3419328009084632,
+      0.47156138240175977
      ],
-     "matched_mean": 0.11944231879609132,
-     "unmatched_mean": -0.7060042914395377,
+     "matched_mean": -0.7053729206442017,
+     "unmatched_mean": -0.556287791425261,
      "verdict": "no clear difference"
     },
     "end": {
-     "effect": 1.425913158646407,
+     "effect": 0.13740068399530322,
      "range": [
-      -2.642934828434978,
-      5.403505380843306
+      -3.9954550995780846,
+      4.689767607310252
      ],
-     "matched_mean": 0.6827469592946288,
-     "unmatched_mean": -1.1990088247626995,
+     "matched_mean": 0.9237701691120649,
+     "unmatched_mean": 0.9399009584452628,
      "verdict": "no clear difference"
     },
-    "matched": 470,
-    "matches": 326,
+    "matched": 355,
+    "matches": 297,
     "advice": {
-     "stay": 884,
-     "single run": 9
+     "stay": 717,
+     "single run": 19
     },
     "calls": {
-     "stay": 475,
-     "single run": 408,
-     "double run": 10
+     "stay": 362,
+     "single run": 362,
+     "double run": 12
     }
    },
    "every case: all fifteen, measured weights": {
     "tally": {
-     "cases": 2898,
-     "no clear advice": 2086,
-     "clear advice": 796,
+     "cases": 2872,
+     "no clear advice": 2194,
+     "clear advice": 662,
      "too few cases": 16
     },
-    "rows": 796,
+    "rows": 662,
     "v180": {
-     "effect": 0.8277314729752056,
+     "effect": 0.36818642039196814,
      "range": [
-      -0.6577310109986044,
-      2.4901883381812997
+      -1.3510724772134381,
+      2.1378454628957946
      ],
-     "matched_mean": 1.9364588092788382,
-     "unmatched_mean": 0.44700534664374125,
+     "matched_mean": 0.2379650967130261,
+     "unmatched_mean": -0.33837563793258985,
      "verdict": "no clear difference"
     },
     "v90": {
-     "effect": 0.21813914284194105,
+     "effect": -0.36894777840117476,
      "range": [
-      -0.8581924497998773,
-      1.4080665104516248
+      -1.4777513487881622,
+      0.7141414281856933
      ],
-     "matched_mean": 0.4698403585110071,
-     "unmatched_mean": -0.5204664782356135,
+     "matched_mean": -0.7716183887234979,
+     "unmatched_mean": -0.5807626568178497,
      "verdict": "no clear difference"
     },
     "end": {
-     "effect": 0.6084262350251464,
+     "effect": -2.5161232867180177,
      "range": [
-      -4.189172996215857,
-      4.919253154242947
+      -7.29542542017221,
+      3.213452165225334
      ],
-     "matched_mean": 1.355801648283517,
-     "unmatched_mean": -0.4354649745236097,
+     "matched_mean": 0.14002702970317987,
+     "unmatched_mean": 1.6586192649689586,
      "verdict": "no clear difference"
     },
-    "matched": 453,
-    "matches": 327,
+    "matched": 319,
+    "matches": 281,
     "advice": {
-     "stay": 786,
-     "single run": 10
+     "single run": 43,
+     "stay": 619
     },
     "calls": {
-     "stay": 457,
-     "single run": 333,
-     "double run": 6
+     "stay": 338,
+     "single run": 315,
+     "double run": 9
     }
    },
    "every case: six chosen, equal weight": {
     "tally": {
-     "cases": 2898,
-     "no clear advice": 2270,
-     "clear advice": 612,
+     "cases": 2872,
+     "no clear advice": 2364,
+     "clear advice": 492,
      "too few cases": 16
     },
-    "rows": 612,
+    "rows": 492,
     "v180": {
-     "effect": 0.671361734555513,
+     "effect": 1.967586941227927,
      "range": [
-      -1.336340375287252,
-      2.5847594739192097
+      -0.07929748186712789,
+      4.409807998860931
      ],
-     "matched_mean": 0.307160070601303,
-     "unmatched_mean": -0.4278033405988998,
+     "matched_mean": 0.7943137492439789,
+     "unmatched_mean": -0.6191997867927477,
      "verdict": "no clear difference"
     },
     "v90": {
-     "effect": 0.9218457753655455,
+     "effect": 1.9439609000019984,
      "range": [
-      -0.3488684801646756,
-      2.2900669730404646
+      0.5244566571800735,
+      3.4114406707330334
      ],
-     "matched_mean": 0.5018021961241427,
-     "unmatched_mean": -0.33234377615034083,
-     "verdict": "no clear difference"
+     "matched_mean": 0.8157878243569365,
+     "unmatched_mean": -0.8664574084902987,
+     "verdict": "better"
     },
     "end": {
-     "effect": 2.82407169676477,
+     "effect": 2.2987463209055243,
      "range": [
-      -2.551410938648965,
-      8.240115916048026
+      -2.6896824141544795,
+      6.536320794821102
      ],
-     "matched_mean": 1.1735128730637663,
-     "unmatched_mean": -1.7463526186706746,
+     "matched_mean": 2.502534390612023,
+     "unmatched_mean": 1.7365363111286973,
      "verdict": "no clear difference"
     },
-    "matched": 342,
-    "matches": 291,
+    "matched": 259,
+    "matches": 260,
     "advice": {
-     "stay": 583,
-     "single run": 29
+     "stay": 461,
+     "single run": 31
     },
     "calls": {
-     "stay": 345,
-     "single run": 262,
-     "double run": 5
+     "stay": 264,
+     "single run": 224,
+     "double run": 4
     }
    },
    "only where their flag got in: the first eight, equal weight": {
     "tally": {
-     "cases": 2146,
+     "cases": 2143,
      "no clear advice": 1827,
-     "clear advice": 209,
+     "clear advice": 206,
      "too few cases": 110
     },
-    "rows": 209,
+    "rows": 206,
     "v180": {
-     "effect": -1.2910435507392075,
+     "effect": 2.1277714528621945,
      "range": [
-      -5.165424867905797,
-      2.240817870976574
+      -0.9532402344390636,
+      5.948603406973935
      ],
-     "matched_mean": -1.4934347168906454,
-     "unmatched_mean": -0.09810699391199325,
+     "matched_mean": -1.647260971482848,
+     "unmatched_mean": -3.0786314877427237,
      "verdict": "no clear difference"
     },
     "v90": {
-     "effect": -0.48406129176608115,
+     "effect": 1.7215082399408321,
      "range": [
-      -2.70299386823735,
-      1.5413094726460022
+      0.13775210164462648,
+      3.5114927298311387
      ],
-     "matched_mean": -1.6369302715024416,
-     "unmatched_mean": -0.07180516225231737,
-     "verdict": "no clear difference"
+     "matched_mean": -1.6858051173215947,
+     "unmatched_mean": -2.563442174423828,
+     "verdict": "better"
     },
     "end": {
-     "effect": -3.8021702140659546,
+     "effect": 0.8957417174627785,
      "range": [
-      -14.060110069648951,
-      6.149335754119607
+      -8.207395020631711,
+      9.401096181250223
      ],
-     "matched_mean": 1.261266781007207,
-     "unmatched_mean": 5.418751649969097,
+     "matched_mean": 0.028729897343453128,
+     "unmatched_mean": 0.4942074225014328,
      "verdict": "no clear difference"
     },
-    "matched": 109,
-    "matches": 127,
+    "matched": 108,
+    "matches": 129,
     "advice": {
-     "single run": 173,
-     "stay": 36
+     "single run": 148,
+     "stay": 58
     },
     "calls": {
-     "stay": 90,
-     "single run": 119
+     "stay": 87,
+     "single run": 118,
+     "double run": 1
     }
    },
    "only where their flag got in: all fifteen, equal weight": {
     "tally": {
-     "cases": 2146,
-     "no clear advice": 1933,
-     "clear advice": 103,
+     "cases": 2143,
+     "no clear advice": 1891,
+     "clear advice": 142,
      "too few cases": 110
     },
-    "rows": 103,
+    "rows": 142,
     "v180": {
-     "effect": 2.2519383207141996,
+     "effect": 0.6409100172756346,
      "range": [
-      -3.1005962598072245,
-      7.9821126994182245
+      -2.9237226120438167,
+      4.9484896684888655
      ],
-     "matched_mean": -4.764246156723589,
-     "unmatched_mean": -7.823443041055119,
+     "matched_mean": -4.6462673880804966,
+     "unmatched_mean": -5.239082520454052,
      "verdict": "no clear difference"
     },
     "v90": {
-     "effect": 2.426485953752511,
+     "effect": 0.7356902293326252,
      "range": [
-      -0.6378465155145256,
-      6.005138333558367
+      -2.54195229532447,
+      4.1293794112169495
      ],
-     "matched_mean": -3.1044610670282413,
-     "unmatched_mean": -5.609665066131659,
+     "matched_mean": -2.90939399492496,
+     "unmatched_mean": -2.620202823459744,
      "verdict": "no clear difference"
     },
     "end": {
-     "effect": 7.047970078966728,
+     "effect": -4.650920382936184,
      "range": [
-      -8.36665141105601,
-      23.192744938213572
+      -17.991600877718625,
+      8.639368744823146
      ],
-     "matched_mean": -4.735681547606736,
-     "unmatched_mean": -7.977364824183556,
+     "matched_mean": -11.481927895923851,
+     "unmatched_mean": -4.03755227816306,
      "verdict": "no clear difference"
     },
-    "matched": 52,
-    "matches": 82,
+    "matched": 62,
+    "matches": 107,
     "advice": {
-     "single run": 94,
-     "stay": 9
+     "single run": 104,
+     "stay": 38
     },
     "calls": {
-     "stay": 56,
-     "single run": 47
+     "stay": 76,
+     "single run": 66
     }
    },
    "only where their flag got in: all fifteen, measured weights": {
     "tally": {
-     "cases": 2146,
-     "no clear advice": 1931,
-     "clear advice": 105,
+     "cases": 2143,
+     "no clear advice": 1908,
+     "clear advice": 125,
      "too few cases": 110
     },
-    "rows": 105,
+    "rows": 125,
     "v180": {
-     "effect": 2.826745678395808,
+     "effect": -0.06958461749859868,
      "range": [
-      -1.60052161003051,
-      8.754701986592247
+      -5.039325018414641,
+      5.518056438920809
      ],
-     "matched_mean": -3.080723880451574,
-     "unmatched_mean": -7.501573282512876,
+     "matched_mean": -4.0944119283141,
+     "unmatched_mean": -4.508007195108927,
      "verdict": "no clear difference"
     },
     "v90": {
-     "effect": 3.2666151584475434,
+     "effect": 0.8569327930302457,
      "range": [
-      -0.9778576622167228,
-      7.651033430954941
+      -2.0156407658158813,
+      4.305579193687293
      ],
-     "matched_mean": -1.1684501763248378,
-     "unmatched_mean": -5.409185541104959,
+     "matched_mean": -3.19192958114319,
+     "unmatched_mean": -3.6951514988456915,
      "verdict": "no clear difference"
     },
     "end": {
-     "effect": 1.941550786045595,
+     "effect": -9.659346411148682,
      "range": [
-      -11.06583173204772,
-      14.61384551304579
+      -20.089685333843217,
+      1.804489046833054
      ],
-     "matched_mean": -6.669799809662943,
-     "unmatched_mean": -7.584271701718389,
+     "matched_mean": -12.059169757833132,
+     "unmatched_mean": -1.3092206914174669,
      "verdict": "no clear difference"
     },
-    "matched": 47,
-    "matches": 85,
+    "matched": 53,
+    "matches": 93,
     "advice": {
-     "single run": 96,
-     "stay": 9
+     "single run": 104,
+     "stay": 21
     },
     "calls": {
-     "stay": 59,
-     "single run": 46
+     "stay": 73,
+     "single run": 52
     }
    },
    "only where their flag got in: six chosen, equal weight": {
     "tally": {
-     "cases": 2146,
-     "no clear advice": 1896,
-     "clear advice": 140,
+     "cases": 2143,
+     "no clear advice": 1906,
+     "clear advice": 127,
      "too few cases": 110
     },
-    "rows": 140,
+    "rows": 127,
     "v180": {
-     "effect": -4.750687943235474,
+     "effect": -2.7306226499067887,
      "range": [
-      -9.57003162750102,
-      -0.3104248333954927
+      -8.261534913936462,
+      3.00025656324895
      ],
-     "matched_mean": -4.178593113919358,
-     "unmatched_mean": 1.0814245567623928,
-     "verdict": "worse"
+     "matched_mean": -2.11912608579232,
+     "unmatched_mean": -0.8860036782793985,
+     "verdict": "no clear difference"
     },
     "v90": {
-     "effect": -1.65060139739109,
+     "effect": -2.2482336138628605,
      "range": [
-      -4.487995934835183,
-      1.6022410793851432
+      -5.441096950513076,
+      0.8436027251105294
      ],
-     "matched_mean": -2.8885510124978238,
-     "unmatched_mean": -0.7283938442470345,
+     "matched_mean": -1.8104901307481964,
+     "unmatched_mean": -0.8532524336211215,
      "verdict": "no clear difference"
     },
     "end": {
-     "effect": -9.33925993880047,
+     "effect": 0.5436324932876757,
      "range": [
-      -18.075943012204856,
-      1.281330501051132
+      -9.217202447910529,
+      11.23509263723115
      ],
-     "matched_mean": -6.128748585019098,
-     "unmatched_mean": 4.90291472783754,
+     "matched_mean": -0.17557912310363358,
+     "unmatched_mean": -1.9588739527264805,
      "verdict": "no clear difference"
     },
-    "matched": 67,
-    "matches": 98,
+    "matched": 65,
+    "matches": 100,
     "advice": {
-     "single run": 124,
-     "stay": 16
+     "single run": 117,
+     "stay": 10
     },
     "calls": {
-     "stay": 71,
-     "single run": 67,
-     "double run": 2
+     "stay": 63,
+     "single run": 63,
+     "double run": 1
     }
    }
+  }
+ },
+ "reads": {
+  "cases": 6162,
+  "progress": {
+   "Their double run; they hold the stand; 15 s after their runner set off": {
+    "sent": 19,
+    "not yet": 176,
+    "60": {
+     "flags": null,
+     "win points": null
+    },
+    "90": {
+     "flags": null,
+     "win points": null
+    },
+    "120": {
+     "flags": null,
+     "win points": null
+    },
+    "180": {
+     "flags": null,
+     "win points": null
+    }
+   },
+   "Their single run; they hold the stand; 15 s after their runner set off": {
+    "sent": 208,
+    "not yet": 821,
+    "60": {
+     "flags": [
+      0.22848874296435273,
+      0.14896500118830303,
+      0.30801248474040244,
+      208,
+      820
+     ],
+     "win points": [
+      0.9089542115792668,
+      0.2695309500549825,
+      1.5483774731035511,
+      208,
+      821
+     ]
+    },
+    "90": {
+     "flags": [
+      0.14749177167575706,
+      0.05112734798166703,
+      0.2438561953698471,
+      208,
+      818
+     ],
+     "win points": [
+      0.1874882004633136,
+      -0.6490271320578233,
+      1.0240035329844503,
+      208,
+      821
+     ]
+    },
+    "120": {
+     "flags": [
+      0.051659125188536936,
+      -0.05286422556201255,
+      0.1561824759390864,
+      208,
+      816
+     ],
+     "win points": [
+      0.0688898378426045,
+      -0.9091628753116164,
+      1.0469425509968255,
+      208,
+      821
+     ]
+    },
+    "180": {
+     "flags": [
+      0.1873199787997784,
+      0.08301009391592608,
+      0.29162986368363075,
+      206,
+      806
+     ],
+     "win points": [
+      0.8139636869495371,
+      -0.6396857861581721,
+      2.2676131600572464,
+      208,
+      821
+     ]
+    }
+   },
+   "Their double run; they hold the stand; 30 s after their runner set off, nobody sent by 15 s": {
+    "sent": 20,
+    "not yet": 152,
+    "60": {
+     "flags": null,
+     "win points": null
+    },
+    "90": {
+     "flags": null,
+     "win points": null
+    },
+    "120": {
+     "flags": null,
+     "win points": null
+    },
+    "180": {
+     "flags": null,
+     "win points": null
+    }
+   },
+   "Their single run; they hold the stand; 30 s after their runner set off, nobody sent by 15 s": {
+    "sent": 122,
+    "not yet": 649,
+    "60": {
+     "flags": [
+      0.2656362878577383,
+      0.15155359512377953,
+      0.37971898059169706,
+      122,
+      649
+     ],
+     "win points": [
+      0.9634876041324135,
+      0.0835593095926207,
+      1.8434158986722062,
+      122,
+      649
+     ]
+    },
+    "90": {
+     "flags": [
+      0.2775440241214179,
+      0.1531522869314132,
+      0.40193576131142256,
+      122,
+      647
+     ],
+     "win points": [
+      0.4832654173557869,
+      -0.7942252154341642,
+      1.760756050145738,
+      122,
+      649
+     ]
+    },
+    "120": {
+     "flags": [
+      0.12587342737323676,
+      -0.0024022246221918064,
+      0.2541490793686653,
+      122,
+      645
+     ],
+     "win points": [
+      0.2819109482381925,
+      -1.0007351380819767,
+      1.5645570345583617,
+      122,
+      649
+     ]
+    },
+    "180": {
+     "flags": [
+      0.11373963698639022,
+      -0.005674003785506282,
+      0.23315327775828673,
+      121,
+      637
+     ],
+     "win points": [
+      0.24658546471118326,
+      -1.8994709728730612,
+      2.392641902295428,
+      122,
+      649
+     ]
+    }
+   },
+   "Their double run; they hold the stand; 45 s after their runner set off, nobody sent by 30 s": {
+    "sent": 22,
+    "not yet": 115,
+    "60": {
+     "flags": null,
+     "win points": null
+    },
+    "90": {
+     "flags": null,
+     "win points": null
+    },
+    "120": {
+     "flags": null,
+     "win points": null
+    },
+    "180": {
+     "flags": null,
+     "win points": null
+    }
+   },
+   "Their single run; they hold the stand; 45 s after their runner set off, nobody sent by 30 s": {
+    "sent": 95,
+    "not yet": 483,
+    "60": {
+     "flags": [
+      -0.003987141767462135,
+      -0.11930374450854415,
+      0.11132946097361988,
+      95,
+      483
+     ],
+     "win points": [
+      -0.24677090991218503,
+      -1.2764296598229044,
+      0.7828878399985342,
+      95,
+      483
+     ]
+    },
+    "90": {
+     "flags": [
+      0.17165335375861696,
+      0.027730034374928908,
+      0.315576673142305,
+      95,
+      481
+     ],
+     "win points": [
+      0.8083697679572103,
+      -0.6680968290360666,
+      2.284836364950487,
+      95,
+      483
+     ]
+    },
+    "120": {
+     "flags": [
+      0.10550994396220204,
+      -0.04374666645476216,
+      0.25476655437916623,
+      95,
+      479
+     ],
+     "win points": [
+      1.0046768164245348,
+      -0.8013665449796494,
+      2.8107201778287187,
+      95,
+      483
+     ]
+    },
+    "180": {
+     "flags": [
+      0.06862174544641864,
+      -0.08512545277713096,
+      0.22236894366996823,
+      95,
+      471
+     ],
+     "win points": [
+      0.5387726376765886,
+      -1.7288033718780644,
+      2.8063486472312418,
+      95,
+      483
+     ]
+    }
+   },
+   "Their double run; we hold the stand; 15 s after their runner set off": {
+    "sent": 65,
+    "not yet": 94,
+    "60": {
+     "flags": [
+      0.48315057283142426,
+      0.26987955686560855,
+      0.69642158879724,
+      65,
+      94
+     ],
+     "win points": [
+      1.1592414683873526,
+      -0.3959746369796997,
+      2.714457573754405,
+      65,
+      94
+     ]
+    },
+    "90": {
+     "flags": [
+      0.218951199338296,
+      -0.037814303103732516,
+      0.4757167017803245,
+      65,
+      93
+     ],
+     "win points": [
+      0.058354711738325626,
+      -2.0784766079940393,
+      2.1951860314706906,
+      65,
+      94
+     ]
+    },
+    "120": {
+     "flags": [
+      -0.1483920595533499,
+      -0.39315634369878805,
+      0.09637222459208827,
+      65,
+      93
+     ],
+     "win points": [
+      -2.553214647907371,
+      -5.333739605100148,
+      0.2273103092854063,
+      65,
+      94
+     ]
+    },
+    "180": {
+     "flags": [
+      -0.10773097826086964,
+      -0.3460567203896116,
+      0.13059476386787233,
+      64,
+      92
+     ],
+     "win points": [
+      -1.7706064532414785,
+      -5.485924382284788,
+      1.9447114758018311,
+      65,
+      94
+     ]
+    }
+   },
+   "Their single run; we hold the stand; 15 s after their runner set off": {
+    "sent": 226,
+    "not yet": 1184,
+    "60": {
+     "flags": [
+      0.23706371075800353,
+      0.1529232093310301,
+      0.32120421218497697,
+      226,
+      1169
+     ],
+     "win points": [
+      -0.16096439003158358,
+      -0.8666836698771525,
+      0.5447548898139853,
+      226,
+      1184
+     ]
+    },
+    "90": {
+     "flags": [
+      0.39082343496754646,
+      0.28830279493403477,
+      0.49334407500105815,
+      226,
+      1163
+     ],
+     "win points": [
+      -0.4329621197736828,
+      -1.4016389794752322,
+      0.5357147399278664,
+      226,
+      1184
+     ]
+    },
+    "120": {
+     "flags": [
+      0.2729903842470215,
+      0.18002358358377984,
+      0.36595718491026313,
+      226,
+      1155
+     ],
+     "win points": [
+      -1.190884745701523,
+      -2.359984933019922,
+      -0.021784558383123986,
+      226,
+      1184
+     ]
+    },
+    "180": {
+     "flags": [
+      0.19261779160820514,
+      0.0877925428499835,
+      0.29744304036642677,
+      226,
+      1129
+     ],
+     "win points": [
+      -1.594101072766226,
+      -3.185881320644147,
+      -0.002320824888304873,
+      226,
+      1184
+     ]
+    }
+   },
+   "Their double run; we hold the stand; 30 s after their runner set off, nobody sent by 15 s": {
+    "sent": 26,
+    "not yet": 65,
+    "60": {
+     "flags": null,
+     "win points": null
+    },
+    "90": {
+     "flags": null,
+     "win points": null
+    },
+    "120": {
+     "flags": null,
+     "win points": null
+    },
+    "180": {
+     "flags": null,
+     "win points": null
+    }
+   },
+   "Their single run; we hold the stand; 30 s after their runner set off, nobody sent by 15 s": {
+    "sent": 120,
+    "not yet": 848,
+    "60": {
+     "flags": [
+      0.10112291169451071,
+      -0.03283981632175023,
+      0.23508563971077165,
+      120,
+      838
+     ],
+     "win points": [
+      0.319086387287711,
+      -0.6883326224480439,
+      1.326505397023466,
+      120,
+      848
+     ]
+    },
+    "90": {
+     "flags": [
+      0.35087918660287076,
+      0.21863901563396437,
+      0.48311935757177715,
+      120,
+      836
+     ],
+     "win points": [
+      0.8621696967159519,
+      -0.36787722556423075,
+      2.0922166189961344,
+      120,
+      848
+     ]
+    },
+    "120": {
+     "flags": [
+      0.39152613590671487,
+      0.25522594224430417,
+      0.5278263295691256,
+      120,
+      829
+     ],
+     "win points": [
+      0.6801904105236218,
+      -0.8160392922426623,
+      2.1764201132899057,
+      120,
+      848
+     ]
+    },
+    "180": {
+     "flags": [
+      0.19662514658806396,
+      0.03826296659906295,
+      0.354987326577065,
+      117,
+      809
+     ],
+     "win points": [
+      0.0705584265612591,
+      -1.8615930081433012,
+      2.0027098612658194,
+      120,
+      848
+     ]
+    }
+   },
+   "Their double run; we hold the stand; 45 s after their runner set off, nobody sent by 30 s": {
+    "sent": 14,
+    "not yet": 33,
+    "60": {
+     "flags": null,
+     "win points": null
+    },
+    "90": {
+     "flags": null,
+     "win points": null
+    },
+    "120": {
+     "flags": null,
+     "win points": null
+    },
+    "180": {
+     "flags": null,
+     "win points": null
+    }
+   },
+   "Their single run; we hold the stand; 45 s after their runner set off, nobody sent by 30 s": {
+    "sent": 89,
+    "not yet": 516,
+    "60": {
+     "flags": [
+      -0.022414963751451022,
+      -0.17010195686513901,
+      0.12527202936223697,
+      89,
+      513
+     ],
+     "win points": [
+      0.664716445608234,
+      -1.0226137054953708,
+      2.3520465967118387,
+      89,
+      516
+     ]
+    },
+    "90": {
+     "flags": [
+      0.40790804547153625,
+      0.2757995746099544,
+      0.5400165163331181,
+      89,
+      511
+     ],
+     "win points": [
+      1.3497396133857524,
+      -0.33279890968444104,
+      3.032278136455946,
+      89,
+      516
+     ]
+    },
+    "120": {
+     "flags": [
+      0.30768901348756095,
+      0.15126087552383494,
+      0.46411715145128696,
+      89,
+      509
+     ],
+     "win points": [
+      -0.0031557239116764,
+      -1.7548301250809042,
+      1.7485186772575514,
+      89,
+      516
+     ]
+    },
+    "180": {
+     "flags": [
+      0.030929425287356427,
+      -0.1555860742404142,
+      0.21744492481512706,
+      87,
+      500
+     ],
+     "win points": [
+      -0.15625311833962363,
+      -2.314143760067849,
+      2.0016375233886023,
+      89,
+      516
+     ]
+    }
+   }
+  },
+  "tests": {
+   "15 s, equal, 60 s": {
+    "tally": {
+     "cases": 2793,
+     "too few cases": 195,
+     "no clear advice": 2092,
+     "clear advice": 506
+    },
+    "rows": 506,
+    "v180": {
+     "effect": 3.078747147370949,
+     "range": [
+      2.001947487741359,
+      4.126742112116997
+     ],
+     "matched_mean": 0.5906529423485761,
+     "unmatched_mean": -3.86218485530824,
+     "verdict": "better"
+    },
+    "v90": {
+     "effect": 3.106245012625063,
+     "range": [
+      1.7081632039055792,
+      4.666196384324707
+     ],
+     "matched_mean": 1.1356277397487466,
+     "unmatched_mean": -4.073271035871252,
+     "verdict": "better"
+    },
+    "end": {
+     "effect": -2.122707580693416,
+     "range": [
+      -8.848229773572024,
+      3.6904163681612747
+     ],
+     "matched_mean": 0.48992082406220633,
+     "unmatched_mean": -3.1873444003784606,
+     "verdict": "no clear difference"
+    },
+    "matched": 296,
+    "matches": 257,
+    "advice": {
+     "a runner sent by now": 254,
+     "no runner yet": 252
+    },
+    "calls": {
+     "no runner yet": 420,
+     "a runner sent by now": 86
+    }
+   },
+   "15 s, equal, 90 s": {
+    "tally": {
+     "cases": 2793,
+     "too few cases": 195,
+     "no clear advice": 2052,
+     "clear advice": 546
+    },
+    "rows": 546,
+    "v180": {
+     "effect": 0.25820678014216464,
+     "range": [
+      -1.5349209710704745,
+      2.15768034294043
+     ],
+     "matched_mean": 1.1811525089296637,
+     "unmatched_mean": -2.1228047714251512,
+     "verdict": "no clear difference"
+    },
+    "v90": {
+     "effect": 0.25820678014216464,
+     "range": [
+      -1.8784020605111504,
+      2.1430897600690026
+     ],
+     "matched_mean": 1.1811525089296637,
+     "unmatched_mean": -2.1228047714251512,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": -3.099037299805072,
+     "range": [
+      -10.2778904701476,
+      5.558273270326677
+     ],
+     "matched_mean": 0.537969120513337,
+     "unmatched_mean": -1.4579540590508995,
+     "verdict": "no clear difference"
+    },
+    "matched": 434,
+    "matches": 267,
+    "advice": {
+     "no runner yet": 460,
+     "a runner sent by now": 86
+    },
+    "calls": {
+     "no runner yet": 468,
+     "a runner sent by now": 78
+    }
+   },
+   "15 s, equal, 120 s": {
+    "tally": {
+     "cases": 2793,
+     "too few cases": 195,
+     "no clear advice": 1834,
+     "clear advice": 764
+    },
+    "rows": 764,
+    "v180": {
+     "effect": 1.6140609946298228,
+     "range": [
+      -0.20807973631486365,
+      3.267397089278976
+     ],
+     "matched_mean": 1.4014649828537866,
+     "unmatched_mean": -1.8028979028016783,
+     "verdict": "no clear difference"
+    },
+    "v90": {
+     "effect": 1.0481434602004427,
+     "range": [
+      -0.9512501210813351,
+      2.42238186019049
+     ],
+     "matched_mean": 0.5419443097956097,
+     "unmatched_mean": -1.9286814555287544,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": 4.501466963818031,
+     "range": [
+      -1.12314663193004,
+      11.662781242015177
+     ],
+     "matched_mean": 2.7533937710757246,
+     "unmatched_mean": -2.9215789136133155,
+     "verdict": "no clear difference"
+    },
+    "matched": 625,
+    "matches": 327,
+    "advice": {
+     "no runner yet": 700,
+     "a runner sent by now": 64
+    },
+    "calls": {
+     "no runner yet": 641,
+     "a runner sent by now": 123
+    }
+   },
+   "15 s, equal, 180 s": {
+    "tally": {
+     "cases": 2793,
+     "too few cases": 195,
+     "no clear advice": 1905,
+     "clear advice": 693
+    },
+    "rows": 693,
+    "v180": {
+     "effect": 4.583564274924939,
+     "range": [
+      2.051252715790004,
+      7.512906654728594
+     ],
+     "matched_mean": 1.992817690772737,
+     "unmatched_mean": -2.139916176061285,
+     "verdict": "better"
+    },
+    "v90": {
+     "effect": 1.6640728539244494,
+     "range": [
+      -0.22037782029564112,
+      3.2660434963376455
+     ],
+     "matched_mean": 0.7409014151578648,
+     "unmatched_mean": -1.4043618097743693,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": 5.226828279382264,
+     "range": [
+      -1.7567211515140695,
+      12.339728777454074
+     ],
+     "matched_mean": 1.3913160377285578,
+     "unmatched_mean": 0.4108306776688009,
+     "verdict": "no clear difference"
+    },
+    "matched": 543,
+    "matches": 307,
+    "advice": {
+     "a runner sent by now": 85,
+     "no runner yet": 608
+    },
+    "calls": {
+     "no runner yet": 594,
+     "a runner sent by now": 99
+    }
+   },
+   "15 s, measured, 60 s": {
+    "tally": {
+     "cases": 2793,
+     "too few cases": 195,
+     "no clear advice": 2069,
+     "clear advice": 529
+    },
+    "rows": 529,
+    "v180": {
+     "effect": 2.371257403788179,
+     "range": [
+      1.4458533185789237,
+      3.3252561566041297
+     ],
+     "matched_mean": 0.3118672882172529,
+     "unmatched_mean": -3.1662453936804305,
+     "verdict": "better"
+    },
+    "v90": {
+     "effect": 2.9065597279576534,
+     "range": [
+      1.496040058491979,
+      4.053630173788843
+     ],
+     "matched_mean": 0.9540526840803814,
+     "unmatched_mean": -3.5174921715919902,
+     "verdict": "better"
+    },
+    "end": {
+     "effect": -0.2789194831757459,
+     "range": [
+      -5.97471574958935,
+      6.587222688878031
+     ],
+     "matched_mean": -0.9870666592066977,
+     "unmatched_mean": -3.197387248806667,
+     "verdict": "no clear difference"
+    },
+    "matched": 254,
+    "matches": 260,
+    "advice": {
+     "a runner sent by now": 345,
+     "no runner yet": 184
+    },
+    "calls": {
+     "no runner yet": 425,
+     "a runner sent by now": 104
+    }
+   },
+   "15 s, measured, 90 s": {
+    "tally": {
+     "cases": 2793,
+     "too few cases": 195,
+     "no clear advice": 2133,
+     "clear advice": 465
+    },
+    "rows": 465,
+    "v180": {
+     "effect": -0.6616270825382065,
+     "range": [
+      -2.754800918993447,
+      1.2845877277160742
+     ],
+     "matched_mean": 0.667342301402889,
+     "unmatched_mean": -2.5285781961702076,
+     "verdict": "no clear difference"
+    },
+    "v90": {
+     "effect": -0.6616270825382065,
+     "range": [
+      -2.9837498256880033,
+      1.3299599958594677
+     ],
+     "matched_mean": 0.667342301402889,
+     "unmatched_mean": -2.5285781961702076,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": -9.30672200251436,
+     "range": [
+      -17.2868483837558,
+      -1.408503031131685
+     ],
+     "matched_mean": -1.0842146941019721,
+     "unmatched_mean": -1.1085559460406695,
+     "verdict": "worse"
+    },
+    "matched": 339,
+    "matches": 258,
+    "advice": {
+     "a runner sent by now": 115,
+     "no runner yet": 350
+    },
+    "calls": {
+     "no runner yet": 408,
+     "a runner sent by now": 57
+    }
+   },
+   "15 s, measured, 120 s": {
+    "tally": {
+     "cases": 2793,
+     "too few cases": 195,
+     "no clear advice": 1923,
+     "clear advice": 675
+    },
+    "rows": 675,
+    "v180": {
+     "effect": 1.1249139866191848,
+     "range": [
+      -0.6334491242754154,
+      2.939778144372439
+     ],
+     "matched_mean": 1.4966651583673982,
+     "unmatched_mean": -1.516769646653693,
+     "verdict": "no clear difference"
+    },
+    "v90": {
+     "effect": 0.2211188439111042,
+     "range": [
+      -1.4626714370546734,
+      1.8398065347004346
+     ],
+     "matched_mean": 0.5166720244758188,
+     "unmatched_mean": -1.9691059283083627,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": 0.043908574136350534,
+     "range": [
+      -6.828813198323776,
+      7.045719986426539
+     ],
+     "matched_mean": 1.8009529624112002,
+     "unmatched_mean": -1.5226813892875435,
+     "verdict": "no clear difference"
+    },
+    "matched": 544,
+    "matches": 309,
+    "advice": {
+     "no runner yet": 619,
+     "a runner sent by now": 56
+    },
+    "calls": {
+     "no runner yet": 570,
+     "a runner sent by now": 105
+    }
+   },
+   "15 s, measured, 180 s": {
+    "tally": {
+     "cases": 2793,
+     "too few cases": 195,
+     "no clear advice": 1989,
+     "clear advice": 609
+    },
+    "rows": 609,
+    "v180": {
+     "effect": 2.6368550388986387,
+     "range": [
+      0.02420109832987302,
+      5.370100233524231
+     ],
+     "matched_mean": 1.6566896894626697,
+     "unmatched_mean": -1.6072462580184466,
+     "verdict": "better"
+    },
+    "v90": {
+     "effect": 1.5704909459178407,
+     "range": [
+      0.34094826512903437,
+      2.830115775403343
+     ],
+     "matched_mean": 0.6393874443837512,
+     "unmatched_mean": -2.041694027776796,
+     "verdict": "better"
+    },
+    "end": {
+     "effect": -1.638486727558157,
+     "range": [
+      -10.239087174274259,
+      5.8737131590490534
+     ],
+     "matched_mean": 1.2552183142518059,
+     "unmatched_mean": 0.9840289183680546,
+     "verdict": "no clear difference"
+    },
+    "matched": 460,
+    "matches": 284,
+    "advice": {
+     "a runner sent by now": 93,
+     "no runner yet": 516
+    },
+    "calls": {
+     "no runner yet": 521,
+     "a runner sent by now": 88
+    }
+   },
+   "15 s, few, 60 s": {
+    "tally": {
+     "cases": 2793,
+     "too few cases": 195,
+     "no clear advice": 1978,
+     "clear advice": 620
+    },
+    "rows": 620,
+    "v180": {
+     "effect": 1.0784658887842153,
+     "range": [
+      0.1661659022901198,
+      1.8726545132811976
+     ],
+     "matched_mean": -0.20168092965576742,
+     "unmatched_mean": -1.5873683725855385,
+     "verdict": "better"
+    },
+    "v90": {
+     "effect": -0.11445903127312342,
+     "range": [
+      -1.211888962967897,
+      0.9266590712149836
+     ],
+     "matched_mean": -0.4077195691872449,
+     "unmatched_mean": -0.9479915973254265,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": -1.0755921993683366,
+     "range": [
+      -6.961881953385543,
+      4.548558091512216
+     ],
+     "matched_mean": -1.8210854251360944,
+     "unmatched_mean": -0.22628641732316365,
+     "verdict": "no clear difference"
+    },
+    "matched": 235,
+    "matches": 273,
+    "advice": {
+     "a runner sent by now": 480,
+     "no runner yet": 140
+    },
+    "calls": {
+     "no runner yet": 493,
+     "a runner sent by now": 127
+    }
+   },
+   "15 s, few, 90 s": {
+    "tally": {
+     "cases": 2793,
+     "too few cases": 195,
+     "no clear advice": 2236,
+     "clear advice": 362
+    },
+    "rows": 362,
+    "v180": {
+     "effect": 0.13157127914159863,
+     "range": [
+      -1.9175009763246804,
+      2.2798377111845207
+     ],
+     "matched_mean": 0.0598465562908071,
+     "unmatched_mean": 0.06479167563962526,
+     "verdict": "no clear difference"
+    },
+    "v90": {
+     "effect": 0.13157127914159863,
+     "range": [
+      -1.7888836988315338,
+      2.108707740488109
+     ],
+     "matched_mean": 0.0598465562908071,
+     "unmatched_mean": 0.06479167563962526,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": 1.9552377713056914,
+     "range": [
+      -5.829415824536258,
+      10.65516883893979
+     ],
+     "matched_mean": -1.4561843617847976,
+     "unmatched_mean": -2.3877520437459627,
+     "verdict": "no clear difference"
+    },
+    "matched": 242,
+    "matches": 208,
+    "advice": {
+     "no runner yet": 245,
+     "a runner sent by now": 117
+    },
+    "calls": {
+     "no runner yet": 307,
+     "a runner sent by now": 55
+    }
+   },
+   "15 s, few, 120 s": {
+    "tally": {
+     "cases": 2793,
+     "too few cases": 195,
+     "no clear advice": 1962,
+     "clear advice": 636
+    },
+    "rows": 636,
+    "v180": {
+     "effect": 0.3820576924235059,
+     "range": [
+      -1.5391825049408296,
+      2.390467422937539
+     ],
+     "matched_mean": -0.04910999371695846,
+     "unmatched_mean": -0.9188255727441245,
+     "verdict": "no clear difference"
+    },
+    "v90": {
+     "effect": 0.3706072552304993,
+     "range": [
+      -1.1433797037324398,
+      1.9693632644173829
+     ],
+     "matched_mean": -0.3929248834094634,
+     "unmatched_mean": -0.9408986859950859,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": 3.292265289693889,
+     "range": [
+      -3.9803473079255958,
+      10.602979437047157
+     ],
+     "matched_mean": -0.0639378561157887,
+     "unmatched_mean": -2.693702348556198,
+     "verdict": "no clear difference"
+    },
+    "matched": 508,
+    "matches": 298,
+    "advice": {
+     "no runner yet": 583,
+     "a runner sent by now": 53
+    },
+    "calls": {
+     "no runner yet": 539,
+     "a runner sent by now": 97
+    }
+   },
+   "15 s, few, 180 s": {
+    "tally": {
+     "cases": 2793,
+     "too few cases": 195,
+     "no clear advice": 2142,
+     "clear advice": 456
+    },
+    "rows": 456,
+    "v180": {
+     "effect": 1.3910463714240613,
+     "range": [
+      -1.88226908515433,
+      4.810282908363487
+     ],
+     "matched_mean": 0.41138634346759284,
+     "unmatched_mean": 0.8538077276167072,
+     "verdict": "no clear difference"
+    },
+    "v90": {
+     "effect": 0.3780513398999424,
+     "range": [
+      -1.1723722244476296,
+      2.517225793551732
+     ],
+     "matched_mean": -0.16204790841010588,
+     "unmatched_mean": 0.27130033077439003,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": 3.434310999183161,
+     "range": [
+      -3.9087608949871235,
+      10.778271733852026
+     ],
+     "matched_mean": -0.35584362109111833,
+     "unmatched_mean": -1.5081308533574254,
+     "verdict": "no clear difference"
+    },
+    "matched": 339,
+    "matches": 243,
+    "advice": {
+     "a runner sent by now": 73,
+     "no runner yet": 383
+    },
+    "calls": {
+     "no runner yet": 404,
+     "a runner sent by now": 52
+    }
+   },
+   "30 s, equal, 60 s": {
+    "tally": {
+     "cases": 2002,
+     "too few cases": 263,
+     "no clear advice": 1363,
+     "clear advice": 376
+    },
+    "rows": 376,
+    "v180": {
+     "effect": 1.5471545458356033,
+     "range": [
+      0.35877830737293165,
+      2.9591282936030128
+     ],
+     "matched_mean": -0.45066221738253043,
+     "unmatched_mean": -2.761298241488167,
+     "verdict": "better"
+    },
+    "v90": {
+     "effect": 2.222175549432423,
+     "range": [
+      0.7681442890288858,
+      4.109831936722802
+     ],
+     "matched_mean": -0.08938189445933553,
+     "unmatched_mean": -3.2546158365597306,
+     "verdict": "better"
+    },
+    "end": {
+     "effect": 0.06031008704134367,
+     "range": [
+      -6.899820482123499,
+      7.910780928789598
+     ],
+     "matched_mean": 3.1294077980075943,
+     "unmatched_mean": -0.21811070442969233,
+     "verdict": "no clear difference"
+    },
+    "matched": 92,
+    "matches": 214,
+    "advice": {
+     "a runner sent by now": 341,
+     "no runner yet": 35
+    },
+    "calls": {
+     "no runner yet": 313,
+     "a runner sent by now": 63
+    }
+   },
+   "30 s, equal, 90 s": {
+    "tally": {
+     "cases": 2002,
+     "too few cases": 263,
+     "no clear advice": 1507,
+     "clear advice": 232
+    },
+    "rows": 232,
+    "v180": {
+     "effect": 1.1714475798811073,
+     "range": [
+      -1.5903609648788188,
+      3.870109400001996
+     ],
+     "matched_mean": -1.360738404058268,
+     "unmatched_mean": -4.736416013942332,
+     "verdict": "no clear difference"
+    },
+    "v90": {
+     "effect": 1.1714475798811073,
+     "range": [
+      -1.606892589314054,
+      3.6731559948792345
+     ],
+     "matched_mean": -1.360738404058268,
+     "unmatched_mean": -4.736416013942332,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": -7.30158485931865,
+     "range": [
+      -15.89151704292791,
+      1.4237365893731873
+     ],
+     "matched_mean": -1.9262013642877118,
+     "unmatched_mean": -1.4648897913811911,
+     "verdict": "no clear difference"
+    },
+    "matched": 57,
+    "matches": 169,
+    "advice": {
+     "a runner sent by now": 197,
+     "no runner yet": 35
+    },
+    "calls": {
+     "no runner yet": 200,
+     "a runner sent by now": 32
+    }
+   },
+   "30 s, equal, 120 s": {
+    "tally": {
+     "cases": 2002,
+     "too few cases": 263,
+     "no clear advice": 1541,
+     "clear advice": 198
+    },
+    "rows": 198,
+    "v180": {
+     "effect": -0.17952306005299132,
+     "range": [
+      -2.607844353029675,
+      2.3441376241124083
+     ],
+     "matched_mean": 0.9160055761496931,
+     "unmatched_mean": -2.388250374714781,
+     "verdict": "no clear difference"
+    },
+    "v90": {
+     "effect": 1.0265744403779127,
+     "range": [
+      -1.5582040113394369,
+      3.552461481833087
+     ],
+     "matched_mean": 0.40814779540645807,
+     "unmatched_mean": -3.133597733366703,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": -6.023031182769663,
+     "range": [
+      -15.045960203664853,
+      2.9287109702772516
+     ],
+     "matched_mean": 1.1399927874790041,
+     "unmatched_mean": -3.5563084403065695,
+     "verdict": "no clear difference"
+    },
+    "matched": 98,
+    "matches": 145,
+    "advice": {
+     "no runner yet": 94,
+     "a runner sent by now": 104
+    },
+    "calls": {
+     "no runner yet": 168,
+     "a runner sent by now": 30
+    }
+   },
+   "30 s, equal, 180 s": {
+    "tally": {
+     "cases": 2002,
+     "too few cases": 263,
+     "no clear advice": 1561,
+     "clear advice": 178
+    },
+    "rows": 178,
+    "v180": {
+     "effect": -2.4411608090395247,
+     "range": [
+      -6.423175326063895,
+      1.9145094286748643
+     ],
+     "matched_mean": 1.2705578390773773,
+     "unmatched_mean": -4.608366247311419,
+     "verdict": "no clear difference"
+    },
+    "v90": {
+     "effect": 0.5046679993182269,
+     "range": [
+      -2.106540949224197,
+      3.575504492512975
+     ],
+     "matched_mean": 0.053203736034321346,
+     "unmatched_mean": -3.7393997286901004,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": -9.554018948775973,
+     "range": [
+      -18.617829941041155,
+      0.6350559627798797
+     ],
+     "matched_mean": -1.8302746498606475,
+     "unmatched_mean": -6.886091415176485,
+     "verdict": "no clear difference"
+    },
+    "matched": 101,
+    "matches": 135,
+    "advice": {
+     "a runner sent by now": 70,
+     "no runner yet": 108
+    },
+    "calls": {
+     "no runner yet": 155,
+     "a runner sent by now": 23
+    }
+   },
+   "30 s, measured, 60 s": {
+    "tally": {
+     "cases": 2002,
+     "too few cases": 263,
+     "no clear advice": 1256,
+     "clear advice": 483
+    },
+    "rows": 483,
+    "v180": {
+     "effect": 1.7733941243790894,
+     "range": [
+      0.6115572606651015,
+      2.993418828583132
+     ],
+     "matched_mean": 0.05168103255186777,
+     "unmatched_mean": -2.675690869288133,
+     "verdict": "better"
+    },
+    "v90": {
+     "effect": 1.729285674266022,
+     "range": [
+      0.29020475386595357,
+      3.150185653497103
+     ],
+     "matched_mean": 0.26673562239667503,
+     "unmatched_mean": -2.6777073248282157,
+     "verdict": "better"
+    },
+    "end": {
+     "effect": 0.7352299145854586,
+     "range": [
+      -5.67681802493914,
+      8.450680125775085
+     ],
+     "matched_mean": 3.406557277349236,
+     "unmatched_mean": -0.2682388913366828,
+     "verdict": "no clear difference"
+    },
+    "matched": 100,
+    "matches": 237,
+    "advice": {
+     "a runner sent by now": 448,
+     "no runner yet": 35
+    },
+    "calls": {
+     "no runner yet": 404,
+     "a runner sent by now": 79
+    }
+   },
+   "30 s, measured, 90 s": {
+    "tally": {
+     "cases": 2002,
+     "too few cases": 263,
+     "no clear advice": 1434,
+     "clear advice": 305
+    },
+    "rows": 305,
+    "v180": {
+     "effect": 1.4084536522601767,
+     "range": [
+      -1.2236965945615639,
+      3.848274129083662
+     ],
+     "matched_mean": 0.1630710817866979,
+     "unmatched_mean": -3.880778554936634,
+     "verdict": "no clear difference"
+    },
+    "v90": {
+     "effect": 1.4084536522601767,
+     "range": [
+      -0.707930642781146,
+      3.7117626827689323
+     ],
+     "matched_mean": 0.1630710817866979,
+     "unmatched_mean": -3.880778554936634,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": 0.2844967162660173,
+     "range": [
+      -6.60397917277079,
+      7.985936880547316
+     ],
+     "matched_mean": 1.393437956925898,
+     "unmatched_mean": -1.188778012794995,
+     "verdict": "no clear difference"
+    },
+    "matched": 73,
+    "matches": 192,
+    "advice": {
+     "no runner yet": 40,
+     "a runner sent by now": 265
+    },
+    "calls": {
+     "no runner yet": 264,
+     "a runner sent by now": 41
+    }
+   },
+   "30 s, measured, 120 s": {
+    "tally": {
+     "cases": 2002,
+     "too few cases": 263,
+     "no clear advice": 1481,
+     "clear advice": 258
+    },
+    "rows": 258,
+    "v180": {
+     "effect": 2.8394884843282724,
+     "range": [
+      0.3141130770457416,
+      5.915778641682791
+     ],
+     "matched_mean": 2.7100164528425674,
+     "unmatched_mean": -3.068313143880294,
+     "verdict": "better"
+    },
+    "v90": {
+     "effect": 3.289609995779099,
+     "range": [
+      1.0441388551183575,
+      5.39072104417942
+     ],
+     "matched_mean": 2.3489499641384857,
+     "unmatched_mean": -3.11530924312866,
+     "verdict": "better"
+    },
+    "end": {
+     "effect": 6.412681441134134,
+     "range": [
+      -1.417353622024888,
+      14.30636288799622
+     ],
+     "matched_mean": 7.1687552538326305,
+     "unmatched_mean": -4.514512001985261,
+     "verdict": "no clear difference"
+    },
+    "matched": 106,
+    "matches": 173,
+    "advice": {
+     "no runner yet": 97,
+     "a runner sent by now": 161
+    },
+    "calls": {
+     "no runner yet": 219,
+     "a runner sent by now": 39
+    }
+   },
+   "30 s, measured, 180 s": {
+    "tally": {
+     "cases": 2002,
+     "too few cases": 263,
+     "no clear advice": 1563,
+     "clear advice": 176
+    },
+    "rows": 176,
+    "v180": {
+     "effect": -0.7467690086156593,
+     "range": [
+      -3.3052456025918895,
+      2.1608374235470045
+     ],
+     "matched_mean": -0.16426019331384267,
+     "unmatched_mean": -5.810509830511714,
+     "verdict": "no clear difference"
+    },
+    "v90": {
+     "effect": 2.4389746490258015,
+     "range": [
+      0.33427793807871997,
+      5.171129042624672
+     ],
+     "matched_mean": -0.24628648903678846,
+     "unmatched_mean": -4.224397256110278,
+     "verdict": "better"
+    },
+    "end": {
+     "effect": 2.3682952110638293,
+     "range": [
+      -5.299404998717072,
+      12.42155238292842
+     ],
+     "matched_mean": -0.9205855486303876,
+     "unmatched_mean": -7.627099268712124,
+     "verdict": "no clear difference"
+    },
+    "matched": 97,
+    "matches": 137,
+    "advice": {
+     "no runner yet": 103,
+     "a runner sent by now": 73
+    },
+    "calls": {
+     "no runner yet": 154,
+     "a runner sent by now": 22
+    }
+   },
+   "30 s, few, 60 s": {
+    "tally": {
+     "cases": 2002,
+     "too few cases": 263,
+     "no clear advice": 1351,
+     "clear advice": 388
+    },
+    "rows": 388,
+    "v180": {
+     "effect": 1.5891221530368562,
+     "range": [
+      0.031209927488209957,
+      2.9685093342765874
+     ],
+     "matched_mean": 0.36668203439319047,
+     "unmatched_mean": -1.3590249470524378,
+     "verdict": "better"
+    },
+    "v90": {
+     "effect": 0.5539997750369605,
+     "range": [
+      -1.6896392027693896,
+      2.5144804773526435
+     ],
+     "matched_mean": 0.6740163559767061,
+     "unmatched_mean": -0.290137989210544,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": 0.23664986889168346,
+     "range": [
+      -8.35652667713851,
+      8.381286202619524
+     ],
+     "matched_mean": -0.7338932602031862,
+     "unmatched_mean": -0.5712337640909049,
+     "verdict": "no clear difference"
+    },
+    "matched": 90,
+    "matches": 212,
+    "advice": {
+     "a runner sent by now": 350,
+     "no runner yet": 38
+    },
+    "calls": {
+     "no runner yet": 322,
+     "a runner sent by now": 66
+    }
+   },
+   "30 s, few, 90 s": {
+    "tally": {
+     "cases": 2002,
+     "too few cases": 263,
+     "no clear advice": 1527,
+     "clear advice": 212
+    },
+    "rows": 212,
+    "v180": {
+     "effect": -0.8430715694942474,
+     "range": [
+      -3.7818836612691396,
+      2.511806412026659
+     ],
+     "matched_mean": -2.606164837781056,
+     "unmatched_mean": -2.346133163713757,
+     "verdict": "no clear difference"
+    },
+    "v90": {
+     "effect": -0.8430715694942474,
+     "range": [
+      -4.13411073440542,
+      2.150750863412177
+     ],
+     "matched_mean": -2.606164837781056,
+     "unmatched_mean": -2.346133163713757,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": 6.970774873984292,
+     "range": [
+      -2.750987205859284,
+      17.81212416227799
+     ],
+     "matched_mean": 5.829737443166534,
+     "unmatched_mean": -2.3504494755996257,
+     "verdict": "no clear difference"
+    },
+    "matched": 49,
+    "matches": 147,
+    "advice": {
+     "a runner sent by now": 188,
+     "no runner yet": 24
+    },
+    "calls": {
+     "no runner yet": 181,
+     "a runner sent by now": 31
+    }
+   },
+   "30 s, few, 120 s": {
+    "tally": {
+     "cases": 2002,
+     "too few cases": 263,
+     "no clear advice": 1566,
+     "clear advice": 173
+    },
+    "rows": 173,
+    "v180": {
+     "effect": -0.19306187407750813,
+     "range": [
+      -3.0230542783476553,
+      2.577659685935606
+     ],
+     "matched_mean": 0.29783366975336645,
+     "unmatched_mean": -1.049546588593912,
+     "verdict": "no clear difference"
+    },
+    "v90": {
+     "effect": -0.6159949310349379,
+     "range": [
+      -3.728603101161326,
+      2.115849892797824
+     ],
+     "matched_mean": -0.2055988526464002,
+     "unmatched_mean": -0.7841534668578867,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": 0.6715174582115491,
+     "range": [
+      -10.225032680649372,
+      12.425062118643517
+     ],
+     "matched_mean": 10.802230472592655,
+     "unmatched_mean": 2.287992320574709,
+     "verdict": "no clear difference"
+    },
+    "matched": 61,
+    "matches": 130,
+    "advice": {
+     "no runner yet": 51,
+     "a runner sent by now": 122
+    },
+    "calls": {
+     "no runner yet": 141,
+     "a runner sent by now": 32
+    }
+   },
+   "30 s, few, 180 s": {
+    "tally": {
+     "cases": 2002,
+     "too few cases": 263,
+     "no clear advice": 1596,
+     "clear advice": 143
+    },
+    "rows": 143,
+    "v180": {
+     "effect": 0.04072155273045578,
+     "range": [
+      -2.988445762588814,
+      3.9929476484428053
+     ],
+     "matched_mean": -0.468019368063553,
+     "unmatched_mean": -3.553016542052918,
+     "verdict": "no clear difference"
+    },
+    "v90": {
+     "effect": 0.6544777149572425,
+     "range": [
+      -1.7255567522542812,
+      3.1124097703942586
+     ],
+     "matched_mean": -1.509678351327963,
+     "unmatched_mean": -3.5095809062182397,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": -6.856325050739271,
+     "range": [
+      -24.04863640326274,
+      11.962719425965645
+     ],
+     "matched_mean": 5.9326664572993595,
+     "unmatched_mean": 1.0902517408824632,
+     "verdict": "no clear difference"
+    },
+    "matched": 96,
+    "matches": 105,
+    "advice": {
+     "no runner yet": 99,
+     "a runner sent by now": 44
+    },
+    "calls": {
+     "no runner yet": 130,
+     "a runner sent by now": 13
+    }
+   },
+   "45 s, equal, 60 s": {
+    "tally": {
+     "cases": 1367,
+     "too few cases": 184,
+     "no clear advice": 1020,
+     "clear advice": 163
+    },
+    "rows": 163,
+    "v180": {
+     "effect": 0.5480314569002595,
+     "range": [
+      -2.5289917213114825,
+      3.008155658802796
+     ],
+     "matched_mean": 0.6855437483513322,
+     "unmatched_mean": -4.1769394858961215,
+     "verdict": "no clear difference"
+    },
+    "v90": {
+     "effect": 1.3129567400908175,
+     "range": [
+      -2.71961134035195,
+      4.6897189593186805
+     ],
+     "matched_mean": 1.651258592956268,
+     "unmatched_mean": -5.254533560745861,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": -16.353541992390326,
+     "range": [
+      -28.987125523418047,
+      -4.126883308169107
+     ],
+     "matched_mean": -1.6316533379863738,
+     "unmatched_mean": 1.9128428900597367,
+     "verdict": "worse"
+    },
+    "matched": 57,
+    "matches": 116,
+    "advice": {
+     "no runner yet": 40,
+     "a runner sent by now": 123
+    },
+    "calls": {
+     "a runner sent by now": 21,
+     "no runner yet": 142
+    }
+   },
+   "45 s, equal, 90 s": {
+    "tally": {
+     "cases": 1367,
+     "too few cases": 184,
+     "no clear advice": 995,
+     "clear advice": 188
+    },
+    "rows": 188,
+    "v180": {
+     "effect": 1.7669238641309104,
+     "range": [
+      -1.1361017930386932,
+      4.8337041809448005
+     ],
+     "matched_mean": -2.5858918264512614,
+     "unmatched_mean": -4.251310649324816,
+     "verdict": "no clear difference"
+    },
+    "v90": {
+     "effect": 1.7669238641309104,
+     "range": [
+      -1.6975401039290658,
+      4.72575538551497
+     ],
+     "matched_mean": -2.5858918264512614,
+     "unmatched_mean": -4.251310649324816,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": -14.061189339744512,
+     "range": [
+      -23.643849289034797,
+      -5.098383218937144
+     ],
+     "matched_mean": -12.192536323263184,
+     "unmatched_mean": 1.3536585369412901,
+     "verdict": "worse"
+    },
+    "matched": 35,
+    "matches": 125,
+    "advice": {
+     "a runner sent by now": 182,
+     "no runner yet": 6
+    },
+    "calls": {
+     "no runner yet": 159,
+     "a runner sent by now": 29
+    }
+   },
+   "45 s, equal, 120 s": {
+    "tally": {
+     "cases": 1367,
+     "too few cases": 184,
+     "no clear advice": 1072,
+     "clear advice": 111
+    },
+    "rows": 111,
+    "v180": {
+     "effect": -1.1246828975351701,
+     "range": [
+      -5.740505406486253,
+      3.311602819840755
+     ],
+     "matched_mean": 0.03491687250115283,
+     "unmatched_mean": -1.5434932517357765,
+     "verdict": "no clear difference"
+    },
+    "v90": {
+     "effect": -0.7619383165531431,
+     "range": [
+      -5.058271747277538,
+      3.2274509835711194
+     ],
+     "matched_mean": -0.4275953836228539,
+     "unmatched_mean": -1.579198236822778,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": -20.138065199028176,
+     "range": [
+      -38.1062893668069,
+      -1.6306405215019124
+     ],
+     "matched_mean": -3.278980373498108,
+     "unmatched_mean": 0.5400578991015628,
+     "verdict": "worse"
+    },
+    "matched": 64,
+    "matches": 87,
+    "advice": {
+     "a runner sent by now": 45,
+     "no runner yet": 66
+    },
+    "calls": {
+     "no runner yet": 99,
+     "a runner sent by now": 12
+    }
+   },
+   "45 s, equal, 180 s": {
+    "tally": {
+     "cases": 1367,
+     "too few cases": 184,
+     "no clear advice": 1083,
+     "clear advice": 100
+    },
+    "rows": 100,
+    "verdict": "too few to call",
+    "matched": 77
+   },
+   "45 s, measured, 60 s": {
+    "tally": {
+     "cases": 1367,
+     "too few cases": 184,
+     "no clear advice": 993,
+     "clear advice": 190
+    },
+    "rows": 190,
+    "v180": {
+     "effect": 1.4169482131908981,
+     "range": [
+      -0.47086854428837127,
+      3.488414054734138
+     ],
+     "matched_mean": -1.5071557391083237,
+     "unmatched_mean": -4.676441786424386,
+     "verdict": "no clear difference"
+    },
+    "v90": {
+     "effect": 2.1714975239836845,
+     "range": [
+      -0.24040493301261653,
+      5.0802048497720325
+     ],
+     "matched_mean": -0.4269085697726704,
+     "unmatched_mean": -4.676328435721315,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": -11.48137794367418,
+     "range": [
+      -22.740273312135983,
+      -1.3591961322815584
+     ],
+     "matched_mean": 0.5802822247820464,
+     "unmatched_mean": 3.894971806520098,
+     "verdict": "worse"
+    },
+    "matched": 55,
+    "matches": 124,
+    "advice": {
+     "no runner yet": 27,
+     "a runner sent by now": 163
+    },
+    "calls": {
+     "a runner sent by now": 30,
+     "no runner yet": 160
+    }
+   },
+   "45 s, measured, 90 s": {
+    "tally": {
+     "cases": 1367,
+     "too few cases": 184,
+     "no clear advice": 930,
+     "clear advice": 253
+    },
+    "rows": 253,
+    "v180": {
+     "effect": 1.811410855848029,
+     "range": [
+      -0.6034911100126937,
+      4.341318684620884
+     ],
+     "matched_mean": -2.5652733681384663,
+     "unmatched_mean": -3.909807903827754,
+     "verdict": "no clear difference"
+    },
+    "v90": {
+     "effect": 1.811410855848029,
+     "range": [
+      -0.6596371618239006,
+      4.68994079017173
+     ],
+     "matched_mean": -2.5652733681384663,
+     "unmatched_mean": -3.909807903827754,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": -8.277091515939556,
+     "range": [
+      -18.978640954092263,
+      3.5376958451916556
+     ],
+     "matched_mean": -5.977892353048872,
+     "unmatched_mean": 2.4081964834186196,
+     "verdict": "no clear difference"
+    },
+    "matched": 43,
+    "matches": 157,
+    "advice": {
+     "a runner sent by now": 253
+    },
+    "calls": {
+     "no runner yet": 210,
+     "a runner sent by now": 43
+    }
+   },
+   "45 s, measured, 120 s": {
+    "tally": {
+     "cases": 1367,
+     "too few cases": 184,
+     "no clear advice": 1056,
+     "clear advice": 127
+    },
+    "rows": 127,
+    "v180": {
+     "effect": -0.8654534326512666,
+     "range": [
+      -5.5309617111951725,
+      2.8317608120975097
+     ],
+     "matched_mean": -0.634234402266809,
+     "unmatched_mean": -1.6405497851295243,
+     "verdict": "no clear difference"
+    },
+    "v90": {
+     "effect": 0.5175361580549168,
+     "range": [
+      -3.3372252776658433,
+      3.652799814446603
+     ],
+     "matched_mean": -0.8454019952097738,
+     "unmatched_mean": -2.00188296316551,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": -4.145525354987761,
+     "range": [
+      -23.302885767926494,
+      16.16533662477614
+     ],
+     "matched_mean": -1.0921644320317752,
+     "unmatched_mean": 0.05000836973775873,
+     "verdict": "no clear difference"
+    },
+    "matched": 51,
+    "matches": 95,
+    "advice": {
+     "a runner sent by now": 84,
+     "no runner yet": 43
+    },
+    "calls": {
+     "no runner yet": 113,
+     "a runner sent by now": 14
+    }
+   },
+   "45 s, measured, 180 s": {
+    "tally": {
+     "cases": 1367,
+     "too few cases": 184,
+     "no clear advice": 1092,
+     "clear advice": 91
+    },
+    "rows": 91,
+    "v180": {
+     "effect": 0.31874134702282464,
+     "range": [
+      -9.432227049458618,
+      8.028058357967847
+     ],
+     "matched_mean": 1.5666763572330529,
+     "unmatched_mean": -2.4180352687447737,
+     "verdict": "no clear difference"
+    },
+    "v90": {
+     "effect": 0.9580344038598448,
+     "range": [
+      -5.547692270387538,
+      6.1092256413566615
+     ],
+     "matched_mean": 0.3317196167122535,
+     "unmatched_mean": -4.156507714792748,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": -12.530967939908763,
+     "range": [
+      -38.901241347904524,
+      2.7039330084851456
+     ],
+     "matched_mean": -0.8434568678992218,
+     "unmatched_mean": 4.8081406747982545,
+     "verdict": "no clear difference"
+    },
+    "matched": 58,
+    "matches": 78,
+    "advice": {
+     "a runner sent by now": 33,
+     "no runner yet": 58
+    },
+    "calls": {
+     "no runner yet": 81,
+     "a runner sent by now": 10
+    }
+   },
+   "45 s, few, 60 s": {
+    "tally": {
+     "cases": 1367,
+     "too few cases": 184,
+     "no clear advice": 1058,
+     "clear advice": 125
+    },
+    "rows": 125,
+    "v180": {
+     "effect": -0.6130038638929857,
+     "range": [
+      -3.4798330866869844,
+      2.1004379383892466
+     ],
+     "matched_mean": -2.653447491779397,
+     "unmatched_mean": -3.721690196216584,
+     "verdict": "no clear difference"
+    },
+    "v90": {
+     "effect": 0.37419043164243376,
+     "range": [
+      -2.6663244004335303,
+      3.46704010197536
+     ],
+     "matched_mean": -1.8668040824533425,
+     "unmatched_mean": -3.5849915423584093,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": -6.594317325664543,
+     "range": [
+      -20.335155286722298,
+      6.669102091594628
+     ],
+     "matched_mean": 0.20555762567135197,
+     "unmatched_mean": 1.3362823389539278,
+     "verdict": "no clear difference"
+    },
+    "matched": 35,
+    "matches": 96,
+    "advice": {
+     "no runner yet": 24,
+     "a runner sent by now": 101
+    },
+    "calls": {
+     "a runner sent by now": 23,
+     "no runner yet": 102
+    }
+   },
+   "45 s, few, 90 s": {
+    "tally": {
+     "cases": 1367,
+     "too few cases": 184,
+     "no clear advice": 971,
+     "clear advice": 212
+    },
+    "rows": 212,
+    "v180": {
+     "effect": 1.7363130690387183,
+     "range": [
+      -0.6520700912274267,
+      4.317230989854052
+     ],
+     "matched_mean": -1.8113377383162683,
+     "unmatched_mean": -2.5738426380189985,
+     "verdict": "no clear difference"
+    },
+    "v90": {
+     "effect": 1.7363130690387183,
+     "range": [
+      -0.8193996063410158,
+      4.355075814267657
+     ],
+     "matched_mean": -1.8113377383162683,
+     "unmatched_mean": -2.5738426380189985,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": -8.462808058858297,
+     "range": [
+      -19.85997959924665,
+      1.8464393151915552
+     ],
+     "matched_mean": -12.405209151302946,
+     "unmatched_mean": -1.986927178411104,
+     "verdict": "no clear difference"
+    },
+    "matched": 34,
+    "matches": 135,
+    "advice": {
+     "a runner sent by now": 212
+    },
+    "calls": {
+     "no runner yet": 178,
+     "a runner sent by now": 34
+    }
+   },
+   "45 s, few, 120 s": {
+    "tally": {
+     "cases": 1367,
+     "too few cases": 184,
+     "no clear advice": 1051,
+     "clear advice": 132
+    },
+    "rows": 132,
+    "v180": {
+     "effect": 0.44477569786267673,
+     "range": [
+      -4.071835979804495,
+      5.203359971911861
+     ],
+     "matched_mean": -0.9817089226511874,
+     "unmatched_mean": -2.6921059330016686,
+     "verdict": "no clear difference"
+    },
+    "v90": {
+     "effect": -0.08100799314840351,
+     "range": [
+      -4.774130728866989,
+      3.860455328645441
+     ],
+     "matched_mean": -2.150896582296287,
+     "unmatched_mean": -1.6762043328534344,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": -1.7126894373317887,
+     "range": [
+      -23.761566073004087,
+      18.686207873226245
+     ],
+     "matched_mean": -0.11363825817390398,
+     "unmatched_mean": -10.360272674870606,
+     "verdict": "no clear difference"
+    },
+    "matched": 65,
+    "matches": 100,
+    "advice": {
+     "a runner sent by now": 76,
+     "no runner yet": 56
+    },
+    "calls": {
+     "no runner yet": 119,
+     "a runner sent by now": 13
+    }
+   },
+   "45 s, few, 180 s": {
+    "tally": {
+     "cases": 1367,
+     "too few cases": 184,
+     "no clear advice": 1053,
+     "clear advice": 130
+    },
+    "rows": 130,
+    "v180": {
+     "effect": -6.209884640556706,
+     "range": [
+      -14.232853361910223,
+      1.6963328635299446
+     ],
+     "matched_mean": 1.548092143392489,
+     "unmatched_mean": -1.0945377346385485,
+     "verdict": "no clear difference"
+    },
+    "v90": {
+     "effect": -3.6263606920657616,
+     "range": [
+      -8.826879854661586,
+      2.1858346366652843
+     ],
+     "matched_mean": -1.219666838288308,
+     "unmatched_mean": -3.7853259352539492,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": -25.155778477173612,
+     "range": [
+      -65.35341602244047,
+      1.0301778584922696
+     ],
+     "matched_mean": -0.6403974137219748,
+     "unmatched_mean": 3.583524943635927,
+     "verdict": "no clear difference"
+    },
+    "matched": 100,
+    "matches": 101,
+    "advice": {
+     "a runner sent by now": 30,
+     "no runner yet": 100
+    },
+    "calls": {
+     "a runner sent by now": 8,
+     "no runner yet": 122
+    }
+   }
+  },
+  "check": {
+   "in flags, 90 s on: a stay is further behind": [
+    0.2931296931058329,
+    0.22545205845686572,
+    0.3608073277548001,
+    743,
+    1699
+   ],
+   "in win points, 90 s on, where nobody and no NPC dies meanwhile: a stay with no kill is worse off": [
+    -0.11364501229074747,
+    -0.7437330202319872,
+    0.5164429956504921,
+    244,
+    424
+   ],
+   "in win points, 90 s on, every case": [
+    0.10258353034708578,
+    -0.4015023081169281,
+    0.6066693688110997,
+    743,
+    1714
+   ],
+   "in win points, 180 s on, every case": [
+    0.02055190658881898,
+    -0.7997885182695033,
+    0.8408923314471413,
+    743,
+    1714
+   ]
   }
  }
 }

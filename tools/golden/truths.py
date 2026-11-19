@@ -15,7 +15,7 @@ Rules (his, 2026-11-18):
   - The truths are tests only. Nothing here feeds the engine's values, its similar cases or its advice.
   - Only near-certain truths go on the list. Contested wisdom (heal an archer over a knight) is a question for the
     data, never a truth. A truth is his, or Claude's once he has approved it; Claude's proposals not yet approved are
-    reported apart and never fail the run. Ids are never used again: T5, T6, T11 and P6 were taken off on 2026-11-18,
+    reported apart and never fail the run. T12 is his given of 2026-11-19 (R-542). Ids are never used again: T5, T6, T11 and P6 were taken off on 2026-11-18,
     and P1 to P5 are approved under the ids they were proposed with.
 
 Each truth compares two groups of plays on one measure, says which should be higher, and is given a 90% range by
@@ -100,6 +100,20 @@ def _flag_answer(D):
         yield ("a single run in answer" if p["ours"] == "single run" else "a stay"), p["rid"], r["after"]["90"]["lead_change"], 1, band
 
 
+def _runner_by_30(D):
+    """His given (R-542): "if you stay, you are going to be more behind on flags". Their runner 30 s into a run still under
+    way, the opening apart: a team that has sent a runner of its own by then against one that has not, on the change in
+    flag lead at the fixed 90 s record, within the same holder of the stand. Read at a fixed second because a "stay" read
+    from having sent nobody before their run ended takes in every run of theirs that came to nothing."""
+    for p in D["plays"]:
+        c = p.get("clock")
+        if p["play"] != "flag" or p.get("soh") or p.get("opening") or not c or p.get("ours") == "a flag already in hand" or c["their_end"] <= c["their_off"] + 30: continue
+        lc = p["after"]["90"].get("lead_change")
+        if lc is None or p["state"]["stand"] not in ("own", "enemy"): continue
+        sent = c["our_off"] is not None and c["our_off"] <= c["their_off"] + 30
+        yield ("a runner sent by then" if sent else "no runner sent by then"), p["rid"], lc, 1, p["state"]["stand"]
+
+
 def _wipe(D):
     for r in D["records"]:
         a, b = r["after"].get("90"), r["after"].get("180")
@@ -134,6 +148,7 @@ TRUTHS = [
     ("T3", "Claude, approved", True, "A main team pushing a flagger stops the flag more often than one player does.", "share of pushes that stop the flag", "the main team", "one player", _push_size),
     ("T4", "Claude, approved", True, "The longer a team is held in its base, the more often it loses a pit NPC.", "share that lose a pit NPC", "held 60 s or longer", "held under 30 s", _pinned),
     ("T7", "Claude, approved", True, "Answering their run with a run leaves a team better off in flags than staying (same start: behind, level or ahead).", "change in flag lead 90 s on, in flags", "a single run in answer", "a stay", _flag_answer),
+    ("T12", "Denning", True, "With their runner 30 s into his run, a team that has sent a runner of its own is better off in flags than one that has not (same holder of the stand).", "change in flag lead 90 s on, in flags", "a runner sent by then", "no runner sent by then", _runner_by_30),
     ("T8", "Claude, approved", True, "A team that wipes loses NPCs.", "share that lose an NPC within 3 minutes", "six or more of its players die within 90 s", "two or fewer die", _wipe),
     ("T9", "Claude, approved", True, "A flag whose carrier dies under a push gets in less often than one whose carrier lives.", "share of pushed flags that are capped", "the carrier lives", "the carrier dies", _carrier_died),
     ("T10", "Claude, approved", True, "A split that is collapsed on loses a player more often than one that is mirrored.", "share of split phases that lose a split player", "collapsed on", "mirrored", _collapse_or_mirror),
