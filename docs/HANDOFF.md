@@ -62,13 +62,13 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
    time: give him date, guilds, hall and length with every example so he can find it there.
 
 ## Running it
-- Train batch: the "Train batch" workflow (METHODS.md "Train batch on GitHub"; `blind` stays no). Never queue two runs.
+- Train batch: the "Train batch" workflow (METHODS.md; `blind` stays no). Never queue two runs. At the next rebuild,
+  keep gvg.report's flag objects, which `replay_trim.mjs` drops (R-481).
 - Local engine: `git fetch --depth 1 --filter=blob:none origin +replays:refs/remotes/origin/replays` (the blobs come
   as they are read). `jobs.py`, `moments.py`, the gate, the line-up and `confidence.py` need no cache and no packages
   beyond Python; `cases.py` needs numpy and scikit-learn (`cache.py sync pull`, `warm` only for the fitted models).
   `PYTHONDONTWRITEBYTECODE=1`. The review key, `dev_set.json` and `game_reviews.json` are written on main: pass
   `--key <main>/data/model/review_key.json`, and copy the key and `dev_set.json` to the branch after changing them.
-- gvg.report's payload holds flag objects with positions, which `replay_trim.mjs` drops: kept at the next rebuild (R-481).
 - Site check: `python3 -m http.server`, then playwright with `/usr/bin/google-chrome`, api.github.com mocked.
 
 ## Cautions
