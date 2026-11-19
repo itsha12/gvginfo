@@ -50,7 +50,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
    Settle the technical choices yourself and bring him GvG questions only (his word).
 2. Held for a second game (R-495): a base res with the attackers at the footmen (HC v hdm 1:40, Jade); Men v hold
    6:48, a collapse told as a push on the flagger; who and how many push a flagger; numbers through Jade's portal.
-3. Then stage E. The clean-up (R-398, nine items, and `st.stand_owner` on a whole second) comes after the games.
+   Then stage E; the clean-up (R-398, nine items, and `st.stand_owner` on a whole second) after the games.
 
 ## Open for Denning
 0. Put to him 2026-11-19: the sentences for his twelve games (the file of cards). Known weak: a verdict's range
