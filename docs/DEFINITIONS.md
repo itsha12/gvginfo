@@ -270,3 +270,12 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - The engine's confidence that a situation is a decision is one band (R-492, R-515): low when a quarter's move of one
   setting makes the engine stop reading it; medium when it is still read there but its details move, or it goes at
   half or double; high otherwise. Fitted to his grades of five games (top of `tools/golden/confidence.py`).
+
+## Similar cases and the better call (the flag family so far)
+- Two cases are similar when they are in the same scenario (their single or double run, who holds the stand, a flag
+  already in hand) and near one another on the flag lead, the time to the next boost, the players at the main fight
+  on each side, each side's morale, the strength gap and the length of the hall's flag run (R-538, R-432, R-436).
+- The better call is the one whose hard results at 90 and 180 s, priced by how much each moves the chance of winning
+  the match, come out ahead among the nearest cases of other matches (R-538, R-294). A call is read only from 30
+  plays or more out of 15 matches or more; under that, and where the range includes no difference, the verdict is
+  "no clear difference" (R-538; REDESIGN.md "Verdict rules").

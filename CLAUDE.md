@@ -239,6 +239,17 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   there; it is a reason to look, never proof. The truths are tests only and feed nothing in the engine. Only his
   truths and those he has approved can fail a run; Claude's proposals are reported apart. Compare calls on the fixed
   90 and 180 s record (`after` on a moment), never on a play's own end: a stay row ends at their cap, a run row at ours.
+- The similar cases (R-538), on the branch: `cases.py test <plays file from moments.py all>` at a checkpoint (about two
+  minutes; a report module, in no cache key; the report is kept in `data/model/flag_cases.json`). Three parts: the price
+  of a result (a small model of a position fitted on every moment, mirrored, held out by `cache.fold_of`: strength gap,
+  flag lead, death penalty, morale boost, pit NPCs, Lord health; a stand-in for the win model until stage E; footmen are
+  not priced, their price runs backwards, and each run prints that check), the nearest cases (the same scenario, then
+  the variables of R-538 in standard units, equal weight; K chosen by the data; the floor of 30 plays and 15 matches),
+  and the held-out advice test (the boost read with and without the flag only held at home). Every flag and boost play
+  carries `state` and `after`, the position and the fixed 90 and 180 s record at the second the decision arises: judge
+  calls from those, never from a play's own end. `cases.py case <plays file> <report id> <m:ss>` prints one decision
+  with its nearest cases and their replay links. A verdict is a reading, not advice, until the held-out test shows a
+  gain for its scenario: say so whenever one is shown to him.
 - No new rule or threshold to answer a wrong row (R-465): rebuild the reading under it at the root, with his marked
   rows as the test. Who is in which fight is one reading on the branch (`Moments.linked`, `engaged_in`, `visits`; R-464),
   used by the numbers of the main fight and by a split's defenders: change it there, never beside it. His words on a

@@ -179,6 +179,12 @@ a solo split or other uneven counts (27%). The rebuild on the records takes its 
       better call by the consequence record, and the held-out advice test on the branch (does a team that made the
       better call do better on unseen matches). Read with him whatever it shows: it is the first evidence on the end
       goal since the redesign began, and it decides whether the rest is built the same way.
+      Built 2026-11-18 (R-538; `cases.py` on the branch, report in `data/model/flag_cases.json`): the price of a result
+      (a small stand-in for the win model until stage E: strength gap, flag lead, death penalty, morale boost, pit
+      NPCs, Lord health), the nearest cases, the verdict, the held-out test. First reading: for the answer to their
+      run no call is clearly better in four cases of five, and following the advice shows no gain on unseen matches;
+      at their boost, running a flag is clearly better in a third of cases and holds on unseen matches in the priced
+      result, not yet in how matches end. Read with him; what follows from it is his to say.
    d. The other kinds as he says each is ready: similar cases, enemy execution (2.12), the interaction rule (2.13), NPC
       damage by class of bar (R-433).
 7. **Stage E: close**: old and new decision kinds side by side, SPEC.md and METHODS.md rewritten, the readability
