@@ -59,6 +59,7 @@ among teams in a similar spot, and does a team that made the better call do bett
 
 Usage:  python3 cases.py test <plays file from `moments.py all`> [--json <out.json>]     the whole report
         python3 cases.py case <plays file> <report id> <m:ss>                          one decision, its calls and cases
+        python3 cases.py cards <plays file> [f1 | <report id>]                           every flag decision of the graded games, or of one match, as sentences
         python3 cases.py ladder <plays file> [--json <out.json>]                         the timing ladder: a check of the flag readings (no prices, no advice)
 A reading tool over the plays file: it writes no prepared data and is in no cache key (cache.REPORT_LAYER)."""
 import collections, json, math, os, sys
@@ -334,12 +335,17 @@ class Scenario:
             j = self.near(i, a, K, heldout)
             if len(j) < MIN_PLAYS or len(set(self.rid[j].tolist())) < MIN_MATCHES: continue
             mu, se, n, G = self.level(i, j, a, H); W[a] = {"worth": mu, "se": se, "plays": n, "matches": G, "near": j, "plain": float(self.v[H][j].mean())}
+            # like cases have to stand round the case: where its own chance of winning lies outside nine in ten of a call's nearest cases, they are all to one side
+            # of it and the levelling would be reading beyond them (옷옷옷옷 v RACK 6:15, a team at 92% in its own pit): no verdict from such a spot
+            lo_, hi_ = np.percentile(self.y["p0"][j], [5, 95]); W[a]["beside"] = bool(lo_ <= self.y["p0"][i] <= hi_)
         out = {"calls": W, "advice": None, "clear": False, "verdict": "too few cases", "margin": None, "range": None}
         if len(W) < 2: return out
         order = sorted(W, key=lambda a: -W[a]["worth"])
         best, nxt = order[0], order[1]
         d, se = W[best]["worth"] - W[nxt]["worth"], math.hypot(W[best]["se"], W[nxt]["se"])
         out.update(advice=best, clear=d - Z * se > 0, margin=d, range=[d - Z * se, d + Z * se])
+        if not (W[best]["beside"] and W[nxt]["beside"]):
+            out.update(clear=False, verdict="an unusual spot: no like cases round it", unusual=True); return out
         c = self.call[i]
         if c in W:
             alt = next(a for a in order if a != c)
@@ -686,6 +692,146 @@ def as_it_fell(C, pr):
     return out
 
 
+# ---- what else changes the answer (stage 3), and the sentence for one decision (stage 4)
+def _thirds(vals):
+    v = sorted(x for x in vals if x is not None)
+    return (v[len(v) // 3], v[2 * len(v) // 3]) if v else (0, 0)
+
+
+def factor_list(s):
+    """What a team can see at the second it has to answer, each as two or three plain groups."""
+    lo, hi = _thirds([c["more"][6] for c in s.C])
+    holder = "our" if "we hold the stand" in s.C[0]["scenario"] or "our cap" in s.C[0]["scenario"] else "their"
+    return (
+        ("Numbers at the main fight", lambda c: "we are up" if c["x"][2] > c["x"][3] else "we are down" if c["x"][2] < c["x"][3] else "even"),
+        ("Their morale", lambda c: "two deaths' worth of penalty or more" if c["x"][5] <= -30 else "little or none"),
+        ("Our morale", lambda c: "two deaths' worth of penalty or more" if c["x"][4] <= -30 else "little or none"),
+        ("Their runner", lambda c: line_of(c["their_runner"])),
+        ("Where our main team stands", lambda c: None if c["more"][1] is None else "on their side of the stand" if c["more"][1] < 0 else "at the stand" if c["more"][1] == 0 else "on our own side"),
+        (f"Seconds to {holder} boost", lambda c: None if c["x"][1] is None else "under 60 s" if c["x"][1] < 60 else "60 s or more"),
+        ("The flag can beat the boost", lambda c: None if c["beats"] is None else "yes" if c["beats"] else "no"),
+        ("The base res", lambda c: None if c["more"][0] is None else "within 40 s" if c["more"][0] < 40 else "later"),
+        ("Flag lead before their run", lambda c: "we are behind (half a flag or more)" if c["x"][0] <= -0.35 else "we are ahead (half a flag or more)" if c["x"][0] >= 0.35 else "level"),
+        ("Strength", lambda c: "we are the stronger team" if c["x"][6] >= 100 else "we are the weaker team" if c["x"][6] <= -100 else "close"),
+        ("Our snares, to slow their flag", lambda c: None if c["more"][6] is None else "the fewest third" if c["more"][6] <= lo else "the most third" if c["more"][6] > hi else "the middle third"),
+        ("How long their flag should take", lambda c: None if c["more"][7] is None else "under 45 s" if c["more"][7] < 45 else "45 s or more"))
+
+
+def factors(S, pr):
+    """Stage 3 (2026-11-19): what else changes the answer. For each thing a team can see, in each of its groups: what
+    holding off is worth, no runner out at 15 s less a runner out, in win points 180 s on, set against the same
+    position (one straight fit on the matching variables for the scenario, with the answer's worth let differ by
+    group; ranges from drawing whole matches again). A thing matters where the worth differs between its groups.
+    A reading of where to look: many groups are read, so one in ten will look clear by chance, and none of it is
+    advice until it holds on unseen matches."""
+    import random
+    out = {}
+    pr("\n9. What else changes the answer: what holding off is worth (no runner out at 15 s, less a runner out), 180 s on, at the same position, by what a team can see")
+    pr("   + = holding off is ahead; - = the runner is ahead. MATTERS: the worth differs between the groups beyond a 1 in 100 chance; MAY MATTER: beyond 1 in 20. Read as where to look: about one row in ten is clear by chance.")
+    for name, s in S.items():
+        if "single run" not in name or not (name.endswith("15 s after their runner set off") or name.endswith("15 s after our cap")): continue
+        idx = np.array([i for i in range(len(s.C)) if s.call[i] in (NONE, SENT, DOUBLE)])
+        isa = np.array([float(s.call[i] == NONE) for i in idx]); y = s.y["180"][idx]; Zs = s.Z[idx]; rid = s.rid[idx]
+        by = collections.defaultdict(list)
+        for n_, r in enumerate(rid): by[r].append(n_)
+        ids = sorted(by)
+        pr(f"\n   {name} ({len(idx)}: {int(isa.sum())} held off, {int(len(isa) - isa.sum())} sent)")
+        o = out[name] = {}
+        for label, f in factor_list(s):
+            lev = [f(s.C[i]) for i in idx]
+            names = [k for k, n in collections.Counter(x for x in lev if x is not None).most_common() if n >= MIN_PLAYS]
+            names = [k for k in names if sum(1 for x, a in zip(lev, isa) if x == k and a) >= 10 and sum(1 for x, a in zip(lev, isa) if x == k and not a) >= 10]
+            if len(names) < 2: continue
+            G = np.array([[float(x == k) for k in names] for x in lev]); keep = G.sum(axis=1) > 0
+            def est(rows):
+                A = np.column_stack([np.ones(len(rows)), Zs[rows], G[rows][:, 1:], G[rows] * isa[rows][:, None]])
+                return np.linalg.lstsq(A, y[rows], rcond=None)[0][-len(names):]
+            base = np.flatnonzero(keep); e = est(base)
+            rnd, dr = random.Random(7), []
+            for _ in range(DRAWS):
+                rows = np.array([n_ for k in (rnd.choice(ids) for _ in ids) for n_ in by[k] if keep[n_]])
+                if len(rows) > Zs.shape[1] + 2 * len(names) + 5: dr.append(est(rows))
+            dr = np.array(dr); lo_, hi_ = np.percentile(dr, 5, axis=0), np.percentile(dr, 95, axis=0)
+            a_, b_ = int(np.argmax(e)), int(np.argmin(e)); gap = dr[:, a_] - dr[:, b_]
+            # the two groups furthest apart are picked after seeing them, which flatters the gap: "matters" asks for the stricter 1 in 100, "may matter" for 1 in 20
+            matters = "matters" if float(np.percentile(gap, 1)) > 0 else "may matter" if float(np.percentile(gap, 5)) > 0 else None
+            o[label] = {"matters": matters, "gap": [float(e[a_] - e[b_]), float(np.percentile(gap, 5)), float(np.percentile(gap, 95))],
+                        "groups": {k: {"held off": int(((G[:, n_] == 1) & (isa == 1)).sum()), "sent": int(((G[:, n_] == 1) & (isa == 0)).sum()), "worth": [float(e[n_]), float(lo_[n_]), float(hi_[n_])]} for n_, k in enumerate(names)}}
+            pr(f"     {label}" + (f"   {matters.upper()}: {e[a_] - e[b_]:.1f} win points between its groups ({np.percentile(gap, 5):+.1f} to {np.percentile(gap, 95):+.1f})" if matters else "   (no clear difference between its groups)"))
+            for n_, k in enumerate(names):
+                g = o[label]["groups"][k]; w = "holding off ahead" if lo_[n_] > 0 else "the runner ahead" if hi_[n_] < 0 else "not clear"
+                pr(f"       {k:40} {g['held off']:4} held off, {g['sent']:3} sent: {e[n_]:+5.1f} ({lo_[n_]:+.1f} to {hi_[n_]:+.1f})  {w}")
+    return out
+
+
+PLACE = {0: "at the stand", 1: "at its own footmen", 2: "at its own door", 3: "in its own base", 4: "in its own pit", -1: "at their footmen", -2: "at their door", -3: "in their base", -4: "in their pit"}
+CALL_WORDS = {NONE: "holding off (no runner out at {R} s)", SENT: "a runner out by {R} s", DOUBLE: "a double run started by {R} s"}
+DID_WORDS = {NONE: "held off", SENT: "had a runner out", DOUBLE: "had started a double run"}
+VERDICT_WORDS = {"right": "the answer the data favours", "wrong": "against what the data favours", "no clear difference": "no clear difference either way", "an unusual spot: no like cases round it": "an unusual spot, no reading"}
+def card(s, i, K, M):
+    """One flag decision as sentences a player would use (stage 4; SPEC section 7, the query): the spot, what the
+    team did, what followed, and what teams in similar spots got from each answer. The last line is a reading, not
+    advice (the held-out test does not yet show a gain spot by spot)."""
+    c = s.C[i]; m = M[c["rid"]]; k = c["clock"]; us = c["team"]; them = next(t for t in m["teams"] if t != us); R = c["read"]
+    x, mo = c["x"], c["more"]; tr = c["their_runner"]["role"]; at = lambda sec: cl(sec)
+    place = lambda st_: PLACE.get(int(st_), "elsewhere") if st_ is not None else "place not read"
+    hold = f"{us} holds the stand" if c["stand"] == "own" else f"{them} holds the stand"
+    boost = "" if x[1] is None else f", boost in {x[1]:.0f} s"
+    if c["from_cap"]: L = [f"{at(k['anchor'])}  {us}'s flag goes in while {them}'s {tr} is still on his way with theirs (he set off at {at(k['their_off'])}). Run again, or not?"]
+    else: L = [f"{at(k['anchor'])}  {them}'s {tr} sets off for a flag ({c['their']}). {hold}{boost}."]
+    L.append(f"    The spot: main fight {x[2]:.0f} v {x[3]:.0f}, {us} {place(mo[1])}; morale {us} {x[4]:+.0f}, {them} {x[5]:+.0f} (a death is -15); flag lead {x[0]:+.2f}; base res in {mo[0]:.0f} s; {us}'s chance of winning {100 * c['p0']:.0f}%.")
+    d = _delay(c); who = (c.get("our_runner") or {}).get("role")
+    if d is None or d > 180: did = f"{us} sends nobody in the next three minutes."
+    elif d < 0: did = f"{us}'s {who or 'runner'} had already set off {-d} s before."
+    else: did = f"{us} sends {('its ' + who) if who else 'a runner'} {d} s later" + (" (a double run)" if k["our_double"] else "") + "."
+    L.append(f"    The answer: {did}")
+    h = c["hard"]["180"]; tf = c["their_flag"]
+    theirs = f"{them}'s flag in at {at(k['their_end'])}" if tf == "captured" else f"{them}'s flag does not get in ({tf or 'not capped'}, {at(k['their_end'])})"
+    ours = "" if d is None or d > 180 else (f"; {us}'s in at {at(k['our_end'])}" if k.get("our_how") == "captured" else f"; {us}'s does not get in")
+    lc = h["lead_change"]
+    L.append(f"    What followed, 180 s on: {theirs}{ours}; flag lead {'not read' if lc is None else format(lc, '+.2f')}; deaths {us} {h['deaths'][0]}, {them} {h['deaths'][1]}; boosts {us} {h['boosts'][0]}, {them} {h['boosts'][1]}; "
+             f"{us}'s chance of winning {100 * c['p0']:.0f}% to {100 * c['p0'] + c['v']['180']:.0f}% ({c['v']['180']:+.1f}).")
+    r = s.read(i, K, False, "180"); W = r["calls"]
+    if len(W) < 2: L.append("    Similar spots: too few to compare the answers.")
+    else:
+        parts = "; ".join(f"{CALL_WORDS[a].format(R=R)} {w['worth']:+.1f} ({w['plays']} cases)" for a, w in sorted(W.items(), key=lambda kv: -kv[1]["worth"]))
+        if r.get("unusual"): L.append(f"    Similar spots: an unusual spot ({us} at {100 * c['p0']:.0f}% to win); the nearest cases all lie to one side of it, so no reading. {us} {DID_WORDS[c['call']]}.")
+        else:
+            if r["clear"]: verdict = f"the data favours {CALL_WORDS[r['advice']].format(R=R)} by {r['margin']:.1f} win points ({r['range'][0]:+.1f} to {r['range'][1]:+.1f})"
+            else: verdict = f"no clear difference ({r['margin']:.1f}, {r['range'][0]:+.1f} to {r['range'][1]:+.1f})"
+            mine = "" if "mine" not in r else f" {us} {DID_WORDS[c['call']]}: {VERDICT_WORDS.get(r['verdict'], r['verdict'])}."
+            L.append(f"    Similar spots, 180 s on, from the same position: {parts}: {verdict}.{mine}")
+    if R != READS[0]: L = [f"    Second look, {R} s in, still nobody sent" + L[-1].strip()[len("Similar spots"):]]
+    return "\n".join(L), {"rid": c["rid"], "t": k["anchor"], "team": us, "read": R, "call": c["call"], "advice": r["advice"] if r["clear"] else None, "verdict": r["verdict"], "margin": r["margin"], "range": r["range"], "v180": c["v"]["180"]}
+
+
+def cards(path, which="f1", out_json=None):
+    """The sentence for every answer to a flag run (and every "run again, or not") in a set of whole games of the
+    development set (default f1, the games he graded), or in one match by report id. In match order."""
+    D, M, B, P, C, skipped, S = build(path)
+    K, _ = choose_k(S)
+    dv = json.load(open(os.path.join(REPO, "data", "model", "dev_set.json")))
+    rids = [w["rid"] for w in sorted(dv["whole_game"], key=lambda w: w.get("part", 0)) if w.get("set") == which] or [r for r in M if r.startswith(which)]
+    if not rids: sys.exit("no such set or match")
+    print("Flag decisions as the engine reads them. \"Similar spots\" is a reading, not advice: spot by spot it does not yet hold on unseen matches. Times are match time; the first is the second to go to.")
+    res = []
+    for rid in rids:
+        m = M[rid]; L = m.get("length_s")
+        rows = sorted(((s.C[i]["clock"]["anchor"], s.C[i]["read"], s.C[i]["team"], name, i) for name, s in S.items() if " after their runner set off" in name or " after our cap" in name
+                       for i in range(len(s.C)) if s.C[i]["rid"] == rid))
+        print(f"\n\n=== {' v '.join(m['teams'])}, {m['map']}, {m['date']}" + (f", {L // 60}:{L % 60:02d} long" if L else "") + f": https://gvg.report/report/{rid}#map")
+        for _, R_, _, name, i in rows:
+            text, rec = card(S[name], i, K, M); print(("\n" if R_ == READS[0] else "") + text); res.append(rec)
+        first = [r for r in res if r["rid"] == rid and r["read"] == READS[0]]
+        tally = collections.Counter(VERDICT_WORDS.get(r["verdict"], r["verdict"]) for r in first)
+        if first: print(f"\n  In this game, at the first look: " + "; ".join(f"{k} {v}" for k, v in tally.most_common()))
+    first = [r for r in res if r["read"] == READS[0]]
+    tally = collections.Counter(VERDICT_WORDS.get(r["verdict"], r["verdict"]) for r in first)
+    print(f"\nAll {len(rids)} games, {len(first)} decisions at the first look: " + "; ".join(f"{k} {v}" for k, v in tally.most_common()))
+    if out_json: json.dump(res, open(out_json, "w"), ensure_ascii=False, indent=1, default=float)
+    return res
+
+
 # ---- the report
 def build(path):
     D, M = load(path)
@@ -778,6 +924,7 @@ def report(path, out_json=None):
     res["held_off"] = held_off(S, D, M, K, pr)
     res["run_in_answer"] = run_in_answer(C, M, pr)
     res["as_it_fell"] = as_it_fell(C, pr)
+    res["factors"] = factors(S, pr)
     held = sum(1 for c in C if c["held"])
     pr(f"\n   The flag only held at home at a boost (a boost run that denies nothing while the rest fall back): {held} of {sum(1 for c in C if c['kind'] == 'boost')} boost cases.")
     if out_json: json.dump(res, open(out_json, "w"), ensure_ascii=False, indent=1, default=float)
@@ -1041,5 +1188,6 @@ if __name__ == "__main__":
     a = sys.argv[1:]
     if len(a) >= 2 and a[0] == "test": report(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 4 and a[0] == "case": case(a[1], a[2], a[3])
+    elif len(a) >= 2 and a[0] == "cards": cards(a[1], a[2] if len(a) > 2 and not a[2].startswith("--") else "f1", a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 2 and a[0] == "ladder": ladder(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     else: print(__doc__)
