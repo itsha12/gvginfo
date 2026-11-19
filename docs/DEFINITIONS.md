@@ -275,6 +275,10 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - Two cases are similar when they are in the same scenario (their single or double run, who holds the stand, a flag
   already in hand) and near one another on the flag lead, the time to the next boost, the players at the main fight
   on each side, each side's morale, the strength gap and the length of the hall's flag run (R-538, R-432, R-436).
+- A build is a fixed state, never a call and never a fix, but it bears on which call is right in every family: what
+  the builds can do is matched on as properties, never as labels (R-539, amending "builds stay out" in R-538; R-374).
+  For the answer to their run: each team's snares, who their runner is, and with them the res clock and where each
+  main team stands (R-540).
 - The better call is the one whose hard results at 90 and 180 s, priced by how much each moves the chance of winning
   the match, come out ahead among the nearest cases of other matches (R-538, R-294). A call is read only from 30
   plays or more out of 15 matches or more; under that, and where the range includes no difference, the verdict is

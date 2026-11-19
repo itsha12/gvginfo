@@ -244,7 +244,9 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   of a result (a small model of a position fitted on every moment, mirrored, held out by `cache.fold_of`: strength gap,
   flag lead, death penalty, morale boost, pit NPCs, Lord health; a stand-in for the win model until stage E; footmen are
   not priced, their price runs backwards, and each run prints that check), the nearest cases (the same scenario, then
-  the variables of R-538 in standard units, equal weight; K chosen by the data; the floor of 30 plays and 15 matches),
+  the variables of R-538 in standard units, equal weight, and for the answer to their run also the res clock, each main
+  team's place, their runner and each team's snares, R-539 and R-540: a build comes in as properties, never as a label;
+  K chosen by the data; the floor of 30 plays and 15 matches), what tips a stay (as it fell: a description, not a verdict),
   and the held-out advice test (the boost read with and without the flag only held at home). Every flag and boost play
   carries `state` and `after`, the position and the fixed 90 and 180 s record at the second the decision arises: judge
   calls from those, never from a play's own end. `cases.py case <plays file> <report id> <m:ss>` prints one decision
