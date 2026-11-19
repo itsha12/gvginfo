@@ -6,7 +6,7 @@
    "The spot: main fight Team 7 v HC 7 (even); Team's main team at the stand, HC's at the stand; morale Team no death penalty or boost, HC -30 (the eight summed; a death is -15); flags level; base res in 65 s; Team's chance of winning 34%.",
    "The answer: Team sends a runner 47 s later.",
    "What followed, 180 s on: HC's flag in at 3:35; Team's in at 4:34; flag lead -0.60 for Team; deaths Team 1, HC 2; boosts Team 0, HC 0; Team's chance of winning 34% to 34% (+0.2).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) -0.3 (90 cases); a runner out by 15 s -0.5 (90 cases): no clear difference (0.2, -3.5 to +3.9). Team held off: no clear difference either way."
+   "Similar spots, 180 s on, from the same position: a runner out by 15 s +0.6 (90 cases); holding off (no runner out at 15 s) -0.3 (90 cases): no clear difference (0.9, -2.6 to +4.4). Team held off: no clear difference either way."
   ],
   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
   "t": 175,
@@ -17,17 +17,17 @@
   "compared": true,
   "advice": null,
   "verdict": "no clear difference",
-  "margin": 0.2271160746977376,
+  "margin": 0.8574461712165352,
   "range": [
-   -3.479036279572855,
-   3.9332684289683297
+   -2.6424271527423366,
+   4.357319495175407
   ],
-  "v180": 0.22414412527324568
+  "v180": 0.24051301499810607
  },
  {
   "id": "9b5cdf62-flag-2-177-13",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +1.1 (90 cases); a runner out by 30 s +0.7 (90 cases): no clear difference (0.4, -3.2 to +4.1). Team held off: no clear difference either way."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +2.6 (90 cases); holding off (no runner out at 30 s) +0.8 (90 cases): no clear difference (1.8, -1.6 to +5.2). Team held off: no clear difference either way."
   ],
   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
   "t": 175,
@@ -38,12 +38,12 @@
   "compared": true,
   "advice": null,
   "verdict": "no clear difference",
-  "margin": 0.410341434945514,
+  "margin": 1.8030415795581525,
   "range": [
-   -3.2369961144013932,
-   4.057678984292421
+   -1.6424453648914557,
+   5.24852852400776
   ],
-  "v180": 0.22414412527324568
+  "v180": 0.24051301499810607
  },
  {
   "id": "9b5cdf62-flag-1-226-16",
@@ -52,7 +52,7 @@
    "The spot: main fight HC 7 v Team 7 (even); HC's main team at the stand, Team's at the stand; morale HC -30, Team no death penalty or boost (the eight summed; a death is -15); HC ahead on flags by 1.0; base res in 18 s; HC's chance of winning 71%.",
    "The answer: HC sends its Mes/A 30 s later.",
    "What followed, 180 s on: Team's flag in at 4:34; HC's in at 5:08; flag lead -0.24 for HC; deaths HC 2, Team 1; boosts HC 0, Team 0; HC's chance of winning 71% to 66% (-4.3).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +1.5 (90 cases); a runner out by 15 s -1.7 (90 cases): no clear difference (3.2, -0.4 to +6.7). HC held off: no clear difference either way."
+   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +1.3 (90 cases); a runner out by 15 s -1.6 (90 cases): no clear difference (2.9, -0.5 to +6.4). HC held off: no clear difference either way."
   ],
   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
   "t": 222,
@@ -63,17 +63,17 @@
   "compared": true,
   "advice": null,
   "verdict": "no clear difference",
-  "margin": 3.1647789116769323,
+  "margin": 2.9439655466085126,
   "range": [
-   -0.405466807709463,
-   6.735024631063327
+   -0.48456776613283825,
+   6.3724988593498635
   ],
-  "v180": -4.302328226709696
+  "v180": -4.309381375944521
  },
  {
   "id": "9b5cdf62-flag-1-226-16",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +0.9 (90 cases); a runner out by 30 s -4.4 (90 cases): the data favours holding off (no runner out at 30 s) by 5.2 win points (+1.9 to +8.6). HC had a runner out: against what the data favours."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +0.8 (90 cases); a runner out by 30 s -0.3 (90 cases): no clear difference (1.1, -2.0 to +4.1). HC had a runner out: no clear difference either way."
   ],
   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
   "t": 222,
@@ -82,14 +82,14 @@
   "call": "a runner sent by now",
   "unusual": false,
   "compared": true,
-  "advice": "no runner yet",
-  "verdict": "wrong",
-  "margin": 5.249768106383496,
+  "advice": null,
+  "verdict": "no clear difference",
+  "margin": 1.0578678748322883,
   "range": [
-   1.9280480304829721,
-   8.571488182284021
+   -1.9978741374492368,
+   4.113609887113814
   ],
-  "v180": -4.302328226709696
+  "v180": -4.309381375944521
  },
  {
   "id": "9b5cdf62-flag-2-274-23",
@@ -98,7 +98,7 @@
    "The spot: main fight Team 6 v HC 4 (Team up by 2); Team's main team at the stand, HC's at the stand; morale Team no death penalty or boost, HC -45 (the eight summed; a death is -15); Team ahead on flags by 0.5; base res in 86 s; Team's chance of winning 43%.",
    "The answer: Team sends its Monk 5 (WoC) 18 s later.",
    "What followed, 180 s on: HC's flag in at 5:08; Team's in at 5:58; flag lead -0.05 for Team; deaths Team 2, HC 1; boosts Team 0, HC 0; Team's chance of winning 43% to 32% (-11.2).",
-   "Similar spots, 180 s on, from the same position: a runner out by 15 s -3.0 (90 cases); holding off (no runner out at 15 s) -3.6 (90 cases): no clear difference (0.7, -3.0 to +4.4). Team held off: no clear difference either way."
+   "Similar spots, 180 s on, from the same position: a runner out by 15 s -2.9 (90 cases); holding off (no runner out at 15 s) -3.0 (90 cases): no clear difference (0.1, -3.6 to +3.8). Team held off: no clear difference either way."
   ],
   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
   "t": 274,
@@ -109,17 +109,17 @@
   "compared": true,
   "advice": null,
   "verdict": "no clear difference",
-  "margin": 0.6603089236396213,
+  "margin": 0.07651414082479802,
   "range": [
-   -3.0422852005122842,
-   4.3629030477915265
+   -3.613695933209379,
+   3.766724214858975
   ],
-  "v180": -11.153852555370259
+  "v180": -11.17922988175401
  },
  {
   "id": "9b5cdf62-flag-2-274-23",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +2.5 (31 cases); holding off (no runner out at 30 s) -3.4 (90 cases): the data favours a runner out by 30 s by 5.9 win points (+1.9 to +9.8). Team had a runner out: the answer the data favours."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +2.2 (31 cases); holding off (no runner out at 30 s) -2.9 (90 cases): the data favours a runner out by 30 s by 5.1 win points (+1.2 to +9.1). Team had a runner out: the answer the data favours."
   ],
   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
   "t": 274,
@@ -130,12 +130,12 @@
   "compared": true,
   "advice": "a runner sent by now",
   "verdict": "right",
-  "margin": 5.859821488114585,
+  "margin": 5.117894728272811,
   "range": [
-   1.8699875828479517,
-   9.84965539338122
+   1.1591491613900557,
+   9.076640295155565
   ],
-  "v180": -11.153852555370259
+  "v180": -11.17922988175401
  },
  {
   "id": "9b5cdf62-flag-1-308-24",
@@ -144,7 +144,7 @@
    "The spot: main fight HC 7 v Team 6 (HC up by 1); HC's main team at the stand, Team's at the stand; morale HC -45, Team no death penalty or boost (the eight summed; a death is -15); flags level; base res in 52 s; HC's chance of winning 60%.",
    "The answer: HC sends its Mes/A 38 s later.",
    "What followed, 180 s on: Team's flag in at 5:58; HC's in at 6:36; flag lead -0.55 for HC; deaths HC 3, Team 2; boosts HC 0, Team 0; HC's chance of winning 60% to 55% (-5.0).",
-   "Similar spots, 180 s on, from the same position: a runner out by 15 s +4.4 (90 cases); holding off (no runner out at 15 s) -1.9 (90 cases): the data favours a runner out by 15 s by 6.4 win points (+2.8 to +10.0). HC held off: against what the data favours."
+   "Similar spots, 180 s on, from the same position: a runner out by 15 s +4.3 (90 cases); holding off (no runner out at 15 s) -1.6 (90 cases): the data favours a runner out by 15 s by 5.9 win points (+2.3 to +9.5). HC held off: against what the data favours."
   ],
   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
   "t": 308,
@@ -155,17 +155,17 @@
   "compared": true,
   "advice": "a runner sent by now",
   "verdict": "wrong",
-  "margin": 6.363802639925609,
+  "margin": 5.888457154918077,
   "range": [
-   2.777175711977309,
-   9.95042956787391
+   2.2806110276034133,
+   9.496303282232741
   ],
-  "v180": -5.014460982634505
+  "v180": -5.010405449601629
  },
  {
   "id": "9b5cdf62-flag-1-308-24",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +2.5 (31 cases); holding off (no runner out at 30 s) -0.4 (90 cases): no clear difference (2.9, -1.1 to +6.8). HC held off: no clear difference either way."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +2.2 (31 cases); holding off (no runner out at 30 s) -0.1 (90 cases): no clear difference (2.2, -1.7 to +6.2). HC held off: no clear difference either way."
   ],
   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
   "t": 308,
@@ -176,12 +176,12 @@
   "compared": true,
   "advice": null,
   "verdict": "no clear difference",
-  "margin": 2.865920391554505,
+  "margin": 2.2442042356024974,
   "range": [
-   -1.113314460685769,
-   6.845155243794778
+   -1.7237828641859894,
+   6.212191335390984
   ],
-  "v180": -5.014460982634505
+  "v180": -5.010405449601629
  },
  {
   "id": "9b5cdf62-flag-2-358-29",
@@ -190,7 +190,7 @@
    "The spot: main fight Team 7 v HC 5 (Team up by 2); Team's main team at the stand, HC's at the stand; morale Team -15, HC -54 (the eight summed; a death is -15); HC ahead on flags by 0.6; base res in 2 s; Team's chance of winning 35%.",
    "The answer: Team sends its Monk 5 (WoC) 36 s later.",
    "What followed, 180 s on: HC's flag in at 6:36; Team's in at 7:33; flag lead +0.48 for Team; deaths Team 1, HC 2; boosts Team 0, HC 0; Team's chance of winning 35% to 41% (+6.7).",
-   "Similar spots, 180 s on, from the same position: a runner out by 15 s +8.4 (90 cases); holding off (no runner out at 15 s) -1.6 (90 cases): the data favours a runner out by 15 s by 10.0 win points (+6.6 to +13.4). Team held off: against what the data favours."
+   "Similar spots, 180 s on, from the same position: a runner out by 15 s +8.4 (90 cases); holding off (no runner out at 15 s) -1.1 (90 cases): the data favours a runner out by 15 s by 9.5 win points (+6.1 to +12.9). Team held off: against what the data favours."
   ],
   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
   "t": 358,
@@ -201,17 +201,17 @@
   "compared": true,
   "advice": "a runner sent by now",
   "verdict": "wrong",
-  "margin": 9.960237124050309,
+  "margin": 9.494381093509523,
   "range": [
-   6.559456557086747,
-   13.36101769101387
+   6.099961747885029,
+   12.888800439134016
   ],
-  "v180": 6.730396761323798
+  "v180": 6.734996083195349
  },
  {
   "id": "9b5cdf62-flag-2-358-29",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +2.5 (31 cases); holding off (no runner out at 30 s) +1.0 (90 cases): no clear difference (1.5, -2.5 to +5.5). Team held off: no clear difference either way."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +2.2 (31 cases); holding off (no runner out at 30 s) +1.3 (90 cases): no clear difference (0.8, -3.1 to +4.8). Team held off: no clear difference either way."
   ],
   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
   "t": 358,
@@ -222,12 +222,12 @@
   "compared": true,
   "advice": null,
   "verdict": "no clear difference",
-  "margin": 1.498761718573041,
+  "margin": 0.8384982246324146,
   "range": [
-   -2.455735303612586,
-   5.453258740758669
+   -3.102691912740508,
+   4.779688362005338
   ],
-  "v180": 6.730396761323798
+  "v180": 6.734996083195349
  },
  {
   "id": "9b5cdf62-flag-1-400-32",
@@ -236,7 +236,7 @@
    "The spot: main fight HC 7 v Team 7 (even); HC's main team at the stand, Team's at the stand; morale HC -54, Team -15 (the eight summed; a death is -15); flags level; base res in 86 s; HC's chance of winning 62%.",
    "The answer: HC sends its Mes/A 32 s later.",
    "What followed, 180 s on: Team's flag in at 7:33; HC's does not get in; flag lead +1.01 for HC; deaths HC 2, Team 1; boosts HC 0, Team 0; HC's chance of winning 62% to 63% (+1.2).",
-   "Similar spots, 180 s on, from the same position: a runner out by 15 s +6.7 (90 cases); holding off (no runner out at 15 s) +0.4 (90 cases): the data favours a runner out by 15 s by 6.3 win points (+3.2 to +9.3). HC held off: against what the data favours."
+   "Similar spots, 180 s on, from the same position: a runner out by 15 s +7.7 (90 cases); holding off (no runner out at 15 s) +0.1 (90 cases): the data favours a runner out by 15 s by 7.5 win points (+4.5 to +10.6). HC held off: against what the data favours."
   ],
   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
   "t": 394,
@@ -247,17 +247,17 @@
   "compared": true,
   "advice": "a runner sent by now",
   "verdict": "wrong",
-  "margin": 6.274811573550645,
+  "margin": 7.534463348611179,
   "range": [
-   3.2031553079897073,
-   9.346467839111583
+   4.485592690541676,
+   10.583334006680682
   ],
-  "v180": 1.1787549261197072
+  "v180": 1.1544159208085936
  },
  {
   "id": "9b5cdf62-flag-1-400-32",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +1.5 (90 cases); a runner out by 30 s -3.6 (81 cases): the data favours holding off (no runner out at 30 s) by 5.1 win points (+2.1 to +8.2). HC held off: the answer the data favours."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +1.3 (90 cases); a runner out by 30 s -6.1 (82 cases): the data favours holding off (no runner out at 30 s) by 7.5 win points (+4.2 to +10.8). HC held off: the answer the data favours."
   ],
   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
   "t": 394,
@@ -268,12 +268,12 @@
   "compared": true,
   "advice": "no runner yet",
   "verdict": "right",
-  "margin": 5.140176658550871,
+  "margin": 7.472713760996219,
   "range": [
-   2.1283120397805746,
-   8.152041277321167
+   4.176204291423618,
+   10.76922323056882
   ],
-  "v180": 1.1787549261197072
+  "v180": 1.1544159208085936
  },
  {
   "id": "9b5cdf62-flag-2-471-35",
@@ -282,7 +282,7 @@
    "The spot: main fight Team 7 v HC 5 (Team up by 2); Team's main team at the stand, HC's at the stand; morale Team -26, HC -76 (the eight summed; a death is -15); Team ahead on flags by 0.6; base res in 9 s; Team's chance of winning 45%.",
    "The answer: Team sends a runner 76 s later.",
    "What followed, 180 s on: HC's flag in at 9:02; Team's in at 10:24; flag lead -1.26 for Team; deaths Team 0, HC 0; boosts Team 0, HC 0; Team's chance of winning 45% to 31% (-14.1).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +5.9 (90 cases); a runner out by 15 s -5.4 (90 cases): the data favours holding off (no runner out at 15 s) by 11.4 win points (+7.5 to +15.2). Team held off: the answer the data favours."
+   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +5.6 (90 cases); a runner out by 15 s -6.3 (90 cases): the data favours holding off (no runner out at 15 s) by 11.9 win points (+8.0 to +15.7). Team held off: the answer the data favours."
   ],
   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
   "t": 471,
@@ -293,17 +293,17 @@
   "compared": true,
   "advice": "no runner yet",
   "verdict": "right",
-  "margin": 11.361064111040482,
+  "margin": 11.863200089812404,
   "range": [
-   7.516911910262853,
-   15.205216311818113
+   8.038472847729626,
+   15.687927331895182
   ],
-  "v180": -14.149753138305726
+  "v180": -14.144673973283538
  },
  {
   "id": "9b5cdf62-flag-2-471-35",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +4.4 (90 cases); a runner out by 30 s +0.8 (90 cases): the data favours holding off (no runner out at 30 s) by 3.6 win points (+0.0 to +7.1). Team held off: the answer the data favours."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +4.4 (90 cases); a runner out by 30 s +0.8 (90 cases): the data favours holding off (no runner out at 30 s) by 3.5 win points (+0.2 to +6.8). Team held off: the answer the data favours."
   ],
   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
   "t": 471,
@@ -314,12 +314,12 @@
   "compared": true,
   "advice": "no runner yet",
   "verdict": "right",
-  "margin": 3.5698767197305687,
+  "margin": 3.5458422611176834,
   "range": [
-   0.0416097688206456,
-   7.098143670640492
+   0.24901103843854733,
+   6.842673483796819
   ],
-  "v180": -14.149753138305726
+  "v180": -14.144673973283538
  },
  {
   "id": "9b5cdf62-flag-2-543-40",
@@ -328,7 +328,7 @@
    "The spot: main fight Team 6 v HC 8 (HC up by 2); Team's main team at the stand, HC's at the stand; morale Team -26, HC -76 (the eight summed; a death is -15); flags level; base res in 67 s; Team's chance of winning 43%.",
    "The answer: Team sends its Monk 5 (WoC) 14 s later.",
    "What followed, 180 s on: HC's flag in at 10:27; Team's in at 10:24; flag lead +0.63 for Team; deaths Team 0, HC 0; boosts Team 0, HC 0; Team's chance of winning 43% to 38% (-4.3).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) -1.5 (90 cases); a runner out by 15 s -2.5 (90 cases): no clear difference (1.1, -2.7 to +4.8). Team had a runner out: no clear difference either way."
+   "Similar spots, 180 s on, from the same position: a runner out by 15 s +0.1 (90 cases); holding off (no runner out at 15 s) -1.5 (90 cases): no clear difference (1.6, -1.9 to +5.2). Team had a runner out: no clear difference either way."
   ],
   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
   "t": 533,
@@ -339,12 +339,12 @@
   "compared": true,
   "advice": null,
   "verdict": "no clear difference",
-  "margin": 1.0576573539480254,
+  "margin": 1.6272182290227117,
   "range": [
-   -2.655485064145981,
-   4.770799772042032
+   -1.9165904098445063,
+   5.17102686788993
   ],
-  "v180": -4.317864778699132
+  "v180": -4.337820646187307
  },
  {
   "id": "9b5cdf62-flag-1-641-55",
@@ -353,7 +353,7 @@
    "The spot: main fight HC 4 v Team 4 (even); HC's main team at the stand, Team's at the stand; morale HC -76, Team -26 (the eight summed; a death is -15); HC ahead on flags by 1.0; base res in 97 s; HC's chance of winning 67%.",
    "The answer: HC sends its Mes/A 56 s later.",
    "What followed, 180 s on: Team's flag in at 11:35; HC's in at 12:02; flag lead -1.80 for HC; deaths HC 0, Team 2; boosts HC 0, Team 0; HC's chance of winning 67% to 78% (+11.1).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +2.0 (90 cases); a runner out by 15 s -0.5 (90 cases): no clear difference (2.6, -0.9 to +6.0). HC held off: no clear difference either way."
+   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +2.4 (90 cases); a runner out by 15 s +2.1 (90 cases): no clear difference (0.3, -3.0 to +3.6). HC held off: no clear difference either way."
   ],
   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
   "t": 623,
@@ -364,17 +364,17 @@
   "compared": true,
   "advice": null,
   "verdict": "no clear difference",
-  "margin": 2.577751295455749,
+  "margin": 0.2801851071435153,
   "range": [
-   -0.8845908167351295,
-   6.040093407646627
+   -3.031644890272981,
+   3.5920151045600117
   ],
-  "v180": 11.068227626629778
+  "v180": 11.13667486284864
  },
  {
   "id": "9b5cdf62-flag-1-641-55",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +2.3 (90 cases); a runner out by 30 s -0.2 (90 cases): no clear difference (2.5, -0.6 to +5.7). HC held off: no clear difference either way."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +2.2 (90 cases); a runner out by 30 s +0.3 (90 cases): no clear difference (1.8, -1.0 to +4.7). HC held off: no clear difference either way."
   ],
   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
   "t": 623,
@@ -385,12 +385,12 @@
   "compared": true,
   "advice": null,
   "verdict": "no clear difference",
-  "margin": 2.516758939009921,
+  "margin": 1.8448337479637944,
   "range": [
-   -0.6360503152339976,
-   5.6695681932538395
+   -1.037931785439031,
+   4.72759928136662
   ],
-  "v180": 11.068227626629778
+  "v180": 11.13667486284864
  },
  {
   "id": "9b5cdf62-flag-1-678-58",
@@ -398,8 +398,8 @@
    "11:18  Team's Monk 5 (WoC) sets off for a flag (double run). HC holds the stand, boost in 69 s.",
    "The spot: main fight HC 6 v Team 6 (even); HC's main team at the stand, Team's at Team's footmen; morale HC -76, Team -26 (the eight summed; a death is -15); flags level; base res in 42 s; HC's chance of winning 67%.",
    "The answer: HC sends its Mes/A 1 s later.",
-   "What followed, 180 s on: Team's flag in at 12:33; HC's in at 12:02; flag lead -1.19 for HC; deaths HC 0, Team 3; boosts HC 0, Team 0; HC's chance of winning 67% to 84% (+17.0).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +9.9 (75 cases); a runner out by 15 s -1.4 (43 cases): the data favours holding off (no runner out at 15 s) by 11.4 win points (+7.6 to +15.1). HC had a runner out: against what the data favours."
+   "What followed, 180 s on: Team's flag in at 12:33; HC's in at 12:02; flag lead -1.19 for HC; deaths HC 0, Team 3; boosts HC 0, Team 0; HC's chance of winning 67% to 84% (+17.1).",
+   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +9.9 (76 cases); a runner out by 15 s -0.6 (45 cases): the data favours holding off (no runner out at 15 s) by 10.5 win points (+6.8 to +14.3). HC had a runner out: against what the data favours."
   ],
   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
   "t": 678,
@@ -410,12 +410,12 @@
   "compared": true,
   "advice": "no runner yet",
   "verdict": "wrong",
-  "margin": 11.365090044485175,
+  "margin": 10.53805658601997,
   "range": [
-   7.6190429275940925,
-   15.111137161376258
+   6.812112649206829,
+   14.264000522833111
   ],
-  "v180": 17.018919423683997
+  "v180": 17.085425246498996
  },
  {
   "id": "9b5cdf62-flag-2-695-65",
@@ -423,8 +423,8 @@
    "11:35  Team's flag goes in while HC's Mes/A is still on his way with theirs (he set off at 11:19). Run again, or not?",
    "The spot: main fight Team 5 v HC 4 (Team up by 1); Team's main team at the stand, HC's at the stand; morale Team -26, HC -76 (the eight summed; a death is -15); flags level; base res in 25 s; Team's chance of winning 34%.",
    "The answer: Team sends a runner 74 s later.",
-   "What followed, 180 s on: HC's flag in at 12:02; Team's in at 14:04; flag lead +0.55 for Team; deaths Team 5, HC 0; boosts Team 0, HC 0; Team's chance of winning 34% to 10% (-23.8).",
-   "Similar spots, 180 s on, from the same position: a runner out by 15 s +4.4 (90 cases); holding off (no runner out at 15 s) -2.4 (90 cases): the data favours a runner out by 15 s by 6.8 win points (+3.4 to +10.2). Team held off: against what the data favours."
+   "What followed, 180 s on: HC's flag in at 12:02; Team's in at 14:04; flag lead +0.55 for Team; deaths Team 5, HC 0; boosts Team 0, HC 0; Team's chance of winning 34% to 10% (-23.9).",
+   "Similar spots, 180 s on, from the same position: a runner out by 15 s +4.3 (90 cases); holding off (no runner out at 15 s) -1.9 (90 cases): the data favours a runner out by 15 s by 6.1 win points (+2.7 to +9.6). Team held off: against what the data favours."
   ],
   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
   "t": 695,
@@ -435,12 +435,12 @@
   "compared": true,
   "advice": "a runner sent by now",
   "verdict": "wrong",
-  "margin": 6.801056595146491,
+  "margin": 6.135268997706341,
   "range": [
-   3.386133368594651,
-   10.215979821698332
+   2.7188542782985623,
+   9.55168371711412
   ],
-  "v180": -23.81003093891632
+  "v180": -23.876043023180557
  },
  {
   "id": "9b5cdf62-flag-1-769-76",
@@ -449,7 +449,7 @@
    "The spot: main fight HC 5 v Team 5 (even); HC's main team at the stand, Team's at the stand; morale HC -66, Team -41 (the eight summed; a death is -15); Team ahead on flags by 1.0; base res in 71 s; HC's chance of winning 70%.",
    "The answer: HC sends its AoB Derv 6 s later.",
    "What followed, 180 s on: Team's flag in at 14:04; HC's in at 13:34; flag lead +2.00 for HC; deaths HC 0, Team 4; boosts HC 0, Team 0; HC's chance of winning 70% to 96% (+26.2).",
-   "Similar spots, 180 s on, from the same position: a runner out by 15 s +6.9 (90 cases); holding off (no runner out at 15 s) +3.6 (90 cases): the data favours a runner out by 15 s by 3.2 win points (+0.1 to +6.4). HC had a runner out: the answer the data favours."
+   "Similar spots, 180 s on, from the same position: a runner out by 15 s +9.2 (90 cases); holding off (no runner out at 15 s) +3.5 (90 cases): the data favours a runner out by 15 s by 5.7 win points (+2.5 to +8.9). HC had a runner out: the answer the data favours."
   ],
   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
   "t": 769,
@@ -460,12 +460,12 @@
   "compared": true,
   "advice": "a runner sent by now",
   "verdict": "right",
-  "margin": 3.2469644860737645,
+  "margin": 5.67772080558912,
   "range": [
-   0.09010807956856404,
-   6.403820892578965
+   2.4880849792101776,
+   8.867356631968061
   ],
-  "v180": 26.166707524611542
+  "v180": 26.189721777622598
  },
  {
   "id": "9b5cdf62-flag-2-866-86",
@@ -474,7 +474,7 @@
    "The spot: main fight Team 3 v HC 5 (HC up by 2); Team's main team at the stand, HC's at the stand; morale Team -71, HC -46 (the eight summed; a death is -15); Team ahead on flags by 1.0; base res in 102 s; Team's chance of winning 16%.",
    "The answer: Team sends nobody in the next three minutes.",
    "What followed, 180 s on: HC's flag in at 14:57; flag lead -2.00 for Team; deaths Team 2, HC 0; boosts Team 0, HC 1; Team's chance of winning 16% to 2% (-14.4).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) -7.8 (90 cases); a runner out by 15 s -11.3 (90 cases): the data favours holding off (no runner out at 15 s) by 3.5 win points (+0.2 to +6.8). Team held off: the answer the data favours."
+   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) -8.2 (90 cases); a runner out by 15 s -11.5 (90 cases): the data favours holding off (no runner out at 15 s) by 3.3 win points (+0.2 to +6.5). Team held off: the answer the data favours."
   ],
   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
   "t": 858,
@@ -485,17 +485,17 @@
   "compared": true,
   "advice": "no runner yet",
   "verdict": "right",
-  "margin": 3.487178397282734,
+  "margin": 3.3380291452832473,
   "range": [
-   0.18620978594630655,
-   6.788147008619161
+   0.18971596719861727,
+   6.486342323367877
   ],
-  "v180": -14.44848837122184
+  "v180": -14.440877142420364
  },
  {
   "id": "9b5cdf62-flag-2-866-86",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s -2.5 (90 cases); holding off (no runner out at 30 s) -7.7 (90 cases): the data favours a runner out by 30 s by 5.2 win points (+2.1 to +8.4). Team held off: against what the data favours."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s -2.9 (90 cases); holding off (no runner out at 30 s) -8.7 (90 cases): the data favours a runner out by 30 s by 5.8 win points (+2.7 to +8.9). Team held off: against what the data favours."
   ],
   "rid": "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96",
   "t": 858,
@@ -506,12 +506,12 @@
   "compared": true,
   "advice": "a runner sent by now",
   "verdict": "wrong",
-  "margin": 5.238579897113777,
+  "margin": 5.8300151802629205,
   "range": [
-   2.0739967457835675,
-   8.403163048443986
+   2.7191179143950674,
+   8.940912446130774
   ],
-  "v180": -14.44848837122184
+  "v180": -14.440877142420364
  },
  {
   "id": "51683de9-flag-2-241-8",
@@ -520,7 +520,7 @@
    "The spot: main fight Crew 8 v Men 6 (Crew up by 2); Crew's main team at the stand, Men's at the stand; morale Crew no death penalty or boost, Men -60 (the eight summed; a death is -15); Crew ahead on flags by 0.5; base res in 119 s; Crew's chance of winning 32%.",
    "The answer: Crew sends nobody in the next three minutes.",
    "What followed, 180 s on: Men's flag does not get in (returned, 4:18); flag lead -0.58 for Crew; deaths Crew 0, Men 2; boosts Crew 1, Men 0; Crew's chance of winning 32% to 50% (+17.3).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +0.6 (90 cases); a runner out by 15 s -2.7 (90 cases): no clear difference (3.3, -0.4 to +7.0). Crew held off: no clear difference either way."
+   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +1.2 (90 cases); a runner out by 15 s -0.4 (90 cases): no clear difference (1.6, -2.0 to +5.2). Crew held off: no clear difference either way."
   ],
   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
   "t": 241,
@@ -531,12 +531,12 @@
   "compared": true,
   "advice": null,
   "verdict": "no clear difference",
-  "margin": 3.3279408554582144,
+  "margin": 1.5519730757609416,
   "range": [
-   -0.36089220090236607,
-   7.016773911818795
+   -2.049929759446183,
+   5.153875910968066
   ],
-  "v180": 17.343713954455847
+  "v180": 17.34598323283641
  },
  {
   "id": "51683de9-flag-2-293-10",
@@ -544,8 +544,8 @@
    "4:53  Men's Ranger sets off for a flag (single run). Crew holds the stand, boost in 21 s.",
    "The spot: main fight Crew 8 v Men 6 (Crew up by 2); Crew's main team at the stand, Men's at Men's footmen; morale Crew no death penalty or boost, Men -90 (the eight summed; a death is -15); flags level; base res in 67 s; Crew's chance of winning 41%.",
    "The answer: Crew sends nobody in the next three minutes.",
-   "What followed, 180 s on: Men's flag does not get in (put down, 5:46); flag lead -0.17 for Crew; deaths Crew 0, Men 0; boosts Crew 2, Men 0; Crew's chance of winning 41% to 50% (+8.8).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +6.4 (90 cases); a runner out by 15 s +0.1 (90 cases): the data favours holding off (no runner out at 15 s) by 6.4 win points (+2.8 to +9.9). Crew held off: the answer the data favours."
+   "What followed, 180 s on: Men's flag does not get in (put down, 5:46); flag lead -0.17 for Crew; deaths Crew 0, Men 0; boosts Crew 2, Men 0; Crew's chance of winning 41% to 50% (+8.7).",
+   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +6.2 (90 cases); a runner out by 15 s +1.9 (90 cases): the data favours holding off (no runner out at 15 s) by 4.3 win points (+0.8 to +7.8). Crew held off: the answer the data favours."
   ],
   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
   "t": 293,
@@ -556,17 +556,17 @@
   "compared": true,
   "advice": "no runner yet",
   "verdict": "right",
-  "margin": 6.355320503653174,
+  "margin": 4.279724837984443,
   "range": [
-   2.8331613182579733,
-   9.877479689048375
+   0.7988083606966851,
+   7.7606413152722
   ],
-  "v180": 8.758774511402667
+  "v180": 8.74331014919269
  },
  {
   "id": "51683de9-flag-2-293-10",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +7.8 (90 cases); holding off (no runner out at 30 s) +2.1 (90 cases): the data favours a runner out by 30 s by 5.7 win points (+1.9 to +9.5). Crew held off: against what the data favours."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +11.4 (90 cases); holding off (no runner out at 30 s) +2.1 (90 cases): the data favours a runner out by 30 s by 9.4 win points (+5.8 to +12.9). Crew held off: against what the data favours."
   ],
   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
   "t": 293,
@@ -577,12 +577,12 @@
   "compared": true,
   "advice": "a runner sent by now",
   "verdict": "wrong",
-  "margin": 5.705231981263017,
+  "margin": 9.350445745271891,
   "range": [
-   1.8693660076098841,
-   9.54109795491615
+   5.77341388108828,
+   12.9274776094555
   ],
-  "v180": 8.758774511402667
+  "v180": 8.74331014919269
  },
  {
   "id": "51683de9-flag-2-352-13",
@@ -591,7 +591,7 @@
    "The spot: main fight Crew 8 v Men 6 (Crew up by 2); Crew's main team at the stand, Men's at Men's footmen; morale Crew +80, Men -90 (the eight summed; a death is -15); flags level; base res in 8 s; Crew's chance of winning 51%.",
    "The answer: Crew sends nobody in the next three minutes.",
    "What followed, 180 s on: Men's flag in at 11:36; flag lead -0.19 for Crew; deaths Crew 0, Men 0; boosts Crew 1, Men 0; Crew's chance of winning 51% to 50% (-1.2).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +3.9 (90 cases); a runner out by 15 s -3.0 (90 cases): the data favours holding off (no runner out at 15 s) by 6.9 win points (+3.7 to +10.1). Crew held off: the answer the data favours."
+   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +4.2 (90 cases); a runner out by 15 s -1.9 (90 cases): the data favours holding off (no runner out at 15 s) by 6.1 win points (+3.0 to +9.3). Crew held off: the answer the data favours."
   ],
   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
   "t": 352,
@@ -602,17 +602,17 @@
   "compared": true,
   "advice": "no runner yet",
   "verdict": "right",
-  "margin": 6.899121534637251,
+  "margin": 6.133387955210852,
   "range": [
-   3.690867039307557,
-   10.107376029966945
+   2.9855445775536227,
+   9.281231332868082
   ],
-  "v180": -1.2368632866397722
+  "v180": -1.2383670967079041
  },
  {
   "id": "51683de9-flag-2-352-13",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +3.4 (90 cases); holding off (no runner out at 30 s) +3.1 (90 cases): no clear difference (0.3, -3.3 to +3.9). Crew held off: no clear difference either way."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +4.7 (90 cases); holding off (no runner out at 30 s) +3.1 (90 cases): no clear difference (1.6, -1.8 to +5.0). Crew held off: no clear difference either way."
   ],
   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
   "t": 352,
@@ -623,12 +623,12 @@
   "compared": true,
   "advice": null,
   "verdict": "no clear difference",
-  "margin": 0.28135660021805364,
+  "margin": 1.615617344809634,
   "range": [
-   -3.337888578009106,
-   3.900601778445213
+   -1.7663740763836913,
+   4.997608766002959
   ],
-  "v180": -1.2368632866397722
+  "v180": -1.2383670967079041
  },
  {
   "id": "51683de9-flag-1-692-23",
@@ -637,7 +637,7 @@
    "The spot: main fight Men 4 v Crew 5 (Crew up by 1); Men's main team at the stand, Crew's at the stand; morale Men -90, Crew +80 (the eight summed; a death is -15); flags level; base res in 28 s; Men's chance of winning 51%.",
    "The answer: Men sends its Ranger 11 s later.",
    "What followed, 180 s on: Crew's flag in at 12:23; Men's does not get in; flag lead -0.74 for Men; deaths Men 0, Crew 0; boosts Men 0, Crew 1; Men's chance of winning 51% to 46% (-4.8).",
-   "Similar spots, 180 s on, from the same position: a runner out by 15 s +7.1 (90 cases); holding off (no runner out at 15 s) +0.5 (90 cases): the data favours a runner out by 15 s by 6.6 win points (+3.5 to +9.7). Men had a runner out: the answer the data favours."
+   "Similar spots, 180 s on, from the same position: a runner out by 15 s +7.0 (90 cases); holding off (no runner out at 15 s) -1.4 (90 cases): the data favours a runner out by 15 s by 8.4 win points (+5.0 to +11.7). Men had a runner out: the answer the data favours."
   ],
   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
   "t": 692,
@@ -648,12 +648,12 @@
   "compared": true,
   "advice": "a runner sent by now",
   "verdict": "right",
-  "margin": 6.585978732428121,
+  "margin": 8.364713056982117,
   "range": [
-   3.4511606780265605,
-   9.72079678682968
+   5.012885673983963,
+   11.716540439980271
   ],
-  "v180": -4.809587281225197
+  "v180": -4.815186084283162
  },
  {
   "id": "51683de9-flag-2-746-24",
@@ -662,7 +662,7 @@
    "The spot: main fight Crew 8 v Men 8 (even); Crew's main team at the stand, Men's at Men's footmen; morale Crew +80, Men -90 (the eight summed; a death is -15); flags level; base res in 94 s; Crew's chance of winning 51%.",
    "The answer: Crew sends its Water Ele 51 s later.",
    "What followed, 180 s on: Men's flag does not get in (returned, 17:14); Crew's does not get in; flag lead +0.46 for Crew; deaths Crew 0, Men 0; boosts Crew 1, Men 0; Crew's chance of winning 51% to 54% (+3.0).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +3.3 (90 cases); a runner out by 15 s -5.9 (90 cases): the data favours holding off (no runner out at 15 s) by 9.1 win points (+5.8 to +12.5). Crew held off: the answer the data favours."
+   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +3.3 (90 cases); a runner out by 15 s -5.5 (90 cases): the data favours holding off (no runner out at 15 s) by 8.8 win points (+5.4 to +12.2). Crew held off: the answer the data favours."
   ],
   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
   "t": 746,
@@ -673,17 +673,17 @@
   "compared": true,
   "advice": "no runner yet",
   "verdict": "right",
-  "margin": 9.138518011475945,
+  "margin": 8.785445056893646,
   "range": [
-   5.7570803001783855,
-   12.519955722773505
+   5.386495145695299,
+   12.184394968091993
   ],
-  "v180": 2.9859171429406417
+  "v180": 2.9892357438360717
  },
  {
   "id": "51683de9-flag-2-746-24",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +7.2 (90 cases); holding off (no runner out at 30 s) -0.7 (90 cases): the data favours a runner out by 30 s by 7.9 win points (+4.2 to +11.6). Crew held off: against what the data favours."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +7.7 (90 cases); holding off (no runner out at 30 s) -1.0 (90 cases): the data favours a runner out by 30 s by 8.7 win points (+5.2 to +12.3). Crew held off: against what the data favours."
   ],
   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
   "t": 746,
@@ -694,12 +694,12 @@
   "compared": true,
   "advice": "a runner sent by now",
   "verdict": "wrong",
-  "margin": 7.92225553042524,
+  "margin": 8.732684162846795,
   "range": [
-   4.204003002083416,
-   11.640508058767065
+   5.181737460245757,
+   12.283630865447833
   ],
-  "v180": 2.9859171429406417
+  "v180": 2.9892357438360717
  },
  {
   "id": "51683de9-flag-2-1248-36",
@@ -707,8 +707,8 @@
    "20:48  Men's AoB Derv sets off for a flag (single run). Crew holds the stand, boost in 95 s.",
    "The spot: main fight Crew 8 v Men 8 (even); Crew's main team at Men's door, Men's at Men's door; morale Crew +80, Men -90 (the eight summed; a death is -15); Crew ahead on flags by 0.6; base res in 72 s; Crew's chance of winning 65%.",
    "The answer: Crew sends nobody in the next three minutes.",
-   "What followed, 180 s on: Men's flag does not get in (returned, 21:56); flag lead +0.52 for Crew; deaths Crew 0, Men 0; boosts Crew 1, Men 0; Crew's chance of winning 65% to 72% (+7.7).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) -0.7 (90 cases); a runner out by 15 s -8.6 (90 cases): the data favours holding off (no runner out at 15 s) by 7.8 win points (+4.1 to +11.6). Crew held off: the answer the data favours."
+   "What followed, 180 s on: Men's flag does not get in (returned, 21:56); flag lead +0.52 for Crew; deaths Crew 0, Men 0; boosts Crew 1, Men 0; Crew's chance of winning 65% to 73% (+7.7).",
+   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) -1.0 (90 cases); a runner out by 15 s -5.7 (90 cases): the data favours holding off (no runner out at 15 s) by 4.7 win points (+1.0 to +8.4). Crew held off: the answer the data favours."
   ],
   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
   "t": 1248,
@@ -719,17 +719,17 @@
   "compared": true,
   "advice": "no runner yet",
   "verdict": "right",
-  "margin": 7.832742908087987,
+  "margin": 4.718670142294052,
   "range": [
-   4.092420296396727,
-   11.573065519779245
+   1.0252036820600172,
+   8.412136602528086
   ],
-  "v180": 7.696444515803236
+  "v180": 7.693382337094734
  },
  {
   "id": "51683de9-flag-2-1248-36",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +3.2 (90 cases); holding off (no runner out at 30 s) -3.3 (90 cases): the data favours a runner out by 30 s by 6.5 win points (+2.9 to +10.1). Crew held off: against what the data favours."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +7.4 (90 cases); holding off (no runner out at 30 s) -3.7 (90 cases): the data favours a runner out by 30 s by 11.1 win points (+7.8 to +14.4). Crew held off: against what the data favours."
   ],
   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
   "t": 1248,
@@ -740,12 +740,12 @@
   "compared": true,
   "advice": "a runner sent by now",
   "verdict": "wrong",
-  "margin": 6.480105184594995,
+  "margin": 11.084290102643997,
   "range": [
-   2.896177361759311,
-   10.06403300743068
+   7.7953058753675775,
+   14.373274329920417
   ],
-  "v180": 7.696444515803236
+  "v180": 7.693382337094734
  },
  {
   "id": "51683de9-flag-2-1436-43",
@@ -754,7 +754,7 @@
    "The spot: main fight Crew 7 v Men 4 (Crew up by 3); Crew's main team at the stand, Men's at Men's door; morale Crew +80, Men -90 (the eight summed; a death is -15); Crew ahead on flags by 1.1; base res in 4 s; Crew's chance of winning 72%.",
    "The answer: Crew sends nobody in the next three minutes.",
    "What followed, 180 s on: Men's flag does not get in (not capped, 24:21); flag lead +0.09 for Crew; deaths Crew 0, Men 5; boosts Crew 2, Men 0; Crew's chance of winning 72% to 93% (+21.0).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) -0.2 (90 cases); a runner out by 15 s -4.4 (90 cases): the data favours holding off (no runner out at 15 s) by 4.3 win points (+0.9 to +7.7). Crew held off: the answer the data favours."
+   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +0.3 (90 cases); a runner out by 15 s -0.8 (90 cases): no clear difference (1.1, -2.3 to +4.5). Crew held off: no clear difference either way."
   ],
   "rid": "51683de9-4096-5833-ad4a-56a69c4759e4",
   "t": 1436,
@@ -763,14 +763,14 @@
   "call": "no runner yet",
   "unusual": false,
   "compared": true,
-  "advice": "no runner yet",
-  "verdict": "right",
-  "margin": 4.280587299212748,
+  "advice": null,
+  "verdict": "no clear difference",
+  "margin": 1.0845248608638967,
   "range": [
-   0.871243463158438,
-   7.689931135267058
+   -2.2846749912118853,
+   4.453724712939678
   ],
-  "v180": 20.999143432138034
+  "v180": 20.969735293066815
  },
  {
   "id": "a8ba43a8-flag-1-101-7",
@@ -778,8 +778,8 @@
    "1:41  RACK's Hammer sets off for a flag (single run). 옷옷옷옷 holds the stand, boost in 64 s.",
    "The spot: main fight 옷옷옷옷 6 v RACK 4 (옷옷옷옷 up by 2); 옷옷옷옷's main team at RACK's door, RACK's in RACK's pit; morale 옷옷옷옷 no death penalty or boost, RACK no death penalty or boost (the eight summed; a death is -15); flags level; base res in 19 s; 옷옷옷옷's chance of winning 69%.",
    "The answer: 옷옷옷옷 sends its 8 Monk 32 s later.",
-   "What followed, 180 s on: RACK's flag in at 2:15; 옷옷옷옷's in at 3:03; flag lead +0.47 for 옷옷옷옷; deaths 옷옷옷옷 0, RACK 3; boosts 옷옷옷옷 0, RACK 0; 옷옷옷옷's chance of winning 69% to 81% (+12.3).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +7.3 (90 cases); a runner out by 15 s -3.7 (90 cases): the data favours holding off (no runner out at 15 s) by 11.0 win points (+8.0 to +14.1). 옷옷옷옷 held off: the answer the data favours."
+   "What followed, 180 s on: RACK's flag in at 2:15; 옷옷옷옷's in at 3:03; flag lead +0.47 for 옷옷옷옷; deaths 옷옷옷옷 0, RACK 3; boosts 옷옷옷옷 0, RACK 0; 옷옷옷옷's chance of winning 69% to 81% (+12.4).",
+   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +7.8 (90 cases); a runner out by 15 s -2.3 (90 cases): the data favours holding off (no runner out at 15 s) by 10.1 win points (+6.7 to +13.4). 옷옷옷옷 held off: the answer the data favours."
   ],
   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
   "t": 101,
@@ -790,17 +790,17 @@
   "compared": true,
   "advice": "no runner yet",
   "verdict": "right",
-  "margin": 11.034770154008195,
+  "margin": 10.077081730210546,
   "range": [
-   8.013893081023816,
-   14.055647226992573
+   6.741444338945535,
+   13.412719121475558
   ],
-  "v180": 12.348017372532116
+  "v180": 12.363812707731869
  },
  {
   "id": "a8ba43a8-flag-1-101-7",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +9.6 (90 cases); a runner out by 30 s +8.1 (90 cases): no clear difference (1.6, -2.0 to +5.2). 옷옷옷옷 held off: no clear difference either way."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +9.7 (90 cases); a runner out by 30 s +2.9 (90 cases): the data favours holding off (no runner out at 30 s) by 6.8 win points (+3.4 to +10.1). 옷옷옷옷 held off: the answer the data favours."
   ],
   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
   "t": 101,
@@ -809,14 +809,14 @@
   "call": "no runner yet",
   "unusual": false,
   "compared": true,
-  "advice": null,
-  "verdict": "no clear difference",
-  "margin": 1.5780183995771377,
+  "advice": "no runner yet",
+  "verdict": "right",
+  "margin": 6.783523636828454,
   "range": [
-   -2.031299495913816,
-   5.187336295068091
+   3.4437660408597686,
+   10.123281232797138
   ],
-  "v180": 12.348017372532116
+  "v180": 12.363812707731869
  },
  {
   "id": "a8ba43a8-flag-2-133-12",
@@ -825,7 +825,7 @@
    "The spot: main fight RACK 3 v 옷옷옷옷 8 (옷옷옷옷 up by 5); RACK's main team at the stand, 옷옷옷옷's in 옷옷옷옷's pit; morale RACK -15, 옷옷옷옷 no death penalty or boost (the eight summed; a death is -15); flags level; base res in 107 s; RACK's chance of winning 34%.",
    "The answer: RACK sends nobody in the next three minutes.",
    "What followed, 180 s on: 옷옷옷옷's flag in at 3:03; flag lead -0.71 for RACK; deaths RACK 2, 옷옷옷옷 0; boosts RACK 0, 옷옷옷옷 1; RACK's chance of winning 34% to 13% (-21.1).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +0.7 (90 cases); a runner out by 15 s -2.0 (90 cases): no clear difference (2.7, -0.6 to +6.1). RACK held off: no clear difference either way."
+   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +2.0 (90 cases); a runner out by 15 s -2.8 (90 cases): the data favours holding off (no runner out at 15 s) by 4.8 win points (+1.5 to +8.1). RACK held off: the answer the data favours."
   ],
   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
   "t": 133,
@@ -834,19 +834,19 @@
   "call": "no runner yet",
   "unusual": false,
   "compared": true,
-  "advice": null,
-  "verdict": "no clear difference",
-  "margin": 2.73133343594722,
+  "advice": "no runner yet",
+  "verdict": "right",
+  "margin": 4.800828139004648,
   "range": [
-   -0.6259404237481672,
-   6.088607295642607
+   1.4801357222618745,
+   8.121520555747422
   ],
-  "v180": -21.110002939721024
+  "v180": -21.08994951705074
  },
  {
   "id": "a8ba43a8-flag-2-133-12",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +2.8 (81 cases); holding off (no runner out at 30 s) +1.8 (90 cases): no clear difference (1.0, -2.3 to +4.2). RACK held off: no clear difference either way."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +12.5 (82 cases); holding off (no runner out at 30 s) +2.6 (90 cases): the data favours a runner out by 30 s by 10.0 win points (+6.5 to +13.4). RACK held off: against what the data favours."
   ],
   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
   "t": 133,
@@ -855,14 +855,14 @@
   "call": "no runner yet",
   "unusual": false,
   "compared": true,
-  "advice": null,
-  "verdict": "no clear difference",
-  "margin": 0.9566940024327739,
+  "advice": "a runner sent by now",
+  "verdict": "wrong",
+  "margin": 9.95825856252884,
   "range": [
-   -2.2675045573122707,
-   4.180892562177819
+   6.4846033382818105,
+   13.43191378677587
   ],
-  "v180": -21.110002939721024
+  "v180": -21.08994951705074
  },
  {
   "id": "a8ba43a8-flag-1-375-31",
@@ -871,7 +871,7 @@
    "The spot: main fight 옷옷옷옷 2 v RACK 3 (RACK up by 1); 옷옷옷옷's main team in 옷옷옷옷's pit, RACK's in RACK's pit; morale 옷옷옷옷 +80, RACK -60 (the eight summed; a death is -15); 옷옷옷옷 ahead on flags by 0.8; base res in 105 s; 옷옷옷옷's chance of winning 92%.",
    "The answer: 옷옷옷옷 sends nobody in the next three minutes.",
    "What followed, 180 s on: RACK's flag does not get in (not capped, 7:05); flag lead -0.05 for 옷옷옷옷; deaths 옷옷옷옷 0, RACK 7; boosts 옷옷옷옷 2, RACK 0; 옷옷옷옷's chance of winning 92% to 97% (+5.6).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) -6.4 (90 cases); a runner out by 15 s -12.0 (90 cases): the data favours holding off (no runner out at 15 s) by 5.5 win points (+2.0 to +9.1). 옷옷옷옷 held off: the answer the data favours."
+   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) -6.9 (90 cases); a runner out by 15 s -10.0 (90 cases): no clear difference (3.1, -0.5 to +6.7). 옷옷옷옷 held off: no clear difference either way."
   ],
   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
   "t": 375,
@@ -880,19 +880,19 @@
   "call": "no runner yet",
   "unusual": false,
   "compared": true,
-  "advice": "no runner yet",
-  "verdict": "right",
-  "margin": 5.5493392907918615,
+  "advice": null,
+  "verdict": "no clear difference",
+  "margin": 3.118806856368427,
   "range": [
-   1.9622010201853741,
-   9.13647756139835
+   -0.48162187034298043,
+   6.7192355830798345
   ],
-  "v180": 5.580207779732504
+  "v180": 5.591530073395912
  },
  {
   "id": "a8ba43a8-flag-1-375-31",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +6.3 (90 cases); holding off (no runner out at 30 s) -4.1 (90 cases): the data favours a runner out by 30 s by 10.5 win points (+7.0 to +14.0). 옷옷옷옷 held off: against what the data favours."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +0.9 (90 cases); holding off (no runner out at 30 s) -4.1 (90 cases): the data favours a runner out by 30 s by 5.0 win points (+1.7 to +8.2). 옷옷옷옷 held off: against what the data favours."
   ],
   "rid": "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4",
   "t": 375,
@@ -903,12 +903,12 @@
   "compared": true,
   "advice": "a runner sent by now",
   "verdict": "wrong",
-  "margin": 10.476747852740463,
+  "margin": 4.954575348643239,
   "range": [
-   6.954829770485981,
-   13.998665934994944
+   1.7092314603703413,
+   8.199919236916136
   ],
-  "v180": 5.580207779732504
+  "v180": 5.591530073395912
  },
  {
   "id": "45cf6756-flag-2-51-6",
@@ -917,7 +917,7 @@
    "The spot: main fight RACK 3 v Men 5 (Men up by 2); RACK's main team at the stand, Men's at the stand; morale RACK no death penalty or boost, Men no death penalty or boost (the eight summed; a death is -15); flags level; base res in 69 s; RACK's chance of winning 39%.",
    "The answer: RACK sends its Mes/A 6 s later.",
    "What followed, 180 s on: Men's flag in at 1:27; RACK's does not get in; flag lead -0.66 for RACK; deaths RACK 0, Men 0; boosts RACK 0, Men 1; RACK's chance of winning 39% to 28% (-11.2).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +4.5 (90 cases); a runner out by 15 s +2.0 (42 cases): no clear difference (2.5, -1.3 to +6.2). RACK had a runner out: no clear difference either way."
+   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +3.9 (90 cases); a runner out by 15 s +2.0 (42 cases): no clear difference (1.9, -1.9 to +5.6). RACK had a runner out: no clear difference either way."
   ],
   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
   "t": 51,
@@ -928,12 +928,12 @@
   "compared": true,
   "advice": null,
   "verdict": "no clear difference",
-  "margin": 2.4504421215820003,
+  "margin": 1.8778603605841382,
   "range": [
-   -1.3488398319586192,
-   6.24972407512262
+   -1.883828452213136,
+   5.639549173381413
   ],
-  "v180": -11.227180504754413
+  "v180": -11.187877177040168
  },
  {
   "id": "45cf6756-flag-1-87-9",
@@ -942,7 +942,7 @@
    "The spot: main fight Men 6 v RACK 7 (RACK up by 1); Men's main team at RACK's door, RACK's at RACK's door; morale Men no death penalty or boost, RACK no death penalty or boost (the eight summed; a death is -15); flags level; base res in 33 s; Men's chance of winning 58%.",
    "The answer: Men sends its Mes/A 36 s later.",
    "What followed, 180 s on: RACK's flag does not get in (not capped, 3:53); Men's does not get in; flag lead +0.99 for Men; deaths Men 0, RACK 1; boosts Men 1, RACK 0; Men's chance of winning 58% to 79% (+20.8).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +1.8 (90 cases); a runner out by 15 s -5.5 (90 cases): the data favours holding off (no runner out at 15 s) by 7.3 win points (+4.0 to +10.6). Men held off: the answer the data favours."
+   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +1.5 (90 cases); a runner out by 15 s -5.5 (90 cases): the data favours holding off (no runner out at 15 s) by 6.9 win points (+3.7 to +10.2). Men held off: the answer the data favours."
   ],
   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
   "t": 87,
@@ -953,17 +953,17 @@
   "compared": true,
   "advice": "no runner yet",
   "verdict": "right",
-  "margin": 7.3024337633729495,
+  "margin": 6.935836055079926,
   "range": [
-   4.022318215138309,
-   10.58254931160759
+   3.6839719085430236,
+   10.187700201616828
   ],
-  "v180": 20.83139401907704
+  "v180": 20.813631261571462
  },
  {
   "id": "45cf6756-flag-1-87-9",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +2.1 (90 cases); a runner out by 30 s +2.1 (32 cases): no clear difference (0.1, -3.8 to +3.9). Men held off: no clear difference either way."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +2.1 (90 cases); a runner out by 30 s +1.8 (32 cases): no clear difference (0.4, -3.5 to +4.2). Men held off: no clear difference either way."
   ],
   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
   "t": 87,
@@ -974,12 +974,12 @@
   "compared": true,
   "advice": null,
   "verdict": "no clear difference",
-  "margin": 0.05773413319544041,
+  "margin": 0.3500530433461484,
   "range": [
-   -3.819545610401516,
-   3.935013876792397
+   -3.5155564021458288,
+   4.2156624888381256
   ],
-  "v180": 20.83139401907704
+  "v180": 20.813631261571462
  },
  {
   "id": "572c2f95-flag-1-127-16",
@@ -988,7 +988,7 @@
    "The spot: main fight Men 5 v hold 5 (even); Men's main team at hold's door, hold's in hold's pit; morale Men no death penalty or boost, hold no death penalty or boost (the eight summed; a death is -15); Men ahead on flags by 1.8; base res in 113 s; Men's chance of winning 85%.",
    "The answer: Men sends nobody in the next three minutes.",
    "What followed, 180 s on: hold's flag does not get in (returned, 3:09); flag lead -0.51 for Men; deaths Men 0, hold 0; boosts Men 2, hold 0; Men's chance of winning 85% to 92% (+6.9).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +0.2 (90 cases); a runner out by 15 s -6.0 (90 cases): the data favours holding off (no runner out at 15 s) by 6.2 win points (+2.8 to +9.6). Men held off: the answer the data favours."
+   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +0.3 (90 cases); a runner out by 15 s -2.6 (90 cases): no clear difference (2.9, -0.5 to +6.4). Men held off: no clear difference either way."
   ],
   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
   "t": 127,
@@ -997,19 +997,19 @@
   "call": "no runner yet",
   "unusual": false,
   "compared": true,
-  "advice": "no runner yet",
-  "verdict": "right",
-  "margin": 6.170424391752251,
+  "advice": null,
+  "verdict": "no clear difference",
+  "margin": 2.9404263596753246,
   "range": [
-   2.7872762150721937,
-   9.553572568432308
+   -0.5329086922552286,
+   6.413761411605877
   ],
-  "v180": 6.919005222097219
+  "v180": 6.9096051930334195
  },
  {
   "id": "572c2f95-flag-1-127-16",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +0.1 (90 cases); a runner out by 30 s -1.6 (90 cases): no clear difference (1.8, -1.7 to +5.2). Men held off: no clear difference either way."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +0.2 (90 cases); holding off (no runner out at 30 s) +0.1 (90 cases): no clear difference (0.1, -3.1 to +3.3). Men held off: no clear difference either way."
   ],
   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
   "t": 127,
@@ -1020,12 +1020,12 @@
   "compared": true,
   "advice": null,
   "verdict": "no clear difference",
-  "margin": 1.7598032846322609,
+  "margin": 0.08681498148102348,
   "range": [
-   -1.7246743344037447,
-   5.244280903668266
+   -3.139226420715025,
+   3.312856383677072
   ],
-  "v180": 6.919005222097219
+  "v180": 6.9096051930334195
  },
  {
   "id": "572c2f95-flag-1-234-31",
@@ -1034,7 +1034,7 @@
    "The spot: main fight Men 6 v hold 5 (Men up by 1); Men's main team at hold's door, hold's in hold's pit; morale Men +80, hold no death penalty or boost (the eight summed; a death is -15); Men ahead on flags by 1.7; base res in 6 s; Men's chance of winning 91%.",
    "The answer: Men sends its Ritualist 1 144 s later.",
    "What followed, 180 s on: hold's flag does not get in (returned, 6:43); Men's in at 8:06; flag lead -0.05 for Men; deaths Men 2, hold 0; boosts Men 2, hold 0; Men's chance of winning 91% to 91% (-0.6).",
-   "Similar spots, 180 s on, from the same position: a runner out by 15 s -3.1 (90 cases); holding off (no runner out at 15 s) -3.9 (90 cases): no clear difference (0.8, -2.6 to +4.3). Men held off: no clear difference either way."
+   "Similar spots, 180 s on, from the same position: a runner out by 15 s +1.2 (90 cases); holding off (no runner out at 15 s) -3.2 (90 cases): the data favours a runner out by 15 s by 4.4 win points (+1.0 to +7.8). Men held off: against what the data favours."
   ],
   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
   "t": 234,
@@ -1043,19 +1043,19 @@
   "call": "no runner yet",
   "unusual": false,
   "compared": true,
-  "advice": null,
-  "verdict": "no clear difference",
-  "margin": 0.8427693453615768,
+  "advice": "a runner sent by now",
+  "verdict": "wrong",
+  "margin": 4.418747734296893,
   "range": [
-   -2.5710511789355555,
-   4.2565898696587094
+   1.0387874376168957,
+   7.798708030976891
   ],
-  "v180": -0.5659759764200301
+  "v180": -0.5653501495662239
  },
  {
   "id": "572c2f95-flag-1-234-31",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) -2.8 (90 cases); a runner out by 30 s -3.6 (90 cases): no clear difference (0.8, -2.6 to +4.2). Men held off: no clear difference either way."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +0.2 (90 cases); holding off (no runner out at 30 s) -2.7 (90 cases): no clear difference (2.9, -0.4 to +6.1). Men held off: no clear difference either way."
   ],
   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
   "t": 234,
@@ -1066,12 +1066,12 @@
   "compared": true,
   "advice": null,
   "verdict": "no clear difference",
-  "margin": 0.8072009037999281,
+  "margin": 2.8733868356588927,
   "range": [
-   -2.619684385821631,
-   4.234086193421487
+   -0.3570540580904433,
+   6.103827729408229
   ],
-  "v180": -0.5659759764200301
+  "v180": -0.5653501495662239
  },
  {
   "id": "572c2f95-flag-2-378-40",
@@ -1080,7 +1080,7 @@
    "The spot: main fight hold 5 v Men 2 (hold up by 3); hold's main team at the stand, Men's in Men's pit; morale hold no death penalty or boost, Men +70 (the eight summed; a death is -15); Men ahead on flags by 1.2; base res in 102 s; hold's chance of winning 10%.",
    "The answer: hold sends its Earth Ele 17 s later.",
    "What followed, 180 s on: Men's flag in at 8:06; hold's in at 7:21; flag lead +1.07 for hold; deaths hold 1, Men 3; boosts hold 0, Men 0; hold's chance of winning 10% to 15% (+4.6).",
-   "Similar spots, 180 s on, from the same position: a runner out by 15 s +9.4 (90 cases); holding off (no runner out at 15 s) +2.2 (90 cases): the data favours a runner out by 15 s by 7.1 win points (+4.1 to +10.2). hold held off: against what the data favours."
+   "Similar spots, 180 s on, from the same position: a runner out by 15 s +9.1 (90 cases); holding off (no runner out at 15 s) +5.1 (90 cases): the data favours a runner out by 15 s by 4.0 win points (+0.8 to +7.1). hold held off: against what the data favours."
   ],
   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
   "t": 378,
@@ -1091,17 +1091,17 @@
   "compared": true,
   "advice": "a runner sent by now",
   "verdict": "wrong",
-  "margin": 7.146759363106646,
+  "margin": 3.953916441213954,
   "range": [
-   4.0840953908533635,
-   10.20942333535993
+   0.8360567915831552,
+   7.071776090844752
   ],
-  "v180": 4.569856050464267
+  "v180": 4.581376424285237
  },
  {
   "id": "572c2f95-flag-2-378-40",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +3.7 (80 cases); holding off (no runner out at 30 s) +0.8 (90 cases): no clear difference (2.9, -0.1 to +5.8). hold had a runner out: no clear difference either way."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +22.2 (81 cases); holding off (no runner out at 30 s) +0.6 (90 cases): the data favours a runner out by 30 s by 21.6 win points (+18.4 to +24.8). hold had a runner out: the answer the data favours."
   ],
   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
   "t": 378,
@@ -1110,14 +1110,14 @@
   "call": "a runner sent by now",
   "unusual": false,
   "compared": true,
-  "advice": null,
-  "verdict": "no clear difference",
-  "margin": 2.873546014203109,
+  "advice": "a runner sent by now",
+  "verdict": "right",
+  "margin": 21.62666361177833,
   "range": [
-   -0.07079364575915381,
-   5.817885674165372
+   18.411753346980213,
+   24.841573876576447
   ],
-  "v180": 4.569856050464267
+  "v180": 4.581376424285237
  },
  {
   "id": "572c2f95-flag-1-612-70",
@@ -1126,7 +1126,7 @@
    "The spot: main fight Men 4 v hold 2 (Men up by 2); Men's main team at the stand, hold's at the stand; morale Men +66, hold -24 (the eight summed; a death is -15); Men ahead on flags by 1.2; base res in 108 s; Men's chance of winning 92%.",
    "The answer: Men sends its Ritualist 2 5 s later.",
    "What followed, 180 s on: hold's flag does not get in (returned, 10:44); Men's does not get in; flag lead -0.77 for Men; deaths Men 0, hold 4; boosts Men 1, hold 0; Men's chance of winning 92% to 97% (+4.6).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) -6.8 (90 cases); a runner out by 15 s -8.7 (90 cases): no clear difference (2.0, -1.2 to +5.2). Men had a runner out: no clear difference either way."
+   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) -6.1 (90 cases); a runner out by 15 s -7.6 (90 cases): no clear difference (1.5, -1.7 to +4.6). Men had a runner out: no clear difference either way."
   ],
   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
   "t": 612,
@@ -1137,12 +1137,12 @@
   "compared": true,
   "advice": null,
   "verdict": "no clear difference",
-  "margin": 1.9904518729764016,
+  "margin": 1.4786283061871535,
   "range": [
-   -1.196101797308705,
-   5.177005543261508
+   -1.6892428946215299,
+   4.646499506995837
   ],
-  "v180": 4.636542364441043
+  "v180": 4.64313436758329
  },
  {
   "id": "572c2f95-flag-1-1045-95",
@@ -1151,7 +1151,7 @@
    "The spot: main fight Men 3 v hold 6 (hold up by 3); Men's main team in hold's pit, hold's in hold's pit; morale Men +80, hold -99 (the eight summed; a death is -15); Men ahead on flags by 0.4; base res in 35 s; Men's chance of winning 99%.",
    "The answer: Men sends its Ranger 8 s later.",
    "What followed, 180 s on: hold's flag in at 17:53; Men's in at 19:46; flag lead +0.09 for Men; deaths Men 1, hold 7; boosts Men 0, hold 0; Men's chance of winning 99% to 99% (+0.8).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) -3.5 (90 cases); a runner out by 15 s -5.4 (90 cases): no clear difference (2.0, -1.2 to +5.1). Men had a runner out: no clear difference either way."
+   "Similar spots, 180 s on, from the same position: a runner out by 15 s -3.2 (90 cases); holding off (no runner out at 15 s) -3.7 (90 cases): no clear difference (0.5, -2.7 to +3.7). Men had a runner out: no clear difference either way."
   ],
   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
   "t": 1045,
@@ -1162,12 +1162,12 @@
   "compared": true,
   "advice": null,
   "verdict": "no clear difference",
-  "margin": 1.9546484220185798,
+  "margin": 0.46844815296217046,
   "range": [
-   -1.2303707728847133,
-   5.139667616921873
+   -2.7217625957862444,
+   3.6586589017105853
   ],
-  "v180": 0.788273497297276
+  "v180": 0.7894860376830182
  },
  {
   "id": "572c2f95-flag-2-1073-98",
@@ -1187,12 +1187,12 @@
   "compared": true,
   "advice": null,
   "verdict": "an unusual spot: no like cases round it",
-  "margin": 4.453131815321609,
+  "margin": 5.353854759986831,
   "range": [
-   1.496264370677074,
-   7.409999259966145
+   2.3867087563481872,
+   8.321000763625474
   ],
-  "v180": -1.4884523610709623
+  "v180": -1.4890823999605567
  },
  {
   "id": "572c2f95-flag-2-1073-98",
@@ -1208,12 +1208,12 @@
   "compared": true,
   "advice": null,
   "verdict": "an unusual spot: no like cases round it",
-  "margin": 4.072708111241299,
+  "margin": 3.746064022658169,
   "range": [
-   0.2794976987201796,
-   7.865918523762419
+   -0.10557219402522788,
+   7.597700239341567
   ],
-  "v180": -1.4884523610709623
+  "v180": -1.4890823999605567
  },
  {
   "id": "b870f84e-flag-2-70-11",
@@ -1222,7 +1222,7 @@
    "The spot: main fight Men 5 v hold 4 (Men up by 1); Men's main team at the stand, hold's at the stand; morale Men no death penalty or boost, hold no death penalty or boost (the eight summed; a death is -15); hold ahead on flags by 0.4; base res in 50 s; Men's chance of winning 74%.",
    "The answer: Men sends its Ritualist 1 28 s later (a double run).",
    "What followed, 180 s on: hold's flag in at 2:20; Men's in at 2:36; flag lead +0.58 for Men; deaths Men 0, hold 1; boosts Men 0, hold 0; Men's chance of winning 74% to 78% (+4.0).",
-   "Similar spots, 180 s on, from the same position: a runner out by 15 s +5.8 (90 cases); holding off (no runner out at 15 s) +4.3 (90 cases): no clear difference (1.5, -1.6 to +4.7). Men held off: no clear difference either way."
+   "Similar spots, 180 s on, from the same position: a runner out by 15 s +5.7 (90 cases); holding off (no runner out at 15 s) +2.9 (90 cases): no clear difference (2.8, -0.7 to +6.3). Men held off: no clear difference either way."
   ],
   "rid": "b870f84e-b838-5f2a-ae83-b1e25499d9ee",
   "t": 70,
@@ -1233,17 +1233,17 @@
   "compared": true,
   "advice": null,
   "verdict": "no clear difference",
-  "margin": 1.5375447128434612,
+  "margin": 2.829781977399934,
   "range": [
-   -1.6300730998037407,
-   4.705162525490663
+   -0.6686174875797666,
+   6.328181442379634
   ],
-  "v180": 3.953513752346216
+  "v180": 3.9706682624948364
  },
  {
   "id": "b870f84e-flag-2-70-11",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +6.7 (90 cases); a runner out by 30 s -2.6 (81 cases): the data favours holding off (no runner out at 30 s) by 9.3 win points (+6.2 to +12.5)."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +6.5 (90 cases); a runner out by 30 s -6.9 (82 cases): the data favours holding off (no runner out at 30 s) by 13.4 win points (+10.0 to +16.8)."
   ],
   "rid": "b870f84e-b838-5f2a-ae83-b1e25499d9ee",
   "t": 70,
@@ -1254,12 +1254,12 @@
   "compared": true,
   "advice": "no runner yet",
   "verdict": "too few cases of this call",
-  "margin": 9.338998865023783,
+  "margin": 13.382060426541152,
   "range": [
-   6.193325054460171,
-   12.484672675587394
+   9.957066525614689,
+   16.807054327467615
   ],
-  "v180": 3.953513752346216
+  "v180": 3.9706682624948364
  },
  {
   "id": "b870f84e-flag-1-140-17",
@@ -1268,7 +1268,7 @@
    "The spot: main fight hold 5 v Men 4 (hold up by 1); hold's main team at the stand, Men's at the stand; morale hold no death penalty or boost, Men no death penalty or boost (the eight summed; a death is -15); Men ahead on flags by 1.0; base res in 100 s; hold's chance of winning 18%.",
    "The answer: hold sends its Hammer 6 s later.",
    "What followed, 180 s on: Men's flag in at 2:36; hold's does not get in; flag lead +0.56 for hold; deaths hold 1, Men 1; boosts hold 0, Men 1; hold's chance of winning 18% to 19% (+0.5).",
-   "Similar spots, 180 s on, from the same position: a runner out by 15 s +1.8 (42 cases); holding off (no runner out at 15 s) -7.8 (90 cases): the data favours a runner out by 15 s by 9.6 win points (+5.7 to +13.5). hold had a runner out: the answer the data favours."
+   "Similar spots, 180 s on, from the same position: a runner out by 15 s +1.8 (42 cases); holding off (no runner out at 15 s) -8.0 (90 cases): the data favours a runner out by 15 s by 9.8 win points (+5.9 to +13.6). hold had a runner out: the answer the data favours."
   ],
   "rid": "b870f84e-b838-5f2a-ae83-b1e25499d9ee",
   "t": 140,
@@ -1279,12 +1279,12 @@
   "compared": true,
   "advice": "a runner sent by now",
   "verdict": "right",
-  "margin": 9.592421009348152,
+  "margin": 9.75582872442499,
   "range": [
-   5.722737730662566,
-   13.46210428803374
+   5.922606330627611,
+   13.58905111822237
   ],
-  "v180": 0.4548707945245395
+  "v180": 0.477907124185345
  },
  {
   "id": "b870f84e-flag-2-154-20",
@@ -1293,7 +1293,7 @@
    "The spot: main fight Men 4 v hold 5 (hold up by 1); Men's main team at the stand, hold's at the stand; morale Men no death penalty or boost, hold no death penalty or boost (the eight summed; a death is -15); flags level; base res in 94 s; Men's chance of winning 77%.",
    "The answer: Men sends nobody in the next three minutes.",
    "What followed, 180 s on: hold's flag does not get in (returned, 3:11); flag lead +0.31 for Men; deaths Men 1, hold 2; boosts Men 1, hold 0; Men's chance of winning 77% to 85% (+8.2).",
-   "Similar spots, 180 s on, from the same position: a runner out by 15 s +6.6 (90 cases); holding off (no runner out at 15 s) +3.3 (90 cases): no clear difference (3.2, -0.2 to +6.6). Men held off: no clear difference either way."
+   "Similar spots, 180 s on, from the same position: a runner out by 15 s +5.8 (90 cases); holding off (no runner out at 15 s) +2.4 (90 cases): no clear difference (3.4, -0.3 to +7.0). Men held off: no clear difference either way."
   ],
   "rid": "b870f84e-b838-5f2a-ae83-b1e25499d9ee",
   "t": 146,
@@ -1304,17 +1304,17 @@
   "compared": true,
   "advice": null,
   "verdict": "no clear difference",
-  "margin": 3.2112725616554787,
+  "margin": 3.3538228449122895,
   "range": [
-   -0.2132395344232103,
-   6.635784657734168
+   -0.28626342293843354,
+   6.993909112763013
   ],
-  "v180": 8.161031906063766
+  "v180": 8.162987965886403
  },
  {
   "id": "b870f84e-flag-2-154-20",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +4.5 (90 cases); a runner out by 30 s -2.2 (81 cases): the data favours holding off (no runner out at 30 s) by 6.8 win points (+3.6 to +9.9). Men held off: the answer the data favours."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +4.8 (90 cases); a runner out by 30 s -5.7 (82 cases): the data favours holding off (no runner out at 30 s) by 10.5 win points (+7.0 to +13.9). Men held off: the answer the data favours."
   ],
   "rid": "b870f84e-b838-5f2a-ae83-b1e25499d9ee",
   "t": 146,
@@ -1325,12 +1325,12 @@
   "compared": true,
   "advice": "no runner yet",
   "verdict": "right",
-  "margin": 6.771600031515447,
+  "margin": 10.455464397960224,
   "range": [
-   3.6313287346942205,
-   9.911871328336675
+   7.00063502581072,
+   13.910293770109728
   ],
-  "v180": 8.161031906063766
+  "v180": 8.162987965886403
  },
  {
   "id": "b870f84e-flag-2-315-28",
@@ -1339,7 +1339,7 @@
    "The spot: main fight Men 3 v hold 4 (hold up by 1); Men's main team at the stand, hold's at hold's door; morale Men +65, hold -13 (the eight summed; a death is -15); Men ahead on flags by 0.5; base res in 45 s; Men's chance of winning 82%.",
    "The answer: Men sends its Ritualist 1 32 s later.",
    "What followed, 180 s on: hold's flag in at 6:05; Men's in at 6:21; flag lead +0.49 for Men; deaths Men 0, hold 2; boosts Men 0, hold 0; Men's chance of winning 82% to 90% (+8.4).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) -0.8 (90 cases); a runner out by 15 s -4.4 (90 cases): the data favours holding off (no runner out at 15 s) by 3.6 win points (+0.7 to +6.4). Men held off: the answer the data favours."
+   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) -0.7 (90 cases); a runner out by 15 s -2.5 (90 cases): no clear difference (1.8, -1.0 to +4.7). Men held off: no clear difference either way."
   ],
   "rid": "b870f84e-b838-5f2a-ae83-b1e25499d9ee",
   "t": 315,
@@ -1348,19 +1348,19 @@
   "call": "no runner yet",
   "unusual": false,
   "compared": true,
-  "advice": "no runner yet",
-  "verdict": "right",
-  "margin": 3.5814889528122897,
+  "advice": null,
+  "verdict": "no clear difference",
+  "margin": 1.803373799696558,
   "range": [
-   0.7158178958801478,
-   6.447160009744431
+   -1.0489649421041203,
+   4.655712541497236
   ],
-  "v180": 8.361283985978574
+  "v180": 8.37859227583585
  },
  {
   "id": "b870f84e-flag-2-315-28",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +0.2 (90 cases); a runner out by 30 s -0.8 (90 cases): no clear difference (1.0, -2.4 to +4.3). Men held off: no clear difference either way."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +0.3 (90 cases); a runner out by 30 s -0.3 (90 cases): no clear difference (0.6, -2.4 to +3.6). Men held off: no clear difference either way."
   ],
   "rid": "b870f84e-b838-5f2a-ae83-b1e25499d9ee",
   "t": 315,
@@ -1371,12 +1371,12 @@
   "compared": true,
   "advice": null,
   "verdict": "no clear difference",
-  "margin": 0.9671350077629304,
+  "margin": 0.603994153018542,
   "range": [
-   -2.389200669914679,
-   4.32347068544054
+   -2.4054997223290435,
+   3.6134880283661275
   ],
-  "v180": 8.361283985978574
+  "v180": 8.37859227583585
  },
  {
   "id": "b870f84e-flag-1-365-33",
@@ -1385,7 +1385,7 @@
    "The spot: main fight hold 5 v Men 7 (Men up by 2); hold's main team at hold's door, Men's at the stand; morale hold -43, Men +69 (the eight summed; a death is -15); Men ahead on flags by 0.8; base res in 115 s; hold's chance of winning 11%.",
    "The answer: hold sends nobody in the next three minutes.",
    "What followed, 180 s on: Men's flag in at 6:21; flag lead -0.21 for hold; deaths hold 9, Men 0; boosts hold 0, Men 1; hold's chance of winning 11% to 0% (-10.5).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) -3.3 (90 cases); a runner out by 15 s -4.5 (90 cases): no clear difference (1.2, -1.9 to +4.3). hold held off: no clear difference either way."
+   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) -3.5 (90 cases); a runner out by 15 s -4.5 (90 cases): no clear difference (1.0, -2.1 to +4.1). hold held off: no clear difference either way."
   ],
   "rid": "b870f84e-b838-5f2a-ae83-b1e25499d9ee",
   "t": 365,
@@ -1396,12 +1396,12 @@
   "compared": true,
   "advice": null,
   "verdict": "no clear difference",
-  "margin": 1.2036899510975574,
+  "margin": 0.9591635154113587,
   "range": [
-   -1.9048023536838148,
-   4.31218225587893
+   -2.1457320877135926,
+   4.06405911853631
   ],
-  "v180": -10.513551505501566
+  "v180": -10.518340932648416
  },
  {
   "id": "af831111-flag-2-481-14",
@@ -1409,8 +1409,8 @@
    "8:01  HC's Monk 4 (WoC) sets off for a flag (single run). hdm holds the stand, boost in 16 s.",
    "The spot: main fight hdm 7 v HC 8 (HC up by 1); hdm's main team in HC's pit, HC's at HC's door; morale hdm -15, HC -28 (the eight summed; a death is -15); hdm ahead on flags by 0.3; base res in 119 s; hdm's chance of winning 36%.",
    "The answer: hdm sends its Water Ele 3 s later.",
-   "What followed, 180 s on: HC's flag in at 8:42; hdm's in at 9:21; flag lead -0.19 for hdm; deaths hdm 0, HC 8; boosts hdm 1, HC 0; hdm's chance of winning 36% to 83% (+47.3).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +4.3 (90 cases); a runner out by 15 s -9.8 (90 cases): the data favours holding off (no runner out at 15 s) by 14.1 win points (+9.4 to +18.8). hdm had a runner out: against what the data favours."
+   "What followed, 180 s on: HC's flag in at 8:42; hdm's in at 9:21; flag lead -0.19 for hdm; deaths hdm 0, HC 8; boosts hdm 1, HC 0; hdm's chance of winning 36% to 83% (+47.2).",
+   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +4.7 (90 cases); a runner out by 15 s -7.4 (90 cases): the data favours holding off (no runner out at 15 s) by 12.1 win points (+7.5 to +16.8). hdm had a runner out: against what the data favours."
   ],
   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
   "t": 481,
@@ -1421,12 +1421,12 @@
   "compared": true,
   "advice": "no runner yet",
   "verdict": "wrong",
-  "margin": 14.0902671431741,
+  "margin": 12.140134665196769,
   "range": [
-   9.3904817048228,
-   18.790052581525398
+   7.476271510333245,
+   16.803997820060292
   ],
-  "v180": 47.260982007525676
+  "v180": 47.24538614153497
  },
  {
   "id": "af831111-flag-2-604-21",
@@ -1435,7 +1435,7 @@
    "The spot: main fight hdm 8 v HC 8 (even); hdm's main team in HC's pit, HC's at HC's door; morale hdm +70, HC -133 (the eight summed; a death is -15); hdm ahead on flags by 0.5; base res in 116 s; hdm's chance of winning 92%.",
    "The answer: hdm sends a runner 102 s later.",
    "What followed, 180 s on: HC's flag in at 11:13; hdm's in at 12:43; flag lead +0.50 for hdm; deaths hdm 0, HC 4; boosts hdm 0, HC 0; hdm's chance of winning 92% to 91% (-1.4).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +0.8 (90 cases); a runner out by 15 s -13.2 (90 cases): the data favours holding off (no runner out at 15 s) by 14.1 win points (+10.5 to +17.7). hdm held off: the answer the data favours."
+   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +0.9 (90 cases); a runner out by 15 s -10.0 (90 cases): the data favours holding off (no runner out at 15 s) by 10.9 win points (+7.5 to +14.4). hdm held off: the answer the data favours."
   ],
   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
   "t": 604,
@@ -1446,17 +1446,17 @@
   "compared": true,
   "advice": "no runner yet",
   "verdict": "right",
-  "margin": 14.08726554485018,
+  "margin": 10.942303770144242,
   "range": [
-   10.50522626427877,
-   17.669304825421587
+   7.467620864816014,
+   14.416986675472472
   ],
-  "v180": -1.4103677827688732
+  "v180": -1.4060121577501694
  },
  {
   "id": "af831111-flag-2-604-21",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +8.5 (90 cases); holding off (no runner out at 30 s) -0.3 (90 cases): the data favours a runner out by 30 s by 8.8 win points (+5.5 to +12.1). hdm held off: against what the data favours."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +12.5 (90 cases); holding off (no runner out at 30 s) -0.5 (90 cases): the data favours a runner out by 30 s by 13.1 win points (+10.0 to +16.1). hdm held off: against what the data favours."
   ],
   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
   "t": 604,
@@ -1467,12 +1467,12 @@
   "compared": true,
   "advice": "a runner sent by now",
   "verdict": "wrong",
-  "margin": 8.77296717063486,
+  "margin": 13.051201962252852,
   "range": [
-   5.450092931181946,
-   12.095841410087775
+   10.030550611089382,
+   16.071853313416323
   ],
-  "v180": -1.4103677827688732
+  "v180": -1.4060121577501694
  },
  {
   "id": "af831111-flag-1-706-23",
@@ -1481,7 +1481,7 @@
    "The spot: main fight HC 8 v hdm 8 (even); HC's main team at the stand, hdm's at the stand; morale HC -133, hdm +70 (the eight summed; a death is -15); HC ahead on flags by 1.0; base res in 14 s; HC's chance of winning 21%.",
    "The answer: HC sends a runner 93 s later.",
    "What followed, 180 s on: hdm's flag in at 12:43; HC's in at 14:44; flag lead -0.91 for HC; deaths HC 6, hdm 0; boosts HC 0, hdm 1; HC's chance of winning 21% to 9% (-11.4).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +4.6 (90 cases); a runner out by 15 s +2.6 (90 cases): no clear difference (2.0, -1.9 to +5.8). HC held off: no clear difference either way."
+   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +4.7 (90 cases); a runner out by 15 s +2.9 (90 cases): no clear difference (1.9, -2.0 to +5.7). HC held off: no clear difference either way."
   ],
   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
   "t": 706,
@@ -1492,17 +1492,17 @@
   "compared": true,
   "advice": null,
   "verdict": "no clear difference",
-  "margin": 1.9769647012214833,
+  "margin": 1.8647860550042052,
   "range": [
-   -1.8547206144160016,
-   5.808650016858968
+   -1.998308575410992,
+   5.727880685419402
   ],
-  "v180": -11.383169143828578
+  "v180": -11.39022322665993
  },
  {
   "id": "af831111-flag-1-706-23",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +4.8 (90 cases); a runner out by 30 s -11.3 (90 cases): the data favours holding off (no runner out at 30 s) by 16.1 win points (+11.8 to +20.4). HC held off: the answer the data favours."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +5.3 (90 cases); a runner out by 30 s -9.5 (90 cases): the data favours holding off (no runner out at 30 s) by 14.8 win points (+10.8 to +18.8). HC held off: the answer the data favours."
   ],
   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
   "t": 706,
@@ -1513,12 +1513,12 @@
   "compared": true,
   "advice": "no runner yet",
   "verdict": "right",
-  "margin": 16.0953555475674,
+  "margin": 14.775832528467294,
   "range": [
-   11.806446673339824,
-   20.384264421794978
+   10.773240789035867,
+   18.77842426789872
   ],
-  "v180": -11.383169143828578
+  "v180": -11.39022322665993
  },
  {
   "id": "af831111-flag-1-777-24",
@@ -1527,7 +1527,7 @@
    "The spot: main fight HC 8 v hdm 7 (HC up by 1); HC's main team at hdm's footmen, hdm's at hdm's footmen; morale HC -163, hdm +70 (the eight summed; a death is -15); hdm ahead on flags by 1.0; base res in 63 s; HC's chance of winning 9%.",
    "The answer: HC sends its Monk 4 (WoC) 22 s later.",
    "What followed, 180 s on: hdm's flag in at 14:54; HC's in at 14:44; flag lead +0.02 for HC; deaths HC 7, hdm 0; boosts HC 0, hdm 1; HC's chance of winning 9% to 3% (-6.0).",
-   "Similar spots, 180 s on, from the same position: a runner out by 15 s +12.6 (90 cases); holding off (no runner out at 15 s) -1.2 (90 cases): the data favours a runner out by 15 s by 13.8 win points (+10.4 to +17.2). HC held off: against what the data favours."
+   "Similar spots, 180 s on, from the same position: a runner out by 15 s +13.0 (90 cases); holding off (no runner out at 15 s) -0.6 (90 cases): the data favours a runner out by 15 s by 13.6 win points (+10.2 to +17.1). HC held off: against what the data favours."
   ],
   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
   "t": 777,
@@ -1538,17 +1538,17 @@
   "compared": true,
   "advice": "a runner sent by now",
   "verdict": "wrong",
-  "margin": 13.812512975147133,
+  "margin": 13.641008152841177,
   "range": [
-   10.441166909634864,
-   17.183859040659403
+   10.219689178556262,
+   17.062327127126093
   ],
-  "v180": -6.029416678340567
+  "v180": -6.028014377924112
  },
  {
   "id": "af831111-flag-1-777-24",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +0.2 (80 cases); holding off (no runner out at 30 s) -0.3 (90 cases): no clear difference (0.5, -2.7 to +3.7). HC had a runner out: no clear difference either way."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +2.7 (81 cases); holding off (no runner out at 30 s) -0.0 (90 cases): no clear difference (2.7, -0.7 to +6.1). HC had a runner out: no clear difference either way."
   ],
   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
   "t": 777,
@@ -1559,12 +1559,12 @@
   "compared": true,
   "advice": null,
   "verdict": "no clear difference",
-  "margin": 0.4835528459744881,
+  "margin": 2.703752255602703,
   "range": [
-   -2.688435663616552,
-   3.6555413555655285
+   -0.7392934414855636,
+   6.14679795269097
   ],
-  "v180": -6.029416678340567
+  "v180": -6.028014377924112
  },
  {
   "id": "af831111-flag-2-965-34",
@@ -1573,7 +1573,7 @@
    "The spot: main fight hdm 8 v HC 6 (hdm up by 2); hdm's main team at the stand, HC's at the stand; morale hdm +80, HC -255 (the eight summed; a death is -15); hdm ahead on flags by 0.5; base res in 115 s; hdm's chance of winning 97%.",
    "The answer: hdm sends nobody in the next three minutes.",
    "What followed, 180 s on: HC's flag does not get in (not capped, 16:24); flag lead not read; deaths hdm 0, HC 7; boosts hdm 1, HC 0; hdm's chance of winning 97% to 100% (+2.5).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +6.2 (90 cases); a runner out by 15 s -7.2 (90 cases): the data favours holding off (no runner out at 15 s) by 13.4 win points (+10.5 to +16.4). hdm held off: the answer the data favours."
+   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +6.5 (90 cases); a runner out by 15 s -4.6 (90 cases): the data favours holding off (no runner out at 15 s) by 11.1 win points (+8.2 to +13.9). hdm held off: the answer the data favours."
   ],
   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
   "t": 965,
@@ -1584,12 +1584,12 @@
   "compared": true,
   "advice": "no runner yet",
   "verdict": "right",
-  "margin": 13.439153370251685,
+  "margin": 11.052625299611304,
   "range": [
-   10.465660930403267,
-   16.412645810100102
+   8.241838832310043,
+   13.863411766912565
   ],
-  "v180": 2.539802786058998
+  "v180": 2.5380951585323275
  },
  {
   "id": "d492aa6c-flag-1-184-22",
@@ -1598,7 +1598,7 @@
    "The spot: main fight hold 5 v RACK 8 (RACK up by 3); hold's main team at the stand, RACK's at the stand; morale hold -15, RACK no death penalty or boost (the eight summed; a death is -15); RACK ahead on flags by 0.5; base res in 56 s; hold's chance of winning 25%.",
    "The answer: hold sends its Earth Ele 1 s later.",
    "What followed, 180 s on: RACK's flag in at 3:47; hold's does not get in; flag lead +0.27 for hold; deaths hold 0, RACK 0; boosts hold 0, RACK 0; hold's chance of winning 25% to 26% (+1.5).",
-   "Similar spots, 180 s on, from the same position: a runner out by 15 s +7.7 (90 cases); holding off (no runner out at 15 s) -8.2 (90 cases): the data favours a runner out by 15 s by 15.9 win points (+12.2 to +19.6). hold had a runner out: the answer the data favours."
+   "Similar spots, 180 s on, from the same position: a runner out by 15 s +8.3 (90 cases); holding off (no runner out at 15 s) -8.7 (90 cases): the data favours a runner out by 15 s by 17.0 win points (+13.3 to +20.7). hold had a runner out: the answer the data favours."
   ],
   "rid": "d492aa6c-a12b-5bce-a5ec-9ada965676f0",
   "t": 184,
@@ -1609,12 +1609,12 @@
   "compared": true,
   "advice": "a runner sent by now",
   "verdict": "right",
-  "margin": 15.897770227705617,
+  "margin": 17.009377864748295,
   "range": [
-   12.201364605862146,
-   19.59417584954909
+   13.311347473689018,
+   20.70740825580757
   ],
-  "v180": 1.4730081724418753
+  "v180": 1.4731366951223874
  },
  {
   "id": "d492aa6c-flag-1-238-25",
@@ -1623,7 +1623,7 @@
    "The spot: main fight hold 7 v RACK 8 (RACK up by 1); hold's main team at the stand, RACK's at the stand; morale hold -15, RACK no death penalty or boost (the eight summed; a death is -15); hold ahead on flags by 1.6; base res in 4 s; hold's chance of winning 37%.",
    "The answer: hold sends its Earth Ele 2 s later.",
    "What followed, 180 s on: RACK's flag in at 4:56; hold's in at 5:03; flag lead -0.34 for hold; deaths hold 1, RACK 0; boosts hold 0, RACK 0; hold's chance of winning 37% to 34% (-2.6).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) -4.4 (90 cases); a runner out by 15 s -5.2 (90 cases): no clear difference (0.8, -2.8 to +4.4). hold had a runner out: no clear difference either way."
+   "Similar spots, 180 s on, from the same position: a runner out by 15 s -3.7 (90 cases); holding off (no runner out at 15 s) -4.7 (90 cases): no clear difference (1.0, -2.5 to +4.5). hold had a runner out: no clear difference either way."
   ],
   "rid": "d492aa6c-a12b-5bce-a5ec-9ada965676f0",
   "t": 236,
@@ -1634,12 +1634,12 @@
   "compared": true,
   "advice": null,
   "verdict": "no clear difference",
-  "margin": 0.8304704520686403,
+  "margin": 0.9986496176169473,
   "range": [
-   -2.7821624628044916,
-   4.443103366941772
+   -2.493823469358197,
+   4.491122704592092
   ],
-  "v180": -2.612389332128023
+  "v180": -2.616462204819231
  },
  {
   "id": "d492aa6c-flag-2-254-26",
@@ -1648,7 +1648,7 @@
    "The spot: main fight RACK 8 v hold 5 (RACK up by 3); RACK's main team at the stand, hold's at the stand; morale RACK no death penalty or boost, hold -15 (the eight summed; a death is -15); hold ahead on flags by 1.5; base res in 2 s; RACK's chance of winning 64%.",
    "The answer: RACK's Air Ele 2 had already set off 2 s before.",
    "What followed, 180 s on: hold's flag in at 5:03; RACK's in at 4:56; flag lead +0.29 for RACK; deaths RACK 0, hold 1; boosts RACK 0, hold 0; RACK's chance of winning 64% to 66% (+2.3).",
-   "Similar spots, 180 s on, from the same position: a runner out by 15 s +4.9 (90 cases); holding off (no runner out at 15 s) +3.5 (90 cases): no clear difference (1.3, -1.7 to +4.4). RACK had a runner out: no clear difference either way."
+   "Similar spots, 180 s on, from the same position: a runner out by 15 s +7.6 (90 cases); holding off (no runner out at 15 s) +4.2 (90 cases): the data favours a runner out by 15 s by 3.4 win points (+0.2 to +6.5). RACK had a runner out: the answer the data favours."
   ],
   "rid": "d492aa6c-a12b-5bce-a5ec-9ada965676f0",
   "t": 238,
@@ -1657,14 +1657,14 @@
   "call": "a runner sent by now",
   "unusual": false,
   "compared": true,
-  "advice": null,
-  "verdict": "no clear difference",
-  "margin": 1.3269761987862054,
+  "advice": "a runner sent by now",
+  "verdict": "right",
+  "margin": 3.353009438862001,
   "range": [
-   -1.74828123455893,
-   4.402233632131341
+   0.2373142799794361,
+   6.468704597744566
   ],
-  "v180": 2.268586849882004
+  "v180": 2.272617490480189
  },
  {
   "id": "d492aa6c-flag-2-339-32",
@@ -1673,7 +1673,7 @@
    "The spot: main fight RACK 7 v hold 5 (RACK up by 2); RACK's main team at the stand, hold's at the stand; morale RACK no death penalty or boost, hold -15 (the eight summed; a death is -15); flags level; base res in 39 s; RACK's chance of winning 72%.",
    "The answer: RACK sends a runner 85 s later.",
    "What followed, 180 s on: hold's flag in at 6:24; RACK's in at 7:43; flag lead +0.12 for RACK; deaths RACK 0, hold 1; boosts RACK 0, hold 0; RACK's chance of winning 72% to 73% (+1.0).",
-   "Similar spots, 180 s on, from the same position: a runner out by 15 s +3.6 (90 cases); holding off (no runner out at 15 s) +1.1 (90 cases): no clear difference (2.6, -0.4 to +5.5). RACK held off: no clear difference either way."
+   "Similar spots, 180 s on, from the same position: a runner out by 15 s +5.3 (90 cases); holding off (no runner out at 15 s) +1.3 (90 cases): the data favours a runner out by 15 s by 3.9 win points (+1.1 to +6.8). RACK held off: against what the data favours."
   ],
   "rid": "d492aa6c-a12b-5bce-a5ec-9ada965676f0",
   "t": 321,
@@ -1682,19 +1682,19 @@
   "call": "no runner yet",
   "unusual": false,
   "compared": true,
-  "advice": null,
-  "verdict": "no clear difference",
-  "margin": 2.5587848851755948,
+  "advice": "a runner sent by now",
+  "verdict": "wrong",
+  "margin": 3.9385959495757255,
   "range": [
-   -0.37440556915438306,
-   5.491975339505572
+   1.1181772605446523,
+   6.759014638606798
   ],
-  "v180": 1.012057609492234
+  "v180": 1.0155439156123602
  },
  {
   "id": "d492aa6c-flag-2-339-32",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +1.6 (90 cases); a runner out by 30 s -0.9 (81 cases): no clear difference (2.5, -0.7 to +5.7). RACK held off: no clear difference either way."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +1.6 (90 cases); a runner out by 30 s -2.7 (81 cases): the data favours holding off (no runner out at 30 s) by 4.3 win points (+0.9 to +7.6). RACK held off: the answer the data favours."
   ],
   "rid": "d492aa6c-a12b-5bce-a5ec-9ada965676f0",
   "t": 321,
@@ -1703,14 +1703,14 @@
   "call": "no runner yet",
   "unusual": false,
   "compared": true,
-  "advice": null,
-  "verdict": "no clear difference",
-  "margin": 2.5113926508480606,
+  "advice": "no runner yet",
+  "verdict": "right",
+  "margin": 4.276256793915434,
   "range": [
-   -0.6760785090101651,
-   5.698863810706286
+   0.9256651589750557,
+   7.626848428855812
   ],
-  "v180": 1.012057609492234
+  "v180": 1.0155439156123602
  },
  {
   "id": "d492aa6c-flag-2-397-37",
@@ -1719,7 +1719,7 @@
    "The spot: main fight RACK 8 v hold 7 (RACK up by 1); RACK's main team at the stand, hold's at the stand; morale RACK no death penalty or boost, hold -30 (the eight summed; a death is -15); hold ahead on flags by 1.0; base res in 83 s; RACK's chance of winning 67%.",
    "The answer: RACK sends its Air Ele 2 9 s later.",
    "What followed, 180 s on: hold's flag in at 7:58; RACK's in at 7:43; flag lead +0.00 for RACK; deaths RACK 0, hold 1; boosts RACK 0, hold 0; RACK's chance of winning 67% to 72% (+4.8).",
-   "Similar spots, 180 s on, from the same position: a runner out by 15 s +7.1 (90 cases); holding off (no runner out at 15 s) +1.4 (90 cases): the data favours a runner out by 15 s by 5.8 win points (+2.5 to +9.0). RACK had a runner out: the answer the data favours."
+   "Similar spots, 180 s on, from the same position: a runner out by 15 s +9.1 (90 cases); holding off (no runner out at 15 s) +1.8 (90 cases): the data favours a runner out by 15 s by 7.3 win points (+4.1 to +10.5). RACK had a runner out: the answer the data favours."
   ],
   "rid": "d492aa6c-a12b-5bce-a5ec-9ada965676f0",
   "t": 397,
@@ -1730,12 +1730,12 @@
   "compared": true,
   "advice": "a runner sent by now",
   "verdict": "right",
-  "margin": 5.750053061932035,
+  "margin": 7.31701003504555,
   "range": [
-   2.5088029757883685,
-   8.991303148075701
+   4.10417290656012,
+   10.529847163530981
   ],
-  "v180": 4.794005027889082
+  "v180": 4.798798372976531
  },
  {
   "id": "d492aa6c-flag-2-506-43",
@@ -1744,7 +1744,7 @@
    "The spot: main fight RACK 8 v hold 6 (RACK up by 2); RACK's main team at the stand, hold's at the stand; morale RACK no death penalty or boost, hold -30 (the eight summed; a death is -15); flags level; base res in 100 s; RACK's chance of winning 73%.",
    "The answer: RACK sends a runner 89 s later.",
    "What followed, 180 s on: hold's flag in at 9:27; RACK's in at 10:48; flag lead -0.86 for RACK; deaths RACK 0, hold 1; boosts RACK 0, hold 0; RACK's chance of winning 73% to 63% (-9.6).",
-   "Similar spots, 180 s on, from the same position: a runner out by 15 s +6.0 (90 cases); holding off (no runner out at 15 s) -0.8 (90 cases): the data favours a runner out by 15 s by 6.8 win points (+3.8 to +9.7). RACK held off: against what the data favours."
+   "Similar spots, 180 s on, from the same position: a runner out by 15 s +7.4 (90 cases); holding off (no runner out at 15 s) -1.5 (90 cases): the data favours a runner out by 15 s by 8.9 win points (+5.7 to +12.0). RACK held off: against what the data favours."
   ],
   "rid": "d492aa6c-a12b-5bce-a5ec-9ada965676f0",
   "t": 500,
@@ -1755,17 +1755,17 @@
   "compared": true,
   "advice": "a runner sent by now",
   "verdict": "wrong",
-  "margin": 6.750136262333684,
+  "margin": 8.86690660879294,
   "range": [
-   3.7614202804293053,
-   9.738852244238062
+   5.712137139435729,
+   12.02167607815015
   ],
-  "v180": -9.634091511656528
+  "v180": -9.631786289483868
  },
  {
   "id": "d492aa6c-flag-2-506-43",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +1.3 (90 cases); a runner out by 30 s +0.0 (81 cases): no clear difference (1.3, -1.9 to +4.5). RACK held off: no clear difference either way."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +1.7 (90 cases); a runner out by 30 s -1.7 (81 cases): the data favours holding off (no runner out at 30 s) by 3.4 win points (+0.0 to +6.8). RACK held off: the answer the data favours."
   ],
   "rid": "d492aa6c-a12b-5bce-a5ec-9ada965676f0",
   "t": 500,
@@ -1774,26 +1774,26 @@
   "call": "no runner yet",
   "unusual": false,
   "compared": true,
-  "advice": null,
-  "verdict": "no clear difference",
-  "margin": 1.3319911952869956,
+  "advice": "no runner yet",
+  "verdict": "right",
+  "margin": 3.4166397822391974,
   "range": [
-   -1.8720220635799445,
-   4.536004454153936
+   0.014045820648278085,
+   6.819233743830116
   ],
-  "v180": -9.634091511656528
+  "v180": -9.631786289483868
  },
  {
-  "id": "d492aa6c-flag-2-559-48",
+  "id": "d492aa6c-flag-2-574-48",
   "lines": [
-   "9:19  hold's Earth Ele sets off for a flag (single run). RACK holds the stand (hold caps 8 s later), boost in 65 s.",
-   "The spot: main fight RACK 8 v hold 3 (RACK up by 5); RACK's main team at the stand, hold's at the stand; morale RACK no death penalty or boost, hold -45 (the eight summed; a death is -15); flags level; base res in 41 s; RACK's chance of winning 78%.",
-   "The answer: RACK sends its Air Ele 2 30 s later.",
-   "What followed, 180 s on: hold's flag in at 10:51; RACK's in at 10:48; flag lead -1.23 for RACK; deaths RACK 0, hold 0; boosts RACK 0, hold 0; RACK's chance of winning 78% to 63% (-15.8).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +2.5 (90 cases); a runner out by 15 s -0.1 (90 cases): no clear difference (2.7, -0.9 to +6.3). RACK held off: no clear difference either way."
+   "9:28  hold's Earth Ele sets off for a flag (single run). hold holds the stand, boost in 119 s.",
+   "The spot: main fight RACK 6 v hold 4 (RACK up by 2); RACK's main team at RACK's door, hold's at the stand; morale RACK no death penalty or boost, hold -45 (the eight summed; a death is -15); hold ahead on flags by 1.0; base res in 32 s; RACK's chance of winning 72%.",
+   "The answer: RACK sends its Air Ele 2 21 s later.",
+   "What followed, 180 s on: hold's flag in at 10:51; RACK's in at 10:48; flag lead +0.00 for RACK; deaths RACK 0, hold 1; boosts RACK 0, hold 0; RACK's chance of winning 72% to 68% (-4.1).",
+   "Similar spots, 180 s on, from the same position: a runner out by 15 s +4.0 (90 cases); holding off (no runner out at 15 s) +2.8 (90 cases): no clear difference (1.2, -1.9 to +4.3). RACK held off: no clear difference either way."
   ],
   "rid": "d492aa6c-a12b-5bce-a5ec-9ada965676f0",
-  "t": 559,
+  "t": 568,
   "team": "RACK",
   "read": 15,
   "call": "no runner yet",
@@ -1801,58 +1801,58 @@
   "compared": true,
   "advice": null,
   "verdict": "no clear difference",
-  "margin": 2.685410507275238,
+  "margin": 1.2158494954028911,
   "range": [
-   -0.9289057641804566,
-   6.299726778730932
+   -1.8552342978794711,
+   4.286933288685253
   ],
-  "v180": -15.840641879529837
+  "v180": -4.104419968402828
  },
  {
-  "id": "d492aa6c-flag-2-559-48",
+  "id": "d492aa6c-flag-2-574-48",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +5.9 (90 cases); a runner out by 30 s +2.2 (90 cases): the data favours holding off (no runner out at 30 s) by 3.7 win points (+0.5 to +6.8). RACK had a runner out: against what the data favours."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +4.9 (81 cases); holding off (no runner out at 30 s) +3.1 (90 cases): no clear difference (1.7, -1.7 to +5.1). RACK had a runner out: no clear difference either way."
   ],
   "rid": "d492aa6c-a12b-5bce-a5ec-9ada965676f0",
-  "t": 559,
+  "t": 568,
   "team": "RACK",
   "read": 30,
   "call": "a runner sent by now",
   "unusual": false,
   "compared": true,
-  "advice": "no runner yet",
-  "verdict": "wrong",
-  "margin": 3.6685143771743776,
+  "advice": null,
+  "verdict": "no clear difference",
+  "margin": 1.7218512519969287,
   "range": [
-   0.5333847598468568,
-   6.803643994501899
+   -1.666167942699739,
+   5.109870446693597
   ],
-  "v180": -15.840641879529837
+  "v180": -4.104419968402828
  },
  {
-  "id": "d492aa6c-flag-2-671-58",
+  "id": "d492aa6c-flag-2-670-58",
   "lines": [
-   "10:49  hold's Earth Ele sets off for a flag (single run). RACK holds the stand (hold caps 2 s later), boost in 120 s.",
-   "The spot: main fight RACK 5 v hold 4 (RACK up by 1); RACK's main team at RACK's footmen, hold's at the stand; morale RACK no death penalty or boost, hold -45 (the eight summed; a death is -15); hold ahead on flags by 0.7; base res in 71 s; RACK's chance of winning 65%.",
-   "The answer: RACK sends its Air Ele 2 11 s later.",
-   "What followed, 180 s on: hold's flag in at 11:55; RACK's in at 11:52; flag lead +1.87 for RACK; deaths RACK 0, hold 1; boosts RACK 0, hold 0; RACK's chance of winning 65% to 80% (+15.1).",
-   "Similar spots, 180 s on, from the same position: a runner out by 15 s -0.6 (90 cases); holding off (no runner out at 15 s) -4.3 (90 cases): no clear difference (3.7, -0.0 to +7.4). RACK had a runner out: no clear difference either way."
+   "10:52  hold's Earth Ele sets off for a flag (single run). hold holds the stand, boost in 120 s.",
+   "The spot: main fight RACK 5 v hold 4 (RACK up by 1); RACK's main team at RACK's footmen, hold's at the stand; morale RACK no death penalty or boost, hold -45 (the eight summed; a death is -15); hold ahead on flags by 1.0; base res in 68 s; RACK's chance of winning 63%.",
+   "The answer: RACK sends its Air Ele 2 8 s later.",
+   "What followed, 180 s on: hold's flag in at 11:55; RACK's in at 11:52; flag lead +1.98 for RACK; deaths RACK 0, hold 1; boosts RACK 0, hold 0; RACK's chance of winning 63% to 79% (+16.2).",
+   "Similar spots, 180 s on, from the same position: a runner out by 15 s +5.1 (90 cases); holding off (no runner out at 15 s) +1.1 (90 cases): the data favours a runner out by 15 s by 4.0 win points (+0.8 to +7.2). RACK had a runner out: the answer the data favours."
   ],
   "rid": "d492aa6c-a12b-5bce-a5ec-9ada965676f0",
-  "t": 649,
+  "t": 652,
   "team": "RACK",
   "read": 15,
   "call": "a runner sent by now",
   "unusual": false,
   "compared": true,
-  "advice": null,
-  "verdict": "no clear difference",
-  "margin": 3.691839880800556,
+  "advice": "a runner sent by now",
+  "verdict": "right",
+  "margin": 3.9742771040674523,
   "range": [
-   -0.04418716940540479,
-   7.427866931006516
+   0.7943692492177821,
+   7.1541849589171225
   ],
-  "v180": 15.137536021525221
+  "v180": 16.207109089681605
  },
  {
   "id": "d492aa6c-flag-1-749-63",
@@ -1861,7 +1861,7 @@
    "The spot: main fight hold 7 v RACK 8 (RACK up by 1); hold's main team at RACK's footmen, RACK's at RACK's footmen; morale hold -60, RACK no death penalty or boost (the eight summed; a death is -15); hold ahead on flags by 1.0; base res in 91 s; hold's chance of winning 32%.",
    "The answer: hold sends its Earth Ele 48 s later.",
    "What followed, 180 s on: RACK's flag in at 13:38; hold's in at 14:33; flag lead -2.00 for hold; deaths hold 3, RACK 0; boosts hold 0, RACK 0; hold's chance of winning 32% to 17% (-15.1).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) -2.2 (90 cases); a runner out by 15 s -5.1 (90 cases): no clear difference (2.9, -1.0 to +6.9). hold held off: no clear difference either way."
+   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) -2.1 (90 cases); a runner out by 15 s -2.6 (90 cases): no clear difference (0.6, -3.3 to +4.4). hold held off: no clear difference either way."
   ],
   "rid": "d492aa6c-a12b-5bce-a5ec-9ada965676f0",
   "t": 749,
@@ -1872,17 +1872,17 @@
   "compared": true,
   "advice": null,
   "verdict": "no clear difference",
-  "margin": 2.928759713068799,
+  "margin": 0.5700010844971555,
   "range": [
-   -0.9947012885149236,
-   6.852220714652521
+   -3.2516199801625154,
+   4.391622149156826
   ],
-  "v180": -15.13484857082574
+  "v180": -15.14033002929116
  },
  {
   "id": "d492aa6c-flag-1-749-63",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) -0.5 (90 cases); a runner out by 30 s -3.8 (90 cases): no clear difference (3.3, -0.8 to +7.4). hold held off: no clear difference either way."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) -1.4 (90 cases); a runner out by 30 s -3.5 (90 cases): no clear difference (2.1, -1.4 to +5.7). hold held off: no clear difference either way."
   ],
   "rid": "d492aa6c-a12b-5bce-a5ec-9ada965676f0",
   "t": 749,
@@ -1893,12 +1893,12 @@
   "compared": true,
   "advice": null,
   "verdict": "no clear difference",
-  "margin": 3.3082394992039705,
+  "margin": 2.1118745414421225,
   "range": [
-   -0.806945346080536,
-   7.4234243444884775
+   -1.4456253802689636,
+   5.669374463153209
   ],
-  "v180": -15.13484857082574
+  "v180": -15.14033002929116
  },
  {
   "id": "d492aa6c-flag-2-925-78",
@@ -1907,7 +1907,7 @@
    "The spot: main fight RACK 7 v hold 4 (RACK up by 3); RACK's main team at the stand, hold's at the stand; morale RACK no death penalty or boost, hold -90 (the eight summed; a death is -15); RACK ahead on flags by 1.0; base res in 35 s; RACK's chance of winning 79%.",
    "The answer: RACK sends its Air Ele 2 12 s later.",
    "What followed, 180 s on: hold's flag does not get in (returned, 16:16); RACK's does not get in; flag lead +0.04 for RACK; deaths RACK 0, hold 2; boosts RACK 1, hold 0; RACK's chance of winning 79% to 92% (+12.5).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +5.0 (90 cases); a runner out by 15 s -5.9 (90 cases): the data favours holding off (no runner out at 15 s) by 10.9 win points (+7.6 to +14.1). RACK had a runner out: against what the data favours."
+   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +4.6 (90 cases); a runner out by 15 s -5.0 (90 cases): the data favours holding off (no runner out at 15 s) by 9.7 win points (+6.5 to +12.8). RACK had a runner out: against what the data favours."
   ],
   "rid": "d492aa6c-a12b-5bce-a5ec-9ada965676f0",
   "t": 925,
@@ -1918,12 +1918,12 @@
   "compared": true,
   "advice": "no runner yet",
   "verdict": "wrong",
-  "margin": 10.886389480269226,
+  "margin": 9.672252158233697,
   "range": [
-   7.63330919782084,
-   14.139469762717614
+   6.541507835431152,
+   12.802996481036242
   ],
-  "v180": 12.474930156927899
+  "v180": 12.46377114702245
  },
  {
   "id": "d492aa6c-flag-1-1003-82",
@@ -1932,7 +1932,7 @@
    "The spot: main fight hold 5 v RACK 7 (RACK up by 2); hold's main team at hold's footmen, RACK's at hold's footmen; morale hold -120, RACK +80 (the eight summed; a death is -15); RACK ahead on flags by 1.5; base res in 77 s; hold's chance of winning 7%.",
    "The answer: hold sends its Air Ele 151 s later.",
    "What followed, 180 s on: RACK's flag does not get in (not capped, 21:29); hold's does not get in; flag lead +0.62 for hold; deaths hold 0, RACK 0; boosts hold 0, RACK 1; hold's chance of winning 7% to 8% (+1.3).",
-   "Similar spots, 180 s on, from the same position: a runner out by 15 s +4.8 (90 cases); holding off (no runner out at 15 s) -1.8 (90 cases): the data favours a runner out by 15 s by 6.6 win points (+3.9 to +9.3). hold held off: against what the data favours."
+   "Similar spots, 180 s on, from the same position: a runner out by 15 s +7.0 (90 cases); holding off (no runner out at 15 s) -1.2 (90 cases): the data favours a runner out by 15 s by 8.2 win points (+5.4 to +11.0). hold held off: against what the data favours."
   ],
   "rid": "d492aa6c-a12b-5bce-a5ec-9ada965676f0",
   "t": 1003,
@@ -1943,17 +1943,17 @@
   "compared": true,
   "advice": "a runner sent by now",
   "verdict": "wrong",
-  "margin": 6.622011577198388,
+  "margin": 8.203496215356555,
   "range": [
-   3.914115052930918,
-   9.329908101465858
+   5.4458046214057685,
+   10.961187809307342
   ],
-  "v180": 1.2874876906465895
+  "v180": 1.2872466070476292
  },
  {
   "id": "d492aa6c-flag-1-1003-82",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) -1.5 (90 cases); a runner out by 30 s -16.0 (81 cases): the data favours holding off (no runner out at 30 s) by 14.5 win points (+11.5 to +17.5). hold held off: the answer the data favours."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) -2.3 (90 cases); a runner out by 30 s -14.1 (81 cases): the data favours holding off (no runner out at 30 s) by 11.8 win points (+8.6 to +15.0). hold held off: the answer the data favours."
   ],
   "rid": "d492aa6c-a12b-5bce-a5ec-9ada965676f0",
   "t": 1003,
@@ -1964,12 +1964,12 @@
   "compared": true,
   "advice": "no runner yet",
   "verdict": "right",
-  "margin": 14.529888497073406,
+  "margin": 11.786838067875518,
   "range": [
-   11.519108342982788,
-   17.540668651164022
+   8.570356104297588,
+   15.003320031453448
   ],
-  "v180": 1.2874876906465895
+  "v180": 1.2872466070476292
  },
  {
   "id": "3d0f3fc5-flag-1-30-8",
@@ -1978,7 +1978,7 @@
    "The spot: main fight HC 5 v cope 6 (cope up by 1); HC's main team at the stand, cope's at the stand; morale HC no death penalty or boost, cope no death penalty or boost (the eight summed; a death is -15); HC ahead on flags by 1.0; base res in 90 s; HC's chance of winning 80%.",
    "The answer: HC sends nobody in the next three minutes.",
    "What followed, 180 s on: cope's flag in at 1:21; flag lead -0.51 for HC; deaths HC 1, cope 1; boosts HC 0, cope 0; HC's chance of winning 80% to 91% (+11.2).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +2.2 (90 cases); a runner out by 15 s +1.7 (43 cases): no clear difference (0.5, -3.3 to +4.3). HC held off: no clear difference either way."
+   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +2.4 (90 cases); a runner out by 15 s +1.7 (43 cases): no clear difference (0.6, -3.1 to +4.4). HC held off: no clear difference either way."
   ],
   "rid": "3d0f3fc5-d078-50f8-adfa-ba7becc95a8a",
   "t": 30,
@@ -1989,12 +1989,12 @@
   "compared": true,
   "advice": null,
   "verdict": "no clear difference",
-  "margin": 0.47673802761303685,
+  "margin": 0.6184233119374736,
   "range": [
-   -3.2995010102356397,
-   4.252977065461714
+   -3.1228995793849177,
+   4.359746203259865
   ],
-  "v180": 11.154078255842915
+  "v180": 11.158527429171293
  },
  {
   "id": "3d0f3fc5-flag-1-30-8",
@@ -2012,7 +2012,7 @@
   "verdict": "too few cases",
   "margin": null,
   "range": null,
-  "v180": 11.154078255842915
+  "v180": 11.158527429171293
  },
  {
   "id": "3d0f3fc5-flag-1-153-34",
@@ -2021,7 +2021,7 @@
    "The spot: main fight HC 2 v cope 5 (cope up by 3); HC's main team at HC's door, cope's at cope's door; morale HC no death penalty or boost, cope -15 (the eight summed; a death is -15); HC ahead on flags by 1.6; base res in 87 s; HC's chance of winning 94%.",
    "The answer: HC sends nobody in the next three minutes.",
    "What followed, 180 s on: cope's flag does not get in (returned, 3:05); flag lead -1.54 for HC; deaths HC 1, cope 3; boosts HC 1, cope 0; HC's chance of winning 94% to 97% (+3.7).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) -6.6 (90 cases); a runner out by 15 s -8.6 (90 cases): no clear difference (2.0, -1.5 to +5.4). HC held off: no clear difference either way."
+   "Similar spots, 180 s on, from the same position: a runner out by 15 s -5.2 (90 cases); holding off (no runner out at 15 s) -6.8 (90 cases): no clear difference (1.6, -1.8 to +5.0). HC held off: no clear difference either way."
   ],
   "rid": "3d0f3fc5-d078-50f8-adfa-ba7becc95a8a",
   "t": 153,
@@ -2032,17 +2032,17 @@
   "compared": true,
   "advice": null,
   "verdict": "no clear difference",
-  "margin": 1.985834397051402,
+  "margin": 1.6040383924496275,
   "range": [
-   -1.4731844435008106,
-   5.444853237603615
+   -1.7775430475352345,
+   4.985619832434489
   ],
-  "v180": 3.7221201563407913
+  "v180": 3.7210998607280055
  },
  {
   "id": "3d0f3fc5-flag-1-153-34",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) -4.9 (90 cases); a runner out by 30 s -6.2 (90 cases): no clear difference (1.3, -2.1 to +4.7). HC held off: no clear difference either way."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) -5.1 (90 cases); a runner out by 30 s -5.8 (90 cases): no clear difference (0.7, -2.4 to +3.8). HC held off: no clear difference either way."
   ],
   "rid": "3d0f3fc5-d078-50f8-adfa-ba7becc95a8a",
   "t": 153,
@@ -2053,12 +2053,12 @@
   "compared": true,
   "advice": null,
   "verdict": "no clear difference",
-  "margin": 1.3070495873145305,
+  "margin": 0.68569702903413,
   "range": [
-   -2.078227915663736,
-   4.692327090292797
+   -2.403469948184807,
+   3.774864006253067
   ],
-  "v180": 3.7221201563407913
+  "v180": 3.7210998607280055
  },
  {
   "id": "3d0f3fc5-flag-1-203-37",
@@ -2067,7 +2067,7 @@
    "The spot: main fight HC 7 v cope 5 (HC up by 2); HC's main team at the stand, cope's at cope's door; morale HC -15, cope -13 (the eight summed; a death is -15); HC ahead on flags by 0.5; base res in 37 s; HC's chance of winning 91%.",
    "The answer: HC sends nobody in the next three minutes.",
    "What followed, 180 s on: cope's flag does not get in (returned, 3:52); flag lead +0.11 for HC; deaths HC 0, cope 5; boosts HC 2, cope 0; HC's chance of winning 91% to 99% (+7.2).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +3.8 (90 cases); a runner out by 15 s +2.9 (90 cases): no clear difference (1.0, -2.5 to +4.4). HC held off: no clear difference either way."
+   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +5.0 (90 cases); a runner out by 15 s +4.9 (90 cases): no clear difference (0.1, -3.5 to +3.7). HC held off: no clear difference either way."
   ],
   "rid": "3d0f3fc5-d078-50f8-adfa-ba7becc95a8a",
   "t": 203,
@@ -2078,12 +2078,12 @@
   "compared": true,
   "advice": null,
   "verdict": "no clear difference",
-  "margin": 0.952154157070872,
+  "margin": 0.12393308503146994,
   "range": [
-   -2.544758470662946,
-   4.44906678480469
+   -3.476920017177005,
+   3.724786187239945
   ],
-  "v180": 7.16159159145664
+  "v180": 7.1650984544922025
  },
  {
   "id": "53175808-flag-1-449-16",
@@ -2092,7 +2092,7 @@
    "The spot: main fight 옷옷옷옷 7 v hdm 7 (even); 옷옷옷옷's main team in hdm's pit, hdm's at hdm's door; morale 옷옷옷옷 -41, hdm -10 (the eight summed; a death is -15); flags level; base res in 31 s; 옷옷옷옷's chance of winning 41%.",
    "The answer: 옷옷옷옷 sends nobody in the next three minutes.",
    "What followed, 180 s on: hdm's flag in at 8:05; flag lead +0.04 for 옷옷옷옷; deaths 옷옷옷옷 10, hdm 0; boosts 옷옷옷옷 0, hdm 1; 옷옷옷옷's chance of winning 41% to 5% (-36.1).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +8.9 (90 cases); a runner out by 15 s -0.3 (90 cases): the data favours holding off (no runner out at 15 s) by 9.2 win points (+5.3 to +13.1). 옷옷옷옷 held off: the answer the data favours."
+   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +8.5 (90 cases); a runner out by 15 s +0.3 (90 cases): the data favours holding off (no runner out at 15 s) by 8.2 win points (+4.3 to +12.0). 옷옷옷옷 held off: the answer the data favours."
   ],
   "rid": "53175808-daeb-5e11-a57e-f5b96124d398",
   "t": 449,
@@ -2103,17 +2103,17 @@
   "compared": true,
   "advice": "no runner yet",
   "verdict": "right",
-  "margin": 9.19183422524298,
+  "margin": 8.183796767435725,
   "range": [
-   5.299990271511734,
-   13.083678178974225
+   4.348165118689984,
+   12.019428416181466
   ],
-  "v180": -36.11860099914725
+  "v180": -36.0597271830729
  },
  {
   "id": "53175808-flag-1-449-16",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +9.1 (90 cases); holding off (no runner out at 30 s) +8.2 (90 cases): no clear difference (0.9, -3.1 to +4.9). 옷옷옷옷 held off: no clear difference either way."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +11.0 (90 cases); holding off (no runner out at 30 s) +8.0 (90 cases): no clear difference (3.0, -0.9 to +6.9). 옷옷옷옷 held off: no clear difference either way."
   ],
   "rid": "53175808-daeb-5e11-a57e-f5b96124d398",
   "t": 449,
@@ -2124,12 +2124,12 @@
   "compared": true,
   "advice": null,
   "verdict": "no clear difference",
-  "margin": 0.8856616498607615,
+  "margin": 3.0402600562390543,
   "range": [
-   -3.1410387004585845,
-   4.912362000180107
+   -0.8556117873176556,
+   6.936131899795765
   ],
-  "v180": -36.11860099914725
+  "v180": -36.0597271830729
  },
  {
   "id": "53175808-flag-2-692-24",
@@ -2138,7 +2138,7 @@
    "The spot: main fight hdm 8 v 옷옷옷옷 6 (hdm up by 2); hdm's main team at 옷옷옷옷's door, 옷옷옷옷's at 옷옷옷옷's door; morale hdm +80, 옷옷옷옷 -214 (the eight summed; a death is -15); flags level; base res in 28 s; hdm's chance of winning 98%.",
    "The answer: hdm sends its Air Ele 3 22 s later.",
    "What followed, 180 s on: 옷옷옷옷's flag does not get in (returned, 12:07); hdm's in at 13:32; flag lead +0.94 for hdm; deaths hdm 0, 옷옷옷옷 11; boosts hdm 1, 옷옷옷옷 0; hdm's chance of winning 98% to 100% (+2.4).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +2.1 (90 cases); a runner out by 15 s -3.3 (90 cases): the data favours holding off (no runner out at 15 s) by 5.4 win points (+2.5 to +8.3). hdm held off: the answer the data favours."
+   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +2.4 (90 cases); a runner out by 15 s +0.6 (90 cases): no clear difference (1.8, -1.1 to +4.7). hdm held off: no clear difference either way."
   ],
   "rid": "53175808-daeb-5e11-a57e-f5b96124d398",
   "t": 692,
@@ -2147,19 +2147,19 @@
   "call": "no runner yet",
   "unusual": false,
   "compared": true,
-  "advice": "no runner yet",
-  "verdict": "right",
-  "margin": 5.405595661803622,
+  "advice": null,
+  "verdict": "no clear difference",
+  "margin": 1.8035107759930558,
   "range": [
-   2.4990409789212693,
-   8.312150344685975
+   -1.116881902001178,
+   4.7239034539872895
   ],
-  "v180": 2.3770640806306753
+  "v180": 2.3647486875024826
  },
  {
   "id": "53175808-flag-2-692-24",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +3.1 (90 cases); holding off (no runner out at 30 s) +2.3 (90 cases): no clear difference (0.8, -2.3 to +3.8). hdm had a runner out: no clear difference either way."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +7.7 (90 cases); holding off (no runner out at 30 s) +1.8 (90 cases): the data favours a runner out by 30 s by 5.9 win points (+3.3 to +8.6). hdm had a runner out: the answer the data favours."
   ],
   "rid": "53175808-daeb-5e11-a57e-f5b96124d398",
   "t": 692,
@@ -2168,14 +2168,14 @@
   "call": "a runner sent by now",
   "unusual": false,
   "compared": true,
-  "advice": null,
-  "verdict": "no clear difference",
-  "margin": 0.7600734977874262,
+  "advice": "a runner sent by now",
+  "verdict": "right",
+  "margin": 5.924352525864236,
   "range": [
-   -2.2802253881051926,
-   3.800372383680045
+   3.250843768395391,
+   8.597861283333081
   ],
-  "v180": 2.3770640806306753
+  "v180": 2.3647486875024826
  },
  {
   "id": "15a20f7a-flag-1-129-6",
@@ -2184,7 +2184,7 @@
    "The spot: main fight Dz 7 v Team 6 (Dz up by 1); Dz's main team at the stand, Team's at Team's door; morale Dz no death penalty or boost, Team -105 (the eight summed; a death is -15); Dz ahead on flags by 1.0; base res in 111 s; Dz's chance of winning 91%.",
    "The answer: Dz sends a runner 58 s later.",
    "What followed, 180 s on: Team's flag in at 3:06; Dz's in at 4:01; flag lead -2.75 for Dz; deaths Dz 1, Team 3; boosts Dz 0, Team 0; Dz's chance of winning 91% to 88% (-3.7).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +6.6 (90 cases); a runner out by 15 s -7.4 (90 cases): the data favours holding off (no runner out at 15 s) by 14.1 win points (+11.0 to +17.2). Dz held off: the answer the data favours."
+   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +6.5 (90 cases); a runner out by 15 s -6.5 (90 cases): the data favours holding off (no runner out at 15 s) by 13.0 win points (+9.9 to +16.1). Dz held off: the answer the data favours."
   ],
   "rid": "15a20f7a-0112-519a-a5f9-797a6822bf1b",
   "t": 129,
@@ -2195,17 +2195,17 @@
   "compared": true,
   "advice": "no runner yet",
   "verdict": "right",
-  "margin": 14.086079329871467,
+  "margin": 12.974205858456205,
   "range": [
-   10.953890658702838,
-   17.218268001040094
+   9.87300840038145,
+   16.07540331653096
   ],
-  "v180": -3.7399459172648086
+  "v180": -3.738615533098677
  },
  {
   "id": "15a20f7a-flag-1-129-6",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +8.2 (90 cases); holding off (no runner out at 30 s) +5.4 (90 cases): no clear difference (2.8, -0.7 to +6.2). Dz held off: no clear difference either way."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +8.7 (90 cases); holding off (no runner out at 30 s) +5.4 (90 cases): the data favours a runner out by 30 s by 3.3 win points (+0.1 to +6.5). Dz held off: against what the data favours."
   ],
   "rid": "15a20f7a-0112-519a-a5f9-797a6822bf1b",
   "t": 129,
@@ -2214,14 +2214,14 @@
   "call": "no runner yet",
   "unusual": false,
   "compared": true,
-  "advice": null,
-  "verdict": "no clear difference",
-  "margin": 2.755407063538957,
+  "advice": "a runner sent by now",
+  "verdict": "wrong",
+  "margin": 3.2914941261945305,
   "range": [
-   -0.7218294677624657,
-   6.23264359484038
+   0.1081228329910946,
+   6.4748654193979664
   ],
-  "v180": -3.7399459172648086
+  "v180": -3.738615533098677
  },
  {
   "id": "15a20f7a-flag-2-187-7",
@@ -2230,7 +2230,7 @@
    "The spot: main fight Team 3 v Dz 2 (Team up by 1); Team's main team at the stand, Dz's at the stand; morale Team -105, Dz no death penalty or boost (the eight summed; a death is -15); flags level; base res in 53 s; Team's chance of winning 11%.",
    "The answer: Team sends a runner 58 s later.",
    "What followed, 180 s on: Dz's flag in at 4:01; Team's in at 4:41; flag lead +1.30 for Team; deaths Team 3, Dz 1; boosts Team 0, Dz 0; Team's chance of winning 11% to 11% (+0.2).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) -1.9 (90 cases); a runner out by 15 s -6.7 (90 cases): the data favours holding off (no runner out at 15 s) by 4.8 win points (+1.4 to +8.2). Team held off: the answer the data favours."
+   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) -1.4 (90 cases); a runner out by 15 s -9.1 (90 cases): the data favours holding off (no runner out at 15 s) by 7.8 win points (+4.2 to +11.3). Team held off: the answer the data favours."
   ],
   "rid": "15a20f7a-0112-519a-a5f9-797a6822bf1b",
   "t": 187,
@@ -2241,17 +2241,17 @@
   "compared": true,
   "advice": "no runner yet",
   "verdict": "right",
-  "margin": 4.786577568356801,
+  "margin": 7.759819716569648,
   "range": [
-   1.3597019770851078,
-   8.213453159628495
+   4.213929183081539,
+   11.305710250057757
   ],
-  "v180": 0.19126515030882113
+  "v180": 0.19105080027627952
  },
  {
   "id": "15a20f7a-flag-2-187-7",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s -0.5 (90 cases); holding off (no runner out at 30 s) -1.9 (90 cases): no clear difference (1.5, -2.0 to +4.9). Team held off: no clear difference either way."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s -0.2 (90 cases); holding off (no runner out at 30 s) -1.9 (90 cases): no clear difference (1.8, -1.5 to +5.0). Team held off: no clear difference either way."
   ],
   "rid": "15a20f7a-0112-519a-a5f9-797a6822bf1b",
   "t": 187,
@@ -2262,12 +2262,12 @@
   "compared": true,
   "advice": null,
   "verdict": "no clear difference",
-  "margin": 1.4515099767278516,
+  "margin": 1.778801064377537,
   "range": [
-   -2.0466484429237455,
-   4.949668396379449
+   -1.4709895501483026,
+   5.028591678903377
   ],
-  "v180": 0.19126515030882113
+  "v180": 0.19105080027627952
  },
  {
   "id": "15a20f7a-flag-1-245-16",
@@ -2276,7 +2276,7 @@
    "The spot: main fight Dz 6 v Team 3 (Dz up by 3); Dz's main team at the stand, Team's at the stand; morale Dz no death penalty or boost, Team -120 (the eight summed; a death is -15); Dz ahead on flags by 0.5; base res in 115 s; Dz's chance of winning 92%.",
    "The answer: Dz sends a runner 50 s later.",
    "What followed, 180 s on: Team's flag in at 4:41; Dz's does not get in; flag lead -1.31 for Dz; deaths Dz 1, Team 4; boosts Dz 0, Team 0; Dz's chance of winning 92% to 94% (+1.8).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) -1.1 (90 cases); a runner out by 15 s -11.8 (90 cases): the data favours holding off (no runner out at 15 s) by 10.7 win points (+7.0 to +14.5). Dz held off: the answer the data favours."
+   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) -1.0 (90 cases); a runner out by 15 s -12.6 (90 cases): the data favours holding off (no runner out at 15 s) by 11.5 win points (+7.8 to +15.3). Dz held off: the answer the data favours."
   ],
   "rid": "15a20f7a-0112-519a-a5f9-797a6822bf1b",
   "t": 245,
@@ -2287,17 +2287,17 @@
   "compared": true,
   "advice": "no runner yet",
   "verdict": "right",
-  "margin": 10.724713134487176,
+  "margin": 11.527935758715554,
   "range": [
-   6.96289607130578,
-   14.486530197668573
+   7.7524817194025655,
+   15.303389798028542
   ],
-  "v180": 1.8114117797796703
+  "v180": 1.8098827910689508
  },
  {
   "id": "15a20f7a-flag-1-245-16",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +4.7 (90 cases); holding off (no runner out at 30 s) +0.6 (90 cases): the data favours a runner out by 30 s by 4.2 win points (+0.4 to +8.0). Dz held off: against what the data favours."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +8.7 (90 cases); holding off (no runner out at 30 s) +0.4 (90 cases): the data favours a runner out by 30 s by 8.3 win points (+4.7 to +11.8). Dz held off: against what the data favours."
   ],
   "rid": "15a20f7a-0112-519a-a5f9-797a6822bf1b",
   "t": 245,
@@ -2308,12 +2308,12 @@
   "compared": true,
   "advice": "a runner sent by now",
   "verdict": "wrong",
-  "margin": 4.155298505549234,
+  "margin": 8.274827783624678,
   "range": [
-   0.3509061746743005,
-   7.959690836424167
+   4.723382482943107,
+   11.82627308430625
   ],
-  "v180": 1.8114117797796703
+  "v180": 1.8098827910689508
  },
  {
   "id": "15a20f7a-flag-1-277-19",
@@ -2322,7 +2322,7 @@
    "The spot: main fight Dz 8 v Team 4 (Dz up by 4); Dz's main team at the stand, Team's at the stand; morale Dz no death penalty or boost, Team -135 (the eight summed; a death is -15); flags level; base res in 83 s; Dz's chance of winning 93%.",
    "The answer: Dz sends its 8 Monk 18 s later.",
    "What followed, 180 s on: Team's flag in at 6:19; Dz's does not get in; flag lead -0.48 for Dz; deaths Dz 1, Team 5; boosts Dz 0, Team 0; Dz's chance of winning 93% to 97% (+3.8).",
-   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +12.1 (90 cases); a runner out by 15 s -3.1 (90 cases): the data favours holding off (no runner out at 15 s) by 15.3 win points (+12.0 to +18.5). Dz held off: the answer the data favours."
+   "Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +12.1 (90 cases); a runner out by 15 s -3.7 (90 cases): the data favours holding off (no runner out at 15 s) by 15.8 win points (+12.5 to +19.1). Dz held off: the answer the data favours."
   ],
   "rid": "15a20f7a-0112-519a-a5f9-797a6822bf1b",
   "t": 277,
@@ -2333,17 +2333,17 @@
   "compared": true,
   "advice": "no runner yet",
   "verdict": "right",
-  "margin": 15.275876109838052,
+  "margin": 15.795965723179192,
   "range": [
-   12.035439668641345,
-   18.51631255103476
+   12.538855010949163,
+   19.05307643540922
   ],
-  "v180": 3.82572932412667
+  "v180": 3.820518037850651
  },
  {
   "id": "15a20f7a-flag-1-277-19",
   "lines": [
-   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +11.8 (90 cases); a runner out by 30 s +10.8 (90 cases): no clear difference (1.1, -2.3 to +4.4). Dz had a runner out: no clear difference either way."
+   "Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +12.7 (90 cases); holding off (no runner out at 30 s) +11.3 (90 cases): no clear difference (1.4, -1.7 to +4.6). Dz had a runner out: no clear difference either way."
   ],
   "rid": "15a20f7a-0112-519a-a5f9-797a6822bf1b",
   "t": 277,
@@ -2354,11 +2354,11 @@
   "compared": true,
   "advice": null,
   "verdict": "no clear difference",
-  "margin": 1.0799946284353013,
+  "margin": 1.4427584375112037,
   "range": [
-   -2.263460678276045,
-   4.423449935146648
+   -1.7237264492499849,
+   4.609243324272392
   ],
-  "v180": 3.82572932412667
+  "v180": 3.820518037850651
  }
 ]
