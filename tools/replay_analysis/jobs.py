@@ -97,7 +97,7 @@ def _play(M, play, side, tm, t0, t1, who, scenario, job, tests, beside=None, rul
                  "tests": dict(tests), "any_of": dict(any_of or {}), "met": bool(met), "beside": beside or {}, "ruled": ruled}, **more)
 
 
-FLAG_AFTER_S = (60, 90, 120, 180)      # what followed a flag decision, read at four seconds so that the effect can be followed as it grows and fades (his word, 2026-11-19; 90 and 180 s are R-294's)
+FLAG_AFTER_S = (60, 90, 180)           # what followed a flag decision, read at three seconds so that the effect can be followed as it grows and fades (R-543; 90 and 180 s are R-294's; 120 s was read too and dropped, R-544: it sat between the two and changed no verdict)
 
 
 # ---- the flag: their run against ours (R-426)
