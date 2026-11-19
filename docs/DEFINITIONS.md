@@ -289,6 +289,9 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - A team whose own runner was already out when theirs set off does not answer a run. From its cap, with their flag
   still on its way, it decides whether to run again: another decision, counted from its own cap (R-546).
 - The stand at a second is its holder once a cap recorded within that second has landed (R-546).
+- Who holds the stand is read at the moment; a cap about to land within seconds is said with it, as context (R-547).
+- A runner has not set off for a flag while he still carries the one before: his set-off is no earlier than his cap
+  or his putting it down (2026-11-19; one player capping and going back single runs twice, R-485).
 - Who ran first is read on the same clock: the runner who turned for home first. A run is the answer to theirs only
   when its runner turned for home no earlier than theirs did (R-546, R-498; his words on hold v RACK 11:00,
   2026-11-19: hold sending an Earth Ele and RACK responding 11 s later, not hold deciding whether to run).

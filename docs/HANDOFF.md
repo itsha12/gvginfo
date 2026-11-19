@@ -11,7 +11,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 ## State (2026-11-19, late morning: twelve games graded; the flag readings checked and put on one clock (R-545, R-546))
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` and lands in one piece,
   then one rebuild (R-322). 658 replays stored; 564 count (R-477); 506 matches trained. No workflow run in progress.
-  Rulings run to R-546. The baseline (R-491) is the branch `baseline-2026-11-15`. R-531: the flag plays are ready.
+  Rulings run to R-547. The baseline (R-491) is the branch `baseline-2026-11-15`. R-531: the flag plays are ready.
 - Graded and filed (set f1): twelve games (옷옷옷옷 v hdm to 9:40, R-532), the last game 14, Dz v Team on Druid's
   Isle. Out unmarked: hdm v HC (R-522), Men v NwAy (R-537). No game waits for him. Not graded his new way:
   Corrupted, Weeping Stone, Isle of the Dead.
@@ -19,7 +19,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   hold 14:33, a flag held at his door read as a boost runner (with Men v Crew 17:53); QenK v Fun 6:37 and NwAy v
   ohno 5:24, main team collapses whose deaths are also left on the 1 v 1 row (for the split family). Confidence
   (R-515) does not tell Classic from Visible; a measure of what is at stake (R-509) would: not built.
-- Checkpoint run (every counted match, engine b3ecdc8): 564 matches, 34,913 plays, no errors, self-check 7 in 5
+- Checkpoint run (every counted match, engine cb7c78a): 564 matches, 34,875 plays, no errors, self-check 7 in 5
   matches. The fourteen truths hold; 281 Classic rows pass, none fail; 129 history rows hold, 3 do not. Gate 12 of
   12 and 63 of 105; line-up and comms 530 of 583 (last run 2026-11-18, not run again).
 - The timing ladder (R-545; `cases.py ladder <plays file>`, report `data/model/flag_ladder.json`): the readings go
@@ -36,10 +36,10 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   whether their flag got in, with the chance of winning each row started from. Show him that, never the test alone.
   - Us holding the stand (1,308): a runner within 15 s -2.8 win points 180 s on (their flag in 92%); 15 to 90 s
     -1.4; none for 90 s +1.1, which is -4.4 where their flag got in (258) and +7.0 where it did not (241, teams
-    that started at 76%). At the same position, no runner at 15 s less a runner: +1.8 (0.2 to 3.2).
+    that started at 76%). At the same position, no runner at 15 s less a runner: +1.7 (-0.1 to +3.3).
   - Them holding it (540): a runner within 15 s +2.0 (flags +0.52), none for 90 s -0.1 (their boost 0.51 against
-    0.16); at the same position not clear (-1.2, -2.9 to +0.3). At 30 s, and for run again or not: nothing clear.
-  - Held out, spot by spot: better at 60 s (+1.2), not clear at 180 s (+1.5, -0.2 to +3.5). Their boost 30 s away:
+    0.16); at the same position the runner is ahead (-1.7, -3.6 to -0.2). At 30 s, and for run again or not: nothing clear.
+  - Held out, spot by spot: better at 60 s (+1.2), not clear at 180 s (+1.4, -0.4 to +3.4). Their boost 30 s away:
     +5.9 (2.5 to 9.9). With the stand held, do not rush the answer; which spots, not yet. His given (R-542) holds.
 
 ## Next (in order)
@@ -54,8 +54,10 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 
 ## Open for Denning
 0. Put to him 2026-11-19: the sentences for his twelve games, on Model > Game review > Flag advice (61 cards; his
-   marks in `data/model/flag_card_marks.json`: read them first). Known weak: a verdict's range leaves out the
-   levelling's own doubt (옷옷옷옷 v RACK 6:15, second look). Parked: the 163 "we hold the stand" cases; `LEVEL_MIN`.
+   marks in `data/model/flag_card_marks.json`: read them first). Asked: a runner who turns for home, comes back to
+   the fight and then goes (hold v RACK 10:52 to 11:06): is his set-off the first turn, or when he goes for good?
+   Told: the 9:19 row of that game now starts at 9:34 (its locator in the key moved). Known weak: a verdict's range
+   leaves out the levelling's own doubt. Parked: the 60 s window at the 30 s read; `LEVEL_MIN`.
 1. Isle of Jade: is a team at the footmen on the portal side in the base at a base res (HC v hdm 1:40)?
 2. Tolkano: no build (his word). Match pages are tolkano.com/match/<id>, the id neither gvg.report's nor the start
    time: give him date, guilds, hall and length with every example so he can find it there.
