@@ -11099,6 +11099,11 @@
      "mark": "correct",
      "why": "",
      "text": "Team [stay]: Kill with the two extra players before their flag is in, or their flag does not get in. Met (more of theirs die at the main fight than of ours: no; their flag does not get in: yes)"
+    },
+    "15a20f7a-split-1-296-23": {
+     "mark": "correct",
+     "why": "",
+     "text": "Dz (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Met (a split player dies during the collapse: yes)"
     }
    },
    "scheme": 2,
