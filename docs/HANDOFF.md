@@ -55,8 +55,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 ## Open for Denning
 0. Put to him 2026-11-19: the sentences for his twelve games (the file of cards). Known weak: a verdict's range
    leaves out the levelling's own doubt (옷옷옷옷 v RACK 6:15, second look, reads too sure). Parked from the ladder:
-   163 cases "we hold the stand" where their flag before goes in within 15 s; the 60 s window for the 30 s read;
-   their flag's time foretold within 10 s in 44%. `LEVEL_MIN`, `RIDGE` in `cases.py` are Claude's drafts.
+   163 "we hold the stand" cases with their flag before in within 15 s; the 60 s window at the 30 s read; `LEVEL_MIN`.
 1. Isle of Jade: is a team at the footmen on the portal side in the base at a base res (HC v hdm 1:40)?
 2. Tolkano: no build (his word). Match pages are tolkano.com/match/<id>, the id neither gvg.report's nor the start
    time: give him date, guilds, hall and length with every example so he can find it there.
