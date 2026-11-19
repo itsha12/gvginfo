@@ -18,8 +18,8 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   Stone, Isle of the Dead.
 - His marks on nine picked rows (set p2 in the key; none binds). Part-runs are built (R-535, R-536). Held: cope v
   hold 14:33, a flag held at his door read as a boost runner (with Men v Crew 17:53); QenK v Fun 6:37 and NwAy v
-  ohno 5:24, main team collapses whose deaths are also left on the 1 v 1 row (for the split family).
-- Confidence (R-515) does not tell Classic from Visible; a measure of what is at stake (R-509) would. Not built.
+  ohno 5:24, main team collapses whose deaths are also left on the 1 v 1 row (for the split family). Confidence
+  (R-515) does not tell Classic from Visible; a measure of what is at stake (R-509) would: not built.
 - Checkpoint run (every counted match, engine bf84adb; the report from b8d6dd9): 564 matches, 34,913 plays, no
   errors, self-check 7 in 5 matches; every play the same as before the flag work, new fields apart. The fourteen
   truths hold (T12 is his given on flags); 281 Classic rows pass, none fail; 129 history rows hold, 3 do not. Gate
