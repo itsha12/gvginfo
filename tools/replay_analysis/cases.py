@@ -59,7 +59,7 @@ among teams in a similar spot, and does a team that made the better call do bett
 
 Usage:  python3 cases.py test <plays file from `moments.py all`> [--json <out.json>]     the whole report
         python3 cases.py case <plays file> <report id> <m:ss>                          one decision, its calls and cases
-        python3 cases.py cards <plays file> [f1 | <report id>]                           every flag decision of the graded games, or of one match, as sentences
+        python3 cases.py cards <plays file> [f1 | <report id>] [--site <main>/data/model/flag_cards.json]     every flag decision of the graded games, or of one match, as sentences
         python3 cases.py ladder <plays file> [--json <out.json>]                         the timing ladder: a check of the flag readings (no prices, no advice)
 A reading tool over the plays file: it writes no prepared data and is in no cache key (cache.REPORT_LAYER)."""
 import collections, json, math, os, sys
@@ -802,12 +802,14 @@ def card(s, i, K, M):
             mine = "" if "mine" not in r else f" {us} {DID_WORDS[c['call']]}: {VERDICT_WORDS.get(r['verdict'], r['verdict'])}."
             L.append(f"    Similar spots, 180 s on, from the same position: {parts}: {verdict}.{mine}")
     if R != READS[0]: L = [f"    Second look, {R} s in, still nobody sent" + L[-1].strip()[len("Similar spots"):]]
-    return "\n".join(L), {"rid": c["rid"], "t": k["anchor"], "team": us, "read": R, "call": c["call"], "advice": r["advice"] if r["clear"] else None, "verdict": r["verdict"], "margin": r["margin"], "range": r["range"], "v180": c["v"]["180"]}
+    return "\n".join(L), {"id": c["id"], "lines": [x.strip() for x in L], "rid": c["rid"], "t": k["anchor"], "team": us, "read": R, "call": c["call"], "unusual": bool(r.get("unusual")), "compared": len(W) >= 2, "advice": r["advice"] if r["clear"] else None, "verdict": r["verdict"], "margin": r["margin"], "range": r["range"], "v180": c["v"]["180"]}
 
 
-def cards(path, which="f1", out_json=None):
+def cards(path, which="f1", out_json=None, site=None):
     """The sentence for every answer to a flag run (and every "run again, or not") in a set of whole games of the
-    development set (default f1, the games he graded), or in one match by report id. In match order."""
+    development set (default f1, the games he graded), or in one match by report id. In match order. `site`: also
+    written as the rows of Model > Game review > Flag advice (`data/model/flag_cards.json` on main), one card a
+    decision with its second look inside it; a card's id is its play's id, so his marks stay on it."""
     D, M, B, P, C, skipped, S = build(path)
     K, _ = choose_k(S)
     dv = json.load(open(os.path.join(REPO, "data", "model", "dev_set.json")))
@@ -829,6 +831,23 @@ def cards(path, which="f1", out_json=None):
     tally = collections.Counter(VERDICT_WORDS.get(r["verdict"], r["verdict"]) for r in first)
     print(f"\nAll {len(rids)} games, {len(first)} decisions at the first look: " + "; ".join(f"{k} {v}" for k, v in tally.most_common()))
     if out_json: json.dump(res, open(out_json, "w"), ensure_ascii=False, indent=1, default=float)
+    if site:
+        import subprocess, datetime
+        games = []
+        for rid in rids:
+            m, by = M[rid], collections.OrderedDict()
+            for r in res:
+                if r["rid"] != rid: continue
+                if r["read"] == READS[0]:
+                    head, spot, answer, followed, similar = r["lines"]
+                    by[r["id"]] = {"id": r["id"], "t": r["t"], "team": r["team"], "head": head.split("  ", 1)[-1], "spot": spot, "answer": answer, "followed": followed, "similar": similar, "second": None,
+                                   "reading": bool(r["compared"] and not r["unusual"]), "verdict": VERDICT_WORDS.get(r["verdict"], r["verdict"])}
+                elif r["id"] in by: by[r["id"]]["second"] = r["lines"][0]
+            games.append({"rid": rid, "teams": m["teams"], "map": m["map"], "date": m["date"], "length_s": m.get("length_s"), "cards": list(by.values())})
+        eng = subprocess.check_output(["git", "-C", REPO, "rev-parse", "--short", "HEAD"], text=True).strip()
+        json.dump({"about": "The engine's sentence for every answer to a flag run, and every \"run again, or not\", in the games of set " + which + " (tools/replay_analysis/cases.py cards, on the engine branch). The first three lines of a card "
+                            "are what happened; the similar-spots line is a reading, not advice (R-538). Shown on Model > Game review > Flag advice; his marks are in flag_card_marks.json.",
+                   "generated": datetime.date.today().isoformat(), "engine": eng, "set": which, "games": games}, open(site, "w"), ensure_ascii=False, indent=1, default=float)
     return res
 
 
@@ -1188,6 +1207,6 @@ if __name__ == "__main__":
     a = sys.argv[1:]
     if len(a) >= 2 and a[0] == "test": report(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 4 and a[0] == "case": case(a[1], a[2], a[3])
-    elif len(a) >= 2 and a[0] == "cards": cards(a[1], a[2] if len(a) > 2 and not a[2].startswith("--") else "f1", a[a.index("--json") + 1] if "--json" in a else None)
+    elif len(a) >= 2 and a[0] == "cards": cards(a[1], a[2] if len(a) > 2 and not a[2].startswith("--") else "f1", a[a.index("--json") + 1] if "--json" in a else None, a[a.index("--site") + 1] if "--site" in a else None)
     elif len(a) >= 2 and a[0] == "ladder": ladder(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     else: print(__doc__)
