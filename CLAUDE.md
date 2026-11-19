@@ -274,7 +274,12 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   what holding off is worth by what a team can see, where to look and never advice), and the sentence for one moment
   (`cases.py cards <plays file> [f1 | <report id>]`: the spot, the answer, what followed, what similar spots got; a
   verdict only where like cases stand round the case). Each later family takes the same stages. Settle the
-  technical choices yourself; bring him GvG questions only. The report also says what the
+  technical choices yourself; bring him GvG questions only. He marks the sentences on the site, Model > Game review,
+  the view "Flag advice" (`assets/js/pages/review.js`; rows `data/model/flag_cards.json` on main, written by
+  `cases.py cards <plays file> f1 --site <main>/data/model/flag_cards.json`; a card's id is its play's id): for each
+  card whether what happened is told correctly, whether the reading makes sense to him, and what he would have done.
+  His marks are in `data/model/flag_card_marks.json` (only what he marked, with the text he saw): read them the same
+  session, set them out for him, and never write the cards again over a game he has marked without saying so. The report also says what the
   advice was (section 5: the spots where it says hold off or send, with moments to look at; show him this whenever
   a test result is put to him, never the counts alone), what a team that holds off goes on to do (6), and the run in
   answer by who was sent and their snares (7: as it fell, where to look, never who to send). Every flag and boost play

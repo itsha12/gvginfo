@@ -10,6 +10,12 @@ import { esc, readJson, writeJson, canSave, toast } from "../core.js";
 // (tools/golden/review.py export on the engine branch); his marks are saved to data/model/game_review_marks.json,
 // which holds only what he marked, each mark with the text of the row it was made on. Games marked before 2026-11-15
 // (no "scheme": 2) are history: shown read only, and never a test the engine has to pass (R-491).
+//
+// A second view, Flag advice (2026-11-19): for the same games, the engine's sentence for every answer to a flag run
+// and every "run again, or not": the spot, the answer, what followed, and what teams in similar spots got from each
+// answer. He says whether what happened is told correctly, whether the reading makes sense to him, and what he would
+// have done there. The cards come from data/model/flag_cards.json (tools/replay_analysis/cases.py cards --site, on
+// the engine branch); his marks are saved to data/model/flag_card_marks.json, each with the text he saw.
 
 const ROWS = "data/model/game_reviews.json", MARKS = "data/model/game_review_marks.json", DRAFT = "gvginfo.review.draft2";
 const GRADE = [["classic", "Classic"], ["visible", "Visible"], ["weak", "Weak"], ["none", "No decision"]];
@@ -22,6 +28,11 @@ const BAND = { high: "High", medium: "Medium", low: "Low", none: "No decision" }
 const KINDS = ["flag", "push on a flagger", "split", "collapse", "numbers", "boost", "pinned in base", "base res", "Lord push", "other"];
 const SKIP = "not judged";      // a call that is not asked for
 let rows = null, marks = null, cur = null, draft = {};
+const CARDS = "data/model/flag_cards.json", CARD_MARKS = "data/model/flag_card_marks.json", CDRAFT = "gvginfo.review.cards1";
+const SENSE = [["agree", "Makes sense"], ["disagree", "Does not"], ["unsure", "No view"]];
+const OWN = [["send", "Send a runner at once"], ["hold", "Hold off"], ["either", "No clear answer"]];
+let view = "games", cards = null, cmarks = null, ccur = null, cdraft = {};
+try { view = localStorage.getItem("gvginfo.review.view") === "flags" ? "flags" : "games"; } catch { /* the games view */ }
 let showTodo = false;           // rows not yet marked are shown in red (his request, 2026-11-17: "which rows I haven't marked yet")
 try { showTodo = localStorage.getItem("gvginfo.review.todo") === "1"; } catch { /* off */ }
 
@@ -130,7 +141,7 @@ function historyHtml(g) {
     <div class="tablewrap"><table class="data rv-rows"><thead><tr><th>#</th><th>Time</th><th>The row as you saw it</th><th>Your mark then</th></tr></thead><tbody>${body}</tbody></table></div>`;
 }
 
-export async function renderReview(out, keep = false) {
+async function renderGames(out, keep = false) {
   if (!keep || !rows) {
     rows = await readJson(ROWS, null);
     marks = (await readJson(MARKS, null)) || { about: "", games: {} };
@@ -231,4 +242,101 @@ export async function renderReview(out, keep = false) {
     catch (err) { marks = JSON.parse(before); toast(err.message); return; }
     delete draft[g.rid]; keepDraft(); toast("Saved"); await redraw();
   });
+}
+
+// ---- Flag advice: the engine's sentence for each flag decision of the graded games
+const cSaved = (g) => cmarks.games?.[g.rid]?.marks || {};
+const cNow = (g) => ({ ...cSaved(g), ...(cdraft[g.rid]?.marks || {}) });
+const cDone = (c, m) => !!m?.facts && (!c.reading || !!m?.sense);
+const pick = (id, key, list, m, cls) => `<div class="rv-reads">${list.map(([v, t]) => `<label class="rv-r${m?.[key] === v ? " on" : ""}"><input type="radio" name="${cls}-${esc(id)}" data-pick="${key}" value="${v}"${m?.[key] === v ? " checked" : ""}>${t}</label>`).join("")}</div>`;
+
+function flagsHtml(g) {
+  const M = cNow(g), done = g.cards.filter((c) => cDone(c, M[c.id])).length, n = Object.keys(cdraft[g.rid]?.marks || {}).length + (cdraft[g.rid]?.notes !== undefined ? 1 : 0);
+  const notes = cdraft[g.rid]?.notes ?? cmarks.games?.[g.rid]?.notes ?? "";
+  const body = g.cards.map((c, i) => { const m = M[c.id];
+    return `<tr class="rv-sit ${cDone(c, m) ? "rv-done" : "rv-todo"}"><td class="rv-n">${i + 1}</td><td class="rv-t">${clock(c.t)}</td>
+      <td><b>${esc(c.head)}</b><div>${esc(c.spot)}</div><div>${esc(c.answer)}</div><div>${esc(c.followed)}</div>
+        <div class="rv-reading">${esc(c.similar)}</div>${c.second ? `<div class="rv-reading muted">${esc(c.second)}</div>` : ""}</td>
+      <td class="rv-mark" data-id="${esc(c.id)}"><div class="muted small rv-q">Is what happened told correctly (the spot, the answer, what followed)?</div>${pick(c.id, "facts", READ, m, "f")}
+        ${c.reading ? `<div class="muted small rv-q">Does the reading (similar spots) make sense to you?</div>${pick(c.id, "sense", SENSE, m, "s")}` : `<div class="muted small rv-q">No reading is given for this spot.</div>`}
+        <div class="muted small rv-q">What would you have done here? (optional)</div>${pick(c.id, "own", OWN, m, "o")}
+        ${words(m, "your words: what is wrong, or what the engine does not see")}</td></tr>`; }).join("");
+  return `<h3 style="margin:.8rem 0 .2rem">${esc(g.teams.join(" v "))}, ${esc(g.map)}, ${esc(g.date)}</h3>
+    <p style="margin:.2rem 0"><a href="https://gvg.report/report/${esc(g.rid)}#map" target="_blank" rel="noopener">Open the replay on gvg.report</a>. ${g.cards.length} flag decisions; <b><span data-cdone>${done}</span> marked</b>${n ? `, <b class="rv-not">${n} not saved yet</b>` : ""}.</p>
+    ${g.cards.length ? `<div class="row rv-bar"><button class="btn small primary" data-csave>Save this game's marks</button></div>
+    <div class="tablewrap"><table class="data rv-rows rv-cards${showTodo ? " rv-showtodo" : ""}"><thead><tr><th>#</th><th>Time</th><th>The decision as the engine reads it</th><th>Your marks</th></tr></thead><tbody>${body}</tbody></table></div>` : `<div class="empty-state">The engine reads no flag decision to answer in this game (its flags were the opening, or were run with Shadow of Haste).</div>`}
+    <h4 style="margin:.9rem 0 .3rem">Anything else about the flags in this game</h4>
+    <textarea data-cnotes placeholder="A flag decision with no card, or anything that holds for the whole game." style="min-height:70px">${esc(notes)}</textarea>
+    <div class="row rv-bar"><button class="btn small primary" data-csave>Save this game's marks</button></div>`;
+}
+
+async function renderFlags(out, keep = false) {
+  if (!keep || !cards) {
+    cards = await readJson(CARDS, null);
+    cmarks = (await readJson(CARD_MARKS, null)) || { about: "", games: {} };
+    try { cdraft = JSON.parse(localStorage.getItem(CDRAFT) || "{}"); } catch { cdraft = {}; }
+  }
+  if (!cards || !(cards.games || []).length) { out.innerHTML = `<h1>Game review</h1><div class="empty-state">No flag advice has been set out yet.</div>`; return; }
+  const G = cards.games, g = G.find((x) => x.rid === ccur) || G.find((x) => x.cards.length) || G[0]; ccur = g.rid;
+  const keepC = () => { try { localStorage.setItem(CDRAFT, JSON.stringify(cdraft)); } catch { /* the marks stay on the page until saved */ } };
+  out.innerHTML = `<h1>Game review</h1>
+  <p>The engine's sentence for every flag decision in the games you graded: a team answering a flag run, or deciding whether to run again once its own flag is in. ${canSave() ? "" : "<b>Add your GitHub key in Settings to save.</b>"}</p>
+  <details class="rv-terms"><summary>How to read and mark a card</summary><ul class="small">
+    <li><b>The first lines are what happened</b>: who set off for a flag and who holds the stand; the spot (numbers at the main fight, where the team stands, each side's morale, the flag lead, the base res, the team's chance of winning); what the team did; and what followed over the next 180 seconds. The time is the second to go to in the replay. Mark them <b>Correct</b>, <b>Partly</b> or <b>Incorrect</b>, and say what is off.</li>
+    <li><b>The similar-spots line is a reading, not advice.</b> It compares the two answers (a runner out by 15 s, or holding off) among teams in a like position, in win points 180 seconds on. It has not yet been shown to hold on matches the engine has not seen. Say whether it <b>makes sense</b> to you as a player.</li>
+    <li><b>A second look</b>, where there is one, is the same question 30 seconds in, for a team that had still sent nobody.</li>
+    <li><b>What would you have done</b> is optional, and the most useful mark of the three: it is your call set against the engine's.</li>
+    <li><b>Win points</b> are points of the chance of winning the match: +4 is a team going from 50% to 54%. A death is -15 morale on one player; the morale shown is the eight players summed.</li>
+    <li>Marks are kept in this browser as you go and reach the engine when you press Save.</li>
+  </ul></details>
+  <div class="row rv-games">${G.map((x) => { const M = cNow(x), d = x.cards.filter((c) => cDone(c, M[c.id])).length;
+    return `<button class="btn small ${x.rid === ccur ? "primary" : "ghost"}" data-cgame="${esc(x.rid)}">${esc(x.teams.join(" v "))} <span class="small">(${d} of ${x.cards.length})</span></button>`; }).join("")}</div>
+  <p class="muted small">Cards written ${esc(cards.generated)} from engine ${esc(cards.engine)}.</p>
+  <section class="rv">${flagsHtml(g)}</section>
+  <style>.rv-rows{table-layout:fixed;width:100%}.doc table.rv-rows td,.rv-rows td{vertical-align:top;white-space:normal!important;overflow-wrap:anywhere;padding:.35rem .5rem;font-size:.9rem}
+  .rv-rows th:nth-child(1),.rv-n{width:2.4rem}.rv-rows th:nth-child(2),.rv-t{width:4rem;font-family:var(--mono);white-space:nowrap}.rv-rows th:nth-child(4),.rv-rows td.rv-mark{width:24rem}
+  .rv-sit td{border-top:2px solid var(--line)}.rv-done td:first-child{box-shadow:inset 3px 0 0 var(--ink)}.rv-cards td div{margin-top:.25rem}.rv-reading{border-left:3px solid var(--line);padding-left:.5rem}
+  .rv-reads{display:flex;flex-wrap:wrap;gap:.3rem;margin:.15rem 0}.rv-reads input{position:absolute;opacity:0;width:0;height:0}
+  .rv-r{display:inline-block;border:1px solid var(--ink);background:#fff;color:var(--ink);font-size:.82rem;padding:.2rem .6rem;cursor:pointer}.rv-r.on{background:var(--ink);color:#fff}.rv-r:focus-within{outline:2px solid var(--ink);outline-offset:1px}
+  .rv-q{margin-top:.35rem}.rv-mark input[type=text]{display:block;width:100%;height:1.9rem;margin-top:.3rem;font-size:.84rem}
+  .rv-not{color:#b3261e}.rv-bar{margin:.6rem 0;gap:.5rem}.rv-games{flex-wrap:wrap;gap:.4rem;margin:.6rem 0}.rv-terms{margin:.6rem 0}.rv-terms summary{cursor:pointer}.small{font-size:.86rem}</style>`;
+
+  const redraw = async () => { const y = scrollY; await renderReview(out, true); scrollTo({ top: y }); };
+  out.querySelectorAll("[data-cgame]").forEach((b) => b.onclick = () => { ccur = b.dataset.cgame; redraw(); });
+  const text = Object.fromEntries(g.cards.map((c) => [c.id, [c.head, c.spot, c.answer, c.followed, c.similar, c.second].filter(Boolean).join(" | ")]));
+  const put = (id, patch) => { const d = (cdraft[g.rid] ||= { marks: {} }); d.marks ||= {};
+    d.marks[id] = { ...(cSaved(g)[id] || {}), ...(d.marks[id] || {}), ...patch, text: text[id] }; keepC(); };
+  out.querySelectorAll(".rv-cards .rv-mark").forEach((td) => {
+    const id = td.dataset.id, why = td.querySelector("[data-why]");
+    td.querySelectorAll("[data-pick]").forEach((r) => r.onchange = () => {
+      put(id, { [r.dataset.pick]: r.value, why: why.value.trim() });
+      td.querySelectorAll(".rv-r").forEach((l) => l.classList.toggle("on", l.querySelector("input").checked));
+      const c = g.cards.find((x) => x.id === id), tr = td.closest("tr"), ok = cDone(c, cNow(g)[id]); tr.classList.toggle("rv-done", ok); tr.classList.toggle("rv-todo", !ok);
+      const M1 = cNow(g), d1 = g.cards.filter((x) => cDone(x, M1[x.id])).length; out.querySelector("[data-cdone]").textContent = d1;
+      const gb = out.querySelector(`[data-cgame="${CSS.escape(g.rid)}"] span`); if (gb) gb.textContent = `(${d1} of ${g.cards.length})`;
+    });
+    why.onchange = () => put(id, { why: why.value.trim() });
+  });
+  out.querySelector("[data-cnotes]").onchange = (e) => { (cdraft[g.rid] ||= { marks: {} }).notes = e.target.value.trim(); keepC(); };
+  out.querySelectorAll("[data-csave]").forEach((b) => b.onclick = async () => {
+    const before = JSON.stringify(cmarks), d = cdraft[g.rid] || { marks: {} };
+    cmarks.about = "Denning's marks on the cards of Model > Game review > Flag advice. For each card: facts (is what happened told correctly: correct, partly, incorrect), sense (does the similar-spots reading make sense to him: agree, disagree, unsure), own (what he would have done: send, hold, either), his words, and the text of the card as he saw it. Only what he marked.";
+    const G0 = (cmarks.games ||= {}), e = (G0[g.rid] ||= { marks: {} });
+    e.game = `${g.teams.join(" v ")}, ${g.map}`; e.at = new Date().toISOString().slice(0, 10); e.engine = cards.engine;
+    e.marks = Object.fromEntries(Object.entries({ ...e.marks, ...(d.marks || {}) }).filter(([, v]) => v.facts || v.sense || v.own || v.why));
+    if (d.notes !== undefined) { if (d.notes) e.notes = d.notes; else delete e.notes; }
+    try { await writeJson(CARD_MARKS, cmarks, `Flag advice: ${e.game} marked (${Object.keys(e.marks).length} cards)`); }
+    catch (err) { cmarks = JSON.parse(before); toast(err.message); return; }
+    delete cdraft[g.rid]; keepC(); toast("Saved"); await redraw();
+  });
+}
+
+// The page: the two views and the switch between them.
+export async function renderReview(out, keep = false) {
+  if (view === "flags") await renderFlags(out, keep); else await renderGames(out, keep);
+  const sw = document.createElement("div"); sw.className = "row rv-view"; sw.style.cssText = "gap:.4rem;margin:.4rem 0 .8rem";
+  sw.innerHTML = [["games", "Decisions: is each read correctly?"], ["flags", "Flag advice: the engine's sentence for each flag decision"]]
+    .map(([v, t]) => `<button class="btn small ${view === v ? "primary" : "ghost"}" data-view="${v}">${t}</button>`).join("");
+  out.querySelector("h1")?.after(sw);
+  sw.querySelectorAll("[data-view]").forEach((b) => b.onclick = () => { view = b.dataset.view; try { localStorage.setItem("gvginfo.review.view", view); } catch { /* for this visit only */ } renderReview(out); });
 }
