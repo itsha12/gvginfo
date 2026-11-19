@@ -1652,16 +1652,29 @@
     {
      "has": {
       "play": "flag",
-      "team": "TFS",
+      "team": "옷옷옷옷",
       "start": [
-       200,
-       214
+       236,
+       248
       ]
      },
      "want": {
-      "met": true
+      "scenario~": "TFS single run (Mes/A)"
      },
-     "was": "TFS v 옷옷옷옷 3:26: TFS's single run succeeded; the engine said its flag was not capped; held from 2026-11-14 once a run is judged from the decision to run to its cap (R-471)"
+     "was": "TFS v 옷옷옷옷 3:26: 'TFS was successful on this single run' (his words on the call); on 2026-11-18: 'At 3:26 ... TFS's Mes/A is dead. At 4:14, he successfully single-runs a flag.' The Mes/A's run from 4:10 to its cap at 5:05 is told; 옷옷옷옷's 7 Monk (WoC), a defender, carries his flag from 3:46 to 4:02 from his pit to his front door: a part-run (R-535), where the row had 옷옷옷옷 single run"
+    },
+    {
+     "none": {
+      "play": "flag",
+      "at": [
+       206,
+       300
+      ],
+      "want": {
+       "scenario~": "옷옷옷옷 single run (7 Monk (WoC))"
+      }
+     },
+     "was": "TFS v 옷옷옷옷 3:46: the 7 Monk (WoC)'s carry is a part-run, no run (R-535; Claude's reading from his seven rulings, put to him)"
     }
    ],
    "answered": {
@@ -1675,7 +1688,25 @@
     "asked": "Is \"not met\" right for a run that got in but cost three players at the main fight?",
     "said": "In this timing, I don't associate the cap with the deaths. TFS's decision to run the flag, they pick up around 1:20, they cap the flag succesfully without taking any deaths. At this point, they have another decision to run another flag, retreat to base, etc. etc. They chose to run to front door whilst the number 5 rit picks up another flag to run to obelisk stand. Mainteam takes 3 deaths near flag stand. Essentially, I see this as a successful first cap, no pressure and no deaths, but then they made a bad decision to run front door after the cap. That is a different decision.",
     "reading": "R-471: a run is judged from the decision to run to its cap; what follows the cap is another decision."
-   }
+   },
+   "retired_checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "TFS",
+      "start": [
+       200,
+       214
+      ]
+     },
+     "want": {
+      "met": true
+     },
+     "was": "TFS v 옷옷옷옷 3:26: TFS's single run succeeded; the engine said its flag was not capped; held from 2026-11-14 once a run is judged from the decision to run to its cap (R-471)",
+     "retired": "2026-11-18",
+     "why_retired": "옷옷옷옷's 7 Monk (WoC) part-runs at 3:46 (R-535): TFS's run is told from 옷옷옷옷's side, the run it answered being none"
+    }
+   ]
   },
   {
    "id": "w1p1-bdaa-11",
@@ -1727,6 +1758,22 @@
     {
      "has": {
       "play": "flag",
+      "team": "옷옷옷옷",
+      "start": [
+       236,
+       248
+      ]
+     },
+     "want": {
+      "their": "single run"
+     },
+     "was": "TFS v 옷옷옷옷 4:02: 'this is a single run' (TFS's run, read then as a double)"
+    }
+   ],
+   "retired_checks": [
+    {
+     "has": {
+      "play": "flag",
       "team": "TFS",
       "start": [
        200,
@@ -1736,7 +1783,9 @@
      "want": {
       "ours": "single run"
      },
-     "was": "TFS v 옷옷옷옷 4:02: TFS's run is a single run, read as a double (now told from TFS's side, as its answer to the run that set off first)"
+     "was": "TFS v 옷옷옷옷 4:02: TFS's run is a single run, read as a double (now told from TFS's side, as its answer to the run that set off first)",
+     "retired": "2026-11-18",
+     "why_retired": "the same run, now told from 옷옷옷옷's side (R-535)"
     }
    ]
   },
@@ -22316,7 +22365,25 @@
      "mark": "correct"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "none": {
+      "play": "flag",
+      "start": [
+       60,
+       72
+      ],
+      "want": {
+       "scenario~": "Men single run (Hammer)"
+      }
+     },
+     "was": "hold v Men 1:06: graded Visible and correct ('a borderline doublerun but I agree with you because the warrior was sort of back for split defence'), and amended by him on 2026-11-18: a part-run, not a single run (R-535). Men's Hammer carries the flag from 1:05 to 1:18, front door to front footmen; Ritualist 1 takes it at 1:41 and the AoB Derv caps it"
+    }
+   ],
+   "later": {
+    "at": "2026-11-18",
+    "said": "You're actually right! 100% HC v cope and hold v Men are part-runs, not single runs. I think that's what I tried to indicate in that \"hold v men comment\"."
+   }
   },
   {
    "id": "f1-b870-6",
@@ -22536,6 +22603,35 @@
    ],
    "checks": [
     {
+     "none": {
+      "play": "flag",
+      "start": [
+       148,
+       160
+      ],
+      "want": {
+       "scenario~": "Men single run (Ranger)"
+      }
+     },
+     "was": "hold v Men 2:34 (Visible, incorrect): 'ranger does not single run, just brings the flag up (similar to how solo defenders partrun flags)': built 2026-11-18 as a part-run (R-535)"
+    },
+    {
+     "has": {
+      "play": "flag",
+      "team": "Men",
+      "start": [
+       148,
+       160
+      ]
+     },
+     "want": {
+      "scenario~": "hold single run (Hammer); Men stays"
+     },
+     "was": "hold v Men 2:34: with the Ranger's carry no run, Men stays against hold's run"
+    }
+   ],
+   "retired_checks": [
+    {
      "has": {
       "play": "flag",
       "team": "Men",
@@ -22548,7 +22644,9 @@
       "scenario~": "brings a flag up"
      },
      "open": true,
-     "why": "hold v Men 2:34 (Visible, incorrect, who and kind): 'ranger does not single run, just brings the flag up (similar to how solo defenders partrun flags)': Men's Ranger, defending a split at home, carries a flag from 3:10 to 3:17 and puts it down. Held for a second game (R-495)"
+     "why": "hold v Men 2:34 (Visible, incorrect, who and kind): 'ranger does not single run, just brings the flag up (similar to how solo defenders partrun flags)': Men's Ranger, defending a split at home, carries a flag from 3:10 to 3:17 and puts it down. Held for a second game (R-495)",
+     "retired": "2026-11-18",
+     "why_retired": "built as a part-run (R-535), not as a flag brought up"
     }
    ]
   },
@@ -29212,6 +29310,53 @@
    ],
    "checks": [
     {
+     "none": {
+      "play": "flag",
+      "at": [
+       118,
+       185
+      ],
+      "want": {
+       "scenario~": "HC single run (Mes/A)"
+      }
+     },
+     "was": "HC v cope 1:58: graded Classic and correct as 'HC single run (Mes/A); cope single run (Hammer A); HC then stays', and amended by him on 2026-11-18: 'HC v cope and hold v Men are part-runs, not single runs' (R-535). HC's Mes/A carries his flag from 2:20 to 2:34 at his own front door, a defender of cope's split: no run"
+    },
+    {
+     "has": {
+      "play": "split",
+      "side": "defender",
+      "team": "HC",
+      "at": [
+       118,
+       185
+      ]
+     },
+     "want": {
+      "call": "part-run",
+      "who~": [
+       "Mes/A"
+      ]
+     },
+     "was": "HC v cope 2:20: the Mes/A's part-run is told on the split he defends (R-535)"
+    },
+    {
+     "has": {
+      "play": "flag",
+      "team": "HC",
+      "start": [
+       147,
+       159
+      ]
+     },
+     "want": {
+      "scenario~": "cope single run (Hammer A); HC stays"
+     },
+     "was": "HC v cope 2:33: cope's Hammer A runs and HC stays, as he saw it ('HC then stays')"
+    }
+   ],
+   "retired_checks": [
+    {
      "has": {
       "play": "flag",
       "team": "cope",
@@ -29223,7 +29368,9 @@
      "want": {
       "clear": null
      },
-     "auto": true
+     "auto": true,
+     "retired": "2026-11-18",
+     "why_retired": "he amended the row: HC's Mes/A part-runs (R-535)"
     },
     {
      "has": {
@@ -29237,9 +29384,15 @@
      "want": {
       "clear": null
      },
-     "auto": true
+     "auto": true,
+     "retired": "2026-11-18",
+     "why_retired": "he amended the row: HC's Mes/A part-runs (R-535)"
     }
-   ]
+   ],
+   "later": {
+    "at": "2026-11-18",
+    "said": "You're actually right! 100% HC v cope and hold v Men are part-runs, not single runs. I think that's what I tried to indicate in that \"hold v men comment\"."
+   }
   },
   {
    "id": "f1-3d0f-13",
@@ -30971,9 +31124,7 @@
        "scenario~": "cope single run (Dervish)"
       }
      },
-     "open": true,
-     "held": "2026-11-18",
-     "why": "cope v One 11:39 (picked row): 'not a flag run; this is a \"part-run\"'. cope's Dervish, defending One's split, carries the flag from his pit to his front footmen (11:51 to 12:12; and 10:56 to 11:05 before it); the 8 Monk takes it at 12:19 and caps at 12:43. Three forms of a part-run reading were built and dropped the same day, each for breaking a run he had marked correct (in `part_run` of HANDOFF); the difference is put to him"
+     "was": "cope v One 11:39 (picked row): 'not a flag run; this is a \"part-run\"'. cope's Dervish, defending One's split, carries the flag from his pit to his front footmen (11:51 to 12:12; and 10:56 to 11:05 before it); the 8 Monk takes it at 12:19 and caps at 12:43. Three forms of a part-run reading were built and dropped the same day, each for breaking a run he had marked correct (in `part_run` of HANDOFF); the difference is put to him Built 2026-11-18 (R-535)."
     }
    ]
   },
@@ -31005,9 +31156,7 @@
        "scenario~": "meow single run (8 Monk)"
       }
      },
-     "open": true,
-     "held": "2026-11-18",
-     "why": "meow v One 7:07 (picked row): 'not a flag run; this is a \"part-run\"'. meow's 8 Monk, one of three defenders, carries the flag from his pit to his front door (7:03 to 7:17) and puts it down; nobody takes it on and it is returned. In what is measured it is the twin of HC v cope 2:20, HC's Mes/A, in a row he graded Classic and correct as a single run: put to him"
+     "was": "meow v One 7:07 (picked row): 'not a flag run; this is a \"part-run\"'. meow's 8 Monk, one of three defenders, carries the flag from his pit to his front door (7:03 to 7:17) and puts it down; nobody takes it on and it is returned. In what is measured it is the twin of HC v cope 2:20, HC's Mes/A, in a row he graded Classic and correct as a single run: put to him Built 2026-11-18 (R-535)."
     }
    ]
   },
@@ -31039,11 +31188,14 @@
        "scenario~": "One single run (Ritualist)"
       }
      },
-     "open": true,
-     "held": "2026-11-18",
-     "why": "True v One 0:45 (picked row): 'not a flag run; I don't even see him pick up flag'. The time given him was the row's start (True's run); One's Ritualist carries the flag from 1:48 to 2:16, pit to back door to back footmen, and it is returned; the split's reading does not count him in a defence while he carries it. Put to him again with 1:48"
+     "was": "True v One 0:45 (picked row): 'not a flag run; I don't even see him pick up flag'. The time given him was the row's start (True's run); One's Ritualist carries the flag from 1:48 to 2:16, pit to back door to back footmen, and it is returned; the split's reading does not count him in a defence while he carries it. Put to him again with 1:48 Built 2026-11-18 (R-535)."
     }
-   ]
+   ],
+   "later": {
+    "at": "2026-11-18",
+    "said": "Definitely a part-run.",
+    "asked": "True v One at 1:48 to 2:16 (One's Ritualist, pit to back door to back footmen, flag returned): is that carry a run?"
+   }
   },
   {
    "id": "p2-4",

@@ -1,7 +1,7 @@
 {
  "about": "The rows of Model > Game review (R-454, R-455, R-492): every situation the engine reads in each review game, with the engine's confidence that it is a decision, written by tools/golden/review.py export on the engine branch. Games with scheme 2 are graded his new way; the others are history (R-491). His marks are in game_review_marks.json, never here.",
  "generated": "2026-11-18",
- "engine": "9223e30",
+ "engine": "b7e6d00",
  "games": [
   {
    "set": "w1",
@@ -34041,7 +34041,7 @@
      "id": "s:c19f13e3-opening-1-0-0",
      "kind": "opening",
      "t0": 0,
-     "t1": 45,
+     "t1": 26,
      "reads": "The opening. Men: 7 to the stand, Mes/A waits back at the flag spawn for the next flag; its first flag brought up by 8 Monk and capped at 0:26. NwAy: 0 to the stand, 4 out by the back door (Hammer, Dervish, Mes/A, 8 Monk), AoB Derv, Stand Mes, Prot, 7 Monk stay back at home; its first flag brought part of the way with the team (Dervish, Hammer) and not run. Men caps first at 0:26; NwAy caps over it at 8:42",
      "confidence": {
       "band": "high",
@@ -34062,11 +34062,6 @@
        "play": "flag",
        "team": "NwAy",
        "t0": 0
-      },
-      {
-       "play": "flag",
-       "team": "NwAy",
-       "t0": 20
       }
      ],
      "calls": [
@@ -34116,26 +34111,6 @@
         ],
         [
          false,
-         "their flag does not get in"
-        ]
-       ],
-       "any": true,
-       "draft": false
-      },
-      {
-       "id": "c19f13e3-flag-2-20-5",
-       "team": "NwAy",
-       "side": "",
-       "label": "the first flag: stay",
-       "job": "Kill with the two extra players before their flag is in, or their flag does not get in",
-       "met": true,
-       "tests": [
-        [
-         false,
-         "more of theirs die at the main fight than of ours"
-        ],
-        [
-         true,
          "their flag does not get in"
         ]
        ],
@@ -34208,7 +34183,7 @@
     },
     {
      "n": 3,
-     "id": "s:c19f13e3-numbers-1-24-6",
+     "id": "s:c19f13e3-numbers-1-24-5",
      "kind": "numbers",
      "t0": 24,
      "t1": 126,
@@ -34231,7 +34206,7 @@
      ],
      "calls": [
       {
-       "id": "c19f13e3-numbers-1-24-6",
+       "id": "c19f13e3-numbers-1-24-5",
        "team": "Men",
        "side": "strong side",
        "label": "push in",
@@ -34247,7 +34222,7 @@
        "draft": false
       },
       {
-       "id": "c19f13e3-numbers-2-24-7",
+       "id": "c19f13e3-numbers-2-24-6",
        "team": "NwAy",
        "side": "weak side",
        "label": "retreat down the ladder",
@@ -34270,7 +34245,7 @@
      "kind": "split",
      "t0": 38,
      "t1": 182,
-     "reads": "NwAy's split by the back door: 4 players (Dervish, Mes/A, 8 Monk, Hammer) against 3 defending (Mes/A, 8 Monk, Prot); numbers along the way: 4 v 1 from 0:38, 4 v 3 from 0:56, 3 v 2 from 2:10; 3 damage against 2 monks. Who came and went, each a decision of its own: 8 Monk, Prot (Men) join the defence at 0:56; Hammer (NwAy) leaves the split at 2:10; Prot (Men) leaves the defence at 2:10",
+     "reads": "NwAy's split by the back door: 4 players (Dervish, Mes/A, 8 Monk, Hammer) against 3 defending (Mes/A, 8 Monk, Prot); numbers along the way: 4 v 1 from 0:38, 4 v 3 from 0:56, 3 v 2 from 2:10; 3 damage against 2 monks; 3 (Mes/A, 8 Monk, Prot) against 4 players; numbers along the way: 4 v 1 from 0:38, 4 v 3 from 0:56, 3 v 2 from 2:10: Mes/A carries his flag for 8 s while defending. Who came and went, each a decision of its own: 8 Monk, Prot (Men) join the defence at 0:56; Hammer (NwAy) leaves the split at 2:10; Prot (Men) leaves the defence at 2:10",
      "confidence": {
       "band": "medium",
       "why": "Read as a situation wherever the engine's settings sit, but who is counted in it or the call changes when one is moved a quarter: how long a player must be in a fight before he counts in it."
@@ -34279,6 +34254,11 @@
       {
        "play": "split",
        "team": "NwAy",
+       "t0": 38
+      },
+      {
+       "play": "split",
+       "team": "Men",
        "t0": 38
       },
       {
@@ -34320,7 +34300,7 @@
        "draft": true
       },
       {
-       "id": "c19f13e3-split-1-38-8",
+       "id": "c19f13e3-split-1-38-7",
        "team": "Men",
        "side": "defender",
        "label": "a player down",
@@ -34338,6 +34318,30 @@
        ],
        "any": false,
        "draft": false
+      },
+      {
+       "id": "c19f13e3-split-1-38-8",
+       "team": "Men",
+       "side": "defender",
+       "label": "part-run",
+       "job": "Gain a slight flag advantage while losing no pit NPC and not dying",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "flag lead better by 0.15 or more"
+        ],
+        [
+         true,
+         "the defender does not die"
+        ]
+       ],
+       "any": false,
+       "draft": true
       },
       {
        "id": "c19f13e3-split-1-56-10",
@@ -35991,11 +35995,52 @@
     },
     {
      "n": 33,
-     "id": "s:c19f13e3-split-2-828-62",
+     "id": "s:c19f13e3-flag-1-809-61",
+     "kind": "flag",
+     "t0": 809,
+     "t1": 844,
+     "reads": "NwAy single run (Hammer); Men stays",
+     "confidence": {
+      "band": "high",
+      "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
+     },
+     "plays": [
+      {
+       "play": "flag",
+       "team": "Men",
+       "t0": 809
+      }
+     ],
+     "calls": [
+      {
+       "id": "c19f13e3-flag-1-809-61",
+       "team": "Men",
+       "side": "",
+       "label": "stay",
+       "job": "Kill with the extra player while their runner is away, or their flag does not get in",
+       "met": false,
+       "tests": [
+        [
+         false,
+         "more of theirs die at the main fight than of ours"
+        ],
+        [
+         false,
+         "their flag does not get in"
+        ]
+       ],
+       "any": true,
+       "draft": false
+      }
+     ]
+    },
+    {
+     "n": 34,
+     "id": "s:c19f13e3-split-2-828-64",
      "kind": "split",
      "t0": 828,
      "t1": 858,
-     "reads": "NwAy's split by the back door: one player (Dervish) against 2 defending (Mes/A, 8 Monk)",
+     "reads": "NwAy's split by the back door: one player (Dervish) against 2 defending (Mes/A, 8 Monk); 2 (Mes/A, 8 Monk) against one player: Mes/A carries his flag for 8 s while defending",
      "confidence": {
       "band": "high",
       "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
@@ -36010,11 +36055,16 @@
        "play": "split",
        "team": "Men",
        "t0": 828
+      },
+      {
+       "play": "split",
+       "team": "Men",
+       "t0": 828
       }
      ],
      "calls": [
       {
-       "id": "c19f13e3-split-2-828-62",
+       "id": "c19f13e3-split-2-828-64",
        "team": "NwAy",
        "side": "attacker",
        "label": "a player or more down",
@@ -36030,7 +36080,7 @@
        "draft": false
       },
       {
-       "id": "c19f13e3-split-1-828-61",
+       "id": "c19f13e3-split-1-828-62",
        "team": "Men",
        "side": "defender",
        "label": "add one",
@@ -36052,12 +36102,36 @@
        ],
        "any": false,
        "draft": false
+      },
+      {
+       "id": "c19f13e3-split-1-828-63",
+       "team": "Men",
+       "side": "defender",
+       "label": "part-run",
+       "job": "Gain a slight flag advantage while losing no pit NPC and not dying",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         false,
+         "flag lead better by 0.15 or more"
+        ],
+        [
+         true,
+         "the defender does not die"
+        ]
+       ],
+       "any": false,
+       "draft": true
       }
      ]
     },
     {
-     "n": 34,
-     "id": "s:c19f13e3-pinned-2-840-63",
+     "n": 35,
+     "id": "s:c19f13e3-pinned-2-840-65",
      "kind": "pinned",
      "t0": 840,
      "t1": 924,
@@ -36075,7 +36149,7 @@
      ],
      "calls": [
       {
-       "id": "c19f13e3-pinned-2-840-63",
+       "id": "c19f13e3-pinned-2-840-65",
        "team": "NwAy",
        "side": "",
        "label": "",
@@ -36097,12 +36171,12 @@
      ]
     },
     {
-     "n": 35,
-     "id": "s:c19f13e3-split-2-856-66",
+     "n": 36,
+     "id": "s:c19f13e3-split-2-856-69",
      "kind": "split",
      "t0": 856,
      "t1": 950,
-     "reads": "NwAy's split by the back door: one player (Dervish) against 2 defending (Mes/A, 8 Monk); numbers along the way: 2 v 2 from 14:16, 1 v 2 from 14:58. Who came and went, each a decision of its own: Hammer (NwAy) leaves the split at 14:58",
+     "reads": "NwAy's split by the back door: one player (Dervish) against 2 defending (Mes/A, 8 Monk); numbers along the way: 2 v 2 from 14:16, 1 v 2 from 14:58; 2 (Mes/A, 8 Monk) against one player; numbers along the way: 2 v 2 from 14:16, 1 v 2 from 14:58: 8 Monk carries his flag for 22 s while defending. Who came and went, each a decision of its own: Hammer (NwAy) leaves the split at 14:58",
      "confidence": {
       "band": "high",
       "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
@@ -36125,13 +36199,18 @@
       },
       {
        "play": "split",
+       "team": "Men",
+       "t0": 856
+      },
+      {
+       "play": "split",
        "team": "NwAy",
        "t0": 898
       }
      ],
      "calls": [
       {
-       "id": "c19f13e3-split-2-856-66",
+       "id": "c19f13e3-split-2-856-69",
        "team": "NwAy",
        "side": "attacker",
        "label": "a player or more down",
@@ -36147,7 +36226,7 @@
        "draft": false
       },
       {
-       "id": "c19f13e3-split-1-856-64",
+       "id": "c19f13e3-split-1-856-66",
        "team": "Men",
        "side": "defender",
        "label": "add one",
@@ -36171,7 +36250,31 @@
        "draft": false
       },
       {
-       "id": "c19f13e3-split-1-856-65",
+       "id": "c19f13e3-split-1-856-68",
+       "team": "Men",
+       "side": "defender",
+       "label": "part-run",
+       "job": "Gain a slight flag advantage while losing no pit NPC and not dying",
+       "met": false,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         false,
+         "flag lead better by 0.15 or more"
+        ],
+        [
+         true,
+         "the defender does not die"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "c19f13e3-split-1-856-67",
        "team": "Men",
        "side": "defender's main team",
        "label": "the main fight can kill",
@@ -36187,7 +36290,7 @@
        "draft": false
       },
       {
-       "id": "c19f13e3-split-2-898-67",
+       "id": "c19f13e3-split-2-898-70",
        "team": "NwAy",
        "side": "attacker",
        "label": "leave: Hammer at 14:58",
@@ -36766,8 +36869,8 @@
      "id": "s:15a20f7a-flag-1-277-19",
      "kind": "flag",
      "t0": 277,
-     "t1": 324,
-     "reads": "Team single run (Ritualist); Dz single run (8 Monk)",
+     "t1": 370,
+     "reads": "Team single run (Ritualist); Dz single run (8 Monk, handing it to Mesmer)",
      "confidence": {
       "band": "high",
       "why": "Still read wherever the engine's settings sit, down to half and up to double, and read the same way at a quarter either way."
@@ -36789,7 +36892,7 @@
        "met": false,
        "tests": [
         [
-         false,
+         true,
          "our flag is capped"
         ],
         [
@@ -36953,11 +37056,11 @@
     },
     {
      "n": 13,
-     "id": "s:15a20f7a-split-2-308-26",
+     "id": "s:15a20f7a-split-2-308-27",
      "kind": "split",
      "t0": 308,
      "t1": 386,
-     "reads": "Team's split by the front door: two players (Warrior, 7 Monk) against 1 defending (8 Monk); numbers along the way: 1 v 1 from 5:08, 2 v 1 from 5:26; 1 damage against 1 monks. Who came and went, each a decision of its own: 7 Monk (Team) joins the split at 5:26",
+     "reads": "Team's split by the front door: two players (Warrior, 7 Monk) against 1 defending (8 Monk); numbers along the way: 1 v 1 from 5:08, 2 v 1 from 5:26; 1 damage against 1 monks; 1 (8 Monk) against two players; numbers along the way: 1 v 1 from 5:08, 2 v 1 from 5:26: 8 Monk carries his flag for 12 s while defending. Who came and went, each a decision of its own: 7 Monk (Team) joins the split at 5:26",
      "confidence": {
       "band": "medium",
       "why": "Read as a situation wherever the engine's settings sit, but who is counted in it or the call changes when one is moved a quarter: how far away a player hitting or casting into a fight still counts in it; how long a player at the edge of a fight is kept in it; and 2 more of its settings."
@@ -36966,6 +37069,11 @@
       {
        "play": "split",
        "team": "Team",
+       "t0": 308
+      },
+      {
+       "play": "split",
+       "team": "Dz",
        "t0": 308
       },
       {
@@ -36986,7 +37094,7 @@
      ],
      "calls": [
       {
-       "id": "15a20f7a-split-2-308-26",
+       "id": "15a20f7a-split-2-308-27",
        "team": "Team",
        "side": "attacker",
        "label": "held by monks",
@@ -37022,7 +37130,31 @@
        "draft": false
       },
       {
-       "id": "15a20f7a-split-2-308-27",
+       "id": "15a20f7a-split-1-308-26",
+       "team": "Dz",
+       "side": "defender",
+       "label": "part-run",
+       "job": "Gain a slight flag advantage while losing no pit NPC and not dying",
+       "met": true,
+       "tests": [
+        [
+         true,
+         "no pit NPC lost"
+        ],
+        [
+         true,
+         "flag lead better by 0.15 or more"
+        ],
+        [
+         true,
+         "the defender does not die"
+        ]
+       ],
+       "any": false,
+       "draft": true
+      },
+      {
+       "id": "15a20f7a-split-2-308-28",
        "team": "Team",
        "side": "attacker's main team",
        "label": "the main fight can kill",
@@ -37038,7 +37170,7 @@
        "draft": false
       },
       {
-       "id": "15a20f7a-split-2-326-28",
+       "id": "15a20f7a-split-2-326-29",
        "team": "Team",
        "side": "attacker",
        "label": "join: 7 Monk at 5:26",
@@ -37061,7 +37193,7 @@
     },
     {
      "n": 14,
-     "id": "s:15a20f7a-flag-2-368-29",
+     "id": "s:15a20f7a-flag-2-368-30",
      "kind": "flag",
      "t0": 368,
      "t1": 462,
@@ -37079,7 +37211,7 @@
      ],
      "calls": [
       {
-       "id": "15a20f7a-flag-2-368-29",
+       "id": "15a20f7a-flag-2-368-30",
        "team": "Team",
        "side": "",
        "label": "a flag already in hand: overcap at once",
@@ -37102,7 +37234,7 @@
     },
     {
      "n": 15,
-     "id": "s:15a20f7a-split-2-382-31",
+     "id": "s:15a20f7a-split-2-382-32",
      "kind": "split",
      "t0": 382,
      "t1": 416,
@@ -37125,7 +37257,7 @@
      ],
      "calls": [
       {
-       "id": "15a20f7a-split-2-382-31",
+       "id": "15a20f7a-split-2-382-32",
        "team": "Team",
        "side": "attacker",
        "label": "undefended",
@@ -37141,7 +37273,7 @@
        "draft": false
       },
       {
-       "id": "15a20f7a-split-1-382-30",
+       "id": "15a20f7a-split-1-382-31",
        "team": "Dz",
        "side": "defender",
        "label": "no answer",
@@ -37164,7 +37296,7 @@
     },
     {
      "n": 16,
-     "id": "s:15a20f7a-numbers-1-388-32",
+     "id": "s:15a20f7a-numbers-1-388-33",
      "kind": "numbers",
      "t0": 388,
      "t1": 420,
@@ -37187,7 +37319,7 @@
      ],
      "calls": [
       {
-       "id": "15a20f7a-numbers-1-388-32",
+       "id": "15a20f7a-numbers-1-388-33",
        "team": "Dz",
        "side": "up",
        "label": "retreat down the ladder",
@@ -37207,7 +37339,7 @@
        "draft": true
       },
       {
-       "id": "15a20f7a-numbers-2-388-33",
+       "id": "15a20f7a-numbers-2-388-34",
        "team": "Team",
        "side": "down",
        "label": "push up",
@@ -37230,7 +37362,7 @@
     },
     {
      "n": 17,
-     "id": "s:15a20f7a-split-2-404-35",
+     "id": "s:15a20f7a-split-2-404-36",
      "kind": "split",
      "t0": 404,
      "t1": 452,
@@ -37253,7 +37385,7 @@
      ],
      "calls": [
       {
-       "id": "15a20f7a-split-2-404-35",
+       "id": "15a20f7a-split-2-404-36",
        "team": "Team",
        "side": "attacker",
        "label": "met by a full collapse",
@@ -37269,7 +37401,7 @@
        "draft": false
       },
       {
-       "id": "15a20f7a-split-1-404-34",
+       "id": "15a20f7a-split-1-404-35",
        "team": "Dz",
        "side": "defender",
        "label": "full collapse",
@@ -37292,7 +37424,7 @@
     },
     {
      "n": 18,
-     "id": "s:15a20f7a-split-2-414-37",
+     "id": "s:15a20f7a-split-2-414-38",
      "kind": "split",
      "t0": 414,
      "t1": 438,
@@ -37315,7 +37447,7 @@
      ],
      "calls": [
       {
-       "id": "15a20f7a-split-2-414-37",
+       "id": "15a20f7a-split-2-414-38",
        "team": "Team",
        "side": "attacker",
        "label": "collapsed on",
@@ -37331,7 +37463,7 @@
        "draft": false
       },
       {
-       "id": "15a20f7a-split-1-414-36",
+       "id": "15a20f7a-split-1-414-37",
        "team": "Dz",
        "side": "defender",
        "label": "collapse",
@@ -37350,7 +37482,7 @@
     },
     {
      "n": 19,
-     "id": "s:15a20f7a-push_flagger-2-434-39",
+     "id": "s:15a20f7a-push_flagger-2-434-40",
      "kind": "push flagger",
      "t0": 434,
      "t1": 447,
@@ -37373,7 +37505,7 @@
      ],
      "calls": [
       {
-       "id": "15a20f7a-push_flagger-2-434-39",
+       "id": "15a20f7a-push_flagger-2-434-40",
        "team": "Team",
        "side": "",
        "label": "",
@@ -37393,7 +37525,7 @@
        "draft": false
       },
       {
-       "id": "15a20f7a-flagger_pushed-1-434-38",
+       "id": "15a20f7a-flagger_pushed-1-434-39",
        "team": "Dz",
        "side": "",
        "label": "",
@@ -37412,7 +37544,7 @@
     },
     {
      "n": 20,
-     "id": "s:15a20f7a-numbers-1-436-40",
+     "id": "s:15a20f7a-numbers-1-436-41",
      "kind": "numbers",
      "t0": 436,
      "t1": 466,
@@ -37438,7 +37570,7 @@
     },
     {
      "n": 21,
-     "id": "s:15a20f7a-flag-2-438-42",
+     "id": "s:15a20f7a-flag-2-438-43",
      "kind": "flag",
      "t0": 438,
      "t1": 518,
@@ -37456,7 +37588,7 @@
      ],
      "calls": [
       {
-       "id": "15a20f7a-flag-2-438-42",
+       "id": "15a20f7a-flag-2-438-43",
        "team": "Team",
        "side": "",
        "label": "a flag already in hand: capped before theirs got in",
@@ -37475,7 +37607,7 @@
     },
     {
      "n": 22,
-     "id": "s:15a20f7a-split-2-458-45",
+     "id": "s:15a20f7a-split-2-458-46",
      "kind": "split",
      "t0": 458,
      "t1": 472,
@@ -37508,7 +37640,7 @@
      ],
      "calls": [
       {
-       "id": "15a20f7a-split-2-458-45",
+       "id": "15a20f7a-split-2-458-46",
        "team": "Team",
        "side": "attacker",
        "label": "1 v 1, the defender not a monk",
@@ -37528,7 +37660,7 @@
        "draft": false
       },
       {
-       "id": "15a20f7a-split-1-458-43",
+       "id": "15a20f7a-split-1-458-44",
        "team": "Dz",
        "side": "defender",
        "label": "mirror",
@@ -37548,7 +37680,7 @@
        "draft": false
       },
       {
-       "id": "15a20f7a-split-1-458-44",
+       "id": "15a20f7a-split-1-458-45",
        "team": "Dz",
        "side": "defender",
        "label": "part-run",
@@ -37572,7 +37704,7 @@
        "draft": false
       },
       {
-       "id": "15a20f7a-split-2-458-46",
+       "id": "15a20f7a-split-2-458-47",
        "team": "Team",
        "side": "attacker's main team",
        "label": "the main fight can kill",
@@ -37591,7 +37723,7 @@
     },
     {
      "n": 23,
-     "id": "s:15a20f7a-split-2-462-48",
+     "id": "s:15a20f7a-split-2-462-49",
      "kind": "split",
      "t0": 462,
      "t1": 484,
@@ -37614,7 +37746,7 @@
      ],
      "calls": [
       {
-       "id": "15a20f7a-split-2-462-48",
+       "id": "15a20f7a-split-2-462-49",
        "team": "Team",
        "side": "attacker",
        "label": "met by a full collapse",
@@ -37630,7 +37762,7 @@
        "draft": false
       },
       {
-       "id": "15a20f7a-split-1-462-47",
+       "id": "15a20f7a-split-1-462-48",
        "team": "Dz",
        "side": "defender",
        "label": "full collapse",
@@ -37653,7 +37785,7 @@
     },
     {
      "n": 24,
-     "id": "s:15a20f7a-split-2-470-50",
+     "id": "s:15a20f7a-split-2-470-51",
      "kind": "split",
      "t0": 470,
      "t1": 484,
@@ -37676,7 +37808,7 @@
      ],
      "calls": [
       {
-       "id": "15a20f7a-split-2-470-50",
+       "id": "15a20f7a-split-2-470-51",
        "team": "Team",
        "side": "attacker",
        "label": "collapsed on",
@@ -37692,7 +37824,7 @@
        "draft": false
       },
       {
-       "id": "15a20f7a-split-1-470-49",
+       "id": "15a20f7a-split-1-470-50",
        "team": "Dz",
        "side": "defender",
        "label": "collapse",
@@ -37711,7 +37843,7 @@
     },
     {
      "n": 25,
-     "id": "s:15a20f7a-flag-2-476-51",
+     "id": "s:15a20f7a-flag-2-476-52",
      "kind": "flag",
      "t0": 476,
      "t1": 541,
@@ -37729,7 +37861,7 @@
      ],
      "calls": [
       {
-       "id": "15a20f7a-flag-2-476-51",
+       "id": "15a20f7a-flag-2-476-52",
        "team": "Team",
        "side": "",
        "label": "stay",
