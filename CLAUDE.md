@@ -235,7 +235,9 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   rows as the test. Who is in which fight is one reading on the branch (`Moments.linked`, `engaged_in`, `visits`; R-464),
   used by the numbers of the main fight and by a split's defenders: change it there, never beside it. His words on a
   row become checks in the review key, open until they hold; `review.py score` counts the open checks that hold now.
-  Every match moment put to him carries its replay link and time.
+  Every match moment put to him carries its replay link and time: the time of the thing he is to look at (the carry,
+  the death, the turn), never the start of the row it is told in (True v One, 2026-11-18: given 0:45, the row's start,
+  for a carry at 1:48, he saw no pickup).
 - A reading which fails must fail loudly, never be turned into a blank (R-460). A blank that means "not in the replay"
   (unobserved Lord damage) stays a blank; a blank from a fault stops the run or is counted in the output, so that a
   field blank on every row is seen the same day.
