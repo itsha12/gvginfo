@@ -19,10 +19,9 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   him. Not graded his new way: Corrupted, Weeping Stone, Isle of the Dead.
 - His marks on nine picked rows (set p2 in the key; their games are in the development set; none binds):
   - Part-runs: built (R-535, R-536; `Moments._part_carries`); his eleven rulings all read as he rules.
-  - Boost: Men v hold 8:06 and 옷옷옷옷 v cope 2:49 are unsuccessful runs (the engine's reading stands); cope v
-    hold 14:33 is no run (held at his door with his team): held, with Men v Crew 17:53, for a measure of ground made.
-  - Sudden deaths of a solo split: QenK v Fun 6:37 and NwAy v ohno 5:24 are main team collapses (the second is
-    not told: it kills before R-508's 4 s); each death is also left on the 1 v 1 row. Held for the split family.
+  - Boost: cope v hold 14:33 is no run (held at his door): held, with Men v Crew 17:53, for a measure of ground made.
+  - Solo splits: QenK v Fun 6:37 and NwAy v ohno 5:24 are main team collapses (the second not told: it kills before
+    R-508's 4 s); each death is also left on the 1 v 1 row. Held for the split family.
 - Confidence (R-515) does not tell Classic from Visible; a measure of what is at stake (R-509) would. Not built.
 - Checkpoint run (every counted match, engine df82125): 564 matches, 34,913 plays, no errors, self-check 7 in 5
   matches; flag plays 5,474, 1,491 set aside for Shadow of Haste (R-456). The reading is unchanged by the new
@@ -62,9 +61,6 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 2. Tolkano: no build (his word). Match pages are tolkano.com/match/<id>, the id neither gvg.report's nor the start
    time: give him date, guilds, hall and length with every example so he can find it there.
 
-## Data looked at on 2026-11-14 (nothing built; nothing from GW Observer in the repo)
-- gvg.report's payload holds flag objects with positions, which `replay_trim.mjs` drops. R-481: at the next rebuild.
-
 ## Running it
 - Train batch: the "Train batch" workflow (METHODS.md "Train batch on GitHub"; `blind` stays no). Never queue two runs.
 - Local engine: `git fetch --depth 1 --filter=blob:none origin +replays:refs/remotes/origin/replays` (the blobs come
@@ -72,6 +68,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   beyond Python; `cases.py` needs numpy and scikit-learn (`cache.py sync pull`, `warm` only for the fitted models).
   `PYTHONDONTWRITEBYTECODE=1`. The review key, `dev_set.json` and `game_reviews.json` are written on main: pass
   `--key <main>/data/model/review_key.json`, and copy the key and `dev_set.json` to the branch after changing them.
+- gvg.report's payload holds flag objects with positions, which `replay_trim.mjs` drops: kept at the next rebuild (R-481).
 - Site check: `python3 -m http.server`, then playwright with `/usr/bin/google-chrome`, api.github.com mocked.
 
 ## Cautions
