@@ -50,7 +50,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
    Settle the technical choices yourself and bring him GvG questions only (his word).
 2. Held for a second game (R-495): a base res with the attackers at the footmen (HC v hdm 1:40, Jade); Men v hold
    6:48, a collapse told as a push on the flagger; who and how many push a flagger; numbers through Jade's portal.
-   Then stage E; the clean-up (R-398, nine items, and `st.stand_owner` on a whole second) after the games.
+   Then stage E; the clean-up (R-398, and `st.stand_owner` on a whole second) after the games.
 
 ## Open for Denning
 0. Put to him 2026-11-19: the sentences for his twelve games, on Model > Game review > Flag advice (61 cards; his
@@ -77,5 +77,4 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 - Don't merge `bundle-4` piecemeal (R-322). Label, golden and review mark files are saved whole by the site: after a
   change here, he reloads the page first. Hall labels are saved to main: copy changed `data/maps/labels/*.json` to
   the branch before reading a hall (the export refuses otherwise).
-- Transcripts never go in the repo: paraphrased statements only. Party slots are in `data/matches/`, not the replays.
-  Refresh the branch's `golden_moments.json` from main before the gate.
+- Transcripts never go in the repo: paraphrased statements only. Party slots are in `data/matches/`, not the replays. Refresh the branch's `golden_moments.json` first.
