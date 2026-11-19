@@ -20,38 +20,30 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   hold 14:33, a flag held at his door read as a boost runner (with Men v Crew 17:53); QenK v Fun 6:37 and NwAy v
   ohno 5:24, main team collapses whose deaths are also left on the 1 v 1 row (for the split family).
 - Confidence (R-515) does not tell Classic from Visible; a measure of what is at stake (R-509) would. Not built.
-- Checkpoint run (every counted match, engine bf84adb; the report from b8d6dd9): 564 matches, 34,913 plays, no errors, self-check 7 in 5
-  matches; every play the same as before the flag work, new fields apart. The fourteen truths hold (T12 is his
-  given on flags, R-542); 281 Classic rows pass, none fail; 129 history rows hold, 3 do not; set f1 15 of 50 open
-  checks hold, p2 0 of 3. Gate 12 of 12 and 63 of 105, line-up and comms 530 of 583 (last run 2026-11-18).
+- Checkpoint run (every counted match, engine bf84adb; the report from b8d6dd9): 564 matches, 34,913 plays, no
+  errors, self-check 7 in 5 matches; every play the same as before the flag work, new fields apart. The fourteen
+  truths hold (T12 is his given on flags); 281 Classic rows pass, none fail; 129 history rows hold, 3 do not. Gate
+  12 of 12 and 63 of 105, line-up and comms 530 of 583 (last run 2026-11-18).
 - The similar cases (R-538 to R-544; `cases.py test <plays file>` on the branch, about a minute; the report is
   `data/model/flag_cases.json`), 4,332 cases; 1,606 Shadow of Haste plays and the opening (868, R-541) set aside:
   - Prices, win points from an even position: a flag of lead 6.8, a death's penalty 6.0, a morale boost 11.1, a pit
     NPC 4.7, 10% of Lord health 9.5; who wins foretold 82% on unseen matches. A footman is not priced. K 90.
   - Their boost 30 s away (1,316): "run a flag" clearly better in 31%. Held out: +9.1 win points 180 s on (4.8 to
     13.8), +11.2 without the 203 flags only held at home; in how the match ended +4.6 (-5.8 to +13.8), not clear.
-  - Their run, our answer: read 15 and 30 s after their runner set off (their run still under way, nobody sent by
-    the read before; a runner sent, a double run started, or none yet), judged 60, 90 and 180 s on (R-543, R-544).
-    Never read to the end of their run (R-542: such a "stay" takes in their runs that came to nothing).
-    In flags a runner sent is ahead at every window (15 s read, us holding the stand: +0.24, +0.39, +0.19).
-    Held out, read at 15 s (2,808 cases): matching the advice is better at 60 s (+2.9, 1.9 to 4.2) and at 180 s
-    (+4.8, 1.9 to 7.7; the advice "no runner yet" in 654 of 756; in how the match ended +8.5, 2.1 to 16.4), not
-    clear at 90 s. Read at 30 s (2,015): nothing clear. Ten tests in all: a lead, not yet a finding.
-  - What the advice is (report sections 5 and 6). With us holding the stand it says hold off in 650 of 1,417: we
-    are winning the fight (up on numbers 46% against 35% where nothing is clear, on their side of the stand 41%
-    against 18%, their morale -40 against -9, their runner a monk 2% against 16%). 570 held off (+1.9 win points
-    180 s on), 80 sent (-1.8): +3.6 (0.9 to 6.4); where their flag got in +1.9 (-1.2 to +4.9), not clear: their
-    flag got in after 69% of the holds and 94% of the sends, so part of it is their run failing. With them holding
-    the stand it says send in 81 (their boost near, us behind in morale); only 10 did. Of teams with no runner at
-    15 s and us holding the stand, 41% send none in 90 s (their flag in 50%, a kill within 60 s 44%).
-  - The run in answer (section 7; 1,416 runs, as it fell): our flag in 81%, 1.26 times a clean run. Their snares
-    slow it: 1.19 times with the fewest third, 1.35 with the most (flag in 87% against 77%, them holding the
-    stand). An 8 Monk sent: +3.2 win points 180 s on; a frontline player -1.4 (who runs follows the spot).
-  - His given (R-542). Flags: holds (+0.29 of a flag 90 s on for a runner sent by 30 s). "No kill, no other gain,
-    so worse off": with nobody dying and no boost landing, a runner sent is +1.0 win points ahead with us holding
-    the stand (-0.1 to +2.0) and +0.7 with them holding it (-0.2 to +1.6): his way, not clear. With boosts let in
-    it is level, own boosts landing more where nobody was sent (the flag-beats-boost variable halves that gap).
-  - Under the floor: the double run (theirs as a scenario, ours as a call: kept, R-544) and a flag in hand.
+  - Their run, our answer: read 15 and 30 s after their runner set off (their run still under way; a runner sent,
+    a double run started, or none yet), judged 60, 90 and 180 s on (R-543, R-544); never to the end of their run
+    (R-542). Held out, read at 15 s (2,808): better at 60 s (+2.9) and 180 s (+4.8, 1.9 to 7.7; in how the match
+    ended +8.5, 2.1 to 16.4), not clear at 90 s; read at 30 s nothing clear. Ten tests: a lead, not a finding.
+  - What the advice is (sections 5, 6). Us holding the stand: hold off in 650 of 1,417, where we are winning the
+    fight (up on numbers 46% against 35% where nothing is clear; on their side of the stand 41% against 18%; their
+    morale -40 against -9). Holding off less sending +3.6 (0.9 to 6.4); +1.9 (-1.2 to +4.9) where their flag got
+    in (it got in after 69% of holds, 94% of sends: part of it is their run failing). Them holding the stand:
+    send in 81 (their boost near, us behind in morale); only 10 did.
+  - His given (R-542): flags hold (T12, +0.29). "No kill, no gain, so worse off": with no boost landing either,
+    +1.0 (-0.1 to +2.0) us holding the stand, +0.7 (-0.2 to +1.6) them holding it: his way, not clear.
+  - The run in answer (section 7; 1,416 runs, as it fell): our flag in 81%, 1.26 times a clean run; their snares
+    slow it (1.19 times with the fewest third, 1.35 with the most). An 8 Monk sent +3.2 win points 180 s on, a
+    frontline player -1.4 (who runs follows the spot). Under the floor: the double run, a flag in hand.
 
 ## Next (in order)
 1. The flag family (R-540), at his word: his reading of the advice and of the moments put to him (Open, 0);
