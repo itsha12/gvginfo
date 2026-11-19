@@ -2054,6 +2054,11 @@ class Moments:
             nearer = lambda v: v >= 4 and dist(v - 4) is not None and dist(v) is not None and dist(v - 4) > dist(v) + 40
             jump = lambda v: v >= 8 and dist(v - 4) is not None and dist(v) is not None and dist(v - 4) + 40 < dist(v) and (nearer(v - 2) or nearer(v - 4))
             while nearer(u) or jump(u): u -= 2
+            # ... and no earlier than he let go of the flag before: a runner who caps and goes straight back has not set off while he still carried it (hold v RACK
+            # 10:49, 2026-11-19: the Earth Ele was read turning for home 2 s before his own cap at 10:51, which made one player's two single runs, R-485, look like a
+            # second player gone back before the cap)
+            let_go = [e_ for s_, e_ in self.carry.get(a, ()) if s_ < tp - 1 and e_ <= tp]
+            if let_go and u < max(let_go): u = min(tp, int(-(-max(let_go) // 1)))
             runner = L["capper"] if L.get("capper") in L["serious"] else L["serious"][-1]     # who ran it in: the capper, else the last serious carrier (a brief pickup handed on is not a runner: golden hdm v One 17:24)
             # when the flag is under way: it first stands off its own base and pit in the carry that takes it in, counting the carries before that one from which it was
             # handed on (put down and taken up by a team mate within HANDOFF_GAP_S). Read from the flag, not from who capped it: a flag carried out at once and handed on
