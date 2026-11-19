@@ -17,8 +17,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   (open: hold v Men 2:34). Game 14, Dz v Team on Druid's Isle: 22 Classic and 2 Visible, all read correct, 48 of
   48 calls. Out unmarked: hdm v HC (R-522) and game 13, Men v NwAy on Corrupted Isle (R-537). No game waits for
   him. Not graded his new way: Corrupted, Weeping Stone, Isle of the Dead.
-- His marks on nine picked rows (set p2 in the key; their games are in the development set; none binds):
-  - Part-runs: built (R-535, R-536; `Moments._part_carries`); his eleven rulings all read as he rules.
+- His marks on nine picked rows (set p2 in the key; none binds). Part-runs are built (R-535, R-536). Held:
   - Boost: cope v hold 14:33 is no run (held at his door): held, with Men v Crew 17:53, for a measure of ground made.
   - Solo splits: QenK v Fun 6:37 and NwAy v ohno 5:24 are main team collapses (the second not told: it kills before
     R-508's 4 s); each death is also left on the 1 v 1 row. Held for the split family.
