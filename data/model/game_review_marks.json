@@ -10640,6 +10640,471 @@
    "game": "옷옷옷옷 v hdm, Isle of Jade",
    "at": "2026-11-18",
    "engine": "a552659"
+  },
+  "15a20f7a-0112-519a-a5f9-797a6822bf1b": {
+   "marks": {
+    "s:15a20f7a-opening-2-0-3": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "The opening. Team: 8 to the stand; its first flag brought up by Ritualist and capped at 0:32. Dz: 8 to the stand; its first flag brought up by Mesmer, held at the stand for 69 s and capped at 1:37. Team caps first at 0:32; Dz caps over it at 1:37",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "15a20f7a-opening-2-0-3": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team [the first flag]: Get the first flag in. Met (our flag is capped: yes)"
+    },
+    "15a20f7a-opening-1-0-1": {
+     "mark": "correct",
+     "why": "",
+     "text": "Dz [the first flag]: Get the first flag in. Met (our flag is capped: yes)"
+    },
+    "s:15a20f7a-numbers-1-80-4": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Dz up on numbers in the main fight (8 v 6, the flag stand; then 8 v 5 from 1:46; then 8 v 6 from 2:16; then 7 v 3 from 2:38), from players split elsewhere; Dz: retreat down the ladder (fall back into the base) | Team: retreat down the ladder (fall back into the base)",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "15a20f7a-numbers-1-80-4": {
+     "mark": "correct",
+     "why": "",
+     "text": "Dz (strong side) [retreat down the ladder]: Kill with the numbers while their players are away. Met (more of theirs die than of ours: yes)"
+    },
+    "15a20f7a-numbers-2-80-5": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Not met (nobody of ours dies: no)"
+    },
+    "s:15a20f7a-flag-1-129-6": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Team single run (Mes/A); Dz stays",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "15a20f7a-flag-1-129-6": {
+     "mark": "correct",
+     "why": "",
+     "text": "Dz [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Not met (more of theirs die at the main fight than of ours: no; their flag does not get in: no)"
+    },
+    "s:15a20f7a-flag-2-187-7": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Dz single run (Mesmer); Team stays",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "15a20f7a-flag-2-187-7": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Not met (more of theirs die at the main fight than of ours: no; their flag does not get in: no)"
+    },
+    "s:15a20f7a-split-2-200-9": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Team's split by the back door: two players (Hammer, Ritualist) against 5 defending (Prot (WoC), Monk 5 (WoC), Monk 3 (WoC), Monk 1 (WoC), Monk 4 (WoC)); numbers along the way: 2 v 5 from 3:32, 2 v 2 from 3:50. Who came and went, each a decision of its own: Monk 1 (WoC), Monk 3 (WoC), Monk 4 (WoC) (Dz) leave the defence at 3:50",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "15a20f7a-split-2-200-9": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team (attacker) [a player or more down]: Hold more defenders there than its own number and lose nobody (what the team made of the extra player elsewhere is beside it). Met (nobody on the split dies: yes)"
+    },
+    "15a20f7a-split-1-200-8": {
+     "mark": "correct",
+     "why": "",
+     "text": "Dz (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Not met (no pit NPC lost: yes; a split player dies: no; the split is gone within the visit: no)"
+    },
+    "15a20f7a-split-2-200-10": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team (attacker's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Not met (more of theirs die away from the split than of ours: no)"
+    },
+    "15a20f7a-split-1-230-11": {
+     "mark": "correct",
+     "why": "",
+     "text": "Dz (defender) [leave: Monk 1 (WoC), Monk 3 (WoC), Monk 4 (WoC) at 3:50]: Gain at the main fight with the player back, and lose no pit NPC for it. Met (no pit NPC lost: yes; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: yes)"
+    },
+    "s:15a20f7a-split-2-238-13": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Team's split by the back door: two players (Hammer, Ritualist); Dz turns on it from 3:54 with 7 (Monk 5 (WoC), Prot (WoC), Monk 1 (WoC), Monk 2 (WoC), Monk 3 (WoC), Monk 4 (WoC), 8 Monk); 7 turn for it from 3:54 (Monk 5 (WoC), Prot (WoC), Monk 1 (WoC), Monk 2 (WoC), Monk 3 (WoC), Monk 4 (WoC), 8 Monk) against two players: full collapse",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "15a20f7a-split-2-238-13": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team (attacker) [met by a full collapse]: Survive the collapse and lose nobody (what the team gained elsewhere meanwhile is beside it). Not met (nobody on the split dies: no)"
+    },
+    "15a20f7a-split-1-238-12": {
+     "mark": "correct",
+     "why": "",
+     "text": "Dz (defender) [full collapse]: Kill the split or drive it out (the flags it costs are beside it). Met (a split player dies: yes; the split is gone within the visit: yes)"
+    },
+    "s:15a20f7a-numbers-1-244-14": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Dz up on numbers in the main fight (8 v 4, the greater stand area; then 8 v 5 from 4:16), from players split elsewhere; Dz: stay (stay at the stand) | Team: retreat down the ladder (fall back into the base)",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "15a20f7a-numbers-1-244-14": {
+     "mark": "correct",
+     "why": "",
+     "text": "Dz (strong side) [stay]: Kill with the numbers while their players are away. Met (more of theirs die than of ours: yes)"
+    },
+    "15a20f7a-numbers-2-244-15": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Not met (nobody of ours dies: no)"
+    },
+    "s:15a20f7a-flag-1-245-16": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Team single run (7 Monk); Dz stays",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "15a20f7a-flag-1-245-16": {
+     "mark": "correct",
+     "why": "",
+     "text": "Dz [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Met (more of theirs die at the main fight than of ours: yes; their flag does not get in: no)"
+    },
+    "s:15a20f7a-split-2-252-18": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Team's split by the back door: two players (Mes/A, Warrior) against 0 defending; it crosses at 4:22 and has not reached their base, their footmen or a defender by 4:40",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "15a20f7a-split-2-252-18": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team (attacker) [undefended]: Take NPCs. Not met (an NPC taken: no)"
+    },
+    "15a20f7a-split-1-252-17": {
+     "mark": "correct",
+     "why": "",
+     "text": "Dz (defender) [no answer]: Win elsewhere before the split costs more than it gains. Met (more of theirs die away from the split than of ours: yes; flag lead better by 0.35 or more: no)"
+    },
+    "s:15a20f7a-flag-1-277-19": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Team single run (Ritualist); Dz single run (8 Monk)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "15a20f7a-flag-1-277-19": {
+     "mark": "correct",
+     "why": "",
+     "text": "Dz [single run]: Get the flag in, lose no more players than they do, and end no worse than half a flag behind. Not met (our flag is capped: no; no more of ours die at the main fight than of theirs: yes; no worse than half a flag behind at the end, or no further behind than at the start: no)"
+    },
+    "s:15a20f7a-split-2-282-22": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Team's split by the front door: two players (Mes/A, Warrior) against 1 defending (Mesmer)",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "15a20f7a-split-2-282-22": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team (attacker) [a player or more up]: Kill or take NPCs. Met (a defender killed: yes; an NPC taken: no)"
+    },
+    "15a20f7a-split-1-282-20": {
+     "mark": "correct",
+     "why": "",
+     "text": "Dz (defender) [one defender]: Delay: keep the split off the pit NPCs and stay alive. Not met (no pit NPC lost: yes; no defender dies: no)"
+    },
+    "15a20f7a-split-1-282-21": {
+     "mark": "correct",
+     "why": "",
+     "text": "Dz (defender's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (more of theirs die away from the split than of ours: no)"
+    },
+    "s:15a20f7a-split-2-296-24": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Team's split by the front door: two players (Mes/A, Warrior) against 4 defending (Monk 1 (WoC), Prot (WoC), Monk 4 (WoC), Monk 3 (WoC)); Monk 1 (WoC), Prot (WoC), Monk 4 (WoC), Monk 3 (WoC) collapse from the main fight; 4 (Monk 1 (WoC), Prot (WoC), Monk 4 (WoC), Monk 3 (WoC)) against two players: collapse by Monk 1 (WoC), Prot (WoC), Monk 4 (WoC), Monk 3 (WoC) from the main fight",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "15a20f7a-split-2-296-24": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team (attacker) [collapsed on]: Survive the collapse and lose nobody (what the team gained elsewhere meanwhile is beside it). Not met (nobody on the split dies: no)"
+    },
+    "s:15a20f7a-split-2-308-26": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Team's split by the front door: two players (Warrior, 7 Monk) against 1 defending (8 Monk); numbers along the way: 1 v 1 from 5:08, 2 v 1 from 5:26; 1 damage against 1 monks. Who came and went, each a decision of its own: 7 Monk (Team) joins the split at 5:26",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "15a20f7a-split-2-308-26": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team (attacker) [held by monks]: Hold the monks there and lose nobody; NPCs are a bonus (a kill is not expected of it). Not met (nobody on the split dies: no)"
+    },
+    "15a20f7a-split-1-308-25": {
+     "mark": "correct",
+     "why": "",
+     "text": "Dz (defender) [one defender]: Delay: keep the split off the pit NPCs and stay alive. Met (no pit NPC lost: yes; no defender dies: yes)"
+    },
+    "15a20f7a-split-2-308-27": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team (attacker's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Not met (more of theirs die away from the split than of ours: no)"
+    },
+    "15a20f7a-split-2-326-28": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team (attacker) [join: 7 Monk at 5:26]: Kill or take NPCs with the players added. Not met (a defender killed: no; an NPC taken: no)"
+    },
+    "s:15a20f7a-flag-2-368-29": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Dz double run (first runner Mesmer, capping the flag before; second runner 8 Monk, back for this one); Team has a flag already in hand (Ritualist), capped at once",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "15a20f7a-flag-2-368-29": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team [a flag already in hand: overcap at once]: Answer their cap at once. Met (their flag does not get in: no; our cap follows theirs within 15 s: yes)"
+    },
+    "s:15a20f7a-split-2-382-31": {
+     "grade": "visible",
+     "why": "",
+     "text": "Team's split by the back door: two players (Hammer, Ritualist) against 0 defending; it crosses at 6:38 and reaches their base, their footmen or a defender at 6:52",
+     "band": "medium",
+     "mark": "correct",
+     "off": [],
+     "reason": [
+      "nofight",
+      "unclear"
+     ]
+    },
+    "15a20f7a-split-2-382-31": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team (attacker) [undefended]: Take NPCs. Not met (an NPC taken: no)"
+    },
+    "15a20f7a-split-1-382-30": {
+     "mark": "correct",
+     "why": "",
+     "text": "Dz (defender) [no answer]: Win elsewhere before the split costs more than it gains. Met (more of theirs die away from the split than of ours: yes; flag lead better by 0.35 or more: no)"
+    },
+    "s:15a20f7a-numbers-1-388-32": {
+     "grade": "classic",
+     "why": "",
+     "text": "Dz up on numbers in the main fight (7 v 5, the greater stand area; then 7 v 4 from 6:48), from kills; Dz: retreat down the ladder (fall back into the base) | Team: push up (push up to their back door)",
+     "band": "medium",
+     "reason": [],
+     "mark": "correct",
+     "off": []
+    },
+    "15a20f7a-numbers-1-388-32": {
+     "mark": "correct",
+     "why": "",
+     "text": "Dz (up) [retreat down the ladder]: Reset without giving anything back. Met (nobody of ours dies: yes; no NPC lost: yes)"
+    },
+    "15a20f7a-numbers-2-388-33": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team (down) [push up]: Trade a player down: take something on their ground for it. Not met (one of their NPCs dies: no; more of theirs die than of ours: no)"
+    },
+    "s:15a20f7a-split-2-404-35": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Team's split by the back door: two players (Hammer, Ritualist); Dz turns on it from 6:40 with 7 (Monk 1 (WoC), Monk 2 (WoC), Monk 3 (WoC), Monk 4 (WoC), Monk 5 (WoC), Prot (WoC), Mesmer); 7 turn for it from 6:40 (Monk 1 (WoC), Monk 2 (WoC), Monk 3 (WoC), Monk 4 (WoC), Monk 5 (WoC), Prot (WoC), Mesmer) against two players: full collapse",
+     "band": "low",
+     "mark": "correct",
+     "off": []
+    },
+    "15a20f7a-split-2-404-35": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team (attacker) [met by a full collapse]: Survive the collapse and lose nobody (what the team gained elsewhere meanwhile is beside it). Not met (nobody on the split dies: no)"
+    },
+    "15a20f7a-split-1-404-34": {
+     "mark": "correct",
+     "why": "",
+     "text": "Dz (defender) [full collapse]: Kill the split or drive it out (the flags it costs are beside it). Met (a split player dies: yes; the split is gone within the visit: no)"
+    },
+    "s:15a20f7a-split-2-414-37": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Team's split by the back door: 4 players (Hammer, Ritualist, Stand Mes, Warrior) against 5 defending (Monk 1 (WoC), Prot (WoC), Monk 4 (WoC), Monk 5 (WoC), Monk 3 (WoC)); Monk 1 (WoC), Prot (WoC), Monk 4 (WoC), Monk 5 (WoC), Monk 3 (WoC) collapse from the main fight; 5 (Monk 1 (WoC), Prot (WoC), Monk 4 (WoC), Monk 5 (WoC), Monk 3 (WoC)) against 4 players: collapse by Monk 1 (WoC), Prot (WoC), Monk 4 (WoC), Monk 5 (WoC), Monk 3 (WoC) from the main fight",
+     "band": "low",
+     "mark": "correct",
+     "off": []
+    },
+    "15a20f7a-split-2-414-37": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team (attacker) [collapsed on]: Survive the collapse and lose nobody (what the team gained elsewhere meanwhile is beside it). Not met (nobody on the split dies: no)"
+    },
+    "15a20f7a-split-1-414-36": {
+     "mark": "correct",
+     "why": "",
+     "text": "Dz (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Met (a split player dies during the collapse: yes)"
+    },
+    "s:15a20f7a-push_flagger-2-434-39": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Team pushes Dz's flagger (8 Monk, carrying) with its main team",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "15a20f7a-push_flagger-2-434-39": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team: Stop their flag, or make it 30% late. Met (their flag is stopped: no; it arrives 30% or more later than usual: yes)"
+    },
+    "15a20f7a-flagger_pushed-1-434-38": {
+     "mark": "correct",
+     "why": "",
+     "text": "Dz: Get the flag in on time. Not met (the flag gets in, less than 30% late: no)"
+    },
+    "s:15a20f7a-flag-2-438-42": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Dz double run (first runner 8 Monk, capping the flag before; second runner Mesmer, back for this one); Team has a flag already in hand (Mes/A), capped before theirs got in",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "15a20f7a-flag-2-438-42": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team [a flag already in hand: capped before theirs got in]: Cap just before their boost, or keep the flag for their cap. Not met (our cap lands just before their boost: no)"
+    },
+    "s:15a20f7a-split-2-458-45": {
+     "grade": "visible",
+     "why": "",
+     "text": "Team's split by the back door: one player (Warrior) against 1 defending (Mesmer); 1 (Mesmer) against one player: the lone defender carries his flag for 14 s",
+     "band": "medium",
+     "mark": "correct",
+     "off": [],
+     "reason": [
+      "brief",
+      "unclear"
+     ]
+    },
+    "15a20f7a-split-2-458-45": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team (attacker) [1 v 1, the defender not a monk]: Take NPCs or kills. Not met (a defender killed: no; an NPC taken: no)"
+    },
+    "15a20f7a-split-1-458-43": {
+     "mark": "correct",
+     "why": "",
+     "text": "Dz (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (no pit NPC lost: yes; no more defenders die than split players: yes)"
+    },
+    "15a20f7a-split-1-458-44": {
+     "mark": "correct",
+     "why": "",
+     "text": "Dz (defender) [part-run]: Gain a slight flag advantage while losing no pit NPC and not dying. Met (no pit NPC lost: yes; flag lead better by 0.15 or more: yes; the defender does not die: yes)"
+    },
+    "15a20f7a-split-2-458-46": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team (attacker's main team) [the main fight can kill]: Kill at the main fight: they have no monk there. Not met (more of theirs die away from the split than of ours: no)"
+    },
+    "s:15a20f7a-split-2-462-48": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Team's split by the back door: one player (Warrior); Dz turns on it from 7:38 with 7 (Mesmer, Monk 1 (WoC), Monk 2 (WoC), Monk 3 (WoC), Monk 4 (WoC), Monk 5 (WoC), Prot (WoC)), and does not reach it; 7 turn for it from 7:38 (Mesmer, Monk 1 (WoC), Monk 2 (WoC), Monk 3 (WoC), Monk 4 (WoC), Monk 5 (WoC), Prot (WoC)) against one player; they do not reach it: full collapse",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "15a20f7a-split-2-462-48": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team (attacker) [met by a full collapse]: Survive the collapse and lose nobody (what the team gained elsewhere meanwhile is beside it). Not met (nobody on the split dies: no)"
+    },
+    "15a20f7a-split-1-462-47": {
+     "mark": "correct",
+     "why": "",
+     "text": "Dz (defender) [full collapse]: Kill the split or drive it out (the flags it costs are beside it). Met (a split player dies: yes; the split is gone within the visit: no)"
+    },
+    "s:15a20f7a-split-2-470-50": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Team's split by the back door: one player (Warrior) against 6 defending (Monk 1 (WoC), Prot (WoC), Mesmer, 8 Monk, Monk 2 (WoC), Monk 5 (WoC)); Monk 1 (WoC), Prot (WoC), 8 Monk, Monk 2 (WoC), Monk 5 (WoC) collapse from the main fight; 6 (Monk 1 (WoC), Prot (WoC), Mesmer, 8 Monk, Monk 2 (WoC), Monk 5 (WoC)) against one player: collapse by Monk 1 (WoC), Prot (WoC), 8 Monk, Monk 2 (WoC), Monk 5 (WoC) from the main fight",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "15a20f7a-split-2-470-50": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team (attacker) [collapsed on]: Survive the collapse and lose nobody (what the team gained elsewhere meanwhile is beside it). Not met (nobody on the split dies: no)"
+    },
+    "15a20f7a-split-1-470-49": {
+     "mark": "correct",
+     "why": "",
+     "text": "Dz (defender) [collapse]: Kill a split player before going back (what it cost at the main fight and in flags is beside it). Met (a split player dies during the collapse: yes)"
+    },
+    "s:15a20f7a-flag-2-476-51": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Dz double run (first runner Mesmer, capping the flag before; second runner 8 Monk, back for this one); Team brings a flag up with its team (7 Monk) but does not run it",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "15a20f7a-flag-2-476-51": {
+     "mark": "correct",
+     "why": "",
+     "text": "Team [stay]: Kill with the two extra players before their flag is in, or their flag does not get in. Met (more of theirs die at the main fight than of ours: no; their flag does not get in: yes)"
+    }
+   },
+   "scheme": 2,
+   "game": "Dz v Team, Druid's Isle",
+   "at": "2026-11-19",
+   "engine": "5dd5a09"
   }
  }
 }
