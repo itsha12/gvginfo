@@ -23,8 +23,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
     hold 14:33 is no run (held at his door with his team): held, with Men v Crew 17:53, for a measure of ground made.
   - Sudden deaths of a solo split: QenK v Fun 6:37 and NwAy v ohno 5:24 are main team collapses (the second is
     not told: it kills before R-508's 4 s); each death is also left on the 1 v 1 row. Held for the split family.
-- Confidence (R-515) does not tell Classic from Visible on the six games since its fit; what would is a measure of
-  what is at stake (R-509), from the similar cases. Not built.
+- Confidence (R-515) does not tell Classic from Visible; a measure of what is at stake (R-509) would. Not built.
 - Checkpoint run (every counted match, engine 76df8c0): 564 matches, 34,913 plays, no errors, self-check 7 in 5
   matches; flag plays 5,474, 1,491 set aside for Shadow of Haste (R-456). The reading is unchanged by the new
   fields (every play the same). The thirteen truths hold; 281 Classic rows pass, none fail; 129 history rows hold,
