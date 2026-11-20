@@ -454,6 +454,27 @@
    "game": "HC v cope, Nomad's Isle",
    "at": "2026-11-20",
    "engine": "cb7c78a"
+  },
+  "53175808-daeb-5e11-a57e-f5b96124d398": {
+   "marks": {
+    "53175808-flag-1-449-16": {
+     "facts": "correct",
+     "why": "",
+     "text": "hdm's Fire Ele sets off for a flag (single run). 옷옷옷옷 holds the stand, boost in 54 s. | The spot: main fight 옷옷옷옷 7 v hdm 7 (even); 옷옷옷옷's main team in hdm's pit, hdm's at hdm's door; morale 옷옷옷옷 -41, hdm -10 (the eight summed; a death is -15); flags level; base res in 31 s; 옷옷옷옷's chance of winning 41%. | The answer: 옷옷옷옷 sends nobody in the next three minutes. | What followed, 180 s on: hdm's flag in at 8:05; flag lead +0.04 for 옷옷옷옷; deaths 옷옷옷옷 10, hdm 0; boosts 옷옷옷옷 0, hdm 1; 옷옷옷옷's chance of winning 41% to 5% (-36.1). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +8.5 (90 cases); a runner out by 15 s +0.3 (90 cases): the data favours holding off (no runner out at 15 s) by 8.2 win points (+4.3 to +12.0). 옷옷옷옷 held off: the answer the data favours. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +11.0 (90 cases); holding off (no runner out at 30 s) +8.0 (90 cases): no clear difference (3.0, -0.9 to +6.9). 옷옷옷옷 held off: no clear difference either way.",
+     "sense": "agree",
+     "own": "hold"
+    },
+    "53175808-flag-2-692-24": {
+     "facts": "correct",
+     "why": "",
+     "text": "옷옷옷옷's Necromancer sets off for a flag (single run). hdm holds the stand, boost in 34 s. | The spot: main fight hdm 8 v 옷옷옷옷 6 (hdm up by 2); hdm's main team at 옷옷옷옷's door, 옷옷옷옷's at 옷옷옷옷's door; morale hdm +80, 옷옷옷옷 -214 (the eight summed; a death is -15); flags level; base res in 28 s; hdm's chance of winning 98%. | The answer: hdm sends its Air Ele 3 22 s later. | What followed, 180 s on: 옷옷옷옷's flag does not get in (returned, 12:07); hdm's in at 13:32; flag lead +0.94 for hdm; deaths hdm 0, 옷옷옷옷 11; boosts hdm 1, 옷옷옷옷 0; hdm's chance of winning 98% to 100% (+2.4). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +2.4 (90 cases); a runner out by 15 s +0.6 (90 cases): no clear difference (1.8, -1.1 to +4.7). hdm held off: no clear difference either way. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +7.7 (90 cases); holding off (no runner out at 30 s) +1.8 (90 cases): the data favours a runner out by 30 s by 5.9 win points (+3.3 to +8.6). hdm had a runner out: the answer the data favours.",
+     "sense": "agree",
+     "own": "hold"
+    }
+   },
+   "game": "옷옷옷옷 v hdm, Isle of Jade",
+   "at": "2026-11-20",
+   "engine": "cb7c78a"
   }
  }
 }
