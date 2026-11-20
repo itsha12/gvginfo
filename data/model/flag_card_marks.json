@@ -258,9 +258,18 @@
   "45cf6756-afc8-51fa-ade0-162d7450be1c": {
    "marks": {
     "45cf6756-flag-2-51-6": {
-     "facts": "partly",
-     "why": "Men holds the stand; warrior was waiting back",
-     "text": "RACK's flag goes in while Men's Hammer A is still on his way with theirs (he set off at 0:04). Run again, or not? | The spot: main fight RACK 3 v Men 5 (Men up by 2); RACK's main team at the stand, Men's at the stand; morale RACK no death penalty or boost, Men no death penalty or boost (the eight summed; a death is -15); flags level; base res in 69 s; RACK's chance of winning 39%. | The answer: RACK sends its Mes/A 6 s later. | What followed, 180 s on: Men's flag in at 1:27; RACK's does not get in; flag lead -0.66 for RACK; deaths RACK 0, Men 0; boosts RACK 0, Men 1; RACK's chance of winning 39% to 28% (-11.2). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +3.9 (90 cases); a runner out by 15 s +2.0 (42 cases): no clear difference (1.9, -1.9 to +5.6). RACK had a runner out: no clear difference either way.",
+     "was": [
+      {
+       "facts": "partly",
+       "why": "Men holds the stand; warrior was waiting back",
+       "sense": "agree",
+       "own": "send",
+       "text": "RACK's flag goes in while Men's Hammer A is still on his way with theirs (he set off at 0:04). Run again, or not? | The spot: main fight RACK 3 v Men 5 (Men up by 2); RACK's main team at the stand, Men's at the stand; morale RACK no death penalty or boost, Men no death penalty or boost (the eight summed; a death is -15); flags level; base res in 69 s; RACK's chance of winning 39%. | The answer: RACK sends its Mes/A 6 s later. | What followed, 180 s on: Men's flag in at 1:27; RACK's does not get in; flag lead -0.66 for RACK; deaths RACK 0, Men 0; boosts RACK 0, Men 1; RACK's chance of winning 39% to 28% (-11.2). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +3.9 (90 cases); a runner out by 15 s +2.0 (42 cases): no clear difference (1.9, -1.9 to +5.6). RACK had a runner out: no clear difference either way."
+      }
+     ],
+     "facts": "correct",
+     "why": "",
+     "text": "RACK's first flag goes in, over Men's (in since 0:30), while Men's Hammer A is still on his way with theirs (he waited back at his flag spawn from 0:12 and took it up at 0:32). Run again, or not? | The spot: main fight RACK 3 v Men 5 (Men up by 2); RACK's main team at the stand, Men's at the stand; morale RACK no death penalty or boost, Men no death penalty or boost (the eight summed; a death is -15); flags level; base res in 69 s; RACK's chance of winning 39%. | The answer: RACK sends its Mes/A 6 s later. | What followed, 180 s on: Men's flag in at 1:27; RACK's does not get in; flag lead -0.66 for RACK; deaths RACK 0, Men 0; boosts RACK 0, Men 1; RACK's chance of winning 39% to 28% (-11.3). | Similar spots, 180 s on, from the same position: a runner out by 15 s +2.0 (45 cases); holding off (no runner out at 15 s) -1.5 (90 cases): no clear difference (3.5, -0.5 to +7.4). RACK had a runner out: no clear difference either way.",
      "sense": "agree",
      "own": "send"
     },
@@ -274,7 +283,7 @@
    },
    "game": "Men v RACK, Nomad's Isle",
    "at": "2026-11-20",
-   "engine": "cb7c78a"
+   "engine": "e60a56d"
   },
   "572c2f95-b108-5dea-a98d-e7f39ae64514": {
    "marks": {
