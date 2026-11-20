@@ -12,8 +12,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` (e60a56d) and lands in
   one piece, then one rebuild (R-322). 658 replays stored; 564 count (R-477); 506 matches trained. No workflow run
   in progress. Rulings run to R-549. The baseline (R-491) is the branch `baseline-2026-11-15`.
-- Graded and filed (set f1): twelve games, the last game 14, Dz v Team. No game waits for him on the Decisions
-  view. Not graded his new way: Corrupted, Weeping Stone, Isle of the Dead.
+- Graded and filed (set f1): twelve games. Not graded his new way: Corrupted, Weeping Stone, Isle of the Dead.
 - Flag advice (stage 4 of the flag family): he marked all 61 cards (58 told correctly; his own call the same as a
   clear reading in 27 of 33). The three he corrected are set c1 of the review key, each fixed: whoever set off
   first is sending (an answer before its run stops the run), the runner who waited back at his spawn, a flag of
@@ -67,8 +66,8 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 - Local engine: `git fetch --depth 1 --filter=blob:none origin +replays:refs/remotes/origin/replays` (the blobs come
   as they are read). `jobs.py`, `moments.py`, the gate, the line-up and `confidence.py` need no cache and no packages
   beyond Python; `cases.py` needs numpy and scikit-learn (`cache.py sync pull`, `warm` only for the fitted models).
-  A full run (`moments.py all`) takes about 13 minutes here; `cases.py ladder` before `cases.py test` (R-545);
-  the replays in one go: `git fetch --depth 1 --no-filter --refetch origin +replays:refs/remotes/origin/replays`.
+  A full run (`moments.py all`) takes about 13 minutes here (the replays in one go: the same fetch with
+  `--no-filter --refetch`); `cases.py ladder` before `cases.py test` (R-545).
   `PYTHONDONTWRITEBYTECODE=1`. The review key, `dev_set.json` and `game_reviews.json` are written on main: pass
   `--key <main>/data/model/review_key.json`, and copy the key and `dev_set.json` to the branch after changing them.
 - Site check: `python3 -m http.server`, then playwright with `/usr/bin/google-chrome`, api.github.com mocked.
