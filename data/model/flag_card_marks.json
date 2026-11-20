@@ -154,6 +154,34 @@
    "game": "Men v Crew, Isle of Jade",
    "at": "2026-11-20",
    "engine": "cb7c78a"
+  },
+  "a8ba43a8-7703-5131-a6ce-9e274fbd3ac4": {
+   "marks": {
+    "a8ba43a8-flag-1-101-7": {
+     "facts": "correct",
+     "why": "",
+     "text": "RACK's Hammer sets off for a flag (single run). 옷옷옷옷 holds the stand, boost in 64 s. | The spot: main fight 옷옷옷옷 6 v RACK 4 (옷옷옷옷 up by 2); 옷옷옷옷's main team at RACK's door, RACK's in RACK's pit; morale 옷옷옷옷 no death penalty or boost, RACK no death penalty or boost (the eight summed; a death is -15); flags level; base res in 19 s; 옷옷옷옷's chance of winning 69%. | The answer: 옷옷옷옷 sends its 8 Monk 32 s later. | What followed, 180 s on: RACK's flag in at 2:15; 옷옷옷옷's in at 3:03; flag lead +0.47 for 옷옷옷옷; deaths 옷옷옷옷 0, RACK 3; boosts 옷옷옷옷 0, RACK 0; 옷옷옷옷's chance of winning 69% to 81% (+12.4). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +7.8 (90 cases); a runner out by 15 s -2.3 (90 cases): the data favours holding off (no runner out at 15 s) by 10.1 win points (+6.7 to +13.4). 옷옷옷옷 held off: the answer the data favours. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +9.7 (90 cases); a runner out by 30 s +2.9 (90 cases): the data favours holding off (no runner out at 30 s) by 6.8 win points (+3.4 to +10.1). 옷옷옷옷 held off: the answer the data favours.",
+     "sense": "agree",
+     "own": "send"
+    },
+    "a8ba43a8-flag-2-133-12": {
+     "facts": "correct",
+     "why": "",
+     "text": "옷옷옷옷's 8 Monk sets off for a flag (single run). 옷옷옷옷 holds the stand (RACK caps 2 s later), boost in 32 s. | The spot: main fight RACK 3 v 옷옷옷옷 8 (옷옷옷옷 up by 5); RACK's main team at the stand, 옷옷옷옷's in 옷옷옷옷's pit; morale RACK -15, 옷옷옷옷 no death penalty or boost (the eight summed; a death is -15); flags level; base res in 107 s; RACK's chance of winning 34%. | The answer: RACK sends nobody in the next three minutes. | What followed, 180 s on: 옷옷옷옷's flag in at 3:03; flag lead -0.71 for RACK; deaths RACK 2, 옷옷옷옷 0; boosts RACK 0, 옷옷옷옷 1; RACK's chance of winning 34% to 13% (-21.1). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +2.0 (90 cases); a runner out by 15 s -2.8 (90 cases): the data favours holding off (no runner out at 15 s) by 4.8 win points (+1.5 to +8.1). RACK held off: the answer the data favours. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +12.5 (82 cases); holding off (no runner out at 30 s) +2.6 (90 cases): the data favours a runner out by 30 s by 10.0 win points (+6.5 to +13.4). RACK held off: against what the data favours.",
+     "sense": "agree",
+     "own": "nodiff"
+    },
+    "a8ba43a8-flag-1-375-31": {
+     "facts": "correct",
+     "why": "",
+     "text": "RACK's Prot sets off for a flag (single run). 옷옷옷옷 holds the stand, boost in 49 s. | The spot: main fight 옷옷옷옷 2 v RACK 3 (RACK up by 1); 옷옷옷옷's main team in 옷옷옷옷's pit, RACK's in RACK's pit; morale 옷옷옷옷 +80, RACK -60 (the eight summed; a death is -15); 옷옷옷옷 ahead on flags by 0.8; base res in 105 s; 옷옷옷옷's chance of winning 92%. | The answer: 옷옷옷옷 sends nobody in the next three minutes. | What followed, 180 s on: RACK's flag does not get in (not capped, 7:05); flag lead -0.05 for 옷옷옷옷; deaths 옷옷옷옷 0, RACK 7; boosts 옷옷옷옷 2, RACK 0; 옷옷옷옷's chance of winning 92% to 97% (+5.6). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) -6.9 (90 cases); a runner out by 15 s -10.0 (90 cases): no clear difference (3.1, -0.5 to +6.7). 옷옷옷옷 held off: no clear difference either way. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +0.9 (90 cases); holding off (no runner out at 30 s) -4.1 (90 cases): the data favours a runner out by 30 s by 5.0 win points (+1.7 to +8.2). 옷옷옷옷 held off: against what the data favours.",
+     "sense": "agree",
+     "own": "hold"
+    }
+   },
+   "game": "옷옷옷옷 v RACK, Isle of Solitude",
+   "at": "2026-11-20",
+   "engine": "cb7c78a"
   }
  }
 }
