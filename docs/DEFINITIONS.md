@@ -304,8 +304,8 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   he took the flag up (his words on Men v RACK 0:51, 2026-11-20). A team's first flag that goes in over the other
   team's is said so: they capped first.
 - A team's own next flag already up the field, carried or lying where it was put down and later taken up again,
-  is said on the card (his words on Men v hold 2:07, 2026-11-20). Whether such a spot is the flag-in-hand decision
-  and not an ordinary stay is open: put to him.
+  is said on the card (his words on Men v hold 2:07, 2026-11-20). A team that sends nobody while its next flag is
+  already up is deciding with a flag in hand, not staying (R-553; not yet built: with the held cards, R-554).
 - Who ran first is read on the same clock: the runner who turned for home first. A run is the answer to theirs only
   when its runner turned for home no earlier than theirs did (R-546, R-498; his words on hold v RACK 11:00,
   2026-11-19: hold sending an Earth Ele and RACK responding 11 s later, not hold deciding whether to run).
@@ -316,3 +316,13 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   the match, come out ahead among the nearest cases of other matches (R-538, R-294). A call is read only from 30
   plays or more out of 15 matches or more; under that, and where the range includes no difference, the verdict is
   "no clear difference" (R-538; REDESIGN.md "Verdict rules").
+
+## The numbers advantage (family 3, begun 2026-11-20)
+- Scope first: numbers at the main fight from kills, a runner away, and players still on their way back. The main
+  fight while a split is out belongs to the split family (R-550).
+- The calls (R-551). Team up: stay and kill, push into their base for NPCs, push their flagger, run a flag for a
+  backup, fall back and reset. Team down: stay and fight, fall to footmen, retreat to the pit, trade with a split.
+  A fight that moves up short of their base is still stay and kill. *As built:* read 30 s in, from where the main
+  team stands against where it stood and whether a runner of its own has gone.
+- A res that gets off (a res signet, Death Pact Signet and the like) ends a numbers advantage from kills (R-552).
+  *As built:* a dead player alive again more than 3 s off the base res.

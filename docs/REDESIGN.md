@@ -210,6 +210,9 @@ After the engine is built and before the rebuild, Claude goes through this with 
 7. See whether the model pages (structure, results and the rest) need amending to match the approach taken.
 8. Any other outstanding items, questions or rulings he has not addressed.
 9. Cut the repository's README down to a link to the site and the Data sources section (R-524).
+10. Remind him of the held flag cards (R-554: "make sure you remember to write them as I will probably forget"): the
+    flag in hand, with R-553 built (no runner while the next flag is already up is a flag-in-hand decision), and the
+    double run from the side of the team that sends its second runner. Write them once more matches are trained.
 
 ### The story so far (R-341; from Denning's notes on 14 golden moments)
 His notes tell a match as a chain, and the engine is being rebuilt to read it the same way. What the notes use:

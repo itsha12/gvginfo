@@ -302,6 +302,19 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   calls from those, never from a play's own end. `cases.py case <plays file> <report id> <m:ss>` prints one decision
   with its nearest cases and their replay links. A verdict is a reading, not advice, until the held-out test shows a
   gain for its scenario: say so whenever one is shown to him.
+- The numbers family (family 3; R-550 to R-552), on the branch, takes the same four stages. Scope first: numbers at
+  the main fight from kills, a runner away and players on their way; the main fight while a split is out waits for the
+  split family. Every numbers play carries `state`, `after`, `before`, a `clock` (when the numbers arose and ended,
+  the base res, each side's dead, every res in the fight over three minutes: `jobs._hard_res`, a dead player alive
+  again more than 3 s off the base res; a res that gets off ends an advantage from kills, R-552) and a `track` (each
+  main team's step 0, 15, 30 and 60 s in, and a runner of ours gone): `jobs._numbers_at`, which changes no play.
+  `cases.py numbers <plays file>` (report `data/model/numbers_cases.json`) is stage 1: the readings (a larger
+  advantage, and one with the base res further off, kills more and lasts longer) and what followed each call, as it
+  fell. The call is read 30 s in (`cases._num_call`), in his options (R-551: up, stay and kill, push into their base
+  for NPCs, push their flagger, run a flag for a backup, fall back and reset; down, stay and fight, fall to footmen,
+  retreat to the pit, trade with a split), never from the whole situation, which marks a team already winning. Never
+  set cases with a res against cases without: a res comes where players are dying. The cards for a flag in hand
+  (with R-553) and for a double run from the sender's side are held (R-554): remind him when more matches are in.
 - No new rule or threshold to answer a wrong row (R-465): rebuild the reading under it at the root, with his marked
   rows as the test. Who is in which fight is one reading on the branch (`Moments.linked`, `engaged_in`, `visits`; R-464),
   used by the numbers of the main fight and by a split's defenders: change it there, never beside it. His words on a
