@@ -296,7 +296,43 @@
    "engine": "cb7c78a"
   },
   "af831111-a724-5a33-ad1d-e01bebeaac6e": {
-   "marks": {},
+   "marks": {
+    "af831111-flag-2-481-14": {
+     "facts": "correct",
+     "why": "",
+     "text": "HC's Monk 4 (WoC) sets off for a flag (single run). hdm holds the stand, boost in 16 s. | The spot: main fight hdm 7 v HC 8 (HC up by 1); hdm's main team in HC's pit, HC's at HC's door; morale hdm -15, HC -28 (the eight summed; a death is -15); hdm ahead on flags by 0.3; base res in 119 s; hdm's chance of winning 36%. | The answer: hdm sends its Water Ele 3 s later. | What followed, 180 s on: HC's flag in at 8:42; hdm's in at 9:21; flag lead -0.19 for hdm; deaths hdm 0, HC 8; boosts hdm 1, HC 0; hdm's chance of winning 36% to 83% (+47.2). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +4.7 (90 cases); a runner out by 15 s -7.4 (90 cases): the data favours holding off (no runner out at 15 s) by 12.1 win points (+7.5 to +16.8). hdm had a runner out: against what the data favours.",
+     "sense": "agree",
+     "own": "hold"
+    },
+    "af831111-flag-2-604-21": {
+     "facts": "correct",
+     "why": "",
+     "text": "HC's Monk 4 (WoC) sets off for a flag (single run). hdm holds the stand, boost in 78 s. | The spot: main fight hdm 8 v HC 8 (even); hdm's main team in HC's pit, HC's at HC's door; morale hdm +70, HC -133 (the eight summed; a death is -15); hdm ahead on flags by 0.5; base res in 116 s; hdm's chance of winning 92%. | The answer: hdm sends a runner 102 s later. | What followed, 180 s on: HC's flag in at 11:13; hdm's in at 12:43; flag lead +0.50 for hdm; deaths hdm 0, HC 4; boosts hdm 0, HC 0; hdm's chance of winning 92% to 91% (-1.4). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +0.9 (90 cases); a runner out by 15 s -10.0 (90 cases): the data favours holding off (no runner out at 15 s) by 10.9 win points (+7.5 to +14.4). hdm held off: the answer the data favours. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +12.5 (90 cases); holding off (no runner out at 30 s) -0.5 (90 cases): the data favours a runner out by 30 s by 13.1 win points (+10.0 to +16.1). hdm held off: against what the data favours.",
+     "sense": "agree",
+     "own": "send"
+    },
+    "af831111-flag-1-706-23": {
+     "facts": "correct",
+     "why": "",
+     "text": "hdm's Water Ele sets off for a flag (single run). HC holds the stand, boost in 88 s. | The spot: main fight HC 8 v hdm 8 (even); HC's main team at the stand, hdm's at the stand; morale HC -133, hdm +70 (the eight summed; a death is -15); HC ahead on flags by 1.0; base res in 14 s; HC's chance of winning 21%. | The answer: HC sends a runner 93 s later. | What followed, 180 s on: hdm's flag in at 12:43; HC's in at 14:44; flag lead -0.91 for HC; deaths HC 6, hdm 0; boosts HC 0, hdm 1; HC's chance of winning 21% to 9% (-11.4). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +4.7 (90 cases); a runner out by 15 s +2.9 (90 cases): no clear difference (1.9, -2.0 to +5.7). HC held off: no clear difference either way. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +5.3 (90 cases); a runner out by 30 s -9.5 (90 cases): the data favours holding off (no runner out at 30 s) by 14.8 win points (+10.8 to +18.8). HC held off: the answer the data favours.",
+     "sense": "agree",
+     "own": "send"
+    },
+    "af831111-flag-1-777-24": {
+     "facts": "correct",
+     "why": "",
+     "text": "hdm's Water Ele sets off for a flag (single run). hdm holds the stand, boost in 106 s. | The spot: main fight HC 8 v hdm 7 (HC up by 1); HC's main team at hdm's footmen, hdm's at hdm's footmen; morale HC -163, hdm +70 (the eight summed; a death is -15); hdm ahead on flags by 1.0; base res in 63 s; HC's chance of winning 9%. | The answer: HC sends its Monk 4 (WoC) 22 s later. | What followed, 180 s on: hdm's flag in at 14:54; HC's in at 14:44; flag lead +0.02 for HC; deaths HC 7, hdm 0; boosts HC 0, hdm 1; HC's chance of winning 9% to 3% (-6.0). | Similar spots, 180 s on, from the same position: a runner out by 15 s +13.0 (90 cases); holding off (no runner out at 15 s) -0.6 (90 cases): the data favours a runner out by 15 s by 13.6 win points (+10.2 to +17.1). HC held off: against what the data favours. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +2.7 (81 cases); holding off (no runner out at 30 s) -0.0 (90 cases): no clear difference (2.7, -0.7 to +6.1). HC had a runner out: no clear difference either way.",
+     "sense": "agree",
+     "own": "send"
+    },
+    "af831111-flag-2-965-34": {
+     "facts": "correct",
+     "why": "",
+     "text": "HC's Paragon 1 sets off for a flag (single run). hdm holds the stand, boost in 50 s. | The spot: main fight hdm 8 v HC 6 (hdm up by 2); hdm's main team at the stand, HC's at the stand; morale hdm +80, HC -255 (the eight summed; a death is -15); hdm ahead on flags by 0.5; base res in 115 s; hdm's chance of winning 97%. | The answer: hdm sends nobody in the next three minutes. | What followed, 180 s on: HC's flag does not get in (not capped, 16:24); flag lead not read; deaths hdm 0, HC 7; boosts hdm 1, HC 0; hdm's chance of winning 97% to 100% (+2.5). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +6.5 (90 cases); a runner out by 15 s -4.6 (90 cases): the data favours holding off (no runner out at 15 s) by 11.1 win points (+8.2 to +13.9). hdm held off: the answer the data favours.",
+     "sense": "agree",
+     "own": "hold"
+    }
+   },
    "game": "HC v hdm, Isle of Jade",
    "at": "2026-11-20",
    "engine": "cb7c78a",
