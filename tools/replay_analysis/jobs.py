@@ -962,6 +962,48 @@ def split_plays(M, K):
 
 
 # ---- a numbers difference in the main team's fight (R-431, gaps 4, 5 and 7)
+NUMBERS_TRACK_S = (0, 15, 30, 60)      # where each main team stands at these seconds of a numbers situation, so that a call can be read at a fixed early second
+HARD_RES_DEAD_S = 3                    # a player back up sooner than this was not dead in the fight (a death and a reading of him alive a second apart)
+
+
+def _hard_res(M):
+    """Every resurrection in the fight, by team: [second, player] for a player who is alive again away from the base res (R-552: a res signet, Death Pact Signet
+    and the like; "if a res gets off, a numbers advantage from kills is pretty much over"). The replay records no resurrection: it is read from a dead player alive
+    again more than 3 s off the two-minute base res (on four games, 21 such returns all stood by their corpse and 40 of 42 at the base res did not)."""
+    if getattr(M, "_hres", None) is None:
+        out = {tm: [] for tm in M.st.teams}
+        for tm in M.st.teams:
+            for a in M.st.players[tm]:
+                for td in M.st.death_times.get(a, []):
+                    u = min(int(td) + 1, M.T)
+                    while u <= M.T and not M.AL[a][u]: u += 1
+                    if u > M.T or u - td < HARD_RES_DEAD_S: continue
+                    if abs(u - round(u / RES_EVERY) * RES_EVERY) > 3: out[tm].append([u, a])
+        M._hres = {tm: sorted(v) for tm, v in out.items()}
+    return M._hres
+
+
+def _numbers_at(M, tm, t, e):
+    """What a numbers situation is read from and judged by (the numbers family, stage 1; R-550 to R-552), at the second it is told: the position and the fixed
+    60, 90 and 180 s record, as on a flag play (cases.py), with the position 60 s before; its clock (when the numbers arose and ended, the base res, each side's
+    dead, and every resurrection in the fight over the next three minutes); and where each main team stands at fixed seconds, with any runner of ours gone by
+    then, so that the call can be read early and not from the whole situation (a team that pushes up over a minute is mostly a team that is already winning).
+    Nothing here changes what the play is, its job or its test."""
+    T, st, foe = M.T, M.st, 3 - tm
+    u = min(t, T)
+    kw = {"state": M._state(tm, u), "after": M.consequence(tm, u, FLAG_AFTER_S)}
+    b_ = u - FLAG_BEFORE_S
+    kw["before"] = None if b_ < 0 else {"state": M._state(tm, b_), "after": M.consequence(tm, b_, (FLAG_BEFORE_S,))[str(FLAG_BEFORE_S)]}
+    dead = lambda k: sum(1 for a in st.players[k] if not M.AL[a][u])
+    res = sorted([v - u, "own" if k == tm else "theirs", M.m.roles[a]] for k in st.teams for v, a in _hard_res(M)[k] if u < v <= u + 180)
+    kw["clock"] = {"arose": int(e["start"]), "end": int(e["last"]), "res_in": int(st.next_res(u) - u), "dead": [dead(tm), dead(foe)], "hard_res": res}
+    step = lambda k, v: M._main_step(k, v - v % SPLIT_STEP)[0] if v <= T else None
+    runs = [int(f_.get("off", f_["s0"])) for f_ in _flag_rows(M) if f_["tm"] == tm]
+    kw["track"] = {"at": list(NUMBERS_TRACK_S), "steps": [[step(tm, u + h), step(foe, u + h)] for h in NUMBERS_TRACK_S],
+                   "runner_out": [any(u < r <= u + h for r in runs) for h in NUMBERS_TRACK_S]}
+    return kw
+
+
 def numbers_plays(M, K, trig, recs, pinned_at):
     out, T, st = [], M.T, M.st
     M._numbers_told = []                                                 # the numbers stretches that are told as plays (the self-check, R-488)
@@ -1003,6 +1045,7 @@ def numbers_plays(M, K, trig, recs, pinned_at):
         dmg_own, monks_their = sum(1 for a in e["ids"][tm] if not monk(a)), sum(1 for a in e["ids"][foe] if monk(a))
         kill_on = can_kill(dmg_own, monks_their)                          # R-457 in the main fight too (his marks, hdm v hook 4:12, 6:52: "2 damage v 2 monks again")
         kw = dict(source=src, numbers_side=side, call=c, numbers=x["scenario"]["parts"]["numbers"], numbers_end=int(e["last"]))
+        kw.update(_numbers_at(M, tm, int(t), e))
         if not x["scenario"]["parts"].get("clear", True): kw.update(clear=False, unclear="the numbers never held for 12 s")
         elif twice: kw.update(clear=False, unclear=f"{', '.join(twice)} also counted on a split in the same seconds")
         if src == "wipe" or (src == "kills" and side == "up" and x["scenario"]["parts"].get("step", 0) <= -2 and x["scenario"]["parts"]["short_because"].get("kills", 0) >= 3):
