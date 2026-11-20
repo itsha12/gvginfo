@@ -292,6 +292,20 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - Who holds the stand is read at the moment; a cap about to land within seconds is said with it, as context (R-547).
 - A runner has not set off for a flag while he still carries the one before: his set-off is no earlier than his cap
   or his putting it down (2026-11-19; one player capping and going back single runs twice, R-485).
+- A runner who turns for home, comes back to the fight and then goes sets off when he goes for good, not at his
+  first turn (R-548). *As built:* he came back when he had left (an aggro bubble or more nearer home than where he
+  turned, the leaving of R-464) and then gave up more than half of that ground; a short step toward home and back
+  is no leaving.
+- Whoever set off first is sending and the other is answering, by however little; a pair of runs is told once,
+  never from the side of the team whose runner was already gone (his mark on hold v RACK 3:58, 2026-11-20). The
+  two first flags, both from the gates, are the opening's (R-520). A card whose answer is before its run stops
+  the run (R-460).
+- A player who waits back at his flag spawn from the gates did not set off: a card says he waited back and when
+  he took the flag up (his words on Men v RACK 0:51, 2026-11-20). A team's first flag that goes in over the other
+  team's is said so: they capped first.
+- A team's own next flag already up the field, carried or lying where it was put down and later taken up again,
+  is said on the card (his words on Men v hold 2:07, 2026-11-20). Whether such a spot is the flag-in-hand decision
+  and not an ordinary stay is open: put to him.
 - Who ran first is read on the same clock: the runner who turned for home first. A run is the answer to theirs only
   when its runner turned for home no earlier than theirs did (R-546, R-498; his words on hold v RACK 11:00,
   2026-11-19: hold sending an Earth Ele and RACK responding 11 s later, not hold deciding whether to run).

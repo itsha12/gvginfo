@@ -1,5 +1,5 @@
 {
- "about": "The review key (R-450). Every row Denning was shown of the engine's plays: what the engine said then (shown), his mark and his words (said), and checks: Claude's reading of his mark as things the plays must hold or must not hold, which he corrects. Scored by tools/golden/review.py on the branch after every change. Marks: right, partly, wrong, bad example (set aside), not marked. Set 1 is the 35 rows of 2026-11-13, picked one or more to a kind of play, so it is a regression test and not an accuracy figure; whole-game sets (R-454) give the accuracy by kind of play. `answered` holds a later answer of his on a row (what was asked, his words, Claude's reading). Set w1p1 is part 1 of the whole-game review (R-455), marked by him on the site on 2026-11-13 against engine af952c6: one row a situation with his mark and words, its calls under `calls` with theirs, and one `missed` row a game for what the engine did not read; checks are written as each fault is fixed. Set w1p2 is hdm v hook, the first game of part 2, marked on 2026-11-14 against engine 67e87b8 as the first measure of the rebuilt reading; he then chose to build from it too, keeping Men v Crew unmarked as the hidden game. Set w2 is round 3 (R-473): hook v hold and cope v Team, marked on 2026-11-14 against engine b025445 (24 of 41 and 15 of 24 situations right); chic v 戦戦戦戦 was set aside unmarked (a henchman game). RJT v RACK (eea5ba87) is round 3's third game, marked on 2026-11-14 against engine b09a26a (33 of 45 situations right); its checks are written from his words and are open until the reading under them is rebuilt. Set p2 is twelve picked rows of 2026-11-18 (R-495: examples found by search for a fault seen once, put to him in the chat with their replay links): six of the two held flag shapes and three sudden deaths of a solo split player. They carry no grade, so none binds; their games are in the development set.",
+ "about": "The review key (R-450). Every row Denning was shown of the engine's plays: what the engine said then (shown), his mark and his words (said), and checks: Claude's reading of his mark as things the plays must hold or must not hold, which he corrects. Scored by tools/golden/review.py on the branch after every change. Marks: right, partly, wrong, bad example (set aside), not marked. Set 1 is the 35 rows of 2026-11-13, picked one or more to a kind of play, so it is a regression test and not an accuracy figure; whole-game sets (R-454) give the accuracy by kind of play. `answered` holds a later answer of his on a row (what was asked, his words, Claude's reading). Set w1p1 is part 1 of the whole-game review (R-455), marked by him on the site on 2026-11-13 against engine af952c6: one row a situation with his mark and words, its calls under `calls` with theirs, and one `missed` row a game for what the engine did not read; checks are written as each fault is fixed. Set w1p2 is hdm v hook, the first game of part 2, marked on 2026-11-14 against engine 67e87b8 as the first measure of the rebuilt reading; he then chose to build from it too, keeping Men v Crew unmarked as the hidden game. Set w2 is round 3 (R-473): hook v hold and cope v Team, marked on 2026-11-14 against engine b025445 (24 of 41 and 15 of 24 situations right); chic v 戦戦戦戦 was set aside unmarked (a henchman game). RJT v RACK (eea5ba87) is round 3's third game, marked on 2026-11-14 against engine b09a26a (33 of 45 situations right); its checks are written from his words and are open until the reading under them is rebuilt. Set p2 is twelve picked rows of 2026-11-18 (R-495: examples found by search for a fault seen once, put to him in the chat with their replay links): six of the two held flag shapes and three sudden deaths of a solo split player. They carry no grade, so none binds; their games are in the development set. Set c1 is the flag advice cards he corrected on Model > Game review > Flag advice (marked 2026-11-20, 61 cards of the twelve f1 games against engine cb7c78a: 58 told correctly, 2 partly, 1 incorrect; all 61 marks are in data/model/flag_card_marks.json): one row a corrected card, with his words and the check on the play the card is written from. They carry no grade, so none binds.",
  "version": 1,
  "rows": [
   {
@@ -32953,6 +32953,113 @@
    "mark": "notes",
    "said": "",
    "checks": []
+  },
+  {
+   "id": "c1-1",
+   "set": "c1",
+   "row": 1,
+   "rid": "d492aa6c-a12b-5bce-a5ec-9ada965676f0",
+   "match": "hold v RACK, Imperial",
+   "window": [
+    236,
+    303
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "Flag advice card, 3:58: hold's Earth Ele sets off for a flag (single run). hold holds the stand, boost in 112 s. The answer: RACK's Air Ele 2 had already set off 2 s before.",
+   "mark": "wrong",
+   "said": "this is the same error we addressed previously. This is 1. a repeat of the previous row and 2. states a decision point for something that has already happened (RACK Air Ele 2 has already left).",
+   "checks": [
+    {
+     "none": {
+      "play": "flag",
+      "team": "RACK",
+      "start": [
+       232,
+       262
+      ],
+      "want": {
+       "clock.from_cap": false
+      }
+     },
+     "was": "hold v RACK 3:58 (flag card, incorrect): RACK's Air Ele 2 set off at 3:56 and hold's Earth Ele at 3:58, and the pair was told from both sides, the second time as RACK's decision. Whoever set off first is sending, by however little (jobs.flag_plays, `first`); a card whose answer is before its run now stops the run (R-460)"
+    }
+   ]
+  },
+  {
+   "id": "c1-2",
+   "set": "c1",
+   "row": 2,
+   "rid": "45cf6756-afc8-51fa-ade0-162d7450be1c",
+   "match": "Men v RACK, Nomad's",
+   "window": [
+    51,
+    231
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "Flag advice card, 0:51: RACK's flag goes in while Men's Hammer A is still on his way with theirs (he set off at 0:04). Run again, or not? The answer: RACK sends its Mes/A 6 s later.",
+   "mark": "partly",
+   "said": "Men holds the stand; warrior was waiting back",
+   "answered": [
+    {
+     "at": "2026-11-20",
+     "asked": "The replay has Men capping at 0:30 and RACK's first flag going in over it at 0:51: did he mean Men held the stand until then?",
+     "said": "It just meant Men held the stand and RACK capped over (i.e. RACK didn't cap the first flag). The important point was that Warrior was waiting back, he didn't go back at 0:04.",
+     "reading": "The card says the cap went in over Men's flag, and that Men's Hammer A waited back at his flag spawn (from 0:12) and took the flag up at 0:32; he did not set off at 0:04."
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "RACK",
+      "start": [
+       45,
+       57
+      ]
+     },
+     "want": {
+      "clock.their_waited_back": 12,
+      "clock.their_pick": 32,
+      "clock.cap_over": 30
+     },
+     "was": "Men v RACK 0:51 (flag card, partly): 'Warrior was waiting back, he didn't go back at 0:04'; 'Men held the stand and RACK capped over (i.e. RACK didn't cap the first flag)'. The play is as he graded it (f1-45cf-4, Classic); the card is written from `their_waited_back`, `their_pick` and `cap_over` (Men's flag in since 0:30) on its clock"
+    }
+   ]
+  },
+  {
+   "id": "c1-3",
+   "set": "c1",
+   "row": 3,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    127,
+    189
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "Flag advice card, 2:07: hold's Earth Ele sets off for a flag (single run). Men holds the stand, boost in 10 s. The answer: Men sends nobody in the next three minutes.",
+   "mark": "partly",
+   "said": "men already has flag in hand at stand (reflected by being ahead by 1.8)",
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "Men",
+      "start": [
+       121,
+       133
+      ]
+     },
+     "want": {
+      "our_flag_up.carried": false,
+      "our_flag_up.since": 100
+     },
+     "was": "Men v hold 2:07 (flag card, partly): 'men already has flag in hand at stand'. Men's second flag is put down in the greater stand area at 1:40 and taken up again at 2:33; the engine read a flag as in hand only while it was carried. Said on the card from `our_flag_up` (Moments.flag_up, read from the flag's own life). The play itself stays the stay he graded Classic and correct (f1-572c-9); whether such a spot is the flag-in-hand decision is put to him"
+    }
+   ]
   }
  ],
  "about_tiers": "R-490: a row with \"tier\": \"borderline\" is reported by `review.py score` and never blocks a change; every other row with a check is clear and must pass. A row he marks No clear decision is borderline when it is filed. \"tier_proposed\" is Claude's proposal, not yet his."

@@ -255,7 +255,15 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   One clock (R-546): reads, windows (`after`) and position (`state`) of a flag play are counted from `clock.anchor`,
   their runner's set-off; the play's own `t0` stays the second the page tells the run (R-461). Where our runner was
   already out when theirs set off (`clock.from_cap`) the decision is another one, run again or not, counted from our
-  cap, with scenarios of its own: never fold it back into the answer to a run. `Moments._state` reads the stand with
+  cap, with scenarios of its own: never fold it back into the answer to a run. A runner sets off when he goes for
+  good (R-548; `run_starts`, `for_good`: he came back when he had left, an aggro bubble or more nearer home, and gave
+  up more than half that ground; a short step toward home and back is no leaving: test any change against HC v Team
+  11:18, Classic, and hold v RACK 10:52). Whoever set off first is sending, by however little (`first` in
+  `flag_plays`; the two first flags are the opening's): a pair of runs is told once, and a play or card whose answer
+  is before its run stops the run (R-460). A flag play also carries what a card says beside the run: their runner
+  waited back at his spawn from the gates (`clock.their_waited_back`, `their_pick`; the run record itself is left as
+  graded), our first flag capped over theirs (`clock.cap_over`), and our own flag already up the field
+  (`our_flag_up`, `Moments.flag_up`, read from the flag's life, carried or lying; the play stays what he graded). `Moments._state` reads the stand with
   the cap of its own second (caps are kept to the tenth of a second; `st.stand_owner` on a whole second misses one
   recorded within it, and the other readers of it are not yet changed: for the clean-up, R-398).
   The timing ladder (R-545): `cases.py ladder <plays file>` at every checkpoint, before the advice is read (a report,
@@ -279,7 +287,14 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   `cases.py cards <plays file> f1 --site <main>/data/model/flag_cards.json`; a card's id is its play's id): for each
   card whether what happened is told correctly, whether the reading makes sense to him, and what he would have done.
   His marks are in `data/model/flag_card_marks.json` (only what he marked, with the text he saw): read them the same
-  session, set them out for him, and never write the cards again over a game he has marked without saying so. The report also says what the
+  session, set them out for him, and never write the cards again over a game he has marked without saying so. When
+  they are written again, `--site` keeps each card's id (`play` is its play now), never touches his marks file, and
+  marks a card `changed` only where it says something else than the card he marked (what happened told differently,
+  or another reading at the first look; figures that only moved with the fit do not count): the page asks for those
+  again with his earlier marks beside them (kept under `was`), and lists marked cards no longer written (`gone`).
+  Tell him how many wait. His own call is send (at once), wait (look for a kill first, then send; R-549), hold,
+  nodiff, unknown. The cards he corrected are set c1 of the review key, each with a check on the play it is written
+  from (a dotted name such as `clock.cap_over` reads inside a play). The report also says what the
   advice was (section 5: the spots where it says hold off or send, with moments to look at; show him this whenever
   a test result is put to him, never the counts alone), what a team that holds off goes on to do (6), and the run in
   answer by who was sent and their snares (7: as it fell, where to look, never who to send). Every flag and boost play
