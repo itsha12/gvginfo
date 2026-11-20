@@ -962,7 +962,7 @@ def split_plays(M, K):
 
 
 # ---- a numbers difference in the main team's fight (R-431, gaps 4, 5 and 7)
-NUMBERS_TRACK_S = (0, 15, 30, 60)      # where each main team stands at these seconds of a numbers situation, so that a call can be read at a fixed early second
+NUMBERS_TRACK_S = (0, 15, 20, 30, 60)  # where each main team stands at these seconds of a numbers situation, so that a call can be read at a fixed early second (20 and 60 s are his, R-556)
 HARD_RES_DEAD_S = 3                    # a player back up sooner than this was not dead in the fight (a death and a reading of him alive a second apart)
 
 

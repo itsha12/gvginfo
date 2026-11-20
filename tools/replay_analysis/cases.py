@@ -880,20 +880,20 @@ def _substance(parts):
     head, spot, answer, followed, similar = (list(parts) + [""] * 5)[:5]
     spot = re.sub(r"; [^;]*chance of winning \d+%\.?$", "", spot)
     followed = re.sub(r"; [^;]*chance of winning \d+% to \d+% \([-+][\d.]+\)\.?$", "", followed)
-    fav = re.search(r"the data favours (a runner out by \d+ s|holding off)", similar)
+    fav = re.search(r"the data favours (a runner out by \d+ s|holding off|.+? over .+?) by [\d.]+ win points", similar)
     look = "the data favours " + fav.group(1) if fav else "no clear difference" if "no clear difference" in similar else "no reading"
     return {"what happened": (head, spot, answer, followed), "the reading": look}
 
 
-def _keep_marks(games, site):
+def _keep_marks(games, site, marks_file="flag_card_marks.json"):
     """His marks stay on the cards when the cards are written again (2026-11-20: all 61 were marked, and four changes to the reading rewrote a handful). A card
     takes the id of the card it was before (the same game, team and kind of decision, nearest in time and within 40 s), so the marks file, which is his, is never
     touched from here. A card he marked that now says something else in substance is given `changed`, in words, and the page asks for it again with his earlier
     marks beside it; one whose figures only moved with the fit is not. A marked card that is no longer written is listed under the game's `gone`."""
     prev = json.load(open(site)) if os.path.exists(site) else {"games": []}
-    mp = os.path.join(os.path.dirname(site), "flag_card_marks.json")
+    mp = os.path.join(os.path.dirname(site), marks_file)
     marks = json.load(open(mp)).get("games", {}) if os.path.exists(mp) else {}
-    kind = lambda c: "Run again" in c["head"]
+    kind = lambda c: ("Run again" in c["head"], c.get("side"))
     for g in games:
         old = list(next((x["cards"] for x in prev["games"] if x["rid"] == g["rid"]), [])); mk = (marks.get(g["rid"]) or {}).get("marks", {})
         gone_before = next((x.get("gone", []) for x in prev["games"] if x["rid"] == g["rid"]), [])
@@ -1273,16 +1273,16 @@ def ladder(path, out_json=None):
 
 # ---- the numbers family (family 3; R-550 to R-552), stage 1: the readings, and a first table as it fell
 NUM_SOURCES = ("kills", "runner away", "on the way")       # R-550: the main fight while a split is out is left for the split family
-NUM_READ = 30                                              # the call is read where each main team stands this long after the numbers are told (jobs.NUMBERS_TRACK_S)
+NUM_READ, NUM_LATER = 20, 60                               # the call is read where each main team stands 20 s after the numbers are told, and told again at 60 s (his, R-556; jobs.NUMBERS_TRACK_S)
 UP_CALLS = ("stay and kill", "push into their base for NPCs", "push their flagger", "run a flag for a backup", "fall back and reset")
 DOWN_CALLS = ("stay and fight", "fall to footmen", "retreat to the pit", "trade with a split")
 
 
-def _num_call(p):
-    """The call of a team up or down on numbers, in his options (R-551), read NUM_READ s in and not from the whole situation: where its main team stands then
+def _num_call(p, read=NUM_READ):
+    """The call of a team up or down on numbers, in his options (R-551), read `read` s in and not from the whole situation: where its main team stands then
     against where it stood (a step on its ladder: own pit 4, own base 3, own door 2, own footmen 1, the stand 0, their footmen -1, their door -2 ... their pit
     -4), and whether a runner of its own has gone. Pushing their flagger and trading with a split are still read from the whole play (Moments' call): few."""
-    i = p["track"]["at"].index(NUM_READ); s0, s1 = p["track"]["steps"][0][0], p["track"]["steps"][i][0]
+    i = p["track"]["at"].index(read); s0, s1 = p["track"]["steps"][0][0], p["track"]["steps"][i][0]
     if s0 is None or s1 is None: return None
     if p["numbers_side"] == "up":
         if p["call"] == "push their flagger": return UP_CALLS[2]
@@ -1315,11 +1315,17 @@ def numbers_cases(D, M, B):
         if call is None: skipped[f"no main team alive {NUM_READ} s in"] += 1; continue
         beta, won = B[m["fold"]], float(m["winner"] == p["team"])
         p0 = chance(beta, position(st, af["90"], gap, False))
+        stp = p["track"]["steps"][0]; mor = af["90"]["morale"]
         bf, pre = p.get("before"), None
         if bf and bf["after"]["lead"][0] is not None and "npcs_lost" in bf["state"]: pre = 100 * (p0 - chance(beta, position(bf["state"], bf["after"], gap, False)))
         n = [int(x) for x in p["numbers"].split("v")]; k = p["clock"]; told = p["t0"]
         res = [r for r in k["hard_res"] if r[1] == ("own" if p["numbers_side"] == "down" else "theirs")]      # a res on the side that is down
+        # what a like spot is matched on (as for a flag play, with what a numbers situation adds): the flag lead, the boost clock, each side's players in the fight
+        # and its morale, the strength gap, the base res, the chance of winning, where each main team stands, and each side's dead. `more` is unused here
+        x = [st["flag_lead"], st["boost_in"], n[0], n[1], mor[0][0], mor[1][0], gap, k["res_in"], 100 * p0, stp[0], stp[1], k["dead"][0], k["dead"][1]]
         out.append({"id": p["id"], "rid": p["rid"], "team": p["team"], "t": told, "side": p["numbers_side"], "source": p["source"], "call": call, "by": abs(n[0] - n[1]), "numbers": p["numbers"],
+                    "x": x, "more": None, "fold": m["fold"], "won": won, "held": False, "kind": "numbers", "later": _num_call(p, NUM_LATER), "their_step": stp[1], "dead": k["dead"], "res_all": k["hard_res"],
+                    "scenario": f"{'Up' if p['numbers_side'] == 'up' else 'Down'} on numbers from " + ("kills" if p["source"] == "kills" else "a runner away or players on the way"),
                     "lasted": k["end"] - told, "res_in": k["res_in"], "res_first": res[0][0] if res else None, "p0": p0, "pre": pre, "step": p["track"]["steps"][0][0],
                     "v": {H: 100 * ((won if af[H]["ended"] else chance(beta, ends[H])) - p0) for H in HORIZONS},
                     "hard": {H: {"deaths": af[H]["deaths"], "npcs": af[H]["npcs"], "lead_change": af[H]["lead_change"]} for H in HORIZONS}})
@@ -1398,8 +1404,87 @@ def numbers(path, out_json=None):
             o[call] = row
             pr(f"     {call:32} {len(V):5}  {row['started at']:9.0f}%  {('' if row['the 60 s before'] is None else format(row['the 60 s before'], '+.1f')):>11}  {row['they lose one']:12.0f}%  {row['we lose one']:10.0f}%  {row['net kills']:+9.2f}  "
                f"{row['net NPCs']:+8.2f}  {row['flags']:+6.2f}  {row['win points 90']:+10.1f}  {row['win points 180']:+11.1f}" + ("   (under the floor)" if len(V) < MIN_PLAYS or row["matches"] < MIN_MATCHES else ""))
+    S = numbers_scenarios(C); K, _ = choose_k(S); res["K"] = K; res["advice_test"] = {}
+    pr(f"\nD. Like spots, and the test on matches the advice never saw (the {K} nearest cases of each call, set level with the case read; the floor of {MIN_PLAYS} plays and {MIN_MATCHES} matches)")
+    pr("   matched on: flag lead, seconds to the boost, each side's players in the fight, each side's morale, strength gap, seconds to the base res, chance of winning, where each main team stands, each side's dead")
+    pr("   For each scenario: where the advice is clear, teams whose call 20 s in matched it against those whose call did not, in win points; and the same test on the 60 s before, which no call can change.")
+    for name, s in S.items():
+        o = res["advice_test"][name] = {}
+        for H in HORIZONS:
+            t = advice_test({name: s}, K, H); o[H] = {k: v for k, v in t.items()}
+            adv = ", ".join(f"{a} {n_}" for a, n_ in sorted(t.get("advice", {}).items(), key=lambda q: -q[1]))
+            if "v" not in t: pr(f"   {name}, {H} s on: {len(s.C)} cases, clear advice in {t['rows']}: too few to call [{adv}]"); continue
+            pre = t.get("pre"); lv = "" if not pre else f"; in the 60 s before {pre['effect']:+.1f} ({pre['range'][0]:+.1f} to {pre['range'][1]:+.1f})" + ("" if pre["verdict"] == "no clear difference" else " NOT LEVEL")
+            pr(f"   {name}, {H} s on: {len(s.C)} cases, clear advice in {t['rows']} ({adv}), matched {t['matched']}: {t['v']['effect']:+.1f} ({t['v']['range'][0]:+.1f} to {t['v']['range'][1]:+.1f}) {t['v']['verdict']}; "
+               f"in how the match ended {t['end']['effect']:+.1f} ({t['end']['range'][0]:+.1f} to {t['end']['range'][1]:+.1f}){lv}")
     if out_json: json.dump(res, open(out_json, "w"), indent=1, default=float)
     return res
+
+
+def numbers_scenarios(C):
+    """The numbers cases by scenario (the side and the cause), each laid out for finding the nearest."""
+    by = collections.defaultdict(list)
+    for c in C: by[c["scenario"]].append(c)
+    return {k: Scenario(v) for k, v in sorted(by.items()) if len(v) >= MIN_PLAYS}
+
+
+NUM_DID = {"stay and kill": "stays and fights where the fight is", "push into their base for NPCs": "has pushed into their base", "push their flagger": "pushes their flagger", "run a flag for a backup": "has sent a runner for a flag",
+           "fall back and reset": "has fallen back", "stay and fight": "stays and fights", "fall to footmen": "has fallen back toward its footmen", "retreat to the pit": "has retreated into its base or pit", "trade with a split": "sends a split"}
+def numbers_cards(path, which="f1", site=None):
+    """The sentence for every numbers situation in scope in the games of a set (stage 4), as for the flags: the spot, the call 20 s in (and what the team is doing
+    at 60 s), what followed, and what teams in like spots got from each call. A situation he graded Weak or No decision on the Decisions view is left out (the
+    engine still reads too many short ones). `site`: written as the rows of Model > Game review > Numbers advice; a card's id is its play's id."""
+    D, M = load(path); B, P = prices(D, M); C, _ = numbers_cases(D, M, B); S = numbers_scenarios(C); K, _ = choose_k(S)
+    dv = json.load(open(os.path.join(REPO, "data", "model", "dev_set.json")))
+    rids = [w["rid"] for w in sorted(dv["whole_game"], key=lambda w: w.get("part", 0)) if w.get("set") == which] or [r for r in M if r.startswith(which)]
+    key = json.load(open(os.path.join(REPO, "data", "model", "review_key.json")))["rows"]
+    low = {(r["rid"], r["window"][0]) for r in key if r.get("set") == "f1" and r.get("type") == "numbers" and r.get("grade") in ("weak", "none")}
+    at = lambda sec: cl(sec); games, left = [], 0
+    for rid in rids:
+        m, cards_ = M[rid], []
+        for name, s in S.items():
+            for i, c in enumerate(s.C):
+                if c["rid"] != rid: continue
+                if any(r == rid and abs(w - c["t"]) <= 6 for r, w in low): left += 1; continue
+                us = c["team"]; them = next(t for t in m["teams"] if t != us); x = c["x"]; h = c["hard"]["180"]
+                place = lambda st_, own, foe: PLACE.get(int(st_), "elsewhere").format(own=own, foe=foe) if st_ is not None else "place not read"
+                n = c["numbers"].split("v"); up = c["side"] == "up"
+                why = "from kills" if c["source"] == "kills" else f"with {them if up else us}'s runner away" if c["source"] == "runner away" else f"with {them if up else us}'s players still on their way"
+                head = f"{us} is {'up' if up else 'down'} on numbers in the main fight, {us} {n[0]} v {them} {n[1]}, {why}. Base res in {x[7]:.0f} s."
+                flags_ = f"{us} ahead on flags by {x[0]:.1f}" if x[0] >= 0.35 else f"{them} ahead on flags by {-x[0]:.1f}" if x[0] <= -0.35 else "flags level"
+                mo = lambda v: "no death penalty or boost" if v == 0 else f"{v:+.0f}"
+                spot = (f"The spot: {us}'s main team {place(x[9], us, them)}, {them}'s {place(x[10], them, us)}; dead {us} {c['dead'][0]}, {them} {c['dead'][1]}; morale {us} {mo(x[4])}, {them} {mo(x[5])} "
+                        f"(the eight summed; a death is -15); {flags_}; {us}'s chance of winning {100 * c['p0']:.0f}%.")
+                answer = f"The call: 20 s in, {us} {NUM_DID[c['call']]}" + ("" if c["later"] in (None, c["call"]) else f"; 60 s in, it {NUM_DID[c['later']]}") + "."
+                res_ = "; ".join(f"{(us if w == 'own' else them)}'s {role} is resurrected {sec} s in" for sec, w, role in c["res_all"][:3])
+                followed = (f"What followed, 180 s on: deaths {us} {h['deaths'][0]}, {them} {h['deaths'][1]}; NPCs lost {us} {h['npcs'][0]}, {them} {h['npcs'][1]}; " + (f"{res_}; " if res_ else "") +
+                            f"the numbers lasted {c['lasted']} s; {us}'s chance of winning {100 * c['p0']:.0f}% to {100 * c['p0'] + c['v']['180']:.0f}% ({c['v']['180']:+.1f}).")
+                r = s.read(i, K, False, "180"); W = r["calls"]
+                if len(W) < 2: similar, reading, verdict = "Similar spots: too few like cases to compare the calls.", False, "too few cases"
+                elif r.get("unusual"): similar, reading, verdict = f"Similar spots: an unusual spot ({us} at {100 * c['p0']:.0f}% to win); the nearest cases all lie to one side of it, so no reading.", False, "an unusual spot, no reading"
+                else:
+                    parts = "; ".join(f"{a} {W[a]['worth']:+.1f} ({W[a]['plays']} cases)" for a in sorted(W, key=lambda a: -W[a]["worth"]))
+                    if c["call"] in W and r.get("mine"):
+                        d2, lo, hi = r["mine"]; vw = VERDICT_WORDS.get(r["verdict"], r["verdict"])
+                        tail = (f"the data favours {c['call']} over {r['against']} by {d2:.1f} win points ({lo:+.1f} to {hi:+.1f})" if r["verdict"] == "right" else
+                                f"the data favours {r['against']} over {c['call']} by {-d2:.1f} win points ({-hi:+.1f} to {-lo:+.1f})" if r["verdict"] == "wrong" else f"no clear difference between {c['call']} and {r['against']} ({abs(d2):.1f}, {lo:+.1f} to {hi:+.1f})")
+                        similar, reading, verdict = f"Similar spots, 180 s on, from the same position: {parts}: {tail}. {us}'s call: {vw}.", True, vw
+                    else: similar, reading, verdict = f"Similar spots, 180 s on, from the same position: {parts}. Too few like cases of {us}'s own call ({c['call']}) to judge it.", False, "too few cases of this call"
+                cards_.append({"id": c["id"], "t": c["t"], "team": us, "side": c["side"], "head": head, "spot": spot, "answer": answer, "followed": followed, "similar": similar, "second": None, "reading": reading, "verdict": verdict})
+        cards_.sort(key=lambda q: (q["t"], q["team"]))
+        games.append({"rid": rid, "teams": m["teams"], "map": m["map"], "date": m["date"], "length_s": m.get("length_s"), "cards": cards_})
+        print(f"\n=== {' v '.join(m['teams'])}, {m['map']}, {m['date']}: https://gvg.report/report/{rid}#map")
+        for q in cards_: print(f"{at(q['t'])}  {q['head']}\n    {q['spot']}\n    {q['answer']}\n    {q['followed']}\n    {q['similar']}")
+    first = [q for g in games for q in g["cards"]]
+    print(f"\nAll {len(rids)} games: {len(first)} cards ({left} situations he graded Weak or No decision left out): " + "; ".join(f"{k} {v}" for k, v in collections.Counter(q["verdict"] for q in first).most_common()))
+    if site:
+        import subprocess, datetime
+        _keep_marks(games, site, "numbers_card_marks.json")
+        eng = subprocess.check_output(["git", "-C", REPO, "rev-parse", "--short", "HEAD"], text=True).strip()
+        json.dump({"about": "The engine's sentence for every numbers advantage at the main fight (from kills, a runner away or players on their way; R-550) in the games of set " + which + " (tools/replay_analysis/cases.py numbers-cards, on the engine branch). "
+                            "The first lines of a card are what happened; the similar-spots line is a reading, not advice. Shown on Model > Game review > Numbers advice; his marks are in numbers_card_marks.json. Ids, `changed` and `gone` as in flag_cards.json.",
+                   "generated": datetime.date.today().isoformat(), "engine": eng, "set": which, "games": games}, open(site, "w"), ensure_ascii=False, indent=1, default=float)
+    return games
 
 
 if __name__ == "__main__":
@@ -1409,4 +1494,5 @@ if __name__ == "__main__":
     elif len(a) >= 2 and a[0] == "cards": cards(a[1], a[2] if len(a) > 2 and not a[2].startswith("--") else "f1", a[a.index("--json") + 1] if "--json" in a else None, a[a.index("--site") + 1] if "--site" in a else None)
     elif len(a) >= 2 and a[0] == "ladder": ladder(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 2 and a[0] == "numbers": numbers(a[1], a[a.index("--json") + 1] if "--json" in a else None)
+    elif len(a) >= 2 and a[0] == "numbers-cards": numbers_cards(a[1], a[2] if len(a) > 2 and not a[2].startswith("--") else "f1", a[a.index("--site") + 1] if "--site" in a else None)
     else: print(__doc__)
