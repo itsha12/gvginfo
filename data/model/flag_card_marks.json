@@ -475,6 +475,41 @@
    "game": "옷옷옷옷 v hdm, Isle of Jade",
    "at": "2026-11-20",
    "engine": "cb7c78a"
+  },
+  "15a20f7a-0112-519a-a5f9-797a6822bf1b": {
+   "marks": {
+    "15a20f7a-flag-1-129-6": {
+     "facts": "correct",
+     "why": "",
+     "text": "Team's Mes/A sets off for a flag (single run). Dz holds the stand, boost in 89 s. | The spot: main fight Dz 7 v Team 6 (Dz up by 1); Dz's main team at the stand, Team's at Team's door; morale Dz no death penalty or boost, Team -105 (the eight summed; a death is -15); Dz ahead on flags by 1.0; base res in 111 s; Dz's chance of winning 91%. | The answer: Dz sends a runner 58 s later. | What followed, 180 s on: Team's flag in at 3:06; Dz's in at 4:01; flag lead -2.75 for Dz; deaths Dz 1, Team 3; boosts Dz 0, Team 0; Dz's chance of winning 91% to 88% (-3.7). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +6.5 (90 cases); a runner out by 15 s -6.5 (90 cases): the data favours holding off (no runner out at 15 s) by 13.0 win points (+9.9 to +16.1). Dz held off: the answer the data favours. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +8.7 (90 cases); holding off (no runner out at 30 s) +5.4 (90 cases): the data favours a runner out by 30 s by 3.3 win points (+0.1 to +6.5). Dz held off: against what the data favours.",
+     "sense": "agree",
+     "own": "hold"
+    },
+    "15a20f7a-flag-2-187-7": {
+     "facts": "correct",
+     "why": "",
+     "text": "Dz's Mesmer sets off for a flag (single run). Team holds the stand, boost in 119 s. | The spot: main fight Team 3 v Dz 2 (Team up by 1); Team's main team at the stand, Dz's at the stand; morale Team -105, Dz no death penalty or boost (the eight summed; a death is -15); flags level; base res in 53 s; Team's chance of winning 11%. | The answer: Team sends a runner 58 s later. | What followed, 180 s on: Dz's flag in at 4:01; Team's in at 4:41; flag lead +1.30 for Team; deaths Team 3, Dz 1; boosts Team 0, Dz 0; Team's chance of winning 11% to 11% (+0.2). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) -1.4 (90 cases); a runner out by 15 s -9.1 (90 cases): the data favours holding off (no runner out at 15 s) by 7.8 win points (+4.2 to +11.3). Team held off: the answer the data favours. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s -0.2 (90 cases); holding off (no runner out at 30 s) -1.9 (90 cases): no clear difference (1.8, -1.5 to +5.0). Team held off: no clear difference either way.",
+     "sense": "agree",
+     "own": "hold"
+    },
+    "15a20f7a-flag-1-245-16": {
+     "facts": "correct",
+     "why": "",
+     "text": "Team's 7 Monk sets off for a flag (single run). Dz holds the stand, boost in 116 s. | The spot: main fight Dz 6 v Team 3 (Dz up by 3); Dz's main team at the stand, Team's at the stand; morale Dz no death penalty or boost, Team -120 (the eight summed; a death is -15); Dz ahead on flags by 0.5; base res in 115 s; Dz's chance of winning 92%. | The answer: Dz sends a runner 50 s later. | What followed, 180 s on: Team's flag in at 4:41; Dz's does not get in; flag lead -1.31 for Dz; deaths Dz 1, Team 4; boosts Dz 0, Team 0; Dz's chance of winning 92% to 94% (+1.8). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) -1.0 (90 cases); a runner out by 15 s -12.6 (90 cases): the data favours holding off (no runner out at 15 s) by 11.5 win points (+7.8 to +15.3). Dz held off: the answer the data favours. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +8.7 (90 cases); holding off (no runner out at 30 s) +0.4 (90 cases): the data favours a runner out by 30 s by 8.3 win points (+4.7 to +11.8). Dz held off: against what the data favours.",
+     "sense": "agree",
+     "own": "hold"
+    },
+    "15a20f7a-flag-1-277-19": {
+     "facts": "correct",
+     "why": "",
+     "text": "Team's Ritualist sets off for a flag (single run). Dz holds the stand (Team caps 4 s later), boost in 84 s. | The spot: main fight Dz 8 v Team 4 (Dz up by 4); Dz's main team at the stand, Team's at the stand; morale Dz no death penalty or boost, Team -135 (the eight summed; a death is -15); flags level; base res in 83 s; Dz's chance of winning 93%. | The answer: Dz sends its 8 Monk 18 s later. | What followed, 180 s on: Team's flag in at 6:19; Dz's does not get in; flag lead -0.48 for Dz; deaths Dz 1, Team 5; boosts Dz 0, Team 0; Dz's chance of winning 93% to 97% (+3.8). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +12.1 (90 cases); a runner out by 15 s -3.7 (90 cases): the data favours holding off (no runner out at 15 s) by 15.8 win points (+12.5 to +19.1). Dz held off: the answer the data favours. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: a runner out by 30 s +12.7 (90 cases); holding off (no runner out at 30 s) +11.3 (90 cases): no clear difference (1.4, -1.7 to +4.6). Dz had a runner out: no clear difference either way.",
+     "sense": "agree",
+     "own": "send"
+    }
+   },
+   "game": "Dz v Team, Druid's Isle",
+   "at": "2026-11-20",
+   "engine": "cb7c78a"
   }
  }
 }
