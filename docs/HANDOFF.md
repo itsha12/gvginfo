@@ -57,8 +57,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
    toward home at 3:58 and back, and goes at 4:08; read as set off at 3:58 (a short step is no leaving, as with
    Team's Monk 5 at HC v Team 11:18): right?
 1. Isle of Jade: is a team at the footmen on the portal side in the base at a base res (HC v hdm 1:40)?
-2. Tolkano: no build (his word). Match pages are tolkano.com/match/<id>, the id neither gvg.report's nor the start
-   time: give him date, guilds, hall and length with every example so he can find it there.
+2. Tolkano: no build (his word): give him date, guilds, hall and length with every example to find it there.
 
 ## Running it
 - Train batch: the "Train batch" workflow (METHODS.md; `blind` stays no). Never queue two runs. At the next rebuild,
