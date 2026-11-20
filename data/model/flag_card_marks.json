@@ -545,11 +545,20 @@
   "3d0f3fc5-d078-50f8-adfa-ba7becc95a8a": {
    "marks": {
     "3d0f3fc5-flag-1-30-8": {
+     "was": [
+      {
+       "facts": "correct",
+       "why": "",
+       "sense": "agree",
+       "own": "send",
+       "text": "HC's flag goes in while cope's Mes/A is still on his way with theirs (he set off at 0:08). Run again, or not? | The spot: main fight HC 5 v cope 6 (cope up by 1); HC's main team at the stand, cope's at the stand; morale HC no death penalty or boost, cope no death penalty or boost (the eight summed; a death is -15); HC ahead on flags by 1.0; base res in 90 s; HC's chance of winning 80%. | The answer: HC sends nobody in the next three minutes. | What followed, 180 s on: cope's flag in at 1:21; flag lead -0.51 for HC; deaths HC 1, cope 1; boosts HC 0, cope 0; HC's chance of winning 80% to 91% (+11.2). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +2.4 (90 cases); a runner out by 15 s +1.7 (43 cases): no clear difference (0.6, -3.1 to +4.4). HC held off: no clear difference either way. | Second look, 30 s in, still nobody sent: too few to compare the answers."
+      }
+     ],
      "facts": "correct",
      "why": "",
-     "text": "HC's flag goes in while cope's Mes/A is still on his way with theirs (he set off at 0:08). Run again, or not? | The spot: main fight HC 5 v cope 6 (cope up by 1); HC's main team at the stand, cope's at the stand; morale HC no death penalty or boost, cope no death penalty or boost (the eight summed; a death is -15); HC ahead on flags by 1.0; base res in 90 s; HC's chance of winning 80%. | The answer: HC sends nobody in the next three minutes. | What followed, 180 s on: cope's flag in at 1:21; flag lead -0.51 for HC; deaths HC 1, cope 1; boosts HC 0, cope 0; HC's chance of winning 80% to 91% (+11.2). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +2.4 (90 cases); a runner out by 15 s +1.7 (43 cases): no clear difference (0.6, -3.1 to +4.4). HC held off: no clear difference either way. | Second look, 30 s in, still nobody sent: too few to compare the answers.",
+     "text": "HC's first flag goes in, over cope's (in since 0:26), while cope's Mes/A is still on his way with theirs (he set off at 0:08). Run again, or not? | The spot: main fight HC 5 v cope 6 (cope up by 1); HC's main team at the stand, cope's at the stand; morale HC no death penalty or boost, cope no death penalty or boost (the eight summed; a death is -15); HC ahead on flags by 1.0; base res in 90 s; HC's chance of winning 80%. | The answer: HC sends nobody in the next three minutes. | What followed, 180 s on: cope's flag in at 1:21; flag lead -0.51 for HC; deaths HC 1, cope 1; boosts HC 0, cope 0; HC's chance of winning 80% to 91% (+11.2). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +5.6 (90 cases); a runner out by 15 s +1.7 (46 cases): the data favours holding off (no runner out at 15 s) by 3.9 win points (+0.1 to +7.8). HC held off: the answer the data favours. | Second look, 30 s in, still nobody sent: too few to compare the answers.",
      "sense": "agree",
-     "own": "send"
+     "own": "hold"
     },
     "3d0f3fc5-flag-1-153-34": {
      "facts": "correct",
@@ -568,7 +577,7 @@
    },
    "game": "HC v cope, Nomad's Isle",
    "at": "2026-11-20",
-   "engine": "cb7c78a"
+   "engine": "e60a56d"
   },
   "53175808-daeb-5e11-a57e-f5b96124d398": {
    "marks": {
