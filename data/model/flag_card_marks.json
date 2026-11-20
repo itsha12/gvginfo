@@ -252,6 +252,48 @@
    "at": "2026-11-20",
    "engine": "cb7c78a",
    "notes": "men waits back for 1st flat with derv; hold earth ele goes for a flag at 0:39 but cannot cap successfully;"
+  },
+  "b870f84e-b838-5f2a-ae83-b1e25499d9ee": {
+   "marks": {
+    "b870f84e-flag-2-70-11": {
+     "facts": "correct",
+     "why": "",
+     "text": "hold's Ritualist sets off for a flag (single run). hold holds the stand, boost in 117 s. | The spot: main fight Men 5 v hold 4 (Men up by 1); Men's main team at the stand, hold's at the stand; morale Men no death penalty or boost, hold no death penalty or boost (the eight summed; a death is -15); hold ahead on flags by 0.4; base res in 50 s; Men's chance of winning 74%. | The answer: Men sends its Ritualist 1 28 s later (a double run). | What followed, 180 s on: hold's flag in at 2:20; Men's in at 2:36; flag lead +0.58 for Men; deaths Men 0, hold 1; boosts Men 0, hold 0; Men's chance of winning 74% to 78% (+4.0). | Similar spots, 180 s on, from the same position: a runner out by 15 s +5.7 (90 cases); holding off (no runner out at 15 s) +2.9 (90 cases): no clear difference (2.8, -0.7 to +6.3). Men held off: no clear difference either way. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +6.5 (90 cases); a runner out by 30 s -6.9 (82 cases): the data favours holding off (no runner out at 30 s) by 13.4 win points (+10.0 to +16.8).",
+     "sense": "agree",
+     "own": "send"
+    },
+    "b870f84e-flag-1-140-17": {
+     "facts": "correct",
+     "why": "",
+     "text": "hold's flag goes in while Men's Hammer is still on his way with theirs (he set off at 1:38). Run again, or not? | The spot: main fight hold 5 v Men 4 (hold up by 1); hold's main team at the stand, Men's at the stand; morale hold no death penalty or boost, Men no death penalty or boost (the eight summed; a death is -15); Men ahead on flags by 1.0; base res in 100 s; hold's chance of winning 18%. | The answer: hold sends its Hammer 6 s later. | What followed, 180 s on: Men's flag in at 2:36; hold's does not get in; flag lead +0.56 for hold; deaths hold 1, Men 1; boosts hold 0, Men 1; hold's chance of winning 18% to 19% (+0.5). | Similar spots, 180 s on, from the same position: a runner out by 15 s +1.8 (42 cases); holding off (no runner out at 15 s) -8.0 (90 cases): the data favours a runner out by 15 s by 9.8 win points (+5.9 to +13.6). hold had a runner out: the answer the data favours.",
+     "sense": "agree",
+     "own": "send"
+    },
+    "b870f84e-flag-2-154-20": {
+     "facts": "correct",
+     "why": "",
+     "text": "hold's Hammer sets off for a flag (single run). hold holds the stand (Men caps 10 s later), boost in 115 s. | The spot: main fight Men 4 v hold 5 (hold up by 1); Men's main team at the stand, hold's at the stand; morale Men no death penalty or boost, hold no death penalty or boost (the eight summed; a death is -15); flags level; base res in 94 s; Men's chance of winning 77%. | The answer: Men sends nobody in the next three minutes. | What followed, 180 s on: hold's flag does not get in (returned, 3:11); flag lead +0.31 for Men; deaths Men 1, hold 2; boosts Men 1, hold 0; Men's chance of winning 77% to 85% (+8.2). | Similar spots, 180 s on, from the same position: a runner out by 15 s +5.8 (90 cases); holding off (no runner out at 15 s) +2.4 (90 cases): no clear difference (3.4, -0.3 to +7.0). Men held off: no clear difference either way. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +4.8 (90 cases); a runner out by 30 s -5.7 (82 cases): the data favours holding off (no runner out at 30 s) by 10.5 win points (+7.0 to +13.9). Men held off: the answer the data favours.",
+     "sense": "agree",
+     "own": "send"
+    },
+    "b870f84e-flag-2-315-28": {
+     "facts": "correct",
+     "why": "",
+     "text": "hold's Hammer sets off for a flag (single run). Men holds the stand, boost in 82 s. | The spot: main fight Men 3 v hold 4 (hold up by 1); Men's main team at the stand, hold's at hold's door; morale Men +65, hold -13 (the eight summed; a death is -15); Men ahead on flags by 0.5; base res in 45 s; Men's chance of winning 82%. | The answer: Men sends its Ritualist 1 32 s later. | What followed, 180 s on: hold's flag in at 6:05; Men's in at 6:21; flag lead +0.49 for Men; deaths Men 0, hold 2; boosts Men 0, hold 0; Men's chance of winning 82% to 90% (+8.4). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) -0.7 (90 cases); a runner out by 15 s -2.5 (90 cases): no clear difference (1.8, -1.0 to +4.7). Men held off: no clear difference either way. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +0.3 (90 cases); a runner out by 30 s -0.3 (90 cases): no clear difference (0.6, -2.4 to +3.6). Men held off: no clear difference either way.",
+     "sense": "agree",
+     "own": "send"
+    },
+    "b870f84e-flag-1-365-33": {
+     "facts": "correct",
+     "why": "",
+     "text": "hold's flag goes in while Men's Ritualist 1 is still on his way with theirs (he set off at 5:47). Run again, or not? | The spot: main fight hold 5 v Men 7 (Men up by 2); hold's main team at hold's door, Men's at the stand; morale hold -43, Men +69 (the eight summed; a death is -15); Men ahead on flags by 0.8; base res in 115 s; hold's chance of winning 11%. | The answer: hold sends nobody in the next three minutes. | What followed, 180 s on: Men's flag in at 6:21; flag lead -0.21 for hold; deaths hold 9, Men 0; boosts hold 0, Men 1; hold's chance of winning 11% to 0% (-10.5). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) -3.5 (90 cases); a runner out by 15 s -4.5 (90 cases): no clear difference (1.0, -2.1 to +4.1). hold held off: no clear difference either way.",
+     "sense": "agree",
+     "own": "nodiff"
+    }
+   },
+   "game": "hold v Men, Uncharted Isle",
+   "at": "2026-11-20",
+   "engine": "cb7c78a"
   }
  }
 }
