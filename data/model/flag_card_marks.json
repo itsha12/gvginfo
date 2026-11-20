@@ -182,6 +182,27 @@
    "game": "옷옷옷옷 v RACK, Isle of Solitude",
    "at": "2026-11-20",
    "engine": "cb7c78a"
+  },
+  "45cf6756-afc8-51fa-ade0-162d7450be1c": {
+   "marks": {
+    "45cf6756-flag-2-51-6": {
+     "facts": "partly",
+     "why": "Men holds the stand; warrior was waiting back",
+     "text": "RACK's flag goes in while Men's Hammer A is still on his way with theirs (he set off at 0:04). Run again, or not? | The spot: main fight RACK 3 v Men 5 (Men up by 2); RACK's main team at the stand, Men's at the stand; morale RACK no death penalty or boost, Men no death penalty or boost (the eight summed; a death is -15); flags level; base res in 69 s; RACK's chance of winning 39%. | The answer: RACK sends its Mes/A 6 s later. | What followed, 180 s on: Men's flag in at 1:27; RACK's does not get in; flag lead -0.66 for RACK; deaths RACK 0, Men 0; boosts RACK 0, Men 1; RACK's chance of winning 39% to 28% (-11.2). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +3.9 (90 cases); a runner out by 15 s +2.0 (42 cases): no clear difference (1.9, -1.9 to +5.6). RACK had a runner out: no clear difference either way.",
+     "sense": "agree",
+     "own": "send"
+    },
+    "45cf6756-flag-1-87-9": {
+     "facts": "correct",
+     "why": "",
+     "text": "Men's flag goes in while RACK's Mes/A is still on his way with theirs (he set off at 0:57). Run again, or not? | The spot: main fight Men 6 v RACK 7 (RACK up by 1); Men's main team at RACK's door, RACK's at RACK's door; morale Men no death penalty or boost, RACK no death penalty or boost (the eight summed; a death is -15); flags level; base res in 33 s; Men's chance of winning 58%. | The answer: Men sends its Mes/A 36 s later. | What followed, 180 s on: RACK's flag does not get in (not capped, 3:53); Men's does not get in; flag lead +0.99 for Men; deaths Men 0, RACK 1; boosts Men 1, RACK 0; Men's chance of winning 58% to 79% (+20.8). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +1.5 (90 cases); a runner out by 15 s -5.5 (90 cases): the data favours holding off (no runner out at 15 s) by 6.9 win points (+3.7 to +10.2). Men held off: the answer the data favours. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +2.1 (90 cases); a runner out by 30 s +1.8 (32 cases): no clear difference (0.4, -3.5 to +4.2). Men held off: no clear difference either way.",
+     "sense": "agree",
+     "own": "hold"
+    }
+   },
+   "game": "Men v RACK, Nomad's Isle",
+   "at": "2026-11-20",
+   "engine": "cb7c78a"
   }
  }
 }
