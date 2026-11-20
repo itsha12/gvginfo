@@ -343,6 +343,13 @@
    "game": "RACK v hdm, Isle of Meditation",
    "at": "2026-11-20",
    "engine": "cb7c78a"
+  },
+  "d492aa6c-a12b-5bce-a5ec-9ada965676f0": {
+   "marks": {},
+   "game": "hold v RACK, Imperial Isle",
+   "at": "2026-11-20",
+   "engine": "cb7c78a",
+   "notes": "hold's #3 ele goes for a flag at 2:34, before RACK has capped first flag whilst it is held by 5 mes of RACK and hold has stand capped. this is a decision on whether to run on RACK."
   }
  }
 }
