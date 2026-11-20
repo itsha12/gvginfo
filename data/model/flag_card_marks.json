@@ -466,9 +466,18 @@
      "sense": "unsure"
     },
     "d492aa6c-flag-2-339-32": {
+     "was": [
+      {
+       "facts": "correct",
+       "why": "",
+       "sense": "agree",
+       "own": "send",
+       "text": "hold's Earth Ele sets off for a flag (single run). hold holds the stand (RACK caps 9 s later), boost in 103 s. | The spot: main fight RACK 7 v hold 5 (RACK up by 2); RACK's main team at the stand, hold's at the stand; morale RACK no death penalty or boost, hold -15 (the eight summed; a death is -15); flags level; base res in 39 s; RACK's chance of winning 72%. | The answer: RACK sends a runner 85 s later. | What followed, 180 s on: hold's flag in at 6:24; RACK's in at 7:43; flag lead +0.12 for RACK; deaths RACK 0, hold 1; boosts RACK 0, hold 0; RACK's chance of winning 72% to 73% (+1.0). | Similar spots, 180 s on, from the same position: a runner out by 15 s +5.3 (90 cases); holding off (no runner out at 15 s) +1.3 (90 cases): the data favours a runner out by 15 s by 3.9 win points (+1.1 to +6.8). RACK held off: against what the data favours. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +1.6 (90 cases); a runner out by 30 s -2.7 (81 cases): the data favours holding off (no runner out at 30 s) by 4.3 win points (+0.9 to +7.6). RACK held off: the answer the data favours."
+      }
+     ],
      "facts": "correct",
      "why": "",
-     "text": "hold's Earth Ele sets off for a flag (single run). hold holds the stand (RACK caps 9 s later), boost in 103 s. | The spot: main fight RACK 7 v hold 5 (RACK up by 2); RACK's main team at the stand, hold's at the stand; morale RACK no death penalty or boost, hold -15 (the eight summed; a death is -15); flags level; base res in 39 s; RACK's chance of winning 72%. | The answer: RACK sends a runner 85 s later. | What followed, 180 s on: hold's flag in at 6:24; RACK's in at 7:43; flag lead +0.12 for RACK; deaths RACK 0, hold 1; boosts RACK 0, hold 0; RACK's chance of winning 72% to 73% (+1.0). | Similar spots, 180 s on, from the same position: a runner out by 15 s +5.3 (90 cases); holding off (no runner out at 15 s) +1.3 (90 cases): the data favours a runner out by 15 s by 3.9 win points (+1.1 to +6.8). RACK held off: against what the data favours. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +1.6 (90 cases); a runner out by 30 s -2.7 (81 cases): the data favours holding off (no runner out at 30 s) by 4.3 win points (+0.9 to +7.6). RACK held off: the answer the data favours.",
+     "text": "hold's Earth Ele sets off for a flag (single run). hold holds the stand (RACK caps 9 s later), boost in 103 s. | The spot: main fight RACK 7 v hold 5 (RACK up by 2); RACK's main team at the stand, hold's at the stand; morale RACK no death penalty or boost, hold -15 (the eight summed; a death is -15); flags level; base res in 39 s; RACK's chance of winning 72%. | The answer: RACK sends a runner 85 s later. | What followed, 180 s on: hold's flag in at 6:24; RACK's in at 7:43; flag lead +0.12 for RACK; deaths RACK 0, hold 1; boosts RACK 0, hold 0; RACK's chance of winning 72% to 73% (+1.0). | Similar spots, 180 s on, from the same position: a runner out by 15 s +3.5 (90 cases); holding off (no runner out at 15 s) +1.3 (90 cases): no clear difference (2.2, -1.1 to +5.4). RACK held off: no clear difference either way. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +2.1 (90 cases); a runner out by 30 s -4.7 (80 cases): the data favours holding off (no runner out at 30 s) by 6.8 win points (+3.2 to +10.3). RACK held off: the answer the data favours.",
      "sense": "agree",
      "own": "send"
     },
@@ -519,11 +528,18 @@
      "text": "RACK's Air Ele 2 sets off for a flag (single run). RACK holds the stand, boost in 110 s. | The spot: main fight hold 5 v RACK 7 (RACK up by 2); hold's main team at hold's footmen, RACK's at hold's footmen; morale hold -120, RACK +80 (the eight summed; a death is -15); RACK ahead on flags by 1.5; base res in 77 s; hold's chance of winning 7%. | The answer: hold sends its Air Ele 151 s later. | What followed, 180 s on: RACK's flag does not get in (not capped, 21:29); hold's does not get in; flag lead +0.62 for hold; deaths hold 0, RACK 0; boosts hold 0, RACK 1; hold's chance of winning 7% to 8% (+1.3). | Similar spots, 180 s on, from the same position: a runner out by 15 s +7.0 (90 cases); holding off (no runner out at 15 s) -1.2 (90 cases): the data favours a runner out by 15 s by 8.2 win points (+5.4 to +11.0). hold held off: against what the data favours. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) -2.3 (90 cases); a runner out by 30 s -14.1 (81 cases): the data favours holding off (no runner out at 30 s) by 11.8 win points (+8.6 to +15.0). hold held off: the answer the data favours.",
      "sense": "agree",
      "own": "send"
+    },
+    "d492aa6c-flag-1-660-56": {
+     "facts": "correct",
+     "why": "",
+     "text": "RACK's Air Ele 2 sets off for a flag (single run). hold holds the stand, boost in 112 s. | The spot: main fight hold 3 v RACK 6 (RACK up by 3); hold's main team at the stand, RACK's at RACK's footmen; morale hold -45, RACK no death penalty or boost (the eight summed; a death is -15); hold ahead on flags by 1.1; base res in 60 s; hold's chance of winning 38%. | The answer: hold sends its Earth Ele 5 s later. | What followed, 180 s on: RACK's flag in at 11:52; hold's in at 11:55; flag lead -2.08 for hold; deaths hold 1, RACK 0; boosts hold 0, RACK 0; hold's chance of winning 38% to 21% (-16.9). | Similar spots, 180 s on, from the same position: a runner out by 15 s -8.4 (90 cases); holding off (no runner out at 15 s) -9.1 (90 cases): no clear difference (0.7, -2.6 to +4.0). hold had a runner out: no clear difference either way.",
+     "sense": "agree",
+     "own": "send"
     }
    },
    "game": "hold v RACK, Imperial Isle",
    "at": "2026-11-20",
-   "engine": "cb7c78a",
+   "engine": "e60a56d",
    "notes": "hold's #3 ele goes for a flag at 2:34, before RACK has capped first flag whilst it is held by 5 mes of RACK and hold has stand capped. this is a decision on whether to run on RACK.\n\nRACK double runs a 4:42 on air ele with ele 4 now holding flag and going to cap. this is decision. \n\nRACK double runs at 7:29 with air ele. this is decision."
   },
   "3d0f3fc5-d078-50f8-adfa-ba7becc95a8a": {
