@@ -322,7 +322,10 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   fight while a split is out belongs to the split family (R-550).
 - The calls (R-551). Team up: stay and kill, push into their base for NPCs, push their flagger, run a flag for a
   backup, fall back and reset. Team down: stay and fight, fall to footmen, retreat to the pit, trade with a split.
-  A fight that moves up short of their base is still stay and kill. *As built:* read 30 s in, from where the main
-  team stands against where it stood and whether a runner of its own has gone.
-- A res that gets off (a res signet, Death Pact Signet and the like) ends a numbers advantage from kills (R-552).
-  *As built:* a dead player alive again more than 3 s off the base res.
+  A fight that moves up short of their base is still stay and kill. *As built:* read 20 s in and told again at
+  60 s (R-556), from where the main team stands against where it stood and whether a runner of its own has gone.
+- A res that gets off (a res signet, Death Pact Signet and the like) ends a numbers advantage from kills (R-552):
+  a res that levels the fight ends it if that team takes no death in the next 12 s; a death inside 12 s and it is
+  the same advantage (R-555). *As built:* a dead player alive again more than 3 s off the base res; he is counted
+  in his fight at once, and a new stretch with the same side up within 10 s is the same situation.
+- A call is judged only against like spots (R-556): a team's call follows the spot it is in.

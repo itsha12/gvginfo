@@ -28,14 +28,29 @@ const BAND = { high: "High", medium: "Medium", low: "Low", none: "No decision" }
 const KINDS = ["flag", "push on a flagger", "split", "collapse", "numbers", "boost", "pinned in base", "base res", "Lord push", "other"];
 const SKIP = "not judged";      // a call that is not asked for
 let rows = null, marks = null, cur = null, draft = {};
-const CARDS = "data/model/flag_cards.json", CARD_MARKS = "data/model/flag_card_marks.json", CDRAFT = "gvginfo.review.cards1";
+// Two advice views share this code (R-550): the flag decisions and the numbers advantages. What differs between them is in ADVICE
+let CARDS = "data/model/flag_cards.json", CARD_MARKS = "data/model/flag_card_marks.json", CDRAFT = "gvginfo.review.cards1", ckind = "flags";
 const SENSE = [["agree", "Makes sense"], ["disagree", "Does not"], ["unsure", "No view"]];
 // His own call. "No clear answer" was two answers (his word, 2026-11-19): that it makes no difference what the team does, and that he does not know what he would do
 // "Send" was two answers as well (his word, 2026-11-20): at once, or after a short look at whether the extra player gets a kill or their flag can be stopped
 const OWN = [["send", "Send a runner at once"], ["wait", "Look for a kill first, then send"], ["hold", "Hold off"], ["nodiff", "It makes no difference here"], ["unknown", "I don't know"]];
-const OWN_WORDS = Object.fromEntries(OWN);
+// His own call on a numbers card, in his options (R-551), by whether the team is up or down
+const OWN_UP = [["stay", "Stay & kill"], ["base", "Push into their base for NPCs"], ["flagger", "Push their flagger"], ["backup", "Run a flag for a backup"], ["reset", "Fall back & reset"], ["nodiff", "It makes no difference here"], ["unknown", "I don't know"]];
+const OWN_DOWN = [["fight", "Stay & fight"], ["footmen", "Fall to footmen"], ["pit", "Retreat to the pit"], ["trade", "Trade with a split"], ["nodiff", "It makes no difference here"], ["unknown", "I don't know"]];
+const OWN_WORDS = Object.fromEntries([...OWN, ...OWN_UP, ...OWN_DOWN]);
+const ownFor = (c) => ckind !== "numbers" ? OWN : c.side === "up" ? OWN_UP : OWN_DOWN;
+const ADVICE = {
+  flags: { cards: "data/model/flag_cards.json", marks: "data/model/flag_card_marks.json", draft: "gvginfo.review.cards1", name: "Flag advice", unit: "flag decisions", notes: "the flags",
+    notesPh: "A flag decision with no card, or anything that holds for the whole game.", none: "The engine reads no flag decision to answer in this game (its flags were the opening, or were run with Shadow of Haste).",
+    intro: "The engine's sentence for every flag decision in the games you graded: a team answering a flag run, or deciding whether to run again once its own flag is in.",
+    about: "own (what he would have done: send = a runner at once, wait = look for a kill first and then send (offered from 2026-11-20), hold, nodiff = it makes no difference here, unknown = he does not know)" },
+  numbers: { cards: "data/model/numbers_cards.json", marks: "data/model/numbers_card_marks.json", draft: "gvginfo.review.numbers1", name: "Numbers advice", unit: "numbers advantages", notes: "the numbers",
+    notesPh: "A numbers advantage with no card, or anything that holds for the whole game.", none: "The engine reads no numbers advantage in scope in this game (from kills, a runner away or players on their way), or you graded them all Weak or No decision.",
+    intro: "The engine's sentence for every numbers advantage at the main fight in the games you graded, from kills, a runner away or players still on their way back, told once for the team up and once for the team down. The main fight while a split is out waits for the split family.",
+    about: "own (what he would have done; team up: stay = stay and kill, base = push into their base for NPCs, flagger = push their flagger, backup = run a flag for a backup, reset = fall back and reset; team down: fight = stay and fight, footmen = fall to footmen, pit = retreat to the pit, trade = trade with a split; nodiff = it makes no difference here, unknown = he does not know)" } };
+const setKind = (k) => { if (ckind === k) return; ckind = k; CARDS = ADVICE[k].cards; CARD_MARKS = ADVICE[k].marks; CDRAFT = ADVICE[k].draft; cards = null; cmarks = null; ccur = null; cdraft = {}; };
 let view = "games", cards = null, cmarks = null, ccur = null, cdraft = {};
-try { view = localStorage.getItem("gvginfo.review.view") === "flags" ? "flags" : "games"; } catch { /* the games view */ }
+try { const v0 = localStorage.getItem("gvginfo.review.view"); view = v0 === "flags" || v0 === "numbers" ? v0 : "games"; } catch { /* the games view */ }
 let showTodo = false;           // rows not yet marked are shown in red (his request, 2026-11-17: "which rows I haven't marked yet")
 try { showTodo = localStorage.getItem("gvginfo.review.todo") === "1"; } catch { /* off */ }
 
@@ -270,15 +285,15 @@ function flagsHtml(g) {
       <td class="rv-mark" data-id="${esc(c.id)}">${old ? `<div class="small rv-not">Please mark this card again. ${esc(c.changed)} Before, you marked: ${esc(earlier(m0))}.</div><details class="small"><summary>The card as you saw it</summary>${esc(m0.text)}</details>` : ""}
         <div class="muted small rv-q">Is what happened told correctly (the spot, the answer, what followed)?</div>${pick(c.id, "facts", READ, m, "f")}
         ${c.reading ? `<div class="muted small rv-q">Does the reading (similar spots) make sense to you?</div>${pick(c.id, "sense", SENSE, m, "s")}` : `<div class="muted small rv-q">No reading is given for this spot.</div>`}
-        <div class="muted small rv-q">What would you have done here? (optional)</div>${pick(c.id, "own", OWN, m, "o")}
+        <div class="muted small rv-q">What would you have done here? (optional)</div>${pick(c.id, "own", ownFor(c), m, "o")}
         ${words(m, "your words: what is wrong, or what the engine does not see")}</td></tr>`; }).join("");
   return `<h3 style="margin:.8rem 0 .2rem">${esc(g.teams.join(" v "))}, ${esc(g.map)}, ${esc(g.date)}</h3>
-    <p style="margin:.2rem 0"><a href="https://gvg.report/report/${esc(g.rid)}#map" target="_blank" rel="noopener">Open the replay on gvg.report</a>. ${g.cards.length} flag decisions; <b><span data-cdone>${done}</span> marked</b>${n ? `, <b class="rv-not">${n} not saved yet</b>` : ""}.</p>
+    <p style="margin:.2rem 0"><a href="https://gvg.report/report/${esc(g.rid)}#map" target="_blank" rel="noopener">Open the replay on gvg.report</a>. ${g.cards.length} ${ADVICE[ckind].unit}; <b><span data-cdone>${done}</span> marked</b>${n ? `, <b class="rv-not">${n} not saved yet</b>` : ""}.</p>
     ${g.cards.length ? `<div class="row rv-bar"><button class="btn small primary" data-csave>Save this game's marks</button></div>
-    <div class="tablewrap"><table class="data rv-rows rv-cards${showTodo ? " rv-showtodo" : ""}"><thead><tr><th>#</th><th>Time</th><th>The decision as the engine reads it</th><th>Your marks</th></tr></thead><tbody>${body}</tbody></table></div>` : `<div class="empty-state">The engine reads no flag decision to answer in this game (its flags were the opening, or were run with Shadow of Haste).</div>`}
+    <div class="tablewrap"><table class="data rv-rows rv-cards${showTodo ? " rv-showtodo" : ""}"><thead><tr><th>#</th><th>Time</th><th>The decision as the engine reads it</th><th>Your marks</th></tr></thead><tbody>${body}</tbody></table></div>` : `<div class="empty-state">${ADVICE[ckind].none}</div>`}
     ${(g.gone || []).length ? `<details class="rv-terms"><summary>${g.gone.length} card${g.gone.length === 1 ? "" : "s"} you marked that the engine no longer writes (your marks on ${g.gone.length === 1 ? "it" : "them"} are kept)</summary><ul class="small">${g.gone.map((x) => `<li>${clock(x.t)}: ${esc(x.head)} ${esc(x.answer)}</li>`).join("")}</ul></details>` : ""}
-    <h4 style="margin:.9rem 0 .3rem">Anything else about the flags in this game</h4>
-    <textarea data-cnotes placeholder="A flag decision with no card, or anything that holds for the whole game." style="min-height:70px">${esc(notes)}</textarea>
+    <h4 style="margin:.9rem 0 .3rem">Anything else about ${ADVICE[ckind].notes} in this game</h4>
+    <textarea data-cnotes placeholder="${esc(ADVICE[ckind].notesPh)}" style="min-height:70px">${esc(notes)}</textarea>
     <div class="row rv-bar"><button class="btn small primary" data-csave>Save this game's marks</button></div>`;
 }
 
@@ -288,17 +303,17 @@ async function renderFlags(out, keep = false) {
     cmarks = (await readJson(CARD_MARKS, null)) || { about: "", games: {} };
     try { cdraft = JSON.parse(localStorage.getItem(CDRAFT) || "{}"); } catch { cdraft = {}; }
   }
-  if (!cards || !(cards.games || []).length) { out.innerHTML = `<h1>Game review</h1><div class="empty-state">No flag advice has been set out yet.</div>`; return; }
+  if (!cards || !(cards.games || []).length) { out.innerHTML = `<h1>Game review</h1><div class="empty-state">No ${ADVICE[ckind].name.toLowerCase()} has been set out yet.</div>`; return; }
   const G = cards.games, g = G.find((x) => x.rid === ccur) || G.find((x) => x.cards.length) || G[0]; ccur = g.rid;
   const keepC = () => { try { localStorage.setItem(CDRAFT, JSON.stringify(cdraft)); } catch { /* the marks stay on the page until saved */ } };
   out.innerHTML = `<h1>Game review</h1>
-  <p>The engine's sentence for every flag decision in the games you graded: a team answering a flag run, or deciding whether to run again once its own flag is in. ${canSave() ? "" : "<b>Add your GitHub key in Settings to save.</b>"}</p>
+  <p>${ADVICE[ckind].intro} ${canSave() ? "" : "<b>Add your GitHub key in Settings to save.</b>"}</p>
   <details class="rv-terms"><summary>How to read and mark a card</summary><ul class="small">
-    <li><b>The first lines are what happened</b>: who set off for a flag and who holds the stand; the spot (numbers at the main fight, where the team stands, each side's morale, the flag lead, the base res, the team's chance of winning); what the team did; and what followed over the next 180 seconds. The time is the second to go to in the replay. Mark them <b>Correct</b>, <b>Partly</b> or <b>Incorrect</b>, and say what is off.</li>
-    <li><b>The similar-spots line is a reading, not advice.</b> It compares the two answers (a runner out by 15 s, or holding off) among teams in a like position, in win points 180 seconds on. It has not yet been shown to hold on matches the engine has not seen. Say whether it <b>makes sense</b> to you as a player.</li>
-    <li><b>A second look</b>, where there is one, is the same question 30 seconds in, for a team that had still sent nobody.</li>
+    <li><b>The first lines are what happened</b>: ${ckind === "numbers" ? "who is up or down on numbers at the main fight, by how many and from what, and the base res; the spot (where each main team stands, each side's dead and morale, the flag lead, the team's chance of winning); the team's call 20 seconds in, and what it is doing at 60 seconds if that differs; and what followed over the next 180 seconds, with any res in the fight." : "who set off for a flag and who holds the stand; the spot (numbers at the main fight, where the team stands, each side's morale, the flag lead, the base res, the team's chance of winning); what the team did; and what followed over the next 180 seconds."} The time is the second to go to in the replay. Mark them <b>Correct</b>, <b>Partly</b> or <b>Incorrect</b>, and say what is off.</li>
+    <li><b>The similar-spots line is a reading, not advice.</b> ${ckind === "numbers" ? "It compares the calls among teams in a like position (the same numbers, base res, places, dead, morale, flags and chance of winning), in win points 180 seconds on. A team's call follows the spot it is in, which is why only like spots are compared." : "It compares the two answers (a runner out by 15 s, or holding off) among teams in a like position, in win points 180 seconds on."} It has not yet been shown to hold on matches the engine has not seen. Say whether it <b>makes sense</b> to you as a player.</li>
+    ${ckind === "numbers" ? "" : "<li><b>A second look</b>, where there is one, is the same question 30 seconds in, for a team that had still sent nobody.</li>"}
     <li><b>Please mark this card again</b> appears on a card that now says something else than when you marked it: what happened is told differently, or the reading at the first look has changed. Your earlier marks are shown with it and kept. Cards whose figures only moved a little keep your marks.</li>
-    <li><b>What would you have done</b> is optional, and the most useful mark of the three: it is your call set against the engine's. <b>Send a runner at once</b> is a runner gone within about 15 seconds; <b>Look for a kill first, then send</b> is using the extra player for a short while and running once no kill is coming or their flag is plainly going to get in; <b>Hold off</b> is sending nobody. <b>It makes no difference here</b> means either answer is as good as the other in this spot; <b>I don't know</b> means you cannot say what you would do.</li>
+    <li><b>What would you have done</b> is optional, and the most useful mark of the three: it is your call set against the engine's. ${ckind === "numbers" ? "Pick the call you would make for that team in that spot." : "<b>Send a runner at once</b> is a runner gone within about 15 seconds; <b>Look for a kill first, then send</b> is using the extra player for a short while and running once no kill is coming or their flag is plainly going to get in; <b>Hold off</b> is sending nobody."} <b>It makes no difference here</b> means either answer is as good as the other in this spot; <b>I don't know</b> means you cannot say what you would do.</li>
     <li><b>Every number is said with whose it is</b>: "main fight Team 7 v HC 6 (Team up by 1)", each main team's place, each side's morale, and who is ahead on flags.</li>
     <li><b>Win points</b> are points of the chance of winning the match: +4 is a team going from 50% to 54%. A death is -15 morale on one player; the morale shown is the eight players summed.</li>
     <li>Marks are kept in this browser as you go and reach the engine when you press Save.</li>
@@ -335,12 +350,12 @@ async function renderFlags(out, keep = false) {
   out.querySelector("[data-cnotes]").onchange = (e) => { (cdraft[g.rid] ||= { marks: {} }).notes = e.target.value.trim(); keepC(); };
   out.querySelectorAll("[data-csave]").forEach((b) => b.onclick = async () => {
     const before = JSON.stringify(cmarks), d = cdraft[g.rid] || { marks: {} };
-    cmarks.about = "Denning's marks on the cards of Model > Game review > Flag advice. For each card: facts (is what happened told correctly: correct, partly, incorrect), sense (does the similar-spots reading make sense to him: agree, disagree, unsure), own (what he would have done: send = a runner at once, wait = look for a kill first and then send (offered from 2026-11-20), hold, nodiff = it makes no difference here, unknown = he does not know), his words, and the text of the card as he saw it. `was` holds his marks on a card as it read before it came to say something else. Marks on cards the engine no longer writes stay here under their ids (flag_cards.json lists those cards under `gone`). Only what he marked.";
+    cmarks.about = "Denning's marks on the cards of Model > Game review > " + ADVICE[ckind].name + ". For each card: facts (is what happened told correctly: correct, partly, incorrect), sense (does the similar-spots reading make sense to him: agree, disagree, unsure), " + ADVICE[ckind].about + ", his words, and the text of the card as he saw it. `was` holds his marks on a card as it read before it came to say something else. Marks on cards the engine no longer writes stay here under their ids (flag_cards.json lists those cards under `gone`). Only what he marked.";
     const G0 = (cmarks.games ||= {}), e = (G0[g.rid] ||= { marks: {} });
     e.game = `${g.teams.join(" v ")}, ${g.map}`; e.at = new Date().toISOString().slice(0, 10); e.engine = cards.engine;
     e.marks = Object.fromEntries(Object.entries({ ...e.marks, ...(d.marks || {}) }).filter(([, v]) => v.facts || v.sense || v.own || v.why));
     if (d.notes !== undefined) { if (d.notes) e.notes = d.notes; else delete e.notes; }
-    try { await writeJson(CARD_MARKS, cmarks, `Flag advice: ${e.game} marked (${Object.keys(e.marks).length} cards)`); }
+    try { await writeJson(CARD_MARKS, cmarks, `${ADVICE[ckind].name}: ${e.game} marked (${Object.keys(e.marks).length} cards)`); }
     catch (err) { cmarks = JSON.parse(before); toast(err.message); return; }
     delete cdraft[g.rid]; keepC(); toast("Saved"); await redraw();
   });
@@ -348,9 +363,9 @@ async function renderFlags(out, keep = false) {
 
 // The page: the two views and the switch between them.
 export async function renderReview(out, keep = false) {
-  if (view === "flags") await renderFlags(out, keep); else await renderGames(out, keep);
+  if (view === "flags" || view === "numbers") { setKind(view); await renderFlags(out, keep); } else await renderGames(out, keep);
   const sw = document.createElement("div"); sw.className = "row rv-view"; sw.style.cssText = "gap:.4rem;margin:.4rem 0 .8rem";
-  sw.innerHTML = [["games", "Decisions: is each read correctly?"], ["flags", "Flag advice: the engine's sentence for each flag decision"]]
+  sw.innerHTML = [["games", "Decisions: is each read correctly?"], ["flags", "Flag advice: the engine's sentence for each flag decision"], ["numbers", "Numbers advice: up or down a player at the main fight"]]
     .map(([v, t]) => `<button class="btn small ${view === v ? "primary" : "ghost"}" data-view="${v}">${t}</button>`).join("");
   out.querySelector("h1")?.after(sw);
   sw.querySelectorAll("[data-view]").forEach((b) => b.onclick = () => { view = b.dataset.view; try { localStorage.setItem("gvginfo.review.view", view); } catch { /* for this visit only */ } renderReview(out); });

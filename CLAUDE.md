@@ -310,7 +310,12 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   main team's step 0, 15, 30 and 60 s in, and a runner of ours gone): `jobs._numbers_at`, which changes no play.
   `cases.py numbers <plays file>` (report `data/model/numbers_cases.json`) is stage 1: the readings (a larger
   advantage, and one with the base res further off, kills more and lasts longer) and what followed each call, as it
-  fell. The call is read 30 s in (`cases._num_call`), in his options (R-551: up, stay and kill, push into their base
+  fell, then like spots and the test on unseen matches by scenario (section D), each with the same test on the 60 s
+  before. `cases.py numbers-cards <plays file> f1 --site <main>/data/model/numbers_cards.json` writes the cards he
+  marks on Model > Game review > Numbers advice (marks in `data/model/numbers_card_marks.json`; ids, `changed` and
+  `gone` as for the flag cards; a situation he graded Weak or No decision has no card). A res that levels the fight
+  ends the advantage unless that team dies again within 12 s (R-555: already how the stretches are read).
+  The call is read 20 s in and told again at 60 s (R-556; `cases._num_call`), in his options (R-551: up, stay and kill, push into their base
   for NPCs, push their flagger, run a flag for a backup, fall back and reset; down, stay and fight, fall to footmen,
   retreat to the pit, trade with a split), never from the whole situation, which marks a team already winning. Never
   set cases with a res against cases without: a res comes where players are dying. The cards for a flag in hand
