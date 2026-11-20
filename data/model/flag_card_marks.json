@@ -294,6 +294,13 @@
    "game": "hold v Men, Uncharted Isle",
    "at": "2026-11-20",
    "engine": "cb7c78a"
+  },
+  "af831111-a724-5a33-ad1d-e01bebeaac6e": {
+   "marks": {},
+   "game": "HC v hdm, Isle of Jade",
+   "at": "2026-11-20",
+   "engine": "cb7c78a",
+   "notes": "5:56 - it's a bit of a difficult situation to read because the flag was already on the ground, but hdm send 8 ele out to pick up flag that was left there and not returned; hdm manages to cap which puts them in a very good position"
   }
  }
 }
