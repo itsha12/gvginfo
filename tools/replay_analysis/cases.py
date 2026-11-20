@@ -225,7 +225,7 @@ def cases(D, M, B):
                     "their_flag": (p.get("beside") or {}).get("their_flag"), "boosts": {H: af[H]["boosts"] for H in HS},
                     "their_runner": p.get("their_runner"), "our_runner": p.get("our_runner"), "snares": (p.get("teams") or {}).get("snare"), "t1": p["t1"],
                     "our_capped": p["tests"].get("our flag is capped"), "main_deaths": (p.get("beside") or {}).get("deaths_at_the_main_fight"),
-                    "from_cap": bool((p.get("clock") or {}).get("from_cap")), "pre": pre, "track": p.get("track"), "lead": {H: af[H]["lead_change"] for H in HS}, "quiet": {H: af[H]["deaths"] == [0, 0] and af[H]["npcs"] == [0, 0] for H in HS},
+                    "from_cap": bool((p.get("clock") or {}).get("from_cap")), "flag_up": p.get("our_flag_up"), "pre": pre, "track": p.get("track"), "lead": {H: af[H]["lead_change"] for H in HS}, "quiet": {H: af[H]["deaths"] == [0, 0] and af[H]["npcs"] == [0, 0] for H in HS},
                     "hard": {H: {"deaths": af[H]["deaths"], "npcs": af[H]["npcs"], "lead_change": af[H]["lead_change"], "boosts": af[H]["boosts"]} for H in HS}})
     return out, skipped
 
@@ -786,13 +786,23 @@ def card(s, i, K, M):
     soon = [f"{who} caps {rel} s later" for rel, who in soon if 0 < rel <= 15]
     if soon: hold += " (" + ", ".join(soon) + ")"
     boost = "" if x[1] is None else f", boost in {x[1]:.0f} s"
-    if c["from_cap"]: L = [f"{at(k['anchor'])}  {us}'s flag goes in while {them}'s {tr} is still on his way with theirs (he set off at {at(k['their_off'])}). Run again, or not?"]
-    else: L = [f"{at(k['anchor'])}  {them}'s {tr} sets off for a flag ({c['their']}). {hold}{boost}."]
+    # a runner who waited back at his flag spawn from the gates did not set off: he takes the flag up (his words on Men v RACK 0:51, 2026-11-20: "Warrior was
+    # waiting back, he didn't go back at 0:04"); a first flag that goes in over theirs is said so ("Men held the stand and RACK capped over (i.e. RACK didn't cap the first flag)"); and our own next
+    # flag already up the field is said with the spot (Men v hold 2:07: "men already has flag in hand at stand")
+    wb = k.get("their_waited_back")
+    fu = c.get("flag_up")
+    up_ = "" if not fu else f" {us}'s next flag is already up: " + (f"carried by its {fu['by']} {'in' if fu['where'].startswith(('the greater', 'the field')) else 'at'} {fu['where']}" if fu["carried"] else f"lying {'in' if fu['where'].startswith(('the greater', 'the field')) else 'at'} {fu['where']} since {at(fu['since'])}") + "."
+    if c["from_cap"]:
+        way = f"he waited back at his flag spawn from {at(wb)} and took it up at {at(k['their_pick'])}" if wb is not None else f"he set off at {at(k['their_off'])}"
+        goes = f"{us}'s first flag goes in, over {them}'s (in since {at(k['cap_over'])})," if k.get("cap_over") is not None else f"{us}'s flag goes in"
+        L = [f"{at(k['anchor'])}  {goes} while {them}'s {tr} is still on his way with theirs ({way}). Run again, or not?{up_}"]
+    elif wb is not None: L = [f"{at(k['anchor'])}  {them}'s {tr}, who waits back at his flag spawn from {at(wb)}, takes up a flag at {at(k['their_pick'])} ({c['their']}). {hold}{boost}.{up_}"]
+    else: L = [f"{at(k['anchor'])}  {them}'s {tr} sets off for a flag ({c['their']}). {hold}{boost}.{up_}"]
     L.append(f"    The spot: main fight {us} {x[2]:.0f} v {them} {x[3]:.0f} ({up}); {us}'s main team {place(mo[1], us, them)}, {them}'s {place(mo[2], them, us)}; morale {us} {morale_(x[4])}, {them} {morale_(x[5])} (the eight summed; a death is -15); "
              f"{flags_}; base res in {mo[0]:.0f} s; {us}'s chance of winning {100 * c['p0']:.0f}%.")
     d = _delay(c); who = (c.get("our_runner") or {}).get("role")
     if d is None or d > 180: did = f"{us} sends nobody in the next three minutes."
-    elif d < 0: did = f"{us}'s {who or 'runner'} had already set off {-d} s before."
+    elif d < 0: raise ValueError(f"card {c['id']}: {us}'s runner set off {-d} s before the run he is told to answer (R-460: whoever set off first is sending; jobs.flag_plays)")
     else: did = f"{us} sends {('its ' + who) if who else 'a runner'} {d} s later" + (" (a double run)" if k["our_double"] else "") + "."
     L.append(f"    The answer: {did}")
     h = c["hard"]["180"]; tf = c["their_flag"]
@@ -854,11 +864,59 @@ def cards(path, which="f1", out_json=None, site=None):
                                    "reading": bool(r["compared"] and not r["unusual"]), "verdict": VERDICT_WORDS.get(r["verdict"], r["verdict"])}
                 elif r["id"] in by: by[r["id"]]["second"] = r["lines"][0]
             games.append({"rid": rid, "teams": m["teams"], "map": m["map"], "date": m["date"], "length_s": m.get("length_s"), "cards": list(by.values())})
+        _keep_marks(games, site)
         eng = subprocess.check_output(["git", "-C", REPO, "rev-parse", "--short", "HEAD"], text=True).strip()
         json.dump({"about": "The engine's sentence for every answer to a flag run, and every \"run again, or not\", in the games of set " + which + " (tools/replay_analysis/cases.py cards, on the engine branch). The first three lines of a card "
-                            "are what happened; the similar-spots line is a reading, not advice (R-538). Shown on Model > Game review > Flag advice; his marks are in flag_card_marks.json.",
+                            "are what happened; the similar-spots line is a reading, not advice (R-538). Shown on Model > Game review > Flag advice; his marks are in flag_card_marks.json."
+                            " A card keeps the id it was first written with (`play` is its play now), so his marks stay on it; `changed` says what is told differently from the card he marked, and the page then asks for that card again; `gone` lists the cards he marked that are no longer written.",
                    "generated": datetime.date.today().isoformat(), "engine": eng, "set": which, "games": games}, open(site, "w"), ensure_ascii=False, indent=1, default=float)
     return res
+
+
+def _substance(parts):
+    """What a card says, without the figures that move a little with every fit: the head and the answer word for word, the spot and what followed without the
+    chance of winning, and which answer the first look favours. `parts` = head, spot, answer, followed, similar."""
+    import re
+    head, spot, answer, followed, similar = (list(parts) + [""] * 5)[:5]
+    spot = re.sub(r"; [^;]*chance of winning \d+%\.?$", "", spot)
+    followed = re.sub(r"; [^;]*chance of winning \d+% to \d+% \([-+][\d.]+\)\.?$", "", followed)
+    fav = re.search(r"the data favours (a runner out by \d+ s|holding off)", similar)
+    look = "the data favours " + fav.group(1) if fav else "no clear difference" if "no clear difference" in similar else "no reading"
+    return {"what happened": (head, spot, answer, followed), "the reading": look}
+
+
+def _keep_marks(games, site):
+    """His marks stay on the cards when the cards are written again (2026-11-20: all 61 were marked, and four changes to the reading rewrote a handful). A card
+    takes the id of the card it was before (the same game, team and kind of decision, nearest in time and within 40 s), so the marks file, which is his, is never
+    touched from here. A card he marked that now says something else in substance is given `changed`, in words, and the page asks for it again with his earlier
+    marks beside it; one whose figures only moved with the fit is not. A marked card that is no longer written is listed under the game's `gone`."""
+    prev = json.load(open(site)) if os.path.exists(site) else {"games": []}
+    mp = os.path.join(os.path.dirname(site), "flag_card_marks.json")
+    marks = json.load(open(mp)).get("games", {}) if os.path.exists(mp) else {}
+    kind = lambda c: "Run again" in c["head"]
+    for g in games:
+        old = list(next((x["cards"] for x in prev["games"] if x["rid"] == g["rid"]), [])); mk = (marks.get(g["rid"]) or {}).get("marks", {})
+        gone_before = next((x.get("gone", []) for x in prev["games"] if x["rid"] == g["rid"]), [])
+        used = set()
+        for c in g["cards"]:
+            c["play"] = c["id"]
+            o = min((o for o in old if o["id"] not in used and o["team"] == c["team"] and kind(o) == kind(c) and abs(o["t"] - c["t"]) <= 40), key=lambda o: abs(o["t"] - c["t"]), default=None)
+            if o is None: continue
+            used.add(o["id"]); c["id"] = o["id"]
+        taken = collections.Counter(c["id"] for c in g["cards"])
+        for c in g["cards"]:                                              # a new card whose play id is the kept id of another card
+            if taken[c["id"]] > 1 and c["id"] == c["play"] and not any(o["id"] == c["id"] for o in old): c["id"] += "b"
+        for c in g["cards"]:
+            m = mk.get(c["id"])
+            if not m or not m.get("text"): continue
+            was, now = _substance(m["text"].split(" | ")), _substance([c["head"], c["spot"], c["answer"], c["followed"], c["similar"]])
+            diff = []
+            if was["what happened"] != now["what happened"]: diff.append("what happened is told differently")
+            if was["the reading"] != now["the reading"]: diff.append(f"the reading at the first look was \"{was['the reading']}\" and is now \"{now['the reading']}\"")
+            if diff: c["changed"] = "Since you marked it: " + "; ".join(diff) + "."
+        gone = [{"id": o["id"], "t": o["t"], "team": o["team"], "head": o["head"], "answer": o["answer"]} for o in old if o["id"] not in used and o["id"] in mk]
+        gone += [x for x in gone_before if x["id"] in mk and not any(y["id"] == x["id"] for y in gone) and not any(c["id"] == x["id"] for c in g["cards"])]
+        if gone: g["gone"] = sorted(gone, key=lambda x: x["t"])
 
 
 # ---- the report

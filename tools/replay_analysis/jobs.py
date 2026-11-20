@@ -162,7 +162,8 @@ def _flag_rows(M):
             e = int(carries[-1][2])                                       # put down for good: the run ends there, not when the flag goes back to the spawn
             p = M.P[carries[-1][0]][min(e, M.T)]
             other = bool(p) and any(d(p, o) < 400 for o in others)        # at the hall's other flag stand (his answer on TFS v 옷옷옷옷 2:54: the Obelisk flag stand)
-        out.append(dict(f, runner=runner, s0=min(s0, e), off=min(off if off is not None else s0, s0, e), pick=pick, e=e, ids=ids, other_stand=other, double=dbl, soh=soh))
+        out.append(dict(f, runner=runner, s0=min(s0, e), off=min(off if off is not None else s0, s0, e), pick=pick, e=e, ids=ids, other_stand=other, double=dbl, soh=soh,
+                        waited_back=bool(r is not None and r.get("waited_back") and r.get("waited") is not None), waited=r and r.get("waited")))
     M._frows = out
     return out
 
@@ -277,13 +278,19 @@ def flag_plays(M, K, pinned_at):
         # hold v RACK 11:00, 2026-11-19: "How can hold have a decision point of whether to run or not when they already sent their earth ele 11s before? Wouldn't this
         # rather be described as hold sending an earth ele and RACK responding with air ele 11s later?")
         go = lambda g_: g_.get("off", g_["s0"]); fo = go(f)
-        earlier = next((g for g in mine if go(g) < fo - 2 and g["e"] > w0 + 5), None)      # our flag already set off for when theirs sets off
+        # Whoever set off first is sending and the other is answering, by however little: two runners gone within 2 s of one another were told from both sides,
+        # the second time as a decision for the team that had already sent its runner (his mark on hold v RACK 3:58, incorrect, 2026-11-20: "a repeat of the
+        # previous row" that "states a decision point for something that has already happened"). Runners gone in the same second are ordered by when the hall's
+        # rule tells the run, then by team, so that the pair is still told once
+        # ... and the two first flags, both brought from the gates, are neither one before the other: each team's first flag is told under the opening (R-520)
+        first = lambda g_: not (g_["pregame"] and f["pregame"]) and (go(g_), g_["s0"], g_["tm"]) < (fo, f["s0"], f["tm"])
+        earlier = next((g for g in mine if first(g) and g["e"] > w0 + 5), None)      # our flag already set off for when theirs sets off
         # a run of ours set off for while theirs is out: it is the answer to theirs when its runner turned for home before their flag went in, though the hall's rule
         # (R-461) reads the run itself a few seconds later (R-498: his mark on HC v Team 5:58, Classic: HC caps at 6:36, Team's Monk 5 sets off at 6:34 and leaves the
         # stand area at 6:40, "Team response with single run classic at 6:33")
         # ... and within this play's own clock: a flag of theirs that is held for minutes is answered by what we do in the FLAG_JOB_MAX_S the play runs, not by a run of
         # ours five minutes on (his mark on Men v Crew 5:52, Classic: Men's AoB Derv holds the flag until 11:36 and Crew's Water Ele sets off at 11:32: "crew does not run a flag")
-        new = next((g for g in mine if fo - 2 <= go(g) and go(g) <= min(w1, w0 + FLAG_JOB_MAX_S)), None)
+        new = next((g for g in mine if not first(g) and go(g) <= min(w1, w0 + FLAG_JOB_MAX_S)), None)
         inhand = None
         if earlier:
             # in hand means close to the flag stand (his mark, TFS v 옷옷옷옷 1:40), and waiting there. A team that holds the stand cannot cap its flag until the other team
@@ -370,7 +377,7 @@ def flag_plays(M, K, pinned_at):
         # set off and when their run ended; when our next runner set off, whenever that was; and how long their flag should take from here (to his spawn at a run, then
         # the usual carry for the hall and side; from where he stands when he already carries it)
         lead_ = lambda x_: list(dict.fromkeys(x_["ids"]))[:1]                # the player who sets off with it
-        nxt_ = min((x_ for x_ in mine if (x_["s0"] >= w0 - 2 if from_cap else go(x_) >= fo - 2)), key=go, default=None)
+        nxt_ = min((x_ for x_ in mine if (x_["s0"] >= w0 - 2 if from_cap else not first(x_))), key=go, default=None)
         a_ = next(iter(lead_(f)), None); u_ = min(anc, T); eta = None
         if a_ is not None and M.hall is not None and M.P[a_][u_]:
             if M.carrying(a_, u_): w_ = M.hall.walk(M.P[a_][u_], M.hall.stand); eta = w_ / CARRY_SPEED if w_ else None
@@ -378,7 +385,17 @@ def flag_plays(M, K, pinned_at):
                 w_ = M.hall.walk(M.P[a_][u_], M.spawn[B]) if M.spawn.get(B) else None; us_ = _usual_arrival(M, B)
                 eta = (w_ / RUN_SPEED + us_) if (w_ is not None and us_) else None
         kw["clock"] = {"their_off": int(f.get("off", f["s0"])), "their_end": int(f["e"]), "their_eta_s": eta and round(eta), "our_off": nxt_ and int(nxt_.get("off", nxt_["s0"])), "our_s0": nxt_ and int(nxt_["s0"]), "our_double": bool(nxt_ and nxt_["double"]),
-                       "our_end": nxt_ and int(nxt_["e"]), "our_how": nxt_ and nxt_["how"], "anchor": anc, "from_cap": from_cap}
+                       "our_end": nxt_ and int(nxt_["e"]), "our_how": nxt_ and nxt_["how"], "anchor": anc, "from_cap": from_cap,
+                       "their_waited_back": f.get("waited") if f.get("waited_back") else None, "their_pick": int(f["pick"]),
+                       "cap_over": (lambda own_: int(own_[1]) if from_cap and own_[0] == B and not any(h == A and u < w0 - 2 for u, h in M.st.caps) else None)(M.st.stand_owner(max(int(w0) - 2, 0)))}
+        # (`their_waited_back`: their runner had waited back at his flag spawn since the gates, from that second, and did not set off; `their_pick`: when he took the
+        # flag up; `cap_over`: our cap is our first flag of the match and goes in over theirs, in since that second: they capped first)
+        # the answer to a run is never before the run (R-460: a fault here stops the run; the mirror card of 2026-11-19 came back once)
+        if not from_cap and kw["clock"]["our_off"] is not None and kw["clock"]["our_off"] < o_ and not (f["pregame"] and nxt_["pregame"]):      # (the two first flags, from the gates, are the opening's)
+            raise ValueError(f"flag play of team {A} at {w0}: its runner set off at {kw['clock']['our_off']}, before theirs at {o_}, yet he is told as the answer")
+        # ... and our own flag already up the field at that second, carried or lying where it was put down (his word on Men v hold 2:07): said on the card; the
+        # play stays what he graded it (a stay), and whether such a spot belongs with the flag in hand is his to rule
+        kw["our_flag_up"] = None if inhand else M.flag_up(A, min(anc, T))
         # ... and the raw record on one clock, their runner's set-off, for the check of the readings themselves (his word, 2026-11-19: do the run, stay and timing
         # readings go with flag advantage; `cases.py ladder`): the flag lead (R-408) and the holder of the stand at fixed seconds from it, and the second of every cap
         # and every morale boost in the FLAG_TRACK_FOR that follow, by side. `told_after` is the seconds from it to the play's own t0 (the second the run is told by the

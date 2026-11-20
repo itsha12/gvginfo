@@ -32,7 +32,7 @@ the window, what the engine said then (`shown`), his mark and his words (`said`)
 mark as things the plays must hold or must not hold, which he corrects. A check names plays by `play`, `side`, `team` and
 a window in seconds of match time (`at` = the play overlaps it, `start` = the play begins inside it, `end` = it ends inside it), and `want` gives the
 fields they must carry (`who~` = these roles among who, `who#` = how many, `scenario~` = these words in the scenario, `tests` = a test of the play by its words and whether it held; a
-list of values = any of them). `has` passes when one play fits, `none` when no play fits. A check marked `open` is a
+list of values = any of them; a dotted name such as `clock.their_waited_back` reads inside a field). `has` passes when one play fits, `none` when no play fits. A check marked `open` is a
 fault known and not yet fixed: it is reported apart and does not fail the row. Engine faults go here as checks, never
 into RULINGS.md (R-452). An accuracy figure by kind of play comes from the rows of a whole-game review (R-454), where
 every call of a game is marked, not from rows picked to cover rare plays."""
@@ -63,9 +63,16 @@ def fits(p, sel, want):
         elif k == "scenario~":
             if not all(w in p.get("scenario", "") for w in ([v] if isinstance(v, str) else v)): return False
         elif isinstance(v, list):
-            if p.get(k) not in v: return False
-        elif p.get(k) != v: return False
+            if _get(p, k) not in v: return False
+        elif _get(p, k) != v: return False
     return True
+
+
+def _get(p, k):
+    """A field of a play, or one inside it by a dotted name (`clock.their_waited_back`: what a flag card is written from)."""
+    for part in k.split("."):
+        p = p.get(part) if isinstance(p, dict) else None
+    return p
 
 
 def check(plays, c):

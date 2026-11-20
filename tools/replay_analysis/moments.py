@@ -66,6 +66,9 @@ REST_CALL = {"stand": "stay at the stand", "footmen": "fall to footmen", "own pi
              "own base": "fall back into the base"}
 
 
+FLAG_UP_CAP_S = 15              # a flag capped within this long is a cap about to land (the 15 s of R-547's "caps N s later" on a card), not a flag kept up the field
+
+
 class Moments:
     def __init__(self, st, sb=None):
         self.st, self.m, self.hall, self.sb, self.T = st, st.m, st.hall, sb, st.end
@@ -2053,7 +2056,24 @@ class Moments:
             # with his team, before he went has not set off yet
             nearer = lambda v: v >= 4 and dist(v - 4) is not None and dist(v) is not None and dist(v - 4) > dist(v) + 40
             jump = lambda v: v >= 8 and dist(v - 4) is not None and dist(v) is not None and dist(v - 4) + 40 < dist(v) and (nearer(v - 2) or nearer(v - 4))
-            while nearer(u) or jump(u): u -= 2
+            # ... and a runner who turns for home, comes back to the fight and then goes has set off when he goes for good, not at his first turn (R-548; hold v RACK
+            # 10:52: the Earth Ele turns for home from his cap, is a quarter of the way there at 10:59, back at the stand at 11:04 and gone at 11:05). Most readings
+            # passed over as the measure jumping are the player really moving (2026-11-20), so a passed-over reading is asked what he did. He came back when he had
+            # left, an aggro bubble or more nearer home than where he turned (FIGHT_CLOSE, the leaving of R-464), and then gave up more than half of that ground,
+            # standing nearer the place he first turned from than the nearest he had got to his spawn. A step of a few hundred toward home and back is a player
+            # shuffling where he stands and no leaving (HC v Team 11:18, a Classic row: Team's Monk 5, waiting part of the way home, steps 400 nearer and back before
+            # he goes; hold v RACK 3:58); a runner a little farther for a reading or two on a long walk home is still on his way (RJT v RACK 1:44)
+            def for_good(u):
+                while True:
+                    while nearer(u): u -= 2
+                    if not jump(u): return u
+                    u0 = u - 2
+                    while nearer(u0) or jump(u0): u0 -= 2                 # where the walk would be read from if this reading were passed over
+                    ds = [x for x in (dist(w) for w in range(max(u0, 0), u + 1)) if x is not None]
+                    peak = max(x for x in (dist(w) for w in range(u - 4, u + 1)) if x is not None)
+                    if dist(u0) is not None and dist(u0) - min(ds) >= FIGHT_CLOSE and peak - min(ds) > 0.5 * (dist(u0) - min(ds)): return u
+                    u -= 2
+            u = for_good(u)
             # ... and no earlier than he let go of the flag before: a runner who caps and goes straight back has not set off while he still carried it (hold v RACK
             # 10:49, 2026-11-19: the Earth Ele was read turning for home 2 s before his own cap at 10:51, which made one player's two single runs, R-485, look like a
             # second player gone back before the cap)
@@ -2066,6 +2086,11 @@ class Moments:
             # then, with that player (Denning's golden game 1: "hook's 8 Monk leaves the base at 7:05"; TFS v 옷옷옷옷 1:20 and 11:01)
             pre = c[1] < 2                                   # before the gates nobody set off or waited
             set_off = u if not pre and dist(u) is not None and dist(u) - SPAWN_R > 1500 else None
+            # a player who has not been out of his own base since the gates opened did not turn for home: he waited back for the flag (his words on Men v RACK 0:51,
+            # 2026-11-20: "Warrior was waiting back, he didn't go back at 0:04"; the Hammer A walks from the gate to his spawn at 0:04 and waits there from 0:12).
+            # `waited_back` says so wherever his run is told; the run record itself is left as it was (the plays read from it are his Classic rows: Men v RACK 0:51)
+            home = lambda v: self.place_at(a, v)[1] == self.st.side.get(tm) and self.place_at(a, v)[0] in ("pit", "base")
+            waited_back = set_off is not None and tp - waited >= 10 and all(self.AL[a][v] and self.P[a][v] and home(v) for v in range(0, set_off + 1, 2))      # he waited there: a player sent back for a flag nobody brought turned for home (Men v hold 0:15, a Classic row)
             part = self._part_carries(L)                     # R-535: a defender's part-run is on its way nowhere
             pr |= part
             own, out_t, out_by = self.st.side.get(tm), None, None
@@ -2087,7 +2112,7 @@ class Moments:
                 elif self.place_at(a, set_off)[0] in inside:
                     moment = next((v for v in range(set_off, tp + 1, 2) if self.place_at(a, v)[0] not in inside), tp)
                     rule = "leaves the greater stand area" if len(inside) == 2 else "leaves the stand area"
-            out.append({"a": a, "runner": runner, "how": L["how"], "serious": list(L["serious"]), "carries": [tuple(c2[:3]) for c2 in L["carries"]], "tm": tm, "pickup": tp, "set_off": set_off, "moment": moment, "moment_rule": rule,
+            out.append({"a": a, "runner": runner, "how": L["how"], "serious": list(L["serious"]), "carries": [tuple(c2[:3]) for c2 in L["carries"]], "tm": tm, "pickup": tp, "set_off": set_off, "moment": moment, "moment_rule": rule, "waited_back": waited_back,
                         "waited": waited if not pre and tp - waited >= 10 else None, "under_way": out_t, "out_by": out_by,
                         "chain": min(max(int(ser[i0][1]), 0), self.T) if ser and i0 > 0 and ser[i0 - 1][2] is not None else None, "first_end": ser[i0 - 1][2] if ser and i0 > 0 else None,      # the flag lay on the ground and was taken up again: when, and until when it had been carried before
                         "first_ids": [c2[0] for c2 in ser[:max(i0, 0)]], "chain_ids": [c2[0] for c2 in ser[max(i0, 0):]]})
@@ -2582,6 +2607,26 @@ class Moments:
                     worst = max(worst, lost, held)
             self._bu[k] = (bool(cs) and not first and ok and worst < JOIN_S, reach)
         return self._bu[k]
+
+    def flag_up(self, tm, t):
+        """A team's own flag brought up and kept up the field at second t: carried off its own ground, or lying where a player of the team put it down and took
+        it up again later (his words on Men v hold 2:07, 2026-11-20: "men already has flag in hand at stand", the flag lying at hold's front door from 1:40 to
+        2:33 beside Men's main team; a flag put down and never taken up again may have gone back to its spawn, which the replay does not record, so it is not
+        read as up). Read from the flag's own life, not from who carries it at that second. None when the team has no such flag."""
+        own = self.st.side.get(tm)
+        for L in self.flag_lives():
+            if L["team"] != tm or not L["carries"]: continue
+            cs = sorted(([c[0], max(int(c[1]), 0), min(int(c[2]), self.T) if c[2] is not None else self.T] for c in L["carries"] if c[2] is None or c[2] >= 0), key=lambda c: c[1])
+            if not cs or not (cs[0][1] <= t <= cs[-1][2]): continue
+            if L.get("how") == "captured" and L["end"] - t <= FLAG_UP_CAP_S: continue      # going in now or within seconds: that is a cap (said with the stand, R-547), not a flag kept up
+            now = next((c for c in cs if c[1] <= t <= c[2]), None)
+            last = now or max((c for c in cs if c[2] < t), key=lambda c: c[2])
+            u = t if now else last[2]
+            if not (self.P[last[0]][u]): continue
+            k, sd = self.place_at(last[0], u)
+            if sd == own and k in HOME_GROUND: continue                  # still on its own ground: not brought up
+            return {"carried": bool(now), "by": self.m.roles[last[0]], "kind": k, "side": sd, "since": u if not now else now[1], "where": self.place_words(k, sd)}
+        return None
 
     def not_run(self, r):
         """A flag that was only brought up with the team and never capped or pushed for the stand: no run, no runner, nothing for the enemy to answer (R-505)."""
