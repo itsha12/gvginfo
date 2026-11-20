@@ -1,5 +1,5 @@
 {
- "about": "Denning's marks on the cards of Model > Game review > Flag advice. For each card: facts (is what happened told correctly: correct, partly, incorrect), sense (does the similar-spots reading make sense to him: agree, disagree, unsure), own (what he would have done: send, hold, nodiff = it makes no difference here, unknown = he does not know), his words, and the text of the card as he saw it. Only what he marked.",
+ "about": "Denning's marks on the cards of Model > Game review > Flag advice. For each card: facts (is what happened told correctly: correct, partly, incorrect), sense (does the similar-spots reading make sense to him: agree, disagree, unsure), own (what he would have done: send = a runner at once, wait = look for a kill first and then send (offered from 2026-11-20), hold, nodiff = it makes no difference here, unknown = he does not know), his words, and the text of the card as he saw it. `was` holds his marks on a card as it read before it came to say something else. Marks on cards the engine no longer writes stay here under their ids (flag_cards.json lists those cards under `gone`). Only what he marked.",
  "games": {
   "9b5cdf62-edce-5ca9-a6a4-c02d48c7eb96": {
    "marks": {
@@ -11,9 +11,18 @@
      "own": "hold"
     },
     "9b5cdf62-flag-1-226-16": {
+     "was": [
+      {
+       "facts": "correct",
+       "why": "",
+       "sense": "agree",
+       "own": "send",
+       "text": "Team's Monk 5 (WoC) sets off for a flag (single run). HC holds the stand, boost in 114 s. | The spot: main fight HC 7 v Team 7 (even); HC's main team at the stand, Team's at the stand; morale HC -30, Team no death penalty or boost (the eight summed; a death is -15); HC ahead on flags by 1.0; base res in 18 s; HC's chance of winning 71%. | The answer: HC sends its Mes/A 30 s later. | What followed, 180 s on: Team's flag in at 4:34; HC's in at 5:08; flag lead -0.24 for HC; deaths HC 2, Team 1; boosts HC 0, Team 0; HC's chance of winning 71% to 66% (-4.3). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +1.3 (90 cases); a runner out by 15 s -1.6 (90 cases): no clear difference (2.9, -0.5 to +6.4). HC held off: no clear difference either way. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +0.8 (90 cases); a runner out by 30 s -0.3 (90 cases): no clear difference (1.1, -2.0 to +4.1). HC had a runner out: no clear difference either way."
+      }
+     ],
      "facts": "correct",
      "why": "",
-     "text": "Team's Monk 5 (WoC) sets off for a flag (single run). HC holds the stand, boost in 114 s. | The spot: main fight HC 7 v Team 7 (even); HC's main team at the stand, Team's at the stand; morale HC -30, Team no death penalty or boost (the eight summed; a death is -15); HC ahead on flags by 1.0; base res in 18 s; HC's chance of winning 71%. | The answer: HC sends its Mes/A 30 s later. | What followed, 180 s on: Team's flag in at 4:34; HC's in at 5:08; flag lead -0.24 for HC; deaths HC 2, Team 1; boosts HC 0, Team 0; HC's chance of winning 71% to 66% (-4.3). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +1.3 (90 cases); a runner out by 15 s -1.6 (90 cases): no clear difference (2.9, -0.5 to +6.4). HC held off: no clear difference either way. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +0.8 (90 cases); a runner out by 30 s -0.3 (90 cases): no clear difference (1.1, -2.0 to +4.1). HC had a runner out: no clear difference either way.",
+     "text": "Team's Monk 5 (WoC) sets off for a flag (single run). HC holds the stand, boost in 114 s. | The spot: main fight HC 7 v Team 7 (even); HC's main team at the stand, Team's at the stand; morale HC -30, Team no death penalty or boost (the eight summed; a death is -15); HC ahead on flags by 1.0; base res in 18 s; HC's chance of winning 71%. | The answer: HC sends its Mes/A 30 s later. | What followed, 180 s on: Team's flag in at 4:34; HC's in at 5:08; flag lead -0.24 for HC; deaths HC 2, Team 1; boosts HC 0, Team 0; HC's chance of winning 71% to 66% (-4.3). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +1.4 (90 cases); a runner out by 15 s -1.9 (90 cases): the data favours holding off (no runner out at 15 s) by 3.3 win points (+0.1 to +6.6). HC held off: the answer the data favours. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +0.8 (90 cases); a runner out by 30 s +0.4 (90 cases): no clear difference (0.4, -2.7 to +3.4). HC had a runner out: no clear difference either way.",
      "sense": "agree",
      "own": "send"
     },
@@ -53,18 +62,36 @@
      "own": "hold"
     },
     "9b5cdf62-flag-2-543-40": {
+     "was": [
+      {
+       "facts": "correct",
+       "why": "",
+       "sense": "agree",
+       "own": "send",
+       "text": "HC's Mes/A sets off for a flag (single run). Team holds the stand (HC caps 9 s later), boost in 40 s. | The spot: main fight Team 6 v HC 8 (HC up by 2); Team's main team at the stand, HC's at the stand; morale Team -26, HC -76 (the eight summed; a death is -15); flags level; base res in 67 s; Team's chance of winning 43%. | The answer: Team sends its Monk 5 (WoC) 14 s later. | What followed, 180 s on: HC's flag in at 10:27; Team's in at 10:24; flag lead +0.63 for Team; deaths Team 0, HC 0; boosts Team 0, HC 0; Team's chance of winning 43% to 38% (-4.3). | Similar spots, 180 s on, from the same position: a runner out by 15 s +0.1 (90 cases); holding off (no runner out at 15 s) -1.5 (90 cases): no clear difference (1.6, -1.9 to +5.2). Team had a runner out: no clear difference either way."
+      }
+     ],
      "facts": "correct",
      "why": "",
-     "text": "HC's Mes/A sets off for a flag (single run). Team holds the stand (HC caps 9 s later), boost in 40 s. | The spot: main fight Team 6 v HC 8 (HC up by 2); Team's main team at the stand, HC's at the stand; morale Team -26, HC -76 (the eight summed; a death is -15); flags level; base res in 67 s; Team's chance of winning 43%. | The answer: Team sends its Monk 5 (WoC) 14 s later. | What followed, 180 s on: HC's flag in at 10:27; Team's in at 10:24; flag lead +0.63 for Team; deaths Team 0, HC 0; boosts Team 0, HC 0; Team's chance of winning 43% to 38% (-4.3). | Similar spots, 180 s on, from the same position: a runner out by 15 s +0.1 (90 cases); holding off (no runner out at 15 s) -1.5 (90 cases): no clear difference (1.6, -1.9 to +5.2). Team had a runner out: no clear difference either way.",
+     "text": "HC's Mes/A sets off for a flag (single run). Team holds the stand (HC caps 9 s later), boost in 40 s. | The spot: main fight Team 6 v HC 8 (HC up by 2); Team's main team at the stand, HC's at the stand; morale Team -26, HC -76 (the eight summed; a death is -15); flags level; base res in 67 s; Team's chance of winning 43%. | The answer: Team sends its Monk 5 (WoC) 14 s later. | What followed, 180 s on: HC's flag in at 10:27; Team's in at 10:24; flag lead +0.63 for Team; deaths Team 0, HC 0; boosts Team 0, HC 0; Team's chance of winning 43% to 38% (-4.3). | Similar spots, 180 s on, from the same position: a runner out by 15 s +2.7 (90 cases); holding off (no runner out at 15 s) -1.4 (90 cases): the data favours a runner out by 15 s by 4.0 win points (+0.6 to +7.5). Team had a runner out: the answer the data favours.",
      "sense": "agree",
      "own": "send"
     },
     "9b5cdf62-flag-1-641-55": {
+     "was": [
+      {
+       "facts": "correct",
+       "why": "",
+       "sense": "agree",
+       "own": "hold",
+       "text": "Team's Warrior sets off for a flag (single run). HC holds the stand (Team caps 1 s later, HC caps 4 s later), boost in 39 s. | The spot: main fight HC 4 v Team 4 (even); HC's main team at the stand, Team's at the stand; morale HC -76, Team -26 (the eight summed; a death is -15); HC ahead on flags by 1.0; base res in 97 s; HC's chance of winning 67%. | The answer: HC sends its Mes/A 56 s later. | What followed, 180 s on: Team's flag in at 11:35; HC's in at 12:02; flag lead -1.80 for HC; deaths HC 0, Team 2; boosts HC 0, Team 0; HC's chance of winning 67% to 78% (+11.1). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +2.4 (90 cases); a runner out by 15 s +2.1 (90 cases): no clear difference (0.3, -3.0 to +3.6). HC held off: no clear difference either way. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +2.2 (90 cases); a runner out by 30 s +0.3 (90 cases): no clear difference (1.8, -1.0 to +4.7). HC held off: no clear difference either way."
+      }
+     ],
      "facts": "correct",
      "why": "",
-     "text": "Team's Warrior sets off for a flag (single run). HC holds the stand (Team caps 1 s later, HC caps 4 s later), boost in 39 s. | The spot: main fight HC 4 v Team 4 (even); HC's main team at the stand, Team's at the stand; morale HC -76, Team -26 (the eight summed; a death is -15); HC ahead on flags by 1.0; base res in 97 s; HC's chance of winning 67%. | The answer: HC sends its Mes/A 56 s later. | What followed, 180 s on: Team's flag in at 11:35; HC's in at 12:02; flag lead -1.80 for HC; deaths HC 0, Team 2; boosts HC 0, Team 0; HC's chance of winning 67% to 78% (+11.1). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +2.4 (90 cases); a runner out by 15 s +2.1 (90 cases): no clear difference (0.3, -3.0 to +3.6). HC held off: no clear difference either way. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +2.2 (90 cases); a runner out by 30 s +0.3 (90 cases): no clear difference (1.8, -1.0 to +4.7). HC held off: no clear difference either way.",
+     "text": "Team's Warrior sets off for a flag (single run). HC holds the stand (Team caps 1 s later, HC caps 4 s later), boost in 39 s. | The spot: main fight HC 4 v Team 4 (even); HC's main team at the stand, Team's at the stand; morale HC -76, Team -26 (the eight summed; a death is -15); HC ahead on flags by 1.0; base res in 97 s; HC's chance of winning 67%. | The answer: HC sends its Mes/A 56 s later. | What followed, 180 s on: Team's flag in at 11:35; HC's in at 12:02; flag lead -1.80 for HC; deaths HC 0, Team 2; boosts HC 0, Team 0; HC's chance of winning 67% to 78% (+11.1). | Similar spots, 180 s on, from the same position: holding off (no runner out at 15 s) +2.2 (90 cases); a runner out by 15 s -2.4 (90 cases): the data favours holding off (no runner out at 15 s) by 4.6 win points (+1.5 to +7.8). HC held off: the answer the data favours. | Second look, 30 s in, still nobody sent, 180 s on, from the same position: holding off (no runner out at 30 s) +1.6 (90 cases); a runner out by 30 s +0.4 (90 cases): no clear difference (1.2, -1.6 to +4.0). HC held off: no clear difference either way.",
      "sense": "agree",
-     "own": "hold"
+     "own": "wait"
     },
     "9b5cdf62-flag-1-678-58": {
      "facts": "correct",
@@ -81,9 +108,18 @@
      "own": "send"
     },
     "9b5cdf62-flag-1-769-76": {
+     "was": [
+      {
+       "facts": "correct",
+       "why": "",
+       "sense": "agree",
+       "own": "send",
+       "text": "Team's Monk 5 (WoC) sets off for a flag (single run). Team holds the stand, boost in 105 s. | The spot: main fight HC 5 v Team 5 (even); HC's main team at the stand, Team's at the stand; morale HC -66, Team -41 (the eight summed; a death is -15); Team ahead on flags by 1.0; base res in 71 s; HC's chance of winning 70%. | The answer: HC sends its AoB Derv 6 s later. | What followed, 180 s on: Team's flag in at 14:04; HC's in at 13:34; flag lead +2.00 for HC; deaths HC 0, Team 4; boosts HC 0, Team 0; HC's chance of winning 70% to 96% (+26.2). | Similar spots, 180 s on, from the same position: a runner out by 15 s +9.2 (90 cases); holding off (no runner out at 15 s) +3.5 (90 cases): the data favours a runner out by 15 s by 5.7 win points (+2.5 to +8.9). HC had a runner out: the answer the data favours."
+      }
+     ],
      "facts": "correct",
      "why": "",
-     "text": "Team's Monk 5 (WoC) sets off for a flag (single run). Team holds the stand, boost in 105 s. | The spot: main fight HC 5 v Team 5 (even); HC's main team at the stand, Team's at the stand; morale HC -66, Team -41 (the eight summed; a death is -15); Team ahead on flags by 1.0; base res in 71 s; HC's chance of winning 70%. | The answer: HC sends its AoB Derv 6 s later. | What followed, 180 s on: Team's flag in at 14:04; HC's in at 13:34; flag lead +2.00 for HC; deaths HC 0, Team 4; boosts HC 0, Team 0; HC's chance of winning 70% to 96% (+26.2). | Similar spots, 180 s on, from the same position: a runner out by 15 s +9.2 (90 cases); holding off (no runner out at 15 s) +3.5 (90 cases): the data favours a runner out by 15 s by 5.7 win points (+2.5 to +8.9). HC had a runner out: the answer the data favours.",
+     "text": "Team's Monk 5 (WoC) sets off for a flag (single run). Team holds the stand, boost in 105 s. | The spot: main fight HC 5 v Team 5 (even); HC's main team at the stand, Team's at the stand; morale HC -66, Team -41 (the eight summed; a death is -15); Team ahead on flags by 1.0; base res in 71 s; HC's chance of winning 70%. | The answer: HC sends its AoB Derv 6 s later. | What followed, 180 s on: Team's flag in at 14:04; HC's in at 13:34; flag lead +2.00 for HC; deaths HC 0, Team 4; boosts HC 0, Team 0; HC's chance of winning 70% to 96% (+26.1). | Similar spots, 180 s on, from the same position: a runner out by 15 s +4.6 (90 cases); holding off (no runner out at 15 s) +4.4 (90 cases): no clear difference (0.2, -3.1 to +3.5). HC had a runner out: no clear difference either way.",
      "sense": "agree",
      "own": "send"
     },
@@ -97,7 +133,7 @@
    },
    "game": "HC v Team, Imperial Isle",
    "at": "2026-11-20",
-   "engine": "cb7c78a"
+   "engine": "e60a56d"
   },
   "51683de9-4096-5833-ad4a-56a69c4759e4": {
    "marks": {
