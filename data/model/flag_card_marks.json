@@ -337,6 +337,12 @@
    "at": "2026-11-20",
    "engine": "cb7c78a",
    "notes": "5:56 - it's a bit of a difficult situation to read because the flag was already on the ground, but hdm send 8 ele out to pick up flag that was left there and not returned; hdm manages to cap which puts them in a very good position"
+  },
+  "d06ef3c7-521d-5de4-a453-5fdb82c7c467": {
+   "marks": {},
+   "game": "RACK v hdm, Isle of Meditation",
+   "at": "2026-11-20",
+   "engine": "cb7c78a"
   }
  }
 }
