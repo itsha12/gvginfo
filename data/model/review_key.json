@@ -1,5 +1,5 @@
 {
- "about": "The review key (R-450). Every row Denning was shown of the engine's plays: what the engine said then (shown), his mark and his words (said), and checks: Claude's reading of his mark as things the plays must hold or must not hold, which he corrects. Scored by tools/golden/review.py on the branch after every change. Marks: right, partly, wrong, bad example (set aside), not marked. Set 1 is the 35 rows of 2026-11-13, picked one or more to a kind of play, so it is a regression test and not an accuracy figure; whole-game sets (R-454) give the accuracy by kind of play. `answered` holds a later answer of his on a row (what was asked, his words, Claude's reading). Set w1p1 is part 1 of the whole-game review (R-455), marked by him on the site on 2026-11-13 against engine af952c6: one row a situation with his mark and words, its calls under `calls` with theirs, and one `missed` row a game for what the engine did not read; checks are written as each fault is fixed. Set w1p2 is hdm v hook, the first game of part 2, marked on 2026-11-14 against engine 67e87b8 as the first measure of the rebuilt reading; he then chose to build from it too, keeping Men v Crew unmarked as the hidden game. Set w2 is round 3 (R-473): hook v hold and cope v Team, marked on 2026-11-14 against engine b025445 (24 of 41 and 15 of 24 situations right); chic v 戦戦戦戦 was set aside unmarked (a henchman game). RJT v RACK (eea5ba87) is round 3's third game, marked on 2026-11-14 against engine b09a26a (33 of 45 situations right); its checks are written from his words and are open until the reading under them is rebuilt. Set p2 is twelve picked rows of 2026-11-18 (R-495: examples found by search for a fault seen once, put to him in the chat with their replay links): six of the two held flag shapes and three sudden deaths of a solo split player. They carry no grade, so none binds; their games are in the development set. Set c1 is the flag advice cards he corrected on Model > Game review > Flag advice (marked 2026-11-20, 61 cards of the twelve f1 games against engine cb7c78a: 58 told correctly, 2 partly, 1 incorrect; all 61 marks are in data/model/flag_card_marks.json): one row a corrected card, with his words and the check on the play the card is written from. They carry no grade, so none binds.",
+ "about": "The review key (R-450). Every row Denning was shown of the engine's plays: what the engine said then (shown), his mark and his words (said), and checks: Claude's reading of his mark as things the plays must hold or must not hold, which he corrects. Scored by tools/golden/review.py on the branch after every change. Marks: right, partly, wrong, bad example (set aside), not marked. Set 1 is the 35 rows of 2026-11-13, picked one or more to a kind of play, so it is a regression test and not an accuracy figure; whole-game sets (R-454) give the accuracy by kind of play. `answered` holds a later answer of his on a row (what was asked, his words, Claude's reading). Set w1p1 is part 1 of the whole-game review (R-455), marked by him on the site on 2026-11-13 against engine af952c6: one row a situation with his mark and words, its calls under `calls` with theirs, and one `missed` row a game for what the engine did not read; checks are written as each fault is fixed. Set w1p2 is hdm v hook, the first game of part 2, marked on 2026-11-14 against engine 67e87b8 as the first measure of the rebuilt reading; he then chose to build from it too, keeping Men v Crew unmarked as the hidden game. Set w2 is round 3 (R-473): hook v hold and cope v Team, marked on 2026-11-14 against engine b025445 (24 of 41 and 15 of 24 situations right); chic v 戦戦戦戦 was set aside unmarked (a henchman game). RJT v RACK (eea5ba87) is round 3's third game, marked on 2026-11-14 against engine b09a26a (33 of 45 situations right); its checks are written from his words and are open until the reading under them is rebuilt. Set p2 is twelve picked rows of 2026-11-18 (R-495: examples found by search for a fault seen once, put to him in the chat with their replay links): six of the two held flag shapes and three sudden deaths of a solo split player. They carry no grade, so none binds; their games are in the development set. Set c1 is the flag advice cards he corrected on Model > Game review > Flag advice (marked 2026-11-20, 61 cards of the twelve f1 games against engine cb7c78a: 58 told correctly, 2 partly, 1 incorrect; all 61 marks are in data/model/flag_card_marks.json): one row a corrected card, with his words and the check on the play the card is written from. They carry no grade, so none binds. Rows c1-4 to c1-6 are his notes on the flags of three games from the same page (decisions with no card), with Claude's reading of each.",
  "version": 1,
  "rows": [
   {
@@ -33060,6 +33060,60 @@
      "was": "Men v hold 2:07 (flag card, partly): 'men already has flag in hand at stand'. Men's second flag is put down in the greater stand area at 1:40 and taken up again at 2:33; the engine read a flag as in hand only while it was carried. Said on the card from `our_flag_up` (Moments.flag_up, read from the flag's own life). The play itself stays the stay he graded Classic and correct (f1-572c-9); whether such a spot is the flag-in-hand decision is put to him"
     }
    ]
+  },
+  {
+   "id": "c1-4",
+   "set": "c1",
+   "row": 4,
+   "rid": "572c2f95-b108-5dea-a98d-e7f39ae64514",
+   "match": "Men v hold, Meditation",
+   "window": [
+    0,
+    87
+   ],
+   "type": "notes",
+   "call": "",
+   "shown": "(his notes on the flags of the game, Flag advice view)",
+   "mark": "notes",
+   "said": "men waits back for 1st flat with derv; hold earth ele goes for a flag at 0:39 but cannot cap successfully;",
+   "checks": [],
+   "reading": "The opening (no card: R-541). The engine tells both: Men's AoB Derv left back for the next flag, hold bringing no flag up and sending its Earth Ele back (set off 0:15, pickup 0:53; his 0:39 is the Earth Ele on his way). Nothing to build."
+  },
+  {
+   "id": "c1-5",
+   "set": "c1",
+   "row": 5,
+   "rid": "af831111-a724-5a33-ad1d-e01bebeaac6e",
+   "match": "HC v hdm, Jade",
+   "window": [
+    356,
+    356
+   ],
+   "type": "notes",
+   "call": "",
+   "shown": "(his notes on the flags of the game, Flag advice view)",
+   "mark": "missed",
+   "said": "5:56 - it's a bit of a difficult situation to read because the flag was already on the ground, but hdm send 8 ele out to pick up flag that was left there and not returned; hdm manages to cap which puts them in a very good position",
+   "checks": [],
+   "reading": "No flag play is told between 5:00 and 7:00: a flag left lying up the field, taken up later by another player and capped, is not read as a run. Seen in one game (R-495): held for a second."
+  },
+  {
+   "id": "c1-6",
+   "set": "c1",
+   "row": 6,
+   "rid": "d492aa6c-a12b-5bce-a5ec-9ada965676f0",
+   "match": "hold v RACK, Imperial",
+   "window": [
+    154,
+    449
+   ],
+   "type": "notes",
+   "call": "",
+   "shown": "(his notes on the flags of the game, Flag advice view)",
+   "mark": "missed",
+   "said": "hold's #3 ele goes for a flag at 2:34, before RACK has capped first flag whilst it is held by 5 mes of RACK and hold has stand capped. this is a decision on whether to run on RACK.\n\nRACK double runs a 4:42 on air ele with ele 4 now holding flag and going to cap. this is decision. \n\nRACK double runs at 7:29 with air ele. this is decision.",
+   "checks": [],
+   "reading": "The engine reads all three as flag plays (2:29, hold's run with RACK's flag already in hand; 4:40 and 7:28, RACK's double run with hold's flag already in hand) and writes no card for any: the cards leave out every spot with a flag in hand, and a double run is never a card from the side of the team that sends its second runner before its first flag is in. A gap in the cards, not in the reading: put to him 2026-11-20."
   }
  ],
  "about_tiers": "R-490: a row with \"tier\": \"borderline\" is reported by `review.py score` and never blocks a change; every other row with a check is clear and must pass. A row he marks No clear decision is borderline when it is filed. \"tier_proposed\" is Claude's proposal, not yet his."
