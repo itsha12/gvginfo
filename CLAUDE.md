@@ -221,6 +221,20 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   hold 10:40, Classic); players who stay where their main team's push stood (Men v Apes 7:10 reads against it); a
   split ended when all the team but two stand in one group with it (340 rows moved on the development set for one
   fault, TFS v DMG 22:44, where the self-check still counts twelve).
+- When a split starts (R-562, `split_plays` on the branch): when its players are committed, and the enemy can know they
+  are going for nothing else. A player who was not defending is read as before (from the crossing, or 4 s after he
+  leaves when he goes straight across; from his own doors out of a held base). Players who had come to the defence of
+  an enemy split before they joined the record (`was_defending`, from the answer of that split's record) are a defence
+  turning into a split: while they are half or more of those on the enemy's ground nobody is on the split until one of
+  its players has no way off to mid left ahead (`Hall.past_turnoff`: the walk to the stand along the rest of his way
+  to the enemy's nearest door has no low point still to come; on a back path without one he is past it at once), and
+  it then takes the door it comes to. It is told too from when enemy players have been on it for JOIN_S on the
+  enemy's ground (`fought`: a split fight of its own, R-365; without it 4 v 4 fights on a back path were told nowhere).
+  He does not want this made more specific: change it against Men v hold 10:24 (No decision) and 10:40 (Classic), and
+  bring him what it gets wrong rather than adding a test. A split ends, and the main team's push begins, when the rest
+  come to the same fight by whichever door (R-560); players left at the enemy's door when the larger part forms
+  elsewhere are a split (R-561): both are what was already built, and the first two readings "tried and taken out"
+  above stay out.
 - How flags are told on the page (R-520, R-521): the opening is one row, `jobs.opening` (who went where from the
   gates, who brought the first flag up, who capped first and who capped over it), with each team's first-flag job
   under it; after it every run is told once, a run and the run that answers it in one row (`review.py flag_rows`,

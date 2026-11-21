@@ -25,12 +25,21 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   trading with his own main team; with no trades, by whom he heals or protects, then the players of his side he
   stands with, then the fight he closes on, and failing all that he stays on the split or its defence. Read second by
   second, so that his fight can change; a turn of under 12 s is no turn.
-- A split is a decision from when the other team would see it and have to respond (R-510). *As built:* told from the
-  crossing to the enemy's side, or from 4 s after its players left their team when they go straight across; the row
+- A split is a decision from when the other team would see it and have to respond (R-510): when its players are
+  committed, and can be going for nothing else (R-562). A player who is not defending is committed as he sets out
+  ("there is nothing else he could be doing that way"). A defence that goes out after the split it defended, still
+  fighting it or not, is committed once its most forward player has passed the last way off to mid; before that it
+  could yet turn for its main team, a flag or the front door. *As built:* a player who was not defending is told from
+  the crossing to the enemy's side, or from 4 s after he left his team when he goes straight across; the row
   says when it reaches their base, their footmen or a defender. Where its team is held in its base, it is told from
   4 s after its player goes out past his own doors, however long he takes to cross (his Classic mark, Men v hold 17:01).
-  Its door is the enemy's door it first comes to; a later phase whose players all start it out in the field takes the
-  door they come to then (his Classic mark, Men v hold 10:40: the five regroup in the field and go in by the back).
+  Players who had come to the defence of an enemy split (still out, or over for 20 s at most) before they joined the
+  record are a defence turning into a split: while they are half or more of those on the enemy's ground, it is told
+  from the second one of its players has no way off to mid left ahead (`Hall.past_turnoff`, read from the walk on
+  every hall; where the back path has none, from the crossing), or from when enemy players have been on it for 12 s
+  there (a split fight of its own, R-365), and never if neither comes (Men v hold: 10:40, not the crossing at 10:24).
+  Its door is the enemy's door it first comes to; a later phase whose players all start it out in the field, and a
+  defence turned split, take the door they come to then (his Classic mark, Men v hold 10:40: by the back).
 - Who comes to a split fight and who leaves it are decisions of their own, each kept as its own record and shown in the
   split's row (R-511, R-514): a collapse
   when the defence becomes one more than the split as it then stands, else a join (R-441), also when the player comes
@@ -199,7 +208,10 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   held by a passive defence is a main team push, not a split (R-364). An even split fight is one record while the same
   two groups stay engaged, wherever it drifts (R-365). An attempt ends when its players are back with their main team,
   dead, or 20 s on their own side of the stand (R-363), and when three or more of the rest of their team are standing
-  with them on the enemy's ground: it is then a main team push (his marks on Men v Apes). *As built:* the rest of the
+  with them on the enemy's ground: it is then a main team push (his marks on Men v Apes). It is so by whichever door
+  the rest come: in behind it (HC v Team 13:16) or by the other door, a pincer (Men v hold 10:58) (R-560). Players
+  who stay at the enemy's door while the larger part of their team forms elsewhere are a split (R-561; Men v hold
+  19:38, Men v Apes 7:10). *As built:* the rest of the
   team is who is not on the split at that second (R-439): a player who went home from it is of the rest (Men v hold
   11:10, "warrior is just jointing the mainteam fight that is now in pit").
 - A lone player is splitting only when he hits NPCs or trades damage with a defender (R-381). *As built:* asked of the
@@ -209,7 +221,7 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - Not a split: the last one or two of a main team that wiped, left behind (R-442); defenders chasing an enemy split out
   of their own base, who set off while it is still out and take no NPC (review key s1-20, s1-26).
 - It counts from when it can do something: at the enemy's footmen, base or pit, or met by a defender (R-440). Its decision
-  moment is when it crosses to the enemy's side (R-458).
+  moment is when it is committed (R-562): for most the crossing to the enemy's side (R-458).
 - It is told once while it is defended and nobody collapses on it, with each change of its numbers beside it, and cut
   only where the kind of answer changes: nobody defending, defended, a collapse, the whole team (R-469, R-365; this
   amends the phase by phase reading of R-439 to R-449). *As built:* headed by the numbers it had for longest before

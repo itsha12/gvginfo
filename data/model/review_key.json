@@ -12312,11 +12312,7 @@
    "shown": "HC's split by the back door: three players (Ranger, Prot, Hammer) against 2 defending (Hammer, 8 Monk); numbers along the way: 3 v 2 from 12:32, 4 v 3 from 12:56",
    "band": "low",
    "grade": "visible",
-   "mark": "incorrect",
-   "off": [
-    "numbers",
-    "kind"
-   ],
+   "mark": "correct",
    "said": "this is a full mainteam push backdoor of 6 players of HC",
    "calls": [
     {
@@ -12337,7 +12333,7 @@
    ],
    "checks": [
     {
-     "none": {
+     "has": {
       "play": "split",
       "side": "attacker",
       "team": "HC",
@@ -12346,12 +12342,19 @@
        802
       ]
      },
-     "open": true,
-     "why": "HC v Team 12:32 (Visible, incorrect, numbers and kind): 'this is a full mainteam push backdoor of 6 players of HC', not a split of three",
-     "held": "2026-11-20"
+     "want": {
+      "size": 3
+     },
+     "was": "HC v Team 12:32: his first mark asked for no split here; replaced by R-560 (the Ranger, Prot and Hammer are a split, joined by the 7 Monk, until the others come in by the same door)"
     }
    ],
-   "note": "2026-11-20: held. Three of HC go in at 12:40, the 7 Monk follows at 12:52 and the Stand Mes and 8 Monk reach the back door at 13:16; the split ends at 13:20, when the main team is with it (R-487). Reading the first three as the head of the push from 12:40 was built and taken out: it fails Men v hold 10:40, Classic, where five by the back door are a split though the other three are in the base 20 to 30 s later. Put to him: from when it is the main team's push."
+   "note": "2026-11-21: R-560. Read as he now reads it: three by the back door from 12:28, the 7 Monk joining at 12:56, the split over at 13:22 when the Stand Mes and the 8 Monk are with it.",
+   "answered": {
+    "on": "2026-11-20",
+    "asked": "Three of HC go in by the back door at 12:40 and the rest arrive by 13:16: from when is it the main team's push?",
+    "said": "I actually described the HC v Team match imprecisely I think. The HC's Ranger, Prot, & Hammer is a split joined by the 7 monk. When the other players go in, it turns into a mainteam push. Yes, this is because they all joined through the same door.",
+    "reading": "R-560: a split until the rest of the team comes to the same fight, then the main team's push. His mark on this row (Visible, incorrect, numbers and kind: 'this is a full mainteam push backdoor of 6 players of HC') is replaced: Visible, correct, confirmed 2026-11-21."
+   }
   },
   {
    "id": "f1-9b5c-39",
@@ -20509,10 +20512,9 @@
        "clear": null
       }
      },
-     "open": true,
      "auto": true,
      "why": "Men v hold, Meditation 10:24: he graded it No decision: they are just running into backdoor, no split yet",
-     "held": "2026-11-20"
+     "held_since": "2026-11-21 (R-562)"
     },
     {
      "none": {
@@ -20526,13 +20528,18 @@
        "clear": null
       }
      },
-     "open": true,
      "auto": true,
      "why": "Men v hold, Meditation 10:24: he graded it No decision: they are just running into backdoor, no split yet",
-     "held": "2026-11-20"
+     "held_since": "2026-11-21 (R-562)"
     }
    ],
-   "note": "2026-11-20: held (one game, R-495). The five cross to hold's side at 10:24 and reach its back door at 10:42; the row is still told from the crossing (R-458, and his Classic marks on Men v RACK, where a split is told before it crosses). Put to him: what makes this one 'no split yet'."
+   "note": "2026-11-21: built (R-562). Four of the five had defended hold's split and chased it over the half-way line, killing its Fire Ele there at 10:28; the split is told from 10:40, where the Hammer passes hold's collapse route outside its back door (`Hall.past_turnoff`), and the Classic row at 10:40 is the same split.",
+   "answered": {
+    "on": "2026-11-20",
+    "asked": "The five cross to hold's side at 10:24 and reach its back door at 10:42: what makes this 'no split yet', when the Ranger of Men v RACK is a split before he crosses?",
+    "said": "I would call Men's 5 man a split from around 10:36 in Men v hold. [...] At Men's time, they are still on the path to merge with their team that was front door and push in as 8 through the front (as that was the other objective). By around 10:36, they are no longer on that path so we can see they are split and pushing in backdoor. [2026-11-21:] the reason in particular I saw 10:36 as the split in meditation is that is where the most forward player of the split crosses the path that by clicking would have gone to the collapse route/mid. [...] It's more in the context of a defense turning into a split.",
+    "reading": "R-562: a defence that goes out after the split it defended is a split from when its most forward player has passed the last way off to mid; a player who was not defending is committed as he sets out."
+   }
   },
   {
    "id": "f1-572c-37",
@@ -21679,8 +21686,8 @@
    "call": "",
    "shown": "Men's split by the front door: three players (Hammer, Mesmer, 7 Monk) against 2 defending (7 Monk, Mesmer); numbers along the way: 3 v 2 from 19:38, 3 v 3 from 20:00",
    "band": "medium",
-   "grade": "none",
-   "mark": "",
+   "grade": "not marked",
+   "mark": "correct",
    "said": "this is not a split, this is just players joining mainteam",
    "calls": [
     {
@@ -21701,58 +21708,28 @@
    ],
    "checks": [
     {
-     "none": {
+     "has": {
       "play": "split",
+      "side": "attacker",
       "team": "Men",
       "start": [
        1172,
        1184
-      ],
-      "want": {
-       "clear": null
-      }
+      ]
      },
-     "open": true,
-     "auto": true,
-     "why": "Men v hold, Meditation 19:38: he graded it No decision: this is not a split, this is just players joining mainteam",
-     "held": "2026-11-20"
-    },
-    {
-     "none": {
-      "play": "split",
-      "team": "hold",
-      "start": [
-       1172,
-       1184
-      ],
-      "want": {
-       "clear": null
-      }
+     "want": {
+      "size": 3
      },
-     "open": true,
-     "auto": true,
-     "why": "Men v hold, Meditation 19:38: he graded it No decision: this is not a split, this is just players joining mainteam",
-     "held": "2026-11-20"
-    },
-    {
-     "none": {
-      "play": "split",
-      "team": "Men",
-      "start": [
-       1172,
-       1184
-      ],
-      "want": {
-       "clear": null
-      }
-     },
-     "open": true,
-     "auto": true,
-     "why": "Men v hold, Meditation 19:38: he graded it No decision: this is not a split, this is just players joining mainteam",
-     "held": "2026-11-20"
+     "was": "Men v hold 19:38: his first mark asked for no split here; withdrawn by R-561"
     }
    ],
-   "note": "2026-11-20: held (one game, R-495). The three had been Men's main team at hold's front door since 18:20 and stay there; the main team is read with the five who went home and walk back up, for 34 s. Not built: the same shape in Men v Apes 7:10 (three stay in the pit, five at the stand for a minute) he reads as a split of three. Put to him: what makes the first no split."
+   "note": "2026-11-21: R-561. The row stands as read: the Hammer, the Mesmer and the 7 Monk at hold's front door from 19:38, Men's five at the stand.",
+   "answered": {
+    "on": "2026-11-20",
+    "asked": "What makes this no split, when the same shape in Men v Apes 7:10 is a split of three?",
+    "said": "I actually think I was looking at the wrong timing for Men v hold. The warrior mes and 7 monk are indeed on split whilst mainteam is defending hold's push (8 rit of Men collapses from split to join mainteam). I see Men v Apes as the same. Ranger warrior 7 monk are on split, 6 collapses mainteam.",
+    "reading": "R-561: players who stay at the enemy's door while the larger part of their team forms elsewhere are a split. His No decision mark ('this is not a split, this is just players joining mainteam') is withdrawn and the row is read correctly (confirmed 2026-11-21); he has not given it a grade. 'Collapses' was his loose word for the Ritualist 2 going back to the main team: the engine's collapse stands."
+   }
   },
   {
    "id": "f1-572c-64",
