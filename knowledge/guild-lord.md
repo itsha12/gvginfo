@@ -8,6 +8,7 @@ Source: Guild Wars Wiki, pulled 2026-10-08. Lines starting **Tested** are in-gam
 - Amulet of Protection caps how much Health he can lose per second: 25 per second at 0:00, rising by a constant 11.6%
   per minute to 300 per second at 12:00. Damage over the cap is absorbed. Health loss from degeneration or direct loss
   is checked once per second and anything over the cap is healed back.
+- **Denning:** From 12:00 until the match ends at 28:00 the Amulet of Protection does not change.
 - **Denning:** The Lord's maximum Health is 1,680, plus 1% for each morale boost his team has earned (up to
   1,848). (The wiki's +300 per boost is wrong.)
 - **Denning:** The Lord always regenerates 10 Health per second (the +5 pips), and gets more once he hasn't been hit for

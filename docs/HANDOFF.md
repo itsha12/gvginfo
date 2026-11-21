@@ -8,28 +8,30 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 > out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-21, later: splits ready, R-564; no stay job at the opening, R-565, built; the split family's stage 1 built and put to him)
+## State (2026-11-21, later: splits ready, R-564; no stay job at the opening, R-565; the answer to a split read and set against like spots, R-566 to R-568)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` and lands in one
   piece, then one rebuild (R-322). 658 replays stored; 564 count (R-477); 506 matches trained. No workflow run in
-  progress. Rulings run to R-565. The baseline (R-491) is the branch `baseline-2026-11-15`.
+  progress. Rulings run to R-568. The baseline (R-491) is the branch `baseline-2026-11-15`.
 - Graded and filed (set f1): thirteen games; game 15 (Men v NwAy, Corrupted) all read Correct. Not graded his new
   way: Weeping Stone, Isle of the Dead. Flags: all 60 advice cards marked; done for now. Numbers from kills:
   dropped as a family (R-557).
-- The split family (R-558), the answer to a split, stage 1 (CLAUDE.md "The split family"): every split play
-  carries `split` and, in its first told stretch, `at_told`; `cases.py splits` writes
-  `data/model/split_cases.json`. 1,936 splits in 453 matches; five of seven readings hold, two are not clear
-  (undefended pairs against one player; the whole team against a mirror), none runs against. The table of what
-  followed each answer is a description only: no like spots yet, so nothing in it is advice.
+- The split family (R-558), the answer to a split (CLAUDE.md "The split family"): the record on every split
+  play, `cases.py splits`, `data/model/split_cases.json`. 1,936 splits in 453 matches, the first answer read at
+  20 s and again at 40 s (R-567). Six of seven readings hold; undefended pairs against one player is not clear.
+  Like spots (section E): no answer clearly better than the commonest at any size; held out, two of twelve
+  tests show a gain (one player and four or more, both at 60 s only): not a gain to call, so no advice and no
+  cards yet.
 - Last checkpoint (every counted match, this engine): 564 matches, 34,376 plays, no errors; fourteen truths hold;
   313 Classic rows pass, none fail; 132 history rows hold, 3 do not; gate 12 of 12 and 63 of 105; self-check 21
   in 7 (twelve are TFS v DMG 22:44). Line-up 530 of 583 (2026-11-18, not run again). The flag report
   (`flag_cases.json`, eca99d4) and the numbers report were not run again.
 
 ## Next (in order)
-1. His answers to "Open for Denning" 1, then stage 2 of the answer to a split: like spots by scenario (the size
-   of the split and what it is made of), set level, with the test of the 60 s before; then the other factors
-   (stage 3) and the sentence for one moment (stage 4: cards and a view, copy `ADVICE.numbers` in `review.js`).
-   Nothing of stages 2 to 4 is built.
+1. The answer to a split, stage 3, the other factors (R-568): the game clock as before and after 12:00, a split
+   or runner of the defending team at home, which pit NPCs are left, the base res; where to look, never advice.
+   Before judging the base res against collapses, tell players who res at the base onto a split apart from a
+   collapse. Then stage 4, the sentence for one moment (cards and a view: copy `ADVICE.numbers` in `review.js`),
+   only where like spots stand round the case.
 2. The other half of the family: the main fight while a split is out (4,285 numbers rows "from a split
    elsewhere"; his calls of R-551 with collapse and send more), through the same stages.
 3. Held for a second game (R-495): Men v hold 18:06 (two of a push standing off it) and 6:48 (a collapse told as
@@ -41,15 +43,9 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 0. Held at his word (R-554, his "make sure you remember"): the cards for a flag in hand, with R-553 to build (no
    runner while the next flag is up is a flag-in-hand decision), and for a double run from the sender's side:
    raise them when more matches are trained. The execution list (R-557): the res, giving ground, fights.
-1. The answer to a split, before stage 2 is built: (a) when the answer is read: he asked what that means;
-   explained and put to him again (the first answer, frozen 30 s after the split is told; later changes are
-   decisions of their own, R-511); (b) the answers told apart: confirmed, R-566; (c) what makes spots alike:
-   list agreed; the base res is in it, the game clock he is unsure of. Checked on 340 defender deaths: with the
-   base res within 20 s the split takes a pit NPC in the next minute in 15%, otherwise about 35%; no clear
-   difference in collapses (and players who res at the base onto the split are read as a collapse: to separate).
-   Proposed to him: each side's dead, and what the split and its defenders can do as properties (R-539), into
-   the matching; the game clock, a split or runner of the defending team and which NPCs are left as stage 3
-   factors; the split's Lord damage is not yet on its record; the stand-in prices have no clock.
+1. Put to him 2026-11-21 with the like spots: whether "no answer" 20 s in should be split into a defender on
+   his way (defended by 40 s: 263 of 477; still nobody 139; over 75) and nobody coming, since the two are different answers; and whether to go
+   on to stage 3 for this half or read the other half (the main fight while a split is out) first.
    R-562 stays Claude's reading of his rule: bring him the splits it tells wrongly as they turn up in his games.
 2. Jade: is a team at the footmen on the portal side in the base at a base res?
 3. Tolkano: no build (his word): give him date, guilds, hall and length with every example to find it there.
