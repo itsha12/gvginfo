@@ -12,9 +12,8 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` and lands in one
   piece, then one rebuild (R-322). 658 replays stored; 564 count (R-477); 506 matches trained. No workflow run in
   progress. Rulings run to R-572. The baseline (R-491) is the branch `baseline-2026-11-15`.
-- Graded and filed (set f1): thirteen games; game 15 (Men v NwAy, Corrupted) all read Correct. Not graded his new
-  way: Weeping Stone, Isle of the Dead. Flags: all 60 advice cards marked; done for now. Numbers from kills:
-  dropped as a family (R-557). No stay job at the opening for a team that runs no first flag (R-565).
+- Graded and filed (set f1): thirteen games (Weeping Stone and Isle of the Dead not graded his new way). Flags:
+  all 60 advice cards marked. Numbers from kills: no family (R-557). No stay job at the opening (R-565).
 - The split family (R-558; CLAUDE.md "The split family"). The answer to a split (`cases.py splits`): 1,936
   splits, read 20 and 40 s in (R-567, R-569); six of seven readings hold; no answer clearly better at any size;
   the game clock and the base res do not separate the answers. The main fight while a split is out
@@ -47,8 +46,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
    replaced by the win model, the replaced kinds retired, the causal map cleaned, SPEC and METHODS rewritten,
    the readability test, his list of R-398, the merge, then one Train batch on the same 506 matches (he starts
    it; keep gvg.report's flag objects at that rebuild, R-481).
-6. The split family again when matches are in. Players who res at the base onto a split are still read as a
-   collapse.
+6. The split family again when matches are in (players who res at the base onto a split still read as a collapse).
 
 ## Open for Denning
 0. Held at his word (R-554, his "make sure you remember"): the cards for a flag in hand, with R-553 to build (no
@@ -57,10 +55,9 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 1. Put to him 2026-11-21: who counts as pushing a flagger (proposed: a player who hits or casts on him, and a
    player who travels with those who do, such as the monk healing them; not a player who is near because a
    fight with the flagger's helpers is there; the main team moving onto him is the whole team's push).
-2. Jade: is a team at the footmen on the portal side in the base at a base res? And players passing through
-   the portal: are they at the main fight on either side of it?
+2. Jade: is a team at the footmen on the portal side in the base at a base res? Players passing the portal?
 3. Tolkano: no build (his word): give him date, guilds, hall and length with every example to find it there.
-   R-562 stays Claude's reading of his rule: bring him the splits it tells wrongly as they turn up in his games.
+   R-562 is Claude's reading of his rule: bring him the splits it tells wrongly as they turn up in his games.
 
 ## Running it
 - Train batch: the "Train batch" workflow (METHODS.md; `blind` stays no). Never queue two runs. At the next rebuild,
