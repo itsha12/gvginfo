@@ -1757,7 +1757,7 @@ def splits(path, out_json=None):
 
 # ---- the split family, the other half (R-558): the main fight while a split is out
 MAIN_SCEN = ("Up at the main fight, their split in our base", "Down at the main fight, our split out", "Down at the main fight, their split in our base", "Up at the main fight, our split out")
-COLLAPSE, PULL_BACK, SEND_MORE, BRING_BACK = "collapse on the split", "pull a defender back to the main fight", "send more on the split", "fewer on the split (back to the main fight, or lost)"
+COLLAPSE, PULL_BACK, SEND_MORE, BRING_BACK = "collapse on the split", "pull a defender back to the main fight", "send more on the split", "bring players back from the split"
 MAIN_VARS = ("flag lead", "seconds to the boost", "own players at the main fight", "their players at the main fight", "own morale", "their morale", "strength gap", "seconds to the base res", "own chance of winning at that second",
              "own main team's place", "their main team's place", "own dead", "their dead", "players on our split", "their defenders on it", "players on their split", "our defenders on it")
 
@@ -1770,19 +1770,22 @@ def _main_whose(p):
     return "both" if own and th else "ours" if own else "theirs" if th else "none"
 
 
-def _main_call(p, read=NUM_READ):
+def _main_call(p, read=NUM_READ, lost=(False, False)):
     """The call of a main team while a split is out, read `read` s after the numbers are told (R-556), in his words (R-551, with "collapse" and "send more on
     split", which he named for this half): a change to the split first (a split already there as the numbers are told: more of ours on it, or more of our
     defenders on theirs; fewer of either), else where the main team stands and whether a runner has gone, as for any numbers (`_num_call`)."""
     i = p["track"]["at"].index(read); a, b = p["track"]["splits"][0], p["track"]["splits"][i]
     if a is None or b is None: return None
     whose = _main_whose(p)
+    # fewer on a split, or on its defence, is a call only when the player came away alive: a death there is no call (R-571; of 266 rows with fewer on the split
+    # 41 were a split player dying, teams at 30% and 2.3 kills down, against 55% and level for the rest). `lost`: a player of our split, and a defender of ours
+    # on theirs, died in the window; such a row is read by where the main team stands, as any numbers
     if whose == "theirs" and a[2] > 0:
         if b[3] > a[3]: return COLLAPSE
-        if b[3] < a[3] and b[2] > 0: return PULL_BACK
+        if b[3] < a[3] and b[2] > 0 and not lost[1]: return PULL_BACK
     if whose == "ours" and a[0] > 0:
         if b[0] > a[0]: return SEND_MORE
-        if b[0] < a[0]: return BRING_BACK
+        if b[0] < a[0] and not lost[0]: return BRING_BACK
     return _num_call(p, read)
 
 
@@ -1790,6 +1793,13 @@ def main_cases(D, M, B):
     """One case a clear numbers situation at the main fight with a split out, from each side: whose split it is, the call 20 s in, the hard results on the fixed
     record and their price, from prices that never saw its match (as `numbers_cases`)."""
     out, skipped = [], collections.Counter()
+    SP = collections.defaultdict(dict)                       # every split of the match, for the deaths on it and among its defenders
+    for p in D["plays"]:
+        if p["play"] == "split" and not p.get("change") and p.get("split"): SP[p["rid"]][p["split"]["id"]] = p["split"]
+    def lost_in(p, read):                                    # (a player of a split of ours died, a defender of ours on a split of theirs died), from 2 s before the numbers are told to 2 s after the read
+        own = any(s_["tm"] == p["tm"] and any(-2 <= s_["told"] + x_ - p["t0"] <= read + 2 for x_ in s_["split_deaths"]) for s_ in SP[p["rid"]].values())
+        dfd = any(s_["tm"] != p["tm"] and any(-2 <= s_["told"] + x_ - p["t0"] <= read + 2 for x_ in s_["defender_deaths"]) for s_ in SP[p["rid"]].values())
+        return own, dfd
     for p in D["plays"]:
         if p["play"] != "numbers" or p.get("source") != "split elsewhere": continue
         if p.get("clear") is False: skipped["no clear decision (the numbers never held, or a player counted twice)"] += 1; continue
@@ -1802,7 +1812,7 @@ def main_cases(D, M, B):
         gap = m["gap"][p["team"]]
         ends = {H: None if af[H]["ended"] else position(st, af[H], gap, True) for H in HORIZONS}
         if st["flag_lead"] is None or af["90"]["lead"][0] is None or any(ends[H] is None and not af[H]["ended"] for H in ends): skipped["flag lead not read"] += 1; continue
-        call = _main_call(p)
+        call = _main_call(p, NUM_READ, lost_in(p, NUM_READ))
         if call is None: skipped[f"no main team alive {NUM_READ} s in, or the match over"] += 1; continue
         beta, won = B[m["fold"]], float(m["winner"] == p["team"])
         p0 = chance(beta, position(st, af["90"], gap, False))
@@ -1813,7 +1823,7 @@ def main_cases(D, M, B):
         scen = MAIN_SCEN[{("up", "theirs"): 0, ("down", "ours"): 1, ("down", "theirs"): 2, ("up", "ours"): 3}[(side, whose)]]
         x = [st["flag_lead"], st["boost_in"], n[0], n[1], mor[0][0], mor[1][0], gap, k["res_in"], 100 * p0, stp[0], stp[1], k["dead"][0], k["dead"][1]] + list(sp0)
         out.append({"id": p["id"], "rid": p["rid"], "team": p["team"], "t": p["t0"], "side": side, "whose": whose, "call": call, "by": abs(n[0] - n[1]), "numbers": p["numbers"], "x": x, "more": None,
-                    "fold": m["fold"], "won": won, "held": False, "kind": "main fight", "later": _main_call(p, NUM_LATER), "scenario": scen, "lasted": k["end"] - p["t0"], "res_in": k["res_in"], "p0": p0, "pre": pre,
+                    "fold": m["fold"], "won": won, "held": False, "kind": "main fight", "later": _main_call(p, NUM_LATER, lost_in(p, NUM_LATER)), "scenario": scen, "lasted": k["end"] - p["t0"], "res_in": k["res_in"], "p0": p0, "pre": pre,
                     "arriving": (sp0[2] if whose == "theirs" else sp0[0]) == 0, "split0": sp0, "split20": p["track"]["splits"][p["track"]["at"].index(NUM_READ)],
                     "v": {H: 100 * ((won if af[H]["ended"] else chance(beta, ends[H])) - p0) for H in HORIZONS},
                     "hard": {H: {"deaths": af[H]["deaths"], "npcs": af[H]["npcs"], "lead_change": af[H]["lead_change"], "pit": [sum(1 for z in af[H]["npc_kinds"][q] if z in PIT) for q in (0, 1)]} for H in HORIZONS}})
