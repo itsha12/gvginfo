@@ -1157,6 +1157,17 @@ def _numbers_at(M, tm, t, e):
     runs = [int(f_.get("off", f_["s0"])) for f_ in _flag_rows(M) if f_["tm"] == tm]
     kw["track"] = {"at": list(NUMBERS_TRACK_S), "steps": [[step(tm, u + h), step(foe, u + h)] for h in NUMBERS_TRACK_S],
                    "runner_out": [any(u < r <= u + h for r in runs) for h in NUMBERS_TRACK_S]}
+    # ... and the splits out at those seconds (the split family's other half, R-558: the main fight while a split is out), so that sending more on a split and
+    # collapsing on one can be read at the same fixed second as the rest of the call: [players on a split of ours, their defenders on it, players on a split of
+    # theirs, our defenders on it], from who each told split counts second by second (`M._split_at`, set by `split_plays`, which runs before this; a collapse
+    # from the turn is not in it, so a whole team's turn shows in the main team's step and not here)
+    def splits_at(v):
+        v -= v % SPLIT_STEP
+        own = [sp["at"][v] for sp in getattr(M, "_split_at", None) or [] if sp["tm"] == tm and v in sp["at"]]
+        th = [sp["at"][v] for sp in getattr(M, "_split_at", None) or [] if sp["tm"] == foe and v in sp["at"]]
+        return [len(set().union(*[s_ for s_, _ in own])) if own else 0, len(set().union(*[d_ for _, d_ in own])) if own else 0,
+                len(set().union(*[s_ for s_, _ in th])) if th else 0, len(set().union(*[d_ for _, d_ in th])) if th else 0]
+    kw["track"]["splits"] = [splits_at(u + h) if u + h <= T else None for h in NUMBERS_TRACK_S]
     return kw
 
 

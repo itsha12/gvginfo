@@ -61,6 +61,7 @@ Usage:  python3 cases.py test <plays file from `moments.py all`> [--json <out.js
         python3 cases.py case <plays file> <report id> <m:ss>                          one decision, its calls and cases
         python3 cases.py cards <plays file> [f1 | <report id>] [--site <main>/data/model/flag_cards.json]     every flag decision of the graded games, or of one match, as sentences
         python3 cases.py ladder <plays file> [--json <out.json>]                         the timing ladder: a check of the flag readings (no prices, no advice)
+        python3 cases.py main-fight <plays file> [--json <out.json>]                     the split family's other half: the main fight while a split is out
         python3 cases.py splits <plays file> [--json <out.json>]                         the split family, stage 1: the answer to a split, its readings checked and what followed each answer
 A reading tool over the plays file: it writes no prepared data and is in no cache key (cache.REPORT_LAYER)."""
 import collections, json, math, os, sys
@@ -1754,6 +1755,169 @@ def splits(path, out_json=None):
     return res
 
 
+# ---- the split family, the other half (R-558): the main fight while a split is out
+MAIN_SCEN = ("Up at the main fight, their split in our base", "Down at the main fight, our split out", "Down at the main fight, their split in our base", "Up at the main fight, our split out")
+COLLAPSE, PULL_BACK, SEND_MORE, BRING_BACK = "collapse on the split", "pull a defender back to the main fight", "send more on the split", "fewer on the split (back to the main fight, or lost)"
+MAIN_VARS = ("flag lead", "seconds to the boost", "own players at the main fight", "their players at the main fight", "own morale", "their morale", "strength gap", "seconds to the base res", "own chance of winning at that second",
+             "own main team's place", "their main team's place", "own dead", "their dead", "players on our split", "their defenders on it", "players on their split", "our defenders on it")
+
+
+def _main_whose(p):
+    """Whose split is out as the numbers at the main fight are told: ours, theirs, both, or none on the enemy's ground in the first 20 s (players away who are
+    still on their way, or a split that is not told)."""
+    sp = [v for h, v in zip(p["track"]["at"], p["track"]["splits"]) if h <= NUM_READ and v]
+    own, th = max((v[0] for v in sp), default=0), max((v[2] for v in sp), default=0)
+    return "both" if own and th else "ours" if own else "theirs" if th else "none"
+
+
+def _main_call(p, read=NUM_READ):
+    """The call of a main team while a split is out, read `read` s after the numbers are told (R-556), in his words (R-551, with "collapse" and "send more on
+    split", which he named for this half): a change to the split first (a split already there as the numbers are told: more of ours on it, or more of our
+    defenders on theirs; fewer of either), else where the main team stands and whether a runner has gone, as for any numbers (`_num_call`)."""
+    i = p["track"]["at"].index(read); a, b = p["track"]["splits"][0], p["track"]["splits"][i]
+    if a is None or b is None: return None
+    whose = _main_whose(p)
+    if whose == "theirs" and a[2] > 0:
+        if b[3] > a[3]: return COLLAPSE
+        if b[3] < a[3] and b[2] > 0: return PULL_BACK
+    if whose == "ours" and a[0] > 0:
+        if b[0] > a[0]: return SEND_MORE
+        if b[0] < a[0]: return BRING_BACK
+    return _num_call(p, read)
+
+
+def main_cases(D, M, B):
+    """One case a clear numbers situation at the main fight with a split out, from each side: whose split it is, the call 20 s in, the hard results on the fixed
+    record and their price, from prices that never saw its match (as `numbers_cases`)."""
+    out, skipped = [], collections.Counter()
+    for p in D["plays"]:
+        if p["play"] != "numbers" or p.get("source") != "split elsewhere": continue
+        if p.get("clear") is False: skipped["no clear decision (the numbers never held, or a player counted twice)"] += 1; continue
+        if "state" not in p or "splits" not in p["track"]: raise ValueError(f"numbers play {p['id']} carries no position or no splits: run moments.py all again on this engine (R-460)")
+        m, st, af = M[p["rid"]], p["state"], p["after"]
+        if not m["winner"]: skipped["no winner recorded"] += 1; continue
+        whose = _main_whose(p)
+        if whose == "none": skipped["no told split on the enemy's ground in the first 20 s (players on their way, or the whole team's turn)"] += 1; continue
+        if whose == "both": skipped["a split of each team out at once (a trade): too few to read apart"] += 1; continue
+        gap = m["gap"][p["team"]]
+        ends = {H: None if af[H]["ended"] else position(st, af[H], gap, True) for H in HORIZONS}
+        if st["flag_lead"] is None or af["90"]["lead"][0] is None or any(ends[H] is None and not af[H]["ended"] for H in ends): skipped["flag lead not read"] += 1; continue
+        call = _main_call(p)
+        if call is None: skipped[f"no main team alive {NUM_READ} s in, or the match over"] += 1; continue
+        beta, won = B[m["fold"]], float(m["winner"] == p["team"])
+        p0 = chance(beta, position(st, af["90"], gap, False))
+        stp = p["track"]["steps"][0]; mor = af["90"]["morale"]; sp0 = p["track"]["splits"][0]
+        bf, pre = p.get("before"), None
+        if bf and bf["after"]["lead"][0] is not None and "npcs_lost" in bf["state"]: pre = 100 * (p0 - chance(beta, position(bf["state"], bf["after"], gap, False)))
+        n = [int(x) for x in p["numbers"].split("v")]; k = p["clock"]; side = p["numbers_side"]
+        scen = MAIN_SCEN[{("up", "theirs"): 0, ("down", "ours"): 1, ("down", "theirs"): 2, ("up", "ours"): 3}[(side, whose)]]
+        x = [st["flag_lead"], st["boost_in"], n[0], n[1], mor[0][0], mor[1][0], gap, k["res_in"], 100 * p0, stp[0], stp[1], k["dead"][0], k["dead"][1]] + list(sp0)
+        out.append({"id": p["id"], "rid": p["rid"], "team": p["team"], "t": p["t0"], "side": side, "whose": whose, "call": call, "by": abs(n[0] - n[1]), "numbers": p["numbers"], "x": x, "more": None,
+                    "fold": m["fold"], "won": won, "held": False, "kind": "main fight", "later": _main_call(p, NUM_LATER), "scenario": scen, "lasted": k["end"] - p["t0"], "res_in": k["res_in"], "p0": p0, "pre": pre,
+                    "arriving": (sp0[2] if whose == "theirs" else sp0[0]) == 0, "split0": sp0, "split20": p["track"]["splits"][p["track"]["at"].index(NUM_READ)],
+                    "v": {H: 100 * ((won if af[H]["ended"] else chance(beta, ends[H])) - p0) for H in HORIZONS},
+                    "hard": {H: {"deaths": af[H]["deaths"], "npcs": af[H]["npcs"], "lead_change": af[H]["lead_change"], "pit": [sum(1 for z in af[H]["npc_kinds"][q] if z in PIT) for q in (0, 1)]} for H in HORIZONS}})
+    return out, skipped
+
+
+def main_fight(path, out_json=None):
+    """The split family's other half (R-558), the main fight while a split is out: the readings (what any player knows), what followed each call, as it fell,
+    then like spots and the test on unseen matches. A report: no row of it is advice until the held-out test shows a gain for its scenario."""
+    D, M = load(path); B, P = prices(D, M)
+    C, skipped = main_cases(D, M, B)
+    lines, res = [], {"cases": len(C), "skipped": dict(skipped), "counts": {}, "checks": {}, "as_it_fell": {}}
+    pr = lambda x="": (lines.append(x), print(x))
+    pr(f"The main fight while a split is out (R-558), on {len(M)} matches: {len(C)} situations read from one side each" + "".join(f"; set aside, {k}: {v}" for k, v in skipped.most_common()))
+    pr("\nA. How many (a situation is told once for the team up and once for the team down)")
+    for sc in MAIN_SCEN:
+        X = [c for c in C if c["scenario"] == sc]; res["counts"][sc] = {"cases": len(X), "matches": len({c["rid"] for c in X}), "the split still on its way as the numbers are told": sum(c["arriving"] for c in X)}
+        up1 = sum(1 for c in X if c["by"] == 1)
+        pr(f"   {sc:48} {len(X):5} in {len({c['rid'] for c in X}):3} matches; by one player {up1}, by two or more {len(X) - up1}; lasted (middle) {np.median([c['lasted'] for c in X]) if X else 0:3.0f} s; the split still on its way as the numbers are told: {sum(c['arriving'] for c in X)}")
+    kill = lambda c, H="90": float(c["hard"][H]["deaths"][1] > c["hard"][H]["deaths"][0])
+    pr(f"\nB. The readings: what any player knows ({len(C)} situations). Each is two groups set side by side with a 90% range over whole matches. A kill = more of theirs die than of ours in the 90 s after the numbers are told.")
+    def check(name, pop, f, g, expect, y, fa, ga, unit="%"):
+        X = [c for c in C if pop(c)]
+        for c in X: c["_y"] = y(c)
+        d, lo, hi, na, nb = _num_range(X, f, g)
+        if d is None or min(na, nb) < MIN_PLAYS: pr(f"   {name}: too few ({na} and {nb})"); res["checks"][name] = {"reads": "too few", "n": [na, nb]}; return
+        sc = 100 if unit == "%" else 1; dp = 0 if unit == "%" else 2
+        word = "HOLDS" if (lo > 0 if expect > 0 else hi < 0) else "AGAINST" if (hi < 0 if expect > 0 else lo > 0) else "not clear"
+        a_, b_ = np.mean([c["_y"] for c in X if f(c)]), np.mean([c["_y"] for c in X if (not f(c)) and g(c)])
+        pr(f"   {name}: {fa} {sc * a_:.{dp}f}{unit} ({na}); {ga} {sc * b_:.{dp}f}{unit} ({nb}); difference {sc * d:+.{dp}f}{unit} ({sc * lo:+.{dp}f} to {sc * hi:+.{dp}f})   {word}")
+        res["checks"][name] = {"first": float(a_), "second": float(b_), "difference": float(d), "range": [float(lo), float(hi)], "n": [na, nb], "reads": word}
+    up, down, theirs, ours = (lambda c: c["side"] == "up"), (lambda c: c["side"] == "down"), (lambda c: c["whose"] == "theirs"), (lambda c: c["whose"] == "ours")
+    check("M1 the team up at the main fight kills more often than the team down", lambda c: True, up, down, +1, kill, "up", "down")
+    check("M2 up by two or more kills more often than up by one", up, lambda c: c["by"] >= 2, lambda c: c["by"] == 1, +1, kill, "up by two or more", "up by one")
+    check("M3 their split in our base and we are up at the main fight: we lose more pit NPCs than when we are down there (3 min)", theirs, up, down, +1, lambda c: c["hard"]["180"]["pit"][0], "up at the main fight", "down at the main fight", unit="")
+    check("M4 our split out and we are down at the main fight: we take more pit NPCs than when we are up there (3 min)", ours, down, up, +1, lambda c: c["hard"]["180"]["pit"][1], "down at the main fight", "up at the main fight", unit="")
+    check("M5 a collapse on their split: they lose a player more often than when nobody is added (90 s)", lambda c: theirs(c) and not c["arriving"], lambda c: c["call"] == COLLAPSE, lambda c: c["call"] != COLLAPSE, +1,
+          lambda c: float(c["hard"]["90"]["deaths"][1] > 0), "a collapse", "nobody added")
+    check("M6 more sent on our split: more of their pit NPCs fall than when nobody is added (3 min)", lambda c: ours(c) and not c["arriving"], lambda c: c["call"] == SEND_MORE, lambda c: c["call"] != SEND_MORE, +1,
+          lambda c: c["hard"]["180"]["pit"][1], "more sent", "nobody added", unit="")
+    # The trade itself: with a split out, the side up at the main fight against the side down there, whoever's split it is. Not a call (how many are sent home, or
+    # on the split, is the answer to the split; the numbers at the main fight are what that leaves), so it is told as a reading with the same test on the 60 s
+    # before: a side that was already gaining then marks the situation (SPEC 5, rule 4)
+    pr("\n   The trade: the side up at the main fight against the side down there, in win points (and the same comparison on the 60 s before, which the numbers cannot have caused)")
+    res["trade"] = {}
+    for lab, pop in (("their split in our base (up: fewer sent home than they split; down: more)", theirs), ("our split out (up: they sent more home than we split; down: fewer)", ours)):
+        X = [c for c in C if pop(c)]; o = res["trade"][lab] = {}
+        for key, f_ in (("90 s on", lambda c: c["v"]["90"]), ("180 s on", lambda c: c["v"]["180"]), ("the 60 s before", lambda c: c["pre"])):
+            Y = [c for c in X if f_(c) is not None]
+            for c in Y: c["_y"] = f_(c)
+            d, lo, hi, na, nb = _num_range(Y, up, down); o[key] = {"difference": float(d), "range": [float(lo), float(hi)], "n": [na, nb]}
+        pr(f"     {lab}: 90 s on {o['90 s on']['difference']:+.1f} ({o['90 s on']['range'][0]:+.1f} to {o['90 s on']['range'][1]:+.1f}); 180 s on {o['180 s on']['difference']:+.1f} ({o['180 s on']['range'][0]:+.1f} to {o['180 s on']['range'][1]:+.1f}); "
+           f"the 60 s before {o['the 60 s before']['difference']:+.1f} ({o['the 60 s before']['range'][0]:+.1f} to {o['the 60 s before']['range'][1]:+.1f})" + ("  NOT LEVEL before: partly who is up" if o["the 60 s before"]["range"][0] > 0 or o["the 60 s before"]["range"][1] < 0 else ""))
+    pr(f"\nC. As it fell: what followed each call, read {NUM_READ} s in, 90 and 180 s on (a description set against no like spot: who makes a call follows the spot)")
+    pr("   started at = own chance of winning when the numbers are told; 60 s before = what the minute before had done to it, in win points; pit NPCs are over the whole map, 180 s on.")
+    head = f"     {'':52} {'cases':>5}  {'started at':>10}  {'60 s before':>11}  {'they lose one':>13}  {'we lose one':>11}  {'net kills':>9}  {'our pit NPCs':>12}  {'their pit NPCs':>14}  {'flags':>6}  {'win pts 90':>10}  {'win pts 180':>11}"
+    for sc in MAIN_SCEN:
+        X = [c for c in C if c["scenario"] == sc]; pr(f"\n   {sc} ({len(X)})"); pr(head); o = res["as_it_fell"][sc] = {}
+        for call, _ in collections.Counter(c["call"] for c in X).most_common():
+            V = [c for c in X if c["call"] == call]
+            h = [c["hard"]["90"] for c in V]; pre = [c["pre"] for c in V if c["pre"] is not None]; fl = [x["lead_change"] for x in h if x["lead_change"] is not None]
+            row = o[call] = {"cases": len(V), "matches": len({c["rid"] for c in V}), "started at": 100 * float(np.mean([c["p0"] for c in V])), "the 60 s before": float(np.mean(pre)) if pre else None,
+                             "they lose one": 100 * float(np.mean([x["deaths"][1] > 0 for x in h])), "we lose one": 100 * float(np.mean([x["deaths"][0] > 0 for x in h])), "net kills": float(np.mean([x["deaths"][1] - x["deaths"][0] for x in h])),
+                             "our pit NPCs": float(np.mean([c["hard"]["180"]["pit"][0] for c in V])), "their pit NPCs": float(np.mean([c["hard"]["180"]["pit"][1] for c in V])), "flags": float(np.mean(fl)) if fl else 0.0,
+                             "win points 90": float(np.mean([c["v"]["90"] for c in V])), "win points 180": float(np.mean([c["v"]["180"] for c in V]))}
+            pr(f"     {call:52} {len(V):5}  {row['started at']:9.0f}%  {('' if row['the 60 s before'] is None else format(row['the 60 s before'], '+.1f')):>11}  {row['they lose one']:12.0f}%  {row['we lose one']:10.0f}%  {row['net kills']:+9.2f}  "
+               f"{row['our pit NPCs']:12.2f}  {row['their pit NPCs']:14.2f}  {row['flags']:+6.2f}  {row['win points 90']:+10.1f}  {row['win points 180']:+11.1f}" + ("   (under the floor)" if len(V) < MIN_PLAYS or row["matches"] < MIN_MATCHES else ""))
+    by_s = collections.defaultdict(list)
+    for c in C: by_s[c["scenario"]].append(c)
+    S = {k: Scenario(by_s[k]) for k in MAIN_SCEN if len(by_s[k]) >= MIN_PLAYS}
+    K, _ = choose_k(S); res["K"] = K; res["like_spots"] = {}; res["advice_test"] = {}
+    pr(f"\nD. Like spots: the call {NUM_READ} s in, set against the {K} nearest cases of each other call from other matches, set level with the case read (the floor of {MIN_PLAYS} plays and {MIN_MATCHES} matches a call)")
+    pr("   matched on: " + ", ".join(MAIN_VARS))
+    pr("   D1. Each call's worth at the same spot, 180 s on, in win points against the commonest call (the mean over every case of the scenario, with the 90% range such a comparison has at one spot). A reading, not advice.")
+    for name, s_ in S.items():
+        ref = s_.calls[0]; rows_ = collections.defaultdict(list); o = res["like_spots"][name] = {"cases": len(s_.C), "against": ref, "calls": {}}
+        for i in range(len(s_.C)):
+            r = s_.read(i, K, False)
+            if ref not in r["calls"]: continue
+            for a_, w in r["calls"].items():
+                if a_ != ref: rows_[a_].append((w["worth"] - r["calls"][ref]["worth"], math.hypot(w["se"], r["calls"][ref]["se"])))
+        pr(f"\n   {name} ({len(s_.C)}); against \"{ref}\" ({int((s_.call == ref).sum())} cases)")
+        for a_ in s_.calls[1:]:
+            n_a = int((s_.call == a_).sum())
+            if a_ not in rows_ or len(rows_[a_]) < MIN_PLAYS: pr(f"     {a_:52} {n_a:4} cases: too few to set beside it"); o["calls"][a_] = {"cases": n_a, "reads": "too few"}; continue
+            mu, se_ = float(np.mean([d_ for d_, _ in rows_[a_]])), float(np.mean([e_ for _, e_ in rows_[a_]]))
+            lo, hi = mu - Z * se_, mu + Z * se_
+            word = "better" if lo > 0 else "worse" if hi < 0 else "no clear difference"
+            o["calls"][a_] = {"cases": n_a, "worth": mu, "range": [float(lo), float(hi)], "reads": word}
+            pr(f"     {a_:52} {n_a:4} cases: {mu:+5.1f} ({lo:+.1f} to {hi:+.1f})   {word}")
+    pr(f"\n   D2. The test on matches the advice never saw: where the advice is clear, teams whose call {NUM_READ} s in matched it against those whose call did not, in win points; and the same test on the 60 s before, which no call can change.")
+    for name, s_ in S.items():
+        o = res["advice_test"][name] = {}
+        for H in HORIZONS:
+            t = advice_test({name: s_}, K, H); o[H] = {k: v for k, v in t.items()}
+            adv = ", ".join(f"{a_} {n_}" for a_, n_ in sorted(t.get("advice", {}).items(), key=lambda q: -q[1]))
+            if "v" not in t: pr(f"   {name}, {H} s on: {len(s_.C)} cases, clear advice in {t['rows']}: too few to call [{adv}]"); continue
+            pre = t.get("pre"); lv = "" if not pre else f"; in the 60 s before {pre['effect']:+.1f} ({pre['range'][0]:+.1f} to {pre['range'][1]:+.1f})" + ("" if pre["verdict"] == "no clear difference" else " NOT LEVEL")
+            pr(f"   {name}, {H} s on: {len(s_.C)} cases, clear advice in {t['rows']} ({adv}), matched {t['matched']}: {t['v']['effect']:+.1f} ({t['v']['range'][0]:+.1f} to {t['v']['range'][1]:+.1f}) {t['v']['verdict']}; "
+               f"in how the match ended {t['end']['effect']:+.1f} ({t['end']['range'][0]:+.1f} to {t['end']['range'][1]:+.1f}){lv}")
+    if out_json: json.dump(res, open(out_json, "w"), indent=1, default=float)
+    return res
+
+
 if __name__ == "__main__":
     a = sys.argv[1:]
     if len(a) >= 2 and a[0] == "test": report(a[1], a[a.index("--json") + 1] if "--json" in a else None)
@@ -1761,6 +1925,7 @@ if __name__ == "__main__":
     elif len(a) >= 2 and a[0] == "cards": cards(a[1], a[2] if len(a) > 2 and not a[2].startswith("--") else "f1", a[a.index("--json") + 1] if "--json" in a else None, a[a.index("--site") + 1] if "--site" in a else None)
     elif len(a) >= 2 and a[0] == "ladder": ladder(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 2 and a[0] == "numbers": numbers(a[1], a[a.index("--json") + 1] if "--json" in a else None)
+    elif len(a) >= 2 and a[0] == "main-fight": main_fight(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 2 and a[0] == "splits": splits(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 2 and a[0] == "numbers-cards": numbers_cards(a[1], a[2] if len(a) > 2 and not a[2].startswith("--") else "f1", a[a.index("--site") + 1] if "--site" in a else None)
     else: print(__doc__)
