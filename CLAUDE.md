@@ -337,11 +337,14 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   readings were shown on. None of it changes a play. `cases.py splits <plays file>` (report `data/model/split_cases.json`): the clock of a split; the
   readings S1 to S7 (what any player knows); what followed each answer by the size of the split, as it fell; how the answer moves between the reads;
   and like spots (section E: matched on `SPLIT_VARS`, R-566 and R-568; each answer against the commonest at the same spot, then the test on unseen
-  matches with the same test on the 60 s before). The answer is the first answer, read 20 s after the split is told and again at 40 s (R-567), in the
-  names of R-566 (`SPLIT_ANSWERS`). No row of the report is advice until the held-out test shows a gain for that size of split: say so whenever it is
+  matches with the same test on the 60 s before; section F, `split_factors`: what matching the split or more is worth against fewer, by what the
+  defending team can see, R-568: where to look, never advice). The answer is the first answer, read 20 s after the split is told and again at 40 s
+  (R-567), in the names of R-566 with "no answer" told apart (R-569: a defender on his way, there within 20 s more, and nobody coming; told from what
+  the defending team did alone) (`SPLIT_ANSWERS`). No row of the report is advice until the held-out test shows a gain for that size of split: say so whenever it is
   shown to him. The range of an answer's worth at a spot is the range at one spot: never narrow it by drawing matches again over spots, which share
-  their nearest cases. Still to read as factors (R-568): the game clock as before and after 12:00, a split or runner of the defending team at home,
-  which pit NPCs are left; the split's damage against NPCs is not measured (`Moments._props`); players who res at the base onto a split are read as
+  their nearest cases. Never ask for `_flag_rows` or `run_starts` from inside `split_plays`: it is entered while `run_starts` is being built (the part-carries),
+  and the half-built runs are kept (2026-11-21: 30 flag plays moved; `runner_out` is put on the record in `plays`). After any change to the record
+  compare the development set's plays with the run before, the keys `split` and `at_told` left out: nothing may differ. The split's damage against NPCs is not measured (`Moments._props`); players who res at the base onto a split are read as
   a collapse (to separate before the base res is judged against collapses). The other half, the main fight while a split is out (the numbers rows
   "from a split elsewhere"), is not read yet.
 - A numbers advantage from kills is not a decision family (R-557: the team up keeps killing and follows the team down,
