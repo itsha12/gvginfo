@@ -908,6 +908,15 @@ def split_plays(M, K):
                     "dead": [sum(1 for a in st.players[k_] if not M.AL[a][min(told0, T)]) for k_ in (tm, foe)],
                     "steps": [M._main_step(k_, min(told0, T) - min(told0, T) % S_)[0] for k_ in (tm, foe)],
                     "props": [props_at(h) for h in SPLIT_TRACK_S],
+                    # ... and what else the team it is sent against can see when it has to answer (the other factors, R-568): which of its pit NPCs are left, how many of
+                    # its players are already at home (a runner, a player just risen at the base, one waiting back), whether a flag run or a split of its own is under way
+                    "pit_alive": (lambda N_: {k_: sum(1 for z, kd in N_ if kd == k_ and st.npc_dead.get(z, 1e9) > told0) for k_ in ("knight", "archer", "bodyguard")})(
+                        [(z, v["kind"]) for z, v in st.geo.npcs.items() if v["team"] == foe and v.get("pit") and v["kind"] != "guild_lord"]),
+                    "home": (lambda u_: sum(1 for b in st.players[foe] if M.AL[b][u_] and M.P[b][u_] and M.place_at(b, u_)[1] == own_d and M.place_at(b, u_)[0] in HOMEG))(min(told0, T) - min(told0, T) % S_),
+                    "tm": tm,      # (`runner_out`, a flag run of each team under way when it is told, is added in `plays`: the flag rows must not be asked for here. This reading is
+                    # entered while `run_starts` is still being built (the part-carries are read from the split's candidates), and `_flag_rows` would keep the half-built runs:
+                    # tried 2026-11-21, 30 flag plays of the development set moved)
+                    "own_split": any(y is not x and y["tm"] == foe and y["t_in"] <= told0 <= y["t1"] for y in A),
                     # ... and the damage its players did to the Guild Lord while it was out (his word: a split that clears the pit later in the game does more of it), by the second
                     "lord_damage": [[int(u) - told0, round(v)] for u, a, v in sorted(M.lord_hits.get(foe, ())) if a in frm and frm[a] <= u <= ext[a] + 4 and v],
                     "split_deaths": [int(td) - told0 for td, _ in dA], "defender_deaths": [int(td) - told0 for td, _ in dD], "npcs": [[int(td) - told0, kind, bool(pit)] for td, kind, pit in sorted(npc_ev)]}
@@ -1393,6 +1402,10 @@ def plays(M, recs=None):
     P = pinned(M)
     pinned_at = lambda tm, t: any(k == tm and a <= t <= b for k, a, b in P)
     out = opening_plays(M, K) + flag_plays(M, K, pinned_at) + push_plays(M, K) + split_plays(M, K) + numbers_plays(M, K, M.triggers(), recs, pinned_at) + boost_plays(M, K, recs, pinned_at) + pinned_plays(M, K) + res_plays(M, K) + lord_plays(M, K)
+    fr = _flag_rows(M)
+    for p in out:                                                          # on each split's record: a flag run of the split's team, and of the team it is sent against, under way when it is told
+        s_ = p.get("split")
+        if s_ is not None and "runner_out" not in s_: s_["runner_out"] = [any(int(f_.get("off", f_["s0"])) <= s_["told"] <= f_["e"] and f_["tm"] == k_ for f_ in fr) for k_ in (s_["tm"], 3 - s_["tm"])]
     out = [p for p in out if p["t0"] < M.over - SPLIT_STEP and not (p["play"] == "base res" and p["t0"] + 20 >= M.over - SPLIT_STEP)]      # nothing is told from the second the match is over, and a base res that falls on it is none (Moments.over)
     out.sort(key=lambda p: (p["t0"], p["tm"], p["play"]))
     rid = M.m.o["meta"]["id"]

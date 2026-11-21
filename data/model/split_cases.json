@@ -181,20 +181,35 @@
  "as_it_fell": {
   "read 20 s in": {
    "one player": {
-    "no answer": {
-     "cases": 350,
-     "matches": 219,
-     "started at": 58.45190653385277,
-     "the 60 s before": 0.6300707987471053,
-     "pit NPCs 90": 0.5171428571428571,
-     "pit NPCs 180": 0.66,
-     "Lord damage 180": 126.58857142857143,
-     "split loses one": 18.285714285714285,
-     "defence loses one": 6.2857142857142865,
-     "net kills": 0.8885714285714286,
-     "flags": 0.10332352941176473,
-     "win points 90": 1.37510566280599,
-     "win points 180": 2.2476141203446884
+    "nobody coming": {
+     "cases": 168,
+     "matches": 127,
+     "started at": 56.07629777813289,
+     "the 60 s before": 0.5850152489802714,
+     "pit NPCs 90": 0.7261904761904762,
+     "pit NPCs 180": 0.9166666666666666,
+     "Lord damage 180": 138.64285714285714,
+     "split loses one": 15.476190476190476,
+     "defence loses one": 4.166666666666666,
+     "net kills": 0.875,
+     "flags": 0.1376687116564417,
+     "win points 90": 1.6408852289421976,
+     "win points 180": 1.5729700896480723
+    },
+    "a defender on his way": {
+     "cases": 182,
+     "matches": 139,
+     "started at": 60.64477615451729,
+     "the 60 s before": 0.6754267188457178,
+     "pit NPCs 90": 0.3241758241758242,
+     "pit NPCs 180": 0.4230769230769231,
+     "Lord damage 180": 115.46153846153847,
+     "split loses one": 20.87912087912088,
+     "defence loses one": 8.241758241758241,
+     "net kills": 0.9010989010989011,
+     "flags": 0.0716949152542373,
+     "win points 90": 1.1297706786802595,
+     "win points 180": 2.8703624563723342
     },
     "one defender, a monk": {
      "cases": 107,
@@ -288,20 +303,35 @@
     }
    },
    "two players": {
-    "no answer": {
-     "cases": 73,
-     "matches": 66,
-     "started at": 61.76340501740658,
-     "the 60 s before": 1.1852190990093596,
-     "pit NPCs 90": 0.4520547945205479,
-     "pit NPCs 180": 0.6712328767123288,
-     "Lord damage 180": 285.45205479452056,
-     "split loses one": 26.027397260273972,
-     "defence loses one": 16.43835616438356,
-     "net kills": 1.178082191780822,
-     "flags": 0.11041666666666668,
-     "win points 90": -0.19648198815582057,
-     "win points 180": -0.7717017420546749
+    "nobody coming": {
+     "cases": 17,
+     "matches": 17,
+     "started at": 66.308666669062,
+     "the 60 s before": 2.309532162601219,
+     "pit NPCs 90": 0.8235294117647058,
+     "pit NPCs 180": 0.8235294117647058,
+     "Lord damage 180": 275.1764705882353,
+     "split loses one": 35.294117647058826,
+     "defence loses one": 5.88235294117647,
+     "net kills": 1.6470588235294117,
+     "flags": 0.0037500000000000033,
+     "win points 90": -0.2539547184672182,
+     "win points 180": -5.769521536433702
+    },
+    "a defender on his way": {
+     "cases": 56,
+     "matches": 54,
+     "started at": 60.383593444582594,
+     "the 60 s before": 0.8024742262972371,
+     "pit NPCs 90": 0.3392857142857143,
+     "pit NPCs 180": 0.625,
+     "Lord damage 180": 288.57142857142856,
+     "split loses one": 23.214285714285715,
+     "defence loses one": 19.642857142857142,
+     "net kills": 1.0357142857142858,
+     "flags": 0.14089285714285718,
+     "win points 90": -0.17903490931128913,
+     "win points 180": 0.7454935526675295
     },
     "one defender": {
      "cases": 116,
@@ -395,20 +425,35 @@
     }
    },
    "three players": {
-    "no answer": {
-     "cases": 28,
-     "matches": 26,
-     "started at": 53.93646683532079,
-     "the 60 s before": 1.908955782576472,
-     "pit NPCs 90": 0.75,
-     "pit NPCs 180": 0.7857142857142857,
-     "Lord damage 180": 316.7142857142857,
-     "split loses one": 17.857142857142858,
-     "defence loses one": 10.714285714285714,
-     "net kills": 0.4642857142857143,
-     "flags": -0.13999999999999999,
-     "win points 90": -1.1888986400234725,
-     "win points 180": 4.642192525049355
+    "nobody coming": {
+     "cases": 8,
+     "matches": 8,
+     "started at": 70.5348174355751,
+     "the 60 s before": 1.013261207849034,
+     "pit NPCs 90": 0.375,
+     "pit NPCs 180": 0.375,
+     "Lord damage 180": 0.0,
+     "split loses one": 0.0,
+     "defence loses one": 12.5,
+     "net kills": 0.25,
+     "flags": 0.14,
+     "win points 90": -5.308718369102086,
+     "win points 180": 0.009769540416040279
+    },
+    "a defender on his way": {
+     "cases": 20,
+     "matches": 19,
+     "started at": 47.297126595219076,
+     "the 60 s before": 2.420781253849294,
+     "pit NPCs 90": 0.9,
+     "pit NPCs 180": 0.95,
+     "Lord damage 180": 443.4,
+     "split loses one": 25.0,
+     "defence loses one": 10.0,
+     "net kills": 0.55,
+     "flags": -0.252,
+     "win points 90": 0.45902925160797325,
+     "win points 180": 6.495161718902681
     },
     "one defender": {
      "cases": 58,
@@ -532,20 +577,35 @@
     }
    },
    "four or more": {
-    "no answer": {
-     "cases": 26,
-     "matches": 22,
-     "started at": 47.75299799231349,
-     "the 60 s before": 1.4758257759692093,
-     "pit NPCs 90": 0.8461538461538461,
-     "pit NPCs 180": 1.2307692307692308,
-     "Lord damage 180": 564.8076923076923,
-     "split loses one": 15.384615384615385,
-     "defence loses one": 19.230769230769234,
+    "nobody coming": {
+     "cases": 9,
+     "matches": 8,
+     "started at": 39.52891714665966,
+     "the 60 s before": 2.1271873858989023,
+     "pit NPCs 90": 1.4444444444444444,
+     "pit NPCs 180": 1.4444444444444444,
+     "Lord damage 180": 560.1111111111111,
+     "split loses one": 11.11111111111111,
+     "defence loses one": 33.33333333333333,
      "net kills": 0.0,
-     "flags": -0.030769230769230795,
-     "win points 90": -4.540348376536939,
-     "win points 180": -5.4004985200652005
+     "flags": 0.01333333333333332,
+     "win points 90": -5.947950075172352,
+     "win points 180": -3.569331276749342
+    },
+    "a defender on his way": {
+     "cases": 17,
+     "matches": 16,
+     "started at": 52.10692314589493,
+     "the 60 s before": 1.0415847026827476,
+     "pit NPCs 90": 0.5294117647058824,
+     "pit NPCs 180": 1.1176470588235294,
+     "Lord damage 180": 567.2941176470588,
+     "split loses one": 17.647058823529413,
+     "defence loses one": 11.76470588235294,
+     "net kills": 0.0,
+     "flags": -0.05411764705882354,
+     "win points 90": -3.7951474772593676,
+     "win points 180": -6.369940001820657
     },
     "one defender": {
      "cases": 25,
@@ -671,20 +731,35 @@
   },
   "read 40 s in": {
    "one player": {
-    "no answer": {
-     "cases": 143,
-     "matches": 115,
-     "started at": 56.292825715835036,
-     "the 60 s before": 0.5714083998003275,
-     "pit NPCs 90": 0.7272727272727273,
-     "pit NPCs 180": 0.972027972027972,
-     "Lord damage 180": 164.58041958041957,
-     "split loses one": 14.685314685314685,
-     "defence loses one": 4.895104895104895,
-     "net kills": 0.6713286713286714,
-     "flags": 0.0962142857142857,
-     "win points 90": 1.3386047150827052,
-     "win points 180": 2.051572848750639
+    "nobody coming": {
+     "cases": 77,
+     "matches": 70,
+     "started at": 48.86797968869628,
+     "the 60 s before": -0.6888886800883608,
+     "pit NPCs 90": 0.922077922077922,
+     "pit NPCs 180": 1.2857142857142858,
+     "Lord damage 180": 186.54545454545453,
+     "split loses one": 11.688311688311687,
+     "defence loses one": 3.896103896103896,
+     "net kills": 0.8441558441558441,
+     "flags": 0.11810810810810808,
+     "win points 90": 2.342151565223569,
+     "win points 180": 2.495535329401383
+    },
+    "a defender on his way": {
+     "cases": 66,
+     "matches": 58,
+     "started at": 64.95514608083023,
+     "the 60 s before": 2.070727339667905,
+     "pit NPCs 90": 0.5,
+     "pit NPCs 180": 0.6060606060606061,
+     "Lord damage 180": 138.95454545454547,
+     "split loses one": 18.181818181818183,
+     "defence loses one": 6.0606060606060606,
+     "net kills": 0.4696969696969697,
+     "flags": 0.07166666666666666,
+     "win points 90": 0.16780005658503117,
+     "win points 180": 1.5336166213247702
     },
     "one defender, a monk": {
      "cases": 107,
@@ -778,20 +853,35 @@
     }
    },
    "two players": {
-    "no answer": {
-     "cases": 41,
-     "matches": 36,
-     "started at": 60.83067854089481,
-     "the 60 s before": 0.9929984057294922,
-     "pit NPCs 90": 0.7073170731707317,
-     "pit NPCs 180": 0.8536585365853658,
-     "Lord damage 180": 249.41463414634146,
-     "split loses one": 17.073170731707318,
-     "defence loses one": 17.073170731707318,
-     "net kills": 0.8292682926829268,
-     "flags": 0.1673170731707317,
-     "win points 90": -2.3654922535639895,
-     "win points 180": -2.582317802571183
+    "nobody coming": {
+     "cases": 15,
+     "matches": 14,
+     "started at": 58.0271087117794,
+     "the 60 s before": -1.734095377503385,
+     "pit NPCs 90": 0.9333333333333333,
+     "pit NPCs 180": 1.0,
+     "Lord damage 180": 427.26666666666665,
+     "split loses one": 0.0,
+     "defence loses one": 20.0,
+     "net kills": 0.26666666666666666,
+     "flags": 0.3366666666666666,
+     "win points 90": -4.805080117077629,
+     "win points 180": -5.677743742819988
+    },
+    "a defender on his way": {
+     "cases": 26,
+     "matches": 25,
+     "started at": 62.44812267307679,
+     "the 60 s before": 2.35654529734593,
+     "pit NPCs 90": 0.5769230769230769,
+     "pit NPCs 180": 0.7692307692307693,
+     "Lord damage 180": 146.80769230769232,
+     "split loses one": 26.923076923076923,
+     "defence loses one": 15.384615384615385,
+     "net kills": 1.1538461538461537,
+     "flags": 0.06961538461538462,
+     "win points 90": -0.958037716921506,
+     "win points 180": -0.7964951447353326
     },
     "one defender": {
      "cases": 94,
@@ -885,20 +975,35 @@
     }
    },
    "three players": {
-    "no answer": {
-     "cases": 13,
-     "matches": 13,
-     "started at": 53.0438320913485,
-     "the 60 s before": -0.20748846857870173,
-     "pit NPCs 90": 1.5384615384615385,
-     "pit NPCs 180": 1.5384615384615385,
-     "Lord damage 180": 369.61538461538464,
-     "split loses one": 46.15384615384615,
-     "defence loses one": 7.6923076923076925,
-     "net kills": 2.230769230769231,
-     "flags": 0.2653846153846154,
-     "win points 90": 0.5171956995340998,
-     "win points 180": 5.1946999786705135
+    "nobody coming": {
+     "cases": 3,
+     "matches": 3,
+     "started at": 24.569477661511538,
+     "the 60 s before": -0.9561518390627133,
+     "pit NPCs 90": 1.6666666666666667,
+     "pit NPCs 180": 1.6666666666666667,
+     "Lord damage 180": 26.0,
+     "split loses one": 0.0,
+     "defence loses one": 0.0,
+     "net kills": 0.0,
+     "flags": -0.1666666666666667,
+     "win points 90": -1.7814446995001785,
+     "win points 180": -1.149243291230037
+    },
+    "a defender on his way": {
+     "cases": 10,
+     "matches": 10,
+     "started at": 61.586138420299584,
+     "the 60 s before": -0.13262213153030045,
+     "pit NPCs 90": 1.5,
+     "pit NPCs 180": 1.5,
+     "Lord damage 180": 472.7,
+     "split loses one": 60.0,
+     "defence loses one": 10.0,
+     "net kills": 2.9,
+     "flags": 0.39499999999999996,
+     "win points 90": 1.2067878192443833,
+     "win points 180": 7.0978829596406765
     },
     "one defender": {
      "cases": 53,
@@ -1022,20 +1127,35 @@
     }
    },
    "four or more": {
-    "no answer": {
-     "cases": 13,
-     "matches": 13,
-     "started at": 36.92031554024481,
-     "the 60 s before": 0.9395624481310666,
-     "pit NPCs 90": 1.0769230769230769,
-     "pit NPCs 180": 1.0769230769230769,
-     "Lord damage 180": 553.1538461538462,
-     "split loses one": 7.6923076923076925,
-     "defence loses one": 61.53846153846154,
-     "net kills": -1.0,
-     "flags": 0.05666666666666662,
-     "win points 90": -2.2837923538403055,
-     "win points 180": 1.796851171140077
+    "nobody coming": {
+     "cases": 9,
+     "matches": 9,
+     "started at": 27.701921833408843,
+     "the 60 s before": -2.2169496835115545,
+     "pit NPCs 90": 1.1111111111111112,
+     "pit NPCs 180": 1.1111111111111112,
+     "Lord damage 180": 799.0,
+     "split loses one": 0.0,
+     "defence loses one": 66.66666666666666,
+     "net kills": -1.6666666666666667,
+     "flags": -0.14250000000000002,
+     "win points 90": -7.800810378005859,
+     "win points 180": -2.055356856596646
+    },
+    "a defender on his way": {
+     "cases": 4,
+     "matches": 4,
+     "started at": 57.66170138062574,
+     "the 60 s before": 9.35692813251139,
+     "pit NPCs 90": 1.0,
+     "pit NPCs 180": 1.0,
+     "Lord damage 180": 0.0,
+     "split loses one": 25.0,
+     "defence loses one": 50.0,
+     "net kills": 0.5,
+     "flags": 0.45499999999999996,
+     "win points 90": 10.12949820053219,
+     "win points 180": 10.464319233547702
     },
     "one defender": {
      "cases": 24,
@@ -1162,11 +1282,6 @@
  },
  "moves": [
   [
-   "no answer",
-   "no answer",
-   139
-  ],
-  [
    "mirror",
    "mirror",
    127
@@ -1182,9 +1297,9 @@
    90
   ],
   [
-   "no answer",
-   "over by then",
-   75
+   "nobody coming",
+   "a defender on his way",
+   70
   ],
   [
    "fewer than the split",
@@ -1192,17 +1307,27 @@
    67
   ],
   [
+   "nobody coming",
+   "nobody coming",
+   66
+  ],
+  [
    "one defender",
    "one defender",
    64
   ],
   [
-   "no answer",
+   "a defender on his way",
    "one defender, not a monk",
    62
   ],
   [
-   "no answer",
+   "nobody coming",
+   "over by then",
+   61
+  ],
+  [
+   "a defender on his way",
    "one defender",
    58
   ],
@@ -1225,43 +1350,47 @@
    "one defender",
    "mirror",
    42
-  ],
-  [
-   "no answer",
-   "one defender, a monk",
-   42
   ]
  ],
  "K": 45,
  "like_spots": {
   "A split of one player": {
    "cases": 786,
-   "against": "no answer",
+   "against": "one defender, not a monk",
    "answers": {
-    "one defender, not a monk": {
-     "cases": 210,
-     "worth": -1.515944177968808,
+    "a defender on his way": {
+     "cases": 182,
+     "worth": 2.4352347612151815,
      "range": [
-      -6.18492719934368,
-      3.1530388434060646
+      -1.962998562792937,
+      6.8334680852233
+     ],
+     "reads": "no clear difference"
+    },
+    "nobody coming": {
+     "cases": 168,
+     "worth": -0.22804571071241767,
+     "range": [
+      -5.244697151553377,
+      4.788605730128542
      ],
      "reads": "no clear difference"
     },
     "one defender, a monk": {
      "cases": 107,
-     "worth": -1.3489011123156271,
+     "worth": 0.16704306565318094,
      "range": [
-      -5.92571921330671,
-      3.227916988675456
+      -3.92654583682444,
+      4.260631968130802
      ],
      "reads": "no clear difference"
     },
     "add one": {
      "cases": 63,
-     "worth": -3.869827771650481,
+     "worth": -2.3538835936816733,
      "range": [
-      -9.160368056559712,
-      1.4207125132587493
+      -7.225394228041087,
+      2.5176270406777403
      ],
      "reads": "no clear difference"
     },
@@ -1292,12 +1421,12 @@
      ],
      "reads": "no clear difference"
     },
-    "no answer": {
-     "cases": 73,
-     "worth": -4.833575284053957,
+    "a defender on his way": {
+     "cases": 56,
+     "worth": -1.7880370253083953,
      "range": [
-      -10.028694611048442,
-      0.3615440429405279
+      -7.216054375833321,
+      3.6399803252165297
      ],
      "reads": "no clear difference"
     },
@@ -1312,6 +1441,10 @@
     },
     "the whole team": {
      "cases": 20,
+     "reads": "too few"
+    },
+    "nobody coming": {
+     "cases": 17,
      "reads": "too few"
     },
     "a collapse": {
@@ -1355,8 +1488,8 @@
      ],
      "reads": "no clear difference"
     },
-    "no answer": {
-     "cases": 28,
+    "a defender on his way": {
+     "cases": 20,
      "reads": "too few"
     },
     "a collapse": {
@@ -1369,6 +1502,10 @@
     },
     "the whole team": {
      "cases": 12,
+     "reads": "too few"
+    },
+    "nobody coming": {
+     "cases": 8,
      "reads": "too few"
     },
     "two or more extra": {
@@ -1390,12 +1527,12 @@
      ],
      "reads": "no clear difference"
     },
-    "no answer": {
-     "cases": 26,
-     "reads": "too few"
-    },
     "one defender": {
      "cases": 25,
+     "reads": "too few"
+    },
+    "a defender on his way": {
+     "cases": 17,
      "reads": "too few"
     },
     "the whole team": {
@@ -1404,6 +1541,10 @@
     },
     "add one": {
      "cases": 10,
+     "reads": "too few"
+    },
+    "nobody coming": {
+     "cases": 9,
      "reads": "too few"
     },
     "a collapse": {
@@ -1426,210 +1567,189 @@
    "60": {
     "tally": {
      "cases": 786,
-     "no clear advice": 558,
-     "clear advice": 228
+     "no clear advice": 537,
+     "clear advice": 249
     },
-    "rows": 228,
-    "matched": 73,
+    "rows": 249,
+    "matched": 54,
     "advice": {
-     "one defender, a monk": 52,
-     "no answer": 113,
-     "one defender, not a monk": 60,
-     "add one": 3
+     "nobody coming": 146,
+     "one defender, a monk": 45,
+     "a defender on his way": 4,
+     "one defender, not a monk": 52,
+     "add one": 2
     },
     "v": {
-     "effect": 2.194809616453675,
+     "effect": 3.9493731208999785,
      "range": [
-      0.2384957944842912,
-      4.039673559582192
+      -0.1034031985849418,
+      7.746086818319203
      ],
-     "matched_mean": 2.341781366285604,
-     "unmatched_mean": 0.3339311247831998,
-     "verdict": "better"
+     "matched_mean": 5.2659260755776405,
+     "unmatched_mean": 0.9668896629378868,
+     "verdict": "no clear difference"
     },
     "end": {
-     "effect": 2.92181609577703,
+     "effect": -11.995861208072764,
      "range": [
-      -9.840628997875223,
-      14.527509904332835
+      -23.482130695540953,
+      -0.44670869775863115
      ],
-     "matched_mean": 3.0534783788792748,
-     "unmatched_mean": 1.83510939298716,
-     "verdict": "no clear difference"
+     "matched_mean": -3.943738164373602,
+     "unmatched_mean": 8.069187274242303,
+     "verdict": "worse"
     },
     "pre": {
-     "effect": 0.025926722003454725,
+     "effect": 0.2133749763076398,
      "range": [
-      -1.6302293999796384,
-      1.4294756415113827
+      -1.5633334850854181,
+      1.9907717546901997
      ],
-     "matched_mean": 3.0922696956900166,
-     "unmatched_mean": 1.1995396689646123,
+     "matched_mean": 1.6745178289849472,
+     "unmatched_mean": 0.720660173208997,
      "verdict": "no clear difference"
     },
-    "matches": 153
+    "matches": 165
    },
    "90": {
-    "tally": {
-     "cases": 786,
-     "no clear advice": 530,
-     "clear advice": 256
-    },
-    "rows": 256,
-    "matched": 70,
-    "advice": {
-     "no answer": 99,
-     "one defender, not a monk": 65,
-     "one defender, a monk": 91,
-     "add one": 1
-    },
-    "v": {
-     "effect": 1.4603262501990164,
-     "range": [
-      -0.8181923550349403,
-      4.4574540688577375
-     ],
-     "matched_mean": 2.9674614886299384,
-     "unmatched_mean": 0.9438670622990454,
-     "verdict": "no clear difference"
-    },
-    "end": {
-     "effect": 5.782937547376722,
-     "range": [
-      -4.41984490115795,
-      14.796191466451345
-     ],
-     "matched_mean": 5.8644845069153035,
-     "unmatched_mean": -0.03588312239347842,
-     "verdict": "no clear difference"
-    },
-    "pre": {
-     "effect": 0.771530309573834,
-     "range": [
-      -0.5894591195497524,
-      2.2829042248476172
-     ],
-     "matched_mean": 3.9374297167606533,
-     "unmatched_mean": 0.9319050637778548,
-     "verdict": "no clear difference"
-    },
-    "matches": 162
-   },
-   "180": {
     "tally": {
      "cases": 786,
      "no clear advice": 568,
      "clear advice": 218
     },
     "rows": 218,
-    "matched": 62,
+    "matched": 50,
     "advice": {
-     "no answer": 98,
-     "one defender, a monk": 86,
-     "one defender, not a monk": 32,
-     "add one": 2
+     "nobody coming": 71,
+     "one defender, not a monk": 58,
+     "one defender, a monk": 67,
+     "a defender on his way": 22
     },
     "v": {
-     "effect": -1.742841262894636,
+     "effect": 0.6163252252301066,
      "range": [
-      -5.332485265828296,
-      1.2944613528721258
+      -2.7353974783041988,
+      4.343776894002884
      ],
-     "matched_mean": 1.9121299608959583,
-     "unmatched_mean": 1.9862104287636886,
+     "matched_mean": 4.4218061716483055,
+     "unmatched_mean": 1.2246181091642236,
      "verdict": "no clear difference"
     },
     "end": {
-     "effect": 0.4988368260893286,
+     "effect": -5.362781178796602,
      "range": [
-      -10.228941943949613,
-      9.796731326397918
+      -17.33514004653652,
+      5.4618185044606795
      ],
-     "matched_mean": 8.304075401156805,
-     "unmatched_mean": 4.007108315371069,
+     "matched_mean": -2.169103589267893,
+     "unmatched_mean": 4.859019424336709,
      "verdict": "no clear difference"
     },
     "pre": {
-     "effect": 0.7899150696233964,
+     "effect": 0.10444184979937916,
      "range": [
-      -1.1652353595866278,
-      2.7934932777069674
+      -1.860492834195577,
+      1.8947694589370447
      ],
-     "matched_mean": 3.7923607967697004,
-     "unmatched_mean": 1.4563599950491415,
+     "matched_mean": 3.2483324535256015,
+     "unmatched_mean": 1.2289049478245466,
      "verdict": "no clear difference"
     },
-    "matches": 143
+    "matches": 150
+   },
+   "180": {
+    "tally": {
+     "cases": 786,
+     "no clear advice": 624,
+     "clear advice": 162
+    },
+    "rows": 162,
+    "matched": 38,
+    "advice": {
+     "nobody coming": 47,
+     "one defender, a monk": 45,
+     "a defender on his way": 48,
+     "one defender, not a monk": 21,
+     "add one": 1
+    },
+    "v": {
+     "effect": -1.371365002234574,
+     "range": [
+      -9.142373474312262,
+      5.064993745026388
+     ],
+     "matched_mean": 0.7690996613323592,
+     "unmatched_mean": 1.7915051036739944,
+     "verdict": "no clear difference"
+    },
+    "end": {
+     "effect": -9.681520603526012,
+     "range": [
+      -24.79023787325386,
+      4.381077710269029
+     ],
+     "matched_mean": -0.025585525294577745,
+     "unmatched_mean": 9.032735557214192,
+     "verdict": "no clear difference"
+    },
+    "pre": {
+     "effect": 0.7088913169054342,
+     "range": [
+      -1.9733671043846874,
+      3.745084938054941
+     ],
+     "matched_mean": 3.143517445708425,
+     "unmatched_mean": 2.023236355706281,
+     "verdict": "no clear difference"
+    },
+    "matches": 124
    }
   },
   "A split of two players": {
    "60": {
     "tally": {
      "cases": 373,
-     "no clear advice": 253,
-     "clear advice": 120
+     "clear advice": 113,
+     "no clear advice": 260
     },
-    "rows": 120,
-    "matched": 25,
+    "rows": 113,
+    "matched": 28,
     "advice": {
-     "mirror": 75,
-     "one defender": 23,
-     "no answer": 19,
-     "add one": 3
+     "mirror": 87,
+     "one defender": 25,
+     "a defender on his way": 1
     },
     "verdict": "too few to call"
    },
    "90": {
     "tally": {
      "cases": 373,
-     "no clear advice": 257,
-     "clear advice": 116
+     "no clear advice": 275,
+     "clear advice": 98
     },
-    "rows": 116,
-    "matched": 29,
+    "rows": 98,
+    "matched": 27,
     "advice": {
-     "mirror": 65,
-     "no answer": 19,
-     "one defender": 31,
-     "add one": 1
+     "mirror": 66,
+     "one defender": 28,
+     "a defender on his way": 4
     },
     "verdict": "too few to call"
    },
    "180": {
     "tally": {
      "cases": 373,
-     "no clear advice": 250,
-     "clear advice": 123
+     "no clear advice": 267,
+     "clear advice": 106
     },
-    "rows": 123,
-    "matched": 31,
+    "rows": 106,
+    "matched": 28,
     "advice": {
-     "mirror": 36,
-     "one defender": 60,
-     "no answer": 25,
-     "add one": 2
+     "mirror": 37,
+     "one defender": 62,
+     "a defender on his way": 7
     },
-    "v": {
-     "effect": 1.7402853938211882,
-     "range": [
-      -3.428407991855103,
-      7.804888766068153
-     ],
-     "matched_mean": 3.0753638850189446,
-     "unmatched_mean": 2.3928399807918845,
-     "verdict": "no clear difference"
-    },
-    "end": {
-     "effect": -2.469311346434972,
-     "range": [
-      -18.2244271119507,
-      9.59008541163383
-     ],
-     "matched_mean": 5.415924871083512,
-     "unmatched_mean": 7.553892229581326,
-     "verdict": "no clear difference"
-    },
-    "matches": 93
+    "verdict": "too few to call"
    }
   },
   "A split of three players": {
@@ -1801,6 +1921,1790 @@
      "verdict": "no clear difference"
     },
     "matches": 76
+   }
+  }
+ },
+ "factors": {
+  "A split of one player": {
+   "all": {
+    "worth": [
+     -2.2316754874603424,
+     -3.89754274180667,
+     -0.6307224989917949
+    ],
+    "matched": 436,
+    "fewer": 350
+   },
+   "The game clock": {
+    "matters": null,
+    "gap": [
+     1.6485442395316778,
+     -2.723983460559242,
+     5.77878621237059
+    ],
+    "groups": {
+     "before 12:00": {
+      "matched": 298,
+      "fewer": 242,
+      "worth": [
+       -1.722916853420518,
+       -3.5433394897173875,
+       0.15889197236268546
+      ]
+     },
+     "12:00 on": {
+      "matched": 138,
+      "fewer": 108,
+      "worth": [
+       -3.3714610929521958,
+       -7.456870005316967,
+       0.28125025359097866
+      ]
+     }
+    }
+   },
+   "The base res": {
+    "matters": null,
+    "gap": [
+     3.8743183183548346,
+     -0.5539830635742089,
+     8.361791832803727
+    ],
+    "groups": {
+     "80 s or more away": {
+      "matched": 174,
+      "fewer": 142,
+      "worth": [
+       -4.455388942434613,
+       -7.327379591613136,
+       -1.5449164026172233
+      ]
+     },
+     "40 to 80 s away": {
+      "matched": 147,
+      "fewer": 118,
+      "worth": [
+       -0.5810706240797785,
+       -3.4926019990926953,
+       2.5139796904682226
+      ]
+     },
+     "within 40 s": {
+      "matched": 115,
+      "fewer": 90,
+      "worth": [
+       -0.6430222010014357,
+       -3.710544308304757,
+       2.70540692688495
+      ]
+     }
+    }
+   },
+   "Our players already at home": {
+    "matters": null,
+    "gap": [
+     4.71800199659681,
+     -1.752191002278175,
+     10.380279550948595
+    ],
+    "groups": {
+     "none": {
+      "matched": 155,
+      "fewer": 238,
+      "worth": [
+       -1.1655370461622383,
+       -3.4814309729961397,
+       1.056867182239077
+      ]
+     },
+     "one or two": {
+      "matched": 147,
+      "fewer": 54,
+      "worth": [
+       -4.688035446360933,
+       -8.895046034665999,
+       0.042757504812785445
+      ]
+     },
+     "three or more": {
+      "matched": 134,
+      "fewer": 58,
+      "worth": [
+       0.02996655023587595,
+       -3.980582729286421,
+       3.75797246169184
+      ]
+     }
+    }
+   },
+   "A flag run of ours under way": {
+    "matters": null,
+    "gap": [
+     0.8979943800498364,
+     -2.9112975010119375,
+     4.322005601074417
+    ],
+    "groups": {
+     "yes": {
+      "matched": 265,
+      "fewer": 183,
+      "worth": [
+       -1.8006556414497712,
+       -4.081034791236549,
+       0.19917941799983702
+      ]
+     },
+     "no": {
+      "matched": 171,
+      "fewer": 167,
+      "worth": [
+       -2.6986500214996076,
+       -5.627475318601321,
+       0.1332957388287425
+      ]
+     }
+    }
+   },
+   "A split of our own out": {
+    "matters": null,
+    "gap": [
+     0.8967699206275368,
+     -3.7134767780635265,
+     5.9201895694794855
+    ],
+    "groups": {
+     "no": {
+      "matched": 372,
+      "fewer": 314,
+      "worth": [
+       -2.058943246282267,
+       -3.9045640240898183,
+       -0.2964088609094892
+      ]
+     },
+     "yes": {
+      "matched": 64,
+      "fewer": 36,
+      "worth": [
+       -2.955713166909804,
+       -7.65255474885984,
+       1.2862010404642361
+      ]
+     }
+    }
+   },
+   "Our pit NPCs left": {
+    "matters": null,
+    "gap": [
+     5.461058278730567,
+     -4.501698240025044,
+     14.632380015912336
+    ],
+    "groups": {
+     "all of them": {
+      "matched": 202,
+      "fewer": 174,
+      "worth": [
+       -3.057218209540685,
+       -5.173547081171147,
+       -0.9069308852172405
+      ]
+     },
+     "two or more, not all": {
+      "matched": 190,
+      "fewer": 148,
+      "worth": [
+       -2.178476060769601,
+       -4.883186721063502,
+       0.5110914513924399
+      ]
+     },
+     "one or none": {
+      "matched": 44,
+      "fewer": 28,
+      "worth": [
+       2.403840069189882,
+       -8.129122706647415,
+       11.337876947468132
+      ]
+     }
+    }
+   },
+   "Our pit archers": {
+    "matters": null,
+    "gap": [
+     5.500277691915243,
+     -2.422351930013399,
+     13.273566074280994
+    ],
+    "groups": {
+     "one or more left": {
+      "matched": 406,
+      "fewer": 329,
+      "worth": [
+       -2.4981440312580827,
+       -4.106948490047228,
+       -0.7755690901582198
+      ]
+     },
+     "none left": {
+      "matched": 30,
+      "fewer": 21,
+      "worth": [
+       3.0021336606571603,
+       -4.5671865800912705,
+       10.882484095929712
+      ]
+     }
+    }
+   },
+   "Our knights": {
+    "matters": null,
+    "gap": [
+     2.0787452669723474,
+     -3.7436548690164324,
+     7.198714769304587
+    ],
+    "groups": {
+     "one or more left": {
+      "matched": 343,
+      "fewer": 298,
+      "worth": [
+       -2.4809334958573515,
+       -4.147051857080527,
+       -0.741324394124801
+      ]
+     },
+     "none left": {
+      "matched": 93,
+      "fewer": 52,
+      "worth": [
+       -0.4021882288850041,
+       -5.9541399428850905,
+       4.290500121037735
+      ]
+     }
+    }
+   },
+   "Our dead": {
+    "matters": null,
+    "gap": [
+     0.6724593778738484,
+     -4.866807437964662,
+     8.413602030401785
+    ],
+    "groups": {
+     "none": {
+      "matched": 410,
+      "fewer": 321,
+      "worth": [
+       -2.2583237889496726,
+       -3.8520502062624766,
+       -0.5783715798714493
+      ]
+     },
+     "one or more": {
+      "matched": 26,
+      "fewer": 29,
+      "worth": [
+       -1.5858644110758242,
+       -7.691578725108228,
+       6.1147944747402425
+      ]
+     }
+    }
+   },
+   "Their dead": {
+    "matters": null,
+    "gap": [
+     3.0309758078975215,
+     -1.6136082217292507,
+     6.978791368264976
+    ],
+    "groups": {
+     "none": {
+      "matched": 342,
+      "fewer": 266,
+      "worth": [
+       -2.8149155343188528,
+       -5.011721228628557,
+       -0.7456634374874106
+      ]
+     },
+     "one or more": {
+      "matched": 94,
+      "fewer": 84,
+      "worth": [
+       0.21606027357866892,
+       -3.093805236295298,
+       3.409308575045457
+      ]
+     }
+    }
+   },
+   "Where our main team stands": {
+    "matters": "may matter",
+    "gap": [
+     6.470506304811654,
+     0.38633118449144543,
+     13.746035016479686
+    ],
+    "groups": {
+     "at the stand": {
+      "matched": 216,
+      "fewer": 171,
+      "worth": [
+       -1.7016875368233915,
+       -3.834083187223301,
+       0.49120663511507656
+      ]
+     },
+     "on their side of the stand": {
+      "matched": 107,
+      "fewer": 124,
+      "worth": [
+       -5.379819188374372,
+       -10.035502294184283,
+       -1.1439191047807498
+      ]
+     },
+     "on our own side": {
+      "matched": 112,
+      "fewer": 54,
+      "worth": [
+       1.0906871164372824,
+       -2.66681381129512,
+       4.9898104265443655
+      ]
+     }
+    }
+   },
+   "Flag lead": {
+    "matters": "may matter",
+    "gap": [
+     6.456874320271299,
+     0.7887244435762081,
+     11.766577812004678
+    ],
+    "groups": {
+     "we are ahead (half a flag or more)": {
+      "matched": 151,
+      "fewer": 130,
+      "worth": [
+       -4.60079855391235,
+       -7.491292970338133,
+       -1.7190908825601836
+      ]
+     },
+     "we are behind (half a flag or more)": {
+      "matched": 156,
+      "fewer": 98,
+      "worth": [
+       1.8560757663589496,
+       -2.0052513358843513,
+       5.520720938616235
+      ]
+     },
+     "level": {
+      "matched": 129,
+      "fewer": 122,
+      "worth": [
+       -3.2372549684409004,
+       -6.212474496207358,
+       -0.5125667813631494
+      ]
+     }
+    }
+   },
+   "Strength": {
+    "matters": null,
+    "gap": [
+     1.0229884738217674,
+     -4.462796349486751,
+     7.158476085654342
+    ],
+    "groups": {
+     "we are the stronger team": {
+      "matched": 178,
+      "fewer": 165,
+      "worth": [
+       -2.315756156217242,
+       -4.918332414695428,
+       0.7344462693974595
+      ]
+     },
+     "we are the weaker team": {
+      "matched": 178,
+      "fewer": 121,
+      "worth": [
+       -1.8323326986342687,
+       -4.719419187361494,
+       0.6655770398785122
+      ]
+     },
+     "close": {
+      "matched": 80,
+      "fewer": 64,
+      "worth": [
+       -2.855321172456036,
+       -8.125833727999916,
+       1.4596004705760754
+      ]
+     }
+    }
+   },
+   "Self-defence on the split": {
+    "matters": null,
+    "gap": [
+     3.3702830206978076,
+     -1.0335881955299755,
+     8.66467417693975
+    ],
+    "groups": {
+     "none": {
+      "matched": 321,
+      "fewer": 282,
+      "worth": [
+       -1.4027485328971976,
+       -3.0890575455730906,
+       0.5281428900695345
+      ]
+     },
+     "some": {
+      "matched": 115,
+      "fewer": 68,
+      "worth": [
+       -4.773031553595005,
+       -9.880394953654829,
+       -0.7629217826107986
+      ]
+     }
+    }
+   }
+  },
+  "A split of two players": {
+   "all": {
+    "worth": [
+     0.9031759217082423,
+     -2.2578477917237896,
+     3.2638442219218686
+    ],
+    "matched": 184,
+    "fewer": 189
+   },
+   "The game clock": {
+    "matters": null,
+    "gap": [
+     3.684920063074291,
+     -4.378436180195739,
+     9.535318147078494
+    ],
+    "groups": {
+     "before 12:00": {
+      "matched": 118,
+      "fewer": 132,
+      "worth": [
+       -0.14241233399444803,
+       -3.10177770465188,
+       2.42793857098677
+      ]
+     },
+     "12:00 on": {
+      "matched": 66,
+      "fewer": 57,
+      "worth": [
+       3.5425077290798432,
+       -2.6569425876330564,
+       8.995117346491188
+      ]
+     }
+    }
+   },
+   "The base res": {
+    "matters": null,
+    "gap": [
+     5.355074951663599,
+     -4.730057669213211,
+     15.613521752367351
+    ],
+    "groups": {
+     "80 s or more away": {
+      "matched": 82,
+      "fewer": 88,
+      "worth": [
+       0.7102299466257571,
+       -3.0399098021121476,
+       3.612427245728928
+      ]
+     },
+     "40 to 80 s away": {
+      "matched": 64,
+      "fewer": 56,
+      "worth": [
+       -0.9940248522561106,
+       -7.190247941024133,
+       3.9457333186200834
+      ]
+     },
+     "within 40 s": {
+      "matched": 38,
+      "fewer": 45,
+      "worth": [
+       4.361050099407488,
+       -3.8455370505961683,
+       11.497152488825803
+      ]
+     }
+    }
+   },
+   "Our players already at home": {
+    "matters": null,
+    "gap": [
+     5.016363815901973,
+     -2.220203714712507,
+     11.55697772128094
+    ],
+    "groups": {
+     "three or more": {
+      "matched": 92,
+      "fewer": 55,
+      "worth": [
+       3.014344204227371,
+       -0.8015964809228723,
+       6.56914714123112
+      ]
+     },
+     "one or two": {
+      "matched": 56,
+      "fewer": 66,
+      "worth": [
+       -2.002019611674602,
+       -7.79315659342074,
+       3.346009681430896
+      ]
+     },
+     "none": {
+      "matched": 36,
+      "fewer": 68,
+      "worth": [
+       0.9702239667332028,
+       -4.033182019666844,
+       5.3738379816979736
+      ]
+     }
+    }
+   },
+   "A flag run of ours under way": {
+    "matters": null,
+    "gap": [
+     0.5451975209269212,
+     -5.02585322589483,
+     5.809464186798404
+    ],
+    "groups": {
+     "yes": {
+      "matched": 111,
+      "fewer": 92,
+      "worth": [
+       0.6870173571933355,
+       -2.79565252801883,
+       3.961858363457521
+      ]
+     },
+     "no": {
+      "matched": 73,
+      "fewer": 97,
+      "worth": [
+       1.2322148781202567,
+       -4.012459084163121,
+       5.025078491928658
+      ]
+     }
+    }
+   },
+   "A split of our own out": {
+    "matters": null,
+    "gap": [
+     8.336631790279666,
+     -1.712413352991921,
+     17.325062196240097
+    ],
+    "groups": {
+     "no": {
+      "matched": 157,
+      "fewer": 172,
+      "worth": [
+       -0.0843915761480307,
+       -3.1399656872375825,
+       2.731682818249103
+      ]
+     },
+     "yes": {
+      "matched": 27,
+      "fewer": 17,
+      "worth": [
+       8.252240214131636,
+       -1.8853744724434975,
+       15.082138859041827
+      ]
+     }
+    }
+   },
+   "Our pit NPCs left": {
+    "matters": null,
+    "gap": [
+     6.882413744997027,
+     -9.688008347004592,
+     19.805178207763074
+    ],
+    "groups": {
+     "two or more, not all": {
+      "matched": 99,
+      "fewer": 82,
+      "worth": [
+       -2.29281260859302,
+       -7.14873965903162,
+       1.8395256880191662
+      ]
+     },
+     "all of them": {
+      "matched": 69,
+      "fewer": 83,
+      "worth": [
+       3.847122334183793,
+       1.0183686926108453,
+       6.562833670910653
+      ]
+     },
+     "one or none": {
+      "matched": 16,
+      "fewer": 24,
+      "worth": [
+       4.589601136404007,
+       -10.97730342864548,
+       16.65418906055304
+      ]
+     }
+    }
+   },
+   "Our pit archers": {
+    "matters": null,
+    "gap": [
+     2.055913489351309,
+     -18.22699358254321,
+     18.910516505378112
+    ],
+    "groups": {
+     "one or more left": {
+      "matched": 172,
+      "fewer": 169,
+      "worth": [
+       0.789345316486133,
+       -1.9034163075273225,
+       2.9753366030032664
+      ]
+     },
+     "none left": {
+      "matched": 12,
+      "fewer": 20,
+      "worth": [
+       2.845258805837442,
+       -16.66103488869642,
+       20.36830938395713
+      ]
+     }
+    }
+   },
+   "Our knights": {
+    "matters": null,
+    "gap": [
+     5.400213376929291,
+     -3.5565038220912735,
+     11.870457777944491
+    ],
+    "groups": {
+     "one or more left": {
+      "matched": 143,
+      "fewer": 144,
+      "worth": [
+       -0.32754292118225636,
+       -3.3244883165930164,
+       2.230200561769958
+      ]
+     },
+     "none left": {
+      "matched": 41,
+      "fewer": 45,
+      "worth": [
+       5.072670455747035,
+       -2.5618721912723883,
+       12.056539477600364
+      ]
+     }
+    }
+   },
+   "Our dead": {
+    "matters": null,
+    "gap": [
+     2.7140754099470485,
+     -9.646669481839508,
+     11.096147858084793
+    ],
+    "groups": {
+     "none": {
+      "matched": 172,
+      "fewer": 169,
+      "worth": [
+       0.6364621453467132,
+       -2.3458961769997733,
+       3.2507907050194214
+      ]
+     },
+     "one or more": {
+      "matched": 12,
+      "fewer": 20,
+      "worth": [
+       3.3505375552937617,
+       -8.098542383973522,
+       11.744238006009384
+      ]
+     }
+    }
+   },
+   "Their dead": {
+    "matters": null,
+    "gap": [
+     6.6028852868506664,
+     -2.7718195949512134,
+     16.18409029296464
+    ],
+    "groups": {
+     "none": {
+      "matched": 153,
+      "fewer": 155,
+      "worth": [
+       -0.3564336529283743,
+       -3.446054207061155,
+       2.422791650804506
+      ]
+     },
+     "one or more": {
+      "matched": 31,
+      "fewer": 34,
+      "worth": [
+       6.246451633922292,
+       -2.333773371239386,
+       15.501129493393778
+      ]
+     }
+    }
+   },
+   "Where our main team stands": {
+    "matters": "may matter",
+    "gap": [
+     6.583906327595254,
+     1.0487365458799722,
+     11.586952306221427
+    ],
+    "groups": {
+     "at the stand": {
+      "matched": 67,
+      "fewer": 78,
+      "worth": [
+       -2.5616168575605514,
+       -6.561518997515412,
+       1.375929915815267
+      ]
+     },
+     "on our own side": {
+      "matched": 80,
+      "fewer": 50,
+      "worth": [
+       4.0222894700347025,
+       -0.16093363050493453,
+       8.05251763101404
+      ]
+     },
+     "on their side of the stand": {
+      "matched": 37,
+      "fewer": 60,
+      "worth": [
+       2.4590420511399653,
+       -3.6731669022005105,
+       7.918880462122924
+      ]
+     }
+    }
+   },
+   "Flag lead": {
+    "matters": null,
+    "gap": [
+     3.3009659030740623,
+     -3.561956260076717,
+     9.763118175301528
+    ],
+    "groups": {
+     "we are ahead (half a flag or more)": {
+      "matched": 63,
+      "fewer": 65,
+      "worth": [
+       -0.25700301513459206,
+       -4.7320807755481455,
+       3.633151514726933
+      ]
+     },
+     "we are behind (half a flag or more)": {
+      "matched": 67,
+      "fewer": 58,
+      "worth": [
+       3.0439628879394705,
+       -3.7450107582953804,
+       8.752520182060207
+      ]
+     },
+     "level": {
+      "matched": 54,
+      "fewer": 66,
+      "worth": [
+       0.19305907610155984,
+       -4.028162929651915,
+       4.002663460387327
+      ]
+     }
+    }
+   },
+   "Strength": {
+    "matters": null,
+    "gap": [
+     5.010494299351899,
+     -0.8428777020003577,
+     10.685922943301657
+    ],
+    "groups": {
+     "we are the stronger team": {
+      "matched": 77,
+      "fewer": 101,
+      "worth": [
+       3.212655127175382,
+       -0.0722737731020321,
+       5.77706175889036
+      ]
+     },
+     "we are the weaker team": {
+      "matched": 74,
+      "fewer": 56,
+      "worth": [
+       -1.7978391721765175,
+       -7.153388485924303,
+       2.895110859838427
+      ]
+     },
+     "close": {
+      "matched": 33,
+      "fewer": 32,
+      "worth": [
+       0.12117039281241075,
+       -10.710211752876193,
+       8.378139729477073
+      ]
+     }
+    }
+   },
+   "A monk on the split": {
+    "matters": null,
+    "gap": [
+     2.6984725172716297,
+     -6.5127015385507425,
+     11.869729989828246
+    ],
+    "groups": {
+     "no": {
+      "matched": 139,
+      "fewer": 166,
+      "worth": [
+       1.3267583740460651,
+       -1.641396011513568,
+       3.912151262223516
+      ]
+     },
+     "yes": {
+      "matched": 45,
+      "fewer": 23,
+      "worth": [
+       -1.3717141432255646,
+       -10.672538560248698,
+       6.475882060952625
+      ]
+     }
+    }
+   },
+   "Self-defence on the split": {
+    "matters": "may matter",
+    "gap": [
+     5.734418174141089,
+     0.0548752897323056,
+     12.988703106634114
+    ],
+    "groups": {
+     "none": {
+      "matched": 124,
+      "fewer": 145,
+      "worth": [
+       2.2959485644920603,
+       -1.1228350908095497,
+       5.022640726632586
+      ]
+     },
+     "some": {
+      "matched": 60,
+      "fewer": 44,
+      "worth": [
+       -3.438469609649028,
+       -9.939804913977007,
+       1.0790963826607707
+      ]
+     }
+    }
+   }
+  },
+  "A split of three players": {
+   "all": {
+    "worth": [
+     -2.2961503688231506,
+     -4.74744561146638,
+     0.18807745275378446
+    ],
+    "matched": 166,
+    "fewer": 196
+   },
+   "The game clock": {
+    "matters": null,
+    "gap": [
+     0.8417844340918093,
+     -5.058253373295543,
+     7.541423085840194
+    ],
+    "groups": {
+     "before 12:00": {
+      "matched": 120,
+      "fewer": 136,
+      "worth": [
+       -2.512836245428802,
+       -5.088862938795697,
+       0.3975361928424464
+      ]
+     },
+     "12:00 on": {
+      "matched": 46,
+      "fewer": 60,
+      "worth": [
+       -1.6710518113369925,
+       -7.33719721339459,
+       4.227487391851826
+      ]
+     }
+    }
+   },
+   "The base res": {
+    "matters": null,
+    "gap": [
+     2.0654035239303923,
+     -7.141374133536327,
+     10.533445500906712
+    ],
+    "groups": {
+     "80 s or more away": {
+      "matched": 89,
+      "fewer": 97,
+      "worth": [
+       -2.02984286673654,
+       -4.9536954774623085,
+       1.5753046042848198
+      ]
+     },
+     "40 to 80 s away": {
+      "matched": 40,
+      "fewer": 56,
+      "worth": [
+       -1.5374636360531027,
+       -7.548198416417444,
+       2.8646244551645297
+      ]
+     },
+     "within 40 s": {
+      "matched": 37,
+      "fewer": 43,
+      "worth": [
+       -3.6028671599834947,
+       -11.99350545296013,
+       2.9065087619575345
+      ]
+     }
+    }
+   },
+   "Our players already at home": {
+    "matters": "may matter",
+    "gap": [
+     7.3007263339491,
+     0.9280380936744369,
+     13.485817122979535
+    ],
+    "groups": {
+     "three or more": {
+      "matched": 104,
+      "fewer": 67,
+      "worth": [
+       0.28114444364308266,
+       -3.5489339853819657,
+       4.153560280787034
+      ]
+     },
+     "none": {
+      "matched": 26,
+      "fewer": 71,
+      "worth": [
+       -2.094502490658709,
+       -9.072726335021962,
+       5.8300037156490685
+      ]
+     },
+     "one or two": {
+      "matched": 36,
+      "fewer": 58,
+      "worth": [
+       -7.019581890306018,
+       -11.999599063373962,
+       -1.4927817702714063
+      ]
+     }
+    }
+   },
+   "A flag run of ours under way": {
+    "matters": null,
+    "gap": [
+     5.603890367800373,
+     -0.2501637899260828,
+     11.207158006080778
+    ],
+    "groups": {
+     "yes": {
+      "matched": 113,
+      "fewer": 109,
+      "worth": [
+       -4.268702785856498,
+       -7.227725518728599,
+       -1.144820332195361
+      ]
+     },
+     "no": {
+      "matched": 53,
+      "fewer": 87,
+      "worth": [
+       1.3351875819438745,
+       -3.3678437562238805,
+       5.651691556046862
+      ]
+     }
+    }
+   },
+   "A split of our own out": {
+    "matters": null,
+    "gap": [
+     4.464061238738953,
+     -4.72428389749216,
+     15.104541893996641
+    ],
+    "groups": {
+     "no": {
+      "matched": 131,
+      "fewer": 180,
+      "worth": [
+       -2.601420027582479,
+       -5.367226969755053,
+       0.1402260621428852
+      ]
+     },
+     "yes": {
+      "matched": 35,
+      "fewer": 16,
+      "worth": [
+       1.8626412111564739,
+       -6.794622959247285,
+       12.652216026887166
+      ]
+     }
+    }
+   },
+   "Our pit NPCs left": {
+    "matters": "may matter",
+    "gap": [
+     6.2803761077006435,
+     0.9314240242246963,
+     11.729333913949365
+    ],
+    "groups": {
+     "all of them": {
+      "matched": 74,
+      "fewer": 99,
+      "worth": [
+       -4.007163130644876,
+       -6.880614844760928,
+       -0.9402299845937765
+      ]
+     },
+     "two or more, not all": {
+      "matched": 83,
+      "fewer": 77,
+      "worth": [
+       2.2732129770557683,
+       -1.5309035518198473,
+       6.579441941274816
+      ]
+     }
+    }
+   },
+   "Our knights": {
+    "matters": null,
+    "gap": [
+     2.7792122998403395,
+     -5.146553764111233,
+     10.832998425589098
+    ],
+    "groups": {
+     "one or more left": {
+      "matched": 141,
+      "fewer": 151,
+      "worth": [
+       -1.7985801713171297,
+       -4.588607812814935,
+       1.0840923362499382
+      ]
+     },
+     "none left": {
+      "matched": 25,
+      "fewer": 45,
+      "worth": [
+       -4.577792471157469,
+       -11.820064358007665,
+       2.7887596122228038
+      ]
+     }
+    }
+   },
+   "Their dead": {
+    "matters": null,
+    "gap": [
+     3.4706350504067194,
+     -4.7645779663058025,
+     13.013386067612776
+    ],
+    "groups": {
+     "none": {
+      "matched": 145,
+      "fewer": 166,
+      "worth": [
+       -2.7444130274360035,
+       -5.5396245876785635,
+       -0.17749058215817026
+      ]
+     },
+     "one or more": {
+      "matched": 21,
+      "fewer": 30,
+      "worth": [
+       0.7262220229707158,
+       -6.297565374823628,
+       9.296851461565826
+      ]
+     }
+    }
+   },
+   "Where our main team stands": {
+    "matters": null,
+    "gap": [
+     3.6852378773919003,
+     -1.5819512601756063,
+     10.078265113099373
+    ],
+    "groups": {
+     "on our own side": {
+      "matched": 81,
+      "fewer": 58,
+      "worth": [
+       -0.39489731214098106,
+       -4.691081985185751,
+       3.922994730848446
+      ]
+     },
+     "at the stand": {
+      "matched": 63,
+      "fewer": 74,
+      "worth": [
+       -4.080135189532881,
+       -8.441303576454777,
+       -0.3746198075444996
+      ]
+     },
+     "on their side of the stand": {
+      "matched": 22,
+      "fewer": 64,
+      "worth": [
+       -2.3335435442050416,
+       -8.351497101040566,
+       3.427316188944579
+      ]
+     }
+    }
+   },
+   "Flag lead": {
+    "matters": null,
+    "gap": [
+     2.0947690129055445,
+     -5.853880537352913,
+     11.275357624422341
+    ],
+    "groups": {
+     "level": {
+      "matched": 56,
+      "fewer": 78,
+      "worth": [
+       -1.7913143367972413,
+       -5.2806829648169336,
+       1.828121375078092
+      ]
+     },
+     "we are ahead (half a flag or more)": {
+      "matched": 49,
+      "fewer": 69,
+      "worth": [
+       -3.528187089486805,
+       -8.088101348516611,
+       0.5240091966117562
+      ]
+     },
+     "we are behind (half a flag or more)": {
+      "matched": 61,
+      "fewer": 49,
+      "worth": [
+       -1.4334180765812603,
+       -7.762651507155948,
+       5.713124024083128
+      ]
+     }
+    }
+   },
+   "Strength": {
+    "matters": "may matter",
+    "gap": [
+     10.879743929484238,
+     1.8472071369131167,
+     21.386968221847265
+    ],
+    "groups": {
+     "we are the weaker team": {
+      "matched": 72,
+      "fewer": 77,
+      "worth": [
+       1.0325740864523854,
+       -3.352220489474442,
+       5.694006866874395
+      ]
+     },
+     "we are the stronger team": {
+      "matched": 59,
+      "fewer": 89,
+      "worth": [
+       -2.2478414117842114,
+       -5.650291875946245,
+       1.502047975368493
+      ]
+     },
+     "close": {
+      "matched": 35,
+      "fewer": 30,
+      "worth": [
+       -9.847169843031853,
+       -19.189894973396495,
+       -2.9170532957168858
+      ]
+     }
+    }
+   },
+   "A monk on the split": {
+    "matters": null,
+    "gap": [
+     3.296766863966338,
+     -2.649008507916922,
+     9.546600807285033
+    ],
+    "groups": {
+     "yes": {
+      "matched": 130,
+      "fewer": 125,
+      "worth": [
+       -3.1531016939958967,
+       -6.352672208790765,
+       -0.3619416494431548
+      ]
+     },
+     "no": {
+      "matched": 36,
+      "fewer": 71,
+      "worth": [
+       0.14366516997044118,
+       -4.488605721600491,
+       4.573849391656456
+      ]
+     }
+    }
+   },
+   "Self-defence on the split": {
+    "matters": null,
+    "gap": [
+     0.16586318660498467,
+     -6.291145697013909,
+     6.577315710574985
+    ],
+    "groups": {
+     "none": {
+      "matched": 102,
+      "fewer": 118,
+      "worth": [
+       -2.246078020823407,
+       -5.459563668631775,
+       1.175677905642639
+      ]
+     },
+     "some": {
+      "matched": 64,
+      "fewer": 78,
+      "worth": [
+       -2.4119412074283915,
+       -7.682318423836217,
+       2.6385714241121736
+      ]
+     }
+    }
+   }
+  },
+  "A split of four or more": {
+   "all": {
+    "worth": [
+     -0.4068509166107039,
+     -3.8570371810632706,
+     2.6241522831478665
+    ],
+    "matched": 110,
+    "fewer": 185
+   },
+   "The game clock": {
+    "matters": "may matter",
+    "gap": [
+     8.39769680960693,
+     1.8178142044503154,
+     15.788102012347428
+    ],
+    "groups": {
+     "before 12:00": {
+      "matched": 87,
+      "fewer": 110,
+      "worth": [
+       2.2435038212516476,
+       -1.2881064794563648,
+       5.7169304962370155
+      ]
+     },
+     "12:00 on": {
+      "matched": 23,
+      "fewer": 75,
+      "worth": [
+       -6.154192988355282,
+       -12.528363832727031,
+       -0.9835019261423681
+      ]
+     }
+    }
+   },
+   "The base res": {
+    "matters": null,
+    "gap": [
+     5.589131120750363,
+     -3.7198754360928947,
+     14.534395330138043
+    ],
+    "groups": {
+     "80 s or more away": {
+      "matched": 50,
+      "fewer": 95,
+      "worth": [
+       -3.023933940201057,
+       -7.781148684092797,
+       1.1355004371681565
+      ]
+     },
+     "40 to 80 s away": {
+      "matched": 30,
+      "fewer": 52,
+      "worth": [
+       0.5594210415132137,
+       -5.972970004851286,
+       6.765127431429138
+      ]
+     },
+     "within 40 s": {
+      "matched": 30,
+      "fewer": 38,
+      "worth": [
+       2.5651971805493052,
+       -5.772506535767752,
+       10.16179212069856
+      ]
+     }
+    }
+   },
+   "Our players already at home": {
+    "matters": null,
+    "gap": [
+     8.365751966878673,
+     -0.011865145331784786,
+     17.43043567205843
+    ],
+    "groups": {
+     "three or more": {
+      "matched": 71,
+      "fewer": 102,
+      "worth": [
+       -3.4314342647645133,
+       -8.172957274958371,
+       0.7558119499978558
+      ]
+     },
+     "one or two": {
+      "matched": 22,
+      "fewer": 40,
+      "worth": [
+       3.780458779971226,
+       -3.6766447263690334,
+       11.102376220021146
+      ]
+     },
+     "none": {
+      "matched": 17,
+      "fewer": 43,
+      "worth": [
+       4.93431770211416,
+       -1.6014376868531262,
+       11.900690900623868
+      ]
+     }
+    }
+   },
+   "A flag run of ours under way": {
+    "matters": null,
+    "gap": [
+     4.37759649096737,
+     -1.0980312603525721,
+     10.906087218722268
+    ],
+    "groups": {
+     "yes": {
+      "matched": 77,
+      "fewer": 101,
+      "worth": [
+       1.3462156829735956,
+       -2.8642351598605535,
+       5.333040304775714
+      ]
+     },
+     "no": {
+      "matched": 33,
+      "fewer": 84,
+      "worth": [
+       -3.031380807993775,
+       -8.70237863054871,
+       1.2212324913624275
+      ]
+     }
+    }
+   },
+   "A split of our own out": {
+    "matters": null,
+    "gap": [
+     1.0373367714986572,
+     -8.33327483671198,
+     11.503355271420816
+    ],
+    "groups": {
+     "no": {
+      "matched": 92,
+      "fewer": 152,
+      "worth": [
+       -0.23701406675662076,
+       -3.798135511548603,
+       3.4888342377700994
+      ]
+     },
+     "yes": {
+      "matched": 18,
+      "fewer": 33,
+      "worth": [
+       -1.274350838255278,
+       -10.826595887937227,
+       6.970141160216953
+      ]
+     }
+    }
+   },
+   "Our pit NPCs left": {
+    "matters": "may matter",
+    "gap": [
+     7.062741752165133,
+     0.07855313120928724,
+     15.213715055563332
+    ],
+    "groups": {
+     "all of them": {
+      "matched": 57,
+      "fewer": 79,
+      "worth": [
+       2.770639706428122,
+       -1.7844846498189957,
+       7.074224102195731
+      ]
+     },
+     "two or more, not all": {
+      "matched": 47,
+      "fewer": 85,
+      "worth": [
+       -4.292102045737011,
+       -10.747705861303727,
+       0.9977742485202619
+      ]
+     }
+    }
+   },
+   "Our knights": {
+    "matters": null,
+    "gap": [
+     1.360132795473798,
+     -8.489048012616655,
+     7.683469169968172
+    ],
+    "groups": {
+     "one or more left": {
+      "matched": 98,
+      "fewer": 146,
+      "worth": [
+       -0.24065856021062396,
+       -4.4070175949572485,
+       3.0390265194844797
+      ]
+     },
+     "none left": {
+      "matched": 12,
+      "fewer": 39,
+      "worth": [
+       -1.600791355684422,
+       -7.377390364701347,
+       5.51276341593746
+      ]
+     }
+    }
+   },
+   "Our dead": {
+    "matters": null,
+    "gap": [
+     3.490631310074016,
+     -7.76779341764819,
+     14.531572254741942
+    ],
+    "groups": {
+     "none": {
+      "matched": 98,
+      "fewer": 157,
+      "worth": [
+       -0.8129357750172321,
+       -4.2688464577854965,
+       2.4279393311317556
+      ]
+     },
+     "one or more": {
+      "matched": 12,
+      "fewer": 28,
+      "worth": [
+       2.6776955350567837,
+       -8.795671970731062,
+       13.294381735786475
+      ]
+     }
+    }
+   },
+   "Where our main team stands": {
+    "matters": null,
+    "gap": [
+     3.855611954843212,
+     -5.541265691467579,
+     11.16846528778807
+    ],
+    "groups": {
+     "on our own side": {
+      "matched": 54,
+      "fewer": 82,
+      "worth": [
+       -1.0025552936273852,
+       -6.140105739815966,
+       2.7205763176735775
+      ]
+     },
+     "at the stand": {
+      "matched": 42,
+      "fewer": 51,
+      "worth": [
+       1.646705591447605,
+       -4.854275985649949,
+       7.983965625839192
+      ]
+     },
+     "on their side of the stand": {
+      "matched": 14,
+      "fewer": 51,
+      "worth": [
+       -2.208906363395607,
+       -8.520165039436266,
+       3.875847644075697
+      ]
+     }
+    }
+   },
+   "Flag lead": {
+    "matters": null,
+    "gap": [
+     7.80889172031428,
+     -2.7137679992799693,
+     19.959479554309592
+    ],
+    "groups": {
+     "level": {
+      "matched": 42,
+      "fewer": 77,
+      "worth": [
+       -0.8435989958162751,
+       -6.315838195203802,
+       2.89679037972125
+      ]
+     },
+     "we are ahead (half a flag or more)": {
+      "matched": 34,
+      "fewer": 61,
+      "worth": [
+       4.025263209988057,
+       -1.5403291537032757,
+       11.839285228211436
+      ]
+     },
+     "we are behind (half a flag or more)": {
+      "matched": 34,
+      "fewer": 47,
+      "worth": [
+       -3.7836285103262233,
+       -11.681256988167979,
+       3.4838939240466464
+      ]
+     }
+    }
+   },
+   "Strength": {
+    "matters": "may matter",
+    "gap": [
+     10.697266388044442,
+     1.5029564972755352,
+     18.5652852052434
+    ],
+    "groups": {
+     "we are the weaker team": {
+      "matched": 49,
+      "fewer": 81,
+      "worth": [
+       -2.688038977705727,
+       -7.500898402152548,
+       1.6066960906427024
+      ]
+     },
+     "we are the stronger team": {
+      "matched": 39,
+      "fewer": 73,
+      "worth": [
+       5.621093466618291,
+       -0.9585735014120086,
+       11.146376490643872
+      ]
+     },
+     "close": {
+      "matched": 22,
+      "fewer": 31,
+      "worth": [
+       -5.076172921426151,
+       -10.42450619971886,
+       1.4769383930396889
+      ]
+     }
+    }
+   },
+   "A monk on the split": {
+    "matters": "matters",
+    "gap": [
+     14.868084622993129,
+     5.734440336073119,
+     25.91058247829958
+    ],
+    "groups": {
+     "yes": {
+      "matched": 93,
+      "fewer": 156,
+      "worth": [
+       1.3041921258423883,
+       -2.157228445433781,
+       4.505046584787911
+      ]
+     },
+     "no": {
+      "matched": 17,
+      "fewer": 29,
+      "worth": [
+       -13.563892497150741,
+       -24.91248819075443,
+       -5.380048741460505
+      ]
+     }
+    }
+   },
+   "Self-defence on the split": {
+    "matters": null,
+    "gap": [
+     4.359599321705449,
+     -2.3234805454545344,
+     10.495063590670416
+    ],
+    "groups": {
+     "none": {
+      "matched": 55,
+      "fewer": 101,
+      "worth": [
+       -2.48677108281918,
+       -6.4390914233791205,
+       1.4271659473987504
+      ]
+     },
+     "some": {
+      "matched": 55,
+      "fewer": 84,
+      "worth": [
+       1.8728282388862694,
+       -3.6944624358448848,
+       6.49981099582617
+      ]
+     }
+    }
    }
   }
  },
