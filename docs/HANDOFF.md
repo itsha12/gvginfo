@@ -11,7 +11,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 ## State (2026-11-21, later: the split family read in both halves, R-564 to R-570; no advice from it at the matches in hand)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` and lands in one
   piece, then one rebuild (R-322). 658 replays stored; 564 count (R-477); 506 matches trained. No workflow run in
-  progress. Rulings run to R-571. The baseline (R-491) is the branch `baseline-2026-11-15`.
+  progress. Rulings run to R-572. The baseline (R-491) is the branch `baseline-2026-11-15`.
 - Graded and filed (set f1): thirteen games; game 15 (Men v NwAy, Corrupted) all read Correct. Not graded his new
   way: Weeping Stone, Isle of the Dead. Flags: all 60 advice cards marked; done for now. Numbers from kills:
   dropped as a family (R-557). No stay job at the opening for a team that runs no first flag (R-565).
@@ -27,33 +27,40 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   no play has changed since); self-check 21 in 7. Line-up 530 of 583 (2026-11-18, not run again). The flag
   report (`flag_cases.json`, eca99d4) and the numbers report were not run again.
 
-## Next (in order): what is left before the engine is ready to train (R-571; put to him 2026-11-21, his answers wait)
-1. Reading faults. Two show in two games and can be built (R-495): who and how many push a flagger (HC v Team
-   5:26, 6:04, 8:18 and 1:30; Men v RACK 1:08), and a flag in hand read as a runner (Men v Crew 17:53; cope v
-   hold 14:33). One game each, waiting: Men v hold 18:06 and 6:48; numbers through Jade's portal (Men v Crew,
-   four rows); Men v RACK 12:06; Men v Crew 12:26; HC v hdm 1:40 (his Jade question) and 5:56; TFS v DMG 22:44.
-2. His word on the kinds of play not yet called ready (R-496): the opening, the boost, pushing the flagger,
-   held in base, the base res, numbers from a runner away, the Lord push. All 313 Classic rows pass; Weeping
-   Stone and Isle of the Dead are not graded his new way.
-3. Stage D leftovers, proposed to wait for bundle 5: enemy execution (2.12), the interaction rule (2.13), NPC
-   damage by class of bar (R-433), a measure of what is at stake (R-509), the decision to split at all.
-4. Stage E (REDESIGN.md): the new families beside the old kinds for one rebuild (R-323), the stand-in prices
+## Next (in order): the engine substantially finished before the merge and training (R-571, R-572)
+1. The two reading faults that show in two games (his "Yes"), each rebuilt at the root (R-465), every Classic
+   row the test. (a) Who pushes a flagger (`Moments.flag_pushes`: today whoever stands within 1,400 of him for
+   6 s or acts on him): HC v Team 5:26 (he: Warrior and Stand Mes; engine: Hammer), 6:04 (he: from about 5:25,
+   three players; engine: Hammer from 6:04), 8:18 (he: Warrior and monk; engine: four, two of them in the fight
+   with HC's helpers at the spawn), 1:30 (he: no push); Men v RACK 1:08 (he: the whole team; engine: Ranger).
+   His answer on who counts is asked (Open 1). (b) A flag held at home read as a runner (Men v Crew 17:53, the
+   boost row; cope v hold 14:33): a carrier who stays with his team is a flag in hand (R-553), no runner.
+2. Picked rows for the faults seen in one game (R-572): like moments from other matches for Men v hold 18:06
+   and 6:48, Men v RACK 12:06, Men v Crew 12:26, HC v hdm 5:56; TFS v DMG 22:44 is the engine's own self-check
+   and is looked into as a bug; the Jade rows wait for his answer (Open 2).
+3. The kinds Claude reads as ready (R-572): the opening, held in base and the base res each through the stages
+   as flags and splits were (the boost is in the flag report; numbers from a runner away in the numbers
+   report). The Lord push: picked rows from late games first (three graded rows).
+4. The measurements (R-572): enemy execution (2.12), the interaction rule (2.13), NPC damage by kind of bar
+   (R-433), a measure of what is at stake (R-509), the decision to split at all (R-558).
+5. Stage E (REDESIGN.md): the new families beside the old kinds for one rebuild (R-323), the stand-in prices
    replaced by the win model, the replaced kinds retired, the causal map cleaned, SPEC and METHODS rewritten,
    the readability test, his list of R-398, the merge, then one Train batch on the same 506 matches (he starts
-   it; keep gvg.report's flag objects at that rebuild, R-481). Several sessions.
-5. The split family again when matches are in (factors for the main fight; the sentence for one moment in
-   either half). Players who res at the base onto a split are still read as a collapse.
+   it; keep gvg.report's flag objects at that rebuild, R-481).
+6. The split family again when matches are in. Players who res at the base onto a split are still read as a
+   collapse.
 
 ## Open for Denning
 0. Held at his word (R-554, his "make sure you remember"): the cards for a flag in hand, with R-553 to build (no
    runner while the next flag is up is a flag-in-hand decision), and for a double run from the sender's side:
    raise them when more matches are trained. The execution list (R-557): the res, giving ground, fights.
-1. Put to him 2026-11-21 (Next 1 to 3): build the two faults that show in two games now; whether the other
-   kinds of play are ready or he grades one or two more games first (Weeping Stone, Isle of the Dead); whether
-   the stage D leftovers wait for bundle 5.
-   R-562 stays Claude's reading of his rule: bring him the splits it tells wrongly as they turn up in his games.
-2. Jade: is a team at the footmen on the portal side in the base at a base res?
+1. Put to him 2026-11-21: who counts as pushing a flagger (proposed: a player who hits or casts on him, and a
+   player who travels with those who do, such as the monk healing them; not a player who is near because a
+   fight with the flagger's helpers is there; the main team moving onto him is the whole team's push).
+2. Jade: is a team at the footmen on the portal side in the base at a base res? And players passing through
+   the portal: are they at the main fight on either side of it?
 3. Tolkano: no build (his word): give him date, guilds, hall and length with every example to find it there.
+   R-562 stays Claude's reading of his rule: bring him the splits it tells wrongly as they turn up in his games.
 
 ## Running it
 - Train batch: the "Train batch" workflow (METHODS.md; `blind` stays no). Never queue two runs. At the next rebuild,
