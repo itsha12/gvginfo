@@ -101,6 +101,7 @@ class Hall:
         for a, b in self.hops:
             self._fwd[a].append(b); self._back[b].append(a)
         self._fields, self._snap = {}, {}
+        self._past = {}
         self.routes = self._routes()
         # doors: where each labelled door route leaves its base for the last time (a drawn route can cross a cell that is not
         # walkable or a gap between the Base and Pit areas: that is not the door); footmen by the door they stand nearer
@@ -295,6 +296,34 @@ class Hall:
         """Walked distance from p to q; None when q cannot be reached."""
         v = self.to(q).get(self.snap(p))          # fields are kept by their target: the anchors are few, the players many
         return None if v is None else round(v)
+
+    def past_turnoff(self, p, side):
+        """Is there no turn-off to mid left ahead of a player walking at the base of `side`? Read from the walk alone.
+        On the rest of his way to that base's nearest door, the walk to the flag stand reaches a low point and rises
+        again where a way off to mid leaves it (a collapse route coming in outside a back door): until he is past
+        that point he could still turn there for mid, his main team, a flag or the front door. Past it, or on a way
+        with no such point (the stand is nearest at the door itself: a back path with no way off, or the front
+        lane beyond the stand), every step takes him to the door and to nothing else (Denning, 2026-11-21, of a
+        defence that goes out after the split it defended: "when they cross the 'alternative' path, we know there is
+        nothing else they could be doing by running that way so we know it's now an offensive split"; Men v hold
+        10:36, the most forward of Men's five passes hold's collapse route outside its back door). A rise of two
+        cells or less is the grid, not a way off."""
+        c = self.snap(p); k = (side, c)
+        if k not in self._past:
+            doors = [q for g in ("front", "back") for q in self.doors[side][g]]
+            v = True
+            if doors:
+                F, S = self.to(min(doors, key=lambda q: self.to(q).get(c, 1e18))), self.to(self.stand)
+                cur, walk = c, [S.get(c)]
+                while F.get(cur, 0) > CELL:
+                    nb = min(((cur[0] + dx, cur[1] + dy) for dx in (-1, 0, 1) for dy in (-1, 0, 1) if (dx or dy) and (cur[0] + dx, cur[1] + dy) in F), key=lambda q: F[q], default=None)
+                    if nb is None or F[nb] >= F[cur]: break
+                    cur = nb; walk.append(S.get(cur))
+                if None not in walk and len(walk) > 1:
+                    low = min(walk[1:])
+                    v = not (low < walk[0] - 2 * CELL and walk[-1] > low + 2 * CELL)      # a low point ahead of him, with the way rising again beyond it before the door
+            self._past[k] = v
+        return self._past[k]
 
     # ---- routes and map numbers
     def _routes(self):

@@ -623,7 +623,41 @@ def split_plays(M, K):
         times = list(range(t0, t9 + 1, S_))
         if len(times) < 3: continue
         hop = lambda a, u: any(0 <= v - S_ and v <= T and M.P[a][v] and M.P[a][v - S_] and d(M.P[a][v], M.P[a][v - S_]) > GROUND_JUMP for v in (u, u + S_))      # just through a teleporter
-        raw = lambda a, u: frm[a] <= u <= ext[a] and deep(a, u) and not hop(a, u) and not M.with_rest(a, mates, u) and M.fight_side(a, u) != "main"      # not while he stands in the fight the rest of his team is in, nor while he is in the main fight by whom he trades with (R-519)
+        # A defence that turns into a split is told from the last turn-off, not from the crossing (Denning, 2026-11-21). Players who go out after the split they
+        # defended, still on it or not, could yet turn through mid to their main team, to a flag or to the front door: "Before they cross, we don't really know
+        # (in game) whether they are going to continue through mid to join main or run a flag or push front door or if they are going to push back door as a split.
+        # When they cross the 'alternative' path, we know there is nothing else they could be doing by running that way so we know it's now an offensive split"
+        # (Men v hold 10:24, "they are just running into backdoor, no split yet": four who had defended hold's split chase it over the half-way line, kill its Fire
+        # Ele there at 10:28 and run on; he times the split at about 10:36, "where the most forward player of the split crosses the path that by clicking would
+        # have gone to the collapse route/mid"). A player who was not defending is read as before, from the crossing or from his leaving (the Ranger of Men v RACK
+        # 13:52: "there is nothing else he could be doing that way"). Read as: the players of the record who were defenders of an enemy split still out, or over
+        # for no longer than SPLIT_GAP_S, when they joined it; while they are half or more of those on the enemy's ground nobody is on the split until one of its
+        # players has passed the last turn-off to mid (`Hall.past_turnoff`), and if none does, it never was a split
+        def was_defending(a, y):                          # he had come to that split's defence, or gone home for it, before he joined this one
+            an = y["answer"]
+            came = min((ta for ta, r_ in an.get("arrivals") or [] if r_ == role[a]), default=None) if a in an["ids"] else None
+            if came is None and a in (an.get("went_back_ids") or []): came = an.get("went_back_t")
+            return came is not None and came <= frm[a]
+        dturn = {a for a in x["ids"] if any(y["tm"] == foe and y["t_in"] <= frm[a] <= y["t1"] + SPLIT_GAP_S and was_defending(a, y) for y in A)}
+        wait = None
+        if dturn and hall is not None:
+            g0 = min(frm[a] for a in dturn); g0 -= g0 % S_
+            there_ = lambda u: [a for a in x["ids"] if frm[a] <= u <= ext[a] and deep(a, u)]
+            passed = next((u for u in range(g0, t9 + 1, S_) if any(hall.past_turnoff(M.P[a][u], own_d) for a in there_(u))), t9 + S_)
+            # ... or it is in a fight of its own there: enemy players on it for JOIN_S (R-350) on the enemy's ground are a split fight wherever it stands (R-365),
+            # and it is told from when that began (Crew v True 1:00, four who met True's split at home and fought it 4 v 4 on True's back path for 88 s; RACK v OG
+            # 15:54). A few seconds of hitting a player they are chasing down is not that (Men v hold 10:23 to 10:28, the Fire Ele)
+            def fought(u):
+                T_ = there_(u)
+                return any(M.AL[b][u] and M.P[b][u] and M.fight_side(b, u) != "main" and any(d(M.P[b][u], M.P[a][u]) < FIGHT_LINK or (d(M.P[b][u], M.P[a][u]) < FIGHT_ACT and ((a, b) if a < b else (b, a)) in M._acting(u, aid=False)) for a in T_)
+                           for b in st.players[foe])
+            us_, run_ = list(range(g0, min(passed, t9) + 1, S_)), 0
+            for i_, u in enumerate(us_):
+                run_ = run_ + 1 if fought(u) else 0
+                if run_ * S_ >= JOIN_S: passed = min(passed, us_[i_ - run_ + 1]); break
+            wait = (g0, passed, there_)
+        waiting = lambda u: wait is not None and wait[0] <= u < wait[1] and len([a for a in wait[2](u) if a in dturn]) * 2 >= max(len(wait[2](u)), 1)
+        raw = lambda a, u: frm[a] <= u <= ext[a] and deep(a, u) and not waiting(u) and not hop(a, u) and not M.with_rest(a, mates, u) and M.fight_side(a, u) != "main"      # not while he stands in the fight the rest of his team is in, nor while he is in the main fight by whom he trades with (R-519)
         def stays(flags, extra=(), to_end=False):         # a player counts once he has been there JOIN_S (R-350: less is support, or passing by), one missed reading allowed; a death in it counts at once; and, for a defender, being there when the game ends (R-459, Book v One 19:28)
             keep, i = [False] * len(flags), 0
             while i < len(flags):
@@ -817,7 +851,7 @@ def split_plays(M, K):
         # When a split is told from (R-458, R-510): the second it crosses to the enemy's side; and where its players went straight across, crossing within SPLIT_GAP_S
         # of leaving their team, from TURN_S after they left, as a collapse is told from its turn (R-508): "that's when Men would see and have to respond" (Men v
         # RACK: the Ranger leaves at 10:42 and 13:45 and crosses at 11:00 and 14:00, the Mes/A leaves at 16:41 and crosses at 16:56; he times them 10:44, 13:52, 16:51)
-        if phases and phases[0][1] not in turn_of and phases[0][1] - times[0] <= SPLIT_GAP_S:
+        if phases and phases[0][1] not in turn_of and phases[0][1] - times[0] <= SPLIT_GAP_S and not (wait is not None and wait[0] <= times[0] + S_):      # a defence turned split is told from the turn-off alone
             seen = int(x["t_in"]) if not (0 < x["t_in"] - x["t0"] <= SPLIT_GAP_S) else int(x["t0"]) + TURN_S
             # A team held in its base (`pinned`): a player who goes out of the base and on to the split has left for it when he goes out, however long he is in
             # crossing, for his team is in the base and he can be going nowhere else (his mark, Men v hold 17:01, Classic, missed: "fire ele splits front door": he
@@ -898,7 +932,7 @@ def split_plays(M, K):
             # two of its players had come to minutes before): the enemy's door, or the footmen in front of it, the players of the phase come to first in it, as the
             # record reads its own. Only a phase whose players all start it out in the field comes to a door anew: one that starts with a player already on the
             # enemy's ground (a door, the footmen, the pit or the base) keeps the door it came in by, as does one that comes to no door.
-            if all(M._deep(a, int(p0)) in (None, "field") for a in Sp):
+            if all(M._deep(a, int(p0)) in (None, "field") for a in Sp) or (wait is not None and wait[0] < wait[1] and abs(int(p0) - wait[1]) <= S_):      # ... and a defence turned split, told from the turn-off it passed in the field, comes to its door anew
                 atd = min((u for a in Sp for u in range(int(p0), int(p1) + 1, S_) if M._deep(a, u) in DOOR_OF), default=None)
                 if atd is not None:
                     way = collections.Counter(DOOR_OF[M._deep(a, u)] for a in Sp for u in range(atd, min(atd + JOIN_S, int(p1)) + 1, S_) if M._deep(a, u) in DOOR_OF).most_common(1)[0][0]
