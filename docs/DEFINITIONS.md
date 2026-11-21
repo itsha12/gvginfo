@@ -29,7 +29,8 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   committed, and can be going for nothing else (R-562). A player who is not defending is committed as he sets out
   ("there is nothing else he could be doing that way"). A defence that goes out after the split it defended, still
   fighting it or not, is committed once its most forward player has passed the last way off to mid; before that it
-  could yet turn for its main team, a flag or the front door. *As built:* a player who was not defending is told from
+  could yet turn for its main team, a flag or the front door. One that is in a fight of its own on the enemy's
+  ground is told from that fight, though short of the way off (R-563). *As built:* a player who was not defending is told from
   the crossing to the enemy's side, or from 4 s after he left his team when he goes straight across; the row
   says when it reaches their base, their footmen or a defender. Where its team is held in its base, it is told from
   4 s after its player goes out past his own doors, however long he takes to cross (his Classic mark, Men v hold 17:01).

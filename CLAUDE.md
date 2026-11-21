@@ -229,7 +229,7 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   its players has no way off to mid left ahead (`Hall.past_turnoff`: the walk to the stand along the rest of his way
   to the enemy's nearest door has no low point still to come; on a back path without one he is past it at once), and
   it then takes the door it comes to. It is told too from when enemy players have been on it for JOIN_S on the
-  enemy's ground (`fought`: a split fight of its own, R-365; without it 4 v 4 fights on a back path were told nowhere).
+  enemy's ground (`fought`: a split fight of its own, R-365; without it 4 v 4 fights on a back path were told nowhere; his word on it, R-563: leave it as built).
   He does not want this made more specific: change it against Men v hold 10:24 (No decision) and 10:40 (Classic), and
   bring him what it gets wrong rather than adding a test. A split ends, and the main team's push begins, when the rest
   come to the same fight by whichever door (R-560); players left at the enemy's door when the larger part forms
@@ -378,7 +378,7 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   review key the same session (`review.py file <id> <rows> <marks> --set f1 --key <main key>`, which prints his grades
   against the engine's confidence and the Classic rows to fix first, and writes the plain checks; then write by hand
   the checks for what a Partly or an Incorrect means). Set every result out for him in the chat (R-329). The queue is
-  set f1 in `dev_set.json` (twelve games graded: HC v Team, Men v Crew, 옷옷옷옷 v RACK, Men v RACK, Men v hold, hold v Men, HC v hdm, RACK v hdm, hold v RACK, HC v cope, as far as 9:40 and no further (R-532) 옷옷옷옷 v hdm, whose clock on the replay page runs ahead, R-527, and game 14, Dz v Team on Druid's Isle; game 6, hdm v HC, taken out unmarked, R-522, and game 13, Men v NwAy on Corrupted Isle, taken out unmarked, R-537: game 6 is not on the page or in the development set; game 13 is back on the page as game 15, to grade, R-559; no game
+  set f1 in `dev_set.json` (thirteen games graded: HC v Team, Men v Crew, 옷옷옷옷 v RACK, Men v RACK, Men v hold, hold v Men, HC v hdm, RACK v hdm, hold v RACK, HC v cope, as far as 9:40 and no further (R-532) 옷옷옷옷 v hdm, whose clock on the replay page runs ahead, R-527, and game 14, Dz v Team on Druid's Isle; game 6, hdm v HC, taken out unmarked, R-522, and game 13, Men v NwAy on Corrupted Isle, taken out unmarked, R-537: game 6 is not on the page or in the development set; game 13 came back on the page as game 15, R-559, and is graded, 2026-11-21; no game
   is kept hidden, R-497); pick further games from unused October and November games of top guilds, never a henchman
   game (R-476). Export the next game only when the last one is marked and its Classic faults are fixed, unless he asks
   for more at once; never fix against a game he has not marked, and never re-export a game he has marked. Games without `scheme` 2 are history, shown read only. The golden

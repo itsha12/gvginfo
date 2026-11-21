@@ -20537,7 +20537,7 @@
    "answered": {
     "on": "2026-11-20",
     "asked": "The five cross to hold's side at 10:24 and reach its back door at 10:42: what makes this 'no split yet', when the Ranger of Men v RACK is a split before he crosses?",
-    "said": "I would call Men's 5 man a split from around 10:36 in Men v hold. [...] At Men's time, they are still on the path to merge with their team that was front door and push in as 8 through the front (as that was the other objective). By around 10:36, they are no longer on that path so we can see they are split and pushing in backdoor. [2026-11-21:] the reason in particular I saw 10:36 as the split in meditation is that is where the most forward player of the split crosses the path that by clicking would have gone to the collapse route/mid. [...] It's more in the context of a defense turning into a split.",
+    "said": "I would call Men's 5 man a split from around 10:36 in Men v hold. [...] At Men's time, they are still on the path to merge with their team that was front door and push in as 8 through the front (as that was the other objective). By around 10:36, they are no longer on that path so we can see they are split and pushing in backdoor. [2026-11-21:] the reason in particular I saw 10:36 as the split in meditation is that is where the most forward player of the split crosses the path that by clicking would have gone to the collapse route/mid. [...] It's more in the context of a defense turning into a split. [2026-11-21, asked whether 10:40 is close enough to his 10:36 for Men's five:] Yes.",
     "reading": "R-562: a defence that goes out after the split it defended is a split from when its most forward player has passed the last way off to mid; a player who was not defending is committed as he sets out."
    }
   },
@@ -21686,7 +21686,7 @@
    "call": "",
    "shown": "Men's split by the front door: three players (Hammer, Mesmer, 7 Monk) against 2 defending (7 Monk, Mesmer); numbers along the way: 3 v 2 from 19:38, 3 v 3 from 20:00",
    "band": "medium",
-   "grade": "not marked",
+   "grade": "visible",
    "mark": "correct",
    "said": "this is not a split, this is just players joining mainteam",
    "calls": [
@@ -21723,12 +21723,12 @@
      "was": "Men v hold 19:38: his first mark asked for no split here; withdrawn by R-561"
     }
    ],
-   "note": "2026-11-21: R-561. The row stands as read: the Hammer, the Mesmer and the 7 Monk at hold's front door from 19:38, Men's five at the stand.",
+   "note": "2026-11-21: R-561. The row stands as read: the Hammer, the Mesmer and the 7 Monk at hold's front door from 19:38, Men's five at the stand. Graded Visible the same day.",
    "answered": {
     "on": "2026-11-20",
     "asked": "What makes this no split, when the same shape in Men v Apes 7:10 is a split of three?",
     "said": "I actually think I was looking at the wrong timing for Men v hold. The warrior mes and 7 monk are indeed on split whilst mainteam is defending hold's push (8 rit of Men collapses from split to join mainteam). I see Men v Apes as the same. Ranger warrior 7 monk are on split, 6 collapses mainteam.",
-    "reading": "R-561: players who stay at the enemy's door while the larger part of their team forms elsewhere are a split. His No decision mark ('this is not a split, this is just players joining mainteam') is withdrawn and the row is read correctly (confirmed 2026-11-21); he has not given it a grade. 'Collapses' was his loose word for the Ritualist 2 going back to the main team: the engine's collapse stands."
+    "reading": "R-561: players who stay at the enemy's door while the larger part of their team forms elsewhere are a split. His No decision mark ('this is not a split, this is just players joining mainteam') is withdrawn and the row is read correctly (confirmed 2026-11-21). Its grade, given 2026-11-21: \"Men v hold visible\". 'Collapses' was his loose word for the Ritualist 2 going back to the main team: the engine's collapse stands."
    }
   },
   {
@@ -33115,6 +33115,2109 @@
    "said": "hold's #3 ele goes for a flag at 2:34, before RACK has capped first flag whilst it is held by 5 mes of RACK and hold has stand capped. this is a decision on whether to run on RACK.\n\nRACK double runs a 4:42 on air ele with ele 4 now holding flag and going to cap. this is decision. \n\nRACK double runs at 7:29 with air ele. this is decision.",
    "checks": [],
    "reading": "The engine reads all three as flag plays (2:29, hold's run with RACK's flag already in hand; 4:40 and 7:28, RACK's double run with hold's flag already in hand) and writes no card for any: the cards leave out every spot with a flag in hand, and a double run is never a card from the side of the team that sends its second runner before its first flag is in. A gap in the cards, not in the reading: put to him 2026-11-20."
+  },
+  {
+   "id": "f1-c19f-1",
+   "set": "f1",
+   "scheme": 2,
+   "row": 1,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    0,
+    26
+   ],
+   "type": "opening",
+   "call": "",
+   "shown": "The opening. Men: 7 to the stand, Mes/A waits back at the flag spawn for the next flag; its first flag brought up by 8 Monk and capped at 0:26. NwAy: 0 to the stand, 4 out by the back door (Hammer, Dervish, Mes/A, 8 Monk), AoB Derv, Stand Mes, Prot, 7 Monk stay back at home; its first flag brought part of the way with the team (Dervish, Hammer) and not run. Men caps first at 0:26; NwAy caps over it at 8:42",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "c19f13e3-opening-1-0-0",
+     "shown": "Men [the first flag]: Get the first flag in. Met (our flag is capped: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "c19f13e3-opening-2-0-2",
+     "shown": "NwAy [the first flag]: Get the first flag in. Not met (our flag is capped: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "c19f13e3-flag-2-0-1",
+     "shown": "NwAy [the first flag: stay]: Kill with the two extra players before their flag is in, or their flag does not get in. Not met (more of theirs die at the main fight than of ours: no; their flag does not get in: no)",
+     "mark": "incorrect",
+     "said": "they don't have 2 extra players"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "opening",
+      "team": "Men",
+      "start": [
+       -6,
+       6
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "opening",
+      "team": "NwAy",
+      "start": [
+       -6,
+       6
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "flag",
+      "team": "NwAy",
+      "start": [
+       -6,
+       6
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "none": {
+      "play": "flag",
+      "team": "NwAy",
+      "start": [
+       -3,
+       3
+      ],
+      "want": {
+       "job": "Kill with the two extra players before their flag is in, or their flag does not get in"
+      }
+     },
+     "open": true,
+     "why": "Men v NwAy 0:00 (Classic, the row read correct; this call marked incorrect): 'they don't have 2 extra players'. The job is the stay of an answered double run, given at the opening to a team that ran no first flag: Men's 8 Monk walks the first flag up with its seven and only the Mes/A waits back, and NwAy has nobody at the stand (four out by the back door, four at home). Put to him 2026-11-21 before anything is built: whether a team that runs no first flag carries any stay job at the opening (R-500, R-541), since the same call on RACK v hdm 0:00 he marked correct"
+    }
+   ]
+  },
+  {
+   "id": "f1-c19f-2",
+   "set": "f1",
+   "scheme": 2,
+   "row": 2,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    6,
+    40
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "NwAy's split by the back door: one player (Dervish) against 0 defending; it crosses at 0:16 and reaches their base, their footmen or a defender at 0:24",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "c19f13e3-split-2-6-4",
+     "shown": "NwAy (attacker) [undefended]: Take NPCs. Met (an NPC taken: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "c19f13e3-split-1-6-3",
+     "shown": "Men (defender) [no answer]: Win elsewhere before the split costs more than it gains. Met (more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "NwAy",
+      "start": [
+       0,
+       12
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       0,
+       12
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-c19f-3",
+   "set": "f1",
+   "scheme": 2,
+   "row": 3,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    24,
+    126
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men up on numbers in the main fight (5 v 4, NwAy's front door), from players split elsewhere; Men: push in | NwAy: retreat down the ladder (retreat to the pit)",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "c19f13e3-numbers-1-24-5",
+     "shown": "Men (strong side) [push in]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "c19f13e3-numbers-2-24-6",
+     "shown": "NwAy (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Men",
+      "start": [
+       18,
+       30
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "numbers",
+      "team": "NwAy",
+      "start": [
+       18,
+       30
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-c19f-4",
+   "set": "f1",
+   "scheme": 2,
+   "row": 4,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    38,
+    180
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "NwAy's split by the back door: 4 players (Mes/A, Dervish, 8 Monk, Hammer) against 3 defending (Mes/A, 8 Monk, Prot); numbers along the way: 4 v 1 from 0:38, 4 v 3 from 0:56, 3 v 2 from 2:10; 3 damage against 2 monks; 3 (Mes/A, 8 Monk, Prot) against 4 players; numbers along the way: 4 v 1 from 0:38, 4 v 3 from 0:56, 3 v 2 from 2:10: Mes/A carries his flag for 8 s while defending. Who came and went, each a decision of its own: 8 Monk, Prot (Men) join the defence at 0:56; Hammer (NwAy) leaves the split at 2:10; Prot (Men) leaves the defence at 2:10",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "c19f13e3-split-2-38-9",
+     "shown": "NwAy (attacker) [held by monks]: Hold the monks there and lose nobody; NPCs are a bonus (a kill is not expected of it). Met (nobody on the split dies: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "c19f13e3-split-1-38-7",
+     "shown": "Men (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Not met (no pit NPC lost: no; no defender dies: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "c19f13e3-split-1-38-8",
+     "shown": "Men (defender) [part-run]: Gain a slight flag advantage while losing no pit NPC and not dying. Not met (no pit NPC lost: no; flag lead better by 0.15 or more: yes; the defender does not die: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "c19f13e3-split-1-56-10",
+     "shown": "Men (defender) [join: 8 Monk, Prot at 0:56]: Hold it even or better: lose no pit NPC and no more players than the split does. Not met (no pit NPC lost: no; no more defenders die than split players: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "c19f13e3-split-2-130-13",
+     "shown": "NwAy (attacker) [leave: Hammer at 2:10]: Gain at the main fight with the player back. Not met (more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "c19f13e3-split-1-130-12",
+     "shown": "Men (defender) [leave: Prot at 2:10]: Gain at the main fight with the player back, and lose no pit NPC for it. Not met (no pit NPC lost: no; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "NwAy",
+      "start": [
+       32,
+       44
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       32,
+       44
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       32,
+       44
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       50,
+       62
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "NwAy",
+      "start": [
+       124,
+       136
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       124,
+       136
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-c19f-5",
+   "set": "f1",
+   "scheme": 2,
+   "row": 5,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    68,
+    128
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "NwAy is held in its own base or pit by Men's main team (pit NPCs alive at 1:08: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard alive; base res in 52 s)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "c19f13e3-pinned-2-68-11",
+     "shown": "NwAy: Lose no player and no NPC while held in, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it breaks out at 2:00, having lost nothing; a break-out is half its living players or more, four at least, out past its doors): yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "NwAy",
+      "start": [
+       62,
+       74
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-c19f-6",
+   "set": "f1",
+   "scheme": 2,
+   "row": 6,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    172,
+    240
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men down on numbers in the main fight (7 v 8, Men's front footies), from kills; Men: retreat down the ladder (retreat to the pit) | NwAy: push in",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "c19f13e3-numbers-1-172-14",
+     "shown": "Men (down) [retreat down the ladder]: Reach cover a player down without losing another. Not met (nobody of ours dies: yes; no NPC lost: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "c19f13e3-numbers-2-172-15",
+     "shown": "NwAy (up) [push in]: Take ground and NPCs with the numbers. Met (no more of ours die than of theirs: yes; one of their NPCs dies: yes; more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Men",
+      "start": [
+       166,
+       178
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "numbers",
+      "team": "NwAy",
+      "start": [
+       166,
+       178
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-c19f-7",
+   "set": "f1",
+   "scheme": 2,
+   "row": 7,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    200,
+    232
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "Men is held in its own base or pit by NwAy's main team (pit NPCs alive at 3:20: 0 of 2 knights, 1 of 2 pit archers, the Bodyguard alive; lost while held: a pit archer at 3:39; base res in 40 s)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "c19f13e3-pinned-1-200-16",
+     "shown": "Men: Hold the NPCs and lose nobody until the base res, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "Men",
+      "start": [
+       194,
+       206
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-c19f-8",
+   "set": "f1",
+   "scheme": 2,
+   "row": 8,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    220,
+    270
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "NwAy has 8 in Men's base at the base res (6 defending, 1 coming back): 8 stay",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "c19f13e3-base_res-2-220-17",
+     "shown": "NwAy [stayed through the res]: Be out, or set for the fight, when they res. Not met (none of the players in their base dies in the 30 s after the res: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "NwAy",
+      "start": [
+       214,
+       226
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-c19f-9",
+   "set": "f1",
+   "scheme": 2,
+   "row": 9,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    236,
+    281
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "Men's boost is 30 s away; NwAy: no runner; the rest stay on the enemy's side",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "c19f13e3-boost-2-236-18",
+     "shown": "NwAy [concede]: Concede the boost for kills. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "boost",
+      "team": "NwAy",
+      "start": [
+       230,
+       242
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-c19f-10",
+   "set": "f1",
+   "scheme": 2,
+   "row": 10,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    262,
+    676
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "NwAy's split by the front door: one player (Dervish) against 1 defending (8 Monk); numbers along the way: 4 v 3 from 4:22, 1 v 1 from 4:54, 2 v 1 from 5:50, 4 v 3 from 6:10, 4 v 4 from 6:46, 1 v 1 from 8:00, 2 v 1 from 8:54, 2 v 2 from 9:34. Who came and went, each a decision of its own: Mes/A, Hammer, 8 Monk (NwAy) leave the split at 4:54; Prot, Hammer (Men) leave the defence at 4:54; Hammer (NwAy) joins the split at 5:50; 8 Monk, Mes/A (NwAy) join the split at 6:10; Hammer, Mes/A (Men) join the defence at 6:10; Prot (Men) joins the defence at 6:46; Hammer, Mes/A, 8 Monk (NwAy) leave the split at 8:00; Hammer, Mes/A, Prot (Men) leave the defence at 8:00; Hammer (NwAy) joins the split at 8:54; Prot (Men) joins the defence at 9:34",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "c19f13e3-split-2-262-20",
+     "shown": "NwAy (attacker) [1 v 1, defended by a monk]: Hold the monk there; the main team's job is to kill. Met (the split player survives: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "c19f13e3-split-1-262-19",
+     "shown": "Men (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (no pit NPC lost: yes; no more defenders die than split players: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "c19f13e3-split-2-262-21",
+     "shown": "NwAy (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (more of theirs die away from the split than of ours: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "c19f13e3-split-2-294-25",
+     "shown": "NwAy (attacker) [leave: Mes/A, Hammer, 8 Monk at 4:54]: Gain at the main fight with the player back. Met (more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "c19f13e3-split-1-294-24",
+     "shown": "",
+     "mark": "not marked"
+    },
+    {
+     "play": "c19f13e3-split-2-350-27",
+     "shown": "",
+     "mark": "not marked"
+    },
+    {
+     "play": "c19f13e3-split-2-370-31",
+     "shown": "",
+     "mark": "not marked"
+    },
+    {
+     "play": "c19f13e3-split-1-370-30",
+     "shown": "",
+     "mark": "not marked"
+    },
+    {
+     "play": "c19f13e3-split-1-406-32",
+     "shown": "",
+     "mark": "not marked"
+    },
+    {
+     "play": "c19f13e3-split-2-480-37",
+     "shown": "",
+     "mark": "not marked"
+    },
+    {
+     "play": "c19f13e3-split-1-480-36",
+     "shown": "",
+     "mark": "not marked"
+    },
+    {
+     "play": "c19f13e3-split-2-534-40",
+     "shown": "",
+     "mark": "not marked"
+    },
+    {
+     "play": "c19f13e3-split-1-574-41",
+     "shown": "",
+     "mark": "not marked"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "NwAy",
+      "start": [
+       256,
+       268
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       256,
+       268
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "NwAy",
+      "start": [
+       256,
+       268
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "NwAy",
+      "start": [
+       288,
+       300
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       288,
+       300
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "NwAy",
+      "start": [
+       344,
+       356
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "NwAy",
+      "start": [
+       364,
+       376
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       364,
+       376
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       400,
+       412
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "NwAy",
+      "start": [
+       474,
+       486
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       474,
+       486
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "NwAy",
+      "start": [
+       528,
+       540
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       568,
+       580
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-c19f-11",
+   "set": "f1",
+   "scheme": 2,
+   "row": 11,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    272,
+    372
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men up on numbers in the main fight (5 v 3, the greater stand area; then 7 v 6 from 4:50; then 7 v 5 from 5:16; then 6 v 4 from 5:40), from players split elsewhere; Men: push up (push up to their front door) | NwAy: retreat down the ladder (fall back into the base)",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "c19f13e3-numbers-1-272-22",
+     "shown": "Men (strong side) [push up]: Kill with the numbers while their players are away. Met (more of theirs die than of ours: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "c19f13e3-numbers-2-272-23",
+     "shown": "NwAy (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Not met (nobody of ours dies: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Men",
+      "start": [
+       266,
+       278
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "numbers",
+      "team": "NwAy",
+      "start": [
+       266,
+       278
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-c19f-12",
+   "set": "f1",
+   "scheme": 2,
+   "row": 12,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    340,
+    390
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "Men has 6 in NwAy's base at the base res (4 defending, 2 coming back): 5 stay, 1 leave as the res lands or die",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "c19f13e3-base_res-1-340-26",
+     "shown": "",
+     "mark": "not marked"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "Men",
+      "start": [
+       334,
+       346
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-c19f-13",
+   "set": "f1",
+   "scheme": 2,
+   "row": 13,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    356,
+    401
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "Men's boost is 30 s away; NwAy: no runner; the rest retreat to the pit",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "c19f13e3-boost-2-356-28",
+     "shown": "NwAy [concede]: Concede the boost for kills. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "boost",
+      "team": "NwAy",
+      "start": [
+       350,
+       362
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-c19f-14",
+   "set": "f1",
+   "scheme": 2,
+   "row": 14,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    368,
+    432
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "NwAy is held in its own base or pit by Men's main team (pit NPCs alive at 6:08: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard alive; base res in 112 s)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "c19f13e3-pinned-2-368-29",
+     "shown": "NwAy: Lose no player and no NPC while held in, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it breaks out at 7:04, having lost nothing; a break-out is half its living players or more, four at least, out past its doors): yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "NwAy",
+      "start": [
+       362,
+       374
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-c19f-15",
+   "set": "f1",
+   "scheme": 2,
+   "row": 15,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    436,
+    474
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "NwAy's push team at the front door (its defence team at home): 4 players (Hammer, Mes/A, Dervish, 8 Monk); Men turns on it from 7:12 with 8 (Hammer, Mes/A, Prot, 8 Monk, AoB Derv, Stand Mes 1, Stand Mes 2, 7 Monk), and does not reach it; 8 turn for it from 7:12 (Hammer, Mes/A, Prot, 8 Monk, AoB Derv, Stand Mes 1, Stand Mes 2, 7 Monk) against 4 players; they do not reach it: full collapse",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "c19f13e3-split-2-436-34",
+     "shown": "NwAy (attacker) [met by a full collapse]: Survive the collapse and lose nobody (what the team gained elsewhere meanwhile is beside it). Met (nobody on the split dies: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "c19f13e3-split-1-436-33",
+     "shown": "Men (defender) [full collapse]: Kill the split or drive it out (the flags it costs are beside it). Not met (a split player dies: no; the split is gone within the visit: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "NwAy",
+      "start": [
+       430,
+       442
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       430,
+       442
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-c19f-16",
+   "set": "f1",
+   "scheme": 2,
+   "row": 16,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    476,
+    511
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "Men's boost is 30 s away; NwAy: one runner (Hammer); the rest fall to footmen",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "c19f13e3-boost-2-476-35",
+     "shown": "",
+     "mark": "not marked"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "boost",
+      "team": "NwAy",
+      "start": [
+       470,
+       482
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-c19f-17",
+   "set": "f1",
+   "scheme": 2,
+   "row": 17,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    499,
+    522
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "NwAy single run (Hammer); Men stays",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "c19f13e3-flag-1-499-38",
+     "shown": "Men [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Met (more of theirs die at the main fight than of ours: yes; their flag does not get in: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "Men",
+      "start": [
+       493,
+       505
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-c19f-18",
+   "set": "f1",
+   "scheme": 2,
+   "row": 18,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    520,
+    600
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "NwAy is held in its own base or pit by Men's main team (pit NPCs alive at 8:40: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard alive; lost while held: the Bodyguard at 9:53; base res in 80 s)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "c19f13e3-pinned-2-520-39",
+     "shown": "NwAy: Hold the NPCs and lose nobody until the base res, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "NwAy",
+      "start": [
+       514,
+       526
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-c19f-19",
+   "set": "f1",
+   "scheme": 2,
+   "row": 19,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    580,
+    630
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "Men has 6 in NwAy's base at the base res (1 defending, 5 coming back): 6 stay",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "c19f13e3-base_res-1-580-42",
+     "shown": "Men [stayed through the res]: Be out, or set for the fight, when they res. Not met (none of the players in their base dies in the 30 s after the res: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "Men",
+      "start": [
+       574,
+       586
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-c19f-20",
+   "set": "f1",
+   "scheme": 2,
+   "row": 20,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    600,
+    636
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "NwAy is held in its own base or pit by Men's main team (pit NPCs alive at 10:00: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard dead; base res in 120 s)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "c19f13e3-pinned-2-600-43",
+     "shown": "NwAy: Lose no player and no NPC while held in, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it breaks out at 10:46, having lost nothing; a break-out is half its living players or more, four at least, out past its doors): yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "NwAy",
+      "start": [
+       594,
+       606
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-c19f-21",
+   "set": "f1",
+   "scheme": 2,
+   "row": 21,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    612,
+    657
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "NwAy's boost is 30 s away; Men: no runner; the rest fall out",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "c19f13e3-boost-1-612-44",
+     "shown": "Men [concede]: Concede the boost for kills. Not met (more of theirs die than of ours: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "boost",
+      "team": "Men",
+      "start": [
+       606,
+       618
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-c19f-22",
+   "set": "f1",
+   "scheme": 2,
+   "row": 22,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    614,
+    716
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men down on numbers in the main fight (4 v 6, NwAy's pit; then 4 v 5 from 10:48; then 6 v 7 from 11:14; then 6 v 8 from 11:26), from kills; Men: fall out",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "c19f13e3-numbers-1-614-45",
+     "shown": "Men (down) [fall out]: Reach cover a player down without losing another. Not met (nobody of ours dies: no; no NPC lost: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Men",
+      "start": [
+       608,
+       620
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-c19f-23",
+   "set": "f1",
+   "scheme": 2,
+   "row": 23,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    631,
+    645
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "NwAy single run (8 Monk); Men stays",
+   "band": "high",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "c19f13e3-flag-1-631-46",
+     "shown": "Men [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Met (more of theirs die at the main fight than of ours: no; their flag does not get in: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-c19f-24",
+   "set": "f1",
+   "scheme": 2,
+   "row": 24,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    640,
+    676
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "NwAy's split by the front door: two players (Dervish, Hammer); Men turns on it from 10:36 with 6 (8 Monk, Prot, Hammer, AoB Derv, Stand Mes 2, 7 Monk); 6 turn for it from 10:36 (8 Monk, Prot, Hammer, AoB Derv, Stand Mes 2, 7 Monk) against two players: full collapse",
+   "band": "medium",
+   "grade": "visible",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "c19f13e3-split-2-640-48",
+     "shown": "NwAy (attacker) [met by a full collapse]: Survive the collapse and lose nobody (what the team gained elsewhere meanwhile is beside it). Met (nobody on the split dies: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "c19f13e3-split-1-640-47",
+     "shown": "Men (defender) [full collapse]: Kill the split or drive it out (the flags it costs are beside it). Met (a split player dies: no; the split is gone within the visit: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-c19f-25",
+   "set": "f1",
+   "scheme": 2,
+   "row": 25,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    672,
+    704
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "Men is held in its own base or pit by NwAy's main team (pit NPCs alive at 11:12: 0 of 2 knights, 0 of 2 pit archers, the Bodyguard alive; base res in 48 s)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "c19f13e3-pinned-1-672-49",
+     "shown": "",
+     "mark": "not marked"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "Men",
+      "start": [
+       666,
+       678
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-c19f-26",
+   "set": "f1",
+   "scheme": 2,
+   "row": 26,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    700,
+    750
+   ],
+   "type": "base res",
+   "call": "",
+   "shown": "NwAy has 8 in Men's base at the base res (3 defending, 2 coming back): 5 stay, 3 leave as the res lands or die",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "c19f13e3-base_res-2-700-50",
+     "shown": "NwAy [stayed through the res]: Be out, or set for the fight, when they res. Not met (none of the players in their base dies in the 30 s after the res: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "base res",
+      "team": "NwAy",
+      "start": [
+       694,
+       706
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-c19f-27",
+   "set": "f1",
+   "scheme": 2,
+   "row": 27,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    716,
+    750
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men up on numbers in the main fight (6 v 5, Men's back door; then 6 v 4 from 12:08), from players split elsewhere; Men: push in | NwAy: retreat down the ladder (fall back into the base)",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "c19f13e3-numbers-1-716-51",
+     "shown": "Men (strong side) [push in]: Kill with the numbers while their players are away. Met (more of theirs die than of ours: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "c19f13e3-numbers-2-716-52",
+     "shown": "NwAy (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Not met (nobody of ours dies: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Men",
+      "start": [
+       710,
+       722
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "numbers",
+      "team": "NwAy",
+      "start": [
+       710,
+       722
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-c19f-28",
+   "set": "f1",
+   "scheme": 2,
+   "row": 28,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    731,
+    763
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "Men single run (Mes/A); NwAy stays",
+   "band": "high",
+   "grade": "not marked",
+   "mark": "",
+   "calls": [
+    {
+     "play": "c19f13e3-flag-2-731-53",
+     "shown": "",
+     "mark": "not marked"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-c19f-29",
+   "set": "f1",
+   "scheme": 2,
+   "row": 29,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    732,
+    767
+   ],
+   "type": "boost",
+   "call": "",
+   "shown": "NwAy's boost is 30 s away; Men: one runner (Mes/A); the rest push in",
+   "band": "high",
+   "grade": "not marked",
+   "mark": "",
+   "calls": [
+    {
+     "play": "c19f13e3-boost-1-732-54",
+     "shown": "",
+     "mark": "not marked"
+    }
+   ],
+   "checks": []
+  },
+  {
+   "id": "f1-c19f-30",
+   "set": "f1",
+   "scheme": 2,
+   "row": 30,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    764,
+    830
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "NwAy's split by the back door: one player (Dervish) against 1 defending (8 Monk); numbers along the way: 1 v 1 from 12:44, 3 v 2 from 13:28. Who came and went, each a decision of its own: AoB Derv, Stand Mes (NwAy) join the split at 13:28; Mes/A (Men) joins the defence at 13:28",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "c19f13e3-split-2-764-56",
+     "shown": "NwAy (attacker) [1 v 1, defended by a monk]: Hold the monk there; the main team's job is to kill. Met (the split player survives: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "c19f13e3-split-1-764-55",
+     "shown": "Men (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (no pit NPC lost: yes; no more defenders die than split players: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "c19f13e3-split-2-808-60",
+     "shown": "NwAy (attacker) [join: AoB Derv, Stand Mes at 13:28]: Kill or take NPCs with the players added. Not met (a defender killed: no; an NPC taken: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "c19f13e3-split-1-808-59",
+     "shown": "Men (defender) [join: Mes/A at 13:28]: Hold it even or better: lose no pit NPC and no more players than the split does. Met (no pit NPC lost: yes; no more defenders die than split players: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "NwAy",
+      "start": [
+       758,
+       770
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       758,
+       770
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "NwAy",
+      "start": [
+       802,
+       814
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       802,
+       814
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-c19f-31",
+   "set": "f1",
+   "scheme": 2,
+   "row": 31,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    776,
+    840
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "NwAy is held in its own base or pit by Men's main team (pit NPCs alive at 12:56: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard dead; base res in 64 s)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "c19f13e3-pinned-2-776-57",
+     "shown": "NwAy: Hold the NPCs and lose nobody until the base res, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "NwAy",
+      "start": [
+       770,
+       782
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-c19f-32",
+   "set": "f1",
+   "scheme": 2,
+   "row": 32,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    782,
+    924
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men up on numbers in the main fight (6 v 5, NwAy's pit; then 5 v 4 from 13:44; then 6 v 5 from 14:06; then 5 v 3 from 14:42; then 5 v 2 from 14:56; then 6 v 1 from 15:12), from players split elsewhere; Men: push up (push up to their base); 4 damage against 3 monks",
+   "band": "medium",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "c19f13e3-numbers-1-782-58",
+     "shown": "Men (strong side) [push up]: Keep them busy and lose nobody (a kill is not expected of it). Met (nobody of ours dies: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "numbers",
+      "team": "Men",
+      "start": [
+       776,
+       788
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-c19f-33",
+   "set": "f1",
+   "scheme": 2,
+   "row": 33,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    809,
+    844
+   ],
+   "type": "flag",
+   "call": "",
+   "shown": "NwAy single run (Hammer); Men stays",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "c19f13e3-flag-1-809-61",
+     "shown": "Men [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Not met (more of theirs die at the main fight than of ours: no; their flag does not get in: no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "Men",
+      "start": [
+       803,
+       815
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-c19f-34",
+   "set": "f1",
+   "scheme": 2,
+   "row": 34,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    828,
+    858
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "NwAy's split by the back door: one player (Dervish) against 2 defending (Mes/A, 8 Monk); 2 (Mes/A, 8 Monk) against one player: Mes/A carries his flag for 8 s while defending",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "c19f13e3-split-2-828-64",
+     "shown": "NwAy (attacker) [a player or more down]: Hold more defenders there than its own number and lose nobody (what the team made of the extra player elsewhere is beside it). Met (nobody on the split dies: yes)",
+     "mark": "correct"
+    },
+    {
+     "play": "c19f13e3-split-1-828-62",
+     "shown": "Men (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Not met (no pit NPC lost: yes; a split player dies: no; the split is gone within the visit: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "c19f13e3-split-1-828-63",
+     "shown": "Men (defender) [part-run]: Gain a slight flag advantage while losing no pit NPC and not dying. Not met (no pit NPC lost: yes; flag lead better by 0.15 or more: no; the defender does not die: yes)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "NwAy",
+      "start": [
+       822,
+       834
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       822,
+       834
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       822,
+       834
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-c19f-35",
+   "set": "f1",
+   "scheme": 2,
+   "row": 35,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    840,
+    924
+   ],
+   "type": "pinned",
+   "call": "",
+   "shown": "NwAy is held in its own base or pit by Men's main team (pit NPCs alive at 14:00: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard dead; base res in 120 s)",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "c19f13e3-pinned-2-840-65",
+     "shown": "NwAy: Lose no player and no NPC while held in, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)",
+     "mark": "correct"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "pinned",
+      "team": "NwAy",
+      "start": [
+       834,
+       846
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-c19f-36",
+   "set": "f1",
+   "scheme": 2,
+   "row": 36,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    856,
+    950
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "NwAy's split by the back door: one player (Dervish) against 2 defending (Mes/A, 8 Monk); numbers along the way: 2 v 2 from 14:16, 1 v 2 from 14:58; 2 (Mes/A, 8 Monk) against one player; numbers along the way: 2 v 2 from 14:16, 1 v 2 from 14:58: 8 Monk carries his flag for 22 s while defending. Who came and went, each a decision of its own: Hammer (NwAy) leaves the split at 14:58",
+   "band": "high",
+   "grade": "classic",
+   "mark": "correct",
+   "calls": [
+    {
+     "play": "c19f13e3-split-2-856-69",
+     "shown": "NwAy (attacker) [a player or more down]: Hold more defenders there than its own number and lose nobody (what the team made of the extra player elsewhere is beside it). Not met (nobody on the split dies: no)",
+     "mark": "correct"
+    },
+    {
+     "play": "c19f13e3-split-1-856-66",
+     "shown": "",
+     "mark": "not marked"
+    },
+    {
+     "play": "c19f13e3-split-1-856-68",
+     "shown": "",
+     "mark": "not marked"
+    },
+    {
+     "play": "c19f13e3-split-1-856-67",
+     "shown": "",
+     "mark": "not marked"
+    },
+    {
+     "play": "c19f13e3-split-2-898-70",
+     "shown": "",
+     "mark": "not marked"
+    }
+   ],
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "team": "NwAy",
+      "start": [
+       850,
+       862
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       850,
+       862
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       850,
+       862
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "Men",
+      "start": [
+       850,
+       862
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    },
+    {
+     "has": {
+      "play": "split",
+      "team": "NwAy",
+      "start": [
+       892,
+       904
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true
+    }
+   ]
+  },
+  {
+   "id": "f1-c19f-notes",
+   "set": "f1",
+   "scheme": 2,
+   "row": 0,
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "match": "Men v NwAy, Corrupted",
+   "window": [
+    0,
+    0
+   ],
+   "type": "notes",
+   "call": "",
+   "shown": "(his notes on the game)",
+   "band": "",
+   "grade": "",
+   "mark": "notes",
+   "said": "",
+   "checks": []
   }
  ],
  "about_tiers": "R-490: a row with \"tier\": \"borderline\" is reported by `review.py score` and never blocks a change; every other row with a check is clear and must pass. A row he marks No clear decision is borderline when it is filed. \"tier_proposed\" is Claude's proposal, not yet his."
