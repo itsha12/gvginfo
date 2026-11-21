@@ -14789,6 +14789,33 @@
     },
     {
      "has": {
+      "play": "opening",
+      "team": "RACK",
+      "start": [
+       -3,
+       9
+      ]
+     },
+     "want": {
+      "scenario~": "and not run"
+     },
+     "was": "옷옷옷옷 v RACK 0:00: the opening run is 옷옷옷옷's (the 8 Monk, capped at 0:45); RACK brings a flag up with its team and does not run it (R-505). Told on the opening row since R-565, which takes the stay play off"
+    },
+    {
+     "none": {
+      "play": "flag",
+      "team": "RACK",
+      "start": [
+       -3,
+       9
+      ]
+     },
+     "why": "옷옷옷옷 v RACK 0:00: RACK, which runs no first flag, has no flag play at the opening (R-565)"
+    }
+   ],
+   "retired_checks": [
+    {
+     "has": {
       "play": "flag",
       "team": "RACK",
       "start": [
@@ -14800,7 +14827,9 @@
       "their": "single run",
       "scenario~": "brings a flag up"
      },
-     "was": "옷옷옷옷 v RACK 0:00: the opening run is 옷옷옷옷's (the 8 Monk, capped at 0:45); RACK brings a flag up with its team and does not run it (R-505)"
+     "was": "옷옷옷옷 v RACK 0:00: the opening run is 옷옷옷옷's (the 8 Monk, capped at 0:45); RACK brings a flag up with its team and does not run it (R-505)",
+     "retired": "2026-11-21",
+     "why_retired": "R-565 (2026-11-21, his 'Option A' on Men v NwAy 0:00): a team that runs no first flag carries no stay job at the opening, so this flag play is no longer told; its first flag is the opening's ('Get the first flag in')"
     }
    ]
   },
@@ -24511,10 +24540,31 @@
     {
      "play": "d06ef3c7-flag-1-0-0",
      "shown": "RACK [the first flag: stay]: Kill with the extra player while their runner is away, or their flag does not get in. Not met (more of theirs die at the main fight than of ours: no; their flag does not get in: no)",
-     "mark": "correct"
+     "mark": "correct",
+     "later": {
+      "at": "2026-11-21",
+      "said": "Option A",
+      "reading": "R-565: asked on Men v NwAy 0:00 with this call named as the one that goes too; the call is no longer told"
+     }
     }
    ],
    "checks": [
+    {
+     "has": {
+      "play": "opening",
+      "team": "RACK",
+      "start": [
+       -6,
+       6
+      ]
+     },
+     "want": {
+      "job": "Get the first flag in"
+     },
+     "why": "RACK v hdm 0:00 (Classic, correct): the opening is told, with RACK's first flag as its job; the stay call under it, which he had marked correct, is taken off by R-565"
+    }
+   ],
+   "retired_checks": [
     {
      "has": {
       "play": "flag",
@@ -24527,7 +24577,9 @@
      "want": {
       "clear": null
      },
-     "auto": true
+     "auto": true,
+     "retired": "2026-11-21",
+     "why_retired": "R-565 (2026-11-21, his 'Option A' on Men v NwAy 0:00): a team that runs no first flag carries no stay job at the opening, so this flag play is no longer told; its first flag is the opening's ('Get the first flag in')"
     }
    ]
   },
@@ -33181,20 +33233,6 @@
      "auto": true
     },
     {
-     "has": {
-      "play": "flag",
-      "team": "NwAy",
-      "start": [
-       -6,
-       6
-      ]
-     },
-     "want": {
-      "clear": null
-     },
-     "auto": true
-    },
-    {
      "none": {
       "play": "flag",
       "team": "NwAy",
@@ -33206,8 +33244,26 @@
        "job": "Kill with the two extra players before their flag is in, or their flag does not get in"
       }
      },
-     "open": true,
-     "why": "Men v NwAy 0:00 (Classic, the row read correct; this call marked incorrect): 'they don't have 2 extra players'. The job is the stay of an answered double run, given at the opening to a team that ran no first flag: Men's 8 Monk walks the first flag up with its seven and only the Mes/A waits back, and NwAy has nobody at the stand (four out by the back door, four at home). Put to him 2026-11-21 before anything is built: whether a team that runs no first flag carries any stay job at the opening (R-500, R-541), since the same call on RACK v hdm 0:00 he marked correct"
+     "why": "Men v NwAy 0:00 (Classic, the row read correct; this call marked incorrect): 'they don't have 2 extra players'. The job is the stay of an answered double run, given at the opening to a team that ran no first flag: Men's 8 Monk walks the first flag up with its seven and only the Mes/A waits back, and NwAy has nobody at the stand (four out by the back door, four at home). Put to him 2026-11-21: 'Option A' (R-565): a team that runs no first flag carries no stay job at the opening, only 'Get the first flag in'",
+     "held": "2026-11-21"
+    }
+   ],
+   "retired_checks": [
+    {
+     "has": {
+      "play": "flag",
+      "team": "NwAy",
+      "start": [
+       -6,
+       6
+      ]
+     },
+     "want": {
+      "clear": null
+     },
+     "auto": true,
+     "retired": "2026-11-21",
+     "why_retired": "R-565 (2026-11-21, his 'Option A' on Men v NwAy 0:00): a team that runs no first flag carries no stay job at the opening, so this flag play is no longer told; its first flag is the opening's ('Get the first flag in')"
     }
    ]
   },
@@ -34713,7 +34769,12 @@
      "mark": "not marked"
     }
    ],
-   "checks": []
+   "checks": [],
+   "later": {
+    "at": "2026-11-21",
+    "said": "I passed over but we don't need the confirmation/my marks, we can proceed.",
+    "reading": "left without a grade at his word; nothing is built against it"
+   }
   },
   {
    "id": "f1-c19f-29",
@@ -34739,7 +34800,12 @@
      "mark": "not marked"
     }
    ],
-   "checks": []
+   "checks": [],
+   "later": {
+    "at": "2026-11-21",
+    "said": "I passed over but we don't need the confirmation/my marks, we can proceed.",
+    "reading": "left without a grade at his word; nothing is built against it"
+   }
   },
   {
    "id": "f1-c19f-30",

@@ -237,7 +237,7 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   above stay out.
 - How flags are told on the page (R-520, R-521): the opening is one row, `jobs.opening` (who went where from the
   gates, who brought the first flag up, who capped first and who capped over it), with each team's first-flag job
-  under it; after it every run is told once, a run and the run that answers it in one row (`review.py flag_rows`,
+  under it and nothing else (R-565: a team that runs no first flag has no stay play at the opening); after it every run is told once, a run and the run that answers it in one row (`review.py flag_rows`,
   from `run_id`, `answer_id` and `said` on the flag plays). The flag plays themselves, their jobs and their tests
   are as before: change what a row says in `flag_rows`, and what a play is in `flag_plays`.
 - A push on a flagger is one reading, `Moments.flag_pushes` on the branch: two flaggers on one another are one push,
@@ -328,6 +328,15 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   calls from those, never from a play's own end. `cases.py case <plays file> <report id> <m:ss>` prints one decision
   with its nearest cases and their replay links. A verdict is a reading, not advice, until the held-out test shows a
   gain for its scenario: say so whenever one is shown to him.
+- The split family (R-558; the split plays are ready, R-564), stage 1 on the branch. Every split play carries `split`, the record of its split on the
+  clock of the second it is told (R-562): when it left, crossed, could first do something and was first defended; its numbers at `SPLIT_TRACK_S` from the
+  telling (players on the enemy's ground, defenders, defending monks); every stretch it is told in with the kind of answer; its own deaths, its
+  defenders' deaths and the NPCs it took, by the second. The plays of its first told stretch carry `at_told`: the position each team chose from, the
+  60, 90 and 180 s record and the 60 s before. It is not named `state`, which the prices are fitted on: a new family must not move the prices the flag
+  readings were shown on. None of it changes a play. `cases.py splits <plays file>` (report `data/model/split_cases.json`): the clock of a split, the
+  readings S1 to S7 (what any player knows, asked of the answer read 30 s in), what followed each answer by the size of the split, as it fell, and
+  how the answer moves between the reads. A report: no like spots yet, so no row of it is advice, and it is never put to him as such. The other half,
+  the main fight while a split is out (the numbers rows "from a split elsewhere"), is not read yet.
 - A numbers advantage from kills is not a decision family (R-557: the team up keeps killing and follows the team down,
   whose own choices read as near forced; the numbers that are decisions are those a team chose to make, a runner, a
   split or a collapse). Its cards are not marked and its view is off the page (the `ADVICE.numbers` entry in
