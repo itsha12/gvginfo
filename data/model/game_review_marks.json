@@ -11110,6 +11110,583 @@
    "game": "Dz v Team, Druid's Isle",
    "at": "2026-11-19",
    "engine": "5dd5a09"
+  },
+  "c19f13e3-7c93-5ea8-ae4c-16f2d75104da": {
+   "marks": {
+    "s:c19f13e3-opening-1-0-0": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "The opening. Men: 7 to the stand, Mes/A waits back at the flag spawn for the next flag; its first flag brought up by 8 Monk and capped at 0:26. NwAy: 0 to the stand, 4 out by the back door (Hammer, Dervish, Mes/A, 8 Monk), AoB Derv, Stand Mes, Prot, 7 Monk stay back at home; its first flag brought part of the way with the team (Dervish, Hammer) and not run. Men caps first at 0:26; NwAy caps over it at 8:42",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "c19f13e3-opening-1-0-0": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men [the first flag]: Get the first flag in. Met (our flag is capped: yes)"
+    },
+    "c19f13e3-opening-2-0-2": {
+     "mark": "correct",
+     "why": "",
+     "text": "NwAy [the first flag]: Get the first flag in. Not met (our flag is capped: no)"
+    },
+    "c19f13e3-flag-2-0-1": {
+     "mark": "incorrect",
+     "why": "they don't have 2 extra players",
+     "text": "NwAy [the first flag: stay]: Kill with the two extra players before their flag is in, or their flag does not get in. Not met (more of theirs die at the main fight than of ours: no; their flag does not get in: no)"
+    },
+    "s:c19f13e3-split-2-6-4": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "NwAy's split by the back door: one player (Dervish) against 0 defending; it crosses at 0:16 and reaches their base, their footmen or a defender at 0:24",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "c19f13e3-split-2-6-4": {
+     "mark": "correct",
+     "why": "",
+     "text": "NwAy (attacker) [undefended]: Take NPCs. Met (an NPC taken: yes)"
+    },
+    "c19f13e3-split-1-6-3": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (defender) [no answer]: Win elsewhere before the split costs more than it gains. Met (more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: yes)"
+    },
+    "s:c19f13e3-numbers-1-24-5": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Men up on numbers in the main fight (5 v 4, NwAy's front door), from players split elsewhere; Men: push in | NwAy: retreat down the ladder (retreat to the pit)",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "c19f13e3-numbers-1-24-5": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (strong side) [push in]: Kill with the numbers while their players are away. Not met (more of theirs die than of ours: no)"
+    },
+    "c19f13e3-numbers-2-24-6": {
+     "mark": "correct",
+     "why": "",
+     "text": "NwAy (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Met (nobody of ours dies: yes)"
+    },
+    "s:c19f13e3-split-2-38-9": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "NwAy's split by the back door: 4 players (Mes/A, Dervish, 8 Monk, Hammer) against 3 defending (Mes/A, 8 Monk, Prot); numbers along the way: 4 v 1 from 0:38, 4 v 3 from 0:56, 3 v 2 from 2:10; 3 damage against 2 monks; 3 (Mes/A, 8 Monk, Prot) against 4 players; numbers along the way: 4 v 1 from 0:38, 4 v 3 from 0:56, 3 v 2 from 2:10: Mes/A carries his flag for 8 s while defending. Who came and went, each a decision of its own: 8 Monk, Prot (Men) join the defence at 0:56; Hammer (NwAy) leaves the split at 2:10; Prot (Men) leaves the defence at 2:10",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "c19f13e3-split-2-38-9": {
+     "mark": "correct",
+     "why": "",
+     "text": "NwAy (attacker) [held by monks]: Hold the monks there and lose nobody; NPCs are a bonus (a kill is not expected of it). Met (nobody on the split dies: yes)"
+    },
+    "c19f13e3-split-1-38-7": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (defender) [a player down]: Delay: keep the split off the pit NPCs and stay alive. Not met (no pit NPC lost: no; no defender dies: yes)"
+    },
+    "c19f13e3-split-1-38-8": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (defender) [part-run]: Gain a slight flag advantage while losing no pit NPC and not dying. Not met (no pit NPC lost: no; flag lead better by 0.15 or more: yes; the defender does not die: yes)"
+    },
+    "c19f13e3-split-1-56-10": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (defender) [join: 8 Monk, Prot at 0:56]: Hold it even or better: lose no pit NPC and no more players than the split does. Not met (no pit NPC lost: no; no more defenders die than split players: yes)"
+    },
+    "c19f13e3-split-2-130-13": {
+     "mark": "correct",
+     "why": "",
+     "text": "NwAy (attacker) [leave: Hammer at 2:10]: Gain at the main fight with the player back. Not met (more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: no)"
+    },
+    "c19f13e3-split-1-130-12": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (defender) [leave: Prot at 2:10]: Gain at the main fight with the player back, and lose no pit NPC for it. Not met (no pit NPC lost: no; more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: yes)"
+    },
+    "s:c19f13e3-pinned-2-68-11": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "NwAy is held in its own base or pit by Men's main team (pit NPCs alive at 1:08: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard alive; base res in 52 s)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "c19f13e3-pinned-2-68-11": {
+     "mark": "correct",
+     "why": "",
+     "text": "NwAy: Lose no player and no NPC while held in, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it breaks out at 2:00, having lost nothing; a break-out is half its living players or more, four at least, out past its doors): yes)"
+    },
+    "s:c19f13e3-numbers-1-172-14": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Men down on numbers in the main fight (7 v 8, Men's front footies), from kills; Men: retreat down the ladder (retreat to the pit) | NwAy: push in",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "c19f13e3-numbers-1-172-14": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (down) [retreat down the ladder]: Reach cover a player down without losing another. Not met (nobody of ours dies: yes; no NPC lost: no)"
+    },
+    "c19f13e3-numbers-2-172-15": {
+     "mark": "correct",
+     "why": "",
+     "text": "NwAy (up) [push in]: Take ground and NPCs with the numbers. Met (no more of ours die than of theirs: yes; one of their NPCs dies: yes; more of theirs die than of ours: no)"
+    },
+    "s:c19f13e3-pinned-1-200-16": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Men is held in its own base or pit by NwAy's main team (pit NPCs alive at 3:20: 0 of 2 knights, 1 of 2 pit archers, the Bodyguard alive; lost while held: a pit archer at 3:39; base res in 40 s)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "c19f13e3-pinned-1-200-16": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men: Hold the NPCs and lose nobody until the base res, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)"
+    },
+    "s:c19f13e3-base_res-2-220-17": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "NwAy has 8 in Men's base at the base res (6 defending, 1 coming back): 8 stay",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "c19f13e3-base_res-2-220-17": {
+     "mark": "correct",
+     "why": "",
+     "text": "NwAy [stayed through the res]: Be out, or set for the fight, when they res. Not met (none of the players in their base dies in the 30 s after the res: no)"
+    },
+    "s:c19f13e3-boost-2-236-18": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Men's boost is 30 s away; NwAy: no runner; the rest stay on the enemy's side",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "c19f13e3-boost-2-236-18": {
+     "mark": "correct",
+     "why": "",
+     "text": "NwAy [concede]: Concede the boost for kills. Not met (more of theirs die than of ours: no)"
+    },
+    "s:c19f13e3-split-2-262-20": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "NwAy's split by the front door: one player (Dervish) against 1 defending (8 Monk); numbers along the way: 4 v 3 from 4:22, 1 v 1 from 4:54, 2 v 1 from 5:50, 4 v 3 from 6:10, 4 v 4 from 6:46, 1 v 1 from 8:00, 2 v 1 from 8:54, 2 v 2 from 9:34. Who came and went, each a decision of its own: Mes/A, Hammer, 8 Monk (NwAy) leave the split at 4:54; Prot, Hammer (Men) leave the defence at 4:54; Hammer (NwAy) joins the split at 5:50; 8 Monk, Mes/A (NwAy) join the split at 6:10; Hammer, Mes/A (Men) join the defence at 6:10; Prot (Men) joins the defence at 6:46; Hammer, Mes/A, 8 Monk (NwAy) leave the split at 8:00; Hammer, Mes/A, Prot (Men) leave the defence at 8:00; Hammer (NwAy) joins the split at 8:54; Prot (Men) joins the defence at 9:34",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "c19f13e3-split-2-262-20": {
+     "mark": "correct",
+     "why": "",
+     "text": "NwAy (attacker) [1 v 1, defended by a monk]: Hold the monk there; the main team's job is to kill. Met (the split player survives: yes)"
+    },
+    "c19f13e3-split-1-262-19": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (no pit NPC lost: yes; no more defenders die than split players: yes)"
+    },
+    "c19f13e3-split-2-262-21": {
+     "mark": "correct",
+     "why": "",
+     "text": "NwAy (attacker's main team) [the main fight can kill]: Kill at the main fight: its damage can kill against their monks there, and theirs cannot. Not met (more of theirs die away from the split than of ours: no)"
+    },
+    "c19f13e3-split-2-294-25": {
+     "mark": "correct",
+     "why": "",
+     "text": "NwAy (attacker) [leave: Mes/A, Hammer, 8 Monk at 4:54]: Gain at the main fight with the player back. Met (more of theirs die away from the split than of ours: no; flag lead better by 0.35 or more: yes)"
+    },
+    "s:c19f13e3-numbers-1-272-22": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Men up on numbers in the main fight (5 v 3, the greater stand area; then 7 v 6 from 4:50; then 7 v 5 from 5:16; then 6 v 4 from 5:40), from players split elsewhere; Men: push up (push up to their front door) | NwAy: retreat down the ladder (fall back into the base)",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "c19f13e3-numbers-1-272-22": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (strong side) [push up]: Kill with the numbers while their players are away. Met (more of theirs die than of ours: yes)"
+    },
+    "c19f13e3-numbers-2-272-23": {
+     "mark": "correct",
+     "why": "",
+     "text": "NwAy (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Not met (nobody of ours dies: no)"
+    },
+    "s:c19f13e3-base_res-1-340-26": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Men has 6 in NwAy's base at the base res (4 defending, 2 coming back): 5 stay, 1 leave as the res lands or die",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "s:c19f13e3-boost-2-356-28": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Men's boost is 30 s away; NwAy: no runner; the rest retreat to the pit",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "c19f13e3-boost-2-356-28": {
+     "mark": "correct",
+     "why": "",
+     "text": "NwAy [concede]: Concede the boost for kills. Not met (more of theirs die than of ours: no)"
+    },
+    "s:c19f13e3-pinned-2-368-29": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "NwAy is held in its own base or pit by Men's main team (pit NPCs alive at 6:08: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard alive; base res in 112 s)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "c19f13e3-pinned-2-368-29": {
+     "mark": "correct",
+     "why": "",
+     "text": "NwAy: Lose no player and no NPC while held in, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it breaks out at 7:04, having lost nothing; a break-out is half its living players or more, four at least, out past its doors): yes)"
+    },
+    "s:c19f13e3-split-2-436-34": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "NwAy's push team at the front door (its defence team at home): 4 players (Hammer, Mes/A, Dervish, 8 Monk); Men turns on it from 7:12 with 8 (Hammer, Mes/A, Prot, 8 Monk, AoB Derv, Stand Mes 1, Stand Mes 2, 7 Monk), and does not reach it; 8 turn for it from 7:12 (Hammer, Mes/A, Prot, 8 Monk, AoB Derv, Stand Mes 1, Stand Mes 2, 7 Monk) against 4 players; they do not reach it: full collapse",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "c19f13e3-split-2-436-34": {
+     "mark": "correct",
+     "why": "",
+     "text": "NwAy (attacker) [met by a full collapse]: Survive the collapse and lose nobody (what the team gained elsewhere meanwhile is beside it). Met (nobody on the split dies: yes)"
+    },
+    "c19f13e3-split-1-436-33": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (defender) [full collapse]: Kill the split or drive it out (the flags it costs are beside it). Not met (a split player dies: no; the split is gone within the visit: no)"
+    },
+    "s:c19f13e3-boost-2-476-35": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Men's boost is 30 s away; NwAy: one runner (Hammer); the rest fall to footmen",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "s:c19f13e3-flag-1-499-38": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "NwAy single run (Hammer); Men stays",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "c19f13e3-flag-1-499-38": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Met (more of theirs die at the main fight than of ours: yes; their flag does not get in: no)"
+    },
+    "s:c19f13e3-pinned-2-520-39": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "NwAy is held in its own base or pit by Men's main team (pit NPCs alive at 8:40: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard alive; lost while held: the Bodyguard at 9:53; base res in 80 s)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "c19f13e3-pinned-2-520-39": {
+     "mark": "correct",
+     "why": "",
+     "text": "NwAy: Hold the NPCs and lose nobody until the base res, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)"
+    },
+    "s:c19f13e3-base_res-1-580-42": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Men has 6 in NwAy's base at the base res (1 defending, 5 coming back): 6 stay",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "c19f13e3-base_res-1-580-42": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men [stayed through the res]: Be out, or set for the fight, when they res. Not met (none of the players in their base dies in the 30 s after the res: no)"
+    },
+    "s:c19f13e3-pinned-2-600-43": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "NwAy is held in its own base or pit by Men's main team (pit NPCs alive at 10:00: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard dead; base res in 120 s)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "c19f13e3-pinned-2-600-43": {
+     "mark": "correct",
+     "why": "",
+     "text": "NwAy: Lose no player and no NPC while held in, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it breaks out at 10:46, having lost nothing; a break-out is half its living players or more, four at least, out past its doors): yes)"
+    },
+    "s:c19f13e3-boost-1-612-44": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "NwAy's boost is 30 s away; Men: no runner; the rest fall out",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "c19f13e3-boost-1-612-44": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men [concede]: Concede the boost for kills. Not met (more of theirs die than of ours: no)"
+    },
+    "s:c19f13e3-numbers-1-614-45": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Men down on numbers in the main fight (4 v 6, NwAy's pit; then 4 v 5 from 10:48; then 6 v 7 from 11:14; then 6 v 8 from 11:26), from kills; Men: fall out",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "c19f13e3-numbers-1-614-45": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (down) [fall out]: Reach cover a player down without losing another. Not met (nobody of ours dies: no; no NPC lost: yes)"
+    },
+    "s:c19f13e3-flag-1-631-46": {
+     "grade": "visible",
+     "why": "",
+     "text": "NwAy single run (8 Monk); Men stays",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "c19f13e3-flag-1-631-46": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Met (more of theirs die at the main fight than of ours: no; their flag does not get in: yes)"
+    },
+    "s:c19f13e3-split-2-640-48": {
+     "grade": "visible",
+     "why": "",
+     "text": "NwAy's split by the front door: two players (Dervish, Hammer); Men turns on it from 10:36 with 6 (8 Monk, Prot, Hammer, AoB Derv, Stand Mes 2, 7 Monk); 6 turn for it from 10:36 (8 Monk, Prot, Hammer, AoB Derv, Stand Mes 2, 7 Monk) against two players: full collapse",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "c19f13e3-split-2-640-48": {
+     "mark": "correct",
+     "why": "",
+     "text": "NwAy (attacker) [met by a full collapse]: Survive the collapse and lose nobody (what the team gained elsewhere meanwhile is beside it). Met (nobody on the split dies: yes)"
+    },
+    "c19f13e3-split-1-640-47": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (defender) [full collapse]: Kill the split or drive it out (the flags it costs are beside it). Met (a split player dies: no; the split is gone within the visit: yes)"
+    },
+    "s:c19f13e3-pinned-1-672-49": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Men is held in its own base or pit by NwAy's main team (pit NPCs alive at 11:12: 0 of 2 knights, 0 of 2 pit archers, the Bodyguard alive; base res in 48 s)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "s:c19f13e3-base_res-2-700-50": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "NwAy has 8 in Men's base at the base res (3 defending, 2 coming back): 5 stay, 3 leave as the res lands or die",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "c19f13e3-base_res-2-700-50": {
+     "mark": "correct",
+     "why": "",
+     "text": "NwAy [stayed through the res]: Be out, or set for the fight, when they res. Not met (none of the players in their base dies in the 30 s after the res: no)"
+    },
+    "s:c19f13e3-numbers-1-716-51": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Men up on numbers in the main fight (6 v 5, Men's back door; then 6 v 4 from 12:08), from players split elsewhere; Men: push in | NwAy: retreat down the ladder (fall back into the base)",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "c19f13e3-numbers-1-716-51": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (strong side) [push in]: Kill with the numbers while their players are away. Met (more of theirs die than of ours: yes)"
+    },
+    "c19f13e3-numbers-2-716-52": {
+     "mark": "correct",
+     "why": "",
+     "text": "NwAy (weak side) [retreat down the ladder]: No deaths, keep them busy, do not chase. Not met (nobody of ours dies: no)"
+    },
+    "s:c19f13e3-split-2-764-56": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "NwAy's split by the back door: one player (Dervish) against 1 defending (8 Monk); numbers along the way: 1 v 1 from 12:44, 3 v 2 from 13:28. Who came and went, each a decision of its own: AoB Derv, Stand Mes (NwAy) join the split at 13:28; Mes/A (Men) joins the defence at 13:28",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "c19f13e3-split-2-764-56": {
+     "mark": "correct",
+     "why": "",
+     "text": "NwAy (attacker) [1 v 1, defended by a monk]: Hold the monk there; the main team's job is to kill. Met (the split player survives: yes)"
+    },
+    "c19f13e3-split-1-764-55": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (defender) [mirror]: Hold it even: lose no pit NPC and no more players than the split does. Met (no pit NPC lost: yes; no more defenders die than split players: yes)"
+    },
+    "c19f13e3-split-2-808-60": {
+     "mark": "correct",
+     "why": "",
+     "text": "NwAy (attacker) [join: AoB Derv, Stand Mes at 13:28]: Kill or take NPCs with the players added. Not met (a defender killed: no; an NPC taken: no)"
+    },
+    "c19f13e3-split-1-808-59": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (defender) [join: Mes/A at 13:28]: Hold it even or better: lose no pit NPC and no more players than the split does. Met (no pit NPC lost: yes; no more defenders die than split players: yes)"
+    },
+    "s:c19f13e3-pinned-2-776-57": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "NwAy is held in its own base or pit by Men's main team (pit NPCs alive at 12:56: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard dead; base res in 64 s)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "c19f13e3-pinned-2-776-57": {
+     "mark": "correct",
+     "why": "",
+     "text": "NwAy: Hold the NPCs and lose nobody until the base res, or break out. Met (no pit NPC lost and nobody dies until the base res: yes; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)"
+    },
+    "s:c19f13e3-numbers-1-782-58": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "Men up on numbers in the main fight (6 v 5, NwAy's pit; then 5 v 4 from 13:44; then 6 v 5 from 14:06; then 5 v 3 from 14:42; then 5 v 2 from 14:56; then 6 v 1 from 15:12), from players split elsewhere; Men: push up (push up to their base); 4 damage against 3 monks",
+     "band": "medium",
+     "mark": "correct",
+     "off": []
+    },
+    "c19f13e3-numbers-1-782-58": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (strong side) [push up]: Keep them busy and lose nobody (a kill is not expected of it). Met (nobody of ours dies: yes)"
+    },
+    "s:c19f13e3-flag-1-809-61": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "NwAy single run (Hammer); Men stays",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "c19f13e3-flag-1-809-61": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men [stay]: Kill with the extra player while their runner is away, or their flag does not get in. Not met (more of theirs die at the main fight than of ours: no; their flag does not get in: no)"
+    },
+    "s:c19f13e3-split-2-828-64": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "NwAy's split by the back door: one player (Dervish) against 2 defending (Mes/A, 8 Monk); 2 (Mes/A, 8 Monk) against one player: Mes/A carries his flag for 8 s while defending",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "c19f13e3-split-2-828-64": {
+     "mark": "correct",
+     "why": "",
+     "text": "NwAy (attacker) [a player or more down]: Hold more defenders there than its own number and lose nobody (what the team made of the extra player elsewhere is beside it). Met (nobody on the split dies: yes)"
+    },
+    "c19f13e3-split-1-828-62": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (defender) [add one]: Kill it or drive it out with the extra player, and lose no pit NPC for it. Not met (no pit NPC lost: yes; a split player dies: no; the split is gone within the visit: no)"
+    },
+    "c19f13e3-split-1-828-63": {
+     "mark": "correct",
+     "why": "",
+     "text": "Men (defender) [part-run]: Gain a slight flag advantage while losing no pit NPC and not dying. Not met (no pit NPC lost: yes; flag lead better by 0.15 or more: no; the defender does not die: yes)"
+    },
+    "s:c19f13e3-pinned-2-840-65": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "NwAy is held in its own base or pit by Men's main team (pit NPCs alive at 14:00: 2 of 2 knights, 2 of 2 pit archers, the Bodyguard dead; base res in 120 s)",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "c19f13e3-pinned-2-840-65": {
+     "mark": "correct",
+     "why": "",
+     "text": "NwAy: Lose no player and no NPC while held in, or break out. Not met (no pit NPC lost and nobody dies until the base res: no; it breaks out having lost no player and no pit NPC first (it does not break out; a break-out is half its living players or more, four at least, out past its doors): no)"
+    },
+    "s:c19f13e3-split-2-856-69": {
+     "grade": "classic",
+     "why": "",
+     "reason": [],
+     "text": "NwAy's split by the back door: one player (Dervish) against 2 defending (Mes/A, 8 Monk); numbers along the way: 2 v 2 from 14:16, 1 v 2 from 14:58; 2 (Mes/A, 8 Monk) against one player; numbers along the way: 2 v 2 from 14:16, 1 v 2 from 14:58: 8 Monk carries his flag for 22 s while defending. Who came and went, each a decision of its own: Hammer (NwAy) leaves the split at 14:58",
+     "band": "high",
+     "mark": "correct",
+     "off": []
+    },
+    "c19f13e3-split-2-856-69": {
+     "mark": "correct",
+     "why": "",
+     "text": "NwAy (attacker) [a player or more down]: Hold more defenders there than its own number and lose nobody (what the team made of the extra player elsewhere is beside it). Not met (nobody on the split dies: no)"
+    }
+   },
+   "scheme": 2,
+   "game": "Men v NwAy, Corrupted Isle",
+   "at": "2026-11-21",
+   "engine": "7e54f33"
   }
  }
 }
