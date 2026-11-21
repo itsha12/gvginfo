@@ -101,7 +101,7 @@ FLAG_AFTER_S = (60, 90, 180)           # what followed a flag decision, read at 
 FLAG_BEFORE_S = 60                     # how long before a flag decision the position is read again, for the test of a call against what came before it
 FLAG_TRACK_S = tuple(range(0, 241, 15))  # the seconds from their runner's set-off at which the flag lead and the holder of the stand are kept on a flag play (`track`)
 FLAG_TRACK_FOR = 300                   # ... and for how long after it every cap and morale boost is kept, by its second
-SPLIT_TRACK_S = (0, 15, 30, 45, 60, 90)  # the seconds from when a split is told at which its numbers are kept on its plays (`split.numbers`), so that the answer to it can be read at a fixed second (the split family, R-558)
+SPLIT_TRACK_S = (0, 15, 20, 30, 40, 45, 60, 90)  # the seconds from when a split is told at which its numbers are kept on its plays (`split.numbers`), so that the answer to it can be read at a fixed second (the split family, R-558)
 
 
 # ---- the flag: their run against ours (R-426)
@@ -881,7 +881,7 @@ def split_plays(M, K):
         # The split family, stage 1 (R-558): what the answer to a split is read from and judged by, kept on every play of the split (`split`) and changing none of
         # them (as `_numbers_at` for a numbers play). The clock is the second the split is told (R-562: when its players are committed and the other team has to
         # answer): when it left, crossed, could first do something and was first met by a defender; the base res; its size (the numbers its first told fight had
-        # for longest); at fixed seconds from the telling how many of it stand on the enemy's ground, how many defend it and how many of those are backline monks;
+        # for longest); at fixed seconds from the telling how many of it stand on the enemy's ground, how many defend it, how many of those are backline monks and how many monks it brought;
         # every stretch it is told in with the kind of answer it met (nobody, defended, a collapse, the whole team); and, on the split's own account, each death
         # on it, each defender's death and each NPC it took, by the second. The plays of its first told stretch also carry the position each team chose from
         # and the fixed 60, 90 and 180 s record from that second, with the position 60 s before (`at_told`; not `state`, which the price of a position is
@@ -892,14 +892,24 @@ def split_plays(M, K):
             def num_at(h):
                 u = told0 + h
                 if u > t9: return None                                   # over by then
-                if u < t0: return [0, 0, 0]                               # told from its leaving (R-510), not yet on their ground
+                if u < t0: return [0, 0, 0, 0]                             # told from its leaving (R-510), not yet on their ground
                 i_ = (u - t0) // S_
-                return [len(Ss[i_]), len(Ds[i_]), sum(map(is_monk, Ds[i_]))]
+                return [len(Ss[i_]), len(Ds[i_]), sum(map(is_monk, Ds[i_])), sum(map(is_monk, Ss[i_]))]
+            def props_at(h):                                              # what the players on it at that second can do
+                u = told0 + h
+                return M._props(Ss[(u - t0) // S_]) if t0 <= u <= t9 and Ss[(u - t0) // S_] else None
             srec = {"id": f"{tm}-{told0}", "told": told0, "left": int(x["t0"]), "crossed": int(x["t_in"]), "reached": None if reach0 is None else int(reach0),
                     "first_defender": next((int(u) for u, dn in zip(times, Ds) if dn), None), "end": int(t9), "res_in": int(st.next_res(min(told0, T)) - told0), "size": int(phases[0][0][0]),
                     "monks": sum(map(is_monk, [a for a, _ in collections.Counter(a for i_, u in enumerate(times) if phases[0][1] <= u <= phases[0][2] for a in Ss[i_]).most_common(phases[0][0][0])])),
                     "at": list(SPLIT_TRACK_S), "numbers": [num_at(h) for h in SPLIT_TRACK_S],
                     "stretches": [[0 if q_ == 0 else int(max(a_, told0)) - told0, int(b_) - told0, int(v_[0]), int(v_[1]), kd] for q_, (v_, a_, b_, kd) in enumerate(hist)],
+                    # what else a like spot is matched on (his list of 2026-11-21): each side's dead when it is told (they res at the base, on the split, and are missing from
+                    # the main fight), where each main team stands on its ladder, and what the players of the split can do, as properties and never as a build (R-539)
+                    "dead": [sum(1 for a in st.players[k_] if not M.AL[a][min(told0, T)]) for k_ in (tm, foe)],
+                    "steps": [M._main_step(k_, min(told0, T) - min(told0, T) % S_)[0] for k_ in (tm, foe)],
+                    "props": [props_at(h) for h in SPLIT_TRACK_S],
+                    # ... and the damage its players did to the Guild Lord while it was out (his word: a split that clears the pit later in the game does more of it), by the second
+                    "lord_damage": [[int(u) - told0, round(v)] for u, a, v in sorted(M.lord_hits.get(foe, ())) if a in frm and frm[a] <= u <= ext[a] + 4 and v],
                     "split_deaths": [int(td) - told0 for td, _ in dA], "defender_deaths": [int(td) - told0 for td, _ in dD], "npcs": [[int(td) - told0, kind, bool(pit)] for td, kind, pit in sorted(npc_ev)]}
             def _at_told(k_, u=min(told0, T)):
                 o = {"state": M._state(k_, u), "after": M.consequence(k_, u, FLAG_AFTER_S)}

@@ -1489,7 +1489,10 @@ def numbers_cards(path, which="f1", site=None):
 
 
 # ---- the split family, stage 1 (R-558): the answer to a split
-SPLIT_READS = (30, 60)                           # the seconds after a split is told at which the answer to it is read (Claude's draft, for him: the first defender is there a middle 14 s after it is told)
+SPLIT_READS = (20, 40)                           # the seconds after a split is told at which the answer to it is read: the first answer, frozen at 20 s, and what it had become at 40 s (R-567, his: "Can we do 20s and 40s?"; 30 and 60 s were Claude's draft)
+SPLIT_VARS = ("flag lead", "seconds to the boost", "seconds to the base res", "own morale", "their morale", "strength gap", "own chance of winning at that second", "own main team's place (steps toward own pit)",
+              "their main team's place (steps toward their pit)", "own pit NPCs already lost", "own dead", "their dead", "players on the split", "monks on the split", "self-defence skills on the split",
+              "the split's snares", "the split's speed", "the split's escapes")      # R-566 and his agreement of 2026-11-21: the list put to him, with each side's dead and what the split can do as properties (R-539). Its damage against NPCs is not measured yet (`Moments._props`)
 SPLIT_SIZES = ("one player", "two players", "three players", "four or more")
 SPLIT_ANSWERS = ("no answer", "one defender, a monk", "one defender, not a monk", "one defender", "two monks", "fewer than the split", "mirror", "add one", "two or more extra", "a collapse", "the whole team")
 
@@ -1500,7 +1503,7 @@ def _split_answer(s, read):
     are backline monks, and whether that second lies in a collapse or in the whole team's turn. None when the split is over by then or not yet on their ground."""
     v = s["numbers"][s["at"].index(read)]
     if v is None or v[0] == 0: return None, None
-    k, n, mk = v
+    k, n, mk = v[:3]
     kinds = {kd for a, b, _, _, kd in s["stretches"] if a <= read <= b}
     size = SPLIT_SIZES[min(k, 4) - 1]
     if "whole team" in kinds: return size, "the whole team"
@@ -1533,7 +1536,14 @@ def split_cases(D, M, B):
         bf, pre = p["at_told"].get("before"), None
         if bf and bf["after"]["lead"][0] is not None and "npcs_lost" in bf["state"]: pre = 100 * (p0 - chance(beta, position(bf["state"], bf["after"], gap, False)))
         within = lambda L, h: sum(1 for x in L if 0 <= x <= h)
-        out.append({"id": p["id"], "rid": rid, "team": p["team"], "t": s["told"], "sid": sid, "fold": m["fold"], "won": won, "p0": p0, "pre": pre,
+        i0 = s["at"].index(SPLIT_READS[0]); nm, pp, mor = s["numbers"][i0], s["props"][i0] or {}, af["90"]["morale"]
+        size0, call0 = _split_answer(s, SPLIT_READS[0])
+        # what a like spot is matched on (SPLIT_VARS), from the side of the team the split is sent against; a split not on their ground at the first read has no case among the like spots
+        x = [st["flag_lead"], st["boost_in"], s["res_in"], mor[0][0], mor[1][0], gap, 100 * p0, s["steps"][1], s["steps"][0], st["npcs_lost"][0][0], s["dead"][1], s["dead"][0],
+             nm[0] if nm else None, nm[3] if nm else None, pp.get("self_defence"), pp.get("snare"), pp.get("speed"), pp.get("escapes")]
+        out.append({"id": p["id"], "rid": rid, "team": p["team"], "t": s["told"], "sid": sid, "fold": m["fold"], "won": won, "p0": p0, "pre": pre, "x": x, "more": None, "held": False, "kind": "split",
+                    "scenario": size0 and f"A split of {size0}", "call": call0, "lord": {h: sum(v_ for t_, v_ in s["lord_damage"] if 0 <= t_ <= h) for h in (90, 180)},
+                    "by": {h: (lambda v_: None if v_ is None else [v_[0], v_[1]])(s["numbers"][s["at"].index(h)]) for h in s["at"]},
                     "read": {r: _split_answer(s, r) for r in SPLIT_READS}, "first_defender": None if s["first_defender"] is None else s["first_defender"] - s["told"],
                     "reached": None if s["reached"] is None else s["reached"] - s["told"], "lasted": s["end"] - s["told"], "res_in": s["res_in"], "size0": s["size"],
                     "pit": {h: sum(1 for t_, _, pit in s["npcs"] if pit and 0 <= t_ <= h) for h in (90, 180)}, "any_npc": {h: sum(1 for t_, _, _ in s["npcs"] if 0 <= t_ <= h) for h in (90, 180)},
@@ -1544,8 +1554,9 @@ def split_cases(D, M, B):
 
 
 def splits(path, out_json=None):
-    """Stage 1 of the split family (R-558), the answer to a split: do the readings go with what any player knows, and a first table of what followed each
-    answer, as it fell. A report: it advises nothing, and a row of the table is set against no like spot."""
+    """The split family (R-558), the answer to a split. Stage 1: do the readings go with what any player knows, and a first table of what followed each
+    answer, as it fell (a description: a row of that table is set against no like spot). Stage 2 (section E): each answer set against like spots, and the
+    test on matches the advice never saw. A reading is no advice until that test shows a gain for its size of split."""
     D, M = load(path); B, P = prices(D, M)
     C, skipped = split_cases(D, M, B)
     lines, res = [], {"cases": len(C), "skipped": dict(skipped), "timing": {}, "checks": {}, "as_it_fell": {}}
@@ -1559,6 +1570,12 @@ def splits(path, out_json=None):
     pr(f"   it can first do something (their footmen, base or pit, or a defender on it) {q3(rd)[1]:.0f} s after it is told (the middle half {q3(rd)[0]:.0f} to {q3(rd)[2]:.0f} s)")
     pr(f"   the first defender is on it {q3(fd)[1]:.0f} s after it is told (the middle half {q3(fd)[0]:.0f} to {q3(fd)[2]:.0f} s); no defender ever: {res['timing']['never defended']} ({100 * res['timing']['never defended'] / max(len(C), 1):.0f}%)")
     pr(f"   it lasts {q3([c['lasted'] for c in C])[1]:.0f} s (the middle half {q3([c['lasted'] for c in C])[0]:.0f} to {q3([c['lasted'] for c in C])[2]:.0f} s)")
+    pr("   by the second after it is told: still on their ground, and of those with a defender on it")
+    res["timing"]["by second"] = {}
+    for h in sorted(C[0]["by"]) if C else ():
+        on_ = [c for c in C if c["by"][h] and c["by"][h][0] > 0]; df = sum(1 for c in on_ if c["by"][h][1] > 0)
+        res["timing"]["by second"][h] = {"on their ground": len(on_), "defended": df}
+        pr(f"     {h:3} s: {len(on_):5} of {len(C)} on their ground ({100 * len(on_) / max(len(C), 1):.0f}%); a defender on it in {100 * df / max(len(on_), 1):.0f}% of those")
     for r in SPLIT_READS:
         X = [c for c in C if c["read"][r][0]]; n_ = collections.Counter(c["read"][r][0] for c in X)
         res["timing"][f"read at {r} s"] = {"read": len(X), "over or not yet on their ground": len(C) - len(X), "by size": dict(n_)}
@@ -1588,7 +1605,7 @@ def splits(path, out_json=None):
     pr(f"\nC. As it fell: what followed each answer, for the team the split is sent against (a description set against no like spot: who answers how follows the spot)")
     pr("   started at = that team's chance of winning when the split is told; 60 s before = what the minute before had done to it, in win points; pit NPCs, split and defender deaths are the split's own;")
     pr("   net kills (theirs minus ours), flags and win points are over the whole map, 90 and 180 s from the telling.")
-    head = f"     {'':26} {'cases':>5}  {'started at':>10}  {'60 s before':>11}  {'pit NPCs 90':>11}  {'pit NPCs 180':>12}  {'split loses one':>15}  {'defence loses one':>17}  {'net kills':>9}  {'flags':>6}  {'win pts 90':>10}  {'win pts 180':>11}"
+    head = f"     {'':26} {'cases':>5}  {'started at':>10}  {'60 s before':>11}  {'pit NPCs 90':>11}  {'pit NPCs 180':>12}  {'Lord dmg 180':>12}  {'split loses one':>15}  {'defence loses one':>17}  {'net kills':>9}  {'flags':>6}  {'win pts 90':>10}  {'win pts 180':>11}"
     for r in SPLIT_READS:
         o_r = res["as_it_fell"][f"read {r} s in"] = {}
         for z in SPLIT_SIZES:
@@ -1600,19 +1617,57 @@ def splits(path, out_json=None):
                 if not V: continue
                 h = [c["hard"]["90"] for c in V]; pre = [c["pre"] for c in V if c["pre"] is not None]; fl = [x["lead_change"] for x in h if x["lead_change"] is not None]
                 row = o[a] = {"cases": len(V), "matches": len({c["rid"] for c in V}), "started at": 100 * float(np.mean([c["p0"] for c in V])), "the 60 s before": float(np.mean(pre)) if pre else None,
-                              "pit NPCs 90": float(np.mean([c["pit"][90] for c in V])), "pit NPCs 180": float(np.mean([c["pit"][180] for c in V])), "split loses one": 100 * float(np.mean([c["split_dies"][90] > 0 for c in V])),
+                              "pit NPCs 90": float(np.mean([c["pit"][90] for c in V])), "pit NPCs 180": float(np.mean([c["pit"][180] for c in V])), "Lord damage 180": float(np.mean([c["lord"][180] for c in V])), "split loses one": 100 * float(np.mean([c["split_dies"][90] > 0 for c in V])),
                               "defence loses one": 100 * float(np.mean([c["defender_dies"][90] > 0 for c in V])), "net kills": float(np.mean([x["deaths"][1] - x["deaths"][0] for x in h])), "flags": float(np.mean(fl)) if fl else 0.0,
                               "win points 90": float(np.mean([c["v"]["90"] for c in V])), "win points 180": float(np.mean([c["v"]["180"] for c in V]))}
-                pr(f"     {a:26} {len(V):5}  {row['started at']:9.0f}%  {('' if row['the 60 s before'] is None else format(row['the 60 s before'], '+.1f')):>11}  {row['pit NPCs 90']:11.2f}  {row['pit NPCs 180']:12.2f}  {row['split loses one']:14.0f}%  "
+                pr(f"     {a:26} {len(V):5}  {row['started at']:9.0f}%  {('' if row['the 60 s before'] is None else format(row['the 60 s before'], '+.1f')):>11}  {row['pit NPCs 90']:11.2f}  {row['pit NPCs 180']:12.2f}  {row['Lord damage 180']:12.0f}  {row['split loses one']:14.0f}%  "
                    f"{row['defence loses one']:16.0f}%  {row['net kills']:+9.2f}  {row['flags']:+6.2f}  {row['win points 90']:+10.1f}  {row['win points 180']:+11.1f}" + ("   (under the floor)" if len(V) < MIN_PLAYS or row["matches"] < MIN_MATCHES else ""))
     # how an answer changes between the reads: the first read is not the whole answer
     mv = collections.Counter((c["read"][SPLIT_READS[0]][1], c["read"][SPLIT_READS[1]][1] or "over by then") for c in C if c["read"][SPLIT_READS[0]][0])
     pr(f"\nD. From the answer {SPLIT_READS[0]} s in to the answer {SPLIT_READS[1]} s in (the commonest moves)")
     res["moves"] = [[a, b, n] for (a, b), n in mv.most_common(14)]
     for (a, b), n in mv.most_common(14): pr(f"     {a:26} -> {b:26} {n:5}")
+    # ---- like spots (stage 2): each answer set against the nearest cases of the other answers, set level with the case read, and the test on unseen matches
+    by_s = collections.defaultdict(list)
+    for c in C:
+        if c["scenario"]: by_s[c["scenario"]].append(c)
+    S = {k: Scenario(v) for k, v in sorted(by_s.items(), key=lambda kv: SPLIT_SIZES.index(kv[0][len("A split of "):])) if len(v) >= MIN_PLAYS}
+    K, _ = choose_k(S); res["K"] = K; res["like_spots"] = {}; res["advice_test"] = {}
+    pr(f"\nE. Like spots: the answer read {R0} s in, set against the {K} nearest cases of each other answer from other matches, set level with the case read (the floor of {MIN_PLAYS} plays and {MIN_MATCHES} matches an answer)")
+    pr("   matched on: " + ", ".join(SPLIT_VARS))
+    pr("   E1. Each answer's worth at the same spot, 180 s on, in win points against the commonest answer (the mean over every case of that size, with the 90% range such a comparison has at one spot). A reading, not advice.")
+    for name, s_ in S.items():
+        ref = s_.calls[0]; rows_ = collections.defaultdict(list); o = res["like_spots"][name] = {"cases": len(s_.C), "against": ref, "answers": {}}
+        for i in range(len(s_.C)):
+            r = s_.read(i, K, False)
+            if ref not in r["calls"]: continue
+            for a_, w in r["calls"].items():
+                if a_ != ref: rows_[a_].append((w["worth"] - r["calls"][ref]["worth"], math.hypot(w["se"], r["calls"][ref]["se"])))
+        pr(f"\n   {name} ({len(s_.C)}); against \"{ref}\" ({int((s_.call == ref).sum())} cases)")
+        for a_ in s_.calls[1:]:
+            n_a = int((s_.call == a_).sum())
+            if a_ not in rows_ or len(rows_[a_]) < MIN_PLAYS: pr(f"     {a_:26} {n_a:4} cases: too few to set beside it"); o["answers"][a_] = {"cases": n_a, "reads": "too few"}; continue
+            # the range is the usual one at a single spot (the two sets of nearest cases, the plays of one match as one draw), not narrowed by averaging over spots:
+            # the same nearest cases stand behind most spots of a size, so the spots are not separate evidence (a first form drew whole matches again over the
+            # spots and gave ranges a tenth as wide)
+            mu, se_ = float(np.mean([d_ for d_, _ in rows_[a_]])), float(np.mean([e_ for _, e_ in rows_[a_]]))
+            lo, hi = mu - Z * se_, mu + Z * se_
+            word = "better" if lo > 0 else "worse" if hi < 0 else "no clear difference"
+            o["answers"][a_] = {"cases": n_a, "worth": mu, "range": [float(lo), float(hi)], "reads": word}
+            pr(f"     {a_:26} {n_a:4} cases: {mu:+5.1f} ({lo:+.1f} to {hi:+.1f})   {word}")
+    pr(f"\n   E2. The test on matches the advice never saw: where the advice is clear, teams whose answer {R0} s in matched it against those whose answer did not, in win points; and the same test on the 60 s before, which no answer can change.")
+    for name, s_ in S.items():
+        o = res["advice_test"][name] = {}
+        for H in HORIZONS:
+            t = advice_test({name: s_}, K, H); o[H] = {k: v for k, v in t.items()}
+            adv = ", ".join(f"{a_} {n_}" for a_, n_ in sorted(t.get("advice", {}).items(), key=lambda q: -q[1]))
+            if "v" not in t: pr(f"   {name}, {H} s on: {len(s_.C)} cases, clear advice in {t['rows']}: too few to call [{adv}]"); continue
+            pre = t.get("pre"); lv = "" if not pre else f"; in the 60 s before {pre['effect']:+.1f} ({pre['range'][0]:+.1f} to {pre['range'][1]:+.1f})" + ("" if pre["verdict"] == "no clear difference" else " NOT LEVEL")
+            pr(f"   {name}, {H} s on: {len(s_.C)} cases, clear advice in {t['rows']} ({adv}), matched {t['matched']}: {t['v']['effect']:+.1f} ({t['v']['range'][0]:+.1f} to {t['v']['range'][1]:+.1f}) {t['v']['verdict']}; "
+               f"in how the match ended {t['end']['effect']:+.1f} ({t['end']['range'][0]:+.1f} to {t['end']['range'][1]:+.1f}){lv}")
     N = [p for p in D["plays"] if p["play"] == "numbers" and p.get("source") == "split elsewhere"]
     res["main_fight_while_a_split_is_out"] = len(N)
-    pr(f"\nE. The other half of the family, not read here: the main fight while a split is out: {len(N)} numbers rows \"from a split elsewhere\" in {len({p['rid'] for p in N})} matches (his calls of R-551, with collapse and send more).")
+    pr(f"\nF. The other half of the family, not read here: the main fight while a split is out: {len(N)} numbers rows \"from a split elsewhere\" in {len({p['rid'] for p in N})} matches (his calls of R-551, with collapse and send more).")
     if out_json: json.dump(res, open(out_json, "w"), indent=1, default=float)
     return res
 
