@@ -345,8 +345,14 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   their nearest cases. Never ask for `_flag_rows` or `run_starts` from inside `split_plays`: it is entered while `run_starts` is being built (the part-carries),
   and the half-built runs are kept (2026-11-21: 30 flag plays moved; `runner_out` is put on the record in `plays`). After any change to the record
   compare the development set's plays with the run before, the keys `split` and `at_told` left out: nothing may differ. The split's damage against NPCs is not measured (`Moments._props`); players who res at the base onto a split are read as
-  a collapse (to separate before the base res is judged against collapses). The other half, the main fight while a split is out (the numbers rows
-  "from a split elsewhere"), is not read yet.
+  a collapse (to separate before the base res is judged against collapses). The other half, the main fight while a split is out (R-570): every numbers play carries `track.splits`, at each second of
+  `NUMBERS_TRACK_S` [players on a split of ours, their defenders on it, players on a split of theirs, our defenders on it], from `M._split_at`
+  (`jobs._numbers_at`; no play changes). `cases.py main-fight <plays file>` (report `data/model/main_fight_cases.json`) reads the numbers rows "from
+  a split elsewhere" in four scenarios (up or down at the main fight; their split in our base or ours out; a split of each team out at once and
+  rows with no told split on the ground are set aside): the readings M1 to M6, the trade (the side up at the main fight against the side down, with
+  the same comparison on the 60 s before), what followed each call as it fell, like spots and the test on unseen matches. The call is read 20 s in
+  (`_main_call`): a change to a split already there first (collapse on it, a defender pulled back, more sent, fewer on it), else his calls of R-551
+  (`_num_call`). No more matches are trained for either half until the engine is ready (R-570): never propose it again as the next step.
 - A numbers advantage from kills is not a decision family (R-557: the team up keeps killing and follows the team down,
   whose own choices read as near forced; the numbers that are decisions are those a team chose to make, a runner, a
   split or a collapse). Its cards are not marked and its view is off the page (the `ADVICE.numbers` entry in
