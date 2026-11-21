@@ -12347,9 +12347,11 @@
       ]
      },
      "open": true,
-     "why": "HC v Team 12:32 (Visible, incorrect, numbers and kind): 'this is a full mainteam push backdoor of 6 players of HC', not a split of three"
+     "why": "HC v Team 12:32 (Visible, incorrect, numbers and kind): 'this is a full mainteam push backdoor of 6 players of HC', not a split of three",
+     "held": "2026-11-20"
     }
-   ]
+   ],
+   "note": "2026-11-20: held. Three of HC go in at 12:40, the 7 Monk follows at 12:52 and the Stand Mes and 8 Monk reach the back door at 13:16; the split ends at 13:20, when the main team is with it (R-487). Reading the first three as the head of the push from 12:40 was built and taken out: it fails Men v hold 10:40, Classic, where five by the back door are a split though the other three are in the base 20 to 30 s later. Put to him: from when it is the main team's push."
   },
   {
    "id": "f1-9b5c-39",
@@ -20006,7 +20008,8 @@
      },
      "open": true,
      "auto": true,
-     "why": "Men v hold, Meditation 6:48: he graded it No decision: this I think was collapse rather than flagpush"
+     "why": "Men v hold, Meditation 6:48: he graded it No decision: this I think was collapse rather than flagpush",
+     "held": "2026-11-20"
     },
     {
      "none": {
@@ -20022,7 +20025,8 @@
      },
      "open": true,
      "auto": true,
-     "why": "Men v hold, Meditation 6:48: he graded it No decision: this I think was collapse rather than flagpush"
+     "why": "Men v hold, Meditation 6:48: he graded it No decision: this I think was collapse rather than flagpush",
+     "held": "2026-11-20"
     },
     {
      "none": {
@@ -20034,9 +20038,11 @@
       ]
      },
      "open": true,
-     "why": "Men v hold 6:48: 'this I think was collapse rather than flagpush'"
+     "why": "Men v hold 6:48: 'this I think was collapse rather than flagpush'",
+     "held": "2026-11-20"
     }
-   ]
+   ],
+   "note": "2026-11-20: held (one game, R-495; his 'I think'): three of hold brush Men's flagger for 6 s and 8 s as he carries his flag home to the collapse on hold's split."
   },
   {
    "id": "f1-572c-27",
@@ -20350,11 +20356,13 @@
       ],
       "want": {
        "clear": null
-      }
+      },
+      "side": "attacker"
      },
-     "open": true,
      "auto": true,
-     "why": "Men v hold, Meditation 9:56: he graded it No decision: he is running away from a previous split to join mainteam; he is not splitting"
+     "why": "Men v hold, Meditation 9:56: he graded it No decision: he is running away from a previous split to join mainteam; he is not splitting",
+     "held_since": "2026-11-20 (engine 7e54f33)",
+     "note": "asked of this row's own play since 2026-11-20 (Men attacking, hold defending): asked of any split play of the team, it was also failed by Men's defence against hold's split at 10:00, another row"
     },
     {
      "none": {
@@ -20366,13 +20374,16 @@
       ],
       "want": {
        "clear": null
-      }
+      },
+      "side": "defender"
      },
-     "open": true,
      "auto": true,
-     "why": "Men v hold, Meditation 9:56: he graded it No decision: he is running away from a previous split to join mainteam; he is not splitting"
+     "why": "Men v hold, Meditation 9:56: he graded it No decision: he is running away from a previous split to join mainteam; he is not splitting",
+     "held_since": "2026-11-20 (engine 7e54f33)",
+     "note": "asked of this row's own play since 2026-11-20 (Men attacking, hold defending): asked of any split play of the team, it was also failed by Men's defence against hold's split at 10:00, another row"
     }
-   ]
+   ],
+   "note": "2026-11-20: built from his words (R-381 asked of the moment, R-439): a player left on the enemy's ground by the others of his split who neither hits NPCs nor trades damage while alone is not splitting on. The Hammer traded no hit from 9:40 to 10:24."
   },
   {
    "id": "f1-572c-34",
@@ -20500,7 +20511,8 @@
      },
      "open": true,
      "auto": true,
-     "why": "Men v hold, Meditation 10:24: he graded it No decision: they are just running into backdoor, no split yet"
+     "why": "Men v hold, Meditation 10:24: he graded it No decision: they are just running into backdoor, no split yet",
+     "held": "2026-11-20"
     },
     {
      "none": {
@@ -20516,9 +20528,11 @@
      },
      "open": true,
      "auto": true,
-     "why": "Men v hold, Meditation 10:24: he graded it No decision: they are just running into backdoor, no split yet"
+     "why": "Men v hold, Meditation 10:24: he graded it No decision: they are just running into backdoor, no split yet",
+     "held": "2026-11-20"
     }
-   ]
+   ],
+   "note": "2026-11-20: held (one game, R-495). The five cross to hold's side at 10:24 and reach its back door at 10:42; the row is still told from the crossing (R-458, and his Classic marks on Men v RACK, where a split is told before it crosses). Put to him: what makes this one 'no split yet'."
   },
   {
    "id": "f1-572c-37",
@@ -20671,9 +20685,9 @@
        "clear": null
       }
      },
-     "open": true,
      "auto": true,
-     "why": "Men v hold, Meditation 11:10: he graded it No decision: incorrect; warrior is just jointing the mainteam fight that is now in pit."
+     "why": "Men v hold, Meditation 11:10: he graded it No decision: incorrect; warrior is just jointing the mainteam fight that is now in pit.",
+     "held_since": "2026-11-20 (engine 7e54f33)"
     },
     {
      "none": {
@@ -20687,11 +20701,12 @@
        "clear": null
       }
      },
-     "open": true,
      "auto": true,
-     "why": "Men v hold, Meditation 11:10: he graded it No decision: incorrect; warrior is just jointing the mainteam fight that is now in pit."
+     "why": "Men v hold, Meditation 11:10: he graded it No decision: incorrect; warrior is just jointing the mainteam fight that is now in pit.",
+     "held_since": "2026-11-20 (engine 7e54f33)"
     }
-   ]
+   ],
+   "note": "2026-11-20: the rest of a split's team is read at the moment (R-439), so Men's main team is seen to come to the five at 11:08 and the split ends there (R-487)."
   },
   {
    "id": "f1-572c-40",
@@ -21419,9 +21434,11 @@
       ]
      },
      "open": true,
-     "why": "Men v hold 18:06 (Visible, incorrect, kind): 'this is a collapse, not a split'"
+     "why": "Men v hold 18:06 (Visible, incorrect, kind): 'this is a collapse, not a split'",
+     "held": "2026-11-20"
     }
-   ]
+   ],
+   "note": "2026-11-20: held (one game, R-495): two of Men's push stand off it at hold's front door for 40 s and 20 s, then one goes back to it and the other goes home to the collapse."
   },
   {
    "id": "f1-572c-58",
@@ -21697,7 +21714,8 @@
      },
      "open": true,
      "auto": true,
-     "why": "Men v hold, Meditation 19:38: he graded it No decision: this is not a split, this is just players joining mainteam"
+     "why": "Men v hold, Meditation 19:38: he graded it No decision: this is not a split, this is just players joining mainteam",
+     "held": "2026-11-20"
     },
     {
      "none": {
@@ -21713,7 +21731,8 @@
      },
      "open": true,
      "auto": true,
-     "why": "Men v hold, Meditation 19:38: he graded it No decision: this is not a split, this is just players joining mainteam"
+     "why": "Men v hold, Meditation 19:38: he graded it No decision: this is not a split, this is just players joining mainteam",
+     "held": "2026-11-20"
     },
     {
      "none": {
@@ -21729,9 +21748,11 @@
      },
      "open": true,
      "auto": true,
-     "why": "Men v hold, Meditation 19:38: he graded it No decision: this is not a split, this is just players joining mainteam"
+     "why": "Men v hold, Meditation 19:38: he graded it No decision: this is not a split, this is just players joining mainteam",
+     "held": "2026-11-20"
     }
-   ]
+   ],
+   "note": "2026-11-20: held (one game, R-495). The three had been Men's main team at hold's front door since 18:20 and stay there; the main team is read with the five who went home and walk back up, for 34 s. Not built: the same shape in Men v Apes 7:10 (three stay in the pit, five at the stand for a minute) he reads as a split of three. Put to him: what makes the first no split."
   },
   {
    "id": "f1-572c-64",
@@ -25539,9 +25560,9 @@
        "clear": null
       }
      },
-     "open": true,
      "auto": true,
-     "why": "hold v RACK, Imperial 2:42: he graded it No decision"
+     "why": "hold v RACK, Imperial 2:42: he graded it No decision",
+     "held_since": "2026-11-20 (engine 7e54f33)"
     },
     {
      "none": {
@@ -25555,9 +25576,9 @@
        "clear": null
       }
      },
-     "open": true,
      "auto": true,
-     "why": "hold v RACK, Imperial 2:42: he graded it No decision"
+     "why": "hold v RACK, Imperial 2:42: he graded it No decision",
+     "held_since": "2026-11-20 (engine 7e54f33)"
     },
     {
      "none": {
@@ -25571,11 +25592,12 @@
        "clear": null
       }
      },
-     "open": true,
      "auto": true,
-     "why": "hold v RACK, Imperial 2:42: he graded it No decision"
+     "why": "hold v RACK, Imperial 2:42: he graded it No decision",
+     "held_since": "2026-11-20 (engine 7e54f33)"
     }
-   ]
+   ],
+   "note": "2026-11-20, asked what he saw here: 'If you mean hold with fire, air, and 8 monk, that is indeed a split. Not sure what I graded it before.' The split of the three is the rows beside this one, which he graded Classic and Visible, correct (f1-d492-5 at 2:16, f1-d492-8 at 2:54, f1-d492-10 at 3:24); this row was the 14 s between them in which the engine counted the Air Ele alone against one defender. It is no longer told (a player left alone who trades no damage, R-381)."
   },
   {
    "id": "f1-d492-8",
@@ -31347,9 +31369,10 @@
        "the split player survives": true
       }
      },
-     "open": true,
      "held": "2026-11-18",
-     "why": "QenK v Fun 6:37: the Hammer's death is the collapse's; it is also left on the 1 v 1 row beside it (6:10 to 6:40, 'the split player survives: no'). A death after the turn belongs to the collapse alone: held for the split family"
+     "why": "QenK v Fun 6:37: the Hammer's death is the collapse's; it is also left on the 1 v 1 row beside it (6:10 to 6:40, 'the split player survives: no'). A death after the turn belongs to the collapse alone: held for the split family",
+     "held_since": "2026-11-20 (engine 7e54f33)",
+     "note": "built 2026-11-20: a death after a team has turned on the split is kept on the collapse alone"
     }
    ]
   },
@@ -31385,9 +31408,10 @@
        "collapse"
       ]
      },
-     "open": true,
      "held": "2026-11-18",
-     "why": "NwAy v ohno 5:24 (picked row): 'mainteam collapse'. No collapse is told: the row is 1 v 1 against the 8 Monk from 3:46 to 5:26 and the Dervish's death is left on it. A collapse that kills within seconds of the turn ends the split before the collapse is told (R-508: told from 4 s after the turn). Held for the split family"
+     "why": "NwAy v ohno 5:24 (picked row): 'mainteam collapse'. No collapse is told: the row is 1 v 1 against the 8 Monk from 3:46 to 5:26 and the Dervish's death is left on it. A collapse that kills within seconds of the turn ends the split before the collapse is told (R-508: told from 4 s after the turn). Held for the split family",
+     "held_since": "2026-11-20 (engine 7e54f33)",
+     "note": "built 2026-11-20: the seconds in which a split that had not been outnumbered is killed by players come from their main team's fight are told as a collapse (ohno's two Paragons from the main fight, 5:16 to 5:26)"
     }
    ]
   },
