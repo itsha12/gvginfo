@@ -101,6 +101,7 @@ FLAG_AFTER_S = (60, 90, 180)           # what followed a flag decision, read at 
 FLAG_BEFORE_S = 60                     # how long before a flag decision the position is read again, for the test of a call against what came before it
 FLAG_TRACK_S = tuple(range(0, 241, 15))  # the seconds from their runner's set-off at which the flag lead and the holder of the stand are kept on a flag play (`track`)
 FLAG_TRACK_FOR = 300                   # ... and for how long after it every cap and morale boost is kept, by its second
+SPLIT_TRACK_S = (0, 15, 30, 45, 60, 90)  # the seconds from when a split is told at which its numbers are kept on its plays (`split.numbers`), so that the answer to it can be read at a fixed second (the split family, R-558)
 
 
 # ---- the flag: their run against ours (R-426)
@@ -454,7 +455,12 @@ def flag_plays(M, K, pinned_at):
                                  {"our flag is capped before their boost lands": ours_cap is not None and (their_boost is None or ours_cap <= their_boost), "no more of ours die at the main fight than of theirs while it is held": hA <= hB},
                                  beside=b_, ruled=False, **kw))
         elif ours == "stay":
-            t1 = w1                                                       # the decision to stay ends when their flag is in (his mark, HC v Team 2:57, Classic: "should end when they cap"); the 10 s tail was Claude's
+            # A team that runs no first flag carries no stay job at the opening (R-565; his mark on Men v NwAy 0:00, Classic, the call incorrect: "they don't have 2
+            # extra players"): the first flag walks up with their team, so nobody is away for it, and the team that brought none may have nobody at the stand at all
+            # (NwAy: four out by the back door, four at home). Its job is the opening's, get the first flag in (`opening_plays`, R-500); what it did instead is told
+            # and judged by its own rows (the split). The opening is another decision than the answer to a run (R-541)
+            if f["pregame"] and first_flags: continue
+            t1 = w1                                                      # the decision to stay ends when their flag is in (his mark, HC v Team 2:57, Classic: "should end when they cap"); the 10 s tail was Claude's
             job = "Kill with the two extra players before their flag is in" if f["double"] else "Kill with the extra player while their runner is away"
             out.append(_play(M, "flag", "own", A, w0, t1, [], scen, job + ", or their flag does not get in", {},
                              any_of={"more of theirs die at the main fight than of ours": dB(t1) > dA(t1), "their flag does not get in": f["how"] != "captured"}, beside=bes(t1), **kw))      # R-467: staying costs nothing if their flag fails
@@ -872,8 +878,39 @@ def split_plays(M, K):
         along = lambda p0: ("; numbers along the way: " + ", ".join(f"{k_} v {n_} from {int(a_) // 60}:{int(a_) % 60:02d}" for (k_, n_), a_, b_ in parts_of[p0])) if len(parts_of[p0]) > 1 else ""
         prevD, way = set(), x["way"]
         DOOR_OF = {"front door": "front door", "front footies": "front door", "back door": "back door", "back footies": "back door"}
+        # The split family, stage 1 (R-558): what the answer to a split is read from and judged by, kept on every play of the split (`split`) and changing none of
+        # them (as `_numbers_at` for a numbers play). The clock is the second the split is told (R-562: when its players are committed and the other team has to
+        # answer): when it left, crossed, could first do something and was first met by a defender; the base res; its size (the numbers its first told fight had
+        # for longest); at fixed seconds from the telling how many of it stand on the enemy's ground, how many defend it and how many of those are backline monks;
+        # every stretch it is told in with the kind of answer it met (nobody, defended, a collapse, the whole team); and, on the split's own account, each death
+        # on it, each defender's death and each NPC it took, by the second. The plays of its first told stretch also carry the position each team chose from
+        # and the fixed 60, 90 and 180 s record from that second, with the position 60 s before (`at_told`; not `state`, which the price of a position is
+        # fitted on: adding a family must not move the prices the flag readings were shown on)
+        srec = at_told = None
+        if phases:
+            told0 = int(phases[0][1]); hist = sorted(told, key=lambda ph: (ph[1], ph[1] in turn_of))
+            def num_at(h):
+                u = told0 + h
+                if u > t9: return None                                   # over by then
+                if u < t0: return [0, 0, 0]                               # told from its leaving (R-510), not yet on their ground
+                i_ = (u - t0) // S_
+                return [len(Ss[i_]), len(Ds[i_]), sum(map(is_monk, Ds[i_]))]
+            srec = {"id": f"{tm}-{told0}", "told": told0, "left": int(x["t0"]), "crossed": int(x["t_in"]), "reached": None if reach0 is None else int(reach0),
+                    "first_defender": next((int(u) for u, dn in zip(times, Ds) if dn), None), "end": int(t9), "res_in": int(st.next_res(min(told0, T)) - told0), "size": int(phases[0][0][0]),
+                    "monks": sum(map(is_monk, [a for a, _ in collections.Counter(a for i_, u in enumerate(times) if phases[0][1] <= u <= phases[0][2] for a in Ss[i_]).most_common(phases[0][0][0])])),
+                    "at": list(SPLIT_TRACK_S), "numbers": [num_at(h) for h in SPLIT_TRACK_S],
+                    "stretches": [[0 if q_ == 0 else int(max(a_, told0)) - told0, int(b_) - told0, int(v_[0]), int(v_[1]), kd] for q_, (v_, a_, b_, kd) in enumerate(hist)],
+                    "split_deaths": [int(td) - told0 for td, _ in dA], "defender_deaths": [int(td) - told0 for td, _ in dD], "npcs": [[int(td) - told0, kind, bool(pit)] for td, kind, pit in sorted(npc_ev)]}
+            def _at_told(k_, u=min(told0, T)):
+                o = {"state": M._state(k_, u), "after": M.consequence(k_, u, FLAG_AFTER_S)}
+                b_ = u - FLAG_BEFORE_S
+                o["before"] = None if b_ < 0 else {"state": M._state(k_, b_), "after": M.consequence(k_, b_, (FLAG_BEFORE_S,))[str(FLAG_BEFORE_S)]}
+                return o
+            at_told = {}
+        first_pi = None
         for pi, ((k, n), p0, p1) in enumerate(phases):
             last = pi == len(phases) - 1
+            mark = len(out)
             idx = [i for i, u in enumerate(times) if p0 <= u <= p1]
             cs, cd = collections.Counter(a for i in idx for a in Ss[i]), collections.Counter(b for i in idx for b in Ds[i])
             Sp, Dp = [a for a, _ in cs.most_common(k)], [b for b, _ in cd.most_common(n)]
@@ -1052,6 +1089,12 @@ def split_plays(M, K):
                         out.append(_play(M, "split", "defender", foe, p0, e1, [role[b]], scen_d + (f": the lone defender carries his flag for {carried} s" if lone else f": {role[b]} carries his flag for {carried} s while defending"), "Gain a slight flag advantage while losing no pit NPC and not dying",
                                          dict(pit_ok, **{f"flag lead better by {PART_RUN_GAIN} or more": gd is not None and gd >= PART_RUN_GAIN, "the defender does not die": n_kill == 0}), beside=dict(besD, carried_s=carried), ruled=lone, call="part-run", **kw))
             if tn is None: prevD = set(Dp)
+            if len(out) > mark and first_pi is None: first_pi = pi
+            for q_ in out[mark:]:
+                q_["split"] = srec
+                if pi == first_pi and not q_.get("change"):
+                    if q_["tm"] not in at_told: at_told[q_["tm"]] = _at_told(q_["tm"])
+                    q_["at_told"] = at_told[q_["tm"]]
     return out
 
 

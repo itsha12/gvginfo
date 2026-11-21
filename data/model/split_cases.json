@@ -1,0 +1,1110 @@
+{
+ "cases": 1936,
+ "skipped": {
+  "no row of the defending team in its first told stretch": 0,
+  "a push team and a defence team (R-487), no split": 34,
+  "flag lead not read": 34,
+  "no winner recorded": 5
+ },
+ "timing": {
+  "reaches their base, footmen or a defender (quartiles, s)": [
+   0.0,
+   8.0,
+   16.0
+  ],
+  "first defender on it (quartiles, s)": [
+   0.0,
+   8.0,
+   18.0
+  ],
+  "never defended": 93,
+  "lasts (quartiles, s)": [
+   50.0,
+   84.0,
+   148.0
+  ],
+  "read at 30 s": {
+   "read": 1695,
+   "over or not yet on their ground": 241,
+   "by size": {
+    "one player": 646,
+    "two players": 369,
+    "three players": 366,
+    "four or more": 314
+   }
+  },
+  "read at 60 s": {
+   "read": 1258,
+   "over or not yet on their ground": 678,
+   "by size": {
+    "one player": 389,
+    "two players": 261,
+    "three players": 321,
+    "four or more": 287
+   }
+  }
+ },
+ "checks": {
+  "S1 a split nobody defends takes more pit NPCs than a defended one (3 min)": {
+   "first": 0.7388535031847133,
+   "second": 0.33091962346125997,
+   "difference": 0.40793387972345335,
+   "range": [
+    0.30779624992683385,
+    0.5165851938026882
+   ],
+   "n": [
+    314,
+    1381
+   ],
+   "reads": "HOLDS"
+  },
+  "S2 undefended, two or more take more pit NPCs than one player (3 min)": {
+   "first": 0.7755102040816326,
+   "second": 0.7222222222222222,
+   "difference": 0.053287981859410416,
+   "range": [
+    -0.1686547797372539,
+    0.2803839638622247
+   ],
+   "n": [
+    98,
+    216
+   ],
+   "reads": "not clear"
+  },
+  "S3 a defender there within 15 s, fewer pit NPCs than one there after 45 s or never (3 min)": {
+   "first": 0.29873646209386284,
+   "second": 1.06,
+   "difference": -0.7612635379061372,
+   "range": [
+    -0.9358680205089659,
+    -0.5691268980357752
+   ],
+   "n": [
+    1108,
+    150
+   ],
+   "reads": "HOLDS"
+  },
+  "S4 fewer defenders than the split, more pit NPCs than a mirror or more (3 min)": {
+   "first": 0.5809312638580931,
+   "second": 0.19324796274738068,
+   "difference": 0.3876833011107125,
+   "range": [
+    0.3109850020566909,
+    0.4696072554400608
+   ],
+   "n": [
+    451,
+    859
+   ],
+   "reads": "HOLDS"
+  },
+  "S5 the whole team on it, a split player dies more often than against a mirror (90 s)": {
+   "first": 0.2535211267605634,
+   "second": 0.18489984591679506,
+   "difference": 0.06862128084376831,
+   "range": [
+    -0.0044199385257223615,
+    0.14515648673927978
+   ],
+   "n": [
+    71,
+    649
+   ],
+   "reads": "not clear"
+  },
+  "S6 one or more extra defenders, a split player dies more often than against a mirror (90 s)": {
+   "first": 0.2761904761904762,
+   "second": 0.18489984591679506,
+   "difference": 0.09129063027368114,
+   "range": [
+    0.033336456976243024,
+    0.15231991837743744
+   ],
+   "n": [
+    210,
+    649
+   ],
+   "reads": "HOLDS"
+  },
+  "S7 fewer defenders than the split, a defender dies more often than in a mirror or more (90 s)": {
+   "first": 0.17960088691796008,
+   "second": 0.07916181606519208,
+   "difference": 0.100439070852768,
+   "range": [
+    0.06743949640040534,
+    0.13235406839204686
+   ],
+   "n": [
+    451,
+    859
+   ],
+   "reads": "HOLDS"
+  }
+ },
+ "as_it_fell": {
+  "read 30 s in": {
+   "one player": {
+    "no answer": {
+     "cases": 216,
+     "matches": 159,
+     "started at": 60.741311197167306,
+     "the 60 s before": 0.9066467062621414,
+     "pit NPCs 90": 0.5555555555555556,
+     "pit NPCs 180": 0.7222222222222222,
+     "split loses one": 15.74074074074074,
+     "defence loses one": 5.092592592592593,
+     "net kills": 0.9490740740740741,
+     "flags": 0.11985576923076925,
+     "win points 90": 1.3994250417620189,
+     "win points 180": 2.5173444297184084
+    },
+    "one defender, a monk": {
+     "cases": 107,
+     "matches": 89,
+     "started at": 60.12976233636771,
+     "the 60 s before": 1.6282201059875365,
+     "pit NPCs 90": 0.14018691588785046,
+     "pit NPCs 180": 0.21495327102803738,
+     "split loses one": 15.887850467289718,
+     "defence loses one": 7.476635514018691,
+     "net kills": 0.8130841121495327,
+     "flags": 0.19223300970873788,
+     "win points 90": 0.8799751078972236,
+     "win points 180": 2.0247514207943604
+    },
+    "one defender, not a monk": {
+     "cases": 220,
+     "matches": 138,
+     "started at": 53.25738928947914,
+     "the 60 s before": 1.274460021005868,
+     "pit NPCs 90": 0.14545454545454545,
+     "pit NPCs 180": 0.2,
+     "split loses one": 17.727272727272727,
+     "defence loses one": 4.545454545454546,
+     "net kills": 0.2727272727272727,
+     "flags": 0.0668663594470046,
+     "win points 90": 0.571997949931005,
+     "win points 180": 1.2024550288331135
+    },
+    "add one": {
+     "cases": 37,
+     "matches": 36,
+     "started at": 54.32762868921185,
+     "the 60 s before": 0.7346176785434457,
+     "pit NPCs 90": 0.13513513513513514,
+     "pit NPCs 180": 0.13513513513513514,
+     "split loses one": 24.324324324324326,
+     "defence loses one": 5.405405405405405,
+     "net kills": 0.6216216216216216,
+     "flags": 0.12416666666666669,
+     "win points 90": 0.9307866778160933,
+     "win points 180": 2.919988049539249
+    },
+    "two or more extra": {
+     "cases": 9,
+     "matches": 9,
+     "started at": 50.56060883153699,
+     "the 60 s before": 0.14706888331202056,
+     "pit NPCs 90": 0.0,
+     "pit NPCs 180": 0.0,
+     "split loses one": 33.33333333333333,
+     "defence loses one": 11.11111111111111,
+     "net kills": 0.2222222222222222,
+     "flags": 0.0011111111111110998,
+     "win points 90": -0.21555594834020397,
+     "win points 180": -2.956742594307835
+    },
+    "a collapse": {
+     "cases": 38,
+     "matches": 32,
+     "started at": 48.89872803966209,
+     "the 60 s before": 1.2416242663841284,
+     "pit NPCs 90": 0.07894736842105263,
+     "pit NPCs 180": 0.2894736842105263,
+     "split loses one": 36.84210526315789,
+     "defence loses one": 5.263157894736842,
+     "net kills": 0.7368421052631579,
+     "flags": -0.06657894736842106,
+     "win points 90": 3.1496736594782213,
+     "win points 180": 4.055959135230492
+    },
+    "the whole team": {
+     "cases": 19,
+     "matches": 18,
+     "started at": 53.38111277161517,
+     "the 60 s before": 4.135032029280765,
+     "pit NPCs 90": 0.21052631578947367,
+     "pit NPCs 180": 0.42105263157894735,
+     "split loses one": 15.789473684210526,
+     "defence loses one": 5.263157894736842,
+     "net kills": 0.15789473684210525,
+     "flags": 0.11526315789473682,
+     "win points 90": -2.354413399254579,
+     "win points 180": -5.714572846784515
+    }
+   },
+   "two players": {
+    "no answer": {
+     "cases": 56,
+     "matches": 52,
+     "started at": 59.0924613540806,
+     "the 60 s before": 1.9267294878952714,
+     "pit NPCs 90": 0.5714285714285714,
+     "pit NPCs 180": 0.6071428571428571,
+     "split loses one": 23.214285714285715,
+     "defence loses one": 12.5,
+     "net kills": 0.7321428571428571,
+     "flags": 0.011320754716981154,
+     "win points 90": -1.7510915687200093,
+     "win points 180": -0.9770771884970374
+    },
+    "one defender": {
+     "cases": 124,
+     "matches": 102,
+     "started at": 60.29761523957977,
+     "the 60 s before": 1.0063661889715596,
+     "pit NPCs 90": 0.2661290322580645,
+     "pit NPCs 180": 0.5241935483870968,
+     "split loses one": 17.741935483870968,
+     "defence loses one": 12.096774193548388,
+     "net kills": 0.6774193548387096,
+     "flags": 0.12975409836065574,
+     "win points 90": 0.5362483912671681,
+     "win points 180": 0.7429651057153496
+    },
+    "mirror": {
+     "cases": 102,
+     "matches": 83,
+     "started at": 49.16854655555012,
+     "the 60 s before": 0.31223347878814445,
+     "pit NPCs 90": 0.1568627450980392,
+     "pit NPCs 180": 0.2647058823529412,
+     "split loses one": 25.49019607843137,
+     "defence loses one": 13.725490196078432,
+     "net kills": 0.38235294117647056,
+     "flags": 0.04130000000000001,
+     "win points 90": 1.0639389546996154,
+     "win points 180": 2.483187701740259
+    },
+    "add one": {
+     "cases": 26,
+     "matches": 26,
+     "started at": 62.3349710428684,
+     "the 60 s before": 0.5470641526777262,
+     "pit NPCs 90": 0.038461538461538464,
+     "pit NPCs 180": 0.038461538461538464,
+     "split loses one": 26.923076923076923,
+     "defence loses one": 11.538461538461538,
+     "net kills": 0.5769230769230769,
+     "flags": 0.01076923076923075,
+     "win points 90": -0.8712585968063244,
+     "win points 180": -2.1206809026931706
+    },
+    "two or more extra": {
+     "cases": 9,
+     "matches": 9,
+     "started at": 35.64676482203522,
+     "the 60 s before": -1.2500505735816891,
+     "pit NPCs 90": 0.3333333333333333,
+     "pit NPCs 180": 0.3333333333333333,
+     "split loses one": 44.44444444444444,
+     "defence loses one": 0.0,
+     "net kills": 0.2222222222222222,
+     "flags": -0.31666666666666665,
+     "win points 90": -1.3461527487903688,
+     "win points 180": -6.774630048857082
+    },
+    "a collapse": {
+     "cases": 30,
+     "matches": 25,
+     "started at": 66.30680222084132,
+     "the 60 s before": -0.19108691316013016,
+     "pit NPCs 90": 0.16666666666666666,
+     "pit NPCs 180": 0.3333333333333333,
+     "split loses one": 16.666666666666664,
+     "defence loses one": 6.666666666666667,
+     "net kills": 0.1,
+     "flags": 0.21433333333333338,
+     "win points 90": 1.5808439678690045,
+     "win points 180": 0.5831785130741398
+    },
+    "the whole team": {
+     "cases": 22,
+     "matches": 18,
+     "started at": 47.278891315322014,
+     "the 60 s before": -1.0660929911420498,
+     "pit NPCs 90": 0.09090909090909091,
+     "pit NPCs 180": 0.2727272727272727,
+     "split loses one": 22.727272727272727,
+     "defence loses one": 9.090909090909092,
+     "net kills": 0.7727272727272727,
+     "flags": 0.04363636363636363,
+     "win points 90": 2.384883078187187,
+     "win points 180": 0.17799546642761077
+    }
+   },
+   "three players": {
+    "no answer": {
+     "cases": 22,
+     "matches": 21,
+     "started at": 59.79623748928235,
+     "the 60 s before": 0.6359361674856533,
+     "pit NPCs 90": 0.9545454545454546,
+     "pit NPCs 180": 1.0,
+     "split loses one": 27.27272727272727,
+     "defence loses one": 13.636363636363635,
+     "net kills": 1.0454545454545454,
+     "flags": -0.010909090909090879,
+     "win points 90": -1.76286593636695,
+     "win points 180": 1.2504254339860454
+    },
+    "one defender": {
+     "cases": 52,
+     "matches": 44,
+     "started at": 50.90279015531469,
+     "the 60 s before": -0.7720070495121809,
+     "pit NPCs 90": 0.4230769230769231,
+     "pit NPCs 180": 0.5769230769230769,
+     "split loses one": 30.76923076923077,
+     "defence loses one": 28.846153846153843,
+     "net kills": 0.8461538461538461,
+     "flags": 0.0020408163265305916,
+     "win points 90": 1.3109347272734593,
+     "win points 180": 5.3390836016830985
+    },
+    "two monks": {
+     "cases": 22,
+     "matches": 20,
+     "started at": 58.44766961827976,
+     "the 60 s before": 2.83327397301216,
+     "pit NPCs 90": 0.2727272727272727,
+     "pit NPCs 180": 0.5454545454545454,
+     "split loses one": 9.090909090909092,
+     "defence loses one": 9.090909090909092,
+     "net kills": 0.3181818181818182,
+     "flags": 0.1209090909090909,
+     "win points 90": -3.173995428792757,
+     "win points 180": 2.6867378878701804
+    },
+    "fewer than the split": {
+     "cases": 95,
+     "matches": 76,
+     "started at": 49.95543263622081,
+     "the 60 s before": 0.5423911480866155,
+     "pit NPCs 90": 0.14736842105263157,
+     "pit NPCs 180": 0.3263157894736842,
+     "split loses one": 11.578947368421053,
+     "defence loses one": 13.684210526315791,
+     "net kills": 0.12631578947368421,
+     "flags": 0.023829787234042527,
+     "win points 90": 1.2317158479064891,
+     "win points 180": 1.1797755838734785
+    },
+    "mirror": {
+     "cases": 123,
+     "matches": 87,
+     "started at": 50.40661582276035,
+     "the 60 s before": 1.8688964987946133,
+     "pit NPCs 90": 0.08130081300813008,
+     "pit NPCs 180": 0.15447154471544716,
+     "split loses one": 17.073170731707318,
+     "defence loses one": 8.94308943089431,
+     "net kills": 0.13008130081300814,
+     "flags": 0.07422764227642276,
+     "win points 90": 1.3630862772781907,
+     "win points 180": 1.5085784550897823
+    },
+    "add one": {
+     "cases": 16,
+     "matches": 15,
+     "started at": 47.96078853695172,
+     "the 60 s before": 0.5149838044983275,
+     "pit NPCs 90": 0.125,
+     "pit NPCs 180": 0.125,
+     "split loses one": 31.25,
+     "defence loses one": 6.25,
+     "net kills": 0.75,
+     "flags": 0.284,
+     "win points 90": 0.9355732101055748,
+     "win points 180": -1.067578334267196
+    },
+    "two or more extra": {
+     "cases": 4,
+     "matches": 4,
+     "started at": 29.348788781518415,
+     "the 60 s before": 5.587279513339446,
+     "pit NPCs 90": 0.0,
+     "pit NPCs 180": 0.0,
+     "split loses one": 0.0,
+     "defence loses one": 0.0,
+     "net kills": 0.25,
+     "flags": 0.17250000000000001,
+     "win points 90": 2.2383670558902593,
+     "win points 180": -4.220772659226941
+    },
+    "a collapse": {
+     "cases": 20,
+     "matches": 20,
+     "started at": 48.38072097040194,
+     "the 60 s before": 0.8077981596274408,
+     "pit NPCs 90": 0.05,
+     "pit NPCs 180": 0.3,
+     "split loses one": 25.0,
+     "defence loses one": 5.0,
+     "net kills": 0.55,
+     "flags": -0.03850000000000002,
+     "win points 90": -0.42356545578964006,
+     "win points 180": -1.3330654898558163
+    },
+    "the whole team": {
+     "cases": 12,
+     "matches": 12,
+     "started at": 48.303970627280805,
+     "the 60 s before": 1.6201785139942504,
+     "pit NPCs 90": 0.4166666666666667,
+     "pit NPCs 180": 0.75,
+     "split loses one": 41.66666666666667,
+     "defence loses one": 25.0,
+     "net kills": 1.4166666666666667,
+     "flags": -0.2566666666666667,
+     "win points 90": -0.7388733587042532,
+     "win points 180": 5.9751994214264945
+    }
+   },
+   "four or more": {
+    "no answer": {
+     "cases": 20,
+     "matches": 19,
+     "started at": 41.28138600965775,
+     "the 60 s before": -0.014980329875169618,
+     "pit NPCs 90": 0.95,
+     "pit NPCs 180": 1.0,
+     "split loses one": 20.0,
+     "defence loses one": 50.0,
+     "net kills": -0.65,
+     "flags": -0.39111111111111113,
+     "win points 90": -4.919489050478051,
+     "win points 180": -4.909479266229427
+    },
+    "one defender": {
+     "cases": 20,
+     "matches": 19,
+     "started at": 47.758269931057015,
+     "the 60 s before": 1.4745750195190135,
+     "pit NPCs 90": 1.0,
+     "pit NPCs 180": 1.5,
+     "split loses one": 20.0,
+     "defence loses one": 30.0,
+     "net kills": 0.4,
+     "flags": 0.6063157894736841,
+     "win points 90": 4.510398005461547,
+     "win points 180": -0.18036113489662603
+    },
+    "two monks": {
+     "cases": 9,
+     "matches": 9,
+     "started at": 25.066793960171417,
+     "the 60 s before": -2.614846077773171,
+     "pit NPCs 90": 1.1111111111111112,
+     "pit NPCs 180": 1.5555555555555556,
+     "split loses one": 0.0,
+     "defence loses one": 33.33333333333333,
+     "net kills": -0.4444444444444444,
+     "flags": -0.18375,
+     "win points 90": 4.792401311252358,
+     "win points 180": -3.18419504697224
+    },
+    "fewer than the split": {
+     "cases": 129,
+     "matches": 86,
+     "started at": 47.42181566750215,
+     "the 60 s before": -0.4720877153804344,
+     "pit NPCs 90": 0.46511627906976744,
+     "pit NPCs 180": 0.6201550387596899,
+     "split loses one": 19.379844961240313,
+     "defence loses one": 20.930232558139537,
+     "net kills": -0.007751937984496124,
+     "flags": -0.03007812500000001,
+     "win points 90": -0.9555327418990492,
+     "win points 180": 1.2648119669823268
+    },
+    "mirror": {
+     "cases": 97,
+     "matches": 64,
+     "started at": 52.99776521792305,
+     "the 60 s before": 0.07046735383403477,
+     "pit NPCs 90": 0.12371134020618557,
+     "pit NPCs 180": 0.13402061855670103,
+     "split loses one": 17.525773195876287,
+     "defence loses one": 11.34020618556701,
+     "net kills": 0.27835051546391754,
+     "flags": -0.2220618556701031,
+     "win points 90": -1.1280884806499232,
+     "win points 180": -1.1444568723929556
+    },
+    "add one": {
+     "cases": 4,
+     "matches": 4,
+     "started at": 45.00168034230204,
+     "the 60 s before": -0.22560959339370945,
+     "pit NPCs 90": 0.0,
+     "pit NPCs 180": 0.25,
+     "split loses one": 50.0,
+     "defence loses one": 25.0,
+     "net kills": -0.25,
+     "flags": 0.42499999999999993,
+     "win points 90": 0.8859103774026951,
+     "win points 180": -3.55520913724007
+    },
+    "a collapse": {
+     "cases": 17,
+     "matches": 15,
+     "started at": 41.20486130533054,
+     "the 60 s before": -1.0335542478226043,
+     "pit NPCs 90": 0.0,
+     "pit NPCs 180": 0.058823529411764705,
+     "split loses one": 23.52941176470588,
+     "defence loses one": 5.88235294117647,
+     "net kills": 0.35294117647058826,
+     "flags": 0.3364705882352941,
+     "win points 90": 0.4497909857964365,
+     "win points 180": 0.8162844455537636
+    },
+    "the whole team": {
+     "cases": 18,
+     "matches": 14,
+     "started at": 44.120577808933795,
+     "the 60 s before": 1.506477804449523,
+     "pit NPCs 90": 0.2222222222222222,
+     "pit NPCs 180": 0.3333333333333333,
+     "split loses one": 27.77777777777778,
+     "defence loses one": 16.666666666666664,
+     "net kills": -0.3333333333333333,
+     "flags": -0.06444444444444443,
+     "win points 90": -2.9696213632105835,
+     "win points 180": -3.833750718138525
+    }
+   }
+  },
+  "read 60 s in": {
+   "one player": {
+    "no answer": {
+     "cases": 85,
+     "matches": 74,
+     "started at": 54.99841692412368,
+     "the 60 s before": 1.2218118734374372,
+     "pit NPCs 90": 0.8823529411764706,
+     "pit NPCs 180": 1.2941176470588236,
+     "split loses one": 12.941176470588237,
+     "defence loses one": 12.941176470588237,
+     "net kills": 0.6588235294117647,
+     "flags": 0.174047619047619,
+     "win points 90": 0.8278496610249063,
+     "win points 180": -1.138052894001641
+    },
+    "one defender, a monk": {
+     "cases": 80,
+     "matches": 64,
+     "started at": 57.557523276049395,
+     "the 60 s before": 0.907131374342332,
+     "pit NPCs 90": 0.1875,
+     "pit NPCs 180": 0.3125,
+     "split loses one": 8.75,
+     "defence loses one": 2.5,
+     "net kills": 1.025,
+     "flags": 0.20551282051282044,
+     "win points 90": 2.6921501237273118,
+     "win points 180": 3.399842569963348
+    },
+    "one defender, not a monk": {
+     "cases": 128,
+     "matches": 91,
+     "started at": 60.57451791771854,
+     "the 60 s before": 1.6466154270953084,
+     "pit NPCs 90": 0.15625,
+     "pit NPCs 180": 0.1875,
+     "split loses one": 10.9375,
+     "defence loses one": 1.5625,
+     "net kills": 0.5703125,
+     "flags": 0.06826771653543305,
+     "win points 90": 1.014015188208555,
+     "win points 180": 2.5170995676132586
+    },
+    "add one": {
+     "cases": 9,
+     "matches": 9,
+     "started at": 48.54427805332763,
+     "the 60 s before": 2.582916722083685,
+     "pit NPCs 90": 0.0,
+     "pit NPCs 180": 0.0,
+     "split loses one": 11.11111111111111,
+     "defence loses one": 0.0,
+     "net kills": 1.4444444444444444,
+     "flags": 0.2833333333333334,
+     "win points 90": 3.4356208528404526,
+     "win points 180": 4.303507149445286
+    },
+    "two or more extra": {
+     "cases": 5,
+     "matches": 5,
+     "started at": 47.77348941964199,
+     "the 60 s before": -0.5053528778677402,
+     "pit NPCs 90": 0.2,
+     "pit NPCs 180": 0.2,
+     "split loses one": 60.0,
+     "defence loses one": 0.0,
+     "net kills": -0.2,
+     "flags": -0.64,
+     "win points 90": -5.607438915160303,
+     "win points 180": -14.31170661108184
+    },
+    "a collapse": {
+     "cases": 65,
+     "matches": 57,
+     "started at": 52.851034354581984,
+     "the 60 s before": 0.7713393602582954,
+     "pit NPCs 90": 0.16923076923076924,
+     "pit NPCs 180": 0.18461538461538463,
+     "split loses one": 38.46153846153847,
+     "defence loses one": 9.230769230769232,
+     "net kills": 0.7230769230769231,
+     "flags": 0.014923076923076943,
+     "win points 90": 1.71965499740106,
+     "win points 180": 2.4206330102449884
+    },
+    "the whole team": {
+     "cases": 17,
+     "matches": 16,
+     "started at": 57.47555395275788,
+     "the 60 s before": 1.3334055428103255,
+     "pit NPCs 90": 0.7058823529411765,
+     "pit NPCs 180": 0.8235294117647058,
+     "split loses one": 35.294117647058826,
+     "defence loses one": 5.88235294117647,
+     "net kills": 0.6470588235294118,
+     "flags": 0.29294117647058826,
+     "win points 90": 3.3046941249478587,
+     "win points 180": 5.195877067479049
+    }
+   },
+   "two players": {
+    "no answer": {
+     "cases": 18,
+     "matches": 17,
+     "started at": 51.055718917575234,
+     "the 60 s before": 1.259571474956072,
+     "pit NPCs 90": 0.8333333333333334,
+     "pit NPCs 180": 1.2222222222222223,
+     "split loses one": 0.0,
+     "defence loses one": 16.666666666666664,
+     "net kills": 0.4444444444444444,
+     "flags": 0.15055555555555558,
+     "win points 90": -5.658899569741272,
+     "win points 180": -5.342057729592945
+    },
+    "one defender": {
+     "cases": 80,
+     "matches": 74,
+     "started at": 54.551097111092226,
+     "the 60 s before": 2.3818628687752925,
+     "pit NPCs 90": 0.35,
+     "pit NPCs 180": 0.7125,
+     "split loses one": 8.75,
+     "defence loses one": 13.750000000000002,
+     "net kills": 0.5375,
+     "flags": 0.197375,
+     "win points 90": 0.4147122304493953,
+     "win points 180": 2.127574440913187
+    },
+    "mirror": {
+     "cases": 87,
+     "matches": 71,
+     "started at": 51.45280883224726,
+     "the 60 s before": -0.3885894689580742,
+     "pit NPCs 90": 0.10344827586206896,
+     "pit NPCs 180": 0.3448275862068966,
+     "split loses one": 16.091954022988507,
+     "defence loses one": 9.195402298850574,
+     "net kills": 0.6781609195402298,
+     "flags": 0.02034883720930233,
+     "win points 90": 3.9497402510267383,
+     "win points 180": 4.883415029857211
+    },
+    "add one": {
+     "cases": 13,
+     "matches": 13,
+     "started at": 73.90613420515801,
+     "the 60 s before": 2.185561267616212,
+     "pit NPCs 90": 0.0,
+     "pit NPCs 180": 0.0,
+     "split loses one": 38.46153846153847,
+     "defence loses one": 0.0,
+     "net kills": 1.0769230769230769,
+     "flags": -0.18692307692307694,
+     "win points 90": 0.8147521367499869,
+     "win points 180": 3.528788215959805
+    },
+    "two or more extra": {
+     "cases": 1,
+     "matches": 1,
+     "started at": 92.4808918949652,
+     "the 60 s before": null,
+     "pit NPCs 90": 0.0,
+     "pit NPCs 180": 0.0,
+     "split loses one": 0.0,
+     "defence loses one": 0.0,
+     "net kills": 1.0,
+     "flags": 0.42,
+     "win points 90": 2.1424815107357276,
+     "win points 180": 0.3191003425343064
+    },
+    "a collapse": {
+     "cases": 43,
+     "matches": 37,
+     "started at": 58.494782065349725,
+     "the 60 s before": 0.5355725465175525,
+     "pit NPCs 90": 0.16279069767441862,
+     "pit NPCs 180": 0.20930232558139536,
+     "split loses one": 20.930232558139537,
+     "defence loses one": 11.627906976744185,
+     "net kills": 0.5813953488372093,
+     "flags": 0.09813953488372093,
+     "win points 90": -0.14485838551417443,
+     "win points 180": 1.3079035846795388
+    },
+    "the whole team": {
+     "cases": 19,
+     "matches": 19,
+     "started at": 58.05422445271803,
+     "the 60 s before": 2.9640768475959716,
+     "pit NPCs 90": 0.3684210526315789,
+     "pit NPCs 180": 0.5263157894736842,
+     "split loses one": 26.31578947368421,
+     "defence loses one": 10.526315789473683,
+     "net kills": 1.105263157894737,
+     "flags": 0.02789473684210527,
+     "win points 90": 2.2592180234489545,
+     "win points 180": 0.8970521833843256
+    }
+   },
+   "three players": {
+    "no answer": {
+     "cases": 14,
+     "matches": 14,
+     "started at": 46.138479598907516,
+     "the 60 s before": -0.5369291559434793,
+     "pit NPCs 90": 1.5,
+     "pit NPCs 180": 1.8571428571428572,
+     "split loses one": 14.285714285714285,
+     "defence loses one": 42.857142857142854,
+     "net kills": -0.8571428571428571,
+     "flags": -0.10857142857142855,
+     "win points 90": -3.0198083657854435,
+     "win points 180": -7.904880295518173
+    },
+    "one defender": {
+     "cases": 36,
+     "matches": 32,
+     "started at": 53.83172246975789,
+     "the 60 s before": 2.0088248020931223,
+     "pit NPCs 90": 0.4722222222222222,
+     "pit NPCs 180": 0.6944444444444444,
+     "split loses one": 22.22222222222222,
+     "defence loses one": 33.33333333333333,
+     "net kills": 0.7222222222222222,
+     "flags": 0.1391176470588235,
+     "win points 90": -0.6990906536794503,
+     "win points 180": -0.93648821708916
+    },
+    "two monks": {
+     "cases": 21,
+     "matches": 21,
+     "started at": 56.239890269720284,
+     "the 60 s before": 0.4614515829942997,
+     "pit NPCs 90": 0.14285714285714285,
+     "pit NPCs 180": 0.6666666666666666,
+     "split loses one": 0.0,
+     "defence loses one": 4.761904761904762,
+     "net kills": 0.5238095238095238,
+     "flags": 0.19047619047619047,
+     "win points 90": 4.497534201009618,
+     "win points 180": 8.290181002384628
+    },
+    "fewer than the split": {
+     "cases": 66,
+     "matches": 60,
+     "started at": 57.984851621166634,
+     "the 60 s before": -0.2873903131765944,
+     "pit NPCs 90": 0.24242424242424243,
+     "pit NPCs 180": 0.3484848484848485,
+     "split loses one": 9.090909090909092,
+     "defence loses one": 13.636363636363635,
+     "net kills": 0.6515151515151515,
+     "flags": 0.24439393939393939,
+     "win points 90": 1.1049568535323984,
+     "win points 180": 3.5287867620272086
+    },
+    "mirror": {
+     "cases": 106,
+     "matches": 82,
+     "started at": 48.44691289364827,
+     "the 60 s before": 0.502746154954451,
+     "pit NPCs 90": 0.19811320754716982,
+     "pit NPCs 180": 0.32075471698113206,
+     "split loses one": 11.320754716981133,
+     "defence loses one": 15.09433962264151,
+     "net kills": -0.1320754716981132,
+     "flags": 0.006634615384615367,
+     "win points 90": -1.6253024304839598,
+     "win points 180": -2.1774122163353313
+    },
+    "add one": {
+     "cases": 10,
+     "matches": 10,
+     "started at": 37.151613962925225,
+     "the 60 s before": -0.9570003713807032,
+     "pit NPCs 90": 0.3,
+     "pit NPCs 180": 0.3,
+     "split loses one": 10.0,
+     "defence loses one": 20.0,
+     "net kills": -0.5,
+     "flags": 0.08000000000000002,
+     "win points 90": -3.5669748196793742,
+     "win points 180": -4.574947099730788
+    },
+    "a collapse": {
+     "cases": 46,
+     "matches": 43,
+     "started at": 42.90063081924085,
+     "the 60 s before": -0.9258409432781698,
+     "pit NPCs 90": 0.3695652173913043,
+     "pit NPCs 180": 0.43478260869565216,
+     "split loses one": 28.26086956521739,
+     "defence loses one": 10.869565217391305,
+     "net kills": 0.15217391304347827,
+     "flags": 0.04086956521739131,
+     "win points 90": 0.5707161994149045,
+     "win points 180": -0.10459875851263492
+    },
+    "the whole team": {
+     "cases": 22,
+     "matches": 19,
+     "started at": 46.74244971088876,
+     "the 60 s before": -2.6005092888325616,
+     "pit NPCs 90": 0.4090909090909091,
+     "pit NPCs 180": 0.5454545454545454,
+     "split loses one": 22.727272727272727,
+     "defence loses one": 27.27272727272727,
+     "net kills": 0.36363636363636365,
+     "flags": 0.029999999999999995,
+     "win points 90": 0.8426013038765784,
+     "win points 180": 4.536399131272697
+    }
+   },
+   "four or more": {
+    "no answer": {
+     "cases": 10,
+     "matches": 9,
+     "started at": 59.791187706603836,
+     "the 60 s before": -0.638897164767505,
+     "pit NPCs 90": 1.2,
+     "pit NPCs 180": 1.6,
+     "split loses one": 10.0,
+     "defence loses one": 60.0,
+     "net kills": -0.9,
+     "flags": -0.1677777777777778,
+     "win points 90": -3.7142315355392674,
+     "win points 180": -10.272753633782091
+    },
+    "one defender": {
+     "cases": 12,
+     "matches": 12,
+     "started at": 32.308509892376,
+     "the 60 s before": 2.1690372453043865,
+     "pit NPCs 90": 1.5833333333333333,
+     "pit NPCs 180": 1.75,
+     "split loses one": 25.0,
+     "defence loses one": 83.33333333333334,
+     "net kills": -0.5833333333333334,
+     "flags": 0.22750000000000004,
+     "win points 90": 2.6354810072823467,
+     "win points 180": 4.718985201692445
+    },
+    "two monks": {
+     "cases": 8,
+     "matches": 7,
+     "started at": 39.255299920526724,
+     "the 60 s before": 1.8491329389191051,
+     "pit NPCs 90": 0.75,
+     "pit NPCs 180": 1.25,
+     "split loses one": 0.0,
+     "defence loses one": 12.5,
+     "net kills": -1.125,
+     "flags": -0.09714285714285713,
+     "win points 90": -4.5507699608395225,
+     "win points 180": -6.788577223193738
+    },
+    "fewer than the split": {
+     "cases": 119,
+     "matches": 90,
+     "started at": 52.662379531745785,
+     "the 60 s before": 0.39705052579321176,
+     "pit NPCs 90": 0.42016806722689076,
+     "pit NPCs 180": 0.7226890756302521,
+     "split loses one": 10.92436974789916,
+     "defence loses one": 21.008403361344538,
+     "net kills": -0.025210084033613446,
+     "flags": 0.0995798319327731,
+     "win points 90": -1.5246638390762701,
+     "win points 180": 0.454287167919091
+    },
+    "mirror": {
+     "cases": 86,
+     "matches": 60,
+     "started at": 56.969993979424785,
+     "the 60 s before": 0.7677638469510013,
+     "pit NPCs 90": 0.10465116279069768,
+     "pit NPCs 180": 0.12790697674418605,
+     "split loses one": 16.27906976744186,
+     "defence loses one": 5.813953488372093,
+     "net kills": 0.313953488372093,
+     "flags": -0.0891764705882353,
+     "win points 90": -0.1324019097989554,
+     "win points 180": 0.2470623657639104
+    },
+    "add one": {
+     "cases": 6,
+     "matches": 6,
+     "started at": 12.809381366963532,
+     "the 60 s before": 1.1447563966246916,
+     "pit NPCs 90": 0.3333333333333333,
+     "pit NPCs 180": 0.5,
+     "split loses one": 16.666666666666664,
+     "defence loses one": 50.0,
+     "net kills": -0.6666666666666666,
+     "flags": -0.08499999999999992,
+     "win points 90": -2.944458514385453,
+     "win points 180": -3.4195773518448322
+    },
+    "two or more extra": {
+     "cases": 2,
+     "matches": 2,
+     "started at": 85.33050786567533,
+     "the 60 s before": 10.739719110605279,
+     "pit NPCs 90": 0.0,
+     "pit NPCs 180": 0.0,
+     "split loses one": 50.0,
+     "defence loses one": 0.0,
+     "net kills": 1.0,
+     "flags": -1.5150000000000001,
+     "win points 90": -5.1760462772696805,
+     "win points 180": 4.095502423276526
+    },
+    "a collapse": {
+     "cases": 18,
+     "matches": 16,
+     "started at": 48.7216590041033,
+     "the 60 s before": -1.2712877314885982,
+     "pit NPCs 90": 0.1111111111111111,
+     "pit NPCs 180": 0.16666666666666666,
+     "split loses one": 16.666666666666664,
+     "defence loses one": 16.666666666666664,
+     "net kills": -0.2777777777777778,
+     "flags": -0.6716666666666666,
+     "win points 90": -5.557442047876936,
+     "win points 180": -3.2776464526992672
+    },
+    "the whole team": {
+     "cases": 26,
+     "matches": 20,
+     "started at": 40.593400028541765,
+     "the 60 s before": -1.216325011596652,
+     "pit NPCs 90": 0.2692307692307692,
+     "pit NPCs 180": 0.38461538461538464,
+     "split loses one": 34.61538461538461,
+     "defence loses one": 23.076923076923077,
+     "net kills": 0.34615384615384615,
+     "flags": 0.19807692307692312,
+     "win points 90": -0.8213343170330029,
+     "win points 180": 3.135540726547823
+    }
+   }
+  }
+ },
+ "moves": [
+  [
+   "mirror",
+   "mirror",
+   124
+  ],
+  [
+   "no answer",
+   "over by then",
+   95
+  ],
+  [
+   "one defender, not a monk",
+   "over by then",
+   92
+  ],
+  [
+   "fewer than the split",
+   "fewer than the split",
+   88
+  ],
+  [
+   "mirror",
+   "over by then",
+   65
+  ],
+  [
+   "one defender, not a monk",
+   "one defender, not a monk",
+   65
+  ],
+  [
+   "no answer",
+   "no answer",
+   57
+  ],
+  [
+   "one defender",
+   "one defender",
+   46
+  ],
+  [
+   "fewer than the split",
+   "mirror",
+   45
+  ],
+  [
+   "mirror",
+   "a collapse",
+   44
+  ],
+  [
+   "add one",
+   "over by then",
+   42
+  ],
+  [
+   "one defender",
+   "mirror",
+   41
+  ],
+  [
+   "no answer",
+   "one defender, not a monk",
+   39
+  ],
+  [
+   "one defender, a monk",
+   "one defender, a monk",
+   39
+  ]
+ ],
+ "main_fight_while_a_split_is_out": 4285
+}

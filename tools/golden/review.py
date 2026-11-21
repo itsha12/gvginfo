@@ -378,6 +378,8 @@ def file_graded(g, e, set_id, K):
         if band != "none" and grade == "classic" and row["mark"] == "correct": auto = [{"has": x, "want": {"clear": None}, "auto": True} for x in sel]
         elif band != "none" and grade == "none": auto = [{"none": dict(x, want={"clear": None}), "open": True, "auto": True, "why": f"{match} {cl(s_['t0'])}: he graded it No decision" + (f": {v['why']}" if v.get("why") else "")} for x in sel]
         elif band == "none" and grade in ("classic", "visible", "weak"): auto = [{"has": x, "want": {"clear": None}, "open": True, "auto": True, "why": f"{match} {cl(s_['t0'])}: told as context; he graded it a {grade} decision" + (f": {v['why']}" if v.get("why") else "")} for x in sel[:1]]
+        gone = [c.get("has") or c.get("none") for c in old.get(i, {}).get("retired_checks", []) if c.get("auto")]      # a plain check retired at his word (R-565: the play it asked for is no longer told) is not written again on refiling
+        auto = [c for c in auto if (c.get("has") or c.get("none")) not in gone]
         row["checks"] = auto + [c for c in old.get(i, {}).get("checks", []) if not c.get("auto")]
         for k_ in old.get(i, {}):
             if k_.startswith("answered") or k_ in ("retired_checks", "later"): row[k_] = old[i][k_]      # `later`: a mark he withdrew or confirmed afterwards, in his words
