@@ -41,10 +41,15 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 0. Held at his word (R-554, his "make sure you remember"): the cards for a flag in hand, with R-553 to build (no
    runner while the next flag is up is a flag-in-hand decision), and for a double run from the sender's side:
    raise them when more matches are trained. The execution list (R-557): the res, giving ground, fights.
-1. Put to him 2026-11-21 on the answer to a split: (a) when the answer is read (built: 30 and 60 s after the
-   split is told; the first defender is there a middle 8 s after); (b) the names of the answers by the size of
-   the split (`cases.SPLIT_ANSWERS`: for one player a monk or a damage player; two monks; fewer than the split;
-   mirror; add one; a collapse; the whole team); (c) what makes two split spots alike, before stage 2 is built.
+1. The answer to a split, before stage 2 is built: (a) when the answer is read: he asked what that means;
+   explained and put to him again (the first answer, frozen 30 s after the split is told; later changes are
+   decisions of their own, R-511); (b) the answers told apart: confirmed, R-566; (c) what makes spots alike:
+   list agreed; the base res is in it, the game clock he is unsure of. Checked on 340 defender deaths: with the
+   base res within 20 s the split takes a pit NPC in the next minute in 15%, otherwise about 35%; no clear
+   difference in collapses (and players who res at the base onto the split are read as a collapse: to separate).
+   Proposed to him: each side's dead, and what the split and its defenders can do as properties (R-539), into
+   the matching; the game clock, a split or runner of the defending team and which NPCs are left as stage 3
+   factors; the split's Lord damage is not yet on its record; the stand-in prices have no clock.
    R-562 stays Claude's reading of his rule: bring him the splits it tells wrongly as they turn up in his games.
 2. Jade: is a team at the footmen on the portal side in the base at a base res?
 3. Tolkano: no build (his word): give him date, guilds, hall and length with every example to find it there.
