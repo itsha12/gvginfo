@@ -351,8 +351,8 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   a split elsewhere" in four scenarios (up or down at the main fight; their split in our base or ours out; a split of each team out at once and
   rows with no told split on the ground are set aside): the readings M1 to M6, the trade (the side up at the main fight against the side down, with
   the same comparison on the 60 s before), what followed each call as it fell, like spots and the test on unseen matches. The call is read 20 s in
-  (`_main_call`): a change to a split already there first (collapse on it, a defender pulled back, more sent, fewer on it), else his calls of R-551
-  (`_num_call`). No more matches are trained for either half until the engine is ready (R-570): never propose it again as the next step.
+  (`_main_call`): a change to a split already there first (collapse on it, a defender pulled back, more sent, players brought back; a player who died
+  there is no call, R-571), else his calls of R-551 (`_num_call`). No more matches are trained for either half until the engine is ready (R-570): never propose it again as the next step.
 - A numbers advantage from kills is not a decision family (R-557: the team up keeps killing and follows the team down,
   whose own choices read as near forced; the numbers that are decisions are those a team chose to make, a runner, a
   split or a collapse). Its cards are not marked and its view is off the page (the `ADVICE.numbers` entry in
