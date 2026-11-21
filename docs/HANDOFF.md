@@ -8,52 +8,54 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 > out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-20: all 60 flag cards marked; flags done for now; numbers from kills withdrawn as a decision family (R-557); splits next; R-548 to R-557)
-- Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` (eca99d4) and lands in
+## State (2026-11-20: flags done for now; numbers from kills withdrawn (R-557); the split readings fixed where they could be; game 15 waits for his marks; R-548 to R-559)
+- Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` (7e54f33) and lands in
   one piece, then one rebuild (R-322). 658 replays stored; 564 count (R-477); 506 matches trained. No workflow run
-  in progress. Rulings run to R-557. The baseline (R-491) is the branch `baseline-2026-11-15`.
-- Graded and filed (set f1): twelve games. Not graded his new way: Corrupted, Weeping Stone, Isle of the Dead.
-- Flag advice (stage 4 of the flag family): he marked all 61 cards (58 told correctly; his own call the same as a
-  clear reading in 27 of 33). The three he corrected are set c1 of the review key, each fixed: whoever set off
-  first is sending (an answer before its run stops the run), the runner who waited back at his spawn, a flag of
-  ours already up the field (`Moments.flag_up`). R-548: a runner sets off when he goes for good (`run_starts`).
-- The cards were written again from e60a56d (60; `--site` keeps ids and his marks, `changed` only where a card
-  says something else) and he marked the 14 that waited: all told correctly. "Look for a kill first, then send"
-  (`own` = wait; R-549) on 3 of the 14; his 23 other "hold" marks were made without it. His notes on three games
-  (key c1-4 to c1-6): hold v RACK 2:34, 4:42, 7:29 are flag decisions with no card (a flag in hand; a double run
-  from the sender's side); HC v hdm 5:56, a flag left lying and taken up by another player, is not read (held).
-- Checkpoint run (every counted match, engine eca99d4): 564 matches, 34,823 plays, no errors, self-check 7 in 5.
-  The fourteen truths hold; 281 Classic rows pass, none fail; 132 history rows hold, 3 do not. Gate 12 of 12 and
-  63 of 105; line-up and comms 530 of 583 (last run 2026-11-18, not run again).
-- The similar cases (`cases.py test`, `data/model/flag_cases.json`), 4,276 cases. Section 8, as it fell, 180 s on:
-  - Us holding the stand (1,260): a runner within 15 s -2.0 win points; 15 to 90 s -1.3; none for 90 s +1.1, which
-    is -4.3 where their flag got in (257) and +6.9 where it did not (240, teams that started at 76%).
-  - Them holding it (533): a runner within 15 s +1.7, 15 to 90 s 0.0, none for 90 s -0.2.
-  - Held out, read at 15 s: better at 60 s (+1.3), 90 s (+1.2, 0.1 to 2.4) and 180 s (+2.6, 0.8 to 4.5): the first
-    build on which all three show; not yet a gain to call (near the line a card's reading moves with the fit: 11 of
-    59 changed between clear and not clear, none reversed). Read at 30 s: nothing. Their boost: +7.0 (3.3 to 10.6).
+  in progress. Rulings run to R-559. The baseline (R-491) is the branch `baseline-2026-11-15`.
+- Graded and filed (set f1): twelve games. On the page, not marked: game 15, Men v NwAy on Corrupted Isle (c19f13e3,
+  19 September; the old game 13, back at R-559; 36 situations, 8 of them splits). Not graded his new way: Corrupted,
+  Weeping Stone, Isle of the Dead.
+- Flags: all 60 advice cards marked (three corrected and fixed: set c1 of the key). Held out, the answer read at 15 s
+  is better at 60, 90 and 180 s on one build: not yet a gain to call. The cards were not written again today.
+- The split readings, built 2026-11-20 (`split_plays`; CLAUDE.md "When a split ends and what kills it"): the rest of
+  a split's team read at the second, so the main team coming to it ends it (Men v hold 11:10, xxx v NwAy 12:20); a
+  player left alone on the enemy's ground who trades no damage is not splitting on (Men v hold 9:56); a collapse
+  that kills within seconds is told, from the main fight and not from the base res (NwAy v ohno 5:24); a death
+  after a turn belongs to the collapse alone (QenK v Fun 6:37). hold v RACK 2:42 needed nothing: the split of
+  three is the rows beside it, graded Classic. Nine open checks closed.
+- Checkpoint run (every counted match, engine 7e54f33): 564 matches, 34,460 plays (split plays 14,925 to 14,557),
+  no errors. The fourteen truths hold; 281 Classic rows pass, none fail; 132 history rows hold, 3 do not. Gate 12
+  of 12 and 63 of 105. Self-check 21 in 7 (was 7 in 5): twelve are one stretch, TFS v DMG 22:44, DMG's Mesmer read
+  on a split among his own main team's push. Line-up and comms 530 of 583 (2026-11-18, not run again).
+- The similar cases (`cases.py test`, `data/model/flag_cases.json`, written at eca99d4), 4,277 cases today. Section 8,
+  180 s on, us holding the stand (1,260): a runner within 15 s -2.0 win points; 15 to 90 s -1.3; none for 90 s +1.1
+  (-4.3 where their flag got in, +6.9 where it did not). Them holding it (533): +1.7, 0.0, -0.2.
 
 ## Next (in order)
-1. The split family, at his word: the answer to a split (no answer, one defender, mirror, two monks, add one,
-   full collapse), the main fight while a split is out (3,729 numbers plays "from a split elsewhere"; his calls of
-   R-551 plus collapse and send more), each through the four stages. First the readings, put to him 2026-11-20:
-   (a) players moving to join their main team, or toward a back door, told as a split (Men v hold 9:56, 10:24,
-   11:10, 19:38); (b) a collapse told as a split (Men v hold 18:06) or as a push on the flagger (6:48), and a
-   collapse that kills within seconds not told, its death left on the 1 v 1 row (QenK v Fun 6:37, NwAy v ohno
-   5:24); (c) a main team push of six by the back door told as a split of three (HC v Team 12:32); (d) hold v
-   RACK 2:42, No decision with no words. He says when splits are ready (R-496). Numbers from kills: dropped (R-557);
-   what is built stays (`_numbers_at`, `_hard_res`, `cases.py numbers`, `numbers-cards`): no cards to him.
-2. Held for a second game (R-495): a base res with the attackers at the footmen (HC v hdm 1:40, Jade); Men v hold
-   6:48, a collapse told as a push on the flagger; who and how many push a flagger; numbers through Jade's portal;
-   cope v hold 14:33; HC v hdm 5:56 (a flag left lying, taken up and capped). For the split family: QenK v Fun 6:37
-   and NwAy v ohno 5:24. Not built: a measure of what is at stake (R-509). Then stage E; the clean-up (R-398, and
-   `st.stand_owner` on a whole second) after the games.
+1. His marks on game 15 (`game_review_marks.json`): file them the same session (`review.py file`), fix any Classic
+   fault first, set the results out for him. He then says whether splits are ready (R-496, R-559).
+2. His answers to the three readings put to him 2026-11-20, each held on one game or against a Classic row:
+   (a) HC v Team 12:32, "a full mainteam push backdoor of 6": three go in at 12:40 and the rest arrive by 13:16;
+   reading them as the head of the push fails Men v hold 10:40 (Classic: five by the back door are a split though
+   the other three are in the base 20 to 30 s later). From when is it the main team's push? (b) Men v hold 19:38,
+   "just players joining mainteam" (three stay at hold's door, five walk back in 34 s) against Men v Apes 7:10
+   (three stay in the pit, five at the stand a minute: his 3 v 2 split). (c) Men v hold 10:24, "no split yet"
+   until the back door at 10:40, against a split told from the crossing (R-458; Men v RACK, Classic).
+3. The split family (R-558): the answer to a split, and the main fight while a split is out (3,729 numbers plays
+   "from a split elsewhere"; his calls of R-551 with collapse and send more), through the four stages. To build: on
+   every split play the position, the fixed 90 and 180 s record and the 60 s before, from the second the split is
+   seen (as `_numbers_at`); the answer read at a fixed second; like spots; cards and a view (copy `ADVICE.numbers`
+   in `review.js`). Numbers from kills: dropped (R-557); what is built stays, no cards to him.
+4. Held for a second game (R-495): Men v hold 18:06 (two of a push standing off it) and 6:48 (a collapse told as
+   a push on the flagger); TFS v DMG 22:44; a base res with the attackers at the footmen (HC v hdm 1:40); who and
+   how many push a flagger; numbers through Jade's portal; cope v hold 14:33; HC v hdm 5:56 (a flag left lying).
+   Not built: a measure of what is at stake (R-509). Then stage E; the clean-up (R-398) after the games.
 
 ## Open for Denning
 0. Held at his word (R-554, his "make sure you remember"): the cards for a flag in hand, with R-553 to build (no
    runner while the next flag is up is a flag-in-hand decision), and for a double run from the sender's side:
    raise them when more matches are trained. The execution list (R-557): the res, giving ground, fights.
-1. Isle of Jade: is a team at the footmen on the portal side in the base at a base res (HC v hdm 1:40)?
+1. The three questions of "Next" 2; and Jade: is a team at the footmen on the portal side in the base at a base res?
 2. Tolkano: no build (his word): give him date, guilds, hall and length with every example to find it there.
 
 ## Running it

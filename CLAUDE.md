@@ -209,6 +209,18 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   he heals, then whom he stands with, then where he is moving), and `split_plays` asks through `fight_side`. Change it
   there, never in one reading alone; `M._side_log` says who was given to which fight and on what; the self-check
   (`jobs.selfcheck`) should stay near nothing. A split a player or more down meets its job by losing nobody (R-517).
+- When a split ends and what kills it (2026-11-20, `split_plays` on the branch). The rest of a split's team is read at
+  the second, not from the record (R-439): a player who went home from it is of the rest when the main team comes to
+  the split (R-487). A player left on the enemy's ground by the others of his split who neither hits NPCs nor trades
+  damage while alone is not splitting on (R-381 asked of the moment); a lone player on his way in is read from the
+  crossing as before. The seconds in which a split that had not been outnumbered is killed by players come from their
+  main team's fight are a collapse however short (`killed_end`): who hit him in the 6 s before he died counts on him,
+  unless he came by the base res (Team v BcS 18:11) or `fight_side` gives him to the main fight; a death after a turn
+  belongs to that collapse alone. Tried the same day and taken out, not to be built again without his word: players
+  read as the head of their main team's push when the team comes together round them within a minute (fails Men v
+  hold 10:40, Classic); players who stay where their main team's push stood (Men v Apes 7:10 reads against it); a
+  split ended when all the team but two stand in one group with it (340 rows moved on the development set for one
+  fault, TFS v DMG 22:44, where the self-check still counts twelve).
 - How flags are told on the page (R-520, R-521): the opening is one row, `jobs.opening` (who went where from the
   gates, who brought the first flag up, who capped first and who capped over it), with each team's first-flag job
   under it; after it every run is told once, a run and the run that answers it in one row (`review.py flag_rows`,
@@ -352,7 +364,7 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   review key the same session (`review.py file <id> <rows> <marks> --set f1 --key <main key>`, which prints his grades
   against the engine's confidence and the Classic rows to fix first, and writes the plain checks; then write by hand
   the checks for what a Partly or an Incorrect means). Set every result out for him in the chat (R-329). The queue is
-  set f1 in `dev_set.json` (twelve games graded: HC v Team, Men v Crew, 옷옷옷옷 v RACK, Men v RACK, Men v hold, hold v Men, HC v hdm, RACK v hdm, hold v RACK, HC v cope, as far as 9:40 and no further (R-532) 옷옷옷옷 v hdm, whose clock on the replay page runs ahead, R-527, and game 14, Dz v Team on Druid's Isle; game 6, hdm v HC, taken out unmarked, R-522, and game 13, Men v NwAy on Corrupted Isle, taken out unmarked, R-537: neither is on the page or in the development set; no game
+  set f1 in `dev_set.json` (twelve games graded: HC v Team, Men v Crew, 옷옷옷옷 v RACK, Men v RACK, Men v hold, hold v Men, HC v hdm, RACK v hdm, hold v RACK, HC v cope, as far as 9:40 and no further (R-532) 옷옷옷옷 v hdm, whose clock on the replay page runs ahead, R-527, and game 14, Dz v Team on Druid's Isle; game 6, hdm v HC, taken out unmarked, R-522, and game 13, Men v NwAy on Corrupted Isle, taken out unmarked, R-537: game 6 is not on the page or in the development set; game 13 is back on the page as game 15, to grade, R-559; no game
   is kept hidden, R-497); pick further games from unused October and November games of top guilds, never a henchman
   game (R-476). Export the next game only when the last one is marked and its Classic faults are fixed, unless he asks
   for more at once; never fix against a game he has not marked, and never re-export a game he has marked. Games without `scheme` 2 are history, shown read only. The golden

@@ -199,7 +199,13 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   held by a passive defence is a main team push, not a split (R-364). An even split fight is one record while the same
   two groups stay engaged, wherever it drifts (R-365). An attempt ends when its players are back with their main team,
   dead, or 20 s on their own side of the stand (R-363), and when three or more of the rest of their team are standing
-  with them on the enemy's ground: it is then a main team push (his marks on Men v Apes).
+  with them on the enemy's ground: it is then a main team push (his marks on Men v Apes). *As built:* the rest of the
+  team is who is not on the split at that second (R-439): a player who went home from it is of the rest (Men v hold
+  11:10, "warrior is just jointing the mainteam fight that is now in pit").
+- A lone player is splitting only when he hits NPCs or trades damage with a defender (R-381). *As built:* asked of the
+  record of a player who was alone throughout, and of any stretch in which a player is left on the enemy's ground by
+  the others of his split (Men v hold 9:56, "he is not splitting"); a lone player on his way in is a split from the
+  crossing.
 - Not a split: the last one or two of a main team that wiped, left behind (R-442); defenders chasing an enemy split out
   of their own base, who set off while it is still out and take no NPC (review key s1-20, s1-26).
 - It counts from when it can do something: at the enemy's footmen, base or pit, or met by a defender (R-440). Its decision
@@ -249,7 +255,14 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   (400 nearer in 4 s to where it stood), or all the team but one on it or making for it, for 4 s; told 4 s after the
   turn began; 12 s of making for it when the team does not reach it; the team arriving is the same collapse. A whole
   team found on a split with no turn read before it is still a full collapse (six or more on it, five gone home).
-- Not collapsed on: a player left behind after a wipe, or one walking back and forth through a teleporter (R-442).
+- A collapse that kills within seconds is a collapse (his words on NwAy v ohno 5:24 and QenK v Fun 6:37: "both
+  mainteam collapses and should be read as such"). *As built:* the seconds at the end of a split that had not been
+  outnumbered, in which players come to it from their main team's fight and kill it, are told as a collapse however
+  short; who hit him in the 6 s before he died counts on him (R-519), unless the one-fight reading gives him to the
+  main fight. A death after a team has turned on a split belongs to that collapse alone, not also to the row beside it.
+- Not collapsed on: a player left behind after a wipe, or one walking back and forth through a teleporter (R-442);
+  a split killed by players who resurrected onto it at their base (Team v BcS 18:11: "not a collapse, the split just
+  had a bunch of people base res on him and he died").
 - hdm v 옷옷옷옷 4:06 (review key s1-26): one player coming from the main fight for 16 s, with one already defending,
   against a split of two, is a join that makes it even, not a collapse; R-441 stands over his earlier approval. *Open:*
   the engine reads one defender there: two more are within reach for 10 s each, under the 12 s.
