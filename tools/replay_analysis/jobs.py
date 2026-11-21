@@ -594,19 +594,30 @@ def split_plays(M, K):
         if chased is not None: continue
         # follow its players for as long as they stay on the enemy's ground, past the record's own end (the label can change under them: a split that becomes the only players left, or is renamed a push)
         # ... but not once its main team has come to it: then it is a main team push, and the split is over (his marks on Men v Apes: "not a split" from 3:10 to 7:00 and from 8:28 to 11:16, where the record itself had ended "main team joined")
-        mates = [b for b in st.players[tm] if b not in x["ids"]]
         # three or more of the rest of his team are with him; or two of them are, and with them he stands in a group of five or more of his team: the larger part of
         # the team is at the split, and it is the main team's push from there (R-487; his marks on HC v Team 13:20 to 14:06, "this is mainteam pushing backdoor": two more
         # of HC join the four at Team's back door). The engine's own main team label is not asked: where it is wrong a split would end with it (xxx v Men 2:36)
+        mates = [b for b in st.players[tm] if b not in x["ids"]]
+        # Who is on a split is who is there at that moment, not everyone it ever had (R-439), and so is who the rest of his team is when it comes to the split: a
+        # player who went home from it is of the rest, though the record lists him (one still to come to it is not: he set out with it, a step behind). Men v
+        # hold 9:18 to 11:46: one record of six of Men, the Hammer and the Ranger at hold's front door, the Ranger home at 9:54, and five by the back door from
+        # 10:18; the rest of the team was read as the two who never were in it, so that no three of the rest could come to the split, and the Hammer was read on
+        # a split of one against hold's whole team, in hold's pit beside Men's main team, until 11:46 (his mark: "warrior is just jointing the mainteam fight that
+        # is now in pit"). xxx v NwAy 12:20: NwAy's Hammer comes to its five at xxx's front door and its main team holds xxx in its base from there (his mark on the
+        # row, "correct identification"), where the five were read as a split for 80 s more
         team_ = [b for b in st.players[tm]]
-        joined = lambda a, u: M.with_rest(a, mates, u) or (M.with_rest(a, mates, u, need=2) and M.with_rest(a, [b for b in team_ if b != a], u, need=MAIN_BIG - 1))
-        ext = {}
-        for a in x["ids"]:
-            u, gap = to[a], 0
-            while u + S_ <= T and gap <= SPLIT_GAP_S and not joined(a, u + S_):
-                u += S_
-                gap = 0 if deep(a, u) else gap + S_
-            ext[a] = u - gap
+        joined = lambda a, u, rest: M.with_rest(a, rest, u) or (M.with_rest(a, rest, u, need=2) and M.with_rest(a, [b for b in team_ if b != a], u, need=MAIN_BIG - 1))
+        end, gap, stopped = dict(to), dict.fromkeys(x["ids"], 0), set()      # each player followed past his own end in the record, all of them second by second together
+        v = min(to.values())
+        while v + S_ <= T and any(a not in stopped for a in x["ids"]):
+            v += S_
+            rest = [b for b in team_ if b not in frm or b in stopped]      # those who never were on it and those who have left it; a player still to come to it is coming with it
+            for a in [a for a in x["ids"] if a not in stopped and to[a] < v and end[a] == v - S_]:
+                if gap[a] > SPLIT_GAP_S or joined(a, v, rest): stopped.add(a); continue
+                end[a] = v
+                gap[a] = 0 if deep(a, v) else gap[a] + S_
+            stopped |= {a for a in x["ids"] if a not in stopped and to[a] < v and end[a] < v}
+        ext = {a: end[a] - gap[a] for a in x["ids"]}
         nxt = min((y["t_in"] for y in A if y["tm"] == tm and y["t_in"] > x["t_in"] and set(y["ids"]) & set(x["ids"])), default=T + 1)
         t0, t9 = int(x["t_in"]) - int(x["t_in"]) % S_, min(max(ext.values()), nxt - S_, T)
         times = list(range(t0, t9 + 1, S_))
@@ -630,6 +641,28 @@ def split_plays(M, K):
         at_main = lambda b, u: M.with_rest(b, mates, u)   # an enemy standing among three or more of the attackers' other players is at the main fight, not on the split's defence
         pit_way = M.hall.to(M.hall.lord[own_d]) if M.hall is not None and own_d in M.hall.lord else {}
         to_pit = lambda p: pit_way.get(M.hall.snap(p), 1e9)
+        # Who killed him was on him: an enemy who hit a split player in the seconds before he died there counts on the split then, wherever he stands (R-519: a
+        # player is counted in the fight of those he trades with before the fight of those he stands with). Without it a main team that falls back onto a split
+        # and kills it in passing was read as never having touched it (his words on NwAy v ohno 5:24 and QenK v Fun 6:37, picked rows: "both mainteam collapses
+        # and should be read as such": ohno's main team, pushed back to its front door, kills the Dervish in its pit in 6 s; the row was 1 v 1 against the 8 Monk)
+        # Only one who came from his main team's fight: a player who had just resurrected at his base onto the split has not collapsed on it (his words on Team v
+        # BcS 18:11: "not a collapse, the split just had a bunch of people base res on him and he died")
+        def with_main(b, td):                             # he stood with his main team, away from home, in the 45 s before (as a collapser is told from a defender, R-429), and has not died since
+            lo = max((int(x_) for x_ in st.death_times.get(b, []) if x_ <= td), default=-1)
+            return any(u > lo and M.AL[b][u] and b in M.main_team(foe, u) and len(M.main_team(foe, u)) >= 3 and not (M.place_at(b, u)[1] == own_d and M.place_at(b, u)[0] in HOMEG)
+                       for u in range(max(int(td) - 45, 0) // S_ * S_, max(int(td) - JOIN_S, 0) + 1, S_))
+        # (asked only of the deaths that end the split: a main fight beside a split, some of whose players turn their damage on it for a moment while it goes on,
+        # is not read anew by this)
+        foes_all, killers = set(st.players[foe]), {}
+        last_on = next((s_ for s_ in reversed(Ss) if s_), [])
+        ends_dead = times[-1] < T - S_ - 1 and bool(last_on) and all(any(times[-1] - 2 <= td <= times[-1] + 4 for td in st.death_times.get(a, [])) for a in last_on)
+        for a in (last_on if ends_dead else ()):
+            for td in st.death_times.get(a, []):
+                if times[-1] - 2 <= td <= times[-1] + 4:
+                    for u_ in range(max(int(td) - FIGHT_HOLD_S, 0), int(td) + 1):
+                        for x_, y_ in M.hits.get(u_, ()):
+                            if y_ == a and x_ in foes_all and with_main(x_, td): killers.setdefault(x_, set()).add(int(td))
+        killing = lambda b, u: any(td - FIGHT_HOLD_S - S_ < u <= td + S_ for td in killers.get(b, ()))
         def defends(b):                                   # a defender is on the split: within reach of a split player, or further off with one of them hitting or casting on the other (Moments' reading of who is in a fight, without the hold: a player hovering at the edge of reach is not defending, 옷옷옷옷 v Men 6:50); for 12 s, or at a death (his own, or the split player's: R-464)
             def on(a, u):
                 dist = d(M.P[b][u], M.P[a][u])
@@ -649,7 +682,7 @@ def split_plays(M, K):
                 up = [m for m in mates if M.AL[m][u] and M.P[m][u]]
                 front = [m for m in up if any(n is not m and d(M.P[m][u], M.P[n][u]) < FIGHT_LINK for n in up)]
                 return min(d(M.P[b][u], M.P[a][u]) for a in there) <= min((d(M.P[b][u], M.P[m][u]) for m in front), default=1e9)
-            reach = [bool(M.AL[b][u]) and bool(M.P[b][u]) and (any(M.AL[a][u] and on(a, u) for a in s) or blocks(u, s)) and not at_main(b, u) and M.fight_side(b, u) != "main" for u, s in zip(times, Ss)]
+            reach = [bool(M.AL[b][u]) and bool(M.P[b][u]) and (((any(M.AL[a][u] and on(a, u) for a in s) or blocks(u, s)) and not at_main(b, u)) or killing(b, u)) and M.fight_side(b, u) != "main" for u, s in zip(times, Ss)]
             return M.visits(times, reach, reach, list(st.death_times.get(b, [])) + split_deaths, to_end=at_end0)      # a defender kites and heals at range: being on the split is enough
         at_end0 = times[-1] >= T - S_ - 1
         d_on = {b: defends(b) for b in st.players[foe]}
@@ -690,7 +723,21 @@ def split_plays(M, K):
         dD = sorted((td, b) for b in st.players[foe] for td in st.death_times.get(b, [])
                     if t0 <= td <= t9 + 4 and M.P[b][min(max(int(td) - 1, 0), T)] and any(on(a, min(max(int(td) - 1, 0), T) // S_ * S_) and d(M.P[b][min(max(int(td) - 1, 0), T)], M.P[a][min(max(int(td) - 1, 0), T)]) < FIGHT_LINK for a in x["ids"]))
         at_end = times[-1] >= T - S_ - 1                                   # the game ended with the split still out: its last phase stands however short (R-459)
-        phases = [(v, max(a_, reach), b_) for v, a_, b_ in _runs(kn, times, JOIN_S, keep_last=at_end) if v[0] > 0 and b_ >= reach and (b_ - max(a_, reach) + S_ >= JOIN_S or (at_end and b_ == times[-1]))]
+        runs_ = _runs(kn, times, JOIN_S, keep_last=at_end)
+        # ... and so do the seconds in which it is killed, where it had not been outnumbered until then and players then come to it from their main team's fight
+        # and kill it: a collapse that kills within seconds is a collapse (a death in it counts at once, as for who is on it). All who came must have come from
+        # their main team's fight, none by the base res (Team v BcS 18:11: four of BcS resurrect onto the Ritualist in their pit, "not a collapse")
+        killed_end = False
+        if ends_dead and runs_ and 0 < runs_[-1][0][0] and runs_[-1][0][1] <= runs_[-1][0][0]:
+            i0 = len(times)
+            while i0 - 1 >= 0 and times[i0 - 1] > runs_[-1][1] and kn[i0 - 1][0] > 0 and kn[i0 - 1][1] >= kn[i0 - 1][0] + 1: i0 -= 1      # the readings at its end in which the defence is a player or more up (R-441)
+            if i0 < len(times):
+                was_ = {b for i, u_ in enumerate(times) if runs_[-1][1] <= u_ < times[i0] for b in Ds[i]}
+                new_ = {b for i in range(i0, len(times)) for b in Ds[i] if b not in was_}
+                if new_ and all(with_main(b, times[-1]) for b in new_):
+                    runs_ = runs_[:-1] + [(runs_[-1][0], runs_[-1][1], times[i0 - 1]), (collections.Counter(kn[i0:]).most_common(1)[0][0], times[i0], times[-1])]
+                    killed_end = True
+        phases = [(v, max(a_, reach), b_) for v, a_, b_ in runs_ if v[0] > 0 and b_ >= reach and (b_ - max(a_, reach) + S_ >= JOIN_S or ((at_end or killed_end) and b_ == times[-1]))]
         # R-508: a full collapse counts from the turn, whether or not the team reaches the split ("it's the turn that matters ... when I (in a game) would be able to
         # recognize they are going to collapse so likely a few seconds after the turn"; his four rows of 옷옷옷옷 v RACK: the engine read 1:51 and 6:01 at arrival, 15 and
         # 27 s late, and not at all 4:39 and 8:16, where the team leaves RACK's base after RACK's five and does not reach them). A defender is making for the split when
@@ -799,10 +846,23 @@ def split_plays(M, K):
             tn = turn_of.get(p0) if (k, n) == parts_of[p0][0][0] and p1 == parts_of[p0][0][2] else None
             if tn is not None:                             # a collapse from the turn (R-508): those on the split and those making for it
                 Dp = Dp + [b for b in tn["ids"] if b not in Dp]; n = len(Dp)
+            # R-381 asked of the moment (R-439): a lone player is splitting only when he hits NPCs or trades damage with a defender. A player left on the enemy's
+            # ground by the others of his split, who then does neither while he is alone, is not splitting on (his mark, Men v hold 9:56: "he is running away from a
+            # previous split to join mainteam; he is not splitting": the Hammer at hold's back door from 9:56, the Ranger gone home, 44 s without a hit until five of
+            # Men came round to him). A lone player on his way in has not been left by anyone, and is read as before (Men v RACK 16:51, hold v RACK 12:40, Classic)
+            if tn is None and all(v_[0] == 1 for v_, _, _ in parts_of[p0]) and any(v_[0] >= 2 for v_, a_, _ in phases[:pi] if a_ not in turn_of):
+                alone = [u_ for i, u_ in enumerate(times) if p0 <= u_ <= p1 and len(Ss[i]) == 1]
+                foes_, w0, w1 = set(st.players[foe]), min(alone, default=int(p0)), max(alone, default=int(p0)) + S_ - 1
+                busy_ = (any(w0 <= td <= w1 for td, _, _ in npc_ev) or any(w0 <= u_ <= w1 for a in Sp for u_ in M.npc_hits.get(a, ()))
+                         or sum(1 for u_ in range(w0, w1 + 1) for x_, y_ in M.hits.get(u_, ()) if (x_ in Sp and y_ in foes_) or (y_ in Sp and x_ in foes_)) >= 2)
+                if not busy_: continue
             e1 = min(p1 + 4, T)
             # a death that made the numbers of this phase belongs to the phase before it (his mark, hdm v hook 7:52: "they are only 4 v 3 because they killed a defender"): at its first seconds only the deaths of players counted in it are its own
-            lostp = [a for td, a in dA if p0 - 1 <= td <= (max(e1, end_chase + 2) if last else e1) and (pi == 0 or td > p0 + 4 or a in Sp)]
-            killp = [b for td, b in dD if p0 - 1 <= td <= e1 and (pi == 0 or td > p0 + 4 or b in Dp)]
+            # ... and a death after a team has turned on the split belongs to that collapse alone, not also to the row the split was in beside it (QenK v Fun 6:37:
+            # the Hammer dies to Fun's collapse, told from 6:28; the 1 v 1 against the 8 Monk beside it, 6:10 to 6:40, had "the split player survives: no")
+            in_turn = lambda td: tn is None and any(tn_["t0"] <= td <= tn_["end"] + 4 for tn_ in turn_of.values())
+            lostp = [a for td, a in dA if p0 - 1 <= td <= (max(e1, end_chase + 2) if last else e1) and (pi == 0 or td > p0 + 4 or a in Sp) and not in_turn(td)]
+            killp = [b for td, b in dD if p0 - 1 <= td <= e1 and (pi == 0 or td > p0 + 4 or b in Dp) and not in_turn(td)]
             npcs = [(kind, pit) for td, kind, pit in npc_ev if p0 - 1 <= td <= e1]
             n_lost, n_kill, n_npc, n_pit = len(lostp), len(killp), len(npcs), sum(1 for _, pit in npcs if pit)
             away_a, away_d = K.died(tm, p0, e1) - sum(1 for td, a in dA if p0 < td <= e1), K.died(foe, p0, e1) - sum(1 for td, b in dD if p0 < td <= e1)
