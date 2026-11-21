@@ -8,10 +8,10 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 > out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-20: all 60 flag cards marked; flags done for now; the numbers family through its four stages in first form; R-548 to R-556; 63 numbers cards wait for him)
+## State (2026-11-20: all 60 flag cards marked; flags done for now; numbers from kills withdrawn as a decision family (R-557); splits next; R-548 to R-557)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` (eca99d4) and lands in
   one piece, then one rebuild (R-322). 658 replays stored; 564 count (R-477); 506 matches trained. No workflow run
-  in progress. Rulings run to R-556. The baseline (R-491) is the branch `baseline-2026-11-15`.
+  in progress. Rulings run to R-557. The baseline (R-491) is the branch `baseline-2026-11-15`.
 - Graded and filed (set f1): twelve games. Not graded his new way: Corrupted, Weeping Stone, Isle of the Dead.
 - Flag advice (stage 4 of the flag family): he marked all 61 cards (58 told correctly; his own call the same as a
   clear reading in 27 of 33). The three he corrected are set c1 of the review key, each fixed: whoever set off
@@ -34,14 +34,15 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
     59 changed between clear and not clear, none reversed). Read at 30 s: nothing. Their boost: +7.0 (3.3 to 10.6).
 
 ## Next (in order)
-1. The numbers family (R-550 to R-556): he marks the 63 cards on Model > Game review > Numbers advice (marks in
-   `numbers_card_marks.json`: read them first, set them out; the notes box too). Built: `state`, `after`, `before`,
-   `clock` (with every res in the fight) and `track` (steps at 0, 15, 20, 30, 60 s) on every numbers play;
-   `cases.py numbers <plays file>` (the readings, as it fell, like spots and the unseen-match test; report
-   `data/model/numbers_cases.json`); `cases.py numbers-cards <plays file> f1 --site <main>/data/model/numbers_cards.json`.
-   The call is read 20 s in (`_num_call`). The test shows no gain yet (down from kills better at 60 s only), and
-   14 of 63 cards read "against the data" to 2 "with it": look at that before trusting any card. Not done: the
-   other factors (stage 3), and a second look judged from 60 s (the record is counted from the told second).
+1. The split family, at his word: the answer to a split (no answer, one defender, mirror, two monks, add one,
+   full collapse), the main fight while a split is out (3,729 numbers plays "from a split elsewhere"; his calls of
+   R-551 plus collapse and send more), each through the four stages. First the readings, put to him 2026-11-20:
+   (a) players moving to join their main team, or toward a back door, told as a split (Men v hold 9:56, 10:24,
+   11:10, 19:38); (b) a collapse told as a split (Men v hold 18:06) or as a push on the flagger (6:48), and a
+   collapse that kills within seconds not told, its death left on the 1 v 1 row (QenK v Fun 6:37, NwAy v ohno
+   5:24); (c) a main team push of six by the back door told as a split of three (HC v Team 12:32); (d) hold v
+   RACK 2:42, No decision with no words. He says when splits are ready (R-496). Numbers from kills: dropped (R-557);
+   what is built stays (`_numbers_at`, `_hard_res`, `cases.py numbers`, `numbers-cards`): no cards to him.
 2. Held for a second game (R-495): a base res with the attackers at the footmen (HC v hdm 1:40, Jade); Men v hold
    6:48, a collapse told as a push on the flagger; who and how many push a flagger; numbers through Jade's portal;
    cope v hold 14:33; HC v hdm 5:56 (a flag left lying, taken up and capped). For the split family: QenK v Fun 6:37
@@ -51,7 +52,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 ## Open for Denning
 0. Held at his word (R-554, his "make sure you remember"): the cards for a flag in hand, with R-553 to build (no
    runner while the next flag is up is a flag-in-hand decision), and for a double run from the sender's side:
-   raise them when more matches are trained. 옷옷옷옷 v hdm has numbers cards past 9:40, where he stopped (R-532).
+   raise them when more matches are trained. The execution list (R-557): the res, giving ground, fights.
 1. Isle of Jade: is a team at the footmen on the portal side in the base at a base res (HC v hdm 1:40)?
 2. Tolkano: no build (his word): give him date, guilds, hall and length with every example to find it there.
 

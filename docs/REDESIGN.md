@@ -49,6 +49,9 @@ The first four are the decision (macro); the last two are execution (micro), sco
 | 5 Engage or wait | a stand-off: mains apart, no damage traded, incl. the opening | who gains from what is ticking, builds, positions and NPC cover, map | advance to fight, take the flag first, hold position, split first | new |
 
 Families 1 to 3 are step 2; 4 and 5 are step 4 (the old kinds they replace keep running until then).
+Family 3 as a family of its own is withdrawn for numbers from kills (R-557, 2026-11-20): that is a state and a matter
+of execution. The numbers a team chose to make belong to family 1 (a runner) and family 2 (a split, a collapse, and
+the main fight while a split is out); big advantages (three or more kills, a wipe) stay with family 4.
 offence_or_defence becomes part of the objective layer of a fight.
 
 ### Shape, objective, mechanics, map

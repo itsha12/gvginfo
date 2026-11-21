@@ -302,7 +302,13 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   calls from those, never from a play's own end. `cases.py case <plays file> <report id> <m:ss>` prints one decision
   with its nearest cases and their replay links. A verdict is a reading, not advice, until the held-out test shows a
   gain for its scenario: say so whenever one is shown to him.
-- The numbers family (family 3; R-550 to R-552), on the branch, takes the same four stages. Scope first: numbers at
+- A numbers advantage from kills is not a decision family (R-557: the team up keeps killing and follows the team down,
+  whose own choices read as near forced; the numbers that are decisions are those a team chose to make, a runner, a
+  split or a collapse). Its cards are not marked and its view is off the page (the `ADVICE.numbers` entry in
+  `review.js` stays for the split family to copy); do not put numbers cards to him again. The res (how soon it is
+  tried, what stops it), giving ground a player down and fights in general are on the execution list. What was built
+  stays and is described next, for the split family and for execution to use.
+- The numbers record (R-550 to R-556), on the branch. Scope as built: numbers at
   the main fight from kills, a runner away and players on their way; the main fight while a split is out waits for the
   split family. Every numbers play carries `state`, `after`, `before`, a `clock` (when the numbers arose and ended,
   the base res, each side's dead, every res in the fight over three minutes: `jobs._hard_res`, a dead player alive

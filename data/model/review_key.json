@@ -6122,7 +6122,7 @@
       "scenario~": "front door"
      },
      "why": "hdm v hook 12:38: the Dervish goes by the front door",
-     "open": true
+     "held_since": "2026-11-20 (engine eca99d4)"
     }
    ]
   },
@@ -11226,9 +11226,9 @@
        "clear": null
       }
      },
-     "open": true,
      "auto": true,
-     "why": "HC v Team, Imperial 4:24: he graded it No decision: this is a flag push, not a split. It's already covered in your flag push for this time period. Also \"by the door\" means nothing."
+     "why": "HC v Team, Imperial 4:24: he graded it No decision: this is a flag push, not a split. It's already covered in your flag push for this time period. Also \"by the door\" means nothing.",
+     "held_since": "2026-11-20 (engine eca99d4)"
     },
     {
      "none": {
@@ -11242,9 +11242,9 @@
        "clear": null
       }
      },
-     "open": true,
      "auto": true,
-     "why": "HC v Team, Imperial 4:24: he graded it No decision: this is a flag push, not a split. It's already covered in your flag push for this time period. Also \"by the door\" means nothing."
+     "why": "HC v Team, Imperial 4:24: he graded it No decision: this is a flag push, not a split. It's already covered in your flag push for this time period. Also \"by the door\" means nothing.",
+     "held_since": "2026-11-20 (engine eca99d4)"
     }
    ],
    "note": "'this is a flag push, not a split. It's already covered in your flag push for this time period. Also \"by the door\" means nothing': the wording is taken out (jobs.py); the split read on top of a push on the flagger stands as an open check.",
@@ -12273,9 +12273,9 @@
        "clear": null
       }
      },
-     "open": true,
      "auto": true,
-     "why": "HC v Team, Imperial 12:16: he graded it No decision: This is the exact same split (continuation) of the split you read at 10:06–12:18."
+     "why": "HC v Team, Imperial 12:16: he graded it No decision: This is the exact same split (continuation) of the split you read at 10:06–12:18.",
+     "held_since": "2026-11-20 (engine eca99d4)"
     },
     {
      "none": {
@@ -12289,9 +12289,9 @@
        "clear": null
       }
      },
-     "open": true,
      "auto": true,
-     "why": "HC v Team, Imperial 12:16: he graded it No decision: This is the exact same split (continuation) of the split you read at 10:06–12:18."
+     "why": "HC v Team, Imperial 12:16: he graded it No decision: This is the exact same split (continuation) of the split you read at 10:06–12:18.",
+     "held_since": "2026-11-20 (engine eca99d4)"
     }
    ],
    "note": "'This is the exact same split (continuation) of the split you read at 10:06 to 12:18': a repeat in substance, graded No decision."
@@ -18366,9 +18366,9 @@
        "clear": null
       }
      },
-     "open": true,
      "auto": true,
-     "why": "Men v RACK, Nomad's 19:06: he graded it No decision: the game ends at 19:05"
+     "why": "Men v RACK, Nomad's 19:06: he graded it No decision: the game ends at 19:05",
+     "held_since": "2026-11-20 (engine eca99d4)"
     },
     {
      "none": {
@@ -18382,9 +18382,9 @@
        "clear": null
       }
      },
-     "open": true,
      "auto": true,
-     "why": "Men v RACK, Nomad's 19:06: he graded it No decision: the game ends at 19:05"
+     "why": "Men v RACK, Nomad's 19:06: he graded it No decision: the game ends at 19:05",
+     "held_since": "2026-11-20 (engine eca99d4)"
     },
     {
      "none": {
@@ -18395,8 +18395,8 @@
        1152
       ]
      },
-     "open": true,
-     "why": "Men v RACK 19:06: 'the game ends at 19:05': a split row told after the Lord is dead"
+     "why": "Men v RACK 19:06: 'the game ends at 19:05': a split row told after the Lord is dead",
+     "held_since": "2026-11-20 (engine eca99d4)"
     }
    ]
   },

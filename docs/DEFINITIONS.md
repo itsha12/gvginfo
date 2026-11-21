@@ -317,15 +317,19 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   plays or more out of 15 matches or more; under that, and where the range includes no difference, the verdict is
   "no clear difference" (R-538; REDESIGN.md "Verdict rules").
 
-## The numbers advantage (family 3, begun 2026-11-20)
-- Scope first: numbers at the main fight from kills, a runner away, and players still on their way back. The main
-  fight while a split is out belongs to the split family (R-550).
-- The calls (R-551). Team up: stay and kill, push into their base for NPCs, push their flagger, run a flag for a
-  backup, fall back and reset. Team down: stay and fight, fall to footmen, retreat to the pit, trade with a split.
-  A fight that moves up short of their base is still stay and kill. *As built:* read 20 s in and told again at
-  60 s (R-556), from where the main team stands against where it stood and whether a runner of its own has gone.
+## The numbers advantage (not a decision family of its own: R-557)
+- A numbers advantage from kills is a state and a matter of execution, not a decision: the team up keeps trying to
+  kill and follows the team down; the team down's choices (stay, footmen, the pit; how long to try for a res) are
+  close to forced and of little weight in the data (R-557). The numbers that are decisions are those a team chose
+  to make: a runner (the flag family), a split or a collapse (the split family). Big advantages (three or more
+  kills, a wipe) stay a later decision.
+- For the execution list (R-557): the res (how soon it is tried, what stops it), giving ground a player down, the
+  conversion of an advantage, and fights in general.
 - A res that gets off (a res signet, Death Pact Signet and the like) ends a numbers advantage from kills (R-552):
   a res that levels the fight ends it if that team takes no death in the next 12 s; a death inside 12 s and it is
   the same advantage (R-555). *As built:* a dead player alive again more than 3 s off the base res; he is counted
   in his fight at once, and a new stretch with the same side up within 10 s is the same situation.
+- His words for the calls, kept for the split family (R-551). Team up: stay and kill, push into their base for
+  NPCs, push their flagger, run a flag for a backup, fall back and reset. Team down: stay and fight, fall to
+  footmen, retreat to the pit, trade with a split; with splits there are more (collapse, send more on the split).
 - A call is judged only against like spots (R-556): a team's call follows the spot it is in.

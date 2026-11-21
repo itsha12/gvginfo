@@ -28,7 +28,8 @@ const BAND = { high: "High", medium: "Medium", low: "Low", none: "No decision" }
 const KINDS = ["flag", "push on a flagger", "split", "collapse", "numbers", "boost", "pinned in base", "base res", "Lord push", "other"];
 const SKIP = "not judged";      // a call that is not asked for
 let rows = null, marks = null, cur = null, draft = {};
-// Two advice views share this code (R-550): the flag decisions and the numbers advantages. What differs between them is in ADVICE
+// The advice view is written for more than one family of decisions: what differs between them is in ADVICE. Only the flag cards are shown: the numbers
+// advantage from kills turned out to be no decision of its own (R-557), so its view is off the page; its entry stays for the split family to copy
 let CARDS = "data/model/flag_cards.json", CARD_MARKS = "data/model/flag_card_marks.json", CDRAFT = "gvginfo.review.cards1", ckind = "flags";
 const SENSE = [["agree", "Makes sense"], ["disagree", "Does not"], ["unsure", "No view"]];
 // His own call. "No clear answer" was two answers (his word, 2026-11-19): that it makes no difference what the team does, and that he does not know what he would do
@@ -50,7 +51,7 @@ const ADVICE = {
     about: "own (what he would have done; team up: stay = stay and kill, base = push into their base for NPCs, flagger = push their flagger, backup = run a flag for a backup, reset = fall back and reset; team down: fight = stay and fight, footmen = fall to footmen, pit = retreat to the pit, trade = trade with a split; nodiff = it makes no difference here, unknown = he does not know)" } };
 const setKind = (k) => { if (ckind === k) return; ckind = k; CARDS = ADVICE[k].cards; CARD_MARKS = ADVICE[k].marks; CDRAFT = ADVICE[k].draft; cards = null; cmarks = null; ccur = null; cdraft = {}; };
 let view = "games", cards = null, cmarks = null, ccur = null, cdraft = {};
-try { const v0 = localStorage.getItem("gvginfo.review.view"); view = v0 === "flags" || v0 === "numbers" ? v0 : "games"; } catch { /* the games view */ }
+try { view = localStorage.getItem("gvginfo.review.view") === "flags" ? "flags" : "games"; } catch { /* the games view */ }
 let showTodo = false;           // rows not yet marked are shown in red (his request, 2026-11-17: "which rows I haven't marked yet")
 try { showTodo = localStorage.getItem("gvginfo.review.todo") === "1"; } catch { /* off */ }
 
@@ -365,7 +366,7 @@ async function renderFlags(out, keep = false) {
 export async function renderReview(out, keep = false) {
   if (view === "flags" || view === "numbers") { setKind(view); await renderFlags(out, keep); } else await renderGames(out, keep);
   const sw = document.createElement("div"); sw.className = "row rv-view"; sw.style.cssText = "gap:.4rem;margin:.4rem 0 .8rem";
-  sw.innerHTML = [["games", "Decisions: is each read correctly?"], ["flags", "Flag advice: the engine's sentence for each flag decision"], ["numbers", "Numbers advice: up or down a player at the main fight"]]
+  sw.innerHTML = [["games", "Decisions: is each read correctly?"], ["flags", "Flag advice: the engine's sentence for each flag decision"]]
     .map(([v, t]) => `<button class="btn small ${view === v ? "primary" : "ghost"}" data-view="${v}">${t}</button>`).join("");
   out.querySelector("h1")?.after(sw);
   sw.querySelectorAll("[data-view]").forEach((b) => b.onclick = () => { view = b.dataset.view; try { localStorage.setItem("gvginfo.review.view", view); } catch { /* for this visit only */ } renderReview(out); });
