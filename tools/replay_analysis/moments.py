@@ -2460,6 +2460,7 @@ class Moments:
                     if len(idx) * S >= JOIN_S: runs[kind].append((a, i, j, idx))
                     i = j + 1
         given = {}                                       # (player, reading) -> "main" or "split", for the players the question arose for
+        defending = set()                                # ... of them, those it arose for as defenders of a split
         for kind in ("defence", "split"):                # the defenders first: a split player who trades with a man defending his split is on his split
             ev, trades = {}, {}
             for a, i, j, idx in runs[kind]:
@@ -2544,6 +2545,14 @@ class Moments:
                 for q in range(i, j + 1):
                     last = res.get(q, last)
                     given[a, q] = last
+                    if kind == "defence": defending.add((a, q))
+            # a defence has a split to defend: a defender given to the split's fight at a reading where every enemy player on that split is given to the main
+            # fight is in the main fight with them (TFS v DMG 22:42 to 23:10: DMG's Mesmer, the one player on the split, is given to the main fight by his
+            # trades, and TFS's eight, who stood where a defence stands and traded with nobody else, were left on a defence of nobody and out of both counts)
+            for a, q in defending:
+                if given.get((a, q)) != "split": continue
+                t, foe_a = times[q], other(team_of(a))
+                if not any(told.get((x, t)) == "split" and given.get((x, q)) != "main" for x in self.st.players[foe_a] if self.AL[x][t]): given[a, q] = "main"
             for (a, q), v in given.items():
                 self._side[(a, times[q])] = v
                 if v == "split": counted[a][q] = False
@@ -2631,11 +2640,27 @@ class Moments:
                 self._side_off = True
                 try: jobs.split_plays(self, jobs._K(self))
                 finally: self._side_off = False
-                for sp in getattr(self, "_split_at", None) or []:
-                    for t, (s_, d_) in sp["at"].items():
-                        for a in s_: self._cands[(a, t)] = "split"
-                        for b in d_: self._cands.setdefault((b, t), "defence")
-                self._split_at = []
+                def take():
+                    n = len(self._cands)
+                    for sp in getattr(self, "_split_at", None) or []:
+                        for t, (s_, d_) in sp["at"].items():
+                            for a in s_: self._cands.setdefault((a, t), "split")
+                            for b in d_: self._cands.setdefault((b, t), "defence")
+                    self._split_at = []
+                    return len(self._cands) > n
+                take()
+                # ... and asked again of the reading it gives. With players given to one fight the split's reading counts others than its silent pass did: a
+                # player left as the last of a split when the rest are given to the main fight is on it for as long as he stands there (TFS v DMG 22:10 to
+                # 23:10: DMG's Mesmer, a candidate for 8 s, was told as a lone split with eight defenders for a minute while the main fight counted them
+                # all, twelve of the self-check's twenty). The question of R-519 has to arise for every player both readings count in the end, so the
+                # splits are read again with the sides given and whoever they count then is a candidate too, until nobody new is counted (twice at most)
+                for _ in range(2):
+                    self._nums = None
+                    self._numbers()
+                    jobs.split_plays(self, jobs._K(self))
+                    more = take()
+                    self._nums = None
+                    if not more: break
         return self._cands
 
     def fight_side(self, a, t):

@@ -217,7 +217,7 @@ def opening(M):
         flag = {"brought": None, "by": [], "how": None, "at": None, "held_s": 0, "sent_back": None}
         if pre is not None:
             by = list(dict.fromkeys(role[a] for a in pre["ids"])) or [pre["runner"]]      # who carried it once the gates were open: the player who held it before them and stays back is not one
-            flag.update(brought=True, by=by, how=pre["how"], at=int(pre["e"]), held_s=int(pre.get("held_s") or 0))
+            flag.update(brought=True, by=by, how=pre["how"] or "put down", at=int(pre["e"]), held_s=int(pre.get("held_s") or 0))      # neither capped nor returned in the replay: put down for good (it read "None at 6:53": One v Crew)
         elif rows and rows[0].get("off", rows[0]["s0"]) <= OPEN_BY_S * 2:      # no flag came up with the team and a player went back for the first one (his words on Men v hold 0:00: "hold did not bring the first flag and had to send ele back for it"), though a flag was carried a few steps and put down
             nxt = rows[0]
             flag.update(brought=False, sent_back={"who": nxt["runner"], "at": int(nxt.get("off", nxt["s0"])), "how": nxt["how"], "end": int(nxt["e"])})
@@ -297,7 +297,10 @@ def flag_plays(M, K, pinned_at):
         # previous row" that "states a decision point for something that has already happened"). Runners gone in the same second are ordered by when the hall's
         # rule tells the run, then by team, so that the pair is still told once
         # ... and the two first flags, both brought from the gates, are neither one before the other: each team's first flag is told under the opening (R-520)
-        first = lambda g_: not (g_["pregame"] and f["pregame"]) and (go(g_), g_["s0"], g_["tm"]) < (fo, f["s0"], f["tm"])
+        # (a first flag taken up again minutes later is not "from the gates": without this its answer was read as the other team's first flag, six minutes
+        # before it, and the play ended before it began: One v Crew 6:37 to 1:14)
+        gates = lambda x_: x_["pregame"] and x_["s0"] <= OPEN_BY_S
+        first = lambda g_: not (gates(g_) and gates(f)) and (go(g_), g_["s0"], g_["tm"]) < (fo, f["s0"], f["tm"])
         earlier = next((g for g in mine if first(g) and g["e"] > w0 + 5), None)      # our flag already set off for when theirs sets off
         # a run of ours set off for while theirs is out: it is the answer to theirs when its runner turned for home before their flag went in, though the hall's rule
         # (R-461) reads the run itself a few seconds later (R-498: his mark on HC v Team 5:58, Classic: HC caps at 6:36, Team's Monk 5 sets off at 6:34 and leaves the
