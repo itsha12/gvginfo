@@ -494,7 +494,7 @@ def _push_not_split(M, x, p):
     at his spawn or carrying), were on him within SPLIT_GAP_S of crossing, and left the enemy's ground within SPLIT_GAP_S of the
     push ending: they were there for the flag. Players who stay on after the flag has gone, or who die there, are a split whose defender carries his flag (R-430;
     HC v cope 0:20 and 0:32, Classic: "the lone defender carries his flag"; TFS v 옷옷옷옷 6:20)."""
-    if x["tm"] != p["tm"] or set(p["ids"]) != set(x["ids"]) or x.get("end") != "left": return False      # every player who went is on the flagger
+    if x["tm"] != p["tm"] or not set(x["ids"]) <= set(p["ids"]) or x.get("end") != "left": return False      # every player who went is on the flagger (a player who travels with them without crossing is of the push too, R-573)
     if not (x["t_in"] - JOIN_S <= p["t"] <= x["t_in"] + SPLIT_GAP_S and x["t1"] <= p["t1"] + SPLIT_GAP_S): return False      # on him within SPLIT_GAP_S of crossing, gone within SPLIT_GAP_S of the push ending
     b, u = p["flagger"], int(p["t"]) - int(p["t"]) % SPLIT_STEP
     near = lambda v: bool(M.AL[b][v]) and any(M.AL[a][v] and M.P[a][v] and d(M.P[a][v], M.P[b][v]) < FIGHT_LINK for a in p["ids"])

@@ -1351,6 +1351,8 @@ class Moments:
         or about to be once the dead come back. One record a base res and attacking team, with what followed."""
         st, m, out = self.st, self.m, []
         inb = ("pit", "base", "front door", "back door", "front footies", "back footies")
+        if self.hall is not None and (self.hall.features.get("base_res") or {}).get("footmen_in_base") is False:
+            inb = inb[:4]                                     # a hall where a team at the footmen is not in the base for the base res (R-574, Isle of Jade: "too far to have an issue with base res"); kept with the hall's features
         for tm in st.teams:
             foe = 3 - tm
             for B in range(RES_EVERY, self.T + 1, RES_EVERY):
@@ -1479,10 +1481,26 @@ class Moments:
 
     def flag_pushes(self):
         """Pushing the flagger, its own record apart from a split and a push (R-371). One record each stretch in which
-        players of one team stand on the other team's flagger (within PUSHFLAG_R of him for PUSHFLAG_S or longer,
-        having hit him or landed a skill on him) while he is on his own: carrying the flag, going back for it or at his
-        flag spawn about to pick it up, with fewer than PUSHFLAG_MATES team mates around him and fewer than half of his
-        main team, and not himself on a split or a push. Each record: when, who pushes (and whether it is their main team), the flagger and what he was
+        players of one team are on the other team's flagger while he is on his run: carrying the flag, going back for
+        it or at his flag spawn about to pick it up, and not himself on a split or a push.
+
+        When he is on his run (R-573). A carrier whose flag has stood in hand at the flag stand for HOLD_S has arrived: he
+        holds it in the fight there (R-377, R-486) and nobody is pushing him (HC v Team 1:30). Until then he is pushed while he is on
+        his own (fewer than PUSHFLAG_MATES team mates round him and fewer than half of his main team); and a push that
+        began so goes on when his team comes back to him, for as long as the pushing team's main team stands on him on
+        his own ground: the main team has moved onto the flagger, and it is the whole team's push (Men v RACK 1:08).
+
+        Who pushes (R-573; a player counts in one fight, R-519: by whom he trades with, then whom he stands with, then
+        where he is moving). (1) A player who hits or casts on the flagger and is on him: he stands within an aggro
+        bubble of him (FIGHT_CLOSE) for PUSHFLAG_S, or has left his own main team for him (`main_team`), or, from
+        range, lands more on him than on the rest of his team; and when nobody is on him so, the player who casts on
+        him from range is the push. (2) A player who travels with those players: he goes with the flagger
+        inside that bubble (the monk healing them), or he has left his own main team and comes to the flagger with
+        them. (3) Not a player who is near because a fight is there: one of the main team who stands off him, or who
+        trades with the flagger's helpers (HC v Team 8:18); a monk healing the pushers across from the main fight is
+        not with them (as on a split, `linked`). (4) The players of a main team that has moved onto him.
+
+        Each record: when, who pushes (and whether it is their main team), the flagger and what he was
         doing, where, who of his team came to help, and what came of it: he died, he dropped the flag, the flag was
         returned or capped, and how long he waited at his spawn before picking up with an enemy on him (R-377)."""
         if self._fpush is not None: return self._fpush
@@ -1493,34 +1511,75 @@ class Moments:
             foe = 3 - tm
             if tm not in st.side or foe not in st.side: continue
             for b in st.players[foe]:
-                runs, cur = [], None
+                runs, cur, stood = [], None, 0
                 for t in range(0, T + 1, S):
                     state = self._flagger(b, foe, t)
-                    on = []
+                    on, onto = [], []
+                    stood = stood + S if state == "carrying" and self.place_at(b, t)[0] == "stand" else 0
+                    if stood >= HOLD_S: state = None                     # arrived: it has stood in hand at the stand for HOLD_S, a held flag in the fight there (R-377, R-486, R-573)
                     if state:
                         mates = sum(1 for x in st.players[foe] if x != b and self.AL[x][t] and d(self.P[x][t], self.P[b][t]) < FIGHT_LINK)
                         sp, pu, _ = self._over(foe, t)
                         rest = sum(1 for x in self.main_team(foe, t) if x != b and self.AL[x][t])      # on his own: with fewer than PUSHFLAG_MATES team mates and fewer than half his main team
-                        if mates < PUSHFLAG_MATES and mates * 2 < max(rest, 2) and ((b not in sp and b not in pu) or self._deep(b, t) == "field"):      # out in the field he is on his run, not on a split (a stand that lies on the enemy's half)
+                        run = (b not in sp and b not in pu) or self._deep(b, t) == "field"      # out in the field he is on his run, not on a split (a stand that lies on the enemy's half)
+                        own = run and mates < PUSHFLAG_MATES and mates * 2 < max(rest, 2)
+                        if own:
                             on = [a for a in st.players[tm] if self.AL[a][t] and d(self.P[a][t], self.P[b][t]) < PUSHFLAG_R]
+                        elif run and cur is not None and cur["begun"] and t - cur["t1"] <= PUSHFLAG_GAP_S and self._ladder(foe, *self.place_at(b, t)) >= 1:
+                            # he was being pushed on his own (someone had landed on him), his team has come back to him and he is still short of the field: the push goes
+                            # on while their main team stands on him (R-573 (4)). A main team that walks its fight onto a holder who stands in his team is its own push
+                            # record (onto the flag, R-401), not this
+                            mt = [a for a in self.main_team(tm, t) if self.AL[a][t]]
+                            at = [a for a in mt if d(self.P[a][t], self.P[b][t]) < FIGHT_LINK]
+                            if len(at) >= 3 and len(at) * 2 >= len(mt):
+                                onto = at; on = [a for a in st.players[tm] if self.AL[a][t] and (a in at or d(self.P[a][t], self.P[b][t]) < PUSHFLAG_R)]
                     if not on: continue
                     if cur is None or t - cur["t1"] > PUSHFLAG_GAP_S:
-                        cur = {"t": t, "t1": t, "secs": collections.Counter(), "state": state, "states": set()}
+                        cur = {"t": t, "t1": t, "secs": collections.Counter(), "close": collections.Counter(), "onto": collections.Counter(), "state": state, "states": set(), "begun": False}
                         runs.append(cur)
                     cur["t1"] = t; cur["states"].add(state)
-                    for a in on: cur["secs"][a] += S
+                    if not onto and not cur["begun"]: cur["begun"] = any(y == b and x in on for u in range(max(t - 1, 0), t + S) for x, y in self.acts.get(u, ()))
+                    for a in on:
+                        cur["secs"][a] += S
+                        if d(self.P[a][t], self.P[b][t]) < FIGHT_CLOSE: cur["close"][a] += S
+                    for a in onto: cur["onto"][a] += S
                 for r in runs:
                     t0, t1 = r["t"], r["t1"]
                     # R-418: he reaches his team with them still on him (the stretch ends only because he is no longer on his own): a hit or
                     # skill that lands as he arrives counts, and the push needs only PUSHFLAG_SHORT_S on his own
                     v = min(t1 + S, T)
                     reached = self.AL[b][v] and bool(self._flagger(b, foe, v)) and any(self.AL[a][v] and d(self.P[a][v], self.P[b][v]) < PUSHFLAG_R for a in r["secs"])
-                    acted = collections.Counter()
+                    acted, other = collections.Counter(), collections.Counter()
                     for u in range(t0 - 1, min(t1 + (PUSHFLAG_LATE_S if reached else 2), T) + 1):
                         for x, y in self.acts.get(u, ()):
                             if y == b and x in r["secs"]: acted[x] += 1
-                    ids = sorted((a for a in r["secs"] if acted[a] or r["secs"][a] >= PUSHFLAG_S), key=lambda a: (-acted[a], -r["secs"][a]))
-                    main = [a for a in self.main_team(tm, t0) if self.AL[a][t0]]
+                            elif x in r["secs"] and y != b and y in self.P and m.team(y) == foe: other[x] += 1
+                    steps = list(range(t0, t1 + 1, S))
+                    in_main = collections.Counter(a for u in steps for a in self.main_team(tm, u) if self.AL[a][u])
+                    main = [a for a in st.players[tm] if in_main[a] * 2 >= len(steps)]      # their main team as it stood through the push
+                    # who pushes (R-573). (1) he hits or casts on the flagger and is on him: inside an aggro bubble of him for PUSHFLAG_S, or landing more on him than on the rest of his team
+                    away = {a for a in st.players[tm] if in_main[a] * 2 < len(steps)}      # has left his own main team
+                    close = collections.Counter(r["close"])
+                    if reached:                                              # R-418: he reaches his team with them on him; who is on him is read as far as the hit or skill is
+                        for u in range(t1 + S, min(t1 + PUSHFLAG_LATE_S, T) + 1, S):
+                            for a in r["secs"]:
+                                if self.AL[a][u] and self.AL[b][u] and d(self.P[a][u], self.P[b][u]) < FIGHT_CLOSE: close[a] += S
+                    core = {a for a in r["secs"] if acted[a] and (close[a] >= PUSHFLAG_S or a in away)}      # on him
+                    # ... or from range (a ranger, a caster with a snare): he lands more on the flagger than on the rest of his team; or nobody is nearer on him, and
+                    # the player casting on him from range is the push (hold v RACK 12:42, Classic: the Water Ele follows RACK's flagger at cast range)
+                    core |= {a for a in r["secs"] if acted[a] and (acted[a] >= other[a] or not core)}
+                    ids = set(core)
+                    if core:
+                        own_flag = lambda a: any(self._flagger(a, tm, u) for u in steps)      # their own flagger going by is on his own run
+                        # (2) he goes with the flagger inside that bubble (the monk healing them); (3) one of the main team who trades with the flagger's helpers is in that fight
+                        ids |= {a for a in r["secs"] if r["close"][a] >= PUSHFLAG_S and (not other[a] or a in away) and not own_flag(a)}      # (on his run only: where he arrives, the players standing there are his team's fight)
+                        # (2) he has left his own main team and comes to the flagger with them
+                        for a in away:
+                            if a in ids or own_flag(a): continue
+                            if sum(S for u in range(t0, min(t1 + S, T) + 1, S) if self.AL[a][u] and self.AL[b][u] and d(self.P[a][u], self.P[b][u]) < FIGHT_LINK) >= PUSHFLAG_SHORT_S: ids.add(a)
+                        # (4) their main team has moved onto him: the whole team's push
+                        ids |= {a for a in r["onto"] if r["onto"][a] >= PUSHFLAG_S}
+                    ids = sorted(ids, key=lambda a: (-acted[a], -r["secs"][a]))
                     helped = sorted({x for x in st.players[foe] if x != b for u in range(t0, t1 + 1, S)
                                      if self.AL[x][u] and self.AL[b][u] and d(self.P[x][u], self.P[b][u]) < 1000}
                                     - {x for x in st.players[foe] if x != b and self.AL[x][t0] and d(self.P[x][t0], self.P[b][t0]) < FIGHT_LINK})
