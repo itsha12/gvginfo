@@ -2529,10 +2529,29 @@ class Moments:
         def fought(e):                                   # it is being fought: everyone who stood in it starts more than FOUGHT casts or attacks each in 10 s
             c = sum(1 for u in range(int(e["start"]), int(e["last"]) + 1) for x in self.casts.get(u, ()) if x in e["all"])
             return c > FOUGHT * len(e["all"]) * max(e["last"] - e["start"], 10) / 10
+        # R-579 (the mirror of R-350, his "Yes, I agree" of 2026-11-21): a player away from his fight for less than JOIN_S has not left it. A player counted in the
+        # fight before and after, alive all the while, carrying no flag and given to no split's fight meanwhile, has stayed through a gap whose missed readings span
+        # JOIN_S or less (Men v RACK 12:06, "this is 7v7": Men's Ranger eleven seconds on RACK's Bodyguard). Read here only to close a difference: where the fight
+        # is level with those players counted, nobody is up. It never lengthens one (a first build that kept them in the count joined rows through the flicker of
+        # Jade's portal, Men v Crew 24:34, Classic; a side that stays up through a short break is already one situation, below). A dead player is not away.
+        stay = collections.defaultdict(set)
+        for a in self.m.PL:
+            tm_a = self.m.team(a)
+            inn = [F[t] is not None and a in F[t]["ids"][tm_a] and counted[a][ti] for ti, t in enumerate(times)]
+            last_in = None
+            for ti, t in enumerate(times):
+                if not inn[ti]: continue
+                if last_in is not None and 1 < ti - last_in and times[ti - 1] - times[last_in + 1] <= JOIN_S:
+                    gap = range(last_in + 1, ti)
+                    if all(F[times[q]] is not None and self.AL[a][times[q]] and not self.carrying(a, times[q]) and self._side.get((a, times[q])) != "split" for q in gap):
+                        for q in gap: stay[times[q]].add(a)
+                last_in = ti
+        self._stayed = stay
         for ti, t in enumerate(times):
             f = F[t]
             n = {tm: sum(1 for a in f["ids"][tm] if counted[a][ti]) for tm in self.st.teams} if f is not None else None
             adv = None if n is None or not n[1] or not n[2] or n[1] == n[2] else (1 if n[1] > n[2] else 2)
+            if adv and stay[t] and len({n[tm] + sum(1 for a in stay[t] if self.m.team(a) == tm and a not in f["ids"][tm]) for tm in self.st.teams}) == 1: adv = None      # R-579: level with the players who have not left
             now = frozenset(a for tm in self.st.teams for a in f["ids"][tm] if counted[a][ti]) if f is not None else frozenset()
             if adv and cur and cur["adv"] == adv and t - cur["last"] <= S: cur["last"] = t; cur["ns"].append((n[1], n[2])); cur["all"] |= set(f["ids"][1]) | set(f["ids"][2]); cur["at"][t] = now
             else:
