@@ -49,12 +49,11 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
      push v True 597fe160 11:18 (may be a true counter-split). Only six such rows in 564 matches.
    - Men v hold 6:48 (flagger carrying his flag home with his team, read as pushed): one like row in 1,278
      pushes, Men v cope 2ce13ef6 11:10. Claude's recommendation: drop it unless he rules on the original.
-   - Men v RACK 12:06 with Men v Crew 8:18 and 20:10 (numbers for 10 to 12 s): Men v hook ad75813a 2:20, hold v
-     hook fe0bdc51 12:56, Book v Crew 6aaa0f6d 5:08. 409 of 2,083 "split elsewhere" numbers situations last 12 s
-     or less; of his 11 graded ones none is Classic (13 to 20 s: 5 of 10). Two games already: asked whether a
-     player away from his fight under JOIN_S has not left it (the mirror of R-350).
-   - Men v Crew 12:26: asked what he meant (Crew's Water Ele capped at 12:23 and set off again at 13:17; the row
-     pairs Men's Derv taking up the Ranger's flag at 12:26, then holding it 1:51, with that later run).
+   - Men v RACK 12:06, Men v Crew 8:18 and 20:10 (numbers for 10 to 12 s): Men v hook ad75813a 2:20, hold v hook
+     fe0bdc51 12:56, Book v Crew 6aaa0f6d 5:08. 409 of 2,083 such situations; of his 11 graded none is Classic
+     (13 to 20 s: 5 of 10). Two games: asked whether under JOIN_S away is not having left (mirror of R-350).
+   - Men v Crew 12:26: asked what he meant (the row pairs Men's Derv taking up the Ranger's flag at 12:26 and
+     holding it 1:51 with Crew's Water Ele's next run, at 13:17; his 11:32 run capped at 12:23).
    - HC v hdm 5:56 (a flag left lying, taken up later and capped, no flag row): 옷옷옷옷 v cope 01c0b3c1 4:55,
      Book v OG 76b61497 10:56, Crew v Team e7a93c30 10:41. 32 such caps in 29 matches with no flag play at all.
    Five flag cards to mark (State). R-576's reading (held in base by five or more) is Claude's, and R-575 is
