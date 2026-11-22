@@ -50,7 +50,7 @@ from common import (STAND_R, FOUGHT, DOUBLE_NEXT_S, FLAG_MOMENT_GREATER, FLAG_MO
                     PUSHFLAG_R, PUSHFLAG_S, PUSHFLAG_SHORT_S, PUSHFLAG_LATE_S, PUSHFLAG_GAP_S, PUSHFLAG_MATES, PUSHFLAG_AHEAD_S, ROUTE_ENDS, ROUTE_OFF, ROUTE_CLEAR, ROUTE_MIN_S, LEAD_S,
                     WAY_OUT_GAP_S, STANDOFF_S, STANDOFF_HITS, STANDOFF_MIN, STANDOFF_R, STANDOFF_SPLIT_MIN, STANDOFF_SPLIT_S, STANDOFF_STILL, STANDOFF_NEAR, LEAD_HALF, LEAD_ONE, LEAD_ONE_HALF, LEAD_TWO, HOLD_BACK_S, LEFT_AT_SPAWN_S, RUN_SPEED, PICKUP_DELAY_S, HOLD_S, BOOST_LATE_S, HELP_IN_S, HELP_BACK_S, LEAVE_RES_S, MONK_S, MONK_MIN, LORD_GAP_S)
 from state import d
-from hallmap import _seg_dist
+from hallmap import _seg_dist, mid, HOP_END
 
 HOME, THEIRS = ("own pit", "own base"), ("enemy pit", "enemy base")
 HOME_GROUND = ("pit", "base", "front door", "back door", "front footies", "back footies")      # a team's own ground, out to its doors and footmen (place_at kinds on its own side)
@@ -117,6 +117,11 @@ class Moments:
         self.aid = collections.defaultdict(list)             # second -> [(actor, target)] a heal or a skill landed on a team mate
         self.casts = collections.defaultdict(list)           # second -> [player] a cast or an attack started
         self._nr, self._ia = {}, {}
+        self._tele = []                                       # the two ends of each teleporter that works both ways (R-575)
+        if self.hall is not None and (self.hall.features.get("teleporters") or {}).get("two_way"):
+            for h in self.hall.hops:
+                e = tuple(sorted((tuple(mid(h[0])), tuple(mid(h[1])))))
+                if not any(d(e[0], f[0]) < HOP_END and d(e[1], f[1]) < HOP_END for f in self._tele): self._tele.append(e)
         self.lord_hits = collections.defaultdict(list)       # team -> [(second, the enemy player, amount)] damage on its Guild Lord
         self.pit_kind = collections.defaultdict(lambda: collections.defaultdict(set))  # team -> second -> which of them (knight, bodyguard, guild_lord)
         self.pit_act = collections.defaultdict(lambda: collections.defaultdict(set))   # team -> second -> enemy players trading damage with its knight, bodyguard or Guild Lord (R-387)
@@ -262,11 +267,21 @@ class Moments:
         return "spread"
 
     # ---- every fight on the map, with its own numbers (a draft of the theatre layer, R-341)
+    def _reach(self, p, q):
+        """How far apart two players stand for a fight: the straight distance, or, on a hall whose teleporters work both ways (Isle of Jade, Nomad's
+        Isle), the way through one when that is shorter. The two ends of a teleporter are one step apart, so a fight that stands at one is the same
+        fight on either side of it (R-575: "Are players walking through the portal part of the main fight on either side? Yes, if they are walking
+        through during the fight")."""
+        x = d(p, q)
+        for e1, e2 in self._tele:
+            x = min(x, d(p, e1) + d(e2, q), d(p, e2) + d(e1, q))
+        return x
+
     def _near(self, t):
         """The pairs of living players within FIGHT_LINK of one another at second t."""
         if t not in self._nr:
             live = [a for a in self.m.PL if self.AL[a][t]]
-            self._nr[t] = {(a, b) for i, a in enumerate(live) for b in live[i + 1:] if d(self.P[a][t], self.P[b][t]) < FIGHT_LINK}
+            self._nr[t] = {(a, b) for i, a in enumerate(live) for b in live[i + 1:] if self._reach(self.P[a][t], self.P[b][t]) < FIGHT_LINK}
         return self._nr[t]
 
     def _acting(self, t, aid=True):
@@ -287,7 +302,7 @@ class Moments:
         healing across from the main fight is not on the split (NwAy v Men 11:50, review key s1-21)."""
         if a > b: a, b = b, a
         if (a, b) in self._near(t): return True
-        dist = d(self.P[a][t], self.P[b][t])
+        dist = self._reach(self.P[a][t], self.P[b][t])
         if dist < FIGHT_ACT and (a, b) in self._acting(t, aid=False): return True
         return dist < FIGHT_HOLD and any((a, b) in self._near(u) for u in range(max(t - FIGHT_HOLD_S, 0), min(t + FIGHT_HOLD_S, self.T) + 1, 2))
 

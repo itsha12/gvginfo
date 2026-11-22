@@ -8402,8 +8402,7 @@
        366
       ]
      },
-     "why": "cope v Team 6:04: not a 1 v 8, the Warrior was only the last one through the portal",
-     "open": true
+     "was": "cope v Team 6:04: not a 1 v 8, the Warrior was only the last one through the portal (built 2026-11-21: R-575, the two ends of a two-way teleporter one step apart in `Moments._reach`)"
     }
    ]
   },
@@ -8651,8 +8650,7 @@
        718
       ]
      },
-     "why": "cope v Team 11:56: no real fight in this period",
-     "open": true
+     "was": "cope v Team 11:56: no real fight in this period (built 2026-11-21: R-575, the two ends of a two-way teleporter one step apart in `Moments._reach`)"
     }
    ]
   },
@@ -8801,7 +8799,8 @@
      "mark": "partly"
     }
    ],
-   "checks": [
+   "checks": [],
+   "retired_checks": [
     {
      "none": {
       "play": "numbers",
@@ -8811,7 +8810,7 @@
        836
       ]
      },
-     "was": "cope v Team 13:52: a continuation of the situation above: told once"
+     "was": "cope v Team 13:52: a continuation of the situation above: told once | retired 2026-11-21 (R-575): the players read as missing from 13:34 were cope walking through the portal; with them counted, cope is a player down from the AoB Derv's death at 13:52, and the situation is told once from there to 14:36."
     }
    ]
   },
@@ -8842,7 +8841,8 @@
      "mark": "partly"
     }
    ],
-   "checks": [
+   "checks": [],
+   "retired_checks": [
     {
      "none": {
       "play": "numbers",
@@ -8852,7 +8852,7 @@
        856
       ]
      },
-     "was": "cope v Team 14:12: a continuation of the situation above: told once"
+     "was": "cope v Team 14:12: a continuation of the situation above: told once | retired 2026-11-21 (R-575): the players read as missing from 13:34 were cope walking through the portal; with them counted, cope is a player down from the AoB Derv's death at 13:52, and the situation is told once from there to 14:36."
     },
     {
      "has": {
@@ -8868,7 +8868,7 @@
       ]
      },
      "want": {},
-     "was": "cope v Team: down on numbers from 13:34 to the end of it at 14:46 is one situation",
+     "was": "cope v Team: down on numbers from 13:34 to the end of it at 14:46 is one situation | retired 2026-11-21 (R-575): the players read as missing from 13:34 were cope walking through the portal; with them counted, cope is a player down from the AoB Derv's death at 13:52, and the situation is told once from there to 14:36.",
      "note": "end widened 2026-11-18: a numbers row now ends with the numbers, not 10 s on"
     }
    ]
@@ -13916,9 +13916,8 @@
        "clear": null
       }
      },
-     "open": true,
      "auto": true,
-     "why": "Men v Crew, Jade 14:24: he graded it No decision: no numbers disadvantage, it's just people walking back and forth through the portal with basically no fighting"
+     "was": "Men v Crew, Jade 14:24: he graded it No decision: no numbers disadvantage, it's just people walking back and forth through the portal with basically no fighting (built 2026-11-21: a numbers stretch that lies wholly in a stand-off (R-405, `standoffs`) is no numbers advantage, `jobs.numbers_plays`)"
     },
     {
      "none": {
@@ -13932,16 +13931,15 @@
        "clear": null
       }
      },
-     "open": true,
      "auto": true,
-     "why": "Men v Crew, Jade 14:24: he graded it No decision: no numbers disadvantage, it's just people walking back and forth through the portal with basically no fighting"
+     "was": "Men v Crew, Jade 14:24: he graded it No decision: no numbers disadvantage, it's just people walking back and forth through the portal with basically no fighting (built 2026-11-21: a numbers stretch that lies wholly in a stand-off (R-405, `standoffs`) is no numbers advantage, `jobs.numbers_plays`)"
     }
    ],
    "answered": {
     "on": "2026-11-21",
     "asked": "Isle of Jade: are players walking through the portal part of the main fight on either side?",
     "said": "Yes, if they are walking through during the fight.",
-    "reading": "R-575 (not built: the reading tried on 2026-11-21, the two ends of a two-way teleporter one step apart in `Moments._near` and `linked`, closed this fault at 15:10 and cope v Team 6:04 and 11:56 but told Men v Crew 24:34, Classic, 8 s earlier and broke cope v Team 13:34 to 14:46 as one situation)"
+    "reading": "R-575, built 2026-11-21 (`Moments._reach`). Nobody is through the portal at 14:24 (two of Men at its mouth, five behind, no fighting): the row was a stand-off read as numbers, and is no longer told (R-405, `jobs.numbers_plays`)."
    }
   },
   {
@@ -13987,9 +13985,8 @@
        "clear": null
       }
      },
-     "open": true,
      "auto": true,
-     "why": "Men v Crew, Jade 15:10: he graded it No decision: same as before, no numbers disadvantage, it's just people walking back and forth through the portal with basically no fighting"
+     "was": "Men v Crew, Jade 15:10: he graded it No decision: same as before, no numbers disadvantage, it's just people walking back and forth through the portal with basically no fighting (built 2026-11-21: R-575, the two ends of a two-way teleporter one step apart in `Moments._reach`)"
     },
     {
      "none": {
@@ -14003,16 +14000,15 @@
        "clear": null
       }
      },
-     "open": true,
      "auto": true,
-     "why": "Men v Crew, Jade 15:10: he graded it No decision: same as before, no numbers disadvantage, it's just people walking back and forth through the portal with basically no fighting"
+     "was": "Men v Crew, Jade 15:10: he graded it No decision: same as before, no numbers disadvantage, it's just people walking back and forth through the portal with basically no fighting (built 2026-11-21: R-575, the two ends of a two-way teleporter one step apart in `Moments._reach`)"
     }
    ],
    "answered": {
     "on": "2026-11-21",
     "asked": "Isle of Jade: are players walking through the portal part of the main fight on either side?",
     "said": "Yes, if they are walking through during the fight.",
-    "reading": "R-575 (not built: the reading tried on 2026-11-21, the two ends of a two-way teleporter one step apart in `Moments._near` and `linked`, closed this fault at 15:10 and cope v Team 6:04 and 11:56 but told Men v Crew 24:34, Classic, 8 s earlier and broke cope v Team 13:34 to 14:46 as one situation)"
+    "reading": "R-575, built 2026-11-21 (`Moments._reach`)"
    }
   },
   {
@@ -14198,7 +14194,7 @@
     "on": "2026-11-21",
     "asked": "Isle of Jade: are players walking through the portal part of the main fight on either side?",
     "said": "Yes, if they are walking through during the fight.",
-    "reading": "R-575 (not built: the reading tried on 2026-11-21, the two ends of a two-way teleporter one step apart in `Moments._near` and `linked`, closed this fault at 15:10 and cope v Team 6:04 and 11:56 but told Men v Crew 24:34, Classic, 8 s earlier and broke cope v Team 13:34 to 14:46 as one situation)"
+    "reading": "R-575, built 2026-11-21 (`Moments._reach`). This row is still told: nobody is through the portal here (14:24: two of Men at its mouth and five behind, no fighting; 20:10: Crew's seven at Men's back door, the Water Ele at the front), so it is another fault, a stand-off or a moment of arriving read as numbers."
    }
   },
   {
@@ -14417,7 +14413,7 @@
       "play": "numbers",
       "team": "Men",
       "start": [
-       1468,
+       1462,
        1480
       ]
      },
@@ -14431,7 +14427,7 @@
       "play": "numbers",
       "team": "Crew",
       "start": [
-       1468,
+       1462,
        1480
       ]
      },
@@ -14440,7 +14436,8 @@
      },
      "auto": true
     }
-   ]
+   ],
+   "note": "2026-11-21 (R-575 built): the same situation, 7 v 8 from kills at Men's back door, is told from 24:26, when Crew's first players are through the portal onto Men's seven, where the row he graded began at 24:34; the start of its check is widened by 6 s for that and nothing else of it changed."
   },
   {
    "id": "f1-5168-32",

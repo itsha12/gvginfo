@@ -1185,6 +1185,11 @@ def numbers_plays(M, K, trig, recs, pinned_at):
             x["merged"] = "the flag decision"                             # R-431: the consequence of the flag decision, not a second one
             continue
         if pinned_at(tm, t): continue
+        # main teams standing off with little or no damage traded are not a fight (R-405, `standoffs`), so the numbers of one are no numbers advantage: every second
+        # of this stretch its players stand in a stand-off (his marks, Men v Crew 14:24, No decision: "no numbers disadvantage ... basically no fighting")
+        if all(M.standoff_at(e["at"][u], u) for u in e["at"]):
+            x["merged"] = "a stand-off"
+            continue
         # a fight is told once: where the players of one side in this fight are a split, from its first reading to its last, it is that split's fight and is told there,
         # with its numbers along the way (his mark, RJT v RACK 11:08: "sort of true, but you called this fight and period a split already")
         on_split = lambda u: any(ids and sum(1 for a in ids if a in M._over(k, u - u % SPLIT_STEP)[0]) * 2 >= len(ids) for k, ids in e["ids"].items())
