@@ -301,6 +301,10 @@ against general principles rather than past games. Match-by-match evidence lives
 - `P11` **Denning:** In the last seconds before the defenders' base res, attacking teams often leave the pit so they
   aren't caught in a bad position 8v8 when the team resses. **Claude (data):** Lord damage is highest 20 to 60 s
   before the defenders' res and low in the last 10 s.
+- `P16` **Denning:** A team in the enemy's base at their base res is already very heavily favoured to win. "The real
+  danger is just dying to base res": getting greedy and staying in range, in a dangerous position, while the enemy
+  team bases, so that its players are low on energy and health with NPCs on them when the enemy resses at nearly full
+  strength and kills them. "In the base" may need to be read more narrowly for this than for other things.
 - `P12` **OG comms:** Keep a healer with every group at all times (a prot and a monk on one side, the ritualist and a
   monk on the other). **Claude (data, `comms_vars.py`, 144 matches):** groups of 2+ with no healer lost a player in 25% of
   phases against 12% with one, at the same local numbers (+10 points, interval +7 to +13). [ohno v One]
@@ -355,6 +359,26 @@ against general principles rather than past games. Match-by-match evidence lives
 - `F7` **Denning:** Once the runner is capping on its own with no enemy damage near it, the backside group no longer
   needs to support it: fall back toward pit, and only follow if the enemy goes to kill the runner. [Men v HC C]
 
+### The opening
+- `F42` **Denning:** What a team looks at first at the opening is how many players the other team has at its main
+  team. If they have seven with one waiting back for the flag and we are eight, we either send a player back as well
+  or hold our flag and wait for them to cap first. If we also have a player waiting back, we either cap first and get
+  the flag game going, or play the 7v7 and see whether we can kill in a better position than an 8v8 would give.
+- `F43` **Denning:** A team that waits back shows no flag gain because the other team waits for it to cap first: that
+  is essentially an 8v7 with a 1.0 flag advantage, and it plays out over a longer period.
+- `F44` **Denning:** Second, whether they have anyone on a split: if they do, we decide the response. Third, whether
+  they have no flag at all: then we decide whether to cap or hold.
+- `F45` **Denning:** Fourth, who they bring the flag up on and when they try to transfer it. A flag on a frontliner
+  with one waiting back usually means they will try to cap first. Eight at the stand with the flag stuck on a
+  frontliner: we may hold our flag, because that frontliner is doing nothing, and to hold theirs as well they must
+  hand it to a midline, which puts it at risk of being returned. Eight walking up with the flag on a stand mesmer
+  most likely mean to hold it and not cap first.
+- `F46` **Denning:** A flag on their usual split response character (a Mes/A, say), 8v8 or 7v7: we may split, solo or
+  with two or more, because to defend with that character they must hand the flag off, at risk of its being returned.
+  The same holds for us: with our flag on our split response against a solo split, we may have to cap first to free
+  him, send him back to defend, and send someone else (likely a frontliner) back at once for the next flag, because
+  capping first puts us at a disadvantage.
+
 ### Fighting with the flag
 - `F8` **Denning:** Some games are fought 8v8 (holding the flag) or 7v7 (1 player running the flag).
 - `F9` **Denning:** The flag game: 2 or 3 damage, the prot and the 7 monk push the enemy flag, the enemy does the same,
@@ -405,6 +429,9 @@ against general principles rather than past games. Match-by-match evidence lives
   Whether "always collapse" is better has to come from the data.
 - `F22` **Bounty:** A splitter carrying a flag has to be respected quickly. A backup flag belongs with the main team
   rather than overcapping when a splitter is threatening.
+- `F41` **Denning:** A one player push "just isn't that effective at stopping a flag". The player may be better used
+  gaining flag advantage another way, by double running or by helping get the team's own flag in quickly; if the
+  other team does that while the solo push fails, the pushing team falls behind in flags.
 
 ### The power play
 - `F23` **Denning:** When the enemy is running the flag, the team with more players in the fight can play the power

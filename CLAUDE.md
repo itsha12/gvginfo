@@ -428,10 +428,22 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   `--json`: `pushes` (`push_cases.json`: who pushes, where the flagger was, the readings U1 to U5, and what followed as it
   fell by who pushes and whether his team sent help), `held` (`held_cases.json`: a team held in its base, by how the hold
   ended and the players alive when it began, H1 to H5), `res` (`res_cases.json`: stayed through the base res or left
-  before it, by how many came back, B1 to B3) and `opening` (`opening_cases.json`: the first flag and where the players
-  went, O1 to O5). Help sent, the break-out, staying against leaving and who wins mark the spot and are never read as
-  causes (staying against leaving is not one of his truths, R-534). The general tables (section C of each) are put to him
-  as stage 2; like spots and the test on unseen matches are not begun for any of the four.
+  before it, B1 to B6, and the stays by the health of the players in the base as the res lands) and `opening`
+  (`opening_cases.json`: set out by his four points, R-590, N1 to N14). Help sent, the break-out, staying against leaving
+  and who wins mark the spot and are never read as causes (staying against leaving is not one of his truths, R-534). He
+  has passed the general tables of pushes and holds (stage 2, R-588); like spots and the test on unseen matches are not
+  begun for any of the four. From his answers of 2026-11-22: a one-player push is read on their runs (`their_runs`,
+  section D of `pushes`: who pushed their flagger and whether the pushing team sent a runner of its own, each set level
+  on the flag lead held, since a team ahead loses lead as their flag gets in whatever it does; a reading, never advice).
+  The danger of a base res is dying to it (R-589): a stay carries `res.health`, `low`, `inside` and `pit_npcs` (energy is
+  not in the replay; `RES_LOW_HP` in `jobs.py` and `RES_LOW` in `cases.py` are Claude's drafts and no play reads them),
+  and "base" is not made smaller until he says where the line goes. The opening play carries what the other team showed
+  (`open.their`, `their_flag`, `their_first_cap`), the line of the first carrier (`beside.flag.line`, `common.line`) and
+  the record 5 and 7 minutes from the gates (`open.later`, `OPEN_LATER_S`). Not read, and not to be read without his
+  word: the usual split response (`usual_responder` measures who defends first, which names the flag runner), and a flag
+  returned at the hand-off, which is not told apart from a flag lost another way (N9 runs against him as worded).
+  After any change to these records compare the plays with the run before, `open`, `res` and `beside.flag.line` left
+  out: nothing may differ.
 - A numbers advantage from kills is not a decision family (R-557: the team up keeps killing and follows the team down,
   whose own choices read as near forced; the numbers that are decisions are those a team chose to make, a runner, a
   split or a collapse). Its cards are not marked and its view is off the page (the `ADVICE.numbers` entry in

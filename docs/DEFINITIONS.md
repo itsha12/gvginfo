@@ -146,6 +146,9 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   hand-off; on more than half its seconds all his team but one at most is on that ground, three or more of it with
   him, and five or more enemies are in his base. A team with players out on the map has a runner, though he is
   stopped at his door (HC v cope 2:53); an unheld team's flag is R-505's.
+- What a one-player push is worth (R-588, his suspicion, borne out as far as the matches go): it does not stop a
+  flag (their flag gets in as often as with nobody pushing), and the pushing team is better off in flags where it
+  sends a runner of its own. Two or more pushing stop it more than half the time. A reading, not advice.
 - Pushing the flagger is its own record (R-371). Who pushes (R-573): a player who hits or casts on the flagger; a
   player who travels with those players, such as the monk healing them; not a player who is only nearby because a
   fight with the flagger's helpers is happening there; and when the main team itself moves onto the flagger it is the
@@ -211,6 +214,13 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   from where it is taken up.
 - The opening names every player who carried the first flag in the match, in the order they first carried it
   (R-587: "brought up by Mes/A, handed to 8 Monk").
+- What a team reads at the opening (R-590), in his order: how many players the other team has at its main team
+  (eight against seven with a player back: send one back too, or hold the flag and let them cap first; seven
+  against seven: cap first, or fight the 7v7), whether they have a split out, whether they have no flag, and on whom
+  their flag came up and when they hand it on (a frontliner with a player back means to cap first; a stand mesmer
+  with eight means to hold; a flag on the usual split response invites a split). Capping first is a disadvantage
+  (F25). *As built:* each opening play carries what the other team showed, the line of the first carrier
+  (`common.line`) and the record 5 and 7 minutes from the gates. Not read: who the usual split response is.
 - A flag handed on is one runner: a half run is a single run (R-504). A double run needs a second player who has
   gone back for the next flag by the time the first caps (R-472, R-485).
 - A run is the answer to theirs when its runner turned for home before their flag went in, though the run's own
@@ -290,6 +300,10 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   has not stayed. A team standing at a door together is in the base. On Isle of Jade a team at the footmen is not in
   the base: "too far to have an issue with base res" (R-574); nor on Warrior's Isle, Weeping Stone, Meditation, Wurms
   or Solitude (R-578).
+- What a base res threatens (R-589): dying to it, for a team already heavily favoured: staying in range, low on
+  health and energy with NPCs on its players, while the enemy resses at nearly full strength. *As built:* a stay
+  carries the health of the players in the base as the res lands, how many stand right inside (the pit or the base,
+  not a door) and the pit NPCs alive; energy is not in the replay. "Base" may be read more narrowly here: not built.
 - Taken out: the race back when a split ends (R-448; it was item 6 of R-434).
 
 ## Collapse
