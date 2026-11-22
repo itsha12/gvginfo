@@ -2561,6 +2561,27 @@ class Moments:
         # a numbers difference is told once: stretches with the same side up and less than a moment's length (NUMBERS_MIN_S) between them are one situation (a player resurrected
         # and killed again; his marks, cope v Team 5:18 and 13:52: "same situation, a continuation"). It runs from the first to the last stretch that is a moment in its own right
         # (NUMBERS_MIN_S or longer, and fought): a quiet lead-in or tail is no part of it
+        # R-583 (his "(a) No. It is level", 2026-11-21, on Men v Crew 20:10 with Men v hook 2:20 and Book v Crew 5:08): the other half of R-350 and R-579. A player
+        # counts in a fight after JOIN_S in it and has not left it until JOIN_S away, so a difference that only a living player's coming or going makes, and that
+        # lasts JOIN_S or less, is level: a stretch every reading of which is level with the players counted who were counted in this fight within JOIN_S before it
+        # began or are within JOIN_S after it ends (alive, carrying no flag, given to no split's fight). A situation with no other moment in it is not told. Read
+        # on the whole stretch and on the whole situation, so it moves and shortens no other row (tried first as "no moment in its own right": twelve situations
+        # of the development set lost a lead-in or a tail, Men v RACK 18:04, Visible and correct, among them); a dead player is not on his way, so a kill is as
+        # before (R-552).
+        idx = {t: ti for ti, t in enumerate(times)}
+        def in_at(a, u): return u in idx and F[u] is not None and a in F[u]["ids"][self.m.team(a)] and counted[a][idx[u]]
+        def level(e):
+            if e["last"] - e["start"] > JOIN_S: return False
+            edge = [u for u in range(e["start"] - JOIN_S, e["start"], S)] + [u for u in range(e["last"] + S, e["last"] + JOIN_S + 1, S)]
+            near = [a for a in self.m.PL if any(in_at(a, u) for u in edge)]
+            for t in range(e["start"], e["last"] + 1, S):
+                n = {tm: sum(1 for a in F[t]["ids"][tm] if counted[a][idx[t]]) for tm in self.st.teams}
+                for a in near:
+                    if self.AL[a][t] and not in_at(a, t) and not self.carrying(a, t) and self._side.get((a, t)) != "split": n[self.m.team(a)] += 1
+                if n[1] != n[2]: return False
+            return True
+        for e in raw: e["level"] = level(e)
+        self._level = [e for e in raw if e["level"]]
         groups, good = [], lambda e: e["last"] - e["start"] >= NUMBERS_MIN_S and fought(e)
         for e in raw:
             if groups and groups[-1][-1]["adv"] == e["adv"] and e["start"] - groups[-1][-1]["last"] <= NUMBERS_MIN_S: groups[-1].append(e)
@@ -2569,6 +2590,7 @@ class Moments:
         for g in groups:
             ok = [k for k, e in enumerate(g) if good(e)]
             if not ok: continue
+            if all(g[k]["level"] for k in ok): continue      # R-583: nothing in it but a player coming or going for JOIN_S or less: level, and not told
             g = g[ok[0]:ok[-1] + 1]; e = dict(g[0], all=set(g[0]["all"]), ns=list(g[0]["ns"]), at=dict(g[0]["at"]))
             for x in g[1:]:
                 e["at"].update(x["at"])
