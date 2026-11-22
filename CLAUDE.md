@@ -213,7 +213,12 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   counted in the fight before and after, alive, carrying no flag, on no split's fight, the missed readings spanning JOIN_S or
   less) and only to close a difference: where the fight is level with those players counted, nobody is up. It never lengthens
   one: keeping them in the count joined rows through the flicker of Jade's portal (Men v Crew 24:34, Classic) and was taken out.
-  A player arriving at the fight is another shape and is not read here (Men v Crew 20:10, key p3-4 and p3-6: open).
+  The other half is R-583 (his "(a) No. It is level"; Men v Crew 20:10, Men v hook 2:20, Book v Crew 5:08), read in `_numbers`
+  too (`level`, `M._level`): a stretch of JOIN_S or less every reading of which is level once the living players are counted who
+  were counted in that fight within JOIN_S before it began or are within JOIN_S after it ends (no flag in hand, given to no
+  split's fight) is a player coming or going, and a situation with no other moment in it is not told. It is read on the whole
+  stretch and the whole situation and moves no other row: do not turn it into "no moment in its own right" (tried: it cut the
+  lead-in or tail of twelve situations, Men v RACK 18:04, Visible and correct, among them). A kill is as before (R-552).
 - When a split ends and what kills it (2026-11-20, `split_plays` on the branch). The rest of a split's team is read at
   the second, not from the record (R-439): a player who went home from it is of the rest when the main team comes to
   the split (R-487). A player left on the enemy's ground by the others of his split who neither hits NPCs nor trades
@@ -276,6 +281,25 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   split's own candidates (`_split_candidates`), so it is silent while those are being taken. Six forms were built on
   2026-11-18 before this one held his eleven rulings and every Classic row: change it against the set p2 rows and the
   HC v cope and hold v Men rows of the key, never by a new exception.
+- A flag handed on is the same run (R-580), one reading, `Moments.handed_on` on the branch (asked by `run_starts` for the
+  chain of a flag's carries and by `_held_carries`): put down and taken up by a team mate within HANDOFF_GAP_S, or, however
+  long it takes, while the team mate who takes it stands by it (FIGHT_CLOSE from where it lies, every second from the
+  put-down to the take-up). Any other flag taken up again is a run from where it is taken up, as before. Change it against
+  Men v Crew 4:53 and 12:26 (one run, the Ranger handing it to the AoB Derv), Men v NwAy 8:19 (Classic: the Hammer who walks
+  31 s to a flag left at his door runs it) and Men v hold 6:18 and hold v RACK 16:43 (Classic: the carrier who takes his own
+  flag up again runs it from there), never by a count of seconds; three wider forms failed those rows on 2026-11-22 (a player
+  coming straight for it, the carrier himself, a taker never away for JOIN_S).
+  A player sent for a flag left on the field is a flag decision (R-581). A later flag left lying was already told from where
+  it is taken up. What was told nowhere is built in `jobs._flag_rows` (`left`, `left_at` on the row; `left_spawn` on the run
+  record): a first flag brought up, put down, left lying longer than FLAG_JOB_MAX_S and then capped (HC v hdm 5:56), and a
+  first flag held before the gates that nobody carried in the match for as long (옷옷옷옷 v cope 4:55). The opening then says
+  what was brought up and put down, or that no flag was brought up, and the take-up is a run of its own, said as "sent for
+  the flag left lying since ...", with no "The opening." before it. The length is Claude's draft: a first flag put down for
+  less stays the opening's run (옷옷옷옷 v RACK 0:21, Classic; Men v Crew 0:22 to 1:23, his "Men holds for 1:47ish before
+  deciding to cap"). Do not test where the flag lay or who stood by it (the taker by it, and any team mate by it, each
+  fail a row he has marked); bring him the rows the length tells wrongly. Not built: a flag whose first pickup is not at
+  its spawn in the replay has no run record at all (Book v OG 7:16 and 10:56). Seen and left: a first flag neither capped
+  nor returned prints "None at ..." in the opening's row, and its flag play can end before it starts (One v Crew 0:00).
 - A flag held at home is no flag run (R-576), one reading, `Moments._held_carries` on the branch (built by `run_starts`
   beside the part-carries, asked through `held_at`): a carry in which the flag does not leave its own ground (nor by a
   hand-off within HANDOFF_GAP_S) while his team, all but one at most, is on that ground with him and MAIN_BIG or more

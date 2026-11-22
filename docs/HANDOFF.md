@@ -8,35 +8,31 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 > out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-21, late night: the picked rows answered, R-579 to R-582; R-579 built on `bundle-4`)
+## State (2026-11-22: R-583 answered; R-580, R-581 and R-583 built on `bundle-4`; checkpoint run)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` and lands in one
   piece, then one rebuild (R-322). 658 replays stored; 564 count (R-477); 506 matches trained. No workflow run in
-  progress. Rulings run to R-582. The baseline (R-491) is the branch `baseline-2026-11-15`.
-- Graded and filed (set f1): thirteen games (Weeping Stone and Isle of the Dead not graded his new way). Flags:
-  all 60 advice cards marked. Numbers from kills: no family (R-557). Splits read in both halves, no advice
-  from them at the matches in hand; no more matches until the engine is ready (R-570).
-- Built this session, each with his word (CLAUDE.md says how each is read): who pushes a flagger (R-573, R-577,
-  `flag_pushes`); a flag held at home is no run (R-576, `_held_carries`); the footmen are not in the base at a
-  base res on Jade and five other halls (R-574, R-578, `hall_features.json`); players through a two-way
-  teleporter are of the main fight on either side (R-575, `_reach`); numbers wholly in a stand-off are not told
-  (R-405, `numbers_plays`). Both two-game faults of R-572 are built.
-- Built late on 2026-11-21: R-579 (`Moments._numbers`, `M._stayed`), a player away from his fight under 12 s
-  has not left it, read only to close a numbers difference (CLAUDE.md says why). Open beside it: the player
-  arriving at the fight (Men v Crew 20:10, key p3-4 and p3-6), put to him.
-- Last checkpoint (every counted match, this engine): 564 matches, 34,164 plays, no errors; fourteen truths hold;
-  313 Classic rows pass, none fail; 135 history rows hold, 3 do not; self-check 20 in 6. Not run again on it:
-  the gate, the line-up, and the numbers and main-fight reports (54 numbers situations fewer; no flag, split
-  or other play changed, so the flag and split reports and the flag cards stand).
-- Flag cards (main, `flag_cards.json`, 63): two ask to be marked again (HC v Team 3:42, HC v cope 0:30) and
-  three are new (game 15, Men v NwAy 8:19, 12:11, 13:29); two of hold v RACK stay listed as gone.
+  progress. Rulings run to R-583. The baseline (R-491) is the branch `baseline-2026-11-15`.
+- Graded and filed (set f1): thirteen games. Numbers from kills: no family (R-557). Splits read in both halves,
+  no advice from them at the matches in hand; no more matches until the engine is ready (R-570).
+- Built this session, each with his word (CLAUDE.md says how each is read and what was tried and taken out):
+  R-583, a numbers difference only a player's coming or going makes, 12 s or less, is level and not told
+  (`Moments._numbers`, `level`); R-580, a flag a team mate standing by it takes up is the same run
+  (`Moments.handed_on`); R-581, a first flag left lying longer than a flag play runs is run by the player sent
+  for it (`jobs._flag_rows`).
+- Last checkpoint (every counted match, this engine): 564 matches, 33,911 plays, no errors; fourteen truths hold;
+  313 Classic rows pass, none fail; 137 history rows hold, 4 do not; self-check 20 in 6. The five reports are
+  written again on it. Not run again on it: the gate and the line-up.
+- Flag cards (main, `flag_cards.json`, 63, written again): six ask to be marked again (HC v Team 3:42 and 6:34,
+  Men v Crew 4:53, 옷옷옷옷 v RACK 6:15, Men v hold 6:18, hold v RACK 5:21; four of them only a verdict at the
+  range's edge), five are unmarked (Men v Crew 12:23, 옷옷옷옷 v hdm 3:21, game 15's 8:19, 12:11, 13:29); four
+  are listed as gone (two of hold v RACK, Men v Crew 5:52 and 12:26).
 
 ## Next (in order): the engine substantially finished before the merge and training (R-571, R-572)
-1. Build his two answers of 2026-11-21 (night) still unbuilt, each at the root (development set: 69 games):
-   - R-580, a flag taken up seconds after a team mate put it down is the same run (Men v Crew 12:26, then a
-     flag in hand). 199 such carries in 139 matches, most of them run in: read the run going on, not the gap.
-   - R-581, a player sent for a flag left on the field is a flag decision (HC v hdm 5:57; key p3-7 to p3-9).
-   Then TFS v DMG 22:44 as a bug (twelve of the 21 self-check counts): a lone player whose team is dead is told
-   as a split under a full collapse (right) and at once as the main fight's "1 v 8" (wrong: `_numbers`).
+1. His answers to what was put to him on 2026-11-22 ("Open for Denning" 1), then TFS v DMG 22:44 (twelve of the
+   20 self-check counts). Nobody is dead there (the earlier note was wrong): both teams are in TFS's base, DMG's
+   Mesmer comes by the other door and is told as a lone split with eight defenders, 22:44 to 23:14, while the
+   main fight counts the same players. The split's reading counts him in seconds its first pass
+   (`_split_candidates`) did not, so R-519 never asked which fight he is in: look there, not in `_numbers`.
 2. The kinds Claude reads as ready (R-572): the opening, held in base, the base res and now pushing the flagger,
    each through the stages as flags and splits were. The Lord push: picked rows from late games first.
 3. The measurements (R-572): enemy execution (2.12), the interaction rule (2.13), NPC damage by kind of bar
@@ -50,20 +46,28 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 ## Open for Denning
 0. Held at his word (R-554, his "make sure you remember"): the cards for a flag in hand, with R-553 to build, and
    for a double run from the sender's side: raise them when more matches are trained. The execution list (R-557).
-1. Five flag cards to mark (State). R-576's reading (held in base by five or more) is Claude's, and R-575 is
-   applied to Nomad's as to Jade: bring him what either tells wrongly as it turns up in his games. Closed by
-   R-582: Men v hold 6:48 (dropped) and 18:06 (held in the key, p3-1 and p3-2; build only if it turns up again).
-2. Tolkano: no build (his word): give him date, guilds, hall and length with every example.
+1. Put to him on 2026-11-22, each with its replay link (set them out again in the chat if he has not answered):
+   - R-583 took out two rows he graded Visible and correct (Men v Crew 23:30, Men v hold 12:46: a player leaves
+     and the other team's player leaves 12 to 14 s later). Level, as he ruled, or a decision?
+   - 268 brief rows "from players split elsewhere" are still told: nobody was in the fight within 12 s either
+     side (a short fight with a player elsewhere throughout). Of three he has graded: Weak (Men v hold 0:24),
+     No decision (hold v Men 0:24), Visible and correct (Men v hold 18:18). Stop telling these too?
+   - R-581's length (180 s) is Claude's draft. It changes 옷옷옷옷 v hdm's opening (Visible, correct: now the
+     flag put down at 0:03 and the Warrior sent for it at 3:15) and tells Men v 옷옷옷옷 5:16 the same way.
+   - R-580 names the hand-on in Men v NwAy's opening (Classic): "brought up by Mes/A, handed to 8 Monk".
+2. Eleven flag cards to mark (State). R-576's reading (held in base by five or more) is Claude's, and R-575 is
+   applied to Nomad's as to Jade: bring him what either tells wrongly as it turns up in his games.
+3. Tolkano: no build (his word): give him date, guilds, hall and length with every example.
 
 ## Running it
 - Train batch: the "Train batch" workflow (METHODS.md; `blind` stays no). Never queue two runs. At the next rebuild,
   keep gvg.report's flag objects, which `replay_trim.mjs` drops (R-481).
 - Local engine: `git fetch --depth 1 --no-filter origin +replays:refs/remotes/origin/replays`. `jobs.py`,
   `moments.py`, the gate, the line-up and `confidence.py` need only Python; `cases.py` needs numpy and scikit-learn
-  (`cache.py sync pull`, `warm` only for the fitted models). A full run (`moments.py all`) takes about 15 minutes;
-  `cases.py ladder` before `cases.py test` (R-545). `PYTHONDONTWRITEBYTECODE=1`. The review key, `dev_set.json` and
-  `game_reviews.json` are written on main: pass `--key <main>/data/model/review_key.json`, and copy the key and
-  `dev_set.json` to the branch after changing them; `data/maps/hall_features.json` is changed on both.
+  (`cache.py sync pull`, `warm` only for the fitted models). A full run (`moments.py all`) takes about 17 minutes;
+  `cases.py ladder` before `cases.py test` (R-545), each kept with `--json data/model/<name>.json`. Set
+  `PYTHONDONTWRITEBYTECODE=1`. The key, `dev_set.json` and `game_reviews.json` are written on main: pass `--key
+  <main>/data/model/review_key.json`, copy both to the branch after a change; `hall_features.json` is changed on both.
 - Site check: `python3 -m http.server`, then playwright with `/usr/bin/google-chrome`, api.github.com mocked.
 
 ## Cautions
