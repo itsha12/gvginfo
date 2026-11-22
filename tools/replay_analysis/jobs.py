@@ -35,6 +35,7 @@ import collections, json, os, statistics, sys
 from common import (MEET_R, OPEN_FROM_S, OPEN_BY_S, OPEN_S, STAND_R, MERGE_S, FIGHT_ACT, FIGHT_CLOSE, FIGHT_HOLD_S, HOLD_S, HANDOFF_GAP_S, REPO, READ_TO, SPLIT_STEP, SPLIT_GAP_S, FIGHT_LINK, JOIN_S, JOIN_LOOK_S, NPC_NEAR, can_kill, SOH_REMOVED, RUN_SPEED, GROUND_JUMP, RES_EVERY, BOOST_EVERY, BOOST_WARN_S, BOOST_LATE_S, LEAD_HALF, LEAD_ONE, CARRY_SPEED, PIT_R,
                     FLAG_GAIN, PART_RUN_GAIN, LATE_FLAG, ANSWER_CAP_S, COLLAPSE_VISIT_S, PINNED_S, LORD_PUSH_FROM, LORD_BASE_R, AFTER_WIPE_MIN_S, NUMBERS_TAIL_S, FLAG_JOB_MAX_S, FLAG_LEFT_S, MAIN_BIG, TURN_S, TURN_CLOSE)
 from state import d
+from common import line as _line
 
 HOMEG = ("pit", "base", "front door", "back door", "front footies", "back footies")
 _BENCH = None
@@ -97,6 +98,9 @@ def _play(M, play, side, tm, t0, t1, who, scenario, job, tests, beside=None, rul
                  "tests": dict(tests), "any_of": dict(any_of or {}), "met": bool(met), "beside": beside or {}, "ruled": ruled}, **more)
 
 
+RES_LOW_HP = 80                        # a player in their base as the res lands is low under this share of his health (Claude's draft, for the record only: no play or test reads it; a player under it dies in the 30 s after about four times as often)
+OPEN_KEYS = ("stand", "split", "back", "waits")
+OPEN_LATER_S = (300, 420)              # the opening is also read 5 and 7 minutes from the gates (R-590: "This plays out in a longer time period"; 7:00 takes in the boosts of 2:00, 4:00 and 6:00)
 FLAG_AFTER_S = (60, 90, 180)           # what followed a flag decision, read at three seconds so that the effect can be followed as it grows and fades (R-543; 90 and 180 s are R-294's; 120 s was read too and dropped, R-544: it sat between the two and changed no verdict)
 FLAG_BEFORE_S = 60                     # how long before a flag decision the position is read again, for the test of a call against what came before it
 FLAG_TRACK_S = tuple(range(0, 241, 15))  # the seconds from their runner's set-off at which the flag lead and the holder of the stand are kept on a flag play (`track`)
@@ -218,15 +222,17 @@ def opening(M):
         rows = sorted((x for x in FR if x["tm"] == tm), key=lambda x: x["s0"])
         pre = next((x for x in rows if x["pregame"]), None)
         up = next((q for q in M.run_starts() if q["tm"] == tm and q["pickup"] <= 2 and M.not_run(q)), None)      # brought up with the team and not run (R-505)
-        flag = {"brought": None, "by": [], "how": None, "at": None, "held_s": 0, "sent_back": None}
+        flag = {"brought": None, "by": [], "how": None, "at": None, "held_s": 0, "sent_back": None, "line": None}      # line: the line of the player the first flag came up on (his fourth point on the opening, R-590: a frontline, a midline or a monk tells what the team means to do with it)
         if pre is not None:
+            flag["line"] = next((_line(m, a) for a in pre["ids"]), None)
             by = list(dict.fromkeys(role[a] for a in pre["ids"])) or [pre["runner"]]      # who carried it once the gates were open: the player who held it before them and stays back is not one
             flag.update(brought=True, by=by, how=pre["how"] or "put down", at=int(pre["e"]), held_s=int(pre.get("held_s") or 0))      # neither capped nor returned in the replay: put down for good (it read "None at 6:53": One v Crew)
         elif rows and rows[0].get("off", rows[0]["s0"]) <= OPEN_BY_S * 2:      # no flag came up with the team and a player went back for the first one (his words on Men v hold 0:00: "hold did not bring the first flag and had to send ele back for it"), though a flag was carried a few steps and put down
             nxt = rows[0]
             flag.update(brought=False, sent_back={"who": nxt["runner"], "at": int(nxt.get("off", nxt["s0"])), "how": nxt["how"], "end": int(nxt["e"])})
         elif up is not None:
-            flag.update(brought=True, by=list(dict.fromkeys(role[c[0]] for c in sorted(up["carries"], key=lambda c: c[1]) if c[0] in up["serious"])), how="not run")
+            ids_ = [c[0] for c in sorted(up["carries"], key=lambda c: c[1]) if c[0] in up["serious"]]
+            flag.update(brought=True, by=list(dict.fromkeys(role[a] for a in ids_)), how="not run", line=_line(m, ids_[0]) if ids_ else None)
         else: flag["brought"] = False
         out["teams"][tm] = {"stand": stand, "split": spl, "way": way, "back": back, "waits": waits, "flag": flag, "first_cap": first_cap[tm]}
     caps = sorted((u, tm) for tm, u in first_cap.items() if u is not None)
@@ -270,7 +276,8 @@ def opening_plays(M, K):
         who = f["by"] if f["brought"] else ([sb["who"]] if sb else [])
         out.append(_play(M, "opening", "own", tm, 0, max(int(end), o["t"]), who, o["words"], "Get the first flag in", {"our flag is capped": capped},
                          beside={"first_cap": o["teams"][tm]["first_cap"], "flag": dict(f)}, call="the first flag", opening=o["words"],
-                         open={k: len(o["teams"][tm][k]) for k in ("stand", "split", "back", "waits")}))
+                         open={**{k: len(o["teams"][tm][k]) for k in OPEN_KEYS}, "their": {k: len(o["teams"][3 - tm][k]) for k in OPEN_KEYS}, "their_flag": dict(o["teams"][3 - tm]["flag"]),
+                               "their_first_cap": o["teams"][3 - tm]["first_cap"]}))      # what each team can see of the other at the gates (R-590): its players at the stand, on a split, back; its first flag, on whom
     return out
 
 
@@ -1371,11 +1378,19 @@ def pinned_plays(M, K):
 # ---- in their base as their dead come back (gap 5)
 def res_plays(M, K):
     out, T = [], M.T
+    st = M.st
     for r in M.caught():
         B, tm = r["t"], r["tm"]
+        # how the players in their base stand as the res lands (R-589: "the real danger is just dying to base res ... your players are low on energy and health
+        # and you have NPCs on you"): their health then (energy is not in the replay), how many of them are right inside (the pit or the base, not at a door),
+        # and the pit NPCs still alive
+        u_ = min(B, M.T); in_ = [a for a in r["ids"] if M.AL[a][u_] and M.P[a][u_]]
+        hp_ = [h["hp"] for h in (M.m.snap(a, u_ * 10) for a in in_) if h and h.get("hp") is not None]
+        stand_ = {"health": round(statistics.mean(hp_)) if hp_ else None, "low": sum(1 for h in hp_ if h < RES_LOW_HP), "inside": sum(1 for a in in_ if M._deep(a, u_) in ("pit", "base")),
+                  "pit_npcs": sum(1 for z, v in st.geo.npcs.items() if v["team"] == 3 - tm and v.get("pit") and v["kind"] != "guild_lord" and st.npc_dead.get(z, 1e9) > B)}
         out.append(_play(M, "base res", "own", tm, B - 20, B + 30, [], f"{r['team']} has {r['attackers']} in {M.m.tag[3 - tm]}'s base at the base res ({r['defenders']} defending, {r['coming_back']} coming back): {r['stayed']} stay" + (f", {r['attackers'] - r['stayed']} leave as the res lands or die" if r['stayed'] < r['attackers'] else ""),
                          "Be out, or set for the fight, when they res", {"none of the players in their base dies in the 30 s after the res": K.died(tm, B, B + 30, set(r["ids"])) == 0},      # the test covers the players of the play: a team mate who dies elsewhere, defending a split at home, did not die of the base res (his mark on hold v Men 4:00, Classic: "ranger dies on split, not because of base res")
-                         beside={"deaths_after": K.died(tm, B, B + 30, set(r["ids"])), "deaths_elsewhere": K.died(tm, B, B + 30) - K.died(tm, B, B + 30, set(r["ids"])), "outnumbered": r["outnumbered"]}, call="stayed through the res", res={"attackers": r["attackers"], "defenders": r["defenders"], "coming_back": r["coming_back"], "stayed": r["stayed"], "outnumbered": bool(r["outnumbered"])}))
+                         beside={"deaths_after": K.died(tm, B, B + 30, set(r["ids"])), "deaths_elsewhere": K.died(tm, B, B + 30) - K.died(tm, B, B + 30, set(r["ids"])), "outnumbered": r["outnumbered"]}, call="stayed through the res", res={**stand_, "attackers": r["attackers"], "defenders": r["defenders"], "coming_back": r["coming_back"], "stayed": r["stayed"], "outnumbered": bool(r["outnumbered"])}))
     for r in M.timing():
         if r["kind"] != "left before res": continue
         B, tm = r["t"] + r["s"], r["tm"]
@@ -1462,6 +1477,8 @@ def plays(M, recs=None):
             u = min(int(p["t0"]), M.T); b_ = u - FLAG_BEFORE_S
             p["at_told"] = {"state": M._state(p["tm"], u), "after": M.consequence(p["tm"], u, FLAG_AFTER_S),
                             "before": None if b_ < 0 else {"state": M._state(p["tm"], b_), "after": M.consequence(p["tm"], b_, (FLAG_BEFORE_S,))[str(FLAG_BEFORE_S)]}}
+            if p["play"] == "opening":
+                p["open"]["later"] = {h: {k: v[k] for k in ("to", "ended", "deaths", "npcs", "caps", "boosts", "lead", "lead_change", "stand")} for h, v in M.consequence(p["tm"], 0, OPEN_LATER_S).items()}
     out.sort(key=lambda p: (p["t0"], p["tm"], p["play"]))
     rid = M.m.o["meta"]["id"]
     for i, p in enumerate(out): p["rid"], p["id"] = rid, f"{rid[:8]}-{p['play'].replace(' ', '_')}-{p['tm']}-{p['t0']}-{i}"

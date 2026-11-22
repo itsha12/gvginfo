@@ -106,6 +106,62 @@
     427
    ],
    "reads": "HOLDS"
+  },
+  "U6 with no runner of ours sent, one player pushing gets their flag stopped more often than nobody pushing": {
+   "first": 0.2727272727272727,
+   "second": 0.35264227642276424,
+   "difference": -0.07991500369549154,
+   "range": [
+    -0.17891030315578604,
+    0.029436376347395755
+   ],
+   "n": [
+    55,
+    984
+   ],
+   "reads": "not clear"
+  },
+  "U7 with no runner of ours sent, two or more pushing get their flag stopped more often than one": {
+   "first": 0.56,
+   "second": 0.2727272727272727,
+   "difference": 0.28727272727272735,
+   "range": [
+    0.1249359732072498,
+    0.42862835299627017
+   ],
+   "n": [
+    50,
+    55
+   ],
+   "reads": "HOLDS"
+  },
+  "U8 a team pushing with one player is better off in flags (level) where it also sends a runner of its own": {
+   "first": 0.1562710017808942,
+   "second": -0.1767309218043013,
+   "difference": 0.33300192358519554,
+   "range": [
+    0.12236442375763874,
+    0.5895352004070696
+   ],
+   "n": [
+    66,
+    55
+   ],
+   "reads": "HOLDS"
+  },
+  "U9 with no runner of ours sent, one player pushing leaves us better off in flags (level) than nobody pushing": {
+   "first": -0.1767309218043013,
+   "second": -0.15094106679724506,
+   "difference": -0.025789855007056245,
+   "range": [
+    -0.21323064012302553,
+    0.1766310378018165
+   ],
+   "n": [
+    55,
+    984
+   ],
+   "reads": "not clear"
   }
  },
  "as_it_fell": {
@@ -519,6 +575,96 @@
     "he dies": 37.5,
     "late (middle)": 1.14
    }
+  }
+ },
+ "their_runs": {
+  "no push, no runner of ours": {
+   "runs": 984,
+   "matches": 383,
+   "their flag gets in": 64.73577235772358,
+   "flags": -0.6444207317073171,
+   "level": -0.15094106679724506,
+   "range": [
+    -0.1894434239617862,
+    -0.10982359049667416
+   ]
+  },
+  "no push, a runner of ours": {
+   "runs": 880,
+   "matches": 278,
+   "their flag gets in": 78.18181818181819,
+   "flags": -0.2748409090909091,
+   "level": 0.12323531280083073,
+   "range": [
+    0.08804458774574872,
+    0.16487715870020087
+   ]
+  },
+  "one player, no runner of ours": {
+   "runs": 55,
+   "matches": 46,
+   "their flag gets in": 72.72727272727273,
+   "flags": -0.8861818181818182,
+   "level": -0.1767309218043013,
+   "range": [
+    -0.37799458295250926,
+    0.01506619168851299
+   ]
+  },
+  "one player, a runner of ours": {
+   "runs": 66,
+   "matches": 54,
+   "their flag gets in": 86.36363636363636,
+   "flags": -0.198030303030303,
+   "level": 0.1562710017808942,
+   "range": [
+    0.02262521382485219,
+    0.30854344660773847
+   ]
+  },
+  "two or more players, no runner of ours": {
+   "runs": 50,
+   "matches": 48,
+   "their flag gets in": 44.0,
+   "flags": -0.3636,
+   "level": 0.2612639353829687,
+   "range": [
+    0.11142720657599178,
+    0.409629491709497
+   ]
+  },
+  "two or more players, a runner of ours": {
+   "runs": 41,
+   "matches": 35,
+   "their flag gets in": 92.6829268292683,
+   "flags": -0.23731707317073172,
+   "level": 0.2608779657401387,
+   "range": [
+    0.04234227577648813,
+    0.44243452330531063
+   ]
+  },
+  "the main team, no runner of ours": {
+   "runs": 31,
+   "matches": 30,
+   "their flag gets in": 38.70967741935484,
+   "flags": -0.355483870967742,
+   "level": 0.19493220240129291,
+   "range": [
+    -0.0383272984031385,
+    0.4160150167745136
+   ]
+  },
+  "the main team, a runner of ours": {
+   "runs": 36,
+   "matches": 29,
+   "their flag gets in": 83.33333333333334,
+   "flags": -0.12472222222222223,
+   "level": 0.26897659462559015,
+   "range": [
+    0.05416564977459895,
+    0.5189381829472159
+   ]
   }
  }
 }

@@ -68,7 +68,7 @@ Usage:  python3 cases.py test <plays file from `moments.py all`> [--json <out.js
         python3 cases.py res <plays file> [--json <out.json>]                            the base res, stage 1: a team in the enemy's base when their dead come back
         python3 cases.py opening <plays file> [--json <out.json>]                        the opening, stage 1: the first flag and where the players went
 A reading tool over the plays file: it writes no prepared data and is in no cache key (cache.REPORT_LAYER)."""
-import collections, json, math, os, sys
+import collections, json, math, os, re, sys
 import numpy as np
 from common import REPO
 
@@ -2044,8 +2044,61 @@ def pushes(path, out_json=None):
         for w in PUSH_WHO:
             _fell(pr, o, w, [c for c in X if c["who"] == w], extra)
             for hl, hv in (("his team sends help", True), ("no help", False)): _fell(pr, o, f"  {w}, {hl}", [c for c in X if c["who"] == w and c["helped"] == hv], extra)
+    # D. The solo push (R-588, his suspicion: "a one player push just isn't that effective at stopping a flag ... maybe that player could be better used doing
+    # something else to gain flag advantage (e.g. double running or helping get our own flag in quick)"). Read on their runs, from the flag plays: who pushed
+    # their flagger while he carried, and whether the team that pushed sent a runner of its own. A team ahead in flags loses lead as their flag gets in whatever
+    # it does, so each row is also set level on the lead held when their runner set off (a straight line fitted over all the rows).
+    R = their_runs(D)
+    pr(f"\nD. Their run, by who pushed their flagger and whether the pushing team ran a flag of its own ({len(R)} runs; the opening and runs answered from our own cap left out)")
+    pr("   level = change in our flag lead 90 s on, less what the lead we held when their runner set off gives on its own; in brackets its 90% range over whole matches.")
+    res["their_runs"] = o = {}
+    for w in ("no push",) + PUSH_WHO:
+        for ours in ("no runner of ours", "a runner of ours"):
+            X = [r for r in R if r["who"] == w and r["ours"] == ours]
+            if len(X) < 15: continue
+            bs = _one_range(X, "level")
+            o[f"{w}, {ours}"] = {"runs": len(X), "matches": len({r["rid"] for r in X}), "their flag gets in": 100 * float(np.mean([r["their_in"] for r in X])), "flags": float(np.mean([r["lc"] for r in X])),
+                                 "level": float(np.mean([r["level"] for r in X])), "range": bs}
+            pr(f"   {w:20} {ours:18} {len(X):4} in {len({r['rid'] for r in X}):3} matches; their flag gets in {100 * np.mean([r['their_in'] for r in X]):3.0f}%; flags 90 s on {np.mean([r['lc'] for r in X]):+.2f}; level {np.mean([r['level'] for r in X]):+.2f} ({bs[0]:+.2f} to {bs[1]:+.2f})")
+    N = [r for r in R if r["ours"] == "no runner of ours"]
+    _reading(pr, res, N, "U6 with no runner of ours sent, one player pushing gets their flag stopped more often than nobody pushing", lambda r: r["who"] == "one player", lambda r: r["who"] == "no push", +1, lambda r: not r["their_in"], "one player", "no push")
+    _reading(pr, res, N, "U7 with no runner of ours sent, two or more pushing get their flag stopped more often than one", lambda r: r["who"] == "two or more players", lambda r: r["who"] == "one player", +1, lambda r: not r["their_in"], "two or more", "one player")
+    _reading(pr, res, [r for r in R if r["who"] == "one player"], "U8 a team pushing with one player is better off in flags (level) where it also sends a runner of its own", lambda r: r["ours"] == "a runner of ours", lambda r: r["ours"] == "no runner of ours", +1, lambda r: r["level"], "a runner sent", "none sent", unit=" flags")
+    _reading(pr, res, N, "U9 with no runner of ours sent, one player pushing leaves us better off in flags (level) than nobody pushing", lambda r: r["who"] == "one player", lambda r: r["who"] == "no push", +1, lambda r: r["level"], "one player", "no push", unit=" flags")
+    pr("   Read with care: who pushes and who runs follow the spot. These rows are where to look, never advice.")
     if out_json: json.dump(res, open(out_json, "w"), indent=1, default=float)
     return res
+
+
+def _one_range(X, key, n=400):
+    """The 90% range of a mean over whole matches."""
+    by = collections.defaultdict(list)
+    for x in X: by[x["rid"]].append(x[key])
+    ids, rng = sorted(by), np.random.default_rng(7)
+    bs = [float(np.mean([v for i in rng.choice(len(ids), len(ids)) for v in by[ids[i]]])) for _ in range(n)]
+    return [float(np.percentile(bs, 5)), float(np.percentile(bs, 95))]
+
+
+def their_runs(D):
+    """One row a run of theirs told as a flag play (the opening, runs answered from our own cap and Shadow of Haste runs left out), from the side of the team
+    it is run against: who of ours pushed their flagger while he carried (R-573), whether we sent a runner of our own, whether their flag got in, and the
+    change in our flag lead 90 s on, also set level on the lead we held when their runner set off."""
+    push, rows = collections.defaultdict(list), []
+    for p in D["plays"]:
+        if p["play"] == "push flagger" and not p.get("soh") and "carrying" in p["scenario"]: push[(p["rid"], p["tm"])].append(p)
+    for f in D["plays"]:
+        if f["play"] != "flag" or f.get("soh") or not f.get("clock") or not f.get("after"): continue
+        c = f["clock"]
+        if c.get("from_cap") or f["scenario"].startswith("The opening") or c.get("their_off") is None: continue
+        a, b = c["their_off"], (c.get("their_end") or c["their_off"] + 60)
+        ov = [q for q in push[(f["rid"], f["tm"])] if q["t0"] <= b and q["t1"] >= a]
+        h = f["after"].get("90") or {}
+        if h.get("lead_change") is None or f["state"].get("flag_lead") is None: continue
+        rows.append({"rid": f["rid"], "team": f["team"], "t": a, "who": "no push" if not ov else PUSH_WHO[2] if any(q["main"] for q in ov) else PUSH_WHO[0] if max(q["pushers"] for q in ov) == 1 else PUSH_WHO[1],
+                     "ours": "a runner of ours" if "run" in f["ours"] else "no runner of ours", "form": f["ours"], "lc": h["lead_change"], "lead0": f["state"]["flag_lead"], "their_in": f["beside"].get("their_flag") == "captured"})
+    k = np.polyfit([r["lead0"] for r in rows], [r["lc"] for r in rows], 1)
+    for r in rows: r["level"] = r["lc"] - (k[0] * r["lead0"] + k[1])
+    return rows
 
 
 HELD_ENDS = ("it breaks out", "held to the base res", "the hold ends otherwise")
@@ -2109,6 +2162,7 @@ def held(path, out_json=None):
 
 
 RES_CALLS = ("stayed through the res", "left before the res")
+RES_LOW = 85                                     # the players in their base are low on health between them under this (the report's own band, Claude's draft: no play reads it)
 RES_BACK = ("one coming back", "two coming back", "three or more coming back")
 
 
@@ -2124,7 +2178,9 @@ def res_cases(D, M, B):
         r, b = p["res"], p["beside"]
         n = r["coming_back"]
         c.update(call=p["call"], back=n, back_band=RES_BACK[0] if n <= 1 else RES_BACK[1] if n == 2 else RES_BACK[2], attackers=r.get("attackers"), defenders=r.get("defenders"),
-                 outnumbered=r.get("outnumbered"), died=b["deaths_after"] > 0, deaths=b["deaths_after"], met=bool(p["met"]))
+                 outnumbered=r.get("outnumbered"), died=b["deaths_after"] > 0, deaths=b["deaths_after"], met=bool(p["met"]),
+                 health=r.get("health"), low=r.get("low"), inside=r.get("inside"), pit_npcs=r.get("pit_npcs"))
+        if p["call"] == RES_CALLS[0] and "health" not in r: raise ValueError(f"base res play {p['id']} carries no health: run moments.py all again on this engine (R-460)")
         out.append(c)
     return out, skipped
 
@@ -2152,6 +2208,30 @@ def base_res(path, out_json=None):
     pr("   Not a reading: staying against leaving. Which teams leave follows the spot (a team that is losing the base leaves), and he took it off the known truths (R-534).")
     pr("   Not a reading either: how many come back. Three or more of theirs come back where three or more have just been killed, so it marks a team that is winning the base")
     pr("   (tried as a reading on 2026-11-22: net kills 90 s on ran +2.1 the other way).")
+    # His picture of the danger (R-589): "the real danger is just dying to base res ... staying in range in a dangerous position when the enemy team bases so your
+    # players are low on energy and health and you have NPCs on you, and the team base reses at pretty much full strength and kills your players". Health is in
+    # the replay and energy is not; "in range" is read as right inside (the pit or the base, not at a door).
+    H = [c for c in S if c["health"] is not None]
+    rd = lambda *a, **k: _reading(pr, res, H, *a, **k)
+    rd("B3 a team low on health as the res lands (its players in the base under 85% between them) loses a player more often", lambda c: c["health"] < RES_LOW, lambda c: c["health"] >= RES_LOW, +1, lambda c: c["died"], "low on health", "not low")
+    rd("B4 the same team loses two or more more often", lambda c: c["health"] < RES_LOW, lambda c: c["health"] >= RES_LOW, +1, lambda c: c["deaths"] >= 2, "low on health", "not low")
+    rd("B5 four or more right inside with four or more coming back, a player dies more often than otherwise", lambda c: c["inside"] >= 4 and c["back"] >= 4, lambda c: not (c["inside"] >= 4 and c["back"] >= 4), +1, lambda c: c["died"], "four inside, four back", "otherwise")
+    rd("B6 with three or more pit NPCs alive a player dies more often than with two or fewer", lambda c: c["pit_npcs"] >= 3, lambda c: c["pit_npcs"] < 3, +1, lambda c: c["died"], "three or more NPCs", "two or fewer")
+    pr(f"\n   The stays by how the players in the base stand as the res lands ({len(H)}): how often one of them dies in the 30 s after, and two or more")
+    res["by_health"] = o = {}
+    def hrow(label, X):
+        if not X: return
+        o[label] = {"cases": len(X), "matches": len({c["rid"] for c in X}), "one dies": 100 * float(np.mean([c["died"] for c in X])), "two or more die": 100 * float(np.mean([c["deaths"] >= 2 for c in X]))}
+        pr(f"     {label:62} {len(X):4} in {len({c['rid'] for c in X}):3} matches; one dies {o[label]['one dies']:3.0f}%; two or more {o[label]['two or more die']:3.0f}%" + ("   (under the floor)" if len(X) < MIN_PLAYS else ""))
+    hrow("every stay", H)
+    for lo, hi in ((0, 70), (70, 85), (85, 95), (95, 101)): hrow(f"health between them {lo} to {min(hi, 100)}%", [c for c in H if lo <= c["health"] < hi])
+    hrow("low on health, four or more right inside, four or more coming back", [c for c in H if c["health"] < RES_LOW and c["inside"] >= 4 and c["back"] >= 4])
+    hrow("not low, four or more right inside, four or more coming back", [c for c in H if c["health"] >= RES_LOW and c["inside"] >= 4 and c["back"] >= 4])
+    worst = sorted((c for c in H if c["deaths"] >= 2), key=lambda c: -c["deaths"])
+    res["two_or_more_die"] = [{"rid": c["rid"], "team": c["team"], "t": c["t"] + 20, "deaths": c["deaths"], "health": c["health"], "inside": c["inside"], "back": c["back"], "pit_npcs": c["pit_npcs"]} for c in worst]
+    pr(f"\n   The stays where two or more die of it ({len(worst)}), to look at:")
+    for c in worst[:14]:
+        pr(f"     {M[c['rid']]['date']} {' v '.join(M[c['rid']]['teams'])}, {M[c['rid']]['map']}: {c['team']} at the res of {cl(c['t'] + 20)}, {c['deaths']} die; health {c['health']}%, {c['inside']} right inside of {c['attackers']}, {c['back']} coming back, {c['pit_npcs']} pit NPCs alive   https://gvg.report/report/{c['rid']}#map")
     extra = (("one of them dies", lambda V: 100 * float(np.mean([c["died"] for c in V])), lambda v: f"{v:15.0f}%"), ("job met", lambda V: 100 * float(np.mean([c["met"] for c in V])), lambda v: f"{v:6.0f}%"))
     head = _fell_head((("one of them dies", 16), ("job met", 7)))
     pr("\nC. As it fell, from the side of the team in their base, 90 s on (win points also 180 s on): a description set against no like spot; who stays follows the spot")
@@ -2169,65 +2249,132 @@ def base_res(path, out_json=None):
 
 
 OPEN_FLAG = ("brings its first flag up and caps it", "brings it up and holds it at the stand, then caps", "brings it up and does not cap it", "brings no flag and sends a player back for it", "brings no flag")
-OPEN_SHAPE = ("all eight to the stand", "a player left back for the next flag", "players back at home", "a split from the gates")
+OPEN_MATCHUP = ("8 v 8", "8 v 7: they leave a player back", "7 v 8: we leave a player back", "7 v 7: each leaves a player back", "a split from the gates, either team", "other")
+OPEN_SPLIT_BY = 180                              # a split "at the opening" for the report: told in the first three minutes
+OPEN_LINES = ("frontline", "midline", "backline")
+_stem = lambda role: re.sub(r"\s+(\d+|[AB])$", "", role)
+
+
+def usual_responder(D):
+    """Each guild's usual split response (R-590, his fourth point: "their usual split response character (e.g. a mes/a)"), measured and not named by build:
+    the player other than a monk the guild most often sends first to a split, over every stored match (one or two first defenders; five or more such splits
+    and 35% of them or more). Claude's draft of the definition, and not what he means: for most guilds it names the flag runner, who is at home when a split comes.
+    No reading is made from it until he says who the split response is."""
+    first, G = {}, collections.defaultdict(collections.Counter)
+    for p in sorted((p for p in D["plays"] if p["play"] == "split" and p["side"] == "defender"), key=lambda p: p["t0"]):
+        if not p.get("who") or p.get("call") in ("no answer", "part-run", None): continue
+        first.setdefault((p["rid"], p["tm"], (p.get("split") or {}).get("id")), p)
+    for p in first.values():
+        if len(p["who"]) > 2: continue
+        for r in p["who"]:
+            if "Monk" not in r and "Prot" not in r: G[p["team"]][_stem(r)] += 1
+    return {g: c.most_common(1)[0][0] for g, c in G.items() if c.most_common(1)[0][1] >= 5 and c.most_common(1)[0][1] >= 0.35 * sum(c.values())}
 
 
 def opening_cases(D, M, B):
-    """One case a team's opening (R-520, R-541: whether to bring a flag, whether to leave someone back, a split from the gates), from its own side: what it did
-    with its first flag, where its players went, who capped first; what stood 60, 90 and 180 s from the gates with its price."""
-    out, skipped, first = [], collections.Counter(), {}
+    """One case a team's opening (R-520, R-541, R-590), from its own side: what it showed the other team at the gates (players at the stand, a split, a player
+    left back, a flag or none and on whom) and what the other team showed it; who capped first; and what stood 3, 5 and 7 minutes from the gates."""
+    out, skipped, resp, early = [], collections.Counter(), usual_responder(D), collections.defaultdict(list)
     for p in D["plays"]:
-        if p["play"] == "opening": first[(p["rid"], p["tm"])] = p["beside"]["first_cap"]
+        if p["play"] == "split" and p["side"] == "attacker" and p["t0"] <= OPEN_SPLIT_BY: early[(p["rid"], p["tm"])].append(p["t0"])
     for p in D["plays"]:
         if p["play"] != "opening": continue
-        if "open" not in p: raise ValueError(f"opening play {p['id']} carries no record: run moments.py all again on this engine (R-460)")
+        if "later" not in p.get("open", {}): raise ValueError(f"opening play {p['id']} carries no record of what the other team showed: run moments.py all again on this engine (R-460)")
         c = _told(p, M, B)
         if c is None: skipped["no winner recorded, or the flag lead not read"] += 1; continue
-        o, f = p["open"], p["beside"]["flag"]
-        mine, theirs = first.get((p["rid"], p["tm"])), first.get((p["rid"], 3 - p["tm"]))
+        o, f = p["open"], p["beside"]["flag"]; th, tf, lt = o["their"], o["their_flag"], o["later"]
+        mine, theirs = p["beside"]["first_cap"], o["their_first_cap"]
         flag = (OPEN_FLAG[1] if f["how"] == "captured" and (f.get("held_s") or 0) >= 15 else OPEN_FLAG[0] if f["how"] == "captured" else OPEN_FLAG[2]) if f["brought"] else OPEN_FLAG[3] if f.get("sent_back") else OPEN_FLAG[4]
-        shape = OPEN_SHAPE[3] if o["split"] else OPEN_SHAPE[1] if o["waits"] else OPEN_SHAPE[2] if o["back"] else OPEN_SHAPE[0]
-        c.update(flag=flag, brought=bool(f["brought"]), shape=shape, stand=o["stand"], first_cap=mine, capped_first=mine is not None and (theirs is None or mine < theirs),
-                 won=float(M[p["rid"]]["winner"] == p["team"]), gap=M[p["rid"]]["gap"][p["team"]], lead180=c["hard"]["180"]["lead_change"])
+        mu = (OPEN_MATCHUP[4] if o["split"] or th["split"] else OPEN_MATCHUP[0] if (o["stand"], th["stand"]) == (8, 8) else OPEN_MATCHUP[1] if (o["stand"], th["stand"]) == (8, 7)
+              else OPEN_MATCHUP[2] if (o["stand"], th["stand"]) == (7, 8) else OPEN_MATCHUP[3] if (o["stand"], th["stand"]) == (7, 7) else OPEN_MATCHUP[5])
+        at = lambda h, k: None if lt[h]["ended"] else lt[h][k]
+        a180 = p["at_told"]["after"]["180"]
+        team_id = (p["rid"], p["tm"])
+        c.update(flag=flag, brought=bool(f["brought"]), their_brought=bool(tf["brought"]), matchup=mu, stand=o["stand"], their_stand=th["stand"], line=f.get("line") if f["brought"] else None,
+                 their_line=tf.get("line") if tf["brought"] else None, held=bool(f["brought"] and (f.get("held_s") or 0) >= 15), handed=bool(f["brought"] and len(f["by"]) > 1),
+                 lost=bool(f["brought"] and f["how"] not in ("captured", "not run")), first_cap=mine, their_first_cap=theirs, both_capped=mine is not None and theirs is not None,
+                 capped_first=mine is not None and (theirs is None or mine < theirs), lead180=None if a180["ended"] else a180["lead_change"], lead300=at("300", "lead_change"), lead420=at("420", "lead_change"),
+                 boosts=None if lt["420"]["ended"] else lt["420"]["boosts"][0] - lt["420"]["boosts"][1], first_boost=None if a180["ended"] else a180["boosts"][0] - a180["boosts"][1],
+                 lose300=None if lt["300"]["ended"] else lt["300"]["deaths"][0] > 0, kill300=None if lt["300"]["ended"] else lt["300"]["deaths"][1] > 0,
+                 responder=resp.get(p["team"]), on_responder=bool(f["brought"] and f["by"] and resp.get(p["team"]) and _stem(f["by"][0]) == resp[p["team"]]),
+                 they_split=bool(early[(p["rid"], 3 - p["tm"])]), we_split=bool(early[team_id]), by=f["by"],
+                 won=float(M[p["rid"]]["winner"] == p["team"]), gap=M[p["rid"]]["gap"][p["team"]])
         out.append(c)
     return out, skipped
 
 
 def opening_report(path, out_json=None):
-    """The opening (R-520, R-541), stage 1: do the readings go with what any player knows, and what stood three minutes in, as it fell. A report: it advises
-    nothing. Each team's opening is one case; the two teams of a match are two cases of one draw."""
+    """The opening (R-520, R-541, R-590), stage 1, set out by what a team sees of the other at the gates (his four points): how many players each has at the
+    stand, a split, no flag at all, and on whom the first flag came up; then who caps first, read 3, 5 and 7 minutes on ("This plays out in a longer time
+    period"). A report: it advises nothing. Each team's opening is one case; the two teams of a match are two cases of one draw."""
     D, M = load(path); B, P = prices(D, M)
     C, skipped = opening_cases(D, M, B)
     lines, res = [], {"cases": len(C), "skipped": dict(skipped), "counts": {}, "checks": {}, "as_it_fell": {}}
     pr = lambda x="": (lines.append(x), print(x))
-    pr(f"The opening (R-520, R-541), stage 1, on {len(M)} matches: {len(C)} openings in {len({c['rid'] for c in C})} matches, each team's read from its own side"
+    mean = lambda V, k: float(np.mean([c[k] for c in V if c[k] is not None] or [0.0]))
+    pr(f"The opening (R-520, R-541, R-590), stage 1, on {len(M)} matches: {len(C)} openings in {len({c['rid'] for c in C})} matches, each team's read from its own side"
        + "".join(f"; set aside, {k}: {v}" for k, v in skipped.most_common() if v))
-    pr("\nA. How many, by what the team did with its first flag and where its players went")
-    for f in OPEN_FLAG:
-        X = [c for c in C if c["flag"] == f]; res["counts"][f] = {"openings": len(X), "matches": len({c["rid"] for c in X})}
-        fc = [c["first_cap"] for c in X if c["first_cap"] is not None]
-        pr(f"   {f:52} {len(X):4}; its first cap at (middle) {cl(np.median(fc)) if fc else 'never':>5}; caps first {100 * np.mean([c['capped_first'] for c in X]) if X else 0:3.0f}%")
-    for sh in OPEN_SHAPE:
-        X = [c for c in C if c["shape"] == sh]; res["counts"][sh] = {"openings": len(X), "matches": len({c["rid"] for c in X})}
-        pr(f"   {sh:52} {len(X):4}; brings its first flag up {100 * np.mean([c['brought'] for c in X]) if X else 0:3.0f}%; caps first {100 * np.mean([c['capped_first'] for c in X]) if X else 0:3.0f}%")
-    pr(f"\nB. The readings ({len(C)} openings)")
-    rd = lambda *a, **k: _reading(pr, res, C, *a, **k)
-    rd("O1 a team that brings its first flag up caps first more often than one that brings none", lambda c: c["brought"], lambda c: not c["brought"], +1, lambda c: c["capped_first"], "brings it up", "brings none")
-    rd("O2 a team that brings its first flag up is better off in flags at 3:00 than one that brings none", lambda c: c["brought"], lambda c: not c["brought"], +1, lambda c: c["lead180"] or 0.0, "brings it up", "brings none", unit=" flags")
-    rd("O3 the team that caps first is better off in flags at 3:00", lambda c: c["capped_first"], lambda c: not c["capped_first"], +1, lambda c: c["lead180"] or 0.0, "caps first", "does not", unit=" flags")
-    rd("O4 a team with a player left back for the next flag is better off in flags at 3:00 than all eight at the stand", lambda c: c["shape"] == OPEN_SHAPE[1], lambda c: c["shape"] == OPEN_SHAPE[0], +1, lambda c: c["lead180"] or 0.0, "a player left back", "all eight", unit=" flags")
-    rd("O5 a team with a player left back loses a player in the first 90 s more often than all eight at the stand", lambda c: c["shape"] == OPEN_SHAPE[1], lambda c: c["shape"] == OPEN_SHAPE[0], +1, lambda c: c["hard"]["90"]["deaths"][0] > 0, "a player left back", "all eight")
+    pr("\nA. What each team showed at the gates")
+    for mu in OPEN_MATCHUP:
+        X = [c for c in C if c["matchup"] == mu]; res["counts"][mu] = {"openings": len(X), "matches": len({c["rid"] for c in X})}
+        pr(f"   {mu:38} {len(X):4} in {len({c['rid'] for c in X}):3} matches; brings its first flag up {100 * mean(X, 'brought'):3.0f}%; caps first {100 * mean(X, 'capped_first'):3.0f}%; holds it 15 s or more at the stand {100 * mean(X, 'held'):3.0f}%")
+    pr("   The first flag, by the line of the player it came up on (frontline = warriors, dervishes, melee assassins; midline = the rest but monks):")
+    for ln in OPEN_LINES + (None,):
+        X = [c for c in C if c["line"] == ln and (ln is not None or not c["brought"])]; lab = ln or "no flag brought up"; res["counts"][lab] = {"openings": len(X), "matches": len({c["rid"] for c in X})}
+        if X: pr(f"   {lab:38} {len(X):4} in {len({c['rid'] for c in X}):3} matches; handed to another player {100 * mean(X, 'handed'):3.0f}%; held 15 s or more {100 * mean(X, 'held'):3.0f}%; lost before a cap {100 * mean(X, 'lost'):3.0f}%; caps first {100 * mean(X, 'capped_first'):3.0f}%")
+    F = [c for c in C if c["brought"] and c["their_brought"] and c["both_capped"] and c["matchup"] != OPEN_MATCHUP[4]]
+    pr(f"\nB. The readings. N1 to N4 on openings where both teams brought a flag up and both capped, no split from the gates ({len(F)})")
+    rd = lambda X, *a, **k: _reading(pr, res, X, *a, **k)
+    sec, fst = (lambda c: not c["capped_first"]), (lambda c: c["capped_first"])
+    rd([c for c in F if c["lead180"] is not None], "N1 the team that caps second is better off in flags at 3:00 than the team that caps first (F25)", sec, fst, +1, lambda c: c["lead180"], "caps second", "caps first", unit=" flags")
+    rd([c for c in F if c["lead300"] is not None], "N2 the same at 5:00", sec, fst, +1, lambda c: c["lead300"], "caps second", "caps first", unit=" flags")
+    rd([c for c in F if c["lead420"] is not None], "N3 the same at 7:00", sec, fst, +1, lambda c: c["lead420"], "caps second", "caps first", unit=" flags")
+    rd([c for c in F if c["boosts"] is not None], "N4 the team that caps second takes more of the boosts of 2:00, 4:00 and 6:00", sec, fst, +1, lambda c: c["boosts"], "caps second", "caps first", unit=" boosts")
+    rd(C, "N5 a team with all eight at the stand caps second more often against seven than against eight (it holds and waits)", lambda c: c["matchup"] == OPEN_MATCHUP[1], lambda c: c["matchup"] == OPEN_MATCHUP[0], +1, lambda c: not c["capped_first"], "8 v 7", "8 v 8")
+    V7 = [c for c in C if c["matchup"] in (OPEN_MATCHUP[0], OPEN_MATCHUP[2])]
+    rd([c for c in V7 if c["first_boost"] is not None], "N12 a team that leaves a player back against eight takes the boost of 2:00 more often than a team in an 8 v 8 (ours less theirs)", lambda c: c["matchup"] == OPEN_MATCHUP[2], lambda c: True, +1, lambda c: c["first_boost"], "7 v 8", "8 v 8", unit=" boosts")
+    rd([c for c in V7 if c["boosts"] is not None], "N13 the same over the boosts of 2:00, 4:00 and 6:00", lambda c: c["matchup"] == OPEN_MATCHUP[2], lambda c: True, +1, lambda c: c["boosts"], "7 v 8", "8 v 8", unit=" boosts")
+    rd([c for c in V7 if c["lose300"] is not None], "N14 a team that leaves a player back against eight loses a player in the first five minutes more often than a team in an 8 v 8", lambda c: c["matchup"] == OPEN_MATCHUP[2], lambda c: True, +1, lambda c: c["lose300"], "7 v 8", "8 v 8")
+    U = [c for c in C if c["brought"] and c["matchup"] != OPEN_MATCHUP[4]]
+    rd(U, "N6 a first flag on a frontliner with a player left back is capped first more often than other first flags", lambda c: c["line"] == "frontline" and c["stand"] == 7, lambda c: True, +1, lambda c: c["capped_first"], "frontliner, one back", "other first flags")
+    E8 = [c for c in U if c["stand"] == 8]
+    rd(E8, "N7 all eight at the stand: a first flag on a midline player is capped second more often than one on a frontliner (it is held)", lambda c: c["line"] == "midline", lambda c: c["line"] == "frontline", +1, lambda c: not c["capped_first"], "on a midline", "on a frontliner")
+    rd(E8, "N8 all eight at the stand: a first flag on a frontliner is handed to another player more often than one on a midline", lambda c: c["line"] == "frontline", lambda c: c["line"] == "midline", +1, lambda c: c["handed"], "on a frontliner", "on a midline")
+    rd(U, "N9 a first flag that came up on a frontliner is lost before it is capped more often than one on a midline", lambda c: c["line"] == "frontline", lambda c: c["line"] == "midline", +1, lambda c: c["lost"], "on a frontliner", "on a midline")
+    K = [c for c in C if c["brought"] and c["responder"]]
+    res["responders"] = collections.Counter(c["responder"] for c in C if c["responder"]).most_common()
+    res["on_responder"] = {"first flags": len(K), "on it": sum(1 for c in K if c["on_responder"])}
+    pr(f"   Held for his word (R-590): the first flag on a team's usual split response. Measured as the player other than a monk a guild most often sends first to a split, it comes out as "
+       + ", ".join(f"{k} for {sum(1 for g in {c['team'] for c in C if c['responder'] == k})} guilds" for k, _ in res["responders"]) + ":")
+    pr(f"   for most guilds that is the flag runner, who is at home when a split comes, and not the player he means; {res['on_responder']['on it']} of {len(K)} first flags came up on that player. No reading is made from it.")
     pr("   Not a reading: who wins. The stronger team chooses its opening too; the chance of winning each row started from is shown below.")
-    extra = (("caps first", lambda V: 100 * float(np.mean([c["capped_first"] for c in V])), lambda v: f"{v:9.0f}%"), ("flags at 3:00", lambda V: float(np.mean([c["lead180"] or 0.0 for c in V])), lambda v: f"{v:+13.2f}"),
-             ("wins", lambda V: 100 * float(np.mean([c["won"] for c in V])), lambda v: f"{v:4.0f}%"))
-    head = _fell_head((("caps first", 10), ("flags at 3:00", 13), ("wins", 5)))
-    pr("\nC. As it fell, 90 s from the gates (win points also 180 s on): a description set against no like spot; the opening a team picks follows its build and its strength")
-    pr("   started at = its chance of winning at the gates (the strength gap and little else); flags at 3:00 = change in its flag lead over the first three minutes;")
-    pr("   they lose one, we lose one = a death in the first 90 s; flags = change in flag lead at 1:30.")
-    pr("\n   By the first flag"); pr(head); o = res["as_it_fell"]["first flag"] = {}
-    for f in OPEN_FLAG: _fell(pr, o, f, [c for c in C if c["flag"] == f], extra)
-    pr("\n   By where the players went"); pr(head); o = res["as_it_fell"]["players"] = {}
-    for sh in OPEN_SHAPE: _fell(pr, o, sh, [c for c in C if c["shape"] == sh], extra)
+    head = f"     {'':56} {'cases':>5}  {'started at':>10}  {'caps first':>10}  {'holds':>6}  {'flags 3:00':>10}  {'5:00':>6}  {'7:00':>6}  {'boosts by 7:00':>14}  {'we lose one by 5:00':>19}  {'they lose one':>13}  {'wins':>5}"
+    def row(o, label, V):
+        if not V: return
+        r = {"cases": len(V), "matches": len({c["rid"] for c in V}), "started at": 100 * mean(V, "p0"), "caps first": 100 * mean(V, "capped_first"), "holds": 100 * mean(V, "held"), "flags 3:00": mean(V, "lead180"),
+             "flags 5:00": mean(V, "lead300"), "flags 7:00": mean(V, "lead420"), "boosts by 7:00": mean(V, "boosts"), "we lose one by 5:00": 100 * mean(V, "lose300"), "they lose one by 5:00": 100 * mean(V, "kill300"), "wins": 100 * mean(V, "won")}
+        o[label] = r
+        pr(f"     {label:56} {len(V):5}  {r['started at']:9.0f}%  {r['caps first']:9.0f}%  {r['holds']:5.0f}%  {r['flags 3:00']:+10.2f}  {r['flags 5:00']:+6.2f}  {r['flags 7:00']:+6.2f}  {r['boosts by 7:00']:+14.2f}  {r['we lose one by 5:00']:18.0f}%  {r['they lose one by 5:00']:12.0f}%  {r['wins']:4.0f}%"
+           + ("   (under the floor)" if len(V) < MIN_PLAYS or r["matches"] < MIN_MATCHES else ""))
+    pr("\nC. As it fell: a description set against no like spot; the opening a team picks follows its build and its strength")
+    pr("   started at = its chance of winning at the gates (the strength gap and little else); flags = change in its flag lead from the gates; boosts by 7:00 = ours less theirs of the")
+    pr("   boosts of 2:00, 4:00 and 6:00; we lose one, they lose one = a death in the first five minutes.")
+    pr("\n   1. How many players each team has at the stand (his first point)"); pr(head); o = res["as_it_fell"]["players at the stand"] = {}
+    for mu in OPEN_MATCHUP:
+        X = [c for c in C if c["matchup"] == mu]; row(o, mu, X)
+        if mu in OPEN_MATCHUP[:4]:
+            row(o, f"  {mu.split(':')[0]}, we cap first", [c for c in X if c["both_capped"] and c["capped_first"]]); row(o, f"  {mu.split(':')[0]}, we cap second", [c for c in X if c["both_capped"] and not c["capped_first"]])
+    pr("\n   2. A split from the gates or in the first 3:00 (his second point), from the side of the team split on"); pr(head); o = res["as_it_fell"]["a split"] = {}
+    row(o, "they split in the first 3:00", [c for c in C if c["they_split"]])
+    for ln in OPEN_LINES: row(o, f"  and our first flag came up on a {ln} player", [c for c in C if c["they_split"] and c["line"] == ln])
+    row(o, "nobody splits in the first 3:00", [c for c in C if not c["they_split"] and not c["we_split"]])
+    pr("\n   3. They bring no flag (his third point), from the side of the team that sees none"); pr(head); o = res["as_it_fell"]["no flag"] = {}
+    N = [c for c in C if c["brought"] and not c["their_brought"]]
+    row(o, "they bring no flag: all of ours", N); row(o, "  we cap ours inside 15 s of reaching the stand", [c for c in N if c["flag"] == OPEN_FLAG[0]]); row(o, "  we hold ours 15 s or more, then cap", [c for c in N if c["flag"] == OPEN_FLAG[1]])
+    row(o, "  we do not cap ours", [c for c in N if c["flag"] == OPEN_FLAG[2]]); row(o, "neither team brings a flag", [c for c in C if not c["brought"] and not c["their_brought"]])
+    pr("\n   4. On whom the first flag came up (his fourth point), no split from the gates"); pr(head); o = res["as_it_fell"]["the first carrier"] = {}
+    for n in (8, 7):
+        for ln in OPEN_LINES: row(o, f"{n} at the stand, flag on a {ln} player", [c for c in U if c["stand"] == n and c["line"] == ln])
     if out_json: json.dump(res, open(out_json, "w"), indent=1, default=float)
     return res
 

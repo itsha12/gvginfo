@@ -41,6 +41,62 @@
     330
    ],
    "reads": "not clear"
+  },
+  "B3 a team low on health as the res lands (its players in the base under 85% between them) loses a player more often": {
+   "first": 0.208955223880597,
+   "second": 0.06378132118451026,
+   "difference": 0.14517390269608677,
+   "range": [
+    0.06352898463285872,
+    0.23258406403786497
+   ],
+   "n": [
+    67,
+    878
+   ],
+   "reads": "HOLDS"
+  },
+  "B4 the same team loses two or more more often": {
+   "first": 0.13432835820895522,
+   "second": 0.004555808656036446,
+   "difference": 0.12977254955291878,
+   "range": [
+    0.06663402843459917,
+    0.20899553473152813
+   ],
+   "n": [
+    67,
+    878
+   ],
+   "reads": "HOLDS"
+  },
+  "B5 four or more right inside with four or more coming back, a player dies more often than otherwise": {
+   "first": 0.08383233532934131,
+   "second": 0.07197943444730077,
+   "difference": 0.011852900882040537,
+   "range": [
+    -0.023925336552178125,
+    0.05259893403931578
+   ],
+   "n": [
+    167,
+    778
+   ],
+   "reads": "not clear"
+  },
+  "B6 with three or more pit NPCs alive a player dies more often than with two or fewer": {
+   "first": 0.06976744186046512,
+   "second": 0.08333333333333333,
+   "difference": -0.013565891472868213,
+   "range": [
+    -0.04443176445828811,
+    0.01874913804788846
+   ],
+   "n": [
+    645,
+    300
+   ],
+   "reads": "not clear"
   }
  },
  "as_it_fell": {
@@ -176,5 +232,181 @@
     "job met": 95.45454545454545
    }
   }
- }
+ },
+ "by_health": {
+  "every stay": {
+   "cases": 945,
+   "matches": 426,
+   "one dies": 7.4074074074074066,
+   "two or more die": 1.3756613756613756
+  },
+  "health between them 0 to 70%": {
+   "cases": 9,
+   "matches": 9,
+   "one dies": 33.33333333333333,
+   "two or more die": 22.22222222222222
+  },
+  "health between them 70 to 85%": {
+   "cases": 58,
+   "matches": 57,
+   "one dies": 18.96551724137931,
+   "two or more die": 12.068965517241379
+  },
+  "health between them 85 to 95%": {
+   "cases": 318,
+   "matches": 225,
+   "one dies": 8.176100628930817,
+   "two or more die": 0.3144654088050315
+  },
+  "health between them 95 to 100%": {
+   "cases": 560,
+   "matches": 330,
+   "one dies": 5.357142857142857,
+   "two or more die": 0.5357142857142857
+  },
+  "low on health, four or more right inside, four or more coming back": {
+   "cases": 6,
+   "matches": 6,
+   "one dies": 33.33333333333333,
+   "two or more die": 33.33333333333333
+  },
+  "not low, four or more right inside, four or more coming back": {
+   "cases": 161,
+   "matches": 144,
+   "one dies": 7.453416149068323,
+   "two or more die": 0.6211180124223602
+  }
+ },
+ "two_or_more_die": [
+  {
+   "rid": "3b7bfeac-18e1-5599-af30-b175eeb2ff1e",
+   "team": "hook",
+   "t": 1440,
+   "deaths": 4,
+   "health": 74,
+   "inside": 6,
+   "back": 2,
+   "pit_npcs": 3
+  },
+  {
+   "rid": "512d445f-03eb-56ea-a9ed-6b8f596f7c57",
+   "team": "One",
+   "t": 720,
+   "deaths": 4,
+   "health": 80,
+   "inside": 7,
+   "back": 2,
+   "pit_npcs": 4
+  },
+  {
+   "rid": "33dab8e5-e202-5a34-a433-3fcbe714e75c",
+   "team": "Men",
+   "t": 360,
+   "deaths": 3,
+   "health": 80,
+   "inside": 1,
+   "back": 1,
+   "pit_npcs": 0
+  },
+  {
+   "rid": "113c3dc5-a172-5fcc-af51-02392df65383",
+   "team": "DMG",
+   "t": 360,
+   "deaths": 2,
+   "health": 83,
+   "inside": 1,
+   "back": 3,
+   "pit_npcs": 5
+  },
+  {
+   "rid": "19f38ea6-59d3-5264-a5a1-8ae0fea2e640",
+   "team": "hook",
+   "t": 600,
+   "deaths": 2,
+   "health": 67,
+   "inside": 0,
+   "back": 1,
+   "pit_npcs": 3
+  },
+  {
+   "rid": "328de049-54fa-5d8e-a401-651e954b288d",
+   "team": "Book",
+   "t": 960,
+   "deaths": 2,
+   "health": 60,
+   "inside": 3,
+   "back": 1,
+   "pit_npcs": 6
+  },
+  {
+   "rid": "39e9d728-9eec-5804-a9cf-14db1ef436c2",
+   "team": "ohno",
+   "t": 480,
+   "deaths": 2,
+   "health": 79,
+   "inside": 5,
+   "back": 4,
+   "pit_npcs": 1
+  },
+  {
+   "rid": "5527465c-2adf-5c1c-a22f-1dac53eebcce",
+   "team": "Men",
+   "t": 360,
+   "deaths": 2,
+   "health": 96,
+   "inside": 1,
+   "back": 3,
+   "pit_npcs": 4
+  },
+  {
+   "rid": "77b64e5c-caf6-5b64-a52a-1e6b422108d5",
+   "team": "\uc637\uc637\uc637\uc637",
+   "t": 1200,
+   "deaths": 2,
+   "health": 72,
+   "inside": 5,
+   "back": 1,
+   "pit_npcs": 4
+  },
+  {
+   "rid": "94c556ce-100d-519c-a311-5e83b186c92c",
+   "team": "DMG",
+   "t": 120,
+   "deaths": 2,
+   "health": 96,
+   "inside": 0,
+   "back": 1,
+   "pit_npcs": 5
+  },
+  {
+   "rid": "c0f32eca-f1c2-58f3-af33-26573c782b3d",
+   "team": "Dz",
+   "t": 600,
+   "deaths": 2,
+   "health": 99,
+   "inside": 8,
+   "back": 3,
+   "pit_npcs": 1
+  },
+  {
+   "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+   "team": "Men",
+   "t": 600,
+   "deaths": 2,
+   "health": 82,
+   "inside": 6,
+   "back": 5,
+   "pit_npcs": 4
+  },
+  {
+   "rid": "ccd78801-c6e8-549b-add2-ca9c98926d1c",
+   "team": "Free",
+   "t": 1560,
+   "deaths": 2,
+   "health": 85,
+   "inside": 6,
+   "back": 4,
+   "pit_npcs": 2
+  }
+ ]
 }
