@@ -8,31 +8,28 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 > out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-22: R-583 answered; R-580, R-581, R-583 and the double count built on `bundle-4`)
+## State (2026-11-22, afternoon: R-584 to R-587 answered and built on `bundle-4`; four kinds through stage 1)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` and lands in one
   piece, then one rebuild (R-322). 658 replays stored; 564 count (R-477); 506 matches trained. No workflow run in
-  progress. Rulings run to R-583. The baseline (R-491) is the branch `baseline-2026-11-15`.
+  progress. Rulings run to R-587. The baseline (R-491) is the branch `baseline-2026-11-15`.
 - Graded and filed (set f1): thirteen games. Numbers from kills: no family (R-557). Splits read in both halves,
   no advice from them at the matches in hand; no more matches until the engine is ready (R-570).
-- Built this session (CLAUDE.md says how each is read and what was tried and taken out): R-583 (`_numbers`,
-  `level`), R-580 (`Moments.handed_on`), R-581 (`jobs._flag_rows`); the double count of TFS v DMG 22:44
-  (`_split_candidates` read until it settles; a defender with no split left is in the main fight); two small
-  flag faults; `at_told` on the push, held-in-base and base res plays; stage 1 of pushing the flagger
-  (`cases.py pushes`) and of a team held in its base (`cases.py held`): every reading but one holds.
-- Last checkpoint (every counted match, this engine): 564 matches, 33,892 plays, no errors; fourteen truths hold;
-  313 Classic rows pass, none fail; 137 history rows hold, 4 do not; self-check 6 in 4. The seven reports are
+- Built on 2026-11-22 (CLAUDE.md says how each is read and what was tried and taken out): R-583 to R-585 (a
+  brief numbers difference from players coming, going or elsewhere is not told), R-580 (a flag handed on), R-581
+  and R-586 (a first flag left two minutes), R-587 (the opening names its carriers), the double count of TFS v
+  DMG, and stage 1 of four kinds, each a report in `cases.py`: `pushes`, `held`, `res`, `opening`.
+- Last checkpoint (every counted match, this engine): 564 matches, 33,371 plays, no errors; fourteen truths hold;
+  313 Classic rows pass, none fail; 136 history rows hold, 5 do not; self-check 6 in 4. The nine reports are
   written on it. Not run again on it: the gate and the line-up.
-- Flag cards (main, `flag_cards.json`, 63, written from the run before the last fixes; no graded game changed
-  since): six ask to be marked again (HC v Team 3:42 and 6:34, Men v Crew 4:53, 옷옷옷옷 v RACK 6:15, Men v hold
-  6:18, hold v RACK 5:21; four only a verdict at the range's edge), five are unmarked (Men v Crew 12:23,
-  옷옷옷옷 v hdm 3:21, game 15's 8:19, 12:11, 13:29); four are gone (two of hold v RACK, Men v Crew 5:52, 12:26).
+- Flag cards (main, `flag_cards.json`, 63, written on it): six ask to be marked again (HC v Team 3:42 and 6:34,
+  Men v Crew 4:53, 옷옷옷옷 v RACK 6:15, Men v hold 6:18, hold v RACK 5:21; four only a verdict at the range's
+  edge), five are unmarked (Men v Crew 12:23, 옷옷옷옷 v hdm 3:21, game 15's 8:19, 12:11, 13:29); four are gone.
 
 ## Next (in order): the engine substantially finished before the merge and training (R-571, R-572)
-1. His answers to the four questions put to him on 2026-11-22 ("Open for Denning" 1): each changes a reading
-   (R-583's reach, the length of R-581, the opening's words). File each as a ruling and build it.
-2. The kinds Claude reads as ready (R-572), each through his four stages. Pushing the flagger and held in base
-   have stage 1 (the readings hold): next their general tables put to him, then like spots. The base res and
-   the opening are not begun (the base res plays carry `at_told`). The Lord push: picked rows from late games.
+1. His word on the general tables of pushes and holds, and on the base res and the opening ("Open for Denning"
+   1). Then stage 3 for pushes and holds: like spots and the test on unseen matches, as `cases.py splits` has.
+2. The base res and the opening: their stage 1 did not bear out Claude's guesses, so their readings come from
+   him first (what any player knows of each), then the general tables. The Lord push: picked rows from late games.
 3. The measurements (R-572): enemy execution (2.12), the interaction rule (2.13), NPC damage by kind of bar
    (R-433), a measure of what is at stake (R-509), the decision to split at all (R-558).
 4. Stage E (REDESIGN.md): the new families beside the old kinds for one rebuild (R-323), the stand-in prices
@@ -44,16 +41,11 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 ## Open for Denning
 0. Held at his word (R-554, his "make sure you remember"): the cards for a flag in hand, with R-553 to build, and
    for a double run from the sender's side: raise them when more matches are trained. The execution list (R-557).
-1. Put to him on 2026-11-22, each with its replay link (set them out again in the chat if he has not answered):
-   - R-583 took out two rows he graded Visible and correct (Men v Crew 23:30, Men v hold 12:46: a player leaves
-     and the other team's player leaves 12 to 14 s later). Level, as he ruled, or a decision?
-   - 268 brief rows "from players split elsewhere" are still told: nobody was in the fight within 12 s either
-     side (a short fight with a player elsewhere throughout). Of three he has graded: Weak (Men v hold 0:24),
-     No decision (hold v Men 0:24), Visible and correct (Men v hold 18:18). Stop telling these too?
-   - R-581's length (180 s) is Claude's draft. It changes 옷옷옷옷 v hdm's opening (Visible, correct: now the
-     flag put down at 0:03 and the Warrior sent for it at 3:15) and tells Men v 옷옷옷옷 5:16 the same way.
-   - R-580 names the hand-on in Men v NwAy's opening (Classic): "brought up by Mes/A, handed to 8 Monk".
-   Asked as (a)/(b) options in the chat; none answered when this was written.
+1. Put to him on 2026-11-22 (afternoon), in the chat; set out again if he has not answered:
+   - Pushing the flagger and held in base: do the general tables read right to him, as the flag table did?
+   - The base res: a player of those who stay dies in the 30 s after it only 7 to 9% of the time, outnumbered or
+     not. Is the danger of a base res something else than a death in 30 s (being pushed out, the NPCs saved)?
+   - The opening: what does any player know of it that the engine should check (Claude's five guesses: one held)?
 2. Eleven flag cards to mark (State). R-576's reading (held in base by five or more) is Claude's, and R-575 is
    applied to Nomad's as to Jade: bring him what either tells wrongly as it turns up in his games.
 3. Tolkano: no build (his word): give him date, guilds, hall and length with every example.

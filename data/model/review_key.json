@@ -1,5 +1,5 @@
 {
- "about": "The review key (R-450). Every row Denning was shown of the engine's plays: what the engine said then (shown), his mark and his words (said), and checks: Claude's reading of his mark as things the plays must hold or must not hold, which he corrects. Scored by tools/golden/review.py on the branch after every change. Marks: right, partly, wrong, bad example (set aside), not marked. Set 1 is the 35 rows of 2026-11-13, picked one or more to a kind of play, so it is a regression test and not an accuracy figure; whole-game sets (R-454) give the accuracy by kind of play. `answered` holds a later answer of his on a row (what was asked, his words, Claude's reading). Set w1p1 is part 1 of the whole-game review (R-455), marked by him on the site on 2026-11-13 against engine af952c6: one row a situation with his mark and words, its calls under `calls` with theirs, and one `missed` row a game for what the engine did not read; checks are written as each fault is fixed. Set w1p2 is hdm v hook, the first game of part 2, marked on 2026-11-14 against engine 67e87b8 as the first measure of the rebuilt reading; he then chose to build from it too, keeping Men v Crew unmarked as the hidden game. Set w2 is round 3 (R-473): hook v hold and cope v Team, marked on 2026-11-14 against engine b025445 (24 of 41 and 15 of 24 situations right); chic v 戦戦戦戦 was set aside unmarked (a henchman game). RJT v RACK (eea5ba87) is round 3's third game, marked on 2026-11-14 against engine b09a26a (33 of 45 situations right); its checks are written from his words and are open until the reading under them is rebuilt. Set p2 is twelve picked rows of 2026-11-18 (R-495: examples found by search for a fault seen once, put to him in the chat with their replay links): six of the two held flag shapes and three sudden deaths of a solo split player. They carry no grade, so none binds; their games are in the development set. Set c1 is the flag advice cards he corrected on Model > Game review > Flag advice (marked 2026-11-20, 61 cards of the twelve f1 games against engine cb7c78a: 58 told correctly, 2 partly, 1 incorrect; all 61 marks are in data/model/flag_card_marks.json): one row a corrected card, with his words and the check on the play the card is written from. They carry no grade, so none binds. Rows c1-4 to c1-6 are his notes on the flags of three games from the same page (decisions with no card), with Claude's reading of each. Set p3 is nine picked rows of 2026-11-21 (R-572: like moments found by search for the faults seen in one game, put to him in the chat with date, guilds, hall, length, time and link; his answers are R-579 to R-582). They carry no grade, so none binds. On 2026-11-22 his answer (a) on the rows R-579 left (R-583) and the builds of R-580 and R-581 were filed: the open checks they close are marked closed, the rows no longer told carry `later`, and the picked rows of R-581 got their checks.",
+ "about": "The review key (R-450). Every row Denning was shown of the engine's plays: what the engine said then (shown), his mark and his words (said), and checks: Claude's reading of his mark as things the plays must hold or must not hold, which he corrects. Scored by tools/golden/review.py on the branch after every change. Marks: right, partly, wrong, bad example (set aside), not marked. Set 1 is the 35 rows of 2026-11-13, picked one or more to a kind of play, so it is a regression test and not an accuracy figure; whole-game sets (R-454) give the accuracy by kind of play. `answered` holds a later answer of his on a row (what was asked, his words, Claude's reading). Set w1p1 is part 1 of the whole-game review (R-455), marked by him on the site on 2026-11-13 against engine af952c6: one row a situation with his mark and words, its calls under `calls` with theirs, and one `missed` row a game for what the engine did not read; checks are written as each fault is fixed. Set w1p2 is hdm v hook, the first game of part 2, marked on 2026-11-14 against engine 67e87b8 as the first measure of the rebuilt reading; he then chose to build from it too, keeping Men v Crew unmarked as the hidden game. Set w2 is round 3 (R-473): hook v hold and cope v Team, marked on 2026-11-14 against engine b025445 (24 of 41 and 15 of 24 situations right); chic v 戦戦戦戦 was set aside unmarked (a henchman game). RJT v RACK (eea5ba87) is round 3's third game, marked on 2026-11-14 against engine b09a26a (33 of 45 situations right); its checks are written from his words and are open until the reading under them is rebuilt. Set p2 is twelve picked rows of 2026-11-18 (R-495: examples found by search for a fault seen once, put to him in the chat with their replay links): six of the two held flag shapes and three sudden deaths of a solo split player. They carry no grade, so none binds; their games are in the development set. Set c1 is the flag advice cards he corrected on Model > Game review > Flag advice (marked 2026-11-20, 61 cards of the twelve f1 games against engine cb7c78a: 58 told correctly, 2 partly, 1 incorrect; all 61 marks are in data/model/flag_card_marks.json): one row a corrected card, with his words and the check on the play the card is written from. They carry no grade, so none binds. Rows c1-4 to c1-6 are his notes on the flags of three games from the same page (decisions with no card), with Claude's reading of each. Set p3 is nine picked rows of 2026-11-21 (R-572: like moments found by search for the faults seen in one game, put to him in the chat with date, guilds, hall, length, time and link; his answers are R-579 to R-582). They carry no grade, so none binds. On 2026-11-22 his answer (a) on the rows R-579 left (R-583) and the builds of R-580 and R-581 were filed: the open checks they close are marked closed, the rows no longer told carry `later`, and the picked rows of R-581 got their checks. Later on 2026-11-22 his four answers (R-584 to R-587) were filed on the rows they were put to him with.",
  "version": 1,
  "rows": [
   {
@@ -14385,11 +14385,25 @@
      "mark": "correct"
     }
    ],
-   "checks": [],
+   "checks": [
+    {
+     "none": {
+      "play": "numbers",
+      "start": [
+       1404,
+       1416
+      ]
+     },
+     "why": "Men v Crew, Jade (R-584): level, not told"
+    }
+   ],
    "later": {
     "on": "2026-11-22",
-    "reading": "No longer told under R-583 (Men's AoB Derv leaves at 23:30 and Crew's Water Ele at 23:44): level. He had graded it visible, correct; put to him."
-   }
+    "asked": "One player leaves, then the other team's player leaves about 12 s later: (a) level, the engine stops telling them; (b) a real numbers advantage?",
+    "said": "1. Yes, (a) is the right approach.",
+    "reading": "R-584: level, not told. Replaces his grade of Visible, correct."
+   },
+   "retired_checks": []
   },
   {
    "id": "f1-5168-29",
@@ -18924,7 +18938,25 @@
      "mark": "not judged"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "none": {
+      "play": "numbers",
+      "start": [
+       18,
+       30
+      ]
+     },
+     "why": "Men v hold, Meditation (R-585): a brief difference from players elsewhere, not told"
+    }
+   ],
+   "later": {
+    "on": "2026-11-22",
+    "asked": "A fight of 10 to 12 s with a player elsewhere throughout: (a) stop telling every numbers difference of 12 s or less that comes from players being elsewhere; (b) keep telling them?",
+    "said": "2. Yes, proceed with your recommendation (a).",
+    "reading": "R-585: not told."
+   },
+   "retired_checks": []
   },
   {
    "id": "f1-572c-4",
@@ -21031,11 +21063,25 @@
      "mark": "correct"
     }
    ],
-   "checks": [],
+   "checks": [
+    {
+     "none": {
+      "play": "numbers",
+      "start": [
+       760,
+       772
+      ]
+     },
+     "why": "Men v hold, Meditation (R-584): level, not told"
+    }
+   ],
    "later": {
     "on": "2026-11-22",
-    "reading": "No longer told under R-583 (hold's Air Ele leaves at 12:48 and Men's Mesmer at 13:00): level. He had graded it visible, correct; put to him."
-   }
+    "asked": "One player leaves, then the other team's player leaves about 12 s later: (a) level, the engine stops telling them; (b) a real numbers advantage?",
+    "said": "1. Yes, (a) is the right approach.",
+    "reading": "R-584: level, not told. Replaces his grade of Visible, correct."
+   },
+   "retired_checks": []
   },
   {
    "id": "f1-572c-44",
@@ -21653,7 +21699,25 @@
      "mark": "correct"
     }
    ],
-   "checks": []
+   "checks": [
+    {
+     "none": {
+      "play": "numbers",
+      "start": [
+       1092,
+       1104
+      ]
+     },
+     "why": "Men v hold, Meditation (R-585): a brief difference from players elsewhere, not told"
+    }
+   ],
+   "later": {
+    "on": "2026-11-22",
+    "asked": "A fight of 10 to 12 s with a player elsewhere throughout: (a) stop telling every numbers difference of 12 s or less that comes from players being elsewhere; (b) keep telling them?",
+    "said": "2. Yes, proceed with your recommendation (a).",
+    "reading": "R-585: not told."
+   },
+   "retired_checks": []
   },
   {
    "id": "f1-572c-59",
@@ -22515,7 +22579,25 @@
    "grade": "none",
    "mark": "",
    "calls": [],
-   "checks": []
+   "checks": [
+    {
+     "none": {
+      "play": "numbers",
+      "start": [
+       18,
+       30
+      ]
+     },
+     "why": "hold v Men, Uncharted (R-585): a brief difference from players elsewhere, not told"
+    }
+   ],
+   "later": {
+    "on": "2026-11-22",
+    "asked": "A fight of 10 to 12 s with a player elsewhere throughout: (a) stop telling every numbers difference of 12 s or less that comes from players being elsewhere; (b) keep telling them?",
+    "said": "2. Yes, proceed with your recommendation (a).",
+    "reading": "R-585: not told."
+   },
+   "retired_checks": []
   },
   {
    "id": "f1-b870-5",
@@ -30422,7 +30504,13 @@
      "mark": "correct"
     }
    ],
-   "checks": []
+   "checks": [],
+   "later": {
+    "on": "2026-11-22",
+    "asked": "How long can a first flag lie before it stops being the opening's flag (draft 3 minutes; 옷옷옷옷 v hdm: put down 0:03, taken up 3:15)?",
+    "said": "3. b) It's the right idea but shorter time window. Let's go with 2 minutes for now.",
+    "reading": "R-586: left on the field; the Warrior is sent for it at 3:15. Replaces the row he graded Visible, correct."
+   }
   },
   {
    "id": "f1-5317-2",
@@ -33439,6 +33527,20 @@
      },
      "why": "Men v NwAy 0:00 (Classic, the row read correct; this call marked incorrect): 'they don't have 2 extra players'. The job is the stay of an answered double run, given at the opening to a team that ran no first flag: Men's 8 Monk walks the first flag up with its seven and only the Mes/A waits back, and NwAy has nobody at the stand (four out by the back door, four at home). Put to him 2026-11-21: 'Option A' (R-565): a team that runs no first flag carries no stay job at the opening, only 'Get the first flag in'",
      "held": "2026-11-21"
+    },
+    {
+     "has": {
+      "play": "opening",
+      "team": "Men",
+      "start": [
+       0,
+       2
+      ]
+     },
+     "want": {
+      "scenario~": "brought up by Mes/A, handed to 8 Monk"
+     },
+     "why": "Men v NwAy 0:14 (Classic; R-587): the opening names both players"
     }
    ],
    "retired_checks": [
@@ -33458,7 +33560,13 @@
      "retired": "2026-11-21",
      "why_retired": "R-565 (2026-11-21, his 'Option A' on Men v NwAy 0:00): a team that runs no first flag carries no stay job at the opening, so this flag play is no longer told; its first flag is the opening's ('Get the first flag in')"
     }
-   ]
+   ],
+   "later": {
+    "on": "2026-11-22",
+    "asked": "Who 'brought up' the first flag when two players share it: (a) name both, 'brought up by Mes/A, handed to 8 Monk'; (b) only the player who caps?",
+    "said": "4. a) new working is right",
+    "reading": "R-587"
+   }
   },
   {
    "id": "f1-c19f-2",

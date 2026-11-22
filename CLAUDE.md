@@ -224,6 +224,8 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   split's fight) is a player coming or going, and a situation with no other moment in it is not told. It is read on the whole
   stretch and the whole situation and moves no other row: do not turn it into "no moment in its own right" (tried: it cut the
   lead-in or tail of twelve situations, Men v RACK 18:04, Visible and correct, among them). A kill is as before (R-552).
+  And any numbers difference of JOIN_S or less that comes from players being elsewhere is not told (R-585, his answer;
+  `jobs.numbers_plays`: the sources "split elsewhere" and "on the way"; a runner away is the flag decision's, R-431).
 - When a split ends and what kills it (2026-11-20, `split_plays` on the branch). The rest of a split's team is read at
   the second, not from the record (R-439): a player who went home from it is of the rest when the main team comes to
   the split (R-487). A player left on the enemy's ground by the others of his split who neither hits NPCs nor trades
@@ -295,19 +297,24 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   flag up again runs it from there), never by a count of seconds; three wider forms failed those rows on 2026-11-22 (a player
   coming straight for it, the carrier himself, a taker never away for JOIN_S).
   A player sent for a flag left on the field is a flag decision (R-581). A later flag left lying was already told from where
-  it is taken up. What was told nowhere is built in `jobs._flag_rows` (`left`, `left_at` on the row; `left_spawn` on the run
-  record): a first flag brought up, put down, left lying longer than FLAG_JOB_MAX_S and then capped (HC v hdm 5:56), and a
-  first flag held before the gates that nobody carried in the match for as long (옷옷옷옷 v cope 4:55). The opening then says
-  what was brought up and put down, or that no flag was brought up, and the take-up is a run of its own, said as "sent for
-  the flag left lying since ...", with no "The opening." before it. The length is Claude's draft: a first flag put down for
-  less stays the opening's run (옷옷옷옷 v RACK 0:21, Classic; Men v Crew 0:22 to 1:23, his "Men holds for 1:47ish before
-  deciding to cap"). Do not test where the flag lay or who stood by it (the taker by it, and any team mate by it, each
-  fail a row he has marked); bring him the rows the length tells wrongly. Not built: a flag whose first pickup is not at
-  its spawn in the replay has no run record at all (Book v OG 7:16 and 10:56). A first flag neither capped nor returned is
-  said as "put down at ..." in the opening's row, and the two first flags are "neither before the other" only when both
-  set off by OPEN_BY_S (`gates` in `flag_plays`: One v Crew 6:37 had the other team's first flag of 0:00 as its answer).
-  Left for his answer on the length: a first flag taken up again and not capped is still told from the take-up as the
-  opening's flag, under "The opening." and named for the player who took it up (One v Crew 6:37).
+  it is taken up. A first flag is left when it has lain longer than FLAG_LEFT_S, two minutes (R-586, his length), read in
+  `jobs._flag_rows` (`left`, `left_at` on the row) and, for a flag held before the gates that nobody carried for as long,
+  in `run_starts` (`left_spawn`): the opening says what was brought up and put down, or that no flag was brought up, and
+  the take-up is a run of its own, said as "sent for the flag left lying since ...", with no "The opening." before it
+  (HC v hdm 5:56, 옷옷옷옷 v cope 4:55, 옷옷옷옷 v hdm 3:15). It is read from where the flag was first left that long, though it
+  was put down again later for less (cope v Team: left 0:11 to 2:58, capped 3:16), and whether it is capped in the end or
+  not. A first flag put down for less and then capped stays the opening's run (옷옷옷옷 v RACK 0:21, Classic; Men v Crew 0:22
+  to 1:23, his "Men holds for 1:47ish before deciding to cap"), and the opening names every player who carried it in the
+  match, in the order they first carried it (R-587: "brought up by Mes/A, handed to 8 Monk"; who held it before the gates
+  or put it down as they opened is not one). Do not test where the flag lay or who stood by it (the taker by it, and any
+  team mate by it, each fail a row he has marked). Not built: a flag whose first pickup is not at its spawn in the replay
+  has no run record at all (Book v OG 7:16 and 10:56). A first flag neither capped nor returned is said as "put down at
+  ..." in the opening's row, and the two first flags are "neither before the other" only when both set off by OPEN_BY_S
+  (`gates` in `flag_plays`). Seen and left: a first flag put down for less than two minutes and never capped is still
+  told from where it is taken up, under "The opening." and named for the player who took it up (One v Crew 6:37; read as
+  one opening run it stood "under way" for five minutes in cope v Team and took the other team's runs as its answers:
+  tried and taken out); and where a player goes back for the next flag before the player sent for a left flag has taken
+  it up, the double run names its two runners the wrong way round (cope v Team 2:43).
 - A flag held at home is no flag run (R-576), one reading, `Moments._held_carries` on the branch (built by `run_starts`
   beside the part-carries, asked through `held_at`): a carry in which the flag does not leave its own ground (nor by a
   hand-off within HANDOFF_GAP_S) while his team, all but one at most, is on that ground with him and MAIN_BIG or more
@@ -413,14 +420,18 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   the same comparison on the 60 s before), what followed each call as it fell, like spots and the test on unseen matches. The call is read 20 s in
   (`_main_call`): a change to a split already there first (collapse on it, a defender pulled back, more sent, players brought back; a player who died
   there is no call, R-571), else his calls of R-551 (`_num_call`). No more matches are trained for either half until the engine is ready (R-570): never propose it again as the next step.
-- The kinds that follow (R-572), on the branch. The push flagger, flagger pushed, pinned and base res plays carry `at_told`
-  (the position they are told at, the fixed 60, 90 and 180 s record and the 60 s before, as on a split; set in `jobs.plays`,
-  `AT_TOLD_KINDS`; it changes no play, and the development set's plays must be the same but for that key). Stage 1 of each
-  is a report in `cases.py`, kept with `--json`: `cases.py pushes <plays file>` (`data/model/push_cases.json`: who pushes,
-  where the flagger was, the readings U1 to U5, and what followed as it fell by who pushes and whether his team sent
-  help) and `cases.py held <plays file>` (`data/model/held_cases.json`: a team held in its base, by how the hold ended
-  and the players alive when it began, the readings H1 to H5, as it fell). Help sent and the break-out mark the spot and
-  are never read as causes. The base res and the opening are not begun; stages 2 to 4 of pushes and holds are not begun.
+- The kinds that follow (R-572), on the branch. The push flagger, flagger pushed, pinned, base res and opening plays carry
+  `at_told` (the position they are told at, the fixed 60, 90 and 180 s record and the 60 s before, as on a split; set in
+  `jobs.plays`, `AT_TOLD_KINDS`; it changes no play, and the development set's plays must be the same but for that key); a
+  base res play carries `res` (attackers, defenders, coming back, who stayed) and an opening play `open` (players to the
+  stand, on a split, back at home, waiting for the next flag). Stage 1 of each is a report in `cases.py`, kept with
+  `--json`: `pushes` (`push_cases.json`: who pushes, where the flagger was, the readings U1 to U5, and what followed as it
+  fell by who pushes and whether his team sent help), `held` (`held_cases.json`: a team held in its base, by how the hold
+  ended and the players alive when it began, H1 to H5), `res` (`res_cases.json`: stayed through the base res or left
+  before it, by how many came back, B1 to B3) and `opening` (`opening_cases.json`: the first flag and where the players
+  went, O1 to O5). Help sent, the break-out, staying against leaving and who wins mark the spot and are never read as
+  causes (staying against leaving is not one of his truths, R-534). The general tables (section C of each) are put to him
+  as stage 2; like spots and the test on unseen matches are not begun for any of the four.
 - A numbers advantage from kills is not a decision family (R-557: the team up keeps killing and follows the team down,
   whose own choices read as near forced; the numbers that are decisions are those a team chose to make, a runner, a
   split or a collapse). Its cards are not marked and its view is off the page (the `ADVICE.numbers` entry in

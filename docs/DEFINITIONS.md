@@ -11,7 +11,8 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   R-439). A death there counts at once. A walk through a teleporter and straight back is not being there (R-442). A player away from his
   fight for less than 12 s has not left it (R-579: read to close a numbers
   difference, never to lengthen one). So a numbers difference that only a living player's coming or going makes, for
-  12 s or less, is level and is not told (R-583); a difference from a kill counts at once, as before (R-552).
+  12 s or less, is level and is not told (R-583, R-584); nor is any numbers difference of 12 s or less that
+  comes from players being elsewhere (R-585). A difference from a kill counts at once, as before (R-552).
   On Isle of Jade players walking through the portal during the main fight are part of it on either side (R-575).
   *As built:* on a hall whose teleporters work both ways (Jade, Nomad's) the two ends of one are a step apart for
   who is in which fight. Main teams standing off are not a fight (R-405), so numbers that lie wholly in a stand-off
@@ -203,11 +204,13 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   *As built* (`Moments.handed_on`): within 3 s, or however long it takes while the team mate who takes it stands by
   it (an aggro bubble from it or less) from the second it was put down. Any other flag taken up again, by a team mate
   who comes to it or by its own carrier, is a run from where it is taken up.
-- A player sent for a flag left on the field is a flag decision (R-581). *As built:* a later flag left lying was
-  already a run from where it is taken up; a first flag brought up, put down and left lying longer than a flag play
-  runs (180 s), or held before the gates and carried by nobody for as long, is no longer the opening's: the opening
-  says what was brought up and put down, or that no flag was, and the take-up is a run of its own ("sent for the flag
-  left lying since ..."). The length is Claude's draft.
+- A player sent for a flag left on the field is a flag decision (R-581). A first flag left lying for more than
+  2 minutes has been left (R-586): lying for less it is still the opening's flag; lying for more, or held before the
+  gates and carried by nobody for as long, the opening says what was brought up and put down, or that no flag was,
+  and the take-up is a run of its own ("sent for the flag left lying since ..."). A later flag left lying is a run
+  from where it is taken up.
+- The opening names every player who carried the first flag in the match, in the order they first carried it
+  (R-587: "brought up by Mes/A, handed to 8 Monk").
 - A flag handed on is one runner: a half run is a single run (R-504). A double run needs a second player who has
   gone back for the next flag by the time the first caps (R-472, R-485).
 - A run is the answer to theirs when its runner turned for home before their flag went in, though the run's own
