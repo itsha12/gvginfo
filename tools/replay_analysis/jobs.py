@@ -133,6 +133,7 @@ def _flag_rows(M):
         off = None                                                        # the second its runner turned for home, when he went back for it (R-498)
         soh = M.day < SOH_REMOVED and any(m.sk(b) == "Shadow of Haste" for a in f["ids"] for b in m.A[a].get("bar", []) if b)      # R-456: only while the mechanic was in the game
         dbl = any((f["tm"], int(f["start"]) + dt) in second for dt in (0, -1, 1))
+        pre_row, left_at = f["pregame"], None                             # this row is the opening's first flag (R-479), unless the flag was left on the field (R-581: since when)
         if r is not None and f["pregame"]:                               # who held the flag before the gates opened did not carry it in the match (Men v RACK 0:00: Hammer A, who then waits back for the next one)
             ids = [a for a in ids if any(c[0] == a and (c[2] is None or c[2] > 0) for c in r["carries"])] or ids
         if r is not None and M.not_run(r): continue                      # only brought up with the team, never capped or pushed for the stand: no run (R-505; 옷옷옷옷 v RACK 0:00, his mark: "RACK brings flag up on Warrior, but DOES NOT run the flag")
@@ -140,15 +141,27 @@ def _flag_rows(M):
             went = r["set_off"] is not None and not pin(f["tm"], r["set_off"]) and not pin(f["tm"], r["pickup"])      # he walked back for it, his team not held in its base (a player falling back into his base with his team did not go to run)
             # the opening's first flag is one run from the opening (R-479), though its runner put it down on the way and took it up again to cap (옷옷옷옷 v RACK: the
             # 8 Monk runs it to the stand area by 0:21 and caps at 0:45, his mark: "this is the opening run")
+            # ... while it has not lain longer than a flag play runs (FLAG_JOB_MAX_S: Men v Crew 0:22 to 1:23, his words: "the same single run as before ... Men
+            # holds for 1:47ish before deciding to cap"). A first flag put down and left lying longer than that has been left on the field, and the player who
+            # comes for it is sent for it: a flag decision of its own (R-581; HC v hdm 5:56, his words: "hdm send 8 ele out to pick up flag that was left there
+            # and not returned; hdm manages to cap"). The opening keeps what was brought up and put down. So with a first flag nobody carried in the match
+            # until then (옷옷옷옷 v cope 4:55: left since before the gates): no flag came up at the opening. The length is Claude's draft, his to correct: bring him
+            # the rows it tells wrongly; do not add a test of where the flag lay or who stood by it (tried on 2026-11-22: the taker by it, and any team mate
+            # by it, each fail a row he has marked)
             opening = f["pregame"] and f["how"] == "captured" and r["chain"] is not None and r["out_by"] is not None
+            left = opening and r["chain"] - max(r["first_end"], 0) > FLAG_JOB_MAX_S
+            opening = opening and not left
             if opening: runner, ids = m.roles[r["out_by"]], r["chain_ids"]
+            if pre_row and r["left_spawn"]: pre_row, left_at = False, 0
             if not opening and r["chain"] is not None and r["under_way"] is not None:
                 # the flag lay on the ground and was taken up again: two runs. The first, to where it was put down, is a run if its runner went back for it (cope v Team
                 # 2:43, his mark: "derv 1 going back for next flag"; a flag picked up at home and put down again is none: TFS v 옷옷옷옷 1:20 and 11:01); the second starts
                 # where it was taken up, with that player (RJT v RACK 4:37)
                 first = [c for c in r["carries"] if c[2] is not None and c[2] <= r["first_end"]]
-                if went and M.travelled(f["tm"], first):
-                    out.append(dict(f, runner=runner, s0=min(int(r["moment"]), s0, int(r["first_end"])), pick=pick, e=int(r["first_end"]), how="put down", form=None, ids=r["first_ids"], held_s=0, other_stand=False, double=dbl, soh=soh))
+                if left: first = [c for c in first if c[2] > HANDOFF_GAP_S]      # what was put down as the gates opened was not carried in the match
+                if (went or left) and M.travelled(f["tm"], first):
+                    out.append(dict(f, runner=runner, s0=min(int(r["moment"]) if went else s0, s0, int(r["first_end"])), pick=pick, e=int(r["first_end"]), how="put down", form=None, ids=[a for a in ids if a in r["first_ids"]] or r["first_ids"], held_s=0, other_stand=False, double=dbl, soh=soh))
+                if left: left_at, pre_row = int(r["first_end"]), False
                 s0, runner, pick, ids, dbl = int(r["under_way"]), m.roles[r["out_by"]], int(r["chain"]), r["chain_ids"], False
                 carries = [c for c in r["carries"] if c[1] >= r["chain"] - 1]
             elif went and not opening: s0, off = min(int(r["moment"]), s0), int(r["set_off"])      # when he goes to run, by the hall (R-461); and when he set off
@@ -163,7 +176,7 @@ def _flag_rows(M):
             e = int(carries[-1][2])                                       # put down for good: the run ends there, not when the flag goes back to the spawn
             p = M.P[carries[-1][0]][min(e, M.T)]
             other = bool(p) and any(d(p, o) < 400 for o in others)        # at the hall's other flag stand (his answer on TFS v 옷옷옷옷 2:54: the Obelisk flag stand)
-        out.append(dict(f, runner=runner, s0=min(s0, e), off=min(off if off is not None else s0, s0, e), pick=pick, e=e, ids=ids, other_stand=other, double=dbl, soh=soh,
+        out.append(dict(f, runner=runner, s0=min(s0, e), off=min(off if off is not None else s0, s0, e), pick=pick, e=e, ids=ids, other_stand=other, double=dbl, soh=soh, pregame=pre_row, left_at=left_at,
                         waited_back=bool(r is not None and r.get("waited_back") and r.get("waited") is not None), waited=r and r.get("waited")))
     M._frows = out
     return out
@@ -334,11 +347,12 @@ def flag_plays(M, K, pinned_at):
         # brings flag up on Warrior, but DOES NOT run the flag")
         bu = next((q for q in M.run_starts() if q["tm"] == A and M.not_run(q) and q["pickup"] <= w1 and any((c[2] is None or c[2] >= w0) and c[1] <= w1 for c in q["carries"] if c[0] in q["serious"])), None)
         up = bu and f"brings a flag up with its team ({', '.join(dict.fromkeys(role[c[0]] for c in sorted(bu['carries'], key=lambda c: c[1]) if c[0] in bu['serious'] and (c[2] is None or c[2] >= w0) and c[1] <= w1))}) but does not run it"
-        said0 = f"{M.m.tag[B]} {theirs} ({both(f, carried(f))}{', to the Obelisk flag stand' if f['other_stand'] else ''})"
+        sent = "" if f.get("left_at") is None else ", sent for the flag left lying since " + (clock(f["left_at"]) if f["left_at"] > 0 else "before the gates opened")      # R-581
+        said0 = f"{M.m.tag[B]} {theirs} ({both(f, carried(f))}{sent}{', to the Obelisk flag stand' if f['other_stand'] else ''})"
         said1 = f"{M.m.tag[A]} has a flag already in hand{mine_}" if inhand else f"{M.m.tag[A]} {up or 'stays'}" if not new else f"{M.m.tag[A]} {ours}{mine_}"
         scen = said0 + "; " + said1
         first_flags = not any(u < w0 + 1 for u, _ in M.st.caps)          # nobody has capped yet: each team's first flag (R-500)
-        if not (f["pregame"] or (g and g["pregame"])) and first_flags: scen = "The opening. " + scen
+        if not (f["pregame"] or (g and g["pregame"])) and first_flags and f.get("left_at") is None: scen = "The opening. " + scen      # (a player sent for a first flag left on the field comes after the opening, R-581)
         if f["pregame"] or (g and g["pregame"]):                         # the opening (R-479): each team's first flag is a run, and a player left at the spawn for the next one is part of the call
             back = lambda tm, x: [role[q["a"]] for q in M.run_starts() if q["tm"] == tm and q["pickup"] > 2 and q["set_off"] is None and q["waited"] is not None and q["waited"] < x["e"]]
             left = [f"{M.m.tag[tm]}'s {', '.join(back(tm, x))}" for tm, x in ((B, f), (A, g)) if x and x["pregame"] and back(tm, x)]

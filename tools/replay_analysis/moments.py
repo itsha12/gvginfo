@@ -43,7 +43,7 @@ Usage:  python3 moments.py <report id> [family]      the match's moments in orde
         python3 jobs.py summary <out.json>            the plays and how often each job was met (jobs.py)
 In code: Moments(st, sb).records() -> list of dicts."""
 import collections, json, math, statistics, sys
-from common import (STAND_R, FOUGHT, DOUBLE_NEXT_S, FLAG_MOMENT_GREATER, FLAG_MOMENT_STAND, HANDOFF_GAP_S, FIGHT_HOLD, FIGHT_HOLD_S, FIGHT_ACT, FIGHT_CLOSE, READ_FROM, READ_TO, CONSEQ_S, ON_TIME_S, LATE_S, PIT_S, AREA_SHARE, PURPOSE_S, LEAVE_MIN_S, HOME_WAIT_S, SPAWN_R, GROUP_LEAVE_S, MEET_R,
+from common import (FLAG_JOB_MAX_S, STAND_R, FOUGHT, DOUBLE_NEXT_S, FLAG_MOMENT_GREATER, FLAG_MOMENT_STAND, HANDOFF_GAP_S, FIGHT_HOLD, FIGHT_HOLD_S, FIGHT_ACT, FIGHT_CLOSE, READ_FROM, READ_TO, CONSEQ_S, ON_TIME_S, LATE_S, PIT_S, AREA_SHARE, PURPOSE_S, LEAVE_MIN_S, HOME_WAIT_S, SPAWN_R, GROUP_LEAVE_S, MEET_R,
                     NUMBERS_MIN_S, MERGE_S, BOOST_WARN_S, FLAGGER_R, SPLIT_FAR, BOOST_EVERY, SERIOUS_CARRY_S, FIGHT_LINK, GROUND_MOVE, GROUND_S, GROUND_BACK, GROUND_JUMP, GROUND_SPLIT_MOVE, SIDE_FIGHT_MAX, SIDE_FIGHT_S, UNDEFENDED_S,
                     RETURN_R, FOOT_ENGAGED_S, SPLIT_STEP, SPLIT_MIN_S, SPLIT_GAP_S, FORCED_OUT_S, AHEAD_LOOK_S, CAUGHT_S, NPC_NEAR,
                     JOIN_S, RES_EVERY, flux_at, JOIN_LOOK_S, JOIN_MOVE, JOIN_LEAD, JOIN_ENGAGE, JOIN_ENGAGE_S, MAIN_BIG, HOME_GUIDE, SIDE_MOVE, SWAP_S, SWAP_STAY_S, SPLIT_FIGHT_GAP_S, SPLIT_FIGHT_MIN,
@@ -2160,6 +2160,10 @@ class Moments:
             # before its cap was under way from the start (his marks, RJT v RACK 2:23 and 10:10); a flag that lay on the ground and was taken up later is under way from
             # then, with that player (Denning's golden game 1: "hook's 8 Monk leaves the base at 7:05"; TFS v 옷옷옷옷 1:20 and 11:01)
             pre = c[1] < 2                                   # before the gates nobody set off or waited
+            # ... and a flag held before the gates that nobody carried in the match until it had lain longer than a flag play runs (FLAG_JOB_MAX_S): the opening
+            # brought no flag up, and the player who takes it is sent for it (R-581; 옷옷옷옷 v cope 4:55: the 8 Monk takes up the flag left since before the gates
+            # opened and caps at 5:08)
+            left_spawn = L["start"] < 0 and min((c2[1] for c2 in L["carries"] if c2[2] is None or c2[2] > 0), default=0) > FLAG_JOB_MAX_S
             set_off = u if not pre and dist(u) is not None and dist(u) - SPAWN_R > 1500 else None
             # a player who has not been out of his own base since the gates opened did not turn for home: he waited back for the flag (his words on Men v RACK 0:51,
             # 2026-11-20: "Warrior was waiting back, he didn't go back at 0:04"; the Hammer A walks from the gate to his spawn at 0:04 and waits there from 0:12).
@@ -2173,7 +2177,7 @@ class Moments:
             own, out_t, out_by = self.st.side.get(tm), None, None
             ser = [c2 for c2 in L["carries"] if c2[0] in L["serious"]]
             i0 = len(ser) - 1
-            while i0 > 0 and ser[i0 - 1][2] is not None and (ser[i0][1] - ser[i0 - 1][2] <= HANDOFF_GAP_S or ser[i0 - 1][2] < 0): i0 -= 1      # (what was put down before the gates opened was not put down in the match)
+            while i0 > 0 and ser[i0 - 1][2] is not None and (self.handed_on(ser[i0 - 1], ser[i0]) or ser[i0 - 1][2] < 0): i0 -= 1      # (what was put down before the gates opened was not put down in the match)
             for c2 in ser[max(i0, 0):]:
                 for v in range(max(int(c2[1]), 0), min(int(c2[2] if c2[2] is not None else self.T), self.T) + 1, 2):
                     if not (self.AL[c2[0]][v] and self.P[c2[0]][v]): continue
@@ -2189,12 +2193,29 @@ class Moments:
                 elif self.place_at(a, set_off)[0] in inside:
                     moment = next((v for v in range(set_off, tp + 1, 2) if self.place_at(a, v)[0] not in inside), tp)
                     rule = "leaves the greater stand area" if len(inside) == 2 else "leaves the stand area"
-            out.append({"a": a, "runner": runner, "how": L["how"], "serious": list(L["serious"]), "carries": [tuple(c2[:3]) for c2 in L["carries"]], "tm": tm, "pickup": tp, "set_off": set_off, "moment": moment, "moment_rule": rule, "waited_back": waited_back,
+            out.append({"a": a, "runner": runner, "how": L["how"], "serious": list(L["serious"]), "carries": [tuple(c2[:3]) for c2 in L["carries"]], "tm": tm, "pickup": tp, "set_off": set_off, "moment": moment, "moment_rule": rule, "waited_back": waited_back, "left_spawn": left_spawn,
                         "waited": waited if not pre and tp - waited >= 10 else None, "under_way": out_t, "out_by": out_by,
                         "chain": min(max(int(ser[i0][1]), 0), self.T) if ser and i0 > 0 and ser[i0 - 1][2] is not None else None, "first_end": ser[i0 - 1][2] if ser and i0 > 0 else None,      # the flag lay on the ground and was taken up again: when, and until when it had been carried before
                         "first_ids": [c2[0] for c2 in ser[:max(i0, 0)]], "chain_ids": [c2[0] for c2 in ser[max(i0, 0):]]})
         self._rs, self._pr, self._hd = out, pr, hd
         return out
+
+    def handed_on(self, c1, c2):
+        """Is the carry c2 the same run as c1 going on in other hands (the one reading of it, asked by `run_starts` and `_held_carries`): the flag put down
+        and taken up by a team mate within HANDOFF_GAP_S; or, however long that takes, never left (R-580: "The Derv taking up the Ranger's flag is not a new
+        run at all, only the same flag"; Men v Crew 12:26, the AoB Derv beside the Ranger who puts it down at 12:20 takes it up 6 s later). A flag has not been
+        left while the team mate who takes it stands by it, an aggro bubble from it or less (FIGHT_CLOSE), from the second it was put down to the second he has
+        it. Any other flag taken up again is a run from where it is taken up, as before: the team mate who comes to it, from however near and however straight
+        (Men v NwAy 8:19, Classic: NwAy's Hammer walks 31 s to the flag the AoB Derv left at his front door, "NwAy single run (Hammer)"), and the carrier who
+        takes his own flag up again (Men v hold 6:18 and hold v RACK 16:43, Classic: put down for 14 and 19 s). Tried and taken out on 2026-11-22, each for
+        those Classic rows: a player coming straight for it as the same run; the carrier himself; a taker never away from it for JOIN_S. Read from the flag
+        and the taker, not from a count of the seconds it lay."""
+        if c1[2] is None or c1[2] < 0: return False
+        if c2[1] - c1[2] <= HANDOFF_GAP_S: return True
+        a, b, te, tp = c1[0], c2[0], min(max(int(c1[2]), 0), self.T), min(max(int(c2[1]), 0), self.T)
+        if a == b or not self.P[a][te]: return False
+        at = self.P[a][te]                                      # where it lies: where its carrier stood when he put it down
+        return all(self.AL[b][u] and self.P[b][u] and d(self.P[b][u], at) < FIGHT_CLOSE for u in range(te, tp + 1))
 
     def _held_carries(self, L):
         """The seconds of this flag's carries in which it is held at home (R-576: "definitely not a flag run; he just holds the flag for a bit whilst he
@@ -2219,7 +2240,7 @@ class Moments:
         secs = [[u for u in range(max(int(c[1]), 0) // S * S, min(int(c[2] if c[2] is not None else T), T) + 1, S) if self.AL[c[0]][u] and self.P[c[0]][u]] for c in cs]
         goes = [False] * len(cs)                                # the flag leaves its own ground in this carry, or in the hands it is passed to
         for i in range(len(cs) - 1, -1, -1):
-            goes[i] = any(not home(cs[i][0], u) for u in secs[i]) or (i + 1 < len(cs) and cs[i][2] is not None and cs[i + 1][1] - cs[i][2] <= HANDOFF_GAP_S and goes[i + 1])
+            goes[i] = any(not home(cs[i][0], u) for u in secs[i]) or (i + 1 < len(cs) and self.handed_on(cs[i], cs[i + 1]) and goes[i + 1])
         for i, c in enumerate(cs):
             b, us = c[0], secs[i]
             if c[1] < 2 or not us or goes[i]: continue
