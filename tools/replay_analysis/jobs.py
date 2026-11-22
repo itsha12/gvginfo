@@ -33,7 +33,7 @@ Usage:  python3 jobs.py <report id>                     the plays of one match
 In code: plays(M, recs) -> list of plays; allocation(recs, plays) adds each moment's plays to it."""
 import collections, json, os, statistics, sys
 from common import (MEET_R, OPEN_FROM_S, OPEN_BY_S, OPEN_S, STAND_R, MERGE_S, FIGHT_ACT, FIGHT_CLOSE, FIGHT_HOLD_S, HOLD_S, HANDOFF_GAP_S, REPO, READ_TO, SPLIT_STEP, SPLIT_GAP_S, FIGHT_LINK, JOIN_S, JOIN_LOOK_S, NPC_NEAR, can_kill, SOH_REMOVED, RUN_SPEED, GROUND_JUMP, RES_EVERY, BOOST_EVERY, BOOST_WARN_S, BOOST_LATE_S, LEAD_HALF, LEAD_ONE, CARRY_SPEED, PIT_R,
-                    FLAG_GAIN, PART_RUN_GAIN, LATE_FLAG, ANSWER_CAP_S, COLLAPSE_VISIT_S, PINNED_S, LORD_PUSH_FROM, LORD_BASE_R, AFTER_WIPE_MIN_S, NUMBERS_TAIL_S, FLAG_JOB_MAX_S, MAIN_BIG, TURN_S, TURN_CLOSE)
+                    FLAG_GAIN, PART_RUN_GAIN, LATE_FLAG, ANSWER_CAP_S, COLLAPSE_VISIT_S, PINNED_S, LORD_PUSH_FROM, LORD_BASE_R, AFTER_WIPE_MIN_S, NUMBERS_TAIL_S, FLAG_JOB_MAX_S, FLAG_LEFT_S, MAIN_BIG, TURN_S, TURN_CLOSE)
 from state import d
 
 HOMEG = ("pit", "base", "front door", "back door", "front footies", "back footies")
@@ -141,17 +141,21 @@ def _flag_rows(M):
             went = r["set_off"] is not None and not pin(f["tm"], r["set_off"]) and not pin(f["tm"], r["pickup"])      # he walked back for it, his team not held in its base (a player falling back into his base with his team did not go to run)
             # the opening's first flag is one run from the opening (R-479), though its runner put it down on the way and took it up again to cap (옷옷옷옷 v RACK: the
             # 8 Monk runs it to the stand area by 0:21 and caps at 0:45, his mark: "this is the opening run")
-            # ... while it has not lain longer than a flag play runs (FLAG_JOB_MAX_S: Men v Crew 0:22 to 1:23, his words: "the same single run as before ... Men
-            # holds for 1:47ish before deciding to cap"). A first flag put down and left lying longer than that has been left on the field, and the player who
-            # comes for it is sent for it: a flag decision of its own (R-581; HC v hdm 5:56, his words: "hdm send 8 ele out to pick up flag that was left there
-            # and not returned; hdm manages to cap"). The opening keeps what was brought up and put down. So with a first flag nobody carried in the match
-            # until then (옷옷옷옷 v cope 4:55: left since before the gates): no flag came up at the opening. The length is Claude's draft, his to correct: bring him
-            # the rows it tells wrongly; do not add a test of where the flag lay or who stood by it (tried on 2026-11-22: the taker by it, and any team mate
-            # by it, each fail a row he has marked)
-            opening = f["pregame"] and f["how"] == "captured" and r["chain"] is not None and r["out_by"] is not None
-            left = opening and r["chain"] - max(r["first_end"], 0) > FLAG_JOB_MAX_S
-            opening = opening and not left
-            if opening: runner, ids = m.roles[r["out_by"]], r["chain_ids"]
+            # ... while it has not lain longer than FLAG_LEFT_S (his length, R-586: "It's the right idea but shorter time window. Let's go with 2 minutes for now";
+            # Men v Crew 0:22 to 1:23, his words: "the same single run as before ... Men holds for 1:47ish before deciding to cap"). A first flag put down and
+            # left lying longer than that has been left on the field, and the player who comes for it is sent for it: a flag decision of its own (R-581; HC v
+            # hdm 5:56, his words: "hdm send 8 ele out to pick up flag that was left there and not returned; hdm manages to cap"). The opening keeps what was
+            # brought up and put down. So with a first flag nobody carried in the match until then (옷옷옷옷 v cope 4:55: left since before the gates): no flag
+            # came up at the opening. A first flag left that long is read so whether it is capped in the end or not (hdm v One 6:20). One put down for less and
+            # never capped is still told from where it is taken up, as before (One v Crew 6:37; read as one opening run it stood "under way" for five minutes
+            # in cope v Team and took the other team's runs of 2:43 and 2:58 as its answers: tried and taken out, 2026-11-22). Do not add a test of where the flag lay or who stood by it (tried on 2026-11-22: the taker by it, and any team mate
+            # by it, each fail a row he has marked). The opening names every player who carried the flag in the match, in order (R-587: "brought up by Mes/A,
+            # handed to 8 Monk"), not only the one who took it up last
+            left = f["pregame"] and r["chain"] is not None and r["out_by"] is not None and r["chain"] - max(r["first_end"], 0) > FLAG_LEFT_S
+            opening = f["pregame"] and f["how"] == "captured" and r["chain"] is not None and r["out_by"] is not None and not left
+            if opening:                                                  # in the order they first carried it in the match (who held it before the gates, or put it down as they opened, did not)
+                ids = list(dict.fromkeys(c[0] for c in sorted(r["carries"], key=lambda c: c[1]) if c[0] in r["serious"] and (c[2] is None or c[2] > HANDOFF_GAP_S))) or r["chain_ids"]
+                runner = m.roles[ids[0]]
             if pre_row and r["left_spawn"]: pre_row, left_at = False, 0
             if not opening and r["chain"] is not None and r["under_way"] is not None:
                 # the flag lay on the ground and was taken up again: two runs. The first, to where it was put down, is a run if its runner went back for it (cope v Team
@@ -265,7 +269,8 @@ def opening_plays(M, K):
         end = f["at"] if (f["brought"] and f["at"] is not None) else (sb["end"] if sb else o["t"])
         who = f["by"] if f["brought"] else ([sb["who"]] if sb else [])
         out.append(_play(M, "opening", "own", tm, 0, max(int(end), o["t"]), who, o["words"], "Get the first flag in", {"our flag is capped": capped},
-                         beside={"first_cap": o["teams"][tm]["first_cap"], "flag": dict(f)}, call="the first flag", opening=o["words"]))
+                         beside={"first_cap": o["teams"][tm]["first_cap"], "flag": dict(f)}, call="the first flag", opening=o["words"],
+                         open={k: len(o["teams"][tm][k]) for k in ("stand", "split", "back", "waits")}))
     return out
 
 
@@ -1201,6 +1206,12 @@ def numbers_plays(M, K, trig, recs, pinned_at):
         if src == "runner away" and any(abs(u - t) <= READ_TO for u in f1[tm]):
             x["merged"] = "the flag decision"                             # R-431: the consequence of the flag decision, not a second one
             continue
+        # a numbers difference of JOIN_S or less that comes from players being elsewhere, and not from a kill, is not told (R-585: his "(a)" to "Stop telling every
+        # numbers difference of 12 s or less that comes from players being elsewhere. Numbers from a kill are untouched"; none of the seventeen such rows he had
+        # graded was Classic). A runner away is the flag decision's (R-431) and is left to it
+        if src in ("split elsewhere", "on the way") and e["last"] - e["start"] <= JOIN_S:
+            x["merged"] = "a brief difference"
+            continue
         if pinned_at(tm, t): continue
         # main teams standing off with little or no damage traded are not a fight (R-405, `standoffs`), so the numbers of one are no numbers advantage: every second
         # of this stretch its players stand in a stand-off (his marks, Men v Crew 14:24, No decision: "no numbers disadvantage ... basically no fighting")
@@ -1364,12 +1375,12 @@ def res_plays(M, K):
         B, tm = r["t"], r["tm"]
         out.append(_play(M, "base res", "own", tm, B - 20, B + 30, [], f"{r['team']} has {r['attackers']} in {M.m.tag[3 - tm]}'s base at the base res ({r['defenders']} defending, {r['coming_back']} coming back): {r['stayed']} stay" + (f", {r['attackers'] - r['stayed']} leave as the res lands or die" if r['stayed'] < r['attackers'] else ""),
                          "Be out, or set for the fight, when they res", {"none of the players in their base dies in the 30 s after the res": K.died(tm, B, B + 30, set(r["ids"])) == 0},      # the test covers the players of the play: a team mate who dies elsewhere, defending a split at home, did not die of the base res (his mark on hold v Men 4:00, Classic: "ranger dies on split, not because of base res")
-                         beside={"deaths_after": K.died(tm, B, B + 30, set(r["ids"])), "deaths_elsewhere": K.died(tm, B, B + 30) - K.died(tm, B, B + 30, set(r["ids"])), "outnumbered": r["outnumbered"]}, call="stayed through the res"))
+                         beside={"deaths_after": K.died(tm, B, B + 30, set(r["ids"])), "deaths_elsewhere": K.died(tm, B, B + 30) - K.died(tm, B, B + 30, set(r["ids"])), "outnumbered": r["outnumbered"]}, call="stayed through the res", res={"attackers": r["attackers"], "defenders": r["defenders"], "coming_back": r["coming_back"], "stayed": r["stayed"], "outnumbered": bool(r["outnumbered"])}))
     for r in M.timing():
         if r["kind"] != "left before res": continue
         B, tm = r["t"] + r["s"], r["tm"]
         out.append(_play(M, "base res", "own", tm, r["t"], B + 30, r["who"], f"{r['team']} leaves {r['foe']}'s base {r['s']} s before the base res ({r['coming_back']} coming back)",
-                         "Be out, or set for the fight, when they res", {"nobody of ours dies in the 30 s after the res": K.died(tm, B, B + 30) == 0}, beside={"deaths_after": K.died(tm, B, B + 30)}, call="left before the res"))
+                         "Be out, or set for the fight, when they res", {"nobody of ours dies in the 30 s after the res": K.died(tm, B, B + 30) == 0}, beside={"deaths_after": K.died(tm, B, B + 30)}, call="left before the res", res={"coming_back": r["coming_back"], "left_s": r["s"], "attackers": len(r["who"])}))
     return out
 
 

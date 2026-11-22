@@ -226,6 +226,7 @@ LORD_BASE_R = 2600              # a Lord push counts the players on the enemy's 
 AFTER_WIPE_MIN_S = 20           # after a wipe there is time for NPCs when the res is further off than the walk to their pit plus this (R-445; Claude's draft)
 NUMBERS_TAIL_S = 10             # a numbers job runs until the numbers are level, and this much longer (R-424: a short tail; Claude's draft)
 FLAG_JOB_MAX_S = 180            # a flag job runs to the cap or the return of the flag, and no longer than this
+FLAG_LEFT_S = 120               # a first flag put down and left lying longer than this has been left on the field: the player who takes it up is sent for it (R-581; his length, R-586: "2 minutes for now")
 AREA_SHARE = 0.5                # a group is "at" a place when more than this share of its living players stand in it (R-319)
 PURPOSE_S = 60                  # a leave's purpose is fixed this long after it, earlier on a pickup or on entering the enemy base (R-325)
 LEAVE_MIN_S = 8                 # a player out of the main group for less than this never left (a flank, a kite)
