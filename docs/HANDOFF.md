@@ -27,12 +27,10 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   three are new (game 15, Men v NwAy 8:19, 12:11, 13:29); two of hold v RACK stay listed as gone.
 
 ## Next (in order): the engine substantially finished before the merge and training (R-571, R-572)
-1. Picked rows (R-572): put to him on 2026-11-21 (night), not yet answered: see "Open for Denning" 1. File his
-   answers as set p3 of the key, then build only what shows in two games. TFS v DMG 22:44 (the self-check, twelve
-   of the 21) is diagnosed, not built: DMG's Mesmer, alone with his team dead, is told as a split with all eight
-   of TFS collapsing (right: a split stays a split while its main team is dead) and at once as the "1 v 8" of the
-   main fight's numbers (wrong: fix in `Moments._numbers`, where a told split's players and its collapse are
-   counted in the main fight).
+1. Picked rows (R-572): put to him 2026-11-21 (night), unanswered ("Open for Denning" 1). File his answers as
+   set p3 of the key; build only what shows in two games. TFS v DMG 22:44 (twelve of the 21 self-check counts)
+   is diagnosed, not built: a lone player whose team is dead is told as a split under a full collapse (right)
+   and at once as the "1 v 8" of the main fight's numbers (wrong: fix in `Moments._numbers`).
 2. The kinds Claude reads as ready (R-572): the opening, held in base, the base res and now pushing the flagger,
    each through the stages as flags and splits were. The Lord push: picked rows from late games first.
 3. The measurements (R-572): enemy execution (2.12), the interaction rule (2.13), NPC damage by kind of bar
@@ -59,8 +57,8 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
      pairs Men's Derv taking up the Ranger's flag at 12:26, then holding it 1:51, with that later run).
    - HC v hdm 5:56 (a flag left lying, taken up later and capped, no flag row): 옷옷옷옷 v cope 01c0b3c1 4:55,
      Book v OG 76b61497 10:56, Crew v Team e7a93c30 10:41. 32 such caps in 29 matches with no flag play at all.
-   Five flag cards to mark (State). R-576's reading is Claude's (the team held in its base by five or more), and
-   R-575 is applied to Nomad's Isle as to Jade: bring him what either tells wrongly as it turns up in his games.
+   Five flag cards to mark (State). R-576's reading (held in base by five or more) is Claude's, and R-575 is
+   applied to Nomad's as to Jade: bring him what either tells wrongly as it turns up in his games.
 2. Tolkano: no build (his word): give him date, guilds, hall and length with every example.
 
 ## Running it
