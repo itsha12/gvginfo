@@ -10837,8 +10837,7 @@
        "call": "push their flagger"
       }
      },
-     "open": true,
-     "why": "HC v Team 1:28 (Weak, partly, kind): 'team is not pushing their flagger in this period'"
+     "was": "HC v Team 1:28 (Weak, partly, kind): 'team is not pushing their flagger in this period' (built 2026-11-21: R-573, `Moments.flag_pushes`; the numbers call follows the push record)"
     }
    ]
   },
@@ -10885,10 +10884,15 @@
        96
       ]
      },
-     "open": true,
-     "why": "HC v Team 1:30 (Weak, incorrect, kind): 'Team not pushing flagger'"
+     "was": "HC v Team 1:30 (Weak, incorrect, kind): 'Team not pushing flagger' (built 2026-11-21: R-573, `Moments.flag_pushes`)"
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-21",
+    "asked": "Who counts as pushing a flagger? Counts: a player who hits or casts on the flagger. Counts: a player who travels with those players, such as the monk healing them. Does not count: a player who is only nearby because a fight with the flagger's helpers is happening there. When the main team itself moves onto the flagger, it is the whole team's push.",
+    "said": "I agree with your four corrections.",
+    "reading": "R-573"
+   }
   },
   {
    "id": "f1-9b5c-5",
@@ -11443,10 +11447,15 @@
      "want": {
       "scenario~": "with 2 players"
      },
-     "open": true,
-     "why": "HC v Team 5:26 (Visible, partly, who): 'push with 2 players (warrior and stand mes)': the engine reads one player"
+     "was": "HC v Team 5:26 (Visible, partly, who): 'push with 2 players (warrior and stand mes)': the engine reads one player (built 2026-11-21: R-573, `Moments.flag_pushes`)"
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-21",
+    "asked": "Who counts as pushing a flagger? Counts: a player who hits or casts on the flagger. Counts: a player who travels with those players, such as the monk healing them. Does not count: a player who is only nearby because a fight with the flagger's helpers is happening there. When the main team itself moves onto the flagger, it is the whole team's push.",
+    "said": "I agree with your four corrections.",
+    "reading": "R-573"
+   }
   },
   {
    "id": "f1-9b5c-17",
@@ -11575,7 +11584,14 @@
      "open": true,
      "why": "HC v Team 6:04 (Visible, partly, who and when): 'the push starts at 5:25ish and it's with 3 players': the engine reads one player from 6:04"
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-21",
+    "asked": "Who counts as pushing a flagger? Counts: a player who hits or casts on the flagger. Counts: a player who travels with those players, such as the monk healing them. Does not count: a player who is only nearby because a fight with the flagger's helpers is happening there. When the main team itself moves onto the flagger, it is the whole team's push.",
+    "said": "I agree with your four corrections.",
+    "reading": "R-573"
+   },
+   "note": "2026-11-21 (R-573 built): still open. The engine reads Team's Hammer on HC's Mes/A from 6:04, as before. His 5:25: from 5:24 to 5:46 Team's Hammer is on the Mes/A (12 hits) as he leaves the stand after his cap of 5:08, the Warrior beside them to 5:30, the Ranger and the Prot 900 to 2,500 behind; the engine does not read him as the flagger until he is on his way at 5:48 (`_flagger`: a run leg, R-548). When a player who has just capped is the flagger again is one game's fault (R-495) and is put to him."
   },
   {
    "id": "f1-9b5c-20",
@@ -11765,10 +11781,15 @@
      "want": {
       "scenario~": "with 2 players"
      },
-     "open": true,
-     "why": "HC v Team 8:18 (Weak, partly, numbers): 'they really only push with warrior and monk': the engine reads 4 players"
+     "was": "HC v Team 8:18 (Weak, partly, numbers): 'they really only push with warrior and monk': the engine reads 4 players (built 2026-11-21: R-573, `Moments.flag_pushes`)"
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-21",
+    "asked": "Who counts as pushing a flagger? Counts: a player who hits or casts on the flagger. Counts: a player who travels with those players, such as the monk healing them. Does not count: a player who is only nearby because a fight with the flagger's helpers is happening there. When the main team itself moves onto the flagger, it is the whole team's push.",
+    "said": "I agree with your four corrections.",
+    "reading": "R-573"
+   }
   },
   {
    "id": "f1-9b5c-24",
@@ -13910,7 +13931,13 @@
      "auto": true,
      "why": "Men v Crew, Jade 14:24: he graded it No decision: no numbers disadvantage, it's just people walking back and forth through the portal with basically no fighting"
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-21",
+    "asked": "Isle of Jade: are players walking through the portal part of the main fight on either side?",
+    "said": "Yes, if they are walking through during the fight.",
+    "reading": "R-575 (not built: the reading tried on 2026-11-21, the two ends of a two-way teleporter one step apart in `Moments._near` and `linked`, closed this fault at 15:10 and cope v Team 6:04 and 11:56 but told Men v Crew 24:34, Classic, 8 s earlier and broke cope v Team 13:34 to 14:46 as one situation)"
+   }
   },
   {
    "id": "f1-5168-20",
@@ -13975,7 +14002,13 @@
      "auto": true,
      "why": "Men v Crew, Jade 15:10: he graded it No decision: same as before, no numbers disadvantage, it's just people walking back and forth through the portal with basically no fighting"
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-21",
+    "asked": "Isle of Jade: are players walking through the portal part of the main fight on either side?",
+    "said": "Yes, if they are walking through during the fight.",
+    "reading": "R-575 (not built: the reading tried on 2026-11-21, the two ends of a two-way teleporter one step apart in `Moments._near` and `linked`, closed this fault at 15:10 and cope v Team 6:04 and 11:56 but told Men v Crew 24:34, Classic, 8 s earlier and broke cope v Team 13:34 to 14:46 as one situation)"
+   }
   },
   {
    "id": "f1-5168-21",
@@ -14044,7 +14077,8 @@
      "open": true,
      "why": "Men v Crew 17:53 (Visible, incorrect): 'Men does not actually send a runner, they run back to their base with flag ... only Derv with flag'. The engine's runner: the AoB Derv carrying, and the Warrior's pickup at 18:21 (now told as one runner, named)"
     }
-   ]
+   ],
+   "note": "2026-11-21: not built, put to him. The carrier who stays with his team cannot be the test: Men v hold 8:06 (p2-4, hold's Air Ele 3 at his front door, his whole team round him, 7 s and 10 s, no ground made: 'this is an unsuccessful flag run') is the same picture. Measured on the five carries he has spoken to: cope's Monk 4 here stands with it (16 of 17 steps under half a run) for 31 s; Men's Warrior at Men v Crew 18:21 runs 2,300 in 10 s, 1,270 nearer the stand, and puts it down 2 s before Crew's boost lands."
   },
   {
    "id": "f1-5168-23",
@@ -14150,7 +14184,13 @@
      "auto": true,
      "why": "Men v Crew, Jade 20:10: he graded it No decision: This is a 7v7 with like a very very brief time of 8v7 when derv is back at mainteam and water ele is not yet at mainteam"
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-21",
+    "asked": "Isle of Jade: are players walking through the portal part of the main fight on either side?",
+    "said": "Yes, if they are walking through during the fight.",
+    "reading": "R-575 (not built: the reading tried on 2026-11-21, the two ends of a two-way teleporter one step apart in `Moments._near` and `linked`, closed this fault at 15:10 and cope v Team 6:04 and 11:56 but told Men v Crew 24:34, Classic, 8 s earlier and broke cope v Team 13:34 to 14:46 as one situation)"
+   }
   },
   {
    "id": "f1-5168-25",
@@ -16747,10 +16787,15 @@
      "want": {
       "main": true
      },
-     "open": true,
-     "why": "Men v RACK 1:08 (Visible, incorrect, numbers): 'whole team pushes flagger'"
+     "was": "Men v RACK 1:08 (Visible, incorrect, numbers): 'whole team pushes flagger' (built 2026-11-21: R-573, `Moments.flag_pushes`)"
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-21",
+    "asked": "Who counts as pushing a flagger? Counts: a player who hits or casts on the flagger. Counts: a player who travels with those players, such as the monk healing them. Does not count: a player who is only nearby because a fight with the flagger's helpers is happening there. When the main team itself moves onto the flagger, it is the whole team's push.",
+    "said": "I agree with your four corrections.",
+    "reading": "R-573"
+   }
   },
   {
    "id": "f1-45cf-6",
@@ -23466,11 +23511,16 @@
        "clear": null
       }
      },
-     "open": true,
      "auto": true,
-     "why": "HC v hdm, Jade 1:40: he graded it No decision: I wouldn't count this as in base on this map. They are near footies and in no danger of the base res person joining fight."
+     "was": "HC v hdm, Jade 1:40: he graded it No decision: I wouldn't count this as in base on this map. They are near footies and in no danger of the base res person joining fight. (built 2026-11-21: R-574, the footmen of Isle of Jade are not in the base for the base res, `hall_features.json` base_res and `Moments.caught`)"
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-21",
+    "asked": "Isle of Jade: is a team at the footmen on the portal side 'in the base' when a base res lands?",
+    "said": "No, they are too far to have an issue with base res.",
+    "reading": "R-574"
+   }
   },
   {
    "id": "f1-af83-4",
@@ -31349,7 +31399,8 @@
      "held": "2026-11-18",
      "why": "cope v hold 14:33 (picked row): 'definitely not a flag run; he just holds the flag for a bit whilst he and his team wait in base'. Monk 4 (WoC) holds it at his front door from 14:09 to 14:40, six or seven of his team round him, no nearer the stand at any second. With Men v Crew 17:53 (a team going home with its flag) that is two games of a flag in hand read as a runner at the boost, of two shapes: held for the measure (ground made toward the stand)"
     }
-   ]
+   ],
+   "note": "2026-11-21: not built, put to him. The carrier who stays with his team cannot be the test: Men v hold 8:06 (p2-4, hold's Air Ele 3 at his front door, his whole team round him, 7 s and 10 s, no ground made: 'this is an unsuccessful flag run') is the same picture. Measured on the five carries he has spoken to: cope's Monk 4 here stands with it (16 of 17 steps under half a run) for 31 s; Men's Warrior at Men v Crew 18:21 runs 2,300 in 10 s, 1,270 nearer the stand, and puts it down 2 s before Crew's boost lands."
   },
   {
    "id": "p2-7",

@@ -9,6 +9,8 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 ## Counting players
 - A player counts in a fight, on a split or on its defence after 12 s there; less is support, or passing by (R-350,
   R-439). A death there counts at once. A walk through a teleporter and straight back is not being there (R-442).
+  On Isle of Jade players walking through the portal during the main fight are part of it on either side (R-575;
+  not built yet).
 - Who is on a split is who is there at that time, not everyone it ever held (R-439).
 - The match is over when the losing team is recorded dying all at once (its Guild Lord dead, or the 28 minutes up),
   some 12 s before the replay stops: those are not deaths, and nothing is told from that second on, nor a base res
@@ -132,7 +134,14 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   | either | a flag already in hand | answer their cap at once, or cap just before their boost (R-040) |
 
 - Their boost 30 s away: run to deny it, or concede it for kills (R-434, item 2).
-- Pushing the flagger is its own record (R-371). It counts from 4 s when the flagger reaches his team with the pushers
+- Pushing the flagger is its own record (R-371). Who pushes (R-573): a player who hits or casts on the flagger; a
+  player who travels with those players, such as the monk healing them; not a player who is only nearby because a
+  fight with the flagger's helpers is happening there; and when the main team itself moves onto the flagger it is the
+  whole team's push. *As built:* a carrier whose flag has stood in hand at the stand for 15 s has arrived and is not
+  pushed; on him means inside an aggro bubble of him for 6 s, or having left his own main team for him, or from
+  range landing more on him than on the rest of his team (the caster at range is the push when nobody is nearer); a
+  push begun on him on his own goes on while their main team stands on him on his own ground. It counts from 4 s
+  when the flagger reaches his team with the pushers
   still on him (R-418); a main team that walks its fight onto a flag held inside its team is a main team push onto the
   flag (R-401). The pushers' job: the flag stopped, or 30% late against the usual arrival for that hall and side; their
   own flag lead is not in the test (R-427). The flagger's side sends help or flags through it (R-034; R-434, item 8).
@@ -254,7 +263,8 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   (R-445, R-147). *As built:* 20 s more than the walk (`AFTER_WIPE_MIN_S`, draft).
 - At a base res (R-507): a team that left the base before the res has left, though it stands in front of the door
   again as the res lands; a team on its way out as the res lands has not stayed; a player left at a door on his own
-  has not stayed. A team standing at a door together is in the base.
+  has not stayed. A team standing at a door together is in the base. On Isle of Jade a team at the footmen is not in
+  the base: "too far to have an issue with base res" (R-574).
 - Taken out: the race back when a split ends (R-448; it was item 6 of R-434).
 
 ## Collapse

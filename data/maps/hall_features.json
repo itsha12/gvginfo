@@ -229,6 +229,10 @@
       2939
      ]
     }
+   },
+   "base_res": {
+    "footmen_in_base": false,
+    "source": "Denning, R-574: a team at the footmen is too far from the res shrine for the base res to be an issue"
    }
   },
   "355": {

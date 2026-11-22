@@ -242,7 +242,20 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   are as before: change what a row says in `flag_rows`, and what a play is in `flag_plays`.
 - A push on a flagger is one reading, `Moments.flag_pushes` on the branch: two flaggers on one another are one push,
   the one who lands more on the other the pusher, and the flagger pushed is never counted among the players pushing
-  (`M._fpush_answers` keeps what was set aside). A split's door is read phase by phase in `split_plays` (only a phase
+  (`M._fpush_answers` keeps what was set aside). Who pushes is R-573, his four points, read there and nowhere else: a
+  player who hits or casts on the flagger and is on him (inside an aggro bubble of him for PUSHFLAG_S, or having left
+  his own main team for him, or from range landing more on him than on the rest of his team; the caster at range is
+  the push only when nobody is nearer); a player who travels with those players (goes with the flagger inside the
+  bubble trading with nobody else, or has left his main team and comes to the flagger with them); never a player of
+  the main team who stands off him or trades with his helpers, nor a monk healing the pushers across from the main
+  fight; and the whole main team when it moves onto him (a push begun on him on his own goes on while their main team
+  stands on him on his own ground; a holder who stands in his team when the fight is walked onto him stays R-401's
+  push onto the flag). A carrier whose flag has stood in hand at the stand for HOLD_S has arrived and is not pushed.
+  Change it against HC v Team 1:30, 5:26 and 8:18, Men v RACK 1:08 and hold v RACK 12:42 (Classic), never by a new
+  exception; HC v Team 6:04 (his "from about 5:25, three players") is still open. On Isle of Jade a team at the
+  footmen is not in the base for the base res (R-574: `base_res` in `hall_features.json`, read by `Moments.caught`).
+  R-575 (players walking through Jade's portal are of the main fight on either side) is ruled and not built: see
+  HANDOFF.md before touching `Moments._near` or `linked` for it. A split's door is read phase by phase in `split_plays` (only a phase
   whose players all start it in the field takes a new door), and a split out of a base its team is held in is told
   from when its player goes out past his doors (`out_at`). The first is R-528; the other two are from his marks.
   A split record whose players all came for a flagger already on his run and left when the flag had gone is the push
