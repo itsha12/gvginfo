@@ -1427,6 +1427,9 @@ def lord_plays(M, K):
     return out
 
 
+AT_TOLD_KINDS = ("push flagger", "flagger pushed", "pinned", "base res")
+
+
 def plays(M, recs=None):
     """Every play of the match with its job, in time order."""
     if M.hall is None: return []
@@ -1440,6 +1443,14 @@ def plays(M, recs=None):
         s_ = p.get("split")
         if s_ is not None and "runner_out" not in s_: s_["runner_out"] = [any(int(f_.get("off", f_["s0"])) <= s_["told"] <= f_["e"] and f_["tm"] == k_ for f_ in fr) for k_ in (s_["tm"], 3 - s_["tm"])]
     out = [p for p in out if p["t0"] < M.over - SPLIT_STEP and not (p["play"] == "base res" and p["t0"] + 20 >= M.over - SPLIT_STEP)]      # nothing is told from the second the match is over, and a base res that falls on it is none (Moments.over)
+    # the kinds that go through the stages next (R-572: pushing the flagger, held in base, the base res) carry the position they are told at and the fixed 60,
+    # 90 and 180 s record from that second, with the position 60 s before, as a split does (`at_told`; not `state`, which the price of a position is fitted
+    # on: a new family must not move the prices the flag readings were shown on). It changes no play
+    for p in out:
+        if p["play"] in AT_TOLD_KINDS and "at_told" not in p:
+            u = min(int(p["t0"]), M.T); b_ = u - FLAG_BEFORE_S
+            p["at_told"] = {"state": M._state(p["tm"], u), "after": M.consequence(p["tm"], u, FLAG_AFTER_S),
+                            "before": None if b_ < 0 else {"state": M._state(p["tm"], b_), "after": M.consequence(p["tm"], b_, (FLAG_BEFORE_S,))[str(FLAG_BEFORE_S)]}}
     out.sort(key=lambda p: (p["t0"], p["tm"], p["play"]))
     rid = M.m.o["meta"]["id"]
     for i, p in enumerate(out): p["rid"], p["id"] = rid, f"{rid[:8]}-{p['play'].replace(' ', '_')}-{p['tm']}-{p['t0']}-{i}"

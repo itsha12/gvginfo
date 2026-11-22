@@ -1,0 +1,244 @@
+{
+ "cases": 1415,
+ "skipped": {
+  "no winner recorded, or the flag lead not read": 91
+ },
+ "counts": {
+  "it breaks out": {
+   "holds": 255,
+   "matches": 152
+  },
+  "held to the base res": {
+   "holds": 270,
+   "matches": 204
+  },
+  "the hold ends otherwise": {
+   "holds": 890,
+   "matches": 408
+  }
+ },
+ "checks": {
+  "H1 held 60 s or longer, a pit NPC is lost more often than held under 30 s": {
+   "first": 0.6352624495289367,
+   "second": 0.38866396761133604,
+   "difference": 0.2465984819176007,
+   "range": [
+    0.19012791418595754,
+    0.3040330302005111
+   ],
+   "n": [
+    743,
+    247
+   ],
+   "reads": "HOLDS"
+  },
+  "H2 held a player or more down, a pit NPC is lost more often than level or up": {
+   "first": 0.585949177877429,
+   "second": 0.5067024128686327,
+   "difference": 0.07924676500879624,
+   "range": [
+    0.03354312160107385,
+    0.12210453332471455
+   ],
+   "n": [
+    669,
+    746
+   ],
+   "reads": "HOLDS"
+  },
+  "H3 held two or more down, a player dies more often than level or up": {
+   "first": 0.6194029850746269,
+   "second": 0.42091152815013405,
+   "difference": 0.19849145692449283,
+   "range": [
+    0.14786930788523792,
+    0.24854728700509315
+   ],
+   "n": [
+    402,
+    746
+   ],
+   "reads": "HOLDS"
+  },
+  "H4 the base res near when the hold begins, the hold is shorter than with the res far": {
+   "first": 73.69294605809128,
+   "second": 90.22773393461105,
+   "difference": -16.534787876519772,
+   "range": [
+    -24.180392216185254,
+    -9.12600860902201
+   ],
+   "n": [
+    241,
+    887
+   ],
+   "reads": "HOLDS"
+  },
+  "H5 the base res near, a pit NPC is lost less often than with the res far": {
+   "first": 0.43568464730290457,
+   "second": 0.5558060879368658,
+   "difference": -0.12012144063396124,
+   "range": [
+    -0.18074816125111276,
+    -0.06561206517531046
+   ],
+   "n": [
+    241,
+    887
+   ],
+   "reads": "HOLDS"
+  }
+ },
+ "as_it_fell": {
+  "level or up in players": {
+   "it breaks out": {
+    "cases": 209,
+    "matches": 129,
+    "started at": 30.964372281404835,
+    "the 60 s before": -3.2276751299652644,
+    "they lose one": 33.97129186602871,
+    "we lose one": 41.14832535885167,
+    "net NPCs": -0.019138755980861243,
+    "flags": 0.04310344827586207,
+    "win points 90": 0.40732642493090804,
+    "win points 180": -0.25313691508404623,
+    "held s (mid)": 48.0,
+    "pit NPC lost": 39.23444976076555,
+    "a player dies": 29.1866028708134,
+    "job met": 55.02392344497608
+   },
+   "held to the base res": {
+    "cases": 84,
+    "matches": 75,
+    "started at": 23.153045707701988,
+    "the 60 s before": -2.176315248246812,
+    "they lose one": 27.380952380952383,
+    "we lose one": 60.71428571428571,
+    "net NPCs": -0.6904761904761905,
+    "flags": 0.051265822784810115,
+    "win points 90": -4.049459514634247,
+    "win points 180": -5.817709744094867,
+    "held s (mid)": 82.0,
+    "pit NPC lost": 58.333333333333336,
+    "a player dies": 53.57142857142857,
+    "job met": 26.190476190476193
+   },
+   "the hold ends otherwise": {
+    "cases": 453,
+    "matches": 282,
+    "started at": 18.650300990348025,
+    "the 60 s before": -3.2593363907925847,
+    "they lose one": 26.048565121412803,
+    "we lose one": 54.52538631346579,
+    "net NPCs": -0.7682119205298014,
+    "flags": 0.08548387096774192,
+    "win points 90": -1.4281874160085768,
+    "win points 180": -1.2497230318884862,
+    "held s (mid)": 72.0,
+    "pit NPC lost": 54.52538631346579,
+    "a player dies": 45.916114790286976,
+    "job met": 34.65783664459161
+   }
+  },
+  "a player down": {
+   "it breaks out": {
+    "cases": 32,
+    "matches": 27,
+    "started at": 16.024590207080617,
+    "the 60 s before": -2.6348731673852024,
+    "they lose one": 18.75,
+    "we lose one": 68.75,
+    "net NPCs": -1.28125,
+    "flags": -0.03833333333333335,
+    "win points 90": -1.8651757278014318,
+    "win points 180": -3.3068408791474257,
+    "held s (mid)": 44.0,
+    "pit NPC lost": 46.875,
+    "a player dies": 40.625,
+    "job met": 37.5
+   },
+   "held to the base res": {
+    "cases": 47,
+    "matches": 43,
+    "started at": 20.929591053724263,
+    "the 60 s before": -4.167991232328401,
+    "they lose one": 25.53191489361702,
+    "we lose one": 70.2127659574468,
+    "net NPCs": -0.6808510638297872,
+    "flags": 0.045434782608695656,
+    "win points 90": -1.0320623251214072,
+    "win points 180": -1.3540311608630256,
+    "held s (mid)": 52.0,
+    "pit NPC lost": 51.06382978723404,
+    "a player dies": 61.702127659574465,
+    "job met": 23.404255319148938
+   },
+   "the hold ends otherwise": {
+    "cases": 188,
+    "matches": 153,
+    "started at": 13.875072614737277,
+    "the 60 s before": -3.7473988441509842,
+    "they lose one": 18.617021276595743,
+    "we lose one": 75.0,
+    "net NPCs": -1.303191489361702,
+    "flags": 0.04078212290502794,
+    "win points 90": -3.0953988219654467,
+    "win points 180": -4.477783547348036,
+    "held s (mid)": 80.0,
+    "pit NPC lost": 50.53191489361703,
+    "a player dies": 56.38297872340425,
+    "job met": 26.063829787234045
+   }
+  },
+  "two or more down": {
+   "it breaks out": {
+    "cases": 14,
+    "matches": 14,
+    "started at": 17.475027999678325,
+    "the 60 s before": -3.9899386530311793,
+    "they lose one": 35.714285714285715,
+    "we lose one": 64.28571428571429,
+    "net NPCs": -1.7142857142857142,
+    "flags": -0.1076923076923077,
+    "win points 90": -1.164479129979293,
+    "win points 180": -2.2913203478059176,
+    "held s (mid)": 46.0,
+    "pit NPC lost": 57.14285714285714,
+    "a player dies": 35.714285714285715,
+    "job met": 28.57142857142857
+   },
+   "held to the base res": {
+    "cases": 139,
+    "matches": 125,
+    "started at": 16.10151935253256,
+    "the 60 s before": -9.68306316037845,
+    "they lose one": 12.23021582733813,
+    "we lose one": 69.7841726618705,
+    "net NPCs": -2.1654676258992804,
+    "flags": 0.06196721311475411,
+    "win points 90": -4.298169951278913,
+    "win points 180": -5.063188238434379,
+    "held s (mid)": 36.0,
+    "pit NPC lost": 63.30935251798561,
+    "a player dies": 53.956834532374096,
+    "job met": 20.863309352517987
+   },
+   "the hold ends otherwise": {
+    "cases": 249,
+    "matches": 215,
+    "started at": 11.667587791980992,
+    "the 60 s before": -7.0518179302045025,
+    "they lose one": 13.654618473895583,
+    "we lose one": 83.53413654618474,
+    "net NPCs": -2.602409638554217,
+    "flags": 0.0006796116504854343,
+    "win points 90": -4.417334467768971,
+    "win points 180": -4.365159495246374,
+    "held s (mid)": 64.0,
+    "pit NPC lost": 65.06024096385542,
+    "a player dies": 67.8714859437751,
+    "job met": 14.859437751004014
+   }
+  }
+ }
+}

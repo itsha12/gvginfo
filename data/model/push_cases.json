@@ -1,0 +1,524 @@
+{
+ "cases": 709,
+ "skipped": {
+  "no winner recorded, or the flag lead not read": 15,
+  "a Shadow of Haste run (R-456)": 128
+ },
+ "counts": {
+  "one player": {
+   "pushes": 316,
+   "matches": 189,
+   "on": {
+    "carrying": 254,
+    "going back": 44,
+    "at the stand": 18,
+    "other": 0
+   }
+  },
+  "two or more players": {
+   "pushes": 233,
+   "matches": 161,
+   "on": {
+    "carrying": 185,
+    "going back": 28,
+    "at the stand": 20,
+    "other": 0
+   }
+  },
+  "the main team": {
+   "pushes": 160,
+   "matches": 118,
+   "on": {
+    "carrying": 118,
+    "going back": 6,
+    "at the stand": 36,
+    "other": 0
+   }
+  }
+ },
+ "checks": {
+  "U1 two or more players stop the flag more often than one": {
+   "first": 0.3081081081081081,
+   "second": 0.14173228346456693,
+   "difference": 0.1663758246435412,
+   "range": [
+    0.10173901626150574,
+    0.24725351135199097
+   ],
+   "n": [
+    185,
+    254
+   ],
+   "reads": "HOLDS"
+  },
+  "U2 the main team stops the flag more often than players sent for him": {
+   "first": 0.3135593220338983,
+   "second": 0.21184510250569477,
+   "difference": 0.10171421952820353,
+   "range": [
+    0.02898757891123092,
+    0.1847360093367991
+   ],
+   "n": [
+    118,
+    439
+   ],
+   "reads": "HOLDS"
+  },
+  "U3 a flagger who dies under the push: the flag is stopped more often": {
+   "first": 0.8775510204081632,
+   "second": 0.17125984251968504,
+   "difference": 0.7062911778884782,
+   "range": [
+    0.6123203125119617,
+    0.7888299665904552
+   ],
+   "n": [
+    49,
+    508
+   ],
+   "reads": "HOLDS"
+  },
+  "U4 a flag that still gets in is later against two or more than against one": {
+   "first": 1.7033971291866028,
+   "second": 1.610045871559633,
+   "difference": 0.09335125762696972,
+   "range": [
+    -0.1388132936147508,
+    0.29949476166703315
+   ],
+   "n": [
+    209,
+    218
+   ],
+   "reads": "not clear"
+  },
+  "U5 a push that stops the flag leaves the pushers better off in flags 90 s on": {
+   "first": 0.14361538461538462,
+   "second": -0.3014051522248244,
+   "difference": 0.44502053684020904,
+   "range": [
+    0.3460593392009498,
+    0.5345480828181771
+   ],
+   "n": [
+    130,
+    427
+   ],
+   "reads": "HOLDS"
+  }
+ },
+ "as_it_fell": {
+  "carrying": {
+   "one player": {
+    "cases": 254,
+    "matches": 161,
+    "started at": 54.76251764960042,
+    "the 60 s before": 0.9748158832813656,
+    "they lose one": 33.07086614173229,
+    "we lose one": 28.346456692913385,
+    "net NPCs": 0.031496062992125984,
+    "flags": -0.31568,
+    "win points 90": -0.908476728044749,
+    "win points 180": -1.2433091375641492,
+    "flag stopped": 14.173228346456693,
+    "he dies": 3.149606299212598,
+    "late (middle)": 1.1949999999999998
+   },
+   "  one player, his team sends help": {
+    "cases": 61,
+    "matches": 45,
+    "started at": 57.8723161641974,
+    "the 60 s before": -0.4239868265772752,
+    "they lose one": 19.672131147540984,
+    "we lose one": 34.42622950819672,
+    "net NPCs": 0.08196721311475409,
+    "flags": -0.17704918032786882,
+    "win points 90": -0.8158565954572888,
+    "win points 180": -0.5848514711712529,
+    "flag stopped": 6.557377049180328,
+    "he dies": 0.0,
+    "late (middle)": 1.28
+   },
+   "  one player, no help": {
+    "cases": 193,
+    "matches": 139,
+    "started at": 53.77962796363972,
+    "the 60 s before": 1.3921382387088053,
+    "they lose one": 37.30569948186528,
+    "we lose one": 26.42487046632124,
+    "net NPCs": 0.015544041450777202,
+    "flags": -0.3604232804232804,
+    "win points 90": -0.9377504487071064,
+    "win points 180": -1.4514227005173441,
+    "flag stopped": 16.580310880829018,
+    "he dies": 4.145077720207254,
+    "late (middle)": 1.14
+   },
+   "two or more players": {
+    "cases": 185,
+    "matches": 137,
+    "started at": 64.63549529878794,
+    "the 60 s before": 1.3187699380663784,
+    "they lose one": 43.24324324324324,
+    "we lose one": 25.405405405405407,
+    "net NPCs": 0.34054054054054056,
+    "flags": -0.062178770949720664,
+    "win points 90": 0.9552174361727935,
+    "win points 180": 1.3751027453130404,
+    "flag stopped": 30.810810810810814,
+    "he dies": 13.513513513513514,
+    "late (middle)": 1.335
+   },
+   "  two or more players, his team sends help": {
+    "cases": 59,
+    "matches": 50,
+    "started at": 50.57127110543116,
+    "the 60 s before": -0.6421304379548135,
+    "they lose one": 27.11864406779661,
+    "we lose one": 32.20338983050847,
+    "net NPCs": 0.3559322033898305,
+    "flags": -0.17033898305084746,
+    "win points 90": 0.019487523502084044,
+    "win points 180": 0.339198959508236,
+    "flag stopped": 20.33898305084746,
+    "he dies": 3.389830508474576,
+    "late (middle)": 1.43
+   },
+   "  two or more players, no help": {
+    "cases": 126,
+    "matches": 104,
+    "started at": 71.22112408774072,
+    "the 60 s before": 2.201175107275915,
+    "they lose one": 50.79365079365079,
+    "we lose one": 22.22222222222222,
+    "net NPCs": 0.3333333333333333,
+    "flags": -0.009000000000000015,
+    "win points 90": 1.3933766809947927,
+    "win points 180": 1.8601688037454482,
+    "flag stopped": 35.714285714285715,
+    "he dies": 18.253968253968253,
+    "late (middle)": 1.33
+   },
+   "the main team": {
+    "cases": 118,
+    "matches": 93,
+    "started at": 68.45234880023384,
+    "the 60 s before": 1.1471625002344912,
+    "they lose one": 51.69491525423729,
+    "we lose one": 27.966101694915253,
+    "net NPCs": 0.3050847457627119,
+    "flags": -0.16932203389830505,
+    "win points 90": 0.8970745566412459,
+    "win points 180": 1.819165661129522,
+    "flag stopped": 31.35593220338983,
+    "he dies": 13.559322033898304,
+    "late (middle)": 1.46
+   },
+   "  the main team, his team sends help": {
+    "cases": 81,
+    "matches": 70,
+    "started at": 69.69227101688898,
+    "the 60 s before": 1.0100260241727608,
+    "they lose one": 51.85185185185185,
+    "we lose one": 27.160493827160494,
+    "net NPCs": 0.2222222222222222,
+    "flags": -0.24777777777777782,
+    "win points 90": 0.44328413212907997,
+    "win points 180": 1.172438658385011,
+    "flag stopped": 29.629629629629626,
+    "he dies": 6.172839506172839,
+    "late (middle)": 1.52
+   },
+   "  the main team, no help": {
+    "cases": 37,
+    "matches": 35,
+    "started at": 65.73792448809695,
+    "the 60 s before": 1.4366728385870324,
+    "they lose one": 51.35135135135135,
+    "we lose one": 29.72972972972973,
+    "net NPCs": 0.4864864864864865,
+    "flags": 0.0024324324324324106,
+    "win points 90": 1.8905076481408531,
+    "win points 180": 3.234973423894532,
+    "flag stopped": 35.13513513513514,
+    "he dies": 29.72972972972973,
+    "late (middle)": 1.27
+   }
+  },
+  "going back": {
+   "one player": {
+    "cases": 44,
+    "matches": 41,
+    "started at": 54.39998060157759,
+    "the 60 s before": 0.20070817861057805,
+    "they lose one": 29.545454545454547,
+    "we lose one": 29.545454545454547,
+    "net NPCs": 0.13636363636363635,
+    "flags": -0.11431818181818182,
+    "win points 90": -0.47094204052834354,
+    "win points 180": 2.3035252086041424,
+    "flag stopped": 18.181818181818183,
+    "he dies": 2.272727272727273,
+    "late (middle)": 1.31
+   },
+   "  one player, his team sends help": {
+    "cases": 9,
+    "matches": 8,
+    "started at": 35.07697942285333,
+    "the 60 s before": -0.6391553763953862,
+    "they lose one": 11.11111111111111,
+    "we lose one": 22.22222222222222,
+    "net NPCs": 0.0,
+    "flags": -0.4833333333333335,
+    "win points 90": -2.7444359108821597,
+    "win points 180": 0.18964758013098343,
+    "flag stopped": 11.11111111111111,
+    "he dies": 0.0,
+    "late (middle)": 1.03
+   },
+   "  one player, no help": {
+    "cases": 35,
+    "matches": 34,
+    "started at": 59.36875233324954,
+    "the 60 s before": 0.4106740673620692,
+    "they lose one": 34.285714285714285,
+    "we lose one": 31.428571428571427,
+    "net NPCs": 0.17142857142857143,
+    "flags": -0.019428571428571413,
+    "win points 90": 0.11367066899120896,
+    "win points 180": 2.8470937416400983,
+    "flag stopped": 20.0,
+    "he dies": 2.857142857142857,
+    "late (middle)": 1.36
+   },
+   "two or more players": {
+    "cases": 28,
+    "matches": 26,
+    "started at": 68.21025002977281,
+    "the 60 s before": 0.7442340331687921,
+    "they lose one": 28.57142857142857,
+    "we lose one": 28.57142857142857,
+    "net NPCs": -0.03571428571428571,
+    "flags": 0.04285714285714285,
+    "win points 90": -1.3041467470178196,
+    "win points 180": -2.4583055252677295,
+    "flag stopped": 17.857142857142858,
+    "he dies": 14.285714285714285,
+    "late (middle)": 1.25
+   },
+   "  two or more players, his team sends help": {
+    "cases": 7,
+    "matches": 7,
+    "started at": 69.17132395392767,
+    "the 60 s before": -0.35021035114902727,
+    "they lose one": 42.857142857142854,
+    "we lose one": 28.57142857142857,
+    "net NPCs": -0.2857142857142857,
+    "flags": -0.058571428571428566,
+    "win points 90": -1.0334775538448726,
+    "win points 180": -1.1997989782069216,
+    "flag stopped": 14.285714285714285,
+    "he dies": 14.285714285714285,
+    "late (middle)": 1.25
+   },
+   "  two or more players, no help": {
+    "cases": 21,
+    "matches": 19,
+    "started at": 67.88989205505452,
+    "the 60 s before": 1.0569324286881694,
+    "they lose one": 23.809523809523807,
+    "we lose one": 28.57142857142857,
+    "net NPCs": 0.047619047619047616,
+    "flags": 0.07666666666666666,
+    "win points 90": -1.394369811408802,
+    "win points 180": -2.8778077076213324,
+    "flag stopped": 19.047619047619047,
+    "he dies": 14.285714285714285,
+    "late (middle)": 1.25
+   },
+   "the main team": {
+    "cases": 6,
+    "matches": 6,
+    "started at": 66.1510158016416,
+    "the 60 s before": 0.8067246984765383,
+    "they lose one": 50.0,
+    "we lose one": 33.33333333333333,
+    "net NPCs": -0.16666666666666666,
+    "flags": 0.42,
+    "win points 90": 0.22550892291090627,
+    "win points 180": 1.6748052240053133,
+    "flag stopped": 50.0,
+    "he dies": 33.33333333333333,
+    "late (middle)": 0.89
+   },
+   "  the main team, his team sends help": {
+    "cases": 2,
+    "matches": 2,
+    "started at": 85.81479769633296,
+    "the 60 s before": 1.1155378383082282,
+    "they lose one": 0.0,
+    "we lose one": 0.0,
+    "net NPCs": 0.5,
+    "flags": 0.59,
+    "win points 90": 4.653589259116125,
+    "win points 180": 4.8529764864611025,
+    "flag stopped": 50.0,
+    "he dies": 0.0,
+    "late (middle)": 0.89
+   },
+   "  the main team, no help": {
+    "cases": 4,
+    "matches": 4,
+    "started at": 56.319124854295936,
+    "the 60 s before": 0.6523181285606929,
+    "they lose one": 75.0,
+    "we lose one": 50.0,
+    "net NPCs": -0.5,
+    "flags": 0.335,
+    "win points 90": -1.988531245191703,
+    "win points 180": 0.08571959277741842,
+    "flag stopped": 50.0,
+    "he dies": 50.0,
+    "late (middle)": 0.875
+   }
+  },
+  "at the stand": {
+   "one player": {
+    "cases": 18,
+    "matches": 18,
+    "started at": 72.70256623249804,
+    "the 60 s before": -0.5515352681666039,
+    "they lose one": 50.0,
+    "we lose one": 38.88888888888889,
+    "net NPCs": 0.16666666666666666,
+    "flags": -0.11944444444444444,
+    "win points 90": -0.48086079609513455,
+    "win points 180": 0.4723765796757684,
+    "flag stopped": 33.33333333333333,
+    "he dies": 0.0,
+    "late (middle)": 1.3
+   },
+   "  one player, his team sends help": {
+    "cases": 9,
+    "matches": 9,
+    "started at": 68.83189293189625,
+    "the 60 s before": 1.5795024294908744,
+    "they lose one": 44.44444444444444,
+    "we lose one": 33.33333333333333,
+    "net NPCs": 0.2222222222222222,
+    "flags": -0.2733333333333333,
+    "win points 90": -0.6635429970630745,
+    "win points 180": 0.13774429389654008,
+    "flag stopped": 11.11111111111111,
+    "he dies": 0.0,
+    "late (middle)": 1.33
+   },
+   "  one player, no help": {
+    "cases": 9,
+    "matches": 9,
+    "started at": 76.57323953309981,
+    "the 60 s before": -2.6825729658240824,
+    "they lose one": 55.55555555555556,
+    "we lose one": 44.44444444444444,
+    "net NPCs": 0.1111111111111111,
+    "flags": 0.03444444444444443,
+    "win points 90": -0.2981785951271947,
+    "win points 180": 0.8070088654549967,
+    "flag stopped": 55.55555555555556,
+    "he dies": 0.0,
+    "late (middle)": 0.815
+   },
+   "two or more players": {
+    "cases": 20,
+    "matches": 18,
+    "started at": 81.76994258030507,
+    "the 60 s before": 2.1184511378933903,
+    "they lose one": 40.0,
+    "we lose one": 20.0,
+    "net NPCs": 0.15,
+    "flags": -0.28315789473684216,
+    "win points 90": -0.3397742822733093,
+    "win points 180": -0.5316483892875011,
+    "flag stopped": 35.0,
+    "he dies": 5.0,
+    "late (middle)": 1.76
+   },
+   "  two or more players, his team sends help": {
+    "cases": 8,
+    "matches": 7,
+    "started at": 75.16854746521186,
+    "the 60 s before": 5.121459458328109,
+    "they lose one": 25.0,
+    "we lose one": 0.0,
+    "net NPCs": 0.125,
+    "flags": -0.7625,
+    "win points 90": -3.552664493643658,
+    "win points 180": -5.376979788489105,
+    "flag stopped": 12.5,
+    "he dies": 0.0,
+    "late (middle)": 1.74
+   },
+   "  two or more players, no help": {
+    "cases": 12,
+    "matches": 12,
+    "started at": 86.17087265703388,
+    "the 60 s before": 0.11644559093691165,
+    "they lose one": 50.0,
+    "we lose one": 33.33333333333333,
+    "net NPCs": 0.16666666666666666,
+    "flags": 0.06545454545454545,
+    "win points 90": 1.802152525306923,
+    "win points 180": 2.6985725435135683,
+    "flag stopped": 50.0,
+    "he dies": 8.333333333333332,
+    "late (middle)": 1.83
+   },
+   "the main team": {
+    "cases": 36,
+    "matches": 33,
+    "started at": 82.24484837774342,
+    "the 60 s before": 1.5904725858751347,
+    "they lose one": 61.111111111111114,
+    "we lose one": 27.77777777777778,
+    "net NPCs": 0.5555555555555556,
+    "flags": -0.03514285714285712,
+    "win points 90": 1.1604668257756217,
+    "win points 180": -0.6376996966941266,
+    "flag stopped": 38.88888888888889,
+    "he dies": 25.0,
+    "late (middle)": 1.59
+   },
+   "  the main team, his team sends help": {
+    "cases": 28,
+    "matches": 26,
+    "started at": 78.8759918151183,
+    "the 60 s before": 1.2559708069955156,
+    "they lose one": 57.14285714285714,
+    "we lose one": 25.0,
+    "net NPCs": 0.7142857142857143,
+    "flags": -0.16666666666666666,
+    "win points 90": 1.9767088538612738,
+    "win points 180": 1.4149465572402893,
+    "flag stopped": 28.57142857142857,
+    "he dies": 21.428571428571427,
+    "late (middle)": 1.635
+   },
+   "  the main team, no help": {
+    "cases": 8,
+    "matches": 7,
+    "started at": 94.03584634693141,
+    "the 60 s before": 2.761228811953802,
+    "they lose one": 75.0,
+    "we lose one": 37.5,
+    "net NPCs": 0.0,
+    "flags": 0.40875,
+    "win points 90": -1.6963802725241606,
+    "win points 180": -7.821961585464582,
+    "flag stopped": 75.0,
+    "he dies": 37.5,
+    "late (middle)": 1.14
+   }
+  }
+ }
+}
