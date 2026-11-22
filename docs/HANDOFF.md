@@ -8,10 +8,10 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 > out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-21, night: the picked rows of R-572 put to him; no engine change since R-573 to R-578)
+## State (2026-11-21, night: the picked rows answered, R-579 to R-582; no engine change since R-573 to R-578)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` and lands in one
   piece, then one rebuild (R-322). 658 replays stored; 564 count (R-477); 506 matches trained. No workflow run in
-  progress. Rulings run to R-578. The baseline (R-491) is the branch `baseline-2026-11-15`.
+  progress. Rulings run to R-582. The baseline (R-491) is the branch `baseline-2026-11-15`.
 - Graded and filed (set f1): thirteen games (Weeping Stone and Isle of the Dead not graded his new way). Flags:
   all 60 advice cards marked. Numbers from kills: no family (R-557). Splits read in both halves, no advice
   from them at the matches in hand; no more matches until the engine is ready (R-570).
@@ -27,10 +27,16 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   three are new (game 15, Men v NwAy 8:19, 12:11, 13:29); two of hold v RACK stay listed as gone.
 
 ## Next (in order): the engine substantially finished before the merge and training (R-571, R-572)
-1. Picked rows (R-572): put to him 2026-11-21 (night), unanswered ("Open for Denning" 1). File his answers as
-   set p3 of the key; build only what shows in two games. TFS v DMG 22:44 (twelve of the 21 self-check counts)
-   is diagnosed, not built: a lone player whose team is dead is told as a split under a full collapse (right)
-   and at once as the "1 v 8" of the main fight's numbers (wrong: fix in `Moments._numbers`).
+1. Build his three answers of 2026-11-21 (night), each at the root, on the development set (69 games now):
+   - R-579, away from his fight under 12 s is not having left it. A first build in `Moments._numbers` was taken
+     out (RULINGS R-579 says why: it joins rows through Jade's flicker, Men v Crew 24:34 Classic fails, the
+     self-check went 0 to 4). Try it in who is in the fight (`fights`, `linked`), not in the count. Tests: Men v
+     RACK 12:06, Men v Crew 8:18, key p3-4 to p3-6. Men v Crew 20:10 is another shape (a player arriving).
+   - R-580, a flag taken up seconds after a team mate put it down is the same run (Men v Crew 12:26, then a
+     flag in hand). 199 such carries in 139 matches, most of them run in: read the run going on, not the gap.
+   - R-581, a player sent for a flag left on the field is a flag decision (HC v hdm 5:57; key p3-7 to p3-9).
+   Then TFS v DMG 22:44 as a bug (twelve of the 21 self-check counts): a lone player whose team is dead is told
+   as a split under a full collapse (right) and at once as the main fight's "1 v 8" (wrong: `_numbers`).
 2. The kinds Claude reads as ready (R-572): the opening, held in base, the base res and now pushing the flagger,
    each through the stages as flags and splits were. The Lord push: picked rows from late games first.
 3. The measurements (R-572): enemy execution (2.12), the interaction rule (2.13), NPC damage by kind of bar
@@ -44,19 +50,9 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 ## Open for Denning
 0. Held at his word (R-554, his "make sure you remember"): the cards for a flag in hand, with R-553 to build, and
    for a double run from the sender's side: raise them when more matches are trained. The execution list (R-557).
-1. The picked rows (each with date, guilds, hall, length, time and link in the chat of 2026-11-21, night):
-   - Men v hold 18:06 (on the way home to a collapse, read as a split): Apes v cope ce7e957d 11:20 (like it),
-     push v True 597fe160 11:18 (may be a true counter-split). Only six such rows in 564 matches.
-   - Men v hold 6:48 (flagger carrying home with his team): one like row, Men v cope 2ce13ef6 11:10; drop it?
-   - Men v RACK 12:06, Men v Crew 8:18 and 20:10 (numbers for 10 to 12 s): Men v hook ad75813a 2:20, hold v hook
-     fe0bdc51 12:56, Book v Crew 6aaa0f6d 5:08. 409 of 2,083 such situations; of his 11 graded none is Classic
-     (13 to 20 s: 5 of 10). Two games: asked whether under JOIN_S away is not having left (mirror of R-350).
-   - Men v Crew 12:26: asked what he meant (the row pairs Men's Derv taking up the Ranger's flag at 12:26 and
-     holding it 1:51 with Crew's Water Ele's next run, at 13:17; his 11:32 run capped at 12:23).
-   - HC v hdm 5:56 (a flag left lying, taken up later and capped, no flag row): 옷옷옷옷 v cope 01c0b3c1 4:55,
-     Book v OG 76b61497 10:56, Crew v Team e7a93c30 10:41. 32 such caps in 29 matches with no flag play at all.
-   Five flag cards to mark (State). R-576's reading (held in base by five or more) is Claude's, and R-575 is
-   applied to Nomad's as to Jade: bring him what either tells wrongly as it turns up in his games.
+1. Five flag cards to mark (State). R-576's reading (held in base by five or more) is Claude's, and R-575 is
+   applied to Nomad's as to Jade: bring him what either tells wrongly as it turns up in his games. Closed by
+   R-582: Men v hold 6:48 (dropped) and 18:06 (held in the key, p3-1 and p3-2; build only if it turns up again).
 2. Tolkano: no build (his word): give him date, guilds, hall and length with every example.
 
 ## Running it

@@ -1,5 +1,5 @@
 {
- "about": "The review key (R-450). Every row Denning was shown of the engine's plays: what the engine said then (shown), his mark and his words (said), and checks: Claude's reading of his mark as things the plays must hold or must not hold, which he corrects. Scored by tools/golden/review.py on the branch after every change. Marks: right, partly, wrong, bad example (set aside), not marked. Set 1 is the 35 rows of 2026-11-13, picked one or more to a kind of play, so it is a regression test and not an accuracy figure; whole-game sets (R-454) give the accuracy by kind of play. `answered` holds a later answer of his on a row (what was asked, his words, Claude's reading). Set w1p1 is part 1 of the whole-game review (R-455), marked by him on the site on 2026-11-13 against engine af952c6: one row a situation with his mark and words, its calls under `calls` with theirs, and one `missed` row a game for what the engine did not read; checks are written as each fault is fixed. Set w1p2 is hdm v hook, the first game of part 2, marked on 2026-11-14 against engine 67e87b8 as the first measure of the rebuilt reading; he then chose to build from it too, keeping Men v Crew unmarked as the hidden game. Set w2 is round 3 (R-473): hook v hold and cope v Team, marked on 2026-11-14 against engine b025445 (24 of 41 and 15 of 24 situations right); chic v 戦戦戦戦 was set aside unmarked (a henchman game). RJT v RACK (eea5ba87) is round 3's third game, marked on 2026-11-14 against engine b09a26a (33 of 45 situations right); its checks are written from his words and are open until the reading under them is rebuilt. Set p2 is twelve picked rows of 2026-11-18 (R-495: examples found by search for a fault seen once, put to him in the chat with their replay links): six of the two held flag shapes and three sudden deaths of a solo split player. They carry no grade, so none binds; their games are in the development set. Set c1 is the flag advice cards he corrected on Model > Game review > Flag advice (marked 2026-11-20, 61 cards of the twelve f1 games against engine cb7c78a: 58 told correctly, 2 partly, 1 incorrect; all 61 marks are in data/model/flag_card_marks.json): one row a corrected card, with his words and the check on the play the card is written from. They carry no grade, so none binds. Rows c1-4 to c1-6 are his notes on the flags of three games from the same page (decisions with no card), with Claude's reading of each.",
+ "about": "The review key (R-450). Every row Denning was shown of the engine's plays: what the engine said then (shown), his mark and his words (said), and checks: Claude's reading of his mark as things the plays must hold or must not hold, which he corrects. Scored by tools/golden/review.py on the branch after every change. Marks: right, partly, wrong, bad example (set aside), not marked. Set 1 is the 35 rows of 2026-11-13, picked one or more to a kind of play, so it is a regression test and not an accuracy figure; whole-game sets (R-454) give the accuracy by kind of play. `answered` holds a later answer of his on a row (what was asked, his words, Claude's reading). Set w1p1 is part 1 of the whole-game review (R-455), marked by him on the site on 2026-11-13 against engine af952c6: one row a situation with his mark and words, its calls under `calls` with theirs, and one `missed` row a game for what the engine did not read; checks are written as each fault is fixed. Set w1p2 is hdm v hook, the first game of part 2, marked on 2026-11-14 against engine 67e87b8 as the first measure of the rebuilt reading; he then chose to build from it too, keeping Men v Crew unmarked as the hidden game. Set w2 is round 3 (R-473): hook v hold and cope v Team, marked on 2026-11-14 against engine b025445 (24 of 41 and 15 of 24 situations right); chic v 戦戦戦戦 was set aside unmarked (a henchman game). RJT v RACK (eea5ba87) is round 3's third game, marked on 2026-11-14 against engine b09a26a (33 of 45 situations right); its checks are written from his words and are open until the reading under them is rebuilt. Set p2 is twelve picked rows of 2026-11-18 (R-495: examples found by search for a fault seen once, put to him in the chat with their replay links): six of the two held flag shapes and three sudden deaths of a solo split player. They carry no grade, so none binds; their games are in the development set. Set c1 is the flag advice cards he corrected on Model > Game review > Flag advice (marked 2026-11-20, 61 cards of the twelve f1 games against engine cb7c78a: 58 told correctly, 2 partly, 1 incorrect; all 61 marks are in data/model/flag_card_marks.json): one row a corrected card, with his words and the check on the play the card is written from. They carry no grade, so none binds. Rows c1-4 to c1-6 are his notes on the flags of three games from the same page (decisions with no card), with Claude's reading of each. Set p3 is nine picked rows of 2026-11-21 (R-572: like moments found by search for the faults seen in one game, put to him in the chat with date, guilds, hall, length, time and link; his answers are R-579 to R-582). They carry no grade, so none binds.",
  "version": 1,
  "rows": [
   {
@@ -13650,7 +13650,13 @@
      "auto": true,
      "why": "Men v Crew, Jade 8:18: he graded it No decision: there isn't really a fight here and a very brief time of player advantage, only because people are walking back and forth through the portal"
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-21",
+    "asked": "A player already counts in a fight only after 12 s in it (R-350); the mirror is that a player away for less than 12 s has not left it. Do you agree?",
+    "said": "Yes, I agree.",
+    "reading": "R-579"
+   }
   },
   {
    "id": "f1-5168-13",
@@ -13818,7 +13824,13 @@
      "open": true,
      "why": "Men v Crew 12:26 (Visible, incorrect): 'the Crew run is the same run as the one starting at 11:32'"
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-21",
+    "asked": "Which is the fault: (a) the row's Crew run looked like the 11:32 run because it gave no time; (b) the Derv taking up the Ranger's flag is not a new run at all, only the same flag, then held in hand?",
+    "said": "b)",
+    "reading": "R-580. Not built yet."
+   }
   },
   {
    "id": "f1-5168-17",
@@ -14195,6 +14207,12 @@
     "asked": "Isle of Jade: are players walking through the portal part of the main fight on either side?",
     "said": "Yes, if they are walking through during the fight.",
     "reading": "R-575, built 2026-11-21 (`Moments._reach`). This row is still told: nobody is through the portal here (14:24: two of Men at its mouth and five behind, no fighting; 20:10: Crew's seven at Men's back door, the Water Ele at the front), so it is another fault, a stand-off or a moment of arriving read as numbers."
+   },
+   "answered_2": {
+    "on": "2026-11-21",
+    "asked": "A player already counts in a fight only after 12 s in it (R-350); the mirror is that a player away for less than 12 s has not left it. Do you agree?",
+    "said": "Yes, I agree.",
+    "reading": "R-579"
    }
   },
   {
@@ -17618,7 +17636,13 @@
      "open": true,
      "why": "Men v RACK 12:06 (Visible, incorrect): 'this is 7v7'"
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-21",
+    "asked": "A player already counts in a fight only after 12 s in it (R-350); the mirror is that a player away for less than 12 s has not left it. Do you agree?",
+    "said": "Yes, I agree.",
+    "reading": "R-579"
+   }
   },
   {
    "id": "f1-45cf-24",
@@ -20081,7 +20105,9 @@
      "mark": "not judged"
     }
    ],
-   "checks": [
+   "checks": [],
+   "note": "2026-11-20: held (one game, R-495; his 'I think'): three of hold brush Men's flagger for 6 s and 8 s as he carries his flag home to the collapse on hold's split.",
+   "retired_checks": [
     {
      "none": {
       "play": "push flagger",
@@ -20097,7 +20123,8 @@
      "open": true,
      "auto": true,
      "why": "Men v hold, Meditation 6:48: he graded it No decision: this I think was collapse rather than flagpush",
-     "held": "2026-11-20"
+     "held": "2026-11-20",
+     "retired": "2026-11-21: 'Drop the fault' (R-582)"
     },
     {
      "none": {
@@ -20114,7 +20141,8 @@
      "open": true,
      "auto": true,
      "why": "Men v hold, Meditation 6:48: he graded it No decision: this I think was collapse rather than flagpush",
-     "held": "2026-11-20"
+     "held": "2026-11-20",
+     "retired": "2026-11-21: 'Drop the fault' (R-582)"
     },
     {
      "none": {
@@ -20127,10 +20155,15 @@
      },
      "open": true,
      "why": "Men v hold 6:48: 'this I think was collapse rather than flagpush'",
-     "held": "2026-11-20"
+     "held": "2026-11-20",
+     "retired": "2026-11-21: 'Drop the fault' (R-582)"
     }
    ],
-   "note": "2026-11-20: held (one game, R-495; his 'I think'): three of hold brush Men's flagger for 6 s and 8 s as he carries his flag home to the collapse on hold's split."
+   "later": {
+    "on": "2026-11-21",
+    "said": "Drop the fault.",
+    "reading": "R-582: one like row in 1,278 pushes (Men v cope 11:10); not built."
+   }
   },
   {
    "id": "f1-572c-27",
@@ -21530,7 +21563,13 @@
      "held": "2026-11-20"
     }
    ],
-   "note": "2026-11-20: held (one game, R-495): two of Men's push stand off it at hold's front door for 40 s and 20 s, then one goes back to it and the other goes home to the collapse."
+   "note": "2026-11-20: held (one game, R-495): two of Men's push stand off it at hold's front door for 40 s and 20 s, then one goes back to it and the other goes home to the collapse.",
+   "answered": {
+    "on": "2026-11-21",
+    "asked": "Is each of these a split, or players on their way to a collapse? (Apes v cope 11:20, push v True 11:18)",
+    "said": "Men v hold and Apes v Cope seem like players on the way to collapse, push v True seems like a counter split; but I'm not sure. This seems rare.",
+    "reading": "R-582: held, not built; six such rows in 564 matches."
+   }
   },
   {
    "id": "f1-572c-58",
@@ -33232,7 +33271,13 @@
    "mark": "missed",
    "said": "5:56 - it's a bit of a difficult situation to read because the flag was already on the ground, but hdm send 8 ele out to pick up flag that was left there and not returned; hdm manages to cap which puts them in a very good position",
    "checks": [],
-   "reading": "No flag play is told between 5:00 and 7:00: a flag left lying up the field, taken up later by another player and capped, is not read as a run. Seen in one game (R-495): held for a second."
+   "reading": "No flag play is told between 5:00 and 7:00: hdm's flag lay from 1:37 to 5:57, was taken up by the same Water Ele and capped at 6:17 (the opening's row covers the flag's whole life). R-581: a flag decision. Not built yet.",
+   "answered": {
+    "on": "2026-11-21",
+    "asked": "Is a player sent for a flag left on the field a flag decision the engine should tell?",
+    "said": "Yes, a player sent for a flag left on the first should be a flag decision.",
+    "reading": "R-581"
+   }
   },
   {
    "id": "c1-6",
@@ -35368,6 +35413,226 @@
    "mark": "notes",
    "said": "",
    "checks": []
+  },
+  {
+   "id": "p3-1",
+   "set": "p3",
+   "row": 1,
+   "rid": "ce7e957d-b8a2-5c04-a7cf-b0e4f3fa5816",
+   "match": "Apes v cope, Uncharted",
+   "window": [
+    680,
+    706
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "cope's split by the back door: two players (8 Monk, Ranger) against 3 defending (Necromancer, Ritualist, 8 Monk)",
+   "mark": "wrong",
+   "said": "Men v hold and Apes v Cope seem like players on the way to collapse, push v True seems like a counter split; but I'm not sure. This seems rare.",
+   "checks": [
+    {
+     "none": {
+      "play": "split",
+      "side": "attacker",
+      "team": "cope",
+      "start": [
+       674,
+       686
+      ]
+     },
+     "open": true,
+     "held": "2026-11-21",
+     "why": "Apes v cope 11:20 (picked row): 'players on the way to collapse ... but I'm not sure. This seems rare': held, not built (R-582)"
+    }
+   ]
+  },
+  {
+   "id": "p3-2",
+   "set": "p3",
+   "row": 2,
+   "rid": "597fe160-569e-5180-ae19-0f1b1ce79e10",
+   "match": "push v True, Uncharted",
+   "window": [
+    678,
+    700
+   ],
+   "type": "split",
+   "call": "",
+   "shown": "push's split by the front door: two players (Ritualist, Dervish) against 2 defending (Monk 4, Prot)",
+   "mark": "right",
+   "said": "Men v hold and Apes v Cope seem like players on the way to collapse, push v True seems like a counter split; but I'm not sure. This seems rare.",
+   "checks": [
+    {
+     "has": {
+      "play": "split",
+      "side": "attacker",
+      "team": "push",
+      "start": [
+       672,
+       684
+      ]
+     },
+     "was": "push v True 11:18 (picked row): 'seems like a counter split; but I'm not sure'"
+    }
+   ]
+  },
+  {
+   "id": "p3-3",
+   "set": "p3",
+   "row": 3,
+   "rid": "2ce13ef6-1f29-5741-a418-c7415b0e7fea",
+   "match": "Men v cope, Weeping Stone",
+   "window": [
+    670,
+    690
+   ],
+   "type": "push flagger",
+   "call": "",
+   "shown": "Men pushes cope's flagger (Hammer, carrying) with its main team",
+   "mark": "not marked",
+   "said": "Drop the fault.",
+   "checks": []
+  },
+  {
+   "id": "p3-4",
+   "set": "p3",
+   "row": 4,
+   "rid": "ad75813a-2393-56f4-aee1-975ff4c85196",
+   "match": "Men v hook, Nomad's",
+   "window": [
+    140,
+    152
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Men down on numbers in the main fight (7 v 8, Men's front door), from players split elsewhere; Men: retreat down the ladder (fall back into the base)",
+   "mark": "wrong",
+   "said": "Yes, I agree.",
+   "checks": [
+    {
+     "none": {
+      "play": "numbers",
+      "start": [
+       134,
+       146
+      ]
+     },
+     "open": true,
+     "why": "Men v hook 2:20 (picked row; R-579): numbers for 10 s, the missing player on no split and running no flag: he has not left the fight"
+    }
+   ]
+  },
+  {
+   "id": "p3-5",
+   "set": "p3",
+   "row": 5,
+   "rid": "fe0bdc51-c534-5b26-ae81-159809f5b3b7",
+   "match": "hold v hook, Imperial",
+   "window": [
+    776,
+    788
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "hold down on numbers in the main fight (5 v 6, hook's front door), from players split elsewhere; hold: stay (stay at the stand)",
+   "mark": "wrong",
+   "said": "Yes, I agree.",
+   "checks": [
+    {
+     "none": {
+      "play": "numbers",
+      "start": [
+       770,
+       782
+      ]
+     },
+     "open": true,
+     "why": "hold v hook 12:56 (picked row; R-579): numbers for 10 s, the missing player on no split and running no flag: he has not left the fight"
+    }
+   ]
+  },
+  {
+   "id": "p3-6",
+   "set": "p3",
+   "row": 6,
+   "rid": "6aaa0f6d-da4e-5666-a036-7527fc7bd9d4",
+   "match": "Book v Crew, Jade",
+   "window": [
+    308,
+    320
+   ],
+   "type": "numbers",
+   "call": "",
+   "shown": "Book down on numbers in the main fight (7 v 8, Book's front footies), from players split elsewhere; Book: stay (stay at the stand)",
+   "mark": "wrong",
+   "said": "Yes, I agree.",
+   "checks": [
+    {
+     "none": {
+      "play": "numbers",
+      "start": [
+       302,
+       314
+      ]
+     },
+     "open": true,
+     "why": "Book v Crew 5:08 (picked row; R-579): numbers for 10 s, the missing player on no split and running no flag: he has not left the fight"
+    }
+   ]
+  },
+  {
+   "id": "p3-7",
+   "set": "p3",
+   "row": 7,
+   "rid": "01c0b3c1-673c-5602-af1b-2a5b1ecc9c59",
+   "match": "옷옷옷옷 v cope, Meditation",
+   "window": [
+    295,
+    295
+   ],
+   "type": "notes",
+   "call": "",
+   "shown": "(no flag row is told) 옷옷옷옷's 8 Monk takes up the flag left lying since before the gates opened and caps at 5:09",
+   "mark": "missed",
+   "said": "Yes, a player sent for a flag left on the first should be a flag decision.",
+   "checks": [],
+   "reading": "R-581: a player sent for a flag left on the field is a flag decision. Not built yet; the check is written with the build."
+  },
+  {
+   "id": "p3-8",
+   "set": "p3",
+   "row": 8,
+   "rid": "76b61497-96ee-5a39-a277-b7be16c608a0",
+   "match": "Book v OG, Uncharted",
+   "window": [
+    656,
+    656
+   ],
+   "type": "notes",
+   "call": "",
+   "shown": "(no flag row is told) OG's 7 Monk takes up the flag the Ritualist left at 7:22 and caps at 12:18",
+   "mark": "missed",
+   "said": "Yes, a player sent for a flag left on the first should be a flag decision.",
+   "checks": [],
+   "reading": "R-581: a player sent for a flag left on the field is a flag decision. Not built yet; the check is written with the build."
+  },
+  {
+   "id": "p3-9",
+   "set": "p3",
+   "row": 9,
+   "rid": "e7a93c30-8c9d-527f-a080-465c38c75136",
+   "match": "Crew v Team, Solitude",
+   "window": [
+    641,
+    641
+   ],
+   "type": "notes",
+   "call": "",
+   "shown": "(no flag row is told) Crew's Monk 1 takes up the flag the Mes/A left at 8:27 and caps at 11:25",
+   "mark": "missed",
+   "said": "Yes, a player sent for a flag left on the first should be a flag decision.",
+   "checks": [],
+   "reading": "R-581: a player sent for a flag left on the field is a flag decision. Not built yet; the check is written with the build."
   }
  ],
  "about_tiers": "R-490: a row with \"tier\": \"borderline\" is reported by `review.py score` and never blocks a change; every other row with a check is clear and must pass. A row he marks No clear decision is borderline when it is filed. \"tier_proposed\" is Claude's proposal, not yet his."
