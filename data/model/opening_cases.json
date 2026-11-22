@@ -1,0 +1,257 @@
+{
+ "cases": 1122,
+ "skipped": {
+  "no winner recorded, or the flag lead not read": 6
+ },
+ "counts": {
+  "brings its first flag up and caps it": {
+   "openings": 584,
+   "matches": 405
+  },
+  "brings it up and holds it at the stand, then caps": {
+   "openings": 232,
+   "matches": 185
+  },
+  "brings it up and does not cap it": {
+   "openings": 217,
+   "matches": 185
+  },
+  "brings no flag and sends a player back for it": {
+   "openings": 62,
+   "matches": 47
+  },
+  "brings no flag": {
+   "openings": 27,
+   "matches": 26
+  },
+  "all eight to the stand": {
+   "openings": 509,
+   "matches": 346
+  },
+  "a player left back for the next flag": {
+   "openings": 144,
+   "matches": 133
+  },
+  "players back at home": {
+   "openings": 164,
+   "matches": 159
+  },
+  "a split from the gates": {
+   "openings": 305,
+   "matches": 280
+  }
+ },
+ "checks": {
+  "O1 a team that brings its first flag up caps first more often than one that brings none": {
+   "first": 0.4888673765730881,
+   "second": 0.449438202247191,
+   "difference": 0.0394291743258971,
+   "range": [
+    -0.03721789831350776,
+    0.1160598503220597
+   ],
+   "n": [
+    1033,
+    89
+   ],
+   "reads": "not clear"
+  },
+  "O2 a team that brings its first flag up is better off in flags at 3:00 than one that brings none": {
+   "first": 0.006505324298160698,
+   "second": -0.0755056179775281,
+   "difference": 0.0820109422756888,
+   "range": [
+    -0.025464488694285473,
+    0.19049180284936093
+   ],
+   "n": [
+    1033,
+    89
+   ],
+   "reads": "not clear"
+  },
+  "O3 the team that caps first is better off in flags at 3:00": {
+   "first": 0.0533211009174312,
+   "second": -0.050363951473136916,
+   "difference": 0.1036850523905681,
+   "range": [
+    0.0017667308652647988,
+    0.2110743136145861
+   ],
+   "n": [
+    545,
+    577
+   ],
+   "reads": "HOLDS"
+  },
+  "O4 a team with a player left back for the next flag is better off in flags at 3:00 than all eight at the stand": {
+   "first": 0.05895833333333335,
+   "second": 0.023339882121807456,
+   "difference": 0.03561845121152589,
+   "range": [
+    -0.09246987204170211,
+    0.14887712346979728
+   ],
+   "n": [
+    144,
+    509
+   ],
+   "reads": "not clear"
+  },
+  "O5 a team with a player left back loses a player in the first 90 s more often than all eight at the stand": {
+   "first": 0.16666666666666666,
+   "second": 0.275049115913556,
+   "difference": -0.10838244924688936,
+   "range": [
+    -0.16483626543147373,
+    -0.052323155952560624
+   ],
+   "n": [
+    144,
+    509
+   ],
+   "reads": "AGAINST"
+  }
+ },
+ "as_it_fell": {
+  "first flag": {
+   "brings its first flag up and caps it": {
+    "cases": 584,
+    "matches": 405,
+    "started at": 53.2139818652021,
+    "the 60 s before": null,
+    "they lose one": 20.89041095890411,
+    "we lose one": 16.95205479452055,
+    "net NPCs": -0.02054794520547945,
+    "flags": 0.04928082191780822,
+    "win points 90": 0.5660320092492602,
+    "win points 180": 1.4580475477381118,
+    "caps first": 63.013698630136986,
+    "flags at 3:00": 0.07508561643835615,
+    "wins": 55.47945205479452
+   },
+   "brings it up and holds it at the stand, then caps": {
+    "cases": 232,
+    "matches": 185,
+    "started at": 48.56515201753177,
+    "the 60 s before": null,
+    "they lose one": 25.43103448275862,
+    "we lose one": 14.655172413793101,
+    "net NPCs": -0.04741379310344827,
+    "flags": 0.03172413793103447,
+    "win points 90": 0.7396129464627905,
+    "win points 180": 1.2204735315776019,
+    "caps first": 45.258620689655174,
+    "flags at 3:00": -0.017241379310344824,
+    "wins": 49.137931034482754
+   },
+   "brings it up and does not cap it": {
+    "cases": 217,
+    "matches": 185,
+    "started at": 43.320744980116835,
+    "the 60 s before": null,
+    "they lose one": 21.19815668202765,
+    "we lose one": 44.23963133640553,
+    "net NPCs": 0.09216589861751152,
+    "flags": -0.1447926267281106,
+    "win points 90": -2.1816809082627375,
+    "win points 180": -4.592413470367356,
+    "caps first": 14.746543778801843,
+    "flags at 3:00": -0.15267281105990785,
+    "wins": 36.405529953917046
+   },
+   "brings no flag and sends a player back for it": {
+    "cases": 62,
+    "matches": 47,
+    "started at": 54.210871663421976,
+    "the 60 s before": null,
+    "they lose one": 20.967741935483872,
+    "we lose one": 22.58064516129032,
+    "net NPCs": 0.0967741935483871,
+    "flags": 0.07774193548387096,
+    "win points 90": -0.3074421442168803,
+    "win points 180": -1.2996605756431268,
+    "caps first": 48.38709677419355,
+    "flags at 3:00": -0.0032258064516128945,
+    "wins": 58.06451612903226
+   },
+   "brings no flag": {
+    "cases": 27,
+    "matches": 26,
+    "started at": 36.82383773470694,
+    "the 60 s before": null,
+    "they lose one": 48.148148148148145,
+    "we lose one": 37.03703703703704,
+    "net NPCs": -0.1111111111111111,
+    "flags": -0.3533333333333333,
+    "win points 90": -0.3580269239435101,
+    "win points 180": -2.130257349832256,
+    "caps first": 37.03703703703704,
+    "flags at 3:00": -0.24148148148148146,
+    "wins": 29.629629629629626
+   }
+  },
+  "players": {
+   "all eight to the stand": {
+    "cases": 509,
+    "matches": 346,
+    "started at": 49.34680761590554,
+    "the 60 s before": null,
+    "they lose one": 31.041257367387033,
+    "we lose one": 27.5049115913556,
+    "net NPCs": -0.08644400785854617,
+    "flags": -0.017111984282907666,
+    "win points 90": 0.07379631398483343,
+    "win points 180": 0.448145808694808,
+    "caps first": 41.650294695481335,
+    "flags at 3:00": 0.023339882121807456,
+    "wins": 50.29469548133595
+   },
+   "a player left back for the next flag": {
+    "cases": 144,
+    "matches": 133,
+    "started at": 53.529194677128004,
+    "the 60 s before": null,
+    "they lose one": 17.36111111111111,
+    "we lose one": 16.666666666666664,
+    "net NPCs": -0.4930555555555556,
+    "flags": 0.2074305555555556,
+    "win points 90": 0.5279554949530629,
+    "win points 180": 0.04620850632729826,
+    "caps first": 75.69444444444444,
+    "flags at 3:00": 0.05895833333333335,
+    "wins": 52.77777777777778
+   },
+   "players back at home": {
+    "cases": 164,
+    "matches": 159,
+    "started at": 52.44851591858979,
+    "the 60 s before": null,
+    "they lose one": 18.902439024390244,
+    "we lose one": 15.853658536585366,
+    "net NPCs": -0.774390243902439,
+    "flags": 0.015121951219512205,
+    "win points 90": -1.1276519012424655,
+    "win points 180": -1.1160555622887631,
+    "caps first": 52.4390243902439,
+    "flags at 3:00": 0.05506097560975609,
+    "wins": 52.4390243902439
+   },
+   "a split from the gates": {
+    "cases": 305,
+    "matches": 280,
+    "started at": 48.107259932291534,
+    "the 60 s before": null,
+    "they lose one": 12.786885245901638,
+    "we lose one": 20.655737704918035,
+    "net NPCs": 0.7934426229508197,
+    "flags": -0.07750819672131148,
+    "win points 90": 0.23392457938440345,
+    "win points 180": -0.16959714531616704,
+    "caps first": 45.24590163934426,
+    "flags at 3:00": -0.09639344262295083,
+    "wins": 46.885245901639344
+   }
+  }
+ }
+}

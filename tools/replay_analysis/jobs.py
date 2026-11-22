@@ -1438,7 +1438,7 @@ def lord_plays(M, K):
     return out
 
 
-AT_TOLD_KINDS = ("push flagger", "flagger pushed", "pinned", "base res")
+AT_TOLD_KINDS = ("push flagger", "flagger pushed", "pinned", "base res", "opening")      # (the opening: the position at the gates, and what stood 60, 90 and 180 s on)
 
 
 def plays(M, recs=None):

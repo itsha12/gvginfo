@@ -1,0 +1,180 @@
+{
+ "cases": 1019,
+ "skipped": {
+  "no winner recorded, or the flag lead not read": 53
+ },
+ "counts": {
+  "stayed through the res": {
+   "cases": 945,
+   "matches": 426
+  },
+  "left before the res": {
+   "cases": 74,
+   "matches": 63
+  }
+ },
+ "checks": {
+  "B1 outnumbered after the res, a player dies more often than not outnumbered": {
+   "first": 0.08854166666666667,
+   "second": 0.0703851261620186,
+   "difference": 0.018156540504648072,
+   "range": [
+    -0.015305274890195703,
+    0.051031483575107
+   ],
+   "n": [
+    192,
+    753
+   ],
+   "reads": "not clear"
+  },
+  "B2 three or more coming back, a player dies more often than with one": {
+   "first": 0.07913669064748201,
+   "second": 0.07878787878787878,
+   "difference": 0.00034881185960322636,
+   "range": [
+    -0.03268449078426858,
+    0.032068027191289816
+   ],
+   "n": [
+    417,
+    330
+   ],
+   "reads": "not clear"
+  }
+ },
+ "as_it_fell": {
+  "one coming back": {
+   "stayed, not outnumbered after it": {
+    "cases": 251,
+    "matches": 183,
+    "started at": 73.78794517886358,
+    "the 60 s before": 2.951792153507352,
+    "they lose one": 55.77689243027888,
+    "we lose one": 23.50597609561753,
+    "net NPCs": 0.6095617529880478,
+    "flags": -0.00918699186991869,
+    "win points 90": 2.525276859948583,
+    "win points 180": 4.006265182846947,
+    "one of them dies": 7.569721115537849,
+    "job met": 92.43027888446214
+   },
+   "stayed, outnumbered after it": {
+    "cases": 79,
+    "matches": 72,
+    "started at": 69.9328590887684,
+    "the 60 s before": 2.551661791468256,
+    "they lose one": 59.49367088607595,
+    "we lose one": 32.91139240506329,
+    "net NPCs": 0.3670886075949367,
+    "flags": 0.039493670886075936,
+    "win points 90": 1.2276788666689513,
+    "win points 180": 2.2255541849231726,
+    "one of them dies": 8.860759493670885,
+    "job met": 91.13924050632912
+   },
+   "left before the res": {
+    "cases": 38,
+    "matches": 33,
+    "started at": 53.9641084712812,
+    "the 60 s before": 0.6346037901446797,
+    "they lose one": 44.73684210526316,
+    "we lose one": 18.421052631578945,
+    "net NPCs": 0.5,
+    "flags": 0.11473684210526316,
+    "win points 90": 3.165403221855582,
+    "win points 180": 3.2288221058192135,
+    "one of them dies": 5.263157894736842,
+    "job met": 94.73684210526315
+   }
+  },
+  "two coming back": {
+   "stayed, not outnumbered after it": {
+    "cases": 154,
+    "matches": 123,
+    "started at": 78.25654099224332,
+    "the 60 s before": 4.637316029451123,
+    "they lose one": 63.63636363636363,
+    "we lose one": 21.428571428571427,
+    "net NPCs": 0.8896103896103896,
+    "flags": -0.030522875816993453,
+    "win points 90": 2.352066062752548,
+    "win points 180": 4.185843909562565,
+    "one of them dies": 5.844155844155844,
+    "job met": 94.15584415584416
+   },
+   "stayed, outnumbered after it": {
+    "cases": 44,
+    "matches": 40,
+    "started at": 75.63517552504955,
+    "the 60 s before": 4.328515520446526,
+    "they lose one": 56.81818181818182,
+    "we lose one": 13.636363636363635,
+    "net NPCs": 0.9318181818181818,
+    "flags": 0.02295454545454545,
+    "win points 90": 3.296511264233864,
+    "win points 180": 1.0077769294855228,
+    "one of them dies": 4.545454545454546,
+    "job met": 95.45454545454545
+   },
+   "left before the res": {
+    "cases": 14,
+    "matches": 13,
+    "started at": 79.60741672426828,
+    "the 60 s before": 4.176851095827117,
+    "they lose one": 57.14285714285714,
+    "we lose one": 21.428571428571427,
+    "net NPCs": 0.21428571428571427,
+    "flags": -0.40214285714285714,
+    "win points 90": 0.16132679607557085,
+    "win points 180": 1.9920115231960218,
+    "one of them dies": 0.0,
+    "job met": 100.0
+   }
+  },
+  "three or more coming back": {
+   "stayed, not outnumbered after it": {
+    "cases": 348,
+    "matches": 264,
+    "started at": 88.46165896042243,
+    "the 60 s before": 6.789849229366975,
+    "they lose one": 82.75862068965517,
+    "we lose one": 16.379310344827587,
+    "net NPCs": 1.6724137931034482,
+    "flags": -0.1341230769230769,
+    "win points 90": 2.610943015158506,
+    "win points 180": 2.096060268155725,
+    "one of them dies": 7.183908045977011,
+    "job met": 92.81609195402298
+   },
+   "stayed, outnumbered after it": {
+    "cases": 69,
+    "matches": 66,
+    "started at": 85.66458507369794,
+    "the 60 s before": 8.079629553783702,
+    "they lose one": 73.91304347826086,
+    "we lose one": 27.536231884057973,
+    "net NPCs": 1.144927536231884,
+    "flags": 0.037826086956521746,
+    "win points 90": 2.5451266427738726,
+    "win points 180": 3.147220703676865,
+    "one of them dies": 11.594202898550725,
+    "job met": 88.40579710144928
+   },
+   "left before the res": {
+    "cases": 22,
+    "matches": 22,
+    "started at": 80.69412904672507,
+    "the 60 s before": 4.755345595968792,
+    "they lose one": 77.27272727272727,
+    "we lose one": 18.181818181818183,
+    "net NPCs": 0.18181818181818182,
+    "flags": 0.0004545454545454764,
+    "win points 90": 1.7104200423105667,
+    "win points 180": 2.344108548279746,
+    "one of them dies": 4.545454545454546,
+    "job met": 95.45454545454545
+   }
+  }
+ }
+}
