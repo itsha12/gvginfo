@@ -208,7 +208,12 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   another, `Moments._numbers` gives each player both readings count to one of them (by whom he trades with, then whom
   he heals, then whom he stands with, then where he is moving), and `split_plays` asks through `fight_side`. Change it
   there, never in one reading alone; `M._side_log` says who was given to which fight and on what; the self-check
-  (`jobs.selfcheck`) should stay near nothing. A split a player or more down meets its job by losing nobody (R-517).
+  (`jobs.selfcheck`) should stay near nothing. Who the question arises for (`Moments._split_candidates`) is read until it
+  settles: the splits silent, then again with the sides given, twice at most, whoever they count then being a candidate
+  too (TFS v DMG 22:10 to 23:10: the last player of a split whose others were given to the main fight was told as a lone
+  split with eight defenders while the main fight counted them all). And a defence has a split to defend: a defender
+  given to the split's fight where every enemy player on that split is given to the main fight is in the main fight
+  too. Over every match the self-check went from 20 in 6 matches to 6 in 4, with rows moved in 17. A split a player or more down meets its job by losing nobody (R-517).
   A player away from his fight for less than JOIN_S has not left it (R-579, the mirror of R-350), read in `_numbers` (`M._stayed`:
   counted in the fight before and after, alive, carrying no flag, on no split's fight, the missed readings spanning JOIN_S or
   less) and only to close a difference: where the fight is level with those players counted, nobody is up. It never lengthens
@@ -298,8 +303,11 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   less stays the opening's run (옷옷옷옷 v RACK 0:21, Classic; Men v Crew 0:22 to 1:23, his "Men holds for 1:47ish before
   deciding to cap"). Do not test where the flag lay or who stood by it (the taker by it, and any team mate by it, each
   fail a row he has marked); bring him the rows the length tells wrongly. Not built: a flag whose first pickup is not at
-  its spawn in the replay has no run record at all (Book v OG 7:16 and 10:56). Seen and left: a first flag neither capped
-  nor returned prints "None at ..." in the opening's row, and its flag play can end before it starts (One v Crew 0:00).
+  its spawn in the replay has no run record at all (Book v OG 7:16 and 10:56). A first flag neither capped nor returned is
+  said as "put down at ..." in the opening's row, and the two first flags are "neither before the other" only when both
+  set off by OPEN_BY_S (`gates` in `flag_plays`: One v Crew 6:37 had the other team's first flag of 0:00 as its answer).
+  Left for his answer on the length: a first flag taken up again and not capped is still told from the take-up as the
+  opening's flag, under "The opening." and named for the player who took it up (One v Crew 6:37).
 - A flag held at home is no flag run (R-576), one reading, `Moments._held_carries` on the branch (built by `run_starts`
   beside the part-carries, asked through `held_at`): a carry in which the flag does not leave its own ground (nor by a
   hand-off within HANDOFF_GAP_S) while his team, all but one at most, is on that ground with him and MAIN_BIG or more
@@ -405,6 +413,14 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   the same comparison on the 60 s before), what followed each call as it fell, like spots and the test on unseen matches. The call is read 20 s in
   (`_main_call`): a change to a split already there first (collapse on it, a defender pulled back, more sent, players brought back; a player who died
   there is no call, R-571), else his calls of R-551 (`_num_call`). No more matches are trained for either half until the engine is ready (R-570): never propose it again as the next step.
+- The kinds that follow (R-572), on the branch. The push flagger, flagger pushed, pinned and base res plays carry `at_told`
+  (the position they are told at, the fixed 60, 90 and 180 s record and the 60 s before, as on a split; set in `jobs.plays`,
+  `AT_TOLD_KINDS`; it changes no play, and the development set's plays must be the same but for that key). Stage 1 of each
+  is a report in `cases.py`, kept with `--json`: `cases.py pushes <plays file>` (`data/model/push_cases.json`: who pushes,
+  where the flagger was, the readings U1 to U5, and what followed as it fell by who pushes and whether his team sent
+  help) and `cases.py held <plays file>` (`data/model/held_cases.json`: a team held in its base, by how the hold ended
+  and the players alive when it began, the readings H1 to H5, as it fell). Help sent and the break-out mark the spot and
+  are never read as causes. The base res and the opening are not begun; stages 2 to 4 of pushes and holds are not begun.
 - A numbers advantage from kills is not a decision family (R-557: the team up keeps killing and follows the team down,
   whose own choices read as near forced; the numbers that are decisions are those a team chose to make, a runner, a
   split or a collapse). Its cards are not marked and its view is off the page (the `ADVICE.numbers` entry in
