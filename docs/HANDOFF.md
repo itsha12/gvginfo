@@ -17,39 +17,34 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   from them at the matches in hand; no more matches until the engine is ready (R-570).
 - Built this session, each with his word (CLAUDE.md says how each is read): who pushes a flagger (R-573, R-577,
   `flag_pushes`); a flag held at home is no run (R-576, `_held_carries`); the footmen are not in the base at a
-  base res on Jade and five other halls (R-574, R-578, `hall_features.json`). Both two-game faults of R-572
-  are built. R-575 (Jade's portal) is ruled and not built: step 1 below.
-- Last checkpoint (every counted match, this engine): 564 matches, 34,317 plays, no errors; fourteen truths hold;
-  313 Classic rows pass, none fail; 132 history rows hold, 3 do not; gate 12 of 12 and 63 of 105; self-check
-  21 in 7. Line-up 530 of 583 (2026-11-18). Not written again: the flag, numbers and split reports, and the
-  flag cards (37 flag plays fewer over every match; no marked f1 game lost a flag row on the development set).
+  base res on Jade and five other halls (R-574, R-578, `hall_features.json`); players through a two-way
+  teleporter are of the main fight on either side (R-575, `_reach`); numbers wholly in a stand-off are not told
+  (R-405, `numbers_plays`). Both two-game faults of R-572 are built.
+- Last checkpoint (every counted match, this engine): 564 matches, 34,272 plays, no errors; fourteen truths hold;
+  313 Classic rows pass, none fail; 130 history rows hold, 3 do not; gate 12 of 12 and 63 of 105; self-check
+  21 in 7. Line-up 530 of 583 (2026-11-18). The five reports and the flag cards are written on this reading.
+- Flag cards (main, `flag_cards.json`, 63): two ask to be marked again (HC v Team 3:42, HC v cope 0:30) and
+  three are new (game 15, Men v NwAy 8:19, 12:11, 13:29); two of hold v RACK stay listed as gone.
 
 ## Next (in order): the engine substantially finished before the merge and training (R-571, R-572)
-1. R-575 at the root, in the one reading of who is in which fight (`Moments._near`, `linked`). Tried: the two
-   ends of a teleporter that works both ways one step apart (the shorter of the straight distance and the way
-   through, hop ends from `hall.hops`, halls whose features say `two_way`: Jade and Nomad's). It closed Men v
-   Crew 15:10 and cope v Team 6:04 and 11:56; it told Men v Crew 24:34 (Classic) from 24:26 and broke cope v
-   Team 13:34 to 14:46 as one situation. Find why the numbers start 8 s sooner there before building it again.
-   Men v Crew 14:24 is another fault (nobody through the portal: a stand-off read as numbers, R-405).
-2. Run `cases.py ladder`, `test`, `splits` and `main-fight` on the new reading, and write the flag cards again
-   with `--site` (tell him how many he is asked to mark again, R-549).
-3. Picked rows for the faults seen in one game (R-572): like moments from other matches for Men v hold 18:06
+1. Picked rows for the faults seen in one game (R-572): like moments from other matches for Men v hold 18:06
    and 6:48, Men v RACK 12:06, Men v Crew 12:26, HC v hdm 5:56; TFS v DMG 22:44 (the self-check) as a bug.
-4. The kinds Claude reads as ready (R-572): the opening, held in base, the base res and now pushing the flagger,
+   Still told on Jade and open in the key: Men v Crew 8:18 and 20:10 (fighting goes on there: not stand-offs).
+2. The kinds Claude reads as ready (R-572): the opening, held in base, the base res and now pushing the flagger,
    each through the stages as flags and splits were. The Lord push: picked rows from late games first.
-5. The measurements (R-572): enemy execution (2.12), the interaction rule (2.13), NPC damage by kind of bar
+3. The measurements (R-572): enemy execution (2.12), the interaction rule (2.13), NPC damage by kind of bar
    (R-433), a measure of what is at stake (R-509), the decision to split at all (R-558).
-6. Stage E (REDESIGN.md): the new families beside the old kinds for one rebuild (R-323), the stand-in prices
+4. Stage E (REDESIGN.md): the new families beside the old kinds for one rebuild (R-323), the stand-in prices
    replaced by the win model, the replaced kinds retired, the causal map cleaned, SPEC and METHODS rewritten,
    the readability test, his list of R-398, the merge, then one Train batch on the same 506 matches (he starts
    it; keep gvg.report's flag objects at that rebuild, R-481).
-7. The split family again when matches are in (players who res at the base onto a split still read as a collapse).
+5. The split family again when matches are in (players who res at the base onto a split still read as a collapse).
 
 ## Open for Denning
 0. Held at his word (R-554, his "make sure you remember"): the cards for a flag in hand, with R-553 to build, and
    for a double run from the sender's side: raise them when more matches are trained. The execution list (R-557).
-1. Nothing is waiting on him. R-576's reading is Claude's (the team held in its base by five or more): bring him
-   the carries it tells wrongly as they turn up in his games, as with R-562.
+1. Five flag cards to mark (State). R-576's reading is Claude's (the team held in its base by five or more), and
+   R-575 is applied to Nomad's Isle as to Jade: bring him what either tells wrongly as it turns up in his games.
 2. Tolkano: no build (his word): give him date, guilds, hall and length with every example.
 
 ## Running it

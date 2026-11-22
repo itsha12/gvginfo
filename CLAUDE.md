@@ -255,8 +255,10 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   exception; a runner who has just capped is the flagger only from when he is on his way home (R-577). On Isle of
   Jade, Warrior's Isle, Weeping Stone, Meditation, Wurms and Solitude a team at the footmen is not in the base for the
   base res (R-574, R-578: `base_res` in `hall_features.json`, read by `Moments.caught`).
-  R-575 (players walking through Jade's portal are of the main fight on either side) is ruled and not built: see
-  HANDOFF.md before touching `Moments._near` or `linked` for it. A split's door is read phase by phase in `split_plays` (only a phase
+  Players walking through a portal are of the main fight on either side (R-575): `Moments._reach`, asked by `_near`
+  and `linked`, takes the two ends of a teleporter that works both ways (the hall's `teleporters.two_way`: Jade,
+  Nomad's) as one step apart; change who is in which fight there. A numbers stretch every second of which lies in a
+  stand-off (R-405, `standoff_at`) is no numbers advantage and is not told (`jobs.numbers_plays`; Men v Crew 14:24). A split's door is read phase by phase in `split_plays` (only a phase
   whose players all start it in the field takes a new door), and a split out of a base its team is held in is told
   from when its player goes out past his doors (`out_at`). The first is R-528; the other two are from his marks.
   A split record whose players all came for a flagger already on his run and left when the flag had gone is the push

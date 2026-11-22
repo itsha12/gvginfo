@@ -9,8 +9,10 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 ## Counting players
 - A player counts in a fight, on a split or on its defence after 12 s there; less is support, or passing by (R-350,
   R-439). A death there counts at once. A walk through a teleporter and straight back is not being there (R-442).
-  On Isle of Jade players walking through the portal during the main fight are part of it on either side (R-575;
-  not built yet).
+  On Isle of Jade players walking through the portal during the main fight are part of it on either side (R-575).
+  *As built:* on a hall whose teleporters work both ways (Jade, Nomad's) the two ends of one are a step apart for
+  who is in which fight. Main teams standing off are not a fight (R-405), so numbers that lie wholly in a stand-off
+  are no numbers advantage.
 - Who is on a split is who is there at that time, not everyone it ever held (R-439).
 - The match is over when the losing team is recorded dying all at once (its Guild Lord dead, or the 28 minutes up),
   some 12 s before the replay stops: those are not deaths, and nothing is told from that second on, nor a base res
