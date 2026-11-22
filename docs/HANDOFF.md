@@ -47,8 +47,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 1. The picked rows (each with date, guilds, hall, length, time and link in the chat of 2026-11-21, night):
    - Men v hold 18:06 (on the way home to a collapse, read as a split): Apes v cope ce7e957d 11:20 (like it),
      push v True 597fe160 11:18 (may be a true counter-split). Only six such rows in 564 matches.
-   - Men v hold 6:48 (flagger carrying his flag home with his team, read as pushed): one like row in 1,278
-     pushes, Men v cope 2ce13ef6 11:10. Claude's recommendation: drop it unless he rules on the original.
+   - Men v hold 6:48 (flagger carrying home with his team): one like row, Men v cope 2ce13ef6 11:10; drop it?
    - Men v RACK 12:06, Men v Crew 8:18 and 20:10 (numbers for 10 to 12 s): Men v hook ad75813a 2:20, hold v hook
      fe0bdc51 12:56, Book v Crew 6aaa0f6d 5:08. 409 of 2,083 such situations; of his 11 graded none is Classic
      (13 to 20 s: 5 of 10). Two games: asked whether under JOIN_S away is not having left (mirror of R-350).
