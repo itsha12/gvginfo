@@ -134,10 +134,17 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   | either | a flag already in hand | answer their cap at once, or cap just before their boost (R-040) |
 
 - Their boost 30 s away: run to deny it, or concede it for kills (R-434, item 2).
+- A flag held at home is no flag run (R-576): a carrier who stays on his own ground inside his team while the enemy's
+  main team holds them in their base has sent nobody; it is a flag in hand (R-553), with no runner at a boost and
+  nothing to answer. *As built* (`_held_carries`): the flag does not leave its own ground in the carry or by a
+  hand-off; on more than half its seconds all his team but one at most is on that ground, three or more of it with
+  him, and five or more enemies are in his base. A team with players out on the map has a runner, though he is
+  stopped at his door (HC v cope 2:53); an unheld team's flag is R-505's.
 - Pushing the flagger is its own record (R-371). Who pushes (R-573): a player who hits or casts on the flagger; a
   player who travels with those players, such as the monk healing them; not a player who is only nearby because a
   fight with the flagger's helpers is happening there; and when the main team itself moves onto the flagger it is the
-  whole team's push. *As built:* a carrier whose flag has stood in hand at the stand for 15 s has arrived and is not
+  whole team's push. A runner who has just capped and is hit as he leaves the stand is not yet the flagger: he is
+  from when he is on his way home for the flag (R-577). *As built:* a carrier whose flag has stood in hand at the stand for 15 s has arrived and is not
   pushed; on him means inside an aggro bubble of him for 6 s, or having left his own main team for him, or from
   range landing more on him than on the rest of his team (the caster at range is the push when nobody is nearer); a
   push begun on him on his own goes on while their main team stands on him on his own ground. It counts from 4 s
@@ -264,7 +271,8 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - At a base res (R-507): a team that left the base before the res has left, though it stands in front of the door
   again as the res lands; a team on its way out as the res lands has not stayed; a player left at a door on his own
   has not stayed. A team standing at a door together is in the base. On Isle of Jade a team at the footmen is not in
-  the base: "too far to have an issue with base res" (R-574).
+  the base: "too far to have an issue with base res" (R-574); nor on Warrior's Isle, Weeping Stone, Meditation, Wurms
+  or Solitude (R-578).
 - Taken out: the race back when a split ends (R-448; it was item 6 of R-434).
 
 ## Collapse

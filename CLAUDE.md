@@ -252,8 +252,9 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   stands on him on his own ground; a holder who stands in his team when the fight is walked onto him stays R-401's
   push onto the flag). A carrier whose flag has stood in hand at the stand for HOLD_S has arrived and is not pushed.
   Change it against HC v Team 1:30, 5:26 and 8:18, Men v RACK 1:08 and hold v RACK 12:42 (Classic), never by a new
-  exception; HC v Team 6:04 (his "from about 5:25, three players") is still open. On Isle of Jade a team at the
-  footmen is not in the base for the base res (R-574: `base_res` in `hall_features.json`, read by `Moments.caught`).
+  exception; a runner who has just capped is the flagger only from when he is on his way home (R-577). On Isle of
+  Jade, Warrior's Isle, Weeping Stone, Meditation, Wurms and Solitude a team at the footmen is not in the base for the
+  base res (R-574, R-578: `base_res` in `hall_features.json`, read by `Moments.caught`).
   R-575 (players walking through Jade's portal are of the main fight on either side) is ruled and not built: see
   HANDOFF.md before touching `Moments._near` or `linked` for it. A split's door is read phase by phase in `split_plays` (only a phase
   whose players all start it in the field takes a new door), and a split out of a base its team is held in is told
@@ -268,6 +269,13 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   split's own candidates (`_split_candidates`), so it is silent while those are being taken. Six forms were built on
   2026-11-18 before this one held his eleven rulings and every Classic row: change it against the set p2 rows and the
   HC v cope and hold v Men rows of the key, never by a new exception.
+- A flag held at home is no flag run (R-576), one reading, `Moments._held_carries` on the branch (built by `run_starts`
+  beside the part-carries, asked through `held_at`): a carry in which the flag does not leave its own ground (nor by a
+  hand-off within HANDOFF_GAP_S) while his team, all but one at most, is on that ground with him and MAIN_BIG or more
+  of the enemy are in his base. Such a carry is not under way and has not travelled, sends no runner (`_runners`,
+  `_runner_runs`) and is no flag on its way at a boost. Change it against cope v hold 14:09, Men v hold 7:46 and 8:12
+  and Men v Crew 18:21 (no run), and HC v cope 2:53, Men v Crew 5:05 and 19:31 (Classic: runs), never by a new
+  exception.
 - The match is over at `Moments.over`: the second the losing team is recorded dying all at once, some 12 s before the
   replay stops. Those deaths are taken out of the deaths the reading counts, and no play starts from that second on.
 - The known truths (R-533), on the branch: `tools/golden/truths.py <plays file from moments.py all>` at every checkpoint
