@@ -1265,7 +1265,7 @@ def boost_plays(M, K, recs, pinned_at):
         if lands is None or lands - BOOST_WARN_S > x["t"] + MERGE_S + 2: continue
         t = int(lands - BOOST_WARN_S)
         capped = any(f_["tm"] == tm and f_["how"] == "captured" and f_["start"] <= t <= f_["end"] for f_ in M.flags_record())
-        carr = [a for a in M.st.players[tm] if capped and M.carrying(a, min(t, T))]      # a flag on its way: carried at that moment, and it goes on to be capped (a flag carried about at home is not a run)
+        carr = [a for a in M.st.players[tm] if capped and M.carrying(a, min(t, T)) and not M.held_at(a, min(t, T))]      # a flag on its way: carried at that moment, and it goes on to be capped (a flag carried about at home is not a run)
         runners = (x["call"].get("runners") or 0) >= 1
         ran = runners or bool(carr)
         t1 = min(lands + 5, T)

@@ -33,7 +33,11 @@
     "obelisk flag stand": "turns the beach statues' Fireballs on the team not holding it; almost never used (R-308); a flag put down at it ends that flag's run and is told as a run to the Obelisk flag stand (jobs.py), nothing more is modelled"
    },
    "decisions": [],
-   "wiki": "https://wiki.guildwars.com/wiki/Isle_of_Meditation"
+   "wiki": "https://wiki.guildwars.com/wiki/Isle_of_Meditation",
+   "base_res": {
+    "footmen_in_base": false,
+    "source": "Denning, R-578: as on Isle of Jade (R-574), the footmen stand too far from the res shrine for the base res to be an issue"
+   }
   },
   "542": {
    "map": "Isle of Solitude",
@@ -49,7 +53,11 @@
     "note": "one way: in beside the Guild Lord, out on the main field (R-309)"
    },
    "decisions": [],
-   "wiki": "https://wiki.guildwars.com/wiki/Isle_of_Solitude"
+   "wiki": "https://wiki.guildwars.com/wiki/Isle_of_Solitude",
+   "base_res": {
+    "footmen_in_base": false,
+    "source": "Denning, R-578: as on Isle of Jade (R-574), the footmen stand too far from the res shrine for the base res to be an issue"
+   }
   },
   "168": {
    "map": "Druid's Isle",
@@ -284,7 +292,11 @@
     "ms91xe",
     "qe7l56"
    ],
-   "as_in_game_note": "one outer archer a side does not mirror: as it stands in the game (Denning, R-318)"
+   "as_in_game_note": "one outer archer a side does not mirror: as it stands in the game (Denning, R-318)",
+   "base_res": {
+    "footmen_in_base": false,
+    "source": "Denning, R-578: as on Isle of Jade (R-574), the footmen stand too far from the res shrine for the base res to be an issue"
+   }
   },
   "174": {
    "map": "Nomad's Isle",
@@ -446,7 +458,11 @@
      "what": "push for the enemy's repair kit while it has not been taken to safety, to steal it and capture their trebuchet"
     }
    ],
-   "wiki": "https://wiki.guildwars.com/wiki/Warrior's_Isle"
+   "wiki": "https://wiki.guildwars.com/wiki/Warrior's_Isle",
+   "base_res": {
+    "footmen_in_base": false,
+    "source": "Denning, R-578: as on Isle of Jade (R-574), the footmen stand too far from the res shrine for the base res to be an issue"
+   }
   },
   "175": {
    "map": "Isle of the Dead",
@@ -498,7 +514,11 @@
      "what": "fight for, capture or split for the health shrine, paid for with a numbers disadvantage or a flag disadvantage elsewhere"
     }
    ],
-   "wiki": "https://wiki.guildwars.com/wiki/Isle_of_Wurms"
+   "wiki": "https://wiki.guildwars.com/wiki/Isle_of_Wurms",
+   "base_res": {
+    "footmen_in_base": false,
+    "source": "Denning, R-578: as on Isle of Jade (R-574), the footmen stand too far from the res shrine for the base res to be an issue"
+   }
   },
   "170": {
    "map": "Frozen Isle",

@@ -151,6 +151,7 @@ class Moments:
         self._pit = {}
         self._dp, self._ov, self._fp, self._att, self._last, self._mt, self._ln, self._fr = {}, {}, None, None, {}, {}, None, None
         self._bu = {}                                         # run record -> (brought up with the team, when it first stands at the stand) (R-505)
+        self._hd = None                                       # (player, second): a flag held at home inside his team: a flag in hand, no run (R-576); built by run_starts
         self._pr = None                                       # (player, second): a defender carries his flag about on his own ground: a part-run, not a run (R-535); built by run_starts
         self._heldout = {}                                    # (team, second) -> the players out of their own base while it is held in (R-506)
         self._fi, self._mv, self._sf, self._gr, self._und = None, None, None, None, None
@@ -2098,7 +2099,7 @@ class Moments:
         if he was already near it) and since when he waited there (10 s or more; else None). The story's "leaves ... to
         go back for the flag" and "waits back at the flag spawn" lines print from this record."""
         if getattr(self, "_rs", None) is not None: return self._rs
-        out, pr = [], set()
+        out, pr, hd = [], set(), set()
         for L in self.flag_lives():
             tm = L["team"]                                  # the life's first pickup at the spawn, serious or a short carry handed on (golden game 1, 6:51: hook's Monk 4 to the 8 Monk)
             at_sp = [c for c in L["carries"] if d(self.P[c[0]][min(max(int(c[1]), 0), self.T)], self.spawn[tm]) < SPAWN_R or c[1] < 2]      # a flag picked up before the gates counts (golden hold v Apes: the WoC holds it from the start)
@@ -2152,6 +2153,8 @@ class Moments:
             waited_back = set_off is not None and tp - waited >= 10 and all(self.AL[a][v] and self.P[a][v] and home(v) for v in range(0, set_off + 1, 2))      # he waited there: a player sent back for a flag nobody brought turned for home (Men v hold 0:15, a Classic row)
             part = self._part_carries(L)                     # R-535: a defender's part-run is on its way nowhere
             pr |= part
+            held = self._held_carries(L)                     # R-576: a flag held at home inside his team is no run either
+            hd |= held; part = part | held
             own, out_t, out_by = self.st.side.get(tm), None, None
             ser = [c2 for c2 in L["carries"] if c2[0] in L["serious"]]
             i0 = len(ser) - 1
@@ -2175,8 +2178,52 @@ class Moments:
                         "waited": waited if not pre and tp - waited >= 10 else None, "under_way": out_t, "out_by": out_by,
                         "chain": min(max(int(ser[i0][1]), 0), self.T) if ser and i0 > 0 and ser[i0 - 1][2] is not None else None, "first_end": ser[i0 - 1][2] if ser and i0 > 0 else None,      # the flag lay on the ground and was taken up again: when, and until when it had been carried before
                         "first_ids": [c2[0] for c2 in ser[:max(i0, 0)]], "chain_ids": [c2[0] for c2 in ser[max(i0, 0):]]})
-        self._rs, self._pr = out, pr
+        self._rs, self._pr, self._hd = out, pr, hd
         return out
+
+    def _held_carries(self, L):
+        """The seconds of this flag's carries in which it is held at home (R-576: "definitely not a flag run; he just holds the flag for a bit whilst he
+        and his team wait in base and never attempts to run the flag", cope v hold 14:09; Men v hold 7:46 and 8:12, hold's Air Ele 3, his team round him at
+        his front door with Men's eight in his base: "should also be no flag run"; Men v Crew 18:21). A carry at a time:
+          the flag does not leave its own ground (base, pit, doors, footmen) in this carry, nor in the hands of a team mate who takes it on within
+            HANDOFF_GAP_S;
+          and on more than half of its seconds his team is held at home with him: every living player of it but one at most stands on that ground, he
+            stands with three or more of them (`with_rest`), and the enemy's main team (MAIN_BIG or more) is in his base. A team with players out on
+            the map has a player away from them for its flag: a run, though he gets nowhere (HC v cope 2:53, Classic: cope's Hammer A goes back for it
+            from the fight and is stopped at his door, "cope single run"). A team at home that nobody holds there brings its flag up as it goes
+            (R-505, `brought_up`), and it is a run once it is capped or taken up the field (Men v Crew 5:05, Classic: the Ranger to his footmen, the
+            AoB Derv on from there).
+        It is a flag in hand (R-553): nobody is sent, so there is no run, no runner and nothing on its way. With fewer of his team round him it is a
+        part-run (R-535) or a run; a carrier who takes it off his own ground is running it (Men v Crew 19:31, Classic; 옷옷옷옷 v cope 2:01, "an
+        unsuccessful flag run"). The flag in hand before the gates is the opening's."""
+        tm, S, T, out = L["team"], SPLIT_STEP, self.T, set()
+        if self.hall is None: return out
+        own = self.st.side.get(tm)
+        home = lambda a, u: (lambda k_, s_: s_ == own and k_ in HOME_GROUND)(*self.place_at(a, u))
+        cs = sorted((c for c in L["carries"] if c[2] is None or c[2] >= 0), key=lambda c: c[1])
+        secs = [[u for u in range(max(int(c[1]), 0) // S * S, min(int(c[2] if c[2] is not None else T), T) + 1, S) if self.AL[c[0]][u] and self.P[c[0]][u]] for c in cs]
+        goes = [False] * len(cs)                                # the flag leaves its own ground in this carry, or in the hands it is passed to
+        for i in range(len(cs) - 1, -1, -1):
+            goes[i] = any(not home(cs[i][0], u) for u in secs[i]) or (i + 1 < len(cs) and cs[i][2] is not None and cs[i + 1][1] - cs[i][2] <= HANDOFF_GAP_S and goes[i + 1])
+        for i, c in enumerate(cs):
+            b, us = c[0], secs[i]
+            if c[1] < 2 or not us or goes[i]: continue
+            mates = [x for x in self.st.players[tm] if x != b]
+            def team_home(u):
+                live = [x for x in mates if self.AL[x][u] and self.P[x][u]]
+                return len(live) >= 3 and sum(home(x, u) for x in live) >= len(live) - 1 and self.with_rest(b, mates, u) and len(self.in_base_of(tm, u)) >= MAIN_BIG
+            if 2 * sum(team_home(u) for u in us) > len(us): out.update((b, u) for u in us)
+        return out
+
+    def _held_first(self, r):
+        """The first carry of this flag is held at home (R-576): its pickup sent nobody."""
+        c = min(r["carries"], key=lambda c: c[1])
+        return self.held_at(c[0], max(c[1], 0))
+
+    def held_at(self, a, t):
+        """Is this player holding his flag at home inside his team at second t (R-576; `_held_carries`)."""
+        if self._hd is None: self.run_starts()
+        return (a, int(t) - int(t) % SPLIT_STEP) in (self._hd or ())
 
     def _part_carries(self, L):
         """The seconds of this flag's carries that are a part-run (R-535): a player back at home for a split who carries his flag about on his own ground
@@ -2236,7 +2283,7 @@ class Moments:
             for u in range(max(int(c[1]), 0), min(int(c[2] if c[2] is not None else self.T), self.T) + 1, 2):
                 if not self.AL[c[0]][u]: continue
                 k_, s_ = self.place_at(c[0], u)
-                if not (s_ == own and k_ in ("pit", "base")) and not (part and self.part_run_at(c[0], u)): return True
+                if not (s_ == own and k_ in ("pit", "base")) and not (part and (self.part_run_at(c[0], u) or self.held_at(c[0], u))): return True
         return False
 
     def _went_to_run(self, r): return min(x for x in (r["moment"], r["waited"], r["pickup"]) if x is not None)      # the decision moment of a flag run (R-461); the story's "leaves to go back" line stays at set_off
@@ -2621,8 +2668,8 @@ class Moments:
         for r in self.run_starts():                      # the serious carriers of each flag carried in the window: a hand-off counts the player who takes it on (golden Book v One 9:16), a brief pickup handed on does not (hdm v One 17:24)
             if r["tm"] != tm: continue
             if self.not_run(r): continue                      # only brought up with the team (R-505)
-            if t - 10 <= self._went_to_run(r) <= t + READ_TO: out.add(r["runner"])
-            out |= {a for a, s0, e0 in r["carries"] if a in r["serious"] and s0 <= t + READ_TO and (e0 is None or e0 >= t - 10) and (s0 >= t - 10 or self.carrying(a, min(t + READ_FROM, self.T)) or (r.get("how") == "captured" and a == r["runner"] and e0 is not None and e0 >= t))}
+            if t - 10 <= self._went_to_run(r) <= t + READ_TO and not self._held_first(r): out.add(r["runner"])      # (a pickup held at home sends nobody, R-576)
+            out |= {a for a, s0, e0 in r["carries"] if a in r["serious"] and not self.held_at(a, max(s0, 0)) and s0 <= t + READ_TO and (e0 is None or e0 >= t - 10) and (s0 >= t - 10 or self.carrying(a, min(t + READ_FROM, self.T)) or (r.get("how") == "captured" and a == r["runner"] and e0 is not None and e0 >= t))}
         return out
 
     def brought_up(self, r):
@@ -2700,8 +2747,8 @@ class Moments:
         for r in self.run_starts():
             if r["tm"] != tm: continue
             if self.not_run(r): continue                      # only brought up with the team: nobody is running it (R-505)
-            went = t - 10 <= self._went_to_run(r) <= t + READ_TO
-            who = [a for a, s0, e0 in sorted(r["carries"], key=lambda c: c[1]) if a in r["serious"] and s0 <= t + READ_TO and (e0 is None or e0 >= t - 10) and (s0 >= t - 10 or self.carrying(a, min(t + READ_FROM, self.T)) or (r.get("how") == "captured" and a == r["runner"] and e0 is not None and e0 >= t))]
+            went = t - 10 <= self._went_to_run(r) <= t + READ_TO and not self._held_first(r)
+            who = [a for a, s0, e0 in sorted(r["carries"], key=lambda c: c[1]) if a in r["serious"] and not self.held_at(a, max(s0, 0)) and s0 <= t + READ_TO and (e0 is None or e0 >= t - 10) and (s0 >= t - 10 or self.carrying(a, min(t + READ_FROM, self.T)) or (r.get("how") == "captured" and a == r["runner"] and e0 is not None and e0 >= t))]
             if went:                                          # the player who went back for it comes first, then whoever carried it after him, in order
                 first = r["a"] if r["a"] in [c[0] for c in r["carries"]] else r["runner"]
                 who = [first] + [a for a in who if a != first] + ([r["runner"]] if r["runner"] not in who and r["runner"] != first else [])
