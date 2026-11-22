@@ -209,6 +209,11 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   he heals, then whom he stands with, then where he is moving), and `split_plays` asks through `fight_side`. Change it
   there, never in one reading alone; `M._side_log` says who was given to which fight and on what; the self-check
   (`jobs.selfcheck`) should stay near nothing. A split a player or more down meets its job by losing nobody (R-517).
+  A player away from his fight for less than JOIN_S has not left it (R-579, the mirror of R-350), read in `_numbers` (`M._stayed`:
+  counted in the fight before and after, alive, carrying no flag, on no split's fight, the missed readings spanning JOIN_S or
+  less) and only to close a difference: where the fight is level with those players counted, nobody is up. It never lengthens
+  one: keeping them in the count joined rows through the flicker of Jade's portal (Men v Crew 24:34, Classic) and was taken out.
+  A player arriving at the fight is another shape and is not read here (Men v Crew 20:10, key p3-4 and p3-6: open).
 - When a split ends and what kills it (2026-11-20, `split_plays` on the branch). The rest of a split's team is read at
   the second, not from the record (R-439): a player who went home from it is of the rest when the main team comes to
   the split (R-487). A player left on the enemy's ground by the others of his split who neither hits NPCs nor trades

@@ -8,7 +8,7 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 > out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-21, night: the picked rows answered, R-579 to R-582; no engine change since R-573 to R-578)
+## State (2026-11-21, late night: the picked rows answered, R-579 to R-582; R-579 built on `bundle-4`)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` and lands in one
   piece, then one rebuild (R-322). 658 replays stored; 564 count (R-477); 506 matches trained. No workflow run in
   progress. Rulings run to R-582. The baseline (R-491) is the branch `baseline-2026-11-15`.
@@ -20,18 +20,18 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   base res on Jade and five other halls (R-574, R-578, `hall_features.json`); players through a two-way
   teleporter are of the main fight on either side (R-575, `_reach`); numbers wholly in a stand-off are not told
   (R-405, `numbers_plays`). Both two-game faults of R-572 are built.
-- Last checkpoint (every counted match, this engine): 564 matches, 34,272 plays, no errors; fourteen truths hold;
-  313 Classic rows pass, none fail; 130 history rows hold, 3 do not; gate 12 of 12 and 63 of 105; self-check
-  21 in 7. Line-up 530 of 583 (2026-11-18). The five reports and the flag cards are written on this reading.
+- Built late on 2026-11-21: R-579 (`Moments._numbers`, `M._stayed`), a player away from his fight under 12 s
+  has not left it, read only to close a numbers difference (CLAUDE.md says why). Open beside it: the player
+  arriving at the fight (Men v Crew 20:10, key p3-4 and p3-6), put to him.
+- Last checkpoint (every counted match, this engine): 564 matches, 34,164 plays, no errors; fourteen truths hold;
+  313 Classic rows pass, none fail; 135 history rows hold, 3 do not; self-check 20 in 6. Not run again on it:
+  the gate, the line-up, and the numbers and main-fight reports (54 numbers situations fewer; no flag, split
+  or other play changed, so the flag and split reports and the flag cards stand).
 - Flag cards (main, `flag_cards.json`, 63): two ask to be marked again (HC v Team 3:42, HC v cope 0:30) and
   three are new (game 15, Men v NwAy 8:19, 12:11, 13:29); two of hold v RACK stay listed as gone.
 
 ## Next (in order): the engine substantially finished before the merge and training (R-571, R-572)
-1. Build his three answers of 2026-11-21 (night), each at the root, on the development set (69 games now):
-   - R-579, away from his fight under 12 s is not having left it. A first build in `Moments._numbers` was taken
-     out (RULINGS R-579 says why: it joins rows through Jade's flicker, Men v Crew 24:34 Classic fails, the
-     self-check went 0 to 4). Try it in who is in the fight (`fights`, `linked`), not in the count. Tests: Men v
-     RACK 12:06, Men v Crew 8:18, key p3-4 to p3-6. Men v Crew 20:10 is another shape (a player arriving).
+1. Build his two answers of 2026-11-21 (night) still unbuilt, each at the root (development set: 69 games):
    - R-580, a flag taken up seconds after a team mate put it down is the same run (Men v Crew 12:26, then a
      flag in hand). 199 such carries in 139 matches, most of them run in: read the run going on, not the gap.
    - R-581, a player sent for a flag left on the field is a flag decision (HC v hdm 5:57; key p3-7 to p3-9).
