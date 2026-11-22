@@ -1,5 +1,5 @@
 {
- "about": "The review key (R-450). Every row Denning was shown of the engine's plays: what the engine said then (shown), his mark and his words (said), and checks: Claude's reading of his mark as things the plays must hold or must not hold, which he corrects. Scored by tools/golden/review.py on the branch after every change. Marks: right, partly, wrong, bad example (set aside), not marked. Set 1 is the 35 rows of 2026-11-13, picked one or more to a kind of play, so it is a regression test and not an accuracy figure; whole-game sets (R-454) give the accuracy by kind of play. `answered` holds a later answer of his on a row (what was asked, his words, Claude's reading). Set w1p1 is part 1 of the whole-game review (R-455), marked by him on the site on 2026-11-13 against engine af952c6: one row a situation with his mark and words, its calls under `calls` with theirs, and one `missed` row a game for what the engine did not read; checks are written as each fault is fixed. Set w1p2 is hdm v hook, the first game of part 2, marked on 2026-11-14 against engine 67e87b8 as the first measure of the rebuilt reading; he then chose to build from it too, keeping Men v Crew unmarked as the hidden game. Set w2 is round 3 (R-473): hook v hold and cope v Team, marked on 2026-11-14 against engine b025445 (24 of 41 and 15 of 24 situations right); chic v 戦戦戦戦 was set aside unmarked (a henchman game). RJT v RACK (eea5ba87) is round 3's third game, marked on 2026-11-14 against engine b09a26a (33 of 45 situations right); its checks are written from his words and are open until the reading under them is rebuilt. Set p2 is twelve picked rows of 2026-11-18 (R-495: examples found by search for a fault seen once, put to him in the chat with their replay links): six of the two held flag shapes and three sudden deaths of a solo split player. They carry no grade, so none binds; their games are in the development set. Set c1 is the flag advice cards he corrected on Model > Game review > Flag advice (marked 2026-11-20, 61 cards of the twelve f1 games against engine cb7c78a: 58 told correctly, 2 partly, 1 incorrect; all 61 marks are in data/model/flag_card_marks.json): one row a corrected card, with his words and the check on the play the card is written from. They carry no grade, so none binds. Rows c1-4 to c1-6 are his notes on the flags of three games from the same page (decisions with no card), with Claude's reading of each. Set p3 is nine picked rows of 2026-11-21 (R-572: like moments found by search for the faults seen in one game, put to him in the chat with date, guilds, hall, length, time and link; his answers are R-579 to R-582). They carry no grade, so none binds.",
+ "about": "The review key (R-450). Every row Denning was shown of the engine's plays: what the engine said then (shown), his mark and his words (said), and checks: Claude's reading of his mark as things the plays must hold or must not hold, which he corrects. Scored by tools/golden/review.py on the branch after every change. Marks: right, partly, wrong, bad example (set aside), not marked. Set 1 is the 35 rows of 2026-11-13, picked one or more to a kind of play, so it is a regression test and not an accuracy figure; whole-game sets (R-454) give the accuracy by kind of play. `answered` holds a later answer of his on a row (what was asked, his words, Claude's reading). Set w1p1 is part 1 of the whole-game review (R-455), marked by him on the site on 2026-11-13 against engine af952c6: one row a situation with his mark and words, its calls under `calls` with theirs, and one `missed` row a game for what the engine did not read; checks are written as each fault is fixed. Set w1p2 is hdm v hook, the first game of part 2, marked on 2026-11-14 against engine 67e87b8 as the first measure of the rebuilt reading; he then chose to build from it too, keeping Men v Crew unmarked as the hidden game. Set w2 is round 3 (R-473): hook v hold and cope v Team, marked on 2026-11-14 against engine b025445 (24 of 41 and 15 of 24 situations right); chic v 戦戦戦戦 was set aside unmarked (a henchman game). RJT v RACK (eea5ba87) is round 3's third game, marked on 2026-11-14 against engine b09a26a (33 of 45 situations right); its checks are written from his words and are open until the reading under them is rebuilt. Set p2 is twelve picked rows of 2026-11-18 (R-495: examples found by search for a fault seen once, put to him in the chat with their replay links): six of the two held flag shapes and three sudden deaths of a solo split player. They carry no grade, so none binds; their games are in the development set. Set c1 is the flag advice cards he corrected on Model > Game review > Flag advice (marked 2026-11-20, 61 cards of the twelve f1 games against engine cb7c78a: 58 told correctly, 2 partly, 1 incorrect; all 61 marks are in data/model/flag_card_marks.json): one row a corrected card, with his words and the check on the play the card is written from. They carry no grade, so none binds. Rows c1-4 to c1-6 are his notes on the flags of three games from the same page (decisions with no card), with Claude's reading of each. Set p3 is nine picked rows of 2026-11-21 (R-572: like moments found by search for the faults seen in one game, put to him in the chat with date, guilds, hall, length, time and link; his answers are R-579 to R-582). They carry no grade, so none binds. On 2026-11-22 his answer (a) on the rows R-579 left (R-583) and the builds of R-580 and R-581 were filed: the open checks they close are marked closed, the rows no longer told carry `later`, and the picked rows of R-581 got their checks.",
  "version": 1,
  "rows": [
   {
@@ -12135,7 +12135,11 @@
      "mark": "not judged"
     }
    ],
-   "checks": []
+   "checks": [],
+   "later": {
+    "on": "2026-11-22",
+    "reading": "No longer told under R-583 (a difference of 12 s that a player's coming or going makes): level. He had graded it weak, correct; put to him."
+   }
   },
   {
    "id": "f1-9b5c-33",
@@ -13513,7 +13517,11 @@
      "why": "Men v Crew 5:52 (Classic, incorrect, who and kind): 'crew does not run a flag': the engine reads Crew's Water Ele answering Men's run with a single run",
      "closed": "2026-11-16"
     }
-   ]
+   ],
+   "later": {
+    "on": "2026-11-22",
+    "reading": "With R-580 the Ranger's run of 4:53 goes on in the AoB Derv's hands: one row, 4:53 to 11:36, 'Men single run (Ranger, handing it to AoB Derv); Crew stays', which is his 'crew does not run a flag'."
+   }
   },
   {
    "id": "f1-5168-10",
@@ -13813,6 +13821,42 @@
     {
      "none": {
       "play": "flag",
+      "start": [
+       738,
+       752
+      ],
+      "want": {
+       "scenario~": "Men single run (AoB Derv)"
+      }
+     },
+     "why": "Men v Crew 12:26 (Visible, incorrect; R-580): the Derv taking up the Ranger's flag is not a new run of Men's",
+     "closed": "2026-11-22: R-580, built"
+    },
+    {
+     "has": {
+      "play": "flag",
+      "team": "Men",
+      "start": [
+       791,
+       803
+      ]
+     },
+     "want": {
+      "scenario~": "Men has a flag already in hand"
+     },
+     "why": "Men v Crew 13:17 (R-580): Crew's run of 13:17 is told against Men's flag in hand"
+    }
+   ],
+   "answered": {
+    "on": "2026-11-21",
+    "asked": "Which is the fault: (a) the row's Crew run looked like the 11:32 run because it gave no time; (b) the Derv taking up the Ranger's flag is not a new run at all, only the same flag, then held in hand?",
+    "said": "b)",
+    "reading": "R-580. Built 2026-11-22 (`Moments.handed_on`)."
+   },
+   "retired_checks": [
+    {
+     "none": {
+      "play": "flag",
       "team": "Crew",
       "start": [
        740,
@@ -13820,15 +13864,10 @@
       ]
      },
      "open": true,
-     "why": "Men v Crew 12:26 (Visible, incorrect): 'the Crew run is the same run as the one starting at 11:32'"
+     "why": "Men v Crew 12:26 (Visible, incorrect): 'the Crew run is the same run as the one starting at 11:32'",
+     "retired": "2026-11-22: written before his answer (b); Crew's own decision at its cap of 12:23, run again or not (R-546), is told there and is not what he marked"
     }
-   ],
-   "answered": {
-    "on": "2026-11-21",
-    "asked": "Which is the fault: (a) the row's Crew run looked like the 11:32 run because it gave no time; (b) the Derv taking up the Ranger's flag is not a new run at all, only the same flag, then held in hand?",
-    "said": "b)",
-    "reading": "R-580. Not built yet."
-   }
+   ]
   },
   {
    "id": "f1-5168-17",
@@ -14179,9 +14218,9 @@
        "clear": null
       }
      },
-     "open": true,
      "auto": true,
-     "why": "Men v Crew, Jade 20:10: he graded it No decision: This is a 7v7 with like a very very brief time of 8v7 when derv is back at mainteam and water ele is not yet at mainteam"
+     "why": "Men v Crew, Jade 20:10: he graded it No decision: This is a 7v7 with like a very very brief time of 8v7 when derv is back at mainteam and water ele is not yet at mainteam",
+     "closed": "2026-11-22: R-583, built"
     },
     {
      "none": {
@@ -14195,9 +14234,9 @@
        "clear": null
       }
      },
-     "open": true,
      "auto": true,
-     "why": "Men v Crew, Jade 20:10: he graded it No decision: This is a 7v7 with like a very very brief time of 8v7 when derv is back at mainteam and water ele is not yet at mainteam"
+     "why": "Men v Crew, Jade 20:10: he graded it No decision: This is a 7v7 with like a very very brief time of 8v7 when derv is back at mainteam and water ele is not yet at mainteam",
+     "closed": "2026-11-22: R-583, built"
     }
    ],
    "answered": {
@@ -14211,6 +14250,12 @@
     "asked": "A player already counts in a fight only after 12 s in it (R-350); the mirror is that a player away for less than 12 s has not left it. Do you agree?",
     "said": "Yes, I agree.",
     "reading": "R-579"
+   },
+   "answered_3": {
+    "on": "2026-11-21",
+    "asked": "Is a team up on numbers while a player is still on his way to the fight or just gone from it, for 12 s or less? (Men v Crew 20:10, Men v hook 2:20, Book v Crew 5:08)",
+    "said": "(a) No. It is level, as you said of 20:10 (\"this is a 7v7\"). The engine would stop telling these rows.",
+    "reading": "R-583"
    }
   },
   {
@@ -14340,7 +14385,11 @@
      "mark": "correct"
     }
    ],
-   "checks": []
+   "checks": [],
+   "later": {
+    "on": "2026-11-22",
+    "reading": "No longer told under R-583 (Men's AoB Derv leaves at 23:30 and Crew's Water Ele at 23:44): level. He had graded it visible, correct; put to him."
+   }
   },
   {
    "id": "f1-5168-29",
@@ -20982,7 +21031,11 @@
      "mark": "correct"
     }
    ],
-   "checks": []
+   "checks": [],
+   "later": {
+    "on": "2026-11-22",
+    "reading": "No longer told under R-583 (hold's Air Ele leaves at 12:48 and Men's Mesmer at 13:00): level. He had graded it visible, correct; put to him."
+   }
   },
   {
    "id": "f1-572c-44",
@@ -33267,8 +33320,22 @@
    "shown": "(his notes on the flags of the game, Flag advice view)",
    "mark": "missed",
    "said": "5:56 - it's a bit of a difficult situation to read because the flag was already on the ground, but hdm send 8 ele out to pick up flag that was left there and not returned; hdm manages to cap which puts them in a very good position",
-   "checks": [],
-   "reading": "No flag play is told between 5:00 and 7:00: hdm's flag lay from 1:37 to 5:57, was taken up by the same Water Ele and capped at 6:17 (the opening's row covers the flag's whole life). R-581: a flag decision. Not built yet.",
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "start": [
+       350,
+       362
+      ]
+     },
+     "want": {
+      "scenario~": "sent for the flag left lying"
+     },
+     "why": "HC v hdm 5:56 (his note on the flag cards; R-581): hdm's Water Ele is sent for the flag left at 1:37 and caps"
+    }
+   ],
+   "reading": "R-581, built 2026-11-22: 'hdm single run (Water Ele, sent for the flag left lying since 1:37); HC stays' at 5:56; the opening says hdm's first flag was brought up by the Water Ele and put down at 1:37 without a cap.",
    "answered": {
     "on": "2026-11-21",
     "asked": "Is a player sent for a flag left on the field a flag decision the engine should tell?",
@@ -35514,10 +35581,16 @@
        146
       ]
      },
-     "open": true,
-     "why": "Men v hook 2:20 (picked row; R-579): numbers for 10 s, the missing player on no split and running no flag: he has not left the fight"
+     "why": "Men v hook 2:20 (picked row; R-579): numbers for 10 s, the missing player on no split and running no flag: he has not left the fight",
+     "closed": "2026-11-22: R-583, built"
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-21",
+    "asked": "Is a team up on numbers while a player is still on his way to the fight or just gone from it, for 12 s or less? (Men v Crew 20:10, Men v hook 2:20, Book v Crew 5:08)",
+    "said": "(a) No. It is level, as you said of 20:10 (\"this is a 7v7\"). The engine would stop telling these rows.",
+    "reading": "R-583"
+   }
   },
   {
    "id": "p3-5",
@@ -35571,10 +35644,16 @@
        314
       ]
      },
-     "open": true,
-     "why": "Book v Crew 5:08 (picked row; R-579): numbers for 10 s, the missing player on no split and running no flag: he has not left the fight"
+     "why": "Book v Crew 5:08 (picked row; R-579): numbers for 10 s, the missing player on no split and running no flag: he has not left the fight",
+     "closed": "2026-11-22: R-583, built"
     }
-   ]
+   ],
+   "answered": {
+    "on": "2026-11-21",
+    "asked": "Is a team up on numbers while a player is still on his way to the fight or just gone from it, for 12 s or less? (Men v Crew 20:10, Men v hook 2:20, Book v Crew 5:08)",
+    "said": "(a) No. It is level, as you said of 20:10 (\"this is a 7v7\"). The engine would stop telling these rows.",
+    "reading": "R-583"
+   }
   },
   {
    "id": "p3-7",
@@ -35591,8 +35670,22 @@
    "shown": "(no flag row is told) 옷옷옷옷's 8 Monk takes up the flag left lying since before the gates opened and caps at 5:09",
    "mark": "missed",
    "said": "Yes, a player sent for a flag left on the first should be a flag decision.",
-   "checks": [],
-   "reading": "R-581: a player sent for a flag left on the field is a flag decision. Not built yet; the check is written with the build."
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "start": [
+       289,
+       301
+      ]
+     },
+     "want": {
+      "scenario~": "sent for the flag left lying"
+     },
+     "why": "옷옷옷옷 v cope 4:55 (picked row; R-581): the 8 Monk is sent for the flag left since before the gates"
+    }
+   ],
+   "reading": "R-581, built 2026-11-22: '옷옷옷옷 single run (8 Monk, sent for the flag left lying since before the gates opened); cope stays', and the opening says no flag was brought up."
   },
   {
    "id": "p3-8",
@@ -35610,7 +35703,7 @@
    "mark": "missed",
    "said": "Yes, a player sent for a flag left on the first should be a flag decision.",
    "checks": [],
-   "reading": "R-581: a player sent for a flag left on the field is a flag decision. Not built yet; the check is written with the build."
+   "reading": "R-581: not built for this row. In the replay OG's flag is first picked up 4,700 from its spawn (7:16, 30 s after OG's cap of 6:46), so the engine has no run record for it; the 7 Monk's carry from 10:55 is told as a lone defender carrying his flag (11:24)."
   },
   {
    "id": "p3-9",
@@ -35627,8 +35720,22 @@
    "shown": "(no flag row is told) Crew's Monk 1 takes up the flag the Mes/A left at 8:27 and caps at 11:25",
    "mark": "missed",
    "said": "Yes, a player sent for a flag left on the first should be a flag decision.",
-   "checks": [],
-   "reading": "R-581: a player sent for a flag left on the field is a flag decision. Not built yet; the check is written with the build."
+   "checks": [
+    {
+     "has": {
+      "play": "flag",
+      "start": [
+       641,
+       655
+      ]
+     },
+     "want": {
+      "scenario~": "Crew single run (Monk 1)"
+     },
+     "why": "Crew v Team 10:41 (picked row; R-581): Crew's Monk 1 takes up the flag left at 8:26 and runs it in"
+    }
+   ],
+   "reading": "R-581: told as built before, from the second the flag is taken out of the pit: 'Crew single run (Monk 1); Team single run (8 Monk, handing it to Monk 5 (WoC))' at 10:49."
   }
  ],
  "about_tiers": "R-490: a row with \"tier\": \"borderline\" is reported by `review.py score` and never blocks a change; every other row with a check is clear and must pass. A row he marks No clear decision is borderline when it is filed. \"tier_proposed\" is Claude's proposal, not yet his."
