@@ -97,6 +97,41 @@
     300
    ],
    "reads": "not clear"
+  },
+  "B7 a main team that stays carrying two or more of the four marks loses two or more players more often than one carrying fewer": {
+   "first": 0.02577319587628866,
+   "second": 0.002577319587628866,
+   "difference": 0.02319587628865979,
+   "range": [
+    0.010589705661319742,
+    0.03572713257965055
+   ],
+   "n": [
+    388,
+    388
+   ],
+   "reads": "HOLDS"
+  },
+  "B8 ... and is worse off in its chance of winning 180 s on": {
+   "first": 1.7811449241756352,
+   "second": 5.097691729914109,
+   "difference": -3.316546805738474,
+   "range": [
+    -4.938989342767674,
+    -1.51808494632781
+   ],
+   "n": [
+    388,
+    388
+   ],
+   "reads": "HOLDS"
+  },
+  "B9 carrying two or more marks, a team that leaves before the res is better off 180 s on than one that stays": {
+   "n": [
+    3,
+    388
+   ],
+   "reads": "too few"
   }
  },
  "as_it_fell": {
@@ -408,5 +443,550 @@
    "back": 4,
    "pit_npcs": 2
   }
- ]
+ ],
+ "greedy": {
+  "cases": 806,
+  "worn_line": 304.0,
+  "set_aside": {
+   "a res onto a split, or fewer than three in their base": 213
+  },
+  "marks": {
+   "deep (half of them or more past their res shrine)": {
+    "cases": 369,
+    "matches": 258,
+    "left before the res": 0.8130081300813009,
+    "one dies": 8.743169398907105,
+    "two or more die": 2.459016393442623,
+    "stays": 366,
+    "started at": 89.01559746484811,
+    "win points 180, stayed": 1.3780933206902741,
+    "win points 180, left": -0.04943343083578059
+   },
+   "  not: deep": {
+    "cases": 437,
+    "matches": 291,
+    "left before the res": 6.178489702517163,
+    "one dies": 5.609756097560976,
+    "two or more die": 0.4878048780487805,
+    "stays": 410,
+    "started at": 77.27560367463118,
+    "win points 180, stayed": 5.279527966863855,
+    "win points 180, left": 5.303508844812641
+   },
+   "NPCs on them (two or more of them hit by NPCs in the 20 s before)": {
+    "cases": 451,
+    "matches": 296,
+    "left before the res": 2.6607538802660753,
+    "one dies": 8.200455580865604,
+    "two or more die": 2.050113895216401,
+    "stays": 439,
+    "started at": 85.80968368192251,
+    "win points 180, stayed": 2.3371908913675163,
+    "win points 180, left": 1.1505755079456217
+   },
+   "  not: NPCs on them": {
+    "cases": 355,
+    "matches": 251,
+    "left before the res": 5.070422535211268,
+    "one dies": 5.637982195845697,
+    "two or more die": 0.5934718100890208,
+    "stays": 337,
+    "started at": 78.63669557688941,
+    "win points 180, stayed": 4.87525762752665,
+    "win points 180, left": 7.179974023449251
+   },
+   "low on health (under 85% between them)": {
+    "cases": 67,
+    "matches": 58,
+    "left before the res": 1.4925373134328357,
+    "one dies": 9.090909090909092,
+    "two or more die": 7.575757575757576,
+    "stays": 66,
+    "started at": 84.57739994416384,
+    "win points 180, stayed": -1.5046881687153608,
+    "win points 180, left": 11.45673586835343
+   },
+   "  not: low on health": {
+    "cases": 739,
+    "matches": 397,
+    "left before the res": 3.924221921515562,
+    "one dies": 6.901408450704226,
+    "two or more die": 0.8450704225352111,
+    "stays": 710,
+    "started at": 82.47565422744765,
+    "win points 180, stayed": 3.899011325242302,
+    "win points 180, left": 4.537575953416569
+   },
+   "worn (damage taken in the minute before in the upper third)": {
+    "cases": 271,
+    "matches": 195,
+    "left before the res": 1.4760147601476015,
+    "one dies": 9.737827715355806,
+    "two or more die": 2.6217228464419478,
+    "stays": 267,
+    "started at": 87.56566175897672,
+    "win points 180, stayed": 2.286395207157789,
+    "win points 180, left": 6.131096488891126
+   },
+   "  not: worn": {
+    "cases": 535,
+    "matches": 323,
+    "left before the res": 4.859813084112149,
+    "one dies": 5.697445972495088,
+    "two or more die": 0.7858546168958742,
+    "stays": 509,
+    "started at": 80.16056062366374,
+    "win points 180, stayed": 4.04424577893063,
+    "win points 180, left": 4.558540483148826
+   }
+  },
+  "by_marks": {
+   "none of the four": {
+    "cases": 197,
+    "matches": 153,
+    "left before the res": 7.1065989847715745,
+    "one dies": 4.371584699453552,
+    "two or more die": 0.546448087431694,
+    "stays": 183,
+    "started at": 72.75436386992564,
+    "win points 180, stayed": 6.011487990763184,
+    "win points 180, left": 6.726109868241136
+   },
+   "one": {
+    "cases": 218,
+    "matches": 186,
+    "left before the res": 5.963302752293578,
+    "one dies": 7.317073170731707,
+    "two or more die": 0.0,
+    "stays": 205,
+    "started at": 81.48846952515633,
+    "win points 180, stayed": 4.281961409253715,
+    "win points 180, left": 3.6670150248687707
+   },
+   "two": {
+    "cases": 256,
+    "matches": 193,
+    "left before the res": 0.78125,
+    "one dies": 5.905511811023622,
+    "two or more die": 1.574803149606299,
+    "stays": 254,
+    "started at": 87.26200650353813,
+    "win points 180, stayed": 2.692193624741481,
+    "win points 180, left": 0.8302914064140638
+   },
+   "three or all four": {
+    "cases": 135,
+    "matches": 115,
+    "left before the res": 0.7407407407407408,
+    "one dies": 12.686567164179104,
+    "two or more die": 4.477611940298507,
+    "stays": 134,
+    "started at": 90.2224041968711,
+    "win points 180, stayed": 0.05423171564037659,
+    "win points 180, left": -0.4508777740640735
+   }
+  },
+  "his_games": [
+   {
+    "game": "yM v hook 24:00",
+    "his": true,
+    "in_the_family": true,
+    "marks": 4,
+    "deep": true,
+    "npcs": true,
+    "low": true,
+    "worn": true,
+    "n": 8,
+    "of_main": 8,
+    "past_shrine": 8,
+    "shrine": 2745.0,
+    "npc_on": 7,
+    "npc_dmg": 294,
+    "health": 78,
+    "taken": 400,
+    "deaths": 4,
+    "deaths_60": 7
+   },
+   {
+    "game": "Crew v One 12:00",
+    "his": true,
+    "in_the_family": true,
+    "marks": 4,
+    "deep": true,
+    "npcs": true,
+    "low": true,
+    "worn": true,
+    "n": 8,
+    "of_main": 7,
+    "past_shrine": 6,
+    "shrine": 912.0,
+    "npc_on": 4,
+    "npc_dmg": 335,
+    "health": 57,
+    "taken": 405,
+    "deaths": 4,
+    "deaths_60": 4
+   },
+   {
+    "game": "Men v BcS 6:00",
+    "his": true,
+    "in_the_family": true,
+    "marks": 2,
+    "deep": false,
+    "npcs": false,
+    "low": true,
+    "worn": true,
+    "n": 8,
+    "of_main": 8,
+    "past_shrine": 1,
+    "shrine": 1322.5,
+    "npc_on": 0,
+    "npc_dmg": 0,
+    "health": 83,
+    "taken": 758,
+    "deaths": 3,
+    "deaths_60": 5
+   },
+   {
+    "game": "Book v hook 10:00",
+    "his": true,
+    "in_the_family": true,
+    "marks": 4,
+    "deep": true,
+    "npcs": true,
+    "low": true,
+    "worn": true,
+    "n": 7,
+    "of_main": 7,
+    "past_shrine": 7,
+    "shrine": 2973.0,
+    "npc_on": 2,
+    "npc_dmg": 75,
+    "health": 80,
+    "taken": 559,
+    "deaths": 2,
+    "deaths_60": 5
+   },
+   {
+    "game": "DUM v ohno 8:00",
+    "his": true,
+    "in_the_family": true,
+    "marks": 2,
+    "deep": true,
+    "npcs": true,
+    "low": false,
+    "worn": false,
+    "n": 6,
+    "of_main": 6,
+    "past_shrine": 4,
+    "shrine": 2076.0,
+    "npc_on": 2,
+    "npc_dmg": 67,
+    "health": 95,
+    "taken": 74,
+    "deaths": 2,
+    "deaths_60": 3
+   },
+   {
+    "game": "Men v NwAy 10:00",
+    "his": true,
+    "in_the_family": true,
+    "marks": 4,
+    "deep": true,
+    "npcs": true,
+    "low": true,
+    "worn": true,
+    "n": 6,
+    "of_main": 6,
+    "past_shrine": 6,
+    "shrine": 1986.5,
+    "npc_on": 5,
+    "npc_dmg": 614,
+    "health": 84,
+    "taken": 333,
+    "deaths": 2,
+    "deaths_60": 2
+   },
+   {
+    "game": "Book v cope 16:00",
+    "his": false,
+    "in_the_family": false,
+    "marks": 2,
+    "deep": true,
+    "npcs": true,
+    "low": false,
+    "worn": false,
+    "n": 3,
+    "of_main": 0,
+    "past_shrine": 3,
+    "shrine": 1749.0,
+    "npc_on": 3,
+    "npc_dmg": 186,
+    "health": 85,
+    "taken": 160,
+    "deaths": 2,
+    "deaths_60": 3
+   },
+   {
+    "game": "hook v Men 6:00",
+    "his": false,
+    "in_the_family": true,
+    "marks": 2,
+    "deep": true,
+    "npcs": true,
+    "low": false,
+    "worn": false,
+    "n": 4,
+    "of_main": 4,
+    "past_shrine": 4,
+    "shrine": 2236.5,
+    "npc_on": 3,
+    "npc_dmg": 327,
+    "health": 86,
+    "taken": 258,
+    "deaths": 2,
+    "deaths_60": 4
+   }
+  ],
+  "by_shrine": {
+   "0 to 1,718": {
+    "cases": 194,
+    "one dies": 8.24742268041237,
+    "two or more die": 1.5463917525773196
+   },
+   "1,718 to 2,530": {
+    "cases": 194,
+    "one dies": 8.762886597938143,
+    "two or more die": 2.5773195876288657
+   },
+   "2,530 to 3,833": {
+    "cases": 194,
+    "one dies": 6.185567010309279,
+    "two or more die": 1.0309278350515463
+   },
+   "3,833 or more": {
+    "cases": 194,
+    "one dies": 5.154639175257731,
+    "two or more die": 0.5154639175257731
+   }
+  },
+  "starts": {
+   "two or more marks": 88.4575843102278,
+   "fewer": 77.4299694634881
+  },
+  "agrees": 7,
+  "of": 8,
+  "three_marks": [
+   {
+    "rid": "3b7bfeac-18e1-5599-af30-b175eeb2ff1e",
+    "team": "hook",
+    "t": 1440,
+    "deaths": 4,
+    "marks": 4
+   },
+   {
+    "rid": "512d445f-03eb-56ea-a9ed-6b8f596f7c57",
+    "team": "One",
+    "t": 720,
+    "deaths": 4,
+    "marks": 4
+   },
+   {
+    "rid": "19f38ea6-59d3-5264-a5a1-8ae0fea2e640",
+    "team": "hook",
+    "t": 600,
+    "deaths": 2,
+    "marks": 4
+   },
+   {
+    "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+    "team": "Men",
+    "t": 600,
+    "deaths": 2,
+    "marks": 4
+   },
+   {
+    "rid": "77b64e5c-caf6-5b64-a52a-1e6b422108d5",
+    "team": "\uc637\uc637\uc637\uc637",
+    "t": 1200,
+    "deaths": 2,
+    "marks": 3
+   },
+   {
+    "rid": "ccd78801-c6e8-549b-add2-ca9c98926d1c",
+    "team": "Free",
+    "t": 1560,
+    "deaths": 2,
+    "marks": 3
+   },
+   {
+    "rid": "08ae81ba-1d16-5e2b-a676-2773109991f3",
+    "team": "One",
+    "t": 720,
+    "deaths": 1,
+    "marks": 3
+   },
+   {
+    "rid": "19f38ea6-59d3-5264-a5a1-8ae0fea2e640",
+    "team": "hook",
+    "t": 960,
+    "deaths": 1,
+    "marks": 3
+   },
+   {
+    "rid": "4f3405ed-8f44-5eec-a64a-1d2e16d7a748",
+    "team": "hold",
+    "t": 480,
+    "deaths": 1,
+    "marks": 3
+   },
+   {
+    "rid": "516b2bd8-7333-5d2b-acd4-af6dee2be3ef",
+    "team": "OG",
+    "t": 360,
+    "deaths": 1,
+    "marks": 3
+   },
+   {
+    "rid": "5781d01c-1806-5b96-a0e7-877214a8328b",
+    "team": "RACK",
+    "t": 600,
+    "deaths": 1,
+    "marks": 3
+   },
+   {
+    "rid": "5cb6a1d7-e86e-55c5-a7c5-7536d91f58aa",
+    "team": "Apes",
+    "t": 240,
+    "deaths": 1,
+    "marks": 3
+   },
+   {
+    "rid": "884311d5-c914-5f72-a228-a16c01aa9a15",
+    "team": "Men",
+    "t": 600,
+    "deaths": 1,
+    "marks": 3
+   },
+   {
+    "rid": "892d580f-2720-5766-a93d-ec462f126bad",
+    "team": "Dz",
+    "t": 600,
+    "deaths": 1,
+    "marks": 3
+   },
+   {
+    "rid": "a44589cc-6a77-54f1-a3fc-4df044769e09",
+    "team": "Crew",
+    "t": 1440,
+    "deaths": 1,
+    "marks": 3
+   },
+   {
+    "rid": "be542964-037e-51ee-a2c4-ae67c25b5626",
+    "team": "Book",
+    "t": 840,
+    "deaths": 1,
+    "marks": 3
+   },
+   {
+    "rid": "d96d769c-5c4b-5bab-af1c-5557cdf5100e",
+    "team": "Crew",
+    "t": 720,
+    "deaths": 1,
+    "marks": 3
+   },
+   {
+    "rid": "05302d96-c88a-5ae9-a2ca-755c7c363928",
+    "team": "ohno",
+    "t": 240,
+    "deaths": 0,
+    "marks": 4
+   },
+   {
+    "rid": "090b0068-ebf2-584d-a34d-3f46307aaefd",
+    "team": "Dz",
+    "t": 720,
+    "deaths": 0,
+    "marks": 4
+   },
+   {
+    "rid": "10bc4cdc-245a-54f2-a51b-b4312437bf06",
+    "team": "hold",
+    "t": 720,
+    "deaths": 0,
+    "marks": 4
+   },
+   {
+    "rid": "17662751-a293-59b0-a656-6e1f3c2bad73",
+    "team": "hold",
+    "t": 720,
+    "deaths": 0,
+    "marks": 4
+   },
+   {
+    "rid": "2c764dac-d2cb-50e3-a072-6b5b3bb9b633",
+    "team": "Team",
+    "t": 600,
+    "deaths": 0,
+    "marks": 4
+   },
+   {
+    "rid": "34ab1ac3-cd5d-578e-a457-bccff232274a",
+    "team": "RACK",
+    "t": 480,
+    "deaths": 0,
+    "marks": 4
+   },
+   {
+    "rid": "6acf4b9e-51f6-5596-a208-d4ebaf5e2539",
+    "team": "Apes",
+    "t": 1440,
+    "deaths": 0,
+    "marks": 4
+   },
+   {
+    "rid": "6acf4b9e-51f6-5596-a208-d4ebaf5e2539",
+    "team": "Apes",
+    "t": 1560,
+    "deaths": 0,
+    "marks": 4
+   },
+   {
+    "rid": "8684826a-4ce8-59cb-a5f9-d7bf81307491",
+    "team": "Dz",
+    "t": 1560,
+    "deaths": 0,
+    "marks": 4
+   },
+   {
+    "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+    "team": "hdm",
+    "t": 720,
+    "deaths": 0,
+    "marks": 4
+   },
+   {
+    "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
+    "team": "hdm",
+    "t": 960,
+    "deaths": 0,
+    "marks": 4
+   },
+   {
+    "rid": "996e36a3-0191-516c-ae13-2fc9651534ae",
+    "team": "Book",
+    "t": 1440,
+    "deaths": 0,
+    "marks": 4
+   },
+   {
+    "rid": "ad3f2125-a7f7-5a8b-af13-584abfc4384c",
+    "team": "yM",
+    "t": 720,
+    "deaths": 0,
+    "marks": 4
+   }
+  ]
+ }
 }

@@ -162,6 +162,132 @@
     984
    ],
    "reads": "not clear"
+  },
+  "U10 a push leaves the pushing team better off in flags 90 s on (level)": {
+   "first": 0.11487206973017251,
+   "second": -0.021501574283132006,
+   "difference": 0.1363736440133045,
+   "range": [
+    0.04726510002793613,
+    0.21010372302441632
+   ],
+   "n": [
+    212,
+    1864
+   ],
+   "reads": "HOLDS"
+  },
+  "U11 a push brings more kills in the 90 s": {
+   "first": 0.8301886792452831,
+   "second": 0.7821888412017167,
+   "difference": 0.047999838043566334,
+   "range": [
+    -0.1402270163325314,
+    0.23621235829338202
+   ],
+   "n": [
+    212,
+    1864
+   ],
+   "reads": "not clear"
+  },
+  "U11b ... and the same teams were already killing more in the 60 s before (if so, the kills mark the spot)": {
+   "first": 0.4264705882352941,
+   "second": 0.4333145751266179,
+   "difference": -0.006843986891323817,
+   "range": [
+    -0.12986231390099834,
+    0.11351698377970057
+   ],
+   "n": [
+    204,
+    1777
+   ],
+   "reads": "not clear"
+  },
+  "U12 a push brings more NPCs in the 90 s": {
+   "first": 0.4528301886792453,
+   "second": 0.4946351931330472,
+   "difference": -0.04180500445380192,
+   "range": [
+    -0.15606549405851075,
+    0.07085004869991726
+   ],
+   "n": [
+    212,
+    1864
+   ],
+   "reads": "not clear"
+  },
+  "U13 a team that pushes is split on more often in the 90 s": {
+   "first": 0.21226415094339623,
+   "second": 0.2167381974248927,
+   "difference": -0.004474046481496463,
+   "range": [
+    -0.0581955611893524,
+    0.05421654087810427
+   ],
+   "n": [
+    212,
+    1864
+   ],
+   "reads": "not clear"
+  },
+  "U13b ... and loses more NPCs": {
+   "first": 0.30660377358490565,
+   "second": 0.5064377682403434,
+   "difference": -0.19983399465543772,
+   "range": [
+    -0.31194245273201415,
+    -0.092686600817021
+   ],
+   "n": [
+    212,
+    1864
+   ],
+   "reads": "AGAINST"
+  },
+  "U14 a team that pushes takes more deaths of its own in the 90 s": {
+   "first": 0.5094339622641509,
+   "second": 0.634656652360515,
+   "difference": -0.1252226900963641,
+   "range": [
+    -0.2790948679965095,
+    0.03529924131151043
+   ],
+   "n": [
+    212,
+    1864
+   ],
+   "reads": "not clear"
+  },
+  "U14b ... and was already taking more in the 60 s before": {
+   "first": 0.27941176470588236,
+   "second": 0.5166010129431626,
+   "difference": -0.23718924823728027,
+   "range": [
+    -0.32960939085267277,
+    -0.1524059407394069
+   ],
+   "n": [
+    204,
+    1777
+   ],
+   "reads": "AGAINST"
+  },
+  "U15 a team that pushes has its main fight a player down for longer in the 90 s": {
+   "first": 19.556603773584907,
+   "second": 21.255364806866954,
+   "difference": -1.6987610332820466,
+   "range": [
+    -3.9052507809907078,
+    0.7897868190195098
+   ],
+   "n": [
+    212,
+    1864
+   ],
+   "reads": "not clear"
   }
  },
  "as_it_fell": {
@@ -665,6 +791,60 @@
     0.05416564977459895,
     0.5189381829472159
    ]
+  }
+ },
+ "five": {
+  "no push": {
+   "runs": 1864,
+   "matches": 421,
+   "flags (level)": -0.021501574283132006,
+   "kills": 0.7821888412017167,
+   "kills, 60 s before": 0.4333145751266179,
+   "own deaths": 0.634656652360515,
+   "own deaths, 60 s before": 0.5166010129431626,
+   "NPCs taken": 0.4946351931330472,
+   "NPCs lost": 0.5064377682403434,
+   "they split on us": 21.67381974248927,
+   "main fight down, s": 21.255364806866954
+  },
+  "one player": {
+   "runs": 121,
+   "matches": 87,
+   "flags (level)": 0.004906491060350762,
+   "kills": 0.768595041322314,
+   "kills, 60 s before": 0.415929203539823,
+   "own deaths": 0.6611570247933884,
+   "own deaths, 60 s before": 0.37168141592920356,
+   "NPCs taken": 0.4132231404958678,
+   "NPCs lost": 0.2727272727272727,
+   "they split on us": 24.793388429752067,
+   "main fight down, s": 20.710743801652892
+  },
+  "two or more players": {
+   "runs": 91,
+   "matches": 76,
+   "flags (level)": 0.2610900369724629,
+   "kills": 0.9120879120879121,
+   "kills, 60 s before": 0.43956043956043955,
+   "own deaths": 0.3076923076923077,
+   "own deaths, 60 s before": 0.16483516483516483,
+   "NPCs taken": 0.5054945054945055,
+   "NPCs lost": 0.3516483516483517,
+   "they split on us": 16.483516483516482,
+   "main fight down, s": 18.021978021978022
+  },
+  "the main team": {
+   "runs": 67,
+   "matches": 54,
+   "flags (level)": 0.23471724896957197,
+   "kills": 1.0597014925373134,
+   "kills, 60 s before": 0.7538461538461538,
+   "own deaths": 0.44776119402985076,
+   "own deaths, 60 s before": 0.16923076923076924,
+   "NPCs taken": 0.3880597014925373,
+   "NPCs lost": 0.31343283582089554,
+   "they split on us": 10.44776119402985,
+   "main fight down, s": 16.955223880597014
   }
  }
 }

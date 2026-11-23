@@ -100,7 +100,11 @@ def _play(M, play, side, tm, t0, t1, who, scenario, job, tests, beside=None, rul
 
 RES_LOW_HP = 80                        # a player in their base as the res lands is low under this share of his health (Claude's draft, for the record only: no play or test reads it; a player under it dies in the 30 s after about four times as often)
 OPEN_KEYS = ("stand", "split", "back", "waits")
-OPEN_LATER_S = (300, 420)              # the opening is also read 5 and 7 minutes from the gates (R-590: "This plays out in a longer time period"; 7:00 takes in the boosts of 2:00, 4:00 and 6:00)
+OPEN_LATER_S = (300, 420, 480)         # the opening is also read 5, 7 and 8 minutes from the gates (R-590: "This plays out in a longer time period"; 7:00 takes in the boosts of 2:00, 4:00 and 6:00; his answer of 2026-11-22: "7:00 is probably a bit too far out ... winning at 5:00 and 8:00": the readings are at 3:00 and 5:00, with 8:00 for the chance of winning)
+OPEN_LATER_KEYS = ("to", "ended", "deaths", "npcs", "npc_kinds", "lord", "morale_parts", "caps", "boosts", "lead", "lead_change", "stand")      # what the later record of an opening keeps: the hard results, and what the price of a position reads
+RES_READ_S = 20                        # the base res is a decision this long before the res (the play's own t0): what the team in their base could see then is `res.early`
+RES_NPC_S = 20                         # NPC damage on the players in their base is counted over this long before the reading (R-595: "NPCs on them"; for the record only, no play reads it)
+RES_TAKEN_S = 60                       # ... and all damage on them over this long (his "it took a lot of monk energy (i.e. they took a lot of dmg)": energy is not in the replay, damage taken is)
 FLAG_AFTER_S = (60, 90, 180)           # what followed a flag decision, read at three seconds so that the effect can be followed as it grows and fades (R-543; 90 and 180 s are R-294's; 120 s was read too and dropped, R-544: it sat between the two and changed no verdict)
 FLAG_BEFORE_S = 60                     # how long before a flag decision the position is read again, for the test of a call against what came before it
 FLAG_TRACK_S = tuple(range(0, 241, 15))  # the seconds from their runner's set-off at which the flag lead and the holder of the stand are kept on a flag play (`track`)
@@ -234,9 +238,18 @@ def opening(M):
             ids_ = [c[0] for c in sorted(up["carries"], key=lambda c: c[1]) if c[0] in up["serious"]]
             flag.update(brought=True, by=list(dict.fromkeys(role[a] for a in ids_)), how="not run", line=_line(m, ids_[0]) if ids_ else None)
         else: flag["brought"] = False
-        out["teams"][tm] = {"stand": stand, "split": spl, "way": way, "back": back, "waits": waits, "flag": flag, "first_cap": first_cap[tm]}
+        # the flag after the first one: who went back for it and when he turned for home (R-590, his first point: against seven with a player waiting back "we
+        # may either send a player back as well or we will hold the flag and wait for them to cap first": sending one back in answer is read from this), and
+        # who ran this team's flags in the match (R-593: the usual split response is "the player most often sent from the main team, leaving out the runner")
+        first_row = pre if pre is not None else (rows[0] if flag.get("sent_back") else None)
+        nx = next((x for x in rows if x is not first_row), None)
+        nxt = None if nx is None else {"off": int(nx.get("off", nx["s0"])), "who": nx["runner"], "line": _line(m, nx["ids"][0]) if nx["ids"] else None, "left": bool(nx.get("left_at")), "how": nx["how"], "end": int(nx["e"])}
+        out["teams"][tm] = {"stand": stand, "split": spl, "way": way, "back": back, "waits": waits, "flag": flag, "first_cap": first_cap[tm], "next": nxt,
+                            "runners": dict(collections.Counter(x["runner"] for x in rows if x["runner"])), "roles": {k: [role[a] for a in v] for k, v in (("stand", stand), ("split", spl), ("back", back), ("waits", waits))}}
     caps = sorted((u, tm) for tm, u in first_cap.items() if u is not None)
     out["caps"] = caps
+    fd = min(((td, k) for k in st.teams for a in st.players[k] for td in st.death_times.get(a, []) if td < M.over), default=None)      # the first death of the match and whose (the deaths recorded as the match ends are none)
+    out["first_death"] = None if fd is None else [int(fd[0]), fd[1]]
     def team_words(tm):
         x = out["teams"][tm]; f = x["flag"]
         w = [count(len(x["stand"]), "to the stand")]
@@ -277,7 +290,9 @@ def opening_plays(M, K):
         out.append(_play(M, "opening", "own", tm, 0, max(int(end), o["t"]), who, o["words"], "Get the first flag in", {"our flag is capped": capped},
                          beside={"first_cap": o["teams"][tm]["first_cap"], "flag": dict(f)}, call="the first flag", opening=o["words"],
                          open={**{k: len(o["teams"][tm][k]) for k in OPEN_KEYS}, "their": {k: len(o["teams"][3 - tm][k]) for k in OPEN_KEYS}, "their_flag": dict(o["teams"][3 - tm]["flag"]),
-                               "their_first_cap": o["teams"][3 - tm]["first_cap"]}))      # what each team can see of the other at the gates (R-590): its players at the stand, on a split, back; its first flag, on whom
+                               "their_first_cap": o["teams"][3 - tm]["first_cap"], "meet": o["t"], "next": o["teams"][tm]["next"], "their_next": o["teams"][3 - tm]["next"],
+                               "runners": o["teams"][tm]["runners"], "roles": o["teams"][tm]["roles"], "their_roles": o["teams"][3 - tm]["roles"],
+                               "first_death": None if o["first_death"] is None else [o["first_death"][0], "own" if o["first_death"][1] == tm else "their"]}))      # what each team can see of the other at the gates (R-590): its players at the stand, on a split, back; its first flag, on whom
     return out
 
 
@@ -1376,6 +1391,52 @@ def pinned_plays(M, K):
 
 
 # ---- in their base as their dead come back (gap 5)
+def _dmg_on(M):
+    """Player -> [(second, amount, from an enemy NPC, the actor)]: every damage a player took, read once a match."""
+    if getattr(M, "_dmg_taken", None) is None:
+        A, o = M.m.A, collections.defaultdict(list)
+        for r in M.m.o["ev"]:
+            if r[1] != "dm" or r[3] not in M.P: continue
+            src = r[2] if isinstance(r[2], int) and r[2] < len(A) else None
+            npc = src is not None and src not in M.P and bool(A[src].get("npc")) and A[src].get("team") not in (None, M.m.team(r[3]))
+            o[r[3]].append((r[0] / 10, r[5] if len(r) > 5 and isinstance(r[5], (int, float)) else 0, npc, src))
+        M._dmg_taken = o
+    return M._dmg_taken
+
+
+def _res_stand(M, tm, ids, u):
+    """How the players of `tm` in the enemy's base stand at second u, for the base res (R-589, R-595: his picture of the greedy stay, "staying in range in a
+    dangerous position ... low on energy and health and you have NPCs on you"; "stays very close to res shrine"; "deep past the res shrine"; "has been fighting
+    for a while, and is deep in pit"). Their health; how far each stands from the enemy's res shrine, straight and walked, and how many are past it (nearer the
+    enemy's Guild Lord, by the walk, than the shrine is); the damage enemy NPCs did them in the RES_NPC_S before and how many of them it fell on; all the damage
+    they took in the RES_TAKEN_S before (energy is not in the replay); how many of them are of the main team (a res onto a split is another thing: his word on
+    Book v cope and hook v Men); and the pit NPCs alive. A record: no play or test reads it."""
+    st, foe = M.st, 3 - tm
+    u = max(min(int(u), M.T), 0); u -= u % SPLIT_STEP
+    in_ = [a for a in ids if M.AL[a][u] and M.P[a][u]]
+    hp_ = [h["hp"] for h in (M.m.snap(a, u * 10) for a in in_) if h and h.get("hp") is not None]
+    out = {"t": u, "n": len(in_), "health": round(statistics.mean(hp_)) if hp_ else None, "low": sum(1 for h in hp_ if h < RES_LOW_HP), "inside": sum(1 for a in in_ if M._deep(a, u) in ("pit", "base")),
+           "pit_npcs": sum(1 for z, v in st.geo.npcs.items() if v["team"] == foe and v.get("pit") and v["kind"] != "guild_lord" and st.npc_dead.get(z, 1e9) > u)}
+    hall, side = M.hall, st.side.get(foe)
+    shrine = hall.res.get(side) if hall is not None and side else None
+    if shrine is not None:
+        out["shrine"] = sorted(int(d(M.P[a][u], shrine)) for a in in_)
+        w = [hall.walk(M.P[a][u], shrine) for a in in_]
+        out["shrine_walk"] = sorted(int(x) for x in w if x is not None)
+        lord = hall.lord.get(side); deep = hall.walk(shrine, lord) if lord else None
+        wl = [hall.walk(M.P[a][u], lord) for a in in_] if lord else []
+        out["past_shrine"] = None if deep is None else sum(1 for x in wl if x is not None and x < deep)
+    else: out["shrine"] = out["shrine_walk"] = out["past_shrine"] = None      # a hall with no labelled res shrine: not read (every stored hall has one)
+    D = _dmg_on(M)
+    npc = [(a, x) for a in in_ for x in D.get(a, ()) if x[2] and u - RES_NPC_S < x[0] <= u]
+    out["npc_dmg"] = round(sum(x[1] for _, x in npc)); out["npc_on"] = len({a for a, _ in npc}); out["npcs_hitting"] = len({x[3] for _, x in npc})
+    out["taken"] = round(sum(x[1] for a in in_ for x in D.get(a, ()) if u - RES_TAKEN_S < x[0] <= u) / len(in_)) if in_ else None
+    mt = set(M.main_team(tm, u))
+    out["of_main"] = sum(1 for a in in_ if a in mt)
+    out["alive"] = [sum(1 for a in st.players[k] if M.AL[a][u]) for k in (tm, foe)]
+    return out
+
+
 def res_plays(M, K):
     out, T = [], M.T
     st = M.st
@@ -1390,12 +1451,15 @@ def res_plays(M, K):
                   "pit_npcs": sum(1 for z, v in st.geo.npcs.items() if v["team"] == 3 - tm and v.get("pit") and v["kind"] != "guild_lord" and st.npc_dead.get(z, 1e9) > B)}
         out.append(_play(M, "base res", "own", tm, B - 20, B + 30, [], f"{r['team']} has {r['attackers']} in {M.m.tag[3 - tm]}'s base at the base res ({r['defenders']} defending, {r['coming_back']} coming back): {r['stayed']} stay" + (f", {r['attackers'] - r['stayed']} leave as the res lands or die" if r['stayed'] < r['attackers'] else ""),
                          "Be out, or set for the fight, when they res", {"none of the players in their base dies in the 30 s after the res": K.died(tm, B, B + 30, set(r["ids"])) == 0},      # the test covers the players of the play: a team mate who dies elsewhere, defending a split at home, did not die of the base res (his mark on hold v Men 4:00, Classic: "ranger dies on split, not because of base res")
-                         beside={"deaths_after": K.died(tm, B, B + 30, set(r["ids"])), "deaths_elsewhere": K.died(tm, B, B + 30) - K.died(tm, B, B + 30, set(r["ids"])), "outnumbered": r["outnumbered"]}, call="stayed through the res", res={**stand_, "attackers": r["attackers"], "defenders": r["defenders"], "coming_back": r["coming_back"], "stayed": r["stayed"], "outnumbered": bool(r["outnumbered"])}))
+                         beside={"deaths_after": K.died(tm, B, B + 30, set(r["ids"])), "deaths_elsewhere": K.died(tm, B, B + 30) - K.died(tm, B, B + 30, set(r["ids"])), "outnumbered": r["outnumbered"]}, call="stayed through the res", res={**stand_, "attackers": r["attackers"], "defenders": r["defenders"], "coming_back": r["coming_back"], "stayed": r["stayed"], "outnumbered": bool(r["outnumbered"]),
+                                                                    "at_res": _res_stand(M, tm, r["ids"], B), "early": _res_stand(M, tm, r["ids"], B - RES_READ_S), "in_s": None if r.get("went_in") is None else int(B - r["went_in"]),
+                                                                    "deaths_60": K.died(tm, B, B + 60, set(r["ids"]))}))      # at_res, early: how they stand as the res lands and RES_READ_S before it, when staying or leaving is still theirs to choose (R-595)
     for r in M.timing():
         if r["kind"] != "left before res": continue
         B, tm = r["t"] + r["s"], r["tm"]
         out.append(_play(M, "base res", "own", tm, r["t"], B + 30, r["who"], f"{r['team']} leaves {r['foe']}'s base {r['s']} s before the base res ({r['coming_back']} coming back)",
-                         "Be out, or set for the fight, when they res", {"nobody of ours dies in the 30 s after the res": K.died(tm, B, B + 30) == 0}, beside={"deaths_after": K.died(tm, B, B + 30)}, call="left before the res", res={"coming_back": r["coming_back"], "left_s": r["s"], "attackers": len(r["who"])}))
+                         "Be out, or set for the fight, when they res", {"nobody of ours dies in the 30 s after the res": K.died(tm, B, B + 30) == 0}, beside={"deaths_after": K.died(tm, B, B + 30)}, call="left before the res", res={"coming_back": r["coming_back"], "left_s": r["s"], "attackers": len(r["who"]),
+                                                                                                           "early": _res_stand(M, tm, [a for a in st.players[tm] if M.m.roles[a] in set(r["who"])], B - RES_READ_S), "deaths_60": K.died(tm, B, B + 60)}))      # the same reading on the same clock as a team that stays (they leave LEAVE_RES_S or less before the res, so they are still in the base then)
     return out
 
 
@@ -1478,7 +1542,7 @@ def plays(M, recs=None):
             p["at_told"] = {"state": M._state(p["tm"], u), "after": M.consequence(p["tm"], u, FLAG_AFTER_S),
                             "before": None if b_ < 0 else {"state": M._state(p["tm"], b_), "after": M.consequence(p["tm"], b_, (FLAG_BEFORE_S,))[str(FLAG_BEFORE_S)]}}
             if p["play"] == "opening":
-                p["open"]["later"] = {h: {k: v[k] for k in ("to", "ended", "deaths", "npcs", "caps", "boosts", "lead", "lead_change", "stand")} for h, v in M.consequence(p["tm"], 0, OPEN_LATER_S).items()}
+                p["open"]["later"] = {h: {k: v[k] for k in OPEN_LATER_KEYS} for h, v in M.consequence(p["tm"], 0, OPEN_LATER_S).items()}
     out.sort(key=lambda p: (p["t0"], p["tm"], p["play"]))
     rid = M.m.o["meta"]["id"]
     for i, p in enumerate(out): p["rid"], p["id"] = rid, f"{rid[:8]}-{p['play'].replace(' ', '_')}-{p['tm']}-{p['t0']}-{i}"
