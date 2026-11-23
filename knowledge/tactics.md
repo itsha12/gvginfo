@@ -305,6 +305,16 @@ against general principles rather than past games. Match-by-match evidence lives
   danger is just dying to base res": getting greedy and staying in range, in a dangerous position, while the enemy
   team bases, so that its players are low on energy and health with NPCs on them when the enemy resses at nearly full
   strength and kills them. "In the base" may need to be read more narrowly for this than for other things.
+- `P17` **Denning:** The base res is a decision, a rare one that can change the game: a team in a great position that
+  gets greedy, stays through the res and is counter-killed. What makes it matter is where the team stands round the
+  res shrine, the NPCs on it and its health: very close to the shrine or deep past it, in the pit with knights,
+  archers or footmen on its players, after a long fight that has cost its monks their energy. It can pull out, run a
+  flag and be safe instead. One player basing onto a split is a different thing. **Claude (data):** a main team that
+  stays with two or more of four marks 20 s before the res (deep past the shrine, NPCs on two or more, under 85%
+  health, heavy damage in the minute before) loses two or more players in 3% of stays against 0% with fewer, and
+  with three or four marks loses one in 13% and two or more in 4% (134 stays). Hardly any team leaves with the marks
+  on (3 of 391), so what leaving is worth cannot be read yet. [yM v hook] [Crew v One] [Men v BcS] [Book v hook]
+  [DUM v ohno] [Men v NwAy]
 - `P12` **OG comms:** Keep a healer with every group at all times (a prot and a monk on one side, the ritualist and a
   monk on the other). **Claude (data, `comms_vars.py`, 144 matches):** groups of 2+ with no healer lost a player in 25% of
   phases against 12% with one, at the same local numbers (+10 points, interval +7 to +13). [ohno v One]
@@ -378,6 +388,23 @@ against general principles rather than past games. Match-by-match evidence lives
   The same holds for us: with our flag on our split response against a solo split, we may have to cap first to free
   him, send him back to defend, and send someone else (likely a frontliner) back at once for the next flag, because
   capping first puts us at a disadvantage.
+- `F48` **Denning:** A team's usual split response is the player most often sent from the main team to a split,
+  leaving out the runner. It is usually a Mes/A, a Necro or an Ele, or the 8 Monk, depending on what is in the
+  composition and what the team is trying to do. **Claude (data):** measured that way it is the 8 Monk for 21 of the
+  22 guilds that have one; with the monks left out, a Ritualist for 8 of 14, then a Ranger, a Dervish, a Mes/A and
+  an Ele.
+- `F49` **Denning:** A team that leaves a player back and caps first is usually down a player for only about 45 s,
+  very early, while the monks are full on energy and can absorb the pressure; the result is that it is quickly ahead
+  on flags. **Claude (data):** against eight it takes +0.24 more of the boosts of 2:00 and 4:00 (+0.07 to +0.41) and
+  loses a player in the first five minutes no more often (59% against 61%); nothing else differs clearly.
+- `F50` **Denning:** That teams do different things on what they see at the opening shows there are decisions there;
+  whether each is the right one is for the data. An opening is judged on flag advantage and kills first, then to a
+  smaller extent on the boosts and on winning at 5:00 and 8:00, with the NPCs lost to a split. **Claude (data):** in
+  an 8v8 where both bring a flag, capping first or second makes no clear difference in flags (+0.09, -0.16 to
+  +0.33) or in the chance of winning; the team that caps second is ahead in kills at 5:00 more often (48% against
+  36%), a gap that wipes make look larger than it is. Eight against seven, nearly every team holds and caps second
+  (61 of 76), so the other calls cannot be judged. A team that holds its flag 15 s or more at the stand does better
+  on every count as it fell, but not clearly on matches the advice never saw: no advice from it.
 
 ### Fighting with the flag
 - `F8` **Denning:** Some games are fought 8v8 (holding the flag) or 7v7 (1 player running the flag).
@@ -432,6 +459,13 @@ against general principles rather than past games. Match-by-match evidence lives
 - `F41` **Denning:** A one player push "just isn't that effective at stopping a flag". The player may be better used
   gaining flag advantage another way, by double running or by helping get the team's own flag in quickly; if the
   other team does that while the solo push fails, the pushing team falls behind in flags.
+- `F47` **Denning:** Pushing the flagger is a decision of its own, beside the answer to their run: it touches more
+  than flags (splits, player advantage). In most games the push is part of the main team's fight. The real questions
+  are whether it makes a flag advantage, brings more kills or more NPCs, leaves the team more open to a split, or
+  costs it more deaths. **Claude (data):** on their runs, players sent for the flagger leave their team +0.14 of a
+  flag better off than no push (+0.05 to +0.21), all of it from two or more (+0.26; one player +0.00). Kills, NPCs
+  taken and a split against the pushing team show no difference; it loses fewer NPCs and takes no more deaths, but
+  it was already taking fewer deaths in the minute before: a team pushes where it can afford to.
 
 ### The power play
 - `F23` **Denning:** When the enemy is running the flag, the team with more players in the fight can play the power

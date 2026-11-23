@@ -439,11 +439,30 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   not in the replay; `RES_LOW_HP` in `jobs.py` and `RES_LOW` in `cases.py` are Claude's drafts and no play reads them),
   and "base" is not made smaller until he says where the line goes. The opening play carries what the other team showed
   (`open.their`, `their_flag`, `their_first_cap`), the line of the first carrier (`beside.flag.line`, `common.line`) and
-  the record 5 and 7 minutes from the gates (`open.later`, `OPEN_LATER_S`). Not read, and not to be read without his
-  word: the usual split response (`usual_responder` measures who defends first, which names the flag runner), and a flag
-  returned at the hand-off, which is not told apart from a flag lost another way (N9 runs against him as worded).
+  the record 5, 7 and 8 minutes from the gates (`open.later`, `OPEN_LATER_S`, with what the price of a position reads). Not read, and not to be read without his
+  word: a flag returned at the hand-off, which is not told apart from a flag lost another way (N9 runs against him as worded).
   After any change to these records compare the plays with the run before, `open`, `res` and `beside.flag.line` left
   out: nothing may differ.
+  From his answers of 2026-11-22, night (R-591 to R-596). The base res is a decision, the greedy stay (R-592, R-595): a
+  base res play carries `res.early` and `res.at_res` (`jobs._res_stand`: how the players in their base stand 20 s before
+  the res, when staying or leaving is still theirs, and as it lands: health, each player's distance from their res shrine
+  and how many are past it, NPC damage on them, damage taken in the minute before, how many are of the main team), on a
+  team that leaves too (`early`). `cases.py res`, section D, reads the main team's stays by four marks (`GREEDY`: deep,
+  NPCs on them, low on health, worn; the lines are Claude's drafts, the report's own) and prints them on the eight games
+  he described (`HIS_RES`: six that are it, two that are a res onto a split): change the marks against those, never by an
+  exception; hook v Men 6:00 is read against him (four players past the shrine, read as the main team). Hardly any team
+  leaves with the marks on, so staying against leaving is no reading (B9). The opening is judged on flags and kills
+  first, then the boosts and the chance of winning at 5:00 and 8:00, with the NPCs (R-596): `cases.py opening`, section
+  D (`_open_cmp`: each call from the side of the team that makes it, set level on strength alone, since an opening has no
+  minute before it; under the floor a call is shown as it fell) and section E (`_open_scenario`: like spots and the test
+  on unseen matches where teams divide, matched on `OPEN_VARS`). The opening play carries `open.next` and `their_next`
+  (when the next runner turned for home: "sends a player back before a cap"), `runners`, `roles` and `first_death`. The
+  usual split response is his definition (R-593, `usual_responder`: the player a guild most often sends first, the
+  match's runners left out): it names the 8 Monk for nearly every guild, so the same with the monks left out is shown
+  beside it (`monks=False`) until he says which his fourth point means. Pushing the flagger is a decision of its own and
+  not an answer to their run (R-591): never fold it into the flag family's like spots. It is read on his five questions
+  (`cases.py pushes`, section E, on `their_runs`, kills and deaths also in the 60 s before); whether it is a family is his
+  to say, and Claude's recommendation is no. No verdict of any of these is advice.
 - A numbers advantage from kills is not a decision family (R-557: the team up keeps killing and follows the team down,
   whose own choices read as near forced; the numbers that are decisions are those a team chose to make, a runner, a
   split or a collapse). Its cards are not marked and its view is off the page (the `ADVICE.numbers` entry in

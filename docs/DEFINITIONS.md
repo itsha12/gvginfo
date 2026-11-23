@@ -170,6 +170,10 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   0:36, 1:32; HC v Team 4:24; HC v cope 3:24). Players who stay on after the flag has gone ("a true split would
   likely stay and try to take NPCs"), or die there, are a split whose defender carries his flag (R-430; HC v cope
   0:20, 0:32, Classic).
+- Pushing their flagger is a decision of its own, beside the answer to their run and not one of its answers (R-591):
+  it touches more than flags (splits, player advantage). For most games it is part of the main team's fight. It is
+  read on his five questions: does it make a flag advantage, more kills, more NPCs, a team more open to a split,
+  more deaths of its own. Whether it is a family is not ruled ("it may not be worth making a family").
 - A part-run is not a flag run (R-535, R-536): a player back at home for a split who carries his flag some of the
   way on his own ground and puts it down, because he has to be back in his base; he always goes back to it (the
   player who hands the flag on and joins his main team has run it, R-504, R-505), and usually nobody is handed the
@@ -220,7 +224,18 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   their flag came up and when they hand it on (a frontliner with a player back means to cap first; a stand mesmer
   with eight means to hold; a flag on the usual split response invites a split). Capping first is a disadvantage
   (F25). *As built:* each opening play carries what the other team showed, the line of the first carrier
-  (`common.line`) and the record 5 and 7 minutes from the gates. Not read: who the usual split response is.
+  (`common.line`), the record 5, 7 and 8 minutes from the gates, when each team's next runner turned for home, who
+  ran its flags and the first death of the match.
+- What a call at the opening is judged on (R-596): flag advantage and kills first; then, to a smaller extent, the
+  boosts and the chance of winning at 5:00 and 8:00; and the NPCs lost to a split. That teams do different things
+  on what they see shows a decision is made; whether it is the right one is read from the data, each call from the
+  side of the team that makes it. *As built:* set level on strength alone (an opening has no minute before it);
+  like spots and the test on unseen matches only where teams divide; a call nearly every team makes is under the
+  floor and is shown as it fell.
+- The usual split response (R-593): the player most often sent from the main team to a split, the runner left out;
+  usually a Mes/A, a Necro or an Ele, or the 8 Monk. *As built* (`cases.usual_responder`): a guild's, over every
+  stored match: who it sends first, one or two defenders, the players who ran that team's flags in the match left
+  out; five or more splits and 35% of those counted. Shown beside it: the same with the monks left out.
 - A flag handed on is one runner: a half run is a single run (R-504). A double run needs a second player who has
   gone back for the next flag by the time the first caps (R-472, R-485).
 - A run is the answer to theirs when its runner turned for home before their flag went in, though the run's own
@@ -303,7 +318,15 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - What a base res threatens (R-589): dying to it, for a team already heavily favoured: staying in range, low on
   health and energy with NPCs on its players, while the enemy resses at nearly full strength. *As built:* a stay
   carries the health of the players in the base as the res lands, how many stand right inside (the pit or the base,
-  not a door) and the pit NPCs alive; energy is not in the replay. "Base" may be read more narrowly here: not built.
+  not a door) and the pit NPCs alive; energy is not in the replay.
+- The base res as a decision (R-592, R-595): the greedy stay. It is the main team's (a res onto a split is another
+  thing), and what makes it matter is the place round the res shrine, the NPCs on the players and the party's health:
+  a team in a great position that stays deep in their base, worn by the fight, as they res. *As built:* each base res
+  play carries how the players in their base stand 20 s before the res, when staying or leaving is still theirs to
+  choose, and as it lands (health, each player's walk from their res shrine and how many are past it, NPC damage on
+  them in the 20 s before, all damage taken in the minute before, how many are of the main team). The report reads
+  four marks from it (deep: half or more past the shrine; NPCs on two or more; under 85% health between them; damage
+  taken in the upper third): Claude's drafts, the report's own, read by no play. No line for "base" is ruled.
 - Taken out: the race back when a split ends (R-448; it was item 6 of R-434).
 
 ## Collapse
