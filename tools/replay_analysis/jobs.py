@@ -1518,6 +1518,83 @@ def res_spots(M):
     return out
 
 
+def flag_hands(M):
+    """Every flag life and every time a flag was put down (R-620: "you have permission to read"; what it is for, his three points: a frontliner up on flags
+    who runs his flag to the stand against one who hands it to a midline player; at the opening, eight against seven, the flag kept on the frontliner against
+    handed on out of the enemy's range; and who holds a held flag). Two records kept beside the plays: they tell no play and change none.
+      lives      one a flag life (`Moments.flag_lives`): who took it up and of which line, every carrier, when it first stood in hand at the stand and on whom,
+                 how long it was held there and by whom (`flags_record`: `held_s`, the capper), how it ended, and the position at the pickup and, for a flag
+                 held HOLD_S or longer, at the second the hold began;
+      put_downs  one a carry that ended on the ground and not in a cap: who put it down and of which line, whether he was dead, where, the living enemy
+                 players within an aggro bubble of it then (R-623: "about an aggro bubble is the correct distance", FIGHT_CLOSE) and the nearest, and what
+                 became of the flag: a team mate took it up (and whether that is a hand-off, `Moments.handed_on`, R-580), its carrier took it up again, it
+                 was returned, or it was left lying to the end.
+    A flag put down goes back only when an enemy player picks it up, never by itself (R-622): a life that ends "returned" was returned by a player, and who
+    and when are read as `flag_lives` reads them (the last enemy to stand on it before the next pickup at the spawn; the second is inferred until the rebuild
+    keeps gvg.report's flag objects, R-481)."""
+    if M.hall is None: return {"lives": [], "put_downs": []}
+    st, m, T = M.st, M.m, M.T
+    rid8, stand = m.o["meta"]["id"][:8], M.hall.stand
+    fr = {(r["tm"], r["start"]): r for r in M.flags_record()}
+    sec = lambda t: min(max(int(t), 0), T)
+    def told(tm, u):
+        b_ = u - FLAG_BEFORE_S
+        return {"state": M._state(tm, u), "after": M.consequence(tm, u, FLAG_AFTER_S),
+                "before": None if b_ < 0 else {"state": M._state(tm, b_), "after": M.consequence(tm, b_, (FLAG_BEFORE_S,))[str(FLAG_BEFORE_S)]}}
+    lives, puts, seen = [], [], collections.Counter()
+    for L in M.flag_lives():
+        tm, cs = L["team"], L["carries"]
+        foe = 3 - tm
+        played = [c for c in cs if c[2] is None or c[2] > 0]              # carried in the match: what was held before the gates and put down as they opened is not a carry
+        if not played: continue
+        first = seen[tm] == 0; seen[tm] += 1
+        r = fr.get((tm, L["start"])) or {}
+        lid = f"{rid8}-life-{tm}-{sec(L['start'])}"
+        # when the flag first stood in hand at the stand, and on whom
+        arrive = None
+        for c in played:
+            end_ = c[2] if c[2] is not None else (L["end"] if L["end"] is not None else T)
+            u_ = next((u for u in range(sec(c[1]), sec(end_) + 1) if M.P[c[0]][u] and M.place_at(c[0], u)[0] == "stand"), None)      # the stand as the hall has it labelled, the reading `flags_record` holds a flag on
+            if u_ is not None: arrive = {"t": u_, "by": m.roles[c[0]], "line": _line(m, c[0])}; break
+        n_put = 0
+        for i, c in enumerate(cs):
+            a, t1 = c[0], c[2]
+            if t1 is None or t1 <= 0: continue
+            if L["how"] == "captured" and i == len(cs) - 1: continue      # capped: not put down
+            u = sec(t1); pos = M.P[a][u]
+            if not pos: continue
+            dead = not (M.AL[a][u] and M.AL[a][min(u + 1, T)])
+            near = sorted(d(M.P[b][u], pos) for b in st.players[foe] if M.AL[b][u] and M.P[b][u])
+            mates = sum(1 for b in st.players[tm] if b != a and M.AL[b][u] and M.P[b][u] and d(M.P[b][u], pos) <= FIGHT_CLOSE)
+            w_own, w_their = (M.hall.walk(pos, M.spawn[tm]), M.hall.walk(pos, M.spawn[foe])) if M.spawn.get(tm) and M.spawn.get(foe) else (None, None)
+            rec = {"play": "put down", "id": f"{rid8}-put-{tm}-{u}", "tm": tm, "team": m.tag[tm], "t0": u, "life": lid, "first_flag": first, "by": m.roles[a], "by_line": _line(m, a),
+                   "carried_s": int(t1 - max(c[1], 0)), "dead": dead, "place": M.place_words(*M.place_at(a, u)), "at_stand": M.place_at(a, u)[0] == "stand", "stand_d": int(d(pos, stand)),
+                   "own_half": None if w_own is None or w_their is None else bool(w_own < w_their), "before_stand": arrive is None or u < arrive["t"],
+                   "enemy_near": sum(1 for x in near if x <= FIGHT_CLOSE), "nearest": int(near[0]) if near else None, "mates_near": mates,
+                   "then": None, "lay_s": None, "taker": None, "taker_line": None, "handed": False, "returned_by_inferred": None}
+            if i + 1 < len(cs):
+                c2 = cs[i + 1]
+                rec.update(then="its carrier took it up again" if c2[0] == a else "a team mate took it up", lay_s=round(c2[1] - t1, 1), taker=m.roles[c2[0]], taker_line=_line(m, c2[0]),
+                           handed=c2[0] != a and bool(M.handed_on(c, c2)))
+            elif L["how"] == "returned":
+                ret = L.get("returned")                                    # who returned it is `flag_lives`' inference; the second is not kept: on RJT v RACK the inferred returns are 3 to 69 s late (R-481)
+                rec.update(then="returned", returned_by_inferred=None if not ret else m.roles[ret[1]])
+            else: rec["then"] = "left lying"
+            rec["at_told"] = told(tm, u)
+            puts.append(rec); n_put += 1
+        run = next((c for c in played if c[0] in L.get("serious", ())), played[0])      # who ran it: the first who carried it for more than a moment
+        u0 = sec(run[1])
+        held = int(r.get("held_s") or 0)
+        life = {"play": "flag life", "id": lid, "tm": tm, "team": m.tag[tm], "t0": u0, "first_flag": first, "runner": m.roles[run[0]], "runner_line": _line(m, run[0]),
+                "carriers": [[m.roles[c[0]], _line(m, c[0]), round(c[1], 1), None if c[2] is None else round(c[2], 1)] for c in played], "how": L["how"], "end": None if L["end"] is None else round(L["end"], 1),
+                "form": L.get("form"), "arrive": arrive, "held_s": held, "holder": None, "holder_line": None, "put_downs": n_put, "at_told": told(tm, u0), "hold_told": None}
+        if L["how"] == "captured" and L.get("capper") is not None:
+            life.update(holder=m.roles[L["capper"]], holder_line=_line(m, L["capper"]))
+            if held >= HOLD_S: life["hold_told"] = told(tm, sec(L["end"] - held)); life["hold_t"] = sec(L["end"] - held)
+        lives.append(life)
+    return {"lives": lives, "put_downs": puts}
+
+
 def res_plays(M, K):
     out, T = [], M.T
     st = M.st

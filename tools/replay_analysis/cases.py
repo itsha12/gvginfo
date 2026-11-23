@@ -2898,6 +2898,178 @@ def opening_report(path, out_json=None):
     return res
 
 
+HAND_UP = 0.35                                    # up on flags, for his first point: the tally of R-408 half a flag or more ahead at the pickup (`common.LEAD_HALF`)
+HAND_HOLD_S = 15                                 # a held flag: in hand at the stand this long before it is capped (`common.HOLD_S`)
+HOLD_GROUPS = ("the stand mesmer", "the Mes/A", "another midline player", "a frontliner", "a monk")
+
+
+def _hold_group(role, line):
+    r = role or ""
+    return HOLD_GROUPS[0] if r.startswith("Stand Mes") else HOLD_GROUPS[1] if r.startswith("Mes/A") else HOLD_GROUPS[3] if line == "frontline" else HOLD_GROUPS[4] if line == "backline" else HOLD_GROUPS[2]
+
+
+def hand_cases(D, M, B):
+    """The flag lives and the put-downs of `jobs.flag_hands` (R-620), each priced at the second it is read from, without its match."""
+    lives, puts, holds, skipped = [], [], [], collections.Counter()
+    for rid, v in D["flag_cost"].items():
+        if "flag_hands" not in (v or {}): raise ValueError(f"match {rid} carries no record of its flags' put-downs: run moments.py all again on this engine (R-460)")
+        L = sorted(v["flag_hands"]["lives"], key=lambda x: x["t0"])
+        for x in L:
+            c = _told(dict(x, rid=rid), M, B)
+            if c is None: skipped["a flag life: no winner recorded, or the flag lead not read"] += 1; continue
+            nxt = next((y for y in L if y["tm"] == x["tm"] and y["t0"] > x["t0"]), None)
+            c.update({k: x[k] for k in ("tm", "first_flag", "runner", "runner_line", "carriers", "how", "end", "form", "arrive", "held_s", "holder", "holder_line", "put_downs")})
+            ar = x["arrive"]; on = next((k for k in x["carriers"] if ar and k[2] <= ar["t"] + 1 and (k[3] is None or k[3] >= ar["t"])), None)      # the carry in which it first stood at the stand
+            c.update(own_stand=c["state"]["stand"] == "own", stood_s=None if not on or on[3] is None else on[3] - ar["t"],
+                     handed_at_stand=bool(ar) and any(k[2] > ar["t"] and k[0] != ar["by"] for k in x["carriers"]))
+            c.update(lead=c["state"]["flag_lead"], captured=x["how"] == "captured", returned=x["how"] == "returned", cap_s=None if x["how"] != "captured" else x["end"] - x["t0"],
+                     next_s=None if nxt is None or x["end"] is None else nxt["t0"] - x["end"], next_runner=None if nxt is None else nxt["runner"])
+            lives.append(c)
+            if x.get("hold_told"):
+                h = _told(dict(x, rid=rid, t0=x["hold_t"], at_told=x["hold_told"], id=x["id"] + "-hold"), M, B)
+                if h is None: skipped["a held flag: no winner recorded, or the flag lead not read"] += 1; continue
+                h.update(tm=x["tm"], first_flag=x["first_flag"], holder=x["holder"], line=x["holder_line"], group=_hold_group(x["holder"], x["holder_line"]), held_s=x["held_s"], lead=h["state"]["flag_lead"],
+                         next_s=c["next_s"], holder_runs_next=c["next_runner"] == x["holder"], npcs_lost=h["hard"]["180"]["npcs"][0])
+                holds.append(h)
+        for x in v["flag_hands"]["put_downs"]:
+            c = _told(dict(x, rid=rid), M, B)
+            if c is None: skipped["a put-down: no winner recorded, or the flag lead not read"] += 1; continue
+            c.update({k: x[k] for k in ("tm", "life", "first_flag", "by", "by_line", "carried_s", "dead", "place", "at_stand", "own_half", "before_stand", "enemy_near", "nearest", "mates_near", "then", "lay_s", "taker", "taker_line", "handed")})
+            c.update(returned=x["then"] == "returned", in_range=x["enemy_near"] > 0, lead=c["state"]["flag_lead"])
+            puts.append(c)
+    return lives, puts, holds, skipped
+
+
+def handoff(path, out_json=None):
+    """The hand-off and the flag returned (R-620 to R-624): the record of every put-down, what a return costs, and his three points as readings on it. A
+    report: it advises nothing, and how a flag is carried follows the spot a team is in (a team under pressure hands off where it must)."""
+    D, M = load(path); B, P = prices(D, M)
+    lives, puts, holds, skipped = hand_cases(D, M, B)
+    lines, res = [], {"lives": len(lives), "put_downs": len(puts), "holds": len(holds), "skipped": dict(skipped), "checks": {}, "record": {}, "price": {}, "frontliner": {}, "opening": {}, "holding": {}}
+    pr = lambda x="": (lines.append(x), print(x))
+    pct = lambda V, f: 100 * float(np.mean([bool(f(c)) for c in V])) if V else 0.0
+    mean = lambda V, f: float(np.mean([f(c) for c in V if f(c) is not None] or [0.0]))
+    link = lambda c: f"{' v '.join(M[c['rid']]['teams'])}, {M[c['rid']]['map']}, {M[c['rid']]['date']}, {cl(M[c['rid']]['length_s'] or 0)} long, {c['team']} at {cl(c['t'])}: https://gvg.report/report/{c['rid']}#map"
+    pr(f"The hand-off and the flag returned (R-620), on {len(M)} matches: {len(lives)} flag lives, {len(puts)} times a flag was put down, {len(holds)} held flags" + "".join(f"; set aside, {k}: {v}" for k, v in skipped.most_common() if v))
+    pr("A flag put down goes back only when an enemy player picks it up (R-622). In range = a living enemy player within an aggro bubble of the flag as it is put down (R-623).")
+    # ---- A. the record
+    live = [c for c in puts if not c["dead"]]
+    pr(f"\nA. Every put-down, by what became of the flag. {len(puts) - len(live)} are a carrier who died with it; the rest ({len(live)}) were put down by a living player.")
+    pr(f"     {'':44} {'all':>6}  {'out of range':>12}  {'one in range':>12}  {'two or more':>11}")
+    for th in ("a team mate took it up", "its carrier took it up again", "returned", "left lying"):
+        V = [c for c in live if c["then"] == th]
+        res["record"][th] = {"all": len(V), "out of range": sum(1 for c in V if c["enemy_near"] == 0), "one in range": sum(1 for c in V if c["enemy_near"] == 1), "two or more": sum(1 for c in V if c["enemy_near"] >= 2)}
+        pr(f"     {th:44} {len(V):6}  {res['record'][th]['out of range']:12}  {res['record'][th]['one in range']:12}  {res['record'][th]['two or more']:11}")
+    for lab, f in (("out of range", lambda c: c["enemy_near"] == 0), ("one enemy player in range", lambda c: c["enemy_near"] == 1), ("two or more in range", lambda c: c["enemy_near"] >= 2)):
+        V = [c for c in live if f(c)]; res["record"]["returned, " + lab] = {"put-downs": len(V), "returned": pct(V, lambda c: c["returned"])}
+        pr(f"     returned, of the flags put down {lab}: {pct(V, lambda c: c['returned']):.0f}% of {len(V)}")
+    rd = lambda C_, *a, **k: _reading(pr, res, C_, *a, **k)
+    pr("   The readings:")
+    rd(live, "X1 a flag put down with an enemy player in range is returned more often than one put down out of range", lambda c: c["in_range"], lambda c: True, +1, lambda c: c["returned"], "in range", "out of range")
+    rd(live, "X2 ... and more often with two or more in range than with one", lambda c: c["enemy_near"] >= 2, lambda c: c["enemy_near"] == 1, +1, lambda c: c["returned"], "two or more", "one")
+    rd([c for c in live if c["in_range"]], "X3 in range, a flag put down by a frontliner is returned more often than one put down by a midline player", lambda c: c["by_line"] == "frontline", lambda c: c["by_line"] == "midline", +1, lambda c: c["returned"], "a frontliner", "a midline player")
+    # ---- B. the price of a return
+    pr("\nB. What a return costs (his assumption, R-620: \"you essentially lose nearly a whole flag's worth of advantage\"). The flags put down by a living player, from the second of the put-down:")
+    pr("   flags = the change in the flag tally of R-408 over 90 s (the stand counts as one flag); win pts = the change in the chance of winning. As it fell: a flag is returned where the enemy stands on it.")
+    pr(_fell_head())
+    for th in ("a team mate took it up", "its carrier took it up again", "returned"): _fell(pr, res["price"], th, [c for c in live if c["then"] == th])
+    for H in ("90", "180"):
+        for c in live: c["_y"] = c["hard"][H]["lead_change"] if c["hard"][H]["lead_change"] is not None else 0.0
+        d_, lo, hi, na, nb = _num_range(live, lambda c: c["returned"], lambda c: c["then"] == "a team mate took it up")
+        if d_ is not None:
+            res["price"][f"flags {H}"] = {"difference": float(d_), "range": [float(lo), float(hi)], "n": [na, nb]}
+            pr(f"     returned against taken up by a team mate, in flags {H} s on: {d_:+.2f} ({lo:+.2f} to {hi:+.2f}), {na} against {nb}")
+    for c in live: c["_y"] = c["v"]["180"]
+    d_, lo, hi, na, nb = _num_range(live, lambda c: c["returned"], lambda c: c["then"] == "a team mate took it up")
+    if d_ is not None:
+        res["price"]["win points 180"] = {"difference": float(d_), "range": [float(lo), float(hi)], "n": [na, nb]}
+        pr(f"     ... and in the chance of winning three minutes on: {d_:+.1f} points ({lo:+.1f} to {hi:+.1f}). The two groups do not start level (see \"started at\"): a size to look at, not what a return alone costs.")
+    # ---- C. his first point
+    later = [c for c in lives if not c["first_flag"]]
+    Fr = [c for c in later if c["runner_line"] == "frontline"]
+    def how_run(c):
+        a = c["arrive"]
+        if a is None: return "never stood at the stand"
+        return "run to the stand on the frontliner" if a["line"] == "frontline" else "handed on before the stand"
+    for c in Fr: c["run"] = how_run(c)
+    RUNS = ("run to the stand on the frontliner", "handed on before the stand", "never stood at the stand")
+    pr(f"\nC. His first point (tactics F52): a flag run on a frontliner, by whether he runs it all the way to the stand or hands it to a midline player before the stand. Flags after the first, {len(Fr)} run by a frontliner")
+    pr(f"   of {len(later)}. Up on flags is read as his case of it: we hold the stand at the pickup, so the flag cannot be capped until they cap (they \"can just hold the flag and you are a man down\"). Read from the")
+    pr("   pickup; capped in = seconds from the pickup to the cap (middle); on him = seconds the first carrier at the stand stood there with it (middle); handed there = it changed hands after it reached the stand.")
+    extra = (("capped", lambda V: pct(V, lambda c: c["captured"]), lambda v: f"{v:5.0f}%"), ("returned", lambda V: pct(V, lambda c: c["returned"]), lambda v: f"{v:7.0f}%"),
+             ("capped in", lambda V: float(np.median([c["cap_s"] for c in V if c["cap_s"] is not None] or [0])), lambda v: f"{v:7.0f} s"),
+             ("on him", lambda V: float(np.median([c["stood_s"] for c in V if c["stood_s"] is not None] or [0])), lambda v: f"{v:4.0f} s"), ("handed there", lambda V: pct(V, lambda c: c["handed_at_stand"]), lambda v: f"{v:11.0f}%"))
+    head = _fell_head((("capped", 6), ("returned", 8), ("capped in", 9), ("on him", 6), ("handed there", 12)))
+    for lab, f in (("we hold the stand at the pickup", lambda c: c["own_stand"]), ("we do not hold the stand", lambda c: not c["own_stand"])):
+        X = [c for c in Fr if f(c)]; pr(f"\n   {lab} ({len(X)})"); pr(head); o = res["frontliner"][lab] = {}
+        for r_ in RUNS: _fell(pr, o, r_, [c for c in X if c["run"] == r_], extra)
+    up = [c for c in Fr if c["own_stand"] and c["run"] != RUNS[2]]
+    pr("   The readings (we hold the stand, the flags that came to stand in hand at the stand):")
+    rd(up, "C1 with the stand ours, a flag run to the stand on the frontliner is returned more often than one handed on before it", lambda c: c["run"] == RUNS[0], lambda c: True, +1, lambda c: c["returned"], "on the frontliner", "handed on")
+    rd(up, "C2 ... the team loses a player in the 90 s more often", lambda c: c["run"] == RUNS[0], lambda c: True, +1, lambda c: c["hard"]["90"]["deaths"][0] > 0, "on the frontliner", "handed on")
+    rd(up, "C3 ... is worse off in flags 90 s on", lambda c: c["run"] == RUNS[0], lambda c: True, -1, lambda c: c["hard"]["90"]["lead_change"] or 0.0, "on the frontliner", "handed on", unit=" flags")
+    rd(up, "C4 ... and in the chance of winning three minutes on", lambda c: c["run"] == RUNS[0], lambda c: True, -1, lambda c: c["v"]["180"], "on the frontliner", "handed on", unit=" points")
+    hp = [c for c in live if not c["first_flag"] and c["by_line"] == "frontline" and c["then"] in ("a team mate took it up", "returned") and c["taker_line"] != "frontline"]
+    pr(f"   Where a frontliner hands a later flag on (or loses it trying): {len(hp)} put-downs. Before the stand, out of range: returned {pct([c for c in hp if c['before_stand'] and not c['in_range']], lambda c: c['returned']):.0f}% of {sum(1 for c in hp if c['before_stand'] and not c['in_range'])};"
+       f" before the stand, in range: {pct([c for c in hp if c['before_stand'] and c['in_range']], lambda c: c['returned']):.0f}% of {sum(1 for c in hp if c['before_stand'] and c['in_range'])};"
+       f" at the stand, in range: {pct([c for c in hp if not c['before_stand'] and c['in_range']], lambda c: c['returned']):.0f}% of {sum(1 for c in hp if not c['before_stand'] and c['in_range'])}.")
+    res["frontliner"]["hand-offs"] = {"put-downs": len(hp), "before the stand, out of range": [sum(1 for c in hp if c["before_stand"] and not c["in_range"]), pct([c for c in hp if c["before_stand"] and not c["in_range"]], lambda c: c["returned"])],
+                                      "before the stand, in range": [sum(1 for c in hp if c["before_stand"] and c["in_range"]), pct([c for c in hp if c["before_stand"] and c["in_range"]], lambda c: c["returned"])],
+                                      "at the stand, in range": [sum(1 for c in hp if not c["before_stand"] and c["in_range"]), pct([c for c in hp if not c["before_stand"] and c["in_range"]], lambda c: c["returned"])]}
+    # ---- D. his second point
+    opens = {(p["rid"], p["tm"]): p for p in D["plays"] if p["play"] == "opening"}
+    firsts = [c for c in lives if c["first_flag"] and (c["rid"], c["tm"]) in opens]
+    for c in firsts:
+        o = opens[(c["rid"], c["tm"])]["open"]; th = o["their"]
+        c["eight_v_seven"] = o["stand"] == 8 and th["stand"] == 7 and th["back"] + th["waits"] >= 1 and not o["split"] and not th["split"]
+        played = [x for x in c["carriers"] if x[3] is None or x[3] > 0]
+        c["kept"] = "kept on the frontliner" if all(x[1] == "frontline" for x in played) else "handed to a midline player or a monk"
+        lt = o["later"]["300"]
+        c["flags_5"] = None if lt["ended"] else lt["lead"][0]; c["net_kills_5"] = lt["deaths"][1] - lt["deaths"][0]
+    Ff = [c for c in firsts if c["runner_line"] == "frontline"]
+    pr(f"\nD. His second point (tactics F53): at the opening, a first flag that came up on a frontliner, kept on him or handed to a midline player. {len(Ff)} first flags came up on a frontliner, of {len(firsts)}.")
+    pr("   Eight against seven = we have eight at the stand and they seven with their eighth back at home or waiting for the next flag, no split on either side. flags 5:00 = the tally at 5:00;")
+    pr("   net kills 5:00 = theirs dead less ours by 5:00.")
+    def orow(lab, V, into):
+        into[lab] = row = {"openings": len(V), "matches": len({c["rid"] for c in V}), "capped": pct(V, lambda c: c["captured"]), "returned": pct(V, lambda c: c["returned"]), "flags 5:00": mean(V, lambda c: c["flags_5"]), "net kills 5:00": mean(V, lambda c: c["net_kills_5"]),
+                           "win points 180": mean(V, lambda c: c["v"]["180"])}
+        if not V: pr(f"     {lab:52} {0:5}"); return
+        pr(f"     {lab:52} {len(V):5}  capped {row['capped']:3.0f}%  returned {row['returned']:3.0f}%  flags 5:00 {row['flags 5:00']:+5.2f}  net kills 5:00 {row['net kills 5:00']:+5.2f}  win pts 180 s {row['win points 180']:+5.1f}" + ("   (under the floor)" if len(V) < MIN_PLAYS else ""))
+    for lab, f in (("eight against seven", lambda c: c["eight_v_seven"]), ("every other opening", lambda c: not c["eight_v_seven"])):
+        X = [c for c in Ff if f(c)]; pr(f"   {lab} ({len(X)})"); o = res["opening"][lab] = {}
+        for k in ("kept on the frontliner", "handed to a midline player or a monk"): orow(k, [c for c in X if c["kept"] == k], o)
+    oh = [c for c in live if c["first_flag"] and c["by_line"] == "frontline" and c["then"] in ("a team mate took it up", "returned")]
+    res["opening"]["hand-offs"] = {"out of range": [sum(1 for c in oh if not c["in_range"]), pct([c for c in oh if not c["in_range"]], lambda c: c["returned"])], "in range": [sum(1 for c in oh if c["in_range"]), pct([c for c in oh if c["in_range"]], lambda c: c["returned"])]}
+    pr(f"   A frontliner's put-downs of a first flag ({len(oh)}): out of range, returned {res['opening']['hand-offs']['out of range'][1]:.0f}% of {res['opening']['hand-offs']['out of range'][0]}; in range, returned {res['opening']['hand-offs']['in range'][1]:.0f}% of {res['opening']['hand-offs']['in range'][0]}.")
+    pr("   The readings (first flags that came up on a frontliner):")
+    rd(Ff, "D1 a first flag kept on the frontliner is returned more often than one handed on", lambda c: c["kept"] == "kept on the frontliner", lambda c: True, +1, lambda c: c["returned"], "kept", "handed on")
+    rd([c for c in Ff if c["eight_v_seven"]], "D2 eight against seven, a first flag kept on the frontliner leaves the team worse off in flags at 5:00", lambda c: c["kept"] == "kept on the frontliner", lambda c: True, -1, lambda c: c["flags_5"] or 0.0, "kept", "handed on", unit=" flags")
+    rd(oh, "D3 a frontliner's first flag put down in range is returned more often than one put down out of range", lambda c: c["in_range"], lambda c: True, +1, lambda c: c["returned"], "in range", "out of range")
+    # ---- E. his third point
+    pr(f"\nE. His third point (tactics F54): who holds a held flag. {len(holds)} flags stood in hand at the stand 15 s or longer before they were capped, read from the second the hold began; the holder is the")
+    pr("   player who capped it, named by build (R-624). next flag = seconds from the cap to the team's next pickup (middle); NPCs lost = the team's own, anywhere, in the three minutes from the hold;")
+    pr("   holder runs next = the holder himself takes the next flag.")
+    extra = (("held s", lambda V: float(np.median([c["held_s"] for c in V])), lambda v: f"{v:6.0f}"), ("next flag", lambda V: float(np.median([c["next_s"] for c in V if c["next_s"] is not None] or [0])), lambda v: f"{v:7.0f} s"),
+             ("NPCs lost", lambda V: mean(V, lambda c: c["npcs_lost"]), lambda v: f"{v:9.2f}"), ("holder runs next", lambda V: pct(V, lambda c: c["holder_runs_next"]), lambda v: f"{v:15.0f}%"))
+    pr(_fell_head((("held s", 6), ("next flag", 9), ("NPCs lost", 9), ("holder runs next", 16))))
+    o = res["holding"]["by group"] = {}
+    for g_ in HOLD_GROUPS: _fell(pr, o, "held on " + g_, [c for c in holds if c["group"] == g_], extra)
+    pr("   By the holder's build:")
+    o = res["holding"]["by build"] = {}
+    for role, n in collections.Counter(_stem(c["holder"] or "?") for c in holds).most_common(12):
+        _fell(pr, o, role, [c for c in holds if _stem(c["holder"] or "?") == role], extra)
+    pr("   The readings:")
+    rd(holds, "E1 a flag held on the Mes/A costs more NPCs in the three minutes from the hold than one held on the stand mesmer", lambda c: c["group"] == HOLD_GROUPS[1], lambda c: c["group"] == HOLD_GROUPS[0], +1, lambda c: c["npcs_lost"], "the Mes/A", "the stand mesmer", unit=" NPCs")
+    rd(holds, "E2 a flag held on a frontliner leaves the team worse off three minutes on than one held on a midline player", lambda c: c["group"] == HOLD_GROUPS[3], lambda c: c["group"] in HOLD_GROUPS[:3], -1, lambda c: c["v"]["180"], "a frontliner", "a midline player", unit=" points")
+    # ---- moments to look at
+    pr("\nF. To look at: flags a frontliner put down in range that were returned (the time is the put-down)")
+    look = sorted([c for c in live if c["returned"] and c["in_range"] and c["by_line"] == "frontline"], key=lambda c: (M[c["rid"]]["date"], c["t"]))
+    res["look"] = [{"rid": c["rid"], "team": c["team"], "t": c["t"], "by": c["by"], "place": c["place"], "enemy_near": c["enemy_near"], "first_flag": c["first_flag"]} for c in look]
+    for c in look[-12:]: pr(f"     {link(c)}   {c['by']} puts it down at {c['place']}, {c['enemy_near']} in range" + (" (the first flag)" if c["first_flag"] else ""))
+    if out_json: json.dump(res, open(out_json, "w"), indent=1, default=lambda x: float(x) if isinstance(x, (np.floating, np.integer)) else str(x))
+    return res
+
+
 if __name__ == "__main__":
     a = sys.argv[1:]
     if len(a) >= 2 and a[0] == "test": report(a[1], a[a.index("--json") + 1] if "--json" in a else None)
@@ -2909,6 +3081,7 @@ if __name__ == "__main__":
     elif len(a) >= 2 and a[0] == "splits": splits(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 2 and a[0] == "pushes": pushes(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 2 and a[0] == "held": held(a[1], a[a.index("--json") + 1] if "--json" in a else None)
+    elif len(a) >= 2 and a[0] == "handoff": handoff(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 2 and a[0] == "res": base_res(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 2 and a[0] == "opening": opening_report(a[1], a[a.index("--json") + 1] if "--json" in a else None)
     elif len(a) >= 2 and a[0] == "numbers-cards": numbers_cards(a[1], a[2] if len(a) > 2 and not a[2].startswith("--") else "f1", a[a.index("--site") + 1] if "--site" in a else None)
