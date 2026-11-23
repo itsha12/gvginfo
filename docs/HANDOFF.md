@@ -43,7 +43,8 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
    replaced by the win model (the danger zone's sentence then goes on the Game review row), the replaced kinds
    retired, the causal map cleaned, SPEC and METHODS rewritten, the readability test, his list of R-398, the
    merge, then one Train batch on the same 506 matches (he starts it). Before it, a new trim keeps gvg.report's flag
-   objects (R-481), Lord damage record (R-632) and prot and death-recap items (R-636), and the engine reads them.
+   objects (R-481), Lord damage record (R-632) and prot and death-recap items (R-636), and the engine reads them;
+   who stripped which enchantment is read from our replays (R-637).
 4. With matches in: the split family again; the danger zone's two factors; the opening hand-off and held flags
    (and from them which builds are the primary defender or the flag runner, R-628).
 
@@ -57,7 +58,6 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 2. Eleven flag cards to mark (State). R-576's reading (held in base by five or more) is Claude's, and R-575 is
    applied to Nomad's as to Jade: bring him what either tells wrongly as it turns up in his games.
 3. Tolkano: no build (his word): give him date, guilds, hall and length with every example.
-4. Who stripped which prot (R-636): gvg.report's link (reports read from early Nov only) or our replays' (all games)?
 
 ## Running it
 - Train batch: the "Train batch" workflow (METHODS.md; `blind` stays no). Never queue two runs. At the next rebuild,
