@@ -439,8 +439,11 @@ against general principles rather than past games. Match-by-match evidence lives
   stand on the frontliner, where the enemy can simply hold its own flag and leave that team a player down, or force
   a hand-off close to them. A flag left on the ground never goes back by itself. Out of range is no enemy player
   within about an aggro bubble. **Claude (data, 4,324 put-downs by a living player):** returned 13% of the time out
-  of range, 24% with one enemy player in range and 41% with two or more. A return against a flag a team mate took up
-  reads -0.16 of a flag 90 s on and -2.8 points of winning, the two not starting level: less than a whole flag. With
+  of range, 24% with one enemy player in range and 41% with two or more; a hand-off with an enemy player in the
+  bubble is returned within 15 s 27% of the time, against 1% at a bubble and a half or more. A returned hand-off,
+  against one a team mate took up in the same range, costs a third of a flag a minute on (-0.32, -0.39 to -0.25), a
+  fifth at 90 s, and is made up by three minutes: the cost of one run, not of a whole flag; a flag that lay two
+  minutes before it was returned costs nothing on the tally. With
   the stand held at the pickup, a later flag run to the stand on the frontliner (416) and one handed on before it
   (185) are each returned 6% of the time and do not differ clearly in deaths, flags or the chance of winning; the
   frontliner's flag is capped a middle 43 s from the pickup against 66 s. A frontliner's hand-off in range is

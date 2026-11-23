@@ -122,14 +122,20 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   double run are told apart afterwards, by what the players go on to do (R-340); in the flag grid a hand-off counts
   as a single run (R-426).
 - A flag returned (R-620, R-622): a flag put down goes back only when an enemy player picks it up, never by itself;
-  his assumption is that it costs nearly a whole flag of advantage. Out of range of the enemy is no enemy player
+  its cost is the delay of the next cap, the boost it can lose and the player sent back, and what is measured is
+  the flag difference that follows a returned hand-off, since the tally already holds the boost and the player
+  (R-626). A contested return (a hand-off returned) is told apart from an uncontested one (a flag that lay and was
+  returned later). Out of range of the enemy is no enemy player
   within about an aggro bubble of the put-down (R-623). What the hand-off is read for: a frontliner up on flags who
   runs his flag all the way to the stand against one who hands it to a midline player; at the opening, eight
   against seven, a flag kept on the frontliner against one handed on out of range; and who holds a held flag, the
   primary defender or flag runner going by build (R-624). *As built* (`jobs.flag_hands`, a record beside the plays):
   one record a put-down (who and of which line, dead or not, where, the enemy in range, and what became of it: a
-  team mate took it up, its carrier took it up again, returned, left lying) and one a flag life. The second of a
-  return is not kept until the rebuild (R-481).
+  team mate took it up, its carrier took it up again, returned, left lying) and one a flag life. A hand-off is a
+  living player putting the flag down with a team mate within an aggro bubble of it (Claude's draft). Returned in
+  the next 15 s (R-629) is returned with an enemy player standing on the flag within 15 s of the put-down: an
+  estimate until the rebuild keeps the second of a return (R-481). Up on flags, for the frontliner's run, is the
+  held stand (R-627). Which builds are the primary defender or flag runner is left to the data (R-628).
 - Flag lead is a tally in which the stand counts as one flag: about half a flag from 0.35, a flag from 0.8, a flag and
   a half from 1.3, two flags from 1.7 (R-408, in his units of R-375). Flag position is never judged from who holds the
   stand (R-045). A lead is something a team keeps or gives up for something else (R-412). The runner's cost is no fixed

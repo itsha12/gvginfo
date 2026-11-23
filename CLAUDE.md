@@ -446,15 +446,21 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   start of a hold), and `put_downs`, one a carry that ended on the ground (who and of which line, dead or not, where, the
   living enemy players within an aggro bubble of it, `enemy_near`, R-623, and what became of it: a team mate took it up,
   its carrier took it up again, returned, left lying). A flag goes back only when an enemy player picks it up (R-622).
-  The second of a return is not kept: `flag_lives` infers it 3 to 69 s late on RJT v RACK (R-481, for the rebuild); do
-  not read anything from when a flag was returned. `cases.py handoff <plays file>` (report
+  The second of a return is an estimate until the rebuild (R-481): `flag_lives` infers it from the last enemy on the
+  flag, 3 to 69 s late on RJT v RACK; the put-down carries `first_enemy_s`, the first enemy to stand on it, which has
+  those four known returns right, and `returned_soon` (returned with an enemy on it within 15 s, `RETURN_SOON_S`, his
+  window, R-629). A hand-off (`handoff`) is a living player putting the flag down with a team mate within an aggro
+  bubble of it: Claude's draft of the word, read before the result. `cases.py handoff <plays file>` (report
   `data/model/handoff_cases.json`): A, the record, with X1 and X2 (in range a flag is returned more often: both hold);
-  B, what a return costs against a flag a team mate took up (it reads -0.16 of a flag, against his "nearly a whole
-  flag": say both, and that the two groups do not start level); C, his first point (F52), a later flag run by a
-  frontliner with the stand held at the pickup, run to the stand on him against handed on before it; D, his second
+  B, a hand-off returned against a flag that lay and was returned later (R-626, "contested v uncontested"), and what
+  a returned hand-off costs in flags against one a team mate took up in the same range (a third of a flag a minute
+  on, made up by three minutes; the two do not start level: say so), with his truth T13 (R-629, in
+  `tools/golden/truths.py`: it reads `flag_cost[rid].flag_hands`, not a play) at 1.5 and at 2 bubbles; C, his first
+  point (F52), a later flag run by a frontliner with the stand held at the pickup (R-627: that is his case), run to
+  the stand on him against handed on before it; D, his second
   (F53), a first flag on a frontliner at eight against seven, kept or handed on; E, his third (F54), who holds a held
   flag, the holder named by build (R-624; the groups are Claude's, and which builds are the primary defender or the flag
-  runner beyond the Mes/A is his to say); F, moments to look at. How a flag is carried follows the spot a team is in:
+  runner is left to the data, R-628: do not ask him again); F, moments to look at. How a flag is carried follows the spot a team is in:
   none of it is advice. D and E are under the floor at 564 matches. A team held in its base is no decision family and
   is read as execution with the measurements of R-572 (R-619, R-621): no stage 3 for it.
   After any change to these records compare the plays with the run before, `open`, `res` and `beside.flag.line` left

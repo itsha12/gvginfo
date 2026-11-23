@@ -2,6 +2,14 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-23, early afternoon (the same chat): R-626 to R-629; the hand-off returned, his known truth T13
+- His word. R-626: a return costs "all of the above", "contested v uncontested" told apart, and "we just need to measure the flag difference that results from a returned hand-off flag". R-627: the held stand is his case. R-628: the builds are left to the data. R-629: one known truth, in his words.
+- Built (branch): on every put-down `handoff`, `first_enemy_s`, `return_by_s`, `returned_soon` (`RETURN_SOON_S` 15); `cases.py handoff`, B, rewritten; T13 in `truths.py`. 33,371 plays and the records the same as the run before; fifteen truths hold.
+- The return's second: the first enemy to stand on the flag reads 3, 0, 0 and 0 s on RJT v RACK's four known returns (3, 2, 1 and 9 s in truth), the last enemy 19, 19, 4 and 78 s. All four are returned within 15 s by it.
+- T13: a hand-off with an enemy player in the bubble is returned within 15 s in 27% (1,029), at 1.5 bubbles or more in 1% (1,699): +26% (23 to 29), holds; the same at 2 bubbles.
+- A returned hand-off against one a team mate took up, both in range (277 against 537): -0.32 of a flag at 60 s (-0.39 to -0.25), -0.19 at 90 s, -0.06 at 180 s (not clear); -4.2 points, from 30% against 45%. A flag that lay two minutes or longer first (199): +0.06 at 60 s.
+- Filed: R-626 to R-629, DEFINITIONS, CLAUDE.md, tactics F52.
+
 ## 2026-11-23, midday (the same chat): R-621 to R-625; the hand-off record and his three points
 - His word: a team held in its base is read as execution, no family (R-621); a flag goes back "only when an enemy picks it up" (R-622); out of range is "about an aggro bubble" (R-623); the primary defender goes "by built" (R-624); build the record and the readings (R-625).
 - Built (branch): `jobs.flag_hands`, one record a flag life and one a put-down, kept in `flag_cost`; `cases.py handoff` (`handoff_cases.json`). Every counted match: 33,371 plays and the records the same as the run before, no errors.
