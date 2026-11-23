@@ -309,22 +309,22 @@ against general principles rather than past games. Match-by-match evidence lives
   gets greedy, stays through the res and is counter-killed. What makes it matter is where the team stands round the
   res shrine, the NPCs on it and its health: very close to the shrine or deep past it, in the pit with knights,
   archers or footmen on its players, after a long fight that has cost its monks their energy. It can pull out, run a
-  flag and be safe instead. One player basing onto a split is a different thing. **Claude (data):** a main team that
-  stays with two or more of three marks 20 s before the res (by their res shrine, NPCs on two or more of its
-  players, heavy damage in the minute before) loses two or more players in 2% of stays against 0% with fewer, and
-  with all three loses one in 12% and two or more in 4% (136 stays). [yM v hook] [Crew v One] [Men v BcS]
-  [Book v hook] [DUM v ohno] [Men v NwAy]
+  flag and be safe instead. One player basing onto a split is a different thing. **Claude (data):** the
+  danger spot (half or more of the main team past their res shrine, two or more NPCs hitting them, heavy damage in
+  the minute before) comes up in 104 of 564 matches; nearly every team stays (117 of 118), one of its players dies
+  in 13% of stays and two or more within a minute in 9%. [yM v hook] [Crew v One] [Book v hook] [Men v NwAy]
 - `P18` **Denning:** Staying through a base res is a gamble. Deep by the shrine, NPCs on the players and heavy
   damage in the minute before are symptoms of staying (low health is not a sign to read: by then they are already
   likely to die); a team that falls out sheds all three: lower damage and time to recover energy, no NPCs on it, out
   of range of the players who base. Against that, the seconds before a base res are a very good chance to take NPCs
   and more kills. His guess: it is usually better to stay and risk it, unless the circumstances say otherwise (the
   build, the flag capped, the NPCs, how many are basing, morale, how late it is for the Amulet of Protection).
-  **Claude (data, 524 stays against 58 teams that fell out):** by a minute after the res the team that stays has
-  +1.00 more NPCs (+0.73 to +1.26) and +1.36 more kills (+0.97 to +1.71) and no more deaths; two or more of its
-  players die in 4%. Its chance of winning three minutes after leans to staying (+4.1 points, -0.1 to +8.2) and is
-  not yet clear. Staying is clearly ahead holding the stand, with one dead to come back, and with one or none of the
-  three marks; with two or three marks it shows no gain (-1.8, -5.2 to +1.0), on few teams that fell out.
+  The engine is to say when staying is the correct or the incorrect call. **Claude (data, 117 stays in the danger
+  spot):** the stays that take deaths are those of a team not far ahead (its chance of winning in the lowest third:
+  two or more die in 23% against 1%) and against an enemy that has not died much (their morale in the highest third:
+  17% against 4%); a team low on health is 5.7 points worse off three minutes on. The three factors themselves, the
+  number basing and the monks in the base tell nothing apart. When staying is the wrong call cannot be said yet: the
+  reading does not hold on unseen matches, and almost nobody falls out to compare with.
 - `P19` **Denning:** With significantly lower morale than the enemy, staying through their base res is probably more
   dangerous. For the Amulet of Protection, 12 minutes is the breakpoint. **Claude (data):** a team that stays with
   morale no higher than theirs takes 0.53 deaths by a minute after the res against 0.27 (+0.03 to +0.51) and fewer
@@ -421,12 +421,9 @@ against general principles rather than past games. Match-by-match evidence lives
   on every count as it fell, but not clearly on matches the advice never saw: no advice from it.
 - `F51` **Denning:** A team holds its flag either because it is already in control of the stand, or because it
   wants the 8v8 without the flag game. In control of the stand means having the flag stand captured; standing
-  nearer the stand is not a kind of control. **Claude (data):** a first flag held at the stand pays where the other
-  team caps first into it (43 of 107 holds: +0.27 flags at 5:00, +0.05 to +0.50, and +8.6 points of winning, +4.1
-  to +13.8, against teams that do not hold); where nobody caps while it is held (50) little shows; where both teams
-  hold, nothing can be read.
-
-### Fighting with the flag
+  nearer the stand is not a kind of control. **Claude (data):** a first flag held 15 s or more at the stand reads better as
+  it fell (+4.1 points of winning at 5:00, +1.0 to +7.2; +8.0 in an 8v8) but is not clear on matches the advice
+  never saw; where both teams hold, nothing can be read.
 - `F8` **Denning:** Some games are fought 8v8 (holding the flag) or 7v7 (1 player running the flag).
 - `F9` **Denning:** The flag game: 2 or 3 damage, the prot and the 7 monk push the enemy flag, the enemy does the same,
   and each team defends its own flagger with 1 or 2 damage and the 8 monk.

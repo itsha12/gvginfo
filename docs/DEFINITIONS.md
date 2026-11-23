@@ -230,9 +230,12 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - A team holds its flag for one of two reasons (R-600): it is already in control of the stand, or it wants the 8v8
   without the flag game. In control of the stand is having the flag stand captured (R-604): there is no concept of
   control by standing nearer it. A team that has capped and holds its next flag has a flag in hand (R-553), which is
-  not the opening's first flag. *As built:* a first flag held 15 s or more at the stand is told by what the other
-  team's flag did while it was held: nobody capped, they capped (the hold that waits for them to cap first), or
-  their flag was already up. Where both teams hold, the two make the same call and nothing is read from it.
+  not the opening's first flag. *As built:* a hold is a first flag in hand at the stand 15 s or more before it is
+  capped; where both teams hold, the two make the same call and nothing is read from it.
+- The opening's decisions are seven (R-611): who goes where from the gates; whether to bring the first flag up and
+  on whom; at the stand, cap or hold; hand the flag to another player; send a player back for the next flag before
+  anyone has capped; split, or answer a split, in the first 3:00; and what to do with a flag when they bring none.
+  Who caps first, and whether anybody caps, is what the two teams' choices come to and is never a call (R-608).
 - What a call at the opening is judged on (R-596): flag advantage and kills first; then, to a smaller extent, the
   boosts and the chance of winning at 5:00 and 8:00; and the NPCs lost to a split. That teams do different things
   on what they see shows a decision is made; whether it is the right one is read from the data, each call from the
@@ -327,25 +330,20 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   health and energy with NPCs on its players, while the enemy resses at nearly full strength. *As built:* a stay
   carries the health of the players in the base as the res lands, how many stand right inside (the pit or the base,
   not a door) and the pit NPCs alive; energy is not in the replay.
-- The base res as a decision (R-592, R-595): the greedy stay. It is the main team's (a res onto a split is another
-  thing), and what makes it matter is the place round the res shrine, the NPCs on the players and the party's health:
-  a team in a great position that stays deep in their base, worn by the fight, as they res. *As built:* each base res
-  play carries how the players in their base stand 20 s before the res, when staying or leaving is still theirs to
-  choose, and as it lands (health, each player's walk from their res shrine and how many are past it, NPC damage on
-  them in the 20 s before, all damage taken in the minute before, how many are of the main team). The report reads
-  three marks from it (R-602: by their res shrine, half or more past it or nearer it than the middle stay; NPCs on
-  two or more; damage taken in the upper third; low health is not one, "they are already likely to die"): Claude's
-  drafts, the report's own, read by no play. No line for "base" is ruled.
-- The base res is a gamble (R-601): falling out takes away the damage, the NPCs and the range of the players who
-  base; staying risks deaths for the NPCs and kills of the seconds before the res. Which is better is read from the
-  data, with the circumstances he names (the build, the flag capped, the NPCs, how many are basing, morale, how late
-  it is for the Amulet of Protection). *As built* (`jobs.res_spots`, a record beside the plays): a team with three
-  or more in their base 40 s before the res and enemy dead to come back; stayed is half or more of its living
-  players still in the base as the res lands, fell out is none of them, with fewer than half killed before it
-  (R-605: a team gone a middle 12 s before the res has fallen out as he means it). The circumstances read are his
-  (R-606): the flag, their pit NPCs, their dead to come back, each team's morale and the difference between them
-  ("If you have significantly lower morale than enemy, staying is probably more dangerous"), the clock on either
-  side of 12:00, the breakpoint for the Amulet of Protection (R-603), the marks, and the monks in their base.
+- The base res as a decision (R-592, R-609, R-610): only in the danger spot. It is the main team's (a res onto a
+  split is another thing, R-595), a rare family, and in it teams are not pushed out. The danger spot is his three
+  factors together: half of the team past their res shrine, two or more NPCs attacking them, and heavy damage taken
+  in the minute before; low health is not one ("they are already likely to die", R-602). *As built* (one reading,
+  `jobs._res_stand`): three or more of the main team in their base 20 s before the res, half or more of those past
+  the shrine by the walk, two or more enemy NPCs hitting them in the 20 s before, 300 or more damage a player in the
+  minute before (Claude's draft from the data). The telling of a base res outside it is not yet changed.
+- Staying in the danger spot is a gamble (R-601): falling out takes away the damage, the NPCs and the range of the
+  players who base; staying risks deaths for the NPCs and kills of the seconds before the res. The engine is to say
+  when staying is the correct or the incorrect call (R-610): not built, the reading does not yet hold on unseen
+  matches. What is read: why some stays take deaths and some do not, by the circumstances he names (R-606: the
+  flag, their pit NPCs, their dead to come back, each team's morale and the difference, the clock on either side of
+  12:00, the breakpoint for the Amulet of Protection, R-603, the monks in their base). A team gone a middle 12 s
+  before the res has fallen out (R-605).
 - Taken out: the race back when a split ends (R-448; it was item 6 of R-434).
 
 ## Collapse

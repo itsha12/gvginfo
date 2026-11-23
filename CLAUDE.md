@@ -443,46 +443,38 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   word: a flag returned at the hand-off, which is not told apart from a flag lost another way (N9 runs against him as worded).
   After any change to these records compare the plays with the run before, `open`, `res` and `beside.flag.line` left
   out: nothing may differ.
-  From his answers of 2026-11-22, night (R-591 to R-596). The base res is a decision, the greedy stay (R-592, R-595): a
-  base res play carries `res.early` and `res.at_res` (`jobs._res_stand`: how the players in their base stand 20 s before
-  the res, when staying or leaving is still theirs, and as it lands: health, each player's distance from their res shrine
-  and how many are past it, NPC damage on them, damage taken in the minute before, how many are of the main team), on a
-  team that leaves too (`early`). `cases.py res`, section D, reads the main team's stays by three marks (`GREEDY`, R-602: by
-  their res shrine, NPCs on them, worn; low health is not one; the lines are Claude's drafts, the report's own, each taken from the data) and prints them on the eight games
-  he described (`HIS_RES`: six that are it, two that are a res onto a split): change the marks against those, never by an
-  exception; hook v Men 6:00 is read against him (four players past the shrine, read as the main team). Hardly any team
-  leaves with the marks on, so staying against leaving is no reading (B9). The opening is judged on flags and kills
-  first, then the boosts and the chance of winning at 5:00 and 8:00, with the NPCs (R-596): `cases.py opening`, section
-  D (`_open_cmp`: each call from the side of the team that makes it, set level on strength alone, since an opening has no
-  minute before it; under the floor a call is shown as it fell) and section E (`_open_scenario`: like spots and the test
-  on unseen matches where teams divide, matched on `OPEN_VARS`). The opening play carries `open.next` and `their_next`
-  (when the next runner turned for home: "sends a player back before a cap"), `runners`, `roles` and `first_death`. The
-  usual split response is his definition (R-593, R-598, `usual_responder(D, monks=False)`: the player other than a monk a
-  guild most often sends first, the match's runners left out; with the monks counted it names the 8 Monk for nearly every
-  guild). Pushing the flagger is a decision of its own and not an answer to their run (R-591): never fold it into the flag
-  family's like spots. It is not a family (R-597): its readings (`cases.py pushes`, section E, his five questions on
-  `their_runs`, kills and deaths also in the 60 s before) stay a report, with no like spots, test or cards. No verdict of
-  any of these is advice.
-  From his answers of 2026-11-22, late night (R-597 to R-602). The base res is a gamble (R-601): `jobs.res_spots`, kept
-  beside the plays in the run's extras (`flag_cost[rid].res_spots`; it tells no play, and the prices are not fitted on it),
-  is one record a base res and team with three or more in their base `RES_SPOT_S` before it and enemy dead to come back:
-  how they stand, the position, who is still in the base as the res lands, and the fixed record at the res, a minute and
-  three minutes after it. `cases.py res`, section E (`gamble`, `spot_cases`): stayed against fell out as it fell, the
-  readings G1 to G4, like spots with the test on unseen matches (`SPOT_VARS`; the like-spots reads named 60, 90 and 180
-  are here the res, a minute after and three minutes after), and what staying is worth by each of his circumstances
-  (where to look, never advice; the build is only the monks in their base). Why a team holds its flag (R-600, R-604): in control of the stand is having the flag stand
-  captured, so that kind of hold is the flag in hand (R-553) and not the opening's; `cases.py opening`, 3b, tells a first
-  flag held at the stand by what the other team's flag did while it was held (`HOLD_KINDS`: nobody capped, they capped,
-  theirs already up) and reads nothing where both teams hold. Tried and taken out at his word, never to be built again:
-  a team "having the stand" because its main team stands nearer it ("There isn't really a concept of 'in control of
-  stand' being closer to stand").
-  From his answers towards midnight (R-603 to R-607): the gamble's clock is read on either side of 12:00, the breakpoint
-  for the Amulet of Protection (R-603; the res of 12:00 is put after it); the morale difference is one of the
-  circumstances and his guess on it is the readings G5 (R-606); a team gone a middle 12 s before the res has fallen out
-  (R-605); hook v Men 6:00 is left as read and is not counted against the marks (R-607, `HIS_RES`).
-  A difference between two calls at the opening is between teams that make the call and teams that do not, their own
-  opponents among them: say so whenever a size is quoted (cap first against second is the gap between the two teams of
-  a match).
+  From his answers of 2026-11-22 and 23 (R-591 to R-611), as built now.
+  The base res is a decision only in the danger spot (R-592, R-609, R-610): the main team, three or more of it in their
+  base, with his three factors on 20 s before the res: half or more of them past their res shrine, two or more enemy NPCs
+  hitting them, and heavy damage in the minute before (`RES_WORN`, Claude's draft from the data). One reading, in the
+  engine: `jobs._res_stand` (`marks`, `danger`), on every base res play as `res.early` (20 s before, when staying or
+  leaving is still the team's) and `res.at_res`, and on the res spots. Low health is not a factor (R-602). The telling is
+  not yet changed: outside the danger spot a base res is told as before, and 19 of the 25 base res rows he graded Classic
+  lie outside it: ask him before any play is taken out (R-494). `cases.py res` (`danger_report`): D, where the danger spot
+  is and what a stay there cost and brought, with his eight games (`HIS_RES`; Men v BcS 6:00 and DUM v ohno 8:00 are
+  outside it as he defined it: bring him that, never an exception; hook v Men 6:00 is left as read, R-607); E, why some
+  stays take deaths and some do not, by what the team can know before the res (thirds of the danger spot's own stays; the
+  readings D1 to D8; the clock on either side of 12:00, the breakpoint for the Amulet of Protection, R-603; the morale
+  difference, R-606); F, when the stay is the right call: like spots among the stays with the test on unseen matches (T1
+  to T3), set against holding what the team had, since almost nobody falls out of the danger spot (`jobs.res_spots`, the
+  record 40 s before the res kept beside the plays in `flag_cost[rid]`, R-601, R-605, says who does; the prices are not
+  fitted on it). No reading of F is a verdict until T1 holds: on 2026-11-23 it does not, and the danger spot's stays have
+  too few deaths (15) to carry a fitted input (SPEC 5, rule 3).
+  The opening is set out on his seven decisions (R-611; `cases.py opening`): from the gates (`GATES`), the first flag and on
+  whom, cap or hold at the stand, hand the flag on, send a player back before a cap (`open.next`), a split in the first
+  3:00, and a flag against none. Each is judged on flags and kills first, then the boosts and the chance of winning at 5:00
+  and 8:00, with the NPCs (R-596, R-599), from the side of the team that makes it and set level on strength alone, since an
+  opening has no minute before it (`_open_cmp`; under the floor a call is shown as it fell); like spots and the unseen test
+  where teams divide (`_open_scenario`, `OPEN_VARS`). Who caps first, and whether anybody caps, is what two teams' choices
+  come to and is never a call (R-608): N1 to N4 only say what follows it. In control of the stand is having the flag stand
+  captured (R-604): a hold by a team that has capped is the flag in hand (R-553), not the opening's. Tried and taken out at
+  his word, never to be built again: a team "having the stand" because its main team stands nearer it; and the first-flag
+  holds told by what the other team's flag did meanwhile. A difference between two calls counts the opponents among the
+  others, who lose what the callers gain: say so whenever a size is quoted. The usual split response is the player other
+  than a monk a guild most often sends first, the match's runners left out (R-593, R-598, `usual_responder(D,
+  monks=False)`). Pushing the flagger is a decision of its own and no answer to their run (R-591), and no family (R-597):
+  its readings (`cases.py pushes`, section E, his five questions on `their_runs`) stay a report. No verdict of any of
+  these is advice.
 - A numbers advantage from kills is not a decision family (R-557: the team up keeps killing and follows the team down,
   whose own choices read as near forced; the numbers that are decisions are those a team chose to make, a runner, a
   split or a collapse). Its cards are not marked and its view is off the page (the `ADVICE.numbers` entry in

@@ -8,21 +8,21 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 > out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-22, midnight: R-591 to R-607 answered and built; the opening, base res and push reports written again)
+## State (2026-11-23: R-591 to R-611 answered; the opening on his seven decisions, the base res on the danger spot)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` and lands in one
   piece, then one rebuild (R-322). 658 replays stored; 564 count (R-477); 506 matches trained. No workflow run in
-  progress. Rulings run to R-609. The baseline (R-491) is the branch `baseline-2026-11-15`.
+  progress. Rulings run to R-611. The baseline (R-491) is the branch `baseline-2026-11-15`.
 - Graded and filed (set f1): thirteen games. Numbers from kills: no family (R-557). The push: no family (R-597).
   Splits read in both halves, no advice at the matches in hand; no more matches until the engine is ready (R-570).
-- Built this chat (CLAUDE.md says how each is read): the opening judged call by call on flags, kills, NPCs, boosts
-  and the chance of winning at 5:00 and 8:00 (R-596, R-599); the two kinds of hold (R-600); the usual split
-  response, a player other than a monk (R-593, R-598); the greedy stay by three marks (R-595, R-602); the gamble of
-  the base res from `res_spots`, a record beside the plays (R-601); the push on his five questions (R-591).
-- What they say: no opening call is advice (cap first or second in an 8 v 8 is not clear; a held first flag pays
-  where the other team caps first into it, R-604, but holding is not clear on unseen matches; eight against seven
-  nearly all hold). Staying through a base res takes more NPCs and kills and no more deaths, and leans better in
-  the chance of winning without being clear; with two or three marks on it shows no gain, and with morale no
-  higher than theirs it costs more deaths (R-606), each on few teams that fell out.
+- Built in this chat (CLAUDE.md says how each is read): the opening on his seven decisions (R-611), judged on
+  flags, kills, NPCs, boosts and the chance of winning at 5:00 and 8:00; the usual split response, a player other
+  than a monk (R-598); the danger spot of the base res as one reading in the engine (R-610) with the report on why
+  some stays take deaths; the res spots, a record beside the plays (R-601); the push on his five questions.
+- What they say. The opening: no decision is advice (a split from the gates trades kills for NPCs; holding reads
+  better as it fell, not on unseen matches; the rest show nothing). The danger spot: 118 in 104 matches, 117 stay,
+  one dies in 13%, two or more within a minute in 9%; the deaths fall on teams not far ahead and against an enemy
+  that has not died much; when staying is the wrong call is NOT built (the reading fails on unseen matches, 15
+  stays with a death, one team left).
 - Last checkpoint (every counted match, this engine): 564 matches, 33,371 plays, no errors; fourteen truths hold;
   313 Classic rows pass, none fail; 136 history rows hold, 5 do not; self-check 6 in 4. Opening, base res and
   push reports written on it; the other six unchanged. Not run again on it: the gate and the line-up.
@@ -31,9 +31,9 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
   3:21, game 15's 8:19, 12:11, 13:29); four are gone.
 
 ## Next (in order): the engine substantially finished before the merge and training (R-571, R-572)
-1. His answers to "Open for Denning" 1, then: the opening rebuilt on his list of decisions (R-608), the base res
-   told and assessed only in the danger position (R-609); stage 3 for a team held in its base; the hand-off told
-   apart (a first flag returned as it changes hands).
+1. His answers to "Open for Denning" 1, then: the base res told as a decision only in the danger spot (R-609),
+   as he rules on his graded rows; stage 3 for a team held in its base; the hand-off told apart (a first flag
+   returned as it changes hands).
 2. The Lord push: picked rows from late games.
 3. The measurements (R-572): enemy execution (2.12), the interaction rule (2.13), NPC damage by kind of bar
    (R-433), a measure of what is at stake (R-509), the decision to split at all (R-558).
@@ -41,17 +41,18 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
    replaced by the win model, the replaced kinds retired, the causal map cleaned, SPEC and METHODS rewritten,
    the readability test, his list of R-398, the merge, then one Train batch on the same 506 matches (he starts
    it; keep gvg.report's flag objects at that rebuild, R-481).
-5. The split family again when matches are in (players who res at the base onto a split still read as a collapse).
+5. With matches in: the split family again; the danger spot's correct or incorrect call (R-610) read again.
 
 ## Open for Denning
 0. Held at his word (R-554, his "make sure you remember"): the cards for a flag in hand, with R-553 to build, and
    for a double run from the sender's side: raise them when more matches are trained. The execution list (R-557).
 1. Put to him on 2026-11-23, in the chat; set out again if he has not answered:
-   - The opening's decisions as a list (from the gates: eight, a player back, a split; the first flag, on whom;
-     at the stand: cap or hold; hand it on; send a player back before a cap; a split in the first 3:00): what he
-     would add or strike. Then rebuild `cases.py opening` on his list and take `HOLD_KINDS` out (R-608).
-   - The danger position of the base res (R-609): the three marks are on in half the stays, so they are not it.
-     Then tell and assess the base res only there.
+   - His graded rows: 19 of his 25 Classic base res rows lie outside the danger spot. Keep them told as context
+     with no call (Claude's recommendation), or stop telling them and replace the grades?
+   - Two of his six greedy stays are outside the danger spot as he defined it: Men v BcS 6:00 (one player past
+     the shrine, no NPC on them) and DUM v ohno 8:00 (74 damage a player). Leave them out, or loosen a factor?
+   - The danger spot's verdict: until it holds on unseen matches, show the risk (not far ahead, an enemy that has
+     not died much, low health) beside a danger-spot stay with no verdict?
 2. Eleven flag cards to mark (State). R-576's reading (held in base by five or more) is Claude's, and R-575 is
    applied to Nomad's as to Jade: bring him what either tells wrongly as it turns up in his games.
 3. Tolkano: no build (his word): give him date, guilds, hall and length with every example.

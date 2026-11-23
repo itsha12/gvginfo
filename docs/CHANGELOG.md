@@ -2,6 +2,14 @@
 
 Dated session log of the GvG Info analysis engine and portal, newest first. Entries were moved here from docs/HANDOFF.md and tools/replay_analysis/METHODS.md, which now hold current state only. Future sessions add at most ten lines each at the top. Decisions in these entries that are still in force are numbered in docs/RULINGS.md.
 
+## 2026-11-23, later (the same chat): R-610 and R-611; the opening on seven decisions, the base res on the danger spot
+- His answers. R-611: "Proceed with those 7." R-610: the danger spot is his three factors ("Half of team past res shrine, 2 or more NPCs attacking them, heavy damage taken in the minute before"), and the engine is to say "when that is the correct/incorrect call".
+- Built (branch): the danger spot as one reading in the engine (`jobs._res_stand`: `marks`, `danger`, on every base res play and res spot; `RES_WORN` 300). Records only: 33,371 plays the same but for `res`; 313 Classic rows pass; fourteen truths hold; self-check 6 in 4.
+- The base res (`cases.py res`, D to F): 118 danger spots in 104 of 564 matches, 117 stayed; one dies in 13% (7 to 18), two or more within 60 s in 9%. Deaths go with a team not far ahead (two or more die 23% against 1%) and with their morale high (17% against 4%); low health is -5.7 points three minutes on. The reading of each stay from like stays fails on unseen matches (T1 -1.8, -7.9 to +3.6): no correct or incorrect call yet.
+- Four of his six greedy stays are in the danger spot (not Men v BcS 6:00, DUM v ohno 8:00); 19 of his 25 Classic base res rows are outside it: no play taken out, put to him.
+- The opening (`cases.py opening`) on the seven decisions; who caps first is no call (R-608), the holds by what the other team did are out. A split from the gates: +1.47 NPCs, -1.02 kills, winning level. Holding: +4.1 points at 5:00 as it fell (+1.0 to +7.2), not clear on unseen matches. On whom the flag comes up, handing it on, a player sent back before a cap: nothing.
+- Filed: R-610, R-611, DEFINITIONS, CLAUDE.md, tactics P17, P18, F51.
+
 ## 2026-11-23 (the same chat): R-608 and R-609; nothing built
 - His word: "Nobody capping is no one's decision" (R-608: who caps first is what two teams' choices come to, never a call); the base res is shown and assessed "only ... if teams are in the danger position", a rare family in which teams are not pushed out (R-609).
 - Set out for him in the chat: the opening's decisions as a list with what teams do, what is built for the base res, and the next steps. Found while doing it: two or more of the three marks are on in 294 of 582 spots (208 matches), so the marks are not yet his danger position.
