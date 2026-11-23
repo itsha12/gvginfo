@@ -106,6 +106,7 @@ RES_SPOT_AFTER_S = (40, 100, 220)      # ... and what followed at the res, a min
 OPEN_LATER_KEYS = ("to", "ended", "deaths", "npcs", "npc_kinds", "lord", "morale_parts", "caps", "boosts", "lead", "lead_change", "stand")      # what the later record of an opening keeps: the hard results, and what the price of a position reads
 RES_READ_S = 20                        # the base res is a decision this long before the res (the play's own t0): what the team in their base could see then is `res.early`
 RES_NPC_S = 20                         # NPC damage on the players in their base is counted over this long before the reading (R-595: "NPCs on them"; for the record only, no play reads it)
+RES_WORN = 300                         # heavy damage in the minute before: this much or more a player (the upper third of what a main team in their base had taken, 304, on 2026-11-23; Claude's draft from the data)
 RES_TAKEN_S = 60                       # ... and all damage on them over this long (his "it took a lot of monk energy (i.e. they took a lot of dmg)": energy is not in the replay, damage taken is)
 FLAG_AFTER_S = (60, 90, 180)           # what followed a flag decision, read at three seconds so that the effect can be followed as it grows and fades (R-543; 90 and 180 s are R-294's; 120 s was read too and dropped, R-544: it sat between the two and changed no verdict)
 FLAG_BEFORE_S = 60                     # how long before a flag decision the position is read again, for the test of a call against what came before it
@@ -1437,6 +1438,11 @@ def _res_stand(M, tm, ids, u):
     out["of_main"] = sum(1 for a in in_ if a in mt)
     out["monks"] = sum(1 for a in in_ if M.m.A[a].get("p") == "Monk" and not M.m.roles[a].startswith("Monk ") and "WoC" not in M.m.roles[a])      # backline monks among them (a smiter is damage, R-457)
     out["alive"] = [sum(1 for a in st.players[k] if M.AL[a][u]) for k in (tm, foe)]
+    # The danger spot (R-610, his three factors: "Half of team past res shrine, 2 or more NPCs attacking them, heavy damage taken in the minute before. I think
+    # this is the danger spot"): half or more of the players in their base past the shrine, two or more enemy NPCs hitting them, and RES_WORN or more damage a
+    # player in the minute before; for the main team, three or more of it (a res onto a split is another thing, R-595). One reading, here: the reports ask for it.
+    out["marks"] = [bool(in_) and out.get("past_shrine") is not None and out["past_shrine"] * 2 >= len(in_), out["npcs_hitting"] >= 2, out["taken"] is not None and out["taken"] >= RES_WORN]
+    out["danger"] = len(in_) >= 3 and out["of_main"] * 2 > len(in_) and all(out["marks"])
     return out
 
 
