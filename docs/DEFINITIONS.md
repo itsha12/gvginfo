@@ -227,10 +227,12 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   (`common.line`), the record 5 and 8 minutes from the gates (R-599), when each team's next runner turned for home,
   who ran its flags, the first death of the match and how far each main team stands from the flag stand 10, 20 and
   30 s after the teams meet.
-- A team holds its flag at the opening for one of two reasons (R-600): it is already in control of the stand, or it
-  wants the 8v8 without the flag game. *As built:* "the stand already its own" is its main team nearer the flag
-  stand than the other's by more than the middle difference, 10 s after the teams meet (Claude's draft); where both
-  teams hold, the two make the same call and nothing is read from it.
+- A team holds its flag for one of two reasons (R-600): it is already in control of the stand, or it wants the 8v8
+  without the flag game. In control of the stand is having the flag stand captured (R-604): there is no concept of
+  control by standing nearer it. A team that has capped and holds its next flag has a flag in hand (R-553), which is
+  not the opening's first flag. *As built:* a first flag held 15 s or more at the stand is told by what the other
+  team's flag did while it was held: nobody capped, they capped (the hold that waits for them to cap first), or
+  their flag was already up. Where both teams hold, the two make the same call and nothing is read from it.
 - What a call at the opening is judged on (R-596): flag advantage and kills first; then, to a smaller extent, the
   boosts and the chance of winning at 5:00 and 8:00; and the NPCs lost to a split. That teams do different things
   on what they see shows a decision is made; whether it is the right one is read from the data, each call from the
@@ -339,7 +341,11 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   data, with the circumstances he names (the build, the flag capped, the NPCs, how many are basing, morale, how late
   it is for the Amulet of Protection). *As built* (`jobs.res_spots`, a record beside the plays): a team with three
   or more in their base 40 s before the res and enemy dead to come back; stayed is half or more of its living
-  players still in the base as the res lands, fell out is none of them, with fewer than half killed before it.
+  players still in the base as the res lands, fell out is none of them, with fewer than half killed before it
+  (R-605: a team gone a middle 12 s before the res has fallen out as he means it). The circumstances read are his
+  (R-606): the flag, their pit NPCs, their dead to come back, each team's morale and the difference between them
+  ("If you have significantly lower morale than enemy, staying is probably more dangerous"), the clock on either
+  side of 12:00, the breakpoint for the Amulet of Protection (R-603), the marks, and the monks in their base.
 - Taken out: the race back when a split ends (R-448; it was item 6 of R-434).
 
 ## Collapse

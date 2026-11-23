@@ -470,10 +470,16 @@ This repo is Denning's Guild Wars 1 GvG portal and data store. He plays GvG only
   three minutes after it. `cases.py res`, section E (`gamble`, `spot_cases`): stayed against fell out as it fell, the
   readings G1 to G4, like spots with the test on unseen matches (`SPOT_VARS`; the like-spots reads named 60, 90 and 180
   are here the res, a minute after and three minutes after), and what staying is worth by each of his circumstances
-  (where to look, never advice; the build is only the monks in their base, and the Amulet of Protection is not read: ask
-  him when it matters). Why a team holds its flag (R-600): the opening play carries `open.stand_d`, how far each main
-  team stands from the flag stand 10, 20 and 30 s after the teams meet; `cases.py opening`, 3b, tells holds by a team
-  with the stand already its own (Claude's draft of "in control") from the rest, and reads nothing where both teams hold.
+  (where to look, never advice; the build is only the monks in their base). Why a team holds its flag (R-600, R-604): in control of the stand is having the flag stand
+  captured, so that kind of hold is the flag in hand (R-553) and not the opening's; `cases.py opening`, 3b, tells a first
+  flag held at the stand by what the other team's flag did while it was held (`HOLD_KINDS`: nobody capped, they capped,
+  theirs already up) and reads nothing where both teams hold. Tried and taken out at his word, never to be built again:
+  a team "having the stand" because its main team stands nearer it ("There isn't really a concept of 'in control of
+  stand' being closer to stand").
+  From his answers towards midnight (R-603 to R-607): the gamble's clock is read on either side of 12:00, the breakpoint
+  for the Amulet of Protection (R-603; the res of 12:00 is put after it); the morale difference is one of the
+  circumstances and his guess on it is the readings G5 (R-606); a team gone a middle 12 s before the res has fallen out
+  (R-605); hook v Men 6:00 is left as read and is not counted against the marks (R-607, `HIS_RES`).
   A difference between two calls at the opening is between teams that make the call and teams that do not, their own
   opponents among them: say so whenever a size is quoted (cap first against second is the gap between the two teams of
   a match).

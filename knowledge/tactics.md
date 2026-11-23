@@ -325,6 +325,10 @@ against general principles rather than past games. Match-by-match evidence lives
   players die in 4%. Its chance of winning three minutes after leans to staying (+4.1 points, -0.1 to +8.2) and is
   not yet clear. Staying is clearly ahead holding the stand, with one dead to come back, and with one or none of the
   three marks; with two or three marks it shows no gain (-1.8, -5.2 to +1.0), on few teams that fell out.
+- `P19` **Denning:** With significantly lower morale than the enemy, staying through their base res is probably more
+  dangerous. For the Amulet of Protection, 12 minutes is the breakpoint. **Claude (data):** a team that stays with
+  morale no higher than theirs takes 0.53 deaths by a minute after the res against 0.27 (+0.03 to +0.51) and fewer
+  NPCs and kills (3.41 against 4.56); the two sides of 12:00 do not differ in what staying is worth.
 - `P12` **OG comms:** Keep a healer with every group at all times (a prot and a monk on one side, the ritualist and a
   monk on the other). **Claude (data, `comms_vars.py`, 144 matches):** groups of 2+ with no healer lost a player in 25% of
   phases against 12% with one, at the same local numbers (+10 points, interval +7 to +13). [ohno v One]
@@ -416,10 +420,11 @@ against general principles rather than past games. Match-by-match evidence lives
   (61 of 76), so the other calls cannot be judged. A team that holds its flag 15 s or more at the stand does better
   on every count as it fell, but not clearly on matches the advice never saw: no advice from it.
 - `F51` **Denning:** A team holds its flag either because it is already in control of the stand, or because it
-  wants the 8v8 without the flag game. **Claude (data):** a team with the stand already its own holds no more often
-  (23% against 30%), and having the stand pays on its own (+7.3 points at 5:00 among teams that do not hold, +1.8 to
-  +12.6). Holding without the stand still reads better (+6.7 points at 5:00, +2.2 to +10.5); where both teams hold,
-  nothing can be read.
+  wants the 8v8 without the flag game. In control of the stand means having the flag stand captured; standing
+  nearer the stand is not a kind of control. **Claude (data):** a first flag held at the stand pays where the other
+  team caps first into it (43 of 107 holds: +0.27 flags at 5:00, +0.05 to +0.50, and +8.6 points of winning, +4.1
+  to +13.8, against teams that do not hold); where nobody caps while it is held (50) little shows; where both teams
+  hold, nothing can be read.
 
 ### Fighting with the flag
 - `F8` **Denning:** Some games are fought 8v8 (holding the flag) or 7v7 (1 player running the flag).

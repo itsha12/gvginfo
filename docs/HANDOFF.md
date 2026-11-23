@@ -8,20 +8,21 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 > out `bundle-4` in a second worktree, then carry on with "Next".
 > (If the clone leaves `bundle-4` untracked: `git remote set-branches --add origin bundle-4`, then fetch it.)
 
-## State (2026-11-22, late night: R-591 to R-602 answered and built; the opening, base res and push reports written again)
+## State (2026-11-22, midnight: R-591 to R-607 answered and built; the opening, base res and push reports written again)
 - Main's engine is unchanged (SPEC.md). Bundle 4 (redesign step 2, stage D) is on `bundle-4` and lands in one
   piece, then one rebuild (R-322). 658 replays stored; 564 count (R-477); 506 matches trained. No workflow run in
-  progress. Rulings run to R-602. The baseline (R-491) is the branch `baseline-2026-11-15`.
+  progress. Rulings run to R-607. The baseline (R-491) is the branch `baseline-2026-11-15`.
 - Graded and filed (set f1): thirteen games. Numbers from kills: no family (R-557). The push: no family (R-597).
   Splits read in both halves, no advice at the matches in hand; no more matches until the engine is ready (R-570).
 - Built this chat (CLAUDE.md says how each is read): the opening judged call by call on flags, kills, NPCs, boosts
   and the chance of winning at 5:00 and 8:00 (R-596, R-599); the two kinds of hold (R-600); the usual split
   response, a player other than a monk (R-593, R-598); the greedy stay by three marks (R-595, R-602); the gamble of
   the base res from `res_spots`, a record beside the plays (R-601); the push on his five questions (R-591).
-- What they say: no opening call is advice (cap first or second in an 8 v 8 is not clear; holding reads better as
-  it fell, also without the stand already the team's own, but not on unseen matches; eight against seven nearly all
-  hold). Staying through a base res takes more NPCs and kills and no more deaths, and leans better in the chance of
-  winning without being clear; with two or three marks on it shows no gain, on few teams that fell out.
+- What they say: no opening call is advice (cap first or second in an 8 v 8 is not clear; a held first flag pays
+  where the other team caps first into it, R-604, but holding is not clear on unseen matches; eight against seven
+  nearly all hold). Staying through a base res takes more NPCs and kills and no more deaths, and leans better in
+  the chance of winning without being clear; with two or three marks on it shows no gain, and with morale no
+  higher than theirs it costs more deaths (R-606), each on few teams that fell out.
 - Last checkpoint (every counted match, this engine): 564 matches, 33,371 plays, no errors; fourteen truths hold;
   313 Classic rows pass, none fail; 136 history rows hold, 5 do not; self-check 6 in 4. Opening, base res and
   push reports written on it; the other six unchanged. Not run again on it: the gate and the line-up.
@@ -44,15 +45,9 @@ and `docs/DEFINITIONS.md`. History: `docs/CHANGELOG.md`; rulings: `docs/RULINGS.
 ## Open for Denning
 0. Held at his word (R-554, his "make sure you remember"): the cards for a flag in hand, with R-553 to build, and
    for a double run from the sender's side: raise them when more matches are trained. The execution list (R-557).
-1. Put to him on 2026-11-22 (late night), in the chat; set out again if he has not answered:
-   - The Amulet of Protection: from which minute does it change the base res gamble? The clock is read in three
-     bands (to 10:00, 12:00 to 20:00, from 22:00) until he says.
-   - "In control of the stand": is a main team standing nearer the flag stand than the other's, 10 s after the
-     teams meet, what he means? (Claude's draft; 24 of 107 holds.)
-   - Falling out: the teams read as falling out are gone a middle 12 s before the res. Is that the fall-out he
-     means, or does a team that means to be safe leave earlier (the record starts 40 s before)?
-   - The build at the base res: which properties matter (it is read only as the monks in their base)?
-   - hook v Men 6:00 is still read as the main team past the shrine, against his word (R-595); not answered.
+1. Nothing waits on him from this chat: R-603 to R-607 answered the last five. For him to see when he next looks:
+   the hold that waits for the other team to cap first is where holding pays; the two sides of 12:00 do not differ
+   in what staying is worth; lower morale makes a stay cost more, as he guessed.
 2. Eleven flag cards to mark (State). R-576's reading (held in base by five or more) is Claude's, and R-575 is
    applied to Nomad's as to Jade: bring him what either tells wrongly as it turns up in his games.
 3. Tolkano: no build (his word): give him date, guilds, hall and length with every example.
