@@ -1,0 +1,16 @@
+{
+ "about": "Denning's marks on the rows of Model > Game review > Lord push (R-633). For each row: his grade (classic, visible, weak, none = no Lord push here, repeat), whether the engine read it correct, partly or incorrect, what he ticked as off (numbers, who, when, aim = what they are playing for, kind = kind of play), why a Weak or No decision grade (brief, small, nofight, unclear), his words, and the text of the row as he saw it. Only what he marked. Saved by the page; Claude files them in the review key (set p4).",
+ "marks": {
+  "s:19f38ea6-lord-2-1497": {
+   "grade": "visible",
+   "why": "I think the push starts at 23:11 against 4 defending (eventually mes/a leaves and derv is ressed).",
+   "text": "hook pushes Book's Guild Lord with 6 in the base (2 monks) against 0 pit NPCs: more attackers than pit NPCs; playing for Lord damage | Pushing (hook): Ranger, AoB Derv, Hammer, Mesmer, Prot, 7 Monk. Defending (Book): Dervish 1, 7 Monk, 8 Monk. | Book defends with 3, 0 by the end (2 monks). Deaths during it: hook 0, Book 5. Book's Guild Lord is killed in it. | The match is decided by a Lord kill; hook wins. | Lord damage in this push by gvg.report's own record: 1,786 on Book's Lord (85 more is life steal, which gvg.report does not count), 0 of its 58 hits with Entourage up; 0 on hook's Lord meanwhile. | Book cast 2 enchantments or weapon spells on its own Lord during it: 100 off its aggressiveness. | Aggressiveness by gvg.report's count, hook against Book: -200 against 1,233 going in, 1,586 against 1,133 coming out; 1,611 against 1,133 when the match ends. | Book's Lord by gvg.report's estimate: 1,746 of 1,746 health going in, 36 coming out. | Lord damage. In this push, by the engine's sum of the recorded hits: 1,871 on Book's Lord, 0 on hook's meanwhile. Whole match, gvg.report's own total: 1,811 on Book's Lord, 1,233 on hook's (the engine's summed hits: 1,901 and 1,418).",
+   "mark": "partly",
+   "off": [
+    "when"
+   ]
+  }
+ },
+ "at": "2026-11-23",
+ "engine": "50d656d"
+}
