@@ -173,7 +173,7 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
 - Pushing their flagger is a decision of its own, beside the answer to their run and not one of its answers (R-591):
   it touches more than flags (splits, player advantage). For most games it is part of the main team's fight. It is
   read on his five questions: does it make a flag advantage, more kills, more NPCs, a team more open to a split,
-  more deaths of its own. Whether it is a family is not ruled ("it may not be worth making a family").
+  more deaths of its own. It is not a family (R-597): its readings stay a report.
 - A part-run is not a flag run (R-535, R-536): a player back at home for a split who carries his flag some of the
   way on his own ground and puts it down, because he has to be back in his base; he always goes back to it (the
   player who hands the flag on and joins his main team has run it, R-504, R-505), and usually nobody is handed the
@@ -224,18 +224,24 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   their flag came up and when they hand it on (a frontliner with a player back means to cap first; a stand mesmer
   with eight means to hold; a flag on the usual split response invites a split). Capping first is a disadvantage
   (F25). *As built:* each opening play carries what the other team showed, the line of the first carrier
-  (`common.line`), the record 5, 7 and 8 minutes from the gates, when each team's next runner turned for home, who
-  ran its flags and the first death of the match.
+  (`common.line`), the record 5 and 8 minutes from the gates (R-599), when each team's next runner turned for home,
+  who ran its flags, the first death of the match and how far each main team stands from the flag stand 10, 20 and
+  30 s after the teams meet.
+- A team holds its flag at the opening for one of two reasons (R-600): it is already in control of the stand, or it
+  wants the 8v8 without the flag game. *As built:* "the stand already its own" is its main team nearer the flag
+  stand than the other's by more than the middle difference, 10 s after the teams meet (Claude's draft); where both
+  teams hold, the two make the same call and nothing is read from it.
 - What a call at the opening is judged on (R-596): flag advantage and kills first; then, to a smaller extent, the
   boosts and the chance of winning at 5:00 and 8:00; and the NPCs lost to a split. That teams do different things
   on what they see shows a decision is made; whether it is the right one is read from the data, each call from the
   side of the team that makes it. *As built:* set level on strength alone (an opening has no minute before it);
   like spots and the test on unseen matches only where teams divide; a call nearly every team makes is under the
   floor and is shown as it fell.
-- The usual split response (R-593): the player most often sent from the main team to a split, the runner left out;
-  usually a Mes/A, a Necro or an Ele, or the 8 Monk. *As built* (`cases.usual_responder`): a guild's, over every
-  stored match: who it sends first, one or two defenders, the players who ran that team's flags in the match left
-  out; five or more splits and 35% of those counted. Shown beside it: the same with the monks left out.
+- The usual split response (R-593, R-598): the player other than a monk most often sent from the main team to a
+  split, the runner left out; usually a Mes/A, a Necro or an Ele. *As built* (`cases.usual_responder`): a guild's,
+  over every stored match: who it sends first, one or two defenders, the players who ran that team's flags in the
+  match and the monks left out; five or more splits and 35% of those counted. (With the monks counted it is the
+  8 Monk for nearly every guild.)
 - A flag handed on is one runner: a half run is a single run (R-504). A double run needs a second player who has
   gone back for the next flag by the time the first caps (R-472, R-485).
 - A run is the answer to theirs when its runner turned for home before their flag went in, though the run's own
@@ -325,8 +331,15 @@ the review of R-398. *Draft* = Claude's, not ruled. *Open* = waiting on him. *As
   play carries how the players in their base stand 20 s before the res, when staying or leaving is still theirs to
   choose, and as it lands (health, each player's walk from their res shrine and how many are past it, NPC damage on
   them in the 20 s before, all damage taken in the minute before, how many are of the main team). The report reads
-  four marks from it (deep: half or more past the shrine; NPCs on two or more; under 85% health between them; damage
-  taken in the upper third): Claude's drafts, the report's own, read by no play. No line for "base" is ruled.
+  three marks from it (R-602: by their res shrine, half or more past it or nearer it than the middle stay; NPCs on
+  two or more; damage taken in the upper third; low health is not one, "they are already likely to die"): Claude's
+  drafts, the report's own, read by no play. No line for "base" is ruled.
+- The base res is a gamble (R-601): falling out takes away the damage, the NPCs and the range of the players who
+  base; staying risks deaths for the NPCs and kills of the seconds before the res. Which is better is read from the
+  data, with the circumstances he names (the build, the flag capped, the NPCs, how many are basing, morale, how late
+  it is for the Amulet of Protection). *As built* (`jobs.res_spots`, a record beside the plays): a team with three
+  or more in their base 40 s before the res and enemy dead to come back; stayed is half or more of its living
+  players still in the base as the res lands, fell out is none of them, with fewer than half killed before it.
 - Taken out: the race back when a split ends (R-448; it was item 6 of R-434).
 
 ## Collapse

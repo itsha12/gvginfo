@@ -310,11 +310,21 @@ against general principles rather than past games. Match-by-match evidence lives
   res shrine, the NPCs on it and its health: very close to the shrine or deep past it, in the pit with knights,
   archers or footmen on its players, after a long fight that has cost its monks their energy. It can pull out, run a
   flag and be safe instead. One player basing onto a split is a different thing. **Claude (data):** a main team that
-  stays with two or more of four marks 20 s before the res (deep past the shrine, NPCs on two or more, under 85%
-  health, heavy damage in the minute before) loses two or more players in 3% of stays against 0% with fewer, and
-  with three or four marks loses one in 13% and two or more in 4% (134 stays). Hardly any team leaves with the marks
-  on (3 of 391), so what leaving is worth cannot be read yet. [yM v hook] [Crew v One] [Men v BcS] [Book v hook]
-  [DUM v ohno] [Men v NwAy]
+  stays with two or more of three marks 20 s before the res (by their res shrine, NPCs on two or more of its
+  players, heavy damage in the minute before) loses two or more players in 2% of stays against 0% with fewer, and
+  with all three loses one in 12% and two or more in 4% (136 stays). [yM v hook] [Crew v One] [Men v BcS]
+  [Book v hook] [DUM v ohno] [Men v NwAy]
+- `P18` **Denning:** Staying through a base res is a gamble. Deep by the shrine, NPCs on the players and heavy
+  damage in the minute before are symptoms of staying (low health is not a sign to read: by then they are already
+  likely to die); a team that falls out sheds all three: lower damage and time to recover energy, no NPCs on it, out
+  of range of the players who base. Against that, the seconds before a base res are a very good chance to take NPCs
+  and more kills. His guess: it is usually better to stay and risk it, unless the circumstances say otherwise (the
+  build, the flag capped, the NPCs, how many are basing, morale, how late it is for the Amulet of Protection).
+  **Claude (data, 524 stays against 58 teams that fell out):** by a minute after the res the team that stays has
+  +1.00 more NPCs (+0.73 to +1.26) and +1.36 more kills (+0.97 to +1.71) and no more deaths; two or more of its
+  players die in 4%. Its chance of winning three minutes after leans to staying (+4.1 points, -0.1 to +8.2) and is
+  not yet clear. Staying is clearly ahead holding the stand, with one dead to come back, and with one or none of the
+  three marks; with two or three marks it shows no gain (-1.8, -5.2 to +1.0), on few teams that fell out.
 - `P12` **OG comms:** Keep a healer with every group at all times (a prot and a monk on one side, the ritualist and a
   monk on the other). **Claude (data, `comms_vars.py`, 144 matches):** groups of 2+ with no healer lost a player in 25% of
   phases against 12% with one, at the same local numbers (+10 points, interval +7 to +13). [ohno v One]
@@ -388,11 +398,11 @@ against general principles rather than past games. Match-by-match evidence lives
   The same holds for us: with our flag on our split response against a solo split, we may have to cap first to free
   him, send him back to defend, and send someone else (likely a frontliner) back at once for the next flag, because
   capping first puts us at a disadvantage.
-- `F48` **Denning:** A team's usual split response is the player most often sent from the main team to a split,
-  leaving out the runner. It is usually a Mes/A, a Necro or an Ele, or the 8 Monk, depending on what is in the
-  composition and what the team is trying to do. **Claude (data):** measured that way it is the 8 Monk for 21 of the
-  22 guilds that have one; with the monks left out, a Ritualist for 8 of 14, then a Ranger, a Dervish, a Mes/A and
-  an Ele.
+- `F48` **Denning:** A team's usual split response is the player other than a monk most often sent from the main
+  team to a split, leaving out the runner. It is usually a Mes/A, a Necro or an Ele, depending on what is in the
+  composition and what the team is trying to do. **Claude (data):** a Ritualist for 8 of the 14 guilds that have
+  one, then a Ranger, a Dervish, a Mes/A and an Ele (with the monks counted it is the 8 Monk for nearly every
+  guild).
 - `F49` **Denning:** A team that leaves a player back and caps first is usually down a player for only about 45 s,
   very early, while the monks are full on energy and can absorb the pressure; the result is that it is quickly ahead
   on flags. **Claude (data):** against eight it takes +0.24 more of the boosts of 2:00 and 4:00 (+0.07 to +0.41) and
@@ -405,6 +415,11 @@ against general principles rather than past games. Match-by-match evidence lives
   36%), a gap that wipes make look larger than it is. Eight against seven, nearly every team holds and caps second
   (61 of 76), so the other calls cannot be judged. A team that holds its flag 15 s or more at the stand does better
   on every count as it fell, but not clearly on matches the advice never saw: no advice from it.
+- `F51` **Denning:** A team holds its flag either because it is already in control of the stand, or because it
+  wants the 8v8 without the flag game. **Claude (data):** a team with the stand already its own holds no more often
+  (23% against 30%), and having the stand pays on its own (+7.3 points at 5:00 among teams that do not hold, +1.8 to
+  +12.6). Holding without the stand still reads better (+6.7 points at 5:00, +2.2 to +10.5); where both teams hold,
+  nothing can be read.
 
 ### Fighting with the flag
 - `F8` **Denning:** Some games are fought 8v8 (holding the flag) or 7v7 (1 player running the flag).
@@ -465,7 +480,8 @@ against general principles rather than past games. Match-by-match evidence lives
   costs it more deaths. **Claude (data):** on their runs, players sent for the flagger leave their team +0.14 of a
   flag better off than no push (+0.05 to +0.21), all of it from two or more (+0.26; one player +0.00). Kills, NPCs
   taken and a split against the pushing team show no difference; it loses fewer NPCs and takes no more deaths, but
-  it was already taking fewer deaths in the minute before: a team pushes where it can afford to.
+  it was already taking fewer deaths in the minute before: a team pushes where it can afford to. Not a family of
+  its own.
 
 ### The power play
 - `F23` **Denning:** When the enemy is running the flag, the team with more players in the fight can play the power
