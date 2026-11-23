@@ -26,6 +26,12 @@ w1p1, w1p2, w2) are history (R-491): scored and reported after every change, and
                                                                      marks the reading of each situation and each side's call
                                                                      (R-455; written to main's data/model/game_reviews.json; his
                                                                      marks are saved by the page to game_review_marks.json)
+  python3 tools/golden/review.py lord <out.json> <report id>:<m:ss> ...
+                                                                     picked Lord pushes as the rows of the site's Model > Game review
+                                                                     > Lord push view (R-633; written to main's data/model/lord_rows.json;
+                                                                     his marks are saved by the page to lord_row_marks.json). Reads the
+                                                                     matches itself, with no plays file. Each row sets gvg.report's own
+                                                                     Lord damage total for the match beside the engine's summed hits (R-632)
 
 The key (`data/model/review_key.json`, on main; a copy rides on the branch) holds, for each row he was shown: the match,
 the window, what the engine said then (`shown`), his mark and his words (`said`), and `checks`: Claude's reading of his
@@ -275,6 +281,53 @@ def export(path, out, part, set_id="f1", label=None, drop=(), confidence=None):
     print("; ".join(f"{' v '.join(g['teams'])}: {len(g['situations'])} situations, {sum(len(s['calls']) for s in g['situations'])} calls" for g in games))
 
 
+def lord_rows(out, picks):
+    """Picked Lord pushes as the rows of the site's Lord push view (R-633): one row a push, told from the attacker's
+    play with the defender's beside it. Lord damage (R-632): gvg.report's own figure is the one of record, and what is
+    stored of it is each Lord's total for the match, so the row sets that total beside the engine's sum of the recorded
+    hits, for the push and for the match; the two differ where gvg.report leaves hits out (life steal, on the one
+    match probed). A pick is <report id or its start>:<m:ss>, the second the push begins."""
+    import datetime, subprocess
+    sys.path.insert(0, os.path.join(REPO, "tools", "replay_analysis"))
+    import common, jobs, moments
+    from replaylib import Match
+    from state import GameState
+    idx = common.replay_index(all_dates=True); n = lambda v: f"{int(round(v)):,}"
+    rows = []
+    for pick in picks:
+        head, at = pick.split(":", 1); mm, ss = at.split(":"); want = int(mm) * 60 + int(ss)
+        rid = next((r for r in idx if r.startswith(head)), None)
+        if rid is None: sys.exit(f"lord: no stored replay starts with {head}")
+        M = moments.Moments(GameState(Match.from_branch(rid))); m = M.m; e = idx[rid]
+        P = [p for p in jobs.plays(M) if p["play"] == "lord"]
+        att = [p for p in P if p["side"] == "attacker" and abs(p["t0"] - want) <= 2]
+        if len(att) != 1: sys.exit(f"lord: {rid[:8]} has {len(att)} Lord pushes beginning at {at} (it reads them at " + ", ".join(cl(p["t0"]) for p in P if p["side"] == "attacker") + ")")      # R-460
+        a = att[0]; d = next(p for p in P if p["side"] == "defender" and p["t0"] == a["t0"] and p["t1"] == a["t1"] and p["tm"] != a["tm"])
+        tm, foe, b = a["tm"], d["tm"], a["beside"]; us, them = m.tag[tm], m.tag[foe]
+        hits = {k: sum(v for _, _, v in M.lord_hits.get(k, ())) for k in (1, 2)}                 # the engine's sum of the recorded hits on each team's Lord, the whole match
+        gvg = {l["team"]: l.get("taken") for l in m.o.get("lords", [])}                          # gvg.report's own total on each team's Lord
+        unseen = set(m.o.get("integrity", {}).get("lord_damage_unobserved", []))                # attacking teams whose Lord damage was not observed
+        if gvg.get(foe) is None or gvg.get(tm) is None: sys.exit(f"lord: {rid[:8]} holds no Lord damage total from gvg.report")
+        won = next((m.tag[k] for k in (1, 2) if (m.o["meta"].get("result") or {}).get("winning_team_id") == k), None)
+        reads = a["scenario"].replace(" 1 pit NPCs", " 1 pit NPC")
+        lines = [f"Pushing ({us}): {', '.join(a['who']) or 'nobody counted'}. Defending ({them}): {', '.join(d['who']) or 'nobody counted'}.",
+                 f"{them} defends with {b['defenders']}" + (f", {b['defenders_at_the_end']} by the end" if b["defenders_at_the_end"] != b["defenders"] else "") + f" ({b['defender_monks']} monk{'s' if b['defender_monks'] != 1 else ''}). "
+                 f"Deaths during it: {us} {b['deaths'][0]}, {them} {b['deaths'][1]}." + (f" {them}'s Guild Lord is killed in it." if b["lord_killed_in_it"] else ""),
+                 f"The match is decided by {b['match_decided_by']}" + (f"; {won} wins." if won else ".")]
+        dmg = {"push": [b["lord_damage"], b["own_lord_damage_meanwhile"]], "match_gvg": [gvg[foe], gvg[tm]], "match_hits": [round(hits[foe]), round(hits[tm])], "lords": [them, us],
+               "unobserved": [3 - foe in unseen, 3 - tm in unseen]}
+        said = (f"Lord damage. In this push, by the engine's sum of the recorded hits: {n(dmg['push'][0])} on {them}'s Lord, {n(dmg['push'][1])} on {us}'s meanwhile. "
+                f"Whole match, gvg.report's own total: {n(dmg['match_gvg'][0])} on {them}'s Lord, {n(dmg['match_gvg'][1])} on {us}'s (the engine's summed hits: {n(dmg['match_hits'][0])} and {n(dmg['match_hits'][1])}).")
+        call = lambda p: {"team": p["team"], "side": p["side"], "job": p["job"], "met": bool(p["met"]), "tests": [[bool(v), k] for k, v in p["tests"].items()]}
+        rows.append({"id": f"s:{rid[:8]}-lord-{tm}-{a['t0']}", "play": a["id"], "rid": rid, "teams": e["teams"], "map": e["map"], "date": str(e["date"])[:10], "length_s": int(M.T), "t0": a["t0"], "t1": a["t1"],
+                     "reads": reads, "lines": lines, "damage": dmg, "damage_said": said, "calls": [call(a), call(d)],
+                     "text": " | ".join([reads] + lines + [said])})
+        print(f"{' v '.join(e['teams'])} {cl(a['t0'])}-{cl(a['t1'])}: {reads}\n    {said}")
+    commit = subprocess.run(["git", "-C", REPO, "rev-parse", "--short", "HEAD"], capture_output=True, text=True).stdout.strip()
+    json.dump({"about": "The rows of Model > Game review > Lord push (R-633): Lord pushes picked from late games for his grade and mark, written by tools/golden/review.py lord on the engine branch. Lord damage (R-632): gvg.report's own figure is the one of record; what is stored of it is each Lord's total for the match (`damage.match_gvg`, their Lord then the pushing team's own), set beside the engine's sum of the recorded hits for the push (`damage.push`) and for the match (`damage.match_hits`). His marks are in lord_row_marks.json, never here.",
+               "generated": datetime.date.today().isoformat(), "engine": commit, "rows": rows}, open(out, "w"), ensure_ascii=False, indent=1)
+
+
 def compare(rid, rows_file, marks_file, shown_file, others):
     """One marked game, several engines side by side (the before-and-after test): each engine's calls for the game are
     matched to the calls he was shown (same play, team, side, call, sizes and numbers, starting within 6 s) and take his
@@ -480,4 +533,5 @@ if __name__ == "__main__":
     elif a and a[0] == "game": game(a[1], a[2])
     elif a and a[0] == "compare": compare(a[1], a[2], a[3], a[4], [x.split("=", 1) for x in a[5:]])
     elif a and a[0] == "export": export(a[1], a[2], int(a[a.index("--part") + 1]), a[a.index("--set") + 1] if "--set" in a else "f1", a[a.index("--label") + 1] if "--label" in a else None, a[a.index("--drop") + 1].split(",") if "--drop" in a else (), a[a.index("--confidence") + 1] if "--confidence" in a else None)
+    elif a and a[0] == "lord": lord_rows(a[1], a[2:])
     else: print(__doc__)
