@@ -1362,13 +1362,18 @@ class Moments:
         self._sf = out
         return self._sf
 
+    def base_zones(self):
+        """The places that are in the enemy's base for the base res (R-359; asked by `caught` and by the res spots of `jobs.res_spots`)."""
+        inb = ("pit", "base", "front door", "back door", "front footies", "back footies")
+        if self.hall is not None and (self.hall.features.get("base_res") or {}).get("footmen_in_base") is False:
+            inb = inb[:4]                                     # a hall where a team at the footmen is not in the base for the base res (R-574, Isle of Jade: "too far to have an issue with base res"); kept with the hall's features
+        return inb
+
     def caught(self):
         """Caught out (R-359): a team in the enemy's base CAUGHT_S or less before the defenders' base res, outnumbered
         or about to be once the dead come back. One record a base res and attacking team, with what followed."""
         st, m, out = self.st, self.m, []
-        inb = ("pit", "base", "front door", "back door", "front footies", "back footies")
-        if self.hall is not None and (self.hall.features.get("base_res") or {}).get("footmen_in_base") is False:
-            inb = inb[:4]                                     # a hall where a team at the footmen is not in the base for the base res (R-574, Isle of Jade: "too far to have an issue with base res"); kept with the hall's features
+        inb = self.base_zones()
         for tm in st.teams:
             foe = 3 - tm
             for B in range(RES_EVERY, self.T + 1, RES_EVERY):
@@ -3283,7 +3288,7 @@ def match_records(rid):
     M = Moments(st, Scoreboard(st))
     recs = M.records()
     import jobs                                          # the plays and their jobs; each moment gets its allocation (R-425)
-    EXTRA[rid] = {"runs": M.runner_cost(), "duty": [M.flag_duty()[tm] for tm in (1, 2)], "plays": jobs.plays(M, recs), "selfcheck": jobs.selfcheck(M), "flags": jobs.bench_rows(M), "opening": jobs.opening(M)["words"],
+    EXTRA[rid] = {"runs": M.runner_cost(), "duty": [M.flag_duty()[tm] for tm in (1, 2)], "plays": jobs.plays(M, recs), "selfcheck": jobs.selfcheck(M), "flags": jobs.bench_rows(M), "opening": jobs.opening(M)["words"], "res_spots": jobs.res_spots(M),
                   "flag_moments": dict(collections.Counter(r["moment_rule"] for r in M.run_starts() if r["set_off"] is not None))}
     return recs
 

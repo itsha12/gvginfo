@@ -98,38 +98,38 @@
    ],
    "reads": "not clear"
   },
-  "B7 a main team that stays carrying two or more of the four marks loses two or more players more often than one carrying fewer": {
-   "first": 0.02577319587628866,
-   "second": 0.002577319587628866,
-   "difference": 0.02319587628865979,
+  "B7 a main team that stays carrying two or more of the three marks loses two or more players more often than one carrying fewer": {
+   "first": 0.023310023310023312,
+   "second": 0.002881844380403458,
+   "difference": 0.020428178929619855,
    "range": [
-    0.010589705661319742,
-    0.03572713257965055
+    0.00832278024378235,
+    0.032832471805736806
    ],
    "n": [
-    388,
-    388
+    429,
+    347
    ],
    "reads": "HOLDS"
   },
   "B8 ... and is worse off in its chance of winning 180 s on": {
-   "first": 1.7811449241756352,
-   "second": 5.097691729914109,
-   "difference": -3.316546805738474,
+   "first": 1.958314437919631,
+   "second": 5.270523711582994,
+   "difference": -3.3122092736633633,
    "range": [
-    -4.938989342767674,
-    -1.51808494632781
+    -5.031225569035133,
+    -1.4296255916447318
    ],
    "n": [
-    388,
-    388
+    429,
+    347
    ],
    "reads": "HOLDS"
   },
   "B9 carrying two or more marks, a team that leaves before the res is better off 180 s on than one that stays": {
    "n": [
-    3,
-    388
+    5,
+    429
    ],
    "reads": "too few"
   }
@@ -447,31 +447,32 @@
  "greedy": {
   "cases": 806,
   "worn_line": 304.0,
+  "near_line": 2529.5,
   "set_aside": {
    "a res onto a split, or fewer than three in their base": 213
   },
   "marks": {
-   "deep (half of them or more past their res shrine)": {
-    "cases": 369,
-    "matches": 258,
-    "left before the res": 0.8130081300813009,
-    "one dies": 8.743169398907105,
-    "two or more die": 2.459016393442623,
-    "stays": 366,
-    "started at": 89.01559746484811,
-    "win points 180, stayed": 1.3780933206902741,
-    "win points 180, left": -0.04943343083578059
+   "by their res shrine (half of them or more past it, or nearer it than the middle stay)": {
+    "cases": 500,
+    "matches": 309,
+    "left before the res": 1.2,
+    "one dies": 8.704453441295547,
+    "two or more die": 2.0242914979757085,
+    "stays": 494,
+    "started at": 87.72314142341946,
+    "win points 180, stayed": 1.72547400892388,
+    "win points 180, left": -0.8258719215689769
    },
-   "  not: deep": {
-    "cases": 437,
-    "matches": 291,
-    "left before the res": 6.178489702517163,
-    "one dies": 5.609756097560976,
-    "two or more die": 0.4878048780487805,
-    "stays": 410,
-    "started at": 77.27560367463118,
-    "win points 180, stayed": 5.279527966863855,
-    "win points 180, left": 5.303508844812641
+   "  not: by their res shrine": {
+    "cases": 306,
+    "matches": 229,
+    "left before the res": 7.8431372549019605,
+    "one dies": 4.25531914893617,
+    "two or more die": 0.3546099290780142,
+    "stays": 282,
+    "started at": 74.36151489749366,
+    "win points 180, stayed": 6.44185979212207,
+    "win points 180, left": 6.166736251951993
    },
    "NPCs on them (two or more of them hit by NPCs in the 20 s before)": {
     "cases": 451,
@@ -494,28 +495,6 @@
     "started at": 78.63669557688941,
     "win points 180, stayed": 4.87525762752665,
     "win points 180, left": 7.179974023449251
-   },
-   "low on health (under 85% between them)": {
-    "cases": 67,
-    "matches": 58,
-    "left before the res": 1.4925373134328357,
-    "one dies": 9.090909090909092,
-    "two or more die": 7.575757575757576,
-    "stays": 66,
-    "started at": 84.57739994416384,
-    "win points 180, stayed": -1.5046881687153608,
-    "win points 180, left": 11.45673586835343
-   },
-   "  not: low on health": {
-    "cases": 739,
-    "matches": 397,
-    "left before the res": 3.924221921515562,
-    "one dies": 6.901408450704226,
-    "two or more die": 0.8450704225352111,
-    "stays": 710,
-    "started at": 82.47565422744765,
-    "win points 180, stayed": 3.899011325242302,
-    "win points 180, left": 4.537575953416569
    },
    "worn (damage taken in the minute before in the upper third)": {
     "cases": 271,
@@ -541,48 +520,48 @@
    }
   },
   "by_marks": {
-   "none of the four": {
-    "cases": 197,
-    "matches": 153,
-    "left before the res": 7.1065989847715745,
-    "one dies": 4.371584699453552,
-    "two or more die": 0.546448087431694,
-    "stays": 183,
-    "started at": 72.75436386992564,
-    "win points 180, stayed": 6.011487990763184,
-    "win points 180, left": 6.726109868241136
+   "none of the three": {
+    "cases": 155,
+    "matches": 129,
+    "left before the res": 9.032258064516128,
+    "one dies": 2.8368794326241136,
+    "two or more die": 0.7092198581560284,
+    "stays": 141,
+    "started at": 71.21338309131116,
+    "win points 180, stayed": 7.3987115060652915,
+    "win points 180, left": 7.491012262724894
    },
    "one": {
-    "cases": 218,
-    "matches": 186,
-    "left before the res": 5.963302752293578,
-    "one dies": 7.317073170731707,
+    "cases": 217,
+    "matches": 177,
+    "left before the res": 5.0691244239631335,
+    "one dies": 6.310679611650485,
     "two or more die": 0.0,
-    "stays": 205,
-    "started at": 81.48846952515633,
-    "win points 180, stayed": 4.281961409253715,
-    "win points 180, left": 3.6670150248687707
+    "stays": 206,
+    "started at": 80.23472853395445,
+    "win points 180, stayed": 3.813851483320841,
+    "win points 180, left": 3.8652359439098847
    },
    "two": {
-    "cases": 256,
-    "matches": 193,
-    "left before the res": 0.78125,
-    "one dies": 5.905511811023622,
-    "two or more die": 1.574803149606299,
-    "stays": 254,
-    "started at": 87.26200650353813,
-    "win points 180, stayed": 2.692193624741481,
-    "win points 180, left": 0.8302914064140638
+    "cases": 297,
+    "matches": 224,
+    "left before the res": 1.3468013468013467,
+    "one dies": 7.508532423208192,
+    "two or more die": 1.3651877133105803,
+    "stays": 293,
+    "started at": 86.26415858886524,
+    "win points 180, stayed": 2.7888245909105525,
+    "win points 180, left": -0.9736126924148016
    },
-   "three or all four": {
-    "cases": 135,
-    "matches": 115,
-    "left before the res": 0.7407407407407408,
-    "one dies": 12.686567164179104,
-    "two or more die": 4.477611940298507,
-    "stays": 134,
-    "started at": 90.2224041968711,
-    "win points 180, stayed": 0.05423171564037659,
+   "all three": {
+    "cases": 137,
+    "matches": 118,
+    "left before the res": 0.7299270072992701,
+    "one dies": 11.76470588235294,
+    "two or more die": 4.411764705882353,
+    "stays": 136,
+    "started at": 91.58196130239759,
+    "win points 180, stayed": 0.16905359360830616,
     "win points 180, left": -0.4508777740640735
    }
   },
@@ -591,10 +570,9 @@
     "game": "yM v hook 24:00",
     "his": true,
     "in_the_family": true,
-    "marks": 4,
-    "deep": true,
+    "marks": 3,
+    "by_shrine": true,
     "npcs": true,
-    "low": true,
     "worn": true,
     "n": 8,
     "of_main": 8,
@@ -611,10 +589,9 @@
     "game": "Crew v One 12:00",
     "his": true,
     "in_the_family": true,
-    "marks": 4,
-    "deep": true,
+    "marks": 3,
+    "by_shrine": true,
     "npcs": true,
-    "low": true,
     "worn": true,
     "n": 8,
     "of_main": 7,
@@ -632,9 +609,8 @@
     "his": true,
     "in_the_family": true,
     "marks": 2,
-    "deep": false,
+    "by_shrine": true,
     "npcs": false,
-    "low": true,
     "worn": true,
     "n": 8,
     "of_main": 8,
@@ -651,10 +627,9 @@
     "game": "Book v hook 10:00",
     "his": true,
     "in_the_family": true,
-    "marks": 4,
-    "deep": true,
+    "marks": 3,
+    "by_shrine": true,
     "npcs": true,
-    "low": true,
     "worn": true,
     "n": 7,
     "of_main": 7,
@@ -672,9 +647,8 @@
     "his": true,
     "in_the_family": true,
     "marks": 2,
-    "deep": true,
+    "by_shrine": true,
     "npcs": true,
-    "low": false,
     "worn": false,
     "n": 6,
     "of_main": 6,
@@ -691,10 +665,9 @@
     "game": "Men v NwAy 10:00",
     "his": true,
     "in_the_family": true,
-    "marks": 4,
-    "deep": true,
+    "marks": 3,
+    "by_shrine": true,
     "npcs": true,
-    "low": true,
     "worn": true,
     "n": 6,
     "of_main": 6,
@@ -712,9 +685,8 @@
     "his": false,
     "in_the_family": false,
     "marks": 2,
-    "deep": true,
+    "by_shrine": true,
     "npcs": true,
-    "low": false,
     "worn": false,
     "n": 3,
     "of_main": 0,
@@ -732,9 +704,8 @@
     "his": false,
     "in_the_family": true,
     "marks": 2,
-    "deep": true,
+    "by_shrine": true,
     "npcs": true,
-    "low": false,
     "worn": false,
     "n": 4,
     "of_main": 4,
@@ -771,8 +742,8 @@
    }
   },
   "starts": {
-   "two or more marks": 88.4575843102278,
-   "fewer": 77.4299694634881
+   "two or more marks": 88.10328005751228,
+   "fewer": 76.56502512832566
   },
   "agrees": 7,
   "of": 8,
@@ -782,33 +753,33 @@
     "team": "hook",
     "t": 1440,
     "deaths": 4,
-    "marks": 4
+    "marks": 3
    },
    {
     "rid": "512d445f-03eb-56ea-a9ed-6b8f596f7c57",
     "team": "One",
     "t": 720,
     "deaths": 4,
-    "marks": 4
+    "marks": 3
    },
    {
     "rid": "19f38ea6-59d3-5264-a5a1-8ae0fea2e640",
     "team": "hook",
     "t": 600,
     "deaths": 2,
-    "marks": 4
-   },
-   {
-    "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
-    "team": "Men",
-    "t": 600,
-    "deaths": 2,
-    "marks": 4
+    "marks": 3
    },
    {
     "rid": "77b64e5c-caf6-5b64-a52a-1e6b422108d5",
     "team": "\uc637\uc637\uc637\uc637",
     "t": 1200,
+    "deaths": 2,
+    "marks": 3
+   },
+   {
+    "rid": "c19f13e3-7c93-5ea8-ae4c-16f2d75104da",
+    "team": "Men",
+    "t": 600,
     "deaths": 2,
     "marks": 3
    },
@@ -855,13 +826,6 @@
     "marks": 3
    },
    {
-    "rid": "5cb6a1d7-e86e-55c5-a7c5-7536d91f58aa",
-    "team": "Apes",
-    "t": 240,
-    "deaths": 1,
-    "marks": 3
-   },
-   {
     "rid": "884311d5-c914-5f72-a228-a16c01aa9a15",
     "team": "Men",
     "t": 600,
@@ -897,96 +861,494 @@
     "marks": 3
    },
    {
+    "rid": "00331085-84e0-5a8b-ac23-4077dac58c02",
+    "team": "DMG",
+    "t": 960,
+    "deaths": 0,
+    "marks": 3
+   },
+   {
+    "rid": "021c32e2-6d5b-5f2c-a3a1-0cea3ed2bf7b",
+    "team": "Dz",
+    "t": 360,
+    "deaths": 0,
+    "marks": 3
+   },
+   {
+    "rid": "023475ba-4e0c-5ce0-a1d6-f9c660a5d16d",
+    "team": "meow",
+    "t": 960,
+    "deaths": 0,
+    "marks": 3
+   },
+   {
+    "rid": "03a87923-8d19-5c72-abc9-2a035df04b81",
+    "team": "One",
+    "t": 360,
+    "deaths": 0,
+    "marks": 3
+   },
+   {
+    "rid": "04befe7e-4050-51d4-ac06-3560dcb02611",
+    "team": "BcS",
+    "t": 600,
+    "deaths": 0,
+    "marks": 3
+   },
+   {
     "rid": "05302d96-c88a-5ae9-a2ca-755c7c363928",
     "team": "ohno",
     "t": 240,
     "deaths": 0,
-    "marks": 4
+    "marks": 3
+   },
+   {
+    "rid": "0881f8b3-a2f3-5087-a838-9f40b8601ea3",
+    "team": "TFS",
+    "t": 960,
+    "deaths": 0,
+    "marks": 3
    },
    {
     "rid": "090b0068-ebf2-584d-a34d-3f46307aaefd",
     "team": "Dz",
     "t": 720,
     "deaths": 0,
-    "marks": 4
+    "marks": 3
+   },
+   {
+    "rid": "09d2abcb-8c61-52f1-ac60-67367d988be2",
+    "team": "\uc637\uc637\uc637\uc637",
+    "t": 240,
+    "deaths": 0,
+    "marks": 3
+   },
+   {
+    "rid": "0c702715-9b49-5c03-a286-094f4e08e93c",
+    "team": "Dz",
+    "t": 360,
+    "deaths": 0,
+    "marks": 3
+   },
+   {
+    "rid": "0e1f8299-992b-5ee2-a24b-ddbf13461a6d",
+    "team": "True",
+    "t": 1320,
+    "deaths": 0,
+    "marks": 3
+   },
+   {
+    "rid": "0fce6cf8-5626-53eb-a4d5-dcc8d9878e3f",
+    "team": "Fun",
+    "t": 840,
+    "deaths": 0,
+    "marks": 3
    },
    {
     "rid": "10bc4cdc-245a-54f2-a51b-b4312437bf06",
     "team": "hold",
     "t": 720,
     "deaths": 0,
-    "marks": 4
+    "marks": 3
    },
    {
-    "rid": "17662751-a293-59b0-a656-6e1f3c2bad73",
-    "team": "hold",
-    "t": 720,
+    "rid": "12cf048e-1198-5eb6-ac28-59d5057ab8d3",
+    "team": "Men",
+    "t": 360,
     "deaths": 0,
-    "marks": 4
-   },
-   {
-    "rid": "2c764dac-d2cb-50e3-a072-6b5b3bb9b633",
-    "team": "Team",
-    "t": 600,
-    "deaths": 0,
-    "marks": 4
-   },
-   {
-    "rid": "34ab1ac3-cd5d-578e-a457-bccff232274a",
-    "team": "RACK",
-    "t": 480,
-    "deaths": 0,
-    "marks": 4
-   },
-   {
-    "rid": "6acf4b9e-51f6-5596-a208-d4ebaf5e2539",
-    "team": "Apes",
-    "t": 1440,
-    "deaths": 0,
-    "marks": 4
-   },
-   {
-    "rid": "6acf4b9e-51f6-5596-a208-d4ebaf5e2539",
-    "team": "Apes",
-    "t": 1560,
-    "deaths": 0,
-    "marks": 4
-   },
-   {
-    "rid": "8684826a-4ce8-59cb-a5f9-d7bf81307491",
-    "team": "Dz",
-    "t": 1560,
-    "deaths": 0,
-    "marks": 4
-   },
-   {
-    "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
-    "team": "hdm",
-    "t": 720,
-    "deaths": 0,
-    "marks": 4
-   },
-   {
-    "rid": "8bf4ffae-780e-535e-aa7b-44027b0fa6cc",
-    "team": "hdm",
-    "t": 960,
-    "deaths": 0,
-    "marks": 4
-   },
-   {
-    "rid": "996e36a3-0191-516c-ae13-2fc9651534ae",
-    "team": "Book",
-    "t": 1440,
-    "deaths": 0,
-    "marks": 4
-   },
-   {
-    "rid": "ad3f2125-a7f7-5a8b-af13-584abfc4384c",
-    "team": "yM",
-    "t": 720,
-    "deaths": 0,
-    "marks": 4
+    "marks": 3
    }
   ]
+ },
+ "gamble": {
+  "cases": 582,
+  "skipped": {
+   "a res onto a split": 124,
+   "the flag lead not read": 22,
+   "mostly killed before the res, or partly out as it lands": 19,
+   "no winner recorded": 1
+  },
+  "calls": {
+   "stayed": 524,
+   "fell out": 58
+  },
+  "as_it_fell": {
+   "stayed": {
+    "cases": 524,
+    "matches": 321,
+    "started at": 84.95189206588645,
+    "the 60 s before": 4.749481573269339,
+    "NPCs by the res": 1.036259541984733,
+    "NPCs a minute after": 1.6698473282442747,
+    "kills by the res": 1.1622137404580153,
+    "kills a minute after": 2.7251908396946565,
+    "own deaths a minute after": 0.30343511450381677,
+    "two or more of them die": 4.007633587786259,
+    "win points": {
+     "as the res lands": 2.460205468147524,
+     "a minute after the res": 3.337642922700792,
+     "three minutes after the res": 4.201000835016832
+    }
+   },
+   "fell out": {
+    "cases": 58,
+    "matches": 53,
+    "started at": 76.81979983940505,
+    "the 60 s before": 3.651189619317547,
+    "NPCs by the res": 0.46551724137931033,
+    "NPCs a minute after": 0.6724137931034483,
+    "kills by the res": 0.4827586206896552,
+    "kills a minute after": 1.3620689655172413,
+    "own deaths a minute after": 0.39655172413793105,
+    "two or more of them die": 0.0,
+    "win points": {
+     "as the res lands": 0.2403138226611405,
+     "a minute after the res": 1.4128325852041173,
+     "three minutes after the res": 0.12435870744573001
+    }
+   }
+  },
+  "checks": {
+   "G1 a team that stays takes more NPCs by a minute after the res than one that falls out": {
+    "first": 1.6698473282442747,
+    "second": 0.6724137931034483,
+    "difference": 0.9974335351408264,
+    "range": [
+     0.7272636363636364,
+     1.2638695205588912
+    ],
+    "n": [
+     524,
+     58
+    ],
+    "reads": "HOLDS"
+   },
+   "G2 ... and more kills": {
+    "first": 2.7251908396946565,
+    "second": 1.3620689655172413,
+    "difference": 1.3631218741774151,
+    "range": [
+     0.972863619509893,
+     1.7100373718751907
+    ],
+    "n": [
+     524,
+     58
+    ],
+    "reads": "HOLDS"
+   },
+   "G3 ... and takes more deaths of its own": {
+    "first": 0.30343511450381677,
+    "second": 0.39655172413793105,
+    "difference": -0.09311660963411428,
+    "range": [
+     -0.28975275980737875,
+     0.07870684727134823
+    ],
+    "n": [
+     524,
+     58
+    ],
+    "reads": "not clear"
+   },
+   "G4 [his guess] a team that stays is better off in its chance of winning three minutes after the res": {
+    "first": 4.201000835016832,
+    "second": 0.12435870744573001,
+    "difference": 4.076642127571104,
+    "range": [
+     -0.12364547997902005,
+     8.229987597527154
+    ],
+    "n": [
+     524,
+     58
+    ],
+    "reads": "not clear"
+   },
+   "G4b ... and the same teams in the 60 s before, which no call can change (a gap here marks the spot)": {
+    "first": 4.749481573269339,
+    "second": 3.651189619317547,
+    "difference": 1.0982919539517915,
+    "range": [
+     -0.9440015104974113,
+     3.0825984145999916
+    ],
+    "n": [
+     524,
+     58
+    ],
+    "reads": "not clear"
+   }
+  },
+  "factors": {
+   "the flag: we hold the stand": {
+    "stayed": 435,
+    "fell out": 34,
+    "difference": 6.897269026478698,
+    "range": [
+     2.0435767594389023,
+     13.505247984731279
+    ],
+    "before": 0.49535598674823333,
+    "under_the_floor": false
+   },
+   "the flag: we do not": {
+    "stayed": 89,
+    "fell out": 24,
+    "difference": 2.6157802764204208,
+    "range": [
+     -4.203587098309259,
+     9.594940795896425
+    ],
+    "before": 1.922684084365518,
+    "under_the_floor": true
+   },
+   "their pit NPCs alive: four or more": {
+    "stayed": 331,
+    "fell out": 39,
+    "difference": 4.21206306251749,
+    "range": [
+     -0.38318373510810344,
+     8.301711097063333
+    ],
+    "before": 1.6928614063360001,
+    "under_the_floor": false
+   },
+   "their pit NPCs alive: three or fewer": {
+    "stayed": 193,
+    "fell out": 19,
+    "difference": 4.291929926011351,
+    "range": [
+     -4.094663011524699,
+     14.863685130332154
+    ],
+    "before": 0.35186435381866477,
+    "under_the_floor": true
+   },
+   "their dead to come back: one": {
+    "stayed": 239,
+    "fell out": 33,
+    "difference": 7.661555735188124,
+    "range": [
+     1.459838641368681,
+     14.549892749794346
+    ],
+    "before": 2.7537545356480613,
+    "under_the_floor": false
+   },
+   "their dead to come back: two": {
+    "stayed": 135,
+    "fell out": 12,
+    "difference": -3.0823473245628232,
+    "range": [
+     -10.185779730267082,
+     2.7263320461488
+    ],
+    "before": 2.3099863028194156,
+    "under_the_floor": true
+   },
+   "their dead to come back: three or more": {
+    "stayed": 150,
+    "fell out": 13,
+    "difference": 1.3674022354886,
+    "range": [
+     -2.104785178925158,
+     4.848475374629932
+    ],
+    "before": -5.756988837484113,
+    "under_the_floor": true
+   },
+   "our morale: the better half (over 58)": {
+    "stayed": 276,
+    "fell out": 15,
+    "difference": 3.6281490700371095,
+    "range": [
+     -0.7806914986460974,
+     10.563365297781909
+    ],
+    "before": 2.3667889538047193,
+    "under_the_floor": true
+   },
+   "our morale: the worse half": {
+    "stayed": 248,
+    "fell out": 43,
+    "difference": 6.390583512907713,
+    "range": [
+     1.1477042572858929,
+     12.60518507300707
+    ],
+    "before": 2.067389566918904,
+    "under_the_floor": false
+   },
+   "their morale: the better half (over -75)": {
+    "stayed": 239,
+    "fell out": 36,
+    "difference": 6.299581551940343,
+    "range": [
+     0.20402379044882646,
+     13.691991130865377
+    ],
+    "before": 2.9013613359313184,
+    "under_the_floor": false
+   },
+   "their morale: the worse half": {
+    "stayed": 285,
+    "fell out": 22,
+    "difference": 3.1882400527682595,
+    "range": [
+     -0.8454656807085467,
+     8.170513159405047
+    ],
+    "before": -0.9004468193914725,
+    "under_the_floor": true
+   },
+   "the clock: the res of 10:00 or earlier": {
+    "stayed": 303,
+    "fell out": 34,
+    "difference": 3.8918369513320403,
+    "range": [
+     -0.3744216090970702,
+     8.669817724470908
+    ],
+    "before": 0.9963658764019767,
+    "under_the_floor": false
+   },
+   "the clock: 12:00 to 20:00": {
+    "stayed": 156,
+    "fell out": 18,
+    "difference": -3.3472590007895393,
+    "range": [
+     -7.602430892768326,
+     0.7760119722287689
+    ],
+    "before": 0.44523970860220885,
+    "under_the_floor": true
+   },
+   "the clock: 22:00 or later": {
+    "stayed": 65,
+    "fell out": 6
+   },
+   "the marks (by their shrine, NPCs on them, worn): two or all three": {
+    "stayed": 278,
+    "fell out": 16,
+    "difference": -1.7833214377900748,
+    "range": [
+     -5.155590186524755,
+     0.954586924450877
+    ],
+    "before": -1.5841070771727424,
+    "under_the_floor": true
+   },
+   "the marks (by their shrine, NPCs on them, worn): one or none": {
+    "stayed": 246,
+    "fell out": 42,
+    "difference": 7.224316232862494,
+    "range": [
+     2.3331816518697863,
+     13.7905092850228
+    ],
+    "before": 2.747865176417948,
+    "under_the_floor": false
+   },
+   "our monks in their base: two or more": {
+    "stayed": 414,
+    "fell out": 33,
+    "difference": 3.15682054163971,
+    "range": [
+     -2.0408127609314883,
+     8.8066939211767
+    ],
+    "before": 0.21170072851634902,
+    "under_the_floor": false
+   },
+   "our monks in their base: one or none": {
+    "stayed": 110,
+    "fell out": 25,
+    "difference": 5.884718497149686,
+    "range": [
+     -1.1891097073125168,
+     12.527108496987092
+    ],
+    "before": 2.6057445165443434,
+    "under_the_floor": true
+   }
+  },
+  "fell_out_s": [
+   4.0,
+   12.0,
+   24.0
+  ],
+  "K": 30,
+  "stay against fall out, as the res lands": {
+   "worth": 2.0148335808347606,
+   "range": [
+    0.3087797710490374,
+    3.720887390620484
+   ],
+   "spots": 582,
+   "reads": "better"
+  },
+  "stay against fall out, a minute after the res": {
+   "worth": 1.4391800197759852,
+   "range": [
+    -0.9632895966395578,
+    3.841649636191528
+   ],
+   "spots": 582,
+   "reads": "no clear difference"
+  },
+  "stay against fall out, three minutes after the res": {
+   "worth": 3.937867335359045,
+   "range": [
+    -2.4990485824505697,
+    10.37478325316866
+   ],
+   "spots": 582,
+   "reads": "no clear difference"
+  },
+  "test": {
+   "tally": {
+    "cases": 582,
+    "no clear advice": 423,
+    "clear advice": 159
+   },
+   "rows": 159,
+   "matched": 125,
+   "advice": {
+    "stayed": 142,
+    "fell out": 17
+   },
+   "v": {
+    "effect": 4.755386505841839,
+    "range": [
+     -3.626614167208687,
+     13.299036064293038
+    ],
+    "matched_mean": 7.977099046165085,
+    "unmatched_mean": 1.9642551961623027,
+    "verdict": "no clear difference"
+   },
+   "end": {
+    "effect": 0.06169693788697091,
+    "range": [
+     -17.623907369342383,
+     14.728311555127844
+    ],
+    "matched_mean": 6.226926654705382,
+    "unmatched_mean": 5.190897121682245,
+    "verdict": "no clear difference"
+   },
+   "pre": {
+    "effect": 1.0691930081627894,
+    "range": [
+     -1.185204746695368,
+     3.796485401778489
+    ],
+    "matched_mean": 7.475394212485297,
+    "unmatched_mean": 4.8534913733607254,
+    "verdict": "no clear difference"
+   },
+   "matches": 134
+  }
  }
 }

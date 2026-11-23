@@ -2093,6 +2093,7 @@ def pushes(path, out_json=None):
     _reading(pr, res, [r for r in Q if r["deaths_before"] is not None], "U14b ... and was already taking more in the 60 s before", psh, non, +1, lambda r: r["deaths_before"], "a push", "no push", unit=" deaths")
     _reading(pr, res, [r for r in Q if r["down_s"] is not None], "U15 a team that pushes has its main fight a player down for longer in the 90 s", psh, non, +1, lambda r: r["down_s"], "a push", "no push", unit=" s")
     pr("   A reading that holds here is where to look, never advice: a team pushes where it can afford to.")
+    pr("   No family (R-597, his word on these figures): the one gain, two or more players stopping a flag, is the flag family's already. The readings stay as a report.")
     if out_json: json.dump(res, open(out_json, "w"), indent=1, default=float)
     return res
 
@@ -2223,18 +2224,140 @@ def res_cases(D, M, B):
     return out, skipped
 
 
-GREEDY = ("deep (half of them or more past their res shrine)", "NPCs on them (two or more of them hit by NPCs in the 20 s before)", "low on health (under 85% between them)", "worn (damage taken in the minute before in the upper third)")
+GREEDY = ("by their res shrine (half of them or more past it, or nearer it than the middle stay)", "NPCs on them (two or more of them hit by NPCs in the 20 s before)", "worn (damage taken in the minute before in the upper third)")
 
 
-def _greedy_marks(c, worn):
-    """His picture of the greedy stay (R-589, R-595), as four marks a team can see 20 s before the res: deep, NPCs on it, low on health, worn by the fight.
-    The lines are the report's own (Claude's draft): half the players past the shrine, two players under NPC damage, the 85% of B3, the upper third of damage."""
-    e = c["early"]
-    return [bool(e["n"]) and e.get("past_shrine") is not None and e["past_shrine"] * 2 >= e["n"], e["npc_on"] >= 2, e["health"] is not None and e["health"] < RES_LOW, e["taken"] is not None and e["taken"] >= worn]
+def _greedy_marks(e, worn, near):
+    """His picture of the greedy stay (R-589, R-595, R-602), as three marks a team can see before the res: by their res shrine, NPCs on it, worn by the fight
+    (low health is not one: "they are already likely to die"). The lines are the report's own (Claude's draft), each read from the data: half the players past
+    the shrine or nearer it by the walk than the middle stay stands, two players under NPC damage, the upper third of damage taken."""
+    by = max(e.get("past_shrine") or 0, sum(1 for x in e.get("shrine_walk") or [] if x <= near))
+    return [bool(e["n"]) and by * 2 >= e["n"], e["npc_on"] >= 2, e["taken"] is not None and e["taken"] >= worn]
 
 
 HIS_RES = (("3b7bfeac", 1440, "yM v hook 24:00", True), ("512d445f", 720, "Crew v One 12:00", True), ("33dab8e5", 360, "Men v BcS 6:00", True), ("19f38ea6", 600, "Book v hook 10:00", True),
            ("39e9d728", 480, "DUM v ohno 8:00", True), ("c19f13e3", 600, "Men v NwAy 10:00", True), ("328de049", 960, "Book v cope 16:00", False), ("5527465c", 360, "hook v Men 6:00", False))      # his words of 2026-11-22 on the stays where two or more died: the six that are the greedy stay, and the two that are a res onto a split (R-595)
+
+
+SPOT_CALLS = ("stayed", "fell out")
+SPOT_H = (("60", "40", "as the res lands"), ("90", "100", "a minute after the res"), ("180", "220", "three minutes after the res"))      # the like-spots machinery names its three reads 60, 90 and 180: here they are the res, a minute after it and three minutes after it, counted from 40 s before the res
+SPOT_VARS = ("flag lead", "we hold the stand", "our morale", "their morale", "strength gap", "own chance of winning at that second", "the clock, minutes", "their dead to come back", "our players in their base", "our monks in their base",
+             "their pit NPCs alive", "share of ours by their shrine", "ours with NPCs on them", "damage taken in the minute before", "our players alive", "their players alive")
+
+
+def spot_cases(D, M, B, worn, near):
+    """One case a main team in the enemy's base 40 s before their base res with enemy dead to come back (R-601, `jobs.res_spots`), from its own side: whether it
+    stayed through the res or fell out before it, the marks it carried then, and what followed as the res lands, a minute after and three minutes after, priced
+    without its match. Set aside: a res onto a split, a team mostly killed before the res, and one partly out as it lands."""
+    out, skipped = [], collections.Counter()
+    for rid, v in D["flag_cost"].items():
+        if "res_spots" not in (v or {}): raise ValueError(f"match {rid} carries no base res spots: run moments.py all again on this engine (R-460)")
+        m = M[rid]
+        for s in v["res_spots"]:
+            if not m["winner"]: skipped["no winner recorded"] += 1; continue
+            st, af, e = s["state"], s["after"], s["stand"]
+            gap, beta, won = m["gap"][s["team"]], B[m["fold"]], float(m["winner"] == s["team"])
+            x0 = None if st["flag_lead"] is None else position(st, af["40"], gap, False)
+            ends = {k: (won if af[h]["ended"] else None if position(st, af[h], gap, True) is None else chance(beta, position(st, af[h], gap, True))) for k, h, _ in SPOT_H}
+            if x0 is None or any(x is None for x in ends.values()): skipped["the flag lead not read"] += 1; continue
+            if not (e["n"] and e["of_main"] * 2 > e["n"]): skipped["a res onto a split"] += 1; continue
+            left = s["n"] - s["deaths"][0]
+            call = SPOT_CALLS[0] if s["in_at_res"] and s["in_at_res"] * 2 >= left else SPOT_CALLS[1] if not s["in_at_res"] and s["deaths"][0] * 2 < s["n"] else None
+            if call is None: skipped["mostly killed before the res, or partly out as it lands"] += 1; continue
+            p0 = chance(beta, x0); bf, pre = s.get("before"), None
+            if bf and bf["after"]["lead"][0] is not None and "npcs_lost" in bf["state"]: pre = 100 * (p0 - chance(beta, position(bf["state"], bf["after"], gap, False)))
+            mk = _greedy_marks(e, worn, near); mo = af["40"]["morale"]
+            by = max(e.get("past_shrine") or 0, sum(1 for x in e.get("shrine_walk") or [] if x <= near))
+            out.append({"rid": rid, "team": s["team"], "t": s["t"], "res": s["res"], "call": call, "fold": m["fold"], "won": won, "p0": p0, "pre": pre, "more": None, "held": False,
+                        "v": {k: 100 * (ends[k] - p0) for k in ends}, "marks": mk, "nmarks": sum(mk), "left_s": None if s["left_at"] is None else s["res"] - s["left_at"],
+                        "npcs_res": af["40"]["npcs"][1], "npcs": af["100"]["npcs"][1], "npcs_lost": af["100"]["npcs"][0], "kills_res": af["40"]["deaths"][1], "kills": af["100"]["deaths"][1],
+                        "own_deaths": af["100"]["deaths"][0], "base_deaths": s["deaths"][0] + s["deaths"][2], "two_die": s["deaths"][2] >= 2, "flags": af["100"]["lead_change"],
+                        "stand": st["stand"] == "own", "lead": st["flag_lead"], "dead": s["dead"], "back": s["back"], "pit_npcs": e["pit_npcs"], "own_morale": mo[0][0], "their_morale": mo[1][0],
+                        "clock": s["res"] / 60.0, "monks": e["monks"], "n": e["n"], "health": e["health"],
+                        "x": [st["flag_lead"], float(st["stand"] == "own"), mo[0][0], mo[1][0], gap, 100 * p0, s["res"] / 60.0, s["dead"], e["n"], e["monks"], e["pit_npcs"], by / e["n"], e["npc_on"], e["taken"], st["alive"][0], st["alive"][1]]})
+    return out, skipped
+
+
+def gamble(D, M, B, pr, worn, near):
+    """The gamble of the base res (R-601): stay through it or fall out before it. His words: falling out takes away the damage, the NPCs and the range of the
+    players who base, "But this is a gamble, and we want to see which is better ... in those crucial seconds before a base res you have a very significant
+    chance of taking NPCs, getting more kills. My guess would be it's usually better to stay and risk it, but if there are particular circumstances (e.g. the
+    build, whether you have the flag capped, how many npcs, how many are base resing, what moral is like, how late in the game is it for amulet of protection)
+    that mean staying is better or worse in certain situations, we would want to know that." The general table, the readings, like spots with the test on
+    unseen matches, and what staying is worth against falling out by each of his circumstances: where to look, never advice."""
+    C, skipped = spot_cases(D, M, B, worn, near)
+    o = {"cases": len(C), "skipped": dict(skipped), "calls": {k: sum(1 for c in C if c["call"] == k) for k in SPOT_CALLS}, "as_it_fell": {}, "checks": {}, "factors": {}}
+    S, L = [c for c in C if c["call"] == SPOT_CALLS[0]], [c for c in C if c["call"] == SPOT_CALLS[1]]
+    pr(f"\nE. The gamble (R-601): the main team in their base 40 s before the res with enemy dead to come back, {len(C)} in {len({c['rid'] for c in C})} matches: stayed through the res {len(S)}, fell out before it {len(L)}"
+       + "".join(f"; set aside, {k}: {v}" for k, v in skipped.most_common() if v))
+    ls = sorted(c["left_s"] for c in L if c["left_s"] is not None)
+    if ls: o["fell_out_s"] = [float(np.percentile(ls, q)) for q in (25, 50, 75)]; pr(f"   When the teams that fall out are gone: the middle one {o['fell_out_s'][1]:.0f} s before the res (half between {o['fell_out_s'][0]:.0f} and {o['fell_out_s'][2]:.0f} s).")
+    pr("   As it fell, from 40 s before the res: a description set against no like spot")
+    pr(f"     {'':12} {'cases':>5}  {'started at':>10}  {'60 s before':>11}  {'NPCs by the res':>15}  {'a minute after':>14}  {'kills by the res':>16}  {'a minute after':>14}  {'own deaths':>10}  {'two or more of them die':>23}  {'win pts at the res':>18}  {'a minute after':>14}  {'three minutes after':>19}")
+    mn = lambda X, k: float(np.mean([c[k] for c in X if c[k] is not None] or [0.0]))
+    for lab, X in ((SPOT_CALLS[0], S), (SPOT_CALLS[1], L)):
+        if not X: continue
+        r = o["as_it_fell"][lab] = {"cases": len(X), "matches": len({c["rid"] for c in X}), "started at": 100 * mn(X, "p0"), "the 60 s before": mn(X, "pre"), "NPCs by the res": mn(X, "npcs_res"), "NPCs a minute after": mn(X, "npcs"),
+                                    "kills by the res": mn(X, "kills_res"), "kills a minute after": mn(X, "kills"), "own deaths a minute after": mn(X, "own_deaths"), "two or more of them die": 100 * mn(X, "two_die"),
+                                    "win points": {lab_: float(np.mean([c["v"][k] for c in X])) for k, _, lab_ in SPOT_H}}
+        w = list(r["win points"].values())
+        pr(f"     {lab:12} {len(X):5}  {r['started at']:9.0f}%  {r['the 60 s before']:+11.1f}  {r['NPCs by the res']:15.2f}  {r['NPCs a minute after']:14.2f}  {r['kills by the res']:16.2f}  {r['kills a minute after']:14.2f}  {r['own deaths a minute after']:10.2f}  {r['two or more of them die']:22.0f}%  {w[0]:+18.1f}  {w[1]:+14.1f}  {w[2]:+19.1f}")
+    res_ = {"checks": o["checks"]}; st_, fo_ = (lambda c: c["call"] == SPOT_CALLS[0]), (lambda c: c["call"] == SPOT_CALLS[1])
+    rd = lambda X, *a, **k: _reading(pr, res_, X, *a, **k)
+    rd(C, "G1 a team that stays takes more NPCs by a minute after the res than one that falls out", st_, fo_, +1, lambda c: c["npcs"], "stayed", "fell out", unit=" NPCs")
+    rd(C, "G2 ... and more kills", st_, fo_, +1, lambda c: c["kills"], "stayed", "fell out", unit=" kills")
+    rd(C, "G3 ... and takes more deaths of its own", st_, fo_, +1, lambda c: c["own_deaths"], "stayed", "fell out", unit=" deaths")
+    rd(C, "G4 [his guess] a team that stays is better off in its chance of winning three minutes after the res", st_, fo_, +1, lambda c: c["v"]["180"], "stayed", "fell out", unit=" points")
+    rd([c for c in C if c["pre"] is not None], "G4b ... and the same teams in the 60 s before, which no call can change (a gap here marks the spot)", st_, fo_, +1, lambda c: c["pre"], "stayed", "fell out", unit=" points")
+    pr("   Read with care: who falls out follows the spot. G4 is as it fell; like spots follow.")
+    if min(len(S), len(L)) >= MIN_PLAYS:
+        s_ = Scenario(C); s_.names = list(SPOT_VARS); K_, _ = choose_k({"res": s_}); o["K"] = K_
+        pr(f"\n   Like spots: each case set against the {K_} nearest cases of each call from other matches, set level with it. Matched on: " + ", ".join(SPOT_VARS))
+        for k, _, lab in SPOT_H:
+            rows_ = []
+            for i in range(len(s_.C)):
+                r = s_.read(i, K_, False, k)
+                if len(r["calls"]) == 2: rows_.append((r["calls"][SPOT_CALLS[0]]["worth"] - r["calls"][SPOT_CALLS[1]]["worth"], math.hypot(r["calls"][SPOT_CALLS[0]]["se"], r["calls"][SPOT_CALLS[1]]["se"])))
+            if len(rows_) < MIN_PLAYS: pr(f"     {lab}: too few spots with both calls round them"); continue
+            mu_, se_ = float(np.mean([d_ for d_, _ in rows_])), float(np.mean([e_ for _, e_ in rows_])); lo, hi = mu_ - Z * se_, mu_ + Z * se_
+            o[f"stay against fall out, {lab}"] = {"worth": mu_, "range": [lo, hi], "spots": len(rows_), "reads": "better" if lo > 0 else "worse" if hi < 0 else "no clear difference"}
+            pr(f"     {lab}: staying against falling out at the same spot {mu_:+.1f} points ({lo:+.1f} to {hi:+.1f}), over {len(rows_)} spots   {o[f'stay against fall out, {lab}']['reads']}")
+        t = advice_test({"res": s_}, K_, "180"); o["test"] = t
+        adv = ", ".join(f"{a_} {n_}" for a_, n_ in sorted(t.get("advice", {}).items(), key=lambda q: -q[1]))
+        if "v" not in t: pr(f"     The test on matches the advice never saw, three minutes after the res: clear advice in {t['rows']} of {len(C)} [{adv}]: too few to call")
+        else:
+            pre = t.get("pre"); lv = "" if not pre else f"; in the 60 s before {pre['effect']:+.1f} ({pre['range'][0]:+.1f} to {pre['range'][1]:+.1f})" + ("" if pre["verdict"] == "no clear difference" else " NOT LEVEL")
+            pr(f"     The test on matches the advice never saw, three minutes after the res: clear advice in {t['rows']} of {len(C)} ({adv}), matched {t['matched']}: {t['v']['effect']:+.1f} ({t['v']['range'][0]:+.1f} to {t['v']['range'][1]:+.1f}) {t['v']['verdict']}; "
+               f"in how the match ended {t['end']['effect']:+.1f} ({t['end']['range'][0]:+.1f} to {t['end']['range'][1]:+.1f}){lv}")
+    else: pr(f"\n   Like spots: too few of one call ({len(S)} against {len(L)}) to set beside the other.")
+    # his circumstances: what staying is worth against falling out in each, three minutes after the res, with the same difference in the 60 s before
+    med = lambda k: float(np.median([c[k] for c in C])) if C else 0.0
+    om, tm_ = med("own_morale"), med("their_morale")
+    F = (("the flag", (("we hold the stand", lambda c: c["stand"]), ("we do not", lambda c: not c["stand"]))),
+         ("their pit NPCs alive", (("four or more", lambda c: c["pit_npcs"] >= 4), ("three or fewer", lambda c: c["pit_npcs"] <= 3))),
+         ("their dead to come back", (("one", lambda c: c["dead"] == 1), ("two", lambda c: c["dead"] == 2), ("three or more", lambda c: c["dead"] >= 3))),
+         ("our morale", ((f"the better half (over {om:.0f})", lambda c: c["own_morale"] > om), ("the worse half", lambda c: c["own_morale"] <= om))),
+         ("their morale", ((f"the better half (over {tm_:.0f})", lambda c: c["their_morale"] > tm_), ("the worse half", lambda c: c["their_morale"] <= tm_))),
+         ("the clock", (("the res of 10:00 or earlier", lambda c: c["res"] <= 600), ("12:00 to 20:00", lambda c: 600 < c["res"] <= 1200), ("22:00 or later", lambda c: c["res"] > 1200))),
+         ("the marks (by their shrine, NPCs on them, worn)", (("two or all three", lambda c: c["nmarks"] >= 2), ("one or none", lambda c: c["nmarks"] <= 1))),
+         ("our monks in their base", (("two or more", lambda c: c["monks"] >= 2), ("one or none", lambda c: c["monks"] <= 1))))
+    pr("\n   By his circumstances: what staying is worth against falling out, in the chance of winning three minutes after the res, with its 90% range over whole matches; and the same")
+    pr("   difference in the 60 s before, which no call can change. Where to look, never advice. (The build is read only as the monks in their base: its other properties are not on this record.)")
+    pr(f"     {'':52} {'stayed':>6}  {'fell out':>8}  {'stay less fall out':>18}  {'range':>16}  {'60 s before':>11}")
+    for name, bands in F:
+        for lab, f in bands:
+            X = [c for c in C if f(c)]; a_, b_ = [c for c in X if st_(c)], [c for c in X if fo_(c)]
+            row = o["factors"][f"{name}: {lab}"] = {"stayed": len(a_), "fell out": len(b_)}
+            if min(len(a_), len(b_)) < 8: pr(f"     {name + ': ' + lab:52} {len(a_):6}  {len(b_):8}  too few to set beside one another"); continue
+            for c in X: c["_y"] = c["v"]["180"]
+            d_, lo, hi, _, _ = _num_range(X, st_, fo_)
+            P_ = [c for c in X if c["pre"] is not None]
+            for c in P_: c["_y"] = c["pre"]
+            dp = _num_range(P_, st_, fo_)[0]
+            low = min(len(a_), len(b_)) < MIN_PLAYS
+            row.update(difference=float(d_), range=[float(lo), float(hi)], before=None if dp is None else float(dp), under_the_floor=bool(low))
+            pr(f"     {name + ': ' + lab:52} {len(a_):6}  {len(b_):8}  {d_:+18.1f}  {f'{lo:+.1f} to {hi:+.1f}':>16}  {('' if dp is None else format(dp, '+.1f')):>11}" + ("   (under the floor)" if low else ""))
+    return o
 
 
 def base_res(path, out_json=None):
@@ -2299,11 +2422,13 @@ def base_res(path, out_json=None):
     # ---- D. The greedy stay (R-595): the base res as a decision of the main team, read 20 s before the res, when staying or leaving is still its to choose
     G = [c for c in C if c["main"] and c["n"] >= 3]
     worn = float(np.percentile([c["taken"] for c in G if c["taken"] is not None], 200 / 3)) if G else 0.0
-    for c in C: c["marks"] = _greedy_marks(c, worn); c["nmarks"] = sum(c["marks"])
-    res["greedy"] = g = {"cases": len(G), "worn_line": worn, "set_aside": {"a res onto a split, or fewer than three in their base": len(C) - len(G)}, "marks": {}, "by_marks": {}, "his_games": []}
+    near = float(np.median([c["shrine"] for c in G if c["stayed"] and c["shrine"] is not None] or [0.0]))
+    for c in C: c["marks"] = _greedy_marks(c["early"], worn, near); c["nmarks"] = sum(c["marks"])
+    res["greedy"] = g = {"cases": len(G), "worn_line": worn, "near_line": near, "set_aside": {"a res onto a split, or fewer than three in their base": len(C) - len(G)}, "marks": {}, "by_marks": {}, "his_games": []}
     pr(f"\nD. The greedy stay (R-589, R-595): the main team in their base (three or more of it, most of them of the main team), read {20} s before the res: {len(G)} in {len({c['rid'] for c in G})} matches;")
     pr(f"   set aside, a res onto a split or fewer than three in their base: {len(C) - len(G)} (his word on Book v cope and hook v Men: \"a player basing on the split, so not really what I was talking about\").")
-    pr("   Where his picture puts the danger, each mark on its own, among the teams that stayed: how often two or more of them die in the 30 s after the res")
+    pr(f"   Where his picture puts the danger, each mark on its own (health is not one, R-602; the lines: the middle stay stands {near:,.0f} from their shrine by the walk; the upper third of damage")
+    pr(f"   taken is {worn:,.0f} a player in the minute): how often two or more of the players that stayed die in the 30 s after the res")
     SG = [c for c in G if c["stayed"]]
     def mrow(o, label, X):
         if not X: return
@@ -2323,12 +2448,12 @@ def base_res(path, out_json=None):
             X = [c for c in Hs if lo <= c["shrine"] < hi]; lab = f"{lo:,.0f} to {hi:,.0f}" if hi < 1e9 else f"{lo:,.0f} or more"
             g["by_shrine"][lab] = {"cases": len(X), "one dies": 100 * float(np.mean([c["died"] for c in X])), "two or more die": 100 * float(np.mean([c["deaths"] >= 2 for c in X]))}
             pr(f"     {lab:22} {len(X):4} stays; one dies {g['by_shrine'][lab]['one dies']:3.0f}%; two or more {g['by_shrine'][lab]['two or more die']:3.0f}%")
-    pr("   By how many of the four marks a team carries 20 s before the res: who leaves, and what the stay cost")
-    for n, lab in ((0, "none of the four"), (1, "one"), (2, "two"), (3, "three or all four")):
-        mrow(g["by_marks"], lab, [c for c in G if (c["nmarks"] == n if n < 3 else c["nmarks"] >= 3)])
+    pr("   By how many of the three marks a team carries 20 s before the res: who leaves, and what the stay cost")
+    for n, lab in ((0, "none of the three"), (1, "one"), (2, "two"), (3, "all three")):
+        mrow(g["by_marks"], lab, [c for c in G if c["nmarks"] == n])
     HI = [c for c in G if c["nmarks"] >= 2]
     rd = lambda X, *a, **k: _reading(pr, res, X, *a, **k)
-    rd(SG, "B7 a main team that stays carrying two or more of the four marks loses two or more players more often than one carrying fewer", lambda c: c["nmarks"] >= 2, lambda c: True, +1, lambda c: c["deaths"] >= 2, "two or more marks", "fewer")
+    rd(SG, "B7 a main team that stays carrying two or more of the three marks loses two or more players more often than one carrying fewer", lambda c: c["nmarks"] >= 2, lambda c: True, +1, lambda c: c["deaths"] >= 2, "two or more marks", "fewer")
     rd(SG, "B8 ... and is worse off in its chance of winning 180 s on", lambda c: c["nmarks"] >= 2, lambda c: True, -1, lambda c: c["v"]["180"], "two or more marks", "fewer", unit=" points")
     rd(HI, "B9 carrying two or more marks, a team that leaves before the res is better off 180 s on than one that stays", lambda c: not c["stayed"], lambda c: True, +1, lambda c: c["v"]["180"], "left", "stayed", unit=" points")
     lo_, hi_ = [c for c in SG if c["nmarks"] >= 2], [c for c in SG if c["nmarks"] < 2]
@@ -2341,7 +2466,7 @@ def base_res(path, out_json=None):
         c = next((c for c in C if c["rid"].startswith(rid8) and c["stayed"] and c["t"] + 20 == t), None)
         if c is None: pr(f"     {name}: not told as a stay"); g["his_games"].append({"game": name, "found": False}); continue
         e = c["early"]; told = c["main"] and c["n"] >= 3
-        g["his_games"].append({"game": name, "his": his, "in_the_family": bool(told), "marks": c["nmarks"], "deep": c["marks"][0], "npcs": c["marks"][1], "low": c["marks"][2], "worn": c["marks"][3], "n": e["n"], "of_main": e["of_main"], "past_shrine": e.get("past_shrine"),
+        g["his_games"].append({"game": name, "his": his, "in_the_family": bool(told), "marks": c["nmarks"], "by_shrine": c["marks"][0], "npcs": c["marks"][1], "worn": c["marks"][2], "n": e["n"], "of_main": e["of_main"], "past_shrine": e.get("past_shrine"),
                                "shrine": c["shrine"], "npc_on": e["npc_on"], "npc_dmg": e["npc_dmg"], "health": e["health"], "taken": e["taken"], "deaths": c["deaths"], "deaths_60": c["deaths_60"]})
         pr(f"     {name:20} his: {'the greedy stay' if his else 'a res onto a split':18} engine: {'main team' if told else 'set aside     '}, {c['nmarks']} marks ({', '.join(m.split(' (')[0] for m, v in zip(GREEDY, c['marks']) if v) or 'none'}); {e['n']} in their base, {e['of_main']} of the main team, "
            f"{e.get('past_shrine')} past the shrine (middle {c['shrine'] or 0:,.0f} from it), NPCs on {e['npc_on']} ({e['npc_dmg']} damage), health {e['health']}%, {e['taken']} damage each in the minute; {c['deaths']} die in 30 s, {c['deaths_60']} in 60 s")
@@ -2349,8 +2474,9 @@ def base_res(path, out_json=None):
     g["agrees"] = sum(1 for x in ok if x["in_the_family"] == x["his"] and (not x["his"] or x["marks"] >= 2)); g["of"] = len(HIS_RES)
     pr(f"   The marks agree with him on {g['agrees']} of {len(HIS_RES)} (the greedy stay: main team with two or more marks; a res onto a split: set aside).")
     top = sorted((c for c in SG if c["nmarks"] >= 3), key=lambda c: (-c["deaths"], -c["nmarks"]))
+    res["gamble"] = gamble(D, M, B, pr, worn, near)
     g["three_marks"] = [{"rid": c["rid"], "team": c["team"], "t": c["t"] + 20, "deaths": c["deaths"], "marks": c["nmarks"]} for c in top[:30]]
-    pr(f"   The stays with three or four marks ({len(top)}), most deaths first, to look at:")
+    pr(f"\n   The stays with all three marks ({len(top)}), most deaths first, to look at:")
     for c in top[:12]:
         pr(f"     {M[c['rid']]['date']} {' v '.join(M[c['rid']]['teams'])}, {M[c['rid']]['map']}, {cl(M[c['rid']]['length_s'] or 0)} long: {c['team']} at the res of {cl(c['t'] + 20)}, {c['deaths']} die   https://gvg.report/report/{c['rid']}#map")
     if out_json: json.dump(res, open(out_json, "w"), indent=1, default=float)
@@ -2409,13 +2535,12 @@ def opening_cases(D, M, B):
     anybody had capped; and what stood 3, 5 and 8 minutes from the gates: flags, kills, NPCs, boosts, and the chance of winning priced without its match.
     Every result but the chance of winning is also kept set level on the strength gap (`_lv`: less what the gap gives on its own, a straight line over every
     opening), since the stronger team picks its opening too."""
-    out, skipped, (resp, _), early = [], collections.Counter(), usual_responder(D), collections.defaultdict(list)
-    resp2, _ = usual_responder(D, monks=False)
+    out, skipped, (resp, _), early = [], collections.Counter(), usual_responder(D, monks=False), collections.defaultdict(list)      # the player other than a monk (R-598)
     for p in D["plays"]:
         if p["play"] == "split" and p["side"] == "attacker" and p["t0"] <= OPEN_SPLIT_BY: early[(p["rid"], p["tm"])].append(p["t0"])
     for p in D["plays"]:
         if p["play"] != "opening": continue
-        if "meet" not in p.get("open", {}) or "480" not in p["open"].get("later", {}): raise ValueError(f"opening play {p['id']} carries no record of the next flag or of 8:00: run moments.py all again on this engine (R-460)")
+        if "stand_d" not in p.get("open", {}) or "480" not in p["open"].get("later", {}): raise ValueError(f"opening play {p['id']} carries no record of who has the stand or of 8:00: run moments.py all again on this engine (R-460)")
         c = _told(p, M, B)
         if c is None: skipped["no winner recorded, or the flag lead not read"] += 1; continue
         m, o, f = M[p["rid"]], p["open"], p["beside"]["flag"]; th, tf, lt = o["their"], o["their_flag"], o["later"]
@@ -2437,18 +2562,17 @@ def opening_cases(D, M, B):
         mine_resp = resp.get(p["team"]) if resp.get(p["team"]) in {_stem(r) for v in o["roles"].values() for r in v} else None      # the guild's usual split response, where that player is in this line-up
         their_tag = next(t for t in m["teams"] if t != p["team"])
         their_resp = resp.get(their_tag) if resp.get(their_tag) in {_stem(r) for v in o["their_roles"].values() for r in v} else None
-        mine2 = resp2.get(p["team"]) if resp2.get(p["team"]) in {_stem(r) for v in o["roles"].values() for r in v} else None
-        their2 = resp2.get(their_tag) if resp2.get(their_tag) in {_stem(r) for v in o["their_roles"].values() for r in v} else None
-        c.update(responder2=mine2, their_responder2=their2, on_responder2=bool(f["brought"] and f["by"] and mine2 and _stem(f["by"][0]) == mine2), their_on_responder2=bool(tf["brought"] and tf["by"] and their2 and _stem(tf["by"][0]) == their2))
+        sd = (o.get("stand_d") or [[None, None]])[0]                       # how far each main team stands from the flag stand 10 s after the teams meet: [ours, theirs]
+        c.update(their_held=bool(tf["brought"] and (tf.get("held_s") or 0) >= 15), stand_gap=None if None in sd else sd[1] - sd[0])      # stand_gap above nothing: we stand nearer the stand than they do
         c["v"].update({"300": priced("300"), "480": priced("480")})
         c.update(flag=flag, brought=bool(f["brought"]), their_brought=bool(tf["brought"]), matchup=mu, stand=o["stand"], their_stand=th["stand"], line=f.get("line") if f["brought"] else None,
                  their_line=tf.get("line") if tf["brought"] else None, held=bool(f["brought"] and (f.get("held_s") or 0) >= 15), handed=bool(f["brought"] and len(f["by"]) > 1),
                  lost=bool(f["brought"] and f["how"] not in ("captured", "not run")), first_cap=mine, their_first_cap=theirs, both_capped=mine is not None and theirs is not None,
                  capped_first=capped_first, sent_back=sent(o["next"]), their_sent_back=sent(o["their_next"]), meet=o["meet"],
-                 lead180=None if a180["ended"] else a180["lead_change"], lead300=at("300", lambda x: x["lead_change"]), lead420=at("420", lambda x: x["lead_change"]),
+                 lead180=None if a180["ended"] else a180["lead_change"], lead300=at("300", lambda x: x["lead_change"]),
                  kills180=None if a180["ended"] else a180["deaths"][1] - a180["deaths"][0], kills300=at("300", lambda x: x["deaths"][1] - x["deaths"][0]),
                  npcs300=at("300", lambda x: x["npcs"][1] - x["npcs"][0]), npcs_lost300=at("300", lambda x: x["npcs"][0]), boosts300=at("300", lambda x: x["boosts"][0] - x["boosts"][1]),
-                 boosts=at("420", lambda x: x["boosts"][0] - x["boosts"][1]), first_boost=None if a180["ended"] else a180["boosts"][0] - a180["boosts"][1],
+                 first_boost=None if a180["ended"] else a180["boosts"][0] - a180["boosts"][1],
                  lose300=at("300", lambda x: x["deaths"][0] > 0), kill300=at("300", lambda x: x["deaths"][1] > 0), v300=c["v"]["300"], v480=c["v"]["480"],
                  first_kill=None if not o.get("first_death") or o["first_death"][0] > 300 else o["first_death"][1] == "their",
                  responder=mine_resp, their_responder=their_resp, on_responder=bool(f["brought"] and f["by"] and mine_resp and _stem(f["by"][0]) == mine_resp),
@@ -2509,7 +2633,7 @@ def opening_report(path, out_json=None):
     a gain. Each team's opening is one case; the two teams of a match are two cases of one draw."""
     D, M = load(path); B, P = prices(D, M)
     C, skipped = opening_cases(D, M, B)
-    resp, RG = usual_responder(D)
+    resp, RG = usual_responder(D, monks=False); resp_m, RG_m = usual_responder(D)
     lines, res = [], {"cases": len(C), "skipped": dict(skipped), "counts": {}, "checks": {}, "as_it_fell": {}, "calls": {}}
     pr = lambda x="": (lines.append(x), print(x))
     mean = lambda V, k: float(np.mean([c[k] for c in V if c[k] is not None] or [0.0]))
@@ -2527,11 +2651,10 @@ def opening_report(path, out_json=None):
     # the usual split response, as he defines it (R-593)
     kinds = collections.Counter(resp.values())
     res["responders"] = kinds.most_common(); res["responder_by_guild"] = {g: {"player": r, "sent": RG[g][r], "of": sum(RG[g].values())} for g, r in sorted(resp.items())}
-    pr(f"   The usual split response (R-593: the player most often sent from the main team, the runner left out), for the {len(resp)} guilds that have one of {len(RG)} that answered a split: "
+    pr(f"   The usual split response (R-593, R-598: the player other than a monk most often sent from the main team, the runner left out), for the {len(resp)} guilds that have one of {len(RG)} that answered a split: "
        + ", ".join(f"{k} {n}" for k, n in kinds.most_common()))
-    resp2, RG2 = usual_responder(D, monks=False); kinds2 = collections.Counter(resp2.values())
-    res["responders_not_a_monk"] = kinds2.most_common(); res["responder_not_a_monk_by_guild"] = {g: {"player": r, "sent": RG2[g][r], "of": sum(RG2[g].values())} for g, r in sorted(resp2.items())}
-    pr(f"   The same with the monks left out (the player other than a monk most often sent), for the {len(resp2)} guilds that have one: " + ", ".join(f"{k} {n}" for k, n in kinds2.most_common()))
+    km = collections.Counter(resp_m.values()); res["responders_monks_counted"] = km.most_common()
+    pr(f"   (With the monks counted, as first measured, it is " + ", ".join(f"{k} for {n}" for k, n in km.most_common()) + f" of {len(resp_m)} guilds: he means a player other than a monk, R-598.)")
     F = [c for c in C if c["brought"] and c["their_brought"] and c["both_capped"] and c["matchup"] != OPEN_MATCHUP[4]]
     pr(f"\nB. The readings. N1 to N4 on openings where both teams brought a flag up and both capped, no split from the gates ({len(F)})")
     rd = lambda X, *a, **k: _reading(pr, res, X, *a, **k)
@@ -2560,12 +2683,6 @@ def opening_report(path, out_json=None):
     rd(K2, "N17 ... and hands the flag to another player more often", lambda c: c["on_responder"], lambda c: True, +1, lambda c: c["handed"], "our flag on our split response", "on another player")
     res["on_responder"] = {"first flags": len(K2), "on it": sum(1 for c in K2 if c["on_responder"])}
     pr(f"   ({res['on_responder']['on it']} of {len(K2)} first flags of guilds with a usual split response came up on that player.)")
-    Kb = [c for c in C if c["their_brought"] and c["their_responder2"] and c["matchup"] != OPEN_MATCHUP[4]]; K2b = [c for c in C if c["brought"] and c["responder2"] and c["matchup"] != OPEN_MATCHUP[4]]
-    rd(Kb, "N15b the same, the split response read with the monks left out", lambda c: c["their_on_responder2"], lambda c: True, +1, lambda c: c["we_split"], "their flag on their split response", "on another player")
-    rd(K2b, "N16b the same, the split response read with the monks left out", lambda c: c["on_responder2"], lambda c: True, +1, lambda c: c["capped_first"], "our flag on our split response", "on another player")
-    rd(K2b, "N17b the same, the split response read with the monks left out", lambda c: c["on_responder2"], lambda c: True, +1, lambda c: c["handed"], "our flag on our split response", "on another player")
-    res["on_responder_not_a_monk"] = {"first flags": len(K2b), "on it": sum(1 for c in K2b if c["on_responder2"])}
-    pr(f"   ({res['on_responder_not_a_monk']['on it']} of {len(K2b)} first flags of guilds with one came up on that player.)")
     pr("   Not a reading: who wins. The stronger team chooses its opening too; the chance of winning each row started from is shown below.")
     head = f"     {'':58} {'cases':>5}  {'started at':>10}  {'caps first':>10}  {'holds':>6}  " + "  ".join(f"{n:>{len(fm.format(0))}}" for n, _, fm in OPEN_OUT) + f"  {'first kill':>10}  {'wins':>5}"
     def row(o, label, V):
@@ -2602,7 +2719,9 @@ def opening_report(path, out_json=None):
     # ---- stage 2: is it the right call. Each call from the side of the team that makes it, on what he judges an opening by, every result set level on strength
     pr("\nD. Is it the right call? Each call against the other, from the side of the team that makes it: the difference in each result, set level on the strength gap, with its 90% range over whole")
     pr("   matches. A reading, never advice: there is no minute before an opening to test a call against, so a call is level only on strength. Where nearly every team makes the same call the")
-    pr("   other side is under the floor and nothing can be read: it is shown as it fell.")
+    pr("   other side is under the floor and nothing can be read: it is shown as it fell. A difference is between the teams that make the call and the teams that do not, and those")
+    pr("   include their own opponents, who lose what they gain: where the two calls are the two teams of one match (cap first or second) it is the gap between the two teams, twice what")
+    pr("   either moved; elsewhere it overstates the call's own gain by the share of the others who faced it (about a quarter for holding the flag). The ranges are over whole matches and stand.")
     cm = lambda *a: _open_cmp(pr, res["calls"], *a)
     S8 = [c for c in C if c["matchup"] == OPEN_MATCHUP[1]]
     pr(f"\n   1. We are eight and they show seven with a player back ({len(S8)}): " + ", ".join(f"{k} {sum(1 for c in S8 if c['eight_call'] == k)}" for k in EIGHT_CALLS))
@@ -2617,6 +2736,22 @@ def opening_report(path, out_json=None):
     cm([c for c in X8 if c["both_capped"]], "eight against eight: cap first", fst, sec, "caps first", "caps second")
     cm(X8, "eight against eight: hold the flag at the stand", lambda c: c["held"], lambda c: True, "holds it 15 s or more", "caps it on arriving, or does not hold")
     cm(X8, "eight against eight: send a player back before a cap", lambda c: c["sent_back"], lambda c: True, "sends a player back before a cap", "does not")
+    # R-600 (his answer on why a team holds: "Sometimes teams hold because they are already in control of the stand or sometimes they just want to 8v8 without
+    # the flag game"): the holds told apart by whether the other team holds its flag too, and by who has the stand 10 s after the teams meet (the main team
+    # that stands nearer the flag stand by more than the middle difference). Each kind of hold against not holding from the same footing.
+    Gp = [abs(c["stand_gap"]) for c in E8 if c["stand_gap"] is not None]; ctrl = float(np.median(Gp)) if Gp else 0.0
+    res["stand_line"] = ctrl
+    has = lambda c: c["stand_gap"] is not None and c["stand_gap"] > ctrl; hasnt = lambda c: c["stand_gap"] is not None and c["stand_gap"] <= ctrl
+    pr(f"\n   3b. Why a team holds (R-600), eight at the stand with a flag, no split ({len(E8)}; holds {sum(1 for c in E8 if c['held'])}): with the stand already theirs (its main team nearer the flag stand than the other's by more than {ctrl:,.0f}, 10 s after")
+    pr(f"       the teams meet) {sum(1 for c in E8 if c['held'] and has(c))}, without it {sum(1 for c in E8 if c['held'] and hasnt(c))}; while the other team holds its flag too (the 8 v 8 without the flag game) {sum(1 for c in E8 if c['held'] and c['their_held'])}, while it does not {sum(1 for c in E8 if c['held'] and not c['their_held'])}")
+    rd([c for c in E8 if c["stand_gap"] is not None], "N18 a team with the stand already its own holds its flag more often than one without", has, hasnt, +1, lambda c: c["held"], "has the stand", "has not")
+    rd([c for c in E8 if not c["held"] and c["v300"] is not None], "N19 of the teams that do not hold, one with the stand already its own is better off at 5:00 (if so, having the stand pays whatever is done with the flag)", has, hasnt, +1, lambda c: c["v300"], "has the stand", "has not", unit=" points")
+    cm([c for c in E8 if has(c)], "the stand already ours: hold the flag", lambda c: c["held"], lambda c: True, "holds it 15 s or more", "does not hold")
+    cm([c for c in E8 if hasnt(c)], "the stand not ours: hold the flag", lambda c: c["held"], lambda c: True, "holds it 15 s or more", "does not hold")
+    bh = [c for c in E8 if c["held"] and c["their_held"]]; res["both_hold"] = {"openings": len(bh), "matches": len({c["rid"] for c in bh})}
+    pr(f"   Both teams hold (the 8 v 8 without the flag game): {len(bh)} openings in {len({c['rid'] for c in bh})} matches. The two teams of such a match make the same call, so what one gains the other loses:")
+    pr("   nothing can be read from it for or against holding.")
+    cm(E8, "hold while they do not", lambda c: c["held"] and not c["their_held"], lambda c: not c["held"], "we hold, they do not", "we do not hold")
     pr(f"\n   4. They bring no flag and we bring one ({len(N)})")
     cm(N, "they bring no flag: hold ours", lambda c: c["flag"] == OPEN_FLAG[1], lambda c: c["flag"] == OPEN_FLAG[0], "holds 15 s or more, then caps", "caps inside 15 s")
     pr(f"\n   5. On whom the first flag came up, no split from the gates")

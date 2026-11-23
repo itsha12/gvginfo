@@ -230,45 +230,52 @@
   },
   "N15 a team splits in the first 3:00 more often where their first flag came up on their usual split response": {
    "n": [
-    20,
-    341
+    15,
+    111
    ],
    "reads": "too few"
   },
   "N16 a team whose first flag came up on its own usual split response caps first more often (to get the flag off him)": {
    "n": [
-    20,
-    341
+    15,
+    111
    ],
    "reads": "too few"
   },
   "N17 ... and hands the flag to another player more often": {
    "n": [
-    20,
-    341
-   ],
-   "reads": "too few"
-  },
-  "N15b the same, the split response read with the monks left out": {
-   "n": [
     15,
     111
    ],
    "reads": "too few"
   },
-  "N16b the same, the split response read with the monks left out": {
-   "n": [
-    15,
-    111
+  "N18 a team with the stand already its own holds its flag more often than one without": {
+   "first": 0.22857142857142856,
+   "second": 0.304029304029304,
+   "difference": -0.07545787545787544,
+   "range": [
+    -0.1528373680612948,
+    0.0020822446117723112
    ],
-   "reads": "too few"
+   "n": [
+    105,
+    273
+   ],
+   "reads": "not clear"
   },
-  "N17b the same, the split response read with the monks left out": {
-   "n": [
-    15,
-    111
+  "N19 of the teams that do not hold, one with the stand already its own is better off at 5:00 (if so, having the stand pays whatever is done with the flag)": {
+   "first": 3.454726044125248,
+   "second": -3.8218071610183384,
+   "difference": 7.276533205143586,
+   "range": [
+    1.7503214787444974,
+    12.595120260343696
    ],
-   "reads": "too few"
+   "n": [
+    81,
+    189
+   ],
+   "reads": "HOLDS"
   }
  },
  "as_it_fell": {
@@ -650,21 +657,21 @@
     "wins": 42.592592592592595
    },
    "  and our first flag came up on our usual split response": {
-    "cases": 5,
-    "matches": 5,
-    "started at": 69.71930817587015,
-    "caps first": 100.0,
-    "holds": 0.0,
-    "flags 3:00": -0.202,
-    "flags 5:00": 0.7620000000000001,
-    "net kills 3:00": 2.2,
-    "net kills 5:00": 3.8,
-    "net NPCs 5:00": -0.4,
-    "boosts 2:00, 4:00": 0.4,
-    "win pts 5:00": 9.123023259104794,
-    "win pts 8:00": 10.403876113789012,
-    "first kill": 60.0,
-    "wins": 80.0
+    "cases": 14,
+    "matches": 14,
+    "started at": 56.31159425925977,
+    "caps first": 28.57142857142857,
+    "holds": 28.57142857142857,
+    "flags 3:00": 0.08428571428571431,
+    "flags 5:00": 0.4235714285714286,
+    "net kills 3:00": 0.42857142857142855,
+    "net kills 5:00": 0.8571428571428571,
+    "net NPCs 5:00": -0.9285714285714286,
+    "boosts 2:00, 4:00": 0.14285714285714285,
+    "win pts 5:00": 2.2087886749607066,
+    "win pts 8:00": 7.79650106758285,
+    "first kill": 50.0,
+    "wins": 64.28571428571429
    },
    "nobody splits in the first 3:00": {
     "cases": 392,
@@ -875,89 +882,89 @@
     "wins": 40.0
    },
    "our flag on our usual split response": {
-    "cases": 20,
-    "matches": 20,
-    "started at": 56.12521809960751,
-    "caps first": 35.0,
-    "holds": 5.0,
-    "flags 3:00": -0.32,
-    "flags 5:00": -0.14947368421052631,
-    "net kills 3:00": 1.8,
-    "net kills 5:00": 2.8421052631578947,
-    "net NPCs 5:00": 2.210526315789474,
-    "boosts 2:00, 4:00": -0.05263157894736842,
-    "win pts 5:00": 5.80755570150379,
-    "win pts 8:00": 3.904698528957647,
-    "first kill": 70.0,
-    "wins": 55.00000000000001
+    "cases": 15,
+    "matches": 14,
+    "started at": 55.001106720077395,
+    "caps first": 26.666666666666668,
+    "holds": 13.333333333333334,
+    "flags 3:00": -0.019999999999999976,
+    "flags 5:00": 0.40499999999999997,
+    "net kills 3:00": 0.2,
+    "net kills 5:00": 0.07142857142857142,
+    "net NPCs 5:00": 0.42857142857142855,
+    "boosts 2:00, 4:00": -0.2857142857142857,
+    "win pts 5:00": 0.9555716184140961,
+    "win pts 8:00": 2.819878495365997,
+    "first kill": 46.666666666666664,
+    "wins": 60.0
    },
    "our flag on another player (guilds with a split response)": {
-    "cases": 341,
-    "matches": 232,
-    "started at": 52.78932037338871,
-    "caps first": 53.0791788856305,
-    "holds": 25.806451612903224,
-    "flags 3:00": 0.04633431085043988,
-    "flags 5:00": 0.06393442622950819,
-    "net kills 3:00": 0.08504398826979472,
-    "net kills 5:00": 0.2222222222222222,
-    "net NPCs 5:00": -0.09803921568627451,
-    "boosts 2:00, 4:00": 0.0196078431372549,
-    "win pts 5:00": 0.09150583413577489,
-    "win pts 8:00": 0.5694159133326299,
-    "first kill": 52.73311897106109,
-    "wins": 52.785923753665685
+    "cases": 111,
+    "matches": 97,
+    "started at": 54.9014985108134,
+    "caps first": 59.45945945945946,
+    "holds": 22.52252252252252,
+    "flags 3:00": 0.16342342342342342,
+    "flags 5:00": 0.05578431372549021,
+    "net kills 3:00": 0.34234234234234234,
+    "net kills 5:00": 0.09803921568627451,
+    "net NPCs 5:00": 0.39215686274509803,
+    "boosts 2:00, 4:00": 0.1568627450980392,
+    "win pts 5:00": 3.190471535276641,
+    "win pts 8:00": 3.522921192842811,
+    "first kill": 52.68817204301075,
+    "wins": 58.55855855855856
    },
    "their flag on their usual split response": {
-    "cases": 20,
-    "matches": 20,
-    "started at": 43.87478190039249,
-    "caps first": 50.0,
-    "holds": 10.0,
-    "flags 3:00": 0.32,
-    "flags 5:00": 0.14947368421052631,
-    "net kills 3:00": -1.8,
-    "net kills 5:00": -2.8421052631578947,
-    "net NPCs 5:00": -2.210526315789474,
-    "boosts 2:00, 4:00": 0.05263157894736842,
-    "win pts 5:00": -5.807555701503789,
-    "win pts 8:00": -3.904698528957647,
-    "first kill": 30.0,
-    "wins": 45.0
+    "cases": 15,
+    "matches": 14,
+    "started at": 44.99889327992259,
+    "caps first": 66.66666666666666,
+    "holds": 33.33333333333333,
+    "flags 3:00": 0.019999999999999976,
+    "flags 5:00": -0.40499999999999997,
+    "net kills 3:00": -0.2,
+    "net kills 5:00": -0.07142857142857142,
+    "net NPCs 5:00": -0.42857142857142855,
+    "boosts 2:00, 4:00": 0.2857142857142857,
+    "win pts 5:00": -0.955571618414094,
+    "win pts 8:00": -2.8198784953659963,
+    "first kill": 53.333333333333336,
+    "wins": 40.0
    },
    "  and we split in the first 3:00": {
-    "cases": 2,
-    "matches": 2,
-    "started at": 35.55135356257764,
-    "caps first": 0.0,
-    "holds": 0.0,
-    "flags 3:00": 0.77,
-    "flags 5:00": -0.26999999999999996,
-    "net kills 3:00": -2.5,
-    "net kills 5:00": -3.0,
-    "net NPCs 5:00": -1.0,
-    "boosts 2:00, 4:00": 0.0,
-    "win pts 5:00": -17.067857675519214,
-    "win pts 8:00": -28.852326440035416,
-    "first kill": 50.0,
-    "wins": 0.0
+    "cases": 5,
+    "matches": 5,
+    "started at": 53.15047553215487,
+    "caps first": 80.0,
+    "holds": 40.0,
+    "flags 3:00": 0.48199999999999993,
+    "flags 5:00": -0.53,
+    "net kills 3:00": -1.4,
+    "net kills 5:00": -0.6,
+    "net NPCs 5:00": 0.8,
+    "boosts 2:00, 4:00": 0.4,
+    "win pts 5:00": -2.9291626240473696,
+    "win pts 8:00": -2.305355672367645,
+    "first kill": 60.0,
+    "wins": 40.0
    },
    "  and we do not": {
-    "cases": 18,
-    "matches": 18,
-    "started at": 44.7996072712608,
-    "caps first": 55.55555555555556,
-    "holds": 11.11111111111111,
-    "flags 3:00": 0.26999999999999996,
-    "flags 5:00": 0.1988235294117647,
-    "net kills 3:00": -1.7222222222222223,
-    "net kills 5:00": -2.823529411764706,
-    "net NPCs 5:00": -2.3529411764705883,
-    "boosts 2:00, 4:00": 0.058823529411764705,
-    "win pts 5:00": -4.556411037724298,
-    "win pts 8:00": -1.1327398721712285,
-    "first kill": 27.77777777777778,
-    "wins": 50.0
+    "cases": 10,
+    "matches": 9,
+    "started at": 40.92310215380646,
+    "caps first": 60.0,
+    "holds": 30.0,
+    "flags 3:00": -0.21100000000000002,
+    "flags 5:00": -0.33555555555555555,
+    "net kills 3:00": 0.4,
+    "net kills 5:00": 0.2222222222222222,
+    "net NPCs 5:00": -1.1111111111111112,
+    "boosts 2:00, 4:00": 0.2222222222222222,
+    "win pts 5:00": 0.031223884402543867,
+    "win pts 8:00": -3.0771399068651712,
+    "first kill": 50.0,
+    "wins": 40.0
    }
   }
  },
@@ -1571,6 +1578,267 @@
     }
    }
   },
+  "the stand already ours: hold the flag": {
+   "first": "holds it 15 s or more",
+   "second": "does not hold",
+   "n": [
+    24,
+    81
+   ],
+   "matches": [
+    24,
+    81
+   ],
+   "under_the_floor": true,
+   "results": {
+    "flags at 5:00": {
+     "difference": 0.049185317153799646,
+     "range": [
+      -0.24444620886816484,
+      0.34579191906382734
+     ],
+     "n": [
+      22,
+      72
+     ],
+     "reads": "no reading"
+    },
+    "net kills by 5:00": {
+     "difference": 0.8393438014274008,
+     "range": [
+      -2.1805524836852883,
+      3.6267714918701217
+     ],
+     "n": [
+      23,
+      72
+     ],
+     "reads": "no reading"
+    },
+    "NPCs by 5:00": {
+     "difference": -0.35955350861819396,
+     "range": [
+      -1.6632571475463214,
+      0.7154970991304448
+     ],
+     "n": [
+      23,
+      72
+     ],
+     "reads": "no reading"
+    },
+    "the boosts of 2:00 and 4:00": {
+     "difference": 0.04308527443938328,
+     "range": [
+      -0.223598917322436,
+      0.2926862627700765
+     ],
+     "n": [
+      23,
+      72
+     ],
+     "reads": "no reading"
+    },
+    "chance of winning at 5:00": {
+     "difference": 6.821525603221184,
+     "range": [
+      -0.9032788946381902,
+      14.988635591910903
+     ],
+     "n": [
+      23,
+      81
+     ],
+     "reads": "no reading"
+    },
+    "chance of winning at 8:00": {
+     "difference": 1.0619927541116336,
+     "range": [
+      -9.755505726599885,
+      11.889564552641744
+     ],
+     "n": [
+      24,
+      81
+     ],
+     "reads": "no reading"
+    }
+   }
+  },
+  "the stand not ours: hold the flag": {
+   "first": "holds it 15 s or more",
+   "second": "does not hold",
+   "n": [
+    83,
+    190
+   ],
+   "matches": [
+    74,
+    160
+   ],
+   "under_the_floor": false,
+   "results": {
+    "flags at 5:00": {
+     "difference": 0.17947073241934428,
+     "range": [
+      0.008965359335915708,
+      0.3625212353682042
+     ],
+     "n": [
+      71,
+      170
+     ],
+     "reads": "better"
+    },
+    "net kills by 5:00": {
+     "difference": 1.843254438440845,
+     "range": [
+      0.595599905226147,
+      3.0728141150934585
+     ],
+     "n": [
+      71,
+      171
+     ],
+     "reads": "better"
+    },
+    "NPCs by 5:00": {
+     "difference": 0.31810113634840576,
+     "range": [
+      -0.17966909211143756,
+      0.7868244371529164
+     ],
+     "n": [
+      71,
+      171
+     ],
+     "reads": "no clear difference"
+    },
+    "the boosts of 2:00 and 4:00": {
+     "difference": 0.24302681922621866,
+     "range": [
+      0.1143442571631867,
+      0.37080853860362434
+     ],
+     "n": [
+      71,
+      171
+     ],
+     "reads": "better"
+    },
+    "chance of winning at 5:00": {
+     "difference": 6.695528949478699,
+     "range": [
+      2.1971206613710703,
+      10.479070688923086
+     ],
+     "n": [
+      83,
+      189
+     ],
+     "reads": "better"
+    },
+    "chance of winning at 8:00": {
+     "difference": 5.983268123432257,
+     "range": [
+      1.0439789381130524,
+      11.294751850907884
+     ],
+     "n": [
+      83,
+      189
+     ],
+     "reads": "better"
+    }
+   }
+  },
+  "hold while they do not": {
+   "first": "we hold, they do not",
+   "second": "we do not hold",
+   "n": [
+    74,
+    271
+   ],
+   "matches": [
+    74,
+    200
+   ],
+   "under_the_floor": false,
+   "results": {
+    "flags at 5:00": {
+     "difference": 0.16447487782636072,
+     "range": [
+      -0.019683621024389912,
+      0.3465513375811792
+     ],
+     "n": [
+      66,
+      242
+     ],
+     "reads": "no clear difference"
+    },
+    "net kills by 5:00": {
+     "difference": 1.8894819783680763,
+     "range": [
+      0.1597949223180564,
+      3.41531537876185
+     ],
+     "n": [
+      67,
+      243
+     ],
+     "reads": "better"
+    },
+    "NPCs by 5:00": {
+     "difference": 0.16757403963462633,
+     "range": [
+      -0.5169191480104273,
+      0.6877729766615314
+     ],
+     "n": [
+      67,
+      243
+     ],
+     "reads": "no clear difference"
+    },
+    "the boosts of 2:00 and 4:00": {
+     "difference": 0.22255430762786366,
+     "range": [
+      0.08764076546062465,
+      0.3625129062130584
+     ],
+     "n": [
+      67,
+      243
+     ],
+     "reads": "better"
+    },
+    "chance of winning at 5:00": {
+     "difference": 7.393270884082096,
+     "range": [
+      3.2554194772314426,
+      11.22341959351213
+     ],
+     "n": [
+      73,
+      270
+     ],
+     "reads": "better"
+    },
+    "chance of winning at 8:00": {
+     "difference": 4.640503378742453,
+     "range": [
+      -0.7379321071100298,
+      10.418879359445576
+     ],
+     "n": [
+      74,
+      270
+     ],
+     "reads": "no clear difference"
+    }
+   }
+  },
   "they bring no flag: hold ours": {
    "first": "holds 15 s or more, then caps",
    "second": "caps inside 15 s",
@@ -1923,84 +2191,84 @@
    "first": "splits in the first 3:00",
    "second": "does not",
    "n": [
-    2,
-    18
+    5,
+    10
    ],
    "matches": [
-    2,
-    18
+    5,
+    9
    ],
    "under_the_floor": true,
    "results": {
     "flags at 5:00": {
-     "difference": -0.367992819020046,
+     "difference": -0.3169332601850826,
      "range": [
-      -1.0915294096943362,
-      0.34736911960419736
+      -1.0683939807120706,
+      0.4161206718297197
      ],
      "n": [
-      2,
-      17
+      5,
+      9
      ],
      "reads": "no reading"
     },
     "net kills by 5:00": {
-     "difference": 0.8473324682860113,
+     "difference": -2.065934811945681,
      "range": [
-      -2.6190439857366448,
-      3.6342024993260864
+      -5.977149523207169,
+      1.3611413892348394
      ],
      "n": [
-      2,
-      17
+      5,
+      9
      ],
      "reads": "no reading"
     },
     "NPCs by 5:00": {
-     "difference": 1.9300975681242232,
+     "difference": 1.2099834225710917,
      "range": [
-      -2.273399669234868,
-      5.960672714081123
+      -0.28785508210355065,
+      2.7916801851298847
      ],
      "n": [
-      2,
-      17
+      5,
+      9
      ],
      "reads": "no reading"
     },
     "the boosts of 2:00 and 4:00": {
-     "difference": 0.05079228662712251,
+     "difference": 0.04461684455728038,
      "range": [
-      -0.29282717376332423,
-      0.3695087198063076
+      -0.46176124544169367,
+      0.43426551421179665
      ],
      "n": [
-      2,
-      17
+      5,
+      9
      ],
      "reads": "no reading"
     },
     "chance of winning at 5:00": {
-     "difference": -12.511446637794915,
+     "difference": -2.9603865084499135,
      "range": [
-      -27.168493126030302,
-      1.6338461410736977
+      -21.44003727761484,
+      13.669310676732987
      ],
      "n": [
-      2,
-      18
+      5,
+      10
      ],
      "reads": "no reading"
     },
     "chance of winning at 8:00": {
-     "difference": -27.719586567864187,
+     "difference": 0.7717842344975261,
      "range": [
-      -43.97413209437904,
-      -12.091304605730553
+      -20.840234949189703,
+      18.198498304670487
      ],
      "n": [
-      2,
-      18
+      5,
+      10
      ],
      "reads": "no reading"
     }
@@ -2010,84 +2278,84 @@
    "first": "caps first",
    "second": "does not",
    "n": [
-    7,
-    13
+    4,
+    11
    ],
    "matches": [
-    7,
-    13
+    4,
+    11
    ],
    "under_the_floor": true,
    "results": {
     "flags at 5:00": {
-     "difference": 0.08704327792348548,
+     "difference": 0.10369572848840841,
      "range": [
-      -0.6091822962121382,
-      0.6645575590407092
+      -0.5107912454050548,
+      0.9647121256509373
      ],
      "n": [
-      6,
-      13
+      3,
+      11
      ],
      "reads": "no reading"
     },
     "net kills by 5:00": {
-     "difference": -5.014548666083022,
+     "difference": -2.184558841862921,
      "range": [
-      -12.269691445820548,
-      -0.15993609428362152
+      -7.680455348764691,
+      1.2556696355587138
      ],
      "n": [
-      6,
-      13
+      3,
+      11
      ],
      "reads": "no reading"
     },
     "NPCs by 5:00": {
-     "difference": -2.6042999960697193,
+     "difference": 1.112972616929178,
      "range": [
-      -4.804361170741369,
-      -0.5030914744061854
+      -0.5007580648187269,
+      3.0151315760925392
      ],
      "n": [
-      6,
-      13
+      3,
+      11
      ],
      "reads": "no reading"
     },
     "the boosts of 2:00 and 4:00": {
-     "difference": 0.254440230386827,
+     "difference": 1.1242272692556516,
      "range": [
-      -0.14955323466518525,
-      0.7052488892013101
+      0.5576266380173114,
+      1.5647169832544252
      ],
      "n": [
-      6,
-      13
+      3,
+      11
      ],
      "reads": "no reading"
     },
     "chance of winning at 5:00": {
-     "difference": 0.8508437453195503,
+     "difference": 9.794454238393854,
      "range": [
-      -18.967322043784154,
-      18.806151030126564
+      -13.610718732955286,
+      28.50763559411612
      ],
      "n": [
-      7,
-      13
+      4,
+      11
      ],
      "reads": "no reading"
     },
     "chance of winning at 8:00": {
-     "difference": 3.310706674772737,
+     "difference": 6.752776489314861,
      "range": [
-      -20.871829760947758,
-      27.174489221906725
+      -20.238878833671087,
+      29.534735013919622
      ],
      "n": [
-      7,
-      13
+      4,
+      11
      ],
      "reads": "no reading"
     }
@@ -2095,128 +2363,6 @@
   }
  },
  "responders": [
-  [
-   "8 Monk",
-   21
-  ],
-  [
-   "Ritualist",
-   1
-  ]
- ],
- "responder_by_guild": {
-  "Apes": {
-   "player": "8 Monk",
-   "sent": 20,
-   "of": 47
-  },
-  "BcS": {
-   "player": "8 Monk",
-   "sent": 31,
-   "of": 74
-  },
-  "Book": {
-   "player": "8 Monk",
-   "sent": 37,
-   "of": 82
-  },
-  "Crew": {
-   "player": "8 Monk",
-   "sent": 41,
-   "of": 98
-  },
-  "DMG": {
-   "player": "8 Monk",
-   "sent": 8,
-   "of": 22
-  },
-  "DUM": {
-   "player": "8 Monk",
-   "sent": 14,
-   "of": 29
-  },
-  "Dz": {
-   "player": "8 Monk",
-   "sent": 22,
-   "of": 55
-  },
-  "Free": {
-   "player": "8 Monk",
-   "sent": 14,
-   "of": 32
-  },
-  "Fun": {
-   "player": "8 Monk",
-   "sent": 34,
-   "of": 48
-  },
-  "HC": {
-   "player": "8 Monk",
-   "sent": 6,
-   "of": 13
-  },
-  "Men": {
-   "player": "8 Monk",
-   "sent": 24,
-   "of": 63
-  },
-  "NwAy": {
-   "player": "8 Monk",
-   "sent": 7,
-   "of": 14
-  },
-  "One": {
-   "player": "8 Monk",
-   "sent": 18,
-   "of": 44
-  },
-  "TFS": {
-   "player": "8 Monk",
-   "sent": 20,
-   "of": 32
-  },
-  "Team": {
-   "player": "8 Monk",
-   "sent": 33,
-   "of": 72
-  },
-  "chic": {
-   "player": "8 Monk",
-   "sent": 17,
-   "of": 30
-  },
-  "cope": {
-   "player": "8 Monk",
-   "sent": 15,
-   "of": 40
-  },
-  "hdm": {
-   "player": "8 Monk",
-   "sent": 9,
-   "of": 23
-  },
-  "hold": {
-   "player": "Ritualist",
-   "sent": 14,
-   "of": 39
-  },
-  "ohno": {
-   "player": "8 Monk",
-   "sent": 12,
-   "of": 25
-  },
-  "xxx": {
-   "player": "8 Monk",
-   "sent": 10,
-   "of": 13
-  },
-  "\uc637\uc637\uc637\uc637": {
-   "player": "8 Monk",
-   "sent": 13,
-   "of": 25
-  }
- },
- "responders_not_a_monk": [
   [
    "Ritualist",
    8
@@ -2242,7 +2388,7 @@
    1
   ]
  ],
- "responder_not_a_monk_by_guild": {
+ "responder_by_guild": {
   "Apes": {
    "player": "Ritualist",
    "sent": 9,
@@ -2314,13 +2460,24 @@
    "of": 26
   }
  },
+ "responders_monks_counted": [
+  [
+   "8 Monk",
+   21
+  ],
+  [
+   "Ritualist",
+   1
+  ]
+ ],
  "on_responder": {
-  "first flags": 361,
-  "on it": 20
- },
- "on_responder_not_a_monk": {
   "first flags": 126,
   "on it": 15
+ },
+ "stand_line": 363.0,
+ "both_hold": {
+  "openings": 33,
+  "matches": 19
  },
  "like_spots": {
   "eight against eight, both bring a flag and both cap: cap first or second": {

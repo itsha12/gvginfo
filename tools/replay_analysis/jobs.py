@@ -100,7 +100,10 @@ def _play(M, play, side, tm, t0, t1, who, scenario, job, tests, beside=None, rul
 
 RES_LOW_HP = 80                        # a player in their base as the res lands is low under this share of his health (Claude's draft, for the record only: no play or test reads it; a player under it dies in the 30 s after about four times as often)
 OPEN_KEYS = ("stand", "split", "back", "waits")
-OPEN_LATER_S = (300, 420, 480)         # the opening is also read 5, 7 and 8 minutes from the gates (R-590: "This plays out in a longer time period"; 7:00 takes in the boosts of 2:00, 4:00 and 6:00; his answer of 2026-11-22: "7:00 is probably a bit too far out ... winning at 5:00 and 8:00": the readings are at 3:00 and 5:00, with 8:00 for the chance of winning)
+OPEN_LATER_S = (300, 480)              # the opening is also read 5 and 8 minutes from the gates (R-590: "This plays out in a longer time period"; R-596, R-599: flags and kills at 3:00 and 5:00, the chance of winning at 5:00 and 8:00; 7:00 is "a bit too far out" and is not read)
+OPEN_STAND_S = (10, 20, 30)            # how far each main team stands from the flag stand, this long after the teams meet (R-600: a team holds its flag "because they are already in control of the stand or sometimes they just want to 8v8 without the flag game": who has the stand before anybody caps tells the two apart; for the record only)
+RES_SPOT_S = 40                        # the gamble of the base res (R-601: stay and risk it, or fall out) is read this long before the res, from a team in their base with enemy dead to come back (Claude's draft: twice LEAVE_RES_S, so that a team that falls out before the last 20 s is seen leaving)
+RES_SPOT_AFTER_S = (40, 100, 220)      # ... and what followed at the res, a minute after it and three minutes after it
 OPEN_LATER_KEYS = ("to", "ended", "deaths", "npcs", "npc_kinds", "lord", "morale_parts", "caps", "boosts", "lead", "lead_change", "stand")      # what the later record of an opening keeps: the hard results, and what the price of a position reads
 RES_READ_S = 20                        # the base res is a decision this long before the res (the play's own t0): what the team in their base could see then is `res.early`
 RES_NPC_S = 20                         # NPC damage on the players in their base is counted over this long before the reading (R-595: "NPCs on them"; for the record only, no play reads it)
@@ -248,6 +251,10 @@ def opening(M):
                             "runners": dict(collections.Counter(x["runner"] for x in rows if x["runner"])), "roles": {k: [role[a] for a in v] for k, v in (("stand", stand), ("split", spl), ("back", back), ("waits", waits))}}
     caps = sorted((u, tm) for tm, u in first_cap.items() if u is not None)
     out["caps"] = caps
+    def stand_d(k, x):                                                     # how far the middle of a team's main team stands from the flag stand
+        c = M.centre([a for a in M.main_team(k, x) if M.AL[a][x]], x)
+        return None if c is None or M.hall is None else int(d(c, M.hall.stand))
+    out["stand_d"] = [[stand_d(k, x) for k in st.teams] for x in (min(t_o + s_, T) - min(t_o + s_, T) % S for s_ in OPEN_STAND_S)]      # [team 1, team 2] at each of OPEN_STAND_S after the teams meet
     fd = min(((td, k) for k in st.teams for a in st.players[k] for td in st.death_times.get(a, []) if td < M.over), default=None)      # the first death of the match and whose (the deaths recorded as the match ends are none)
     out["first_death"] = None if fd is None else [int(fd[0]), fd[1]]
     def team_words(tm):
@@ -292,6 +299,7 @@ def opening_plays(M, K):
                          open={**{k: len(o["teams"][tm][k]) for k in OPEN_KEYS}, "their": {k: len(o["teams"][3 - tm][k]) for k in OPEN_KEYS}, "their_flag": dict(o["teams"][3 - tm]["flag"]),
                                "their_first_cap": o["teams"][3 - tm]["first_cap"], "meet": o["t"], "next": o["teams"][tm]["next"], "their_next": o["teams"][3 - tm]["next"],
                                "runners": o["teams"][tm]["runners"], "roles": o["teams"][tm]["roles"], "their_roles": o["teams"][3 - tm]["roles"],
+                               "stand_d": [[x[tm - 1], x[2 - tm]] for x in o["stand_d"]],      # [ours, theirs]: how far each main team stands from the flag stand 10, 20 and 30 s after the teams meet
                                "first_death": None if o["first_death"] is None else [o["first_death"][0], "own" if o["first_death"][1] == tm else "their"]}))      # what each team can see of the other at the gates (R-590): its players at the stand, on a split, back; its first flag, on whom
     return out
 
@@ -1433,7 +1441,40 @@ def _res_stand(M, tm, ids, u):
     out["taken"] = round(sum(x[1] for a in in_ for x in D.get(a, ()) if u - RES_TAKEN_S < x[0] <= u) / len(in_)) if in_ else None
     mt = set(M.main_team(tm, u))
     out["of_main"] = sum(1 for a in in_ if a in mt)
+    out["monks"] = sum(1 for a in in_ if M.m.A[a].get("p") == "Monk" and not M.m.roles[a].startswith("Monk ") and "WoC" not in M.m.roles[a])      # backline monks among them (a smiter is damage, R-457)
     out["alive"] = [sum(1 for a in st.players[k] if M.AL[a][u]) for k in (tm, foe)]
+    return out
+
+
+def res_spots(M):
+    """The gamble of the base res (R-601, his words: falling out removes the damage, the NPCs and the range of the players who base, "But this is a gamble, and
+    we want to see which is better. There is a risk of taking deaths, but also in those crucial seconds before a base res you have a very significant chance of
+    taking NPCs, getting more kills"). One record a base res and team with three or more players in the enemy's base RES_SPOT_S before it and enemy dead to come
+    back: how they stand then (`_res_stand`), the position, how many are alive and still in the base as the res lands and when the last of them left, their
+    deaths before and after it, what the base res plays tell of it (stayed, left in the last seconds, or nothing: gone earlier), and what followed on the fixed
+    record at the res, a minute after and three minutes after, with the minute before. A record kept beside the plays: it tells no play and changes none."""
+    if M.hall is None: return []
+    st, T, K, inb, out = M.st, M.T, _K(M), M.base_zones(), []
+    told = {(r["tm"], r["t"]): "stayed" for r in M.caught()}
+    for r in M.timing():
+        if r["kind"] == "left before res": told.setdefault((r["tm"], r["t"] + r["s"]), "left")
+    for tm in st.teams:
+        foe = 3 - tm
+        for B in range(RES_EVERY, T + 1, RES_EVERY):
+            u = B - RES_SPOT_S
+            if B + 20 >= M.over - SPLIT_STEP: continue                    # a base res that falls on the end of the match is none (as for the plays)
+            att = [a for a in st.players[tm] if M.AL[a][u] and M.P[a][u] and M._deep(a, u) in inb]
+            dead = [b for b in st.players[foe] if not M.AL[b][u]]
+            if len(att) < 3 or not dead: continue
+            inside = lambda x: [a for a in att if M.AL[a][x] and M.P[a][x] and M._deep(a, x) in inb]
+            last_in = next((x for x in range(B, u - 1, -SPLIT_STEP) if inside(x)), u)
+            b_ = u - FLAG_BEFORE_S
+            out.append({"t": u, "res": B, "tm": tm, "team": M.m.tag[tm], "n": len(att), "dead": len(dead),
+                        "back": sum(1 for b in st.players[foe] if not M.AL[b][B - 6] and any(M.AL[b][x] for x in range(B - 3, min(B + 4, T) + 1))),
+                        "alive_at_res": sum(1 for a in att if M.AL[a][B]), "in_at_res": len(inside(B)), "left_at": None if inside(B) else last_in + SPLIT_STEP, "told": told.get((tm, B)),
+                        "deaths": [K.died(tm, u, B, set(att)), K.died(tm, B, B + 30, set(att)), K.died(tm, B, B + 60, set(att))],
+                        "stand": _res_stand(M, tm, att, u), "state": M._state(tm, u), "after": M.consequence(tm, u, RES_SPOT_AFTER_S),
+                        "before": None if b_ < 0 else {"state": M._state(tm, b_), "after": M.consequence(tm, b_, (FLAG_BEFORE_S,))[str(FLAG_BEFORE_S)]}})
     return out
 
 
